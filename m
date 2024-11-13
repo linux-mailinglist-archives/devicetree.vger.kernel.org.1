@@ -1,129 +1,238 @@
-Return-Path: <devicetree+bounces-121428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121429-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB1849C6B6A
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 10:25:57 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 670129C6B74
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 10:27:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 28E9A1F221BD
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 09:25:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B0CFAB2788E
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 09:27:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1920A1F77AC;
-	Wed, 13 Nov 2024 09:25:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 943461BD9E9;
+	Wed, 13 Nov 2024 09:27:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ZqmZO5Rs"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="n2PxZcdY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E328B17CA1F;
-	Wed, 13 Nov 2024 09:25:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB7121F77B7
+	for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 09:27:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731489952; cv=none; b=L0gtsgQhe6cywtbtFvfPvbOK5yH3hu/Cq8IO/dNFvPYJm8xObeGYtmydHGzC6MdOIrJ5q8XJO9Uox29/+ZkE1TyywmxZyfJHbgq/L7CqaGtmcN/hnF+WB3AsTFXP/HQHPa8327750U0bniIZH7NuM7NPLh37FiY/axpBkoezFSM=
+	t=1731490048; cv=none; b=DBKCxrp4jIhyFETwV3tE5xHJqLv4D5uueM4jXb5ILW9WFtSYrH1s/TzxIQz6rqbxGBD9E1Jh3io60LwufOuXV4PNyStD7bvQKFXm70aJLSs9vX+nSfGXPF3/zMmlfPBSNUj7vCyqi8BKR0Hg9cfs6/10ApXSsQEoPDxaXkDhgMk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731489952; c=relaxed/simple;
-	bh=KvrqYJJC3Sns7wN5xfHc67yfa6zJilW1pZURwkPXoKo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=imaLxxMf8Jo/fWcZbLEvsVTNlwJmUUNMe4oZyoHlYcMiTBbXJK+8j4ceL2yFvGvsIinl/ooEVPCfOXEdyxHluudRZlPYcYBzvucGPLIWYyc8IwA0MTzj9NOMWIkkGnNISKn/XeOGG4C/j/JIwtubyjjL3NqI5YsbwkMoJjViJqQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ZqmZO5Rs; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4AD9PSx2002157;
-	Wed, 13 Nov 2024 03:25:28 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1731489928;
-	bh=Hp24S5i2Pk28DZAbH97tK+N9cfrs3EfX5xRbl8zmPhU=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=ZqmZO5RsBxvo+4qr2dXzEc+EqGPlLi22GFzvqmn6osDgrAY0crlfj48wX9czk0sDv
-	 G0JbqHiSD0copaGVEVzWk8/X/rk2p97KvTf1Mfcx+Jkr+41G8I+v1s3jfHr+Xg5M8q
-	 wMRXkuRHlTOihLVH0q9iOKxcuQ192Th5hFWIjbs8=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4AD9PS9c125462
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 13 Nov 2024 03:25:28 -0600
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 13
- Nov 2024 03:25:27 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 13 Nov 2024 03:25:27 -0600
-Received: from [172.24.227.220] (chintan-thinkstation-p360-tower.dhcp.ti.com [172.24.227.220])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4AD9POIa087478;
-	Wed, 13 Nov 2024 03:25:24 -0600
-Message-ID: <32200597-9c02-4d43-bf91-3fe0b8ce83bc@ti.com>
-Date: Wed, 13 Nov 2024 14:55:23 +0530
+	s=arc-20240116; t=1731490048; c=relaxed/simple;
+	bh=Woik8mGxHb8sDKp6LYHmg0VUPoY8l0PGA3nFglGEYPM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uZKi2v7ERSyqC9X8mfEXPlbPzSbi3v9bMJ7Ob5hpnngn1QXc0wY9gPjOyiLsTZuRpsNlUJmdZ0w5PmsIja/sSTSG502gMyZzTZJV7GF4zbNOAx9kiclybP7rz/XNxwRAgugaiHyGVMUExpmI4RB+jiCf/WDvAMA6TDypS3oNJnc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=n2PxZcdY; arc=none smtp.client-ip=209.85.167.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-3e5fbc40239so3453672b6e.3
+        for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 01:27:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1731490046; x=1732094846; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=BvbMB4wNwdVnYSjLQzzIJ1JPopQ50W3YrXVI3V03iEQ=;
+        b=n2PxZcdYdMtfa+53JuLZp9xdnaPwj9dFWNbULDI2XMbrLsH20fw+93HgWKPaY14s4Q
+         HaX3U8sQkNMIbm+PoA9I5xQNb3O/QqhEBXyzin/B9MOGkuz47+Q89cURMsG6fIDWSpP5
+         DWqGvm3fEfF87CkhVIy+SQnLjm5RH2xNBqe/obCjodsQphKqx1T8WOGQH3m6qWXuP9Zk
+         cYeqVTcitVCKVQaKiacyi1kkPcqzU4shUtIDbXu4X4A3TmF7Y3cGBGe9dIazL7uvPLto
+         6hcbuOos9cOUThzhUC/qG5nrLaRG8H5yQ6ixW51nXWDsTynhO3w1aqk2MgDdMoifJLGq
+         RwSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731490046; x=1732094846;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BvbMB4wNwdVnYSjLQzzIJ1JPopQ50W3YrXVI3V03iEQ=;
+        b=qzYgg1Jl8W5uCsuBSx5II1ANij//qo4xubv1V+mE8S1myEOW4RFOA6DQXY8pkiSXlx
+         3ixkNJNZKKtFLR9IQ+eEuFeGpdw0XXKJPm427LC/E/ePmnNGopToSxkTvHgbqadHbAfA
+         ItI2JDMz3PTwbeXDZwuIWycXV562pa4rjXldNr+w1Qeh6zNDWsicXykfj8X0zc4sK3vA
+         MURpcpjpbheZJzUl+lmWFBFkVUzdZyqS4ygm9lSb/x+vsPKm+7GQlFNZE1jDoNfEH02H
+         Ihtf8lhELsJ5IgVzDCquqr65w/ex9mPnCtchk/hreeeNR8UiHhTYVZo6ZWyTyfB2xrnE
+         IjyQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVEYZ1FjRqQEudjHCqFyhgJFKzAl4eY1pimOLoTgVYaFUhnjnfrZwlE4d6nagPKD1zUB2J93vEraytz@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw3W/AzrqKmQ4Uu7dJgBta6Ugbamx0/3bcZ0f5XgwrG6CLykrRR
+	zSgNQpudMc2O5ETACjzRIgXCvnejh2MareCWCNS/RlQXcFroNgXkgBDBxI0CzQ==
+X-Google-Smtp-Source: AGHT+IEx4uAAxtCoiiBH+++NqpeCtgOYTj3kESrEXYNyqknD9YqnWM0YpRT+Ci+UYLhuuKE7MSjOzg==
+X-Received: by 2002:a05:6808:219f:b0:3e6:366f:8e3b with SMTP id 5614622812f47-3e79475a747mr16256490b6e.39.1731490045743;
+        Wed, 13 Nov 2024 01:27:25 -0800 (PST)
+Received: from thinkpad ([117.213.103.244])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7f41f643e9asm11986600a12.59.2024.11.13.01.27.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Nov 2024 01:27:25 -0800 (PST)
+Date: Wed, 13 Nov 2024 14:57:16 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Xin Liu <quic_liuxin@quicinc.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Avri Altman <avri.altman@wdc.com>,
+	Bart Van Assche <bvanassche@acm.org>,
+	Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org,
+	quic_jiegan@quicinc.com, quic_aiquny@quicinc.com,
+	quic_tingweiz@quicinc.com, quic_sayalil@quicinc.com
+Subject: Re: [PATCH v1 3/4] arm64: dts: qcom: qcs615: add UFS node
+Message-ID: <20241113092716.h3mabw4bzgc5gcha@thinkpad>
+References: <20241017042300.872963-1-quic_liuxin@quicinc.com>
+ <20241017042300.872963-4-quic_liuxin@quicinc.com>
+ <5fe37609-ed58-4617-bd5f-90edc90f5d8b@oss.qualcomm.com>
+ <28069114-9893-486b-a8d8-4c8b9ada1b0c@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-am62x-sk-common: Add bootph-all
- property in cpsw_mac_syscon node
-To: Vignesh Raghavendra <vigneshr@ti.com>, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, Tero
- Kristo <kristo@kernel.org>,
-        Nishanth Menon <nm@ti.com>
-CC: <s-vadapalli@ti.com>, <srk@ti.com>, <danishanwar@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20241011110207.600678-1-c-vankar@ti.com>
- <b2dadb0a-fd85-42fc-b340-6c77fe5ded0a@ti.com>
-Content-Language: en-US
-From: Chintan Vankar <c-vankar@ti.com>
-In-Reply-To: <b2dadb0a-fd85-42fc-b340-6c77fe5ded0a@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <28069114-9893-486b-a8d8-4c8b9ada1b0c@quicinc.com>
 
+On Wed, Nov 13, 2024 at 05:19:49PM +0800, Xin Liu wrote:
+> 
+> 
+> 在 2024/10/26 3:24, Konrad Dybcio 写道:
+> > On 17.10.2024 6:22 AM, Xin Liu wrote:
+> > > From: Sayali Lokhande <quic_sayalil@quicinc.com>	
+> > > 	
+> > > Add the UFS Host Controller node and its PHY for QCS615 SoC.
+> > > 
+> > > Signed-off-by: Sayali Lokhande <quic_sayalil@quicinc.com>
+> > > Co-developed-by: Xin Liu <quic_liuxin@quicinc.com>
+> > > Signed-off-by: Xin Liu <quic_liuxin@quicinc.com>
+> > > ---
+> > 
+> > + Taniya (see below)
+> > 
+> > >   arch/arm64/boot/dts/qcom/qcs615.dtsi | 74 ++++++++++++++++++++++++++++
+> > >   1 file changed, 74 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+> > > index fcba83fca7cf..689418466dc2 100644
+> > > --- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
+> > > +++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+> > > @@ -458,6 +458,80 @@ mmss_noc: interconnect@1740000 {
+> > >   			qcom,bcm-voters = <&apps_bcm_voter>;
+> > >   		};
+> > > +		ufs_mem_hc: ufs@1d84000 {
+> > 
+> > ufshc@ would be consistent with other files in dts/qcom
+> > 
+> I referred to qcom files such as sa8775p/sm8550/sm8650 etc.All use ufs@
 
+That's an oddity. But 'ufshc' is documented in the devicetree spec. So you
+should use it for UFSHC nodes.
 
-On 28/10/24 22:06, Vignesh Raghavendra wrote:
-> 
-> 
-> On 11/10/24 16:32, Chintan Vankar wrote:
->> Add bootph-all property in CPSW MAC's eFuse node cpsw_mac_syscon.
->>
-> 
-> Why?
-> 
-> Please make sure commit message is verbose enough to say why the change
-> is needed vs what that change is (latter is obvious lookng at the diff)
+- Mani
+
+> > 
+> > > +			compatible = "qcom,qcs615-ufshc", "qcom,ufshc", "jedec,ufs-2.0";
+> > > +			reg = <0x0 0x01d84000 0x0 0x3000>, <0x0 0x01d90000 0x0 0x8000>;
+> > > +			reg-names = "std", "ice";
+> > 
+> > One per line, please
+> Thank you, I will fix it next version.
+> > 
+> > > +			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
+> > > +			phys = <&ufs_mem_phy>;
+> > > +			phy-names = "ufsphy";
+> > > +			lanes-per-direction = <1>;
+> > > +			#reset-cells = <1>;
+> > > +			resets = <&gcc GCC_UFS_PHY_BCR>;
+> > > +			reset-names = "rst";
+> > > +
+> > > +			power-domains = <&gcc UFS_PHY_GDSC>;
+> > > +			required-opps = <&rpmhpd_opp_nom>;
+> > > +
+> > > +			iommus = <&apps_smmu 0x300 0x0>;
+> > > +			dma-coherent;
+> > > +
+> > > +			interconnects = <&aggre1_noc MASTER_UFS_MEM QCOM_ICC_TAG_ALWAYS
+> > > +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+> > > +					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+> > > +					 &config_noc SLAVE_UFS_MEM_CFG QCOM_ICC_TAG_ALWAYS>;
+> > > +			interconnect-names = "ufs-ddr",
+> > > +					     "cpu-ufs";
+> > > +
+> > > +			clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
+> > > +				 <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
+> > > +				 <&gcc GCC_UFS_PHY_AHB_CLK>,
+> > > +				 <&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
+> > > +				 <&rpmhcc RPMH_CXO_CLK>,
+> > > +				 <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
+> > > +				 <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
+> > > +				 <&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
+> > > +			clock-names = "core_clk",
+> > > +				      "bus_aggr_clk",
+> > > +				      "iface_clk",
+> > > +				      "core_clk_unipro",
+> > > +				      "ref_clk",
+> > > +				      "tx_lane0_sync_clk",
+> > > +				      "rx_lane0_sync_clk",
+> > > +				      "ice_core_clk";
+> > > +			freq-table-hz = <50000000 200000000>,
+> > > +					<0 0>,
+> > > +					<0 0>,
+> > > +					<37500000 150000000>,
+> > > +					<0 0>,
+> > > +					<0 0>,
+> > > +					<0 0>,
+> > > +					<75000000 300000000>;
+> > 
+> > Please try to match the order of properties present in sm8650.dtsi
+> Thank you, I will fix it next version.
+> > 
+> > And please use an OPP table instead of freq-table-hz (see sm8*5*50.dtsi)
+> Thank you, I will fix it next version.
+> > 
+> > > +
+> > > +			status = "disabled";
+> > > +		};
+> > > +
+> > > +		ufs_mem_phy: phy@1d87000 {
+> > > +			compatible = "qcom,qcs615-qmp-ufs-phy", "qcom,sm6115-qmp-ufs-phy";
+> > > +			reg = <0x0 0x01d87000 0x0 0xe00>;
+> > 
+> > This register region is a bit longer
+> I just confirmed again, there's no problem here.
+> > 
+> > > +			clocks = <&rpmhcc RPMH_CXO_CLK>,
+> > > +				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>,
+> > > +				 <&gcc GCC_UFS_MEM_CLKREF_CLK>;
+> > > +			clock-names = "ref",
+> > > +				      "ref_aux",
+> > > +				      "qref";
+> > > +
+> > > +			power-domains = <&gcc UFS_PHY_GDSC>;
+> > > +
+> > > +			resets = <&ufs_mem_hc 0>;
+> > > +			reset-names = "ufsphy";
+> > > +
+> > > +			#clock-cells = <1>;
+> > 
+> > The PHY is a clock provider. Normally, it's a parent of
+> > gcc_ufs_phy_[rt]x_symbol_n clocks.
+> > 
+> > Taniya, could you please wire that up in your patchset?
+> > 
+> > Konrad
 > 
 
-Sure Vignesh. I will update the commit message accordingly in next
-version.
-
->> Signed-off-by: Chintan Vankar <c-vankar@ti.com>
->> ---
->>
->> This patch is based on linux-next tagged next-20241011.
->>
->>   arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 4 ++++
->>   1 file changed, 4 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
->> index 44ff67b6bf1e..82d34dfb91ed 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
->> @@ -303,6 +303,10 @@ AM62X_MCU_IOPAD(0x028, PIN_OUTPUT, 0) /* (C5/C6) WKUP_UART0_TXD */
->>   	};
->>   };
->>   
->> +&cpsw_mac_syscon {
->> +	bootph-all;
->> +};
->> +
->>   &wkup_uart0 {
->>   	/* WKUP UART0 is used by DM firmware */
->>   	bootph-pre-ram;
-> 
+-- 
+மணிவண்ணன் சதாசிவம்
 
