@@ -1,119 +1,130 @@
-Return-Path: <devicetree+bounces-121500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121501-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A25F09C6F0C
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 13:28:05 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A870A9C6FC0
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 13:53:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5965F1F219A8
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 12:28:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 302E0B27D19
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 12:39:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C03D200123;
-	Wed, 13 Nov 2024 12:27:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CBFC1DF75C;
+	Wed, 13 Nov 2024 12:39:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="htO+36ro"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="2SQyVf+h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA8D71FF035
-	for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 12:27:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DEB34C6C;
+	Wed, 13 Nov 2024 12:39:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731500879; cv=none; b=jMGxDWb1e2wxk5RutlwF4Un/cx+5NVCcZPwhOinJz3hVGjle+VUpmOKTnEe3Zm8LaxIOknqq9eZUIONh2N28p7OYeVZDcruiwKiD1i5KpBRpUfEvdVFGYgqD0ysrFpiu7mWgDZFt7N+5re2jgCCRVZWtCtEL/7TOFWWik0mqcSo=
+	t=1731501588; cv=none; b=tb0Ya6cV+ZAJ7sxS7gkfbDuoVNs47J1tR4zLOHfU5pg1cuP74dWDvYbRrMtJHW15ZQPEG1+Rk3lrkYoWZApm5ilxy2oJVX9fj8pQ2dHXQx9C3CqI/FSPyfuVJboWUp3k9h0A/18JpnhVUM4VFDtQtHsAyjPurW0PN8lOIc0ojhY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731500879; c=relaxed/simple;
-	bh=f8CTOIqv4oLHKsLL/f0AGLbjfM+lAZW3RyafSe6Nqpg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=q50+723AsUhoFGirB38x+enHZ929Z6zrhioD502NXM3ZJZxYvz7S6MwK7wmKWI6bS4TNRCkWC9gYcAFk4JQuAYBsFdW4uY87YXWvnLu+BrQfpaAINAmAt+yFCGecevmABQ2klhb1Tz7GBuNf5qC15dPjLrUhT/CncLRfkWrFTsY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=htO+36ro; arc=none smtp.client-ip=209.85.219.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-e28fe07e97dso6883009276.3
-        for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 04:27:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731500877; x=1732105677; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=KImKDqWq4s21FhX0T9TYJY9R8T8zry6WhOX4TLZUuNk=;
-        b=htO+36ro2eJGPyCSxaKqQ7zQU+EaqBNU0yYJGMr2z6JjExdfHQVGJMnHkcEZOPUK9Q
-         jDj1F1I2ThDqQIht3AWD+FkKF3sc9sM+mpWNCaQlF+bmcWbl4FZ/xnt2rQkxN/7kbIYL
-         oSp101zzKiBprGNK+DW13BmQqjADX15st5O6yxgRs031qROxSbA3CDmNkUTf9AjOc+YN
-         wMi/jA89aoSwr4AdpwGR4Gz5Q0YaGNaMawIEJeyjkNbOXHQrWxLC8Kshkjke5YAzSLU1
-         Yx3quytXe2dGKDXLm01DCVVgInJSWi7tmLN1YuvXRCWTUK+wyrJro7RV9HFH8FIJCelP
-         lrDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731500877; x=1732105677;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KImKDqWq4s21FhX0T9TYJY9R8T8zry6WhOX4TLZUuNk=;
-        b=jV95xrkOtRONnmZP5D5PLeQNU12MTUFCEY5Ru/yknl6lYiSL62iltgM/tBoBCla79D
-         NlTfBJsTUH27cI6pGzIgSHEFNLjjHouyQpsPfZ8nRYR1vVl0LFRleMua+/DAR/LCMRj1
-         iNspgWGP9YG2WE7qG0Hx9ijJ1vfxziA+aQLci7zkVPHQ1+9q4elLyjgwSf9+s1Tedfj4
-         OXs+vaoPzr/mEfZNy7fhHRacQ8p9bawBO4ANcNlOuoFKv7oc9NFxH6DVK06/6mbcTMo1
-         rGp40ASAZd1nOGME/kAN74TxNFE5+gqTh9436p83wd1oYO5NhKIEjaaZPrhlUiXxhhQP
-         CWzw==
-X-Forwarded-Encrypted: i=1; AJvYcCXRPHh6LiVovrnISD9FqizOtlr7MLdE65vin+dpx8YiBAR/V8m/kNKYKyTdMB/xZ+gXnor7d5j80LXf@vger.kernel.org
-X-Gm-Message-State: AOJu0YxugIH2NfyuV94Sqq1qRNMRfQGq9Pv61fqsRgUgT7e0knb5FvQR
-	gnldPfTJz3Ay1VR96qVg+2gr2D7g7e1n4y+rg1x9ahTw1Xr1JlbfFejVKExNAd3kO7fr+gGBTRa
-	pNEJxzIjaDtGNeAZDnXexelJbdjPThpuyOpJkjQ==
-X-Google-Smtp-Source: AGHT+IHaAWOdAgML2ba4DzOA4z4U2wezC3VkawX20A2dPxMskv1IqJdFG+uwKU9K7bhxa9QyXticQbkM331fssKDcLk=
-X-Received: by 2002:a05:690c:30b:b0:6e3:16da:e74 with SMTP id
- 00721157ae682-6eaddd9418emr194176117b3.16.1731500876873; Wed, 13 Nov 2024
- 04:27:56 -0800 (PST)
+	s=arc-20240116; t=1731501588; c=relaxed/simple;
+	bh=gKqFLRNsIwmH44eV0meSeljeLbEd+mAGQe2+yyq65/s=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=V4kwvWP3yi5BgCldnwPqP7O/eYdKw/0OFNdRFkHpWnQQCT9NjTFNriiAqdBH3WIBs9CQUXjpcDT3IPxCUA64o/R4GNIU/+Ao05e6CJ/aRCYvw/FvgRvOZZYo1Y3ua/M6MN5Ry95e7hn/svQME0BQzUj29HIvrRQ3vFjTKFQhOWY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=2SQyVf+h; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=KmeKU28bQtzm8XNGcvF30DDJ+SoCDTx1YSZjcXEcLKI=; b=2SQyVf+hPTARrHZbuwXr/dxWZx
+	0CnmRSDkpJ36NC9AriqR4Sw7jSgBsKxRehtKc7D6tTG9eW6NuhlCfkVO8QSRGg2BBgCI5puI6plCW
+	iP5vv2vMXErkCefUx2KyVCSqU21B2pU0fheOT5n2UJdjzsNGf7mKHS2mgwu//nd7qnaQZzqpVo/fk
+	zmclxzYC56fex2+pLaC1uPQOeYWOrLVdlsyRAot+2h1yD5tvfrIVxpj/XEV79UT1JRTYrDQJSBe9a
+	+JCxMChIJBYz1efnoTr8MN1EfXh2pKJQIj5pcUx53Lz6PNYBEaoRBWJRST8R+MG+F0m7pnbFUUxyc
+	9HcAMXpg==;
+Received: from i53875a30.versanet.de ([83.135.90.48] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tBCeh-00033b-66; Wed, 13 Nov 2024 13:39:31 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, quentin.schulz@cherry.de, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Heiko Stuebner <heiko.stuebner@cherry.de>
+Subject:
+ Re: [PATCH v2 2/2] phy: rockchip: Add Samsung CSI/DSI Combo DCPHY driver
+Date: Wed, 13 Nov 2024 13:39:30 +0100
+Message-ID: <2564703.Sgy9Pd6rRy@diego>
+In-Reply-To: <fynyo2amqillioxwfyydvztakba5ecwa2qrtdtuoaffyvwc62c@3vizyubfqvsf>
+References:
+ <20241104111121.99274-1-heiko@sntech.de>
+ <20241104111121.99274-3-heiko@sntech.de>
+ <fynyo2amqillioxwfyydvztakba5ecwa2qrtdtuoaffyvwc62c@3vizyubfqvsf>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241113-add-display-support-for-qcs615-platform-v2-0-2873eb6fb869@quicinc.com>
- <20241113-add-display-support-for-qcs615-platform-v2-8-2873eb6fb869@quicinc.com>
-In-Reply-To: <20241113-add-display-support-for-qcs615-platform-v2-8-2873eb6fb869@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 13 Nov 2024 14:27:45 +0200
-Message-ID: <CAA8EJprBxL0KuOm4f1peRCw9Y=bzXo=Vt-QEv37RzJ62zJriNw@mail.gmail.com>
-Subject: Re: [PATCH v2 8/9] arm64: dts: qcom: Add display support for QCS615
- RIDE board
-To: Fange Zhang <quic_fangez@quicinc.com>
-Cc: Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
-	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Krishna Manikandan <quic_mkrishn@quicinc.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, Li Liu <quic_lliu6@quicinc.com>, 
-	Xiangxu Yin <quic_xiangxuy@quicinc.com>, linux-arm-msm@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Wed, 13 Nov 2024 at 13:53, Fange Zhang <quic_fangez@quicinc.com> wrote:
->
-> From: Li Liu <quic_lliu6@quicinc.com>
->
-> Add display MDSS and DSI configuration for QCS615.
-> QCS615 has a DP port, and DP support will be added in a later patch.
->
-> Signed-off-by: Li Liu <quic_lliu6@quicinc.com>
-> Signed-off-by: Fange Zhang <quic_fangez@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/qcs615-ride.dts | 109 +++++++++++++++++++++++++++++++
->  1 file changed, 109 insertions(+)
+Hi,
+
+> > +static void samsung_mipi_dcphy_bias_block_enable(struct samsung_mipi_dcphy *samsung)
+> > +{
+> > +	u32 bias_con2 = 0x3223;
+> > +
+> > +	regmap_write(samsung->regmap, BIAS_CON0, 0x0010);
+> > +	regmap_write(samsung->regmap, BIAS_CON1, 0x0110);
+> > +	regmap_write(samsung->regmap, BIAS_CON2, bias_con2);
+> > +
+> > +	/* default output voltage select:
+> > +	 * dphy: 400mv
+> > +	 * cphy: 530mv
+> > +	 */
+> > +	regmap_update_bits(samsung->regmap, BIAS_CON4,
+> > +			   I_MUX_SEL_MASK, I_MUX_SEL_400MV);
+> > +}
+> > +
+> > +static void samsung_mipi_dcphy_bias_block_disable(struct samsung_mipi_dcphy *samsung)
+> > +{
+> > +}
+> 
+> uhm? :)
+
+When there was still the CSI stuff in here, that function still had
+content ;-) .
+
+But yeah, if and when that comes back, we can re-add things.
 
 
-This patch has even more feedback that was ignored at v1. Please go to
-the v1 discussion, respond to _all_ the items, so that we can actually
-see what got ignored and why. Usually I don't require this (we can all
-make a mistake and miss an item or two), but with this patchset the
-number of the comments that were ignored is extremely high.
+> > +static int samsung_mipi_dcphy_set_mode(struct phy *phy, enum phy_mode mode,
+> > +				       int submode)
+> > +{
+> > +	return 0;
+> > +}
+> 
+> You can just remove this. phy_set_mode_ext() will return 0 byself if
+> the callback is NULL.
 
--- 
-With best wishes
-Dmitry
+But it will not set the mode then.
+
+See the part of
+	ret = phy->ops->set_mode(phy, mode, submode);
+	if (!ret)
+		phy->attrs.mode = mode;
+
+Without the set_mode callback phy->attrs.mode will not be set.
+And while we don't have anything to do for set_mode itself,
+we do need the mipi_dphy mode to be set.
+
+
+Heiko
+
+
 
