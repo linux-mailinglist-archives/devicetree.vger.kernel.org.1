@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-121518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121519-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2823E9C7169
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 14:52:15 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F0609C7166
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 14:51:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AC02DB2EE5D
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 13:37:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B1501B2F275
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 13:38:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 613E2202659;
-	Wed, 13 Nov 2024 13:36:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BB3420371E;
+	Wed, 13 Nov 2024 13:36:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="rPzztnyQ"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="fK3gTN7j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AF7D201275
-	for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 13:35:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6143D20265A
+	for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 13:36:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731504961; cv=none; b=A3H6AZNYhKaHUpPSyL06hZkoxxGCLQ4fuvZY+l8wssUJ2BgW2onDAwk39NfnIpUIbi+hsaYSfXfi/l/vF182EoC1/ojWDnQP2TtZ+qVgp6d5EdPV99qgnarg9NR7HqFkPYheh+cBusocxhxL0Y8ma8igLY+YdFHOdSWw0YIFSCs=
+	t=1731504963; cv=none; b=ZYnFh0t20QatIaRgBRCbfqjjjjPIUBRPWdm0dOhpJTfEPHnlzWY/r2TB7M4Jc86g2gpKgv8Lb1qhpqIKa8TjDRQzzdD73VSlkg9p9PRqXew6rFgxSD+4C9Rbkf7ZTNWuaZQFkuBF2FpMKZICiKzOYu8BivsP5pC/xHpZImOUhHs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731504961; c=relaxed/simple;
-	bh=MN67nAF+CszefP3gr8RMGEznclhS5zNcjbkW5w4l35Y=;
+	s=arc-20240116; t=1731504963; c=relaxed/simple;
+	bh=Sz1PAChDcM9B6CCJvpuwCd6OJsVNXMcyHPYNhDbm9c8=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=YPEOpubfZ4kxCCq6qdtqNQEgf3YdV9vuV4YrGY9BjOwzkWn1MZYNDQqV2Mkvw1ixcNNVuCaerx7YUopsQkpOXJhilOhyiz6/8v74DjPNOcTeiuHiJS5Yrc4I/yU7bKXXUr56e+qwcyj8BB1sLwMSnh+S8DDN0DuGyoUNM9tkDGM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=rPzztnyQ; arc=none smtp.client-ip=209.85.128.51
+	 MIME-Version; b=NYhUrmGeVEobgq4aKEMadwC6UYQqSMlBonxiNeLpcOjFLMShcXsSFYt3O282eAOYVQGuy8QcYN6V0nqChYKuEyULq2WIEirCLN6mGMcGY1eU+5EO6xx/ThAKIyYQeOtY512POhIftTC0ZneY9CzZYNx8NbVdywMNYTG0ne5ie7E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=fK3gTN7j; arc=none smtp.client-ip=209.85.128.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4315eac969aso4691945e9.1
-        for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 05:35:59 -0800 (PST)
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4315abed18aso59275725e9.2
+        for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 05:36:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1731504958; x=1732109758; darn=vger.kernel.org;
+        d=tuxon.dev; s=google; t=1731504960; x=1732109760; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=1OvTZSeNAGKIV1seMePes99WD5Hn6Ptwq+/QcTfM4OA=;
-        b=rPzztnyQnWc53nQPqtQRzK30csntTKsCs8KwjXCgnVLwhrO+qHUdSv3F26A+Fbxu+P
-         pmHX0jNSaRXVxCtUq/z83LmReidtEGaAW0hLNcl36DXY6CZwuOAml+ctZnYN3F6K+1/N
-         nwPl4HiqDotbA6mcaz29gp1Ue4RD/OzySFWM/qDDx6L285B3hsEqY7pmjN32E+VGl42s
-         +FxLteK8tfuja9au5F9VRH35Gs7MN8Csg3gDksHz6y1BqImDZPBswbcIgrBc2+9UGzES
-         zPKtQQjmcJ3NRX4xI3pNtxNw559M5gIVXS1cABqNN7kmWWGu9OtWBBj99DwsbAN3Xg5e
-         PqNg==
+        bh=AaN72J9oCjuJRB7FXPQLRWlL5CXlKXSOkEeKQxWmO0E=;
+        b=fK3gTN7jiIIAtO3rkYMWViQ7kwSobDSblhvVDlndpe8/9iBB8nAKVldreAUVzg+SvA
+         jKcupWdRqJOsqZo0jrgpnYR3AxsWnylOhulll5e/7AgSkuEaoE2S23U1Qa5LdZcNufjB
+         H06/HXplKzimOfo3qluFqCrbOFUzTwYl3MIpVBKCkghTZS35KjrTRK9vjBSy6RxKMrWZ
+         zjxmHCHQMy/8SBP/jjgGJpz6NRvWFbisVKSILQxHj3V6Bvd6vgXsJSlQuIsgxyXcCrNf
+         aCYLHETVCdvlZa42tE32LP2ieOw97zYs4XNnQWm48SvoeVSjQBCQYEoE2lQd2YTbH59l
+         zQdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731504958; x=1732109758;
+        d=1e100.net; s=20230601; t=1731504960; x=1732109760;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=1OvTZSeNAGKIV1seMePes99WD5Hn6Ptwq+/QcTfM4OA=;
-        b=M5KNY9r+ZX5k1WefDt3vV1SWDD07eZ7kgkLIQA/Rw3/fXNex9gsKH1fDQCGZpNI7BC
-         8mQpR2IXTWS1A7ck/KUtcPRdn0CKxD5WXe8268yAp6bkQq3m/ocDoeE5X84PYXdQAV2J
-         q0M7wJB4eKEZ+Y+eB6iX9MXZd3VJh6mev+4Du/NZInjOPFOFznKMyGiBHL/jUSDB2led
-         qNIOqv3XRc2jisHx+/jqNKrBvbUEME9VE7qcbnHId4JWbg0FzgGXbvsexXtrJTmMjF0A
-         LmD5U5I1DE5OCh+RcWww/VMS/f4qkBJtEKo7+EZ7V9AloOCzaR8yjfO2nNOOgiowbTN3
-         Pvpg==
-X-Forwarded-Encrypted: i=1; AJvYcCVuCmeI/D12CEIB6Ga9xxyPDllU+ZLdLCbkVMbJugFzWvMsgtx4QYbKo4s+6OrR/Y1yfhNHwu4Yl0N8@vger.kernel.org
-X-Gm-Message-State: AOJu0YyYTiHLjlRmkCepyd6WzwclQQ/d0kMdhRvSI5ltJS83sElePQSB
-	nQZEu+p+Sp1A1EmIgK1LLQWLU/PxiEjlEXrinc4aJKlQYUodLLprI/YpJ9Suapw=
-X-Google-Smtp-Source: AGHT+IH0MgOpNYoww+cJhT91aFWRPXzfgZYVlvmgv7xhY7iMIMEQpgepNOVaV+LNO6p7EhOHTMdqGw==
-X-Received: by 2002:a05:600c:3c9d:b0:431:4fbd:f571 with SMTP id 5b1f17b1804b1-432b74ce199mr179115085e9.13.1731504957851;
-        Wed, 13 Nov 2024 05:35:57 -0800 (PST)
+        bh=AaN72J9oCjuJRB7FXPQLRWlL5CXlKXSOkEeKQxWmO0E=;
+        b=XUUPRyshPT00LIbP0YVJulRZlv3vAbj4/fWwKmUzW5L+gS81T0pUtxz9xsQnIGZoFS
+         pt3dT1jjZEBFvPAuxuVcrqU5krwokuV7RnAaG9/tacl/MSLZpXTXI2HfznsFsmgmMbcX
+         tl+v6UEK1Nxhflx0pXmyJ71m1rT2unoIUJIwin4jV/6u4vkG7HIbe9eDAp6bGBdH7DP8
+         6/Fd1kuNQUSij3LgKopH8DrCr7344mYirDfKkJqx7cHy6qJBapUlVtiDxMMnnGx7vQon
+         P2XWTunAVzu1wYsk0teHgxKuhlb3lShAiFOvlv672erwcT9ARUoXYDPGwl9FKfbbMfi6
+         H1KQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVFzDdcUIhLJsMzJnvXfdtR7oStDHsrMrJVYlgX0eW5TFGetZ2KjuYg9EDKJUCBncjB+BdiQc1Cq4Mr@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw2vl0zqMSMlyaCx79dQh6HQf2/8hkPSCbkN2Div9abt0j34Tsg
+	YI383jOFtouG9PL0YtSm1j/SYwCp2YIbbOLEGfWzHwlgqHK9weu3CRtRYTIIsJg=
+X-Google-Smtp-Source: AGHT+IEMrNnWePZLL6c2pl45w1yaF9tt+h731CuGi4h+iBycfvBUpWEwqJT5WVYgqo485BsTWQsP3g==
+X-Received: by 2002:a05:600c:4f43:b0:432:d82d:6a6c with SMTP id 5b1f17b1804b1-432d82d6b43mr9287205e9.30.1731504959807;
+        Wed, 13 Nov 2024 05:35:59 -0800 (PST)
 Received: from claudiu-X670E-Pro-RS.. ([82.78.167.28])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-432d54e2f2esm25664165e9.1.2024.11.13.05.35.55
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-432d54e2f2esm25664165e9.1.2024.11.13.05.35.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Nov 2024 05:35:57 -0800 (PST)
+        Wed, 13 Nov 2024 05:35:59 -0800 (PST)
 From: Claudiu <claudiu.beznea@tuxon.dev>
 X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
 To: geert+renesas@glider.be,
@@ -91,11 +91,10 @@ Cc: linux-renesas-soc@vger.kernel.org,
 	linux-sound@vger.kernel.org,
 	linux-gpio@vger.kernel.org,
 	claudiu.beznea@tuxon.dev,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
-	stable@vger.kernel.org
-Subject: [PATCH v3 06/25] ASoC: renesas: rz-ssi: Terminate all the DMA transactions
-Date: Wed, 13 Nov 2024 15:35:21 +0200
-Message-Id: <20241113133540.2005850-7-claudiu.beznea.uj@bp.renesas.com>
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: [PATCH v3 07/25] ASoC: renesas: rz-ssi: Use only the proper amount of dividers
+Date: Wed, 13 Nov 2024 15:35:22 +0200
+Message-Id: <20241113133540.2005850-8-claudiu.beznea.uj@bp.renesas.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20241113133540.2005850-1-claudiu.beznea.uj@bp.renesas.com>
 References: <20241113133540.2005850-1-claudiu.beznea.uj@bp.renesas.com>
@@ -109,46 +108,36 @@ Content-Transfer-Encoding: 8bit
 
 From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-In case of full duplex the 1st closed stream doesn't benefit from the
-dmaengine_terminate_async(). Call it after the companion stream is
-closed.
+There is no need to populate the ckdv[] with invalid dividers as that
+part will not be indexed anyway. The ssi->audio_mck/bclk_rate should
+always be >= 0.
 
-Fixes: 4f8cd05a4305 ("ASoC: sh: rz-ssi: Add full duplex support")
-Cc: stable@vger.kernel.org
-Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 ---
 
 Changes in v3:
-- collected tags
-- use proper fixes commit SHA1 and description
 - s/sh/renesas in patch title
 
 Changes in v2:
 - none
 
- sound/soc/renesas/rz-ssi.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ sound/soc/renesas/rz-ssi.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
 diff --git a/sound/soc/renesas/rz-ssi.c b/sound/soc/renesas/rz-ssi.c
-index 6efd017aaa7f..2d8721156099 100644
+index 2d8721156099..b4439505929f 100644
 --- a/sound/soc/renesas/rz-ssi.c
 +++ b/sound/soc/renesas/rz-ssi.c
-@@ -415,8 +415,12 @@ static int rz_ssi_stop(struct rz_ssi_priv *ssi, struct rz_ssi_stream *strm)
- 	rz_ssi_reg_mask_setl(ssi, SSICR, SSICR_TEN | SSICR_REN, 0);
- 
- 	/* Cancel all remaining DMA transactions */
--	if (rz_ssi_is_dma_enabled(ssi))
--		dmaengine_terminate_async(strm->dma_ch);
-+	if (rz_ssi_is_dma_enabled(ssi)) {
-+		if (ssi->playback.dma_ch)
-+			dmaengine_terminate_async(ssi->playback.dma_ch);
-+		if (ssi->capture.dma_ch)
-+			dmaengine_terminate_async(ssi->capture.dma_ch);
-+	}
- 
- 	rz_ssi_set_idle(ssi);
- 
+@@ -258,8 +258,7 @@ static void rz_ssi_stream_quit(struct rz_ssi_priv *ssi,
+ static int rz_ssi_clk_setup(struct rz_ssi_priv *ssi, unsigned int rate,
+ 			    unsigned int channels)
+ {
+-	static s8 ckdv[16] = { 1,  2,  4,  8, 16, 32, 64, 128,
+-			       6, 12, 24, 48, 96, -1, -1, -1 };
++	static s8 ckdv[] = { 1,  2,  4,  8, 16, 32, 64, 128, 6, 12, 24, 48, 96 };
+ 	unsigned int channel_bits = 32;	/* System Word Length */
+ 	unsigned long bclk_rate = rate * channels * channel_bits;
+ 	unsigned int div;
 -- 
 2.39.2
 
