@@ -1,164 +1,177 @@
-Return-Path: <devicetree+bounces-121545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121534-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D68139C7284
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 15:08:11 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ACD59C72D5
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 15:10:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9669F282418
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 14:08:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 87F01B31FB2
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 13:43:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70868202645;
-	Wed, 13 Nov 2024 14:06:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CD4C213EDC;
+	Wed, 13 Nov 2024 13:36:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="itJcF2Mj"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="lCs3eT2U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C772120262B;
-	Wed, 13 Nov 2024 14:06:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA305212634
+	for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 13:36:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731506805; cv=none; b=h2aGjJa5e0BGUfCfDfi+QjG9YqiCzpYGcc1L/GDjP25IQ7zHAkrq6TZBgGAWG2xWD09N63pqfSFoZbHmab15c0BEcXoAqN3/y33kNTMEpBtoj5WHLfETEIfkafGY1TewkxmqrH063iUcoDCe5UjLf4WlmwenA3YsvRMw9cM38Ow=
+	t=1731504992; cv=none; b=oqmLeON72oaMiAw8ZOWP/IQ98u3uDzU84p/3Bka4Mek7836rjD4BHZ3E+GGtZWmtc5D+iQJeKRfU3DVkxrUzYPzug5e5NqR3bPHUJkArKEEueGIdvq7wDguMpv6g0LKNSWM8b/HHPw8c6fzjJ5z6VIrmHe8KNOqM1Iyowmz2BIs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731506805; c=relaxed/simple;
-	bh=Frta3fJ1ZWp+VmY7WXNQ2d8ZwuFSfiDqTLtKlhI6ens=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=nTxVWj54E54c64nD2O4Kj5lte+aHBjBxcVQgENeNUxWrrQhwEoxU1oIzZyqll+Mvnt2FOkqy1D4HGaIvqJn0tkS5o3bQG2qyoVZ4rOCm6sbN6sWjLqAvyBhnIkCg+ZzdSwxO7DicerkksvvzUXpOcsWyWgJGtwiV3VDkqjByaRM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=itJcF2Mj; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4ADAKSZM019315;
-	Wed, 13 Nov 2024 14:06:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	i2nRK6FOLNpo2nx26Zhc4QSZ3mfjnIgpJxv3Zq6bCA8=; b=itJcF2MjhCZ14CZ4
-	vtfk/WJ/eIXBx33TlDvTHJvdKiwI2NMxMuct5mKRq4PKvovGjCRrzIlY0R1+Cs3N
-	9a2FmifOCqpzXqqNjJikLawW+sBzESXXCNsGRWfcTd7kpKnotLuLDXNkfV5iYemq
-	4K9VeLgz4pvDmLdprY84RHDzHlJCkERUVWrj2ff3E7zvedk0Nr27YkM/ftRZsLqy
-	w3djH75/W+4rR9yPvNqJ+FmppxQ6ji0vFUdwi07+vm+CWb/3dxtI4Mxqz6tnnu4T
-	fQAjfJ+mT0iN0EdfrnNiautx41WV9KAMQD0Vfne87rw0xkQHY4fBz5EQpWK2NNzB
-	IhZKfA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42v4kqv60q-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 13 Nov 2024 14:06:24 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4ADE6NIO013491
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 13 Nov 2024 14:06:23 GMT
-Received: from [10.217.217.28] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 13 Nov
- 2024 06:06:15 -0800
-Message-ID: <ee8f0b70-77a2-4a5e-85c8-715fd02d4437@quicinc.com>
-Date: Wed, 13 Nov 2024 19:36:13 +0530
+	s=arc-20240116; t=1731504992; c=relaxed/simple;
+	bh=Lz3aoSUo6+0PF0wZUJ8U3vu3GObZqmPF9iuKY2yZJgU=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=OBUObl/greSCfStb7Hfb+xVMZL/ESHZ6DUBJioob9IkHP05y631K/FX1TjE7iSV3wrbajGMCfeLIBbA2qaT+me/lbgFlLTStVD2wAIteEgeZQethORH0d9vleHejOr9jkEat0kAE2O9vpfFBR65RvLRTiCoBBtHY8gE+weeSxag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=lCs3eT2U; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4315df7b43fso60214585e9.0
+        for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 05:36:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1731504989; x=1732109789; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RgXhv7pRczmNcx6HSYZsMHDnL3arPRRw+a6h6xJlA4k=;
+        b=lCs3eT2UotIOr8yDeStXAzNnTfF2RhaD3YTnVmuj6T4Y6FMuDA32qf29UgB3APCg29
+         necxDDe+9z420tijid7R8RI1w88Kx6tyyYpOX6LAtEbZQcpF8KAbxARRHgpXeWIon4b6
+         nYZYC24+gfSKg0UEFkkHa60gMuD7ojjUFpwjJNZ6SA+7r0MirDUhmQTRXM+sKTcO9RJK
+         livJPcd6KcastXZ68Xxpcdchs/j6q2TrF3izjPZ30SIzQ9kOstr2iabT36l/VkstCvMR
+         /BjMsDzPci3kjoSYgtqiJs0rpBalvKL0ugliwbl0mnbGN51GRl/F4N8yhuuD72snHS+A
+         ezbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731504989; x=1732109789;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=RgXhv7pRczmNcx6HSYZsMHDnL3arPRRw+a6h6xJlA4k=;
+        b=emgtMroicyddfHVMXSKdGEZLyU2ceDS+W9oPlByUHmRkFjJ/STFF4S/P3c8j+LgZSq
+         aGX+Ya8WsxWYAUlMpr1Wu7EotAVhPrNva9gl3C0xBQ6rJhQYNpaTt4ZBdhxRsNRMHPHO
+         OsCtQRANF7q/0psI0sg3MKxZ8tMsPMpi2MA3kx7ecRCBpk4dmw7elV+fIDeby3rmCVgo
+         Emg3tMHW443j4JZ6iJk6/MSPJXnRZbbJhNRih7+B28owArJtfXDzcKqmj25M0SvMlEJx
+         fiPdk3M7BqGnj4piItZ4icyaOh8O+EBZL+ip0eyk5u0CZdLCtJm/iXwumSVlTXRPg6v1
+         ADOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU60Yn9QlbfO6/hnurG80hQX5Yb8KLME5DOHTQFAf+P0O9SB+nkE77GGF9BBMDAYs5gwTvC0mNrdNCF@vger.kernel.org
+X-Gm-Message-State: AOJu0YzJDPDZfoe/Unr39ATOv2Iv8pqaMXrPnS5EZkKQx13YxPlHx7SN
+	5HQZKyOjB+2J3fjzGsPyDYqwVfKxxZJpexB0shp5+8d9TApbrnkSzmMrG28JCXA=
+X-Google-Smtp-Source: AGHT+IHn5cPSQcUztin4zy9dKdNFqeNDZ7RPNRJWoUAxSAY0cZ1T6lh8oLNCtmmCdp1ollguf9sC0g==
+X-Received: by 2002:a05:600c:3c8b:b0:428:f0c2:ef4a with SMTP id 5b1f17b1804b1-432b75002a7mr173945815e9.13.1731504989219;
+        Wed, 13 Nov 2024 05:36:29 -0800 (PST)
+Received: from claudiu-X670E-Pro-RS.. ([82.78.167.28])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-432d54e2f2esm25664165e9.1.2024.11.13.05.36.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Nov 2024 05:36:28 -0800 (PST)
+From: Claudiu <claudiu.beznea@tuxon.dev>
+X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
+To: geert+renesas@glider.be,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	biju.das.jz@bp.renesas.com,
+	prabhakar.mahadev-lad.rj@bp.renesas.com,
+	lgirdwood@gmail.com,
+	broonie@kernel.org,
+	magnus.damm@gmail.com,
+	linus.walleij@linaro.org,
+	perex@perex.cz,
+	tiwai@suse.com,
+	p.zabel@pengutronix.de
+Cc: linux-renesas-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	claudiu.beznea@tuxon.dev,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: [PATCH v3 22/25] arm64: dts: renesas: rzg3s-smarc-som: Add versa3 clock generator node
+Date: Wed, 13 Nov 2024 15:35:37 +0200
+Message-Id: <20241113133540.2005850-23-claudiu.beznea.uj@bp.renesas.com>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20241113133540.2005850-1-claudiu.beznea.uj@bp.renesas.com>
+References: <20241113133540.2005850-1-claudiu.beznea.uj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V4 2/4] dt-bindings: iio: adc: Add support for QCOM PMIC5
- Gen3 ADC
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <jic23@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <daniel.lezcano@linaro.org>,
-        <sboyd@kernel.org>, <quic_subbaram@quicinc.com>,
-        <quic_collinsd@quicinc.com>, <quic_amelende@quicinc.com>,
-        <quic_kamalw@quicinc.com>, <amitk@kernel.org>, <lee@kernel.org>,
-        <rafael@kernel.org>, <rui.zhang@intel.com>, <lukasz.luba@arm.com>,
-        <lars@metafoo.de>, <quic_skakitap@quicinc.com>,
-        <neil.armstrong@linaro.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <cros-qcom-dts-watchers@chromium.org>
-References: <20241030185854.4015348-1-quic_jprakash@quicinc.com>
- <20241030185854.4015348-3-quic_jprakash@quicinc.com>
- <ag3wqsjdec7ujcba2jpvhzgcbbc5vnyjyes5ljyyf5b4edw7j3@rj23a25wvoyd>
-Content-Language: en-US
-From: Jishnu Prakash <quic_jprakash@quicinc.com>
-In-Reply-To: <ag3wqsjdec7ujcba2jpvhzgcbbc5vnyjyes5ljyyf5b4edw7j3@rj23a25wvoyd>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: kJwqjNK4fjIEH6mxNxIoo6CnbDtBt678
-X-Proofpoint-GUID: kJwqjNK4fjIEH6mxNxIoo6CnbDtBt678
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
- adultscore=0 priorityscore=1501 lowpriorityscore=0 phishscore=0
- malwarescore=0 spamscore=0 clxscore=1015 mlxscore=0 mlxlogscore=999
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411130120
+Content-Transfer-Encoding: 8bit
 
-Hi Dmitry,
+From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-On 10/31/2024 11:27 PM, Dmitry Baryshkov wrote:
-> On Thu, Oct 31, 2024 at 12:28:52AM +0530, Jishnu Prakash wrote:
->> For the PMIC5-Gen3 type PMICs, ADC peripheral is present in HW for the
->> following PMICs: PMK8550, PM8550, PM8550B and PM8550VX PMICs.
->>
->> It is similar to PMIC5-Gen2, with SW communication to ADCs on all PMICs
->> going through PBS(Programmable Boot Sequence) firmware through a single
->> register interface. This interface is implemented on an SDAM (Shared
->> Direct Access Memory) peripheral on the master PMIC PMK8550 rather
->> than a dedicated ADC peripheral.
->>
->> Add documentation for PMIC5 Gen3 ADC and macro definitions for ADC
->> channels and virtual channels (combination of ADC channel number and
->> PMIC SID number) per PMIC, to be used by clients of this device.
->>
->> Co-developed-by: Anjelique Melendez <quic_amelende@quicinc.com>
->> Signed-off-by: Anjelique Melendez <quic_amelende@quicinc.com>
->> Signed-off-by: Jishnu Prakash <quic_jprakash@quicinc.com>
->> ---
->> Changes since v3:
->> - Added ADC5 Gen3 documentation changes in existing qcom,spmi-vadc.yaml file
->>   instead of adding separate file and updated top-level constraints in documentation
->>   file based on discussion with reviewers.
-> 
-> I think it has been better, when it was a separate file. Krzysztof asked
-> for rationale, not for merging it back. Two different things.
+Add versa3 clock generator node. It provides the clocks for the Ethernet
+PHY, PCIe, audio devices.
 
-Actually I made that change in a separate file due to a misunderstanding at that time - 
-I thought a separate file was the only way to accommodate a change in the top-level 'reg' and 'interrupts'
-constraints, but I realized later that they could be updated.
+Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+---
 
-From our side, we would prefer to add ADC5 Gen3 documentation in the same file, as it is
-mostly the same functionality which reuses all the existing properties present in this file.
+Changes in v3:
+- none
 
-Thanks,
-Jishnu
+Changes in v2:
+- none
 
-> 
->> - Dropped default SID definitions.
->> - Addressed other reviewer comments.
->>
->> Changes since v2:
->> - Moved ADC5 Gen3 documentation into a separate new file.
->>
->> Changes since v1:
->> - Updated properties separately for all compatibles to clarify usage
->>   of new properties and updates in usage of old properties for ADC5 Gen3.
->> - Avoided updating 'adc7' name to 'adc5 gen2' and just left a comment
->>   mentioning this convention.
->> - Used predefined channel IDs in individual PMIC channel definitions
->>   instead of numeric IDs.
->> - Addressed other comments from reviewers.
->>
-> 
+ .../boot/dts/renesas/rzg3s-smarc-som.dtsi     | 30 +++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
+index 2ed01d391554..6e58d47d85b0 100644
+--- a/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
++++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
+@@ -92,6 +92,12 @@ vcc_sdhi2: regulator2 {
+ 		gpios = <&pinctrl RZG2L_GPIO(8, 1) GPIO_ACTIVE_HIGH>;
+ 		enable-active-high;
+ 	};
++
++	x3_clk: x3-clock {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <24000000>;
++	};
+ };
+ 
+ #if SW_CONFIG3 == SW_ON
+@@ -152,6 +158,30 @@ &extal_clk {
+ 
+ &i2c1 {
+ 	status = "okay";
++
++	versa3: clock-generator@68 {
++		compatible = "renesas,5l35023";
++		reg = <0x68>;
++		clocks = <&x3_clk>;
++		#clock-cells = <1>;
++		assigned-clocks = <&versa3 0>,
++				  <&versa3 1>,
++				  <&versa3 2>,
++				  <&versa3 3>,
++				  <&versa3 4>,
++				  <&versa3 5>;
++		assigned-clock-rates = <24000000>,
++				       <12288000>,
++				       <11289600>,
++				       <25000000>,
++				       <100000000>,
++				       <100000000>;
++		renesas,settings = [
++		  80 00 11 19 4c 42 dc 2f 06 7d 20 1a 5f 1e f2 27
++		  00 40 00 00 00 00 00 00 06 0c 19 02 3f f0 90 86
++		  a0 80 30 30 9c
++		];
++	};
+ };
+ 
+ #if SW_CONFIG2 == SW_ON
+-- 
+2.39.2
 
 
