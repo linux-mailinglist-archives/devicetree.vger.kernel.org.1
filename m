@@ -1,127 +1,214 @@
-Return-Path: <devicetree+bounces-121632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53DA19C7B7B
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 19:46:13 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E08969C7BCD
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 20:01:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 11DB61F21CFF
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 18:46:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 02A7BB343AE
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 18:50:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7514204096;
-	Wed, 13 Nov 2024 18:46:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3918F204001;
+	Wed, 13 Nov 2024 18:50:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="agLeTEUf"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="LTpU2ZYi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DBD3200C90
-	for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 18:46:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7DEE174EFA;
+	Wed, 13 Nov 2024 18:50:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731523564; cv=none; b=RfqTTj3wuc2nSklnqRdNaSRb8f+4w6cEBSvV9kGNt6Fa5ZBsp+W0/UBuot66nMMdjEVNtVJ3dIdSDdAZ46NJKF0OHTR1fRMdzcAh1XDlgTgQ6HtAApTUR87jL/gyjNl8osQBLK4tp54OsOT8qeagxvV4qZgvpUu2Yrg2Azi7jNs=
+	t=1731523848; cv=none; b=jtr4BQ1OWhKYNS4Qj/ya9WWgu3z0TB441SCyGWDa/q9gUyHSqM0DXzGfylmettOvcuf2Po5a+X/z3Qf7zuKGOYkluD2OwYiyzAtqMv2DHi9dtSFuwjHKyZeIiRoICXD8B9M5yG+H8okkZKTNERZi9/YphugAkk+uXUHXjyk+snU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731523564; c=relaxed/simple;
-	bh=qJpxyAs4H+dTLoeEZp4VwJIFz2j9VXgI9Zeo2ZAExbU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WZSK8uwExCIoHiu7+gJKBm1EdE++uRx0j25yt9VhRC9/c2UBfs5sH5cheivfKP2/uzF2fgXJMbIpSH5zt0AcMv018pqLNzySDDzOi9u1qvlNFByA+z+i/wNsj9OSAqOrGznGRj5yeH+pKlW+Fo6T9MwC/xSF03tgLjAqdfYs23o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=agLeTEUf; arc=none smtp.client-ip=209.85.160.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-28847f4207dso3406173fac.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 10:46:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1731523560; x=1732128360; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mJ7Y/M/QGwKyB5CvuHkhSVy962R5KxlMZ/Ip0/+E6l8=;
-        b=agLeTEUfStG/SX5jUqWSsYj/dB3fR/2DLhiNGYufvz2ex0Zd9/vxeCEMmw7dd3RmDW
-         LUm5VWMTPeXf3ge4H1Cqru8HdrMmQQYDskEnYp2rBBedrFaV7pCb847eIrm4K3DxSeMa
-         N64H5jiG0cbHDY6gNICEdWroO7+/Bk07v0p50SbxUWFMxEn3OmcHOdfDW/NeGJMJImul
-         j7R07k0AOPf0fy4bccU6qS/BfvXapK/jEfvxliKN00uDF2laPh41HxbEaaKzdAjfeBaL
-         8lyufTGBRYrKJ/05rPTpUcy0LDekRpCpND51sPh8Bgo03yaSLUv7APpryml0IgqLmfk5
-         v2wQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731523560; x=1732128360;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mJ7Y/M/QGwKyB5CvuHkhSVy962R5KxlMZ/Ip0/+E6l8=;
-        b=wQKh+VLzQefEJwkH7bOE4Fhb0UPB1FOZ1lznxONEV8NMzItKaGfRZ7QU1p1VexHMmV
-         D2MdNreqQhVL3KlN+NMTYo2Dsp9wG9tPFe4gSGh9VwZmXK9PGlLuQw7yyqjki1CNynM+
-         ceHSasikh+imLVzVUICrFvUyimXWblCnHfrosWut2yMaCernlIiBGN3X1t6eJhjFO+XV
-         0EFjX1BdfBmRcIfAlYR7iFo0uBeBF16nJxWCKJQLuTZsS0adC49IlJ78laCMmYCE7UdQ
-         ncjGkwa+9Cuxm73IN0kZr+JRZtoTfBe48g5vCvulPNUyk0qHZaK704I/ZpbFzStQ+K3P
-         OVlg==
-X-Forwarded-Encrypted: i=1; AJvYcCXFFk7eWwCWZX2t/V1zUHjMNOdPU/6Voy1fAvHZ9N9iOrhuEgi544YIFTJMGIW9K8qGh7xK0g3Nuvg1@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz9XyykWy1dk4RzA6OR1X59T0fSALvhSuWSA+Ev+XWDDaEoW8DO
-	3Nyq5GsZehUjTdDf1BGf2qT0DoUSMb9zVAkpEiG6O/e1SnVTA14pqII4rldOJIE=
-X-Google-Smtp-Source: AGHT+IGDnM8FDvc9dksVkdxOZk5+ligG6UwLyNCFDFxzr3nHZV7huFdENqO8b10hbKcokqz9jofFmQ==
-X-Received: by 2002:a05:6870:70a2:b0:288:a953:a5c7 with SMTP id 586e51a60fabf-295e8d6a2bamr4648440fac.14.1731523560424;
-        Wed, 13 Nov 2024 10:46:00 -0800 (PST)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-71a600a23cfsm827198a34.66.2024.11.13.10.45.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Nov 2024 10:46:00 -0800 (PST)
-Message-ID: <ad1b7946-02c4-4447-9b4b-1d57200f482f@baylibre.com>
-Date: Wed, 13 Nov 2024 12:45:59 -0600
+	s=arc-20240116; t=1731523848; c=relaxed/simple;
+	bh=SElf3QDFolAbA4/Pcp1uVsfYdmxrrwYryWwFTj4njo8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=CD3esIEY+eJGBvVsaNU4seffE7fbrBEVGNmacHdZsagZ3KSrXU+KbMxGfFn5fXUlE+tFMa7NY7p/R7jtBQhV1O5IGPrlDUa60RiLqtgNy6ON5F2jCYGJXjs9YIFCWZDuibwcUSh6tNGFBiTGQ8bvxjtxHmtYZAnZYHEAlI+FHrQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=LTpU2ZYi; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=I7JJZhAX8z9gRFDAWAcDXD3U4FI9dk8vMX7/dG8H+68=; b=LTpU2ZYiSGXxkQ8LPvYKYfpjro
+	C9lf2uCVCc5YZ8E1Vky4JMigB7MC1ZQi/sqDOfXsS1OVlmvLUBwn+8IvHW7KuSQrmAZl/XwqY4U5/
+	4MZy/6vSEfnPdvBpq9AM+4XoBQyivJeVlkIyKYb3VAabBumbBraXRnJOzNgsqyhMspHcH091jHrds
+	6wM3fadwyJHU1tomnCnFKq1UAnS5QwMxcATOZ2+MwelZq3C45uhuL/aquNOr1UToG3lhJDpJX4dQc
+	9x3aeB0+wO5SqR0CblnDaKxZ6riN4b3XIxMr9hk2uU498e3ocikNw3Tw57DNT7cZgAU+wr2rabyHH
+	uKOr3xFA==;
+Received: from i53875a30.versanet.de ([83.135.90.48] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tBIRm-0005Cc-O5; Wed, 13 Nov 2024 19:50:34 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: vkoul@kernel.org, kishon@kernel.org,
+ Diederik de Haas <didi.debian@cknow.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ quentin.schulz@cherry.de, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Heiko Stuebner <heiko.stuebner@cherry.de>
+Subject:
+ Re: [PATCH v2 1/2] dt-bindings: phy: Add Rockchip MIPI CSI/DSI PHY schema
+Date: Wed, 13 Nov 2024 19:50:33 +0100
+Message-ID: <18621846.sWSEgdgrri@diego>
+In-Reply-To: <D5F5RRFVMP7R.19G82R4S878IL@cknow.org>
+References:
+ <20241104111121.99274-1-heiko@sntech.de>
+ <20241104111121.99274-2-heiko@sntech.de>
+ <D5F5RRFVMP7R.19G82R4S878IL@cknow.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: iio: adc: adi,ad4695: change include
- path
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-iio@vger.kernel.org, linux-doc@vger.kernel.org,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Jonathan Cameron
- <jic23@kernel.org>, devicetree@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- Michael Hennerich <michael.hennerich@analog.com>
-References: <20241113-iio-adc-ad4695-move-dt-bindings-header-v1-0-aba1f0f9b628@baylibre.com>
- <20241113-iio-adc-ad4695-move-dt-bindings-header-v1-2-aba1f0f9b628@baylibre.com>
- <173152191678.1024361.7493718883312810903.robh@kernel.org>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <173152191678.1024361.7493718883312810903.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 11/13/24 12:18 PM, Rob Herring (Arm) wrote:
-> 
-> On Wed, 13 Nov 2024 10:55:20 -0600, David Lechner wrote:
->> Change the include path for the adi,ad4695.h header since it has been
->> moved to the include/dt-bindings/iio/adc/ directory.
->>
->> Signed-off-by: David Lechner <dlechner@baylibre.com>
->> ---
->>  Documentation/devicetree/bindings/iio/adc/adi,ad4695.yaml | 7 ++++---
->>  1 file changed, 4 insertions(+), 3 deletions(-)
->>
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/iio/adc/adi,ad4695.example.dts:19:18: fatal error: dt-bindings/iio/adc/adi,ad4695.h: No such file or directory
->    19 |         #include <dt-bindings/iio/adc/adi,ad4695.h>
->       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Hi,
 
-Is this testing this patch without the other patch from this series?
+Am Mittwoch, 6. November 2024, 15:17:02 CET schrieb Diederik de Haas:
+> On Mon Nov 4, 2024 at 12:11 PM CET, Heiko Stuebner wrote:
+> > From: Heiko Stuebner <heiko.stuebner@cherry.de>
+> >
+> > Add dt-binding schema for the MIPI CSI/DSI PHY found on
+> > Rockchip RK3588 SoCs.
+> >
+> > Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
+> > ---
+> >  .../phy/rockchip,rk3588-mipi-dcphy.yaml       | 82 +++++++++++++++++++
+> >  1 file changed, 82 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/phy/rockchip,rk3588-mipi-dcphy.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/phy/rockchip,rk3588-mipi-dcphy.yaml b/Documentation/devicetree/bindings/phy/rockchip,rk3588-mipi-dcphy.yaml
+> > new file mode 100644
+> > index 000000000000..5ee8d7246fa0
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/phy/rockchip,rk3588-mipi-dcphy.yaml
+> > @@ -0,0 +1,82 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/phy/rockchip,rk3588-mipi-dcphy.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Rockchip MIPI CSI/DSI PHY with Samsung IP block
+> > +
+> > +maintainers:
+> > +  - Guochun Huang <hero.huang@rock-chips.com>
+> > +  - Heiko Stuebner <heiko@sntech.de>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - rockchip,rk3576-mipi-dcphy
+> > +      - rockchip,rk3588-mipi-dcphy
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  "#phy-cells":
+> > +    const: 0
+> > +
+> > +  clocks:
+> > +    maxItems: 2
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: pclk
+> > +      - const: ref
+> > +
+> > +  resets:
+> > +    maxItems: 4
+> > +
+> > +  reset-names:
+> > +    items:
+> > +      - const: m_phy
+> > +      - const: apb
+> > +      - const: grf
+> > +      - const: s_phy
+> > +
+> > +  rockchip,grf:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description:
+> > +      Phandle to the syscon managing the 'mipi dcphy general register files'.
+> 
+> Should this dt-binding have a power-domains property?
+> RK3588 TRM v1.0 part 1 page 1097 has ALIVE(PD_BUS) for
+> MIPI_DC_PHY0~MIPI_DC_PHY1
 
-I did run make `dt_binding_check DT_SCHEMA_FILES=adi,ad4695.yaml ...`
-locally before sending the patch, so wasn't expecting an error here.
+I don't think so. As you write, the dcphy is part of the PD_BUS(ALIVE)
+power-domain on at least rk3588 and the new rk3576.
 
-I know that normally we should be including the header change in the same
-patch as the .yaml file, but in this case, I had to make an exception
-because the same header is also included in a .c file. It seemed better
-to not break compiling .c files rather than follow the rule strictly.
+This power-domain is actually non-controllable and also contains things
+like the main GIC - so will be always on.
+
+And for that reason probably, that domain also is not even exposed
+in the rk3588 devicetree (nor the driver implementation).
+
+Similarly the hdptx phy binding (in a similar situation) also does not
+handle a power-domain. So my thinking is, we'll stay like this for now.
+
+
+Heiko
+
+> FTR: I made a similar remark on another patch sent by Heiko today. While
+> that was incorrect, I do think it's appropriate for this binding after
+> which it could also be added to the respective phy nodes in the dts(i)
+> file(s).
+> 
+> Cheers,
+>   Diederik
+> 
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - clocks
+> > +  - clock-names
+> > +  - resets
+> > +  - reset-names
+> > +  - "#phy-cells"
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
+> > +    #include <dt-bindings/reset/rockchip,rk3588-cru.h>
+> > +
+> > +    soc {
+> > +      #address-cells = <2>;
+> > +      #size-cells = <2>;
+> > +
+> > +      phy@feda0000 {
+> > +        compatible = "rockchip,rk3588-mipi-dcphy";
+> > +        reg = <0x0 0xfeda0000 0x0 0x10000>;
+> > +        clocks = <&cru PCLK_MIPI_DCPHY0>,
+> > +                 <&cru CLK_USBDPPHY_MIPIDCPPHY_REF>;
+> > +        clock-names = "pclk", "ref";
+> > +        resets = <&cru SRST_M_MIPI_DCPHY0>,
+> > +                 <&cru SRST_P_MIPI_DCPHY0>,
+> > +                 <&cru SRST_P_MIPI_DCPHY0_GRF>,
+> > +                 <&cru SRST_S_MIPI_DCPHY0>;
+> > +        reset-names = "m_phy", "apb", "grf", "s_phy";
+> > +        rockchip,grf = <&mipidcphy0_grf>;
+> > +        #phy-cells = <0>;
+> > +      };
+> > +    };
+> 
+> 
+
+
+
+
 
