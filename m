@@ -1,135 +1,128 @@
-Return-Path: <devicetree+bounces-121660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121662-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EB649C7D73
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 22:14:55 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E14C9C7D82
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 22:17:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F0372858BA
-	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 21:14:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 81076B2A9FF
+	for <lists+devicetree@lfdr.de>; Wed, 13 Nov 2024 21:16:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 290E6213EF0;
-	Wed, 13 Nov 2024 21:12:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 087ED209661;
+	Wed, 13 Nov 2024 21:14:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="D7N6qeg/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jCcWoUlO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f67.google.com (mail-lf1-f67.google.com [209.85.167.67])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 801312123F2;
-	Wed, 13 Nov 2024 21:12:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10311205ABD
+	for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 21:14:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.67
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731532352; cv=none; b=NPwheXp6yg1W39Il+CBiP0oj7FHglwEuDHDGn1DDDYXToJHVxoXp6AACnb6Jz8kwXZVy69RrEU1mAmZeRTGT5lbl0enFgzLTRm4lnKrTcGkIkjho/fjFCeLdGiOhjKlHf/ROqJ2Fy5BFXOiNgdBCeORz4no9HfHUUDM6FE2mp2E=
+	t=1731532486; cv=none; b=EXLao/qUXz3dZgJU/NH8vObvf3splHelLrX8eLLSCOqozV0qlSD9GYoJqZwmUWhiJI0U7nwUmwED1syqTJX9XU9U7MX3CSVcDVG2Fg/LGEvm2FESE+3417ky2CIpCHf7XjVDQllKvUPZGzHfKT0HCNftcga7omDm3A2OGK6EySs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731532352; c=relaxed/simple;
-	bh=Tpwk/cH/By/7DRbyPN6y3UDPzobNPdtOHRJ5VREhWow=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=tfA7R0u20hZcUbpzJt9iuSa2aE4PsaLiK/oFlEtERm04p9P3ZQWPBJNwLPdF54TU/e9O6aB66sxJcsmhII2f9TYwdSgc3mVsyWZBHzflh8aJG/R1/Gx6ZDu4N0XRic5g0NouETT9FieeS7u8NbR1rPD9TEQaA06YUCfKm94KEBo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=D7N6qeg/; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1731532350; x=1763068350;
-  h=from:date:subject:mime-version:content-transfer-encoding:
-   message-id:references:in-reply-to:to:cc;
-  bh=Tpwk/cH/By/7DRbyPN6y3UDPzobNPdtOHRJ5VREhWow=;
-  b=D7N6qeg/8Fm7GSA1oxN5WlUSwj3MsrW4FPDVJWETDz9bCjW0cTJdBQUE
-   9KYy8rV80YAwhzeXutG3n5s8HFZoHj8uB4bVh4VVqw89eQ7putVOpKKrx
-   hqv5zSzEAX9kfWObrLI1FhTqlkAZ0VTWox+FDKwtFWZVjs5mExSgMOZtt
-   A2FToJ0DPPmwlkfBPj40amyGDUqHXDZ24GcnfgOxc5Ibc6JiPVGG9RwQ2
-   465v2EsDJniilQ+glMgetdhy2bB5nD2xHLtP5wBTUYkectFpXsBNOhuRn
-   Snv/ynqsvOKIwS3VPqgCI+Hosde6djp/dreRupoE0xj0obVbcKf3lYmL4
-   A==;
-X-CSE-ConnectionGUID: vQdPcQJhS0S1px+vMo5fhw==
-X-CSE-MsgGUID: +0GrCcvYR3aR7jveVUPVog==
-X-IronPort-AV: E=Sophos;i="6.12,152,1728975600"; 
-   d="scan'208";a="37813511"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 13 Nov 2024 14:12:27 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 13 Nov 2024 14:12:00 -0700
-Received: from DEN-DL-M70577.microchip.com (10.10.85.11) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Wed, 13 Nov 2024 14:11:57 -0700
-From: Daniel Machon <daniel.machon@microchip.com>
-Date: Wed, 13 Nov 2024 22:11:16 +0100
-Subject: [PATCH net-next v2 8/8] dt-bindings: net: sparx5: document RGMII
- MAC delays
+	s=arc-20240116; t=1731532486; c=relaxed/simple;
+	bh=y+NzpzejYDg4WwOMqqSlho5bizSCTIJ8a/DFv7RBwKo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RYIkF/HVstTsLsnnvurVbC0NWhHo9ui8RYyZkuzYGTedqaOZLBIyNoMphA5mqweQu9KDoYus2PHVegwpU6njdK15J74bqLUfTA/GJMNJYw0CnQsew/9RklS6cbxK49mjsCBDjChPar3XgqzRxFQcyF6Jcz0KNEwLbuV6W3T/DC8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jCcWoUlO; arc=none smtp.client-ip=209.85.167.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f67.google.com with SMTP id 2adb3069b0e04-539d9ba5c81so285188e87.0
+        for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 13:14:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1731532483; x=1732137283; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MWW4xpmzM2Fe1J6uTpcvQOhcfcmzKCMrCiJfOhpikeI=;
+        b=jCcWoUlOSIEJzMqVqVAuyakW/kOeFOdvmx8GIVxu2F9+/s24CVonHzZkwfnOeeYxsW
+         InJofXlAMa9XGzNA/xk7pQWbd5spUUWNUPKzOMoPQckaEzyE/pHJz23b9n0ekaMjqHeZ
+         0786W6P2v7+swdBTtxiZrjp32yRgCQK113OX5hW2fpdS3mvpF5x3i9UaB+MM3Bvdf+Hs
+         +SYBDyqpvOn7VbWZaM7bP3dF24hfkgLslcIuMjjsKQC03ZDSi6TfxWcC2vjpu4cHEFM/
+         Wf5O1wTVl3mn/VGtoMsvNa2GbnToLDojkCKgXPG/0ALYaJpF9lbYkADiNf8+ORLl/So5
+         adRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731532483; x=1732137283;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MWW4xpmzM2Fe1J6uTpcvQOhcfcmzKCMrCiJfOhpikeI=;
+        b=j2xlbWZbWUiz/732vOBBReIb4VtKH7SoV8W3r/gogOWE683LsctSOT4u1hMyX+T4Iw
+         zhlXQV0KEbXqZi7HHlR4vmYqYG9zAg5bEcvUrdWsPkPSqXnPYaPh/Xa5KV6jduHCFGbw
+         m8Ol3NQFPSYyWZohrY/0kaWcFhdzvhQvlMxVhKihnvGXM7tyfSL0HC6fS+AKR72IJici
+         WMfuZKuu12eWRbxVPQZK87dzUkfaiqYK1AitVPnUw/OwsmIKOc3ikotemhkhgr1ZJWPv
+         pmq3yYpiR5WsngDdNwV1gTfBHA8GNpw3kRyuc+zy3PltH/JRdyES/hhxokkuG2AgOx/2
+         gzsA==
+X-Forwarded-Encrypted: i=1; AJvYcCU7QNcEsTkTxCEO9k4KSBmTbqVXPAaOQSFOzejkBQHd2wL2amMp67NZaQDCpMASSeNTdgwwilHPM4fv@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw4zNzcJ9gzqpItdcs/18CyOHEDgwGnJ4y5MfVNcHZHdj7uf77m
+	wpbWcY55EafiD/xatr5mrrtGOQkfNjb/irs/OMB+rz9cjHGVd0Hwmw053NVokCs=
+X-Google-Smtp-Source: AGHT+IE/abjEKPW1/bwyS2SME/i+tt3LJv7ehOsjOAcpnovPFLmxI8e0bu/XOCMufARKSCnFQIPMNQ==
+X-Received: by 2002:a05:6512:2387:b0:536:9efb:bb19 with SMTP id 2adb3069b0e04-53d862628f1mr3057095e87.3.1731532483168;
+        Wed, 13 Nov 2024 13:14:43 -0800 (PST)
+Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53d826862f8sm2297338e87.101.2024.11.13.13.14.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Nov 2024 13:14:42 -0800 (PST)
+Message-ID: <8f07e440-8a56-4315-bb79-b630649a9116@linaro.org>
+Date: Wed, 13 Nov 2024 23:14:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20241113-sparx5-lan969x-switch-driver-4-v2-8-0db98ac096d1@microchip.com>
-References: <20241113-sparx5-lan969x-switch-driver-4-v2-0-0db98ac096d1@microchip.com>
-In-Reply-To: <20241113-sparx5-lan969x-switch-driver-4-v2-0-0db98ac096d1@microchip.com>
-To: <UNGLinuxDriver@microchip.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, "Lars
- Povlsen" <lars.povlsen@microchip.com>, Steen Hegelund
-	<Steen.Hegelund@microchip.com>, Horatiu Vultur
-	<horatiu.vultur@microchip.com>, Russell King <linux@armlinux.org.uk>,
-	<jacob.e.keller@intel.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-X-Mailer: b4 0.14-dev
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/3] media: qcom: camss: Add MSM8953 resources
+Content-Language: en-US
+To: barnabas.czeman@mainlining.org,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Vladimir Lypak <vladimir.lypak@gmail.com>
+References: <20241103-camss-msm8953-v4-0-48d0ec75958d@mainlining.org>
+ <20241103-camss-msm8953-v4-3-48d0ec75958d@mainlining.org>
+ <6833ebc6-9210-471a-8ca6-5f3605155f33@linaro.org>
+ <412b3252f1ca795fbcfaf5e466e94642@mainlining.org>
+ <67d014f1-9424-4b88-b031-096a5596c5c8@linaro.org>
+ <eda3d0ae-50eb-43b2-a234-93b209fbcdeb@linaro.org>
+ <ffa2a863c8a9b99582ad6648600d372b@mainlining.org>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <ffa2a863c8a9b99582ad6648600d372b@mainlining.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-The lan969x switch device supports two RGMII port interfaces that can be
-configured for MAC level rx and tx delays.
+On 11/13/24 17:32, barnabas.czeman@mainlining.org wrote:
+> On 2024-11-13 16:23, Bryan O'Donoghue wrote:
+>> On 13/11/2024 13:28, Vladimir Zapolskiy wrote:
+>>> So, we have to rely on the documentation here. Bryan, can you please
+>>> check, if VDDA_MIPI_CSI pad on MSM8916 and/or MSM8953 is related to
+>>> CSIPHY or CSID power supply? Thank you in advance.
+>>
+>> No there's really no indication in the documents I have how the input
+>> gets routed internally, CSID, CSIPHY, both.. not clear.
+>>
+>> I think Barnabás is right, the best source of information we have for
+>> this one is the downstream dtsi => CSID.
+> I have found the regulator also in downstream msm_csid driver i hope it
+> helps a bit.
+> https://git.codelinaro.org/clo/la/kernel/msm-4.9/-/blob/LA.UM.10.6.2.c26-01500-89xx.0/drivers/media/platform/msm/camera_v2/sensor/csid/msm_csid.c#L73
+> 
 
-Document two new properties {rx,tx}-internal-delay-ps. Make them
-required properties, if the phy-mode is one of: rgmii, rgmii_id,
-rgmii-rxid or rgmii-txid. Also specify accepted values.
+Agreed, since the documentation is ambiguous about the voltage supply,
+the best deal is to follow the downstream code here.
 
-Signed-off-by: Daniel Machon <daniel.machon@microchip.com>
----
- .../bindings/net/microchip,sparx5-switch.yaml        | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+Please fix the review findings in the dt-bindings, and rebase the driver
+changes on top of the linux-next, also please consider to add CCI and
+CAMSS device tree nodes into the msm8953.dtsi file.
 
-diff --git a/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml b/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
-index dedfad526666..a3f2b70c5c77 100644
---- a/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
-+++ b/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
-@@ -129,6 +129,26 @@ properties:
-             minimum: 0
-             maximum: 383
- 
-+        allOf:
-+          - if:
-+              properties:
-+                phy-mode:
-+                  contains:
-+                    enum:
-+                      - rgmii
-+                      - rgmii-rxid
-+                      - rgmii-txid
-+                      - rgmii-id
-+            then:
-+              properties:
-+                rx-internal-delay-ps:
-+                  enum: [0, 1000, 1700, 2000, 2500, 3000, 3300]
-+                tx-internal-delay-ps:
-+                  enum: [0, 1000, 1700, 2000, 2500, 3000, 3300]
-+              required:
-+                - rx-internal-delay-ps
-+                - tx-internal-delay-ps
-+
-         required:
-           - reg
-           - phys
-
--- 
-2.34.1
-
+--
+Best wishes,
+Vladimir
 
