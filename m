@@ -1,207 +1,119 @@
-Return-Path: <devicetree+bounces-121921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121925-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E7999C8EA9
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 16:49:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40BCE9C8ECF
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 16:55:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 22F871F2155F
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 15:49:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E07C21F219F0
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 15:55:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 736A8175D5D;
-	Thu, 14 Nov 2024 15:41:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B1CE1AC882;
+	Thu, 14 Nov 2024 15:49:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="J+gOGN7m"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="ONY1OLPI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 373CC13B2A9
-	for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 15:41:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A255815573F;
+	Thu, 14 Nov 2024 15:49:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731598885; cv=none; b=gObYw3K/ZOA0t0JhtjLkzaUOqB9AJXmqiYx1WBGHYCZ7ZRUsIHplDjTevAjng/jV1pWFWqvhb7l3YEbGgRQpI0/xFNfBgwaQnr58nqtxB9YPBlFFPh8P1MG2NoUiMKwmKDt1bcN17+wPO3H5HX1Q/z1TLolpdMpEMbt6kQFI9AI=
+	t=1731599359; cv=none; b=A9pqkbPCNFtPkLPEGgXbAJphHFj6DC1pwsgw2dWcgZzPa6KI7igvUpVqnjqPVVNrOv5H7QkeyrY5+w8M2Y/rKkbxiwA5kFzkPKIQ9Nz0JzOGpJcN4mnA6dnj4XW0jmfnikXoMpqolagoxpM70F6r/nMT0fLuPd2v0ptOx2PMRIw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731598885; c=relaxed/simple;
-	bh=1jU+6FRiK8iU2xVcgYuGMa7M+TUxh7iPXDHVCdFmJPA=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=khDFwK4EfA9xA8rVwVKHXssk9QbVEWXhyYpfXr9MaI/kFQA53lYYXgTAyquDBy5hYccM36RgzgF0UIycSgVgahhYO1p90MtTTCJIKAZw9l1W/dDiViOCDZ/gUEE1Jy0FRRqL2sNuNUFV4VqU2Q7AOI04u0zDmwt7y4FZ2jzG9Qo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=J+gOGN7m; arc=none smtp.client-ip=209.85.208.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2fb57f97d75so8086881fa.2
-        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 07:41:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1731598881; x=1732203681; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=7NBFMQhIIT6ymbEv39KxcdDxNSIvYaJrZK6T6Q4vz58=;
-        b=J+gOGN7mVonLscJpOo7jYiH0g9Js1oieDBuECXafhK04t2kaDbUXKxajX54kq7kp7d
-         xHaITZ/Ni6LP9RtZVlB7zMq3BC0zY0ebA3ocCmeY1BRLKCvIBIc9q2mLe0I9pg0oprsA
-         blq/7tSmgOgrxcJGWs2Pn8ehG3YiF6lWopSjWb814DI0n0/VFvFpaywJwt+FBM+4tp/o
-         XOJiK0fKKCs3pedHZEGDUVTaKNxDaUjfOVd0jcLPBVimpLqaOG4NNJsAV7J4VFFR1pwo
-         vuGWpJXTVcVs5rfBN75b5aMnQbWv74yKklVAlM6ozlZ+PNkzLQ9OtrsESAsWk4j/vpg0
-         GNOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731598881; x=1732203681;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7NBFMQhIIT6ymbEv39KxcdDxNSIvYaJrZK6T6Q4vz58=;
-        b=pFYi5gMiCVJbdUZCEQjoI7+Ko6e4O8yVpsthhSqR3iTUZw+rOXDE9zTJEsDHonNnka
-         udgWIQ+Z/JB0uVQs0Acr0q84KOqPq7oi0hFpKYK15FfaTnajrCLcEdyVTZhDtvcaXBt5
-         dkDCdJrON/FRZXN9xOSEQFloWwIvB9k5aITX0nvUcXjP+QcZVTKMiZsRKeIe8/00aKAJ
-         1K7o4ENSBMjLPLhLmmas+yx5oCssH/ceH68MxAmGyKDTT5By5kcJla5gMOpuWaBWNAZr
-         Rgxbn4wWdIBDmpESnLXY0gcaLS6ggzsLV20HKV8eX/TCy0A++duO+Gt7LWcV861MXBTv
-         A+jQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWZ6poGbAP8mm0A7RRIkYWPVgzO06ZG1z8bALNwhabiW/V0FOg8epXY1Ww5/3GTfQ9MOqh6CG2DMxLs@vger.kernel.org
-X-Gm-Message-State: AOJu0YwgzKixPpaeCDeBXti2hM+Ms/2ncm/OBiPiF6PknMUwyIDqc6Hl
-	TvRw8h2Cdysd4q8PzqBulK3PTsddkfzgLIs8ju7NPhyidxnJyWRcDaMGf7kzTSA=
-X-Google-Smtp-Source: AGHT+IE3AJId58tpidJfEutc3uS9bz9dQSqU2NqlB5syKnjI4F1dHTAie1yyXTx7nGeaNXqvKGaGyw==
-X-Received: by 2002:a05:651c:2122:b0:2fa:de52:f03c with SMTP id 38308e7fff4ca-2ff2015249fmr130795541fa.5.1731598881346;
-        Thu, 14 Nov 2024 07:41:21 -0800 (PST)
-Received: from localhost (host-79-19-144-50.retail.telecomitalia.it. [79.19.144.50])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cf79bb3579sm679369a12.37.2024.11.14.07.41.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Nov 2024 07:41:20 -0800 (PST)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Thu, 14 Nov 2024 16:41:49 +0100
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: Andrea della Porta <andrea.porta@suse.com>,
-	Andrew Lunn <andrew@lunn.ch>, Arnd Bergmann <arnd@arndb.de>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	St efan Wahren <wahrenst@gmx.net>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-rpi-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 08/14] clk: rp1: Add support for clocks provided by RP1
-Message-ID: <ZzYaPZcohzMma84A@apocalypse>
-References: <cover.1728300189.git.andrea.porta@suse.com>
- <022cf4920f8147cc720eaf02fd52c0fa56f565c5.1728300189.git.andrea.porta@suse.com>
- <611de50b5f083ea4c260f920ccc0e300.sboyd@kernel.org>
+	s=arc-20240116; t=1731599359; c=relaxed/simple;
+	bh=MMtvKkrxYd5A9OpPxLdSQQGxb7pDXcHZuVkcnKJaXBM=;
+	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=s0meK1Xwb2reP+cx74ySV60crZ6LirwpwugACPks+dNLdmwUA58YhK9xZZzumF1sic4ccvMG7PKx/C5xZL7WvVoAcRerYDpfvdiTb7eqlgLUdg2Ic5RwWLD7fzZAfk3oIEqsH9DzaU5O11wWK83et0O/iBS+OmRMPE5WW9lyEqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=sberdevices.ru; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=ONY1OLPI; arc=none smtp.client-ip=37.18.73.165
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sberdevices.ru
+Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id ACC2610000C;
+	Thu, 14 Nov 2024 18:49:02 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru ACC2610000C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1731599342;
+	bh=+AzLdEYWocJzcvwOs9QW6zaf0G7mUCi6/CpG3lyJBi4=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=ONY1OLPIHNtrXIygBNIWANblBcCwFiQLFl88mNeGWZFyP8PnCF30oTcKrCNUpQSCN
+	 b6+CD/UEubCvAo18TLsjKQaFcD9IFA0O15jnLHsfeK6hgQ2UC2cEVAzdJ+HIYIR/4v
+	 Ly5LC2TKF74zutTetixZCSGrQqpIePG39uR+o3qS4fnqd1isMDcx4/qBXyRk7GeEav
+	 R1ScHkaMk3U130TdFvqWM+DvqRmNE62maAtGV3lQlnA4/JuZvhfg5cnGWsKVeaVS7Z
+	 AMSKcXeqHR4kXoaAtVZFfZ2kcoM4c9yVIIwiJc3+03G+ugP4W4jkLq9GF7MnRr7cPV
+	 +wotGnb0y5esA==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Thu, 14 Nov 2024 18:49:02 +0300 (MSK)
+From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+To: Jan Dakinevich <jan.dakinevich@salutedevices.com>, Christian Hewitt
+	<christianshewitt@gmail.com>, Conor Dooley <conor+dt@kernel.org>,
+	<devicetree@vger.kernel.org>, Jerome Brunet <jbrunet@baylibre.com>, "Kevin
+ Hilman" <khilman@baylibre.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, Martin Blumenstingl
+	<martin.blumenstingl@googlemail.com>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, Xianwei Zhao
+	<xianwei.zhao@amlogic.com>
+Subject: [PATCH v2 1/2] dt-bindings: arm: amlogic: document AC200 support
+Date: Thu, 14 Nov 2024 18:48:55 +0300
+Message-ID: <20241114154856.3353691-2-jan.dakinevich@salutedevices.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20241114154856.3353691-1-jan.dakinevich@salutedevices.com>
+References: <20241114154856.3353691-1-jan.dakinevich@salutedevices.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <611de50b5f083ea4c260f920ccc0e300.sboyd@kernel.org>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: p-i-exch-a-m1.sberdevices.ru (172.24.196.116) To
+ p-i-exch-a-m1.sberdevices.ru (172.24.196.116)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 189183 [Nov 14 2024]
+X-KSMG-AntiSpam-Version: 6.1.1.7
+X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 41 0.3.41 623e98d5198769c015c72f45fabbb9f77bdb702b, {Tracking_smtp_not_equal_from}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1;127.0.0.199:7.1.2;sberdevices.ru:7.1.1,5.0.1;smtp.sberdevices.ru:7.1.1,5.0.1, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_sender_alignment_int}, {Tracking_white_helo}, FromAlignment: n
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/11/14 14:31:00 #26861614
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-Hi Stephen,
+Add compatible string for the Amlogic AC200 board.
 
-On 15:08 Wed 09 Oct     , Stephen Boyd wrote:
-> Quoting Andrea della Porta (2024-10-07 05:39:51)
-> > diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-> > index 299bc678ed1b..537019987f0c 100644
+Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Here's below the kind response from RaspberryPi guys...
-...
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+index 0647851ae1f5..ed0071695d29 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+@@ -193,6 +193,7 @@ properties:
+           - enum:
+               - amediatech,x96-air
+               - amediatech,x96-air-gbit
++              - amlogic,ac200
+               - bananapi,bpi-m2-pro
+               - bananapi,bpi-m5
+               - cyx,a95xf3-air
+-- 
+2.34.1
 
-> > +       clockman_write(clockman, data->pwr_reg, fbdiv_frac ? 0 : PLL_PWR_DSMPD);
-> > +       clockman_write(clockman, data->fbdiv_int_reg, fbdiv_int);
-> > +       clockman_write(clockman, data->fbdiv_frac_reg, fbdiv_frac);
-> > +       spin_unlock(&clockman->regs_lock);
-> > +
-> > +       /* Check that reference frequency is no greater than VCO / 16. */
-> 
-> Why is '16' special?
-
-16 is a hardware requirement.
-The lowest feedback divisor in the PLL is 16, so the minimum output
-frequency is ref_freq * 16.
-
-...
-
-> > +static unsigned long rp1_pll_core_recalc_rate(struct clk_hw *hw,
-> > +                                             unsigned long parent_rate)
-> > +{
-> > +       struct rp1_pll_core *pll_core = container_of(hw, struct rp1_pll_core, hw);
-> > +       struct rp1_clockman *clockman = pll_core->clockman;
-> > +       const struct rp1_pll_core_data *data = pll_core->data;
-> > +       u32 fbdiv_int, fbdiv_frac;
-> > +       unsigned long calc_rate;
-> > +
-> > +       fbdiv_int = clockman_read(clockman, data->fbdiv_int_reg);
-> > +       fbdiv_frac = clockman_read(clockman, data->fbdiv_frac_reg);
-> > +       calc_rate =
-> > +               ((u64)parent_rate * (((u64)fbdiv_int << 24) + fbdiv_frac) + (1 << 23)) >> 24;
-> 
-> Where does '24' come from? Can you simplify this line somehow? Maybe
-> break it up into multiple lines?
-
-The dividers have an 8 bit integer and (optional) 24 bit fractional
-part to the divider value.
-The two parts are split across two registers (int_reg and frac_reg),
-with the value stored in the bottom bits of both.
-
-...
-
-> > +static int rp1_clock_determine_rate(struct clk_hw *hw,
-> > +                                   struct clk_rate_request *req)
-> > +{
-> > +       struct clk_hw *parent, *best_parent = NULL;
-> > +       unsigned long best_rate = 0;
-> > +       unsigned long best_prate = 0;
-> > +       unsigned long best_rate_diff = ULONG_MAX;
-> > +       unsigned long prate, calc_rate;
-> > +       size_t i;
-> > +
-> > +       /*
-> > +        * If the NO_REPARENT flag is set, try to use existing parent.
-> > +        */
-> > +       if ((clk_hw_get_flags(hw) & CLK_SET_RATE_NO_REPARENT)) {
-> 
-> Is this flag ever set?
-
-In future patches more clocks will be added (namely DPI, DSI (x2) and VEC).
-All have the CLK_SET_RATE_NO_REPARENT flag set.
-As those peripherals are sensitive to the accuracy of the clocks, the intent
-is that the driver will have set the parent, and it isn't expected to change.
-
-...
-
-> > +       divider->div.reg = clockman->regs + divider_data->ctrl_reg;
-> > +       divider->div.shift = PLL_SEC_DIV_SHIFT;
-> > +       divider->div.width = PLL_SEC_DIV_WIDTH;
-> > +       divider->div.flags = CLK_DIVIDER_ROUND_CLOSEST;
-> > +       divider->div.flags |= CLK_IS_CRITICAL;
-> 
-> Is everything critical? The usage of this flag and CLK_IGNORE_UNUSED is
-> suspicious and likely working around some problems elsewhere.
-
-the next patchset revision will drop as many of those CRITICAL flags as possible,
-and all of the IGNORE_UNUSED flags. That was legacy code needed on bcm-clk2835
-since some clocks were enabled by the firmware, and therefore disabling them
-had the potential for locking the firmware up. This does no longer apply to RP1.
-
-...
-
-Many thanks,
-Andrea
 
