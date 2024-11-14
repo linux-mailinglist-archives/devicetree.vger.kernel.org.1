@@ -1,427 +1,354 @@
-Return-Path: <devicetree+bounces-121933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 774A59C9024
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 17:49:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B2409C9028
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 17:50:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0724A1F27D4A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 16:49:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EED78281FA2
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 16:50:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE84E18A930;
-	Thu, 14 Nov 2024 16:48:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8984A18595B;
+	Thu, 14 Nov 2024 16:49:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="WeTCr9fS"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="iQuoyQIR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2046.outbound.protection.outlook.com [40.107.22.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 727F2185923
-	for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 16:48:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731602931; cv=none; b=lumtd0DUWcTvJ+LvekSJTqAxZGfEw16BGHUnSX7cfb0Bu6ygAys28mMh5H1HS4HFt1aw5dU39o3eeAd9pwewmkUVPT95LWUUFEUphiOWFwalY79Kx2XvkoJd3BRYl7IyLTITwkU67YBGqj2NLjpvu7NnilrkpKnbrqnKD89QfRU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731602931; c=relaxed/simple;
-	bh=iVAuHwEvYHRGFLq6UP/6fBhgK61F16r81OYfcswiy5Q=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=r7xntfSOlTZFLnKCYaufJD99N+4Cd31YRIgugCmcuPo+Glu/WO//+vIIn+6RRORTDvefc6SCXTsvno8YNbVbQF+p6CYy1cxdLJ9AzXUQHeBaB3008MnNxDPJqBuZ28W/2j5h7Ns1rxjW0TGPhkO0Uei6liGGlqkYfuWFLtkbJXM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=WeTCr9fS; arc=none smtp.client-ip=203.254.224.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20241114164845epoutp04b25491001d4673b218882f80ebe19f2d~H46_zrF0p2890728907epoutp04c
-	for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 16:48:45 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20241114164845epoutp04b25491001d4673b218882f80ebe19f2d~H46_zrF0p2890728907epoutp04c
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1731602925;
-	bh=kWXB9oKDYsUpW6lyQBH9mmUNxbs0n3Y2nAdUkH4HK/w=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=WeTCr9fSjASyQX0cAtku0nUWcf7yx6DuZXwcYEs/R8R0VpdKzEyUxfn+EioBFSSPs
-	 kjO0O2UeAUYQXGGuCNZl2vckQk09L3B2+wuUhMyDVLqgspzGkmnT7t85Fvu2W2GPIK
-	 6InX9tlOU24YNb1vNSJNl7VxewbRNJBQLcgOiD68=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTP id
-	20241114164844epcas5p32d85501d68a2b5af8264223ee1d4519c~H4695RSJL2244822448epcas5p3C;
-	Thu, 14 Nov 2024 16:48:44 +0000 (GMT)
-Received: from epsmges5p2new.samsung.com (unknown [182.195.38.181]) by
-	epsnrtp1.localdomain (Postfix) with ESMTP id 4Xq5hB6xcZz4x9Pr; Thu, 14 Nov
-	2024 16:48:42 +0000 (GMT)
-Received: from epcas5p2.samsung.com ( [182.195.41.40]) by
-	epsmges5p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	79.13.09770.AE926376; Fri, 15 Nov 2024 01:48:42 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-	20241114164841epcas5p2e2151f7dc7af4dc76bac51cd32b871ce~H467RCHhW2928029280epcas5p29;
-	Thu, 14 Nov 2024 16:48:41 +0000 (GMT)
-Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
-	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20241114164841epsmtrp1e459c560ca32a682360093042bd9b2bf~H467QOJpU3065230652epsmtrp1S;
-	Thu, 14 Nov 2024 16:48:41 +0000 (GMT)
-X-AuditID: b6c32a4a-e25fa7000000262a-d3-673629ea9ca5
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	7C.90.19220.9E926376; Fri, 15 Nov 2024 01:48:41 +0900 (KST)
-Received: from INBRO002756 (unknown [107.122.12.5]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20241114164840epsmtip23b71f70a4ec4e7b339188fcbf234ac77~H465vHhEE0030800308epsmtip2c;
-	Thu, 14 Nov 2024 16:48:39 +0000 (GMT)
-From: "Alim Akhtar" <alim.akhtar@samsung.com>
-To: "'Sowon Na'" <sowon.na@samsung.com>, <robh@kernel.org>,
-	<krzk@kernel.org>, <conor+dt@kernel.org>, <vkoul@kernel.org>,
-	<kishon@kernel.org>
-Cc: <krzk+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-samsung-soc@vger.kernel.org>
-In-Reply-To: <20241111043306.1250488-3-sowon.na@samsung.com>
-Subject: RE: [PATCH v2 2/3] phy: samsung-ufs: support ExynosAutov920 ufs phy
- driver
-Date: Thu, 14 Nov 2024 22:18:38 +0530
-Message-ID: <000001db36b5$0f6ca340$2e45e9c0$@samsung.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 348DB1C683;
+	Thu, 14 Nov 2024 16:49:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.46
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1731602999; cv=fail; b=aaBGSyOqIhy4wJMVot1TGO1d4vsCtiKvwKPRCduBdks1ym2/Md4Yv4aoHAZc/B1iOv1XnEaExbjSdLQ/2o3zMT2THMZ11e77gK3kU9X9fT31Qc4hE1zItzHjKWH0/OBxpFZjNG2f3da5KAf5Z5Gva+OY7yNEbuQB7Z70qh/brZI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1731602999; c=relaxed/simple;
+	bh=bR8pvo7KPeiKiE8etNnOs1mZ1ZZL0bKtCOreNVfqbKw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=DPz812R49JdqssVJ8KM+OmM0dcET4gZpwKFj32qsuGRo4akI7tQU8fIs7U9XUJSIaeKO44a9Y58WN9R5P44qvYjjief/22cyunm53VFksDunDfna5Mp25BHLfHgvwtIKHn39Sd0FKZ8w797sWo4Ddn/25ZLBKuf/iYVwOYtmpNc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=iQuoyQIR; arc=fail smtp.client-ip=40.107.22.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=oggrRPKx8HJtXj3pH86RJZX28kjFs+8Jzl3+bbd5/5A1C8e53Vsc8BYPgly9NpbCLZ9ftKmhfpWgduxijoTUMn7Fihxu51YhfSLZjX3F+i7eDxUMHStqUsGbr/IG7gx3ohEfGoqbe/NpV7DHMjGb8AJ/wW7Apv95DWFZuOqiwGvKy88e4QGixUs9ik8Uq785wq9pwj7t/f3RCn0JfZSiqSIMWE9F/15kuVfSr4o6h+w5ETzMvN18D4Cpi+6PzpBqcd8Gf0p7DUjNTqyMldlOB1T8/19Zeo5W/GT8uhgh8q77ctW2Hcodmmw2u+r1mTIpg0kWz8a9O32ZlY2otaS3CQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zd6BMCAZbazfElmvvQpeij7TMjhOrrFz9RTN5BfzEd0=;
+ b=vVr+2YygH8WqLWyPkDG3IGHi+PuPfrfQn4uPbeHszEwTS6Meq/8JnRaiI/116aobN25pMTzg6dc86ybOiHL5XGwRD3Tnry9NKZrj7B74k1iTOpSl60vahdMaKbEeq6eItkY+MzM2o7xuOlTzjG/TlsOlMyA/E36fShb2H9Lsh4Fnuu6E04wV22ZN6EIYsfw2K04yew8vn2eh/eBfgfw8lE09Rc77oCovVCvBxns6QwGaS0HbBdNhsSG4iAL22f1zO2e4hlqqM4AqQ0Joszl4T/u2D49Esfu6tutl33qavREXBNFiAAgzMMSHHB1XeXzY7WwuH4WCDwglhXnfId2V0Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zd6BMCAZbazfElmvvQpeij7TMjhOrrFz9RTN5BfzEd0=;
+ b=iQuoyQIRdmbm/VV3N5aPhPWfTGAoL5Kw6YvwiyIuZboErogddyu6xn900ibrXNyOpZeVN1Xu2eQ68E2UuQ8LEoaxKBb/ArREf3ImIbHXn5dgQXStIa6KNJ/eED+lWx+17+7MYQK801IC73UPImW+sDxUgUCAt7vF8FMUcOayMxJbHVj+3LEQmz771DM4c/BJxcl4aVd4biB7bhwM1NLJvAtrZ5heiT8P/z8ZcIe8iCK+VWtA3sWOtLvZ8FN7XtgrZxVPRuX2m3PP/7fBBKIWTaSk6/k4h7AZY2akQ39WRcXawOCLENd+2Uq/Ed3D32514SOFTPCgtclDRsgy5PKntQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by VI2PR04MB10617.eurprd04.prod.outlook.com (2603:10a6:800:27f::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.18; Thu, 14 Nov
+ 2024 16:49:53 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%4]) with mapi id 15.20.8137.027; Thu, 14 Nov 2024
+ 16:49:53 +0000
+Date: Thu, 14 Nov 2024 11:49:44 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	imx@lists.linux.dev, Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v7 0/7] PCI: dwc: opitimaze RC Host/EP pci_fixup_addr()
+Message-ID: <ZzYqKNAWRH6EMiny@lizhi-Precision-Tower-5810>
+References: <20241029-pci_fixup_addr-v7-0-8310dc24fb7c@nxp.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241029-pci_fixup_addr-v7-0-8310dc24fb7c@nxp.com>
+X-ClientProxiedBy: BY3PR03CA0018.namprd03.prod.outlook.com
+ (2603:10b6:a03:39a::23) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQFF3ELnMdop3R8tRxDPdVSUDoSdOAHrvEIhAhaBQVqzwZ1GIA==
-Content-Language: en-us
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprPJsWRmVeSWpSXmKPExsWy7bCmhu4rTbN0gzMXTCzW7D3HZDH/yDlW
-	i6Ot/5ktXs66x2Zx/vwGdovLu+awWcw4v4/J4v+eHewWv38eYrLYeecEswOXx6ZVnWwefVtW
-	MXp83iQXwByVbZORmpiSWqSQmpecn5KZl26r5B0c7xxvamZgqGtoaWGupJCXmJtqq+TiE6Dr
-	lpkDdIuSQlliTilQKCCxuFhJ386mKL+0JFUhI7+4xFYptSAlp8CkQK84Mbe4NC9dLy+1xMrQ
-	wMDIFKgwITtj98+TLAVLoioWHv3B0sA417eLkZNDQsBE4tu0H2wgtpDAbkaJzm0cXYxcQPYn
-	Roltc+cwQjjfGCU27F/ODNPx+e5NNojEXkaJk3/eQjkvGCXO/57ADlLFJqArsWNxG1hCRGAi
-	o8T253+Zuhg5OJgFaiX2d5qA1HAK2Ej8PrkIrF5YIFTi+5L/TCA2i4CqxJ9HB1lAbF4BS4kf
-	E44zQdiCEidnPgGLMwtoSyxb+BrqIgWJn0+XsYLYIgJOEqumroOqEZd4efQIO8gNEgJzOSQO
-	ftvPCtHgIvF/4hGoZmGJV8e3sEPYUhIv+9ug7GyJ4xdnsUHYFRLdrR+h4vYSOx/dZIH4RVNi
-	/S59iF18Er2/n4C9KCHAK9HRJgRRrSrR/O4qC4QtLTGxuxvqAg+Jk5/OsU9gVJyF5LNZSD6b
-	heSDWQjLFjCyrGKUTC0ozk1PLTYtMMpLLYfHd3J+7iZGcErV8trB+PDBB71DjEwcjIcYJTiY
-	lUR4TzkbpwvxpiRWVqUW5ccXleakFh9iNAUG90RmKdHkfGBSzyuJNzSxNDAxMzMzsTQ2M1QS
-	533dOjdFSCA9sSQ1OzW1ILUIpo+Jg1OqgSlv946JYW1+7QxHfHe7Xz870yVoQa7uRp8UHdGK
-	mZs4ldZu+OD9+sSuFwn3OaLNa98+mmVbrMXjrFF/K1v7rsqTHt/bpywnBDiol75f8jp/mb9e
-	xho3nTNVyzKWTPUoaA5trNzO+F/Rwb15rpPvav6PPWd4H8fMVZJdnjen72qO55dreWEdLtM6
-	tvap/nefVS4jsInjiKUjV6NlXEDh8shHZ49U8N5caG9mdspX+I+o53NZDquNuRVVmuo9Agtb
-	Uj/cXd96fYplZrLQPBeriXOjHoS8KeWN35atz5fwXG5dfPuPUP6CXesZDOzrTr4Jnnhi6bpF
-	57pP5fu3HuCb8H1yjOHa1fO+P59lsTXAT4mlOCPRUIu5qDgRACewPu4yBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupkkeLIzCtJLcpLzFFi42LZdlhJXvelplm6wY75ihZr9p5jsph/5Byr
-	xdHW/8wWL2fdY7M4f34Du8XlXXPYLGac38dk8X/PDnaL3z8PMVnsvHOC2YHLY9OqTjaPvi2r
-	GD0+b5ILYI7isklJzcksSy3St0vgyrhydTJLwZqIiqt7HjM1MC707mLk5JAQMJH4fPcmWxcj
-	F4eQwG5GiePLTzJCJKQlrm+cwA5hC0us/PecHaLoGaPE/fO/wYrYBHQldixuA+sWEZjOKLFv
-	zQ9mkASzQCOjxMUOqLF7GSXOv3oL1sEpYCPx++QioFEcHMICwRLP3zqChFkEVCX+PDrIAmLz
-	ClhK/JhwnAnCFpQ4OfMJC8RMbYmnN5/C2csWvmaGuE5B4ufTZawgtoiAk8SqqeugasQlXh49
-	wj6BUXgWklGzkIyahWTULCQtCxhZVjFKphYU56bnFhsWGOWllusVJ+YWl+al6yXn525iBMeW
-	ltYOxj2rPugdYmTiYDzEKMHBrCTCe8rZOF2INyWxsiq1KD++qDQntfgQozQHi5I477fXvSlC
-	AumJJanZqakFqUUwWSYOTqkGJosGEw/bZRPOq1zeX1ttkvO05UnszYkHtdxnXZ+ZJ2ovOGOT
-	whX7c+9CP3ALFC2fuNNvTstR9fWm/a9bji2vUeVVDY7mm73urUrlDIbnb2+9u8uTk8a5k1ls
-	gf48S56u0iuhGaYx8/Z82an6YqKt+smPC1OOuhtcK4+U+KenXJ5w97DKlnYrxXusJRftnr2z
-	ObLx9rwj2vayyfOacrj7284X7LgoPWf69XLljxcT3/duNd8Roj5N6+61ib4NVq7vHYXmRDuv
-	PfPSuKrMsqXswvZNH8VZsqU+/WHxL7zFvkuT4djOPbElBtUiZz5v+BZb2XjtuMjXylM7azfP
-	EH+nOkv431Xjpj/RDiHFz128JiqxFGckGmoxFxUnAgAWts28HAMAAA==
-X-CMS-MailID: 20241114164841epcas5p2e2151f7dc7af4dc76bac51cd32b871ce
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20241111043317epcas2p1fbabc25054bd345de15565982325c400
-References: <20241111043306.1250488-1-sowon.na@samsung.com>
-	<CGME20241111043317epcas2p1fbabc25054bd345de15565982325c400@epcas2p1.samsung.com>
-	<20241111043306.1250488-3-sowon.na@samsung.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|VI2PR04MB10617:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2f56c35f-a1d0-44c1-b0f7-08dd04cc5cd0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|7416014|376014|52116014|366016|921020|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?MURNM1ZOVjUxU0NPODdldUs4amM1OHpCK1FaN3NrN09KbDZMbm90cUpKNjdw?=
+ =?utf-8?B?VTBIY3M0VVRxMVZiUHV0RTFYZW9HR0tRMkhRVWdMWWYwUjJDRmluUmJsS3ZR?=
+ =?utf-8?B?d2VKRjlBcmt3S0NsbmpFWTc4U281QVJlWXI1M2xUQUwrWHQ1bnlXTUw1OVA1?=
+ =?utf-8?B?RFZQWWN1VXljUVZHSjFCZ2N5Ym9pdEV4U2MzMWtuRWo5T1NkN3lUcXRVN2FH?=
+ =?utf-8?B?Mms4R3Y3QjJhd3lvam0rRTh2aHhZOUUxSUo0Vk9zSjRTM1R1VmVkc1U0WGFk?=
+ =?utf-8?B?Z1RlMzNUeGxOZFFmdENJL3loM1hIcUxUYUxtNHZSNXAyS2dnNWZwdTFnTmgy?=
+ =?utf-8?B?K2hFcHlvVDl0Nlo0RjA0YnBOcUg1SjJRWHk5YzdFcXhRYWdadHNlTTdUNTFE?=
+ =?utf-8?B?TlJDK1lyT3k5UjV0blFqUGt0cVNKb1o1Q2g5b1BERjlldjNYWUJZTnB2ckVk?=
+ =?utf-8?B?SUUra25Sb3VlWWExbHI2UXQ3eVhuRjd0VXVDWW5PSEdvZGUwbVpQSkhMMTVV?=
+ =?utf-8?B?bkZPWGNGdHp6d0NjUjM0Zys1UFZXMmQrZkl2YmdBNHlmTkFmUDRzQUNsNkty?=
+ =?utf-8?B?Y1FrdE95OW8zaDlyQ0dVVmZuS1FIYWx6bVlhRTZiakdjOEtUSHJlbzZUbFVD?=
+ =?utf-8?B?UTA5RncrWVZlQm0zUUYvS3Yva2ZRNXZRYXBVTFJKb081eGkvR3UvYXdKalJQ?=
+ =?utf-8?B?aFVWV2ZCcXE3SlZTaEVQQlR1NkNHaE1IUzd1RngzUzkvR2pLd0t3azVpV0tO?=
+ =?utf-8?B?dGFKZndRaVdCa1JoV29pd2pSQUpMeGJMS0xBajJwQzA1QS8wd0JJRWV0QmQx?=
+ =?utf-8?B?QTNqRUtCc0l1N3pwakhXOEI1c1VNYWVPUGxieHZGc1M0ZzVCazRlWE4vMmpk?=
+ =?utf-8?B?VG9FaXhZZzVUZ3FDeUdRaUQ1Z0pVcVl1YmswWG1pTC9oblkwaGFIcFJ3akIx?=
+ =?utf-8?B?Uk5ZdC9BSVBKQ00zSUtWZ0lub2lpMGVZZWJneHV1L3JDd3BXbGZaZzF3QWlS?=
+ =?utf-8?B?MlJqNHdoWURRUmh2MVVKaHRNbzV0ZVF5VnNlQzJHVHhEelZ5OFBDQmJlVVIr?=
+ =?utf-8?B?L3A3ekE5SVYvRE9kaGU2ZEtkb01RbnJmd2IzYlo1M0NRWFNINUZZUzJVSGY1?=
+ =?utf-8?B?dVdNSVZXU2RPV3hhN2VTdVRzZnlmTCs0WGViTDRaU1hOQnFyTHdZK3VVWGxS?=
+ =?utf-8?B?NlM5UUtTNEJmZ3Z4NE1rVlJIR2V6c2tub3V0R1gvcXVVbFIvZDgrSDBVL2FM?=
+ =?utf-8?B?VTVNRlV6aVRmaGYvTUV0OHZPS3FSWnFEWEdIbnVUUlZJNlE2UjFLckhGaTFs?=
+ =?utf-8?B?SEdNYlRtOFM5OWZtTUZNZW5UQ3ZQVzN1eWY3emhzUW9VVVJKcmxVZnprbWZV?=
+ =?utf-8?B?NnViaitIc2RRQ05BNmQ0RjczUWZlY011RlZwQWdaMU96b1NBTG1qbFFBQ2xu?=
+ =?utf-8?B?Slh3V0lMeE5qQjVQa1RWTzNBZ0RpNDNSMlJxbzlRaVM0bWdMNVNJbEp6MGRt?=
+ =?utf-8?B?RUZPTjFmM2hyM0VxbElXV3hvSzNYVytTWVdlSFgwVktaY244d1JXK0FqWnkv?=
+ =?utf-8?B?cVVpZHBlZHBLd200TTczSzhxSUxWbzg3V3lldlc5Z0JYVFR0ZHYySmhUY0dI?=
+ =?utf-8?B?K2VXOWo2Y3FwWVp0OVQwOCtuem92cDJiQWRDVTZzaHc1bTdHSzVEK0RMWEpx?=
+ =?utf-8?B?eW9UeU5Pcm9UQmFUbHltZlR5aUZrM0d6ZUFsWUlia0liZzdBUk93Z3FubkJ1?=
+ =?utf-8?B?Mmp3aVBXNU9YamlNL3RXd1BUUW1tSUp1YzE0cGhrbU5uVnUvNmdqTzMzTFRS?=
+ =?utf-8?B?MXN4bHRXT2txT1dJQ0MwZEk5dFU5aHN2c2JNRkFOYzFrQ1lRVUxUNnBHY1VP?=
+ =?utf-8?Q?xSYBOFL/oXr5r?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(52116014)(366016)(921020)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?d01tV1kxd2gwWm9KK2dzbVJtZ2JFOFZGSVkvYlVOMmtmTjMzaytQRWZpTlYv?=
+ =?utf-8?B?WEoxaml0SHNQbmhTZFByT0xUMlFWQU90bDZDQitsOFliSW9lcU4yaGJ4Ty9R?=
+ =?utf-8?B?ejV1MENKZVRhUUZlMSt2QmI5YnhJL2xvbnhkK01PNGE1T3craFBzd2NXS2Mr?=
+ =?utf-8?B?SUNaS3h5M21UVWU4YVpvODVMSGZZSndHb0YwbDF3UEJnUkkxcyt1VG9RTVgw?=
+ =?utf-8?B?OG5QWXNKS3FncDMyYVVZZStnUG5abHVsTVFyalc4UnY1bVJtNTBJb1cvSW9j?=
+ =?utf-8?B?VUxnNzJkNWYvaHpsUkFIemxseS9kTnVsbFd1Tm9GNUpyU1pqcFFtR2E0dmhK?=
+ =?utf-8?B?TXBCV2hpMys2cmpmOVJVMklnYXhhYnpNVUNycGhSbzFZemZkUlBCK3FURzU5?=
+ =?utf-8?B?VWhLQUpUbHF0N2lVdElEdmRqQko2SnFlU2JUejRsMnZDUFZOd092akNnMjAy?=
+ =?utf-8?B?ZVU3MG02ZGlEbGo3V1V1ZHI5WGtDNkh4UHJkT0YrbjgxK2JVTVZadEFlTUNU?=
+ =?utf-8?B?dURxWGcrWXdsSm9oQkRkNnJob1BjaWYvZitOeDhJclh3YjlyemVyMGVKWmFX?=
+ =?utf-8?B?ZzZocXd2S2Vya2QvaVpXM0FLQmFVR1FJT2txWFEvdXlQWElGMVE4NjZLSXhD?=
+ =?utf-8?B?RlViLzFWUW0xRkRaWG1sYVFwc1hZekxxZjBHN1pRVDBVR2h5bHpXL3Vaa2Q1?=
+ =?utf-8?B?MzFqc1VGRGhiTCtEVjc3a25iekR3cnpoQVZha2RzYTdQVWQ0MWtvU3JIZzBS?=
+ =?utf-8?B?SU5IVXJIOFNTT1lqbTlYTkFHOHBjSU0vUU10NU56d2RoSWVnSmUwVWcxQUZs?=
+ =?utf-8?B?ZjA1QzBTQ0FHaFNzTjh5NGs2VllIK0Z5SHdJdzFZdng1c2dyK1ZqQ0Y4MHpR?=
+ =?utf-8?B?MVJReWxZaERnZnFDMTBZcnYvYzhTMmNsYzNRRUp1dVFGMit2OXVhZnIxMEh3?=
+ =?utf-8?B?T29qSlduSTJCZkFpUkRkK1BNTWROWXg5M0Y5KzNGRkF2MVJJSTZ4VDRuQnVw?=
+ =?utf-8?B?QmFNWkYxMm5wVE50SEs0WCtDcndaU2RZL0tCRitsZjdtZlJheUkvQmpsUm03?=
+ =?utf-8?B?SWtzM0w3Q1Z3YWRoK3hDaFltdm1xdUpBU2RFeUxhMmtmc2k5VXRKaSs2VTEy?=
+ =?utf-8?B?TnRhU2s1a3NZVnFOOVYrSWZJSzhpMC80WFE2RGJtRFhPamRjY0cxemRJREFk?=
+ =?utf-8?B?YndtV1JhMURyckVlK2hnTDRvUFgvYlVlZVJ2MGM4cjE3dWVFQWErZGcrOFdv?=
+ =?utf-8?B?RWRTTkgrNjBST1lCU21JUVl2NEorUklrdkpsSEJ4SkVBNjcySHY2SHBLeGQz?=
+ =?utf-8?B?dDZWN3RHZ3lUZHFWcHFraFhNeU9tdmNiZHp6RFUwcGc1WkpIVHlkRnhTVklB?=
+ =?utf-8?B?bGdQdHJGelc5WUM5cHorWFMrNSs3dzNGOFJnRy9MYytsenp6SG1UOG4yOWVV?=
+ =?utf-8?B?TFIrUnpQQnlnTE5WZVN5aGVvVmpEcldpT3ZiTGVUU3hOWFNNUWdrS1FVTUpa?=
+ =?utf-8?B?U2s5MjA2aGUycmxyeFM3N3cvUmhpWVZSc0VnMVRNNDJ0Z1NyNi80eG5adDBF?=
+ =?utf-8?B?ZnF1VmhHMXAvTzRmQ2tqM1RTTEhmRWg0OXZuQUFvRW40dCt0T2xLQWYwZFNq?=
+ =?utf-8?B?WjhERVg2NGVEZnFHdWhRa0JSc21ubDVIbzEzQ1pqYUw4UXd6dlF0ekNBb3FZ?=
+ =?utf-8?B?UUVoNE1aUFpKaTJuOEt6TnVCb2xpb0IxcFM2MTU2K2kwNXJEdTJTa0VIaXlC?=
+ =?utf-8?B?THQvMWg4UVpxbnErb3dCT2c3SlovU0RtNXoxc3hEbFJNMktYUVhBYXFBNk1C?=
+ =?utf-8?B?NFlxUC9aTEpYN1ZGT0xUMXF6VThzQUdYSHhpaVJzb0ZqMWVwdUtyQ09NTnhj?=
+ =?utf-8?B?Zis5ZVg0ZHowcU5kdndOYVY0T0tqN2MxNnc1emZOK0c1UjBaNnNneDMzTDEw?=
+ =?utf-8?B?SUZJbDZmYmIwbXdPUGVaUG9INW1LdHozMHdad3R3aUZYS2RSaTFtRmFVOUdO?=
+ =?utf-8?B?ZVBQb1NCMXdXWWZrcjRTL05NNmEwbVN2R2NKRnB2T0c3aWpjSHgwNnJXRlNZ?=
+ =?utf-8?B?UXBCL1pjTlZHZFZzVTlpNnJETC85d3QwZUpJN2F3LzhiNlA1bTRIUmFCbjN4?=
+ =?utf-8?Q?8qqw=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2f56c35f-a1d0-44c1-b0f7-08dd04cc5cd0
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2024 16:49:53.5268
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: DK7mFGlnY7AtPGFW+4dxsWVlknsU7xJ1dbWOhdMTqFLN6F02B/3RSvoaIcBUxMProaUv+w04UwWgWdsHypu6og==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI2PR04MB10617
 
+On Tue, Oct 29, 2024 at 12:36:33PM -0400, Frank Li wrote:
 
+Mani:
+	Do you have chance to check dwc part?
 
-> -----Original Message-----
-> From: Sowon Na <sowon.na=40samsung.com>
-> Sent: Monday, November 11, 2024 10:03 AM
-> To: robh=40kernel.org; krzk=40kernel.org; conor+dt=40kernel.org;
-> vkoul=40kernel.org; alim.akhtar=40samsung.com; kishon=40kernel.org
-> Cc: krzk+dt=40kernel.org; linux-kernel=40vger.kernel.org;
-> devicetree=40vger.kernel.org; linux-samsung-soc=40vger.kernel.org;
-> sowon.na=40samsung.com
-> Subject: =5BPATCH v2 2/3=5D phy: samsung-ufs: support ExynosAutov920 ufs =
-phy
-> driver
->=20
-> Add support for ExynosAutov920 ufs phy driver.
->=20
-> Signed-off-by: Sowon Na <sowon.na=40samsung.com>
+Frank
+
+> == RC side:
+>
+>             ┌─────────┐                    ┌────────────┐
+>  ┌─────┐    │         │ IA: 0x8ff8_0000    │            │
+>  │ CPU ├───►│   ┌────►├─────────────────┐  │ PCI        │
+>  └─────┘    │   │     │ IA: 0x8ff0_0000 │  │            │
+>   CPU Addr  │   │  ┌─►├─────────────┐   │  │ Controller │
+> 0x7ff8_0000─┼───┘  │  │             │   │  │            │
+>             │      │  │             │   │  │            │   PCI Addr
+> 0x7ff0_0000─┼──────┘  │             │   └──► IOSpace   ─┼────────────►
+>             │         │             │      │            │    0
+> 0x7000_0000─┼────────►├─────────┐   │      │            │
+>             └─────────┘         │   └──────► CfgSpace  ─┼────────────►
+>              BUS Fabric         │          │            │    0
+>                                 │          │            │
+>                                 └──────────► MemSpace  ─┼────────────►
+>                         IA: 0x8000_0000    │            │  0x8000_0000
+>                                            └────────────┘
+>
+> Current dwc implimemnt, pci_fixup_addr() call back is needed when bus
+> fabric convert cpu address before send to PCIe controller.
+>
+>     bus@5f000000 {
+>             compatible = "simple-bus";
+>             #address-cells = <1>;
+>             #size-cells = <1>;
+>             ranges = <0x80000000 0x0 0x70000000 0x10000000>;
+>
+>             pcie@5f010000 {
+>                     compatible = "fsl,imx8q-pcie";
+>                     reg = <0x5f010000 0x10000>, <0x8ff00000 0x80000>;
+>                     reg-names = "dbi", "config";
+>                     #address-cells = <3>;
+>                     #size-cells = <2>;
+>                     device_type = "pci";
+>                     bus-range = <0x00 0xff>;
+>                     ranges = <0x81000000 0 0x00000000 0x8ff80000 0 0x00010000>,
+>                              <0x82000000 0 0x80000000 0x80000000 0 0x0ff00000>;
+>             ...
+>             };
+>     };
+>
+> Device tree already can descript all address translate. Some hardware
+> driver implement fixup function by mask some bits of cpu address. Last
+> pci-imx6.c are little bit better by fetch memory resource's offset to do
+> fixup.
+>
+> static u64 imx_pcie_cpu_addr_fixup(struct dw_pcie *pcie, u64 cpu_addr)
+> {
+> 	...
+> 	entry = resource_list_first_type(&pp->bridge->windows, IORESOURCE_MEM);
+> 	return cpu_addr - entry->offset;
+> }
+>
+> But it is not good by using IORESOURCE_MEM to fix up io/cfg address map
+> although address translate is the same as IORESOURCE_MEM.
+>
+> This patches to fetch untranslate range information for PCIe controller
+> (pcie@5f010000: ranges). So current config ATU without cpu_fixup_addr().
+>
+> == EP side:
+>
+>                    Endpoint
+>   ┌───────────────────────────────────────────────┐
+>   │                             pcie-ep@5f010000  │
+>   │                             ┌────────────────┐│
+>   │                             │   Endpoint     ││
+>   │                             │   PCIe         ││
+>   │                             │   Controller   ││
+>   │           bus@5f000000      │                ││
+>   │           ┌──────────┐      │                ││
+>   │           │          │ Outbound Transfer     ││
+>   │┌─────┐    │  Bus     ┼─────►│ ATU  ──────────┬┬─────►
+>   ││     │    │  Fabric  │Bus   │                ││PCI Addr
+>   ││ CPU ├───►│          │Addr  │                ││0xA000_0000
+>   ││     │CPU │          │0x8000_0000            ││
+>   │└─────┘Addr└──────────┘      │                ││
+>   │       0x7000_0000           └────────────────┘│
+>   └───────────────────────────────────────────────┘
+>
+> bus@5f000000 {
+>         compatible = "simple-bus";
+>         ranges = <0x80000000 0x0 0x70000000 0x10000000>;
+>
+>         pcie-ep@5f010000 {
+>                 reg = <0x5f010000 0x00010000>,
+>                       <0x80000000 0x10000000>;
+>                 reg-names = "dbi", "addr_space";
+>                 ...                ^^^^
+>         };
+>         ...
+> };
+>
+> Add `bus_addr_base` to configure the outbound window address for CPU write.
+> The BUS fabric generally passes the same address to the PCIe EP controller,
+> but some BUS fabrics convert the address before sending it to the PCIe EP
+> controller.
+>
+> Above diagram, CPU write data to outbound windows address 0x7000_0000,
+> Bus fabric convert it to 0x8000_0000. ATU should use BUS address
+> 0x8000_0000 as input address and convert to PCI address 0xA000_0000.
+>
+> Previously, `cpu_addr_fixup()` was used to handle address conversion. Now,
+> the device tree provides this information.
+>
+> The both pave the road to eliminate ugle cpu_fixup_addr() callback function.
+>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  drivers/phy/samsung/Makefile                 =7C   1 +
->  drivers/phy/samsung/phy-exynosautov920-ufs.c =7C 170 +++++++++++++++++++
->  drivers/phy/samsung/phy-samsung-ufs.c        =7C   9 +-
->  drivers/phy/samsung/phy-samsung-ufs.h        =7C   4 +
->  4 files changed, 181 insertions(+), 3 deletions(-)  create mode 100644
-> drivers/phy/samsung/phy-exynosautov920-ufs.c
->=20
-> diff --git a/drivers/phy/samsung/Makefile b/drivers/phy/samsung/Makefile
-> index fea1f96d0e43..342682638a87 100644
-> --- a/drivers/phy/samsung/Makefile
-> +++ b/drivers/phy/samsung/Makefile
-> =40=40 -7,6 +7,7 =40=40 phy-exynos-ufs-y			+=3D phy-gs101-ufs.o
->  phy-exynos-ufs-y			+=3D phy-samsung-ufs.o
->  phy-exynos-ufs-y			+=3D phy-exynos7-ufs.o
->  phy-exynos-ufs-y			+=3D phy-exynosautov9-ufs.o
-> +phy-exynos-ufs-y			+=3D phy-exynosautov920-ufs.o
->  phy-exynos-ufs-y			+=3D phy-fsd-ufs.o
->  obj-=24(CONFIG_PHY_SAMSUNG_USB2)		+=3D phy-exynos-usb2.o
->  phy-exynos-usb2-y			+=3D phy-samsung-usb2.o
-> diff --git a/drivers/phy/samsung/phy-exynosautov920-ufs.c
-> b/drivers/phy/samsung/phy-exynosautov920-ufs.c
-> new file mode 100644
-> index 000000000000..f00f82132921
-> --- /dev/null
-> +++ b/drivers/phy/samsung/phy-exynosautov920-ufs.c
-> =40=40 -0,0 +1,170 =40=40
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * UFS PHY driver data for Samsung ExynosAuto v920 SoC
-> + *
-> + * Copyright (C) 2024 Samsung Electronics Co., Ltd.
-> + */
-> +
-> +=23include =22phy-samsung-ufs.h=22
-> +
-> +=23define EXYNOSAUTOV920_EMBEDDED_COMBO_PHY_CTRL
-> 	0x708
-> +=23define EXYNOSAUTOV920_EMBEDDED_COMBO_PHY_CTRL_MASK
-> 	0x1
-> +=23define EXYNOSAUTOV920_EMBEDDED_COMBO_PHY_CTRL_EN
-> 	BIT(0)
-> +=23define EXYNOSAUTOV920_EMBEDDED_COMBO_PHY_CDR_LOCK_STATUS
-> 	0x5e
-> +
-> +=23define EXYNOSAUTOV920_CDR_LOCK_OFFSET				0xCE4
-> +
-> +=23define PHY_EXYNOSAUTOV920_LANE_OFFSET				0x200
-> +=23define PHY_TRSV_REG_CFG_AUTOV920(o, v, d) =5C
-> +	PHY_TRSV_REG_CFG_OFFSET(o, v, d,
-> PHY_EXYNOSAUTOV920_LANE_OFFSET)
-> +
-> +/* Calibration for phy initialization */ static const struct
-> +samsung_ufs_phy_cfg exynosautov920_pre_init_cfg=5B=5D =3D =7B
-> +	PHY_COMN_REG_CFG(0x29, 0x22, PWR_MODE_ANY),
-> +	PHY_COMN_REG_CFG(0x43, 0x10, PWR_MODE_ANY),
-> +	PHY_COMN_REG_CFG(0x3C, 0x14, PWR_MODE_ANY),
-> +	PHY_COMN_REG_CFG(0x46, 0x48, PWR_MODE_ANY),
-> +	PHY_COMN_REG_CFG(0x04, 0x95, PWR_MODE_ANY),
-> +	PHY_COMN_REG_CFG(0x06, 0x30, PWR_MODE_ANY),
-> +
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x200, 0x00, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x201, 0x06, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x202, 0x06, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x203, 0x0A, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x204, 0x00, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x205, 0x10, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x207, 0x0C, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x2E1, 0xC0, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x22D, 0xF8, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x234, 0x60, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x238, 0x13, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x239, 0x48, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x23A, 0x01, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x23B, 0x29, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x23C, 0x2A, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x23D, 0x01, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x23E, 0x14, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x23F, 0x13, PWR_MODE_ANY),
-> +
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x240, 0x4A, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x243, 0x40, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x244, 0x02, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x25D, 0x00, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x25E, 0x3F, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x25F, 0xFF, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x26F, 0xF0, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x273, 0x33, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x274, 0x50, PWR_MODE_ANY),
-> +
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x284, 0x02, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x285, 0x02, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x2A2, 0x04, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x27D, 0x01, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x2FA, 0x01, PWR_MODE_ANY),
-> +
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x286, 0x03, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x287, 0x03, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x288, 0x03, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x289, 0x03, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x2B3, 0x04, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x2B6, 0x0B, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x2B7, 0x0B, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x2B8, 0x0B, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x2B9, 0x0B, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x2BA, 0x0B, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x2BB, 0x06, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x2BC, 0x06, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x2BD, 0x06, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x2BE, 0x06, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x34B, 0x01, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x34C, 0x24, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x34D, 0x23, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x34E, 0x45, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x34F, 0x00, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x350, 0x31, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x351, 0x00, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x352, 0x02, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x353, 0x00, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x354, 0x01, PWR_MODE_ANY),
-> +
-> +	PHY_COMN_REG_CFG(0x43, 0x18, PWR_MODE_ANY),
-> +	PHY_COMN_REG_CFG(0x43, 0x00, PWR_MODE_ANY),
-> +
-> +	END_UFS_PHY_CFG,
-> +=7D;
-> +
-> +/* Calibration for HS mode series A/B */ static const struct
-> +samsung_ufs_phy_cfg exynosautov920_pre_pwr_hs_cfg=5B=5D =3D =7B
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x369, 0x11, PWR_MODE_ANY),
-> +	PHY_TRSV_REG_CFG_AUTOV920(0x246, 0x03, PWR_MODE_ANY),
-> +
-> +	END_UFS_PHY_CFG,
-> +=7D;
-> +
-> +static const struct samsung_ufs_phy_cfg exynosautov920_post_pwr_hs_cfg=
-=5B=5D
-> =3D =7B
-> +	END_UFS_PHY_CFG,
-> +=7D;
-> +
-> +=23define DELAY_IN_US	40
-> +=23define RETRY_CNT	100
-> +=23define EXYNOSAUTOV920_CDR_LOCK_MASK	0x8
-> +int samsung_exynosautov920_ufs_phy_wait_cdr_lock(struct phy *phy, u8
-Just =22exynosautov920_ufs_phy_wait_cdr_lock=22, without samsung_
-
-> +lane) =7B
-> +	struct samsung_ufs_phy *ufs_phy =3D get_samsung_ufs_phy(phy);
-> +	int ret =3D 0;
-> +	u32 reg, i;
-> +
-> +	struct samsung_ufs_phy_cfg cfg=5B4=5D =3D =7B
-> +		PHY_TRSV_REG_CFG_AUTOV920(0x222, 0x10,
-> PWR_MODE_ANY),
-> +		PHY_TRSV_REG_CFG_AUTOV920(0x222, 0x18,
-> PWR_MODE_ANY),
-> +		PHY_TRSV_REG_CFG_AUTOV920(0x246, 0x01,
-> PWR_MODE_ANY),
-> +		END_UFS_PHY_CFG,
-> +	=7D;
-> +
-> +	for (i =3D 0; i < RETRY_CNT; i++) =7B
-> +		udelay(DELAY_IN_US);
-> +
-> +		reg =3D readl(ufs_phy->reg_pma +
-> EXYNOSAUTOV920_CDR_LOCK_OFFSET +
-> +
-> 	(PHY_APB_ADDR(PHY_EXYNOSAUTOV920_LANE_OFFSET) * lane));
-> +		if ((reg & EXYNOSAUTOV920_CDR_LOCK_MASK)
-> +					=3D=3D
-> EXYNOSAUTOV920_CDR_LOCK_MASK)
-> +			break;=20
-Probably you can just return success from here.
-
-> +
-> +		udelay(DELAY_IN_US);
-> +
-> +		samsung_ufs_phy_config(ufs_phy, &cfg=5B0=5D, lane);
-> +		samsung_ufs_phy_config(ufs_phy, &cfg=5B1=5D, lane);
-> +	=7D
-> +
-> +	samsung_ufs_phy_config(ufs_phy, &cfg=5B2=5D, lane);
-Why this is needed? Please write a line or two about this.
-
-> +
-> +	if (i >=3D RETRY_CNT) =7B
-This become reductant, once you return from for loop above.
-
-> +		dev_err(ufs_phy->dev, =22failed to get phy cdr lock=5Cn=22);
-> +		ret =3D -ETIMEDOUT;
-> +	=7D
-> +
-> +	return ret;
-> +=7D
-> +
-> +static const struct samsung_ufs_phy_cfg
-> *exynosautov920_ufs_phy_cfgs=5BCFG_TAG_MAX=5D =3D =7B
-> +	=5BCFG_PRE_INIT=5D          =3D exynosautov920_pre_init_cfg,
-> +	=5BCFG_PRE_PWR_HS=5D        =3D exynosautov920_pre_pwr_hs_cfg,
-> +	=5BCFG_POST_PWR_HS=5D       =3D exynosautov920_post_pwr_hs_cfg,
-> +=7D;
-> +
-> +static const char * const exynosautov920_ufs_phy_clks=5B=5D =3D =7B
-> +	=22ref_clk=22,
-> +=7D;
-> +
-> +const struct samsung_ufs_phy_drvdata exynosautov920_ufs_phy =3D =7B
-> +	.cfgs =3D exynosautov920_ufs_phy_cfgs,
-> +	.isol =3D =7B
-> +		.offset =3D EXYNOSAUTOV920_EMBEDDED_COMBO_PHY_CTRL,
-> +		.mask =3D
-> EXYNOSAUTOV920_EMBEDDED_COMBO_PHY_CTRL_MASK,
-> +		.en =3D EXYNOSAUTOV920_EMBEDDED_COMBO_PHY_CTRL_EN,
-> +	=7D,
-> +	.clk_list =3D exynosautov920_ufs_phy_clks,
-> +	.num_clks =3D ARRAY_SIZE(exynosautov920_ufs_phy_clks),
-> +	.cdr_lock_status_offset =3D
-> EXYNOSAUTOV920_EMBEDDED_COMBO_PHY_CDR_LOCK_STATUS,
-> +	.wait_for_cdr =3D samsung_exynosautov920_ufs_phy_wait_cdr_lock,
-> +=7D;
-> diff --git a/drivers/phy/samsung/phy-samsung-ufs.c
-> b/drivers/phy/samsung/phy-samsung-ufs.c
-> index 6c5d41552649..c13fe149bc75 100644
-> --- a/drivers/phy/samsung/phy-samsung-ufs.c
-> +++ b/drivers/phy/samsung/phy-samsung-ufs.c
-> =40=40 -28,9 +28,9 =40=40
->=20
->  =23define PHY_DEF_LANE_CNT	1
->=20
-> -static void samsung_ufs_phy_config(struct samsung_ufs_phy *phy,
-> -				   const struct samsung_ufs_phy_cfg *cfg,
-> -				   u8 lane)
-> +void samsung_ufs_phy_config(struct samsung_ufs_phy *phy,
-> +			    const struct samsung_ufs_phy_cfg *cfg,
-> +			    u8 lane)
->  =7B
->  	enum =7BLANE_0, LANE_1=7D; /* lane index */
->=20
-> =40=40 -323,6 +323,9 =40=40 static const struct of_device_id
-> samsung_ufs_phy_match=5B=5D =3D =7B
->  	=7D, =7B
->  		.compatible =3D =22samsung,exynosautov9-ufs-phy=22,
->  		.data =3D &exynosautov9_ufs_phy,
-> +	=7D, =7B
-> +		.compatible =3D =22samsung,exynosautov920-ufs-phy=22,
-> +		.data =3D &exynosautov920_ufs_phy,
->  	=7D, =7B
->  		.compatible =3D =22tesla,fsd-ufs-phy=22,
->  		.data =3D &fsd_ufs_phy,
-> diff --git a/drivers/phy/samsung/phy-samsung-ufs.h
-> b/drivers/phy/samsung/phy-samsung-ufs.h
-> index 9b7deef6e10f..7f759141ee87 100644
-> --- a/drivers/phy/samsung/phy-samsung-ufs.h
-> +++ b/drivers/phy/samsung/phy-samsung-ufs.h
-> =40=40 -143,9 +143,13 =40=40 static inline void samsung_ufs_phy_ctrl_isol=
-(  =7D
->=20
->  int samsung_ufs_phy_wait_for_lock_acq(struct phy *phy, u8 lane);
-> +int samsung_exynosautov920_ufs_phy_wait_cdr_lock(struct phy *phy, u8
-> +lane); void samsung_ufs_phy_config(struct samsung_ufs_phy *phy,
-> +			    const struct samsung_ufs_phy_cfg *cfg, u8 lane);
->=20
->  extern const struct samsung_ufs_phy_drvdata exynos7_ufs_phy;  extern con=
-st
-> struct samsung_ufs_phy_drvdata exynosautov9_ufs_phy;
-> +extern const struct samsung_ufs_phy_drvdata exynosautov920_ufs_phy;
->  extern const struct samsung_ufs_phy_drvdata fsd_ufs_phy;  extern const s=
-truct
-> samsung_ufs_phy_drvdata tensor_gs101_ufs_phy;
->=20
-> --
-> 2.45.2
-
-
+> Changes in v7:
+> - fix
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202410291546.kvgEWJv7-lkp@intel.com/
+> - Link to v6: https://lore.kernel.org/r/20241028-pci_fixup_addr-v6-0-ebebcd8fd4ff@nxp.com
+>
+> Changes in v6:
+> - merge RC and EP to one thread!
+> - Link to v5: https://lore.kernel.org/r/20241015-pci_fixup_addr-v5-0-ced556c85270@nxp.com
+>
+> Changes in v5:
+> - update address order in diagram patches.
+> - remove confused 0x5f00_0000 range
+> - update patch1's commit message.
+> - Link to v4: https://lore.kernel.org/r/20241008-pci_fixup_addr-v4-0-25e5200657bc@nxp.com
+>
+> Changes in v4:
+> - Improve commit message by add driver source code path.
+> - Link to v3: https://lore.kernel.org/r/20240930-pci_fixup_addr-v3-0-80ee70352fc7@nxp.com
+>
+> Changes in v3:
+> - see each patch
+> - Link to v2: https://lore.kernel.org/r/20240926-pci_fixup_addr-v2-0-e4524541edf4@nxp.com
+>
+> Changes in v2:
+> - see each patch
+> - Link to v1: https://lore.kernel.org/r/20240924-pci_fixup_addr-v1-0-57d14a91ec4f@nxp.com
+>
+> ---
+> Frank Li (7):
+>       of: address: Add parent_bus_addr to struct of_pci_range
+>       PCI: dwc: Using parent_bus_addr in of_range to eliminate cpu_addr_fixup()
+>       PCI: dwc: ep: Add bus_addr_base for outbound window
+>       PCI: imx6: Remove cpu_addr_fixup()
+>       dt-bindings: PCI: fsl,imx6q-pcie-ep: Add compatible string fsl,imx8q-pcie-ep
+>       PCI: imx6: Pass correct sub mode when calling phy_set_mode_ext()
+>       PCI: imx6: Add i.MX8Q PCIe Endpoint (EP) support
+>
+>  .../devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml | 38 ++++++++++++++-
+>  drivers/of/address.c                               |  2 +
+>  drivers/pci/controller/dwc/pci-imx6.c              | 46 +++++++++---------
+>  drivers/pci/controller/dwc/pcie-designware-ep.c    | 21 ++++++++-
+>  drivers/pci/controller/dwc/pcie-designware-host.c  | 55 +++++++++++++++++++++-
+>  drivers/pci/controller/dwc/pcie-designware.h       |  9 ++++
+>  include/linux/of_address.h                         |  1 +
+>  7 files changed, 148 insertions(+), 24 deletions(-)
+> ---
+> base-commit: 9852d85ec9d492ebef56dc5f229416c925758edc
+> change-id: 20240924-pci_fixup_addr-a8568f9bbb34
+>
+> Best regards,
+> ---
+> Frank Li <Frank.Li@nxp.com>
+>
 
