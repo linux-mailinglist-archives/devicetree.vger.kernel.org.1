@@ -1,198 +1,103 @@
-Return-Path: <devicetree+bounces-121950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7ABD9C9200
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 19:58:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C3D89C9212
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 20:04:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 484F8B23706
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 18:58:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96265281275
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 19:04:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF2BD199EA2;
-	Thu, 14 Nov 2024 18:58:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41AD818DF89;
+	Thu, 14 Nov 2024 19:04:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QGmwddek"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tr3txAoX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A87E19993E;
-	Thu, 14 Nov 2024 18:58:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ECBB1487CD;
+	Thu, 14 Nov 2024 19:04:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731610716; cv=none; b=V1vTOd8p7+vxMLcI782vAFRwn/iJAtARA+ehrlIb92+qRn3h2ZmFJVpeMVQRwRcqZzy4Dfr8EmRcwFu2hmwAHjFphq/aZNyGlg7ci5SOyl+rEXhqYWchzTfNt2GX0uYmotNd9ffJW0mfRrYIJ+8CniSw0y93+0fdr/oza3yKVEk=
+	t=1731611089; cv=none; b=PeXi8YZw+nqka3wS+La40WBYsbY5e5w4z1dVeDI+U3xBRyXJdWNAFsKHk4IRvkHNm1+fI2ealJ1Q1UlGk81RfC2f0jUMRXVjvHCfWiTAxfaY6EGMqRNHFcEVnCus73AVZfPL/fS6dMp2FpTk2Fk4flWouHWJ1hB0eo95aDkW9wQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731610716; c=relaxed/simple;
-	bh=rqXzVDKY2HvrD5cfi4Gy4+13pMUCa5e1CoinlQ72Cp4=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=rDRreAB2uI1CNvWyeSblVskqgxF/R7r+j5OT/hxUZAdFCo3MrxQ9TB6f/PvaKf+4slnTK1i2Mdjd2E3KicS8A1rtXHOYkMYjaNt+7+YUpNwZiohpME3HE7B2qCS5l1hRvrxfBEe2SEQI2Dp3XZGfQOPp11CurIXTP0OFaNZpd3E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QGmwddek; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a9e44654ae3so139870566b.1;
-        Thu, 14 Nov 2024 10:58:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731610713; x=1732215513; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=CO5liRDlcR47A0DVsuYsaUEJFw9er1mJTtpfKIrWSOM=;
-        b=QGmwddekicePVBZ4/8l7tJOFrmSSAzvlkO/1GGWjqClhjoLt0nvrK2ZJUsUa9xi9fb
-         YdXCZGW5hTF5tmwk/wew6Qhg23vUzzRkO1sqgstcnXc0nHbLGUBpiWq1CKv4xsaSMyBN
-         vEc6YpLg6cwpFNgV/x1Atk6JE7la5MfFBEmDNDVTvF4Gqj8GGQrj5J7aFKArVQsNOWjk
-         3CqfqioJqIkLP42GeIqC++9oA2aBwmGerwIUAqqZVv67BKvSL/scD8QDCdE+edRXNfZp
-         tryRmqDKSdANM890KSL9ajLBLnatx0htnYehoy9M3035HlLBAS8h8+JkDj00CnTBquHK
-         leKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731610713; x=1732215513;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CO5liRDlcR47A0DVsuYsaUEJFw9er1mJTtpfKIrWSOM=;
-        b=OWNHa+Z3m49+wZKYTUpjrui3Ve44tfTiJg9yiy1pYAj0fDGiL1AG+INQSILYKfAkg7
-         pNI1VZ+TX0dHXNJ/cU5mgCDr8A1oo4rv3VAoo7KJfO5FV8jGk+6GCBm03rqDNaC5XHN0
-         hqsWhilp24f+AeqD1E1yDxAG/m4i0Dxy0tGhGRMIsqVmqOcp+xaCc/mNEKo3iOuDsuHo
-         e7xPFQ9r1HPp4kKy0vUBmYmk121tBSiZuWOTZEDw1dm2WsHzYU9ID3d7XzkMFlkDZhUv
-         9jBP7wv6l4Ey6R6XUWG24kbIENXveF8q5GpyuIyYGka8n4CtgQk+slZoVbmSgt4Ed+E3
-         cnkQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVDK46pxcOWHF3lTj9BGxPrJuvzAXpI3a4phE7Kpos8vSQ74M9bYB3UKkN92h7JtGmQFgU5JxbGrdTF7T2d@vger.kernel.org, AJvYcCVVsR4+SORaVnO69bGXz7dEwoUQZ/b0R1TTIJax7rpJpUd+eeWcy4RN129oaJQRIxy0+axX5q11UvIc@vger.kernel.org
-X-Gm-Message-State: AOJu0YxMhsiznwMkWxlcLmjGz/ipahZAF6tCNGiTuKr614OujlsJhosh
-	VFcgKleoeegQ7k01HQhKqPSh0/HqP/ULpFa+B4497XXVgtMlv6eq
-X-Google-Smtp-Source: AGHT+IES7N7ENMRe2XGq4MnqC63EZcYUBINk3rzUzCCISCDHBCJaLj+rIOZBTQLJQIw7uaUskvPNSg==
-X-Received: by 2002:a17:907:7b91:b0:a99:d782:2e2b with SMTP id a640c23a62f3a-aa1f8074cccmr738869666b.30.1731610713127;
-        Thu, 14 Nov 2024 10:58:33 -0800 (PST)
-Received: from localhost.localdomain ([83.168.79.145])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa20df50de1sm91509766b.58.2024.11.14.10.58.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Nov 2024 10:58:32 -0800 (PST)
-From: Karol Przybylski <karprzy7@gmail.com>
-To: lee@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: Karol Przybylski <karprzy7@gmail.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	andreas@kemnade.info,
-	rogerq@kernel.org,
-	skhan@linuxfoundation.org
-Subject: [PATCH] dt-bindings: mfd: omap-usb-tll: convert to YAML
-Date: Thu, 14 Nov 2024 19:58:30 +0100
-Message-Id: <20241114185830.10025-1-karprzy7@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1731611089; c=relaxed/simple;
+	bh=BO0ocrdM8qppSqW1SjWnEfOdpwdtAHOAMkaqKecG0Lo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=I9ejgApOOJJPXwpSYPsil96jseJQl9fMIFPNttcb16/8Ln3kQT4swN5nrykbpTANSf+h5kwGcHUsXX5kVd9mCMnLMWcwT//XcnULLJxyJcbPneEQ8VDFy5ZsDJsJzQPhTu3icqMdnNZr5wPGn4Pp/13W1PC398kTHiIAa6T6cuQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tr3txAoX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8297CC4CECD;
+	Thu, 14 Nov 2024 19:04:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731611088;
+	bh=BO0ocrdM8qppSqW1SjWnEfOdpwdtAHOAMkaqKecG0Lo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tr3txAoXtAXT5bN7zR3CtuwXVxxigCyNCfYdRUHQbWfKrqZ61Rg927F8rtYckWtYo
+	 k/k4qWwcpmnltWeU8AftQe0dN2t5V2o7lPTQgysNsdn/8C05fE+xW0sSqx4wE5Q1Rb
+	 sJxsDsR+qsXa9ge0klkjXIxM/oJtejumsMwhQ9FotePswtU2W+pgYOEVfISQN9YqDc
+	 QGCXpGPBJYBVVMJXL9/whHMlPx/n4ukWIP8FW4ih9SMYLc0dBVcPjN/KFZUUxKIsS4
+	 80AtBvFtHXF6DWKOQMOgTVvgjYw9heELRrvTvV6Rs7Jl0mpphqq6xoH3xCWwN04KLo
+	 1LEfksIezO9iQ==
+Date: Thu, 14 Nov 2024 19:04:43 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/3] media: dt-bindings: media: i2c: Add IMX462 to the
+ IMX290 binding
+Message-ID: <20241114-affidavit-granola-ee8a7bb76d35@spud>
+References: <20241114-media-imx290-imx462-v1-0-c538a2e24786@raspberrypi.com>
+ <20241114-media-imx290-imx462-v1-2-c538a2e24786@raspberrypi.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="UJbfj84JWYiL4PQf"
+Content-Disposition: inline
+In-Reply-To: <20241114-media-imx290-imx462-v1-2-c538a2e24786@raspberrypi.com>
 
-Conversion of omap-usb-tll.txt into yaml format, inspired by discussion in [1]
 
-All feedback greatly appreciated, especially about what to put in 'maintainer'
+--UJbfj84JWYiL4PQf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-1 - https://lore.kernel.org/all/cd915c18-7230-4c38-a860-d2a777223147@kernel.org/
+On Thu, Nov 14, 2024 at 04:01:14PM +0000, Dave Stevenson wrote:
+> IMX462 is the successor to IMX290, which is supportable by
+> the existing IMX290 driver via a new compatible string.
+>=20
+> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
 
-Signed-off-by: Karol Przybylski <karprzy7@gmail.com>
----
- .../devicetree/bindings/mfd/omap-usb-tll.txt  | 27 ----------
- .../devicetree/bindings/mfd/omap-usb-tll.yaml | 51 +++++++++++++++++++
- 2 files changed, 51 insertions(+), 27 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/mfd/omap-usb-tll.txt
- create mode 100644 Documentation/devicetree/bindings/mfd/omap-usb-tll.yaml
+You've got "media: " twice in $subject.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-diff --git a/Documentation/devicetree/bindings/mfd/omap-usb-tll.txt b/Documentation/devicetree/bindings/mfd/omap-usb-tll.txt
-deleted file mode 100644
-index c58d70437fce..000000000000
---- a/Documentation/devicetree/bindings/mfd/omap-usb-tll.txt
-+++ /dev/null
-@@ -1,27 +0,0 @@
--OMAP HS USB Host TLL (Transceiver-Less Interface)
--
--Required properties:
--
--- compatible : should be "ti,usbhs-tll"
--- reg : should contain one register range i.e. start and length
--- interrupts : should contain the TLL module's interrupt
--- ti,hwmod : must contain "usb_tll_hs"
--
--Optional properties:
--
--- clocks: a list of phandles and clock-specifier pairs, one for each entry in
--  clock-names.
--
--- clock-names: should include:
--  * "usb_tll_hs_usb_ch0_clk" - USB TLL channel 0 clock
--  * "usb_tll_hs_usb_ch1_clk" - USB TLL channel 1 clock
--  * "usb_tll_hs_usb_ch2_clk" - USB TLL channel 2 clock
--
--Example:
--
--	usbhstll: usbhstll@4a062000 {
--		compatible = "ti,usbhs-tll";
--		reg = <0x4a062000 0x1000>;
--		interrupts = <78>;
--		ti,hwmods = "usb_tll_hs";
--	  };
-diff --git a/Documentation/devicetree/bindings/mfd/omap-usb-tll.yaml b/Documentation/devicetree/bindings/mfd/omap-usb-tll.yaml
-new file mode 100644
-index 000000000000..f49417d1faf7
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/omap-usb-tll.yaml
-@@ -0,0 +1,51 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/omap-usb-tll.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: OMAP HS USB Host TLL (Transceiver-Less Interface)
-+
-+maintainers:
-+  - <maintainer@kernel.org>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,usbhs-tll
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  ti,hwmod:
-+    const: usb_tll_hs
-+
-+  clocks:
-+    minItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: usb_tll_hs_usb_ch0_clk
-+      - const: usb_tll_hs_usb_ch1_clk
-+      - const: usb_tll_hs_usb_ch2_clk
-+    minItems: 2
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - ti,hwmod
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    usbhstll@4a062000 {
-+      compatible = "ti,usbhs-tll";
-+      reg = <0x4a062000 0x1000>;
-+      interrupts = <78>;
-+      ti,hwmod = "usb_tll_hs";
-+    };
--- 
-2.34.1
+--UJbfj84JWYiL4PQf
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZzZJywAKCRB4tDGHoIJi
+0tBiAQD5ax1UE6LgvKkKSHs+2Rgk33ii2RN+pg21HWrkUGrpSwD/e3Ab1r7f0g6Z
+5C3Tkpi3lfXWYPKcXSjldPYCGPZEsgA=
+=IwPX
+-----END PGP SIGNATURE-----
+
+--UJbfj84JWYiL4PQf--
 
