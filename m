@@ -1,211 +1,161 @@
-Return-Path: <devicetree+bounces-121931-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121932-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BFF09C9014
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 17:47:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 933F89C8FC3
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 17:30:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 247CAB377CD
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 16:02:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 189CCB2D268
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 16:06:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C283817F505;
-	Thu, 14 Nov 2024 16:01:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 911741547CC;
+	Thu, 14 Nov 2024 16:06:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="R/Z7jLgw"
+	dkim=pass (1024-bit key) header.d=smile.fr header.i=@smile.fr header.b="QCgR3nzG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05EC01714D0
-	for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 16:01:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F9F3139CFF
+	for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 16:06:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731600110; cv=none; b=bsgVAXnyJWVOeODZOrJJypIRZn6/biDRQ0SWu/BLtowAzIj9oYSvkLRH+mfjS0HqztkpGhyGtn2bYl43GIZm6r+sdmBc7BKbCwlAHeEGiedGJsTCt6pQh1qm8jtqEqw7njvRLlXqY10JLe8SvJa+g3igeTFRQT+ZevdphY6y/yU=
+	t=1731600393; cv=none; b=MliejGD0WK7oR1K/CcYKdrU/w5iBY84xjKYXeFrW5hkVSmBEhXCtwgoWpj6KGYDgE3Z92Fm3hxW/3c89gLkCb0V5qJUkYD1/M/lYFKHmAdBNAyjeYxNxiShJY/Ifaule+jM3Vsp1XOkaw7b72AVHh6zHEk3I4ncMVZHo7QRs/is=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731600110; c=relaxed/simple;
-	bh=2p5+br6JIn+rJJ5IqmSnGy2w4CU6wjDoK+kbpSR+fYo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=eRR6R+gUaK3p5sfk8lV9I09wFyODkJwrqdFE6Ji3SEzBp+CvPTNaRio+SPQVtqhz5TM4vR+fvIvP5aSc4x9mpaTbgOAYOTSE1nh63f8ZKQ6YhhrRl9M9DOruikZ2d7CKXAQ+g9lHcZchLE273AM2HK6ImZI2Jwu4E+SAh6hGguc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=R/Z7jLgw; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-431ac30d379so7211055e9.1
-        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 08:01:48 -0800 (PST)
+	s=arc-20240116; t=1731600393; c=relaxed/simple;
+	bh=ywFggH7DHjF/wt5XHrh2nb1enocjSba/y9NwbJjGawM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nRFk27/oUZYK53eB73fOoh2ix5uNfy8roDUjlhT97/fXxeHpcTryL+rp51QBa2UNFTdfVQuxi1JiHA1zl6LpoHUhKHj1EXV2R7xJSaAgNWf/mRSNzhJk8lyGcMijp2w2uuhYMGrYyW7RCiUAXSVrM1mfMl48XGByltOM7u59qO8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=smile.fr; spf=pass smtp.mailfrom=smile.fr; dkim=pass (1024-bit key) header.d=smile.fr header.i=@smile.fr header.b=QCgR3nzG; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=smile.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=smile.fr
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-431548bd1b4so6926475e9.3
+        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 08:06:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1731600107; x=1732204907; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=v2eGZqhXUh+UAPCtYMe67IF8Tywre6OlhMFZoVB/+W0=;
-        b=R/Z7jLgw6GjwTOKavaGh7PU/Li+/1L4Pj3r7vB9UkTHeVixHqP3Lk4vqANUkoh98Fu
-         cvTODdyAD6XzC/pgftgoXaS3MXLxmhhvtbq8jyTyGXCX3e/oSmy+A6ioJzuGkuqucFSZ
-         8QsqjJmq/6rSQsu3HmrI2gv+IwrNpzkRaJlg156dBjQWhfW+Aj+Bzh/zTouNW4wjQSOH
-         idu8/Mt0ZtwwPIUeGF4WhLtmJK0FfCbljX/1Jj0ZwXqzKGvrfxmCNm93g0asuByjHFUv
-         M16N3qyoWTV2/yCf3FmPNgUfWrz4AE4h/bbgI2skRkj4Kp2Dbp+PPzr/Vq8lxfNbSrT3
-         bqNA==
+        d=smile.fr; s=google; t=1731600389; x=1732205189; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=e5TLZGaea6sK0nDhRbM1AqBwYwcNqZLYrWSOBUJRLlo=;
+        b=QCgR3nzGkUZq5bGImbobrDejODY7z2mAK5G2J35UFVIn2hBksmqP9bzPryHsuGJ7kY
+         38/iBZywSGyXHrKU0alUlU0P3911ztR/OuqDMdPhM72EFZ1PJ0A4deWOOt4h6rmzR5IZ
+         IY5mTzXlKJwiFVDqI+RlBII2g+8NF1vrQLr3k=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731600107; x=1732204907;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=v2eGZqhXUh+UAPCtYMe67IF8Tywre6OlhMFZoVB/+W0=;
-        b=Xlj7hRyiWnofE2QHN6zX2w58HkHKbGQ8RKcBA7dcAmFMoplNFkETxtaLvtWW08ONuY
-         j2COFos6KmdPLs/eMhKWdyMpeWgvY6jCbijvdrCagiaRXt19D3w6040wUcRTHMkGC06+
-         bBjA1Kupp7lmUNVXqzLiXA1R3IMAwHpVDerG9qsdN8QJ4rZBb/zRP16e5fge0wVKG2ch
-         fZ6FmugVWp/WIa/CSf+dRQruqNuwql81yT51Skwby3FVNKe+yoj7QUJdjWwRnMhpEXOD
-         dbHtiPfO5TVeR1HYkLatAEMk6v3x40RMeOBKo2i3V65QV0U7HatNhdJnH5rSLW3hKfd9
-         S0kA==
-X-Forwarded-Encrypted: i=1; AJvYcCVe9rbt7hFsnOfBqkh81iWEGe6im5Bxrq5ObTM4spQGX4p7KQheUsXxg6eFfUfUthvWLg8QSYOla0ii@vger.kernel.org
-X-Gm-Message-State: AOJu0YyQaroMGmAWkDJuAlik++dzabydAUH9C90HsXD6GN0wskYFDwML
-	aoxEaO2RNaI2hh2aB+uVDvUrdjW5vE4EL6XxcqMEBwNoEysFMbobHGqJISGBwRk=
-X-Google-Smtp-Source: AGHT+IE41nl/kifwf5C3HD2lfOIE9l4CR33KFQ7CwfYgwG7tlg4gz09KKD06z7z6kibfjOlL9Rmy5w==
-X-Received: by 2002:a05:6000:1f82:b0:382:222b:1320 with SMTP id ffacd0b85a97d-382222b168dmr586958f8f.22.1731600105381;
-        Thu, 14 Nov 2024 08:01:45 -0800 (PST)
-Received: from [127.0.1.1] ([2a00:1098:3142:e::8])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-382200fe00esm1139024f8f.42.2024.11.14.08.01.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Nov 2024 08:01:45 -0800 (PST)
-From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Thu, 14 Nov 2024 16:01:15 +0000
-Subject: [PATCH 3/3] media: i2c: imx290: Add configuration for IMX462
+        d=1e100.net; s=20230601; t=1731600389; x=1732205189;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=e5TLZGaea6sK0nDhRbM1AqBwYwcNqZLYrWSOBUJRLlo=;
+        b=BetfEZ62BlD1yeK0ylk1OrebAZZjdCWjseYdQyNmF0llqmBjnzrJ2sDh9ApmGv49bm
+         2PAd+eqlsAfYKmQb3M8GiAJnh8hT6H0gTYecosphGPqfgf2JaNL1A1laYje83IpvtbXL
+         5CWdnbQPp3EcLWcvN3d/mO3NMaku+FyOEkT2qgvILBNZ/0+6BPSPN5USQ6ZXW4tg5VvI
+         iEMoIKNnzc0wTTX7ZVvqNUNzXTkM17X4TLQykuoBh+DBJDLHgJC5rw5qSKj1eBO3RM3j
+         taB0BeE6dP9mBYfCvFqkQEIbyl73f7EgmAC7Lm8k19sgtGjdrZIXJblCoDpH3g2JOUmz
+         wE2A==
+X-Forwarded-Encrypted: i=1; AJvYcCVjUKQ8AWCygovFirLIxqN3yNhlxQb/ag1XkMl6NzlJzwrdsNKb2kX3MeTyi7umuviHX02lfuYG7Y0x@vger.kernel.org
+X-Gm-Message-State: AOJu0YzbQKhwlCc1rVhtJzCCi/E3vL7A4/hcAb18JFduNKtT5OEyDaxY
+	inRQn9yvrb3R5chOz7ydTlAHLdjj3pgc5VT/nNXGHcb3/emMADj7vJz3YBuzOU8=
+X-Google-Smtp-Source: AGHT+IHiRvA7cvPqYtmkmMJTpiDBV+hOJMvmFWxQg/urdzyZGoSaSsnyLrYY+OtzP3hMqJjyuSbZ4w==
+X-Received: by 2002:a05:600c:3ac9:b0:42c:bae0:f065 with SMTP id 5b1f17b1804b1-432da767a0bmr25517525e9.5.1731600388469;
+        Thu, 14 Nov 2024 08:06:28 -0800 (PST)
+Received: from ?IPV6:2a01:cb05:949d:5800:e3ef:2d7a:4131:71f? (2a01cb05949d5800e3ef2d7a4131071f.ipv6.abo.wanadoo.fr. [2a01:cb05:949d:5800:e3ef:2d7a:4131:71f])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-432dac1fbf9sm25337705e9.41.2024.11.14.08.06.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Nov 2024 08:06:28 -0800 (PST)
+Message-ID: <fa92518d-396a-4a50-9287-4832a7f5d813@smile.fr>
+Date: Thu, 14 Nov 2024 17:06:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241114-media-imx290-imx462-v1-3-c538a2e24786@raspberrypi.com>
-References: <20241114-media-imx290-imx462-v1-0-c538a2e24786@raspberrypi.com>
-In-Reply-To: <20241114-media-imx290-imx462-v1-0-c538a2e24786@raspberrypi.com>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, 
- Dave Stevenson <dave.stevenson@raspberrypi.com>
-X-Mailer: b4 0.14.1
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 07/15] ARM: dts: Configure interconnect target module for
+ dra7 sata
+To: Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
+ linux-omap@vger.kernel.org
+Cc: =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+ devicetree@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+ Kishon Vijay Abraham I <kishon@ti.com>,
+ Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, linux-pci@vger.kernel.org,
+ Kevin Hilman <khilman@baylibre.com>, Robin Murphy <robin.murphy@arm.com>
+References: <20210126124004.52550-1-tony@atomide.com>
+ <20210126124004.52550-8-tony@atomide.com>
+ <c583e1bb-f56b-4489-8012-ce742e85f233@smile.fr>
+ <45e6b7d4-706e-4f91-b452-4fa80c25b944@kernel.org>
+ <2f715724-31c1-4228-b140-55aefb14af5c@smile.fr>
+ <7821de41-6f71-4865-9d64-3d5be4602a9b@kernel.org>
+Content-Language: en-US
+From: Romain Naour <romain.naour@smile.fr>
+In-Reply-To: <7821de41-6f71-4865-9d64-3d5be4602a9b@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-IMX462 is the successor to IMX290, and wants very minor
-changes to the register setup.
+Le 14/11/2024 à 16:08, Roger Quadros a écrit :
+> 
+> 
+> On 14/11/2024 15:50, Romain Naour wrote:
+>> Hi Roger, Robin, All,
+>>
+>> Le 14/11/2024 à 12:02, Roger Quadros a écrit :
 
-Add the relevant configuration to support it.
+[...]
 
-Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
----
- drivers/media/i2c/imx290.c | 66 ++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 66 insertions(+)
+>>
+>> Thanks for your reply!
+>>
+>> It seems l4_cfg can inherit dma-ranges property from ocp node using
+>> "dma-ranges;". But then segment@100000 node (0x4a100000) needs "dma-ranges;" too.
+>>
+>> With the following patch applied, the SATA drive works correctly.
+>>
+>> diff --git a/arch/arm/boot/dts/dra7-l4.dtsi b/arch/arm/boot/dts/dra7-l4.dtsi
+>> index 1aaffd034c39..3ac770298844 100644
+>> --- a/arch/arm/boot/dts/dra7-l4.dtsi
+>> +++ b/arch/arm/boot/dts/dra7-l4.dtsi
+>> @@ -12,6 +12,7 @@ &l4_cfg {                                             /*
+>> 0x4a000000 */
+>>         ranges = <0x00000000 0x4a000000 0x100000>,      /* segment 0 */
+>>                  <0x00100000 0x4a100000 0x100000>,      /* segment 1 */
+>>                  <0x00200000 0x4a200000 0x100000>;      /* segment 2 */
+>> +       dma-ranges;
+>>
+>>         segment@0 {                                     /* 0x4a000000 */
+>>                 compatible = "simple-pm-bus";
+>> @@ -557,6 +558,7 @@ segment@100000 {                                    /*
+>> 0x4a100000 */
+>>                          <0x0007e000 0x0017e000 0x001000>,      /* ap 124 */
+>>                          <0x00059000 0x00159000 0x001000>,      /* ap 125 */
+>>                          <0x0005a000 0x0015a000 0x001000>;      /* ap 126 */
+>> +               dma-ranges;
+>>
+>>                 target-module@2000 {                    /* 0x4a102000, ap 27 3c.0 */
+>>                         compatible = "ti,sysc";
+>>
+>>
+>> Sorry, I'm not familliar with property inheritance between devicetree nodes,
+>> especially with dma-ranges. Does this change seem correct to you?
+> 
+> I think this is correct.
+> A similar fix [4] was done for PCIe as well.
+> 
+> [4] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/?id=90d4d3f4ea45370d482fa609dbae4d2281b4074f
 
-diff --git a/drivers/media/i2c/imx290.c b/drivers/media/i2c/imx290.c
-index da654deb444a..f1780cc5d7cc 100644
---- a/drivers/media/i2c/imx290.c
-+++ b/drivers/media/i2c/imx290.c
-@@ -170,6 +170,8 @@ enum imx290_model {
- 	IMX290_MODEL_IMX290LQR,
- 	IMX290_MODEL_IMX290LLR,
- 	IMX290_MODEL_IMX327LQR,
-+	IMX290_MODEL_IMX462LQR,
-+	IMX290_MODEL_IMX462LLR,
- };
- 
- struct imx290_model_info {
-@@ -316,6 +318,50 @@ static const struct cci_reg_sequence imx290_global_init_settings_290[] = {
- 	{ CCI_REG8(0x33b3), 0x04 },
- };
- 
-+static const struct cci_reg_sequence imx290_global_init_settings_462[] = {
-+	{ CCI_REG8(0x300f), 0x00 },
-+	{ CCI_REG8(0x3010), 0x21 },
-+	{ CCI_REG8(0x3011), 0x02 },
-+	{ CCI_REG8(0x3016), 0x09 },
-+	{ CCI_REG8(0x3070), 0x02 },
-+	{ CCI_REG8(0x3071), 0x11 },
-+	{ CCI_REG8(0x309b), 0x10 },
-+	{ CCI_REG8(0x309c), 0x22 },
-+	{ CCI_REG8(0x30a2), 0x02 },
-+	{ CCI_REG8(0x30a6), 0x20 },
-+	{ CCI_REG8(0x30a8), 0x20 },
-+	{ CCI_REG8(0x30aa), 0x20 },
-+	{ CCI_REG8(0x30ac), 0x20 },
-+	{ CCI_REG8(0x30b0), 0x43 },
-+	{ CCI_REG8(0x3119), 0x9e },
-+	{ CCI_REG8(0x311c), 0x1e },
-+	{ CCI_REG8(0x311e), 0x08 },
-+	{ CCI_REG8(0x3128), 0x05 },
-+	{ CCI_REG8(0x313d), 0x83 },
-+	{ CCI_REG8(0x3150), 0x03 },
-+	{ CCI_REG8(0x317e), 0x00 },
-+	{ CCI_REG8(0x32b8), 0x50 },
-+	{ CCI_REG8(0x32b9), 0x10 },
-+	{ CCI_REG8(0x32ba), 0x00 },
-+	{ CCI_REG8(0x32bb), 0x04 },
-+	{ CCI_REG8(0x32c8), 0x50 },
-+	{ CCI_REG8(0x32c9), 0x10 },
-+	{ CCI_REG8(0x32ca), 0x00 },
-+	{ CCI_REG8(0x32cb), 0x04 },
-+	{ CCI_REG8(0x332c), 0xd3 },
-+	{ CCI_REG8(0x332d), 0x10 },
-+	{ CCI_REG8(0x332e), 0x0d },
-+	{ CCI_REG8(0x3358), 0x06 },
-+	{ CCI_REG8(0x3359), 0xe1 },
-+	{ CCI_REG8(0x335a), 0x11 },
-+	{ CCI_REG8(0x3360), 0x1e },
-+	{ CCI_REG8(0x3361), 0x61 },
-+	{ CCI_REG8(0x3362), 0x10 },
-+	{ CCI_REG8(0x33b0), 0x50 },
-+	{ CCI_REG8(0x33b2), 0x1a },
-+	{ CCI_REG8(0x33b3), 0x04 },
-+};
-+
- #define IMX290_NUM_CLK_REGS	2
- static const struct cci_reg_sequence xclk_regs[][IMX290_NUM_CLK_REGS] = {
- 	[IMX290_CLK_37_125] = {
-@@ -1455,6 +1501,20 @@ static const struct imx290_model_info imx290_models[] = {
- 		.max_analog_gain = 98,
- 		.name = "imx327",
- 	},
-+	[IMX290_MODEL_IMX462LQR] = {
-+		.colour_variant = IMX290_VARIANT_COLOUR,
-+		.init_regs = imx290_global_init_settings_462,
-+		.init_regs_num = ARRAY_SIZE(imx290_global_init_settings_462),
-+		.max_analog_gain = 98,
-+		.name = "imx462",
-+	},
-+	[IMX290_MODEL_IMX462LLR] = {
-+		.colour_variant = IMX290_VARIANT_MONO,
-+		.init_regs = imx290_global_init_settings_462,
-+		.init_regs_num = ARRAY_SIZE(imx290_global_init_settings_462),
-+		.max_analog_gain = 98,
-+		.name = "imx462",
-+	},
- };
- 
- static int imx290_parse_dt(struct imx290 *imx290)
-@@ -1653,6 +1713,12 @@ static const struct of_device_id imx290_of_match[] = {
- 	}, {
- 		.compatible = "sony,imx327lqr",
- 		.data = &imx290_models[IMX290_MODEL_IMX327LQR],
-+	}, {
-+		.compatible = "sony,imx462lqr",
-+		.data = &imx290_models[IMX290_MODEL_IMX462LQR],
-+	}, {
-+		.compatible = "sony,imx462llr",
-+		.data = &imx290_models[IMX290_MODEL_IMX462LLR],
- 	},
- 	{ /* sentinel */ },
- };
+Thank you for your help, I just sent the patch:
 
--- 
-2.34.1
+https://lore.kernel.org/linux-omap/20241114155759.1155567-1-romain.naour@smile.fr/T/#u
+
+Best regards,
+Romain
+
+
+> 
+>>
+>> Best regards,
+>> Romain
 
 
