@@ -1,210 +1,213 @@
-Return-Path: <devicetree+bounces-121874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6D379C8861
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 12:06:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44DF89C8951
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 12:55:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 467591F21739
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 11:06:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03FEA284AFE
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 11:55:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEA281F80A3;
-	Thu, 14 Nov 2024 11:06:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC6CD1F9A91;
+	Thu, 14 Nov 2024 11:55:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NVzXNwh+"
+	dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b="Rt4/nLE1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 317A1189BA0;
-	Thu, 14 Nov 2024 11:06:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E1301F942E
+	for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 11:55:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731582378; cv=none; b=CKuP2HsjLiu6mBHKY2mf3Fwdz18KH+4V3AbtLj9lBDF26sESDy1W1Hw4ZF0T/weESfqciicRUsQ5c8J6dyiecwRWYy3ciC6NDz5ncFg/oWXc+MqpVsI3eexYDf2CQjRfIIHolUiBAENjaDz/UK3L2zWZnPSBSTun1cWgl+nrbqo=
+	t=1731585322; cv=none; b=PV9AsQ4P2LIKoC7iz0gqGG73acueD5bln67lVjf9zZ+idIBwDliesqMLJN4ABzPw9GFc8CeHKznCszPOT8j+c5TbL+TqxOatwxwCPW+LW/tu3YszJQr2tQPbkUPqwOaejlQh1L7qXoHn9HYrszNXwpAq61hbWYGBQevlc6uBby0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731582378; c=relaxed/simple;
-	bh=AZso2QVYImR1GGZkPip6idDqxJkv3xa62pqrqqeF4/U=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=EZ2A8Re2esyq7X/+THwS6H3MnEv/gysMHo4Z+saQObRjUlj49DmOoKM+A8u6H8bO+nGoaX76FTrFJiFcJ/XTJc5hmoh9Knjf1ievZDB//6Ktre9AXao2YKM0HPGy+1cYXQbApbhr+OcSWC/Q2ct1ZDv696hzO+1ol+LHzG/RzPM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NVzXNwh+; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AE9oWj1021409;
-	Thu, 14 Nov 2024 11:06:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=Dyuhwi9rHgnSBBlXYluMiR
-	+AjdINFNaR5pj7dyevPCk=; b=NVzXNwh+owclWHwxcxL5eRLc3P8FERVvhPOyfJ
-	WSmiI0ElOx3c5aCENI3uUVNs8nTGWZyVPGNiartTTcvr2ubihvUhVr6lur9tbqEM
-	s2BQgJOZIDb1bOEnYi5GxfH2QMPSPTtcWp4J6FbMlx4rjRM4qlyWhsdkt00nuOyQ
-	XkQ0LLMmAbSxvAsGdQx2IVqhFvvtLQI+6aKCyAOhrYxHdxnh8ybPnmK5EzWEogg1
-	601vmNJT2HETJjiJVPGxKY3TzGBN3/VLN/k3JpKIGH7SjDma5BD32ubXmdixj0vF
-	6Q1Pga2aPi1wiKEtST6AGftDQC7H1a7a2kx+WQwSUf42uliw==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42wex8r6r3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Nov 2024 11:06:14 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AEB6DiZ027509
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Nov 2024 11:06:13 GMT
-Received: from hu-imrashai-hyd.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 14 Nov 2024 03:06:09 -0800
-From: Imran Shaik <quic_imrashai@quicinc.com>
-Date: Thu, 14 Nov 2024 16:35:55 +0530
-Subject: [PATCH] arm64: dts: qcom: qcs8300: Add support for clock
- controllers
+	s=arc-20240116; t=1731585322; c=relaxed/simple;
+	bh=mFAbYoNztpIV+4IFZ9jTX8TLDXeEO7op1F9KNzb1l1c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=axmJoeNIrlLFUhxVRukfDz0loPEOcF5a4k2/XJNKyzVrwlcFTL3bOECXg4XbEE8r8Q8OmYAEt5jvSLq1iB6D9Xrhdq67dYbVCYb93z85jCszN/irfTxObldG4P5loK+VX5+R1hROWrMiNbkQnbznsUJW+CYxz0ugNSbazgfJcVU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr; spf=pass smtp.mailfrom=sartura.hr; dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b=Rt4/nLE1; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sartura.hr
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-aa1e6ecd353so40384266b.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 03:55:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura.hr; s=sartura; t=1731585318; x=1732190118; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TykqvJZu7oobTkYrqspWrFCa8xwHBaWMCZeSIBVlCZw=;
+        b=Rt4/nLE1rEMwBkYzxioe6bCmT4N4ICRDMUUl4fuyaBwzXrHA2bmEo8YU/gvEvs2dEf
+         VbtCZgOHmy9qi4dcBzg8B+qA84UBkFlh1jusFm3yImJiswqRF5nWvwDCwEg2qdDRdxcr
+         tjFzZ1XlnHKRLa/gZvD2OURBIg0KT7blDjYOAU1cWp+oYdNq7yrY7wQFzYjVFbNUFHFu
+         ClObCN1mjTyW0yxd4lKE4nY1K3l7toWOrzX9d9T2I44wJ4O7xcghSZOdz1cu5LUDFn2o
+         0NhaR75mxe3wpBueB/WTPYAtHdhdtfa6HhPZzG/xPiD/nBAZdg0RC8QvOc0qgNFFcSn1
+         UHxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731585318; x=1732190118;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TykqvJZu7oobTkYrqspWrFCa8xwHBaWMCZeSIBVlCZw=;
+        b=mecLw9JVQDc+pE+O5t+fWqh7X9uOhQ10JQVGUTd4ViPL+3aP58dob7d32cWFfwuB+0
+         GYApucQ57POOTITrtXsF5prbPKLYrEXyM2KI2hUmMTLiZVxCl/Fpn2DMYL7XCl1C43vQ
+         zMyj0c13Trlx6mVlDjAEwKBeGoeUucCprchbOrT/4f5OtGnE+HwdhRGYisnIJJVjDJJX
+         cmyg2rzqEWDEn8O1IrswNX4pnIfj2nQAWZmYJaELMFsUfYF6dckPu9KL0bzntYrUQHAR
+         KVCsvPV4kVHdVZBuIfOJMPJ095YOC1X2cg31jn6cNRxkRiJRx0jBX7Ll0940Yc1D9Jj5
+         1sLg==
+X-Gm-Message-State: AOJu0Yyzi2M/NiWPn6bZfqfDUMUqnF0vwQrEi3ELGj9+idZhgKqfKjWp
+	DsUKuXFtzXB8BlvXnox5Jo6IScj4PE9mWD1Pcml4OfG5sMrbUM3IBarZhXzZxUM=
+X-Google-Smtp-Source: AGHT+IE/1TBRDr0zrGfCx62LhZdMXdC4i7gKZ6O1OikOKLIOjOf9iNHmbMOKdG/5UJAwkvlasJ5yig==
+X-Received: by 2002:a05:6402:1cc1:b0:5ce:fa33:6c9f with SMTP id 4fb4d7f45d1cf-5cf77ecc8d2mr1814721a12.27.1731585317798;
+        Thu, 14 Nov 2024 03:55:17 -0800 (PST)
+Received: from [192.168.3.32] (cpe-188-129-45-253.dynamic.amis.hr. [188.129.45.253])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cf79b8a6f7sm495171a12.18.2024.11.14.03.55.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Nov 2024 03:55:17 -0800 (PST)
+Message-ID: <296336ea-9181-4c85-92d4-4cee1866822e@sartura.hr>
+Date: Thu, 14 Nov 2024 12:55:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v2 0/8] net: lan969x: add RGMII support
+To: Daniel Machon <daniel.machon@microchip.com>,
+ UNGLinuxDriver@microchip.com, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Lars Povlsen <lars.povlsen@microchip.com>,
+ Steen Hegelund <Steen.Hegelund@microchip.com>,
+ Horatiu Vultur <horatiu.vultur@microchip.com>,
+ Russell King <linux@armlinux.org.uk>, jacob.e.keller@intel.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: devicetree@vger.kernel.org, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20241113-sparx5-lan969x-switch-driver-4-v2-0-0db98ac096d1@microchip.com>
+Content-Language: en-US
+From: Robert Marko <robert.marko@sartura.hr>
+In-Reply-To: <20241113-sparx5-lan969x-switch-driver-4-v2-0-0db98ac096d1@microchip.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-ID: <20241114-qcs8300-mm-cc-dt-patch-v1-1-7a974508c736@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIAJLZNWcC/y3MSwrDMAxF0a0EjSuQk+B+tlI6EIraaJCf7ZaCy
- d5jkgzPg3czRA2mER5VhqA/izaNBe5SgfQ8fhStK4aa6tY51+Ii8dYQ4TCgCHYJZ07SIzF7Fn9
- lT3co5zno2/57+Pk6HHT5ln46x3XdAO/Tzct9AAAA
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: Ajit Pandey <quic_ajipan@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        Satya Priya Kakitapalli
-	<quic_skakitap@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Imran Shaik
-	<quic_imrashai@quicinc.com>
-X-Mailer: b4 0.14.1
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 23p0LF8AKIh8pfGeqC-8XsginUEXizfs
-X-Proofpoint-ORIG-GUID: 23p0LF8AKIh8pfGeqC-8XsginUEXizfs
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
- phishscore=0 bulkscore=0 mlxlogscore=999 lowpriorityscore=0 suspectscore=0
- priorityscore=1501 malwarescore=0 spamscore=0 clxscore=1011 mlxscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
- definitions=main-2411140086
 
-Add support for GPU, Video, Camera and Display clock controllers on
-Qualcomm QCS8300 platform.
 
-Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
----
-Please note that this series is dependent on [1] and [2], which adds support
-for QCS8300 initial device tree and QCS8300 multi media clock controllers respectively.
+On 13. 11. 2024. 22:11, Daniel Machon wrote:
+> == Description:
+>
+> This series is the fourth of a multi-part series, that prepares and adds
+> support for the new lan969x switch driver.
+>
+> The upstreaming efforts is split into multiple series (might change a
+> bit as we go along):
+>
+>          1) Prepare the Sparx5 driver for lan969x (merged)
+>
+>          2) Add support for lan969x (same basic features as Sparx5
+>             provides excl. FDMA and VCAP, merged).
+>
+>          3) Add lan969x VCAP functionality (merged).
+>
+>      --> 4) Add RGMII support.
+>
+>          5) Add FDMA support.
+>
+> == RGMII support:
+>
+> The lan969x switch device includes two RGMII interfaces (port 28 and 29)
+> supporting data speeds of 1 Gbps, 100 Mbps and 10 Mbps.
+>
+> Details are in the commit description of the patches.
+>
+> == Patch breakdown:
+>
+> Patch #1 does some preparation work.
+>
+> Patch #2 adds new function: is_port_rgmii() to the match data ops.
+>
+> Patch #3 uses the is_port_rgmii() in a number of places.
+>
+> Patch #4 uses the phy_interface_mode_is_rgmii() in a number of places.
+>
+> Patch #5 adds checks for RGMII PHY modes in sparx5_verify_speeds().
+>
+> Patch #6 adds registers required to configure RGMII.
+>
+> Patch #7 adds RGMII implementation.
+>
+> Patch #8 document RGMII delays.
+>
+> To: UNGLinuxDriver@microchip.com
+> To: Andrew Lunn <andrew+netdev@lunn.ch>
+> To: David S. Miller <davem@davemloft.net>
+> To: Eric Dumazet <edumazet@google.com>
+> To: Jakub Kicinski <kuba@kernel.org>
+> To: Paolo Abeni <pabeni@redhat.com>
+> To: Lars Povlsen <lars.povlsen@microchip.com>
+> To: Steen Hegelund <Steen.Hegelund@microchip.com>
+> To: Horatiu Vultur <horatiu.vultur@microchip.com>
+> To: Russell King <linux@armlinux.org.uk>
+> To: jacob.e.keller@intel.com
+> To: robh@kernel.org
+> To: krzk+dt@kernel.org
+> To: conor+dt@kernel.org
+> Cc: devicetree@vger.kernel.org
+> Cc: netdev@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> Cc: linux-arm-kernel@lists.infradead.org
+>
+> Signed-off-by: Daniel Machon <daniel.machon@microchip.com>
 
-[1] https://lore.kernel.org/all/20240925-qcs8300_initial_dtsi-v2-0-494c40fa2a42@quicinc.com/
-[2] https://lore.kernel.org/all/20241106-qcs8300-mm-patches-v3-0-f611a8f87f15@quicinc.com/ 
----
- arch/arm64/boot/dts/qcom/qcs8300.dtsi | 59 +++++++++++++++++++++++++++++++++++
- 1 file changed, 59 insertions(+)
+Tested-by: Robert Marko <robert.marko@sartura.hr>
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-index 2c35f96c3f28..e43fada4acb5 100644
---- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-@@ -5,6 +5,10 @@
- 
- #include <dt-bindings/clock/qcom,qcs8300-gcc.h>
- #include <dt-bindings/clock/qcom,rpmh.h>
-+#include <dt-bindings/clock/qcom,sa8775p-camcc.h>
-+#include <dt-bindings/clock/qcom,sa8775p-dispcc.h>
-+#include <dt-bindings/clock/qcom,sa8775p-gpucc.h>
-+#include <dt-bindings/clock/qcom,sa8775p-videocc.h>
- #include <dt-bindings/interconnect/qcom,icc.h>
- #include <dt-bindings/interconnect/qcom,qcs8300-rpmh.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-@@ -772,6 +776,20 @@ lpass_ag_noc: interconnect@3c40000 {
- 			qcom,bcm-voters = <&apps_bcm_voter>;
- 		};
- 
-+		gpucc: clock-controller@3d90000 {
-+			compatible = "qcom,qcs8300-gpucc";
-+			reg = <0x0 0x03d90000 0x0 0xa000>;
-+			clocks = <&rpmhcc RPMH_CXO_CLK>,
-+				 <&gcc GCC_GPU_GPLL0_CLK_SRC>,
-+				 <&gcc GCC_GPU_GPLL0_DIV_CLK_SRC>;
-+			clock-names = "bi_tcxo",
-+				      "gcc_gpu_gpll0_clk_src",
-+				      "gcc_gpu_gpll0_div_clk_src";
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
- 		pmu@9091000 {
- 			compatible = "qcom,qcs8300-llcc-bwmon", "qcom,sc7280-llcc-bwmon";
- 			reg = <0x0 0x9091000 0x0 0x1000>;
-@@ -882,6 +900,47 @@ gem_noc: interconnect@9100000 {
- 			qcom,bcm-voters = <&apps_bcm_voter>;
- 		};
- 
-+		videocc: clock-controller@abf0000 {
-+			compatible = "qcom,qcs8300-videocc";
-+			reg = <0x0 0x0abf0000 0x0 0x10000>;
-+			clocks = <&gcc GCC_VIDEO_AHB_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK_A>,
-+				 <&sleep_clk>;
-+			power-domains = <&rpmhpd RPMHPD_MMCX>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
-+		camcc: clock-controller@ade0000 {
-+			compatible = "qcom,qcs8300-camcc";
-+			reg = <0x0 0x0ade0000 0x0 0x20000>;
-+			clocks = <&gcc GCC_CAMERA_AHB_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK_A>,
-+				 <&sleep_clk>;
-+			power-domains = <&rpmhpd RPMHPD_MMCX>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
-+		dispcc: clock-controller@af00000 {
-+			compatible = "qcom,sa8775p-dispcc0";
-+			reg = <0x0 0x0af00000 0x0 0x20000>;
-+			clocks = <&gcc GCC_DISP_AHB_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK>,
-+				 <&rpmhcc RPMH_CXO_CLK_A>,
-+				 <&sleep_clk>,
-+				 <0>, <0>, <0>, <0>,
-+				 <0>, <0>, <0>, <0>;
-+			power-domains = <&rpmhpd RPMHPD_MMCX>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			#power-domain-cells = <1>;
-+		};
-+
- 		pdc: interrupt-controller@b220000 {
- 			compatible = "qcom,qcs8300-pdc", "qcom,pdc";
- 			reg = <0x0 0xb220000 0x0 0x30000>,
-
----
-base-commit: 78cd5a71d1cb4ca645294a1dbe603a8c356c86a7
-change-id: 20241114-qcs8300-mm-cc-dt-patch-0aa6ac67a609
-
-Best regards,
--- 
-Imran Shaik <quic_imrashai@quicinc.com>
-
+> ---
+> Changes in v2:
+>
+>    Most changes are in patch #7. RGMII implementation has been moved to
+>    it's own file lan969x_rgmii.c.
+>
+>    Details:
+>
+>      - Use ETH_P_8021Q and ETH_P_8021AD instead of the Sparx5 provided
+>        equivalents (patch #7).
+>      - Configure MAC delays through "{rx,tx}-internal-delay-ps"
+>        properties (patch #7).
+>      - Add selectors for all the phase shifts that the hardware supports
+>        (instead of only 2.0 ns, patch #7).
+>      - Add selectors for all the port speeds (instead of only 1000 mbps.)
+>      - Document RGMII delays in dt-bindings.
+>
+>    - Link to v1: https://lore.kernel.org/r/20241106-sparx5-lan969x-switch-driver-4-v1-0-f7f7316436bd@microchip.com
+>
+> ---
+> Daniel Machon (8):
+>        net: sparx5: do some preparation work
+>        net: sparx5: add function for RGMII port check
+>        net: sparx5: use is_port_rgmii() throughout
+>        net: sparx5: use phy_interface_mode_is_rgmii()
+>        net: sparx5: verify RGMII speeds
+>        net: lan969x: add RGMII registers
+>        net: lan969x: add RGMII implementation
+>        dt-bindings: net: sparx5: document RGMII MAC delays
+>
+>   .../bindings/net/microchip,sparx5-switch.yaml      |  20 ++
+>   drivers/net/ethernet/microchip/lan969x/Makefile    |   2 +-
+>   drivers/net/ethernet/microchip/lan969x/lan969x.c   |   5 +
+>   drivers/net/ethernet/microchip/lan969x/lan969x.h   |  10 +
+>   .../net/ethernet/microchip/lan969x/lan969x_rgmii.c | 237 +++++++++++++++++++++
+>   .../net/ethernet/microchip/sparx5/sparx5_main.c    |  29 ++-
+>   .../net/ethernet/microchip/sparx5/sparx5_main.h    |   3 +
+>   .../ethernet/microchip/sparx5/sparx5_main_regs.h   | 145 +++++++++++++
+>   .../net/ethernet/microchip/sparx5/sparx5_phylink.c |   3 +
+>   .../net/ethernet/microchip/sparx5/sparx5_port.c    |  57 +++--
+>   .../net/ethernet/microchip/sparx5/sparx5_port.h    |   5 +
+>   11 files changed, 488 insertions(+), 28 deletions(-)
+> ---
+> base-commit: 12079a59ce52e72a342c49cfacf0281213fd6f32
+> change-id: 20241104-sparx5-lan969x-switch-driver-4-d59b7820485a
+>
+> Best regards,
 
