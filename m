@@ -1,304 +1,332 @@
-Return-Path: <devicetree+bounces-121715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121717-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54C979C80F3
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 03:45:04 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 039C99C8129
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 03:54:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 14A95284532
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 02:45:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 48B40B26BF7
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 02:54:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 683AB1E7678;
-	Thu, 14 Nov 2024 02:44:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4DC21EABD5;
+	Thu, 14 Nov 2024 02:51:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="XI4YPm7P"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="U5RadFiy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from PNZPR01CU001.outbound.protection.outlook.com (mail-centralindiaazolkn19011035.outbound.protection.outlook.com [52.103.68.35])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 583AB1E631A
-	for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 02:44:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731552299; cv=none; b=F2bPsP+KuAx8vEn/qqB0XMbD8/NgwXRHTaKtFF+mqbPeSXV8x6WTYnZIVAirkFDsgbkLwE3sYOUKFSw2SnpU2HuyoguLpQ8STkge2PHUWc1ln3vkliIHzjgQnYTDK2vJQQX3JHh0/RbFmLB2KBkPynjMkjioIx99bT4Z41SckVE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731552299; c=relaxed/simple;
-	bh=M/8u88QndvDMlzt/+SlXWm1atu4iEeASNYuQ2TMjUvI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X2yDL1qfLIWHHt3SWqxK4s96V7haJYKSEt9wQlfjlp8hF5HIVkO4NGXHZcg4TTtHpXkdIz5D6JzH7wA5yXRC4Jp1iRoyBcAWfprxmfVsPlCWu1yPcaEYhSeHslmDJDJVUrJ1XGCFbvZiEhcxPMAao5QQaKYDSXNpXaVTu7YTw9M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=XI4YPm7P; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-20c9978a221so1022405ad.1
-        for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 18:44:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1731552296; x=1732157096; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=WdcMkjrb+r2dQccNRSrDbaweDAz3Ck5sldx466oumbU=;
-        b=XI4YPm7PtNSeSHt06BU4opwD3+fgCSR7GdG2uQygZ873DOJttw/xmhBcB+0Ya58jhj
-         8Aybuyds0wAsovRfxL97iYFeMUaQSZvz6c+XA6+4lYW2qyvUw1PX6BdrRdCjOLmufbNr
-         O2XILyf5O6NMzNPcpW9AEjQhuut7XINRqu5dHDXR1xmBJvextGYJoduQCmgSGlo6/VBB
-         vEOfHRSJbJjTq74maFXfj7wKTE9hNk8LU85AFvi3WBSXwvukiAiPB7ED/dVNssyE7e03
-         H7IQUcZy1vx+h3UIucq+qBYe1nnquV0KUbPPHrPqKuiEKfmqsDOADW9Wc8Rh7uYEPbeP
-         W/3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731552296; x=1732157096;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WdcMkjrb+r2dQccNRSrDbaweDAz3Ck5sldx466oumbU=;
-        b=vIf0N19G8KDPYLiQ0JOYyDr6jWYa7o3HjvtXJN2XApUZ/oYJKMwZp903cdycpylRAM
-         rPsf/KW6p4VvrggbuKDQryVMg8HLMScvSWyHHB8Uzf7AXmV5qy5ztfg8vV6z5gHbCOXk
-         2lGUA9Xss63yEWuGkDqS3uDDKYn+fKCaJfxQb0m5RF3f2fcOfauH0DD8kFpH2IyYnoy1
-         lQ2BQGeKGPYT+o5JY1J688Xia7F0asHF15q6MNxYqzXj1rLUBfJsIgmac/jjFCAhDqbM
-         htE56ZPnWSqDABLVpy67QN9IQNsbpF6Q8oazo6DVWBtC6JBN8Ly3HpcX5uXDBG60hfze
-         cqAw==
-X-Forwarded-Encrypted: i=1; AJvYcCXCKzltxuKJzsDndEnZ3rGs/lWaP6Z0wPfueQ/nmCxfh+Lk+0MqX7dptQSSa2angkgi9wMdc7ppcWDT@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzj2L791QdkThtY2RYCtPzTfHvbv4Oa0GTub+ThGu0RenrK9d1y
-	QkFWU4T3yOeJAO5wYxAhGjyq5dxa7wnbt0uUj35rf23oAzaZFJq8IMLDy/O07hs=
-X-Google-Smtp-Source: AGHT+IH6Xs4lgFv1oaN0XsNLzEkI58lA2wWDcm8+Ghq4CJS+XaUEnnYNsa0MMfbyvikgvl0OdnFK+A==
-X-Received: by 2002:a17:902:cf02:b0:20c:af07:a816 with SMTP id d9443c01a7336-21183d087c7mr317119425ad.31.1731552296485;
-        Wed, 13 Nov 2024 18:44:56 -0800 (PST)
-Received: from ghost ([50.145.13.30])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-211c7d395acsm525455ad.271.2024.11.13.18.44.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Nov 2024 18:44:55 -0800 (PST)
-Date: Wed, 13 Nov 2024 18:44:53 -0800
-From: Charlie Jenkins <charlie@rivosinc.com>
-To: Aoba K <nexp_0x17@outlook.com>
-Cc: Albert Ou <aou@eecs.berkeley.edu>, Andy Chiu <andy.chiu@sifive.com>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Conor Dooley <conor@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Evan Green <evan@rivosinc.com>, Guo Ren <guoren@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Jessica Clarke <jrtc27@jrtc27.com>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Rob Herring <robh@kernel.org>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Samuel Holland <samuel@sholland.org>, Shuah Khan <shuah@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-sunxi@lists.linux.dev, linux-doc@vger.kernel.org,
-	linux-kselftest@vger.kernel.org
-Subject: Re: [PATCH v10 00/14] riscv: Add support for xtheadvector
-Message-ID: <ZzVkJd1lGy0TsjlW@ghost>
-References: <20240911-xtheadvector-v10-0-8d3930091246@rivosinc.com>
- <CH0PR20MB393254369E401BF068005C7FCE752@CH0PR20MB3932.namprd20.prod.outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FEB21EABC2;
+	Thu, 14 Nov 2024 02:51:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.68.35
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1731552698; cv=fail; b=G7BTzTBGvrTYg8P4dRZLkLbT3/ParCs2lYGQSpOioUMHEwPpSdl/L/xjs8eLPOOm3eZPGysdn/0xFs55nwMOL0BvzvtFpPB7AIOr1EpC+uaFDIsFpIPyjeiu3PggMt1ITVyNaeeYyVcwVUXFAVkN0k4v/x6w/TPTfx3wzNOFr/g=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1731552698; c=relaxed/simple;
+	bh=KNQMGkTYMYrQyzPENwWjOC378oyAl/r+b+g25CLFtrQ=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=Jl6ifvMEl+QDmV0zNFxDR9e6LjEhv557TMQI8G9aHjqRoFrTM5C4x+nLP5Ri3MuDIU0ZXSet9RQxwztZhDkX9nqAnHgt4sCugVvwxlP9h3nz0yE0EXQ7XzyiXiVP9wOjm5B9Huzfewkj8iaNfMzRE/tyIYSDPQrLASrYGaujVTw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=U5RadFiy; arc=fail smtp.client-ip=52.103.68.35
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=d4+G8ZuaR6i/1YejgV6SkwapNFzP5Hz3lzWav/c7KYCtorBB+wsCwK1h8UzQscv8A1RM37bQ82+jWa6yOGCPAi4ss+xv7bZ+sVbzjzUToBQj9ia9iz0B0TmPpKHAZ7FLOd41ZFZV3jeFWHP3g5xBEJeYpPr9bT3FX/nmT9O0EU+Dla0yJHMf6iHYK5Fp4mEOd2aBzKl3UPxOjxIeD1Znb8vMtBPO9tYSKY3O37s9nDRV4ARq4hbJcdinyqMY2Aw+IN+bEYAET0VgoOhyjrzO32B6ispjFgYWES+l2q8xTeW0z+Jn+YDjc+HAQc9mPYy6idrNXE8TdFEgHUptwfFEZA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6QmyrSexW1QmE6ipi3xh1tasNCzXUR0ei8apF5brOLg=;
+ b=xHfjLIcpV2dzaEkZRA284ABsyxagVy80agvig3EXlVzhp/cfi/c4w1yokPjwvAoGtp0ttId4cotQ6gWyssmZX1jNHgbORc7U+zNHz0IDyP7yJw4Ck29B/ZVKtEgXNJgtBin0/XkL7bqiH9YeB8rSrqwOXZXnva8hy7Yy8zJcjf1eHNtpOHBKXcFnMGjTcJ/y7R8ws1XONaLquAvtD6g9GRGEmKEj5yqMb5ST6PJv+6oVopj2y7YetECLQqbHSBo8O1e/fNixh+tirdqhCjvQE0mWF1MuMW99C7KAGPms742yMFDsZK0vCUw59pAhhJ35fZo0dLfdVJEYwsvlFVJ6oQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6QmyrSexW1QmE6ipi3xh1tasNCzXUR0ei8apF5brOLg=;
+ b=U5RadFiyYMIjtpq8k1pMPYfSZeBswri7ywT4YCMqaUwOgt1dmjQEVfSAI38LzrRuY+ZvuU+5k1LAXcP3E1EZcBgr4EMG1g7MGy6C+iL+a0JYuJ2W1svB1Z5AIe00Plhfkmw8JNZsFS5EB4WCcDXONftN9aBqG0XcT8mFKRdCaKjSB2K5jksyiN9N+eNm+K93Afr2CQcPM1t46g3RH8M55m13x5eJ5gbFZKwJEZnNIcQTsJkxk80pL2RNm3biGQyctigtOEytbLDoHwewr+9ZH058Nr/qckQxw5EiKDTbeKVnPaOVLt7uO1JP1Pa++p1VUq9d4C5BHJZjAAqhI1Dl9Q==
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
+ by PN3P287MB2000.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:1d2::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.28; Thu, 14 Nov
+ 2024 02:51:27 +0000
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::a94:ad0a:9071:806c]) by MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::a94:ad0a:9071:806c%3]) with mapi id 15.20.8158.013; Thu, 14 Nov 2024
+ 02:51:26 +0000
+Message-ID:
+ <MA0P287MB2822642BE6F4B448410A28FAFE5B2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+Date: Thu, 14 Nov 2024 10:51:23 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] dt-bindings: pci: Add Sophgo SG2042 PCIe host
+To: Rob Herring <robh@kernel.org>, Chen Wang <unicornxw@gmail.com>
+Cc: kw@linux.com, u.kleine-koenig@baylibre.com, aou@eecs.berkeley.edu,
+ arnd@arndb.de, bhelgaas@google.com, conor+dt@kernel.org, guoren@kernel.org,
+ inochiama@outlook.com, krzk+dt@kernel.org, lee@kernel.org,
+ lpieralisi@kernel.org, manivannan.sadhasivam@linaro.org, palmer@dabbelt.com,
+ paul.walmsley@sifive.com, pbrobinson@gmail.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-riscv@lists.infradead.org, chao.wei@sophgo.com,
+ xiaoguang.xing@sophgo.com, fengchun.li@sophgo.com
+References: <cover.1731303328.git.unicorn_wang@outlook.com>
+ <1edbed1276a459a144f0cb0815859a1eb40bfcbf.1731303328.git.unicorn_wang@outlook.com>
+ <20241112155913.GA973575-robh@kernel.org>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <20241112155913.GA973575-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SG2PR04CA0157.apcprd04.prod.outlook.com (2603:1096:4::19)
+ To MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
+X-Microsoft-Original-Message-ID:
+ <7cb6a172-33ea-414b-b105-40c3609327bb@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CH0PR20MB393254369E401BF068005C7FCE752@CH0PR20MB3932.namprd20.prod.outlook.com>
-
-On Mon, Sep 30, 2024 at 12:07:23AM +0800, Aoba K wrote:
-> 
-> On 2024/9/12 13:55, Charlie Jenkins wrote:
-> > xtheadvector is a custom extension that is based upon riscv vector
-> > version 0.7.1 [1]. All of the vector routines have been modified to
-> > support this alternative vector version based upon whether xtheadvector
-> > was determined to be supported at boot.
-> > 
-> > vlenb is not supported on the existing xtheadvector hardware, so a
-> > devicetree property thead,vlenb is added to provide the vlenb to Linux.
-> > 
-> > There is a new hwprobe key RISCV_HWPROBE_KEY_VENDOR_EXT_THEAD_0 that is
-> > used to request which thead vendor extensions are supported on the
-> > current platform. This allows future vendors to allocate hwprobe keys
-> > for their vendor.
-> > 
-> > Support for xtheadvector is also added to the vector kselftests.
-> > 
-> > Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
-> > 
-> > [1] https://github.com/T-head-Semi/thead-extension-spec/blob/95358cb2cca9489361c61d335e03d3134b14133f/xtheadvector.adoc
-> > 
-> > ---
-> > This series is a continuation of a different series that was fragmented
-> > into two other series in an attempt to get part of it merged in the 6.10
-> > merge window. The split-off series did not get merged due to a NAK on
-> > the series that added the generic riscv,vlenb devicetree entry. This
-> > series has converted riscv,vlenb to thead,vlenb to remedy this issue.
-> > 
-> > The original series is titled "riscv: Support vendor extensions and
-> > xtheadvector" [3].
-> > 
-> > The series titled "riscv: Extend cpufeature.c to detect vendor
-> > extensions" is still under development and this series is based on that
-> > series! [4]
-> > 
-> > I have tested this with an Allwinner Nezha board. I used SkiffOS [1] to
-> > manage building the image, but upgraded the U-Boot version to Samuel
-> > Holland's more up-to-date version [2] and changed out the device tree
-> > used by U-Boot with the device trees that are present in upstream linux
-> > and this series. Thank you Samuel for all of the work you did to make
-> > this task possible.
-> > 
-> > [1] https://github.com/skiffos/SkiffOS/tree/master/configs/allwinner/nezha
-> > [2] https://github.com/smaeul/u-boot/commit/2e89b706f5c956a70c989cd31665f1429e9a0b48
-> > [3] https://lore.kernel.org/all/20240503-dev-charlie-support_thead_vector_6_9-v6-0-cb7624e65d82@rivosinc.com/
-> > [4] https://lore.kernel.org/lkml/20240719-support_vendor_extensions-v3-4-0af7587bbec0@rivosinc.com/T/
-> > 
-> > ---
-> > Changes in v10:
-> > - In DT probing disable vector with new function to clear vendor
-> >    extension bits for xtheadvector
-> > - Add ghostwrite mitigations for c9xx CPUs. This disables xtheadvector
-> >    unless mitigations=off is set as a kernel boot arg
-> > - Link to v9: https://lore.kernel.org/r/20240806-xtheadvector-v9-0-62a56d2da5d0@rivosinc.com
-> > 
-> > Changes in v9:
-> > - Rebase onto palmer's for-next
-> > - Fix sparse error in arch/riscv/kernel/vendor_extensions/thead.c
-> > - Fix maybe-uninitialized warning in arch/riscv/include/asm/vendor_extensions/vendor_hwprobe.h
-> > - Wrap some long lines
-> > - Link to v8: https://lore.kernel.org/r/20240724-xtheadvector-v8-0-cf043168e137@rivosinc.com
-> > 
-> > Changes in v8:
-> > - Rebase onto palmer's for-next
-> > - Link to v7: https://lore.kernel.org/r/20240724-xtheadvector-v7-0-b741910ada3e@rivosinc.com
-> > 
-> > Changes in v7:
-> > - Add defs for has_xtheadvector_no_alternatives() and has_xtheadvector()
-> >    when vector disabled. (Palmer)
-> > - Link to v6: https://lore.kernel.org/r/20240722-xtheadvector-v6-0-c9af0130fa00@rivosinc.com
-> > 
-> > Changes in v6:
-> > - Fix return type of is_vector_supported()/is_xthead_supported() to be bool
-> > - Link to v5: https://lore.kernel.org/r/20240719-xtheadvector-v5-0-4b485fc7d55f@rivosinc.com
-> > 
-> > Changes in v5:
-> > - Rebase on for-next
-> > - Link to v4: https://lore.kernel.org/r/20240702-xtheadvector-v4-0-2bad6820db11@rivosinc.com
-> > 
-> > Changes in v4:
-> > - Replace inline asm with C (Samuel)
-> > - Rename VCSRs to CSRs (Samuel)
-> > - Replace .insn directives with .4byte directives
-> > - Link to v3: https://lore.kernel.org/r/20240619-xtheadvector-v3-0-bff39eb9668e@rivosinc.com
-> > 
-> > Changes in v3:
-> > - Add back Heiko's signed-off-by (Conor)
-> > - Mark RISCV_HWPROBE_KEY_VENDOR_EXT_THEAD_0 as a bitmask
-> > - Link to v2: https://lore.kernel.org/r/20240610-xtheadvector-v2-0-97a48613ad64@rivosinc.com
-> > 
-> > Changes in v2:
-> > - Removed extraneous references to "riscv,vlenb" (Jess)
-> > - Moved declaration of "thead,vlenb" into cpus.yaml and added
-> >    restriction that it's only applicable to thead cores (Conor)
-> > - Check CONFIG_RISCV_ISA_XTHEADVECTOR instead of CONFIG_RISCV_ISA_V for
-> >    thead,vlenb (Jess)
-> > - Fix naming of hwprobe variables (Evan)
-> > - Link to v1: https://lore.kernel.org/r/20240609-xtheadvector-v1-0-3fe591d7f109@rivosinc.com
-> > 
-> > ---
-> > Charlie Jenkins (13):
-> >        dt-bindings: riscv: Add xtheadvector ISA extension description
-> >        dt-bindings: cpus: add a thead vlen register length property
-> >        riscv: dts: allwinner: Add xtheadvector to the D1/D1s devicetree
-> >        riscv: Add thead and xtheadvector as a vendor extension
-> >        riscv: vector: Use vlenb from DT for thead
-> >        riscv: csr: Add CSR encodings for CSR_VXRM/CSR_VXSAT
-> >        riscv: Add xtheadvector instruction definitions
-> >        riscv: vector: Support xtheadvector save/restore
-> >        riscv: hwprobe: Add thead vendor extension probing
-> >        riscv: hwprobe: Document thead vendor extensions and xtheadvector extension
-> >        selftests: riscv: Fix vector tests
-> >        selftests: riscv: Support xtheadvector in vector tests
-> >        riscv: Add ghostwrite vulnerability
-> > 
-> > Heiko Stuebner (1):
-> >        RISC-V: define the elements of the VCSR vector CSR
-> > 
-> >   Documentation/arch/riscv/hwprobe.rst               |  10 +
-> >   Documentation/devicetree/bindings/riscv/cpus.yaml  |  19 ++
-> >   .../devicetree/bindings/riscv/extensions.yaml      |  10 +
-> >   arch/riscv/Kconfig.errata                          |  11 +
-> >   arch/riscv/Kconfig.vendor                          |  26 ++
-> >   arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi      |   3 +-
-> >   arch/riscv/errata/thead/errata.c                   |  28 ++
-> >   arch/riscv/include/asm/bugs.h                      |  22 ++
-> >   arch/riscv/include/asm/cpufeature.h                |   2 +
-> >   arch/riscv/include/asm/csr.h                       |  15 +
-> >   arch/riscv/include/asm/errata_list.h               |   3 +-
-> >   arch/riscv/include/asm/hwprobe.h                   |   3 +-
-> >   arch/riscv/include/asm/switch_to.h                 |   2 +-
-> >   arch/riscv/include/asm/vector.h                    | 225 +++++++++++----
-> >   arch/riscv/include/asm/vendor_extensions/thead.h   |  48 ++++
-> >   .../include/asm/vendor_extensions/thead_hwprobe.h  |  19 ++
-> >   .../include/asm/vendor_extensions/vendor_hwprobe.h |  37 +++
-> >   arch/riscv/include/uapi/asm/hwprobe.h              |   3 +-
-> >   arch/riscv/include/uapi/asm/vendor/thead.h         |   3 +
-> >   arch/riscv/kernel/Makefile                         |   2 +
-> >   arch/riscv/kernel/bugs.c                           |  55 ++++
-> >   arch/riscv/kernel/cpufeature.c                     |  58 +++-
-> >   arch/riscv/kernel/kernel_mode_vector.c             |   8 +-
-> >   arch/riscv/kernel/process.c                        |   4 +-
-> >   arch/riscv/kernel/signal.c                         |   6 +-
-> >   arch/riscv/kernel/sys_hwprobe.c                    |   5 +
-> >   arch/riscv/kernel/vector.c                         |  24 +-
-> >   arch/riscv/kernel/vendor_extensions.c              |  10 +
-> >   arch/riscv/kernel/vendor_extensions/Makefile       |   2 +
-> >   arch/riscv/kernel/vendor_extensions/thead.c        |  29 ++
-> >   .../riscv/kernel/vendor_extensions/thead_hwprobe.c |  19 ++
-> >   drivers/base/cpu.c                                 |   3 +
-> >   include/linux/cpu.h                                |   1 +
-> >   tools/testing/selftests/riscv/vector/.gitignore    |   3 +-
-> >   tools/testing/selftests/riscv/vector/Makefile      |  17 +-
-> >   .../selftests/riscv/vector/v_exec_initval_nolibc.c |  94 +++++++
-> >   tools/testing/selftests/riscv/vector/v_helpers.c   |  68 +++++
-> >   tools/testing/selftests/riscv/vector/v_helpers.h   |   8 +
-> >   tools/testing/selftests/riscv/vector/v_initval.c   |  22 ++
-> >   .../selftests/riscv/vector/v_initval_nolibc.c      |  68 -----
-> >   .../selftests/riscv/vector/vstate_exec_nolibc.c    |  20 +-
-> >   .../testing/selftests/riscv/vector/vstate_prctl.c  | 305 +++++++++++++--------
-> >   42 files changed, 1048 insertions(+), 272 deletions(-)
-> > ---
-> > base-commit: 0e3f3649d44bf1b388a7613ade14c29cbdedf075
-> > change-id: 20240530-xtheadvector-833d3d17b423
-> 
-> 
-> Hello Charlie,
-> 
-> 
-> Apologize for the last email, when dealing with pastebin it deleted the last
-> version...
-> 
-> tl,dr for the last email: Patches not boot on Sipeed Lichee RV Dock (with
-> same D1 SoC).
-> 
-> Logs here:
-> 
-> https://fars.ee/XFzR
-> 
-> (the board resets without kernel panic)
-
-Apologies, this thread slipped by me. This looks to be the same issue as was experienced here [1] and fixed here [2].
-
-[1] https://lore.kernel.org/linux-riscv/ZoydV7vad5JWIcZb@ghost/
-[2] https://lore.kernel.org/linux-riscv/20240820034850.3189912-1-apatel@ventanamicro.com/
-
-Since you are on 6.11-rc2 that patch is probably not in your tree, as it
-was merged in 6.11-rc4 unfortunately. Can you try updating your kernel
-to include that patch?
-
-- Charlie
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MA0P287MB2822:EE_|PN3P287MB2000:EE_
+X-MS-Office365-Filtering-Correlation-Id: b0027114-1a80-4966-022a-08dd04573b9b
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|6090799003|19110799003|461199028|5072599009|15080799006|8060799006|7092599003|4302099013|10035399004|3412199025|440099028|1602099012;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?cE1CZys4RTNuQVQwcU9XZ1pHU1NndXkwTUFLb0QrdmJoM002aWMwVUVycUw1?=
+ =?utf-8?B?SXJWY1VtaVdHRzVqbVlORXZYRUdFcHlCaWZhRTYydmM2cHB4a0JoZjNuTmdk?=
+ =?utf-8?B?anE3Z3Jabmw1d3UxTURQNXV0NmsxWHN4U3RkdTk3dkpHZ1VpTXEzazJncUph?=
+ =?utf-8?B?S0JzdVhxN0o3TjVTaVErUTBtR3VyemszVzUxc2lWRmdCYm1iVS9RQkg2c2N6?=
+ =?utf-8?B?RHNBRUlpdkVWY00rcWVVM0dacGdJVDFjYzZnZDdoTmFTcmp4ZW5YeWQ3UEY0?=
+ =?utf-8?B?R1R4MThENU1Oa040OGkwN1lyd0w1enpRT1pIczJHQlpkU0tKNFByY01vQ0NP?=
+ =?utf-8?B?RWRNN1puM2dKMnpqVzM3UXRMZnFoMlhPZWtvQlUxV0I1ZjdDWml5UytVTVk3?=
+ =?utf-8?B?alpGdGlrY0hSeXVKcFdZZTBpWnJPcFlKZDREZWhkWUI1bkhBVHdPdEw3eTc0?=
+ =?utf-8?B?N3VMVTl0bWNNU0ZKbUY0ZlhnMlkxcUx2cFd0Ym51SUNoRjJNWHdBT1lqQWxM?=
+ =?utf-8?B?VnB0V3NmbTUxK0VCYnAxUDArQU4xcFZlRFY2ZGJ0ZUNDeStoMmlrT002VzRE?=
+ =?utf-8?B?aDhQY1JYbWVOZmNkdURpVE96M2kvNjVNd20waFZBemNkZTlRcFNoSmFBOFhw?=
+ =?utf-8?B?elJXVEh6cmlQSHdMVi9KRXZab1NXaVBwSFhsR0Z6dm90TEQ3VU5RaG52M21F?=
+ =?utf-8?B?RUdla3oybHVQN2NiMDkvOHI5a0N3dEdJNXdHZ3ZaaFhrbUlqWUZURlZicHdG?=
+ =?utf-8?B?b2ltTnpaVzhrdW1ZNmhRRDJCanRERkd4N1ZGMGx3R2V5QTdYdDlCSTcxZ3lP?=
+ =?utf-8?B?QWRzZzg0VFllV3ZhTHRWOTkrY2dmaE1RYlRDWnhHRi9YYzZZQlV1VGJUOW5K?=
+ =?utf-8?B?SWFWVXZPWWk4WTYwaTRrbzJ4MTB6SjV4VHVKK2k1ZERvTnV3NzdFdFZBZ3R5?=
+ =?utf-8?B?UzRrSHllMzVjeVhYUlRnMXZETEJ3RVltYng1WFN6VnlYMlhsWmJCRmRGbi9t?=
+ =?utf-8?B?a0JSZnVYdUFZRkZLbXBITEIvUlhLd0YyV1ZPNzNzTEg3WnFHZ1c1azliaHIy?=
+ =?utf-8?B?bUpJQjk0aFZYdmdPVFhRVkd0N3YzeGRyRFpjUWptUGxmb3ZPQS9wdk9IU3JK?=
+ =?utf-8?B?elp3MDVxQ2VRSXRBSjM5R1BibzQrRkVtU1FtTHdOSFJmQWFsNWtJVGFmekQ4?=
+ =?utf-8?B?S1cyTk8xU0pCV2NjQm5sK0ovRy9PMUV2SFNQNjBWN2tCVE0veEtaY3hCelFJ?=
+ =?utf-8?B?Z2gxeExkRHRtaklwV0FqOENTbm0wR3RoRnFLMWl1NW0razZ4Njh3ZkpWWHp0?=
+ =?utf-8?B?aGJQR1gvRGxyMXUrQ2xLNzE1MW5LZ1B5U0NNaE9xMUZ5aDFUQUQyL0djVDZW?=
+ =?utf-8?B?Y2IyN0J3anBCOUZPUmExUDhCSTNhRlh0UCs5NTVqcGd1UFh1YjE2K2dJenhw?=
+ =?utf-8?B?UURzMjBTOXpsWmx4VHlMaS9MMWFJNnE1SDVQMFNpc1U0eW54eXViOURjT3F1?=
+ =?utf-8?B?S0lrckZ4UDhjUG9BSzhhZ2hXUEZjdllHRnY5NXY0STZSUVA2bS9zbUFjbHdu?=
+ =?utf-8?Q?9mBj5HLqJXRKWBwbS2zmCl3eKlFLoyiIMgfBwL2QnAZmFL?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?dGFTbGt0UlNML2NuZlZZWWFiZGJyZzczcENqZmQwSU1rRUIrMEVSU2JhcG1v?=
+ =?utf-8?B?bis1TWZtZllxR1lHV3ZESVlmbXhEZ0VXYzBtK21HMnNlNyt0S2F5djlKSTQx?=
+ =?utf-8?B?T3l1YVM4TW9Sb2JJQW9BZEg0a012b3pDVWVNRldYQWJqWHBzVitma2c1SEVB?=
+ =?utf-8?B?TUtGc2tJbGhzTGx3NElKV0RtQUJqMXhzZ2h5bzdXdklSeHIvOWRMREppbUx0?=
+ =?utf-8?B?cjd2eEttbE1yUFcxZ3BuS1lDd2ZxS0NMNHNsZTZuTXBaNHRnODlWdUprTkVV?=
+ =?utf-8?B?SnZKR3pNdHhNR1lmZGRheFNKc3lOZW93OUxKUS8yd3RRM2prV3JiR1NmVGNN?=
+ =?utf-8?B?dlZHQVpvS0FsTTBNT3RTVUdvbU1iWWtmb3p0M1NnNFpBZXM0Rmd3cTVnZ1pG?=
+ =?utf-8?B?dUxxR0xHTTRPdGwyOW5SVFc1M25Na1VDRmg1dE51ZENDY004RG9YdlNwV0xk?=
+ =?utf-8?B?NE8zQXBaTTRuTnVCUjUrRjd0ZW5hVjl4V2NjcjVlb0hURit5MFVrbzdVWi9p?=
+ =?utf-8?B?Z1krVTA2bUZQWW1IZ3dURXd1dEVIUStiL3lmQjU4V0Q2aGlsVUlsWGxINWtO?=
+ =?utf-8?B?U09zTjREZTY3VG9PVnk1eTN5M01HRVY1OGFnQVdpbTNmWTgzdG4vRGsxZkE5?=
+ =?utf-8?B?cVJ5cllkTXJEd1dMU0R6N21ZbzJJemRLUWJhVmZ2U3pKTHlTQUNqekpFVU1W?=
+ =?utf-8?B?djdmb2FsTEpZNGczclBoZlZiRGsybjJvUUNrWVlCR0xXanUrd0xXQ2xhSGdv?=
+ =?utf-8?B?WjNvbUJNSDVEdFBRWlY0UVNub29ES0g0bjZLSTN5ZzIrblk0N3dOZnJhcStW?=
+ =?utf-8?B?My9zVG1CaHVTM3hEcU9zR0lRbTBDTmFlbEM5ankrd2E0UnROTnExdmpwczM1?=
+ =?utf-8?B?R3I1YlNwcWpFMnF5LzB1K0lIakt5WTc2TXRFOXdHdXZQWmlBakhlL21CRkp6?=
+ =?utf-8?B?WHAyUWcxalVXRVpBMXBiSS9zVVRjbGZSQ2xFRmF1cTdMcktKMFI1NGdvNHM1?=
+ =?utf-8?B?dzk0QVpHTXhVLzgwN3NvWkQyaTJjTXNRbU12VWd3eDBsVlhna002bWNyNG1j?=
+ =?utf-8?B?UnRLbXZzSU9XNW5qQ0l0eXEvckowNExEdTlYblh0K0diTkg3SGQ1OGdtckc2?=
+ =?utf-8?B?VVRzRTBjY0llUFp6YmJ2NDdLMFRWL2RHQzYyWmROaXQ5bXMzWEpVaXhCSit4?=
+ =?utf-8?B?aWd1Qm9PYWlHdTdFYW8wa01rR2lvVTBtMDI4TmJkQXZNT2QvSG1QNnA3SWRh?=
+ =?utf-8?B?VndBMUF3ZCt3MXhMVTVvTURDSzBqTGlTbXBwNG1IejdKTHpQaENqYytFVURW?=
+ =?utf-8?B?MHJOZGlhRm5KaGtvOW1RL0dvVndCWktDSUJUM2RhMW5DL3JZWTVBMjJEOGdJ?=
+ =?utf-8?B?c2VvbXN4MjBZMXZaMzdxTEMydUluVU11eGl6UHFqaDNJbCt1aUhtSDVFQ1ZW?=
+ =?utf-8?B?NFA0Rnk5RFg4TkJLQkpaMjB5VmtrSXhVRUxXSVl0RVF4REtFMmlUdm8rTCsz?=
+ =?utf-8?B?WHd3dWNTcEVFdGkzZlZQc0dHK2NrRGVDR1Z5WTlpOU1ZUFVHRTBFeXpaMXpS?=
+ =?utf-8?B?UWVVVDVtYWVzZEMySm4ycG9DV2RXMVo5ZXpPTlE5OW9wa1hLT3BCRXRDdlFv?=
+ =?utf-8?B?RHZ2dXg4YWorVDlTVWZuRVEybkVjQTRqVEF2MU8rcFE2dUhlS2J3WTBZMGo0?=
+ =?utf-8?Q?5xGOzFu3r4Xrn6VUpmll?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b0027114-1a80-4966-022a-08dd04573b9b
+X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2024 02:51:26.7226
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN3P287MB2000
 
 
-> 
-> 
-> Cheers,
-> 
-> Aoba K
+On 2024/11/12 23:59, Rob Herring wrote:
+> On Mon, Nov 11, 2024 at 01:59:37PM +0800, Chen Wang wrote:
+>> From: Chen Wang <unicorn_wang@outlook.com>
+>>
+>> Add binding for Sophgo SG2042 PCIe host controller.
+>>
+>> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
+>> ---
+>>   .../bindings/pci/sophgo,sg2042-pcie-host.yaml | 88 +++++++++++++++++++
+>>   1 file changed, 88 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/pci/sophgo,sg2042-pcie-host.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/pci/sophgo,sg2042-pcie-host.yaml b/Documentation/devicetree/bindings/pci/sophgo,sg2042-pcie-host.yaml
+>> new file mode 100644
+>> index 000000000000..d4d2232f354f
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/pci/sophgo,sg2042-pcie-host.yaml
+>> @@ -0,0 +1,88 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/pci/sophgo,sg2042-pcie-host.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Sophgo SG2042 PCIe Host (Cadence PCIe Wrapper)
+>> +
+>> +description: |+
+> Don't need '|+'
+Got, thanks.
+>
+>> +  Sophgo SG2042 PCIe host controller is based on the Cadence PCIe core.
+>> +  It shares common features with the PCIe core and inherits common properties
+>> +  defined in Documentation/devicetree/bindings/pci/cdns-pcie-host.yaml.
+> That's clear from the $ref. No need to say that in prose.
+Got, thanks.
+>
+>> +
+>> +maintainers:
+>> +  - Chen Wang <unicorn_wang@outlook.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: sophgo,sg2042-pcie-host
+>> +
+>> +  reg:
+>> +    maxItems: 2
+>> +
+>> +  reg-names:
+>> +    items:
+>> +      - const: reg
+>> +      - const: cfg
+>> +
+>> +  sophgo,syscon-pcie-ctrl:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description: Phandle to the SYSCON entry
+> Please describe what you need to access.
+>
+>> +
+>> +  sophgo,link-id:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    description: Cadence IP link ID.
+> Is this an index or related to the syscon? Nak for the former, use
+> linux,pci-domain. For the latter, add an arg to sophgo,syscon-pcie-ctrl.
+Let me give you some background info.
+
+SG2042 uses Cadence IP, every IP is composed of 2 cores(called link0 & 
+link1 as Cadence's term). The Cadence IP has two modes of operation, 
+selected by a strap pin.
+
+In the single-link mode, the Cadence PCIe core instance associated with 
+Link0 is connected to all the lanes and the Cadence PCIe core instance 
+associated with Link1 is inactive.
+
+In the dual-link mode, the Cadence PCIe core instance associated with 
+Link0 is connected to the lower half of the lanes and the Cadence PCIe 
+core instance associated with Link1 is connected to the upper half of 
+the lanes.
+
+SG2042 contains 2 Cadence IPs and configures the Cores as below:
+
+```
+                +-- Core(Link0) <---> pcie_rc0   +-----------------+
+Cadence IP 1 --+                                | cdns_pcie0_ctrl |
+                +-- Core(Link1) <---> disabled   +-----------------+
+                +-- Core(Link0) <---> pcie_rc1   +-----------------+
+Cadence IP 2 --+                                | cdns_pcie1_ctrl |
+                +-- Core(Link1) <---> pcie_rc2   +-----------------+
+```
+
+
+pcie_rcX is pcie node ("sophgo,sg2042-pcie-host") defined in DTS.
+cdns_pcie0_ctrl is syscon node ("sophgo,sg2042-pcie-ctrl") defined in DTS
+
+cdns_pcieX_ctrl contains some registers shared by pcie_rcX, even two 
+RC(Link)s may share different bits of the same register. For 
+example，cdns_pcie1_ctrl contains registers shared by link0 & link1 for 
+Cadence IP 2.
+
+So we defined "sophgo,link-id" to flag which core(link) the rc maps to, 
+with this we can know what registers(bits) we should use.
+
+That's why I don't use "linux,pci-domain" and also it's not proper to 
+define it as arg to "sophgo,syscon-pcie-ctrl".
+
+
+>> +
+>> +  sophgo,internal-msi:
+>> +    $ref: /schemas/types.yaml#/definitions/flag
+>> +    description: Identifies whether the PCIE node uses internal MSI controller.
+> Wouldn't 'msi-parent' work for this purpose?
+I will check it out, thanks.
+>
+>> +
+>> +  vendor-id:
+>> +    const: 0x1f1c
+>> +
+>> +  device-id:
+>> +    const: 0x2042
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  interrupt-names:
+>> +    const: msi
+>> +
+>> +allOf:
+>> +  - $ref: cdns-pcie-host.yaml#
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - reg-names
+>> +  - sophgo,syscon-pcie-ctrl
+>> +  - sophgo,link-id
+>> +  - vendor-id
+>> +  - device-id
+>> +  - ranges
+> ranges is already required in the common schemas.
+Got.
+>> +
+>> +additionalProperties: true
+>> +
+>> +examples:
+>> +  - |
+>> +    pcie@62000000 {
+>> +      compatible = "sophgo,sg2042-pcie-host";
+>> +      device_type = "pci";
+>> +      reg = <0x62000000  0x00800000>,
+>> +            <0x48000000  0x00001000>;
+>> +      reg-names = "reg", "cfg";
+>> +      #address-cells = <3>;
+>> +      #size-cells = <2>;
+>> +      ranges = <0x81000000 0 0x00000000 0xde000000 0 0x00010000>,
+>> +               <0x82000000 0 0xd0400000 0xd0400000 0 0x0d000000>;
+>> +      bus-range = <0x80 0xbf>;
+>> +      vendor-id = <0x1f1c>;
+>> +      device-id = <0x2042>;
+>> +      cdns,no-bar-match-nbits = <48>;
+>> +      sophgo,link-id = <0>;
+>> +      sophgo,syscon-pcie-ctrl = <&cdns_pcie1_ctrl>;
+>> +      sophgo,internal-msi;
+>> +      interrupt-parent = <&intc>;
+>> +    };
+>> -- 
+>> 2.34.1
+>>
 
