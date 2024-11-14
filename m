@@ -1,192 +1,141 @@
-Return-Path: <devicetree+bounces-121869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 922309C889B
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 12:16:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 311A39C8862
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 12:06:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 886DCB32407
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 11:02:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7738DB329C6
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 11:02:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5EA31F9EBF;
-	Thu, 14 Nov 2024 11:00:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 238301F892C;
+	Thu, 14 Nov 2024 11:01:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="jztzpOrk";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="HoOAGfqM"
+	dkim=pass (2048-bit key) header.d=merzmedtech.de header.i=@merzmedtech.de header.b="fwTtQKKH";
+	dkim=pass (1024-bit key) header.d=merzmedtech.de header.i=@merzmedtech.de header.b="POqT6rAn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from mailout03.agenturserver.de (mailout03.agenturserver.de [153.92.196.166])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FD881F9AAD;
-	Thu, 14 Nov 2024 11:00:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DD211F8918;
+	Thu, 14 Nov 2024 11:01:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=153.92.196.166
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731582043; cv=none; b=rWODwThjBgQBL/yZA3V0waZS8AQdZ/JjCsUukA1j5mMya7SdYVIOJfzpZSuis+wrNaQBX8C7avZEyDR/BZylzTLzYRePopY1bxAWhuVBSt0vUjWfOuOAcAUfIBB+2/xJGjFEgDX03+RM2IkNTTy5ktHmDj/D6M8OVxWe488U6dI=
+	t=1731582097; cv=none; b=s7CpE/PxsxePm8g3qPc+S+uPi6znmbVBJqK9Ww1O4DH85T3rZvabswHiwH7Lt/Vpc3n975zmNMWeZ3m0qPDS21EMlpE5jp4k0qWM59esHFnVdVPIX/Uuy8h//SNSBc3xmfUklPtNQnRAuq+5mbA975uaIpLRb2CsQsZYGWnwsc8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731582043; c=relaxed/simple;
-	bh=tqLuE3XCPUbEyNtVxTKPEPP+MaZp/Pgn4Igc4zDYK3g=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Tuid4TBHah/kZ0Rtxqd+ntRZSGPCn0YpEan+fI0V0Tw9fWPlVA9iwQIV7HgX4dweFsnfC4ZlN+Tbe7nNSf4F+Tl5iUOtSsHZXqimgPa0XoGlRxO8BOOPL1hh8xD2xNylApKK040bPXqQ0/Ig0eqVxYpimx8eXAyRPwGKjxwoIgU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=jztzpOrk; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=HoOAGfqM reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1731582041; x=1763118041;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=PDTzpgyCcsIsQrrZZt0ZmVkITJ/vSABUrcmipqkCQmc=;
-  b=jztzpOrkin+oCpmZ6qCTEQWllYVnB3OfC1lfYF85CTzFw/iXeBDYJYyi
-   JZtiMYS8COUvMKQolXt+/v50upLEjr1ogKfBLg8/rePNs105p+7Ai0vZs
-   JwFvNCY3A3R0cbs62EMUllGthNjgqtscCiRTbvpXKi95HvZYoWw0AeiQw
-   xqUaRW6Ze11CAb9c79v4IDdCu6NC/VlvMT9qzacmlrO2M9bEY5I8UfY1m
-   XyW/Gx2vdMI00LyQe6XbYGYdwxlL4dJS41p025ZeRCA51Cu/te7QtzK1Z
-   wxVCXHRfuUsPK/P8Wvh9UBjRlEfO3J4yNIfYfzS9bVMPSAKvAk1pyi7nI
-   g==;
-X-CSE-ConnectionGUID: 6/t++77bQzCqLu1Si6Avtg==
-X-CSE-MsgGUID: GRh+e+j3QjuOKGKT4vHk0w==
-X-IronPort-AV: E=Sophos;i="6.12,153,1728943200"; 
-   d="scan'208";a="40037885"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 14 Nov 2024 11:59:28 +0100
-X-CheckPoint: {6735D810-1A-1E10F2A5-CC0651E5}
-X-MAIL-CPID: 0080E8DE299B7269A5879A7996F82C94_4
-X-Control-Analysis: str=0001.0A682F18.6735D810.00AD,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 50BBB161730;
-	Thu, 14 Nov 2024 11:59:22 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1731581963;
+	s=arc-20240116; t=1731582097; c=relaxed/simple;
+	bh=CYuO5EWoIpATZW5fAeCXp0xJaarvI7UkFUm685nGyA4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=pEYt52iaRayeytR4Wc7jXf/jFlxHZOELGu/e7IXwP1YiNrMkJyqCE2moey6oHMzx8Ru/2bsiIFPbsZfA5gphwL9Xza1fviMi1Ag4u0tc2tBgmY1QvMSHN5aYCHvbql3WWI5l66Wvb2w4QHkwJ5bv7lyrRJqIgMzNfMDPYiYcbaE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=merzmedtech.de; spf=pass smtp.mailfrom=merzmedtech.de; dkim=pass (2048-bit key) header.d=merzmedtech.de header.i=@merzmedtech.de header.b=fwTtQKKH; dkim=pass (1024-bit key) header.d=merzmedtech.de header.i=@merzmedtech.de header.b=POqT6rAn; arc=none smtp.client-ip=153.92.196.166
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=merzmedtech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=merzmedtech.de
+Received: from mail03.agenturserver.de (mail03.internal [192.168.51.40])
+	by mailout03.agenturserver.de (Postfix) with ESMTP id 6090549EA;
+	Thu, 14 Nov 2024 12:01:33 +0100 (CET)
+Received: from XXX.XXX.XXX.XXX (XXXXX.XX [XXX.XXX.XXX.XXX])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: h.v.raven@merzmedtech.de)
+	by mail.agenturserver.de (Postfix) with ESMTPSA id AA71B6137B;
+	Thu, 14 Nov 2024 12:01:32 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=merzmedtech.de;
+	s=agenturserver2048; t=1731582093;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=PDTzpgyCcsIsQrrZZt0ZmVkITJ/vSABUrcmipqkCQmc=;
-	b=HoOAGfqM3P6FcrZRK4KcDfo3zyv7J56DchawjSvGruXe/HyM5oJiuOc2QbPG44Vw3Sort6
-	MInZi9ozQCPhfK0qNcTJWisIVs3MKDfnwXMCpUkQucQhml0WG+Y/+CYFCP06HJjXgREMyZ
-	Rpy4gU0iAc7gwnjEp83AEHPH28sXnftnGFIfTNVJTy2UVKT7zim4VoV2hv1g1mU2g8Z3hc
-	wtQTTNFC6amkQzOI6oCTyk8GiC7c+fNpuVXz+0JybAanDBcxuFksk+BGJDwb2f01tCcxI9
-	gzVJEky1WcF9lqUyUywm1staOzEm0ska8lQjxQesBkAh2YqLq2n8LFzpEYdy7g==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, gregkh@linuxfoundation.org, Frank.Li@nxp.com, jun.li@nxp.com, l.stach@pengutronix.de, aford173@gmail.com, hongxing.zhu@nxp.com, Xu Yang <xu.yang_2@nxp.com>
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH v9 2/3] arm64: dts: imx95: add usb3 related nodes
-Date: Thu, 14 Nov 2024 11:59:23 +0100
-Message-ID: <2968363.e9J7NaK4W3@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20241113080745.2300915-2-xu.yang_2@nxp.com>
-References: <20241113080745.2300915-1-xu.yang_2@nxp.com> <20241113080745.2300915-2-xu.yang_2@nxp.com>
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=yBuSNivUQCH9IvZN1MgrJsasMYONT+12Y885z+wY1h4=;
+	b=fwTtQKKHecN7UMn02dIh2PVBVH95gscLheVgSDxCEdKg3WstPm6JXzvGnGRt2bSABiNDJs
+	6A/NOFZe/gUpZ6zafnqGRD7SpSovSyznpflaHlJNd4nZoMtGQ3PWFq2NpdsgsHQOUwKMGg
+	ilUd+pUiohdEqR/OgZxzeXSu4gOHjNRGnNBZrts2vAxEEHM29YqtE0mtL3ElXEbuC7O9hD
+	Arpj0OfNzkXTdguIQaABSJbJh/9lTq1INzABaioqQf5vdqPIJ7vs8O86N8GZn9UkjtXOBh
+	1zgs4PAH7vSs5bdITxqnlYxx1DHA9Ug1BKRhAt6QBlwspLFWhasrRlSYP4rLiw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=merzmedtech.de;
+	s=agenturserver; t=1731582093;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=yBuSNivUQCH9IvZN1MgrJsasMYONT+12Y885z+wY1h4=;
+	b=POqT6rAnBcrgSBvPax2mjaw7KWhpqiaMmN/ZDkPMMP5gqw8R3ArIrFeD5Y/NyIxNGEIClE
+	c1k295vZp7HGS5o+V7MXU6SFJx2m2S+rsrGmH0luegpLgpUmEFVisJ5lU9iyxfgKW2Tx7s
+	dEG9F8hzWgexilnkPpDWpNiVYJrNiXw=
+From: "Hendrik v. Raven" <h.v.raven@merzmedtech.de>
+Subject: [PATCH v2 0/2] ASoc: simple-mux: Allow to specify an idle-state
+Date: Thu, 14 Nov 2024 12:01:24 +0100
+Message-Id: <20241114-simple-mux-idle-state-v2-0-a30cb37d2be2@merzmedtech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAITYNWcC/4WNQQ6CMBREr0L+2pq2VgOuuIdhAfyv/YkF0tYGJ
+ b27lQu4mzeTmdkgkGcKcK028JQ48DwV0IcKRttPDxKMhUFLbZRSRgR2y5OEe60lKSLEPpKQNaJ
+ G09BJaSjdxdOd13331hW2HOLs3/tNUj/332JSQgo5yFojXs6mGVpH/uMII432iARdzvkLmNYtJ
+ r8AAAA=
+X-Change-ID: 20241114-simple-mux-idle-state-08dd2d49e312
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Alexandre Belloni <aleandre.belloni@bootlin.com>
+Cc: linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, "Hendrik v. Raven" <h.v.raven@merzmedtech.de>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=995;
+ i=h.v.raven@merzmedtech.de; h=from:subject:message-id;
+ bh=CYuO5EWoIpATZW5fAeCXp0xJaarvI7UkFUm685nGyA4=;
+ b=owEBzQIy/ZANAwAKAQP8mG1lSaY7AcsmYgBnNdiMvCpT4hajK2n0v+IrCmUaj85Ni80alfWgK
+ 0GOIl6tSJ6JApMEAAEKAH0WIQRfy2xFNGjRY609IOcD/JhtZUmmOwUCZzXYjF8UgAAAAAAuAChp
+ c3N1ZXItZnByQG5vdGF0aW9ucy5vcGVucGdwLmZpZnRoaG9yc2VtYW4ubmV0NUZDQjZDNDUzNDY
+ 4RDE2M0FEM0QyMEU3MDNGQzk4NkQ2NTQ5QTYzQgAKCRAD/JhtZUmmO8n9D/4uvrUC1ui+bQmsq9
+ WSHmuZBBKsN+sszr/YTE683XpDqBkmhORZmj0CkOPnVX3TOm9bG5NEASULCgFb42Px0/TbnYR0P
+ OYblys6Njnnti7DokX+LRfJ8FSAhmYtwa/xB3m51E8gqLQzvpaaoXubGMVIAA0FwuU5I2ItQM3i
+ VavXDHJ6eeGBBfulQYXxirjxJKHxQAUVXAf4SEwDw17LDf+gkXNY0AaHiXpfaBeJVcta++uKlip
+ yOwiJKQzxRWJYoiZVDOzVF3pdlP3zEEkYry9apvaFKNMmAkiAebJd8gIrFVQAKJQLptZ78VdKaV
+ XTM8Dul8hbnYHSCVd/z05M5WKbq8sRtfW+xewJKKtTGtfg25up/YDMtKP8qO1/qKWqFNRyNd2EP
+ i8xkqPsJarpelKRU+F9K7aRsiIb0VVYMTpjT6vWlMIYylSRls9YIgNcknId8OIHAAZBPNZklf2w
+ qtzODQ1YdSh68OmnVsWrvgtCcfK1mv/gAol+dwNfG+GHIQoGDmoiDkrcJSuEZEwSOzhSuO4UbPu
+ 0bSAs1Pv26qg3scl834Ve72wz6u3KHXMYJ4Op7C0j/iVX/Hp8bRtx3PSVYFXknqCh5ypsMtmmIZ
+ Fd+WG39uUbHk6uSSD8RkAqWh8JRVf6M9Xxsrhav6JgMj7o8Dd6vHu6Pf4J54+SfZTDhw==
+X-Developer-Key: i=h.v.raven@merzmedtech.de; a=openpgp;
+ fpr=7A67B9A9F57B4F324AB6B8EB045B81F5FB5BA3AE
+X-purgate-original-type: suspect.url-count
+X-purgate-type: clean
+X-purgate-Ad: Categorized by eleven eXpurgate (R) https://www.eleven.de
+X-purgate: This mail is considered clean (visit https://www.eleven.de for further information)
+X-purgate: clean
+X-purgate-size: 997
+X-purgate-ID: 155922::1731582093-1D5D8432-FAF5A0C2/2/61233497599
 
-Hi,
+This series adds support for the idle-state property from the mux
+framework to the simple-mux audio variant. It allows to specify the state
+of the mux when it is not in use.
 
-Am Mittwoch, 13. November 2024, 09:07:44 CET schrieb Xu Yang:
-> Add usb3 phy and controller nodes for imx95.
->=20
-> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
->=20
-> ---
-> Changes in v2:
->  - no changes
-> Changes in v3:
->  - no changes
-> Changes in v4:
->  - reorder nodes
-> Changes in v5:
->  - no changes
-> Changes in v6:
->  - rebase to latest
-> Changes in v7:
->  - no changes
-> Changes in v8:
->  - no changes
-> Changes in v9:
->  - no changes
-> ---
->  arch/arm64/boot/dts/freescale/imx95.dtsi | 43 ++++++++++++++++++++++++
->  1 file changed, 43 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/d=
-ts/freescale/imx95.dtsi
-> index 03661e76550f..e3faa8462759 100644
-> --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
-> @@ -1473,6 +1473,49 @@ smmu: iommu@490d0000 {
->  			};
->  		};
-> =20
-> +		usb3: usb@4c010010 {
-> +			compatible =3D "fsl,imx95-dwc3", "fsl,imx8mp-dwc3";
-> +			reg =3D <0x0 0x4c010010 0x0 0x04>,
-> +			      <0x0 0x4c1f0000 0x0 0x20>;
-> +			clocks =3D <&scmi_clk IMX95_CLK_HSIO>,
-> +				 <&scmi_clk IMX95_CLK_32K>;
-> +			clock-names =3D "hsio", "suspend";
-> +			interrupts =3D <GIC_SPI 173 IRQ_TYPE_LEVEL_HIGH>;
-> +			#address-cells =3D <2>;
-> +			#size-cells =3D <2>;
-> +			ranges;
-> +			power-domains =3D <&scmi_devpd IMX95_PD_HSIO_TOP>;
-> +			dma-ranges =3D <0x0 0x0 0x0 0x0 0x10 0x0>;
-> +			status =3D "disabled";
-> +
-> +			usb3_dwc3: usb@4c100000 {
-> +				compatible =3D "snps,dwc3";
-> +				reg =3D <0x0 0x4c100000 0x0 0x10000>;
-> +				clocks =3D <&scmi_clk IMX95_CLK_HSIO>,
-> +					 <&scmi_clk IMX95_CLK_24M>,
-> +					 <&scmi_clk IMX95_CLK_32K>;
-> +				clock-names =3D "bus_early", "ref", "suspend";
-> +				interrupts =3D <GIC_SPI 175 IRQ_TYPE_LEVEL_HIGH>;
-> +				phys =3D <&usb3_phy>, <&usb3_phy>;
-> +				phy-names =3D "usb2-phy", "usb3-phy";
-> +				snps,gfladj-refclk-lpm-sel-quirk;
-> +				snps,parkmode-disable-ss-quirk;
-> +				iommus =3D <&smmu 0xe>;
-> +			};
-> +		};
-> +
-> +		usb3_phy: phy@4c1f0040 {
-> +			compatible =3D "fsl,imx95-usb-phy", "fsl,imx8mp-usb-phy";
-> +			reg =3D <0x0 0x4c1f0040 0x0 0x40>,
-> +			      <0x0 0x4c1fc000 0x0 0x100>;
-> +			clocks =3D <&scmi_clk IMX95_CLK_HSIO>;
-> +			clock-names =3D "phy";
-> +			#phy-cells =3D <0>;
-> +			power-domains =3D <&scmi_devpd IMX95_PD_HSIO_TOP>;
-> +			orientation-switch;
+Signed-off-by: Hendrik v. Raven <h.v.raven@merzmedtech.de>
+---
+Changes in v2:
+- Fix nullpointer dereference in simple_mux_event by accessing component
+  from w->dapm instead of kcontrol.
+- Link to v1: https://lore.kernel.org/r/20241114-simple-mux-idle-state-v1-0-0b082dd6549b@merzmedtech.de
 
-This adds the orientation-switch to all imx95 based boards, which in turn
-requires a port subnode.
-This is incorrect if this USB interface is not connected to a USB Type-C
-connector but an on-board USB hub.
+---
+Hendrik v. Raven (2):
+      ASoc: simple-mux: add idle-state support
+      ASoC: dt-bindings: simple-mux: add idle-state property
+
+ .../bindings/sound/simple-audio-mux.yaml           |  5 +++
+ sound/soc/codecs/simple-mux.c                      | 39 +++++++++++++++++++++-
+ 2 files changed, 43 insertions(+), 1 deletion(-)
+---
+base-commit: 2d5404caa8c7bb5c4e0435f94b28834ae5456623
+change-id: 20241114-simple-mux-idle-state-08dd2d49e312
 
 Best regards,
-Alexander
-
-> +			status =3D "disabled";
-> +		};
-> +
->  		pcie0: pcie@4c300000 {
->  			compatible =3D "fsl,imx95-pcie";
->  			reg =3D <0 0x4c300000 0 0x10000>,
->=20
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
+-- 
+Hendrik v. Raven <h.v.raven@merzmedtech.de>
 
 
