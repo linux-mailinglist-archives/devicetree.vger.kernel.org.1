@@ -1,235 +1,137 @@
-Return-Path: <devicetree+bounces-121682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121683-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A95B19C7FF4
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 02:25:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75D319C8021
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 02:44:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B1231F22800
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 01:25:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A09C281AD2
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 01:44:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB69C1E3DEF;
-	Thu, 14 Nov 2024 01:25:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BB5D1E3769;
+	Thu, 14 Nov 2024 01:44:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="kc3Pr9L4"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="fqCvG48T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06AE31E3799
-	for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 01:25:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48CB31C1AA9;
+	Thu, 14 Nov 2024 01:44:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731547507; cv=none; b=mTVMabmqZPIr1Q5eH84rwz4Ao56XY8gArsblSJF72k9mTK/KbJbms38nt4RRDKwKysLeBnDGYW/h0DxfUAYlq77zqbtNWM8bHXp+IE386iNOAlQbzScdbQOFKEd+gWW+TD8AV90XIUODHxYX2UG0CcvI5tERGUFf5Uzvp1Cg6HQ=
+	t=1731548662; cv=none; b=gP6dpBciRkaJeaspm9WtS8cgQACAdMEsF/QID35y4v8MxFcQeXb8OsDMmdd9vAZcKWqEXSW5ZLf48HhSGEHm9LRErZCzMRwwiesarFlgW7vwgN0Kg6ouRggk0913wP/a0axgcPiFv72G2Pm7c+Rdc4VFR5sXmfd8bSkgyoHuqkY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731547507; c=relaxed/simple;
-	bh=KuTm9w2zxcDezkdUUDDcRZEA8jG2I3LDnWFoZ2iSzow=;
+	s=arc-20240116; t=1731548662; c=relaxed/simple;
+	bh=IrVRJg3WLhTz8lAzrA6Li6rKoq9acM6m6RQtWvY5vEs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F4ce1KcnqUK8jvxyJmp8R83uILELc4JxQ2nMhbt324cnfnx2jcb1OV0wB6dfx5r+PxiH/OTBzDVbdAnS/0WgBkh6wfbbiS9SVGPYyzZo1WTGMcdGI8AONxwIvVsV/rQBvjQJuphYEdj/UGnT9HgMIgZ0doq2eEDN2W/6aUy5px4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=kc3Pr9L4; arc=none smtp.client-ip=209.85.167.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-oi1-f174.google.com with SMTP id 5614622812f47-3e5f6e44727so47012b6e.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 17:25:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1731547504; x=1732152304; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=7tgZBsjLXLWa/QitrFWyk7TGNAjpHhq1mYxI46BDfkY=;
-        b=kc3Pr9L4U/mCNeeKgyr1pVx7bTPwK/iiUuB3bCqSVPR8yQnGmxnNcSzGBXynbBOKJI
-         rIs2ETYzVDryfh2Vnngj+AEUu+H+TEucLsxmMWEpzw9GjdV48lOu/cxU1SDBIoUGhvzG
-         kjtS9dLIU6PslaSlg771p3hgjgGCFYXtBElCzn0OxVpzed4M8W5WgNg6Wn5x0/K9d5sW
-         Diz8zOtxP3F+Xwk3AG8YTKXk/K149yBDUO+pTa7Qv7UQ1pJtZ1ncPCkAUI/nV/oZEt4s
-         aoUcUgxvJtncGsen981ef/fzcM40I/hlTCfUOfEQPvfHI9OigpQ3h5W3cIYQEKsV95X7
-         gGvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731547504; x=1732152304;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7tgZBsjLXLWa/QitrFWyk7TGNAjpHhq1mYxI46BDfkY=;
-        b=e8TfezscJTxhFnxLMgsb0CvvMeLvFGeHf25FAoUSJoPHjwNPt8cgKv8+v0OtwjcLEc
-         bQ+PbnY0qgI+RjsMSNuF9IGjQx7yKPvnJhjHtoPelbqlAJ0xl2S28fEdL2CJtV6UdASg
-         2pzIVh2u/SdDlbFJvZOhUrUTPlwqZ7GdMw7eaxectCUGBag4xwzC3kZWDgUuT5CTZ0QU
-         UeRpTtuCiLbBmZhMHLgA3g/KrYeyCiC6BLsVtISaEMeP/DtKoCNWlSxZtMWDXG6jWSTh
-         fsMlLHnm5al9OZv1B7eauJ/+/8bzRxz2hlUXWKESTSVosUwfUzy4ptP8eiQfemjHNKv/
-         d0HA==
-X-Forwarded-Encrypted: i=1; AJvYcCWguS2I/KAjHvfDgs8f5rJDPTGmrmXnbsOkREOvkMqAH73Tx6YEzZtWPvR/+b5rvC5NgmJT0C9eHkCH@vger.kernel.org
-X-Gm-Message-State: AOJu0YyFlBnylxyDbvttbAVntNc+ULbQKQaOfDlqU4wfvW/5w3zvkdHQ
-	+IaHwMmmyko0CzWPKbnojwZcCXESvAnNVKwLD093YdioxUifgUJ9g7JOq26VcLA=
-X-Google-Smtp-Source: AGHT+IFYV+lyD6AUZ64wWkmaKdb2jE8s1l+YlxE25IyFaRji6Gg+al5X5KNPM0lWiRmirmHIFmzF1w==
-X-Received: by 2002:a05:6808:2222:b0:3e6:22f:ea48 with SMTP id 5614622812f47-3e7b7bdede7mr481448b6e.28.1731547504098;
-        Wed, 13 Nov 2024 17:25:04 -0800 (PST)
-Received: from debug.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7f41f5bcad0sm11125410a12.32.2024.11.13.17.25.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Nov 2024 17:25:03 -0800 (PST)
-Date: Wed, 13 Nov 2024 17:25:00 -0800
-From: Deepak Gupta <debug@rivosinc.com>
-To: Nick Hu <nick.hu@sifive.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
-	Borislav Petkov <bp@alien8.de>,
-	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
-	"H. Peter Anvin" <hpa@zytor.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Vlastimil Babka <vbabka@suse.cz>,
-	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Christian Brauner <brauner@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Oleg Nesterov <oleg@redhat.com>,
-	Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
-	linux-mm@kvack.org, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
-	alistair.francis@wdc.com, richard.henderson@linaro.org,
-	jim.shu@sifive.com, andybnac@gmail.com, kito.cheng@sifive.com,
-	charlie@rivosinc.com, atishp@rivosinc.com, evan@rivosinc.com,
-	cleger@rivosinc.com, alexghiti@rivosinc.com,
-	samitolvanen@google.com, broonie@kernel.org,
-	rick.p.edgecombe@intel.com
-Subject: Re: [PATCH v8 24/29] riscv: enable kernel access to shadow stack
- memory via FWFT sbi call
-Message-ID: <ZzVRbCZP9N4Os8Bj@debug.ba.rivosinc.com>
-References: <20241111-v5_user_cfi_series-v8-0-dce14aa30207@rivosinc.com>
- <20241111-v5_user_cfi_series-v8-24-dce14aa30207@rivosinc.com>
- <CAKddAkCCVjNHUinPWtOiK8Ki_ZkdoUCawfv1-+0B69J_1aJv5Q@mail.gmail.com>
- <ZzVNKvCu4MOs7O5z@debug.ba.rivosinc.com>
- <CAKddAkDbGYeONaksq6fzLzx47BHZo3Ar7Sog3MOgf7Y+Birovw@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=HEZMIP3dGgJCn/OFJtfA0wJ+UlyoDP+Zi436Mpbx29x+Rnga6IC5AE9eBZ5BszOvACoDlDa3AeODcdevOFIwHXaNSzvy4R182LeXQNnPq3hNqWJkbaNYuMCAWtFfyi51eXzgyq5bNX4tY6kgJLU1yzgMxuVW7A4C4zBwYYzj75o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=fqCvG48T; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=8iXMgS+nqM8nHclZ1ysTcXy7y7OSuJIYtAZoKROY0EE=; b=fqCvG48TOaP5r3usPPYs1U4FnX
+	4PRWbhBktP2oO4czKwOuv8DK6Pmcvp0O22DoOwQ4erlsmHJTNxhlPfmuuBJvzLQXWOke1JtkTHt0O
+	DaUjhOx7et262E6YNMO/I1KscznzjF5upm4uP/pJhhYEUNPYr4giOtdigRAgQYdUqUJI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tBOtq-00DEPq-Gk; Thu, 14 Nov 2024 02:43:58 +0100
+Date: Thu, 14 Nov 2024 02:43:58 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Tristram.Ha@microchip.com
+Cc: Woojung.Huh@microchip.com, olteanv@gmail.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	marex@denx.de, UNGLinuxDriver@microchip.com,
+	devicetree@vger.kernel.org, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 2/2] net: dsa: microchip: Add SGMII port support
+ to KSZ9477 switch
+Message-ID: <1fcb11da-e660-497b-a098-c00f94c737f5@lunn.ch>
+References: <20241109015633.82638-1-Tristram.Ha@microchip.com>
+ <20241109015633.82638-3-Tristram.Ha@microchip.com>
+ <784a33e2-c877-4d0e-b3a5-7fe1a04c9217@lunn.ch>
+ <DM3PR11MB87360F9E39097E535416838EEC592@DM3PR11MB8736.namprd11.prod.outlook.com>
+ <700c326c-d154-4d21-b9d4-d8abf8f2bf33@lunn.ch>
+ <DM3PR11MB873696176581059CF682F253EC5A2@DM3PR11MB8736.namprd11.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAKddAkDbGYeONaksq6fzLzx47BHZo3Ar7Sog3MOgf7Y+Birovw@mail.gmail.com>
+In-Reply-To: <DM3PR11MB873696176581059CF682F253EC5A2@DM3PR11MB8736.namprd11.prod.outlook.com>
 
-On Thu, Nov 14, 2024 at 09:20:14AM +0800, Nick Hu wrote:
->Hi Deepak
->
->On Thu, Nov 14, 2024 at 9:06 AM Deepak Gupta <debug@rivosinc.com> wrote:
->>
->> On Thu, Nov 14, 2024 at 12:13:38AM +0800, Nick Hu wrote:
->> >Hi Deepak
->> >
->> >On Tue, Nov 12, 2024 at 5:08 AM Deepak Gupta <debug@rivosinc.com> wrote:
->> >>
->> >> Kernel will have to perform shadow stack operations on user shadow stack.
->> >> Like during signal delivery and sigreturn, shadow stack token must be
->> >> created and validated respectively. Thus shadow stack access for kernel
->> >> must be enabled.
->> >>
->> >> In future when kernel shadow stacks are enabled for linux kernel, it must
->> >> be enabled as early as possible for better coverage and prevent imbalance
->> >> between regular stack and shadow stack. After `relocate_enable_mmu` has
->> >> been done, this is as early as possible it can enabled.
->> >>
->> >> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
->> >> ---
->> >>  arch/riscv/kernel/asm-offsets.c |  4 ++++
->> >>  arch/riscv/kernel/head.S        | 12 ++++++++++++
->> >>  2 files changed, 16 insertions(+)
->> >>
->> >> diff --git a/arch/riscv/kernel/asm-offsets.c b/arch/riscv/kernel/asm-offsets.c
->> >> index 766bd33f10cb..a22ab8a41672 100644
->> >> --- a/arch/riscv/kernel/asm-offsets.c
->> >> +++ b/arch/riscv/kernel/asm-offsets.c
->> >> @@ -517,4 +517,8 @@ void asm_offsets(void)
->> >>         DEFINE(FREGS_A6,            offsetof(struct ftrace_regs, a6));
->> >>         DEFINE(FREGS_A7,            offsetof(struct ftrace_regs, a7));
->> >>  #endif
->> >> +       DEFINE(SBI_EXT_FWFT, SBI_EXT_FWFT);
->> >> +       DEFINE(SBI_EXT_FWFT_SET, SBI_EXT_FWFT_SET);
->> >> +       DEFINE(SBI_FWFT_SHADOW_STACK, SBI_FWFT_SHADOW_STACK);
->> >> +       DEFINE(SBI_FWFT_SET_FLAG_LOCK, SBI_FWFT_SET_FLAG_LOCK);
->> >>  }
->> >> diff --git a/arch/riscv/kernel/head.S b/arch/riscv/kernel/head.S
->> >> index 356d5397b2a2..6244408ca917 100644
->> >> --- a/arch/riscv/kernel/head.S
->> >> +++ b/arch/riscv/kernel/head.S
->> >> @@ -164,6 +164,12 @@ secondary_start_sbi:
->> >>         call relocate_enable_mmu
->> >>  #endif
->> >>         call .Lsetup_trap_vector
->> >> +       li a7, SBI_EXT_FWFT
->> >> +       li a6, SBI_EXT_FWFT_SET
->> >> +       li a0, SBI_FWFT_SHADOW_STACK
->> >> +       li a1, 1 /* enable supervisor to access shadow stack access */
->> >> +       li a2, SBI_FWFT_SET_FLAG_LOCK
->> >> +       ecall
->> >>         scs_load_current
->> >>         call smp_callin
->> >>  #endif /* CONFIG_SMP */
->> >> @@ -320,6 +326,12 @@ SYM_CODE_START(_start_kernel)
->> >>         la tp, init_task
->> >>         la sp, init_thread_union + THREAD_SIZE
->> >>         addi sp, sp, -PT_SIZE_ON_STACK
->> >> +       li a7, SBI_EXT_FWFT
->> >> +       li a6, SBI_EXT_FWFT_SET
->> >> +       li a0, SBI_FWFT_SHADOW_STACK
->> >> +       li a1, 1 /* enable supervisor to access shadow stack access */
->> >> +       li a2, SBI_FWFT_SET_FLAG_LOCK
->> >> +       ecall
->> >>         scs_load_current
->> >>
->> >>  #ifdef CONFIG_KASAN
->> >>
->> >> --
->> >> 2.45.0
->> >>
->> >Should we clear the SBI_FWFT_SET_FLAG_LOCK before the cpu hotplug
->> >otherwise the menvcfg.sse won't be set by the fwft set sbi call when
->> >the hotplug cpu back to kernel?
->>
->> Hmm...
->>
->> An incoming hotplug CPU has no features setup on it.
->> I see that `sbi_cpu_start` will supply `secondary_start_sbi` as start
->> up code for incoming CPU. `secondary_start_sbi` is in head.S which converges
->> in `.Lsecondary_start_common`. And thus hotplugged CPU should be
->> issuing shadow stack set FWFT sbi as well.
->>
->> Am I missing something ?
->>
->This is the correct flow. However the opensbi will deny it due to the
->SBI_FWFT_SET_FLAG_LOCK already being set.
->So the menvcfg.sse will not set by this flow.
->
->if (conf->flags & SBI_FWFT_SET_FLAG_LOCK)
->                return SBI_EDENIED;
->
+> When the SFP EEPROM says it does not support 1000Base-T then the SFP bus
+> code does not consider the SFP has a PHY and skips creating a MDIO bus
+> for it and phylink_sfp_config_optical() is called to create the phylink.
 
-hmm... Why?
+There are many SFPs out there with broken EEPROM contents. Do the SFPs
+you have say they are not 1000Base-T but actually are? If so, they are
+broken, and need a quirk adding.
 
-`conf` is pointing to per-hart state in firmware.
+Russell King keeps a database of SFP EEPROM contents. Send him the
+output of `ethtool -m eth42 raw on hex on` 
 
-On this incoming cpu, opensbi (or equivalent) firmware must have
-ensured that this per-hart state doesn't have lock set.
+> Now back to the discussion of the different modes used by the SGMII
+> module.  I think a better term like SerDes can be used to help
+> understanding the operation, although I still cannot narrow down the
+> precise definitions from looking at the internet.  SGMII mode is
+> said to support 10/100/1000Mbit.  This is the default setting, so
+> plugging such SFP allows the port to communicate without any register
+> programming.  The other mode is SerDes, which is fixed at 1000Mbit.  This
+> is typically used by SFP using fiber optics.  This requires changing a
+> register to make the port works.  It seems those 1000Base-T SFPs all run
+> in SerDes mode, at least from all SFPs I tried.
 
-Am I missing something?
+There is a comment in the code:
 
->Regards,
->Nick
->> >
->> >Regards,
->> >Nick
->> >>
->> >> _______________________________________________
->> >> linux-riscv mailing list
->> >> linux-riscv@lists.infradead.org
->> >> http://lists.infradead.org/mailman/listinfo/linux-riscv
+/* Probe a SFP for a PHY device if the module supports copper - the PHY
+ * normally sits at I2C bus address 0x56, and may either be a clause 22
+ * or clause 45 PHY.
+ *
+ * Clause 22 copper SFP modules normally operate in Cisco SGMII mode with
+ * negotiation enabled, but some may be in 1000base-X - which is for the
+ * PHY driver to determine.
+
+So the default is SGMII for copper SFPs, but there are a few oddballs
+using 1000BaseX. The Marvell PHY driver should figure this out, and
+the phylink will tell you want mode to use.
+
+
+> The issue is then phylink assigns SGMII phy mode to such SFP as its
+> EEPROM just says 1000Base-T support and not 1000BASEX phy mode so that
+> the DSA driver can program the register correspondingly.  Because of that
+> the driver still needs to rely on its own detection to find out which
+> mode to use.
+>  
+> > Have you set pcs.poll? phylink will then poll the PCS every
+> > second. You can report PCS status any time.
+> 
+> I know about PCS polling.  The SFP cage driver can provide link_up and
+> link_down indications to the phylink driver.
+
+The SPF cage provides LOS, Loss of Signal. This basically means there
+is light coming into the SFP, but not much more. It is not a
+trustworthy signal on its own. Phylink combines this with the PCS
+status, does the PCS also have link. You need the combination.
+
+> One more issue is if a SFP is not plugged in eventually the SFP driver
+> says "please wait, module slow to respond."
+
+Something is wrong with your GPIOs. Phylink thinks there is a module
+inserted, when in fact there is not. Add #define DEBUG 1 to the very
+top of sfp.c, so you can see the state transitions. I guess there is
+something wrong with the MODDEF0 GPIO.
+
+	Andrew
+
 
