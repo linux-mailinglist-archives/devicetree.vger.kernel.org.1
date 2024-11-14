@@ -1,48 +1,74 @@
-Return-Path: <devicetree+bounces-121910-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121911-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBEA59C8D9C
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 16:09:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BD119C8DB3
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 16:17:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 60CE11F24D42
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 15:09:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F107286230
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 15:17:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61777127E18;
-	Thu, 14 Nov 2024 15:09:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 525A7136341;
+	Thu, 14 Nov 2024 15:17:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KWVvGgoc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="R1u6SOaW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27D49288DA;
-	Thu, 14 Nov 2024 15:09:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D83551C68F;
+	Thu, 14 Nov 2024 15:17:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731596942; cv=none; b=Q3Z+4Csfg+xbsnW1BR98fsPX0SdbDMfOseNKWtTd0Meg33A3roJr1+CtNvVCO1LNH98sItTJBcJwCOzREzfm6GZpdJXl+O6es8XOZ+mP2VyF6MIdb9xRNKVDGsQ+eT91WCXcQAFgjn7Tif8xhwr8gvXg40AKEvlvgZgpDu3wAtk=
+	t=1731597424; cv=none; b=CVZljbuqjUOvh/kL1ZVF8RIyUx2rrFJLQPJzY0R3HNc/qq+r3SWuXOlwJc/Opfik918ATp5gpNfc+x2YU44yyGmvuNQ7AjiQb1PuX9ZUQRlHj4An6h0t8ygAr4fkY0ymPcJiyjm56ua44gJpwnOu8ArsepMoMCUUKyJgJv7r6wk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731596942; c=relaxed/simple;
-	bh=8ywomto4NPu+FX5Ot5sxtxsM9aTZGRRENwMsh8gtUNs=;
+	s=arc-20240116; t=1731597424; c=relaxed/simple;
+	bh=Q53Ic01HLtpIHqWLvJyKZj1a+099VDGe9zfLNq4lzJE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dmsB1v3Zmft5ve7/doRSilmbsjpv7ILal/iLGeg+wxKc+A/kQd8bB6gxXS4FIavBzy5Aq6ppKL0eZY5MRPIlHGZnz+Q7Wj8IKilq2oZ12m5QayMthzo3vYGLMjEDlW/THTwTBrSnVi6aiNy/i80JzNRlcgqoJJ+fN+tr35RPHAs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KWVvGgoc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04C27C4CED0;
-	Thu, 14 Nov 2024 15:08:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731596941;
-	bh=8ywomto4NPu+FX5Ot5sxtxsM9aTZGRRENwMsh8gtUNs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KWVvGgocIUU3xEddYy9MY5HftMn9tzbdax6iPQY8f4NUlLXbnwnD5rUzhZzJfrnIE
-	 6x5DGkzErlIhuMVXIvdPnyb+UimU3dw6eFfA1JPD2RuXh9Fvt9dXN7ww5Che2/QqE5
-	 xR/oSNkn8oo+L6URWnP/yw2WWDsG3g9xY/l3yflM+LC3cTgn9hJHa/S2MOPc5tVati
-	 Mxh20+Uc2a2n15/GXTaGWsoYmS3EkmfgI0Jmc7puBfDQDOksAPeURg6PPywTk1lG9k
-	 OTaBwiSADGZWwPHA5DmmIytvniRhtyO1NFy5jY37aiuT9i/SltEqcQohoiYYvIWkoa
-	 sTdhze5Jkgn9g==
-Message-ID: <7821de41-6f71-4865-9d64-3d5be4602a9b@kernel.org>
-Date: Thu, 14 Nov 2024 17:08:56 +0200
+	 In-Reply-To:Content-Type; b=YtRElpJqWoaWR+De611ceOMKn2dISH0D3P9F8Rp/mH3klGDxM1s36rQ6EjcckYL04+nsrU3UXBTahHXY5AcxWktWjAqxQbJ6Ln3ieH7WEKWnzB2uNKHHPmy4f22g2ZxCGgoCAA8NylZ2wfcDElCy7xxs3jb2buPSSdXXwXn+TlY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=R1u6SOaW; arc=none smtp.client-ip=209.85.215.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-7eab7600800so89021a12.1;
+        Thu, 14 Nov 2024 07:17:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1731597422; x=1732202222; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JotrJzBpOeR2thJqFXFw5L3unIDcudiSGFOlUbzMd08=;
+        b=R1u6SOaWSQbaeeGnUPiCBUxi6IaNplaXrNPT2PJX7UO9xRA6/XGNceEmNOTIGHed+z
+         Kg37c6g65paBVbPjrp7wSs5DN6Ny7bHfdabsxa43URJgjpSEzXfgdKLMxzaF+SllDCF9
+         hgmd4PYXqtIUmLVAR6L7lg5FqL2r7bsOqu+VZ5AAPkXccs7u1WABG0lclfsuyilLR1iC
+         ckqqeP2vixqY2fzofuYWJA7vx13s/aFgMplPjw/sUuq4KQQ2nP1XcWWN8eYrW7hkUX5X
+         U+vq1GPiOLv13ShJ0sdXILavC5O78CjRnVcpfN21B1ymRCnrcaTq/6j/fCPW9wizdF+r
+         S2NQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731597422; x=1732202222;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JotrJzBpOeR2thJqFXFw5L3unIDcudiSGFOlUbzMd08=;
+        b=Z4dOlyl9m9JJ7B+2ngivHcwotiGS3Ju8SDiIZsJVCOyRYUPgGCLHoJEmQbYukYyoov
+         5Mu3ImvDK2ovNgUWkF0iDw0xR2Rud7dIVxrToJJamZkvQKb+EV4EsKHIOsw5GnfyyDgb
+         SjsF9nvVkx9ABxb+vlYK212vi6Wkoj4rE7afiC5PEst68wpLsfMfEGJR9JLF5MeBNjGi
+         peW5Vk9re05UNkEb+Yop2n6CcL6cF/TzPh7J1vuGwMTU01TR9D3GK3nyYF2oYwrqaCkE
+         uvC5ArceGHKaQNrdZuZPIjjEvQAG9njnmmNquaPNWmyDKILbipPNgLDeHpy2ejJKp6y1
+         tuVA==
+X-Forwarded-Encrypted: i=1; AJvYcCUaeCCNTtoAch1rGgBH7mFJZVUdQ1qLpzrSyuO2gAh+0a4qFXwnGbLcjFGasnoLUgEtqYNzpSHz0GxoqvOm@vger.kernel.org, AJvYcCUckih6DlUEXj+lUxsOjz4DfMOKqXXp7ZBDqgKcVHhcxbv+XX5Igo+XFphNeoZuLsrx6KW0zGapV0cN@vger.kernel.org, AJvYcCVGSKs62Ik/wn5x23dsySASt5/Biv1VTTUewA6WzZ0EPnD5dE3kYPJCK7gqJ88CjoHrcDP+RgiMEOOm@vger.kernel.org
+X-Gm-Message-State: AOJu0YxBQcj73Gs+Y2zZl9Uqdm8BBYWCICt+kIpUWiUTdDmwnBS7REJB
+	RBnSXsWyfhUgCtDPAAnYqkUjwrCyxULeOnHmv75G2n4Eq57vcFAd
+X-Google-Smtp-Source: AGHT+IFOzdCgJiTSHKh+t6Z6Xi2n3e3XGot6bXk4vTvc/TZ9/DAIaY0+AeU1fVaH8kKFm27vl/aK5A==
+X-Received: by 2002:a05:6a20:8403:b0:1d8:a203:95a4 with SMTP id adf61e73a8af0-1dc2296d9b1mr15461701637.5.1731597422055;
+        Thu, 14 Nov 2024 07:17:02 -0800 (PST)
+Received: from [100.116.227.126] ([45.32.86.188])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7f8b36dac83sm1215797a12.14.2024.11.14.07.16.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Nov 2024 07:17:01 -0800 (PST)
+Message-ID: <b59f6933-e1f1-49e9-be61-3e3b4323da87@gmail.com>
+Date: Thu, 14 Nov 2024 23:16:51 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,227 +76,58 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 07/15] ARM: dts: Configure interconnect target module for
- dra7 sata
-To: Romain Naour <romain.naour@smile.fr>, Tony Lindgren <tony@atomide.com>,
- linux-omap@vger.kernel.org
-Cc: =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
- devicetree@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
- Kishon Vijay Abraham I <kishon@ti.com>,
- Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
- Vignesh Raghavendra <vigneshr@ti.com>, linux-pci@vger.kernel.org,
- Kevin Hilman <khilman@baylibre.com>, Robin Murphy <robin.murphy@arm.com>
-References: <20210126124004.52550-1-tony@atomide.com>
- <20210126124004.52550-8-tony@atomide.com>
- <c583e1bb-f56b-4489-8012-ce742e85f233@smile.fr>
- <45e6b7d4-706e-4f91-b452-4fa80c25b944@kernel.org>
- <2f715724-31c1-4228-b140-55aefb14af5c@smile.fr>
+Subject: Re: [PATCH v3 1/2] dt-bindings: iio: tyhx,hx9023s: Add performance
+ tuning configuration
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, yasin.lee.x@outlook.com, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20241017-add-performance-tuning-configuration-v3-0-e7289791f523@gmail.com>
+ <20241017-add-performance-tuning-configuration-v3-1-e7289791f523@gmail.com>
+ <20241020140638.127a9dbf@jic23-huawei>
 Content-Language: en-US
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <2f715724-31c1-4228-b140-55aefb14af5c@smile.fr>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: Yasin Lee <yasin.lee.x@gmail.com>
+In-Reply-To: <20241020140638.127a9dbf@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
+On 10/20/24 21:06, Jonathan Cameron wrote:
+> On Thu, 17 Oct 2024 18:36:44 +0800
+> Yasin Lee <yasin.lee.x@gmail.com> wrote:
+>
+>> When hardware design introduces significant sensor data noise,
+>> performance can be improved by adjusting register settings.
+> Questions inline. Mostly around why these controls belong in DT.
+> What do they have to do with hardware / wiring etc rather than being
+> appropriate for userspace controls.
+>
+> So almost all are definite no to being suitable for device tree bindings.
+>
+> Jonathan
+>
+Hi Jonathan,
 
-On 14/11/2024 15:50, Romain Naour wrote:
-> Hi Roger, Robin, All,
-> 
-> Le 14/11/2024 à 12:02, Roger Quadros a écrit :
->> Hi Romain,
->>
->> On 12/11/2024 16:15, Romain Naour wrote:
->>> Hello Tony, Roger, All,
->>>
->>> Le 26/01/2021 à 13:39, Tony Lindgren a écrit :
->>>> We can now probe devices with device tree only configuration using
->>>> ti-sysc interconnect target module driver. Let's configure the
->>>> module, but keep the legacy "ti,hwmods" peroperty to avoid new boot
->>>> time warnings. The legacy property will be removed in later patches
->>>> together with the legacy platform data.
->>>>
->>>> Note that the old sysc register offset is wrong, the real offset is at
->>>> 0x1100 as listed in TRM for SATA_SYSCONFIG register. Looks like we've been
->>>> happily using sata on the bootloader configured sysconfig register and
->>>> nobody noticed. Also the old register range for SATAMAC_wrapper registers
->>>> is wrong at 7 while it should be 8. But that too seems harmless.
->>>>
->>>> There is also an L3 parent interconnect range that we don't seem to be
->>>> using. That can be added as needed later on.
->>>
->>> Since the switch from a kernel 5.10 to 6.1, the dra7 (AM574x) sata interface
->>> doesn't work as expected.
->>>
->>> Using a kernel 6.1 with a preformated ext4 SATA disc, any copied file will be
->>> corrupted when the filesystem is umounted.
->>>
->>> mount /dev/sda1 /mnt
->>> cp /<test_file> /mnt/
->>> sync
->>> sha256sum /mnt/<test_file> /<test_file>
->>> <same hash>
->>> umount /mnt
->>>
->>> mount /dev/sda1 /mnt
->>> sha256sum /mnt/<test_file> /<test_file>
->>> /mnt/<test_file> is corrupted.
->>>
->>> git bisect report 8af15365a368 ("ARM: dts: Configure interconnect target module
->>> for dra7 sata") as the first bad commit [1] (merged in 5.13).
->>>
->>> While looking for existing SATA issue on dra7 SoC, I found this old patch:
->>>
->>> "On TI Platforms using LPAE, SATA breaks with 64-bit DMA. Restrict it to
->>> 32-bit." [2].
->>>
->>> Even if it's not the correct fix, disabling 64-bit DMA allows to use the sata
->>> disc correctly. The discussion about this issue seems to have stopped [3] and
->>> the suggested change was never merged.
->>
->> If I remember right the following commit fixed the issue back then.
->>
->> cfb5d65f2595 ARM: dts: dra7: Add bus_dma_limit for L3 bus
->>
->> But, when commit [1] moved the SATA node from L3 bus to L4_cfg it lost the bus_dma_limit
->> that we added at the L3 bus and hence the regression.
->>
->> I think we should add the same 2GB dma ranges limit into l4_cfg bus so all modules
->> can inherit it.
-> 
-> Thanks for your reply!
-> 
-> It seems l4_cfg can inherit dma-ranges property from ocp node using
-> "dma-ranges;". But then segment@100000 node (0x4a100000) needs "dma-ranges;" too.
-> 
-> With the following patch applied, the SATA drive works correctly.
-> 
-> diff --git a/arch/arm/boot/dts/dra7-l4.dtsi b/arch/arm/boot/dts/dra7-l4.dtsi
-> index 1aaffd034c39..3ac770298844 100644
-> --- a/arch/arm/boot/dts/dra7-l4.dtsi
-> +++ b/arch/arm/boot/dts/dra7-l4.dtsi
-> @@ -12,6 +12,7 @@ &l4_cfg {                                             /*
-> 0x4a000000 */
->         ranges = <0x00000000 0x4a000000 0x100000>,      /* segment 0 */
->                  <0x00100000 0x4a100000 0x100000>,      /* segment 1 */
->                  <0x00200000 0x4a200000 0x100000>;      /* segment 2 */
-> +       dma-ranges;
-> 
->         segment@0 {                                     /* 0x4a000000 */
->                 compatible = "simple-pm-bus";
-> @@ -557,6 +558,7 @@ segment@100000 {                                    /*
-> 0x4a100000 */
->                          <0x0007e000 0x0017e000 0x001000>,      /* ap 124 */
->                          <0x00059000 0x00159000 0x001000>,      /* ap 125 */
->                          <0x0005a000 0x0015a000 0x001000>;      /* ap 126 */
-> +               dma-ranges;
-> 
->                 target-module@2000 {                    /* 0x4a102000, ap 27 3c.0 */
->                         compatible = "ti,sysc";
-> 
-> 
-> Sorry, I'm not familliar with property inheritance between devicetree nodes,
-> especially with dma-ranges. Does this change seem correct to you?
+Thank you for the suggestions in your recent email. Following your 
+advice, I discussed these configurations in detail with engineers from 
+the HX9023S supplier. Based on their feedback, these settings are not 
+intended to be exposed to end-users. Typically, these configurations are 
+adjusted during the DVT phase of the end product by the supplier to 
+optimize performance, after which they are finalized and not meant to be 
+modified dynamically at the user level.
 
-I think this is correct.
-A similar fix [4] was done for PCIe as well.
+Given this approach, it seems more appropriate to provide these settings 
+as part of a firmware file, allowing the configuration to be kept 
+internal and managed without user-level access. If this approach aligns 
+with your thoughts, I can prepare and submit a new patch focused on 
+firmware parsing and handling for these configurations.
 
-[4] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/?id=90d4d3f4ea45370d482fa609dbae4d2281b4074f
+Thank you again for your valuable guidance, and I look forward to your 
+feedback.
 
-> 
-> Best regards,
-> Romain
-> 
-> 
->>
->>>
->>> The SATA port is unlikely not available on TI AM57 EVM boards or the beaglebone-AI.
->>>
->>> Any suggestion?
->>>
->>> [1]
->>> https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/commit/?id=8af15365a36845c4c15d4c8046ddccff331d5263
->>> [2] https://lore.kernel.org/all/20200206111728.6703-1-rogerq@ti.com/T/
->>> [3] https://lore.kernel.org/lkml/c753a232-403d-6ed2-89fd-09476c887391@ti.com/
->>>
->>> Best regards,
->>> Romain
->>>
->>>
->>>>
->>>> Signed-off-by: Tony Lindgren <tony@atomide.com>
->>>> ---
->>>>  arch/arm/boot/dts/dra7-l4.dtsi | 29 ++++++++++++++++++++++++++---
->>>>  arch/arm/boot/dts/dra7.dtsi    | 12 ------------
->>>>  2 files changed, 26 insertions(+), 15 deletions(-)
->>>>
->>>> diff --git a/arch/arm/boot/dts/dra7-l4.dtsi b/arch/arm/boot/dts/dra7-l4.dtsi
->>>> --- a/arch/arm/boot/dts/dra7-l4.dtsi
->>>> +++ b/arch/arm/boot/dts/dra7-l4.dtsi
->>>> @@ -572,11 +572,34 @@ target-module@8000 {			/* 0x4a108000, ap 29 1e.0 */
->>>>  		};
->>>>  
->>>>  		target-module@40000 {			/* 0x4a140000, ap 31 06.0 */
->>>> -			compatible = "ti,sysc";
->>>> -			status = "disabled";
->>>> -			#address-cells = <1>;
->>>> +			compatible = "ti,sysc-omap4", "ti,sysc";
->>>> +			ti,hwmods = "sata";
->>>> +			reg = <0x400fc 4>,
->>>> +			      <0x41100 4>;
->>>> +			reg-names = "rev", "sysc";
->>>> +			ti,sysc-midle = <SYSC_IDLE_FORCE>,
->>>> +					<SYSC_IDLE_NO>,
->>>> +					<SYSC_IDLE_SMART>;
->>>> +			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
->>>> +					<SYSC_IDLE_NO>,
->>>> +					<SYSC_IDLE_SMART>,
->>>> +					<SYSC_IDLE_SMART_WKUP>;
->>>> +			power-domains = <&prm_l3init>;
->>>> +			clocks = <&l3init_clkctrl DRA7_L3INIT_SATA_CLKCTRL 0>;
->>>> +			clock-names = "fck";
->>>>  			#size-cells = <1>;
->>>> +			#address-cells = <1>;
->>>>  			ranges = <0x0 0x40000 0x10000>;
->>>> +
->>>> +			sata: sata@0 {
->>>> +				compatible = "snps,dwc-ahci";
->>>> +				reg = <0 0x1100>, <0x1100 0x8>;
->>>> +				interrupts = <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>;
->>>> +				phys = <&sata_phy>;
->>>> +				phy-names = "sata-phy";
->>>> +				clocks = <&l3init_clkctrl DRA7_L3INIT_SATA_CLKCTRL 8>;
->>>> +				ports-implemented = <0x1>;
->>>> +			};
->>>>  		};
->>>>  
->>>>  		target-module@51000 {			/* 0x4a151000, ap 33 50.0 */
->>>> diff --git a/arch/arm/boot/dts/dra7.dtsi b/arch/arm/boot/dts/dra7.dtsi
->>>> --- a/arch/arm/boot/dts/dra7.dtsi
->>>> +++ b/arch/arm/boot/dts/dra7.dtsi
->>>> @@ -785,18 +785,6 @@ qspi: spi@0 {
->>>>  			};
->>>>  		};
->>>>  
->>>> -		/* OCP2SCP3 */
->>>> -		sata: sata@4a141100 {
->>>> -			compatible = "snps,dwc-ahci";
->>>> -			reg = <0x4a140000 0x1100>, <0x4a141100 0x7>;
->>>> -			interrupts = <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>;
->>>> -			phys = <&sata_phy>;
->>>> -			phy-names = "sata-phy";
->>>> -			clocks = <&l3init_clkctrl DRA7_L3INIT_SATA_CLKCTRL 8>;
->>>> -			ti,hwmods = "sata";
->>>> -			ports-implemented = <0x1>;
->>>> -		};
->>>> -
->>>>  		/* OCP2SCP1 */
->>>>  		/* IRQ for DWC3_3 and DWC3_4 need IRQ crossbar */
->>>>  
->>
-> 
+Best regards,
+Yasin Lee
 
--- 
-cheers,
--roger
 
 
