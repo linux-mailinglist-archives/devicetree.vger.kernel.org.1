@@ -1,116 +1,122 @@
-Return-Path: <devicetree+bounces-121807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 393189C8610
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 10:27:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36E589C8619
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 10:28:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0D71286FF3
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 09:27:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD8C61F2289D
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 09:28:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7A591F7573;
-	Thu, 14 Nov 2024 09:26:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 567DC1F7566;
+	Thu, 14 Nov 2024 09:27:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="bGiKHI0O"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ogd6Lhbh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D55241D1724;
-	Thu, 14 Nov 2024 09:26:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.30.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9540F1F7552;
+	Thu, 14 Nov 2024 09:27:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731576405; cv=none; b=qvy8VU82SkZSNwciInkIbwt1HYgrJCYZBtF7E6Z0EwXU4SGE6wy3xT/b8tHAh3e193BJX7m8xJEcrJtOKuUzCvts86jM8ML+OwyuwCzPXQ2P4qbxdLYukcmHsmIgz0+zbPhEoylKWmzTdoEMVtB//KLdilHuvp8bHr9CiNBcNW4=
+	t=1731576438; cv=none; b=ak+msonUAXUNQoKpO35XAs5j6rv9XFgX0wGddEkAUp9G6NeTx7EZgiy8GBEPYkE7GWjDfqtW3AbJED3SCm8KXagoroWUQQXlsxkkJFZ7onQfp9FiqcpxB+V9E4US9KddhUGv8MuyrYLwe5zo3YgiACaeVkET9CmTl93vX3BDyn4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731576405; c=relaxed/simple;
-	bh=F4fZ3VEB3sSqhtren7bVKSiH5jDCYsNJ9th8u2b4tcg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=raDpXxxBQE0udT0cCyI2l0XqiRHVGMyjRMNzgTiTXUASUbd6MKQz0xQC64NFSjY32TXiKFXkN/r+4vRN2cv0BIFb4kBXDxVrPCCdUtPAef0P2RZK3d/WyVyqknOVdRRrupVagga3SHR19C0IBlfEzMkoL5rtcCN4McVrSrI0zQY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=bGiKHI0O; arc=none smtp.client-ip=188.40.30.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
-	s=default2211; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID; bh=A2KgOI+lSZ0QofXCJ/ce/kUbrulJLZ9zrxCHSMmyqvU=; b=bGiKHI
-	0OuvikDXkOLwjVhAmE/u2kIq5YxZjJX4WJVV8GEP3bZmo7/rVYJsL+CtQ44jHmrQmhM57uolrM1Al
-	lRLCIN5FqliVY+ybCnmR79Ak/c/jEcVRPKRtR5DF40IFl48Ko2DK93P3QxRUzF7g+fpsCwcdnRKDc
-	eWObYAvptZdNnQzezKs2orM3MnfMDbDkfSx0wXIXdXNqggnYe6mNahPmtNqcmQufSgN5dXPTArJjJ
-	T7KJUSgvhjfYsPCqpHnQNdXj4aZfQ41Gv7pRzYxaCp1yMYsr0WRpy793H9Q03p/7Th7DTB3VPsGyj
-	2SubYZnlSLi9gP+ZxGahB5PghDyA==;
-Received: from sslproxy02.your-server.de ([78.47.166.47])
-	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <sean@geanix.com>)
-	id 1tBW7c-000JqL-LF; Thu, 14 Nov 2024 10:26:40 +0100
-Received: from [2a06:4004:10df:0:6905:2e05:f1e4:316f] (helo=Seans-MacBook-Pro.local)
-	by sslproxy02.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <sean@geanix.com>)
-	id 1tBW7b-0004zD-38;
-	Thu, 14 Nov 2024 10:26:40 +0100
-Date: Thu, 14 Nov 2024 10:26:39 +0100
-From: Sean Nyekjaer <sean@geanix.com>
-To: Marc Kleine-Budde <mkl@pengutronix.de>
-Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH can-next v4 2/2] can: tcan4x5x: add option for selecting
- nWKRQ voltage
-Message-ID: <nza33yftfuzjdf5fkxwwkfqink4xen7hcfnf5chcn3tmy3qnuu@xqcmqvkdfxs3>
-References: <20241114-tcan-wkrqv-v4-0-f22589d67fb1@geanix.com>
- <20241114-tcan-wkrqv-v4-2-f22589d67fb1@geanix.com>
- <20241114-classy-mongoose-of-philosophy-e9dbca-mkl@pengutronix.de>
+	s=arc-20240116; t=1731576438; c=relaxed/simple;
+	bh=VbgFlXJlb/7oh9X0c+UjDxQAnI9IPS35E1vH1Sh+s7U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ZGOW+WRcxlnQHFMyj8vANXb8uuqHg+rex0M2p9nCkj+OStFfZEF9ekrBRItnaLTA7NCxs0bkP8MBOIGBhl1tBwrCQ7Nixr9owjBPQjHj1BI+gfgY04SBXopGjwvR4Ug3NGapJmwDiJiU9XO0ZIXopGK5kVlSKXXPlp4hKzjAhWs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ogd6Lhbh; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AE40Dh3022553;
+	Thu, 14 Nov 2024 09:27:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	gcJ1fKi9HTrwjxEXa7zd8t8E3l3ljn0edYOqB0P7RBw=; b=ogd6Lhbh/DHgqItk
+	PFsAs8dzsdpOj/tu1MkuNAavexCQ2yXeOD6JSwg4ONWAj+Sp3SQtfALj1vl1BDtI
+	HreVUk3hOTc9+s85ODtoX3tqMIq/js7tC+T5Hn0gfSktBTBRax+HHJ1gWJotTSA3
+	v+2M3dgwME7c2fOhHBjQHbixGrHdQwqgE1kAaAiUKiT3Vtdqgz3duqNvH/IjZe5r
+	aTAZoEt5Sg9M60oOmbVs5D7R4J+9hi65Ylx5z1Puug4+yHMAZaRTE+QJRjdtZgj9
+	++5+GLueBcGHvW77rjCZDLGn7KpdrAD2j4QrNcgk5aBWs88o5y/b7USaFVsFlqHp
+	1IYXdg==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42w9sv1tey-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Nov 2024 09:27:02 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AE9R1ea002603
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Nov 2024 09:27:01 GMT
+Received: from [10.233.21.53] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 14 Nov
+ 2024 01:26:58 -0800
+Message-ID: <81eda2a0-d734-48bf-bdc4-db9f80d001e1@quicinc.com>
+Date: Thu, 14 Nov 2024 17:26:56 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241114-classy-mongoose-of-philosophy-e9dbca-mkl@pengutronix.de>
-X-Authenticated-Sender: sean@geanix.com
-X-Virus-Scanned: Clear (ClamAV 0.103.10/27457/Wed Nov 13 10:35:46 2024)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/4] dt-bindings: qcom,pdc: document QCS8300 Power
+ Domain Controller
+To: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        Robert Marko <robimarko@gmail.com>
+CC: <quic_tengfan@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <quic_tingweiz@quicinc.com>, <quic_aiquny@quicinc.com>
+References: <20240911-qcs8300_binding-v2-0-de8641b3eaa1@quicinc.com>
+ <20240911-qcs8300_binding-v2-1-de8641b3eaa1@quicinc.com>
+Content-Language: en-US
+From: Jingyi Wang <quic_jingyw@quicinc.com>
+In-Reply-To: <20240911-qcs8300_binding-v2-1-de8641b3eaa1@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: T_ulcJ_aR9ZN0cmhtBI5zBn7PoD1HX0q
+X-Proofpoint-GUID: T_ulcJ_aR9ZN0cmhtBI5zBn7PoD1HX0q
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
+ lowpriorityscore=0 impostorscore=0 adultscore=0 bulkscore=0 clxscore=1011
+ mlxlogscore=490 priorityscore=1501 phishscore=0 malwarescore=0
+ suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411140072
 
-On Thu, Nov 14, 2024 at 10:19:00AM +0100, Marc Kleine-Budde wrote:
-> On 14.11.2024 09:52:22, Sean Nyekjaer wrote:
-> > The nWKRQ pin supports an output voltage of either the internal reference
-> > voltage (3.6V) or the reference voltage of
-> > the digital interface 0-6V (VIO).
-> > Add the devicetree option ti,nwkrq-voltage-vio to set it to VIO.
-> > 
-> > If this property is omitted the reset default, the internal reference
-> > voltage, is used.
-> > 
-> > Signed-off-by: Sean Nyekjaer <sean@geanix.com>
-> > Reviewed-by: Marc Kleine-Budde <mkl@pengutronix.de>
-> 
-> I've given my R-b to 1/2 not 2/2 :)
-> 
-> Have you manually added the R-b? "b4" has an support to collect the
-> trailers and add the to the patches with "b4 trailers -u".
-> 
-> With this change, let b4 add by R-b:
-> 
-> Reviewed-by: Marc Kleine-Budde <mkl@pengutronix.de>
-> 
-> regards,
-> Marc
-> 
+Hi Maintainers,
 
-Oh, I see my bad :) 
+On 9/11/2024 4:03 PM, Jingyi Wang wrote:
+> Document Power Domain Controller for Qualcomm QCS8300. PDC is included
+> in QCS8300 SoC. This controller acts as an interrupt controller, enabling
+> the detection of interrupts when the GIC is non-operational.
+> 
+> Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
+> ---
+<...>
+> +          - qcom,qcs8300-pdc
+>            - qcom,qdu1000-pdc
+>            - qcom,sa8775p-pdc
+>            - qcom,sc7180-pdc
+> 
+Gentle ping for the patch apply.
 
-Actually just went thru the b4 manual and didn't see that option.
+Thanks,
+Jingyi
 
-Ran the "b4 trailers -u", It added the Acked-by: in
-https://lore.kernel.org/all/20241114-quirky-aquamarine-junglefowl-408784-mkl@pengutronix.de/
-
-Thanks.
-/Sean
 
