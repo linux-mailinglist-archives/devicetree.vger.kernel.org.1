@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-121811-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121812-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 330289C865E
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 10:43:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BAC19C8670
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 10:49:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E7930282A20
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 09:43:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E69591F2258A
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 09:49:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA1201F6669;
-	Thu, 14 Nov 2024 09:43:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 681761E7C2D;
+	Thu, 14 Nov 2024 09:49:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dHKPGUux"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="E/HleNfG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BECC1E7C2D;
-	Thu, 14 Nov 2024 09:43:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E19F11632F2;
+	Thu, 14 Nov 2024 09:49:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731577400; cv=none; b=f7Qg5j3Hwg2Omd2hEb5HLhFbXLAxg8Vxx6VSbrSMEXKE1aAajo6vZST5v3prs02oPWdDFIpSsJgsL9GRCpmGQ8Z36MsOJHLGxrnF5GW4e3dAfBb6gzdt9KDfZoptgSKO5l7fjEZXk+pq6qv1kXvxl44kWxek51b5NWVuGeQYt7M=
+	t=1731577765; cv=none; b=uVYZL5nTrU6iu4zdJOP+Zub2xa48Rg/tqOz9fy9vAhTnuQDs2miYVaJ4O+O1jERiIX7E6JDbVUTgGP8Mu410YTlADFZEAURYMtcTGPLc666Ac35G19plI1pp4Gw+P0dwIZv1vI/FgmQy1GGLOnxvyfO/RzmP2iomhxuXF0d3xGE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731577400; c=relaxed/simple;
-	bh=25AUdCDFztM/MxjBrIsJOd7NjN+c7svZzT3gV+41nSQ=;
+	s=arc-20240116; t=1731577765; c=relaxed/simple;
+	bh=LBDgTy1qkvDaPSlehfadhtmiLxFZBW+A5WLrGZyTGyI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Snlx5Ldbs4T4mDiKFpt/R5wIqGcGGkKdMlXPTUwEiHVwRJkKXEKloEQn0N8cFF6hDfyYrhJj1wW8bP0X8xsCiQskshyMrWU96qlbUHsO+b64JehPusvydC1PQMLL5QV0f/XB0lVWMKvuazmHSbOC5n78Z/kob6YD/tfAu1MwSVU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dHKPGUux; arc=none smtp.client-ip=209.85.210.178
+	 In-Reply-To:Content-Type; b=D0heyECeWl3md9COOys+wDps04fQTtd3plaC09DZjfMU1D+xy6QlcPzcEgXcY4A2kc6NYiUr0lu6JZWRb+xozFRJwzUmlJTdAaRkDA7FqPI1UMgh/QXJTN/01DaaycxTr7UfpUgkvBeZRk7URoM640XdgpwrynPQgNp/6fdpyPA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=E/HleNfG; arc=none smtp.client-ip=209.85.161.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-71e79f73aaeso270269b3a.3;
-        Thu, 14 Nov 2024 01:43:19 -0800 (PST)
+Received: by mail-oo1-f44.google.com with SMTP id 006d021491bc7-5ebc05007daso158043eaf.1;
+        Thu, 14 Nov 2024 01:49:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731577398; x=1732182198; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1731577763; x=1732182563; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7E3oRv+rq/XKtcZoaXZsJTQg3amz2zyCTxOxkN0m2BA=;
-        b=dHKPGUux1yZSNL13UN2Oug0+aum7KO2Sbq3dUdUlrY0clb57pDomvyQNxpYXTnheXQ
-         bG6Ybq9YPEg63YmyvHkyTnZjpBIMR5OJkda4tYYu7Tt7iyQsIrZD4K/u9pLkWTde/roo
-         guWDQ6G3xXXsJHPoUa+JbILeVsO8WSrzHMFDLuDikwPFtsk/jbjlnyzc+roChHay/woE
-         vKTTmEXGB6ajZ85nWKlWiJEclJ0ySrQzbJVl0oumB8L4wQMyqeCW62RHdwTz8IXHcZGj
-         9ST61KlWEK9RI/tpHGaYQm6d/UF7ZAeXU8nMUwa8dyjeggn2Zh+9qw68spp1kZxqoWEx
-         2T7Q==
+        bh=BJ007AyfFSmUh1mOpRxq8pHzHMlQHIiPTiwXlN1yM+4=;
+        b=E/HleNfGtOGBTIMt2dYnwDwh1LsV2jSksnaICYm3xRoh03Nve7gsCThm3pRgQRwXde
+         51ucAcy+4YmFIasZKyn8VvNvjYlSW1AmLRJCNLlEa0T1J/EJjhuBt63qWR+9zhF0NQqf
+         c0CpNyFqANK19H78B5mCb8K5FBt+QbKVGTHGPiy3J6gdzWtNP1036l+WWrYBcYXpcxND
+         45u7hNhCu57qt5YOANBBI5JPBbVKiaYjTetE7+X6XPv+ZZMKxsP6NPafcG/7ljYBBGie
+         7yjQe6Rzcfzof+xEw5QUy9NjR5s/KBj/K3MX8FfHeOBsZ08fQ4PWGJtvVR+i707D4cl1
+         sgtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731577398; x=1732182198;
+        d=1e100.net; s=20230601; t=1731577763; x=1732182563;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7E3oRv+rq/XKtcZoaXZsJTQg3amz2zyCTxOxkN0m2BA=;
-        b=EJGjEWkOWIkKT5QytCZY8aVNLTa1a6/Yfp0uwCw7b1yj3xajNyGNPGUcMJ7EZkR/86
-         W99X7XtFUZ8wfNGkcAQ1FfdVFaiXpATyyRrC8TEpRIWrg8jaYp6NTqgwoUTGRUSD7BRb
-         zZR7TzVUda+Ff3DCFHrB0ylKKdzegKv1DUCuyRFDyrn0JIPIPsecU4HtOM5wVULL/to3
-         r4L8g2y6eNOCLx8pBhse49obDR/rTKFOpap3bKf0oVbnaZIOcMAG6fAkDpie/9Qo7yV3
-         YrHNHBNhAe3OKTQ4v67aEkYoMuFzeJjzM4IgFocfk3nnbioSkeiSGBkZ5cWo7GGPWmE3
-         /N7w==
-X-Forwarded-Encrypted: i=1; AJvYcCUEpQ4qegtsp47+4dLNveavvyTl9XlAUl84I1M3kfttH8Ht1Jt0T0oR4QcN3CFOtDuEHmfZxw7X@vger.kernel.org, AJvYcCUV2x4PjXxI5L+S09fVw963Ot5VarP1JK+f7TA5V6/xYHvr1G3f6btHGcV8yJSkzzhlD0ywGxUST1U8@vger.kernel.org, AJvYcCXNr4vtGw90TCDYL9QQ8Y6ZjXSbJ0lsNpva1350HGIHx3X58nQbNb8563ABeDjMVX5XqrwRLHP0+k0yegtm@vger.kernel.org
-X-Gm-Message-State: AOJu0YwdarHLxtQ0zxmJianSyxh+NZ5msS0ZTqCAO5K5YAGcr1f51Gdz
-	Q59T1JWLshu/4H6/RiX1AtHQV8RSdCwOukF2MKUJ8vM+iabNMZDE
-X-Google-Smtp-Source: AGHT+IE7N5I7GpMECo0it1xEKMgqYnL8RbOemjcjR8CajkVg4l/czbLMGpNGruEWzRMOSH4KompvSQ==
-X-Received: by 2002:a17:90b:3ec5:b0:2e9:5f95:54c1 with SMTP id 98e67ed59e1d1-2e9b173c441mr33338891a91.17.1731577398096;
-        Thu, 14 Nov 2024 01:43:18 -0800 (PST)
+        bh=BJ007AyfFSmUh1mOpRxq8pHzHMlQHIiPTiwXlN1yM+4=;
+        b=KHy6BPj/gbY109uEaGgeGfo/7kBDXQ62IYjtzHsMHxY4OcQl5oUW0gpluM+QrRqC9a
+         VTBC0zUWms7cAc+GF1RBQreywGpe82daj1fvkLJx1WKEyRjeGVoVxKMKduL7W6d/kM/K
+         h5/YMsh1FBO4i9fvWjyjeptro/NaAbFPLn066ZF0E6BF0u6VpW1V1CInONP/ICnJzcG7
+         wsvGIA6s/MHX1NDSCdELyzvQsa751HoJyAPOq0TaH4HvZOnB5sp3WQrtkRLDk2Z6SXct
+         QfSx/zZLNkBLy4mjQlN58XOI6rsmgo6ztR3HAc0ngSf807R73RvnNz1xRTJ2sqtZmavD
+         Vn1g==
+X-Forwarded-Encrypted: i=1; AJvYcCUP+ghGhnPIVC0ApWD//IaPsr02IWYtw/paqsE86rxXhi5HUMa/vfcN+DyT7vhiK9+Q0/8yOMmgu96LsnT7@vger.kernel.org, AJvYcCW6/7aUC3GW7Afg+hKi4FzcyXR+hQQmzUB8CRrt/omVG7EAueBuw5XeOq9Qfe0bepqhjreHOMVRNwz+@vger.kernel.org, AJvYcCXoUFpSfqoghxm6b9MIx+b5tPwpxqjBIhNpenR/6mNT0EnRTX2fCobYNpndR/yz6TDpzKjqopdT@vger.kernel.org
+X-Gm-Message-State: AOJu0YwwKiqSDIrinqr5JptDkGF7//CkLuPUmFHwYXT0ZFtDUKNv/JMF
+	i4EGvT1a3O8b5yyW8nxjdvwN3APRYjo790h6A+7ebOrl4OOflr0i
+X-Google-Smtp-Source: AGHT+IElpYeRFs0SFCU7YxvfDnm+J9VKwBd+r6YY8KKPQksjpdgonuoZU+lvxZoNdrIbZVA3+RzO9w==
+X-Received: by 2002:a05:6830:631c:b0:718:c2e:a193 with SMTP id 46e09a7af769-71a6010a842mr6854545a34.10.1731577762840;
+        Thu, 14 Nov 2024 01:49:22 -0800 (PST)
 Received: from [192.168.0.101] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2ea06f9c51esm783484a91.39.2024.11.14.01.43.14
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7f8b37e01easm713510a12.24.2024.11.14.01.49.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Nov 2024 01:43:17 -0800 (PST)
-Message-ID: <bbc212a7-ae42-461a-b0a9-509838053ab2@gmail.com>
-Date: Thu, 14 Nov 2024 17:43:14 +0800
+        Thu, 14 Nov 2024 01:49:22 -0800 (PST)
+Message-ID: <8e55e276-f2ee-4679-8e0f-ca5afb3653fc@gmail.com>
+Date: Thu, 14 Nov 2024 17:49:18 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,90 +76,48 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: net: nuvoton: Add schema for MA35
- family GMAC
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: krzk+dt@kernel.org, mcoquelin.stm32@gmail.com, davem@davemloft.net,
- conor+dt@kernel.org, pabeni@redhat.com, richardcochran@gmail.com,
- devicetree@vger.kernel.org, joabreu@synopsys.com, edumazet@google.com,
- linux-kernel@vger.kernel.org, kuba@kernel.org, schung@nuvoton.com,
- yclu4@nuvoton.com, ychuang3@nuvoton.com,
- linux-stm32@st-md-mailman.stormreply.com, openbmc@lists.ozlabs.org,
- linux-arm-kernel@lists.infradead.org, alexandre.torgue@foss.st.com,
- netdev@vger.kernel.org, andrew+netdev@lunn.ch
+Subject: Re: [PATCH v2 3/3] net: stmmac: dwmac-nuvoton: Add dwmac support for
+ MA35 family
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, mcoquelin.stm32@gmail.com, richardcochran@gmail.com,
+ alexandre.torgue@foss.st.com, joabreu@synopsys.com, ychuang3@nuvoton.com,
+ schung@nuvoton.com, yclu4@nuvoton.com, linux-arm-kernel@lists.infradead.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
+ linux-stm32@st-md-mailman.stormreply.com
 References: <20241113051857.12732-1-a0987203069@gmail.com>
- <20241113051857.12732-2-a0987203069@gmail.com>
- <173147854152.3007386.10475661912425454611.robh@kernel.org>
+ <20241113051857.12732-4-a0987203069@gmail.com>
+ <b7fb59a9-989e-42b9-ac72-71f353854812@lunn.ch>
 Content-Language: en-US
 From: Joey Lu <a0987203069@gmail.com>
-In-Reply-To: <173147854152.3007386.10475661912425454611.robh@kernel.org>
+In-Reply-To: <b7fb59a9-989e-42b9-ac72-71f353854812@lunn.ch>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Dear Rob,
+Dear Andrew,
 
 Thank you for your reply.
 
-On 11/13/24 14:15, Rob Herring (Arm) wrote:
-> On Wed, 13 Nov 2024 13:18:55 +0800, Joey Lu wrote:
->> Create initial schema for Nuvoton MA35 family Gigabit MAC.
->>
->> Signed-off-by: Joey Lu <a0987203069@gmail.com>
->> ---
->>   .../bindings/net/nuvoton,ma35d1-dwmac.yaml    | 170 ++++++++++++++++++
->>   1 file changed, 170 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/net/nuvoton,ma35d1-dwmac.yaml
->>
-> My bot found errors running 'make dt_binding_check' on your patch:
+On 11/14/24 10:56, Andrew Lunn wrote:
+>> +	if (of_property_read_u32(dev->of_node, "tx-internal-delay-ps", &arg)) {
+>> +		tx_delay = 0; /* Default value is 0 */
+>> +	} else {
+>> +		if (arg > 0 && arg <= 2000) {
+>> +			tx_delay = (arg == 2000) ? 0xF : (arg / PATHDLY_DEC);
+>> +			dev_dbg(dev, "Set Tx path delay to 0x%x\n", tx_delay);
+>> +		} else {
+>> +			tx_delay = 0;
+>> +			dev_err(dev, "Invalid Tx path delay argument. Setting to default.\n");
+>> +		}
+>> +	}
+> The device tree binding says that only [0, 2000] are valid. You should
+> enforce this here, return -EINVAL of any other value.
 >
-> yamllint warnings/errors:
->
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/nuvoton,ma35d1-dwmac.yaml: ignoring, error in schema: properties: compatible
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/nuvoton,ma35d1-dwmac.yaml: properties:compatible: [{'items': [{'enum': ['nuvoton,ma35d1-dwmac']}, {'const': 'snps,dwmac-3.70a'}]}] is not of type 'object', 'boolean'
-> 	from schema $id: http://json-schema.org/draft-07/schema#
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/nuvoton,ma35d1-dwmac.yaml: properties:compatible: [{'items': [{'enum': ['nuvoton,ma35d1-dwmac']}, {'const': 'snps,dwmac-3.70a'}]}] is not of type 'object', 'boolean'
-> 	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/nuvoton,ma35d1-dwmac.yaml: properties:clock-names: 'oneOf' conditional failed, one must be fixed:
-> 	[{'const': 'stmmaceth'}, {'const': 'ptp_ref'}] is too long
-> 	[{'const': 'stmmaceth'}, {'const': 'ptp_ref'}] is too short
-> 	False schema does not allow 2
-> 	1 was expected
-> 	hint: "minItems" is only needed if less than the "items" list length
-> 	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/nuvoton,ma35d1-dwmac.yaml: properties:clocks: 'oneOf' conditional failed, one must be fixed:
-> 	[{'description': 'MAC clock'}, {'description': 'PTP clock'}] is too long
-> 	[{'description': 'MAC clock'}, {'description': 'PTP clock'}] is too short
-> 	False schema does not allow 2
-> 	1 was expected
-> 	hint: "minItems" is only needed if less than the "items" list length
-> 	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/nuvoton,ma35d1-dwmac.yaml: 'oneOf' conditional failed, one must be fixed:
-> 	'unevaluatedProperties' is a required property
-> 	'additionalProperties' is a required property
-> 	hint: Either unevaluatedProperties or additionalProperties must be present
-> 	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-> Documentation/devicetree/bindings/net/nuvoton,ma35d1-dwmac.example.dtb: /example-0/ethernet@40120000: failed to match any schema with compatible: ['nuvoton,ma35d1-dwmac']
-> Documentation/devicetree/bindings/net/nuvoton,ma35d1-dwmac.example.dtb: /example-1/ethernet@40130000: failed to match any schema with compatible: ['nuvoton,ma35d1-dwmac']
->
-> doc reference errors (make refcheckdocs):
->
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241113051857.12732-2-a0987203069@gmail.com
->
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
->
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->
-> pip3 install dtschema --upgrade
->
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
->
-These warnings/errors will be fixed in next patch.
+> 	Andrew
+
+This will be fixed in the next version. And I will correct error messages.
 
 Thanks!
 
