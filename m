@@ -1,128 +1,143 @@
-Return-Path: <devicetree+bounces-121812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BAC19C8670
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 10:49:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AD939C868C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 10:55:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E69591F2258A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 09:49:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 165231F21391
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 09:55:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 681761E7C2D;
-	Thu, 14 Nov 2024 09:49:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6AD31F818B;
+	Thu, 14 Nov 2024 09:54:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="E/HleNfG"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Kigiq40W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E19F11632F2;
-	Thu, 14 Nov 2024 09:49:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D5861F7540;
+	Thu, 14 Nov 2024 09:54:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731577765; cv=none; b=uVYZL5nTrU6iu4zdJOP+Zub2xa48Rg/tqOz9fy9vAhTnuQDs2miYVaJ4O+O1jERiIX7E6JDbVUTgGP8Mu410YTlADFZEAURYMtcTGPLc666Ac35G19plI1pp4Gw+P0dwIZv1vI/FgmQy1GGLOnxvyfO/RzmP2iomhxuXF0d3xGE=
+	t=1731578069; cv=none; b=rgx/4SIv6L5hu3Dm3QNXG+qqYeLVsnSeuZb6CRQzsz7+rj1dt1W8lR1s9Ylsh8kswrT0AlK37NZW6CvfqTMOodAChM8jyaTTRX8UrFSEY1ZzcSPXfQftxj/Q4FhGVnMffXlVAmOTlSCPn9UUKqH5749EN72wQq/SDLOuui46oX0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731577765; c=relaxed/simple;
-	bh=LBDgTy1qkvDaPSlehfadhtmiLxFZBW+A5WLrGZyTGyI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=D0heyECeWl3md9COOys+wDps04fQTtd3plaC09DZjfMU1D+xy6QlcPzcEgXcY4A2kc6NYiUr0lu6JZWRb+xozFRJwzUmlJTdAaRkDA7FqPI1UMgh/QXJTN/01DaaycxTr7UfpUgkvBeZRk7URoM640XdgpwrynPQgNp/6fdpyPA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=E/HleNfG; arc=none smtp.client-ip=209.85.161.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f44.google.com with SMTP id 006d021491bc7-5ebc05007daso158043eaf.1;
-        Thu, 14 Nov 2024 01:49:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731577763; x=1732182563; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BJ007AyfFSmUh1mOpRxq8pHzHMlQHIiPTiwXlN1yM+4=;
-        b=E/HleNfGtOGBTIMt2dYnwDwh1LsV2jSksnaICYm3xRoh03Nve7gsCThm3pRgQRwXde
-         51ucAcy+4YmFIasZKyn8VvNvjYlSW1AmLRJCNLlEa0T1J/EJjhuBt63qWR+9zhF0NQqf
-         c0CpNyFqANK19H78B5mCb8K5FBt+QbKVGTHGPiy3J6gdzWtNP1036l+WWrYBcYXpcxND
-         45u7hNhCu57qt5YOANBBI5JPBbVKiaYjTetE7+X6XPv+ZZMKxsP6NPafcG/7ljYBBGie
-         7yjQe6Rzcfzof+xEw5QUy9NjR5s/KBj/K3MX8FfHeOBsZ08fQ4PWGJtvVR+i707D4cl1
-         sgtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731577763; x=1732182563;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BJ007AyfFSmUh1mOpRxq8pHzHMlQHIiPTiwXlN1yM+4=;
-        b=KHy6BPj/gbY109uEaGgeGfo/7kBDXQ62IYjtzHsMHxY4OcQl5oUW0gpluM+QrRqC9a
-         VTBC0zUWms7cAc+GF1RBQreywGpe82daj1fvkLJx1WKEyRjeGVoVxKMKduL7W6d/kM/K
-         h5/YMsh1FBO4i9fvWjyjeptro/NaAbFPLn066ZF0E6BF0u6VpW1V1CInONP/ICnJzcG7
-         wsvGIA6s/MHX1NDSCdELyzvQsa751HoJyAPOq0TaH4HvZOnB5sp3WQrtkRLDk2Z6SXct
-         QfSx/zZLNkBLy4mjQlN58XOI6rsmgo6ztR3HAc0ngSf807R73RvnNz1xRTJ2sqtZmavD
-         Vn1g==
-X-Forwarded-Encrypted: i=1; AJvYcCUP+ghGhnPIVC0ApWD//IaPsr02IWYtw/paqsE86rxXhi5HUMa/vfcN+DyT7vhiK9+Q0/8yOMmgu96LsnT7@vger.kernel.org, AJvYcCW6/7aUC3GW7Afg+hKi4FzcyXR+hQQmzUB8CRrt/omVG7EAueBuw5XeOq9Qfe0bepqhjreHOMVRNwz+@vger.kernel.org, AJvYcCXoUFpSfqoghxm6b9MIx+b5tPwpxqjBIhNpenR/6mNT0EnRTX2fCobYNpndR/yz6TDpzKjqopdT@vger.kernel.org
-X-Gm-Message-State: AOJu0YwwKiqSDIrinqr5JptDkGF7//CkLuPUmFHwYXT0ZFtDUKNv/JMF
-	i4EGvT1a3O8b5yyW8nxjdvwN3APRYjo790h6A+7ebOrl4OOflr0i
-X-Google-Smtp-Source: AGHT+IElpYeRFs0SFCU7YxvfDnm+J9VKwBd+r6YY8KKPQksjpdgonuoZU+lvxZoNdrIbZVA3+RzO9w==
-X-Received: by 2002:a05:6830:631c:b0:718:c2e:a193 with SMTP id 46e09a7af769-71a6010a842mr6854545a34.10.1731577762840;
-        Thu, 14 Nov 2024 01:49:22 -0800 (PST)
-Received: from [192.168.0.101] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7f8b37e01easm713510a12.24.2024.11.14.01.49.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Nov 2024 01:49:22 -0800 (PST)
-Message-ID: <8e55e276-f2ee-4679-8e0f-ca5afb3653fc@gmail.com>
-Date: Thu, 14 Nov 2024 17:49:18 +0800
+	s=arc-20240116; t=1731578069; c=relaxed/simple;
+	bh=YgbZ4gKbMb8qlLteM1HMPjw+0Lw2ZNYWJQCKQkSr3Ik=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=LT+SRn8z8QsYvGdPojGjKytq3Ni0GVHUjl9DnEXUSmm3irNmfd49NQO3CVW/Jv9UsveNbQXUJ6TxaAqLAzO/q0/KwZC0SXI7KnaVuI7AgZVThzF2b7u+ibS2NcbkbE/pdUt/McYQo8B99E9H3hMJvQWPHSSbE0WHorz6CurJlYE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Kigiq40W; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AE62Mar021072;
+	Thu, 14 Nov 2024 09:54:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=VChT8L5m620aHTiBRgrqhGnswnOpnFsN35L
+	Wr8AjioY=; b=Kigiq40W01rgy3yluUOARAYoDWxEMOL0pvr4OuRYLC6/c5H/g5h
+	PGjPQGUC/LG2SdOkuRmu16epQ9qxs6uPsl683QaSfEp3JTHJ9ostLKmy9MQLZU/H
+	Qxh+dbxSCNCGT2bADMagUBX+Gv6MW1H6mJSfN5zF1tILStjvz6sEEJVGOfkcbyRZ
+	e4OIGntjM5V4byxTEEh+DmiJ5aY4sP2sof7O4ODvEg4G9ElVst7Mt9dttVdSo/ZJ
+	rQ9wN4uzk3HV0ARQnkjMiLL6hRuYtc7GvTTMxYo4Wvoeu5vEO5fQHWQvahbvJGYr
+	a+2IBcXteo5oJnNNgcHPe8JEw0ZfI0SHSYA==
+Received: from aptaippmta02.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com [103.229.16.4])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42v4kqyy80-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Nov 2024 09:54:15 +0000 (GMT)
+Received: from pps.filterd (APTAIPPMTA02.qualcomm.com [127.0.0.1])
+	by APTAIPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 4AE9sDHr007468;
+	Thu, 14 Nov 2024 09:54:13 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APTAIPPMTA02.qualcomm.com (PPS) with ESMTPS id 42t0tkyudb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Nov 2024 09:54:13 +0000
+Received: from APTAIPPMTA02.qualcomm.com (APTAIPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 4AE9sD3i007462;
+	Thu, 14 Nov 2024 09:54:13 GMT
+Received: from cse-cd02-lnx.ap.qualcomm.com (cse-cd02-lnx.qualcomm.com [10.64.75.246])
+	by APTAIPPMTA02.qualcomm.com (PPS) with ESMTPS id 4AE9sCRc007459
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Nov 2024 09:54:13 +0000
+Received: by cse-cd02-lnx.ap.qualcomm.com (Postfix, from userid 4438065)
+	id 7F0B716C5; Thu, 14 Nov 2024 17:54:11 +0800 (CST)
+From: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+To: vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org,
+        manivannan.sadhasivam@linaro.org, bhelgaas@google.com, kw@linux.com,
+        lpieralisi@kernel.org, quic_qianyu@quicinc.com, conor+dt@kernel.org,
+        neil.armstrong@linaro.org, andersson@kernel.org,
+        konradybcio@kernel.org
+Cc: quic_shashim@quicinc.com, quic_kaushalk@quicinc.com, quic_tdas@quicinc.com,
+        quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com, kernel@quicinc.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        Ziyue Zhang <quic_ziyuzhan@quicinc.com>,
+        Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Subject: [PATCH 0/5] pci: qcom: Add QCS8300 PCIe support
+Date: Thu, 14 Nov 2024 17:54:04 +0800
+Message-Id: <20241114095409.2682558-1-quic_ziyuzhan@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] net: stmmac: dwmac-nuvoton: Add dwmac support for
- MA35 family
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, mcoquelin.stm32@gmail.com, richardcochran@gmail.com,
- alexandre.torgue@foss.st.com, joabreu@synopsys.com, ychuang3@nuvoton.com,
- schung@nuvoton.com, yclu4@nuvoton.com, linux-arm-kernel@lists.infradead.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
- linux-stm32@st-md-mailman.stormreply.com
-References: <20241113051857.12732-1-a0987203069@gmail.com>
- <20241113051857.12732-4-a0987203069@gmail.com>
- <b7fb59a9-989e-42b9-ac72-71f353854812@lunn.ch>
-Content-Language: en-US
-From: Joey Lu <a0987203069@gmail.com>
-In-Reply-To: <b7fb59a9-989e-42b9-ac72-71f353854812@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: JDrnGlgUV_uGAjm22tVvRbagA8cZ5USV
+X-Proofpoint-GUID: JDrnGlgUV_uGAjm22tVvRbagA8cZ5USV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
+ adultscore=0 priorityscore=1501 lowpriorityscore=0 phishscore=0
+ malwarescore=0 spamscore=0 clxscore=1011 mlxscore=0 mlxlogscore=999
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411140076
 
-Dear Andrew,
+Update the relavent DT bindings for PCIe, add new config to the phy
+driver add pcie and phy nodes to the .dtsi file and enable then in 
+board .dts file for the qcs8300-ride platform.
 
-Thank you for your reply.
+build dependencies:
+-devicetree: https://lore.kernel.org/all/20240925-qcs8300_initial_dtsi-v2-0-494c40fa2a42@quicinc.com/
+- tlmm: https://lore.kernel.org/linux-arm-msm/20240819064933.1778204-1-quic_jingyw@quicinc.com/
+- gcc: https://lore.kernel.org/all/20240822-qcs8300-gcc-v2-0-b310dfa70ad8@quicinc.com/
+- interconnect: https://lore.kernel.org/linux-arm-msm/20240910101013.3020-1-quic_rlaggysh@quicinc.com/
 
-On 11/14/24 10:56, Andrew Lunn wrote:
->> +	if (of_property_read_u32(dev->of_node, "tx-internal-delay-ps", &arg)) {
->> +		tx_delay = 0; /* Default value is 0 */
->> +	} else {
->> +		if (arg > 0 && arg <= 2000) {
->> +			tx_delay = (arg == 2000) ? 0xF : (arg / PATHDLY_DEC);
->> +			dev_dbg(dev, "Set Tx path delay to 0x%x\n", tx_delay);
->> +		} else {
->> +			tx_delay = 0;
->> +			dev_err(dev, "Invalid Tx path delay argument. Setting to default.\n");
->> +		}
->> +	}
-> The device tree binding says that only [0, 2000] are valid. You should
-> enforce this here, return -EINVAL of any other value.
->
-> 	Andrew
+Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+---
+Have follwing changes:
+	- Document the QMP PCIe PHY on the QCS8300 platform.
+	- Add dedicated schema for the PCIe controllers found on QCS8300.
+	- Add compatible for qcs8300 platform.
+	- Add configurations in devicetree for PCIe0, including registers, clocks, interrupts and phy setting sequence.
+	- Add configurations in devicetree for PCIe1, including registers, clocks, interrupts and phy setting sequence.
 
-This will be fixed in the next version. And I will correct error messages.
+Ziyue Zhang (5):
+  dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Document the QCS8300 QMP
+    PCIe PHY Gen4 x2
+  phy: qcom-qmp-pcie: add dual lane PHY support for QCS8300
+  dt-bindings: PCI: qcom,pcie-sa8775p: document qcs8300
+  arm64: dts: qcom: qcs8300: enable pcie0 for QCS8300
+  arm64: dts: qcom: qcs8300: enable pcie1 for QCS8300
 
-Thanks!
+ .../bindings/pci/qcom,pcie-sa8775p.yaml       |   7 +-
+ .../phy/qcom,sc8280xp-qmp-pcie-phy.yaml       |   2 +
+ arch/arm64/boot/dts/qcom/qcs8300-ride.dts     |  86 ++++-
+ arch/arm64/boot/dts/qcom/qcs8300.dtsi         | 355 ++++++++++++++++++
+ drivers/phy/qualcomm/phy-qcom-qmp-pcie.c      |  89 +++++
+ 5 files changed, 536 insertions(+), 3 deletions(-)
 
-BR,
 
-Joey
+base-commit: eb6a0b56032c62351a59a12915a89428bce68d1d
+-- 
+2.34.1
 
 
