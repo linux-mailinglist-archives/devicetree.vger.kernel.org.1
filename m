@@ -1,123 +1,195 @@
-Return-Path: <devicetree+bounces-121935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5F399C9034
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 17:54:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAF429C903F
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 17:55:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 90B1C1F28E2C
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 16:54:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9BB4A281CD7
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 16:55:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E271D146013;
-	Thu, 14 Nov 2024 16:54:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BD8818CC10;
+	Thu, 14 Nov 2024 16:55:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Y4HGyCmz"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ap37S00P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD7B140849;
-	Thu, 14 Nov 2024 16:54:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98009188713;
+	Thu, 14 Nov 2024 16:54:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731603243; cv=none; b=hmMwTxiWrF1C5GnDukB/CozkiwS/KyuRwrloCgybk+nfOwVdpk46vcX81dV3s9OD6nfwERaEwlD6DPxvBLVGPi/dTNM8m47hjOzry7/J754VoqmbV2Ji+WOan1s2O2ayPuxJ6yIDMnP+3IgCjw7EPeGh+JKEqMwt9dQu7NrEa7Y=
+	t=1731603303; cv=none; b=rzMw/LqKu43Z6nIt2txWbzIZ7Eta0mECsrm0ewDketfBHhzteXgthj1JX38VMhmNH0WqqIx24ktQqDXttCVFstpmIqUmA821LVGoPqiuUbQDhJfuXY4lHyP9qPISVQFVpdv+CXmO7r1hlh6FQO8BYdQ86Ec6lhwoJMd24ygwwUk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731603243; c=relaxed/simple;
-	bh=QM920k9aNzl1SRVOF+Mb8kMbSJzQ15iqDnuxfL7aWDs=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=XNfnhBMTbHs93ePdDwBxxG6QNELjlCIwmYWPF0Y4es4MpWjRfyWA+FIKYt/wTiBzo1Xw7VjQ9asU10c1skzB61y76SgrM80SR2SF3TgeqvupGT6/drOPhVxHJkGLkpWhAwdC6eNY+wnZJhln5eVkRL+oemF3hk8TqJfNtj6o5EU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Y4HGyCmz; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4AEGrZTe070288;
-	Thu, 14 Nov 2024 10:53:35 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1731603215;
-	bh=ljGXTXoD4990Ah9Pen2t1Ipd5y/qyu3l9S5U7tIzAro=;
-	h=From:To:CC:Subject:Date;
-	b=Y4HGyCmzy8cvBefhq9HTJiupT6d8IRIuZvqBtq67y4ir1LgzGfkzgfNGrz56N5dsT
-	 97zcHGyFxrTznbyebQZo5iKpBuRWBhKxtnlWaYfPuAv/AaAh9z+BL7dgq3UThzQPZ+
-	 S6wzpjclHPM193LwvMwRRBTTUOhv3WJxxRcoscGk=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4AEGrZsE023505
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 14 Nov 2024 10:53:35 -0600
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 14
- Nov 2024 10:53:35 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 14 Nov 2024 10:53:35 -0600
-Received: from localhost (chintan-thinkstation-p360-tower.dhcp.ti.com [172.24.227.220])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4AEGrYOh059681;
-	Thu, 14 Nov 2024 10:53:35 -0600
-From: Chintan Vankar <c-vankar@ti.com>
-To: Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, Tero Kristo
-	<kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon
-	<nm@ti.com>,
-        <s-vadapalli@ti.com>, <danishanwar@ti.com>, <srk@ti.com>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Chintan Vankar <c-vankar@ti.com>
-Subject: [PATCH v3] arm64: dts: ti: k3-am62x-sk-common: Add bootph-all property in cpsw_mac_syscon node
-Date: Thu, 14 Nov 2024 22:23:31 +0530
-Message-ID: <20241114165331.1279065-1-c-vankar@ti.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1731603303; c=relaxed/simple;
+	bh=S8Lb7hps0g/gDVO3JIOZvrHBJFRQq2V4LVvCU1kzv6Y=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Bu5bIifvXKJRGoYcBiaf4l9pDond3VVdBe0M+4qB6iP3Ik5WiXs0NniWDwUIP431g6PBoJcAm2RWXKuRj0Iyt0rNUhZ3u79TaIjj/otTpG7xT34jFZ0++HTBHHms96k/ocFcpzRs9k1vWHq3raP+1nHMcEYh5c6W3RQkHtM253I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ap37S00P; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPA id C4E4FE000A;
+	Thu, 14 Nov 2024 16:54:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1731603292;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=nyDG5q7w2xEPN0oIrCDvQSDGLlnU08uwmwLzPZKQe04=;
+	b=ap37S00PYAzc8IMzU00Ufp3ZOxNlO1CS0dS/U1mkVceQtL9gnw4vSB3xwFvK6LUswMfPzX
+	S4LbSbfPU0lX+Z9bOiTAGpCtrr+XFwDDczEdGEiDMjjobmpzXUljqNe2q/NwfAGLYNC+V1
+	w+KWFV/Li0bn/3U8rYyzpaKTGnyliVUU6JU9VFxOS8ZeTh5bf+A3ZwqfBGcmJ/miFpOw3g
+	C2BPmxdeQ4NydQUW1Ohyd7gVftM/Z0r6N7zzzZe4Ow5Nv1HbcCdUlLZwFUco4+w2upPlv3
+	ax0QIkR7OPFbDS1V1ZQFXkIiDFwu933VWa5m8Px3iUDxj1veol4Ot3hzOvqmjw==
+From: Herve Codina <herve.codina@bootlin.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lizhi Hou <lizhi.hou@amd.com>
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	Allan Nielsen <allan.nielsen@microchip.com>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Steen Hegelund <steen.hegelund@microchip.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Herve Codina <herve.codina@bootlin.com>
+Subject: [PATCH v3 0/6] Add support for the PCI host bridge device-tree node creation.
+Date: Thu, 14 Nov 2024 17:54:36 +0100
+Message-ID: <20241114165446.611458-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-GND-Sasl: herve.codina@bootlin.com
 
-Ethernet boot requires CPSW node to be present starting from R5 SPL stage.
-Add bootph-all property in CPSW MAC's eFuse node cpsw_mac_syscon to enable
-this node during SPL stage along with later boot stages so that CPSW port
-will get static MAC address.
+Hi,
 
-Reviewed-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-Signed-off-by: Chintan Vankar <c-vankar@ti.com>
----
+This series adds support for creating a device-tree node for the PCI
+host bridge on non device-tree based system.
 
-This patch is based on linux-next tagged next-20241114.
+Creating device-tree nodes for PCI devices and PCI-PCI bridges already
+exists upstream. It was added in commit 407d1a51921e ("PCI: Create
+device tree node for bridge"). Created device-tree nodes need a parent
+node to be attached to. For the first level devices, on device-tree
+based system, this parent node (i.e. the PCI host bridge) is described
+in the base device-tree. The PCI bus related to this bridge (PCI root
+bus) inherit of the PCI host bridge device-tree node.
 
-Link to v2:
-https://lore.kernel.org/r/20241011110207.600678-1-c-vankar@ti.com/
+The LAN966x PCI device driver was recently accepted [1] and relies on
+this feature.
 
-Changes from v2 to v3:
-- Updated commit message as per Vignesh's suggestion.
-- Collected Reviewed-by tag from Siddharth Vadapalli.
+On system where the base hardware is not described by a device-tree, the
+PCI host bridge to which first level created PCI devices need to be
+attach to does not exist. This is the case for instance on ACPI
+described systems such as x86.
 
- arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+This series goal is to handle this case.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-index 6957b3e44c82..bf12e25ad3fc 100644
---- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-@@ -315,6 +315,10 @@ AM62X_MCU_IOPAD(0x028, PIN_OUTPUT, 0) /* (C5/C6) WKUP_UART0_TXD */
- 	};
- };
- 
-+&cpsw_mac_syscon {
-+	bootph-all;
-+};
-+
- &wkup_uart0 {
- 	/* WKUP UART0 is used by DM firmware */
- 	bootph-pre-ram;
+In order to have the PCI host bridge device-tree node available even
+on x86, this top level node is created (if not already present) based on
+information computed by the PCI core. It follows the same mechanism as
+the one used for PCI devices device-tree node creation.
+
+As for device-tree based system, the PCI root bus handled by the PCI
+host bridge inherit of this created node.
+
+In order to have this feature available, a number of changes are needed:
+  - Patch 1 and 2: Introduce and use device_{add,remove}_of_node().
+    This function will also be used in the root PCI bus node creation.
+
+  - Patch 3 and 4: Improve existing functions to reuse them in the root
+    PCI bus node creation.
+
+  - Patch 5: Set #address-cells and #size-cells in the empty device-tree
+    root node.
+
+  - Patch 6: The PCI host bridge device-tree node creation itself.
+
+With those modifications, the LAN966x PCI device is working on x86 systems
+and all device-tree kunit tests (including the of_unittest_pci_node test)
+pass successfully with the following command:
+  qemu-system-x86_64 -machine q35 -nographic \
+    -kernel arch/x86_64/boot/bzImage --append console=ttyS0 \
+    -device pcie-root-port,port=0x10,chassis=9,id=pci.9,bus=pcie.0,multifunction=on,addr=0x3 \
+    -device pcie-root-port,port=0x11,chassis=10,id=pci.10,bus=pcie.0,addr=0x3.0x1 \
+    -device x3130-upstream,id=pci.11,bus=pci.9,addr=0x0 \
+    -device xio3130-downstream,port=0x0,chassis=11,id=pci.12,bus=pci.11,multifunction=on,addr=0x0 \
+    -device i82801b11-bridge,id=pci.13,bus=pcie.0,addr=0x4 \
+    -device pci-bridge,chassis_nr=14,id=pci.14,bus=pci.13,addr=0x0 \
+    -device pci-testdev,bus=pci.12,addr=0x0
+
+[1] https://lore.kernel.org/lkml/7512cbb7911b8395d926e9e9e390fbb55ce3aea9.camel@pengutronix.de/
+
+Compare to previous iteration, this v3 series fixes patch 5 commit log
+and sets #size-cells to 2 in the empty root DT node.
+
+Best regards,
+Hervé Codina
+
+Changes v2 -> v3
+  v2: https://lore.kernel.org/lkml/20241108143600.756224-1-herve.codina@bootlin.com/
+
+  - Patch 5
+    Fix commit log.
+    Use 2 for #size-cells.
+
+  - Patches 1 to 4 and 6
+    No changes
+
+Changes v1 -> v2
+  v1: https://lore.kernel.org/lkml/20241104172001.165640-1-herve.codina@bootlin.com/
+
+  - Patch 1
+    Remove Cc: stable
+
+  - Patch 2
+    Remove Fixup tag and Cc: stable
+
+  - Patches 3 and 4
+    No changes
+
+  - Patch 5
+    Add #address-cells/#size-cells in the empty root DT node instead of
+    updating default values for x86.
+    Update commit log and commit title.
+
+  - Patch 6
+    Create device-tree node for the PCI host bridge and reuse it for
+    the PCI root bus. Rename functions accordingly.
+    Use "pci" instead of "pci-root" for the PCI host bridge node name.
+    Use "res->start - windows->offset" for the PCI bus addresses.
+    Update commit log and commit title.
+
+Herve Codina (6):
+  driver core: Introduce device_{add,remove}_of_node()
+  PCI: of: Use device_{add,remove}_of_node() to attach of_node to
+    existing device
+  PCI: of_property: Add support for NULL pdev in of_pci_set_address()
+  PCI: of_property: Constify parameter in of_pci_get_addr_flags()
+  of: Add #address-cells/#size-cells in the device-tree root empty node
+  PCI: of: Create device-tree PCI host bridge node
+
+ drivers/base/core.c       |  52 +++++++++++++++++
+ drivers/of/empty_root.dts |   9 ++-
+ drivers/pci/of.c          |  98 +++++++++++++++++++++++++++++++-
+ drivers/pci/of_property.c | 114 ++++++++++++++++++++++++++++++++++++--
+ drivers/pci/pci.h         |   6 ++
+ drivers/pci/probe.c       |   2 +
+ drivers/pci/remove.c      |   2 +
+ include/linux/device.h    |   2 +
+ 8 files changed, 277 insertions(+), 8 deletions(-)
+
 -- 
-2.34.1
+2.47.0
 
 
