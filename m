@@ -1,106 +1,111 @@
-Return-Path: <devicetree+bounces-121943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121944-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C48579C9056
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 17:58:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C1219C90BE
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 18:24:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7BD401F21D7A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 16:58:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 074D61F23AA5
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 17:24:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC8BB18CBEE;
-	Thu, 14 Nov 2024 16:58:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Txv3kyeP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30F91170A1B;
+	Thu, 14 Nov 2024 17:24:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 970A318C930;
-	Thu, 14 Nov 2024 16:58:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F2B36F2F3;
+	Thu, 14 Nov 2024 17:24:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731603491; cv=none; b=CSKup4VSuGQDMh/P2aZ7g/BZZpLNVHlhY2qeTox+gdtMc+4NQvb1qh5E/fEmKfc/ki9b9ett8smGc7LKqif/dEFLWm0UCqb2wcLn5UlCgExNllQ+1WzpbL2qHUQ54aXH3cv75VowJqq8ryrUcq0yW3UBLarqx2oLlElFbLczkxU=
+	t=1731605066; cv=none; b=JFmrYecGKkBCqTinhfVY0LyYTOahX3LE+nrXFlTMOl0iAkJQIzHsUgWs6c4Ry1ej3t5kIKJWEZq/ls5Jn/rDoSMcKsPyxkaD92FV9z5bBogSUHk9lsaa2nsuvLbzZr4ZPppHZKwtBJqcavs1J6pl5frnfMa17jAGf7mQRtV7tqk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731603491; c=relaxed/simple;
-	bh=1NYyfhvpaHaoMxKldegCUmIUdIQjsXmFWCzEU3/3wjY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=ZzvGVIV64MNNW444YmNZPElFoQPV7ynBAfVV5fZTkcuJo2zurlFjb9Ncw7dw1RiXVEa3clkEdyeEWuv+iZfQgG/r41LGftIGk/GzdTGy8rB9lebIRU639wPJH6+Bnk2vr938nsRfey2xOhi9pQKTvKUUByT997g3kh3N961aKgQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Txv3kyeP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4BD8C4CED0;
-	Thu, 14 Nov 2024 16:58:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731603491;
-	bh=1NYyfhvpaHaoMxKldegCUmIUdIQjsXmFWCzEU3/3wjY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=Txv3kyePwuqcJtw5NY64raF6B9OwQI8iVh0PNbb+oJ0JU2vE4KZaX0Ihnr4sx2Jzq
-	 V2ApIeHtIW4oIQs8/udP7l1uZnR4q66FeTOB6xAy5HeFsbjE75KnoBvEmHhf5cdJkG
-	 9B18OBRKuqpUdzjTC5/lgqMB5KtIPN+3YiAMxlDPqkZXlCZodBbsPibMGqhroPSRpv
-	 ovS3qlDR3elMMusvMcvGv+rlRMdKIfLXxLu/GrGbS+upKlfRf98TGAOZEgj/xRl1zd
-	 GUYl4XDOw3E6ogbhWOJbPxYCPVM/Xqo2Tie7D4K1EIbpA6zFeQpaWDwco2c0tZqnWF
-	 JdG5Q3Z6MxZ3g==
-From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Alexandre Belloni <aleandre.belloni@bootlin.com>, 
- "Hendrik v. Raven" <h.v.raven@merzmedtech.de>
-Cc: linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org
-In-Reply-To: <20241114-simple-mux-idle-state-v2-0-a30cb37d2be2@merzmedtech.de>
-References: <20241114-simple-mux-idle-state-v2-0-a30cb37d2be2@merzmedtech.de>
-Subject: Re: [PATCH v2 0/2] ASoc: simple-mux: Allow to specify an
- idle-state
-Message-Id: <173160348868.529304.8793310575318436684.b4-ty@kernel.org>
-Date: Thu, 14 Nov 2024 16:58:08 +0000
+	s=arc-20240116; t=1731605066; c=relaxed/simple;
+	bh=WbvPJ/1CZUfK3NNJ4mz4wNl1sWlz0r7+ODQKpS/WNUg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bOjIh0CqxHu19T5IE8Fb4tGucr3ov82k3TDykMnNM+IH072MdtLYG2tFdegyRJvs8npM4XDgV41/KiOVpGzGf+ExCzAzkoXB8IeXxWzQTEinqiEqj+ig2APzHnbQnCnfFjZ60cnvxluJiMyJJkM8XyIaU51orKgWlrycHnOsOjQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-20e576dbc42so10413115ad.0;
+        Thu, 14 Nov 2024 09:24:24 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731605064; x=1732209864;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4KfOJtzfwH/T6BnCgNIk5RTMp+CeuzSWNDpYp8Af7B0=;
+        b=HsHSAeqdAds16DMwNKeQJS0bWMsmOuEAeXlf2MShTAWXRTvw1iA0iI7iwNLhC66wmH
+         WlQ1XA6vkJDV45+0dQ7WRXnBjoDaBt0t/BrYQ6UiuC71pgVGyHinpkhII5k9VK8HKEb5
+         IACtAdPW2qAwuSlhfoqomuflYdhcbQTKGO9iQNXO1pdYsfY2vmmGA/Eb/UU1ck1hKBZy
+         XWLWlb1octl5L+iyneXxMxVQnbaNxdklt6aiLZaWBXP1zJemuFkripP604Q36uMDN8W8
+         kz+VGxwHCBPoJ2/Ds3cTMZueNMSa9QbNpBpX/pD4QwV6DSgNQlY07jKJpl2VcpTmybTn
+         FDwg==
+X-Forwarded-Encrypted: i=1; AJvYcCV5pFgfpmWWsWD+Kua5WcRJEr4nReROddmdSZXqY2GNUi2ne/ylRBJfZ4My1tZP9A85ctUClDZhgAuP@vger.kernel.org, AJvYcCWkkLmkWTNrQNLKOspI6Un6omLLd8CovW5+RdZ8ipi6vsmGexxdJekHrNW7jC1H0FuqI3VmznlvvrOr@vger.kernel.org
+X-Gm-Message-State: AOJu0YxDBCuhh4WRAzP9lTEZt6yI0zDi+0rfp5DZ5PGHGn0pZPPqwA7l
+	QAOTugZ/dPohe90vU7rG6phfOsRdTTpIbU2TEIGyRPBaaRm8RC0/
+X-Google-Smtp-Source: AGHT+IHZa97Hmrsw68sqOZYGtSf6kmlJNEEpgylzpOkqT7/MU1vF03ZIjf4UlEa0R6ZwFWAsadnmHw==
+X-Received: by 2002:a17:902:c942:b0:20b:5231:cd61 with SMTP id d9443c01a7336-211b662f252mr88839895ad.24.1731605062296;
+        Thu, 14 Nov 2024 09:24:22 -0800 (PST)
+Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2ea024bd2c7sm1585144a91.34.2024.11.14.09.24.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Nov 2024 09:24:21 -0800 (PST)
+Date: Fri, 15 Nov 2024 02:24:19 +0900
+From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+To: Damien Le Moal <dlemoal@kernel.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Rick Wertenbroek <rick.wertenbroek@gmail.com>,
+	Niklas Cassel <cassel@kernel.org>
+Subject: Re: [PATCH v5 00/14] Fix and improve the Rockchip endpoint driver
+Message-ID: <20241114172419.GB1489806@rocinante>
+References: <20241017015849.190271-1-dlemoal@kernel.org>
+ <117828c6-92c4-4af4-b47e-f049f9c2cb7b@kernel.org>
+ <ed723fe1-e243-4a9e-8d1c-f29461d07cb7@kernel.org>
+ <20241113175222.eh76hksyj6sptwvo@thinkpad>
+ <20241113205900.GA1184086@rocinante>
+ <11cae8ab-a46b-47b4-b919-f7021057dc11@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-355e8
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <11cae8ab-a46b-47b4-b919-f7021057dc11@kernel.org>
 
-On Thu, 14 Nov 2024 12:01:24 +0100, Hendrik v. Raven wrote:
-> This series adds support for the idle-state property from the mux
-> framework to the simple-mux audio variant. It allows to specify the state
-> of the mux when it is not in use.
+Hello,
+
+> >> Sorry for the late reply. Things got a bit hectic due to company onsite meeting.
+> >> I'm going through my queue now.
+> > 
+> > Thank you, Mani!  I took this over and pulled this series.
+> > 
+> > You and Bjorn can have a look over the changes, if you have a moment.  That
+> > said, at least to me, the changes looked good.
 > 
-> 
+> Thanks. But the kernel test robot already complained about a build failure for
+> the rockchip branch.
 
-Applied to
+We did see this in our local testing environment, too.  Albeit, I didn't
+get around to moving the commits before bot picked the branch up.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+> The series needs to go through the endpoint branch as the .align_addr
+> method is only defined in that branch at the moment.
 
-Thanks!
+The changes are now together.  Thank you!
 
-[1/2] ASoc: simple-mux: add idle-state support
-      commit: 2b974284aa073d6e2936f9032e8ad7b99480b5b8
-[2/2] ASoC: dt-bindings: simple-mux: add idle-state property
-      commit: 3b7e11a0116c30848d44429650ad80f9cc3bd963
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+	Krzysztof
 
