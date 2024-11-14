@@ -1,103 +1,185 @@
-Return-Path: <devicetree+bounces-121951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C3D89C9212
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 20:04:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C15B19C925B
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 20:22:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96265281275
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 19:04:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46CA61F2323E
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 19:22:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41AD818DF89;
-	Thu, 14 Nov 2024 19:04:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9F7B19CCF9;
+	Thu, 14 Nov 2024 19:22:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tr3txAoX"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Yqkehs3T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ECBB1487CD;
-	Thu, 14 Nov 2024 19:04:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A70119939D;
+	Thu, 14 Nov 2024 19:22:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731611089; cv=none; b=PeXi8YZw+nqka3wS+La40WBYsbY5e5w4z1dVeDI+U3xBRyXJdWNAFsKHk4IRvkHNm1+fI2ealJ1Q1UlGk81RfC2f0jUMRXVjvHCfWiTAxfaY6EGMqRNHFcEVnCus73AVZfPL/fS6dMp2FpTk2Fk4flWouHWJ1hB0eo95aDkW9wQ=
+	t=1731612168; cv=none; b=KOMtTg9v9zuQ9TlFBPrvmlnD9rbSld5QHs+BfqqvviXzQOt2m1cETDST5odC+NFNLq1unl6fke+KQ7X6v/CpYq3d7aVb2wwbAjfhrX7s6YtahPqUlHcRTM2pseEqWtkCD0JHAgHkU1mYPFyf/Gt7AqFw2oqMFkjVdoR9seTdEs8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731611089; c=relaxed/simple;
-	bh=BO0ocrdM8qppSqW1SjWnEfOdpwdtAHOAMkaqKecG0Lo=;
+	s=arc-20240116; t=1731612168; c=relaxed/simple;
+	bh=JRi8xKxGuuE+b0jHJ+Vql53V2Sw0uR0okGWsErcdffQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I9ejgApOOJJPXwpSYPsil96jseJQl9fMIFPNttcb16/8Ln3kQT4swN5nrykbpTANSf+h5kwGcHUsXX5kVd9mCMnLMWcwT//XcnULLJxyJcbPneEQ8VDFy5ZsDJsJzQPhTu3icqMdnNZr5wPGn4Pp/13W1PC398kTHiIAa6T6cuQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tr3txAoX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8297CC4CECD;
-	Thu, 14 Nov 2024 19:04:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731611088;
-	bh=BO0ocrdM8qppSqW1SjWnEfOdpwdtAHOAMkaqKecG0Lo=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=IdrOtqKtRE80koWJIAUu8ZposQJKt3CbAZmxV42+AXXeLl1yVJsI+gwHh0Yv9Zuw6zlZ7XmeDeSvzTTq/fjy8ReeRtgHkYygLfurc+Lmgi+C1rVah6W+E7a5wPPe/fYTORgnMCVbTesqCSL3swMEWtnMi1MCOfyuCa17rcDBMC4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Yqkehs3T; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1731612164;
+	bh=JRi8xKxGuuE+b0jHJ+Vql53V2Sw0uR0okGWsErcdffQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tr3txAoXtAXT5bN7zR3CtuwXVxxigCyNCfYdRUHQbWfKrqZ61Rg927F8rtYckWtYo
-	 k/k4qWwcpmnltWeU8AftQe0dN2t5V2o7lPTQgysNsdn/8C05fE+xW0sSqx4wE5Q1Rb
-	 sJxsDsR+qsXa9ge0klkjXIxM/oJtejumsMwhQ9FotePswtU2W+pgYOEVfISQN9YqDc
-	 QGCXpGPBJYBVVMJXL9/whHMlPx/n4ukWIP8FW4ih9SMYLc0dBVcPjN/KFZUUxKIsS4
-	 80AtBvFtHXF6DWKOQMOgTVvgjYw9heELRrvTvV6Rs7Jl0mpphqq6xoH3xCWwN04KLo
-	 1LEfksIezO9iQ==
-Date: Thu, 14 Nov 2024 19:04:43 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	b=Yqkehs3TrUIuXJhUJQV0HpIYhnyj2ep62TqiK6605+0AuNb+Ie3PObfpQ3qgk5Bdu
+	 PLhwrXLEWqQEHPdM3en8D8z79kKxPxDDh4M+C4yC6aNxeJio+hyvyZ0aN/ixk6rNJb
+	 UduvP3x+5asy+/QrE7Qu36caEXlA+Y5GJ5lFJnX5it8BERejomH5Blxmm5kCsL9Bjh
+	 RVp28VQ1E3WeOVM+o3m8a4OiFpHPx8EWEfx9BH//KOLwhpoBlIqsM+uwZcb+v4tdsj
+	 MNlj22eoru+8XGoTvwzC5bk00i+mITI1XejHZc8ZlBAb0Nl7FYt0t3FqRY7ws0+rxo
+	 WqQvyaW17HrXQ==
+Received: from notapiano (pool-100-2-116-133.nycmny.fios.verizon.net [100.2.116.133])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: nfraprado)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6856D17E377C;
+	Thu, 14 Nov 2024 20:22:40 +0100 (CET)
+Date: Thu, 14 Nov 2024 14:22:38 -0500
+From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Michael Walle <mwalle@kernel.org>, kernel@collabora.com,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/3] media: dt-bindings: media: i2c: Add IMX462 to the
- IMX290 binding
-Message-ID: <20241114-affidavit-granola-ee8a7bb76d35@spud>
-References: <20241114-media-imx290-imx462-v1-0-c538a2e24786@raspberrypi.com>
- <20241114-media-imx290-imx462-v1-2-c538a2e24786@raspberrypi.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Biao Huang <biao.huang@mediatek.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Andrew Halaney <ahalaney@redhat.com>,
+	Simon Horman <horms@kernel.org>
+Subject: Re: [PATCH v2 2/2] arm64: dts: mediatek: Set mediatek,mac-wol on
+ DWMAC node for all boards
+Message-ID: <d441b614-0b71-410f-af4e-30cb164d9cd5@notapiano>
+References: <20241109-mediatek-mac-wol-noninverted-v2-0-0e264e213878@collabora.com>
+ <20241109-mediatek-mac-wol-noninverted-v2-2-0e264e213878@collabora.com>
+ <bdbfb1db-1291-4f95-adc9-36969bb51eb4@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="UJbfj84JWYiL4PQf"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20241114-media-imx290-imx462-v1-2-c538a2e24786@raspberrypi.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <bdbfb1db-1291-4f95-adc9-36969bb51eb4@collabora.com>
 
+On Thu, Nov 14, 2024 at 10:26:34AM +0100, AngeloGioacchino Del Regno wrote:
+> Il 09/11/24 16:16, Nícolas F. R. A. Prado ha scritto:
+> > Due to the mediatek,mac-wol property previously being handled backwards
+> > by the dwmac-mediatek driver, its use in the DTs seems to have been
+> > inconsistent.
+> > 
+> > Now that the driver has been fixed, correct this description. All the
+> > currently upstream boards support MAC WOL, so add the mediatek,mac-wol
+> > property to the missing ones.
+> > 
+> > Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> > ---
+> >   arch/arm64/boot/dts/mediatek/mt2712-evb.dts                   | 1 +
+> >   arch/arm64/boot/dts/mediatek/mt8195-demo.dts                  | 1 +
+> >   arch/arm64/boot/dts/mediatek/mt8395-kontron-3-5-sbc-i1200.dts | 1 +
+> >   3 files changed, 3 insertions(+)
+> > 
+> 
+> ..snip..
+> 
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
+> > index 31d424b8fc7cedef65489392eb279b7fd2194a4a..c12684e8c449b2d7b3b3a79086925bfe5ae0d8f8 100644
+> > --- a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
+> > @@ -109,6 +109,7 @@ &eth {
+> >   	pinctrl-names = "default", "sleep";
+> >   	pinctrl-0 = <&eth_default_pins>;
+> >   	pinctrl-1 = <&eth_sleep_pins>;
+> > +	mediatek,mac-wol;
+> 
+> The demo board has the same WoL capability as the EVK, so you can avoid adding the
+> mac-wol property here.
 
---UJbfj84JWYiL4PQf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Not sure I follow... If we omit the property here it will use PHY WOL instead,
+while the genio 1200 EVK has the property, so it will be using MAC WOL, so
+they're already the same and omitting will make them behave differently...
 
-On Thu, Nov 14, 2024 at 04:01:14PM +0000, Dave Stevenson wrote:
-> IMX462 is the successor to IMX290, which is supportable by
-> the existing IMX290 driver via a new compatible string.
->=20
-> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Let me recap to make sure we're all on the same page:
 
-You've got "media: " twice in $subject.
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+This was the WOL configuration for each board before this series:
+MAC mt2712-evb.dts
+MAC mt8195-demo.dts
+PHY mt8395-genio-1200-evk.dts
+MAC mt8395-kontron-3-5-sbc-i1200.dts
+PHY mt8395-radxa-nio-12l.dts
+PHY mt8390-genio-700-evk.dts
 
---UJbfj84JWYiL4PQf
-Content-Type: application/pgp-signature; name="signature.asc"
+After patch 1, they all get inverted:
+PHY mt2712-evb.dts
+PHY mt8195-demo.dts
+MAC mt8395-genio-1200-evk.dts
+PHY mt8395-kontron-3-5-sbc-i1200.dts
+MAC mt8395-radxa-nio-12l.dts
+MAC mt8390-genio-700-evk.dts
 
------BEGIN PGP SIGNATURE-----
+And after patch 2, the remaining PHY ones are set to MAC:
+MAC mt2712-evb.dts
+MAC mt8195-demo.dts
+MAC mt8395-genio-1200-evk.dts
+MAC mt8395-kontron-3-5-sbc-i1200.dts
+MAC mt8395-radxa-nio-12l.dts
+MAC mt8390-genio-700-evk.dts
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZzZJywAKCRB4tDGHoIJi
-0tBiAQD5ax1UE6LgvKkKSHs+2Rgk33ii2RN+pg21HWrkUGrpSwD/e3Ab1r7f0g6Z
-5C3Tkpi3lfXWYPKcXSjldPYCGPZEsgA=
-=IwPX
------END PGP SIGNATURE-----
+The only board I have in hands and am able to test is mt8390-genio-700-evk.dts,
+which requires MAC WOL to work. For the others, your feedback on v1 was that
+they should all be set to MAC WOL. Except for mt2712, which you were not sure
+about, but it was already set to MAC WOL so we're keeping the same behavior.
 
---UJbfj84JWYiL4PQf--
+That's how we got to adding mediatek,mac-wol to mt8195-demo.dts,
+mt8395-kontron-3-5-sbc-i1200.dts and mt2712-evb.dts. Let me know if there has
+been some misunderstanding.
+
+Thanks,
+Nícolas
+
+> 
+> >   	status = "okay";
+> >   	mdio {
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8395-kontron-3-5-sbc-i1200.dts b/arch/arm64/boot/dts/mediatek/mt8395-kontron-3-5-sbc-i1200.dts
+> > index e2e75b8ff91880711c82f783c7ccbef4128b7ab4..4985b65925a9ed10ad44a6e58b9657a9dd48751f 100644
+> > --- a/arch/arm64/boot/dts/mediatek/mt8395-kontron-3-5-sbc-i1200.dts
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8395-kontron-3-5-sbc-i1200.dts
+> > @@ -271,6 +271,7 @@ &eth {
+> >   	pinctrl-names = "default", "sleep";
+> >   	pinctrl-0 = <&eth_default_pins>;
+> >   	pinctrl-1 = <&eth_sleep_pins>;
+> > +	mediatek,mac-wol;
+> 
+> I'm mostly sure that Kontron's i1200 works the same as the EVK in regards to WoL.
+> 
+> Michael, I recall you worked on this board - can you please confirm?
+> 
+> Thanks,
+> Angelo
+> 
 
