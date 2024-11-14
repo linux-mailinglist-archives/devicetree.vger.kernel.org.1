@@ -1,130 +1,167 @@
-Return-Path: <devicetree+bounces-121894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0317B9C8BE0
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 14:32:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A15FA9C8BCC
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 14:28:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A8DF0B24DDD
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 13:26:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4AB251F259E2
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 13:28:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 653E61FAEEE;
-	Thu, 14 Nov 2024 13:26:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BA071FAEEC;
+	Thu, 14 Nov 2024 13:27:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="h7cUMFOS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hODF3/e9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBD1B1FAC3D
-	for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 13:26:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2D251F892A;
+	Thu, 14 Nov 2024 13:27:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731590805; cv=none; b=uGGAlx5NH7DpKv+NNninO8DlMc96dCXSL0qxwBngwAgOLlZQJrfyvVtIdLsBPK/GOLZlBPvOjZrwo4BtvjB6vIJ+n/L42JiBdGKKYxX8x939NQWFWAE76LtDY1PcyCvvR5yAm+XnSTxIrPfA22yYrK/j+7wgg4dzfM9JU0aG/HY=
+	t=1731590873; cv=none; b=JlLNoS4a7+YZQSjGIkAMvW3evRO05eEOM/byQMZf01HJSfCsxqJABDU5yHUfFSGP53VEoOwl7IYikUz6QC2SICVXkcTjJ3L5avVGmt1q8DiQDb3LqSmReIxeUUhDUTcSxOp4fQ+Y9pYbLMTvr7tLL+5ah3wFMKkg5jAbXCz1qIw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731590805; c=relaxed/simple;
-	bh=HC8zIVJhmZGBaTgVFGCULFt5nrR2kYgDBpJlRO/4s24=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MBVQAdppsYypLCW029J0qhDCPlUfeDa93QDUEVazeczIYGwh87IuZAdoaHTELFHc+pgWJDJp1zt31Xyll1P2/lkOo23fty6BmnsgPN0Ev3x+ZCux2ie75mCRyk7ZFxeYXSNtx5QaG59IjTaLAE1qaD1EuhVumFvjyU/syiJlzGY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=h7cUMFOS; arc=none smtp.client-ip=209.85.128.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-6e5cec98cceso5401457b3.2
-        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 05:26:43 -0800 (PST)
+	s=arc-20240116; t=1731590873; c=relaxed/simple;
+	bh=ky05wBui/UUMyIppkUyYaFIS9tjMUZWuH8y0o8wOrMk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=hFAnlCant50XkJlqTOFrYilN5yBjv5S35jSCFBSKpH5tn31EVdy7mVg4an+4ur8E+ziOXVlU9pGNe8/aJfGqWGY0Iq+sbPt+Xw24Nx2JeNG4/0amXrMwpa2ierEVCIGjcb5/VEI3niUQqnxfFRRa4lytLxvwhYpEZoKvi8t4cB8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hODF3/e9; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5cecbddb574so775718a12.1;
+        Thu, 14 Nov 2024 05:27:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731590803; x=1732195603; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=44Uknm2sw9kBbdVK3KPiUzPorxfNwDSfI3ZnmRNP3ac=;
-        b=h7cUMFOSzOMwGjm7rgA8orgvarcVteVUJ4CkUj4NRaU59IYac7yOM2SiiOQ0MESCe2
-         /we5kxWZUkWuqxTUemeMhH2RE7V5wMrYqri9IzafZr6y3EorMywjv3AzVIDcoldl0vcH
-         8om2WME2s7tA+NUcVCXLfq7Hdg7OF5WGH6VqJ5FrvQXvCamuDIyqmlvDatGnK/UFnICG
-         JP6/rt/8eC5xWvL4L8zm1nNsyRv2IBJHQFLjbMmMhW7ObHaV731Sh6Z0h5UdrJEDNv/A
-         RotY5uqhilS8A1pkWkyV3nx+37K7ktNFtkdDErUSQeB7Z6yHS9s9dMypdlM/k+QccPzs
-         jFSA==
+        d=gmail.com; s=20230601; t=1731590870; x=1732195670; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=FxK1pZMle+UL0Q3Fj0BL45qPqGkV4zQA1+MO9PYETzw=;
+        b=hODF3/e9I5z23J2Uiq1kScM6XjPBkmvJG1JVTPfTljhgl9wUrVVuzx3z5EqTeAECGT
+         aY1SkUwUe8FDqZuZ+6s8GDW7RmDUiKiUzaNcWVyyk+q0ANg8EK6sN9EI05m/r+8YEEme
+         OYn2cHSOhfTpK0HF5+1eDQwy55C4n5eRLX6QlKhlzEvms2oseJzrOn8svVFRq6txbG/7
+         seTpfTynWdN5RY/XnjvvA+obm6SmFWVMWpeVnFvhPzeIQty6Ra8sQk/Qq+0WzTPvP0n2
+         6H3JT8pW8x5KfqC3qx3O321NgW9vYKHus/HqqY8PwJ6+8Ef7F/YWqPd1a6cMFTU8XGOY
+         PJKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731590803; x=1732195603;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=44Uknm2sw9kBbdVK3KPiUzPorxfNwDSfI3ZnmRNP3ac=;
-        b=dC4FYogmjYeSlEhE9ybCbBtIoaI5e+pok3WE1WOp/eQXWqVCdCSl5qbtG/vQpTUstp
-         Za60gfA5K7x6FsYG9Ou/Mwb1BuNh3ImbBUeNqElDbSRRU6auIY3otLbophzT3gmGQCjC
-         WZQJmATFTiEzfooBSyqyQ8m65G5j2zwUK9GRv+n3pw5yUnJ+HhTF6popZh8JwCXOm5xj
-         bPJa9DKTQ845hmO1zfJnLnUAify+2w2rYKV9tw3EEyQC52uYRpSXCbW6aTgzlS2EicrA
-         1Vq93VJhQKoSTy3nBjqmhVLXk2qoBf1AvAh6gRva77POUFgKl2Vy0GElJ9nQsxuHJaaC
-         d+oA==
-X-Forwarded-Encrypted: i=1; AJvYcCUg8XBerKpY2BozjOTY81BQK23+NjVUmkFF0PEF618MFjkmeJAp0Hec8Vcr4whZGybDDu8pbQJ3xw0f@vger.kernel.org
-X-Gm-Message-State: AOJu0YyQbtWTfw8Afw/oaiI6vr+v/63/eDJQ/fKh8mBQjz7UIMAEP/fp
-	KcTQoSvmvXVinmsj3Y5mMqRvDePeewZlwjMJD46WXIywfYzVSqhHHdrUP9poRmH3Xs0BJPz9zz+
-	q/fxae+2idmKS/8b/mQhmv1iathrUXgdB27qtaQ==
-X-Google-Smtp-Source: AGHT+IFwf8z1mFNYgsE8PD3lTDBZomFAHFwSNm4/O3SWdpkSZXwgnQCoA5dTaVPjasFbh6e4N903GF7+1g2FDtRLHK4=
-X-Received: by 2002:a05:690c:4482:b0:6ee:3f5e:1c18 with SMTP id
- 00721157ae682-6ee3f5e2b1amr33209767b3.4.1731590802836; Thu, 14 Nov 2024
- 05:26:42 -0800 (PST)
+        d=1e100.net; s=20230601; t=1731590870; x=1732195670;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FxK1pZMle+UL0Q3Fj0BL45qPqGkV4zQA1+MO9PYETzw=;
+        b=MM+v3fSlyQt7BHt6KUU4admuwwsjzb427eEIyjmmpyrz9smGWUE2lL79Y6N8WY2t1E
+         HCjoc1CWX0k0mA0xf446pRN4u5GNRHjQm3diieLD4N6WPhxVWeg8gw0XKQ2oIX+u07QO
+         JjR/NAQeEqQF3YLY8erdKxkDKHhDAhp0q8xBE34hXQ/u6BS0mhm3MNj8AVUfGDpsiw86
+         0LkqYf+A91zqg2kAdQ9fR/KmGCde7m1lbyQDwFu+C7ClySzef5t+ZqalgRSwjakc0yCA
+         k9rS/yQp1AcEVOe5W8srE0WheYStJkpw5YkzLduO61Atj/iQmz+EG1BWW6bEQPEy4U4J
+         YGOg==
+X-Forwarded-Encrypted: i=1; AJvYcCUFJFnBnILh2ie2gNekYjLCGOID5kyTbPrTSxEGBO+Q7TrRWj2qEf2MlIpCK+tzSDb29WPbZhB3iaEv@vger.kernel.org, AJvYcCUsSWOmVm+ESlv3oA9criDYxnnKYhCEy1/3mgbQChlhVXIUbBiasFhXaUsVtLLndQEJr/YO7UQ2uzjNbKRG@vger.kernel.org, AJvYcCXLNc6Sx17V7HBPljQi519hrSlj8FvFJGx8fktmvbQBYL8UsiUaaPLOxDRjLsBWujG2KNBfNCRhCoYN@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxuw5EmCQGGXlXYGaIRswt74rV26uN5zaLCTRFlQJefpy47ayeN
+	vw9WEl/vVee5lA+oh/DBobLyzwfWMJIEf1Oy3ClbmjIVat7IAKIP
+X-Google-Smtp-Source: AGHT+IGHbL+BSPGMqby2mGliTRrC/BuidS4eATyHTzk4jKxlhsmO0wKuLHdVYBDD8P1ndwGH6GhpkA==
+X-Received: by 2002:a05:6402:510f:b0:5ce:af48:c2cc with SMTP id 4fb4d7f45d1cf-5cf0a43fd2cmr21514266a12.27.1731590869797;
+        Thu, 14 Nov 2024 05:27:49 -0800 (PST)
+Received: from [10.10.40.97] (91-118-163-37.static.upcbusiness.at. [91.118.163.37])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cf79a44a9dsm608555a12.0.2024.11.14.05.27.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Nov 2024 05:27:48 -0800 (PST)
+Message-ID: <b56089e4-ee82-4685-9da8-69cfb6471ec0@gmail.com>
+Date: Thu, 14 Nov 2024 14:27:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241114074722.4085319-1-quic_varada@quicinc.com>
- <20241114074722.4085319-5-quic_varada@quicinc.com> <7e293d68-73c1-425d-ae52-e0893c8e0a61@oss.qualcomm.com>
-In-Reply-To: <7e293d68-73c1-425d-ae52-e0893c8e0a61@oss.qualcomm.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 14 Nov 2024 15:26:32 +0200
-Message-ID: <CAA8EJprqOxcm9NPdNZkA0XzCbv1E+MXicTcqx72sgCpZoE2sUg@mail.gmail.com>
-Subject: Re: [PATCH v3 4/6] phy: qcom: qmp: Enable IPQ5424 support
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Varadarajan Narayanan <quic_varada@quicinc.com>, vkoul@kernel.org, kishon@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	gregkh@linuxfoundation.org, andersson@kernel.org, konradybcio@kernel.org, 
-	mantas@8devices.com, quic_kbajaj@quicinc.com, quic_kriskura@quicinc.com, 
-	quic_rohiagar@quicinc.com, abel.vesa@linaro.org, quic_wcheng@quicinc.com, 
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-usb@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] iio: frequency: Add ADF4382
+To: Ciprian Hegbeli <ciprian.hegbeli@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kim Seer Paller <kimseer.paller@analog.com>,
+ Antoniu Miclaus <antoniu.miclaus@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20241114130340.7354-1-ciprian.hegbeli@analog.com>
+ <20241114130340.7354-3-ciprian.hegbeli@analog.com>
+Content-Language: en-US, de-AT
+From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+In-Reply-To: <20241114130340.7354-3-ciprian.hegbeli@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, 14 Nov 2024 at 14:47, Konrad Dybcio
-<konrad.dybcio@oss.qualcomm.com> wrote:
->
-> On 14.11.2024 8:47 AM, Varadarajan Narayanan wrote:
-> > Enable QMP USB3 phy support for IPQ5424 SoC.
-> >
-> > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> > ---
-> > v2: Add 'Reviewed-by: Dmitry Baryshkov'
-> > ---
-> >  drivers/phy/qualcomm/phy-qcom-qmp-usb.c | 3 +++
-> >  1 file changed, 3 insertions(+)
-> >
-> > diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-usb.c b/drivers/phy/qualcomm/phy-qcom-qmp-usb.c
-> > index acd6075bf6d9..f43823539a3b 100644
-> > --- a/drivers/phy/qualcomm/phy-qcom-qmp-usb.c
-> > +++ b/drivers/phy/qualcomm/phy-qcom-qmp-usb.c
-> > @@ -2298,6 +2298,9 @@ static int qmp_usb_probe(struct platform_device *pdev)
-> >
-> >  static const struct of_device_id qmp_usb_of_match_table[] = {
-> >       {
-> > +             .compatible = "qcom,ipq5424-qmp-usb3-phy",
-> > +             .data = &ipq9574_usb3phy_cfg,
-> > +     }, {
->
-> If the software interface is the same, can this just use ipq9574 as a
-> fallback compatible?
+On 14/11/2024 14:03, Ciprian Hegbeli wrote:
+> The ADF4382A is a high performance, ultralow jitter, Frac-N PLL
+> with integrated VCO ideally suited for LO generation for 5G applications
+> or data converter clock applications. The high performance
+> PLL has a figure of merit of -239 dBc/Hz, low 1/f Noise and
+> high PFD frequency of 625MHz in integer mode that can achieve
+> ultralow in-band noise and integrated jitter. The ADF4382A can
+> generate frequencies in a fundamental octave range of 11.5 GHz to
+> 21 GHz, thereby eliminating the need for sub-harmonic filters. The
+> divide by 2 and 4 output dividers on the part allow frequencies to
+> be generated from 5.75GHz to 10.5GHz and 2.875GHz to 5.25GHz
+> respectively.
+> 
+> Signed-off-by: Ciprian Hegbeli <ciprian.hegbeli@analog.com>
+> ---
+>  drivers/iio/frequency/Kconfig   |   11 +
+>  drivers/iio/frequency/Makefile  |    1 +
+>  drivers/iio/frequency/adf4382.c | 1825 +++++++++++++++++++++++++++++++
+>  3 files changed, 1837 insertions(+)
+>  create mode 100644 drivers/iio/frequency/adf4382.c
 
-Generally I'd agree here, but as PHY tables include not just setup
-values, but also platform and chip-specific tunes, I think it's better
-to have multiple entries rather than having to cope with the possible
-issues. The only "fallback" compatibles that we have are qcs615-ufs ->
-sm6115-ufs and qcs8300-ufs -> sa8775p-ufs. Thus I think it's better to
-stay within the single-compat model.
+...
 
--- 
-With best wishes
-Dmitry
+> +static int _adf4382_set_freq(struct adf4382_state *st)
+> +{
+> +	u32 frac2_word = 0;
+> +	u32 mod2_word = 0;
+> +	u64 pfd_freq_hz;
+> +	u32 frac1_word;
+> +	u8 clkout_div;
+> +	u32 read_val;
+> +	u8 dclk_div1;
+> +	u8 int_mode;
+> +	u8 en_bleed;
+> +	u8 ldwin_pw;
+> +	u16 n_int;
+> +	u8 div1;
+> +	u64 tmp;
+> +	u64 vco;
+> +	int ret;
+> +	u8 var;
+> +
+> +	ret = adf4382_pfd_compute(st, &pfd_freq_hz);
+> +	if (ret) {
+> +		dev_err(&st->spi->dev, "PFD frequency is out of range.\n");
+> +		return ret;
+> +	}
+> +
+> +	for (clkout_div = 0; clkout_div <= st->clkout_div_reg_val_max; clkout_div++) {
+> +		tmp =  (1 << clkout_div) * st->freq;
+> +		if (tmp < st->vco_min || tmp > st->vco_max)
+> +			continue;
+> +
+> +		vco = tmp;
+> +		break;
+> +	}
+> +
+
+(At least) LLVM/Clang complains about vco for a good reason: you may use
+it without proper initialization if the for loop does not assign any
+value. I guess you meant it to be initialized to zero in the declaration.
+
+> +	if (vco == 0) {
+> +		dev_err(&st->spi->dev, "Output frequency is out of range.\n");
+> +		ret = -EINVAL;
+> +		return ret;
+> +	}
+> +
+
+Best regards,
+Javier Carrasco
 
