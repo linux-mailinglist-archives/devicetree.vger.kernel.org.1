@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-121929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFB269C8FA2
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 17:24:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B4B69C8F04
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 17:02:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B5D65B45902
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 16:02:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C3EFE28B9EA
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 16:02:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06D07172BB9;
-	Thu, 14 Nov 2024 16:01:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CB1017BEB7;
+	Thu, 14 Nov 2024 16:01:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="Qz6y5aZV"
+	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="MOlUHzwh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1DAC139CFF
-	for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 16:01:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48FC016DEA9
+	for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 16:01:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731600108; cv=none; b=gLV20uTI3oN9XWazAWBf3ycmbR3tqeL0mnqSJ9RnMzCZ+XeYww+bWItBH0YW3EGltpfSfO7G1Du4LPWEUyTkMUCYlkzQH/SO251UVjKphGRJUOo4Ivs4pGwI3vNJjkx1A1vCDv+46ZliDN86GjBmEVW7RWXSDWL26owlneaB0g8=
+	t=1731600110; cv=none; b=FCjx+sRA3LA4P+gGcEhtMH0IMdH1wGCKxUwSaz/zXhpam1yoyVPTPMUJ1UIoU1RV47vbfNq+V+3UrYqp4JrcVnN6ZmN4XKIb3zS++VKCRoxQdGGPo89hZ8643b5sbjGar0wXhk/PTuIoQu2vlzW7l87oGhfjhs9ZNPgUgvXqHWM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731600108; c=relaxed/simple;
-	bh=RgRcDTZ0cd2d3Z1miPXnLWTGyap0Y17dAsHzTAg8FY0=;
+	s=arc-20240116; t=1731600110; c=relaxed/simple;
+	bh=LLKUlHSRdQo0ASKheAI2lktC1qkTUKqGMf38rCFKTT4=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=A4A0VoT4vmWAh3TeJpT756i5WF3OV4+5LM3faIl0U7ZeLafq3lwZ/Kf+Yqi9iyvAuukJHGSBznd0nWFhMrRpElC/0LynFYct+u53SKKCfEjI1WOp+3uv8X5xJZd81dHN2/r+sF9/ButIVAhVIjd+r9Gp5PEUEUEGNhxcqWTd0Ok=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=Qz6y5aZV; arc=none smtp.client-ip=209.85.167.51
+	 In-Reply-To:To:Cc; b=Iv1VdjfylVqnhmwMIXqIojfk3SElThyP3ffGu1RempBA0ozd8LgK4qniugKXERFoajis8Ui7iTpWyrzGml1odb1VrsI5/rOVf1b2VYVMTVJ17iQ7kG3WyfMHgStLRTrSlA7RKDnxeThY9AmbyXA25brPSLmCzAIxJW7DgpRkE4A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=MOlUHzwh; arc=none smtp.client-ip=209.85.221.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-539f76a6f0dso779818e87.1
-        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 08:01:45 -0800 (PST)
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-3821c5f6eb1so473861f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 08:01:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1731600104; x=1732204904; darn=vger.kernel.org;
+        d=raspberrypi.com; s=google; t=1731600106; x=1732204906; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=T7c9J9xmOBZy0E+gA1j8HfGDniMhcLFy7E+lLxJu1Tw=;
-        b=Qz6y5aZV4ocBS1XT8wCXP91WURgtSO4lsn35zt9niKTiqQbWFXeMI5x7KVBnXcllwT
-         Ue4+kN0G8g7ljhbeReg7FZYOgcUSRJqNEPe9FZlhP6LN4E0ezwISFGeLFReK2OTYI5CB
-         nOXAX8xwAFrx7meT4KIy6dlyyo+PnRb9WMHsfIdcM+HzZlOGoN/rUaCAeKzBvNy1axCL
-         BJvDkxUrDJmku6EgE/Ywzp/J0lH2TahH3P0wdnyUQMHUDrCyfja11hzfciebMURGQXyw
-         g+7nzny0OM0EiNqPzzHJEsimW7ys0dchKbg6MRMRlm8t/Ry2bapvMH6fc5q0VOhFxqsg
-         O4oA==
+        bh=6sBEsvd+dgZ/xP6/kn7wo3kVN9KTyz4HVn9G9Q/OIqs=;
+        b=MOlUHzwhE2C4MFFZ+6rO/zWHBsZQZN7iwJSzGYyeVQ+zyZFkZG4FmcpTY/v7Lpqet7
+         izpyynOLpnZft6U3tp9Owhqq38EM8XU7WDsA0l19bGMmDgXmzAj+aqCudN5O3LngsLia
+         KEKoNkP13bLo6mC0ipx3nls6sZEqIpZH8JMM4JoUNq/s/0qiksAtb7DuG4xnA3YUNQfv
+         t15Ob0XMZH9br4Kmb8fDMKSBtPz7xLkfZKbTM1yA9T5Pt1eS/jZ28+DrO/ybMDKBctsQ
+         1cJS2W+Ql1Ey6x8JQGi+CAtimBVco6TcSeQk3p3Vq0aBJRMt6FhJlf5IbBQxKSbdOTO3
+         DQzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731600104; x=1732204904;
+        d=1e100.net; s=20230601; t=1731600106; x=1732204906;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=T7c9J9xmOBZy0E+gA1j8HfGDniMhcLFy7E+lLxJu1Tw=;
-        b=Cs908bvvz5eZHsw7q33Kx7/aTY0SsaLnAMY1fFqHWx/fRhYL0a+l3Sc6DhPH5kIWbn
-         UEDzceaKlqOiyVk39H0feceuHojj2ydJxDRlYND6Z/PJPD3UojEO9E+BlLnb6bKWhOCW
-         Xli8cdh+nNI3kYG/xo1tItElMU0DUGouplhPSGqu81S+4kadPO5e6AhHWSCQb3kCuJXf
-         5DRsR0keKxBk/b3TKaUmdbr9hi1yuBog+YM36MWdms4F9kzmZinJGuPSKXgMAEvEUNeY
-         6QLfbb9IVXkZSpN/NnkzWl4pqu51pPIYsfFiJnLUlXblZm9fLhlDdvwEjzZTnHQdNS8d
-         dyGw==
-X-Forwarded-Encrypted: i=1; AJvYcCVlLx8fuManyQnCzi5sQT1vtf6jk6iQvSfmqUPmoyLTO5h6/qZVNLiOFR8f72cEsvIrWeSIOYvy/dRY@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyq1S+LgXTxMpUmLr+ugVLxEwc3IvKj9OmAjlfmI5DHI3X7aDCY
-	MSeMruyqH4zG2aJc7yfhcHYHA7JS1IcKaT+ZFTFwOnxSbAf5ud8+asQcsXCZuSc=
-X-Google-Smtp-Source: AGHT+IH2B2O4sDgX4PQFuQz83D5q69hXTp9OqNeMo5HRiiv9F39wpipZ5EJMNQCetw5Zzb0qXWSGxQ==
-X-Received: by 2002:a05:6512:3b1f:b0:539:f807:ad93 with SMTP id 2adb3069b0e04-53d9feddd90mr4485395e87.38.1731600103640;
-        Thu, 14 Nov 2024 08:01:43 -0800 (PST)
+        bh=6sBEsvd+dgZ/xP6/kn7wo3kVN9KTyz4HVn9G9Q/OIqs=;
+        b=DpUzrvdCl6+Jt8PYZjfu46GFWJ4sJX+stHw5EewqtWciKbBUUzLbPJGtg9gqYTxtHD
+         eSua0i0mugG4LQpxNdm5g5T6CJZVntUMm5FTB64Ue8LDbH7HKLtFO2IODrVwO/LM2jov
+         slkT7jO04fRiRG3YS1navufF5ZDRM2aS464P/zlORO+RZAOr9pk73hGEJYnEe5V3lAbu
+         eQMH7/Ghci9fC73MkuboNryW5Qoj25qB3xypRp7FoeS7K2uQGfRWDStPPLFRYHiS9L0L
+         efao2ussjhOzUIV6+lAAMLLS5XmLvqQyO4OhayIZdqDsHgOWN6hu7bmWhFSgCKEzNP8b
+         b0GQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWQ8i9//v6ZSyYagrZM6QN8qSAwNDkk3q26OTehBUSnGhkdJXhgfcqh8eYbtP2JnCjZdql9SUoUMQbZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzLKzsfbNT3SwZ+PMD1sptVWTG0t+PSrTiBeuX20B7Qvoqk7Pf8
+	MmFVo2Oj5RRF0r06WAClv5VUk8V2B9YQLKt+Wj1n8FNS2i1bTIgerdO2leuu8+s=
+X-Google-Smtp-Source: AGHT+IG4Sy0eRFWGgQ022WtiTP8SuksgBmcBl+ihey6/w0qCP+GyJB1dxeBjLookfEv7e1llkV/zYw==
+X-Received: by 2002:a05:6000:18a9:b0:37d:4ebe:164f with SMTP id ffacd0b85a97d-381f1883d96mr22287017f8f.46.1731600104522;
+        Thu, 14 Nov 2024 08:01:44 -0800 (PST)
 Received: from [127.0.1.1] ([2a00:1098:3142:e::8])
         by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-382200fe00esm1139024f8f.42.2024.11.14.08.01.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Nov 2024 08:01:43 -0800 (PST)
+        Thu, 14 Nov 2024 08:01:44 -0800 (PST)
 From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Thu, 14 Nov 2024 16:01:13 +0000
-Subject: [PATCH 1/3] media: i2c: imx290: Limit analogue gain according to
- module
+Date: Thu, 14 Nov 2024 16:01:14 +0000
+Subject: [PATCH 2/3] media: dt-bindings: media: i2c: Add IMX462 to the
+ IMX290 binding
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,7 +79,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241114-media-imx290-imx462-v1-1-c538a2e24786@raspberrypi.com>
+Message-Id: <20241114-media-imx290-imx462-v1-2-c538a2e24786@raspberrypi.com>
 References: <20241114-media-imx290-imx462-v1-0-c538a2e24786@raspberrypi.com>
 In-Reply-To: <20241114-media-imx290-imx462-v1-0-c538a2e24786@raspberrypi.com>
 To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
@@ -97,68 +97,27 @@ Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
  Dave Stevenson <dave.stevenson@raspberrypi.com>
 X-Mailer: b4 0.14.1
 
-The imx327 only supports up to 29.4dB of analogue gain, vs
-the imx290 going up to 30dB. Both are in 0.3dB steps.
-
-As we now have model specific config, fix this mismatch,
-and delete the comment referencing it.
+IMX462 is the successor to IMX290, which is supportable by
+the existing IMX290 driver via a new compatible string.
 
 Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
 ---
- drivers/media/i2c/imx290.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ Documentation/devicetree/bindings/media/i2c/sony,imx290.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/media/i2c/imx290.c b/drivers/media/i2c/imx290.c
-index ee698c99001d..da654deb444a 100644
---- a/drivers/media/i2c/imx290.c
-+++ b/drivers/media/i2c/imx290.c
-@@ -176,6 +176,7 @@ struct imx290_model_info {
- 	enum imx290_colour_variant colour_variant;
- 	const struct cci_reg_sequence *init_regs;
- 	size_t init_regs_num;
-+	unsigned int max_analog_gain;
- 	const char *name;
- };
+diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx290.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx290.yaml
+index bf05ca48601a..fa69bd21c8da 100644
+--- a/Documentation/devicetree/bindings/media/i2c/sony,imx290.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/sony,imx290.yaml
+@@ -33,6 +33,8 @@ properties:
+           - sony,imx290lqr # Colour
+           - sony,imx290llr # Monochrome
+           - sony,imx327lqr # Colour
++          - sony,imx462lqr # Colour
++          - sony,imx462llr # Monochrome
+       - const: sony,imx290
+         deprecated: true
  
-@@ -876,14 +877,10 @@ static int imx290_ctrl_init(struct imx290 *imx290)
- 	 * up to 72.0dB (240) add further digital gain. Limit the range to
- 	 * analog gain only, support for digital gain can be added separately
- 	 * if needed.
--	 *
--	 * The IMX327 and IMX462 are largely compatible with the IMX290, but
--	 * have an analog gain range of 0.0dB to 29.4dB and 42dB of digital
--	 * gain. When support for those sensors gets added to the driver, the
--	 * gain control should be adjusted accordingly.
- 	 */
- 	v4l2_ctrl_new_std(&imx290->ctrls, &imx290_ctrl_ops,
--			  V4L2_CID_ANALOGUE_GAIN, 0, 100, 1, 0);
-+			  V4L2_CID_ANALOGUE_GAIN, 0,
-+			  imx290->model->max_analog_gain, 1, 0);
- 
- 	/*
- 	 * Correct range will be determined through imx290_ctrl_update setting
-@@ -1441,18 +1438,21 @@ static const struct imx290_model_info imx290_models[] = {
- 		.colour_variant = IMX290_VARIANT_COLOUR,
- 		.init_regs = imx290_global_init_settings_290,
- 		.init_regs_num = ARRAY_SIZE(imx290_global_init_settings_290),
-+		.max_analog_gain = 100,
- 		.name = "imx290",
- 	},
- 	[IMX290_MODEL_IMX290LLR] = {
- 		.colour_variant = IMX290_VARIANT_MONO,
- 		.init_regs = imx290_global_init_settings_290,
- 		.init_regs_num = ARRAY_SIZE(imx290_global_init_settings_290),
-+		.max_analog_gain = 100,
- 		.name = "imx290",
- 	},
- 	[IMX290_MODEL_IMX327LQR] = {
- 		.colour_variant = IMX290_VARIANT_COLOUR,
- 		.init_regs = imx290_global_init_settings_327,
- 		.init_regs_num = ARRAY_SIZE(imx290_global_init_settings_327),
-+		.max_analog_gain = 98,
- 		.name = "imx327",
- 	},
- };
 
 -- 
 2.34.1
