@@ -1,74 +1,87 @@
-Return-Path: <devicetree+bounces-121911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121912-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BD119C8DB3
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 16:17:23 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E9949C8DC1
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 16:21:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F107286230
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 15:17:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D89E9B22DE9
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 15:21:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 525A7136341;
-	Thu, 14 Nov 2024 15:17:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9EBB1420A8;
+	Thu, 14 Nov 2024 15:21:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="R1u6SOaW"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="XwgL8P42"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D83551C68F;
-	Thu, 14 Nov 2024 15:17:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B6F82C859
+	for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 15:21:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731597424; cv=none; b=CVZljbuqjUOvh/kL1ZVF8RIyUx2rrFJLQPJzY0R3HNc/qq+r3SWuXOlwJc/Opfik918ATp5gpNfc+x2YU44yyGmvuNQ7AjiQb1PuX9ZUQRlHj4An6h0t8ygAr4fkY0ymPcJiyjm56ua44gJpwnOu8ArsepMoMCUUKyJgJv7r6wk=
+	t=1731597667; cv=none; b=Le1UgkeQQm4iqbIMyiyEDftBHUTA17MYx4l4gRh3sk9l8CLgEPhmUGtMuVod6/m60HljcTNXM2ZZ/CcTBHLVCS/RckymsiwjkzXdum/arShnCjP/D9jaYfaGD47n/rjIxPcM2KcFg7cGMZ8WQyzzTcc3nYsjUP+lcw5cTa7Kdlo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731597424; c=relaxed/simple;
-	bh=Q53Ic01HLtpIHqWLvJyKZj1a+099VDGe9zfLNq4lzJE=;
+	s=arc-20240116; t=1731597667; c=relaxed/simple;
+	bh=7MCZRzZ/AzkPceyOazDlSUQhVeaRggBpqmxYwL+WVy0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YtRElpJqWoaWR+De611ceOMKn2dISH0D3P9F8Rp/mH3klGDxM1s36rQ6EjcckYL04+nsrU3UXBTahHXY5AcxWktWjAqxQbJ6Ln3ieH7WEKWnzB2uNKHHPmy4f22g2ZxCGgoCAA8NylZ2wfcDElCy7xxs3jb2buPSSdXXwXn+TlY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=R1u6SOaW; arc=none smtp.client-ip=209.85.215.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-7eab7600800so89021a12.1;
-        Thu, 14 Nov 2024 07:17:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731597422; x=1732202222; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JotrJzBpOeR2thJqFXFw5L3unIDcudiSGFOlUbzMd08=;
-        b=R1u6SOaWSQbaeeGnUPiCBUxi6IaNplaXrNPT2PJX7UO9xRA6/XGNceEmNOTIGHed+z
-         Kg37c6g65paBVbPjrp7wSs5DN6Ny7bHfdabsxa43URJgjpSEzXfgdKLMxzaF+SllDCF9
-         hgmd4PYXqtIUmLVAR6L7lg5FqL2r7bsOqu+VZ5AAPkXccs7u1WABG0lclfsuyilLR1iC
-         ckqqeP2vixqY2fzofuYWJA7vx13s/aFgMplPjw/sUuq4KQQ2nP1XcWWN8eYrW7hkUX5X
-         U+vq1GPiOLv13ShJ0sdXILavC5O78CjRnVcpfN21B1ymRCnrcaTq/6j/fCPW9wizdF+r
-         S2NQ==
+	 In-Reply-To:Content-Type; b=gFhVIhiTKgK4rgxQtrcgdo5qmfOyQUT3+7lvhEwKIgIkzXYgCccgKUPSSHzDx2xz3pvmgtxMTyism/s1jMKq0g2YpJlLek52/NOBBSTcdexF6ail3ysQdXCF4O6VFn6olmYUg8VKfrMP7iSmvtjgX098jNCK0izc7OOniXdGt6o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=fail smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XwgL8P42; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AEA4gHQ030056
+	for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 15:21:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	cVzFCO4CN/tzo7kgRuNz7PpOy9J23iqDC72boSlkowY=; b=XwgL8P42UMpQwgSM
+	5051syUZoYacPcsQ0YeAQAHKQsJiD4noPtXH57ShFWsBK93UDEuxNEzhBaZMFpKK
+	BrWt3qWrHkV3Ps32MxZNUgl6wKbDwUhHXQq090alckTyXjZupz+gu3gdkPCxrDOD
+	Qpxnx1llx5KXmpLIQ7zvk34bYogpDyBVrhJ4QSpafxHO6kVrC41sZ3BTxyByllms
+	C8uhMH4cSjUVG6oxiOQsLqQihKjhQncVm2fCIYs2zluYWI+cF/pSgsXoSpQkvfsw
+	VZi4kv/8Fv6iaAHYFQRKS76Vxh7YgDv41ynKmfM+kQnjzN5vi2BeXzKV8zzi5QhZ
+	3U7FXA==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42w66gu77f-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 15:21:03 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4609c883bb6so1676671cf.0
+        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 07:21:03 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731597422; x=1732202222;
+        d=1e100.net; s=20230601; t=1731597662; x=1732202462;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JotrJzBpOeR2thJqFXFw5L3unIDcudiSGFOlUbzMd08=;
-        b=Z4dOlyl9m9JJ7B+2ngivHcwotiGS3Ju8SDiIZsJVCOyRYUPgGCLHoJEmQbYukYyoov
-         5Mu3ImvDK2ovNgUWkF0iDw0xR2Rud7dIVxrToJJamZkvQKb+EV4EsKHIOsw5GnfyyDgb
-         SjsF9nvVkx9ABxb+vlYK212vi6Wkoj4rE7afiC5PEst68wpLsfMfEGJR9JLF5MeBNjGi
-         peW5Vk9re05UNkEb+Yop2n6CcL6cF/TzPh7J1vuGwMTU01TR9D3GK3nyYF2oYwrqaCkE
-         uvC5ArceGHKaQNrdZuZPIjjEvQAG9njnmmNquaPNWmyDKILbipPNgLDeHpy2ejJKp6y1
-         tuVA==
-X-Forwarded-Encrypted: i=1; AJvYcCUaeCCNTtoAch1rGgBH7mFJZVUdQ1qLpzrSyuO2gAh+0a4qFXwnGbLcjFGasnoLUgEtqYNzpSHz0GxoqvOm@vger.kernel.org, AJvYcCUckih6DlUEXj+lUxsOjz4DfMOKqXXp7ZBDqgKcVHhcxbv+XX5Igo+XFphNeoZuLsrx6KW0zGapV0cN@vger.kernel.org, AJvYcCVGSKs62Ik/wn5x23dsySASt5/Biv1VTTUewA6WzZ0EPnD5dE3kYPJCK7gqJ88CjoHrcDP+RgiMEOOm@vger.kernel.org
-X-Gm-Message-State: AOJu0YxBQcj73Gs+Y2zZl9Uqdm8BBYWCICt+kIpUWiUTdDmwnBS7REJB
-	RBnSXsWyfhUgCtDPAAnYqkUjwrCyxULeOnHmv75G2n4Eq57vcFAd
-X-Google-Smtp-Source: AGHT+IFOzdCgJiTSHKh+t6Z6Xi2n3e3XGot6bXk4vTvc/TZ9/DAIaY0+AeU1fVaH8kKFm27vl/aK5A==
-X-Received: by 2002:a05:6a20:8403:b0:1d8:a203:95a4 with SMTP id adf61e73a8af0-1dc2296d9b1mr15461701637.5.1731597422055;
-        Thu, 14 Nov 2024 07:17:02 -0800 (PST)
-Received: from [100.116.227.126] ([45.32.86.188])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7f8b36dac83sm1215797a12.14.2024.11.14.07.16.56
+        bh=cVzFCO4CN/tzo7kgRuNz7PpOy9J23iqDC72boSlkowY=;
+        b=By3Q8WMYOYN+w3wxYuDp1y7bi3fwAzu3gpDQtc0pHTWbHjXN2aqmDF0oVgRbGHLPkW
+         +V73pXRsxVkK1M0W0TPEZWdwbscwGpaTbxqQskCoS3Vp9gikx+iEcqGA5ZGzUOUPhqpJ
+         UTvLifssM8GiHbMENg5cQCKx27eZz3vntticy4Y5oLHrmqnKkC4SsConhQiHgaDy1tqg
+         KMWwiNpC4R4cxV5W3lZLKpyBbZXeRJxaIfts89UfVnhlu8ns9oxGIigC3rlXnuw9tzqK
+         f2X5Qg7Uy/o6CYWUVh55kifQaHY5mL79MOpD9OLqmm1xlcTJEi0dhPSEz1URZYlwme05
+         1KAg==
+X-Forwarded-Encrypted: i=1; AJvYcCVTV+LJv+BUOiCtPwIjpNphMvXc2fg7bPBm5fs/1r/WYFkpbkvpm7Gw80POI4yXWDD1mhqmktk3NWH+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxpj6OU6du9yj2T1IpebdvYXRgAUK2zeXqziXu8e0HsVCVoDFb0
+	c/ZzbIhIBpD2+rV35ZvlSHQG7pxZ22LFIkltj5dH+7uEfU7yvh/H1cgsr1OJbfGJP5ZWQWWpOvc
+	VVOV9YdTWKDnjt+5SCQd9WXj+eL2SVu2GCb1oZcw+VzvingJXO6T189Veq2OE
+X-Gm-Gg: ASbGncthM5JO6qSndhKYlAFtxQA5TeBkqIIlgBozpD3CYPAjAQY40qo8MxsWnWEGWo6
+	Vc9gS0Z1ckxu4DlOo7e+zTlMi/gD2eFCykFExVqNRe9yrFjQxdh5UHcWqymXAbX+dfcO+U6ru0X
+	TIMrVMgm+PA+wJmiSWGsuTOsEupcg9CwLxmaGaLzHsG/ebHBSl2SkeP5Ver+04oUA3ivpm7dnCy
+	DR8m/pU5wfV3DHPDhYQ5CnS2N6WZzPyRDnqY5xZD1BAryY1vR/Wr7SF0glmP0tKRSzB4HTtdEi+
+	cN5xB9p4WmOxzW8y6rAOk4m6v7DcMqM=
+X-Received: by 2002:ac8:59c7:0:b0:458:3297:806f with SMTP id d75a77b69052e-463093f1c4cmr153434341cf.10.1731597662548;
+        Thu, 14 Nov 2024 07:21:02 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEk+y59ahE80IlwvZJl+xqJ/l+nf1VpXpaxxM3G29yJNwW6rj3keR7gGJ6umEv5Aet5TJbTwA==
+X-Received: by 2002:ac8:59c7:0:b0:458:3297:806f with SMTP id d75a77b69052e-463093f1c4cmr153434191cf.10.1731597662104;
+        Thu, 14 Nov 2024 07:21:02 -0800 (PST)
+Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa20df5161bsm75427866b.60.2024.11.14.07.20.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Nov 2024 07:17:01 -0800 (PST)
-Message-ID: <b59f6933-e1f1-49e9-be61-3e3b4323da87@gmail.com>
-Date: Thu, 14 Nov 2024 23:16:51 +0800
+        Thu, 14 Nov 2024 07:21:01 -0800 (PST)
+Message-ID: <c0b3bd36-6ec0-4d7d-9a65-5b8f02cd6c98@oss.qualcomm.com>
+Date: Thu, 14 Nov 2024 16:20:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,58 +89,75 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: tyhx,hx9023s: Add performance
- tuning configuration
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, yasin.lee.x@outlook.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20241017-add-performance-tuning-configuration-v3-0-e7289791f523@gmail.com>
- <20241017-add-performance-tuning-configuration-v3-1-e7289791f523@gmail.com>
- <20241020140638.127a9dbf@jic23-huawei>
+Subject: Re: [PATCH v1 3/4] arm64: dts: qcom: qcs615: add UFS node
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Xin Liu <quic_liuxin@quicinc.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>, Andy Gross <agross@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-scsi@vger.kernel.org, quic_jiegan@quicinc.com,
+        quic_aiquny@quicinc.com, quic_tingweiz@quicinc.com,
+        quic_sayalil@quicinc.com
+References: <20241017042300.872963-1-quic_liuxin@quicinc.com>
+ <20241017042300.872963-4-quic_liuxin@quicinc.com>
+ <5fe37609-ed58-4617-bd5f-90edc90f5d8b@oss.qualcomm.com>
+ <28069114-9893-486b-a8d8-4c8b9ada1b0c@quicinc.com>
+ <20241113092716.h3mabw4bzgc5gcha@thinkpad>
 Content-Language: en-US
-From: Yasin Lee <yasin.lee.x@gmail.com>
-In-Reply-To: <20241020140638.127a9dbf@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20241113092716.h3mabw4bzgc5gcha@thinkpad>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: dcaiZ7u87ua9GdCNN0v7lvtG6zuNsQBY
+X-Proofpoint-ORIG-GUID: dcaiZ7u87ua9GdCNN0v7lvtG6zuNsQBY
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=706
+ mlxscore=0 malwarescore=0 suspectscore=0 impostorscore=0
+ priorityscore=1501 bulkscore=0 clxscore=1015 lowpriorityscore=0
+ adultscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411140119
+
+On 13.11.2024 10:27 AM, Manivannan Sadhasivam wrote:
+> On Wed, Nov 13, 2024 at 05:19:49PM +0800, Xin Liu wrote:
+>>
+>>
+>> 在 2024/10/26 3:24, Konrad Dybcio 写道:
+>>> On 17.10.2024 6:22 AM, Xin Liu wrote:
+>>>> From: Sayali Lokhande <quic_sayalil@quicinc.com>	
+>>>> 	
+>>>> Add the UFS Host Controller node and its PHY for QCS615 SoC.
+>>>>
+>>>> Signed-off-by: Sayali Lokhande <quic_sayalil@quicinc.com>
+>>>> Co-developed-by: Xin Liu <quic_liuxin@quicinc.com>
+>>>> Signed-off-by: Xin Liu <quic_liuxin@quicinc.com>
+>>>> ---
+
+[...]
 
 
-On 10/20/24 21:06, Jonathan Cameron wrote:
-> On Thu, 17 Oct 2024 18:36:44 +0800
-> Yasin Lee <yasin.lee.x@gmail.com> wrote:
->
->> When hardware design introduces significant sensor data noise,
->> performance can be improved by adjusting register settings.
-> Questions inline. Mostly around why these controls belong in DT.
-> What do they have to do with hardware / wiring etc rather than being
-> appropriate for userspace controls.
->
-> So almost all are definite no to being suitable for device tree bindings.
->
-> Jonathan
->
-Hi Jonathan,
+>>>> +
+>>>> +			status = "disabled";
+>>>> +		};
+>>>> +
+>>>> +		ufs_mem_phy: phy@1d87000 {
+>>>> +			compatible = "qcom,qcs615-qmp-ufs-phy", "qcom,sm6115-qmp-ufs-phy";
+>>>> +			reg = <0x0 0x01d87000 0x0 0xe00>;
+>>>
+>>> This register region is a bit longer
+>> I just confirmed again, there's no problem here.
 
-Thank you for the suggestions in your recent email. Following your 
-advice, I discussed these configurations in detail with engineers from 
-the HX9023S supplier. Based on their feedback, these settings are not 
-intended to be exposed to end-users. Typically, these configurations are 
-adjusted during the DVT phase of the end product by the supplier to 
-optimize performance, after which they are finalized and not meant to be 
-modified dynamically at the user level.
+I'd happen to disagree, please make it 0xe10-long
 
-Given this approach, it seems more appropriate to provide these settings 
-as part of a firmware file, allowing the configuration to be kept 
-internal and managed without user-level access. If this approach aligns 
-with your thoughts, I can prepare and submit a new patch focused on 
-firmware parsing and handling for these configurations.
-
-Thank you again for your valuable guidance, and I look forward to your 
-feedback.
-
-Best regards,
-Yasin Lee
-
-
+Konrad
 
