@@ -1,164 +1,242 @@
-Return-Path: <devicetree+bounces-121800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121801-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAA4D9C860C
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 10:26:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB1589C85F3
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 10:21:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9D997B2D399
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 09:20:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B618280FEC
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 09:21:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B786D1D1724;
-	Thu, 14 Nov 2024 09:19:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AE401DF963;
+	Thu, 14 Nov 2024 09:21:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Q9QoGo+/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F1F61DED79
-	for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 09:19:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 228D01DD529
+	for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 09:21:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731575990; cv=none; b=U4Idv05lAlN6uqlKaJJAUn4lazcva4dlBkCIzHiGsK+FEJUYtHJpFtPwV3swDfrXJT04eXGMa8vBxizuJlLVJ9KZMA2s/IfeuHoT16YXUommdIr/XjePESm+zjRgYh/7oKM6+V7EKENPVHGJ0Efd572wYzkfRu4judpR00b4Vrk=
+	t=1731576107; cv=none; b=jzwN4rrvtvCwTZFWKkALPGRr6+AVMWqD2eEXiSmDuTHQf9iFbPUqcfNO3xaJ4idfD5JxeRVQYe+h2TIepyVI/xSGJrSXDHkBB/w7Vp14Ig1z9ECg/lgUeopxriaS+zVC54wbvMLEFojEeHebaTfHiCV/fc5FMT3nRQVuUI40efQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731575990; c=relaxed/simple;
-	bh=LWHAAfli4bGRK7npkueODa/RoTdZufayfH7el0f67kY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PO9cH6YE3TpzlSVSlfc1/Yo4PV++p78r94b14tqazVrMbv+uXIFUbZToX3QXPBtoPAehaQ0AwQMiCmyRXHOlxLdjb/QxheeKVLOt/AVEB42vEXNd6Xp0YeTa/jZlEljSOcm6c24eSfGcLkHB0kbbOcfkJpih83yT+pCo9zKU4w8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tBW0o-0007PW-9J; Thu, 14 Nov 2024 10:19:38 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tBW0o-000ibL-0E;
-	Thu, 14 Nov 2024 10:19:38 +0100
-Received: from pengutronix.de (pd9e59fec.dip0.t-ipconnect.de [217.229.159.236])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id C35B6372F20;
-	Thu, 14 Nov 2024 09:19:37 +0000 (UTC)
-Date: Thu, 14 Nov 2024 10:19:37 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Sean Nyekjaer <sean@geanix.com>
-Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH can-next v4 1/2] dt-bindings: can: tcan4x5x: Document the
- ti,nwkrq-voltage-vio option
-Message-ID: <20241114-foamy-acrid-dalmatian-9d3afe-mkl@pengutronix.de>
-References: <20241114-tcan-wkrqv-v4-0-f22589d67fb1@geanix.com>
- <20241114-tcan-wkrqv-v4-1-f22589d67fb1@geanix.com>
+	s=arc-20240116; t=1731576107; c=relaxed/simple;
+	bh=pfQ1EsxFuQyYpQVbYK9aExgCanpy9u/AbGrn6mzrxAM=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=SUGmSqgxaX899vdD5R2cJyyxBDBjISetN0x1pkn79atssKvqfZmrqjqY3A51yZ9V6A8fS8kaOR4dRA5ygwOqGWI3+vJDOx1Uf70RwkFz49MkCxhYA6QZ71138LgkYEXdo89MIK6RKQc0QvIVPH319FeXb0PoOELl5CeZVqQs35c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Q9QoGo+/; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-37d4fd00574so192194f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 01:21:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1731576104; x=1732180904; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JNbRU7FU8XNSE+dI3k8p5qd8iE3w171o5k5wliBXgFc=;
+        b=Q9QoGo+/c9T+OIi80u8FISDlCOBxt3O/OVIOfFGI04lSY9ntJa6z0IDE9BFdaListN
+         Lk932VOxpPbih70kLghNJ5zR05UNXN2OPONYbn/F1L/e96eMP25ZMV1g5KVQ7ZGw00zi
+         /jHi6lywjMG5i81Au1qdf70aTGZMIxGiFCPXWY8M+zZm1T6o+1nTIGQAysGjVvpm3VSc
+         Ap83vLx5bjX8N7ZAwULZqqlSwD55g7eENz/m7SjW9FT8hMMKKA2gfchA9ch1DuToA+ek
+         ncmlL8w17fTDfpJVXxl3qjdeAGUYc3o8ZcJeNtghDRZwtyigo2y8udzT/+OSE4JNV0o7
+         GUFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731576104; x=1732180904;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=JNbRU7FU8XNSE+dI3k8p5qd8iE3w171o5k5wliBXgFc=;
+        b=QzFCeoBi9ivC2M2+CL/atJkYP7B86m8FzxGj3it06oHDU3gqI9xsPXs5ZmR1oenm6B
+         aJu694ZE3T/X6NYynt4kreoRAe+cRbkPYzNbP361ASgIOyL+Wj0PkZnFDVDsCQ2xRxOt
+         C205l1TLFZ5bVgUGJoKgkISkzy3bWWwxwEI3qNBlWfaJFp79tCg3dRALSESZ9+ppnjPx
+         b8ooh8CRMTYdVuRJkxBqnAdjnZxhhmnOsPesLzJweDcZc88ArAmApGNz9W3+LzfBbT6V
+         zid1YjgKVGQ1KEBzlUyCo9Pj+2Ny5wRBi5T1Ywyp+aUc2jnQW5x/On4Rkt9DDGYpQnzL
+         7+LQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVR2XCeF+CxugOg051mjIFRXlD0BeMpQVJw/7fd7w6VT53eXgEWRG5+00Hy65VXx6hlkn1x1wMg3jox@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz9RKXpTLjfb4xtzTpSmmTWz97N8nGMtBiGkbnJj5AmQBsvCgRH
+	GJKF6rwDNhsL60ObazU1ehyC4Ph8VIByKkHi/OToDO+X6Xp/xQCqbCojpc4FPVoFHc88RK632GM
+	v
+X-Google-Smtp-Source: AGHT+IGM57ayVcNIkg/6jNzPlgjqqAGpWcaIJPQpCV0fYV9Ae2IGCnZ+nme2wZAoiNPas+AMtq+mKw==
+X-Received: by 2002:a5d:598c:0:b0:371:8685:84c with SMTP id ffacd0b85a97d-382140394cdmr1793139f8f.15.1731576103705;
+        Thu, 14 Nov 2024 01:21:43 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:a62a:6bba:b737:406e? ([2a01:e0a:982:cbb0:a62a:6bba:b737:406e])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3821adada24sm936148f8f.40.2024.11.14.01.21.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Nov 2024 01:21:43 -0800 (PST)
+Message-ID: <1764b1b4-336d-4ca5-ab21-8213691a9622@linaro.org>
+Date: Thu, 14 Nov 2024 10:21:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="vrzucmzcc43o4bfu"
-Content-Disposition: inline
-In-Reply-To: <20241114-tcan-wkrqv-v4-1-f22589d67fb1@geanix.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v6 4/5] pinctrl: meson: Add driver support for Amlogic A4
+ SoCs
+To: Rob Herring <robh@kernel.org>, Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20241113-a4_pinctrl-v6-0-35ba2401ee35@amlogic.com>
+ <20241113-a4_pinctrl-v6-4-35ba2401ee35@amlogic.com>
+ <20241113180405.GA653353-robh@kernel.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20241113180405.GA653353-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 13/11/2024 19:04, Rob Herring wrote:
+> On Wed, Nov 13, 2024 at 03:29:42PM +0800, Xianwei Zhao wrote:
+>> Add a new pinctrl driver for Amlogic A4 SoCs which share
+>> the same register layout as the previous Amlogic S4.
+>>
+>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>> ---
+>>   drivers/pinctrl/meson/Kconfig              |    6 +
+>>   drivers/pinctrl/meson/Makefile             |    1 +
+>>   drivers/pinctrl/meson/pinctrl-amlogic-a4.c | 1324 ++++++++++++++++++++++++++++
+>>   3 files changed, 1331 insertions(+)
+>>
+>> diff --git a/drivers/pinctrl/meson/Kconfig b/drivers/pinctrl/meson/Kconfig
+>> index cc397896762c..3e90bb5ec442 100644
+>> --- a/drivers/pinctrl/meson/Kconfig
+>> +++ b/drivers/pinctrl/meson/Kconfig
+>> @@ -67,6 +67,12 @@ config PINCTRL_MESON_S4
+>>   	select PINCTRL_MESON_AXG_PMX
+>>   	default y
+>>   
+>> +config PINCTRL_AMLOGIC_A4
+>> +	tristate "Amlogic A4 SoC pinctrl driver"
+>> +	depends on ARM64
+>> +	select PINCTRL_MESON_AXG_PMX
+>> +	default y
+>> +
+>>   config PINCTRL_AMLOGIC_C3
+>>   	tristate "Amlogic C3 SoC pinctrl driver"
+>>   	depends on ARM64
+>> diff --git a/drivers/pinctrl/meson/Makefile b/drivers/pinctrl/meson/Makefile
+>> index 9e538b9ffb9b..c92a65a83344 100644
+>> --- a/drivers/pinctrl/meson/Makefile
+>> +++ b/drivers/pinctrl/meson/Makefile
+>> @@ -10,5 +10,6 @@ obj-$(CONFIG_PINCTRL_MESON_AXG) += pinctrl-meson-axg.o
+>>   obj-$(CONFIG_PINCTRL_MESON_G12A) += pinctrl-meson-g12a.o
+>>   obj-$(CONFIG_PINCTRL_MESON_A1) += pinctrl-meson-a1.o
+>>   obj-$(CONFIG_PINCTRL_MESON_S4) += pinctrl-meson-s4.o
+>> +obj-$(CONFIG_PINCTRL_AMLOGIC_A4) += pinctrl-amlogic-a4.o
+>>   obj-$(CONFIG_PINCTRL_AMLOGIC_C3) += pinctrl-amlogic-c3.o
+>>   obj-$(CONFIG_PINCTRL_AMLOGIC_T7) += pinctrl-amlogic-t7.o
+>> diff --git a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
+>> new file mode 100644
+>> index 000000000000..edc5f2ba2c8a
+>> --- /dev/null
+>> +++ b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
+>> @@ -0,0 +1,1324 @@
+>> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+>> +/*
+>> + * Pin controller and GPIO driver for Amlogic A4 SoC.
+>> + *
+>> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
+>> + * Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>> + *         Huqiang Qin <huqiang.qin@amlogic.com>
+>> + */
+>> +
+>> +#include "pinctrl-meson.h"
+>> +#include "pinctrl-meson-axg-pmx.h"
+>> +#include <dt-bindings/gpio/amlogic-gpio.h>
+>> +
+>> +/* Standard port */
+>> +
+>> +#define GPIOE_0				0
+>> +#define GPIOE_1				1
+>> +
+>> +#define GPIOD_0				2
+>> +#define GPIOD_1				3
+>> +#define GPIOD_2				4
+>> +#define GPIOD_3				5
+>> +#define GPIOD_4				6
+>> +#define GPIOD_5				7
+>> +#define GPIOD_6				8
+>> +#define GPIOD_7				9
+>> +#define GPIOD_8				10
+>> +#define GPIOD_9				11
+>> +#define GPIOD_10			12
+>> +#define GPIOD_11			13
+>> +#define GPIOD_12			14
+>> +#define GPIOD_13			15
+>> +#define GPIOD_14			16
+>> +#define GPIOD_15			17
+> 
+> The conversion from bank+index to a single index space seems less than
+> ideal, and looks like a work-around to fit into the existing driver from
+> a brief look at it.
 
---vrzucmzcc43o4bfu
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH can-next v4 1/2] dt-bindings: can: tcan4x5x: Document the
- ti,nwkrq-voltage-vio option
-MIME-Version: 1.0
+Not really, it simply adds a custom xlate per SoC, nothing particulary hacky.
 
-On 14.11.2024 09:52:21, Sean Nyekjaer wrote:
-> The nWKRQ pin supports an output voltage of either the internal reference
-> voltage (3.6V) or the reference voltage of
-> the digital interface 0-6V (VIO).
-> Add the devicetree option ti,nwkrq-voltage-vio to set it to VIO.
->=20
-> If this property is omitted the reset default, the internal reference
-> voltage, is used.
->=20
-> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+I was relunctant at first, but since Xianwei added the plumbing for a per-SoC
+xlate, then it was easy to add 3-cells support.
 
-Reviewed-by: Marc Kleine-Budde <mkl@pengutronix.de>
+> 
+> If there's not really banks of GPIOs here, then DT shouldn't have them
+> either. The question is does anything need to know the bank number
+> and/or index? If it's only for human readability (and matching to
+> datasheet), then just something like this can be done:
+> 
+> #define GPIOD(n) (2 + (n))
 
-regards,
-Marc
+There's no linear mapping possible, each set of gpios is grouped into logical
+"banks" per group of functions, and this grouping is also in the gpio controller
+register space.
 
-> ---
->  Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml b=
-/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
-> index f1d18a5461e05296998ae9bf09bdfa1226580131..ff18cf7393550d1b7107b1233=
-d8302203026579d 100644
-> --- a/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
-> +++ b/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
-> @@ -106,6 +106,13 @@ properties:
->        Must be half or less of "clocks" frequency.
->      maximum: 18000000
-> =20
-> +  ti,nwkrq-voltage-vio:
-> +    type: boolean
-> +    description:
-> +      nWKRQ Pin GPO buffer voltage configuration.
-> +      Set nWKRQ to use VIO voltage rail.
-> +      When not set nWKRQ will use internal voltage rail.
-> +
->    wakeup-source:
->      $ref: /schemas/types.yaml#/definitions/flag
->      description:
-> @@ -157,6 +164,7 @@ examples:
->              device-state-gpios =3D <&gpio3 21 GPIO_ACTIVE_HIGH>;
->              device-wake-gpios =3D <&gpio1 15 GPIO_ACTIVE_HIGH>;
->              reset-gpios =3D <&gpio1 27 GPIO_ACTIVE_HIGH>;
-> +            ti,nwkrq-voltage-vio;
->              wakeup-source;
->          };
->      };
->=20
-> --=20
-> 2.46.2
->=20
->=20
->=20
+So it makes sense to split this in 2 with banks and offset, it maps the architecture
+of the SoC, and with this scheme we only need to add the bindings for the
+"banks" once since all the SoCs shares the same names.
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+It simplifies bindings, has minimal cost due to the 3 cells, and only requires slightly
+more larger xlate function per SoC family.
 
---vrzucmzcc43o4bfu
-Content-Type: application/pgp-signature; name="signature.asc"
+Neil
 
------BEGIN PGP SIGNATURE-----
+> 
+> Rob
 
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmc1wKcACgkQKDiiPnot
-vG/wzggAlj0QJLxPRJoeuzsuwing/AB0/PX1rp6tStujNzgEFZ05HPwxf60F5ZiD
-makZVZXtI5sUDjw6QyxPpeOBCkHNXoGzHK607qpI1uFNgpfF3lkFtQ5bYIu0DE5F
-EOqHrMYLf2+zjKDn5vUl0gvoryuG/jm42TpTQDCovMQ2B4+3R4BBptbaWn+OuAxl
-tbmbSY/8SHtSjjVfXP8uvIaTt0w8xTh5LMFCEkxw3DOzWzv9KEyy97Mi17ALKVs0
-4d5dgrVAaKdNmEsHqOSeRGP5/LXOkmgFrFIQPWRxa8Q5wSnPemQoFpUlMIII5A+A
-ym5nw+foS7CrhQ096Ky+HKIpSaeEJA==
-=yFj+
------END PGP SIGNATURE-----
-
---vrzucmzcc43o4bfu--
 
