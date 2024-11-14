@@ -1,167 +1,383 @@
-Return-Path: <devicetree+bounces-121895-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121896-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A15FA9C8BCC
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 14:28:04 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6F1F9C8BE9
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 14:35:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4AB251F259E2
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 13:28:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 51AF7B24BEE
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 13:28:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BA071FAEEC;
-	Thu, 14 Nov 2024 13:27:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E9201FAEEC;
+	Thu, 14 Nov 2024 13:28:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hODF3/e9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UmtJLVSq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2D251F892A;
-	Thu, 14 Nov 2024 13:27:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FC631FAC59
+	for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 13:28:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731590873; cv=none; b=JlLNoS4a7+YZQSjGIkAMvW3evRO05eEOM/byQMZf01HJSfCsxqJABDU5yHUfFSGP53VEoOwl7IYikUz6QC2SICVXkcTjJ3L5avVGmt1q8DiQDb3LqSmReIxeUUhDUTcSxOp4fQ+Y9pYbLMTvr7tLL+5ah3wFMKkg5jAbXCz1qIw=
+	t=1731590930; cv=none; b=RHb+EPP1Un51dKt5Zlq+65+GegfJqyYzn5QT9bEjdBDBbRq/m5aBoTG+gjFPgxC2LBr/VVQRJunDTqWiEkwMEyih9uNzXsWWKJBw42xQeldhztO9BaW7tZVT5U3XaGNOlutKsBGcJsnjFw+ZrG3N8BI2P2my2QjJbWXxjE1OaEg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731590873; c=relaxed/simple;
-	bh=ky05wBui/UUMyIppkUyYaFIS9tjMUZWuH8y0o8wOrMk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=hFAnlCant50XkJlqTOFrYilN5yBjv5S35jSCFBSKpH5tn31EVdy7mVg4an+4ur8E+ziOXVlU9pGNe8/aJfGqWGY0Iq+sbPt+Xw24Nx2JeNG4/0amXrMwpa2ierEVCIGjcb5/VEI3niUQqnxfFRRa4lytLxvwhYpEZoKvi8t4cB8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hODF3/e9; arc=none smtp.client-ip=209.85.208.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5cecbddb574so775718a12.1;
-        Thu, 14 Nov 2024 05:27:51 -0800 (PST)
+	s=arc-20240116; t=1731590930; c=relaxed/simple;
+	bh=Sxx/Lai0zK42h/U29LKjUmar6IFE1Dx8OHn26s0hyjA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EqGW4locfwUKYdT331V8A2r/Pym7ZFK3iWKvEw2ZHU2KVtso9Aj9BpEFoVd62GqeEbJSaaj0vi95Fos1QCRqex9tAwUklRXlRjfXcXysNaY0Ww8dsjx4pCr7CSsTorI1dyihop2ssVDGE59dFdeOfHQYGpJmZ5Ec+j8ItSEcED4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UmtJLVSq; arc=none smtp.client-ip=209.85.219.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-e35e0543b07so598069276.2
+        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 05:28:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731590870; x=1732195670; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=FxK1pZMle+UL0Q3Fj0BL45qPqGkV4zQA1+MO9PYETzw=;
-        b=hODF3/e9I5z23J2Uiq1kScM6XjPBkmvJG1JVTPfTljhgl9wUrVVuzx3z5EqTeAECGT
-         aY1SkUwUe8FDqZuZ+6s8GDW7RmDUiKiUzaNcWVyyk+q0ANg8EK6sN9EI05m/r+8YEEme
-         OYn2cHSOhfTpK0HF5+1eDQwy55C4n5eRLX6QlKhlzEvms2oseJzrOn8svVFRq6txbG/7
-         seTpfTynWdN5RY/XnjvvA+obm6SmFWVMWpeVnFvhPzeIQty6Ra8sQk/Qq+0WzTPvP0n2
-         6H3JT8pW8x5KfqC3qx3O321NgW9vYKHus/HqqY8PwJ6+8Ef7F/YWqPd1a6cMFTU8XGOY
-         PJKA==
+        d=linaro.org; s=google; t=1731590927; x=1732195727; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=mcQ5UiOW6mD+0cy+sSW1sUJ7XuSBho0hmBvy+z6MjTw=;
+        b=UmtJLVSq6uIZ8AO9ntnUrJXFoa+SW0xXRZBYfGcMTBHz9+UIhl0/w8rEy1js0sgkid
+         s6eddXSJZG1qS7R4or73xTyi9uFPtHmfsBkwfLkNlV1GBMsUVr7yKMKpygC6CtrhuZ8T
+         Tgoms0tAuhBuOK/0XxgmXiA6AK610j19wdJXE9lbXf7w23QFy20RG0Lkf9CVKEI1elau
+         B7aa3R980UbX+cEkPOHfXxmtD0DEEPVkJVnQYaekJ8GZ1xQp8qyPOOaz2+3Uw4QVdG3k
+         Ucc1ZQ/O7fbGzbcZAQgEbh9C2YF9Y2zLJO/rnmdnbwPnh5nxR9xWEQGhDfxeb+D7c1eI
+         72Fw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731590870; x=1732195670;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FxK1pZMle+UL0Q3Fj0BL45qPqGkV4zQA1+MO9PYETzw=;
-        b=MM+v3fSlyQt7BHt6KUU4admuwwsjzb427eEIyjmmpyrz9smGWUE2lL79Y6N8WY2t1E
-         HCjoc1CWX0k0mA0xf446pRN4u5GNRHjQm3diieLD4N6WPhxVWeg8gw0XKQ2oIX+u07QO
-         JjR/NAQeEqQF3YLY8erdKxkDKHhDAhp0q8xBE34hXQ/u6BS0mhm3MNj8AVUfGDpsiw86
-         0LkqYf+A91zqg2kAdQ9fR/KmGCde7m1lbyQDwFu+C7ClySzef5t+ZqalgRSwjakc0yCA
-         k9rS/yQp1AcEVOe5W8srE0WheYStJkpw5YkzLduO61Atj/iQmz+EG1BWW6bEQPEy4U4J
-         YGOg==
-X-Forwarded-Encrypted: i=1; AJvYcCUFJFnBnILh2ie2gNekYjLCGOID5kyTbPrTSxEGBO+Q7TrRWj2qEf2MlIpCK+tzSDb29WPbZhB3iaEv@vger.kernel.org, AJvYcCUsSWOmVm+ESlv3oA9criDYxnnKYhCEy1/3mgbQChlhVXIUbBiasFhXaUsVtLLndQEJr/YO7UQ2uzjNbKRG@vger.kernel.org, AJvYcCXLNc6Sx17V7HBPljQi519hrSlj8FvFJGx8fktmvbQBYL8UsiUaaPLOxDRjLsBWujG2KNBfNCRhCoYN@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxuw5EmCQGGXlXYGaIRswt74rV26uN5zaLCTRFlQJefpy47ayeN
-	vw9WEl/vVee5lA+oh/DBobLyzwfWMJIEf1Oy3ClbmjIVat7IAKIP
-X-Google-Smtp-Source: AGHT+IGHbL+BSPGMqby2mGliTRrC/BuidS4eATyHTzk4jKxlhsmO0wKuLHdVYBDD8P1ndwGH6GhpkA==
-X-Received: by 2002:a05:6402:510f:b0:5ce:af48:c2cc with SMTP id 4fb4d7f45d1cf-5cf0a43fd2cmr21514266a12.27.1731590869797;
-        Thu, 14 Nov 2024 05:27:49 -0800 (PST)
-Received: from [10.10.40.97] (91-118-163-37.static.upcbusiness.at. [91.118.163.37])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cf79a44a9dsm608555a12.0.2024.11.14.05.27.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Nov 2024 05:27:48 -0800 (PST)
-Message-ID: <b56089e4-ee82-4685-9da8-69cfb6471ec0@gmail.com>
-Date: Thu, 14 Nov 2024 14:27:46 +0100
+        d=1e100.net; s=20230601; t=1731590927; x=1732195727;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mcQ5UiOW6mD+0cy+sSW1sUJ7XuSBho0hmBvy+z6MjTw=;
+        b=A2lxNvpd+hPfADh1Y2UAGZoMwnhYlw2RclP9rSz0U/dDhpnsi9tM+7jM1eY4eL9Ey5
+         gGAmxhjdvUoD8t5+atAjUoipD8dYM5E5zI03fY9wCMbJC0pGTXYSrySs2CjPnRiwGl12
+         AzlEKlSqNMOYVlDhh1jtEup6FN8HEAZLvGtRP8u+BUMa5+tFPkvS49kYRgE7TMlaMRWC
+         TzZLUhcbWUOPHTkG1KlOQ56PdseXz4/NLK6C0nBaS4iIubNT3pnyVyzEqz1TzJiaC+lb
+         niUa107Hjopv3Uqvs36c4L0PHgglzUdd4rdc0T4DzKVZVSIGK4b7iI/muNZndKZOJqyP
+         QpqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVMu26rS2SJ0Q2Vm1A8VkkIOxgk1rSSBtYHRf+JuzKt+TjIw1yqQuLGMa7OMeFQpyxmyoc3tpXxmyhy@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx4Zt2YywfqLrDCZ9gLr0LClOyDhMMqbTywHe76j4HR8XqYfkav
+	fiTL1Za2zUWBUNW2qu5eRH8DHbg9//2/zzfw74PHrSQl8VLOKqcCX/NccssR3rJJL5bIoasugKn
+	sZHuppMbkI0FP/zpOCk0YHPTUkMnBzldKKaBJ5g==
+X-Google-Smtp-Source: AGHT+IEugYhO3qu2pI5GTy+5MNobr83Oj1LIe7KV1mNroQS/7Hdfjqfs3RZ2KahktWJFX5bf8Yw2oc7xssKAL6x6h1s=
+X-Received: by 2002:a05:690c:2501:b0:6dd:cdd7:ce49 with SMTP id
+ 00721157ae682-6eca4640ff7mr126602127b3.6.1731590927516; Thu, 14 Nov 2024
+ 05:28:47 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] iio: frequency: Add ADF4382
-To: Ciprian Hegbeli <ciprian.hegbeli@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kim Seer Paller <kimseer.paller@analog.com>,
- Antoniu Miclaus <antoniu.miclaus@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20241114130340.7354-1-ciprian.hegbeli@analog.com>
- <20241114130340.7354-3-ciprian.hegbeli@analog.com>
-Content-Language: en-US, de-AT
-From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-In-Reply-To: <20241114130340.7354-3-ciprian.hegbeli@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20241114074722.4085319-1-quic_varada@quicinc.com> <20241114074722.4085319-7-quic_varada@quicinc.com>
+In-Reply-To: <20241114074722.4085319-7-quic_varada@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 14 Nov 2024 15:28:36 +0200
+Message-ID: <CAA8EJpr6xb=TPPgk7ERhKVp7OnYdPGCK6+1_2TBRLBt_eWM43A@mail.gmail.com>
+Subject: Re: [PATCH v3 6/6] arm64: dts: qcom: Add USB controller and phy nodes
+ for IPQ5424
+To: Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, gregkh@linuxfoundation.org, andersson@kernel.org, 
+	konradybcio@kernel.org, mantas@8devices.com, quic_kbajaj@quicinc.com, 
+	quic_kriskura@quicinc.com, quic_rohiagar@quicinc.com, abel.vesa@linaro.org, 
+	quic_wcheng@quicinc.com, linux-arm-msm@vger.kernel.org, 
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 14/11/2024 14:03, Ciprian Hegbeli wrote:
-> The ADF4382A is a high performance, ultralow jitter, Frac-N PLL
-> with integrated VCO ideally suited for LO generation for 5G applications
-> or data converter clock applications. The high performance
-> PLL has a figure of merit of -239 dBc/Hz, low 1/f Noise and
-> high PFD frequency of 625MHz in integer mode that can achieve
-> ultralow in-band noise and integrated jitter. The ADF4382A can
-> generate frequencies in a fundamental octave range of 11.5 GHz to
-> 21 GHz, thereby eliminating the need for sub-harmonic filters. The
-> divide by 2 and 4 output dividers on the part allow frequencies to
-> be generated from 5.75GHz to 10.5GHz and 2.875GHz to 5.25GHz
-> respectively.
-> 
-> Signed-off-by: Ciprian Hegbeli <ciprian.hegbeli@analog.com>
+On Thu, 14 Nov 2024 at 09:48, Varadarajan Narayanan
+<quic_varada@quicinc.com> wrote:
+>
+> The IPQ5424 SoC has both USB2.0 and USB3.0 controllers. The USB3.0
+> can connect to either of USB2.0 or USB3.0 phy and operate in the
+> respective mode.
+>
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
 > ---
->  drivers/iio/frequency/Kconfig   |   11 +
->  drivers/iio/frequency/Makefile  |    1 +
->  drivers/iio/frequency/adf4382.c | 1825 +++++++++++++++++++++++++++++++
->  3 files changed, 1837 insertions(+)
->  create mode 100644 drivers/iio/frequency/adf4382.c
-
-...
-
-> +static int _adf4382_set_freq(struct adf4382_state *st)
-> +{
-> +	u32 frac2_word = 0;
-> +	u32 mod2_word = 0;
-> +	u64 pfd_freq_hz;
-> +	u32 frac1_word;
-> +	u8 clkout_div;
-> +	u32 read_val;
-> +	u8 dclk_div1;
-> +	u8 int_mode;
-> +	u8 en_bleed;
-> +	u8 ldwin_pw;
-> +	u16 n_int;
-> +	u8 div1;
-> +	u64 tmp;
-> +	u64 vco;
-> +	int ret;
-> +	u8 var;
+> v3: Regulator node names, labels and 'regulator-name' changed per review suggestions
+>     Stray newline removed
+>
+> v2: Add dm/dp_hs_phy_irq to usb3@8a00000 node
+>     Add u1/u2-entry quirks to usb@8a00000 node
+> ---
+>  arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts |  66 ++++++++
+>  arch/arm64/boot/dts/qcom/ipq5424.dtsi       | 159 ++++++++++++++++++++
+>  2 files changed, 225 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts b/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
+> index d4d31026a026..859e15befb3f 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
+> +++ b/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
+> @@ -16,12 +16,70 @@ / {
+>         aliases {
+>                 serial0 = &uart1;
+>         };
 > +
-> +	ret = adf4382_pfd_compute(st, &pfd_freq_hz);
-> +	if (ret) {
-> +		dev_err(&st->spi->dev, "PFD frequency is out of range.\n");
-> +		return ret;
-> +	}
-> +
-> +	for (clkout_div = 0; clkout_div <= st->clkout_div_reg_val_max; clkout_div++) {
-> +		tmp =  (1 << clkout_div) * st->freq;
-> +		if (tmp < st->vco_min || tmp > st->vco_max)
-> +			continue;
-> +
-> +		vco = tmp;
-> +		break;
-> +	}
-> +
+> +       vreg_misc_3p3: regulator-3300000 {
 
-(At least) LLVM/Clang complains about vco for a good reason: you may use
-it without proper initialization if the for loop does not assign any
-value. I guess you meant it to be initialized to zero in the declaration.
+Technically these names are correct. However they don't match the
+approach that Qualcomm DT files have been using up to now.
+You can compare your data with the output of `git grep :.regulator-
+arch/arm64/boot/dts/qcom/`
 
-> +	if (vco == 0) {
-> +		dev_err(&st->spi->dev, "Output frequency is out of range.\n");
-> +		ret = -EINVAL;
-> +		return ret;
-> +	}
+> +               compatible = "regulator-fixed";
+> +               regulator-min-microvolt = <3300000>;
+> +               regulator-max-microvolt = <3300000>;
+> +               regulator-boot-on;
+> +               regulator-always-on;
+> +               regulator-name = "usb_hs_vdda_3p3";
+> +       };
 > +
+> +       vreg_misc_1p8: regulator-1800000 {
+> +               compatible = "regulator-fixed";
+> +               regulator-min-microvolt = <1800000>;
+> +               regulator-max-microvolt = <1800000>;
+> +               regulator-boot-on;
+> +               regulator-always-on;
+> +               regulator-name = "vdda_1p8_usb";
+> +       };
+> +
+> +       vreg_misc_0p925: regulator-0925000 {
+> +               compatible = "regulator-fixed";
+> +               regulator-min-microvolt = <925000>;
+> +               regulator-max-microvolt = <925000>;
+> +               regulator-boot-on;
+> +               regulator-always-on;
+> +               regulator-name = "vdd_core_usb";
+> +       };
+> +};
+> +
+> +&dwc_0 {
+> +       dr_mode = "host";
+> +};
+> +
+> +&dwc_1 {
+> +       dr_mode = "host";
+> +};
+> +
+> +&qusb_phy_0 {
+> +       vdd-supply = <&vreg_misc_0p925>;
+> +       vdda-pll-supply = <&vreg_misc_1p8>;
+> +       vdda-phy-dpdm-supply = <&vreg_misc_3p3>;
+> +
+> +       status = "okay";
+> +};
+> +
+> +&qusb_phy_1 {
+> +       vdd-supply = <&vreg_misc_0p925>;
+> +       vdda-pll-supply = <&vreg_misc_1p8>;
+> +       vdda-phy-dpdm-supply = <&vreg_misc_3p3>;
+> +
+> +       status = "okay";
+>  };
+>
+>  &sleep_clk {
+>         clock-frequency = <32000>;
+>  };
+>
+> +&ssphy_0 {
+> +       vdda-pll-supply = <&vreg_misc_1p8>;
+> +       vdda-phy-supply = <&vreg_misc_0p925>;
+> +
+> +       status = "okay";
+> +};
+> +
+>  &tlmm {
+>         sdc_default_state: sdc-default-state {
+>                 clk-pins {
+> @@ -53,6 +111,14 @@ &uart1 {
+>         status = "okay";
+>  };
+>
+> +&usb2 {
+> +       status = "okay";
+> +};
+> +
+> +&usb3 {
+> +       status = "okay";
+> +};
+> +
+>  &xo_board {
+>         clock-frequency = <24000000>;
+>  };
+> diff --git a/arch/arm64/boot/dts/qcom/ipq5424.dtsi b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
+> index 5e219f900412..f8afd6f0412d 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq5424.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
+> @@ -233,6 +233,165 @@ intc: interrupt-controller@f200000 {
+>                         msi-controller;
+>                 };
+>
+> +               qusb_phy_1: phy@71000 {
+> +                       compatible = "qcom,ipq5424-qusb2-phy";
+> +                       reg = <0 0x00071000 0 0x180>;
+> +                       #phy-cells = <0>;
+> +
+> +                       clocks = <&gcc GCC_USB1_PHY_CFG_AHB_CLK>,
+> +                               <&xo_board>;
+> +                       clock-names = "cfg_ahb", "ref";
+> +
+> +                       resets = <&gcc GCC_QUSB2_1_PHY_BCR>;
+> +                       status = "disabled";
+> +               };
+> +
+> +               usb2: usb2@1e00000 {
+> +                       compatible = "qcom,ipq5424-dwc3", "qcom,dwc3";
+> +                       reg = <0 0x01ef8800 0 0x400>;
+> +                       #address-cells = <2>;
+> +                       #size-cells = <2>;
+> +                       ranges;
+> +
+> +                       clocks = <&gcc GCC_USB1_MASTER_CLK>,
+> +                                <&gcc GCC_USB1_SLEEP_CLK>,
+> +                                <&gcc GCC_USB1_MOCK_UTMI_CLK>,
+> +                                <&gcc GCC_USB1_PHY_CFG_AHB_CLK>,
+> +                                <&gcc GCC_CNOC_USB_CLK>;
+> +
+> +                       clock-names = "core",
+> +                                     "sleep",
+> +                                     "mock_utmi",
+> +                                     "iface",
+> +                                     "cfg_noc";
+> +
+> +                       assigned-clocks = <&gcc GCC_USB1_MASTER_CLK>,
+> +                                         <&gcc GCC_USB1_MOCK_UTMI_CLK>;
+> +                       assigned-clock-rates = <200000000>,
+> +                                              <24000000>;
+> +
+> +                       interrupts-extended = <&intc GIC_SPI 395 IRQ_TYPE_LEVEL_HIGH>,
+> +                                             <&intc GIC_SPI 397 IRQ_TYPE_LEVEL_HIGH>,
+> +                                             <&intc GIC_SPI 387 IRQ_TYPE_LEVEL_HIGH>,
+> +                                             <&intc GIC_SPI 388 IRQ_TYPE_LEVEL_HIGH>;
+> +                       interrupt-names = "pwr_event",
+> +                                         "qusb2_phy",
+> +                                         "dm_hs_phy_irq",
+> +                                         "dp_hs_phy_irq";
+> +
+> +                       resets = <&gcc GCC_USB1_BCR>;
+> +                       qcom,select-utmi-as-pipe-clk;
+> +                       status = "disabled";
+> +
+> +                       dwc_1: usb@1e00000 {
+> +                               compatible = "snps,dwc3";
+> +                               reg = <0 0x01e00000 0 0xe000>;
+> +                               clocks = <&gcc GCC_USB1_MOCK_UTMI_CLK>;
+> +                               clock-names = "ref";
+> +                               interrupts = <GIC_SPI 396 IRQ_TYPE_LEVEL_HIGH>;
+> +                               phys = <&qusb_phy_1>;
+> +                               phy-names = "usb2-phy";
+> +                               tx-fifo-resize;
+> +                               snps,is-utmi-l1-suspend;
+> +                               snps,hird-threshold = /bits/ 8 <0x0>;
+> +                               snps,dis_u2_susphy_quirk;
+> +                               snps,dis_u3_susphy_quirk;
+> +                       };
+> +               };
+> +
+> +               qusb_phy_0: phy@7b000 {
+> +                       compatible = "qcom,ipq5424-qusb2-phy";
+> +                       reg = <0 0x0007b000 0 0x180>;
+> +                       #phy-cells = <0>;
+> +
+> +                       clocks = <&gcc GCC_USB0_PHY_CFG_AHB_CLK>,
+> +                               <&xo_board>;
+> +                       clock-names = "cfg_ahb", "ref";
+> +
+> +                       resets = <&gcc GCC_QUSB2_0_PHY_BCR>;
+> +                       status = "disabled";
+> +               };
+> +
+> +               ssphy_0: phy@7d000 {
+> +                       compatible = "qcom,ipq5424-qmp-usb3-phy";
+> +                       reg = <0 0x0007d000 0 0xa00>;
+> +                       #phy-cells = <0>;
+> +
+> +                       clocks = <&gcc GCC_USB0_AUX_CLK>,
+> +                                <&xo_board>,
+> +                                <&gcc GCC_USB0_PHY_CFG_AHB_CLK>,
+> +                                <&gcc GCC_USB0_PIPE_CLK>;
+> +                       clock-names = "aux",
+> +                                     "ref",
+> +                                     "cfg_ahb",
+> +                                     "pipe";
+> +
+> +                       resets = <&gcc GCC_USB0_PHY_BCR>,
+> +                                <&gcc GCC_USB3PHY_0_PHY_BCR>;
+> +                       reset-names = "phy",
+> +                                     "phy_phy";
+> +
+> +                       #clock-cells = <0>;
+> +                       clock-output-names = "usb0_pipe_clk";
+> +
+> +                       status = "disabled";
+> +               };
+> +
+> +               usb3: usb3@8a00000 {
+> +                       compatible = "qcom,ipq5424-dwc3", "qcom,dwc3";
+> +                       reg = <0 0x08af8800 0 0x400>;
+> +
+> +                       #address-cells = <2>;
+> +                       #size-cells = <2>;
+> +                       ranges;
+> +
+> +                       clocks = <&gcc GCC_USB0_MASTER_CLK>,
+> +                                <&gcc GCC_USB0_SLEEP_CLK>,
+> +                                <&gcc GCC_USB0_MOCK_UTMI_CLK>,
+> +                                <&gcc GCC_USB0_PHY_CFG_AHB_CLK>,
+> +                                <&gcc GCC_CNOC_USB_CLK>;
+> +
+> +                       clock-names = "core",
+> +                                     "sleep",
+> +                                     "mock_utmi",
+> +                                     "iface",
+> +                                     "cfg_noc";
+> +
+> +                       assigned-clocks = <&gcc GCC_USB0_MASTER_CLK>,
+> +                                         <&gcc GCC_USB0_MOCK_UTMI_CLK>;
+> +                       assigned-clock-rates = <200000000>,
+> +                                              <24000000>;
+> +
+> +                       interrupts-extended = <&intc GIC_SPI 412 IRQ_TYPE_LEVEL_HIGH>,
+> +                                             <&intc GIC_SPI 414 IRQ_TYPE_LEVEL_HIGH>,
+> +                                             <&intc GIC_SPI 423 IRQ_TYPE_LEVEL_HIGH>,
+> +                                             <&intc GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH>;
+> +                       interrupt-names = "pwr_event",
+> +                                         "qusb2_phy",
+> +                                         "dm_hs_phy_irq",
+> +                                         "dp_hs_phy_irq";
+> +
+> +                       resets = <&gcc GCC_USB_BCR>;
+> +                       status = "disabled";
+> +
+> +                       dwc_0: usb@8a00000 {
+> +                               compatible = "snps,dwc3";
+> +                               reg = <0 0x08a00000 0 0xcd00>;
+> +                               clocks = <&gcc GCC_USB0_MOCK_UTMI_CLK>;
+> +                               clock-names = "ref";
+> +                               interrupts = <GIC_SPI 409 IRQ_TYPE_LEVEL_HIGH>;
+> +                               phys = <&qusb_phy_0>, <&ssphy_0>;
+> +                               phy-names = "usb2-phy", "usb3-phy";
+> +                               tx-fifo-resize;
+> +                               snps,is-utmi-l1-suspend;
+> +                               snps,hird-threshold = /bits/ 8 <0x0>;
+> +                               snps,dis_u2_susphy_quirk;
+> +                               snps,dis_u3_susphy_quirk;
+> +                               snps,dis-u1-entry-quirk;
+> +                               snps,dis-u2-entry-quirk;
+> +                       };
+> +               };
+> +
+>                 timer@f420000 {
+>                         compatible = "arm,armv7-timer-mem";
+>                         reg = <0 0xf420000 0 0x1000>;
+> --
+> 2.34.1
+>
 
-Best regards,
-Javier Carrasco
+
+-- 
+With best wishes
+Dmitry
 
