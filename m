@@ -1,96 +1,80 @@
-Return-Path: <devicetree+bounces-121721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D09F29C8183
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 04:37:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB6EE9C818B
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 04:46:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4C7C5B22C99
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 03:37:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0DF61B21526
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 03:46:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C21E17C20F;
-	Thu, 14 Nov 2024 03:37:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r837WVoo"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D58BF14B06C;
+	Thu, 14 Nov 2024 03:46:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 396432309B8;
-	Thu, 14 Nov 2024 03:37:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93D912AD21
+	for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 03:46:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731555431; cv=none; b=itpFnep/+DsIsBLF4aN+R1cG/GtB/D1V0gBZ0QzbkAn5fSSEJJ5rJjBgVSb9qjxPKxUj/8Rmo99MOTnvoQLWbtlDVIVzP4SloIaNTO1EgKzBIPFmOkr/xDsJ0xdsq25axRb5coUmy4Q4n+ah73VcuuNjP/MfiZPscUAf+aDnHkk=
+	t=1731555986; cv=none; b=c5mVOeP5n3cEUW+NvVri4Rmjqe7T4kawj+a6beSDjHsxcE7XCUY8OMC2eGAaMWNeUI4ps/ztHurAlSgF+Yi2quWRQEr4F+AY/oaY/aDbPLQm5Bs+0WOLmio3wylWhNVT8bp3QZBD+o0unZXfokn5zXUd92+ZDpmTsuqriQJQzu8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731555431; c=relaxed/simple;
-	bh=jFpyI3nOdDf01MdExjgHPu4NLF2fuwE/+slLVZ48g9o=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dWSDeYVDZPKnCwqy+WrQSd/+c940mMzEOzOfhFgZngOTWCOkvrjxzltlcZyJi8UYgdLImFJ+9Bi1Iuuvtu+7Z49JSQrFSbEko+zQvqLZ96wuKu1Vf7jB6rDhxwwAkbriwOapx/ETk4pt+BYChKrXJwKjvKbfWpCts9o3oVVL2nE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r837WVoo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79731C4CEC3;
-	Thu, 14 Nov 2024 03:37:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731555431;
-	bh=jFpyI3nOdDf01MdExjgHPu4NLF2fuwE/+slLVZ48g9o=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=r837WVoozJRURRFSvLLQf60pnpa5hpAN4IyOp8f60FfokeF1CXzss79hnUBem6g+4
-	 7aNpeqAzRdXPxi6S+8geG87H7dl/YYGDjdfzzf9ulqNaHKPfayBxY6RF9RUJndpXXZ
-	 3WuumvQW8CjhI3Rj+YYQHzG96rC2miV2U7rAcV22V+8zUKFSP0/zwkfl1j7Kxm1JcT
-	 WQTb3jWe+KMqFkfYAT/v/gbco4kYaG59ZW3nOlxy57+fX86wk06klYPgATonLiZT1b
-	 lLIMRU95NjUIJrPllCF7bH+QtKobg1qh+ERF2bfOqFkv6/a0GmSoGeq5ZuTC8apfRq
-	 nPrXdvStCg9Ug==
-Date: Wed, 13 Nov 2024 19:37:09 -0800
-From: Jakub Kicinski <kuba@kernel.org>
-To: Marc Kleine-Budde <mkl@pengutronix.de>
-Cc: Sean Nyekjaer <sean@geanix.com>, Vincent Mailhol
- <mailhol.vincent@wanadoo.fr>, "David S. Miller" <davem@davemloft.net>, Eric
- Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-can@vger.kernel.org, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 0/2] can: tcan4x5x: add option for selecting nWKRQ
- voltage
-Message-ID: <20241113193709.395c18b0@kernel.org>
-In-Reply-To: <20241112-hulking-smiling-pug-c6fd4d-mkl@pengutronix.de>
-References: <20241111-tcan-wkrqv-v2-0-9763519b5252@geanix.com>
-	<20241111101011.30e04701@kernel.org>
-	<fatpdmg5k2vlwzr3nhz47esxv7nokzdebd7ziieic55o5opzt6@axccyqm6rjts>
-	<20241112-hulking-smiling-pug-c6fd4d-mkl@pengutronix.de>
+	s=arc-20240116; t=1731555986; c=relaxed/simple;
+	bh=m0nkpefqaIIh3NiNrky4HZaYsATR5SyWKF19r3k+qdk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fKRGgc48ZpVxzRmsUU//FJZbUrg5dTexAnIVPlnAUOj2sNtYF4dwgWNEh2bmTM6j3rSskEQHpjtAJcrIIbNO+4wo2H8Zvw7FyAZx1jo6gMb0KIIslLi6EZ3g4NdaWZb1SwZKSGNmFKWXtutgla9Nce04zgFNRzDAfXbnvmhue3k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
+Received: from secure.fukaumi.org ([10.0.0.2])
+	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 4AE3jqu1029588;
+	Thu, 14 Nov 2024 12:45:53 +0900
+From: FUKAUMI Naoki <naoki@radxa.com>
+To: heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        dsimic@manjaro.org, sebastian.reichel@collabora.com, alchark@gmail.com,
+        cristian.ciocaltea@collabora.com, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, FUKAUMI Naoki <naoki@radxa.com>
+Subject: [PATCH 0/3] arm64: dts: rockchip: use shared .dtsi and board-specific .dts for Radxa ROCK 5A and 5C
+Date: Thu, 14 Nov 2024 03:45:42 +0000
+Message-ID: <20241114034545.6440-1-naoki@radxa.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On Tue, 12 Nov 2024 08:16:02 +0100 Marc Kleine-Budde wrote:
-> > > There is no need to CC netdev@ on pure drivers/net/can changes.
-> > > Since these changes are not tagged in any way I have to manually
-> > > go and drop all of them from our patchwork.  
-> 
-> Does the prefix "can-next" help, i.e.:
-> 
-> | [PATCH can-next v2 0/2]
-> 
-> which can be configured via:
-> 
-> | b4 prep --set-prefixes "can-next"
+since Radxa ROCK 5C is slightly updated version of Radxa ROCK 5A,
+almost every part of dts can be shared.
 
-Yup, prefix would make it easy for us to automatically discard !
+this patch series make small changes to .dts for ROCK 5C to make it
+sharable, split it into a sharable .dtsi and a board-specific .dts,
+and convert .dts for ROCK 5A to use the shared .dtsi.
 
-> > Oh sorry for that.
-> > I'm using b4's --auto-to-cc feature, any way to fix that?  
-> 
-> You can manually trim the list of Cc: using:
-> 
-> | b4 prep --edit-cover
+(this patch series depends patch series for Radxa ROCK 5C[1])
 
-My bad actually, I didn't realize we don't have an X: entries
-on net/can/ under general networking in MAINTAINERS.
+[1] https://patchwork.kernel.org/project/linux-rockchip/patch/20241114023746.4867-1-naoki@radxa.com/
 
-Would you mind if I added them?
+FUKAUMI Naoki (3):
+  arm64: dts: rockchip: add "dcin" regulator for Radxa ROCK 5C
+  arm64: dts: rockchip: split dts into sharable dtsi and board-specific
+    dts for Radxa ROCK 5C
+  arm64: dts: rockchip: convert to use shared .dtsi for Radxa ROCK 5A
+
+ ...k3588s-rock-5c.dts => rk3588s-rock-5.dtsi} |  34 +-
+ .../boot/dts/rockchip/rk3588s-rock-5a.dts     | 879 +---------------
+ .../boot/dts/rockchip/rk3588s-rock-5c.dts     | 955 +-----------------
+ 3 files changed, 87 insertions(+), 1781 deletions(-)
+ copy arch/arm64/boot/dts/rockchip/{rk3588s-rock-5c.dts => rk3588s-rock-5.dtsi} (95%)
+ rewrite arch/arm64/boot/dts/rockchip/rk3588s-rock-5a.dts (97%)
+ rewrite arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts (94%)
+
+-- 
+2.43.0
+
 
