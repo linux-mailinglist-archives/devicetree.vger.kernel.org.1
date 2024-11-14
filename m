@@ -1,174 +1,161 @@
-Return-Path: <devicetree+bounces-121880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 351079C898E
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 13:11:51 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A77679C8A10
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 13:35:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE3EB1F23ACD
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 12:11:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EDAE9B278B2
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 12:29:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 037A81F942D;
-	Thu, 14 Nov 2024 12:11:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4455C1F9AAC;
+	Thu, 14 Nov 2024 12:29:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JnXLe4zW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SPR/fBQd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 182CA18BC2C
-	for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 12:11:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D8E51F9A8D;
+	Thu, 14 Nov 2024 12:29:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731586306; cv=none; b=Fiasz/Lt2WPQF+tqNO65gPRegirl2QNMStxKNs2Ev3iYwClqTlLW7gSmqk3gN+3nvoNKm1coCj5SH3yb32lWrHo/k8+sy9gkXHaqvsKuGnWhaAwsnuBkGt4ijDhoUysJEikQz3LbpfR1dkmNBDEu8H0ElB3tUn+lk31eQ41QFhI=
+	t=1731587377; cv=none; b=GALgQhglJOOnbar6GCCERysJNarEoyjLBEJdini2oGrLpjm1n7ZuxF8pGZ0y6bQQFJibVVg07BDFaKnTR3IZ8o9QohE+Y0/BjPfWPoVSe6k9KVDOwsUk5o4gsde3kz+/4L07jmvJMFmgdR+sEdDKbexYglcjuXbVxkMguDgoQXk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731586306; c=relaxed/simple;
-	bh=8z+kqJBm6xVUjsx7g2KL+Nw8vebu/U9FGTQdulnyuOw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=arP5/q6ibkd1HRf3liPN5XXAZwThz0gQl7t6ObSvM4lvHB+FrqY6HLVY4UU+GlvXJkbkg4QZ4wV2eC6tgpCFshw5TRy317HZzTrx+rysFWfYEjoLQlxFpL9WEQE7lDXGzX90AoZ+rhz5VeyZCkOd3nqFY0mqYmvL5M75HDEriJc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JnXLe4zW; arc=none smtp.client-ip=209.85.167.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-539f76a6f0dso504923e87.1
-        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 04:11:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731586303; x=1732191103; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=E+Fn+TRNlFXO3ulOSTzXE3Z/L18YHrd+68I42zTssiQ=;
-        b=JnXLe4zWtSk7OGlME9cgTQdpgDnZG7qL8lO3CiiEnH7PSrjACstCKAWk3S9H6hGeNq
-         S/Lnhon4sLeuOxn0hrWyV1z19FDhFY+OSwxPx2dP2eOvtlC209D4wja31ujBBCUIQc0x
-         M9LbnI0wXm2YzKg1MI62T7bnUVwe8mQox/n0nLiLZjWgFuReytvvXysGcfdND4YSyWWJ
-         qlynMbNLiZxheBXSmKCqG+dSt8ybJcTF9Zxaklwt9PcxgWXmtV5t/Xcjl9oOWqcFWEE2
-         py/+wSCjxt/rTUVvJrIO8cd48nLyglpJ9mWwR5QMyPegPg7xqaB8uzy0rWLBdJsu0Q/n
-         EBaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731586303; x=1732191103;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=E+Fn+TRNlFXO3ulOSTzXE3Z/L18YHrd+68I42zTssiQ=;
-        b=htTKdi8BkWZG41Lt682XCEVZxHfHx42DBRJiX6/3EsQ8fpu7t+QX0Ic9fzrvGBzBTn
-         muMyWiY0u8AJhSyN1h20bv0KvOL4j3//vYpFwkZA7JmkCtmXvgyrGe2+BbMPbNky2tw9
-         wlhTN8kWxUatbh3hR8ivxQXT5e6sfohNPeQrgzp7kKXf9wv8awQJY/fMwrQdJ7T8BkD0
-         s7SmkfbtZJEEvQg0HzqZbD6IoAgPwvtv6PTrwzVBgd7hk8IfsHwwuiulIuK52P9Lm0qC
-         DK3OYENBzD9FTle8Geol8oF0zPao0wvDz/uhqNCMZAbTCQIujFQ9KvJedK5dplyZSyOg
-         N00g==
-X-Forwarded-Encrypted: i=1; AJvYcCXobHh53J05wTedyvtLPWu+V5g5JFZBhZzaJx9H8ys4lCB9FzH7jyOk2gxsYdiDDt/F8rg5HdRlif2m@vger.kernel.org
-X-Gm-Message-State: AOJu0YxzGxRVJ4jokNRoVHRt2lvE4MZR57GKtTTzAXQOp3ElgQfGl2Nl
-	2o79AvVvvHZV3fryka4CHePeRAdqrXUTZFZ+g5cJeStiKpIhliAKU4I4TLLTjsA=
-X-Google-Smtp-Source: AGHT+IEuwJH3uXzQoHJuqJQBlLC78MEjhVMGtWYMu62qUlP11U2Jmmz1Nm73TpwhnS/Tw4rX6aoyBA==
-X-Received: by 2002:ac2:4c04:0:b0:53d:a077:1d0b with SMTP id 2adb3069b0e04-53da0771ddcmr2952197e87.44.1731586303288;
-        Thu, 14 Nov 2024 04:11:43 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53da64fa596sm164800e87.48.2024.11.14.04.11.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Nov 2024 04:11:41 -0800 (PST)
-Date: Thu, 14 Nov 2024 14:11:40 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: "Renjiang Han (QUIC)" <quic_renjiang@quicinc.com>
-Cc: Stanimir Varbanov <stanimir.k.varbanov@gmail.com>, 
-	"Vikash Garodia (QUIC)" <quic_vgarodia@quicinc.com>, "bryan.odonoghue@linaro.org" <bryan.odonoghue@linaro.org>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>, "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 2/4] media: venus: core: add qcs615 platform data
-Message-ID: <refu5diitlpho62d756sgarsd77upbkidarx2dwuqng7kpndrd@xiqfir3nentb>
-References: <20241112-add-venus-for-qcs615-v2-0-e67947f957af@quicinc.com>
- <20241112-add-venus-for-qcs615-v2-2-e67947f957af@quicinc.com>
- <eldjwrookzs46mvxdp56uj2eytfeu5fuj4zs4yowcyilhra3pg@vc6v72klixem>
- <a8c4dea53aab46b9ab8d40b9d997f13e@quicinc.com>
+	s=arc-20240116; t=1731587377; c=relaxed/simple;
+	bh=jO8wO2u4TzSToVkvP8mnOBJEASwGFrGljAE99wHmaPE=;
+	h=Content-Type:Date:Message-Id:Subject:Cc:From:To:References:
+	 In-Reply-To; b=TDU5lMZoFXNzCxlufGBtS6feQSpDQ78hKRfiyMSzV2WkKqtU9vBVsLr4SAjmgqVpV0JsGB/ucitxmmo5MKUTdOnlF8Z8xtrDvX4O8gKRBdhjISVp/BqEbtUw9Jh+5+bg2ifSVPpoJGbML0Hd1WY/U8Mhnl2mXmy7foLbr8lGp3Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SPR/fBQd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25DD9C4CECD;
+	Thu, 14 Nov 2024 12:29:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731587376;
+	bh=jO8wO2u4TzSToVkvP8mnOBJEASwGFrGljAE99wHmaPE=;
+	h=Date:Subject:Cc:From:To:References:In-Reply-To:From;
+	b=SPR/fBQd80bXXGD5IPBlR4X7HFTjYE5PHfr8245sbYTmj+g0esjtnIiss+qf2ZyKD
+	 HOdgQ4qZ5mJNnB+ExZV0XFEfEhFYayh4LFv8vHeMCLExPg2baQW835vkCWkNHYacNy
+	 Ms8uvo9fWQZPskkh23D2w93r6TlksldOU1u65ij5sM8uIdFwHRhQJeKu+PgJCowB1M
+	 9be93vxQCvQnfAzgoTUFzEteB1ZbvyQnHgN58FKyDI2OBBAjTIVctfgMZjRIER6h9W
+	 a/9oa/sbht8PM9Xn/zHOK2euCD8uxgKuQbjnsGV8HXemsHCmd9CuI8PZmdBsrIpRkL
+	 W+P0WM8igLjhg==
+Content-Type: multipart/signed;
+ boundary=52ace44e12075fa8225f0041c53d0c91369398e0eb41fb0d755839799c8c;
+ micalg=pgp-sha384; protocol="application/pgp-signature"
+Date: Thu, 14 Nov 2024 13:29:32 +0100
+Message-Id: <D5LWHT7OU9DQ.NCMSTUWT5991@kernel.org>
+Subject: Re: [PATCH v2 2/2] arm64: dts: mediatek: Set mediatek,mac-wol on
+ DWMAC node for all boards
+Cc: <kernel@collabora.com>, <netdev@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>,
+ <linux-mediatek@lists.infradead.org>, "Andrew Lunn"
+ <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, "Eric
+ Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>, "Paolo
+ Abeni" <pabeni@redhat.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Matthias Brugger" <matthias.bgg@gmail.com>, "Biao Huang"
+ <biao.huang@mediatek.com>, "Alexandre Torgue"
+ <alexandre.torgue@foss.st.com>, "Jose Abreu" <joabreu@synopsys.com>,
+ "Maxime Coquelin" <mcoquelin.stm32@gmail.com>, "Bartosz Golaszewski"
+ <bartosz.golaszewski@linaro.org>, "Andrew Halaney" <ahalaney@redhat.com>,
+ "Simon Horman" <horms@kernel.org>
+From: "Michael Walle" <mwalle@kernel.org>
+To: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>,
+ =?utf-8?b?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>
+X-Mailer: aerc 0.16.0
+References: <20241109-mediatek-mac-wol-noninverted-v2-0-0e264e213878@collabora.com> <20241109-mediatek-mac-wol-noninverted-v2-2-0e264e213878@collabora.com> <bdbfb1db-1291-4f95-adc9-36969bb51eb4@collabora.com>
+In-Reply-To: <bdbfb1db-1291-4f95-adc9-36969bb51eb4@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a8c4dea53aab46b9ab8d40b9d997f13e@quicinc.com>
 
-On Thu, Nov 14, 2024 at 04:25:45AM +0000, Renjiang Han (QUIC) wrote:
-> On Thu 11/14/2024 2:01 AM, Dmitry Baryshkov wrote:
-> > On Tue, Nov 12, 2024 at 05:17:58PM +0530, Renjiang Han wrote:
-> > > Initialize the platform data and enable venus driver probe of QCS615 
-> > > SoC.
-> > > 
-> > > Signed-off-by: Renjiang Han <quic_renjiang@quicinc.com>
-> > > ---
-> > >  drivers/media/platform/qcom/venus/core.c | 50 
-> > > ++++++++++++++++++++++++++++++++
-> > > 1 file changed, 50 insertions(+)
-> > > 
-> > > diff --git a/drivers/media/platform/qcom/venus/core.c 
-> > > b/drivers/media/platform/qcom/venus/core.c
-> > > index 
-> > > 423deb5e94dcb193974da23f9bd2d905bfeab2d9..39d8bcf62fe4f72674746b75994c
-> > > ce6cbaee94eb 100644
-> > > --- a/drivers/media/platform/qcom/venus/core.c
-> > > +++ b/drivers/media/platform/qcom/venus/core.c
-> > > @@ -630,6 +630,55 @@ static const struct venus_resources msm8998_res = {
-> > >  	.fwname = "qcom/venus-4.4/venus.mbn",  };
-> > >  
-> > > +static const struct freq_tbl qcs615_freq_table[] = {
-> > > +	{ 0, 460000000 },
-> > > +	{ 0, 410000000 },
-> > > +	{ 0, 380000000 },
-> > > +	{ 0, 300000000 },
-> > > +	{ 0, 240000000 },
-> > > +	{ 0, 133333333 },
-> > > +};
-> > > +
-> > > +static const struct bw_tbl qcs615_bw_table_enc[] = {
-> > > +	{  972000,  951000, 0, 1434000, 0 },	/* 3840x2160@30 */
-> > > +	{  489600,  723000, 0,  973000, 0 },	/* 1920x1080@60 */
-> > > +	{  244800,  370000, 0,	495000, 0 },	/* 1920x1080@30 */
-> > > +};
-> > > +
-> > > +static const struct bw_tbl qcs615_bw_table_dec[] = {
-> > > +	{ 1036800, 1987000, 0, 2797000, 0 },	/* 4096x2160@30 */
-> > > +	{  489600, 1040000, 0, 1298000, 0 },	/* 1920x1080@60 */
-> > > +	{  244800,  530000, 0,  659000, 0 },	/* 1920x1080@30 */
-> > > +};
-> > > +
-> > > +static const struct venus_resources qcs615_res = {
-> > > +	.freq_tbl = qcs615_freq_table,
-> > > +	.freq_tbl_size = ARRAY_SIZE(qcs615_freq_table),
-> > > +	.bw_tbl_enc = qcs615_bw_table_enc,
-> > > +	.bw_tbl_enc_size = ARRAY_SIZE(qcs615_bw_table_enc),
-> > > +	.bw_tbl_dec = qcs615_bw_table_dec,
-> > > +	.bw_tbl_dec_size = ARRAY_SIZE(qcs615_bw_table_dec),
-> > > +	.clks = {"core", "iface", "bus" },
-> > > +	.clks_num = 3,
-> > > +	.vcodec0_clks = { "vcodec0_core", "vcodec0_bus" },
-> > > +	.vcodec_clks_num = 2,
-> > > +	.vcodec_pmdomains = (const char *[]) { "venus", "vcodec0" },
-> > > +	.vcodec_pmdomains_num = 2,
-> > > +	.opp_pmdomain = (const char *[]) { "cx" },
-> > > +	.vcodec_num = 1,
-> > > +	.hfi_version = HFI_VERSION_4XX,
-> > > +	.vpu_version = VPU_VERSION_AR50,
-> > > +	.vmem_id = VIDC_RESOURCE_NONE,
-> > > +	.vmem_size = 0,
-> > > +	.vmem_addr = 0,
-> > > +	.dma_mask = 0xe0000000 - 1,
-> > > +	.cp_start = 0,
-> > > +	.cp_size = 0x70800000,
-> > > +	.cp_nonpixel_start = 0x1000000,
-> > > +	.cp_nonpixel_size = 0x24800000,
-> > > +	.fwname = "qcom/venus-5.4/venus_s6.mbn",
-> 
-> > Why does it need a separate firmware file?
-> 
-> SC7180, qcs615 can be enabled on same firmware ideally, but due to a different signing for qcs615, it takes a separate bin (venus_s6.mbn).
+--52ace44e12075fa8225f0041c53d0c91369398e0eb41fb0d755839799c8c
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-Continuing discussion in the linux-firmware@ thread.
+Hi,
 
--- 
-With best wishes
-Dmitry
+On Thu Nov 14, 2024 at 10:26 AM CET, AngeloGioacchino Del Regno wrote:
+> Il 09/11/24 16:16, N=C3=ADcolas F. R. A. Prado ha scritto:
+> > Due to the mediatek,mac-wol property previously being handled backwards
+> > by the dwmac-mediatek driver, its use in the DTs seems to have been
+> > inconsistent.
+> >=20
+> > Now that the driver has been fixed, correct this description. All the
+> > currently upstream boards support MAC WOL, so add the mediatek,mac-wol
+> > property to the missing ones.
+> >=20
+> > Signed-off-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
+> > ---
+> >   arch/arm64/boot/dts/mediatek/mt2712-evb.dts                   | 1 +
+> >   arch/arm64/boot/dts/mediatek/mt8195-demo.dts                  | 1 +
+> >   arch/arm64/boot/dts/mediatek/mt8395-kontron-3-5-sbc-i1200.dts | 1 +
+> >   3 files changed, 3 insertions(+)
+> >=20
+>
+> ..snip..
+>
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts b/arch/arm64/=
+boot/dts/mediatek/mt8195-demo.dts
+> > index 31d424b8fc7cedef65489392eb279b7fd2194a4a..c12684e8c449b2d7b3b3a79=
+086925bfe5ae0d8f8 100644
+> > --- a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
+> > @@ -109,6 +109,7 @@ &eth {
+> >   	pinctrl-names =3D "default", "sleep";
+> >   	pinctrl-0 =3D <&eth_default_pins>;
+> >   	pinctrl-1 =3D <&eth_sleep_pins>;
+> > +	mediatek,mac-wol;
+>
+> The demo board has the same WoL capability as the EVK, so you can avoid a=
+dding the
+> mac-wol property here.
+
+Not sure I can follow you here.
+
+>
+> >   	status =3D "okay";
+> >  =20
+> >   	mdio {
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8395-kontron-3-5-sbc-i1200.=
+dts b/arch/arm64/boot/dts/mediatek/mt8395-kontron-3-5-sbc-i1200.dts
+> > index e2e75b8ff91880711c82f783c7ccbef4128b7ab4..4985b65925a9ed10ad44a6e=
+58b9657a9dd48751f 100644
+> > --- a/arch/arm64/boot/dts/mediatek/mt8395-kontron-3-5-sbc-i1200.dts
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8395-kontron-3-5-sbc-i1200.dts
+> > @@ -271,6 +271,7 @@ &eth {
+> >   	pinctrl-names =3D "default", "sleep";
+> >   	pinctrl-0 =3D <&eth_default_pins>;
+> >   	pinctrl-1 =3D <&eth_sleep_pins>;
+> > +	mediatek,mac-wol;
+>
+> I'm mostly sure that Kontron's i1200 works the same as the EVK in regards=
+ to WoL.
+>
+> Michael, I recall you worked on this board - can you please confirm?
+
+I'd say so. Honestly, I've never tried WoL on this board, but I'm
+not aware of any difference to the *demo* board (not the EVK).
+
+-michael
+
+--52ace44e12075fa8225f0041c53d0c91369398e0eb41fb0d755839799c8c
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iKgEABMJADAWIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCZzXtLRIcbXdhbGxlQGtl
+cm5lbC5vcmcACgkQEic87j4CH/iWHAF9EGqmrI+ZjOLTQX1iNMNp1lIL3a30zG0Z
+fCfLfeCWZL2+RRWPcly4R/8op414wophAYCl6jD4W7sXAYn0uTQU69C8uyAyzQus
+LYNR9AIEedX7Y537PxIcEpLeEJ++qmkDDo8=
+=xSul
+-----END PGP SIGNATURE-----
+
+--52ace44e12075fa8225f0041c53d0c91369398e0eb41fb0d755839799c8c--
 
