@@ -1,208 +1,190 @@
-Return-Path: <devicetree+bounces-121737-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121738-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 144C79C823F
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 05:55:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2C439C8253
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 06:20:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B680228462F
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 04:55:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 682C21F22FE6
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 05:20:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B286D1E7C33;
-	Thu, 14 Nov 2024 04:55:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76B3F16EB76;
+	Thu, 14 Nov 2024 05:20:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="EOFOgcL8"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ooFPOwrE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.smtpout.orange.fr (smtp-17.smtpout.orange.fr [80.12.242.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 566BF1553AA;
-	Thu, 14 Nov 2024 04:55:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B40A801;
+	Thu, 14 Nov 2024 05:20:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731560103; cv=none; b=WySvPPeX678nWIV7YF7xyjbYvtWAgq2MAUDGuTOm7dotQJs3AhCm4/w/+PYxmizQERNVbW0PDA6wTWdbkQsynNO31NJyUYxwSG27VYqjz3i/BsTWmVKVRcCOTHqi9/l5sgiVygdMVku05OlGV/ecs9KteQSuYZp5praDS+IoEbA=
+	t=1731561608; cv=none; b=O0pXQumArARNNkwGOHEYZUCB3oFdYzUzHu0Bv/XSFTduGviUoPxfX6LLSKzMjQ0YlYkXwyo+XWg/t7Dnxs6hnIJ+waQA1UBU4lTEGZwNKvb+dgPc7/ZEzuerIZyS1hE/KzDsvWBztWZb5LLs7eQeXm6qD4JuNY5i7a/jJawtYZE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731560103; c=relaxed/simple;
-	bh=o/5emXLfx9w6iWylWGCKAI4AJ2vE+YqEyXCPtzvueeo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=u0nXcBeKrLYTy3Qsa9luXCfe+/7yamsHJnUuLKeerY4UDsHp1B4dMhQJm3jb8HwRtdi7Sri4a2Hz2c9wFFJvd+1MYUb6fv7O2INCqqaFsCyvBgUgtOS+abtxaaKhpb8Ln6IcNrLfSc4h947G/pyCbwXm+A7A5HSBRifFj95hUsU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=EOFOgcL8; arc=none smtp.client-ip=80.12.242.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from mail-ej1-f44.google.com ([209.85.218.44])
-	by smtp.orange.fr with ESMTPSA
-	id BRrVt6lmrmvx4BRrVt9AwL; Thu, 14 Nov 2024 05:53:45 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1731560025;
-	bh=1EDa0vg4ZBXnx63Iz6EA6oPRRRo42Elpu8PdgGbLErU=;
-	h=MIME-Version:From:Date:Message-ID:Subject:To;
-	b=EOFOgcL80OMUStwlt1/cSXRToGXQWb7t2ydd73hhXtbKz1asFu5olRod6MPs4aVtm
-	 zTs9FLZYzoHox0xuodbWWFIIC3S08LgpEzoYYtkLgrctF6Ryo81cl2hG8R8kbKHbn3
-	 VCyksgenrLkKRAF3zZSRad49MKoJMwCJeTKJYJpVkscjTkBJ0t+owvKXPh5AqVYAnY
-	 CQdlNk2JNtx0dX8orq4s1fDqOdTwbsnoEOx6GIpy7iiQ3e+9wajU6sitlE83+5fZrf
-	 wHFWEmqsiF0tsvgjm+dmvyJmEQzrhgmqLcN18RmH+HQmQOuXUfQ+0+8mGoko2mcpx0
-	 F6alpS1vgw0ug==
-X-ME-Helo: mail-ej1-f44.google.com
-X-ME-Auth: bWFpbGhvbC52aW5jZW50QHdhbmFkb28uZnI=
-X-ME-Date: Thu, 14 Nov 2024 05:53:45 +0100
-X-ME-IP: 209.85.218.44
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a9a850270e2so31057066b.0;
-        Wed, 13 Nov 2024 20:53:45 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUHt7zHxQwAk3Az9wWMG+6/mDLIlSclNLegYtPkyGOiJqrvKQWZ9qKS0R9XkaQDl4v0EoHk1Brp@vger.kernel.org, AJvYcCVYVQQlv52vZeGSPF4IYJiPqkLtRu+xgdgRt4entCMzYVoU1vNc+xMTXEdlNv3NuZLRqWhMrPwyPvaS@vger.kernel.org, AJvYcCW0h7AfTQASSqOuLzVAH5MZSUAiWMaEvWLgjK2WBGFNJ78XX1fWrkqmX7ckKz3uaO+H632jYzw94WbW@vger.kernel.org, AJvYcCXBMHa8+S+LbneygsNLfeEAVYdGr56cNiB6N7naIx1EhyC9bSL5bLYH9VavngBdaq/tXfRjTbTigy2R0Bhu@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyx8pxJwxcHFZLV7HTB/YXUAEj2+evs5ru2x3zdZxbP6FhboMih
-	jWb2ypR1+Nkur0mQqjAe8JRLn2DpVb//o0cwCyVyHBGeH438TuSJrfrYH6xTDCH/X4iSvBHn4nw
-	Ps3SXQYfodx+AJEyCvfb1oU/PzPA=
-X-Google-Smtp-Source: AGHT+IESI/Fks52+BoNd/GzjvshhIgxdlgulbfGGZFgoEKu8CbVbivjecQTI3En+lKEI4jB/Yi3PiBNAvLfDB2XRils=
-X-Received: by 2002:a17:907:7fa9:b0:aa2:c79:c940 with SMTP id
- a640c23a62f3a-aa20ccdb8b4mr63959766b.1.1731560024972; Wed, 13 Nov 2024
- 20:53:44 -0800 (PST)
+	s=arc-20240116; t=1731561608; c=relaxed/simple;
+	bh=bC7YHY9eRvaXNaKGtlpVkgCIyqbqSnpXZKz2bnktmP8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=sHm4H/DrCFuX8cYoBZeRtj7Hb8wED/x3BDwyLe12W/WLZhAaZmCdOoz99yZQWquiWOU9arkaoM3qboiC2C/Kbn5NM8m9WDlgWn9ePGyGMeBSmRGgGuZYgdPAjLrKTBwptiblcsNT5tSAzX3n6w7gvgwpfog+akfeQZVlq59aCZ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ooFPOwrE; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4ADH1ega026166;
+	Thu, 14 Nov 2024 05:20:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	xrkIrxY0jsX5Qba7Sp5R/vGBw075/HC9nXMl2JaMbb4=; b=ooFPOwrEJRtvmcXA
+	4+hvnjLQAHZsY0Fbm/udwdjqf7xooI+ybIFz+69gl7pgDZw2ZI4fVq26/K7ZkR3H
+	8mT2MzzDcjuIfeaQ3v4f5efaAV18uTilKaALCt3vbRJSKbRumaZBBED2HyMRrJ8A
+	NXgDYLHf1/b23tX0DQnliGajVBmRgfc8lOHr9GlwphiAyjjg5w/o/YsQ4SHDXQxA
+	2bONdKEbDCG4Zu8bfENW4wKA6uOE8jMNnmnqA0KQHr6MMjosbgRO3AkVl/w/vlh8
+	rMWibZnSdJn3OOlDfT9m9vMK9ZhzU2uj6ppAayBB62PLtPbU+7HKQ6rCYeA/60Z1
+	YkXMPQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42va07d9vv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Nov 2024 05:20:00 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AE5Jxx7027146
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Nov 2024 05:19:59 GMT
+Received: from [10.204.65.49] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 13 Nov
+ 2024 21:19:55 -0800
+Message-ID: <b8a9a8f5-1f36-4eea-925b-84578e71838d@quicinc.com>
+Date: Thu, 14 Nov 2024 10:49:52 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241111-tcan-wkrqv-v2-0-9763519b5252@geanix.com> <20241111-tcan-wkrqv-v2-1-9763519b5252@geanix.com>
-In-Reply-To: <20241111-tcan-wkrqv-v2-1-9763519b5252@geanix.com>
-From: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
-Date: Thu, 14 Nov 2024 13:53:34 +0900
-X-Gmail-Original-Message-ID: <CAMZ6Rq++_yecNY-nNL7NK48ZsNPqH0KDRuqvCCGhUur24+7KGA@mail.gmail.com>
-Message-ID: <CAMZ6Rq++_yecNY-nNL7NK48ZsNPqH0KDRuqvCCGhUur24+7KGA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] can: tcan4x5x: add option for selecting nWKRQ voltage
-To: Sean Nyekjaer <sean@geanix.com>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-can@vger.kernel.org, netdev@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1] arm64: dts: qcom: sc7280: Make ADSP a secure fastrpc
+ domain
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <cros-qcom-dts-watchers@chromium.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <srinivas.kandagatla@linaro.org>, <quic_bkumar@quicinc.com>,
+        <quic_chennak@quicinc.com>
+References: <20241113050042.181028-1-quic_ekangupt@quicinc.com>
+ <5oqzxppquoeppt6xnjfm2rdwm23hbui5k3caz5v5ffqzizepob@dz5ikvzgbd4x>
+ <c1f0e56b-b489-4370-99e3-0973641410b8@quicinc.com>
+ <CAA8EJprDTz7b4rNtR4e9A-=j9_z-aJGBg3+g5is8Bmy=cgTM1Q@mail.gmail.com>
+Content-Language: en-US
+From: Ekansh Gupta <quic_ekangupt@quicinc.com>
+In-Reply-To: <CAA8EJprDTz7b4rNtR4e9A-=j9_z-aJGBg3+g5is8Bmy=cgTM1Q@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 0BZNFmNbmwykowaBM1Ic30s1u-Ec2_Gs
+X-Proofpoint-ORIG-GUID: 0BZNFmNbmwykowaBM1Ic30s1u-Ec2_Gs
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 malwarescore=0
+ mlxlogscore=999 clxscore=1015 adultscore=0 lowpriorityscore=0 spamscore=0
+ impostorscore=0 mlxscore=0 suspectscore=0 priorityscore=1501 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2411140039
 
-On Mon. 11 Nov. 2024 at 17:55, Sean Nyekjaer <sean@geanix.com> wrote:
-> nWKRQ supports an output voltage of either the internal reference voltage
-> (3.6V) or the reference voltage of the digital interface 0 - 6V.
-> Add the devicetree option ti,nwkrq-voltage-sel to be able to select
-> between them.
-> Default is kept as the internal reference voltage.
->
-> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
-> ---
->  drivers/net/can/m_can/tcan4x5x-core.c | 35 +++++++++++++++++++++++++++++++++++
->  drivers/net/can/m_can/tcan4x5x.h      |  2 ++
->  2 files changed, 37 insertions(+)
->
-> diff --git a/drivers/net/can/m_can/tcan4x5x-core.c b/drivers/net/can/m_can/tcan4x5x-core.c
-> index 2f73bf3abad889c222f15c39a3d43de1a1cf5fbb..264bba830be50033347056da994102f8b614e51b 100644
-> --- a/drivers/net/can/m_can/tcan4x5x-core.c
-> +++ b/drivers/net/can/m_can/tcan4x5x-core.c
-> @@ -92,6 +92,8 @@
->  #define TCAN4X5X_MODE_STANDBY BIT(6)
->  #define TCAN4X5X_MODE_NORMAL BIT(7)
->
-> +#define TCAN4X5X_NWKRQ_VOLTAGE_MASK BIT(19)
-> +
->  #define TCAN4X5X_DISABLE_WAKE_MSK      (BIT(31) | BIT(30))
->  #define TCAN4X5X_DISABLE_INH_MSK       BIT(9)
->
-> @@ -267,6 +269,11 @@ static int tcan4x5x_init(struct m_can_classdev *cdev)
->         if (ret)
->                 return ret;
->
-> +       ret = regmap_update_bits(tcan4x5x->regmap, TCAN4X5X_CONFIG,
-> +                                TCAN4X5X_NWKRQ_VOLTAGE_MASK, tcan4x5x->nwkrq_voltage);
-> +       if (ret)
-> +               return ret;
-> +
->         return ret;
->  }
->
-> @@ -318,6 +325,28 @@ static const struct tcan4x5x_version_info
->         return &tcan4x5x_versions[TCAN4X5X];
->  }
->
-> +static int tcan4x5x_get_dt_data(struct m_can_classdev *cdev)
-> +{
-> +       struct tcan4x5x_priv *tcan4x5x = cdev_to_priv(cdev);
-> +       struct device_node *np = cdev->dev->of_node;
-> +       u8 prop;
-> +       int ret;
-> +
-> +       ret = of_property_read_u8(np, "ti,nwkrq-voltage-sel", &prop);
-> +       if (!ret) {
-> +               if (prop <= 1)
-> +                       tcan4x5x->nwkrq_voltage = prop;
-> +               else
-> +                       dev_warn(cdev->dev,
-> +                                "nwkrq-voltage-sel have invalid option: %u\n",
-> +                                prop);
-> +       } else {
-> +               tcan4x5x->nwkrq_voltage = 0;
-> +       }
 
-If the
 
-  if (prop <= 1)
+On 11/13/2024 5:20 PM, Dmitry Baryshkov wrote:
+> On Wed, 13 Nov 2024 at 08:18, Ekansh Gupta <quic_ekangupt@quicinc.com> wrote:
+>>
+>>
+>> On 11/13/2024 11:13 AM, Dmitry Baryshkov wrote:
+>>> On Wed, Nov 13, 2024 at 10:30:42AM +0530, Ekansh Gupta wrote:
+>>>> FastRPC framework treats ADSP as a secure domain on sc7280 SoC
+>>>> which means that only secure fastrpc device node should be
+>>>> created for ADSP remoteproc. Remove the non-secure-domain
+>>>> property from ADSP fastrpc node.
+>>> If this prevents the non-secure devices from being created, isn't that a
+>>> regression from the userspace point of view?
+>> The actual intention of having secure and non-secure domains is to utilize signed(high privilege)
+>> and unsigned(low privilege) DSP processes properly.
+>>
+>> Non-secure device node is intended to be used by untrusted/generic applications which needs to
+>> offload tasks to DSP as unsignedPD. Only unsigned PD is expected to be allowed if the process is
+>> using non-secure node.
+>>
+>> Secure device is intended to be used by trusted processes like daemons or any application
+>> which needs to offload as signed PD to DSP.
+>>
+>> The ideal expectation from userspace is to first try to open secure device node and fall back to
+>> non-secure node if the secure node is not accessible or absent.
+>>
+>> I understand your concerns, can you please suggest how this can be improved/corrected?
+> Thank you for the explanation, and thanks for the description of the
+> expected behaviour, but the question is different.
+> Currently (with the property being present in DT) the driver creates a
+> non-secure fastrpc device for the ADSP.
+> Can it actually be used? Note: no mentioning of a particular userspace
+> implementation or the (un)expected usage.
+> If it could not and an attempt to use it resulted in some kind of an
+> error, then the patch is a fix and it should be decribed accordingly.
+> If it could be used and now you are removing this possibility, then it
+> is a regression. Again, this must be clearly documented, but generally
+> this is not allowed.
+Thanks for the clarification, Dmitry.
 
-condition fails, you print a warning, but you are not assigning a
-value to tcan4x5x->nwkrq_voltage. Is this intentional?
+As of today, if the property is present in DT, non-secure fastrpc device will be created
+for ADSP and as there are no checks to restrict daemons to use only secure node, there
+will not be any failures observed. So there is no error if non-secure property is added
+for ADSP and your 2nd point holds here.
 
-What about:
+Problems with the current design are(you can look into below points independent of the change):
 
-        tcan4x5x->nwkrq_voltage = 0;
-        ret = of_property_read_u8(np, "ti,nwkrq-voltage-sel", &prop);
-        if (!ret) {
-                if (prop <= 1)
-                        tcan4x5x->nwkrq_voltage = prop;
-                else
-                        dev_warn(cdev->dev,
-                                 "nwkrq-voltage-sel have invalid option: %u\n",
-                                 prop);
-        }
+1. This creates a security concern as any process that can open non-secure device
+can replicate daemon to attach to DSP root PD and cause troubles there which is not
+a good thing. So basically any trusted process(maybe same group) should only use secure
+device node and any process using non-secure node should only offload to unsigned PD.
 
-so that you make sure that tcan4x5x->nwkrq_voltage always gets a
-default zero value? Else, if you can make sure that tcan4x5x is always
-zero initialized, you can just drop the
+2. Having this property well defined also help in scaling fastrpc driver for new domains(like CDSP1
+was recently introduced) as driver can only rely on the "label" and "non-secure-domain" property
+for device creation. Say, only secure device is create if property is not defined and both device nodes
+are created if non-secure-domain is define. This way, the dependency on domain_id can be removed
+from fastrpc_rpmsg_probe[1] and create either only fastrpc-xdsp-secure or both(secure and non-secure).
 
-        tcan4x5x->nwkrq_voltage = 0;
+This however is a regression as you have mentioned, but it it helps address multiple problems.
 
-thing.
+Should I discuss further on documentation or is any more design clarification should be done here?
 
-> +       return 0;
-> +}
-> +
->  static int tcan4x5x_get_gpios(struct m_can_classdev *cdev,
->                               const struct tcan4x5x_version_info *version_info)
->  {
-> @@ -453,6 +482,12 @@ static int tcan4x5x_can_probe(struct spi_device *spi)
->                 goto out_power;
->         }
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/misc/fastrpc.c#n2327
+
+--ekansh
+>> --ekansh
+>>>> Signed-off-by: Ekansh Gupta <quic_ekangupt@quicinc.com>
+>>>> ---
+>>>>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 1 -
+>>>>  1 file changed, 1 deletion(-)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>>>> index 3d8410683402..c633926c0f33 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>>>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>>>> @@ -3852,7 +3852,6 @@ fastrpc {
+>>>>                                      compatible = "qcom,fastrpc";
+>>>>                                      qcom,glink-channels = "fastrpcglink-apps-dsp";
+>>>>                                      label = "adsp";
+>>>> -                                    qcom,non-secure-domain;
+>>>>                                      #address-cells = <1>;
+>>>>                                      #size-cells = <0>;
+>>>>
+>>>> --
+>>>> 2.34.1
+>>>>
 >
-> +       ret = tcan4x5x_get_dt_data(mcan_class);
-> +       if (ret) {
-> +               dev_err(&spi->dev, "Getting dt data failed %pe\n", ERR_PTR(ret));
-> +               goto out_power;
-> +       }
-> +
->         tcan4x5x_check_wake(priv);
->
->         ret = tcan4x5x_write_tcan_reg(mcan_class, TCAN4X5X_INT_EN, 0);
-> diff --git a/drivers/net/can/m_can/tcan4x5x.h b/drivers/net/can/m_can/tcan4x5x.h
-> index e62c030d3e1e5a713c997e7c8ecad4a44aff4e6a..04ebe5c64f4f7056a62e72e717cb85dd3817ab9c 100644
-> --- a/drivers/net/can/m_can/tcan4x5x.h
-> +++ b/drivers/net/can/m_can/tcan4x5x.h
-> @@ -42,6 +42,8 @@ struct tcan4x5x_priv {
->
->         struct tcan4x5x_map_buf map_buf_rx;
->         struct tcan4x5x_map_buf map_buf_tx;
-> +
-> +       u8 nwkrq_voltage;
->  };
->
->  static inline void
->
-> --
-> 2.46.2
->
->
+
 
