@@ -1,48 +1,101 @@
-Return-Path: <devicetree+bounces-121762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121763-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BEBE9C83A4
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 08:06:16 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5DC59C83E9
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 08:23:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0FD78284488
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 07:06:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2FC46B249B5
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 07:23:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A835E1EBA0F;
-	Thu, 14 Nov 2024 07:06:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D7BC1EC00B;
+	Thu, 14 Nov 2024 07:23:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="TF643W9Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEFB41EABA9;
-	Thu, 14 Nov 2024 07:06:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB9561E9061
+	for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 07:23:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731567969; cv=none; b=g5fmM0KWaZmV815WqYP8SPpFKRth/GmbUoqwbji1EPWLq6oBK1GHj5bbLWgzMX37I4wyYfeXoZbwJzQmUc82/GBtPxi28nvyBjnDvSLEr8tmyoWBYeBK679qG303h/Ie3CDF9vVm8x6/zOFrmzkJT7FFHpwsA5U+T+qdSiisEQw=
+	t=1731569011; cv=none; b=KVg/4awj0luAWhCSMyt3bnCk2KJSilBEs8JIIy2YvDMRLzdDRrDjDoJnGyc9J2ZmyqdAdOGB/vQcRvndQKQwIgjvOXm85Fkiq4QXq1pOYPg89o6OlrkffzsSzmgePJIGCvmEiDPdUgHw83/7jxr9/PHVnjpEBjsWNJ5zispMqls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731567969; c=relaxed/simple;
-	bh=s9+yE6EWvbV+CXOwEgtNLb0gY6LWIVlrlrPXHyfyjd0=;
+	s=arc-20240116; t=1731569011; c=relaxed/simple;
+	bh=FznkquujoVc4AGXvNQNSehVr0GYW7+fmlomCQC7lcDQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RYth2Y2M92VNNqzDMpy4hlayf5CdWloxJKo/aHwDrmQqLwUUpycdOJp3dW7/N0BkZIGoQetz/gODoT8HctbNEtA93Ul5cOGNXpmGx3gOZsZUg24GDQ0NqHgrjlElRsWpegUJUIfhqsuJk7sVli9vRopaQ1iSAB2CJF85TvwVeQY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Date: Thu, 14 Nov 2024 15:06:01 +0800
-From: Yixun Lan <dlan@gentoo.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Troy Mitchell <troymitchell988@gmail.com>,
-	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=qKnvR55bMzqbW72SbYPTmCL3UnTEfBRtWnoa/0Tls7NyxQ2oQuWDXvJAX/vnF9zmBOabRS/A6ZZp4sBz1MaefCl1lZ7HXFo/fF9F72tbyBJRqfcwffSaanJSlnwhDsex+CHY9v0jnSJcpBi66i+O1GlVx7kU2ATZRXTfN5kJJwA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=TF643W9Q; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-20caea61132so1912255ad.2
+        for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 23:23:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1731569008; x=1732173808; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=jcVdx/PDcosiuJvg6s7470mt1Sbg0MJ8nbwkpgIFfDI=;
+        b=TF643W9QHlE7qhqr5uRfTcxpUsp30RKA4BqyyBwDQVbgmabZpfzeeIRi3R+pMeqyT+
+         Z8046g9nfbrjxVzKZ9lGqFlIBah5D9N1xKRN9ZYEIzn/s9HjW1wymT3N3X4wsSdPuQzq
+         bZN8r0CwlC7hwnc4pD1AqtPz4Hi1yBl7BuQhLNsEDZqFSnQIWAlG/CF9DjV/20i4ebD6
+         Yl30lNpxEHVjE1dIYCbTg0MlIBxeSDsZBM6nxIexYp5FBEkCJmKWh9Dhe/EKSe7aYxnu
+         g2uCAbprZdhnLez0WrXtlFamw5dGWnA0FDC53mqAbGGAx7grJ/1VN9kis9yc1t50wvGm
+         8kIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731569008; x=1732173808;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jcVdx/PDcosiuJvg6s7470mt1Sbg0MJ8nbwkpgIFfDI=;
+        b=Ok1eVYsar/rCPPPAkBjXdmQLZXe+T11SoUEl5bLS52D4dUNR43yoAlhwNVZkSQHaCH
+         hp7PRDtDAvafmAaiFCXWoTMI1LqJK9cFotaO91uWvyLm4J8zWgrVP1E/KmNjyp9qUDtX
+         gOVCWLfUHD897z4xkAdo0ViIpm3dleGQl2m1ncv7dqxTGxjl9GXVbNUqOzuOFsN7wO6g
+         zCwl1weH2OVWHhKIAlJjAnE5oBJgao1rLzPS5XsNmO22JoitnM7q2/Zh9TByiKQZ0n2W
+         FrXlmDPSF/QanWBHfAJqtJaxLY/h+Tnv68QNkiQ4EWL1x9GVQRBqIeWCTOnMVXNg7nCf
+         OQSQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUk4tTOEm7ZfhnGekYYqfVoZEPPxTWu3l3TEvQba47yLqBBWOSjchnO8UFUzF0Y5dU3nrEjdnb32RaJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzX4l+St0txWj+37fKSxmh1vzr6ituoAbx2k7QwQdQ2iSEYlc5j
+	b03pxXw1D3djz55lqYv4g7HiHzkGjxSbggPdhw0WNaVd8Ybse3Qrojd7CXuwqpo=
+X-Google-Smtp-Source: AGHT+IEqIiAMaMvRr6traVqlETDXrksYLlEnbTBwgNuybxklLmBA23F6Bg0v7Zkwsdh3ki0S14Ja2g==
+X-Received: by 2002:a17:902:d4d2:b0:20b:5aff:dd50 with SMTP id d9443c01a7336-211c4ffd29emr15882815ad.31.1731569008105;
+        Wed, 13 Nov 2024 23:23:28 -0800 (PST)
+Received: from ghost ([2601:647:6700:64d0:4ece:7c14:cc18:73af])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-211c7c290b1sm4623065ad.10.2024.11.13.23.23.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Nov 2024 23:23:27 -0800 (PST)
+Date: Wed, 13 Nov 2024 23:23:24 -0800
+From: Charlie Jenkins <charlie@rivosinc.com>
+To: Yangyu Chen <cyy@cyyself.name>
+Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-riscv@lists.infradead.org,
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: i2c: spacemit: add support for K1 SoC
-Message-ID: <20241114070601-GYA1001363@gentoo>
-References: <20241112-k1-i2c-master-v3-0-5005b70dc208@gmail.com>
- <20241112-k1-i2c-master-v3-1-5005b70dc208@gmail.com>
- <20241112-aged-trailing-cffda6af0944@spud>
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Jisheng Zhang <jszhang@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	Guo Ren <guoren@kernel.org>, Evan Green <evan@rivosinc.com>,
+	Jessica Clarke <jrtc27@jrtc27.com>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Andy Chiu <andybnac@gmail.com>, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-sunxi@lists.linux.dev, linux-doc@vger.kernel.org,
+	linux-kselftest@vger.kernel.org
+Subject: Re: [PATCH v11 10/14] riscv: hwprobe: Add thead vendor extension
+ probing
+Message-ID: <ZzWlbCiRuDKzilms@ghost>
+References: <20241113-xtheadvector-v11-0-236c22791ef9@rivosinc.com>
+ <20241113-xtheadvector-v11-10-236c22791ef9@rivosinc.com>
+ <tencent_5B500856E30E1FB920B6B68D6315EE70CC06@qq.com>
+ <ZzVoQi6D0U30p9sg@ghost>
+ <tencent_6A95637042401AD5F8BE05C7B4F11CAD7009@qq.com>
+ <ZzWAlJm1ShgsZr4m@ghost>
+ <tencent_9BB243901B8FF9FC0457B51D1CFF714B6209@qq.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,101 +104,161 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241112-aged-trailing-cffda6af0944@spud>
+In-Reply-To: <tencent_9BB243901B8FF9FC0457B51D1CFF714B6209@qq.com>
 
-On 18:03 Tue 12 Nov     , Conor Dooley wrote:
-> On Tue, Nov 12, 2024 at 11:07:39AM +0800, Troy Mitchell wrote:
-> > From: Troy Mitchell <troymitchell988@gmail.com>
-> > 
-> > The I2C of K1 supports fast-speed-mode and high-speed-mode,
-> > and supports FIFO transmission.
-> > 
-> > Signed-off-by: Troy Mitchell <TroyMitchell988@gmail.com>
-> > ---
-> >  .../devicetree/bindings/i2c/spacemit,k1-i2c.yaml   | 52 ++++++++++++++++++++++
-> >  1 file changed, 52 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml b/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
-> > new file mode 100644
-> > index 000000000000..e8cce360bf03
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
-> > @@ -0,0 +1,52 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/i2c/spacemit,k1-i2c.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: I2C controller embedded in SpacemiT's K1 SoC
-> > +
-> > +maintainers:
-> > +  - Troy Mitchell <troymitchell988@gmail.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: spacemit,k1-i2c
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  clock-frequency:
-> > +    description:
-> > +      Desired I2C bus clock frequency in Hz.
-> > +      K1 supports standard, fast, high-speed modes, from 1 to 3300000.
-while we are here, I'd suggest rephrase the sentence above to align it better with the doc
-
-K1 support three different modes which running different frequencies
-standard speed mode: up to 100000 (100Hz)
-fast speed mode    : up to 400000 (400Hz)
-high speed mode    : up to 3300000 (3.3Mhz)
-
-> > +    default: 100000
-> > +    minimum: 1
-> > +    maximum: 3300000
+On Thu, Nov 14, 2024 at 02:54:17PM +0800, Yangyu Chen wrote:
 > 
-> It's sufficient to define just default and max btw, the min is set in
-> i2c-controller.yaml (in dt-schema itself). Don't respin for that alone.
-+1, the minimum settings isn't really useful, clearly not apply in the practical case
+> 
+> On 11/14/24 12:46, Charlie Jenkins wrote:
+> > On Thu, Nov 14, 2024 at 11:26:47AM +0800, Yangyu Chen wrote:
+> > > 
+> > > 
+> > > On 11/14/24 11:02, Charlie Jenkins wrote:
+> > > > On Thu, Nov 14, 2024 at 10:44:37AM +0800, Yangyu Chen wrote:
+> > > > > 
+> > > > > 
+> > > > > On 11/14/24 10:21, Charlie Jenkins wrote:
+> > > > > > Add a new hwprobe key "RISCV_HWPROBE_KEY_VENDOR_EXT_THEAD_0" which
+> > > > > > allows userspace to probe for the new RISCV_ISA_VENDOR_EXT_XTHEADVECTOR
+> > > > > > vendor extension.
+> > > > > > 
+> > > > > 
+> > > > > Hi Charlie,
+> > > > > 
+> > > > > How about changing the name of the key from
+> > > > > "RISCV_ISA_VENDOR_EXT_XTHEADVECTOR" to "RISCV_HWPROBE_KEY_VENDOR_EXT_0" and
+> > > > > use marchid to identify what the vendor is, each vendor will have its own
+> > > > > bit definition in this value. So we can avoid adding so many hwprobe keys
+> > > > > for each vendor in the future.
+> > > > > 
+> > > > > I proposed a commit here: https://github.com/cyyself/linux/commit/36390645d85d1ac75dd71172f167719df4297f59
+> > > > 
+> > > > I actually originally had this in one of my first versions of this
+> > > > series but was convinced by Conor to change it. The problem with it was
+> > > > that tying vendor extensions to mvendorid means that it is enforced by
+> > > > the kernel that vendors cannot share vendor extensions. It is possible
+> > > > for vendor A to purchase IP that contains a vendor extension from vendor
+> > > > B. This vendor extension should work on platforms created by vendor A
+> > > > and vendor B. However, vendor A and vendor B have different mvendorids,
+> > > > so the kernel can't support this if it is tied to mvendorid.  It could
+> > > > be solved by duplicating every extension that vendors have, but then
+> > > > userspace software would have to keep in mind the mvendorid they are
+> > > > running on and check the different extensions for the different vendors
+> > > > even though the implementation of the extension is the same.
+> > > > 
+> > > > The original conversation where Conor and I agreed that it was better to
+> > > > have vendor extensions not rely on mvendorid:
+> > > > 
+> > > > https://lore.kernel.org/linux-riscv/20240416-husband-flavored-96c1dad58b6e@wendy/
+> > > > 
+> > > 
+> > > Thanks for your explanation. I will strongly agree with Conor's opinion if
+> > > the feature bitmask does not exist in RISC-V C-ABI.
+> > > 
+> > > However, as the feature mask defined in RISC-V C-ABI[1] uses the design
+> > > depending on marchid currently, should we reconsider this key for its use
+> > > case? The current target_clones and taget_version implemented in GCC[2] and
+> > > LLVM[3] also use the bitmask defined in C-ABI. I think if we use this key
+> > > depending on marchid, to make a key shared with all vendors will make this
+> > > cleaner.
+> > 
+> > Changing this will break linux userspace API. It is a non-workable
+> > solution for the kernel to associate extensions with marchid/mvendorid
+> > for the reasons provided. I fail to see why this ABI would require the
+> > kernel to behave in this manner. The ABI provides the marchid to be used
+> > by function multi-versioning and applications are free to use the
+> > marchid to change which function they want to compile. However, if they
+> > want to know if an extension is supported, then they need to use
+> > hwprobe. If they want to check if xtheadvector is supported, then they> call hwprobe with the xtheadvector key. This is true no matter what the
+> > mvendorid of the system is.
+> 
+> A userspace software can use either c-api defined feature masks or directly
+> use hwprobe syscall. If they use c-api defined feature masks as GCC or LLVM
+> did for compiler generated IFUNC resolver, the bitmask is guarded by
+> mvendorid. So my point at that time was that if the C-API defined way became
+> mainstream, why should we keep this key only for T-Head to increase the
+> maintenance overhead?
+
+Yes that makes sense. I was thinking that the Andes PMU extension had a
+hwprobe key, but I realized that it does not. This patch has been on the
+lists for so long I lost track! I was trying to design this to be
+forward-thinking, I believe that it makes more sense this way, but I am
+interested in the opinion of the c-api maintainers.
 
 > 
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - clocks
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c@d4010800 {
-> > +        compatible = "spacemit,k1-i2c";
-> > +        reg = <0xd4010800 0x38>;
-> > +        interrupt-parent = <&plic>;
-> > +        interrupts = <36>;
-> > +        clocks = <&ccu 90>;
-> > +        clock-frequency = <100000>;
-> > +    };
-> > +
-> > +...
+> This has been discussed here before in RISC-V C-API: https://github.com/riscv-non-isa/riscv-c-api-doc/pull/74#issuecomment-2128844747
+> 
+> But now (from the last email), you convinced me. So, I would like to make
+> the c-api change: https://github.com/riscv-non-isa/riscv-c-api-doc/issues/96
+> 
+
+Thank you for opening that!
+
+> > This does not add any complexity, "clean"
+> > code can equally be written following this scheme or following a scheme
+> > that relies on mvendorid. Ditching the reliance on mvendorid in the
+> > kernel allows the kernel to be as generic as possible, and allow
+> > whatever ABIs or hardware that exist to have a resiliant way of
+> > communicating with the kernel.
 > > 
-> > -- 
-> > 2.34.1
+> 
+> OK. I'm just concerned about when these vendors will add the hwprobe key for
+> their own extension, which may introduce a potential merge conflict in the
+> kernel tree. It can also be a disaster if the hardware vendor ships their
+> kernel with these under-review patches for their products with hwprobe key
+> conflict with mainline kernel.
+> 
+> But we can avoid this now by adding each key for each vendor to avoid
+> potential conflict in the future. This can be a separate patch for future
+> work, so there is nothing to change here.
+
+Yes that is unfortunately the downside of hwprobe that it is a
+centralized source of these keys, and that can be exacerbated by this
+scheme were vendor keys are not completely isolated from each other.
+That would be very unfortunate if a vendor ships a kernel and binaries
+that has different keys than the mainline kernel. Hopefully vendors
+don't do that, but it should be manageable for vendors to submit their own
+keys.
+
+Thank you for bringing this up, it is an important issue! A main goal of
+this series was to get vendor extensions in a state that would be able
+to grow into a future when there are lots of vendors.
+
+> 
+> Thanks,
+> Yangyu Chen
+> 
+> > - CHarlie
 > > 
-
-
-
--- 
-Yixun Lan (dlan)
-Gentoo Linux Developer
-GPG Key ID AABEFD55
+> > > 
+> > > [1] https://github.com/riscv-non-isa/riscv-c-api-doc/blob/main/src/c-api.adoc#function-multi-version
+> > > [2] https://github.com/gcc-mirror/gcc/blob/8564d0948c72df0a66d7eb47e15c6ab43e9b25ce/gcc/config/riscv/riscv.cc#L13016
+> > > [3] https://github.com/llvm/llvm-project/blob/f407dff50cdcbcfee9dd92397d3792627c3ac708/clang/lib/CodeGen/CGBuiltin.cpp#L14627
+> > > 
+> > > > > 
+> > > > > > This new key will allow userspace code to probe for which thead vendor
+> > > > > > extensions are supported. This API is modeled to be consistent with
+> > > > > > RISCV_HWPROBE_KEY_IMA_EXT_0. The bitmask returned will have each bit
+> > > > > > corresponding to a supported thead vendor extension of the cpumask set.
+> > > > > > Just like RISCV_HWPROBE_KEY_IMA_EXT_0, this allows a userspace program
+> > > > > > to determine all of the supported thead vendor extensions in one call.
+> > > > > > 
+> > > > > > Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+> > > > > > Reviewed-by: Evan Green <evan@rivosinc.com>
+> > > > > > ---
+> > > > > >     arch/riscv/include/asm/hwprobe.h                   |  3 +-
+> > > > > >     .../include/asm/vendor_extensions/thead_hwprobe.h  | 19 +++++++++++
+> > > > > >     .../include/asm/vendor_extensions/vendor_hwprobe.h | 37 ++++++++++++++++++++++
+> > > > > >     arch/riscv/include/uapi/asm/hwprobe.h              |  3 +-
+> > > > > >     arch/riscv/include/uapi/asm/vendor/thead.h         |  3 ++
+> > > > > >     arch/riscv/kernel/sys_hwprobe.c                    |  5 +++
+> > > > > >     arch/riscv/kernel/vendor_extensions/Makefile       |  1 +
+> > > > > >     .../riscv/kernel/vendor_extensions/thead_hwprobe.c | 19 +++++++++++
+> > > > > >     8 files changed, 88 insertions(+), 2 deletions(-)
+> > > > > > 
+> > > > > 
+> > > 
+> > > 
+> 
+> 
 
