@@ -1,132 +1,148 @@
-Return-Path: <devicetree+bounces-121920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121922-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 773959C8F08
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 17:02:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C428E9C8EDB
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 16:57:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 72F98B37733
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 15:40:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 644D2B2614A
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 15:53:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 238DD18B478;
-	Thu, 14 Nov 2024 15:31:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 166BC19CCF9;
+	Thu, 14 Nov 2024 15:46:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hfFoGmhK"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="k86e9dLW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C570C168C3F
-	for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 15:31:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 151BB18FDBB;
+	Thu, 14 Nov 2024 15:45:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731598268; cv=none; b=r3E1n6LwrN70OOOECVqUCVYElRXsly6N9mBIjKinIqhigEGJYsrZmDh/uIUtp56LkrVLFEin+2WD9TJGldZWOCqDe8e0jKj7dP4TZ3YkKALuo4RWwp7J+YzGw8WoEufWgOvsdK79UdzCf0ZLnnaGuYXCkREsF67OEEU2Pd2ApCU=
+	t=1731599160; cv=none; b=lIGEye0WFhEccOj9bkPSZ3og4l6UWuoRK1uJ/PqCPp1hGdR6XwWWddBlxWZoUsjfeQYUxwQKcmfx64MjVef4aZ1QBtnMC9E6WgdBQshPoS+5OcJVUeVs4vmilf1GDXjDinXj/6d3+nD5k6clAyeZ34qIefUna0Jc7GxAmWn9Q2M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731598268; c=relaxed/simple;
-	bh=70gJ5zQHC0Lse0UD4fjwb/7l60pwtmkagRtu7goaz6M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bwKT8qKoT4DHup+E7jGWjgznK37WyEp0pLqsB8mnLIZsdYbeCIY6163WRv9MQrWqLvZNYsda7UulbuwbjLX1M19rfYUdg9eaM9DFN2yTCeddzKWlBv6RUzxo8YnAAnz8Cq39y9ZdKRZ/MslCWV0BSsTY4Dhv4W5K4I0GYJEBprg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hfFoGmhK; arc=none smtp.client-ip=209.85.219.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-e380e4825a9so645647276.3
-        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 07:31:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731598265; x=1732203065; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=70gJ5zQHC0Lse0UD4fjwb/7l60pwtmkagRtu7goaz6M=;
-        b=hfFoGmhKL91W7vDovOmnY9tdxrF+aAi75Owxppae4oxRHCdwdEiyZqISeg7qNxMPWZ
-         oyFxlhwNM1o0Xb9FBUrRxsch1ugBCD14lmVb6Nb/CQsU/AzBmAoFfVtR/w7mE2i9g3si
-         QCZ+2bwI4ziFeGNleWubtHXQT32xPFqzbfxU6n5+rCtgfuIr1E2/3mtjpmxrc5NWf6xk
-         COQnQL8pn6147fMf5mpi23da/62Y3pMr+qXckrQtxyXKunu8961+gGkQYx8HI8WD38QC
-         hL6v6N7OXo5DS/d3BLSBm+Mce5gjuMv0Q5a29dWbJi4p9j6tIx/eQLsONqHMVZIZOZjw
-         yHXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731598265; x=1732203065;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=70gJ5zQHC0Lse0UD4fjwb/7l60pwtmkagRtu7goaz6M=;
-        b=FOmz431o85waSmTQKsM/ZmEItX2NDDMxvYxGpCN7ZcVtm5rUOhJZXwEtlKhWmJBEg1
-         0I18A0PWOIQkJA77dN6Fv5kQjgBs2IxIMo/IcRXGMsEolVHw3xS2cVi6aRzfQGyWmjU0
-         3gVn66GV9aDP6D6v7DMOkWLL6oJffIe6j6KUHjOuiZg8ANl7/etg2IthjFnsBbu6T/Kx
-         yS9Dd3cmZFzdvuqG/oFPB3+Tce3gS+1fSe58uR5ayjDzjRAmpSI2eLfxyxK1SY67iDg2
-         qsh2tsqA3WFSLIW3UcIIlVnZKJlRXUFfXttLsCizUjXPHcggYCkhkfY9hQKeUWiPUpSa
-         wN3A==
-X-Forwarded-Encrypted: i=1; AJvYcCXT/rh5lunfAff0HeBB6q2Pj8qZq3fotWdPTE9wCdxn9Zp1OvynsB5moxu2npxqiibaIkrXkOTYwQrg@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx+8N8gD9x2d8H42sBafGYxgK+Ac0e9SPvoJsgfP1PJwZDAOzod
-	RBwadri3p92QfezRPgp83eKGAnI/5UqUcjo6PHuTPZSe0SVzux6cZLMOBbryftAwGvuY3d2M95K
-	8Vj73vsxkXU7CtwN3oFLKgkUeSH6QusZ990jY4bmwqqAOdKGLSx8=
-X-Google-Smtp-Source: AGHT+IEp1jiyHz9AVjBAYLpqzeU34jEuIl4ZH89aHk/oBWMuPpm3ufftnmd3RZZtkAwQhhPDaHc5iByLDBclaPuDYYw=
-X-Received: by 2002:a05:6902:c11:b0:e29:1def:1032 with SMTP id
- 3f1490d57ef6-e337f8c7023mr22843700276.41.1731598264542; Thu, 14 Nov 2024
- 07:31:04 -0800 (PST)
+	s=arc-20240116; t=1731599160; c=relaxed/simple;
+	bh=5z0brDtQRBtx4SXaYJbzWU/yguAU4LV0GO74WH+JMqE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=KOVmXscUo0LlqbrQf+Vov8Ks/F0PNDAwflLplure3/sinECVk0HiDHu3AhnYZKGNG8tQjWkRSvd7lgreGSq84B+XJlTYencPn8oBQc1dUYrT7h9GHnZXrmjANlkq5RsfTPLiDqDVGTTHAyvOLEwiCgNOjIs9mJHpaqTDehzrnR0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=k86e9dLW; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id AEE96240003;
+	Thu, 14 Nov 2024 15:45:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1731599155;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=PVd4FspoJAAUQaVK/sgQzSkqs6EdCPL13NCZ5VJz7fw=;
+	b=k86e9dLWi4x6VwQGxiSQmmGbjdenEI5HBux7FE811k8PyybyCldwAMpyPuqWzwDU2Lbrho
+	UCNzU7O+/ZTUoNfquKTMmylkmIOHrPl26ZTsLBnKx+asr2x09Co4u5vNxgvNCQnRNhDnWG
+	rP4b1xH0xRIEr4RMwgM3W2c7Om/R0rRdfFnCbzYWzMXQMYE9KmayoQoqy6htuEteElsEaW
+	jzn2NLBRtT1oIoazJGbNRdNJnNn0yPJmkDlI+Koz96A73l89zgJ+8R9w4fJjDDU4cCpus+
+	zpwTzL7aNZvPKLHp/kCJfB0t/CVPqcvSFIssh2fwzvOdLJe0nt1igDDesUFfJA==
+Date: Thu, 14 Nov 2024 16:45:51 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Andrea della Porta <andrea.porta@suse.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Florian Fainelli
+ <florian.fainelli@broadcom.com>, Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Lorenzo Pieralisi
+ <lpieralisi@kernel.org>, Krzysztof Wilczynski <kw@linux.com>, Manivannan
+ Sadhasivam <manivannan.sadhasivam@linaro.org>, Bjorn Helgaas
+ <bhelgaas@google.com>, Linus Walleij <linus.walleij@linaro.org>, Catalin
+ Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Bartosz
+ Golaszewski <brgl@bgdev.pl>, Derek Kiernan <derek.kiernan@amd.com>, Dragan
+ Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, Saravana Kannan
+ <saravanak@google.com>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org, Masahiro Yamada
+ <masahiroy@kernel.org>, Stefan Wahren <wahrenst@gmx.net>, Luca Ceresoli
+ <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, Andrew Lunn <andrew@lunn.ch>,
+ stable@vger.kernel.org
+Subject: Re: [PATCH] PCI: of_property: Assign PCI instead of CPU bus address
+ to dynamic PCI nodes
+Message-ID: <20241114164551.46664f5d@bootlin.com>
+In-Reply-To: <ZzYWso5jLkUMehQ6@apocalypse>
+References: <20241108094256.28933-1-andrea.porta@suse.com>
+	<20241108110938.622014f5@bootlin.com>
+	<Zy3koxz4KnV39__V@apocalypse>
+	<ZzYWso5jLkUMehQ6@apocalypse>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241028-topic-cpu_suspend_s2ram-v1-0-9fdd9a04b75c@oss.qualcomm.com>
-In-Reply-To: <20241028-topic-cpu_suspend_s2ram-v1-0-9fdd9a04b75c@oss.qualcomm.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 14 Nov 2024 16:30:27 +0100
-Message-ID: <CAPDyKFpGrw+vOs=-TxfChBeORjzkpaL_iVB08MtmaC4sFNKzcg@mail.gmail.com>
-Subject: Re: [PATCH 0/3] Allow specifying an S2RAM sleep on pre-SYSTEM_SUSPEND
- PSCI impls
-To: Konrad Dybcio <konradybcio@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Mark Rutland <mark.rutland@arm.com>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, 
-	Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>, 
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Sudeep Holla <sudeep.holla@arm.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
-On Mon, 28 Oct 2024 at 15:24, Konrad Dybcio <konradybcio@kernel.org> wrote:
->
-> Certain firmwares expose exactly what PSCI_SYSTEM_SUSPEND does through
-> CPU_SUSPEND instead. Inform Linux about that.
-> Please see the commit messages for a more detailed explanation.
->
-> This is effectively a more educated follow-up to [1].
->
-> The ultimate goal is to stop making Linux think that certain states
-> only concern cores/clusters, and consequently setting
-> pm_set_suspend/resume_via_firmware(), so that client drivers (such as
-> NVMe, see related discussion over at [2]) can make informed decisions
-> about assuming the power state of the device they govern.
+Hi Andrea,
 
-In my opinion, this is not really the correct way to do it. Using
-pm_set_suspend/resume_via_firmware() works fine for x86/ACPI, but not
-for PSCI like this. Let me elaborate. If the NVMe storage device is
-sharing the same power-rail as the CPU cluster, then yes we should use
-PSCI to control it. But is that really the case? If so, there are in
-principle two ways forward to deal with this correctly.
+On Thu, 14 Nov 2024 16:26:42 +0100
+Andrea della Porta <andrea.porta@suse.com> wrote:
 
-1) If PSCI OSI mode is being used, the corresponding NVMe storage
-device should be hooked up to the CPU PM cluster domain via genpd and
-controlled as any other devices sharing the cluster-rail. In this way,
-genpd together with the cpuidle-psci-domain can decide whether it's
-okay to turn off the cluster. I believe this is the preferred way, but
-2) would work fine too.
+> Hi,
+> 
+> On 11:14 Fri 08 Nov     , Andrea della Porta wrote:
+> > Hi herve,
+> > 
+> > On 11:09 Fri 08 Nov     , Herve Codina wrote:  
+> > > Hi Andrea,
+> > > 
+> > > On Fri,  8 Nov 2024 10:42:56 +0100
+> > > Andrea della Porta <andrea.porta@suse.com> wrote:
+> > >   
+> > > > When populating "ranges" property for a PCI bridge or endpoint,
+> > > > of_pci_prop_ranges() incorrectly use the CPU bus address of the resource.
+> > > > In such PCI nodes, the window should instead be in PCI address space. Call
+> > > > pci_bus_address() on the resource in order to obtain the PCI bus
+> > > > address.
+> > > > 
+> > > > Fixes: 407d1a51921e ("PCI: Create device tree node for bridge")
+> > > > Cc: stable@vger.kernel.org
+> > > > Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> > > > Acked-by: Bjorn Helgaas <bhelgaas@google.com>
+> > > > Tested-by: Herve Codina <herve.codina@bootlin.com>
+> > > > ---
+> > > > This patch, originally preparatory for a bigger patchset (see [1]), has
+> > > > been splitted in a standalone one for better management and because it
+> > > > contains a bugfix which is probably of interest to stable branch.  
+> > > 
+> > > Nothing to say for the patch itself.
+> > > 
+> > > Just here, you mentioned "see [1]" but you didn't provide the link.
+> > > 
+> > > IMHO, this is not blocking for applying the patch but, just for other people
+> > > looking at this email in the mailing list, can you reply providing the link?  
+> > 
+> > Thanks for pointing that out, sorry about that. Here it is:
+> > 
+> > [1] - https://lore.kernel.org/all/f6b445b764312fd8ab96745fe4e97fb22f91ae4c.1730123575.git.andrea.porta@suse.com/  
+> 
+> Do I have to resubmit the patch with the referenced url fixed or is it
+> ok as it is?
 
-2) If PSCI PC mode is being used, a separate channel/interface to the
-FW (like SCMI or rpmh in the QC case), should inform the FW whether
-NVMe needs the power to it. This information should then be taken into
-account by the PSCI FW when it decides what low-power-state to enter,
-which ultimately means whether the cluster-rail can be turned off or
-not.
+This reference is after the '---' marker line and so will not be present in
+the changelog once the patch is applied.
 
-Assuming PSCI OSI mode is used here. Then if 1) doesn't work for you,
-please elaborate on why, so we can help to make it work, as it should.
+For this reason, I don't think you have to resubmit the patch.
 
-[...]
+If you need to resubmit the patch for any other reasons (resent because
+the patch was applied, modification needed, ...) resubmit it with the
+referenced url fixed.
 
-Kind regards
-Uffe
+Best regards,
+Hervé
 
