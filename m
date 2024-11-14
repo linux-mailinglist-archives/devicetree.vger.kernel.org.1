@@ -1,115 +1,142 @@
-Return-Path: <devicetree+bounces-121904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE7399C8CEE
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 15:35:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 082E09C8CF9
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 15:37:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A5FD41F232DE
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 14:35:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BBE372835BB
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 14:37:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28F8D2EB1F;
-	Thu, 14 Nov 2024 14:35:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B68A13D0C5;
+	Thu, 14 Nov 2024 14:37:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HcC/fXbN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PUFvRcm8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f43.google.com (mail-oa1-f43.google.com [209.85.160.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F181C1F60A;
-	Thu, 14 Nov 2024 14:35:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2329228E0F;
+	Thu, 14 Nov 2024 14:36:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731594937; cv=none; b=b5Ex5q6xTdgcC2Ni5hu9gTmXJ2MdxYUL4E/QvVzbC7ZZymzlIQe9Zl+GCThzpBpB+NB9sjHPRoE8aQBCCsncNXX0oGpraEXJMq8z0KXbRD6R0DUHVHTQx2dXxNP3ynd2OYmobuctHODZwlMJnGKjsuLiSwOt1Wh4e5pmIYLQr5M=
+	t=1731595020; cv=none; b=SXxc2TT/G3e5NZEEP1X7Z8ZqJ6teJFuN/jf0LYBz0vwJ1tmVcmAYFJplDFSgRGrgCcmarLhy1rFT/pojMfBxbYhU6+chRH6nUgIGgGRO93JnRnKrtTpUac77Dejlnk+u0v+UJQqKrXatvGNASQQ2V4pRhtzvgH+WomqACmUBDM4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731594937; c=relaxed/simple;
-	bh=z7tjh4aS3LtuFvx381OwVjVKqDQWbxj9dQ96ffC7VJs=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=MKG9C9TtzolzprW44YIa9VR4HgolfqWGGkvhifpTAK2v/qloAynbEQWnNHLS9OSVYKrwFWh/A4LbvjrsiLVD98r52KU+8qbqtwdwHgSUmaFMmoAiiqtFOv2q/EYSM28ou3/vlel4g3uNEoQu8jet23UwGCqS0F60opQ32d2Yo2A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HcC/fXbN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 434A8C4CECD;
-	Thu, 14 Nov 2024 14:35:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731594936;
-	bh=z7tjh4aS3LtuFvx381OwVjVKqDQWbxj9dQ96ffC7VJs=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=HcC/fXbNTlpvdnE6a/iAT0KwY1GGJzNq6zepkAc7R+jzDU+DAUuw/0JIvUYtGjnuj
-	 qeoNWENjONmR1DOF/QSh9pDJ1uTlJrkf/WH291ZxyQ1u7/5JUo1//aLQ3T/ytx7HeQ
-	 yd0LPLSHXxCU+mu4FWxOOzy8bWD0dwqvY3mab3rpVID8otWvhoWkiMKBwXn8AXz/Sx
-	 O+VfyOgi6xf7ORdqVRr9J+750LwRbg5Vgh5iXryaZONK79+jlJM6BW5KmscrlHVnal
-	 UH/G54HQlb0BrVmEZE9PXVP270696Xw2fSDGpuFNVVXIeupNH15jBT2rolKrSqbx6O
-	 JCgdXjiwGWZ6A==
-Date: Thu, 14 Nov 2024 08:35:34 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1731595020; c=relaxed/simple;
+	bh=Xwn4H9qApzG7awBMynaaWajEpLRY+haOstdbvOHl1Zo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=aRJ4s/+7VCbdbi522PQf1sMMJnz77BRTkwG0mWrfEKQ512gpWQwjTaVTZrOXf7oI3Madn4bU2iYsm41NGYOugkbhYyL9tUe/YcRuY4B2awe/mGxPapXS0tVXFkLVw7od9NyZT5tOZB1v101QsdwNhsy70o9vHSgB//nwzMGZoL0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PUFvRcm8; arc=none smtp.client-ip=209.85.160.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f43.google.com with SMTP id 586e51a60fabf-295d27f9fc9so425566fac.0;
+        Thu, 14 Nov 2024 06:36:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1731595018; x=1732199818; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9QgoMz2gXE6CCus76Pqiv4l7faAk9fgsWt0YKAGIKck=;
+        b=PUFvRcm8atWbTB0EEOOdqsqdQsu7IBsD1wruTV9UK7Tt+68VbB+cHMH6gWGabK0eMl
+         7zIuEbpcJ6tlfnuMWBK8gfzD+Bifvt9+oLj0EgRL0NJ6Sc+a0B9XIM+sVVs1W2FeDhuT
+         GejIkM56tBSw26A8NH9sbdeV0m+U2Qwt0HMnKm3T4GgOFnkj2xa2pK8DHBc1n9QO/XAl
+         C0XZ3hSEqefquYGKxLn6hOl1TY1PD7t11uwZ2/Cw0ygWHBq2aVipdw+68HmLh1PI1xv9
+         1C8Ni5QQGG1HIT7ywieUoY1Flmrbp3dZpV6Dvfk/mqOkkStDwWo2pXaHVSgh8i/5k2/d
+         g9XA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731595018; x=1732199818;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9QgoMz2gXE6CCus76Pqiv4l7faAk9fgsWt0YKAGIKck=;
+        b=XgQE2pUJODTBkdMKP2/oWAlUGkznPUfBODAnSoUcrInA7boZVAPwFL2J2iH6+BjvAc
+         hvT4YN5oxOAQXmYa0EJyt+WyK6Y0n5K+SezkIQckfjzFR9gHOXneSGlkEVNEnuBQgoKT
+         IHtqqrPCyrjeNXcnYL7PilnEqjzkUKb90kyRL/E4wAW9mDuBmOvXJEhM7jmoPiS5E2fG
+         VxOrYaB2Ye/IBsyUauRMnFZ41zk1DSIaS7MbBYuigUjUg+DnPDdhxjU6ItQkTq5YxfqZ
+         y3owVtLo5rJeiMMD53oMiaO/izIM6e4Zyzv21F0feYqVQWDUhNLZtFm2/YWXiwKRE/H0
+         vM8A==
+X-Forwarded-Encrypted: i=1; AJvYcCWBK5Yy85UvMYca3UdrIFKCjeR/BhwVvi9PHcmlsDGqiQEM5oqNIpSyZpUWCBWafE+p1PsXF4fD24resJhUDspeDKY=@vger.kernel.org, AJvYcCX9dXexb6Pj/LgVVLISbLvl44Ql6bijhOxhKkEadOAyNNVnmSlOpiJO2s5tAjxhqkNWgH32p9LPInBwiLxO@vger.kernel.org, AJvYcCXDWIVeWJUvtW9Cg51M99AW4Riai8x598xnezEgCGwX1/Y0TnRFyrDWFxC2m1rF0oBWTmJqGIdFCPd+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yywodu+tcgxYaMySREGGH5GsHh+TZOA1DBC+Akadyv6sSfOIhYL
+	8yfCeT3p5RXa12N/Mh06mn0lteKY1hQJox7UetAB2xNiurzAtIHO
+X-Google-Smtp-Source: AGHT+IFI3nlf8wAL4X0Sj5OS273H3/gWwdE9mh3koUy2pzCJuGW4ZTDW4qZM59jCbcJpseZpxiyxmg==
+X-Received: by 2002:a05:6870:1b05:b0:259:88b4:976 with SMTP id 586e51a60fabf-296106d1d16mr2508059fac.43.1731595017861;
+        Thu, 14 Nov 2024 06:36:57 -0800 (PST)
+Received: from localhost.localdomain ([38.44.237.182])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-71a6eaeea60sm393294a34.43.2024.11.14.06.36.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Nov 2024 06:36:57 -0800 (PST)
+From: Sota4Ever <wachiturroxd150@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/2] Add support for Samsung Galaxy S20 FE (SM-G780F/r8s) [SoC Exynos990]
+Date: Thu, 14 Nov 2024 14:36:34 +0000
+Message-Id: <20241114143636.374-1-wachiturroxd150@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Jonathan Cameron <jic23@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- Kim Seer Paller <kimseer.paller@analog.com>, 
- Antoniu Miclaus <antoniu.miclaus@analog.com>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Lars-Peter Clausen <lars@metafoo.de>, 
- Javier Carrasco <javier.carrasco.cruz@gmail.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-iio@vger.kernel.org
-To: Ciprian Hegbeli <ciprian.hegbeli@analog.com>
-In-Reply-To: <20241114130340.7354-2-ciprian.hegbeli@analog.com>
-References: <20241114130340.7354-1-ciprian.hegbeli@analog.com>
- <20241114130340.7354-2-ciprian.hegbeli@analog.com>
-Message-Id: <173159493449.4168533.9910621025953686531.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: frequency: Add ADF4382
+Content-Transfer-Encoding: 8bit
 
+From: Denzeel Oliva <wachiturroxd150@gmail.com>
 
-On Thu, 14 Nov 2024 15:03:10 +0200, Ciprian Hegbeli wrote:
-> The ADF4382A is a high performance, ultralow jitter, Frac-N PLL
-> with integrated VCO ideally suited for LO generation for 5G applications
-> or data converter clock applications. The high performance
-> PLL has a figure of merit of -239 dBc/Hz, low 1/f Noise and
-> high PFD frequency of 625MHz in integer mode that can achieve
-> ultralow in-band noise and integrated jitter. The ADF4382A can
-> generate frequencies in a fundamental octave range of 11.5 GHz to
-> 21 GHz, thereby eliminating the need for sub-harmonic filters. The
-> divide by 2 and 4 output dividers on the part allow frequencies to
-> be generated from 5.75GHz to 10.5GHz and 2.875GHz to 5.25GHz
-> respectively.
-> 
-> Signed-off-by: Ciprian Hegbeli <ciprian.hegbeli@analog.com>
-> ---
->  .../bindings/iio/frequency/adi,adf4382.yaml   | 141 ++++++++++++++++++
->  1 file changed, 141 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/frequency/adi,adf4382.yaml
-> 
+Hello :),
 
-My bot found errors running 'make dt_binding_check' on your patch:
+I'm a newbie and I started getting interested 1 year ago.
+Well, that's the beginning,
+until I learn more about kernels and the C language,
+which is important in that.
 
-yamllint warnings/errors:
+Well, bluntly, here it is:
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/frequency/adi,adf4382.example.dtb: frequency@0: 'adi,charge-pump-current' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/iio/frequency/adi,adf4382.yaml#
+That Samsung Galaxy S20 FE device is part of the Exynos990 SoC family,
+I saw that Igor supported that processor,
+I took advantage of it.
 
-doc reference errors (make refcheckdocs):
+It has the same functions of:
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241114130340.7354-2-ciprian.hegbeli@analog.com
+* CPU
+* pintrl
+* gpio-keys
+* simple-framebuffer
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+Just enough to reach a shell in an initramfs.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+The preferred way to boot the upstream kernel is by using a
+shim bootloader, called uniLoader.
+Changes: - Simply add dts from S20 FE device
 
-pip3 install dtschema --upgrade
+Special thanks to Igor for helping me with that :)
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Changes in v2:
+- Change author name
+
+Changes in v3:
+- Adjusted value <0x08 0x80000000 0x0 0x0c000000> to
+ <0x8 0x80000000 0x0 0xc0000000>
+Honestly I was wrong in the parameter and the other one is
+not necessary to put another "0"
+
+Denzeel Oliva (2):
+  dt-bindings: arm: samsung: Add compatible for Samsung Galaxy S20 FE
+    (SM-G780F)
+  arm64: dts: Add initial support for Samsung Galaxy S20 FE (r8s)
+
+ .../bindings/arm/samsung/samsung-boards.yaml  |   1 +
+ arch/arm64/boot/dts/exynos/Makefile           |   1 +
+ arch/arm64/boot/dts/exynos/exynos990-r8s.dts  | 115 ++++++++++++++++++
+ 3 files changed, 117 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos990-r8s.dts
+
+-- 
+2.34.1
 
 
