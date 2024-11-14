@@ -1,205 +1,192 @@
-Return-Path: <devicetree+bounces-121868-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121869-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7A179C890D
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 12:34:58 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 922309C889B
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 12:16:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E09F3B226AB
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 10:59:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 886DCB32407
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 11:02:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 445F31F8185;
-	Thu, 14 Nov 2024 10:59:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5EA31F9EBF;
+	Thu, 14 Nov 2024 11:00:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=merzmedtech.de header.i=@merzmedtech.de header.b="H9Pi5bH9";
-	dkim=pass (1024-bit key) header.d=merzmedtech.de header.i=@merzmedtech.de header.b="TuQgU5p0"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="jztzpOrk";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="HoOAGfqM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout02.agenturserver.de (mailout02.agenturserver.de [178.16.56.33])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 028D1192D9D;
-	Thu, 14 Nov 2024 10:59:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.16.56.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FD881F9AAD;
+	Thu, 14 Nov 2024 11:00:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731581977; cv=none; b=bGDzNQuWkW5aDOs+TEc6H9oCdiUCqoezZhROjxveXieTJx2LUvbP+/0lfvDWzs6kNdJt9OQKAJ8VLndQhw/ZKhxTCRBbpRhUnI+Y+5TNlgFBveceA0O49CkqvWtiRrn7iQBXEpOEdWhxM+SSvXyd5JM/izfT1YrxfMB9Naccrmc=
+	t=1731582043; cv=none; b=rWODwThjBgQBL/yZA3V0waZS8AQdZ/JjCsUukA1j5mMya7SdYVIOJfzpZSuis+wrNaQBX8C7avZEyDR/BZylzTLzYRePopY1bxAWhuVBSt0vUjWfOuOAcAUfIBB+2/xJGjFEgDX03+RM2IkNTTy5ktHmDj/D6M8OVxWe488U6dI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731581977; c=relaxed/simple;
-	bh=OVX7M0N9GoN3kG3D0ZOZcMB4O0EwU1cj7nCysaQjlSo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UsFopFjZ7J8wRen2wYPsd9COWwwakgfF1WCpq7ZzJ5WOyi1GwaXZFBqaDQwdvXcFhpI3EMU2l24FmDSwa0VPfxf1wl5YnnZDluQyWb9IKjbxJynuVXug1Uw+wnvN44wZMFUZLkl6ljaRk9Pr+40XkjqOiMvZ5wr7QaW6X5HyvSY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=merzmedtech.de; spf=pass smtp.mailfrom=merzmedtech.de; dkim=pass (2048-bit key) header.d=merzmedtech.de header.i=@merzmedtech.de header.b=H9Pi5bH9; dkim=pass (1024-bit key) header.d=merzmedtech.de header.i=@merzmedtech.de header.b=TuQgU5p0; arc=none smtp.client-ip=178.16.56.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=merzmedtech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=merzmedtech.de
-Received: from mail02.agenturserver.de (mail02.internal [192.168.51.35])
-	by mailout02.agenturserver.de (Postfix) with ESMTP id 2032F6D29;
-	Thu, 14 Nov 2024 11:51:18 +0100 (CET)
-Received: from XXX.XXX.XXX.XXX (XXXXX.XX [XXX.XXX.XXX.XXX])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: h.v.raven@merzmedtech.de)
-	by mail.agenturserver.de (Postfix) with ESMTPSA id C017EA11FB;
-	Thu, 14 Nov 2024 11:51:16 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=merzmedtech.de;
-	s=agenturserver2048; t=1731581478;
+	s=arc-20240116; t=1731582043; c=relaxed/simple;
+	bh=tqLuE3XCPUbEyNtVxTKPEPP+MaZp/Pgn4Igc4zDYK3g=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Tuid4TBHah/kZ0Rtxqd+ntRZSGPCn0YpEan+fI0V0Tw9fWPlVA9iwQIV7HgX4dweFsnfC4ZlN+Tbe7nNSf4F+Tl5iUOtSsHZXqimgPa0XoGlRxO8BOOPL1hh8xD2xNylApKK040bPXqQ0/Ig0eqVxYpimx8eXAyRPwGKjxwoIgU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=jztzpOrk; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=HoOAGfqM reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1731582041; x=1763118041;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=PDTzpgyCcsIsQrrZZt0ZmVkITJ/vSABUrcmipqkCQmc=;
+  b=jztzpOrkin+oCpmZ6qCTEQWllYVnB3OfC1lfYF85CTzFw/iXeBDYJYyi
+   JZtiMYS8COUvMKQolXt+/v50upLEjr1ogKfBLg8/rePNs105p+7Ai0vZs
+   JwFvNCY3A3R0cbs62EMUllGthNjgqtscCiRTbvpXKi95HvZYoWw0AeiQw
+   xqUaRW6Ze11CAb9c79v4IDdCu6NC/VlvMT9qzacmlrO2M9bEY5I8UfY1m
+   XyW/Gx2vdMI00LyQe6XbYGYdwxlL4dJS41p025ZeRCA51Cu/te7QtzK1Z
+   wxVCXHRfuUsPK/P8Wvh9UBjRlEfO3J4yNIfYfzS9bVMPSAKvAk1pyi7nI
+   g==;
+X-CSE-ConnectionGUID: 6/t++77bQzCqLu1Si6Avtg==
+X-CSE-MsgGUID: GRh+e+j3QjuOKGKT4vHk0w==
+X-IronPort-AV: E=Sophos;i="6.12,153,1728943200"; 
+   d="scan'208";a="40037885"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 14 Nov 2024 11:59:28 +0100
+X-CheckPoint: {6735D810-1A-1E10F2A5-CC0651E5}
+X-MAIL-CPID: 0080E8DE299B7269A5879A7996F82C94_4
+X-Control-Analysis: str=0001.0A682F18.6735D810.00AD,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 50BBB161730;
+	Thu, 14 Nov 2024 11:59:22 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1731581963;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=/guqjSuTwKI0Oo4uyiMsmxSgHJhxety89uZKLJHzqC0=;
-	b=H9Pi5bH9A159Gh3GiKkNz6DxXoJJFLoZQpLk5pHN4R9dNYz9NJoTVFRqhpEbgkfhIcnzW2
-	ZlcacSTV3w6d62F6XfuBP6sDiBptLrlQQnl599RMWDlpAkIQGYXKRs7htV7PXaD4dosHzh
-	rlVNG/qWMsGZ7rwleYJeYbNTDh6D03rDZ3cMyf6hZsjNZ2pkE2AL6olM8Y0zVoafmorJ8q
-	hJQ92AeZAwKRGlR0J2A8/ZTczhZw1w7+QZ5W4MJ1C2UDqvH58RhS+pe0MOLVQG9wyXNbUw
-	aXLgtxkBnS2yRHKB3jA8YZg3y0EHg2gxjd0446YfqWxGvhqYzpvrGjySuY6BKA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=merzmedtech.de;
-	s=agenturserver; t=1731581478;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=/guqjSuTwKI0Oo4uyiMsmxSgHJhxety89uZKLJHzqC0=;
-	b=TuQgU5p0vaDrGi/JmKRMB3jGWuVm9CSU3vDMz1Q2QCqmzeao5dNnQeGcnWPQZG84ZWnUKD
-	Bi/NVVfu6eeVj8Gapkbu47UCzZDW9+rBjAF61wZ0AB8iGPi+NLyuZrC6U6uQpJLbSsQd1e
-	qKjtWSDO0FDDzaIEifCGLSKTrj8B2RI=
-Message-ID: <f47a1935-fe38-4f17-a46f-5bc591713b6c@merzmedtech.de>
-Date: Thu, 14 Nov 2024 11:51:15 +0100
+	bh=PDTzpgyCcsIsQrrZZt0ZmVkITJ/vSABUrcmipqkCQmc=;
+	b=HoOAGfqM3P6FcrZRK4KcDfo3zyv7J56DchawjSvGruXe/HyM5oJiuOc2QbPG44Vw3Sort6
+	MInZi9ozQCPhfK0qNcTJWisIVs3MKDfnwXMCpUkQucQhml0WG+Y/+CYFCP06HJjXgREMyZ
+	Rpy4gU0iAc7gwnjEp83AEHPH28sXnftnGFIfTNVJTy2UVKT7zim4VoV2hv1g1mU2g8Z3hc
+	wtQTTNFC6amkQzOI6oCTyk8GiC7c+fNpuVXz+0JybAanDBcxuFksk+BGJDwb2f01tCcxI9
+	gzVJEky1WcF9lqUyUywm1staOzEm0ska8lQjxQesBkAh2YqLq2n8LFzpEYdy7g==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, gregkh@linuxfoundation.org, Frank.Li@nxp.com, jun.li@nxp.com, l.stach@pengutronix.de, aford173@gmail.com, hongxing.zhu@nxp.com, Xu Yang <xu.yang_2@nxp.com>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org
+Subject: Re: [PATCH v9 2/3] arm64: dts: imx95: add usb3 related nodes
+Date: Thu, 14 Nov 2024 11:59:23 +0100
+Message-ID: <2968363.e9J7NaK4W3@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20241113080745.2300915-2-xu.yang_2@nxp.com>
+References: <20241113080745.2300915-1-xu.yang_2@nxp.com> <20241113080745.2300915-2-xu.yang_2@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] ASoc: simple-mux: add idle-state support
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Alexandre Belloni <aleandre.belloni@bootlin.com>
-Cc: linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20241114-simple-mux-idle-state-v1-0-0b082dd6549b@merzmedtech.de>
- <20241114-simple-mux-idle-state-v1-1-0b082dd6549b@merzmedtech.de>
-Content-Language: de-DE, en-GB
-From: "Hendrik v. Raven" <h.v.raven@merzmedtech.de>
-Organization: Merz Medtech Entwicklungsgesellschaft mbH
-In-Reply-To: <20241114-simple-mux-idle-state-v1-1-0b082dd6549b@merzmedtech.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-purgate-original-type: suspect.url-count
-X-purgate-type: clean
-X-purgate-Ad: Categorized by eleven eXpurgate (R) https://www.eleven.de
-X-purgate: This mail is considered clean (visit https://www.eleven.de for further information)
-X-purgate: clean
-X-purgate-size: 4333
-X-purgate-ID: 155922::1731581477-5A422432-0168AE4B/2/61233497599
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-Managed to send an old version. This one will fail when getting the dapm 
-handle in the event. Will send a v2, sorry for the noise.
+Hi,
 
-On 14/11/2024 11:38, Hendrik v. Raven wrote:
-> So far the mux changes it state immediately, even when not in use. Allow
-> overriding this behaviour by specifying an optional idle-state. This
-> state is used whenever the mux is powered down, only switching to the
-> selected state on power up. If unspecified it defaults to as-is,
-> maintaining the previous behaviour.
-> 
-> Signed-off-by: Hendrik v. Raven <h.v.raven@merzmedtech.de>
+Am Mittwoch, 13. November 2024, 09:07:44 CET schrieb Xu Yang:
+> Add usb3 phy and controller nodes for imx95.
+>=20
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+>=20
 > ---
->   sound/soc/codecs/simple-mux.c | 40 +++++++++++++++++++++++++++++++++++++++-
->   1 file changed, 39 insertions(+), 1 deletion(-)
-> 
-> diff --git a/sound/soc/codecs/simple-mux.c b/sound/soc/codecs/simple-mux.c
-> index 240af0563283e5a9dd720d51a2cefd22bd241faa..e99fea9eedc58954af3b4381873224c280b1edd2 100644
-> --- a/sound/soc/codecs/simple-mux.c
-> +++ b/sound/soc/codecs/simple-mux.c
-> @@ -6,6 +6,7 @@
->   
->   #include <linux/gpio/consumer.h>
->   #include <linux/module.h>
-> +#include <linux/mux/driver.h>
->   #include <linux/regulator/consumer.h>
->   #include <sound/soc.h>
->   
-> @@ -16,6 +17,7 @@ struct simple_mux {
->   	struct gpio_desc *gpiod_mux;
->   	unsigned int mux;
->   	const char *mux_texts[MUX_TEXT_SIZE];
-> +	unsigned int idle_state;
->   	struct soc_enum mux_enum;
->   	struct snd_kcontrol_new mux_mux;
->   	struct snd_soc_dapm_widget mux_widgets[MUX_WIDGET_SIZE];
-> @@ -57,6 +59,9 @@ static int simple_mux_control_put(struct snd_kcontrol *kcontrol,
->   
->   	priv->mux = ucontrol->value.enumerated.item[0];
->   
-> +	if (priv->idle_state != MUX_IDLE_AS_IS && dapm->bias_level < SND_SOC_BIAS_PREPARE)
-> +		return 0;
+> Changes in v2:
+>  - no changes
+> Changes in v3:
+>  - no changes
+> Changes in v4:
+>  - reorder nodes
+> Changes in v5:
+>  - no changes
+> Changes in v6:
+>  - rebase to latest
+> Changes in v7:
+>  - no changes
+> Changes in v8:
+>  - no changes
+> Changes in v9:
+>  - no changes
+> ---
+>  arch/arm64/boot/dts/freescale/imx95.dtsi | 43 ++++++++++++++++++++++++
+>  1 file changed, 43 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/d=
+ts/freescale/imx95.dtsi
+> index 03661e76550f..e3faa8462759 100644
+> --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
+> @@ -1473,6 +1473,49 @@ smmu: iommu@490d0000 {
+>  			};
+>  		};
+> =20
+> +		usb3: usb@4c010010 {
+> +			compatible =3D "fsl,imx95-dwc3", "fsl,imx8mp-dwc3";
+> +			reg =3D <0x0 0x4c010010 0x0 0x04>,
+> +			      <0x0 0x4c1f0000 0x0 0x20>;
+> +			clocks =3D <&scmi_clk IMX95_CLK_HSIO>,
+> +				 <&scmi_clk IMX95_CLK_32K>;
+> +			clock-names =3D "hsio", "suspend";
+> +			interrupts =3D <GIC_SPI 173 IRQ_TYPE_LEVEL_HIGH>;
+> +			#address-cells =3D <2>;
+> +			#size-cells =3D <2>;
+> +			ranges;
+> +			power-domains =3D <&scmi_devpd IMX95_PD_HSIO_TOP>;
+> +			dma-ranges =3D <0x0 0x0 0x0 0x0 0x10 0x0>;
+> +			status =3D "disabled";
 > +
->   	gpiod_set_value_cansleep(priv->gpiod_mux, priv->mux);
->   
->   	return snd_soc_dapm_mux_update_power(dapm, kcontrol,
-> @@ -75,10 +80,34 @@ static unsigned int simple_mux_read(struct snd_soc_component *component,
->   static const struct snd_kcontrol_new simple_mux_mux =
->   	SOC_DAPM_ENUM_EXT("Muxer", simple_mux_enum, simple_mux_control_get, simple_mux_control_put);
->   
-> +static int simple_mux_event(struct snd_soc_dapm_widget *w,
-> +			    struct snd_kcontrol *kcontrol, int event)
-> +{
-> +	struct snd_soc_dapm_context *dapm = snd_soc_dapm_kcontrol_dapm(kcontrol);
-> +	struct snd_soc_component *c = snd_soc_dapm_to_component(dapm);
-> +	struct simple_mux *priv = snd_soc_component_get_drvdata(c);
+> +			usb3_dwc3: usb@4c100000 {
+> +				compatible =3D "snps,dwc3";
+> +				reg =3D <0x0 0x4c100000 0x0 0x10000>;
+> +				clocks =3D <&scmi_clk IMX95_CLK_HSIO>,
+> +					 <&scmi_clk IMX95_CLK_24M>,
+> +					 <&scmi_clk IMX95_CLK_32K>;
+> +				clock-names =3D "bus_early", "ref", "suspend";
+> +				interrupts =3D <GIC_SPI 175 IRQ_TYPE_LEVEL_HIGH>;
+> +				phys =3D <&usb3_phy>, <&usb3_phy>;
+> +				phy-names =3D "usb2-phy", "usb3-phy";
+> +				snps,gfladj-refclk-lpm-sel-quirk;
+> +				snps,parkmode-disable-ss-quirk;
+> +				iommus =3D <&smmu 0xe>;
+> +			};
+> +		};
 > +
-> +	if (priv->idle_state != MUX_IDLE_AS_IS) {
-> +		switch (event) {
-> +		case SND_SOC_DAPM_PRE_PMU:
-> +			gpiod_set_value_cansleep(priv->gpiod_mux, priv->mux);
-> +			break;
-> +		case SND_SOC_DAPM_POST_PMD:
-> +			gpiod_set_value_cansleep(priv->gpiod_mux, priv->idle_state);
-> +			break;
-> +		default:
-> +			break;
-> +		}
-> +	}
+> +		usb3_phy: phy@4c1f0040 {
+> +			compatible =3D "fsl,imx95-usb-phy", "fsl,imx8mp-usb-phy";
+> +			reg =3D <0x0 0x4c1f0040 0x0 0x40>,
+> +			      <0x0 0x4c1fc000 0x0 0x100>;
+> +			clocks =3D <&scmi_clk IMX95_CLK_HSIO>;
+> +			clock-names =3D "phy";
+> +			#phy-cells =3D <0>;
+> +			power-domains =3D <&scmi_devpd IMX95_PD_HSIO_TOP>;
+> +			orientation-switch;
+
+This adds the orientation-switch to all imx95 based boards, which in turn
+requires a port subnode.
+This is incorrect if this USB interface is not connected to a USB Type-C
+connector but an on-board USB hub.
+
+Best regards,
+Alexander
+
+> +			status =3D "disabled";
+> +		};
 > +
-> +	return 0;
-> +}
-> +
->   static const struct snd_soc_dapm_widget simple_mux_dapm_widgets[MUX_WIDGET_SIZE] = {
->   	SND_SOC_DAPM_INPUT("IN1"),
->   	SND_SOC_DAPM_INPUT("IN2"),
-> -	SND_SOC_DAPM_MUX("MUX", SND_SOC_NOPM, 0, 0, &simple_mux_mux), // see simple_mux_probe()
-> +	SND_SOC_DAPM_MUX_E("MUX", SND_SOC_NOPM, 0, 0, &simple_mux_mux, // see simple_mux_probe()
-> +			   simple_mux_event, SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PMD),
->   	SND_SOC_DAPM_OUTPUT("OUT"),
->   };
->   
-> @@ -93,6 +122,7 @@ static int simple_mux_probe(struct platform_device *pdev)
->   	struct device *dev = &pdev->dev;
->   	struct device_node *np = dev->of_node;
->   	struct simple_mux *priv;
-> +	int ret;
->   
->   	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
->   	if (!priv)
-> @@ -121,6 +151,14 @@ static int simple_mux_probe(struct platform_device *pdev)
->   	/* Overwrite text ("Input 1", "Input 2") if property exists */
->   	of_property_read_string_array(np, "state-labels", priv->mux_texts, MUX_TEXT_SIZE);
->   
-> +	ret = of_property_read_u32(np, "idle-state", &priv->idle_state);
-> +	if (ret < 0) {
-> +		priv->idle_state = MUX_IDLE_AS_IS;
-> +	} else if (priv->idle_state != MUX_IDLE_AS_IS && priv->idle_state >= 2) {
-> +		dev_err(dev, "invalid idle-state %u\n", priv->idle_state);
-> +		return -EINVAL;
-> +	}
-> +
->   	/* switch to use priv data instead of default */
->   	priv->mux_enum.texts			= priv->mux_texts;
->   	priv->mux_mux.private_value		= (unsigned long)&priv->mux_enum;
-> 
+>  		pcie0: pcie@4c300000 {
+>  			compatible =3D "fsl,imx95-pcie";
+>  			reg =3D <0 0x4c300000 0 0x10000>,
+>=20
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
 
