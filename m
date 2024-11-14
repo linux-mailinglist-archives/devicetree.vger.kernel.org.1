@@ -1,123 +1,197 @@
-Return-Path: <devicetree+bounces-121803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121804-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EBF19C85FE
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 10:23:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BAEB9C8604
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 10:24:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 33138284E2D
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 09:23:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A5251F2106C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 09:24:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CACDA1DF73C;
-	Thu, 14 Nov 2024 09:23:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="iqR4O7gM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1B221DD529;
+	Thu, 14 Nov 2024 09:24:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03CDF1DD529;
-	Thu, 14 Nov 2024 09:23:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 438F61D1724
+	for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 09:24:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731576217; cv=none; b=FVF9xN8GqKC1pVa8de8fYx8xl70I66kfbgG3xrGjHO9Rglo18HcdChoVfBiOZeMb+RLwGBGOsi+5bGvC+k/ZyXlYKJ3bNUyQD1KTS2NVB+H5KwgQoQ5EOkTYJs6ysIL0AwRkE695vC5r9ElO/kWQrDz6j/X0mpfvj4r539qumEQ=
+	t=1731576289; cv=none; b=HbKJ4c/wFz2dIZpqDgPJ/W40LgQEb/hYIYArHCxwtIfGGGrE7mR1ZKFKtxpXboH+BNgkvppPhwtd5dNfZ5kyLrLO8trZPOlKZEn6FR3GrTLkHrDJ+lB0dlrmQ8oPeYO5LiWgUjn24iTindR/vYAW5bqWGwDKFFWqwOreJ+zQAKQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731576217; c=relaxed/simple;
-	bh=AkLGNV400kAQ639QB4827WuxWndPZZGH0KgWbLVMTR8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=V3vcHl+IoJD6z+ZKj/pJtPCzaKNlV5JlpTfYoWbqM1Zsjdlza8SpRbd00g0NxfnBA3m56JoSyoSp3TLzrzghuSYJM7eAnzczgLnaCH03Qy5nGvYD1TyR4SRFjW15PMDVnaa2LyA4pntLGggT2tQe6FA5b+WNRqoT3zO4DKu1luI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=iqR4O7gM; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4ADNmR83025101;
-	Thu, 14 Nov 2024 09:23:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4n60gCjwTB4k0vFnwjJ6c9cPHtkEDcPzYJRRyrfs6DE=; b=iqR4O7gMDDdiID1Q
-	R4M0ihdBJ/Xa1LlBE5dFeA6GYvHMqcjMGCb5pJAbXXRJuC9sSh/n8UXvtcSnf+2Z
-	CoWRu5nT5oJUY/Da+fk7EeslrZE28sRdPbKAgqJc9QCUK6pveaLrov4SPuZolAmR
-	90Y+kyLkuh2vvNcA4ep1L0/kUvEte6aBer1Hu9oX5FtwlSRG6tpT6fu+/Fin88oI
-	HWUnM+DPdbmDsrPNpyj26i9iuVHLRypwnKfc2mXEM6il0n7vvaxMZQ9Xif1jMvOT
-	TnRRAxJ1Y25j5rnpalEbSNKro/QyAZ+yJ1QlLeGVLikc3csNtrot4hXXwbwrmCfn
-	uNRu5A==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42va07ey1h-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Nov 2024 09:23:31 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AE9NUEr029236
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Nov 2024 09:23:30 GMT
-Received: from [10.233.21.53] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 14 Nov
- 2024 01:23:27 -0800
-Message-ID: <1b405496-bba9-4fc9-833f-6d2f662068ba@quicinc.com>
-Date: Thu, 14 Nov 2024 17:23:25 +0800
+	s=arc-20240116; t=1731576289; c=relaxed/simple;
+	bh=YTZ1U53t3+Y4p975TTuCgk2aQJEJQTEEakGxqPyNkBI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nLInO5nrTxJ8dcGx7MMjFR4VVIz0RqXM4LpSm2ALJ8gP/1jRMSqQD1sVl3IjVNk5U7oGZVSE5wNQebv0Pwy8YPNodkUprk+3lcob7q/p03CNNZv9eh+JxXZ2nnm9HCTKjBDJqH7M0FrEUoBPMN0l6ZHn4CeEL5Rx3UgVZkcd5rY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tBW5d-00005w-2D; Thu, 14 Nov 2024 10:24:37 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tBW5c-000ic2-2D;
+	Thu, 14 Nov 2024 10:24:36 +0100
+Received: from pengutronix.de (pd9e59fec.dip0.t-ipconnect.de [217.229.159.236])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 4BF60372F32;
+	Thu, 14 Nov 2024 09:24:36 +0000 (UTC)
+Date: Thu, 14 Nov 2024 10:24:35 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Sean Nyekjaer <sean@geanix.com>
+Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
+	linux-can@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH can-next v3 2/2] can: tcan4x5x: add option for selecting
+ nWKRQ voltage
+Message-ID: <20241114-hysterical-toucan-of-storm-722706-mkl@pengutronix.de>
+References: <20241112-tcan-wkrqv-v3-0-c66423fba26d@geanix.com>
+ <20241112-tcan-wkrqv-v3-2-c66423fba26d@geanix.com>
+ <b61e19bb-58ae-42ac-9863-f1149a812261@wanadoo.fr>
+ <bmuodxb7xtuwexm7rg6ijepxlyqlwdux37ye2ztwreg7kiynwy@xxt3qvgwebvw>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] dt-bindings: remoteproc: qcom,sa8775p-pas: Document
- QCS8300 remoteproc
-To: Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier
-	<mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Bartosz
- Golaszewski" <bartosz.golaszewski@linaro.org>
-CC: <quic_tengfan@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Xin Liu <quic_liuxin@quicinc.com>
-References: <20240925-qcs8300_remoteproc_binding-v3-1-21b0c52b142b@quicinc.com>
-Content-Language: en-US
-From: Jingyi Wang <quic_jingyw@quicinc.com>
-In-Reply-To: <20240925-qcs8300_remoteproc_binding-v3-1-21b0c52b142b@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: mFWyoFankoEldcRS3gY8BhGW97J-uxMh
-X-Proofpoint-ORIG-GUID: mFWyoFankoEldcRS3gY8BhGW97J-uxMh
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 malwarescore=0
- mlxlogscore=555 clxscore=1011 adultscore=0 lowpriorityscore=0 spamscore=0
- impostorscore=0 mlxscore=0 suspectscore=0 priorityscore=1501 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
- definitions=main-2411140071
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="hxrvvoshhuf5jrb2"
+Content-Disposition: inline
+In-Reply-To: <bmuodxb7xtuwexm7rg6ijepxlyqlwdux37ye2ztwreg7kiynwy@xxt3qvgwebvw>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 
-Hi Maintainers,
+--hxrvvoshhuf5jrb2
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH can-next v3 2/2] can: tcan4x5x: add option for selecting
+ nWKRQ voltage
+MIME-Version: 1.0
 
-On 9/25/2024 3:21 PM, Jingyi Wang wrote:
-> Document the components used to boot the ADSP, CDSP and GPDSP on the
-> Qualcomm QCS8300 SoC. Use fallback to indicate the compatibility of the
-> remoteproc on the QCS8300 with that on the SA8775P.
-> 
-> Co-developed-by: Xin Liu <quic_liuxin@quicinc.com>
-> Signed-off-by: Xin Liu <quic_liuxin@quicinc.com>
-> Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
-> ---
-<...>
-> 
-> Best regards,
+On 14.11.2024 10:04:31, Sean Nyekjaer wrote:
+> Hi Vincent,
+>=20
+> On Thu, Nov 14, 2024 at 05:59:54PM +0100, Vincent Mailhol wrote:
+> > Hi Sean,
+> >=20
+> > I found the v3. I=C2=A0was a bit confused because it was hidden before =
+the v2 in
+> > my mailbox: the active thread in v2 bump it to the top, thus "shadowing=
+" the
+> > v3.
+> >=20
+> > On 12/11/2024 at 23:39, Sean Nyekjaer wrote:
+> > > nWKRQ supports an output voltage of either the internal reference vol=
+tage
+> > > (3.6V) or the reference voltage of the digital interface 0 - 6V (VIO).
+> > > Add the devicetree option ti,nwkrq-voltage-vio to set it to VIO.
+> > > Unset nWKRQ is kept at internal reference voltage.
+> > >=20
+> > > Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+> >=20
+> > Notwithstanding of bellow nitpick:
+> >=20
+> > Reviewed-by: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+> >=20
+> > > ---
+> > >   drivers/net/can/m_can/tcan4x5x-core.c | 20 ++++++++++++++++++++
+> > >   drivers/net/can/m_can/tcan4x5x.h      |  2 ++
+> > >   2 files changed, 22 insertions(+)
+> > >=20
+> > > diff --git a/drivers/net/can/m_can/tcan4x5x-core.c b/drivers/net/can/=
+m_can/tcan4x5x-core.c
+> > > index 2f73bf3abad889c222f15c39a3d43de1a1cf5fbb..12a375c653cbd255b5dc8=
+5faf2f76de397a644ec 100644
+> > > --- a/drivers/net/can/m_can/tcan4x5x-core.c
+> > > +++ b/drivers/net/can/m_can/tcan4x5x-core.c
+> > > @@ -92,6 +92,8 @@
+> > >   #define TCAN4X5X_MODE_STANDBY BIT(6)
+> > >   #define TCAN4X5X_MODE_NORMAL BIT(7)
+> > > +#define TCAN4X5X_NWKRQ_VOLTAGE_VIO BIT(19)
+> > > +
+> > >   #define TCAN4X5X_DISABLE_WAKE_MSK	(BIT(31) | BIT(30))
+> > >   #define TCAN4X5X_DISABLE_INH_MSK	BIT(9)
+> > > @@ -267,6 +269,13 @@ static int tcan4x5x_init(struct m_can_classdev *=
+cdev)
+> > >   	if (ret)
+> > >   		return ret;
+> > > +	if (tcan4x5x->nwkrq_voltage_vio) {
+> > > +		ret =3D regmap_set_bits(tcan4x5x->regmap, TCAN4X5X_CONFIG,
+> > > +				      TCAN4X5X_NWKRQ_VOLTAGE_VIO);
+> > > +		if (ret)
+> > > +			return ret;
+> > > +	}
+> > > +
+> > >   	return ret;>   }
+> > > @@ -318,6 +327,15 @@ static const struct tcan4x5x_version_info
+> > >   	return &tcan4x5x_versions[TCAN4X5X];
+> > >   }
+> > > +static void tcan4x5x_get_dt_data(struct m_can_classdev *cdev)
+> > > +{
+> > > +	struct tcan4x5x_priv *tcan4x5x =3D cdev_to_priv(cdev);
+> > > +	struct device_node *np =3D cdev->dev->of_node;
+> > > +
+> > > +	if (of_property_read_bool(np, "ti,nwkrq-voltage-vio"))
+> > > +		tcan4x5x->nwkrq_voltage_vio =3D true;
+> >=20
+> > Nitpick: you can directly assign the value. No need for the if.
+> >=20
+> > 	tcan4x5x->nwkrq_voltage_vio =3D
+> > 		of_property_read_bool(cdev->dev->of_node,
+> > 				      "ti,nwkrq-voltage-vio");
+> >=20
+> > My personal preference is to not declare the np variable because it used
+> > only once but instead directly use cdev->dev->of_node. See this as a
+> > suggestion. If you prefer to keep as it is, OK for me :)
+>=20
+> It looks a lot cleaner :)
+> Just send v4, with some commit messange changens from Marc.
+> I will update and sent v5
 
-Gentle ping for the patch apply.
+No need to send a v6 with the updated R-b, b4 will collect them. After
+we get an ack by one of the DT maintainers I'll apply the patches.
 
-Thanks,
-Jingyi
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--hxrvvoshhuf5jrb2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmc1wdEACgkQKDiiPnot
+vG/4gAf+PTUWp816cWwpPWNdLBMYvQrLIXS0TG1DtsDknARxwcL5FtPjZDzdIn58
+T6byzluwdaRiguQJcyYSyy9vxRR1yDxqrjKtW+wOH+wGiax1B7A/wkfNCUjy1ewM
+BssR8dyrd203QefDmII9aegB4JiAizrpJZtRlnxtiLSUDLaQ7Hh3UZPCKlk30BvK
+4tzsa1RtKuX167D4n+KVoQKrlr4Vp8V4KM1FrAIMEFyzjnmg7oWRr3Hj/V3E6vll
+O5fnPIF5+zB1O5GL4omlA6QbcfjDLd/uNEMrEN0XxrQTrp9ANTaFaA71ssJA4xiP
+jKTq5VqPZC2HwelogHDjBuE1LeLHsQ==
+=k3LC
+-----END PGP SIGNATURE-----
+
+--hxrvvoshhuf5jrb2--
 
