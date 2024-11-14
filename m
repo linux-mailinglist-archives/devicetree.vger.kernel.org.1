@@ -1,130 +1,238 @@
-Return-Path: <devicetree+bounces-121784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30D7A9C84EB
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 09:40:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C30C9C8544
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 09:52:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E96692846E4
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 08:39:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF7EE281B2C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 08:52:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98B841F7554;
-	Thu, 14 Nov 2024 08:39:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED4F21EB9FD;
+	Thu, 14 Nov 2024 08:51:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Ebfc/jk3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7286F1F7562
-	for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 08:39:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D6EE198E84;
+	Thu, 14 Nov 2024 08:51:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731573596; cv=none; b=GGaPnQyMe8ckrMhi2TSHKu1tnQxZQd0yNQr4C40OCP1hQTFCGe0bDHWkpUkMHWdfyo/ReYRzSLV43/CA2+qWtHVzpyFQCfazHGpeoL+tci28fAKutVu5TRSofOkN83eZROuJ3QamxuXp5CeHKJpW5lafPql5e7umpfeRIgUAKMU=
+	t=1731574318; cv=none; b=pVPrXl8xwKEPlzEdKOYsQIkXxcVLBLjRQR/3Iv/X4kiuPpF0gWIomRt8sXxm8zzZWiLGK1dXjhJL6wMgS+A0QK7WtVu/ZTBpVVxCfE4O3MvZZM/ZFMs+9oS1hzSfCmL64WAocE3umT01RaNPmbSyYbH8x9NJ/Ykms9cN93DRE9I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731573596; c=relaxed/simple;
-	bh=IbO8gli/e/c94g3RgX5UhBSer9mV0LL2pC3JNM4V+sc=;
+	s=arc-20240116; t=1731574318; c=relaxed/simple;
+	bh=LcBAxAZAX37uBPCEepx0YxjDpWR0wCPmVubA/HyGtUM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p48v93Lu/rXqhNYcRyDFks99ID9M3VsI02h0zkAVrgO/U32av3JVE/GntcdNtB+t6y/fcRQVyFw0W7VEWCpM22cnGKfyL9CwqKV0yJAYQ8KOpRKRCKteN69YmlTThvfvMrCCoPvEMvpdDJbbeoXXGRI5uLK+OkG3JKWOKhNMEvk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tBVNv-0006Bt-DF; Thu, 14 Nov 2024 09:39:27 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tBVNt-000iGw-33;
-	Thu, 14 Nov 2024 09:39:25 +0100
-Received: from pengutronix.de (pd9e59fec.dip0.t-ipconnect.de [217.229.159.236])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 9327A372E77;
-	Thu, 14 Nov 2024 08:39:25 +0000 (UTC)
-Date: Thu, 14 Nov 2024 09:39:23 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Sean Nyekjaer <sean@geanix.com>
-Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH can-next v3 1/2] dt-bindings: can: tcan4x5x: Document the
- ti,nwkrq-voltage-vio option
-Message-ID: <20241114-honest-premium-nightingale-22eae6-mkl@pengutronix.de>
-References: <20241112-tcan-wkrqv-v3-0-c66423fba26d@geanix.com>
- <20241112-tcan-wkrqv-v3-1-c66423fba26d@geanix.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=c9jdaoZY7A6i4Anjf+dnIUpiwrI4CZFlQJmG50MyyzOrBMWPBK4+s2+zP6iDWA844z2qsnArUb1ap8JCIeejyPeHIncK4Up3U6VCfak7hewqHNoBFUhINRFNOVCQYL6c4OJFkG1guLgjOF6h1w7x5IXv5yv90EHaN5HkdFRUvq8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Ebfc/jk3; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id DDE941BF20C;
+	Thu, 14 Nov 2024 08:51:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1731574314;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=1HiNHG2D/g4kWwQyOFwdXskLa10Ajy4fAeLl0rHlWQg=;
+	b=Ebfc/jk3kQpDApG7oMCN1lYf9XP+E+p/16H79+rUME1nmHzVZZIqMY4Wr6g2Hwd35yaCa8
+	A3i53EJpyOXj3ELVHAwHYi+/LjnJBviH3Kv81HB2olb+NR7GBWFAEhCNaX4GyG5i/tgE7j
+	q1H6FgqO+l5eR7csXFhSutjDl/mMTdnINKI7DECYslEgI8pR0G5SS2Kr76jQ+WbSGFJC1T
+	VJIaOV2IVmsH7IgZNuBuomb/T08Jg8QYzz5KT6wyHiTbdbQj7aE/eblxqK/mjBeUs0uKlI
+	/Fx7PUuK9FTGhVKUZ2TRxvtZ+pJw4eX2YS/JvpfDe4APapKHISfo1rEmqT0XYw==
+Date: Thu, 14 Nov 2024 09:51:53 +0100
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Philipp Rosenberger <p.rosenberger@kunbus.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Lino Sanfilippo <l.sanfilippo@kunbus.com>,
+	Thomas =?iso-8859-1?Q?B=F6hler?= <t.boehler@kunbus.com>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Subject: Re: [PATCH v3 0/2] rtc: pcf2127: make battery switch-over
+ configurable
+Message-ID: <20241114085153e4e23a7f@mail.local>
+References: <20241111154144.163604-1-p.rosenberger@kunbus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="c4ad3lx4y36kkuyt"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241112-tcan-wkrqv-v3-1-c66423fba26d@geanix.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20241111154144.163604-1-p.rosenberger@kunbus.com>
+X-GND-Sasl: alexandre.belloni@bootlin.com
+
+Hello,
+
+On 11/11/2024 16:41:42+0100, Philipp Rosenberger wrote:
+> Hello,
+> 
+> This patch series adds the nxp,battery-backed device tree property to the
+> PCF2127 RTC driver. This flag indicates if the RTC is battery-backed, allowing
+> the driver to enable the battery switchover function if necessary.
+> 
+> Background
+> ----------
+> The PCF2127 RTC driver currently supports the PCF2127, PCA2129, PCF2129, and
+> PCF2131 devices. Among these, only the newer PCF2131 has a different default
+> behavior for battery switchover: it is disabled by default, whereas it is
+> enabled on the other devices. If there is no firmware or bootloader setting
+> to enable battery switchover on the PCF2131, it will not automatically switch
+> to battery power, even if a battery is attached.
+> 
+> An alternative approach would be to enable battery switchover by default on
+> the PCF2131 without requiring a device tree property. However, this could be
+> undesirable, as it would make it impossible to disable battery
+> switchover.
+> 
+
+This has been discussed multiple times in the past, we can't have a DT
+property for this as we need to be able to change it at runtime. There
+is already a userspace interface to do this.
+
+Below is my current patch for this that has been tested on pcf2127. I
+didn't send it yet because we are losing information when switching from
+standard or direct mode to disabled because when BSM is disabled, there
+is no configuration where battery low detection function is enabled so
+going from disabled to standard or direct will keep BLD disabled.
+
+8<--------------------------------------------------------------------
+
+From 7db70b33c3939a0ebe147c32f406b34a2f5f1be8 Mon Sep 17 00:00:00 2001
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Date: Sat, 24 Feb 2024 19:58:20 +0100
+Subject: [PATCH] rtc: pcf2127: add BSM support
+
+The pcf2127 encodes BSM, BLD and power fail detection in the same set of
+bits so it is necessary to do some calculation when changing BSM to keep
+the rest of the configuration as-is. However, when BSM is disabled, there
+is no configuration with BLD enabled so this will be lost when coming back
+to a mode with BSM enabled.
+
+Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+---
+ drivers/rtc/rtc-pcf2127.c | 81 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 81 insertions(+)
+
+diff --git a/drivers/rtc/rtc-pcf2127.c b/drivers/rtc/rtc-pcf2127.c
+index 9c04c4e1a49c..a7f73192d53d 100644
+--- a/drivers/rtc/rtc-pcf2127.c
++++ b/drivers/rtc/rtc-pcf2127.c
+@@ -48,6 +48,7 @@
+ #define PCF2127_BIT_CTRL3_BLF			BIT(2)
+ #define PCF2127_BIT_CTRL3_BF			BIT(3)
+ #define PCF2127_BIT_CTRL3_BTSE			BIT(4)
++#define PCF2127_CTRL3_PM			GENMASK(7, 5)
+ /* Time and date registers */
+ #define PCF2127_REG_TIME_BASE		0x03
+ #define PCF2127_BIT_SC_OSF			BIT(7)
+@@ -331,6 +332,84 @@ static int pcf2127_rtc_set_time(struct device *dev, struct rtc_time *tm)
+ 	return 0;
+ }
+ 
++static int pcf2127_param_get(struct device *dev, struct rtc_param *param)
++{
++	struct pcf2127 *pcf2127 = dev_get_drvdata(dev);
++	u32 value;
++	int ret;
++
++	switch (param->param) {
++	case RTC_PARAM_BACKUP_SWITCH_MODE:
++		ret = regmap_read(pcf2127->regmap, PCF2127_REG_CTRL3, &value);
++		if (ret < 0)
++			return ret;
++
++		value = FIELD_GET(PCF2127_CTRL3_PM, value);
++
++		if (value < 0x3)
++			param->uvalue = RTC_BSM_LEVEL;
++		else if (value < 0x6)
++			param->uvalue = RTC_BSM_DIRECT;
++		else
++			param->uvalue = RTC_BSM_DISABLED;
++
++		break;
++
++	default:
++		return -EINVAL;
++	}
++
++	return 0;
++}
++
++static int pcf2127_param_set(struct device *dev, struct rtc_param *param)
++{
++	struct pcf2127 *pcf2127 = dev_get_drvdata(dev);
++	u8 mode = 0;
++	u32 value;
++	int ret;
++
++	switch (param->param) {
++	case RTC_PARAM_BACKUP_SWITCH_MODE:
++		ret = regmap_read(pcf2127->regmap, PCF2127_REG_CTRL3, &value);
++		if (ret < 0)
++			return ret;
++
++		value = FIELD_GET(PCF2127_CTRL3_PM, value);
++
++		if (value > 5)
++			value -= 5;
++		else if (value > 2)
++			value -= 3;
++
++		switch (param->uvalue) {
++		case RTC_BSM_LEVEL:
++			break;
++		case RTC_BSM_DIRECT:
++			mode = 3;
++			break;
++		case RTC_BSM_DISABLED:
++			if (value == 0)
++				value = 1;
++			mode = 5;
++			break;
++		default:
++			return -EINVAL;
++		}
++
++		return regmap_update_bits(pcf2127->regmap, PCF2127_REG_CTRL3,
++					  PCF2127_CTRL3_PM,
++					  FIELD_PREP(PCF2127_CTRL3_PM, mode + value));
++
++		break;
++
++	default:
++		return -EINVAL;
++	}
++
++	return 0;
++}
++
+ static int pcf2127_rtc_ioctl(struct device *dev,
+ 				unsigned int cmd, unsigned long arg)
+ {
+@@ -741,6 +820,8 @@ static const struct rtc_class_ops pcf2127_rtc_ops = {
+ 	.read_alarm       = pcf2127_rtc_read_alarm,
+ 	.set_alarm        = pcf2127_rtc_set_alarm,
+ 	.alarm_irq_enable = pcf2127_rtc_alarm_irq_enable,
++	.param_get        = pcf2127_param_get,
++	.param_set        = pcf2127_param_set,
+ };
+ 
+ /* sysfs interface */
+-- 
+2.47.0
 
 
---c4ad3lx4y36kkuyt
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH can-next v3 1/2] dt-bindings: can: tcan4x5x: Document the
- ti,nwkrq-voltage-vio option
-MIME-Version: 1.0
 
-On 12.11.2024 15:39:39, Sean Nyekjaer wrote:
-> nWKRQ supports an output voltage of either the internal reference voltage
-
-The nWKRQ pin
-
-> (3.6V) or the reference voltage of the digital interface 0 - 6V (VIO).
-> Add the devicetree option ti,nwkrq-voltage-vio to set it to VIO.
-
-If this property is omitted the reset default, the internal reference
-voltage, is used.
-
->=20
-> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
-
-With this change:
-
-Reviewed-by: Marc Kleine-Budde <mkl@pengutronix.de>
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---c4ad3lx4y36kkuyt
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmc1tzgACgkQKDiiPnot
-vG8icwf/bYMlgy/0lxTBYOyveFvfW8QvmWpBdf/22k86tbeGfSIhdFcim4PWLNha
-R5Ach6ltU7IA3Zti7aS2cH/dX0ScTsVXoTPCvev8VV6uLwVJgGTH9aRn6HC1a6wD
-tv/fTJQHf+t3g2i9zW859qgnto4PjU0nXKwixK5EJsF9F/6gf1QyT9DLDdqi7ugq
-FPtC1r2kRvdEmmSz5qB3mqcOygpjblCMx2IUB1AdN51GOopUaJxFJxSRcptObJdg
-x8FEeuB1q8RCqpxQH/i8bUMbijU6hMHl7vjYjiLUoRDY5WMUwXEH4uLXKCh3eRbz
-U+iLvRxvWJC0+gRYsPwXRSGrIq7QFg==
-=HuND
------END PGP SIGNATURE-----
-
---c4ad3lx4y36kkuyt--
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
