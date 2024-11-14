@@ -1,99 +1,113 @@
-Return-Path: <devicetree+bounces-121972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121982-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C68709C9303
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 21:13:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 297EE9C9391
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 21:57:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 43AD1B237C0
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 20:13:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90EA428390C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 20:57:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46DF91AAE39;
-	Thu, 14 Nov 2024 20:13:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="luW8tAln"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFD741AC88A;
+	Thu, 14 Nov 2024 20:57:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from freeshell.de (freeshell.de [116.202.128.144])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16065EEDE;
-	Thu, 14 Nov 2024 20:13:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C3A2193408;
+	Thu, 14 Nov 2024 20:56:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731615196; cv=none; b=fEbj/HoKXbfdESkoEVjd6bUzNZxut2ln4ibv74JfIO6ExvryhH08J5xyZ52QuR2SNUCCnN8J94mKwtGdjNSnY687DHledmvcGaWwlRbNjeEZkncHzItrAzjJnPPqc1T1E6jX47JNcpiJsEixZAXAjJEuRF1wbAcPPtqEsoTMyBI=
+	t=1731617822; cv=none; b=AzJC6oJ4QhVOe5B0DzyKvi3ffPdBGF6zAJh4U/Yvi5ZW8GdlDHWwFg5rBIqsgj95Lq9rSBAm7ruFzBiB8rap8eHjvRNu10mmm0zwzfiv4KhPVkiCRn8bgWDCgQBfEvsS5un/e74r7fUrXyExiZv3DMWHPk9e4yFZBp3quWBrOsY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731615196; c=relaxed/simple;
-	bh=km/eEsWSrKWhwTGSdpfnPapg/ccwqeJd2W0uboQT3Ik=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oHtpV+UdK3VVVdm5lpRZFPFXGXLWgvK815Y0isyGQ+GeetpOnHQYDuVjMkHRYEi84eMc+q+u+uFjLCBG4cMAxoh+vQNCK1wTauy/thqnJcqXfu4WR1zUCzZ7/jfrP1yupRisHiiJzBfaqYSZ3wwb6p4PJOtpCQlQxGGZhMC/HKY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=luW8tAln; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1D6CC4CECD;
-	Thu, 14 Nov 2024 20:13:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731615195;
-	bh=km/eEsWSrKWhwTGSdpfnPapg/ccwqeJd2W0uboQT3Ik=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=luW8tAlntLOADt4NhTwlSuS+DjwgJJmoxXUZCfmke7+Q689FsPQRF4tsc9GlmIIBZ
-	 WtmcM3EmH+VAj0pgkFW6iNb9NFFxMmBwh5ruJAerpH+iHiHEqRvlzcl8diAgoAALoh
-	 KW3Ae69yJU4xuB8HA7nfnR6ysXfTt27HCJy9pIAV+0ThuYsdu1DTLg92kcw/iFBBwA
-	 9FenclQfTbh6sq6ktWPGuxf/HOKYikd0zYzMhTbN7h7SwN785DCAx26SBp/cChzMSL
-	 QyJdlvaIyTBeOOfN2PaaVNoZq7vwHUsr/FG1C/rzARiyRZWDbkbegbIfZGQQY3g+7E
-	 F+ic/JacQ5yYA==
-Date: Thu, 14 Nov 2024 20:13:10 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>,
+	s=arc-20240116; t=1731617822; c=relaxed/simple;
+	bh=pedqJ4BxQwOi8OPwa+rQY5eP/9OAFJSpgb4K4mDfl/s=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qy2p8jjaMk0K9A9GNce89yBMuJhhmYlwLuF7sYL4n/6kdokdqpD34T6J4GHGzHgcDqLhMZWi9eS8hFM4fm/Qh8MZ41L8KW2mcdzEYNL7Uz55cw8YMUkE6+nIT+eXtSSLKza5eNzQyK0peOzoUNuAtqkLvrW2Qh2yUT8pBWPS4mw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+Received: from hay.lan. (unknown [IPv6:2605:59c8:31de:bf00:6ecf:39ff:fe00:8375])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id CC025B2283B7;
+	Thu, 14 Nov 2024 21:47:10 +0100 (CET)
+From: E Shattow <e@freeshell.de>
+To: Jisheng Zhang <jszhang@kernel.org>
+Cc: E Shattow <e@freeshell.de>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-amlogic@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH v5 2/3] dt-bindings: clock: axg-audio: document A1 SoC
- audio clock controller driver
-Message-ID: <20241114-zoom-wanted-7dfda7d36f6b@spud>
-References: <20241112230443.1406460-1-jan.dakinevich@salutedevices.com>
- <20241112230443.1406460-3-jan.dakinevich@salutedevices.com>
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] riscv: dts: starfive: jh7110-milkv-mars: set host mode and vbus pin for on-chip USB 2.0
+Date: Thu, 14 Nov 2024 12:13:40 -0800
+Message-ID: <20241114201805.24143-2-e@freeshell.de>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="K9ZM2+nYnJZ83qMp"
-Content-Disposition: inline
-In-Reply-To: <20241112230443.1406460-3-jan.dakinevich@salutedevices.com>
+Content-Transfer-Encoding: 8bit
 
+Enable host mode USB for Milk-V Mars by setting host mode and connect vbus 
+pinctrl.
 
---K9ZM2+nYnJZ83qMp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Note that testing this functionality depends on two features:
 
-On Wed, Nov 13, 2024 at 02:04:42AM +0300, Jan Dakinevich wrote:
-> Add device tree bindings for A1 SoC audio clock and reset controllers.
->=20
-> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+1.  commit e10c52e7e064038d9bd67b20bf4ce92077d7d84e "phy: starfive: 
+jh7110-usb: Fix link configuration to controller"
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+2. Setting the USB over-current register to disable. This is done at 
+bootloader phase, for example U-Boot: 
+https://patchwork.ozlabs.org/project/uboot/patch/20241012031328.4268-6-minda.chen@starfivetech.com/
 
---K9ZM2+nYnJZ83qMp
-Content-Type: application/pgp-signature; name="signature.asc"
+If the over-current register is not prepared for us then the result is no 
+change in functional outcome with this patch applied; there is an error 
+visible to the user and usb configuration fails (same as it is now).
 
------BEGIN PGP SIGNATURE-----
+Signed-off-by: E Shattow <e@freeshell.de>
+---
+ .../boot/dts/starfive/jh7110-milkv-mars.dts    | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZzZZ1gAKCRB4tDGHoIJi
-0l/FAP432TheokBBb1mXfuGWT800uk2Ed6s9mOkVQncD9I71xQEAur/YW7sxvZL5
-me+5Anm5adO3g2uYoZ1Rsp/Lyny2Ags=
-=KugJ
------END PGP SIGNATURE-----
+diff --git a/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts b/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
+index 0d248b671d4b..bddfc7c6b00f 100644
+--- a/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
++++ b/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
+@@ -53,7 +53,23 @@ &spi0 {
+ 	status = "okay";
+ };
+ 
++&sysgpio {
++	usb_pins: usb0-0 {
++		driver-vbus-pin {
++			pinmux = <GPIOMUX(25, GPOUT_SYS_USB_DRIVE_VBUS,
++					      GPOEN_ENABLE,
++					      GPI_NONE)>;
++			bias-disable;
++			input-disable;
++			input-schmitt-disable;
++			slew-rate = <0>;
++		};
++	};
++};
++
+ &usb0 {
+-	dr_mode = "peripheral";
++	dr_mode = "host";
++	pinctrl-names = "default";
++	pinctrl-0 = <&usb_pins>;
+ 	status = "okay";
+ };
+-- 
+2.45.2
 
---K9ZM2+nYnJZ83qMp--
 
