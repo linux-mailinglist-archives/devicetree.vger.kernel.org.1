@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-121780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121781-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EDC09C8460
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 08:56:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE9519C84A2
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 09:11:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 012E0283CB0
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 07:56:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 44D6D1F23757
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 08:11:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98A9D1F583F;
-	Thu, 14 Nov 2024 07:56:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59B341F706F;
+	Thu, 14 Nov 2024 08:11:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="awWFSXKW"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="fn2+HGiN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA70B1F4718
-	for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 07:56:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C636C1F6669
+	for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 08:11:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731570980; cv=none; b=cqYsKoFJ/Sx5EQgo/9koNAqcHDTHSz3yLbAihHW1N8ADu5MfTQm00QXC9tU6LiSlRVBjAuADJAI+Sv9owkg6wE5R/po560lXR4F9oYV2+rgk4a6pdDXJXNM/km1TeIC1PyS6b+qbpFgnv4JzP5oLhj0jhd7fVgpVtrfVLa2mflM=
+	t=1731571895; cv=none; b=f/YujKjkzVAWhe/5Fd03VubRAuDb3x1edFfHjWoUlgx5ZeJQAj4YUqUTcKF/b/nDrERHsUYoTCQ7vHewysQJRGFn9aMFxRniXTBV7Mpn2DwLdxaGDEAGZDBftIqu+nruAYAfYwvw6Nz800puoiZqEw9OihBvh+PDAmqh2Klvbi0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731570980; c=relaxed/simple;
-	bh=jvr0K0Q5J+bY8+BvzB9nKZv2xyLFb1Xxc0qmLOtROqs=;
+	s=arc-20240116; t=1731571895; c=relaxed/simple;
+	bh=Dak7zVPoLqnhTV81XfL68498x/xktW2DL9spdvnsLQg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FcR8fu70R7B1ZPnwnyyl9BX+/+erWLQkrs2NEzj+cLW76xdeK9/RwzXLm51pP4jyPvQQi3E77px5WvlG1FLna8y0L1ZrR0wC6eFzCWB9WZWUGG82oE6yuK9g5h/rtR9yjbEkaM9jYI3MYzcB4nQTusIBzqAE9tOUS1Q3N+SQQjU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=awWFSXKW; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4314f38d274so4105605e9.1
-        for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 23:56:18 -0800 (PST)
+	 In-Reply-To:Content-Type; b=S6vs41vYpwTDveclsRCvS5aOLwvKmtKMojrkRw76AN1r5Aus/x6cp6bH8CGYOcwHC5aGKoIbB7LUBK4NF5pQmrUGCGVpUB3KqAm1CXntlLh+xqqjhBb6ztlpTuPySiWhz4ZamkYGWcX0O4QbZPGsGn9geXLHt30SjR4UayKda2U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=fn2+HGiN; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4315e62afe0so3339495e9.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 00:11:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731570977; x=1732175777; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=tuxon.dev; s=google; t=1731571891; x=1732176691; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=wTbijnnwDwohrlI2GV45ipkfj8nk/AeJOyyuQggfBrc=;
-        b=awWFSXKWwOCjNXAoJyLpRGu12EMIIQgjzVRgQ1LNLV8NkbfAItj5hJBvPPk+OFo5Or
-         qDS7ueU5H674fceHlm+lWh59JaeJD9cfp9xySI+dRVcFWfme5Rc9G0X6u5k6X0umUmP8
-         SBdy+Lj/ULGqwdAlwkyxetpLiRm4KvJA5x3ZKazZ7sybcEtbxmxQ71xHedxmd5ssnC3j
-         fwNXpj5z+1e2ZfWLgI0kofQMiq4glVuVFQe87rxe71kGWtLg2leyzpj2PP0tZKcpx4BD
-         M5Sp86udd2hJUGnceC/my1lUEPtxOJndmRHcLEeRvRAChSoKOWWISBbCn2wIxiNo2zfK
-         0AIg==
+        bh=BtK7Koq5plsXkaoeepNkxSJgKDlZH5uwXtI9Rumwzq0=;
+        b=fn2+HGiNc8jvO6VW3mCTV+zv+fIXozZh0EHlGIjXTNb94zdqz0fSwIrEUUkP9Sh+FG
+         WisFiBkpPTyvH+c04psi3TrdL3pYRoYT7H7QHUjlpf/Y5813MucTAvz2aXQlvnOg/C2/
+         Oc7wKu4Ibmgxcukyy61mMZ6H/18B7hH47HZNkXBjL6H3sLEbHN/+Ac2ORRTj29ktGfJC
+         z3XmEpO5knKBzshHw6u4uJHrU56dz7dK0uTEsgTwm1kds3ZAZfEPZMGRpkN5FMWbSfPZ
+         pUPfGpWRGMNdDLYIk1w1GS+qoQC6jtC8pUvWSr3LJso0aUCTcvRy78KLMyPs6A99cqeZ
+         WKvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731570977; x=1732175777;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1731571891; x=1732176691;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wTbijnnwDwohrlI2GV45ipkfj8nk/AeJOyyuQggfBrc=;
-        b=gHr3EhcYbwLF7cXH1Dkqgv5/barFLj3qGWAsA/BbRC1Z1MdmvZ1kzB4oj2hrBgn7zf
-         Li0koIdA0E/SAtMzlRiEgE8r0Nx6jPkx7glG6DsteCs7IKncssvi1ECSWC1qsglK6yKX
-         BYFECC9tTLBShxCeR+ZQzFm6fsjQ4dPJkrCQSrak8oGS4WFGFdbI6FD5zNbiy/t4dL/1
-         fze9j5xbw6FXRKnsgpc4rbojHq2yrP6b0NG+imsUQv4FlhhnDeveLjO64CjN6xD9IYi0
-         gVBuhWnw6nYjfiJSw8wJrtNi9DmxO1xMXZfP/4wiYfg4175PPsvgUGBAdUKvZ1K9PggV
-         6qrg==
-X-Forwarded-Encrypted: i=1; AJvYcCUfcCZ6hIqeQvSEnTfPfKpMXsymI4s6LFEiZNamaX0jRB/PVD9Jyj4LwHb2npWp4mkls2Dw8dZu9hP4@vger.kernel.org
-X-Gm-Message-State: AOJu0YzYdJpa+Rp3pK6xd5tMbpnTRL88b5UGJCPzANDPPYeN+l4pPcg2
-	EPWSH5ma1McSAnzR+JLVcbH9uz48GWrR+x5Caf37Te7Gg3OS/HZLQLqcqmrA23Y=
-X-Google-Smtp-Source: AGHT+IE5fUPLpY4+0oTnUCSYF14S/jOKysuYqJHjX8GawIArDKoykg98bQ0RPo43UOx1Vkuznv8HJw==
-X-Received: by 2002:a05:600c:19c7:b0:430:57e8:3c7e with SMTP id 5b1f17b1804b1-432da7dc2ccmr9473255e9.28.1731570977052;
-        Wed, 13 Nov 2024 23:56:17 -0800 (PST)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-432dab80869sm10906885e9.22.2024.11.13.23.56.15
+        bh=BtK7Koq5plsXkaoeepNkxSJgKDlZH5uwXtI9Rumwzq0=;
+        b=V6RM74WRuUuJjwlNdUWdFje2SR2gYxIHyeC9ejQka7VyHeIaGYp6CnL4uVRZwQAgaW
+         ECcISu5I3XDfLlASjQ+j7nIobwthzRvCP98acj7J2xaznPwLbIBpscsQBCHliUYcolQk
+         tMlLmuR7z2sFnaDKgErkn1M4BeOX49192E9juMzwOwHw7KZSPeWTvqIsnRTbYKhsIO4R
+         i7ALBxaJ2EgkehFb9Ugr87+0DxVu2Pck0tP78xp05DJOsX6IVim0bWkUqv50FK3ZuF7A
+         8obb5IXbS6R1EmsVM9CSSVdMESiNXXzKopOhuyumjqgZNKoXAouSVxjUiEBMxCFhKCkM
+         r/wQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVpgNBilLabcZ4MwLXsXQ5gPo2MywEeKK1NQMEhy58wPgKjjYXqiCU5KBRY0lTrUZR/+rYlnf1JKlnO@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy/44mfh/RdiMWvDZ6nQYVESTaCP9jxhMV7a1QJuUj7qqQD/nAl
+	2gJcEQ0aeES2R/x5TLH5jsjx4Wq+8Bv3Igf6SUZM1ahdqvSqiXFfU5N9yx2UAbw=
+X-Google-Smtp-Source: AGHT+IGQwL97xGZDE67jemb32d4K5FWvWjN8w39M98m1r+VimY0ubTvizw1TQfZpwlKMc9NeHCwreA==
+X-Received: by 2002:a05:600c:3b82:b0:42c:bb10:7292 with SMTP id 5b1f17b1804b1-432b74fc98cmr197271285e9.1.1731571890834;
+        Thu, 14 Nov 2024 00:11:30 -0800 (PST)
+Received: from [192.168.50.4] ([82.78.167.28])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-432da2982fasm14730395e9.36.2024.11.14.00.11.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Nov 2024 23:56:16 -0800 (PST)
-Message-ID: <80444a81-381b-4a30-b573-dcaf0c06f326@linaro.org>
-Date: Thu, 14 Nov 2024 08:56:15 +0100
+        Thu, 14 Nov 2024 00:11:30 -0800 (PST)
+Message-ID: <20138ae9-ce35-40a5-be10-d0c6da23f5d1@tuxon.dev>
+Date: Thu, 14 Nov 2024 10:11:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,87 +76,123 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: thermal: Add support for Airoha
- EN7581 thermal sensor
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Lorenzo Bianconi <lorenzo@kernel.org>,
- upstream@airoha.com
-References: <20241018104839.13296-1-ansuelsmth@gmail.com>
- <6734cc42.df0a0220.4521f.ac78@mx.google.com>
- <487d0de5-6f70-4b82-a22b-5e74ba32da11@linaro.org>
- <673509d0.050a0220.f4111.c090@mx.google.com>
+Subject: Re: [PATCH v2 2/8] serial: sh-sci: Check if TX data was written to
+ device in .tx_empty()
 Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <673509d0.050a0220.f4111.c090@mx.google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To: Jiri Slaby <jirislaby@kernel.org>, geert+renesas@glider.be,
+ magnus.damm@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+ gregkh@linuxfoundation.org, p.zabel@pengutronix.de, g.liakhovetski@gmx.de,
+ lethal@linux-sh.org
+Cc: linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-serial@vger.kernel.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, stable@vger.kernel.org
+References: <20241108100513.2814957-1-claudiu.beznea.uj@bp.renesas.com>
+ <20241108100513.2814957-3-claudiu.beznea.uj@bp.renesas.com>
+ <530f4a8e-b71a-4db1-a2cc-df1fcfa132ec@kernel.org>
+ <3711546e-a551-4cc9-a378-17aab5b426ef@tuxon.dev>
+ <b3f67cd7-056a-43c2-98dc-e983649124ed@kernel.org>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <b3f67cd7-056a-43c2-98dc-e983649124ed@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 13/11/2024 21:19, Christian Marangi wrote:
-> On Wed, Nov 13, 2024 at 07:18:04PM +0100, Daniel Lezcano wrote:
->>
->> Hi Ansuel,
->>
->> On 13/11/2024 16:56, Christian Marangi wrote:
->>> On Fri, Oct 18, 2024 at 12:48:04PM +0200, Christian Marangi wrote:
->>>> Add support for Airoha EN7581 thermal sensor and monitor. This is a
->>>> simple sensor for the CPU or SoC Package that provide thermal sensor and
->>>> trip point for hot low and critical condition to fire interrupt and
->>>> react on the abnormal state.
->>>>
->>>> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
->>>> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Hi, Jiri,
+
+On 14.11.2024 08:26, Jiri Slaby wrote:
+> Hi,
+> 
+> On 08. 11. 24, 13:19, Claudiu Beznea wrote:
+>> On 08.11.2024 12:57, Jiri Slaby wrote:
+>>> On 08. 11. 24, 11:05, Claudiu wrote:
+> ...
+>>>> --- a/drivers/tty/serial/sh-sci.c
+>>>> +++ b/drivers/tty/serial/sh-sci.c
+>>>> @@ -157,6 +157,7 @@ struct sci_port {
+>>>>          bool has_rtscts;
+>>>>        bool autorts;
+>>>> +    bool first_time_tx;
 >>>
->>> Any news with this series? Everything wrong with the thermal core small
->>> patch?
+>>> This is a misnomer. It suggests to be set only during the first TX.
 >>
->> I understand why you are trying to achieve this but usually it is the kernel
->> which overloads the firmware description, not the opposite, no?
+>> I chose this naming as this was the scenario I discovered it didn't work.
+>> Reproducible though these steps:
 >>
->> Either way, we ignore the offset/slope from tzp and use a couple of private
->> variables offset/slope in the driver (iow do not call
->> thermal_zone_get_offset() thermal_zone_get_slope()). Or add the
->> thermal_zone_set_offset() and thermal_zone_set_slope() helpers.
+>> 1/ open the serial device (w/o running any TX/RX)
+>> 2/ call tx_empty()
 >>
->> I would prefer the first solution as for today I can not see any DT for
->> ARM64 with the coefficients set. So may be we can consider the slope and the
->> offset as a legacy which should be removed from sysfs and the thermal zone
->> device parameters in a near future.
+>> What
+>>> about ::did_tx, ::performed_tx, ::transmitted, or alike?
 >>
+>> I have nothing against any of these. Can you please let me know if you have
+>> a preferred one?
 > 
-> Hi Daniel,
+> No, you choose, or invent even better one :). Or let AI do it for you.
 > 
-> Having set OPs is problematic as that would diverge from what is set in
-> DT that should always have priority.
+>>>> @@ -885,6 +887,7 @@ static void sci_transmit_chars(struct uart_port *port)
+>>>>            }
+>>>>              sci_serial_out(port, SCxTDR, c);
+>>>> +        s->first_time_tx = true;
+>>>>              port->icount.tx++;
+>>>>        } while (--count > 0);
+>>>> @@ -1241,6 +1244,8 @@ static void sci_dma_tx_complete(void *arg)
+>>>>        if (kfifo_len(&tport->xmit_fifo) < WAKEUP_CHARS)
+>>>>            uart_write_wakeup(port);
+>>>>    +    s->first_time_tx = true;
+>>>
+>>> This is too late IMO. The first in-flight dma won't be accounted in
+>>> sci_tx_empty(). From DMA submit up to now.
+>>
+>> If it's in-flight we can't determine it's status anyway with one variable.
+>> We can set this variable later but it wouldn't tell the truth as the TX
+>> might be in progress anyway or may have been finished?
+>>
+>> The hardware might help with this though the TEND bit. According to the HW
+>> manual, the TEND bit has the following meaning:
+>>
+>> 0: Transmission is in the waiting state or in progress.
+>> 1: Transmission is completed.
+>>
+>> But the problem, from my point of view, is that the 0 has double meaning.
+>>
+>> I noticed the tx_empty() is called in kernel multiple times before
+>> declaring TX is empty or not. E.g., uart_suspend_port() call it 3 times,
+>> uart_wait_until_sent() call it in a while () look with a timeout. There is
+>> the uart_ioctl() which calls it though uart_get_lsr_info() only one time
+>> but I presumed the user space might implement the same multiple trials
+>> approach before declaring it empty.
+>>
+>> Because of this I considered it wouldn't be harmful for the scenario you
+>> described "The first in-flight dma won't be accounted in sci_tx_empty()"
+>> as the user may try again later to check the status. For this reason I also
+>> chose to have no extra locking around this variable.
 > 
-> Well yes my idea was trying to make use of them as currently there are
-> many driver that set these values but have the slope and offset in
-> thermal core always set to 0 and 1.
+> What about the below?
 > 
-> Thing is that reading temp with ADC is very common and in some way or
-> another you always have a slope and an offset so it makese sense to
-> permit to have those values preallocated instead of handling them in
-> priv struct.
+>>>> @@ -2076,6 +2081,10 @@ static unsigned int sci_tx_empty(struct uart_port
+>>>> *port)
+>>>>    {
+>>>>        unsigned short status = sci_serial_in(port, SCxSR);
+>>>>        unsigned short in_tx_fifo = sci_txfill(port);
+>>>> +    struct sci_port *s = to_sci_port(port);
+>>>> +
+>>>> +    if (!s->first_time_tx)
+>>>> +        return TIOCSER_TEMT;
+>>>
+>>> So perhaps check if there is a TX DMA running here too?
+> 
+> This ^^^? Like dmaengine_tx_status()?
 
-Right but if we look at the coefficients description, it is a bit fuzzy 
-how they are used today.
+I missed that I can use this ^. Thanks for pointing it.
 
-> Anyway if the idea is to drop that, I will happly move those values
-> handling back in the driver. Just need a confirm on that.
+Claudiu
 
-Yes, it is probably better to put them private to the driver while we 
-sort out how to deal with the coefficients properly. Especially that we 
-want to introduce thermal zones with multiple sensors support.
-
-Thanks
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+> 
+>>>
+>>>>          return (status & SCxSR_TEND(port)) && !in_tx_fifo ? TIOCSER_TEMT
+>>>> : 0;
+>>>>    }
+>>>
+>>> thanks,
 
