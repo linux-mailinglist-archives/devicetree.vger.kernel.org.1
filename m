@@ -1,196 +1,247 @@
-Return-Path: <devicetree+bounces-121745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD8A39C82F3
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 07:11:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1913E9C82FB
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 07:17:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 63106283983
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 06:10:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D6751F2311F
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 06:17:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 581B01DF74E;
-	Thu, 14 Nov 2024 06:10:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA5811E884A;
+	Thu, 14 Nov 2024 06:17:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Agm4rf4d"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="GcWv0q7f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2049.outbound.protection.outlook.com [40.107.20.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BE0F15A848;
-	Thu, 14 Nov 2024 06:10:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.49
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731564655; cv=fail; b=RyR21MSl/XIFcr0GpJySsfuuF9ii3g9/tgtm29DrRmIT+ZtQEtPe4AUar67O8x4wjOe6mylqinSPT/1qmqAJEr5wteGVdjmengz5TQ1P9eUTD9en9lp90X4Wg5xIw+uK3l0eCMEZmu4v6xMsch7WOpMzODYtJzfMzZsotXjVlFU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731564655; c=relaxed/simple;
-	bh=YcMZR5FqctT10gDJOHawywRqBaZyq4zyxaGcseUQx8A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=sr3tAQ0tJRujkgJF9rf0nFZU23ltHKxr4vTAqrXveTyUdgL9fvKbVILQrUZU4cABKiegFEN+kNGUUygckJEjWLsv9ePyIHcroL6wmzZfZFQKUWMBvFZm5z8q7dAtucQIqiHM/4MFfmOxvtlAfJhkf5t/3tKrLJCEDNorZzQHYr0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Agm4rf4d; arc=fail smtp.client-ip=40.107.20.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vtpu0bGbNLNmNKwc+z27iW+kFixC1WRCpBxMs7f5WOz6PsJ/+Tdte6iDLFaK4b0mtjmE7gQzwMer7uyl1q0GqyBbFYcEBqPvC8mWiWJSwE+Iki7tvQ4NYyfsdRRQc1XhsZDGNSxcPxbvRW3Tv+VMZUr9gi7W5OONzMeIoYe5REn8wU5H5irpoEVHSZdGxz/baGrz3hMbEIzAwQ1Wb5FoBuTGp9D4nkyBtYVo5cB+MQCXVlnJ+FZ0xEJq4j1ldyXIwHUzqPVGA/X8pqyaad5+lyGzqRL+A1GApj8XPQ2o+2fvCqPerJ+kilp+FXZRHh7CWDipWCGlQi19pi+fd34PPg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9twButjjIyZO6V6SYWcoTNHs2+dVmdvEM4sKzA+Gn6s=;
- b=robdjQQn1zNodjYQBpGCTmHun53Izhzn4n0Xyk4A8GMx23vpRhTHPuudxQVEWLb9f72R5AkSPxRP7BlzL5krbNqB3XxiaTZaoJiFwIqC0XjzEl++8FxZv0RCv4SsnBXMD2ZbwkKdXW5v7EsDLmGjAj4/hkeFP4eTZrqQB6Mt7VMVmF8X7gEX7mfgvUi6KWDUq8mN92QVi6mXIC5PLonvOTSML6UQrmeUUAERvH3EgljDwVYRMK3j5D1tk3DEwssJfoXsw7R0wZIVu2MQ0xXGxCtjyQHL20U2Ry38SESjGxeFaZOdtKLfD63sOvVFc4SBwWv30J/1bS6uWXXmcc1vBw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9twButjjIyZO6V6SYWcoTNHs2+dVmdvEM4sKzA+Gn6s=;
- b=Agm4rf4dw+1MYHFpKp6lG4aC48fjc9BPlO/SFdAx3HhXzrXWSiJwfty68yqOZB9yToeQXeKO498WgxiNBJPIz6jyeDt71LzLs/6IEQpSpzZxT+Hlfjqu2pebij5aexhCk+pVL9qSHYR55V+uGyzUCGPBmaTCW3qj2jYTuKql3SkLRkzfXO9eVU4FCwH2pTehEwWcCaXkT4Y+TLvFDzak0oxAWZbgzv3N5SzPKvyplS20Je1twQKAz7eq4yIqD6MMHxaWW05avzPmSWu7SkfCNZHRIuEFcEqLB9wo8ujux1Xl5zLV5TtoOZNBTBYAA50Dc7IB6A8wYiJ/9hDXl3N+tw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DB8PR04MB7065.eurprd04.prod.outlook.com (2603:10a6:10:127::9)
- by DBBPR04MB7692.eurprd04.prod.outlook.com (2603:10a6:10:1f6::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.17; Thu, 14 Nov
- 2024 06:10:50 +0000
-Received: from DB8PR04MB7065.eurprd04.prod.outlook.com
- ([fe80::8af7:8659:9d42:bd84]) by DB8PR04MB7065.eurprd04.prod.outlook.com
- ([fe80::8af7:8659:9d42:bd84%3]) with mapi id 15.20.8158.013; Thu, 14 Nov 2024
- 06:10:50 +0000
-Date: Thu, 14 Nov 2024 14:09:57 +0800
-From: Pengfei Li <pengfei.li_1@nxp.com>
-To: Frank Li <Frank.li@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, joao.goncalves@toradex.com,
-	frieder.schrempf@kontron.de, marex@denx.de,
-	hvilleneuve@dimonoff.com, peng.fan@nxp.com,
-	alexander.stein@ew.tq-group.com, m.othacehe@gmail.com,
-	mwalle@kernel.org, Max.Merchel@ew.tq-group.com,
-	hiago.franco@toradex.com, tharvey@gateworks.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	ping.bai@nxp.com, ye.li@nxp.com, aisheng.dong@nxp.com
-Subject: Re: [PATCH 3/3] arm64: dts: freescale: Add i.MX91 11x11 EVK basic
- support
-Message-ID: <ZzWUNbihmwAgRGLO@pengfei-OptiPlex-Tower-Plus-7010>
-References: <20241108022703.1877171-1-pengfei.li_1@nxp.com>
- <20241108022703.1877171-4-pengfei.li_1@nxp.com>
- <ZyzYUkBH8rH4bTZN@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZyzYUkBH8rH4bTZN@lizhi-Precision-Tower-5810>
-X-ClientProxiedBy: SI2PR02CA0006.apcprd02.prod.outlook.com
- (2603:1096:4:194::8) To DB8PR04MB7065.eurprd04.prod.outlook.com
- (2603:10a6:10:127::9)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E35AA14EC59
+	for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 06:17:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.54
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1731565063; cv=none; b=i5tXwhBYhCiXef7HadAC9LuBQaZHbb5nJqfqe9d1KP41Xa0iSSpfMooMkfTIOP/zm+oC2rRj2h0W+AiiQUP9udLt6v9uyepNDFFMFlpgw+pOFUoF3eDRr9T8sNhXJnKianICQK4EqQTY8aiz+/ThknIDhhAqDoEyt0TkJRHmOtU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1731565063; c=relaxed/simple;
+	bh=yT3HAwpbW2e+ksrn/pbgGpcjS/F2Jj86TpPZr9FE/9c=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SsCibfbBETftOzETmK/9ApiWaFjWCdSH8Zn/9DXnqZhZfO4GMM3YWz47yYzCVwTPS2YEpMmlfIxeN4vQ07O5QBUnKLkvLPDv51s5HeCmfybFv5olh6IYp/aXq2dD1/fewhs3m4YgZSmRtqs6KEA0XSObjIl2o/Ge0GlsfGr8ELU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=GcWv0q7f; arc=none smtp.client-ip=209.85.160.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-29609ec9437so244783fac.0
+        for <devicetree@vger.kernel.org>; Wed, 13 Nov 2024 22:17:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1731565061; x=1732169861; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bAHw3+SJRl1ztp43mDkxoKRsjkMTu01styDys5QSXWg=;
+        b=GcWv0q7fSQWejIRetXLUp9FNAz28caqKR35ZgqtPgw/26vLkEqoj+QPNKxefs3Cbk4
+         BGXOUJUUid7MZssMuFL5AscHBvR3rbZKiPb3utTXza4/PGjjTsKDd3bEsGLknCkmI1Eb
+         +7rvTwtxP4olZ1PTNVeBOVxOG20R9BLwXiwk7THY/Rj1yAnyFb7BzMmHlUK1pPlPPW6j
+         6y4nKFD/tJNt61bTfur4Th3CGiLkoe25vfXy8CqKL81tDYaPIEPCPFGbhSEwCS6Yw9vp
+         uEdzu+ZmnRE9rYPzdU3jPvkQUmmPdEK01KhA+obgttiPdMARZq1BfgEWZb3P70IEa7vd
+         4z+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731565061; x=1732169861;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bAHw3+SJRl1ztp43mDkxoKRsjkMTu01styDys5QSXWg=;
+        b=IwGQR7vls8hLDhtVnE+bTXczrcMSGNEmJT0RYV6xIkHLRggHpyCau+FuEcf3iivpz2
+         GkftKmJib/4pzFtow7XXTyrJunWSWXx4rdSteFS72jrFJoUGrP1WdUIF7SEiTTW96+Fd
+         MWsOZJBmSRYo1D7htUwUc+/mEX6XfTNxlPBplIHhCs5inQ60iaRI8cq+msuFy6Bt6SgN
+         bxpaToc0KYLPHh7dB2K/GriDZui6UNAWKqd62W3ittFhkv0M96zQOgkdYQEkk4Xv/Yd3
+         4wHeRMtnILbon5dbetBBKhDCec8Sq8ey/wGY3f3ZoBTB0Ql/Ao7bvv8YhOZFGdKnyj37
+         Qibg==
+X-Forwarded-Encrypted: i=1; AJvYcCUhIQ/Auc2NAcXvscLwR6A95RcXYPxl3C6fH4L9vQ8NI+d23OZ5VnaqmWfLrdGUNJdy2liPaaRSs0lK@vger.kernel.org
+X-Gm-Message-State: AOJu0YwJZF08XzTKrq3S7M2FeoaIo0u7BlOlsEeo3aJuVvk9SWM1gxcY
+	JSxGvkXWZ3yEAiHoghLeYPXD+rgsJbNYsPbPpMDEUQO9Iym+PMna8NkFMpFXDVs30SQwntAG9AU
+	bQABQMovXAdvdNS8hCLP11OVgWm6TLhQBBmTrtg==
+X-Google-Smtp-Source: AGHT+IF/SorbAbjXbn/nrCDj1xlGQZyh9Tb/1BFx5yZDCatQmC6DlRJonI//aGPXQYjj5gUcvfUUQConp4xKP57Wh80=
+X-Received: by 2002:a05:6871:8a5:b0:296:14ae:8b7d with SMTP id
+ 586e51a60fabf-29614aed449mr409087fac.10.1731565060984; Wed, 13 Nov 2024
+ 22:17:40 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB8PR04MB7065:EE_|DBBPR04MB7692:EE_
-X-MS-Office365-Filtering-Correlation-Id: d566749b-1ef8-4de7-d849-08dd04731673
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|376014|7416014|52116014|1800799024|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
- =?us-ascii?Q?9BJ7+km3o4XMjccJz0bFsmpG+/i0Ll7uNjUKIZFh+eHzgdYdWV78MW/WhIQu?=
- =?us-ascii?Q?EjaULnNl92SvuD2Oit4xOSTy4cNyWtaP4ch7+eON2FFY69p+Wp/2fCoQCcrW?=
- =?us-ascii?Q?En8Tvx5F690OkqAwAJFogiuB9tNzN16YO5rmA5xQgTo6QiKAaTFlSi9QgzaV?=
- =?us-ascii?Q?hoyi7vxv0bPe/0Yz0Jyb9thqVz4oTedety5R/ePgbvwYghT2oh+MfAjBUDFi?=
- =?us-ascii?Q?W85A0mfx5iJG0Br6Pjzp2hogKZvYPcOYNdiKVxllMW0K2oLEdQmxH6W4aGME?=
- =?us-ascii?Q?gPn8tWqkbACqPPVUNxowmPLHKuI5lVFOT36ovNl4YE2b6qFlbwZgksXcJG2e?=
- =?us-ascii?Q?4Xns/zOPF+9DfgF1Wy5f3AGLgw+owuWTOp94cL3Br/2uoEFtJ10nNJ2MECfO?=
- =?us-ascii?Q?TzptvkDaBZdlL7LAkMzLxRUVoXoT2WjWybtwe/r8yt3poKNKUmOnn8Mt3DQR?=
- =?us-ascii?Q?6FsHubutn/UL4TckRu+p+imRl0KnmhBMhPNncNXyiy5OMDxX321nQH3GB2uC?=
- =?us-ascii?Q?ZBZDUj+wugQd7d5lZLkkem0I34Lf/lVDporLpCO1YDvVr0i2v6I1jYAN+/kn?=
- =?us-ascii?Q?n5LZiqtwL1vjRWrPmKXv9p65pemuQ+WlxBwlk09mXc3xizZunSChVZ9hriCD?=
- =?us-ascii?Q?eUqmIvRHHZEzmqoInbueWgUcL1dPO7CF2W7y+dPDkDfpxQACT9n8mqD7XKgy?=
- =?us-ascii?Q?6hpIMWoaz/oRciDTcWsPKFKJje72jToSi2L+/CUYNaRW+u1wkUgBuXlXBlr7?=
- =?us-ascii?Q?7gny9WVA/9ck8pkysGM1h0lwHhVkwJOGawxI/AZ/3oIqZbfDFXk8MKHSEpam?=
- =?us-ascii?Q?V7G2krW+qjYPlHxJjZcspApndxh4pRaEf4VFyACia55u9bXv6p985wZtJ3V1?=
- =?us-ascii?Q?/cK2fcPM1fuVyRtvlOyaUQbhkfXdkV+Knq8WgnKXJoUIzto30sPYVo4sjoWc?=
- =?us-ascii?Q?fx3mjqfPpgSSjg1zESqCQWrhX+tUM6Uut6hY52IYuXyyygcel7mdV9wx+bYK?=
- =?us-ascii?Q?10dM14Yp6Wu/bhL4uIQZ18mgfUpRjSQshpbylluOGe5Obbikjr2UVKTBOEtJ?=
- =?us-ascii?Q?mCGE4DJZKJZoUQkhHx5MF5/mul4BJrg3ruR+TAIMNAUlDQJLWn+44rC5VPVG?=
- =?us-ascii?Q?FaCqkxLvd3Nk2RiHCGtwxjO+oXU15FCXvp/xfTktaFomlhhAtYjHQmvpSXUF?=
- =?us-ascii?Q?DfA9wwE7XGkzBsPYamCH3qs3PpNkkdrvbKStjP2ke+yDtDKYm5BWuTKr336P?=
- =?us-ascii?Q?TNlGpsaky8XbipP1hfNoKq7FOx3zWo24KM0FFSXVw6n9hVKJaMTPXgJOFsd7?=
- =?us-ascii?Q?A7TRp+AEsAN9t9mHCiOnzzBlmIZPCuUsCRxrn4tMtlb0tT2VWxrpwEscK/fh?=
- =?us-ascii?Q?QPkmTMA=3D?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB7065.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(52116014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?hL9eo1xoj7+MOlVW0QRTvfv2STqsy+IBW5KPQ5x7aumXpidfd0e7DFDryYLR?=
- =?us-ascii?Q?iLcXFtKcn5MKgYsZZMnt0gDjcVYFN/fdL4G3QKw6MfQ24N8jmRaSvbCccv82?=
- =?us-ascii?Q?5azYW0yZuQcY67DYBPnaP5pjk4U3DgDEY4vBdBZUsoH7NqiCat02f7p8B56s?=
- =?us-ascii?Q?VnhWaSGIQgLo5BOEJAFQCBL4Z757/dwrtBmxm0AYeplEfZ+Q9FX17yLJ2vS+?=
- =?us-ascii?Q?xnvcQMNTfvQVQr+zbebHjlTfIS9Tzc3yZIEqQojbgbhh2G/4aB74Or06HLKr?=
- =?us-ascii?Q?EWDA6JiLIomsfvPwz3CLoPV/FfZXfftf9V6Xocsq617vEUHcdncpDnosNU6W?=
- =?us-ascii?Q?wuvD2OOkKnw51wWtqLA9B1MmRuBgbPi5mXQEfuqSOFq1qn3dpkxvbkPY6U5q?=
- =?us-ascii?Q?QgHd/mOi7qE2/kKKTn5qK4TVbMJQlbtxCsDGdSH+C4oOtZsflAVekb/TAIks?=
- =?us-ascii?Q?6sXT+XwUBVoTHPfrKxOb1R93RUDND33FEzTXdCc+d1YQTpSZXr9rnOjUJfG7?=
- =?us-ascii?Q?71Yc2po3bPIJjYlAIdvrGRpgXT+PH8W2gvGRAUlOEv0XYxHe5U8y1SpRx8Og?=
- =?us-ascii?Q?QaN06HTvVtgpuT9qBQfkBPjQVEUUaz76Duhl2/rdCe3QoyPaoNgjc871Y/s2?=
- =?us-ascii?Q?hcSMVBVzUTdXAASG4XrGsbu65Zy86+vQVwgIcFyIF43KZEuIKKKXVtsxz4GX?=
- =?us-ascii?Q?5R7VT1WSUFPjPIMbM/vox2cydvrTXQ5HRlVZX0roudjsi4S5IcDOiL8LQF+Z?=
- =?us-ascii?Q?f3lvRIr1zloZvDal1iRsvgR4XtOBVGmpOAjDf77b6sCPfdIWOdfbdAuSaPz6?=
- =?us-ascii?Q?Z4u3YWge/S/VTAh55ZPZ62VJ3s1WpkAugQGfmtTtHwB9ms2aJw1+RuA1aCHK?=
- =?us-ascii?Q?DK8I7S8W+gKJUWgYVSESPPl5dayQnCkWpMfFui2qqVHjCDeItHbAxVi8aVPT?=
- =?us-ascii?Q?kO7iEn7EYb7s+2XlytacM7q1PfZRxFuYVkFLt16xOx9ma9w1lwDj7jEOxypz?=
- =?us-ascii?Q?47zyYsk5GaZo0UzloW9yK588SgCpkfVlVUSjUFgNGJpyJbKUuLwZ5YyPn6/O?=
- =?us-ascii?Q?FxXJYnrBiaukgG3XMoiXJZHZvwxGHapyzyestUHv6oEGHlmeuleLG4R80q5n?=
- =?us-ascii?Q?4HdAnypCEqsmO1PymPpEwLnzFqfPMDn5Bx5LL+tOI0qdD0gDurHDYRqU2ExY?=
- =?us-ascii?Q?qmg+NKd5aK6zOA9ka60C6IK6fIWAXP5F1BR4erJFmS4pOkosqQlxYLPkgsvi?=
- =?us-ascii?Q?j72Cxbkd6oBb7rTS1zO4+zT5IJiCkwTH9dZKYP2RA1BOKVWDsblscq+TkIOQ?=
- =?us-ascii?Q?tgX12pN5FlwvDxMNwnuEgotiK7vUMQAYf/mpnW9ZUMyW7JZ3UMpbIBKGPSCp?=
- =?us-ascii?Q?r4mOFAdXQu3+2XnblK/bSp51LUg8xYGRo4jzQGmiDCovl5nvyxX3bikWhwvw?=
- =?us-ascii?Q?F8V/WJ6oKYRXULXFLQ5ebKnQ4BnTVfOVb3jMZ440yAW8wmH5qt0eezGRHGOs?=
- =?us-ascii?Q?V2LLuVdd/G9D1QXoq8u091sirpEhwDgZznoMxX+4eY4m6tXM8cTWQKs6z17z?=
- =?us-ascii?Q?f6Mt4cjng0eI6H9Nd4kinfbrjOHbE+WPTsr6WOux?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d566749b-1ef8-4de7-d849-08dd04731673
-X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB7065.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2024 06:10:50.2347
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /MQIqKicQtIYtPCZdBkeHuK3+5jkFeoP5CiPPpG6CLSDS/MEsE5gPWz4jwylTdF6NIQeEkKGEq59cTLlOg8hGQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7692
+References: <20241111-v5_user_cfi_series-v8-0-dce14aa30207@rivosinc.com>
+ <20241111-v5_user_cfi_series-v8-24-dce14aa30207@rivosinc.com>
+ <CAKddAkCCVjNHUinPWtOiK8Ki_ZkdoUCawfv1-+0B69J_1aJv5Q@mail.gmail.com>
+ <ZzVNKvCu4MOs7O5z@debug.ba.rivosinc.com> <CAKddAkDbGYeONaksq6fzLzx47BHZo3Ar7Sog3MOgf7Y+Birovw@mail.gmail.com>
+ <ZzVRbCZP9N4Os8Bj@debug.ba.rivosinc.com>
+In-Reply-To: <ZzVRbCZP9N4Os8Bj@debug.ba.rivosinc.com>
+From: Nick Hu <nick.hu@sifive.com>
+Date: Thu, 14 Nov 2024 14:17:30 +0800
+Message-ID: <CAKddAkBCByf570PXfz798FtBbeGQWe2LJpdzxkE+jv3Zd3ZV1w@mail.gmail.com>
+Subject: Re: [PATCH v8 24/29] riscv: enable kernel access to shadow stack
+ memory via FWFT sbi call
+To: Deepak Gupta <debug@rivosinc.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, 
+	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org, 
+	"H. Peter Anvin" <hpa@zytor.com>, Andrew Morton <akpm@linux-foundation.org>, 
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka <vbabka@suse.cz>, 
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Christian Brauner <brauner@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
+	Oleg Nesterov <oleg@redhat.com>, Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-fsdevel@vger.kernel.org, linux-mm@kvack.org, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-arch@vger.kernel.org, linux-doc@vger.kernel.org, 
+	linux-kselftest@vger.kernel.org, alistair.francis@wdc.com, 
+	richard.henderson@linaro.org, jim.shu@sifive.com, andybnac@gmail.com, 
+	kito.cheng@sifive.com, charlie@rivosinc.com, atishp@rivosinc.com, 
+	evan@rivosinc.com, cleger@rivosinc.com, alexghiti@rivosinc.com, 
+	samitolvanen@google.com, broonie@kernel.org, rick.p.edgecombe@intel.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 07, 2024 at 10:10:10AM -0500, Frank Li wrote:
-> On Thu, Nov 07, 2024 at 06:27:03PM -0800, Pengfei Li wrote:
-> > Add i.MX91 11x11 EVK board support.
-> > - Enable ADC1.
-> > - Enable lpuart1 and lpuart5.
-> > - Enable network eqos and fec.
-> > - Enable I2C bus and children nodes under I2C bus.
-> > - Enable USB and related nodes.
-> > - Enable uSDHC1 and uSDHC2.
-> > - Enable MU1 and MU2.
-> > - Enable Watchdog3.
+Hi Deepak
+
+On Thu, Nov 14, 2024 at 9:25=E2=80=AFAM Deepak Gupta <debug@rivosinc.com> w=
+rote:
+>
+> On Thu, Nov 14, 2024 at 09:20:14AM +0800, Nick Hu wrote:
+> >Hi Deepak
 > >
-> > Signed-off-by: Pengfei Li <pengfei.li_1@nxp.com>
-> > Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> 
-> Most part is the same as imx93-11x11-evk.dts, is possible to base on it
-> or use overlay file to overwrite iommux settings.
-> 
-> Frank
+> >On Thu, Nov 14, 2024 at 9:06=E2=80=AFAM Deepak Gupta <debug@rivosinc.com=
+> wrote:
+> >>
+> >> On Thu, Nov 14, 2024 at 12:13:38AM +0800, Nick Hu wrote:
+> >> >Hi Deepak
+> >> >
+> >> >On Tue, Nov 12, 2024 at 5:08=E2=80=AFAM Deepak Gupta <debug@rivosinc.=
+com> wrote:
+> >> >>
+> >> >> Kernel will have to perform shadow stack operations on user shadow =
+stack.
+> >> >> Like during signal delivery and sigreturn, shadow stack token must =
+be
+> >> >> created and validated respectively. Thus shadow stack access for ke=
+rnel
+> >> >> must be enabled.
+> >> >>
+> >> >> In future when kernel shadow stacks are enabled for linux kernel, i=
+t must
+> >> >> be enabled as early as possible for better coverage and prevent imb=
+alance
+> >> >> between regular stack and shadow stack. After `relocate_enable_mmu`=
+ has
+> >> >> been done, this is as early as possible it can enabled.
+> >> >>
+> >> >> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
+> >> >> ---
+> >> >>  arch/riscv/kernel/asm-offsets.c |  4 ++++
+> >> >>  arch/riscv/kernel/head.S        | 12 ++++++++++++
+> >> >>  2 files changed, 16 insertions(+)
+> >> >>
+> >> >> diff --git a/arch/riscv/kernel/asm-offsets.c b/arch/riscv/kernel/as=
+m-offsets.c
+> >> >> index 766bd33f10cb..a22ab8a41672 100644
+> >> >> --- a/arch/riscv/kernel/asm-offsets.c
+> >> >> +++ b/arch/riscv/kernel/asm-offsets.c
+> >> >> @@ -517,4 +517,8 @@ void asm_offsets(void)
+> >> >>         DEFINE(FREGS_A6,            offsetof(struct ftrace_regs, a6=
+));
+> >> >>         DEFINE(FREGS_A7,            offsetof(struct ftrace_regs, a7=
+));
+> >> >>  #endif
+> >> >> +       DEFINE(SBI_EXT_FWFT, SBI_EXT_FWFT);
+> >> >> +       DEFINE(SBI_EXT_FWFT_SET, SBI_EXT_FWFT_SET);
+> >> >> +       DEFINE(SBI_FWFT_SHADOW_STACK, SBI_FWFT_SHADOW_STACK);
+> >> >> +       DEFINE(SBI_FWFT_SET_FLAG_LOCK, SBI_FWFT_SET_FLAG_LOCK);
+> >> >>  }
+> >> >> diff --git a/arch/riscv/kernel/head.S b/arch/riscv/kernel/head.S
+> >> >> index 356d5397b2a2..6244408ca917 100644
+> >> >> --- a/arch/riscv/kernel/head.S
+> >> >> +++ b/arch/riscv/kernel/head.S
+> >> >> @@ -164,6 +164,12 @@ secondary_start_sbi:
+> >> >>         call relocate_enable_mmu
+> >> >>  #endif
+> >> >>         call .Lsetup_trap_vector
+> >> >> +       li a7, SBI_EXT_FWFT
+> >> >> +       li a6, SBI_EXT_FWFT_SET
+> >> >> +       li a0, SBI_FWFT_SHADOW_STACK
+> >> >> +       li a1, 1 /* enable supervisor to access shadow stack access=
+ */
+> >> >> +       li a2, SBI_FWFT_SET_FLAG_LOCK
+> >> >> +       ecall
+> >> >>         scs_load_current
+> >> >>         call smp_callin
+> >> >>  #endif /* CONFIG_SMP */
+> >> >> @@ -320,6 +326,12 @@ SYM_CODE_START(_start_kernel)
+> >> >>         la tp, init_task
+> >> >>         la sp, init_thread_union + THREAD_SIZE
+> >> >>         addi sp, sp, -PT_SIZE_ON_STACK
+> >> >> +       li a7, SBI_EXT_FWFT
+> >> >> +       li a6, SBI_EXT_FWFT_SET
+> >> >> +       li a0, SBI_FWFT_SHADOW_STACK
+> >> >> +       li a1, 1 /* enable supervisor to access shadow stack access=
+ */
+> >> >> +       li a2, SBI_FWFT_SET_FLAG_LOCK
+> >> >> +       ecall
+> >> >>         scs_load_current
+> >> >>
+> >> >>  #ifdef CONFIG_KASAN
+> >> >>
+> >> >> --
+> >> >> 2.45.0
+> >> >>
+> >> >Should we clear the SBI_FWFT_SET_FLAG_LOCK before the cpu hotplug
+> >> >otherwise the menvcfg.sse won't be set by the fwft set sbi call when
+> >> >the hotplug cpu back to kernel?
+> >>
+> >> Hmm...
+> >>
+> >> An incoming hotplug CPU has no features setup on it.
+> >> I see that `sbi_cpu_start` will supply `secondary_start_sbi` as start
+> >> up code for incoming CPU. `secondary_start_sbi` is in head.S which con=
+verges
+> >> in `.Lsecondary_start_common`. And thus hotplugged CPU should be
+> >> issuing shadow stack set FWFT sbi as well.
+> >>
+> >> Am I missing something ?
+> >>
+> >This is the correct flow. However the opensbi will deny it due to the
+> >SBI_FWFT_SET_FLAG_LOCK already being set.
+> >So the menvcfg.sse will not set by this flow.
+> >
+> >if (conf->flags & SBI_FWFT_SET_FLAG_LOCK)
+> >                return SBI_EDENIED;
+> >
+>
+> hmm... Why?
+>
+> `conf` is pointing to per-hart state in firmware.
+>
+> On this incoming cpu, opensbi (or equivalent) firmware must have
+> ensured that this per-hart state doesn't have lock set.
+>
+> Am I missing something?
+>
+Current OpenSBI doesn't clear the lock in the warm init of the hotplug path=
+.
+It seems like we need a patch to address it.
 
-Hi Frank,
-
-However, /delete-node/ cannot be used in overlay file. And imx93-11x11-evk.dts
-also includes imx93.dtsi, which would then include imx93.dtsi twice, which
-could cause problems and difficult to maintain. So I prefer to use a separate
-new 91 dts.
-
-BR,
-Pengfei Li
+Regards,
+Nick
+> >Regards,
+> >Nick
+> >> >
+> >> >Regards,
+> >> >Nick
+> >> >>
+> >> >> _______________________________________________
+> >> >> linux-riscv mailing list
+> >> >> linux-riscv@lists.infradead.org
+> >> >> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
