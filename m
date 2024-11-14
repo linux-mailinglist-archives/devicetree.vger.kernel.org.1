@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-121969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41C669C92F3
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 21:11:01 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19D6C9C92FB
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 21:11:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED4731F224AE
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 20:11:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 68C3FB2679A
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 20:11:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1283C1AA7A5;
-	Thu, 14 Nov 2024 20:10:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEE121AAE02;
+	Thu, 14 Nov 2024 20:11:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O0sWXXBn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ifBLn+y6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA971EEDE;
-	Thu, 14 Nov 2024 20:10:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96CF51A9B5D;
+	Thu, 14 Nov 2024 20:11:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731615055; cv=none; b=hrnGK8mJ2NA6UXiVUsQHVmAOsm+SQhSuNxt5JsHlyb2Kb7oTxlwG0qpk3QzodE/9g7+O4AXw7nSsDAEornmtYzjh+8Y1MqpIMUB3y2UNQraPxS9HvD8HvwGCWO2SbAayjQEmbdnxeOVzkLf/PWoaX8QULhSrsm0sfzHwV5DYHEs=
+	t=1731615100; cv=none; b=Lhy9Q79MsNndFhp6Xmjwrtt5xGLAcHnx9t/viaMKzXfWTVxuU4hEwfsB0yY3GlAQT+0yARHzrrfbzsvAVhkb2MfHEHusgyOi+bwSbZFVIvurDonW539Dm0fi4N4St3eRFIMjhbeQb0uaWPQUkDgSPfVURHhzGpMdZUMzAQYIUXk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731615055; c=relaxed/simple;
-	bh=bblZEPVR6b3uGBtW1kaMS6XG3kAFVfeGzhKTpPHpw1w=;
+	s=arc-20240116; t=1731615100; c=relaxed/simple;
+	bh=GStnpoZ+VQ6uDrKHaa71APEXa76ZcpeNnKiOpUy9XOI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ROfcYOCXZenHG3fUZUNARSunlEvsmxk48Os0LFp5Sl16wR4jdww9cssp+xLGvnqyLphCR3Isw2Cr13CQjwAuDlcW/r3fRSszI9QfC4hGLr8qCIS2cuRy5f1AnRBVbqelknuZg2vGxWQKqrpm+6Am5ZXH7y8flQrhITfszyMoDTg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O0sWXXBn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7AC9EC4CECF;
-	Thu, 14 Nov 2024 20:10:52 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=hVAYElbgR6wlO1+3i+fJN0D/4218wGGavf0rqyiJvmk2a7KblrqLorYBk2ROLX9HfM2svLNUhurk3TzX714n6G+02juJwJmMaEb/mx2whYMIhs9Rsp1SCAmKLiFbjs7GdvUNZYh3PAJexd7KQrbJN6sImLIEViUgiMHFWu6hTH4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ifBLn+y6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8272BC4CECD;
+	Thu, 14 Nov 2024 20:11:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731615054;
-	bh=bblZEPVR6b3uGBtW1kaMS6XG3kAFVfeGzhKTpPHpw1w=;
+	s=k20201202; t=1731615100;
+	bh=GStnpoZ+VQ6uDrKHaa71APEXa76ZcpeNnKiOpUy9XOI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=O0sWXXBnSwAp+v4JuIQb4xY0WDw6LG3RlS0IA2afzOjvHdmvJRPWkp+SzCAMqfLpk
-	 qf96WDwYiU1ffMfVtT1fobvYhrzdFUJ1Sv/vlb501vMGRWFXXTrAHlSCU0fxReHPXH
-	 v37GO/8wkDqQJCY5MpyF3s9DjyGljtRs8fq2Afle5Neus7qBaj9dvCeKf0+JtUKabt
-	 LmpW8pn8sCfp50SPJAutAarAiWhtvs0xD5yLYGN7RV8gK1lb2bUu4lYFcDycH4m4SX
-	 g1bQwEvNvKwUOoswEAnEH9vSr4aMk6hugWqO4LFvVScbdnlL1xBHJThCrQFa5jITI9
-	 Rxena9Uikv3IQ==
-Date: Thu, 14 Nov 2024 20:10:50 +0000
+	b=ifBLn+y62V3OgsjgceF9S0OjLQq2V2zdc5EvQrPQ2LsdRtb5KMuqfW5qZ9iM0oPDI
+	 f5nqFA5ySmqKwJwV7+tCuCtWg893zbyZrtLubPym2lnbZlyYnZsbB0Xd9DFWZCgBAw
+	 WmMZE68SS74Myf2E2eh30vivlLqQNlji2dknEOdoSva4VYXTM0vtHFO55mO7INKMVK
+	 YTeyIEQz1TM7AAfxZQuLbk8xeeONbPk+q9R+1OsPfcTB2TD+E33TlM/KKIkf7NnsXf
+	 lqL8o/D0N7B/arozKflimwe8EFFqrqI4zpcJKfHbyzv8GfuRvHMoBz0dlOdd6OS3Pn
+	 38dhUZnaMoeKg==
+Date: Thu, 14 Nov 2024 20:11:35 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/5] dt-bindings: ROHM KX134ACR-LBZ
-Message-ID: <20241114-afterlife-ride-08068767f1e4@spud>
-References: <cover.1731495937.git.mazziesaccount@gmail.com>
- <d979a0a8160118d560ba2255346d05237f73b9ce.1731495937.git.mazziesaccount@gmail.com>
+To: MD Danish Anwar <danishanwar@ti.com>
+Cc: conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+	ssantosh@kernel.org, nm@ti.com,
+	Vignesh Raghavendra <vigneshr@ti.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	s-anna@ti.com, kristo@kernel.org, srk@ti.com,
+	Roger Quadros <rogerq@kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: soc: ti: pruss: Add clocks for ICSSG
+Message-ID: <20241114-convene-reseller-84a0bcd98882@spud>
+References: <20241113110955.3876045-1-danishanwar@ti.com>
+ <20241113110955.3876045-2-danishanwar@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,69 +61,40 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="tth/TTD3Gd9N/oPl"
+	protocol="application/pgp-signature"; boundary="V/kjFjce5AftHnAw"
 Content-Disposition: inline
-In-Reply-To: <d979a0a8160118d560ba2255346d05237f73b9ce.1731495937.git.mazziesaccount@gmail.com>
+In-Reply-To: <20241113110955.3876045-2-danishanwar@ti.com>
 
 
---tth/TTD3Gd9N/oPl
+--V/kjFjce5AftHnAw
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 13, 2024 at 01:20:49PM +0200, Matti Vaittinen wrote:
-> Add compatible and information for ROHM KX134ACR-LBZ accelerometer.
+On Wed, Nov 13, 2024 at 04:39:54PM +0530, MD Danish Anwar wrote:
+> The ICSSG module has 7 clocks for each instance.
+>=20
+> These clocks are ICSSG0_CORE_CLK, ICSSG0_IEP_CLK, ICSSG0_ICLK,
+> ICSSG0_UART_CLK, RGMII_MHZ_250_CLK, RGMII_MHZ_50_CLK and RGMII_MHZ_5_CLK
+> These clocks are described in AM64x TRM Section 6.4.3 Table 6-398.
+>=20
+> Add these clocks to the dt binding of ICSSG.
+>=20
+> Link: https://www.ti.com/lit/pdf/spruim2 (AM64x TRM)
+> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
 
-The commit message mention what makes this device incompatible - but
-I'll let you away with it the description below contains it.
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
->=20
-> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> ---
->  .../devicetree/bindings/iio/accel/kionix,kx022a.yaml          | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/accel/kionix,kx022a.ya=
-ml b/Documentation/devicetree/bindings/iio/accel/kionix,kx022a.yaml
-> index 66ea894dbe55..c973f4941a6d 100644
-> --- a/Documentation/devicetree/bindings/iio/accel/kionix,kx022a.yaml
-> +++ b/Documentation/devicetree/bindings/iio/accel/kionix,kx022a.yaml
-> @@ -11,7 +11,8 @@ maintainers:
-> =20
->  description: |
->    KX022A, KX132ACR-LBZ and KX132-1211 are 3-axis accelerometers supporti=
-ng
-> -  +/- 2G, 4G, 8G and 16G ranges, variable output data-rates and a
-> +  +/- 2G, 4G, 8G and 16G ranges. The KX134ACR-LBZ supports +/- 8G, 16G,
-> +  32G and 64G. All the sensors also have variable output data-rates and a
->    hardware-fifo buffering. These accelerometers can be accessed either
->    via I2C or SPI.
-> =20
-> @@ -21,6 +22,7 @@ properties:
->        - kionix,kx022a
->        - kionix,kx132-1211
->        - rohm,kx132acr-lbz
-> +      - rohm,kx134acr-lbz
-> =20
->    reg:
->      maxItems: 1
-> --=20
-> 2.47.0
->=20
-
-
-
---tth/TTD3Gd9N/oPl
+--V/kjFjce5AftHnAw
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZzZZSgAKCRB4tDGHoIJi
-0pKlAPwLSaCuhpFuooqQFdSNRR302NNIX6H6HMMQ1JqE06rjZwEAubI22rFZ00qT
-w30a289Tfr8w6clBVGSotSgOnGMpJw0=
-=G3pR
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZzZZdwAKCRB4tDGHoIJi
+0nMTAP4yuPMHFxAERFbK6P2x0JNdAaZSUYUH7R613NAJWVXPUgD/V3Qi3VBQ6Qtx
+zaDDBbWph9y+Hetql40pzTNs2EvwjQQ=
+=Anq3
 -----END PGP SIGNATURE-----
 
---tth/TTD3Gd9N/oPl--
+--V/kjFjce5AftHnAw--
 
