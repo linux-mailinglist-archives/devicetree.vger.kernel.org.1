@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-121999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122000-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EF269C954D
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 23:40:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 250179C9554
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 23:45:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D962A1F23325
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 22:40:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 668B0B22DE4
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 22:45:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70F9B1B0F06;
-	Thu, 14 Nov 2024 22:40:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB23818B464;
+	Thu, 14 Nov 2024 22:45:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jtVWwzYF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dyrLohW7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4602E1990C4;
-	Thu, 14 Nov 2024 22:40:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82C791CABA;
+	Thu, 14 Nov 2024 22:45:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731624028; cv=none; b=OVgB+Gso5ktBAM/7VkGlCuSgDVjysTD3fCJeM7OPY1X0QfOJ0a2cx+9eFX3AsDshE0b9YTO/AqT3Bcz+HCHPUCmv26ykHLlHw+hFeyZFpBEYgghgnLbK8muR361W5KEwWmTs+q/qzc+mDyMNGDEj2zgeFLuX9mKw8SGNoNgPYJ4=
+	t=1731624349; cv=none; b=Gq14dYdsMiPpVAEihOecyhHIpyBjxipniPHAt+5S4KM7qwAbrSrlKVj28Iv8JbDXv7AqJS5AXzb+sNv4du3aK9ybazhSEaP5O7SFv7HimyEHRA8UuhSdTrM0hS06bh3t6OpZEDlPMy3HoyefmmEdeJrnAqtkkR75vu2DMkTi9TY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731624028; c=relaxed/simple;
-	bh=q+dgoQrtOgKVilV2nVsbgAYQbJrn9GgLDKGPgYV2pDc=;
+	s=arc-20240116; t=1731624349; c=relaxed/simple;
+	bh=WnhyDZ5zxnAB0KqBpY6eimtTNvFobWj5fWrZ0EuLUZ8=;
 	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:To:Date; b=mm6pYBMmrD9lntJqnJ34au2RBQ4fyFUHiD6uszbr5Y4QZTLFZeztX/vrHnFF1fI1YyfbDvCGqx0Uo7nRZ0OKBF9ngbrlruB5vUdrl9HAg6s0QgmQTtH1F4DXT/STzqWQTPMwsS7iGjUuzM4328tWv7St9fsUg/xbB93iWygB10E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jtVWwzYF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A196AC4CECD;
-	Thu, 14 Nov 2024 22:40:27 +0000 (UTC)
+	 Subject:From:Cc:To:Date; b=f9zrHP8Lo4PAP8wh2lm+dXn5/JoB6xJyyH+kjegm+FC49DXdbqfWOs1He0GZkpMQujTj/yZlaS7MZ2xOMfUkPx4gwjeRQCAGheGIdgHdhWO3nMlIreDKp9L/XjmEfwx9kvQgjSQTMR2xYDpXNvF20nL7/BYnfecgzg4LSDKDwZU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dyrLohW7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F06C2C4CECD;
+	Thu, 14 Nov 2024 22:45:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731624027;
-	bh=q+dgoQrtOgKVilV2nVsbgAYQbJrn9GgLDKGPgYV2pDc=;
-	h=In-Reply-To:References:Subject:From:To:Date:From;
-	b=jtVWwzYFOpJ/mB2Fa/mloq4oMS5Ir56qJWbEJZ9Twwar0LaFkh95AowpZF8iCrCQd
-	 F5pEAvNrhBpZmWIiS9ptJQYx5LjZq7iKb4UjO8kmCw6QIIqjaypemN3Rc6Rk7mlQ3K
-	 uFPAqZKNYEcdi7+rUvWEbkcDzA2wS9GN0tGhBzJ06RpzBBFug/XhkfcNfhbGTip3Re
-	 g7xzzMprUniwI5qruvRrKGr/+ZKV6JhwuQjQzv8l6tzyzgMZUl8luQwsEGt2wuMkcM
-	 NQ3MBC6axxq99EM16xbEjn4nDTWvX4pccd/uNsaznxIm9rF29zcN3fg0rmcJepAVo3
-	 anI0qsoPILy4A==
-Message-ID: <b473d92cc353b1cf58169410236e4c51.sboyd@kernel.org>
+	s=k20201202; t=1731624349;
+	bh=WnhyDZ5zxnAB0KqBpY6eimtTNvFobWj5fWrZ0EuLUZ8=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=dyrLohW7kE918/KqmCxkbf/QSEs3P+gicOY6nBxhehQHbjJIyuIvZ8wIIwbFIo5Nm
+	 Mz1EJeRfNXAQQNe81nmGf4QQbLmoWGDr5MF0isETg0bEnkst7TefEW0FkKy36Oqt2s
+	 IVB0AQB9NV8ob8kiESuetIp8D1YtH2HTabewSsh5iyl6ZwejrGPclndhGjyMZpB7Do
+	 JacJ9aQvn4gemwI8g0IxGhUs3zvDOvD8fgswMhfsfrD2RJfIOkohXJhrPaqBC6LLap
+	 +Vtu38GUdFL/zqBBrZe6l1dERJZCWEYCRLWtHnw9llUAMkoqaCKDCLJdzhoR5GKiKF
+	 VhfAXCBKpsskQ==
+Message-ID: <8d8138035dc740ab9da2986aa142d2ad.sboyd@kernel.org>
 Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -50,32 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20241112230443.1406460-4-jan.dakinevich@salutedevices.com>
-References: <20241112230443.1406460-1-jan.dakinevich@salutedevices.com> <20241112230443.1406460-4-jan.dakinevich@salutedevices.com>
-Subject: Re: [PATCH v5 3/3] clk: meson: a1: add the audio clock controller driver
+In-Reply-To: <20241029-axi-clkgen-fix-axiclk-v2-1-bc5e0733ad76@analog.com>
+References: <20241029-axi-clkgen-fix-axiclk-v2-0-bc5e0733ad76@analog.com> <20241029-axi-clkgen-fix-axiclk-v2-1-bc5e0733ad76@analog.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: clock: axi-clkgen: include AXI clk
 From: Stephen Boyd <sboyd@kernel.org>
-To: Conor Dooley <conor+dt@kernel.org>, Jan Dakinevich <jan.dakinevich@salutedevices.com>, Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Michael Turquette <mturquette@baylibre.com>, Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
-Date: Thu, 14 Nov 2024 14:40:25 -0800
+Cc: Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>
+To: Nuno Sa <nuno.sa@analog.com>, devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+Date: Thu, 14 Nov 2024 14:45:46 -0800
 User-Agent: alot/0.12.dev1+gaa8c22fdeedb
 
-Quoting Jan Dakinevich (2024-11-12 15:04:43)
-> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
-> index 7cb21fc223b0..49f2086bc773 100644
-> --- a/drivers/clk/meson/Kconfig
-> +++ b/drivers/clk/meson/Kconfig
-> @@ -133,6 +133,20 @@ config COMMON_CLK_A1_PERIPHERALS
->           device, A1 SoC Family. Say Y if you want A1 Peripherals clock
->           controller to work.
-> =20
-> +config COMMON_CLK_A1_AUDIO
-> +       tristate "Amlogic A1 SoC Audio clock controller support"
-> +       depends on ARM64
-> +       select COMMON_CLK_MESON_REGMAP
-> +       select COMMON_CLK_MESON_PHASE
-> +       select COMMON_CLK_MESON_SCLK_DIV
-> +       select COMMON_CLK_MESON_CLKC_UTILS
-> +       select REGMAP_MMIO
-> +       imply RESET_MESON_AUX
+Quoting Nuno Sa (2024-10-29 06:59:41)
+> In order to access the registers of the HW, we need to make sure that
+> the AXI bus clock is enabled. Hence let's increase the number of clocks
+> by one and add clock-names to differentiate between parent clocks and
+> the bus clock.
+>=20
+> Fixes: 0e646c52cf0e ("clk: Add axi-clkgen driver")
+> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> ---
 
-Should be 'depends on RESET_MESON_AUX'
+Applied to clk-next
 
