@@ -1,233 +1,210 @@
-Return-Path: <devicetree+bounces-121674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-121675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2093D9C7F12
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 01:00:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D44F9C7F54
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 01:21:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9B59B1F22701
-	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 00:00:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C67E51F23365
+	for <lists+devicetree@lfdr.de>; Thu, 14 Nov 2024 00:21:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0EB119ADA2;
-	Wed, 13 Nov 2024 23:58:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0973A290F;
+	Thu, 14 Nov 2024 00:20:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UIOkKEzS"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="IxtMUofi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from MA0PR01CU012.outbound.protection.outlook.com (mail-southindiaazolkn19011031.outbound.protection.outlook.com [52.103.67.31])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35102199948;
-	Wed, 13 Nov 2024 23:58:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731542320; cv=none; b=gvL9zbcKK3Vy23Ak9nUZoHsaNFRmm3jzcj6VGGajWkiUg8+nzBBear2EAlGYnP2iFiZkqs8+fOGXmlawfoDToEX70BBhtDGUOoMwz0GxDHgVxH94OJ0JG7J2RX3L31jR4LNDaZwS3o1pwSvxL0OxXjKJ0pNIomljEStdH9G3DiI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731542320; c=relaxed/simple;
-	bh=X76DQqCtNSpzWw/s+4011JsP24w0AxI7zjOruEKdsqw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Armuc4lGzaNPM+uUgVf6OmkETbDo8Xs7+WhN+kR0ICulNIj9LJ7eddX97zTVtjZ78Q4wbJbGF6UeHEJcSW4eL471bGqZuwDomgR0u5s6hL9dSwVOclngTIsp9tmAu6h0YPdnANeoQcWlBHmkht2Ywx89HFtu5yMHJ790v3oxUs0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UIOkKEzS; arc=none smtp.client-ip=209.85.215.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-7f12ba78072so5752205a12.2;
-        Wed, 13 Nov 2024 15:58:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731542318; x=1732147118; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nPUlb3VBMTlmosq70yahB7ivXqgjw6fLoL5yh5SfhFE=;
-        b=UIOkKEzS6p5Ru3DD/XTj/NpYKCQJD1zwGcah4zUX9QDGAig3ySOyeZCEZn3vD9uWUQ
-         txXQ3yvVPSKhPYmMufvEW0PthJNV29WS61AqQSah2WnXTBZ6ap+ojeipqnIePo9vWkeH
-         7ytugBczFvXlhaGbLrNVEo4t0XS0LuD12uN8I8fhON15Bk/GDVqFQe76Y9xdz/ms/Jnc
-         gOAaGOBzkypFe4X8vrRGtBtTTcR1gh+IrnpKpjxfwu0HNCdE0gM+sf3Nt2Ne5htQ8msw
-         YVZ0/R3a6HEH06YshCPyR8N2gNANvpjETrJC2MZPEjBO9l5zvRdbA/SIhfLk/7yLYRXs
-         kkBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731542318; x=1732147118;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nPUlb3VBMTlmosq70yahB7ivXqgjw6fLoL5yh5SfhFE=;
-        b=iUcxBdAn8ddGGnNCsGr/jr4xOFnA85fCOEg8sY0Iqc65b2xvzvcw7DggYaip9IuzO5
-         /n/N9gn4DIymTPa+59Sv/e8jKlIn5vZEIIrTGuJ0aVesvUeDu+N4zPmOPao5RB1IN2fI
-         2jFhw7DfgilCOTGHU9qE8BBJ+uDuI6rWvtcN2f36O6lgdubSSR3Zal0nhEJdidlsMKMw
-         HL83LDOG4cL/39mBJAk/IriqJkAJ1GFMwNcGBsMfDQhq4kgXqYRqpE40jMsCn6aBEGr0
-         4cAFIr0UBCLFqDusnLk71i7w5ulIfCNMRN+IyS+SEicEfMoDOMsm+HWdvrf+ZU91nYbZ
-         VV1A==
-X-Forwarded-Encrypted: i=1; AJvYcCW6uCQn79QbBVBOPfQFc/lH8IZvak1wb5j/73uaTZnOxvAGIUNEhfpv2oFeyptZJG9UHHsliYEFXcDa@vger.kernel.org, AJvYcCWaa8hmV7ekUzaWVCBbmowhyD3/URnjQhy6pthIxffpeoFGT7k418XL+uRlMtsOt0qz6GYZkktrAS/kOEjq@vger.kernel.org, AJvYcCXhEe0THtWtkJ9xtJOPm079AVNgVZYg3vDDGMVB3RRAIBylVG8F8eQdfIX6+S677+KkwXL/yPo4LPyf6Mg=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxOHXbSFBo6MAYzz8xwaOpGWjdPhbmSCb2/RCOLE92q3a4hjGfN
-	Els8Kbe92kdzPjiBrCHmgBU7tR09e5/QDpsJ6AspdZZ5/GoMIb2W
-X-Google-Smtp-Source: AGHT+IHOyod3VXmk40tVpnrNG9DlVhMryxGrcLmpbXsiCrrp/ME48mm5tCfyOy0LYdi695U39z6Qug==
-X-Received: by 2002:a17:902:e84e:b0:20c:7661:dce8 with SMTP id d9443c01a7336-21183d668d4mr312024285ad.36.1731542318242;
-        Wed, 13 Nov 2024 15:58:38 -0800 (PST)
-Received: from [172.19.1.43] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21177dde1b8sm115569335ad.60.2024.11.13.15.58.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Nov 2024 15:58:37 -0800 (PST)
-Message-ID: <6f20fb7c-ef70-400a-b359-55f101d8821a@gmail.com>
-Date: Thu, 14 Nov 2024 07:58:33 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31F55A94A;
+	Thu, 14 Nov 2024 00:20:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.67.31
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1731543636; cv=fail; b=ugtab35kXNJW7nsCQ2wmzPW1nTdbF65LAQl8mM0eU5yL2gIeYUwkGccepN7ewF0OdAIKIQnffZdpim3+kbHhHneODUqJUGmf2oW9QzCrKG0MuaUOgYxG1xuZY0LZXtAAfRG9AA90AODcUthLtKlWUGjgYvtRLvmlUZbT6583wOE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1731543636; c=relaxed/simple;
+	bh=jK/dSZ2F4lEK4QkVAEXL1NM1lPTGsArKhz7t3wg6UX4=;
+	h=Message-ID:Date:Subject:To:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=RQzu4MrMcV3wurp0uWKQmWLBoLf9B5jIDhe8UxKzwocP11DzNV4NCYcsYf6PWB6igQheTTfqIREBXXAE5fhNgRK+4guf6LtExhdFhO9CCQ10oNFXnjX2RgTm+si0bcxxEcAH9+8Wz3elZFOwDyi3WyI4ADvsj/FBbOJoO6BvO2o=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=IxtMUofi; arc=fail smtp.client-ip=52.103.67.31
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=RQBC7A/Jv91XNgv0A2YETLSFU3UFo3LrDRHd9Y//c8qR2GnPzu/4+GAE2vLPJfcQZYQab1s8FWzpsU/FwoYH1Cl2tweMw8MdBw9DbJQeMOZiyBcCRYHBmi2tIRm87EsMIXJe2JeZI2ZSS0Lf/dkP4P+o2k5vbb2H8jb0mZ19WmisS4et9GQvr/DP1lmqMbfwsvzVw7RMDqIwXoJ0BcaJuOJMBKaH9HHSBNKrgbo0SgHm5Ueko+gxV9ZqKgYILo2EWug5kk4yfLUKX2cFt0YfGBuodFbKqU4+S33Ppb5aOUJZ7PvNLfnHwJAV3XfLY/l1O7h36WtJQim3BJQeXR+LSg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=p/BkUPvSyrplt8lfkKG6NAeenLW0g0tWCPgMHWDXbZk=;
+ b=U/05X9FVkAulZtXyT3sRs1BV/ecnJNoEbUN184BvX73dDRQZ9f3xmhDiYb31pi1AAd7eN482kzNhHdJQYVDEkKwfe86qBPQxAdwmmCgZQtTwFf3LY28GAUBzJXAF3ZfhdH++1lHr6zWgiwlQHBc3Xxm1BD1CHaJQvpA970jNPfPvA9c9ZvIaa2P6GxOaeB8thVK6yR/gzqPQUZkJ469tgpayYLSmsxsk+362oZETcWjzat4QJXGM78vNuwbpfl9w5yKlB6kOIQllj+HQbUY5JSS9VF314aAlvXiQAgNAoW/4bQF61ts9gJrgcXLqtuBFMn1ZgKrzVfw6NpscazwjpQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=p/BkUPvSyrplt8lfkKG6NAeenLW0g0tWCPgMHWDXbZk=;
+ b=IxtMUofi07Ug00xKHL3HHy3kvoBZSMte8puEnn/Q8HQdfOn8u6o7wENJBxLJTogP2YTeNpstwd1o6ePOO8/S07cZpYEiwwL4LbLP/f2K0+kmifb6OxRCWjGT4WR+M06l8LSXCVfCPxcL8Sw+PX5CJZ0gMln2ln+6rr5GWQDL6Z94+DxeeP3+yE0vBkLfDVk50zvqEYpy0pje3q3aKN0X9josWIhXLEhpP/VvPl9vhyKPMCVmQIufIiDfbfH90Y5W8DBPYlL2nWedLBgmwBn+L+G2Yy4NR4YDrfzc7J5ZougtORaFvS1C9IvOCs6izBfto2QVD2RiKwwJY2gd9RFkMQ==
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
+ by PN0P287MB1096.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:142::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.17; Thu, 14 Nov
+ 2024 00:20:27 +0000
+Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::a94:ad0a:9071:806c]) by MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ ([fe80::a94:ad0a:9071:806c%3]) with mapi id 15.20.8158.013; Thu, 14 Nov 2024
+ 00:20:27 +0000
+Message-ID:
+ <MA0P287MB2822B7CFC338C7AED1F0A549FE5B2@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
+Date: Thu, 14 Nov 2024 08:20:24 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] irqchip: Add the Sophgo SG2042 MSI interrupt
+ controller
+To: Thomas Gleixner <tglx@linutronix.de>, Chen Wang <unicornxw@gmail.com>,
+ u.kleine-koenig@baylibre.com, aou@eecs.berkeley.edu, arnd@arndb.de,
+ conor+dt@kernel.org, guoren@kernel.org, inochiama@outlook.com,
+ krzk+dt@kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com,
+ robh@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org, chao.wei@sophgo.com,
+ xiaoguang.xing@sophgo.com, fengchun.li@sophgo.com
+References: <cover.1731296803.git.unicorn_wang@outlook.com>
+ <8076fe2af9f2b007a42c986ed193ba50ff674bfa.1731296803.git.unicorn_wang@outlook.com>
+ <87cyizmzhf.ffs@tglx>
+ <PN1P287MB28185C9DA26A773775BDC4C6FE5A2@PN1P287MB2818.INDP287.PROD.OUTLOOK.COM>
+ <87v7wrkv4v.ffs@tglx>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <87v7wrkv4v.ffs@tglx>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SG2PR01CA0126.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:40::30) To MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:138::5)
+X-Microsoft-Original-Message-ID:
+ <2496a1b0-b13d-4757-bbd3-a39f2726e933@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: input: Add Nuvoton MA35D1 keypad
-To: Rob Herring <robh@kernel.org>
-Cc: dmitry.torokhov@gmail.com, krzk+dt@kernel.org, conor+dt@kernel.org,
- sudeep.holla@arm.com, peng.fan@nxp.com, arnd@arndb.de,
- linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, mjchen@nuvoton.com
-References: <20241112053059.3361-1-mjchen0829@gmail.com>
- <20241112053059.3361-2-mjchen0829@gmail.com>
- <20241112182551.GA1394330-robh@kernel.org>
-Content-Language: en-US
-From: Ming-Jen Chen <mjchen0829@gmail.com>
-In-Reply-To: <20241112182551.GA1394330-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MA0P287MB2822:EE_|PN0P287MB1096:EE_
+X-MS-Office365-Filtering-Correlation-Id: 24e0cd67-7aad-4838-e417-08dd0442239a
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|15080799006|7092599003|6090799003|5072599009|19110799003|461199028|8060799006|440099028|3412199025;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?M3RpMGlWa25wQTZ3eFhrNFpsZk43YTdLQW5YSUUwcDFOZzF3anZHa2RSMDRy?=
+ =?utf-8?B?Zm9QMUtQaERFVGppMDRQZEN5S1BMbTFzRTgzcVlHWU1mWGlhcnlTY2FPMEdM?=
+ =?utf-8?B?eWRzVW5NNmR4MllFbnVndFBGOGNVd2RWcHhxRkE2ZFZWNWlTczBVbnlMaW55?=
+ =?utf-8?B?RG1sRk4wWTREa1Y2bXRpRyt1UTUyMWJtdmFpMEVWT3dlcEoycm9BMlhuTGQ5?=
+ =?utf-8?B?cDB3WmdkTzBYZld1OUsydlRXL3E4cElFTFVGYmpOWXBvRi91bFFIZHJzNS9p?=
+ =?utf-8?B?SGRSNDl2RnF5MHhFbDJNV1g3R29KQzZYbmMzTGhVakN1U3NyZ0p1MjU1bnJC?=
+ =?utf-8?B?L0h6ZjV2OWRCOG1SZGkyT1d4RE5CQ0FROFQyNE9adnlnUko0RXprTEFUb2d5?=
+ =?utf-8?B?Z0ROYnRNZnpwcDZZNytheDZKTmhHaGVOY0QwVmp3NVlYUzl0VWVzZ0NQRGZR?=
+ =?utf-8?B?Y1d4UFJTejBpNUFyZVFJQ0RaWS92QUgyb2ZZN3RscDhtZHc2c0JxKzNxZTBq?=
+ =?utf-8?B?UG1VWEdXWjJxNGRCTDBkaVZIWWVLOXdFcjQ3VXJFUmFyZldPc00xNU5kcWJj?=
+ =?utf-8?B?ci84L1EvazIzb1hkb0JKSTVwbnBrNVQrT3Z2RGszQ29xc3A4QnA4YWdyS3pG?=
+ =?utf-8?B?d0dMV04xaHd0Y2ZvYnNyYU9MRVNWZXRyaHBJR0xhb3lmQ3UzQ1I0L2hZMnlT?=
+ =?utf-8?B?ek5qN3BjME9OMVZKampBTlAvSllMZGVuWVAyVTVoSHVyRVNXblFXQjRsaVdu?=
+ =?utf-8?B?ck85RllSam1OUE5JdDE2dlRXQ3B6WGFrOGRIUlp6WWpKRUNuQnR0cVRmR2c5?=
+ =?utf-8?B?Q0thU0FOMWZ4SFBhSkgvSzZLODNYVVlBVFpGWmpLRHdTS3BqWGpNTm5UVmtZ?=
+ =?utf-8?B?MkQyODJiV3FUc1hiYkNMemh5SXVKRTJ6RThpQ1ExZFBJdzJGV214NW9tZGM5?=
+ =?utf-8?B?SWNGM3QyVkZ0cnBBeXNERHV3WUxRTFUwV2RaMTZ6YmV4TG8yTnNYTmpxVzl0?=
+ =?utf-8?B?TEtWTGNYL09oR2lkcHNNZ3p4WFRlQkx2VERlNkVIZE1HVkZ3TCtqb2xKRXFY?=
+ =?utf-8?B?SnFnRi9pV2k5UFFjbnlBc3MweWJwK042QzBBUmJxMkJtZE1OY0wxbG5Qekhu?=
+ =?utf-8?B?SmF5Z2FXcmZGMDFKV0Q2WTlJRGF6ZUw1QVVIdTFhTUhsblM5T2xxcHR1N2I2?=
+ =?utf-8?B?ekFkcG96UlY4OG1RV2MvcHVBRml1RmZ6SXo0VWg3ZHkxajRlK25EU3diOEhF?=
+ =?utf-8?B?Rm1xRWUwS3VDS1FudHNiS2dPOUlpQTBKMUZ2YUJxYmd1MTk3WWxpaTBVT09Z?=
+ =?utf-8?B?d3lzQTQyMkZEeTdaRUVhak9xZFM4M1lTczdkUlBvdktvWHNuTXpINXBCUWps?=
+ =?utf-8?B?WTIva0MwNFFSZU14cFM4V0VKSmx6NDRRZzhNTU1Oam1TV01CTWdKYzVjM1Nq?=
+ =?utf-8?Q?L3SwemHV?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?SVpVQXI1a2dXS0lUVnozSVp0aXlyb0JCUm1Yc0hJSVg0MUc4S1JXMTFQSERO?=
+ =?utf-8?B?MnlVa1VpVDVYRHljdVk3V21GWmN0N1g1cTBSRWFGeXk1eHVROU4xemJDTmpM?=
+ =?utf-8?B?YnJrcSt2NUprU1llZng4cTVqZkJPM0pqenNPT2hQK3V3ZWhZSW9kanVDNkth?=
+ =?utf-8?B?dXRsRnArL1JRVG5oUUdmOVRiUkMyTjd5eVU2eHQrR1JWTG5GZTEzUSs4R1Br?=
+ =?utf-8?B?dktOZjJxS3VIZkZhV3hPUC95Mml0SE5sWms2eTl0dWI5MzF3aEx4RjBiRE12?=
+ =?utf-8?B?TG9uQzZVeW1WRFJ1V25FUUg2enowaDhXMzVxREM4c2sxcFpYOXdpVkVSazAr?=
+ =?utf-8?B?UmpTK09UNVp5cDV4RUFqZmw4VUYraEk3VXBBWUd5STZpTFJONzZWN1pMNytW?=
+ =?utf-8?B?TnhoYytTSDUvaktJOHVFcnlUMUd3NmdURVd0V1IxTHBPbXU0eERBQXdhait5?=
+ =?utf-8?B?NjJsdlNSYU5RQlVSZWJybFdvRkZOcGVtd1FsZUpMbVZ4aHJ2dElwUk9BS2px?=
+ =?utf-8?B?WTNNckRXWVpLWGthWHE5QjhTd0RPR21aRDk4alUrQ3BRSUpJQzdHbkhSQ0ZW?=
+ =?utf-8?B?YUhyWk0vZ2xQbmNwSjB4Tk00bmZTc2VSWU02SExXTHBnZUNoREUrQ3k2SWI2?=
+ =?utf-8?B?RTZIb09GUnRrT2ZXeG1TZTJXWjRwVU1BVHRXMU1zRWJ4NGF4QU04WnlQM1NH?=
+ =?utf-8?B?cFdpZ0JTYWt6TGlPVGVHUzh3S2NialV4OFhLM0ZsalZXdFRqUTVoUnYySEdE?=
+ =?utf-8?B?WHdQTWJoYlJnSEF4YXFvWVJ2WnNTV1VMUmxERXBHMkhhejRmZUJGMWxFaHY1?=
+ =?utf-8?B?VVFEaVVNalVvSUhicTljNzBaQWN6L3phajFNWVk2TlZ6UTl6U3kxcy8vRE9O?=
+ =?utf-8?B?YlNUREcyOERhR2hCZE00Q1hKM0lia3Q5NXU3NnlWMWg0LzRpOWhMa2lHejkx?=
+ =?utf-8?B?L0w2Q1hSMkJtRkpMc2hORFVuQktEVkR2NzFrcCsrOUtuZFdoQUpXR3dYSzNp?=
+ =?utf-8?B?amdzU1RuRW42WDhEM25aZnVIdGg0NklHSWdFN3I0VEl3NDJhUzR2SXdrWHhm?=
+ =?utf-8?B?dzg2SVI1TUtsMWNVclhCVUF2d0NkL2doenBOZnppRkxiUjdIWVhXOHE1MzQz?=
+ =?utf-8?B?ejBqTVRtT0xkb291MytsOWh4ZkF6eXZHaGNnbENsNzZ4NVhUbkthS2svemZL?=
+ =?utf-8?B?cUZVcUl4NUcvQWlvcklRWVZmZzUvZytDSzIrVjAzSmFhMHBRVUExeVJTVkd2?=
+ =?utf-8?B?d29uWDVLRFBKSi9qd3ZKdTNEK2g5dmhkbFdzT3NJaHVOM0tsNFh4Ujc2NWNo?=
+ =?utf-8?B?QVg5VzNxNUtvL2tKUnl0cVBnSVFlbmZnSnJ5bm1KZjJlL1I2UmFEZjB2K0hH?=
+ =?utf-8?B?eDc0K2oybjRVUjRUR2ZUUVpIbklyYjlISHBCSXFUMWMzRFZwekxrS2dsNXJB?=
+ =?utf-8?B?QUdMbjRBYzFHdmViQW0rU3ovaVo1ZGFyWmlzeDJ6RWVxV3hsVWdnZDBxYmNW?=
+ =?utf-8?B?T09ibU15SituL1Z6WUlIcTdScGxhdHBEQkpZNGVieWlSM1U5T1MxbGVabHFI?=
+ =?utf-8?B?UXNMVy80Z1czem9GbHFsOUNVUnRqRVBLanhhakJ1Y0pOSHBkN1JYSmx4Wnpk?=
+ =?utf-8?B?WmxPWXROMDhUQ2l2TjlXcU9DbFRMV3ZkR1VZUTlOYW1ZY1hHcWR3TVlGOFZ5?=
+ =?utf-8?Q?K2HNwNXyU8nUQD42/PAu?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 24e0cd67-7aad-4838-e417-08dd0442239a
+X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2024 00:20:27.0843
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN0P287MB1096
 
 
-On 2024/11/13 上午 02:25, Rob Herring wrote:
-> On Tue, Nov 12, 2024 at 05:30:58AM +0000, mjchen wrote:
->> Add YAML bindings for MA35D1 SoC keypad.
+On 2024/11/13 23:31, Thomas Gleixner wrote:
+> On Wed, Nov 13 2024 at 14:43, Chen Wang wrote:
+>> On 2024/11/13 14:14, Thomas Gleixner wrote:
+>>>> +
+>>>> +	middle_domain = irq_domain_create_hierarchy(plic_domain, 0, priv->num_irqs,
+>>>> +						    fwnode,
+>>>> +						    &pch_msi_middle_domain_ops,
+>>>> +						    priv);
+>>> So now you have created a domain. How is that supposed to be used by the
+>>> PCI layer?
+>> Here I create the domain and attached it to the fwnode. In PCI driver,
+>> it can set this msi controller as its ""interrupt-parent" and find the
+>> domain attached as below:
 >>
->> Signed-off-by: mjchen <mjchen0829@gmail.com>
->> ---
->>   .../bindings/input/nuvoton,ma35d1-keypad.yaml | 89 +++++++++++++++++++
->>   1 file changed, 89 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml b/Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml
->> new file mode 100644
->> index 000000000000..71debafc3890
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml
->> @@ -0,0 +1,89 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/input/nuvoton,ma35d1-keypad.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Nuvoton MA35D1 Keypad
->> +
->> +maintainers:
->> +  - Ming-jen Chen <mjchen0829@gmail.com>
->> +
->> +allOf:
->> +  - $ref: /schemas/input/matrix-keymap.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    const: nuvoton,ma35d1-kpi
->> +
->> +  debounce-period:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    enum: [0, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192]
->> +    description: |
->> +      Key debounce period select, specified in terms of keypad IP clock cycles.
->> +      Valid values include 0 (no debounce) and specific clock cycle values:
->> +      8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, and 8192.
-> No need to list the values twice.
+>> static int pcie_probe(struct platform_device *pdev)
+>> {
+>>       struct device *dev = &pdev->dev;
+>>       parent_node = of_irq_find_parent(dev->of_node);
+>>       parent_domain = irq_find_host(parent_node);
+>>       ...
+>> }
+> I assume you then want to create a global PCI/MSI domain via
+> pci_msi_create_irq_domain(), right?
+Yes, I am writing another pcie driver, which will call 
+pci_msi_create_irq_domain() to create a child domain of this middle_domain.
 >
-> We already have a bunch of debounce time properties. Don't add more. If
-> you have the clock frequency, then you can use the existing
-> "debounce-delay-ms" and convert to register values.
+> That's not the preferred way to do that. Any new implementation should
+> use the MSI parent model, where each PCI device creates it's own per
+> device MSI domain with the MSI interrupt controller as parent
+> domain.
 >
->> +
->> +  nuvoton,key-scan-time:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description: |
->> +      Set the time it takes to scan each key in the keypad, in clock cycles of the IP.
->> +      This parameter controls how frequently the keypad is scanned, adjusting the response time.
->> +      The valid range is from 1 to 256 clock cycles.
->> +    minimum: 1
->> +    maximum: 256
->> +
->> +  nuvoton,key-scan-time-div:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description: |
->> +      Set a divider that adjusts the scan time for each key.
->> +      This value scales the time it takes to scan each key
->> +      by multiplying the key-scan-time by the specified factor.
->> +      For example, if you set key-scan-time to 64 cycles and configure key-scan-time-div to 2,
->> +      the scan time for each key will be increased to 128 cycles (64 cycles * 2). time.
->> +    minimum: 1
->> +    maximum: 256
-> Again, we have existing properties such as scan-interval,
-> scan-interval-ms, and scan-delay. How is this different?
+> There is a library with helper functions, irq-msi-lib.[ch]. See
+> gicv2m_allocate_domains() or pch_msi_init_domains() for reference.
+
+Thanks, I will check this out.
+
+Regards,
+
+Chen
+
 >
-> With a single property in time units, you can solve for how many clock
-> cycles.
+> Thanks
 >
-I will remove the custom properties.
-
-I introduced and replaced them with the existing properties, such as
-
-sacn-interval-ms, and debounce-delay-ms as you suggested.
-
-
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +  - clocks
->> +  - linux,keymap
->> +  - debounce-period
->> +  - nuvoton,key-scan-time
->> +  - nuvoton,key-scan-time-div
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/input/input.h>
->> +    keypad@404A0000 {
->> +      compatible = "nuvoton,ma35d1-kpi";
->> +      reg = <0x404A0000 0x10000>;
->> +      interrupts = <79>;
->> +      clocks = <&clk>;
->> +      keypad,num-rows = <2>;
->> +      keypad,num-columns = <2>;
-> Surely these should be required?
-
-I will add "keypad,num-rows" and "keypad,num-columes" to the required 
-properties in the next verision.
-
-
-Thank you for the feedback.
-
-As both Conor Dooly and Rob Herring point out, I'll make the changes as 
-suggested.
-
->> +
->> +      linux,keymap = <
->> +         MATRIX_KEY(0, 0, KEY_ENTER)
->> +         MATRIX_KEY(0, 1, KEY_ENTER)
->> +         MATRIX_KEY(1, 0, KEY_SPACE)
->> +         MATRIX_KEY(1, 1, KEY_Z)
->> +      >;
->> +
->> +      debounce-period = <8>;
->> +      nuvoton,key-scan-time = <1>;
->> +      nuvoton,key-scan-time-div = <24>;
->> +    };
->> -- 
->> 2.25.1
->>
+>          tglx
 
