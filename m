@@ -1,61 +1,56 @@
-Return-Path: <devicetree+bounces-122233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 309C09CF408
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 19:35:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66DDA9CF429
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 19:42:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA9D2283E24
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 18:34:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C8D12867A4
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 18:42:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EE59185B48;
-	Fri, 15 Nov 2024 18:34:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEBB51D90CB;
+	Fri, 15 Nov 2024 18:42:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tTTcZkCT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m0MvTbo2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 608A9152E1C;
-	Fri, 15 Nov 2024 18:34:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 876F818871E;
+	Fri, 15 Nov 2024 18:42:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731695696; cv=none; b=tGMgkxOW0fONNaCotLGFMH1Hme0PgMwfq8cfmvuw2LMt8OjwxwzRKeEMO9l/Fd9IM4xkBUpVl+mUSwxGYtzx770aAp1KZ5b4VYVIT0DuT9yo0eBilY3eiraM5qmGkT65PvLy8aOmjCBzXdMc0j+D+aqwWdX6Db+O8GDDNlIYfbo=
+	t=1731696125; cv=none; b=hbnkEzImocqKfSAd3L7tLGnBLZlJwdw+vfu+6HeOivjI3aSLX56F+DqZWEmqHSdxwoRjEG334LPnx3UhWLTQhViQny32LuToMSx5+hxBRzlOv3nR3mlrYryc+ESYqKm+MxMvD5TwhZwu18pYfsxGISQw59K586+q4jayvlu34ag=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731695696; c=relaxed/simple;
-	bh=X9vWYFVz8BcjMAxz3u0utMXx6m8g2WY5vbDXySCXt6A=;
+	s=arc-20240116; t=1731696125; c=relaxed/simple;
+	bh=++IZNTbl4zJf0IyHA20ua0rUxj1vHDqoB8EyTTHY6Uw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C9fyD/NxU7ocOzV+2hza71S6Sk8AftSHImn2yIuQeZPtIuJc7lfBsgrLvDPEOBcENGzOVkFYfqoeQK5xQWS02LvnJXQeK6QDK5WDfvMHQUvxoetuI9bGztUSym6mpgXyUoq/1AfhTC+ro1W2khvpvzTGIm03/1IXAPiI0OS/5jE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tTTcZkCT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02047C4CECF;
-	Fri, 15 Nov 2024 18:34:52 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=XXjTR1syWtQo+VkksK+2d/UjHn0M88hceZsyvEigi9pm6KvElU7kP0U44/d1Mc9znlSW7mmilq9AnFUzioZQy0mCMJaXKC5xre8jCa8fK9EzgEZQm1+l/yGGsD1HAhg8+WDIYz9v77OmkcqHXn8fB1Uvhvqia1MVIfFPitu9b78=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m0MvTbo2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 145AFC4CECF;
+	Fri, 15 Nov 2024 18:42:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731695695;
-	bh=X9vWYFVz8BcjMAxz3u0utMXx6m8g2WY5vbDXySCXt6A=;
+	s=k20201202; t=1731696125;
+	bh=++IZNTbl4zJf0IyHA20ua0rUxj1vHDqoB8EyTTHY6Uw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tTTcZkCTMkcgCbLKF12B7wo9jFmgkOedDi1F09VwVuBVzlALusVFrk9ZzxpWco/WM
-	 gWn5QYPE+lL5V3uclzDbF+96nts3psn/sE2s8g2YRHwbKAWXgJI2n4lqFLTmKAQYv3
-	 0Xww5hv/Hgm5rps8193SwsiebhD6eCVqz2Kf5CUD5hfcl3+d+qnyapyvr4dbeJ9V+5
-	 pqsEc074oOuVWjcZAT7lJiKgo2nDvEyHEuaMus/sRALo3jsJIShF1mJOFlnYgBSPwC
-	 ABvX8DXAIpbm6Acb3Yd7ZWUuuKaZNAdxZxBucyW1sGy1ROJwJvAvZS8xRKzfJ5EHPv
-	 OPj5vnrW0ZF8Q==
-Date: Fri, 15 Nov 2024 18:34:50 +0000
+	b=m0MvTbo2ThWXIgKEM3fv0n8jlzKDtXZVT/g36UWKTTgqT7qAdj/ByqX/GZJdKnXA0
+	 5I0KKobt6742/EBpOyD/6351zeyuNN582vXpZujMRVUP1jPWhh0XW1fZSWiBvhQD2L
+	 ZGSxejrZIoVW5xrBukSvfx3jOqNS3XoZbjJqdNcQeB8m4qHD1YW3waUtFXfrSl6aR2
+	 dcibMee1WV7lNCR86SN6ut7ffIDcb8WKrvS7IhIZNIJIP1gSj8HEqUsm1gEpDId2eK
+	 VQ3KoSoec0EWUqOdk2r8SKFD7Y6I6riIYF2chEV+TB/W3yWAMwsELF4+rg1X6+uuoQ
+	 EVVf7TsSFXtog==
+Date: Fri, 15 Nov 2024 18:42:00 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-	jun.li@nxp.com, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: phy: imx8mq-usb: optionally refer to
- usb-switch.yaml
-Message-ID: <20241115-bladder-legislate-7daef7a750ad@spud>
-References: <20241114102203.4065533-1-xu.yang_2@nxp.com>
- <20241114-marmalade-bottling-8fe656515ee7@spud>
- <20241115020045.qlrkyrelpgdwpxxk@hippo>
+To: Karol Przybylski <karprzy7@gmail.com>
+Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, andreas@kemnade.info,
+	rogerq@kernel.org, skhan@linuxfoundation.org
+Subject: Re: [PATCH] dt-bindings: mfd: omap-usb-tll: convert to YAML
+Message-ID: <20241115-document-skirt-1b12ae3af541@spud>
+References: <20241114185830.10025-1-karprzy7@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,110 +58,110 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="qWspPwlOiJv9Bk4P"
+	protocol="application/pgp-signature"; boundary="4NKNFzJwDjBr1PW/"
 Content-Disposition: inline
-In-Reply-To: <20241115020045.qlrkyrelpgdwpxxk@hippo>
+In-Reply-To: <20241114185830.10025-1-karprzy7@gmail.com>
 
 
---qWspPwlOiJv9Bk4P
+--4NKNFzJwDjBr1PW/
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 15, 2024 at 10:00:45AM +0800, Xu Yang wrote:
-> On Thu, Nov 14, 2024 at 05:45:07PM +0000, Conor Dooley wrote:
-> > On Thu, Nov 14, 2024 at 06:22:03PM +0800, Xu Yang wrote:
-> > > The i.MX95 usb-phy can work with or without orientation-switch. With
-> > > current setting, if usb-phy works without orientation-switch, the
-> > > dt-schema check will show below error:
-> > >=20
-> > > phy@4c1f0040: 'oneOf' conditional failed, one must be fixed:
-> > >         'port' is a required property
-> > >         'ports' is a required property
-> > >         from schema $id: http://devicetree.org/schemas/phy/fsl,imx8mq=
--usb-phy.yaml#
-> > >=20
-> > > This will add a condition to optionally refer to usb-switch.yaml.
-> > >=20
-> > > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> >=20
-> > $subject is not what the patch does.
->=20
-> I look through other yaml and find below format could achieve the
-> restriction on one property:
->=20
-> https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git/tree/Docum=
-entation/devicetree/bindings/usb/gpio-sbu-mux.yaml?h=3Dusb-testing#n54
->=20
->   - if:
->       required:
->         - mode-switch
->     then:
->       required:
->         - enable-gpios
->=20
-> If mode-switch is present, then enable-gpios is required. If not, then
-> enable-gpios is not required.
->=20
-> For my case, if compatible contains "fsl,imx95-usb-phy" and orientation-s=
-witch
-> is present, then this schema needs to refer to usb-switch.yaml. If not. t=
-hen
-> this schema will not refer to usb-switch.yaml. So the subject could refle=
-ct
-> the thing this patch does.
->=20
-> Is this feasible? If not, could you give some advices?=20
+On Thu, Nov 14, 2024 at 07:58:30PM +0100, Karol Przybylski wrote:
+> diff --git a/Documentation/devicetree/bindings/mfd/omap-usb-tll.yaml b/Do=
+cumentation/devicetree/bindings/mfd/omap-usb-tll.yaml
+> new file mode 100644
+> index 000000000000..f49417d1faf7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/omap-usb-tll.yaml
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/omap-usb-tll.yaml#
 
-Hmm, I guess I can now see an interpretation of the wording that
-reflects what the patch contents contains. However, you need a hardware
-based justification for the condition you're adding since it disables
-mode-switch and defining port nodes etc if orientation-switch isn't present.
-That's fine if that hardware doesn't support mode switching or ports
-without orientation switching, but not if it does.
+ti,usbhs-tll.yaml as the filename please.
+
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: OMAP HS USB Host TLL (Transceiver-Less Interface)
+> +
+> +maintainers:
+> +  - <maintainer@kernel.org>
+
+Put whoever the original author of the binding was here, failing that
+probably the platform maintainers for omap.
+
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,usbhs-tll
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  ti,hwmod:
+
+Pretty sure you need a type here:
+    $ref: /schemas/types.yaml#/definitions/string
+
+> +    const: usb_tll_hs
+> +
+> +  clocks:
+> +    minItems: 2
+
+Please add an items list here for each clock with a description.
+
+Where did the minItems: 2 come from? The text binding suggests that 1
+would be valid.
+
 
 Cheers,
 Conor.
 
->=20
-> Thanks,
-> Xu Yang
->=20
-> >=20
-> > > ---
-> > >  Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml | 2 ++
-> > >  1 file changed, 2 insertions(+)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy=
-=2Eyaml b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
-> > > index 6d6d211883ae..1238792157f8 100644
-> > > --- a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
-> > > +++ b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
-> > > @@ -118,6 +118,8 @@ allOf:
-> > >            contains:
-> > >              enum:
-> > >                - fsl,imx95-usb-phy
-> > > +      required:
-> > > +        - orientation-switch
-> > >      then:
-> > >        $ref: /schemas/usb/usb-switch.yaml#
-> > > =20
-> > > --=20
-> > > 2.34.1
-> > >=20
->=20
+> +
+> +  clock-names:
+> +    items:
+> +      - const: usb_tll_hs_usb_ch0_clk
+> +      - const: usb_tll_hs_usb_ch1_clk
+> +      - const: usb_tll_hs_usb_ch2_clk
+> +    minItems: 2
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - ti,hwmod
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    usbhstll@4a062000 {
+> +      compatible =3D "ti,usbhs-tll";
+> +      reg =3D <0x4a062000 0x1000>;
+> +      interrupts =3D <78>;
+> +      ti,hwmod =3D "usb_tll_hs";
+> +    };
+> --=20
+> 2.34.1
 >=20
 
---qWspPwlOiJv9Bk4P
+--4NKNFzJwDjBr1PW/
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZzeUSgAKCRB4tDGHoIJi
-0nmLAP41b2HVcBe/oDDoqT3FelaZ+a2IvuVeK6Hmd+l+FjRdbAD+NvRvcHrjfcUp
-l7LuK5Nnt6oS3qIiOHl2p00S970odgw=
-=TUzT
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZzeV+AAKCRB4tDGHoIJi
+0svQAQDXLOBNlVg9oP82qZqMc2ModrcXsVv4yWOYyRhGUw4LpwEAxWbfhhG1Tb66
+gPq2W0d+4Qvw6JEt+sfSmTABGbiN7QU=
+=LiRY
 -----END PGP SIGNATURE-----
 
---qWspPwlOiJv9Bk4P--
+--4NKNFzJwDjBr1PW/--
 
