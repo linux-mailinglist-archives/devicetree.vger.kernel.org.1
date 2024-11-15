@@ -1,64 +1,98 @@
-Return-Path: <devicetree+bounces-122303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 026749CFAC9
-	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 00:03:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 474119CFB15
+	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 00:21:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7EB0280E48
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 23:03:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 357D5B3B11B
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 23:04:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3DE6191489;
-	Fri, 15 Nov 2024 23:03:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF9E11925BB;
+	Fri, 15 Nov 2024 23:04:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gtUXvgCI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WXF9cys5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C20718BBB0;
-	Fri, 15 Nov 2024 23:03:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18A541922ED;
+	Fri, 15 Nov 2024 23:04:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731711802; cv=none; b=MmAgF1D+EboZYcSPMmfcYJ0VDPzBJSBmDrURT+w1iVG1QePef7ZWTP53B8bICgG9OqWLnIgmJJdx3ravAxQzx5gg/ib6PWM/T0v8COiFkkhkJM0M7Lfrq81BO2aPrMN0Iv+/Gdadqbwk/BLlYoIb7wwjhIba4XEvkn3RQ3uivPs=
+	t=1731711843; cv=none; b=QRYwMVdhvE/+FGtmfI4kMkbV6HAktX6ZqYscsL81R1v/PAjB10ys0p93ustM/6iUSCgB/TNiyIpRxsU3tbcggp+TTLbKkRoc7aYnp7Q6jYmXDu8og89Dqu5sfpmlC3a1jHa5CH2hTTkWNoVOwsMZm/6Udxwf1TVMn3gZRCpeha4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731711802; c=relaxed/simple;
-	bh=1abEaMeNqs1nTcC6Bnle0nei4JVk7xvxjpBydnAXGF8=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=o2ypfMPSqYySLP4C/F5lf7BWTPjKZKDTkUCXNHujfy2vRriw8Ck5Us0i74BgoFnnfRAyxmwHY7zZsAQ6cIKZk831pfIZUJY3m4WuiEPmidef5ay9bzPPdIC44IJBG0Nes0TQoq6T0akg/Xf7TaKxF/F6pHMZDn0MEK755Dku1Es=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gtUXvgCI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 356A6C4CECF;
-	Fri, 15 Nov 2024 23:03:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731711802;
-	bh=1abEaMeNqs1nTcC6Bnle0nei4JVk7xvxjpBydnAXGF8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=gtUXvgCINF0mTjtnXygOjJEhez+Lbm0zTpv5BjzZQjI4GHmFz2+ArFQJPIBiPna5x
-	 GYN9jHfNUZc9aeJUXvFZLjFOwoTkgIZb9XedMW/Jezgqjhi9H4g/YGe26PVls09/og
-	 VzDJS/0t5pxFTc9qTxN95zEZddLbpfAaQJvdTBVXwTk1B+vwxRCX7l0vzsFXD0lHic
-	 NVDHtrJmor+3AH8AggZvpRHEJCbrcHHosGhEx+PzPWETP2/xXGrYdYXkEsK5lI78pJ
-	 g1l2/i6WcA+6VwQuSAMRTa2wqSCfFiobr3413WnwyY6sEqjtdJYw1yOCzKVTpjOoVu
-	 Py32d5Ertc0MQ==
-Date: Fri, 15 Nov 2024 17:03:19 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Damien Le Moal <dlemoal@kernel.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org,
+	s=arc-20240116; t=1731711843; c=relaxed/simple;
+	bh=+fFs5hj5s9umuTTamJt7Ul6y5pkJ5NFGPVuYByYU3oM=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qdowqpEaZt2HBGM4HSjld3R7X3w9KYIGeKfdbRPauXZbstMD8tWR7garVWVBsJuwuintK6ol1lfdjtddjuyf0cUecxF5Y4Ac5rmgXeRIjyEhXC4o8Sk80M2BnX+ZcZ/ystiWtFfBFkOEtoibfIU+XgGx6XXnWYhghx1u4ssfIkw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WXF9cys5; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-432d9bb168cso14111395e9.1;
+        Fri, 15 Nov 2024 15:04:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1731711840; x=1732316640; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=+kL+cS5EvQ3n9arZXmohSwmGYBlKGAKyqHLz8twlVd4=;
+        b=WXF9cys5+rkrsM3nu1GYFUjrJFWpRcFrNzyrkYxY3f8glzbIZmu3ZFWySX1cQtvYsl
+         TYIeqdwROiOYWm78BZ4hOXflvn4fZDdLTO4ClyXmTG3iHv44xvrjgkKjMS+UTrVti7gK
+         N/KnAZz9Y7/JxATjLSQr9Y1iHMlSYLPMNUNZer1gFctUdK8/C6TkUpGj2jmvzB6CcGSP
+         pHIPJxflZ568TFuK/EygUYp1ZL6lgCBDttZUJSbTdp+q9fznjN/uarbWZ7N0+pfXBZPQ
+         yOjpQ3uMUaDTdFgxnD2Cr7yDE1L5K72WXaMnz8sb5Ha4PpDtBoCEtaeXwZtYRxat2CfV
+         kYoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731711840; x=1732316640;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+kL+cS5EvQ3n9arZXmohSwmGYBlKGAKyqHLz8twlVd4=;
+        b=RpFtK9O1gufuyBMK7sC3K1h9ZQPCB2MGYEQSf+9WHv4DX9RjQ2qgBSMNJxRpRegBNb
+         KCmtyaIXh0pTyyxQl+j5Sov1RIgLmo3OXDY3I+QCiUI8+4aSsYJiLd17+ecVDNZuAt0Z
+         UxvdJnnyGrBZfWJzDZuYPkMTXgm++YYzcihoLL1jKPrtxRARZGk4dld23LYrTyi0JRXV
+         TzNG6CCXi1aM/Oq6F1w+Pc/XND0tMLK4mIm4eBKftys+d64PHL1NUe8kFpERWr52fLeJ
+         PcLguVvA1LZAmIHKNxJA2YMA6uUREzR+/JvznRZCd7B9h4ImiQVDJfInM4epnfJ97WfC
+         d3gA==
+X-Forwarded-Encrypted: i=1; AJvYcCV8qM+0FouO9iu7vSo8rEh0rSzTBS4UKb8pEhoY9q8MtuWhN2bNC0uN1riXP2uvlskoYdbwuZH0Ier2@vger.kernel.org, AJvYcCVIxI0trApUX8M5nUVUQlz9K/xIwHc9LZ/kbiOUnVa1EKkClVnuXsQ5Nh5cyQecpfJfHCKK32Et@vger.kernel.org, AJvYcCVz6qxngL2TC/75HuV4kPIwAFAituTtxXBUTNzTKvC6Rp/9gaMK4OSjfnzOP0epVBPgmxKTVut6qBCYO0jy@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyi5Bi3BWlHMZmhVV7QhE7WpE+0Zc94VNLQvbDKvAkxD0YETheR
+	bgyBM0LPGtLPH3HPhwBTB0lBtWnFynyx5BkJ1aX0NT1e7vXE2rza
+X-Google-Smtp-Source: AGHT+IFn0fKVGf6BpBp5O3iANa0DxDXJALEgYAxM1KyvBAcvk7mElBpZceoItdzxTC/3s5Ak5XOV3A==
+X-Received: by 2002:a05:600c:3516:b0:431:5226:1633 with SMTP id 5b1f17b1804b1-432defd2589mr40395195e9.6.1731711840247;
+        Fri, 15 Nov 2024 15:04:00 -0800 (PST)
+Received: from Ansuel-XPS. (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-432da24498csm72756525e9.1.2024.11.15.15.03.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Nov 2024 15:03:59 -0800 (PST)
+Message-ID: <6737d35f.050a0220.3d6fb4.8d89@mx.google.com>
+X-Google-Original-Message-ID: <ZzfTW_cjJrGqLUff@Ansuel-XPS.>
+Date: Sat, 16 Nov 2024 00:03:55 +0100
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Rick Wertenbroek <rick.wertenbroek@gmail.com>,
-	Niklas Cassel <cassel@kernel.org>
-Subject: Re: [PATCH v5 12/14] PCI: rockchip-ep: Improve link training
-Message-ID: <20241115230319.GA2065576@bhelgaas>
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	upstream@airoha.com
+Subject: Re: [net-next PATCH v5 3/4] net: dsa: Add Airoha AN8855 5-Port
+ Gigabit DSA Switch driver
+References: <20241112204743.6710-1-ansuelsmth@gmail.com>
+ <20241112204743.6710-4-ansuelsmth@gmail.com>
+ <20241114192202.215869ed@kernel.org>
+ <6737c439.5d0a0220.d7fe0.2221@mx.google.com>
+ <20241115145918.5ed4d5ec@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,238 +101,48 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241017015849.190271-13-dlemoal@kernel.org>
+In-Reply-To: <20241115145918.5ed4d5ec@kernel.org>
 
-On Thu, Oct 17, 2024 at 10:58:47AM +0900, Damien Le Moal wrote:
-> The Rockchip RK3399 TRM V1.3 Part2, Section 17.5.8.1.2, step 7,
-> describes the endpoint mode link training process clearly and states
-> that:
->   Insure link training completion and success by observing link_st field
->   in PCIe Client BASIC_STATUS1 register change to 2'b11. If both side
->   support PCIe Gen2 speed, re-train can be Initiated by asserting the
->   Retrain Link field in Link Control and Status Register. The software
->   should insure the BASIC_STATUS0[negotiated_speed] changes to "1", that
->   indicates re-train to Gen2 successfully.
+On Fri, Nov 15, 2024 at 02:59:18PM -0800, Jakub Kicinski wrote:
+> On Fri, 15 Nov 2024 22:59:18 +0100 Christian Marangi wrote:
+> > On Thu, Nov 14, 2024 at 07:22:02PM -0800, Jakub Kicinski wrote:
+> > > On Tue, 12 Nov 2024 21:47:26 +0100 Christian Marangi wrote:  
+> > > > +	MIB_DESC(1, 0x00, "TxDrop"),
+> > > > +	MIB_DESC(1, 0x04, "TxCrcErr"),  
+> > > 
+> > > What is a CRC Tx error :o 
+> > > Just out of curiosity, not saying its worng.
+> > >  
+> > 
+> > From Documentation, FCS error frame due to TX FIFO underrun.
+> 
+> Interesting
+>
 
-Since this only adds code and doesn't change existing code, I assume
-this hardware doesn't automatically train to gen2 without this new
-software assistance?
+Seems it's even supported in stats.
 
-So the effect of this change is to use gen2 speed when supported by
-both partners, when previously we only got gen1?
+> > > > +	MIB_DESC(1, 0x08, "TxUnicast"),
+> > > > +	MIB_DESC(1, 0x0c, "TxMulticast"),
+> > > > +	MIB_DESC(1, 0x10, "TxBroadcast"),
+> > > > +	MIB_DESC(1, 0x14, "TxCollision"),  
+> > > 
+> > > Why can't these be rtnl stats, please keep in mind that we ask that
+> > > people don't duplicate in ethtool -S what can be exposed via standard
+> > > stats
+> > >   
+> > 
+> > Ok I will search for this but it does sounds like something new and not
+> > used by other DSA driver, any hint on where to look for examples?
+> 
+> It's relatively recent but I think the ops are plumbed thru to DSA.
+> Take a look at all the *_stats members of struct dsa_switch_ops, most
+> of them take a fixed format struct to fill in and the struct has some
+> extra kdoc on which field is what.
 
-> This procedure is very similar to what is done for the root-port mode
-> in rockchip_pcie_host_init_port().
-> 
-> Implement this link training procedure for the endpoint mode as well.
-> Given that the RK3399 SoC does not have an interrupt signaling link
-> status changes, training is implemented as a delayed work which is
-> rescheduled until the link training completes or the endpoint controller
-> is stopped. The link training work is first scheduled in
-> rockchip_pcie_ep_start() when the endpoint function is started. Link
-> training completion is signaled to the function using pci_epc_linkup().
-> Accordingly, the linkup_notifier field of the rockchip pci_epc_features
-> structure is changed to true.
-> 
-> Signed-off-by: Damien Le Moal <dlemoal@kernel.org>
-> ---
->  drivers/pci/controller/pcie-rockchip-ep.c | 82 ++++++++++++++++++++++-
->  drivers/pci/controller/pcie-rockchip.h    | 11 +++
->  2 files changed, 92 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pci/controller/pcie-rockchip-ep.c b/drivers/pci/controller/pcie-rockchip-ep.c
-> index 2f7709ba1cac..43480706b8f4 100644
-> --- a/drivers/pci/controller/pcie-rockchip-ep.c
-> +++ b/drivers/pci/controller/pcie-rockchip-ep.c
-> @@ -10,12 +10,14 @@
->  
->  #include <linux/configfs.h>
->  #include <linux/delay.h>
-> +#include <linux/iopoll.h>
->  #include <linux/kernel.h>
->  #include <linux/of.h>
->  #include <linux/pci-epc.h>
->  #include <linux/platform_device.h>
->  #include <linux/pci-epf.h>
->  #include <linux/sizes.h>
-> +#include <linux/workqueue.h>
->  
->  #include "pcie-rockchip.h"
->  
-> @@ -48,6 +50,7 @@ struct rockchip_pcie_ep {
->  	u64			irq_pci_addr;
->  	u8			irq_pci_fn;
->  	u8			irq_pending;
-> +	struct delayed_work	link_training;
->  };
->  
->  static void rockchip_pcie_clear_ep_ob_atu(struct rockchip_pcie *rockchip,
-> @@ -470,6 +473,8 @@ static int rockchip_pcie_ep_start(struct pci_epc *epc)
->  			    PCIE_CLIENT_CONF_ENABLE,
->  			    PCIE_CLIENT_CONFIG);
->  
-> +	schedule_delayed_work(&ep->link_training, 0);
-> +
->  	return 0;
->  }
->  
-> @@ -478,6 +483,8 @@ static void rockchip_pcie_ep_stop(struct pci_epc *epc)
->  	struct rockchip_pcie_ep *ep = epc_get_drvdata(epc);
->  	struct rockchip_pcie *rockchip = &ep->rockchip;
->  
-> +	cancel_delayed_work_sync(&ep->link_training);
-> +
->  	/* Stop link training and disable configuration */
->  	rockchip_pcie_write(rockchip,
->  			    PCIE_CLIENT_CONF_DISABLE |
-> @@ -485,8 +492,80 @@ static void rockchip_pcie_ep_stop(struct pci_epc *epc)
->  			    PCIE_CLIENT_CONFIG);
->  }
->  
-> +static void rockchip_pcie_ep_retrain_link(struct rockchip_pcie *rockchip)
-> +{
-> +	u32 status;
-> +
-> +	status = rockchip_pcie_read(rockchip, PCIE_EP_CONFIG_LCS);
-> +	status |= PCI_EXP_LNKCTL_RL;
-> +	rockchip_pcie_write(rockchip, status, PCIE_EP_CONFIG_LCS);
-> +}
-> +
-> +static bool rockchip_pcie_ep_link_up(struct rockchip_pcie *rockchip)
-> +{
-> +	u32 val = rockchip_pcie_read(rockchip, PCIE_CLIENT_BASIC_STATUS1);
-> +
-> +	return PCIE_LINK_UP(val);
-> +}
-> +
-> +static void rockchip_pcie_ep_link_training(struct work_struct *work)
-> +{
-> +	struct rockchip_pcie_ep *ep =
-> +		container_of(work, struct rockchip_pcie_ep, link_training.work);
-> +	struct rockchip_pcie *rockchip = &ep->rockchip;
-> +	struct device *dev = rockchip->dev;
-> +	u32 val;
-> +	int ret;
-> +
-> +	/* Enable Gen1 training and wait for its completion */
-> +	ret = readl_poll_timeout(rockchip->apb_base + PCIE_CORE_CTRL,
-> +				 val, PCIE_LINK_TRAINING_DONE(val), 50,
-> +				 LINK_TRAIN_TIMEOUT);
-> +	if (ret)
-> +		goto again;
-> +
-> +	/* Make sure that the link is up */
-> +	ret = readl_poll_timeout(rockchip->apb_base + PCIE_CLIENT_BASIC_STATUS1,
-> +				 val, PCIE_LINK_UP(val), 50,
-> +				 LINK_TRAIN_TIMEOUT);
-> +	if (ret)
-> +		goto again;
-> +
-> +	/*
-> +	 * Check the current speed: if gen2 speed was requested and we are not
-> +	 * at gen2 speed yet, retrain again for gen2.
-> +	 */
-> +	val = rockchip_pcie_read(rockchip, PCIE_CORE_CTRL);
-> +	if (!PCIE_LINK_IS_GEN2(val) && rockchip->link_gen == 2) {
-> +		/* Enable retrain for gen2 */
-> +		rockchip_pcie_ep_retrain_link(rockchip);
-> +		readl_poll_timeout(rockchip->apb_base + PCIE_CORE_CTRL,
-> +				   val, PCIE_LINK_IS_GEN2(val), 50,
-> +				   LINK_TRAIN_TIMEOUT);
-> +	}
-> +
-> +	/* Check again that the link is up */
-> +	if (!rockchip_pcie_ep_link_up(rockchip))
-> +		goto again;
-> +
-> +	val = rockchip_pcie_read(rockchip, PCIE_CLIENT_BASIC_STATUS0);
-> +	dev_info(dev,
-> +		 "Link UP (Negotiated speed: %sGT/s, width: x%lu)\n",
-> +		 (val & PCIE_CLIENT_NEG_LINK_SPEED) ? "5" : "2.5",
-> +		 ((val & PCIE_CLIENT_NEG_LINK_WIDTH_MASK) >>
-> +		  PCIE_CLIENT_NEG_LINK_WIDTH_SHIFT) << 1);
-> +
-> +	/* Notify the function */
-> +	pci_epc_linkup(ep->epc);
-> +
-> +	return;
-> +
-> +again:
-> +	schedule_delayed_work(&ep->link_training, msecs_to_jiffies(5));
-> +}
-> +
->  static const struct pci_epc_features rockchip_pcie_epc_features = {
-> -	.linkup_notifier = false,
-> +	.linkup_notifier = true,
->  	.msi_capable = true,
->  	.msix_capable = false,
->  	.align = ROCKCHIP_PCIE_AT_SIZE_ALIGN,
-> @@ -644,6 +723,7 @@ static int rockchip_pcie_ep_probe(struct platform_device *pdev)
->  	rockchip = &ep->rockchip;
->  	rockchip->is_rc = false;
->  	rockchip->dev = dev;
-> +	INIT_DELAYED_WORK(&ep->link_training, rockchip_pcie_ep_link_training);
->  
->  	epc = devm_pci_epc_create(dev, &rockchip_pcie_epc_ops);
->  	if (IS_ERR(epc)) {
-> diff --git a/drivers/pci/controller/pcie-rockchip.h b/drivers/pci/controller/pcie-rockchip.h
-> index 0263f158ee8d..24796176f658 100644
-> --- a/drivers/pci/controller/pcie-rockchip.h
-> +++ b/drivers/pci/controller/pcie-rockchip.h
-> @@ -26,6 +26,7 @@
->  #define MAX_LANE_NUM			4
->  #define MAX_REGION_LIMIT		32
->  #define MIN_EP_APERTURE			28
-> +#define LINK_TRAIN_TIMEOUT		(500 * USEC_PER_MSEC)
->  
->  #define PCIE_CLIENT_BASE		0x0
->  #define PCIE_CLIENT_CONFIG		(PCIE_CLIENT_BASE + 0x00)
-> @@ -50,6 +51,10 @@
->  #define   PCIE_CLIENT_DEBUG_LTSSM_MASK		GENMASK(5, 0)
->  #define   PCIE_CLIENT_DEBUG_LTSSM_L1		0x18
->  #define   PCIE_CLIENT_DEBUG_LTSSM_L2		0x19
-> +#define PCIE_CLIENT_BASIC_STATUS0	(PCIE_CLIENT_BASE + 0x44)
-> +#define   PCIE_CLIENT_NEG_LINK_WIDTH_MASK	GENMASK(7, 6)
-> +#define   PCIE_CLIENT_NEG_LINK_WIDTH_SHIFT	6
-> +#define   PCIE_CLIENT_NEG_LINK_SPEED		BIT(5)
->  #define PCIE_CLIENT_BASIC_STATUS1	(PCIE_CLIENT_BASE + 0x48)
->  #define   PCIE_CLIENT_LINK_STATUS_UP		0x00300000
->  #define   PCIE_CLIENT_LINK_STATUS_MASK		0x00300000
-> @@ -87,6 +92,8 @@
->  
->  #define PCIE_CORE_CTRL_MGMT_BASE	0x900000
->  #define PCIE_CORE_CTRL			(PCIE_CORE_CTRL_MGMT_BASE + 0x000)
-> +#define   PCIE_CORE_PL_CONF_LS_MASK		0x00000001
-> +#define   PCIE_CORE_PL_CONF_LS_READY		0x00000001
->  #define   PCIE_CORE_PL_CONF_SPEED_5G		0x00000008
->  #define   PCIE_CORE_PL_CONF_SPEED_MASK		0x00000018
->  #define   PCIE_CORE_PL_CONF_LANE_MASK		0x00000006
-> @@ -144,6 +151,7 @@
->  #define PCIE_RC_CONFIG_BASE		0xa00000
->  #define PCIE_EP_CONFIG_BASE		0xa00000
->  #define PCIE_EP_CONFIG_DID_VID		(PCIE_EP_CONFIG_BASE + 0x00)
-> +#define PCIE_EP_CONFIG_LCS		(PCIE_EP_CONFIG_BASE + 0xd0)
->  #define PCIE_RC_CONFIG_RID_CCR		(PCIE_RC_CONFIG_BASE + 0x08)
->  #define PCIE_RC_CONFIG_DCR		(PCIE_RC_CONFIG_BASE + 0xc4)
->  #define   PCIE_RC_CONFIG_DCR_CSPL_SHIFT		18
-> @@ -155,6 +163,7 @@
->  #define PCIE_RC_CONFIG_LINK_CAP		(PCIE_RC_CONFIG_BASE + 0xcc)
->  #define   PCIE_RC_CONFIG_LINK_CAP_L0S		BIT(10)
->  #define PCIE_RC_CONFIG_LCS		(PCIE_RC_CONFIG_BASE + 0xd0)
-> +#define PCIE_EP_CONFIG_LCS		(PCIE_EP_CONFIG_BASE + 0xd0)
->  #define PCIE_RC_CONFIG_L1_SUBSTATE_CTRL2 (PCIE_RC_CONFIG_BASE + 0x90c)
->  #define PCIE_RC_CONFIG_THP_CAP		(PCIE_RC_CONFIG_BASE + 0x274)
->  #define   PCIE_RC_CONFIG_THP_CAP_NEXT_MASK	GENMASK(31, 20)
-> @@ -192,6 +201,8 @@
->  #define ROCKCHIP_VENDOR_ID			0x1d87
->  #define PCIE_LINK_IS_L2(x) \
->  	(((x) & PCIE_CLIENT_DEBUG_LTSSM_MASK) == PCIE_CLIENT_DEBUG_LTSSM_L2)
-> +#define PCIE_LINK_TRAINING_DONE(x) \
-> +	(((x) & PCIE_CORE_PL_CONF_LS_MASK) == PCIE_CORE_PL_CONF_LS_READY)
->  #define PCIE_LINK_UP(x) \
->  	(((x) & PCIE_CLIENT_LINK_STATUS_MASK) == PCIE_CLIENT_LINK_STATUS_UP)
->  #define PCIE_LINK_IS_GEN2(x) \
-> -- 
-> 2.47.0
-> 
+Thanks for the follow-up, they are the get_stats64 I assume, quite
+different to the ethtools one as we need a poll logic. Ok I will check
+what to drop and rework it.
+
+-- 
+	Ansuel
 
