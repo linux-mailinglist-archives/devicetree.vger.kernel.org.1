@@ -1,213 +1,136 @@
-Return-Path: <devicetree+bounces-122103-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122104-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10BE89CDC5C
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 11:19:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 085B99CDC64
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 11:21:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7B2CAB22794
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 10:19:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8A031B26CC3
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 10:21:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8579C1B4F3F;
-	Fri, 15 Nov 2024 10:19:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D98E1B393F;
+	Fri, 15 Nov 2024 10:21:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="KotL9glM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Gml0ap7A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2077.outbound.protection.outlook.com [40.107.241.77])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96BB31B4F21;
-	Fri, 15 Nov 2024 10:19:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.241.77
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731665946; cv=fail; b=NIgS657Y3w3638cl8ridVkHt4T4oR+5mVL/wIH/aL3evpc55l1s4lA2LWl0K638qeZWRRtVz5YVviI0/lggVEBn+5uAt9qqGfxg3oxHO6VNrewVtZ6uZe62VJsSWqG4ZS647dL79zTasy2Pi7VniXmFoQUzBzVoghJLFuS40Hc0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731665946; c=relaxed/simple;
-	bh=E2/BpQPEf6Ghcw1nrElAXnVAPgfpULOCsmFGVvdtKI4=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=RzWqBMobhI1bibkRThYU1mcb+fU2Hn1jPJZ40aXnpZ3sNvF9z6V9FMBvphyIgZmkK4f9HqkNdQKn5EQvRCaTxlsA0DDfaIhQKl07Tpn/JFFhNykUM6LYgVioBsaxaXoeudFCwtmmLOPwKLYPsGsCFPUWO0iEa/tfjC1yzHmkCx0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=KotL9glM; arc=fail smtp.client-ip=40.107.241.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=geC1oO9Vi2/mY3yu2tUbXZ0sOLQLeJwW0ycofGfsBn19JSRQCg2M8N4DD1gvfNDiINL2PFLk9zQo/UKny4MIcy2wL5n3mX1XbiTw2sBgL+dOnXbKfRF0tE7KmPYGdDbUuaRxS92MTk6bzHxQeho19aFILYHTOr04ZJsSYaFs90FPUeZ7VhqXCKSyP1aGdKESb3tGzreWKPwxbI+Pe29qxhw95vMoVSfNSfYPaXbC8Bd1wOTRiztGyi0KxKIZHWuF906AwzEJSkaWuTbwoA1mU+gVjielt9HwREvCktVyn8tJsT6FtWL52zCSeaSwu9+UE0e8y2X+1RjYpFGH3WodMA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fJLnBT8DMPQ+CTicnTqVsU++jGsuIuNXIpGjZS+mOcs=;
- b=Z1IjDjaMBqF1h0Z8HYhvtsXVK+CKBO29Spx7yV8WqkLVXPrZ0KAhu+RT2dSrCVHjATQxI5ck/Ot86KgP26cb67qUtPMVosel/HALQEB+l/eJnX/VFJDdjxcrdInwxRYEkwIvj7fx8xmgh2+YZRfBQicJRMoHZPyLK3unGCZREa0FnP2gLDAxNhkGh+gZkOQ4uvm1iLr99NotVjth6OO/T7Nlh7/76OzWe487mYD8jJSrdIp/B8AIilLaDjoAQXof0v3IhAD0HeeB+ouAgljL/ev/p7ieS7zGz+l+Mb++u7Lr/l87wf/eAvvTs8jOfOloVW8mC5vhz+cvcmtByWT1Zw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fJLnBT8DMPQ+CTicnTqVsU++jGsuIuNXIpGjZS+mOcs=;
- b=KotL9glMjQ5esszmWa5RWPqoj3D9T88r8VfZYmuQbs6OpV9dqt4r5UerH8AE+lSc7EMPJP0kLHCWJn2/lwgqPO1F3iiwdGounMluSccXexSdQX8A4chjML8QI2reQdObaJWt45E7KusvaFd7VWG2OHKu7yVMGoX4tMHsxQ8lpcA6eB4ibms5S/nj45zmkOf3lWcoJ+5v5HKbjzTekaBlMEy/kqCAKvi80PKwi/+QZaCxJhI9+jVdsNmPCI0p0Zi32m36wW9sFGuKPjetX8CwYWMo0iaT9V5GtqY6U8pss4hwnRODNV1qZsKlDOpFR0qtcVSONOpO9IzTC/AKIjxYcA==
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
- by AS4PR04MB9508.eurprd04.prod.outlook.com (2603:10a6:20b:4cb::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.18; Fri, 15 Nov
- 2024 10:19:00 +0000
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630]) by PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630%6]) with mapi id 15.20.8158.017; Fri, 15 Nov 2024
- 10:19:00 +0000
-From: Peng Fan <peng.fan@nxp.com>
-To: Ying Liu <victor.liu@nxp.com>, "imx@lists.linux.dev"
-	<imx@lists.linux.dev>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-clk@vger.kernel.org"
-	<linux-clk@vger.kernel.org>, "dri-devel@lists.freedesktop.org"
-	<dri-devel@lists.freedesktop.org>
-CC: "shawnguo@kernel.org" <shawnguo@kernel.org>, "s.hauer@pengutronix.de"
-	<s.hauer@pengutronix.de>, "kernel@pengutronix.de" <kernel@pengutronix.de>,
-	"festevam@gmail.com" <festevam@gmail.com>, "robh@kernel.org"
-	<robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "catalin.marinas@arm.com"
-	<catalin.marinas@arm.com>, "will@kernel.org" <will@kernel.org>,
-	"abelvesa@kernel.org" <abelvesa@kernel.org>, "mturquette@baylibre.com"
-	<mturquette@baylibre.com>, "sboyd@kernel.org" <sboyd@kernel.org>,
-	"andrzej.hajda@intel.com" <andrzej.hajda@intel.com>,
-	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>, "rfoss@kernel.org"
-	<rfoss@kernel.org>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	"jonas@kwiboo.se" <jonas@kwiboo.se>, "jernej.skrabec@gmail.com"
-	<jernej.skrabec@gmail.com>, "maarten.lankhorst@linux.intel.com"
-	<maarten.lankhorst@linux.intel.com>, "mripard@kernel.org"
-	<mripard@kernel.org>, "tzimmermann@suse.de" <tzimmermann@suse.de>,
-	"airlied@gmail.com" <airlied@gmail.com>, "simona@ffwll.ch" <simona@ffwll.ch>,
-	"quic_bjorande@quicinc.com" <quic_bjorande@quicinc.com>,
-	"geert+renesas@glider.be" <geert+renesas@glider.be>,
-	"dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>, "arnd@arndb.de"
-	<arnd@arndb.de>, "nfraprado@collabora.com" <nfraprado@collabora.com>,
-	"marex@denx.de" <marex@denx.de>
-Subject: RE: [PATCH v7 2/7] Revert "clk: imx: clk-imx8mp: Allow media_disp
- pixel clock reconfigure parent rate"
-Thread-Topic: [PATCH v7 2/7] Revert "clk: imx: clk-imx8mp: Allow media_disp
- pixel clock reconfigure parent rate"
-Thread-Index: AQHbNmKPsdMS3GH44ka1InYw8jGl+LK4IqkA
-Date: Fri, 15 Nov 2024 10:19:00 +0000
-Message-ID:
- <PAXPR04MB8459C6337B096C4326547CD888242@PAXPR04MB8459.eurprd04.prod.outlook.com>
-References: <20241114065759.3341908-1-victor.liu@nxp.com>
- <20241114065759.3341908-3-victor.liu@nxp.com>
-In-Reply-To: <20241114065759.3341908-3-victor.liu@nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PAXPR04MB8459:EE_|AS4PR04MB9508:EE_
-x-ms-office365-filtering-correlation-id: 99d527c6-760a-4c8e-97e0-08dd055eec79
-x-ld-processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|376014|1800799024|7416014|366016|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?1nOHs0+fhTALFybSWZrAfOJc19VN+8+XH7cVRqCrG1K6zBXBUkFSyy78W0jb?=
- =?us-ascii?Q?PPpP1UqFXQJsaPWx3Dpa7AMoskDym4eQtpbFBt3FGfXuDE+h9vNHFlq1M42M?=
- =?us-ascii?Q?+DHHFDitnXr6uC9//dIJoVFYuJtA3ngMsF80f0FH/YEahoQOCnXJm/gxO40q?=
- =?us-ascii?Q?fI84Q2eDNCLzVSc2sS4FfjqXs2HDFFb6VXHlboOK/uWJ87waO3ULQWrX0j1J?=
- =?us-ascii?Q?9HyeUErVoSbhAumPi/TGSKY0phZ1hX7XKfIHLwiL5PNq8hl+Ifa9Vgqsbc6g?=
- =?us-ascii?Q?izIiT0janVcrlNffJkAkawsa4soii6GSwXnYZfe4ZDw1ehSdn1fxOL3e4fJp?=
- =?us-ascii?Q?sznxbHN3wBheo5UDAwR9hbFIh//JYOoTZ8SHJGg2NubtMasJXyXfP3LhHYLg?=
- =?us-ascii?Q?lm7LTEE3FkNB6/pk2m3E/VBvnOc3hhiRgK2pSsQM4UqN/6RyM7ISa8hX/jDX?=
- =?us-ascii?Q?RzarnzhvLzEJbMOfK/dkTMBAK3K1fgBcQZMBlMOpE3iRQ3+gGJifmKOsxndi?=
- =?us-ascii?Q?O8GVYHuWPNozFALgURJ+NqOBGHPu59v32ECY3yXCK7cyTqWkGPMXn1iaRVMF?=
- =?us-ascii?Q?TFVJZInYspsfDBHw4oU8iYkB9ew0Ct3GBYT6auWHa+1ZJWNoFBlddQVKDC8L?=
- =?us-ascii?Q?/OOfFXo2f+0A55hNeP4WLoXu0ySXKSOj/AXm9bPuf6u6HUsBztyOqJVeXiVF?=
- =?us-ascii?Q?BtKbg2NwIB5Ly5cnvj7wCkih66BD50gxXOl+IEsDayr/YvHB5py1X46OD5mN?=
- =?us-ascii?Q?hoV0Lypsbxvz/Fk7JbnGWUb2Ku3Ld8/CysdaxQPcQFtF/7fCwDsLa9gy1GOa?=
- =?us-ascii?Q?mBbJWn8TG6Wu2tiNK+eQcmeCjhfZ9K/QJOVQmtJrh4f0K159l+iQBG6rfM/W?=
- =?us-ascii?Q?ExFT1J7pNkqcSDo2htk8HVc2vaon5LO3oX7Y4HCEmuUYPJQYkqpgM/I2V/yE?=
- =?us-ascii?Q?iIz7gYhYO53ZOYhro8T9vJpQMsPde2WD3htp0zohtZuJi7sUjall1VzzqByn?=
- =?us-ascii?Q?6m58WbW8m+5yYOc+g8QkLUUjjsmtjbHVuGNe41lcvDpixPHyXVC6MTDTyiGG?=
- =?us-ascii?Q?qA/xXSLEN/crqbwPIvNKIjZZdkVltI/KxXapkGK+LlwvEnufQ3lm6VMYSyxF?=
- =?us-ascii?Q?ze6fpQGUYlDtcPOL4M4b93JRvXtN6I5qGC53kYvf1OZMqJYryB3tWdo4uBZh?=
- =?us-ascii?Q?IkGKAEDm1nzQ4wsck2aEu48lWNDPesJbsHaINXswY7MjJqWYi9RmvWRLmgKs?=
- =?us-ascii?Q?BAUY457uSkLBLzTSdpkAQRJGvztU0wOkftXAJ6/KYKfhqE/W57xRE6oz9Usp?=
- =?us-ascii?Q?Tn/n9Uk+6WQbKHbt5iMoILTa/8qAmd8pz7oLZkjrCppcs/BKu0ZKg42s7Jtr?=
- =?us-ascii?Q?R+aAC4M=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(7416014)(366016)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?St2eCZQh8sWaz6d/zls0haG7qGojsUFUictFqVXqFek/xSYI3lwaq8eceq9E?=
- =?us-ascii?Q?U5prwMFkQSOiywqYqrqxevyNA+fKO6w73bkHzeNUcz1hIQQG67BnfomC61Sx?=
- =?us-ascii?Q?oVwyg2kVTm/2VcCfcnyW9gNpnfwzEFI+K03+2hZURuoesIlU8gPDJ4/q/JTi?=
- =?us-ascii?Q?jp33lpt5s981BSyhPWWxMsQpBJ1rLb+aulJP13bYr1a8eJ99kuOPhcGR94vd?=
- =?us-ascii?Q?aOSJoGUVyex6wTHdTdSWlcm32aee0fn6LNVRA+5HeE9iAC4vIGGbm5ogEhev?=
- =?us-ascii?Q?JP1o4mjfYB2TOunkbtmZhOzVaV7ajGt420cQxio1KWvs8igYpYwDr8lJl78o?=
- =?us-ascii?Q?2wn5m14vusVdUkFAWnuFD0Kdh5VgcF6G+cyX7S9GO8jN89RSxLo/Oy0YGkbS?=
- =?us-ascii?Q?zSKVBJYYulq6IvbQkUVXJDlhRc3NuO4DIDuM9AcQNqxeQjRute/iALzaWC/V?=
- =?us-ascii?Q?jyVlHLw3YLqWSMDkhuMHIkVWm3tyAHMrCUK7kdfrACAQGk+jtUePGcouOiKg?=
- =?us-ascii?Q?YbFnhAJRPl8Aqov49BmicF4hnRTamQaQ1m6GDYMMY+wEGwT5ZPAjVWQjwzYZ?=
- =?us-ascii?Q?Oyec7DkIPqK8gT3ZEo2Yqokkd453Jk8EPWYgcVOgu5XeU9aT7upKrtF1rZCK?=
- =?us-ascii?Q?PORPiAzcSFf0h0Nc0Tz+X6JN+don3q5D+RbrzptSLYXsDWcxAtshHFQHyax6?=
- =?us-ascii?Q?KVpGiVa6LWYGEhb75HcoI2Y7Z/dg00fQm1685z95mUY3Kwnm1j2LxGIyZLEs?=
- =?us-ascii?Q?/kiqgt7Gu++cDIk19b8lY5o+6vYzSg4RTk1h/OSku3bOeKYES9YIkEsEXkDl?=
- =?us-ascii?Q?OvZByltLzoXEDqNtlhQJ4sv2vlNDCf0IZwIv16/a9kBx3FuQ8HrcCfwSxRWC?=
- =?us-ascii?Q?xv6bdJLiE6Uspq1Pm65EewfQnbXO86g2uOJOrUn+1A1h6T+hYT7xY3lbMrq8?=
- =?us-ascii?Q?APmW6DIutDK5boV/NHjKOLAGEhH7AAdsdgXB7zZbNZCrJCzXuPbqYmwlYgRp?=
- =?us-ascii?Q?XtA+Ia4WYaj3DDfdAqHxwdNmULmDYY6axpXXkjZ8Pt3THpIxsCIcGz+VKZR1?=
- =?us-ascii?Q?ht92eExzd2Po+oBCZMA6VslHbXWWX4/RR8FArudgHSatsEq2TxPePhvI4i13?=
- =?us-ascii?Q?ZgZVAnD0nWsy9sYG3RpBIx5Z9eBkDSDAhaBr7eIaeG+Ygm8/ehr2wp4cARqm?=
- =?us-ascii?Q?Xt2JHKoROdr4qwVNNojzihBb1bkFmZ6Dldt/KcSsa6Ey0zO9ukLIgkDFqbVN?=
- =?us-ascii?Q?xAhfgE22cJoY9sehBvvVARp7KtREZ0A4Ax2bNTPtIk8iSIIQnZ5oYt2CIND+?=
- =?us-ascii?Q?lAal3FfphauY3SDmgVUR6R6LloxlCze/ES6Bj5/fN82ke4CWNeb41hR9AzkD?=
- =?us-ascii?Q?txeH/oX0KP69jSov1MGRT2Cm5i5vdKOQ14bnBJo8Cle2vO3synOOoDujGPXY?=
- =?us-ascii?Q?IhXCnHSBkrJq52M/5+0b39teJ63XPSuxFuu8oBE9+QQi9D5lFLp+tDx4gImj?=
- =?us-ascii?Q?C7pzq4+bqJ3FYa1loybe4Ne5vtkv3U6/hS/SUdFzaPV3MrzK3nQ6avMhNSeE?=
- =?us-ascii?Q?KSwHyQsEoJGaJ7CDsik=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A85918FC86
+	for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 10:21:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1731666062; cv=none; b=XRzTkGe0PHDDCBSDCidVrgcTJ+NjfSSdJ0tTmJgiQOVbtk7IPIb6LjQJ67F2k/XAk7CVa5RSdnuqAumSyirpjtqNWxO9veSHKdp1u6uJrim/HirgAh4fJSAINTx0q2SFg2SoWtYZvVTvoL0/lETzuNtpEtw5JSJC9oi6Kbs1sJE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1731666062; c=relaxed/simple;
+	bh=Sry1eci9vOFpDyEkQTfYzaAEbOwPhc8e98R6BvOXPCA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Dw9zM6CxQyXzblG5Htvi43H6pVj0fXony1jfesXuEOq7eQc38tBzC0WQlUQ/zPr32pjNvIanqKhpPqG0un8dEDr2FGA7v2Zl6KlFbKdEH+ua4zpNLWDRLYDWavj6rUbSGxMCreqMmhhSAV213CsV+lDAuPZjUtiFQfiVvLuRves=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Gml0ap7A; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-432d866f70fso13608515e9.2
+        for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 02:21:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1731666059; x=1732270859; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JVPoezCL82p4Jd7gvA1mM05GiLeD2sJWZNuvEyNACp0=;
+        b=Gml0ap7AHa6YQ0T9LnRd8SsLxPddWB5Ob3iv8acv5z9EqAKoIEUecUBys2xsNM7lrm
+         2+wg/3S8g9NviitRasmV7iPIFMvicW6HFRrhPu+Tm5eRjum9R7ePGA/dzqit3DGvVnxT
+         E7jHXBjtILuyTDmr0nXvWJQnl2iTMIEwi0E/iQayWl34ZU5TVSEMxRbTr8hXjdEC8+oD
+         zROZE4WumTjbCSB6ksfdWVQOK7BtCqQGu4pOFi5cQG0qYRnlZO5MS7J/cqZ1bJaC8GJ2
+         F5UScX2JvCTIrVMkhtU28UpfS3uskFrbFBBc0+oOOuIQUKSjQZUIE6oSnjsIy/v4E7jh
+         kgnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731666059; x=1732270859;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JVPoezCL82p4Jd7gvA1mM05GiLeD2sJWZNuvEyNACp0=;
+        b=hWWOL9ruITtzo2e4Kw+Vrs27Uk5xSeX1ef23hi9dqZGNqYrrtZ2bPS9ncQoRwPMsYh
+         ezlG76tBRi4/1v5RpyY+VCoeTaO4jursIy2c5Tk7X0sRA/gomPI2d9l3YBEqxztpwfUE
+         MWJBw3EtwM1m6TEw3Q3zlunIcloDmbdzX2bDtJPW9WDOMUPaf8EhshsdDRT7vGtxJR3D
+         AuSy8HR5DLNVerM4HGvpmyh2tdoXd9/nj8HT2DGEEXYcQHYxXVdJv05gK+9VRlLtc2qj
+         ERATm0a3pPbxKomz4MrDBZkea1jt9Ee7pHsjgI4rOyOlB12wJiovj49rw93KTvG5qz1l
+         HQPA==
+X-Forwarded-Encrypted: i=1; AJvYcCU2Xu6N764/qUh3W37YG/5enVgkukPjjhPWoYtBWR3HQz4xL+Knq+FPorQz/LPqGVh2Pck+xRm9D7RA@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx9cPxtFY45VicLsxRXpVcvEPFeyBaJr/VHveZwUf9XvQC9kMHN
+	PrfuGLmk01+sh9Vjjo5v8geconPxVa4NPVs+kOT4+i7dGryPxKujj13weOP8HQI=
+X-Google-Smtp-Source: AGHT+IF4S5LpG2M1gk4mPasJkhDU1+HEf2nyx4nf298wfc3kNyQOg63uE543BuT2Baw0R1ptm8+q2g==
+X-Received: by 2002:a05:600c:1d0b:b0:42e:d4a2:ce67 with SMTP id 5b1f17b1804b1-432df74f0c9mr18281345e9.17.1731666059001;
+        Fri, 15 Nov 2024 02:20:59 -0800 (PST)
+Received: from [127.0.1.1] ([212.114.21.58])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-432da28bc11sm52109995e9.31.2024.11.15.02.20.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Nov 2024 02:20:58 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH 0/2] arm64: dts: qcom: sdm450-lenovo-tbx605f: add panel
+ nodes
+Date: Fri, 15 Nov 2024 11:20:52 +0100
+Message-Id: <20241115-topic-sdm450-upstream-lab-ibb-v1-0-8a8e74befbfe@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 99d527c6-760a-4c8e-97e0-08dd055eec79
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Nov 2024 10:19:00.8799
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: utDYT26WAieS8JcLRGvvWFUtCXNmBfFXpPU1ZQE9uNDL+SHif0inaiiFrWKoPYHHohPdpBNIiWwnCZG1h2FjDQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR04MB9508
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIQgN2cC/x3MwQqDMAwA0F+RnBcwYsbmr8gObY1bYGppqgjiv
+ 1s8vss7wCSpGHTVAUk2NV3mAnpUEH5u/grqUAxN3bRExJiXqAFtmFqucY2Wk7gJ/86jeo/sgsj
+ 7RczPAOWISUbd77//nOcFgPZgkm8AAAA=
+X-Change-ID: 20241115-topic-sdm450-upstream-lab-ibb-5acee981556c
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=965;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=Sry1eci9vOFpDyEkQTfYzaAEbOwPhc8e98R6BvOXPCA=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBnNyCGd019DtfevtV/hIj+1O+GxHTpML1Xmw64L
+ HF2BpqR4LeJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZzcghgAKCRB33NvayMhJ
+ 0TLREACG9MH+k3bwQmBGGrrZBGQ95F7crdiEpBuVwWQwySAr8rghS5mH+ETPpcL1IgjFPc38A9X
+ MFSxHc2rzd3sMc2oQhg63rn538pd04Ciui/tm4CNhub1puwAG77XW1UEfmLCG8mYnXQIzK2o92h
+ 4DUxxmNz0+ryNy/ZB8o8pTQ2oGtIA/TY4Px3TYGLULQau55+0r9lyhOAZftZMPKJPYmM7qE0JV0
+ kWKtXSvgR03Mep5Y0L7I4d4EXLcPgIwlITWjq2nYbg520t7rcfKSPql+3D+bsVjORj/fR5H3jqM
+ GnmKvMn93Lkq5l1mchps+7f0yBsVT0WRWAPnZ2JaXaA5/hXR1u9utJcF9RpuImW/2TbK+ZHQZFC
+ QrxELUmAc8zGUHUtilQZqknQJY3/5VloYTgQLTix+Xxj7UQrXH3KmkwvdqnR1cXW+viiC5G45VJ
+ vTZaFW3ZG4Gdy6Rcb/nLgNKzBrsu7lIqlCEjva+M5cAwZ1KocBuM2qXO/1egxEuKfebPdoJov34
+ XxVJgV4DIgVieb3Cv4R9fIaBGdjKJSKCi8dxfaG2DzIMYDxffEfnCtavKoDYRxUS4IV09Y4bFoY
+ 2nV7SzhsLUknq0Bm33bKiGW+S+rYwm+aWpjI3tPTKNJcEttNItojZcAdLsfOrlg6KlxcuYDDkgH
+ ptF8WhmsxhKkCSg==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-> Subject: [PATCH v7 2/7] Revert "clk: imx: clk-imx8mp: Allow
-> media_disp pixel clock reconfigure parent rate"
->=20
-> This reverts commit ff06ea04e4cf3ba2f025024776e83bfbdfa05155.
->=20
-> media_disp1_pix clock is the pixel clock of the first i.MX8MP LCDIFv3
-> display controller, while media_disp2_pix clock is the pixel clock of the
-> second i.MX8MP LCDIFv3 display controller.  The two display
-> controllers connect with Samsung MIPI DSI controller and LVDS Display
-> Bridge(LDB) respectively.  Since the two display controllers are driven
-> by separate DRM driver instances and the two pixel clocks may be
-> derived from the same video_pll1_out clock(sys_pll3_out clock could
-> be already used to derive audio_axi clock), there is no way to negotiate
-> a dynamically changeable video_pll1_out clock rate to satisfy both of
-> the two display controllers.  In this case, the only solution to drive
-> them with the single video_pll1_out clock is to assign a
-> sensible/unchangeable clock rate for video_pll1_out clock.  Thus, there
-> is no need to set the CLK_SET_RATE_PARENT flag for
-> media_disp{1,2}_pix clocks, drop it then.
->=20
-> Fixes: ff06ea04e4cf ("clk: imx: clk-imx8mp: Allow media_disp pixel
-> clock reconfigure parent rate")
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> ---
+Add the necessary nodes to enable the DSI Panel on the Lenovo
+Lenovo Smart Tab M10.
 
-Acked-by: Peng Fan <peng.fan@nxp.com>
+The panel is already upstream with:
+https://lore.kernel.org/all/20240828-topic-sdm450-upstream-tbx605f-panel-v3-0-b792f93e1d6b@linaro.org/
+
+And the LAB-IBB bindings changes was sent at:
+https://lore.kernel.org/all/20241115-topic-sdm450-upstream-lab-ibb-bindings-v1-1-1f4bff4583b0@linaro.org/
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Neil Armstrong (2):
+      arm64: dts: qcom: pmi8950: add LAB-IBB nodes
+      arm64: dts: qcom: sdm450-lenovo-tbx605f: add DSI panel nodes
+
+ arch/arm64/boot/dts/qcom/pmi8950.dtsi              | 17 ++++
+ arch/arm64/boot/dts/qcom/sdm450-lenovo-tbx605f.dts | 97 ++++++++++++++++++++++
+ 2 files changed, 114 insertions(+)
+---
+base-commit: 2d5404caa8c7bb5c4e0435f94b28834ae5456623
+change-id: 20241115-topic-sdm450-upstream-lab-ibb-5acee981556c
+
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
+
 
