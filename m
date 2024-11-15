@@ -1,71 +1,63 @@
-Return-Path: <devicetree+bounces-122108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122109-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 966F39CDC89
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 11:28:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F4D99CDCBD
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 11:38:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C4A0282EA5
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 10:28:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 994031F236E1
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 10:38:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7EB81B2195;
-	Fri, 15 Nov 2024 10:28:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24E4B1B4F0A;
+	Fri, 15 Nov 2024 10:38:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=smile.fr header.i=@smile.fr header.b="dsbPoBiK"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="XYP+2N0F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B803F18FC86
-	for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 10:28:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7654E38DD8;
+	Fri, 15 Nov 2024 10:38:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731666503; cv=none; b=BI0g/M3E6oyr4Yx1zLukXdu3wRvYY26omD+nda5+U5sbQKS7ZqqL+dhrmTL0wEoSDzbAhqOQgm9LRGNDK5+0yXASvTaf1MhHNkbrMWF4pW8rKDikboj9vWDBRX2MiAhKt1G4FP7f6KyjcHXb7V83/o1UH2OkqnTgricUzMfg1HU=
+	t=1731667124; cv=none; b=o5BNWsce0nsnASzIHjvTyb3naihMZGzpWxgSDWaEDKrzR9S9ewScMDyHYv8k9zhOQgEtAWluWSezmXF5Imi6giMQE7j9yTz3ymcZoZKFx1Sz9aIzGnLNHmEwGb0RAz1nvTkcPrkZmLgHIo5hfq1SBzN4lSsUEdEIzu0EI7PCZ/s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731666503; c=relaxed/simple;
-	bh=I23MqRx0oVpPyh5En5+mqt8IakuAbOD21FSXB7Pokjw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=m3pa1OFRzirLs9dY14tovwFh1HKAD/Ksmgv2EKoOyW1mXkQqX9srpbXNxNWcX9mf6w6SaI4jGAw99sDF8H6l5a7vOEGTHV0tN6Abc+p0a3+tG4dVaJhKNKgws7qaP0uu+jKul0o0M6bsRxvtvJuhh4x2SFsccCYQDBY2vYsu6fc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=smile.fr; spf=pass smtp.mailfrom=smile.fr; dkim=pass (1024-bit key) header.d=smile.fr header.i=@smile.fr header.b=dsbPoBiK; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=smile.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=smile.fr
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-53da5a27771so1831061e87.2
-        for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 02:28:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=smile.fr; s=google; t=1731666500; x=1732271300; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AeVRNwt25ArwMSQcy6JB+fjHlRU8KJMM5ExLQU0Xlhs=;
-        b=dsbPoBiKqMVljV6TpLy9EWyAwRz4Fs06M6lRVKotV3fEjkr63rQDLfUGfq41SN4pvi
-         nn6Fwparl+Hbz313+os6jx8DcGt3wNpwcLte3FPfqFkqQNHgr6639Ho2lw1hszlw2kf5
-         dKksOGPCA2burxFU4SWjPGGcSQEX+j46/rfFE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731666500; x=1732271300;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AeVRNwt25ArwMSQcy6JB+fjHlRU8KJMM5ExLQU0Xlhs=;
-        b=LdL7kY7+GakQFOzyiYnZt9ShZsFB4jLA2pledrR9u6Xqj504YOYIC5tRwB5KNNxn9D
-         Qc0qVYWsGXq8Inzj7Bb9yEnv/TIKjSAyEEMQSa3JQ2bXp8qJ4UsgZT5NKHZhksvZ1gLI
-         bffNOs7OUacPH04OqCOH2jNcY27cQtDQDT/85k8aWMy6rINdF6bK/keISK5Vx0xqDqQj
-         wZxL1SUIieBZjVXTtudi5jD4veX9vwnT/Pe99HNpKU3ENIHfzyNlixJ/3UFf1L6EJOCD
-         LpTcxvaqaWAr2pwPyvggmrbjOKrcSVQxJqgcOSP7pcgK/sgmKRFPZDsXb2GRjmqpbhP1
-         WgJw==
-X-Forwarded-Encrypted: i=1; AJvYcCX03HFSyhQ0iY3bdi3AXmgJ4OYIr3RWi5ektJCz4882gqRTiYR8PowFaMa6DJfySAFquXGXhwUtdevj@vger.kernel.org
-X-Gm-Message-State: AOJu0YwpcVlVXFT83Jq44fttblP3SwwqQXFK+Th+A14E5C+JfzmkEcqM
-	3XBG04JASr9AB6KCmyrUUS+KDKgzyF/nQ6e3+YUMNrCznoKzwEBHwEiksTlAz84=
-X-Google-Smtp-Source: AGHT+IFBN3peXOm6F+m+yUvXzEeZIpt7nq2QcdVGDQZHS7iuTlSaktisaS0pxP3Ep/mhVmKVtDpViQ==
-X-Received: by 2002:a05:6512:3b81:b0:53b:2105:1919 with SMTP id 2adb3069b0e04-53dab29ab3emr894205e87.14.1731666499761;
-        Fri, 15 Nov 2024 02:28:19 -0800 (PST)
-Received: from ?IPV6:2a01:cb05:949d:5800:e3ef:2d7a:4131:71f? (2a01cb05949d5800e3ef2d7a4131071f.ipv6.abo.wanadoo.fr. [2a01:cb05:949d:5800:e3ef:2d7a:4131:71f])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3821ae16170sm3982865f8f.69.2024.11.15.02.28.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Nov 2024 02:28:19 -0800 (PST)
-Message-ID: <86e1ee84-788d-4809-8722-7a553f727751@smile.fr>
-Date: Fri, 15 Nov 2024 11:28:18 +0100
+	s=arc-20240116; t=1731667124; c=relaxed/simple;
+	bh=H0boV9wNcUaUvCupA60cDstG/1gsv7QE+nR0hEYIg5M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=q/YfCc5h9xrk49RatsgvTkRQy4Y44NyBFUR3jO3CCJAKjfReFCKrTMVqjUJJAQV87sOlOoEXUFyMY6AAvwX46n/skyrgfTdfS5D4YR+igeIu21RJMdjzZO0VI1k56rv1REn9lur8cTMq6gxaTyzSoK0OKT4+vSr2cvhEwyXKO+E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=XYP+2N0F; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AF8Txkh000925;
+	Fri, 15 Nov 2024 10:38:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	lDwx/1QgYatgC+hjwnNrOs23Jwv/LxH8QR2w7LLcHWc=; b=XYP+2N0FXLEqUkIn
+	zNTtCw2ekwWP7t0EFPoL1qu5vFFB60aC/kTIUKhJ5PjjNxPljNqydpL1P3LO4bIh
+	SRlurFdifDzGwLH7Oo+yh4GKMknaSK8RJGbfVpcOM2Cr9uSrsDWXCmRqg9y3meQv
+	LzGOTc1W9+hyem8qDtzoCO63Xk+t0il7PlM7xQQ4gK56L48s/riPP2+jnuMxpET9
+	XRgECqkxLDFHbc5Vh5MNPeLDJfSV7aG4lub9i1PRMTiuH02eS340i0jgXPDxs3k3
+	KGHk3pRjO6NY/qlmZmBeJ8wjh0iB83QE3PaxdlLQRbwe3S1nFyIYtF/22XVT6rpA
+	VbYobg==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42w9sv5kc6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Nov 2024 10:38:34 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AFAcXbF008339
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Nov 2024 10:38:33 GMT
+Received: from [10.152.195.140] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 15 Nov
+ 2024 02:38:27 -0800
+Message-ID: <dbcb01e8-9f5f-4e54-bfe4-e7be8185c7aa@quicinc.com>
+Date: Fri, 15 Nov 2024 16:08:23 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,62 +65,125 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: dra7: Add bus_dma_limit for l4 cfg bus
-To: Roger Quadros <rogerq@kernel.org>, tony@atomide.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
- stable@kernel.org, Romain Naour <romain.naour@skf.com>
-References: <20241114155759.1155567-1-romain.naour@smile.fr>
- <e4c45744-3e5d-4ded-a33e-0d9097aebcaa@kernel.org>
+Subject: Re: [PATCH v6 7/7] arm64: dts: qcom: ipq5424: Add thermal zone nodes
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Konrad Dybcio
+	<konradybcio@gmail.com>,
+        <srinivas.kandagatla@linaro.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <amitk@kernel.org>,
+        <thara.gopinath@gmail.com>, <rafael@kernel.org>,
+        <daniel.lezcano@linaro.org>, <rui.zhang@intel.com>,
+        <lukasz.luba@arm.com>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>
+CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
+References: <20241104124413.2012794-1-quic_mmanikan@quicinc.com>
+ <20241104124413.2012794-8-quic_mmanikan@quicinc.com>
+ <91ea0f03-9bbe-491d-9056-ebd9fdc73bfa@oss.qualcomm.com>
+ <8cb665f5-4885-4853-804a-7313decc719c@quicinc.com>
+ <2c7ece9d-95e8-4d01-a9da-c1d5d7388771@gmail.com>
+ <fc676574-ffac-40d2-aa47-8d7cb61b5e3f@quicinc.com>
+ <9bd3d4e2-aba1-423c-946a-f5c60da71497@oss.qualcomm.com>
+ <f5ceee66-9d09-44f9-9217-3abd467d1086@quicinc.com>
+ <6565a4ec-6db6-4442-a07f-ace467c47395@oss.qualcomm.com>
 Content-Language: en-US
-From: Romain Naour <romain.naour@smile.fr>
-In-Reply-To: <e4c45744-3e5d-4ded-a33e-0d9097aebcaa@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+In-Reply-To: <6565a4ec-6db6-4442-a07f-ace467c47395@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: muIduWTVexMo6APGjOVLJ_AIR6Oi6xe5
+X-Proofpoint-GUID: muIduWTVexMo6APGjOVLJ_AIR6Oi6xe5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
+ lowpriorityscore=0 impostorscore=0 adultscore=0 bulkscore=0 clxscore=1015
+ mlxlogscore=999 priorityscore=1501 phishscore=0 malwarescore=0
+ suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411150090
 
-Hello Roger,
 
-Le 15/11/2024 à 10:20, Roger Quadros a écrit :
+
+On 11/12/2024 4:32 PM, Konrad Dybcio wrote:
 > 
 > 
-> On 14/11/2024 17:57, Romain Naour wrote:
->> From: Romain Naour <romain.naour@skf.com>
+> On 11-Nov-24 12:51, Manikanta Mylavarapu wrote:
 >>
->> A bus_dma_limit was added for l3 bus by commit cfb5d65f2595
->> ("ARM: dts: dra7: Add bus_dma_limit for L3 bus") to fix an issue
->> observed only with SATA on DRA7-EVM with 4GB RAM and CONFIG_ARM_LPAE
->> enabled.
 >>
->> Since kernel 5.13, the SATA issue can be reproduced again following
->> the SATA node move from L3 bus to L4_cfg in commit 8af15365a368
->> ("ARM: dts: Configure interconnect target module for dra7 sata").
+>> On 11/7/2024 8:17 PM, Konrad Dybcio wrote:
+>>> On 6.11.2024 11:25 AM, Manikanta Mylavarapu wrote:
+>>>>
+>>>>
+>>>> On 11/6/2024 2:42 PM, Konrad Dybcio wrote:
+>>>>>
+>>>>>
+>>>>> On 11/6/24 09:47, Manikanta Mylavarapu wrote:
+>>>>>>
+>>>>>>
+>>>>>> On 11/4/2024 7:21 PM, Konrad Dybcio wrote:
+>>>>>>> On 4.11.2024 1:44 PM, Manikanta Mylavarapu wrote:
+>>>>>>>> Add thermal zone nodes for sensors present in IPQ5424.
+>>>>>>>>
+>>>>>>>> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+>>>>>>>> ---
+>>>>>>> [...]
+>>>>>>>
+>>>>>>>> +
+>>>>>>>> +        cpu3-thermal {
+>>>>>>>> +            polling-delay-passive = <0>;
+>>>>>>>> +            polling-delay = <0>;
+>>>>>>>> +            thermal-sensors = <&tsens 13>;
+>>>>>>>> +
+>>>>>>>> +            trips {
+>>>>>>>> +                cpu-critical {
+>>>>>>>> +                    temperature = <120000>;
+>>>>>>>> +                    hysteresis = <9000>;
+>>>>>>>> +                    type = "critical";
+>>>>>>>> +                };
+>>>>>>>> +
+>>>>>>>> +                cpu-passive {
+>>>>>>>> +                    temperature = <110000>;
+>>>>>>>> +                    hysteresis = <9000>;
+>>>>>>>> +                    type = "passive";
+>>>>>>>
+>>>>>>> You have a passive trip point without passive polling
+>>>>>>>
+>>>>>>
+>>>>>> Okay, will remove this.
+>>>>>
+>>>>> You most likely want to preserve it, while keeping a sensible
+>>>>> polling frequency, so that userspace will be aware of the current
+>>>>> CPU temperature. <100> sounds like a sensible value here.
+>>>>>
+>>>>> Konrad
+>>>>
+>>>> Temperature sensor's present in IPQ5424 supports interrupts.
+>>>
+>>> Correct.
+>>>
+>>>> Hence no need to configure polling frequency.
+>>>
+>>> No, that interrupt firing signifies crossing the temp threshold (meaning
+>>> no updates beyond that) or the tsens watchdog barking.
+>>>
+>>> Konrad
 >>
->> Fix it by adding an empty dma-ranges property to l4_cfg and
->> segment@100000 nodes (parent device tree node of SATA controller) to
->> inherit the 2GB dma ranges limit from l3 bus node.
->>
->> Note: A similar fix was applied for PCIe controller by commit
->> 90d4d3f4ea45 ("ARM: dts: dra7: Fix bus_dma_limit for PCIe").
->>
->> Fixes: 8af15365a368 ("ARM: dts: Configure interconnect target module for dra7 sata").
->> Link: https://lore.kernel.org/linux-omap/c583e1bb-f56b-4489-8012-ce742e85f233@smile.fr/
+>> An interrupt fires when the temperature crosses a threshold.
 > 
-> Please add the stable tag here
+> Which means you can't monitor the temperature at runtime
+> without polling..
 > 
-> Cc: <stable@vger.kernel.org> # 5.13
+> Konrad
 
-checkpatch.pl was complaining about "Cc: <stable@vger.kernel.org>" I tried
-yesterday. Now it fine with "# 5.13" tag.
+Hi Konrad,
 
-Thanks!
+I got the point. Will configure polling-delay-passive with 100.
 
-Best regards,
-Romain
-
-
-> 
->> Signed-off-by: Romain Naour <romain.naour@skf.com>
->> ---
-> 
-
+Thanks & Regards,
+Manikanta.
 
