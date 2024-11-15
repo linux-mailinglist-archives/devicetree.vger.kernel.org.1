@@ -1,133 +1,143 @@
-Return-Path: <devicetree+bounces-122074-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122075-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AD069CDA78
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 09:30:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B65B59CDAA4
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 09:35:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DD65BB243CD
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 08:30:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A5D4282D1B
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 08:35:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B284189F30;
-	Fri, 15 Nov 2024 08:30:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DC3918990C;
+	Fri, 15 Nov 2024 08:35:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="baiy+g4p"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="H4wn9Nmr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 490DC1E522;
-	Fri, 15 Nov 2024 08:30:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68DAC2B9B9;
+	Fri, 15 Nov 2024 08:35:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731659427; cv=none; b=Rr6iaX58wkpjq2TzAQvlqXFCL+JjKBNJ2yddo/P5wAGEBhd/iWCmqnjPQlXm74KFyYVEALIl8Gw5V/pemL2Pn2XuyPdw0UAqsfVSwBzRIVkUnGpXQi0sEkq0rAWiZmaPcSTsR1Nf6td6geNuTAk7Q+a6l43nsygLFYUc6IJktVk=
+	t=1731659719; cv=none; b=MO2p5JaC0Zk7r9uepVwWHoX52UU4byKLwjJJILMY8BKRNJJrbAnK1BlYR3FmO7FbRAQ31Rwr8YGfkp/pI0ikSZIbfEP0XwOBYMr/VaAOIt6me1XDg+7bgc/3O4JLDd/TbYm0sI1b6YkMRK1enPZX0AkLcreu1EYQ/erjz9wErzw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731659427; c=relaxed/simple;
-	bh=AwNaowL+z3r5T3Dhk/DjATV1Gtv4vvKbU0QkuO3KiTk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=SqtYvrSDoTtqQXFPh5b5TukQXuU67fRJkbEetqUlVWOYd5IFwPMXPr9WpHpzc1VHm1puCxD4vBs4Ws4nCIGoqJHoHPUpu49f8J9S8uRdPCoBAJEnsy/s86RCzCzH3JDAWjewbKc7L/u+nCVuX5VYGW88LlofsX53g4obSfEjk8Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=baiy+g4p; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AF80KYe008356;
-	Fri, 15 Nov 2024 09:29:48 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	hV7BxhQ3eifJYS/TNyu+Lmhdj2uo69md9n/Ratf2lvI=; b=baiy+g4pS4xqJe22
-	Z6PA5mWy2Cs7RSvM4GWc/IW5XjATX0WHk5aElMwUw/pwK9CpSSscsnc7jsM9CeyR
-	QEq2GV4QxD8TyYOW181ziqZmw5yhaaKydrpjuzIVukdoM1LOLT0M00b6LSK7BYDs
-	l0thJ4hekFeNA/SvfdvacMOkRUulYxED4boG5uqMuo4yk7hHl7HXMUpn0cIjjpwI
-	+AeXVvV9dd+rpoicCf30pqcuLp99gFd68FH9DmP7HITTjjpB2UuzfThRd+DJ3TGQ
-	/7eA1+kCT+AI7u9NVgv5359Vsk7melk4XVMB2WrFp7D29rfd+TjSf/eepa2oNHaZ
-	DeVOwg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 42whe9ukqu-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 15 Nov 2024 09:29:48 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 5632340053;
-	Fri, 15 Nov 2024 09:28:22 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 31155263566;
-	Fri, 15 Nov 2024 09:27:14 +0100 (CET)
-Received: from [10.129.178.212] (10.129.178.212) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Fri, 15 Nov
- 2024 09:27:13 +0100
-Message-ID: <2b52093a-103f-4dd4-bb6d-c04dc9f68e98@foss.st.com>
-Date: Fri, 15 Nov 2024 09:27:05 +0100
+	s=arc-20240116; t=1731659719; c=relaxed/simple;
+	bh=GpORnpg+NQBerqyn0TR3qfFgiIIBLKgPStdADqbKTyU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=uMKIQaESr7/ckLsGIQshZjX7KMpnYw3/sjFCsvwI0RalpwI9BC9+C3fy1DZRaBnskyJ8URV3aQ9bMzpdkIe4ZvzhrznK/LVlXjrSx1zT1htX9Cdvc82nFIKzj0ai1v2xoxDET8nvj5ZMTjT6D9XHrNirm3Ui90BwJuVGuS3m2Bw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=H4wn9Nmr; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=w8OgLECi2MzZsuLHWKXzJxOoaKR0j3CLKXbFjs87K0A=; b=H4wn9NmrHi9wGBUh0ZpeZIP4yG
+	O/OfEgazN1CVhu0ANGgMMdfF3dkkI+s6IaOdz/U7FBu/KnBOymcEFwb+QXo8Frnah+iE5wHycU+dZ
+	5Ydl+h0u9cwrjHF/q/nGdisjH1ST7orjL8eS/CBAzMQJdFd6g2TWfcVN4wiVLJ6rruvn6xfcH5sSf
+	pggH4+Zr5QPpOr/MbiCqoAQzgQxrZMKunZ5OqfeGzq9BYLMISF5WRCn0hLkl7D/8DqgkjyAXhLBFL
+	QatooX0HDjyNdnn+ONAj6zIt4tTLJVZk38Bk3AOjqZ4CqfsvCZNcrk8S9eHaAAh1qfMA75qUzNLMw
+	iJ3r6fYA==;
+Received: from i53875a30.versanet.de ([83.135.90.48] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tBrn1-0000Ns-Vn; Fri, 15 Nov 2024 09:34:52 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: linux-kernel@vger.kernel.org,
+ Detlev Casanova <detlev.casanova@collabora.com>
+Cc: Sandy Huang <hjc@rock-chips.com>, Andy Yan <andy.yan@rock-chips.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko.stuebner@cherry.de>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Dragan Simic <dsimic@manjaro.org>, Alexey Charkov <alchark@gmail.com>,
+ Jianfeng Liu <liujianfeng1994@gmail.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, kernel@collabora.com,
+ Detlev Casanova <detlev.casanova@collabora.com>
+Subject: Re: [PATCH v3 1/3] vop2: Add clock resets support
+Date: Fri, 15 Nov 2024 09:34:50 +0100
+Message-ID: <3346283.VqM8IeB0Os@diego>
+In-Reply-To: <20241108185212.198603-2-detlev.casanova@collabora.com>
+References:
+ <20241108185212.198603-1-detlev.casanova@collabora.com>
+ <20241108185212.198603-2-detlev.casanova@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] dt-bindings: PCI: Add STM32MP25 PCIe root complex
- bindings
-To: Bjorn Helgaas <helgaas@kernel.org>
-CC: <lpieralisi@kernel.org>, <kw@linux.com>,
-        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
-        <bhelgaas@google.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
-        <p.zabel@pengutronix.de>, <cassel@kernel.org>,
-        <quic_schintav@quicinc.com>, <fabrice.gasnier@foss.st.com>,
-        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20241112182809.GA1853254@bhelgaas>
-Content-Language: en-US
-From: Christian Bruel <christian.bruel@foss.st.com>
-In-Reply-To: <20241112182809.GA1853254@bhelgaas>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
+Hi Detlev,
 
-
-On 11/12/24 19:28, Bjorn Helgaas wrote:
-> On Tue, Nov 12, 2024 at 05:19:21PM +0100, Christian Bruel wrote:
->> Document the bindings for STM32MP25 PCIe Controller configured in
->> root complex mode.
->> Supports 4 legacy interrupts and MSI interrupts from the ARM
->> GICv2m controller.
->>
->> Allow tuning to change payload (default 128B) thanks to the
->> st,max-payload-size entry.
->> Can also limit the Maximum Read Request Size on downstream devices to the
->> minimum possible value between 128B and 256B.
->>
->> STM32 PCIE may be in a power domain which is the case for the STM32MP25
->> based boards.
->> Supports wake# from wake-gpios
+Am Freitag, 8. November 2024, 19:50:39 CET schrieb Detlev Casanova:
+> At the end of initialization, each VP clock needs to be reset before
+> they can be used.
 > 
->> +  st,limit-mrrs:
->> +    description: If present limit downstream MRRS to 256B
->> +    type: boolean
->> +
->> +  st,max-payload-size:
->> +    description: Maximum Payload size to use
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    enum: [128, 256]
->> +    default: 128
+> Failing to do so can put the VOP in an undefined state where the
+> generated HDMI signal is either lost or not matching the selected mode.
 > 
-> MRRS and MPS are not specific to this device.  Not sure why you need
-> them, but if you do need them, I think they should be generic.
+> This issue can be reproduced by switching modes multiple times.
+> Depending on the setup, after about 10 mode switches, the signal will be
+> lost and the value in register 0x890 (VSYNCWIDTH + VFRONT) will take the value
+> `0x0000018c`.
+> That makes VSYNCWIDTH=0, which is wrong.
+> 
+> Adding the clock resets after the VOP configuration fixes the issue.
+> 
+> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
 
-Agree. On a second thought, this was to fix an old errata and can be 
-dropped now, as well as the associated quirks.
+patch subject should be "drm/rockchip: vop2: ...." please
 
-Will re-post as generic if needed later on
 
-thanks,
+>  static void vop2_crtc_atomic_enable(struct drm_crtc *crtc,
+>  				    struct drm_atomic_state *state)
+>  {
+> @@ -2057,6 +2079,8 @@ static void vop2_crtc_atomic_enable(struct drm_crtc *crtc,
+>  
+>  	vop2_vp_write(vp, RK3568_VP_DSP_CTRL, dsp_ctrl);
+>  
+> +	vop2_clk_reset(vp);
+> +
+>  	drm_crtc_vblank_on(crtc);
+>  
+>  	vop2_unlock(vop2);
 
-Christian
+this conflicts with the merge gamma lut support, can you please rebase on
+top of drm-misc-next? Or alternatively just tell me if it should be
+
+	vop2_vp_write(vp, RK3568_VP_DSP_CTRL, dsp_ctrl);
+
++	vop2_clk_reset(vp);
++
+	vop2_crtc_atomic_try_set_gamma(vop2, vp, crtc, crtc_state);
+
+	drm_crtc_vblank_on(crtc);
+
+----- or ----
+	vop2_vp_write(vp, RK3568_VP_DSP_CTRL, dsp_ctrl);
+
+	vop2_crtc_atomic_try_set_gamma(vop2, vp, crtc, crtc_state);
+
++	vop2_clk_reset(vp);
++
+	drm_crtc_vblank_on(crtc);
+
+
+Thanks a lot
+Heiko
+
+
 
