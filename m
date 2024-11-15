@@ -1,131 +1,208 @@
-Return-Path: <devicetree+bounces-122065-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122066-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14B4F9CD9DF
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 08:26:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C65D9CD9EE
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 08:28:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 56A751F21055
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 07:26:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D35F283219
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 07:28:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 045FE186E26;
-	Fri, 15 Nov 2024 07:26:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4758189919;
+	Fri, 15 Nov 2024 07:28:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NeneI/Xq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QESEqBpg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E75F183CC7
-	for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 07:26:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7365188917
+	for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 07:28:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731655573; cv=none; b=J66SdRV/X4mrBOQAClyn5dgYN4Bk0ErMpZuC5qDMvF74TBCVVfhKlrEJZKI+LiydU3dnA0x9EXr5wDkbkmZve65+qB1/Xz907I/+GoVvs0LlptiNJvp2+QkZTqS70Bcdu//epXjd1WzIGbRfT5zDvoiIFxqkZD5LZCPOCvY6O+4=
+	t=1731655710; cv=none; b=hnimoas0qthhOlRfU1KBaCm7FCWoUBu+AZFDNYjtERdy6mk5P2VmJjqL3CeZvg4vAn999abF7Nz3c1PF4k+zvhlnlrs9uct4mjQorDcdfo9W522vQ9n+HJ0dhVEPw5lVvgOa19zPk50Xq7XsLqCcOt+cKVdIWiw5J3kCgVpVHiQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731655573; c=relaxed/simple;
-	bh=kmy/XrVB2997ryrPkfAqlPTqEpXt76Ofqetkymj+YpU=;
+	s=arc-20240116; t=1731655710; c=relaxed/simple;
+	bh=6BEPIqlBVHJZyi2Sf0fYAB4CnTBbuvd5Fhv964Cngnw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cX5vMIIvXB7g+nIOm38Xd1eqq/KW4AHev7I5jnz/IaqjlHrxtwWWF8/oQOZlZrXnyhW2OnT0OTkhmEzFaUwQmG4GOmjMTn8i1Do8xLfL9zqRPFSKTBFga3vjPDrG5HfzGC/o0xDf/J+TTKraPA8YmjFTcGKWHOj7i8ntgThCII8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NeneI/Xq; arc=none smtp.client-ip=209.85.214.169
+	 Content-Type:Content-Disposition:In-Reply-To; b=lIpKhJ5G2/++YeNzi7IjZjzUIiaO7OYNWsVpFWo2R5I1zBT8y62HU+p1njSzAAje8YMgXt7L583LYLlXgZ+keGLHMNp25wGNwMNBFfqI3oxWczuXUvS+B3BcgiQ3jaJXo6QfKPXI0kutR9jrx3jdqZXU11IDVNQBKjmafLcgL40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QESEqBpg; arc=none smtp.client-ip=209.85.208.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-20cdb889222so3808255ad.3
-        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 23:26:12 -0800 (PST)
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2fb50e84ec7so12043111fa.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 23:28:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731655572; x=1732260372; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=q/td2OHK6Uv6OlvtXPu6vE7g7uy24DWzvPVKBds7d3U=;
-        b=NeneI/Xq/z60FaJAiQ/u+pGPCFSLlGQY8wTLLxH5XrZAhGdnzyl6gduEnaPtPrpLkY
-         LdLcTj1EhHDYez440sF7qn3VC9gVU5n0KnSSxHnDBfleq0IPpjveHcvXCjUIYDYfQwEs
-         wvz8CIxDeHNBv53+VYEYCQERAOuEhsVRnuF4AZFj4oRvTnVHecowAgNILBL4kizu7mWv
-         5mzc/cgqx09cCOhQsjnW+cFid8PxSf5Zuqsl3ES56+D7pgBG8Ji/NXDCZrgpm7oKc5za
-         d4yV3E/Xr5U0LMJ5sVjh3JfaYpqTCueNETuWJkLY8C2Ya/KT9LZ1+6R2kXfEib0+/Vjh
-         T52w==
+        d=linaro.org; s=google; t=1731655707; x=1732260507; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=/GwN7axuFnJwGV4zNdR/K7IbEiX+PCDHxU+ABf832Zg=;
+        b=QESEqBpgmSYwJlWLppr9+Iwk7jG83lobN2S+0ERHf5ikJHdD4gVlzHbHHeoJco0Zj5
+         c/ywvkU+3rR1PWT64oVwlA01PjCrwmKWnKhyVg7Z02uv7iFizax4uxTuDxJpk1d79uwD
+         yTn63b5AT2hGqiUGVZ1Ib9cF4MlYv1UksJaqU3WfAMorDBk2rICM5TQY3pcAZ+j2CB0m
+         6vbWl8vfKCQ/2onQJ2WS/7kvExkpa73mKT97IIHS1/srOpBlT9HKxvI64SrIsxGqZBVU
+         7OoNtrS0lQlH+8A/BMEfhnT1M5EtQZx10tgLjqoiCIyBxr1KHeWTnOA7aoki2UeMMT/L
+         SHAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731655572; x=1732260372;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=q/td2OHK6Uv6OlvtXPu6vE7g7uy24DWzvPVKBds7d3U=;
-        b=mLE0gVpfPERgZuFMd0Cs9u5pr+Uv/uN9cA7uzMODeGxWJs8AY9ObRmn3/dpIsjy2Ou
-         B8WpJ8/SIobt6Ie2Brr4/yg+O/mGHOdM56H/rgu4k3bbLTgL42HX4OyDdxEb9wx9rEaF
-         7Klhu6GDI8P7yKXuU+WYDL2sFfeb9fjuxp0zi7XKH309i0kmIS4Pr96rRR0gq3ZrY9Sh
-         gSK1TkmKcKQG/ej6lay5emu3bn6aoQ6GvR+XTL/OeIgcEIifHYLS6KIugKke8Z1q+iHt
-         yAtiqcdN+fvlZsEFfkI5vY7Om/16oXVfnxPlApd1eqXKl6QMsaI1NCRW+J55NDXDq59T
-         9Hyg==
-X-Forwarded-Encrypted: i=1; AJvYcCXFqSApoKGHGfVpynb2jIAixTlX1BBh6figu3DDm017bug2TBaWyZs0ynliLjUrMZX/tylrdz9+t4W9@vger.kernel.org
-X-Gm-Message-State: AOJu0YzgWo5fh6gHfgyGE35tNz4/RrMCMWg0Mrcl8BdRB+FfgaqI2uPA
-	lgMz/gRkuj78L/vShxfdgj9/NYr8fMfEgiefTCw4yIZVaIvxH8xScYPLKShFLNawVzqTnoIyDeQ
-	=
-X-Google-Smtp-Source: AGHT+IHF/h7Xa2A+zRkLdeKjCwTQRdlDQlAAp44kZhFqgVsoIp+fBjbt5btngDZE1kkJjv4kY/f0xQ==
-X-Received: by 2002:a17:903:2450:b0:211:ebd:e35f with SMTP id d9443c01a7336-211d0ecb12fmr20281755ad.39.1731655571824;
-        Thu, 14 Nov 2024 23:26:11 -0800 (PST)
-Received: from thinkpad ([117.193.208.47])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-211d0ecaad0sm6850975ad.100.2024.11.14.23.26.08
+        d=1e100.net; s=20230601; t=1731655707; x=1732260507;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/GwN7axuFnJwGV4zNdR/K7IbEiX+PCDHxU+ABf832Zg=;
+        b=Yic1NqTi2nxDuEo3oWrEvf+z71/0TGERo0iQP0H5RuZFDePrIjF8fIJDqhE9Vm7z9H
+         bAWUn1qtiEAp6hEHbgHrdvsmpVx57ix+Nwz6sre3j6yFm9mJIOs+9G07hug47+/sNBO1
+         059GMPm/1vGuTTuv49Tje/NT3IiNuSKCmBlRbaSRD/9LjqygZoTF4W7MudcGa8Wtq5if
+         CUMJVz6y0Zr6m3R9QV7QyPlJP1pv6JaCv7bNX+kcyiKBvooDehDLUz94Lj3mUUqaigfE
+         wTmWhSgHweFYkWgo+OFXdeuLwmEUahw2ftXgAM57QgLPg0P1SAljs976araQPtZavWQx
+         pMbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUvAJCFH16YdqyZC5YUZb+uRZhCqFgnCYBp/poa6IUqS1HG78JOC681rGVsCVGmshxaG/s/+iW8tuu0@vger.kernel.org
+X-Gm-Message-State: AOJu0YxZXD0ehbzmizqSTaP+3pasIfn3Byxwmr8iMTkyXMcmzfln9EW/
+	MZspieFr2pCq1SePdNuOur1yjExP55974bS3nRD+XSzHxO37V20u1RE2kBhNvpY=
+X-Google-Smtp-Source: AGHT+IHI9ax56yXePo1V9MbCWM4uPRipd+fXjT7Ug8imMQgOMNPQ6F5cq7l/TiXiyQtSP+9DaXDpmw==
+X-Received: by 2002:a05:651c:1551:b0:2fa:c014:4b6b with SMTP id 38308e7fff4ca-2ff609d868fmr7153221fa.41.1731655706847;
+        Thu, 14 Nov 2024 23:28:26 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ff597a053bsm4547781fa.56.2024.11.14.23.28.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Nov 2024 23:26:11 -0800 (PST)
-Date: Fri, 15 Nov 2024 12:56:04 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Jingoo Han <jingoohan1@gmail.com>, Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: PCI: snps,dw-pcie: Drop "#interrupt-cells"
- from example
-Message-ID: <20241115072604.yre2d7yiclt5d3w5@thinkpad>
-References: <20241105213217.442809-1-robh@kernel.org>
+        Thu, 14 Nov 2024 23:28:25 -0800 (PST)
+Date: Fri, 15 Nov 2024 09:28:23 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Akhil P Oommen <quic_akhilpo@quicinc.com>, 
+	Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Bjorn Andersson <andersson@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Connor Abbott <cwabbott0@gmail.com>, linux-pm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH RFC 5/8] drm/msm: adreno: find bandwidth index of OPP and
+ set it along freq index
+Message-ID: <ith6te3m4cjwjyxrsxpjsvqsyjr3qrmlyyo7cucljuweuzn37b@lmd5b5mqwkbw>
+References: <20241113-topic-sm8x50-gpu-bw-vote-v1-0-3b8d39737a9b@linaro.org>
+ <20241113-topic-sm8x50-gpu-bw-vote-v1-5-3b8d39737a9b@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241105213217.442809-1-robh@kernel.org>
+In-Reply-To: <20241113-topic-sm8x50-gpu-bw-vote-v1-5-3b8d39737a9b@linaro.org>
 
-On Tue, Nov 05, 2024 at 03:32:16PM -0600, Rob Herring (Arm) wrote:
-> "#interrupt-cells" is not valid without a corresponding "interrupt-map"
-> or "interrupt-controller" property. As the example has neither, drop
-> "#interrupt-cells". This fixes a dtc interrupt_provider warning.
+On Wed, Nov 13, 2024 at 04:48:31PM +0100, Neil Armstrong wrote:
+> The Adreno GMU Management Unit (GMU) can also scale the DDR Bandwidth
+> along the Frequency and Power Domain level, until now we left the OPP
+> core scale the OPP bandwidth via the interconnect path.
 > 
-
-But the DWC controllers have an in-built MSI controller. Shouldn't we add
-'interrrupt-controller' property then?
-
-- Mani
-
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> In order to enable bandwidth voting via the GPU Management
+> Unit (GMU), when an opp is set by devfreq we also look for
+> the corresponding bandwidth index in the previously generated
+> bw_table and pass this value along the frequency index to the GMU.
+> 
+> Since we now vote for all resources via the GMU, setting the OPP
+> is no more needed, so we can completely skip calling
+> dev_pm_opp_set_opp() in this situation.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
->  Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml | 1 -
->  1 file changed, 1 deletion(-)
+>  drivers/gpu/drm/msm/adreno/a6xx_gmu.c | 17 +++++++++++++++--
+>  drivers/gpu/drm/msm/adreno/a6xx_gmu.h |  2 +-
+>  drivers/gpu/drm/msm/adreno/a6xx_hfi.c |  6 +++---
+>  3 files changed, 19 insertions(+), 6 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> index 548f59d76ef2..205326fb2d75 100644
-> --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> @@ -230,7 +230,6 @@ examples:
+> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+> index 504a7c5d5a9df4c787951f2ae3a69d566d205ad5..1131c3521ebbb0d053aceb162052ed01e197726a 100644
+> --- a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+> @@ -113,6 +113,7 @@ void a6xx_gmu_set_freq(struct msm_gpu *gpu, struct dev_pm_opp *opp,
+>  	struct a6xx_gpu *a6xx_gpu = to_a6xx_gpu(adreno_gpu);
+>  	struct a6xx_gmu *gmu = &a6xx_gpu->gmu;
+>  	u32 perf_index;
+> +	u32 bw_index = 0;
+>  	unsigned long gpu_freq;
+>  	int ret = 0;
 >  
->        interrupts = <25>, <24>;
->        interrupt-names = "msi", "hp";
-> -      #interrupt-cells = <1>;
+> @@ -125,6 +126,16 @@ void a6xx_gmu_set_freq(struct msm_gpu *gpu, struct dev_pm_opp *opp,
+>  		if (gpu_freq == gmu->gpu_freqs[perf_index])
+>  			break;
 >  
->        reset-gpios = <&port0 0 1>;
+> +	/* If enabled, find the corresponding DDR bandwidth index */
+> +	if ((adreno_gpu->info->quirks & ADRENO_QUIRK_GMU_BW_VOTE) && gmu->nr_gpu_bws) {
+> +		unsigned int bw = dev_pm_opp_get_bandwidth(opp, true, 0);
+> +
+> +		for (bw_index = 0; bw_index < gmu->nr_gpu_bws - 1; bw_index++) {
+> +			if (bw == gmu->gpu_bw_table[bw_index])
+> +				break;
+> +		}
+> +	}
+> +
+>  	gmu->current_perf_index = perf_index;
+>  	gmu->freq = gmu->gpu_freqs[perf_index];
 >  
+> @@ -140,8 +151,10 @@ void a6xx_gmu_set_freq(struct msm_gpu *gpu, struct dev_pm_opp *opp,
+>  		return;
+>  
+>  	if (!gmu->legacy) {
+> -		a6xx_hfi_set_freq(gmu, perf_index);
+> -		dev_pm_opp_set_opp(&gpu->pdev->dev, opp);
+> +		a6xx_hfi_set_freq(gmu, perf_index, bw_index);
+> +		/* With Bandwidth voting, we now vote for all resources, so skip OPP set */
+> +		if (bw_index)
+
+if (!bw_index) ???
+
+Also should there be a 0 vote too in case we are shutting down /
+suspending?
+
+> +			dev_pm_opp_set_opp(&gpu->pdev->dev, opp);
+>  		return;
+>  	}
+>  
+> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gmu.h b/drivers/gpu/drm/msm/adreno/a6xx_gmu.h
+> index 95c632d8987a517f067c48c61c6c06b9a4f61fc0..9b4f2b1a0c48a133cd5c48713bc321c74eaffce9 100644
+> --- a/drivers/gpu/drm/msm/adreno/a6xx_gmu.h
+> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gmu.h
+> @@ -205,7 +205,7 @@ void a6xx_hfi_init(struct a6xx_gmu *gmu);
+>  int a6xx_hfi_start(struct a6xx_gmu *gmu, int boot_state);
+>  void a6xx_hfi_stop(struct a6xx_gmu *gmu);
+>  int a6xx_hfi_send_prep_slumber(struct a6xx_gmu *gmu);
+> -int a6xx_hfi_set_freq(struct a6xx_gmu *gmu, int index);
+> +int a6xx_hfi_set_freq(struct a6xx_gmu *gmu, int perf_index, int bw_index);
+>  
+>  bool a6xx_gmu_gx_is_on(struct a6xx_gmu *gmu);
+>  bool a6xx_gmu_sptprac_is_on(struct a6xx_gmu *gmu);
+> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_hfi.c b/drivers/gpu/drm/msm/adreno/a6xx_hfi.c
+> index 9a89ba95843e7805d78f0e5ddbe328677b6431dd..e2325c15677f1a1194a811e6ecbb5931bdfb1ad9 100644
+> --- a/drivers/gpu/drm/msm/adreno/a6xx_hfi.c
+> +++ b/drivers/gpu/drm/msm/adreno/a6xx_hfi.c
+> @@ -752,13 +752,13 @@ static int a6xx_hfi_send_core_fw_start(struct a6xx_gmu *gmu)
+>  		sizeof(msg), NULL, 0);
+>  }
+>  
+> -int a6xx_hfi_set_freq(struct a6xx_gmu *gmu, int index)
+> +int a6xx_hfi_set_freq(struct a6xx_gmu *gmu, int freq_index, int bw_index)
+>  {
+>  	struct a6xx_hfi_gx_bw_perf_vote_cmd msg = { 0 };
+>  
+>  	msg.ack_type = 1; /* blocking */
+> -	msg.freq = index;
+> -	msg.bw = 0; /* TODO: bus scaling */
+> +	msg.freq = freq_index;
+> +	msg.bw = bw_index;
+>  
+>  	return a6xx_hfi_send_msg(gmu, HFI_H2F_MSG_GX_BW_PERF_VOTE, &msg,
+>  		sizeof(msg), NULL, 0);
+> 
 > -- 
-> 2.45.2
+> 2.34.1
 > 
 
 -- 
-மணிவண்ணன் சதாசிவம்
+With best wishes
+Dmitry
 
