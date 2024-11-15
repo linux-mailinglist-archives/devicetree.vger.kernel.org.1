@@ -1,59 +1,62 @@
-Return-Path: <devicetree+bounces-122220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122221-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 059759CF312
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 18:37:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DD529CF318
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 18:38:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BDA6B287F83
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 17:37:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8EE2A28A521
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 17:38:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A3CC1D618E;
-	Fri, 15 Nov 2024 17:36:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E4CD1D63CF;
+	Fri, 15 Nov 2024 17:37:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nDEZ+eFy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hnGPl7zu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BA78166307;
-	Fri, 15 Nov 2024 17:36:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4279A1D61A4;
+	Fri, 15 Nov 2024 17:37:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731692219; cv=none; b=UlilDwCtXZMbJ8WUCzoPjLamzyD+jBMObhgs+8ll58kXTO+nweGfqOmPHlLWbXtqBeFHEYu3NhYRM67BuelHVjAN2GigY+jwhzcGRiSM8DP2a7tIRXV/BDxrJQOlC7eZwJoakRWl6catOfO1tDr0u7lzdaPeAsOBTEc9UscpNDU=
+	t=1731692278; cv=none; b=XorXiwyt05uG8XRIkIMn6ZIRDk1pppd8QbhIJT8DSqrUkIC7r/jreknxcbpWll8gKq5WIgDoKu5w7qbAD9J3qjS/GnTyZUwfaroSI6+4oqlYZ90BsxYjIecuYMO6NzYUo8FKCFgmJY2S5LlBDlkE4edeEf4dkidSb3ED0ibnzlo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731692219; c=relaxed/simple;
-	bh=IcilZRqcLlz7smR2XW5euoYnS0/VzBgcCuJBGtNwkGA=;
+	s=arc-20240116; t=1731692278; c=relaxed/simple;
+	bh=6+nVvbtdtzz+fSNZ2JXC4MDqsI77GIGKpN0z063gAP8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=E49VbdFQCuM37eTXfMC9MOy3rCch3NU08lUc1nJHokducYZp0FFxTS26WRs/4Jy8BPrRcl6hVLpGY0dX0fb2sp0d7xeElMgfkmvixmiDGXj4aaxrJQHfc9Gold7uatBblZyU2I1QKXJUbqBBeuBjH4AIBfHRjgxp1zkb/HcsvBs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nDEZ+eFy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FD5AC4CECF;
-	Fri, 15 Nov 2024 17:36:59 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=eettAqaWubsS3ehU7R2eLVxt9yQPp1TTsxLKSZ+HQHLGGwPcCQbc+EsTIk6hGn3l/5wmceKpQo9Ye3bgkejYZL/Pc8vUHPP72xQXJ/tnln/akO6EjCxQflMpvJ9aiP7+BkB3RPxDnBMAdLhBZzDsokjSTJEPNvFbXfrzRrWWy54=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hnGPl7zu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA77CC4CECF;
+	Fri, 15 Nov 2024 17:37:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731692219;
-	bh=IcilZRqcLlz7smR2XW5euoYnS0/VzBgcCuJBGtNwkGA=;
+	s=k20201202; t=1731692277;
+	bh=6+nVvbtdtzz+fSNZ2JXC4MDqsI77GIGKpN0z063gAP8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nDEZ+eFyEgyFipvy9yImn1Cr33i4Euku8fTWKKAz5VHYTWXsB+dNKx+4NO2IUpeuu
-	 XmuN9j6dfUqRgWbnRikiVFeBIbaH6tq1DcJ0JAPqmdff5IzHGntlfcr79Jn6NtaOF3
-	 ssCF7gj1llWGF7gLL+lN9jkssGvZF+HqIwTxcvqLlH+EyfZBf31N2CIYAMafzBrdVE
-	 7NsNEEbyAYPNANyPRhhMoayLY52gKKb0Lw/af4VtrF9gifYvB2ygJrVVoXi1w8GrdL
-	 o+MdrDWatMe2/jn55+ZRkzbO3ZTYuIHxkQabx0hW+l9tYtvAF1Ue6j4UpZ3kYukQCx
-	 dM6IDUiBeMLog==
-Date: Fri, 15 Nov 2024 11:36:57 -0600
-From: Rob Herring <robh@kernel.org>
-To: "Sperling, Tobias" <Tobias.Sperling@softing.com>
-Cc: "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"jic23@kernel.org" <jic23@kernel.org>,
-	"lars@metafoo.de" <lars@metafoo.de>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: Introduce ADS7138
-Message-ID: <20241115173657.GA3440948-robh@kernel.org>
-References: <BE1P281MB24207662EAC941780807F88BEF5A2@BE1P281MB2420.DEUP281.PROD.OUTLOOK.COM>
+	b=hnGPl7zuP1ZWk0xig9HRrOEvSbqDg5Lkq/bgde7py7HG7pFcOfDx+K+lPHnvSPmtl
+	 +YN8C++1IcEUHSjfyh8CFqS7bj/TBjJ77s2CVmFKu0YYhOIvF8GnVPXNWOQ7Jpcpzk
+	 Qv2Pgp4o194FIwkghm9GCPJyLrkUG/IS2ixcQsj+K0ur9NPqxN/xlU883nbv4Izpmr
+	 QvpBqM6C/fPyD5z0qtQiSiVTvXuS9YPrctR0SYZpHEqHw+FOg+YnvJpIYPoBOxuThZ
+	 l/A1oYNwwMTyjB93eDsqPT6lpM47RJb4KEhw1v/KHopwv77j76A13uB5+oMbLUlWC2
+	 RxNIvp1rRWphw==
+Date: Fri, 15 Nov 2024 11:37:55 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Sean Nyekjaer <sean@geanix.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	"David S. Miller" <davem@davemloft.net>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	linux-can@vger.kernel.org, Marc Kleine-Budde <mkl@pengutronix.de>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Eric Dumazet <edumazet@google.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH can-next v5 1/2] dt-bindings: can: tcan4x5x: Document the
+ ti,nwkrq-voltage-vio option
+Message-ID: <173169227528.3443207.4824174918630075657.robh@kernel.org>
+References: <20241114-tcan-wkrqv-v5-0-a2d50833ed71@geanix.com>
+ <20241114-tcan-wkrqv-v5-1-a2d50833ed71@geanix.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,97 +65,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <BE1P281MB24207662EAC941780807F88BEF5A2@BE1P281MB2420.DEUP281.PROD.OUTLOOK.COM>
+In-Reply-To: <20241114-tcan-wkrqv-v5-1-a2d50833ed71@geanix.com>
 
-On Wed, Nov 13, 2024 at 02:41:08PM +0000, Sperling, Tobias wrote:
-> >From 6a06973e1023ca6a128c8d426b4c87887117c084 Mon Sep 17 00:00:00 2001
-> From: Tobias Sperling <tobias.sperling@softing.com>
-> Date: Wed, 13 Nov 2024 14:52:49 +0100
-> Subject: [PATCH 1/2] dt-bindings: iio: adc: Introduce ADS7138
 
-Your patch is corrupted.
-
+On Thu, 14 Nov 2024 10:14:49 +0100, Sean Nyekjaer wrote:
+> The nWKRQ pin supports an output voltage of either the internal reference
+> voltage (3.6V) or the reference voltage of
+> the digital interface 0-6V (VIO).
+> Add the devicetree option ti,nwkrq-voltage-vio to set it to VIO.
 > 
-> Add documentation for the driver of ADS7128 and ADS7138 12-bit, 8-channel
-> analog-to-digital converters. These ADCs have a wide operating range and
-> a wide feature set. Communication is based on the I2C interface.
+> If this property is omitted the reset default, the internal reference
+> voltage, is used.
 > 
-> Signed-off-by: Tobias Sperling <tobias.sperling@softing.com>
+> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
 > ---
->  .../bindings/iio/adc/ti,ads7138.yaml          | 60 +++++++++++++++++++
->  1 file changed, 60 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads7138.yaml
+>  Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads7138.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads7138.yaml
-> new file mode 100644
-> index 000000000000..c70ad5747828
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/ti,ads7138.yaml
-> @@ -0,0 +1,60 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/ti,ads7138.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Texas Instruments ADS7128/ADS7138 Analog to Digital Converter (ADC)
-> +
-> +maintainers:
-> +  - Tobias Sperling <tobias.sperling@softing.com>
-> +
-> +description: |
-> +  The ADS7128 is 12-Bit, 8-Channel Sampling Analog to Digital Converter (ADC)
-> +  with an I2C interface.
-> +
-> +  Datasheets:
-> +    https://www.ti.com/product/ADS7128
-> +    https://www.ti.com/product/ADS7138
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ti,ads7128
-> +      - ti,ads7138
 
-What's the difference between the 2?
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  avdd-supply:
-> +    description:
-> +      The regulator used as analog supply voltage as well as reference voltage.
-> +
-> +  interrupts:
-> +    description:
-> +      Interrupt on ALERT pin, triggers on low level.
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - avdd-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        adc@10 {
-> +            compatible = "ti,ads7138";
-> +            reg = <0x10>;
-> +            avdd-supply = <&reg_stb_3v3>;
-> +            interrupt-parent = <&gpio2>;
-> +            interrupts = <12 IRQ_TYPE_LEVEL_LOW>;
-> +        };
-> +    };
-> +...
-> -- 
-> 2.34.1
-> 
 
