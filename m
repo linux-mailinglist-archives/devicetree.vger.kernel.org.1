@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-122023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122024-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE14F9CD531
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 02:54:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 046E29CD53A
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 03:00:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F51F28269F
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 01:54:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8010C1F21397
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 02:00:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C22F155A52;
-	Fri, 15 Nov 2024 01:54:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAB77131E2D;
+	Fri, 15 Nov 2024 02:00:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="OJvHei3T"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="JQJvYJqj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2080.outbound.protection.outlook.com [40.107.223.80])
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2052.outbound.protection.outlook.com [40.107.93.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53F477DA67;
-	Fri, 15 Nov 2024 01:54:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.223.80
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E97BA3CF58;
+	Fri, 15 Nov 2024 02:00:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.93.52
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731635643; cv=fail; b=PBbNaA4Dyf+B6w5cFqXLSneweR3v7NHVsac3lOeGSeD9uBI/zyM97TDGoNrMezd+2eJge9fQvVeBkii/OczosCfAdrf0eOPUyKJz+e7YkWQFusqkimgpqw5/lnrDxXTJCKmrXG/h8WOXLga2vPbsy5gi5CVZ0JTPHBXKhRj+X9M=
+	t=1731636016; cv=fail; b=nTIzmzpn/RgLCec2E3QUAGuuQH1YX1bPp9p3bxfUOinQ1C28uSb+ofYYRtVrZHs4Ty6QMF85U6D/cCJYr6UR318q0nuJdyyN6mvMqIlYJ+hJOIddktOmN7KT4wSJCwtDsiqe7lfiU8N+0Py8SBUMTK0HJ6eJlxHaqv3Jq7V112s=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731635643; c=relaxed/simple;
-	bh=gdR75T1ucsQJBm9RyjFEC0DVy2jtqfWLpV+/5ekh8fM=;
+	s=arc-20240116; t=1731636016; c=relaxed/simple;
+	bh=qcAShuVOMD7oWfVk3mMSSakMXQRwfA50hMlKuG4f6N4=;
 	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=VPSJXxiQwwFXY6s0zWdeS5ecyA9ad3CKU2HoNPNnUbHOTdIbceX4XUfSnsQvu5jX2IlFN50pDTxGdegWhO7JoGFhuMuc0bO3ZR/Gh4NpEu4jM/gaEmOw4nvTNH9acEJpUG9C2ZnIB1gi7bUPRTHuJgTUW8mHuCU+7mVY0ZxDZ64=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=OJvHei3T; arc=fail smtp.client-ip=40.107.223.80
+	 Content-Type:MIME-Version; b=KjEGuG3oyswsL+JaQ2liOnQEar88GZU8F3EFgerlVmH6ddOIvYs3sMyysguc3kvu3l3ile0kPnOjh8k1WWYW89J8IRsfhFNHLuDvxlmfGZN3gGnbWryllCF3vFXpyFbu9glRJN05HCIOM0oWXEcLkLIW+rab7z2NPB9BAuexBeg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=JQJvYJqj; arc=fail smtp.client-ip=40.107.93.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=flbNgHdImHrEJLcYf93v5tUuDNJp4dkhC2QobsejHGInMN0I4dlM4PfcpYXW6zwP8t0plGXL4k+Ymh5VprG5ug2pFhOZBVnCBkcDN10A7y9QuHdRJLnW7xXQGdaYqiLcmWpyffI+EKZ/DaRROJLN8bqc6ZdSmEyKt1SZLl3d9jmsvhTTwqo5ug47HXcGK9Y3ZtJC2BU3eL35yld8ZTS+PvWfj6ekm2uT/iLlKN1D6nGvMWElu9yxS3wA1S2GV68PJZdj1LgH3Yx5maNWrg+Ctc4EEPOJmN+VTeqdoV8tJPlosNBi843h+vKYq1UO4S1w91EjsoWKd9gVzEUMx+ltLA==
+ b=WkSJP85x82DQCjko8SCCxxsmdWCzkf5blN5ot1BWIg0k0tKJw6ZWwPn0lieJ3n497YQ77SjzQK8mpaqltLiPNDMO74FnMrxW6P7nuPkPSIDCgA/raGFxs+i5yxSmpASzD00jUvXTnhI6ezhtaAD7iJfmCUa6wfEttYVGdtpR9mcsL+LP8HftWLMUtlbBVku3cVs+TxWRJU9dITtGdTcYt30EISXgv4ElExLDRTFfRG31wuhXI3SFbE0d+9mNgjg7ZGp0z2b1ceJmn02PFW10NRpbAxorPbGztkNeFjl5t5vToSrfmaipr9nLn4NjZOn7A+3FR67D2IaylvfxY84w+g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZxhPiLI1THFsvpDefYVIb0i3F1TqcJomHGCOrESAmBU=;
- b=FQdriTff9TKkI/rbfmzn/1BgrBH7w0oRUbQ8oQuSqOARecqro76GOXaNABq66WkROIC0gg8byEsTSJB6asj32+uGjOdHk1eMvsD3TdjY93kN21KF75YtqV7r2otg7277Vb3u8dQu9I/1j2Ne9smTYHRsUQaBgrEVCtlJDTv8+zgsU0c9WzFxYPHu83ZQ/m+L1uvT2iQC3RWPZ3bnlt67qcYsZ26FiaLnxQjLeSV8jhuR2mLk09nmti+NZSvBV/rA1O4rVNwzBHBBd6gxwCxgddvjFaJsh8rfvxWQCjaezmmbM5kZ36IerOol5iiAjbQtAYWg4hCa+TldL1ra3Oqiww==
+ bh=i8d8gvk0sa1cq72RlXmYo0hfB46UD85Ijk9jNvgFFd8=;
+ b=cNbzDUIxCjfXna4wGe0GssJKkzzK0WSdVBl9ulY8Et6uzXHHcVS7X9K8i0yLFdmaWOhu+pESysAPthX/svfyE8nJma6VqWJ/k9TVUBAk+bmpEo4FlMcaQJ9Sco6gLhmh7Jl1trqWyIVjr4+ahqdVguMrYpvD/NCyCw6gKPyr38sk5CmKbnHmdTuVUoGlop7vhuzivSzWuX9ETk/LKeXRUBJILjgTbchl1nq6DqR1VSJolR2KOTx7qtxuqYDgkZ9vkEjO6yonVeDhjDuWWofYkuEprEKLtdt2nXqHLXg+16bvzIfwR+rv0MkzXdgDon7SK+mu9ztsQVb7M0tfBBuxvQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=microchip.com; dmarc=pass action=none
  header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZxhPiLI1THFsvpDefYVIb0i3F1TqcJomHGCOrESAmBU=;
- b=OJvHei3T2DMHLfOI6dI/30hznAM1rYw3DCGtq0XnJGjyoBtFGjpzPaovcmb8ig0JJrQn5+NDeLcvHSNqTSteZImnNY2YKhPZrpQ4qHHT14TEqsN3IcIR6jNkcamXEV2Tmn9wtN1ZyXaG3c8+AwGfjnEfwj5AD+g7SVFLKjTmpVDfgru+8FTbCy3FvFrwafUfesQTbFhH6EVwaqUEt1jjAib9AvTM3IQVVlCqWGVNUdsqn77EXCF8j936+DiG0vq3psKzaZmawpxiNSWuzt4/XMZDZYqCoUjTDeHTylEjrxpKeHzs2G4vBLbPSq4CWjMGfk/ptDregyFOOIT25JsBDw==
+ bh=i8d8gvk0sa1cq72RlXmYo0hfB46UD85Ijk9jNvgFFd8=;
+ b=JQJvYJqjLfXmJDwdAvBhIR+BjWJTVcE8hr8+xcO5guTXkQEl0R8LvQjriwJB7Sbj3NrwCke4Kau8BjVx0XCus3MZK4NZDb7+kK/tl42FqAfFdCB16lUtErDMfj0+zGphm+k8QZsajhONGfBlb73CJ7+4mz2hf6HxBu8xNOx1PVTmZpJkulcvvm9cnZtH2KLt7Dc1kEHs1PQD4ETFNk+wli/CxqrtNtVQBg06mcgoegbayaeC1xgEHTcRZCau1ShRMqS0bVohpYujjOLpXfHGWcCY5SHmGbB2WkdgAT0Ibx/QNI8wO7kAlqldT40xnmWZvOlNxy935Qq4Tx121zpBMg==
 Received: from DM3PR11MB8736.namprd11.prod.outlook.com (2603:10b6:0:47::9) by
  SA2PR11MB4954.namprd11.prod.outlook.com (2603:10b6:806:11b::17) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.18; Fri, 15 Nov
- 2024 01:53:57 +0000
+ 2024 02:00:12 +0000
 Received: from DM3PR11MB8736.namprd11.prod.outlook.com
  ([fe80::b929:8bd0:1449:67f0]) by DM3PR11MB8736.namprd11.prod.outlook.com
  ([fe80::b929:8bd0:1449:67f0%6]) with mapi id 15.20.8158.017; Fri, 15 Nov 2024
- 01:53:57 +0000
+ 02:00:11 +0000
 From: <Tristram.Ha@microchip.com>
-To: <olteanv@gmail.com>
-CC: <andrew@lunn.ch>, <Woojung.Huh@microchip.com>, <robh@kernel.org>,
+To: <andrew@lunn.ch>
+CC: <Woojung.Huh@microchip.com>, <olteanv@gmail.com>, <robh@kernel.org>,
 	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <davem@davemloft.net>,
 	<edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
 	<marex@denx.de>, <UNGLinuxDriver@microchip.com>,
@@ -68,18 +68,18 @@ Subject: RE: [PATCH net-next 2/2] net: dsa: microchip: Add SGMII port support
 Thread-Topic: [PATCH net-next 2/2] net: dsa: microchip: Add SGMII port support
  to KSZ9477 switch
 Thread-Index:
- AQHbMkqiYUyxAMrEtEGHh8l2mClPuLKvD0EAgAPmaUCAALlcAIAAy2zQgADVf4CAAkw7sA==
-Date: Fri, 15 Nov 2024 01:53:57 +0000
+ AQHbMkqiYUyxAMrEtEGHh8l2mClPuLKvD0EAgAPmaUCAALlcAIAAy2zQgAGOUACAAZUvQA==
+Date: Fri, 15 Nov 2024 02:00:11 +0000
 Message-ID:
- <DM3PR11MB8736D3C4814D9DCC8022F803EC242@DM3PR11MB8736.namprd11.prod.outlook.com>
+ <DM3PR11MB87366C1AC27378BA32D9CD9FEC242@DM3PR11MB8736.namprd11.prod.outlook.com>
 References: <20241109015633.82638-1-Tristram.Ha@microchip.com>
  <20241109015633.82638-3-Tristram.Ha@microchip.com>
  <784a33e2-c877-4d0e-b3a5-7fe1a04c9217@lunn.ch>
  <DM3PR11MB87360F9E39097E535416838EEC592@DM3PR11MB8736.namprd11.prod.outlook.com>
  <700c326c-d154-4d21-b9d4-d8abf8f2bf33@lunn.ch>
  <DM3PR11MB873696176581059CF682F253EC5A2@DM3PR11MB8736.namprd11.prod.outlook.com>
- <20241113144229.3ff4bgsalvj7spb7@skbuf>
-In-Reply-To: <20241113144229.3ff4bgsalvj7spb7@skbuf>
+ <1fcb11da-e660-497b-a098-c00f94c737f5@lunn.ch>
+In-Reply-To: <1fcb11da-e660-497b-a098-c00f94c737f5@lunn.ch>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach:
@@ -88,7 +88,7 @@ authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=microchip.com;
 x-ms-publictraffictype: Email
 x-ms-traffictypediagnostic: DM3PR11MB8736:EE_|SA2PR11MB4954:EE_
-x-ms-office365-filtering-correlation-id: f2d6d5cb-6ffa-4e9f-3394-08dd05185e5e
+x-ms-office365-filtering-correlation-id: e3a908b9-8e60-4b9b-e461-08dd05193d6b
 x-forefront-antispam-report:
  CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM3PR11MB8736.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(38070700018);DIR:OUT;SFP:1101;
 x-ms-exchange-senderadcheck: 1
@@ -96,59 +96,59 @@ x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam:
  BCL:0;ARA:13230040|1800799024|7416014|376014|366016|38070700018;
 x-microsoft-antispam-message-info:
- =?us-ascii?Q?CMjaftbrAjQYWinBYSb745WDAncxuc0zollGis1YjHAuMy3x26f/FrKaW+co?=
- =?us-ascii?Q?0sGYr+xyyBwH7eVQfeOqQpkFVemKmgByfg/yGsek2qA4y6jSzCCEKcnDIc7a?=
- =?us-ascii?Q?h+ZOdKSqTcPlTd4k2Ow9f+2/ulRNKQqk+lYPiES2S88x//QyfgxNzSw2eIHj?=
- =?us-ascii?Q?a/rv15ebETPDEzSDZ8XE6wasYklkrQ/ucjJgnqQYRkncSpvjabbSCnPJrVgg?=
- =?us-ascii?Q?IAGEzGxlSUlbwMr9R24NFXb2bnmx8UcPkCMCcU3lxWfP9VBZq3kcDoZX05mf?=
- =?us-ascii?Q?c35e8UHiy1o40aKsJfnIVYWO5pHblVv0DznOVcAkWIJwHtz9TU9pOAghsXfl?=
- =?us-ascii?Q?tXz8n89mRDoamEIOYcwusfxYvAhqdOcPhf6vWNAqNUFoJ1WbgghghKqEpeFm?=
- =?us-ascii?Q?zPpnrHSIrAouluERXM28hjGRjd/vuCAIM5UVHjP0erdKrZtsTEZSFimiGoEY?=
- =?us-ascii?Q?at+gejbugZEjDYg2A6LbLY6Q7ZmZoecOGccrr8Rz9xL9FoA5TP5EpXHLUyw/?=
- =?us-ascii?Q?BR26N3b/eCK9Eazqsn7/Ap3x/0uuyKLDuKYw5ZUaS0m26lcqVhhLzeo38jdi?=
- =?us-ascii?Q?TgSRd9pgtDMahmvhXee2btgBVdUWEtPCnyqf0bTHwMjgoZF/gJKYuPnsfq3K?=
- =?us-ascii?Q?XCnVrPSpGFU0huzTSSOKFwK1wrIHiJjr/n38g3qXnqrTQcM/xXLzjqKR9S01?=
- =?us-ascii?Q?x/BlrKRdHUTTt1mrSnwNoHnBP/YDDcVTP3vxznyWeYJBFA5dy78ot95nVnQ1?=
- =?us-ascii?Q?HghAX8W0GtWrNAYIa+iyayoNbfAdc8NiV2WX7ekC4KFs1u9s5b17DlV7YBlU?=
- =?us-ascii?Q?AoGGVEEbZySBMOHRFQkadmK6VT3jbepd8ieDmW/D4AH0n4myb/pEhP8yQh+o?=
- =?us-ascii?Q?ml8KIvbR+fnc7Egg5GDEZe0C9YuZNSC5G9g66m8+txXBjIKI1PNrWu1lPXdZ?=
- =?us-ascii?Q?lPilkJO8ezdrBTA7ivu2H4O9aMoIHdk2jyTHYcmGuaYyLoAXmWCevsh25zD9?=
- =?us-ascii?Q?nFgaqL7gXDaDsjKxI842sNjsEVPsp89rVnoirBTR6QqFtzvHhED9lzaYOc6o?=
- =?us-ascii?Q?79iAfceI1/qqmRVbsPZ5P5BOeX+d3rNiXTO5jKwnsme1KQ+Z/BTwhzrA8e9v?=
- =?us-ascii?Q?FHyegydZ6V7HbaBSMvMm+83Tvbv4jKZWHrbdvbBvK01L+Ut/gUVRHDynqOQ1?=
- =?us-ascii?Q?Onm7icutdjF+bQoA87XsjPUYeM5IK3LfhCARVfNCkUC2jmxFLXj2gwy4HqJc?=
- =?us-ascii?Q?aTMI4h+zxVzz+B9mFMEW+Ifl+TtxeotAnohc67+0rrFnU+XGPyHJZgfH/xn9?=
- =?us-ascii?Q?1huCLzfBRznMrr1ubh6tB9ig6PgmN9OxKx8Bydk/kvJvI0m/f9GlEL4AcRBr?=
- =?us-ascii?Q?bsByQ2Q=3D?=
+ =?us-ascii?Q?GyAod/mxFQ577Y+qHTZGjlB32I2fvUIbOvnO8JTTrrZwF9xssvp50s6gMvuj?=
+ =?us-ascii?Q?JCngg2zbjrcewvxD558MS85oNs+K3ZIhHwt5Yx5cPWIPsd8MVQwRaBn3/TwQ?=
+ =?us-ascii?Q?W3XUzH6P9Ygw/caDOCIKRGChWp+RxqAqTqeJnl/axEkkbrV1v2rpa0S4IU6J?=
+ =?us-ascii?Q?wrP6/Tub8deiIenord9nH+b3y93IgrQMLn60IzsUPCeYXaM20ztT3TzUmd7e?=
+ =?us-ascii?Q?1PUUkGDHqQ/PXow61fIQrVHs/8IjUAeTqTy7tGxgQDhtEVhOOVpfTvpT1lJe?=
+ =?us-ascii?Q?C8nu3MH7ef7AbPqKRswqPJULpvMGQW3TbEC2kbk2YdMAUbnm3n9yrzGx19mL?=
+ =?us-ascii?Q?vlfHdUf3VqPk6j+sbhhejHrgurSwV0zmgMtC0jVzfdO+GarN3mP2Rsg/7cgD?=
+ =?us-ascii?Q?ShsquhLSOpXf1rq2jg9n0YjjLSoN0ZaAL7BFsG01rIUs+XeIpKBKb0Gh730v?=
+ =?us-ascii?Q?cdxpWuBqthL7APBexDLAuXi/6A9hwlr5cXoh/76la836NuBuqLW8MtgG52Qf?=
+ =?us-ascii?Q?IvueJih0euh2HHU6fpRBLC1OrE4hcRtrtsNj1m3jtn5bdYkRRNQSnPIXVBOC?=
+ =?us-ascii?Q?OvCydgNSkdQUpdjhy/KEJ4o2lsF5VrvsMRLL6MnC+r/bjmygI+O1rBcSrCWj?=
+ =?us-ascii?Q?DkBUWVJU2+0Xcs6+dYXYMaLKRnqc80zKRrG6VWgCVNV325K4Uh6I2zssa/8f?=
+ =?us-ascii?Q?pZq2hjWdRidGltq8e5vh1VlPRIA3nTbNEzKyAMHR1pUA/Ml5ChHgWj2kYAdn?=
+ =?us-ascii?Q?nOFeLMIslK7BShOxTljWkdWiYlGu0OwB99DMB3+BEzdBmptLiFkN9Nr24EiP?=
+ =?us-ascii?Q?aSBK9zZ/nZ3zVYrEtTO2oabfnxi5N+dQnKpfmJUfyoo8Ap4TXYHKfb1fM6Ka?=
+ =?us-ascii?Q?1F2OBMlO3sqahx76qV26IUylE17ylr9utl3gxSef18Ec7WGQSD41s1VC6L0c?=
+ =?us-ascii?Q?btgW4wKKmlPpFuI1gV912Eo6n/0JceaYnpsCKnmW8Q/hBenB5BVorZ0d67to?=
+ =?us-ascii?Q?zd1UwndxWYW0FnjTDHcFClDfxj+2Mswd9ktYaBm5y8Yh4YlL2Km4PVJNA7Iz?=
+ =?us-ascii?Q?cfj33MZ2ftY0XqkZE/AysqHwBU1SslSY6fZZ+nHfcWzENn3wSF7S7tazCAo0?=
+ =?us-ascii?Q?CxVndi2aLDUjW6cINdhq8P/1l0iX0nSl87hv6WTi/VFELu7zCFrhwJf+4nRF?=
+ =?us-ascii?Q?bbXRIKanJPH1G+AiXma2cms6iH2L02DcZ5JW3Wh82cbA10XAnmJzY5nwaRMd?=
+ =?us-ascii?Q?7bmJ8FPzSl15fRroiX7x5zcaoh9XALeIa7PJhgD9h6oHWWtbj8RhlHZnIAbv?=
+ =?us-ascii?Q?1IeWL2y1VTyY/XNyQkN5D6+Q1OhFFCJgn/MP8dnzaV4XO+g1uTxqiUWRvDHG?=
+ =?us-ascii?Q?WitH0jU=3D?=
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?bVeMP/dOw6/VNBIGwrqALwfZV8M39hRZpRicxc5TCxm/Tjj2Pd344/sHv8kj?=
- =?us-ascii?Q?rYiEP1X4RaY4m4BTHU3+6f9NRVCoV7ME7Mo6yCUMrjwhYml35ATvHfhs+P8e?=
- =?us-ascii?Q?m3Cq/tZRtWAgzTOeorKaBdnLZ8iJKf4J8zAUEKK4Upe55KNflv0/AWzEzgVt?=
- =?us-ascii?Q?Ve53WIep8jXRl5Ly6rAsHIt6lzbNN/ys4+5a+w+q4qhNV14AZSNnfbxoaOAw?=
- =?us-ascii?Q?xu7Ahba0JkvzqluXrAMS1wgXrTllDijaA2MKOOL9Kh+3h2ABhx6ebcKCbGzk?=
- =?us-ascii?Q?Rho5Q+MRx1uSVb32376vYmyIpwsB6+8IMtwh4AALAZDkYzY31FZQaHgI3h6v?=
- =?us-ascii?Q?UANb3rEnc93TDND6JXUNkJmkS+DWDfPddzLC7UokRIIKKDLNNRJXRIpJKpeu?=
- =?us-ascii?Q?6TbtU+LD+WTK1/+gCslnM4ojZAyKB4GWbAsWghCseTYIgdnPeN8Z8joRGDiq?=
- =?us-ascii?Q?JHztxnRDd6D6+jMEFNOaHBggEjjks07e3sHuiaw/GEU7mg/beVfwzEotTG27?=
- =?us-ascii?Q?o+4VowW2X5p9YVsqTPIOEaKqwCqW90hET1czgOT+AmsFKl68rAsm0r21F7a3?=
- =?us-ascii?Q?KBGp4n5VScXhK25xr3O3/OSIL4AzlyktemxgxQpenluzDSa1cCkXZKs9OqrG?=
- =?us-ascii?Q?glhRl15uw0WvWxiYsvjBXiP83OcphjXP4gwO8ci2foKQXU200TGplrJt/iVM?=
- =?us-ascii?Q?sgnUEGoAnQ9t9zHQfW7TSSUxVwsaC7+Oa9keZcIDhad9uNLE7tixjLnBy0/x?=
- =?us-ascii?Q?Xdv3LVQsFs/EyHyUszmXA31v0vnUULlitHNl60eAXk/MYImLPDl9Uf+Etstx?=
- =?us-ascii?Q?LxDUsOv2HsmSCQ+ADTQ0IwdOFZEzNTtLjvxdO2ovFG/runRzbIVOihe26DUH?=
- =?us-ascii?Q?ORJVJkSPCcDrpmCpTqfd3iyUvB2o5RFee1CzQTgROSJc26DbVKj/4aJu5Hav?=
- =?us-ascii?Q?oXqfrraJaY0ll4y1slPRWFNdGlCd4HlJsrSnY7a9/5TQHN+VpRfITaokaBVM?=
- =?us-ascii?Q?1CTUayialkMD6zP+Y6HOtE2KjJQ7HVmSmfZM6JBSqkE8VgOk0yMd1vODlJkc?=
- =?us-ascii?Q?HLSKDO2Hemk4kWkspCvpvOwONjc7UwDrUjnrsqweywtfd6odInuKo1P4ATht?=
- =?us-ascii?Q?56p/ZvONutXt+4ccabl4q7mPM9ku5sN6bv+2fVs+qFYLTJIRvJvLQFFKFku3?=
- =?us-ascii?Q?QAk7Yg/fn3Ym7ajIiBr+7oszJF7Nttk0m/5AAft3OTfSe6dL7HqE6jYTn4/P?=
- =?us-ascii?Q?tvHFfZXUkDuLKDJV5ccRzv9l7A/aFRtQjY9MqFOa+eoyekZOHeLtRfikGXBo?=
- =?us-ascii?Q?I1km8xWyScUjJbA80u+oJX0ucS/1mf/4A1guSy3ylQmH9sSIL5Ku3rJDVLEt?=
- =?us-ascii?Q?amQ5LzxKP8PwQfgpq0Ti7C89dqZE1UzrfNXddtbgg7L3dZ9hwx9dmoW7UXDC?=
- =?us-ascii?Q?fVrRav9bzHbLbQ/EZY0QwBU+gDOYcChPPYwiv5TLA9ZITH1dvAkxJPHLVceS?=
- =?us-ascii?Q?c+tKOGw8YxvQY76EVFfoWyCNmGhgaRuCxf8FcFoECnd534cAdphS/IhOppui?=
- =?us-ascii?Q?woSmSPl+rNqGLdZqmFQ+2kXnsb3LBSfVDzw7rmTF?=
+ =?us-ascii?Q?kgpVAZBM7Vi4ur+SrPI64q6I7lVAXw5VSkxWl1JZusvJ8Y/y/JYHuu1Vsi9p?=
+ =?us-ascii?Q?xxPa1hRpxc5q08gAPbKXxcKBzSk9K6Bn600v8x3zPJjolZiuoh5QtDj9zqtI?=
+ =?us-ascii?Q?s/fsG0a49rWzAmzqH7/IdYMSWARTkjA+XLz/Z7yS4I/extcbkGbf4SXXmM4r?=
+ =?us-ascii?Q?v9/rv4XqVoKRrc9e5IwPX0Ti8va+MqE8q0YX/EP1Cy+imwbEXSvwZdIpeckE?=
+ =?us-ascii?Q?BLvZVENAxfdx4eyqIuMYY4Irz1qWTVAGzrqfrY/Hj4aj7Qq+xiVNlNYL/bGd?=
+ =?us-ascii?Q?DFtFVgU0SsvmSXlsVRCukfKgNoGocqppIPeiuJLimZ3jM0w5sBkqr/kzHso9?=
+ =?us-ascii?Q?u4FQ2TWiupUxMU4v+Qe9ex+YZ5D70H3XgaPOG1tIn/TTpJdEKIYcNYN3+G7G?=
+ =?us-ascii?Q?G3l9/CKSEz88TKWuFGqq9z9O9OK6SoizYgQwFQzWwC9X3G4KE7s+l3FZ+DUc?=
+ =?us-ascii?Q?UkbeQ2i5VUW/0Wzpw40SR3q6lc88cT+FFdnPbdPcZmY4V3hSD9wHFjdvhgtU?=
+ =?us-ascii?Q?SHm0vNBIj6/B1sg85t05LIVto7cxFmw1v7JxI6F6cFXb1N+41YNEl6C0Gsgv?=
+ =?us-ascii?Q?mq/vi2Kkb7lfUdfbLjX7NcFKqeYl5CUk6Ul/j7OSaFSzbMi8TJ9znNivrfiN?=
+ =?us-ascii?Q?HlZTffvfJ7SFEgUnx/YFm6xI/Bpp4Vin8LLT+lyd+qSEGhGTR9/4XXYG88s5?=
+ =?us-ascii?Q?p3Gkx5syy4v6bXxTAuord4kCiX+1lvDcfsFu/6+5g4FHuYhPTMZjrdNanhm3?=
+ =?us-ascii?Q?0S7OONB5WtU/wRiw86N40apC8F1d2ZyuAJvug26Wqc5xiaC5+aao0OJoNd5l?=
+ =?us-ascii?Q?3bmMMj5u5vzSHEZQk6ieXee7DNpj4mYkU+R4rQWl2XNXe8+FPusuAKIB2nCD?=
+ =?us-ascii?Q?gqCTTTEw1Gms2m2A4gAx/pqYxGdAhIhJC1KjII2VEbTHWYptnrxzS7Y6XNl3?=
+ =?us-ascii?Q?qAdRgUgjmi+OnRtdA58Hrsmd1eLOM8tbGY6t+qdKea10SnR83OfOoJ/qgWY7?=
+ =?us-ascii?Q?mXnV4mZ/6FaOLFoGya0iUu4FEECv98oU4uishqlvXRVPmfLBhrc8dIDxbfua?=
+ =?us-ascii?Q?uOdqZ2kpZ3O7WCWBQnH8S740gMlhm5O463t7pMNucJ4DoNrGY2Y2Vkh21JBD?=
+ =?us-ascii?Q?gdoOsZxK8OyTq++8pYFvru114JC0wMoMsOaU3+MIVv5gumzYACj8Za2twEow?=
+ =?us-ascii?Q?oyize0Vt1MPsyLWj8V6V4om3rcOT246ptY1hON7vrMsxJzhpZel0ooUttG3d?=
+ =?us-ascii?Q?MClb1n+Xi7GBJV+8qjFPGZYngV+QXL/Ylf4SoFk/DwhqYm1MlhjSm9DdbK4z?=
+ =?us-ascii?Q?EhOz1ptD91ndnvfB3Wnb6w0YiPJsapyT0QGfeWBTzdtbHO+DpRt/AgspyZCQ?=
+ =?us-ascii?Q?Y0v4ao5IE2slIAab5TBRTAf7hIewHiKruDfqTt64AhVyjsTXX46fIQajAlnJ?=
+ =?us-ascii?Q?Z2zc3M6a9nTZAVetodSeGqek68FdbtyuWEN80n4T1A6vGwYxdQMRacXI6mYI?=
+ =?us-ascii?Q?Ukgg5e+EZJg0nwptfLQitKA8yTg/cj5f63OZLfgQhF3RPydacJtQGvmHum2V?=
+ =?us-ascii?Q?vu1KEaB/O0pFPLo4SxXcmdmD+mxsCgutchiAv97W?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
@@ -160,137 +160,78 @@ MIME-Version: 1.0
 X-OriginatorOrg: microchip.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: DM3PR11MB8736.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f2d6d5cb-6ffa-4e9f-3394-08dd05185e5e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Nov 2024 01:53:57.6489
+X-MS-Exchange-CrossTenant-Network-Message-Id: e3a908b9-8e60-4b9b-e461-08dd05193d6b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Nov 2024 02:00:11.9090
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: k18FtunFytNuktxV4b+98gsPHpZ74F5wgpS76t/xyVAMex5PYygzXB2MXeREsw/JHEGWreGyjVnheFwTcLHlH5ke6/0WhDl6BhdajNOfkow=
+X-MS-Exchange-CrossTenant-userprincipalname: 6bfZhPHLmWW00h+zlPhlybWRD8v+ko1K4n7Rm4GS3Q7bjszWUq7jX1ynE54VJfVwvJOFB+GQW1igGkN7+Bvft5A2JxIthxDjF/hWR3DgouM=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4954
 
-> On Wed, Nov 13, 2024 at 02:12:36AM +0000, Tristram.Ha@microchip.com wrote=
-:
-> > When the SFP says it supports 1000Base-T sfp_add_phy() is called by the
-> > SFP state machine and phylink_sfp_connect_phy() and
-> > phylink_sfp_config_phy() are run.  It is in the last function that the
-> > validation fails as the just created phy device does not initialize its
-> > supported and advertising fields yet.  The phy device has the
-> > opportunity later to fill them up if the phylink creation goes through,
-> > but that never happens.
-> >
-> > A fix is to fill those fields with sfp_support like this:
-> >
-> > @@ -3228,6 +3228,11 @@ static int phylink_sfp_config_phy(struct
-> >     struct phylink_link_state config;
-> >     int ret;
-> >
-> > +    /* The newly created PHY device has empty settings. */
-> > +    if (linkmode_empty(phy->supported)) {
-> > +        linkmode_copy(phy->supported, pl->sfp_support);
-> > +        linkmode_copy(phy->advertising, pl->sfp_support);
-> > +    }
-> >     linkmode_copy(support, phy->supported);
-> >
-> >     memset(&config, 0, sizeof(config));
-> >
-> > The provided PCS driver from the DSA driver has an opportunity to chang=
-e
-> > support with its validation check, but that does not look right as
-> > generally those checks remove certain bits from the link mode, but this
-> > requires completely copying new ones.  And this still does not work as
-> > the advertising field passed to the PCS driver has a const modifier.
+> > When the SFP EEPROM says it does not support 1000Base-T then the SFP bu=
+s
+> > code does not consider the SFP has a PHY and skips creating a MDIO bus
+> > for it and phylink_sfp_config_optical() is called to create the phylink=
+.
 >=20
-> I think I know what's happening, it's unfortunate it pushed you towards
-> wrong conclusions.
+> There are many SFPs out there with broken EEPROM contents. Do the SFPs
+> you have say they are not 1000Base-T but actually are? If so, they are
+> broken, and need a quirk adding.
 >=20
-> The "fix" you posted is wrong, and no, the PCS driver should not expand
-> the supported mask, just restrict it as you said. The phydev->supported
-> mask normally comes from the phy_probe() logic:
+> Russell King keeps a database of SFP EEPROM contents. Send him the
+> output of `ethtool -m eth42 raw on hex on`
 >=20
->         /* Start out supporting everything. Eventually,
->          * a controller will attach, and may modify one
->          * or both of these values
->          */
->         if (phydrv->features) {
->                 linkmode_copy(phydev->supported, phydrv->features);
->                 genphy_c45_read_eee_abilities(phydev);
->         }
->         else if (phydrv->get_features)
->                 err =3D phydrv->get_features(phydev);
->         else if (phydev->is_c45)
->                 err =3D genphy_c45_pma_read_abilities(phydev);
->         else
->                 err =3D genphy_read_abilities(phydev);
+> > Now back to the discussion of the different modes used by the SGMII
+> > module.  I think a better term like SerDes can be used to help
+> > understanding the operation, although I still cannot narrow down the
+> > precise definitions from looking at the internet.  SGMII mode is
+> > said to support 10/100/1000Mbit.  This is the default setting, so
+> > plugging such SFP allows the port to communicate without any register
+> > programming.  The other mode is SerDes, which is fixed at 1000Mbit.  Th=
+is
+> > is typically used by SFP using fiber optics.  This requires changing a
+> > register to make the port works.  It seems those 1000Base-T SFPs all ru=
+n
+> > in SerDes mode, at least from all SFPs I tried.
 >=20
-> The SFP bus code depends strictly on sfp_sm_probe_phy() -> phy_device_reg=
-ister()
-> actually loading a precise device driver for the PHY synchronously via
-> phy_bus_match(). There is another lazy loading mechanism later in
-> phy_attach_direct(), for the Generic PHY driver:
+> There is a comment in the code:
 >=20
->         /* Assume that if there is no driver, that it doesn't
->          * exist, and we should use the genphy driver.
->          */
+> /* Probe a SFP for a PHY device if the module supports copper - the PHY
+>  * normally sits at I2C bus address 0x56, and may either be a clause 22
+>  * or clause 45 PHY.
+>  *
+>  * Clause 22 copper SFP modules normally operate in Cisco SGMII mode with
+>  * negotiation enabled, but some may be in 1000base-X - which is for the
+>  * PHY driver to determine.
 >=20
-> but that is too late for this code path, because as you say,
-> phylink_sfp_config_phy() is coded up to only call phylink_attach_phy()
-> if phylink_validate() succeeds. But phylink_validate() will only see a
-> valid phydev->supported mask with the Generic PHY driver if we let that
-> driver attach in phylink_attach_phy() in the first place.
->=20
-> Personally, I think SFP modules with embedded PHYs strictly require the
-> matching driver to be available to the kernel, due to that odd way in
-> which the Generic PHY driver is loaded, but I will let the PHY library
-> experts share their opinion as well.
->=20
-> You would be better off improving the error message, see what PHY ID you
-> get, then find and load the driver for it:
->=20
-> diff --git a/drivers/net/phy/sfp.c b/drivers/net/phy/sfp.c
-> index 7dbcbf0a4ee2..8be473a7d262 100644
-> --- a/drivers/net/phy/sfp.c
-> +++ b/drivers/net/phy/sfp.c
-> @@ -1817,9 +1817,12 @@ static int sfp_sm_probe_phy(struct sfp *sfp, int a=
-ddr, bool
-> is_c45)
->=20
->         err =3D sfp_add_phy(sfp->sfp_bus, phy);
->         if (err) {
-> +               dev_err(sfp->dev,
-> +                       "sfp_add_phy() for PHY %s (ID 0x%.8lx) failed: %p=
-e, maybe PHY driver
-> not loaded?\n",
-> +                       phydev_name(phy), (unsigned long)phy->phy_id,
-> +                       ERR_PTR(err));
->                 phy_device_remove(phy);
->                 phy_device_free(phy);
-> -               dev_err(sfp->dev, "sfp_add_phy failed: %pe\n", ERR_PTR(er=
-r));
->                 return err;
->         }
->=20
->=20
-> Chances are it's one of CONFIG_MARVELL_PHY or CONFIG_AQUANTIA_PHY.
+> So the default is SGMII for copper SFPs, but there are a few oddballs
+> using 1000BaseX. The Marvell PHY driver should figure this out, and
+> the phylink will tell you want mode to use.
 
-Indeed adding the Marvell PHY driver fixed the problem.
+Adding Marvell PHY driver fixes the main issue I raised.  But the PHY
+support still shows only SGMII interface inside the PHY driver, and the
+ethtool module-info command shows 1000BASE-T.  The only good brand-name
+SFPs I have are all 10/100/1000 type.  I am going to get other brands to
+see if they get better or always use SerDes mode.
 
-There is nothing special about the Marvell PHY driver.  It is just
-phy_probe() is called during PHY device creation just as you said.
+That leaves the one situation where the SGMII port is connected directly
+to a MAC or each other.  A customer once tried to do that and the SGMII
+register write was changed to support that, but I do not know if that
+project became a real product.  Microchip does have a board connecting
+the SGMII ports of two chips together, but that does not run Linux, and
+there is no special configuration to make the ports work.
 
-It may not be right to use sfp_support, but all three (sfp_support,
-supported, advertising) have about the same value at that point after the
-PHY driver is invoked: 0x62ff and 0x60f0.
+As there is no SFP or PHY to tell phylink which interface to use I think
+the only solution is to declare fixed-link or some other phy modes in the
+device tree?
 
-I mentioned before that some SFPs have faulty implementation where part
-of the returned PHY register value is 0xff.  For example, PHY register 0
-is 0x11ff, PHY register 1 is 0x79ff, and PHY register 2 is 0x01ff.  The
-Marvell PHY id is 0x01410cc0, and I saw there is a special PHY id
-0x01ff0cc0 defined for Finisar to accommodate this situation.  Were those
-SFPs made by Finisar originally?
+I currently use fixed-link to handle this situation.  There is another
+new issue though.
 
-Some of those PHY registers are correct, so I do not know if those wrong
-registers are intentional or not, but the link status register always
-has 0xff value and that cannot be right.
+The SGMII port in another chip can use 2.5G.  The driver uses fixed PHY
+to get the MAC running.  But the fixed PHY driver can only support speed
+up to 1000.  There is no issue to adding higher speeds to that driver, but
+I think that is not advised?
 
 
