@@ -1,199 +1,296 @@
-Return-Path: <devicetree+bounces-122022-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122023-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98DE79CD50C
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 02:30:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE14F9CD531
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 02:54:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 326A4282615
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 01:30:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F51F28269F
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 01:54:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55904762E0;
-	Fri, 15 Nov 2024 01:29:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C22F155A52;
+	Fri, 15 Nov 2024 01:54:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U3jc+NoY"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="OJvHei3T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2080.outbound.protection.outlook.com [40.107.223.80])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28D30CA5B;
-	Fri, 15 Nov 2024 01:29:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731634197; cv=none; b=NelqfL1VCGbmfvaN/R+7Oa8gdTxpoWLAR+akozE1ZJiGGEHnyZ0morzhGrzWHHoU/HgR0Gjw4WgUxlcsDrKMl0gHwPy6oeybU3fLHKfjI0GLYf1dpjUFh+xCQt9KuisPPHySK0Rkox0IvImn/hFSOT96u5+9opBXWHuIw4IAbRg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731634197; c=relaxed/simple;
-	bh=F7vjyos0o0cMAhq/QgY+/gErSw+KDdiVVSrnj53mNpI=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=B8FQdiYzplXsievVnVnX+KKaEjQw31bCMxTJT70KHgxnjp9uIAI64oIblsi0j8tsBLr3x6z7Bac1T5cQVwo1S5XsJOvB+K8DoBUtZNYSa+LMp21AdcBXfKmMFPuyMjbqcf46PKm14GkWBHpgq1UeFSeuCfIViRxp5kTvOYwKjKA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U3jc+NoY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 946C1C4CECD;
-	Fri, 15 Nov 2024 01:29:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731634196;
-	bh=F7vjyos0o0cMAhq/QgY+/gErSw+KDdiVVSrnj53mNpI=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=U3jc+NoYqih9t4XYPl8bBhd15QLfcgEeksTy//Rp2d2nGRctt9Dcp23AQ8BO4mQwM
-	 xNRvSiTJEENI7Ju7D5OuVF+l31xIJM1E5r29OiugiXvikQNAqDS7UUq+yPYcgfsx85
-	 sfwpG/xQ9zYmXw3vWRxe6AmxJZTgHS1j6kAbOhkkV6xVzWsyWNyCcDH4U78ZNXf3lN
-	 y8RjonQ9d0H14CuP2XgNuiRZWUcrcLPx9HlNl1fG4DbnjXx917CI3E3FJIN3PrvfVf
-	 V1JJGpMDtUg2Gs+F2KhYqNKwtm+VLet5xVzlMoyAmqXSvyX3g8pOLnVm1cYWz99pVo
-	 DOCosyyQ6rDag==
-Message-ID: <430bde3b35382e640843e32a9f351326.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53F477DA67;
+	Fri, 15 Nov 2024 01:54:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.223.80
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1731635643; cv=fail; b=PBbNaA4Dyf+B6w5cFqXLSneweR3v7NHVsac3lOeGSeD9uBI/zyM97TDGoNrMezd+2eJge9fQvVeBkii/OczosCfAdrf0eOPUyKJz+e7YkWQFusqkimgpqw5/lnrDxXTJCKmrXG/h8WOXLga2vPbsy5gi5CVZ0JTPHBXKhRj+X9M=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1731635643; c=relaxed/simple;
+	bh=gdR75T1ucsQJBm9RyjFEC0DVy2jtqfWLpV+/5ekh8fM=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=VPSJXxiQwwFXY6s0zWdeS5ecyA9ad3CKU2HoNPNnUbHOTdIbceX4XUfSnsQvu5jX2IlFN50pDTxGdegWhO7JoGFhuMuc0bO3ZR/Gh4NpEu4jM/gaEmOw4nvTNH9acEJpUG9C2ZnIB1gi7bUPRTHuJgTUW8mHuCU+7mVY0ZxDZ64=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=OJvHei3T; arc=fail smtp.client-ip=40.107.223.80
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=flbNgHdImHrEJLcYf93v5tUuDNJp4dkhC2QobsejHGInMN0I4dlM4PfcpYXW6zwP8t0plGXL4k+Ymh5VprG5ug2pFhOZBVnCBkcDN10A7y9QuHdRJLnW7xXQGdaYqiLcmWpyffI+EKZ/DaRROJLN8bqc6ZdSmEyKt1SZLl3d9jmsvhTTwqo5ug47HXcGK9Y3ZtJC2BU3eL35yld8ZTS+PvWfj6ekm2uT/iLlKN1D6nGvMWElu9yxS3wA1S2GV68PJZdj1LgH3Yx5maNWrg+Ctc4EEPOJmN+VTeqdoV8tJPlosNBi843h+vKYq1UO4S1w91EjsoWKd9gVzEUMx+ltLA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZxhPiLI1THFsvpDefYVIb0i3F1TqcJomHGCOrESAmBU=;
+ b=FQdriTff9TKkI/rbfmzn/1BgrBH7w0oRUbQ8oQuSqOARecqro76GOXaNABq66WkROIC0gg8byEsTSJB6asj32+uGjOdHk1eMvsD3TdjY93kN21KF75YtqV7r2otg7277Vb3u8dQu9I/1j2Ne9smTYHRsUQaBgrEVCtlJDTv8+zgsU0c9WzFxYPHu83ZQ/m+L1uvT2iQC3RWPZ3bnlt67qcYsZ26FiaLnxQjLeSV8jhuR2mLk09nmti+NZSvBV/rA1O4rVNwzBHBBd6gxwCxgddvjFaJsh8rfvxWQCjaezmmbM5kZ36IerOol5iiAjbQtAYWg4hCa+TldL1ra3Oqiww==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZxhPiLI1THFsvpDefYVIb0i3F1TqcJomHGCOrESAmBU=;
+ b=OJvHei3T2DMHLfOI6dI/30hznAM1rYw3DCGtq0XnJGjyoBtFGjpzPaovcmb8ig0JJrQn5+NDeLcvHSNqTSteZImnNY2YKhPZrpQ4qHHT14TEqsN3IcIR6jNkcamXEV2Tmn9wtN1ZyXaG3c8+AwGfjnEfwj5AD+g7SVFLKjTmpVDfgru+8FTbCy3FvFrwafUfesQTbFhH6EVwaqUEt1jjAib9AvTM3IQVVlCqWGVNUdsqn77EXCF8j936+DiG0vq3psKzaZmawpxiNSWuzt4/XMZDZYqCoUjTDeHTylEjrxpKeHzs2G4vBLbPSq4CWjMGfk/ptDregyFOOIT25JsBDw==
+Received: from DM3PR11MB8736.namprd11.prod.outlook.com (2603:10b6:0:47::9) by
+ SA2PR11MB4954.namprd11.prod.outlook.com (2603:10b6:806:11b::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.18; Fri, 15 Nov
+ 2024 01:53:57 +0000
+Received: from DM3PR11MB8736.namprd11.prod.outlook.com
+ ([fe80::b929:8bd0:1449:67f0]) by DM3PR11MB8736.namprd11.prod.outlook.com
+ ([fe80::b929:8bd0:1449:67f0%6]) with mapi id 15.20.8158.017; Fri, 15 Nov 2024
+ 01:53:57 +0000
+From: <Tristram.Ha@microchip.com>
+To: <olteanv@gmail.com>
+CC: <andrew@lunn.ch>, <Woojung.Huh@microchip.com>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <davem@davemloft.net>,
+	<edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
+	<marex@denx.de>, <UNGLinuxDriver@microchip.com>,
+	<devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH net-next 2/2] net: dsa: microchip: Add SGMII port support
+ to KSZ9477 switch
+Thread-Topic: [PATCH net-next 2/2] net: dsa: microchip: Add SGMII port support
+ to KSZ9477 switch
+Thread-Index:
+ AQHbMkqiYUyxAMrEtEGHh8l2mClPuLKvD0EAgAPmaUCAALlcAIAAy2zQgADVf4CAAkw7sA==
+Date: Fri, 15 Nov 2024 01:53:57 +0000
+Message-ID:
+ <DM3PR11MB8736D3C4814D9DCC8022F803EC242@DM3PR11MB8736.namprd11.prod.outlook.com>
+References: <20241109015633.82638-1-Tristram.Ha@microchip.com>
+ <20241109015633.82638-3-Tristram.Ha@microchip.com>
+ <784a33e2-c877-4d0e-b3a5-7fe1a04c9217@lunn.ch>
+ <DM3PR11MB87360F9E39097E535416838EEC592@DM3PR11MB8736.namprd11.prod.outlook.com>
+ <700c326c-d154-4d21-b9d4-d8abf8f2bf33@lunn.ch>
+ <DM3PR11MB873696176581059CF682F253EC5A2@DM3PR11MB8736.namprd11.prod.outlook.com>
+ <20241113144229.3ff4bgsalvj7spb7@skbuf>
+In-Reply-To: <20241113144229.3ff4bgsalvj7spb7@skbuf>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM3PR11MB8736:EE_|SA2PR11MB4954:EE_
+x-ms-office365-filtering-correlation-id: f2d6d5cb-6ffa-4e9f-3394-08dd05185e5e
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM3PR11MB8736.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|7416014|376014|366016|38070700018;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?CMjaftbrAjQYWinBYSb745WDAncxuc0zollGis1YjHAuMy3x26f/FrKaW+co?=
+ =?us-ascii?Q?0sGYr+xyyBwH7eVQfeOqQpkFVemKmgByfg/yGsek2qA4y6jSzCCEKcnDIc7a?=
+ =?us-ascii?Q?h+ZOdKSqTcPlTd4k2Ow9f+2/ulRNKQqk+lYPiES2S88x//QyfgxNzSw2eIHj?=
+ =?us-ascii?Q?a/rv15ebETPDEzSDZ8XE6wasYklkrQ/ucjJgnqQYRkncSpvjabbSCnPJrVgg?=
+ =?us-ascii?Q?IAGEzGxlSUlbwMr9R24NFXb2bnmx8UcPkCMCcU3lxWfP9VBZq3kcDoZX05mf?=
+ =?us-ascii?Q?c35e8UHiy1o40aKsJfnIVYWO5pHblVv0DznOVcAkWIJwHtz9TU9pOAghsXfl?=
+ =?us-ascii?Q?tXz8n89mRDoamEIOYcwusfxYvAhqdOcPhf6vWNAqNUFoJ1WbgghghKqEpeFm?=
+ =?us-ascii?Q?zPpnrHSIrAouluERXM28hjGRjd/vuCAIM5UVHjP0erdKrZtsTEZSFimiGoEY?=
+ =?us-ascii?Q?at+gejbugZEjDYg2A6LbLY6Q7ZmZoecOGccrr8Rz9xL9FoA5TP5EpXHLUyw/?=
+ =?us-ascii?Q?BR26N3b/eCK9Eazqsn7/Ap3x/0uuyKLDuKYw5ZUaS0m26lcqVhhLzeo38jdi?=
+ =?us-ascii?Q?TgSRd9pgtDMahmvhXee2btgBVdUWEtPCnyqf0bTHwMjgoZF/gJKYuPnsfq3K?=
+ =?us-ascii?Q?XCnVrPSpGFU0huzTSSOKFwK1wrIHiJjr/n38g3qXnqrTQcM/xXLzjqKR9S01?=
+ =?us-ascii?Q?x/BlrKRdHUTTt1mrSnwNoHnBP/YDDcVTP3vxznyWeYJBFA5dy78ot95nVnQ1?=
+ =?us-ascii?Q?HghAX8W0GtWrNAYIa+iyayoNbfAdc8NiV2WX7ekC4KFs1u9s5b17DlV7YBlU?=
+ =?us-ascii?Q?AoGGVEEbZySBMOHRFQkadmK6VT3jbepd8ieDmW/D4AH0n4myb/pEhP8yQh+o?=
+ =?us-ascii?Q?ml8KIvbR+fnc7Egg5GDEZe0C9YuZNSC5G9g66m8+txXBjIKI1PNrWu1lPXdZ?=
+ =?us-ascii?Q?lPilkJO8ezdrBTA7ivu2H4O9aMoIHdk2jyTHYcmGuaYyLoAXmWCevsh25zD9?=
+ =?us-ascii?Q?nFgaqL7gXDaDsjKxI842sNjsEVPsp89rVnoirBTR6QqFtzvHhED9lzaYOc6o?=
+ =?us-ascii?Q?79iAfceI1/qqmRVbsPZ5P5BOeX+d3rNiXTO5jKwnsme1KQ+Z/BTwhzrA8e9v?=
+ =?us-ascii?Q?FHyegydZ6V7HbaBSMvMm+83Tvbv4jKZWHrbdvbBvK01L+Ut/gUVRHDynqOQ1?=
+ =?us-ascii?Q?Onm7icutdjF+bQoA87XsjPUYeM5IK3LfhCARVfNCkUC2jmxFLXj2gwy4HqJc?=
+ =?us-ascii?Q?aTMI4h+zxVzz+B9mFMEW+Ifl+TtxeotAnohc67+0rrFnU+XGPyHJZgfH/xn9?=
+ =?us-ascii?Q?1huCLzfBRznMrr1ubh6tB9ig6PgmN9OxKx8Bydk/kvJvI0m/f9GlEL4AcRBr?=
+ =?us-ascii?Q?bsByQ2Q=3D?=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?bVeMP/dOw6/VNBIGwrqALwfZV8M39hRZpRicxc5TCxm/Tjj2Pd344/sHv8kj?=
+ =?us-ascii?Q?rYiEP1X4RaY4m4BTHU3+6f9NRVCoV7ME7Mo6yCUMrjwhYml35ATvHfhs+P8e?=
+ =?us-ascii?Q?m3Cq/tZRtWAgzTOeorKaBdnLZ8iJKf4J8zAUEKK4Upe55KNflv0/AWzEzgVt?=
+ =?us-ascii?Q?Ve53WIep8jXRl5Ly6rAsHIt6lzbNN/ys4+5a+w+q4qhNV14AZSNnfbxoaOAw?=
+ =?us-ascii?Q?xu7Ahba0JkvzqluXrAMS1wgXrTllDijaA2MKOOL9Kh+3h2ABhx6ebcKCbGzk?=
+ =?us-ascii?Q?Rho5Q+MRx1uSVb32376vYmyIpwsB6+8IMtwh4AALAZDkYzY31FZQaHgI3h6v?=
+ =?us-ascii?Q?UANb3rEnc93TDND6JXUNkJmkS+DWDfPddzLC7UokRIIKKDLNNRJXRIpJKpeu?=
+ =?us-ascii?Q?6TbtU+LD+WTK1/+gCslnM4ojZAyKB4GWbAsWghCseTYIgdnPeN8Z8joRGDiq?=
+ =?us-ascii?Q?JHztxnRDd6D6+jMEFNOaHBggEjjks07e3sHuiaw/GEU7mg/beVfwzEotTG27?=
+ =?us-ascii?Q?o+4VowW2X5p9YVsqTPIOEaKqwCqW90hET1czgOT+AmsFKl68rAsm0r21F7a3?=
+ =?us-ascii?Q?KBGp4n5VScXhK25xr3O3/OSIL4AzlyktemxgxQpenluzDSa1cCkXZKs9OqrG?=
+ =?us-ascii?Q?glhRl15uw0WvWxiYsvjBXiP83OcphjXP4gwO8ci2foKQXU200TGplrJt/iVM?=
+ =?us-ascii?Q?sgnUEGoAnQ9t9zHQfW7TSSUxVwsaC7+Oa9keZcIDhad9uNLE7tixjLnBy0/x?=
+ =?us-ascii?Q?Xdv3LVQsFs/EyHyUszmXA31v0vnUULlitHNl60eAXk/MYImLPDl9Uf+Etstx?=
+ =?us-ascii?Q?LxDUsOv2HsmSCQ+ADTQ0IwdOFZEzNTtLjvxdO2ovFG/runRzbIVOihe26DUH?=
+ =?us-ascii?Q?ORJVJkSPCcDrpmCpTqfd3iyUvB2o5RFee1CzQTgROSJc26DbVKj/4aJu5Hav?=
+ =?us-ascii?Q?oXqfrraJaY0ll4y1slPRWFNdGlCd4HlJsrSnY7a9/5TQHN+VpRfITaokaBVM?=
+ =?us-ascii?Q?1CTUayialkMD6zP+Y6HOtE2KjJQ7HVmSmfZM6JBSqkE8VgOk0yMd1vODlJkc?=
+ =?us-ascii?Q?HLSKDO2Hemk4kWkspCvpvOwONjc7UwDrUjnrsqweywtfd6odInuKo1P4ATht?=
+ =?us-ascii?Q?56p/ZvONutXt+4ccabl4q7mPM9ku5sN6bv+2fVs+qFYLTJIRvJvLQFFKFku3?=
+ =?us-ascii?Q?QAk7Yg/fn3Ym7ajIiBr+7oszJF7Nttk0m/5AAft3OTfSe6dL7HqE6jYTn4/P?=
+ =?us-ascii?Q?tvHFfZXUkDuLKDJV5ccRzv9l7A/aFRtQjY9MqFOa+eoyekZOHeLtRfikGXBo?=
+ =?us-ascii?Q?I1km8xWyScUjJbA80u+oJX0ucS/1mf/4A1guSy3ylQmH9sSIL5Ku3rJDVLEt?=
+ =?us-ascii?Q?amQ5LzxKP8PwQfgpq0Ti7C89dqZE1UzrfNXddtbgg7L3dZ9hwx9dmoW7UXDC?=
+ =?us-ascii?Q?fVrRav9bzHbLbQ/EZY0QwBU+gDOYcChPPYwiv5TLA9ZITH1dvAkxJPHLVceS?=
+ =?us-ascii?Q?c+tKOGw8YxvQY76EVFfoWyCNmGhgaRuCxf8FcFoECnd534cAdphS/IhOppui?=
+ =?us-ascii?Q?woSmSPl+rNqGLdZqmFQ+2kXnsb3LBSfVDzw7rmTF?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20241106-freefall-slider-db379b05821e@spud>
-References: <20241002-private-unequal-33cfa6101338@spud> <20241002-hula-unwashed-1c4ddbadbec2@spud> <2b49c4df-a34a-42c5-8d44-9e47da630fe8@linaro.org> <1jwmiqsks3.fsf@starbuckisacylon.baylibre.com> <20241003-tacking-ladylike-dfe2b633e647@spud> <20241106-freefall-slider-db379b05821e@spud>
-Subject: Re: [PATCH v1 08/11] clk: move meson clk-regmap implementation to common code
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, Daire McNamara <daire.mcnamara@microchip.com>, pierre-henry.moussay@microchip.com, valentina.fernandezalanis@microchip.com, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>, Lee Jones <lee@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Philipp Zabel <p.zabel@pengutronix.de>, linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-To: Conor Dooley <conor@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>
-Date: Thu, 14 Nov 2024 17:29:54 -0800
-User-Agent: alot/0.12.dev1+gaa8c22fdeedb
+X-OriginatorOrg: microchip.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM3PR11MB8736.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f2d6d5cb-6ffa-4e9f-3394-08dd05185e5e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Nov 2024 01:53:57.6489
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: k18FtunFytNuktxV4b+98gsPHpZ74F5wgpS76t/xyVAMex5PYygzXB2MXeREsw/JHEGWreGyjVnheFwTcLHlH5ke6/0WhDl6BhdajNOfkow=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4954
 
-Quoting Conor Dooley (2024-11-06 04:56:25)
-> On Thu, Oct 03, 2024 at 12:33:40PM +0100, Conor Dooley wrote:
-> > > IIRC, Stephen's idea was more the bring regmap support in clk-gate.c,
-> > > clk-mux, etc ... I'm not quite sure how make iomem and regmap co-exist
-> > > in a manageable/maintainable way within those drivers (without adding=
- yet
-> > > another level of abstraction I mean) ? Silently creating a regmap may=
-be
-> > > ? but that's probably a bit heavy. I did not really had time to dig m=
-ore
-> > > on this, I guess no one did.
-> >=20
-> > I guess I have some motivation to looking into it at the moment. I had
-> > my reservations about the Meson approach too, liking it more than
-> > Qualcomm's didn't mean I completely liked it.
-> > It was already my intention to implement point b of your mail, had the
-> > general idea here been acceptable, cos that's a divergence from how the
-> > generic clock types (that the driver in question currently uses) work.
-> > And on that note, I just noticed I left the mild-annoyance variable name
-> > "sigh" in the submitted driver changes, which I had used for the
-> > clk_regmap struct that your point b in the link relates to.
-> >=20
-> > > I don't really have a preference one way or the other but if it is go=
-ing
-> > > to be exposed in 'include/linux', we need to be sure that's how we wa=
-nt
-> > > to do it. With clocks poping in many driver subsystems, it will
-> > > difficult to change afterward.=20
-> >=20
-> > Yeah, I agree. I didn't expect this to go in right away, and I also
-> > didn't want to surge ahead on some rework of the clock types, were
-> > people to hate even the reuse.
+> On Wed, Nov 13, 2024 at 02:12:36AM +0000, Tristram.Ha@microchip.com wrote=
+:
+> > When the SFP says it supports 1000Base-T sfp_add_phy() is called by the
+> > SFP state machine and phylink_sfp_connect_phy() and
+> > phylink_sfp_config_phy() are run.  It is in the last function that the
+> > validation fails as the just created phy device does not initialize its
+> > supported and advertising fields yet.  The phy device has the
+> > opportunity later to fill them up if the phylink creation goes through,
+> > but that never happens.
+> >
+> > A fix is to fill those fields with sfp_support like this:
+> >
+> > @@ -3228,6 +3228,11 @@ static int phylink_sfp_config_phy(struct
+> >     struct phylink_link_state config;
+> >     int ret;
+> >
+> > +    /* The newly created PHY device has empty settings. */
+> > +    if (linkmode_empty(phy->supported)) {
+> > +        linkmode_copy(phy->supported, pl->sfp_support);
+> > +        linkmode_copy(phy->advertising, pl->sfp_support);
+> > +    }
+> >     linkmode_copy(support, phy->supported);
+> >
+> >     memset(&config, 0, sizeof(config));
+> >
+> > The provided PCS driver from the DSA driver has an opportunity to chang=
+e
+> > support with its validation check, but that does not look right as
+> > generally those checks remove certain bits from the link mode, but this
+> > requires completely copying new ones.  And this still does not work as
+> > the advertising field passed to the PCS driver has a const modifier.
 >=20
-> Hmm, so how (in-)complete of a regmap implementation can I get away
-> with? I only need clk-gate and clk-divider for this patchset...
+> I think I know what's happening, it's unfortunate it pushed you towards
+> wrong conclusions.
 >=20
-> Shoving the regmap into the clk structs makes things pretty trivial as I
-> don't need to do anything special in any function other than
-> clk_*_readl()/clk_*_writel() and the registration code. A flag isn't
-> even needed to determine if a clock is a regmap one I don't think, since
-> you can just check if the regmap pointer is non-NULL.
-
-For the basic clk types I think it would be good to leave the old stuff
-alone. We have already split the logic out into helpers, so I wonder if
-we can do this better by making kernel modules for the different basic
-regmap clk types and exposing registration APIs. If we force drivers
-that use the basic regmap types to 'select' the module then we'll make
-it so that we don't include code that isn't used anywhere. That's one of
-the problems with the basic clk types, it's always built. It also lets
-us avoid making regmap a dependency for the clk framework at large.
-
-Doing that would also let us avoid the flag because it will be explicit
-in any registration API, clk_register_divider() vs.
-clk_register_regmap_divider(). Yes we duplicate some boiler plate logic
-around read-only and registration paths, but this is alright as long as
-we can share most of the code and gain the advantage of removing the
-code entirely when it isn't used.
-
-I wonder if we can even make a regmap on the fly for the iomem pointers
-so that clk_divider_readl() can always use the regmap API to access the
-hardware. Sounds wasteful but maybe it would work.
-
-> My use case doesn't
-> actually need the registration code changes either as, currently, only reg
-> gets set at runtime, but leaving that out is a level of incomplete I'd not
-> let myself away with.
-> Obviously shoving the extra members into the clk structs has the downside
-> of taking up a pointer and a offset worth of memory for each clock of
-> that type registered, but it is substantially easier to support devices
-> with multiple regmaps that way. Probably moot though since the approach y=
-ou
-> suggested in the thread linked above that implements a clk_hw_get_regmap()
-> has to store a pointer to the regmap's identifier which would take up an
-> identical amount of memory.
-
-We don't need to store the regmap identifier in the struct clk. We can
-store it in the 'struct clk_init_data' with some new field, and only do
-that when/if we actually need to. We would need to pass the init data to
-the clk_ops::init() callback though. We currently knock that out during
-registration so that clk_hw->init is NULL. Probably we can just set that
-to NULL after the init routine runs in __clk_core_init().
-
-Long story short, don't add something to 'struct clk_core', 'struct
-clk', or 'struct clk_hw' for these details. We can have a 'struct
-clk_regmap_hw' that everyone else can build upon:
-
-  struct clk_regmap_hw {
-        struct regmap *regmap;
-        struct clk_hw hw;
-  };
-
-and then set the regmap pointer during registration in
-clk_hw_init_regmap().
-
-int clk_hw_init_regmap(struct clk_hw *hw)
-{
-	struct device *dev;
-	struct regmap *regmap;
-	struct clk_regmap_hw *rhw;
-
-	rhw =3D clk_hw_to_clk_regmap_hw(hw);
-
-	dev =3D clk_hw_get_dev(hw);
-	if (!dev)
-		return -EINVAL;
-
-	regmap =3D dev_get_regmap(dev, hw->init->regmap_name);
-	if (!regmap)
-		return -EINVAL; // Print helpful message
-	rhw->regmap =3D regmap;
-
-	return 0;
-}
-
-or we can even make it so that there's clk_hw_init_regmap() and
-clk_hw_init_regmap_name() so that drivers can have multiple functions if
-the clks need different regmaps.
-
-int my_init_regmap(struct clk_hw *hw)
-{
-	int ret;
-
-	ret =3D clk_hw_init_regmap_name(hw, "my_name");
-	...
-}
-
-If you don't need the multiple regmap support then it's fine to punt
-here until later.
-
+> The "fix" you posted is wrong, and no, the PCS driver should not expand
+> the supported mask, just restrict it as you said. The phydev->supported
+> mask normally comes from the phy_probe() logic:
 >=20
-> I don't really care which way you want it done, both are pretty easy to
-> implement if I can get away with just doing so for the two standard
-> clock types that I am using - is it okay to just do those two?
+>         /* Start out supporting everything. Eventually,
+>          * a controller will attach, and may modify one
+>          * or both of these values
+>          */
+>         if (phydrv->features) {
+>                 linkmode_copy(phydev->supported, phydrv->features);
+>                 genphy_c45_read_eee_abilities(phydev);
+>         }
+>         else if (phydrv->get_features)
+>                 err =3D phydrv->get_features(phydev);
+>         else if (phydev->is_c45)
+>                 err =3D genphy_c45_pma_read_abilities(phydev);
+>         else
+>                 err =3D genphy_read_abilities(phydev);
 >=20
+> The SFP bus code depends strictly on sfp_sm_probe_phy() -> phy_device_reg=
+ister()
+> actually loading a precise device driver for the PHY synchronously via
+> phy_bus_match(). There is another lazy loading mechanism later in
+> phy_attach_direct(), for the Generic PHY driver:
+>=20
+>         /* Assume that if there is no driver, that it doesn't
+>          * exist, and we should use the genphy driver.
+>          */
+>=20
+> but that is too late for this code path, because as you say,
+> phylink_sfp_config_phy() is coded up to only call phylink_attach_phy()
+> if phylink_validate() succeeds. But phylink_validate() will only see a
+> valid phydev->supported mask with the Generic PHY driver if we let that
+> driver attach in phylink_attach_phy() in the first place.
+>=20
+> Personally, I think SFP modules with embedded PHYs strictly require the
+> matching driver to be available to the kernel, due to that odd way in
+> which the Generic PHY driver is loaded, but I will let the PHY library
+> experts share their opinion as well.
+>=20
+> You would be better off improving the error message, see what PHY ID you
+> get, then find and load the driver for it:
+>=20
+> diff --git a/drivers/net/phy/sfp.c b/drivers/net/phy/sfp.c
+> index 7dbcbf0a4ee2..8be473a7d262 100644
+> --- a/drivers/net/phy/sfp.c
+> +++ b/drivers/net/phy/sfp.c
+> @@ -1817,9 +1817,12 @@ static int sfp_sm_probe_phy(struct sfp *sfp, int a=
+ddr, bool
+> is_c45)
+>=20
+>         err =3D sfp_add_phy(sfp->sfp_bus, phy);
+>         if (err) {
+> +               dev_err(sfp->dev,
+> +                       "sfp_add_phy() for PHY %s (ID 0x%.8lx) failed: %p=
+e, maybe PHY driver
+> not loaded?\n",
+> +                       phydev_name(phy), (unsigned long)phy->phy_id,
+> +                       ERR_PTR(err));
+>                 phy_device_remove(phy);
+>                 phy_device_free(phy);
+> -               dev_err(sfp->dev, "sfp_add_phy failed: %pe\n", ERR_PTR(er=
+r));
+>                 return err;
+>         }
+>=20
+>=20
+> Chances are it's one of CONFIG_MARVELL_PHY or CONFIG_AQUANTIA_PHY.
 
-Of course, doing only what is minimally required is better than changing
-everything if you're not sure the approach is going to land.
+Indeed adding the Marvell PHY driver fixed the problem.
+
+There is nothing special about the Marvell PHY driver.  It is just
+phy_probe() is called during PHY device creation just as you said.
+
+It may not be right to use sfp_support, but all three (sfp_support,
+supported, advertising) have about the same value at that point after the
+PHY driver is invoked: 0x62ff and 0x60f0.
+
+I mentioned before that some SFPs have faulty implementation where part
+of the returned PHY register value is 0xff.  For example, PHY register 0
+is 0x11ff, PHY register 1 is 0x79ff, and PHY register 2 is 0x01ff.  The
+Marvell PHY id is 0x01410cc0, and I saw there is a special PHY id
+0x01ff0cc0 defined for Finisar to accommodate this situation.  Were those
+SFPs made by Finisar originally?
+
+Some of those PHY registers are correct, so I do not know if those wrong
+registers are intentional or not, but the link status register always
+has 0xff value and that cannot be right.
+
 
