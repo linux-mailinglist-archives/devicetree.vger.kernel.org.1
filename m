@@ -1,99 +1,162 @@
-Return-Path: <devicetree+bounces-122227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5541C9CF465
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 19:55:14 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C88059CF3D5
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 19:23:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C0E9CB37C59
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 18:08:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6B282B2BA72
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 18:13:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E7C21D8DE8;
-	Fri, 15 Nov 2024 18:08:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3134B1D61A3;
+	Fri, 15 Nov 2024 18:13:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="b9noSIjW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eOfeHz6i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D2E21CF2B7;
-	Fri, 15 Nov 2024 18:08:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0471D1C68F;
+	Fri, 15 Nov 2024 18:13:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731694109; cv=none; b=lRS1JTVGh+8D7Nroi1e52+zUOwGCoJWkkQO7lTsWqRZUzKGWBYBJ7nEKkm8hh5OP52IxiGfZ8X5cjTr5LXJKIP0opbh17W8Hkp2+6/uO0n40ufUHw68mzQFlgCEzg1WEOJm6ZNdZS7Ax2bERMS+vExXc8xl0uPc4EZ+cfuMxySs=
+	t=1731694398; cv=none; b=kWPji4Tzqbkxq1TOKPN5wmKqXIGG8iSVvtqz+3JlYFhlzcBnmY2Z0EXu0AJzR+6CVJAvcI21r7GcA8AItZ/E1QPVg8tNS0H6K3hyyMgNYPOjzN3LRGtcA6kYVbcIYVVwtdqAHetEteG4g5nHz8exG6aDCt/yGG0IawNPkwvv14Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731694109; c=relaxed/simple;
-	bh=99hLPcPeLsA5xiPzzppHyxOy/Ma4LEzox1z7X9vCitE=;
+	s=arc-20240116; t=1731694398; c=relaxed/simple;
+	bh=32WLkf0O+yGDOwkZskNwQL4/F4N5Iho9l67AcmoDPQY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OTkNi4AXO1LYNZoX8i8V+eOkKyT3SvqoiFjIPJsNSD6Fh5b+0k3KNm0OiEeQAwm0IMhueJkAIsFC9raZsJdVnh9Ij0C9cniWwyBdhW76xzfF+iJwHL2yloOkcPUGnmyJytUAt/hdadCbrV40XGnfC9QwJH0z38DMtluHQRDHq18=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=b9noSIjW; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=/xcDkzaN2dH1xIz2RpTRyZdvyIkC7Ao/QwEFYfCD5Zo=; b=b9noSIjWklcCrxO5+d5ZpCcDd5
-	obe74/IiTyDco3kV+uSlRrb+GxsTji+GnX/+Q4m1A0EWQ1Dl5XwKDK0XIfhVQvX9OjdRTS0MGkOhr
-	Bhfe65wdd07UO5C5llLvOvIZ7oNFdOqRnF8FZQRuzNsVodfoVVo6KoLFz/M9i3i+xo2c=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tC0jz-00DRwk-9L; Fri, 15 Nov 2024 19:08:19 +0100
-Date: Fri, 15 Nov 2024 19:08:19 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Tristram.Ha@microchip.com
-Cc: Woojung.Huh@microchip.com, olteanv@gmail.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, davem@davemloft.net,
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-	marex@denx.de, UNGLinuxDriver@microchip.com,
-	devicetree@vger.kernel.org, netdev@vger.kernel.org,
+	 Content-Type:Content-Disposition:In-Reply-To; b=KhNkbnOldJJ/ZcDfGZtv0YqVS4LsUtdFPXY0M6RMV47F1bRGWh6n5TABD0cIM3++UwH7Dl/n8eXYz/DKyGR+4YzsqdUWUvMF2LHYSsBBFf6Ar2Rt3Xr4phBWT0V0U4ZkUhUW23Xm2MA6kv5ESQves1XW+6gMkNzHSSgOjDqB6dc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eOfeHz6i; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3581C4CECF;
+	Fri, 15 Nov 2024 18:13:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731694396;
+	bh=32WLkf0O+yGDOwkZskNwQL4/F4N5Iho9l67AcmoDPQY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eOfeHz6illFnbHfeiY2UCmpzhMd1jMMontnwOJrzFjU0Byu/GFzyMFHIfQ+PU6ur7
+	 lKcCBtbD8k1gburqyN10VWE4HTrJhfdkBNZ89HbmQwMWsg22Yh6uuMwn7EmCUsNITT
+	 enoCcuD4IvtsLbKVUzfM1VT+mSOzTOkXP2Yk/broM+tBUn6c/uhs+yWCjxMi3I3MKU
+	 05z0NgJ6kV9lD3f/D1TXxyz+mnLfQGfPgda+9WkoEKcOcG/wGmGIG5GwSirtWSneq5
+	 r8+tFNoQ4uBpbuJZ6HjL1joqGFHHX3fpPjlTFeyERrYadwC1qrTaGvTaq4is2LVN+f
+	 UAZgnpSXyRT6w==
+Date: Fri, 15 Nov 2024 18:13:11 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc: Aleksandar Rikalo <arikalo@gmail.com>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Jiaxun Yang <jiaxun.yang@flygoat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 2/2] net: dsa: microchip: Add SGMII port support
- to KSZ9477 switch
-Message-ID: <f11b6e5d-380c-4f13-af91-3672e2c120d6@lunn.ch>
-References: <20241109015633.82638-1-Tristram.Ha@microchip.com>
- <20241109015633.82638-3-Tristram.Ha@microchip.com>
- <784a33e2-c877-4d0e-b3a5-7fe1a04c9217@lunn.ch>
- <DM3PR11MB87360F9E39097E535416838EEC592@DM3PR11MB8736.namprd11.prod.outlook.com>
- <700c326c-d154-4d21-b9d4-d8abf8f2bf33@lunn.ch>
- <DM3PR11MB873696176581059CF682F253EC5A2@DM3PR11MB8736.namprd11.prod.outlook.com>
- <1fcb11da-e660-497b-a098-c00f94c737f5@lunn.ch>
- <DM3PR11MB87366C1AC27378BA32D9CD9FEC242@DM3PR11MB8736.namprd11.prod.outlook.com>
+Subject: Re: [PATCH 1/5] dt-bindings: mips: Document mti,mips-cm
+Message-ID: <20241115-strained-rule-631f3a514bf9@spud>
+References: <20241115-cluster-hci-broken-v1-0-00636800611d@bootlin.com>
+ <20241115-cluster-hci-broken-v1-1-00636800611d@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="WKK6JjqQ/ZrGErBt"
+Content-Disposition: inline
+In-Reply-To: <20241115-cluster-hci-broken-v1-1-00636800611d@bootlin.com>
+
+
+--WKK6JjqQ/ZrGErBt
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <DM3PR11MB87366C1AC27378BA32D9CD9FEC242@DM3PR11MB8736.namprd11.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 
-> That leaves the one situation where the SGMII port is connected directly
-> to a MAC or each other.  A customer once tried to do that and the SGMII
-> register write was changed to support that, but I do not know if that
-> project became a real product.
+On Fri, Nov 15, 2024 at 04:29:54PM +0100, Gregory CLEMENT wrote:
+> From: Jiaxun Yang <jiaxun.yang@flygoat.com>
+>=20
+> Add devicetree binding documentation for MIPS Coherence Manager.
+>=20
+> gc: reg is no more mandatory
 
-This is often done to cascade switches. In this setup, going down to
-100Mbps or 10Mbps makes no sense, so 1000BaseX is used, not
-SGMII. Today, fixed-link is used in this situation, combined with
-setting phy-mode to 1000basex. Russell King has said in the past that
-phylink could probably support this without fixed-link.
+That's not enough, you need to explain somewhere why it's not required
+anymore. Without a reg property, what does this even convey that cannot
+be derived from a compatible etc?
 
-> The SGMII port in another chip can use 2.5G.  The driver uses fixed PHY
-> to get the MAC running.  But the fixed PHY driver can only support speed
-> up to 1000.  There is no issue to adding higher speeds to that driver, but
-> I think that is not advised?
+> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+> ---
+>  .../devicetree/bindings/mips/mti,mips-cm.yaml      | 37 ++++++++++++++++=
+++++++
+>  1 file changed, 37 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml b/Do=
+cumentation/devicetree/bindings/mips/mti,mips-cm.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..03a5ba5624a429c428ee2afca=
+73b3e29127e02f9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
+> @@ -0,0 +1,37 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mips/mti,mips-cm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MIPS Coherence Manager
+> +
+> +description: |
+> +  Defines a location of the MIPS Coherence Manager registers.
+> +
+> +maintainers:
+> +  - Jiaxun Yang <jiaxun.yang@flygoat.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: mti,mips-cm
+> +
+> +  reg:
+> +    description:
+> +      Base address and size of an unoccupied region in system's MMIO add=
+ress
+> +      space, which will be used to map the MIPS CM global control regist=
+ers
+> +      block. It is conventionally decided by the system integrator.
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    coherency-manager@1fbf8000 {
+> +      compatible =3D "mti,mips-cm";
+> +      reg =3D <0x1bde8000 0x8000>;
+> +    };
+> +...
+>=20
+> --=20
+> 2.45.2
+>=20
 
-Well, 2.5G is obviously not SGMII. It is 2500BaseX. There are also
-many broken 2500BaseX implementations out there, which are SGMII cores
-overclocked, and the signalling disabled, because SGMII signalling at
-2.5G makes no sense, you want 2500BaseX signalling.
+--WKK6JjqQ/ZrGErBt
+Content-Type: application/pgp-signature; name="signature.asc"
 
-phylink fixed link also is not limited to 1G, it can do any speed.
+-----BEGIN PGP SIGNATURE-----
 
-	Andrew
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZzePNwAKCRB4tDGHoIJi
+0kZ2AQDP8rK+EnmP2/PFlMeK5SwD4Mod+z2/W+S3yPZcvfjjSgD9EvZIoNcmRfNV
+do8IcntnztF+QfCvk9vk06z3F8fFxgY=
+=EdMY
+-----END PGP SIGNATURE-----
+
+--WKK6JjqQ/ZrGErBt--
 
