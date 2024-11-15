@@ -1,350 +1,258 @@
-Return-Path: <devicetree+bounces-122223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A14E9CF3D3
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 19:22:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7CA69CF359
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 18:55:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 59D0DB378C9
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 17:52:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 88123283A20
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 17:55:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 282591D63E9;
-	Fri, 15 Nov 2024 17:52:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2B0C1D61AC;
+	Fri, 15 Nov 2024 17:54:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DZzArRzj"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QcBhrqqT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E23B01D5ABF
-	for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 17:51:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5CEC1D5ADB;
+	Fri, 15 Nov 2024 17:54:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731693122; cv=none; b=E/t4rRsGSSIuqHbJDD8TKtXnMIvWmJxoWB+3Vl4th/wt0uFunNXjXrS+BnLilFz+cbjQfHRo4hspkxLRPiXfigwVfpjks+XtDjgTW/UawG5shwxit5/YPYK2DS72V0Qkn3lr2KKplx0fCYgHX0YxHHuzelgxzKB0QN2QAUF2q18=
+	t=1731693294; cv=none; b=aHArceBDKrqYCodE8WUw7c7cmH1R6ez8tstmAmaVfbQoAK6vLL4cp4fOMphRw4DbHUDOgufgn4cf7CyDoHxdbbWq83v7g+l4n6k60xLJQ7PaHr7QVYZ1RGUA5PDblBeYNr5Dmf39bQ6KYu1h2O7q/+7X+k0rGiq5shRQ6IWyaHE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731693122; c=relaxed/simple;
-	bh=09hYKCgXyDUZhuZQR4UkViK/zC1/odV9u3WUWthEMVw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f3+HC7J+eId1V+dWm7n6DB1u/hHzLCXjrXj/36YVRAWt9k+XEWajknovXrqC/lHMiGXJcm3yOYnCWyOH9j8vEQxku8TvHB0Q0XZhV6L4TTbiJi/qiwwJlvJ7EvoCcGARr1UkYDfjnqHhuJIFPgZMdzox3yO/YKiLQiNTWDsMttg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DZzArRzj; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-2110a622d76so19093965ad.3
-        for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 09:51:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731693118; x=1732297918; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=HsIDulqPVm11kvME4lSY/OQMyOCr+gV0M7N3MMcJtZE=;
-        b=DZzArRzjpv+EzQ+Dd0SnZz1mUJeC/aINbsFGuspjjcZzODFNwTE7qEXWWBhI7+PzQR
-         XfVX+NaAXdqSPM/s1sNxM1pcvwCOqjZeg+9a9mpHsoVt9J9TQday8GDbgzaOS8usoMIJ
-         cJYa+rreLAeJL/FpgbXgDHITH+d+4RftPjFBNTykik3CjyVdoywNvA83/kPowqJEaQIF
-         EPn30NwmuOQJEPqiFW0N8o87b+FMcDSqiXcqa++X7sofjmBdvR4Jj/yqn78oOPvIzCBK
-         S6K/DrVUf0grGI6ctsImb3TzZI1efFOowv/QlJxjvsU4VIEB3GsAj/k19ukT4Jm6jRWg
-         PvSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731693118; x=1732297918;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HsIDulqPVm11kvME4lSY/OQMyOCr+gV0M7N3MMcJtZE=;
-        b=VjpYQC8v7xQXkedPhCFH6/X5GPjs9o1POzUFs5AKo5FtDpcKWxBh+DopqMUWlX3ZJB
-         0vhu/+yO9i4AQulcpAGkd/9xa5E5QrrZT0OUKNUXzZKBwWZtJBDVGt+tpgZ6rJW3pBNj
-         8xaFmJaCfC7SycngFHpvv6QX/0fZuy28CA8MgArhCsFzdtlZ/jbnspL8BotpRqUhfo/O
-         p9onGotZXbHoAoDFP88rcwo/Zwd6vc7i4t4mdEY+9P0SlkrLCljki/GN2i0ACQ6HMMjx
-         GCq0lyPQSjYyQLAZBmD4Ba5YcJ8Z9xoTjwAqPyubeLu4/c3J16sf19h4xlTBNvcJN5hT
-         aXEw==
-X-Forwarded-Encrypted: i=1; AJvYcCUCTyVajjh1AO4uu2pA+xNwnz/UNDsq/0FFQP2ArqJzoTt9X4h6RalrIKoR3ihCVB8InxJWSft6rzjk@vger.kernel.org
-X-Gm-Message-State: AOJu0YwBrNFa5zlmvuIIEixrItVd3NANQeg/fco+2+s7HM9hoW09qvwn
-	uyCZEczuOERYXg3lWr8zcHTOxSn5oXgBPHGRKl5QMPDkdWjbMpULZAs9FcSCZA==
-X-Google-Smtp-Source: AGHT+IEo8KIx+IDClFIGzyYawx9wyWhggQfWSS3I5L/7qTi+6XFaoyQ//P5mcasYulpv7qLH/9m62A==
-X-Received: by 2002:a17:902:d4ca:b0:20c:f3cf:50e6 with SMTP id d9443c01a7336-211d0ebc492mr54783415ad.38.1731693118199;
-        Fri, 15 Nov 2024 09:51:58 -0800 (PST)
-Received: from thinkpad ([117.193.215.93])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-211e9d0c389sm793705ad.161.2024.11.15.09.51.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Nov 2024 09:51:57 -0800 (PST)
-Date: Fri, 15 Nov 2024 23:21:48 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev
-Subject: Re: [PATCH v7 2/7] PCI: dwc: Using parent_bus_addr in of_range to
- eliminate cpu_addr_fixup()
-Message-ID: <20241115175148.tqzqiv53mccz52tq@thinkpad>
-References: <20241029-pci_fixup_addr-v7-0-8310dc24fb7c@nxp.com>
- <20241029-pci_fixup_addr-v7-2-8310dc24fb7c@nxp.com>
+	s=arc-20240116; t=1731693294; c=relaxed/simple;
+	bh=OeD22HC7UgOFr/u5AOSQL220CWm2MZBkmT+EG5cZ7Gg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=EMjh+1h+Qp6H4CLv7c5FxsJAoxoAr1zgFP0A8MGYLQ7EFN/e8ur8gOTTSNg+aNlDDFgoZ7d8Cbs3rY6q8L/7O5LEr9T4zavUjBcvOXWZk3OSpv11FSsLtbg4RM1m+ukwui+K/KMpORiqM+huTRmicLfuECucYcrg2dC6iUxGRaM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QcBhrqqT; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AF9DfuV004807;
+	Fri, 15 Nov 2024 17:54:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Qbrw4vWiwwRaFmlC1s11hJAUI/iOQfAy7hYy+ugzIpY=; b=QcBhrqqT4TTzAwS6
+	fGGXwq/RhnXiBpAqGHvU1iA2fhp39tdxTvwyHkdCB1hq2Bwq2gOxeErFGRxecCRc
+	70gN2zG2gt5FaKU9zJ8pgfGD2F8RXksE9uECmejYnaqFjiAV/ykdgXgG3HiNEMLO
+	w3LbXJg6Ii9yifyHKCWzLuGgTTaANqAmF+BvdNoHHnfgHusgWxmfvm286hky6NmI
+	CxDfEfzg5vyD2PmbmgF7/3WTV9udXB4vYvGMDPa6tHSvtLZ+z+dVihrMKGQP7xlu
+	n8hSjn6PI6lx46aASx48Q0IkKlGerIMNLlhGuJtKzkJmk+ywWjgWW2Ci/i0zwmP8
+	YX3NtQ==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42x3g0scqw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Nov 2024 17:54:27 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AFHsQOV018050
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Nov 2024 17:54:26 GMT
+Received: from [10.206.104.82] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 15 Nov
+ 2024 09:54:19 -0800
+Message-ID: <f67c72c3-7393-47b0-9b9c-1bfadce13110@quicinc.com>
+Date: Fri, 15 Nov 2024 23:24:11 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241029-pci_fixup_addr-v7-2-8310dc24fb7c@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] dt-bindings: opp: Add v2-qcom-adreno vendor
+ bindings
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Krzysztof Kozlowski <krzk@kernel.org>, Rob Clark <robdclark@gmail.com>,
+        Sean Paul <sean@poorly.run>, Konrad Dybcio <konradybcio@kernel.org>,
+        "Abhinav
+ Kumar" <quic_abhinavk@quicinc.com>,
+        Marijn Suijten
+	<marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, "Simona
+ Vetter" <simona@ffwll.ch>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon
+	<nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20241021-gpu-acd-v2-0-9c25a62803bc@quicinc.com>
+ <20241021-gpu-acd-v2-2-9c25a62803bc@quicinc.com>
+ <mz4zpcr4tqh2w7vt75f4ofxjzfve54ozzgpdbi2jjzk5pdxbk7@t36tlt3mmprt>
+ <d858dadb-4098-4c9f-b4f0-393dc988db5f@quicinc.com>
+ <4426b4kybtac6rc4twa5pgm3hvlegofemvqjcrvh6ni7f5z2h6@5dnlv3hgywh5>
+ <c5e868e1-2dae-466c-a6fc-ef0f247fa0ce@quicinc.com>
+ <278e62e1-02a4-4e33-8592-fb4fafcedf7e@quicinc.com>
+ <CAA8EJprgshjbNqNErOb06jqV__LmbWvocsK5eD8PQqL+FaLb1g@mail.gmail.com>
+Content-Language: en-US
+From: Akhil P Oommen <quic_akhilpo@quicinc.com>
+In-Reply-To: <CAA8EJprgshjbNqNErOb06jqV__LmbWvocsK5eD8PQqL+FaLb1g@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: N4htPv4plm2XvnSzhfkVuCrgZqi_haRI
+X-Proofpoint-GUID: N4htPv4plm2XvnSzhfkVuCrgZqi_haRI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ lowpriorityscore=0 adultscore=0 bulkscore=0 priorityscore=1501
+ impostorscore=0 malwarescore=0 clxscore=1015 spamscore=0 mlxlogscore=999
+ mlxscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411150151
 
-On Tue, Oct 29, 2024 at 12:36:35PM -0400, Frank Li wrote:
-
-Please reword the subject as:
-
-PCI: dwc: Use devicetree 'ranges' property to get rid of cpu_addr_fixup() callback
-
-> parent_bus_addr in struct of_range can indicate address information just
-> ahead of PCIe controller. Most system's bus fabric use 1:1 map between
-> input and output address. but some hardware like i.MX8QXP doesn't use 1:1
-> map. See below diagram:
+On 11/15/2024 3:54 AM, Dmitry Baryshkov wrote:
+> Hello Akhil,
 > 
->             ┌─────────┐                    ┌────────────┐
->  ┌─────┐    │         │ IA: 0x8ff8_0000    │            │
->  │ CPU ├───►│   ┌────►├─────────────────┐  │ PCI        │
->  └─────┘    │   │     │ IA: 0x8ff0_0000 │  │            │
->   CPU Addr  │   │  ┌─►├─────────────┐   │  │ Controller │
-> 0x7ff8_0000─┼───┘  │  │             │   │  │            │
->             │      │  │             │   │  │            │   PCI Addr
-> 0x7ff0_0000─┼──────┘  │             │   └──► IOSpace   ─┼────────────►
->             │         │             │      │            │    0
-> 0x7000_0000─┼────────►├─────────┐   │      │            │
->             └─────────┘         │   └──────► CfgSpace  ─┼────────────►
->              BUS Fabric         │          │            │    0
->                                 │          │            │
->                                 └──────────► MemSpace  ─┼────────────►
->                         IA: 0x8000_0000    │            │  0x8000_0000
->                                            └────────────┘
+> On Thu, 14 Nov 2024 at 20:50, Akhil P Oommen <quic_akhilpo@quicinc.com> wrote:
+>>
+>> On 11/1/2024 9:54 PM, Akhil P Oommen wrote:
+>>> On 10/25/2024 11:58 AM, Dmitry Baryshkov wrote:
+>>>> On Thu, Oct 24, 2024 at 12:56:58AM +0530, Akhil P Oommen wrote:
+>>>>> On 10/22/2024 11:19 AM, Krzysztof Kozlowski wrote:
+>>>>>> On Mon, Oct 21, 2024 at 05:23:43PM +0530, Akhil P Oommen wrote:
+>>>>>>> Add a new schema which extends opp-v2 to support a new vendor specific
+>>>>>>> property required for Adreno GPUs found in Qualcomm's SoCs. The new
+>>>>>>> property called "qcom,opp-acd-level" carries a u32 value recommended
+>>>>>>> for each opp needs to be shared to GMU during runtime.
+>>>>>>>
+>>>>>>> Cc: Rob Clark <robdclark@gmail.com>
+>>>>>>> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
+>>>>>>> ---
+>>>>>>>  .../bindings/opp/opp-v2-qcom-adreno.yaml           | 96 ++++++++++++++++++++++
+>>>>>>>  1 file changed, 96 insertions(+)
+>>>>>>>
+>>>>>>> diff --git a/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml b/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml
+>>>>>>> new file mode 100644
+>>>>>>> index 000000000000..6d50c0405ef8
+>>>>>>> --- /dev/null
+>>>>>>> +++ b/Documentation/devicetree/bindings/opp/opp-v2-qcom-adreno.yaml
+>>>>>>> @@ -0,0 +1,96 @@
+>>>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>>>> +%YAML 1.2
+>>>>>>> +---
+>>>>>>> +$id: http://devicetree.org/schemas/opp/opp-v2-qcom-adreno.yaml#
+>>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>>>> +
+>>>>>>> +title: Qualcomm Adreno compatible OPP supply
+>>>>>>> +
+>>>>>>> +description:
+>>>>>>> +  Adreno GPUs present in Qualcomm's Snapdragon chipsets uses an OPP specific
+>>>>>>> +  ACD related information tailored for the specific chipset. This binding
+>>>>>>> +  provides the information needed to describe such a hardware value.
+>>>>>>> +
+>>>>>>> +maintainers:
+>>>>>>> +  - Rob Clark <robdclark@gmail.com>
+>>>>>>> +
+>>>>>>> +allOf:
+>>>>>>> +  - $ref: opp-v2-base.yaml#
+>>>>>>> +
+>>>>>>> +properties:
+>>>>>>> +  compatible:
+>>>>>>> +    items:
+>>>>>>> +      - const: operating-points-v2-adreno
+>>>>>>> +      - const: operating-points-v2
+>>>>>>> +
+>>>>>>> +patternProperties:
+>>>>>>> +  '^opp-?[0-9]+$':
+>>>>>>
+>>>>>> '-' should not be optional. opp1 is not expected name.
+>>>>>
+>>>>> Agree. Will change this to '^opp-[0-9]+$'
+>>>>>
+>>>>>>
+>>>>>>> +    type: object
+>>>>>>> +    additionalProperties: false
+>>>>>>> +
+>>>>>>> +    properties:
+>>>>>>> +      opp-hz: true
+>>>>>>> +
+>>>>>>> +      opp-level: true
+>>>>>>> +
+>>>>>>> +      opp-peak-kBps: true
+>>>>>>> +
+>>>>>>> +      opp-supported-hw: true
+>>>>>>> +
+>>>>>>> +      qcom,opp-acd-level:
+>>>>>>> +        description: |
+>>>>>>> +          A positive value representing the ACD (Adaptive Clock Distribution,
+>>>>>>> +          a fancy name for clk throttling during voltage droop) level associated
+>>>>>>> +          with this OPP node. This value is shared to a co-processor inside GPU
+>>>>>>> +          (called Graphics Management Unit a.k.a GMU) during wake up. It may not
+>>>>>>> +          be present for some OPPs and GMU will disable ACD while transitioning
+>>>>>>> +          to that OPP. This value encodes a voltage threshold and few other knobs
+>>>>>>> +          which are identified by characterization of the SoC. So, it doesn't have
+>>>>>>> +          any unit.
+>>>>>>
+>>>>>> Thanks for explanation and other updates. I am still not happy with this
+>>>>>> property. I do not see reason why DT should encode magic values in a
+>>>>>> quite generic piece of code. This creates poor ABI, difficult to
+>>>>>> maintain or understand.
+>>>>>>
+>>>>>
+>>>>> Configuring GPU ACD block with its respective value is a requirement for each OPP.
+>>>>> So OPP node seems like the natural place for this data.
+>>>>>
+>>>>> If it helps to resolve your concerns, I can elaborate the documentation with
+>>>>> details on the GMU HFI interface where this value should be passed on to the
+>>>>> hardware. Also replace "few other knobs" with "Delay cycles & Calibration margin"
+>>>>> in the above doc.
+>>>>
+>>>> Usually the preference for DT is to specify data in a sensible way
+>>>> rather than just the values being programmed to the register. Is it
+>>>> possible to implement this approach for ACD values?
+>>
+>> Krzysztof/Dmitry,
+>>
+>> BIT(0)-BIT(15) are static configurations which doesn't change between
+>> OPPs. We can move it to driver.
+>>
+>> BIT(16)-BIT(31) indicates a threshold margin which triggers ACD. We can
+>> keep this in the devicetree. And the driver can construct the final
+>> value from both data and send it to GMU.
+>>
+>> If this is acceptable, I will send the v3 revision.
 > 
-> bus@5f000000 {
-> 	compatible = "simple-bus";
-> 	#address-cells = <1>;
-> 	#size-cells = <1>;
-> 	ranges = <0x80000000 0x0 0x70000000 0x10000000>;
+> Can the upper bitfield have a sensible representation in DT (like uV
+> or something similar)?
+
+Closest approximation is quantized voltage steps. So, unit-less.
+Converting it to the exact voltage requires identifying the pmic voltage
+steps and other stuffs which are outside of my expertise.
+
+It is convenient if we can abstract it as an integer which correlates
+with the voltage margin that should be maintained for each regulator corner.
+
+-Akhil.
+
 > 
-> 	pcie@5f010000 {
-> 		compatible = "fsl,imx8q-pcie";
-> 		reg = <0x5f010000 0x10000>, <0x8ff00000 0x80000>;
-> 		reg-names = "dbi", "config";
-> 		#address-cells = <3>;
-> 		#size-cells = <2>;
-> 		device_type = "pci";
-> 		bus-range = <0x00 0xff>;
-> 		ranges = <0x81000000 0 0x00000000 0x8ff80000 0 0x00010000>,
-> 			 <0x82000000 0 0x80000000 0x80000000 0 0x0ff00000>;
-> 	...
-> 	};
-> };
+>>
+>> -Akhil.
+>>
+>>>
+>>> I am still checking about this. Will get back.
+>>>
+>>> -Akhil
+>>>
+>>>>
+>>>>>
+>>>>>>
+>>>>
+>>>
+>>
 > 
-> Term internal address (IA) here means the address just before PCIe
-> controller. After ATU use this IA instead CPU address, cpu_addr_fixup() can
-> be removed.
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> Add a resource_size_t parent_bus_addr local varible to fix 32bit build
-> error.
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202410291546.kvgEWJv7-lkp@intel.com/
-> 
-> Chagne from v5 to v6
-> -add comments for of_property_read_reg().
-> 
-> Change from v4 to v5
-> - remove confused 0x5f00_0000 range in sample dts.
-> - reorder address at above diagram.
-> 
-> Change from v3 to v4
-> - none
-> 
-> Change from v2 to v3
-> - %s/cpu_untranslate_addr/parent_bus_addr/g
-> - update diagram.
-> - improve commit message.
-> 
-> Change from v1 to v2
-> - update because patch1 change get untranslate address method.
-> - add using_dtbus_info in case break back compatibility for exited platform.
-> ---
->  drivers/pci/controller/dwc/pcie-designware-host.c | 55 ++++++++++++++++++++++-
->  drivers/pci/controller/dwc/pcie-designware.h      |  8 ++++
->  2 files changed, 62 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> index 3e41865c72904..ea01b7bda0a76 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> @@ -418,6 +418,34 @@ static void dw_pcie_host_request_msg_tlp_res(struct dw_pcie_rp *pp)
->  	}
->  }
->  
-> +static int dw_pcie_get_untranslate_addr(struct dw_pcie *pci, resource_size_t pci_addr,
-> +					resource_size_t *i_addr)
 
-dw_pcie_get_parent_addr()? Since this function is anyway reading the parent
-address from DT.
-
-> +{
-> +	struct device *dev = pci->dev;
-> +	struct device_node *np = dev->of_node;
-> +	struct of_range_parser parser;
-> +	struct of_range range;
-> +	int ret;
-> +
-> +	if (!pci->using_dtbus_info) {
-> +		*i_addr = pci_addr;
-> +		return 0;
-> +	}
-> +
-> +	ret = of_range_parser_init(&parser, np);
-> +	if (ret)
-> +		return ret;
-> +
-> +	for_each_of_pci_range(&parser, &range) {
-> +		if (pci_addr == range.bus_addr) {
-> +			*i_addr = range.parent_bus_addr;
-> +			break;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  int dw_pcie_host_init(struct dw_pcie_rp *pp)
->  {
->  	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> @@ -427,6 +455,7 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
->  	struct resource_entry *win;
->  	struct pci_host_bridge *bridge;
->  	struct resource *res;
-> +	int index;
->  	int ret;
->  
->  	raw_spin_lock_init(&pp->lock);
-> @@ -440,6 +469,20 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
->  		pp->cfg0_size = resource_size(res);
->  		pp->cfg0_base = res->start;
->  
-> +		if (pci->using_dtbus_info) {
-> +			index = of_property_match_string(np, "reg-names", "config");
-> +			if (index < 0)
-> +				return -EINVAL;
-> +			/*
-> +			 * Retrieve the parent bus address of PCI config space.
-> +			 * If the parent bus ranges in the device tree provide
-> +			 * the correct address conversion information, set
-> +			 * 'using_dtbus_info' to true, The 'cpu_addr_fixup()'
-> +			 * can be eliminated.
-> +			 */
-
-Nobody will switch to 'ranges' property if you mention it in comments. We
-usually add dev_warn_once() to print a warning for broken DT so that the users
-will try to fix it. You can use below diff (as a separate patch ofc):
-
-```
-diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
-index 6d6cbc8b5b2c..d1e5395386fe 100644
---- a/drivers/pci/controller/dwc/pcie-designware.c
-+++ b/drivers/pci/controller/dwc/pcie-designware.c
-@@ -844,6 +844,9 @@ void dw_pcie_iatu_detect(struct dw_pcie *pci)
-                 dw_pcie_cap_is(pci, IATU_UNROLL) ? "T" : "F",
-                 pci->num_ob_windows, pci->num_ib_windows,
-                 pci->region_align / SZ_1K, (pci->region_limit + 1) / SZ_1G);
-+
-+       if (pci->ops && pci->ops->cpu_addr_fixup)
-+               dev_warn_once(pci->dev, "Broken \"ranges\" property detected. Please fix DT!\n");
- }
- 
- static u32 dw_pcie_readl_dma(struct dw_pcie *pci, u32 reg)
-```
-
-> +			of_property_read_reg(np, index, &pp->cfg0_base, NULL);
-
-Can you explain what is going on here?
-
-> +		}
-> +
->  		pp->va_cfg0_base = devm_pci_remap_cfg_resource(dev, res);
->  		if (IS_ERR(pp->va_cfg0_base))
->  			return PTR_ERR(pp->va_cfg0_base);
-> @@ -462,6 +505,9 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
->  		pp->io_base = pci_pio_to_address(win->res->start);
->  	}
->  
-> +	if (dw_pcie_get_untranslate_addr(pci, pp->io_bus_addr, &pp->io_base))
-> +		return -ENODEV;
-
-Use actual return value here and below.
-
-> +
->  	/* Set default bus ops */
->  	bridge->ops = &dw_pcie_ops;
->  	bridge->child_ops = &dw_child_pcie_ops;
-> @@ -722,6 +768,8 @@ static int dw_pcie_iatu_setup(struct dw_pcie_rp *pp)
->  
->  	i = 0;
->  	resource_list_for_each_entry(entry, &pp->bridge->windows) {
-> +		resource_size_t parent_bus_addr;
-> +
->  		if (resource_type(entry->res) != IORESOURCE_MEM)
->  			continue;
->  
-> @@ -730,9 +778,14 @@ static int dw_pcie_iatu_setup(struct dw_pcie_rp *pp)
->  
->  		atu.index = i;
->  		atu.type = PCIE_ATU_TYPE_MEM;
-> -		atu.cpu_addr = entry->res->start;
-> +		parent_bus_addr = entry->res->start;
->  		atu.pci_addr = entry->res->start - entry->offset;
->  
-> +		if (dw_pcie_get_untranslate_addr(pci, entry->res->start, &parent_bus_addr))
-> +			return -EINVAL;
-> +
-> +		atu.cpu_addr = parent_bus_addr;
-> +
->  		/* Adjust iATU size if MSG TLP region was allocated before */
->  		if (pp->msg_res && pp->msg_res->parent == entry->res)
->  			atu.size = resource_size(entry->res) -
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> index 347ab74ac35aa..f8067393ad35a 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.h
-> +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> @@ -463,6 +463,14 @@ struct dw_pcie {
->  	struct reset_control_bulk_data	core_rsts[DW_PCIE_NUM_CORE_RSTS];
->  	struct gpio_desc		*pe_rst;
->  	bool			suspended;
-> +	/*
-> +	 * Use device tree 'ranges' property of bus node instead using
-> +	 * cpu_addr_fixup(). Some old platform dts 'ranges' in bus node may not
-> +	 * reflect real hardware's behavior. In case break these platform back
-> +	 * compatibility, add below flags. Set it true if dts already correct
-> +	 * indicate bus fabric address convert.
-
-	/*
-	 * This flag indicates that the vendor driver uses devicetree 'ranges'
-	 * property to allow iATU to use the Intermediate Address (IA) for
-	 * outbound mapping. Using this flag also avoids the usage of
-	 * 'cpu_addr_fixup' callback implementation in the driver.
-	 */
-
-> +	 */
-> +	bool			using_dtbus_info;
-
-'use_dt_ranges'?
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
 
