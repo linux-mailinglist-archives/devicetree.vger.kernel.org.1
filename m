@@ -1,91 +1,89 @@
-Return-Path: <devicetree+bounces-122056-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122057-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DC309CD9A2
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 08:03:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 689549CD9A8
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 08:08:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B41AF1F209AB
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 07:03:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 163291F229E7
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 07:08:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0487E17335C;
-	Fri, 15 Nov 2024 07:03:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61610185B67;
+	Fri, 15 Nov 2024 07:07:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NwgpjsJx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Hqaj3+Sa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2403AA32
-	for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 07:03:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6B39A32
+	for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 07:07:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731654215; cv=none; b=i/vRUmKCN4krjHUncZKu4vOObuWJs+YoC1hBHBpruMEXbYajNNiXzoBLbTjSpZiGx5EGVlWcO1XnoJ0ruFnpzy5lmruD+yMaKpShWbS9V0f79RPEINE9cUFQHmJbK+IWyQNRIz2eweHMZOR/RaY184DdPF8BCQs1bje/jdajbXM=
+	t=1731654477; cv=none; b=JFFQAs79f2iFzrL7+VEqbXOuOPqzrs78haC+rY0rGqyRr9HvHzOzi7qTQUeFBN5Nh2eWgX+VgpEH1eFkDWe9VFVj64CZBHQw4Oe90feYc2ldl/8kTZzT7kZLj7+FBE0VutwOYgoabx+n7EBza8939fqinQmjgZFP2lbhfOCkD/o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731654215; c=relaxed/simple;
-	bh=ndua2+XULZaUMxeUglwKWZQf7tWC3oqAw6/DBhtlG1o=;
+	s=arc-20240116; t=1731654477; c=relaxed/simple;
+	bh=rPsEt4qZfwQKlO2eqOGfESlRxslv9lRvlh9ZaHQRvUY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VGalsUHd8Nuq9qEk+0Ot49agsNlqcCEItFvhC87YrYAhSfRoMa8vzsGeJhRCP3GjwbOrT4PybkJsxgtphiFMKnUFLXO9SVgWV0hjKU8HRnREy6t/TdXwp64ZoeJVGwzk3KijB+Nr6uLJ6Zmyf0sQKzcTDQ8wkOm5AZWXtnH9wnE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NwgpjsJx; arc=none smtp.client-ip=209.85.167.48
+	 Content-Type:Content-Disposition:In-Reply-To; b=RA+uaB4gpus/87nz7GcgKv+nbKSnD6RhkxMekcdGBCKesTalT7Znt8JXuDcrwMWAFECqIc9ToVhzbYTwxuY+ZLvIJ7sN7oLPmiEVb7QFkmuzNWoE3P4+9e6NE8YHDlHkMwpckoqKNSV6POUYtmk39IzI3jZRFbWzPQR5xueTgaY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Hqaj3+Sa; arc=none smtp.client-ip=209.85.208.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-53da4ff4d7fso1583573e87.1
-        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 23:03:33 -0800 (PST)
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2fb5fa911aaso24846111fa.2
+        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 23:07:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731654212; x=1732259012; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1731654474; x=1732259274; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=q+XXpl77AsqnMSW/X4uwuxdnVb5E7QETWZtbP20KJGw=;
-        b=NwgpjsJx0Yr7oAOBxKBpPGZ2wBeTMyfglxn82hQEPOoDTsymPi2PY8hPJ+6/5VNG4+
-         DiUNEWj4uVyGT/lC0AfnRJhOt8ohWqrAoung53KHaO1G2ot+XMFKZzewTc6tySMzR4sx
-         uzSQ05pfgKBfPcD/WdfhwTVasFCgZ69TNN4CL2uG2ms2HMCqiIhM0vP2xFNVAu41CDea
-         lcmxna5IKrh6QMzODiFL+kWrALOfU4mke6W7uVqqVs2uNnv8odNHjERfWXfEtEcSaqpa
-         CxkIpu2+ZxVNrUTJcAiWuymzLdlyJeHaksGgYDtnbmLbpqHGovztioeuyxY2G72wQphS
-         x/Aw==
+        bh=v6cKMaZCVTkVV3G8XB5LiWFxAM/cEoFnUMU7GwBqpgs=;
+        b=Hqaj3+Sa4TPNvwG5DtzuZybzjJQpdnrm4y3TUcU2q/p34KxXT9zJNJQ1hZbyMA8srW
+         Zv3qlB0nktcOhvfTiAPDUnofC8Q6gRXScldcrQMrpll5/bumdTp2+uK2Z63tHgiKua/b
+         uTLxcxEBYIqXq4wzjSQ77PNzYz9vnAJnkn3fUk0JKGndGgchwXur3mdO2bHSGzfqjG/K
+         QMV1t27V3UX+OtlRs4htwdMbCOX0uZ7lIvTqNKf2kjXrqzCvD/EXkXTMGH93AyA9eLZC
+         G2OSLGWZqpusCbFAdGIJ4YwSRbmLO5JWufUyVQv+Rufhdw8dcssmfHB4pmm7XezSoLEd
+         89Vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731654212; x=1732259012;
+        d=1e100.net; s=20230601; t=1731654474; x=1732259274;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=q+XXpl77AsqnMSW/X4uwuxdnVb5E7QETWZtbP20KJGw=;
-        b=ZQe/lDB4h0bloEom3UaYgMvYKdfLUvh2NZGHK8koboCAX0Vw29Sq13u3GF8M+CsGly
-         bXP2AWt38nL4K/FYqT9RZ1L7VwU9liRLOlN+O38q+3tMBBBWqyGSIDXEhIDDdXuZ64Im
-         /xCrfE1R6utkfu0YTpfgEQHDNpSUWEh7j/2jfK5oHsA8CyCXgzoBKQKpTcF9yAa3cf2F
-         wrjXTI39eZTvKdgij2nFqGch6rhQn2NCvErXC28z0LB70vabv6Ow9NpT04a1tFb/+Uzi
-         AByKqQpO7Z2eDkewE5cT51EfWP3Qqjtyy8V+fM/p0nabieYL6gF//1qM8JMinsodTIJ5
-         8gSw==
-X-Forwarded-Encrypted: i=1; AJvYcCVZjXUfwN050Bc/qrqnnDQ09gyAr7TcGXgJrD1xuvsVZ2s95iYnXuiOk6Y9QiUhYfBqWYrPW37NJsOT@vger.kernel.org
-X-Gm-Message-State: AOJu0YyHDeJOkkKGt54ebnnaAGiVb0e9feMkUTHq+sCWMj4gPryYVE2v
-	h8u7EIshCULPc3cANvafbiP3u+8+DVyRIbT0VSVplhq2lCrr/gjCoeNISGCDBtA=
-X-Google-Smtp-Source: AGHT+IHM3zGQ1oqt1miJAq+kPUmZOKc2Lgbol5o9QIqKe1inLvN5UGopKJienSpRrvOBH9LrMKG0Iw==
-X-Received: by 2002:a05:6512:3b12:b0:53d:a895:7fb9 with SMTP id 2adb3069b0e04-53dab03f96emr531496e87.26.1731654212135;
-        Thu, 14 Nov 2024 23:03:32 -0800 (PST)
+        bh=v6cKMaZCVTkVV3G8XB5LiWFxAM/cEoFnUMU7GwBqpgs=;
+        b=md+LIF1InSesvFeDwTdZSC4YYRLLb+8Pn0fN5oscyULNXzRvXLNBEZ4DoqoGvLdeYk
+         8tcJ2zZYt+AHdSvh6MQbN5QvOAxSmjG8fHj1mcTwjh0/AKv5mn2ZMr0NgoyzspYL+Fxb
+         Ka/rUH+/1Z0qFPE9SOrUG5g3bkr4J0MrkRjNzaoWgwe9YejUtiWnNnCkRhHfgMML3Oal
+         WspiNTj+ncUBzNMv6iWf/up1808owlY4Y3QAP62nnhzIrwTf2hukbsWfL0cfJPblDCmg
+         +xQKY4wmGj4dqcc++jNNrrg6hFuAHr9PUdga2xKlCPz1yw8tOdwHEzeUHWAfIZ3+Nzkn
+         FWbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVlO8ucwz21FmmFXxilF1yiKqd3+JLK0alLcEd9Sq2ZeSqdtowebXrc6Gvmb8sUczJ4AYa/sDJNz61u@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5PG810qZmxj9QKYCaBr5tBcAW+WFmX8jjucqnmHotexpj5EUb
+	m78+Pf+RcojgfiZnxJtsruxJV/hezALyEF16xV3FQ9+UoRgiwQZbqskslQLYIieeaLcEkUg7+mo
+	n
+X-Google-Smtp-Source: AGHT+IG1JSV4aGNvAct/tUZocWSedempVZ4kzonrQKqFj01UuIlfknN42Lm94EUeAmexpvhM1Oz5bw==
+X-Received: by 2002:a05:651c:4003:b0:2ff:6152:d773 with SMTP id 38308e7fff4ca-2ff6152d8f4mr6807941fa.3.1731654473778;
+        Thu, 14 Nov 2024 23:07:53 -0800 (PST)
 Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53da653125asm452597e87.154.2024.11.14.23.03.29
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ff597a295fsm4440551fa.68.2024.11.14.23.07.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Nov 2024 23:03:30 -0800 (PST)
-Date: Fri, 15 Nov 2024 09:03:28 +0200
+        Thu, 14 Nov 2024 23:07:52 -0800 (PST)
+Date: Fri, 15 Nov 2024 09:07:49 +0200
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Tingwei Zhang <quic_tingweiz@quicinc.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
-	Ziyue Zhang <quic_ziyuzhan@quicinc.com>, vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org, 
-	manivannan.sadhasivam@linaro.org, bhelgaas@google.com, kw@linux.com, lpieralisi@kernel.org, 
-	quic_qianyu@quicinc.com, conor+dt@kernel.org, neil.armstrong@linaro.org, 
-	andersson@kernel.org, konradybcio@kernel.org, quic_shashim@quicinc.com, 
-	quic_kaushalk@quicinc.com, quic_tdas@quicinc.com, quic_aiquny@quicinc.com, 
-	kernel@quicinc.com, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
-Subject: Re: [PATCH 4/5] arm64: dts: qcom: qcs8300: enable pcie0 for QCS8300
-Message-ID: <nr4xt5pefd3jngml6bkbgrfhsuxmre44v3qs6uyxz7qp5dzqad@6dss6lwhb35n>
-References: <20241114095409.2682558-1-quic_ziyuzhan@quicinc.com>
- <20241114095409.2682558-5-quic_ziyuzhan@quicinc.com>
- <rg4isufmnhnbsiljm34rfdsn46gfpatbsiscynaqtsnykbhnm3@ovcaulkfj4nk>
- <26943ea3-109c-473d-818b-2a08dba859ab@oss.qualcomm.com>
- <288be342-952b-4210-afe7-6e194dfd54a9@quicinc.com>
- <cp2g6j43zlx2njou5qz5tmwsnnzahqtk2hsxkj2ftrzbcmy742@ysca5ica4mvr>
- <bb6ae010-5dbf-455c-a53c-6c0e688f0ebc@quicinc.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Akhil P Oommen <quic_akhilpo@quicinc.com>, 
+	Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Bjorn Andersson <andersson@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Connor Abbott <cwabbott0@gmail.com>, linux-pm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH RFC 2/8] drm/msm: adreno: add GMU_BW_VOTE quirk
+Message-ID: <sgz4h6rlmekiwypaisjbnej326wv4vaqt3mgspp4fs4tg3mdfx@cwmdqcu6gwbf>
+References: <20241113-topic-sm8x50-gpu-bw-vote-v1-0-3b8d39737a9b@linaro.org>
+ <20241113-topic-sm8x50-gpu-bw-vote-v1-2-3b8d39737a9b@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,77 +92,45 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <bb6ae010-5dbf-455c-a53c-6c0e688f0ebc@quicinc.com>
+In-Reply-To: <20241113-topic-sm8x50-gpu-bw-vote-v1-2-3b8d39737a9b@linaro.org>
 
-On Fri, Nov 15, 2024 at 02:42:47PM +0800, Tingwei Zhang wrote:
-> On 11/15/2024 2:26 PM, Dmitry Baryshkov wrote:
-> > On Fri, Nov 15, 2024 at 12:59:12PM +0800, Tingwei Zhang wrote:
-> > > On 11/14/2024 9:03 PM, Konrad Dybcio wrote:
-> > > > On 14.11.2024 1:10 PM, Dmitry Baryshkov wrote:
-> > > > > On Thu, Nov 14, 2024 at 05:54:08PM +0800, Ziyue Zhang wrote:
-> > > > > > Add configurations in devicetree for PCIe0, including registers, clocks,
-> > > > > > interrupts and phy setting sequence.
-> > > > > > 
-> > > > > > Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-> > > > > > ---
-> > > > > >    arch/arm64/boot/dts/qcom/qcs8300-ride.dts |  44 +++++-
-> > > > > >    arch/arm64/boot/dts/qcom/qcs8300.dtsi     | 176 ++++++++++++++++++++++
-> > > > > >    2 files changed, 219 insertions(+), 1 deletion(-)
-> > > > > > 
-> > > > > > diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-> > > > > > index 7eed19a694c3..9d7c8555ed38 100644
-> > > > > > --- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-> > > > > > +++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-> > > > > > @@ -213,7 +213,7 @@ vreg_l9c: ldo9 {
-> > > > > >    &gcc {
-> > > > > 
-> > > > > The patch doesn't seem to update the gcc node in qcs8300.dtsi. Is there
-> > > > > any reason to have the clocks property in the board data file?
-> > > > 
-> > > > Definitely not. Ziyue, please move that change to the soc dtsi
-> > > 
-> > > Gcc node is updated in board device tree due to sleep_clk is defined in
-> > > board device tree. Sleep_clk is from PMIC instead SoC so we were requested
-> > > to move sleep_clk to board device tree in previous review [1].
-> > 
-> > Note, the review doesn't talk about sleep_clk at all. The recent
-> > examples (sm8650, x1e80100, sa8775p) still pull the clocks into the SoC
-> > dtsi, but without the freq.
-> > 
-> It's begining of the discussion of the PMIC clock for SoC. Sleep clock
-> specific discussion is here [2].
-> [2]https://lore.kernel.org/all/be8b573c-db4e-4eec-a9a6-3cd83d04156d@kernel.org/
-
-Please note how the recent platforms describe those clocks: the node in
-the SoC dtsi, the frequency in the board dtsi. X1E80100 is a step
-backwards, the clock are completely defined in the x1e80100.dtsi. There
-seems to be no strict rule on how to handle board clocks. I've sent an
-RFC patchset, trying to move them to a single logical location. Let's
-see what kind of response it will get. We probably need to define and
-follow a common rule for all Qualcomm platforms. Please give it a couple
-of days for the dust to settle. However, I think there should be no
-reason to keep GCC's clock definitions in the board DTS.
-
-> > > 
-> > > [1]https://lore.kernel.org/all/10914199-1e86-4a2e-aec8-2a48cc49ef14@kernel.org/
-> > > > 
-> > > > Konrad
-> > > 
-> > > 
-> > > -- 
-> > > Thanks,
-> > > Tingwei
-> > > 
-> > > -- 
-> > > linux-phy mailing list
-> > > linux-phy@lists.infradead.org
-> > > https://lists.infradead.org/mailman/listinfo/linux-phy
-> > 
+On Wed, Nov 13, 2024 at 04:48:28PM +0100, Neil Armstrong wrote:
+> The Adreno GMU Management Unit (GNU) can also scale the DDR Bandwidth
+> along the Frequency and Power Domain level, but by default we leave the
+> OPP core vote for the interconnect ddr path.
 > 
+> While scaling via the interconnect path was sufficient, newer GPUs
+> like the A750 requires specific vote paremeters and bandwidth to
+> achieve full functionality.
+> 
+> Add a new Quirk enabling DDR Bandwidth vote via GMU.
+
+Please describe, why this is defined as a quirk rather than a proper
+platform-level property. From my experience with 6xx and 7xx, all the
+platforms need to send some kind of BW data to the GMU.
+
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  drivers/gpu/drm/msm/adreno/adreno_gpu.h | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.h b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+> index e71f420f8b3a8e6cfc52dd1c4d5a63ef3704a07f..20b6b7f49473d42751cd4fb4fc82849be42cb807 100644
+> --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+> +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+> @@ -57,6 +57,7 @@ enum adreno_family {
+>  #define ADRENO_QUIRK_HAS_HW_APRIV		BIT(3)
+>  #define ADRENO_QUIRK_HAS_CACHED_COHERENT	BIT(4)
+>  #define ADRENO_QUIRK_PREEMPTION			BIT(5)
+> +#define ADRENO_QUIRK_GMU_BW_VOTE		BIT(6)
+>  
+>  /* Helper for formating the chip_id in the way that userspace tools like
+>   * crashdec expect.
 > 
 > -- 
-> Thanks,
-> Tingwei
+> 2.34.1
+> 
 
 -- 
 With best wishes
