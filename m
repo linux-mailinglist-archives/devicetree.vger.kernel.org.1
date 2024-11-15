@@ -1,171 +1,106 @@
-Return-Path: <devicetree+bounces-122300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C99AC9CFAEA
-	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 00:11:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECA7A9CFA84
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 23:59:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F0334B399E8
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 22:52:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 977A8286803
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 22:59:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EA1D1AA7AF;
-	Fri, 15 Nov 2024 22:52:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 167B61917ED;
+	Fri, 15 Nov 2024 22:59:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="oNPk34/N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eu4cs5Wf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70C251922F2;
-	Fri, 15 Nov 2024 22:52:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCEAB1DA23;
+	Fri, 15 Nov 2024 22:59:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731711127; cv=none; b=r73d2JyVJTohVLkj2+RsiAqeAvZUedsLrkIKUzGKwBTyET3prHHglVHYCcoUOCtjqFONlYAnHYa14S/v3uFdgUhDHj1Z7bRayf771gC+zlPUxY6whfOoM4T8tUn9PxRdmwkLow0zFqQZM93dskFra1SCuoCsbOVDxCdxTn9aoic=
+	t=1731711561; cv=none; b=jECfpJolNfN8ei6aX2/mq1Zj9D/kRYWF6lmYkrl9t58r80Q9jbPQda+oK0rBiwYaVNbVVhzBebRa5ZBbIg/qiFDT0Xg9SBnDUA5L+A4Wz5pxipnhcdwztyERVsHamM/LMPuD+GsiA7dO+R21H9EjqmJcvHqEUu8q40pGkNkVUxQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731711127; c=relaxed/simple;
-	bh=UU5fPa1TBAZ6+2wdti1tYkR6HNbrQW4vBr7KTADoiCs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=NBr3sarhZzrc7v6UgCam7fpPClSjC5NH9T6kLi5x5QfZlio1it/08l3Fr88tE6Z/ze4+4ByWA5t8PL5ud/HIqj3JEvedAw2FacVUfqCZr8PzEA8jnskWhk2qtd3yVTpLwmxyPWxWefM3JA1YI27vpembrwaKVUsDq7UPbkW71bA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=oNPk34/N; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AFBTkIr002544;
-	Fri, 15 Nov 2024 22:52:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=toq4QokUBBz
-	f0TwajtgeaN4ByORpJ0XGLWGij3aneV4=; b=oNPk34/NiIXvzYUDWUep3jVwzuJ
-	XlqgD4G9xP8e5P6aXBZU7ofOlsXSYFCGdsQS3hRQEaUWmWBpVAP5ikhVQmX3sdmj
-	HlcCmW4PaCzzBBNn4HCGxFIYuEQi1NY1biQ/KvRSKJb4HWWHo+QmyzCx0DZkcunb
-	lObd/EklBSEWqz1qmJidNjhWYW/VW15qqhTp/bdRncsmoROVKWpogBu+SnoDh35v
-	8SSCadT9cqVjNqPF503zo0jSq2HQycgJAONa43DquFlRfscYHVY085zF3kwfFm3p
-	1SGg9Hh1P20YV69mkTPXs6iKxYkguEnecvMZRD7g3UFn2e7eSgT+WneDutA==
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42ww6du2v9-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 15 Nov 2024 22:52:01 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 4AFMpvmp020277;
-	Fri, 15 Nov 2024 22:51:58 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 42t0tn65dr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 15 Nov 2024 22:51:58 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 4AFMpuif020251;
-	Fri, 15 Nov 2024 22:51:58 GMT
-Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-wasimn-hyd.qualcomm.com [10.147.246.180])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 4AFMpv4H020291
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 15 Nov 2024 22:51:58 +0000
-Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 3944840)
-	id E05285A9; Sat, 16 Nov 2024 04:21:55 +0530 (+0530)
-From: Wasim Nazir <quic_wasimn@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@quicinc.com,
-        Wasim Nazir <quic_wasimn@quicinc.com>
-Subject: [PATCH v2 5/5] arm64: dts: qcom: Add support for QCS9075 Ride & Ride-r3
-Date: Sat, 16 Nov 2024 04:21:52 +0530
-Message-ID: <20241115225152.3264396-6-quic_wasimn@quicinc.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241115225152.3264396-1-quic_wasimn@quicinc.com>
-References: <20241115225152.3264396-1-quic_wasimn@quicinc.com>
+	s=arc-20240116; t=1731711561; c=relaxed/simple;
+	bh=fUh5s7BsCwoaZmYFGIY2veyC4azYYi1dCvhz9yokXG0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Fel/4/kiVni3OXL4k+OOZ8Qh+glEQC4CUEAn90ZYTDtfDqPoYEsLhifQaOikbqNfY5SfdmSJkPsREzreMz/XzwoWZEq2Svvj+rOyqsYpYJgGWm/MkCw0HVxGMsudUd6hGvk8FAIsYiMZUG9t+soyAC0xouXudCymEXbW68vkU8U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eu4cs5Wf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B642EC4CECF;
+	Fri, 15 Nov 2024 22:59:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731711560;
+	bh=fUh5s7BsCwoaZmYFGIY2veyC4azYYi1dCvhz9yokXG0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=eu4cs5Wf05VYisSHEwhIeVyub9YTwSD6bDuvbIuAC+BhUmUpPzMeybF4t20rSew0k
+	 eAp+tOXT1vRizIbTAeM5kZ9qJ8pWIWwTbyAAnzbAA5cs/aQnaOCkLNdBS4dR+S/eG5
+	 pYxHNlclxuoUjkpHSdGDi6RBZ+do8EovBK2pooEO3b/cznfsvGh+X7XVy3KYwx3qx3
+	 yUQdEHosRJ0W1x13K+leNe8DHoVIZ7NxeVUDhuHx+yb/qMK+Mx+plzTiuLRjGn915E
+	 7n2jtcBIyVSXjC/1b1IpdU7wWRTNvo7A9TdZcs2mWtZVIcYVo30HAsyt2H2OoqUVyB
+	 MVmD+rElBmTdg==
+Date: Fri, 15 Nov 2024 14:59:18 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
+ Vladimir Oltean <olteanv@gmail.com>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
+ <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Heiner Kallweit
+ <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, Matthias
+ Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, upstream@airoha.com
+Subject: Re: [net-next PATCH v5 3/4] net: dsa: Add Airoha AN8855 5-Port
+ Gigabit DSA Switch driver
+Message-ID: <20241115145918.5ed4d5ec@kernel.org>
+In-Reply-To: <6737c439.5d0a0220.d7fe0.2221@mx.google.com>
+References: <20241112204743.6710-1-ansuelsmth@gmail.com>
+	<20241112204743.6710-4-ansuelsmth@gmail.com>
+	<20241114192202.215869ed@kernel.org>
+	<6737c439.5d0a0220.d7fe0.2221@mx.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 8N6MnQPiSM8xNlcidqh3p2jqjPgbGPh_
-X-Proofpoint-GUID: 8N6MnQPiSM8xNlcidqh3p2jqjPgbGPh_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
- phishscore=0 malwarescore=0 lowpriorityscore=0 impostorscore=0
- suspectscore=0 clxscore=1015 adultscore=0 mlxlogscore=999 spamscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411150192
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Add device tree support for QCS9075 Ride & Ride-r3 boards.
-QCS9075 Ride & Ride-r3 are similar to QCS9100 Ride and Ride-r3
-boards but without safety monitoring feature of SAfety-IsLand
-subsystem.
+On Fri, 15 Nov 2024 22:59:18 +0100 Christian Marangi wrote:
+> On Thu, Nov 14, 2024 at 07:22:02PM -0800, Jakub Kicinski wrote:
+> > On Tue, 12 Nov 2024 21:47:26 +0100 Christian Marangi wrote:  
+> > > +	MIB_DESC(1, 0x00, "TxDrop"),
+> > > +	MIB_DESC(1, 0x04, "TxCrcErr"),  
+> > 
+> > What is a CRC Tx error :o 
+> > Just out of curiosity, not saying its worng.
+> >  
+> 
+> From Documentation, FCS error frame due to TX FIFO underrun.
 
-Difference between ride and ride-r3 is the ethernet phy.
-Ride uses 1G ethernet phy while ride-r3 uses 2.5G ethernet phy.
+Interesting
 
-Signed-off-by: Wasim Nazir <quic_wasimn@quicinc.com>
----
- arch/arm64/boot/dts/qcom/Makefile            |  2 ++
- arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts | 12 ++++++++++++
- arch/arm64/boot/dts/qcom/qcs9075-ride.dts    | 12 ++++++++++++
- 3 files changed, 26 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts
- create mode 100644 arch/arm64/boot/dts/qcom/qcs9075-ride.dts
+> > > +	MIB_DESC(1, 0x08, "TxUnicast"),
+> > > +	MIB_DESC(1, 0x0c, "TxMulticast"),
+> > > +	MIB_DESC(1, 0x10, "TxBroadcast"),
+> > > +	MIB_DESC(1, 0x14, "TxCollision"),  
+> > 
+> > Why can't these be rtnl stats, please keep in mind that we ask that
+> > people don't duplicate in ethtool -S what can be exposed via standard
+> > stats
+> >   
+> 
+> Ok I will search for this but it does sounds like something new and not
+> used by other DSA driver, any hint on where to look for examples?
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 5d9847119f2e..91c811aca2ca 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -116,6 +116,8 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs9075-rb8.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= qcs9075-ride.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= qcs9075-ride-r3.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride-r3.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qdu1000-idp.dtb
-diff --git a/arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts b/arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts
-new file mode 100644
-index 000000000000..a04c8d1fa258
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts
-@@ -0,0 +1,12 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
-+/dts-v1/;
-+
-+#include "sa8775p-ride-r3.dts"
-+
-+/ {
-+	model = "Qualcomm Technologies, Inc. QCS9075 Ride Rev3";
-+	compatible = "qcom,qcs9075-ride-r3", "qcom,qcs9075", "qcom,sa8775p";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/qcs9075-ride.dts b/arch/arm64/boot/dts/qcom/qcs9075-ride.dts
-new file mode 100644
-index 000000000000..9ffab74fb1a8
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/qcs9075-ride.dts
-@@ -0,0 +1,12 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
-+/dts-v1/;
-+
-+#include "sa8775p-ride.dts"
-+
-+/ {
-+	model = "Qualcomm Technologies, Inc. QCS9075 Ride";
-+	compatible = "qcom,qcs9075-ride", "qcom,qcs9075", "qcom,sa8775p";
-+};
---
-2.47.0
-
+It's relatively recent but I think the ops are plumbed thru to DSA.
+Take a look at all the *_stats members of struct dsa_switch_ops, most
+of them take a fixed format struct to fill in and the struct has some
+extra kdoc on which field is what.
 
