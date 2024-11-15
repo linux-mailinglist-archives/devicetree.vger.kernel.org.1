@@ -1,95 +1,108 @@
-Return-Path: <devicetree+bounces-122257-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122258-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 484A29CF553
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 20:55:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E5269CF547
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 20:51:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 33031B33019
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 19:48:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2379B2824D9
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 19:51:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07CD91E0B72;
-	Fri, 15 Nov 2024 19:48:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A78471E105A;
+	Fri, 15 Nov 2024 19:51:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Bh0o2tXC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kM0CWeIM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FE7A1AF0CE;
-	Fri, 15 Nov 2024 19:48:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F8ED1D54E1;
+	Fri, 15 Nov 2024 19:51:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731700102; cv=none; b=nOI4QlqIDKmq0yUPq0odCeMQ69dtydnwX8NJjnVuFmcGNvykPE9X3bqHqA6tV56H9OF5aAuzkFmawPLqcpfvGH/qvIMr+YyJ7GhXWTA/cQk7CItGJXxuy4dLoDZoUZKAuksIlEoPAiwXWuyTt6tyTw3fobcViD8bcpWwx6eWY9o=
+	t=1731700306; cv=none; b=WVRMwhVbzHOxITJ4YkMcp6rDw2hxYPPCIoGPIqQnWz1BBRAbdrV/WRiIQ/plM7SDJtQul99DJe96WHQZBnFWv577bt2se86ozGyEv9OFX0Fb77pFjblovWP9E1GVLQm4gVcIfX1/iUKSMb1sw5pzg3oqI8Bz6yZKlNyiMYvj7es=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731700102; c=relaxed/simple;
-	bh=zidj6aK4ZzZS5mK+WBisxr8dK9UXKfKqNFz5dL1Vybo=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=dmF6TfWpBMsHo0244CaiCOtllis7GFtQDUfLNe9RRmaYy4xp9L45WpTt+Y/fa4SSXgHnl+E4YxXFeICjfh4DQT5cVKjQvUgxAVFLk491DNCz0psnT0Py0k45NoqTS/iOvWp3+pqjZQte0sKU/VZiD6Q4jTzXJFO92HhJbkjUTR4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Bh0o2tXC; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 2E5991C0005;
-	Fri, 15 Nov 2024 19:48:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1731700091;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=zidj6aK4ZzZS5mK+WBisxr8dK9UXKfKqNFz5dL1Vybo=;
-	b=Bh0o2tXCaWlJ/kPdhW1p2kKgtneIYHjFijVrY4kE+oazMUmXua9ga6YDQywPhiQ3Q2VmnW
-	d8ybYCDwQ1i0eNlHJJhq8YADAvFgYVvelvoNuzs7fK9yND5+9W0YEsDkHgijWy4OcfSOBA
-	njdAdj7GTBJiOlWh7uIPSWl3fnzYV067iP6TE3J92yft64lkSnfYbZGy+PMkLdnyn9IS0g
-	hcDApdX2+LxmbSrQ/8Q8guKFKTULDGqQFYC/ruetmm9o7yyodz+qVNx/6yf6w+dehqDLtT
-	GH3VLkvdQQ833m5bu6ohnQLyLkNBUsdLmBQRDyBMn7ZWsrsoolnW0m4tWJvINw==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Marcus Folkesson <marcus.folkesson@gmail.com>
-Cc: Richard Weinberger <richard@nod.at>,  Vignesh Raghavendra
- <vigneshr@ti.com>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
- <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,
-  linux-mtd@lists.infradead.org,  linux-kernel@vger.kernel.org,
-  devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 1/2] mtd: nand: davinci: add support for on-die ECC
- engine type
-In-Reply-To: <ZzcL53TmSOwTuIFM@gmail.com> (Marcus Folkesson's message of "Fri,
-	15 Nov 2024 09:52:55 +0100")
-References: <20241107-ondie-v7-0-98829fc8a958@gmail.com>
-	<20241107-ondie-v7-1-98829fc8a958@gmail.com>
-	<ZzcL53TmSOwTuIFM@gmail.com>
-User-Agent: mu4e 1.12.1; emacs 29.4
-Date: Fri, 15 Nov 2024 20:48:09 +0100
-Message-ID: <871pzcnurq.fsf@bootlin.com>
+	s=arc-20240116; t=1731700306; c=relaxed/simple;
+	bh=e8LT/AOosJE1s+TaGvF+vfwCSygOro0BM++afUbz9Yw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rW5M5M4PCk+5mChaoaQklPy46Ja3mTu6XOrDlfjvzhufn1b3//nSKmWh+fPl2EIKI7hmPHlRIPdEQ2anfhXbT1lXPrnOyHhvJ3tPB3RhsGUag3M2wPvWIJIBwNMC2YztqLr9V1ZgO6AEfbMKM+qHDcPWEbVBfTA5tRlxZdxdtVg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kM0CWeIM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE41FC4CECF;
+	Fri, 15 Nov 2024 19:51:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731700306;
+	bh=e8LT/AOosJE1s+TaGvF+vfwCSygOro0BM++afUbz9Yw=;
+	h=From:To:Cc:Subject:Date:From;
+	b=kM0CWeIMyWAwhB/2KIJxJtAIXBIQhqECMZ6A55SL1qgpFMu7+dof0lHfwCmW09fag
+	 riSj0GO8PpbyI3IhjaOX4il0R+hmOUj/UHgcvK148NNo6WRCyQFXqu0a3kGKQ0r2P0
+	 soO2hmDrSOkcf7FQe/iTueU2XivEQXlkt4QnTYbqRLlMwvNVXDh3eprmepwSw/QpKn
+	 Rjjd0AGyB33mAS6H1EzUMZzFkQSNKIvW/KLmnz07XwVXD6CEyp8z2H7b0VlUE13SL2
+	 aQAwdeUNoVnCDgroR0yQHjp9MWYPS6Ma5XsiHIkMsUFml9hSeLn2fevaRXVWHs+AWG
+	 kG2MPaEyHn0GA==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: soc@kernel.org,
+	Khuong Dinh <khuong@os.amperecomputing.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH RESEND] arm64: dts: apm: Remove unused and undocumented "bus_num" property
+Date: Fri, 15 Nov 2024 13:50:49 -0600
+Message-ID: <20241115195049.3637454-2-robh@kernel.org>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Transfer-Encoding: 8bit
 
-On 15/11/2024 at 09:52:55 +01, Marcus Folkesson <marcus.folkesson@gmail.com=
-> wrote:
+Remove "bus_num" property which is both unused in the kernel and
+undocumented. Most likely they are leftovers from downstream.
 
-> On Thu, Nov 07, 2024 at 02:47:07PM +0100, Marcus Folkesson wrote:
->> Some chips, e.g. Micron MT29F1G08ABBFAH4, has a mandatory on-die ECC.
->> Add "on-die" as ECC engine type in order to be compatible with those.
->>=20
->> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
->> ---
->
-> Can someone please take a look at this patch?
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+SoC Maintainers, please take directly.
 
-Well, it's v7, so I believe we've given attention to this
-patchset :-) Also, please consider 2 weeks as a better delay for pings.
+ arch/arm64/boot/dts/apm/apm-shadowcat.dtsi | 2 --
+ arch/arm64/boot/dts/apm/apm-storm.dtsi     | 1 -
+ 2 files changed, 3 deletions(-)
 
-It is flagged "okay" on my side, but will only be applied after -rc1
-unless I get negative feedback about it in the mean time.
+diff --git a/arch/arm64/boot/dts/apm/apm-shadowcat.dtsi b/arch/arm64/boot/dts/apm/apm-shadowcat.dtsi
+index ea5721ea02f0..5a64239b4708 100644
+--- a/arch/arm64/boot/dts/apm/apm-shadowcat.dtsi
++++ b/arch/arm64/boot/dts/apm/apm-shadowcat.dtsi
+@@ -809,7 +809,6 @@ i2c1: i2c@10511000 {
+ 			interrupts = <0 0x45 0x4>;
+ 			#clock-cells = <1>;
+ 			clocks = <&sbapbclk 0>;
+-			bus_num = <1>;
+ 		};
+ 
+ 		i2c4: i2c@10640000 {
+@@ -819,7 +818,6 @@ i2c4: i2c@10640000 {
+ 			reg = <0x0 0x10640000 0x0 0x1000>;
+ 			interrupts = <0 0x3a 0x4>;
+ 			clocks = <&i2c4clk 0>;
+-			bus_num = <4>;
+ 		};
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/apm/apm-storm.dtsi b/arch/arm64/boot/dts/apm/apm-storm.dtsi
+index 6ad4703925dc..872093b05ce1 100644
+--- a/arch/arm64/boot/dts/apm/apm-storm.dtsi
++++ b/arch/arm64/boot/dts/apm/apm-storm.dtsi
+@@ -851,7 +851,6 @@ i2c0: i2c@10512000 {
+ 			interrupts = <0 0x44 0x4>;
+ 			#clock-cells = <1>;
+ 			clocks = <&ahbclk 0>;
+-			bus_num = <0>;
+ 		};
+ 
+ 		phy1: phy@1f21a000 {
+-- 
+2.45.2
 
-Thanks,
-Miqu=C3=A8l
 
