@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-122200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16C529CF192
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 17:36:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97D9A9CF1D5
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 17:42:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 741641F2525C
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 16:36:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D38D2847A6
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 16:42:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 599091D515E;
-	Fri, 15 Nov 2024 16:36:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F143A1D5158;
+	Fri, 15 Nov 2024 16:39:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H99tUUBj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AP/GnWwj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C2A21D47A0;
-	Fri, 15 Nov 2024 16:36:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C46A918E047;
+	Fri, 15 Nov 2024 16:39:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731688566; cv=none; b=ra0hMr9O7DOoH2mBfzJtZSW/xjd43U9gMD+wOsueovBPfmZKeTYue4LSP2McG16K2Inm78tqgWrtQNgh+RkJyTSsb+qiEOHzk+wOLJuZaOQzMxWdXXxIlZ88zXCBZk2L3lyqvjVb8AVUXP1FGV5xImxNZ2Z/4cWzWadZlTF66QE=
+	t=1731688783; cv=none; b=WTvXDjC+495dDDD9QISkBk7UOpRseNRnA2o+hG3lD/3COP0V+IPFGAXRjiMQ8vaStJvITgLD363/Vh0DRRkk2WoeyOyAEHEetwZA/b2gM0GePxIvxOpiXYNZ2bGghqgCrmH2tSkeYIPB/u5vbbBqqpWwrJs1I6o6c4Wlpc84Ohg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731688566; c=relaxed/simple;
-	bh=6yQrzL+pY0s5bWYhKAenvAd4K3vkSdTM9mFizd+1r8E=;
+	s=arc-20240116; t=1731688783; c=relaxed/simple;
+	bh=iRr3qC8xf3SocAeyPSOv4BEKnzUJ3YHOuClfGqNnj3o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YzBUFPLUuYzGgkOk7bUp/7lu42Y8IfKJA7EEGuU0Pykb35tohhsey+P8GV9z7vNvnH34Hm8iICqCX/cLS1zCXhzRlzqXeCikWhzDGNGQAZU+7RjIXl1aF2qfv6dP4JXFvcDiJSpxVXhiZoxV40toyWuhC1/WviB4OM9qusq+yYM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H99tUUBj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E232C4CED5;
-	Fri, 15 Nov 2024 16:36:05 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=WVjbW8zTM32g1Oy4tzz+m3iHctRiZT1jmphbHuBEomCeR/cuR0BK93IgoGxs9sajontM4keF/KHLL4bk6u/2R42sOHBB43r/UxoiSaeMxksyfmWjEmkhh9Vmvm1mND9bXZ3EeCATQapvBchrR6nak5Z04oMGIo3Ps15gbY28FrA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AP/GnWwj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EC12C4CECF;
+	Fri, 15 Nov 2024 16:39:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731688565;
-	bh=6yQrzL+pY0s5bWYhKAenvAd4K3vkSdTM9mFizd+1r8E=;
+	s=k20201202; t=1731688783;
+	bh=iRr3qC8xf3SocAeyPSOv4BEKnzUJ3YHOuClfGqNnj3o=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=H99tUUBjROYIibs7vXroxAi3KXnmtRNRe1yk//et3sKkQZfVPW2DCaDJlHgMsrnAK
-	 Y6iuBeAZFRfUzJZcbT2178fMPypgrYxiE/oWrhYWdNN0qbdZA+UsYJjonG5XV9hTnU
-	 ELMQnXVNxjU30qSBtvn1KcZyVyrzBjvk0LH6C2LXAMDqTMcdUj5/183weCY3T7jw8L
-	 RFds4A3qvgQD2FmsqcARtCjpAig8ANEpgfBcn7kfTUVGl7nS7Id4DXdqaAa7R84K+H
-	 yKEcNGIULnpqYwTkfwqboyI1zpC1GvA7Q5bkfAEy+QsJ/aToJ/Zuc4jZxaRvsIdG7E
-	 pNnt/nYpycq0Q==
-Date: Fri, 15 Nov 2024 10:36:03 -0600
+	b=AP/GnWwjAUJLjLFoxgVufPIRcVQsuuCixNyxHBMNXq00d0lDhi+r0CB0ZJyC99XZi
+	 sglwDivb/koS7axFD0SOzdC8byWidw6FjVRON36PCqYXjefKXEypjAo1Ut5Tw3b3t1
+	 21q5Vn5Rb9IiF+fSp1XkK4qrm1FqkLpuidYcI+JgbOwnIrm9OxK7PxNJCVNfp07vdN
+	 0+g/2/cgwY+a8Dck3dFLWhcc4o3yUAGyz9kkLlXx1e/UELEajk5UaqMar2+KG8ZSUy
+	 eSKBCwOH2KxJ5A9fhdO0qtf9YW0ajNRR2cBP/vRBSJJyeZwvEaU8jtIcQQz8vSIV6o
+	 48KUb5iGtj3gg==
+Date: Fri, 15 Nov 2024 10:39:41 -0600
 From: Rob Herring <robh@kernel.org>
 To: Christian Bruel <christian.bruel@foss.st.com>
 Cc: lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org,
@@ -52,11 +52,11 @@ Cc: lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org,
 	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-stm32@st-md-mailman.stormreply.com,
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/5] dt-bindings: PCI: Add STM32MP25 PCIe root complex
+Subject: Re: [PATCH 3/5] dt-bindings: PCI: Add STM32MP25 PCIe endpoint
  bindings
-Message-ID: <20241115163603.GA3188739-robh@kernel.org>
+Message-ID: <20241115163941.GA3324312-robh@kernel.org>
 References: <20241112161925.999196-1-christian.bruel@foss.st.com>
- <20241112161925.999196-2-christian.bruel@foss.st.com>
+ <20241112161925.999196-4-christian.bruel@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,66 +65,47 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241112161925.999196-2-christian.bruel@foss.st.com>
+In-Reply-To: <20241112161925.999196-4-christian.bruel@foss.st.com>
 
-On Tue, Nov 12, 2024 at 05:19:21PM +0100, Christian Bruel wrote:
-> Document the bindings for STM32MP25 PCIe Controller configured in
-> root complex mode.
-> Supports 4 legacy interrupts and MSI interrupts from the ARM
-> GICv2m controller.
-> 
-> Allow tuning to change payload (default 128B) thanks to the
-> st,max-payload-size entry.
-> Can also limit the Maximum Read Request Size on downstream devices to the
-> minimum possible value between 128B and 256B.
-> 
-> STM32 PCIE may be in a power domain which is the case for the STM32MP25
-> based boards.
-> Supports wake# from wake-gpios
+On Tue, Nov 12, 2024 at 05:19:23PM +0100, Christian Bruel wrote:
+> STM32MP25 PCIe Controller is based on the DesignWare core configured as
+> end point mode from the SYSCFG register.
 > 
 > Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
 > ---
->  .../bindings/pci/st,stm32-pcie-host.yaml      | 149 ++++++++++++++++++
->  1 file changed, 149 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/st,stm32-pcie-host.yaml
+>  .../bindings/pci/st,stm32-pcie-ep.yaml        | 97 +++++++++++++++++++
+>  1 file changed, 97 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pci/st,stm32-pcie-ep.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/st,stm32-pcie-host.yaml b/Documentation/devicetree/bindings/pci/st,stm32-pcie-host.yaml
+> diff --git a/Documentation/devicetree/bindings/pci/st,stm32-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/st,stm32-pcie-ep.yaml
 > new file mode 100644
-> index 000000000000..d7d360b63a08
+> index 000000000000..f0d215982794
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/st,stm32-pcie-host.yaml
-> @@ -0,0 +1,149 @@
+> +++ b/Documentation/devicetree/bindings/pci/st,stm32-pcie-ep.yaml
+> @@ -0,0 +1,97 @@
 > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/pci/st,stm32-pcie-host.yaml#
+> +$id: http://devicetree.org/schemas/pci/st,stm32-pcie-ep.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: STM32MP25 PCIe root complex driver
+> +title: STM32MP25 PCIe endpoint driver
 > +
 > +maintainers:
 > +  - Christian Bruel <christian.bruel@foss.st.com>
 > +
 > +description:
-> +  PCIe root complex controller based on the Synopsys DesignWare PCIe core.
-> +
-> +select:
-> +  properties:
-> +    compatible:
-> +      const: st,stm32mp25-pcie-rc
-> +  required:
-> +    - compatible
+> +  PCIe endpoint controller based on the Synopsys DesignWare PCIe core.
 > +
 > +allOf:
-> +  - $ref: /schemas/pci/pci-host-bridge.yaml#
 > +  - $ref: /schemas/pci/snps,dw-pcie-common.yaml#
 
-snps,dw-pcie.yaml instead of these 2.
+snps,dw-pcie-ep.yaml
 
 > +
 > +properties:
 > +  compatible:
-> +    const: st,stm32mp25-pcie-rc
+> +    const: st,stm32mp25-pcie-ep
 > +
 > +  reg:
 > +    items:
@@ -134,16 +115,7 @@ snps,dw-pcie.yaml instead of these 2.
 > +  reg-names:
 > +    items:
 > +      - const: dbi
-> +      - const: config
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  reset-names:
-> +    const: core
-
--names with a single entry is kind of pointless.
-
+> +      - const: addr_space
 > +
 > +  clocks:
 > +    maxItems: 1
@@ -152,78 +124,40 @@ snps,dw-pcie.yaml instead of these 2.
 > +  clock-names:
 > +    const: core
 > +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  reset-names:
+> +    const: core
+> +
 > +  phys:
 > +    maxItems: 1
 > +
 > +  phy-names:
 > +    const: pcie-phy
 > +
-> +  num-lanes:
-> +    const: 1
-> +
-> +  msi-parent:
-> +    maxItems: 1
-
-Just 'msi-parent: true'. It's already only ever 1 entry.
-
-> +
 > +  reset-gpios:
 > +    description: GPIO controlled connection to PERST# signal
-> +    maxItems: 1
-> +
-> +  wake-gpios:
-> +    description: GPIO controlled connection to WAKE# input signal
-> +    maxItems: 1
-> +
-
-> +  st,limit-mrrs:
-> +    description: If present limit downstream MRRS to 256B
-> +    type: boolean
-> +
-> +  st,max-payload-size:
-> +    description: Maximum Payload size to use
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [128, 256]
-> +    default: 128
-
-IIRC, other hosts have similar restrictions, so you should be able to do 
-the same and imply it from the compatible. Though I'm open to a common 
-property as Bjorn suggested.
-
-> +
-> +  wakeup-source: true
-> +
-> +  power-domains:
 > +    maxItems: 1
 > +
 > +  access-controllers:
 > +    maxItems: 1
 > +
-> +if:
-> +  required:
-> +    - wakeup-source
-> +then:
-> +  required:
-> +    - wake-gpios
+> +  power-domains:
+> +    maxItems: 1
 
-This can be just:
-
-dependentRequired:
-  wakeup-source: [ wake-gpios ]
-
-(dependentRequired supercedes dependencies)
+All these properties common between RC and EP modes should be in 
+a shared schema.
 
 > +
 > +required:
-> +  - interrupt-map
-> +  - interrupt-map-mask
-> +  - ranges
 > +  - resets
 > +  - reset-names
 > +  - clocks
 > +  - clock-names
 > +  - phys
 > +  - phy-names
+> +  - reset-gpios
 > +
 > +unevaluatedProperties: false
 > +
@@ -231,43 +165,27 @@ dependentRequired:
 > +  - |
 > +    #include <dt-bindings/clock/st,stm32mp25-rcc.h>
 > +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
 > +    #include <dt-bindings/phy/phy.h>
 > +    #include <dt-bindings/reset/st,stm32mp25-rcc.h>
 > +
-> +    pcie@48400000 {
-> +        compatible = "st,stm32mp25-pcie-rc";
-> +        device_type = "pci";
+> +    pcie-ep@48400000 {
+> +        compatible = "st,stm32mp25-pcie-ep";
 > +        num-lanes = <1>;
 > +        reg = <0x48400000 0x400000>,
-> +              <0x10000000 0x10000>;
-> +        reg-names = "dbi", "config";
-> +        #interrupt-cells = <1>;
-> +        interrupt-map-mask = <0 0 0 7>;
-> +        interrupt-map = <0 0 0 1 &intc 0 0 GIC_SPI 264 IRQ_TYPE_LEVEL_HIGH>,
-> +                        <0 0 0 2 &intc 0 0 GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>,
-> +                        <0 0 0 3 &intc 0 0 GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>,
-> +                        <0 0 0 4 &intc 0 0 GIC_SPI 267 IRQ_TYPE_LEVEL_HIGH>;
-> +        #address-cells = <3>;
-> +        #size-cells = <2>;
-> +        ranges = <0x01000000 0 0x10010000 0x10010000 0 0x10000>,
-> +                 <0x02000000 0 0x10020000 0x10020000 0 0x7fe0000>,
-> +                 <0x42000000 0 0x18000000 0x18000000 0 0x8000000>;
-> +        bus-range = <0x00 0xff>;
-
-Don't need this unless it's restricted to less than bus 0-255.
-
+> +              <0x10000000 0x8000000>;
+> +        reg-names = "dbi", "addr_space";
 > +        clocks = <&rcc CK_BUS_PCIE>;
 > +        clock-names = "core";
 > +        phys = <&combophy PHY_TYPE_PCIE>;
 > +        phy-names = "pcie-phy";
 > +        resets = <&rcc PCIE_R>;
 > +        reset-names = "core";
-> +        msi-parent = <&v2m0>;
-> +        wakeup-source;
-> +        wake-gpios = <&gpioh 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-> +        access-controllers = <&rifsc 76>;
+> +        pinctrl-names = "default", "init";
+> +        pinctrl-0 = <&pcie_pins_a>;
+> +        pinctrl-1 = <&pcie_init_pins_a>;
+> +        reset-gpios = <&gpioj 8 GPIO_ACTIVE_LOW>;
 > +        power-domains = <&CLUSTER_PD>;
+> +        access-controllers = <&rifsc 68>;
 > +    };
 > -- 
 > 2.34.1
