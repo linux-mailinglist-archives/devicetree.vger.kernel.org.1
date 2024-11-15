@@ -1,150 +1,122 @@
-Return-Path: <devicetree+bounces-122209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBC3A9CF25A
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 18:07:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 913119CF269
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 18:09:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A0A9E285BC3
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 17:07:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 541BC28B302
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 17:09:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E3CF1D54E2;
-	Fri, 15 Nov 2024 17:07:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C20B41D54EE;
+	Fri, 15 Nov 2024 17:09:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="KNNZC1KM"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="Eyr50KZ1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C0831CDA14
-	for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 17:07:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 963351D47C8
+	for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 17:08:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731690460; cv=none; b=VcjxC7hR5be+e9PqCoTb9qfhfQVHxZLXMDgOCVKsXY7PxF57e66oDTz2yREneELYiZzU321CJHrRylDmR4tsLj0hsUDd3bPijKi6kl/s9SbjgCH4tTpo2tTzvEvYUUSaTbefaZG7Ukoqz07pgbfz6PONS2KN83zXhvCM7QgtUY4=
+	t=1731690540; cv=none; b=D8MEUh2PYbK+ocRnspIKp7adcd60eFQMV/So7VLZU/mIgo8KTt+VD3r2QAF3Iih8ykOb+fjjGUMiLRopYNZgxqGxA0Rxp//Cd2PJBovPNELDa6vs6Kr7NxxKuXjZ7hvkY2z/k0XGvumRgrzuRka6H+Qfg+7EIu4BdHAqFT1ejJ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731690460; c=relaxed/simple;
-	bh=RlgLCwt0pHAzO+8y8JHjzVJt2BMGqQLKA4J3pAJFt7A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BVtqcUEiEajdS0keewxFQ/HvmuYPe2HBGsD9QSIcObdMokVWn4tKVHXnKWnnwnnlW/Keoq66y6Zfi2t4RLqcJbe5SvxvK3Y7xwucUUh7Pmmui3gGr9Y3yvM78oHyIrISvOGVEw3P4VNOSzJMZwC4nD4ZmI0iOBQ/H9tlZaxs1YI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=KNNZC1KM; arc=none smtp.client-ip=209.85.167.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f181.google.com with SMTP id 5614622812f47-3e5fef69f2eso607425b6e.3
-        for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 09:07:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1731690457; x=1732295257; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0UZ4bmKiEfcrQ88X0EpormBgHcykEkWHrKLssaVp+ps=;
-        b=KNNZC1KMH//UilrDoY+W3OmZrVLJKwQnRxU9ErFB2vkIXGNrMrpsRSafWnd2LllDgY
-         glJOGGy3T+FWqE/5tlaK4JLxOtDPbdQ0/7WMpSaEWo6KGGnpBzQfH+mwS5G0EVRZKE1d
-         mkD9QEyUeVLdGBlNFC7HtPfY84iskgtUbAOD1VP1V6ByWHVJ4/Bt43ffaWWWwUA6/8aJ
-         /6Ewg1eZjmgvgGEJpdNExRx2NJB8awcKJobTHbf8IT0OgTKZC25hpZ7GKbvH4T5p23m5
-         HF+44VrzVUesHsbORPYf8A0oMDtzwzIqXJUSuW8qBFNwjDlX69v8CHQrWmmbCC7Q6M1X
-         0tdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731690457; x=1732295257;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0UZ4bmKiEfcrQ88X0EpormBgHcykEkWHrKLssaVp+ps=;
-        b=V5lVNkDU4tAP64iWdUhCWjOqAeKralHLFqiNqThBXHSBEsPT0nV7NEdQ98EL86qUjq
-         bCCdcuBcrrIzBlZMGBkHDfPu44bqjyCVfppwJTIxvCcGj7KaSOq8CP+mWp0AN+8zdEo6
-         SV+kQth+f/790+cffSPBWOP9R/Dx5XvphtXMKIGoJ4Cz0m1wjo4U+UTXtjJWtfDWO9T4
-         S6FhjPrlEyiXGHILS5awpIG1fIB3r3hAZs3+D5gvQJ7+4vdYaqrid5jMe/XcMR/1G3Dr
-         S3Ed9227f6VkK05Ic9dIBkb3oqjZqrUZs3iJp5PTf+/iho/ALgmx+iyHRRky7wCvGtF5
-         trxA==
-X-Forwarded-Encrypted: i=1; AJvYcCX7ZuhP8ZfLdJJuLGQk1oKz+iYVqlVRmpb2W42EbPxTWut0VE55+PvN+aIxb3CzKOXEUSoeYH+qyBNf@vger.kernel.org
-X-Gm-Message-State: AOJu0YxF0tiFHFwEkeX8ekhDK5NkKRVvXKEhxQxaxBzwStQG52vTDX4f
-	naTbhwbdpKLjhWH+mgbiuISd0rFVaMsMQHHH6zw1XAnC5b3molrboDpe76fDdnQ=
-X-Google-Smtp-Source: AGHT+IFFqGUcRPyBDjreOCcM1rzo3LgkxNVwNrVKyhxfFUltStJRCbjgMz5dV1Tl7g+Si9O2R8j5Zg==
-X-Received: by 2002:a05:6808:2020:b0:3e0:3ab7:d7ad with SMTP id 5614622812f47-3e7bc7d2f6fmr4048241b6e.22.1731690457623;
-        Fri, 15 Nov 2024 09:07:37 -0800 (PST)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-3e7bcd82997sm629389b6e.34.2024.11.15.09.07.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Nov 2024 09:07:36 -0800 (PST)
-Message-ID: <7e302a49-db5a-444d-aae1-3c80ab75b471@baylibre.com>
-Date: Fri, 15 Nov 2024 11:07:34 -0600
+	s=arc-20240116; t=1731690540; c=relaxed/simple;
+	bh=gXheXom3MTvMR7dRmavCkGXyuj5o+8DezuAbzhc2XQ0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DC+57HsdxkmjtPYuR7sP8cnl+Dox7qztB24w+A/t+y6XtAG2YIfjvUdDOHRYJ+0uR04l9N5ZbbJn2NmDwipuX3ki7GtPCOs1G8rgay4WoyeOmgPKlpMM8I+M8hyfI+rW3/cue40zvjelfk+6n15C96jLJgvXAdSM4WebTl04/TI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=Eyr50KZ1; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=fs0U
+	diqmqoDl0sN2GiNwSsP7adCI+uMwSrUXF0IDfzs=; b=Eyr50KZ1P6dzmj5eebaV
+	Yl/EJbYP38WxEUQeA74gpAiE/AA55vyqI1Pm4sCcIiNacn0JHTbv6rhSh7kpQaph
+	7gYQF7zdMT0Cg4jcOBo8vIXgECB0Vin0XwxuR74tqAhKUGhyA8PG6djc2HesG7Wp
+	0D80FbO2+kI6YB/DiLJmcXhFI1+S8zWZVxYBVMvgBJoTfJO1ctBswcFkcAR6Pn0k
+	DmMfHeVCtkZXBl5xn+Z3VGgBaFVw1Y9tX+CQ+eQJDbW3WdEvJXKziNmqO3vcplVY
+	1QSBLV+Gwclwdvxl7qd5ghCvjNEXTP6ZkFyGcdmJf7w9iAjalOf6O27wqkwpIgL0
+	EA==
+Received: (qmail 3569722 invoked from network); 15 Nov 2024 18:08:49 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 15 Nov 2024 18:08:49 +0100
+X-UD-Smtp-Session: l3s3148p1@13fjnvYmSo9ehhtH
+Date: Fri, 15 Nov 2024 18:08:49 +0100
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: linux-renesas-soc@vger.kernel.org,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	dmaengine@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Linux MMC List <linux-mmc@vger.kernel.org>
+Subject: Re: [PATCH v2 0/3] dmaengine: sh: rz-dmac: add r7s72100 support
+Message-ID: <ZzeAIQe1zdoNYkyO@ninjato>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	linux-renesas-soc@vger.kernel.org,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	dmaengine@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Linux MMC List <linux-mmc@vger.kernel.org>
+References: <20241001124310.2336-1-wsa+renesas@sang-engineering.com>
+ <CAMuHMdW5PhRT0B+ua=MyTeTZF+BOFEzQ8XyWtBGOiU+YKbathg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] iio: adc: ad4000: Use device specific timing for SPI
- transfers
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>, lars@metafoo.de,
- Michael.Hennerich@analog.com, jic23@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, marcelo.schmitt1@gmail.com
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <cover.1731626099.git.marcelo.schmitt@analog.com>
- <81370b043de208795738e5679c33de37439c0a2e.1731626099.git.marcelo.schmitt@analog.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <81370b043de208795738e5679c33de37439c0a2e.1731626099.git.marcelo.schmitt@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="NUj8klQLcYeDFea7"
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdW5PhRT0B+ua=MyTeTZF+BOFEzQ8XyWtBGOiU+YKbathg@mail.gmail.com>
 
-On 11/14/24 5:51 PM, Marcelo Schmitt wrote:
-> The SPI transfers for AD4020, AD4021, and AD4022 have slightly different
-> timing specifications. Use device specific timing constraints to set SPI
-> transfer parameters.
-> 
-> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> ---
->  drivers/iio/adc/ad4000.c | 50 ++++++++++++++++++++++++++++++++--------
->  1 file changed, 41 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/ad4000.c b/drivers/iio/adc/ad4000.c
-> index 21731c4d31ee..68ac77494263 100644
-> --- a/drivers/iio/adc/ad4000.c
-> +++ b/drivers/iio/adc/ad4000.c
-> @@ -35,10 +35,6 @@
->  
->  #define AD4000_SCALE_OPTIONS		2
->  
-> -#define AD4000_TQUIET1_NS		190
-> -#define AD4000_TQUIET2_NS		60
-> -#define AD4000_TCONV_NS			320
 
-We are removing 3 but only adding 2 in the struct below?
+--NUj8klQLcYeDFea7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-If one of these was unused, best to mention it in the commit message.
 
-> -
->  #define __AD4000_DIFF_CHANNEL(_sign, _real_bits, _storage_bits, _reg_access)	\
->  {										\
->  	.type = IIO_VOLTAGE,							\
-> @@ -122,10 +118,30 @@ static const int ad4000_gains[] = {
->  	454, 909, 1000, 1900,
->  };
->  
-> +struct ad4000_time_spec {
-> +	int t_conv_ns;
-> +	int t_quiet2_ns;
-> +};
-> +
-> +/*
-> + * Same timing specifications for all of AD4000, AD4001, ..., AD4008, AD4010,
-> + * ADAQ4001, and ADAQ4003.
-> + */
-> +static const struct ad4000_time_spec ad4000_t_spec = {
-> +	.t_conv_ns = 320,
-> +	.t_quiet2_ns = 60,
-> +};
-> +
-> +static const struct ad4000_time_spec ad4020_t_spec = {
-> +	.t_conv_ns = 350,
-> +	.t_quiet2_ns = 60,
-> +};
+> I am not sure if the SDHI driver or the RZ-DMAC driver (or virt-dma)
+> should be fixed, as the documentation[1] states:
+>=20
+>      Note that callbacks will always be invoked from the DMA
+>      engines tasklet, never from interrupt context.
 
-t_quiet2_ns is the same in both cases, so do we actually need to
-add it here instead of using a common macro? Or if it is for future
-differences, mention that in the commit message.
+Back then, I had the impression that we can rework the SDHI SYSDMAC part
+to not use a completion like the internal DMAC version does. But it has
+been a while and I got completely side-tracked meanwhile.
+
+
+--NUj8klQLcYeDFea7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmc3gB4ACgkQFA3kzBSg
+KbZYaRAAgONEcRq91VrdR3VgzobqOiHsEOIQmPZ7pHtK3vS8EsSlPw+R94rm9oSs
+IYz4PLJ/R4Px56+2ALFomogLQGTBcHivFXDrdIB3su6BEbStcqFu+SvfiFj1UxkT
+DOdelDfLr5HmwInis2zzLHY8Xik99IMKd6Q0955UE9A6wGuPdOaUuhK1Cg2oAxZV
+CUy8V3a/AJRDYoVqYvb1us6pDGTvzypB7FVDUu8Cj8A24tVrNf1Br5XbnDTE16pW
+qaZQFxtKDp4aRR6lQaj0JsPPh/1UHxl0czRpnCAm7fDGPfZEEyi/F5XU+N3CFFZT
+yIuYytLltEIuXBUwZlVfzSUMdnpRi/StVwZQoqLFyCVhIcZNFUjPkXxhbj/P/GaM
+GjmoPNkO/EAx6d7WlTUXFyt8x4a8mdM2nFv5I6OiXFh/Hef+JPMp/3/v3DE2qyM/
+MSeMa73n6JA9E+74iyuS6bUM3Th61vfOREBngSaDrcXAuZO/+Ehw0tcxs5dr+Ou4
+wJjJav01NIPjep0KCTW4PDTytkT2A2iP7Vqz1ob6KtBs81EBAbK7mkzwWHLvkxOg
+tcbUf3+m8ISi3P+B2uAAeTEvOHV+i1nBGrTspL5AzYLF2AJ9CMciRXxv4WaNshfA
+E4hzI8WhlmtfXS1QeTxMSZ0VorR9Do2pzNCV7D9MPVc+k+sczGw=
+=IqKm
+-----END PGP SIGNATURE-----
+
+--NUj8klQLcYeDFea7--
 
