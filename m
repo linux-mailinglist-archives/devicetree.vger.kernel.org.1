@@ -1,90 +1,87 @@
-Return-Path: <devicetree+bounces-122048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D14A89CD80A
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 07:47:17 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81C189CD89D
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 07:52:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B01EF1F220D7
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 06:47:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1EBC9B25A52
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 06:52:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5A5918859F;
-	Fri, 15 Nov 2024 06:47:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96B8818872A;
+	Fri, 15 Nov 2024 06:52:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m8pJrJBV"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KxDKISF6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F64A17E015
-	for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 06:46:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0926F187FE8
+	for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 06:52:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731653220; cv=none; b=NIbOHvRj0DuEyqexCnzLS7tBO5ijBhyOGJspPvyE0dX0ZrJKPy+cpX0kvhAP4XAwsorTkMJ+JLDRGCoMK4Lu+pVeLtstPZoHCnEhpLFKUtaPs/6meIHHlTVLc81hDpT1YcaAjPqh73gcVcd3C2A4p+JdrdqV+Kxbv/gLCt5si5A=
+	t=1731653552; cv=none; b=EVLfzLE8VeM1v/I+SMK3ce8BXNU3lWw+XoHopg53QVTjVXeMd0AaC25eyMxbB+Wi4WQ33/7fYIMQZn6hqiE7/6nIlsVq2j2yZhTb42asJ3jRSEMcTGS2dUYfZCIK5M+fWUQwKIFAoMjGl/FTIbs4bDa4yIkxTK2wBPZjR21/ls4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731653220; c=relaxed/simple;
-	bh=6qPHPlugeDCueFbEoNB3un8kv4mr+aZBLbJBD2DhCFs=;
+	s=arc-20240116; t=1731653552; c=relaxed/simple;
+	bh=CEMXhu2MGYVzDLJ2Eh1N2Pyu48lfVTlo3bSjDF1UB9U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rZWw8PK1qvF7oLMCnH9o5ADI7ZByeCTtenCKeBBfQ3/kL7dHKM/6+xhBjFwtVnRli7PuSl/2ZHA6NoP3kHiLOgIbAcpP22e+5xUEPsUvK8CBtHOyJ9NYuzsx2h/Bxr3cZE+Ut9YITNyj6haF2942m+2YrkP1kaUg2W6zbMie8LQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=m8pJrJBV; arc=none smtp.client-ip=209.85.210.181
+	 Content-Type:Content-Disposition:In-Reply-To; b=FJEoR5GPZeQpUNBgJZXNoYQD4cfNizvhDY9MSU01iJBIllwNhUlg2IDeQ7yr1wTh54+sDnYC0Lin0D/040eimfOFb+QDRgNbRPlFKp8r+XLv3kM4DMC/s8pRy5NLjOeFANk87KfuXozBqwypIU0YyzSKAoVTlVtWNM5ZbRMcBRo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KxDKISF6; arc=none smtp.client-ip=209.85.210.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-71e5a62031aso1148577b3a.1
-        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 22:46:59 -0800 (PST)
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-720aa3dbda5so1088427b3a.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 22:52:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731653218; x=1732258018; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1731653550; x=1732258350; darn=vger.kernel.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=G/BfAHb1ZSMqVdqDSvsNC7xvx5+b5HvV8VHYR/A40J0=;
-        b=m8pJrJBV9n+AxPJQfIgl0W7E8hqUkNg4pqq12rE9+gL/w7PIxtB/gmZhZ1GMl/vHlQ
-         +lJJ/raptPdx/ytjwGOV/dK/weZngEtVVo5XVpcjxuMKM92yvxwj/72nsEq/0XDEFx8A
-         jlpWympP9mfj0kac5DkioYx7kA7NtiYr/1CPaHdmBBswNeb7oEc9x27XfEd2iMntBkDp
-         LflkZoTGcUAUaPmuDu5kHa/B+LA4jk82my4QI9VxRZRhyA5S41F23SWM87jzERviCrde
-         Ur1PXnY9Jr5YSZTtWCc7TWBtEFgNPbFzb+fwtuxXhlECK5QuizIrLZFSt4RSc+K5F1tW
-         gOWw==
+        bh=4/1UwVe3Qsy2MB0A1h4O60dSR7MLmU1E1u1iWJ0FEAI=;
+        b=KxDKISF6z7WtvEguG/bF7HGMPm9QJzwIgENY/iGpjnNCjSZEP0rltrG8nkvjv/VTWf
+         /A3rXQTcYWs/YGagPadlomJ6Sw8ztq/mI/9g12x0dvAVL6s6F3EIHRsgjNRuLzSYjlt4
+         nkwkkakh/Iwv+L7xbBIwP6LyohQ6ZD2RgVKVfXQqatSlRQ8j8d/yDtNZAu0PH8dYsoMX
+         n5rbdCC1MljlkujGrYWwOYizx4U6JckxdhygoRKNDUCZPtjDNiCmFq64SXr1slwDeX4u
+         qrmQlZA6O2agC3KA+4BWc5dkWf+QuShrE+Uy18LeSQRl6gGCO0KQeoio5JWbUJ3PyrhH
+         bELQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731653218; x=1732258018;
+        d=1e100.net; s=20230601; t=1731653550; x=1732258350;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=G/BfAHb1ZSMqVdqDSvsNC7xvx5+b5HvV8VHYR/A40J0=;
-        b=Nw4BQ6YJKhPNUUB2drdZ3WYOfrBOCQw7eBXXf9S0dXjR+QltkHi2wMaU2b77Cuwyes
-         vksItwrfVnw4X4KWj/LpazEyed0+wWfvGUu07CGE2tz+d0SueDWNk+lKnUbYA2sDLySm
-         zVfNuupTn2L4sAJkNTVYcr0F+GOKmE26taS582UK9KJpDjgGwDO+U66Eb10SQRTPMYOD
-         10xmXs5js40P1k9PJAEW5Ypcl3yp5UZEGXkSClUGDatucmOOjKGSvgBRjhbWllo2o/RV
-         IZgMLtmBuce/P0iYdzKyd31df9PBiTYJRAAnSgCY4US0QATRMlIE0/CN9WH/YzWsikjP
-         ZSqw==
-X-Forwarded-Encrypted: i=1; AJvYcCWwaBz2E55Rviqpezp7gDsOfH5sMdLGhbsJacSbvdzFRutIKwgkvDERhlf4RuSwCxfq/d+RQzpzbAGz@vger.kernel.org
-X-Gm-Message-State: AOJu0YwvzZzwRxbOaClPjgWOt7wReFIVylwLqo0+zB+F9J+GIZAdgqiV
-	7k8ge3lwf0h3B7cX5d2jvz+EDeCB5manoZ5y7gmJ2XgIex4LoraT9sN5k/2JFg==
-X-Google-Smtp-Source: AGHT+IG7g6V+GncMskJmi31sl11CTfqGguPy66PiWd2w8mZ74T+uGZMa+rDBHSDEHgff9qIU3c4ZGw==
-X-Received: by 2002:a05:6a00:2309:b0:71e:1722:d019 with SMTP id d2e1a72fcca58-72476e7b88emr2343975b3a.22.1731653218397;
-        Thu, 14 Nov 2024 22:46:58 -0800 (PST)
+        bh=4/1UwVe3Qsy2MB0A1h4O60dSR7MLmU1E1u1iWJ0FEAI=;
+        b=fUhBOxncxYvl3lhQwku5qEMrvmGgmd0EKHHCRd1c2Fa5p5jvfOepeUFMqVJ6C93Y3c
+         7Ek9JX5Uz69Z2AbHrT8WCAZCjVJOArBB6El+naJYopQdz0svowaGJAYBwgVjwthquOi4
+         R08PsECIgIJvTKuC3GOkWXs/n+cURZs5N6redH5Rd6Shm1EouJ0KvsrZEXMc6oWAFYDg
+         E9sQTP+ZqIMb83Q/cNhAgirfeHLv1inz1nMXi6FYZpRzv3BjnoBBEfLm+q4LnStYAX5P
+         PSU13OAk7DvMjlVmf0AZcnD4uR2dOwJj74AWclXzNHhTvExBOZi9FDeT+sHxURcD/TO1
+         w9aw==
+X-Forwarded-Encrypted: i=1; AJvYcCVZTnLrKKK853PEDtQI1bKyR5Gy9I6bYBL0dbT6iLX9Vgal+7zZnwMtKcORHcq/PyZEv37ItlvCwrkV@vger.kernel.org
+X-Gm-Message-State: AOJu0YxPcyNfGjb6zDJInGrEHi25a+9yC/zHgKSSLCroMY67eyF5HGoq
+	rsb5NyXkTP7D2VfSQBn9NwusyWmr33l6X8kOWW3Ne2vmXXuziEV3wTAR8kmxyg==
+X-Google-Smtp-Source: AGHT+IE/YBLChBCuslucF1k1xTrQEVYs0lhSpDpzi5LeohRmyIqqfR8TDB+1oTszXaCrfQURCH52AQ==
+X-Received: by 2002:a05:6a00:998:b0:71e:44f6:6900 with SMTP id d2e1a72fcca58-72476cfc9a9mr1771780b3a.16.1731653550107;
+        Thu, 14 Nov 2024 22:52:30 -0800 (PST)
 Received: from thinkpad ([117.193.208.47])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-724770eef26sm661670b3a.33.2024.11.14.22.46.51
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7247711c0cfsm690383b3a.51.2024.11.14.22.52.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Nov 2024 22:46:58 -0800 (PST)
-Date: Fri, 15 Nov 2024 12:16:48 +0530
+        Thu, 14 Nov 2024 22:52:29 -0800 (PST)
+Date: Fri, 15 Nov 2024 12:22:21 +0530
 From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Ziyue Zhang <quic_ziyuzhan@quicinc.com>, vkoul@kernel.org,
-	kishon@kernel.org, robh+dt@kernel.org, bhelgaas@google.com,
-	kw@linux.com, lpieralisi@kernel.org, quic_qianyu@quicinc.com,
-	conor+dt@kernel.org, neil.armstrong@linaro.org,
-	andersson@kernel.org, konradybcio@kernel.org,
-	quic_shashim@quicinc.com, quic_kaushalk@quicinc.com,
-	quic_tdas@quicinc.com, quic_tingweiz@quicinc.com,
-	quic_aiquny@quicinc.com, kernel@quicinc.com,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
-Subject: Re: [PATCH 4/5] arm64: dts: qcom: qcs8300: enable pcie0 for QCS8300
-Message-ID: <20241115064648.7ugkijhsobc4gcda@thinkpad>
-References: <20241114095409.2682558-1-quic_ziyuzhan@quicinc.com>
- <20241114095409.2682558-5-quic_ziyuzhan@quicinc.com>
- <a02925d7-2d09-4902-97e4-5e7f09d7ef21@oss.qualcomm.com>
+To: Richard Zhu <hongxing.zhu@nxp.com>
+Cc: l.stach@pengutronix.de, bhelgaas@google.com, lpieralisi@kernel.org,
+	kw@linux.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, shawnguo@kernel.org, frank.li@nxp.com,
+	s.hauer@pengutronix.de, festevam@gmail.com, imx@lists.linux.dev,
+	kernel@pengutronix.de, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 05/10] PCI: imx6: Make core reset assertion
+ deassertion symmetric
+Message-ID: <20241115065221.scfb2chnoetpdzu6@thinkpad>
+References: <20241101070610.1267391-1-hongxing.zhu@nxp.com>
+ <20241101070610.1267391-6-hongxing.zhu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,33 +91,56 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <a02925d7-2d09-4902-97e4-5e7f09d7ef21@oss.qualcomm.com>
+In-Reply-To: <20241101070610.1267391-6-hongxing.zhu@nxp.com>
 
-On Thu, Nov 14, 2024 at 02:02:48PM +0100, Konrad Dybcio wrote:
-
-[...]
-
-> > +
-> > +			pcieport0: pcie@0 {
-> > +				device_type = "pci";
-> > +				reg = <0x0 0x0 0x0 0x0 0x0>;
-> > +				#address-cells = <3>;
-> > +				#size-cells = <2>;
-> > +				ranges;
-> > +				bus-range = <0x01 0xff>;
-> > +			};
+On Fri, Nov 01, 2024 at 03:06:05PM +0800, Richard Zhu wrote:
+> Add apps_reset deassertion in the imx_pcie_deassert_core_reset(). Let it be
+> symmetric with imx_pcie_assert_core_reset().
 > 
-> Are you going to use this? If not, please drop
+> In the commit first introduced apps_reset, apps_reset is asserted in
+> imx6_pcie_assert_core_reset(), but it is de-asserted in another place, in
+
+I'd suggest rewording like below to make it easy to understand,
+
+"PCI: imx6: Deassert apps_reset in imx_pcie_assert_core_reset()
+
+Since the apps_reset is asserted in imx_pcie_assert_core_reset(), it should be
+deasserted in imx_pcie_deassert_core_reset()."
+
+> stead of the according symmetric function imx6_pcie_deassert_core_reset().
 > 
+> Use this patch to fix it, and make core reset assertion deasertion
+> symmetric.
+> 
+> Fixes: 9b3fe6796d7c ("PCI: imx6: Add code to support i.MX7D")
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
 
-Absolutely not! This describes the IP that is present in the SoC and that IP is
-being used. You can however keep it disabled in the soc.dtsi and enable in board
-dts when PCIe controller is enabled.
+With above change,
 
-Moreover, I plan to move the slot supplies to this node soon, so it will be
-used mostly.
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
 - Mani
+
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  drivers/pci/controller/dwc/pci-imx6.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
+> index 996333e9017d..54039d2760d5 100644
+> --- a/drivers/pci/controller/dwc/pci-imx6.c
+> +++ b/drivers/pci/controller/dwc/pci-imx6.c
+> @@ -772,6 +772,7 @@ static void imx_pcie_assert_core_reset(struct imx_pcie *imx_pcie)
+>  static int imx_pcie_deassert_core_reset(struct imx_pcie *imx_pcie)
+>  {
+>  	reset_control_deassert(imx_pcie->pciephy_reset);
+> +	reset_control_deassert(imx_pcie->apps_reset);
+>  
+>  	if (imx_pcie->drvdata->core_reset)
+>  		imx_pcie->drvdata->core_reset(imx_pcie, false);
+> -- 
+> 2.37.1
+> 
 
 -- 
 மணிவண்ணன் சதாசிவம்
