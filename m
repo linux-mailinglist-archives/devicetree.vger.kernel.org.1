@@ -1,88 +1,60 @@
-Return-Path: <devicetree+bounces-122152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122157-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F5119CE5ED
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 15:58:48 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C986D9CEC62
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 16:14:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C35A01F210BA
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 14:58:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D5976B3653B
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 15:02:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D00A11D4333;
-	Fri, 15 Nov 2024 14:58:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC7551D5164;
+	Fri, 15 Nov 2024 15:02:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vvGrN30H"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NODpiI57"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F8851CEACD
-	for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 14:58:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B02FE1D5161;
+	Fri, 15 Nov 2024 15:02:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731682722; cv=none; b=tl5VpiUaaZUKS+OcBds0PA1d8r4pTDDO8XQVAzBTWWqJrbdyDPSa1lNG9nM+njJj4sdK2hhD8wU4yVs1gOBdNDk6CGznlu1UGJqFQZtlh0D9r8RyQ9SMboxhaW0hmDnamZiEgIUjWr02/oVhkn9Q5hYQS7qbynouv1sLkuqkITQ=
+	t=1731682932; cv=none; b=u9XjBdHbgBtvj279MZzr6Px7a+UGY2l8ZHM9r/nEGsBv+hjV2xcjf/zvUxkWeAsJtSMrz5pLVyuCyOmF2CXm57rT+p92C2tAu8YoWajkLre7D+llufaWdORNT9k5dG6jmbEOOLbw8MC9Et/N8b6+zxk73cdquJdyE7cZXabKMvs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731682722; c=relaxed/simple;
-	bh=spt7Qe97TCcqDkL80p7AIpZTu1KB534Gmt5F7jiy+nU=;
+	s=arc-20240116; t=1731682932; c=relaxed/simple;
+	bh=RC7dHsUpzDmhpG2Rds2L44gcmJcCyTz4v8LUuaz9vbM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PxiJa0I7/6AasaXZYuP8PFEYDMIuY60mqFyrHjCJK3RZ+LgoTcAIQWz2Z3qJzNcbpy1KnHNlbb1ZdNljmaKgmU36oYcdpqyKpAzwm3WZJr87Q5+ZgsRZ1K4q4sWNJc0sVdSwv8eu7Uynyh7J12mxt52gbbhlqGMjbjovZNtvOU0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vvGrN30H; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-539d9fffea1so1888237e87.2
-        for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 06:58:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731682719; x=1732287519; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=8/yPbX6d8qnwsQSq0idPhwK61jM6DG729KCLrzeQHZE=;
-        b=vvGrN30Hu+rSpLquQO0a0Lg+82xdWfDvPdVBbJieqKvfIx0+kFQ5qE2mq48NXGgZEn
-         hejq4+c0Y49+S+qRwJNVr2UvgwGNzrEsyHphogxm1veFnueBMDb09niQopYOasq0sOI4
-         dNxODUiP0CxWOs8uP1wFBZjuSPB1n8ctOvuK25qAiyxpZ3P06ViXErfG2Nm4whH8mPMo
-         1bcgqif9egs9tKdofvhukjygEcT62DrsSeowaQgT46RXbq/WTgrvNLBibwUQFhMY1JKz
-         +4Wxhhim6A5qQW+2al6ta+goy2L1liS3Q4uT53Zq2X+QFv4m6fGMXuYYdP6PuZZwTxSl
-         LgUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731682719; x=1732287519;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8/yPbX6d8qnwsQSq0idPhwK61jM6DG729KCLrzeQHZE=;
-        b=DJ+rFzYvyDRW7wUOaIqifuzi/rQStx1yhlVyIK+3ukOEH6dW70GJ9bvHfQyWfDmmLg
-         0zZkNZl6qJKlK7jBXlZziIFvl415Rb5SrSB+AwVjtimtSVp3VHKbbrLoext0nvr3K2Qr
-         T/LqaMcTXgXiTAsE3KEtw+12vkt/AX3HztFW9ESCxePis02+okxUjYXQYTh/Sx6Oqgbs
-         lG0SiHkYZICqqs0M0762hTgxuXipnotI0PgfEEJHEaqeANMuP3DZa3yGba+GMoPJThLY
-         MgMEny6hBp+GgDxg0fAI+LOTQ+kRk7d4Xi26meZKH3Jb/NIRquVgWs8pcR6PRSlYmRFO
-         LyFg==
-X-Forwarded-Encrypted: i=1; AJvYcCUuLknzwX3ODVA/vs0U4NnfN31jjeA7m63iZC7psH0cizIhENr4hQtUPRwP4WUGMq/rYuL6OX4AievV@vger.kernel.org
-X-Gm-Message-State: AOJu0YzxLi3W5JLELe4LTUyft+FYP4Wyq95ql8FdwPJ1UqLAz8/s/Z0f
-	+HamOY34iBMxr2xu2wc7MB5z9fv6SFftPa/SW/svl6/huOJaU8pFONpc1Amk1EY=
-X-Google-Smtp-Source: AGHT+IGM7VYPBGqesim+t7hs9KzzN+BSQYtR3TO4u2eRlYMxp9E+CqEav7rt4qbZuYt0jOh+d9Lvlg==
-X-Received: by 2002:a05:6512:2823:b0:535:3ca5:daa with SMTP id 2adb3069b0e04-53dab2919f6mr1745737e87.7.1731682719177;
-        Fri, 15 Nov 2024 06:58:39 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53da653e32fsm581786e87.201.2024.11.15.06.58.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Nov 2024 06:58:37 -0800 (PST)
-Date: Fri, 15 Nov 2024 16:58:35 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Melody Olvera <quic_molvera@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Arnd Bergmann <arnd@arndb.de>, 
-	=?utf-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4=?= Prado <nfraprado@collabora.com>, Trilok Soni <quic_tsoni@quicinc.com>, 
-	Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Jishnu Prakash <quic_jprakash@quicinc.com>
-Subject: Re: [PATCH v2 2/6] arm64: dts: qcom: Add pmd8028 and pmih0108 PMICs
-Message-ID: <r4slda74u7rpqiybsylrnoqiqo5qm4442rfwzhtjkwkkgqt25g@n5idmspl7sfd>
-References: <20241112004936.2810509-1-quic_molvera@quicinc.com>
- <20241112004936.2810509-3-quic_molvera@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=FsLxy34n+++myf/7ncAvui9+djgRvU0YtogKN69NgH8JbqhWSPTCCrJWdFuo3zYUtuUhwCZhlBjBUmE0Ho6JgkuiA170W5nYx5LDPrSqL//fWf9S4mKDJlgfYwtc+XHdHUd/T0FvwGP3Kk1za5T696j1YQgbjk0e4E1+551J7sA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NODpiI57; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10589C4CECF;
+	Fri, 15 Nov 2024 15:02:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731682932;
+	bh=RC7dHsUpzDmhpG2Rds2L44gcmJcCyTz4v8LUuaz9vbM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NODpiI57VDFfacvTlhxVqkf8jwPxzY6fiOgg3gq2JZGvdMF9+kkP830N/IR5m2EZ2
+	 JjhF3wpmjNF3rKJ+eaDiW8zej6RYSDOI9nq2zOKYlteBJLRhXbv9ttPs73k9G4pE1K
+	 +NX4ZvGgfs2U7GRIGYTh7KJcKqch/WyTTklvrxTh3euqNY33pYrTp4ZFvYG2z0AR9o
+	 rlOcYKq3rFeMQKr2stq28536T9adoMjR4ecbo3Hmn3iuEvOWCA4Zk6jtTRhcCBCLrI
+	 SPRsxungJhdM9ixRljBnRLmKTkO0tDPzyUAYeyF+ZYU/OEu8/Uig0Itf1oHHazPaWq
+	 RsELFu6TkoJhw==
+Date: Fri, 15 Nov 2024 09:02:10 -0600
+From: Rob Herring <robh@kernel.org>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Ben Dooks <ben.dooks@codethink.co.uk>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] [RFC] dt-bindings: net: micrel: Convert to json-schema
+Message-ID: <20241115150210.GA2680735-robh@kernel.org>
+References: <943cb31d01d0da3a63911326e24fbf9b328f7206.1731580776.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,170 +63,174 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241112004936.2810509-3-quic_molvera@quicinc.com>
+In-Reply-To: <943cb31d01d0da3a63911326e24fbf9b328f7206.1731580776.git.geert+renesas@glider.be>
 
-On Mon, Nov 11, 2024 at 04:49:32PM -0800, Melody Olvera wrote:
-> From: Jishnu Prakash <quic_jprakash@quicinc.com>
+On Thu, Nov 14, 2024 at 11:42:50AM +0100, Geert Uytterhoeven wrote:
+> Convert the Micrel PHY Device Tree binding documentation to json-schema.
 > 
-> Add descriptions of pmd8028 and pmih0108 PMICs used on SM8750
-> platforms.
-
-Up/lower case?
-
+> Add a simple example.
 > 
-> Signed-off-by: Jishnu Prakash <quic_jprakash@quicinc.com>
-> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  arch/arm64/boot/dts/qcom/pmd8028.dtsi  | 56 +++++++++++++++++++++++
->  arch/arm64/boot/dts/qcom/pmih0108.dtsi | 62 ++++++++++++++++++++++++++
-
-Those two are independent changes. Please use two separate patches.
-
->  2 files changed, 118 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/pmd8028.dtsi
->  create mode 100644 arch/arm64/boot/dts/qcom/pmih0108.dtsi
+> Notes:
+>   1. I specified Ben Dooks as the maintainer, as he wrote the original
+>      bindings. Ben, are you OK with that?
+>   2. This schema is never applied, as there is no compatible value or
+>      select statement. Adding
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/pmd8028.dtsi b/arch/arm64/boot/dts/qcom/pmd8028.dtsi
-> new file mode 100644
-> index 000000000000..f8ef8e133854
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/pmd8028.dtsi
-> @@ -0,0 +1,56 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/spmi/spmi.h>
-> +
-> +/ {
-> +	thermal-zones {
-> +		pmd8028-thermal {
-> +			polling-delay-passive = <100>;
-> +			thermal-sensors = <&pmd8028_temp_alarm>;
-> +
-> +			trips {
-> +				pmd8028_trip0: trip0 {
-> +					temperature = <95000>;
-> +					hysteresis = <0>;
-> +					type = "passive";
-> +				};
-> +
-> +				pmd8028_trip1: trip1 {
-> +					temperature = <115000>;
-> +					hysteresis = <0>;
-> +					type = "hot";
-
-"critical" ?
-
-> +				};
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&spmi_bus {
-> +	pmd8028: pmic@4 {
-> +		compatible = "qcom,pmd8028", "qcom,spmi-pmic";
-> +		reg = <0x4 SPMI_USID>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		pmd8028_temp_alarm: temp-alarm@a00 {
-> +			compatible = "qcom,spmi-temp-alarm";
-> +			reg = <0xa00>;
-> +			interrupts = <0x4 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
-> +			#thermal-sensor-cells = <0>;
-> +		};
-> +
-> +		pmd8028_gpios: gpio@8800 {
-> +			compatible = "qcom,pmd8028-gpio", "qcom,spmi-gpio";
-> +			reg = <0x8800>;
-> +			gpio-controller;
-> +			gpio-ranges = <&pmd8028_gpios 0 0 4>;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/pmih0108.dtsi b/arch/arm64/boot/dts/qcom/pmih0108.dtsi
-> new file mode 100644
-> index 000000000000..3907d8fbcf78
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/pmih0108.dtsi
-> @@ -0,0 +1,62 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/spmi/spmi.h>
-> +
-> +/ {
-> +	thermal-zones {
-> +		pmih0108-thermal {
-> +			polling-delay-passive = <100>;
-> +			thermal-sensors = <&pmih0108_temp_alarm>;
-> +
-> +			trips {
-> +				trip0 {
-> +					temperature = <95000>;
-> +					hysteresis = <0>;
-> +					type = "passive";
-> +				};
-> +
-> +				trip1 {
-> +					temperature = <115000>;
-> +					hysteresis = <0>;
-> +					type = "hot";
-
-"critical" ?
-
-> +				};
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&spmi_bus {
-> +	pmih0108: pmic@7 {
-> +		compatible = "qcom,pmih0108", "qcom,spmi-pmic";
-> +		reg = <0x7 SPMI_USID>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		pmih0108_temp_alarm: temp-alarm@a00 {
-> +			compatible = "qcom,spmi-temp-alarm";
-> +			reg = <0xa00>;
-> +			interrupts = <0x7 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
-> +			#thermal-sensor-cells = <0>;
-> +		};
-> +
-> +		pmih0108_gpios: gpio@8800 {
-> +			compatible = "qcom,pmih0108-gpio", "qcom,spmi-gpio";
-> +			reg = <0x8800>;
-> +			gpio-controller;
-> +			gpio-ranges = <&pmih0108_gpios 0 0 18>;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
-> +
-> +		pmih0108_eusb2_repeater: phy@fd00 {
-> +			compatible = "qcom,pm8550b-eusb2-repeater";
-> +			reg = <0xfd00>;
-> +			#phy-cells = <0>;
-> +		};
-> +	};
-> +};
-> -- 
-> 2.46.1
+> 	select:
+> 	  properties:
+> 	    $nodename:
+> 	      pattern: "^ethernet-phy(@[a-f0-9]+)?$"
 > 
+> 	  required:
+> 	    - $nodename
+> 
+>      and changing
+> 
+> 	-unevaluatedProperties: false
+> 	+additionalProperties: true
+> 
+>      would fix that, and is mostly harmless, except for possible
+>      conflicts with other Ethernet PHYs having more than one clock, or
+>      using different clock-names.
+>      Documentation/devicetree/bindings/net/qca,ar803x.yaml has the same
+>      issue.
+>      Is there a proper way to handle this?  Are there other options than
+>      mandating specific compatible values for Ethernet PHYs?
 
--- 
-With best wishes
-Dmitry
+The proper way is simply, if you need to describe your phy in DT, it 
+needs a compatible string. MDIO phys are not special.
+
+We really need to split ethernet-phy.yaml into common properties and a 
+specific schema for the compatibles it contains so that we can change 
+'additionalProperties: true'. That's one reason why all these properties 
+and typos didn't get flagged.
+
+If you don't want to retro-actively add a compatible, you can also do 
+something like this:
+
+select:
+  anyOf:
+    - required: ['micrel,led-mode']
+    - required: ['micrel,rmii-reference-clock-select-25-mhz']
+    - required: ['micrel,fiber-mode']
+    - required: ['coma-mode-gpios']
+
+That doesn't catch every case nor if you have a typo in the property 
+names.
+
+> Thanks for your comments!
+> ---
+>  .../devicetree/bindings/net/micrel,phy.yaml   | 93 +++++++++++++++++++
+>  .../devicetree/bindings/net/micrel.txt        | 57 ------------
+>  2 files changed, 93 insertions(+), 57 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/net/micrel,phy.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/net/micrel.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/net/micrel,phy.yaml b/Documentation/devicetree/bindings/net/micrel,phy.yaml
+> new file mode 100644
+> index 0000000000000000..609bbd9729efe516
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/micrel,phy.yaml
+> @@ -0,0 +1,93 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/micrel,phy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Micrel PHY properties
+> +
+> +maintainers:
+> +  - Ben Dooks <ben.dooks@codethink.co.uk>
+> +
+> +properties:
+> +  micrel,led-mode:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 0, 1, 2, 3 ]
+> +    description: |
+> +      LED mode value to set for PHYs with configurable LEDs.
+> +
+> +      Configure the LED mode with single value. The list of PHYs and the
+> +      bits that are currently supported:
+> +
+> +      KSZ8001: register 0x1e, bits 15..14
+> +      KSZ8041: register 0x1e, bits 15..14
+> +      KSZ8021: register 0x1f, bits 5..4
+> +      KSZ8031: register 0x1f, bits 5..4
+> +      KSZ8051: register 0x1f, bits 5..4
+> +      KSZ8081: register 0x1f, bits 5..4
+> +      KSZ8091: register 0x1f, bits 5..4
+> +      LAN8814: register EP5.0, bit 6
+> +
+> +      See the respective PHY datasheet for the mode values.
+> +
+> +  micrel,rmii-reference-clock-select-25-mhz:
+> +    description: |
+> +      RMII Reference Clock Select bit selects 25 MHz mode
+> +
+> +      Setting the RMII Reference Clock Select bit enables 25 MHz rather
+> +      than 50 MHz clock mode.
+> +
+> +      Note that this option in only needed for certain PHY revisions with a
+> +      non-standard, inverted function of this configuration bit.
+> +      Specifically, a clock reference ("rmii-ref" below) is always needed to
+> +      actually select a mode.
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    const: rmii-ref
+> +    description: |
+> +      supported clocks:
+> +        - KSZ8021, KSZ8031, KSZ8081, KSZ8091: "rmii-ref": The RMII reference
+> +          input clock. Used to determine the XI input clock.
+
+Don't repeat the clock name in the description.
+
+> +
+> +  micrel,fiber-mode:
+> +    type: boolean
+> +    description: |
+> +      If present the PHY is configured to operate in fiber mode.
+> +
+> +      Some PHYs, such as the KSZ8041FTL variant, support fiber mode, enabled
+> +      by the FXEN boot strapping pin. It can't be determined from the PHY
+> +      registers whether the PHY is in fiber mode, so this boolean device tree
+> +      property can be used to describe it.
+> +
+> +      In fiber mode, auto-negotiation is disabled and the PHY can only work in
+> +      100base-fx (full and half duplex) modes.
+> +
+> +  coma-mode-gpios:
+> +    description: |
+> +      If present the given gpio will be deasserted when the PHY is probed.
+> +
+> +      Some PHYs have a COMA mode input pin which puts the PHY into
+> +      isolate and power-down mode. On some boards this input is connected
+> +      to a GPIO of the SoC.
+> +
+> +      Supported on the LAN8814.
+
+Another reason to add compatible. You have per device properties.
+
+> +
+> +dependencies:
+> +  micrel,rmii-reference-clock-select-25-mhz: [ clock-names ]
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    ethernet {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        ethernet-phy@1 {
+> +            reg = <1>;
+> +            micrel,led-mode = <1>;
+> +        };
+> +    };
 
