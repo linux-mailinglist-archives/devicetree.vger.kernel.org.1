@@ -1,146 +1,132 @@
-Return-Path: <devicetree+bounces-122203-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122206-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02DFC9CF23B
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 17:58:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E0799CF237
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 17:56:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ED441B62FD3
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 16:47:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 150461F250E8
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 16:56:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F5D81E2309;
-	Fri, 15 Nov 2024 16:44:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18D2B1D515A;
+	Fri, 15 Nov 2024 16:56:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hagLj4hw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nJOtsBkf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BCF71E22F7
-	for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 16:44:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78A16847C
+	for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 16:56:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731689082; cv=none; b=q4NXKZFVNRy+oCethJdFRgV5EU2Koh7HBvaxedjjNMIeZogAf021iO9nf3pnmTocXiZiXS716nplkYkfycw6f+c+uDWGKeyTKgqdanneWOXBp/Telsw4uKCJaYz4h8N+yAR6AOAhxTMIt2yOfolpZR3p0IUcKMXZDkr1tC93NBY=
+	t=1731689775; cv=none; b=ZU0oU6azlBs2wLVIoJg9zM8kpWZvraaoqg73ltG7UzBWxIzKQrq3B1Kh0NwmFl59WByjtFX14x0nk+aQtanpyywBYUdIolFN+GkWn+OaBnTmWsEt2eNAy5kp+SnM5ue7Pg3CddSUM5I2fcphIhY+Pwq4WeOVpHa5FzNa8TF/ALU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731689082; c=relaxed/simple;
-	bh=w1FTAecBOFTmyqoMAH2DfbSi1/WWutIqszTuyzR8ob0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=s0jDhWcSHsuziRirXyI+NSGRdNQkl70TWUeVSIVwumG3VCO3n8VJSbrz2zX74j7Ix87YJgoh1T7nAS471uQZy65DKuJ+feGZuKZimSnkJOtEMXqgI4jIeevlO6uPZ9DHavR1cWAcqH+hRbdJVgKvTShFqOXD/qcIcEI/K4eTsOg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hagLj4hw; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2fb599aac99so20369341fa.1
-        for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 08:44:39 -0800 (PST)
+	s=arc-20240116; t=1731689775; c=relaxed/simple;
+	bh=u0nInsxIdNGOgQambcoXqwexeiN04SjXqkKyG9oCO2M=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QVVMZH8PEO/Q+fiQYzLJ534iKWd14xSg2grWHf+hWACaNt3pVGP1fMbJSXgpFGs3Mw/MPz2Q2inwJ561vuHq0+lvpbvijTWUXVnVkF/tUwIL20vT0OBXpnZkrb3sGsFQFwpX419HQQlpTRbWiBzsiaOcQwyE0VOJ5L947M4ERNo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nJOtsBkf; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-53da5a27771so2375302e87.2
+        for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 08:56:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731689078; x=1732293878; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=tvSbr212wnBXWgkPqBMZFxm+xf5y5TiTLHopInfDcas=;
-        b=hagLj4hwjBJ6cOEPXcyzU57D7AXQkt4DTrdYQQn7J7uLCTgQWPCebeRWZ7eAdOuk1V
-         YqmBCj7e72NzazEGrmhIulvdZjuqZmCE9MUNv4knJp/1r3/gyu7EW2OWg9Fs9Q15DvAB
-         WLqYBLJgt2C1LsR5+pkkbEM4SbKREWKbXyhvjuUoYn4KycSQj9izrseEHoy1OWlZdwO8
-         sNCj4qsxz2QfIUBJMJCoydyo/ZHd3cllhElRTpdx+Z3e4sSpY3OAN0KBKCCFYexo2kpn
-         siQj6wGdeuXq5YPih8ctDScLwZz1HMt9FFF/te0pjPj5gIceh7/51a4LnYZN764pPLnF
-         dfyw==
+        d=gmail.com; s=20230601; t=1731689772; x=1732294572; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=u0nInsxIdNGOgQambcoXqwexeiN04SjXqkKyG9oCO2M=;
+        b=nJOtsBkfuZjLUBaGSY2ctjSsXQCjeKXpR0bRQGIrr6FW6osBk0hg/ietnCwXzxis4N
+         hBfOlosoO6kw4Y7sQ2mXNRiwA9fgB6V6fLTpnpVzmZ8vGQ0zyhNSp2ASl7Onvu8Urb3+
+         WLPQJkB2gYlEr9bMsX2OSfHW2ehVnSPgdmQ9Et2P9VLdKKsT6QCMNtNWg0dD0y420OXN
+         khal2tRUZqJSVRkwwiCCrQPYgpOQ1uqbYyoZmD71ZAgeU00FIpg9dbsDThF8+JYjR2hx
+         LIyq5KXi/Qjojx4T03RnsPARrPPs2i1XDVzsnV5BwV7ki7rJOlqy335iDK0AIvVafSag
+         NXmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731689078; x=1732293878;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tvSbr212wnBXWgkPqBMZFxm+xf5y5TiTLHopInfDcas=;
-        b=qojHwqmMNqwUJ5gM3maxrTHWhtyicvq6rGcPJEX6j/hpYcOgYOGcKfTHXA1LoVWMCa
-         qrPnKhunQSRcqQHxRt4sOU1jE8ReomXSKGRGJIFFmcxXFianObgEYzNpiYLz+y9pcNnn
-         /Vh82wox46N1a7xZ/G+l1WwqTmFZ0WgQU7ZN81wGIlYU5C+A9l3+KXrc4UKfrg5ae/oo
-         w29LGaj+xdkyKaEvKMQFPkghM7l1NSW7PgK4WA2KdyND7tXsRLkQE9FCFucjSqG8QEXN
-         fT1vD9FMKICZGUrFzGNXgbRRoqt6zBn6zCdZPG37gvTn6wPFFRK7U659KRkt9GjaEIbv
-         CDtg==
-X-Forwarded-Encrypted: i=1; AJvYcCX/Hg05vm3Q/t0QTt+cSTFW/CICmi/GNN1e2yHlfqqb7nmxb01vm+zek8Ap3OsRPrkt2wgUBzfS+tkU@vger.kernel.org
-X-Gm-Message-State: AOJu0YyF/s5/T6r4/RySOyzhvUU9l27mYbAhr6InZHe0R5kI+8Zp7pA9
-	kkMqRLQYy6+yposBBrnbgb6c4Y12ptbldo9nodnUfQyagGvdfH+fc/aZDy+XQNc=
-X-Google-Smtp-Source: AGHT+IFgzXgQ4IjxGhewB1vh2xQBTf7ORjLEOV0LXbis36gnE75+Wti65ULJO+Xnk5bUahD0MBiHug==
-X-Received: by 2002:a2e:b8cf:0:b0:2fb:34dc:7beb with SMTP id 38308e7fff4ca-2ff6067407bmr19160471fa.12.1731689078308;
-        Fri, 15 Nov 2024 08:44:38 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ff5988f321sm6038021fa.95.2024.11.15.08.44.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Nov 2024 08:44:37 -0800 (PST)
-Date: Fri, 15 Nov 2024 18:44:34 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Jishnu Prakash <quic_jprakash@quicinc.com>
-Cc: jic23@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, agross@kernel.org, andersson@kernel.org, 
-	konrad.dybcio@linaro.org, daniel.lezcano@linaro.org, sboyd@kernel.org, 
-	quic_subbaram@quicinc.com, quic_collinsd@quicinc.com, quic_amelende@quicinc.com, 
-	quic_kamalw@quicinc.com, amitk@kernel.org, lee@kernel.org, rafael@kernel.org, 
-	rui.zhang@intel.com, lukasz.luba@arm.com, lars@metafoo.de, quic_skakitap@quicinc.com, 
-	neil.armstrong@linaro.org, devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	cros-qcom-dts-watchers@chromium.org
-Subject: Re: [PATCH V4 2/4] dt-bindings: iio: adc: Add support for QCOM PMIC5
- Gen3 ADC
-Message-ID: <i7opxhkgukcshdcc7j6ai6jt62egag3jgfiqsghakjhgt2ikg6@eap7l64amcci>
-References: <20241030185854.4015348-1-quic_jprakash@quicinc.com>
- <20241030185854.4015348-3-quic_jprakash@quicinc.com>
- <ag3wqsjdec7ujcba2jpvhzgcbbc5vnyjyes5ljyyf5b4edw7j3@rj23a25wvoyd>
- <ee8f0b70-77a2-4a5e-85c8-715fd02d4437@quicinc.com>
+        d=1e100.net; s=20230601; t=1731689772; x=1732294572;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=u0nInsxIdNGOgQambcoXqwexeiN04SjXqkKyG9oCO2M=;
+        b=EZdI9Qq3PPd5ZyGxD81nq7K4lCE9kH7TIHe1tr4/lLsJ3PHaIn05GdRV9YpaRdPJR0
+         ladJ12xTSCGlo+qRV7yWyeDEffa5C1KgcWVy9Y+ZccxZU13tIfhLELblfryBlqQQob3a
+         OO+slnqjiZA2FGc0zC0dd7+50adg5TwsUk7i1olyeA7a0B6ytgdItvI0WtFkEDOLwRgb
+         nezJsZzotoHaS119tp/Sz5PhRGwTmBI7HUy9yJjgIFboxLM+PAEN7DINZjFR6frljBWZ
+         JRfq3RBcgfynlGIXxulbVwNjrd2tQA3w6EjbMjWHcvVD+lVxv5Vb5yH2hBEjNPmTHq2F
+         WHjw==
+X-Forwarded-Encrypted: i=1; AJvYcCWPRdKuZfn+SHoDdUN23QyKvwhC6XE8nHrONqhWHXKR5jjGmMJN0tyPxMuakdjxuLAzRfWKmBEkjAkU@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIIMV+RtYH4u06KDdNCkbMzXrN8vbncJ3u2FFl/fwTLbJfK+6z
+	R1CuKB+ELKqadaQc+RjBfpjpjRv7HPFjh7xAgYVWMCLvtpsg3l6arRhuf17wYe4lCbL3G8tFeVF
+	5cw9Bvmy4f/XS8CqDmhMEq5w171NUDdL0Qf4=
+X-Google-Smtp-Source: AGHT+IE20zD7t2FLBp8RIdE2sMJJAa9tUAjhCXdCLHXfNc2IobukMtVDq0qK63Ffk2tfmDubFC4R/lr31VQmlVMzCXI=
+X-Received: by 2002:a05:6512:3a8a:b0:53d:a283:f290 with SMTP id
+ 2adb3069b0e04-53dab2a65d6mr1953880e87.31.1731689771303; Fri, 15 Nov 2024
+ 08:56:11 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ee8f0b70-77a2-4a5e-85c8-715fd02d4437@quicinc.com>
+References: <20241111045408.1922-1-honyuenkwun@gmail.com> <20241111045408.1922-7-honyuenkwun@gmail.com>
+ <CAGJh8eDdj5zwENGWHHdZt8ejdVZ=d4GTNzW57rohyL2rvEA_hg@mail.gmail.com>
+In-Reply-To: <CAGJh8eDdj5zwENGWHHdZt8ejdVZ=d4GTNzW57rohyL2rvEA_hg@mail.gmail.com>
+From: Jimmy Hon <honyuenkwun@gmail.com>
+Date: Fri, 15 Nov 2024 10:56:00 -0600
+Message-ID: <CALWfF7+7KSZ2UJUXgS_Pr3=xzMEyjKgZ4BPL47zkmfnM03HUqg@mail.gmail.com>
+Subject: Re: [PATCH 3/3 v3] arm64: dts: rockchip: Add Orange Pi 5 Max board
+To: Marco Schirrmeister <mschirrmeister@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, Ondrej Jirman <megi@xff.cz>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Nov 13, 2024 at 07:36:13PM +0530, Jishnu Prakash wrote:
-> Hi Dmitry,
-> 
-> On 10/31/2024 11:27 PM, Dmitry Baryshkov wrote:
-> > On Thu, Oct 31, 2024 at 12:28:52AM +0530, Jishnu Prakash wrote:
-> >> For the PMIC5-Gen3 type PMICs, ADC peripheral is present in HW for the
-> >> following PMICs: PMK8550, PM8550, PM8550B and PM8550VX PMICs.
-> >>
-> >> It is similar to PMIC5-Gen2, with SW communication to ADCs on all PMICs
-> >> going through PBS(Programmable Boot Sequence) firmware through a single
-> >> register interface. This interface is implemented on an SDAM (Shared
-> >> Direct Access Memory) peripheral on the master PMIC PMK8550 rather
-> >> than a dedicated ADC peripheral.
-> >>
-> >> Add documentation for PMIC5 Gen3 ADC and macro definitions for ADC
-> >> channels and virtual channels (combination of ADC channel number and
-> >> PMIC SID number) per PMIC, to be used by clients of this device.
-> >>
-> >> Co-developed-by: Anjelique Melendez <quic_amelende@quicinc.com>
-> >> Signed-off-by: Anjelique Melendez <quic_amelende@quicinc.com>
-> >> Signed-off-by: Jishnu Prakash <quic_jprakash@quicinc.com>
-> >> ---
-> >> Changes since v3:
-> >> - Added ADC5 Gen3 documentation changes in existing qcom,spmi-vadc.yaml file
-> >>   instead of adding separate file and updated top-level constraints in documentation
-> >>   file based on discussion with reviewers.
-> > 
-> > I think it has been better, when it was a separate file. Krzysztof asked
-> > for rationale, not for merging it back. Two different things.
-> 
-> Actually I made that change in a separate file due to a misunderstanding at that time - 
-> I thought a separate file was the only way to accommodate a change in the top-level 'reg' and 'interrupts'
-> constraints, but I realized later that they could be updated.
-> 
-> From our side, we would prefer to add ADC5 Gen3 documentation in the same file, as it is
-> mostly the same functionality which reuses all the existing properties present in this file.
+>
+> in your v1 patch series you mentioned you do not have access to EMMC
+> to test. I am happy to test EMMC, but I had problems with the v2 and
+> v3 patches.
+> v2 dts did not compile and I was getting errors for the hdmi0 entries
+> like "Label or path hdmi0 not found". I assume I am missing patches.
+> After removing it compiles but the board does not boot.
+>
+> v3 patches don't work against 6.12-rc6/rc7 snapshot. The patch that
+> modifies the 5 plus dts fails. I again assume I am missing other
+> patches.
+>
+> If you have some info with which kernel or other modifications I can
+> use your patches, then I am happy to do some testing.
 
-Export the existing properties and reuse them in the new file. Gen3 (in
-my opinion) changed the hardware too much. Having all the differences
-via conditionals bloats the schema and makes it significantly unreadable
-in my opinion.
+If your primary focus is to only test eMMC support for the Orange Pi 5
+Max, then apply the patches on top linux-rockchip for-next.
+https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/log/?h=for-next
+That generated DTB should be able to run against an older kernel since
+the Orange Pi 5 Plus already works.
 
-But please refer to DT maintainers (Rob/Krzysztof/Conor) for the final
-opinion.
+It's complicated since the HDMI Bridge support is in the pipeline for
+6.13-rc1 but it goes through different trees..
+The driver itself is merged into drm-misc next
 
--- 
-With best wishes
-Dmitry
+Where as the DTS updates are in linux-rockchip branch
+
+Also, regarding v3, I rebased on top of linux-rockchip for-next to
+include the updates for HDMI and GPU on the Orange Pi 5 Plus.
+
+For my development testing, I used Collabora's rk3588-test development
+branch, so all the needed patches were already in one place (since
+they test on a Radxa Rock 5B with the RK3588).
+https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/commits/rk3588-test/?ref_type=heads
+
+So for v3, I had to first cherry-pick the Orange Pi 5 Plus changes
+from linux-rockchip for-next.
+
+Note: for v3 I held off on adding the USB 3 support for the Max, I was
+going to let the Orange Pi 5 Plus finish their USB 3 submission before
+trying to refactor the common DTS nodes.
+https://lore.kernel.org/linux-rockchip/20241025175415.887368-1-wens@kernel.org/
+
+>
+> Cheers,
+> Marco
 
