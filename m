@@ -1,163 +1,189 @@
-Return-Path: <devicetree+bounces-122164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 130A19CEC48
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 16:14:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDD049CF051
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 16:40:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC15C1F29022
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 15:14:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 60615B31B5F
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 15:28:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD81B1D5CD4;
-	Fri, 15 Nov 2024 15:13:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A33BA1D5143;
+	Fri, 15 Nov 2024 15:27:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qtXe5RO6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PHQxPfOg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 827B41D5CC9;
-	Fri, 15 Nov 2024 15:13:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 603141C07EE
+	for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 15:27:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731683591; cv=none; b=frtVBVO47iR52Qtn68X2Ds3hrozWf1xEPn4Z9LJO9y9dyK/6SfJ/pqpNW1JWcmGiPyEWAl1YfTXNanpni1BrZHBiCVuV7q217HOF79tt+LYCxLm/RGfgCwrRHW51Ah7SpeoWkFQis6Ptv/lStw05z+BJYAHomqNqD4Fd730rNeA=
+	t=1731684471; cv=none; b=o90uLN4f0ORpIyQ1KG3VKqy4NLMz45RXxV+7TPkuPX2pT8+4uyIP49lNZQpp+ta8dlzEZb8smSRaNt4WN0I+3+jc82L1X8TWd0F6++2ox6XMmIODMaobJ+JgMegJtw6zxSwjSuUCPaHyVc8I6aLic9wqLChBx4UiSHB+ZV3UJrg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731683591; c=relaxed/simple;
-	bh=tkkm3Dprf75KMyhZXFHRBmbpABU0uYoMcD94+1XAHDk=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=HIquh4mJ7VwOavIrQfW0q95ePUlxupDoY3q/lFEhEzTgFMbVodYYusnQbPVmx5HKzfKBTBwQ/rE3pi7+cPnlygVCHMNFHZA3c2uRCdlYU+QiDoBStElji/VIAbHWBnyR/eD7CSD6LJ/jk8MMESNb8+Gm87Ag+q0GEmGjjeoV8nw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qtXe5RO6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3967CC4CED5;
-	Fri, 15 Nov 2024 15:13:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731683591;
-	bh=tkkm3Dprf75KMyhZXFHRBmbpABU0uYoMcD94+1XAHDk=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=qtXe5RO6h48pceWkqHcf35A2h7vrGZqYQ/O4nQ31pt22c0QHmx+KRzgF+epWHY/U1
-	 BO3+5Y6IUYrqYDP1XZn4f1YU3lQNbGwlELat7rbDK64mFpGzpDi0tePB+Uiu/lkrY9
-	 wt/NtJStU8MNvFQbY5Ec5wC9Ag0vHR9cwMiTsbQPfk7QgQusnlxRWW0p2OKoy/NsAO
-	 +bJA7k1vqzlOEKinHq01TgfnGAL/GMTh4Hx4J3rgA1A1mRHVyEpDszLxv+8LWEft0a
-	 Cw1etht4SDocG16D/ffFvzyn5Qb7DQOpJtgQKURsJDBoQebJyEzeh2nRdYvwIxm/PY
-	 r6Si50wdvMkLA==
-Date: Fri, 15 Nov 2024 09:13:09 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1731684471; c=relaxed/simple;
+	bh=bVXjOnsWx/iYY5FZ/kXZfHu8Jl/8iTaixZb5j49sBB0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AZn4pC8dXDUYiQ8ghhJ8y+zItqHv6X3E22FWdhMluGLJTaSozMoSXgbeEpxNWvHZLC7BUCIfvyCkBoHFi7nWjxyliOZpSw++c0f/7ixOnY9i9AO4MHvIoKf/B5R/5DIan+xVaBIpt7MGmeLDwAifkp2E1ACbBey+2FvJZOCS1uY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PHQxPfOg; arc=none smtp.client-ip=209.85.208.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2fb4fa17044so21033511fa.3
+        for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 07:27:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1731684467; x=1732289267; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=PMXuggpYjesVA4FmUllH/mkqHpozoEMNcx85tFh/IDc=;
+        b=PHQxPfOgCu3d/K2wupcKv9NYWljNv//C5GXZw7WrG7VyZBKWnxpBUEWo55schv/EEE
+         DaCsv81Xkk/i1ACbTyZTE3XdZZU9uQhHFpLqS3Im6bNp2I51qq17ISDMFkl9xlWIKUc5
+         amB8noXqdIKtUaoW8O7C/TkWp6X/G/0n4wNFcSEWhavRu4fJtxak4jAsEVgsq7Yw3jPG
+         7Q3C4CmvzkmWkB5Ek1IKy81wPgBroQAwG3BUM3XasCCWHtgdQjgFnaCGzhMKBPp/0klw
+         VW+T/XDS822rrWwJ2ot6FuDTmY7IO655cOwH5v2HuKbkBfDMvU1cc2v2n8kg/IWDfrgx
+         ALCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731684467; x=1732289267;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PMXuggpYjesVA4FmUllH/mkqHpozoEMNcx85tFh/IDc=;
+        b=flGSNfhuGasKIm1H0QncEd5Qr+N+RsOesK4mwQ7qq2fADgGvUJQlUXPXeVIoEq17B3
+         AIAllcVlpq0H33KqhHLU21Lob1mESZZ9NzPEj7ROze3zu4HuB5rVewWHmaLga8EOe1/z
+         /sR+I5QnltfYRhXaSqr6vh7J5Au8n50NqUcT+H8g9uMbwC6jhJuu6FC+OYBBXS2jnorK
+         rnRL/x2ybTUSNBaQtuutNnN+7kIz6fx/pwhEx+SSPY0Rdvwo4niBaLOc1/8jooYS6dbl
+         LyImeFDd8HuPZGu7fLNZoUWMCM0UEMGb+zYQJor8lEuYHPIU4syWOldpUCUpVdFL7QzD
+         VHDg==
+X-Forwarded-Encrypted: i=1; AJvYcCUMeC/TEWyUjhkNFUAY5L6MK3SGxWBwPUas+3NHLFi2t5eDavLzK7EEzeR2mGyt05otXUsopZFfr+v/@vger.kernel.org
+X-Gm-Message-State: AOJu0YytZpT1hrHqd77IgLTtQAg+9XI+D0E1q55kvPLsHGarj2jKLGw9
+	cLTaKqZryUgieZBK/BPcJAxfdqTYV/gOkWU5JFFZ3Eerhhw0wqZ3uKNIGXKG7Ek=
+X-Google-Smtp-Source: AGHT+IHdzjVyEhzeFfshpDNdqomTi8OW4O+yNGDbt9rQbjkJS5VK0ycCp1yfl5ev+Ig7t+lEe2ruWQ==
+X-Received: by 2002:a05:651c:2122:b0:2fb:5035:7e4 with SMTP id 38308e7fff4ca-2ff60621cf1mr17333551fa.5.1731684466569;
+        Fri, 15 Nov 2024 07:27:46 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ff59763d43sm5824821fa.9.2024.11.15.07.27.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Nov 2024 07:27:45 -0800 (PST)
+Date: Fri, 15 Nov 2024 17:27:42 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Melody Olvera <quic_molvera@quicinc.com>
+Cc: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Adam Skladowski <a39.skl@gmail.com>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Sibi Sankar <quic_sibis@quicinc.com>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
+	Vladimir Lypak <vladimir.lypak@gmail.com>, Danila Tikhonov <danila@jiaxyga.com>, 
+	Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Rajendra Nayak <quic_rjendra@quicinc.com>, Mike Tipton <quic_mdtipton@quicinc.com>, 
+	Abel Vesa <abel.vesa@linaro.org>, Trilok Soni <quic_tsoni@quicinc.com>, 
+	Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] interconnect: qcom: Add interconnect provider
+ driver for SM8750
+Message-ID: <em4vkg4totsg435s4usu7kqn45vfqfot2j7sikzmnof2kkyidi@26b6kkpz7z4c>
+References: <20241112003017.2805670-1-quic_molvera@quicinc.com>
+ <20241112003017.2805670-3-quic_molvera@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Hsin-Yi Wang <hsinyi@chromium.org>, linux-arm-kernel@lists.infradead.org, 
- devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>
-To: Hsin-Te Yuan <yuanhsinte@chromium.org>
-In-Reply-To: <20241113-damu-v4-1-6911b69610dd@chromium.org>
-References: <20241113-damu-v4-1-6911b69610dd@chromium.org>
-Message-Id: <173168321208.2749684.5154968423883102453.robh@kernel.org>
-Subject: Re: [PATCH RESEND v4] arm64: dts: mt8183: set DMIC one-wire mode
- on Damu
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241112003017.2805670-3-quic_molvera@quicinc.com>
 
-
-On Wed, 13 Nov 2024 16:16:53 +0800, Hsin-Te Yuan wrote:
-> From: Hsin-Yi Wang <hsinyi@chromium.org>
+On Mon, Nov 11, 2024 at 04:30:17PM -0800, Melody Olvera wrote:
+> From: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
 > 
-> Sets DMIC one-wire mode on Damu.
+> Introduce SM8750 interconnect provider driver using the interconnect
+> framework.
 > 
-> Fixes: cabc71b08eb5 ("arm64: dts: mt8183: Add kukui-jacuzzi-damu board")
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
+> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
 > ---
-> Changes in v4:
-> - Add Reviewed-by tag back, which is dropped in v3
-> - Link to v3: https://lore.kernel.org/r/20241009-damu-v3-1-1294c8e16829@chromium.org
+>  drivers/interconnect/qcom/Kconfig  |    9 +
+>  drivers/interconnect/qcom/Makefile |    2 +
+>  drivers/interconnect/qcom/sm8750.c | 1585 ++++++++++++++++++++++++++++
+>  drivers/interconnect/qcom/sm8750.h |  132 +++
+>  4 files changed, 1728 insertions(+)
+>  create mode 100644 drivers/interconnect/qcom/sm8750.c
+>  create mode 100644 drivers/interconnect/qcom/sm8750.h
 > 
-> Changes in v3:
-> - Add missing Sign-off-by tag
-> - Link to v2: https://lore.kernel.org/r/20240910-one-wire-v2-1-2bb40d5a3cf8@chromium.org
-> 
-> Changes in v2:
-> - Add fixes tag
-> - Link to v1: https://lore.kernel.org/r/20240910-one-wire-v1-1-d25486a6ba6d@chromium.org
-> ---
->  arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
+> diff --git a/drivers/interconnect/qcom/Kconfig b/drivers/interconnect/qcom/Kconfig
+> index 362fb9b0a198..1219f4f23d40 100644
+> --- a/drivers/interconnect/qcom/Kconfig
+> +++ b/drivers/interconnect/qcom/Kconfig
+> @@ -337,6 +337,15 @@ config INTERCONNECT_QCOM_SM8650
+>  	  This is a driver for the Qualcomm Network-on-Chip on SM8650-based
+>  	  platforms.
+>  
+> +config INTERCONNECT_QCOM_SM8750
+> +	tristate "Qualcomm SM8750 interconnect driver"
+> +	depends on INTERCONNECT_QCOM_RPMH_POSSIBLE
+> +	select INTERCONNECT_QCOM_RPMH
+> +	select INTERCONNECT_QCOM_BCM_VOTER
+> +	help
+> +	  This is a driver for the Qualcomm Network-on-Chip on SM8750-based
+> +	  platforms.
+> +
+>  config INTERCONNECT_QCOM_X1E80100
+>  	tristate "Qualcomm X1E80100 interconnect driver"
+>  	depends on INTERCONNECT_QCOM_RPMH_POSSIBLE
+> diff --git a/drivers/interconnect/qcom/Makefile b/drivers/interconnect/qcom/Makefile
+> index 9997728c02bf..7887b1e8d69b 100644
+> --- a/drivers/interconnect/qcom/Makefile
+> +++ b/drivers/interconnect/qcom/Makefile
+> @@ -40,6 +40,7 @@ qnoc-sm8350-objs			:= sm8350.o
+>  qnoc-sm8450-objs			:= sm8450.o
+>  qnoc-sm8550-objs			:= sm8550.o
+>  qnoc-sm8650-objs			:= sm8650.o
+> +qnoc-sm8750-objs			:= sm8750.o
+>  qnoc-x1e80100-objs			:= x1e80100.o
+>  icc-smd-rpm-objs			:= smd-rpm.o icc-rpm.o icc-rpm-clocks.o
+>  
+> @@ -80,5 +81,6 @@ obj-$(CONFIG_INTERCONNECT_QCOM_SM8350) += qnoc-sm8350.o
+>  obj-$(CONFIG_INTERCONNECT_QCOM_SM8450) += qnoc-sm8450.o
+>  obj-$(CONFIG_INTERCONNECT_QCOM_SM8550) += qnoc-sm8550.o
+>  obj-$(CONFIG_INTERCONNECT_QCOM_SM8650) += qnoc-sm8650.o
+> +obj-$(CONFIG_INTERCONNECT_QCOM_SM8750) += qnoc-sm8750.o
+>  obj-$(CONFIG_INTERCONNECT_QCOM_X1E80100) += qnoc-x1e80100.o
+>  obj-$(CONFIG_INTERCONNECT_QCOM_SMD_RPM) += icc-smd-rpm.o
+> diff --git a/drivers/interconnect/qcom/sm8750.c b/drivers/interconnect/qcom/sm8750.c
+> new file mode 100644
+> index 000000000000..bc72954d54ff
+> --- /dev/null
+> +++ b/drivers/interconnect/qcom/sm8750.c
+> @@ -0,0 +1,1585 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
+> + *
+> + */
+> +
+> +#include <linux/device.h>
+> +#include <linux/interconnect.h>
+> +#include <linux/interconnect-provider.h>
+> +#include <linux/module.h>
+> +#include <linux/of_platform.h>
+> +#include <dt-bindings/interconnect/qcom,sm8750-rpmh.h>
+> +
+> +#include "bcm-voter.h"
+> +#include "icc-rpmh.h"
+> +#include "sm8750.h"
+
+Nit: please merge sm8750.h here, there is no need to have a separate
+header, there are no other users.
+
+Also, is there QoS support? I see no qcom_icc_qosbox entries.
+
+Other than that:
+
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y mediatek/mt8183-kukui-jacuzzi-damu.dtb' for 20241113-damu-v4-1-6911b69610dd@chromium.org:
-
-arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb: pinctrl@10005000: mmc0-pins-default:pins-clk:mediatek,pull-down-adv: 10 is not one of [0, 1, 2, 3]
-	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
-arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb: pinctrl@10005000: mmc0-pins-uhs:pins-clk:mediatek,pull-down-adv: 10 is not one of [0, 1, 2, 3]
-	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
-arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb: pinctrl@10005000: mmc0-pins-uhs:pins-ds:mediatek,pull-down-adv: 10 is not one of [0, 1, 2, 3]
-	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
-arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb: pinctrl@10005000: mmc1-pins-default:pins-cmd-dat:mediatek,pull-up-adv: 10 is not one of [0, 1, 2, 3]
-	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
-arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb: pinctrl@10005000: mmc1-pins-default:pins-clk:mediatek,pull-down-adv: 10 is not one of [0, 1, 2, 3]
-	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
-arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb: pinctrl@10005000: mmc1-pins-uhs:pins-cmd-dat:mediatek,pull-up-adv: 10 is not one of [0, 1, 2, 3]
-	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
-arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb: pinctrl@10005000: mmc1-pins-uhs:pins-clk:mediatek,pull-down-adv: 10 is not one of [0, 1, 2, 3]
-	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
-arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb: pinctrl@10005000: panel-pins-default: 'panel-reset' does not match any of the regexes: '^pins', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
-arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb: pinctrl@10005000: pp3300-panel-pins: 'panel-3v3-enable' does not match any of the regexes: '^pins', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
-arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb: pinctrl@10005000: touchscreen-pins: 'touch-int-odl', 'touch-rst-l' do not match any of the regexes: '^pins', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
-arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb: pinctrl@10005000: trackpad-pins: 'trackpad-int' does not match any of the regexes: '^pins', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
-arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb: pinctrl@10005000: volume-button-pins: 'voldn-btn-odl', 'volup-btn-odl' do not match any of the regexes: '^pins', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
-arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb: pinctrl@10005000: 'audiopins', 'audiotdmoutoff', 'audiotdmouton', 'da7219_pins', 'ec-ap-int-odl', 'gpio-line-names', 'h1-int-od-l', 'i2c0', 'i2c1', 'i2c2', 'i2c3', 'i2c4', 'i2c5', 'i2c6', 'pp1000-mipibrdg-en', 'pp1800-mipibrdg-en', 'pp3300-mipibrdg-en', 'ppvarn-lcd-en', 'ppvarp-lcd-en', 'pwm0-pin-default', 'scp', 'spi0', 'spi1', 'spi2', 'spi3', 'spi4', 'spi5' do not match any of the regexes: '-pins(-[a-z]+)?$', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8183-pinctrl.yaml#
-arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb: touchscreen@10: 'reset-gpios' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/input/hid-over-i2c.yaml#
-arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb: /soc/audio-controller@11220000: failed to match any schema with compatible: ['mediatek,mt8183-audiosys', 'syscon']
-arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb: /soc/audio-controller@11220000/mt8183-afe-pcm: failed to match any schema with compatible: ['mediatek,mt8183-audio']
-arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb: syscon@13000000: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/clock/mediatek,syscon.yaml#
-arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb: dsi@14014000: ports: 'port@0' is a required property
-	from schema $id: http://devicetree.org/schemas/display/mediatek/mediatek,dsi.yaml#
-arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb: dsi@14014000: ports: 'port@1' is a required property
-	from schema $id: http://devicetree.org/schemas/display/mediatek/mediatek,dsi.yaml#
-arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb: dsi@14014000: Unevaluated properties are not allowed ('ports' was unexpected)
-	from schema $id: http://devicetree.org/schemas/display/mediatek/mediatek,dsi.yaml#
-arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb: vcodec@17020000: 'assigned-clocks' is a required property
-	from schema $id: http://devicetree.org/schemas/media/mediatek,vcodec-encoder.yaml#
-arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb: vcodec@17020000: 'assigned-clock-parents' is a required property
-	from schema $id: http://devicetree.org/schemas/media/mediatek,vcodec-encoder.yaml#
-arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb: thermal-zones: 'tboard1', 'tboard2' do not match any of the regexes: '^[a-zA-Z][a-zA-Z0-9\-]{1,10}-thermal$', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/thermal/thermal-zones.yaml#
-arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb: /mt8183-sound: failed to match any schema with compatible: ['mediatek,mt8183_da7219_max98357']
-arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dtb: bt-sco: '#sound-dai-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/sound/linux,bt-sco.yaml#
-
-
-
-
-
+-- 
+With best wishes
+Dmitry
 
