@@ -1,116 +1,84 @@
-Return-Path: <devicetree+bounces-122175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122174-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2896F9CF003
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 16:34:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 072E79CEFEB
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 16:31:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6391BB38089
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 15:31:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ACF131F20F98
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 15:31:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F0C71D5AAE;
-	Fri, 15 Nov 2024 15:30:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFE431CF5E2;
+	Fri, 15 Nov 2024 15:30:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="GiV48AWL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ws6M9J8f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25F0D1D5174;
-	Fri, 15 Nov 2024 15:30:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96D6E1DA23;
+	Fri, 15 Nov 2024 15:30:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731684617; cv=none; b=KqmzquBBvRO/edZ4OBTxkHRi6glhXRK3tmXi66iFEMK91ALgMaNPDnTfrOURnTfQaDJ2DRlxwW59a4jzYsXgR5Xpbo0FNg2ZVQsGYyqSjNcVtSrZ+lz62aT7Arcke1NCAxRb2AM2IgORFF1KIrkxFpuuuqd3uNbIO7F5P7o/7Rw=
+	t=1731684609; cv=none; b=Jmlw7yXNlZg/I471G+evZYt9N0+HhHrq+6n5bzcY5XwBrPhg1D4KVKI7fJxAw5xkRP39fhwQXOHtxmxI85TIpO1g9DYFpQDDcrNV6M9PQo57DSfZ89cgW6WEliXMLHT/PYqwR240cPnoJbCcY6je0CcuQA2UCXdaIXJ5KHq08XA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731684617; c=relaxed/simple;
-	bh=EwgqmloDuLpbEetG726pgbQgC18wy4SV4k5ZQGINcjU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=XZEH1oT7SnCI8lk1L+b+pRpPV/ntjI2gj9SM0+Oy56mKoB3Ys0PonqW9IvrZE5n607SYTr2uwyNHZBFsN6OmpkFtl3+UPm7XWmAK8I1I1BbmbHZAz3aN6Ys8GOrAoy49QpJNFJfeTi5eQSIi0VHTGaGvLQY9D00eOS6707salco=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=GiV48AWL; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 7F145240014;
-	Fri, 15 Nov 2024 15:30:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1731684612;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=BSEqBmSqmyvDs47D4eD55kQ405suvhvrk4+/jN9RG4w=;
-	b=GiV48AWL4UuUGjZnNMrBERZFtXYN3VZV7kgBvPwVQQM18y8IKnDaJmqMaOjMKxfTfJrGv/
-	OIaiwBZNOi8TgcmFOduZ3xhkbs33GurZpBYQgsrESiwyRaFNXIu6JKuTWk6AIK3Pq7su/p
-	aMVaMFanaWND/kwX0os+CXekclk4zs8ycJYvaT7YSu2Kxra7Mar1CZ+h14vNx9+QIb/iN/
-	kpUJXBe0uawMFFwikFC1GrkimJEkWr2s5OCiFTG7RSuo1/ydN2MMrbmW7V1lFyL4l+We9t
-	epV/T4jBTtAImkWmmJ1jeJe1OUgc5ZziDGO5QgazIf+6VoBAsP6KqUTOWlgcBg==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-Date: Fri, 15 Nov 2024 16:29:57 +0100
-Subject: [PATCH 4/5] MIPS: CPS: Support broken HCI for multicluster
+	s=arc-20240116; t=1731684609; c=relaxed/simple;
+	bh=YuZdnJ90kFCavSaZheCH7K6qRntu8+VqqEKzttiCeeI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=a5IOVuwxfyt3jG0awoIGXvnN9umtBmcLg+2L06YJu5zWwFzJIVG8N4U6/NGmXJWf6idtTsIjKodDLk1oQAybtc9D3nPfzRc7funBjnQbniI6QhCO9Sq8coMMEIU7kJ7ewBsIX+fKRV6/jGgimjHXs8gx2axVSrCs02bBiGYKruI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ws6M9J8f; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DED51C4CECF;
+	Fri, 15 Nov 2024 15:30:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731684609;
+	bh=YuZdnJ90kFCavSaZheCH7K6qRntu8+VqqEKzttiCeeI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ws6M9J8fJ+fx7qzB8UhGtNlcvekXZP5NieHc8N9s9bh3lDYNZVJmnjJxaAh3DULtn
+	 llYA3j7G5s9DEe7G/w24eB4vDL4WQTK92Suvxi2jceAaUpnEz/rQ9nZQJqK3nZ7uCx
+	 B5yYPfJBlJRazlS+oWu4E9H/um68f2/8zPl2+qQrkNJxloNR6hMQUkFEDSK/po5a9X
+	 6Gk2zN+/ZbsIgpUs/bBGmsEb8fgn+Iq3miPSofUIfuhYkI2BG17v3jAvqagkF9mINd
+	 koYKMeCUGQDDxCv/rr5K9TqSjoh69RIV76Z0bjCyaNs4PRqnmHL+K5CHK2MtWw4g6y
+	 PQDV1SPlDq9Rg==
+Date: Fri, 15 Nov 2024 09:30:06 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: linux-iio@vger.kernel.org,
+	Michael Hennerich <michael.hennerich@analog.com>,
+	linux-doc@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: iio: adc: adi,ad4695: change include
+ path
+Message-ID: <173168460641.2928809.15269057471622553003.robh@kernel.org>
+References: <20241113-iio-adc-ad4695-move-dt-bindings-header-v1-0-aba1f0f9b628@baylibre.com>
+ <20241113-iio-adc-ad4695-move-dt-bindings-header-v1-2-aba1f0f9b628@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241115-cluster-hci-broken-v1-4-00636800611d@bootlin.com>
-References: <20241115-cluster-hci-broken-v1-0-00636800611d@bootlin.com>
-In-Reply-To: <20241115-cluster-hci-broken-v1-0-00636800611d@bootlin.com>
-To: Aleksandar Rikalo <arikalo@gmail.com>, 
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
- Jiaxun Yang <jiaxun.yang@flygoat.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, linux-mips@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Gregory CLEMENT <gregory.clement@bootlin.com>
-X-Mailer: b4 0.14.2
-X-GND-Sasl: gregory.clement@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241113-iio-adc-ad4695-move-dt-bindings-header-v1-2-aba1f0f9b628@baylibre.com>
 
-Some CM3.5 devices incorrectly report that hardware cache
-initialization has completed, and also claim to support hardware cache
-initialization when they don't actually do so. This commit fixes this
-issue by retrieving the correct information from the device tree and
-allowing the system to bypass the hardware cache initialization
-step. Instead, it relies on manual operation. As a result, multi-user
-support is now possible for these CPUs.
 
-Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
----
- arch/mips/kernel/smp-cps.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+On Wed, 13 Nov 2024 10:55:20 -0600, David Lechner wrote:
+> Change the include path for the adi,ad4695.h header since it has been
+> moved to the include/dt-bindings/iio/adc/ directory.
+> 
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> ---
+>  Documentation/devicetree/bindings/iio/adc/adi,ad4695.yaml | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
+> 
 
-diff --git a/arch/mips/kernel/smp-cps.c b/arch/mips/kernel/smp-cps.c
-index b20ea4048429e1aab2bffbada793ee594bee1e05..e85bd087467e8caf0640ad247ee5f8eb65107591 100644
---- a/arch/mips/kernel/smp-cps.c
-+++ b/arch/mips/kernel/smp-cps.c
-@@ -333,6 +333,9 @@ static void __init cps_prepare_cpus(unsigned int max_cpus)
- 					   sizeof(*mips_cps_cluster_bootcfg),
- 					   GFP_KERNEL);
- 
-+	if (nclusters > 1)
-+		mips_cm_update_property();
-+
- 	for (cl = 0; cl < nclusters; cl++) {
- 		/* Allocate core boot configuration structs */
- 		ncores = mips_cps_numcores(cl);
-@@ -394,7 +397,7 @@ static void init_cluster_l2(void)
- {
- 	u32 l2_cfg, l2sm_cop, result;
- 
--	while (1) {
-+	while (!mips_cm_is_l2_hci_broken) {
- 		l2_cfg = read_gcr_redir_l2_ram_config();
- 
- 		/* If HCI is not supported, use the state machine below */
-
--- 
-2.45.2
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
