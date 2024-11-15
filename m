@@ -1,118 +1,232 @@
-Return-Path: <devicetree+bounces-122129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122131-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C68C49CDF99
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 14:10:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C96A89CE025
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 14:36:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A0F41F22DFA
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 13:10:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 599031F21D72
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 13:36:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2460A1BD038;
-	Fri, 15 Nov 2024 13:10:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD4E31C5798;
+	Fri, 15 Nov 2024 13:36:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="j4+bHq7J"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ihMrMQse"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94D9A190056;
-	Fri, 15 Nov 2024 13:10:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA9F11AC43E;
+	Fri, 15 Nov 2024 13:36:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731676227; cv=none; b=rD0/JwrGtzrCrd7HZSJaDNwSPbjn2/VmcWa+4yqs1BVYzXMRlJz09zk93cJuCs2MgcYwIJjPJpQfld26ta2MX4gBy/1H9gkM6s4frlaqjkzPfPOv6Mcx1fB32/WxgxwB1+B9Qj6F1vv9/wtkCS6w8OPKIUatY0yz7kuAbbBYYb4=
+	t=1731677762; cv=none; b=hbPn0Ds32h/YgkQPPw1It1h1oozyz8GpR68QPWqLi2ndLjdNQqhGKWkQpybv8Pb8kmKuWnf2+IQAqLw00qavSnxn5ZBVWmQIyfAljwpau/ds4IhNaW8VuLIdylbkLECdlcW47dBYW5zvmtgCLbpViEOZVf+fCuLy2xHl9hvBVuw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731676227; c=relaxed/simple;
-	bh=343ybbpmX5iksSzKM9ypRjU5swcB42IuW585AnKWbe0=;
-	h=Message-ID:Date:MIME-Version:Subject:CC:References:To:From:
-	 In-Reply-To:Content-Type; b=IhDZgasjTKGiBUloskkL61ngPu2FBYWoSHsK4yMhfYp4eFjooMEWamUu08kGoA8Umz1rzWzoLZScI4czdUvvyDL/fXbTRD/Fy9vNGvJO+fJ/w2NFHbR6T7hWrsIh9XD+NdWKf2+F8eZr0C74AyoSv6l6gBtcTLrFUYaKd8x+ris=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=j4+bHq7J; arc=none smtp.client-ip=193.68.50.107
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
-Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
-	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id 17A1FA0796;
-	Fri, 15 Nov 2024 14:10:16 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:from:from:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=mail; bh=gL17cNe8aUMuYGVpdJHN
-	MdCT/ltALl3FTv9dzom/v2g=; b=j4+bHq7Jo+dhNWLyZXAaJT5+Ai6ztopDA46K
-	mkzikFbuuvIc6qdTZrRQbXuVCk1FvlKJc3MdFcBNm1upXpxy38ILmDztpH3XAhJV
-	OdhBXl4zlnJANOedHrj2Zg6KsagE9WnyTACOZ+h0tsJWB0IRHLzZljG5fooOsTRW
-	09mZOvvtiHxzWBoiHUbS+0YLHQSRNbBlE+dBSkXH9fTqXk9KeGP2eZioVGZZ71VL
-	EMqYLSycdJGtS5/KvrE0Z8XUHKj1E4dsg8YBYSLGLPGSnUso8CdjseM2FqTmQ0U2
-	zw0r6+7U3hgDnKvVXCFZzMee3E/KknkgoVPI9+4f36twRV/rS6mTf8Vyi8hePYkW
-	AfZWOeQOpQ94I/lNgPUvArwxYecB8oZgxlNM/HS3khczmjeid1H32Ey+8KExdtRL
-	8m1Bj/NS95HaPBNHHS0spB7pAH297hrqhQPoFYI62K6eEQKHRY30sfN2AX72PK4K
-	Z9xJ7A02LODEwkl6K3eQ4sgdKBY1ihsgDkWUKkyE6/qNmjuBDCJgPFSh9C0L+fFP
-	AvdN+vSU8H5t9bGp14aHPhw6GoaZtprZDZn3Z06IFOtPkr2NIyrg0F46BPHUHNc4
-	u9AMe2XzOGxi9t3i3FREaD/x/ZQqtifxivIHt5Y8NTgdN5D/z1JIyWsxerkVrTL8
-	Q/3Ish8=
-Message-ID: <f1d3f71d-2e36-4ff2-9487-8494e7241c31@prolan.hu>
-Date: Fri, 15 Nov 2024 14:10:14 +0100
+	s=arc-20240116; t=1731677762; c=relaxed/simple;
+	bh=AO9xLnbPqrNc6QxB+RS5a+ltPUCHQ2swdaCjyUpk4wQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=REfm/1JFQNbrOIy0HkhDYtpo8lCzVW9QtddIexRam9GCzwHqVQIvY/aMQRmOhTOLDnoKmkj1r8Q7XE2Yr9Nj/nfy5062i7qiVT9fvfmRKp47j0Fkb3tsgGesfXVaeHPn1xLgWoCInMicGUZH0O2lo2umvm/nvV8qkd+4tNwnPy4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ihMrMQse; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99968C4CECF;
+	Fri, 15 Nov 2024 13:35:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731677762;
+	bh=AO9xLnbPqrNc6QxB+RS5a+ltPUCHQ2swdaCjyUpk4wQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ihMrMQsewJGf3fyd3nlj3JxP3tSQ4LnK2kgn3BN0eJzom0hdGJ6rjAK8YzNknop2o
+	 Loy9rOWAMzK2wgZYyDQftVkiBpE6qHthohXsA3wNHAfLpfVbuZm9Okvqe3R3+SSxeu
+	 utZD3w8CDTNJ4hf4WPFir8h8wBBvcfLu7jKEkS6XI6g2VcixMKOysYpG4ApLl2+UNJ
+	 c1TCbFe4izxfsz5re3g+DQcVASROO9DwmzJ3gFaDycj9PaZIae8gYkupbsxULSUqrq
+	 YsekWgxpkSxWR1hQZop/s3vbnaz3OeG/GiOlLme6Xf1dJ95hDNFZRNADqyF336AGtc
+	 d5tzg18ROdG/Q==
+Date: Fri, 15 Nov 2024 14:35:52 +0100
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Elliot Berman <quic_eberman@quicinc.com>
+Cc: Stephen Boyd <swboyd@chromium.org>, Andy Yan <andy.yan@rock-chips.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Olof Johansson <olof@lixom.net>, Rob Herring <robh@kernel.org>,
+	Sebastian Reichel <sre@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Will Deacon <will@kernel.org>, cros-qcom-dts-watchers@chromium.org,
+	Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
+	Melody Olvera <quic_molvera@quicinc.com>,
+	Shivendra Pratap <quic_spratap@quicinc.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v6 3/5] firmware: psci: Read and use vendor reset types
+Message-ID: <ZzdOOP0KuMMdo64W@lpieralisi>
+References: <20241018-arm-psci-system_reset2-vendor-reboots-v6-0-50cbe88b0a24@quicinc.com>
+ <20241018-arm-psci-system_reset2-vendor-reboots-v6-3-50cbe88b0a24@quicinc.com>
+ <CAE-0n515sUkmTWptgY8pOaMDBPfDp5pZBy9Nby+4cMdMAnAZfA@mail.gmail.com>
+ <20241023092251529-0700.eberman@hu-eberman-lv.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 0/5] Add support for DMA of F1C100s
-CC: Mark Brown <broonie@kernel.org>, Mesih Kilinc <mesihkilinc@gmail.com>,
-	Vinod Koul <vkoul@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
-	<jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, "Chen-Yu
- Tsai" <wens@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, Philipp Zabel
-	<p.zabel@pengutronix.de>, Conor Dooley <conor.dooley@microchip.com>, "Rob
- Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, Amit Singh Tomar <amitsinght@marvell.com>
-References: <20241102093140.2625230-1-csokas.bence@prolan.hu>
-Content-Language: en-US
-To: <dmaengine@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-sunxi@lists.linux.dev>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-From: =?UTF-8?B?Q3PDs2vDoXMgQmVuY2U=?= <csokas.bence@prolan.hu>
-In-Reply-To: <20241102093140.2625230-1-csokas.bence@prolan.hu>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: ATLAS.intranet.prolan.hu (10.254.0.229) To
- ATLAS.intranet.prolan.hu (10.254.0.229)
-X-EsetResult: clean, is OK
-X-EsetId: 37303A2980D94855617C6B
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241023092251529-0700.eberman@hu-eberman-lv.qualcomm.com>
 
-Can this be merged? The merge window is coming up, and there's still the 
-other half of the series waiting on this.
-Bence
+On Wed, Oct 23, 2024 at 09:30:21AM -0700, Elliot Berman wrote:
+> On Fri, Oct 18, 2024 at 10:42:46PM -0700, Stephen Boyd wrote:
+> > Quoting Elliot Berman (2024-10-18 12:39:48)
+> > > diff --git a/drivers/firmware/psci/psci.c b/drivers/firmware/psci/psci.c
+> > > index 2328ca58bba6..60bc285622ce 100644
+> > > --- a/drivers/firmware/psci/psci.c
+> > > +++ b/drivers/firmware/psci/psci.c
+> > > @@ -29,6 +29,8 @@
+> > >  #include <asm/smp_plat.h>
+> > >  #include <asm/suspend.h>
+> > >
+> > > +#define REBOOT_PREFIX "mode-"
+> > 
+> > Maybe move this near the function that uses it.
+> > 
+> > > +
+> > >  /*
+> > >   * While a 64-bit OS can make calls with SMC32 calling conventions, for some
+> > >   * calls it is necessary to use SMC64 to pass or return 64-bit values.
+> > > @@ -305,9 +315,29 @@ static int get_set_conduit_method(const struct device_node *np)
+> > >         return 0;
+> > >  }
+> > >
+> > > +static void psci_vendor_sys_reset2(unsigned long action, void *data)
+> > > +{
+> > > +       const char *cmd = data;
+> > > +       unsigned long ret;
+> > > +       size_t i;
+> > > +
+> > > +       for (i = 0; i < num_psci_reset_params; i++) {
+> > > +               if (!strcmp(psci_reset_params[i].mode, cmd)) {
+> > > +                       ret = invoke_psci_fn(PSCI_FN_NATIVE(1_1, SYSTEM_RESET2),
+> > > +                                            psci_reset_params[i].reset_type,
+> > > +                                            psci_reset_params[i].cookie, 0);
+> > > +                       pr_err("failed to perform reset \"%s\": %ld\n",
+> > > +                               cmd, (long)ret);
+> > 
+> > Do this intentionally return? Should it be some other function that's
+> > __noreturn instead and a while (1) if the firmware returns back to the
+> > kernel?
+> > 
+> 
+> Yes, I think it's best to make sure we fall back to the architectural
+> reset (whether it's the SYSTEM_RESET or architectural SYSTEM_RESET2)
+> since device would reboot then.
 
-On 2024. 11. 02. 10:31, Csókás, Bence wrote:
-> Support for Allwinner F1C100s/200s series audio was
-> submitted in 2018 as an RFC series, but was not merged,
-> despite having only minor errors. However, this is
-> essential for having audio on these SoCs.
-> This series was forward-ported/rebased to the best of
-> my abilities, on top of Linus' tree as of now:
-> commit c2ee9f594da8 ("KVM: selftests: Fix build on on non-x86 architectures")
-> 
-> Link: https://lore.kernel.org/all/cover.1543782328.git.mesihkilinc@gmail.com/
-> 
-> As requested by many, this series will now be split in 2, the DMA and the
-> ALSA/ASoC codec driver. This is the DMA part of the series.
-> 
-> Csókás, Bence (1):
->    dt-bindings: dmaengine: Add Allwinner suniv F1C100s DMA
-> 
-> Mesih Kilinc (4):
->    dma-engine: sun4i: Add a quirk to support different chips
->    dma-engine: sun4i: Add has_reset option to quirk
->    dma-engine: sun4i: Add support for Allwinner suniv F1C100s
->    ARM: dts: suniv: f1c100s: Add support for DMA
-> 
->   .../bindings/dma/allwinner,sun4i-a10-dma.yaml |   4 +-
->   .../arm/boot/dts/allwinner/suniv-f1c100s.dtsi |  10 +
->   drivers/dma/Kconfig                           |   4 +-
->   drivers/dma/sun4i-dma.c                       | 217 +++++++++++++++---
->   4 files changed, 200 insertions(+), 35 deletions(-)
-> 
+Well, that's one of the doubts I have about enabling this code. From
+userspace we are requesting a reboot (I don't even think that user
+space knows which reboot modes are actually implemented (?)) and we may
+end up issuing one with completely different semantics ?
 
+Are these "reset types" exported to user space ?
+
+Lorenzo
+
+> > > +               }
+> > > +       }
+> > > +}
+> > > +
+> > >  static int psci_sys_reset(struct notifier_block *nb, unsigned long action,
+> > >                           void *data)
+> > >  {
+> > > +       if (data && num_psci_reset_params)
+> > > +               psci_vendor_sys_reset2(action, data);
+> > > +
+> > >         if ((reboot_mode == REBOOT_WARM || reboot_mode == REBOOT_SOFT) &&
+> > >             psci_system_reset2_supported) {
+> > >                 /*
+> > > @@ -750,6 +780,68 @@ static const struct of_device_id psci_of_match[] __initconst = {
+> > >         {},
+> > >  };
+> > >
+> > > +static int __init psci_init_system_reset2_modes(void)
+> > > +{
+> > > +       const size_t len = strlen(REBOOT_PREFIX);
+> > > +       struct psci_reset_param *param;
+> > > +       struct device_node *psci_np __free(device_node) = NULL;
+> > > +       struct device_node *np __free(device_node) = NULL;
+> > > +       struct property *prop;
+> > > +       size_t count = 0;
+> > > +       u32 magic[2];
+> > > +       int num;
+> > > +
+> > > +       if (!psci_system_reset2_supported)
+> > > +               return 0;
+> > > +
+> > > +       psci_np = of_find_matching_node(NULL, psci_of_match);
+> > > +       if (!psci_np)
+> > > +               return 0;
+> > > +
+> > > +       np = of_find_node_by_name(psci_np, "reset-types");
+> > > +       if (!np)
+> > > +               return 0;
+> > > +
+> > > +       for_each_property_of_node(np, prop) {
+> > > +               if (strncmp(prop->name, REBOOT_PREFIX, len))
+> > > +                       continue;
+> > > +               num = of_property_count_elems_of_size(np, prop->name, sizeof(magic[0]));
+> > 
+> > Use of_property_count_u32_elems()?
+> > 
+> > > +               if (num != 1 && num != 2)
+> > > +                       continue;
+> > > +
+> > > +               count++;
+> > > +       }
+> > > +
+> > > +       param = psci_reset_params = kcalloc(count, sizeof(*psci_reset_params), GFP_KERNEL);
+> > > +       if (!psci_reset_params)
+> > > +               return -ENOMEM;
+> > > +
+> > > +       for_each_property_of_node(np, prop) {
+> > > +               if (strncmp(prop->name, REBOOT_PREFIX, len))
+> > > +                       continue;
+> > > +
+> > > +               param->mode = kstrdup_const(prop->name + len, GFP_KERNEL);
+> > > +               if (!param->mode)
+> > > +                       continue;
+> > > +
+> > > +               num = of_property_read_variable_u32_array(np, prop->name, magic, 1, 2);
+> > 
+> > ARRAY_SIZE(magic)?
+> > 
+> > > +               if (num < 0) {
+> > 
+> > Should this be less than 1?
+> > 
+> 
+> of_property_read_variable_u32_array should return -EOVERFLOW (or maybe
+> -ENODATA) if the array is empty. I don't see it's possible for
+> of_property_read_variable_u32_array() to return a non-negative value
+> that's not 1 or 2.
+> 
+> > > +                       pr_warn("Failed to parse vendor reboot mode %s\n", param->mode);
+> > > +                       kfree_const(param->mode);
+> > > +                       continue;
+> > > +               }
+> > > +
+> > > +               /* Force reset type to be in vendor space */
+> > > +               param->reset_type = PSCI_1_1_RESET_TYPE_VENDOR_START | magic[0];
+> > > +               param->cookie = num == 2 ? magic[1] : 0;
+> > 
+> > ARRAY_SIZE(magic)?
+> > 
+> > > +               param++;
+> > > +               num_psci_reset_params++;
+> > > +       }
+> > > +
+> > > +       return 0;
 
