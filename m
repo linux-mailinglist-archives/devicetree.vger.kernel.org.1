@@ -1,106 +1,113 @@
-Return-Path: <devicetree+bounces-122301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECA7A9CFA84
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 23:59:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3ED329CFB1F
+	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 00:23:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 977A8286803
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 22:59:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B6E7AB2C63C
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 23:00:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 167B61917ED;
-	Fri, 15 Nov 2024 22:59:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D3FE1917F0;
+	Fri, 15 Nov 2024 23:00:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eu4cs5Wf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LfNIsmwB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCEAB1DA23;
-	Fri, 15 Nov 2024 22:59:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47223190471;
+	Fri, 15 Nov 2024 23:00:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731711561; cv=none; b=jECfpJolNfN8ei6aX2/mq1Zj9D/kRYWF6lmYkrl9t58r80Q9jbPQda+oK0rBiwYaVNbVVhzBebRa5ZBbIg/qiFDT0Xg9SBnDUA5L+A4Wz5pxipnhcdwztyERVsHamM/LMPuD+GsiA7dO+R21H9EjqmJcvHqEUu8q40pGkNkVUxQ=
+	t=1731711639; cv=none; b=OoKRSOWikPzNQwgFPM5bUN0XJj1zI3MvEYD+jWc0MYHX4nT0vIgQ9THTrouEM8OA9jud6mykTIYeayjhoFBGeFdImQESS5TzBLuqOD49EGztWU93RatYDzfTyLmwKPU/tiSG9ah6G0uPqGp9UE2OF8rHCTfwxN4N7wkZyx/O+uA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731711561; c=relaxed/simple;
-	bh=fUh5s7BsCwoaZmYFGIY2veyC4azYYi1dCvhz9yokXG0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Fel/4/kiVni3OXL4k+OOZ8Qh+glEQC4CUEAn90ZYTDtfDqPoYEsLhifQaOikbqNfY5SfdmSJkPsREzreMz/XzwoWZEq2Svvj+rOyqsYpYJgGWm/MkCw0HVxGMsudUd6hGvk8FAIsYiMZUG9t+soyAC0xouXudCymEXbW68vkU8U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eu4cs5Wf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B642EC4CECF;
-	Fri, 15 Nov 2024 22:59:19 +0000 (UTC)
+	s=arc-20240116; t=1731711639; c=relaxed/simple;
+	bh=QjYUCesSzmPUEfzbC9zPe2WGXqZbFeekhkm5jj0rv0Q=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=s0F/6Mjbg3gwEyBBsPUNHDttQYPmFVFqa/40JwnoiRmo3mBc/NB97/dp9OljD4DymY0yuqUDCxAovfACjL3lRn8RrS5/a0fTZsEf7b32pFydejkZg+jhPo0fNsLGl0BMD3X9ff0z1WbME1dr82yFfEv5w4+gFyMB7TeOodm608o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LfNIsmwB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA9D1C4CECF;
+	Fri, 15 Nov 2024 23:00:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731711560;
-	bh=fUh5s7BsCwoaZmYFGIY2veyC4azYYi1dCvhz9yokXG0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=eu4cs5Wf05VYisSHEwhIeVyub9YTwSD6bDuvbIuAC+BhUmUpPzMeybF4t20rSew0k
-	 eAp+tOXT1vRizIbTAeM5kZ9qJ8pWIWwTbyAAnzbAA5cs/aQnaOCkLNdBS4dR+S/eG5
-	 pYxHNlclxuoUjkpHSdGDi6RBZ+do8EovBK2pooEO3b/cznfsvGh+X7XVy3KYwx3qx3
-	 yUQdEHosRJ0W1x13K+leNe8DHoVIZ7NxeVUDhuHx+yb/qMK+Mx+plzTiuLRjGn915E
-	 7n2jtcBIyVSXjC/1b1IpdU7wWRTNvo7A9TdZcs2mWtZVIcYVo30HAsyt2H2OoqUVyB
-	 MVmD+rElBmTdg==
-Date: Fri, 15 Nov 2024 14:59:18 -0800
-From: Jakub Kicinski <kuba@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
- Vladimir Oltean <olteanv@gmail.com>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
- <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Heiner Kallweit
- <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, Matthias
- Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, upstream@airoha.com
-Subject: Re: [net-next PATCH v5 3/4] net: dsa: Add Airoha AN8855 5-Port
- Gigabit DSA Switch driver
-Message-ID: <20241115145918.5ed4d5ec@kernel.org>
-In-Reply-To: <6737c439.5d0a0220.d7fe0.2221@mx.google.com>
-References: <20241112204743.6710-1-ansuelsmth@gmail.com>
-	<20241112204743.6710-4-ansuelsmth@gmail.com>
-	<20241114192202.215869ed@kernel.org>
-	<6737c439.5d0a0220.d7fe0.2221@mx.google.com>
+	s=k20201202; t=1731711637;
+	bh=QjYUCesSzmPUEfzbC9zPe2WGXqZbFeekhkm5jj0rv0Q=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=LfNIsmwBaETXBKpVfELWkaIeOXpsYlX4NcQGhoVkzjv9fPfycLfJ4QTq+dZnZyGI4
+	 XfEdOZEf6pOERnUloDpfZFewiiojUBVeaYjk4JdD9hcSHcp5NfJEiO8efkka4cshSP
+	 dAQ0EDDNG3DYfF2XqRfrmhKCJkFTk/q0otAZDR7phnkZHU/yIeZXI3/jwR4/uq7uxG
+	 Xp03oVKuJYLxUYvFyUbcjDjRxvU0nMCm4KYUbxKeC8gxT/npCd3SFsDpAFq1Uo9qGJ
+	 c4vg4T8KHpqCm2b/fzR+iYTZOGsVlY6Ec0pQQAwav8TFqFdceK3Q/fVE0bKC5RAMWi
+	 7WptndJJWugjQ==
+Message-ID: <8366cb0ba95b8b7d8608657e977614aa.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <ZzcxIYKcZ-z6ubrZ@apocalypse>
+References: <cover.1730123575.git.andrea.porta@suse.com> <914978925d34cfb5bee10fe92603f98763af48b0.1730123575.git.andrea.porta@suse.com> <cxwzmlzafgdu2uarcx7mdv4p32zig7efatcg4dzmctho6mvykl@dgwvf3ltcjmo> <ZyNK0RxJKdNCV11N@apocalypse> <ZzcxIYKcZ-z6ubrZ@apocalypse>
+Subject: Re: [PATCH v3 01/12] dt-bindings: clock: Add RaspberryPi RP1 clock bindings
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>, Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof Wilczynski <kw@linux.com>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Bjorn Helgaas <bhelgaas@google.com>, Linus Walleij <linus.walleij@linaro.org>, Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vge
+ r.kernel.org, linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org, Masahiro Yamada <masahiroy@kernel.org>, Stefan Wahren <wahrenst@gmx.net>, Herve Codina <herve.codina@bootlin.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Andrew Lunn <andrew@lunn.ch>
+To: Andrea della Porta <andrea.porta@suse.com>
+Date: Fri, 15 Nov 2024 15:00:35 -0800
+User-Agent: alot/0.12.dev1+gaa8c22fdeedb
 
-On Fri, 15 Nov 2024 22:59:18 +0100 Christian Marangi wrote:
-> On Thu, Nov 14, 2024 at 07:22:02PM -0800, Jakub Kicinski wrote:
-> > On Tue, 12 Nov 2024 21:47:26 +0100 Christian Marangi wrote:  
-> > > +	MIB_DESC(1, 0x00, "TxDrop"),
-> > > +	MIB_DESC(1, 0x04, "TxCrcErr"),  
-> > 
-> > What is a CRC Tx error :o 
-> > Just out of curiosity, not saying its worng.
-> >  
-> 
-> From Documentation, FCS error frame due to TX FIFO underrun.
+Quoting Andrea della Porta (2024-11-15 03:31:45)
+> On 10:16 Thu 31 Oct     , Andrea della Porta wrote:
+> > On 08:23 Tue 29 Oct     , Krzysztof Kozlowski wrote:
+> > > > +  '#clock-cells':
+> > > > +    description:
+> > > > +      The index in the assigned-clocks is mapped to the output clo=
+ck as per
+> > > > +      definitions in include/dt-bindings/clock/raspberrypi,rp1-clo=
+cks.h.
+> > >=20
+> > > You still describe how current driver matches assigned-clocks to your
+> > > output clocks. That's not the property of clock-cells and that's not =
+how
+> > > assigned-clocks work.
+> >=20
+> > This description is taken by another upstream binding, please see
+> > Documentation/devicetree/bindings/clock/renesas,5p35023.yaml
+> >=20
+> > Its purpose is to let the user know how clock-cell number specified
+> > in assigned-clocks is mapped to the clock provided by this generator.
+> > Since some of these clocks are shared among peripherals, their frequency
+> > cannot be set by consumers, so it's the provider itself (i.e. the clock
+> > device described with this binding) that should take care of them.
+> > The renesas example has assigned-clocks specified though, please see be=
+low.
+> >=20
+> > >=20
+> > > There are no assigned clocks in your DTS, so this is really irrelevant
+> > > (or not correct, choose).
+> >=20
+> > In the first revision of this patchset (please see [1] and following me=
+ssages)
+> > I had the assigned-clocks setup in the example while trying to explain =
+their
+> > purpose, but Conor said those didn't seem to be relevant, hence I dropp=
+ed them.
+> > Maybe I had to be more incisive on that.
+> > So, I'd be inclined to retain the description as it is and reintroduce =
+some
+> > assigned-clocks in the example as in the renesas one, would it be ok fo=
+r you?
+>=20
+> Since I'm on the verge of producing a new patchset revision, may I kindly=
+ ask
+> some comments on this? Is it ok for you?
+>=20
 
-Interesting
-
-> > > +	MIB_DESC(1, 0x08, "TxUnicast"),
-> > > +	MIB_DESC(1, 0x0c, "TxMulticast"),
-> > > +	MIB_DESC(1, 0x10, "TxBroadcast"),
-> > > +	MIB_DESC(1, 0x14, "TxCollision"),  
-> > 
-> > Why can't these be rtnl stats, please keep in mind that we ask that
-> > people don't duplicate in ethtool -S what can be exposed via standard
-> > stats
-> >   
-> 
-> Ok I will search for this but it does sounds like something new and not
-> used by other DSA driver, any hint on where to look for examples?
-
-It's relatively recent but I think the ops are plumbed thru to DSA.
-Take a look at all the *_stats members of struct dsa_switch_ops, most
-of them take a fixed format struct to fill in and the struct has some
-extra kdoc on which field is what.
+Everyone knows how #clock-cells works. It shouldn't need a description
+about how it works. It should just point at the header file with the
+numbers if anything.
 
