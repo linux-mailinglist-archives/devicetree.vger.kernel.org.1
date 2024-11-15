@@ -1,128 +1,148 @@
-Return-Path: <devicetree+bounces-122041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 189719CD706
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 07:23:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EBD39CD70E
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 07:27:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8DF11B2236B
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 06:23:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8C45283419
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 06:27:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95ADC18785C;
-	Fri, 15 Nov 2024 06:23:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B9B7187561;
+	Fri, 15 Nov 2024 06:26:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EFC4fNDi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RdO6eHo7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B65B180A80
-	for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 06:23:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ED1C185B5B
+	for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 06:26:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731651802; cv=none; b=Cc4a3GRoB9rPImFohKIEYktt/kETfVHEc8aWHOitqRTwYqcL+UASTnDZAlPUVLiYZoC3emm1pSFRJpN73wBWPRDZ8FuipoFfSW6FQJHPoH7N3Eb2Re/8Vf4nAZ5uJLKX+HkEKiHGA2TqQ21mlOKJUyG5w900QZ+P3DegOt0ft9o=
+	t=1731652018; cv=none; b=Pz+QcIxuvwDebN8UYO/6JaSoI71IQVG+GrzqiZq010k/HB26rD9c/s/uRj+xKtOmXO9sBe3/tQsux16BvKgMKPSwQXx0BQyAmW4yldYLBhSS6udAlyBY0uGPNO45vUD5fgKrXRG0paMy/fU9wCvZfc/wk5FS8gR/xvIuTHVHn7I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731651802; c=relaxed/simple;
-	bh=jG8lHdWYMcxY4VtuEgQSaY9EfCc+In8obRiKFVgirDM=;
+	s=arc-20240116; t=1731652018; c=relaxed/simple;
+	bh=SEOTn+lkHc4hgkSChbLoegk28F7zgytRKRiZFmoACiU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ov/u9jY/PrCkI2wiZ7Idwx4L5Df2b+uQhFtCw3jH67mozRyNBo6/4l3FlVYOwWagaCRhMjcNf24Mu0Oywx7c1mWOiSDAGuYVbPXxwGQ9Otxd/H4XBotKiCBHYh8cMdAUJo22bq0wAZnEUln9lcc17BUZu+LghkSv4UtFE9fuXyM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EFC4fNDi; arc=none smtp.client-ip=209.85.215.181
+	 Content-Type:Content-Disposition:In-Reply-To; b=mAc7+jm2W/mareLsIGaD3hZN2AMa/s/NoQrV57+KqZ7OoR6G8s0M4o2X772lxJChT/z9ppii1h/Xvfa0dCKY7QtVfrhl6jSuSltm2isCi1i7RB7UvfaNquzSX1tdf0EExbWKJhFquvA9UpQkDdkDjPMaUd0E6ICE4AnS1oP59tE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RdO6eHo7; arc=none smtp.client-ip=209.85.167.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-7f809332ffcso1109959a12.0
-        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 22:23:19 -0800 (PST)
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-53da2140769so1497026e87.3
+        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 22:26:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731651799; x=1732256599; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ol78VBh/D7CSp35yDrIEurbh12ES8TpwH/o75vgdzhw=;
-        b=EFC4fNDirbAqzVAusfKHJLU1zpx7o9w/jPQ2FXnnxsf4BeW24qlFLv5RMDYISGe6Lw
-         7zf6PxevbAhgU5+0YnCSmeoICdP+LOj2p4FrR/ARIt4ed1lze7J2bZ377XMMmmx38/6n
-         A5DxKRkSJYSIrs5XrpBKWZ5t8Kp3CypDKn1mSp6d0sHocrlAAWlw4EsRQ55FcAUjhWve
-         9v5PYMf5eIMv84hvvzUVqWpU/KybEOeIAXObhb8edut7sBmZ+gCorgeXP/ysoRVe5d11
-         572N7ExmA4XR18E4YpT3deSR9aKx7n7AtK6AdeNA/BzZCjBfUIEH+vuVFm/8csv7tzs0
-         QoYw==
+        d=linaro.org; s=google; t=1731652015; x=1732256815; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=1J8YPPScFRM8avVFTNWdv56IQPE49tvtNbMytzKJF2c=;
+        b=RdO6eHo7tAK7JIxaurzIrCgq8jF4iQODifHlnWk1A3vNJvmCHRlPZLHfRN8Aa3HGYV
+         yadVrpuNNVnUmbqAiiVat6CykZvTmCr0LzYSBC5ni1aqAth/czXBnzNwsWmHw6uOhXk4
+         Nhx9cMwMdcBu+7VMHiimf2/DTZ1iJ8c/iN8AlmdzNFa/spJquEFj6TzNOWCY8kHhcI5A
+         d+yfLK30o4FUYO152PrxgICaZbsQLLdhE7TCWWQjuPxph3bfhLwLEcLcz/ztAWRGddCt
+         LlNgRZzzEIgbNUexlkBOxrBGqiCnLkaV+J8xc9P1U8VXZtY22E6/VlHV2q4mrhBzcgQk
+         PDTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731651799; x=1732256599;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ol78VBh/D7CSp35yDrIEurbh12ES8TpwH/o75vgdzhw=;
-        b=SWj4QOkK2EIUlHOkScDzWx6SOIINb/0t8GekCv7XN/kGnZifLJwtpVjRouEDwNOYjk
-         ujtnXhl5RIPVsY+m0OqJHD9FqSshJql3LtjB9dfl+24LI5hiJs56Fyk3jD558XaWA1RR
-         007ARDBhmFysxkuMqE+6EcqQ71ZdYQiSJQujnsnxM8j1PjvGSSRwt7gE0D5kqb/ZPGgh
-         HWuBTqnLN81e7wIxc1ojNRvXknIKUBGJse490hgBkQchpNkrANZYaHq4loDAjz86AdYD
-         nT6NzrABIfk5TgqQpYfJzXAhPDccFfO5aT6bdJkq2OpGGdo/98tBUXhRSDvSNoHY7WMi
-         8k+Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVvpS/zBliNUlt6URUb3lA9XSwFO4hVpOOv8Yv0L5oZS/zRg0rnTKn8/QjglFdFIpnQ7SV/mz6N1nE1@vger.kernel.org
-X-Gm-Message-State: AOJu0YxteCTRqKKVPuBF+qtLb5rzoXuv9P4T6J+iKuQfv6Xe1s5l/c+Y
-	SISuz20ifEahnh0w5p5+XAbI8ksMejyl/PVOOJD/R/Tg5KndX3Vp6Xi2RHnvqw==
-X-Google-Smtp-Source: AGHT+IFsjPgI83lY+/CQYR1fF5tUl/aI/SHyGafNvcTIR62F6ZwmVxmR5O0Z6ZJ2qZDr9Hk5OmaZ8w==
-X-Received: by 2002:a17:902:f54d:b0:210:e760:77e with SMTP id d9443c01a7336-211d06cf054mr29524335ad.7.1731651798965;
-        Thu, 14 Nov 2024 22:23:18 -0800 (PST)
-Received: from thinkpad ([117.193.208.47])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-211d0f3680dsm5773815ad.146.2024.11.14.22.23.15
+        d=1e100.net; s=20230601; t=1731652015; x=1732256815;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1J8YPPScFRM8avVFTNWdv56IQPE49tvtNbMytzKJF2c=;
+        b=ZLDJ5pyibIiKe3cjzKRkyvDZRw/SEFNK8KFSDEXzETn+rxO0O8Zr7sfRsk8tMOAZlP
+         DGXuDuCpWSycArXynmg6lhHVmGqnKTf2TzVXbK18EZOBWyg14SOLQCGCWtDO8AIa6sET
+         nI1sMAFGIf/98IxoI1ETsC08lvEp8/UBPygg8JU91U3kyMNOlvtm8iugueiPkX9zYhNn
+         JymIgBo9dqXShvSbitE1EM2Fij67lclZPwk6YCZlbew/iW6kJsbUyr+prFAY4mFvCV2Q
+         XR9Se8xPrkn8qPg48cChNnh5mpJ/R2psZ06n3FkDQaVkt4w1sLMxN2G86wLSbtaoff2e
+         531A==
+X-Forwarded-Encrypted: i=1; AJvYcCXz6YFdy2wI7PN3uP+Gx2EW0+wXxR9tPurn34lcd6Fn35V24d6HCYnKS7sqp487j6FBKJOC2kENjAKv@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw4+CP3LcO/ZaoTHWmim7ltGhS6q2OBO66y9w07S2URvGiB9M1y
+	lLbHXtbeEH6/IqS1SqEgrl4tVTaLEbKXOW7XyLaZlTeEj7jYlJcGH+HX/AUTolo=
+X-Google-Smtp-Source: AGHT+IHeRfCBqcZLNmnFoEG/mQnBqtDw3vKMNqwmSRjKMnCBShl3S5C72FWKECfFbwGJqH/kTo07sA==
+X-Received: by 2002:a05:6512:b96:b0:53d:a6d1:b72a with SMTP id 2adb3069b0e04-53dab29abdfmr500983e87.15.1731652014545;
+        Thu, 14 Nov 2024 22:26:54 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53da6548e9bsm445045e87.262.2024.11.14.22.26.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Nov 2024 22:23:18 -0800 (PST)
-Date: Fri, 15 Nov 2024 11:53:10 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mailbox: qcom-ipcc: Add SAR2130P compatible
-Message-ID: <20241115062310.lcpbjryojgzckovb@thinkpad>
-References: <20241017-sar2130p-mbox-v1-1-906aa78b1358@linaro.org>
+        Thu, 14 Nov 2024 22:26:54 -0800 (PST)
+Date: Fri, 15 Nov 2024 08:26:51 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Tingwei Zhang <quic_tingweiz@quicinc.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+	Ziyue Zhang <quic_ziyuzhan@quicinc.com>, vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org, 
+	manivannan.sadhasivam@linaro.org, bhelgaas@google.com, kw@linux.com, lpieralisi@kernel.org, 
+	quic_qianyu@quicinc.com, conor+dt@kernel.org, neil.armstrong@linaro.org, 
+	andersson@kernel.org, konradybcio@kernel.org, quic_shashim@quicinc.com, 
+	quic_kaushalk@quicinc.com, quic_tdas@quicinc.com, quic_aiquny@quicinc.com, 
+	kernel@quicinc.com, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
+Subject: Re: [PATCH 4/5] arm64: dts: qcom: qcs8300: enable pcie0 for QCS8300
+Message-ID: <cp2g6j43zlx2njou5qz5tmwsnnzahqtk2hsxkj2ftrzbcmy742@ysca5ica4mvr>
+References: <20241114095409.2682558-1-quic_ziyuzhan@quicinc.com>
+ <20241114095409.2682558-5-quic_ziyuzhan@quicinc.com>
+ <rg4isufmnhnbsiljm34rfdsn46gfpatbsiscynaqtsnykbhnm3@ovcaulkfj4nk>
+ <26943ea3-109c-473d-818b-2a08dba859ab@oss.qualcomm.com>
+ <288be342-952b-4210-afe7-6e194dfd54a9@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241017-sar2130p-mbox-v1-1-906aa78b1358@linaro.org>
+In-Reply-To: <288be342-952b-4210-afe7-6e194dfd54a9@quicinc.com>
 
-On Thu, Oct 17, 2024 at 09:17:23PM +0300, Dmitry Baryshkov wrote:
-> Document compatible for the IPCC mailbox controller on SAR2130P platform.
+On Fri, Nov 15, 2024 at 12:59:12PM +0800, Tingwei Zhang wrote:
+> On 11/14/2024 9:03 PM, Konrad Dybcio wrote:
+> > On 14.11.2024 1:10 PM, Dmitry Baryshkov wrote:
+> > > On Thu, Nov 14, 2024 at 05:54:08PM +0800, Ziyue Zhang wrote:
+> > > > Add configurations in devicetree for PCIe0, including registers, clocks,
+> > > > interrupts and phy setting sequence.
+> > > > 
+> > > > Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+> > > > ---
+> > > >   arch/arm64/boot/dts/qcom/qcs8300-ride.dts |  44 +++++-
+> > > >   arch/arm64/boot/dts/qcom/qcs8300.dtsi     | 176 ++++++++++++++++++++++
+> > > >   2 files changed, 219 insertions(+), 1 deletion(-)
+> > > > 
+> > > > diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
+> > > > index 7eed19a694c3..9d7c8555ed38 100644
+> > > > --- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
+> > > > +++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
+> > > > @@ -213,7 +213,7 @@ vreg_l9c: ldo9 {
+> > > >   &gcc {
+> > > 
+> > > The patch doesn't seem to update the gcc node in qcs8300.dtsi. Is there
+> > > any reason to have the clocks property in the board data file?
+> > 
+> > Definitely not. Ziyue, please move that change to the soc dtsi
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Gcc node is updated in board device tree due to sleep_clk is defined in
+> board device tree. Sleep_clk is from PMIC instead SoC so we were requested
+> to move sleep_clk to board device tree in previous review [1].
 
-Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Note, the review doesn't talk about sleep_clk at all. The recent
+examples (sm8650, x1e80100, sa8775p) still pull the clocks into the SoC
+dtsi, but without the freq.
 
-- Mani
-
-> ---
->  Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml | 1 +
->  1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml b/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
-> index 2d66770ed3612fd4bf9e28c334b273033e13684f..ecb4ec1e0a82856581f16391813b3c533c4f6f90 100644
-> --- a/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
-> +++ b/Documentation/devicetree/bindings/mailbox/qcom-ipcc.yaml
-> @@ -28,6 +28,7 @@ properties:
->            - qcom,qdu1000-ipcc
->            - qcom,sa8255p-ipcc
->            - qcom,sa8775p-ipcc
-> +          - qcom,sar2130p-ipcc
->            - qcom,sc7280-ipcc
->            - qcom,sc8280xp-ipcc
->            - qcom,sdx75-ipcc
+> [1]https://lore.kernel.org/all/10914199-1e86-4a2e-aec8-2a48cc49ef14@kernel.org/
+> > 
+> > Konrad
 > 
-> ---
-> base-commit: 7df1e7189cecb6965ce672e820a5ec6cf499b65b
-> change-id: 20241017-sar2130p-mbox-1ff72d8eb5c8
 > 
-> Best regards,
 > -- 
-> Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Thanks,
+> Tingwei
 > 
+> -- 
+> linux-phy mailing list
+> linux-phy@lists.infradead.org
+> https://lists.infradead.org/mailman/listinfo/linux-phy
 
 -- 
-மணிவண்ணன் சதாசிவம்
+With best wishes
+Dmitry
 
