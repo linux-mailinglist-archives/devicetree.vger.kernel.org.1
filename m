@@ -1,94 +1,93 @@
-Return-Path: <devicetree+bounces-122305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47EE79CFAE7
-	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 00:11:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 997EB9CFAF6
+	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 00:16:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07EB9284419
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 23:11:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 467CF1F21F0D
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 23:16:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B30B81ABEBA;
-	Fri, 15 Nov 2024 23:10:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38867191F83;
+	Fri, 15 Nov 2024 23:15:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kyWaAKKW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d7SKGPU8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 875D81922F9;
-	Fri, 15 Nov 2024 23:10:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07D121C68F;
+	Fri, 15 Nov 2024 23:15:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731712228; cv=none; b=k5Xp9Xb1VX3X1j9gdge41gdjypZKKFvW59Q/qCQ+QLDLHxuHu6RLNS3Xxh4sfbFW0AJfgLgqN73j2FSL+ESFcPgbJ2SHYQx53nDc/JGq52THKrguF6t9WVk2Pfmy9WDkpmEHXw2xxh0HBvR85iKa7bZOXmavt9VTEnjMs0FMJEo=
+	t=1731712556; cv=none; b=FTxgKtJqP6HhfcLB491KVyYUWWWF7jTnP+ziY4JLBEJqxQT4oqUXOKNlhVWlkigbLZR6QNOU9MIaOPN9gC5SnHnZ3iO2mowQ3DEXyyDxg8H6K5E/4Sck0zlzvyB6U2slANqAftVSPx7jzzBe8pvvoKtFA2tIT1eXT0B4XMCsxw4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731712228; c=relaxed/simple;
-	bh=NQBnITOZNi1vFSfccm0jyqvLbG+YaclL2jPy1WOI0xE=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=mlXo/LgFNyaJnNfy8gj44hJ4AdIXeeobba9Eo2iNyr71WNyiuQ2QSt++v9aPEKIBhiLLy3ZkE7XLvJWBvfpudV+X2rR6WUx3sKrOFoPOf0Xj/BUqDLdwCTVgpd/YTbqHp+PwhgFfjSn7TcHwHW+j+CHFb6Ygarfi6mD3Towv9Ik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kyWaAKKW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2828FC4CECF;
-	Fri, 15 Nov 2024 23:10:27 +0000 (UTC)
+	s=arc-20240116; t=1731712556; c=relaxed/simple;
+	bh=FUyfmapV/R+XmUaTZVZp/eGm+YQusACamSnKy2xJ+uw=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=mMelGlTG9JuI5b3ySTcx2XeokniLJ1Hf7HKV9bRXJK/oAfwbZqmBmrVNV1sBjjMXN72k1mkI80UhjtDkZM4L/1qYCuoM+biwIb/MZAvfEiWAVbOccLG9fGlKzWwpcCp2PkZiIH9LzpZJzRDVQg7oTYgIZZv32nYHZlQ2ZU3ihw4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d7SKGPU8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5F33C4CED2;
+	Fri, 15 Nov 2024 23:15:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731712227;
-	bh=NQBnITOZNi1vFSfccm0jyqvLbG+YaclL2jPy1WOI0xE=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=kyWaAKKWG0nLqyA4SS233UbhQvFJJ7XBpsXQxrvMjQkyYxJfFvaCQq8WGzQbjWIz4
-	 eXGXQVy5ikUxNT18S0Goj7Ojenn9icKziLGqBC7ozYAZOZVSPPGzqc0NGt9ROFooLU
-	 xhBS7Ebm5It5Q1JXL7RAWyVzzyAngwg2c6utGQIT4v7Eqf/te0pGpmg3kqhV5ZJJZP
-	 tx1Ij4Ski07gifLM0GPX7xdFqH1WszGnlXpwCZZ9+RgphI97J8IoKQY/4KC8BL08YO
-	 TAGM6BcH5KkfyAGFXWgXhLEerlq9qXH7QLJcnPYKVRrDyshLQ3Hh8UO0l00vKujTbk
-	 VOBcabP6LDniw==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 340273809A80;
-	Fri, 15 Nov 2024 23:10:39 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=k20201202; t=1731712555;
+	bh=FUyfmapV/R+XmUaTZVZp/eGm+YQusACamSnKy2xJ+uw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=d7SKGPU8gXQCnQ5JpnZsLnhnV8NyIwhYasFz269sjVY4FEbQ6I1AHdKXSg/YP5ePK
+	 au7dHtfBXJWYBIv2qyHgMnjo51bJBIgoREDucUr4dQvfRL8c8AieNhLhZFp/zP5+JH
+	 uV6U80H8+z0jkPMbh1B7/7ITNe17n3A7Ji7C3nw1qwvTl2RrZGLgqDAOS26R29Tp6p
+	 Aklh35ASO1T/YQNL5I5+mANT9DsBGU2Gb3JCfEaG0QMAzu6bwWLJrSkVk+/zyqo/nG
+	 MzTJ9U++8tZQ6QSCORvSyKee132jG9rS3E4DljmB0F/LAo8KIL14rVyFWTFYGYdC6Q
+	 7jFtdz6+VA6pA==
+Date: Fri, 15 Nov 2024 15:15:53 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
+ Vladimir Oltean <olteanv@gmail.com>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
+ <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Heiner Kallweit
+ <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, Matthias
+ Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, upstream@airoha.com
+Subject: Re: [net-next PATCH v5 3/4] net: dsa: Add Airoha AN8855 5-Port
+ Gigabit DSA Switch driver
+Message-ID: <20241115151553.71668045@kernel.org>
+In-Reply-To: <6737d35f.050a0220.3d6fb4.8d89@mx.google.com>
+References: <20241112204743.6710-1-ansuelsmth@gmail.com>
+	<20241112204743.6710-4-ansuelsmth@gmail.com>
+	<20241114192202.215869ed@kernel.org>
+	<6737c439.5d0a0220.d7fe0.2221@mx.google.com>
+	<20241115145918.5ed4d5ec@kernel.org>
+	<6737d35f.050a0220.3d6fb4.8d89@mx.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next] dt-bindings: net: dsa: microchip,ksz: Drop
- undocumented "id"
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <173171223773.2762542.1275950515020254098.git-patchwork-notify@kernel.org>
-Date: Fri, 15 Nov 2024 23:10:37 +0000
-References: <20241113225642.1783485-2-robh@kernel.org>
-In-Reply-To: <20241113225642.1783485-2-robh@kernel.org>
-To: Rob Herring (Arm) <robh@kernel.org>
-Cc: woojung.huh@microchip.com, UNGLinuxDriver@microchip.com, andrew@lunn.ch,
- f.fainelli@gmail.com, olteanv@gmail.com, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, krzk+dt@kernel.org,
- conor+dt@kernel.org, marex@denx.de, Woojung.Huh@microchip.com,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hello:
-
-This patch was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
-
-On Wed, 13 Nov 2024 16:56:43 -0600 you wrote:
-> "id" is not a documented property, so drop it.
+On Sat, 16 Nov 2024 00:03:55 +0100 Christian Marangi wrote:
+> > > Ok I will search for this but it does sounds like something new and not
+> > > used by other DSA driver, any hint on where to look for examples?  
+> > 
+> > It's relatively recent but I think the ops are plumbed thru to DSA.
+> > Take a look at all the *_stats members of struct dsa_switch_ops, most
+> > of them take a fixed format struct to fill in and the struct has some
+> > extra kdoc on which field is what.  
 > 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->  Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml | 1 -
->  1 file changed, 1 deletion(-)
+> Thanks for the follow-up, they are the get_stats64 I assume, quite
+> different to the ethtools one as we need a poll logic. Ok I will check
+> what to drop and rework it.
 
-Here is the summary with links:
-  - [net-next] dt-bindings: net: dsa: microchip,ksz: Drop undocumented "id"
-    https://git.kernel.org/netdev/net-next/c/6bbdb903db08
+https://elixir.bootlin.com/linux/v6.12-rc1/source/include/net/dsa.h#L915-L927
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+am I looking in the wrong place?
 
