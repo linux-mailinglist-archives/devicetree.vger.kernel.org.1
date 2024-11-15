@@ -1,62 +1,67 @@
-Return-Path: <devicetree+bounces-122217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D15E9CF2F4
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 18:32:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E27199CF2FE
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 18:33:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C606C284328
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 17:32:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A6CFF2843DE
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 17:33:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F00F1BF311;
-	Fri, 15 Nov 2024 17:32:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 651E41D61A3;
+	Fri, 15 Nov 2024 17:33:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kac7kQLZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ME/5oqI+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3DF615573A;
-	Fri, 15 Nov 2024 17:31:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3294615383D;
+	Fri, 15 Nov 2024 17:33:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731691920; cv=none; b=rAcQNh8RIVtZ76iRtPm/VZaUVyZHhlJRok+AjJg/OZKoHpLVwCEqQ1jTEpkfQL9JM5axWO9qp7SavAxD22ZLRXN/VwrfB14QwiDjEmB3DnJh+8eYjv9PL/lJzQYM+M7KM14NNw0gJ1DvDUH4z7R34n4L9FWj0NoamkXJEjMQA+w=
+	t=1731692023; cv=none; b=ZPKqLJlbzP3yf6MIrMTyCiAjAbBZswi9A8zova7Qe/2xOQGHQAv/tvQ4Qxrj2cQuEmzmdTM7VmxvA2qJlV6W5cqIVdpC1gFJux1idfnxAWvKPODnv/7Gon0mwNI4qt0/RbmfcaO4IrV7MY7jbXcob5VE+Yf7cF9s4RW81eMbMlQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731691920; c=relaxed/simple;
-	bh=ByzyFL3jHBewomqNCtrQfFmYzlwTibEpwsTpO0RE8jo=;
+	s=arc-20240116; t=1731692023; c=relaxed/simple;
+	bh=KAyTU2wbJPNWq+AnPPIg5jRJD0fH1t6QufJ8G6BdE+g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tDli5/UN2cfDvlPwPsSg/t9oPa1SjDFxuj1hFCQGo/nmmZAjOEbQ6elsw451MAzI60SQNjJXYGEOHVmVuhQLovlnzZ1VwiDOFsIF3WFyfQ2sVBQJAEMvEDRgt9WnXbsTGvuL6ijJJAI71/2AVytfbFMVDPR9yZCQr+Cuu4eJnyY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kac7kQLZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 233D5C4CECF;
-	Fri, 15 Nov 2024 17:31:58 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=m4JN/F/FHOiVuvx5x2V1SC2cBU+m/7MZOrBp0ZTJ4G1pTM36S5UhMrQU7+R5ATlsOoB2TgC80o8WItNzkUizdsFnR8t/itLIMW0cONhWX7iO+q0McEnhRK7KKs5OZIqethgtBTl7swu6RWR/te3KrDWgL2Y0jVLF5MBMfH8RaFA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ME/5oqI+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B938C4CECF;
+	Fri, 15 Nov 2024 17:33:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731691918;
-	bh=ByzyFL3jHBewomqNCtrQfFmYzlwTibEpwsTpO0RE8jo=;
+	s=k20201202; t=1731692022;
+	bh=KAyTU2wbJPNWq+AnPPIg5jRJD0fH1t6QufJ8G6BdE+g=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kac7kQLZx6tmvyWAIEbTAlQzl59DR9Qou9YktDrEWS1LyQzDGztyBHivLBTpIjY35
-	 P841wfiKpvutW1mpe9dVdRfh9kZh3O70heccc9YSzFzEnBMM7f/0YdyI/aeeeUXRg9
-	 DThZ1XF1C+o1Xr80FDRwZTjuElqjS9JniABgw5xt0pxYx3oMLKeUUdZh05/cwCf5dY
-	 JW1XTpnoXlleMoSUXR2oLI29sxpsPg54FBrkQFO9lUq/S2+kPWt3RNQVR9StMj0Qhn
-	 y7L8Gx94CxjPMDhIiKWnoMPuITR6elk2/W0iXY/FncBZoBYJ7EhIyMc/40Ugj+0ECc
-	 Hx+D6MSKBFFQw==
-Date: Fri, 15 Nov 2024 11:31:56 -0600
+	b=ME/5oqI+9A5m65Ks+FI//A2msRKaoqyZsf8e+ZghTz6L0qiyWlGJI6zbxAO4SjmJ7
+	 QTv6C9Js0yK/mIY90hePo9stLZfjatvVg5Osg7PVkMKaHT0MvI1wZrW3oSKUVrrsx/
+	 fGfxx9566+orfgW9/TF5/rWaUCIRJL1j60bX5O6M6XeVlZoojkhxIif/G6voPR++Ep
+	 VrwdwVo20M6h4e7coL8dKdFziZGDy/mJCEbWTJJrM4FiEFlyZUz2TeibmpDAKmTOCJ
+	 vQ7UCDJDzVsyXx8f8wbgt5GNWmZmeMiG+4/ghCKaLIrFD+MIHxbiGK4Uf5Pn5KYe17
+	 QzfRUhDaCSGow==
+Date: Fri, 15 Nov 2024 11:33:40 -0600
 From: Rob Herring <robh@kernel.org>
-To: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-Cc: konrad.dybcio@linaro.org, andersson@kernel.org, andi.shyti@kernel.org,
-	linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-	conor+dt@kernel.org, agross@kernel.org, devicetree@vger.kernel.org,
-	vkoul@kernel.org, linux@treblig.org, dan.carpenter@linaro.org,
-	Frank.Li@nxp.com, konradybcio@kernel.org,
-	bryan.odonoghue@linaro.org, krzk+dt@kernel.org,
-	quic_vdadhani@quicinc.com
-Subject: Re: [PATCH v4 1/4] dt-bindindgs: i2c: qcom,i2c-geni: Document shared
- flag
-Message-ID: <20241115173156.GA3432253-robh@kernel.org>
-References: <20241113161413.3821858-1-quic_msavaliy@quicinc.com>
- <20241113161413.3821858-2-quic_msavaliy@quicinc.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	Mark Brown <broonie@kernel.org>,
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+	Takashi Iwai <tiwai@suse.com>,
+	Bard Liao <yung-chuan.liao@linux.intel.com>,
+	Peter Ujfalusi <peter.ujfalusi@linux.intel.com>,
+	Jaroslav Kysela <perex@perex.cz>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-sound@vger.kernel.org, imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/5] ASoC: dt-bindings: add common binding for NXP CPUs
+Message-ID: <20241115173340.GA3436142-robh@kernel.org>
+References: <20241113195240.3699-1-laurentiumihalcea111@gmail.com>
+ <20241113195240.3699-2-laurentiumihalcea111@gmail.com>
+ <ZzUF+iFeKSqKGcpX@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,46 +70,72 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241113161413.3821858-2-quic_msavaliy@quicinc.com>
+In-Reply-To: <ZzUF+iFeKSqKGcpX@lizhi-Precision-Tower-5810>
 
-On Wed, Nov 13, 2024 at 09:44:10PM +0530, Mukesh Kumar Savaliya wrote:
-> Adds qcom,is-shared flag usage. Use this flag when I2C serial controller
+On Wed, Nov 13, 2024 at 03:03:06PM -0500, Frank Li wrote:
+> On Wed, Nov 13, 2024 at 02:52:36PM -0500, Laurentiu Mihalcea wrote:
+> > From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+> >
+> > Add common binding for NXP CPUs sharing the same programming
+> > model (i.e: audio processing with SOF).
+> 
+> Add binding for NXP audio processor with Sound Open Firmware (SOF) support.
+> 
+> >
+> > Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+> > ---
+> >  .../bindings/sound/fsl,sof-cpu.yaml           | 35 +++++++++++++++++++
+> >  1 file changed, 35 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/sound/fsl,sof-cpu.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/sound/fsl,sof-cpu.yaml b/Documentation/devicetree/bindings/sound/fsl,sof-cpu.yaml
+> > new file mode 100644
+> > index 000000000000..6d63fcd71154
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/sound/fsl,sof-cpu.yaml
+> > @@ -0,0 +1,35 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/sound/fsl,sof-cpu.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: NXP audio CPU common properties
+> 
+> audio processor?
+> 
+> > +
+> > +maintainers:
+> > +  - Daniel Baluta <daniel.baluta@nxp.com>
+> > +
+> > +properties:
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  mboxes:
+> > +    maxItems: 4
+> > +
+> > +  mbox-names:
+> > +    items:
+> > +      - const: txdb0
+> > +      - const: txdb1
+> > +      - const: rxdb0
+> > +      - const: rxdb1
+> > +
+> > +  memory-region:
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - reg
+> > +  - mboxes
+> > +  - mbox-names
+> > +  - memory-region
+> > +
+> > +additionalProperties: true
+> 
+> example ?
 
-Doesn't match the property name.
+Common bindings generally don't have one.
 
-> needs to be shared in multiprocessor system(APPS,Modem,ADSP) environment.
-> 
-> Two clients from different processors can share an I2C controller for same
-> slave device OR their owned slave devices. Assume I2C Slave EEPROM device
-> connected with I2C controller. Each client from ADSP SS and APPS Linux SS
-> can perform i2c transactions.
-> 
-> Transfer gets serialized by Lock TRE + DMA xfer + Unlock TRE at HW level.
-> 
-> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
-> index 9f66a3bb1f80..fe36938712f7 100644
-> --- a/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
-> @@ -60,6 +60,10 @@ properties:
->    power-domains:
->      maxItems: 1
->  
-> +  qcom,shared-se:
-
-What is 'se'? Is that defined somewhere?
-
-> +    description: True if I2C controller is shared between two or more system processors.
-> +    type: boolean
-> +
->    reg:
->      maxItems: 1
->  
-> -- 
-> 2.25.1
-> 
+Rob
 
