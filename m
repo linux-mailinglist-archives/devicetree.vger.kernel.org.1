@@ -1,142 +1,249 @@
-Return-Path: <devicetree+bounces-122084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DB399CDB43
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 10:16:05 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 394149CDB47
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 10:16:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42D932821C9
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 09:16:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 79C51B24609
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 09:16:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF49318C03B;
-	Fri, 15 Nov 2024 09:16:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 136D318FDAA;
+	Fri, 15 Nov 2024 09:16:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i7L36Pgk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lwqSupR2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A853218C011;
-	Fri, 15 Nov 2024 09:16:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DAE718F2DF
+	for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 09:16:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731662160; cv=none; b=Lubn+F1bX1EvSE4hJ+jyOq60xP6E13Yf2fmmb8h1EBkl/LVP9D0f2qVLsL7LkunFWanExOOlLLdeRA4gpSoIPzwShAj62+oo5wUYgREmjtc+N6fxTw/wa0LONpmmsy2x5nXZJBryME3BWyy72yFQgkvJFa4fB1LOctSUK53MZKs=
+	t=1731662164; cv=none; b=AzfYvdhm6yGoZ9zdRw77xKZxsXHkS32Jcz70Z/rvosCUeMauAr3UWv+z9uenCUeUWZIBeanTSzAP5r9imoOVre0AZygyDVNnd1i+FGNcN+aIjW8QjF7c328uSfeBb3p1ZmoY44kp5h43eDJ3WMhiQ4iw3Ay+96Cy8emqcWcKl7U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731662160; c=relaxed/simple;
-	bh=/wAqRwzJ+gv35k0isr+a2LT/cYabO4xEJpS4EceCYik=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=umLFtLzTdkWu8Jf/PTW0VD7fEYSUlfffB2E+3Tcnk1iCx0UT9RWhZBfnsL+R7waXpuwOgybucP9mU8aSppIO9DPQwPTnuvTYad82nzlA3OjdzrlXbPqkkv2s6ju9iETpePb54uDeTlGr6ehcnOHxLPbLmC0elhkpWDV9h4PjF4I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i7L36Pgk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16CB4C4CECF;
-	Fri, 15 Nov 2024 09:16:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731662160;
-	bh=/wAqRwzJ+gv35k0isr+a2LT/cYabO4xEJpS4EceCYik=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=i7L36PgkF1fbntBgrghe3PYoDCf89mtGA9mf9KrcHGdbcFSdRQ4cR+aaNyXoKb5cI
-	 2+yJWadKhVBiE5UIcEQmDZtoeMwKjiFZMllQZRqBDiyRuGO3uRsEqfJCPzRnNwfGNd
-	 39FLChbdK1nQVL048tPYxnNtDPQ2x1uJ9Q9+VfcD8QQLlFp4uKH9fYqHwB9x4V7N1u
-	 O/vgM22mYu262k+xJnn3kCJiLWyGMuq7XzE+qFl2boZ5bSL7vq/NMlO5o7C6ZE6WAo
-	 8dNWclhBHPdC0zVlBENfv5HY3PmUFfJhPvIpZRH4NyREhoX6TzdnXSXjFkJycDzHgL
-	 fkmv3Vhytg72A==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1tBsQn-00D5CM-Qy;
-	Fri, 15 Nov 2024 09:15:57 +0000
-Date: Fri, 15 Nov 2024 09:15:57 +0000
-Message-ID: <861pzcx3g2.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Saravana Kannan <saravanak@google.com>
-Cc: Samuel Holland <samuel.holland@sifive.com>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] of: property: fw_devlink: Do not use interrupt-parent directly
-In-Reply-To: <CAGETcx9hLPxtE94cKiM==+Ep8k=d+HP4q3FCMKMbeFAjt7XW7Q@mail.gmail.com>
-References: <20241114195652.3068725-1-samuel.holland@sifive.com>
-	<CAGETcx9hLPxtE94cKiM==+Ep8k=d+HP4q3FCMKMbeFAjt7XW7Q@mail.gmail.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=arc-20240116; t=1731662164; c=relaxed/simple;
+	bh=eKLb9WPBbZ0Xu/K4i9juTXvzHHcU4NwWfLgass5d4oU=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=qNpaQ46Ww6bbjTHgh+U72qARazwvhjqg0OebxNwuq40ynkJKMS1zsoNpVdHE9hN79NGQ9P/PCOqjvN9fzIdAwtmayoavv6Xo8ncpOdvkmGlybHzo3tXz4VEXfdOa3yx9365zfMio3S5+YhO5YvkJ+cmDpzvLfeLIBO4Ls2DWvdA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lwqSupR2; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4315e9e9642so3928995e9.0
+        for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 01:16:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1731662160; x=1732266960; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=21xfAjVQeCIIZ6dS35gVy1ZySA5llV+Yj+sUkf/GRP4=;
+        b=lwqSupR2fz51EYLaPJK6SklehLAm6J2GRc5L1Ytvh76mTlUAL6qYPSZk3vDUAcWDzQ
+         /8e8d4XjsEwWThBC1DEkYxkQU9+pQESRedJ486uhzY/JqWAH1Ch9PB1SRvdIpqyQOQda
+         vo8P4M6lPokCsIlhUqIsTZKOPfTmYP66xx67t5I/ZgRSR0B9whv700h/SUUAMBi63UaR
+         n6QJoRVSthfylBxyMqVHo/IfKXw+pdHshj5w6OO2KNXu7QuZHLzsAHj/3D/tSlfisple
+         hD1GNoavh3n+ioao/I1cJsKjGuApbGRIpdZPhBPeDv7WVk+jrayZEKiDqq7iGamGGCrI
+         djuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731662160; x=1732266960;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=21xfAjVQeCIIZ6dS35gVy1ZySA5llV+Yj+sUkf/GRP4=;
+        b=lECS4aOA29PxlP92516qoBdnTf8YXBWSzFpF5XsqRPO/XHCC0/6y6yWXIHfMf9PlWp
+         QJ7TkV3VVCOSexY917OXdFrTyvuEtbv9E9a2rPuRw0EQhq/VOdLI7XEXt8JE0/e0CQML
+         EYvGkPS4RMvSoipAq5mXHYA1nayYTj6tQXckMwUV+Oa3LUc3JLGYq1iqPyNjKqHrphiP
+         jWNoVfmsEcecweyTUgCJU9Bfa33a1inhy8FcBBQaP0oKpVMKUxnwUIKVJKHZu+r6A6X+
+         q0ogn08nDF22CGRxPZJpmT/fhnD8QhfcneBiMZq5AxCbdXqJlSb8nQZgb/7Nrei6U6jL
+         pLsA==
+X-Forwarded-Encrypted: i=1; AJvYcCWgrAjyY/YTsE87yhxBECdotQ7R3dgpJIieNOAzrx4t+qnp/+20HHOsrVLIbEslMzckmk4AbWSn6UHR@vger.kernel.org
+X-Gm-Message-State: AOJu0YwbVJP46r6lxAzQvv1WgbpEoSr+uxeCqsNSuNENfQgkptODtrqb
+	uVtxJ4657I7m43+qXB1KqXYc9W7IiRCFZOD0fEqoE2K4cO1xApVA7lC27ox2LCI=
+X-Google-Smtp-Source: AGHT+IFPbcpcX4w3sjn8rOwf7xbvOcUQVBQPqXmF6Nf82dTlcp6xBxu/Ctu+3eZ//JQlin2Qv5qoRw==
+X-Received: by 2002:a05:600c:3b03:b0:430:52ec:1e41 with SMTP id 5b1f17b1804b1-432df74de50mr17161875e9.17.1731662160432;
+        Fri, 15 Nov 2024 01:16:00 -0800 (PST)
+Received: from [192.168.7.189] ([212.114.21.58])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-432dac1d85fsm47149875e9.36.2024.11.15.01.15.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 Nov 2024 01:15:59 -0800 (PST)
+Message-ID: <8f0f23e0-c517-4e49-864a-e6c47cedc6de@linaro.org>
+Date: Fri, 15 Nov 2024 10:15:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: saravanak@google.com, samuel.holland@sifive.com, robh@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH RFC 5/8] drm/msm: adreno: find bandwidth index of OPP and
+ set it along freq index
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Akhil P Oommen <quic_akhilpo@quicinc.com>,
+ Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+ Stephen Boyd <sboyd@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Connor Abbott <cwabbott0@gmail.com>,
+ linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+References: <20241113-topic-sm8x50-gpu-bw-vote-v1-0-3b8d39737a9b@linaro.org>
+ <20241113-topic-sm8x50-gpu-bw-vote-v1-5-3b8d39737a9b@linaro.org>
+ <ith6te3m4cjwjyxrsxpjsvqsyjr3qrmlyyo7cucljuweuzn37b@lmd5b5mqwkbw>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <ith6te3m4cjwjyxrsxpjsvqsyjr3qrmlyyo7cucljuweuzn37b@lmd5b5mqwkbw>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, 14 Nov 2024 20:24:34 +0000,
-Saravana Kannan <saravanak@google.com> wrote:
->=20
-> On Thu, Nov 14, 2024 at 11:56=E2=80=AFAM Samuel Holland
-> <samuel.holland@sifive.com> wrote:
-> >
-> > commit 7f00be96f125 ("of: property: Add device link support for
-> > interrupt-parent, dmas and -gpio(s)") started adding device links for
-> > the interrupt-parent property. Later, commit f265f06af194 ("of:
-> > property: Fix fw_devlink handling of interrupts/interrupts-extended")
-> > added full support for parsing the interrupts and interrupts-extended
-> > properties, which includes looking up the node of the parent domain.
-> > This made the handler for the interrupt-parent property redundant.
-> >
-> > In fact, creating device links based solely on interrupt-parent is
-> > problematic, because it can create spurious cycles. A node may have
-> > this property without itself being an interrupt controller or consumer.
-> > For example, this property is often present in the root node or a /soc
-> > bus node to set the default interrupt parent for child nodes. However,
-> > it is incorrect for the bus to depend on the interrupt controller, as
-> > some of the bus's childre may not be interrupt consumers at all or may
-> > have a different interrupt parent.
-> >
-> > Resolving these spurious dependency cycles can cause an incorrect probe
-> > order for interrupt controller drivers. This was observed on a RISC-V
-> > system with both an APLIC and IMSIC under /soc, where interrupt-parent
-> > in /soc points to the APLIC, and the APLIC msi-parent points to the
-> > IMSIC. fw_devlink found three dependency cycles and attempted to probe
-> > the APLIC before the IMSIC. After applying this patch, there were no
-> > dependency cycles and the probe order was correct.
->=20
-> Rob/Marc,
->=20
-> If the claim about the interrupt parent interpretation is correct
-> across the board, I'm ok with this patch.
+On 15/11/2024 08:28, Dmitry Baryshkov wrote:
+> On Wed, Nov 13, 2024 at 04:48:31PM +0100, Neil Armstrong wrote:
+>> The Adreno GMU Management Unit (GMU) can also scale the DDR Bandwidth
+>> along the Frequency and Power Domain level, until now we left the OPP
+>> core scale the OPP bandwidth via the interconnect path.
+>>
+>> In order to enable bandwidth voting via the GPU Management
+>> Unit (GMU), when an opp is set by devfreq we also look for
+>> the corresponding bandwidth index in the previously generated
+>> bw_table and pass this value along the frequency index to the GMU.
+>>
+>> Since we now vote for all resources via the GMU, setting the OPP
+>> is no more needed, so we can completely skip calling
+>> dev_pm_opp_set_opp() in this situation.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   drivers/gpu/drm/msm/adreno/a6xx_gmu.c | 17 +++++++++++++++--
+>>   drivers/gpu/drm/msm/adreno/a6xx_gmu.h |  2 +-
+>>   drivers/gpu/drm/msm/adreno/a6xx_hfi.c |  6 +++---
+>>   3 files changed, 19 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+>> index 504a7c5d5a9df4c787951f2ae3a69d566d205ad5..1131c3521ebbb0d053aceb162052ed01e197726a 100644
+>> --- a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+>> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+>> @@ -113,6 +113,7 @@ void a6xx_gmu_set_freq(struct msm_gpu *gpu, struct dev_pm_opp *opp,
+>>   	struct a6xx_gpu *a6xx_gpu = to_a6xx_gpu(adreno_gpu);
+>>   	struct a6xx_gmu *gmu = &a6xx_gpu->gmu;
+>>   	u32 perf_index;
+>> +	u32 bw_index = 0;
+>>   	unsigned long gpu_freq;
+>>   	int ret = 0;
+>>   
+>> @@ -125,6 +126,16 @@ void a6xx_gmu_set_freq(struct msm_gpu *gpu, struct dev_pm_opp *opp,
+>>   		if (gpu_freq == gmu->gpu_freqs[perf_index])
+>>   			break;
+>>   
+>> +	/* If enabled, find the corresponding DDR bandwidth index */
+>> +	if ((adreno_gpu->info->quirks & ADRENO_QUIRK_GMU_BW_VOTE) && gmu->nr_gpu_bws) {
+>> +		unsigned int bw = dev_pm_opp_get_bandwidth(opp, true, 0);
+>> +
+>> +		for (bw_index = 0; bw_index < gmu->nr_gpu_bws - 1; bw_index++) {
+>> +			if (bw == gmu->gpu_bw_table[bw_index])
+>> +				break;
+>> +		}
+>> +	}
+>> +
+>>   	gmu->current_perf_index = perf_index;
+>>   	gmu->freq = gmu->gpu_freqs[perf_index];
+>>   
+>> @@ -140,8 +151,10 @@ void a6xx_gmu_set_freq(struct msm_gpu *gpu, struct dev_pm_opp *opp,
+>>   		return;
+>>   
+>>   	if (!gmu->legacy) {
+>> -		a6xx_hfi_set_freq(gmu, perf_index);
+>> -		dev_pm_opp_set_opp(&gpu->pdev->dev, opp);
+>> +		a6xx_hfi_set_freq(gmu, perf_index, bw_index);
+>> +		/* With Bandwidth voting, we now vote for all resources, so skip OPP set */
+>> +		if (bw_index)
+> 
+> if (!bw_index) ???
 
-I agree with Samuel's analysis that "interrupt-parent" is not always
-relevant to unsuspecting devices, given that it is often inherited
-from a bus-wide or system-wide parent node. Collectively, "interrupts"
-(which implicitly uses "interrupt-parent"), "interrupt-extended" and
-"interrupt-map" should provide enough information to ensure correct
-dependency tracking.
+Good catch, I added it back wrongly when refactoring...
 
-This is a notable departure from "msi-parent", which itself doesn't
-require any extra specifier, and cannot be ignored here (I note the
-absence of "msi-map" tracking though).
+> 
+> Also should there be a 0 vote too in case we are shutting down /
+> suspending?
 
-> I remember the RISC-V DT for interrupts being a mess. So, want to make
+It's already handled in a6xx_gmu_stop()
 
-I'm afraid other architectures are not any better. RISC-V only has the
-dubious advantage of coming up with backward designs, which doesn't
-help.
+> 
+>> +			dev_pm_opp_set_opp(&gpu->pdev->dev, opp);
+>>   		return;
+>>   	}
+>>   
+>> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gmu.h b/drivers/gpu/drm/msm/adreno/a6xx_gmu.h
+>> index 95c632d8987a517f067c48c61c6c06b9a4f61fc0..9b4f2b1a0c48a133cd5c48713bc321c74eaffce9 100644
+>> --- a/drivers/gpu/drm/msm/adreno/a6xx_gmu.h
+>> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gmu.h
+>> @@ -205,7 +205,7 @@ void a6xx_hfi_init(struct a6xx_gmu *gmu);
+>>   int a6xx_hfi_start(struct a6xx_gmu *gmu, int boot_state);
+>>   void a6xx_hfi_stop(struct a6xx_gmu *gmu);
+>>   int a6xx_hfi_send_prep_slumber(struct a6xx_gmu *gmu);
+>> -int a6xx_hfi_set_freq(struct a6xx_gmu *gmu, int index);
+>> +int a6xx_hfi_set_freq(struct a6xx_gmu *gmu, int perf_index, int bw_index);
+>>   
+>>   bool a6xx_gmu_gx_is_on(struct a6xx_gmu *gmu);
+>>   bool a6xx_gmu_sptprac_is_on(struct a6xx_gmu *gmu);
+>> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_hfi.c b/drivers/gpu/drm/msm/adreno/a6xx_hfi.c
+>> index 9a89ba95843e7805d78f0e5ddbe328677b6431dd..e2325c15677f1a1194a811e6ecbb5931bdfb1ad9 100644
+>> --- a/drivers/gpu/drm/msm/adreno/a6xx_hfi.c
+>> +++ b/drivers/gpu/drm/msm/adreno/a6xx_hfi.c
+>> @@ -752,13 +752,13 @@ static int a6xx_hfi_send_core_fw_start(struct a6xx_gmu *gmu)
+>>   		sizeof(msg), NULL, 0);
+>>   }
+>>   
+>> -int a6xx_hfi_set_freq(struct a6xx_gmu *gmu, int index)
+>> +int a6xx_hfi_set_freq(struct a6xx_gmu *gmu, int freq_index, int bw_index)
+>>   {
+>>   	struct a6xx_hfi_gx_bw_perf_vote_cmd msg = { 0 };
+>>   
+>>   	msg.ack_type = 1; /* blocking */
+>> -	msg.freq = index;
+>> -	msg.bw = 0; /* TODO: bus scaling */
+>> +	msg.freq = freq_index;
+>> +	msg.bw = bw_index;
+>>   
+>>   	return a6xx_hfi_send_msg(gmu, HFI_H2F_MSG_GX_BW_PERF_VOTE, &msg,
+>>   		sizeof(msg), NULL, 0);
+>>
+>> -- 
+>> 2.34.1
+>>
+> 
 
-> sure you agree with these claims before I Ack it.
-
-This needs testing, but looks sane from my PoV (though it is early and
-I need single coffee)... FWIW:
-
-Acked-by: Marc Zyngier <maz@kernel.org>
-
-	M.
-
---=20
-Without deviation from the norm, progress is not possible.
 
