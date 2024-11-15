@@ -1,195 +1,128 @@
-Return-Path: <devicetree+bounces-122091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122092-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC24E9CDB84
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 10:26:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D72499CDB8F
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 10:29:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F21C1F226B2
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 09:26:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9D910283633
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 09:29:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA55418F2FC;
-	Fri, 15 Nov 2024 09:26:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5087A18FC72;
+	Fri, 15 Nov 2024 09:29:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="dk/ckOrE"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VfJbMWv8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 902B518C322;
-	Fri, 15 Nov 2024 09:26:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6EB618D621;
+	Fri, 15 Nov 2024 09:29:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731662785; cv=none; b=c/Kp3QqNTI9zMb5y60OjPtl3bgMb93o9ANnidGbRGiaJZtT0Q1cT68GLx38ZaW/DSNoMNw/YJFsyyZxOoyarmq2vvj/w6uekYbuv0jEbtOcm3NEvpoyNP1XGqUnSmDD4cjkzyhD0l/vqCC6uRDb/BaAR+fKmeQmxUj1V9XgclM4=
+	t=1731662948; cv=none; b=REFTpdRX/Vkc4JYK+ibrHiar2sIZUokZDjKYm6AvnFRU4gcl9jl45V9RQBSPB9iycBMhFiMqsUSrglidFJnyLo4wtZSWtc26BTExRdZTe5sa/288ZNiXzltArjzIjGUJxheIIQI/uSSfuxWEKWrvTZL81r13X6cBLZsqzoo9bak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731662785; c=relaxed/simple;
-	bh=Guw0XR5d0BgTLqHT6YoapFxf8RK2MKtxRUr39yYdodE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=f/swisNbej9wqzgPRmwzY4ZrDsDlKdET9Y2TmniWGb0LgemlzE+FWuAu1LNOf13R8uKOaZ5RYg3TusI/qOzFNghrRn61c/lP5WQwXxH1+AhqjYWdNQQUKErtRZPk9IvpbN/tkC21GGfCT+qPhLuM6GQexXLWa97AHhFV/77JIxY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=dk/ckOrE; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1731662781;
-	bh=Guw0XR5d0BgTLqHT6YoapFxf8RK2MKtxRUr39yYdodE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dk/ckOrE/DWFWJW2vFRsRgMJ4FhMTQHBkF0Bi4nB+DpsWTTjAmh9Q9kjgGJH7cQDu
-	 9lwZwx4FUcJ3AgkXiTSlKhM4aK+cvrd8ghAok0SA0WFCWI+UP3qk1dNVoFRyNCmHKI
-	 lzn4f3P+bsYz0ekZ4OJAnrTTo30iuGgyIIqXEmTaQg05KbQOKuT9Nx7qLpNJJVNlSn
-	 cYCZYf4afyyG1Jy5Tb1XqEMf2k3ieULQd1mI/gBeQrpGVS/LQv83IL64YbqE6PPJ3z
-	 0DUFF9OpXm3FyEe3ZgRRqSihuGp6Vxn/nMYcGkC8XwXIeJEUa27WVZWZkmJX6SdZom
-	 7bgfL8C5k/7SA==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8C76117E35D1;
-	Fri, 15 Nov 2024 10:26:20 +0100 (CET)
-Message-ID: <c681604b-d439-4815-b1d9-ad435b85b5be@collabora.com>
-Date: Fri, 15 Nov 2024 10:26:19 +0100
+	s=arc-20240116; t=1731662948; c=relaxed/simple;
+	bh=OOl8zpA9VmmfLYjhOm2wTJr80yoUXfn7wCMmgddFXXM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=l8k5Eey4LThrznFK6Niihu8vvRDgW4jBp2inDJwyL5+p7EhI+RTa8Mm+YoW45j7D/ZS2pCy+LcTn/SVelyz7KZtdh+3ft+fLrD56xENeXssbOkKEXRFzm2eouHGRiHOomom4eSLNRfTp7/xjZ9aNiYILmZyJmsloduOHUlNpE4M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=VfJbMWv8; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AF8OCYT016914;
+	Fri, 15 Nov 2024 09:29:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=Il6luNQrobN9uZHmmMmoSE0/2nEe/kI9KTy
+	45GOdevA=; b=VfJbMWv8smnH3SES6zfw+bCxx9HxnUAhGxp1j0Lgb7jNDxESypv
+	78fSETSs9mb8K8VdTsW3iUEUQqHiSzWkRskv8dNgzIJiQASpZlJdzkrJ3Q2+TrwD
+	MTA3NiOYSpPY17pGe9aQGd3yQHcxIt99dkwYFcRkIUzXZZxiHy0ZGGXXsV8qLEA9
+	UKJ/imCycwBPfL2U3VveTINRPorml1WSF5ewnmGjw5a9agoPAUmlXWqtwUsHAtLF
+	B4I3sBjXcF3ptywPr86x5m4hfMQMxUZVSc9GICKkSyUpw2dEEhh+Pem16fC7YFRo
+	fSf3dswGjC1qnP7LudFR2QpbIZLe+YtWIMg==
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42wm75tk61-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Nov 2024 09:29:02 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 4AF9PdOl017888;
+	Fri, 15 Nov 2024 09:28:58 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 42t0tmh91v-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Nov 2024 09:28:58 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 4AF9SwUF020537;
+	Fri, 15 Nov 2024 09:28:58 GMT
+Received: from hu-devc-hyd-u22-c.qualcomm.com ([10.213.97.252])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 4AF9Swj2020536
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Nov 2024 09:28:58 +0000
+Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 4047106)
+	id 2074853B; Fri, 15 Nov 2024 14:58:57 +0530 (+0530)
+From: Viken Dadhaniya <quic_vdadhani@quicinc.com>
+To: vkoul@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: quic_msavaliy@quicinc.com, quic_anupkulk@quicinc.com,
+        Viken Dadhaniya <quic_vdadhani@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2] dt-bindings: dma: qcom,gpi: Add QCS615 compatible
+Date: Fri, 15 Nov 2024 14:58:54 +0530
+Message-Id: <20241115092854.1877369-1-quic_vdadhani@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: mediatek: Set mediatek,mac-wol on
- DWMAC node for all boards
-To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>
-Cc: Michael Walle <mwalle@kernel.org>, kernel@collabora.com,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Biao Huang <biao.huang@mediatek.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Jose Abreu <joabreu@synopsys.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- Andrew Halaney <ahalaney@redhat.com>, Simon Horman <horms@kernel.org>
-References: <20241109-mediatek-mac-wol-noninverted-v2-0-0e264e213878@collabora.com>
- <20241109-mediatek-mac-wol-noninverted-v2-2-0e264e213878@collabora.com>
- <bdbfb1db-1291-4f95-adc9-36969bb51eb4@collabora.com>
- <d441b614-0b71-410f-af4e-30cb164d9cd5@notapiano>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <d441b614-0b71-410f-af4e-30cb164d9cd5@notapiano>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: t17pynm3WZOYHogvOHc_wGzE5eaeJX1b
+X-Proofpoint-ORIG-GUID: t17pynm3WZOYHogvOHc_wGzE5eaeJX1b
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ mlxlogscore=999 spamscore=0 priorityscore=1501 bulkscore=0 impostorscore=0
+ mlxscore=0 adultscore=0 lowpriorityscore=0 malwarescore=0 clxscore=1011
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411150080
 
-Il 14/11/24 20:22, Nícolas F. R. A. Prado ha scritto:
-> On Thu, Nov 14, 2024 at 10:26:34AM +0100, AngeloGioacchino Del Regno wrote:
->> Il 09/11/24 16:16, Nícolas F. R. A. Prado ha scritto:
->>> Due to the mediatek,mac-wol property previously being handled backwards
->>> by the dwmac-mediatek driver, its use in the DTs seems to have been
->>> inconsistent.
->>>
->>> Now that the driver has been fixed, correct this description. All the
->>> currently upstream boards support MAC WOL, so add the mediatek,mac-wol
->>> property to the missing ones.
->>>
->>> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
->>> ---
->>>    arch/arm64/boot/dts/mediatek/mt2712-evb.dts                   | 1 +
->>>    arch/arm64/boot/dts/mediatek/mt8195-demo.dts                  | 1 +
->>>    arch/arm64/boot/dts/mediatek/mt8395-kontron-3-5-sbc-i1200.dts | 1 +
->>>    3 files changed, 3 insertions(+)
->>>
->>
->> ..snip..
->>
->>> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
->>> index 31d424b8fc7cedef65489392eb279b7fd2194a4a..c12684e8c449b2d7b3b3a79086925bfe5ae0d8f8 100644
->>> --- a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
->>> +++ b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
->>> @@ -109,6 +109,7 @@ &eth {
->>>    	pinctrl-names = "default", "sleep";
->>>    	pinctrl-0 = <&eth_default_pins>;
->>>    	pinctrl-1 = <&eth_sleep_pins>;
->>> +	mediatek,mac-wol;
->>
->> The demo board has the same WoL capability as the EVK, so you can avoid adding the
->> mac-wol property here.
-> 
-> Not sure I follow... If we omit the property here it will use PHY WOL instead,
-> while the genio 1200 EVK has the property, so it will be using MAC WOL, so
-> they're already the same and omitting will make them behave differently...
-> 
-> Let me recap to make sure we're all on the same page:
-> 
-> This was the WOL configuration for each board before this series:
-> MAC mt2712-evb.dts
-> MAC mt8195-demo.dts
-> PHY mt8395-genio-1200-evk.dts
-> MAC mt8395-kontron-3-5-sbc-i1200.dts
-> PHY mt8395-radxa-nio-12l.dts
-> PHY mt8390-genio-700-evk.dts
-> 
-> After patch 1, they all get inverted:
-> PHY mt2712-evb.dts
-> PHY mt8195-demo.dts
-> MAC mt8395-genio-1200-evk.dts
-> PHY mt8395-kontron-3-5-sbc-i1200.dts
-> MAC mt8395-radxa-nio-12l.dts
-> MAC mt8390-genio-700-evk.dts
-> 
-> And after patch 2, the remaining PHY ones are set to MAC:
-> MAC mt2712-evb.dts
-> MAC mt8195-demo.dts
-> MAC mt8395-genio-1200-evk.dts
-> MAC mt8395-kontron-3-5-sbc-i1200.dts
-> MAC mt8395-radxa-nio-12l.dts
-> MAC mt8390-genio-700-evk.dts
-> 
-> The only board I have in hands and am able to test is mt8390-genio-700-evk.dts,
-> which requires MAC WOL to work. For the others, your feedback on v1 was that
-> they should all be set to MAC WOL. Except for mt2712, which you were not sure
-> about, but it was already set to MAC WOL so we're keeping the same behavior.
-> 
-> That's how we got to adding mediatek,mac-wol to mt8195-demo.dts,
-> mt8395-kontron-3-5-sbc-i1200.dts and mt2712-evb.dts. Let me know if there has
-> been some misunderstanding.
-> 
+Document compatible for GPI DMA controller on QCS615 platform.
 
-No, it's me getting confused about the current status - and I'm sorry about that.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
+---
+v1 -> v2:
 
-So just ignore me saying "we can avoid adding" - we can't.
-This commit is definitely needed.
+- Move qcs615 entry to sdm845 enum as it requries ee_offset equal to 0x0.
+- Add Acked-by tag.
 
-Cheers,
-Angelo
+v1 Link: https://lore.kernel.org/r/linux-devicetree/20241105104759.3775672-1-quic_vdadhani@quicinc.com/
+---
+ Documentation/devicetree/bindings/dma/qcom,gpi.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-> Thanks,
-> Nícolas
-> 
->>
->>>    	status = "okay";
->>>    	mdio {
->>> diff --git a/arch/arm64/boot/dts/mediatek/mt8395-kontron-3-5-sbc-i1200.dts b/arch/arm64/boot/dts/mediatek/mt8395-kontron-3-5-sbc-i1200.dts
->>> index e2e75b8ff91880711c82f783c7ccbef4128b7ab4..4985b65925a9ed10ad44a6e58b9657a9dd48751f 100644
->>> --- a/arch/arm64/boot/dts/mediatek/mt8395-kontron-3-5-sbc-i1200.dts
->>> +++ b/arch/arm64/boot/dts/mediatek/mt8395-kontron-3-5-sbc-i1200.dts
->>> @@ -271,6 +271,7 @@ &eth {
->>>    	pinctrl-names = "default", "sleep";
->>>    	pinctrl-0 = <&eth_default_pins>;
->>>    	pinctrl-1 = <&eth_sleep_pins>;
->>> +	mediatek,mac-wol;
->>
->> I'm mostly sure that Kontron's i1200 works the same as the EVK in regards to WoL.
->>
->> Michael, I recall you worked on this board - can you please confirm?
->>
->> Thanks,
->> Angelo
->>
-
-
+diff --git a/Documentation/devicetree/bindings/dma/qcom,gpi.yaml b/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
+index 4ad56a409b9c..58c7863c5f41 100644
+--- a/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
++++ b/Documentation/devicetree/bindings/dma/qcom,gpi.yaml
+@@ -39,6 +39,7 @@ properties:
+           - const: qcom,sm6350-gpi-dma
+       - items:
+           - enum:
++              - qcom,qcs615-gpi-dma
+               - qcom,sdm670-gpi-dma
+               - qcom,sm6125-gpi-dma
+               - qcom,sm8150-gpi-dma
+-- 
+2.34.1
 
 
