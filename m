@@ -1,192 +1,160 @@
-Return-Path: <devicetree+bounces-122061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122062-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4636A9CD9BF
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 08:17:00 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DCA69CD9CB
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 08:20:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 051662828D6
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 07:16:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ED510B22ED9
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 07:20:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA737185B78;
-	Fri, 15 Nov 2024 07:16:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6806D188917;
+	Fri, 15 Nov 2024 07:20:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YLhBMyqf"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="K+stSF71"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 307E6523A;
-	Fri, 15 Nov 2024 07:16:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86A9B523A;
+	Fri, 15 Nov 2024 07:20:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731655013; cv=none; b=Bikv6DiXIJw4J++TeVbwZ9lnrlLqiTGV6L6/EJH5wYLS6MJEJoHdEz70lNhEc9kIMrI8rqKKBrjz2DA2KoAABUxCRiNugVTQEZ67bmDLt5cfIk759kONdC8Gzyqpjx6B2TybmvTg5nLJkrSXTHvqLpX1Xo6R2gI9cl+CBh9JxAc=
+	t=1731655203; cv=none; b=NN0OD+HFqQLYEJAKBuFSJdUTaotDW+GV3CDB+7umGUr1blyfRwrsCth1kzNrPvnZ/VH/RH5S4Yd28GzX+Yc1/ch1WyTNI+7mGIX2IHL/ih97CfXSBPqCkYG8yiA5tATqilmR8u+hUZejLCKWsLL5g8eBscmhWaqWKxD9QhF2SOA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731655013; c=relaxed/simple;
-	bh=1OxgRR5LcpCslYXw6m+rl6g4aqTWD5aqKneaOOpReeI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=RT63iS+PKlnZorV3O/GCNHiv2Hr78zVfh6bd6H6Kv3PItn5bdUE8FYyg2O3rBH7s83ebMZckF7Bn/YPOBWT2rfuQeeBGNnBDZFOPEHv+b4l/zibqv1bpP9LPEYA3N7gScqDD5MFSvsFJfFdw1qB2fJNBikKfNhJXbXe5Vot+040=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YLhBMyqf; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AF24IOE002826;
-	Fri, 15 Nov 2024 07:16:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	dEZpw60cO8E8440ehLsbsTP7DYZlQmR134RHDtRysOI=; b=YLhBMyqfDU9Yp4Da
-	c4feVAODvsUVd//sEt3BFEo9ExvAbu5PB76TirM/bgnorNmhM57N9lDGpDRunpaC
-	Wv7SLKwsF+bmAikoxw4SLjt1wMos51DDEw95U7+bvswnvXN/wdh8H9SSvJtZYxet
-	TbMAimrOzbgcDj+3Rutbj2ToTEm+15+LWWcumN2fp3S7CQsbs5GAqOr9qJ0f9Xun
-	O5F3Axs4y/j4DnVnquXXcZ0oxd3fDSVgBlZjwUTIQ8tik0waVAo81eoyKR+Z9ut6
-	jfty/1VOLL6ZRVr/TOSDJdGb8k7bkbqCfA+1l6GjC2YpoZsxrsZFreKMfOER0Eex
-	1HsAUQ==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42ww6drnbp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 15 Nov 2024 07:16:42 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AF7GfR2017088
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 15 Nov 2024 07:16:41 GMT
-Received: from [10.233.17.145] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 14 Nov
- 2024 23:16:32 -0800
-Message-ID: <af6ca3d2-54da-49bb-940a-69855ab2a7b0@quicinc.com>
-Date: Fri, 15 Nov 2024 15:16:29 +0800
+	s=arc-20240116; t=1731655203; c=relaxed/simple;
+	bh=pkFLuOnuVU4cIsrNOTFdM80z9a1NziY/kk1IdFhaUFM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CyJDLUJlGePxHBSf15BalBMoxOfSKjIheOffOE7MbWdjTio8oEEm2AK+jTk2aZAFWQm1ucWfwK1H6tvU59/Ijh5cKhDUrT8EjwnQLzZAeC0WpXBZoCLi4b8kCJG6wfb7SXduRYW/1gXTs0gM3qbwusFhVJ6mY1OhifMLEQ/MxoM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=K+stSF71; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1731655202; x=1763191202;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=pkFLuOnuVU4cIsrNOTFdM80z9a1NziY/kk1IdFhaUFM=;
+  b=K+stSF71GAtIhez5LwJNy6zZ12OoWD0y/bbqo8mp/mgGlFFF/6nLWozl
+   Gi+XdaczDEDCoRsBwEiO3mPL1W3AfLVSCZfVg8PChSlpLr14OE+MHYURI
+   qYOy/nXXKxXTrlGGFUqYZbb4p4sEXuFavmQ21ggqiiRsjfydrFT9IOipD
+   oX/kaRGGP3gcKl1/zfzTI21BjurME5oYQ57DIo6d7gNECAuwWS4sQ9AQs
+   +AfRvHiVpQD2ofE6Kd9lsgNGgDNNGMVyAcMBDdOFJBmSerFH4ZoR6e8hR
+   yXjbIWFk/7Hjrq49T8t1L25+mKWACYXupbn24oHovEytf2z85Lsil80am
+   w==;
+X-CSE-ConnectionGUID: kJCVF4m2Q/yhZjGVPtes9A==
+X-CSE-MsgGUID: HUFnz2c0TwiW+poQ7nCPoA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11256"; a="49181538"
+X-IronPort-AV: E=Sophos;i="6.12,156,1728975600"; 
+   d="scan'208";a="49181538"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Nov 2024 23:19:45 -0800
+X-CSE-ConnectionGUID: n2gyKpt/R3+bahmM3mewng==
+X-CSE-MsgGUID: LOWwPhyTTr24X81aHVY/Qg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,156,1728975600"; 
+   d="scan'208";a="88580045"
+Received: from kuha.fi.intel.com ([10.237.72.152])
+  by fmviesa008.fm.intel.com with SMTP; 14 Nov 2024 23:19:41 -0800
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 15 Nov 2024 09:19:40 +0200
+Date: Fri, 15 Nov 2024 09:19:39 +0200
+From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To: Amit Sunil Dhamne <amitsd@google.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	gregkh@linuxfoundation.org, dmitry.baryshkov@linaro.org,
+	kyletso@google.com, rdbabiera@google.com, badhri@google.com,
+	linux@roeck-us.net, xu.yang_2@nxp.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] usb: typec: tcpm: Add support for
+ sink-bc12-completion-time-ms DT property
+Message-ID: <Zzb2CxPPZc09WfqV@kuha.fi.intel.com>
+References: <20241103034402.2460252-1-amitsd@google.com>
+ <20241103034402.2460252-4-amitsd@google.com>
+ <f244542a-7160-4f05-acaa-0e2574ee289d@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/5] arm64: dts: qcom: qcs8300: enable pcie0 for QCS8300
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Ziyue Zhang
-	<quic_ziyuzhan@quicinc.com>, <vkoul@kernel.org>,
-        <kishon@kernel.org>, <robh+dt@kernel.org>,
-        <manivannan.sadhasivam@linaro.org>, <bhelgaas@google.com>,
-        <kw@linux.com>, <lpieralisi@kernel.org>, <quic_qianyu@quicinc.com>,
-        <conor+dt@kernel.org>, <neil.armstrong@linaro.org>,
-        <andersson@kernel.org>, <konradybcio@kernel.org>,
-        <quic_shashim@quicinc.com>, <quic_kaushalk@quicinc.com>,
-        <quic_tdas@quicinc.com>, <quic_aiquny@quicinc.com>,
-        <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>
-References: <20241114095409.2682558-1-quic_ziyuzhan@quicinc.com>
- <20241114095409.2682558-5-quic_ziyuzhan@quicinc.com>
- <rg4isufmnhnbsiljm34rfdsn46gfpatbsiscynaqtsnykbhnm3@ovcaulkfj4nk>
- <26943ea3-109c-473d-818b-2a08dba859ab@oss.qualcomm.com>
- <288be342-952b-4210-afe7-6e194dfd54a9@quicinc.com>
- <cp2g6j43zlx2njou5qz5tmwsnnzahqtk2hsxkj2ftrzbcmy742@ysca5ica4mvr>
- <bb6ae010-5dbf-455c-a53c-6c0e688f0ebc@quicinc.com>
- <nr4xt5pefd3jngml6bkbgrfhsuxmre44v3qs6uyxz7qp5dzqad@6dss6lwhb35n>
-From: Tingwei Zhang <quic_tingweiz@quicinc.com>
-In-Reply-To: <nr4xt5pefd3jngml6bkbgrfhsuxmre44v3qs6uyxz7qp5dzqad@6dss6lwhb35n>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Ram0qKo7nlOiYDega0wTj9HbYpPV0-L_
-X-Proofpoint-GUID: Ram0qKo7nlOiYDega0wTj9HbYpPV0-L_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
- phishscore=0 malwarescore=0 lowpriorityscore=0 impostorscore=0
- suspectscore=0 clxscore=1015 adultscore=0 mlxlogscore=937 spamscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411150059
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f244542a-7160-4f05-acaa-0e2574ee289d@google.com>
 
-On 11/15/2024 3:03 PM, Dmitry Baryshkov wrote:
-> On Fri, Nov 15, 2024 at 02:42:47PM +0800, Tingwei Zhang wrote:
->> On 11/15/2024 2:26 PM, Dmitry Baryshkov wrote:
->>> On Fri, Nov 15, 2024 at 12:59:12PM +0800, Tingwei Zhang wrote:
->>>> On 11/14/2024 9:03 PM, Konrad Dybcio wrote:
->>>>> On 14.11.2024 1:10 PM, Dmitry Baryshkov wrote:
->>>>>> On Thu, Nov 14, 2024 at 05:54:08PM +0800, Ziyue Zhang wrote:
->>>>>>> Add configurations in devicetree for PCIe0, including registers, clocks,
->>>>>>> interrupts and phy setting sequence.
->>>>>>>
->>>>>>> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
->>>>>>> ---
->>>>>>>     arch/arm64/boot/dts/qcom/qcs8300-ride.dts |  44 +++++-
->>>>>>>     arch/arm64/boot/dts/qcom/qcs8300.dtsi     | 176 ++++++++++++++++++++++
->>>>>>>     2 files changed, 219 insertions(+), 1 deletion(-)
->>>>>>>
->>>>>>> diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
->>>>>>> index 7eed19a694c3..9d7c8555ed38 100644
->>>>>>> --- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
->>>>>>> +++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
->>>>>>> @@ -213,7 +213,7 @@ vreg_l9c: ldo9 {
->>>>>>>     &gcc {
->>>>>>
->>>>>> The patch doesn't seem to update the gcc node in qcs8300.dtsi. Is there
->>>>>> any reason to have the clocks property in the board data file?
->>>>>
->>>>> Definitely not. Ziyue, please move that change to the soc dtsi
->>>>
->>>> Gcc node is updated in board device tree due to sleep_clk is defined in
->>>> board device tree. Sleep_clk is from PMIC instead SoC so we were requested
->>>> to move sleep_clk to board device tree in previous review [1].
->>>
->>> Note, the review doesn't talk about sleep_clk at all. The recent
->>> examples (sm8650, x1e80100, sa8775p) still pull the clocks into the SoC
->>> dtsi, but without the freq.
->>>
->> It's begining of the discussion of the PMIC clock for SoC. Sleep clock
->> specific discussion is here [2].
->> [2]https://lore.kernel.org/all/be8b573c-db4e-4eec-a9a6-3cd83d04156d@kernel.org/
+On Thu, Nov 14, 2024 at 11:59:41AM -0800, Amit Sunil Dhamne wrote:
+> Hi Heikki,
 > 
-> Please note how the recent platforms describe those clocks: the node in
-> the SoC dtsi, the frequency in the board dtsi. X1E80100 is a step
-> backwards, the clock are completely defined in the x1e80100.dtsi. There
-> seems to be no strict rule on how to handle board clocks. I've sent an
-> RFC patchset, trying to move them to a single logical location. Let's
-> see what kind of response it will get. We probably need to define and
-> follow a common rule for all Qualcomm platforms. Please give it a couple
-> of days for the dust to settle. However, I think there should be no
-> reason to keep GCC's clock definitions in the board DTS.
+> On 11/2/24 8:43 PM, Amit Sunil Dhamne wrote:
+> > Add support for parsing DT time property "sink-bc12-completion-time-ms".
+> > This timer is used to relax the PD state machine during Sink attach to
+> > allow completion of Battery Charging (BC1.2) charger type detection in
+> > TCPC before PD negotiations. BC1.2 detection is a hardware mechanism to
+> > detect charger port type that is run by some controllers (such as
+> > "maxim,max33359") in parallel to Type-C connection state machines.
+> > This is to ensure that BC1.2 completes before PD is enabled as running
+> > BC1.2 in parallel with PD negotiation results in delays violating timer
+> > constraints in PD spec.
+> > 
+> > This is an optional timer and will not add any delay unless explicitly
+> > set.
+> > 
+> > Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+> > Reviewed-by: Badhri Jagan Sridharan <badhri@google.com>
+> > ---
+> >   drivers/usb/typec/tcpm/tcpm.c | 16 +++++++++++++++-
+> >   1 file changed, 15 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
+> > index b3d5d1d48937..8b325b93b5a9 100644
+> > --- a/drivers/usb/typec/tcpm/tcpm.c
+> > +++ b/drivers/usb/typec/tcpm/tcpm.c
+> > @@ -319,6 +319,7 @@ struct pd_timings {
+> >   	u32 sink_wait_cap_time;
+> >   	u32 ps_src_off_time;
+> >   	u32 cc_debounce_time;
+> > +	u32 snk_bc12_cmpletion_time;
+> >   };
+> >   struct tcpm_port {
+> > @@ -4978,7 +4979,16 @@ static void run_state_machine(struct tcpm_port *port)
+> >   		if (ret < 0)
+> >   			tcpm_set_state(port, SNK_UNATTACHED, 0);
+> >   		else
+> > -			tcpm_set_state(port, SNK_STARTUP, 0);
+> > +			/*
+> > +			 * For Type C port controllers that use Battery Charging
+> > +			 * Detection (based on BCv1.2 spec) to detect USB
+> > +			 * charger type, add a delay of "snk_bc12_cmpletion_time"
+> > +			 * before transitioning to SNK_STARTUP to allow BC1.2
+> > +			 * detection to complete before PD is eventually enabled
+> > +			 * in later states.
+> > +			 */
+> > +			tcpm_set_state(port, SNK_STARTUP,
+> > +				       port->timings.snk_bc12_cmpletion_time);
+> >   		break;
+> >   	case SNK_STARTUP:
+> >   		opmode =  tcpm_get_pwr_opmode(port->polarity ?
+> > @@ -7090,6 +7100,10 @@ static void tcpm_fw_get_timings(struct tcpm_port *port, struct fwnode_handle *fw
+> >   		port->timings.cc_debounce_time = val;
+> >   	else
+> >   		port->timings.cc_debounce_time = PD_T_CC_DEBOUNCE;
+> > +
+> > +	ret = fwnode_property_read_u32(fwnode, "sink-bc12-completion-time-ms", &val);
+> > +	if (!ret)
+> > +		port->timings.snk_bc12_cmpletion_time = val;
+> >   }
+> >   static int tcpm_fw_get_caps(struct tcpm_port *port, struct fwnode_handle *fwnode)
 > 
-Thanks for the clean up patch and make it consistent.
-
-Is it reasonable for GCC's clock definition to refer xo_clk/sleep_clk in 
-board device tree? Theoretically, can we have another board has 
-different xo_clk say xo1_clk defined in board device tree?
-
->>>>
->>>> [1]https://lore.kernel.org/all/10914199-1e86-4a2e-aec8-2a48cc49ef14@kernel.org/
->>>>>
->>>>> Konrad
->>>>
->>>>
->>>> -- 
->>>> Thanks,
->>>> Tingwei
->>>>
->>>> -- 
->>>> linux-phy mailing list
->>>> linux-phy@lists.infradead.org
->>>> https://lists.infradead.org/mailman/listinfo/linux-phy
->>>
->>
->>
->> -- 
->> Thanks,
->> Tingwei
 > 
+> I wanted to gently follow up with you on this patchset if this looks okay to
+> you?
 
+Sorry, this is okay by me. I thought that there's still some problem
+with the device property itself, but I must have misunderstood.
+
+Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 
 -- 
-Thanks,
-Tingwei
+heikki
 
