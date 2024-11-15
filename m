@@ -1,158 +1,167 @@
-Return-Path: <devicetree+bounces-122158-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F12029CE939
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 16:06:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFBF19CEA91
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 16:10:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7ECCB1F23DB2
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 15:06:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 75F4F1F23F82
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 15:10:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 851131D45FC;
-	Fri, 15 Nov 2024 15:06:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E5341D4333;
+	Fri, 15 Nov 2024 15:10:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="rLDQ+yyi"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="nOXSJWzh";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="deXa/Hdn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fhigh-b5-smtp.messagingengine.com (fhigh-b5-smtp.messagingengine.com [202.12.124.156])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 674A61CDA1A
-	for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 15:06:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BB9E1CD210;
+	Fri, 15 Nov 2024 15:10:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.156
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731683187; cv=none; b=tuF1V/5v0aMvyrOA0T9xJs2P1US9nTEBIdPGQOZY2f80CtTMIIF5YAl9YhbTNwV71FM3fnUzPM0KmFkfRU+8NawR5T26wFWrtS5McbhddCDbM0aQbRYUoJrZFAIL615Sr+a88Umnkqc2wDd3Tt6F1B0tTa4bdzlBsVko9PhkTJc=
+	t=1731683405; cv=none; b=pI+gcqFjR4L1wqa9O+ttE/yo3yPMoUj9tEAGy/JonjVavEPsoPTAsNtrlMm53C+3BOZzdthslIM5SU1WXkeiLmeMmLysDnH3MvPoBYsAb4GbX07FGUPoilhbMe1kca/CiaAdAzJhOxyKDeieoSBSNArNini2R1QmfnbFP4YC/J8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731683187; c=relaxed/simple;
-	bh=uPhgKsx31+w99ZN5CAn4r/SW8AcxxzhuHcuFUO+IyG0=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=TJMcFSOL8zwzpClNL2Rs/sZGpdraiMFyNCXw098/S5ap8Uvq181mlGpmMskfjkR7iJqZjUdLW66rljLcqu95/npJiVfrldvCB35L3pLNQrCI88e24LDax1/Szxva6ZH6SGSYu8UhctFqpzQV/y0RFa52F8gwb/BBF1bZACIEx68=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=rLDQ+yyi; arc=none smtp.client-ip=209.85.218.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a9a4031f69fso294805266b.0
-        for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 07:06:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1731683180; x=1732287980; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uDOl7NltAXr6G8mTcGijCAhgwcSdhqInV58H0gMs9FY=;
-        b=rLDQ+yyir9CMwY28CEiJhv2vdFCVNztboPr0RgUuxyvCr6PGZ00PpcCb3S18jqDuQ7
-         8habij7cL9ZMlLQoBMEf/Vmi2awuWSaO9huHN5uyOKjxapSr9xzUilNHqxVd+LHYx2LT
-         z8EZkbbxR7Ea7jQ9dHyOVydDwukTWfjOSBztEiIl7L6SkfWhrjOZsh+c20B/b+xNzQVh
-         K58MBEYp5R5fCycgWeK4PIAaT44hWC9owA/Pq5dqtHx6Pw74oiEM3f12KwQHdV1Hm/Un
-         NpvgV3VbE+s2Y4V4DvBgkxhnMcmOV+A8jVLbO53bfpBdejymoljZL0BEWORfV454XtvC
-         mmvA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731683180; x=1732287980;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=uDOl7NltAXr6G8mTcGijCAhgwcSdhqInV58H0gMs9FY=;
-        b=Fp95+eRuZu2z3j7ud3nEFHMHrJ26H3w4clYkbfCF59pO0pTX4shBLzK3JR8xI41Hkr
-         1F19zsvGfUfTfk5L99XIMpLi6Xt32CfW1ntTwOR2F2PEqLM1c8Dd+iTGsDM9f/N78ZZT
-         fj7mnysl5r1soYtL28G5bmduotkfybrVRvtC4+5g6XAZjYIsX9pJiSZGrNn5ZqNaBvPt
-         AmErJSPK7RO4MadHuE/tjCVUDmkyfG2EVeEGPKIlrZYEdgT51AsMNuNqn8TUy12yTxhT
-         TUXzz9Oi9Lo7J1sLBwj5Fv1sHF4o4+7lJ4KA8AhLrYaUUXmE+0Zy8pw318cpE57ZVsGC
-         6b+Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWfYjjqdQgK4SzOJfkqoCeQ+5s5mf0hV/kbvzk/42DXiy4UUNogwE35Icaydyc/K4yYSlqJjEpATaon@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzra/N/cgT5KZIGszg2prLlse4e1vqb1rFmlg+u5eC6XuGOsfk4
-	FXtKYb7yvjGLAoR1Lw6Cr7NB1Bb9XIMIBqRb9479AhnqCssr5cqARsLPNgASMN0=
-X-Google-Smtp-Source: AGHT+IFedO/GRq2PCsSSCKMui+UkqTBIrEZvLlVfKH50GUxLxbbg1/IGmebko5wSJKNUi0L/dcOMmQ==
-X-Received: by 2002:a17:907:3d86:b0:a9a:14fc:44a2 with SMTP id a640c23a62f3a-aa483488086mr263775366b.30.1731683179714;
-        Fri, 15 Nov 2024 07:06:19 -0800 (PST)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa20e0434f6sm186743766b.139.2024.11.15.07.06.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Nov 2024 07:06:19 -0800 (PST)
+	s=arc-20240116; t=1731683405; c=relaxed/simple;
+	bh=s5QVE4NaR83/7M7PtsqGvjOLW1yP8l0947gtgLTI/pA=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=BMG3wuNFRosZJShMbfqwsulh0XEePBPRNjL92msaQzEwLjBft3OFTpveb4U0NxOxeDPiRMHal/hQIVfQBD095DMTC1q9GxGM4piSTzoQeZDFZQRpsB3Pestz7hcpb3x9EiyFqoP4k8Bwtip60bJHLhZJC5WYmIAfStYP/6lenxQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=nOXSJWzh; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=deXa/Hdn; arc=none smtp.client-ip=202.12.124.156
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from phl-compute-10.internal (phl-compute-10.phl.internal [10.202.2.50])
+	by mailfhigh.stl.internal (Postfix) with ESMTP id 0B88D2540176;
+	Fri, 15 Nov 2024 10:10:02 -0500 (EST)
+Received: from phl-imap-11 ([10.202.2.101])
+  by phl-compute-10.internal (MEProxy); Fri, 15 Nov 2024 10:10:02 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm3; t=1731683401;
+	 x=1731769801; bh=nLE+UOTS7yHdog6ETbMGcYAEjTIcnW2Hb1xbsSa24qU=; b=
+	nOXSJWzhDQ7uEdSXslDHBBwBRSTNC8fnK/NE/YQCB6PI/LdSdoPJ2JKAQIvUpeVw
+	+Q794Wy/0b76KSlKhJNHNQ25mJhL8725nuoWbTKcZ9NMI2TRQaOdF7p8RM58Bad2
+	HWluM9ucfcS+fB5MkBIJ51JOOJyNCz6gpla1WLh6uM6aZOuSj8EUd6tTF2QPr/YM
+	p7jncsqs3egS4TVeh8djL6TZBF/wor//7nQYrQd4ZHGSsAmxokbA+9QwtjLMHFew
+	OgIQetlun9Gc+1dt0cBnUaPaKTbwRiUqUcwcxKcEKa7oQA9KU7vh0dTgmwxMNetQ
+	u+FrkHosWsrrGZhk2WMdyw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1731683401; x=
+	1731769801; bh=nLE+UOTS7yHdog6ETbMGcYAEjTIcnW2Hb1xbsSa24qU=; b=d
+	eXa/HdnRwNcPVOz9naGBFMhieyx9xKP+9Lb270gD7hW6j+bE7mY/xtgIM8Hv4Rio
+	v/0HlWHx6Te0u9/j+jcM3nPsZIMYSmQTkxWaJ5KgYlmFUYe0zDoInZCr3LTtPbQP
+	28fTozk4Zv2EsVLtBmhgy0TkCiCnGv0VL6ve38KdZ10VYLeCyVZ/ws6z1dspiwPt
+	ipftlke+cQaItb4XA22Z/uIqtc/DTImPhhsF3f54uKMUDqnc5m1ryDiM3L89zseI
+	77oACeSe2jaOEFwU7yUfjs/vI+Sj4Al/Ixd8AvZZnhxgMuJVeVp0riNu83zuC2CR
+	4SHVJAwdKDfBSQp+WbXuA==
+X-ME-Sender: <xms:SWQ3Z7wC3cCbw6nUGAgMVd46TBZ5uAnOYaBtv2ddjcS2KPAwRDVW4A>
+    <xme:SWQ3ZzQu1YPT3qeD89nLlInWzRzg6HSfp447g4iPk0vUfodpruAxYqefN2dPww9nA
+    1-lKW69DRMLP1dyYes>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrvdeggdejtdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdpuffr
+    tefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnth
+    hsucdlqddutddtmdenucfjughrpefoggffhffvvefkjghfufgtgfesthejredtredttden
+    ucfhrhhomhepfdetrhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdrug
+    gvqeenucggtffrrghtthgvrhhnpeelheevjeevgffhteeiveffgedtvedvteekleefgeel
+    ffeuvefhudetieehgfelveenucffohhmrghinhepsghlrghiiigvrdgtohhmpdhkvghrnh
+    gvlhdrohhrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhr
+    ohhmpegrrhhnugesrghrnhgusgdruggvpdhnsggprhgtphhtthhopedugedpmhhouggvpe
+    hsmhhtphhouhhtpdhrtghpthhtoheptggrthgrlhhinhdrmhgrrhhinhgrshesrghrmhdr
+    tghomhdprhgtphhtthhopehjrghmvghsrdgtohifghhilhhlsegslhgrihiivgdrtghomh
+    dprhgtphhtthhopehmrghtthhhvgifrdhrvggufhgvrghrnhessghlrghiiigvrdgtohhm
+    pdhrtghpthhtohepnhgvihhlrdhjohhnvghssegslhgrihiivgdrtghomhdprhgtphhtth
+    hopehnihhkohhlrghoshdrphgrshgrlhhouhhkohhssegslhgrihiivgdrtghomhdprhgt
+    phhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhrii
+    hkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdr
+    ohhrghdprhgtphhtthhopeifihhllheskhgvrhhnvghlrdhorhhg
+X-ME-Proxy: <xmx:SWQ3Z1W8l1AmoJ--C8_Z8WY90ySNt3vYnVjiEucoY3qO6S5pgP253A>
+    <xmx:SWQ3Z1j6Dj1RHATybGvOg7F4c4dmq8pULORdF6D3npJ_sZLxehL3wA>
+    <xmx:SWQ3Z9Brr8nDHRZLRI4_Ug5OfGNuUoDSsO6cgWWv7rUPLMdPpu57UQ>
+    <xmx:SWQ3Z-JjNL-O0kEz6pY9YJ7r-GojJ5UZ5ISMJix1UO9-zW6qgpMJEA>
+    <xmx:SWQ3Z1wtsBDS6K2uC0fhZz913LWUaa_TbAZd4LA3dHMmlZTgXu49Y6NN>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id 46E032220072; Fri, 15 Nov 2024 10:10:01 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 15 Nov 2024 16:06:18 +0100
-Message-Id: <D5MUGDO3V9ZE.2EQQUXKCQV3QB@fairphone.com>
-Cc: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
- <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
- <cros-qcom-dts-watchers@chromium.org>, <linux-arm-msm@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <srinivas.kandagatla@linaro.org>, <quic_bkumar@quicinc.com>,
- <quic_chennak@quicinc.com>
-Subject: Re: [PATCH v1] arm64: dts: qcom: sc7280: Make ADSP a secure fastrpc
- domain
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>, "Ekansh Gupta"
- <quic_ekangupt@quicinc.com>
-X-Mailer: aerc 0.18.2-0-ge037c095a049
-References: <20241113050042.181028-1-quic_ekangupt@quicinc.com>
- <5oqzxppquoeppt6xnjfm2rdwm23hbui5k3caz5v5ffqzizepob@dz5ikvzgbd4x>
- <c1f0e56b-b489-4370-99e3-0973641410b8@quicinc.com>
- <CAA8EJprDTz7b4rNtR4e9A-=j9_z-aJGBg3+g5is8Bmy=cgTM1Q@mail.gmail.com>
- <b8a9a8f5-1f36-4eea-925b-84578e71838d@quicinc.com>
- <sbkm5wvhtjoluhz7mi7f2wyc4t5znhazcxra52cd5yev5iksbi@yqielk6i7bpe>
- <9b16f4d8-56ea-4ef6-9cb5-35750af871e9@quicinc.com>
- <7grzazq7tfv3kixnevia2fkebe6o352372g3gpdinqeihmuavl@6qxd6vvwcwgt>
-In-Reply-To: <7grzazq7tfv3kixnevia2fkebe6o352372g3gpdinqeihmuavl@6qxd6vvwcwgt>
+MIME-Version: 1.0
+Date: Fri, 15 Nov 2024 16:09:30 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Niko Pasaloukos" <nikolaos.pasaloukos@blaize.com>,
+ "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "James Cowgill" <james.cowgill@blaize.com>,
+ "Matt Redfearn" <matthew.redfearn@blaize.com>,
+ "Neil Jones" <neil.jones@blaize.com>,
+ "Catalin Marinas" <catalin.marinas@arm.com>, "Will Deacon" <will@kernel.org>,
+ "Olof Johansson" <olof@lixom.net>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+ "soc@lists.linux.dev" <soc@lists.linux.dev>
+Message-Id: <141c7d39-9f0e-4c1c-86c5-149328ab979a@app.fastmail.com>
+In-Reply-To: 
+ <20241115-blaize-blzp1600_init_board_support-v5-0-c09094e63dc5@blaize.com>
+References: 
+ <20241115-blaize-blzp1600_init_board_support-v5-0-c09094e63dc5@blaize.com>
+Subject: Re: [PATCH v5 0/6] Add support for Blaize BLZP1600 SoC
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
 
-Hi Dmitry,
+On Fri, Nov 15, 2024, at 15:58, Niko Pasaloukos wrote:
+> Blaize, Inc. (www.blaize.com) is a SoC designer and manufacturer
+> with integrated programmable Graph-Streaming-Processors for AI
+> and ML. This series adds support for the Blaize BLZP1600 SoC.
+>
+> The SoC can run as either a PCIe based accelerator in a host
+> system, or as a stand alone SoC running Linux on its integrated
+> dual core ARM Cortex A53 cluster.
+>
+> The SoC includes a suite of peripherals, support for which will
+> be added later.
+>
+> This first series is just the basics to get the upstream
+> kernel to boot with a UART console and ARM SCMI based
+> clocks and resets.
+>
 
-On Fri Nov 15, 2024 at 3:45 PM CET, Dmitry Baryshkov wrote:
-> On Fri, Nov 15, 2024 at 05:40:23PM +0530, Ekansh Gupta wrote:
-> >=20
-> >=20
-> > On 11/14/2024 5:30 PM, Dmitry Baryshkov wrote:
-> > > On Thu, Nov 14, 2024 at 10:49:52AM +0530, Ekansh Gupta wrote:
-> > >>
-> > >> On 11/13/2024 5:20 PM, Dmitry Baryshkov wrote:
-> > >>> On Wed, 13 Nov 2024 at 08:18, Ekansh Gupta <quic_ekangupt@quicinc.c=
-om> wrote:
-> > >>>>
-> > >>>> On 11/13/2024 11:13 AM, Dmitry Baryshkov wrote:
-> > >>>>> On Wed, Nov 13, 2024 at 10:30:42AM +0530, Ekansh Gupta wrote:
->
-> [...]
->
-> > >>>>>>
-> > >>>>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/b=
-oot/dts/qcom/sc7280.dtsi
-> > >>>>>> index 3d8410683402..c633926c0f33 100644
-> > >>>>>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > >>>>>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> > >>>>>> @@ -3852,7 +3852,6 @@ fastrpc {
-> > >>>>>>                                      compatible =3D "qcom,fastrp=
-c";
-> > >>>>>>                                      qcom,glink-channels =3D "fa=
-strpcglink-apps-dsp";
-> > >>>>>>                                      label =3D "adsp";
-> > >>>>>> -                                    qcom,non-secure-domain;
-> > > - Are there other platforms which have this flag set for ADSP?
-> > Yes, there are a few platforms where this property is added for ADSP.
->
-> Please clean up all of them to reduce a possible chance of different beha=
-viour or further c&p errors.
->
-> > > - Granted that sc7280 was targeting ChromeOS devices, might it be tha=
-t
-> > >   there is a CrOS-specific userspace for that?
-> > FastRPC nodes were recently added to this devicetree recently. Looks li=
-ke this property is just getting copied.
-> > It might be that fastrpc was recently tried on ChromeOS device or it mi=
-ght be added to support some other devices
-> > that uses fastrpc(qcm6490-idp etc.).
->
-> Indeed.
->
-> Luca, could you possibly comment, as you've added ADSP / FastRPC nodes?
+Hi Niko,
 
-I've just followed other platforms, I have little clue about FastRPC
-myself apart from it being used for hexagonrpcd for interfacing with
-sensors. There's not much (any?) docs out there.
+This version looks good to me, but it's likely that others
+still have review comments. Either way I should let you know
+of the next steps for merging the series.
 
-Regards
-Luca
+Since the 6.13 development cycle is now over (the
+merge window starts once Linus publishes 6.12
+this weekend), the earliest release to merge this
+into is now 6.14.
+
+Once 6.13-rc1 is out and the patch review is complete,
+you can submit the patches for inclusion by sending
+to:soc@lists.linux.dev (formerly soc@kernel.org).
+This is usually done as a pull request, but separate
+patches are fine as well, especially if you don't yet
+have a kernel.org account.
+
+After the entry to the MAINTAINERS file is merged,
+I suggest you also apply for a kernel.org account,
+see [1]. You probably also read the documentation at
+[2] about the usual process, let me know if you
+have questions about that.
+
+       Arnd
+
+[1] https://korg.docs.kernel.org/accounts.html
+[2] https://www.kernel.org/doc/Documentation/process/maintainer-soc.rst
 
