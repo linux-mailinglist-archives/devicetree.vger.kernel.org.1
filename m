@@ -1,232 +1,165 @@
-Return-Path: <devicetree+bounces-122131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122132-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C96A89CE025
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 14:36:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 390CF9CE084
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 14:48:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 599031F21D72
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 13:36:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B9C24B28E28
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 13:47:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD4E31C5798;
-	Fri, 15 Nov 2024 13:36:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B2F01CDA12;
+	Fri, 15 Nov 2024 13:44:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ihMrMQse"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="cZ6QPHRw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA9F11AC43E;
-	Fri, 15 Nov 2024 13:36:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F37ED1CD20F
+	for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 13:44:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731677762; cv=none; b=hbPn0Ds32h/YgkQPPw1It1h1oozyz8GpR68QPWqLi2ndLjdNQqhGKWkQpybv8Pb8kmKuWnf2+IQAqLw00qavSnxn5ZBVWmQIyfAljwpau/ds4IhNaW8VuLIdylbkLECdlcW47dBYW5zvmtgCLbpViEOZVf+fCuLy2xHl9hvBVuw=
+	t=1731678255; cv=none; b=Uyri/08RKNoS49Zmab5IRycSeerV6glYnrUlnt+4W1+fN03UGAHie8kpjz9owFq12TQeXosUr68d1R9y7Ny/JuY38qrT5Zj7QtRpwkRmfY0HTO/lvLtVFfB4VhKCiGeWoCailK+ltNBMlty04VsBKamUoQnsXtbDPnuu6aZMgGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731677762; c=relaxed/simple;
-	bh=AO9xLnbPqrNc6QxB+RS5a+ltPUCHQ2swdaCjyUpk4wQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=REfm/1JFQNbrOIy0HkhDYtpo8lCzVW9QtddIexRam9GCzwHqVQIvY/aMQRmOhTOLDnoKmkj1r8Q7XE2Yr9Nj/nfy5062i7qiVT9fvfmRKp47j0Fkb3tsgGesfXVaeHPn1xLgWoCInMicGUZH0O2lo2umvm/nvV8qkd+4tNwnPy4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ihMrMQse; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99968C4CECF;
-	Fri, 15 Nov 2024 13:35:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731677762;
-	bh=AO9xLnbPqrNc6QxB+RS5a+ltPUCHQ2swdaCjyUpk4wQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ihMrMQsewJGf3fyd3nlj3JxP3tSQ4LnK2kgn3BN0eJzom0hdGJ6rjAK8YzNknop2o
-	 Loy9rOWAMzK2wgZYyDQftVkiBpE6qHthohXsA3wNHAfLpfVbuZm9Okvqe3R3+SSxeu
-	 utZD3w8CDTNJ4hf4WPFir8h8wBBvcfLu7jKEkS6XI6g2VcixMKOysYpG4ApLl2+UNJ
-	 c1TCbFe4izxfsz5re3g+DQcVASROO9DwmzJ3gFaDycj9PaZIae8gYkupbsxULSUqrq
-	 YsekWgxpkSxWR1hQZop/s3vbnaz3OeG/GiOlLme6Xf1dJ95hDNFZRNADqyF336AGtc
-	 d5tzg18ROdG/Q==
-Date: Fri, 15 Nov 2024 14:35:52 +0100
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Elliot Berman <quic_eberman@quicinc.com>
-Cc: Stephen Boyd <swboyd@chromium.org>, Andy Yan <andy.yan@rock-chips.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Olof Johansson <olof@lixom.net>, Rob Herring <robh@kernel.org>,
-	Sebastian Reichel <sre@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Will Deacon <will@kernel.org>, cros-qcom-dts-watchers@chromium.org,
-	Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
-	Melody Olvera <quic_molvera@quicinc.com>,
-	Shivendra Pratap <quic_spratap@quicinc.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v6 3/5] firmware: psci: Read and use vendor reset types
-Message-ID: <ZzdOOP0KuMMdo64W@lpieralisi>
-References: <20241018-arm-psci-system_reset2-vendor-reboots-v6-0-50cbe88b0a24@quicinc.com>
- <20241018-arm-psci-system_reset2-vendor-reboots-v6-3-50cbe88b0a24@quicinc.com>
- <CAE-0n515sUkmTWptgY8pOaMDBPfDp5pZBy9Nby+4cMdMAnAZfA@mail.gmail.com>
- <20241023092251529-0700.eberman@hu-eberman-lv.qualcomm.com>
+	s=arc-20240116; t=1731678255; c=relaxed/simple;
+	bh=sc9CTLdGF8akXnnEYKS+FLO0ZLiAdZAgjw2Zn2YLkZY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=jtzvoXsRDoBO3btMGyxZDIQ32uXf4GK4+69yIhmZFWwFxiQvJWK4blBn2tkWFFX3vuQVm8r5iTw2A1qOVmQUtZK0DxX82wIqu8e5Kkrx/9CpkTKK9UF5NTo74yLQIXHdHuEK/r++hzhN2Ilm2sU8xQkwa62rpTI/N3f4PMH+Qw8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=cZ6QPHRw; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-37d63a79bb6so512320f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 05:44:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1731678250; x=1732283050; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=I5y0VsPSk08U7p2tqXaJQIjq2ov8qkIzEO02XgcshlA=;
+        b=cZ6QPHRw2v9fRpfq/O9//sWF/iUaj9Tg7mO9Ecb7J6ul5a5b+RXxskLp/OOidKjuxh
+         lZnx4zRwmLEW8veeZ2koSbUbiP+PeGOVEWLSCT4wTUG+e4SJyy1IWTtJUA9AazGQvDnD
+         qdfKQdU+iqrAaSsg4KljC+3bO2tyOFObyOMGEhbqjQNwssbumBtqa8YFi4U8Wovo7F8x
+         EL5jhNDWgI06viNMpnXDvl2uXsAu2/bpUpyB884NPC2EAg1y7RYfTRHwNiaJf/ZiIAwn
+         247fP8Ewh/Ehb+4p3noMczXFuwPmHPTsYhLVYuL4L9hQUvFNOZHVJoB8j2BeUFZsE1PX
+         NyZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731678250; x=1732283050;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=I5y0VsPSk08U7p2tqXaJQIjq2ov8qkIzEO02XgcshlA=;
+        b=SW219farLx0kaZ1QDh81XrdKkbLhpzQouFxgpTX55Z0uUSyiwYbkBL4WZKneoN16Tz
+         D+5qjj0B8gOSAEuQ518DraEfMcXjr57frwBJ/0RoN1UEvyQB3ypkccUDSZv1RN8I19ZD
+         Ti+mLIVOIygEje49L1kOCNQHShWgP9xr8hyJR7uj0YbN/DfuRSA7wirHgkyBhwO7Vih1
+         nA0R9RjwY829qL/6vjUWKqRauFi2foqBGR0DYd0d2rhh2wSPV4rkk2cCw/RYepJ2OJ9z
+         34ey3NTGyuHnXD4KSOPt3QYkK327t+uXLH7LOymq0KVdzFJvond27MK/MV1ZgYt+epXT
+         eq5A==
+X-Forwarded-Encrypted: i=1; AJvYcCWCCF2KEcKegm8lxxcXJLoC67+pOHFUq5As2c8qOOm+XGpYa9a6fAgiVsio1Tv6sUdoyv6RAUP2rMx+@vger.kernel.org
+X-Gm-Message-State: AOJu0YwOKeWX7UDkNgC4VqFVwdbdE2NDjiD6aRWuYfN5MvGR2wafHgN7
+	+eI0y2o2vcMB8/+G/9MmVPwKaZ8iXlmYOGj5WGBrBmSrOE0l7JNvHaJv9btrcZs=
+X-Google-Smtp-Source: AGHT+IGiHMG9rqSM5bsbyK7EYOKL8gBTuBz9Z6IzT33QoBCun/jgIVK6Zf54KY6LeEKMlhUGRk6A4g==
+X-Received: by 2002:a05:6000:1866:b0:37d:4f1b:35a with SMTP id ffacd0b85a97d-382259020f2mr2182114f8f.3.1731678249494;
+        Fri, 15 Nov 2024 05:44:09 -0800 (PST)
+Received: from claudiu-X670E-Pro-RS.. ([82.78.167.28])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3821ada3fc9sm4378016f8f.20.2024.11.15.05.44.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Nov 2024 05:44:09 -0800 (PST)
+From: Claudiu <claudiu.beznea@tuxon.dev>
+X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
+To: geert+renesas@glider.be,
+	magnus.damm@gmail.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	gregkh@linuxfoundation.org,
+	jirislaby@kernel.org,
+	p.zabel@pengutronix.de,
+	lethal@linux-sh.org,
+	g.liakhovetski@gmx.de
+Cc: linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	claudiu.beznea@tuxon.dev,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: [PATCH v3 0/8] Add support for the rest of Renesas RZ/G3S serial interfaces
+Date: Fri, 15 Nov 2024 15:43:53 +0200
+Message-Id: <20241115134401.3893008-1-claudiu.beznea.uj@bp.renesas.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241023092251529-0700.eberman@hu-eberman-lv.qualcomm.com>
+Content-Transfer-Encoding: 8bit
 
-On Wed, Oct 23, 2024 at 09:30:21AM -0700, Elliot Berman wrote:
-> On Fri, Oct 18, 2024 at 10:42:46PM -0700, Stephen Boyd wrote:
-> > Quoting Elliot Berman (2024-10-18 12:39:48)
-> > > diff --git a/drivers/firmware/psci/psci.c b/drivers/firmware/psci/psci.c
-> > > index 2328ca58bba6..60bc285622ce 100644
-> > > --- a/drivers/firmware/psci/psci.c
-> > > +++ b/drivers/firmware/psci/psci.c
-> > > @@ -29,6 +29,8 @@
-> > >  #include <asm/smp_plat.h>
-> > >  #include <asm/suspend.h>
-> > >
-> > > +#define REBOOT_PREFIX "mode-"
-> > 
-> > Maybe move this near the function that uses it.
-> > 
-> > > +
-> > >  /*
-> > >   * While a 64-bit OS can make calls with SMC32 calling conventions, for some
-> > >   * calls it is necessary to use SMC64 to pass or return 64-bit values.
-> > > @@ -305,9 +315,29 @@ static int get_set_conduit_method(const struct device_node *np)
-> > >         return 0;
-> > >  }
-> > >
-> > > +static void psci_vendor_sys_reset2(unsigned long action, void *data)
-> > > +{
-> > > +       const char *cmd = data;
-> > > +       unsigned long ret;
-> > > +       size_t i;
-> > > +
-> > > +       for (i = 0; i < num_psci_reset_params; i++) {
-> > > +               if (!strcmp(psci_reset_params[i].mode, cmd)) {
-> > > +                       ret = invoke_psci_fn(PSCI_FN_NATIVE(1_1, SYSTEM_RESET2),
-> > > +                                            psci_reset_params[i].reset_type,
-> > > +                                            psci_reset_params[i].cookie, 0);
-> > > +                       pr_err("failed to perform reset \"%s\": %ld\n",
-> > > +                               cmd, (long)ret);
-> > 
-> > Do this intentionally return? Should it be some other function that's
-> > __noreturn instead and a while (1) if the firmware returns back to the
-> > kernel?
-> > 
-> 
-> Yes, I think it's best to make sure we fall back to the architectural
-> reset (whether it's the SYSTEM_RESET or architectural SYSTEM_RESET2)
-> since device would reboot then.
+From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Well, that's one of the doubts I have about enabling this code. From
-userspace we are requesting a reboot (I don't even think that user
-space knows which reboot modes are actually implemented (?)) and we may
-end up issuing one with completely different semantics ?
+Hi,
 
-Are these "reset types" exported to user space ?
+The Renesas RZ/G3S SoC has 6 serial interfaces. One of them is used
+as debug console (and it is already enabled in the current code base).
+Series adds support for the remaining ones.
 
-Lorenzo
+Patches:
+-    01/08 - adds clock, reset and power domain support for the serial
+             interfaces
+-    02/08 - serial driver fix patch identified while adding RZ/G3S
+             support
+-    03/08 - extends suspend to RAM support on the serial driver for
+             the RZ/G3S SoC
+- 04-08/08 - add device tree support
 
-> > > +               }
-> > > +       }
-> > > +}
-> > > +
-> > >  static int psci_sys_reset(struct notifier_block *nb, unsigned long action,
-> > >                           void *data)
-> > >  {
-> > > +       if (data && num_psci_reset_params)
-> > > +               psci_vendor_sys_reset2(action, data);
-> > > +
-> > >         if ((reboot_mode == REBOOT_WARM || reboot_mode == REBOOT_SOFT) &&
-> > >             psci_system_reset2_supported) {
-> > >                 /*
-> > > @@ -750,6 +780,68 @@ static const struct of_device_id psci_of_match[] __initconst = {
-> > >         {},
-> > >  };
-> > >
-> > > +static int __init psci_init_system_reset2_modes(void)
-> > > +{
-> > > +       const size_t len = strlen(REBOOT_PREFIX);
-> > > +       struct psci_reset_param *param;
-> > > +       struct device_node *psci_np __free(device_node) = NULL;
-> > > +       struct device_node *np __free(device_node) = NULL;
-> > > +       struct property *prop;
-> > > +       size_t count = 0;
-> > > +       u32 magic[2];
-> > > +       int num;
-> > > +
-> > > +       if (!psci_system_reset2_supported)
-> > > +               return 0;
-> > > +
-> > > +       psci_np = of_find_matching_node(NULL, psci_of_match);
-> > > +       if (!psci_np)
-> > > +               return 0;
-> > > +
-> > > +       np = of_find_node_by_name(psci_np, "reset-types");
-> > > +       if (!np)
-> > > +               return 0;
-> > > +
-> > > +       for_each_property_of_node(np, prop) {
-> > > +               if (strncmp(prop->name, REBOOT_PREFIX, len))
-> > > +                       continue;
-> > > +               num = of_property_count_elems_of_size(np, prop->name, sizeof(magic[0]));
-> > 
-> > Use of_property_count_u32_elems()?
-> > 
-> > > +               if (num != 1 && num != 2)
-> > > +                       continue;
-> > > +
-> > > +               count++;
-> > > +       }
-> > > +
-> > > +       param = psci_reset_params = kcalloc(count, sizeof(*psci_reset_params), GFP_KERNEL);
-> > > +       if (!psci_reset_params)
-> > > +               return -ENOMEM;
-> > > +
-> > > +       for_each_property_of_node(np, prop) {
-> > > +               if (strncmp(prop->name, REBOOT_PREFIX, len))
-> > > +                       continue;
-> > > +
-> > > +               param->mode = kstrdup_const(prop->name + len, GFP_KERNEL);
-> > > +               if (!param->mode)
-> > > +                       continue;
-> > > +
-> > > +               num = of_property_read_variable_u32_array(np, prop->name, magic, 1, 2);
-> > 
-> > ARRAY_SIZE(magic)?
-> > 
-> > > +               if (num < 0) {
-> > 
-> > Should this be less than 1?
-> > 
-> 
-> of_property_read_variable_u32_array should return -EOVERFLOW (or maybe
-> -ENODATA) if the array is empty. I don't see it's possible for
-> of_property_read_variable_u32_array() to return a non-negative value
-> that's not 1 or 2.
-> 
-> > > +                       pr_warn("Failed to parse vendor reboot mode %s\n", param->mode);
-> > > +                       kfree_const(param->mode);
-> > > +                       continue;
-> > > +               }
-> > > +
-> > > +               /* Force reset type to be in vendor space */
-> > > +               param->reset_type = PSCI_1_1_RESET_TYPE_VENDOR_START | magic[0];
-> > > +               param->cookie = num == 2 ? magic[1] : 0;
-> > 
-> > ARRAY_SIZE(magic)?
-> > 
-> > > +               param++;
-> > > +               num_psci_reset_params++;
-> > > +       }
-> > > +
-> > > +       return 0;
+Merge strategy, if any:
+- patch 01/08 can go through Renesas tree
+- patches 02-03/08 can go through serial tree
+- patches 04-08/08 can go through Renesas tree
+
+Thank you,
+Claudiu Beznea
+
+Changes in v3:
+- in patch "serial: sh-sci: Check if TX data was written to device in
+  .tx_empty()":
+-- check the status of the DMA transaction in tx_empty()
+-- changed the variable name that tracks if TX occurred
+
+Changes in v2:
+- drop patch "serial: sh-sci: Clean sci_ports[0] after at earlycon exit"
+  from v1 as it was already applied
+- used bool instead of atomic_t in patch
+  "serial: sh-sci: Check if TX data was written to device in .tx_empty()"
+
+Claudiu Beznea (8):
+  clk: renesas: r9a08g045: Add clock, reset and power domain for the
+    remaining SCIFs
+  serial: sh-sci: Check if TX data was written to device in .tx_empty()
+  serial: sh-sci: Update the suspend/resume support
+  arm64: dts: renesas: r9a08g045: Add the remaining SCIF interfaces
+  arm64: dts: renesas: rzg3s-smarc: Fix the debug serial alias
+  arm64: dts: renesas: rzg3s-smarc-switches: Add a header to describe
+    different switches
+  arm64: dts: renesas: rzg3s-smarc: Enable SCIF3
+  arm64: dts: renesas: r9a08g045s33-smarc-pmod: Add overlay for SCIF1
+
+ arch/arm64/boot/dts/renesas/Makefile          |  3 +
+ arch/arm64/boot/dts/renesas/r9a08g045.dtsi    | 90 +++++++++++++++++++
+ .../dts/renesas/r9a08g045s33-smarc-pmod.dtso  | 48 ++++++++++
+ .../boot/dts/renesas/rzg3s-smarc-som.dtsi     | 25 +-----
+ .../boot/dts/renesas/rzg3s-smarc-switches.h   | 32 +++++++
+ arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi  | 25 +++++-
+ drivers/clk/renesas/r9a08g045-cpg.c           | 20 +++++
+ drivers/tty/serial/sh-sci.c                   | 79 ++++++++++++++--
+ 8 files changed, 288 insertions(+), 34 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a08g045s33-smarc-pmod.dtso
+ create mode 100644 arch/arm64/boot/dts/renesas/rzg3s-smarc-switches.h
+
+-- 
+2.39.2
+
 
