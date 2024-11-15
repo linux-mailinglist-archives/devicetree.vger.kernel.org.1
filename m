@@ -1,46 +1,65 @@
-Return-Path: <devicetree+bounces-122073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122074-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DE029CDA32
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 09:06:38 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AD069CDA78
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 09:30:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 396511F22733
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 08:06:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DD65BB243CD
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 08:30:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D9F6188920;
-	Fri, 15 Nov 2024 08:06:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B284189F30;
+	Fri, 15 Nov 2024 08:30:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="efqYc8gL"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="baiy+g4p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out30-119.freemail.mail.aliyun.com (out30-119.freemail.mail.aliyun.com [115.124.30.119])
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC7211DFFD;
-	Fri, 15 Nov 2024 08:06:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.30.119
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 490DC1E522;
+	Fri, 15 Nov 2024 08:30:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731657991; cv=none; b=qXT9y4JUH8fXKzKuHEJj7sAUWENWoKgXtuSNkkKUIH4luFYkC+KA3mBXNtAKRkRV8X4s5EXRoN4iKKrHMqpQJB6lMaCxhAftYWkkX4vpTXMHsbgbYA2gYb4lIb1GnoePo2uEF4lXYnmL/Os2F9ASptHyeNERwciAa/Ix/5NjGwA=
+	t=1731659427; cv=none; b=Rr6iaX58wkpjq2TzAQvlqXFCL+JjKBNJ2yddo/P5wAGEBhd/iWCmqnjPQlXm74KFyYVEALIl8Gw5V/pemL2Pn2XuyPdw0UAqsfVSwBzRIVkUnGpXQi0sEkq0rAWiZmaPcSTsR1Nf6td6geNuTAk7Q+a6l43nsygLFYUc6IJktVk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731657991; c=relaxed/simple;
-	bh=wTqrSMid13G+0klYJYbhdPy5F5lLjNiY0gORfror8jU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VYjHSA3hkDdh2m9T//4wpEHWj2wZijX2IZFKyJCH8Lpbn3VSEaa618WAhXbinjcNQQVXDIatLpaDtHlUedEfEgf8Q9YmAq5l9ajXqQCruzRgtiLgfWjc8NtfbeIpY+BzIOwl1EuBb7ehnudZ3bsQQlNOrKMqOcXsk6z887jx7uk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com; spf=pass smtp.mailfrom=linux.alibaba.com; dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b=efqYc8gL; arc=none smtp.client-ip=115.124.30.119
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.alibaba.com
-DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linux.alibaba.com; s=default;
-	t=1731657978; h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
-	bh=4JGE2MRK2jGTuCAstiyOZdisKvWJk80qjRoK8h7z0Pw=;
-	b=efqYc8gLDqeyz1yt29amFSbJCNaLgyro+N9d1iY7KiyV5OzsobpzKhtY3K907voMS/yqN4VGWP/f+cf7kArZkEhWeXagTRI19PLXYcgMl1jCn26UtAy6IarFIspCCwki+tWoCffJ4uP5Qu8huu8zgoCQRPDvELHDyXy/imXQIYA=
-Received: from 30.74.144.124(mailfrom:baolin.wang@linux.alibaba.com fp:SMTPD_---0WJSyP5f_1731657976 cluster:ay36)
-          by smtp.aliyun-inc.com;
-          Fri, 15 Nov 2024 16:06:17 +0800
-Message-ID: <0f56de2a-49f9-4a13-86fa-e6a7fb3e79b7@linux.alibaba.com>
-Date: Fri, 15 Nov 2024 16:06:15 +0800
+	s=arc-20240116; t=1731659427; c=relaxed/simple;
+	bh=AwNaowL+z3r5T3Dhk/DjATV1Gtv4vvKbU0QkuO3KiTk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=SqtYvrSDoTtqQXFPh5b5TukQXuU67fRJkbEetqUlVWOYd5IFwPMXPr9WpHpzc1VHm1puCxD4vBs4Ws4nCIGoqJHoHPUpu49f8J9S8uRdPCoBAJEnsy/s86RCzCzH3JDAWjewbKc7L/u+nCVuX5VYGW88LlofsX53g4obSfEjk8Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=baiy+g4p; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AF80KYe008356;
+	Fri, 15 Nov 2024 09:29:48 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	hV7BxhQ3eifJYS/TNyu+Lmhdj2uo69md9n/Ratf2lvI=; b=baiy+g4pS4xqJe22
+	Z6PA5mWy2Cs7RSvM4GWc/IW5XjATX0WHk5aElMwUw/pwK9CpSSscsnc7jsM9CeyR
+	QEq2GV4QxD8TyYOW181ziqZmw5yhaaKydrpjuzIVukdoM1LOLT0M00b6LSK7BYDs
+	l0thJ4hekFeNA/SvfdvacMOkRUulYxED4boG5uqMuo4yk7hHl7HXMUpn0cIjjpwI
+	+AeXVvV9dd+rpoicCf30pqcuLp99gFd68FH9DmP7HITTjjpB2UuzfThRd+DJ3TGQ
+	/7eA1+kCT+AI7u9NVgv5359Vsk7melk4XVMB2WrFp7D29rfd+TjSf/eepa2oNHaZ
+	DeVOwg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 42whe9ukqu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Nov 2024 09:29:48 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 5632340053;
+	Fri, 15 Nov 2024 09:28:22 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 31155263566;
+	Fri, 15 Nov 2024 09:27:14 +0100 (CET)
+Received: from [10.129.178.212] (10.129.178.212) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Fri, 15 Nov
+ 2024 09:27:13 +0100
+Message-ID: <2b52093a-103f-4dd4-bb6d-c04dc9f68e98@foss.st.com>
+Date: Fri, 15 Nov 2024 09:27:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,63 +67,67 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] serial: sprd: Add support for sc9632
-To: wenhua lin <wenhua.lin1994@gmail.com>
-Cc: Wenhua Lin <Wenhua.Lin@unisoc.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>,
- Chunyan Zhang <zhang.lyra@gmail.com>, Cixi Geng <cixi.geng@linux.dev>,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org, Xiongpeng Wu <xiongpeng.wu@unisoc.com>,
- Zhaochen Su <Zhaochen.Su@unisoc.com>, Zhirong Qiu <Zhirong.Qiu@unisoc.com>
-References: <20241113110516.2166328-1-Wenhua.Lin@unisoc.com>
- <20241113110516.2166328-2-Wenhua.Lin@unisoc.com>
- <3f89369f-7c0a-47c3-a22a-a125847edb98@linux.alibaba.com>
- <CAB9BWhdi2Q3gViCPjYAUYeYktBKR_rc4DN5PqXKvAvA44LDd9g@mail.gmail.com>
-From: Baolin Wang <baolin.wang@linux.alibaba.com>
-In-Reply-To: <CAB9BWhdi2Q3gViCPjYAUYeYktBKR_rc4DN5PqXKvAvA44LDd9g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH 1/5] dt-bindings: PCI: Add STM32MP25 PCIe root complex
+ bindings
+To: Bjorn Helgaas <helgaas@kernel.org>
+CC: <lpieralisi@kernel.org>, <kw@linux.com>,
+        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
+        <bhelgaas@google.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
+        <p.zabel@pengutronix.de>, <cassel@kernel.org>,
+        <quic_schintav@quicinc.com>, <fabrice.gasnier@foss.st.com>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20241112182809.GA1853254@bhelgaas>
+Content-Language: en-US
+From: Christian Bruel <christian.bruel@foss.st.com>
+In-Reply-To: <20241112182809.GA1853254@bhelgaas>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
 
 
-On 2024/11/15 15:46, wenhua lin wrote:
-> On Fri, Nov 15, 2024 at 1:47 PM Baolin Wang
-> <baolin.wang@linux.alibaba.com> wrote:
+On 11/12/24 19:28, Bjorn Helgaas wrote:
+> On Tue, Nov 12, 2024 at 05:19:21PM +0100, Christian Bruel wrote:
+>> Document the bindings for STM32MP25 PCIe Controller configured in
+>> root complex mode.
+>> Supports 4 legacy interrupts and MSI interrupts from the ARM
+>> GICv2m controller.
 >>
+>> Allow tuning to change payload (default 128B) thanks to the
+>> st,max-payload-size entry.
+>> Can also limit the Maximum Read Request Size on downstream devices to the
+>> minimum possible value between 128B and 256B.
 >>
->>
->> On 2024/11/13 19:05, Wenhua Lin wrote:
->>> Due to the platform's new project uart ip upgrade,
->>> the new project's timeout interrupt needs to use bit17
->>> while other projects' timeout interrupt needs to use
->>> bit13, using private data to adapt and be compatible
->>> with all projects.
->>>
->>> Signed-off-by: Wenhua Lin <Wenhua.Lin@unisoc.com>
->>> ---
->>>    drivers/tty/serial/sprd_serial.c | 41 ++++++++++++++++++++++++++++----
->>>    1 file changed, 36 insertions(+), 5 deletions(-)
->>>
->>> diff --git a/drivers/tty/serial/sprd_serial.c b/drivers/tty/serial/sprd_serial.c
->>> index 3fc54cc02a1f..882580c3cf37 100644
->>> --- a/drivers/tty/serial/sprd_serial.c
->>> +++ b/drivers/tty/serial/sprd_serial.c
->>> @@ -53,10 +53,12 @@
->>>    #define SPRD_IEN_TX_EMPTY   BIT(1)
->>>    #define SPRD_IEN_BREAK_DETECT       BIT(7)
->>>    #define SPRD_IEN_TIMEOUT    BIT(13)
->>> +#define SPRD_IEN_DATA_TIMEOUT        BIT(17)
->>
->> I don't know the meaning of 'DATA' in the new macro name. But I have no
->> better name now:) Otherwise look good to me.
->> Reviewed-by: Baolin Wang <baolin.wang@linux.alibaba.com>
+>> STM32 PCIE may be in a power domain which is the case for the STM32MP25
+>> based boards.
+>> Supports wake# from wake-gpios
 > 
-> Hi baolin:
->    TIMEOUT means only timeout, DATA_TIMEOUT means timeout and fifo is not empty.
->    Therefore, the macro name is distinguished by adding DATA.
+>> +  st,limit-mrrs:
+>> +    description: If present limit downstream MRRS to 256B
+>> +    type: boolean
+>> +
+>> +  st,max-payload-size:
+>> +    description: Maximum Payload size to use
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    enum: [128, 256]
+>> +    default: 128
+> 
+> MRRS and MPS are not specific to this device.  Not sure why you need
+> them, but if you do need them, I think they should be generic.
 
-Good. These information should be added into commit message.
+Agree. On a second thought, this was to fix an old errata and can be 
+dropped now, as well as the associated quirks.
+
+Will re-post as generic if needed later on
+
+thanks,
+
+Christian
 
