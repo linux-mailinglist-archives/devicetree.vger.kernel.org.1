@@ -1,57 +1,57 @@
-Return-Path: <devicetree+bounces-122253-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122254-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C25839CF523
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 20:43:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BE8D9CF51B
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 20:42:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 52F58B3292F
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 19:42:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF7B21F2378D
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 19:42:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 498411E32DE;
-	Fri, 15 Nov 2024 19:38:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48BE01E3DC4;
+	Fri, 15 Nov 2024 19:39:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jvWXf89i"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bBDt5/c9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 222AD1E2007;
-	Fri, 15 Nov 2024 19:38:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2062A1E285D;
+	Fri, 15 Nov 2024 19:38:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731699530; cv=none; b=H6Jgd97JQqZMdUVdgU4H8gWar8ftEOUjRpzLsp4cITcUMN/pZ49W1KFddk7CeTJFMvIBWqDveZgLun+PzVy4ybzSjZSwspNVMbEU5slcOrJx4ZPseWql4Sy6cFe7mCnBR4hZEZg3pK21cUMbAbYJsyllkQ253dtOxMxDRep54I8=
+	t=1731699540; cv=none; b=NAmO4hoDq7NkzZ0yij/3+WPsVNf7ASBA3cIkCOHbdcnwB5mbOTy0JLjgcEZCS5I3I64/OUvLkFhxRx0n854crId+/XcU/fvPcbEq779NMv0Xb8ueKgI+WejKkc2kyveqvf+aPtwJCUn/IpC3SPoiHCfpmHfaCnbQOen3rCnnnnE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731699530; c=relaxed/simple;
-	bh=Ta89hoZlKOxfpyHkQBO+QgPfHl3czdx7coDCK9JfVdg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Dz3ivDR46KZNqTLWMclBkdIjcfy1fxhxNpVt+iL6vNnxcZ9kzE+fBZn4QtsA+fnmSseQjIaKWu6vU59AJ90uqxY5KC7PBoMVACQz5dDO084bA2/ue5TPxkF5GhgjU66O5rJJBEH4PuNf62UlG4Nlc9vCBKoUxiBBYodMF1R8YYU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jvWXf89i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97599C4CECF;
-	Fri, 15 Nov 2024 19:38:49 +0000 (UTC)
+	s=arc-20240116; t=1731699540; c=relaxed/simple;
+	bh=LP0u3QqCbmQC1vap+Z+0ND0Z2RGUjbmmF6GaJXzgnOE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=J1fS6wpczjS5CWtZUtldL/bMYMFD3QSU13EiJpGPeiYk3ujRGybpEsUNeOY8+S8obWZiAY0omzZ+0N0lSsdLsyNHdPFAuosEBOaKhSp1G7/eS4LsvCX5lHIZEFr31yQVR2VdWOP5hJDlUZ1APyZtqRoxjSQTtmgRhCTJiiCaocM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bBDt5/c9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F34AC4CECF;
+	Fri, 15 Nov 2024 19:38:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731699529;
-	bh=Ta89hoZlKOxfpyHkQBO+QgPfHl3czdx7coDCK9JfVdg=;
+	s=k20201202; t=1731699539;
+	bh=LP0u3QqCbmQC1vap+Z+0ND0Z2RGUjbmmF6GaJXzgnOE=;
 	h=From:To:Cc:Subject:Date:From;
-	b=jvWXf89iDBZYVTcgpi+pQFVPTvIpHvirLtmIYLVWZlgbmXfrQQL6qCw4qt1BPniWd
-	 mEaamc16R/c6CXqA83+XEoBlEQ6kLUb2Ca32qel26gBp09bx+VbsSLgP3JzhsGM7xJ
-	 1ia7enQ+S+YHGpHcS/sUKyOoAZmCbxFZVWJOUgkpk0vqgn/FJ708frTIyBne9SLDXd
-	 MYQpXwiygwPHuFhRi08geoipFfFn2D50gI7W0qsSr6vOqUdkRa5P9D+NoHL9zRL4vP
-	 r40rQOyDo4FdVCdG0M4lkJGZ5ixfnFWHZGEzukVFbA4uvdxbuPkFBnwwe0EJgVGivY
-	 kyyI3jqBsC9yg==
+	b=bBDt5/c96q0G7FjXYGwQaRDfNE5SP7ZBj4URNMEb83NofF1jiB02MtyKktH8Bm0zB
+	 SHjnRd364PVSjBDYVCwhUysALvQYtXQWWr7HC7Zgv5zO8W19GdPlqpX4n/9d3Kfa7t
+	 zJS6p6hZWECyQosIYu2rMREXTqV3aOZQLA0g09kmr3jlOeoywwYWgNEwSKL7eMMHp+
+	 UU+XO7eX10G2URWnHtlaZCu/PXe+7wCUnhehaIxOh/cqz+VlgsBzDgqapcEbRZrbKI
+	 HRuK7M3ilHFYuOus3WTdKqMBWrRALaAiu0HCjSanvB2fmrvC0wMLon5eB/yeprecvI
+	 rRUl0BWaTlNJw==
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Viresh Kumar <vireshk@kernel.org>,
-	Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
-	soc@kernel.org,
+To: Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>
 Cc: linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm: dts: spear13xx: Remove unused and undocumented "pl022,slave-tx-disable" property
-Date: Fri, 15 Nov 2024 13:38:34 -0600
-Message-ID: <20241115193835.3623725-1-robh@kernel.org>
+Subject: [PATCH] arm64: dts: broadcom: Remove unused and undocumented properties
+Date: Fri, 15 Nov 2024 13:38:53 -0600
+Message-ID: <20241115193854.3624123-1-robh@kernel.org>
 X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -61,55 +61,68 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Remove "pl022,slave-tx-disable" property which is both unused in the kernel
-and undocumented. Most likely they are leftovers from downstream.
+Remove properties which are both unused in the kernel and undocumented.
+Most likely they are leftovers from downstream.
 
 Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- arch/arm/boot/dts/st/spear1310-evb.dts | 2 --
- arch/arm/boot/dts/st/spear1340-evb.dts | 2 --
- 2 files changed, 4 deletions(-)
+ arch/arm64/boot/dts/broadcom/northstar2/ns2-svk.dts | 2 --
+ arch/arm64/boot/dts/broadcom/northstar2/ns2-xmc.dts | 1 -
+ arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi    | 2 --
+ 3 files changed, 5 deletions(-)
 
-diff --git a/arch/arm/boot/dts/st/spear1310-evb.dts b/arch/arm/boot/dts/st/spear1310-evb.dts
-index 18191a87f07c..ad216571ba57 100644
---- a/arch/arm/boot/dts/st/spear1310-evb.dts
-+++ b/arch/arm/boot/dts/st/spear1310-evb.dts
-@@ -353,7 +353,6 @@ stmpe610@0 {
- 					spi-max-frequency = <1000000>;
- 					spi-cpha;
- 					pl022,interface = <0>;
--					pl022,slave-tx-disable;
- 					pl022,com-mode = <0>;
- 					pl022,rx-level-trig = <0>;
- 					pl022,tx-level-trig = <0>;
-@@ -385,7 +384,6 @@ flash@1 {
- 					spi-cpol;
- 					spi-cpha;
- 					pl022,interface = <0>;
--					pl022,slave-tx-disable;
- 					pl022,com-mode = <0x2>;
- 					pl022,rx-level-trig = <0>;
- 					pl022,tx-level-trig = <0>;
-diff --git a/arch/arm/boot/dts/st/spear1340-evb.dts b/arch/arm/boot/dts/st/spear1340-evb.dts
-index cea624fc745c..9b515b21a633 100644
---- a/arch/arm/boot/dts/st/spear1340-evb.dts
-+++ b/arch/arm/boot/dts/st/spear1340-evb.dts
-@@ -446,7 +446,6 @@ flash@0 {
- 					spi-cpol;
- 					spi-cpha;
- 					pl022,interface = <0>;
--					pl022,slave-tx-disable;
- 					pl022,com-mode = <0x2>;
- 					pl022,rx-level-trig = <0>;
- 					pl022,tx-level-trig = <0>;
-@@ -461,7 +460,6 @@ stmpe610@1 {
- 					spi-cpha;
- 					reg = <1>;
- 					pl022,interface = <0>;
--					pl022,slave-tx-disable;
- 					pl022,com-mode = <0>;
- 					pl022,rx-level-trig = <0>;
- 					pl022,tx-level-trig = <0>;
+diff --git a/arch/arm64/boot/dts/broadcom/northstar2/ns2-svk.dts b/arch/arm64/boot/dts/broadcom/northstar2/ns2-svk.dts
+index f43cfe66b6af..5939d342aec7 100644
+--- a/arch/arm64/boot/dts/broadcom/northstar2/ns2-svk.dts
++++ b/arch/arm64/boot/dts/broadcom/northstar2/ns2-svk.dts
+@@ -137,7 +137,6 @@ at25@0 {
+ 		spi-cpha;
+ 		spi-cpol;
+ 		pl022,interface = <0>;
+-		pl022,slave-tx-disable = <0>;
+ 		pl022,com-mode = <0>;
+ 		pl022,rx-level-trig = <1>;
+ 		pl022,tx-level-trig = <1>;
+@@ -200,7 +199,6 @@ nand_sel: nand_sel {
+ };
+ 
+ &qspi {
+-	bspi-sel = <0>;
+ 	flash: flash@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+diff --git a/arch/arm64/boot/dts/broadcom/northstar2/ns2-xmc.dts b/arch/arm64/boot/dts/broadcom/northstar2/ns2-xmc.dts
+index c50df1d02797..0e134a94e142 100644
+--- a/arch/arm64/boot/dts/broadcom/northstar2/ns2-xmc.dts
++++ b/arch/arm64/boot/dts/broadcom/northstar2/ns2-xmc.dts
+@@ -151,7 +151,6 @@ flash: flash@0 {
+ 		#size-cells = <1>;
+ 		compatible = "m25p80";
+ 		spi-max-frequency = <62500000>;
+-		m25p,default-addr-width = <3>;
+ 		reg = <0x0 0x0>;
+ 
+ 		partition@0 {
+diff --git a/arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi b/arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi
+index cfd9fd23a1c2..5a4b81faff20 100644
+--- a/arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi
++++ b/arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi
+@@ -134,7 +134,6 @@ pcie0: pcie@20020000 {
+ 		brcm,pcie-ob;
+ 		brcm,pcie-ob-oarr-size;
+ 		brcm,pcie-ob-axi-offset = <0x00000000>;
+-		brcm,pcie-ob-window-size = <256>;
+ 
+ 		status = "disabled";
+ 
+@@ -165,7 +164,6 @@ pcie4: pcie@50020000 {
+ 		brcm,pcie-ob;
+ 		brcm,pcie-ob-oarr-size;
+ 		brcm,pcie-ob-axi-offset = <0x30000000>;
+-		brcm,pcie-ob-window-size = <256>;
+ 
+ 		status = "disabled";
+ 
 -- 
 2.45.2
 
