@@ -1,182 +1,144 @@
-Return-Path: <devicetree+bounces-122286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C89C9CF97F
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 23:15:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87E819CF9BD
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 23:27:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F31301F247E5
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 22:15:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 408311F24D2F
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 22:27:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98A38206955;
-	Fri, 15 Nov 2024 21:59:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C074318FDC9;
+	Fri, 15 Nov 2024 22:27:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="R+mWKm3c"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="bkwDMOyC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFF51204F7F;
-	Fri, 15 Nov 2024 21:59:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A50E186E56;
+	Fri, 15 Nov 2024 22:27:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731707966; cv=none; b=NOPL8RGmxwxwL0sBl1NVvPa1v/nR5sPHGjgja3koaguIB8Q4Py2xjLYRXsdd98na/qBQHwrXAIW77rPViPvwrLu6trV5gTjxZNTBPG0xE46rsUOOk9k8yWU9y8kExCxaP9HF9581u3G70oYNd1wjbEzecvnE3QKBKZ5H+DgrT2I=
+	t=1731709669; cv=none; b=pjz39AEWtFJGGDXIcifGybfaHof0zZra/zgoQGwfwWDy9BGTtYbpflYScCCM8LCiMPx9NNLpL601biBIeAfEWTqwe2AmS9GfQaOKPym1SEyf+g8C0ubg9OWEHLpPIEJEyLikf1CBMuyqHa5Cns9cx+8/Z//jOTY9fjNX1ljyBRo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731707966; c=relaxed/simple;
-	bh=QJv3yYa/9XiY6vOUaNzuQnetWLi3X7njquUMRtWcv2E=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AoPGhfckoRKWS1Pq5S0KAZU4usUopDX4vAogXyRLr3sJIOCtHLzWJrgKZEbmb6k9YSHVqPIxCw5sK+kat+8sO78CniYztWXcWOnGswEFbLLd323qIyYORtauOOjgLDpVHqspGQQtHscey3hrq6PoWKrctroXA1gOuLWVBec+EIA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=R+mWKm3c; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-43169902057so18785285e9.0;
-        Fri, 15 Nov 2024 13:59:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731707963; x=1732312763; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=4KEsDTTAK1pZnid0HCmorMUnwqRgHVrxEO5D+fdsiII=;
-        b=R+mWKm3czkWwJPAWP/8O6Ivc/wA0D9yIpXwKxRD0aI832SMCl0vGNI5LvymaewgyPR
-         2QSlihrFKNRslAwQwTcLTVAN+FzkEPgBiQtFF7VwiLAxQtRXamvLzTJgot8ZbQ7m9mU9
-         U8JTuCLpBmSPvzSOLsjYYrj5S9G+mZBf2QPRsn6CCTOXD7Gyr/XaGbPHqk8byo+lV2du
-         rl1qSAM8cr5sTDBQUWgizeb/R3Js/MB7Rsw5jdc007MeF9rj6CpVWzgT4kFvDjyY1Rfw
-         syPgkvwWwATBT9CTm6CaP4FagozNSi0U/ElCz/6wKcDFrvqJPnSzCTTunZfYox8dcs0z
-         Nb1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731707963; x=1732312763;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4KEsDTTAK1pZnid0HCmorMUnwqRgHVrxEO5D+fdsiII=;
-        b=FEX0mUxnl/wQwLUWL7RkRe2JTkzWtiNO1Yad+feuc0g6kqiGZ/YbOR9NUDTFXdx9a6
-         lhMRkawM3yIxl1E1ciSpfAcfLY92xZiTHzxO5iXdJ3htA8CXq+QbzlyyPMaCAXR+9Q/K
-         mid/90nofqYTR4EV+tPsDC5SdGGMqMRnW4VVdMWwfPZGj43c8DkhaR4DnxdtMV6OAKnI
-         QVVr4XH3tthycCCLmTtYGbyJIqPd2P0Hcrlc2f9YuH11ecyGD/OOWkKR9oHuWDqKGy9r
-         Df0EK5ktDL7rOcjJzSxFG7u23N2smT30IdFYLm8nx4CXN+E/6AqGVvXQ3b+tf+QECChV
-         WxAA==
-X-Forwarded-Encrypted: i=1; AJvYcCUs8gPcMYamecvufDDuniVFQ1hRSqi/HS1WpjzesgH4vD8UxVvHJeX3lhZvyW+OZpx4U3UZZLAO@vger.kernel.org, AJvYcCVjRBpOGgI9ILDkz8uMvjPhzeKvBJ/ZuonFzLpVSoOubdjBMN6gUtLZis0S+1EPiIHrtBQq+EqkWUOl0lUK@vger.kernel.org, AJvYcCWHdIm9YPGFF+NoI6MQ1mvcpn9kHNMvRyjQOPl+DtUZPxP176McPmJCrUhGi16XAe6RMyozDYOg9b8p@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxecofys0J/KUOFKbvhTHgggCP+Uqcqcg/PtI71jXqD2uuW8fwW
-	XcuMdvotd5oG86VNGQ/T7k2i/J2guuWd1AVm1xSRMPdleGqQefgv
-X-Google-Smtp-Source: AGHT+IGlO9LOfsdfExxUPsSllZxIcizIxX7dbevaKMvsvnKdufl+ZPJG+GzOs3jrXwz5HjTMYIpSCA==
-X-Received: by 2002:a05:600c:190c:b0:431:55af:a230 with SMTP id 5b1f17b1804b1-432df798ea0mr31583215e9.33.1731707962660;
-        Fri, 15 Nov 2024 13:59:22 -0800 (PST)
-Received: from Ansuel-XPS. (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3821adad9cesm5343076f8f.37.2024.11.15.13.59.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Nov 2024 13:59:21 -0800 (PST)
-Message-ID: <6737c439.5d0a0220.d7fe0.2221@mx.google.com>
-X-Google-Original-Message-ID: <ZzfENklUN81HdO4f@Ansuel-XPS.>
-Date: Fri, 15 Nov 2024 22:59:18 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	upstream@airoha.com
-Subject: Re: [net-next PATCH v5 3/4] net: dsa: Add Airoha AN8855 5-Port
- Gigabit DSA Switch driver
-References: <20241112204743.6710-1-ansuelsmth@gmail.com>
- <20241112204743.6710-4-ansuelsmth@gmail.com>
- <20241114192202.215869ed@kernel.org>
+	s=arc-20240116; t=1731709669; c=relaxed/simple;
+	bh=sKTA+y2N6NtmY9ipmfTfJK99DKc9W0SoDGDw2WjdHaQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=dGJVl3H4Riwp2Mg3/IB3j6ODwKnIIJeTa5xCfCk0AS6lcoC054Fz/supYYyP1/LG7JP2SahCMCagrNFQCy9QKaiVa2uEu/oufhgbVKCd3RlTLHp9ihe3QDmlcpSJNYMz99OvoIrzktgxDO1YHc3xGltOtl16eJeNZimqW/71glA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=bkwDMOyC; arc=none smtp.client-ip=148.163.156.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0353729.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AFLQIiq003900;
+	Fri, 15 Nov 2024 22:27:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+	:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=pp1; bh=qF+mrQmSnUbowuzaVvbuJVUuttwpmgemw8P54JHvW
+	pM=; b=bkwDMOyC2ZStTUq3RCfq6jBWOqf3MIwUkQi2feVIVV+jMnzpQRSQOyyyL
+	5TOwYrvO6YuOsOI/8KTq3iXhGEy/r903MTUCqDlp1TL7Kb6qTQ9f+kBOduvOuTgl
+	i7SjUFWlqeKmANnUF84Wb3t6vTxq3C8uxl1V/qCxdVPft/BwgY8FsOsvvH4BlUIO
+	g5ipC/9LZsFLu3AEuVEuxZymQywmFF46c1qiIsxnPxDYhmg1Cw3ysht5twKQpIfP
+	ByYMCJnktw0TrbvxATE8p0ZBCzUmbQMcSWqrXBAVWhUj3++SEFbg6QJSvKqZafcN
+	zAaVTN3lDvUluwAPTRQNAfIzhEp2A==
+Received: from ppma23.wdc07v.mail.ibm.com (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 42wuy1nth8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Nov 2024 22:27:25 +0000 (GMT)
+Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
+	by ppma23.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 4AFLRhAg029721;
+	Fri, 15 Nov 2024 22:27:23 GMT
+Received: from smtprelay07.dal12v.mail.ibm.com ([172.16.1.9])
+	by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 42tkjmxccu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Nov 2024 22:27:23 +0000
+Received: from smtpav02.dal12v.mail.ibm.com (smtpav02.dal12v.mail.ibm.com [10.241.53.101])
+	by smtprelay07.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 4AFMRN2j48300424
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 15 Nov 2024 22:27:23 GMT
+Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 200F85805E;
+	Fri, 15 Nov 2024 22:27:23 +0000 (GMT)
+Received: from smtpav02.dal12v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id E347858051;
+	Fri, 15 Nov 2024 22:27:22 +0000 (GMT)
+Received: from slate16.aus.stglabs.ibm.com (unknown [9.61.159.220])
+	by smtpav02.dal12v.mail.ibm.com (Postfix) with ESMTP;
+	Fri, 15 Nov 2024 22:27:22 +0000 (GMT)
+From: Eddie James <eajames@linux.ibm.com>
+To: linux-aspeed@lists.ozlabs.org
+Cc: andrew@codeconstruct.com.au, joel@jms.id.au, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Eddie James <eajames@linux.ibm.com>
+Subject: [PATCH v2] arm: dts: aspeed: Blueridge and Rainer: Add VRM presence GPIOs
+Date: Fri, 15 Nov 2024 16:27:21 -0600
+Message-ID: <20241115222721.1564735-1-eajames@linux.ibm.com>
+X-Mailer: git-send-email 2.43.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241114192202.215869ed@kernel.org>
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: MSJwhyRl3RV_-5CFans8ZY7eUkqKx3kg
+X-Proofpoint-GUID: MSJwhyRl3RV_-5CFans8ZY7eUkqKx3kg
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1051,Hydra:6.0.680,FMLib:17.12.62.30
+ definitions=2024-10-15_01,2024-10-11_01,2024-09-30_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ suspectscore=0 spamscore=0 priorityscore=1501 mlxscore=0 impostorscore=0
+ clxscore=1015 adultscore=0 mlxlogscore=435 malwarescore=0 bulkscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411150186
 
-On Thu, Nov 14, 2024 at 07:22:02PM -0800, Jakub Kicinski wrote:
-> On Tue, 12 Nov 2024 21:47:26 +0100 Christian Marangi wrote:
-> > +	MIB_DESC(1, 0x00, "TxDrop"),
-> > +	MIB_DESC(1, 0x04, "TxCrcErr"),
-> 
-> What is a CRC Tx error :o 
-> Just out of curiosity, not saying its worng.
->
+Add GPIO line names to the GPIO expander to describe DCM and
+VRM presence detection lines.
 
-From Documentation, FCS error frame due to TX FIFO underrun.
+Signed-off-by: Eddie James <eajames@linux.ibm.com>
+---
+Changes since v1:
+ - Fix lines that were too long
 
-> > +	MIB_DESC(1, 0x08, "TxUnicast"),
-> > +	MIB_DESC(1, 0x0c, "TxMulticast"),
-> > +	MIB_DESC(1, 0x10, "TxBroadcast"),
-> > +	MIB_DESC(1, 0x14, "TxCollision"),
-> 
-> Why can't these be rtnl stats, please keep in mind that we ask that
-> people don't duplicate in ethtool -S what can be exposed via standard
-> stats
-> 
+ arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dts | 5 +++--
+ arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts   | 5 +++--
+ 2 files changed, 6 insertions(+), 4 deletions(-)
 
-Ok I will search for this but it does sounds like something new and not
-used by other DSA driver, any hint on where to look for examples?
-
-> > +	MIB_DESC(1, 0x18, "TxSingleCollision"),
-> > +	MIB_DESC(1, 0x1c, "TxMultipleCollision"),
-> > +	MIB_DESC(1, 0x20, "TxDeferred"),
-> > +	MIB_DESC(1, 0x24, "TxLateCollision"),
-> > +	MIB_DESC(1, 0x28, "TxExcessiveCollistion"),
-> > +	MIB_DESC(1, 0x2c, "TxPause"),
-> > +	MIB_DESC(1, 0x30, "TxPktSz64"),
-> > +	MIB_DESC(1, 0x34, "TxPktSz65To127"),
-> > +	MIB_DESC(1, 0x38, "TxPktSz128To255"),
-> > +	MIB_DESC(1, 0x3c, "TxPktSz256To511"),
-> > +	MIB_DESC(1, 0x40, "TxPktSz512To1023"),
-> > +	MIB_DESC(1, 0x44, "TxPktSz1024To1518"),
-> > +	MIB_DESC(1, 0x48, "TxPktSz1519ToMax"),
-> 
-> we have standard stats for rmon, too
-> 
-> > +	MIB_DESC(2, 0x4c, "TxBytes"),
-> > +	MIB_DESC(1, 0x54, "TxOversizeDrop"),
-> > +	MIB_DESC(2, 0x58, "TxBadPktBytes"),
-> > +	MIB_DESC(1, 0x80, "RxDrop"),
-> > +	MIB_DESC(1, 0x84, "RxFiltering"),
-> > +	MIB_DESC(1, 0x88, "RxUnicast"),
-> > +	MIB_DESC(1, 0x8c, "RxMulticast"),
-> > +	MIB_DESC(1, 0x90, "RxBroadcast"),
-> > +	MIB_DESC(1, 0x94, "RxAlignErr"),
-> > +	MIB_DESC(1, 0x98, "RxCrcErr"),
-> > +	MIB_DESC(1, 0x9c, "RxUnderSizeErr"),
-> > +	MIB_DESC(1, 0xa0, "RxFragErr"),
-> > +	MIB_DESC(1, 0xa4, "RxOverSzErr"),
-> > +	MIB_DESC(1, 0xa8, "RxJabberErr"),
-> > +	MIB_DESC(1, 0xac, "RxPause"),
-> > +	MIB_DESC(1, 0xb0, "RxPktSz64"),
-> > +	MIB_DESC(1, 0xb4, "RxPktSz65To127"),
-> > +	MIB_DESC(1, 0xb8, "RxPktSz128To255"),
-> > +	MIB_DESC(1, 0xbc, "RxPktSz256To511"),
-> > +	MIB_DESC(1, 0xc0, "RxPktSz512To1023"),
-> > +	MIB_DESC(1, 0xc4, "RxPktSz1024To1518"),
-> > +	MIB_DESC(1, 0xc8, "RxPktSz1519ToMax"),
-> > +	MIB_DESC(2, 0xcc, "RxBytes"),
-> > +	MIB_DESC(1, 0xd4, "RxCtrlDrop"),
-> > +	MIB_DESC(1, 0xd8, "RxIngressDrop"),
-> > +	MIB_DESC(1, 0xdc, "RxArlDrop"),
-> > +	MIB_DESC(1, 0xe0, "FlowControlDrop"),
-> > +	MIB_DESC(1, 0xe4, "WredDrop"),
-> > +	MIB_DESC(1, 0xe8, "MirrorDrop"),
-> > +	MIB_DESC(2, 0xec, "RxBadPktBytes"),
-> > +	MIB_DESC(1, 0xf4, "RxsFlowSamplingPktDrop"),
-> > +	MIB_DESC(1, 0xf8, "RxsFlowTotalPktDrop"),
-> > +	MIB_DESC(1, 0xfc, "PortControlDrop"),
-> -- 
-> pw-bot: cr
-
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dts
+index 5f9a46c2abb8..bc4c46235421 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-blueridge.dts
+@@ -1232,8 +1232,9 @@ led-controller@60 {
+ 		#gpio-cells = <2>;
+ 
+ 		gpio-line-names =
+-			"", "", "", "", "", "", "", "",
+-			"", "", "", "", "", "", "power-config-full-load", "";
++			"", "", "", "", "", "", "P10_DCM0_PRES", "P10_DCM1_PRES",
++			"", "", "", "", "PRESENT_VRM_DCM0_N", "PRESENT_VRM_DCM1_N",
++			"power-config-full-load", "";
+ 	};
+ 
+ 	led-controller@61 {
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts
+index a4aec3010456..638a2c1c7892 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dts
+@@ -1280,8 +1280,9 @@ pca_pres3: pca9552@60 {
+ 		#gpio-cells = <2>;
+ 
+ 		gpio-line-names =
+-			"", "", "", "", "", "", "", "",
+-			"", "", "", "", "", "", "power-config-full-load", "";
++			"", "", "", "", "", "", "P10_DCM0_PRES", "P10_DCM1_PRES",
++			"", "", "", "", "PRESENT_VRM_DCM0_N", "PRESENT_VRM_DCM1_N",
++			"power-config-full-load", "";
+ 	};
+ 
+ 	pca_pres2: pca9552@61 {
 -- 
-	Ansuel
+2.43.5
+
 
