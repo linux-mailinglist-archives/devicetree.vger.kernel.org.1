@@ -1,148 +1,198 @@
-Return-Path: <devicetree+bounces-122042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122043-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EBD39CD70E
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 07:27:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E0859CD72C
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 07:38:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8C45283419
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 06:27:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C7A742835C3
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 06:38:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B9B7187561;
-	Fri, 15 Nov 2024 06:26:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23F6E1885AA;
+	Fri, 15 Nov 2024 06:38:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RdO6eHo7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D/8S7oQ2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ED1C185B5B
-	for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 06:26:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DB9517BEC5
+	for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 06:38:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731652018; cv=none; b=Pz+QcIxuvwDebN8UYO/6JaSoI71IQVG+GrzqiZq010k/HB26rD9c/s/uRj+xKtOmXO9sBe3/tQsux16BvKgMKPSwQXx0BQyAmW4yldYLBhSS6udAlyBY0uGPNO45vUD5fgKrXRG0paMy/fU9wCvZfc/wk5FS8gR/xvIuTHVHn7I=
+	t=1731652711; cv=none; b=EpohH5bYenrS8AOBs8jMo0mCu9SqaBwyjUpoAMUHmX2zPti2IidTwZRcsrgmiHNoZbYTTBXtAMbOMLpqbnAA8RvSkEXjWmFq7V2Fk94t0H0aXh2J+4TzFvYRVEi+v1yncnIosvEbjjrkBOJbuG+WcOENwwy/o1uumimlX9j7clE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731652018; c=relaxed/simple;
-	bh=SEOTn+lkHc4hgkSChbLoegk28F7zgytRKRiZFmoACiU=;
+	s=arc-20240116; t=1731652711; c=relaxed/simple;
+	bh=rNXtr4YimcmppNnAP0ClgueGOcouCPS66vY3HdKZhcA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mAc7+jm2W/mareLsIGaD3hZN2AMa/s/NoQrV57+KqZ7OoR6G8s0M4o2X772lxJChT/z9ppii1h/Xvfa0dCKY7QtVfrhl6jSuSltm2isCi1i7RB7UvfaNquzSX1tdf0EExbWKJhFquvA9UpQkDdkDjPMaUd0E6ICE4AnS1oP59tE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RdO6eHo7; arc=none smtp.client-ip=209.85.167.45
+	 Content-Type:Content-Disposition:In-Reply-To; b=JDhc1VoaVJv48kfKbGChDwn5nwuZjXgt69gA0UzNrxLqY8YF/anTEaevsf0VBE1Er9FokcMJdNLYm57z8qOT5sse3ZHiKb/1bwXJqMeuvr6RUtMXUl4AF1R4a8RBe4Z4vNjvKJpFFQCCoeoLJnzzm6fFPMrUB2yUwf57hXdi+jQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D/8S7oQ2; arc=none smtp.client-ip=209.85.214.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-53da2140769so1497026e87.3
-        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 22:26:56 -0800 (PST)
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-20ce65c8e13so3942685ad.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Nov 2024 22:38:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731652015; x=1732256815; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1J8YPPScFRM8avVFTNWdv56IQPE49tvtNbMytzKJF2c=;
-        b=RdO6eHo7tAK7JIxaurzIrCgq8jF4iQODifHlnWk1A3vNJvmCHRlPZLHfRN8Aa3HGYV
-         yadVrpuNNVnUmbqAiiVat6CykZvTmCr0LzYSBC5ni1aqAth/czXBnzNwsWmHw6uOhXk4
-         Nhx9cMwMdcBu+7VMHiimf2/DTZ1iJ8c/iN8AlmdzNFa/spJquEFj6TzNOWCY8kHhcI5A
-         d+yfLK30o4FUYO152PrxgICaZbsQLLdhE7TCWWQjuPxph3bfhLwLEcLcz/ztAWRGddCt
-         LlNgRZzzEIgbNUexlkBOxrBGqiCnLkaV+J8xc9P1U8VXZtY22E6/VlHV2q4mrhBzcgQk
-         PDTw==
+        d=linaro.org; s=google; t=1731652707; x=1732257507; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=3ASYot59pnFaxW/GHMyz8Y0KBxe3S70/tiXkzx5jQ+Y=;
+        b=D/8S7oQ2CUyMbx5SNleM3iK5SKXdEl+ryUHH3mI+wSImOGNoIAON8i3rn/OzsUyJws
+         y3Iaijyv8h7IklSnb8jJov9CgZ1wAPnJlZSO7mMWCzD/BqkpIrBaNMoHs8QT2n/9jbh8
+         ikOQ+Hh+gM0frWEomec6LP25Isk1fYw6CrZzJqbPkDQFijLpIh5tZcq4jxrDDLsXIRaa
+         EqKyce8XU22gYCK3ZUDJCjRDX/lp1Bgudoa3ObJJHbkvQPfcLVz+yg3pFpRl0cfD6i71
+         s/K6VlF7i6ajoghIKOctxik9HOM5i2DvBXyCaLWsd16xdNLh0F4Fs7MNgjvWh6/0nK35
+         jqAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731652015; x=1732256815;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1J8YPPScFRM8avVFTNWdv56IQPE49tvtNbMytzKJF2c=;
-        b=ZLDJ5pyibIiKe3cjzKRkyvDZRw/SEFNK8KFSDEXzETn+rxO0O8Zr7sfRsk8tMOAZlP
-         DGXuDuCpWSycArXynmg6lhHVmGqnKTf2TzVXbK18EZOBWyg14SOLQCGCWtDO8AIa6sET
-         nI1sMAFGIf/98IxoI1ETsC08lvEp8/UBPygg8JU91U3kyMNOlvtm8iugueiPkX9zYhNn
-         JymIgBo9dqXShvSbitE1EM2Fij67lclZPwk6YCZlbew/iW6kJsbUyr+prFAY4mFvCV2Q
-         XR9Se8xPrkn8qPg48cChNnh5mpJ/R2psZ06n3FkDQaVkt4w1sLMxN2G86wLSbtaoff2e
-         531A==
-X-Forwarded-Encrypted: i=1; AJvYcCXz6YFdy2wI7PN3uP+Gx2EW0+wXxR9tPurn34lcd6Fn35V24d6HCYnKS7sqp487j6FBKJOC2kENjAKv@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw4+CP3LcO/ZaoTHWmim7ltGhS6q2OBO66y9w07S2URvGiB9M1y
-	lLbHXtbeEH6/IqS1SqEgrl4tVTaLEbKXOW7XyLaZlTeEj7jYlJcGH+HX/AUTolo=
-X-Google-Smtp-Source: AGHT+IHeRfCBqcZLNmnFoEG/mQnBqtDw3vKMNqwmSRjKMnCBShl3S5C72FWKECfFbwGJqH/kTo07sA==
-X-Received: by 2002:a05:6512:b96:b0:53d:a6d1:b72a with SMTP id 2adb3069b0e04-53dab29abdfmr500983e87.15.1731652014545;
-        Thu, 14 Nov 2024 22:26:54 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53da6548e9bsm445045e87.262.2024.11.14.22.26.52
+        d=1e100.net; s=20230601; t=1731652707; x=1732257507;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3ASYot59pnFaxW/GHMyz8Y0KBxe3S70/tiXkzx5jQ+Y=;
+        b=SHxxdGwiC6l/1p2CdhjoVl89U8ZNCttu77acShTT8vPAgvPdRbpxNomVG/K7/heAQc
+         uZYMzHEJrwsfLcZaYrTy3VibuBc/0J5eSIkazpgqlTInaKGxI8qCoVWOh2WYXFlgvKhv
+         5gPquDcb9XpwRjMZmzaxm/+Zp/ZPlBlFvm5gajryjt8NG5tcA7Mma2BzbrHiBMmgafY2
+         hH3Xa6yGN4oUASTN7MtInSj0AfZQi+jM2fZQ6WhovGgHR9TuCotd+irO0Ltc0dQWV4IQ
+         0/IHjx+mh+cI4UyMbnHWH5E6/Er7o97D/uGhQ+93uxJoX9slAlm0fy0iYiAYVQCpIyMu
+         Ehkw==
+X-Forwarded-Encrypted: i=1; AJvYcCVjpfbyQXs1OHZjVLyEuunzVGbOWKFKC0Buvox185gfW+fD2BDZ/zgHBi4VbbJ3O19BpXsS6o287V1k@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyxk9j7XmGNc+IkBW8yohY5wjFHjP8qNc0HfK/7vaKP0ydUwa90
+	W1HAXfU1uvucLNlUZfISkMcY1eV++T34Kxy9QpBbxyFu556cJ8AaHDmxQVEFsA==
+X-Google-Smtp-Source: AGHT+IHmK/K9KtNXF8MAKgzWlqq1Xbvw08TMatRS4xdoCN6jQH4adnR3wRNRA42mwN6r478Ju/K5qw==
+X-Received: by 2002:a17:902:ecc1:b0:20c:c631:d81f with SMTP id d9443c01a7336-211d0d71690mr17005295ad.21.1731652707497;
+        Thu, 14 Nov 2024 22:38:27 -0800 (PST)
+Received: from thinkpad ([117.193.208.47])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-211d0ec7bc7sm6089015ad.68.2024.11.14.22.38.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Nov 2024 22:26:54 -0800 (PST)
-Date: Fri, 15 Nov 2024 08:26:51 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Tingwei Zhang <quic_tingweiz@quicinc.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
-	Ziyue Zhang <quic_ziyuzhan@quicinc.com>, vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org, 
-	manivannan.sadhasivam@linaro.org, bhelgaas@google.com, kw@linux.com, lpieralisi@kernel.org, 
-	quic_qianyu@quicinc.com, conor+dt@kernel.org, neil.armstrong@linaro.org, 
-	andersson@kernel.org, konradybcio@kernel.org, quic_shashim@quicinc.com, 
-	quic_kaushalk@quicinc.com, quic_tdas@quicinc.com, quic_aiquny@quicinc.com, 
-	kernel@quicinc.com, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
-Subject: Re: [PATCH 4/5] arm64: dts: qcom: qcs8300: enable pcie0 for QCS8300
-Message-ID: <cp2g6j43zlx2njou5qz5tmwsnnzahqtk2hsxkj2ftrzbcmy742@ysca5ica4mvr>
-References: <20241114095409.2682558-1-quic_ziyuzhan@quicinc.com>
- <20241114095409.2682558-5-quic_ziyuzhan@quicinc.com>
- <rg4isufmnhnbsiljm34rfdsn46gfpatbsiscynaqtsnykbhnm3@ovcaulkfj4nk>
- <26943ea3-109c-473d-818b-2a08dba859ab@oss.qualcomm.com>
- <288be342-952b-4210-afe7-6e194dfd54a9@quicinc.com>
+        Thu, 14 Nov 2024 22:38:27 -0800 (PST)
+Date: Fri, 15 Nov 2024 12:08:16 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Richard Zhu <hongxing.zhu@nxp.com>
+Cc: l.stach@pengutronix.de, bhelgaas@google.com, lpieralisi@kernel.org,
+	kw@linux.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, shawnguo@kernel.org, frank.li@nxp.com,
+	s.hauer@pengutronix.de, festevam@gmail.com, imx@lists.linux.dev,
+	kernel@pengutronix.de, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 02/10] PCI: imx6: Add ref clock for i.MX95 PCIe
+Message-ID: <20241115063816.xpjqgm2j34enhe7s@thinkpad>
+References: <20241101070610.1267391-1-hongxing.zhu@nxp.com>
+ <20241101070610.1267391-3-hongxing.zhu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <288be342-952b-4210-afe7-6e194dfd54a9@quicinc.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241101070610.1267391-3-hongxing.zhu@nxp.com>
 
-On Fri, Nov 15, 2024 at 12:59:12PM +0800, Tingwei Zhang wrote:
-> On 11/14/2024 9:03 PM, Konrad Dybcio wrote:
-> > On 14.11.2024 1:10 PM, Dmitry Baryshkov wrote:
-> > > On Thu, Nov 14, 2024 at 05:54:08PM +0800, Ziyue Zhang wrote:
-> > > > Add configurations in devicetree for PCIe0, including registers, clocks,
-> > > > interrupts and phy setting sequence.
-> > > > 
-> > > > Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-> > > > ---
-> > > >   arch/arm64/boot/dts/qcom/qcs8300-ride.dts |  44 +++++-
-> > > >   arch/arm64/boot/dts/qcom/qcs8300.dtsi     | 176 ++++++++++++++++++++++
-> > > >   2 files changed, 219 insertions(+), 1 deletion(-)
-> > > > 
-> > > > diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-> > > > index 7eed19a694c3..9d7c8555ed38 100644
-> > > > --- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-> > > > +++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-> > > > @@ -213,7 +213,7 @@ vreg_l9c: ldo9 {
-> > > >   &gcc {
-> > > 
-> > > The patch doesn't seem to update the gcc node in qcs8300.dtsi. Is there
-> > > any reason to have the clocks property in the board data file?
-> > 
-> > Definitely not. Ziyue, please move that change to the soc dtsi
-> 
-> Gcc node is updated in board device tree due to sleep_clk is defined in
-> board device tree. Sleep_clk is from PMIC instead SoC so we were requested
-> to move sleep_clk to board device tree in previous review [1].
+On Fri, Nov 01, 2024 at 03:06:02PM +0800, Richard Zhu wrote:
+> Add "ref" clock to enable reference clock. To avoid the DT
+> compatibility, i.MX95 REF clock might be optional.
 
-Note, the review doesn't talk about sleep_clk at all. The recent
-examples (sm8650, x1e80100, sa8775p) still pull the clocks into the SoC
-dtsi, but without the freq.
+Your wording is not correct. Perhaps you wanted to say, "To avoid breaking DT
+backwards compatibility"?
 
+> Replace the
+> devm_clk_bulk_get() by devm_clk_bulk_get_optional() to fetch
+> i.MX95 PCIe optional clocks in driver.
 > 
-> [1]https://lore.kernel.org/all/10914199-1e86-4a2e-aec8-2a48cc49ef14@kernel.org/
-> > 
-> > Konrad
+> If use external clock, ref clock should point to external reference.
 > 
+> If use internal clock, CREF_EN in LAST_TO_REG controls reference output,
+> which implement in drivers/clk/imx/clk-imx95-blk-ctl.c.
 > 
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  drivers/pci/controller/dwc/pci-imx6.c | 19 +++++++++++++------
+>  1 file changed, 13 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
+> index 808d1f105417..bc8567677a67 100644
+> --- a/drivers/pci/controller/dwc/pci-imx6.c
+> +++ b/drivers/pci/controller/dwc/pci-imx6.c
+> @@ -82,6 +82,7 @@ enum imx_pcie_variants {
+>  #define IMX_PCIE_FLAG_HAS_SERDES		BIT(6)
+>  #define IMX_PCIE_FLAG_SUPPORT_64BIT		BIT(7)
+>  #define IMX_PCIE_FLAG_CPU_ADDR_FIXUP		BIT(8)
+> +#define IMX_PCIE_FLAG_CUSTOM_PME_TURNOFF	BIT(9)
+>  
+>  #define imx_check_flag(pci, val)	(pci->drvdata->flags & val)
+>  
+> @@ -98,6 +99,7 @@ struct imx_pcie_drvdata {
+>  	const char *gpr;
+>  	const char * const *clk_names;
+>  	const u32 clks_cnt;
+> +	const u32 clks_optional_cnt;
+>  	const u32 ltssm_off;
+>  	const u32 ltssm_mask;
+>  	const u32 mode_off[IMX_PCIE_MAX_INSTANCES];
+> @@ -1278,9 +1280,8 @@ static int imx_pcie_probe(struct platform_device *pdev)
+>  	struct device_node *np;
+>  	struct resource *dbi_base;
+>  	struct device_node *node = dev->of_node;
+> -	int ret;
+> +	int ret, i, req_cnt;
+>  	u16 val;
+> -	int i;
+>  
+>  	imx_pcie = devm_kzalloc(dev, sizeof(*imx_pcie), GFP_KERNEL);
+>  	if (!imx_pcie)
+> @@ -1330,7 +1331,10 @@ static int imx_pcie_probe(struct platform_device *pdev)
+>  		imx_pcie->clks[i].id = imx_pcie->drvdata->clk_names[i];
+>  
+>  	/* Fetch clocks */
+> -	ret = devm_clk_bulk_get(dev, imx_pcie->drvdata->clks_cnt, imx_pcie->clks);
+> +	req_cnt = imx_pcie->drvdata->clks_cnt - imx_pcie->drvdata->clks_optional_cnt;
+> +	ret = devm_clk_bulk_get(dev, req_cnt, imx_pcie->clks);
+> +	ret |= devm_clk_bulk_get_optional(dev, imx_pcie->drvdata->clks_optional_cnt,
+> +					  imx_pcie->clks + req_cnt);
+
+Why do you need to use 'clk_bulk' API to get a single reference clock? Just use
+devm_clk_get_optional(dev, "ref")
+
+And who is going to supply the reference clock in the absence of this clockn in
+DT?
+
+- Mani
+
+>  	if (ret)
+>  		return ret;
+>  
+> @@ -1480,6 +1484,7 @@ static const char * const imx8mm_clks[] = {"pcie_bus", "pcie", "pcie_aux"};
+>  static const char * const imx8mq_clks[] = {"pcie_bus", "pcie", "pcie_phy", "pcie_aux"};
+>  static const char * const imx6sx_clks[] = {"pcie_bus", "pcie", "pcie_phy", "pcie_inbound_axi"};
+>  static const char * const imx8q_clks[] = {"mstr", "slv", "dbi"};
+> +static const char * const imx95_clks[] = {"pcie_bus", "pcie", "pcie_phy", "pcie_aux", "ref"};
+>  
+>  static const struct imx_pcie_drvdata drvdata[] = {
+>  	[IMX6Q] = {
+> @@ -1592,9 +1597,11 @@ static const struct imx_pcie_drvdata drvdata[] = {
+>  	},
+>  	[IMX95] = {
+>  		.variant = IMX95,
+> -		.flags = IMX_PCIE_FLAG_HAS_SERDES,
+> -		.clk_names = imx8mq_clks,
+> -		.clks_cnt = ARRAY_SIZE(imx8mq_clks),
+> +		.flags = IMX_PCIE_FLAG_HAS_SERDES |
+> +			 IMX_PCIE_FLAG_SUPPORTS_SUSPEND,
+> +		.clk_names = imx95_clks,
+> +		.clks_cnt = ARRAY_SIZE(imx95_clks),
+> +		.clks_optional_cnt = 1,
+>  		.ltssm_off = IMX95_PE0_GEN_CTRL_3,
+>  		.ltssm_mask = IMX95_PCIE_LTSSM_EN,
+>  		.mode_off[0]  = IMX95_PE0_GEN_CTRL_1,
 > -- 
-> Thanks,
-> Tingwei
+> 2.37.1
 > 
-> -- 
-> linux-phy mailing list
-> linux-phy@lists.infradead.org
-> https://lists.infradead.org/mailman/listinfo/linux-phy
 
 -- 
-With best wishes
-Dmitry
+மணிவண்ணன் சதாசிவம்
 
