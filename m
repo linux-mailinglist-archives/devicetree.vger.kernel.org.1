@@ -1,96 +1,106 @@
-Return-Path: <devicetree+bounces-122142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 357619CE0EB
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 15:07:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C5489CE0F6
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 15:10:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE20E287FCA
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 14:07:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AB88B1F21CCC
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 14:10:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46C721CDA17;
-	Fri, 15 Nov 2024 14:07:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 238121BDA8F;
+	Fri, 15 Nov 2024 14:10:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Afj5+xRl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F4LGXIKQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B9031CD210;
-	Fri, 15 Nov 2024 14:07:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEDE912F585;
+	Fri, 15 Nov 2024 14:10:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731679640; cv=none; b=gunTIfUqACB5uPt9aJylvN2s/vWqbbJ83Xbz+RRzmcpV80w545Qjaa0wTi6GGszjkK6Pgmsgn5ZA7UFaxZJUebxV3PkomkWV44kot2SCnCVRV/Jaq8OM6KjCSv7U0AcCJeUj49uNCFK3j3N2hWzEuFXPI6qVvMDQeLm5nnGK1CE=
+	t=1731679828; cv=none; b=jzUdyqI9PuMpgkg5vk8APrWnuxDzQGdL/gmVttP6K6qopmH2Q2yzgrsP1KN5FyDEsI2FnimnAa0bj6TqRTyJceefjaAStGuYvZd0JWxBw+huJHvJPCeIYI7sw+1ASIVm1RZ77rtLLZGga2ooxWEYplKVZyG2ZQU8B8ktFNfy6ck=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731679640; c=relaxed/simple;
-	bh=KdMIxf58FVxdssgvDJJk+WJcQuA3LMVt3GbRlC1HMdM=;
+	s=arc-20240116; t=1731679828; c=relaxed/simple;
+	bh=8CSwi+zLM3ewH0q5v5yP7A9xGFhlcIhP7HN+w9H2H84=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=h6FEYXqMMSrChAbl24FdNS9DBcJq2Igw4fhI+M80ihjm58xPvB19NoEXSQSsGKBEPdfSWI6TQbH4EuthDIJ1iknP19qvuYEVAdRSEqFY2SyFK7NRnrL7qza71fRLd6v3MK+r43T11MOuH/sX9tOX4+e9HoUBZZzmqM/r1MU5w1w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Afj5+xRl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C1BCC4CED2;
-	Fri, 15 Nov 2024 14:07:19 +0000 (UTC)
+	 To:Cc:Content-Type; b=r+EDwatqQQHZbENC9/BtcCnjogtMcx+HiOAvoVkhQ46tKaG41qf7Qdfic1gSP/adTboxCIOk6WSb1yM4GHLqlKJRx7HGdzXFpOTjxFvn1v3DUAKIhH8jV+38aC8dya8KJgrmhydSExO1R6S3VTQikNxFEqHbZoIBn09HjxsqSOk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F4LGXIKQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FD0CC4CED2;
+	Fri, 15 Nov 2024 14:10:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731679639;
-	bh=KdMIxf58FVxdssgvDJJk+WJcQuA3LMVt3GbRlC1HMdM=;
+	s=k20201202; t=1731679827;
+	bh=8CSwi+zLM3ewH0q5v5yP7A9xGFhlcIhP7HN+w9H2H84=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=Afj5+xRl8ACHgc4JUB4c9SG1vHnrTzXpVUOnphosQF18zyQjDG4EtWjP1YOP933Y/
-	 gcJwGRLDe1sbAzvJ2BWLyty+mszyT7R7k5ar6Zij3gdysE0IKMA5P86qkgGjsOtMiR
-	 mJb+CZ7a+9imayitmhmAAIFDh5eyI8kcqJeH68RhY7z2PKAl7jul80eBFF7bL1B/kS
-	 0gTCgWg1C/dlBRvqNNp6SYOlvI6UEqfSgHPIJlQa8Q6lLgva0KRBvMvzrtgpClDrUV
-	 0SXPuG1urCvUSJ/a9AjdRJaIKDrJrT71eeZeww8pjW6GhRXHewzTDMP8kDXZnD8arj
-	 3YNrSY0ZZz9pQ==
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-6eb0c2dda3cso19624147b3.1;
-        Fri, 15 Nov 2024 06:07:19 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVgZ3vcK7r7sD4/2OEwPzHuZN+/q9x/X5S5FY2WbmLgBwlXHGxWWq4xfxORN1qocQWQEO+RlU+Vo4iB@vger.kernel.org, AJvYcCXQFuxWN0Fqa9NyU2+pJTEcZPtO8oHCg+OezndFu22cag9VuLqCCDBn7qyA4x88RWyh3fp1ClrTsnkb@vger.kernel.org, AJvYcCXvLvTqN0YRjxE1hrQaOinb3OD7Aido8cI/qlmKMSFKEl8UO6IQQecBqf6+S6KG8bslQSpij6wkSOKOHRdB@vger.kernel.org
-X-Gm-Message-State: AOJu0YwnwNfOPNdKFKNcg/cSSI+6OAs8o6VhF9FT5bX8Mx2WJ4pnkSTN
-	Q5R9qnXwwmvt2yvsMVriAgvRSIcQ2D5pURmFR2E0Ei2AneOYWaYKQQXYe13FxazHWMPVLzdLV8w
-	w0whaDdDXu3m4MdzxtxW0LIW/CQ==
-X-Google-Smtp-Source: AGHT+IFWmkCE81Tm2mvoVRJxeqLoR9tdqo2XQ+AgyKoHV9ZxQbPCvQG2HQklBmvrrBvGmQduTiT9sYVt/gndesa7n/U=
-X-Received: by 2002:a05:690c:4484:b0:6ee:664e:8c33 with SMTP id
- 00721157ae682-6ee664e92a2mr12401047b3.9.1731679638893; Fri, 15 Nov 2024
- 06:07:18 -0800 (PST)
+	b=F4LGXIKQnejA/xtyDR+CZAuDhnASsY/r7MFj28/Q50y5I/BIOT3N6+t7VWbBMGOT8
+	 4P46s4uf3LW/HD5irCXeQJr7iAqGWkWlvDVrxhthCiZTMz479sWgAilGub1OWcCXTZ
+	 hBDZqwNuNPx7kTfVypIADM01/zVb5cAVk0p8BoxLbsgiQHWJmUJJZUQrpXI9lL/d4P
+	 KHs8rqYZk9wpDPZ7RpSKnFEf7WkJNrmhBQgxSZjCFpIvjKYyMWMaMW4311dOqcthwy
+	 gZJawSiE2nlKmzKx3LjG5p3M6zB+Y5nTmEShxpcqHzPKcrFOTLCjoEk7PH4XRB8dmh
+	 CNnQ2YFK9X1ag==
+Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e382350652bso885187276.3;
+        Fri, 15 Nov 2024 06:10:27 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUbzf3h+7hhHBpSMezepbAXAYOsa5K9czU8x2wizDTNKG4GrLZprPYqe2vn88fON5wMKXOeLfQyaZHaEUsf@vger.kernel.org, AJvYcCX7RGWSKxOaj5lFOmm0fkGf8RuMTWJY33I0MSgufaV4++x0IQa5fDVzsLQJ+ZVhNawolA0oYWVYhdO1@vger.kernel.org
+X-Gm-Message-State: AOJu0YxW+13bee8f8/SNX8iM9jCzrSUus/Czz7CHYz8igOYERAgVg65C
+	zwpwAFZQp79lya9OlIDGH6thERNcgjSXgH/8/sdGz6sI4Ivf/qDgSj5mf+KP4EOVYB0qm4jEpdV
+	WYI2Zq6ACUd07tIH5iFi4mHNIfg==
+X-Google-Smtp-Source: AGHT+IHryldJ3ukfy6/K9XYjT+zG+pVX4OOyz2cm6ONsY6VlQexu1ggrxHZf21CfHDkABwxYg58gi7ylStJXS609Zfc=
+X-Received: by 2002:a05:690c:6707:b0:6de:a3:a7ca with SMTP id
+ 00721157ae682-6ee55cbc10cmr35436367b3.32.1731679826592; Fri, 15 Nov 2024
+ 06:10:26 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241105213217.442809-1-robh@kernel.org> <20241115072604.yre2d7yiclt5d3w5@thinkpad>
-In-Reply-To: <20241115072604.yre2d7yiclt5d3w5@thinkpad>
+References: <20241106171028.3830266-1-robh@kernel.org> <87jzdfcm3l.fsf@mpe.ellerman.id.au>
+ <20241114125436.GL29862@gate.crashing.org>
+In-Reply-To: <20241114125436.GL29862@gate.crashing.org>
 From: Rob Herring <robh@kernel.org>
-Date: Fri, 15 Nov 2024 08:07:07 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLkVUSgL-r1YvdSOTQGeN0r4Co=NRxvX1WL6q6yt0zN6g@mail.gmail.com>
-Message-ID: <CAL_JsqLkVUSgL-r1YvdSOTQGeN0r4Co=NRxvX1WL6q6yt0zN6g@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: PCI: snps,dw-pcie: Drop "#interrupt-cells"
- from example
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Jingoo Han <jingoohan1@gmail.com>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Gustavo Pimentel <gustavo.pimentel@synopsys.com>, linux-pci@vger.kernel.org, 
+Date: Fri, 15 Nov 2024 08:10:15 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+OCMa1P_AAxL7LxRjo7iJ368wwYFOhZ_-rSYbs=0QbWA@mail.gmail.com>
+Message-ID: <CAL_Jsq+OCMa1P_AAxL7LxRjo7iJ368wwYFOhZ_-rSYbs=0QbWA@mail.gmail.com>
+Subject: Re: [PATCH v2] of: WARN on deprecated #address-cells/#size-cells handling
+To: Segher Boessenkool <segher@kernel.crashing.org>
+Cc: Michael Ellerman <mpe@ellerman.id.au>, Saravana Kannan <saravanak@google.com>, 
+	linuxppc-dev@lists.ozlabs.org, Conor Dooley <conor@kernel.org>, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 15, 2024 at 1:26=E2=80=AFAM Manivannan Sadhasivam
-<manivannan.sadhasivam@linaro.org> wrote:
+On Thu, Nov 14, 2024 at 6:59=E2=80=AFAM Segher Boessenkool
+<segher@kernel.crashing.org> wrote:
 >
-> On Tue, Nov 05, 2024 at 03:32:16PM -0600, Rob Herring (Arm) wrote:
-> > "#interrupt-cells" is not valid without a corresponding "interrupt-map"
-> > or "interrupt-controller" property. As the example has neither, drop
-> > "#interrupt-cells". This fixes a dtc interrupt_provider warning.
+> On Thu, Nov 07, 2024 at 10:35:58PM +1100, Michael Ellerman wrote:
+> > "Rob Herring (Arm)" <robh@kernel.org> writes:
+> > > While OpenFirmware originally allowed walking parent nodes and defaul=
+t
+> > > root values for #address-cells and #size-cells, FDT has long required
+> > > explicit values. It's been a warning in dtc for the root node since t=
+he
+> > > beginning (2005) and for any parent node since 2007. Of course, not a=
+ll
+> > > FDT uses dtc, but that should be the majority by far. The various
+> > > extracted OF devicetrees I have dating back to the 1990s (various
+> > > PowerMac, OLPC, PASemi Nemo) all have explicit root node properties.
 > >
+> > I have various old device trees that have been given to me over the
+> > years, and as far as I can tell they all have these properties (some of
+> > them are partial trees so it's hard to be 100% sure).
 >
-> But the DWC controllers have an in-built MSI controller. Shouldn't we add
-> 'interrrupt-controller' property then?
+> Many SUN systems won't have such superfluous properties.  But does
+> anyone use such systems at all anymore, and do people use dtc with
+> those :-)
 
-Why? Is that needed for the MSI controller to function? I don't think so.
-
-Now we do have "interrupt-controller" present for a number of MSI
-providers. I suspect that's there to get OF_DECLARE to work, but I
-doubt we really need MSI controllers initialized early.
+There's still a few presumably. Sparc is omitted from this warning
+already because I suspected a problem which was confirmed on v1 thanks
+to the DT dumps here[1].
 
 Rob
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/davem/prtconfs.git/
 
