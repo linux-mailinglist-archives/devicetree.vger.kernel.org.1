@@ -1,294 +1,199 @@
-Return-Path: <devicetree+bounces-122021-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122022-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42EC59CD4D7
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 02:00:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98DE79CD50C
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 02:30:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C8DAA1F216EA
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 01:00:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 326A4282615
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 01:30:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8CA212B94;
-	Fri, 15 Nov 2024 01:00:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55904762E0;
+	Fri, 15 Nov 2024 01:29:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="jpwIXWw9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U3jc+NoY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00128a01.pphosted.com (mx0b-00128a01.pphosted.com [148.163.139.77])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0F791370;
-	Fri, 15 Nov 2024 01:00:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=148.163.139.77
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731632443; cv=fail; b=Q50d+9QOQ5XOMK75kT6Bh9/sFPWCcF3YK2ZKb8iEraKEb+Jrjh+YJNd+MghlyF0Ve+aduqpGbDAjD2cOxLw5L6a8ovzcbGBsFxW9NQJttVpRqgP5EIM25nHB5sa7pff+8o2L1hWP7+B36+nTmA/Do/Zcq8xYjwqmOnAnEoE3K08=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731632443; c=relaxed/simple;
-	bh=3rKkMJyawofE8zG99dZMnousqHLul8NK2hAJVKC47T8=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=ecjVPPBAstLGyliTmA/G0jpfK0r5hIN1vVwrBV+1HZZCiCBSGRRUUF9FgxCFdjyoyI5THmK4ZadkhY/DNMIDWzT1V20B5caCgMmnVORQPnXS84m7jlrcNOfXUmHHFlXovZhhb8ToFFcd7vY7nufN3oyU78daB3TAneT331CxU/0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=jpwIXWw9; arc=fail smtp.client-ip=148.163.139.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167091.ppops.net [127.0.0.1])
-	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AEK4YaD006012;
-	Thu, 14 Nov 2024 20:00:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=4oG58
-	IQ73zGOver0CgSfsa2zljK3iZw3wtFFvgJLVP4=; b=jpwIXWw9nJDmxqdMapE4g
-	LEE26jSJ6zBoKIjhKtjFhOcmlAxu2P5h+djRPH1pjNWbwZo73x0Whi2DtzQhwfl9
-	BI9RNDeQ2mmOLKYYweqsD+vIMxtU/9FhjbkxGROJFSPdF5tu1Npf+Ne7ZexNos4E
-	kHJwsCwD0DdWXX53660JRLArOZvx6qyCeG8uZpJAOQGznsQs9y0CtnmHS2Ed+0mM
-	LlSEJ/nI8IghqZRTxOcDQTj+61nkbpxpLjXnlJIseJ7Xay0wc0fR3LhAynPIdSa8
-	quevs/1gJz7JgE6LxWmN7KV44L2ww+Kt0WRcHCHrugTZoIdrbLUNpBscP33S5Wfr
-	w==
-Received: from sa9pr02cu001.outbound.protection.outlook.com (mail-southcentralusazlp17011028.outbound.protection.outlook.com [40.93.14.28])
-	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 42vrwwk409-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Nov 2024 20:00:24 -0500 (EST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kEpCTLNZQtN6NmIZ+vPJBFVn3ch+D5pgoTTk4EJLtXVSDKIHrDlS9LChV7T4T1GvBZkjeHCS/eRonpr/j0rVh3ZGVEo1tzmzz6EevIok8wuDaDmSrnFAQLihm7jkLdo5Aj4wPDTOkT2QY+UiOdTZDYyfILfLaRIZtq0v/+1qRQ2od3beJo4vRhVM6UHHxWdZz+ht/0YdPsNKQCkUluc0xaQ5b+EKHVFn2EnfxKMoa98Zhh0Z4BLriHgf4N+BqHj5HHsp3/jKbWo8rlW4WC6tR9vp46hY7JFNCZnhmP6QKDGcjwnbfHcKN3SdtLAdwu3GZ0IKYXJVQWLhMOlfTQFX/g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4oG58IQ73zGOver0CgSfsa2zljK3iZw3wtFFvgJLVP4=;
- b=RCSzfUUt49U8zdCW6RY7dpnHxDJVM+aQf5rg2foh7HzIiomMJEuSXK7dxAfPT+nJrEzFxSu9UPk21L15fZUOPtViRghfcjG8pVwpCRSoFs9Zw3E8xIPQmJw/XiPhYp0tKlvqwIOqzz+nv9spknZw4ueaLq4XymuxtlVr3HLxnZ4ZphVboOyMG0T1iKPvoe0qpnt+somExnBWwknukaiIEevOIFATj6qJgbPnjonIDUSNcPSCmArwTVG7eg5R5bQTW958x3aUQvf0MKEVxrzfh8pQJMwsCdy7Euo0YgYK26/YuUPNyl/BB8gzmPuRkGCq3B7MLLbuiHyRN6DSKQh7fw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
- dkim=pass header.d=analog.com; arc=none
-Received: from BLAPR03MB5604.namprd03.prod.outlook.com (2603:10b6:208:29a::12)
- by SA0PR03MB5580.namprd03.prod.outlook.com (2603:10b6:806:b0::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.19; Fri, 15 Nov
- 2024 01:00:21 +0000
-Received: from BLAPR03MB5604.namprd03.prod.outlook.com
- ([fe80::3c24:93fb:94a7:241e]) by BLAPR03MB5604.namprd03.prod.outlook.com
- ([fe80::3c24:93fb:94a7:241e%7]) with mapi id 15.20.8137.018; Fri, 15 Nov 2024
- 01:00:21 +0000
-From: "Calam, Ramon Cristopher" <RamonCristopher.Calam@analog.com>
-To: Mark Brown <broonie@kernel.org>
-CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Liam Girdwood
-	<lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Subject: RE: [PATCH 1/2] regulator: lt8722: Add driver for LT8722
-Thread-Topic: [PATCH 1/2] regulator: lt8722: Add driver for LT8722
-Thread-Index: AQHbMcGjKrPZHHPhVUmEJqa+GKa1wrKtVj6AgARoqQA=
-Date: Fri, 15 Nov 2024 01:00:20 +0000
-Message-ID:
- <BLAPR03MB5604248B31390D68AB180D8393242@BLAPR03MB5604.namprd03.prod.outlook.com>
-References: <20241108093544.9492-1-ramoncristopher.calam@analog.com>
- <20241108093544.9492-2-ramoncristopher.calam@analog.com>
- <2cce3ad8-7a3a-47db-a18c-33c32e96c009@sirena.org.uk>
-In-Reply-To: <2cce3ad8-7a3a-47db-a18c-33c32e96c009@sirena.org.uk>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BLAPR03MB5604:EE_|SA0PR03MB5580:EE_
-x-ms-office365-filtering-correlation-id: 9e57ffdd-d1b2-4503-d126-08dd0510e118
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|376014|1800799024|366016|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?mipo4t1EK9nE35XQRFnHB10N8vsk19xahTUvAwb8KUeLr247I6bWSumn2mq+?=
- =?us-ascii?Q?Rm1xrEjNv/5PJdMR3zJJzBM5XSX9sXoCufjXChAOa+fij8OhOmf/E9dP+EvI?=
- =?us-ascii?Q?MthQnn5sBww5e4+XM1ntr91zb1ZnEmmSPXvr81ddT1HGBBGfJNlGv0OPGQL4?=
- =?us-ascii?Q?SgpUII10RLeIj1sB/PbndCzQrNYNhTWwv23dY+azZrWezySwc0ttnDi3g+wN?=
- =?us-ascii?Q?Yk92rM8Uf25QLVQyrlrSmNMxbV7K+XVzmpiy1VX3MjzKeMe8Pa2ZwlR7rSEH?=
- =?us-ascii?Q?MUakd1DB12p319HKfT44vpKeX8VCkjThiSrXNPjcblFJyLIlbYFoE2fc1moo?=
- =?us-ascii?Q?W0PYwZYmGhi88xvslkk4bmMJwuD03pF8c25rr/lP/9ELDDNDujnHZ/Z+357i?=
- =?us-ascii?Q?5aOOUwUiy8ZfH8gzkosBp3Zx+RtdINDz+igTLJtF9xEi31i9AqS9ek+kiOnJ?=
- =?us-ascii?Q?FKfkGm2GbEHzrHAadtmhXc5mZZJ3A1Q+juyvyaNFxwsOgWRZVr1r0Ldu2SYz?=
- =?us-ascii?Q?5jY3cCbw14I6xvp8VGMaYkZypFqMwCV4PHUopGcMVWjrJAhnx21tlZ6JJ83N?=
- =?us-ascii?Q?wYEzT4OOgV6zWcLyuvrrblF/ykbi3He+s0GXiyd+qVP23BL+5O0tftc0zQb1?=
- =?us-ascii?Q?gF4dYw9KIjfb4YouwoQntuZaHtNKyiTTwQAdH8RM5nE6nG/SUx/I273JQ6FR?=
- =?us-ascii?Q?1SzM4M9PBRl2Lwdc4TKgb8hUVL4HKEyiL4bcmUtmuhvhhoavDdlaC0n77RFy?=
- =?us-ascii?Q?qLgsfgxKYxkuU3mF4nZSO4qP9bz81qDugx38ic0vU9YgmU0r1OIItkzmYHid?=
- =?us-ascii?Q?Cou/k8aZMidBrQiZFG+Ex/1stzymCjHmGnQN5pHQ2NQRBVSPFvkEQKJgAnRb?=
- =?us-ascii?Q?49bKuXI1dkaWvOcJygiTd0etdmSNoEDQdXpgZn/gzXBgtxgjzTTzRhzge1eO?=
- =?us-ascii?Q?1k63tXU0vzfycIgjiVvurkTWkNAc1u0Bw8xfWmbNlpJ87AUvSySROsNTTIL+?=
- =?us-ascii?Q?9vhPkIjFy/iomznU3ZkeKuy+kSa8un8lshZXOcxe5JT7gfj/JAz1clYWyr2P?=
- =?us-ascii?Q?pBC/rraLzIORmfnz9I1RYdKPjCM9Q5DbrJcHKaesysnmGxlraFT9mqCzUHwf?=
- =?us-ascii?Q?RJ9o4bmhFlcHHC1JXzxJ+tV339aGvpQoOPB8PId3f5mF8qOZuZQw+chu6q8L?=
- =?us-ascii?Q?o9sY+4ajXGzYnN8x6pKYnE7RbUZtM4o2O2YBQlOAKk4wmhD+TMBqsh/mnOF5?=
- =?us-ascii?Q?KCvqk+0yxllNhWuM6zIlEf7QGL83rjYB/L4Vpd3ewF16CyxdM3T08JhMP0XG?=
- =?us-ascii?Q?khNjXDIJ/m65v8kUPTk82TiJO+JTOs3BiGTY7l94ZEZcMJ6DIv/VCg+or6Jq?=
- =?us-ascii?Q?sq4ywKY=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BLAPR03MB5604.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?J14v5OEOLMYyW8xRZJnCMzPStVF/ChPPIk6JQ1pkVWPxGUdDuxS7BZOujfUl?=
- =?us-ascii?Q?6hep/2dSGhn8zPfWJ3SVxOH5MSLu+5jSIQzxAxDvMlH9Tp87WW3FcnVs3E8P?=
- =?us-ascii?Q?mPdYEaHmpD4hcb4Rwr7If8uY6vHT9/xGERvA/2MvD+SB7dPE0FmxgJuflZbs?=
- =?us-ascii?Q?n/A+PIc85QpokpTzZ1toIAKXeDJ7+tpNGEHDYtRX2ZVFnr977WN/o+V55Gyu?=
- =?us-ascii?Q?b39jSYdL7Pg8pRbGeSAMca1B9IJBD1nOhRAV/QWakzg1FxzWuANbIOvXsaAe?=
- =?us-ascii?Q?4ycrNojRd+CKjT6XPw3zx7lxmjhJSAcAWbrM/S+kwJ+NgbBd1kAXG4r0vCtR?=
- =?us-ascii?Q?OkouHsw6T9ZFoi9kmB1dSrnXXjv951HHeFbe0Lmis+WKvXzeD3aJUXGzO03Q?=
- =?us-ascii?Q?iAUl6tpGlKgtJHPCsnoC8LuSRxefXFdhdpgoAFFHFATR7jVpr7sl/4A6WHJh?=
- =?us-ascii?Q?dZ69QavTdywcdpkplCyTz284g2S8Dndj0Qb5hasX+Uqae1X9e8kfoWa+mmLb?=
- =?us-ascii?Q?n9ThsUfdOKQFl/+tPPMbJuwpCzHk6H0DlO5lbYE8dU6knxsiYY4Xi/gGDo5E?=
- =?us-ascii?Q?RSejXhucUMNZBRAcivKMV6G2WJpCa/A1aPcapxmA+AKNZodZ+UXgzMLfwby5?=
- =?us-ascii?Q?83C1lAoXoKkVSqe3VSuWJdqr3dDPj90RKvyppurxnHW0YMGZ0uFy0umMXZE6?=
- =?us-ascii?Q?F8gsSVKbdnBRvtUdl81fUiUl/VYFTfjEYnAyaZ4+vfk9UA9+zadFCEdCbaXX?=
- =?us-ascii?Q?7G3DYl39Sun5GjQhbavZRlMFt5WNbUPr/kRmvcVhrTq3XSolaPf3Ozo/PB0H?=
- =?us-ascii?Q?cdAIAWjrYdhsASjj3V97ceWshaIKUEOxOdavS7N5/7r+HqBo0dvX2d859r6n?=
- =?us-ascii?Q?aw2/YlmwR7yRE9sQXDToERYFqmNR3JPrhyF1x7fyGgGHkERygDMGGSybd5Jt?=
- =?us-ascii?Q?HmEEucBEhMnrNoFGteYWEWTnwHdBRYIR32NVBH+RWh8mqakitHeCV4gd0mVj?=
- =?us-ascii?Q?T4gOGWKX5yFRrhjssT6nOA5YZQ8+qB85j8m9HVWqlfN41j5ywV9jZM+P6QS7?=
- =?us-ascii?Q?P7GJ+3pF+A5TRLYzRyH5fEpZJyWfBFVLAHbAB2bNMEfBe8471c9pysroAcI4?=
- =?us-ascii?Q?E6DSJHwRkBKGQGhT1DBwGCMpy+8+VB7bvXxASL4+7+0SLOxwOjXmEKCL5crJ?=
- =?us-ascii?Q?fVPT3YBBroeISmZ6OsoJ3rN3MKjhrRhZgfWLX/M7HiwbjtZWT8jC5JFn4v5V?=
- =?us-ascii?Q?I9xcqgqv3c9/ZKj85an7cYg2zP7qw9/emLgB4KsYAQEaughEXKFJHIQDV/eo?=
- =?us-ascii?Q?3J8sIv2RIXb7Bvg54swskzpY8YFN6zZBWyIzWWJdNVPOGWgonPDc7BtlYvKu?=
- =?us-ascii?Q?v9ZfVqvnnM6QXWamhCallAHzEpU8xoxKqDMl5tMu84/w4HhhxPR9q7btYz6h?=
- =?us-ascii?Q?KGMMLFiVFtnDBj/XAgiREiS/jvMW+mQ5nYVDo7tLl5nUQDNv9amZMSPbytHK?=
- =?us-ascii?Q?o8UY7no+3u4kFa+rKDGMV6hv2WtUO2SK7ASswcjqCVptmOJZQ6/3GkgBRyNS?=
- =?us-ascii?Q?0cYvmMmz8rekmuGjEEwFQi4myeMneymPPuT7nq+H0TcILViXPAQhryM6d4Nq?=
- =?us-ascii?Q?lQ=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28D30CA5B;
+	Fri, 15 Nov 2024 01:29:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1731634197; cv=none; b=NelqfL1VCGbmfvaN/R+7Oa8gdTxpoWLAR+akozE1ZJiGGEHnyZ0morzhGrzWHHoU/HgR0Gjw4WgUxlcsDrKMl0gHwPy6oeybU3fLHKfjI0GLYf1dpjUFh+xCQt9KuisPPHySK0Rkox0IvImn/hFSOT96u5+9opBXWHuIw4IAbRg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1731634197; c=relaxed/simple;
+	bh=F7vjyos0o0cMAhq/QgY+/gErSw+KDdiVVSrnj53mNpI=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=B8FQdiYzplXsievVnVnX+KKaEjQw31bCMxTJT70KHgxnjp9uIAI64oIblsi0j8tsBLr3x6z7Bac1T5cQVwo1S5XsJOvB+K8DoBUtZNYSa+LMp21AdcBXfKmMFPuyMjbqcf46PKm14GkWBHpgq1UeFSeuCfIViRxp5kTvOYwKjKA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U3jc+NoY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 946C1C4CECD;
+	Fri, 15 Nov 2024 01:29:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731634196;
+	bh=F7vjyos0o0cMAhq/QgY+/gErSw+KDdiVVSrnj53mNpI=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=U3jc+NoYqih9t4XYPl8bBhd15QLfcgEeksTy//Rp2d2nGRctt9Dcp23AQ8BO4mQwM
+	 xNRvSiTJEENI7Ju7D5OuVF+l31xIJM1E5r29OiugiXvikQNAqDS7UUq+yPYcgfsx85
+	 sfwpG/xQ9zYmXw3vWRxe6AmxJZTgHS1j6kAbOhkkV6xVzWsyWNyCcDH4U78ZNXf3lN
+	 y8RjonQ9d0H14CuP2XgNuiRZWUcrcLPx9HlNl1fG4DbnjXx917CI3E3FJIN3PrvfVf
+	 V1JJGpMDtUg2Gs+F2KhYqNKwtm+VLet5xVzlMoyAmqXSvyX3g8pOLnVm1cYWz99pVo
+	 DOCosyyQ6rDag==
+Message-ID: <430bde3b35382e640843e32a9f351326.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: analog.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BLAPR03MB5604.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9e57ffdd-d1b2-4503-d126-08dd0510e118
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Nov 2024 01:00:21.0179
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: pA1lDnZrAtgqL6Ucj5W7kswYyLFu6WYLsnG4s0YQAI/mbClwEshDmx4IzYBBBTFKQaAi3I3y4a7Lynb3d3uIjjCQPKkawobKULZ0w89DNqg+F5Kau53woRO3cCZhkQc+
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR03MB5580
-X-Proofpoint-ORIG-GUID: zrs3P8Sjc6u5JzqyzydKrcleNZMAd3tA
-X-Proofpoint-GUID: zrs3P8Sjc6u5JzqyzydKrcleNZMAd3tA
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- bulkscore=0 phishscore=0 spamscore=0 clxscore=1015 lowpriorityscore=0
- malwarescore=0 suspectscore=0 impostorscore=0 mlxscore=0 mlxlogscore=999
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411150007
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20241106-freefall-slider-db379b05821e@spud>
+References: <20241002-private-unequal-33cfa6101338@spud> <20241002-hula-unwashed-1c4ddbadbec2@spud> <2b49c4df-a34a-42c5-8d44-9e47da630fe8@linaro.org> <1jwmiqsks3.fsf@starbuckisacylon.baylibre.com> <20241003-tacking-ladylike-dfe2b633e647@spud> <20241106-freefall-slider-db379b05821e@spud>
+Subject: Re: [PATCH v1 08/11] clk: move meson clk-regmap implementation to common code
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, Daire McNamara <daire.mcnamara@microchip.com>, pierre-henry.moussay@microchip.com, valentina.fernandezalanis@microchip.com, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>, Lee Jones <lee@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Kevin Hilman <khilman@baylibre.com>, Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Philipp Zabel <p.zabel@pengutronix.de>, linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+To: Conor Dooley <conor@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>
+Date: Thu, 14 Nov 2024 17:29:54 -0800
+User-Agent: alot/0.12.dev1+gaa8c22fdeedb
 
-> -----Original Message-----
-> From: Mark Brown <broonie@kernel.org>
-> Sent: Friday, November 8, 2024 8:51 PM
-> To: Calam, Ramon Cristopher <RamonCristopher.Calam@analog.com>
-> Cc: linux-kernel@vger.kernel.org; devicetree@vger.kernel.org; Liam Girdwo=
-od
-> <lgirdwood@gmail.com>; Rob Herring <robh@kernel.org>; Krzysztof
-> Kozlowski <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>
-> Subject: Re: [PATCH 1/2] regulator: lt8722: Add driver for LT8722
+Quoting Conor Dooley (2024-11-06 04:56:25)
+> On Thu, Oct 03, 2024 at 12:33:40PM +0100, Conor Dooley wrote:
+> > > IIRC, Stephen's idea was more the bring regmap support in clk-gate.c,
+> > > clk-mux, etc ... I'm not quite sure how make iomem and regmap co-exist
+> > > in a manageable/maintainable way within those drivers (without adding=
+ yet
+> > > another level of abstraction I mean) ? Silently creating a regmap may=
+be
+> > > ? but that's probably a bit heavy. I did not really had time to dig m=
+ore
+> > > on this, I guess no one did.
+> >=20
+> > I guess I have some motivation to looking into it at the moment. I had
+> > my reservations about the Meson approach too, liking it more than
+> > Qualcomm's didn't mean I completely liked it.
+> > It was already my intention to implement point b of your mail, had the
+> > general idea here been acceptable, cos that's a divergence from how the
+> > generic clock types (that the driver in question currently uses) work.
+> > And on that note, I just noticed I left the mild-annoyance variable name
+> > "sigh" in the submitted driver changes, which I had used for the
+> > clk_regmap struct that your point b in the link relates to.
+> >=20
+> > > I don't really have a preference one way or the other but if it is go=
+ing
+> > > to be exposed in 'include/linux', we need to be sure that's how we wa=
+nt
+> > > to do it. With clocks poping in many driver subsystems, it will
+> > > difficult to change afterward.=20
+> >=20
+> > Yeah, I agree. I didn't expect this to go in right away, and I also
+> > didn't want to surge ahead on some rework of the clock types, were
+> > people to hate even the reuse.
 >=20
-> [External]
+> Hmm, so how (in-)complete of a regmap implementation can I get away
+> with? I only need clk-gate and clk-divider for this patchset...
 >=20
-> On Fri, Nov 08, 2024 at 05:35:43PM +0800, Ramon Cristopher M. Calam
-> wrote:
-> > Add ADI LT8722 full bridge DC/DC converter driver.
->=20
-> > +++ b/drivers/regulator/lt8722-regulator.c
-> > @@ -0,0 +1,701 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Analog Devices LT8722 Ultracompact Full Bridge Driver with SPI
-> > +driver
-> > + *
->=20
-> Please make the entire comment a C++ one so things look more intentional.
+> Shoving the regmap into the clk structs makes things pretty trivial as I
+> don't need to do anything special in any function other than
+> clk_*_readl()/clk_*_writel() and the registration code. A flag isn't
+> even needed to determine if a clock is a regmap one I don't think, since
+> you can just check if the regmap pointer is non-NULL.
 
-I will implement this.
+For the basic clk types I think it would be good to leave the old stuff
+alone. We have already split the logic out into helpers, so I wonder if
+we can do this better by making kernel modules for the different basic
+regmap clk types and exposing registration APIs. If we force drivers
+that use the basic regmap types to 'select' the module then we'll make
+it so that we don't include code that isn't used anywhere. That's one of
+the problems with the basic clk types, it's always built. It also lets
+us avoid making regmap a dependency for the clk framework at large.
+
+Doing that would also let us avoid the flag because it will be explicit
+in any registration API, clk_register_divider() vs.
+clk_register_regmap_divider(). Yes we duplicate some boiler plate logic
+around read-only and registration paths, but this is alright as long as
+we can share most of the code and gain the advantage of removing the
+code entirely when it isn't used.
+
+I wonder if we can even make a regmap on the fly for the iomem pointers
+so that clk_divider_readl() can always use the regmap API to access the
+hardware. Sounds wasteful but maybe it would work.
+
+> My use case doesn't
+> actually need the registration code changes either as, currently, only reg
+> gets set at runtime, but leaving that out is a level of incomplete I'd not
+> let myself away with.
+> Obviously shoving the extra members into the clk structs has the downside
+> of taking up a pointer and a offset worth of memory for each clock of
+> that type registered, but it is substantially easier to support devices
+> with multiple regmaps that way. Probably moot though since the approach y=
+ou
+> suggested in the thread linked above that implements a clk_hw_get_regmap()
+> has to store a pointer to the regmap's identifier which would take up an
+> identical amount of memory.
+
+We don't need to store the regmap identifier in the struct clk. We can
+store it in the 'struct clk_init_data' with some new field, and only do
+that when/if we actually need to. We would need to pass the init data to
+the clk_ops::init() callback though. We currently knock that out during
+registration so that clk_hw->init is NULL. Probably we can just set that
+to NULL after the init routine runs in __clk_core_init().
+
+Long story short, don't add something to 'struct clk_core', 'struct
+clk', or 'struct clk_hw' for these details. We can have a 'struct
+clk_regmap_hw' that everyone else can build upon:
+
+  struct clk_regmap_hw {
+        struct regmap *regmap;
+        struct clk_hw hw;
+  };
+
+and then set the regmap pointer during registration in
+clk_hw_init_regmap().
+
+int clk_hw_init_regmap(struct clk_hw *hw)
+{
+	struct device *dev;
+	struct regmap *regmap;
+	struct clk_regmap_hw *rhw;
+
+	rhw =3D clk_hw_to_clk_regmap_hw(hw);
+
+	dev =3D clk_hw_get_dev(hw);
+	if (!dev)
+		return -EINVAL;
+
+	regmap =3D dev_get_regmap(dev, hw->init->regmap_name);
+	if (!regmap)
+		return -EINVAL; // Print helpful message
+	rhw->regmap =3D regmap;
+
+	return 0;
+}
+
+or we can even make it so that there's clk_hw_init_regmap() and
+clk_hw_init_regmap_name() so that drivers can have multiple functions if
+the clks need different regmaps.
+
+int my_init_regmap(struct clk_hw *hw)
+{
+	int ret;
+
+	ret =3D clk_hw_init_regmap_name(hw, "my_name");
+	...
+}
+
+If you don't need the multiple regmap support then it's fine to punt
+here until later.
 
 >=20
-> > +static int lt8722_reg_read(struct spi_device *spi, u8 reg, u32 *val)
-> > +{
+> I don't really care which way you want it done, both are pretty easy to
+> implement if I can get away with just doing so for the two standard
+> clock types that I am using - is it okay to just do those two?
 >=20
-> > +static int lt8722_reg_write(struct spi_device *spi, u8 reg, u32 val)
-> > +{
->=20
-> You can use these as reg_read() and reg_write() operations in regmap whic=
-h
-> will allow the driver to use all the standard helpers and vastly reduce t=
-he size
-> of the driver.
 
-I will implement reg_read() and reg_write() operations in regmap to utilize
-the standard helper.
-
->=20
-> > +static int lt8722_parse_fw(struct lt8722_chip_info *chip,
-> > +			   struct regulator_init_data *init_data) {
-> > +	int ret;
-> > +
-> > +	/* Override the min_uV constraint with the minimum output voltage
-> */
-> > +	init_data->constraints.min_uV =3D LT8722_MIN_VOUT;
->=20
-> Any modification of the constraints by the driver is a bug.  Adjust the
-> information the driver provides about the voltages it supports if you nee=
-d to
-> do this.
-
-The device features UV/OC clamp registers for setting the maximum negative/=
-positive output voltage. I've defined these values in the `adi,uv/ov-clamp-=
-microvolt` property within the device tree, which necessitates adjusting th=
-e constraints in the driver. My idea is to utilize the `regulator-min/max-m=
-icrovolt` property instead, thus eliminating the need for manual constraint=
- modifications. Would this approach be appropriate? I'm also considering ap=
-plying this method to the minimum and maximum output currents.
-
->=20
-> > +static int lt8722_is_enabled(struct regulator_dev *rdev) {
-> > +	struct lt8722_chip_info *chip =3D rdev_get_drvdata(rdev);
-> > +	int ret;
-> > +	u32 reg_val;
-> > +	bool en_req, en_pin;
-> > +
-> > +	ret =3D lt8722_reg_read(chip->spi, LT8722_SPIS_COMMAND, &reg_val);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> > +	en_req =3D FIELD_GET(LT8722_EN_REQ_MASK, reg_val);
-> > +	en_pin =3D gpiod_get_value(chip->en_gpio);
-> > +
-> > +	return en_req && en_pin;
-> > +}
->=20
-> Always adjusting both the GPIO and register all the time like this is poi=
-ntless, it
-> turns the GPIO into just pure overhead.  Just use the standard support fo=
-r
-> setting enables via registrers and GPIOs.  When there's a GPIO leave the
-> register permanently enabld.
-
-I will implement this.
-
->=20
-> > +	chip->en_gpio =3D devm_gpiod_get(&spi->dev, "enable",
-> GPIOD_OUT_LOW);
-> > +	if (IS_ERR(chip->en_gpio))
-> > +		return PTR_ERR(chip->en_gpio);
->=20
-> Presumably this is optional, it could just be tied off.
-
-This is currently not optional but from the comment above, yes it could jus=
-t be
-tied off.
-
-Thank you for reviewing the patch,
-
-Best regards,
-RC
+Of course, doing only what is minimally required is better than changing
+everything if you're not sure the approach is going to land.
 
