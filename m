@@ -1,209 +1,118 @@
-Return-Path: <devicetree+bounces-122128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 059D69CDF8D
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 14:05:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C68C49CDF99
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 14:10:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 768AFB21CC4
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 13:05:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A0F41F22DFA
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 13:10:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 090E71BBBEE;
-	Fri, 15 Nov 2024 13:05:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2460A1BD038;
+	Fri, 15 Nov 2024 13:10:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="JN9MV5h2"
+	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="j4+bHq7J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2858A1B85D7
-	for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 13:05:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94D9A190056;
+	Fri, 15 Nov 2024 13:10:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731675936; cv=none; b=bMQggwQIlJ4/BabUKlPKiTngf4OqCqzjQfcBxWPy53VEEUUQaI3HM1mc3WCXsE2TUmQLMB9+Ap2eP3aX0W2nQ2SjZyqPhYxAyMVjKzhRO1IGmyXgI8TbFhXVaKsbZNQAHmYkW3+IKbgfjuKV0VIwhW/XQKdM4AeNEr2UT3PEtGQ=
+	t=1731676227; cv=none; b=rD0/JwrGtzrCrd7HZSJaDNwSPbjn2/VmcWa+4yqs1BVYzXMRlJz09zk93cJuCs2MgcYwIJjPJpQfld26ta2MX4gBy/1H9gkM6s4frlaqjkzPfPOv6Mcx1fB32/WxgxwB1+B9Qj6F1vv9/wtkCS6w8OPKIUatY0yz7kuAbbBYYb4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731675936; c=relaxed/simple;
-	bh=7zxJwl48SlJaTrjD+9OxouqtfF6eSD0d8x2M5p2XuDU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fTG+YWBGwD3UFQKVOO3oMcR4cHoChiX5lbI8qc1OTU6neoq/ILdtKHeENzDbr9dVS/7utTSJPdvNLVj396u9Gr1Gpz43+NgKqqPcQIMO0vi/XNG3wyQHzv6NesLp/PiOPkPfbpyv4Ra9h/Fa8c6lC5ro3K4nVk/rcLiY/SrXZ/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=JN9MV5h2; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4315baa51d8so5564235e9.0
-        for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 05:05:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1731675933; x=1732280733; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=2iRJDtsWqL/piKJhgDPwUvSiSVRYQD6fYDgRKmvQlho=;
-        b=JN9MV5h2RadtDjkm0A8YPvnQ+qLuV+G7h93J9H3rF4kTpgwPBN0BKNRdgblBCWK9Jx
-         x6XxGdabltG0pEsAhF/bMrbj/sEKh06oauMweMRjeoPWC7A6wUp2kBA4OmENA7pmlEHH
-         9j//nGmLXjKBQlhsiMu1rY2lj0JDB7Av4QfwehpPICE62mGgG9IY3Aw055P6ZoPma2v/
-         /ty2JxRpFRBR+ovyrU5aaGii0/XF1Srp3xKGfOrh86veZQHAqNKwcmG6PBQPeuVqDsZf
-         8hIIzjwNzQnxEpOc8DVcqHyQKdda8O55aw3Lo4rOZTXBwdQIfghdGFRPORDJ9pKgAJZz
-         eUaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731675933; x=1732280733;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2iRJDtsWqL/piKJhgDPwUvSiSVRYQD6fYDgRKmvQlho=;
-        b=Fim7wok/CaecFkr140oxIYqvzkx0uuwLe31NqeYwxR0OnJJ+8HIVIqcaPC/NWq3J7P
-         vzM9TwpgcEgPVFd4cSRHHmrjP9ff9VmtLpUdP0NvwOMtlpgL11AqdO7i3p7yNeTwyoY4
-         pQDDatgfcG9u4u7BfnwAfQVZ0GYURcPqkkjEhqYA470Do7DdVZ80FEh/t+VfKX1ue4xw
-         tIGcBlvoB2CITUDxXmMO+Ccf/VIxn+5G47KVFs+Oy00Ib6WCM4c/wNjDnik2jMplFM+T
-         JEEB2+1JwPd4+qfIhJdzTc1rrfcMye6Z1UGzji9tJ//CABjWLnSBh+OeVO68aqyb2/zy
-         8N5g==
-X-Forwarded-Encrypted: i=1; AJvYcCW6DyTqXe6TVe4WlR6v5jA8LxB2gWmumSb3WXya82L8QciqFeH+i2d8elSV3/wdp9/SzjWiE8Hxf1fL@vger.kernel.org
-X-Gm-Message-State: AOJu0YyvjCyqt/jkHXKJ88paeTwy2Mv4zvCacZSD8C8lGX67wYjgwKiK
-	6uCSvHYmPcOg0zruEN5U1xLWGwTOBcY578pJTkmET/+8yaUBR0Gp8wO+yqRzG0I=
-X-Google-Smtp-Source: AGHT+IFDp8PKpaQGVUAOAXQCxAUj6XSIILVhyKbCpLBYq5g/YknCPV3knkGIUqTxSWKWzG3K7rZY6Q==
-X-Received: by 2002:a05:600c:46c8:b0:431:58cd:b259 with SMTP id 5b1f17b1804b1-432df790731mr21679875e9.31.1731675933284;
-        Fri, 15 Nov 2024 05:05:33 -0800 (PST)
-Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-432dab80a28sm53496875e9.24.2024.11.15.05.05.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Nov 2024 05:05:32 -0800 (PST)
-Date: Fri, 15 Nov 2024 14:05:32 +0100
-From: Andrew Jones <ajones@ventanamicro.com>
-To: Samuel Holland <samuel.holland@sifive.com>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, linux-riscv@lists.infradead.org, 
-	Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Alexandre Ghiti <alexghiti@rivosinc.com>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH 08/11] riscv: alternative: Add an ALTERNATIVE_3 macro
-Message-ID: <20241115-1c2467159f117132dc94db26@orel>
-References: <20241102000843.1301099-1-samuel.holland@sifive.com>
- <20241102000843.1301099-9-samuel.holland@sifive.com>
+	s=arc-20240116; t=1731676227; c=relaxed/simple;
+	bh=343ybbpmX5iksSzKM9ypRjU5swcB42IuW585AnKWbe0=;
+	h=Message-ID:Date:MIME-Version:Subject:CC:References:To:From:
+	 In-Reply-To:Content-Type; b=IhDZgasjTKGiBUloskkL61ngPu2FBYWoSHsK4yMhfYp4eFjooMEWamUu08kGoA8Umz1rzWzoLZScI4czdUvvyDL/fXbTRD/Fy9vNGvJO+fJ/w2NFHbR6T7hWrsIh9XD+NdWKf2+F8eZr0C74AyoSv6l6gBtcTLrFUYaKd8x+ris=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=j4+bHq7J; arc=none smtp.client-ip=193.68.50.107
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
+Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
+	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id 17A1FA0796;
+	Fri, 15 Nov 2024 14:10:16 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:from:from:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to; s=mail; bh=gL17cNe8aUMuYGVpdJHN
+	MdCT/ltALl3FTv9dzom/v2g=; b=j4+bHq7Jo+dhNWLyZXAaJT5+Ai6ztopDA46K
+	mkzikFbuuvIc6qdTZrRQbXuVCk1FvlKJc3MdFcBNm1upXpxy38ILmDztpH3XAhJV
+	OdhBXl4zlnJANOedHrj2Zg6KsagE9WnyTACOZ+h0tsJWB0IRHLzZljG5fooOsTRW
+	09mZOvvtiHxzWBoiHUbS+0YLHQSRNbBlE+dBSkXH9fTqXk9KeGP2eZioVGZZ71VL
+	EMqYLSycdJGtS5/KvrE0Z8XUHKj1E4dsg8YBYSLGLPGSnUso8CdjseM2FqTmQ0U2
+	zw0r6+7U3hgDnKvVXCFZzMee3E/KknkgoVPI9+4f36twRV/rS6mTf8Vyi8hePYkW
+	AfZWOeQOpQ94I/lNgPUvArwxYecB8oZgxlNM/HS3khczmjeid1H32Ey+8KExdtRL
+	8m1Bj/NS95HaPBNHHS0spB7pAH297hrqhQPoFYI62K6eEQKHRY30sfN2AX72PK4K
+	Z9xJ7A02LODEwkl6K3eQ4sgdKBY1ihsgDkWUKkyE6/qNmjuBDCJgPFSh9C0L+fFP
+	AvdN+vSU8H5t9bGp14aHPhw6GoaZtprZDZn3Z06IFOtPkr2NIyrg0F46BPHUHNc4
+	u9AMe2XzOGxi9t3i3FREaD/x/ZQqtifxivIHt5Y8NTgdN5D/z1JIyWsxerkVrTL8
+	Q/3Ish8=
+Message-ID: <f1d3f71d-2e36-4ff2-9487-8494e7241c31@prolan.hu>
+Date: Fri, 15 Nov 2024 14:10:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241102000843.1301099-9-samuel.holland@sifive.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 0/5] Add support for DMA of F1C100s
+CC: Mark Brown <broonie@kernel.org>, Mesih Kilinc <mesihkilinc@gmail.com>,
+	Vinod Koul <vkoul@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
+	<jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, "Chen-Yu
+ Tsai" <wens@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, Philipp Zabel
+	<p.zabel@pengutronix.de>, Conor Dooley <conor.dooley@microchip.com>, "Rob
+ Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, Amit Singh Tomar <amitsinght@marvell.com>
+References: <20241102093140.2625230-1-csokas.bence@prolan.hu>
+Content-Language: en-US
+To: <dmaengine@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-sunxi@lists.linux.dev>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+From: =?UTF-8?B?Q3PDs2vDoXMgQmVuY2U=?= <csokas.bence@prolan.hu>
+In-Reply-To: <20241102093140.2625230-1-csokas.bence@prolan.hu>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: ATLAS.intranet.prolan.hu (10.254.0.229) To
+ ATLAS.intranet.prolan.hu (10.254.0.229)
+X-EsetResult: clean, is OK
+X-EsetId: 37303A2980D94855617C6B
 
-On Fri, Nov 01, 2024 at 05:08:02PM -0700, Samuel Holland wrote:
-> ALT_FIXUP_PMA() is already using ALTERNATIVE_2(), but needs to be
-> extended to handle a fourth case. Add ALTERNATIVE_3(), which extends
-> ALTERNATIVE_2() with another block of new content.
+Can this be merged? The merge window is coming up, and there's still the 
+other half of the series waiting on this.
+Bence
+
+On 2024. 11. 02. 10:31, Csókás, Bence wrote:
+> Support for Allwinner F1C100s/200s series audio was
+> submitted in 2018 as an RFC series, but was not merged,
+> despite having only minor errors. However, this is
+> essential for having audio on these SoCs.
+> This series was forward-ported/rebased to the best of
+> my abilities, on top of Linus' tree as of now:
+> commit c2ee9f594da8 ("KVM: selftests: Fix build on on non-x86 architectures")
 > 
-> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
-> ---
+> Link: https://lore.kernel.org/all/cover.1543782328.git.mesihkilinc@gmail.com/
 > 
->  arch/riscv/include/asm/alternative-macros.h | 45 ++++++++++++++++++---
->  1 file changed, 40 insertions(+), 5 deletions(-)
+> As requested by many, this series will now be split in 2, the DMA and the
+> ALSA/ASoC codec driver. This is the DMA part of the series.
 > 
-> diff --git a/arch/riscv/include/asm/alternative-macros.h b/arch/riscv/include/asm/alternative-macros.h
-> index 721ec275ce57..b6027a8b6b50 100644
-> --- a/arch/riscv/include/asm/alternative-macros.h
-> +++ b/arch/riscv/include/asm/alternative-macros.h
-> @@ -50,8 +50,17 @@
->  	ALT_NEW_CONTENT \vendor_id_2, \patch_id_2, \enable_2, "\new_c_2"
->  .endm
->  
-> +.macro ALTERNATIVE_CFG_3 old_c, new_c_1, vendor_id_1, patch_id_1, enable_1,	\
-> +				new_c_2, vendor_id_2, patch_id_2, enable_2,	\
-> +				new_c_3, vendor_id_3, patch_id_3, enable_3
-> +	ALTERNATIVE_CFG_2 "\old_c", "\new_c_1", \vendor_id_1, \patch_id_1, \enable_1 \
-> +				    "\new_c_2", \vendor_id_2, \patch_id_2, \enable_2 \
+> Csókás, Bence (1):
+>    dt-bindings: dmaengine: Add Allwinner suniv F1C100s DMA
+> 
+> Mesih Kilinc (4):
+>    dma-engine: sun4i: Add a quirk to support different chips
+>    dma-engine: sun4i: Add has_reset option to quirk
+>    dma-engine: sun4i: Add support for Allwinner suniv F1C100s
+>    ARM: dts: suniv: f1c100s: Add support for DMA
+> 
+>   .../bindings/dma/allwinner,sun4i-a10-dma.yaml |   4 +-
+>   .../arm/boot/dts/allwinner/suniv-f1c100s.dtsi |  10 +
+>   drivers/dma/Kconfig                           |   4 +-
+>   drivers/dma/sun4i-dma.c                       | 217 +++++++++++++++---
+>   4 files changed, 200 insertions(+), 35 deletions(-)
+> 
 
-We don't want the '\' on the end of the above line.
-
-> +	ALT_NEW_CONTENT \vendor_id_3, \patch_id_3, \enable_3, "\new_c_3"
-> +.endm
-> +
->  #define __ALTERNATIVE_CFG(...)		ALTERNATIVE_CFG __VA_ARGS__
->  #define __ALTERNATIVE_CFG_2(...)	ALTERNATIVE_CFG_2 __VA_ARGS__
-> +#define __ALTERNATIVE_CFG_3(...)	ALTERNATIVE_CFG_3 __VA_ARGS__
->  
->  #else /* !__ASSEMBLY__ */
->  
-> @@ -98,6 +107,13 @@
->  	__ALTERNATIVE_CFG(old_c, new_c_1, vendor_id_1, patch_id_1, enable_1)	\
->  	ALT_NEW_CONTENT(vendor_id_2, patch_id_2, enable_2, new_c_2)
->  
-> +#define __ALTERNATIVE_CFG_3(old_c, new_c_1, vendor_id_1, patch_id_1, enable_1,	\
-> +				   new_c_2, vendor_id_2, patch_id_2, enable_2,	\
-> +				   new_c_3, vendor_id_3, patch_id_3, enable_3)	\
-> +	__ALTERNATIVE_CFG_2(old_c, new_c_1, vendor_id_1, patch_id_1, enable_1,	\
-> +				   new_c_2, vendor_id_2, patch_id_2, enable_2)	\
-> +	ALT_NEW_CONTENT(vendor_id_3, patch_id_3, enable_3, new_c_3)
-> +
->  #endif /* __ASSEMBLY__ */
->  
->  #define _ALTERNATIVE_CFG(old_c, new_c, vendor_id, patch_id, CONFIG_k)	\
-> @@ -108,6 +124,13 @@
->  	__ALTERNATIVE_CFG_2(old_c, new_c_1, vendor_id_1, patch_id_1, IS_ENABLED(CONFIG_k_1),	\
->  				   new_c_2, vendor_id_2, patch_id_2, IS_ENABLED(CONFIG_k_2))
->  
-> +#define _ALTERNATIVE_CFG_3(old_c, new_c_1, vendor_id_1, patch_id_1, CONFIG_k_1,		\
-> +				  new_c_2, vendor_id_2, patch_id_2, CONFIG_k_2,		\
-> +				  new_c_3, vendor_id_3, patch_id_3, CONFIG_k_3)		\
-> +	__ALTERNATIVE_CFG_3(old_c, new_c_1, vendor_id_1, patch_id_1, IS_ENABLED(CONFIG_k_1),	\
-> +				   new_c_2, vendor_id_2, patch_id_2, IS_ENABLED(CONFIG_k_2),	\
-> +				   new_c_3, vendor_id_3, patch_id_3, IS_ENABLED(CONFIG_k_3))
-> +
->  #else /* CONFIG_RISCV_ALTERNATIVE */
->  #ifdef __ASSEMBLY__
->  
-> @@ -121,6 +144,9 @@
->  #define _ALTERNATIVE_CFG_2(old_c, ...)	\
->  	ALTERNATIVE_CFG old_c
->  
-> +#define _ALTERNATIVE_CFG_3(old_c, ...)	\
-> +	ALTERNATIVE_CFG old_c
-> +
->  #else /* !__ASSEMBLY__ */
->  
->  #define __ALTERNATIVE_CFG(old_c)	\
-> @@ -132,6 +158,9 @@
->  #define _ALTERNATIVE_CFG_2(old_c, ...)	\
->  	__ALTERNATIVE_CFG(old_c)
->  
-> +#define _ALTERNATIVE_CFG_3(old_c, ...)	\
-> +	__ALTERNATIVE_CFG(old_c)
-> +
->  #endif /* __ASSEMBLY__ */
->  #endif /* CONFIG_RISCV_ALTERNATIVE */
->  
-> @@ -152,15 +181,21 @@
->  	_ALTERNATIVE_CFG(old_content, new_content, vendor_id, patch_id, CONFIG_k)
->  
->  /*
-> - * A vendor wants to replace an old_content, but another vendor has used
-> - * ALTERNATIVE() to patch its customized content at the same location. In
-> - * this case, this vendor can create a new macro ALTERNATIVE_2() based
-> - * on the following sample code and then replace ALTERNATIVE() with
-> - * ALTERNATIVE_2() to append its customized content.
-> + * Variant of ALTERNATIVE() that supports two sets of replacement content.
->   */
->  #define ALTERNATIVE_2(old_content, new_content_1, vendor_id_1, patch_id_1, CONFIG_k_1,		\
->  				   new_content_2, vendor_id_2, patch_id_2, CONFIG_k_2)		\
->  	_ALTERNATIVE_CFG_2(old_content, new_content_1, vendor_id_1, patch_id_1, CONFIG_k_1,	\
->  					new_content_2, vendor_id_2, patch_id_2, CONFIG_k_2)
->  
-> +/*
-> + * Variant of ALTERNATIVE() that supports three sets of replacement content.
-> + */
-> +#define ALTERNATIVE_3(old_content, new_content_1, vendor_id_1, patch_id_1, CONFIG_k_1,		\
-> +				   new_content_2, vendor_id_2, patch_id_2, CONFIG_k_2,		\
-> +				   new_content_3, vendor_id_3, patch_id_3, CONFIG_k_3)		\
-> +	_ALTERNATIVE_CFG_3(old_content, new_content_1, vendor_id_1, patch_id_1, CONFIG_k_1,	\
-> +					new_content_2, vendor_id_2, patch_id_2, CONFIG_k_2,	\
-> +					new_content_3, vendor_id_3, patch_id_3, CONFIG_k_3)
-> +
->  #endif
-> -- 
-> 2.45.1
->
-
-Otherwise,
-
-Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
 
