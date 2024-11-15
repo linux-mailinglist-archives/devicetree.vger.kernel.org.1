@@ -1,250 +1,142 @@
-Return-Path: <devicetree+bounces-122083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 737759CDB2E
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 10:11:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DB399CDB43
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 10:16:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE522282D55
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 09:11:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42D932821C9
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 09:16:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7831A18CBEC;
-	Fri, 15 Nov 2024 09:11:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF49318C03B;
+	Fri, 15 Nov 2024 09:16:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xFRMIw/e"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i7L36Pgk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A1BF18B470
-	for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 09:11:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A853218C011;
+	Fri, 15 Nov 2024 09:16:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731661875; cv=none; b=WXB/vZ29lxzUwG2DHNxqMUi/zKtzpx3NEjMUpkfZpYHW9dgrK9OqgmU9Hc4PnG5DwNUYXpYiWJvpr9qZZJP4ai+BIkVmcwT6mcTzoWcTZVZ1ZWXpaRNO8DoV3k/MW4JWa/Aw7U6bKescElr66tZtfUixHxY76cyBL/M/g6RtLx8=
+	t=1731662160; cv=none; b=Lubn+F1bX1EvSE4hJ+jyOq60xP6E13Yf2fmmb8h1EBkl/LVP9D0f2qVLsL7LkunFWanExOOlLLdeRA4gpSoIPzwShAj62+oo5wUYgREmjtc+N6fxTw/wa0LONpmmsy2x5nXZJBryME3BWyy72yFQgkvJFa4fB1LOctSUK53MZKs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731661875; c=relaxed/simple;
-	bh=9XIU4TEpDEtWO3ZEkQkqbHdt8iXIY8tW7dTBpHJFCh4=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=eagswLaArQ6JLA6/bhzQUeHuxX7GDbY3o/XvQij5lahvJGiWYG806Ny/zWlaVFywQTgNo9s1jzGmeNGn57lpt8EXAV4BYT+w8wn5iBc0T9RGJJJI982I6yv534lx0QLEZLer40YQPrxkmFCBH7uQthpZHm4dRxahLM0Ml5CyTLc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xFRMIw/e; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-382171fe8b1so980183f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 01:11:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731661871; x=1732266671; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9vpXoiXhLMF3td8sRQvEmRzRVckuoAGxk/B3yXzMi9U=;
-        b=xFRMIw/eKeNBm3vxPyvJe9cMmfGoMrsH98k+GArIjEFuJkg/P5Sp+3FM39yrXsjyjS
-         xzPg2VTNiwbBSjTsBxtUBqppbbN44fifCNl29C1QLKdwidg811uPNa9yN09rOsM++VS6
-         oHw7gJskQPDELOeZ2uyURZsSkkl1x7gLqSHLcp1a7GAdx+LBHJR7jXtFh8LtOVjFu8fH
-         amWk+hFW5OiYXfgINohJVPvUBnMgOdXwJ3f3ltkhlqLOa0XHwnUgbPXl34x0MyRcZIgZ
-         jb4v3rE+9cx9ysGzIbVcO3R7Tjo4BCeWpnD4lUvSyvKuIFIUD3iAc9y4P2ASS0WF+D7n
-         MCwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731661871; x=1732266671;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=9vpXoiXhLMF3td8sRQvEmRzRVckuoAGxk/B3yXzMi9U=;
-        b=UuLSfZU8SaUCc6nhSG3GPGDD+YxU7J2b7iZvG3zMfQsGg/ffzkzIeYuHPbDrABbvko
-         GUiTjqU4HqK1DqGSh19VKiPyJCWqIl2CA4fc6gDx5SrrTi+QaMCcaJ4af7Iz3iMB1Ii7
-         rEvf5o4XY6askSpjQxuCk5KWDiFYPNRyzlY1+ztbKLoWNGahQ708/MjaU4rmkB1nNuWH
-         vjcRIWOTpA0pqkhQDyPhhLHRFaM1zUQca6VhoVRv+e85tQBx7n2OZ9HMqpSoLiyLuDM2
-         uXz2+/uiUSSrEFwn7sO5xodFWKGroG6fQ//y72tGT+ZMWpMAEp5MGjQzExBRGztAZ0Tu
-         2bRg==
-X-Forwarded-Encrypted: i=1; AJvYcCX2/hGDhAHOYAIxGmRpSU6KUVVcc0yBcRlcFnPspMDacb3uj+eDZh6SSyxRvKKveh4avwdD1WePSfvU@vger.kernel.org
-X-Gm-Message-State: AOJu0YyknrQH4Xxl7aMNBKzQ0XE22hLMldT4N8lihrVOwR+W4PSX+5gr
-	wucn4x8owebbwZMI41mnyei5G+V8zGR7vt6qCDcteEztCNQ+fRh16VQ341LGQN8=
-X-Google-Smtp-Source: AGHT+IFieFfvih4A4DPrMQVGXmpc94cqEsfn4+XNZLdxbJDkvd6N1Dhs/fUVu8kYNuTyQ9Q9pX341A==
-X-Received: by 2002:a05:6000:2cf:b0:37d:3780:31d2 with SMTP id ffacd0b85a97d-38214022129mr5684419f8f.15.1731661870728;
-        Fri, 15 Nov 2024 01:11:10 -0800 (PST)
-Received: from [192.168.7.189] ([212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3821adadf8fsm3794456f8f.39.2024.11.15.01.11.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Nov 2024 01:11:10 -0800 (PST)
-Message-ID: <17243670-7e91-46f8-812d-3f21cee5cd2c@linaro.org>
-Date: Fri, 15 Nov 2024 10:11:09 +0100
+	s=arc-20240116; t=1731662160; c=relaxed/simple;
+	bh=/wAqRwzJ+gv35k0isr+a2LT/cYabO4xEJpS4EceCYik=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=umLFtLzTdkWu8Jf/PTW0VD7fEYSUlfffB2E+3Tcnk1iCx0UT9RWhZBfnsL+R7waXpuwOgybucP9mU8aSppIO9DPQwPTnuvTYad82nzlA3OjdzrlXbPqkkv2s6ju9iETpePb54uDeTlGr6ehcnOHxLPbLmC0elhkpWDV9h4PjF4I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i7L36Pgk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16CB4C4CECF;
+	Fri, 15 Nov 2024 09:16:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731662160;
+	bh=/wAqRwzJ+gv35k0isr+a2LT/cYabO4xEJpS4EceCYik=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=i7L36PgkF1fbntBgrghe3PYoDCf89mtGA9mf9KrcHGdbcFSdRQ4cR+aaNyXoKb5cI
+	 2+yJWadKhVBiE5UIcEQmDZtoeMwKjiFZMllQZRqBDiyRuGO3uRsEqfJCPzRnNwfGNd
+	 39FLChbdK1nQVL048tPYxnNtDPQ2x1uJ9Q9+VfcD8QQLlFp4uKH9fYqHwB9x4V7N1u
+	 O/vgM22mYu262k+xJnn3kCJiLWyGMuq7XzE+qFl2boZ5bSL7vq/NMlO5o7C6ZE6WAo
+	 8dNWclhBHPdC0zVlBENfv5HY3PmUFfJhPvIpZRH4NyREhoX6TzdnXSXjFkJycDzHgL
+	 fkmv3Vhytg72A==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1tBsQn-00D5CM-Qy;
+	Fri, 15 Nov 2024 09:15:57 +0000
+Date: Fri, 15 Nov 2024 09:15:57 +0000
+Message-ID: <861pzcx3g2.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Saravana Kannan <saravanak@google.com>
+Cc: Samuel Holland <samuel.holland@sifive.com>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] of: property: fw_devlink: Do not use interrupt-parent directly
+In-Reply-To: <CAGETcx9hLPxtE94cKiM==+Ep8k=d+HP4q3FCMKMbeFAjt7XW7Q@mail.gmail.com>
+References: <20241114195652.3068725-1-samuel.holland@sifive.com>
+	<CAGETcx9hLPxtE94cKiM==+Ep8k=d+HP4q3FCMKMbeFAjt7XW7Q@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH RFC 4/8] drm/msm: adreno: dynamically generate GMU bw
- table
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Akhil P Oommen <quic_akhilpo@quicinc.com>,
- Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
- Stephen Boyd <sboyd@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Connor Abbott <cwabbott0@gmail.com>,
- linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-References: <20241113-topic-sm8x50-gpu-bw-vote-v1-0-3b8d39737a9b@linaro.org>
- <20241113-topic-sm8x50-gpu-bw-vote-v1-4-3b8d39737a9b@linaro.org>
- <rvfrkb4v7cilzu3prv5dr2dni7m3jv3crhmto3uume5v5wxr5m@apvyb4lc2rre>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <rvfrkb4v7cilzu3prv5dr2dni7m3jv3crhmto3uume5v5wxr5m@apvyb4lc2rre>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: saravanak@google.com, samuel.holland@sifive.com, robh@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-On 15/11/2024 08:24, Dmitry Baryshkov wrote:
-> On Wed, Nov 13, 2024 at 04:48:30PM +0100, Neil Armstrong wrote:
->> The Adreno GPU Management Unit (GMU) can also scale the ddr
->> bandwidth along the frequency and power domain level, but for
->> now we statically fill the bw_table with values from the
->> downstream driver.
->>
->> Only the first entry is used, which is a disable vote, so we
->> currently rely on scaling via the linux interconnect paths.
->>
->> Let's dynamically generate the bw_table with the vote values
->> previously calculated from the OPPs.
-> 
-> Nice to see this being worked upon. I hope the code can is generic
-> enough so that we can use it from other adreno_foo_build_bw_table()
-> functions.
+On Thu, 14 Nov 2024 20:24:34 +0000,
+Saravana Kannan <saravanak@google.com> wrote:
+>=20
+> On Thu, Nov 14, 2024 at 11:56=E2=80=AFAM Samuel Holland
+> <samuel.holland@sifive.com> wrote:
+> >
+> > commit 7f00be96f125 ("of: property: Add device link support for
+> > interrupt-parent, dmas and -gpio(s)") started adding device links for
+> > the interrupt-parent property. Later, commit f265f06af194 ("of:
+> > property: Fix fw_devlink handling of interrupts/interrupts-extended")
+> > added full support for parsing the interrupts and interrupts-extended
+> > properties, which includes looking up the node of the parent domain.
+> > This made the handler for the interrupt-parent property redundant.
+> >
+> > In fact, creating device links based solely on interrupt-parent is
+> > problematic, because it can create spurious cycles. A node may have
+> > this property without itself being an interrupt controller or consumer.
+> > For example, this property is often present in the root node or a /soc
+> > bus node to set the default interrupt parent for child nodes. However,
+> > it is incorrect for the bus to depend on the interrupt controller, as
+> > some of the bus's childre may not be interrupt consumers at all or may
+> > have a different interrupt parent.
+> >
+> > Resolving these spurious dependency cycles can cause an incorrect probe
+> > order for interrupt controller drivers. This was observed on a RISC-V
+> > system with both an APLIC and IMSIC under /soc, where interrupt-parent
+> > in /soc points to the APLIC, and the APLIC msi-parent points to the
+> > IMSIC. fw_devlink found three dependency cycles and attempted to probe
+> > the APLIC before the IMSIC. After applying this patch, there were no
+> > dependency cycles and the probe order was correct.
+>=20
+> Rob/Marc,
+>=20
+> If the claim about the interrupt parent interpretation is correct
+> across the board, I'm ok with this patch.
 
-I would hope so, but I don't have the HW to properly test it on those
-platforms.
+I agree with Samuel's analysis that "interrupt-parent" is not always
+relevant to unsuspecting devices, given that it is often inherited
+from a bus-wide or system-wide parent node. Collectively, "interrupts"
+(which implicitly uses "interrupt-parent"), "interrupt-extended" and
+"interrupt-map" should provide enough information to ensure correct
+dependency tracking.
 
-> 
->>
->> Those entried will then be used by the GMU when passing the
->> appropriate bandwidth level when voting for a gpu frequency.
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   drivers/gpu/drm/msm/adreno/a6xx_hfi.c | 48 +++++++++++++++++++++++++++--------
->>   1 file changed, 37 insertions(+), 11 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_hfi.c b/drivers/gpu/drm/msm/adreno/a6xx_hfi.c
->> index cb8844ed46b29c4569d05eb7a24f7b27e173190f..9a89ba95843e7805d78f0e5ddbe328677b6431dd 100644
->> --- a/drivers/gpu/drm/msm/adreno/a6xx_hfi.c
->> +++ b/drivers/gpu/drm/msm/adreno/a6xx_hfi.c
->> @@ -596,22 +596,48 @@ static void a730_build_bw_table(struct a6xx_hfi_msg_bw_table *msg)
->>   	msg->cnoc_cmds_data[1][0] = 0x60000001;
->>   }
->>   
->> -static void a740_build_bw_table(struct a6xx_hfi_msg_bw_table *msg)
->> +static void a740_generate_bw_table(struct adreno_gpu *adreno_gpu, struct a6xx_gmu *gmu,
->> +				   struct a6xx_hfi_msg_bw_table *msg)
->>   {
->> -	msg->bw_level_num = 1;
->> +	const struct a6xx_info *info = adreno_gpu->info->a6xx;
->> +	unsigned int i, j;
->>   
->> -	msg->ddr_cmds_num = 3;
->>   	msg->ddr_wait_bitmask = 0x7;
->>   
->> -	msg->ddr_cmds_addrs[0] = cmd_db_read_addr("SH0");
->> -	msg->ddr_cmds_addrs[1] = cmd_db_read_addr("MC0");
->> -	msg->ddr_cmds_addrs[2] = cmd_db_read_addr("ACV");
->> +	for (i = 0; i < 3; i++) {
->> +		if (!info->bcm[i].name)
->> +			break;
->> +		msg->ddr_cmds_addrs[i] = cmd_db_read_addr(info->bcm[i].name);
->> +	}
->> +	msg->ddr_cmds_num = i;
->>   
->> -	msg->ddr_cmds_data[0][0] = 0x40000000;
->> -	msg->ddr_cmds_data[0][1] = 0x40000000;
->> -	msg->ddr_cmds_data[0][2] = 0x40000000;
->> +	for (i = 0; i < gmu->nr_gpu_bws; ++i)
->> +		for (j = 0; j < msg->ddr_cmds_num; j++)
->> +			msg->ddr_cmds_data[i][j] = gmu->gpu_bw_votes[i][j];
->> +	msg->bw_level_num = gmu->nr_gpu_bws;
->> +}
->> +
->> +static void a740_build_bw_table(struct adreno_gpu *adreno_gpu, struct a6xx_gmu *gmu,
->> +				struct a6xx_hfi_msg_bw_table *msg)
->> +{
->> +	if ((adreno_gpu->info->quirks & ADRENO_QUIRK_GMU_BW_VOTE) && gmu->nr_gpu_bws) {
->> +		a740_generate_bw_table(adreno_gpu, gmu, msg);
->> +	} else {
-> 
-> Why do we need a fallback code here?
+This is a notable departure from "msi-parent", which itself doesn't
+require any extra specifier, and cannot be ignored here (I note the
+absence of "msi-map" tracking though).
 
-Because at this particular commit, it would generate an invalid table, I should probably remove the fallback at the end
+> I remember the RISC-V DT for interrupts being a mess. So, want to make
 
-> 
->> +		msg->bw_level_num = 1;
->>   
->> -	/* TODO: add a proper dvfs table */
->> +		msg->ddr_cmds_num = 3;
->> +		msg->ddr_wait_bitmask = 0x7;
->> +
->> +		msg->ddr_cmds_addrs[0] = cmd_db_read_addr("SH0");
->> +		msg->ddr_cmds_addrs[1] = cmd_db_read_addr("MC0");
->> +		msg->ddr_cmds_addrs[2] = cmd_db_read_addr("ACV");
->> +
->> +		msg->ddr_cmds_data[0][0] = 0x40000000;
->> +		msg->ddr_cmds_data[0][1] = 0x40000000;
->> +		msg->ddr_cmds_data[0][2] = 0x40000000;
->> +
->> +		/* TODO: add a proper dvfs table */
-> 
-> I think TODO is unapplicable anymore.
-> 
->> +	}
->>   
->>   	msg->cnoc_cmds_num = 1;
->>   	msg->cnoc_wait_bitmask = 0x1;
->> @@ -691,7 +717,7 @@ static int a6xx_hfi_send_bw_table(struct a6xx_gmu *gmu)
->>   	else if (adreno_is_a730(adreno_gpu))
->>   		a730_build_bw_table(msg);
->>   	else if (adreno_is_a740_family(adreno_gpu))
->> -		a740_build_bw_table(msg);
->> +		a740_build_bw_table(adreno_gpu, gmu, msg);
->>   	else
->>   		a6xx_build_bw_table(msg);
->>   
->>
->> -- 
->> 2.34.1
->>
-> 
+I'm afraid other architectures are not any better. RISC-V only has the
+dubious advantage of coming up with backward designs, which doesn't
+help.
 
+> sure you agree with these claims before I Ack it.
+
+This needs testing, but looks sane from my PoV (though it is early and
+I need single coffee)... FWIW:
+
+Acked-by: Marc Zyngier <maz@kernel.org>
+
+	M.
+
+--=20
+Without deviation from the norm, progress is not possible.
 
