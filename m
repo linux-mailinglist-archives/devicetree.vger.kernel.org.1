@@ -1,161 +1,294 @@
-Return-Path: <devicetree+bounces-122020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C83879CD4AD
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 01:38:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42EC59CD4D7
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 02:00:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B3C2BB22415
-	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 00:38:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C8DAA1F216EA
+	for <lists+devicetree@lfdr.de>; Fri, 15 Nov 2024 01:00:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D9E92D052;
-	Fri, 15 Nov 2024 00:38:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8CA212B94;
+	Fri, 15 Nov 2024 01:00:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="n06gKXqP"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="jpwIXWw9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+Received: from mx0b-00128a01.pphosted.com (mx0b-00128a01.pphosted.com [148.163.139.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 209CF21106
-	for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 00:38:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731631096; cv=none; b=OFVoRM3VsIfTrPMN9vs8Mj/5+a5pildCsJDqskm5y7Qa5eFMcnw+2mO0u2BpSTQG/U1rUBc8HOjxRzHM0YGRQKd6JW3ZckiHr02tDrxYpajG36z106OkX2mLIrw8VmyrHA6pOKLSTDIvUsMkZdjl0Z3x2snJsa7U3SHSOrwrYus=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731631096; c=relaxed/simple;
-	bh=2QTg3uMImeU66RhLX3/5YsxnFUoi2i1VFQyshj8WnNg=;
-	h=Mime-Version:Subject:From:To:CC:In-Reply-To:Message-ID:Date:
-	 Content-Type:References; b=lSYTyGI0NTbsH/1OUvDudTpYiA8pOzoz4c6+TWJeVgV6J8UmdlUZC9NprHKIewaox5loqN00yJcFql1nL68wEy2ox0+OXD4Tb8e24ZYjZKO5iy+Bv6FhzR2I3LXgyXIYmpWz6q9k5XW4s9rVsM1/VOINjICxcKiuAm8RBiL1KDw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=n06gKXqP; arc=none smtp.client-ip=203.254.224.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas1p1.samsung.com (unknown [182.195.41.45])
-	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20241115003812epoutp0130cee50f1ae2f83b4477d9667bca1917~H-U3AoUXo0263502635epoutp01C
-	for <devicetree@vger.kernel.org>; Fri, 15 Nov 2024 00:38:12 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20241115003812epoutp0130cee50f1ae2f83b4477d9667bca1917~H-U3AoUXo0263502635epoutp01C
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1731631092;
-	bh=2QTg3uMImeU66RhLX3/5YsxnFUoi2i1VFQyshj8WnNg=;
-	h=Subject:Reply-To:From:To:CC:In-Reply-To:Date:References:From;
-	b=n06gKXqPozK50JkoDvZxhWPYFMHiJ42WNvPnwMZN8BAK263oS3OVs3pVRKW8HHMhd
-	 ADQmtmQKRs4YIMW/2Qo6KRB1O3mRqYdTEs800lHJey/7RF4jnfadrFd72zbrtaslUN
-	 Ric0aukVmj07r38UNfFhV/UJeh/fysvD+C1nw27s=
-Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
-	epcas1p2.samsung.com (KnoxPortal) with ESMTP id
-	20241115003811epcas1p2b96da2b129d9027364eef77e96486f1b~H-U2XwYY-2573625736epcas1p2C;
-	Fri, 15 Nov 2024 00:38:11 +0000 (GMT)
-Received: from epsmges1p1.samsung.com (unknown [182.195.36.144]) by
-	epsnrtp4.localdomain (Postfix) with ESMTP id 4XqJ5t2gq8z4x9Q2; Fri, 15 Nov
-	2024 00:38:10 +0000 (GMT)
-X-AuditID: b6c32a35-6c7ff70000023fb3-78-673697f2e2ec
-Received: from epcas1p2.samsung.com ( [182.195.41.46]) by
-	epsmges1p1.samsung.com (Symantec Messaging Gateway) with SMTP id
-	19.41.16307.2F796376; Fri, 15 Nov 2024 09:38:10 +0900 (KST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0F791370;
+	Fri, 15 Nov 2024 01:00:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=148.163.139.77
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1731632443; cv=fail; b=Q50d+9QOQ5XOMK75kT6Bh9/sFPWCcF3YK2ZKb8iEraKEb+Jrjh+YJNd+MghlyF0Ve+aduqpGbDAjD2cOxLw5L6a8ovzcbGBsFxW9NQJttVpRqgP5EIM25nHB5sa7pff+8o2L1hWP7+B36+nTmA/Do/Zcq8xYjwqmOnAnEoE3K08=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1731632443; c=relaxed/simple;
+	bh=3rKkMJyawofE8zG99dZMnousqHLul8NK2hAJVKC47T8=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=ecjVPPBAstLGyliTmA/G0jpfK0r5hIN1vVwrBV+1HZZCiCBSGRRUUF9FgxCFdjyoyI5THmK4ZadkhY/DNMIDWzT1V20B5caCgMmnVORQPnXS84m7jlrcNOfXUmHHFlXovZhhb8ToFFcd7vY7nufN3oyU78daB3TAneT331CxU/0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=jpwIXWw9; arc=fail smtp.client-ip=148.163.139.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167091.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AEK4YaD006012;
+	Thu, 14 Nov 2024 20:00:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=DKIM; bh=4oG58
+	IQ73zGOver0CgSfsa2zljK3iZw3wtFFvgJLVP4=; b=jpwIXWw9nJDmxqdMapE4g
+	LEE26jSJ6zBoKIjhKtjFhOcmlAxu2P5h+djRPH1pjNWbwZo73x0Whi2DtzQhwfl9
+	BI9RNDeQ2mmOLKYYweqsD+vIMxtU/9FhjbkxGROJFSPdF5tu1Npf+Ne7ZexNos4E
+	kHJwsCwD0DdWXX53660JRLArOZvx6qyCeG8uZpJAOQGznsQs9y0CtnmHS2Ed+0mM
+	LlSEJ/nI8IghqZRTxOcDQTj+61nkbpxpLjXnlJIseJ7Xay0wc0fR3LhAynPIdSa8
+	quevs/1gJz7JgE6LxWmN7KV44L2ww+Kt0WRcHCHrugTZoIdrbLUNpBscP33S5Wfr
+	w==
+Received: from sa9pr02cu001.outbound.protection.outlook.com (mail-southcentralusazlp17011028.outbound.protection.outlook.com [40.93.14.28])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 42vrwwk409-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Nov 2024 20:00:24 -0500 (EST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=kEpCTLNZQtN6NmIZ+vPJBFVn3ch+D5pgoTTk4EJLtXVSDKIHrDlS9LChV7T4T1GvBZkjeHCS/eRonpr/j0rVh3ZGVEo1tzmzz6EevIok8wuDaDmSrnFAQLihm7jkLdo5Aj4wPDTOkT2QY+UiOdTZDYyfILfLaRIZtq0v/+1qRQ2od3beJo4vRhVM6UHHxWdZz+ht/0YdPsNKQCkUluc0xaQ5b+EKHVFn2EnfxKMoa98Zhh0Z4BLriHgf4N+BqHj5HHsp3/jKbWo8rlW4WC6tR9vp46hY7JFNCZnhmP6QKDGcjwnbfHcKN3SdtLAdwu3GZ0IKYXJVQWLhMOlfTQFX/g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4oG58IQ73zGOver0CgSfsa2zljK3iZw3wtFFvgJLVP4=;
+ b=RCSzfUUt49U8zdCW6RY7dpnHxDJVM+aQf5rg2foh7HzIiomMJEuSXK7dxAfPT+nJrEzFxSu9UPk21L15fZUOPtViRghfcjG8pVwpCRSoFs9Zw3E8xIPQmJw/XiPhYp0tKlvqwIOqzz+nv9spknZw4ueaLq4XymuxtlVr3HLxnZ4ZphVboOyMG0T1iKPvoe0qpnt+somExnBWwknukaiIEevOIFATj6qJgbPnjonIDUSNcPSCmArwTVG7eg5R5bQTW958x3aUQvf0MKEVxrzfh8pQJMwsCdy7Euo0YgYK26/YuUPNyl/BB8gzmPuRkGCq3B7MLLbuiHyRN6DSKQh7fw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
+ dkim=pass header.d=analog.com; arc=none
+Received: from BLAPR03MB5604.namprd03.prod.outlook.com (2603:10b6:208:29a::12)
+ by SA0PR03MB5580.namprd03.prod.outlook.com (2603:10b6:806:b0::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.19; Fri, 15 Nov
+ 2024 01:00:21 +0000
+Received: from BLAPR03MB5604.namprd03.prod.outlook.com
+ ([fe80::3c24:93fb:94a7:241e]) by BLAPR03MB5604.namprd03.prod.outlook.com
+ ([fe80::3c24:93fb:94a7:241e%7]) with mapi id 15.20.8137.018; Fri, 15 Nov 2024
+ 01:00:21 +0000
+From: "Calam, Ramon Cristopher" <RamonCristopher.Calam@analog.com>
+To: Mark Brown <broonie@kernel.org>
+CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Liam Girdwood
+	<lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Subject: RE: [PATCH 1/2] regulator: lt8722: Add driver for LT8722
+Thread-Topic: [PATCH 1/2] regulator: lt8722: Add driver for LT8722
+Thread-Index: AQHbMcGjKrPZHHPhVUmEJqa+GKa1wrKtVj6AgARoqQA=
+Date: Fri, 15 Nov 2024 01:00:20 +0000
+Message-ID:
+ <BLAPR03MB5604248B31390D68AB180D8393242@BLAPR03MB5604.namprd03.prod.outlook.com>
+References: <20241108093544.9492-1-ramoncristopher.calam@analog.com>
+ <20241108093544.9492-2-ramoncristopher.calam@analog.com>
+ <2cce3ad8-7a3a-47db-a18c-33c32e96c009@sirena.org.uk>
+In-Reply-To: <2cce3ad8-7a3a-47db-a18c-33c32e96c009@sirena.org.uk>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BLAPR03MB5604:EE_|SA0PR03MB5580:EE_
+x-ms-office365-filtering-correlation-id: 9e57ffdd-d1b2-4503-d126-08dd0510e118
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|376014|1800799024|366016|38070700018;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?mipo4t1EK9nE35XQRFnHB10N8vsk19xahTUvAwb8KUeLr247I6bWSumn2mq+?=
+ =?us-ascii?Q?Rm1xrEjNv/5PJdMR3zJJzBM5XSX9sXoCufjXChAOa+fij8OhOmf/E9dP+EvI?=
+ =?us-ascii?Q?MthQnn5sBww5e4+XM1ntr91zb1ZnEmmSPXvr81ddT1HGBBGfJNlGv0OPGQL4?=
+ =?us-ascii?Q?SgpUII10RLeIj1sB/PbndCzQrNYNhTWwv23dY+azZrWezySwc0ttnDi3g+wN?=
+ =?us-ascii?Q?Yk92rM8Uf25QLVQyrlrSmNMxbV7K+XVzmpiy1VX3MjzKeMe8Pa2ZwlR7rSEH?=
+ =?us-ascii?Q?MUakd1DB12p319HKfT44vpKeX8VCkjThiSrXNPjcblFJyLIlbYFoE2fc1moo?=
+ =?us-ascii?Q?W0PYwZYmGhi88xvslkk4bmMJwuD03pF8c25rr/lP/9ELDDNDujnHZ/Z+357i?=
+ =?us-ascii?Q?5aOOUwUiy8ZfH8gzkosBp3Zx+RtdINDz+igTLJtF9xEi31i9AqS9ek+kiOnJ?=
+ =?us-ascii?Q?FKfkGm2GbEHzrHAadtmhXc5mZZJ3A1Q+juyvyaNFxwsOgWRZVr1r0Ldu2SYz?=
+ =?us-ascii?Q?5jY3cCbw14I6xvp8VGMaYkZypFqMwCV4PHUopGcMVWjrJAhnx21tlZ6JJ83N?=
+ =?us-ascii?Q?wYEzT4OOgV6zWcLyuvrrblF/ykbi3He+s0GXiyd+qVP23BL+5O0tftc0zQb1?=
+ =?us-ascii?Q?gF4dYw9KIjfb4YouwoQntuZaHtNKyiTTwQAdH8RM5nE6nG/SUx/I273JQ6FR?=
+ =?us-ascii?Q?1SzM4M9PBRl2Lwdc4TKgb8hUVL4HKEyiL4bcmUtmuhvhhoavDdlaC0n77RFy?=
+ =?us-ascii?Q?qLgsfgxKYxkuU3mF4nZSO4qP9bz81qDugx38ic0vU9YgmU0r1OIItkzmYHid?=
+ =?us-ascii?Q?Cou/k8aZMidBrQiZFG+Ex/1stzymCjHmGnQN5pHQ2NQRBVSPFvkEQKJgAnRb?=
+ =?us-ascii?Q?49bKuXI1dkaWvOcJygiTd0etdmSNoEDQdXpgZn/gzXBgtxgjzTTzRhzge1eO?=
+ =?us-ascii?Q?1k63tXU0vzfycIgjiVvurkTWkNAc1u0Bw8xfWmbNlpJ87AUvSySROsNTTIL+?=
+ =?us-ascii?Q?9vhPkIjFy/iomznU3ZkeKuy+kSa8un8lshZXOcxe5JT7gfj/JAz1clYWyr2P?=
+ =?us-ascii?Q?pBC/rraLzIORmfnz9I1RYdKPjCM9Q5DbrJcHKaesysnmGxlraFT9mqCzUHwf?=
+ =?us-ascii?Q?RJ9o4bmhFlcHHC1JXzxJ+tV339aGvpQoOPB8PId3f5mF8qOZuZQw+chu6q8L?=
+ =?us-ascii?Q?o9sY+4ajXGzYnN8x6pKYnE7RbUZtM4o2O2YBQlOAKk4wmhD+TMBqsh/mnOF5?=
+ =?us-ascii?Q?KCvqk+0yxllNhWuM6zIlEf7QGL83rjYB/L4Vpd3ewF16CyxdM3T08JhMP0XG?=
+ =?us-ascii?Q?khNjXDIJ/m65v8kUPTk82TiJO+JTOs3BiGTY7l94ZEZcMJ6DIv/VCg+or6Jq?=
+ =?us-ascii?Q?sq4ywKY=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BLAPR03MB5604.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?J14v5OEOLMYyW8xRZJnCMzPStVF/ChPPIk6JQ1pkVWPxGUdDuxS7BZOujfUl?=
+ =?us-ascii?Q?6hep/2dSGhn8zPfWJ3SVxOH5MSLu+5jSIQzxAxDvMlH9Tp87WW3FcnVs3E8P?=
+ =?us-ascii?Q?mPdYEaHmpD4hcb4Rwr7If8uY6vHT9/xGERvA/2MvD+SB7dPE0FmxgJuflZbs?=
+ =?us-ascii?Q?n/A+PIc85QpokpTzZ1toIAKXeDJ7+tpNGEHDYtRX2ZVFnr977WN/o+V55Gyu?=
+ =?us-ascii?Q?b39jSYdL7Pg8pRbGeSAMca1B9IJBD1nOhRAV/QWakzg1FxzWuANbIOvXsaAe?=
+ =?us-ascii?Q?4ycrNojRd+CKjT6XPw3zx7lxmjhJSAcAWbrM/S+kwJ+NgbBd1kAXG4r0vCtR?=
+ =?us-ascii?Q?OkouHsw6T9ZFoi9kmB1dSrnXXjv951HHeFbe0Lmis+WKvXzeD3aJUXGzO03Q?=
+ =?us-ascii?Q?iAUl6tpGlKgtJHPCsnoC8LuSRxefXFdhdpgoAFFHFATR7jVpr7sl/4A6WHJh?=
+ =?us-ascii?Q?dZ69QavTdywcdpkplCyTz284g2S8Dndj0Qb5hasX+Uqae1X9e8kfoWa+mmLb?=
+ =?us-ascii?Q?n9ThsUfdOKQFl/+tPPMbJuwpCzHk6H0DlO5lbYE8dU6knxsiYY4Xi/gGDo5E?=
+ =?us-ascii?Q?RSejXhucUMNZBRAcivKMV6G2WJpCa/A1aPcapxmA+AKNZodZ+UXgzMLfwby5?=
+ =?us-ascii?Q?83C1lAoXoKkVSqe3VSuWJdqr3dDPj90RKvyppurxnHW0YMGZ0uFy0umMXZE6?=
+ =?us-ascii?Q?F8gsSVKbdnBRvtUdl81fUiUl/VYFTfjEYnAyaZ4+vfk9UA9+zadFCEdCbaXX?=
+ =?us-ascii?Q?7G3DYl39Sun5GjQhbavZRlMFt5WNbUPr/kRmvcVhrTq3XSolaPf3Ozo/PB0H?=
+ =?us-ascii?Q?cdAIAWjrYdhsASjj3V97ceWshaIKUEOxOdavS7N5/7r+HqBo0dvX2d859r6n?=
+ =?us-ascii?Q?aw2/YlmwR7yRE9sQXDToERYFqmNR3JPrhyF1x7fyGgGHkERygDMGGSybd5Jt?=
+ =?us-ascii?Q?HmEEucBEhMnrNoFGteYWEWTnwHdBRYIR32NVBH+RWh8mqakitHeCV4gd0mVj?=
+ =?us-ascii?Q?T4gOGWKX5yFRrhjssT6nOA5YZQ8+qB85j8m9HVWqlfN41j5ywV9jZM+P6QS7?=
+ =?us-ascii?Q?P7GJ+3pF+A5TRLYzRyH5fEpZJyWfBFVLAHbAB2bNMEfBe8471c9pysroAcI4?=
+ =?us-ascii?Q?E6DSJHwRkBKGQGhT1DBwGCMpy+8+VB7bvXxASL4+7+0SLOxwOjXmEKCL5crJ?=
+ =?us-ascii?Q?fVPT3YBBroeISmZ6OsoJ3rN3MKjhrRhZgfWLX/M7HiwbjtZWT8jC5JFn4v5V?=
+ =?us-ascii?Q?I9xcqgqv3c9/ZKj85an7cYg2zP7qw9/emLgB4KsYAQEaughEXKFJHIQDV/eo?=
+ =?us-ascii?Q?3J8sIv2RIXb7Bvg54swskzpY8YFN6zZBWyIzWWJdNVPOGWgonPDc7BtlYvKu?=
+ =?us-ascii?Q?v9ZfVqvnnM6QXWamhCallAHzEpU8xoxKqDMl5tMu84/w4HhhxPR9q7btYz6h?=
+ =?us-ascii?Q?KGMMLFiVFtnDBj/XAgiREiS/jvMW+mQ5nYVDo7tLl5nUQDNv9amZMSPbytHK?=
+ =?us-ascii?Q?o8UY7no+3u4kFa+rKDGMV6hv2WtUO2SK7ASswcjqCVptmOJZQ6/3GkgBRyNS?=
+ =?us-ascii?Q?0cYvmMmz8rekmuGjEEwFQi4myeMneymPPuT7nq+H0TcILViXPAQhryM6d4Nq?=
+ =?us-ascii?Q?lQ=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Subject: RE: Re: [PATCH V4 4/5] soc: qcom: Introduce SCMI based Memlat
- (Memory Latency) governor
-Reply-To: myungjoo.ham@samsung.com
-Sender: MyungJoo Ham <myungjoo.ham@samsung.com>
-From: MyungJoo Ham <myungjoo.ham@samsung.com>
-To: Sibi Sankar <quic_sibis@quicinc.com>, Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>, Kyungmin Park <Kyungmin.park@samsung.com>,
-	Chanwoo Choi <cw00.choi@samsung.com>, Viresh Kumar <viresh.kumar@linaro.org>
-CC: "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
-	"cristian.marussi@arm.com" <cristian.marussi@arm.com>,
-	"andersson@kernel.org" <andersson@kernel.org>, "konrad.dybcio@linaro.org"
-	<konrad.dybcio@linaro.org>, "robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "quic_rgottimu@quicinc.com"
-	<quic_rgottimu@quicinc.com>, "quic_kshivnan@quicinc.com"
-	<quic_kshivnan@quicinc.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"arm-scmi@vger.kernel.org" <arm-scmi@vger.kernel.org>, Amir Vajid
-	<avajid@quicinc.com>
-X-Priority: 3
-X-Content-Kind-Code: NORMAL
-In-Reply-To: <ac655bdc-5ccf-c6c6-3203-659f1916c53c@quicinc.com>
-X-Drm-Type: N,general
-X-Msg-Generator: Mail
-X-Msg-Type: PERSONAL
-X-Reply-Demand: N
-Message-ID: <20241115003809epcms1p518df149458f3023d33ec6d87a315e8f6@epcms1p5>
-Date: Fri, 15 Nov 2024 09:38:09 +0900
-X-CMS-MailID: 20241115003809epcms1p518df149458f3023d33ec6d87a315e8f6
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 101P
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrCJsWRmVeSWpSXmKPExsWy7bCmnu6n6WbpBgt/8Fps67CxOHflKrvF
-	+Sv9bBZr9p5jsjjY9pPN4vqX56wW84+cY7WYeB7I7Zi8ncWi78VDZouzTW/YLTY9vgaU2H+W
-	3eLyrjlsFp83b2G3eHl7G5tF86LfbBate4+wWyw/tYPFYuNXDwcRjzXz1jB6bFrVyeZx59oe
-	No/NS+o9Ju6p8+jbsorR4/MmuQD2qGybjNTElNQihdS85PyUzLx0WyXv4HjneFMzA0NdQ0sL
-	cyWFvMTcVFslF58AXbfMHKBvlBTKEnNKgUIBicXFSvp2NkX5pSWpChn5xSW2SqkFKTkFpgV6
-	xYm5xaV56Xp5qSVWhgYGRqZAhQnZGf8WvmcuaOOoOPdrH3sD41a2LkZODgkBE4mfvz+wdzFy
-	cQgJ7GCUuHDkPXMXIwcHr4CgxN8dwiCmsECSRNeuHJByIQEliYab+5hBbGEBfYmOB9sYQWw2
-	AV2JrRvusoCMERG4yigxc/pZMIdZ4C6bROe+q6wQy3glZrQ/ZYGwpSW2L98K1s0pYC/xb/5i
-	qLioxM3Vb9lh7PfH5jNC2CISrffOMkPYghIPfu6GiktK9N3ZywSyTEJgG6PEjiNz2CCc/YwS
-	Ux62QU3Slzgz9yTYy7wCvhI7mw6BXcQioCrR0twNDQoXiZafEHFmAXmJ7W/ngEOCWUBTYv0u
-	fYgwn8S7rz1wz+yY94QJwlaTOLR7CdQqGYnT0xdCHeohcfHDRVZI0K1mlti1MW4Co/wsRPjO
-	QrJsFsKyBYzMqxjFUguKc9NTiw0LDOFRmpyfu4kRnJy1THcwTnz7Qe8QIxMH4yFGCQ5mJRHe
-	U87G6UK8KYmVValF+fFFpTmpxYcYTYHenMgsJZqcD8wPeSXxhiaWBiZmRsYmFoZmhkrivGeu
-	lKUKCaQnlqRmp6YWpBbB9DFxcEo1MOl+iFI6bSJ5aZ7T8ou7bZ/+/ym7evZNST7DCXEVc39N
-	XNCT5+qwa/MuQc3sO2uPpL1J1K68ru7hcLpa+VH9JOmgb5vjiucaTTt3Nlx2pvdZ3g/TNunM
-	2vtHRXrDN8FPPTuenKsJ3cSVOmvBj9pjj36eLtdnb/uzJ8Fm2QYd/tt1vet/RFQ4qk/8avC+
-	dV5r39r+aJccvs+1i6J4rlmYTZ8gzOMXvMvC7hJD6Y/n/nHqmmcWd/XP+i38ZO0pxQWNgh33
-	rlp56j78POt46gbZyRb8vqXvVmhMna144YHpessbcoHyUaLTjpUsN1S8d/Sn+o0Paumdd/aa
-	q/vWX3h+zlJnp/qmwyc23T/XxXTRo0hZiaU4I9FQi7moOBEA2uwez1cEAAA=
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20241114041419epcas1p3b52bb9795ffd9efa568bb106ba268e02
-References: <ac655bdc-5ccf-c6c6-3203-659f1916c53c@quicinc.com>
-	<20241007061023.1978380-1-quic_sibis@quicinc.com>
-	<20241007061023.1978380-5-quic_sibis@quicinc.com>
-	<2aycrvnvivcrqctqmweadcgenwugafdr6ub3bzkscterpenz32@bzabln2hkral>
-	<29eef87e-96f6-5105-6f7a-a8e01efcb4a3@quicinc.com>
-	<k4lpzxtrq3x6riyv6etxiobn7nbpczf2bp3m4oc752nhjknlit@uo53kbppzim7>
-	<CGME20241114041419epcas1p3b52bb9795ffd9efa568bb106ba268e02@epcms1p5>
+MIME-Version: 1.0
+X-OriginatorOrg: analog.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BLAPR03MB5604.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9e57ffdd-d1b2-4503-d126-08dd0510e118
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Nov 2024 01:00:21.0179
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: pA1lDnZrAtgqL6Ucj5W7kswYyLFu6WYLsnG4s0YQAI/mbClwEshDmx4IzYBBBTFKQaAi3I3y4a7Lynb3d3uIjjCQPKkawobKULZ0w89DNqg+F5Kau53woRO3cCZhkQc+
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR03MB5580
+X-Proofpoint-ORIG-GUID: zrs3P8Sjc6u5JzqyzydKrcleNZMAd3tA
+X-Proofpoint-GUID: zrs3P8Sjc6u5JzqyzydKrcleNZMAd3tA
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ bulkscore=0 phishscore=0 spamscore=0 clxscore=1015 lowpriorityscore=0
+ malwarescore=0 suspectscore=0 impostorscore=0 mlxscore=0 mlxlogscore=999
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411150007
 
->
->Hey Dmitry,
->
->Thanks for taking time to review the series.
->
->+ Devfreq maintainers to comment (I thought you already added
->them by name)
->
->
->Hey MyungJoo/Kyungmin/Chanwoo,
->
->Can you weigh in here? Does it make sense to add a new
->class of devfreq devices that don't have governors
->associated with them just for them to export a few
->essential data to userspace? In this scenario the
->scaling algorithm is in a SCP and we just start
->them from the kernel. We do have ways to get the
->current frequency of various buses but does this
->warrant adding a new class of governor less devices?
->
->-Sibi
+> -----Original Message-----
+> From: Mark Brown <broonie@kernel.org>
+> Sent: Friday, November 8, 2024 8:51 PM
+> To: Calam, Ramon Cristopher <RamonCristopher.Calam@analog.com>
+> Cc: linux-kernel@vger.kernel.org; devicetree@vger.kernel.org; Liam Girdwo=
+od
+> <lgirdwood@gmail.com>; Rob Herring <robh@kernel.org>; Krzysztof
+> Kozlowski <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>
+> Subject: Re: [PATCH 1/2] regulator: lt8722: Add driver for LT8722
+>=20
+> [External]
+>=20
+> On Fri, Nov 08, 2024 at 05:35:43PM +0800, Ramon Cristopher M. Calam
+> wrote:
+> > Add ADI LT8722 full bridge DC/DC converter driver.
+>=20
+> > +++ b/drivers/regulator/lt8722-regulator.c
+> > @@ -0,0 +1,701 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Analog Devices LT8722 Ultracompact Full Bridge Driver with SPI
+> > +driver
+> > + *
+>=20
+> Please make the entire comment a C++ one so things look more intentional.
 
-If voltage/frequency is controlled by SCP
-(it's an SoC's internal hardware IP, right?),
-it's good to have a userspace governer
-with the driver not accepting updates from userspace.
+I will implement this.
 
-E.g., Let "target" callback not update the frequency value,
- or let "target" callback always return an error with
- a dev_err message that you don't accept frequency changes
- from userspace.
+>=20
+> > +static int lt8722_reg_read(struct spi_device *spi, u8 reg, u32 *val)
+> > +{
+>=20
+> > +static int lt8722_reg_write(struct spi_device *spi, u8 reg, u32 val)
+> > +{
+>=20
+> You can use these as reg_read() and reg_write() operations in regmap whic=
+h
+> will allow the driver to use all the standard helpers and vastly reduce t=
+he size
+> of the driver.
 
-Cheers,
-MyungJoo.
+I will implement reg_read() and reg_write() operations in regmap to utilize
+the standard helper.
+
+>=20
+> > +static int lt8722_parse_fw(struct lt8722_chip_info *chip,
+> > +			   struct regulator_init_data *init_data) {
+> > +	int ret;
+> > +
+> > +	/* Override the min_uV constraint with the minimum output voltage
+> */
+> > +	init_data->constraints.min_uV =3D LT8722_MIN_VOUT;
+>=20
+> Any modification of the constraints by the driver is a bug.  Adjust the
+> information the driver provides about the voltages it supports if you nee=
+d to
+> do this.
+
+The device features UV/OC clamp registers for setting the maximum negative/=
+positive output voltage. I've defined these values in the `adi,uv/ov-clamp-=
+microvolt` property within the device tree, which necessitates adjusting th=
+e constraints in the driver. My idea is to utilize the `regulator-min/max-m=
+icrovolt` property instead, thus eliminating the need for manual constraint=
+ modifications. Would this approach be appropriate? I'm also considering ap=
+plying this method to the minimum and maximum output currents.
+
+>=20
+> > +static int lt8722_is_enabled(struct regulator_dev *rdev) {
+> > +	struct lt8722_chip_info *chip =3D rdev_get_drvdata(rdev);
+> > +	int ret;
+> > +	u32 reg_val;
+> > +	bool en_req, en_pin;
+> > +
+> > +	ret =3D lt8722_reg_read(chip->spi, LT8722_SPIS_COMMAND, &reg_val);
+> > +	if (ret < 0)
+> > +		return ret;
+> > +
+> > +	en_req =3D FIELD_GET(LT8722_EN_REQ_MASK, reg_val);
+> > +	en_pin =3D gpiod_get_value(chip->en_gpio);
+> > +
+> > +	return en_req && en_pin;
+> > +}
+>=20
+> Always adjusting both the GPIO and register all the time like this is poi=
+ntless, it
+> turns the GPIO into just pure overhead.  Just use the standard support fo=
+r
+> setting enables via registrers and GPIOs.  When there's a GPIO leave the
+> register permanently enabld.
+
+I will implement this.
+
+>=20
+> > +	chip->en_gpio =3D devm_gpiod_get(&spi->dev, "enable",
+> GPIOD_OUT_LOW);
+> > +	if (IS_ERR(chip->en_gpio))
+> > +		return PTR_ERR(chip->en_gpio);
+>=20
+> Presumably this is optional, it could just be tied off.
+
+This is currently not optional but from the comment above, yes it could jus=
+t be
+tied off.
+
+Thank you for reviewing the patch,
+
+Best regards,
+RC
 
