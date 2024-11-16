@@ -1,48 +1,54 @@
-Return-Path: <devicetree+bounces-122365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC4A89D009C
-	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 20:13:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C91899D00BF
+	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 21:07:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 69A041F21F41
-	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 19:13:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6ED022850D4
+	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 20:07:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73A7B19306F;
-	Sat, 16 Nov 2024 19:13:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FD49195F0D;
+	Sat, 16 Nov 2024 20:07:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="T7n+2asG"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="JQOZxKP3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [207.246.76.47])
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3842AA47
-	for <devicetree@vger.kernel.org>; Sat, 16 Nov 2024 19:13:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=207.246.76.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40C5D1946AA;
+	Sat, 16 Nov 2024 20:07:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731784391; cv=none; b=pR+EDsZ6mmwX2SBuke9Yfu28QAZC1fZs9h8RqBdUSzUlyiNtvs2FeAfyN8Y9NoblWaSVRchSmF9JXlTNKXs9rQ9mtIT6s1sYUGXW6v258cAUSfGAuxJIfyIS10Z0xnyyzOxGYhjnows0l2L98rev0D6Q2kNOPFkByuGjZgsYx9k=
+	t=1731787665; cv=none; b=No6rwdoVeUkOjRgCg2sExtSKyfSAA9jGpdk+wwpE59ZJXGEpJRNh9pF0Q+6npJD+zKotJrLMNxKDNWTdVVAz697PxV3VAWVyOl/8Kt/hkKK6Sx1VavpjVp5HhciO4wY0HAL+42JFPIz+/3KY2S0k8BQuvCSiBkOAt5CWCh4QFQw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731784391; c=relaxed/simple;
-	bh=jRszqVjXdYsqvM5TdOvy8QPS2iCUZS6I42brtGKLxs0=;
+	s=arc-20240116; t=1731787665; c=relaxed/simple;
+	bh=5rtxGu68PLWrXyTEJNBr68hhrntpwpZdOSN9YWdsbfY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TF24lEdoNhBlcw+WLRjjzNM6V33V5D2CHiNqZg+jHuLEqr11197nrTwUJou/QkXKj3mWFVjaiyX7yc97yuOfIB0J3bCqxvAz4/b7gt2IFckiFKHCsjz0T76X/lq2OzoUqYOoaBOc75bSm2M/Y6CxZx7VmT6n8JZGXHQTpebuM/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=T7n+2asG; arc=none smtp.client-ip=207.246.76.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1731784352;
- bh=dmE8MJeWTk8bxqfJVKrL0wXJqPiElWsvJ7UCb/1ffyQ=;
- b=T7n+2asG+D+AIg0AIXwxwGvNHuGAYpGQDoOW1213jPP4LAk1yI5bqwdvVj9CxFhrf0gPfj+2G
- lejwXy8n/UPkai3wMnn+UtXLdYldQhjzrKhWC+ebAvAUce8kkPpHxhcWffsBrdwlfW0R1JspCD3
- sTIb0nPK3xutRjbCAiSK9XAnbfFvVMAEOkVG2UMsKNuRToQSEdE06kqLty9fHzteAvmmkmNXhzo
- 7uOXnrU81Ais54aFnkJyyLiw5PaNgTQvxt6tCv7mbG3vZr0SMzGLkkvsznSpbO1bAP3H6Okpqb8
- MY40XL43rcc2x2XfK3KyPFTOrXnqyfc4noypsiMIKGnA==
-Message-ID: <c79c1878-370d-45fa-a802-1d175498bb1c@kwiboo.se>
-Date: Sat, 16 Nov 2024 20:12:21 +0100
+	 In-Reply-To:Content-Type; b=qxiVqSsmdln+TjVfPRmDgwPyjT3nA7y3o5lzewuNKz/WLYdmENM+91eclN2OSQ85pNrv+VNgnLfiWULn69XiWdN01myxb8V8dnYLolXF2K93rwmABeR6RSQlJJLuk67IDnkt2mzYgJsuQtoozXZokA9tbqaByVGwNJIlLjCb01I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=JQOZxKP3; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 40BBA89698;
+	Sat, 16 Nov 2024 21:07:34 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1731787655;
+	bh=msWG5qnuSAmchrjZIHWSe5yibi3jg0xEpfJtIVvoQA0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=JQOZxKP3VnpaHDzeb2po7GNni8qWiMQve1IWLtAaq1+5mSjtN24PUPimlzF/6AHC1
+	 U8a+ONq23zJkAah8DAfn22UvOArHyWcUDdkBSWpKHFlb6IY8OYZmywqxK4Q3295oFF
+	 fPv6GRs5arWYat28D4lnKYRN1DAbvUdj5ndlmYt9fsGrMWp+Ld34ORgN+sVhT0r5Qv
+	 qyr5Bb6JCRB98vN4avDSYVag8IDSLlol/nUZRmeok5Yrn1pzUg3Da6UxSnhJUFCLM3
+	 mLOGXtKy2197fkhOCAXvKQuWikwhkiqxMNKQxZsDmMs+clqx+AH4W0ISuqxOI+XUj1
+	 Udg2euHimVxRw==
+Message-ID: <b287f8f9-600e-4e69-b7ec-25990275575e@denx.de>
+Date: Sat, 16 Nov 2024 20:57:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,159 +56,90 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] drm/rockchip: vop2: Improve display modes handling on
- RK3588 HDMI0
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
- <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, kernel@collabora.com,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20241116-vop2-hdmi0-disp-modes-v1-0-2bca51db4898@collabora.com>
- <20241116-vop2-hdmi0-disp-modes-v1-3-2bca51db4898@collabora.com>
+Subject: Re: [PATCH] wifi: wilc1000: Rework bus locking
+To: Ajay.Kathat@microchip.com, alexis.lothore@bootlin.com,
+ linux-wireless@vger.kernel.org
+Cc: davem@davemloft.net, adham.abozaeid@microchip.com,
+ claudiu.beznea@tuxon.dev, conor+dt@kernel.org, edumazet@google.com,
+ kuba@kernel.org, kvalo@kernel.org, krzk+dt@kernel.org, pabeni@redhat.com,
+ robh@kernel.org, devicetree@vger.kernel.org, netdev@vger.kernel.org
+References: <20241022013855.284783-1-marex@denx.de>
+ <c9e98811-15f5-427a-82f7-2e7fff4a9873@bootlin.com>
+ <8e28ba76-ecfa-49b6-89b5-1edabb22129d@denx.de>
+ <a4c8c489-c6b9-4a38-84ab-f08409baccff@microchip.com>
+ <5e2a5056-78ac-4be0-83ca-4aa55f524535@denx.de>
+ <880baad9-be3d-41b2-bea3-620f915ca397@microchip.com>
+ <9d20b408-72a4-49f0-aca6-108dfdd65f99@denx.de>
+ <16e5c8d7-64ac-424e-9430-b683ae16a34e@denx.de>
+ <9888f605-ee68-4bd3-8d1d-aeef247d23d0@microchip.com>
+ <fcdfa93a-2db4-49ad-8947-ca43be329250@denx.de>
+ <260a505e-53ec-4f1d-94fe-2b71af48f1b7@denx.de>
+ <b61b5b11-b078-4cf5-bb40-7c3ff8ffa972@microchip.com>
 Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20241116-vop2-hdmi0-disp-modes-v1-3-2bca51db4898@collabora.com>
-Content-Type: text/plain; charset=UTF-8
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <b61b5b11-b078-4cf5-bb40-7c3ff8ffa972@microchip.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Report-Abuse-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-ForwardEmail-Version: 0.4.40
-X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 207.246.76.47
-X-ForwardEmail-ID: 6738ee9c127e0383f31a82d6
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-Hi Cristian,
+On 11/15/24 9:04 PM, Ajay.Kathat@microchip.com wrote:
 
-On 2024-11-16 19:22, Cristian Ciocaltea wrote:
-> The RK3588 specific implementation is currently quite limited in terms
-> of handling the full range of display modes supported by the connected
-> screens, e.g. 2560x1440@75Hz, 2048x1152@60Hz, 1024x768@60Hz are just a
-> few of them.
+Hello Ajay,
+
+>>>>> Can you explain how to prevent that or shall we disable uAPSD
+>>>>> altogether ?
+>>>>
+>>>> Could you please share the test procedure and logs. I am occupied at the
+>>>> moment but I shall make some time to look into it and get a better
+>>>> understanding.
+>>>
+>>> The simplest test procedure is this:
+>>>
+>>> $ while true ; do ifconfig wlan0 up ; ifconfig wlan0 down ; done
+>>>
+>>> As for the logs, MMCI controller sporadically reports either Command or
+>>> Data CRC error, so likely the SDIO response (from WILC to Host) is
+>>> corrupted.
+>>
+>> Are there any news ?
 > 
-> Additionally, it doesn't cope well with non-integer refresh rates like
-> 59.94, 29.97, 23.98, etc.
+> I did test the same procedure in my setup, but I couldn't reproduce this issue
+> even after running it for a long duration. In my test setup, I used the
+> sama5d27-som1-ek1 host and wilc3000 firmware version 16.3.
 > 
-> Make use of HDMI0 PHY PLL as a more accurate DCLK source to handle
-> all display modes up to 4K@60Hz.
-> 
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-> ---
->  drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 34 ++++++++++++++++++++++++++++
->  1 file changed, 34 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> index 3e4c1cfd0bac6fa90f4cab85e27c2a69b86fc9aa..dfe1a50132d596f036430d7db3631398d0802972 100644
-> --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-> @@ -158,6 +158,7 @@ struct vop2_video_port {
->  	struct drm_crtc crtc;
->  	struct vop2 *vop2;
->  	struct clk *dclk;
-> +	struct clk *dclk_src;
->  	unsigned int id;
->  	const struct vop2_video_port_data *data;
->  
-> @@ -212,6 +213,7 @@ struct vop2 {
->  	struct clk *hclk;
->  	struct clk *aclk;
->  	struct clk *pclk;
-> +	struct clk *pll_hdmiphy0;
->  
->  	/* optional internal rgb encoder */
->  	struct rockchip_rgb *rgb;
-> @@ -220,6 +222,8 @@ struct vop2 {
->  	struct vop2_win win[];
->  };
->  
-> +#define VOP2_MAX_DCLK_RATE		600000 /* kHz */
-> +
->  #define vop2_output_if_is_hdmi(x)	((x) == ROCKCHIP_VOP2_EP_HDMI0 || \
->  					 (x) == ROCKCHIP_VOP2_EP_HDMI1)
->  
-> @@ -1103,6 +1107,9 @@ static void vop2_crtc_atomic_disable(struct drm_crtc *crtc,
->  
->  	vop2_crtc_disable_irq(vp, VP_INT_DSP_HOLD_VALID);
->  
-> +	if (vp->dclk_src)
-> +		clk_set_parent(vp->dclk, vp->dclk_src);
-> +
->  	clk_disable_unprepare(vp->dclk);
->  
->  	vop2->enable_count--;
-> @@ -2192,6 +2199,27 @@ static void vop2_crtc_atomic_enable(struct drm_crtc *crtc,
->  
->  	vop2_vp_write(vp, RK3568_VP_MIPI_CTRL, 0);
->  
-> +	/*
-> +	 * Switch to HDMI PHY PLL as DCLK source for display modes up
-> +	 * to 4K@60Hz, if available, otherwise keep using the system CRU.
-> +	 */
-> +	if (vop2->pll_hdmiphy0 && mode->crtc_clock <= VOP2_MAX_DCLK_RATE) {
-> +		drm_for_each_encoder_mask(encoder, crtc->dev, crtc_state->encoder_mask) {
-> +			struct rockchip_encoder *rkencoder = to_rockchip_encoder(encoder);
-> +
-> +			if (rkencoder->crtc_endpoint_id == ROCKCHIP_VOP2_EP_HDMI0) {
-> +				if (!vp->dclk_src)
-> +					vp->dclk_src = clk_get_parent(vp->dclk);
-> +
-> +				ret = clk_set_parent(vp->dclk, vop2->pll_hdmiphy0);
-> +				if (ret < 0)
-> +					drm_warn(vop2->drm,
-> +						 "Could not switch to HDMI0 PHY PLL: %d\n", ret);
-> +				break;
-> +			}
-> +		}
-> +	}
+> I think this issue could be related to the host MMCI controller driver.
+> Normally, the wilc SDIO bus failures are captured by driver logs with an error
+> code (e.g., timeout), but if the MMCI controller is outputting the warning
+> message, then the error could be related to it. Does the MMCI controller error
+> point to any specific function?
 
-Why do we need to do this dynamically here?
+Either CMD52 or CMD53 errors out with CRC error, this is recognized by 
+the controller. That points to sporadic CRC error during SDIO transfer.
 
-The device tree set PLL_HPLL as parent:
+> Which host was used to test this scenario, and
+> is it possible to test with different host or different configuration on the
+> same host
 
-&vop {
-	assigned-clocks = <&cru DCLK_VOP0>, <&cru DCLK_VOP1>;
-	assigned-clock-parents = <&pmucru PLL_HPLL>, <&cru PLL_VPLL>;
-	status = "okay";
-};
+I am observing sporadic command and data CRC errors on STM32MP157F 
+system with SDIO WILC3000.
 
-Could this not just be changed to assign hdptxphy_hdmi0 as parent?
+, like disabling power save on the host?
+I already tested disabling power save.
 
-&vop {
-	assigned-clocks = <&cru DCLK_VOP0>, <&cru DCLK_VOP1>;
-	assigned-clock-parents = <&hdptxphy_hdmi0>, <&cru PLL_VPLL>;
-	status = "okay";
-};
+Can you explain why does uAPSD (iw ...set power_save off) adversely 
+affect SDIO bus stability ?
 
-or something similar?
+Can you explain how to prevent that or shall we disable uAPSD altogether ?
 
-For RK3328 the vop dclk parent is assigned to hdmiphy using DT.
+Is there any way to make the WILC firmware produce debug output , so we 
+can figure out what is going on "on the other side" ?
 
-Regards,
-Jonas
+Are you able to provide me (maybe off-list) some debug firmware build ?
+(or can I get firmware sources and build and debug my own WILC firmware 
+on the Cortus CPU?)
 
-> +
->  	clk_set_rate(vp->dclk, clock);
->  
->  	vop2_post_config(crtc);
-> @@ -3355,6 +3383,12 @@ static int vop2_bind(struct device *dev, struct device *master, void *data)
->  		return PTR_ERR(vop2->pclk);
->  	}
->  
-> +	vop2->pll_hdmiphy0 = devm_clk_get_optional(vop2->dev, "pll_hdmiphy0");
-> +	if (IS_ERR(vop2->pll_hdmiphy0)) {
-> +		drm_err(vop2->drm, "failed to get pll_hdmiphy0\n");
-> +		return PTR_ERR(vop2->pll_hdmiphy0);
-> +	}
-> +
->  	vop2->irq = platform_get_irq(pdev, 0);
->  	if (vop2->irq < 0) {
->  		drm_err(vop2->drm, "cannot find irq for vop2\n");
-> 
-
+I can trigger the SDIO errors even without being connected to any AP , 
+so this is something between the WILC and the SDIO host, the radio is 
+likely not involved , right ?
 
