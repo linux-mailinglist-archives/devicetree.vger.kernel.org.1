@@ -1,76 +1,63 @@
-Return-Path: <devicetree+bounces-122370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122371-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A1419D00D3
-	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 21:37:17 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 945449D00E8
+	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 22:16:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E6AB285F8E
-	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 20:37:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 66E8BB22068
+	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 21:16:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A1CC198A32;
-	Sat, 16 Nov 2024 20:37:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0C00196C9B;
+	Sat, 16 Nov 2024 21:16:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="MZ2IUeY6"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="rL6Ejz1h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84956194C8D
-	for <devicetree@vger.kernel.org>; Sat, 16 Nov 2024 20:37:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E983EAF6;
+	Sat, 16 Nov 2024 21:16:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731789434; cv=none; b=TWoQFYIXACJgG9QgmV30zzJX9aISTc3SnnJWiunTufNwspi4cRgBNhktICrGr5/jveueTa2JHtILZQenBSM4kSurF8Z+30KgYm+1NPLSymt1G1xGzOjYqRi/uKGOyaJejm6etBpOSH5Opa6dq3fioPXQylAu9M9rrcuhNWHXBoA=
+	t=1731791767; cv=none; b=l9wislrpUMrD39e01urR/ttHBp37/cA9gljK3OODEkIPp/QLq/kkPxmn2EdRohLCElPMnBLwJOQ5yhGd03HnMq8yxMhd8pi0aJSCU+aUWa59FSj98KmqWbrCOl7NLDVIMPZ2QdmQ6Gq7/o6fHOREYq71dhlSyPSliv6GN1IlUyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731789434; c=relaxed/simple;
-	bh=u1/AtEoQwSJwGsbKD0GLeGX10uHIv29qtpAUQFKf95o=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=sSr6x2Cj9IrlToTJjRW6MBfkde3it93UQyP+jwGTCQgZ7L9oYvVQKGEAwQ3y2qU2EQc7Yg96Jq6yC2u60cHJE2lcW8JlyjEboyTPQFYdPsQsyfLt/L6ji3RMIT6uGYO8Hm44uVTaq0C9WJkIhdFFQB9iXi+ZaOpWfH3Na4HL78I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=MZ2IUeY6; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1731789431;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=4+hwsuXUh6txVo7lD5/sCKQ9GduGoC9trsMg2Xh+ZEM=;
-	b=MZ2IUeY60Ct4fq329Ax3u/7I6H67azVIKDidXnFLsrvgNvmLuOw2Alomb9FalmYdQ+V8Sn
-	5xbVQXwOJIJvR9Qk8Yn9w6FtpokntpoD81rIr/lpbkus1Pj3V0ceUs/ImoUPaznWKlcK3O
-	sshTO1WT8tK2CI63Kv+XPM/6J/6GMdc=
-Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-296-EFyKibtaPLy1b7pJ8MXweg-1; Sat,
- 16 Nov 2024 15:37:04 -0500
-X-MC-Unique: EFyKibtaPLy1b7pJ8MXweg-1
-X-Mimecast-MFC-AGG-ID: EFyKibtaPLy1b7pJ8MXweg
-Received: from mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.17])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id DCFD319560B1;
-	Sat, 16 Nov 2024 20:37:02 +0000 (UTC)
-Received: from localhost.localdomain (unknown [10.39.192.14])
-	by mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 95E3A1956056;
-	Sat, 16 Nov 2024 20:37:00 +0000 (UTC)
-From: Hans de Goede <hdegoede@redhat.com>
-To: Sebastian Reichel <sre@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Hans de Goede <hdegoede@redhat.com>,
-	Hermes Zhang <chenhuiz@axis.com>,
-	linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH 3/3] power: supply: bq24190: Add BQ24297 support
-Date: Sat, 16 Nov 2024 21:36:48 +0100
-Message-ID: <20241116203648.169100-3-hdegoede@redhat.com>
-In-Reply-To: <20241116203648.169100-1-hdegoede@redhat.com>
-References: <20241116203648.169100-1-hdegoede@redhat.com>
+	s=arc-20240116; t=1731791767; c=relaxed/simple;
+	bh=U2pJc8REWDsdLIPxp7BDuqopyGKNMspiPzESHNEMlS0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=gD0K0xpbi+TpJ9W5aI7aOqo67BRA0FS37OMF2AKaVml6/6coC5NcgXIX7IIV63MymKeIbmBO1MECNRpp/ZWEa4M29I9I9ztoASRfZhD6YByxr8TxYRl/Fg+jGJXPa4tTrnXbGUeQL8cE3ta/UHqUDL6eZT1EfCSMRtsjsOG9G+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=rL6Ejz1h; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=Cc:From:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References;
+	bh=itjZf9E6/qIWSLq9IIKXiUeBc6Kh8+cNzA1c8FEziO4=; b=rL6Ejz1hxbEhz/GMboHwA2gxKE
+	WePU+K1MC6DxwJDji2f6xMJ/NvHf5jZputKWo3wBkAAkE2i7w49tQFp+DkjQBbepSTpv/Guvie6vt
+	QXM85vgT4G594v6guiGOY9hTjT3mLmbJ5Krd3sdGHiy38sRJsZq06tb4URF2/vwxaiFGJYemzkKna
+	ABaWJnh4dzxqkYnOjS5En8YrVHHufLbjG0pDZbRjMfVDBH7QtTApp9ovFG3XIBVlF3gq6k2hS7UD1
+	dyLYLCPeBzqja4qYBzvZze+IWur0AIb4z57XOm16mkvcW3O7GYAdfj99cTWOPsjNe2dwC8H/TwpfC
+	m4IoGxlA==;
+From: Andreas Kemnade <andreas@kemnade.info>
+To: tony@atomide.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andreas@kemnade.info,
+	hns@goldelico.com,
+	linux-omap@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	aaro.koskinen@iki.fi,
+	khilman@baylibre.com,
+	rogerq@kernel.org
+Cc: stable@vger.kernel.org
+Subject: [PATCH v2] ARM: dts: ti/omap: gta04: fix pm issues caused by spi module
+Date: Sat, 16 Nov 2024 22:15:49 +0100
+Message-Id: <20241116211549.2020727-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,87 +65,59 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.17
 
-The BQ24297 is identical to the BQ24296 except that it uses USB D+ / D-
-data-lines for charger-type (max. input-current) detection instead of
-a PSEL input pin.
+Despite CM_IDLEST1_CORE and CM_FCLKEN1_CORE behaving normal,
+disabling SPI leads to messages like:
+Powerdomain (core_pwrdm) didn't enter target state 0
+and according to /sys/kernel/debug/pm_debug/count off state is not
+entered. That was not connected to SPI during the discussion
+of disabling SPI. See:
+https://lore.kernel.org/linux-omap/20230122100852.32ae082c@aktux/
 
-This is the same difference as between the already supported BQ24190
-(D+ / D-) and the BQ24192 (PSEL).
+The reason is that SPI is per default in slave mode. Linux driver
+will turn it to master per default. It slave mode, the powerdomain seems to
+be kept active if active chip select input is sensed.
 
-Note just like with the BQ24190 vs BQ24192 there is no difference how
-the charger-IC works at the register-level. The only difference is in
-the external hardware interface.
+Fix that by explicitly disabling the SPI3 pins which are muxed by
+the bootloader since they are available on an optionally fitted header
+which would require dtb overlays anyways.
 
-Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+Fixes: a622310f7f01 ("ARM: dts: gta04: fix excess dma channel usage")
+CC: stable@vger.kernel.org
+Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
 ---
- drivers/power/supply/bq24190_charger.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/power/supply/bq24190_charger.c b/drivers/power/supply/bq24190_charger.c
-index 4881cbd0e672..a6a9f3ede34a 100644
---- a/drivers/power/supply/bq24190_charger.c
-+++ b/drivers/power/supply/bq24190_charger.c
-@@ -152,6 +152,7 @@
- #define BQ24296_REG_VPRS_PN_MASK		(BIT(7) | BIT(6) | BIT(5))
- #define BQ24296_REG_VPRS_PN_SHIFT		5
- #define BQ24296_REG_VPRS_PN_24296		0x1
-+#define BQ24296_REG_VPRS_PN_24297		0x3
- #define BQ24190_REG_VPRS_TS_PROFILE_MASK	BIT(2)
- #define BQ24190_REG_VPRS_TS_PROFILE_SHIFT	2
- #define BQ24190_REG_VPRS_DEV_REG_MASK		(BIT(1) | BIT(0))
-@@ -208,6 +209,7 @@ enum bq24190_chip {
- 	BQ24192i,
- 	BQ24196,
- 	BQ24296,
-+	BQ24297,
- };
+diff --git a/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi b/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi
+index 3661340009e7a..3940909a5aac7 100644
+--- a/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi
++++ b/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi
+@@ -446,6 +446,7 @@ &omap3_pmx_core2 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <
+ 			&hsusb2_2_pins
++			&mcspi3hog_pins
+ 	>;
  
- /*
-@@ -1904,6 +1906,7 @@ static int bq24296_check_chip(struct bq24190_dev_info *bdi)
+ 	hsusb2_2_pins: hsusb2-2-pins {
+@@ -459,6 +460,15 @@ OMAP3630_CORE2_IOPAD(0x25fa, PIN_INPUT_PULLDOWN | MUX_MODE3)	/* etk_d15.hsusb2_d
+ 		>;
+ 	};
  
- 	switch (v) {
- 	case BQ24296_REG_VPRS_PN_24296:
-+	case BQ24296_REG_VPRS_PN_24297:
- 		break;
- 	default:
- 		dev_err(bdi->dev, "Error unknown model: 0x%02x\n", v);
-@@ -2033,6 +2036,17 @@ static const struct bq24190_chip_info bq24190_chip_info_tbl[] = {
- 		.ichg_array_size = BQ24296_CCC_ICHG_VALUES_LEN,
- #ifdef CONFIG_REGULATOR
- 		.vbus_desc = &bq24296_vbus_desc,
-+#endif
-+		.check_chip = bq24296_check_chip,
-+		.set_chg_config = bq24296_battery_set_chg_config,
-+		.ntc_fault_mask = BQ24296_REG_F_NTC_FAULT_MASK,
-+		.get_ntc_status = bq24296_charger_get_ntc_status,
-+		.set_otg_vbus = bq24296_set_otg_vbus,
-+	},
-+	[BQ24297] = {
-+		.ichg_array_size = BQ24296_CCC_ICHG_VALUES_LEN,
-+#ifdef CONFIG_REGULATOR
-+		.vbus_desc = &bq24296_vbus_desc,
- #endif
- 		.check_chip = bq24296_check_chip,
- 		.set_chg_config = bq24296_battery_set_chg_config,
-@@ -2296,6 +2310,7 @@ static const struct i2c_device_id bq24190_i2c_ids[] = {
- 	{ "bq24192i", (kernel_ulong_t)&bq24190_chip_info_tbl[BQ24192i] },
- 	{ "bq24196", (kernel_ulong_t)&bq24190_chip_info_tbl[BQ24196] },
- 	{ "bq24296", (kernel_ulong_t)&bq24190_chip_info_tbl[BQ24296] },
-+	{ "bq24297", (kernel_ulong_t)&bq24190_chip_info_tbl[BQ24297] },
- 	{ },
- };
- MODULE_DEVICE_TABLE(i2c, bq24190_i2c_ids);
-@@ -2306,6 +2321,7 @@ static const struct of_device_id bq24190_of_match[] = {
- 	{ .compatible = "ti,bq24192i", .data = &bq24190_chip_info_tbl[BQ24192i] },
- 	{ .compatible = "ti,bq24196", .data = &bq24190_chip_info_tbl[BQ24196] },
- 	{ .compatible = "ti,bq24296", .data = &bq24190_chip_info_tbl[BQ24296] },
-+	{ .compatible = "ti,bq24297", .data = &bq24190_chip_info_tbl[BQ24297] },
- 	{ },
- };
- MODULE_DEVICE_TABLE(of, bq24190_of_match);
++	mcspi3hog_pins: mcspi3hog-pins {
++		pinctrl-single,pins = <
++			OMAP3630_CORE2_IOPAD(0x25dc, PIN_OUTPUT_PULLDOWN | MUX_MODE7)	/* etk_d0 */
++			OMAP3630_CORE2_IOPAD(0x25de, PIN_OUTPUT_PULLDOWN | MUX_MODE7)	/* etk_d1 */
++			OMAP3630_CORE2_IOPAD(0x25e0, PIN_OUTPUT_PULLDOWN | MUX_MODE7)	/* etk_d2 */
++			OMAP3630_CORE2_IOPAD(0x25e2, PIN_OUTPUT_PULLDOWN | MUX_MODE7)	/* etk_d3 */
++		>;
++	};
++
+ 	spi_gpio_pins: spi-gpio-pinmux-pins {
+ 		pinctrl-single,pins = <
+ 			OMAP3630_CORE2_IOPAD(0x25d8, PIN_OUTPUT | MUX_MODE4) /* clk */
 -- 
-2.47.0
+2.39.2
 
 
