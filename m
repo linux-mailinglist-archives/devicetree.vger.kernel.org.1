@@ -1,84 +1,103 @@
-Return-Path: <devicetree+bounces-122328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FE8B9CFCFD
-	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 08:42:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B8B59CFDDC
+	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 11:13:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0607E287DD4
-	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 07:42:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 508AD1F26955
+	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 10:13:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 116F1191473;
-	Sat, 16 Nov 2024 07:42:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BCD5195F22;
+	Sat, 16 Nov 2024 10:13:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="bq6/7bie"
+	dkim=pass (4096-bit key) header.d=envs.net header.i=@envs.net header.b="HIv5SnzC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.envs.net (mail.envs.net [5.199.136.28])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F4DF190462;
-	Sat, 16 Nov 2024 07:42:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA1C4194A52;
+	Sat, 16 Nov 2024 10:13:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.199.136.28
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731742969; cv=none; b=Or9jd+sXAWJYYzj6qn7B80n3h4NwBwXJ0kNJCcZoW5VbnNhFke4IwvwK8052pYCSuoFgEvLxJEowb5d3dHMs6xlOU/hvQufzuTfzgHTeitiJQPkSVFjol928Pvtw0nvcoLmqpdTRCGprl8RYe9oMKldBf9wc6mEOKPBjkAm7oMk=
+	t=1731751999; cv=none; b=gCQQJMELvPFwXSCo5uxnlQqbXf5dLPgrv4se7gai3DkCpjYAA9xtxeTvq1uoNfsHjSIM7aWV+31KH3aYFhU6alrxD/kWnDgR5F9Rk7uyME2BohwrKmOUYoM8f9DKjmAhrwUdCjN2PczGnGxtv+phw/Zkniq1735UcaxQPQvx/3Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731742969; c=relaxed/simple;
-	bh=9hoNfWiopjM2WDnJEC9rERz7WmJEo0Y7eLyng1Sev4c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Aj/an85t8MwbcRqBcRmYV7d8NwZAA+Yrj4OAhI4nBgIRcY5pNUtMcfKR/HhgCxb7/Bw7ol/wyVJNYK2O4s3PLp9Rwa7MmOR3/HKHR+nMyG65X3UUaUfxwSQ1xXjxc38YAMHsFWuv0Ilc6wzTTDUNNPPHp/6K7z65iQ7jhYXdL4I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=bq6/7bie; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B56DC4CEC3;
-	Sat, 16 Nov 2024 07:42:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1731742968;
-	bh=9hoNfWiopjM2WDnJEC9rERz7WmJEo0Y7eLyng1Sev4c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bq6/7bie3iTZI2KD72eBWk4n2GxnMJoqIfzsnZdKL4Td3fsO8D4FqKBlXvOm6tbv+
-	 NXdfca/WKJ4ynTQxyTsD+T0H/Pj6pZI2Txvn0FD+jyORgTZ+9vVgebIuz6SbtiCrGr
-	 jwa12quYXluFcQ+xRgBq05YvNR8cv/UTujuy5wfA=
-Date: Sat, 16 Nov 2024 08:42:24 +0100
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Wesley Cheng <quic_wcheng@quicinc.com>
-Cc: srinivas.kandagatla@linaro.org, mathias.nyman@intel.com, perex@perex.cz,
-	conor+dt@kernel.org, dmitry.torokhov@gmail.com, corbet@lwn.net,
-	broonie@kernel.org, lgirdwood@gmail.com, krzk+dt@kernel.org,
-	pierre-louis.bossart@linux.intel.com, Thinh.Nguyen@synopsys.com,
-	tiwai@suse.com, robh@kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-sound@vger.kernel.org,
-	linux-usb@vger.kernel.org, linux-input@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v30 00/30] Introduce QC USB SND audio offloading support
-Message-ID: <2024111655-approve-throwback-e7df@gregkh>
-References: <20241106193413.1730413-1-quic_wcheng@quicinc.com>
- <edfeb642-297e-42bb-ad09-cbf74f995514@quicinc.com>
+	s=arc-20240116; t=1731751999; c=relaxed/simple;
+	bh=GIDk975XMAmSE7AwYivI4DM6+pRGS2q0FPM/lk6FG4Y=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CbNkPgGB7ZPeJZDx+YqayoLF/scQ1DrAQ2xXDX9Y6ieEl7OZJ97/5xqTy5ySbm5VUHn7dQGPQM3MMtHWBI1fg8rkySV1StLqhF0a/ffbosCd6oyXfMy9WDUpUNYHdlLK2zwJsvbwetPLsz8By6sDQprDEPMoTJt1WJVC4FcQBZo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=envs.net; spf=pass smtp.mailfrom=envs.net; dkim=pass (4096-bit key) header.d=envs.net header.i=@envs.net header.b=HIv5SnzC; arc=none smtp.client-ip=5.199.136.28
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=envs.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=envs.net
+Received: from localhost (mail.envs.net [127.0.0.1])
+	by mail.envs.net (Postfix) with ESMTP id A791D38A0CB3;
+	Sat, 16 Nov 2024 10:13:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=envs.net; s=modoboa;
+	t=1731751981; bh=MFimAkJHBEvrC5Kz9hnMjUuLACleqlr+2hxpl8dFmOY=;
+	h=From:To:Cc:Subject:Date:From;
+	b=HIv5SnzC1DWavmFu2ZtS8jJjrPa5+s+yEoCtwxmXSoJQyuEkncQy6lfHgIXAHcfet
+	 9IpOtMqZWEyNE+a9cMcD9DaYa0EnsRhRC1TRecdY7Wfp/DAdLA5xQRDxjC54UdCa9C
+	 O8ZiwMSciBTvrlgKCxVeqESa7TDNgK4p8Ap/LQ1K0a5+7AfuUAFR4Pa3ryVdwXBrC1
+	 VVn/8ian+HZeiXCMojI/KoDsChe/ULLthUKIJAtIOGlz/8BcB1Rr4/0ynVFtQ9t9rc
+	 QdBNNdFgppZc0NpygZIHmxgfc9K9yVm478Co2cWHLL1EA8lSJcz9wDH7f06CuENMHs
+	 FcDVP/9J1VQUA51WvG+aSoWOcYWPYwnP8qwZQZAWUoEqIJCa//EwZ7S2EHM6yQicVS
+	 x9wtZvbLY/UHYNaO+i+bNy+4P/JQWSJTuk0UCBct7i69NZaJCcFDeXhwqr76FfubGW
+	 VBMQbf83nkb51GKrdY+YvnGdtCa3URO0G23qXGfm31A5965a/+3ZE1By99wFLdska9
+	 tp/KeFNgq3WVpldkMWW6M7HtVbN6miGrgtD39srsnrZXSY2yjuBwWclyJ0NVZjjq8u
+	 ITraNy8z54EBoFILEjjKTlL8lrYX9rFEU0UglkRj4AxwwoXj1ibl1ix4R89m6RPDTO
+	 ierlrxzxCukOu+eR+7nCiNjk=
+X-Virus-Scanned: Debian amavisd-new at mail.envs.net
+Received: from mail.envs.net ([127.0.0.1])
+	by localhost (mail.envs.net [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id LIvlRctmBUSS; Sat, 16 Nov 2024 10:12:59 +0000 (UTC)
+Received: from xtexx.eu.org (unknown [120.230.214.103])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.envs.net (Postfix) with ESMTPSA;
+	Sat, 16 Nov 2024 10:12:59 +0000 (UTC)
+From: Bingwu Zhang <xtex@envs.net>
+To: David Gibson <david@gibson.dropbear.id.au>,
+	devicetree-compiler@vger.kernel.org
+Cc: Bingwu Zhang <xtexchooser@duck.com>,
+	devicetree@vger.kernel.org,
+	~xtex/staging@lists.sr.ht
+Subject: [PATCH 0/2] libfdt: Fix -Wextra -Wpedantic warnings
+Date: Sat, 16 Nov 2024 18:12:26 +0800
+Message-ID: <20241116101228.164707-4-xtex@envs.net>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+X-Developer-Signature: v=1; a=openpgp-sha256; l=639; i=xtexchooser@duck.com; h=from:subject; bh=TiUcXRHrPzVtl2/bCPU38RDHrC4CI2LU7x+JpsI3mzo=; b=owGbwMvMwCW2U4Ij7wZL9ETG02pJDOkWBTwyal+maik9DPn+9K2veaBadvbWOYfcN7+5c+97Q Nym2La6jlIWBjEuBlkxRZYiwwZvVp10ftFl5bIwc1iZQIYwcHEKwERKHBgZHqckdLJff7pP8C/D spKVi51lNA68KT7W+dmk+kHnljtqCxgZbh+8qZNe3dypkb6+L5p1SZrm+p8qERGpgZXm2zmjFVR 5AQ==
+X-Developer-Key: i=xtexchooser@duck.com; a=openpgp; fpr=7231804B052C670F15A6771DB918086ED8045B91
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <edfeb642-297e-42bb-ad09-cbf74f995514@quicinc.com>
 
-On Fri, Nov 15, 2024 at 02:42:47PM -0800, Wesley Cheng wrote:
-> Hi,
-> 
-> On 11/6/2024 11:33 AM, Wesley Cheng wrote:
-> > Requesting to see if we can get some Acked-By tags, and merge on usb-next.
-> 
-> Are there any more clarifications that I can help with to get this
-> series going?  I know its been a long time coming, so folks may have
-> lost context, but if there are any points that might be blocking the
-> series from getting merged, please let me know.
+From: Bingwu Zhang <xtexchooser@duck.com>
 
-I would like others to review this (xhci maintainer for one), to give
-their blessing before I even consider this.
+This fixes several warning when compiling with CFLAGS='-Wall -Wextra
+ -Wpedantic'. When using together with '-Werror' flag, these warnings becomes
+ fatal errors that fails the build.
 
-thanks,
+Both of the original errors and fixes for them are tested with GCC 13
+ and clang 18.
 
-greg k-h
+Bingwu Zhang (2):
+  libfdt: Suppress a unused parameter warning in
+    overlay_fixup_one_phandle
+  libfdt: Remove extra semi-colons outside functions
+
+ libfdt/fdt_overlay.c |  3 ++-
+ libfdt/libfdt.h      | 20 ++++++++++----------
+ 2 files changed, 12 insertions(+), 11 deletions(-)
+
+
+base-commit: 2d10aa2afe35527728db30b35ec491ecb6959e5c
+-- 
+2.47.0
+
 
