@@ -1,91 +1,92 @@
-Return-Path: <devicetree+bounces-122325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122326-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A34569CFC99
-	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 04:39:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6A449CFCE0
+	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 07:19:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2ADB6283314
-	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 03:39:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 454131F2480E
+	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 06:19:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E54F5143C69;
-	Sat, 16 Nov 2024 03:39:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="LGv67E2y"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECEEB190049;
+	Sat, 16 Nov 2024 06:19:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out30-111.freemail.mail.aliyun.com (out30-111.freemail.mail.aliyun.com [115.124.30.111])
+Received: from freeshell.de (freeshell.de [116.202.128.144])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 975CF38382;
-	Sat, 16 Nov 2024 03:39:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.30.111
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 774F94A33;
+	Sat, 16 Nov 2024 06:19:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731728350; cv=none; b=WwoYwN3YX4y9E5FgBfSJWxUSQKLYMsU2WQj9Tp0elA08Q5JBxXwKjfliG96o1m7QU2VvUL82+io5Rl5Dol8BEqHegYlWOvrhT4F6LrGVdlQLaHBHOVdcss7lsN5F+24lTHD/r1box75rJPwi62P7vxyQ0KxQSVkEKIVsY0JEWds=
+	t=1731737972; cv=none; b=IHfKXS92drzsWJC2trkNrjKs5KYKDNhsXBuKHmwP5PYk6ubrsQgjf1CmBwzETRe6VSAJ64ghL/oaYp1xriQ4iFY3boSK6VJ9j/leP8qTQKd/H70J+fdy8Te9u8g7cCiZWQ81lwdKAPZLC84xMa39uUx6fWdMO/Xj07sV0SAwMRo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731728350; c=relaxed/simple;
-	bh=2WnIUhF4nF+5eiZ30FfIKwQDl93TFvg/qO/SRgQ2zzo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dvqQk0E1zmuTYgMT/Hmqf2vIUQs1CjjpopqBTEXKwUQZrV7eeKK/ZuurvMUCQqtwuCOMZTvEeQTXw+ltzFXv0m6FjwfPHE3Ep2jwyDcyZ4T9sG8m5h0+H+r8kPDvYd6JoOTqwIsu7aCHcWWzcshRAOgRhR5nc3vnhwg/z8Js6Kc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com; spf=pass smtp.mailfrom=linux.alibaba.com; dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b=LGv67E2y; arc=none smtp.client-ip=115.124.30.111
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.alibaba.com
-DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linux.alibaba.com; s=default;
-	t=1731728338; h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
-	bh=YTBNWZgiiFjUFQseifv6NuUHrr3Tj7gRyILW+ozwUiQ=;
-	b=LGv67E2yvjO1N3UKhe2M2nKsbax1XduL7o18pBwlIi1M9tlovJo/de/jijV4eQn+EXF/NSdj2KLOGAcG87iDZrhWbeimlxuk2c7r4eUxUlG8Uu8AVzwK4myjGBCvcKa+ZgCWnWMrT4bFQU3RqczFt2IM2psx2Hv8MBnmEq/nT4g=
-Received: from 192.168.0.104(mailfrom:baolin.wang@linux.alibaba.com fp:SMTPD_---0WJVOyqZ_1731728336 cluster:ay36)
-          by smtp.aliyun-inc.com;
-          Sat, 16 Nov 2024 11:38:57 +0800
-Message-ID: <af72a051-ee53-4050-a1c0-2a657e58cf03@linux.alibaba.com>
-Date: Sat, 16 Nov 2024 11:38:56 +0800
+	s=arc-20240116; t=1731737972; c=relaxed/simple;
+	bh=dWRxzl943f/IoxqFKT+mrLOC4thOFxH1f9VBnNH7dRI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CYroPNLP4+r+88NfHoj5N6qVbjYzf2WzeNpLvWdplKrlrF/5QU1xmvltRwiUaFNQMdxteWz4MUUDirTcGorBg4UWh79tFdha3W1CLxRCrr/hU8P+3kLoGpDPdcNZt+ypaCcBUdVs9ckXA4WVhkbWyV3j9rGVwfO7h+xxx4bJJAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+Received: from hay.lan. (unknown [IPv6:2605:59c8:31de:bf00:6ecf:39ff:fe00:8375])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id 654F9B4B0612;
+	Sat, 16 Nov 2024 07:19:16 +0100 (CET)
+From: E Shattow <e@freeshell.de>
+To: Jisheng Zhang <jszhang@kernel.org>
+Cc: E Shattow <e@freeshell.de>,
+	Conor Dooley <conor@kernel.org>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/1] riscv: dts: starfive: jh7110-milkv-mars: enable usb0 host function
+Date: Fri, 15 Nov 2024 22:17:07 -0800
+Message-ID: <20241116061719.36409-2-e@freeshell.de>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: sprd: Remove unused and undocumented
- "constant_charge_voltage_max_microvolt" property
-To: "Rob Herring (Arm)" <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>,
- Chunyan Zhang <zhang.lyra@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20241115193409.3618257-1-robh@kernel.org>
-From: Baolin Wang <baolin.wang@linux.alibaba.com>
-In-Reply-To: <20241115193409.3618257-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
+Enable host mode JH7110 on-chip USB for Milk-V Mars by setting host mode
+and connect vbus pinctrl.
 
+This functionality depends on:
 
-On 2024/11/16 03:34, Rob Herring (Arm) wrote:
-> Remove "constant_charge_voltage_max_microvolt" property which is both
-> unused in the kernel and undocumented. Most likely they are leftovers
-> from downstream.
+1. commit e10c52e7e064038d9bd67b20bf4ce92077d7d84e
+"phy: starfive: jh7110-usb: Fix link configuration to controller"
 
-Yes. LGTM. Thanks.
-Reviewed-by: Baolin Wang <baolin.wang@linux.alibaba.com>
+2. Setting the USB over-current register to disable. This is done at
+bootloader phase, for example U-Boot:
+https://patchwork.ozlabs.org/project/uboot/patch/20241012031328.4268-6-minda.chen@starfivetech.com/
 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->   arch/arm64/boot/dts/sprd/sp9860g-1h10.dts | 1 -
->   1 file changed, 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/sprd/sp9860g-1h10.dts b/arch/arm64/boot/dts/sprd/sp9860g-1h10.dts
-> index 095b24a31313..e60838695d0e 100644
-> --- a/arch/arm64/boot/dts/sprd/sp9860g-1h10.dts
-> +++ b/arch/arm64/boot/dts/sprd/sp9860g-1h10.dts
-> @@ -71,7 +71,6 @@ bat: battery {
->   		compatible = "simple-battery";
->   		charge-full-design-microamp-hours = <1900000>;
->   		charge-term-current-microamp = <120000>;
-> -		constant_charge_voltage_max_microvolt = <4350000>;
->   		internal-resistance-micro-ohms = <250000>;
->   		ocv-capacity-celsius = <20>;
->   		ocv-capacity-table-0 = <4185000 100>, <4113000 95>, <4066000 90>,
+If the over-current register is not prepared for us then the result is no
+change in functional outcome with this patch applied; there is an error
+visible to the user and this additional usb configuration fails (same as
+it is now). The existing three VL805 connected USB ports via PCIe on 
+Milk-V Mars are not affected.
+
+Changes since v1:
+ - series name (was "[PATCH] riscv: dts: starfive: jh7110-milkv-mars: set host mode and vbus pin for on-chip USB 2.0")
+ - adjust pin label to obey dtschema
+ - use cover letter
+
+E Shattow (1):
+  riscv: dts: starfive: jh7110-milkv-mars: enable usb0 host function
+
+ .../boot/dts/starfive/jh7110-milkv-mars.dts    | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
+
+-- 
+2.45.2
+
 
