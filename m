@@ -1,102 +1,109 @@
-Return-Path: <devicetree+bounces-122329-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B8B59CFDDC
-	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 11:13:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86F139CFDDE
+	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 11:13:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 508AD1F26955
-	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 10:13:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F04F1F26A78
+	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 10:13:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BCD5195F22;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE4C2196434;
 	Sat, 16 Nov 2024 10:13:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=envs.net header.i=@envs.net header.b="HIv5SnzC"
+	dkim=pass (4096-bit key) header.d=envs.net header.i=@envs.net header.b="fKpEXDF7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.envs.net (mail.envs.net [5.199.136.28])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA1C4194A52;
-	Sat, 16 Nov 2024 10:13:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCC1618CBEC;
+	Sat, 16 Nov 2024 10:13:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.199.136.28
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731751999; cv=none; b=gCQQJMELvPFwXSCo5uxnlQqbXf5dLPgrv4se7gai3DkCpjYAA9xtxeTvq1uoNfsHjSIM7aWV+31KH3aYFhU6alrxD/kWnDgR5F9Rk7uyME2BohwrKmOUYoM8f9DKjmAhrwUdCjN2PczGnGxtv+phw/Zkniq1735UcaxQPQvx/3Q=
+	t=1731751999; cv=none; b=eSTgjbqJknV7WTK4ZpMMA6hX2PZoQZmdNvFJCsbOvMmCZVRhxdF9dNnUwapMW1/O79mr19UpImhdCLb+Mo7VzreWJ5wGa41bIAB3Zy0ROcwroFh1D2C4AE2RU6c41qMwg13KRHXRJFLxmYXE7BLp4yBWqOeDAhPLG3efFRQsFZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1731751999; c=relaxed/simple;
-	bh=GIDk975XMAmSE7AwYivI4DM6+pRGS2q0FPM/lk6FG4Y=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CbNkPgGB7ZPeJZDx+YqayoLF/scQ1DrAQ2xXDX9Y6ieEl7OZJ97/5xqTy5ySbm5VUHn7dQGPQM3MMtHWBI1fg8rkySV1StLqhF0a/ffbosCd6oyXfMy9WDUpUNYHdlLK2zwJsvbwetPLsz8By6sDQprDEPMoTJt1WJVC4FcQBZo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=envs.net; spf=pass smtp.mailfrom=envs.net; dkim=pass (4096-bit key) header.d=envs.net header.i=@envs.net header.b=HIv5SnzC; arc=none smtp.client-ip=5.199.136.28
+	bh=ENlfhO9ZujLOutvmJBOi8JCVY/fPssVY+Zb+kKi/yJQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=Sy4HUG8TNAwK+2gEX8xCJ8dsBNG41kXQWhOaBxmE0q6vly3Q41oLcX+6+kycpQ7rCUH+RodRxfbI5htczBntVmtEeb8dyByekNpj7Y6PCBFuv5g8xYRDdI/fig24hB/O/kVDEujbq+8BwThQIwVWrYYRv7GE+94LTv5K87W+iP8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=envs.net; spf=pass smtp.mailfrom=envs.net; dkim=pass (4096-bit key) header.d=envs.net header.i=@envs.net header.b=fKpEXDF7; arc=none smtp.client-ip=5.199.136.28
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=envs.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=envs.net
 Received: from localhost (mail.envs.net [127.0.0.1])
-	by mail.envs.net (Postfix) with ESMTP id A791D38A0CB3;
-	Sat, 16 Nov 2024 10:13:01 +0000 (UTC)
+	by mail.envs.net (Postfix) with ESMTP id B445238A0CB8;
+	Sat, 16 Nov 2024 10:13:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=envs.net; s=modoboa;
-	t=1731751981; bh=MFimAkJHBEvrC5Kz9hnMjUuLACleqlr+2hxpl8dFmOY=;
-	h=From:To:Cc:Subject:Date:From;
-	b=HIv5SnzC1DWavmFu2ZtS8jJjrPa5+s+yEoCtwxmXSoJQyuEkncQy6lfHgIXAHcfet
-	 9IpOtMqZWEyNE+a9cMcD9DaYa0EnsRhRC1TRecdY7Wfp/DAdLA5xQRDxjC54UdCa9C
-	 O8ZiwMSciBTvrlgKCxVeqESa7TDNgK4p8Ap/LQ1K0a5+7AfuUAFR4Pa3ryVdwXBrC1
-	 VVn/8ian+HZeiXCMojI/KoDsChe/ULLthUKIJAtIOGlz/8BcB1Rr4/0ynVFtQ9t9rc
-	 QdBNNdFgppZc0NpygZIHmxgfc9K9yVm478Co2cWHLL1EA8lSJcz9wDH7f06CuENMHs
-	 FcDVP/9J1VQUA51WvG+aSoWOcYWPYwnP8qwZQZAWUoEqIJCa//EwZ7S2EHM6yQicVS
-	 x9wtZvbLY/UHYNaO+i+bNy+4P/JQWSJTuk0UCBct7i69NZaJCcFDeXhwqr76FfubGW
-	 VBMQbf83nkb51GKrdY+YvnGdtCa3URO0G23qXGfm31A5965a/+3ZE1By99wFLdska9
-	 tp/KeFNgq3WVpldkMWW6M7HtVbN6miGrgtD39srsnrZXSY2yjuBwWclyJ0NVZjjq8u
-	 ITraNy8z54EBoFILEjjKTlL8lrYX9rFEU0UglkRj4AxwwoXj1ibl1ix4R89m6RPDTO
-	 ierlrxzxCukOu+eR+7nCiNjk=
+	t=1731751984; bh=N0lYlkmteIOjIWe4oolMKq7FLUUjjU4x4W1uSjEhl3Q=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=fKpEXDF790E59tN+mFE231wor97X0XnQ1itlPwkAUL93wPqEqr+0TEApfokmkw00l
+	 x+g7UdU7UQoMpIsUijCVw2yQIS4HrS9oobrpqR5ii+lkwdsr5WwvwPWVZejhisqA4t
+	 yQXKM4KrlLWd70SmMxi6QQhej40/6yH2aXe02SsZyz99xEidBa0XuXnbswagw/xNtG
+	 3t47LTJpQkC25TbeyP+t7uB8NL+lqvwmQPFCjbk+iWIbOPlV0YSAgZfQ+2uZdW4EPV
+	 iqVohHHalzhqVIeInnXAKW7FbCMGQRMRVbQ0PfGINhvCBSW/K+k8X0Y0HqDymL/3i/
+	 pd9BZsHCY8vizVyijgD2b7AbFEAH1gbOCHaIrBQ4NG1ZASfUKH+s8cCCFmEzOnf3LS
+	 Zd3drUSx//VVQZ2E/CKv/DzhvQHKuY9UTy3wzKYgCICLyHqHTY/XkkeFAFKQ5fEJEA
+	 qJFZuqaqfab5cVuG+s/ghxKeMS+Ri9ya/zZq+CTPC3oGvOd8YvvW68U5XyT7FreQQJ
+	 KvCSivr1BJzMXYLeMPPYQDuEV9Q02xkOlge/LyFes3qWQGJeoh9iIQzE9dkvY+iD9l
+	 dUDbGiTGtuGrzY/0evQn78F/ZmiQCdCMTzqw/Ka/oSLj8dl7G7vFUdFm22rnGcECDb
+	 EBbBi4nxrsUAB/FXCO/4yguw=
 X-Virus-Scanned: Debian amavisd-new at mail.envs.net
 Received: from mail.envs.net ([127.0.0.1])
 	by localhost (mail.envs.net [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id LIvlRctmBUSS; Sat, 16 Nov 2024 10:12:59 +0000 (UTC)
+	with ESMTP id 2gbnj3bAQwro; Sat, 16 Nov 2024 10:13:02 +0000 (UTC)
 Received: from xtexx.eu.org (unknown [120.230.214.103])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
 	by mail.envs.net (Postfix) with ESMTPSA;
-	Sat, 16 Nov 2024 10:12:59 +0000 (UTC)
+	Sat, 16 Nov 2024 10:13:02 +0000 (UTC)
 From: Bingwu Zhang <xtex@envs.net>
 To: David Gibson <david@gibson.dropbear.id.au>,
 	devicetree-compiler@vger.kernel.org
 Cc: Bingwu Zhang <xtexchooser@duck.com>,
 	devicetree@vger.kernel.org,
 	~xtex/staging@lists.sr.ht
-Subject: [PATCH 0/2] libfdt: Fix -Wextra -Wpedantic warnings
-Date: Sat, 16 Nov 2024 18:12:26 +0800
-Message-ID: <20241116101228.164707-4-xtex@envs.net>
+Subject: [PATCH 1/2] libfdt: Suppress a unused parameter warning in overlay_fixup_one_phandle
+Date: Sat, 16 Nov 2024 18:12:27 +0800
+Message-ID: <20241116101228.164707-5-xtex@envs.net>
 X-Mailer: git-send-email 2.47.0
+In-Reply-To: <20241116101228.164707-4-xtex@envs.net>
+References: <20241116101228.164707-4-xtex@envs.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=639; i=xtexchooser@duck.com; h=from:subject; bh=TiUcXRHrPzVtl2/bCPU38RDHrC4CI2LU7x+JpsI3mzo=; b=owGbwMvMwCW2U4Ij7wZL9ETG02pJDOkWBTwyal+maik9DPn+9K2veaBadvbWOYfcN7+5c+97Q Nym2La6jlIWBjEuBlkxRZYiwwZvVp10ftFl5bIwc1iZQIYwcHEKwERKHBgZHqckdLJff7pP8C/D spKVi51lNA68KT7W+dmk+kHnljtqCxgZbh+8qZNe3dypkb6+L5p1SZrm+p8qERGpgZXm2zmjFVR 5AQ==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=721; i=xtexchooser@duck.com; h=from:subject; bh=6TbJ3yYuqieQq9IZ3sO88LQi6ggjGj6pSB4UhcV7PGo=; b=kA0DAAoWuRgIbtgEW5EByyZiAGc4cAyjHZ1CglJl7qZ5cOPkG1LwRe53FEoVrSRXOkeQgAj3D oh1BAAWCgAdFiEEcjGASwUsZw8VpncduRgIbtgEW5EFAmc4cAwACgkQuRgIbtgEW5EmVAEApcVa pUgoKvPvyXUiTjhcWao7WfVe53YnQ3f3QDp4n9oBALN3gnREJw4tFb+QlwbLlzis+/33377D+mq uJ9UZu98F
 X-Developer-Key: i=xtexchooser@duck.com; a=openpgp; fpr=7231804B052C670F15A6771DB918086ED8045B91
 Content-Transfer-Encoding: 8bit
 
 From: Bingwu Zhang <xtexchooser@duck.com>
 
-This fixes several warning when compiling with CFLAGS='-Wall -Wextra
- -Wpedantic'. When using together with '-Werror' flag, these warnings becomes
- fatal errors that fails the build.
+When compiling with -Wall -Wextra, the unused fdt parameter becomes a
+warning. With -Werror, it becomes an error that fails the build.
 
-Both of the original errors and fixes for them are tested with GCC 13
- and clang 18.
+Thanks to Icenowy Zheng for pointing out the solution.
 
-Bingwu Zhang (2):
-  libfdt: Suppress a unused parameter warning in
-    overlay_fixup_one_phandle
-  libfdt: Remove extra semi-colons outside functions
+Signed-off-by: Bingwu Zhang <xtexchooser@duck.com>
+---
+ libfdt/fdt_overlay.c | 1 +
+ 1 file changed, 1 insertion(+)
 
- libfdt/fdt_overlay.c |  3 ++-
- libfdt/libfdt.h      | 20 ++++++++++----------
- 2 files changed, 12 insertions(+), 11 deletions(-)
-
-
-base-commit: 2d10aa2afe35527728db30b35ec491ecb6959e5c
+diff --git a/libfdt/fdt_overlay.c b/libfdt/fdt_overlay.c
+index 28b667ffc490..f9be13865807 100644
+--- a/libfdt/fdt_overlay.c
++++ b/libfdt/fdt_overlay.c
+@@ -334,6 +334,7 @@ static int overlay_fixup_one_phandle(void *fdt, void *fdto,
+ 				     const char *name, uint32_t name_len,
+ 				     int poffset, uint32_t phandle)
+ {
++	(void)fdt;
+ 	fdt32_t phandle_prop;
+ 	int fixup_off;
+ 
 -- 
 2.47.0
 
