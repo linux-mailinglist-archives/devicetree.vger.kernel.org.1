@@ -1,180 +1,91 @@
-Return-Path: <devicetree+bounces-122324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 006F79CFC8F
-	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 04:18:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A34569CFC99
+	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 04:39:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E2421F242C8
-	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 03:18:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2ADB6283314
+	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 03:39:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C3C7195B1A;
-	Sat, 16 Nov 2024 03:17:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E54F5143C69;
+	Sat, 16 Nov 2024 03:39:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="DYnHFFyT"
+	dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="LGv67E2y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+Received: from out30-111.freemail.mail.aliyun.com (out30-111.freemail.mail.aliyun.com [115.124.30.111])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B41F2192D62;
-	Sat, 16 Nov 2024 03:17:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 975CF38382;
+	Sat, 16 Nov 2024 03:39:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.30.111
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731727058; cv=none; b=WXaKx3+B/eeBB3d0t+jUKKdfJpaQxf+x/vRXnArdJGhP3Ez9V1s6EpZ2NH3HuMmXBf1sTyO/n2mojlG/k5fw/laz2MitRTIYGYIhctXmJhfPH23KDs1ES9PVLOXvXBa2bVIWNbeEja5waMoe0g6+xrG124T6alUk3U+nlVt/AO0=
+	t=1731728350; cv=none; b=WwoYwN3YX4y9E5FgBfSJWxUSQKLYMsU2WQj9Tp0elA08Q5JBxXwKjfliG96o1m7QU2VvUL82+io5Rl5Dol8BEqHegYlWOvrhT4F6LrGVdlQLaHBHOVdcss7lsN5F+24lTHD/r1box75rJPwi62P7vxyQ0KxQSVkEKIVsY0JEWds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731727058; c=relaxed/simple;
-	bh=lGToSgMvk2B3q7G5z72Kh/gXG/P1Sn99kRVXKZ8U0s8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=JWvcTBArjoLGhimWlSuZ1JbStawSLMtTKhnZmo2OQCNaFWqkyhSMYONetwP7mNk9YQ/1M29k185EELTzGPuN8KhqRKlR0m/3C984A3YGMKEx+XELhrHMwnGZi7uqmoxtbL6AsPTUinF2czAJ8DhMsk+sdmjtgT89SHQc6d2y5Ic=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=DYnHFFyT; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 51499d1ea3c911efbd192953cf12861f-20241116
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=U+Wa/gu1OcvAO05IVCtNhN7nadBhoIHWhdnKEeo81ds=;
-	b=DYnHFFyT20avBK4E/ZfZc4GZxVQ5wCjtO3OaCD/aIgLDbVYl+jqcU6A4F5QBE0+nKIcgOJCVHNfunJma9TgceEW0+8G+G+D3rn0Nwktm51V7fvgQuDs0PparT6ouaqS30wlxiQ55qPvtPnSAf4arBepqJ5EDyFOMo2XIYj65J5k=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.43,REQID:712aaf14-69a7-401f-97d5-3b0c157b9329,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:ce19b8a,CLOUDID:6dedb85c-f18b-4d56-b49c-93279ee09144,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:nil,Content:0,EDM:-3,IP
-	:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,
-	LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 51499d1ea3c911efbd192953cf12861f-20241116
-Received: from mtkmbs09n1.mediatek.inc [(172.21.101.35)] by mailgw02.mediatek.com
-	(envelope-from <yunfei.dong@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 2003743283; Sat, 16 Nov 2024 11:17:31 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Sat, 16 Nov 2024 11:17:30 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Sat, 16 Nov 2024 11:17:29 +0800
-From: Yunfei Dong <yunfei.dong@mediatek.com>
-To: =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?=
-	<nfraprado@collabora.com>, Sebastian Fricke <sebastian.fricke@collabora.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>, Hans Verkuil
-	<hverkuil-cisco@xs4all.nl>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Benjamin Gaignard
-	<benjamin.gaignard@collabora.com>, Nathan Hebert <nhebert@chromium.org>,
-	Daniel Almeida <daniel.almeida@collabora.com>
-CC: Hsin-Yi Wang <hsinyi@chromium.org>, Fritz Koenig <frkoenig@chromium.org>,
-	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>, Yunfei
- Dong <yunfei.dong@mediatek.com>, <linux-media@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v7 5/5] media: mediatek: vcodec: store current vb2 buffer to decode again
-Date: Sat, 16 Nov 2024 11:17:19 +0800
-Message-ID: <20241116031724.15694-6-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20241116031724.15694-1-yunfei.dong@mediatek.com>
-References: <20241116031724.15694-1-yunfei.dong@mediatek.com>
+	s=arc-20240116; t=1731728350; c=relaxed/simple;
+	bh=2WnIUhF4nF+5eiZ30FfIKwQDl93TFvg/qO/SRgQ2zzo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dvqQk0E1zmuTYgMT/Hmqf2vIUQs1CjjpopqBTEXKwUQZrV7eeKK/ZuurvMUCQqtwuCOMZTvEeQTXw+ltzFXv0m6FjwfPHE3Ep2jwyDcyZ4T9sG8m5h0+H+r8kPDvYd6JoOTqwIsu7aCHcWWzcshRAOgRhR5nc3vnhwg/z8Js6Kc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com; spf=pass smtp.mailfrom=linux.alibaba.com; dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b=LGv67E2y; arc=none smtp.client-ip=115.124.30.111
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.alibaba.com
+DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linux.alibaba.com; s=default;
+	t=1731728338; h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
+	bh=YTBNWZgiiFjUFQseifv6NuUHrr3Tj7gRyILW+ozwUiQ=;
+	b=LGv67E2yvjO1N3UKhe2M2nKsbax1XduL7o18pBwlIi1M9tlovJo/de/jijV4eQn+EXF/NSdj2KLOGAcG87iDZrhWbeimlxuk2c7r4eUxUlG8Uu8AVzwK4myjGBCvcKa+ZgCWnWMrT4bFQU3RqczFt2IM2psx2Hv8MBnmEq/nT4g=
+Received: from 192.168.0.104(mailfrom:baolin.wang@linux.alibaba.com fp:SMTPD_---0WJVOyqZ_1731728336 cluster:ay36)
+          by smtp.aliyun-inc.com;
+          Sat, 16 Nov 2024 11:38:57 +0800
+Message-ID: <af72a051-ee53-4050-a1c0-2a657e58cf03@linux.alibaba.com>
+Date: Sat, 16 Nov 2024 11:38:56 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: sprd: Remove unused and undocumented
+ "constant_charge_voltage_max_microvolt" property
+To: "Rob Herring (Arm)" <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>,
+ Chunyan Zhang <zhang.lyra@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20241115193409.3618257-1-robh@kernel.org>
+From: Baolin Wang <baolin.wang@linux.alibaba.com>
+In-Reply-To: <20241115193409.3618257-1-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-All the src vb2 buffer are removed from ready list when STREAMOFF
-capture queue, may remove a non exist vb2 buffer if lat is working
-currently. The driver also need to use current vb2 buffer to decode
-again to wait for enough resource when lat decode error.
 
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
----
- .../vcodec/decoder/mtk_vcodec_dec_drv.h       |  2 ++
- .../vcodec/decoder/mtk_vcodec_dec_stateless.c | 29 ++++++++++++++-----
- 2 files changed, 23 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
-index ac568ed14fa2..e70e97e401ba 100644
---- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
-+++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h
-@@ -155,6 +155,7 @@ struct mtk_vcodec_dec_pdata {
-  * @last_decoded_picinfo: pic information get from latest decode
-  * @empty_flush_buf: a fake size-0 capture buffer that indicates flush. Used
-  *		     for stateful decoder.
-+ * @cur_src_buffer: current vb2 buffer for the latest decode.
-  * @is_flushing: set to true if flushing is in progress.
-  *
-  * @current_codec: current set input codec, in V4L2 pixel format
-@@ -201,6 +202,7 @@ struct mtk_vcodec_dec_ctx {
- 	struct work_struct decode_work;
- 	struct vdec_pic_info last_decoded_picinfo;
- 	struct v4l2_m2m_buffer empty_flush_buf;
-+	struct vb2_v4l2_buffer *cur_src_buffer;
- 	bool is_flushing;
- 
- 	u32 current_codec;
-diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c
-index dd6ee694382e..ad3c585e339d 100644
---- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c
-+++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_stateless.c
-@@ -316,7 +316,7 @@ static void mtk_vdec_worker(struct work_struct *work)
- 	struct mtk_vcodec_dec_ctx *ctx =
- 		container_of(work, struct mtk_vcodec_dec_ctx, decode_work);
- 	struct mtk_vcodec_dec_dev *dev = ctx->dev;
--	struct vb2_v4l2_buffer *vb2_v4l2_src;
-+	struct vb2_v4l2_buffer *vb2_v4l2_src = ctx->cur_src_buffer;
- 	struct vb2_buffer *vb2_src;
- 	struct mtk_vcodec_mem *bs_src;
- 	struct mtk_video_dec_buf *dec_buf_src;
-@@ -325,7 +325,7 @@ static void mtk_vdec_worker(struct work_struct *work)
- 	bool res_chg = false;
- 	int ret;
- 
--	vb2_v4l2_src = v4l2_m2m_next_src_buf(ctx->m2m_ctx);
-+	vb2_v4l2_src = vb2_v4l2_src ? vb2_v4l2_src : v4l2_m2m_src_buf_remove(ctx->m2m_ctx);
- 	if (!vb2_v4l2_src) {
- 		v4l2_m2m_job_finish(dev->m2m_dev_dec, ctx->m2m_ctx);
- 		mtk_v4l2_vdec_dbg(1, ctx, "[%d] no available source buffer", ctx->id);
-@@ -375,13 +375,26 @@ static void mtk_vdec_worker(struct work_struct *work)
- 		v4l2_m2m_buf_done_and_job_finish(dev->m2m_dev_dec, ctx->m2m_ctx, state);
- 		v4l2_ctrl_request_complete(src_buf_req, &ctx->ctrl_hdl);
- 		media_request_manual_complete(src_buf_req);
--	} else {
--		if (ret != -EAGAIN) {
--			v4l2_m2m_src_buf_remove(ctx->m2m_ctx);
--			v4l2_m2m_buf_done(vb2_v4l2_src, state);
--		}
--		v4l2_m2m_job_finish(dev->m2m_dev_dec, ctx->m2m_ctx);
-+
-+		return;
- 	}
-+
-+	/*
-+	 * If each codec return -EAGAIN to decode again, need to backup current source
-+	 * buffer, then the driver will get this buffer next time.
-+	 *
-+	 * If each codec decode error, must to set buffer done with error status for
-+	 * this buffer have been removed from ready list.
-+	 */
-+	ctx->cur_src_buffer = (ret != -EAGAIN) ? NULL : vb2_v4l2_src;
-+	if (ret && ret != -EAGAIN) {
-+		v4l2_ctrl_request_complete(src_buf_req, &ctx->ctrl_hdl);
-+		media_request_manual_complete(src_buf_req);
-+	}
-+
-+	if (ret != -EAGAIN)
-+		v4l2_m2m_buf_done(vb2_v4l2_src, state);
-+	v4l2_m2m_job_finish(dev->m2m_dev_dec, ctx->m2m_ctx);
- }
- 
- static void vb2ops_vdec_stateless_buf_queue(struct vb2_buffer *vb)
--- 
-2.46.0
+On 2024/11/16 03:34, Rob Herring (Arm) wrote:
+> Remove "constant_charge_voltage_max_microvolt" property which is both
+> unused in the kernel and undocumented. Most likely they are leftovers
+> from downstream.
 
+Yes. LGTM. Thanks.
+Reviewed-by: Baolin Wang <baolin.wang@linux.alibaba.com>
+
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>   arch/arm64/boot/dts/sprd/sp9860g-1h10.dts | 1 -
+>   1 file changed, 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/sprd/sp9860g-1h10.dts b/arch/arm64/boot/dts/sprd/sp9860g-1h10.dts
+> index 095b24a31313..e60838695d0e 100644
+> --- a/arch/arm64/boot/dts/sprd/sp9860g-1h10.dts
+> +++ b/arch/arm64/boot/dts/sprd/sp9860g-1h10.dts
+> @@ -71,7 +71,6 @@ bat: battery {
+>   		compatible = "simple-battery";
+>   		charge-full-design-microamp-hours = <1900000>;
+>   		charge-term-current-microamp = <120000>;
+> -		constant_charge_voltage_max_microvolt = <4350000>;
+>   		internal-resistance-micro-ohms = <250000>;
+>   		ocv-capacity-celsius = <20>;
+>   		ocv-capacity-table-0 = <4185000 100>, <4113000 95>, <4066000 90>,
 
