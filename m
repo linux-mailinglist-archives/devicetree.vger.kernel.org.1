@@ -1,145 +1,145 @@
-Return-Path: <devicetree+bounces-122366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C91899D00BF
-	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 21:07:49 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A7F89D00CA
+	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 21:28:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6ED022850D4
-	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 20:07:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 31A25B23C27
+	for <lists+devicetree@lfdr.de>; Sat, 16 Nov 2024 20:28:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FD49195F0D;
-	Sat, 16 Nov 2024 20:07:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D31A192B94;
+	Sat, 16 Nov 2024 20:27:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="JQOZxKP3"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="QFBDja2Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40C5D1946AA;
-	Sat, 16 Nov 2024 20:07:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5281928FF;
+	Sat, 16 Nov 2024 20:27:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731787665; cv=none; b=No6rwdoVeUkOjRgCg2sExtSKyfSAA9jGpdk+wwpE59ZJXGEpJRNh9pF0Q+6npJD+zKotJrLMNxKDNWTdVVAz697PxV3VAWVyOl/8Kt/hkKK6Sx1VavpjVp5HhciO4wY0HAL+42JFPIz+/3KY2S0k8BQuvCSiBkOAt5CWCh4QFQw=
+	t=1731788877; cv=none; b=Xku0boNb7eQnWf+6fePOCZ2/HEJnI+FOkN4vBNWSTYgVPitrxUc3uZQDlglqxptGl8jeTvK5qBqQdDljhwdArtK2LjbvM9itLAuP9TqL9F0gpGM+RvFIB3GQa+Tg7yvsn6u9YIHiMHq5fw7DPzCHsW44QnieJBUAK1r4R5fe85w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731787665; c=relaxed/simple;
-	bh=5rtxGu68PLWrXyTEJNBr68hhrntpwpZdOSN9YWdsbfY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qxiVqSsmdln+TjVfPRmDgwPyjT3nA7y3o5lzewuNKz/WLYdmENM+91eclN2OSQ85pNrv+VNgnLfiWULn69XiWdN01myxb8V8dnYLolXF2K93rwmABeR6RSQlJJLuk67IDnkt2mzYgJsuQtoozXZokA9tbqaByVGwNJIlLjCb01I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=JQOZxKP3; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 40BBA89698;
-	Sat, 16 Nov 2024 21:07:34 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1731787655;
-	bh=msWG5qnuSAmchrjZIHWSe5yibi3jg0xEpfJtIVvoQA0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JQOZxKP3VnpaHDzeb2po7GNni8qWiMQve1IWLtAaq1+5mSjtN24PUPimlzF/6AHC1
-	 U8a+ONq23zJkAah8DAfn22UvOArHyWcUDdkBSWpKHFlb6IY8OYZmywqxK4Q3295oFF
-	 fPv6GRs5arWYat28D4lnKYRN1DAbvUdj5ndlmYt9fsGrMWp+Ld34ORgN+sVhT0r5Qv
-	 qyr5Bb6JCRB98vN4avDSYVag8IDSLlol/nUZRmeok5Yrn1pzUg3Da6UxSnhJUFCLM3
-	 mLOGXtKy2197fkhOCAXvKQuWikwhkiqxMNKQxZsDmMs+clqx+AH4W0ISuqxOI+XUj1
-	 Udg2euHimVxRw==
-Message-ID: <b287f8f9-600e-4e69-b7ec-25990275575e@denx.de>
-Date: Sat, 16 Nov 2024 20:57:36 +0100
+	s=arc-20240116; t=1731788877; c=relaxed/simple;
+	bh=3W/vNeG99abzvcR9K+Bx5HhwVrlB/e7Cu6Zw6Ux/ASo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=s0p7Juwd6Kq9a7laJDyPn/IPy4oTwhrWftE8oCTcUTzjtU600cR0bh2vYDYpr58rwRsmnQT9y6/57abAV/K4DFP2tG7Dk2EYP2nx7xzaVc2LHR5YRnTt2aoLoOGkOpx1Lf7TBM98AudPw6NDFlYooBhNehYzl0hY8wQSxRm+N7g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=QFBDja2Z; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=RZGy7qwsxGBnmfUQ6rUk5NOMwmA4dhgXmcF2ln4UgfM=; b=QFBDja2ZNto8VLe0W1q+K002OR
+	Yd5ZPiMmrhG2zziVo/PwybtfJpC7EAhpME6MhFdb7A8BpPCpaR8iz7lqEUTE4fhnPr58R9M0rscNg
+	EGIdwh2pyBgMnFeBDwdN+dvdXGnApEZpma9EVNRpLi7fmzCnV2Adf1OJZrDrn9qo2LuPA7vPV9Tww
+	QWiyVY6UGw08JrQqn8WZFyLZlaL8/UX1uEzmwvcTpjZtBwXpnZp7q4oRTec7Qk10nSFej3ezHWl0k
+	uKIZT0FUHyR+BG4UhkLHhuffLohA8LjW0Pdor+2t62R/r019WAUw0acti6nCyH/Ldqd8lxhbYKxEB
+	wju13Wrw==;
+Date: Sat, 16 Nov 2024 21:27:34 +0100
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Tony Lindgren <tony@atomide.com>
+Cc: Roger Quadros <rogerq@kernel.org>, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, hns@goldelico.com, linux-omap@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ aaro.koskinen@iki.fi, khilman@baylibre.com, stable@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: ti/omap: gta04: fix pm issues caused by spi
+ module
+Message-ID: <20241116212734.30f5d35b@akair>
+In-Reply-To: <20241111234604.66a9691b@akair>
+References: <20241107225100.1803943-1-andreas@kemnade.info>
+	<b26c1fa8-b3b7-4aa9-bc78-793ddfa3bc6b@kernel.org>
+	<20241108184118.5ee8114c@akair>
+	<20241111150953.GA23206@atomide.com>
+	<20241111193117.5a5f5ecb@akair>
+	<20241111234604.66a9691b@akair>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] wifi: wilc1000: Rework bus locking
-To: Ajay.Kathat@microchip.com, alexis.lothore@bootlin.com,
- linux-wireless@vger.kernel.org
-Cc: davem@davemloft.net, adham.abozaeid@microchip.com,
- claudiu.beznea@tuxon.dev, conor+dt@kernel.org, edumazet@google.com,
- kuba@kernel.org, kvalo@kernel.org, krzk+dt@kernel.org, pabeni@redhat.com,
- robh@kernel.org, devicetree@vger.kernel.org, netdev@vger.kernel.org
-References: <20241022013855.284783-1-marex@denx.de>
- <c9e98811-15f5-427a-82f7-2e7fff4a9873@bootlin.com>
- <8e28ba76-ecfa-49b6-89b5-1edabb22129d@denx.de>
- <a4c8c489-c6b9-4a38-84ab-f08409baccff@microchip.com>
- <5e2a5056-78ac-4be0-83ca-4aa55f524535@denx.de>
- <880baad9-be3d-41b2-bea3-620f915ca397@microchip.com>
- <9d20b408-72a4-49f0-aca6-108dfdd65f99@denx.de>
- <16e5c8d7-64ac-424e-9430-b683ae16a34e@denx.de>
- <9888f605-ee68-4bd3-8d1d-aeef247d23d0@microchip.com>
- <fcdfa93a-2db4-49ad-8947-ca43be329250@denx.de>
- <260a505e-53ec-4f1d-94fe-2b71af48f1b7@denx.de>
- <b61b5b11-b078-4cf5-bb40-7c3ff8ffa972@microchip.com>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <b61b5b11-b078-4cf5-bb40-7c3ff8ffa972@microchip.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
 
-On 11/15/24 9:04 PM, Ajay.Kathat@microchip.com wrote:
+Am Mon, 11 Nov 2024 23:46:04 +0100
+schrieb Andreas Kemnade <andreas@kemnade.info>:
 
-Hello Ajay,
-
->>>>> Can you explain how to prevent that or shall we disable uAPSD
->>>>> altogether ?
->>>>
->>>> Could you please share the test procedure and logs. I am occupied at the
->>>> moment but I shall make some time to look into it and get a better
->>>> understanding.
->>>
->>> The simplest test procedure is this:
->>>
->>> $ while true ; do ifconfig wlan0 up ; ifconfig wlan0 down ; done
->>>
->>> As for the logs, MMCI controller sporadically reports either Command or
->>> Data CRC error, so likely the SDIO response (from WILC to Host) is
->>> corrupted.
->>
->> Are there any news ?
+> Am Mon, 11 Nov 2024 19:31:17 +0100
+> schrieb Andreas Kemnade <andreas@kemnade.info>:
 > 
-> I did test the same procedure in my setup, but I couldn't reproduce this issue
-> even after running it for a long duration. In my test setup, I used the
-> sama5d27-som1-ek1 host and wilc3000 firmware version 16.3.
+> > Am Mon, 11 Nov 2024 17:09:53 +0200
+> > schrieb Tony Lindgren <tony@atomide.com>:
+> >   
+> > > * Andreas Kemnade <andreas@kemnade.info> [241108 17:41]:    
+> > > > They are not used, if they are just disabled, kernel does not touch
+> > > > them, so if it is there, the kernel can handle
+> > > > pm. At least as long as it is not under ti,sysc.
+> > > > 
+> > > > There are probably cleaner solutions for this, but for a CC: stable I
+> > > > would prefer something less invasive.      
+> > > 
+> > > For unused devices, it's best to configure things to use ti-sysc, and
+> > > then set status disabled (or reserved) for the child devices only. This
+> > > way the parent interconnect target module is PM runtime managed by
+> > > Linux, and it's power domain gets properly idled for the unused devices
+> > > too.
+> > >     
+> > Hmm, we also have omap_hwmod_setup_all() which is still called if
+> > without device nodes being available.
+> > 
+> > Converting mcspi to ti-sysc is more than 100 lines. So it does not
+> > qualify for stable.
+> >   
+> > > > I can try a ti-sysc based fix in parallel.      
+> > > 
+> > > Yeah that should be trivial hopefully :)
+> > >     
+> > I played around, got pm issues too, tried to force-enable things (via
+> > power/control),
+> > watched CM_IDLEST1_CORE and CM_FCLKEN1_CORE, they behave. Bits are set
+> > or reset.
+> > 
+> > but not CM_IDLEST_CKGEN, it is 0x209 instead of 0x1.
+> > 
+> > I test from initramfs, so no mmc activity involved
+> > 
+> > removing status = "disabled" from mcspi3 solves things.
+> > With and without ti-sysc conversion. removing status = "disabled" from
+> > mcspi4 seems not to help.
+> > 
+> > That all cannot be... I will retry tomorrow.
+> >   
+> well, I tried a bit further:
+> I build the omap spi driver as module.
+> and booted With mcspi3 not disabled and no module autoload.
 > 
-> I think this issue could be related to the host MMCI controller driver.
-> Normally, the wilc SDIO bus failures are captured by driver logs with an error
-> code (e.g., timeout), but if the MMCI controller is outputting the warning
-> message, then the error could be related to it. Does the MMCI controller error
-> point to any specific function?
+> without module loaded: pm bad, same as with mcspi3 disabled
+> with module loaded: core pm ok
+> with module loaded and unloaded: core pm ok.
+> 
+> so at least a trace.
+> 
+ok, I am a bit further.
+mcspi is per default in slave mode, setting it to master solves issues.
+And that happens when the driver is probed because its default is
+master.
+Having the pins muxed as mode 7 also helps or selecting a pulldown for
+cs. (cs is active high per default!)
+switching to pullup does not harm once the spi module is off, but having
+active cs seems to prevent idling despite CM_IDLEST1_CORE
+not showing it.
 
-Either CMD52 or CMD53 errors out with CRC error, this is recognized by 
-the controller. That points to sporadic CRC error during SDIO transfer.
+History: u-boot muxes McSPI3, because it can be available on an
+optionally fitted pin header. But there is no user known (would need
+a dtb overlay anyways). So I will rather mux to mode 7.
 
-> Which host was used to test this scenario, and
-> is it possible to test with different host or different configuration on the
-> same host
-
-I am observing sporadic command and data CRC errors on STM32MP157F 
-system with SDIO WILC3000.
-
-, like disabling power save on the host?
-I already tested disabling power save.
-
-Can you explain why does uAPSD (iw ...set power_save off) adversely 
-affect SDIO bus stability ?
-
-Can you explain how to prevent that or shall we disable uAPSD altogether ?
-
-Is there any way to make the WILC firmware produce debug output , so we 
-can figure out what is going on "on the other side" ?
-
-Are you able to provide me (maybe off-list) some debug firmware build ?
-(or can I get firmware sources and build and debug my own WILC firmware 
-on the Cortus CPU?)
-
-I can trigger the SDIO errors even without being connected to any AP , 
-so this is something between the WILC and the SDIO host, the radio is 
-likely not involved , right ?
+Regards,
+Andreas
 
