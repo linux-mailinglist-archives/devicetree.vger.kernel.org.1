@@ -1,131 +1,146 @@
-Return-Path: <devicetree+bounces-122381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30DBE9D0264
-	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2024 09:04:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50EC19D0287
+	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2024 09:54:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BFBF7B2127E
-	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2024 08:04:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F16DB1F21473
+	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2024 08:54:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6137A2A8E5;
-	Sun, 17 Nov 2024 08:04:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38273481DD;
+	Sun, 17 Nov 2024 08:54:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hpk7Wy5Q"
+	dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b="h6XkncAE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B66579F6;
-	Sun, 17 Nov 2024 08:04:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7A822BB1B
+	for <devicetree@vger.kernel.org>; Sun, 17 Nov 2024 08:54:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731830654; cv=none; b=DIdzNi2dT1VJTAunSfBBG7mY6gRjHni7LDSsiwnu3SC1+OIFqa3JRf4VNy4dmhlPu0T0XLCVqKN8p7pJso+DQHte9no8gkXFTtgCSn24xoHWCLemm4NHDE+LmnKvSZ293cHEHzm5kwBHtQg4yrNVE/eHBay3TItV8oVO0Lu34AM=
+	t=1731833661; cv=none; b=G+QAjvXdvNdgjb+4TtYPNYWue6MHRQHNkRGZUZHlmeC+8uazGMOk9TfoOV8uFwLq5v77fXUvuI1Q7HGG3ubJwkpFlDCngIQvMNkLiNUd+cqKYHqPmuVlr0mqHQrrzWt1uBfPL7xidqxSONEr5pDGvjQOeJKZCjIhAXQiodtQiec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731830654; c=relaxed/simple;
-	bh=shLcgrgwHbmGhcP3CmHV76UlkYB1nen1PjPkGhk7H3E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Do2ku5eKO/SkoVhm5fmxHlXhw7QR5IV7ifqtZP/BsVAtuy0Px8ikmgMihi1Rkt3pTSdepmmZjIAbdGH7uatI5CbhsdfKJBggxZl3LVSiPXMPYHMdjThIHV0y+wDMI26/uQJmBqyjMTKC4PZjFZEIvvL9KEoc1yE/8lOYBmiiF4o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hpk7Wy5Q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FB5EC4CECD;
-	Sun, 17 Nov 2024 08:04:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731830653;
-	bh=shLcgrgwHbmGhcP3CmHV76UlkYB1nen1PjPkGhk7H3E=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hpk7Wy5QkEdtVH/0w4is3I9D+vQtI9spbjCPoG1LjCuu2IuCt8STHHrmBsv6p3RXj
-	 uCiWR6uyxr4hHFzV98sKGUXFR0wjcb6JNywHoIGauPCDkpw0YnDsiObHFc9vzjxTGn
-	 JwwASbquOAa9P+90XqDmtWxWI+deP6X86ri9wkZQzY2UYVWxZ56ws3AFPpqZgOfGKs
-	 Q1JMXBQoz5byez69v4plAppd86BX2Qxuix2h47WxL7qp8Og6+4OZ8XB/8UrJ1UuK8p
-	 TES/XHC45iFKHk9BywsSFF9lTIZDLuQJAQOduXwgrP/YuILoYw1jbBUaUvjpr6fixP
-	 +Mwa86V1pYY/g==
-Message-ID: <8054f771-d4d6-4d8d-85b6-dd22050897c9@kernel.org>
-Date: Sun, 17 Nov 2024 17:04:10 +0900
+	s=arc-20240116; t=1731833661; c=relaxed/simple;
+	bh=1CgclRnp10ly/JD5SiLrTDFla8mus//SPDBxcGQV0jY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=r3vGdDCwV0b79LoCLKjXM1DX6vS50pIDkpKfaJr1u+eUijXNGHX79RFSeLGceH2Rfzgbbf8EwvR7fLE3MbxtQhRjJngntrwcAkOKR9t4ZLBTqutn/qqt5NFSOIZIXfHox7Td/SKHkN051ge4yAdqDA+uFdvsJP6chyMPJqXrjyE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org; spf=none smtp.mailfrom=nigauri.org; dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b=h6XkncAE; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=nigauri.org
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-aa1f73966a5so228363566b.2
+        for <devicetree@vger.kernel.org>; Sun, 17 Nov 2024 00:54:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nigauri-org.20230601.gappssmtp.com; s=20230601; t=1731833657; x=1732438457; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aAFozerT8AmWvaMiQhtVKgrLvIOoUAQYsmUVcu4V1u0=;
+        b=h6XkncAEP5lZU7dLWT3iVaWZKNTd2D+jLdHb1E9WzRlZo64hwVFLdlpw+PNj9jiEfE
+         0ZSMBx7zlbgpHYESCAPSp+JJychIe+cq8er/XXvfdfzc2vj6Iq5LZag7iIpZ4n39VDo5
+         PLIoq9HzcRmAaft/8e3R0mMPQ1YcRCJHLXWgdvJs2UZBnWeL8omeRGty+LKgYDIGv+fc
+         Kt18gEPB4r8A+iJvyrnUZejvuru3ukTC6/+c842PC29ByxB+WnbDccY9VfR2dMZMT0IC
+         MF8M/7NFqx+g/52D3aoEM55HIYdG9e74B1P2YYFIi4RotqO90QBGT72Aa3d0/PqxOiuY
+         d2Bw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731833657; x=1732438457;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=aAFozerT8AmWvaMiQhtVKgrLvIOoUAQYsmUVcu4V1u0=;
+        b=s4Hwb0satGPuM/vRoW3WuLdUp18LM2KQZ+6eelWT3951B0ux63ja5I2yGyEqgxu74j
+         3vHvtRBLD+126iMEeaCDQZXI9ITZLSdUhK1dh1lFVCBwHDl4wqPKs2nsEp2Ynn6/WLk/
+         mFwNKF1QNbyhz2toVV9xJm5HRx2V/TqDkF9ylpb8e+K36P2/dk8syUZRn3mTTquoqz9q
+         xuF8Hj68cDa+ACsqjpRkcPJgv0Wo9aopMTVcWYmigxl+wQlh/yN84POQCv2fatgP/0kB
+         e/trpwqEf0q35Ct22hW8H9QC84RoT8Krx+hEYIfFxpIidUvmSANZSMkPxwv7vL0V+faF
+         KGiQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXyBiqfwd5JTD5JsvCjVfYkacMnw7S13vFYY10RTL4V0dfoj+s+QNJkhXVTfUw4nkQcCk14KfHXTx6M@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx3Ws9/28AZ5Hh4uCKHkxsO+v7X4E7GPloAmKjf57b9XKvsrjId
+	IzecvmS/9XmRwUW7l4nbnEHC+c7SZlFFJ85YANLZ7/7UOreSVVtjVMhOnrvpWmzL4Ck+We+P5gv
+	tWEgXEgZfY5zjAElC25KxvRW3jgDBvJ2ePy0=
+X-Google-Smtp-Source: AGHT+IH9A6EZKAlNlaThpg9AAuD/cbmV9VJvtt/bhTQvVCtVUAtunC0O/fpyJLc/etjVvqahiNW3SCx3U6/D6U7BbUI=
+X-Received: by 2002:a17:907:3f98:b0:a9e:d539:86c4 with SMTP id
+ a640c23a62f3a-aa4833f41cdmr702610266b.9.1731833657034; Sun, 17 Nov 2024
+ 00:54:17 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 01/14] PCI: rockchip-ep: Fix address translation unit
- programming
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
- <kw@linux.com>, Bjorn Helgaas <bhelgaas@google.com>,
- linux-pci@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
- Rick Wertenbroek <rick.wertenbroek@gmail.com>,
- Niklas Cassel <cassel@kernel.org>
-References: <20241115224145.GA2064331@bhelgaas>
-From: Damien Le Moal <dlemoal@kernel.org>
-Content-Language: en-US
-Organization: Western Digital Research
-In-Reply-To: <20241115224145.GA2064331@bhelgaas>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20241004061541.1666280-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+In-Reply-To: <20241004061541.1666280-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+From: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+Date: Sun, 17 Nov 2024 17:53:51 +0900
+Message-ID: <CABMQnVK_RUC84QQ5zb+ZpuMOZcFMNV6HzEYAfmX4bOrRm+rvTw@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: socfpga: sodia: Fix mdio bus probe and PHY ID
+To: dinguyen@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, stable@vger.kernel.org, robh+dt@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 11/16/24 07:41, Bjorn Helgaas wrote:
->> diff --git a/drivers/pci/controller/pcie-rockchip-ep.c b/drivers/pci/controller/pcie-rockchip-ep.c
->> index 136274533656..27a7febb74e0 100644
->> --- a/drivers/pci/controller/pcie-rockchip-ep.c
->> +++ b/drivers/pci/controller/pcie-rockchip-ep.c
->> @@ -63,16 +63,23 @@ static void rockchip_pcie_clear_ep_ob_atu(struct rockchip_pcie *rockchip,
->>  			    ROCKCHIP_PCIE_AT_OB_REGION_DESC1(region));
->>  }
->>  
->> +static int rockchip_pcie_ep_ob_atu_num_bits(struct rockchip_pcie *rockchip,
->> +					    u64 pci_addr, size_t size)
->> +{
->> +	int num_pass_bits = fls64(pci_addr ^ (pci_addr + size - 1));
->> +
->> +	return clamp(num_pass_bits, ROCKCHIP_PCIE_AT_MIN_NUM_BITS,
->> +		     ROCKCHIP_PCIE_AT_MAX_NUM_BITS);
->> +}
->> +
->>  static void rockchip_pcie_prog_ep_ob_atu(struct rockchip_pcie *rockchip, u8 fn,
->>  					 u32 r, u64 cpu_addr, u64 pci_addr,
->>  					 size_t size)
->>  {
->> -	int num_pass_bits = fls64(size - 1);
->> +	int num_pass_bits =
->> +		rockchip_pcie_ep_ob_atu_num_bits(rockchip, pci_addr, size);
->>  	u32 addr0, addr1, desc0;
->>  
->> -	if (num_pass_bits < 8)
->> -		num_pass_bits = 8;
->> -
->>  	addr0 = ((num_pass_bits - 1) & PCIE_CORE_OB_REGION_ADDR0_NUM_BITS) |
->>  		(lower_32_bits(pci_addr) & PCIE_CORE_OB_REGION_ADDR0_LO_ADDR);
-> 
-> PCIE_CORE_OB_REGION_ADDR0_NUM_BITS is 0x3f and
-> rockchip_pcie_ep_ob_atu_num_bits() returns something between 8 and
-> 0x14, inclusive?  So masking with PCIE_CORE_OB_REGION_ADDR0_NUM_BITS
-> doesn't do anything, does it?
+Hi Dinh,
 
-Indeed, we could remove that mask.
+Please check and apply this patch?
 
-> Also, "..._NUM_BITS" is kind of a weird name for a mask.
+Thanks,
+  Nobuhiro
 
-Well, I did not change that. It was like this. Can clean that up too. Do you
-want me to send a patch ?
+2024=E5=B9=B410=E6=9C=884=E6=97=A5(=E9=87=91) 15:16 Nobuhiro Iwamatsu <iwam=
+atsu@nigauri.org>:
+>
+> From: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+>
+> On SoCFPGA/Sodia board, mdio bus cannot be probed, so the PHY cannot be
+> found and the network device does not work.
+>
+> ```
+> stmmaceth ff702000.ethernet eth0: __stmmac_open: Cannot attach to PHY (er=
+ror: -19)
+> ```
+>
+> To probe the mdio bus, add "snps,dwmac-mdio" as compatible string of the
+> mdio bus. Also the PHY ID connected to this board is 4. Therefore, change
+> to 4.
+>
+> Fixes: 8fbc10b995a5 ("net: stmmac: check fwnode for phy device before sca=
+nning for phy")
+> Cc: stable@vger.kernel.org # 6.3+
+> Signed-off-by: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+> ---
+>  arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_sodia.dts | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+>
+> diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_sodia.dts b=
+/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_sodia.dts
+> index ce0d6514eeb571..e4794ccb8e413f 100644
+> --- a/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_sodia.dts
+> +++ b/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_sodia.dts
+> @@ -66,8 +66,10 @@ &gmac1 {
+>         mdio0 {
+>                 #address-cells =3D <1>;
+>                 #size-cells =3D <0>;
+> -               phy0: ethernet-phy@0 {
+> -                       reg =3D <0>;
+> +               compatible =3D "snps,dwmac-mdio";
+> +
+> +               phy0: ethernet-phy@4 {
+> +                       reg =3D <4>;
+>                         rxd0-skew-ps =3D <0>;
+>                         rxd1-skew-ps =3D <0>;
+>                         rxd2-skew-ps =3D <0>;
+> --
+> 2.45.2
+>
 
-> rockchip_pcie_prog_ob_atu() in pcie-rockchip-host.c is similar but
-> different; it looks like all callers supply num_pass_bits=19.  I
-> assume it doesn't need a similar change?
 
-I did not check the TRM for host mode. But for my tests, I used 2 rockpro64, one
-as RC and the other as EP, and the RC side was working just fine without any
-change. So I assume it is OK as-is.
-
--- 
-Damien Le Moal
-Western Digital Research
+--=20
+Nobuhiro Iwamatsu
+   iwamatsu at {nigauri.org / debian.org / kernel.org}
+   GPG ID: 32247FBB40AD1FA6
 
