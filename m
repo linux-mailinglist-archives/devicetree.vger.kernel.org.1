@@ -1,154 +1,94 @@
-Return-Path: <devicetree+bounces-122394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88A529D04E2
-	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2024 18:46:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 417DD9D05A2
+	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2024 21:06:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A1B51F2170F
-	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2024 17:46:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D9D6281D5A
+	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2024 20:06:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E4AA1D9A47;
-	Sun, 17 Nov 2024 17:46:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1590C1DC75D;
+	Sun, 17 Nov 2024 20:06:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GrcmPlGp"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="21U+wuwF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D7CE17591;
-	Sun, 17 Nov 2024 17:46:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C12D91DB53A;
+	Sun, 17 Nov 2024 20:06:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731865577; cv=none; b=BSqJLqWEZXxb6zeFWRjjyFdp+LhREA6Tw4ngMWg/dSWc/442bgvuzZhp9BUEZ7pO8ohdtIBgE6U8bEbP433znugaY6EdYiGaAgdpdTK7AD9i3LZ9dsW1x18qj9fRF5xj3VirpQ7DjkTEPWryQnCijB/FNBjNOnFgrxTs8f+KMwQ=
+	t=1731873989; cv=none; b=JNxrhK6nHjjRaELmGhhDt4l0obLZNCvcb3pEI1Hn6f+MRRBQyCmgSCUvXsX+BEb6XZlCPc0LJfKgQM18facop/hxGmR2V1dY4n6018ItbnhKOJn6qCwPAci0PF3I80FsT4tgZj5c0COEDNZTByBljkc5RzPpRLvhuw3lsB/BGMA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731865577; c=relaxed/simple;
-	bh=d4PA4dekFrbPidu64a4HKq8oTBnE6bajLq9aru2A85E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=UKsGMrphv/YTC0Jbx3qXTqfE3bS5/KCZH9itq/y/XMPtH2y7S66zgaYjfBQ8FjTsDEGkmAe8FtNveZAeJCMPmdIYymxVR2r6gvrAnkFy1m8kVRW5UE4RrbJNs7OIVQ2SY1Ql/HExfNA6XItpxgunZW5d6ACJ8Y58qtB0yVY61MQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=GrcmPlGp; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AHGMi5T029188;
-	Sun, 17 Nov 2024 17:46:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	AfYabs+tjtdSrn/b9JlV7O8Zk+qQd/9P8eF6s33xDM4=; b=GrcmPlGpthJZGBjt
-	JrwzVJQbVc5lcBKq5uiAiaR/3U74r4epvC1eAq6kZyk9VT+8K2/B9Qxbj2Vfe2cu
-	bqVwWlPvaxTgN7cJNCBhNGhpCT6F/32ULQFnS83q0BbZlEC+GlY/qM7wrUtgkGlx
-	jo+Ax8a/JjGcqlUr6jx0SsS5HFaayP2YDYy1ye6wzgIa+b7UUvvL3Vl1FmpRrm81
-	3M3TDAR/7DZnXA9tpkDpMWdc9bc5rkSbRVlUzfMLgyQmyzdJ076A9B8ZbHKoKy4l
-	sVIK9yvHW2orB2R/axMa/R71W4cpY9HBoqtEb70pLmSSqOfDlI56JHMsCm+ZDEoT
-	0jqjwA==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42xkrm2hvm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 17 Nov 2024 17:46:03 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AHHk2h9007072
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 17 Nov 2024 17:46:02 GMT
-Received: from [10.216.44.33] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 17 Nov
- 2024 09:45:55 -0800
-Message-ID: <ff20d185-4db4-482b-b6dd-06e46124b8ab@quicinc.com>
-Date: Sun, 17 Nov 2024 23:15:51 +0530
+	s=arc-20240116; t=1731873989; c=relaxed/simple;
+	bh=5R8x8u4RHqL9R/WudJoPXh5WUVqV0zIebiN38r36Lgs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WvktKa7XqALxdF9nXuzK2BUX2uGKtW/hmYgq+J6kXsrzAPoRNnyriS4HuQx6q4IwSgeXZqheIqvYOAlLlBk+svSCl/tOQph1sC7hE1minLJRmAyt946d5DbUk/YND/SX5VqRBuBSOSb12Q/QPqCDYSIHjtbiVg5XoB6v2oedKc8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=21U+wuwF; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=n6cxG/zZp641/q+hYZRRTrOQqG5Xgl13FSXhfP9tpHQ=; b=21
+	U+wuwFd3743A0QeYMjX6G0RHUhP4f7dA4yY9oNdlOscDp7pYteUrJm4U8xQtm+GpapDJENGzXZE/W
+	RfPmCRKX9/+gjOJm9IPDmStpa4eEKp+mM4zvBwtD07kB/kmfYz6+3TEy6Ts8zzFAM3f0Y6XXPldG8
+	1zqJkI/wx2p/4m4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tClXD-00DbFs-Lt; Sun, 17 Nov 2024 21:06:15 +0100
+Date: Sun, 17 Nov 2024 21:06:15 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+Cc: dinguyen@kernel.org, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Subject: Re: [PATCH] ARM: dts: socfpga: sodia: Fix mdio bus probe and PHY ID
+Message-ID: <90978892-2086-4c70-9698-0957cc71abb8@lunn.ch>
+References: <20241004061541.1666280-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <CABMQnVK_RUC84QQ5zb+ZpuMOZcFMNV6HzEYAfmX4bOrRm+rvTw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/4] dt-bindindgs: i2c: qcom,i2c-geni: Document shared
- flag
-To: Rob Herring <robh@kernel.org>
-CC: <konrad.dybcio@linaro.org>, <andersson@kernel.org>,
-        <andi.shyti@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <dmaengine@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-i2c@vger.kernel.org>, <conor+dt@kernel.org>,
-        <agross@kernel.org>, <devicetree@vger.kernel.org>, <vkoul@kernel.org>,
-        <linux@treblig.org>, <dan.carpenter@linaro.org>, <Frank.Li@nxp.com>,
-        <konradybcio@kernel.org>, <bryan.odonoghue@linaro.org>,
-        <krzk+dt@kernel.org>, <quic_vdadhani@quicinc.com>
-References: <20241113161413.3821858-1-quic_msavaliy@quicinc.com>
- <20241113161413.3821858-2-quic_msavaliy@quicinc.com>
- <20241115173156.GA3432253-robh@kernel.org>
-Content-Language: en-US
-From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-In-Reply-To: <20241115173156.GA3432253-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: TrqZK6ySCZyw15zvzb8M31VMCLnuwXst
-X-Proofpoint-ORIG-GUID: TrqZK6ySCZyw15zvzb8M31VMCLnuwXst
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
- spamscore=0 adultscore=0 mlxlogscore=999 malwarescore=0 impostorscore=0
- clxscore=1015 bulkscore=0 priorityscore=1501 lowpriorityscore=0 mlxscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
- definitions=main-2411170160
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CABMQnVK_RUC84QQ5zb+ZpuMOZcFMNV6HzEYAfmX4bOrRm+rvTw@mail.gmail.com>
 
-Thanks Rob for your review and comments !
+On Sun, Nov 17, 2024 at 05:53:51PM +0900, Nobuhiro Iwamatsu wrote:
+> Hi Dinh,
+> 
+> Please check and apply this patch?
+> 
+> Thanks,
+>   Nobuhiro
+> 
+> 2024年10月4日(金) 15:16 Nobuhiro Iwamatsu <iwamatsu@nigauri.org>:
+> >
+> > From: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+> >
+> > On SoCFPGA/Sodia board, mdio bus cannot be probed, so the PHY cannot be
+> > found and the network device does not work.
+> >
+> > ```
+> > stmmaceth ff702000.ethernet eth0: __stmmac_open: Cannot attach to PHY (error: -19)
+> > ```
+> >
+> > To probe the mdio bus, add "snps,dwmac-mdio" as compatible string of the
+> > mdio bus. Also the PHY ID connected to this board is 4. Therefore, change
+> > to 4.
 
-On 11/15/2024 11:01 PM, Rob Herring wrote:
-> On Wed, Nov 13, 2024 at 09:44:10PM +0530, Mukesh Kumar Savaliya wrote:
->> Adds qcom,is-shared flag usage. Use this flag when I2C serial controller
-> 
-> Doesn't match the property name.
-Sure, i need to change the name here as qcom,shared-se, will upload a 
-new patch.
-> 
->> needs to be shared in multiprocessor system(APPS,Modem,ADSP) environment.
->>
->> Two clients from different processors can share an I2C controller for same
->> slave device OR their owned slave devices. Assume I2C Slave EEPROM device
->> connected with I2C controller. Each client from ADSP SS and APPS Linux SS
->> can perform i2c transactions.
->>
->> Transfer gets serialized by Lock TRE + DMA xfer + Unlock TRE at HW level.
->>
->> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
->> ---
->>   Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml | 4 ++++
->>   1 file changed, 4 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
->> index 9f66a3bb1f80..fe36938712f7 100644
->> --- a/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
->> +++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
->> @@ -60,6 +60,10 @@ properties:
->>     power-domains:
->>       maxItems: 1
->>   
->> +  qcom,shared-se:
-> 
-> What is 'se'? Is that defined somewhere?
-> 
-SE is Serial Engine acting as I2C controller. Let me add second line for 
-SE here also.
+It is the address which is 4, not the ID.
 
-It's mentioned in source code in Patch 3 where it's used.
- >>> True if serial engine is shared between multiprocessors OR 
-Execution Environment.
-
->> +    description: True if I2C controller is shared between two or more system processors.
->> +    type: boolean
->> +
->>     reg:
->>       maxItems: 1
->>   
->> -- 
->> 2.25.1
->>
+	Andrew
 
