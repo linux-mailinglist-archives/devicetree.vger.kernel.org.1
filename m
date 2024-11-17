@@ -1,149 +1,99 @@
-Return-Path: <devicetree+bounces-122379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DECAE9D0231
-	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2024 06:59:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2B8B9D0261
+	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2024 09:00:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B7CB1F23C2E
-	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2024 05:59:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9471F2835C6
+	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2024 08:00:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34C6238FB0;
-	Sun, 17 Nov 2024 05:59:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1738F2030A;
+	Sun, 17 Nov 2024 08:00:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="G4ZG+lih"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gqfs5s6y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0F3926296;
-	Sun, 17 Nov 2024 05:59:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0D0979F6;
+	Sun, 17 Nov 2024 08:00:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731823147; cv=none; b=HeFG+Xfr35trIYrNZe//qWBpreYMsVb4lrzOLtGCTq4g8X2TWWNaQabSETutyOaRhtLTvRi+48/sBFjzcHfMqo7wSK4twj+ZjlCJ4wGAbBA2e6PQJkozbX8gT1fvW9YD/Kp9/x5/6wKDiI5Efv/yyBk5v+dJmuPUJhHaR2L3cYI=
+	t=1731830446; cv=none; b=UaK6H4CGFCo8d5aJnrjVF654k1aP1hgvvop+Q3HgOMOgF66reaDUDuvOumecRKPaOSbHJ0FD2YdRrFxth3MNtlfkfmJbMAd6UhnlfWzws2VvPgLR/SAgMohZWEJNgCCuylYG68dEPSZrT+k24X9xtnKEFjFsdFm9Jy6dBpzLzuI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731823147; c=relaxed/simple;
-	bh=JXzZ87r2R4QApQTlvo1KFc0dOMyqdnTVTxsRQDE9zB8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U7AwfCoMEdI0XH3fi/BhK43X1OZJfTihMS4HzDM9ZN36qhhGZYOhNMqqiVuREmj1pIHtMm0sdwf/i/nY3yKTEJ+O5WZ5H+TppeCNpcHKP8CNjP+vyuy+w1ScqhyH0aFBhAYYy8Iv3IVkwXQ1rIjrw6smOt/ySPqUvuDjQjvepLk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=G4ZG+lih; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1731823145; x=1763359145;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=JXzZ87r2R4QApQTlvo1KFc0dOMyqdnTVTxsRQDE9zB8=;
-  b=G4ZG+liheS5HOjxQSctf7qtiBt73SgKVFhZsYrHGeWdslhrwGVqq2g2E
-   s+f5I38EB0LW2GtzC+KNaZP+a6nDNmsUOBNihRsa591QLdWva+y4dfHPs
-   aAXevAf/+IQWWTyOFrU6zow91wprQFGzO0VoNh6LVVN5QL86UHu2SQWCS
-   J5HKyRizOe2AFVmO11OgbPhlr4sHRDPMdMv/rhvPdZibb53GRCte6F6Ob
-   sDSTeGB+f+2PkIV7pozPuaOpv1LR0tSYVppLZaNXELnJEO2QOgPPveg23
-   KRS2tY/GkmtbGPqhtMtsH+mo38Urv9/G+OTMwE6/UBIal95wRsKdPUAKg
-   g==;
-X-CSE-ConnectionGUID: l3Z96moqTnGhQ4xM5nZ0kg==
-X-CSE-MsgGUID: av6kc0iCQz20G9758SD3CQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11258"; a="43183451"
-X-IronPort-AV: E=Sophos;i="6.12,161,1728975600"; 
-   d="scan'208";a="43183451"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Nov 2024 21:59:04 -0800
-X-CSE-ConnectionGUID: POm7vyX4TC6fMjdHIMjGMQ==
-X-CSE-MsgGUID: J7mQVOdOTp6avvQ+UDDERg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,161,1728975600"; 
-   d="scan'208";a="89698889"
-Received: from lkp-server01.sh.intel.com (HELO 1e3cc1889ffb) ([10.239.97.150])
-  by orviesa008.jf.intel.com with ESMTP; 16 Nov 2024 21:59:00 -0800
-Received: from kbuild by 1e3cc1889ffb with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tCYJF-0001a5-2d;
-	Sun, 17 Nov 2024 05:58:57 +0000
-Date: Sun, 17 Nov 2024 13:58:51 +0800
-From: kernel test robot <lkp@intel.com>
-To: Krishna chaitanya chundru <quic_krichai@quicinc.com>,
-	quic_mrana@quicinc.com, quic_vbadigan@quicinc.com,
-	kernel@quicinc.com, Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Helgaas <helgaas@kernel.org>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?unknown-8bit?Q?Wilczy=C5=84ski?= <kw@linux.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	Krishna chaitanya chundru <quic_krichai@quicinc.com>
-Subject: Re: [PATCH 2/4] PCI: of: Add API to retrieve equalization presets
- from device tree
-Message-ID: <202411171502.1POu4enK-lkp@intel.com>
-References: <20241116-presets-v1-2-878a837a4fee@quicinc.com>
+	s=arc-20240116; t=1731830446; c=relaxed/simple;
+	bh=yG/Prvv2cW4FAbQIxSEqLgZUGZ3kv80l7NsNSnpg53M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kY5a7g4NLGRWkDPP9uMPw+yVLKca778Jvir1FQhlnU4kQYytLwIwzoHU4qM6gzbWcPwd5hXACZvbhtt8jWp35F8hVOAlXSugnB2BgszWD14457Y/klwwXc6+loWLp9la8ILCqcuPKdx0cFGToArHKV7ayUZQmMm35gQUC3QvhW8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gqfs5s6y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7AB0FC4CECD;
+	Sun, 17 Nov 2024 08:00:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731830445;
+	bh=yG/Prvv2cW4FAbQIxSEqLgZUGZ3kv80l7NsNSnpg53M=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Gqfs5s6yPfPvpIR/sBXHis0a0AI5ejKOd74ZA3OIxcF77rHXSmvJu6tZGO5WjO2sp
+	 VI8Ds5IkGhecdxwAIcTLz4Ii1blB06aUeab/Af7dijufr/PetogT+B1f3+IoC9doIP
+	 3rBc/91TRUKN/Yysf1UEKuVllyeahSzksv5EiaLsZZhz+9Ly07mlMyl+OsTzRShHm5
+	 X8V8KYQUq8Ck4WDOuIses5VrALQ7Vb1T6Gbdf8qWLXCGzJD6jL9tlTlV3bsKx4J4cG
+	 gC65Sjr5DkIrvv2vzMS8kW9StasNCjgdW+gZm0GBTokQWSjJwjZBZ87GgML4RsUhhX
+	 7CDgY4aUilWUA==
+Message-ID: <8393e56d-8ba1-436d-ad97-ec44893d2f6f@kernel.org>
+Date: Sun, 17 Nov 2024 17:00:42 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241116-presets-v1-2-878a837a4fee@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 12/14] PCI: rockchip-ep: Improve link training
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
+ <kw@linux.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ linux-pci@vger.kernel.org, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ Rick Wertenbroek <rick.wertenbroek@gmail.com>,
+ Niklas Cassel <cassel@kernel.org>
+References: <20241115230319.GA2065576@bhelgaas>
+From: Damien Le Moal <dlemoal@kernel.org>
+Content-Language: en-US
+Organization: Western Digital Research
+In-Reply-To: <20241115230319.GA2065576@bhelgaas>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Krishna,
+On 11/16/24 08:03, Bjorn Helgaas wrote:
+> On Thu, Oct 17, 2024 at 10:58:47AM +0900, Damien Le Moal wrote:
+>> The Rockchip RK3399 TRM V1.3 Part2, Section 17.5.8.1.2, step 7,
+>> describes the endpoint mode link training process clearly and states
+>> that:
+>>   Insure link training completion and success by observing link_st field
+>>   in PCIe Client BASIC_STATUS1 register change to 2'b11. If both side
+>>   support PCIe Gen2 speed, re-train can be Initiated by asserting the
+>>   Retrain Link field in Link Control and Status Register. The software
+>>   should insure the BASIC_STATUS0[negotiated_speed] changes to "1", that
+>>   indicates re-train to Gen2 successfully.
+> 
+> Since this only adds code and doesn't change existing code, I assume
+> this hardware doesn't automatically train to gen2 without this new
+> software assistance?
+> 
+> So the effect of this change is to use gen2 speed when supported by
+> both partners, when previously we only got gen1?
 
-kernel test robot noticed the following build warnings:
+Yes. The host side has something similar as well.
 
-[auto build test WARNING on 81983758430957d9a5cb3333fe324fd70cf63e7e]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Krishna-chaitanya-chundru/arm64-dts-qcom-x1e80100-Add-PCIe-lane-equalization-preset-properties/20241117-000950
-base:   81983758430957d9a5cb3333fe324fd70cf63e7e
-patch link:    https://lore.kernel.org/r/20241116-presets-v1-2-878a837a4fee%40quicinc.com
-patch subject: [PATCH 2/4] PCI: of: Add API to retrieve equalization presets from device tree
-config: parisc-defconfig (https://download.01.org/0day-ci/archive/20241117/202411171502.1POu4enK-lkp@intel.com/config)
-compiler: hppa-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241117/202411171502.1POu4enK-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202411171502.1POu4enK-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   In file included from drivers/pci/access.c:8:
->> drivers/pci/pci.h:803:12: warning: 'of_pci_get_equalization_presets' defined but not used [-Wunused-function]
-     803 | static int of_pci_get_equalization_presets(struct device *dev,
-         |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
---
-   In file included from drivers/pci/msi/pcidev_msi.c:5:
->> drivers/pci/msi/../pci.h:803:12: warning: 'of_pci_get_equalization_presets' defined but not used [-Wunused-function]
-     803 | static int of_pci_get_equalization_presets(struct device *dev,
-         |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
---
-   In file included from drivers/pci/pcie/aspm.c:27:
->> drivers/pci/pcie/../pci.h:803:12: warning: 'of_pci_get_equalization_presets' defined but not used [-Wunused-function]
-     803 | static int of_pci_get_equalization_presets(struct device *dev,
-         |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-vim +/of_pci_get_equalization_presets +803 drivers/pci/pci.h
-
-   802	
- > 803	static int of_pci_get_equalization_presets(struct device *dev,
-   804						   struct pci_eq_presets *presets,
-   805						   int num_lanes)
-   806	{
-   807		return 0;
-   808	}
-   809	#endif /* CONFIG_OF */
-   810	
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Damien Le Moal
+Western Digital Research
 
