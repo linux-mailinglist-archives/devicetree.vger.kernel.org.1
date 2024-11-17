@@ -1,85 +1,86 @@
-Return-Path: <devicetree+bounces-122385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0ADE19D03F1
-	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2024 14:08:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1E4A9D03F4
+	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2024 14:11:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C41A7283795
-	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2024 13:08:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8A142831C0
+	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2024 13:11:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD19018FDD2;
-	Sun, 17 Nov 2024 13:08:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F4BD18FC81;
+	Sun, 17 Nov 2024 13:11:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RbB2plzl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FFNCUqcD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD8E5188733
-	for <devicetree@vger.kernel.org>; Sun, 17 Nov 2024 13:08:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69055183CD1
+	for <devicetree@vger.kernel.org>; Sun, 17 Nov 2024 13:11:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731848927; cv=none; b=IpExrTtATkETc7sF49UgPGkglEKmDLRclAgL51/sOGecKNZ1La+0HJOO2gRYsN47TKHEJFN5Nu4QVYr/qkdvKxHfiOaJBf+TkBcT9rYBNUSvgAx4i+oDkI6LRsDbs+AGqgJ7lRd3hjOGn2XQlRygFMAnc6EPc5/NbGQzPBOK/w0=
+	t=1731849078; cv=none; b=DI+XEumr+8oFwF4O99wCuGPCULQ1UnZOHduS6QlKuXEwVmf8Hu2cTmKMZhH0qUcar0KZ4ejr6iu82PdCtuHa6DQuxvMt1TEXzJjSmeffCsOak1caKM0rqDkLDcboshWMvg5qlMSxyEpmJteylCd7XxyuK7PXyRpUZ5f1lFEatrE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731848927; c=relaxed/simple;
-	bh=GrZ+DyXJhogiFXvtPbLhc0NLu6xmb7Co8Ss70qrimGE=;
+	s=arc-20240116; t=1731849078; c=relaxed/simple;
+	bh=nSwj3A8/ForjeKffUwizb7noaejgig1pPhnISFTHpWo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZSM0U5ToiVLklMzF639BZJcYhcDCDYMTZgXUvYLvRQ4MlCryN07xoZvKRaZp+myi7gm/uLHGFUlDPlB129ygWHdhMZdg8U0wcBNa4fSEyA/2ZZpQKdRr0wkrAGQNCru9XgzzTKoPlIvSVO5lhJ+oOAi6Z9Jh19aghxK50Y0sXh8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RbB2plzl; arc=none smtp.client-ip=209.85.167.53
+	 Content-Type:Content-Disposition:In-Reply-To; b=gCg4UUBlxQOzYst6givulg42V0DxrEbDoQGmjZFz7cGx9m9v9EWerXWRv2kYj6KjPLebjoTHXHM3mdZcCBj6QZnI6bDTK9LjsEqiAoDqXUnI/tdYgqSMtFe+tE6pp7e+RCxmi9ScgdmX+oPVpNZpL8jfIUisNeRwxV886tAmXic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FFNCUqcD; arc=none smtp.client-ip=209.85.167.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-539f53973fdso3033047e87.1
-        for <devicetree@vger.kernel.org>; Sun, 17 Nov 2024 05:08:45 -0800 (PST)
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-53a097aa3daso964512e87.1
+        for <devicetree@vger.kernel.org>; Sun, 17 Nov 2024 05:11:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731848924; x=1732453724; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1731849074; x=1732453874; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=lMiqxnachPtnrwIxnjXl0VUgpWUzd3BnOxQS8OflklU=;
-        b=RbB2plzlXkZiuFNGgGOuNzGJk0DqHPeZ5U1wtnc6eN/XmP7RdDFV2UUIQfG0psm71L
-         poX2xvM9+HGQeXkK68inJv0LHcxAgTq91VdbxkI1u5rja5I/qQDul+yXMDKaklirvN7A
-         Za48PwwzFrL9IUJeW6ukBnXDOXMMtvgHDGMxEXmk2UTKF7uEbQtte4Hs657RguxbjGcx
-         LutFe30Oj3pvLhAClT5WGsVWKHALtbhaVZpXX3GtnhNW3roBeDFBNO7IeIwAEwMSEUBg
-         8kL3BkAjVq/ySjICQeeKurTJeZ9UuDHtGbYE7zMHixOgzTiEieK1CzvV/3UCyCuqlsPb
-         5FZA==
+        bh=NVTB5fgW0CIPrQ9J8AICgZwfqKYac/1UcCg9s2HGvdI=;
+        b=FFNCUqcD/6uAxaCGxwUSXFs0ySP2qm+JEADJpfQ6yluAcuMWiEyafezrmLs4Ndq+0x
+         R0DGVJgL1GPjWNyYN/jew9X/YmIJGuL8hBk/hi+GuxKYoe81eMuDf4VIDByruw79OL8/
+         mqACKXNpe2oP86OMVGY9PE/lAEzoOjaGfBH9LbxiIisVEtlDQj02bNHfAcv9WyDENgiG
+         Pf6wgMiM4nP6g6YkE871PZZZZEo1dNDKDh70myodcv8wv5fPr/nsmKFY3Vx2O4rJ/5dB
+         2jyOVLoEfvaV2IWfnwuX0yq6bwfdquGXbpDa7UkfumJxNjkDhUDa5iL1L8A2bF6B4kTS
+         5i5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731848924; x=1732453724;
+        d=1e100.net; s=20230601; t=1731849074; x=1732453874;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=lMiqxnachPtnrwIxnjXl0VUgpWUzd3BnOxQS8OflklU=;
-        b=Gf3/rQ4K+Jn9yCZFgKQt7UkqmPNGaWLEr4/DHE8+lOKxACNPdvFzLVze7UW/MZVysf
-         IddLA0OhP7s+Jc93kyHU9kI+RMyXvwYk78w5UA80AR5nP9U0RBp7/jyqUpEn2OypNV9W
-         qPIGUmXAjaW3Gi1Cbw9zfJc/4dr1w+0mG9LQb2ideo8/Lj+QSidq4a0LfJlIgFIR41te
-         V02daUw4mdf+d4KpvFW30pjBeL++i6X+cdV3HzbbO97uxKR/V4rmsH+zxHKY5SrW9f6k
-         Y6GkUegV3G2zrVA6iFNF+cnGvbWfaosksJI/gXDThFZ5xgusVGZYyAcqxxHstMskGzrO
-         rjXg==
-X-Forwarded-Encrypted: i=1; AJvYcCU7gM/8o8r7Ovdyy9jllpitolMpd4snVasHWTZx1R3qUY1EBdRStkkvL8R5BI9Ey2SyqI02MQvXMuYi@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz8k1iRMQjtRGRKzZKpLCvjHz5GMycTVoKC8Iwyf6T+fbLvD1K5
-	OWCPFNJZUoIwkksiWd0oWI/3lFjj2kBqLcgQ3OOIa9hALffgGIZf+6HT1hJLN7yT2pyCj7TM5eG
-	r
-X-Google-Smtp-Source: AGHT+IHfOwPcoxs93PW+NNDxxa8NcE7Qb1fhdry4R+keozA7Ik5cUc+igrNyIsrm9x1rQvOeWYIqnw==
-X-Received: by 2002:a05:6512:304f:b0:53d:a998:51b4 with SMTP id 2adb3069b0e04-53daafdbbd0mr2679853e87.3.1731848923677;
-        Sun, 17 Nov 2024 05:08:43 -0800 (PST)
+        bh=NVTB5fgW0CIPrQ9J8AICgZwfqKYac/1UcCg9s2HGvdI=;
+        b=PIf18dAYVklb4TGa3FqBz5PLmLBNS056x2+VvwBLikXcwF/vz6w3Cbh5V5UsqQcCye
+         yz8dri2qr09zH/ZzatZkDElXfM+2btBwblQGdM56QgMcLFdraR4CgS6mMwJV3cHUlrsC
+         g78cUmoIEUIcNx9ZJpX9Rhy5y47J+ckCNgJjXEhdJeNF0+HSmMx5cdpQzRvMIQZI4R8f
+         dbxh6ZgLeHQlNfweVdFinbWzm756Ozh7D91Bz0K9/8wxFttgAJxrxa4EgOiK/BpGjo1d
+         WBfMB5UdPPbT2L9kd6F3J0Asy8EcwsvpCg11TOOLkyrGw1/MA8tA0v6gzDkCWHoOrnhv
+         XzXA==
+X-Forwarded-Encrypted: i=1; AJvYcCWu/Ft4Bqe3auXoCKHiU5vR6T0zgrZTKrcB8Y679K7vr9zPoTGx2+m3/fnsvM76PWr1q4aIVQc4+ikH@vger.kernel.org
+X-Gm-Message-State: AOJu0YyxkacsKUrFXwyGFyBMHnqWPNllvRX+NnzizEyxxV0Za3qH0B70
+	+BOEJ3oUXko2qH/zCYPALT4PcYhh3HmdmHi9PtJ+pSY5j8fKd363mtQV4RKsgv8=
+X-Google-Smtp-Source: AGHT+IG575J6WcG9hzhULgqTQtjUCp+Yew1GGtVJdfAdD7iB6t7lRgirF640uMkUJ3IZlpLMdP65gA==
+X-Received: by 2002:a05:6512:1195:b0:53d:a1cd:4d2 with SMTP id 2adb3069b0e04-53dab2b4216mr4246336e87.44.1731849074309;
+        Sun, 17 Nov 2024 05:11:14 -0800 (PST)
 Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53db3733506sm350459e87.189.2024.11.17.05.08.41
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53da64ffc6dsm1269110e87.59.2024.11.17.05.11.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 17 Nov 2024 05:08:42 -0800 (PST)
-Date: Sun, 17 Nov 2024 15:08:40 +0200
+        Sun, 17 Nov 2024 05:11:13 -0800 (PST)
+Date: Sun, 17 Nov 2024 15:11:11 +0200
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To: Konrad Dybcio <konradybcio@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, 
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Viresh Kumar <viresh.kumar@linaro.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH] dt-bindings: remoteproc: Consolidate SC8180X and SM8150
- PAS files
-Message-ID: <whzblscqqyeyltfceik55t5bimvl5jyx2scewefurpv4ye6sa3@cqtij3upryk5>
-References: <20241116-topic-sc8180x_rproc_bindings-v1-1-ae5d3f7ab261@oss.qualcomm.com>
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Vinod Koul <vkoul@kernel.org>, Marijn Suijten <marijn.suijten@somainline.org>, 
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sc8180x: Add a SoC-specific
+ compatible to cpufreq-hw
+Message-ID: <7gftvwwc267za5jgyhw4yxmlw6rh7wkb2am5zx6cgl72x45hc7@eetgqavlalpd>
+References: <20241116-topic-sc8180x_cpufreq_bindings-v1-0-e7db627da99c@oss.qualcomm.com>
+ <20241116-topic-sc8180x_cpufreq_bindings-v1-2-e7db627da99c@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,21 +89,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241116-topic-sc8180x_rproc_bindings-v1-1-ae5d3f7ab261@oss.qualcomm.com>
+In-Reply-To: <20241116-topic-sc8180x_cpufreq_bindings-v1-2-e7db627da99c@oss.qualcomm.com>
 
-On Sat, Nov 16, 2024 at 12:40:04PM +0100, Konrad Dybcio wrote:
+On Sat, Nov 16, 2024 at 12:31:18PM +0100, Konrad Dybcio wrote:
 > From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 > 
-> SC8180X PAS bindings are plain wrong, resulting in false-positive
-> dt checker errors. SC8180X's remoteprocs happen to be identical to
-> SM8150's from the kernel point of view, so reuse that binding instead.
+> Comply with bindings guidelines and get rid of errors such as:
 > 
-> Fixes: 4865ed136045 ("dt-bindings: remoteproc: qcom: pas: Add SC8180X adsp, cdsp and mpss")
+> cpufreq@18323000: compatible: 'oneOf' conditional failed, one must be fixed:
+>         ['qcom,cpufreq-hw'] is too short
+> 
+> Fixes: 8575f197b077 ("arm64: dts: qcom: Introduce the SC8180x platform")
 > Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 > ---
->  .../bindings/remoteproc/qcom,sc8180x-pas.yaml      | 96 ----------------------
->  .../bindings/remoteproc/qcom,sm8150-pas.yaml       |  7 ++
->  2 files changed, 7 insertions(+), 96 deletions(-)
+>  arch/arm64/boot/dts/qcom/sc8180x.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 
 Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
