@@ -1,94 +1,86 @@
-Return-Path: <devicetree+bounces-122395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122396-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 417DD9D05A2
-	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2024 21:06:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D94339D05BB
+	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2024 21:19:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D9D6281D5A
-	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2024 20:06:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 84D041F21ACE
+	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2024 20:19:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1590C1DC75D;
-	Sun, 17 Nov 2024 20:06:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87A391DB953;
+	Sun, 17 Nov 2024 20:19:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="21U+wuwF"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="cPJckVm9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C12D91DB53A;
-	Sun, 17 Nov 2024 20:06:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA74C1DB551;
+	Sun, 17 Nov 2024 20:19:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731873989; cv=none; b=JNxrhK6nHjjRaELmGhhDt4l0obLZNCvcb3pEI1Hn6f+MRRBQyCmgSCUvXsX+BEb6XZlCPc0LJfKgQM18facop/hxGmR2V1dY4n6018ItbnhKOJn6qCwPAci0PF3I80FsT4tgZj5c0COEDNZTByBljkc5RzPpRLvhuw3lsB/BGMA=
+	t=1731874775; cv=none; b=gyxlI6lnRjwTrlc9xRZMMKf/z4yqicbbaoem0oRUjZWzMfJu1Xi/wCAQGbg+t7Wfo+ZK47UMzB9HcuBX9hT4pFOiO7d6c67w1PZQtCl0fTz4UJX2JNEkPw/vQeKu/eXzpQPbY63c/rKQ2BSzsC5wYNHjuJx1eVhyOBcEqnjnuUE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731873989; c=relaxed/simple;
-	bh=5R8x8u4RHqL9R/WudJoPXh5WUVqV0zIebiN38r36Lgs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WvktKa7XqALxdF9nXuzK2BUX2uGKtW/hmYgq+J6kXsrzAPoRNnyriS4HuQx6q4IwSgeXZqheIqvYOAlLlBk+svSCl/tOQph1sC7hE1minLJRmAyt946d5DbUk/YND/SX5VqRBuBSOSb12Q/QPqCDYSIHjtbiVg5XoB6v2oedKc8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=21U+wuwF; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=n6cxG/zZp641/q+hYZRRTrOQqG5Xgl13FSXhfP9tpHQ=; b=21
-	U+wuwFd3743A0QeYMjX6G0RHUhP4f7dA4yY9oNdlOscDp7pYteUrJm4U8xQtm+GpapDJENGzXZE/W
-	RfPmCRKX9/+gjOJm9IPDmStpa4eEKp+mM4zvBwtD07kB/kmfYz6+3TEy6Ts8zzFAM3f0Y6XXPldG8
-	1zqJkI/wx2p/4m4=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tClXD-00DbFs-Lt; Sun, 17 Nov 2024 21:06:15 +0100
-Date: Sun, 17 Nov 2024 21:06:15 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-Cc: dinguyen@kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Subject: Re: [PATCH] ARM: dts: socfpga: sodia: Fix mdio bus probe and PHY ID
-Message-ID: <90978892-2086-4c70-9698-0957cc71abb8@lunn.ch>
-References: <20241004061541.1666280-1-nobuhiro1.iwamatsu@toshiba.co.jp>
- <CABMQnVK_RUC84QQ5zb+ZpuMOZcFMNV6HzEYAfmX4bOrRm+rvTw@mail.gmail.com>
+	s=arc-20240116; t=1731874775; c=relaxed/simple;
+	bh=ZYeJsKC4idvAStX7lCs51IZNTYMJxM6qrYJaSb3XrWU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oYDZPaQA33rf6E3H79mI/q/n/f0fetag/jW2YbDu+N6OZcAydjmP27ryPotHUbH6sVGb2qVKzwLlneEo8+eV51de1/CBe04FHWX8jOvfNGbgFNxh2PRFp3c9eaUoaEnsGQa+3KzO9NRSOgta+bbGh4Lduf39IoT8UeGniP3TzrA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=cPJckVm9; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:
+	Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=96aPTgcJmyf/nNkBF02AGuwprUpi9s19DA42nDAZD1E=; b=cPJckVm9tgpiNdGGsXKv+fPvFL
+	Eyf7jabTzBweHsJUEaqfOexNX1PUqAOlmb16f6BSbG3OmO8ynXMnjRXXiHEUuhiwYrpsr4mGkF6tx
+	5v+C8bm3SojWRhADaqLTdznStpXAeTHb93GuvRYkT+kOK1qQgVJZaFsGwftf/6Vc5RdFdzOat/JUd
+	YjjigLEa1dIUbhrIi9Y58G9SE08msxtG06Y6zGmVoTsMsqyB0FlYBnDbMpbJhqRA4t7/8061OBswo
+	CULbov/RYpkSL+4wnQ+xwyHT9h1WYkS+sKNGpV8LqpDOmulNQ/lQP5jdQMH6PstWHApjPzwBxxMG9
+	10kxECuA==;
+Received: from i53875a30.versanet.de ([83.135.90.48] helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tCljt-0000cF-6j; Sun, 17 Nov 2024 21:19:21 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: heiko@sntech.de
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] Rockchip - add Firefly ROC-RK3576-PC board
+Date: Sun, 17 Nov 2024 21:18:53 +0100
+Message-ID: <20241117201855.789945-1-heiko@sntech.de>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CABMQnVK_RUC84QQ5zb+ZpuMOZcFMNV6HzEYAfmX4bOrRm+rvTw@mail.gmail.com>
 
-On Sun, Nov 17, 2024 at 05:53:51PM +0900, Nobuhiro Iwamatsu wrote:
-> Hi Dinh,
-> 
-> Please check and apply this patch?
-> 
-> Thanks,
->   Nobuhiro
-> 
-> 2024年10月4日(金) 15:16 Nobuhiro Iwamatsu <iwamatsu@nigauri.org>:
-> >
-> > From: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-> >
-> > On SoCFPGA/Sodia board, mdio bus cannot be probed, so the PHY cannot be
-> > found and the network device does not work.
-> >
-> > ```
-> > stmmaceth ff702000.ethernet eth0: __stmmac_open: Cannot attach to PHY (error: -19)
-> > ```
-> >
-> > To probe the mdio bus, add "snps,dwmac-mdio" as compatible string of the
-> > mdio bus. Also the PHY ID connected to this board is 4. Therefore, change
-> > to 4.
+This adds a second board based around the rk3576 SoC.
 
-It is the address which is 4, not the ID.
+Heiko Stuebner (2):
+  dt-bindings: arm: rockchip: Add Firefly ROC-RK3576-PC binding
+  arm64: dts: rockchip: Add devicetree for the ROC-RK3576-PC
 
-	Andrew
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../arm64/boot/dts/rockchip/rk3576-roc-pc.dts | 745 ++++++++++++++++++
+ 3 files changed, 751 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3576-roc-pc.dts
+
+-- 
+2.45.2
+
 
