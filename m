@@ -1,114 +1,195 @@
-Return-Path: <devicetree+bounces-122386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122387-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1E4A9D03F4
-	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2024 14:11:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 266629D0405
+	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2024 14:29:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8A142831C0
-	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2024 13:11:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9F3281F22CD0
+	for <lists+devicetree@lfdr.de>; Sun, 17 Nov 2024 13:28:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F4BD18FC81;
-	Sun, 17 Nov 2024 13:11:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8598218B47E;
+	Sun, 17 Nov 2024 13:28:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FFNCUqcD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FJcSHQZn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69055183CD1
-	for <devicetree@vger.kernel.org>; Sun, 17 Nov 2024 13:11:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F7EDA937;
+	Sun, 17 Nov 2024 13:28:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731849078; cv=none; b=DI+XEumr+8oFwF4O99wCuGPCULQ1UnZOHduS6QlKuXEwVmf8Hu2cTmKMZhH0qUcar0KZ4ejr6iu82PdCtuHa6DQuxvMt1TEXzJjSmeffCsOak1caKM0rqDkLDcboshWMvg5qlMSxyEpmJteylCd7XxyuK7PXyRpUZ5f1lFEatrE=
+	t=1731850127; cv=none; b=Yl7fI9KQU1V9lWlE8unMAoVj6XoTSNC95l514S8pQfryboJtc1tXelpJeAlXnIkEfzNPgjOiDpmPDh8j2/u3Bzd7LZzKHehGcpoeauv6yfJPSsj5kKhXQnwoJv27O11y8TjVnI68qIOyr2x7YDYvg+7WpQ3BNTtB1LPcBLRmFpU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731849078; c=relaxed/simple;
-	bh=nSwj3A8/ForjeKffUwizb7noaejgig1pPhnISFTHpWo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gCg4UUBlxQOzYst6givulg42V0DxrEbDoQGmjZFz7cGx9m9v9EWerXWRv2kYj6KjPLebjoTHXHM3mdZcCBj6QZnI6bDTK9LjsEqiAoDqXUnI/tdYgqSMtFe+tE6pp7e+RCxmi9ScgdmX+oPVpNZpL8jfIUisNeRwxV886tAmXic=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FFNCUqcD; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-53a097aa3daso964512e87.1
-        for <devicetree@vger.kernel.org>; Sun, 17 Nov 2024 05:11:16 -0800 (PST)
+	s=arc-20240116; t=1731850127; c=relaxed/simple;
+	bh=EdoppDsq+V/swTt6VZfwkTDsYSgLbLUaQysrNer1670=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=a2BNJ5HGGJeGPaSJH3fvs1wWCQ0HS3kmV/lS6B3QihNdHbmm3jWUnS3EYSYD+y58d8AEiW60rpSTaviN9CC6X+Xv21AmuGvqQYXAR+7mk2cZiTeNjJyVhSAjjRaWngsPk/iGH41DSi7cl0ijjvuhsaumyE2XGwP5u1MbJOEb66o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FJcSHQZn; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4315839a7c9so30024485e9.3;
+        Sun, 17 Nov 2024 05:28:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731849074; x=1732453874; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=NVTB5fgW0CIPrQ9J8AICgZwfqKYac/1UcCg9s2HGvdI=;
-        b=FFNCUqcD/6uAxaCGxwUSXFs0ySP2qm+JEADJpfQ6yluAcuMWiEyafezrmLs4Ndq+0x
-         R0DGVJgL1GPjWNyYN/jew9X/YmIJGuL8hBk/hi+GuxKYoe81eMuDf4VIDByruw79OL8/
-         mqACKXNpe2oP86OMVGY9PE/lAEzoOjaGfBH9LbxiIisVEtlDQj02bNHfAcv9WyDENgiG
-         Pf6wgMiM4nP6g6YkE871PZZZZEo1dNDKDh70myodcv8wv5fPr/nsmKFY3Vx2O4rJ/5dB
-         2jyOVLoEfvaV2IWfnwuX0yq6bwfdquGXbpDa7UkfumJxNjkDhUDa5iL1L8A2bF6B4kTS
-         5i5g==
+        d=gmail.com; s=20230601; t=1731850124; x=1732454924; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1XAbIa3hm+HJbfWZ3CE+oQUW9aIaBQsvmTiCcfqd4QU=;
+        b=FJcSHQZn5c7WSSHJqb1CzgDGf/4lTrsWuPtpyKdmuW9dh1e1Bgs0HEimttJGqWAF+b
+         tjX0oX4nf6JSKqPzrMvBALgQclC6sNSj95qQPu4aspGik6lGffP/NI0eDm1Pgz88RT28
+         l1+stqwjHKCPzmi/l/A/N1gieuQAXJOJbru0l7yPtBgeMvc2hLdAmb2RBX+9CSPlKd/+
+         Ei3EV0nZn5HNfWGDz02vAvmC90u2Q8f2acpTAqrujUzzyyxcgTevDwDYNHoueEMLuA3r
+         pFC6+oprGJFB3bXMETDvUsco4DGDeg9GF09VTd4IhVZ6TAHmVQUONz909nosMVY1ILrU
+         JNMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731849074; x=1732453874;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NVTB5fgW0CIPrQ9J8AICgZwfqKYac/1UcCg9s2HGvdI=;
-        b=PIf18dAYVklb4TGa3FqBz5PLmLBNS056x2+VvwBLikXcwF/vz6w3Cbh5V5UsqQcCye
-         yz8dri2qr09zH/ZzatZkDElXfM+2btBwblQGdM56QgMcLFdraR4CgS6mMwJV3cHUlrsC
-         g78cUmoIEUIcNx9ZJpX9Rhy5y47J+ckCNgJjXEhdJeNF0+HSmMx5cdpQzRvMIQZI4R8f
-         dbxh6ZgLeHQlNfweVdFinbWzm756Ozh7D91Bz0K9/8wxFttgAJxrxa4EgOiK/BpGjo1d
-         WBfMB5UdPPbT2L9kd6F3J0Asy8EcwsvpCg11TOOLkyrGw1/MA8tA0v6gzDkCWHoOrnhv
-         XzXA==
-X-Forwarded-Encrypted: i=1; AJvYcCWu/Ft4Bqe3auXoCKHiU5vR6T0zgrZTKrcB8Y679K7vr9zPoTGx2+m3/fnsvM76PWr1q4aIVQc4+ikH@vger.kernel.org
-X-Gm-Message-State: AOJu0YyxkacsKUrFXwyGFyBMHnqWPNllvRX+NnzizEyxxV0Za3qH0B70
-	+BOEJ3oUXko2qH/zCYPALT4PcYhh3HmdmHi9PtJ+pSY5j8fKd363mtQV4RKsgv8=
-X-Google-Smtp-Source: AGHT+IG575J6WcG9hzhULgqTQtjUCp+Yew1GGtVJdfAdD7iB6t7lRgirF640uMkUJ3IZlpLMdP65gA==
-X-Received: by 2002:a05:6512:1195:b0:53d:a1cd:4d2 with SMTP id 2adb3069b0e04-53dab2b4216mr4246336e87.44.1731849074309;
-        Sun, 17 Nov 2024 05:11:14 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53da64ffc6dsm1269110e87.59.2024.11.17.05.11.12
+        d=1e100.net; s=20230601; t=1731850124; x=1732454924;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1XAbIa3hm+HJbfWZ3CE+oQUW9aIaBQsvmTiCcfqd4QU=;
+        b=o6nBUyt9ENIvxPf/gx1gMCS+MRP/VDoz9vgQsOULosoQwUGUmGRZm9w1w2RsI0vcxK
+         XlYt2K5TTtJ5XGRL4nMFUpcwTjudRXahKXiwyjO4TlhlcnpyVAdp06Zb9FMm2eyAIx5d
+         JEYTIZq6rfKxeefmbYzBWLs22yDvUnkV4m4R85fbWlbkgUJZl2Yn88K5o/MBQvQKMrnq
+         ro59bPzmFJ6AWzJJwuBU1s/MEC5dK43dRDYtEY9CXijV9AkjTe6JKZ7NtuuE/aC8B+4m
+         g6jT8vtgrRILB6KUVARTpreoDka2KEk28hGpIbLtz1T3VLqhaMRDuVPGp4BywYyqbVnV
+         xZpw==
+X-Forwarded-Encrypted: i=1; AJvYcCV/V8FBhB6saXy75qFlwudZTWlcfnrMOaVqQmvmu4haYdKJwzyuOqUZpsD9XlFd8YCuwFsVG3IF6o0r@vger.kernel.org, AJvYcCVbQgYkb5HQOpHZHeZajYmZshZOrXcCtwR2oKvBgjlvRqsSt1iSaOxPKmaIaBvBL0aejqsxqqo+iZ5pVJy4@vger.kernel.org, AJvYcCXvMuoRjkq1zca+tInj/gJj7Xu+pCYxld54znEj4D+I60Gewc6U6n3AX349O07mCdMwWkYm7Hte@vger.kernel.org
+X-Gm-Message-State: AOJu0Yws0rGtzV7XLudqB4nZcozaZ9UYAayZn/jHr26PicKRcwYpsfBN
+	wumQRPkcXzEP6iK6FT4Rb/gBjJFg5yZBjBNa7U5uS/Ep8QmfM9nL
+X-Google-Smtp-Source: AGHT+IE2PiBZR31XHy+Sv2+wwjB5HCtxiAG5Tfaf9sjkvJjlS9c96ZY5wFNopklt0SylBWZ3yIrb7g==
+X-Received: by 2002:a5d:5887:0:b0:382:42c3:83cc with SMTP id ffacd0b85a97d-38242c38557mr1136107f8f.45.1731850123618;
+        Sun, 17 Nov 2024 05:28:43 -0800 (PST)
+Received: from localhost.localdomain (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-38229b6e2fasm6282015f8f.40.2024.11.17.05.28.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 17 Nov 2024 05:11:13 -0800 (PST)
-Date: Sun, 17 Nov 2024 15:11:11 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Konrad Dybcio <konradybcio@kernel.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Viresh Kumar <viresh.kumar@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Vinod Koul <vkoul@kernel.org>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sc8180x: Add a SoC-specific
- compatible to cpufreq-hw
-Message-ID: <7gftvwwc267za5jgyhw4yxmlw6rh7wkb2am5zx6cgl72x45hc7@eetgqavlalpd>
-References: <20241116-topic-sc8180x_cpufreq_bindings-v1-0-e7db627da99c@oss.qualcomm.com>
- <20241116-topic-sc8180x_cpufreq_bindings-v1-2-e7db627da99c@oss.qualcomm.com>
+        Sun, 17 Nov 2024 05:28:43 -0800 (PST)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Christian Marangi <ansuelsmth@gmail.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	upstream@airoha.com
+Subject: [net-next PATCH v7 0/4] net: dsa: Add Airoha AN8855 support
+Date: Sun, 17 Nov 2024 14:27:55 +0100
+Message-ID: <20241117132811.67804-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241116-topic-sc8180x_cpufreq_bindings-v1-2-e7db627da99c@oss.qualcomm.com>
+Content-Transfer-Encoding: 8bit
 
-On Sat, Nov 16, 2024 at 12:31:18PM +0100, Konrad Dybcio wrote:
-> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> 
-> Comply with bindings guidelines and get rid of errors such as:
-> 
-> cpufreq@18323000: compatible: 'oneOf' conditional failed, one must be fixed:
->         ['qcom,cpufreq-hw'] is too short
-> 
-> Fixes: 8575f197b077 ("arm64: dts: qcom: Introduce the SC8180x platform")
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/sc8180x.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+This small series add the initial support for the Airoha AN8855 Switch.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+It's a 5 port Gigabit Switch with SGMII/HSGMII upstream port.
+
+This is starting to get in the wild and there are already some router
+having this switch chip.
+
+It's conceptually similar to mediatek switch but register and bits
+are different. And there is that massive Hell that is the PCS
+configuration.
+Saddly for that part we have absolutely NO documentation currently.
+
+There is this special thing where PHY needs to be calibrated with values
+from the switch efuse. (the thing have a whole cpu timer and MCU)
+
+Changes v7:
+- Fix devm_dsa_register_switch wrong export symbol
+Changes v6:
+- Drop standard MIB and handle with ethtool OPs (as requested by Jakub)
+- Cosmetic: use bool instead of 0 or 1
+Changes v5:
+- Add devm_dsa_register_switch() patch
+- Add Reviewed-by tag for DT patch
+Changes v4:
+- Set regmap readable_table static (mute compilation warning)
+- Add support for port_bridge flags (LEARNING, FLOOD)
+- Reset fdb struct in fdb_dump
+- Drop support_asym_pause in port_enable
+- Add define for get_phy_flags
+- Fix bug for port not inititially part of a bridge
+  (in an8855_setup the port matrix was always cleared but
+   the CPU port was never initially added)
+- Disable learning and flood for user port by default
+- Set CPU port to flood and learning by default
+- Correctly AND force duplex and flow control in an8855_phylink_mac_link_up
+- Drop RGMII from pcs_config
+- Check ret in "Disable AN if not in autoneg"
+- Use devm_mutex_init
+- Fix typo for AN8855_PORT_CHECK_MODE
+- Better define AN8855_STP_LISTENING = AN8855_STP_BLOCKING
+- Fix typo in AN8855_PHY_EN_DOWN_SHIFT
+- Use paged helper for PHY
+- Skip calibration in config_init if priv not defined
+Changes v3:
+- Out of RFC
+- Switch PHY code to select_page API
+- Better describe masks and bits in PHY driver for ADC register
+- Drop raw values and use define for mii read/write
+- Switch to absolute PHY address
+- Replace raw values with mask and bits for pcs_config
+- Fix typo for ext-surge property name
+- Drop support for relocating Switch base PHY address on the bus
+Changes v2:
+- Drop mutex guard patch
+- Drop guard usage in DSA driver
+- Use __mdiobus_write/read
+- Check return condition and return errors for mii read/write
+- Fix wrong logic for EEE
+- Fix link_down (don't force link down with autoneg)
+- Fix forcing speed on sgmii autoneg
+- Better document link speed for sgmii reg
+- Use standard define for sgmii reg
+- Imlement nvmem support to expose switch EFUSE
+- Rework PHY calibration with the use of NVMEM producer/consumer
+- Update DT with new NVMEM property
+- Move aneg validation for 2500-basex in pcs_config
+- Move r50Ohm table and function to PHY driver
+
+Christian Marangi (4):
+  net: dsa: add devm_dsa_register_switch()
+  dt-bindings: net: dsa: Add Airoha AN8855 Gigabit Switch documentation
+  net: dsa: Add Airoha AN8855 5-Port Gigabit DSA Switch driver
+  net: phy: Add Airoha AN8855 Internal Switch Gigabit PHY
+
+ .../bindings/net/dsa/airoha,an8855.yaml       |  242 ++
+ MAINTAINERS                                   |   11 +
+ drivers/net/dsa/Kconfig                       |    9 +
+ drivers/net/dsa/Makefile                      |    1 +
+ drivers/net/dsa/an8855.c                      | 2233 +++++++++++++++++
+ drivers/net/dsa/an8855.h                      |  693 +++++
+ drivers/net/phy/Kconfig                       |    5 +
+ drivers/net/phy/Makefile                      |    1 +
+ drivers/net/phy/air_an8855.c                  |  267 ++
+ include/net/dsa.h                             |    1 +
+ net/dsa/dsa.c                                 |   19 +
+ 11 files changed, 3482 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/dsa/airoha,an8855.yaml
+ create mode 100644 drivers/net/dsa/an8855.c
+ create mode 100644 drivers/net/dsa/an8855.h
+ create mode 100644 drivers/net/phy/air_an8855.c
 
 -- 
-With best wishes
-Dmitry
+2.45.2
+
 
