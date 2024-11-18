@@ -1,216 +1,195 @@
-Return-Path: <devicetree+bounces-122600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122601-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DE289D1295
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 15:03:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91F439D1361
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 15:42:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B13BDB2219B
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 13:57:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 533CC2849CA
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 14:42:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC7B119ABCB;
-	Mon, 18 Nov 2024 13:57:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34A7C1AA1C6;
+	Mon, 18 Nov 2024 14:39:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FJmNUaTe"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D2SXBmTl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFC811E505;
-	Mon, 18 Nov 2024 13:57:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 677581991A5
+	for <devicetree@vger.kernel.org>; Mon, 18 Nov 2024 14:39:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731938226; cv=none; b=OUXS6TgjdniUBOjyxrhTvTHsN/0Zo6uxFJPlz9Gxe3lPXjXRTP+jDlnTlU5rVf4nOTVtXF5Ps7W+JSLmvKIDqeiCzkI6nPeDDA0kEnXAyM0Hqo7Jd8Rutk1gzApdYCf9way+lxxpN2b7mvC7n4i6gUS/7Zr8lAEvPdoRxED1x4M=
+	t=1731940792; cv=none; b=NwH6XU0SK+5P4OATAgLExaHGKHeRQ018OwG6FeNjT74HuHeTCZFqy4ydSsvdmmRx5lmr1D7zGgUTY7pME99MqK3YaZFvsI0jAoYo7OwnB/f3enHRbiZQIzkBM/8W7CS7/OyEtuEj7VoYAjMy6g1LfQl8W41K8c1L0LcWy9ijrLo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731938226; c=relaxed/simple;
-	bh=eKx14vhsPqt3aVBLymJxdMOfVUlohtPd719hxRQ6wuE=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=s1Px7Nsqxc5nn+y4z+ysmoA0gjJZQTLlGjZJvGPArFzX0LqKT+jso3H+87GQ1H2rBphGZrl4VA7fp4sOB3RB+kyk/BSVuT0nI/WdRDA58FILo4jPGAMl6QzNDexTfWtqxYJXPUUK+Mm8vkYH5JnaffWJQgcISaC1FYlm6OV2ynA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FJmNUaTe; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-382325b0508so1536679f8f.3;
-        Mon, 18 Nov 2024 05:57:04 -0800 (PST)
+	s=arc-20240116; t=1731940792; c=relaxed/simple;
+	bh=6OxsRk/yPJyDXFI5pv6/HtQ2SC7vaQPk3DaXR38kGVI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZEH0On51DsIWYlp7YJDlaNVIn3pzKhMXF8wMLHRqBc0jwcd0G5bdBLEq8lPTClAR4bfkdXZUst3HooeLquX3B/Yvb1qCNh07NjF+nvZ/AhCGIIhm13iDrPFNqjGuzqRhj2VW75q7OdSDJCc+wWZVV2mAZf35gsNHLhhdpZs5HDg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D2SXBmTl; arc=none smtp.client-ip=209.85.219.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-e388186edbfso1526069276.3
+        for <devicetree@vger.kernel.org>; Mon, 18 Nov 2024 06:39:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731938223; x=1732543023; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=y5g0SDxq/NK6cMbSW02p9WJnfU+yS5PFEVoK2tgPY/Q=;
-        b=FJmNUaTe3J0HIiKoccoKcnCwX+1hISxaWrTEOE4ioBzkae8FYy5lA0zZDu7IW6aKse
-         gxTtLrClr3XaXMRVXBi+GwWunGB3Ia/DUTFf45UhqYhhxVnwvrNiVDJieTFUVi2Gi9hM
-         JE0lTfQvx3HGv1kG45OkbTzAaM1VUGenvZaH7No5bGBuNamyO81x/odZJxSiKZIg0qhl
-         Evco4bxPBJCQaN70t4/pSnhiWFssP76AlTdwnsEJwpSN/9UCn8CsjUksFr2IAI9j9wr3
-         pCmFUMZ32hz2IRrA+fFZUK/lWYkYXttJnAT1/5Cu6I6Q7PAeKWdWan3I6EpzkoqxcYBR
-         HPiA==
+        d=linaro.org; s=google; t=1731940789; x=1732545589; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=r9ByUzP6+73RBqmQ54+FUS5a2RqUQJq8/v72072Hlm4=;
+        b=D2SXBmTlS0Do7w9xiP9PZl6/zU0GTcrT47ekBVECE65U4AfnFkYsCIe0amUCblcu0o
+         dZWmc/wi79+SafuH4uHi9YaFjRolXHvgJ6ibp5jM6hV2QhmlYKjubSGJ+UlYxv17bnyd
+         6mGoqV1mMmj3svgSEcAwkueJiseUkqAYyEjUfVv1zrOlcfJwtMJq3ddSsEdV5Q3MaLTO
+         Cfpln93H9+aLafOtKXWAD56W1q+Y8AuIVIRQCQSEtYcVZSW91KjMXh3SodBccqVQy1Zz
+         Qfuw+mZBFl+iRxGsqSq69pxecTGFR0+d/W0gAnbAfb7Z4umHUIYKzESFFCdx1aU4gI8H
+         9zng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731938223; x=1732543023;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=y5g0SDxq/NK6cMbSW02p9WJnfU+yS5PFEVoK2tgPY/Q=;
-        b=UMaZBm3bABSG/HCRFZa76HkXuW+Tflr5Pf5OQTdKt/CVAjBnFG87XMV6aauuUsWuxd
-         1D52PMewhJKhJycVeaZJFjoDYKArGzA/z5kfTtCAR6oJbI/7yfcc5aNLZIUFRN/3Vi5K
-         oaDeszBsQn5DtxKsrGm2BirKkO7hivPy57sOLKSYETJqWMJ3Yd81MghePE2xPQQYMk2B
-         rMCDxVae/BSEbioPwYtnnABtLKCVu/gpm5sH8BGuj8JwORd3y5JE6NgL904kMmCT+4UN
-         qqsZ8wH4E+WpGGMwK6qbIbOc3KV50z77/2d35lvXNLff+kRsPDnX0d5LrNlW+NuokHtP
-         V+dA==
-X-Forwarded-Encrypted: i=1; AJvYcCV5UWPj5ndsbSqfZNEi/RPOu/TZrnNebvSIa7yceuTBqTMCAOZQ70R3ZvaIsff9UCkhRGO7UzpEHplOgA==@vger.kernel.org, AJvYcCVpO/8tzl6AvYu1/gwFqk6W4pb8Bmy/WbPCZt2YBwPtKWgHAoRavUBqm/Gl/aKlluM/4J6nAz92HGwR@vger.kernel.org, AJvYcCXDjDUO0gBpiGfcrvkKJMZtrVhrMo84Rv0CtK6ZpBQI58Sbk2kqew9kuw5Ovz/aMToqDeDP7Y+A7SB0@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywk/I6fMyaqO8Hp7Kwjj0PpzBom6iwvhv2/yvzOxHMIx+O4lKsL
-	nv60zIe7gNY3mwT8fTGxTYIalxDzghZ1vVURpnGh/2rRljk/eAQx
-X-Google-Smtp-Source: AGHT+IF94nbHwzjCLpDarWT5yfUcXTqkaO1krUW7QphggrRZZYmFNp3AV0Tm25ZBZzhDuW3XljIjSA==
-X-Received: by 2002:a5d:6489:0:b0:382:4b5c:418c with SMTP id ffacd0b85a97d-3824b5c4381mr515794f8f.55.1731938223123;
-        Mon, 18 Nov 2024 05:57:03 -0800 (PST)
-Received: from Ansuel-XPS. (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-382456ba017sm3895573f8f.97.2024.11.18.05.57.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Nov 2024 05:57:02 -0800 (PST)
-Message-ID: <673b47ae.df0a0220.2187ad.bc2a@mx.google.com>
-X-Google-Original-Message-ID: <ZztHqr6wdb2nmFke@Ansuel-XPS.>
-Date: Mon, 18 Nov 2024 14:56:58 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>
-Cc: Lorenzo Bianconi <lorenzo@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sean Wang <sean.wang@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Lee Jones <lee@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	upstream@airoha.com, benjamin.larsson@genexis.eu,
-	linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v10] pwm: airoha: Add support for EN7581 SoC
-References: <20241103-en7581-pinctrl-v10-1-1990fb6996a0@kernel.org>
+        d=1e100.net; s=20230601; t=1731940789; x=1732545589;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=r9ByUzP6+73RBqmQ54+FUS5a2RqUQJq8/v72072Hlm4=;
+        b=dlq2MAnUpSkXu2RbWoks0cYl76v/liJy8ZrDIyXTjLpX+btgCTzt0CEk3DuKnXvE7B
+         MoY8k24OmgIRC6ZiUEII1fobHC/0r4jP3KOyqBuZzdofYObaVt1ndzpULCb4M6ZbllME
+         AuYDbKK6gTL9fKkq8yen61VWkm099noJcxs9M9EnJEslsKhKvqISHgPodgzi+lyzwgrP
+         uBAbD9Ee4yNeKdkb6aGPhFagOKPFBvZWAIq18jBtGfvFHp9AFKQBdpX+eI3V/WsWjbYi
+         gZWAC+/akjf1n5TcNx4F6HZ8MBf5scTRK8Co4upg8v7WIyLkZMqg8LVC7jE9z2eySTXv
+         hLTg==
+X-Forwarded-Encrypted: i=1; AJvYcCUvhsDQA1ycvM7KC0jzcG04suo9sGps6DIkMAe5iJeL5RPkfDgEQuV3DH1suGDlk3DRqHUONjBME8Dr@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKH1S0gyX3uKCXBwUNLwEk53lUzx4t1add9ecjRnGvQPxxePIE
+	rHrS2K+5txMpvhrRZYYiF/5nLGGbFY5E7yff2oEOKR5XX4LUnEsAhDmp8Tg5ObtHq1ZEdnE2WNL
+	QufpSvRVBUwvdqjy+qeuY0w0jyi1SLP0lzHbleQ==
+X-Google-Smtp-Source: AGHT+IEEpyD2A4JYQ5Rg/9zTZnt5t5baJqVCTEDDP7vQeL7ALYKTj4alMmxiJWSoMJkT89RKqFeUMQC/HuG0OMTqlRs=
+X-Received: by 2002:a05:6902:3381:b0:e30:c76e:960d with SMTP id
+ 3f1490d57ef6-e3826176347mr9019615276.27.1731940789418; Mon, 18 Nov 2024
+ 06:39:49 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241103-en7581-pinctrl-v10-1-1990fb6996a0@kernel.org>
+References: <20241113-topic-sm8x50-gpu-bw-vote-v1-0-3b8d39737a9b@linaro.org>
+ <20241113-topic-sm8x50-gpu-bw-vote-v1-6-3b8d39737a9b@linaro.org>
+ <nw2sqnxmhntvizzvygfho6nhiwfni4xfquwst5gd5g2tel6pnr@h66d4mw46jcf>
+ <8df952a8-3599-4198-9ff0-f7fac6d5feaf@linaro.org> <p4pqswgaxbx2aji6y5v2qngn3xp4gdlruthhbzpb4cgfs2earz@mo7zbsgqwc4b>
+ <e76a2531-a96a-441d-ac2d-bc1557370aa5@linaro.org>
+In-Reply-To: <e76a2531-a96a-441d-ac2d-bc1557370aa5@linaro.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Mon, 18 Nov 2024 16:39:38 +0200
+Message-ID: <CAA8EJpoO6sE8noSvvn0s7bu4Vi6-3YZ=kuxnv4+Vn_MfM3hSaw@mail.gmail.com>
+Subject: Re: [PATCH RFC 6/8] drm/msm: adreno: enable GMU bandwidth for A740
+ and A750
+To: neil.armstrong@linaro.org
+Cc: Akhil P Oommen <quic_akhilpo@quicinc.com>, Viresh Kumar <vireshk@kernel.org>, 
+	Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Connor Abbott <cwabbott0@gmail.com>, linux-pm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Sun, Nov 03, 2024 at 10:04:04PM +0100, Lorenzo Bianconi wrote:
-> From: Benjamin Larsson <benjamin.larsson@genexis.eu>
-> 
-> Introduce driver for PWM module available on EN7581 SoC.
-> 
-> Co-developed-by: Christian Marangi <ansuelsmth@gmail.com>
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> Signed-off-by: Benjamin Larsson <benjamin.larsson@genexis.eu>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Co-developed-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> ---
-> Introduce airoha-mfd driver in order to load pinctrl and pwm drivers for
-> EN7581 SoC. airoha-mfd is needed since both pinctrl and pwm drivers
-> needs to access the same memory block (gpio memory region) to configure
-> {gio,irq}_chip and pwm functionalities respectively, so model them as
-> childs of a parent mfd driver.
-> Current EN7581 pinctrl driver supports the following functionalities:
-> - pin multiplexing via chip_scu syscon
-> - pin pull-up, pull-down, open-drain, current strength,
->   {input,output}_enable, output_{low,high} via chip_scu syscon
-> - gpio controller
-> - irq controller
-> ---
-> Changes in v10:
-> - repost just patch 6/6 (pwm driver) since patches {1/6-5/6} have been
->   already applied in linux-pinctrl tree
-> - pwm: introduce AIROHA_PWM_FIELD_GET and AIROHA_PWM_FIELD_SET macros to
->   get/set field with non-const mask
-> - pwm: simplify airoha_pwm_get_generator() to report unused generator
->   and remove double lookup
-> - pwm: remove device_node pointer in airoha_pwm struct since this is
->   write-only field
-> - pwm: cosmetics
-> - Link to v9: https://lore.kernel.org/r/20241023-en7581-pinctrl-v9-0-afb0cbcab0ec@kernel.org
-> 
-> Changes in v9:
-> - pwm: remove unused properties
-> - Link to v8: https://lore.kernel.org/r/20241018-en7581-pinctrl-v8-0-b676b966a1d1@kernel.org
-> 
-> Changes in v8:
-> - pwm: add missing properties documentation
-> - Link to v7: https://lore.kernel.org/r/20241016-en7581-pinctrl-v7-0-4ff611f263a7@kernel.org
-> 
-> Changes in v7:
-> - pinctrl: cosmetics
-> - pinctrl: fix compilation warning
-> - Link to v6: https://lore.kernel.org/r/20241013-en7581-pinctrl-v6-0-2048e2d099c2@kernel.org
-> 
-> Changes in v6:
-> - pwm: rely on regmap APIs
-> - pwm: introduce compatible string
-> - pinctrl: introduce compatible string
-> - remove airoha-mfd driver
-> - add airoha,en7581-pinctrl binding
-> - add airoha,en7581-pwm binding
-> - update airoha,en7581-gpio-sysctl binding
-> - Link to v5: https://lore.kernel.org/r/20241001-en7581-pinctrl-v5-0-dc1ce542b6c6@kernel.org
-> 
-> Changes in v5:
-> - use spin_lock in airoha_pinctrl_rmw instead of a mutex since it can run
->   in interrupt context
-> - remove unused includes in pinctrl driver
-> - since the irq_chip is immutable, allocate the gpio_irq_chip struct
->   statically in pinctrl driver
-> - rely on regmap APIs in pinctrl driver but keep the spin_lock local to the
->   driver
-> - rely on guard/guard_scope APIs in pinctrl driver
-> - improve naming convention pinctrl driver
-> - introduce airoha_pinconf_set_pin_value utility routine
-> - Link to v4: https://lore.kernel.org/r/20240911-en7581-pinctrl-v4-0-60ac93d760bb@kernel.org
-> 
-> Changes in v4:
-> - add 'Limitation' description in pwm driver
-> - fix comments in pwm driver
-> - rely on mfd->base __iomem pointer in pwm driver, modify register
->   offsets according to it and get rid of sgpio_cfg, flash_cfg and
->   cycle_cfg pointers
-> - simplify register utility routines in pwm driver
-> - use 'generator' instead of 'waveform' suffix for pwm routines
-> - fix possible overflow calculating duty cycle in pwm driver
-> - do not modify pwm state in free callback in pwm driver
-> - cap the maximum period in pwm driver
-> - do not allow inverse polarity in pwm driver
-> - do not set of_xlate callback in the pwm driver and allow the stack to
->   do it
-> - fix MAINTAINERS file for airoha pinctrl driver
-> - fix undefined reference to __ffsdi2 in pinctrl driver
-> - simplify airoha,en7581-gpio-sysctl.yam binding
-> - Link to v3: https://lore.kernel.org/r/20240831-en7581-pinctrl-v3-0-98eebfb4da66@kernel.org
-> 
-> Changes in v3:
-> - introduce airoha-mfd driver
-> - add pwm driver to the same series
-> - model pinctrl and pwm drivers as childs of a parent mfd driver.
-> - access chip-scu memory region in pinctrl driver via syscon
-> - introduce a single airoha,en7581-gpio-sysctl.yaml binding and get rid
->   of dedicated bindings for pinctrl and pwm
-> - add airoha,en7581-chip-scu.yaml binding do the series
-> - Link to v2: https://lore.kernel.org/r/20240822-en7581-pinctrl-v2-0-ba1559173a7f@kernel.org
-> 
-> Changes in v2:
-> - Fix compilation errors
-> - Collapse some register mappings for gpio and irq controllers
-> - update dt-bindings according to new register mapping
-> - fix some dt-bindings errors
-> - Link to v1: https://lore.kernel.org/all/cover.1723392444.git.lorenzo@kernel.org/
+On Mon, 18 Nov 2024 at 15:43, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+>
+> On 15/11/2024 15:39, Dmitry Baryshkov wrote:
+> > On Fri, Nov 15, 2024 at 10:20:01AM +0100, Neil Armstrong wrote:
+> >> On 15/11/2024 08:33, Dmitry Baryshkov wrote:
+> >>> On Wed, Nov 13, 2024 at 04:48:32PM +0100, Neil Armstrong wrote:
+> >>>> Now all the DDR bandwidth voting via the GPU Management Unit (GMU)
+> >>>> is in place, let's declare the Bus Control Modules (BCMs) and
+> >>>
+> >>> s/let's //g
+> >>>
+> >>>> it's parameters in the GPU info struct and add the GMU_BW_VOTE
+> >>>> quirk to enable it.
+> >>>
+> >>> Can we define a function that checks for info.bcm[0].name isntead of
+> >>> adding a quirk?
+> >>
+> >> Probably, I'll need ideas to how design this better, perhaps a simple
+> >> capability bitfield in a6xx_info ?
+> >
+> > I'm not sure if I follow the question. I think it's better to check for
+> > the presens of the data rather than having a separate 'cap' bit in
+> > addition to that data.
+>
+> I don't fully agree here, I just follow the other features (CACHED_COHERENT/APRIV/...)
+> nothing fancy.
+> I'll introduce a features bitfield, so we don't mix them with quirks
 
-Hi Uwe,
+SGTM
 
-since you gave revision for v9, any news with this? Is everything good
-now? It's sad if this last piece doesn't get through after all this
-efforts with the previous series :(
+>
+> >
+> >> There's other feature that are lacking, like ACD or BCL which are not supported
+> >> on all a6xx/a7xx gpus.
+> >
+> > Akhil is currently working on ACD, as you have seen from the patches.
+>
+> Yep I've tested and reviewed the patches
+>
+> >
+> >>
+> >>>
+> >>>>
+> >>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> >>>> ---
+> >>>>    drivers/gpu/drm/msm/adreno/a6xx_catalog.c | 26 ++++++++++++++++++++++++--
+> >>>>    1 file changed, 24 insertions(+), 2 deletions(-)
+> >>>>
+> >>>> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_catalog.c b/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
+> >>>> index 0c560e84ad5a53bb4e8a49ba4e153ce9cf33f7ae..014a24256b832d8e03fe06a6516b5348a5c0474a 100644
+> >>>> --- a/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
+> >>>> +++ b/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
+> >>>> @@ -1379,7 +1379,8 @@ static const struct adreno_info a7xx_gpus[] = {
+> >>>>                    .inactive_period = DRM_MSM_INACTIVE_PERIOD,
+> >>>>                    .quirks = ADRENO_QUIRK_HAS_CACHED_COHERENT |
+> >>>>                              ADRENO_QUIRK_HAS_HW_APRIV |
+> >>>> -                    ADRENO_QUIRK_PREEMPTION,
+> >>>> +                    ADRENO_QUIRK_PREEMPTION |
+> >>>> +                    ADRENO_QUIRK_GMU_BW_VOTE,
+> >>>>                    .init = a6xx_gpu_init,
+> >>>>                    .zapfw = "a740_zap.mdt",
+> >>>>                    .a6xx = &(const struct a6xx_info) {
+> >>>> @@ -1388,6 +1389,16 @@ static const struct adreno_info a7xx_gpus[] = {
+> >>>>                            .pwrup_reglist = &a7xx_pwrup_reglist,
+> >>>>                            .gmu_chipid = 0x7020100,
+> >>>>                            .gmu_cgc_mode = 0x00020202,
+> >>>> +                  .bcm = {
+> >>>> +                          [0] = { .name = "SH0", .buswidth = 16 },
+> >>>> +                          [1] = { .name = "MC0", .buswidth = 4 },
+> >>>> +                          [2] = {
+> >>>> +                                  .name = "ACV",
+> >>>> +                                  .fixed = true,
+> >>>> +                                  .perfmode = BIT(3),
+> >>>> +                                  .perfmode_bw = 16500000,
+> >>>
+> >>> Is it a platform property or GPU / GMU property? Can expect that there
+> >>> might be several SoCs having the same GPU, but different perfmode_bw
+> >>> entry?
+> >>
+> >> I presume this is SoC specific ? But today the XXX_build_bw_table() are
+> >> already SoC specific, so where should this go ?
+> >
+> > XXX_build_bw_table() are GPU-specific. There are cases of several SoCs
+> > sharing the same GPU on them.
+>
+> So it's gpu-specific
+>
+> >
+> >> Downstream specifies this in the adreno-gpulist.h, which is the equivalent
+> >> here.
+> >
+>
+
 
 -- 
-	Ansuel
+With best wishes
+Dmitry
 
