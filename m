@@ -1,190 +1,217 @@
-Return-Path: <devicetree+bounces-122621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122622-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56D319D176D
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 18:53:10 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90B8D9D1787
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 19:02:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A00A5B2413E
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 17:53:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E8F9FB232E2
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 18:02:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB80E1C07D5;
-	Mon, 18 Nov 2024 17:52:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E91521DD871;
+	Mon, 18 Nov 2024 18:02:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hF9gLtSu"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IDBK+xLv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D8CC1BD9E3
-	for <devicetree@vger.kernel.org>; Mon, 18 Nov 2024 17:52:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DFBB1DC054;
+	Mon, 18 Nov 2024 18:02:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731952370; cv=none; b=QbKk5yaAD3jeq/rlmVkvy43/hi9/og8r5MdRJKfgnBdYlsU1QGTpFAf/7uaAJkyBSPGPQblswGBskqXuHN8dPHatGTARtsASGOWvVKJtEhTEcQ5+nIuhzDsSyBVUFpKY769UmoA4XdPcH6DITFC/t90yRvK099TNMDyU8DP+8RE=
+	t=1731952942; cv=none; b=VxyKDzAuKDAgLAZ4quh4/3phR6nTCeuS6GkN3ffO5Kv6CBUosgt9UmkTKF8Dj/xXzNgN/esYSUpUkgtI30TEORFREvj1xYwOhLkS/5eFpuaZV5qicMytFUs/hBaOQcxuGqIvskj3gNZ2gnMLpRtWacpq55m7bBpXuUpBb/0U2Lo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731952370; c=relaxed/simple;
-	bh=ACEMVKGGeTJOkHjQxBYlWG76S6ST5YjGCECCYYmDulA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PES7DPaYqkLecOR5wBf+LhXWST7Q6bUnmJ/mTs3TaK1FqEPQypNWpMxNEtEr+zRZItD7O1F67xTHoBmpFrOfpKwwr05ADx+MQ9JFF3ROeffw9uvgYuZURph9U/8uDzoDzj6ecJSg6ADCDXWyODkgqTy90myFJNjxKT0C0Gn02VA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hF9gLtSu; arc=none smtp.client-ip=209.85.215.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-7f3e30a43f1so1621350a12.1
-        for <devicetree@vger.kernel.org>; Mon, 18 Nov 2024 09:52:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731952368; x=1732557168; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=fCr0sYPsogCz+quxodgEQ3ar7fg9yYSS/OcvrMaer1g=;
-        b=hF9gLtSu7cciRmITtiV1p3k8eQpwdsxmVSsew6zwuuPckOcQ/gM1b4aM8kK4+TalNO
-         VKkGjBBiMI0tzSirR2EBGdsmGhp/HEVBurFo+ZMqStiiD6HxVozU6b/E0Wyb+e5GL+/Z
-         ryTIoNjDEkjTByffIpBnxJb/MfPCbL33mGUbriREZkUfSClHi3jyrdVamA9Wq+5jPYZw
-         PGPkgt8pGePkzcs6glzTNVREFgTl1KzBhni01z+0oinxpYSQUFZeIEXx7iVgBSVLPBi7
-         EZGpNRzYx/nWJorVOPXJNwMiHbgPikd0PnT6OgP09hbcI7BFEUaRAy4L8HwLowTNHumc
-         kqIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731952368; x=1732557168;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fCr0sYPsogCz+quxodgEQ3ar7fg9yYSS/OcvrMaer1g=;
-        b=WLISSMiIpYyUrmBgFZwCtR0pxcGCYw69zYbfnTTrjV4IDCxkwhcYlmKoNmkKk+KsMl
-         2eueO8gyTJEOsdSSjj2TwGOb7QUz6MxANgRyunQ+TtR0hC12Ip0+6NC/D5ijd3a8CBkZ
-         0iVePy/MHjW+uvsMn3InN3ONDou8Jqlpcle2Dl8AiC1EbBHE9BmG9Q2WUyuBHVu4hYuB
-         Lbh7KhnDMG/efu+pCv3CMSBRAlZlLdnWwsUonv0FySJjanj4OoyUbo8WhYfbVLcD2oEp
-         L6sjaIz/5Dk8vim/EUmlKAQ5uMKVUqMsrkRxyPodQV8r9wjGb2DEHC/soE/CZIc01DDC
-         myAw==
-X-Forwarded-Encrypted: i=1; AJvYcCX2eg/CIsDV8E+Wt5XGSPDjhjx/JjCsYU1zui90BaFlpokzSEe70X68vFni9iqVtNBn2A2cGTlUmiBk@vger.kernel.org
-X-Gm-Message-State: AOJu0YyG3QrxY5l2xWV6mnUIZ8UULyEpwoS5+wEvFc/lD3lcx9p2rR/X
-	TekQtmAxp4+nZlUrssEqfb3hSz8ICg6b5ph3B6ep/GfHJL186Y1cG7lr4QL1b3s=
-X-Google-Smtp-Source: AGHT+IEJRNX9bZE0xzeLu7+8kcJ+xIr7Kwr2Ag4WKPpTArbvdH5l5IPyQ32YkKJbAIpbhDtnUqCUSw==
-X-Received: by 2002:a05:6a20:43ab:b0:1db:e508:cf68 with SMTP id adf61e73a8af0-1dc90b4bbebmr18325105637.24.1731952368452;
-        Mon, 18 Nov 2024 09:52:48 -0800 (PST)
-Received: from p14s ([2604:3d09:148c:c800:ced4:eca8:f5e9:9a5c])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-724770f9d0asm6707357b3a.26.2024.11.18.09.52.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Nov 2024 09:52:47 -0800 (PST)
-Date: Mon, 18 Nov 2024 10:52:44 -0700
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-To: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Jens Wiklander <jens.wiklander@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v13 4/7] remoteproc: Introduce release_fw optional
- operation
-Message-ID: <Zzt+7NBdNjyzWZIb@p14s>
-References: <20241104133515.256497-1-arnaud.pouliquen@foss.st.com>
- <20241104133515.256497-5-arnaud.pouliquen@foss.st.com>
+	s=arc-20240116; t=1731952942; c=relaxed/simple;
+	bh=IaeKpdec/3PSsBxKIbML0Pa+p5E4+JiLIUphOSQ2TiE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=VT8MXPuek3BV3r7wN/RDjclUYTo2XGTMZBq3f7/IVSMa6fXZNPI4r030Mz2Pue1/erdFcS9AezHNL6IIe36AIdOcC0gtM2h5CqJvNHwfPXCpcJhI9cAwKZdndo+OK3Pw8sbFhMROrnMFNSC8RNaxV/SJ9vr+R38sh6t1FvCXEBU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IDBK+xLv; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AIGGeCG022370;
+	Mon, 18 Nov 2024 18:02:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	G+5aI+CNTCLzdOV3Q6IscoEfQzbT9AxQXMivnhOM6ZE=; b=IDBK+xLvU+ewI1Z8
+	Nu4MDQ1YseLudMbYbVywbrD6ZOfdgy8H7gkB9cOXfodmFDzCTnAI6ZfJ0M9IgeHx
+	XxZopQT1rilm0rmLzEn+LFsRPXnrrtNYo0F0+kNPa58ncabfwWccUQFsf6lNI69d
+	NRl0h/tjjWGhMPMfc1F1eBYASayFkQghcUJIM4BdZ+hw2ar4vDPp2M4tzjpF6X8u
+	AkGvyLuvr+4Ze4DNwpgv8cK476sCLKwZnZgaW2So4YeNd9HUnoGJZ/dBSjGj0OA/
+	JR4tCVBEGm7a+fPcLyh7LTDsQrGKVqTCPsCe+70Kundg8993chR1L12NmEFbyAcz
+	gCZ/GQ==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4308y607yj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 18 Nov 2024 18:02:09 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AII28UY012604
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 18 Nov 2024 18:02:08 GMT
+Received: from [10.71.108.63] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 18 Nov
+ 2024 10:01:05 -0800
+Message-ID: <0ca812e7-bf5b-463a-83dc-9195aee14589@quicinc.com>
+Date: Mon, 18 Nov 2024 10:01:05 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241104133515.256497-5-arnaud.pouliquen@foss.st.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] interconnect: qcom: Add interconnect provider
+ driver for SM8750
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Adam Skladowski <a39.skl@gmail.com>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
+	<u.kleine-koenig@baylibre.com>,
+        Vladimir Lypak <vladimir.lypak@gmail.com>,
+        Danila Tikhonov <danila@jiaxyga.com>,
+        Raviteja Laggyshetty
+	<quic_rlaggysh@quicinc.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>,
+        Mike Tipton
+	<quic_mdtipton@quicinc.com>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Trilok Soni
+	<quic_tsoni@quicinc.com>,
+        Satya Durga Srinivasu Prabhala
+	<quic_satyap@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20241112003017.2805670-1-quic_molvera@quicinc.com>
+ <20241112003017.2805670-3-quic_molvera@quicinc.com>
+ <em4vkg4totsg435s4usu7kqn45vfqfot2j7sikzmnof2kkyidi@26b6kkpz7z4c>
+Content-Language: en-US
+From: Melody Olvera <quic_molvera@quicinc.com>
+In-Reply-To: <em4vkg4totsg435s4usu7kqn45vfqfot2j7sikzmnof2kkyidi@26b6kkpz7z4c>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 6o3wh5KPYkW3hpmr5NLmsZVm6OVLYW1c
+X-Proofpoint-ORIG-GUID: 6o3wh5KPYkW3hpmr5NLmsZVm6OVLYW1c
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ spamscore=0 clxscore=1015 malwarescore=0 priorityscore=1501 mlxscore=0
+ mlxlogscore=999 impostorscore=0 bulkscore=0 suspectscore=0 phishscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411180149
 
-On Mon, Nov 04, 2024 at 02:35:12PM +0100, Arnaud Pouliquen wrote:
-> This patch updates the rproc_ops struct to include an optional
-> release_fw function.
-> 
-> The release_fw ops is responsible for releasing the remote processor
-> firmware image. The ops is called in the following cases:
-> 
->  - An error occurs in rproc_start() between the loading of the segments and
->       the start of the remote processor.
->  - after stopping the remote processor.
-> 
-> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-> ---
-> Updates from version V11:
-> - fix typo in @release_fw comment
-> ---
->  drivers/remoteproc/remoteproc_core.c | 5 +++++
->  include/linux/remoteproc.h           | 3 +++
->  2 files changed, 8 insertions(+)
-> 
-> diff --git a/drivers/remoteproc/remoteproc_core.c b/drivers/remoteproc/remoteproc_core.c
-> index 7694817f25d4..46863e1ca307 100644
-> --- a/drivers/remoteproc/remoteproc_core.c
-> +++ b/drivers/remoteproc/remoteproc_core.c
-> @@ -1258,6 +1258,9 @@ static int rproc_alloc_registered_carveouts(struct rproc *rproc)
->  
->  static void rproc_release_fw(struct rproc *rproc)
->  {
-> +	if (rproc->ops->release_fw)
-> +		rproc->ops->release_fw(rproc);
-> +
->  	/* Free the copy of the resource table */
->  	kfree(rproc->cached_table);
->  	rproc->cached_table = NULL;
-> @@ -1377,6 +1380,8 @@ static int rproc_start(struct rproc *rproc, const struct firmware *fw)
->  unprepare_subdevices:
->  	rproc_unprepare_subdevices(rproc);
->  reset_table_ptr:
-> +	if (rproc->ops->release_fw)
-> +		rproc->ops->release_fw(rproc);
->  	rproc->table_ptr = rproc->cached_table;
 
-I suggest the following:
 
-1) Create two new functions, i.e rproc_load_fw() and rproc_release_fw().  The
-only thing those would do is call rproc->ops->load_fw() and
-rproc->ops->release_fw(), if they are present.  When a TEE interface is
-available, ->load_fw() and ->release_fw() become rproc_tee_load_fw() and
-rproc_tee_release_fw().
+On 11/15/2024 7:27 AM, Dmitry Baryshkov wrote:
+> On Mon, Nov 11, 2024 at 04:30:17PM -0800, Melody Olvera wrote:
+>> From: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
+>>
+>> Introduce SM8750 interconnect provider driver using the interconnect
+>> framework.
+>>
+>> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
+>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+>> ---
+>>   drivers/interconnect/qcom/Kconfig  |    9 +
+>>   drivers/interconnect/qcom/Makefile |    2 +
+>>   drivers/interconnect/qcom/sm8750.c | 1585 ++++++++++++++++++++++++++++
+>>   drivers/interconnect/qcom/sm8750.h |  132 +++
+>>   4 files changed, 1728 insertions(+)
+>>   create mode 100644 drivers/interconnect/qcom/sm8750.c
+>>   create mode 100644 drivers/interconnect/qcom/sm8750.h
+>>
+>> diff --git a/drivers/interconnect/qcom/Kconfig b/drivers/interconnect/qcom/Kconfig
+>> index 362fb9b0a198..1219f4f23d40 100644
+>> --- a/drivers/interconnect/qcom/Kconfig
+>> +++ b/drivers/interconnect/qcom/Kconfig
+>> @@ -337,6 +337,15 @@ config INTERCONNECT_QCOM_SM8650
+>>   	  This is a driver for the Qualcomm Network-on-Chip on SM8650-based
+>>   	  platforms.
+>>   
+>> +config INTERCONNECT_QCOM_SM8750
+>> +	tristate "Qualcomm SM8750 interconnect driver"
+>> +	depends on INTERCONNECT_QCOM_RPMH_POSSIBLE
+>> +	select INTERCONNECT_QCOM_RPMH
+>> +	select INTERCONNECT_QCOM_BCM_VOTER
+>> +	help
+>> +	  This is a driver for the Qualcomm Network-on-Chip on SM8750-based
+>> +	  platforms.
+>> +
+>>   config INTERCONNECT_QCOM_X1E80100
+>>   	tristate "Qualcomm X1E80100 interconnect driver"
+>>   	depends on INTERCONNECT_QCOM_RPMH_POSSIBLE
+>> diff --git a/drivers/interconnect/qcom/Makefile b/drivers/interconnect/qcom/Makefile
+>> index 9997728c02bf..7887b1e8d69b 100644
+>> --- a/drivers/interconnect/qcom/Makefile
+>> +++ b/drivers/interconnect/qcom/Makefile
+>> @@ -40,6 +40,7 @@ qnoc-sm8350-objs			:= sm8350.o
+>>   qnoc-sm8450-objs			:= sm8450.o
+>>   qnoc-sm8550-objs			:= sm8550.o
+>>   qnoc-sm8650-objs			:= sm8650.o
+>> +qnoc-sm8750-objs			:= sm8750.o
+>>   qnoc-x1e80100-objs			:= x1e80100.o
+>>   icc-smd-rpm-objs			:= smd-rpm.o icc-rpm.o icc-rpm-clocks.o
+>>   
+>> @@ -80,5 +81,6 @@ obj-$(CONFIG_INTERCONNECT_QCOM_SM8350) += qnoc-sm8350.o
+>>   obj-$(CONFIG_INTERCONNECT_QCOM_SM8450) += qnoc-sm8450.o
+>>   obj-$(CONFIG_INTERCONNECT_QCOM_SM8550) += qnoc-sm8550.o
+>>   obj-$(CONFIG_INTERCONNECT_QCOM_SM8650) += qnoc-sm8650.o
+>> +obj-$(CONFIG_INTERCONNECT_QCOM_SM8750) += qnoc-sm8750.o
+>>   obj-$(CONFIG_INTERCONNECT_QCOM_X1E80100) += qnoc-x1e80100.o
+>>   obj-$(CONFIG_INTERCONNECT_QCOM_SMD_RPM) += icc-smd-rpm.o
+>> diff --git a/drivers/interconnect/qcom/sm8750.c b/drivers/interconnect/qcom/sm8750.c
+>> new file mode 100644
+>> index 000000000000..bc72954d54ff
+>> --- /dev/null
+>> +++ b/drivers/interconnect/qcom/sm8750.c
+>> @@ -0,0 +1,1585 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
+>> + *
+>> + */
+>> +
+>> +#include <linux/device.h>
+>> +#include <linux/interconnect.h>
+>> +#include <linux/interconnect-provider.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of_platform.h>
+>> +#include <dt-bindings/interconnect/qcom,sm8750-rpmh.h>
+>> +
+>> +#include "bcm-voter.h"
+>> +#include "icc-rpmh.h"
+>> +#include "sm8750.h"
+> Nit: please merge sm8750.h here, there is no need to have a separate
+> header, there are no other users.
 
-2) Call rproc_load_fw() in rproc_boot(), just before rproc_fw_boot().  If the
-call to rproc_fw_boot() fails, call rproc_release_fw().
+Ack.
 
-3) The same logic applies to rproc_boot_recovery(), i.e call rproc_load_fw()
-before rproc_start() and call rproc_release_fw() if rproc_start() fails.
+>
+> Also, is there QoS support? I see no qcom_icc_qosbox entries.
 
-4) Take rproc_tee_load_fw() out of rproc_tee_parse_fw().  It will now be called
-in rproc_load_fw().
-
-5) As stated above function rproc_release_fw() now calls rproc_tee_release_fw().
-The former is already called in rproc_shutdown() so we are good in that front.
-
-With the above the cached_table management within the core remains the same and
-we can get rid of patch 3.7.
+Unsure; will let Raviteja comment.
 
 Thanks,
-Mathieu
+Melody
+>
+> Other than that:
+>
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>
+>
 
->  
->  	return ret;
-> diff --git a/include/linux/remoteproc.h b/include/linux/remoteproc.h
-> index 2e0ddcb2d792..08e0187a84d9 100644
-> --- a/include/linux/remoteproc.h
-> +++ b/include/linux/remoteproc.h
-> @@ -381,6 +381,8 @@ enum rsc_handling_status {
->   * @panic:	optional callback to react to system panic, core will delay
->   *		panic at least the returned number of milliseconds
->   * @coredump:	  collect firmware dump after the subsystem is shutdown
-> + * @release_fw:	optional function to release the firmware image from ROM memories.
-> + *		This function is called after stopping the remote processor or in case of an error
->   */
->  struct rproc_ops {
->  	int (*prepare)(struct rproc *rproc);
-> @@ -403,6 +405,7 @@ struct rproc_ops {
->  	u64 (*get_boot_addr)(struct rproc *rproc, const struct firmware *fw);
->  	unsigned long (*panic)(struct rproc *rproc);
->  	void (*coredump)(struct rproc *rproc);
-> +	void (*release_fw)(struct rproc *rproc);
->  };
->  
->  /**
-> -- 
-> 2.25.1
-> 
 
