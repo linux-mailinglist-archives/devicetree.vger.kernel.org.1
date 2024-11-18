@@ -1,128 +1,278 @@
-Return-Path: <devicetree+bounces-122492-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122493-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30D7C9D0BE8
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 10:37:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7941B9D0C56
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 10:47:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E6BCA284D55
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 09:37:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E73141F22568
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 09:47:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B20A11925AA;
-	Mon, 18 Nov 2024 09:37:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FCE11925B3;
+	Mon, 18 Nov 2024 09:47:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tj5S9db9"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="H8irSJVS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81ECB19259F;
-	Mon, 18 Nov 2024 09:37:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08484186E46
+	for <devicetree@vger.kernel.org>; Mon, 18 Nov 2024 09:47:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731922649; cv=none; b=DbGp9bKdEtoPmiK9ilFhyuoothIk/WN9YDdR7qvDTH7UixhwWpp83pBASDyjS0es8GvY/v93Y4sabgIhLHJ7f2wDt4mKS55TeuSqNVsanuHbPXkrrXSuJ4bm/YlQayah/2gCf8EcwSa+oFYpl9Kdgeg++oc9mqaNx1KmV5imFyM=
+	t=1731923268; cv=none; b=bsFjMwgRZYt7o2bmkTlS9i77qOp9rM2dCyxmBZqidaAwfVzz7oOGkAJe7EY64UavCFRIjy6+y5LHNrv8v3HwMTX1GyZc4+LbNYMDO3neUXTLCj9nkDxnil4Sp561fUQ0hK7DuqBz8W/TTU9pjhAjocntlLG7VEOZ2GNSZCVQaLo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731922649; c=relaxed/simple;
-	bh=RQgVYHEPorJ+99MZGykNM934RDtHC2VNhtpWhmYDngE=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=pcbP5XY94bjjSYzIsX0NY/D6wNCgJH+oXrqGSHuf6ofPHNb8H3FCsjmULPpwAHKjdV8wwQL/enW3MjiG87h2PXESJ8y6Aexh8ELwmDTnx0f0yGBFQOqn5GkQmMPWPME9yMPhb72wQAXqk1BIEGre/F8wufzp49iTrKtk0pcY4Hk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tj5S9db9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE41FC4CED0;
-	Mon, 18 Nov 2024 09:37:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731922649;
-	bh=RQgVYHEPorJ+99MZGykNM934RDtHC2VNhtpWhmYDngE=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=Tj5S9db9Q4TOehcZaFU+gEWyP1/BX3Hz7ol6oIhBQw41zo4YWOm+YoD4V2trId6wX
-	 F+CUO8HgnXawxMHao5lKg0w3PXs0g14Bx1CSaVm8+0XoCYLm6EKm2dq19IF1ccjdSe
-	 JwxVOdmMPJTMaLFlrKpdYYrzZZDlfvT+mM8X06v3RF8aV1OjwGkQOJk0BtND4ptE2i
-	 43yUn6NtewzY2NwBWgG9/McK6wf59GaH3Xr5nyJMXbK99P1LmPllZOH2rBDowbACF4
-	 5jM9u8YasstS6uxNKjTDUjao6kVozzTXGU/QIC/13NF/1tXL99xpMRdEryzU0K6CMO
-	 XwITIZJAkh0Mw==
-Date: Mon, 18 Nov 2024 03:37:27 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1731923268; c=relaxed/simple;
+	bh=DNhk+o/rPYJxkocGt/n6ACFP1HnvcJpLTbBzuk9IA/A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FIceBrOO216dImCNTNHLnOdRR85hCUNf16GofbMfxeEIXiPe75y4/LHi87lBO1ySDMYDbih1XuY1mWONjQiiDji7drT/14wDkTbyU6niOomp4j0Sj/rDEJ8Ps7D8QdsQQF8OWq6WHYSUDuDz69RhTqKA3PLqMeU0TRm4dKIj1RM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=H8irSJVS; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-431548bd1b4so14793185e9.3
+        for <devicetree@vger.kernel.org>; Mon, 18 Nov 2024 01:47:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1731923263; x=1732528063; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=h0y/xmc/WDEeuxy81I63/jKzT8uzD3EOhKMs9VT0kt0=;
+        b=H8irSJVSxYLHCE1RxAFfwURS9gknGgbmt2jamxiwpMiqlkN0jytyXr/Vm1Ttun5K3H
+         iQgs395GINIsI1qas2aueip+qmZHYqE0phciHf0LNrqeiM5ap+NitdngVcr7sJ2PB4P0
+         /NSjl5isFvrCXTib1/gvui9sBcOXVSim3ARaXR5YDZurA9Wik13TT0iyxSjZVoBCARHT
+         Gy/hLlily0LNBxLZmYp8h2G5r49dg+X24nPIfK5Qc78IevsEXO4NPV9tD/QJSB+RP/V0
+         cl4EnYx4KckcQwuYbpziANdpnEVsLEQPaxu7HWeZmKWJ7nmmWExR0qcgVlyL9ExjccAw
+         46CA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731923263; x=1732528063;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=h0y/xmc/WDEeuxy81I63/jKzT8uzD3EOhKMs9VT0kt0=;
+        b=XdwRiz2wfhCbfxuboMaauu0IzqeD48yhWbvic5BUBu4ovx3Tn4tz47EDuhqOj2C8lQ
+         jtCa49B8Wd1jVwYHzul75sB8+V6Z6OUZhpsCqdEZdpT2axTiktAIJL7ZfKXOl68T110u
+         B0TQUwcDk1nKO8oeG7BLyIFfxS45u0buoJWI6D0v9hZLWiZM+oO+eKtPAmoqEerrn+Iz
+         E6aZzG5wPynS+6chPRwad9p3iZHrADlTgjShasI4KfF+ZlkMjdGHmoCU+JjaV+ONFfee
+         MkgrxHtDAenWEWW5oKV2MWaaO4pGY4eQtMhcn0IsX6VXrOHAUzfk9kl1zvUhQlevy5j6
+         1Z/g==
+X-Forwarded-Encrypted: i=1; AJvYcCXWYBHdVYrjVtjATXxXex1lrFnYPRKKxXrX6ohhH64SgjD8cVDww/zatNJt1zJieQ8kcHP2JO+/n6+5@vger.kernel.org
+X-Gm-Message-State: AOJu0YymZ6848Bor9gxAfuxsq9Rs1h1nduV/TPzJK7Hahpb+0EgjOOr2
+	ywLcxr7XArFKb7Sq8JECNt97SheKMRCrDCj8a09WulqtUMaPxwEtg4/NlIrOLWc=
+X-Google-Smtp-Source: AGHT+IHRh2LGPJzzI8E80ul0S2acJU4gG1JMOiN2l10QsdJHSWSuQORYzJfJwvAeRDzbGLi+P7fh6g==
+X-Received: by 2002:a05:600c:46c4:b0:431:251a:9dc9 with SMTP id 5b1f17b1804b1-432df77a985mr98478565e9.25.1731923263048;
+        Mon, 18 Nov 2024 01:47:43 -0800 (PST)
+Received: from [192.168.50.4] ([82.78.167.28])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-432da244cabsm151425285e9.8.2024.11.18.01.47.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Nov 2024 01:47:42 -0800 (PST)
+Message-ID: <3153fbd0-189a-4cfc-92cd-a1cc23928d73@tuxon.dev>
+Date: Mon, 18 Nov 2024 11:47:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: robh+dt@kernel.org, devicetree@vger.kernel.org, 
- quic_shashim@quicinc.com, kernel@quicinc.com, quic_tdas@quicinc.com, 
- quic_aiquny@quicinc.com, quic_qianyu@quicinc.com, quic_tingweiz@quicinc.com, 
- neil.armstrong@linaro.org, andersson@kernel.org, 
- linux-kernel@vger.kernel.org, kishon@kernel.org, 
- manivannan.sadhasivam@linaro.org, kw@linux.com, lpieralisi@kernel.org, 
- bhelgaas@google.com, linux-phy@lists.infradead.org, conor+dt@kernel.org, 
- konradybcio@kernel.org, 
- Krishna chaitanya chundru <quic_krichai@quicinc.com>, vkoul@kernel.org, 
- linux-arm-msm@vger.kernel.org, quic_kaushalk@quicinc.com
-To: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-In-Reply-To: <20241118082619.177201-4-quic_ziyuzhan@quicinc.com>
-References: <20241118082619.177201-1-quic_ziyuzhan@quicinc.com>
- <20241118082619.177201-4-quic_ziyuzhan@quicinc.com>
-Message-Id: <173192264707.1449621.6365585789543415603.robh@kernel.org>
-Subject: Re: [PATCH 3/5] dt-bindings: PCI: qcom: Document the QCS615 PCIe
- Controller
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/8] serial: sh-sci: Update the suspend/resume support
+Content-Language: en-US
+To: Philipp Zabel <p.zabel@pengutronix.de>, geert+renesas@glider.be,
+ magnus.damm@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+ gregkh@linuxfoundation.org, jirislaby@kernel.org, lethal@linux-sh.org,
+ g.liakhovetski@gmx.de
+Cc: linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-serial@vger.kernel.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20241115134401.3893008-1-claudiu.beznea.uj@bp.renesas.com>
+ <20241115134401.3893008-4-claudiu.beznea.uj@bp.renesas.com>
+ <81e131554a34c7b2f795a904f2b561f3c86e0baf.camel@pengutronix.de>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <81e131554a34c7b2f795a904f2b561f3c86e0baf.camel@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+Hi, Philipp,
 
-On Mon, 18 Nov 2024 16:26:17 +0800, Ziyue Zhang wrote:
-> From: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+On 15.11.2024 17:40, Philipp Zabel wrote:
+> On Fr, 2024-11-15 at 15:43 +0200, Claudiu wrote:
+>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>
+>> The Renesas RZ/G3S supports a power saving mode where power to most of the
+>> SoC components is turned off. When returning from this power saving mode,
+>> SoC components need to be re-configured.
+>>
+>> The SCIFs on the Renesas RZ/G3S need to be re-configured as well when
+>> returning from this power saving mode. The sh-sci code already configures
+>> the SCIF clocks, power domain and registers by calling uart_resume_port()
+>> in sci_resume(). On suspend path the SCIF UART ports are suspended
+>> accordingly (by calling uart_suspend_port() in sci_suspend()). The only
+>> missing setting is the reset signal. For this assert/de-assert the reset
+>> signal on driver suspend/resume.
+>>
+>> In case the no_console_suspend is specified by the user, the registers need
+>> to be saved on suspend path and restore on resume path. To do this the
+>> sci_console_setup() function was added. There is no need to cache/restore
+>> the status or FIFO registers. Only the control registers. To differentiate
+>> b/w these, the struct sci_port_params::regs was updated with a new member
+>> that specifies if the register needs to be chached on suspend. Only the
+>> RZ_SCIFA instances were updated with this new support as the hardware for
+>> the rest of variants was missing for testing.
+>>
+>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>> ---
+>>
+>> Changes in v3:
+>> - none
+>>
+>> Changes in v2:
+>> - rebased on top of the update version of patch 2/8 from
+>>   this series
+>>
+>>  drivers/tty/serial/sh-sci.c | 53 ++++++++++++++++++++++++++++++-------
+>>  1 file changed, 44 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/drivers/tty/serial/sh-sci.c b/drivers/tty/serial/sh-sci.c
+>> index ade151ff39d2..e53496d2708e 100644
+>> --- a/drivers/tty/serial/sh-sci.c
+>> +++ b/drivers/tty/serial/sh-sci.c
+>> @@ -101,7 +101,7 @@ enum SCI_CLKS {
+>>  		if ((_port)->sampling_rate_mask & SCI_SR((_sr)))
+>>  
+>>  struct plat_sci_reg {
+>> -	u8 offset, size;
+>> +	u8 offset, size, suspend_cacheable;
+>>  };
+>>  
+>>  struct sci_port_params {
+>> @@ -134,6 +134,8 @@ struct sci_port {
+>>  	struct dma_chan			*chan_tx;
+>>  	struct dma_chan			*chan_rx;
+>>  
+>> +	struct reset_control		*rstc;
+>> +
+>>  #ifdef CONFIG_SERIAL_SH_SCI_DMA
+>>  	struct dma_chan			*chan_tx_saved;
+>>  	struct dma_chan			*chan_rx_saved;
+>> @@ -153,6 +155,7 @@ struct sci_port {
+>>  	int				rx_trigger;
+>>  	struct timer_list		rx_fifo_timer;
+>>  	int				rx_fifo_timeout;
+>> +	unsigned int			console_cached_regs[SCIx_NR_REGS];
+>>  	u16				hscif_tot;
+>>  
+>>  	bool has_rtscts;
+>> @@ -298,17 +301,17 @@ static const struct sci_port_params sci_port_params[SCIx_NR_REGTYPES] = {
+>>  	 */
+>>  	[SCIx_RZ_SCIFA_REGTYPE] = {
+>>  		.regs = {
+>> -			[SCSMR]		= { 0x00, 16 },
+>> -			[SCBRR]		= { 0x02,  8 },
+>> -			[SCSCR]		= { 0x04, 16 },
+>> +			[SCSMR]		= { 0x00, 16, 1 },
+>> +			[SCBRR]		= { 0x02,  8, 1 },
+>> +			[SCSCR]		= { 0x04, 16, 1 },
+>>  			[SCxTDR]	= { 0x06,  8 },
+>>  			[SCxSR]		= { 0x08, 16 },
+>>  			[SCxRDR]	= { 0x0A,  8 },
+>> -			[SCFCR]		= { 0x0C, 16 },
+>> +			[SCFCR]		= { 0x0C, 16, 1 },
+>>  			[SCFDR]		= { 0x0E, 16 },
+>> -			[SCSPTR]	= { 0x10, 16 },
+>> +			[SCSPTR]	= { 0x10, 16, 1 },
+>>  			[SCLSR]		= { 0x12, 16 },
+>> -			[SEMR]		= { 0x14, 8 },
+>> +			[SEMR]		= { 0x14, 8, 1 },
+>>  		},
+>>  		.fifosize = 16,
+>>  		.overrun_reg = SCLSR,
+>> @@ -3380,6 +3383,7 @@ static struct plat_sci_port *sci_parse_dt(struct platform_device *pdev,
+>>  	}
+>>  
+>>  	sp = &sci_ports[id];
+>> +	sp->rstc = rstc;
+>>  	*dev_id = id;
+>>  
+>>  	p->type = SCI_OF_TYPE(data);
+>> @@ -3507,13 +3511,34 @@ static int sci_probe(struct platform_device *dev)
+>>  	return 0;
+>>  }
+>>  
+>> +static void sci_console_setup(struct sci_port *s, bool save)
+>> +{
+>> +	for (u16 i = 0; i < SCIx_NR_REGS; i++) {
+>> +		struct uart_port *port = &s->port;
+>> +
+>> +		if (!s->params->regs[i].suspend_cacheable)
+>> +			continue;
+>> +
+>> +		if (save)
+>> +			s->console_cached_regs[i] = sci_serial_in(port, i);
+>> +		else
+>> +			sci_serial_out(port, i, s->console_cached_regs[i]);
+>> +	}
+>> +}
+>> +
+>>  static __maybe_unused int sci_suspend(struct device *dev)
+>>  {
+>>  	struct sci_port *sport = dev_get_drvdata(dev);
+>>  
+>> -	if (sport)
+>> +	if (sport) {
+>>  		uart_suspend_port(&sci_uart_driver, &sport->port);
+>>  
+>> +		if (!console_suspend_enabled && uart_console(&sport->port))
+>> +			sci_console_setup(sport, true);
+>> +		else
+>> +			return reset_control_assert(sport->rstc);
+>> +	}
+>> +
+>>  	return 0;
+>>  }
+>>  
+>> @@ -3521,8 +3546,18 @@ static __maybe_unused int sci_resume(struct device *dev)
+>>  {
+>>  	struct sci_port *sport = dev_get_drvdata(dev);
+>>  
+>> -	if (sport)
+>> +	if (sport) {
+>> +		if (!console_suspend_enabled && uart_console(&sport->port)) {
+>> +			sci_console_setup(sport, false);
+>> +		} else {
+>> +			int ret = reset_control_deassert(sport->rstc);
 > 
-> Add dedicated schema for the PCIe controllers found on QCS615.
-> A new compatible for qcs615 is needed, for we do not find the
-> similar one which is ok to use.
+> With this, is the reset_control_deassert() in sci_parse_dt() still
+> needed?
+
+If I'm not wrongly understanding your question, yes, the
+reset_control_deassert() is still needed in the sci_parse_dt() as the
+sci_parse_dt() is called on probe path. After resume the sci_parse_dt() is
+not called unless the driver is unbinded and then re-binded.
+
+In case the reset_control_dessert() here fails (or not) and an
+unbind/re-bind will be requested, the unbind will call
+reset_control_assert() (though the devm action) and then the re-bind will
+call reset_control_deassert() though sci_parse_dt(). That should be safe,
+AFAICT.
+
+
 > 
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-> ---
->  .../bindings/pci/qcom,pcie-qcs615.yaml        | 161 ++++++++++++++++++
->  1 file changed, 161 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/qcom,pcie-qcs615.yaml
+> Likewise, does the reset_control_assert() in sci_suspend() remove the
+> need for the sci_reset_control_assert() devm action?
+
+No, the sci_reset_control_assert() is still needed as explained above,
+unless I missed your point.
+
+Please let me know if missed your point and/or answered your question?
+
+
+Thank you,
+Claudiu Beznea
+
 > 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/qcom,pcie-qcs615.yaml: properties:resets: 'anyOf' conditional failed, one must be fixed:
-	'minItems' is not one of ['maxItems', 'description', 'deprecated']
-		hint: Only "maxItems" is required for a single entry if there are no constraints defined for the values.
-	'minItems' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
-	'maxItems' is not one of ['description', 'deprecated', 'const', 'enum', 'minimum', 'maximum', 'multipleOf', 'default', '$ref', 'oneOf']
-	1 is less than the minimum of 2
-		hint: Arrays must be described with a combination of minItems/maxItems/items
-	hint: cell array properties must define how many entries and what the entries are when there is more than one entry.
-	from schema $id: http://devicetree.org/meta-schemas/reset.yaml#
-Documentation/devicetree/bindings/pci/qcom,pcie-qcs615.example.dts:24:18: fatal error: dt-bindings/clock/qcom,qcs615-gcc.h: No such file or directory
-   24 |         #include <dt-bindings/clock/qcom,qcs615-gcc.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[2]: *** [scripts/Makefile.dtbs:129: Documentation/devicetree/bindings/pci/qcom,pcie-qcs615.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1442: dt_binding_check] Error 2
-make: *** [Makefile:224: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241118082619.177201-4-quic_ziyuzhan@quicinc.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+> regards
+> Philipp
 
