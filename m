@@ -1,176 +1,121 @@
-Return-Path: <devicetree+bounces-122613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122614-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9D529D1434
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 16:15:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 062F19D148F
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 16:37:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21740284DC2
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 15:15:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B01DC1F22D3B
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 15:37:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DCE71ADFED;
-	Mon, 18 Nov 2024 15:14:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 150F419F135;
+	Mon, 18 Nov 2024 15:36:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="N92Qzi0s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58ED31AC45F
-	for <devicetree@vger.kernel.org>; Mon, 18 Nov 2024 15:14:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88720194A70;
+	Mon, 18 Nov 2024 15:36:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731942871; cv=none; b=D2gyAtdKZ/TotT5xRBFNPOlVYJtaMSOtc1iCuLSdkHM+T54E+AsdYy1jFA6PDZEzg/LndKo+h9YY2Xvc5GmKqK9ft0+ZIlCQx7E0FLXKJh8NRtQ2VzYu4SBMgJ5VqOOjjtVo6US4f8XvAgdTIxIBNzXnQyhJRmaAT02AicxICwQ=
+	t=1731944206; cv=none; b=kxTiODX3ULcB8xeBxYJ3AUQAIAa2Uv+wegh1dq8giFzsq1GRup2hKzplGlP1jJ8qw8m8gQAyBrveQ9x5APCcg2LI+1H+TRCB7vjh3vDUBMD/VPpnay1M1s2r9MrvFQLTEqFe6RrEII2/cTAjui1zgk8orGFgtwhxFRAX+dLTz0o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731942871; c=relaxed/simple;
-	bh=mBqnyF8F99Ri8pipwkHs2XCwUZan8IXCijA7+v397NQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LxFy2O483M1LtI827jU+7fZat89RiRxHm53j9Bn/Lv4bN5G2wgbfCPv9rh5CSt+FFTAy1nmGDSCFHy0U2IPfFkw3F3lpNbl/agS7czrcVv0xOlglaoopLzGbfjnH6MjwY2289n68dgbbMLHnvbWrxJz9TFia9QThfO8KJgKvF1w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tD3S7-0003Be-RU; Mon, 18 Nov 2024 16:14:11 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tD3S6-001PyT-20;
-	Mon, 18 Nov 2024 16:14:10 +0100
-Received: from pengutronix.de (pd9e59fec.dip0.t-ipconnect.de [217.229.159.236])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 35B103765CD;
-	Mon, 18 Nov 2024 15:14:10 +0000 (UTC)
-Date: Mon, 18 Nov 2024 16:14:09 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Sean Nyekjaer <sean@geanix.com>
-Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH can-next v5 2/2] can: tcan4x5x: add option for selecting
- nWKRQ voltage
-Message-ID: <20241118-impetuous-mackerel-of-glamour-f482ed-mkl@pengutronix.de>
-References: <20241114-tcan-wkrqv-v5-0-a2d50833ed71@geanix.com>
- <20241114-tcan-wkrqv-v5-2-a2d50833ed71@geanix.com>
- <clwiowhd5jwf7uzbcbexelsspdpflqhshq6ev5wsabhuugemlp@bbktuqgjd2gg>
+	s=arc-20240116; t=1731944206; c=relaxed/simple;
+	bh=/T1HO0gbxRmQuS/Tf0idE+GqQiO3iy9sEezBwtWSjyM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=cR4kWwP6Ttd8PkycJDxoBRkIq/Y816RleTplf98pXQXFWzjSJycz0l72wGmYQF0ZmMvIDf8M0KvU8d87K1hospi5AWZgtYVvWSwNuxzipEFd9xRccwGGk9o8WUXEgPJTMZ5ofAFXjyM4AmwwUoBPqIUJgnfamgqOB4UeM/+jlxY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=N92Qzi0s; arc=none smtp.client-ip=209.85.219.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f54.google.com with SMTP id 6a1803df08f44-6d42518f493so5196406d6.0;
+        Mon, 18 Nov 2024 07:36:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1731944203; x=1732549003; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rEKo1LnFlWDTdn6dZMAURbf9LKsxfQWrYSaiKgMPlwU=;
+        b=N92Qzi0spo2C8TlbvA3MXQJmQ3wK4bKJFRO8SNoqGzbz+2ONnXIxdYJC28Y+eurkwD
+         UlJYu/mJ8YcOmrpM139qnCgOzfYZ7yvaFvs0fqHKi8bvJgU928twoUqVWIp0IV0o+iQz
+         kXn31kMRFil3ULHUh8pYvnOLzxiYvGkDltA9B8Lf9ZzGS8PFid0+jpmrY+cGv0JN0aqx
+         zo9pV3nIq8iRhaIJ5K7ALqlWh+XHSA6b94l0BG1sNahWd7AICYy0uNMd6H23LCxLD2qA
+         SH/BsDzzVeERkiTasW5D+XljjRQylHrbbtFQ7fzFpIGRxeDqOQm8ANCa4GXYJAm48Mvm
+         h0GQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731944203; x=1732549003;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rEKo1LnFlWDTdn6dZMAURbf9LKsxfQWrYSaiKgMPlwU=;
+        b=H8P9SrWqDJLM/WvUCYN4pghVcf6Sf+X5n+dAtPLmZaNk3zt8AogRX+l9bNU5crv52R
+         7kb8VSJkvq5wN1C0NsK0tMeBr0ceQucvaxP4rxL8wKGqEIPpZScdrRriJ4KwDvRMW3J0
+         Mvoc6fZgkAI1ir8BaNsOGVIHtcBsZN9G1II4JLpKvl3nhfIEMdZbspbpE8jteOTkm+Sj
+         6GwWoYH6cwS8GT/vuNtZBz/g7jph/Zd7imhYH+PAnUd8pxUi1bgqmXnnu/3cR++XQQSn
+         WzKqCVEgYqBj+6HOhswbntTv5eOcjq6B2AayPgXhNOm/SmKUQvzFpBBM1QzR0KnYmUz4
+         7OHg==
+X-Forwarded-Encrypted: i=1; AJvYcCW9As5nGufyfIf9kKfJRS48RShkUuQi+st2oGMIOrBFtQm5WPf9c4hWtDLWISP+KVO9GuiwylBK79KmOf8=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwvLml8FmjcxxpiRlbD7qn2b8R82juZC9RZxE3l5/2TsTRX6u3S
+	E03/pT/kSpiT1xjfDp8cHoVZnlYeJFi7Ib1dE4hv4R2PdjAt8w2lSVQlSg==
+X-Google-Smtp-Source: AGHT+IEcd95ubIBL37xxzdGe7timBRl38iQzblD35wsDcgC8b8s1bMJjKf/cNrXEIvob+2HTG/uadQ==
+X-Received: by 2002:a05:6214:c68:b0:6d4:10b0:c23a with SMTP id 6a1803df08f44-6d410b0c389mr93755366d6.3.1731944202927;
+        Mon, 18 Nov 2024 07:36:42 -0800 (PST)
+Received: from jesse-desktop.. (pool-108-26-179-17.bstnma.fios.verizon.net. [108.26.179.17])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6d40dbffff5sm37044146d6.34.2024.11.18.07.36.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Nov 2024 07:36:42 -0800 (PST)
+From: Jesse Taube <mr.bossman075@gmail.com>
+X-Google-Original-From: Jesse Taube <jesse@rivosinc.com>
+To: devicetree@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Jesse Taube <Mr.Bossman075@gmail.com>
+Subject: [PATCH v2] ARM: dts: imxrt1050: Fix clocks for mmc
+Date: Mon, 18 Nov 2024 10:36:41 -0500
+Message-ID: <20241118153641.3775085-1-jesse@rivosinc.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="5lc3tcsgin2oixnj"
-Content-Disposition: inline
-In-Reply-To: <clwiowhd5jwf7uzbcbexelsspdpflqhshq6ev5wsabhuugemlp@bbktuqgjd2gg>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 
+From: Jesse Taube <Mr.Bossman075@gmail.com>
 
---5lc3tcsgin2oixnj
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH can-next v5 2/2] can: tcan4x5x: add option for selecting
- nWKRQ voltage
-MIME-Version: 1.0
+One of the usdhc1 controller's clocks should be IMXRT1050_CLK_AHB_PODF not
+IMXRT1050_CLK_OSC.
 
-On 18.11.2024 16:05:42, Sean Nyekjaer wrote:
-> Hi Marc,
->=20
-> On Thu, Nov 14, 2024 at 10:14:50AM +0100, Sean Nyekjaer wrote:
-> > The nWKRQ pin supports an output voltage of either the internal referen=
-ce
-> > voltage (3.6V) or the reference voltage of
-> > the digital interface 0-6V (VIO).
-> > Add the devicetree option ti,nwkrq-voltage-vio to set it to VIO.
-> >=20
-> > If this property is omitted the reset default, the internal reference
-> > voltage, is used.
-> >=20
-> > Signed-off-by: Sean Nyekjaer <sean@geanix.com>
-> > Reviewed-by: Marc Kleine-Budde <mkl@pengutronix.de>
-> > Reviewed-by: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
-> > ---
-> >  drivers/net/can/m_can/tcan4x5x-core.c | 20 ++++++++++++++++++++
-> >  drivers/net/can/m_can/tcan4x5x.h      |  2 ++
-> >  2 files changed, 22 insertions(+)
-> >=20
-> > diff --git a/drivers/net/can/m_can/tcan4x5x-core.c b/drivers/net/can/m_=
-can/tcan4x5x-core.c
-> > index 2f73bf3abad889c222f15c39a3d43de1a1cf5fbb..7213d9894c82d079bf92f1e=
-c62d4eebb500cdfa4 100644
-> > --- a/drivers/net/can/m_can/tcan4x5x-core.c
-> > +++ b/drivers/net/can/m_can/tcan4x5x-core.c
-> > @@ -92,6 +92,8 @@
-> >  #define TCAN4X5X_MODE_STANDBY BIT(6)
-> >  #define TCAN4X5X_MODE_NORMAL BIT(7)
-> > =20
-> > +#define TCAN4X5X_NWKRQ_VOLTAGE_VIO BIT(19)
-> > +
-> >  #define TCAN4X5X_DISABLE_WAKE_MSK	(BIT(31) | BIT(30))
-> >  #define TCAN4X5X_DISABLE_INH_MSK	BIT(9)
-> > =20
-> > @@ -267,6 +269,13 @@ static int tcan4x5x_init(struct m_can_classdev *cd=
-ev)
-> >  	if (ret)
-> >  		return ret;
-> > =20
-> > +	if (tcan4x5x->nwkrq_voltage_vio) {
-> > +		ret =3D regmap_set_bits(tcan4x5x->regmap, TCAN4X5X_CONFIG,
-> > +				      TCAN4X5X_NWKRQ_VOLTAGE_VIO);
-> > +		if (ret)
-> > +			return ret;
-> > +	}
-> > +
-> >  	return ret;
-> >  }
-> > =20
-> > @@ -318,6 +327,15 @@ static const struct tcan4x5x_version_info
-> >  	return &tcan4x5x_versions[TCAN4X5X];
-> >  }
-> > =20
-> > +static void tcan4x5x_get_dt_data(struct m_can_classdev *cdev)
-> > +{
-> > +	struct tcan4x5x_priv *tcan4x5x =3D cdev_to_priv(cdev);
-> > +	struct device_node *np =3D cdev->dev->of_node;
->=20
-> Guess we can remove this line. Sorry
+Fixes: 1c4f01be3490 ("ARM: dts: imx: Add i.MXRT1050-EVK support")
+Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
+---
+ arch/arm/boot/dts/nxp/imx/imxrt1050.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-ACK. Will fixup here.
+diff --git a/arch/arm/boot/dts/nxp/imx/imxrt1050.dtsi b/arch/arm/boot/dts/nxp/imx/imxrt1050.dtsi
+index dd714d235d5f..b0bad0d1ba36 100644
+--- a/arch/arm/boot/dts/nxp/imx/imxrt1050.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imxrt1050.dtsi
+@@ -87,7 +87,7 @@ usdhc1: mmc@402c0000 {
+ 			reg = <0x402c0000 0x4000>;
+ 			interrupts = <110>;
+ 			clocks = <&clks IMXRT1050_CLK_IPG_PDOF>,
+-				<&clks IMXRT1050_CLK_OSC>,
++				<&clks IMXRT1050_CLK_AHB_PODF>,
+ 				<&clks IMXRT1050_CLK_USDHC1>;
+ 			clock-names = "ipg", "ahb", "per";
+ 			bus-width = <4>;
+-- 
+2.45.2
 
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---5lc3tcsgin2oixnj
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmc7Wb8ACgkQKDiiPnot
-vG/WZwf/XeUCg+GNtKoHxa7Fx7ZdaV02WLfPg/Ln0FyQOu6eIgXMA55aG+yd/9t0
-w6oW5AkGXr1oPHA2ytYNuTVwcZRJev4haqNzHjLosBc41zlO2aNSflvlRanQbF0F
-inQBVXdTgKtiW399Df86kTiGfAlH+f8MUqEX4QYcCzF7u0jtVRq95DOYk/CC/45z
-ICj8C46MGxJjtnhj7G31UfGtNG3vCabBwct9WJsfk03/8vvAVJ56LIaKPcQPO2T6
-SC/0Tru3cTBI6urc+9SddTXgRacACJOHi82e9iS5a9OiCqvc3n/X+C0mgF3wosp3
-FlmGZeGKfGFQFCIrmCBioI7lZMcsvg==
-=Efuo
------END PGP SIGNATURE-----
-
---5lc3tcsgin2oixnj--
 
