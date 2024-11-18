@@ -1,89 +1,260 @@
-Return-Path: <devicetree+bounces-122514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122515-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6818E9D0E50
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 11:21:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65C559D0E58
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 11:22:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 27CEB2835A2
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 10:21:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EAD2F1F22076
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 10:22:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5771619ABC3;
-	Mon, 18 Nov 2024 10:16:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=envs.net header.i=@envs.net header.b="oM0WXYs4"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 878BE1974FA;
+	Mon, 18 Nov 2024 10:18:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.envs.net (mail.envs.net [5.199.136.28])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33334198840;
-	Mon, 18 Nov 2024 10:15:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.199.136.28
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC18A193078;
+	Mon, 18 Nov 2024 10:18:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731924964; cv=none; b=FbQIIUPKkhcruCGObyhpk1DJEq7MDp/nG/PoCfqVLWJwcAgogIkaPwobSFwdmGf+dzWIJWv3hv78bH1HE9Gh+YvYxEOKkW//LzbDoNRvjwdMOMpv23lujPZ0zXTRMTGgFnRfT5JKm3D+Q7t5VhXkbh2MW5UZbAhHCoUW5TXs0i8=
+	t=1731925129; cv=none; b=jHrX8TVYbuNHMQ2z5Ac/IDErSSZXLK5IrJYAPMuwgIm9O6HXru6FwAWToeBDdYgc3zF9yM29QCAr63jFyh2m/1hheL9wC1QKKfHeub2T+hU6PdKo2y4Dppqke4LPtUv0LDrYUzB0jVkF3czu+iK3+nFOpHhGxtEauSTFHsm8qMw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731924964; c=relaxed/simple;
-	bh=+GddRjaBZ0io5AKb0NzQ4Mb4WWjWgdobUpCk/Eu6rEQ=;
-	h=Content-Type:MIME-Version:Subject:From:To:Cc:Date:Message-ID:
-	 References:In-Reply-To; b=hJmEuRglZvz2/k4f7tP/RPWEC/qrjtaDf2D9uEdoU6YwdzQujmmsSQGIXSTl+QAZ9zZ50qY3WVV9Le0uEmXX6Z5fxXLFS1FfeyZ2O6jP0Dr2bmGxxKlhE/FpJnryj0853ZlWndcANodkGYNd9iDLDBuH8dU3kIwNlyBaq0UtAOk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=envs.net; spf=pass smtp.mailfrom=envs.net; dkim=pass (4096-bit key) header.d=envs.net header.i=@envs.net header.b=oM0WXYs4; arc=none smtp.client-ip=5.199.136.28
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=envs.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=envs.net
-Received: from localhost (mail.envs.net [127.0.0.1])
-	by mail.envs.net (Postfix) with ESMTP id 4164438A3D07;
-	Mon, 18 Nov 2024 10:15:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=envs.net; s=modoboa;
-	t=1731924956; bh=Igg6+14njFGaQFSTxuuaf0SiUdDDoPx2IqJp71Pp2c4=;
-	h=Subject:From:To:Cc:Date:References:In-Reply-To:From;
-	b=oM0WXYs4fOBA6SdxrOHhXK7caGLP2WWNSK5AFwqPhHyzkw6ku9JdEXmROyTkQDZ6V
-	 zczvID0usZ1mscLsQeZE51S0I2QibOtE/IrJkbH6xljZ4CL6liK0oH4otpSybE/1cV
-	 kioA7prVMJqyrJky2l6dDCaXqDDfHwu5tON2R7vvfGTYQu/SLxyIkbOKKrylXLNdW/
-	 IJJfZhhcAEQ7wgiidFYKcIYAom+jSa8jEUDqnfti3Pn4JQrvCn21bIxnRfXmOHaA1r
-	 yLAvk0sr7fE5GgNe0OCIduFMyO0LAm7UC9gsqlZRBFWfc1N/12sbp+EW/Dji5Dde+f
-	 BruW3LAO2eAClneCkfyZGU2DGD3kNx/QiPViNJzVvuhhAD7FuDSBn7D6MqXWCC0bbz
-	 b5rOQvsrGp6ZFVLFDx97r5zTyn2Qe7yHFd34Emrnaf7CYL/SX6vthDO8d1H/GR3W/k
-	 FfS++KAN6mP6vDhaIzlTJudhArAJ1lu6ej2bIBDWPUEP6DNn+c19yiXHsUsXCtJaxO
-	 D5oEdWafyu0p1ohIZ6k8j9sg+MyipiEyAZwU+8APi9soaav8Jq6zxn6DrwzPmeF6D/
-	 3ss/01viKz49SNPcOs7zl+QG3H5kixTTyHQvC2zZHgDvVugPfqXBjLfv+4IkFd9J4P
-	 lgx18aclg5h026F+hyUK+Q5k=
-X-Virus-Scanned: Debian amavisd-new at mail.envs.net
-Received: from mail.envs.net ([127.0.0.1])
-	by localhost (mail.envs.net [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id VFBAXnwT-qXj; Mon, 18 Nov 2024 10:15:51 +0000 (UTC)
-Received: from mail.envs.net (mail.envs.net [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.envs.net (Postfix) with ESMTPSA;
-	Mon, 18 Nov 2024 10:15:51 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1731925129; c=relaxed/simple;
+	bh=WIrXWo4C4xW7cz2oeKRTCkfd+yRuNRUQJ0POoOogce4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IWMHjULhis0IypU57o2TFHUY4VR0M0gJzzI6SoHC6CXCtWAzC1/ZuvJ8FwihwsF0AiIobX7/hL2v6AYzWuV6xck9f38H6B7Jidd7+B3QQE7KGBJclkgTbcXahnyYjuptYeNDhVRMG+L2sy6ktVgWq29jWDzRrxI55Cx5Uq7nfS4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 23BDB1682;
+	Mon, 18 Nov 2024 02:19:16 -0800 (PST)
+Received: from [10.57.67.249] (unknown [10.57.67.249])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id A839D3F5A1;
+	Mon, 18 Nov 2024 02:18:42 -0800 (PST)
+Message-ID: <ef057e19-1209-4a72-b223-ef3f1e2b4513@arm.com>
+Date: Mon, 18 Nov 2024 10:18:41 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH 1/2] libfdt: Suppress a unused parameter warning in
- overlay_fixup_one_phandle
-From: "xtex" <xtex@envs.net>
-To: david@gibson.dropbear.id.au
-Cc: devicetree-compiler@vger.kernel.org, xtexchooser@duck.com,
- devicetree@vger.kernel.org, ~xtex/staging@lists.sr.ht
-Date: Mon, 18 Nov 2024 10:15:51 -0000
-Message-ID: <173192495134.875.12089483595435414461@mail.envs.net>
-User-Agent: Modoboa 2.2.4
-References: <ZzqzwCBrSPVhYIwe@zatzit>
-In-Reply-To: <ZzqzwCBrSPVhYIwe@zatzit>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/3] coresight: Add support to get static id for system
+ trace sources
+Content-Language: en-GB
+To: Jinlong Mao <quic_jinlmao@quicinc.com>, Mike Leach
+ <mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>
+Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org
+References: <20241104115604.14522-1-quic_jinlmao@quicinc.com>
+ <20241104115604.14522-3-quic_jinlmao@quicinc.com>
+ <6424c536-2f2c-4a59-8b6d-f610201dc7a7@arm.com>
+ <6a8e10fc-a231-467a-8056-d291e237fec1@quicinc.com>
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <6a8e10fc-a231-467a-8056-d291e237fec1@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
->AFAICT this parameter is *really* unused, it's not just the compiled
->being confused.  So I'd prefer to actually remove the parameter,
->rather than suppress the warning.
-Acknowledged, I will make a v2 patch this weekend, as soon as I
-am back at home.
+On 18/11/2024 10:14, Jinlong Mao wrote:
+> 
+> 
+> On 2024/11/13 21:27, Suzuki K Poulose wrote:
+>> On 04/11/2024 11:56, Mao Jinlong wrote:
+>>> Dynamic trace id was introduced in coresight subsystem, so trace id is
+>>> allocated dynamically. However, some hardware ATB source has static 
+>>> trace
+>>> id and it cannot be changed via software programming. For such source,
+>>> it can call coresight_get_static_trace_id to get the fixed trace id from
+>>> device node and pass id to coresight_trace_id_get_static_system_id to
+>>> reserve the id.
+>>>
+>>> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+>>> Reviewed-by: Mike Leach <mike.leach@linaro.org>
+>>> ---
+>>>   .../hwtracing/coresight/coresight-platform.c  |  6 +++
+>>>   .../hwtracing/coresight/coresight-trace-id.c  | 39 +++++++++++++------
+>>>   .../hwtracing/coresight/coresight-trace-id.h  |  9 +++++
+>>>   include/linux/coresight.h                     |  1 +
+>>>   4 files changed, 44 insertions(+), 11 deletions(-)
+>>>
+>>> diff --git a/drivers/hwtracing/coresight/coresight-platform.c b/ 
+>>> drivers/hwtracing/coresight/coresight-platform.c
+>>> index 64e171eaad82..633d96b9577a 100644
+>>> --- a/drivers/hwtracing/coresight/coresight-platform.c
+>>> +++ b/drivers/hwtracing/coresight/coresight-platform.c
+>>> @@ -796,6 +796,12 @@ int coresight_get_cpu(struct device *dev)
+>>>   }
+>>>   EXPORT_SYMBOL_GPL(coresight_get_cpu);
+>>> +int coresight_get_static_trace_id(struct device *dev, u32 *id)
+>>> +{
+>>> +    return fwnode_property_read_u32(dev_fwnode(dev), "arm,static- 
+>>> trace-id", id);
+>>> +}
+>>> +EXPORT_SYMBOL_GPL(coresight_get_static_trace_id);
+>>> +
+>>>   struct coresight_platform_data *
+>>>   coresight_get_platform_data(struct device *dev)
+>>>   {
+>>> diff --git a/drivers/hwtracing/coresight/coresight-trace-id.c b/ 
+>>> drivers/hwtracing/coresight/coresight-trace-id.c
+>>> index d98e12cb30ec..df8fe50b413f 100644
+>>> --- a/drivers/hwtracing/coresight/coresight-trace-id.c
+>>> +++ b/drivers/hwtracing/coresight/coresight-trace-id.c
+>>> @@ -12,6 +12,12 @@
+>>>   #include "coresight-trace-id.h"
+>>> +enum trace_id_flags {
+>>> +    TRACE_ID_ANY = 0x0,
+>>> +    TRACE_ID_PREFER_ODD = 0x1,
+>>> +    TRACE_ID_REQ_STATIC = 0x2,
+>>> +};
+>>> +
+>>>   /* Default trace ID map. Used in sysfs mode and for system sources */
+>>>   static DEFINE_PER_CPU(atomic_t, id_map_default_cpu_ids) = 
+>>> ATOMIC_INIT(0);
+>>>   static struct coresight_trace_id_map id_map_default = {
+>>> @@ -74,16 +80,18 @@ static int coresight_trace_id_find_odd_id(struct 
+>>> coresight_trace_id_map *id_map)
+>>>    * Otherwise allocate next available ID.
+>>>    */
+>>>   static int coresight_trace_id_alloc_new_id(struct 
+>>> coresight_trace_id_map *id_map,
+>>> -                       int preferred_id, bool prefer_odd_id)
+>>> +                       int preferred_id, unsigned int flags)
+>>>   {
+>>>       int id = 0;
+>>>       /* for backwards compatibility, cpu IDs may use preferred value */
+>>> -    if (IS_VALID_CS_TRACE_ID(preferred_id) &&
+>>> -        !test_bit(preferred_id, id_map->used_ids)) {
+>>> -        id = preferred_id;
+>>> -        goto trace_id_allocated;
+>>> -    } else if (prefer_odd_id) {
+>>> +    if (IS_VALID_CS_TRACE_ID(preferred_id)) {
+>>> +        if (!test_bit(preferred_id, id_map->used_ids)) {
+>>> +            id = preferred_id;
+>>> +            goto trace_id_allocated;
+>>> +        } else if (flags & TRACE_ID_REQ_STATIC)
+>>> +            return -EINVAL;
+>>
+>> nit: EBUSY sounds like a better choice here ? Requested ID is not
+>> available.
+>>
+>> Additionally, do we need to handle a case where the preferred_id is
+>> not valid ? I think we silently allocate a new trace id in such case ?
+>>
+>> Rest looks good to me.
+>>
+>> Suzuki
+>>
+>>
+> 
+> If preferred_id is not valid, a random id will be allocated for the 
+> source. For the normal source, 0 is provided here as preferred_id.
 
---
-xtex @ Nov 18, 2024 18:15 UTC
+My point is : If preferred_id is not valid *and* TRACE_ID_REQ_STATIC
+flag is set, we go ahead and allocate a random different ID. Which is
+not preferred. We should return -EINVAL in that case.
+
+Suzuki
+
+
+> 
+>>
+>>
+>>> +    } else if (flags & TRACE_ID_PREFER_ODD) {
+>>>       /* may use odd ids to avoid preferred legacy cpu IDs */
+>>>           id = coresight_trace_id_find_odd_id(id_map);
+>>>           if (id)
+>>> @@ -153,7 +161,7 @@ static int _coresight_trace_id_get_cpu_id(int 
+>>> cpu, struct coresight_trace_id_map
+>>>        */
+>>>       id = coresight_trace_id_alloc_new_id(id_map,
+>>>                            CORESIGHT_LEGACY_CPU_TRACE_ID(cpu),
+>>> -                         false);
+>>> +                         TRACE_ID_ANY);
+>>>       if (!IS_VALID_CS_TRACE_ID(id))
+>>>           goto get_cpu_id_out_unlock;
+>>> @@ -188,14 +196,14 @@ static void _coresight_trace_id_put_cpu_id(int 
+>>> cpu, struct coresight_trace_id_ma
+>>>       DUMP_ID_MAP(id_map);
+>>>   }
+>>> -static int coresight_trace_id_map_get_system_id(struct 
+>>> coresight_trace_id_map *id_map)
+>>> +static int coresight_trace_id_map_get_system_id(struct 
+>>> coresight_trace_id_map *id_map,
+>>> +                    int preferred_id, unsigned int traceid_flags)
+>>>   {
+>>>       unsigned long flags;
+>>>       int id;
+>>>       spin_lock_irqsave(&id_map->lock, flags);
+>>> -    /* prefer odd IDs for system components to avoid legacy CPU IDS */
+>>> -    id = coresight_trace_id_alloc_new_id(id_map, 0, true);
+>>> +    id = coresight_trace_id_alloc_new_id(id_map, preferred_id, 
+>>> traceid_flags);
+>>>       spin_unlock_irqrestore(&id_map->lock, flags);
+>>>       DUMP_ID(id);
+>>> @@ -255,10 +263,19 @@ 
+>>> EXPORT_SYMBOL_GPL(coresight_trace_id_read_cpu_id_map);
+>>>   int coresight_trace_id_get_system_id(void)
+>>>   {
+>>> -    return coresight_trace_id_map_get_system_id(&id_map_default);
+>>> +    /* prefer odd IDs for system components to avoid legacy CPU IDS */
+>>> +    return coresight_trace_id_map_get_system_id(&id_map_default, 0,
+>>> +            TRACE_ID_PREFER_ODD);
+>>>   }
+>>>   EXPORT_SYMBOL_GPL(coresight_trace_id_get_system_id);
+>>> +int coresight_trace_id_get_static_system_id(int trace_id)
+>>> +{
+>>> +    return coresight_trace_id_map_get_system_id(&id_map_default,
+>>> +            trace_id, TRACE_ID_REQ_STATIC);
+>>> +}
+>>> +EXPORT_SYMBOL_GPL(coresight_trace_id_get_static_system_id);
+>>> +
+>>>   void coresight_trace_id_put_system_id(int id)
+>>>   {
+>>>       coresight_trace_id_map_put_system_id(&id_map_default, id);
+>>> diff --git a/drivers/hwtracing/coresight/coresight-trace-id.h b/ 
+>>> drivers/hwtracing/coresight/coresight-trace-id.h
+>>> index 9aae50a553ca..db68e1ec56b6 100644
+>>> --- a/drivers/hwtracing/coresight/coresight-trace-id.h
+>>> +++ b/drivers/hwtracing/coresight/coresight-trace-id.h
+>>> @@ -116,6 +116,15 @@ int coresight_trace_id_read_cpu_id_map(int cpu, 
+>>> struct coresight_trace_id_map *i
+>>>    */
+>>>   int coresight_trace_id_get_system_id(void);
+>>> +/**
+>>> + * Allocate a CoreSight static trace ID for a system component.
+>>> + *
+>>> + * Used to allocate static IDs for system trace sources such as 
+>>> dummy source.
+>>> + *
+>>> + * return: Trace ID or -EINVAL if allocation is impossible.
+>>> + */
+>>> +int coresight_trace_id_get_static_system_id(int id);
+>>> +
+>>>   /**
+>>>    * Release an allocated system trace ID.
+>>>    *
+>>> diff --git a/include/linux/coresight.h b/include/linux/coresight.h
+>>> index c13342594278..129795873072 100644
+>>> --- a/include/linux/coresight.h
+>>> +++ b/include/linux/coresight.h
+>>> @@ -662,6 +662,7 @@ void coresight_relaxed_write64(struct 
+>>> coresight_device *csdev,
+>>>   void coresight_write64(struct coresight_device *csdev, u64 val, u32 
+>>> offset);
+>>>   extern int coresight_get_cpu(struct device *dev);
+>>> +extern int coresight_get_static_trace_id(struct device *dev, u32 *id);
+>>>   struct coresight_platform_data *coresight_get_platform_data(struct 
+>>> device *dev);
+>>>   struct coresight_connection *
+>>
+> 
+
 
