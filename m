@@ -1,254 +1,209 @@
-Return-Path: <devicetree+bounces-122647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122648-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6DDC9D1AFC
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 23:16:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2EF49D1B04
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 23:18:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 10D81B20F6E
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 22:16:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 76D391F2218A
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 22:18:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 373231E5712;
-	Mon, 18 Nov 2024 22:16:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LUKlTLWn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D32911E572E;
+	Mon, 18 Nov 2024 22:18:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99A63158DAC;
-	Mon, 18 Nov 2024 22:16:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C2411C1F14
+	for <devicetree@vger.kernel.org>; Mon, 18 Nov 2024 22:18:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731968193; cv=none; b=E78AhyyKPWOgV9yw8e9UY9sNxFz5ZpFJfVO+a95vwe6/Ii6LSIqHVfDmF0ojHnmqd4UbDSl1W9kMkJR896ju2OQbWm4Q54ZEeDhNGtXw5woGMuZRSu7oXcuRkhI28TaiyjCzr58lE91ha2+L5wmEevveyH6Tdaxa9Jqjj6rvKqo=
+	t=1731968287; cv=none; b=NE4kLOi73fZaXVVSJtG8zPN8HSvhJkQlpDEWAfDtto3OKpaA0pEH5MP/RqHYKWrAbN3pLpM/TuL5H8MeYraUF8YWkqUhA1OpouyShDHQSO1KKfYyTKLH9A7UqT6uywUrCbAdoss5TFWTVPKCzArxwL4b2/uDkVMMOvlAtCWqgAE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731968193; c=relaxed/simple;
-	bh=/YuEiaBYaheoUGiGxF4r0WgQr1b56tLNgo/VqdVCka4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ZOASGIrhgxqOwqrgE+AsrXP5v1tMZ7g9Sn4M9di3s0Yl/ZbfmN+gEVHJEiC9wrDOjrn9g/UzH7MvDR2aOU/8VWKGMRIp4741Z/ckx90APPJDjPydtoSJNsBhzHbI56ak2YpBI0vbF2GfD6s4kRdCjmyg9Xhpq0eNdTiDJY9HFls=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LUKlTLWn; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AIGGpkX006018;
-	Mon, 18 Nov 2024 22:16:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	XJNsNXFftV73a7f1HlGoO9KUog+cN+4rISawA+ehEYI=; b=LUKlTLWnHdiiqCAP
-	CsNY9tbAK+DLSLDayvQefHLy/B6Q7r6X9cYT44c7fBsl4jVlV5aEeFeAAXcGR8tZ
-	5Vw2zoW10l2Vj2ORIitP7hHHGpt7ztISw3pUFkxK1BVPqpUUt67eNMvOJI1ME6bP
-	LIiE+ouAZ5Vl/2PNw5uWE7YtUbC8XTZ5WgFCUie8yxsHxA8G1HVeV20TaTPwp3QM
-	xLImPnNr6Hg84O+mi97QWGdkmUeJVpS7z8vReBXY3DvGkFiP+hc9S5VK62sgTfzi
-	m8ocRzcWrKw9DjQmYakuarSwcZrevA7731a0VY4iNg4JGwLLrSYSPNqBtmMidTik
-	itWe5g==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4308y8grm0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 18 Nov 2024 22:16:19 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AIMGAsb007634
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 18 Nov 2024 22:16:10 GMT
-Received: from [10.71.108.63] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 18 Nov
- 2024 14:16:09 -0800
-Message-ID: <7062700e-1e96-4856-816a-ceefa0afd75c@quicinc.com>
-Date: Mon, 18 Nov 2024 14:16:09 -0800
+	s=arc-20240116; t=1731968287; c=relaxed/simple;
+	bh=8tdPTsZfyOqzFtGrHcy+A1KsPD6ywqAcYjPk118v3Gs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AZe/CCYhJYtBw/ksOCr1N7RfhIhXzLMsFr0WC70IjvQZaJAWoI0jUAEnoWiebHoYyBhQhfZwcy2CdTfc6MPJbX4TWWLXFFumLeC17mwreOcxxe6eW/e5paiaWfmT05rYTqyOlVbigz/k81pdEZPdYEqSdLxYiMsMjQ7uYL0iIqs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1tDA4G-0004Fu-0E; Mon, 18 Nov 2024 23:18:00 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1tDA4F-001Srj-14;
+	Mon, 18 Nov 2024 23:17:59 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1tDA4F-001Yme-0i;
+	Mon, 18 Nov 2024 23:17:59 +0100
+Date: Mon, 18 Nov 2024 23:17:59 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Sherry Sun <sherry.sun@nxp.com>
+Cc: POPESCU Catalin <catalin.popescu@leica-geosystems.com>,
+	Amitkumar Karwar <amitkumar.karwar@nxp.com>,
+	Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>,
+	"marcel@holtmann.org" <marcel@holtmann.org>,
+	"luiz.dentz@gmail.com" <luiz.dentz@gmail.com>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+	"linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: net: bluetooth: nxp: add support for
+ supply and reset
+Message-ID: <20241118221759.wvrkvxeh4iop6jtt@pengutronix.de>
+References: <DB9PR04MB84292445D0FEDB8211ED52C3924C2@DB9PR04MB8429.eurprd04.prod.outlook.com>
+ <9b09774e-d0ed-4c97-b6a0-e976580b5bb5@leica-geosystems.com>
+ <DB9PR04MB8429CF700571FE42C997FB9C924D2@DB9PR04MB8429.eurprd04.prod.outlook.com>
+ <1b8864e5-0ec7-49c4-932a-89cfbaeacc9f@leica-geosystems.com>
+ <DB9PR04MB842929186683C1DF13DCBD92924A2@DB9PR04MB8429.eurprd04.prod.outlook.com>
+ <20241028090028.x6rzopvpcdvgouqv@pengutronix.de>
+ <DB9PR04MB842960A18BB8570B04A64BEA924A2@DB9PR04MB8429.eurprd04.prod.outlook.com>
+ <20241028115150.fgvqaem36lwxwvjh@pengutronix.de>
+ <DB9PR04MB8429B10FA73E5333685103FB924A2@DB9PR04MB8429.eurprd04.prod.outlook.com>
+ <20241028150048.qnqjxntns6quy7py@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/6] arm64: dts: qcom: Add pmd8028 and pmih0108 PMICs
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas
-	<catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Geert Uytterhoeven
-	<geert+renesas@glider.be>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        "Arnd
- Bergmann" <arnd@arndb.de>,
-        =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?=
-	<nfraprado@collabora.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        "Satya Durga
- Srinivasu Prabhala" <quic_satyap@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Jishnu Prakash <quic_jprakash@quicinc.com>
-References: <20241112004936.2810509-1-quic_molvera@quicinc.com>
- <20241112004936.2810509-3-quic_molvera@quicinc.com>
- <r4slda74u7rpqiybsylrnoqiqo5qm4442rfwzhtjkwkkgqt25g@n5idmspl7sfd>
-Content-Language: en-US
-From: Melody Olvera <quic_molvera@quicinc.com>
-In-Reply-To: <r4slda74u7rpqiybsylrnoqiqo5qm4442rfwzhtjkwkkgqt25g@n5idmspl7sfd>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: s2vAzRuX-8NLCGbpzQenK-qU99mxDK-3
-X-Proofpoint-GUID: s2vAzRuX-8NLCGbpzQenK-qU99mxDK-3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- mlxlogscore=878 lowpriorityscore=0 clxscore=1015 malwarescore=0
- adultscore=0 impostorscore=0 mlxscore=0 spamscore=0 phishscore=0
- suspectscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411180183
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241028150048.qnqjxntns6quy7py@pengutronix.de>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+Hi,
 
+gentle ping on this discussion since I'm still convinced that this the
+correct approach to add the reset mechanism and handle the power.
 
-On 11/15/2024 6:58 AM, Dmitry Baryshkov wrote:
-> On Mon, Nov 11, 2024 at 04:49:32PM -0800, Melody Olvera wrote:
->> From: Jishnu Prakash <quic_jprakash@quicinc.com>
->>
->> Add descriptions of pmd8028 and pmih0108 PMICs used on SM8750
->> platforms.
-> Up/lower case?
+Regards,
+  Marco
 
-Up; will change.
-
->
->> Signed-off-by: Jishnu Prakash <quic_jprakash@quicinc.com>
->> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/pmd8028.dtsi  | 56 +++++++++++++++++++++++
->>   arch/arm64/boot/dts/qcom/pmih0108.dtsi | 62 ++++++++++++++++++++++++++
-> Those two are independent changes. Please use two separate patches.
-
-Sure thing. Will split.
-
->
->>   2 files changed, 118 insertions(+)
->>   create mode 100644 arch/arm64/boot/dts/qcom/pmd8028.dtsi
->>   create mode 100644 arch/arm64/boot/dts/qcom/pmih0108.dtsi
->>
->> diff --git a/arch/arm64/boot/dts/qcom/pmd8028.dtsi b/arch/arm64/boot/dts/qcom/pmd8028.dtsi
->> new file mode 100644
->> index 000000000000..f8ef8e133854
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/pmd8028.dtsi
->> @@ -0,0 +1,56 @@
->> +// SPDX-License-Identifier: BSD-3-Clause
->> +/*
->> + * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
->> + */
->> +
->> +#include <dt-bindings/interrupt-controller/irq.h>
->> +#include <dt-bindings/spmi/spmi.h>
->> +
->> +/ {
->> +	thermal-zones {
->> +		pmd8028-thermal {
->> +			polling-delay-passive = <100>;
->> +			thermal-sensors = <&pmd8028_temp_alarm>;
->> +
->> +			trips {
->> +				pmd8028_trip0: trip0 {
->> +					temperature = <95000>;
->> +					hysteresis = <0>;
->> +					type = "passive";
->> +				};
->> +
->> +				pmd8028_trip1: trip1 {
->> +					temperature = <115000>;
->> +					hysteresis = <0>;
->> +					type = "hot";
-> "critical" ?
-
-Will add.
-
->
->> +				};
->> +			};
->> +		};
->> +	};
->> +};
->> +
->> +&spmi_bus {
->> +	pmd8028: pmic@4 {
->> +		compatible = "qcom,pmd8028", "qcom,spmi-pmic";
->> +		reg = <0x4 SPMI_USID>;
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +
->> +		pmd8028_temp_alarm: temp-alarm@a00 {
->> +			compatible = "qcom,spmi-temp-alarm";
->> +			reg = <0xa00>;
->> +			interrupts = <0x4 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
->> +			#thermal-sensor-cells = <0>;
->> +		};
->> +
->> +		pmd8028_gpios: gpio@8800 {
->> +			compatible = "qcom,pmd8028-gpio", "qcom,spmi-gpio";
->> +			reg = <0x8800>;
->> +			gpio-controller;
->> +			gpio-ranges = <&pmd8028_gpios 0 0 4>;
->> +			#gpio-cells = <2>;
->> +			interrupt-controller;
->> +			#interrupt-cells = <2>;
->> +		};
->> +	};
->> +};
->> diff --git a/arch/arm64/boot/dts/qcom/pmih0108.dtsi b/arch/arm64/boot/dts/qcom/pmih0108.dtsi
->> new file mode 100644
->> index 000000000000..3907d8fbcf78
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/pmih0108.dtsi
->> @@ -0,0 +1,62 @@
->> +// SPDX-License-Identifier: BSD-3-Clause
->> +/*
->> + * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
->> + */
->> +
->> +#include <dt-bindings/interrupt-controller/irq.h>
->> +#include <dt-bindings/spmi/spmi.h>
->> +
->> +/ {
->> +	thermal-zones {
->> +		pmih0108-thermal {
->> +			polling-delay-passive = <100>;
->> +			thermal-sensors = <&pmih0108_temp_alarm>;
->> +
->> +			trips {
->> +				trip0 {
->> +					temperature = <95000>;
->> +					hysteresis = <0>;
->> +					type = "passive";
->> +				};
->> +
->> +				trip1 {
->> +					temperature = <115000>;
->> +					hysteresis = <0>;
->> +					type = "hot";
-> "critical" ?
-
-Will add.
-
-Thanks,
-Melody
-
->
->> +				};
->> +			};
->> +		};
->> +	};
->> +};
->> +[...]
+On 24-10-28, Marco Felsch wrote:
+> On 24-10-28, Sherry Sun wrote:
+> > 
+> > > From: Marco Felsch <m.felsch@pengutronix.de>
+> > > 
+> > > On 24-10-28, Sherry Sun wrote:
+> > > >
+> > > > > From: Marco Felsch <m.felsch@pengutronix.de>
+> > > > >
+> > > > > Hi,
+> > > > >
+> > > > > On 24-10-28, Sherry Sun wrote:
+> > > > > >
+> > > > > > > From: POPESCU Catalin <catalin.popescu@leica-geosystems.com>
+> > > > > > >
+> > > > > > > We use the NXP downstream driver mwifiex which doesn't have
+> > > > > > > support for regulator or PDn.
+> > > > > > >
+> > > > > > > However, regulator is already supported by the MMC core (vmmc-
+> > > supply).
+> > > > > > >
+> > > > > > > For PDn, we use mmc pwrseq simple driver that has been patched
+> > > > > > > to add support for reset-control.
+> > > > > >
+> > > > > > Ok, thanks, the mmc change looks good for me, so there is no
+> > > > > > problem with the NXP SDIO wifi.
+> > > > > >
+> > > > > > But how do you plan to handle the NXP PCIe wifi? We also need to
+> > > > > > make sure the BT patch won't break the PCIe wifi function.
+> > > > >
+> > > > > Can you please elaborate how this could break the PCIe use-case?
+> > > >
+> > > > Similar to the SDIO wifi, if no corresponding reset control for the
+> > > > PDn pin in PCIe wifi driver, the wifi part will be unexpectedly
+> > > > powered off when removing the BT driver.
+> > > 
+> > > Nope it's not that easy for PCIe case since the phy + link layer handling is
+> > > much more complex compared to the MMC case. For the PCIe case the intial
+> > > handling is very strict according to the PCIe spec and we can't handle the BT
+> > > device independently.
+> > > 
+> > > _BUT_ this patch doesn't cause any regression for the PCIe use-case since the
+> > > support added by Catalin is optional which means that the user don't have to
+> > > use these options.
+> > > 
+> > > To sum up:
+> > > 
+> > > WLAN (PCIe) used + BT (UART) used -> no independent handling
+> > >                                      possible. BT depends on WLAN.
+> > > 
+> > > WLAN (PCIe) not used + BT (UART) used -> This patchset allow us to
+> > >                                          handle BT. Without the patchset
+> > > 					 this is not possible.
+> > > 
+> > > WLAN (SDIO) + BT (UART) -> This patchset and the mmc-power-seq patchset
+> > >                            allow us to handle WLAN and BT independently
+> > > 			   regardless if BT or WLAN is used or not.
+> > 
+> > If we add the reset-gpios property in the BT dts node when using the
+> > SDIO wifi chip, my concern is for some host platforms, taking
+> > i.MX95-19x19-EVK as an example, it supports both SDIO and PCIe
+> > interface wifi chip through the M.2 connector, when customers want to
+> > plug in the PCIe wifi chip, they have to remove the reset-gpios in the
+> > BT dts node to avoid the PCIe WLAN been affected by BT, right?
+> 
+> I don't know the i.MX95-19x19-EVK platform since it is not upstream. If
+> you want to support both:
+> 
+> > > WLAN (PCIe) used + BT (UART) used -> no independent handling
+> > >                                      possible. BT depends on WLAN.
+> 
+> and
+> 
+> > > WLAN (SDIO) + BT (UART) -> This patchset and the mmc-power-seq patchset
+> > >                            allow us to handle WLAN and BT independently
+> > > 			   regardless if BT or WLAN is used or not.
+> 
+> you need to stick with the dependent handling which is no problem once
+> this patchset get applied if your system support hot-plug. If hot-plug
+> is not possible you could consider unsing overlays.
+> 
+> However, this patchset does _NOT_ cause any regression neither for the
+> MMC nor the PCIe use-case, and you don't have to touch your DTS files. It
+> would be an improvement for platforms (not speaking of NXP EVK
+> platforms) which utilize the MMC+UART interfaces only.
+> 
+> > And it looks strange that we can only add the reset-gpios BT property
+> > to the hosts that only support SDIO WLAN, we hope there is a solution
+> > for the PCIe WLAN too.
+> 
+> "We hope there is a solution" <-- This is not how upstream work.
+> 
+> Also as said: The WLAN PCIe interface must/should be compatible with the
+> PCIe Spec. There is no way that we can handle both devices
+> independent since the PCIe spec specifies the power-up-sequence very
+> strict.
+> 
+> If for example, we do handle it independent and the BT part brings the
+> device out-of-reset while the PCIe bus is not yet ready, the device's
+> WLAN PCIe subsystem may get confused.
+> 
+> There are two solution NXP could provide:
+> 
+>  - The PCIe WLAN/BT devices exposes all devices WLAN + BT via PCIe, this
+>    would eliminate the UART part.
+>  - All new WLAN/BT devices do have a separate hw reset line for each
+>    radio the device supports.
+> 
+> Regards,
+>   Marco
 
