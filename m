@@ -1,87 +1,83 @@
-Return-Path: <devicetree+bounces-122533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122534-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E92A9D0F65
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 12:15:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D23A9D0F92
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 12:24:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F3E5E1F222EB
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 11:15:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D068E1F22439
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 11:24:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A218197A92;
-	Mon, 18 Nov 2024 11:15:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BE1F194A7C;
+	Mon, 18 Nov 2024 11:24:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W/gt8AwZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A1aJyXbV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BD82198A22
-	for <devicetree@vger.kernel.org>; Mon, 18 Nov 2024 11:15:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63B20190493;
+	Mon, 18 Nov 2024 11:24:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731928509; cv=none; b=B0szIahfbKQcqaMNLQ/EgsJ3PQTWyRemFi1cJ3Klvz4UeOXtpXFWPhwAr18fQbJisoVPOTghg6dDe3m5MB+HRv+LQM/UlL2feUlUEQWbRW5anyWjwzbLEceqQoVw4VoDVN6uv0dXINEPL451Zs3oQhIHfWU5CY86zLAmFleEWhw=
+	t=1731929061; cv=none; b=brvxpE7wLlLVBqqb05IVnacmXjCBmzRtFSmvrgUUYUSCmJne5pc5wn5ZPd+RIkEH//+lkNtIv2V5Gi3vhcZY/NFYcexqokANMOhYdCeAmiKazJq7JCgZetRyBKDjIDVcw4DTfwk8eX39sqMzBS3urgdvf7vwPfU1OFQ4hGmdHQY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731928509; c=relaxed/simple;
-	bh=sJUTlnBSwsG8OmoEj9g6GSrcQrO4OkMEGLeEOJAWU6s=;
+	s=arc-20240116; t=1731929061; c=relaxed/simple;
+	bh=cwfWqKb2oPi2VN5fRBTiB9MYZwt5qGyqB4hWNJzllj4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KYfFF4VlXgcyKTz+W5/LtcY/Ua5sWqe6/kbdnDO3C98vPtSIgmaNqsyD2KYySlAKJtCVXcbA+rAIieApQ78tdn+NbG9MxnfVtith7+nKr4dbjDuHA4/cqdrLVlGM9W23d8U/POs/X3MtLWF4XAcg0acV9BIbxYi81vhHYvdhYZo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=W/gt8AwZ; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-53a007743e7so3168290e87.1
-        for <devicetree@vger.kernel.org>; Mon, 18 Nov 2024 03:15:07 -0800 (PST)
+	 Content-Type:Content-Disposition:In-Reply-To; b=LzsYv4p/dMfQE+iAl5wd/sOBIRcl4d5eeUlrTgBl4ySZmRBrCQs+WeOOwHW6+bcbr4SmkIQdEUjbIDtaSALSXLJddEdHk9ChMn/HKpXjg1R3cY5hY9QhX9C4r7UzxcUJssz0eRwFnO4YTXTDJOlXLezSon9EUA5Ar0SS68gkEuI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A1aJyXbV; arc=none smtp.client-ip=209.85.210.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-723f37dd76cso2421209b3a.0;
+        Mon, 18 Nov 2024 03:24:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731928506; x=1732533306; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1731929060; x=1732533860; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ueCD+q2zQmY/7YkNPGnLJZ4H8YDacRal4x3H4VT+8ig=;
-        b=W/gt8AwZvjHOwjAXmJGBPG2W1zq3nKan6YII2E1Ih+m9bQ3+dNlt4f8O0i60kawQDt
-         A7e8s/P6wydG71kfGbDrchwMvHNTu2j0o/E9HG9tW5emqnngElDqZNlec/e6X8p/9H4p
-         TRvgCjoi7NK/4bZbFNWRv6o/CPjUtuS5ASwjDnXiWcaXqXmv42mZF3vUiCCEJ34ji+g7
-         ZOW2U/0jYL8rqzwCTar7Mm0mknuNXFwfu8E4Bwr3X4OhYfK9A/kACFCDFhNe5SHa2SI4
-         gu6ayKtUXLqG7/6xIHF1ijLmTcUlRlkkBXhkFw7y/WyIKevYp05empsuma5gjXo2UPQK
-         yTgQ==
+        bh=zQ2rPkNXPPvcolTw44Nc6tDll7Wen7YOVi3JKZbs/yI=;
+        b=A1aJyXbV9YDWwPPWhWVuafMtrLCgNVVBEbB7N0aEykHuYN30ILKWULuhT0y3PLT1Wb
+         uGXd/5gAA8bOUTgLZcNOQTGrY6WMXBM/nBonbpyLvJBGcyMUK5+X7w9QsvYwpnRumPJ1
+         H5wyefF+zUXCBFhsgmeXzbGz1mhLzzi//OfZeEdnpEHoZw5FrLCshblXkxSCRmGVJXtL
+         wTok+SdZLHajdXSBmNYEp7qzjwRfsjDdawfI+NgCEgleILxQ99m8H3CYPjdaSz868aWS
+         jrR3s4i6UwYvu3jQ39a4F3wWo/aiVLyVM06wEzM3PdgK4K1nD0273wcCEMJk43iis2s3
+         nKlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731928506; x=1732533306;
+        d=1e100.net; s=20230601; t=1731929060; x=1732533860;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ueCD+q2zQmY/7YkNPGnLJZ4H8YDacRal4x3H4VT+8ig=;
-        b=HfUZc7e4B4Q3Pyak/oZadzb8Gh+htkCapQzHRRWOvBALY8oxrd2O/ogcK45YMp7ARt
-         8RuudJRcME7WHUuW8KHIMlZLmYtt6xhfwwisySYczrrsv8eCKO1l8skRikdu5OETfmbU
-         pRh3POw01H6gLE4/zry7C8k0BcrUQ+gNmA9uIkL67Qap9IfJUYa8jXYFNb7nmWrVVb0n
-         KdXQQFVd6w7aeqBs3kY3cv56FwvXf0Y4evRmROK+gTL5Zds/t7M8k39Y0+6Vk/IfHIkE
-         3x6R7OWHlByd+ZSGhNhzd8beWm0kCHSjWMwipPHkjNPRSlC0LQLOwGRkJpa6/WjiucW9
-         ju7A==
-X-Forwarded-Encrypted: i=1; AJvYcCW6xYrAXV98OTE+O1MdVUrqi/wAXLdkl9Yr3wZtb8W2iR/nsA9SjELb+6/+KaymbLG975lZbySy+cKR@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywd3ie+x4CTc0LytCZBY4PZsFZzeJsKa8yTQxu05K1PGIzIZAsY
-	7YLdKMm5pwNRudOfBOX44HFSpe0+wV5LYDP2zZP7BrtaZKoEd8EYd6Cgf6t5Pao=
-X-Google-Smtp-Source: AGHT+IEUgWujqarYJLRGIXqX4efB6WP1xJ2RKrxxUOdVOeuS9AsGg98BIlDWVAaoRlKSwDHri4RUnw==
-X-Received: by 2002:ac2:4bc1:0:b0:539:8fcd:524 with SMTP id 2adb3069b0e04-53dab2a6af0mr4788179e87.30.1731928505602;
-        Mon, 18 Nov 2024 03:15:05 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53da653e19csm1575151e87.199.2024.11.18.03.15.03
+        bh=zQ2rPkNXPPvcolTw44Nc6tDll7Wen7YOVi3JKZbs/yI=;
+        b=B5vfZMwXC7JIpEOb7pGrD+EAkpKJ3ZafNfJpnwRmv5UTliErBYHfRABIpr8DPGi+4v
+         MBs+E2hi63EW7sLkeBglVDb8Hw3Efq0gzf5hzA4AlhNjht40ldWGqHDGJRiGmm0VtQAX
+         SMYsAWuJ2FraB9qE+b2Bk5B/hbsp9ZXIV/OSWdeGLr0Uq4tPblHn/NHzFE3KOw+el4B2
+         2fGETgJmrmWXZ5hhidJZ42/fikWPiT6g7sLQvPLeZDdP/gN2+fsDzzrXYosIUFMoEuLU
+         y0cgwYH6Bk+/57IA5euNPiy1T9d2Id9osMWYvMZGuC3xbLVpVzAWN68qCHeLL7R417IT
+         0Wlg==
+X-Forwarded-Encrypted: i=1; AJvYcCUO4sfcNnT1es/KtKzbgmhmbb9dEEXudVOdrjatzcJxA6lneQYDVcxox0pe7IN5tlO3Dbjjp4RAC7Rm@vger.kernel.org, AJvYcCUdhVsGY71HhbedjmM2FMTnEdGjgDnakNw3docUcC4ELm4gacqN4CbSjy6PC/xTv34YbtAYfNTkjNWfd9KH@vger.kernel.org, AJvYcCUgnK9bAGoGIYQXNG9QWrlWVA++xCyvyp5nAKa9hfrdt7tJ7lZUIyW4IPUr+NI0Tz+6kc9sxpEQhYmh@vger.kernel.org
+X-Gm-Message-State: AOJu0YxvZ+DqUdBKYlS//nz4XfICudY46/UynPeSLb/Q0sv0YQGAJ1Ov
+	y9lQ0APIouS2gHLImMtIBQwZ8Id4kVhcboxKTsD1d47IukPKmOlL
+X-Google-Smtp-Source: AGHT+IFtMQFJC1y6uYyHpQbY8vkIy3CfXLJjbydMNPSXbqdvu3VmA4+1HEEbkkSSN4MxoMPyrmDoiA==
+X-Received: by 2002:a05:6a00:1890:b0:71e:634e:fe0d with SMTP id d2e1a72fcca58-72476bb01dbmr14956848b3a.12.1731929059402;
+        Mon, 18 Nov 2024 03:24:19 -0800 (PST)
+Received: from localhost ([2804:30c:1618:9800:694b:286f:2b3a:5414])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-724772012fcsm6093086b3a.187.2024.11.18.03.24.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Nov 2024 03:15:04 -0800 (PST)
-Date: Mon, 18 Nov 2024 13:15:01 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org, 
-	manivannan.sadhasivam@linaro.org, bhelgaas@google.com, kw@linux.com, lpieralisi@kernel.org, 
-	quic_qianyu@quicinc.com, conor+dt@kernel.org, neil.armstrong@linaro.org, 
-	andersson@kernel.org, konradybcio@kernel.org, quic_shashim@quicinc.com, 
-	quic_kaushalk@quicinc.com, quic_tdas@quicinc.com, quic_tingweiz@quicinc.com, 
-	quic_aiquny@quicinc.com, kernel@quicinc.com, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
-	Krishna chaitanya chundru <quic_krichai@quicinc.com>
-Subject: Re: [PATCH 2/5] phy: qcom: qmp: Add phy register and clk setting for
- QCS615 PCIe
-Message-ID: <2rygkimclano4hcgf5vaz7eyuhcqdal5ybnh5eyci3ig2b5jcl@sq5ygemgdhwr>
-References: <20241118082619.177201-1-quic_ziyuzhan@quicinc.com>
- <20241118082619.177201-3-quic_ziyuzhan@quicinc.com>
+        Mon, 18 Nov 2024 03:24:18 -0800 (PST)
+Date: Mon, 18 Nov 2024 08:24:39 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, lars@metafoo.de,
+	Michael.Hennerich@analog.com, jic23@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: iio: adc: adi,ad4000: Add PulSAR
+Message-ID: <Zzsj9_HVBO5wrJv_@debian-BULLSEYE-live-builder-AMD64>
+References: <cover.1731626099.git.marcelo.schmitt@analog.com>
+ <a155d0d0fb1d9b5eece86099af9b5c0fb76dcac2.1731626099.git.marcelo.schmitt@analog.com>
+ <0b8a2d07-feea-409f-a850-7ee0c752a949@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,171 +86,211 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241118082619.177201-3-quic_ziyuzhan@quicinc.com>
+In-Reply-To: <0b8a2d07-feea-409f-a850-7ee0c752a949@baylibre.com>
 
-On Mon, Nov 18, 2024 at 04:26:16PM +0800, Ziyue Zhang wrote:
-> From: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+On 11/15, David Lechner wrote:
+> On 11/14/24 5:50 PM, Marcelo Schmitt wrote:
+> > Extend the AD4000 series device tree documentation to also describe
+> > PulSAR devices.
+> > 
+> > Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> > ---
+> >  .../bindings/iio/adc/adi,ad4000.yaml          | 115 +++++++++++++++++-
+> >  1 file changed, 114 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4000.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad4000.yaml
+> > index e413a9d8d2a2..35049071a9de 100644
+> > --- a/Documentation/devicetree/bindings/iio/adc/adi,ad4000.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4000.yaml
+> > @@ -19,6 +19,21 @@ description: |
+> >      https://www.analog.com/media/en/technical-documentation/data-sheets/ad4020-4021-4022.pdf
+> >      https://www.analog.com/media/en/technical-documentation/data-sheets/adaq4001.pdf
+> >      https://www.analog.com/media/en/technical-documentation/data-sheets/adaq4003.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7685.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7686.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7687.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7688.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7690.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7691.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7693.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7694.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7942.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7946.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7980.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7982.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7983.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7984.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7988-1_7988-5.pdf
 > 
-> Add support for GEN3 x1 PCIe PHY found on Qualcomm QCS615 platform.
+> It would be nice to sort these lowest number first.
+
+Ack
+
 > 
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-> ---
->  drivers/phy/qualcomm/phy-qcom-qmp-pcie.c   | 105 +++++++++++++++++++++
->  drivers/phy/qualcomm/phy-qcom-qmp-pcs-v2.h |   1 +
->  2 files changed, 106 insertions(+)
+> >  
+> >  $ref: /schemas/spi/spi-peripheral-props.yaml#
+> >  
+> > @@ -63,6 +78,38 @@ properties:
+> >  
+> >        - const: adi,adaq4003
+> >  
+> > +      - const: adi,ad7946
+> > +      - items:
+> > +          - enum:
+> > +              - adi,ad7942
+> > +          - const: adi,ad7946
+> > +
+> > +      - const: adi,ad7983
+> > +      - items:
+> > +          - enum:
+> > +              - adi,ad7980
+> > +              - adi,ad7988-5
+> > +              - adi,ad7686
+> > +              - adi,ad7685
+> > +              - adi,ad7694
+> > +              - adi,ad7988-1
+> > +          - const: adi,ad7983
+> > +
+> > +      - const: adi,ad7688
+> > +      - items:
+> > +          - enum:
+> > +              - adi,ad7693
+> > +              - adi,ad7687
+> > +          - const: adi,ad7688
+> > +
+> > +      - const: adi,ad7984
+> > +      - items:
+> > +          - enum:
+> > +              - adi,ad7982
+> > +              - adi,ad7690
+> > +              - adi,ad7691
+> > +          - const: adi,ad7984
+> > +
 > 
-> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-> index f71787fb4d7e..df82f95a1fa2 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-> @@ -726,6 +726,83 @@ static const struct qmp_phy_init_tbl ipq9574_gen3x2_pcie_pcs_misc_tbl[] = {
->  	QMP_PHY_INIT_CFG(QPHY_V5_PCS_PCIE_ENDPOINT_REFCLK_DRIVE, 0xc1),
->  };
->  
-> +static const struct qmp_phy_init_tbl qcs615_pcie_serdes_tbl[] = {
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_BIAS_EN_CLKBUFLR_EN, 0x18),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_CLK_ENABLE1, 0x10),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_BG_TRIM, 0xf),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_LOCK_CMP_EN, 0x1),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_VCO_TUNE_MAP, 0x0),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_VCO_TUNE_TIMER1, 0xff),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_VCO_TUNE_TIMER2, 0x1f),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_CMN_CONFIG, 0x6),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_PLL_IVCO, 0xf),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_HSCLK_SEL, 0x0),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_SVS_MODE_CLK_SEL, 0x1),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_CORE_CLK_EN, 0x20),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_CORECLK_DIV, 0xa),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_RESETSM_CNTRL, 0x20),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_BG_TIMER, 0x9),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_SYSCLK_EN_SEL, 0x4),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_DEC_START_MODE0, 0x82),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_DIV_FRAC_START3_MODE0, 0x3),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_DIV_FRAC_START2_MODE0, 0x55),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_DIV_FRAC_START1_MODE0, 0x55),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_LOCK_CMP3_MODE0, 0x0),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_LOCK_CMP2_MODE0, 0xD),
-
-lowercase the hex. LGTM otherwise.
-
-
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_LOCK_CMP1_MODE0, 0x04),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_CLK_SELECT, 0x35),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_SYS_CLK_CTRL, 0x2),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_SYSCLK_BUF_ENABLE, 0x1f),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_CP_CTRL_MODE0, 0x4),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_PLL_RCTRL_MODE0, 0x16),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_PLL_CCTRL_MODE0, 0x30),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_INTEGLOOP_GAIN1_MODE0, 0x0),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_INTEGLOOP_GAIN0_MODE0, 0x80),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_BIAS_EN_CTRL_BY_PSM, 0x1),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_BG_TIMER, 0xa),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_SSC_EN_CENTER, 0x1),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_SSC_PER1, 0x31),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_SSC_PER2, 0x1),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_SSC_ADJ_PER1, 0x2),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_SSC_ADJ_PER2, 0x0),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_SSC_STEP_SIZE1, 0x2f),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_SSC_STEP_SIZE2, 0x19),
-> +	QMP_PHY_INIT_CFG(QSERDES_COM_CLK_EP_DIV, 0x19),
-> +};
-> +
-> +static const struct qmp_phy_init_tbl qcs615_pcie_rx_tbl[] = {
-> +	QMP_PHY_INIT_CFG(QSERDES_RX_SIGDET_ENABLES, 0x1c),
-> +	QMP_PHY_INIT_CFG(QSERDES_RX_SIGDET_DEGLITCH_CNTRL, 0x14),
-> +	QMP_PHY_INIT_CFG(QSERDES_RX_RX_EQU_ADAPTOR_CNTRL2, 0x1),
-> +	QMP_PHY_INIT_CFG(QSERDES_RX_RX_EQU_ADAPTOR_CNTRL3, 0x0),
-> +	QMP_PHY_INIT_CFG(QSERDES_RX_RX_EQU_ADAPTOR_CNTRL4, 0xdb),
-> +	QMP_PHY_INIT_CFG(QSERDES_RX_UCDR_SO_SATURATION_AND_ENABLE, 0x4b),
-> +	QMP_PHY_INIT_CFG(QSERDES_RX_UCDR_SO_GAIN, 0x4),
-> +	QMP_PHY_INIT_CFG(QSERDES_RX_UCDR_SO_GAIN_HALF, 0x4),
-> +};
-> +
-> +static const struct qmp_phy_init_tbl qcs615_pcie_tx_tbl[] = {
-> +	QMP_PHY_INIT_CFG(QSERDES_TX_HIGHZ_TRANSCEIVEREN_BIAS_DRVR_EN, 0x45),
-> +	QMP_PHY_INIT_CFG(QSERDES_TX_LANE_MODE, 0x6),
-> +	QMP_PHY_INIT_CFG(QSERDES_TX_RES_CODE_LANE_OFFSET, 0x2),
-> +	QMP_PHY_INIT_CFG(QSERDES_TX_RCV_DETECT_LVL_2, 0x12),
-> +};
-> +
-> +static const struct qmp_phy_init_tbl qcs615_pcie_pcs_tbl[] = {
-> +	QMP_PHY_INIT_CFG(QPHY_V2_PCS_ENDPOINT_REFCLK_DRIVE, 0x4),
-> +	QMP_PHY_INIT_CFG(QPHY_V2_PCS_OSC_DTCT_ACTIONS, 0x0),
-> +	QMP_PHY_INIT_CFG(QPHY_V2_PCS_PWRUP_RESET_DLY_TIME_AUXCLK, 0x40),
-> +	QMP_PHY_INIT_CFG(QPHY_V2_PCS_L1SS_WAKEUP_DLY_TIME_AUXCLK_MSB, 0x0),
-> +	QMP_PHY_INIT_CFG(QPHY_V2_PCS_L1SS_WAKEUP_DLY_TIME_AUXCLK_LSB, 0x40),
-> +	QMP_PHY_INIT_CFG(QPHY_V2_PCS_PLL_LOCK_CHK_DLY_TIME_AUXCLK_LSB, 0x0),
-> +	QMP_PHY_INIT_CFG(QPHY_V2_PCS_LP_WAKEUP_DLY_TIME_AUXCLK, 0x40),
-> +	QMP_PHY_INIT_CFG(QPHY_V2_PCS_PLL_LOCK_CHK_DLY_TIME, 0x73),
-> +	QMP_PHY_INIT_CFG(QPHY_V2_PCS_SIGDET_CNTRL, 0x7),
-> +	QMP_PHY_INIT_CFG(QPHY_V2_PCS_RX_SIGDET_LVL, 0x99),
-> +	QMP_PHY_INIT_CFG(QPHY_V2_PCS_TXDEEMPH_M6DB_V0, 0x15),
-> +	QMP_PHY_INIT_CFG(QPHY_V2_PCS_TXDEEMPH_M3P5DB_V0, 0xe),
-> +};
-> +
->  static const struct qmp_phy_init_tbl sdm845_qmp_pcie_serdes_tbl[] = {
->  	QMP_PHY_INIT_CFG(QSERDES_V3_COM_BIAS_EN_CLKBUFLR_EN, 0x14),
->  	QMP_PHY_INIT_CFG(QSERDES_V3_COM_CLK_SELECT, 0x30),
-> @@ -2963,6 +3040,31 @@ static const struct qmp_phy_cfg ipq9574_gen3x2_pciephy_cfg = {
->  	.pipe_clock_rate	= 250000000,
->  };
->  
-> +static const struct qmp_phy_cfg qcs615_pciephy_cfg = {
-> +	.lanes			= 1,
-> +
-> +	.offsets		= &qmp_pcie_offsets_v2,
-> +
-> +	.tbls = {
-> +		.serdes		= qcs615_pcie_serdes_tbl,
-> +		.serdes_num	= ARRAY_SIZE(qcs615_pcie_serdes_tbl),
-> +		.tx		= qcs615_pcie_tx_tbl,
-> +		.tx_num		= ARRAY_SIZE(qcs615_pcie_tx_tbl),
-> +		.rx		= qcs615_pcie_rx_tbl,
-> +		.rx_num		= ARRAY_SIZE(qcs615_pcie_rx_tbl),
-> +		.pcs		= qcs615_pcie_pcs_tbl,
-> +		.pcs_num	= ARRAY_SIZE(qcs615_pcie_pcs_tbl),
-> +	},
-> +	.reset_list		= sdm845_pciephy_reset_l,
-> +	.num_resets		= ARRAY_SIZE(sdm845_pciephy_reset_l),
-> +	.vreg_list		= qmp_phy_vreg_l,
-> +	.num_vregs		= ARRAY_SIZE(qmp_phy_vreg_l),
-> +	.regs			= pciephy_v2_regs_layout,
-> +
-> +	.pwrdn_ctrl		= SW_PWRDN | REFCLK_DRV_DSBL,
-> +	.phy_status		= PHYSTATUS,
-> +};
-> +
->  static const struct qmp_phy_cfg sdm845_qmp_pciephy_cfg = {
->  	.lanes			= 1,
->  
-> @@ -4400,6 +4502,9 @@ static const struct of_device_id qmp_pcie_of_match_table[] = {
->  	}, {
->  		.compatible = "qcom,msm8998-qmp-pcie-phy",
->  		.data = &msm8998_pciephy_cfg,
-> +	}, {
-> +		.compatible = "qcom,qcs615-qmp-gen3x1-pcie-phy",
-> +		.data = &qcs615_pciephy_cfg,
->  	}, {
->  		.compatible = "qcom,sa8775p-qmp-gen4x2-pcie-phy",
->  		.data = &sa8775p_qmp_gen4x2_pciephy_cfg,
-> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcs-v2.h b/drivers/phy/qualcomm/phy-qcom-qmp-pcs-v2.h
-> index bf36399d0057..1ecf4b5beba6 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcs-v2.h
-> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcs-v2.h
-> @@ -34,6 +34,7 @@
->  #define QPHY_V2_PCS_USB_PCS_STATUS			0x17c /* USB */
->  #define QPHY_V2_PCS_PLL_LOCK_CHK_DLY_TIME_AUXCLK_LSB	0x1a8
->  #define QPHY_V2_PCS_OSC_DTCT_ACTIONS			0x1ac
-> +#define QPHY_V2_PCS_SIGDET_CNTRL			0x1b0
->  #define QPHY_V2_PCS_RX_SIGDET_LVL			0x1d8
->  #define QPHY_V2_PCS_L1SS_WAKEUP_DLY_TIME_AUXCLK_LSB	0x1dc
->  #define QPHY_V2_PCS_L1SS_WAKEUP_DLY_TIME_AUXCLK_MSB	0x1e0
-> -- 
-> 2.34.1
+> IMHO, having fallbacks just makes the bindings harder to use and doesn't
+> actually provide any useful benefit.
 > 
+Having fallbacks was a suggestion from a dt maintainer to the ad4000 series.
+I assumed they would ask it for PulSAR too. Will wait a comment from a dt
+maintainer to change it.
 
--- 
-With best wishes
-Dmitry
+> And with this many chips, it can be easy to overlook a small difference
+> in one chips, like ad7694 not having VIO pin, so is it really fallback
+> compatible? Easier to just avoid the question and not have fallbacks.
+> 
+The absence of a VIO pin does not change how the driver handles the devices.
+They are compatible from software perspective.
+
+> >    reg:
+> >      maxItems: 1
+> >  
+> > @@ -129,10 +176,76 @@ required:
+> >    - compatible
+> >    - reg
+> >    - vdd-supply
+> > -  - vio-supply
+> >    - ref-supply
+> >  
+> >  allOf:
+> > +  # AD7694 doesn't have a VIO pin
+> 
+> It sounds like using not: could make this if: a lot shorter.
+
+Ack
+
+> 
+> Also, it looks like ad7983 doesn't have the pin either.
+
+Ack
+
+> 
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - adi,ad4000
+> > +              - adi,ad4001
+> > +              - adi,ad4002
+> > +              - adi,ad4003
+> > +              - adi,ad4004
+> > +              - adi,ad4005
+> > +              - adi,ad4006
+> > +              - adi,ad4007
+> > +              - adi,ad4008
+> > +              - adi,ad4010
+> > +              - adi,ad4011
+> > +              - adi,ad4020
+> > +              - adi,ad4021
+> > +              - adi,ad4022
+> > +              - adi,adaq4001
+> > +              - adi,adaq4003
+> > +              - adi,ad7685
+> > +              - adi,ad7686
+> > +              - adi,ad7687
+> > +              - adi,ad7688
+> > +              - adi,ad7690
+> > +              - adi,ad7691
+> > +              - adi,ad7693
+> > +              - adi,ad7942
+> > +              - adi,ad7946
+> > +              - adi,ad7980
+> > +              - adi,ad7982
+> > +              - adi,ad7983
+> > +              - adi,ad7984
+> > +              - adi,ad7988-1
+> > +              - adi,ad7988-5
+> > +    then:
+> > +      required:
+> > +        - vio-supply
+> > +  # Single-channel PulSAR devices have SDI either tied to VIO, GND, or host CS.
+> 
+> To me, the more interesting thing to say here is that the sdi
+> option is omitted because these chips don't have a programmable
+> register.
+
+Yes, that's correct. But the adi,sdi-pin property is about what is connected
+to the SDI/MOSI pin so I kept the comment about hw connections only.
+We could in theory connect SDI to host MOSI and set MOSI idle high (if the
+controller supports that), but that is harder to describe.
+
+> 
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - adi,ad7685
+> > +              - adi,ad7686
+> > +              - adi,ad7687
+> > +              - adi,ad7688
+> > +              - adi,ad7690
+> > +              - adi,ad7691
+> > +              - adi,ad7693
+> > +              - adi,ad7694
+> > +              - adi,ad7942
+> > +              - adi,ad7946
+> > +              - adi,ad7980
+> > +              - adi,ad7982
+> > +              - adi,ad7983
+> > +              - adi,ad7984
+> > +              - adi,ad7988-1
+> > +              - adi,ad7988-5
+> > +    then:
+> > +      properties:
+> > +        adi,sdi-pin:
+> > +          enum: [ high, low, cs ]
+> > +          default: high
+> 
+> For the similar ad7944, Rob suggested that the default should be the equivalent
+> of "cs" since that is most like "regular" SPI. So I think it makes sense do the
+> same here. (The adi,spi-mode property in the ad7944 binding is named a bit
+> different, single = high, chain = low and _property omitted_ (default) = cs)
+Ack
+
+> 
+> >    # The configuration register can only be accessed if SDI is connected to MOSI
+> >    - if:
+> >        required:
+> 
 
