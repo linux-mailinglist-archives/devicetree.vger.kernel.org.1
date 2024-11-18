@@ -1,237 +1,342 @@
-Return-Path: <devicetree+bounces-122539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122540-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CEBC9D1037
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 12:52:39 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC12D9D108C
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 13:27:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C1C531F220E2
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 11:52:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 29FFAB21108
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 12:27:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEA14176AA9;
-	Mon, 18 Nov 2024 11:52:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B3DC19924E;
+	Mon, 18 Nov 2024 12:26:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wdc.com header.i=@wdc.com header.b="Y+cu54mM";
-	dkim=pass (1024-bit key) header.d=sharedspace.onmicrosoft.com header.i=@sharedspace.onmicrosoft.com header.b="T67W2ar+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JZuXVAwQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa5.hgst.iphmx.com (esa5.hgst.iphmx.com [216.71.153.144])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE66D192B83
-	for <devicetree@vger.kernel.org>; Mon, 18 Nov 2024 11:52:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=216.71.153.144
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731930753; cv=fail; b=XxDwfT3N4DvAvo23H8RonlyyUbk+5YBpDZRX8QXswUsSIdiirnKjagC3JnX5MUT+gTqYg1+PgX35TgxBo9jQ9iyhXYoG/f2MVg3f0HYR0I3BeZ7DAs9q0RwqKhwzZdoxgbVzirkx8P49ysAQtuZGg+sxbErf7KUYiRsEkJ0gVZw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731930753; c=relaxed/simple;
-	bh=Nk2J661McKC0HzUyaKwlsxcDLV/30jIyEavDcoq6uao=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=FLtCM+vmf1sbtj2q2dPIXgPrCy2R/87bUfSClgqPCjyFTMtz1wOXP10hwv+VVnCyAjBV77fPBymMDotDMIhlSWEj9uiMQDedpgqBDQHbw1DmYqpdUUewOHcReMKPwuOsgwK9CAWim1HWXfK7TQ/HAt2rKGLsa4rsNCyczSjTIok=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wdc.com; spf=pass smtp.mailfrom=wdc.com; dkim=pass (2048-bit key) header.d=wdc.com header.i=@wdc.com header.b=Y+cu54mM; dkim=pass (1024-bit key) header.d=sharedspace.onmicrosoft.com header.i=@sharedspace.onmicrosoft.com header.b=T67W2ar+; arc=fail smtp.client-ip=216.71.153.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wdc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wdc.com
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1731930751; x=1763466751;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=Nk2J661McKC0HzUyaKwlsxcDLV/30jIyEavDcoq6uao=;
-  b=Y+cu54mMDUpXYYPHLXYUESQ4YNP0OekG1S0ctrCZhAgiL/kBtcYmClZe
-   pUjZKGh4xHkcgyyt4tNf9HP6+qPFO9LcJvGsEy9kzwHTtWO8uDq8ZL+oY
-   dhhnXmbVpoqHbLw/p0CvbAssk+qhJ0pmL0DN0Y62ouEMW17OirZ4n1vxL
-   NH5oBdPkBGvV7th52rpecUmpFzEnbzEL+t80Gr5GJGd4M/MOFTByI/X4n
-   nOXxaMj9AUyi6570OhnV40iLDr43wkroSbUcOPkqBPRUDpz228KJJu8m9
-   ELzUoPHbU2XURtSbkYcsISLoSIZo3IDgjjZ8BGf9el7oa57NskrqJjKQR
-   A==;
-X-CSE-ConnectionGUID: gEb5kNABS6aju3eErGUHig==
-X-CSE-MsgGUID: oO7hMwmyQdyAWheM7Hfn0Q==
-X-IronPort-AV: E=Sophos;i="6.12,164,1728921600"; 
-   d="scan'208";a="32806221"
-Received: from mail-dm6nam11lp2172.outbound.protection.outlook.com (HELO NAM11-DM6-obe.outbound.protection.outlook.com) ([104.47.57.172])
-  by ob1.hgst.iphmx.com with ESMTP; 18 Nov 2024 19:52:24 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=eFcqvU5mtV9Gj0ur1fnKTMvV8213M+oIf5ZVQ1pM4wX0HSztXpm88hi7V8fhrNwYbwxUq29/o66ZJYFLHYJoV1d17hyVaQCyOFXezTm/TCFDPKdWVpfBkkYn1yJptKyFvP1JZZqq2cdXBL8LPDxYm0T3N4JLcXCIWNti8C8MzONhb0UeF+eIAXf8iVGeZEsYdw5Hj2BAE3bjvUptKzuUOsYApNyQVdq4tl9kBAgSWN5teVDuQv5WNSpNNe2MkfpV2L/9211G7DNV551yF5bczbteyjZJ4XofvsAdQdNqV/Q9TT1vMpC82jnX9RgHrUubGYjHmHSIAWyVg23zGNdvQg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Nk2J661McKC0HzUyaKwlsxcDLV/30jIyEavDcoq6uao=;
- b=bY3VXaFkUwubAppQt6ttZA1e5G6GPnrkVv0Ep5UB5SqcDncg7XCGHMUElJjKh+Fh7nsUjDwbQHtBR4pKnqz4z5WDlAuZCY42jcLtesPB6gY/7DLU+KqWHDIvq+jskklsWaenNx/2R8/ClEC9Yly2/j5JQ4k6gbE9Okxspm6z1VmUnY9jJi/BtwxuzEYFfgEg1VqtMZDUbK5ZIW4xERiEAGYimhICzI8Fd0+aLeszBDz3xkQxlMTuR/Ml8t69RmkvwL1FiwwqbpcVMkSNVDnIOTicRbXnz7O9eAJwhf5i4hhMipZlhlg/DAwX/YkaI4jUhzDtkzDPqKdCBupjWAU3pQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wdc.com; dmarc=pass action=none header.from=wdc.com; dkim=pass
- header.d=wdc.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=sharedspace.onmicrosoft.com; s=selector2-sharedspace-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Nk2J661McKC0HzUyaKwlsxcDLV/30jIyEavDcoq6uao=;
- b=T67W2ar+e1pgv4p4kgm4hfqATKwKimtVq/uH+xI8+Hm5ptxyhykDb5BB0VG6hCXwXdRwTqts00CXnV+5J+k/ARiodHZh0J1bgUlLk29Qod/589oY7fNnEY4i8CMrZR4h6oMFYx6sJx0uuqcfL9EPQdzWeF5UqIkKlC2YZQf02EM=
-Received: from SJ0PR04MB8326.namprd04.prod.outlook.com (2603:10b6:a03:3db::16)
- by CH2PR04MB6999.namprd04.prod.outlook.com (2603:10b6:610:91::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.23; Mon, 18 Nov
- 2024 11:52:23 +0000
-Received: from SJ0PR04MB8326.namprd04.prod.outlook.com
- ([fe80::5088:5f08:45a0:9a8]) by SJ0PR04MB8326.namprd04.prod.outlook.com
- ([fe80::5088:5f08:45a0:9a8%5]) with mapi id 15.20.8158.023; Mon, 18 Nov 2024
- 11:52:23 +0000
-From: Niklas Cassel <Niklas.Cassel@wdc.com>
-To: Niklas Cassel <cassel@kernel.org>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Damien
- Le Moal <dlemoal@kernel.org>, Sebastian Reichel
-	<sebastian.reichel@collabora.com>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-rockchip@lists.infradead.org"
-	<linux-rockchip@lists.infradead.org>
-Subject: Re: [PATCH] arm64: dts: rockchip: enable the mmu600_pcie IOMMU on the
- rk3588 SoC
-Thread-Topic: [PATCH] arm64: dts: rockchip: enable the mmu600_pcie IOMMU on
- the rk3588 SoC
-Thread-Index: AQHbObBUx/rZxKjMEEWfkxz6RiDrFg==
-Date: Mon, 18 Nov 2024 11:52:23 +0000
-Message-ID: <ZzsqdYUBNP7L9iRB@ryzen>
-References: <20241107123732.1160063-2-cassel@kernel.org>
-In-Reply-To: <20241107123732.1160063-2-cassel@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wdc.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ0PR04MB8326:EE_|CH2PR04MB6999:EE_
-x-ms-office365-filtering-correlation-id: 326e871c-5c3a-4872-7c97-08dd07c776e4
-wdcipoutbound: EOP-TRUE
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|376014|7416014|1800799024|366016|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?/N9vu4IzKoxXnDMN435UvPaZ1vPLjfXwPGtkxuHSTs5PrhusGS07HMnpOoTJ?=
- =?us-ascii?Q?nIX70dEo/2STMisn1/cEFI7rp4GILPCFx8BU0sBL5YwozyZn70QVFNAEXmuU?=
- =?us-ascii?Q?ECoM63y/YBSDGS32Bh/Y6zlgBTo22LabfLfhsmz3+JTVdgqc9OiFubamY+zo?=
- =?us-ascii?Q?2VA8i45qsbXqyPecTqD6AqkU3vvD8SlniPKBn/EUs9pj+gncHP14Iy40YeAr?=
- =?us-ascii?Q?KEklxUhJdi1Tu1C3h+PCRFiu/cy8FLdxK9qfeTTEMIBBh7q/IiFIfhxt8sSX?=
- =?us-ascii?Q?J3mwiT6dsZGE+GEutqKlx1PW614qpQoUrWhRxGTYzg3nw5aHseiLMC+m4Vp3?=
- =?us-ascii?Q?yX2ze06NOeLY4vOpC5e5Dp/shHPr9G60Id3hWetqx3wHUqsITX2lYIrfVKGr?=
- =?us-ascii?Q?PCE+qIPrBQT/uZo8HAtm8c3uFCDaG/TXikFVr0Yk0bVhq7UdUV+0sL7yohhK?=
- =?us-ascii?Q?rabOP3BKiSfU47/3/t2Zi09jq9C+q/95gObTFmXj3bmh5HkWa/v0FQBi6okn?=
- =?us-ascii?Q?6z2v+T/tEiYsKKTipLJkS76Sjoe9jkS6xyv5KoHQ3b7W0a/sL5DDA4WGDWRO?=
- =?us-ascii?Q?+3Q0WyqBWc6EGLWzUj5ZdXIEgN46LZ3E/gYD2Y6oFlGk2WJDvOtLkqgwVpga?=
- =?us-ascii?Q?nrGmYWMRC1Ir1oyir2CW3yPfc8TMX8DN904yDZRtMjNGeZpvEYSZL9xXZKCU?=
- =?us-ascii?Q?iK83p+bKNllfd5btMCfK/ZX82U26zIgS3Vl1j6NBcCfJ9/KpTfJunc+lGn/S?=
- =?us-ascii?Q?xJPbR+RFoFkZ4a66s1L1+7KGojOXqGyMDqL6RMZLSTAkLxzk0XbaA6hd6aMQ?=
- =?us-ascii?Q?NpjQlRGQzmcAB7KQL8qbavm2nTqDixmselzeJIOCa596mgxhzd1Lji13Uh+o?=
- =?us-ascii?Q?g9hULLNECmUX2WeRmBUJAkDTBF312vufaEw50XOhVuKWynDJ2XBrVJKCzldA?=
- =?us-ascii?Q?4CAAksHBWNxqp/4bFvvL8hdrsBFwfgAseAJUXB1EMIav87MjGDsLE6KS2CeE?=
- =?us-ascii?Q?SNVVEvBjig58jQEPvwL5Aq/I0MHOG3ZDE4FwIYqMyzw5GROXVXo1s7m8V/1J?=
- =?us-ascii?Q?pMbGPR/Pwt5R+Q13Jult+RlYn7S1qd4LzSt0oz/r+dVBYSPK4hGdesSwIfuU?=
- =?us-ascii?Q?OOaxKD9n5If2TVour9XPGq26s62VQlzanxguJNzx65JATOWPpeJLnFDkHyjF?=
- =?us-ascii?Q?w1uF9csdC87YFxz9h6ZAUySrYs0swAOw3Nr8ZmB934JTWLHL87+0WkHMRjnD?=
- =?us-ascii?Q?6IghLPk536mlKnYp6E4Ih3vg2KzJDSZ7hA2PntHWXHr8hWZ1yUlHuHne6xTI?=
- =?us-ascii?Q?GMOjR7TfFO4IsN/ostLG1gXyZaxePx6LDidqD1hAxy8/BrxyBj0ks6HbjjYH?=
- =?us-ascii?Q?tvY2f3E=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR04MB8326.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?HLFTtuOZqYywmHdCEBGRTsFquP+1ZSvrjRijiS5CJwO1M+vFouAEIxuoh0QB?=
- =?us-ascii?Q?CQdyXGKQUP5IMAzK80bk1H9Lje6p3Uc4zLIBAhYujORLtQf2AbKg66C5e5KR?=
- =?us-ascii?Q?p4tKuhuIGwccCURDDirTYKhgw1b5i8ZIlX22HppZ1QlPy4m77u+oNwmBQ6gw?=
- =?us-ascii?Q?6NCnUltShC+nR6E6bMQJ0YDxaRD8ciNPP+u5Y9vTZcjf0GZmsTCziCj1kSxd?=
- =?us-ascii?Q?5oWKlJvFvZMYpR7UKmhM2NwimuAnR3ke+F3tqiMbQ06NOV1IpLkTRgb2PDg2?=
- =?us-ascii?Q?woQYUkJvGsxXo9/7w5U83SVPnn0JvLURAAKhZibmiKMxw40xAn0u4AMmHdYS?=
- =?us-ascii?Q?xVETtxSd4KzVLZBjzc/yrbvzb7lk2Hj86ddSTDJlhzp6jKkPFeRfUdjtluOS?=
- =?us-ascii?Q?LPdTcAgzZPQu1QzSRi+9CVcmguXFCTd3+lhxBGt7Xf7yWadzj7xiDtiegC+b?=
- =?us-ascii?Q?Jhl1mOalNoF//xD09rhTYZEugT4UKxRN/2g2LPSrbq1g/aTQ5etvNsRZfXs6?=
- =?us-ascii?Q?C+YiXISDAk1cty6Y0i1Mt1/1m0xi+LaCeNJ+uCDS2PbIPLyhNAqKSbtu5gZT?=
- =?us-ascii?Q?COXP5lVfjkEdsG128TixKuc31JEAfnWVZD4PyHjbYLPgjialGFQKILgcjyx6?=
- =?us-ascii?Q?Svrbzr90736hIAFbzkl6PwxYpIbAOX363yrWY1wdxx5PXJkNofv2jQ4AL8hu?=
- =?us-ascii?Q?64DzJuZc61dgGsDeAXADjz3RMBj7615wQ3DNEWPF8wWywmkKy+PtqlRrN2kG?=
- =?us-ascii?Q?ZO0GUZR29ywxe/4o6ut8gN46nccM9LaXlWfeSL3373VKxcA4Nmq7QZC1RoqY?=
- =?us-ascii?Q?QKCJIAvjD5GKtT7+tT+M2QiuP/3V8jGTbyzsfV8lL9uTDWaya1nQhsPKsaHr?=
- =?us-ascii?Q?FrJXNbd4+wqD95aTpaIFLsrQUW4djpCThT0NFf+69Ihync2s2hDVYdLW9PqM?=
- =?us-ascii?Q?S3EJLeNdiKMhh7YG2bpUh+KozNfACi77Iw+6jHRcAkf1hYwk0GhGjvzU3tZK?=
- =?us-ascii?Q?VRnzP8gevTh3btXVDcwei6H0hpAVceBgHIeFugYvJlwKA8B1A3pP9ZI0nddU?=
- =?us-ascii?Q?oVrftUHoX07IoMIiQoRascO6joNbAgTCOxf2aRMfxNyvvPzQqCjIzW+d7NFU?=
- =?us-ascii?Q?7y3kISTNrk/HazwKFan3cfyhhB2dQbOPMP6mLOc0Y5LQbstsc7QB6vISm01H?=
- =?us-ascii?Q?GW49JJjdCiyDTWKybtRE8+OlGdf1ZSVmkUed+2O/QiK3UM6WIY8hJ6EiH31N?=
- =?us-ascii?Q?hv4Z+XOoXQe2LrfJIjIs2h8o+cp1BFCWf17VCmaBt3DkeGMLSMNn9B22X8HB?=
- =?us-ascii?Q?rKHO/easqxGWQSCJTtbl+9AP6E98zSlHvKTj3fjefZy3if5kHxNzJ7gEULvd?=
- =?us-ascii?Q?aJwteOmq/cibHCvciPcHvUBERNatsSFGFmWSb1/UNseH0/55tXG2yRmc9CDU?=
- =?us-ascii?Q?c2vkFGIQrYYF57hkPNsrQ4HQGT9k5k8cF2daBlzpi2rGds/wqgLwQ6yuPnX6?=
- =?us-ascii?Q?ysRkhue3OYBjkVwtt2lIOmDrK8eghNnoogCM6eHrvByFLbXhT+2zdt7C+ofe?=
- =?us-ascii?Q?DHmHR+nHI8XVtM8IGR7rbiP1780gPEo1zoOTMbSozv48joYvZNdfCi/cepUt?=
- =?us-ascii?Q?rQ=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <418177BA2B9C604EAC203306C4A75DD5@namprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A9ED19412E;
+	Mon, 18 Nov 2024 12:26:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1731932818; cv=none; b=Pbcz7WjDQTf/GiSknidhxUi1kKFA44hnsKNfCL1j3Ooddm/n9dyFxYjhiDcaWY3kVF7hh6wbKu4PH3+VtBNkJcJ3dC53P+83np9VcrjXYKVB/OVmiDqtnDdzV6ADe02kPRZFrc9N4owSNeSyB5MtCMpHpjgmTrXDRFMUrv8FnyU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1731932818; c=relaxed/simple;
+	bh=deJLPut/y9S0tvtjlmx4U4lz54CsfgJKTfqC8VQH+BM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DnRKGiLvDinioykbsuXUBkivs8Uc48HGQPOCiioohl64Dkty4YUo791WuryM1xqHnEaRSVlDYU/TIFKPiCtt1NWGlOMNLwSR2g4m96jc1uDZUiLM9lcMNfSI6zCifvRgx3fVNTpbwMKi42baivf9pEYFK6OKvP1cx9LtoELXv6k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JZuXVAwQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9290EC4CECC;
+	Mon, 18 Nov 2024 12:26:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731932818;
+	bh=deJLPut/y9S0tvtjlmx4U4lz54CsfgJKTfqC8VQH+BM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JZuXVAwQEwzKxFtrf5q9FIeMsCIsYM0eS1m9RyPqwqhQmM3jDzbbEiS6RZsa1Sjah
+	 lUqZcI9k0BLRWyruMxRvrfA+cijJuHBmuzI5xY3OCdDwGF0o2E7/Em7v2gAtbUryxK
+	 TSvg68J4OQJ218rf9UQ0RVLDTmBzVpvOJLj/wjaah6l5lG0Mf7nunyHXgRb++LfQr3
+	 hHQkS66be/NlrBZRxKKdOZasv/rsASuegBhc3C+E4YwCZUMvftv9lHY3YSw8I8tkRT
+	 poqNrlN8qwk5cifllyFQ4+77d0vrh6QbodtTQY9cALlgZfZcoBj3H4hP2SPCgPwKSa
+	 P+BSz1thqgnxA==
+Date: Mon, 18 Nov 2024 13:26:48 +0100
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Elliot Berman <quic_eberman@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, cros-qcom-dts-watchers@chromium.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
+	Melody Olvera <quic_molvera@quicinc.com>,
+	Shivendra Pratap <quic_spratap@quicinc.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Stephen Boyd <swboyd@chromium.org>, linux-pm@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v8 3/6] firmware: psci: Read and use vendor reset types
+Message-ID: <ZzsyiC/dwv8dgySN@lpieralisi>
+References: <20241107-arm-psci-system_reset2-vendor-reboots-v8-0-e8715fa65cb5@quicinc.com>
+ <20241107-arm-psci-system_reset2-vendor-reboots-v8-3-e8715fa65cb5@quicinc.com>
+ <ZzdR1HuTpnU1OL/i@lpieralisi>
+ <20241115103434410-0800.eberman@hu-eberman-lv.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0:
-	JwER3qXPrjGFgcsdz5Eu7BYp5BZ7VHAuJ0lHlp1XTgGFxQtFQ+Hn2ONghnhLK//Hi2s98DfIlyqfSLDy6Nq0wLrRHh+hw5POdx6LuF682Sxm10zahKxHXtGKVOsbPvnNu/Zv9zz2yxU87ZoAieyXhQtp7Qgi1ul1vDK18pGsGhlp3YfHk2JVfzoZLsSYUW+PcKa1QYYuSiuxrcWaWqQSu/bd4lkgArYYQXg/9nozba+h6OumqLjD7dFbYIw125IXE4t6S+RjM6NYRHheafloIxgLAQZNkdo4TSrS7kxEegVm8fGVDi/gclAZZa9l1R5vbEQESbRJI+LpNAH0AcY9fFVCGICGCKW7gYodumKRBXk+ugyXiLKisV9DSRDw44m28tTeAN//GF6qfZWuRT84rnSt7D2LHueESdF79xjTCRob7GE2g/V3AmfJqeQiTRNfpbD7CGKZwxvLVh98xUhOpRe2+LocXYZSRb8iDZCxYiuIj6OmlZ/Ym1GJRpX/AfdM0R3NLfJPsVWhWGXOG7UwHBirtt/h45WGvJU+AInDecZfHhQsf/N33m3MtLRZLHz1qZ/5+11GXQLyHzf7UN0YIMPgCSX8szzV5AoNSar4m+bkUFEkdqc22bQmHgKQRLws
-X-OriginatorOrg: wdc.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR04MB8326.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 326e871c-5c3a-4872-7c97-08dd07c776e4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Nov 2024 11:52:23.0553
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: b61c8803-16f3-4c35-9b17-6f65f441df86
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: VqkjoPjVyhEAH2/fYqDvhVQ8OnD1ueVPSrsi6b3IEVMhlLj6rl6rzug0U5CGvg4VmOyA/EexAxeoa11Aiz/vFQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR04MB6999
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241115103434410-0800.eberman@hu-eberman-lv.qualcomm.com>
 
-On Thu, Nov 07, 2024 at 01:37:33PM +0100, Niklas Cassel wrote:
-> Commit cd81d3a0695c ("arm64: dts: rockchip: add rk3588 pcie and php
-> IOMMUs") added the rk3588 SoC's pcie IOMMU and php IOMMU as disabled.
->=20
-> The mmu600_pcie is connected with the five PCIe controllers.
-> See 8.2 Block Diagram, in rk3588 TRM (Technical Reference Manual).
->=20
-> The five PCIe controllers are:
-> pcie3x4, pcie3x2, pcie2x1l0, pcie2x1l1, pcie2x1l2.
->=20
-> pcie3x4 can run in either Root Complex mode or Endpoint mode, the other
-> four PCIe controllers can only run in Root Complex mode. To describe this
-> we thus have six different device nodes in the device tree.
->=20
-> A PCIe controller in Root Complex mode needs to specify an iommu-map, suc=
-h
-> that the device knows how to convert a Requester ID (PCI BDF) to an IOMMU
-> master ID (stream ID). (A PCIe controller in Endpoint mode should use the
-> iommus property, just like a regular device.)
->=20
-> If you look at the device tree bindings for msi-map and iommu-map, you ca=
-n
-> see that the conversion from Requester ID to MSI-specifier data is the sa=
-me
-> as the conversion from Requester ID to IOMMU specifier data. Thus it is
-> sensible to define the iommu-map property value similar to the msi-map,
-> such that the conversion will be identical.
->=20
-> Add the proper iommu device tree properties for these six device nodes
-> connected to the mmu600_pcie, so that we can enable the mmu600_pcie IOMMU=
-.
-> (The mmu600_php IOMMU is not touched, so it is still disabled.)
->=20
-> Signed-off-by: Niklas Cassel <cassel@kernel.org>
-> ---
+On Fri, Nov 15, 2024 at 11:08:13AM -0800, Elliot Berman wrote:
+> On Fri, Nov 15, 2024 at 02:51:16PM +0100, Lorenzo Pieralisi wrote:
+> > On Thu, Nov 07, 2024 at 03:38:27PM -0800, Elliot Berman wrote:
+> > > SoC vendors have different types of resets and are controlled through
+> > > various registers. For instance, Qualcomm chipsets can reboot to a
+> > > "download mode" that allows a RAM dump to be collected. Another example
+> > > is they also support writing a cookie that can be read by bootloader
+> > > during next boot. PSCI offers a mechanism, SYSTEM_RESET2, for these
+> > > vendor reset types to be implemented without requiring drivers for every
+> > > register/cookie.
+> > > 
+> > > Add support in PSCI to statically map reboot mode commands from
+> > > userspace to a vendor reset and cookie value using the device tree.
+> > > 
+> > > A separate initcall is needed to parse the devicetree, instead of using
+> > > psci_dt_init because mm isn't sufficiently set up to allocate memory.
+> > 
+> > Nit: information below this point is more a cover letter than for the
+> > commit log.
+> > 
+> > > Reboot mode framework is close but doesn't quite fit with the
+> > > design and requirements for PSCI SYSTEM_RESET2. Some of these issues can
+> > > be solved but doesn't seem reasonable in sum:
+> > >  1. reboot mode registers against the reboot_notifier_list, which is too
+> > >     early to call SYSTEM_RESET2. PSCI would need to remember the reset
+> > >     type from the reboot-mode framework callback and use it
+> > >     psci_sys_reset.
+> > >  2. reboot mode assumes only one cookie/parameter is described in the
+> > >     device tree. SYSTEM_RESET2 uses 2: one for the type and one for
+> > >     cookie.
+> > >  3. psci cpuidle driver already registers a driver against the
+> > >     arm,psci-1.0 compatible. Refactoring would be needed to have both a
+> > >     cpuidle and reboot-mode driver.
+> > > 
+> > > Tested-by: Florian Fainelli <florian.fainelli@broadcom.com>
+> > > Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+> > > ---
+> > >  drivers/firmware/psci/psci.c | 104 +++++++++++++++++++++++++++++++++++++++++++
+> > >  1 file changed, 104 insertions(+)
+> > > 
+> > > diff --git a/drivers/firmware/psci/psci.c b/drivers/firmware/psci/psci.c
+> > > index 2328ca58bba61fdb677ac20a1a7447882cd0cf22..e60e3f8749c5a6732c51d23a2c1f453361132d9a 100644
+> > > --- a/drivers/firmware/psci/psci.c
+> > > +++ b/drivers/firmware/psci/psci.c
+> > > @@ -79,6 +79,14 @@ struct psci_0_1_function_ids get_psci_0_1_function_ids(void)
+> > >  static u32 psci_cpu_suspend_feature;
+> > >  static bool psci_system_reset2_supported;
+> > >  
+> > > +struct psci_reset_param {
+> > > +	const char *mode;
+> > > +	u32 reset_type;
+> > > +	u32 cookie;
+> > > +};
+> > > +static struct psci_reset_param *psci_reset_params __ro_after_init;
+> > > +static size_t num_psci_reset_params __ro_after_init;
+> > > +
+> > >  static inline bool psci_has_ext_power_state(void)
+> > >  {
+> > >  	return psci_cpu_suspend_feature &
+> > > @@ -305,9 +313,38 @@ static int get_set_conduit_method(const struct device_node *np)
+> > >  	return 0;
+> > >  }
+> > >  
+> > > +static void psci_vendor_system_reset2(const char *cmd)
+> > > +{
+> > > +	unsigned long ret;
+> > > +	size_t i;
+> > > +
+> > > +	for (i = 0; i < num_psci_reset_params; i++) {
+> > > +		if (!strcmp(psci_reset_params[i].mode, cmd)) {
+> > > +			ret = invoke_psci_fn(PSCI_FN_NATIVE(1_1, SYSTEM_RESET2),
+> > > +					     psci_reset_params[i].reset_type,
+> > > +					     psci_reset_params[i].cookie, 0);
+> > > +			/*
+> > > +			 * if vendor reset fails, log it and fall back to
+> > > +			 * architecture reset types
+> > > +			 */
+> > > +			pr_err("failed to perform reset \"%s\": %ld\n", cmd,
+> > > +			       (long)ret);
+> > > +			return;
+> > > +		}
+> > > +	}
+> > > +}
+> > > +
+> > >  static int psci_sys_reset(struct notifier_block *nb, unsigned long action,
+> > >  			  void *data)
+> > >  {
+> > > +	/*
+> > > +	 * try to do the vendor system_reset2
+> > > +	 * If the reset fails or there wasn't a match on the command,
+> > > +	 * fall back to architectural resets
+> > > +	 */
+> > > +	if (data && num_psci_reset_params)
+> > > +		psci_vendor_system_reset2(data);
+> > > +
+> > >  	if ((reboot_mode == REBOOT_WARM || reboot_mode == REBOOT_SOFT) &&
+> > >  	    psci_system_reset2_supported) {
+> > 
+> > This is a mess. To issue architectural warm reset we check reboot_mode,
+> > for vendor resets we ignore it - there is no rationale, that's the point
+> > I am making.
+> 
+> If I expand the comment to:
+> 
+> 
+>  * try todo the vendor system_reset2
+>  * If the reset fails or there wasn't a match on the command,
+>  * fall back to architectural resets.
+>  * Ignore reboot_mode enum to behave like setting a cookie, which don't
+>  * care about the reboot_mode.
 
-Hello Heiko,
+/*
+ * Check if the system supports vendor resets and issue
+ * SYSTEM_RESET2 if the reboot command matches a vendor reset.
+ * Ignore reboot_mode and execute SYSTEM_RESET2 with type and
+ * cookie as defined by the firmware bindings.
+ *
+ * If the reset fails or there is not a match for the command
+ * fall back to architectural resets; reset type detection in
+ * this case will be done using reboot_mode.
+ */
 
-Any chance of getting this picked up?
+?
 
-(If not now, then at least for 6.14.)
+> Help to address this concern?
 
+Not entirely, sorry, I will get back to this.
 
-Kind regards,
-Niklas=
+> > Also see my question on the other thread re: user space and reset
+> > "modes".
+> > 
+> > I appreciate we are not making progress but I don't want to pick up
+> > the pieces later after merging this code - it is unclear to me what's
+> > the best path forward - I would like to understand how other
+> > platforms/arches behave in this respect.
+> > 
+> 
+> I went through the couple hundred drivers which register reboot and
+> restart handlers. The majority don't care about reboot command nor
+> reboot_mode enum. The few that do:
+> 
+> Two drivers which I could find which care about the reboot command don't
+> look at the reboot_mode argument.
+> 
+> [1]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/firmware/efi/efibc.c?h=v6.11#n35
+> [2]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/power/reset/reboot-mode.c?h=v6.11#n42
+> 
+> One driver looks at the reboot command overrides the reboot_mode
+> argument:
+> 
+> [3]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/watchdog/pnx4008_wdt.c?h=v6.11#n125
+
+Thanks for doing that, that helps.
+
+> I wasn't able to find any platform/arches which check the reboot_mode
+> before reading the reboot command.
+> 
+> > >  		/*
+> > > @@ -750,6 +787,73 @@ static const struct of_device_id psci_of_match[] __initconst = {
+> > >  	{},
+> > >  };
+> > >  
+> > > +#define REBOOT_PREFIX "mode-"
+> > > +
+> > > +static int __init psci_init_system_reset2_modes(void)
+> > > +{
+> > > +	const size_t len = strlen(REBOOT_PREFIX);
+> > > +	struct psci_reset_param *param;
+> > > +	struct device_node *psci_np __free(device_node) = NULL;
+> > > +	struct device_node *np __free(device_node) = NULL;
+> > > +	struct property *prop;
+> > > +	size_t count = 0;
+> > > +	u32 magic[2];
+> > > +	int num;
+> > > +
+> > > +	if (!psci_system_reset2_supported)
+> > > +		return 0;
+> > > +
+> > > +	psci_np = of_find_matching_node(NULL, psci_of_match);
+> > > +	if (!psci_np)
+> > > +		return 0;
+> > > +
+> > > +	np = of_find_node_by_name(psci_np, "reset-types");
+> > > +	if (!np)
+> > > +		return 0;
+> > > +
+> > > +	for_each_property_of_node(np, prop) {
+> > > +		if (strncmp(prop->name, REBOOT_PREFIX, len))
+> > > +			continue;
+> > > +		num = of_property_count_u32_elems(np, prop->name);
+> > > +		if (num != 1 && num != 2)
+> > > +			continue;
+> > > +
+> > > +		count++;
+> > > +	}
+> > > +
+> > > +	param = psci_reset_params =
+> > > +		kcalloc(count, sizeof(*psci_reset_params), GFP_KERNEL);
+> > > +	if (!psci_reset_params)
+> > > +		return -ENOMEM;
+> > > +
+> > > +	for_each_property_of_node(np, prop) {
+> > > +		if (strncmp(prop->name, REBOOT_PREFIX, len))
+> > > +			continue;
+> > > +
+> > > +		param->mode = kstrdup_const(prop->name + len, GFP_KERNEL);
+> > 
+> > FWIW - I think you need to keep the logic in the previous loop into account
+> > because that's what is used to allocate param, it is not a given that
+> > param is valid at this stage if I am not mistaken - the previous loop
+> > checked:
+> > 
+> > 	num = of_property_count_u32_elems(np, prop->name);
+> > 	if (num != 1 && num != 2)
+> > 		continue;
+> 
+> of_property_read_variable_u32_array() performs effectively the same
+> check.  It returns -EOVERFLOW if it couldn't find enough (== 0) or too
+> many values (>2). I currently have the added bonus of complaining in
+> dmesg about the bad reboot mode property, instead of silently ignoring.
+
+Right but we are dereferencing param (param->mode) before carrying out that
+check.
+
+Thanks,
+Lorenzo
+
+> 
+> - Elliot
+> 
+> > > +		if (!param->mode)
+> > > +			continue;
+> > > +
+> > > +		num = of_property_read_variable_u32_array(np, prop->name, magic,
+> > > +							  1, ARRAY_SIZE(magic));
+> > > +		if (num < 0) {
+> > > +			pr_warn("Failed to parse vendor reboot mode %s\n",
+> > > +				param->mode);
+> > > +			kfree_const(param->mode);
+> > > +			continue;
+> > > +		}
+> > > +
+> > > +		/* Force reset type to be in vendor space */
+> > > +		param->reset_type = PSCI_1_1_RESET_TYPE_VENDOR_START | magic[0];
+> > > +		param->cookie = num > 1 ? magic[1] : 0;
+> > > +		param++;
+> > > +		num_psci_reset_params++;
+> > > +	}
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +arch_initcall(psci_init_system_reset2_modes);
+> > > +
+> > >  int __init psci_dt_init(void)
+> > >  {
+> > >  	struct device_node *np;
+> > > 
+> > > -- 
+> > > 2.34.1
+> > > 
 
