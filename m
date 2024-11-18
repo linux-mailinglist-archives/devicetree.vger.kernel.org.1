@@ -1,159 +1,106 @@
-Return-Path: <devicetree+bounces-122557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4C329D1174
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 14:09:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 929219D11C8
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 14:25:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6C3E0B27119
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 13:09:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2D52BB2A59A
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 13:24:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0E2C154426;
-	Mon, 18 Nov 2024 13:08:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F1261A265E;
+	Mon, 18 Nov 2024 13:22:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HmPCodLv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nmYZDE8J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ED8B1E49B;
-	Mon, 18 Nov 2024 13:08:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2CEE1A0BFD
+	for <devicetree@vger.kernel.org>; Mon, 18 Nov 2024 13:22:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731935334; cv=none; b=Rg/zXkykzoWhu4AV1Jd7VRPwEys5rsnD9DPBWsg7lmNuzEdjUesci0R7NGON650NWPElr8mTVB6Is3w6FmvOIKzgtw4J+n8KmfEiME/TQsWFXjGatFKWWi+kZujmQev/uslfXbYNOVHKSZTXogn3kqThkuwPMBSUvfxrBoYcwTY=
+	t=1731936134; cv=none; b=ZQXDhV8hCrSm53c1ILVYwrIopXu/KmPGrTAKEziVuflK8rYSIo3pBgSiF9lb/NUuLj8f1Bj9iI0RFXve/KjArEMlKRiePMgWHZ3wrxa4LyMB+dVI+L7kEJhIcNhAJXb4ZnmREV+QcYJISk4PIWTpIZui0hvnsEi56uaiK8XQ1kg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731935334; c=relaxed/simple;
-	bh=HzQVcMEu/w6/YCCfncF8ljt72py1cVuCfnwesEoiDQo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uP/VF1UeujbgY23Kz1OhpcAVZ1V23bChfSzkS5XB8ZsfalXq+7dEYwlkneR7wDIRDA3dHEHM6Dn26f9xqpgSaL8XT2XyIBmQPSiwOaZ/JfjgMB7Exq+oG+Z16CMdafcYyiiURJeRBd620zF99pePNhoUx1gtgiEsxUzDKcDaodI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HmPCodLv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79442C4CED0;
-	Mon, 18 Nov 2024 13:08:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731935334;
-	bh=HzQVcMEu/w6/YCCfncF8ljt72py1cVuCfnwesEoiDQo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HmPCodLvAM2mfqSr9Okjuq8iZqMlsiEye0sO/guWVcBWVoZs+sPvA5CiAw6bog4X0
-	 mh6l47DWBglsNNtT5g5w8SHLxo5rqFOHT0s9P/271Ee4EERKYSGdBJQeOXG+/mRLdr
-	 pG7EP9eILymffWjECadMwxXpa5xDADRbLgpYClIco/wSCrvMEo8yqJ0u3/wBADZf2e
-	 qc09Oh2k90EL64rXSJNMVn3OCKzaprPdNyyoIyQiWupl56RnZCITFuBtEfW5pgf6jg
-	 MtEAV5U6St4kmMNfV0YI1Ac7NSNEpGtbbspyDrzipyCcnaQBXQT8Gt6tZc/iHmVzOY
-	 3IF/mC5uwWtwg==
-Message-ID: <d1679678-8996-4484-bcf4-d4eaa6f009a4@kernel.org>
-Date: Mon, 18 Nov 2024 15:08:48 +0200
+	s=arc-20240116; t=1731936134; c=relaxed/simple;
+	bh=8WZWHjrrpvf6/wJGZvis8eIJoW+Xx+9uwID59tAg6dc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=G+vspc0J9SqT2qThOqZ99/oR4RgY9+C4RUgevtbAHIloHu7XtR8MEBv2cOUceAwQQ6Pnhn/2U+rYCuK/K9tu6Wk4gvrXoyi3v0TkP2cfJSJBAH37VcPVpVeZozwQp7Za3ssEhCSKVHR5ApZhTQDlBXeOI8fh2O0SMhbhsNnD+Yc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nmYZDE8J; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-539f53973fdso3862722e87.1
+        for <devicetree@vger.kernel.org>; Mon, 18 Nov 2024 05:22:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1731936131; x=1732540931; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=qHlRycREef525moGSk+vFsAJO6g0zablcSaT2Q6MMzE=;
+        b=nmYZDE8JwRzVTuTCeRnqBYBoe4FSU0oLp4AIoT+ZDVIgiq9ZIDoe0DA6qwqmNw0WWl
+         4d1ek1cnz1V55To9ihuI/+/Qma1aFA7Dkf6SVwuwqlAQIhw2m8mcfh9Peoq6nxRuXAqg
+         9QY7v5T0pLGOH+7lXNnsOgY6/tzdS6jKbw3pXZXRWfna/MMauDhr8DDXSv9UXnEkcyYG
+         6deoWVN2+06hu4X47r97HroD8tTncHOAVc4b3u9fLLse4jV6AOXFd0bvZl3yJVCZEl6k
+         7BdYr6JDXfqWguTj10uqKuESGPXbm/jMvI5wyLbDxMG1TUhPr7xvpo5s35IvhR1vbFqd
+         v9fg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731936131; x=1732540931;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qHlRycREef525moGSk+vFsAJO6g0zablcSaT2Q6MMzE=;
+        b=LbXr5ZT/hLuu4gpUvnrR7kZbuD8PDVLcROKWmV42XfVwcjPhj6yLac5kpHa0QGuTW3
+         LA/y9QtScBcNxGPvykQXd4LRsfSB9JtrjGTVkW8IZZtBI+3Uj3OyQMk/7X/p3DN/T4yZ
+         3HnKCcddYDlbVh8NLm7DSUZcP2BlgzPTd5TH3K6+5LwQ/JLgzJBVKGgzMPutiiB9/BbU
+         Z/Tg8e+hqIsAXR4tuUFbJKC4xsBEBLMrVIQhWpJLDRdUf7WbnEclgRm7ziglFn8BaPY4
+         SWjFv80xnWt3oI61D7kk+vSBs2iB/bLo1sAPZPD21SzxLWUlkGesk603vHLf9hEfSxra
+         pO/g==
+X-Forwarded-Encrypted: i=1; AJvYcCVilpVwkIosixMQfvnzgsqi+UBvHuCgohI1SV/R76P2cdm6G3rLqcx01d6GRSPkSYCm7rC60i+yrFDP@vger.kernel.org
+X-Gm-Message-State: AOJu0YwD/7KJzEwfOD7MbhH2kN2nc0GiiPknlkoUSArhm8VOdnGvty9R
+	UQmRE1DetejU1c2gnofaOQYsd4C3l9OwaprLM19zW6ysbjE6FNqPxKD3Y0JkBAQ=
+X-Google-Smtp-Source: AGHT+IEth3Rs4CRCnHxcAkRLL3QYVR7t7ZRuvLES7ZeMPLIutcz17tWZ5cEK7b+lVyqxjvupb/VQnA==
+X-Received: by 2002:a05:6512:ac8:b0:53d:a821:390e with SMTP id 2adb3069b0e04-53daafed725mr3889907e87.7.1731936130882;
+        Mon, 18 Nov 2024 05:22:10 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53da654880bsm1611327e87.225.2024.11.18.05.22.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Nov 2024 05:22:09 -0800 (PST)
+Date: Mon, 18 Nov 2024 15:22:08 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Qingqing Zhou <quic_qqzhou@quicinc.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, robimarko@gmail.com, will@kernel.org, 
+	robin.murphy@arm.com, joro@8bytes.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, iommu@lists.linux.dev
+Subject: Re: [PATCH v4 3/3] arm64: dts: qcom: qcs615: add the APPS SMMU node
+Message-ID: <buu6l7re4tqauqsbfhlryf223lt4f3624jm2b2nnhexwxmymtk@7hrpd7ht3aff>
+References: <20241105032107.9552-1-quic_qqzhou@quicinc.com>
+ <20241105032107.9552-4-quic_qqzhou@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: ti/omap: gta04: fix pm issues caused by spi
- module
-To: Andreas Kemnade <andreas@kemnade.info>, Tony Lindgren <tony@atomide.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- hns@goldelico.com, linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, aaro.koskinen@iki.fi, khilman@baylibre.com,
- stable@vger.kernel.org
-References: <20241107225100.1803943-1-andreas@kemnade.info>
- <b26c1fa8-b3b7-4aa9-bc78-793ddfa3bc6b@kernel.org>
- <20241108184118.5ee8114c@akair> <20241111150953.GA23206@atomide.com>
- <20241111193117.5a5f5ecb@akair> <20241111234604.66a9691b@akair>
- <20241116212734.30f5d35b@akair>
-Content-Language: en-US
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20241116212734.30f5d35b@akair>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241105032107.9552-4-quic_qqzhou@quicinc.com>
 
-
-
-On 16/11/2024 22:27, Andreas Kemnade wrote:
-> Am Mon, 11 Nov 2024 23:46:04 +0100
-> schrieb Andreas Kemnade <andreas@kemnade.info>:
+On Tue, Nov 05, 2024 at 08:51:07AM +0530, Qingqing Zhou wrote:
+> Add the APPS SMMU node for QCS615 platform. Add the dma-ranges
+> to limit DMA address range to 36bit width to align with system
+> architecture.
 > 
->> Am Mon, 11 Nov 2024 19:31:17 +0100
->> schrieb Andreas Kemnade <andreas@kemnade.info>:
->>
->>> Am Mon, 11 Nov 2024 17:09:53 +0200
->>> schrieb Tony Lindgren <tony@atomide.com>:
->>>   
->>>> * Andreas Kemnade <andreas@kemnade.info> [241108 17:41]:    
->>>>> They are not used, if they are just disabled, kernel does not touch
->>>>> them, so if it is there, the kernel can handle
->>>>> pm. At least as long as it is not under ti,sysc.
->>>>>
->>>>> There are probably cleaner solutions for this, but for a CC: stable I
->>>>> would prefer something less invasive.      
->>>>
->>>> For unused devices, it's best to configure things to use ti-sysc, and
->>>> then set status disabled (or reserved) for the child devices only. This
->>>> way the parent interconnect target module is PM runtime managed by
->>>> Linux, and it's power domain gets properly idled for the unused devices
->>>> too.
->>>>     
->>> Hmm, we also have omap_hwmod_setup_all() which is still called if
->>> without device nodes being available.
->>>
->>> Converting mcspi to ti-sysc is more than 100 lines. So it does not
->>> qualify for stable.
->>>   
->>>>> I can try a ti-sysc based fix in parallel.      
->>>>
->>>> Yeah that should be trivial hopefully :)
->>>>     
->>> I played around, got pm issues too, tried to force-enable things (via
->>> power/control),
->>> watched CM_IDLEST1_CORE and CM_FCLKEN1_CORE, they behave. Bits are set
->>> or reset.
->>>
->>> but not CM_IDLEST_CKGEN, it is 0x209 instead of 0x1.
->>>
->>> I test from initramfs, so no mmc activity involved
->>>
->>> removing status = "disabled" from mcspi3 solves things.
->>> With and without ti-sysc conversion. removing status = "disabled" from
->>> mcspi4 seems not to help.
->>>
->>> That all cannot be... I will retry tomorrow.
->>>   
->> well, I tried a bit further:
->> I build the omap spi driver as module.
->> and booted With mcspi3 not disabled and no module autoload.
->>
->> without module loaded: pm bad, same as with mcspi3 disabled
->> with module loaded: core pm ok
->> with module loaded and unloaded: core pm ok.
->>
->> so at least a trace.
->>
-> ok, I am a bit further.
-> mcspi is per default in slave mode, setting it to master solves issues.
-> And that happens when the driver is probed because its default is
-> master.
-> Having the pins muxed as mode 7 also helps or selecting a pulldown for
-> cs. (cs is active high per default!)
-> switching to pullup does not harm once the spi module is off, but having
-> active cs seems to prevent idling despite CM_IDLEST1_CORE
-> not showing it.
+> Signed-off-by: Qingqing Zhou <quic_qqzhou@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/qcs615.dtsi | 75 ++++++++++++++++++++++++++++
+>  1 file changed, 75 insertions(+)
 > 
-> History: u-boot muxes McSPI3, because it can be available on an
-> optionally fitted pin header. But there is no user known (would need
-> a dtb overlay anyways). So I will rather mux to mode 7.
 
-I'm sorry I didn't fully understand the problem.
-
-So, u-boot configures pinmux for McSPI3 and enables McSPI3 as well
-but fails to disable it properly?
-And because McSPI3 is in slave mode and CS is active it fails to
-transition to idle in Linux?
-
-So isn't this a u-boot issue?
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 -- 
-cheers,
--roger
-
+With best wishes
+Dmitry
 
