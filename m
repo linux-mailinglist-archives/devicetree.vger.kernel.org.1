@@ -1,130 +1,199 @@
-Return-Path: <devicetree+bounces-122559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122580-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99B399D11C7
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 14:25:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65BC29D1219
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 14:39:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5EF63283F5D
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 13:25:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E155C1F22A9A
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 13:39:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC1CE19AD7E;
-	Mon, 18 Nov 2024 13:24:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD3451C07D8;
+	Mon, 18 Nov 2024 13:34:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="KMcdEfm7"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="ZKjfiG/W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E42CB19413C
-	for <devicetree@vger.kernel.org>; Mon, 18 Nov 2024 13:24:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C12919E998;
+	Mon, 18 Nov 2024 13:34:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731936268; cv=none; b=dIRqCPJsqB4zRamiMJoL5p1CYZFVqQ5BT49ZZsbRo191jJIOiu8/k3jcu1OysFHK8TYlcDNLYDn/oUw0Bd4j6s2Y+TdyuaRsGKtZRnfaUYKUiH670eoSvQau9Lmu9WSNUFt+Vs/UEw4nP7XnSw6EPTRItv9KwK4ZJXbeikgzO0w=
+	t=1731936898; cv=none; b=HO1YFxwYvsedTDqvzUsGarufucNPQNHUasBoR5SYm6gaXhTA7LCjA7SClYGS60pbyxiIGTcFdHNbHT/LX2QdDNxDyV5FprFUAhhmxpfD2OSbicChv0IzC1BVpcR6YDLI55/fCgnn32JkFsvK7hiIYIoIr5J1FDmGdXe0Gu3pdxg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731936268; c=relaxed/simple;
-	bh=cP0g2C+51KVkoOJoEg/616AjXie1cYNoo+bLbEOiVgE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=siB5/aiJ2qELqr/4bXLx0ZlJQEpL4vr6gO4GAzVvPu+C+5E8ael2D0Wl8JDRKyaRL2UcE3AQEzyRenxGGVY0eqi7QWRlWQYt/WPSasx9RmclHWkyhO/Lg9vTv740ILoDvX/Ff94g4sNPo586e/meqttU2+YNU8kwb/fJyCruue0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=KMcdEfm7; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=s8lkok+c8KjBG6mzXAMaB5qxafa7OdEMZ1RhybIITR0=; b=KMcdEfm7q1WJhQMgq8EmafygPP
-	f1r7xrgEvyZSEg70NtxGPt2AatL8d5AZ7/iKKxkgJ+TxzwR0j+HeTv7LQ/9vxo2BIwfAFyvndye1v
-	dTRW2vzRx/W5NRiTkoFHYE3tfZXxsPibfh9DO7ZLC66U4cYKRjvu3z66CHcnJY7NFkQXo3lUVYpEg
-	CP+Ue4nwn2jBfsaOF4ubKIhMHbrziTka6DUGX9fIJSU1ELWosDKHpuAKWG5z4dEHzVkscG7oWRV83
-	66YUVzxC1GjzBNwBLLO8YeJe4Lt5S8jKbK81Vj89cjsp1kWzj3IX8d0ZNrCReVnr0WWmgRfQcwkMH
-	Czf7MeHw==;
-Received: from i53875a30.versanet.de ([83.135.90.48] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tD1jl-00060I-SG; Mon, 18 Nov 2024 14:24:17 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Niklas Cassel <cassel@kernel.org>, Niklas Cassel <Niklas.Cassel@wdc.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Damien Le Moal <dlemoal@kernel.org>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>
-Subject:
- Re: [PATCH] arm64: dts: rockchip: enable the mmu600_pcie IOMMU on the rk3588
- SoC
-Date: Mon, 18 Nov 2024 14:24:16 +0100
-Message-ID: <39365498.J2Yia2DhmK@diego>
-In-Reply-To: <ZzsqdYUBNP7L9iRB@ryzen>
-References:
- <20241107123732.1160063-2-cassel@kernel.org> <ZzsqdYUBNP7L9iRB@ryzen>
+	s=arc-20240116; t=1731936898; c=relaxed/simple;
+	bh=24/EauieQXJi/pntvKLKiUH0LR79R8xUc5ZSJi/BYeY=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oGBd7YFOfNPKMy8Q9RAkeKwdCaFfB8Xs/VxM1+wvzziU/urOw/vqw56Ymhk3Z9auj0dQI8YMmy6g4q3Sb7R7GMxYFGU1CJAgofQwYL//gYWC/wQmFhoFbzZGzkTuCL01zYEPAU/Et7A8gwrZjKiZK8GvuQojUIn8ilGUqkoosCI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=ZKjfiG/W; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AI92Saa027677;
+	Mon, 18 Nov 2024 14:34:21 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=selector1; bh=kk0fbCm86oNON+VzAknySsP7
+	MWSV0z1bs5jHXJw47/E=; b=ZKjfiG/Wh8lUk5ragQjXYnM5zxkVWBgG20FGAMTZ
+	bObTmd26MsJl0TVzVROI82uykK1xaUQ8T7cIv9gHxn7bI5v4hoq8irxUkSeYydFl
+	e/R8EadFRHymA3eSpaUeM6mBdGXwrBz1mCoedK/mqsjk+1YN1+qqXHw79/TEwme3
+	V2EcMlnzkGR5o45io9L3wZdShlLxadvhS0ln4U2wsKh1srWt1a8tBym9/JNLCW6r
+	QJsm4xGwtRmIsNv9M6nEPHQju/eTyDHsvyqCAKsHduaAbGOr9O479i1C4DBwEQ7S
+	k+tYziiyyt4yTdZx8YWiiIvljCf6NwLFnRieisJGu8VHYw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 42y5u3n7tn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 18 Nov 2024 14:34:21 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 59F2140052;
+	Mon, 18 Nov 2024 14:33:03 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 20D4128AB95;
+	Mon, 18 Nov 2024 14:31:56 +0100 (CET)
+Received: from gnbcxd0016.gnb.st.com (10.129.178.213) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Mon, 18 Nov
+ 2024 14:31:55 +0100
+Date: Mon, 18 Nov 2024 14:31:50 +0100
+From: Alain Volmat <alain.volmat@foss.st.com>
+To: Philipp Zabel <p.zabel@pengutronix.de>
+CC: Hugues Fruchet <hugues.fruchet@foss.st.com>,
+        Mauro Carvalho Chehab
+	<mchehab@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre
+ Torgue <alexandre.torgue@foss.st.com>,
+        Hans Verkuil
+	<hverkuil-cisco@xs4all.nl>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>, <linux-media@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 03/15] media: stm32: csi: addition of the STM32 CSI
+ driver
+Message-ID: <20241118133150.GA2001051@gnbcxd0016.gnb.st.com>
+References: <20241105-csi_dcmipp_mp25-v2-0-b9fc8a7273c2@foss.st.com>
+ <20241105-csi_dcmipp_mp25-v2-3-b9fc8a7273c2@foss.st.com>
+ <8841158ed61b2b92a92ac6d2afcbd7cff12a6680.camel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <8841158ed61b2b92a92ac6d2afcbd7cff12a6680.camel@pengutronix.de>
+X-Disclaimer: ce message est personnel / this message is private
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-Hi Niklas,
+Hi Philipp
 
-Am Montag, 18. November 2024, 12:52:23 CET schrieb Niklas Cassel:
-> On Thu, Nov 07, 2024 at 01:37:33PM +0100, Niklas Cassel wrote:
-> > Commit cd81d3a0695c ("arm64: dts: rockchip: add rk3588 pcie and php
-> > IOMMUs") added the rk3588 SoC's pcie IOMMU and php IOMMU as disabled.
+On Tue, Nov 05, 2024 at 11:14:47AM +0100, Philipp Zabel wrote:
+> On Di, 2024-11-05 at 08:49 +0100, Alain Volmat wrote:
+> > The STM32 CSI controller is tightly coupled with the DCMIPP and act as an
+> > input stage to receive data coming from the sensor and transferring
+> > them into the DCMIPP.
 > > 
-> > The mmu600_pcie is connected with the five PCIe controllers.
-> > See 8.2 Block Diagram, in rk3588 TRM (Technical Reference Manual).
+> > Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
 > > 
-> > The five PCIe controllers are:
-> > pcie3x4, pcie3x2, pcie2x1l0, pcie2x1l1, pcie2x1l2.
-> > 
-> > pcie3x4 can run in either Root Complex mode or Endpoint mode, the other
-> > four PCIe controllers can only run in Root Complex mode. To describe this
-> > we thus have six different device nodes in the device tree.
-> > 
-> > A PCIe controller in Root Complex mode needs to specify an iommu-map, such
-> > that the device knows how to convert a Requester ID (PCI BDF) to an IOMMU
-> > master ID (stream ID). (A PCIe controller in Endpoint mode should use the
-> > iommus property, just like a regular device.)
-> > 
-> > If you look at the device tree bindings for msi-map and iommu-map, you can
-> > see that the conversion from Requester ID to MSI-specifier data is the same
-> > as the conversion from Requester ID to IOMMU specifier data. Thus it is
-> > sensible to define the iommu-map property value similar to the msi-map,
-> > such that the conversion will be identical.
-> > 
-> > Add the proper iommu device tree properties for these six device nodes
-> > connected to the mmu600_pcie, so that we can enable the mmu600_pcie IOMMU.
-> > (The mmu600_php IOMMU is not touched, so it is still disabled.)
-> > 
-> > Signed-off-by: Niklas Cassel <cassel@kernel.org>
 > > ---
+> > v2: correct data-lanes handling, using values 1 & 2
+> >     update yaml filename in MAINTAINERS
+> > ---
+> >  MAINTAINERS                                 |    8 +
+> >  drivers/media/platform/st/stm32/Kconfig     |   14 +
+> >  drivers/media/platform/st/stm32/Makefile    |    1 +
+> >  drivers/media/platform/st/stm32/stm32-csi.c | 1144 +++++++++++++++++++++++++++
+> >  4 files changed, 1167 insertions(+)
+> > 
+> [...]
+> > diff --git a/drivers/media/platform/st/stm32/stm32-csi.c b/drivers/media/platform/st/stm32/stm32-csi.c
+> > new file mode 100644
+> > index 0000000000000000000000000000000000000000..c7f47472c6b3699e94113ce0f38b280a2e45ce15
+> > --- /dev/null
+> > +++ b/drivers/media/platform/st/stm32/stm32-csi.c
+> > @@ -0,0 +1,1144 @@
+> [...]
+> > +static int stm32_csi_get_resources(struct stm32_csi_dev *csidev,
+> > +				   struct platform_device *pdev)
+> > +{
+> > +	int irq, ret;
+> > +
+> > +	csidev->base = devm_platform_get_and_ioremap_resource(pdev, 0, NULL);
+> > +	if (IS_ERR(csidev->base))
+> > +		return dev_err_probe(&pdev->dev, PTR_ERR(csidev->base),
+> > +				     "Failed to ioremap resource\n");
+> > +
+> > +	csidev->pclk = devm_clk_get(&pdev->dev, "pclk");
+> > +	if (IS_ERR(csidev->pclk))
+> > +		return dev_err_probe(&pdev->dev, PTR_ERR(csidev->pclk),
+> > +				     "Couldn't get pclk\n");
+> > +
+> > +	csidev->txesc = devm_clk_get(&pdev->dev, "txesc");
+> > +	if (IS_ERR(csidev->txesc))
+> > +		return dev_err_probe(&pdev->dev, PTR_ERR(csidev->txesc),
+> > +				     "Couldn't get txesc\n");
+> > +
+> > +	csidev->csi2phy = devm_clk_get(&pdev->dev, "csi2phy");
+> > +	if (IS_ERR(csidev->csi2phy))
+> > +		return dev_err_probe(&pdev->dev, PTR_ERR(csidev->csi2phy),
+> > +				     "Couldn't get csi2phy\n");
 > 
-> Hello Heiko,
+> Consider using devm_clk_bulk_get().
+
+Ok, I change this in the v3.
+
 > 
-> Any chance of getting this picked up?
+> > +	csidev->rstc = devm_reset_control_get_exclusive(&pdev->dev, NULL);
+> > +	if (IS_ERR(csidev->rstc))
+> > +		return dev_err_probe(&pdev->dev, PTR_ERR(csidev->rstc),
+> > +				     "Couldn't get reset control\n");
 > 
-> (If not now, then at least for 6.14.)
+> If this wasn't in a separate function, rstc wouldn't have to be stored
+> on csidev as it's only ever used in stm32_csi_probe().
 
-Oh, definitly :-) ... it's marked as to look at.
+Ok, whole reset handling moved into the probe function.
 
-For 6.14 ... the patch arrived shortly before -rc7, with PCIe stuff in it.
-IOMMUs + PCIe is sort of a topic I'm cautious about shortly before
-the merge window ;-)
+> 
+> > +
+> > +	csidev->supplies[0].supply = "vdd";
+> > +	csidev->supplies[1].supply = "vdda18";
+> > +	ret = devm_regulator_bulk_get(&pdev->dev, ARRAY_SIZE(csidev->supplies),
+> > +				      csidev->supplies);
+> > +	if (ret)
+> > +		return dev_err_probe(&pdev->dev, ret,
+> > +				     "Failed to request regulator vdd\n");
+> > +
+> > +	irq = platform_get_irq(pdev, 0);
+> > +	if (irq < 0)
+> > +		return irq;
+> > +
+> > +	ret = devm_request_threaded_irq(&pdev->dev, irq, NULL,
+> > +					stm32_csi_irq_thread, IRQF_ONESHOT,
+> > +					dev_name(&pdev->dev), csidev);
+> > +	if (ret)
+> > +		return dev_err_probe(&pdev->dev, ret,
+> > +				     "Unable to request irq");
+> > +
+> > +	return 0;
+> > +}
+> 
+> regards
+> Philipp
 
-
-Heiko
-
-
-
-
+Regards
+Alain
 
