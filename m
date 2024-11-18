@@ -1,158 +1,155 @@
-Return-Path: <devicetree+bounces-122527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA1BE9D0F41
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 12:08:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06F8C9D0F06
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 11:55:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CE647B24168
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 10:52:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D2821F222D0
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 10:55:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5664E199236;
-	Mon, 18 Nov 2024 10:50:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 581E9194C6F;
+	Mon, 18 Nov 2024 10:55:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="2QMRM1DI"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="hb5Rnlwh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 813EE198E9E;
-	Mon, 18 Nov 2024 10:50:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF421194A49
+	for <devicetree@vger.kernel.org>; Mon, 18 Nov 2024 10:55:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731927055; cv=none; b=EyCp86qQBXkGRbrm+lji1C0hOHZLxiAV9vFG8VHoakiNptdW/Z84zdFaU8xxNTb+PKfjuy2ce5hST+biCdOnAhvf0SX1TZKTcfJDYiIgSOq8i7fOrC9Jpe1l8WpOnph/B56QRZClF/4tr6CMRVGfYRQg88o9KaCTEuRHyIinwFk=
+	t=1731927344; cv=none; b=muLDdIy4TX2oKwkioOhTqm39tjElLOPwc7mAF+1VhrGicJumRtncG1FfNW6f/yI+kFaph8gDuJKK/iTX5PhhpXRym2Z1bRvKCzbKFfOXgSa/O7JyUbZkyA8r6zSUKuWr625uXPTzxiP/rljF7cOMXiZeBZvnTdjm8sXRQbl9v+A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731927055; c=relaxed/simple;
-	bh=WHcuBnfq6kHAKbfDJXcBfPiEZxhyghgKgTGkb1xpg/A=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bMg0KcyrUl2ATwvcONypVqCgecT5gSQVmj0cMetYcDct12DFctbppNIGZ+Mx0AV8ciPssSGy8+GUEVdqTAYa1f5VyA98REiy9aYHIbQ6j05db4f9iBHhGOZfVO2mnpjBA5NSJtJVKeBl2WxGycjQY7SsnFGk3KRdyXqhsfqoW5A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=2QMRM1DI; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1731927053; x=1763463053;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=WHcuBnfq6kHAKbfDJXcBfPiEZxhyghgKgTGkb1xpg/A=;
-  b=2QMRM1DIElhNIshC7/I3idPgfU1jdX2m2bo1ySDwSOdOGgXIKz0USFxA
-   r8AqU3rvUqav7kUK4gr4Wy4A9lzOGoJXE1dvT88dzepPitXuLUHJ2RdJO
-   UnV7YQdJgzF5Qayp2EnYfHSSkR1gdPNNee12zIziXOJ8R8hQzk/0PkPDt
-   jeozMDdaO3zyK32t/TkvAcZQL6Tj1tq12USNGyepjJj9dj3w7GYnBvxTU
-   PzOUgjdfzrcYWkPJosTKmjx/RxXjFuakQJz9qWcOGebmdKzPIvigR8MyP
-   UtBNLxr7IRKhht4GCE7Eh6NtzyUvz2rdfy21aCHAs2gs4+R9dF2qH149A
-   Q==;
-X-CSE-ConnectionGUID: uRFJ4ooxRyO7bYFqsKsN5w==
-X-CSE-MsgGUID: G0gMqKqvRCGGT/jdUE4tjA==
-X-IronPort-AV: E=Sophos;i="6.12,163,1728975600"; 
-   d="scan'208";a="34949119"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 18 Nov 2024 03:50:47 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 18 Nov 2024 03:50:29 -0700
-Received: from DEN-DL-M70577 (10.10.85.11) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Mon, 18 Nov 2024 03:50:25 -0700
-Date: Mon, 18 Nov 2024 10:50:25 +0000
-From: Daniel Machon <daniel.machon@microchip.com>
-To: Conor Dooley <conor@kernel.org>
-CC: <UNGLinuxDriver@microchip.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, "Lars
- Povlsen" <lars.povlsen@microchip.com>, Steen Hegelund
-	<Steen.Hegelund@microchip.com>, Horatiu Vultur
-	<horatiu.vultur@microchip.com>, Russell King <linux@armlinux.org.uk>,
-	<jacob.e.keller@intel.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-	<netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH net-next v2 8/8] dt-bindings: net: sparx5: document RGMII
- MAC delays
-Message-ID: <20241118105025.hjtji5cnl75rcrb4@DEN-DL-M70577>
-References: <20241113-sparx5-lan969x-switch-driver-4-v2-0-0db98ac096d1@microchip.com>
- <20241113-sparx5-lan969x-switch-driver-4-v2-8-0db98ac096d1@microchip.com>
- <20241114-liquefy-chasing-a85e284f14b9@spud>
+	s=arc-20240116; t=1731927344; c=relaxed/simple;
+	bh=ZcFDjxCikiIDehFzhPFoKi4SBUA/t82ryu7kG31flDg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dgFs+LKFyw5m+eeW14shZ2+146CqBq4IoY8izQvxurcxwIL+0tUmPEIA6HrBCrC5dPCq07RguwxXInW4v/wUMRu+QKFZPyw6ISaARpup+ShHbXxJCMRIkyvUC9ku81kYlp76KNMJLeEVB3ikvttkIyMZexyCPbnGjaCjt4B4w6o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=hb5Rnlwh; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1731927341;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=AnKB6OxF/nzSNsYCRUDY/ZZFnQ2D348/yl+VsYaNxvk=;
+	b=hb5RnlwhJZd9uYV7dmkpNuh5s7ne3bbgbiK45l/c8SiESei5uuOP+Q+4zYt4mJ/zkN/1Nl
+	YoFv/8UgEnIlOiSBL+Ha3xdwvuKckOgE4XOjyCeuB+osdwuhYBCnFc2gJ9OBmXElLKgS6L
+	DztIC0i/X9akmep/Wdwe2o9FYlqHao0=
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
+ [209.85.218.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-264-8TuDynXdMuaYZZx03I7iLg-1; Mon, 18 Nov 2024 05:55:40 -0500
+X-MC-Unique: 8TuDynXdMuaYZZx03I7iLg-1
+X-Mimecast-MFC-AGG-ID: 8TuDynXdMuaYZZx03I7iLg
+Received: by mail-ej1-f70.google.com with SMTP id a640c23a62f3a-a9a1e429a8fso136384566b.0
+        for <devicetree@vger.kernel.org>; Mon, 18 Nov 2024 02:55:40 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731927339; x=1732532139;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AnKB6OxF/nzSNsYCRUDY/ZZFnQ2D348/yl+VsYaNxvk=;
+        b=TQeFtJgSwKSN+Oh8Y8ifBCIRU8KxBkGTaTuVZB19J3KAFlqu6KCAhrJIFCpZyWJKxS
+         vTufBrI03U3F2cLiat4IqVBWq6CujSKeZSGj4+hd9ZHJBUg0i6PaEah8HN0MZzGB/Izp
+         /QeR6ca/C+1agxfOh81/2B74iJ4gg9DEUW907Gjcaty+I4AnAlTr/0GhDfKuQ1ByGkr1
+         0xqOaasuacJIGBsMP+32CaZtEDLG9+X1VaCQw1+lWmrhqd1tolEeai+eDhXgfXrm9DNM
+         5sJ/fxliAveb/FS5Bw4ib5Y6+tihdkumDv7o1a159MWStEUF5a6fLs1M+MnHXGp7YtkX
+         E3nA==
+X-Forwarded-Encrypted: i=1; AJvYcCUVNQMJk9frDIbmLD+5KJK/LRokSg+79+SJLK4SWNVr8idg6qemy44cQkqF1yCDHPlnT2iddf/eniCD@vger.kernel.org
+X-Gm-Message-State: AOJu0YyvuD4zndrKqdFXbWyLBn+XKwSwedUejHeOotKAKLMBWRq25dEk
+	Bya9LMLqpHX+ORqnt0Z8QDYxfWppZcebmtexx87LoJtd/DncOFRXJo5raRjurQHH3y0zUq07T5b
+	ddARVUkWT4AmOYol8NIPyLZwrP7MiTw5S1o8SK28PM/5eb9zlIOp0IUtAkRk=
+X-Received: by 2002:a17:907:d24:b0:a87:31c:c6c4 with SMTP id a640c23a62f3a-aa483420c9dmr1098522666b.24.1731927339051;
+        Mon, 18 Nov 2024 02:55:39 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IE2vTdiBnn4PitIg3NGPzUBSRlMyCFj1MIDShUo/ICNJU5eRSVBn7pak/o015A12IJGuEwz+g==
+X-Received: by 2002:a17:907:d24:b0:a87:31c:c6c4 with SMTP id a640c23a62f3a-aa483420c9dmr1098518766b.24.1731927338635;
+        Mon, 18 Nov 2024 02:55:38 -0800 (PST)
+Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec? (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl. [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa20dffd721sm536956766b.107.2024.11.18.02.55.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Nov 2024 02:55:38 -0800 (PST)
+Message-ID: <322acf33-4569-4e57-a4b5-af60cb0091b7@redhat.com>
+Date: Mon, 18 Nov 2024 11:55:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20241114-liquefy-chasing-a85e284f14b9@spud>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] power: supply: max17042: make interrupt shared
+To: Dzmitry Sankouski <dsankouski@gmail.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
+ Purism Kernel Team <kernel@puri.sm>, Sebastian Reichel <sre@kernel.org>,
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-msm@vger.kernel.org
+References: <20241118-b4-max17042-v3-0-9bcaeda42a06@gmail.com>
+ <20241118-b4-max17042-v3-1-9bcaeda42a06@gmail.com>
+Content-Language: en-US, nl
+From: Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <20241118-b4-max17042-v3-1-9bcaeda42a06@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Conor,
+Hi Dzmitry,
 
-> > The lan969x switch device supports two RGMII port interfaces that can be
-> > configured for MAC level rx and tx delays.
-> > 
-> > Document two new properties {rx,tx}-internal-delay-ps. Make them
-> > required properties, if the phy-mode is one of: rgmii, rgmii_id,
-> > rgmii-rxid or rgmii-txid. Also specify accepted values.
-> > 
-> > Signed-off-by: Daniel Machon <daniel.machon@microchip.com>
-> > ---
-> >  .../bindings/net/microchip,sparx5-switch.yaml        | 20 ++++++++++++++++++++
-> >  1 file changed, 20 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml b/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
-> > index dedfad526666..a3f2b70c5c77 100644
-> > --- a/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
-> > +++ b/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
-> > @@ -129,6 +129,26 @@ properties:
-> >              minimum: 0
-> >              maximum: 383
-> >  
-> > +        allOf:
-> > +          - if:
-> > +              properties:
-> > +                phy-mode:
-> > +                  contains:
-> > +                    enum:
-> > +                      - rgmii
-> > +                      - rgmii-rxid
-> > +                      - rgmii-txid
-> > +                      - rgmii-id
-> > +            then:
-> > +              properties:
-> > +                rx-internal-delay-ps:
-> > +                  enum: [0, 1000, 1700, 2000, 2500, 3000, 3300]
-> > +                tx-internal-delay-ps:
-> > +                  enum: [0, 1000, 1700, 2000, 2500, 3000, 3300]
+On 18-Nov-24 11:09 AM, Dzmitry Sankouski wrote:
+> Fuelgauge blocks often are incorporated in bigger chip,
+> which may use only 1 line for interrupts. Make interrupt
+> shared.
 > 
-> Properties should be define at the top level and constrained in the
-> if/then parts. Please move the property definitions out, and just leave
-> the required: bit here.
-> 
-> > +              required:
-> > +                - rx-internal-delay-ps
-> > +                - tx-internal-delay-ps
-> 
-> You've got no else, so these properties are valid even for !rgmii?
-> 
-> > +
-> >          required:
-> >            - reg
-> >            - phys
-> 
-> Additionally, please move the conditional bits below the required
-> property list.
-> 
-> Cheers,
-> Conor.
+> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
 
-I will be getting rid of the 'required' constraints in v3. What I hear
-you say, is that the two {rx,tx}-internal-delay-ps properties (incl.
-their enum values) should be moved out of the if/else and to the
-top-level - can you confirm this? Is specifying the values
-a property can take not considered a constraint?
+Thanks, patch looks good to me:
 
-Thanks,
-Daniel
+Reviewed-by: Hans de Goede <hdegoede@redhat.com>
+
+Regards,
+
+Hans
+
+
+
+> ---
+>  drivers/power/supply/max17042_battery.c | 9 +--------
+>  1 file changed, 1 insertion(+), 8 deletions(-)
+> 
+> diff --git a/drivers/power/supply/max17042_battery.c b/drivers/power/supply/max17042_battery.c
+> index 496c3e1f2ee6..99bf6915aa23 100644
+> --- a/drivers/power/supply/max17042_battery.c
+> +++ b/drivers/power/supply/max17042_battery.c
+> @@ -1103,14 +1103,7 @@ static int max17042_probe(struct i2c_client *client)
+>  	}
+>  
+>  	if (client->irq) {
+> -		unsigned int flags = IRQF_ONESHOT;
+> -
+> -		/*
+> -		 * On ACPI systems the IRQ may be handled by ACPI-event code,
+> -		 * so we need to share (if the ACPI code is willing to share).
+> -		 */
+> -		if (acpi_id)
+> -			flags |= IRQF_SHARED | IRQF_PROBE_SHARED;
+> +		unsigned int flags = IRQF_ONESHOT | IRQF_SHARED | IRQF_PROBE_SHARED;
+>  
+>  		ret = devm_request_threaded_irq(&client->dev, client->irq,
+>  						NULL,
+> 
+
 
