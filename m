@@ -1,341 +1,270 @@
-Return-Path: <devicetree+bounces-122480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A34409D0AF8
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 09:31:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37D249D0B1F
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 09:42:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 321441F23986
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 08:31:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E424B1F21957
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 08:42:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5489D1990DD;
-	Mon, 18 Nov 2024 08:27:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 138FF183CA6;
+	Mon, 18 Nov 2024 08:41:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="S2QcqmJH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Yb3Np00h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F5401990A8;
-	Mon, 18 Nov 2024 08:27:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09E0717B418
+	for <devicetree@vger.kernel.org>; Mon, 18 Nov 2024 08:41:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731918464; cv=none; b=TDwxQQUT/vkzthJNPkB9I3OD2ysf7kRr6XU5mxZTkDLdHDD3GuPRPT+dR1DyGUWsTRpkaUPp+95UdH9dUHPq2soIlI3jn2RKe74gPqdQ6+lpq2Vndf9lohSSeYJ3GcSZMkFzrXoQR++APvL4rMyt6kFVFlG03wXdEvour8i1/Z8=
+	t=1731919301; cv=none; b=sJlQv05OfjX9Pbza/d9UB5KV5U1HO+6eUuaRbk+2m6rZrwgntfGgoRGiGvFrloEf7SfGXcPoXR3B35MB6dLATqkpoEDQw7j45GigLOokLanMmAKnf65carvFPPFcd1YqbncS1GQZtq7c+uQE6/Irw2FTlU4vCMpM5FX5GKzjHOQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731918464; c=relaxed/simple;
-	bh=PrEo5z7gTrWSitJ6tnO95QuGmdV5sGYL+dd1BM8kQSY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Ca3agiMsf9N6WtiwmiGyZxfEjgFAPdubtJly3NjJoNWhNcdWpGumnkesG8PUwoyNNmi6ypOOKmkW4T0K3cOXZeNSEPJcWQujionGVjBEyQCEvZFlt/CUNYGnHOVXd7tfHbVADAzupveTXZswYl2lBUYlduH45M1m/rGf15RwvsM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=S2QcqmJH; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-211fb27cc6bso11266845ad.0;
-        Mon, 18 Nov 2024 00:27:42 -0800 (PST)
+	s=arc-20240116; t=1731919301; c=relaxed/simple;
+	bh=kodxiG1/nUsm1iEUXTF0+kiJmFvZcCQOlJsg/P5CLow=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=UazA4Lquqeg/LmP+Fh/NQU5//b7GeIyJV3Y//Namn5S3o2e2HKmh5147mS59/Kc7tZw/eMuMhNKUnGD0TgBBSjKRXPiwRal/BVNHoXKxK1U7hMccGSVZs6mtHhWu2Vhu9RegnPefl94lsBxGNVRN09bU+kh/2+U4lLEinwALPI0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Yb3Np00h; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3824038142aso848571f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 18 Nov 2024 00:41:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1731918462; x=1732523262; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=16HRfIBaIOQefaOEqHf21OoxuGB8KEMOdyUB3b6s3vM=;
-        b=S2QcqmJHKo6js3N2kdKudHgyqhbbC3QJOxyZ3Zix50pAMLAURY5nZEjsoaNU2PeTfO
-         laXNAPPHhMcu3JYGM4xnvTue41ubT8cKkwPEcNMHg7Kxwt0Ch9OGi6sFhDU1xgU/wm8d
-         z4jOejRPrNToLk3pYZaKKksXCkcs7nxea1e/yR9OoWq5aXLPgL6K8gTKhio5nRfpNqww
-         Lm2z7flhrGJ0TqxtVZ8bD8oO5YEG0yE96E4vqvnwhEC32qaGP3JwZR4PGaOuwWCM+nOw
-         Zt6yodz4rv6OGkvaNizKvipj4n6ZvgewymDzbEA4yXgA1V4GdbMGzgEhzEHMEizsSu9M
-         Pzdw==
+        d=linaro.org; s=google; t=1731919297; x=1732524097; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=j8Tvpsfrzk7SMjxhB5HQe3fZdEwkv0xuam5EYzzOBvc=;
+        b=Yb3Np00hMZKel6iqjj/wUberbQFAbbroEN5hfTModyaYY6LMiNKoL78aaRIMTCCjJ4
+         or0uxq19+0Ff7PvNXNh+8Rgcd3uqWtBP2VpMiHcmEAIs4LAklKOyFgPeXVDgA/CssEAl
+         MEJs4egXjeyvFHHlQebXArnP40zz1IM96PcVGgJqAdCmaX+1p7K0kcYIHRyBeLatAaP/
+         6hJWTDm1ikVAnZ075UcBArHI8VOSKOs3gGKjFaAIdMd/H3vifyRV6dJeFzOCm9y4nbcj
+         dEeUkzmOALrtjE8JQs9qI2kPnQUPRkuuSztFRbidwxpXOyheGzTFC/kQ0avGGHcFuEUE
+         vIyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731918462; x=1732523262;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=16HRfIBaIOQefaOEqHf21OoxuGB8KEMOdyUB3b6s3vM=;
-        b=jOz80vbqZ14C67edWbLp499x+Mxt9TJ3W2rFjvwXB2vcNyltj5Hb7lCLJ/Xb1n1ZTm
-         BeIWlBvSVA68C3EodS+vpObJfhUWTvPSVNHEQ34bjoVDBMcc1/Xf5DfNsgQt3WVP8fWH
-         akcoVT8ec7iUYYZuD41YvTa0aE+8HM2FT/LjfY8cHmP1eoKavXKyv4ErDwcd4/ENiwqx
-         dg6DTllM6iF4aQsSnpIUR+U8iWXlg5d+rMfX59DKVibi7kfvGcs76NcFs7off3N2IfvU
-         MK2lDdX7noOnSXeV0ZcZxPgTuW/6LQu+Lj7zp/+q1Gbx+TLAfPRRfFLducT98QKBZVfE
-         uv+g==
-X-Forwarded-Encrypted: i=1; AJvYcCUEKSz2i23NxfFAv52mrpkHxvIlnXHdziWAGtQsTSNnkOUUZehPVfrN9k2ZD4FevHhvJum47G3X8stMom2D@vger.kernel.org, AJvYcCWbhmrEwBNeMZsIL/YT4aFBk0MgLaEA2doANXb7D7zI1lh6dXgqBJYi+zKkqipKD+Bj6Svg/VWoAR3e@vger.kernel.org, AJvYcCWkYo8MIhPnhvzJWWNgdGc7oq1hWbijHrbt76szydS/epBLXUL+o33Vs1HT9vwXT/wkAdkBi3ll@vger.kernel.org
-X-Gm-Message-State: AOJu0YyH1MHLEDOeTvbDwjZcXKOC+41P4BC5YwVdhjVACpjRo1i0IT9v
-	Bwpmm9VkdrNqOpPeGe5NzysGHc6PCZkgbPvRzK17nEINCiLkiEwk
-X-Google-Smtp-Source: AGHT+IEy6tC7uqAZ4pS3b+sguhSutRynYB4np+NWTuUGQ8eZTjHHPdGuobH+qioA32CEFRedVnT7Dw==
-X-Received: by 2002:a17:903:32cd:b0:20b:6a57:bf3a with SMTP id d9443c01a7336-211d0d5b99amr184075665ad.1.1731918462011;
-        Mon, 18 Nov 2024 00:27:42 -0800 (PST)
-Received: from yclu-ubuntu.. (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-211d0ebbf9esm51883815ad.45.2024.11.18.00.27.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Nov 2024 00:27:41 -0800 (PST)
-From: Joey Lu <a0987203069@gmail.com>
-To: andrew+netdev@lunn.ch,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	mcoquelin.stm32@gmail.com,
-	richardcochran@gmail.com
-Cc: alexandre.torgue@foss.st.com,
-	joabreu@synopsys.com,
-	ychuang3@nuvoton.com,
-	schung@nuvoton.com,
-	yclu4@nuvoton.com,
-	peppe.cavallaro@st.com,
-	linux-arm-kernel@lists.infradead.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	openbmc@lists.ozlabs.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	Joey Lu <a0987203069@gmail.com>
-Subject: [PATCH v3 3/3] net: stmmac: dwmac-nuvoton: Add dwmac glue for Nuvoton MA35 family
-Date: Mon, 18 Nov 2024 16:27:07 +0800
-Message-Id: <20241118082707.8504-4-a0987203069@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241118082707.8504-1-a0987203069@gmail.com>
-References: <20241118082707.8504-1-a0987203069@gmail.com>
+        d=1e100.net; s=20230601; t=1731919297; x=1732524097;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=j8Tvpsfrzk7SMjxhB5HQe3fZdEwkv0xuam5EYzzOBvc=;
+        b=A8km8jt6WqXP/NqqEzZ99spbcBcHIb85RpdK2/V0aIm7lzsg9tiQi87OULnvDZuEXt
+         /baXI1McXKssTxuP64XBfgF1joKxCyoZbnT0wFzLdMtghzWPgzuMNsRxN08ZF5iVuXWs
+         z9wzz5T/Tj+Ip5opjltCi0/zdFRipVJT11f8Qt//QXVzu5tOQS53ouqXW/aJhpr8TR0/
+         QSdFBBUq2IHzagMIyRyL1hh6oMm33jaxnud6yqaSCamQ0+FRXZc+AzmoPOinsqxpq21W
+         Ca5he+P1bk+zxDouDT39oDgh4Dvo3oWdrfaS7S89qERlwf/xkgJ5G71VNeP07vwIRtaC
+         So/g==
+X-Forwarded-Encrypted: i=1; AJvYcCV99UDVD4na+1seZ1HVa9yN7YRSHcxfBAsY/9Gyfy0Pvl6N/DBab17VL9pROG8UdpEJf/UgIINHM6hT@vger.kernel.org
+X-Gm-Message-State: AOJu0YxLMIdaPki97wPGZq7HYmpitpDHO2psQHM1CXfiNBIpZI96vFlR
+	X2sfx15+0zeM4Rth1bCgGd+H7u41at9mJU2asHdxTLdK/B+PMEyRIU1/KMm/Br4=
+X-Google-Smtp-Source: AGHT+IHLztPJBVIbOkJ8ko5/mWh3cnmCv//JSLg3JlabTV27WX4ibS11rR1jLnjQujt+qU40R+nrNw==
+X-Received: by 2002:a05:6000:4814:b0:382:4a1b:16de with SMTP id ffacd0b85a97d-3824a1b19e2mr842207f8f.21.1731919297285;
+        Mon, 18 Nov 2024 00:41:37 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:ed47:520d:3d5c:3acf? ([2a01:e0a:982:cbb0:ed47:520d:3d5c:3acf])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3824a64d4ddsm765881f8f.34.2024.11.18.00.41.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 18 Nov 2024 00:41:36 -0800 (PST)
+Message-ID: <f4c33946-125b-459c-aa95-f34e7fb11185@linaro.org>
+Date: Mon, 18 Nov 2024 09:41:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v6 4/5] pinctrl: meson: Add driver support for Amlogic A4
+ SoCs
+To: Rob Herring <robh@kernel.org>
+Cc: Xianwei Zhao <xianwei.zhao@amlogic.com>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20241113-a4_pinctrl-v6-0-35ba2401ee35@amlogic.com>
+ <20241113-a4_pinctrl-v6-4-35ba2401ee35@amlogic.com>
+ <20241113180405.GA653353-robh@kernel.org>
+ <1764b1b4-336d-4ca5-ab21-8213691a9622@linaro.org>
+ <CAL_Jsq+2v7=egxakPKZ90j9wro+prn5FOjuCGwwsYB8M1GP+mQ@mail.gmail.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <CAL_Jsq+2v7=egxakPKZ90j9wro+prn5FOjuCGwwsYB8M1GP+mQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Add support for Gigabit Ethernet on Nuvoton MA35 series using dwmac driver.
+Hi Rob,
 
-Signed-off-by: Joey Lu <a0987203069@gmail.com>
----
- drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 ++
- drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
- .../ethernet/stmicro/stmmac/dwmac-nuvoton.c   | 180 ++++++++++++++++++
- 3 files changed, 192 insertions(+)
- create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c
+On 15/11/2024 18:14, Rob Herring wrote:
+> On Thu, Nov 14, 2024 at 3:21 AM Neil Armstrong
+> <neil.armstrong@linaro.org> wrote:
+>>
+>> On 13/11/2024 19:04, Rob Herring wrote:
+>>> On Wed, Nov 13, 2024 at 03:29:42PM +0800, Xianwei Zhao wrote:
+>>>> Add a new pinctrl driver for Amlogic A4 SoCs which share
+>>>> the same register layout as the previous Amlogic S4.
+>>>>
+>>>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>>>> ---
+>>>>    drivers/pinctrl/meson/Kconfig              |    6 +
+>>>>    drivers/pinctrl/meson/Makefile             |    1 +
+>>>>    drivers/pinctrl/meson/pinctrl-amlogic-a4.c | 1324 ++++++++++++++++++++++++++++
+>>>>    3 files changed, 1331 insertions(+)
+>>>>
+>>>> diff --git a/drivers/pinctrl/meson/Kconfig b/drivers/pinctrl/meson/Kconfig
+>>>> index cc397896762c..3e90bb5ec442 100644
+>>>> --- a/drivers/pinctrl/meson/Kconfig
+>>>> +++ b/drivers/pinctrl/meson/Kconfig
+>>>> @@ -67,6 +67,12 @@ config PINCTRL_MESON_S4
+>>>>       select PINCTRL_MESON_AXG_PMX
+>>>>       default y
+>>>>
+>>>> +config PINCTRL_AMLOGIC_A4
+>>>> +    tristate "Amlogic A4 SoC pinctrl driver"
+>>>> +    depends on ARM64
+>>>> +    select PINCTRL_MESON_AXG_PMX
+>>>> +    default y
+>>>> +
+>>>>    config PINCTRL_AMLOGIC_C3
+>>>>       tristate "Amlogic C3 SoC pinctrl driver"
+>>>>       depends on ARM64
+>>>> diff --git a/drivers/pinctrl/meson/Makefile b/drivers/pinctrl/meson/Makefile
+>>>> index 9e538b9ffb9b..c92a65a83344 100644
+>>>> --- a/drivers/pinctrl/meson/Makefile
+>>>> +++ b/drivers/pinctrl/meson/Makefile
+>>>> @@ -10,5 +10,6 @@ obj-$(CONFIG_PINCTRL_MESON_AXG) += pinctrl-meson-axg.o
+>>>>    obj-$(CONFIG_PINCTRL_MESON_G12A) += pinctrl-meson-g12a.o
+>>>>    obj-$(CONFIG_PINCTRL_MESON_A1) += pinctrl-meson-a1.o
+>>>>    obj-$(CONFIG_PINCTRL_MESON_S4) += pinctrl-meson-s4.o
+>>>> +obj-$(CONFIG_PINCTRL_AMLOGIC_A4) += pinctrl-amlogic-a4.o
+>>>>    obj-$(CONFIG_PINCTRL_AMLOGIC_C3) += pinctrl-amlogic-c3.o
+>>>>    obj-$(CONFIG_PINCTRL_AMLOGIC_T7) += pinctrl-amlogic-t7.o
+>>>> diff --git a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
+>>>> new file mode 100644
+>>>> index 000000000000..edc5f2ba2c8a
+>>>> --- /dev/null
+>>>> +++ b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
+>>>> @@ -0,0 +1,1324 @@
+>>>> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
+>>>> +/*
+>>>> + * Pin controller and GPIO driver for Amlogic A4 SoC.
+>>>> + *
+>>>> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
+>>>> + * Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>>>> + *         Huqiang Qin <huqiang.qin@amlogic.com>
+>>>> + */
+>>>> +
+>>>> +#include "pinctrl-meson.h"
+>>>> +#include "pinctrl-meson-axg-pmx.h"
+>>>> +#include <dt-bindings/gpio/amlogic-gpio.h>
+>>>> +
+>>>> +/* Standard port */
+>>>> +
+>>>> +#define GPIOE_0                             0
+>>>> +#define GPIOE_1                             1
+>>>> +
+>>>> +#define GPIOD_0                             2
+>>>> +#define GPIOD_1                             3
+>>>> +#define GPIOD_2                             4
+>>>> +#define GPIOD_3                             5
+>>>> +#define GPIOD_4                             6
+>>>> +#define GPIOD_5                             7
+>>>> +#define GPIOD_6                             8
+>>>> +#define GPIOD_7                             9
+>>>> +#define GPIOD_8                             10
+>>>> +#define GPIOD_9                             11
+>>>> +#define GPIOD_10                    12
+>>>> +#define GPIOD_11                    13
+>>>> +#define GPIOD_12                    14
+>>>> +#define GPIOD_13                    15
+>>>> +#define GPIOD_14                    16
+>>>> +#define GPIOD_15                    17
+>>>
+>>> The conversion from bank+index to a single index space seems less than
+>>> ideal, and looks like a work-around to fit into the existing driver from
+>>> a brief look at it.
+>>
+>> Not really, it simply adds a custom xlate per SoC, nothing particulary hacky.
+>>
+>> I was relunctant at first, but since Xianwei added the plumbing for a per-SoC
+>> xlate, then it was easy to add 3-cells support.
+>>
+>>>
+>>> If there's not really banks of GPIOs here, then DT shouldn't have them
+>>> either. The question is does anything need to know the bank number
+>>> and/or index? If it's only for human readability (and matching to
+>>> datasheet), then just something like this can be done:
+>>>
+>>> #define GPIOD(n) (2 + (n))
+>>
+>> There's no linear mapping possible, each set of gpios is grouped into logical
+>> "banks" per group of functions, and this grouping is also in the gpio controller
+>> register space.
+> 
+> v1 had just that. So it is possible. 
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-index 05cc07b8f48c..55d94f669be3 100644
---- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
-+++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-@@ -121,6 +121,17 @@ config DWMAC_MESON
- 	  the stmmac device driver. This driver is used for Meson6,
- 	  Meson8, Meson8b and GXBB SoCs.
- 
-+config DWMAC_NUVOTON
-+	tristate "Nuvoton MA35 dwmac support"
-+	default ARCH_MA35
-+	depends on OF && (ARCH_MA35 || COMPILE_TEST)
-+	select MFD_SYSCON
-+	help
-+	  Support for Ethernet controller on Nuvoton MA35 series SoC.
-+
-+	  This selects the Nuvoton MA35 series SoC glue layer support
-+	  for the stmmac device driver.
-+
- config DWMAC_QCOM_ETHQOS
- 	tristate "Qualcomm ETHQOS support"
- 	default ARCH_QCOM
-diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net/ethernet/stmicro/stmmac/Makefile
-index c2f0e91f6bf8..c08fcfdd7b31 100644
---- a/drivers/net/ethernet/stmicro/stmmac/Makefile
-+++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
-@@ -19,6 +19,7 @@ obj-$(CONFIG_DWMAC_IPQ806X)	+= dwmac-ipq806x.o
- obj-$(CONFIG_DWMAC_LPC18XX)	+= dwmac-lpc18xx.o
- obj-$(CONFIG_DWMAC_MEDIATEK)	+= dwmac-mediatek.o
- obj-$(CONFIG_DWMAC_MESON)	+= dwmac-meson.o dwmac-meson8b.o
-+obj-$(CONFIG_DWMAC_NUVOTON)	+= dwmac-nuvoton.o
- obj-$(CONFIG_DWMAC_QCOM_ETHQOS)	+= dwmac-qcom-ethqos.o
- obj-$(CONFIG_DWMAC_ROCKCHIP)	+= dwmac-rk.o
- obj-$(CONFIG_DWMAC_RZN1)	+= dwmac-rzn1.o
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c
-new file mode 100644
-index 000000000000..ac57384b393d
---- /dev/null
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c
-@@ -0,0 +1,180 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Nuvoton DWMAC specific glue layer
-+ *
-+ * Copyright (C) 2024 Nuvoton Technology Corp.
-+ *
-+ * Author: Joey Lu <yclu4@nuvoton.com>
-+ */
-+
-+#include <linux/mfd/syscon.h>
-+#include <linux/of_device.h>
-+#include <linux/of_net.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/stmmac.h>
-+
-+#include "stmmac.h"
-+#include "stmmac_platform.h"
-+
-+#define REG_SYS_GMAC0MISCR  0x108
-+#define REG_SYS_GMAC1MISCR  0x10C
-+
-+#define MISCR_RMII          BIT(0)
-+
-+/* 2000ps is mapped to 0 ~ 0xF */
-+#define PATH_DELAY_DEC      134
-+#define TX_DELAY_OFFSET     16
-+#define TX_DELAY_MASK       GENMASK(19, 16)
-+#define RX_DELAY_OFFSET     20
-+#define RX_DELAY_MASK       GENMASK(23, 20)
-+
-+struct nvt_priv_data {
-+	struct platform_device *pdev;
-+	struct regmap *regmap;
-+};
-+
-+static struct nvt_priv_data *
-+nuvoton_gmac_setup(struct platform_device *pdev, struct plat_stmmacenet_data *plat)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct nvt_priv_data *bsp_priv;
-+	phy_interface_t phy_mode;
-+	u32 tx_delay, rx_delay;
-+	u32 macid, arg, reg;
-+
-+	bsp_priv = devm_kzalloc(dev, sizeof(*bsp_priv), GFP_KERNEL);
-+	if (!bsp_priv)
-+		return ERR_PTR(-ENOMEM);
-+
-+	bsp_priv->regmap =
-+		syscon_regmap_lookup_by_phandle_args(dev->of_node, "nuvoton,sys", 1, &macid);
-+	if (IS_ERR(bsp_priv->regmap)) {
-+		dev_err(dev, "Failed to get sys register\n");
-+		return ERR_PTR(-ENODEV);
-+	}
-+	if (macid > 1) {
-+		dev_err(dev, "Invalid sys arguments\n");
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	if (of_property_read_u32(dev->of_node, "tx-internal-delay-ps", &arg)) {
-+		tx_delay = 0; /* Default value is 0 */
-+	} else {
-+		if (arg <= 2000) {
-+			tx_delay = (arg == 2000) ? 0xF : (arg / PATH_DELAY_DEC);
-+			dev_dbg(dev, "Set Tx path delay to 0x%x\n", tx_delay);
-+		} else {
-+			dev_err(dev, "Invalid Tx path delay argument.\n");
-+			return ERR_PTR(-EINVAL);
-+		}
-+	}
-+	if (of_property_read_u32(dev->of_node, "rx-internal-delay-ps", &arg)) {
-+		rx_delay = 0; /* Default value is 0 */
-+	} else {
-+		if (arg <= 2000) {
-+			rx_delay = (arg == 2000) ? 0xF : (arg / PATH_DELAY_DEC);
-+			dev_dbg(dev, "Set Rx path delay to 0x%x\n", rx_delay);
-+		} else {
-+			dev_err(dev, "Invalid Rx path delay argument.\n");
-+			return ERR_PTR(-EINVAL);
-+		}
-+	}
-+
-+	regmap_read(bsp_priv->regmap,
-+		    macid == 0 ? REG_SYS_GMAC0MISCR : REG_SYS_GMAC1MISCR, &reg);
-+	reg &= ~(TX_DELAY_MASK | RX_DELAY_MASK);
-+
-+	if (of_get_phy_mode(pdev->dev.of_node, &phy_mode)) {
-+		dev_err(dev, "missing phy mode property\n");
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	switch (phy_mode) {
-+	case PHY_INTERFACE_MODE_RGMII:
-+	case PHY_INTERFACE_MODE_RGMII_ID:
-+	case PHY_INTERFACE_MODE_RGMII_RXID:
-+	case PHY_INTERFACE_MODE_RGMII_TXID:
-+		reg &= ~MISCR_RMII;
-+		break;
-+	case PHY_INTERFACE_MODE_RMII:
-+		reg |= MISCR_RMII;
-+		break;
-+	default:
-+		dev_err(dev, "Unsupported phy-mode (%d)\n", phy_mode);
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	if (!(reg & MISCR_RMII)) {
-+		reg |= tx_delay << TX_DELAY_OFFSET;
-+		reg |= rx_delay << RX_DELAY_OFFSET;
-+	}
-+
-+	regmap_write(bsp_priv->regmap,
-+		     macid == 0 ? REG_SYS_GMAC0MISCR : REG_SYS_GMAC1MISCR, reg);
-+
-+	bsp_priv->pdev = pdev;
-+
-+	return bsp_priv;
-+}
-+
-+static int nuvoton_gmac_probe(struct platform_device *pdev)
-+{
-+	struct plat_stmmacenet_data *plat_dat;
-+	struct stmmac_resources stmmac_res;
-+	int ret;
-+
-+	ret = stmmac_get_platform_resources(pdev, &stmmac_res);
-+	if (ret)
-+		return ret;
-+
-+	plat_dat = devm_stmmac_probe_config_dt(pdev, stmmac_res.mac);
-+	if (IS_ERR(plat_dat))
-+		return PTR_ERR(plat_dat);
-+
-+	/* Nuvoton DWMAC configs */
-+	plat_dat->has_gmac = 1;
-+	plat_dat->tx_fifo_size = 2048;
-+	plat_dat->rx_fifo_size = 4096;
-+	plat_dat->multicast_filter_bins = 0;
-+	plat_dat->unicast_filter_entries = 8;
-+	plat_dat->flags &= ~STMMAC_FLAG_USE_PHY_WOL;
-+
-+	plat_dat->bsp_priv = nuvoton_gmac_setup(pdev, plat_dat);
-+	if (IS_ERR(plat_dat->bsp_priv)) {
-+		ret = PTR_ERR(plat_dat->bsp_priv);
-+		return ret;
-+	}
-+
-+	ret = stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
-+	if (ret)
-+		return ret;
-+
-+	/* We support WoL by magic packet, override pmt to make it work! */
-+	plat_dat->pmt = 1;
-+	dev_info(&pdev->dev, "Wake-Up On Lan supported\n");
-+	device_set_wakeup_capable(&pdev->dev, 1);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id nuvoton_dwmac_match[] = {
-+	{ .compatible = "nuvoton,ma35d1-dwmac"},
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, nuvoton_dwmac_match);
-+
-+static struct platform_driver nuvoton_dwmac_driver = {
-+	.probe  = nuvoton_gmac_probe,
-+	.remove_new = stmmac_pltfr_remove,
-+	.driver = {
-+		.name           = "nuvoton-dwmac",
-+		.pm		= &stmmac_pltfr_pm_ops,
-+		.of_match_table = nuvoton_dwmac_match,
-+	},
-+};
-+module_platform_driver(nuvoton_dwmac_driver);
-+
-+MODULE_AUTHOR("Joey Lu <yclu4@nuvoton.com>");
-+MODULE_DESCRIPTION("Nuvoton DWMAC specific glue layer");
-+MODULE_LICENSE("GPL v2");
--- 
-2.34.1
+Exact, it had just that like all the other amlogic pinctrl drivers since 2017,
+So I waited for the bindings to be reviewed as usual, but then the bindings
+were rejected.
+
+So here we are now, trying to not "using defines for GPIOs" as requested,
+and Xianwei tried his best and we agreed on this 3-cells solution which
+is much better designed on the bindings side and won't need anymore
+header file for future SoCs bindings which is a huge win.
+
+The small downside is a custom xlate function, but as I pointed, there's
+no linear mapping possible between banks, the current bindings with a
+set of defines for each gpio still requires a calculation to get the
+register/offset value, so this solution doesn't change much here.
+
+Requesting a gpio is a slow path, adding 2 comparisons and an addition
+is an acceptable cost to not add more header files in the future.
+
+Neil
+
+ > No one reviewed the driver then,> so I don't know if that was less than ideal on the driver side. But it
+> looks like that linear map was just moved from DT into the driver. Why
+> are there a bunch of defines creating a linear mapping? The xlate()
+> function just converts bank+index into a linear number. At some point
+> you need arrays of settings I suppose, but why do you need a #define
+> for every index? Why not an array per bank? I suppose you could use
+> the above define within the driver to at least not have a bunch of
+> defines.
+> 
+> Rob
 
 
