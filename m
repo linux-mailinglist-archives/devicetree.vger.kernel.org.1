@@ -1,118 +1,147 @@
-Return-Path: <devicetree+bounces-122482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FCFC9D0B49
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 09:57:44 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A805B9D0B5F
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 10:05:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 061D3282689
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 08:57:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1204CB21448
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 09:05:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD4DE15B0F2;
-	Mon, 18 Nov 2024 08:57:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF159176FB0;
+	Mon, 18 Nov 2024 09:05:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="mC/SRVKG";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="cI17NtaH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from fout-a7-smtp.messagingengine.com (fout-a7-smtp.messagingengine.com [103.168.172.150])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 039491547E8
-	for <devicetree@vger.kernel.org>; Mon, 18 Nov 2024 08:57:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E00882907;
+	Mon, 18 Nov 2024 09:05:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.150
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731920262; cv=none; b=KWRmnVuFgTMSO86Pbbt+W9dMoUWY6CEUnbq/74al375JOH+d/8Fm8vJ21GYOquHvBA1Nbx3FbvHrO/ZeLx6esYindYKRsS5v7OQfMmYJrYDe0NzxA536cO5Rybcbh4CXmKoELwpWaJj6mhv1AozdqMeFRXbs9RHt9nQjNvFksiE=
+	t=1731920712; cv=none; b=UtG261GJ+IQE0NSdnn7SffsoJtCcIJeRqRHhF61Fv+p8B0oSk1G0kJgzBU4ImMnUHxD9tAZD/H4TrHbR8RT1+3xVk2trO4b9rGAm8XYb4S9Vo97nY0vcgtMoJLNGRAAl99GGM6cdQtcRipR3ofd3+jr+SriZE09N/j7n1WBhwkY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731920262; c=relaxed/simple;
-	bh=pd0vV6YrjI+3YN9U+/SNmqU/0Mvbed6i2C/mZN+9+E8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WGGcvdB8zvNOg78F09isSfJ3uys21kQaa/5epDqdAQlBtI8VKd+vAT729RL8EqfYAqV/ruDIIXNMpDD2pZL2Eqy/cyJl0+H9zcbtYIgD1RaL7+M73txDiFlIX/jVc1KVZrVsPAOrrAxJP3RDefhfErk4a936UKqXm5JYwaMtEZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tCxZY-0001PD-DS; Mon, 18 Nov 2024 09:57:28 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tCxZW-001MYc-0f;
-	Mon, 18 Nov 2024 09:57:26 +0100
-Received: from pengutronix.de (pd9e59fec.dip0.t-ipconnect.de [217.229.159.236])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 529B0375F45;
-	Mon, 18 Nov 2024 08:55:32 +0000 (UTC)
-Date: Mon, 18 Nov 2024 09:55:32 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Sean Nyekjaer <sean@geanix.com>
-Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH can-next v5 0/2] can: tcan4x5x: add option for selecting
- nWKRQ voltage
-Message-ID: <20241118-horned-beautiful-finch-db5770-mkl@pengutronix.de>
-References: <20241114-tcan-wkrqv-v5-0-a2d50833ed71@geanix.com>
+	s=arc-20240116; t=1731920712; c=relaxed/simple;
+	bh=+s588WJ4gk9wbw75TVV+RheBWqaKRkOZn+a+pEIAwX4=;
+	h=MIME-Version:Date:From:To:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=eJ2nNorpJvDhtSAnhk4lxQ8elvFaB6+M7fyKO5BQD6hZyyFF5VZ6T+XvIQRDMwKKASjd/FAsySSPapG1XVPvZsvs2OhgmXSR2HRgvtjfgCwcPdjNpRYxv0OQhImgSX7GrK43IlXY4f6Dnt4CM80qG/HF6z/UGHMXh7rg1ldGDx4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=mC/SRVKG; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=cI17NtaH; arc=none smtp.client-ip=103.168.172.150
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from phl-compute-10.internal (phl-compute-10.phl.internal [10.202.2.50])
+	by mailfout.phl.internal (Postfix) with ESMTP id C9979138070D;
+	Mon, 18 Nov 2024 04:05:08 -0500 (EST)
+Received: from phl-imap-11 ([10.202.2.101])
+  by phl-compute-10.internal (MEProxy); Mon, 18 Nov 2024 04:05:08 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:content-transfer-encoding:content-type:content-type:date:date
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm3; t=1731920708;
+	 x=1732007108; bh=gf4HA4MAdbhLcSvM8TnDWCU5nuBOYRd+UnKEWXA6Tls=; b=
+	mC/SRVKGvsslm21o20Z5VIyi1gQ6PypC3svwUI6xeYW3iBshmejaNdekK5xf0/Hn
+	Vr54P/doV/GkiRhEEtYSJFqDjZc2gspn9wYVX9Bmc+HNfwhvP/8oiHRa+bjEP6vP
+	2TAZGQ1UY59Ede2j6zhrawLwgUZyk6mGE23etSPEhLns9gdw/6ZgPAcn/zt6uYgf
+	LIq/Y6R44EquJh9i58G2fElo0IIMfKIm7jMsPbuIb/+5svyd1ctq/YyRtx55PfUW
+	i1lGekmsHlK1MREs6NlkZoXLN0IRYvZMXcTuE/BOtU+oWhtT+YOfarKiXceWQO1e
+	XR7rz8tiMxqV6yU+DCJkQg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:content-transfer-encoding:content-type
+	:content-type:date:date:feedback-id:feedback-id:from:from
+	:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
+	:x-me-sender:x-sasl-enc; s=fm3; t=1731920708; x=1732007108; bh=g
+	f4HA4MAdbhLcSvM8TnDWCU5nuBOYRd+UnKEWXA6Tls=; b=cI17NtaHx6pDVnb06
+	SUikQtCpalUARm7oJK3+za00Xv2XSAbc6nbQWUhSEMzT4JhfXKSZxQ+W5phg9F4S
+	Jgu6zIdVKibt4rTiDHcGQxfOqgGoMhKKel6c4pRYY9XK3C2igRwFSJQPKrxjFmST
+	jI8jc0zJ1sj6ddvxC4PaFY99re+xaNg6xHkRcpVxfxIiekQAW6ql/56VChx3Enzj
+	1GTllnaXt1pib6qhIsEk7jL4Ece6F8M9pgmaHy5oOC6Zi0VxLKmFQIk4X2Cze1Aw
+	EwK4w3ZvIIyT4NrHiz7q2VJn1fZvyVeeig1iBH5CU9cR+u7OaEgAYVd+RCNihMgl
+	n5lSw==
+X-ME-Sender: <xms:QwM7Z5e-BLKlUy6vneE6wXTvk0vIZrY5PNL9yM_KIpmsFJqg64Q8qQ>
+    <xme:QwM7Z3PsavxoblcxLEK8JGlXkzl_wz4nHSEtibptCih1YXZJHFqfXRME2Hsh0Vcey
+    zt2J39BHSLm1m9rto4>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrvdelgdduvdejucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
+    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
+    htshculddquddttddmnecujfgurhepofggfffhvffkjghfufgtgfesthejredtredttden
+    ucfhrhhomhepfdetrhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdrug
+    gvqeenucggtffrrghtthgvrhhnpefhkeeltdfffefhgffhteetheeuhffgteeghfdtueef
+    udeuleetgfehtdejieffhfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmh
+    grihhlfhhrohhmpegrrhhnugesrghrnhgusgdruggvpdhnsggprhgtphhtthhopedufedp
+    mhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepjhgrtghkhigptghhohhusegrshhpvg
+    gvughtvggthhdrtghomhdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtrdhn
+    vghtpdhrtghpthhtohepvgguuhhmrgiivghtsehgohhoghhlvgdrtghomhdprhgtphhtth
+    hopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgu
+    theskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhusggrsehkvghrnhgvlhdrohhrgh
+    dprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghnughr
+    vgifodhnvghtuggvvheslhhunhhnrdgthhdprhgtphhtthhopehprdiirggsvghlsehpvg
+    hnghhuthhrohhnihigrdguvg
+X-ME-Proxy: <xmx:QwM7ZyhXWjWwuzAyeJhvSyzkoOA9KW09C6TAiJUyJmpq5GdwXGQjHg>
+    <xmx:QwM7Zy94iC8McJYeioPwCoyzH8mqayiLyLatgUEmeE31BZGLpXdKAA>
+    <xmx:QwM7Z1sqraKGDKRBfuMwShDVaI7ZOyyVKAhENwLGNp4syP0f7G2j_A>
+    <xmx:QwM7ZxFnk07XbJDlrGWBqTPWGtCc7c4unC4UDac_HbYXhv6efCTdBA>
+    <xmx:RAM7Z-Gwjz9sEbnLXhN_Ic0w5Iv_U9X5XxsEh8XfQlBlN5ZUJOSLJjNU>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id 77F842220071; Mon, 18 Nov 2024 04:05:07 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ef4k4v6jgw3outty"
-Content-Disposition: inline
-In-Reply-To: <20241114-tcan-wkrqv-v5-0-a2d50833ed71@geanix.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Date: Mon, 18 Nov 2024 10:04:37 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Jacky Chou" <jacky_chou@aspeedtech.com>,
+ "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
+ "David S . Miller" <davem@davemloft.net>,
+ "Eric Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>,
+ "Paolo Abeni" <pabeni@redhat.com>, "Rob Herring" <robh@kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "Philipp Zabel" <p.zabel@pengutronix.de>, Netdev <netdev@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Message-Id: <e0ad34dc-cc11-428e-8bf0-c764612452e0@app.fastmail.com>
+In-Reply-To: 
+ <SEYPR06MB51341859052E393D404F4E519D272@SEYPR06MB5134.apcprd06.prod.outlook.com>
+References: <20241118060207.141048-1-jacky_chou@aspeedtech.com>
+ <20241118060207.141048-6-jacky_chou@aspeedtech.com>
+ <4b1a9090-4134-4f77-a380-5ead03fd8ba8@app.fastmail.com>
+ <SEYPR06MB51341859052E393D404F4E519D272@SEYPR06MB5134.apcprd06.prod.outlook.com>
+Subject: Re: [net-next v2 5/7] net: ftgmac100: add pin strap configuration for AST2700
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
 
+On Mon, Nov 18, 2024, at 08:51, Jacky Chou wrote:
+ 
+>> Is there a way to probe the presence of 64-bit addressing from hardware
+>> registers? That would be nicer than triggering it from the compatible string,
+>> given that any future SoC is likely also 64-bit.
 
---ef4k4v6jgw3outty
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH can-next v5 0/2] can: tcan4x5x: add option for selecting
- nWKRQ voltage
-MIME-Version: 1.0
+I just realized I replied to the wrong email, I meant to send
+my question as a reply to patch 4/7. The patch for the pin strap
+looks fine.
 
-On 14.11.2024 10:14:48, Sean Nyekjaer wrote:
-> This series adds support for setting the nWKRQ voltage.
->=20
-> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+> There is no register indicated about 64-bit address support in the 
+> ftgmac100 of Aspeed 7th generation. Therefore, we use the compatible
+> to configure pin strap and DMA mask.
 
-Applied to linux-can-next.
+Later in the series you just unconditionally write the 64-bit
+address, so it appears that the ftgmac100 can actually do
+64-bti addressing all along, and this doesn't have to be
+conditional at all, the call to dma_set_mask_and_coherent()
+only tells the kernel that the device can do it, which should
+work on all of them. Since the other devices won't have a
+larger "dma-ranges" configuration in DT, and no RAM above
+32-bit addressing, it should have no effect.
 
-Thanks,
-Marc
+Just make that part in patch 5 unconditional.
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---ef4k4v6jgw3outty
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmc7AQEACgkQKDiiPnot
-vG/Jnwf+IKkLE3rizG6Qj6BPTfBWTmEaePsRJxFn2dCItaRyYi/bfnNydXTIEuh7
-Z4lbHefEAjLp1pqTfPOwtfxdXjabd3ocvswOeRaMr1Zv2A/VZ2JRqeOtg3nYd97E
-4khcEkwQXR0bWb4Fch+lwkKldvNOTxSY/QUC9eCN0hvJ5aeVCjxC35UykuJ8HN/j
-DF8l/vesXXO2RhXpxMF6nrr86LuGV+S6pHQvNPvmJ0whBOdmIraMnTRsyftnrNIQ
-GQFUGxRNyVbmpcP4pOzPIc2vwAFHK4xG5HRVh/Xisa9XeKkFhjd8U9B+y4gPL16o
-mrYYnEb+I+0c/xBAY5yV0bnRIh3Ayg==
-=BsHD
------END PGP SIGNATURE-----
-
---ef4k4v6jgw3outty--
+     Arnd
 
