@@ -1,212 +1,159 @@
-Return-Path: <devicetree+bounces-122556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55D159D1163
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 14:06:53 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4C329D1174
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 14:09:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D1E0F1F234DC
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 13:06:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6C3E0B27119
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 13:09:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CB471B654E;
-	Mon, 18 Nov 2024 13:04:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0E2C154426;
+	Mon, 18 Nov 2024 13:08:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TfscZ4B8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HmPCodLv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B15351B3938;
-	Mon, 18 Nov 2024 13:04:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ED8B1E49B;
+	Mon, 18 Nov 2024 13:08:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731935068; cv=none; b=RZjMeYT+s57wuha+Lj5c+T2saWZ3i/fEIXtNbW5kp5mCV5cwf27ea/ffsb/BnIG7miZi+9+9Glcbkez96QouaAiCRSnKYAS7pPlfGbQ/MhO/x7YsFiAlymILH+kQRGDIH8fkzEEPQUfL53xDLTKuv261S62avX1Gr9bYb3b12Bs=
+	t=1731935334; cv=none; b=Rg/zXkykzoWhu4AV1Jd7VRPwEys5rsnD9DPBWsg7lmNuzEdjUesci0R7NGON650NWPElr8mTVB6Is3w6FmvOIKzgtw4J+n8KmfEiME/TQsWFXjGatFKWWi+kZujmQev/uslfXbYNOVHKSZTXogn3kqThkuwPMBSUvfxrBoYcwTY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731935068; c=relaxed/simple;
-	bh=bHps3WNDpf4wtu/Pqk7zjhN/mBMIOF1lKs5VFmu9u9Q=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=I7BEJTHJdY3l8y3RYIKnZGjqhwmQqiKYQCYXgN2qiwWkABmr1oE5gMlVvs5oaojMIHruwnVqsFVV0MNLFAX8kg17wehg/rUW68/ke3TiKpHG+nWTHtxIduXWee6WKe8ECrESdTq83SnwUiqZS4fmObWNt/yqnAp64bpQTkO6hQg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TfscZ4B8; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AI5SqJZ032232;
-	Mon, 18 Nov 2024 13:04:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=T30O+9myPPkP/Wa/PgxrV4
-	Tzfo1X6Ho4GxNcxwpxKwg=; b=TfscZ4B8i1e4pafSwRBZ+q5IlIYmVg2gJGFCIF
-	eR2SYpIQNMXuU7bea22MMFwKXyclf2AX/ri+MQ/cRUNRuMCNeX22IKN5ShPop2gt
-	CxwrgwY3ztwMTLIU8cg1AQHICOQfHpTcgrQ52IDX+k97zfHxaU0AoyQneSrMMScx
-	/lJ3pYoiA7AZnzdktHu0refDv5qjakOQuLuzLCUqjtLWZci+1UX0NZPcjvsyVMwP
-	dOZRQmIvEhVjN6sNY6ArUtQG8PNkd7d8p9Nrbxf2AOQumRU8Q2GzDHMiRnLs3WYd
-	k0kWsvShOF+L8bdz8xgsfReH2YQJuSngzm2qbBm4MsKIlkbg==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42xkv9vr87-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 18 Nov 2024 13:04:21 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AID4Kga004615
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 18 Nov 2024 13:04:20 GMT
-Received: from hu-lxu5-sha.qualcomm.com (10.80.80.8) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 18 Nov 2024 05:04:15 -0800
-From: Ling Xu <quic_lxu5@quicinc.com>
-To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <quic_kuiw@quicinc.com>, <quic_ekangupt@quicinc.com>, <kernel@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Ling Xu
-	<quic_lxu5@quicinc.com>
-Subject: [PATCH v2] arm64: qcom: qcs8300: Add ADSP and CDSP0 fastrpc nodes
-Date: Mon, 18 Nov 2024 18:33:43 +0530
-Message-ID: <20241118130343.3675277-1-quic_lxu5@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1731935334; c=relaxed/simple;
+	bh=HzQVcMEu/w6/YCCfncF8ljt72py1cVuCfnwesEoiDQo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uP/VF1UeujbgY23Kz1OhpcAVZ1V23bChfSzkS5XB8ZsfalXq+7dEYwlkneR7wDIRDA3dHEHM6Dn26f9xqpgSaL8XT2XyIBmQPSiwOaZ/JfjgMB7Exq+oG+Z16CMdafcYyiiURJeRBd620zF99pePNhoUx1gtgiEsxUzDKcDaodI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HmPCodLv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79442C4CED0;
+	Mon, 18 Nov 2024 13:08:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731935334;
+	bh=HzQVcMEu/w6/YCCfncF8ljt72py1cVuCfnwesEoiDQo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=HmPCodLvAM2mfqSr9Okjuq8iZqMlsiEye0sO/guWVcBWVoZs+sPvA5CiAw6bog4X0
+	 mh6l47DWBglsNNtT5g5w8SHLxo5rqFOHT0s9P/271Ee4EERKYSGdBJQeOXG+/mRLdr
+	 pG7EP9eILymffWjECadMwxXpa5xDADRbLgpYClIco/wSCrvMEo8yqJ0u3/wBADZf2e
+	 qc09Oh2k90EL64rXSJNMVn3OCKzaprPdNyyoIyQiWupl56RnZCITFuBtEfW5pgf6jg
+	 MtEAV5U6St4kmMNfV0YI1Ac7NSNEpGtbbspyDrzipyCcnaQBXQT8Gt6tZc/iHmVzOY
+	 3IF/mC5uwWtwg==
+Message-ID: <d1679678-8996-4484-bcf4-d4eaa6f009a4@kernel.org>
+Date: Mon, 18 Nov 2024 15:08:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: aarM-fHQTxaFn61KrAmeOn8XPfAQfcKa
-X-Proofpoint-ORIG-GUID: aarM-fHQTxaFn61KrAmeOn8XPfAQfcKa
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
- mlxlogscore=682 priorityscore=1501 lowpriorityscore=0 adultscore=0
- spamscore=0 suspectscore=0 impostorscore=0 clxscore=1015 mlxscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411180109
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: ti/omap: gta04: fix pm issues caused by spi
+ module
+To: Andreas Kemnade <andreas@kemnade.info>, Tony Lindgren <tony@atomide.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ hns@goldelico.com, linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, aaro.koskinen@iki.fi, khilman@baylibre.com,
+ stable@vger.kernel.org
+References: <20241107225100.1803943-1-andreas@kemnade.info>
+ <b26c1fa8-b3b7-4aa9-bc78-793ddfa3bc6b@kernel.org>
+ <20241108184118.5ee8114c@akair> <20241111150953.GA23206@atomide.com>
+ <20241111193117.5a5f5ecb@akair> <20241111234604.66a9691b@akair>
+ <20241116212734.30f5d35b@akair>
+Content-Language: en-US
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20241116212734.30f5d35b@akair>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add ADSP and CDSP0 fastrpc nodes for QCS8300 platform.
 
-Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
----
-This patch depends on patch https://lore.kernel.org/all/20240904-qcs8300_initial_dtsi-v1-0-d0ea9afdc007@quicinc.com/#t
-Changes since v1:
- - Remove duplicate cdsp fastrpc nodes
- - Add adsp memory-region and vmids
----
- arch/arm64/boot/dts/qcom/qcs8300.dtsi | 81 +++++++++++++++++++++++++++
- 1 file changed, 81 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-index 2c35f96c3f28..fdfec15f606e 100644
---- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-@@ -5,6 +5,7 @@
- 
- #include <dt-bindings/clock/qcom,qcs8300-gcc.h>
- #include <dt-bindings/clock/qcom,rpmh.h>
-+#include <dt-bindings/firmware/qcom,scm.h>
- #include <dt-bindings/interconnect/qcom,icc.h>
- #include <dt-bindings/interconnect/qcom,qcs8300-rpmh.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-@@ -762,6 +763,38 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
- 
- 				label = "lpass";
- 				qcom,remote-pid = <2>;
-+
-+				fastrpc {
-+					compatible = "qcom,fastrpc";
-+					qcom,glink-channels = "fastrpcglink-apps-dsp";
-+					label = "adsp";
-+					memory-region = <&adsp_rpc_remote_heap_mem>;
-+					qcom,vmids = <QCOM_SCM_VMID_LPASS
-+						      QCOM_SCM_VMID_ADSP_HEAP>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					compute-cb@3 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <3>;
-+						iommus = <&apps_smmu 0x2003 0x0>;
-+						dma-coherent;
-+					};
-+
-+					compute-cb@4 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <4>;
-+						iommus = <&apps_smmu 0x2004 0x0>;
-+						dma-coherent;
-+					};
-+
-+					compute-cb@5 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <5>;
-+						iommus = <&apps_smmu 0x2005 0x0>;
-+						dma-coherent;
-+					};
-+				};
- 			};
- 		};
- 
-@@ -1361,6 +1394,54 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
- 
- 				label = "cdsp";
- 				qcom,remote-pid = <5>;
-+
-+				fastrpc {
-+					compatible = "qcom,fastrpc";
-+					qcom,glink-channels = "fastrpcglink-apps-dsp";
-+					label = "cdsp";
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					compute-cb@1 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <1>;
-+						iommus = <&apps_smmu 0x19c1 0x0440>,
-+							 <&apps_smmu 0x1dc1 0x0440>,
-+							 <&apps_smmu 0x1961 0x0400>,
-+							 <&apps_smmu 0x1d61 0x0400>;
-+						dma-coherent;
-+					};
-+
-+					compute-cb@2 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <2>;
-+						iommus = <&apps_smmu 0x19c2 0x0440>,
-+							 <&apps_smmu 0x1dc2 0x0440>,
-+							 <&apps_smmu 0x1962 0x0400>,
-+							 <&apps_smmu 0x1d62 0x0400>;
-+						dma-coherent;
-+					};
-+
-+					compute-cb@3 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <3>;
-+						iommus = <&apps_smmu 0x19c3 0x0440>,
-+							 <&apps_smmu 0x1dc3 0x0440>,
-+							 <&apps_smmu 0x1963 0x0400>,
-+							 <&apps_smmu 0x1d63 0x0400>;
-+						dma-coherent;
-+					};
-+
-+					compute-cb@4 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <4>;
-+						iommus = <&apps_smmu 0x19c4 0x0440>,
-+							 <&apps_smmu 0x1dc4 0x0440>,
-+							 <&apps_smmu 0x1964 0x0400>,
-+							 <&apps_smmu 0x1d64 0x0400>;
-+						dma-coherent;
-+					};
-+				};
- 			};
- 		};
- 	};
+On 16/11/2024 22:27, Andreas Kemnade wrote:
+> Am Mon, 11 Nov 2024 23:46:04 +0100
+> schrieb Andreas Kemnade <andreas@kemnade.info>:
+> 
+>> Am Mon, 11 Nov 2024 19:31:17 +0100
+>> schrieb Andreas Kemnade <andreas@kemnade.info>:
+>>
+>>> Am Mon, 11 Nov 2024 17:09:53 +0200
+>>> schrieb Tony Lindgren <tony@atomide.com>:
+>>>   
+>>>> * Andreas Kemnade <andreas@kemnade.info> [241108 17:41]:    
+>>>>> They are not used, if they are just disabled, kernel does not touch
+>>>>> them, so if it is there, the kernel can handle
+>>>>> pm. At least as long as it is not under ti,sysc.
+>>>>>
+>>>>> There are probably cleaner solutions for this, but for a CC: stable I
+>>>>> would prefer something less invasive.      
+>>>>
+>>>> For unused devices, it's best to configure things to use ti-sysc, and
+>>>> then set status disabled (or reserved) for the child devices only. This
+>>>> way the parent interconnect target module is PM runtime managed by
+>>>> Linux, and it's power domain gets properly idled for the unused devices
+>>>> too.
+>>>>     
+>>> Hmm, we also have omap_hwmod_setup_all() which is still called if
+>>> without device nodes being available.
+>>>
+>>> Converting mcspi to ti-sysc is more than 100 lines. So it does not
+>>> qualify for stable.
+>>>   
+>>>>> I can try a ti-sysc based fix in parallel.      
+>>>>
+>>>> Yeah that should be trivial hopefully :)
+>>>>     
+>>> I played around, got pm issues too, tried to force-enable things (via
+>>> power/control),
+>>> watched CM_IDLEST1_CORE and CM_FCLKEN1_CORE, they behave. Bits are set
+>>> or reset.
+>>>
+>>> but not CM_IDLEST_CKGEN, it is 0x209 instead of 0x1.
+>>>
+>>> I test from initramfs, so no mmc activity involved
+>>>
+>>> removing status = "disabled" from mcspi3 solves things.
+>>> With and without ti-sysc conversion. removing status = "disabled" from
+>>> mcspi4 seems not to help.
+>>>
+>>> That all cannot be... I will retry tomorrow.
+>>>   
+>> well, I tried a bit further:
+>> I build the omap spi driver as module.
+>> and booted With mcspi3 not disabled and no module autoload.
+>>
+>> without module loaded: pm bad, same as with mcspi3 disabled
+>> with module loaded: core pm ok
+>> with module loaded and unloaded: core pm ok.
+>>
+>> so at least a trace.
+>>
+> ok, I am a bit further.
+> mcspi is per default in slave mode, setting it to master solves issues.
+> And that happens when the driver is probed because its default is
+> master.
+> Having the pins muxed as mode 7 also helps or selecting a pulldown for
+> cs. (cs is active high per default!)
+> switching to pullup does not harm once the spi module is off, but having
+> active cs seems to prevent idling despite CM_IDLEST1_CORE
+> not showing it.
+> 
+> History: u-boot muxes McSPI3, because it can be available on an
+> optionally fitted pin header. But there is no user known (would need
+> a dtb overlay anyways). So I will rather mux to mode 7.
+
+I'm sorry I didn't fully understand the problem.
+
+So, u-boot configures pinmux for McSPI3 and enables McSPI3 as well
+but fails to disable it properly?
+And because McSPI3 is in slave mode and CS is active it fails to
+transition to idle in Linux?
+
+So isn't this a u-boot issue?
+
 -- 
-2.34.1
+cheers,
+-roger
 
 
