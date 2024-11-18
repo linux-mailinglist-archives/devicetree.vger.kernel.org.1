@@ -1,176 +1,176 @@
-Return-Path: <devicetree+bounces-122612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 169AF9D1473
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 16:28:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9D529D1434
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 16:15:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6A037B26C3A
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 15:14:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21740284DC2
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 15:15:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A94A91B85D3;
-	Mon, 18 Nov 2024 15:13:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jP2eA5+c"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DCE71ADFED;
+	Mon, 18 Nov 2024 15:14:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 768A11A0B0C;
-	Mon, 18 Nov 2024 15:13:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58ED31AC45F
+	for <devicetree@vger.kernel.org>; Mon, 18 Nov 2024 15:14:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731942837; cv=none; b=VrEn3k8Yew/Y1NHAEY0RZ6OPDDKljS6zly1CvsolPBZaNvn/JbJTjQfsHRSfVW7b4AXC5hEEd0QwQcVaeBUhYNfLZhlVr4EF+/sTz8O5CpBFUVBFpFJS0kcbkLsCmsDkaTGFUxhuKY5GFHCyfmn3HBE8Sc2wZzCIVSKiWbldtSs=
+	t=1731942871; cv=none; b=D2gyAtdKZ/TotT5xRBFNPOlVYJtaMSOtc1iCuLSdkHM+T54E+AsdYy1jFA6PDZEzg/LndKo+h9YY2Xvc5GmKqK9ft0+ZIlCQx7E0FLXKJh8NRtQ2VzYu4SBMgJ5VqOOjjtVo6US4f8XvAgdTIxIBNzXnQyhJRmaAT02AicxICwQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731942837; c=relaxed/simple;
-	bh=nwxs+Pgok1iHmZED1hS62HGL3ECEC031zlEfZR7ZHho=;
+	s=arc-20240116; t=1731942871; c=relaxed/simple;
+	bh=mBqnyF8F99Ri8pipwkHs2XCwUZan8IXCijA7+v397NQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=esD/0zPNp5xNLBaLnGgImk/tMtaHtAuoDkeLt3JHsXZBb1qdNKIsa9MAcMqMmRNl/C6LTOCkSryEcsSBihEmkpbxR9BFHtQz/UbNuSX+rBIffIzhsPsxZxiTCcFoyPHAU3eYjQnyzqhtKo5/4WWvQJQBAdj41FKbLkOV0lF83Uk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jP2eA5+c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 159B2C4CED8;
-	Mon, 18 Nov 2024 15:13:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1731942837;
-	bh=nwxs+Pgok1iHmZED1hS62HGL3ECEC031zlEfZR7ZHho=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jP2eA5+ci4UjL6ymsR6d2tyOR/JgT46yIx8n+s706GKfYUN1/Qv0utpLtKSX6OkWU
-	 jkJBQp8uzK/Wv9JVUlWR0uV1JoPAQc9oka7V6VHBG2jRb8Dr5jzbd5o51a/WX6Fe7Z
-	 yqcj7rq2Wbswn+BN56l1jDTFlDLhSN/iWEnGGsULbts6Z5ETtuEBdh3LewbSPxaq6N
-	 axXqoTcYFt4Dt1RONCzl40/+u3wrIXSbuWTXeE4Yt9vCfPrw2TgDXlXesAGwl/oIrW
-	 9E2c3Ka8Zx4mXZzPWbEP2IeaRQzEiXRlZtWQOIcqJ7aDrviErXdBTK55NrVv7fqSb4
-	 tO08QlSrTY08g==
-Date: Mon, 18 Nov 2024 16:13:47 +0100
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Elliot Berman <quic_eberman@quicinc.com>
-Cc: Stephen Boyd <swboyd@chromium.org>, Andy Yan <andy.yan@rock-chips.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Olof Johansson <olof@lixom.net>, Rob Herring <robh@kernel.org>,
-	Sebastian Reichel <sre@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Will Deacon <will@kernel.org>, cros-qcom-dts-watchers@chromium.org,
-	Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
-	Melody Olvera <quic_molvera@quicinc.com>,
-	Shivendra Pratap <quic_spratap@quicinc.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v6 3/5] firmware: psci: Read and use vendor reset types
-Message-ID: <ZztZq1ksXCkyLOvj@lpieralisi>
-References: <20241018-arm-psci-system_reset2-vendor-reboots-v6-0-50cbe88b0a24@quicinc.com>
- <20241018-arm-psci-system_reset2-vendor-reboots-v6-3-50cbe88b0a24@quicinc.com>
- <CAE-0n515sUkmTWptgY8pOaMDBPfDp5pZBy9Nby+4cMdMAnAZfA@mail.gmail.com>
- <20241023092251529-0700.eberman@hu-eberman-lv.qualcomm.com>
- <ZzdOOP0KuMMdo64W@lpieralisi>
- <20241115101401666-0800.eberman@hu-eberman-lv.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=LxFy2O483M1LtI827jU+7fZat89RiRxHm53j9Bn/Lv4bN5G2wgbfCPv9rh5CSt+FFTAy1nmGDSCFHy0U2IPfFkw3F3lpNbl/agS7czrcVv0xOlglaoopLzGbfjnH6MjwY2289n68dgbbMLHnvbWrxJz9TFia9QThfO8KJgKvF1w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tD3S7-0003Be-RU; Mon, 18 Nov 2024 16:14:11 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tD3S6-001PyT-20;
+	Mon, 18 Nov 2024 16:14:10 +0100
+Received: from pengutronix.de (pd9e59fec.dip0.t-ipconnect.de [217.229.159.236])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 35B103765CD;
+	Mon, 18 Nov 2024 15:14:10 +0000 (UTC)
+Date: Mon, 18 Nov 2024 16:14:09 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Sean Nyekjaer <sean@geanix.com>
+Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH can-next v5 2/2] can: tcan4x5x: add option for selecting
+ nWKRQ voltage
+Message-ID: <20241118-impetuous-mackerel-of-glamour-f482ed-mkl@pengutronix.de>
+References: <20241114-tcan-wkrqv-v5-0-a2d50833ed71@geanix.com>
+ <20241114-tcan-wkrqv-v5-2-a2d50833ed71@geanix.com>
+ <clwiowhd5jwf7uzbcbexelsspdpflqhshq6ev5wsabhuugemlp@bbktuqgjd2gg>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="5lc3tcsgin2oixnj"
 Content-Disposition: inline
-In-Reply-To: <20241115101401666-0800.eberman@hu-eberman-lv.qualcomm.com>
+In-Reply-To: <clwiowhd5jwf7uzbcbexelsspdpflqhshq6ev5wsabhuugemlp@bbktuqgjd2gg>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Fri, Nov 15, 2024 at 11:08:22AM -0800, Elliot Berman wrote:
-> On Fri, Nov 15, 2024 at 02:35:52PM +0100, Lorenzo Pieralisi wrote:
-> > On Wed, Oct 23, 2024 at 09:30:21AM -0700, Elliot Berman wrote:
-> > > On Fri, Oct 18, 2024 at 10:42:46PM -0700, Stephen Boyd wrote:
-> > > > Quoting Elliot Berman (2024-10-18 12:39:48)
-> > > > > diff --git a/drivers/firmware/psci/psci.c b/drivers/firmware/psci/psci.c
-> > > > > index 2328ca58bba6..60bc285622ce 100644
-> > > > > --- a/drivers/firmware/psci/psci.c
-> > > > > +++ b/drivers/firmware/psci/psci.c
-> > > > > @@ -29,6 +29,8 @@
-> > > > >  #include <asm/smp_plat.h>
-> > > > >  #include <asm/suspend.h>
-> > > > >
-> > > > > +#define REBOOT_PREFIX "mode-"
-> > > > 
-> > > > Maybe move this near the function that uses it.
-> > > > 
-> > > > > +
-> > > > >  /*
-> > > > >   * While a 64-bit OS can make calls with SMC32 calling conventions, for some
-> > > > >   * calls it is necessary to use SMC64 to pass or return 64-bit values.
-> > > > > @@ -305,9 +315,29 @@ static int get_set_conduit_method(const struct device_node *np)
-> > > > >         return 0;
-> > > > >  }
-> > > > >
-> > > > > +static void psci_vendor_sys_reset2(unsigned long action, void *data)
-> > > > > +{
-> > > > > +       const char *cmd = data;
-> > > > > +       unsigned long ret;
-> > > > > +       size_t i;
-> > > > > +
-> > > > > +       for (i = 0; i < num_psci_reset_params; i++) {
-> > > > > +               if (!strcmp(psci_reset_params[i].mode, cmd)) {
-> > > > > +                       ret = invoke_psci_fn(PSCI_FN_NATIVE(1_1, SYSTEM_RESET2),
-> > > > > +                                            psci_reset_params[i].reset_type,
-> > > > > +                                            psci_reset_params[i].cookie, 0);
-> > > > > +                       pr_err("failed to perform reset \"%s\": %ld\n",
-> > > > > +                               cmd, (long)ret);
-> > > > 
-> > > > Do this intentionally return? Should it be some other function that's
-> > > > __noreturn instead and a while (1) if the firmware returns back to the
-> > > > kernel?
-> > > > 
-> > > 
-> > > Yes, I think it's best to make sure we fall back to the architectural
-> > > reset (whether it's the SYSTEM_RESET or architectural SYSTEM_RESET2)
-> > > since device would reboot then.
-> > 
-> > Well, that's one of the doubts I have about enabling this code. From
-> > userspace we are requesting a reboot (I don't even think that user
-> > space knows which reboot modes are actually implemented (?)) and we may
-> > end up issuing one with completely different semantics ?
-> 
-> You're right here, userspace issue a "reboot bootloader" and if kernel
-> doesn't have the support to set up the right cookie, the device would do
-> a normal reboot and not stop at the bootloader. This problem exists
-> today and I think whether this is an issue to solve is out of scope here.
 
-That's true. It is the same issue we have with reboot_mode anyway.
+--5lc3tcsgin2oixnj
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH can-next v5 2/2] can: tcan4x5x: add option for selecting
+ nWKRQ voltage
+MIME-Version: 1.0
 
-Is it a fair statement to say that currently when we request a reboot,
-the reboot mode is the one set through /sys/kernel/reboot/mode ?
+On 18.11.2024 16:05:42, Sean Nyekjaer wrote:
+> Hi Marc,
+>=20
+> On Thu, Nov 14, 2024 at 10:14:50AM +0100, Sean Nyekjaer wrote:
+> > The nWKRQ pin supports an output voltage of either the internal referen=
+ce
+> > voltage (3.6V) or the reference voltage of
+> > the digital interface 0-6V (VIO).
+> > Add the devicetree option ti,nwkrq-voltage-vio to set it to VIO.
+> >=20
+> > If this property is omitted the reset default, the internal reference
+> > voltage, is used.
+> >=20
+> > Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+> > Reviewed-by: Marc Kleine-Budde <mkl@pengutronix.de>
+> > Reviewed-by: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+> > ---
+> >  drivers/net/can/m_can/tcan4x5x-core.c | 20 ++++++++++++++++++++
+> >  drivers/net/can/m_can/tcan4x5x.h      |  2 ++
+> >  2 files changed, 22 insertions(+)
+> >=20
+> > diff --git a/drivers/net/can/m_can/tcan4x5x-core.c b/drivers/net/can/m_=
+can/tcan4x5x-core.c
+> > index 2f73bf3abad889c222f15c39a3d43de1a1cf5fbb..7213d9894c82d079bf92f1e=
+c62d4eebb500cdfa4 100644
+> > --- a/drivers/net/can/m_can/tcan4x5x-core.c
+> > +++ b/drivers/net/can/m_can/tcan4x5x-core.c
+> > @@ -92,6 +92,8 @@
+> >  #define TCAN4X5X_MODE_STANDBY BIT(6)
+> >  #define TCAN4X5X_MODE_NORMAL BIT(7)
+> > =20
+> > +#define TCAN4X5X_NWKRQ_VOLTAGE_VIO BIT(19)
+> > +
+> >  #define TCAN4X5X_DISABLE_WAKE_MSK	(BIT(31) | BIT(30))
+> >  #define TCAN4X5X_DISABLE_INH_MSK	BIT(9)
+> > =20
+> > @@ -267,6 +269,13 @@ static int tcan4x5x_init(struct m_can_classdev *cd=
+ev)
+> >  	if (ret)
+> >  		return ret;
+> > =20
+> > +	if (tcan4x5x->nwkrq_voltage_vio) {
+> > +		ret =3D regmap_set_bits(tcan4x5x->regmap, TCAN4X5X_CONFIG,
+> > +				      TCAN4X5X_NWKRQ_VOLTAGE_VIO);
+> > +		if (ret)
+> > +			return ret;
+> > +	}
+> > +
+> >  	return ret;
+> >  }
+> > =20
+> > @@ -318,6 +327,15 @@ static const struct tcan4x5x_version_info
+> >  	return &tcan4x5x_versions[TCAN4X5X];
+> >  }
+> > =20
+> > +static void tcan4x5x_get_dt_data(struct m_can_classdev *cdev)
+> > +{
+> > +	struct tcan4x5x_priv *tcan4x5x =3D cdev_to_priv(cdev);
+> > +	struct device_node *np =3D cdev->dev->of_node;
+>=20
+> Guess we can remove this line. Sorry
 
-Does user space use that file today ?
+ACK. Will fixup here.
 
-I guess userspace does not take specific actions according to the
-reset it thinks it issues - it is a question.
+Marc
 
-> > Are these "reset types" exported to user space ?
-> > 
-> 
-> No mechanism exists to do that. We could do something specific for PSCI
-> or do something generic for everybody. I don't think something specific
-> for PSCI is the right approach because it's a general problem. I don't
-> think there's enough interest to change reboot command plumbing to
-> advertise valid reset types to userspace.
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
 
-That's for sure. I suppose the most important bit is making sure that
-all resets comply with the kernel semantics expected from a *reset*;
-I appreciate that's a vague statement (and I have no idea how to enforce
-it) but that's the gist of this discussion.
+--5lc3tcsgin2oixnj
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Another thing I am worried about is device drivers restart handlers
-(ie having to parse a command that might be platform specific in a
-generic driver to grok what reset was actually issued and what action
-should be taken).
+-----BEGIN PGP SIGNATURE-----
 
-I admit it is a tough nut to crack this one - apologies for the time
-it is taking to reach an agreement.
+iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmc7Wb8ACgkQKDiiPnot
+vG/WZwf/XeUCg+GNtKoHxa7Fx7ZdaV02WLfPg/Ln0FyQOu6eIgXMA55aG+yd/9t0
+w6oW5AkGXr1oPHA2ytYNuTVwcZRJev4haqNzHjLosBc41zlO2aNSflvlRanQbF0F
+inQBVXdTgKtiW399Df86kTiGfAlH+f8MUqEX4QYcCzF7u0jtVRq95DOYk/CC/45z
+ICj8C46MGxJjtnhj7G31UfGtNG3vCabBwct9WJsfk03/8vvAVJ56LIaKPcQPO2T6
+SC/0Tru3cTBI6urc+9SddTXgRacACJOHi82e9iS5a9OiCqvc3n/X+C0mgF3wosp3
+FlmGZeGKfGFQFCIrmCBioI7lZMcsvg==
+=Efuo
+-----END PGP SIGNATURE-----
 
-Lorenzo
+--5lc3tcsgin2oixnj--
 
