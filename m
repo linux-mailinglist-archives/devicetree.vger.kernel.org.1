@@ -1,132 +1,190 @@
-Return-Path: <devicetree+bounces-122620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122621-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C76E09D1751
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 18:40:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56D319D176D
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 18:53:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 67001B22976
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 17:40:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A00A5B2413E
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 17:53:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53573197531;
-	Mon, 18 Nov 2024 17:40:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB80E1C07D5;
+	Mon, 18 Nov 2024 17:52:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="2r1ToH7D"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hF9gLtSu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8991413B297
-	for <devicetree@vger.kernel.org>; Mon, 18 Nov 2024 17:40:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D8CC1BD9E3
+	for <devicetree@vger.kernel.org>; Mon, 18 Nov 2024 17:52:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731951627; cv=none; b=QfmQM2mw+sr4RwQImoLkM/L1993IqBLpPqoMRGzidLCuS9Gar57AnE2XuKsvGAVw2pIzyFqA83c25/HiBFOKCw4Tif8haahbm9bfkCiZrn/30lVMiYxn1RER0R1fMaoCJeT3V0j6cl3xmkPiv8dDwzccLALEy++zsKAByPMwBBU=
+	t=1731952370; cv=none; b=QbKk5yaAD3jeq/rlmVkvy43/hi9/og8r5MdRJKfgnBdYlsU1QGTpFAf/7uaAJkyBSPGPQblswGBskqXuHN8dPHatGTARtsASGOWvVKJtEhTEcQ5+nIuhzDsSyBVUFpKY769UmoA4XdPcH6DITFC/t90yRvK099TNMDyU8DP+8RE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731951627; c=relaxed/simple;
-	bh=1tIib4eNH4Bj55ytCO2SrDsnedFwF9aGSQvLrHzbjSk=;
+	s=arc-20240116; t=1731952370; c=relaxed/simple;
+	bh=ACEMVKGGeTJOkHjQxBYlWG76S6ST5YjGCECCYYmDulA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kzgNQ6vUk15kkh7xBQztPPBCjGU6LkijkWsJcvuEzdkV0rFlN3mae1xmm/2GxReNw5I18h5eXkCzum9WLb/llyhWEZR3EdXQtuSdW9PaFjfqlzoWmSClBtPPfGzqYxRNqY6Ozmy5KVaMMdUIxiGpLEKE5q2dauouTZV/9OKGLWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=2r1ToH7D; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-431ac30d379so39272775e9.1
-        for <devicetree@vger.kernel.org>; Mon, 18 Nov 2024 09:40:24 -0800 (PST)
+	 Content-Type:Content-Disposition:In-Reply-To; b=PES7DPaYqkLecOR5wBf+LhXWST7Q6bUnmJ/mTs3TaK1FqEPQypNWpMxNEtEr+zRZItD7O1F67xTHoBmpFrOfpKwwr05ADx+MQ9JFF3ROeffw9uvgYuZURph9U/8uDzoDzj6ecJSg6ADCDXWyODkgqTy90myFJNjxKT0C0Gn02VA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hF9gLtSu; arc=none smtp.client-ip=209.85.215.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-7f3e30a43f1so1621350a12.1
+        for <devicetree@vger.kernel.org>; Mon, 18 Nov 2024 09:52:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1731951623; x=1732556423; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1731952368; x=1732557168; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1tIib4eNH4Bj55ytCO2SrDsnedFwF9aGSQvLrHzbjSk=;
-        b=2r1ToH7DkB1PODZpX6WrAs85twuB0dCTANxEEJrHLssz33/hPC5z5a9Y8fb4I0bqzv
-         mz6NHGrJu2eQAEbHgdIb9EeYCDtIFVbzuwGmQA78YqAY8oU70ThJhRtFh7eOhOZwCgiv
-         cP3rJiorQqn95L2yJR5bC92qIqW67oY99AFbiRnksqW505+4GDw5dZM/vXZCYf6lR93m
-         4Ny87OD11zNydu2pToF8PmxVrLTbkIc/pgNOE8ZdtSKw4hus4KdB6oQnmjl2xPYMdZJG
-         KcdV4Wja6/dbzXSx0j/A6hc+yqRhAw0dLZcbk2JngY7UrzLB5tI4lF5oK7gNfzEix5NG
-         c4dg==
+        bh=fCr0sYPsogCz+quxodgEQ3ar7fg9yYSS/OcvrMaer1g=;
+        b=hF9gLtSu7cciRmITtiV1p3k8eQpwdsxmVSsew6zwuuPckOcQ/gM1b4aM8kK4+TalNO
+         VKkGjBBiMI0tzSirR2EBGdsmGhp/HEVBurFo+ZMqStiiD6HxVozU6b/E0Wyb+e5GL+/Z
+         ryTIoNjDEkjTByffIpBnxJb/MfPCbL33mGUbriREZkUfSClHi3jyrdVamA9Wq+5jPYZw
+         PGPkgt8pGePkzcs6glzTNVREFgTl1KzBhni01z+0oinxpYSQUFZeIEXx7iVgBSVLPBi7
+         EZGpNRzYx/nWJorVOPXJNwMiHbgPikd0PnT6OgP09hbcI7BFEUaRAy4L8HwLowTNHumc
+         kqIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731951623; x=1732556423;
+        d=1e100.net; s=20230601; t=1731952368; x=1732557168;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=1tIib4eNH4Bj55ytCO2SrDsnedFwF9aGSQvLrHzbjSk=;
-        b=jDcG7k7sv2EK9KU1I66P2cZwSl8ho5dzhhojDXB9Dkb6/yjPHh7Eb2yaLZbnaYhCbn
-         cboKAQ4vSjysrWaqUXq1Os71n+fDlUyONwD16cbgCYTBe7SFUr87lSTrLFwW23B1hXc1
-         xU/yz+FiFglY4ygi6QMAjcW5Me9zMHZn/o/IkInjFSTOExdcJyL+KTVDNtGnkGqZtwIU
-         ycngSG8xEhCtl1m20lQvbOQaZEWpB+BRnq87vka3ly9SiTTgbXlaVIylPVl9ujz9Citk
-         WX0GtSn2Q9hhwWjdkn1AiPeQ34HXmWbMrkb/m5/db7ru897zX6jlMi2D6cvzA1PmMANU
-         uhWA==
-X-Forwarded-Encrypted: i=1; AJvYcCVgIFpgc1xArp88KMI374R4+V5KjJ6qaHvffY3dMYJu/qOoUnvzcea98hgMwKakND7WmNg8Gu/SveuV@vger.kernel.org
-X-Gm-Message-State: AOJu0Yydui7MRtJJw2AHUrok2l9u3xm/jxLp8hlGsgg0e+3U0Z0YMr+i
-	ZCU/Vfs4CABIjl3u7KXuWkzuAeXibDOdHEkIGJrnhGeRH4AF5Uqtku9vRB8aHOs=
-X-Google-Smtp-Source: AGHT+IF3nj2yHydrx7Ks+n+zytE68ZdQxoMq1sSNeM0Nynyzk3P/uHdIYwyssSFKYkQ+6vZqXuvURA==
-X-Received: by 2002:a05:600c:198c:b0:431:55bf:fe4 with SMTP id 5b1f17b1804b1-432df78a99emr105241745e9.24.1731951622735;
-        Mon, 18 Nov 2024 09:40:22 -0800 (PST)
-Received: from localhost (p509159f1.dip0.t-ipconnect.de. [80.145.89.241])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-432da298760sm166249345e9.37.2024.11.18.09.40.21
+        bh=fCr0sYPsogCz+quxodgEQ3ar7fg9yYSS/OcvrMaer1g=;
+        b=WLISSMiIpYyUrmBgFZwCtR0pxcGCYw69zYbfnTTrjV4IDCxkwhcYlmKoNmkKk+KsMl
+         2eueO8gyTJEOsdSSjj2TwGOb7QUz6MxANgRyunQ+TtR0hC12Ip0+6NC/D5ijd3a8CBkZ
+         0iVePy/MHjW+uvsMn3InN3ONDou8Jqlpcle2Dl8AiC1EbBHE9BmG9Q2WUyuBHVu4hYuB
+         Lbh7KhnDMG/efu+pCv3CMSBRAlZlLdnWwsUonv0FySJjanj4OoyUbo8WhYfbVLcD2oEp
+         L6sjaIz/5Dk8vim/EUmlKAQ5uMKVUqMsrkRxyPodQV8r9wjGb2DEHC/soE/CZIc01DDC
+         myAw==
+X-Forwarded-Encrypted: i=1; AJvYcCX2eg/CIsDV8E+Wt5XGSPDjhjx/JjCsYU1zui90BaFlpokzSEe70X68vFni9iqVtNBn2A2cGTlUmiBk@vger.kernel.org
+X-Gm-Message-State: AOJu0YyG3QrxY5l2xWV6mnUIZ8UULyEpwoS5+wEvFc/lD3lcx9p2rR/X
+	TekQtmAxp4+nZlUrssEqfb3hSz8ICg6b5ph3B6ep/GfHJL186Y1cG7lr4QL1b3s=
+X-Google-Smtp-Source: AGHT+IEJRNX9bZE0xzeLu7+8kcJ+xIr7Kwr2Ag4WKPpTArbvdH5l5IPyQ32YkKJbAIpbhDtnUqCUSw==
+X-Received: by 2002:a05:6a20:43ab:b0:1db:e508:cf68 with SMTP id adf61e73a8af0-1dc90b4bbebmr18325105637.24.1731952368452;
+        Mon, 18 Nov 2024 09:52:48 -0800 (PST)
+Received: from p14s ([2604:3d09:148c:c800:ced4:eca8:f5e9:9a5c])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-724770f9d0asm6707357b3a.26.2024.11.18.09.52.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Nov 2024 09:40:22 -0800 (PST)
-Date: Mon, 18 Nov 2024 18:40:21 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Lorenzo Bianconi <lorenzo@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Sean Wang <sean.wang@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Lee Jones <lee@kernel.org>, linux-mediatek@lists.infradead.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	upstream@airoha.com, benjamin.larsson@genexis.eu, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v10] pwm: airoha: Add support for EN7581 SoC
-Message-ID: <kpbylpee46nmxxvzxfbylscfafrlkpzjt37lkfdt4vtoq3qvfc@5v7khvwwohty>
-References: <20241103-en7581-pinctrl-v10-1-1990fb6996a0@kernel.org>
- <673b47ae.df0a0220.2187ad.bc2a@mx.google.com>
+        Mon, 18 Nov 2024 09:52:47 -0800 (PST)
+Date: Mon, 18 Nov 2024 10:52:44 -0700
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+To: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Jens Wiklander <jens.wiklander@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v13 4/7] remoteproc: Introduce release_fw optional
+ operation
+Message-ID: <Zzt+7NBdNjyzWZIb@p14s>
+References: <20241104133515.256497-1-arnaud.pouliquen@foss.st.com>
+ <20241104133515.256497-5-arnaud.pouliquen@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="5bt3c2qqssojeolk"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <673b47ae.df0a0220.2187ad.bc2a@mx.google.com>
+In-Reply-To: <20241104133515.256497-5-arnaud.pouliquen@foss.st.com>
 
+On Mon, Nov 04, 2024 at 02:35:12PM +0100, Arnaud Pouliquen wrote:
+> This patch updates the rproc_ops struct to include an optional
+> release_fw function.
+> 
+> The release_fw ops is responsible for releasing the remote processor
+> firmware image. The ops is called in the following cases:
+> 
+>  - An error occurs in rproc_start() between the loading of the segments and
+>       the start of the remote processor.
+>  - after stopping the remote processor.
+> 
+> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+> ---
+> Updates from version V11:
+> - fix typo in @release_fw comment
+> ---
+>  drivers/remoteproc/remoteproc_core.c | 5 +++++
+>  include/linux/remoteproc.h           | 3 +++
+>  2 files changed, 8 insertions(+)
+> 
+> diff --git a/drivers/remoteproc/remoteproc_core.c b/drivers/remoteproc/remoteproc_core.c
+> index 7694817f25d4..46863e1ca307 100644
+> --- a/drivers/remoteproc/remoteproc_core.c
+> +++ b/drivers/remoteproc/remoteproc_core.c
+> @@ -1258,6 +1258,9 @@ static int rproc_alloc_registered_carveouts(struct rproc *rproc)
+>  
+>  static void rproc_release_fw(struct rproc *rproc)
+>  {
+> +	if (rproc->ops->release_fw)
+> +		rproc->ops->release_fw(rproc);
+> +
+>  	/* Free the copy of the resource table */
+>  	kfree(rproc->cached_table);
+>  	rproc->cached_table = NULL;
+> @@ -1377,6 +1380,8 @@ static int rproc_start(struct rproc *rproc, const struct firmware *fw)
+>  unprepare_subdevices:
+>  	rproc_unprepare_subdevices(rproc);
+>  reset_table_ptr:
+> +	if (rproc->ops->release_fw)
+> +		rproc->ops->release_fw(rproc);
+>  	rproc->table_ptr = rproc->cached_table;
 
---5bt3c2qqssojeolk
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Subject: Re: [PATCH v10] pwm: airoha: Add support for EN7581 SoC
-MIME-Version: 1.0
+I suggest the following:
 
-Hello,
+1) Create two new functions, i.e rproc_load_fw() and rproc_release_fw().  The
+only thing those would do is call rproc->ops->load_fw() and
+rproc->ops->release_fw(), if they are present.  When a TEE interface is
+available, ->load_fw() and ->release_fw() become rproc_tee_load_fw() and
+rproc_tee_release_fw().
 
-On Mon, Nov 18, 2024 at 02:56:58PM +0100, Christian Marangi wrote:
-> since you gave revision for v9, any news with this? Is everything good
-> now? It's sad if this last piece doesn't get through after all this
-> efforts with the previous series :(
+2) Call rproc_load_fw() in rproc_boot(), just before rproc_fw_boot().  If the
+call to rproc_fw_boot() fails, call rproc_release_fw().
 
-I'm sorry. I still have your patch on my radar, my todo list is just too
-long to give feedback on a short-term basis. See
-https://patchwork.ozlabs.org/project/linux-pwm/list/ for parts of my
-queue.
+3) The same logic applies to rproc_boot_recovery(), i.e call rproc_load_fw()
+before rproc_start() and call rproc_release_fw() if rproc_start() fails.
 
-Best regards
-Uwe
+4) Take rproc_tee_load_fw() out of rproc_tee_parse_fw().  It will now be called
+in rproc_load_fw().
 
---5bt3c2qqssojeolk
-Content-Type: application/pgp-signature; name="signature.asc"
+5) As stated above function rproc_release_fw() now calls rproc_tee_release_fw().
+The former is already called in rproc_shutdown() so we are good in that front.
 
------BEGIN PGP SIGNATURE-----
+With the above the cached_table management within the core remains the same and
+we can get rid of patch 3.7.
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmc7fAIACgkQj4D7WH0S
-/k6GNAf/Uv0TP2XG1eM5gVUAzPsO8nIbVqSQu0qVstgU2m0w4fwe4Sf5ikqykVsD
-jeYs+uIgK1r055ifeUSf32mcXOb5nW1GPob8stTVfViOL0diAuv4d88kPzGnDi/D
-vn+BwCd2pOi6dGopB+ZqtajsRasx7NNFvTf8ZRcq5V0/kpElLAcLQLjAJZGigjbt
-a9d1Y1lnBUk+GeCg1rLvNDo5MPkL1t0xcRZgxr6qp+VVGBuO2SsL2IpW/eZz9HU+
-M+evGLlT8hwlrNoBgZQ5vGvfZtda51JmcHTiF9b28iZC3pOnws8QiXpmznPlVhDN
-5Jp1+kkmy5YbonA6ZlI/SncX7LzzKw==
-=eBCO
------END PGP SIGNATURE-----
+Thanks,
+Mathieu
 
---5bt3c2qqssojeolk--
+>  
+>  	return ret;
+> diff --git a/include/linux/remoteproc.h b/include/linux/remoteproc.h
+> index 2e0ddcb2d792..08e0187a84d9 100644
+> --- a/include/linux/remoteproc.h
+> +++ b/include/linux/remoteproc.h
+> @@ -381,6 +381,8 @@ enum rsc_handling_status {
+>   * @panic:	optional callback to react to system panic, core will delay
+>   *		panic at least the returned number of milliseconds
+>   * @coredump:	  collect firmware dump after the subsystem is shutdown
+> + * @release_fw:	optional function to release the firmware image from ROM memories.
+> + *		This function is called after stopping the remote processor or in case of an error
+>   */
+>  struct rproc_ops {
+>  	int (*prepare)(struct rproc *rproc);
+> @@ -403,6 +405,7 @@ struct rproc_ops {
+>  	u64 (*get_boot_addr)(struct rproc *rproc, const struct firmware *fw);
+>  	unsigned long (*panic)(struct rproc *rproc);
+>  	void (*coredump)(struct rproc *rproc);
+> +	void (*release_fw)(struct rproc *rproc);
+>  };
+>  
+>  /**
+> -- 
+> 2.25.1
+> 
 
