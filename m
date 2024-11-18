@@ -1,247 +1,113 @@
-Return-Path: <devicetree+bounces-122516-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122517-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 830AD9D0E65
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 11:24:09 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42FE49D0EA2
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 11:34:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E24F31F21291
-	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 10:24:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3315CB2E604
+	for <lists+devicetree@lfdr.de>; Mon, 18 Nov 2024 10:24:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E880219924E;
-	Mon, 18 Nov 2024 10:22:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AAF1195FD5;
+	Mon, 18 Nov 2024 10:22:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YDu4++ko"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IpEbYIWJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E34181946C8
-	for <devicetree@vger.kernel.org>; Mon, 18 Nov 2024 10:21:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF8A2DDD2;
+	Mon, 18 Nov 2024 10:22:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731925320; cv=none; b=ha1Gm2jgHa0HA9+JaC90Am2Dj23FupvmGoCx1bM/2kUec2c523Dc1ZnvNjjFuw0CJZqJXhWNfqS14qRjTxm00HwbV71BCRXW7b4hNnaB8iv5A4YhZBCcwpDLeFtGSIzK8Vova0jV13L3OhcL1hXvLnegG1wqH5Z/xZUn1lryyEk=
+	t=1731925363; cv=none; b=e9hVF8+149pZd+uRSovNXahh0dxj9neaZh07TacPpjlt74rPjgdOv8RUGgirDh5Swa4NU9Ib7gPSdJ+QgycOW7EpUNoUucT5jJd/dEApAtIdLpkkngArIyV7O2JC1c9q5ZEGAlIKMQV6wGPGOKWCtYhrVr56KeRgrhGmfxgFG7Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731925320; c=relaxed/simple;
-	bh=Db4cp2BS1tOGXH1Epn3W22qyrM5yGAT815UoctHNo+w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sd23jjMy84tipPpkilPfUhKFApLPrmJm0ZRbqmIFYE6dCy3nFyeMpvqVdZ3tzK655qpcP6EdB3iYwi90R+9hG9q61mwxhgVNYCIy6QZKeu07WXN99Ccky0s0xPwe0XlmCLa5KU3OICh1PCU0w9Oyhtqf24AM6/zHxSQEIrSRp18=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YDu4++ko; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4314b316495so23541525e9.2
-        for <devicetree@vger.kernel.org>; Mon, 18 Nov 2024 02:21:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731925317; x=1732530117; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=phSqjmldBPWXRgFeffd/JWcPCOA4hJo3BiIhOYwH3MA=;
-        b=YDu4++koJxtr+FzoXRequiUYoGo53OpWgZJqWqBeGre2QOgLudGKs8vCGZd3+wo4uK
-         ecfpKtI8e9PyKRns3Sgef+U5OzMMF3OfOPq66U4+t375VPK1K+BG79LJFYj6kGbmckVt
-         YvDB2KbVitfwAh7aBAbqDjh+jhLCe5U5v+mm1M7vVwjqx7A3XVqcuCo0ZJ7vZKd/3pjN
-         yvIpDMXqTub8C76HxQ7wCMHyvsTjY7SCY9S1h4P+YcFS8kPLFNDnm+Gep2n+LQfA2dws
-         U92HLOJeUVlk6cW1PYcbFWM7DC8zjTw4IWK4Q9TwKdmHzzIwIaBeHKOhq6Fqe+PmDsM0
-         BcTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731925317; x=1732530117;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=phSqjmldBPWXRgFeffd/JWcPCOA4hJo3BiIhOYwH3MA=;
-        b=BQsnMCdKnfl1RDGPEaanIw2CnH0djT3tj6pK6vObgT9TTwJDUrz+fFqZhJBBd3t9iR
-         qbQ1GHQMaIOMBWNF2gaP6MkOxLIcxtZAEltOdSSFt+VdYJrVSng6JjKevj1v3dsmeCGX
-         sVerqYlEkcj5g2b5pX0tX2/edBmAkpYg6rzwZNJ2fj4/7RwZeuyUwCMjVci3AiSRhVWj
-         RnXWR0fRJBS80GJnQKqVhe/wnhJ8krN9qlLK1yFnQbhe/I6zwsmHV1/jHaz3xlfZJnqv
-         IU/nRacsvKi7f77LxBEQXDSlA9vmkbdkoQbaYKiD8OZsqlgPephx6bspCU/8Z6iOqgDb
-         2tsQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWyJUAVtmxtljZ/y8dMNH3dmSP02DBJeSQBZYOEfr9WM9IHGFA/9nelkoatBhCNPG+PdoporLCuecDB@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywd5QYP/816coucXrCIBJA49a6NCjQP6XLKfJGo6rPwk/Z6IIGg
-	JUjc4TZfU69I75bMvTfBJPA6z7xLbP7UtlesfFsbcBASqPJZ5RDlzN1CtRLh24o=
-X-Google-Smtp-Source: AGHT+IEFeF0+Sdkb6b315Q3y1qMmmjCmnoawHXKh9ZeoveK/uoXwKwzlP7db+07+TyaV3vMlKWXWlQ==
-X-Received: by 2002:a05:6000:1f88:b0:37c:d276:f04 with SMTP id ffacd0b85a97d-38225a915fbmr8111178f8f.45.1731925317212;
-        Mon, 18 Nov 2024 02:21:57 -0800 (PST)
-Received: from linaro.org ([2a02:2454:ff21:ef80:8453:3d1e:f32c:d913])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-382485e2a89sm2301322f8f.17.2024.11.18.02.21.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Nov 2024 02:21:56 -0800 (PST)
-Date: Mon, 18 Nov 2024 11:21:45 +0100
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: =?iso-8859-1?B?QmFybmFi4XMgQ3rpbeFu?= <barnabas.czeman@mainlining.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Amit Kucheria <amitk@kernel.org>,
-	Thara Gopinath <thara.gopinath@gmail.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-pm@vger.kernel.org, iommu@lists.linux.dev
-Subject: Re: [PATCH v6 10/10] arm64: dts: qcom: Add Xiaomi Redmi 5A
-Message-ID: <ZzsVOV8GjCVtCi5Q@linaro.org>
-References: <20241113-msm8917-v6-0-c348fb599fef@mainlining.org>
- <20241113-msm8917-v6-10-c348fb599fef@mainlining.org>
+	s=arc-20240116; t=1731925363; c=relaxed/simple;
+	bh=YX1W5j5BkpAPp7zh3L69qMoyJQaJp02a7l+i7abLiEo=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=fKhyxCyiG09k5ngcVpcZCyIub08YhknYqp7JkwzjnQRYRQwJ9Sk3X4tdmIlUJNGwPUlf2ltdM/Qz7d/zR+1zCq7uyc7UGOIf1XkaB3CgbnznKiNlKyuw2Gf2Wpi6nSl1uPwBWmQOAxPjl7EIRoXMubcCZkyzwRTtofR6dPYHfzU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IpEbYIWJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 338CEC4CECC;
+	Mon, 18 Nov 2024 10:22:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1731925362;
+	bh=YX1W5j5BkpAPp7zh3L69qMoyJQaJp02a7l+i7abLiEo=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=IpEbYIWJRj/pd4xxrg3kA5dYcQRKLXmgUwXKDiJE7aoZ/RTRh1zU7JS2iCcqbZ4T1
+	 zV7zjpmXqoAVsKtgnsiw4kyeGZFRa06+txUpJaa/ZzRg2400ofDxJtUtMimcjvZYR8
+	 XkJtPnsy2SIZegwaK82Q9N5vh/kPYFcXoqrwY5JKzSPPthPeM0AU6RycRHBNmLqooC
+	 eMZ24se65rrmJmScnJcZgD8F7zusa6u4Ec8mel0LSTLPQiUZH9J6sXXiiIx7yRwvtd
+	 tznDSFChOe0gTrNcSy6UQ1dbBRw8RtEv89yHjddrHfz5iEo5sAkCrggdisBPuFJkcP
+	 AfDr+iLTQa+Ig==
+Date: Mon, 18 Nov 2024 04:22:40 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241113-msm8917-v6-10-c348fb599fef@mainlining.org>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Guenter Roeck <groeck@chromium.org>, devicetree@vger.kernel.org, 
+ Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, chrome-platform@lists.linux.dev, 
+ Lee Jones <lee@kernel.org>, linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: "Sung-Chi, Li" <lschyi@chromium.org>
+In-Reply-To: <20241118-add_charger_state-v1-2-94997079f35a@chromium.org>
+References: <20241118-add_charger_state-v1-0-94997079f35a@chromium.org>
+ <20241118-add_charger_state-v1-2-94997079f35a@chromium.org>
+Message-Id: <173192536035.1517344.13221127899911847834.robh@kernel.org>
+Subject: Re: [PATCH 2/3] dt-bindings: chrome: add new binding
+ google,cros-ec-chrage-state
 
-On Wed, Nov 13, 2024 at 04:11:51PM +0100, Barnabás Czémán wrote:
-> Add initial support for Xiaomi Redmi 5A (riva).
+
+On Mon, 18 Nov 2024 17:33:47 +0800, Sung-Chi, Li wrote:
+> Add new dt bindings for charge chip control. The charge chip control
+> dt configuration is used by the driver 'cros-ec-charge-state', which is
+> added in the commit "platform/chrome: cros_ec_charge_state: add new
+> driver to control charge".
 > 
-> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+> As these charge chip controls are connected under the ChromeOS Embedded
+> Controller (EC), also add the patternProperties to the
+> mfd/google,cros-ec bindings.
+> 
+> Signed-off-by: Sung-Chi, Li <lschyi@chromium.org>
 > ---
->  arch/arm64/boot/dts/qcom/Makefile                |   1 +
->  arch/arm64/boot/dts/qcom/msm8917-xiaomi-riva.dts | 297 +++++++++++++++++++++++
->  2 files changed, 298 insertions(+)
+>  .../bindings/chrome/google,cros-charge-state.yaml  | 62 ++++++++++++++++++++++
+>  .../devicetree/bindings/mfd/google,cros-ec.yaml    |  4 ++
+>  2 files changed, 66 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 9bb8b191aeb517e8f1e3a11bca98a3d0c39c5398..7562406843cfd82397c4844d14a22e8bcf4bba74 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -62,6 +62,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt86518.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt86528.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt88047.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-yiming-uz801v3.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= msm8917-xiaomi-riva.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8929-wingtech-wt82918hd.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-huawei-kiwi.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-longcheer-l9100.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/msm8917-xiaomi-riva.dts b/arch/arm64/boot/dts/qcom/msm8917-xiaomi-riva.dts
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..81bb76f1773252be2f60777acf93d51d01981f86
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/msm8917-xiaomi-riva.dts
-> @@ -0,0 +1,297 @@
-> [...]
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		key-volup {
-> +			label = "Volume Up";
-> +			linux,code = <KEY_VOLUMEUP>;
-> +			gpios = <&tlmm 91 GPIO_ACTIVE_LOW>;
 
-It's good practice to
+My bot found errors running 'make dt_binding_check' on your patch:
 
-> +			debounce-interval = <15>;
-> +		};
-> +	};
-> [...]
-> +&blsp1_i2c3 {
-> +	status = "okay";
-> +
-> +	touchscreen@38 {
-> +		compatible = "edt,edt-ft5306";
-> +		reg = <0x38>;
-> +		interrupts-extended = <&tlmm 65 IRQ_TYPE_LEVEL_LOW>;
+yamllint warnings/errors:
 
-add pinctrl
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/chrome/google,cros-charge-state.example.dtb: ec@0: charge-chip-battery:compatible:0: 'google,cros-ec-charge-state' was expected
+	from schema $id: http://devicetree.org/schemas/mfd/google,cros-ec.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/chrome/google,cros-charge-state.example.dtb: ec@0: charge-chip-battery: 'man-milliamp' is a required property
+	from schema $id: http://devicetree.org/schemas/mfd/google,cros-ec.yaml#
+Documentation/devicetree/bindings/chrome/google,cros-charge-state.example.dtb: /example-0/spi/ec@0/charge-chip-battery: failed to match any schema with compatible: ['google,cros-ec-charge']
 
-> +		reset-gpios = <&tlmm 64 GPIO_ACTIVE_LOW>;
+doc reference errors (make refcheckdocs):
 
-for all
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241118-add_charger_state-v1-2-94997079f35a@chromium.org
 
-> +		vcc-supply = <&pm8937_l10>;
-> +		iovcc-supply = <&pm8937_l5>;
-> +
-> +		touchscreen-size-x = <720>;
-> +		touchscreen-size-y = <1280>;
-> +	};
-> +};
-> +
-> +&blsp2_i2c1 {
-> +	status = "okay";
-> +
-> +	bq27426@55 {
-> +		compatible = "ti,bq27426";
-> +		reg = <0x55>;
-> +		monitored-battery = <&battery>;
-> +	};
-> +
-> +	bq25601@6b{
-> +		compatible = "ti,bq25601";
-> +		reg = <0x6b>;
-> +		monitored-battery = <&battery>;
-> +
-> +		interrupt-parent = <&tlmm>;
-> +		interrupts = <61 IRQ_TYPE_EDGE_FALLING>;
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-GPIOs/pins
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-> +
-> +		input-voltage-limit-microvolt = <4400000>;
-> +		input-current-limit-microamp = <1000000>;
-> +	};
-> +};
-> [...]
+pip3 install dtschema --upgrade
 
-> +&sdhc_2 {
-> +	cd-gpios = <&tlmm 67 GPIO_ACTIVE_LOW>;
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
-that you use. :-)
-
-Usually it can be something simple like function=gpio, bias-disable,
-drive-strength = <2>, etc, plenty of examples exist upstream. Check
-downstream or schematics (if you have them). Ideally you would check
-what the peripheral requires.
-
-E.g. for SD card the GPIO usually has external pull-up, so bias-pull-up
-would be redundant and one can just use bias-disable:
-
-	pinctrl-0 = <&sdc2_default &sdc2_cd_default>;
-	pinctrl-1 = <&sdc2_sleep &sdc2_cd_default>;
-	pinctrl-names = "default", "sleep";
-
-&tlmm {
-	sdc2_cd_default: sdc2-cd-default-state {
-		pins = "gpio67";
-		function = "gpio";
-		drive-strength = <2>;
-		bias-disable;
-	};
-};
-
-
-> +	vmmc-supply = <&pm8937_l11>;
-> +	vqmmc-supply = <&pm8937_l12>;
-> +
-> +	status = "okay";
-> +};
-> +
-> [...]
-> +&rpm_requests {
-> +	regulators-0 {
-> +		compatible = "qcom,rpm-pm8937-regulators";
-> +
-> [...]
-> +		pm8937_l11: l11 {
-> +			regulator-min-microvolt = <2950000>;
-> +			regulator-max-microvolt = <2950000>;
-> +		};
-
-You usually need/want regulator-allow-set-load and regulator-system-load
-for the SD card regulator to avoid issues with certain SD
-cards/operations, see
-
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=af61bef513ba179559e56908b8c465e587bc3890
-
-Thanks,
-Stephan
 
