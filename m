@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-122942-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122944-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 784F59D2D45
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 18:57:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7A599D2D4B
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 18:58:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 39703283579
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 17:57:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 722DC1F2431A
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 17:58:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4DDF1D31AA;
-	Tue, 19 Nov 2024 17:56:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D3811D4324;
+	Tue, 19 Nov 2024 17:56:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OM0a6WbG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ymCHFW/e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D3DF1D2704
-	for <devicetree@vger.kernel.org>; Tue, 19 Nov 2024 17:56:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B95B1D279F
+	for <devicetree@vger.kernel.org>; Tue, 19 Nov 2024 17:56:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732039010; cv=none; b=IJcfHoQidfFQqXEUxGzqOP4C0mMtb8i4MFkPYYUt5EcB6J/JindFmM+Se34L7QL9rTFZvW0EacVa8OR9LxhNRn0gNUYFr08LjpwRicMNtEJOwjDbE0KOyadjMtlBKCgaiibLzx7TR+Q28atyjNasEMeIvGvoEZmBSf7aXnRfDCM=
+	t=1732039013; cv=none; b=VPJ4CZ908UJOgG/Ch/EAsRSJtAsOHp9HePHMIsAZ3KP3LkNjaZSaTFQN65V+G0L7c/+qlqPuHZ+xtXe50XMXO0Qkk7LMp7+iHa6RZzyi9oXWiK1ZEcXDPKwvNNSJ9gy56tm7cYIT045VxYFiAaXi3NQRDPzMyTRB4WozHdXFZuU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732039010; c=relaxed/simple;
-	bh=jYCp8TR7dzoclrZB3zyNwAn2VlLPZL58y51ut7TpNS0=;
+	s=arc-20240116; t=1732039013; c=relaxed/simple;
+	bh=I07ngYL9Ra1f9h+CP4yA7pd1FaT3h7r+nDReMCfjPD8=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=oz/uA0Moj5mtkzdS85g2zfunUVSv15PClBT7M8yA/iiyIKGdtkei/NFViEpo2bPGMe1llvMHNqODCP1y8KydxtDU2KqZryfyWyoFG3vK8evXsJPhzIEAC3Ylj2dQ8yfy/0uIBEtH6G4QO5lVcxv73iLIY/77t0BK0wGlUxDg3Zg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OM0a6WbG; arc=none smtp.client-ip=209.85.128.48
+	 In-Reply-To:To:Cc; b=hkX50qBa4stYl5jc3RMsWCYebvHanEcTH1RCWktqglnwvpKM63VITioDH0mGGb/wHt8OLejaQy+lnYwh7Yc5GFJTRaTwnV9OkodJB5FM5CH6d+H5zJeR7ozM+7qi/xGLWL1u157jPBombgrtSGpR4qSwRtQZ1mca/3XhMDGIVCM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ymCHFW/e; arc=none smtp.client-ip=209.85.128.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-43169902057so48670525e9.0
-        for <devicetree@vger.kernel.org>; Tue, 19 Nov 2024 09:56:47 -0800 (PST)
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43168d9c6c9so11143155e9.3
+        for <devicetree@vger.kernel.org>; Tue, 19 Nov 2024 09:56:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732039006; x=1732643806; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1732039007; x=1732643807; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=77Eoli2JKcfvmzeyZfmZcAC8ruXlT3sz4RV/g2sy6qg=;
-        b=OM0a6WbGN4kRpvTMxCmFJtzlXzPxr4CWzs3RGOG6xaoq9KwxyxSYOf/L9GJEuzVCVQ
-         TO9mXD4n0raQOsNIrc40+LmFP7eG9MPxUICMYAYUixfrzeod9THdZ1noKIiKPEmG8KCx
-         4uFF0IS+7lbYpPZqizWzQIsCfKz/ojKNRawUyRY7hART8wHErAFNOROWyCZCp1sHOGd7
-         CkhriO2sGSn6RYaDxMKu0q8N9b8iSqhqlr3ZQLUm6FDX3xexJgucFGXKrVMEuKhS9lxt
-         OUeCHdodzZUdnLMsyngGm2ADRplwu0RTSRVpJv0Dqz29wXpyZ+456h3ScktJlnLla6eO
-         B48A==
+        bh=TvcxrBjE8Ya+6nKD+reAX7BzLkcovY8zpP7D9Dufu8s=;
+        b=ymCHFW/eUQ/j4J3sSdlSNgQFTOBfGjA0GUAV+0GMKKnnCLi8mEIRYJUB5+pY/4S9Kw
+         pr/xESl459hb3VSFRQDgbENrGwfnXp3rzRk3J65cfH3qS07hPjZt7RkKkuPxorgyWuJG
+         n5dMldqdLyWtyi6y0o6TSqo0uEM4mFZcHyn2zKImnCqMIwjt53DS5iuAH9aRobB57E7O
+         AZeVjem+3ZFlD7iHXfVxurvbNTOxej0tMW7m4M1TepPocXvmS3BAObELNkrKe2IsK5zb
+         bdOQAvYTGdnzsnxxV9pY8ftZqsY005FjXPdRgXZJYWhw/3jAj92YeeGgGdlCOzRVGYh7
+         jAIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732039006; x=1732643806;
+        d=1e100.net; s=20230601; t=1732039007; x=1732643807;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=77Eoli2JKcfvmzeyZfmZcAC8ruXlT3sz4RV/g2sy6qg=;
-        b=lu11IFrzwlbEYKpZHQ1/q5ChZaM5v7xh+fRy3ISNYoWFQ54B27op0dML1LFkVXiEJP
-         qbJ5FGIaejWlD26FBQGk7NiXqN8gc54O+SRnB19ytorvpbDLM6Y0T3bI8/oO8Ibq4WfJ
-         uTiwAZ+Cdr8A+ykbu+PzjWM18AIYWhMAjrFNtzraxFTGb+aa4v1fJFo06yx3GM58rulW
-         OC0IwHHUN2Z+n5tW8Or9fNcPgVGgC+JprBtTskgHuQxydv4Mq3/F/DRPqLNgGgi1oYuG
-         7s/BgPw/pKzs8rLsA2HKOmcdi5Hc9ggk7EQqAvlYTGkJe6V7Q4d40DwrEpEa941LzLLF
-         9g6A==
-X-Forwarded-Encrypted: i=1; AJvYcCVkAdqRZd4A6+yDLIHCy0ZCnjjW2fri24b+vfaUqF4ZzcgPYfSD3A8s/KINJGcvt89xTc8yqjSD4aJq@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywa+cYJ1ZHoC5Vwuh3QPNSjRJJw8tOedjxXdAKTY3WwV7/zYeiq
-	/1yjfgNTraE8Ae7OwKvQms3HzQd7H0j9cD/COnehudmsCCbezPCjssQ5+fwgUY4=
-X-Google-Smtp-Source: AGHT+IF+Lx7qgtgHAGXdWBZ2QyFola8SI6L7q/xdAwZBh6gOo8f5SFDq9dfDsh2MOCUWBja2J9sv1A==
-X-Received: by 2002:a05:600c:35c8:b0:430:57f2:bae2 with SMTP id 5b1f17b1804b1-432df791f62mr123906335e9.23.1732039006322;
-        Tue, 19 Nov 2024 09:56:46 -0800 (PST)
+        bh=TvcxrBjE8Ya+6nKD+reAX7BzLkcovY8zpP7D9Dufu8s=;
+        b=BmBB3JzDhJZw+T89g4J3SROxFk3DZStGevylYc35rH8+D7Og5QiT62t3k/NYAlWzLZ
+         NaCvEsrwB2W8dNBrBejXksxnkY6vkbTgpPl/S0uzM2++DFBDoLfldwstYU/ZqGHmWHBZ
+         qRl5D0CRCvgDG/rWWOS1DJcvUCIUGfZF006K7NBHhQizUGWY1AAa3IebfKUVNejmm+rc
+         GxNhi1ta0EDCFoywewoaS+E6wxxsU5sA4hVj9A3MGUgiZQjzJMRVpXSLRlzHYacDEHho
+         a45liRA+B/ohe07GH6zkyx0P7y0mGPqUKVujS4FkbfTkwH2Xm9yn8kVLgu5elEVqJJap
+         EENg==
+X-Forwarded-Encrypted: i=1; AJvYcCWrLfFGYJlJNcZKYxBNieALetgtsih1K28V/3IYGPUIgw3Ke9yi8W9XQeQ2zpVN+uv3y96+6FoXjlN/@vger.kernel.org
+X-Gm-Message-State: AOJu0YxsbmbsAmYszDMKVyC6plwus/ESyg7lCd0emOtDuH8CxaLP3SXc
+	nDKhKMq0CTiYwPRdiBOZaBI8GvbYevEKo2SrToo0YfKh08J2BAkS7NTuYGCZuY4=
+X-Google-Smtp-Source: AGHT+IGJ6SMbLsuvIbUQvyMjL/mTN4J7c8RlBSzGTWfBeFIThfOc4xtQI8YH+x4EjBiCjt9kcGEbSg==
+X-Received: by 2002:a05:600c:3508:b0:42c:b750:1a1e with SMTP id 5b1f17b1804b1-432df67959dmr153185785e9.0.1732039007389;
+        Tue, 19 Nov 2024 09:56:47 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-432da27fe68sm208302275e9.24.2024.11.19.09.56.45
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-432da27fe68sm208302275e9.24.2024.11.19.09.56.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Nov 2024 09:56:45 -0800 (PST)
+        Tue, 19 Nov 2024 09:56:47 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Tue, 19 Nov 2024 18:56:36 +0100
-Subject: [PATCH v2 01/11] opp: core: implement dev_pm_opp_get_bw
+Date: Tue, 19 Nov 2024 18:56:37 +0100
+Subject: [PATCH v2 02/11] drm/msm: adreno: rename quirks that are features
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,7 +78,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241119-topic-sm8x50-gpu-bw-vote-v2-1-4deb87be2498@linaro.org>
+Message-Id: <20241119-topic-sm8x50-gpu-bw-vote-v2-2-4deb87be2498@linaro.org>
 References: <20241119-topic-sm8x50-gpu-bw-vote-v2-0-4deb87be2498@linaro.org>
 In-Reply-To: <20241119-topic-sm8x50-gpu-bw-vote-v2-0-4deb87be2498@linaro.org>
 To: Akhil P Oommen <quic_akhilpo@quicinc.com>, 
@@ -98,100 +98,276 @@ Cc: Connor Abbott <cwabbott0@gmail.com>, linux-pm@vger.kernel.org,
  dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
  devicetree@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2743;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=10146;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=jYCp8TR7dzoclrZB3zyNwAn2VlLPZL58y51ut7TpNS0=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBnPNFXzHRfip66xeIvRHFGvMRVvKXc3AYGENiBWrVV
- 6SXuRnuJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZzzRVwAKCRB33NvayMhJ0btFEA
- CxS/Y3wNk1GVdwKy07e3iKyukBHX2qmyQj6NiA9v2ta5Cz/uPNSaS8Tc32gJESqqwJojuIQlF7k4No
- DynYwa/WDju9SFUVD1z2cMFL+FCvgSRWaqWCLqR7cGJMvMgyZlMv7zR9WYa7M5wJ/MNzYn91nUDvCa
- 3//OfR6I3DwpaHFLewgE8rLC9ZB3RLsi4RzMKGsK+IKXcvsbmbPJf+HjgFYMSAc8PW/I2tvWQ/InSy
- gFFZjfXuvRuLrZWHqT1Gi4rRicne6TRCYpLh4p+BFUxe5KnEGDZg8o3ceWMxwKor4TSaVQQTKsnNWt
- W/GPR6N7GgzTLxQO6epXobNAUv02VeDNUs66KIY7rUF4qy3sMI6G+aTf9vE0w/g8Fd3u1YaOE3N8o1
- nxMzXagpNBdnf9rI110qFeirQMY6ZIp57HyQbmKVK1Vk0R0VM46MLCJdfp5t7I0/NU7NG4If6uYuqK
- PLKl+kOpOLIq8yaTA/vpvfP5uV0q/3HYIBx/QJAHJIYUtp3PMoCTj+VYqhHaQ6bGrK9iaqwNAorqeO
- 8VefKlo8kKdPgB6/7ip8k2Y625U0EHqOAdluF4+kCxGD+T0qLHefkoqkSSmaHYSoVHzL7H6hVZZPzq
- wMkQtSkoWZmSqTLDUZZWPPkznILvnx0n/3S8aVEASCP32GztYdODY1Npp8GQ==
+ bh=I07ngYL9Ra1f9h+CP4yA7pd1FaT3h7r+nDReMCfjPD8=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBnPNFXvsfG19CuOcSshzsLLrl9P5JiCVdB6NQYWhe+
+ leGk+k2JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZzzRVwAKCRB33NvayMhJ0aqAD/
+ 9BdW9LZzIoIYl35jeVi9cqCgNGXipLp/slLxcES64BRqOg55WgP8C+mC9AQY0K2p40Vh9Km2z9+QXA
+ FonK8lkCmQXlP8i+4UWolxNN5NeQ0TXbzWqovX6t3o26ubGTzeciItmtaR99LfzgRTNVp6EmpUUFME
+ BYXQRayCUWbyjQfpS62gs+vxwc0AdTaBe18Eh/rfbowEmWxH25J9Btc/LrVIubMwDHtqAz+REGSKui
+ bQG7Gv4+Z2w7m8v35UYqWAqJ7bTl8tFTKYZvo0tGCW7lKu1CZji0ZrIAyzTBhrsZljUUzRpCaAqxCA
+ tSGA3yTLPI8U2MdzektRPFBSEfQU/TlTwSNdFhxdNTAacs1HCHpXnSXATf38I2HsT4OR8f9zynEg/n
+ PZqJ67Lv+iOnZx3ESzZ6ublhomHwSM3zL/Nua3WhLwh7S8jABMdjsAJueh7DuQu1ngJPkiqvBZPDUk
+ aVwH27cPcNRTGmDdMefC5vJGwmcI39uedMVCyJ2TeO3ZA7tENg1xvJgn2anAM5rCSzQx2gKlMNGpnI
+ gFqPqxsD5SzgmFhy397X7jvBeEGSTxdQqGrxyQDGa+YfhDY0OwsvX3dvvGIf8zaLTPPvYf3RgV1NfY
+ rKhaYudkqE+JEI+cQm8DQ5SvLjRBeJWr7QeNLTowDyOSKUUOpJLrSGER9tew==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-Add and implement the dev_pm_opp_get_bw() to retrieve
-the OPP's bandwidth in the same way as the dev_pm_opp_get_voltage()
-helper.
+Half of the current "Quirks" are in fact features, so rename
+the defines with FEAT instead of QUIRK.
 
-Retrieving bandwidth is required in the case of the Adreno GPU
-where the GPU Management Unit can handle the Bandwidth scaling.
+They will be moved in a separate bitfield in a second time.
 
-The helper can get the peak or average bandwidth for any of
-the interconnect path.
+No functional changes.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- drivers/opp/core.c     | 25 +++++++++++++++++++++++++
- include/linux/pm_opp.h |  7 +++++++
- 2 files changed, 32 insertions(+)
+ drivers/gpu/drm/msm/adreno/a6xx_catalog.c  | 62 +++++++++++++++---------------
+ drivers/gpu/drm/msm/adreno/a6xx_gpu.c      |  4 +-
+ drivers/gpu/drm/msm/adreno/adreno_device.c |  2 +-
+ drivers/gpu/drm/msm/adreno/adreno_gpu.h    |  7 ++--
+ 4 files changed, 38 insertions(+), 37 deletions(-)
 
-diff --git a/drivers/opp/core.c b/drivers/opp/core.c
-index 494f8860220d97fc690ebab5ed3b7f5f04f22d73..864b9b99b0129acaffaf45c584c5f34b8bababed 100644
---- a/drivers/opp/core.c
-+++ b/drivers/opp/core.c
-@@ -106,6 +106,31 @@ static bool assert_single_clk(struct opp_table *opp_table)
- 	return !WARN_ON(opp_table->clk_count > 1);
- }
+diff --git a/drivers/gpu/drm/msm/adreno/a6xx_catalog.c b/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
+index 0c560e84ad5a53bb4e8a49ba4e153ce9cf33f7ae..825c820def315968d508973c8ae40c7c7b646569 100644
+--- a/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
++++ b/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
+@@ -743,7 +743,7 @@ static const struct adreno_info a6xx_gpus[] = {
+ 		},
+ 		.gmem = SZ_512K,
+ 		.inactive_period = DRM_MSM_INACTIVE_PERIOD,
+-		.quirks = ADRENO_QUIRK_HAS_CACHED_COHERENT,
++		.quirks = ADRENO_FEAT_HAS_CACHED_COHERENT,
+ 		.init = a6xx_gpu_init,
+ 		.zapfw = "a615_zap.mbn",
+ 		.a6xx = &(const struct a6xx_info) {
+@@ -769,7 +769,7 @@ static const struct adreno_info a6xx_gpus[] = {
+ 		},
+ 		.gmem = SZ_512K,
+ 		.inactive_period = DRM_MSM_INACTIVE_PERIOD,
+-		.quirks = ADRENO_QUIRK_HAS_CACHED_COHERENT,
++		.quirks = ADRENO_FEAT_HAS_CACHED_COHERENT,
+ 		.init = a6xx_gpu_init,
+ 		.a6xx = &(const struct a6xx_info) {
+ 			.protect = &a630_protect,
+@@ -839,7 +839,7 @@ static const struct adreno_info a6xx_gpus[] = {
+ 		},
+ 		.gmem = SZ_512K,
+ 		.inactive_period = DRM_MSM_INACTIVE_PERIOD,
+-		.quirks = ADRENO_QUIRK_HAS_CACHED_COHERENT,
++		.quirks = ADRENO_FEAT_HAS_CACHED_COHERENT,
+ 		.init = a6xx_gpu_init,
+ 		.zapfw = "a615_zap.mdt",
+ 		.a6xx = &(const struct a6xx_info) {
+@@ -864,8 +864,8 @@ static const struct adreno_info a6xx_gpus[] = {
+ 		},
+ 		.gmem = SZ_512K,
+ 		.inactive_period = DRM_MSM_INACTIVE_PERIOD,
+-		.quirks = ADRENO_QUIRK_HAS_CACHED_COHERENT |
+-			  ADRENO_QUIRK_HAS_HW_APRIV,
++		.quirks = ADRENO_FEAT_HAS_CACHED_COHERENT |
++			  ADRENO_FEAT_HAS_HW_APRIV,
+ 		.init = a6xx_gpu_init,
+ 		.zapfw = "a620_zap.mbn",
+ 		.a6xx = &(const struct a6xx_info) {
+@@ -892,7 +892,7 @@ static const struct adreno_info a6xx_gpus[] = {
+ 		},
+ 		.gmem = SZ_1M,
+ 		.inactive_period = DRM_MSM_INACTIVE_PERIOD,
+-		.quirks = ADRENO_QUIRK_HAS_CACHED_COHERENT,
++		.quirks = ADRENO_FEAT_HAS_CACHED_COHERENT,
+ 		.init = a6xx_gpu_init,
+ 		.zapfw = "a630_zap.mdt",
+ 		.a6xx = &(const struct a6xx_info) {
+@@ -911,7 +911,7 @@ static const struct adreno_info a6xx_gpus[] = {
+ 		},
+ 		.gmem = SZ_1M,
+ 		.inactive_period = DRM_MSM_INACTIVE_PERIOD,
+-		.quirks = ADRENO_QUIRK_HAS_CACHED_COHERENT,
++		.quirks = ADRENO_FEAT_HAS_CACHED_COHERENT,
+ 		.init = a6xx_gpu_init,
+ 		.zapfw = "a640_zap.mdt",
+ 		.a6xx = &(const struct a6xx_info) {
+@@ -934,8 +934,8 @@ static const struct adreno_info a6xx_gpus[] = {
+ 		},
+ 		.gmem = SZ_1M + SZ_128K,
+ 		.inactive_period = DRM_MSM_INACTIVE_PERIOD,
+-		.quirks = ADRENO_QUIRK_HAS_CACHED_COHERENT |
+-			ADRENO_QUIRK_HAS_HW_APRIV,
++		.quirks = ADRENO_FEAT_HAS_CACHED_COHERENT |
++			ADRENO_FEAT_HAS_HW_APRIV,
+ 		.init = a6xx_gpu_init,
+ 		.zapfw = "a650_zap.mdt",
+ 		.a6xx = &(const struct a6xx_info) {
+@@ -961,8 +961,8 @@ static const struct adreno_info a6xx_gpus[] = {
+ 		},
+ 		.gmem = SZ_1M + SZ_512K,
+ 		.inactive_period = DRM_MSM_INACTIVE_PERIOD,
+-		.quirks = ADRENO_QUIRK_HAS_CACHED_COHERENT |
+-			ADRENO_QUIRK_HAS_HW_APRIV,
++		.quirks = ADRENO_FEAT_HAS_CACHED_COHERENT |
++			ADRENO_FEAT_HAS_HW_APRIV,
+ 		.init = a6xx_gpu_init,
+ 		.zapfw = "a660_zap.mdt",
+ 		.a6xx = &(const struct a6xx_info) {
+@@ -981,8 +981,8 @@ static const struct adreno_info a6xx_gpus[] = {
+ 		},
+ 		.gmem = SZ_1M + SZ_512K,
+ 		.inactive_period = DRM_MSM_INACTIVE_PERIOD,
+-		.quirks = ADRENO_QUIRK_HAS_CACHED_COHERENT |
+-			ADRENO_QUIRK_HAS_HW_APRIV,
++		.quirks = ADRENO_FEAT_HAS_CACHED_COHERENT |
++			ADRENO_FEAT_HAS_HW_APRIV,
+ 		.init = a6xx_gpu_init,
+ 		.a6xx = &(const struct a6xx_info) {
+ 			.hwcg = a690_hwcg,
+@@ -1000,8 +1000,8 @@ static const struct adreno_info a6xx_gpus[] = {
+ 		},
+ 		.gmem = SZ_512K,
+ 		.inactive_period = DRM_MSM_INACTIVE_PERIOD,
+-		.quirks = ADRENO_QUIRK_HAS_CACHED_COHERENT |
+-			ADRENO_QUIRK_HAS_HW_APRIV,
++		.quirks = ADRENO_FEAT_HAS_CACHED_COHERENT |
++			ADRENO_FEAT_HAS_HW_APRIV,
+ 		.init = a6xx_gpu_init,
+ 		.zapfw = "a660_zap.mbn",
+ 		.a6xx = &(const struct a6xx_info) {
+@@ -1028,7 +1028,7 @@ static const struct adreno_info a6xx_gpus[] = {
+ 		},
+ 		.gmem = SZ_2M,
+ 		.inactive_period = DRM_MSM_INACTIVE_PERIOD,
+-		.quirks = ADRENO_QUIRK_HAS_CACHED_COHERENT,
++		.quirks = ADRENO_FEAT_HAS_CACHED_COHERENT,
+ 		.init = a6xx_gpu_init,
+ 		.zapfw = "a640_zap.mdt",
+ 		.a6xx = &(const struct a6xx_info) {
+@@ -1046,8 +1046,8 @@ static const struct adreno_info a6xx_gpus[] = {
+ 		},
+ 		.gmem = SZ_4M,
+ 		.inactive_period = DRM_MSM_INACTIVE_PERIOD,
+-		.quirks = ADRENO_QUIRK_HAS_CACHED_COHERENT |
+-			ADRENO_QUIRK_HAS_HW_APRIV,
++		.quirks = ADRENO_FEAT_HAS_CACHED_COHERENT |
++			ADRENO_FEAT_HAS_HW_APRIV,
+ 		.init = a6xx_gpu_init,
+ 		.zapfw = "a690_zap.mdt",
+ 		.a6xx = &(const struct a6xx_info) {
+@@ -1331,7 +1331,7 @@ static const struct adreno_info a7xx_gpus[] = {
+ 		},
+ 		.gmem = SZ_128K,
+ 		.inactive_period = DRM_MSM_INACTIVE_PERIOD,
+-		.quirks = ADRENO_QUIRK_HAS_HW_APRIV,
++		.quirks = ADRENO_FEAT_HAS_HW_APRIV,
+ 		.init = a6xx_gpu_init,
+ 		.zapfw = "a702_zap.mbn",
+ 		.a6xx = &(const struct a6xx_info) {
+@@ -1355,9 +1355,9 @@ static const struct adreno_info a7xx_gpus[] = {
+ 		},
+ 		.gmem = SZ_2M,
+ 		.inactive_period = DRM_MSM_INACTIVE_PERIOD,
+-		.quirks = ADRENO_QUIRK_HAS_CACHED_COHERENT |
+-			  ADRENO_QUIRK_HAS_HW_APRIV |
+-			  ADRENO_QUIRK_PREEMPTION,
++		.quirks = ADRENO_FEAT_HAS_CACHED_COHERENT |
++			  ADRENO_FEAT_HAS_HW_APRIV |
++			  ADRENO_FEAT_PREEMPTION,
+ 		.init = a6xx_gpu_init,
+ 		.zapfw = "a730_zap.mdt",
+ 		.a6xx = &(const struct a6xx_info) {
+@@ -1377,9 +1377,9 @@ static const struct adreno_info a7xx_gpus[] = {
+ 		},
+ 		.gmem = 3 * SZ_1M,
+ 		.inactive_period = DRM_MSM_INACTIVE_PERIOD,
+-		.quirks = ADRENO_QUIRK_HAS_CACHED_COHERENT |
+-			  ADRENO_QUIRK_HAS_HW_APRIV |
+-			  ADRENO_QUIRK_PREEMPTION,
++		.quirks = ADRENO_FEAT_HAS_CACHED_COHERENT |
++			  ADRENO_FEAT_HAS_HW_APRIV |
++			  ADRENO_FEAT_PREEMPTION,
+ 		.init = a6xx_gpu_init,
+ 		.zapfw = "a740_zap.mdt",
+ 		.a6xx = &(const struct a6xx_info) {
+@@ -1400,9 +1400,9 @@ static const struct adreno_info a7xx_gpus[] = {
+ 		},
+ 		.gmem = 3 * SZ_1M,
+ 		.inactive_period = DRM_MSM_INACTIVE_PERIOD,
+-		.quirks = ADRENO_QUIRK_HAS_CACHED_COHERENT |
+-			  ADRENO_QUIRK_HAS_HW_APRIV |
+-			  ADRENO_QUIRK_PREEMPTION,
++		.quirks = ADRENO_FEAT_HAS_CACHED_COHERENT |
++			  ADRENO_FEAT_HAS_HW_APRIV |
++			  ADRENO_FEAT_PREEMPTION,
+ 		.init = a6xx_gpu_init,
+ 		.a6xx = &(const struct a6xx_info) {
+ 			.hwcg = a740_hwcg,
+@@ -1422,9 +1422,9 @@ static const struct adreno_info a7xx_gpus[] = {
+ 		},
+ 		.gmem = 3 * SZ_1M,
+ 		.inactive_period = DRM_MSM_INACTIVE_PERIOD,
+-		.quirks = ADRENO_QUIRK_HAS_CACHED_COHERENT |
+-			  ADRENO_QUIRK_HAS_HW_APRIV |
+-			  ADRENO_QUIRK_PREEMPTION,
++		.quirks = ADRENO_FEAT_HAS_CACHED_COHERENT |
++			  ADRENO_FEAT_HAS_HW_APRIV |
++			  ADRENO_FEAT_PREEMPTION,
+ 		.init = a6xx_gpu_init,
+ 		.zapfw = "gen70900_zap.mbn",
+ 		.a6xx = &(const struct a6xx_info) {
+diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+index 019610341df1506c89f44e86b8d1deeb27d61857..2ebd3fac212576a1507e0b6afe2560cd0408dd89 100644
+--- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
++++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+@@ -2478,7 +2478,7 @@ struct msm_gpu *a6xx_gpu_init(struct drm_device *dev)
+ 	adreno_gpu->gmu_is_wrapper = of_device_is_compatible(node, "qcom,adreno-gmu-wrapper");
  
-+/**
-+ * dev_pm_opp_get_bw() - Gets the bandwidth corresponding to an opp
-+ * @opp:	opp for which voltage has to be returned for
-+ * @peak:	select peak or average bandwidth
-+ * @index:	bandwidth index
-+ *
-+ * Return: bandwidth in kBps, else return 0
-+ */
-+unsigned long dev_pm_opp_get_bw(struct dev_pm_opp *opp, bool peak, int index)
-+{
-+	if (IS_ERR_OR_NULL(opp)) {
-+		pr_err("%s: Invalid parameters\n", __func__);
-+		return 0;
-+	}
-+
-+	if (index > opp->opp_table->path_count)
-+		return 0;
-+
-+	if (!opp->bandwidth)
-+		return 0;
-+
-+	return peak ? opp->bandwidth[index].peak : opp->bandwidth[index].avg;
-+}
-+EXPORT_SYMBOL_GPL(dev_pm_opp_get_bw);
-+
- /**
-  * dev_pm_opp_get_voltage() - Gets the voltage corresponding to an opp
-  * @opp:	opp for which voltage has to be returned for
-diff --git a/include/linux/pm_opp.h b/include/linux/pm_opp.h
-index 6424692c30b71fca471a1b7d63e018605dd9324b..cd9a257b8e7766d6c8631351a10a845c88414a74 100644
---- a/include/linux/pm_opp.h
-+++ b/include/linux/pm_opp.h
-@@ -106,6 +106,8 @@ struct dev_pm_opp_data {
- struct opp_table *dev_pm_opp_get_opp_table(struct device *dev);
- void dev_pm_opp_put_opp_table(struct opp_table *opp_table);
+ 	adreno_gpu->base.hw_apriv =
+-		!!(config->info->quirks & ADRENO_QUIRK_HAS_HW_APRIV);
++		!!(config->info->quirks & ADRENO_FEAT_HAS_HW_APRIV);
  
-+unsigned long dev_pm_opp_get_bw(struct dev_pm_opp *opp, bool peak, int index);
+ 	/* gpu->info only gets assigned in adreno_gpu_init() */
+ 	is_a7xx = config->info->family == ADRENO_7XX_GEN1 ||
+@@ -2495,7 +2495,7 @@ struct msm_gpu *a6xx_gpu_init(struct drm_device *dev)
+ 	}
+ 
+ 	if ((enable_preemption == 1) || (enable_preemption == -1 &&
+-	    (config->info->quirks & ADRENO_QUIRK_PREEMPTION)))
++	    (config->info->quirks & ADRENO_FEAT_PREEMPTION)))
+ 		ret = adreno_gpu_init(dev, pdev, adreno_gpu, &funcs_a7xx, 4);
+ 	else if (is_a7xx)
+ 		ret = adreno_gpu_init(dev, pdev, adreno_gpu, &funcs_a7xx, 1);
+diff --git a/drivers/gpu/drm/msm/adreno/adreno_device.c b/drivers/gpu/drm/msm/adreno/adreno_device.c
+index 9ffe91920fbfb4841b28aabec9fbde94539fdd83..09d4569f77528c2a20cabc814668c4c930dd07f1 100644
+--- a/drivers/gpu/drm/msm/adreno/adreno_device.c
++++ b/drivers/gpu/drm/msm/adreno/adreno_device.c
+@@ -207,7 +207,7 @@ static int adreno_bind(struct device *dev, struct device *master, void *data)
+ 
+ 	priv->is_a2xx = info->family < ADRENO_3XX;
+ 	priv->has_cached_coherent =
+-		!!(info->quirks & ADRENO_QUIRK_HAS_CACHED_COHERENT);
++		!!(info->quirks & ADRENO_FEAT_HAS_CACHED_COHERENT);
+ 
+ 	gpu = info->init(drm);
+ 	if (IS_ERR(gpu)) {
+diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.h b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+index e71f420f8b3a8e6cfc52dd1c4d5a63ef3704a07f..8782c25e8a393ec7d9dc23ad450908d039bd08c5 100644
+--- a/drivers/gpu/drm/msm/adreno/adreno_gpu.h
++++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+@@ -54,9 +54,10 @@ enum adreno_family {
+ #define ADRENO_QUIRK_TWO_PASS_USE_WFI		BIT(0)
+ #define ADRENO_QUIRK_FAULT_DETECT_MASK		BIT(1)
+ #define ADRENO_QUIRK_LMLOADKILL_DISABLE		BIT(2)
+-#define ADRENO_QUIRK_HAS_HW_APRIV		BIT(3)
+-#define ADRENO_QUIRK_HAS_CACHED_COHERENT	BIT(4)
+-#define ADRENO_QUIRK_PREEMPTION			BIT(5)
 +
- unsigned long dev_pm_opp_get_voltage(struct dev_pm_opp *opp);
++#define ADRENO_FEAT_HAS_HW_APRIV		BIT(3)
++#define ADRENO_FEAT_HAS_CACHED_COHERENT		BIT(4)
++#define ADRENO_FEAT_PREEMPTION			BIT(5)
  
- int dev_pm_opp_get_supplies(struct dev_pm_opp *opp, struct dev_pm_opp_supply *supplies);
-@@ -209,6 +211,11 @@ static inline struct opp_table *dev_pm_opp_get_opp_table_indexed(struct device *
- 
- static inline void dev_pm_opp_put_opp_table(struct opp_table *opp_table) {}
- 
-+static inline unsigned long dev_pm_opp_get_bw(struct dev_pm_opp *opp, bool peak, int index)
-+{
-+	return 0;
-+}
-+
- static inline unsigned long dev_pm_opp_get_voltage(struct dev_pm_opp *opp)
- {
- 	return 0;
+ /* Helper for formating the chip_id in the way that userspace tools like
+  * crashdec expect.
 
 -- 
 2.34.1
