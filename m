@@ -1,99 +1,99 @@
-Return-Path: <devicetree+bounces-122815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122817-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74C899D26F2
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 14:32:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 581779D26DA
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 14:30:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7FF60B29D6D
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 13:26:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E904281B16
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 13:30:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B4831CCB37;
-	Tue, 19 Nov 2024 13:26:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8E311CCED1;
+	Tue, 19 Nov 2024 13:30:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="v9EloRtN"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="ffQuBpZR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 704F71514FB;
-	Tue, 19 Nov 2024 13:26:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E2764EB38;
+	Tue, 19 Nov 2024 13:30:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732022786; cv=none; b=W/S8NHLcCTj1wN2H0N55n6pKvoYtScYhEYgpE1iYzaaLT25YJTioHsTsmXLpaYYKyCjoyBxPzZdV+TILo6lssDWJx+HFs/fUX4Lb3zD1bnEAeQNvzNM/RjlOI66gHu1QwUiQErNCSx+tiWU7ZHpbXS8zlFoZ0rRfwFXvC7wJEGA=
+	t=1732023011; cv=none; b=OC99l3SEhJZmRvrZpdFHsMuE98B9a2q1/DW5UZ56GASo+nhH4xx3QlaBFSoH3+0NPqyaCd0KqqRannvWPX/YoU8flgUmicUkV88w9qC6dWUmDOVJEfV4788SsvI5RJDdg8R5GIYXVjaYB+HcxhGwB+s+7+8VZuA1zqgEfGW9ZyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732022786; c=relaxed/simple;
-	bh=cOoy4IKrB0v1Tc0ApOxtFvI/5KxrBkZBg06rONCExGs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kxJXHTNpecoJgxIFfoex7L/2g91saRsRGrMjSlNZ4nmxcu9OCxN0oVH7FnFJgxuwmpa5OYfHsTuwlDXGI2AYNQIxGET1Qf4MptTNBX6oXvZRS33y5e+xtbpacq6zbKa2g5X+7Yit94GGkQQ0BS7dbfO0P2MiZQvN0twXL7SJcFg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=v9EloRtN; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=10XFHA4WlKYuCUuXVeCcAEgWg2V+Sh14geel43tsfcc=; b=v9EloRtNMXlEcEg5euoahINDxU
-	BsgU65QlQD3uKoH2Qfbws9YV99RKTqGhbNFfLlHJdXiMqeRGVZPP9EN3NhIszhvO2b7U1cHNOl8TB
-	Uf2vRBK/g7+XhmdmS+DtqxOBlvzGNzx5wQ9oYLv7nfbV0tIxHs9aYDTptdocqbXumWkc=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tDOEv-00DnnA-DP; Tue, 19 Nov 2024 14:25:57 +0100
-Date: Tue, 19 Nov 2024 14:25:57 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Jacky Chou <jacky_chou@aspeedtech.com>
-Cc: "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
-	"davem@davemloft.net" <davem@davemloft.net>,
-	"edumazet@google.com" <edumazet@google.com>,
-	"kuba@kernel.org" <kuba@kernel.org>,
-	"pabeni@redhat.com" <pabeni@redhat.com>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"joel@jms.id.au" <joel@jms.id.au>,
-	"andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>,
-	"hkallweit1@gmail.com" <hkallweit1@gmail.com>,
-	"linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: =?utf-8?B?5Zue6KaG?= =?utf-8?Q?=3A?= [net-next 0/3] Add Aspeed
- G7 MDIO support
-Message-ID: <6ae91aae-5939-4ffd-a430-181fb88d259b@lunn.ch>
-References: <20241118104735.3741749-1-jacky_chou@aspeedtech.com>
- <7368c77e-08fe-4130-9b62-f1008cb5a0dc@lunn.ch>
- <SEYPR06MB513475D2B233EA9BDF52AD259D202@SEYPR06MB5134.apcprd06.prod.outlook.com>
+	s=arc-20240116; t=1732023011; c=relaxed/simple;
+	bh=kGj+GDP0ykdpYT3mxMJibuDlYw/CkU8W4X9/0aldrxA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XEUcamPSjLwiv8Iibe4j8mzIN7XHt36JO3hI8s6EuIYd2rx8uwJkD26ftbmlouWz9bPnSlQgd/5sN9HbM1W29riMYbR+lyR6Ewkrn+JRccW0xtYkMRQDZ/oHiJwRL9IG1CaYSohPtpeMshp9NAQVOc96v4gQ3zVxZnwyIMAhzWA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=ffQuBpZR; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:
+	Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=CwSrNWXTaOvTSfS5toosqs8SZ/vkl62iKBpjVyFO1BI=; b=ffQuBpZRkJrsyKP0W2/ScBQULf
+	6nF5GYWZ2sZrzNHF3uMMue57xe0HQ99W/h5hNCiBLcPg+lCCaRhXjjadGSdvQRHp7tBIDAnk1stnq
+	/6bu1gHkw8mI21mgUZJNgOdnmRBXsEo/WruRv6n+V7D7fHsx02QNOKjaLW7E4bBnBs3iFHvy+WrLm
+	dsH/0wbRXlTVh2dfa5VqqblVaSgkpFKC3AzywHpBEmgIBXg2lkDBQndWXQkW/z8vN/kgi+XsvYF5y
+	mWZupjy94gCe8DGWJGxwTeRKev3ZMEUOrEobQkw8h9tmDyg253E8l/XEBrJ6eTVtUn8JAxpeXNst9
+	VA9Q57ng==;
+Received: from i53875a30.versanet.de ([83.135.90.48] helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tDOIm-0006z1-TJ; Tue, 19 Nov 2024 14:29:56 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: srinivas.kandagatla@linaro.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	detlev.casanova@collabora.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	sebastian.reichel@collabora.com
+Subject: [PATCH 0/5] RK3576 OTP support
+Date: Tue, 19 Nov 2024 14:29:11 +0100
+Message-ID: <20241119132916.1057797-1-heiko@sntech.de>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <SEYPR06MB513475D2B233EA9BDF52AD259D202@SEYPR06MB5134.apcprd06.prod.outlook.com>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Nov 19, 2024 at 05:35:40AM +0000, Jacky Chou wrote:
-> Hi Andrew Lunn
-> 
-> Thank you for your reply.
-> 
-> > > The Aspeed 7th generation SoC features three MDIO controllers.
-> > > The design of AST2700 MDIO controller is the same as AST2600.
-> > 
-> > If they are identical, why do you need a new compatible?
-> 
-> We want consistent naming in the DTS of the new SoC, even if Its 
-> design is the same as the older SoC.
+This enables OTP support in the nvmem driver for rk3576.
 
-You might find the DT Maintainers push back against this. What you
-want is effectively a Marketing game, it has little to do with
-technology, describing the hardware.
+I expect to pick the clock patch (patch1) and the arm64-dts patch (patch5)
+myself, after the nvmem-driver and -binding patches have been applied
+(patches 2-4).
 
-	Andrew
+But kept them together for people wanting to try this series.
+
+Heiko Stuebner (5):
+  clk: rockchip: rk3576: define clk_otp_phy_g
+  nvmem: rockchip-otp: Move read-offset into variant-data
+  dt-bindings: nvmem: rockchip,otp: Add compatible for RK3576
+  nvmem: rockchip-otp: add rk3576 variant data
+  arm64: dts: rockchip: add rk3576 otp node
+
+ .../bindings/nvmem/rockchip,otp.yaml          | 18 +++++++++
+ arch/arm64/boot/dts/rockchip/rk3576.dtsi      | 39 +++++++++++++++++++
+ drivers/clk/rockchip/clk-rk3576.c             |  2 +
+ drivers/nvmem/rockchip-otp.c                  | 17 +++++++-
+ 4 files changed, 74 insertions(+), 2 deletions(-)
+
+-- 
+2.45.2
+
 
