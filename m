@@ -1,240 +1,185 @@
-Return-Path: <devicetree+bounces-122984-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122985-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE4C79D302D
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 22:56:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 137D89D3042
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 23:13:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 35459B20F4A
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 21:56:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A0A6B1F23384
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 22:13:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C9741D2F64;
-	Tue, 19 Nov 2024 21:56:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A63961D1F63;
+	Tue, 19 Nov 2024 22:13:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="Wu1Uld26"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="gT2QVDTX";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="UO1SgOka"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fhigh-a1-smtp.messagingengine.com (fhigh-a1-smtp.messagingengine.com [103.168.172.152])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 754A51D0B9E;
-	Tue, 19 Nov 2024 21:56:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF7A7199FDD;
+	Tue, 19 Nov 2024 22:13:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732053401; cv=none; b=gW7/GjLBC0aj0vV1NZxpsChsOJEdBxgyK/jYB1Lx2a3090lDTCJaMXJmS1d2tebBYmgmEvT2HJja6SCee9MqyUfwecHileabCwooXQmm9m6VkfQFZV4+3GLdzK5+S4tMtGFyIFIezv1nfT+IL7Kfhz1fOkDjC0P7S6hgwYTNYEA=
+	t=1732054426; cv=none; b=mlBq93dU8dbYeU7g0w0DPw+DR1B6QU/VMsTSFCPAeCby/8RMWJ3YqzPfaZm439muVEKuncFmmfUFZLqD7t+FYeQZA1C5po6xvOXpSecAakHZ2BO8p3OTAIy8oZBb9ahfJFFrEMcta9LhSqbTxZZgxnqjbYtNdSjWtCwqZBfND8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732053401; c=relaxed/simple;
-	bh=eT54uuZM/nbKGW2p+dwXTqaPTVNBV3Nq3lV/KEE8ZXc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PcHjwgXWDCuXMptM+AH607ckfbNBWDH/zPUfg5WYM3fiJvrt6Fzojk6VA2iwhpjh0iBDso2w3bQDMv7BXL7/NmnJvo9CbV6perXAe6oJqIgNBmXgdh5zb/vodXqlW7fdO78syrzh2wH2NjR9KvH/gSGJHLz4yCyMLyDN1S5CiBs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=Wu1Uld26; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id D5335895BF;
-	Tue, 19 Nov 2024 22:56:34 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1732053397;
-	bh=atOqhpShv6nVPXJfhzq/Bh3Ko/bhRYVXc8Rnk2+8Rt4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Wu1Uld26U2/CKmnv3kHtE9x+XTdgM4pNc+e4mnZ4unWp2//I7x6JrgANcYps0EEtl
-	 yAUFXaNJqAfv48rOn49RHiC4FGgVzx8omnErPAEJh0p2hDH+30Ta1CKLbIz5LoJatl
-	 sCO9n0TN+/e8ufwdlQU9dOTsLBeI/TZg+piBf5WSjwlGmoplTC/YIioJmcISIj8CHR
-	 bk2mM9tWOJTsd5py0tloVaK8qHVzTSg1W6Ij9zQ7jX1uR453RQxI6OWOTJe9d3GT0j
-	 XxSNqPaGBDt8/n2qk7OjNGvOGwfPo+HxvTAvie9a7nBF417HYvg7GzC4qFCbe8YWE5
-	 xtEa69egQQGGg==
-Message-ID: <83be0a27-6b6c-4ba6-b9dc-f914a10abace@denx.de>
-Date: Tue, 19 Nov 2024 22:42:50 +0100
+	s=arc-20240116; t=1732054426; c=relaxed/simple;
+	bh=96q9GqH/+GNUA3gKtaLxdJ6e7BoqcMt/kc8NGYKnfeU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=f4cl+eWYYgRPcfTj2yRmTCu0orZfh+zf1Pucyz/o9fczcFsIURM5tekDLuaZKncEM5R+MkmXWsAm4kB4GGKE+DI9VdtHoQl6vXS9N8t9O9UJ9dPXzeCclo+nC/lN0ZBErgU1y5kMnQ4Bk2Kl91uIdxiXpM1HC4tWrHSI5ggW+8s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=gT2QVDTX; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=UO1SgOka; arc=none smtp.client-ip=103.168.172.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-02.internal (phl-compute-02.phl.internal [10.202.2.42])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id 845361140105;
+	Tue, 19 Nov 2024 17:13:42 -0500 (EST)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+  by phl-compute-02.internal (MEProxy); Tue, 19 Nov 2024 17:13:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:message-id:mime-version:reply-to
+	:subject:subject:to:to; s=fm3; t=1732054422; x=1732140822; bh=Mi
+	31dQz32ziAshRlrlLs+6dpXYI5Y+3e1KNvq0LkGL8=; b=gT2QVDTXmtgHs+6lh3
+	s6lF5IEfoFo3I2Jwcjuoy9/YGFdbLrrHo+ZYFiQGLMrzZ1XVTNS0nxvr3qwfQgPf
+	RG/MFyhA4nE557gvMzYzcEiMM4LEgtadn1V48wjlkNwEBSCdtyn4m+9KcRmsdOtm
+	0X0PxGeThAuWnZmpdsM2SmDWzJvbnWH8vL+NGFx/8MUUe+tuGrarPj64TacOw2Zm
+	RbhUGevnxHhAViHhE56UurdvF2ap4n/fMHIoSs39jyPPTcjdJp2jzxWyCXrvlEep
+	EZQpw7Y2Y1kxkggYG/UWFvFWQLcl4UV1kiRCqyXEUK3FwFu8QoZT/bCm8iyoOhAP
+	POjQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm3; t=1732054422; x=1732140822; bh=Mi31dQz32ziAshRlrlLs+6dpXYI5
+	Y+3e1KNvq0LkGL8=; b=UO1SgOka/M1KRtJ6ErpBUmUAnIbbmYLSPpSy3YNJovLP
+	Iis1Pe0ckNFRbZMyngV206fd837K4QIqoKDptq+Ot+1oXAgobRbadym14P3lmEW3
+	0BdaGu3Ehr25WW9sY6WhSSmY8NhldPL1quyCLWsQU83xys4quMh4HIpAwk6d5xcj
+	NwMbZ/Hs53ezAGbY/7/fTMPq7qF/ktOAowvQdgx8v4LQgtoS7OsHGhDBT8H9jEfB
+	CvgWT/7a1iLgKdRM+ptlSIIgG+tm425zRh1K1QXsolHRuo47ZeT7kW/AhUOJzkvr
+	x1H8aplK8xSsLfUXfIUyNNcx/09X1VK+ui8V2Jmliw==
+X-ME-Sender: <xms:lg09Z35I0rH3jHPaksGADDE3VeyQOBrYDaBwNdHL7LreTvpJQ7OF8w>
+    <xme:lg09Z84tyAMZIxk2aIETc-Ucz9RIOUS9NbodiveI_IeBkxG3hlRA7UKhAFGIqHRAV
+    xLfGXEgTSdgsqH6Q6E>
+X-ME-Received: <xmr:lg09Z-fsqkqX1Tf4CMi5UJr-Zf0GRtduGlH9T5Mqprh_njYztd4f_pNLIayKdCODNVo51Qi5mYfVCIXSrXg7CkmzsA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrfedvgdduheeiucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
+    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
+    htshculddquddttddmnecujfgurhephffvvefufffkofggtgfgsehtkeertdertdejnecu
+    hfhrohhmpefpihhklhgrshcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhouggvrh
+    hluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgvqeenucggtffrrghtthgv
+    rhhnpeehudelteetkefgffefudefuedvjeeivdekhfevieefgeffheeltddvvefhfeetge
+    enucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehnihhk
+    lhgrshdrshhouggvrhhluhhnugesrhgrghhnrghtvggthhdrshgvpdhnsggprhgtphhtth
+    hopeduuddpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepshgrkhgrrhhirdgrihhl
+    uhhssehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhtohepmhgthhgvhhgrsgeskh
+    gvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgt
+    phhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnoh
+    hrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepghgvvghrthdorhgvnhgvshgr
+    shesghhlihguvghrrdgsvgdprhgtphhtthhopehlrghurhgvnhhtrdhpihhntghhrghrth
+    esihguvggrshhonhgsohgrrhgurdgtohhmpdhrtghpthhtoheplhhinhhugidqmhgvughi
+    rgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopeguvghvihgtvghtrhgvvg
+    esvhhgvghrrdhkvghrnhgvlhdrohhrgh
+X-ME-Proxy: <xmx:lg09Z4LUdVfFofkN9-D3Z8jVEBG9DdqZsf-BH36S2AyObV0LvMNanQ>
+    <xmx:lg09Z7ILNPoaEZsVslgrApZdjBtxZWe7cqYteV3-XmEh5EevJORIxw>
+    <xmx:lg09ZxyDqe8v5v3O-tgwqhHiV4SILtqhCLYQt0di1JpjVNXLWDXoUQ>
+    <xmx:lg09Z3KMZe_mlE0X5dtNkTDvJnbttsrwJf4iFpQ8Dclu40h3_eZaIw>
+    <xmx:lg09Z9yUVlR9dAyZr4ifNWrzkacieIflB5tULdQWdusbQ39mw6IjkVoT>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 19 Nov 2024 17:13:41 -0500 (EST)
+From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Cc: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH 0/4] media: v4l: fwnode: Add support for CSI-2 C-PHY line orders
+Date: Tue, 19 Nov 2024 23:12:45 +0100
+Message-ID: <20241119221249.539610-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/7] Revert "clk: imx: clk-imx8mp: Allow media_disp
- pixel clock reconfigure parent rate"
-To: Ying Liu <victor.liu@nxp.com>, "imx@lists.linux.dev"
- <imx@lists.linux.dev>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Cc: "shawnguo@kernel.org" <shawnguo@kernel.org>,
- "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
- "kernel@pengutronix.de" <kernel@pengutronix.de>,
- "festevam@gmail.com" <festevam@gmail.com>, "robh@kernel.org"
- <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
- "will@kernel.org" <will@kernel.org>,
- "abelvesa@kernel.org" <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
- "mturquette@baylibre.com" <mturquette@baylibre.com>,
- "sboyd@kernel.org" <sboyd@kernel.org>,
- "andrzej.hajda@intel.com" <andrzej.hajda@intel.com>,
- "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
- "rfoss@kernel.org" <rfoss@kernel.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- "jonas@kwiboo.se" <jonas@kwiboo.se>,
- "jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- "mripard@kernel.org" <mripard@kernel.org>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>,
- "airlied@gmail.com" <airlied@gmail.com>, "simona@ffwll.ch"
- <simona@ffwll.ch>, "quic_bjorande@quicinc.com" <quic_bjorande@quicinc.com>,
- "geert+renesas@glider.be" <geert+renesas@glider.be>,
- "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
- "arnd@arndb.de" <arnd@arndb.de>,
- "nfraprado@collabora.com" <nfraprado@collabora.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>
-References: <20241114065759.3341908-1-victor.liu@nxp.com>
- <20241114065759.3341908-3-victor.liu@nxp.com>
- <df6ebdde-65f8-4aad-93c7-b1df695bd2ef@denx.de>
- <AM7PR04MB7046546A882A8D48E135D84698272@AM7PR04MB7046.eurprd04.prod.outlook.com>
- <8a4fd234-4c7b-4a04-990d-3222aaa5172d@denx.de>
- <AM7PR04MB7046E282FD702ACE5E288F8998202@AM7PR04MB7046.eurprd04.prod.outlook.com>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <AM7PR04MB7046E282FD702ACE5E288F8998202@AM7PR04MB7046.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 11/19/24 9:18 AM, Ying Liu wrote:
+Hello,
 
-[...]
+This series aims to extend the video interface bindings with a new 
+property to describe the CSI-2 C-PHY line orders. In comparison with 
+CSI-2 D-PHY where each data-lane is constructed from two lines making up 
+a differential pair the C-PHY uses three phase encoding constructed from 
+three lines to create a single data lane.
 
->> The TC9595 can drive an DP output, for that the clock which have to be
->> set on the LCDIF cannot be predicted, as that information comes from the
->> monitor EDID/DPCD. That is why the LCDIF has to be able to configure the
->> Video PLL1 clock to accurate clock frequency.
->>
->> For the LVDS LDB, the use case is the other way around -- the pixel
->> clock which should be generated by LCDIF and fed to LDB are known from
->> the panel type listed in DT, but they should still be accurate.
-> 
-> Thanks for the information.  I think the key question is whether the
-> alternative solution(*) you mentioned below stands or not, in other words,
-> whether LCDIF1/LCDIF2/LDB drivers know that they are sharing a PLL
-> or not.
+The three lines making up the C-PHY data lane are labeled A, B and C in 
+the specification and can be ordered in any combination (ABC, ACB, BAC, 
+BCA, CAB and CBA). This can be compared to the D-PHY model where the two 
+lines in the differential pair can be "normal" or "inverted" to do the 
+same thing.
 
-I'll continue at the end ...
+For the D-PHY uses-case the exists a property 'lane-polarities' can be 
+used to describe this line wiring. However there are no property to 
+describe this ordering of the C-PHY lines in the video interfaces 
+definition nor in the V4L2 fwnode structures or parser.
 
->>> You still may assign an accurate PLL rate in DT.
->>> This patch only makes the PLL rate be unchangeable dynamically in
->>> runtime.  That means the existing imx8m-dhcom-som.dtsi would use
->>> IMX8MP_VIDEO_PLL1_OUT(running at 1.0395GHz) as the parent clock
->>> of IMX8MP_CLK_MEDIA_DISP1_PIX (for LCDIF1/DSI), since it includes
->>> imx8mp.dsti.  I assume it should be able to support typical video modes
->>> like 1080p60 video mode with 148.5MHz pixel clock at least with 1.0395GHz
->>> PLL rate.
->>
->> This will break multiple DP monitors I tested so far I'm afraid. And I
->> spent a LOT of time wrestling with the TC9595 bridge to make sure it
->> actually does work well.
-> 
-> If the DP monitors support typical video modes like 1080p60 with
-> 148.5MHz pixel clock rate, I assume these typical video modes work
-> still ok with this patch at least.  Please help confirm this, since if the
-> alternative solution(*) doesn't stand, we would know those video
-> modes still work ok with my solution(fixed PLL rate).
+Patch 1/4 extends the video bindings with a new property 'line-orders' 
+which can describe this property of the C-PHY. The property name and the 
+const values used for different line configurations are taken from the 
+MIPI Discovery and Configuration (DisCo) Specification for Imaging 
+document.
 
-They do not work with the fixed PLL setting.
+Patch 2/4 extends the V4L2 fwnode data structure and parser to consume 
+and exposes this property to drivers.
 
->>> Granted that less video modes read from DP monitor would
->>> be supported without dynamically changeable PLL rates, this is something
->>> we have to accept because some i.MX8MP platforms(like i.MX8MP EVK)
->>> have to share IMX8MP_VIDEO_PLL1_OUT between LVDS and MIPI DSI
->>> display pipelines.
->>
->> What I need is the use of two full PLL1443x (like Video PLL and Audio
->> PLL1/2) , one for each display output, and those PLLs have to be fully
->> configurable to produce accurate pixel clock for each connected panel.
->> Otherwise I cannot make proper use of the video output capabilities of
->> the MX8MP SoC.
-> 
-> Yeah, I understand your requirements.  However, it still depends on
-> whether the alternative solution(*) stands or not.
+While patch 3/4 and 4/4 adds an example use of the property both in the 
+bindings and in the driver using the R-Car CSI-2 receiver driver on V4H.
 
-I'll continue at the end ...
+A note on the changes to the R-Car driver not relevant to the core V4L2 
+or bindings work. The V4H WhiteHawk development platform is the only 
+model where the CSI-2 bus is used in a C-PHY configuration. Early 
+datasheets where used to add support for it and at that time the line 
+order registers where not documented so magic values where used as-is.  
+This have been addressed in later versions of the datasheet and this can 
+now be done properly.
 
->>> The missing part is that we need to do mode validation
->>> for the MIPI DSI display pipeline either in samsung-dsim.c or lcdif_kms.c
->>> to filter unsupported video mode out.  Is this missing mode validation
->>> the cause of your failure case?
->>
->> I do want to support the various modes, I do not want to filter them
->> out. They can be supported, the only "problem" is the shared Video PLL
->> which is not really an actual problem in my case, because I do not use
->> shared Video PLL, I use two separate PLLs.
->>
->> I think what is needed is for the LCDIF1/LCDIF2/LDB to figure out
->> whether they share the Video PLL at all (you already suggested the clock
->> subsystem can provide that information), and then if:
-> 
-> But, how to let LCDIF1/LCDIF2/LDB drivers to figure out that?
-> 
-> I didn't suggest that the clock subsystem can provide that information.
+The magic values used however configured one of the data lanes used in a 
+BCA configuration, which is required for proper operation on that 
+development platform. Thus the change in patch 4/4 breaks proper 
+operation with older DTS files lacking the new line-orders property.
 
-... by end I mean here.
+I think this is fine as the only known use-case for this platform is 
+together with the MAX96712 CSI-2 transmitter and for this we only have a 
+staging driver capable of generating test patterns. To extend this to a 
+capture pipeline capable of capturing frames from a real source DTS 
+changes are needed to describe the video source, so an updated DTS are
+need anyhow.
 
-One really nasty way I can think of is -- use find_node_by_compatible(), 
-look up all the relevant DT nodes, parse their clock properties, and 
-check whether they all point to the Video PLL or not.
+Niklas Söderlund (4):
+  media: dt-bindings: Add property to describe CSI-2 C-PHY line orders
+  media: v4l: fwnode: Parse MiPI DisCo for C-PHY line-orders
+  arm64: dts: renesas: white-hawk-csi-dsi: Define CSI-2 data line orders
+  media: rcar-csi2: Allow specifying C-PHY line order
 
-Maybe the clock subsystem has a better way, like list "neighbor" 
-consumers of some specific parent clock or something like that.
+ .../bindings/media/video-interfaces.yaml      | 20 +++++
+ .../boot/dts/renesas/white-hawk-csi-dsi.dtsi  |  6 ++
+ drivers/media/platform/renesas/rcar-csi2.c    | 74 +++++++++++++++++--
+ drivers/media/v4l2-core/v4l2-fwnode.c         | 56 +++++++++++++-
+ include/dt-bindings/media/video-interfaces.h  |  7 ++
+ include/media/v4l2-mediabus.h                 | 21 ++++++
+ 6 files changed, 176 insertions(+), 8 deletions(-)
 
-[...]
+-- 
+2.47.0
 
->> Can something like (*) above be implemented instead, so both Shared and
->> separate PLLs would be supported ? That should solve both of our use
->> cases, right ?
-> 
-> I don't see any clear way to implement something like(*).
-> 
-> Take the 3 i.MX8MP LCDIFs as one graphic card driven by one imx-lcdif
-> DRM instance?  Would it be too intrusive?
-
-Yes, and I think unnecessary, one can simply traverse and parse the DT 
-to determine the clock assignment?
-
-> Use clk_get_parent() to determine if the pixel clocks of LCDIF1&2 are
-> sharing PLL(note clk_get_parent() implementation contains a TODO:
-> Create a per-user clk.)?
-
-Maybe not necessary for this case.
-
-> How to do mode validation for the shared PLL case(note mode_valid()
-> callback is supposed to look at nothing more than passed-in mode)?
-> Use clk_set_rate_range() to fix the PLL rate(min == max)?
-
-This is a good question -- we can use fixed frequency set in DT for the 
-PLL in case it is shared, and set whatever optimal frequency if the PLL 
-is not shared. That would be a good first step I think (**).
-
-The next step would be to find a way to negotiate acceptable PLL 
-frequency between LCDIF1/LCDIF2/LDB in case the PLL is shared, but I do 
-agree this is non-trivial, hence next step.
-
->>> I hope that we can agree on this solution first before spreading
->>> discussions across different threads and eventually the NAK can be
->>> taken back.
->>
->> I cannot really agree on a solution which breaks one of my use cases,
->> but maybe there is an alternative how to support both options, see (*)
->> above ?
-> 
-> I tend to say there is no any alternative solution to satisfy both
-> separate PLLs and shared PLL use cases, or even if there is one, it won't
-> be easy to implement.  If you know one, please shout it out.
-Maybe (*) with first step (**) would be doable ?
 
