@@ -1,150 +1,141 @@
-Return-Path: <devicetree+bounces-122791-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122792-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 254659D254C
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 13:10:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C0EA9D2613
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 13:46:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C76891F22A0F
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 12:10:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7EE9628141E
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 12:46:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63A7E1CBE93;
-	Tue, 19 Nov 2024 12:10:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B9351CBEBB;
+	Tue, 19 Nov 2024 12:46:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="YQzs/lkE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Yr5JIHIl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01A861CBEA2;
-	Tue, 19 Nov 2024 12:10:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CFA41C4A0C;
+	Tue, 19 Nov 2024 12:46:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732018251; cv=none; b=PNCgx/x7jwWHlnBKUK9qjSwKodNMCcLVKF99IZZhBOlMQsTK228pyuQNxMiB+HlEu51mcnByxR1frHlcuHVQ3rBBThDcd7xGYPFr8T1PYrFkMg0hL2CiqKByVz59rgJFgua1Iy0925XUe7xUavqBod6krCyxJrU3t0sm2MdTUqk=
+	t=1732020371; cv=none; b=eFBqNZO4Va3b4ewZHcLdpGyYBRlCLnMQqmoF7IXwgqWgqEt60qjCDbOzZGaGaOcX5kcmUJkAkL/PH7lf1u7X/xyU/tgyKDXHujxh1xVZ5KBKXOM7bd+ZDNTAimWSZCralWCe0zLsC6aXGjM39W7EdbEdmJiMvV83AjY8lFQ89Yo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732018251; c=relaxed/simple;
-	bh=05fpO7BzPwjbenkCrUKrYY+/DfO4tCIfVL4XejHfZ7k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=JJfh8EdEHEDEp/UEs+TmSLSe/NVqmtztF615JVAXCWrMI34ZjXW2tBJD9D0YQVfBmGzlM1WBacUKA1/4pK+qn4oAZhYgEV/M4C0/fvpjcQ+l8JE2zUsD6YQoccbIqFTXq1mlJdUWyT0zFOhlDdasMMergA/PWoC6eRxAOykB+s8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=YQzs/lkE; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 4AJCAYfB3872011
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-	Tue, 19 Nov 2024 06:10:35 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1732018235;
-	bh=FCGHGADOR/Gid+oabOsKGIdb9QgjKW0XNbA9D4BfNmI=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=YQzs/lkEaxGSCeq4kMeO7PahgeK6bOL41W2WYwflyX22ug7Ri0f/Cs8tziOBuD13I
-	 5+TYBZ2BCHxq3o3Kqm/MGtwUpLgKndNe9RQoRS3ngdI/cwjc89JLba6J6cTaTylKJX
-	 kG9TKC20J6Y0fu5atH7JqHImnUmIgXf6S36ahtWk=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4AJCAYX4082124;
-	Tue, 19 Nov 2024 06:10:34 -0600
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 19
- Nov 2024 06:10:34 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 19 Nov 2024 06:10:34 -0600
-Received: from [137.167.1.99] (lt5cg1094w5k.dhcp.ti.com [137.167.1.99] (may be forged))
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4AJCAVFO122922;
-	Tue, 19 Nov 2024 06:10:31 -0600
-Message-ID: <1e84b675-a0a0-414c-9f42-45a958dc0724@ti.com>
-Date: Tue, 19 Nov 2024 14:10:30 +0200
+	s=arc-20240116; t=1732020371; c=relaxed/simple;
+	bh=0Pc541MawFM6msnNwoO7usHE+Osm+SK8gs9XtT+jjYw=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZrGG5Ll6Jd7IhF1s3J/LgFUEfamz7cCo0k6LlKyt+EqmiJscXm2kwHLYTJiSMyF3LVx8wvmmZtCTDYVsk+D8sCOGQXh+WyZoLSjqH5SZQQXwT7MlQ03aOC/lMFl8d6WKO6PuOrcyiIkN14y5ZxfhLV9EmzogA0chvopJcrUU9SI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Yr5JIHIl; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5cfddb70965so1326206a12.0;
+        Tue, 19 Nov 2024 04:46:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1732020368; x=1732625168; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=k5/gaiAv8h6HJm8JV5izVAzWfhwGHsfvkAT3QjKySqk=;
+        b=Yr5JIHIl4ZhNR063wMTPSQ7dpcigEynzwOO3JYXlxsq3jgj0wqXzHzO85AqEkX1FPQ
+         z4Pos2YgUqzeDqRESaErFY2zI28n+Bqcq6ESzoN35f2mt8JTdxgXvpCJxYZdmwuD2xSY
+         N1AiFPwjIuL7o2O1o2KD4TceywvHagXHL7rmPGeOV9b1gFUmkiCrxTKgo7wLLMa/YShm
+         KSg7kSNPXxAM2uCDVauF/Mh5NAARTa3BhxdW0u/vRasbx84n3e/glFPTyyDJtTenSGix
+         3eMtu/qmzEMwAb7iZVLa6rVSJzVytnSyyWofXDIuN6soX4Ug3ufrjOpSxzUNoKPWb0eI
+         itCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732020368; x=1732625168;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=k5/gaiAv8h6HJm8JV5izVAzWfhwGHsfvkAT3QjKySqk=;
+        b=ECtwDxJilThN8KslyUeARSwXxP4qRPnBrwnv+bclxyzF+snSvEvbGSzSImXVSO6J86
+         qGy7y296sM4ZefHiZ7sLyuHwEKliPUCMNGjVqRffUDRO8gQ2hkR57TRI/SKUXlGBeUux
+         9jFQEHxRDsNurJM9wAFqqp4F6sR1Y/+EgfF8fJrVTLeU03l46sOEwkCg8ADWU49KIl3Z
+         8p5QuxHzAaZMZnR6per3Srx2Py3GN8uuVIilK4qJ0rosc8PSafFk0YX03i4rlWlt2mNx
+         RwRjpxJZhwKu4E1vRYrSvNlNH0r99+DLRd0RvDmr8x1RDXhJuruL3QaYluUYjF7w30l+
+         magA==
+X-Forwarded-Encrypted: i=1; AJvYcCUGwYX0pYtIgNywewcy0BN6+Z+F114YXsf5bvzHx2ZAwGlVi63DyYjJc1k25x3vKUFU2KyPpvIl@vger.kernel.org, AJvYcCWAuv9+HkGva1GH/QA4jzLxW5xE+vtgUVCmkIzf7Wf8e3PoWaHWg3jeA+h56ZYVijvi7F3pjCFAbjOIYolZ@vger.kernel.org, AJvYcCXDOUPUmCVtALuXBngSR9ojbWoJWzo+djAYiZhq46ISr3k6Lk6N3EU920Qv44yhot/v9ddh4xvMuncK@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz+qu9frlk3saD2/kg/iF6s7bOuGJI2zbwP4d2PCYXgF0j/T38A
+	JTyTwPPj6pEsgiBAT7FCHsNAPMHqvSDdXJ1l1u+TIsZ1/XUtS0dX
+X-Google-Smtp-Source: AGHT+IHCYZ3NKhKPZWjj2AvexgxpQZKs0aHkGi3venZoVOafZ13nTepAJ8dEvaexbzt3d9JyKwNwfg==
+X-Received: by 2002:a05:6402:268e:b0:5cf:bcce:7422 with SMTP id 4fb4d7f45d1cf-5cfbcce7560mr6787204a12.6.1732020367487;
+        Tue, 19 Nov 2024 04:46:07 -0800 (PST)
+Received: from Ansuel-XPS. ([62.19.98.53])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cfcb3edce9sm1966351a12.35.2024.11.19.04.46.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Nov 2024 04:46:07 -0800 (PST)
+Message-ID: <673c888f.a70a0220.26ea38.88b1@mx.google.com>
+X-Google-Original-Message-ID: <ZzyIi1Bsz5djjEGX@Ansuel-XPS.>
+Date: Tue, 19 Nov 2024 13:46:03 +0100
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Paolo Abeni <pabeni@redhat.com>
+Cc: Vladimir Oltean <olteanv@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	upstream@airoha.com
+Subject: Re: [net-next PATCH v7 0/4] net: dsa: Add Airoha AN8855 support
+References: <20241117132811.67804-1-ansuelsmth@gmail.com>
+ <20241118144859.4hwgpxtql5fplcyt@skbuf>
+ <673b88ea.5d0a0220.17b04a.bc4b@mx.google.com>
+ <f8c50ee6-a3d7-45eb-9c11-8018cc4043cb@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 01/17] dt-bindings: net: wireless: cc33xx: Add
- ti,cc33xx.yaml
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Kalle Valo <kvalo@kernel.org>, "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo
- Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-wireless@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Sabeeh Khan
-	<sabeeh-khan@ti.com>
-References: <20241107125209.1736277-1-michael.nemanov@ti.com>
- <20241107125209.1736277-2-michael.nemanov@ti.com>
- <y4ffzjekeccqg2tv7d54ilwbz3nhm4jkcq3fyg5tmpbupsqirn@dq3kjtwkllds>
- <2b0e95be-8192-416f-8655-631d6cecc336@ti.com>
- <1651f579-6f9b-4c98-b273-0d7de4e99478@kernel.org>
-Content-Language: en-US
-From: "Nemanov, Michael" <michael.nemanov@ti.com>
-In-Reply-To: <1651f579-6f9b-4c98-b273-0d7de4e99478@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f8c50ee6-a3d7-45eb-9c11-8018cc4043cb@redhat.com>
 
-On 11/19/2024 11:15 AM, Krzysztof Kozlowski wrote:
-> On 12/11/2024 07:45, Nemanov, Michael wrote:
->> On 11/8/2024 2:02 PM, Krzysztof Kozlowski wrote:
->>> On Thu, Nov 07, 2024 at 02:51:53PM +0200, Michael Nemanov wrote:
->>>> Add device-tree bindings for the CC33xx family.
->>>>
->>>> Signed-off-by: Michael Nemanov <michael.nemanov@ti.com>
->>>> ---
->>>>    .../bindings/net/wireless/ti,cc33xx.yaml      | 59 +++++++++++++++++++
->>>>    1 file changed, 59 insertions(+)
->>>>    create mode 100644 Documentation/devicetree/bindings/net/wireless/ti,cc33xx.yaml
->>>>
->>>
->>> <form letter>
->>> This is a friendly reminder during the review process.
->>>
->>> It seems my or other reviewer's previous comments were not fully
->>> addressed. Maybe the feedback got lost between the quotes, maybe you
->>> just forgot to apply it. Please go back to the previous discussion and
->>> either implement all requested changes or keep discussing them.
->>>
->>> Thank you.
->>> </form letter>
->>>
->>> Best regards,
->>> Krzysztof
->>>
->>
->> Are you referring to
->>
->>> diff --git a/Documentation/devicetree/bindings/net/wireless/ti,cc33xx.yaml b/Documentation/devicetree/bindings/net/wireless/ti,cc33xx.yaml
->>
->> ...
->>
->>> +
->>> +properties:
->>> +  $nodename:
->>> +    pattern: "^wifi@2"
->>
->> ?
->>
->> If so, I replied here
->> https://lore.kernel.org/linux-wireless/8024aa1c-5bd1-40d8-b0c3-14b5fcd992e2@ti.com/#t
->> But if you don't think it's worthwhile I'll remove it.
+On Tue, Nov 19, 2024 at 12:10:19PM +0100, Paolo Abeni wrote:
+> On 11/18/24 19:35, Christian Marangi wrote:
+> > On Mon, Nov 18, 2024 at 04:48:59PM +0200, Vladimir Oltean wrote:
+> >> On Sun, Nov 17, 2024 at 02:27:55PM +0100, Christian Marangi wrote:
+> >>> This small series add the initial support for the Airoha AN8855 Switch.
+> >>>
+> >>> It's a 5 port Gigabit Switch with SGMII/HSGMII upstream port.
+> >>>
+> >>> This is starting to get in the wild and there are already some router
+> >>> having this switch chip.
+> >>>
+> >>> It's conceptually similar to mediatek switch but register and bits
+> >>> are different. And there is that massive Hell that is the PCS
+> >>> configuration.
+> >>> Saddly for that part we have absolutely NO documentation currently.
+> >>>
+> >>> There is this special thing where PHY needs to be calibrated with values
+> >>> from the switch efuse. (the thing have a whole cpu timer and MCU)
+> >>
+> >> Have you run the scripts in tools/testing/selftests/drivers/net/dsa/?
+> >> Could you post the results?
+> > 
+> > Any test in particular? I'm working on adding correct support for them
+> > in OpenWrt. Should I expect some to fail?
 > 
-> I asked you to remove it. It's not correct, not needed, not beneficial
-> at all. It is actually harmful because limits re-use. dtc already checks
-> this.
+> Unfortunatelly this landed on netdev too close to the merge window. I'll
+> unable to apply it on time and process the net-next PR as expected even
+> if it would receive ack from the DSA crew right now.
 > 
-> Best regards,
-> Krzysztof
-> 
+> @Christian, you will have to repost it after the merge window.
+>
 
-OK, I'll remove it in the next iteration.
+It's ok, just any timeframe? Guess 2 weeks till net-next reopens? (just
+to put a remainder on the calendar so I won't forget)
 
-Regards,
-Michael.
+-- 
+	Ansuel
 
