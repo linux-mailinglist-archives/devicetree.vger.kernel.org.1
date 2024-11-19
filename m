@@ -1,91 +1,118 @@
-Return-Path: <devicetree+bounces-122923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122924-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 167B29D2C41
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 18:15:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 584189D2C9D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 18:29:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF5C0284C7F
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 17:15:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E8BCA2810DF
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 17:29:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 896B51D0438;
-	Tue, 19 Nov 2024 17:15:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 648AD1D2F55;
+	Tue, 19 Nov 2024 17:27:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mFkNmuFI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UBxcQb29"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6115414A639;
-	Tue, 19 Nov 2024 17:15:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 377C51D1E8E;
+	Tue, 19 Nov 2024 17:27:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732036500; cv=none; b=OLBhyLJ2P6Z8EkBVznhYJq+S+7gO1I6tV2FNqQEyMMwAc3aVBw7zH1G8F2AbIKPdo/uz+udv1DCu5VxwM3vfXZ1NKQFxcLFydh2HVej+isaNT/AJr6YgPoa0mgJJuC46M6dnYZb2Tx7KVHUNlJ4M6C+SZBCt9CNdujsyykiyDGM=
+	t=1732037230; cv=none; b=dIgeTtxYwbo4K1lJsUG2DTjjm5b9toutTJQzL3yFxEF8lRYtI21qJWvNQ5HDacdyldrAYrKChy7KwH2nxbeGkTg8T/ru2svBJ7Py03iLkjtRxxi5kVe6D/55EiyQT7PAC/PRpkv1u29QTC6B7KLUChyuZUEiM9LYXA4qI6m9MfE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732036500; c=relaxed/simple;
-	bh=GN8+TZ7dF+OVIe4W1EKDcGDnhm2IukYPViQYE4iYxxI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=i6X8c2LaLiifQVJa/itHWIfdIUv75o0dx+HPfXFtEjboYNRONbtHoMkBAQzV2/m3ZZm0ush6YUafw1R+Hj/pwO7PlKdj+6NTwq+i2wvTgwFEmhslVSWOPZuXZXj6HlaKmvEKgJvmM5mrh7QitJRV/sOxmZN+OLIbixwGaqg+ptI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mFkNmuFI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A576AC4CECF;
-	Tue, 19 Nov 2024 17:14:59 +0000 (UTC)
+	s=arc-20240116; t=1732037230; c=relaxed/simple;
+	bh=DaA+xZ+OZeK05SotfgPNfTPRkNsT8TPkrpHepr+rIvE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=AlQDsdQI4xt7AdU8mDR/QrKKMfFYFp08i4wgb7Gp7QqPfMA1/hPXVZNgpE9qUKtmMz+VRJUXaZV4ESpHs9hwqS3fikZbB+/q7TwwWhoXrsqaV15HD7cj4jbSS7LTf2zjbe3YIM8mnoO3xN9NSU5wmefzbT/dRgsHv5GWAxvh3c0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UBxcQb29; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B24DAC4AF09;
+	Tue, 19 Nov 2024 17:27:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732036499;
-	bh=GN8+TZ7dF+OVIe4W1EKDcGDnhm2IukYPViQYE4iYxxI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mFkNmuFI0VPYtiVbAwXPrbGkTuTUbPU6g9oXTqPo6Unhg+izBDfYIR4zM3nkFGI1k
-	 oOxQL0b5JS3pJjPUiOjTrjYWA2LhN6xCyZYG2TZVtBzk08qRTJM0kJhbVJFuLT+VW/
-	 TbQmcC8SQGV4WUvDYF6C76olltJCaKuhUdRU6eyQk3iiOFpM4i+xYfMVLKPrr1JBk1
-	 S6/0JvVCpvknj1HblDsNHhUpBKeWvNX/SUyXyROAFV6tuaA2b25rdu9Im3V+XdZ+xt
-	 GSV3+QDX00RH+S8AdpGtW6W0XHTOBzM5+xJt7+kqMmhoHHX1k5Tkh3vfidy5b+PNTa
-	 KhiQvZ+qcSIcA==
-Date: Tue, 19 Nov 2024 11:14:58 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>,
-	Maxime Ripard <mripard@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	David Airlie <airlied@gmail.com>, devicetree@vger.kernel.org,
-	kernel@collabora.com, Sandy Huang <hjc@rock-chips.com>,
-	linux-arm-kernel@lists.infradead.org,
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Simona Vetter <simona@ffwll.ch>
-Subject: Re: [PATCH 1/5] dt-bindings: display: vop2: Add optional PLL clock
- properties
-Message-ID: <173203649757.1839089.16877007589155949446.robh@kernel.org>
-References: <20241116-vop2-hdmi0-disp-modes-v1-0-2bca51db4898@collabora.com>
- <20241116-vop2-hdmi0-disp-modes-v1-1-2bca51db4898@collabora.com>
+	s=k20201202; t=1732037229;
+	bh=DaA+xZ+OZeK05SotfgPNfTPRkNsT8TPkrpHepr+rIvE=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=UBxcQb29tAr7n2K7HH7/HhMJmwaW67adu0dNvOU8oWiYH5Zmh4MbSzxB0fOfVid5m
+	 8S/jKfVEklCUMzRwdvpgQL8g91sPKsjfNzcPWMoIfDNrsjEbuh2gxMqVbNEXpsd0yP
+	 qdC6D65fS+LTU3BIHTZOHwUPAoz6P7AR4gWZROuXkkR/XTqpjVCWTCnRHc8QDqCVhX
+	 Urrtw+fS3zCR0H1iL3oxzLCRlksFnTC656zrgjc+U1dFJgZJ2HlCka+m033h7ttNO8
+	 cPdUgvwR+VlJPs/FYYj0CoAH6GuUY6Y3rKiiCQkqYxPNq7k2PjJVqplrNt3lFKCu2s
+	 R6pYvz2xOT9dw==
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-6ea339a41f1so38256137b3.2;
+        Tue, 19 Nov 2024 09:27:09 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVNGqhxucAN9kRX0ZTYWHkbaacJHJ3uFbwAwfM3WA+oO3djbmBYFFUiY4qXzCOT+da6On13y/2VFWKYR3rD@vger.kernel.org, AJvYcCVfomINOHvr47uzxV+WGjHse1bVP+CtK7bOeD9MwIHYzrB993gPT9MEyvqK+cfKLoqfO9pVh70w9Fnk@vger.kernel.org, AJvYcCX+XeslPu5jo7dcNAvvmqIZCAOf2qVcf93xLcdRj4cKiuR0Krb908kxW4nnWQtOlqDl2XzDfa7x09uz@vger.kernel.org
+X-Gm-Message-State: AOJu0YwaBK7PifidZmtp4tSDU66RD1y3NYHCWIODb0decXlN3QnVM2zs
+	Sj/iVJ4Ilhg59ovM+tg9j99eH0V4yMnlcO5LiHc7mJp/niOssOOgUhkW7GdskGk4IMOb+Vhs2Z8
+	bNbe2QTz/2wPgBGIQIEGKnMv+2w==
+X-Google-Smtp-Source: AGHT+IHkteJ/psAzQJmr8xucfqpuL92nsGtTyCx9eKYX8nx+clTDPGwCQ1VJMa6h1sFnHAnY6yxduBndo5IYsN6W3C0=
+X-Received: by 2002:a05:690c:dc7:b0:64b:5cc7:bcbc with SMTP id
+ 00721157ae682-6ee55c56725mr180226977b3.32.1732037228801; Tue, 19 Nov 2024
+ 09:27:08 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241116-vop2-hdmi0-disp-modes-v1-1-2bca51db4898@collabora.com>
+References: <20241105213217.442809-1-robh@kernel.org> <20241115072604.yre2d7yiclt5d3w5@thinkpad>
+ <CAL_JsqLkVUSgL-r1YvdSOTQGeN0r4Co=NRxvX1WL6q6yt0zN6g@mail.gmail.com> <20241119170421.xxku2gkp3wea2xvf@thinkpad>
+In-Reply-To: <20241119170421.xxku2gkp3wea2xvf@thinkpad>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 19 Nov 2024 11:26:57 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJY43z5exVft4vYvbrMSoVFFD4E7KVJ+isC1mdQ5H3=CA@mail.gmail.com>
+Message-ID: <CAL_JsqJY43z5exVft4vYvbrMSoVFFD4E7KVJ+isC1mdQ5H3=CA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: PCI: snps,dw-pcie: Drop "#interrupt-cells"
+ from example
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Jingoo Han <jingoohan1@gmail.com>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Gustavo Pimentel <gustavo.pimentel@synopsys.com>, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, Nov 19, 2024 at 11:04=E2=80=AFAM Manivannan Sadhasivam
+<manivannan.sadhasivam@linaro.org> wrote:
+>
+> On Fri, Nov 15, 2024 at 08:07:07AM -0600, Rob Herring wrote:
+> > On Fri, Nov 15, 2024 at 1:26=E2=80=AFAM Manivannan Sadhasivam
+> > <manivannan.sadhasivam@linaro.org> wrote:
+> > >
+> > > On Tue, Nov 05, 2024 at 03:32:16PM -0600, Rob Herring (Arm) wrote:
+> > > > "#interrupt-cells" is not valid without a corresponding "interrupt-=
+map"
+> > > > or "interrupt-controller" property. As the example has neither, dro=
+p
+> > > > "#interrupt-cells". This fixes a dtc interrupt_provider warning.
+> > > >
+> > >
+> > > But the DWC controllers have an in-built MSI controller. Shouldn't we=
+ add
+> > > 'interrrupt-controller' property then?
+> >
+> > Why? Is that needed for the MSI controller to function? I don't think s=
+o.
+> >
+>
+> No. I was asking from bindings perspective.
+>
+> > Now we do have "interrupt-controller" present for a number of MSI
+> > providers. I suspect that's there to get OF_DECLARE to work, but I
+> > doubt we really need MSI controllers initialized early.
+> >
+>
+> Again no, for this case. I was under the assumption that all interrupt
+> providers should have the 'interrupt-controller' property in their nodes.
 
-On Sat, 16 Nov 2024 20:22:32 +0200, Cristian Ciocaltea wrote:
-> On RK3588, HDMI PHY PLL can be used as an alternative and more accurate
-> pixel clock source for VOP2 video ports 0, 1 and 2.
-> 
-> Document the optional PLL clock properties corresponding to the two HDMI
-> PHYs available on the SoC.
-> 
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-> ---
->  Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
+Yes. What interrupts is the DW controller providing? Only the PCI
+legacy interrupts which are optional. An msi-controller and an
+interrupt-controller are 2 distinct providers. An MSI provider is not
+an interrupt provider, but an interrupt consumer. Some bindings define
+both, but I think many of those cases are probably wrong.
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-
+Rob
 
