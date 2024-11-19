@@ -1,96 +1,61 @@
-Return-Path: <devicetree+bounces-122920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F5AF9D2C23
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 18:09:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D2E89D2C30
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 18:13:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 65E222818BB
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 17:09:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B353C1F21307
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 17:13:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE4AF1D0DE7;
-	Tue, 19 Nov 2024 17:09:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAD3F1D0DC8;
+	Tue, 19 Nov 2024 17:13:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="V+EI5x9f"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T+Omqzkc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9DF125763;
-	Tue, 19 Nov 2024 17:09:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 914FE25763;
+	Tue, 19 Nov 2024 17:13:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732036189; cv=none; b=CJ46I1WlfyfAPDPH3GlKhmloRYEfZwnsTZvOQyr2c7XAvfSQ13eDdTdG1z4emGw+/IoM7MeDEh1VLciqFR+P0+aqhgsqcI9/dr3v24o/q/8EFi1NF4CNJA8NDGdOCyTvjxAJLddlCd48ajHfcvreTaRZUXfCmPzPOfoKoSnfXnw=
+	t=1732036398; cv=none; b=kOIgZjjDY1Fim1is78KEpVok1Xgao9YE6IAGOeIApa2oFWhbojZJL5PD33SLucnGvU8yGMc9q6iE9L50tUpjN6kqdzI1+0O05WKMSotioty2LGA+zY3PnRKzg96PNFu8P/CoTf5njF5fF3gKYtAnCKP3jEf5+Q5CK0hmE4Ayysw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732036189; c=relaxed/simple;
-	bh=L6lD6VmUqKcxEpjKjYStL9tVt6sSY1vJPeuxibqExWo=;
+	s=arc-20240116; t=1732036398; c=relaxed/simple;
+	bh=ggE7Kv8fbEJQDnLfRqnMQ5FSxw3wmUl+igo2b35kd5I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NR5BQNyA7o1X9Ga2pLTzYcDtd0klVW1dx6dGIWSNrd4Vn/MFIxBhhQWYF8nymWt8+9q7PgqUr30CnhmBiXUZqLgMcKdV5Upb2OKC35m6boLez0xjVQxC95suvYPB7o4KD2UED8ujf2CsI8/h7+Sg5w2lYV5ck6Kbci3I8z2n7QQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=V+EI5x9f; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=2g7o3qX8HNqQpFdW0w76lQBmquzjn2sh9zKqXbBe8z0=; b=V+EI5x9fdojHa+anMP+6+G+WQt
-	Jn4L/qLS3VTeYjRZ+pBRZLjIEE8enEx4vn2xbr/luVIYyY6m9nDcQs7pVPOy0lxeGqPvCVMDwAx1A
-	HNMs0PYLQYjSkhPD62Wcj+J4sjXT4LxLIBdYIae6PZhJXGxRDEemHRtx/4aHCAQ2U5jKJM19Crozs
-	y1PG0S6Sjr3H0yCuZN1ohVwOfvvn6D6b2OSeWmvplezsngcROc8iU9+ti2ZvRZoKjtCUwAgXct6vj
-	nVcTMFHA5wpxhl9NB2eNsLGxBwYL4S+6y61wRoLiSm7qyddvniWDjQaqO9JSFFo4xRL+lYoQLvQPF
-	R973z1sQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:33436)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1tDRj6-00047C-1y;
-	Tue, 19 Nov 2024 17:09:21 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1tDRj1-0006En-2U;
-	Tue, 19 Nov 2024 17:09:15 +0000
-Date: Tue, 19 Nov 2024 17:09:15 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: jan.petrous@oss.nxp.com
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Minda Chen <minda.chen@starfivetech.com>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Iyappan Subramanian <iyappan@os.amperecomputing.com>,
-	Keyur Chudgar <keyur@os.amperecomputing.com>,
-	Quan Nguyen <quan@os.amperecomputing.com>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=jwF9mqgmcXTp1rFvAQ8zqt7nBjwgi9C0Lg6Wt8qRA9QEkKwQNvqRUD19xYArMc8zMXtNp3f5Qun5SIHeewhv/wcdOip3hypRCn2k8PilxbM2ayH2kKxemkWguJbUj5TvcgopkZsrCaWjg4fx/7bdV8OR3PbFc1hA0OlemFWOt2A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T+Omqzkc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03AA7C4CECF;
+	Tue, 19 Nov 2024 17:13:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732036397;
+	bh=ggE7Kv8fbEJQDnLfRqnMQ5FSxw3wmUl+igo2b35kd5I=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=T+OmqzkcJCiucFF2UnxpJpQ/xcYpsSxBx4gI5KO1T1OwBMnQKhkkThRuwN3Gzvmqj
+	 m2XWQo+7i5YIpBsTfJm7yzOLc2LMILt6nQPlb2EofC2Tpadgp2zhxmIhF2o8r2pq2j
+	 M1GwJ5kyKMzq2r1XF/PWMw8tl0EkClBvImKVFdi8n15wS/4vO28MOcQ4Bu4le7ANTO
+	 guPpw0F7FRjkN2aKoUgUVmUwr78fyfEVQw07tnz0Dyw8WvIj5SVcwyM7Ps62uTfMSg
+	 RM1uSxB7CroCjSelz16lXVMkyCZSAkTVnVMqh9boSPRB7CpIjVt4FbURWJWiB3vYIk
+	 Xs9Zy6M2sD15w==
+Date: Tue, 19 Nov 2024 11:13:15 -0600
+From: Rob Herring <robh@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	imx@lists.linux.dev, devicetree@vger.kernel.org,
-	NXP S32 Linux Team <s32@nxp.com>
-Subject: Re: [PATCH v5 16/16] net: stmmac: platform: Fix PTP clock rate
- reading
-Message-ID: <ZzzGO5zgDvIK6JJ_@shell.armlinux.org.uk>
-References: <20241119-upstream_s32cc_gmac-v5-0-7dcc90fcffef@oss.nxp.com>
- <20241119-upstream_s32cc_gmac-v5-16-7dcc90fcffef@oss.nxp.com>
+	Wesley Cheng <quic_wcheng@quicinc.com>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH] dt-bindings: usb: qcom,dwc3: Make ss_phy_irq optional
+ for X1E80100
+Message-ID: <20241119171315.GA1805024-robh@kernel.org>
+References: <20241116-topic-x1e_usb2_bindings-v1-1-dde2d63f428f@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,60 +64,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241119-upstream_s32cc_gmac-v5-16-7dcc90fcffef@oss.nxp.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+In-Reply-To: <20241116-topic-x1e_usb2_bindings-v1-1-dde2d63f428f@oss.qualcomm.com>
 
-On Tue, Nov 19, 2024 at 04:00:22PM +0100, Jan Petrous via B4 Relay wrote:
-> From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
+On Sat, Nov 16, 2024 at 12:17:52PM +0100, Konrad Dybcio wrote:
+> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 > 
-> The stmmac driver supports many vendors SoCs using Synopsys-licensed
-> Ethernet controller IP. Most of these vendors reuse the stmmac_platform
-> codebase, which has a potential PTP clock initialization issue.
-> The PTP clock rate reading might require ungating what is not provided.
+> X1 has multiple DWC3 hosts, including one that's USB2, which naturally
+> means it doesn't have a SuperSpeed interrupt. Make it optional to fix
+> warnings such as:
 > 
-> Fix the PTP clock initialization by enabling it immediately.
-> 
-> Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
+> usb@a2f8800: interrupt-names: ['pwr_event', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
+
+That's a good start, but what about all the other warnings for usb 
+interrupts?:
+
+     13  usb@f92f8800: 'interrupt-names' is a required property
+     11  usb@76f8800: interrupt-names: ['pwr_event', 'qusb2_phy', 'hs_phy_irq'] is too short
+     11  usb@6af8800: interrupts: [[0, 347, 4], [0, 243, 4]] is too short
+     11  usb@6af8800: interrupt-names:1: 'qusb2_phy' was expected
+     11  usb@6af8800: interrupt-names:0: 'pwr_event' was expected
+     11  usb@6af8800: interrupt-names: ['hs_phy_irq', 'ss_phy_irq'] is too short
+      9  usb@a2f8800: interrupt-names: ['pwr_event', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
+      7  usb@c2f8800: interrupt-names: ['pwr_event', 'qusb2_phy', 'hs_phy_irq'] is too short
+      5  usb@8af8800: interrupts-extended: [[1, 0, 134, 4]] is too short
+      5  usb@8af8800: interrupt-names: ['pwr_event'] is too short
+      4  usb@8af8800: interrupts: [[0, 62, 4]] is too short
+      4  usb@8af8800: interrupt-names: ['hs_phy_irq'] is too short
+
+
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 > ---
->  drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-> index b1e4df1a86a0..db3e8ef4fc3a 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
-> @@ -632,7 +632,7 @@ stmmac_probe_config_dt(struct platform_device *pdev, u8 *mac)
->  	clk_prepare_enable(plat->pclk);
->  
->  	/* Fall-back to main clock in case of no PTP ref is passed */
-> -	plat->clk_ptp_ref = devm_clk_get(&pdev->dev, "ptp_ref");
-> +	plat->clk_ptp_ref = devm_clk_get_enabled(&pdev->dev, "ptp_ref");
->  	if (IS_ERR(plat->clk_ptp_ref)) {
->  		plat->clk_ptp_rate = clk_get_rate(plat->stmmac_clk);
->  		plat->clk_ptp_ref = NULL;
+>  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
-Looking at where the driver makes use of clk_ptp_ref, it currently
-prepares and enables this clock via stmmac_open(), disables and
-unprepares via stmmac_release().
-
-There could be a platform where this is being used as a power saving
-measure, and replacing devm_clk_get() with devm_clk_get_enabled() will
-defeat that.
-
-I would suggest that if you need the clock to be enabled in order to
-get its rate, then the call to clk_get_rate() should have the
-enable/disable around it to allow these other sites to work as they
-have done.
-
-Alternatively, we may take the view that the power saving is not
-necessary, or stopping the clock is not a good idea (loss of time
-in the 1588 block?) so the above changed would be sensible but only
-if the clk_prepare_enable() and clk_disable_unprepare() calls on
-this particular clock are also removed.
-
-I can't say which is the correct way forward.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
