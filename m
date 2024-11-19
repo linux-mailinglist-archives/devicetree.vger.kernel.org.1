@@ -1,224 +1,230 @@
-Return-Path: <devicetree+bounces-122983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122982-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EF0E9D2FAA
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 21:40:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 555D19D2FAD
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 21:42:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7EF49B2A2A5
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 20:39:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9083FB2A04B
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 20:39:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68B931D3560;
-	Tue, 19 Nov 2024 20:39:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A1C91D3566;
+	Tue, 19 Nov 2024 20:39:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hh2fVpma"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fUdJEGNf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C52D1D416A
-	for <devicetree@vger.kernel.org>; Tue, 19 Nov 2024 20:39:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 357261D2F55;
+	Tue, 19 Nov 2024 20:39:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732048749; cv=none; b=rlzrIphZuy57sN74QyQtRh1j/y0RsYtTB5nD3uomH9gMHII6w8NSJBpAi6N1cd3kw94wlOfXX1VqphHU3LNXnaXq5jgWrmCIyNsYQLlZW3y3T91RNhw/UbeIZUrIoQdVzbetBNUnO1mKsDwAJFZvzWbuOP5AYbJQHRN9mrd2ZEo=
+	t=1732048746; cv=none; b=JeVa87hsWr5IfhmOGdIk2kRTeryyJXitVo3Xgoq+Ic6VNunZRiMCr+QSHVYertMxiutWdKwXtBJTeLLJi7Rji15OYCuxe1P1cLhxT9eXUfey7u2ncxWM18RpzOuNG+cP6dlZlpikT9l+57ug8YrsOThBBj+bfO7ELMHlvIRL49w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732048749; c=relaxed/simple;
-	bh=LVMJmQXw3ADJ+81V3pAk4GgkNBlcJcC41oI3Jp6++ek=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XkOUhixxNRqIXYdbhMVGTT6lWb0G/ok8Nna2Bih2IygySIO3u1GO5x0c1gxercQx5+OEnMim7mb27m3m6BYik5rdBvQ9iIi+Jl6x7aNmMetbHdAnWD+eDX2FIOwPY1qx0QUVadLvIUOYnZ3pKzJzVlAnkHnlXDqwRg1JDgPkVdM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hh2fVpma; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-539f1292a9bso1716934e87.2
-        for <devicetree@vger.kernel.org>; Tue, 19 Nov 2024 12:39:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732048744; x=1732653544; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=sDfh97UAGy7PQC6vVLeHyLfQ6w8qUE9SWMRtfhKq9aY=;
-        b=hh2fVpmatyqCjJ68QK2xXEtQaIorFtSSDj6xjzgtUvLCWwUTO3XRbRTE2NeTpMENqJ
-         P4hhHe5k6FKMRjBjSpyhJoltllOT1KT1RPh0tNwTTqxNm33yWbmJkJAtE9pkjNvloTxC
-         J+bYL3VWqOygvr5EKr+V1hXFleoRITpovikEVV0v/cEo0Ak1TYRCBYOMG1s6RtkL1fNV
-         fesKLjXW3NJKCElEdqloiyPzR6vYAZNkzWpGu37idHc3NsH+ZrUtOEZXKNQjOjyKyR8H
-         9BMR28jyZY8ld7eO6Rk3N1WPWTg6vIMHi6CF7QLHeHeOCzGsIz3oyupu1+lLYaiTBGvg
-         mDaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732048744; x=1732653544;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sDfh97UAGy7PQC6vVLeHyLfQ6w8qUE9SWMRtfhKq9aY=;
-        b=YhqEk9rQdYtr/wzmW72eXHF84MuBQ40YZB2XOzSBI7Nl0dflx53db830gDefE/7afL
-         Va5o7tRuk5qvn/0d2wG4Zo14v6N6qg2ylrCLopfTdBry5DER5hEDCxvDDyMH12sjsK0+
-         xmz/uWQqLn2+UNY0nbEwkAVyFxnZ+rJhDOqIPuAhq8Hu6qAITBAimhDWZUwV4edsPk8q
-         EVjccLRwt7k6aaIr/Og7IV2NiFc+y6QI0TvHQGN3QkRtQo1aQ1NKcu04n1ETUIW0c3Hp
-         QDmAlsCWgjUW1GoaQy5v5kgexQAO/BPynyXQyfpP3oj/05y/6hONwW+FaFpmHqgUH9O0
-         K/fQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU8AY8eCSxL0t15uGe75HyLvkmoFFL1dI1+eTOz2uazuD32pjgo5qKqwu4JysIRh6TjoP/EijucVZGR@vger.kernel.org
-X-Gm-Message-State: AOJu0YyXBMoGOg2EhJRy69SeiCKLFpZTo2m9Q3zKf1vl25bVf160Yqr+
-	Iq+bo1kjgF8e8V1LJTfr7gSD4S18guULjYKf7Cn2pVimzYhWP7TYgfGEtNLxcab9v0A5x4IiLNT
-	aR32zQ5g8CpJjh8xqYpx6cgleZiZBQDWGESBUFDPt9GiVp/It
-X-Google-Smtp-Source: AGHT+IGFzizseTaJgxdRGvtF7EQdP6G2Yicvf95WCYB9ehjF/h2LCbevBuMy713pgLF3P76zayFHLmDXWWo4/tcOtxc=
-X-Received: by 2002:a05:6512:3b9c:b0:53d:a546:7111 with SMTP id
- 2adb3069b0e04-53dc13670fbmr28892e87.37.1732048744338; Tue, 19 Nov 2024
- 12:39:04 -0800 (PST)
+	s=arc-20240116; t=1732048746; c=relaxed/simple;
+	bh=OOWExM1N60jCy1dSIf8NXBKIEYTUdBfF3QKNExZ85/s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZBPhe9jz5+tFWuGJ8mikUkZS0Pk7s8UhQLsnTVPjdZuQx0vWXENDMRPzDWpxDaBFkvhCfdo9Was+7P+Q40zHCyeyn1ziY9U7dSeovw5eiiOlJUUYofO4RLo+OE7iSuHQN6frnTRMG5+Wa1Al1u8Lw03hp0zAUoi6gCNwcRxES2o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fUdJEGNf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90738C4CECF;
+	Tue, 19 Nov 2024 20:39:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732048745;
+	bh=OOWExM1N60jCy1dSIf8NXBKIEYTUdBfF3QKNExZ85/s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fUdJEGNf8LcVFkS4Y/CHZrJRYqDVlgSp1kQtKjHAybajS3sjie9VoShoEaevbBPhW
+	 ki94a71CZqVvrGOo7s8W5Z8fuJrxDtqPccHIBE7cCLqVvZoLC/enAP39ybhA6173Jb
+	 N35VyndijJVXdMzwKFBuX2F3xs91DDblYtFFXUu9r0JyVn7yF9EkOG8vjwhP0wnhm1
+	 bWRtfU2PxlVb7B3BGn1flApnJG5KGRClE4rdvYQSP0+7B+tJU6rQTLS5/Sio/VYXqw
+	 UkSeXTNVdJvqhYlvthufmgJg0GDqQAcuW1FkEUwYk+0M8gpYjDUg/Aqyq7U9aRYOg5
+	 FrpeQC+YJuDTw==
+Date: Tue, 19 Nov 2024 14:39:03 -0600
+From: Rob Herring <robh@kernel.org>
+To: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
+Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Minda Chen <minda.chen@starfivetech.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Iyappan Subramanian <iyappan@os.amperecomputing.com>,
+	Keyur Chudgar <keyur@os.amperecomputing.com>,
+	Quan Nguyen <quan@os.amperecomputing.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	imx@lists.linux.dev, devicetree@vger.kernel.org,
+	NXP S32 Linux Team <s32@nxp.com>
+Subject: Re: [PATCH v5 13/16] dt-bindings: net: Add DT bindings for DWMAC on
+ NXP S32G/R SoCs
+Message-ID: <20241119203903.GA2249015-robh@kernel.org>
+References: <20241119-upstream_s32cc_gmac-v5-0-7dcc90fcffef@oss.nxp.com>
+ <20241119-upstream_s32cc_gmac-v5-13-7dcc90fcffef@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241104133515.256497-1-arnaud.pouliquen@foss.st.com>
- <20241104133515.256497-5-arnaud.pouliquen@foss.st.com> <Zzt+7NBdNjyzWZIb@p14s>
- <0d9075cd-68c2-49ec-9b9c-4315aa8c8517@foss.st.com>
-In-Reply-To: <0d9075cd-68c2-49ec-9b9c-4315aa8c8517@foss.st.com>
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-Date: Tue, 19 Nov 2024 13:38:53 -0700
-Message-ID: <CANLsYkxvTuLv8Omw-UeyPaA9g9QokmtMaMYD0eoUPo20wUuONQ@mail.gmail.com>
-Subject: Re: [PATCH v13 4/7] remoteproc: Introduce release_fw optional operation
-To: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Jens Wiklander <jens.wiklander@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, linux-remoteproc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, op-tee@lists.trustedfirmware.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241119-upstream_s32cc_gmac-v5-13-7dcc90fcffef@oss.nxp.com>
 
-On Tue, 19 Nov 2024 at 11:14, Arnaud POULIQUEN
-<arnaud.pouliquen@foss.st.com> wrote:
->
-> Hello Mathieu,
->
-> On 11/18/24 18:52, Mathieu Poirier wrote:
-> > On Mon, Nov 04, 2024 at 02:35:12PM +0100, Arnaud Pouliquen wrote:
-> >> This patch updates the rproc_ops struct to include an optional
-> >> release_fw function.
-> >>
-> >> The release_fw ops is responsible for releasing the remote processor
-> >> firmware image. The ops is called in the following cases:
-> >>
-> >>  - An error occurs in rproc_start() between the loading of the segments and
-> >>       the start of the remote processor.
-> >>  - after stopping the remote processor.
-> >>
-> >> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-> >> ---
-> >> Updates from version V11:
-> >> - fix typo in @release_fw comment
-> >> ---
-> >>  drivers/remoteproc/remoteproc_core.c | 5 +++++
-> >>  include/linux/remoteproc.h           | 3 +++
-> >>  2 files changed, 8 insertions(+)
-> >>
-> >> diff --git a/drivers/remoteproc/remoteproc_core.c b/drivers/remoteproc/remoteproc_core.c
-> >> index 7694817f25d4..46863e1ca307 100644
-> >> --- a/drivers/remoteproc/remoteproc_core.c
-> >> +++ b/drivers/remoteproc/remoteproc_core.c
-> >> @@ -1258,6 +1258,9 @@ static int rproc_alloc_registered_carveouts(struct rproc *rproc)
-> >>
-> >>  static void rproc_release_fw(struct rproc *rproc)
-> >>  {
-> >> +    if (rproc->ops->release_fw)
-> >> +            rproc->ops->release_fw(rproc);
-> >> +
-> >>      /* Free the copy of the resource table */
-> >>      kfree(rproc->cached_table);
-> >>      rproc->cached_table = NULL;
-> >> @@ -1377,6 +1380,8 @@ static int rproc_start(struct rproc *rproc, const struct firmware *fw)
-> >>  unprepare_subdevices:
-> >>      rproc_unprepare_subdevices(rproc);
-> >>  reset_table_ptr:
-> >> +    if (rproc->ops->release_fw)
-> >> +            rproc->ops->release_fw(rproc);
-> >>      rproc->table_ptr = rproc->cached_table;
-> >
-> > I suggest the following:
-> >
-> > 1) Create two new functions, i.e rproc_load_fw() and rproc_release_fw().  The
-> > only thing those would do is call rproc->ops->load_fw() and
-> > rproc->ops->release_fw(), if they are present.  When a TEE interface is
-> > available, ->load_fw() and ->release_fw() become rproc_tee_load_fw() and
-> > rproc_tee_release_fw().
->
->
-> I'm wondering if it should be ->preload_fw() instead of ->load_fw() ops, as the
-> ->load() op already exists.
->
+On Tue, Nov 19, 2024 at 04:00:19PM +0100, Jan Petrous (OSS) wrote:
+> Add basic description for DWMAC ethernet IP on NXP S32G2xx, S32G3xx
+> and S32R45 automotive series SoCs.
+> 
+> Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
+> ---
+>  .../devicetree/bindings/net/nxp,s32-dwmac.yaml     | 105 +++++++++++++++++++++
+>  .../devicetree/bindings/net/snps,dwmac.yaml        |   3 +
+>  2 files changed, 108 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml b/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml
+> new file mode 100644
+> index 000000000000..a141e826a295
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml
+> @@ -0,0 +1,105 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright 2021-2024 NXP
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/nxp,s32-dwmac.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP S32G2xx/S32G3xx/S32R45 GMAC ethernet controller
+> +
+> +maintainers:
+> +  - Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
+> +
+> +description:
+> +  This device is a Synopsys DWC IP, integrated on NXP S32G/R SoCs.
+> +  The SoC series S32G2xx and S32G3xx feature one DWMAC instance,
+> +  the SoC S32R45 has two instances. The devices can use RGMII/RMII/MII
+> +  interface over Pinctrl device or the output can be routed
+> +  to the embedded SerDes for SGMII connectivity.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: nxp,s32g2-dwmac
+> +      - items:
+> +        - enum:
+> +            - nxp,s32g3-dwmac
+> +            - nxp,s32r45-dwmac
+> +        - const: nxp,s32g2-dwmac
+> +
+> +  reg:
+> +    items:
+> +      - description: Main GMAC registers
+> +      - description: GMAC PHY mode control register
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  interrupt-names:
+> +    const: macirq
+> +
+> +  clocks:
+> +    items:
+> +      - description: Main GMAC clock
+> +      - description: Transmit clock
+> +      - description: Receive clock
+> +      - description: PTP reference clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: stmmaceth
+> +      - const: tx
+> +      - const: rx
+> +      - const: ptp_ref
+> +
+> +required:
+> +  - clocks
+> +  - clock-names
+> +
+> +allOf:
+> +  - $ref: snps,dwmac.yaml#
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/phy/phy.h>
+> +    bus {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +
+> +      ethernet@4033c000 {
+> +        compatible = "nxp,s32g2-dwmac";
+> +        reg = <0x0 0x4033c000 0x0 0x2000>, /* gmac IP */
+> +              <0x0 0x4007c004 0x0 0x4>;    /* GMAC_0_CTRL_STS */
+> +        interrupt-parent = <&gic>;
+> +        interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
+> +        interrupt-names = "macirq";
+> +        snps,mtl-rx-config = <&mtl_rx_setup>;
+> +        snps,mtl-tx-config = <&mtl_tx_setup>;
+> +        clocks = <&clks 24>, <&clks 17>, <&clks 16>, <&clks 15>;
+> +        clock-names = "stmmaceth", "tx", "rx", "ptp_ref";
+> +        phy-mode = "rgmii-id";
+> +        phy-handle = <&phy0>;
+> +
+> +        mtl_rx_setup: rx-queues-config {
+> +          snps,rx-queues-to-use = <5>;
+> +        };
+> +
+> +        mtl_tx_setup: tx-queues-config {
+> +          snps,tx-queues-to-use = <5>;
+> +        };
+> +
+> +        mdio {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +          compatible = "snps,dwmac-mdio";
+> +
+> +          phy0: ethernet-phy@0 {
+> +            reg = <0>;
+> +          };
+> +        };
+> +      };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> index 4e2ba1bf788c..a88d1c236eaf 100644
+> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> @@ -66,6 +66,9 @@ properties:
+>          - ingenic,x2000-mac
+>          - loongson,ls2k-dwmac
+>          - loongson,ls7a-dwmac
+> +        - nxp,s32g2-dwmac
+> +        - nxp,s32g3-dwmac
+> +        - nxp,s32r-dwmac
 
-I agree that ->load() and ->load_fw() will lead to confusion.  I would
-support ->preload_fw() but there is no obvious antonyme.
+You really only need to add nxp,s32g2-dwmac since it's always present.
 
-Since we already have rproc_ops::prepare() and rproc_prepare_device()
-I suggest rproc_ops::prepare_fw() and rproc_prepare_fw().  The
-corollary would be rproc_ops::unprepare_fw() and rproc_unprepare_fm().
-That said, I'm open to other ideas should you be interested in finding
-other alternatives.
+Other than the yamllint issue,
 
-> >
-> > 2) Call rproc_load_fw() in rproc_boot(), just before rproc_fw_boot().  If the
-> > call to rproc_fw_boot() fails, call rproc_release_fw().
-> >
-> > 3) The same logic applies to rproc_boot_recovery(), i.e call rproc_load_fw()
-> > before rproc_start() and call rproc_release_fw() if rproc_start() fails.
->
->
-> I implemented this and I'm currently testing it.
-> Thise second part requires a few adjustments to work. The ->load() ops needs to
-> becomes optional to not be called if the "->preload_fw()" is used.
->
-> For that, I propose to return 0 in rproc_load_segments if rproc->ops->load is
-> NULL and compensate by checking that at least "->preload_fw()" or ->load() is
-> non-null in rproc_alloc_ops.
->
-
-I agree.
-
-> Thanks,
-> Arnaud
->
->
-> >
-> > 4) Take rproc_tee_load_fw() out of rproc_tee_parse_fw().  It will now be called
-> > in rproc_load_fw().
-> >
-> > 5) As stated above function rproc_release_fw() now calls rproc_tee_release_fw().
-> > The former is already called in rproc_shutdown() so we are good in that front.
-> >
-> > With the above the cached_table management within the core remains the same and
-> > we can get rid of patch 3.7.
->
-> >
-> > Thanks,
-> > Mathieu
-> >
-> >>
-> >>      return ret;
-> >> diff --git a/include/linux/remoteproc.h b/include/linux/remoteproc.h
-> >> index 2e0ddcb2d792..08e0187a84d9 100644
-> >> --- a/include/linux/remoteproc.h
-> >> +++ b/include/linux/remoteproc.h
-> >> @@ -381,6 +381,8 @@ enum rsc_handling_status {
-> >>   * @panic:  optional callback to react to system panic, core will delay
-> >>   *          panic at least the returned number of milliseconds
-> >>   * @coredump:         collect firmware dump after the subsystem is shutdown
-> >> + * @release_fw:     optional function to release the firmware image from ROM memories.
-> >> + *          This function is called after stopping the remote processor or in case of an error
-> >>   */
-> >>  struct rproc_ops {
-> >>      int (*prepare)(struct rproc *rproc);
-> >> @@ -403,6 +405,7 @@ struct rproc_ops {
-> >>      u64 (*get_boot_addr)(struct rproc *rproc, const struct firmware *fw);
-> >>      unsigned long (*panic)(struct rproc *rproc);
-> >>      void (*coredump)(struct rproc *rproc);
-> >> +    void (*release_fw)(struct rproc *rproc);
-> >>  };
-> >>
-> >>  /**
-> >> --
-> >> 2.25.1
-> >>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
