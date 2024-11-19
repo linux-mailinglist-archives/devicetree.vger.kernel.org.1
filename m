@@ -1,234 +1,112 @@
-Return-Path: <devicetree+bounces-122656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122657-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 069619D1D0C
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 02:15:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A7649D1D44
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 02:27:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6AE17B21E9A
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 01:15:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E4E5428265E
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 01:27:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFCBB5C603;
-	Tue, 19 Nov 2024 01:15:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEE4C33998;
+	Tue, 19 Nov 2024 01:27:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="Iqz03f8A"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="E5aQF0UM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB10E535D8;
-	Tue, 19 Nov 2024 01:15:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 104A483CC1;
+	Tue, 19 Nov 2024 01:27:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731978911; cv=none; b=huWHHb9wTgt+EzH3PDd/Bd3PoxgI4y/YjasWt+RTevTVZckBc3I9ZkYMj/Y/xx7eLuSyH1/HdCP1DJiL2NVxYuywR15BWyHKCCWahOVYRgSiBEWminYvlJOyXe/E6G4tPawAmDHsiceZXNJcr1p5nH0dlLELgfgwCX7F7H225ZY=
+	t=1731979637; cv=none; b=JRbn/YqND/mu0cGXZcyUAeDbGUwD/Xw144+Gf1GNrVluxpvcM4Xfh+X5CP1agTSXIrL/C+3G0boEB7bKvwDQdODdreSeCAJAKaMgxKWHGNISEC2JdGtuISodNjb0TRNmB2ZnR9sT//VmwcGl/NwmpLbYdSyEhk1/j8P0T6pqNPQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731978911; c=relaxed/simple;
-	bh=ptQt5vUJMf2j7amn6mdIc2Rd0Q8JSSgq1Vb4NRNNzhw=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=BCexfaxEQTsD7yFG6mnV1S3YJFJCU3f1xWKYOKDRXpUNC/q7sc77xC3pz0sspI8gvFybe7JHfS2c8CQc7w8Z1MYiFKN0r8RLK14yaOZaF4zUdLlJAf4En9kV+tP40uSFYv58jyQcjxKe22tjQeTd+j+Rq3LB0ECKrcBH6PBUP6Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=Iqz03f8A; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 238A589274;
-	Tue, 19 Nov 2024 02:14:57 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1731978901;
-	bh=Cb5xA4QrPjObXEuVAQV9BTBo9P9lF0LPOif/OFc8/Ys=;
-	h=Date:From:Subject:To:Cc:References:In-Reply-To:From;
-	b=Iqz03f8A8ntVLExJdbOWEpa7BOXFN14gRPriudv2xawTis3YDMwOrO5fX9QGdUKyc
-	 6VC1Q/FLuIrRIi0Cq9j4vmt9Lefazx84nEZVSnQe5Vg3DrU15cFGZV9oKRlL5ohaKs
-	 2mpi1xkoP75X8XyH/KzFzpp1b1xnr0Q0u5ifDtVLLhP9gk7wOOpsVs7k1beL24Wi8j
-	 W39TWSLAJXIpsXfn2590fguoCdogUDafNR1fv3EubZJc2wnAPObxYAG9tIxDUo12lp
-	 KNSV4DMxPohhUvStuZlDdMaaGfmTqVrhzEKctC3T8Uxj7iFtjWL6z7RRtAh3MiXAUk
-	 JWc5Pl1j62nhg==
-Message-ID: <8a4fd234-4c7b-4a04-990d-3222aaa5172d@denx.de>
-Date: Tue, 19 Nov 2024 02:13:18 +0100
+	s=arc-20240116; t=1731979637; c=relaxed/simple;
+	bh=PE+v4tm16jnBLb+iJ8z174hx/xtzA5LTbTk+9E5XUQQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OQfS8z8uwvln0m80ZZlxvjRSFBwrbh+XkWx811IAnEmln/2P0WfNPbiGs3QUc+GU48tQ6ypg6GRf5MnsNVwpVyOHF1jrXN1rRhxovz+nZ4YHQIRT9UTzHmzyKq08u0SvXdVfVj3tVfTltUY4DjGg+2dotMep9FNbZiQUIkqcFCA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=E5aQF0UM; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=6Y0+K3PqqIgBny+BhM9cv9Q9ohqYkiNfuQM6ZshMm7c=; b=E5aQF0UM3rjeAM9rCFCv9I6DHK
+	LIRCilMCFArYAt4QFK4dDejXULJZwNLqVR8oayk3tqys3oU2aaxyFyAYwzns4mDYgLmCNMHqQCaQW
+	1U8ZHxIZ5ULeTBfY0WJPMYTXYFctTfLJaSq+Or2zrLpvFVY58WvYB8cdcxhx+OROOFw4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tDD1K-00DjJq-C1; Tue, 19 Nov 2024 02:27:10 +0100
+Date: Tue, 19 Nov 2024 02:27:10 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Yijie Yang <quic_yijiyang@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Richard Cochran <richardcochran@gmail.com>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: qcs615-ride: Enable ethernet
+ node
+Message-ID: <ececbbe1-07b3-4050-b3a4-3de9451ac7d7@lunn.ch>
+References: <20241118-dts_qcs615-v2-0-e62b924a3cbd@quicinc.com>
+ <20241118-dts_qcs615-v2-2-e62b924a3cbd@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Marek Vasut <marex@denx.de>
-Subject: Re: [PATCH v7 2/7] Revert "clk: imx: clk-imx8mp: Allow media_disp
- pixel clock reconfigure parent rate"
-To: Ying Liu <victor.liu@nxp.com>, "imx@lists.linux.dev"
- <imx@lists.linux.dev>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Cc: "shawnguo@kernel.org" <shawnguo@kernel.org>,
- "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
- "kernel@pengutronix.de" <kernel@pengutronix.de>,
- "festevam@gmail.com" <festevam@gmail.com>, "robh@kernel.org"
- <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
- "will@kernel.org" <will@kernel.org>,
- "abelvesa@kernel.org" <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
- "mturquette@baylibre.com" <mturquette@baylibre.com>,
- "sboyd@kernel.org" <sboyd@kernel.org>,
- "andrzej.hajda@intel.com" <andrzej.hajda@intel.com>,
- "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
- "rfoss@kernel.org" <rfoss@kernel.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- "jonas@kwiboo.se" <jonas@kwiboo.se>,
- "jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- "mripard@kernel.org" <mripard@kernel.org>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>,
- "airlied@gmail.com" <airlied@gmail.com>, "simona@ffwll.ch"
- <simona@ffwll.ch>, "quic_bjorande@quicinc.com" <quic_bjorande@quicinc.com>,
- "geert+renesas@glider.be" <geert+renesas@glider.be>,
- "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
- "arnd@arndb.de" <arnd@arndb.de>,
- "nfraprado@collabora.com" <nfraprado@collabora.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>
-References: <20241114065759.3341908-1-victor.liu@nxp.com>
- <20241114065759.3341908-3-victor.liu@nxp.com>
- <df6ebdde-65f8-4aad-93c7-b1df695bd2ef@denx.de>
- <AM7PR04MB7046546A882A8D48E135D84698272@AM7PR04MB7046.eurprd04.prod.outlook.com>
-Content-Language: en-US
-In-Reply-To: <AM7PR04MB7046546A882A8D48E135D84698272@AM7PR04MB7046.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241118-dts_qcs615-v2-2-e62b924a3cbd@quicinc.com>
 
-On 11/18/24 4:54 AM, Ying Liu wrote:
-> Hi Marek,
-
-Hi,
-
->>> media_disp1_pix clock is the pixel clock of the first i.MX8MP LCDIFv3
->>> display controller, while media_disp2_pix clock is the pixel clock of
->>> the second i.MX8MP LCDIFv3 display controller.  The two display
->>> controllers connect with Samsung MIPI DSI controller and LVDS Display
->>> Bridge(LDB) respectively.  Since the two display controllers are driven
->>> by separate DRM driver instances and the two pixel clocks may be derived
->>> from the same video_pll1_out clock(sys_pll3_out clock could be already
->>> used to derive audio_axi clock), there is no way to negotiate a dynamically
->>> changeable video_pll1_out clock rate to satisfy both of the two display
->>> controllers.  In this case, the only solution to drive them with the
->>> single video_pll1_out clock is to assign a sensible/unchangeable clock
->>> rate for video_pll1_out clock.  Thus, there is no need to set the
->>> CLK_SET_RATE_PARENT flag for media_disp{1,2}_pix clocks, drop it then.
->>>
->>> Fixes: ff06ea04e4cf ("clk: imx: clk-imx8mp: Allow media_disp pixel clock
->> reconfigure parent rate")
->>> Signed-off-by: Liu Ying <victor.liu@nxp.com>
->> Uh, I almost missed this revert between all the LDB patches.
->>
->> This revert will break my usecase on MX8MP where I need to operate two
->> disparate panels attached to LVDS and TC358767 DSI-to-DP bridge and I
->> need accurate pixel clock for both. Not being able to configure accurate
->> pixel clock will make the displays not work, so from my side, this is a
->> NAK, sorry.
+On Mon, Nov 18, 2024 at 02:44:02PM +0800, Yijie Yang wrote:
+> Enable the ethernet node, add the phy node and pinctrl for ethernet.
 > 
-> Is your usecase in upstream kernel? If yes, which DT file implements the
-> usecase?  I guess it's im8mp-dhcom-som.dtsi authored by you, but it only
-> contains the DT node for TC358767, but not LVDS panel.
+> Signed-off-by: Yijie Yang <quic_yijiyang@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/qcs615-ride.dts | 106 +++++++++++++++++++++++++++++++
+>  1 file changed, 106 insertions(+)
 > 
-> Can you please elaborate about the failure case?
+> diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+> index ee6cab3924a6d71f29934a8debba3a832882abdd..299be3aa17a0633d808f4b5d32aed946f07d5dfd 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+> @@ -5,6 +5,7 @@
+>  /dts-v1/;
+>  
+>  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+> +#include <dt-bindings/gpio/gpio.h>
+>  #include "qcs615.dtsi"
+>  / {
+>  	model = "Qualcomm Technologies, Inc. QCS615 Ride";
+> @@ -196,6 +197,60 @@ vreg_l17a: ldo17 {
+>  	};
+>  };
+>  
+> +&ethernet {
+> +	status = "okay";
+> +
+> +	pinctrl-0 = <&ethernet_defaults>;
+> +	pinctrl-names = "default";
+> +
+> +	phy-handle = <&rgmii_phy>;
+> +	phy-mode = "rgmii";
 
-The TC9595 can drive an DP output, for that the clock which have to be 
-set on the LCDIF cannot be predicted, as that information comes from the 
-monitor EDID/DPCD. That is why the LCDIF has to be able to configure the 
-Video PLL1 clock to accurate clock frequency.
+That is unusual. Does the board have extra long clock lines?
 
-For the LVDS LDB, the use case is the other way around -- the pixel 
-clock which should be generated by LCDIF and fed to LDB are known from 
-the panel type listed in DT, but they should still be accurate.
+> +	max-speed = <1000>;
 
-> You still may assign an accurate PLL rate in DT.
-> This patch only makes the PLL rate be unchangeable dynamically in
-> runtime.  That means the existing imx8m-dhcom-som.dtsi would use
-> IMX8MP_VIDEO_PLL1_OUT(running at 1.0395GHz) as the parent clock
-> of IMX8MP_CLK_MEDIA_DISP1_PIX (for LCDIF1/DSI), since it includes
-> imx8mp.dsti.  I assume it should be able to support typical video modes
-> like 1080p60 video mode with 148.5MHz pixel clock at least with 1.0395GHz
-> PLL rate.
+Why do you have this property? It is normally used to slow the MAC
+down because of issues at higher speeds.
 
-This will break multiple DP monitors I tested so far I'm afraid. And I 
-spent a LOT of time wrestling with the TC9595 bridge to make sure it 
-actually does work well.
-
-> Granted that less video modes read from DP monitor would
-> be supported without dynamically changeable PLL rates, this is something
-> we have to accept because some i.MX8MP platforms(like i.MX8MP EVK)
-> have to share IMX8MP_VIDEO_PLL1_OUT between LVDS and MIPI DSI
-> display pipelines.
-
-What I need is the use of two full PLL1443x (like Video PLL and Audio 
-PLL1/2) , one for each display output, and those PLLs have to be fully 
-configurable to produce accurate pixel clock for each connected panel. 
-Otherwise I cannot make proper use of the video output capabilities of 
-the MX8MP SoC.
-
-> The missing part is that we need to do mode validation
-> for the MIPI DSI display pipeline either in samsung-dsim.c or lcdif_kms.c
-> to filter unsupported video mode out.  Is this missing mode validation
-> the cause of your failure case?
-
-I do want to support the various modes, I do not want to filter them 
-out. They can be supported, the only "problem" is the shared Video PLL 
-which is not really an actual problem in my case, because I do not use 
-shared Video PLL, I use two separate PLLs.
-
-I think what is needed is for the LCDIF1/LCDIF2/LDB to figure out 
-whether they share the Video PLL at all (you already suggested the clock 
-subsystem can provide that information), and then if:
-- yes, agree on some sort of middle-ground frequency to configure into
-   the Video PLL, frequency which somehow fits all three consumers
-   (LCDIF1,LCDIF2,LDB)
-- no, configure each consumer upstream clock to generate accurate pixel
-   clock for that consumer
-
-Something like ^ would make MX8MP EVK (the "yes" case) with shared Video 
-PLL work, without breaking my use case (the "no" case), right ? (*)
-
->> There has to be some better solution which still allows the PLL
->> reconfiguration to achieve accurate pixel clock.
-> 
-> As I mentioned in cover letter, the only solution to support LVDS and
-> MIPI DSI displays on all i.MX8MP platforms is to assign a sensible and
-> unchangeable PLL rate in DT.
-
-I am currently using Video PLL and Audio PLL to drive DSI and LVDS 
-outputs from each, so no, fixed Video PLL assignment in DT is not the 
-only solution.
-
-> Some platforms may use two separate
-> PLLs for the LVDS and MIPI DSI display pipelines, while some others
-> have to use only the single IMX8MP_VIDEO_PLL1_OUT because
-> all other eligible PLLs are used up.  That's all fine, just being platforms
-> dependent.  The only limitation of the solution is that some platforms
-> couldn't support some particular LVDS and MIPI DSI displays at the
-> same time due to lack of PLLs, but this has to be accepted since
-> the shared IMX8MP_VIDEO_PLL1_OUT case needs to be supported and
-> the two display pipelines are not aware of each other from kernel's
-> point of view.
-
-Can something like (*) above be implemented instead, so both Shared and 
-separate PLLs would be supported ? That should solve both of our use 
-cases, right ?
-
-> I hope that we can agree on this solution first before spreading
-> discussions across different threads and eventually the NAK can be
-> taken back.
-
-I cannot really agree on a solution which breaks one of my use cases, 
-but maybe there is an alternative how to support both options, see (*) 
-above ?
+	Andrew
 
