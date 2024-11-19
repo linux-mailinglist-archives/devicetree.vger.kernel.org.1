@@ -1,116 +1,80 @@
-Return-Path: <devicetree+bounces-122873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C6249D2A94
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 17:14:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F40A9D2AE9
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 17:28:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 842E8B25797
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 16:00:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 433F9B27D05
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 16:22:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BFED1CFEB6;
-	Tue, 19 Nov 2024 16:00:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 578EF1CF7B6;
+	Tue, 19 Nov 2024 16:22:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="UEUnS4HY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EzEtY2uq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97C2F1CCB4E;
-	Tue, 19 Nov 2024 16:00:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2971713AA35;
+	Tue, 19 Nov 2024 16:22:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732032019; cv=none; b=itgaBqT+T6PcUZEmGhVCVHhBP83tFHy2rcSR2ABK82WUGLdLB3H6hOFpf9X9Zu0ynCXeTY7npkvgtLOe+HISczOpxOgHYyRPdRFa9HE4adJwzLZz71N64w56CG2bNEVQdXe46wZykigl9t1SkJhKJouxJFGyLdVHUL+hnY4N7ek=
+	t=1732033340; cv=none; b=RXVJTPxZ0DIYvqVyLWGTmxTmUn1gb7/mwo+iP8QH5MYgOO8CvTztJE+2D3b8O0Q+Cv/P5JIL4ylr7rOQ+PCiQdpOOmhJc/g5oYfD3R+1dQ29sikWWBpQJTF/ZMzttl1kcsSWdmoLh7DL18RWh7ygpl/eQ7rLze4MyxRxDj9b+t0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732032019; c=relaxed/simple;
-	bh=Ol4pjF1rs0IdAv1vX85TbwzkYznXpOC2KWkPl4N/csY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MtZi7VeR2/PkLWUAqZFseL2ORM4sS6Jo7dblp/EHizArj2r2vdt+0e77+YdI5TA6JkIIN6fnz46jku4KX0utg2Lm+z531s4dpl/4AUOD9WX0yka5qDC5aueGT+gGpTbaOGU4PgL9XPjR6HYtnsJ4Hk2VDQ+OsWX7bxN/IozxSEw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=UEUnS4HY; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1732032018; x=1763568018;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Ol4pjF1rs0IdAv1vX85TbwzkYznXpOC2KWkPl4N/csY=;
-  b=UEUnS4HYcXEqGMJU0uBtC03sGP1/EGjrJbA5iHYP3LHg8nDwPiPgnkBR
-   YQrU+mI4ev1/UpANtoKa1BO27pG5zIK1ldlKZu/h/DemsYlU5faLtFRuw
-   RVinVeiwtK/DN1FkWqHl+tQ2/r+6Hz6EYMN3PPCtQsDvp/v6fn+fYqkj7
-   qKeeQQzzcfJIlHNblg9N4LEgJjDhyacKwOlUFjmOiTIyQQBMKHdliaK8N
-   rOWxQWNb2rF6SYEValGoDVW0yk5upfBPcPs6rxtnCrTS0Lptqu3hqGtLP
-   AsljNTdTbXOdtX0vE4v7GnI7lvoR77KliKu/ewNVYrZp5n504ycmDM6jC
-   g==;
-X-CSE-ConnectionGUID: jx9uf5d4QJWO8ovvuPewRw==
-X-CSE-MsgGUID: zerSjUQ+SmaIvFgELvLcuQ==
-X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; 
-   d="scan'208";a="34515000"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 19 Nov 2024 09:00:11 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 19 Nov 2024 09:00:10 -0700
-Received: from ROB-ULT-M91496.microchip.com (10.10.85.11) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Tue, 19 Nov 2024 09:00:08 -0700
-From: <cristian.birsan@microchip.com>
-To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-	<claudiu.beznea@tuxon.dev>
-CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, Cristian Birsan
-	<cristian.birsan@microchip.com>, Mihai Sain <mihai.sain@microchip.com>
-Subject: [PATCH 2/2] ARM: dts: microchip: sama5d27_wlsom1_ek: Add no-1-8-v property to sdmmc0 node
-Date: Tue, 19 Nov 2024 18:01:07 +0200
-Message-ID: <20241119160107.598411-3-cristian.birsan@microchip.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241119160107.598411-1-cristian.birsan@microchip.com>
-References: <20241119160107.598411-1-cristian.birsan@microchip.com>
+	s=arc-20240116; t=1732033340; c=relaxed/simple;
+	bh=L2c7hq/N5CpA+t9DJDAqqXyAdM4Y47pSKX7bd5KrWM8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QMO3HIYn12H/jUAJtMUytk2TkTCAbXmHaOHTC01JtizFtSqIc51QCebGCI7ifM0Yu+iAGghGMcvl2JdDMws/4S0LEXi2PGMTjr6Yl2gH0u1Cg2grVpdR9vK8nBjbP4uDOCEXxk5iNpy+/rf/3G3hGGoxIeKWOR+U796q3Ho/y3s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EzEtY2uq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87D11C4CECF;
+	Tue, 19 Nov 2024 16:22:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732033339;
+	bh=L2c7hq/N5CpA+t9DJDAqqXyAdM4Y47pSKX7bd5KrWM8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=EzEtY2uqIFfFJDe4sDFnh1rDghd23ltbfRkRDG/2ADvBxI+5SkiSpMrr53BIQZIYq
+	 XR0/ZvO+MEbuhuKlRw1LZOpgx7wV/eLp7iX23DPP740ieHpz3KFBX8LBpKw+J/gIhu
+	 ooHq++9yKLSCingrIx0MwNqWzelfHTC3BzujwVBR9l5y1W6S5dEbT+xY1XlYAppmIQ
+	 ldpvp/W37Uh3R/AwfZY1H10T17zIZNu6qsq/ThSnbKvG9XOUoA13S8zuvZ95tP4oaN
+	 xN7NAQC2bE7zKDySc9GRhv5dQbtZaVBcWHby8Y9CEHlYkooRoyISQEPAL6Lgor3Zl9
+	 vv9RVCX9rFhVQ==
+Date: Tue, 19 Nov 2024 10:22:17 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>,
+	Sumit Semwal <sumit.semwal@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: regulator: qcom-labibb-regulator: document
+ the pmi8950 labibb regulator
+Message-ID: <173203333699.1761782.8447977397526994554.robh@kernel.org>
+References: <20241115-topic-sdm450-upstream-lab-ibb-bindings-v1-1-1f4bff4583b0@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241115-topic-sdm450-upstream-lab-ibb-bindings-v1-1-1f4bff4583b0@linaro.org>
 
-From: Cristian Birsan <cristian.birsan@microchip.com>
 
-Add no-1-8-v property to sdmmc0 node to keep VDDSDMMC power rail at 3.3V.
-This property will stop the LDO regulator from switching to 1.8V when the
-MMC core detects an UHS SD Card. VDDSDMMC power rail is used by all the
-SDMMC interface pins in GPIO mode (PA0 - PA13).
+On Fri, 15 Nov 2024 11:04:26 +0100, Neil Armstrong wrote:
+> Document the pmi8950 labibb regulator with the pmi8998 compatible
+> as fallback since they share the same hardware settings.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  .../devicetree/bindings/regulator/qcom-labibb-regulator.yaml       | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+> 
 
-On this board, PA10 is used as GPIO to enable the power switch controlling
-USB Vbus for the USB Host. The change is needed to fix the PA10 voltage
-level to 3.3V instead of 1.8V.
-
-Fixes: 5d4c3cfb63fe ("ARM: dts: at91: sama5d27_wlsom1: add SAMA5D27 wlsom1 and wlsom1-ek")
-Suggested-by: Mihai Sain <mihai.sain@microchip.com>
-Signed-off-by: Cristian Birsan <cristian.birsan@microchip.com>
----
- arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1_ek.dts | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1_ek.dts b/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1_ek.dts
-index 15239834d886..35a933eec573 100644
---- a/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1_ek.dts
-+++ b/arch/arm/boot/dts/microchip/at91-sama5d27_wlsom1_ek.dts
-@@ -197,6 +197,7 @@ qspi1_flash: flash@0 {
- 
- &sdmmc0 {
- 	bus-width = <4>;
-+	no-1-8-v;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_sdmmc0_default>;
- 	status = "okay";
--- 
-2.34.1
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
