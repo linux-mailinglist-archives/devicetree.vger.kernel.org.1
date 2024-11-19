@@ -1,126 +1,158 @@
-Return-Path: <devicetree+bounces-122870-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122871-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FB569D2A00
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 16:46:24 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C55F59D2A81
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 17:09:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 393C11F22D78
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 15:46:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 25928B25654
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 15:52:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90C9E1D0B91;
-	Tue, 19 Nov 2024 15:41:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 796161CEAA6;
+	Tue, 19 Nov 2024 15:52:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WNQFR1U4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VoGi3W86"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6470B1D0786;
-	Tue, 19 Nov 2024 15:41:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DBA03C463;
+	Tue, 19 Nov 2024 15:52:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732030879; cv=none; b=jiVJW5EJFWtVecRY9LizcT1Oh1PC4Mbu7JP3p6fxvyEK4tGy4BN3j+ZKgrIr4Flgjlj3hR95mF0PjxQhMMX70SWDWkTlfsbovTcdxxuf5I5Q+KaiTFeLwZNY4Ii281ITBXdrSf9sGoDR/WKlwSojiOTGYtlH4WM8L3yrHXn3MLY=
+	t=1732031542; cv=none; b=oyf26JNE1/ASnwkLXpiT2AMZ3T440JZQfaG19u68J9EOPzDPwHe54a1QgSvwmxo6VQzWzWqzeAoVdNRnlH54uyEyG/fc1CGXopzAWCRDinB3uf0e3arnx/JmxFkh5VxcPduG+s9XGkZUZLt9cfOIjhSGYtCDIwdP8HBzmatCWXY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732030879; c=relaxed/simple;
-	bh=LCJa+mqJlcqayphq5IXmD48HWyCdMQp5/f0kZG0ciBM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oH+ix49UZUlA0lnnu+zSylSfz9guEfpFtHiKgswH5QS2Qkp5n3YzWlmrmS8A3rbAUDMp9PD0O49oqqeYNOa2ndzA1KQjS3lDLUjPNXlcwYiccqHYgseVuxR3nPurZOdmcZtZ/e2XV1Pm/y+fW+g1cTdOXGl1IVunV67aashmdQQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WNQFR1U4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B55EDC4CECF;
-	Tue, 19 Nov 2024 15:41:18 +0000 (UTC)
+	s=arc-20240116; t=1732031542; c=relaxed/simple;
+	bh=o3gR352LlahW4bYiGh6jq+M0jHwfyE3mWNihgjlkCUE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=C1UWS/n5ASZOUgwNzv3X6anPP4Qub2dUlT+zKYP4gLdkMS50bZnVbBpCFJoDC1prkJqaNfqwW5kYjI8aqXfhMmKDs8geHfdm5MMqdBomdqv30MYIAi55rjEuXCNnzkLoEulUXCdwLmOOgiBC7riojTmxqg+rxa/lx7zHBpj7DYs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VoGi3W86; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 970C2C4CECF;
+	Tue, 19 Nov 2024 15:52:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732030878;
-	bh=LCJa+mqJlcqayphq5IXmD48HWyCdMQp5/f0kZG0ciBM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WNQFR1U4KMgjZ/wew/OFuKN7TkKaGv/hTOFLeKBkbWVumG17i0grqn1Pc1Vg0+EdT
-	 C0Yb0G5Epe/DohfB199hMCq5PcB7nG0BceGGyH5M9iQw5OtQangn6LiWrWixu1Tcgn
-	 YnSacQ3gewWmMJxZ/NMynVKt+BPQWSbB+/whdwXvZWZgHCHeTZkfehw9RciaZVHRZx
-	 tHkdEAfZXlZxUt6QJOiSztFYWZohOGftpU+9whc94FL1rY/sUywp2CSzpOGfeLI/sA
-	 rPDl3MTfd+1TRmDVM37S9mFgOepfgCsghb4MjRkn9xgmLS0FQ28yv8W9qrZVevts9a
-	 ewXo3WWrvJboQ==
-Date: Tue, 19 Nov 2024 09:41:17 -0600
-From: Rob Herring <robh@kernel.org>
-To: Samuel Holland <samuel.holland@sifive.com>
-Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] of: property: fw_devlink: Do not use interrupt-parent
- directly
-Message-ID: <20241119154117.GA1537069-robh@kernel.org>
-References: <20241114195652.3068725-1-samuel.holland@sifive.com>
+	s=k20201202; t=1732031542;
+	bh=o3gR352LlahW4bYiGh6jq+M0jHwfyE3mWNihgjlkCUE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=VoGi3W86V+BMkH0orN9SkrRWfbsYPYKG/tSszh+qlid2zkITVa5CjS/EAW4cm1Sns
+	 ceAZXjMs8YXNtMFAsN3010zvGc/ft4755EO5ULbjJRJ+6ps+AChjULBn2nZ0mbNObo
+	 f0CMWiuslHEpxx87lRQIgmOjfVqKBQikWUiOfPV516zXihuyEJ5/LLTF9linKGzj8x
+	 FQwRxfxvYlWi+G6+IvtuuLMdtwQLqyDSQiL9bNQb5WVLpgO9hh8YrYQ50nxkuTR2g6
+	 5d68SaiyRkzGOOqXymwyWlHCK0FxkbqdbtQftiY68gh+mMaskLzFcsFhEyNOT9KKyP
+	 trq35+XPAB4/g==
+Message-ID: <38c2c941-42e1-4d7c-aaa2-3c11dcea4e05@kernel.org>
+Date: Tue, 19 Nov 2024 16:52:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241114195652.3068725-1-samuel.holland@sifive.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/6] dt-bindings: Add Blaize vendor prefix
+To: Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, James Cowgill
+ <james.cowgill@blaize.com>, Matt Redfearn <matthew.redfearn@blaize.com>,
+ Neil Jones <neil.jones@blaize.com>, Catalin Marinas
+ <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "soc@lists.linux.dev" <soc@lists.linux.dev>
+References: <20241115-blaize-blzp1600_init_board_support-v5-0-c09094e63dc5@blaize.com>
+ <20241115-blaize-blzp1600_init_board_support-v5-1-c09094e63dc5@blaize.com>
+ <c1885e24-8051-4c91-9870-18eb4218a2ff@kernel.org>
+ <bc471aeb-e9fd-4aa9-9bcc-a59d3c2e47b8@blaize.com>
+ <c866d4e8-77ee-48ca-b6a8-5f56896b072e@kernel.org>
+ <09170fdb-018a-401e-a186-ccd0f5e993d8@blaize.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <09170fdb-018a-401e-a186-ccd0f5e993d8@blaize.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Nov 14, 2024 at 11:56:49AM -0800, Samuel Holland wrote:
-> commit 7f00be96f125 ("of: property: Add device link support for
-> interrupt-parent, dmas and -gpio(s)") started adding device links for
-> the interrupt-parent property. Later, commit f265f06af194 ("of:
-> property: Fix fw_devlink handling of interrupts/interrupts-extended")
-> added full support for parsing the interrupts and interrupts-extended
-> properties, which includes looking up the node of the parent domain.
-> This made the handler for the interrupt-parent property redundant.
+On 19/11/2024 16:23, Nikolaos Pasaloukos wrote:
+> Hi Krzysztof,
 > 
-> In fact, creating device links based solely on interrupt-parent is
-> problematic, because it can create spurious cycles. A node may have
-> this property without itself being an interrupt controller or consumer.
-> For example, this property is often present in the root node or a /soc
-> bus node to set the default interrupt parent for child nodes. However,
-> it is incorrect for the bus to depend on the interrupt controller, as
-> some of the bus's childre may not be interrupt consumers at all or may
+> That's a very tricky error to pick it up. `checkpatch` on my end doesn't produce
+> an error. The header file on my patches starts as:
+> 'From: Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>'
+> I had set the mail account as Forname: Nikolaos, Surname: Pasaloukos and
+> preferred name as Niko. It is an Outlook365 issue I think.
+> 
+> That said, when I was trying to send my patches, the mail server was converting
+> my name 'Nikolaos Pasaloukos' to the preferred name 'Niko Pasaloukos'.
 
-typo
+Usually it is not a problem to commit patches with one name and send
+with other - git send-email will properly add two From headers like:
+https://lore.kernel.org/all/20241119154245.442961-4-pablo@netfilter.org/
 
-> have a different interrupt parent.
-> 
-> Resolving these spurious dependency cycles can cause an incorrect probe
-> order for interrupt controller drivers. This was observed on a RISC-V
-> system with both an APLIC and IMSIC under /soc, where interrupt-parent
-> in /soc points to the APLIC, and the APLIC msi-parent points to the
-> IMSIC. fw_devlink found three dependency cycles and attempted to probe
-> the APLIC before the IMSIC. After applying this patch, there were no
-> dependency cycles and the probe order was correct.
-> 
-> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
+If your git history has correct From matching SoB, then indeed
+checkpatch on your end will not complain.
 
-I assume this should go to stable? It needs Fixes tags.
+If that is the case, it means your SMTP server *rewrites* the From
+header. Not nice... but what to expect from Microsoft? They learnt open
+source just recently and before open source was communism for them...
 
-Otherwise, the change makes sense to me.
+You can change your local name to match whatever Microsoft wants to set
+or you can use b4 relay to send the patches.
 
-> ---
+https://b4.docs.kernel.org/en/latest/contributor/send.html
+
 > 
->  drivers/of/property.c | 2 --
->  1 file changed, 2 deletions(-)
-> 
-> diff --git a/drivers/of/property.c b/drivers/of/property.c
-> index 11b922fde7af..7bd8390f2fba 100644
-> --- a/drivers/of/property.c
-> +++ b/drivers/of/property.c
-> @@ -1213,7 +1213,6 @@ DEFINE_SIMPLE_PROP(iommus, "iommus", "#iommu-cells")
->  DEFINE_SIMPLE_PROP(mboxes, "mboxes", "#mbox-cells")
->  DEFINE_SIMPLE_PROP(io_channels, "io-channels", "#io-channel-cells")
->  DEFINE_SIMPLE_PROP(io_backends, "io-backends", "#io-backend-cells")
-> -DEFINE_SIMPLE_PROP(interrupt_parent, "interrupt-parent", NULL)
->  DEFINE_SIMPLE_PROP(dmas, "dmas", "#dma-cells")
->  DEFINE_SIMPLE_PROP(power_domains, "power-domains", "#power-domain-cells")
->  DEFINE_SIMPLE_PROP(hwlocks, "hwlocks", "#hwlock-cells")
-> @@ -1359,7 +1358,6 @@ static const struct supplier_bindings of_supplier_bindings[] = {
->  	{ .parse_prop = parse_mboxes, },
->  	{ .parse_prop = parse_io_channels, },
->  	{ .parse_prop = parse_io_backends, },
-> -	{ .parse_prop = parse_interrupt_parent, },
->  	{ .parse_prop = parse_dmas, .optional = true, },
->  	{ .parse_prop = parse_power_domains, },
->  	{ .parse_prop = parse_hwlocks, },
-> -- 
-> 2.45.1
-> 
+> Do I need to resend v5 again after this is fixed, having applied all the
+> additional Reviewed-by? What would be my next step here?
+
+Yes, please resend a v5 with tags applied and fixed problem with From/SoB.
+
+
+Best regards,
+Krzysztof
 
