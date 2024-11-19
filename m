@@ -1,246 +1,557 @@
-Return-Path: <devicetree+bounces-122725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122726-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 381049D2196
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 09:30:05 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B11809D2205
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 09:59:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED0EB2816AC
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 08:30:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2F0EDB20D7F
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 08:59:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F4024156880;
-	Tue, 19 Nov 2024 08:30:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F2F5198A1A;
+	Tue, 19 Nov 2024 08:59:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="jHT91KKN";
-	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="Aqvcj3z7"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="d7iUJj08"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E01C017E0;
-	Tue, 19 Nov 2024 08:29:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=60.244.123.138
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732005000; cv=fail; b=RhP2MTRn2pW8A7H7YFJP0hSHNQ9sR4e1J863u+9pzprOpPLdOjw+COn1uGzcwVaJICM94ik0DCWD5brNvFFduXuhQeJy/WNFjgaw7331pw6AnZkZwM33aGlkik7PuBS9BWkkS7uN6Ezd9/50BhUdjiGTfuvjt2fz4vhR1ESyC7g=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732005000; c=relaxed/simple;
-	bh=c+RSeVyl/VnEE0gaA4eNPQcCpxjnOdOrT3JiSL+jejI=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=VEb6TDddJTTGoJ++6f7oJ5CF5ErS62h2SWxLmwcX3djscWBLylAdI+Wn/EYkO4dO1gJyBtt0rbFWUtXcEDfXdtJ5bLwh/oe6TxtZYQliNo0jWo+hytIAZez/a5H23MBxq+acUMkgYyYHeULTJVMRFG6a2FC8FJ30YrXWjCVpEj8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=jHT91KKN; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=Aqvcj3z7; arc=fail smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 72975fd6a65011ef99858b75a2457dd9-20241119
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=c+RSeVyl/VnEE0gaA4eNPQcCpxjnOdOrT3JiSL+jejI=;
-	b=jHT91KKN7PO5PQ79TgGtfHmx02Q1/c5IKEsaFXCaGnYqRuwVrzj8uCNaq21G8/7kkssEenYP7KShda6x0ME7elpeF0pwn2TDYrJ5Dj586L2ZCKqd19ax5X3oxebbi2trkg2hrSBWQC1zHDSrbXFIjZqYMqETECbl9BleLmZdkZg=;
-X-CID-CACHE: Type:Local,Time:202411191623+08,HitQuantity:1
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.44,REQID:a65f87d5-352c-4501-8ad7-ea5466e05fcb,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:464815b,CLOUDID:1208e05c-f18b-4d56-b49c-93279ee09144,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102,TC:nil,Content:0,EDM
-	:-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0
-	,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 72975fd6a65011ef99858b75a2457dd9-20241119
-Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw01.mediatek.com
-	(envelope-from <ck.hu@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1840360993; Tue, 19 Nov 2024 16:29:52 +0800
-Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Tue, 19 Nov 2024 16:29:50 +0800
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Tue, 19 Nov 2024 16:29:50 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QFKfRRd6CPSMFFYc7Q404IhBlHk2OlQMApiHVNc1CoFSaAEZKl00fGsSZpfcNPKj1CAZfFtTiRpOJAFq8/TdFzz02C+I4qFToubraYBQw6N3gZmLcxkkwZpp1rqgBA17OdGAbT4zuLYAQn41mA+parx3SBNVHofFHHBNSPJN/uKJhmQHKMzp4vYJuhz3DFMBjW1qZj2PGqq7v66kYG6hNBU69YldZkwswtJdVSy4wTnu/Tm1//4gdOZMoej8L4HS1py4rZ/+rlv8himRtv/XBB75DNEAO3GjITNZ11kNMG9VfGpbcZpS4Kukt/8iIHBfYRmE0vxG9aA2Aa3c9+Hviw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=c+RSeVyl/VnEE0gaA4eNPQcCpxjnOdOrT3JiSL+jejI=;
- b=IWZMAPuXGAObkx9Abg9WoydK8fD5jUMGBimn8eEs25bXlD4Pppch5S3ZOT8Tt17NLh4ogARJCArdKtMVIMQ92s/dWgeUrcwWiyiAJBZ3N63XWYyx3fZtdCW3SK3iR/+5/5TT1hnu5g164cjJMeMO4iOcxpsFylX539y6zX8UYae2DbfCua9fqqmcTtTpH59QSaf0UZck5nUy2eV0XWrVBJaak/XDZoxeFRZQfIcPMGs92mrzuSSahsI8KvXwMAVVWXgctxdDk1puM/9x3WUPoWgN92gzBx+Rif54UVCAnZBkBY2/1bulhJR4jwmwiiHO/EtDh+wA22rElraDiaH7Xw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=c+RSeVyl/VnEE0gaA4eNPQcCpxjnOdOrT3JiSL+jejI=;
- b=Aqvcj3z7cYWaeL3kEOwTyzU12qEfK76z1kJCMY9oMOZBvL4ZgD3Tqiv+HoHbTYud9Eop04aO+MjWtdVD2I3GLLEl3bV3ps/tmWb2M3oy0geIaDhBxm+9dRel/h7udT0Qac9HRi+YU/futcS4mYrHcMn5CjS0p2ugwYFgx/mx+JU=
-Received: from TYZPR03MB6624.apcprd03.prod.outlook.com (2603:1096:400:1f4::13)
- by SI2PR03MB6688.apcprd03.prod.outlook.com (2603:1096:4:1eb::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.20; Tue, 19 Nov
- 2024 08:29:48 +0000
-Received: from TYZPR03MB6624.apcprd03.prod.outlook.com
- ([fe80::9ce6:1e85:c4a7:2a54]) by TYZPR03MB6624.apcprd03.prod.outlook.com
- ([fe80::9ce6:1e85:c4a7:2a54%7]) with mapi id 15.20.8158.017; Tue, 19 Nov 2024
- 08:29:48 +0000
-From: =?utf-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
-To: "sumit.semwal@linaro.org" <sumit.semwal@linaro.org>,
-	"christian.koenig@amd.com" <christian.koenig@amd.com>, "mchehab@kernel.org"
-	<mchehab@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"robh@kernel.org" <robh@kernel.org>, "matthias.bgg@gmail.com"
-	<matthias.bgg@gmail.com>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	=?utf-8?B?U2h1LWhzaWFuZyBZYW5nICjmpYroiJLnv5Qp?=
-	<Shu-hsiang.Yang@mediatek.com>
-CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	"yunkec@chromium.org" <yunkec@chromium.org>, "linaro-mm-sig@lists.linaro.org"
-	<linaro-mm-sig@lists.linaro.org>, "linux-media@vger.kernel.org"
-	<linux-media@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, =?utf-8?B?WWF5YSBDaGFuZyAo5by16ZuF5riFKQ==?=
-	<Yaya.Chang@mediatek.com>, Project_Global_Chrome_Upstream_Group
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-	=?utf-8?B?VGVkZHkgQ2hlbiAo6Zmz5Lm+5YWDKQ==?= <Teddy.Chen@mediatek.com>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "hidenorik@chromium.org"
-	<hidenorik@chromium.org>, =?utf-8?B?U2h1bi1ZaSBXYW5nICjnjovpoIblhIQp?=
-	<Shun-Yi.Wang@mediatek.com>
-Subject: Re: [PATCH v1 06/10] media: platform: mediatek: add isp_7x utility
-Thread-Topic: [PATCH v1 06/10] media: platform: mediatek: add isp_7x utility
-Thread-Index: AQHbGj2JaAd/ufwz/0W0Edv5eKs5YbK+heeA
-Date: Tue, 19 Nov 2024 08:29:47 +0000
-Message-ID: <cda227f98dfa4262882d2866b9bca47007076f03.camel@mediatek.com>
-References: <20241009111551.27052-1-Shu-hsiang.Yang@mediatek.com>
-	 <20241009111551.27052-7-Shu-hsiang.Yang@mediatek.com>
-In-Reply-To: <20241009111551.27052-7-Shu-hsiang.Yang@mediatek.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYZPR03MB6624:EE_|SI2PR03MB6688:EE_
-x-ms-office365-filtering-correlation-id: 011eb7fc-ebfd-4472-b4e3-08dd0874544c
-x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|366016|7416014|376014|1800799024|38070700018;
-x-microsoft-antispam-message-info: =?utf-8?B?eVp4VkE1alVOWVdJUkpFenJtc0JRelZNUGtFVGJQcWFjQWhSUlhSZ2NMS3dB?=
- =?utf-8?B?ZTJ3azlHQmk5dXFSZW42L1JjTWY5VTllTUVIVndMREt4R2NZeFpzNkx4SW9K?=
- =?utf-8?B?MFRJYlFvTVM3bHM3a3dUSHlvNFNkdnBOK1FBYlRCMFVva1E0TncranBldWhx?=
- =?utf-8?B?ejhNdXFZN3dFWVlwbnQrNnd6eXpzekZtZTdHNkptWWJsRlI2VXBSQ0RsaWJN?=
- =?utf-8?B?cU1tMHZrRFBpaE1ydHlZYWRtYVRMQWJzS1pMbk1kdDZ3MkR6QUxXa050OUVI?=
- =?utf-8?B?RkxtRERKbllQU1F1U0p5bWpJbHRFNkpBQ0dYTU5DbThYYXl3V2lMd3dRNGFM?=
- =?utf-8?B?Y2s0dHJWTkF2cWtNcEJIUmpCa2dyWW9WS3ZyVXdBK2JUdXEyM3hOVER1L05z?=
- =?utf-8?B?c3UwYjhHSExaRk9yN2srVEFJS0w2MzFEbm5JbkY2SHpycC9uWXZoYnpqMUlP?=
- =?utf-8?B?eXpFQ0NDYWVVTFZXZ3NWVHVUdWxCc3hwM1d1N0lhUTJncWY4NkIxZnpFWHRv?=
- =?utf-8?B?K0c0MzdiT3BabG5kSU5tYXhkYmlXbXRHRkpIR05GK1U3TFdwY3pKUnVoeVlv?=
- =?utf-8?B?M1NnWlZCMm5Lckk3SWY2bzFldnJQRzZPbldWTFZpN0FZRTVpT2dQdVd1RWZZ?=
- =?utf-8?B?RWxtVHRPMnRvMzFaZkxuNWJJZEplYWNtYlcwVkpHYzNsRk1KekpLQnZpWXBu?=
- =?utf-8?B?R3k2WDJYaDM0MGwycXk0a2RpVWprbW8xaUFYcmtQVFppR2JhRnZlVUtpay9M?=
- =?utf-8?B?YjJwUlZKazZEVkVoZENWYWg1eWU4RjJFcGZ3dVJ2NVhoVFhkaERybUduMjJ3?=
- =?utf-8?B?d3YxYlN6WlJ6V0RxcHZwcGZoSDg2bXMvUmJad241WklFS2xlNUMxUWxYSTBv?=
- =?utf-8?B?aTdzYnI0c1dmcnZHdVJobGF2TDdKL0dNbjgwOUF1WmlQQWxlYVkwcUFySEp6?=
- =?utf-8?B?bXpNWW1nK25GZUI5Nkk0M1lSdkhhTXlDcCtnTGJtMmZkdG01VE5zalNvU0ZH?=
- =?utf-8?B?enYrbjI3dFJiNnVXQmF4UHJaRnBIR2FxQndxQ3M1SFZnZnVOLzZTTEhhMFNs?=
- =?utf-8?B?cFNBSXFoTXdleTVONE1rcHYzWXpob0g0YlNqY1B2N1MxMjBSZXpzMS9hQjN1?=
- =?utf-8?B?Yklxd2xQandWOUZxa1RDODNsZHpUaVA1NUNvZEhuWHBtRWxPZHZ2NkRrRVZR?=
- =?utf-8?B?b0s5NlQxc3RiOUExeC9GU0pWM2dKNlB6ZHlxdFZsbCtuT3l6b2x2THJUOSsy?=
- =?utf-8?B?R0pRcHp0OXZVUFV6L2UwSnB1dUJLZ0FKbWt5Y3dxTzEyM0xFVDdzMXRmWGVE?=
- =?utf-8?B?b3NjOW9BYlhWdGM0eWZDRW8xN3BnS2FNOStUVGJGai9iUzhyNk1sbFJrV1p6?=
- =?utf-8?B?R0xPWmp4cFNVSW5LdDNOdjZlSFNKMzYwVGg0UnJkN21IU2NTbHhYdjNpRDc1?=
- =?utf-8?B?dkozbmxpN28rWGJOSHAxSmF3WWtEMDRTbmwyUW1WNTF4QjFEaVhMOXdpM09t?=
- =?utf-8?B?YXg4VFI1eDJBd1FIK0NMUnVhY3l3eGRMY1ViUzNPVUxGeThCQnI2MHFmZE40?=
- =?utf-8?B?S1Bic1FvME5Uc1IwdHN5SjdtOHJYcnIzZmY1VTUwSVUwQytLWjdVK21EZ29H?=
- =?utf-8?B?K3kwYTlxWTROUUorVUVnM3ZTZHFTNGhNcWlTL3hXVWd4bjZmWmZOSm8vRzRG?=
- =?utf-8?B?V2djY3U5RlFVN2pmOFp2QkNUTFprNWxhNHVET0wzSTVNam4zZnltV3hQUnMv?=
- =?utf-8?B?MTBTazFJeWw0cWsvRlMweENscGhQc0pBVHhTSVcrOWpKVnA1ZjdQUTFYVHpk?=
- =?utf-8?Q?O7SHSd1amoaPpmjT13sD0nodLgNMtyPj5rYRc=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6624.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?bjBielBDVWZWWXV0SGdqa1ZTMDkxam5RdmhoN3RjN0hsSDNZNWh6WXMxYS84?=
- =?utf-8?B?Sml3YUZvbkZ6Z0hwcXUrbjRudTVBamIvNVp0Qm5lWld1dUZldC9ERnhscGN3?=
- =?utf-8?B?MHZYMUJPdGdOeE5lakdVVUpLTkplajRQUXlCVzhUQzJoZEFBUmNCRzBZMndQ?=
- =?utf-8?B?V1BrUDNwY2lGMWNjMjQ3MVc0aFJ4YTQ3Wm9PbWtWTisyQ1I5bXhpN3ZUZjNv?=
- =?utf-8?B?Z3ViMExlK3FlQW9SaVd6WUZBNjZKYmxDWS8rTkFpdVBFUWFicDhXZFd3SWlz?=
- =?utf-8?B?NThVMTJlTHlQcThVK09mZDlxM0dMc3BIa0JtcHZsVmJZWERIZGxqSTQvYXQr?=
- =?utf-8?B?LzVEaEhiMHpPYzhaRG9pUzlSKzlQbkFYKzY3VUl6Y2lueG5Udjk3S2l4dVZ1?=
- =?utf-8?B?UGpHSjlwN2d0WmorN251OVNDQnN3NDFzSzFzeEorR1A0c3ZxcTBnWWVVbmdO?=
- =?utf-8?B?ZlRjQ0V2bGRmdXN6a1piay9yRjArZGxuS3llVkpaVzNvOWozSWowVWNpK01E?=
- =?utf-8?B?RnRjZFNVb3VPcDY3TFV1MDhNajB6QXNYcXJWakF4VWtpUmo3YUNETTJHZzdG?=
- =?utf-8?B?ZXpWQk5LOVAwQ0xlVnRWMXorVUt1aFJldjlHT3JtaE1YOGJhdFFuS0ZjeGFH?=
- =?utf-8?B?anVWWW5DK3EyWHRRd1R0eWI4M3o0NUJHYXRQcXlza2xYNzhjY0E3ckRmU2hl?=
- =?utf-8?B?b1JYczhQZHVZRTlEaGtVTGt0N29ycW1iSGFGaWNLU3pCUWdGdzI2Nlc1QTN3?=
- =?utf-8?B?YW9FRGtvRXU1Nkcyck1Od1pTUHNRWEJTbkp2cnNsMXEzTXU2SGVUdUtJTi9j?=
- =?utf-8?B?MkFwUGNpWEsrTXBTZWkyUmUzN2M1eTQvOGs0QnlON2RnSHdEMlhaNER4eTdZ?=
- =?utf-8?B?YlpxdmY4WmhCVkVLRWZVbEtoMDdWZVA3am1XTEplVmZKUlNXNUpROHZFYllk?=
- =?utf-8?B?UXdSVlNDcUtUNnJQU0wyZHhWN1IrdUdFRE1DMmJhMlZRL2x1S1g1M2l5QmNT?=
- =?utf-8?B?TEpuVXhNQkJWYjArWUZibFgzRlY1b2VtNTlUb1hMYllhZldJbldEWFhua1U2?=
- =?utf-8?B?S1NmSFBBUmphTXhOakhIU3dUVHFSaEpsd3ZSMTlERTZiU2JSSnFPWW83L0pE?=
- =?utf-8?B?VEN6VXhETUwvY2lJTFY5ZUlFZ2FtQi9rdXp2SjVSSlROMHRsT3RSK0NPa0pE?=
- =?utf-8?B?TnQ1Tkk3R0tHL3BBaW5mYmpQeVlVdHZlcFYyODFQeGdYTG9QRE1YL3RUS05n?=
- =?utf-8?B?L2FYdGx0d2RLbHNkQlF3ZXFpbjA1OXZ0RHk3MnZHaFczNkxDVjg4Z1gzTnhS?=
- =?utf-8?B?UmlHMEFZazN4RmxTaExyajA4TEJmUEt0QnZVOUpGL2RLbzk4WTdsMFpxczFn?=
- =?utf-8?B?V0hNQlpOWDdRYXFwdlRza0h3ZytxcE1YRnNWb3BXcHpMMGUyeGVaQXM5Y3c1?=
- =?utf-8?B?VVNWcWJwZzlidGtOS0UveDNOaHk2bE1pVFdrT3UzWE04RzhXSldUeUhnY2tP?=
- =?utf-8?B?ZS9VM1RHdWJ1U0gzY1RlVUJhcVNuK29qa3I2Wm9ka2Z2NFEzTVJGUnFVeGhO?=
- =?utf-8?B?VWozRUxyQXh6YStlU1JvQzNqWjd1STJHd2hPNGdrNEdHeFVKWVk5TVFEY21P?=
- =?utf-8?B?bk85Tms5VEUwaTJ2YTdpKzYzbUtIemMxaFVSUU9uR094cVFLanE2ZXgydFh2?=
- =?utf-8?B?UGNXb1R2WlZOS0NhVWtva1lTYStWRWxQMjBNSW9ZaU1UUWxhSnRWSW1ZS1lJ?=
- =?utf-8?B?MXFDcGZEVHdRTVgzem5mZy9MMlp4T3NvcUxoSjNNZHU5Q1h1bnB3OWhoYWtv?=
- =?utf-8?B?WDRIazdERWlkclJENnNNYWVYNHN1RVVXWWlnVnZFSDVZS2w5enZSNWlKVGNK?=
- =?utf-8?B?QkdDUVoraXNoMWZyRzdWY0dEckY1cE12K2xnL0c2Q3lPdnVjeGo5eEt3cFFm?=
- =?utf-8?B?N2RiSHVaS29Rd0FBTUFFNXlyM2FiTlBFakRVMUZZL3dXM2JOWTBwMFpBUmFo?=
- =?utf-8?B?SEh6WHk3UE9GOU44ZHViVlk0QjU0NWcwT2Jhc0M4RGhJZ1AvRG9jRjdxeTJy?=
- =?utf-8?B?QUJ4VHhzc1NGVzF2UU9TNGdmSE5QM1gvbVRwU2tBVElIaE1rQzg3WGVIWWJr?=
- =?utf-8?Q?jvXEpVqVc2sw1o9+djjwd/KDj?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <F8510625881EE64A94DF37D8202E259B@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD7991798C;
+	Tue, 19 Nov 2024 08:59:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1732006761; cv=none; b=Ck+bB41qpIb/uXS1Hxp3RzPoqWfnHXYZfpId+b+2b7AB71HcrUSZb3DopDf6a+16uZXnp89EvmQLt8GprTnTYZuMy2GaZ6HDYnY2QHzMN+qtXvdngVgrCfEUwdvlHiNFzedTn9Vu5B30cBGrHU8yn0Ze+kJavsn2zmR12HNpn4U=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1732006761; c=relaxed/simple;
+	bh=JlHQrlbLuIdIqownOM26bRFM+q2r6dW4qRrKda7Lt6Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Ga7OymXep99Fwl21+VEFIm3lwhznLSqS/4fBnhcky83jHZqlRj3s4PaiiGWf3TGu4TdoVNxHXo/EgRX7G8iU9SLH/LcxJFCiqsmWSDI0HLSQdbVm7G25fT6oQFjxztH0UJUPFJ3ixhz7Bm6HhPp5srZy0iRROj64ROaXecWokeM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=d7iUJj08; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AJ7s0kK028562;
+	Tue, 19 Nov 2024 08:58:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	S4tT+dQuydE90Mbj2ruSwdAj9IcakjnOlQwcK5tQoj4=; b=d7iUJj08tjt5gP5h
+	h5I0Y71YTH8YO6IGYoweO5DXqt2p+H3zqa/7DaLQKULtIZDsxwksG+pAHX/iJEL8
+	W32He4fz+62CuSRv5msqmInDnaTj3GhJbMHBHjBOyrptwqqntYBfZP74+NQhmIXk
+	6RfD6mv7N1/9+MrFHlIz5oNpy9d7FTB9cbGKeI9mkYWbCyCzjCqlH/72sHWCSZkP
+	mfK6GS6Nkc+vhUVZuafaNmwLAsejxVit4o5VTSkjF06bnmOjbA/1u+FcTAJnoibK
+	XNHfzTenM37J9oj0BoxjyLREV0viT9NgjglM8d/wjqMXggwtfiXQlhYklIY7DnXf
+	PEYmJg==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4308y81yfw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 19 Nov 2024 08:58:58 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AJ8wvfi027151
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 19 Nov 2024 08:58:58 GMT
+Received: from [10.239.133.211] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 19 Nov
+ 2024 00:58:53 -0800
+Message-ID: <8aeb8ca9-5d3f-4154-bba5-1255b368bf1b@quicinc.com>
+Date: Tue, 19 Nov 2024 16:58:50 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6624.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 011eb7fc-ebfd-4472-b4e3-08dd0874544c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Nov 2024 08:29:47.9506
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: CFwCLBULUbcYyM8M4DpldoKL+96IcYdJfJ4phtpKV2qsB/0MitxRU+mYHKAD4PnS4GiFzC6vQhYwh/NGVlrZIA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI2PR03MB6688
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 3/4] coresight: Add support for trace filtering by
+ source
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach
+	<mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Leo Yan
+	<leo.yan@linux.dev>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>
+CC: <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>
+References: <20241030093255.26915-1-quic_taozha@quicinc.com>
+ <20241030093255.26915-4-quic_taozha@quicinc.com>
+ <c39a844e-d0a8-46ac-ab52-530dae741751@arm.com>
+ <6bbdd8dd-a5ab-4b51-8152-595331cdd58b@quicinc.com>
+ <f2221c21-b891-413f-8adb-e76921da1fb1@arm.com>
+ <939c3461-c092-4901-ac06-2173547858ad@quicinc.com>
+ <94096b6e-1a4c-4fc4-8294-316b38b35e99@arm.com>
+Content-Language: en-US
+From: Tao Zhang <quic_taozha@quicinc.com>
+In-Reply-To: <94096b6e-1a4c-4fc4-8294-316b38b35e99@arm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: dkOyCXO0G-rlQz4gdi-C4rBFPFIpXLd-
+X-Proofpoint-GUID: dkOyCXO0G-rlQz4gdi-C4rBFPFIpXLd-
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 phishscore=0
+ impostorscore=0 priorityscore=1501 lowpriorityscore=0 bulkscore=0
+ mlxscore=0 spamscore=0 adultscore=0 suspectscore=0 malwarescore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411190064
 
-SGksIFNodS1oc2lhbmc6DQoNCk9uIFdlZCwgMjAyNC0xMC0wOSBhdCAxOToxNSArMDgwMCwgU2h1
-LWhzaWFuZyBZYW5nIHdyb3RlOg0KPiBJbnRyb2R1Y2VzIHV0aWxpdHkgZmlsZXMgZm9yIHRoZSBN
-ZWRpYVRlayBJU1A3LnggY2Ftc3lzIGRyaXZlci4gVGhlc2UNCj4gdXRpbGl0aWVzIHByb3ZpZGUg
-ZXNzZW50aWFsIHBsYXRmb3JtIGRlZmluaXRpb25zLCBkZWJ1Z2dpbmcgdG9vbHMsIGFuZA0KPiBt
-YW5hZ2VtZW50IGZ1bmN0aW9ucyB0byBzdXBwb3J0IElTUCBvcGVyYXRpb25zIGFuZCBTQ1AgY29t
-bXVuaWNhdGlvbi4NCj4gS2V5IGZ1bmN0aW9uYWxpdGllcyBpbmNsdWRlOg0KPiAxLkhhcmR3YXJl
-IHBpcGVsaW5lIGFuZCByZWdpc3RlciBkZWZpbml0aW9ucyBmb3IgbWFuYWdpbmcgaW1hZ2UNCj4g
-cHJvY2Vzc2luZyBtb2R1bGVzLg0KPiAyLkRNQSBkZWJ1Z2dpbmcgdXRpbGl0aWVzIGFuZCBidWZm
-ZXIgbWFuYWdlbWVudCBmdW5jdGlvbnMuDQo+IDMuRGVmaW5pdGlvbnMgb2Ygc3VwcG9ydGVkIGlt
-YWdlIGZvcm1hdHMgZm9yIHByb3BlciBkYXRhIGhhbmRsaW5nLg0KPiA0LklQSSBhbmQgU0NQIGNv
-bW11bmljYXRpb24gc3RydWN0dXJlcyBmb3IgbW9kdWxlIHN0YXRlIG1hbmFnZW1lbnQgYW5kDQo+
-IGNvbmZpZ3VyaW5nIElTUC4NCj4gNS5NZXRhZGF0YSBwYXJhbWV0ZXJzIGZvciBjb25maWd1cmlu
-ZyBpbWFnZSBwcm9jZXNzaW5nLg0KPiANCj4gU2lnbmVkLW9mZi1ieTogU2h1LWhzaWFuZyBZYW5n
-IDxTaHUtaHNpYW5nLllhbmdAbWVkaWF0ZWsuY29tPg0KPiAtLS0NCg0KW3NuaXBdDQoNCj4gKy8q
-IEZvciBMQklUX01PREUgRzIgKi8NCj4gK2VudW0gbXRrY2FtX2lwaV9zd19mZWF0dXJlX2NvbnRy
-b2wgew0KPiArCU1US0NBTV9JUElfU1dfRkVBVFVSRV9OT1JNQUwJCT0gMCwNCj4gKwkvKiBOb3Jt
-YWwgKi8NCj4gK307DQo+ICsNCg0KW3NuaXBdDQoNCj4gK3N0cnVjdCBtdGtjYW1faXBpX2NvbmZp
-Z19wYXJhbSB7DQo+ICsJdTgJZmxhZ3M7DQo+ICsJc3RydWN0IG10a2NhbV9pcGlfaW5wdXRfcGFy
-YW0JaW5wdXQ7DQo+ICsJdTgJbl9tYXBzOw0KPiArCS8qIG1heGltdW0gIyBvZiBwaXBlcyBwZXIg
-c3RyZWFtICovDQo+ICsJc3RydWN0IG10a2NhbV9pcGlfaHdfbWFwcGluZyBtYXBzWzZdOw0KPiAr
-CS8qIHN1Yl9yYXRpbzo4LCB2YWxpZCBudW1iZXI6IDggKi8NCj4gKwl1MTYJdmFsaWRfbnVtYmVy
-c1tNVEtDQU1fSVBJX0ZCQ1hfTEFTVF07DQo+ICsJdTgJc3dfZmVhdHVyZTsNCg0KT25seSBvbmUg
-c3dfZmVhdHVyZSAoTVRLQ0FNX0lQSV9TV19GRUFUVVJFX05PUk1BTCkuIFNvIGl0J3Mgbm90IG5l
-Y2Vzc2FyeSB0byBwYXNzIHRoaXMgaW5mb3JtYXRpb24gdG8gc2NwLg0KRHJvcCB0aGlzIGFuZCBN
-VEtDQU1fSVBJX1NXX0ZFQVRVUkVfTk9STUFMLg0KDQpSZWdhcmRzLA0KQ0sNCg0KPiArfSBfX3Bh
-Y2tlZDsNCj4gKw0KDQo=
+
+On 11/18/2024 5:56 PM, Suzuki K Poulose wrote:
+> On 18/11/2024 09:28, Tao Zhang wrote:
+>>
+>> On 11/15/2024 5:40 PM, Suzuki K Poulose wrote:
+>>> On 15/11/2024 09:18, Tao Zhang wrote:
+>>>>
+>>>> On 11/13/2024 9:39 PM, Suzuki K Poulose wrote:
+>>>>> On 30/10/2024 09:32, Tao Zhang wrote:
+>>>>>> Some replicators have hard coded filtering of "trace" data, based 
+>>>>>> on the
+>>>>>> source device. This is different from the trace filtering based on
+>>>>>> TraceID, available in the standard programmable replicators. e.g.,
+>>>>>> Qualcomm replicators have filtering based on custom trace protocol
+>>>>>> format and is not programmable.
+>>>>>>
+>>>>>> The source device could be connected to the replicator via 
+>>>>>> intermediate
+>>>>>> components (e.g., a funnel). Thus we need platform information from
+>>>>>> the firmware tables to decide the source device corresponding to a
+>>>>>> given output port from the replicator. Given this affects "trace
+>>>>>> path building" and traversing the path back from the sink to source,
+>>>>>> add the concept of "filtering by source" to the generic coresight
+>>>>>> connection.
+>>>>>>
+>>>>>> The specified source will be marked like below in the Devicetree.
+>>>>>> test-replicator {
+>>>>>>      ... ... ... ...
+>>>>>>      out-ports {
+>>>>>>          ... ... ... ...
+>>>>>>          port@0 {
+>>>>>>              reg = <0>;
+>>>>>>              xyz: endpoint {
+>>>>>>                  remote-endpoint = <&zyx>;
+>>>>>>                  filter-source = <&source_1>; <-- To specify the 
+>>>>>> source to
+>>>>>>              };                           be filtered out here.
+>>>>>>          };
+>>>>>>
+>>>>>>          port@1 {
+>>>>>>              reg = <1>;
+>>>>>>              abc: endpoint {
+>>>>>>                  remote-endpoint = <&cba>;
+>>>>>>                  filter-source = <&source_2>; <-- To specify the 
+>>>>>> source to
+>>>>>>              };                           be filtered out here.
+>>>>>>          };
+>>>>>>      };
+>>>>>> };
+>>>>>>
+>>>>>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+>>>>>> ---
+>>>>>>   drivers/hwtracing/coresight/coresight-core.c  | 113 
+>>>>>> +++++++++++++ ++---
+>>>>>>   .../hwtracing/coresight/coresight-platform.c  |  18 +++
+>>>>>>   include/linux/coresight.h                     |   5 +
+>>>>>>   3 files changed, 117 insertions(+), 19 deletions(-)
+>>>>>>
+>>>>>> diff --git a/drivers/hwtracing/coresight/coresight-core.c b/ 
+>>>>>> drivers/hwtracing/coresight/coresight-core.c
+>>>>>> index ea38ecf26fcb..0a9380350fb5 100644
+>>>>>> --- a/drivers/hwtracing/coresight/coresight-core.c
+>>>>>> +++ b/drivers/hwtracing/coresight/coresight-core.c
+>>>>>> @@ -75,22 +75,54 @@ struct coresight_device 
+>>>>>> *coresight_get_percpu_sink(int cpu)
+>>>>>>   }
+>>>>>>   EXPORT_SYMBOL_GPL(coresight_get_percpu_sink);
+>>>>>>   +static struct coresight_device *coresight_get_source(struct 
+>>>>>> list_head *path)
+>>>>>> +{
+>>>>>> +    struct coresight_device *csdev;
+>>>>>> +
+>>>>>> +    if (!path)
+>>>>>> +        return NULL;
+>>>>>> +
+>>>>>> +    csdev = list_first_entry(path, struct coresight_node, link)- 
+>>>>>> >csdev;
+>>>>>> +    if (!coresight_is_device_source(csdev))
+>>>>>> +        return NULL;
+>>>>>> +
+>>>>>> +    return csdev;
+>>>>>> +}
+>>>>>> +
+>>>>>> +/**
+>>>>>> + * coresight_blocks_source - checks whether the connection 
+>>>>>> matches the source
+>>>>>> + * of path if connection is bound to specific source.
+>>>>>> + * @src:    The source device of the trace path
+>>>>>> + * @conn:    The connection of one outport
+>>>>>> + *
+>>>>>> + * Return false if the connection doesn't have a source binded 
+>>>>>> or source of the
+>>>>>> + * path matches the source binds to connection.
+>>>>>> + */
+>>>>>> +static bool coresight_blocks_source(struct coresight_device *src,
+>>>>>> +                    struct coresight_connection *conn)
+>>>>>> +{
+>>>>>> +    return conn->filter_src_fwnode && (conn->filter_src_dev != 
+>>>>>> src);
+>>>>>> +}
+>>>>>> +
+>>>>>>   static struct coresight_connection *
+>>>>>> -coresight_find_out_connection(struct coresight_device *src_dev,
+>>>>>> -                  struct coresight_device *dest_dev)
+>>>>>> +coresight_find_out_connection(struct coresight_device *csdev,
+>>>>>> +                  struct coresight_device *out_dev,
+>>>>>> +                  struct coresight_device *trace_src)
+>>>>>>   {
+>>>>>>       int i;
+>>>>>>       struct coresight_connection *conn;
+>>>>>>   -    for (i = 0; i < src_dev->pdata->nr_outconns; i++) {
+>>>>>> -        conn = src_dev->pdata->out_conns[i];
+>>>>>> -        if (conn->dest_dev == dest_dev)
+>>>>>> +    for (i = 0; i < csdev->pdata->nr_outconns; i++) {
+>>>>>> +        conn = csdev->pdata->out_conns[i];
+>>>>>> +        if (coresight_blocks_source(trace_src, conn))
+>>>>>> +            continue;
+>>>>>> +        if (conn->dest_dev == out_dev)
+>>>>>>               return conn;
+>>>>>>       }
+>>>>>>   -    dev_err(&src_dev->dev,
+>>>>>> -        "couldn't find output connection, src_dev: %s, dest_dev: 
+>>>>>> %s\n",
+>>>>>> -        dev_name(&src_dev->dev), dev_name(&dest_dev->dev));
+>>>>>> +    dev_err(&csdev->dev,
+>>>>>> +        "couldn't find output connection, csdev: %s, out_dev: 
+>>>>>> %s\n",
+>>>>>> +        dev_name(&csdev->dev), dev_name(&out_dev->dev));
+>>>>>>         return ERR_PTR(-ENODEV);
+>>>>>>   }
+>>>>>> @@ -251,7 +283,8 @@ static void coresight_disable_sink(struct 
+>>>>>> coresight_device *csdev)
+>>>>>>     static int coresight_enable_link(struct coresight_device *csdev,
+>>>>>>                    struct coresight_device *parent,
+>>>>>> -                 struct coresight_device *child)
+>>>>>> +                 struct coresight_device *child,
+>>>>>> +                 struct coresight_device *source)
+>>>>>>   {
+>>>>>>       int link_subtype;
+>>>>>>       struct coresight_connection *inconn, *outconn;
+>>>>>> @@ -259,8 +292,8 @@ static int coresight_enable_link(struct 
+>>>>>> coresight_device *csdev,
+>>>>>>       if (!parent || !child)
+>>>>>>           return -EINVAL;
+>>>>>>   -    inconn = coresight_find_out_connection(parent, csdev);
+>>>>>> -    outconn = coresight_find_out_connection(csdev, child);
+>>>>>> +    inconn = coresight_find_out_connection(parent, csdev, source);
+>>>>>> +    outconn = coresight_find_out_connection(csdev, child, source);
+>>>>>>       link_subtype = csdev->subtype.link_subtype;
+>>>>>>         if (link_subtype == CORESIGHT_DEV_SUBTYPE_LINK_MERG && 
+>>>>>> IS_ERR(inconn))
+>>>>>> @@ -273,15 +306,16 @@ static int coresight_enable_link(struct 
+>>>>>> coresight_device *csdev,
+>>>>>>     static void coresight_disable_link(struct coresight_device 
+>>>>>> *csdev,
+>>>>>>                      struct coresight_device *parent,
+>>>>>> -                   struct coresight_device *child)
+>>>>>> +                   struct coresight_device *child,
+>>>>>> +                   struct coresight_device *source)
+>>>>>>   {
+>>>>>>       struct coresight_connection *inconn, *outconn;
+>>>>>>         if (!parent || !child)
+>>>>>>           return;
+>>>>>>   -    inconn = coresight_find_out_connection(parent, csdev);
+>>>>>> -    outconn = coresight_find_out_connection(csdev, child);
+>>>>>> +    inconn = coresight_find_out_connection(parent, csdev, source);
+>>>>>> +    outconn = coresight_find_out_connection(csdev, child, source);
+>>>>>>         link_ops(csdev)->disable(csdev, inconn, outconn);
+>>>>>>   }
+>>>>>> @@ -375,7 +409,8 @@ static void 
+>>>>>> coresight_disable_path_from(struct list_head *path,
+>>>>>>           case CORESIGHT_DEV_TYPE_LINK:
+>>>>>>               parent = list_prev_entry(nd, link)->csdev;
+>>>>>>               child = list_next_entry(nd, link)->csdev;
+>>>>>> -            coresight_disable_link(csdev, parent, child);
+>>>>>> +            coresight_disable_link(csdev, parent, child,
+>>>>>> +                           coresight_get_source(path));
+>>>>>>               break;
+>>>>>>           default:
+>>>>>>               break;
+>>>>>> @@ -418,7 +453,9 @@ int coresight_enable_path(struct list_head 
+>>>>>> *path, enum cs_mode mode,
+>>>>>>       u32 type;
+>>>>>>       struct coresight_node *nd;
+>>>>>>       struct coresight_device *csdev, *parent, *child;
+>>>>>> +    struct coresight_device *source;
+>>>>>>   +    source = coresight_get_source(path);
+>>>>>>       list_for_each_entry_reverse(nd, path, link) {
+>>>>>>           csdev = nd->csdev;
+>>>>>>           type = csdev->type;
+>>>>>> @@ -456,7 +493,7 @@ int coresight_enable_path(struct list_head 
+>>>>>> *path, enum cs_mode mode,
+>>>>>>           case CORESIGHT_DEV_TYPE_LINK:
+>>>>>>               parent = list_prev_entry(nd, link)->csdev;
+>>>>>>               child = list_next_entry(nd, link)->csdev;
+>>>>>> -            ret = coresight_enable_link(csdev, parent, child);
+>>>>>> +            ret = coresight_enable_link(csdev, parent, child, 
+>>>>>> source);
+>>>>>>               if (ret)
+>>>>>>                   goto err;
+>>>>>>               break;
+>>>>>> @@ -619,6 +656,7 @@ static void coresight_drop_device(struct 
+>>>>>> coresight_device *csdev)
+>>>>>>   /**
+>>>>>>    * _coresight_build_path - recursively build a path from a 
+>>>>>> @csdev to a sink.
+>>>>>>    * @csdev:    The device to start from.
+>>>>>> + * @source:    The trace source device of the path.
+>>>>>>    * @sink:    The final sink we want in this path.
+>>>>>>    * @path:    The list to add devices to.
+>>>>>>    *
+>>>>>> @@ -628,6 +666,7 @@ static void coresight_drop_device(struct 
+>>>>>> coresight_device *csdev)
+>>>>>>    * the source is the first device and the sink the last one.
+>>>>>>    */
+>>>>>>   static int _coresight_build_path(struct coresight_device *csdev,
+>>>>>> +                 struct coresight_device *source,
+>>>>>>                    struct coresight_device *sink,
+>>>>>>                    struct list_head *path)
+>>>>>>   {
+>>>>>> @@ -641,7 +680,7 @@ static int _coresight_build_path(struct 
+>>>>>> coresight_device *csdev,
+>>>>>>         if (coresight_is_percpu_source(csdev) && 
+>>>>>> coresight_is_percpu_sink(sink) &&
+>>>>>>           sink == per_cpu(csdev_sink, source_ops(csdev)- 
+>>>>>> >cpu_id(csdev))) {
+>>>>>> -        if (_coresight_build_path(sink, sink, path) == 0) {
+>>>>>> +        if (_coresight_build_path(sink, source, sink, path) == 0) {
+>>>>>>               found = true;
+>>>>>>               goto out;
+>>>>>>           }
+>>>>>> @@ -652,8 +691,12 @@ static int _coresight_build_path(struct 
+>>>>>> coresight_device *csdev,
+>>>>>>           struct coresight_device *child_dev;
+>>>>>>             child_dev = csdev->pdata->out_conns[i]->dest_dev;
+>>>>>> +
+>>>>>> +        if (coresight_blocks_source(source, csdev->pdata- 
+>>>>>> >out_conns[i]))
+>>>>>> +            continue;
+>>>>>> +
+>>>>>>           if (child_dev &&
+>>>>>> -            _coresight_build_path(child_dev, sink, path) == 0) {
+>>>>>> +            _coresight_build_path(child_dev, source, sink, path) 
+>>>>>> == 0) {
+>>>>>>               found = true;
+>>>>>>               break;
+>>>>>>           }
+>>>>>> @@ -698,7 +741,7 @@ struct list_head *coresight_build_path(struct 
+>>>>>> coresight_device *source,
+>>>>>>         INIT_LIST_HEAD(path);
+>>>>>>   -    rc = _coresight_build_path(source, sink, path);
+>>>>>> +    rc = _coresight_build_path(source, source, sink, path);
+>>>>>>       if (rc) {
+>>>>>>           kfree(path);
+>>>>>>           return ERR_PTR(rc);
+>>>>>> @@ -927,6 +970,16 @@ static int coresight_orphan_match(struct 
+>>>>>> device *dev, void *data)
+>>>>>>       for (i = 0; i < src_csdev->pdata->nr_outconns; i++) {
+>>>>>>           conn = src_csdev->pdata->out_conns[i];
+>>>>>>   +        /* Fix filter source device before skip the port */
+>>>>>> +        if (conn->filter_src_fwnode && !conn->filter_src_dev) {
+>>>>>> +            if (dst_csdev &&
+>>>>>> +                (conn->filter_src_fwnode == 
+>>>>>> dst_csdev->dev.fwnode) &&
+>>>>>> + !WARN_ON_ONCE(!coresight_is_device_source(dst_csdev)))
+>>>>>> +                conn->filter_src_dev = dst_csdev;
+>>>>>> +            else
+>>>>>> +                still_orphan = true;
+>>>>>> +        }
+>>>>>> +
+>>>>>>           /* Skip the port if it's already connected. */
+>>>>>>           if (conn->dest_dev)
+>>>>>>               continue;
+>>>>>> @@ -977,18 +1030,40 @@ static int 
+>>>>>> coresight_fixup_orphan_conns(struct coresight_device *csdev)
+>>>>>>                csdev, coresight_orphan_match);
+>>>>>>   }
+>>>>>>   +static int coresight_clear_filter_source(struct device *dev, 
+>>>>>> void *data)
+>>>>>> +{
+>>>>>> +    int i;
+>>>>>> +    struct coresight_device *source = data;
+>>>>>> +    struct coresight_device *csdev = to_coresight_device(dev);
+>>>>>> +
+>>>>>> +    for (i = 0; i < csdev->pdata->nr_outconns; ++i) {
+>>>>>> +        if (csdev->pdata->out_conns[i]->filter_src_dev == source)
+>>>>>> + csdev->pdata->out_conns[i]->filter_src_dev = NULL;
+>>>>>> +    }
+>>>>>> +    return 0;
+>>>>>> +}
+>>>>>> +
+>>>>>>   /* coresight_remove_conns - Remove other device's references to 
+>>>>>> this device */
+>>>>>>   static void coresight_remove_conns(struct coresight_device *csdev)
+>>>>>>   {
+>>>>>>       int i, j;
+>>>>>>       struct coresight_connection *conn;
+>>>>>>   +    if (coresight_is_device_source(csdev))
+>>>>>> +        bus_for_each_dev(&coresight_bustype, NULL, csdev,
+>>>>>> +                 coresight_clear_filter_source);
+>>>>>> +
+>>>>>>       /*
+>>>>>>        * Remove the input connection references from the 
+>>>>>> destination device
+>>>>>>        * for each output connection.
+>>>>>>        */
+>>>>>>       for (i = 0; i < csdev->pdata->nr_outconns; i++) {
+>>>>>>           conn = csdev->pdata->out_conns[i];
+>>>>>> +        if (conn->filter_src_fwnode) {
+>>>>>> +            conn->filter_src_dev = NULL;
+>>>>>> + fwnode_handle_put(conn->filter_src_fwnode);
+>>>>>> +        }
+>>>>>> +
+>>>>>>           if (!conn->dest_dev)
+>>>>>>               continue;
+>>>>>>   diff --git a/drivers/hwtracing/coresight/coresight-platform.c 
+>>>>>> b/ drivers/hwtracing/coresight/coresight-platform.c
+>>>>>> index 64e171eaad82..d5532caa9e92 100644
+>>>>>> --- a/drivers/hwtracing/coresight/coresight-platform.c
+>>>>>> +++ b/drivers/hwtracing/coresight/coresight-platform.c
+>>>>>> @@ -243,6 +243,24 @@ static int 
+>>>>>> of_coresight_parse_endpoint(struct device *dev,
+>>>>>>           conn.dest_fwnode = fwnode_handle_get(rdev_fwnode);
+>>>>>>           conn.dest_port = rendpoint.port;
+>>>>>>   +        /*
+>>>>>> +         * Get the firmware node of the filter source through the
+>>>>>> +         * reference. This could be used to filter the source in
+>>>>>> +         * building path.
+>>>>>> +         */
+>>>>>> +        conn.filter_src_fwnode =
+>>>>>> +            fwnode_find_reference(&ep->fwnode, "filter-source", 0);
+>>>>>> +        if (IS_ERR(conn.filter_src_fwnode)) {
+>>>>>> +            conn.filter_src_fwnode = NULL;
+>>>>>> +        } else {
+>>>>>> +            conn.filter_src_dev =
+>>>>>> + coresight_find_csdev_by_fwnode(conn.filter_src_fwnode);
+>>>>>> +            if (conn.filter_src_dev &&
+>>>>>> + !coresight_is_device_source(conn.filter_src_dev))
+>>>>>> + dev_warn(&conn.filter_src_dev->dev,
+>>>>>> +                  "Filter source is not a source device\n");
+>>>>>
+>>>>> Do we need to reset the conn.filter_src_fwnode ? Otherwise, we can 
+>>>>> warn from other places too.
+>>>>
+>>>> Agree, we need to reset conn.filter_src_fwnode and 
+>>>> conn.filter_src_dev here if it is not a SOURCE
+>>>>
+>>>> type device.
+>>>>
+>>>> I will update the following code to the next patch series. Could 
+>>>> you help check if it is fine to you?
+>>>
+>>> This looks good.
+>>>
+>>>>
+>>>> +            if (conn.filter_src_dev &&
+>>>> + !coresight_is_device_source(conn.filter_src_dev)) {
+>>>> +                dev_warn(&conn.filter_src_dev->dev,
+>>>> +                  "Filter source is not a source device\n");
+>>>
+>>> minor nit: It would be good to indicate which device has this 
+>>> "filtering". i.e,
+>>>           dev_warn(dev, "Filter source is not a trace source : 
+>>> %s\n", dev_name(&conn.filter_src_dev->dev));
+>> Sure, I will update this to the next patch series.
+>
+> Also, it may be helpful, if we specify the "port number" which has this
+> wrong handle. I guess something like:
+>
+> dev_warn(dev, "port %d: Filter handle is not a trace source : %s\n",
+>      conn.src_port, dev_name(&conn.filter_src_dev->dev));
+
+Sure, I will update this to the next patch series.
+
+Best,
+
+Tao
+
+>
+> Suzuki
+>
+>>>
+>>>> +                conn.filter_src_dev = NULL；
+>>>> +                conn.filter_src_dev = NULL;
+>>
+>> Sorry for my mistake here. I also want to set "filter_src_fwnode " to 
+>> NULL if it is not a trace source.
+>>
+>> conn.filter_src_fwnode = NULL;
+>
+>
+>>
+>>
+>> Best,
+>>
+>> Tao
+>>
+>>>
+>>> Duplicated line ^
+>>>
+>>> Suzuki
+>>>
+>>>> +            }
+>>>>
+>>>> Best,
+>>>>
+>>>> Tao
+>>>>
+>>>>>
+>>>>> Suzuki
+>>>>>
+>>>>>> +        }
+>>>>>> +
+>>>>>>           new_conn = coresight_add_out_conn(dev, pdata, &conn);
+>>>>>>           if (IS_ERR_VALUE(new_conn)) {
+>>>>>>               fwnode_handle_put(conn.dest_fwnode);
+>>>>>> diff --git a/include/linux/coresight.h b/include/linux/coresight.h
+>>>>>> index 9311df8538fc..f372c01ae2fc 100644
+>>>>>> --- a/include/linux/coresight.h
+>>>>>> +++ b/include/linux/coresight.h
+>>>>>> @@ -172,6 +172,9 @@ struct coresight_desc {
+>>>>>>    * @dest_dev:    a @coresight_device representation of the 
+>>>>>> component
+>>>>>>           connected to @src_port. NULL until the device is created
+>>>>>>    * @link: Representation of the connection as a sysfs link.
+>>>>>> + * @filter_src_fwnode: filter source component's fwnode handle.
+>>>>>> + * @filter_src_dev: a @coresight_device representation of the 
+>>>>>> component that
+>>>>>> +        needs to be filtered.
+>>>>>>    *
+>>>>>>    * The full connection structure looks like this, where 
+>>>>>> in_conns store
+>>>>>>    * references to same connection as the source device's out_conns.
+>>>>>> @@ -200,6 +203,8 @@ struct coresight_connection {
+>>>>>>       struct coresight_device *dest_dev;
+>>>>>>       struct coresight_sysfs_link *link;
+>>>>>>       struct coresight_device *src_dev;
+>>>>>> +    struct fwnode_handle *filter_src_fwnode;
+>>>>>> +    struct coresight_device *filter_src_dev;
+>>>>>>       atomic_t src_refcnt;
+>>>>>>       atomic_t dest_refcnt;
+>>>>>>   };
+>>>>>
+>>>
+>
 
