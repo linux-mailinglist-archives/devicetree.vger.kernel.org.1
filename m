@@ -1,95 +1,65 @@
-Return-Path: <devicetree+bounces-122912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A234E9D2BC8
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 17:54:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA6B99D2BEA
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 17:59:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50ACC1F2668A
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 16:54:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9FA222889B3
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 16:59:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EA411D12F9;
-	Tue, 19 Nov 2024 16:48:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AE8C1CFEA8;
+	Tue, 19 Nov 2024 16:56:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="gJuC4oUg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nTr9ceoR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C72261D0B91;
-	Tue, 19 Nov 2024 16:48:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D860E1CDA0E;
+	Tue, 19 Nov 2024 16:56:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732034935; cv=none; b=c0/LvLvN7r0p5J2fQeog4LdlItcIUR3C3q+THxTYVCzpBWMjHBTEQgHyUy/BQfNvEGNrHnsfdAMpdjIcci4SuPBJpwG/4XWXFBEyXTy06yf3frxcpbvseKzwGFIXefRBOuoH/ieM1haCfCVeTlfRMJXgpEx+EOoy1Yesw7eihGY=
+	t=1732035409; cv=none; b=Ic9c0J3DqCD19WovnXQ026BQJxotXnFPKqGEKyzRG2Xo5gCtTwY+zXK+VRIAeHee9U/9BgZPuaiEba0qBgTAUC59WuIE/laaWym1ug1MZRkAQr0KJgvZCaQUFzo8zxyIp58ltSK8ja/f3WMmsQXWGDO/NiduBtQWf57Xy3HmEOw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732034935; c=relaxed/simple;
-	bh=06NyFvjw2Q40R+hhk2MKIcCrfow60pW8VAFXwQATsuo=;
+	s=arc-20240116; t=1732035409; c=relaxed/simple;
+	bh=isudyVi77+zwnwPMjfIQ8wkyDG+TjsAPlDa6nBHA3cY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OQx1Yhau28AzUPQb/j6QWqEwShZiqh7Xl50IVwBdYz21JV/LNTMGrbBvi9CTjH/iWbxmxk9d55XggRjG0Y1iDXnOKm/0CyBJTdiZQP2216TBGChlytJ/TJl4tnsqfMseuupPleeUoUesvdeOgVALXD4JigZ4rtuipkj4uGSm8pQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=gJuC4oUg; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=3fvujAh94U3kGDVymnc9jtTk3gFEdDGf2+Wqo/Pnpo4=; b=gJuC4oUgF5yfaJf1hVqxnO4d/l
-	nZwoni126YdD7HgeHlxvmxyw3d9qn8oLF6+lLaH8yFtFxQ3bgaydz3ByUBjOZZ7q3YMvIV1Wx4sAF
-	oEWKn3V19Wxmg2ukOUOqO8sBYsaX7CIPNsHoAK0oKCEGSb1hZB2jj4dWmbdIvbFEiGmBBBJfK7OpE
-	sinVcRn/ed+ur58P4MZhOaA3Z8X8cTstuwmTfMZHY9DXB+7ZSUN7EKaknxuyPlR3Q6jIWDWnrs2C/
-	XbI7MA4r4eoXjzkLYZgcHMeyoLajQph4dcBob6+CslmzxPyUL0Cat1OoFgxeF06+8dZMT34FL+pcV
-	tJEL/xjA==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:36672)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1tDROz-00042u-34;
-	Tue, 19 Nov 2024 16:48:34 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1tDROx-0006Dy-36;
-	Tue, 19 Nov 2024 16:48:32 +0000
-Date: Tue, 19 Nov 2024 16:48:31 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: jan.petrous@oss.nxp.com
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Minda Chen <minda.chen@starfivetech.com>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Iyappan Subramanian <iyappan@os.amperecomputing.com>,
-	Keyur Chudgar <keyur@os.amperecomputing.com>,
-	Quan Nguyen <quan@os.amperecomputing.com>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=HBOwJpsQCabWuz+Uy9vg1Zkm3kwKNHOMU1L8JoiwKMq9p9koYKf5qXWJNXsBNtLkv91TJyEt2/AQQMffv6WCBbzpZdWdf0jote4SwSkSEGH2QWyScgfAIZCwplTF9GctgRUuiBlB3OtkdroDenoFJo4q/Pn41fXsFdmlFwUa2js=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nTr9ceoR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 357A6C4CECF;
+	Tue, 19 Nov 2024 16:56:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732035408;
+	bh=isudyVi77+zwnwPMjfIQ8wkyDG+TjsAPlDa6nBHA3cY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nTr9ceoRAGjMZDaNnHya2rPgnEdk06WNbbTGAUXbzrKBN9oKtC3YP1k77snS319eh
+	 OynTKRxdj8wwco9xNZLz+9hS5GoioDX3eecv8stH/1tPohkuaLvD6CJBPHSdgw0Z5D
+	 zPVNXHcv0AtdQJt8OH4Tu60km35S7ZpTZOAuIWybFn9Y4tJdnJbT7/IgCRe2bYxpWC
+	 KUxlgEQ2S7q3wWRyhLCKN8NGLXpYwGAm3WYw8EVHcctGKkaVngRSvz2lRZBMrHIH9o
+	 hX8rOCY0UkGLTlm4f9Ykd09RTWgGz89/sWw6+q4Mr52GP05GfMwT6/hpulqQ7e56DJ
+	 owAhuBs/rC93Q==
+Date: Tue, 19 Nov 2024 10:56:46 -0600
+From: Rob Herring <robh@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Mark Brown <broonie@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	imx@lists.linux.dev, devicetree@vger.kernel.org,
-	NXP S32 Linux Team <s32@nxp.com>
-Subject: Re: [PATCH v5 12/16] net: dwmac-sti: Use helper rgmii_clock
-Message-ID: <ZzzBXwZNpCTKvSTp@shell.armlinux.org.uk>
-References: <20241119-upstream_s32cc_gmac-v5-0-7dcc90fcffef@oss.nxp.com>
- <20241119-upstream_s32cc_gmac-v5-12-7dcc90fcffef@oss.nxp.com>
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	David Jander <david@protonic.nl>,
+	Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v5 07/16] spi: dt-bindings: axi-spi-engine: add SPI
+ offload properties
+Message-ID: <20241119165646.GA1798301-robh@kernel.org>
+References: <20241115-dlech-mainline-spi-engine-offload-2-v5-0-bea815bd5ea5@baylibre.com>
+ <20241115-dlech-mainline-spi-engine-offload-2-v5-7-bea815bd5ea5@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,22 +68,99 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241119-upstream_s32cc_gmac-v5-12-7dcc90fcffef@oss.nxp.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+In-Reply-To: <20241115-dlech-mainline-spi-engine-offload-2-v5-7-bea815bd5ea5@baylibre.com>
 
-On Tue, Nov 19, 2024 at 04:00:18PM +0100, Jan Petrous via B4 Relay wrote:
-> From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
+On Fri, Nov 15, 2024 at 02:18:46PM -0600, David Lechner wrote:
+> The AXI SPI Engine has support for hardware offloading capabilities.
+> This includes a connection to a DMA controller for streaming RX data
+> and a trigger input for starting execution of the SPI message programmed
+> in the offload.
 > 
-> Utilize a new helper function rgmii_clock().
+> Each SPI Engine may have up to 1 offload. The spec actually says that
+> it could support up to 32, so we are using an index number in the
+> dma-names (e.g. offload0-rx) to allow for this possibility in the
+> future.
 > 
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-> Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> ---
+> 
+> v5 changes:
+> * Also document offload0-tx DMA names since the hardware can support
+>   that now.
+> * Limit the number of offloads to 1 for now since it would require
+>   significant hardware changes to actually support more than that.
+> 
+> v4 changes:
+> * Dropped #spi-offload-cells property.
+> * Changed subject line.
+> 
+> v3 changes:
+> * Added #spi-offload-cells property.
+> * Added properties for triggers and RX data stream connected to DMA.
+> 
+> v2 changes:
+> * This is basically a new patch. It partially replaces "dt-bindings:
+>   iio: offload: add binding for PWM/DMA triggered buffer".
+> * The controller no longer has an offloads object node and the
+>   spi-offloads property is now a standard SPI peripheral property.
+> ---
+>  .../bindings/spi/adi,axi-spi-engine.yaml           | 24 ++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/adi,axi-spi-engine.yaml b/Documentation/devicetree/bindings/spi/adi,axi-spi-engine.yaml
+> index d48faa42d025..d703b47eb498 100644
+> --- a/Documentation/devicetree/bindings/spi/adi,axi-spi-engine.yaml
+> +++ b/Documentation/devicetree/bindings/spi/adi,axi-spi-engine.yaml
+> @@ -41,6 +41,26 @@ properties:
+>        - const: s_axi_aclk
+>        - const: spi_clk
+>  
+> +  trigger-sources:
+> +    description:
+> +      An array of trigger source phandles for offload instances. The index in
+> +      the array corresponds to the offload instance number.
 
-Reviewed-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+How can you have an index when you only allow 1 entry (other than 0 of 
+course)?
 
-Thanks!
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+With my other comments implemented, this should be dropped.
+
+> +    maxItems: 1
+> +
+> +  dmas:
+> +    description:
+> +      DMA channels connected to the input or output stream interface of an
+> +      offload instance.
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  dma-names:
+> +    items:
+> +      pattern: "^offload0-[tr]x$"
+
+Do you expect an offload1 or something?
+
+> +    minItems: 1
+> +    maxItems: 2
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -59,6 +79,10 @@ examples:
+>          clocks = <&clkc 15>, <&clkc 15>;
+>          clock-names = "s_axi_aclk", "spi_clk";
+>  
+> +        trigger-sources = <&trigger_clock>;
+> +        dmas = <&dma 0>;
+> +        dma-names = "offload0-rx";
+> +
+>          #address-cells = <1>;
+>          #size-cells = <0>;
+>  
+> 
+> -- 
+> 2.43.0
+> 
 
