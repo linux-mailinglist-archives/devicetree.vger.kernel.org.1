@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-122662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122664-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BD4C9D1D95
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 02:49:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF1459D1D9D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 02:50:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E86ABB21182
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 01:49:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 691171F223DA
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 01:50:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D223C139CEF;
-	Tue, 19 Nov 2024 01:48:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FC6313665A;
+	Tue, 19 Nov 2024 01:50:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="uzjToPKK"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="FoRpVWRN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34EA013665A;
-	Tue, 19 Nov 2024 01:48:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D66C93398A;
+	Tue, 19 Nov 2024 01:50:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731980917; cv=none; b=J9g6heE5q+vPIpADbGTIVn/bQFJMSX98253qVuASUvSPg07c9etrm3YGDbfj3KDPsJtlGlbn/xgq+qvioUEcWyDEjBVpuWVYyuCNGrcRvUVkaf3DJSeDes9Oxh1wCY6og3N/JkELqOM77kW2kSkAIqoCkDAstgsjTbiDN6djhhw=
+	t=1731981023; cv=none; b=BbxpwKPs3uQr6E9M8lUCzuOIjQFuL+gmFa5Kr2KRCQOfDj0qj2Wv0C9wxY64Z7YrREg/b+3DKXpLC+OFhJS02NcjpVWkQSCyNpNCcZtP/ksT+EdJ4xPHk+831F7gqHlBoy25QGme5aGoF3JtF6XP6EOs19W8Vb446X4WrsvxMrQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731980917; c=relaxed/simple;
-	bh=d5wR9tz08ve/15avuwqwuykFksaoFpcmxl/uzElJIoE=;
+	s=arc-20240116; t=1731981023; c=relaxed/simple;
+	bh=ZLvzK+7W9pfv/c/rKo8MT8ANCSB2u90QGyu15CT7M5s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lcd2aWGrHm93+u90ol+0rWw/HGZFqE43d5WAHUrV9POcgKUoFI2g4ioXJGZZWrboWoFCK2QS8gyb54dOXc2BBn6Ioi4zU4JXZ368NeL90i5YFQaHDw4PEP96p61MMVg1ly5GwIB71FJcA3expS7rKOciSHBkSHHHtAu3DoxndzI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=uzjToPKK; arc=none smtp.client-ip=156.67.10.101
+	 Content-Type:Content-Disposition:In-Reply-To; b=QxoE9I1aZIIoV7D+3DqWFvS70QVosJDwjITeermRRJ9EGKIt7BVWqvhHd9k7R8Yq3NIC7dqI9YyHBLTxCCInTPwMHF6xnv1I7AbJ6TWm4DJtpUgERdP38dDTrlD0WOsxm2e8SI4NZHV0DXibA60ldisf2lTK00OZa/EfB9V9tzE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=FoRpVWRN; arc=none smtp.client-ip=156.67.10.101
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
@@ -36,29 +36,25 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
 	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
 	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
 	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=8U8UwDGXeKDkqdmDQD2AJ6C8adRsvYsEsUh2q0q8beE=; b=uzjToPKKzfDbUOnMQ8BEFtGznv
-	HP/d4wX3y4jUF9yLCoXy/fI+gFmjX6TMNsWTRweaxbcGNOgkr+7lVo8hrl226YdeZTsmqdthvjGYv
-	sm3Qoh3WHHy4iU9zQbBTSZpJBdWC/qZuf8nkAJOg4iJhhhqH3twZ42e9mmHR3EOgLjyM=;
+	bh=AKexsWnSH++iKlU+BchMFxWV0f36/dz0tcdVIEQsvg4=; b=FoRpVWRN0AyTJEZev+FVhNBVHj
+	5/xsNYxf4HOCeqSHtbzissQs1dxF411e5l+8PmCZin9veDYrjVRHpTAHlnbb2yTXqtaCAZrb07tHN
+	DaFy4wtE3ClyJFgWz4xOZW8DtXC86fzJ6s9IohxQH/wzHMOurDr29anPNX8D8R1b2NP4=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
 	(envelope-from <andrew@lunn.ch>)
-	id 1tDDLn-00DjVx-O7; Tue, 19 Nov 2024 02:48:19 +0100
-Date: Tue, 19 Nov 2024 02:48:19 +0100
+	id 1tDDNQ-00DjXv-Tj; Tue, 19 Nov 2024 02:50:00 +0100
+Date: Tue, 19 Nov 2024 02:50:00 +0100
 From: Andrew Lunn <andrew@lunn.ch>
-To: Joey Lu <a0987203069@gmail.com>
+To: Jacky Chou <jacky_chou@aspeedtech.com>
 Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
 	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
-	richardcochran@gmail.com, alexandre.torgue@foss.st.com,
-	joabreu@synopsys.com, ychuang3@nuvoton.com, schung@nuvoton.com,
-	yclu4@nuvoton.com, peppe.cavallaro@st.com,
-	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	openbmc@lists.ozlabs.org, linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH v3 3/3] net: stmmac: dwmac-nuvoton: Add dwmac glue for
- Nuvoton MA35 family
-Message-ID: <4d44bc93-6a81-4dc8-9f22-a103882f25e1@lunn.ch>
-References: <20241118082707.8504-1-a0987203069@gmail.com>
- <20241118082707.8504-4-a0987203069@gmail.com>
+	krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
+	andrew@codeconstruct.com.au, hkallweit1@gmail.com,
+	linux@armlinux.org.uk, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next 0/3] Add Aspeed G7 MDIO support
+Message-ID: <7368c77e-08fe-4130-9b62-f1008cb5a0dc@lunn.ch>
+References: <20241118104735.3741749-1-jacky_chou@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,32 +63,13 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241118082707.8504-4-a0987203069@gmail.com>
+In-Reply-To: <20241118104735.3741749-1-jacky_chou@aspeedtech.com>
 
-> +	if (of_property_read_u32(dev->of_node, "tx-internal-delay-ps", &arg)) {
-> +		tx_delay = 0; /* Default value is 0 */
-> +	} else {
-> +		if (arg <= 2000) {
-> +			tx_delay = (arg == 2000) ? 0xF : (arg / PATH_DELAY_DEC);
-> +			dev_dbg(dev, "Set Tx path delay to 0x%x\n", tx_delay);
+On Mon, Nov 18, 2024 at 06:47:32PM +0800, Jacky Chou wrote:
+> The Aspeed 7th generation SoC features three MDIO controllers.
+> The design of AST2700 MDIO controller is the same as AST2600.
 
-The device tree binding says:
+If they are identical, why do you need a new compatible?
 
-+  tx-internal-delay-ps:
-+    enum: [0, 2000]
-
-
-So only two values are allowed. Yet the C code is
-
-arg / PATH_DELAY_DEC
-
-which seems to allow 16 values?
-
-Please make this consistent.
-
-
-    Andrew
-
----
-pw-bot: cr
+	Andrew
 
