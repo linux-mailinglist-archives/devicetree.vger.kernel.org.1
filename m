@@ -1,48 +1,67 @@
-Return-Path: <devicetree+bounces-122824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5038D9D274A
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 14:51:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39D489D273A
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 14:46:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AD3AAB2545B
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 13:37:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE8C4284D9B
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 13:46:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E374A1CB32A;
-	Tue, 19 Nov 2024 13:37:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27EA31CCB49;
+	Tue, 19 Nov 2024 13:46:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o5MgsftB"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linumiz.com header.i=@linumiz.com header.b="BXoN120v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from omta40.uswest2.a.cloudfilter.net (omta40.uswest2.a.cloudfilter.net [35.89.44.39])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B422B17E0;
-	Tue, 19 Nov 2024 13:37:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 446E71CC89D
+	for <devicetree@vger.kernel.org>; Tue, 19 Nov 2024 13:46:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=35.89.44.39
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732023462; cv=none; b=D3nV4hwCNYYHHpVEf7QwtTkQ7U5ONIh/kyDQgrD11FSCRygBXkGj/cdwVPHuLOgkO7dKd4m7l//9dIkIVOt57knKyuf3qHAdx5fLa0TQVIJnWqUIaVVctuXz0tEpe0Un6jfY9HEXs30x6tHk/t3gcACzfv0vzC/5gDC1P1sGtlw=
+	t=1732023970; cv=none; b=eVolcL2S/qMQ5FZ31rzzwgHv/VJ5FhJBsV2vGq5dTVPsp4B9WCCmWavKS27DWxYF7oqg9LmRm0iEK2mcuW9/79MDCCguIN3ywG0/29sPgZqDjI+Hme+gksPTjrAb1ljYymV0a/Jwg0s7EPAWGCPLn4D3re/r6GDarsc9JslZeN4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732023462; c=relaxed/simple;
-	bh=ldrLny7m9zWLOfNs9Mdv+UEH/RirVr4Bi67bGFQ7X4k=;
+	s=arc-20240116; t=1732023970; c=relaxed/simple;
+	bh=/gS/B7G2CRJG+6o22nnO+cT7Z4PcqGdc8NqrzZ8tNoA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ykpt1lP70ZlzGeaA1Cp+BZpoWHS/G9vX3/TYou6DxaTKDgu96dCtKNfw4Tu1fLttghavs+jkBy4wpLwWLQjlKyAfWdk5mxjL3Fcl40X8U6DrbJFsl4Y04FT5U78JDXhcZNw284QS7vXOaKq6X3vjDHsCQBpuobI7WjrrUnuu27M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o5MgsftB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B11E1C4CECF;
-	Tue, 19 Nov 2024 13:37:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732023462;
-	bh=ldrLny7m9zWLOfNs9Mdv+UEH/RirVr4Bi67bGFQ7X4k=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=o5MgsftBBDny6JdLDHKHUXiJJluAs2Kyv8QQePxyziKfgLWm0TQYuJb6ayeQiMFeO
-	 IWEywiMPpEsJNjfGzaQ6hG/Fs3zfrHEpG10g5nJAwGcoq9X0mz0J9f4IqnFAFtW9x1
-	 rOP9VaJy2k/fkmpN+nm6liZr6F8f6iuAAjLfGtrgQTbNvRBB4grTv1iCb9QNLucMun
-	 SOYcOvmv6Io8qWvLuO/6HYr4uUDY+6T8kqxDrZA8TI7S8RErHe4mmJUms7hr4b2v2+
-	 uS1OgZkdB/aNgQhwrMJ3bIvuQbdrL2t7JMhpoXK/h7hm7MlCrcxS3CjlP6w64x8MGc
-	 FsmguYFIXCLTw==
-Message-ID: <c866d4e8-77ee-48ca-b6a8-5f56896b072e@kernel.org>
-Date: Tue, 19 Nov 2024 14:37:35 +0100
+	 In-Reply-To:Content-Type; b=sh1rP9OBiY3c/i862CeR8TK8Oj9VScJHxLwfO8/XOYDpOU+hj7UxNhYpih1LkHf3A8G8T4xuBtZUBbEH4SPgT2TeTdzilH17Z00dYC5Kf4A1Sucy5ou+cL+/QTG4nM4Qak3L00wFZW4oZmiJOPLPHC3AtXyZFHY6VDzVbYY/8Vk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com; spf=pass smtp.mailfrom=linumiz.com; dkim=pass (2048-bit key) header.d=linumiz.com header.i=@linumiz.com header.b=BXoN120v; arc=none smtp.client-ip=35.89.44.39
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linumiz.com
+Received: from eig-obgw-5006a.ext.cloudfilter.net ([10.0.29.179])
+	by cmsmtp with ESMTPS
+	id D4rPtz8NyvH7lDOYKt4HOi; Tue, 19 Nov 2024 13:46:00 +0000
+Received: from md-in-79.webhostbox.net ([43.225.55.182])
+	by cmsmtp with ESMTPS
+	id DOYHty1RYXVlKDOYItnxRa; Tue, 19 Nov 2024 13:45:59 +0000
+X-Authority-Analysis: v=2.4 cv=E43Lp7dl c=1 sm=1 tr=0 ts=673c9697
+ a=LfuyaZh/8e9VOkaVZk0aRw==:117 a=kofhyyBXuK/oEhdxNjf66Q==:17
+ a=IkcTkHD0fZMA:10 a=VlfZXiiP6vEA:10 a=-pn6D5nKLtMA:10 a=7CQSdrXTAAAA:8
+ a=GWX1jMILmsxrC0RoNDMA:9 a=QEXdDO2ut3YA:10 a=a-qgeE7W1pNrGK8U0ZQC:22
+ a=ZCPYImcxYIQFgLOT52_G:22
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=linumiz.com
+	; s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=i0dOS4jN5ICgemXKNVZOn4+iwWHoz0NoRCd7tpSQfxg=; b=BXoN120vLXVty5euOX0iIf98xk
+	gFWjlbyJRktvstAnFeFokjGm0U8VrUPZW7s6qkB3xf5FulB/Vq+yTd4+qNbcztMXtugX/+5GrdalG
+	W0/gNutrUcjmtftg+wcr+wMFddx2JHlbnCGXkIDHeCKW6zg1tVK4KviC9aWlE2l5cBe5DsWXvR662
+	SwCKFOrraF9ECX+6PWwA9n+I2kVK8Pi/APTN6OUIb/5pC2CSDSReTCrnUTWe6z/mxKijewycClqbi
+	VjiSN3H3V9FEKrBW3K9yYZ+jLPtdd4aHfQnfANVChCvcEx3QYG55F8+aboI28FuyUL2Wkei0GFxDC
+	YoaVVhsw==;
+Received: from [122.165.245.213] (port=51434 helo=[192.168.1.5])
+	by md-in-79.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <parthiban@linumiz.com>)
+	id 1tDOY9-002THc-27;
+	Tue, 19 Nov 2024 19:15:49 +0530
+Message-ID: <470460f9-e032-4dec-b7e3-5306c166c66d@linumiz.com>
+Date: Tue, 19 Nov 2024 19:15:42 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,107 +69,129 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/6] dt-bindings: Add Blaize vendor prefix
-To: Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, James Cowgill
- <james.cowgill@blaize.com>, Matt Redfearn <matthew.redfearn@blaize.com>,
- Neil Jones <neil.jones@blaize.com>, Catalin Marinas
- <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "soc@lists.linux.dev" <soc@lists.linux.dev>
-References: <20241115-blaize-blzp1600_init_board_support-v5-0-c09094e63dc5@blaize.com>
- <20241115-blaize-blzp1600_init_board_support-v5-1-c09094e63dc5@blaize.com>
- <c1885e24-8051-4c91-9870-18eb4218a2ff@kernel.org>
- <bc471aeb-e9fd-4aa9-9bcc-a59d3c2e47b8@blaize.com>
+Subject: Re: [PATCH v2 2/5] iommu: sun50i: allocate page tables from below 4
+ GiB
+To: Andre Przywara <andre.przywara@arm.com>, Joerg Roedel <joro@8bytes.org>,
+ Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ piotr.oniszczuk@gmail.com
+Cc: Chris Morgan <macromorgan@hotmail.com>, Ryan Walklin
+ <ryan@testtoast.com>, Philippe Simons <simons.philippe@gmail.com>,
+ iommu@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ parthiban@linumiz.com
+References: <20240616224056.29159-1-andre.przywara@arm.com>
+ <20240616224056.29159-3-andre.przywara@arm.com>
 Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <bc471aeb-e9fd-4aa9-9bcc-a59d3c2e47b8@blaize.com>
+From: Parthiban <parthiban@linumiz.com>
+Organization: Linumiz
+In-Reply-To: <20240616224056.29159-3-andre.przywara@arm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - md-in-79.webhostbox.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - linumiz.com
+X-BWhitelist: no
+X-Source-IP: 122.165.245.213
+X-Source-L: No
+X-Exim-ID: 1tDOY9-002THc-27
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: ([192.168.1.5]) [122.165.245.213]:51434
+X-Source-Auth: parthiban@linumiz.com
+X-Email-Count: 6
+X-Org: HG=dishared_whb_net_legacy;ORG=directi;
+X-Source-Cap: bGludW1jbWM7aG9zdGdhdG9yO21kLWluLTc5LndlYmhvc3Rib3gubmV0
+X-Local-Domain: yes
+X-CMAE-Envelope: MS4xfF0TVlv7IrfqFPi8KH3nMSJLAo0CUOZx3PGtiXDSjPnnQGNcXIq8yvWPQc+AZXrYAYJG3xKRzO9oLUzR34fivHd2dMHPwZKHYuMcQp+tWBsbGzDjM5y8
+ jlgklSCoJIb26SZjqxYTfw32SjI9/UBqWPf8VIbP61kFEO6+2tWRRnG+VVzKSThbUb4GiEYgR28cLvAx1zKw27U372XCXpCHELE=
 
-On 19/11/2024 14:33, Nikolaos Pasaloukos wrote:
-> On 19/11/2024 13:05, Krzysztof Kozlowski wrote:
->> On 15/11/2024 15:58, Niko Pasaloukos wrote:
->>> Blaize, Inc. (www.blaize.com) is a SoC manufacturer with integrated
->>> programmable Graph-Streaming-Processors for AI and ML.
->>>
->>> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
->>> Signed-off-by: Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>
->> Here and in all other patches - you still have the same checkpatch
->> warning I asked to fix.
->>
->>
->> git format-patch -6 -v5
->> scripts/checkpatch.pl v5*
->>
->> Your SoB does not match From. This MUST be fixed.
->>
->> Best regards,
->> Krzysztof
+On 6/17/24 4:10 AM, Andre Przywara wrote:
+> The Allwinner IOMMU is a strict 32-bit device, with its input addresses,
+> the page table root pointer as well as both level's page tables and also
+> the target addresses all required to be below 4GB.
+> The Allwinner H6 SoC only supports 32-bit worth of physical addresses
+> anyway, so this isn't a problem so far, but the H616 and later SoCs extend
+> the PA space beyond 32 bit to accommodate more DRAM.
+> To make sure we stay within the 32-bit PA range required by the IOMMU,
+> force the memory for the page tables to come from below 4GB. by using
+> allocations with the DMA32 flag.
+> Also reject any attempt to map target addresses beyond 4GB, and print a
+> warning to give users a hint while this fails.
 > 
-> Hi Krzysztof,
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> ---
+>  drivers/iommu/sun50i-iommu.c | 13 +++++++++++--
+>  1 file changed, 11 insertions(+), 2 deletions(-)
 > 
-> Just to be certain and fix it properly, do you mean that the issue that you
-> are talking about is that the 'From' appears as 'Niko Pasaloukos' and I am
-> signing with SoB as 'Nikolaos Pasaloukos'?
+> diff --git a/drivers/iommu/sun50i-iommu.c b/drivers/iommu/sun50i-iommu.c
+> index dd3f07384624c..20a07f829085d 100644
+> --- a/drivers/iommu/sun50i-iommu.c
+> +++ b/drivers/iommu/sun50i-iommu.c
+> @@ -602,6 +602,14 @@ static int sun50i_iommu_map(struct iommu_domain *domain, unsigned long iova,
+>  	u32 *page_table, *pte_addr;
+>  	int ret = 0;
+>  
+> +	/* the IOMMU can only handle 32-bit addresses, both input and output */
+> +	if ((uint64_t)paddr >> 32) {
+> +		ret = -EINVAL;
+> +		dev_warn_once(iommu->dev,
+> +			      "attempt to map address beyond 4GB\n");
 
-Yes
+A133 uses the same IOMMU block and works fine when claimed by the display engine under 1GB
+RAM. When used with 4GB,
 
-> I'm really sorry, if that's the case, I will fix it and yes, there must be
-> a misconfiguration on my system. Would I need to prepare a v6 for this?
-> If it is not that, then I am really sorry but I will need more information.
-Just run checkpatch. I am repeating this over and over. If you run it
-like above and there is no error, then provide some details.
+root@helper-board-a133:~# head /proc/meminfo 
+MemTotal:        4021212 kB
 
+root@helper-board-a133:~# dmesg | grep -i -e drm -e iommu
+[    0.465613] iommu: Default domain type: Translated
+[    0.470892] iommu: DMA domain TLB invalidation policy: strict mode
+[    0.914097] sun8i-mixer 6100000.mixer: Adding to iommu group 0
+[    1.092400] sun4i-drm display-engine: Adding to iommu group 0
+[    1.100044] sun4i-drm display-engine: bound 6100000.mixer (ops 0xffff800080b05dc0)
+[    1.108399] sun4i-drm display-engine: bound 6510000.tcon-top (ops 0xffff800080b0a628)
+[    1.116694] sun4i-drm display-engine: bound 6511000.lcd-controller (ops 0xffff800080b04220)
+[    1.126415] [drm] Initialized sun4i-drm 1.0.0 for display-engine on minor 0
+[    1.135110] sun50i-iommu 30f0000.iommu: attempt to map address beyond 4GB
+[    1.142559] sun4i-drm display-engine: [drm] *ERROR* fbdev-dma: Failed to setup generic emulation (ret=-12)
+[    1.154210] sun4i-drm display-engine: [drm] *ERROR* fbdev-dma: Failed to setup generic emulation (ret=-12)
 
-Best regards,
-Krzysztof
+allocation fails. Limiting the memory mem=2G to the kernel works.
+
+Thanks,
+Parthiban
+
+> +		goto out;
+> +	}
+> +
+>  	page_table = sun50i_dte_get_page_table(sun50i_domain, iova, gfp);
+>  	if (IS_ERR(page_table)) {
+>  		ret = PTR_ERR(page_table);
+> @@ -682,7 +690,8 @@ sun50i_iommu_domain_alloc_paging(struct device *dev)
+>  	if (!sun50i_domain)
+>  		return NULL;
+>  
+> -	sun50i_domain->dt = iommu_alloc_pages(GFP_KERNEL, get_order(DT_SIZE));
+> +	sun50i_domain->dt = iommu_alloc_pages(GFP_KERNEL | GFP_DMA32,
+> +					      get_order(DT_SIZE));
+>  	if (!sun50i_domain->dt)
+>  		goto err_free_domain;
+>  
+> @@ -997,7 +1006,7 @@ static int sun50i_iommu_probe(struct platform_device *pdev)
+>  
+>  	iommu->pt_pool = kmem_cache_create(dev_name(&pdev->dev),
+>  					   PT_SIZE, PT_SIZE,
+> -					   SLAB_HWCACHE_ALIGN,
+> +					   SLAB_HWCACHE_ALIGN | SLAB_CACHE_DMA32,
+>  					   NULL);
+>  	if (!iommu->pt_pool)
+>  		return -ENOMEM;
+
 
