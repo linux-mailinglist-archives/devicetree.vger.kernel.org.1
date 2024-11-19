@@ -1,112 +1,93 @@
-Return-Path: <devicetree+bounces-122657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122658-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A7649D1D44
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 02:27:28 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42C409D1D82
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 02:45:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E4E5428265E
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 01:27:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F0A041F21138
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 01:45:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEE4C33998;
-	Tue, 19 Nov 2024 01:27:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="E5aQF0UM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 134132E3EB;
+	Tue, 19 Nov 2024 01:45:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from freeshell.de (freeshell.de [116.202.128.144])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 104A483CC1;
-	Tue, 19 Nov 2024 01:27:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B6F31CA81;
+	Tue, 19 Nov 2024 01:45:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731979637; cv=none; b=JRbn/YqND/mu0cGXZcyUAeDbGUwD/Xw144+Gf1GNrVluxpvcM4Xfh+X5CP1agTSXIrL/C+3G0boEB7bKvwDQdODdreSeCAJAKaMgxKWHGNISEC2JdGtuISodNjb0TRNmB2ZnR9sT//VmwcGl/NwmpLbYdSyEhk1/j8P0T6pqNPQ=
+	t=1731980734; cv=none; b=JOs3jdVVM9IyZ1NQL+5GYRuHvqYFIU5otjG8gIv5X9JWewWwhVxxL8JpzYdcqGfcb5QyaaO6Wth7nnB0KBc6UcOJEwOJ9XqwXQJ/fG1zYM0H7USDO13+YAPHlOLtuYUuhbvxp02Rz5qW14lzThviQzMjRyTTBhBNW6IRv3QpWqU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731979637; c=relaxed/simple;
-	bh=PE+v4tm16jnBLb+iJ8z174hx/xtzA5LTbTk+9E5XUQQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OQfS8z8uwvln0m80ZZlxvjRSFBwrbh+XkWx811IAnEmln/2P0WfNPbiGs3QUc+GU48tQ6ypg6GRf5MnsNVwpVyOHF1jrXN1rRhxovz+nZ4YHQIRT9UTzHmzyKq08u0SvXdVfVj3tVfTltUY4DjGg+2dotMep9FNbZiQUIkqcFCA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=E5aQF0UM; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=6Y0+K3PqqIgBny+BhM9cv9Q9ohqYkiNfuQM6ZshMm7c=; b=E5aQF0UM3rjeAM9rCFCv9I6DHK
-	LIRCilMCFArYAt4QFK4dDejXULJZwNLqVR8oayk3tqys3oU2aaxyFyAYwzns4mDYgLmCNMHqQCaQW
-	1U8ZHxIZ5ULeTBfY0WJPMYTXYFctTfLJaSq+Or2zrLpvFVY58WvYB8cdcxhx+OROOFw4=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tDD1K-00DjJq-C1; Tue, 19 Nov 2024 02:27:10 +0100
-Date: Tue, 19 Nov 2024 02:27:10 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Yijie Yang <quic_yijiyang@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
+	s=arc-20240116; t=1731980734; c=relaxed/simple;
+	bh=vl80YmQmFiZx6sQrvXelCRHkyjzyeIlQK7lcKu3P6nQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=txxufgsx3WHPsOEG1z0XolHk2DK80kNoHTBF7KucwLnZx/XejdXeRy7bC/SGE8KjW4IsLxhxN9JIAsOv1pc0BAcTI++y74F+8C+3R9sC81ypxYh2Dzy7+7jYnk1vFW/0ec4vYM7eVxn5mOX2F7cRa6ZvCz4AzTT5kfGOuZfCz/k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+Received: from hay.lan. (unknown [IPv6:2605:59c8:31de:bf00:6ecf:39ff:fe00:8375])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id 87166B4B0D98;
+	Tue, 19 Nov 2024 02:45:25 +0100 (CET)
+From: E Shattow <e@freeshell.de>
+To: Jisheng Zhang <jszhang@kernel.org>
+Cc: E Shattow <e@freeshell.de>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Conor Dooley <conor@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: qcs615-ride: Enable ethernet
- node
-Message-ID: <ececbbe1-07b3-4050-b3a4-3de9451ac7d7@lunn.ch>
-References: <20241118-dts_qcs615-v2-0-e62b924a3cbd@quicinc.com>
- <20241118-dts_qcs615-v2-2-e62b924a3cbd@quicinc.com>
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/1] riscv: dts: starfive: jh7110-milkv-mars: enable usb0 host function
+Date: Mon, 18 Nov 2024 17:44:34 -0800
+Message-ID: <20241119014449.49936-1-e@freeshell.de>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241118-dts_qcs615-v2-2-e62b924a3cbd@quicinc.com>
+Content-Transfer-Encoding: 8bit
 
-On Mon, Nov 18, 2024 at 02:44:02PM +0800, Yijie Yang wrote:
-> Enable the ethernet node, add the phy node and pinctrl for ethernet.
-> 
-> Signed-off-by: Yijie Yang <quic_yijiyang@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/qcs615-ride.dts | 106 +++++++++++++++++++++++++++++++
->  1 file changed, 106 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-> index ee6cab3924a6d71f29934a8debba3a832882abdd..299be3aa17a0633d808f4b5d32aed946f07d5dfd 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-> +++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-> @@ -5,6 +5,7 @@
->  /dts-v1/;
->  
->  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> +#include <dt-bindings/gpio/gpio.h>
->  #include "qcs615.dtsi"
->  / {
->  	model = "Qualcomm Technologies, Inc. QCS615 Ride";
-> @@ -196,6 +197,60 @@ vreg_l17a: ldo17 {
->  	};
->  };
->  
-> +&ethernet {
-> +	status = "okay";
-> +
-> +	pinctrl-0 = <&ethernet_defaults>;
-> +	pinctrl-names = "default";
-> +
-> +	phy-handle = <&rgmii_phy>;
-> +	phy-mode = "rgmii";
+Enable host mode JH7110 on-chip USB for Milk-V Mars by setting host mode
+and connect vbus pinctrl.
 
-That is unusual. Does the board have extra long clock lines?
+This functionality depends on setting the USB over-current register to disable at bootloader phase, for example U-Boot:
+https://patchwork.ozlabs.org/project/uboot/patch/20241012031328.4268-6-minda.chen@starfivetech.com/
 
-> +	max-speed = <1000>;
+If the over-current register is not prepared for us then the result is no
+change in functional outcome with this patch applied; there is an error
+visible to the user and this additional usb configuration fails (same as
+it is now). The existing three VL805 connected USB ports via PCIe on
+Milk-V Mars are not affected.
 
-Why do you have this property? It is normally used to slow the MAC
-down because of issues at higher speeds.
+Changes since v3:
+ - Rebase on linux-next/master
+ - use tabs for code indent
 
-	Andrew
+Changes since v2:
+ - Rebase on 6.12
+
+Changes since v1:
+ - series name (was "[PATCH] riscv: dts: starfive: jh7110-milkv-mars: set host mode and vbus pin for on-chip USB 2.0")
+ - adjust pin label to obey dtschema
+ - use cover letter
+
+E Shattow (1):
+  riscv: dts: starfive: jh7110-milkv-mars: enable usb0 host function
+
+ .../boot/dts/starfive/jh7110-milkv-mars.dts    | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
+
+-- 
+2.45.2
+
 
