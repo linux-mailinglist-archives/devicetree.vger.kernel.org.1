@@ -1,131 +1,126 @@
-Return-Path: <devicetree+bounces-122869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 127969D29AF
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 16:34:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FB569D2A00
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 16:46:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CE2C8B281E5
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 15:25:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 393C11F22D78
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 15:46:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 739881CEAC8;
-	Tue, 19 Nov 2024 15:25:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90C9E1D0B91;
+	Tue, 19 Nov 2024 15:41:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fYO7HdkE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WNQFR1U4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08042199240;
-	Tue, 19 Nov 2024 15:25:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6470B1D0786;
+	Tue, 19 Nov 2024 15:41:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732029932; cv=none; b=K5BIdVRs97nd+7SkdXLsmIN6cKrCHsl84vHlrnImneDJ46TIFtpaCjCMOPyeMqgzo1rW0lL3w1vDylTGasiDM5NcH3BPoqA2YGuIE755gWPL9rIkIqNenslEcQzkHIM6mTJvKDcHfhLEKXEOJAzOHFKbe23QxpTeXgBpQ+rqrls=
+	t=1732030879; cv=none; b=jiVJW5EJFWtVecRY9LizcT1Oh1PC4Mbu7JP3p6fxvyEK4tGy4BN3j+ZKgrIr4Flgjlj3hR95mF0PjxQhMMX70SWDWkTlfsbovTcdxxuf5I5Q+KaiTFeLwZNY4Ii281ITBXdrSf9sGoDR/WKlwSojiOTGYtlH4WM8L3yrHXn3MLY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732029932; c=relaxed/simple;
-	bh=VH6iOtx79DeGUGJ4jw8WfbN0aFWGMbAWjSxfxYMIkoE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Rv/DMCHCVJ38raB5xuJ3MyLU9vD6ly4tMqhE/AeNtO54WCgYFALLugVz1Mfn8guucXyHbDFzsMUoCg5i57ONvhMfiSKAJAa6u9AdbQ8k/uhQxU0a2oKUsgexieoL1i81tzBxZx8MVARIaLwG2w09dRgtaJGKnzMXKNmxyW/d3gY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fYO7HdkE; arc=none smtp.client-ip=209.85.216.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-2ea6d689d22so1761562a91.1;
-        Tue, 19 Nov 2024 07:25:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1732029930; x=1732634730; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dlci+2BKdigoipxB8Vb8O10YHCpzCE4DRKacOckTZAU=;
-        b=fYO7HdkEtyD2LGbIggkRRj6gR2iLb0HifCJkKC0VU7H+PgAgVz4MCUBl3E99WIeTly
-         J5GoSc2+qz3Nfo49lqxCz4dQWG+4yuNjPp5G3XSmbIdyy3xmd+I0TPyeuWKLqq1Wtptx
-         5dzn7P4Z2vvx6FtLfhb4YOX1B3wB8DWsE1+n/CQ54oHIuUsv6WBays2Mji0crIV43SND
-         8nRBKLI/vZS4k3/XnKv8K0VZcZf0GRXNr4bPh6Nlx/qlCizHcbjM0ruwyUVex/ZMxFUF
-         EBBpBDRNYfQ3AyjASXaDt/MyECq6u3eVdN5ukNRLILJ0jPyviG51b5a0TJYdCeI1dO7d
-         s/hQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732029930; x=1732634730;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dlci+2BKdigoipxB8Vb8O10YHCpzCE4DRKacOckTZAU=;
-        b=TEBc1sOyymwJFMe5Hgb3uwhj27xy24nOpKVPrJ55XOpXW8maSyYrLku0jqq+sQ0pwX
-         Kh0qPy5UZgRIUA8Gh2fKTe47JbhF6PYLid1hjLzJ6UTxNMalv1/CSkjEoXnWOPi1zl4Q
-         4Ace7aA/n5jm/J9RZXIRN1JKbiUVBP3GUS0jEyGW1TVxa4j8ASrl3drRWcOGGQ4g8f2w
-         4QCdQbrfdsjeNBfvtOrR7rRRKHrMkdXIZd7dNwHAKWi3FCbu6nIk4sDqQmb0kVZs0qtv
-         SGgZLBDHTGq6woUEpZyhf9v4JroruvZffvghlpUZVsz3fBSW+CMePm9R1O19jmFCejyV
-         7F0A==
-X-Forwarded-Encrypted: i=1; AJvYcCUANejc0gbJuejQ7LN/+l+Joa+eJ1EeMGUWnB1+r1V8FN/OkmMUorXUJR0K8dHp8W2C/I902UIdiNywpLO+@vger.kernel.org, AJvYcCURWYpiXcX7/lBUhDzqP/Bicw6851TuRttYklPneeNFS0QyCGsZoTPkgg4hWPCkE9r1tp2ed69Uq1nt@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyn7Thifd/mqlHl5CLESKfMyvzO3fiuzRINcrEiPGwckmRz1cXq
-	xC4qAL9cfAuRUSvg05z642gNnuOxiT3noD21XXFEJt96S34MNMogRqerwDjCID7xw1dfjRk3YnF
-	3s4x4Ce7dbp9zne1T2lQD0yR/lNU=
-X-Google-Smtp-Source: AGHT+IE7/1v+nPPImVoZLSJAIkad+M/ZIXkCwHk4Aqn15nIJP6zl1vdILO2DJvmdjbejL4ELnTacW/VVIHzDh0f9LoI=
-X-Received: by 2002:a17:90b:3ecb:b0:2ea:5823:c153 with SMTP id
- 98e67ed59e1d1-2ea5823c73dmr11754596a91.19.1732029930342; Tue, 19 Nov 2024
- 07:25:30 -0800 (PST)
+	s=arc-20240116; t=1732030879; c=relaxed/simple;
+	bh=LCJa+mqJlcqayphq5IXmD48HWyCdMQp5/f0kZG0ciBM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oH+ix49UZUlA0lnnu+zSylSfz9guEfpFtHiKgswH5QS2Qkp5n3YzWlmrmS8A3rbAUDMp9PD0O49oqqeYNOa2ndzA1KQjS3lDLUjPNXlcwYiccqHYgseVuxR3nPurZOdmcZtZ/e2XV1Pm/y+fW+g1cTdOXGl1IVunV67aashmdQQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WNQFR1U4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B55EDC4CECF;
+	Tue, 19 Nov 2024 15:41:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732030878;
+	bh=LCJa+mqJlcqayphq5IXmD48HWyCdMQp5/f0kZG0ciBM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WNQFR1U4KMgjZ/wew/OFuKN7TkKaGv/hTOFLeKBkbWVumG17i0grqn1Pc1Vg0+EdT
+	 C0Yb0G5Epe/DohfB199hMCq5PcB7nG0BceGGyH5M9iQw5OtQangn6LiWrWixu1Tcgn
+	 YnSacQ3gewWmMJxZ/NMynVKt+BPQWSbB+/whdwXvZWZgHCHeTZkfehw9RciaZVHRZx
+	 tHkdEAfZXlZxUt6QJOiSztFYWZohOGftpU+9whc94FL1rY/sUywp2CSzpOGfeLI/sA
+	 rPDl3MTfd+1TRmDVM37S9mFgOepfgCsghb4MjRkn9xgmLS0FQ28yv8W9qrZVevts9a
+	 ewXo3WWrvJboQ==
+Date: Tue, 19 Nov 2024 09:41:17 -0600
+From: Rob Herring <robh@kernel.org>
+To: Samuel Holland <samuel.holland@sifive.com>
+Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] of: property: fw_devlink: Do not use interrupt-parent
+ directly
+Message-ID: <20241119154117.GA1537069-robh@kernel.org>
+References: <20241114195652.3068725-1-samuel.holland@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241119130726.2761726-1-daniel.baluta@nxp.com> <Zzyn+i4khAqWBSjS@lizhi-Precision-Tower-5810>
-In-Reply-To: <Zzyn+i4khAqWBSjS@lizhi-Precision-Tower-5810>
-From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Tue, 19 Nov 2024 17:26:35 +0200
-Message-ID: <CAEnQRZAG4Piw6NfQC7Yyc5-d2ymfq3YeL=FpV5_hNt26AzRhjQ@mail.gmail.com>
-Subject: Re: [RFC PATCH] soc: imx: Add AHB to IP Bridge configuration driver
-To: Frank Li <Frank.li@nxp.com>
-Cc: Daniel Baluta <daniel.baluta@nxp.com>, conor+dt@kernel.org, shawnguo@kernel.org, 
-	s.hauer@pengutronix.de, festevam@gmail.com, imx@lists.linux.dev, 
-	robh@kernel.org, krzk+dt@kernel.org, kernel@pengutronix.de, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, aisheng.dong@nxp.com, peng.fan@nxp.com, 
-	iuliana.prodan@nxp.com, laurentiu.mihalcea@nxp.com, shengjiu.wang@nxp.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241114195652.3068725-1-samuel.holland@sifive.com>
 
-On Tue, Nov 19, 2024 at 5:00=E2=80=AFPM Frank Li <Frank.li@nxp.com> wrote:
->
-> On Tue, Nov 19, 2024 at 03:07:26PM +0200, Daniel Baluta wrote:
-> > This is a RFC patch in order to allow AHB to IP Bridge (AIPSTZ)
-> > configuration to be restored after a suspend/resume operation.
-> >
-> > This is particularly useful for aips5 bus where the aipstz
-> > configuration is lost at suspend.
-> >
-> > In order to configure aipstz bridge we register a platform driver
-> > that will set default configuration permission at probe.
-> >
-> > Because AIPS configuration is lost at suspend/resume time we register
-> > a power notifier callback that will take care of re-initializing the
-> > configuration at resume.
->
-> why not use suspend/resume callback? what's happen if devices under AIPS
-> suspend/resume before AIPS resume function.
+On Thu, Nov 14, 2024 at 11:56:49AM -0800, Samuel Holland wrote:
+> commit 7f00be96f125 ("of: property: Add device link support for
+> interrupt-parent, dmas and -gpio(s)") started adding device links for
+> the interrupt-parent property. Later, commit f265f06af194 ("of:
+> property: Fix fw_devlink handling of interrupts/interrupts-extended")
+> added full support for parsing the interrupts and interrupts-extended
+> properties, which includes looking up the node of the parent domain.
+> This made the handler for the interrupt-parent property redundant.
+> 
+> In fact, creating device links based solely on interrupt-parent is
+> problematic, because it can create spurious cycles. A node may have
+> this property without itself being an interrupt controller or consumer.
+> For example, this property is often present in the root node or a /soc
+> bus node to set the default interrupt parent for child nodes. However,
+> it is incorrect for the bus to depend on the interrupt controller, as
+> some of the bus's childre may not be interrupt consumers at all or may
 
-We are attaching to AIPS power domain. So any device that will resume
-will have first to power up the domain which in turn will configure the bri=
-dge.
+typo
 
-So with this it doesn't really matter the suspend/resume order
-becasuse the notifier
-that will configure the bridge is already register.
+> have a different interrupt parent.
+> 
+> Resolving these spurious dependency cycles can cause an incorrect probe
+> order for interrupt controller drivers. This was observed on a RISC-V
+> system with both an APLIC and IMSIC under /soc, where interrupt-parent
+> in /soc points to the APLIC, and the APLIC msi-parent points to the
+> IMSIC. fw_devlink found three dependency cycles and attempted to probe
+> the APLIC before the IMSIC. After applying this patch, there were no
+> dependency cycles and the probe order was correct.
+> 
+> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
 
-But I wonder if there could be a problem if a device goes
-suspend/resume before the bridge
-probe function gets a chance to be called.
+I assume this should go to stable? It needs Fixes tags.
 
-> supposed
->         bridge@30df0000 {
->                 ...
->                 some child node {
->                 }
->
->                 so child node's devies suspend/resume will after bidged's
-> suspend resume.
->
->         }
+Otherwise, the change makes sense to me.
+
+> ---
+> 
+>  drivers/of/property.c | 2 --
+>  1 file changed, 2 deletions(-)
+> 
+> diff --git a/drivers/of/property.c b/drivers/of/property.c
+> index 11b922fde7af..7bd8390f2fba 100644
+> --- a/drivers/of/property.c
+> +++ b/drivers/of/property.c
+> @@ -1213,7 +1213,6 @@ DEFINE_SIMPLE_PROP(iommus, "iommus", "#iommu-cells")
+>  DEFINE_SIMPLE_PROP(mboxes, "mboxes", "#mbox-cells")
+>  DEFINE_SIMPLE_PROP(io_channels, "io-channels", "#io-channel-cells")
+>  DEFINE_SIMPLE_PROP(io_backends, "io-backends", "#io-backend-cells")
+> -DEFINE_SIMPLE_PROP(interrupt_parent, "interrupt-parent", NULL)
+>  DEFINE_SIMPLE_PROP(dmas, "dmas", "#dma-cells")
+>  DEFINE_SIMPLE_PROP(power_domains, "power-domains", "#power-domain-cells")
+>  DEFINE_SIMPLE_PROP(hwlocks, "hwlocks", "#hwlock-cells")
+> @@ -1359,7 +1358,6 @@ static const struct supplier_bindings of_supplier_bindings[] = {
+>  	{ .parse_prop = parse_mboxes, },
+>  	{ .parse_prop = parse_io_channels, },
+>  	{ .parse_prop = parse_io_backends, },
+> -	{ .parse_prop = parse_interrupt_parent, },
+>  	{ .parse_prop = parse_dmas, .optional = true, },
+>  	{ .parse_prop = parse_power_domains, },
+>  	{ .parse_prop = parse_hwlocks, },
+> -- 
+> 2.45.1
+> 
 
