@@ -1,147 +1,157 @@
-Return-Path: <devicetree+bounces-122676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7872E9D1E22
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 03:23:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABADA9D1E25
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 03:24:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DF10285610
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 02:23:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 38EC0B233DF
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 02:24:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA2BA14D2A7;
-	Tue, 19 Nov 2024 02:22:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E47C919AD8C;
+	Tue, 19 Nov 2024 02:23:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="nzA6Gemk"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="gW7f1QbD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E803137742;
-	Tue, 19 Nov 2024 02:22:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66FF8199FDD
+	for <devicetree@vger.kernel.org>; Tue, 19 Nov 2024 02:23:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731982929; cv=none; b=lwM5TGq4umMB41mcmvpI2uSMYwtAsSsNEiQfPhvzXxevKCwvowqnNTFd6cZH6qGIMvYBcceMn1W42i9eWKvNcdPl355rf344Ba7pUCNmqkzk1M7MdFl3egoJ5U3ADWZ1VYy8i54672QHwb8J1KYjUkmaa9f+EA6485HZaC2Oyzs=
+	t=1731983003; cv=none; b=t8wCmPJ9is+PHsezD5S0Z0g4BVXO6WGkkeK0uMJjdVttyvCz/fgo55Ip49FIm4xejGffnz03EZN54Hnl7m6w1W1W3uto0HncgZlTj614kyfMwd3n7KkLkq/oYTsWYjWZfE8S4MIBeg/VlRDh4PpxZFVv3sLcDLJyV5+W5i8R5ZA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731982929; c=relaxed/simple;
-	bh=HM8QobMjDEKZCB9Ar2MpJorNmPSZG2Ip3ycGy5NXPGg=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=PmFHDpTX+mzD6OHJ+6lEm7ssQrDg15IFO8HHNR7MNgfHFJrg/wDEd69xTKGp9tvBj+7x5Ja3Y1ynUxTgAva7Gro1EKVmiRPWjarJAWkK1kKVLqRrv6wBbmWgqsW5fQ41OfHUyvxNHIDAeF9wqDj20AEQcwYH8w10ECQjL2P1k+4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=nzA6Gemk; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AIGH1lF010249;
-	Tue, 19 Nov 2024 02:21:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	j2Z19si2GeCg8hSx5tQ4Xzpoxx/wkG0S+gTOGHWEJuM=; b=nzA6GemkG5lce/uE
-	3uyuP8zXMbaEEUmALf7B0XqA2l7NwkoBJdUUkNt+gQgqf/3Z9bbq0j5F9FDizf94
-	qO8cmu9j2kdnUY6RPBXtojGR4MLshPe0IuGjL/NhziMTzM2g93t6YofqrXfBro5x
-	ScQYjNfJM5wf7pobXiW5M9kmoaR8Mbmi0fyFSbcAvWBX9tLGlB0momrDeS7q/sre
-	vXBNctHyIkNzA9CZqiZyxzUv5HDEBjtgVBr/RSylshCfjsZvYHalBuWGbAvoUQou
-	AduW/M4g+arZEmEkqT8V5ZKZG1g9GpgYrmSLOACKwIUkFLhEKf6Hk5NU+ZjNJ3dx
-	MdT61Q==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4308y9157n-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 19 Nov 2024 02:21:48 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AJ2LkaA016948
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 19 Nov 2024 02:21:46 GMT
-Received: from liuxin-gv.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 18 Nov 2024 18:21:40 -0800
-From: Xin Liu <quic_liuxin@quicinc.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam
-	<manivannan.sadhasivam@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-CC: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>, Andy Gross <agross@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-scsi@vger.kernel.org>, <quic_jiegan@quicinc.com>,
-        <quic_aiquny@quicinc.com>, <quic_tingweiz@quicinc.com>,
-        <quic_sayalil@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: [PATCH v2 3/3] arm64: dts: qcom: qcs615-ride: Enable UFS node
-Date: Tue, 19 Nov 2024 10:20:50 +0800
-Message-ID: <20241119022050.2995511-4-quic_liuxin@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241119022050.2995511-1-quic_liuxin@quicinc.com>
-References: <20241119022050.2995511-1-quic_liuxin@quicinc.com>
+	s=arc-20240116; t=1731983003; c=relaxed/simple;
+	bh=4MusnTHOvGCXbl0nkaIvWiNeJ03CAQCB33OcASeipXM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tJRGpEMCSFoouXyOqQgLHKWdwnFaouKZZbK2kZH2qcj+0a91rEbKDv9VkMgueiyDLvKOXAI7y2bJ4YWe7ZcNlnib3ylmUq4bhUQ6PZaouvRRXiCppR/06/n3XI1Pfrs/Y1AIDwarfP/S8Al7YWQfSVlVabjcZbxSub8SZzeH8hc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=gW7f1QbD; arc=none smtp.client-ip=209.85.210.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-71e61b47c6cso363276b3a.2
+        for <devicetree@vger.kernel.org>; Mon, 18 Nov 2024 18:23:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1731983002; x=1732587802; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=jHJ+VpcRmwxKu5/WPIGwQSIP5WqAzHzgd6c/ZcREfjA=;
+        b=gW7f1QbDNBVj8uK5uS/fvPFSeRsnNcGGxk2JOultApHRCxnaVbZcFruphB6GAZwwqY
+         PuUg4L+xhP1kBcV1wpd/MBO2NhwWGimzF5U2EbkB2E5szJ5GBTbdLNTg+v84jJqw4cns
+         0AYuVEqoLp3jMEw+2UaiEQG+W7cWnSCkaZ1KQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731983002; x=1732587802;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jHJ+VpcRmwxKu5/WPIGwQSIP5WqAzHzgd6c/ZcREfjA=;
+        b=Wcv93XtBGWXOlhUm257n+krKdg4MLzzV5rXKrB9Eu8UPnTpesYAOMNwTGWmNzskxRb
+         F3ih6sDetqnkzrMBniheGiyiQDnWBkWnA286o3BeoiGWkUHIrbkEuHurCvnWn0BHt0S6
+         702aIltm0h88o84696po4NLvGIPCVfHGZrO4qypUVyJFR0g4gl2qpiBQ/xigSZVxOg5O
+         4go5SndpuHl+PZ1elmEzSYM8ucaJ9nVs5Y6RxLQGiJYh231imlE3RftbtrRKCprc4mfT
+         q/KUXEzM6yEcppWujmHa6lwYmmZ8m+u0OWPn1OvQvo/9YUlfeWQ7EI7ugWBsgMg2Fzid
+         ezcw==
+X-Forwarded-Encrypted: i=1; AJvYcCVCYDsG9shP3TZh+36388a+sprUQtB29tyaQIv1xWthBKrqcFAPI0BRXQ1XIqOwj1XvoQP0DVRydUwm@vger.kernel.org
+X-Gm-Message-State: AOJu0YycBY0VT6n8L5iHynvCJnGMyinox6FYJPx1hxcsXvQpDTHs/nBQ
+	asr8O04hoXLrNXSXNsKx6UsD3Rm7R9JUc6TA6Gzw2FtXVWPDCUTXDnc2MTKsWA==
+X-Google-Smtp-Source: AGHT+IE78YUZbFTKrDWhSwPmB097Wk4a1j0g9tpeUAlr5hwezpZ0+bopaS9Y3Pj44h7ylBGk5x8F3A==
+X-Received: by 2002:aa7:88cf:0:b0:71e:5150:61d6 with SMTP id d2e1a72fcca58-72476d58a6dmr19963818b3a.21.1731983001735;
+        Mon, 18 Nov 2024 18:23:21 -0800 (PST)
+Received: from google.com ([2401:fa00:1:10:e40d:fa29:75db:2caa])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-724771e1a69sm7123889b3a.141.2024.11.18.18.23.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Nov 2024 18:23:21 -0800 (PST)
+Date: Tue, 19 Nov 2024 10:23:18 +0800
+From: "Sung-Chi, Li" <lschyi@chromium.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>,
+	Guenter Roeck <groeck@chromium.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+	linux-kernel@vger.kernel.org, chrome-platform@lists.linux.dev,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: chrome: add new binding
+ google,cros-ec-chrage-state
+Message-ID: <Zzv2ltfXqaW-2ALm@google.com>
+References: <20241118-add_charger_state-v1-0-94997079f35a@chromium.org>
+ <20241118-add_charger_state-v1-2-94997079f35a@chromium.org>
+ <20241118202520.GA3273373-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: gShl6h2obtMHrRi7zV4smFJzBqcgBlUP
-X-Proofpoint-GUID: gShl6h2obtMHrRi7zV4smFJzBqcgBlUP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 phishscore=0
- impostorscore=0 lowpriorityscore=0 adultscore=0 bulkscore=0
- mlxlogscore=999 clxscore=1015 suspectscore=0 malwarescore=0
- priorityscore=1501 mlxscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2409260000 definitions=main-2411190019
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241118202520.GA3273373-robh@kernel.org>
 
-From: Sayali Lokhande <quic_sayalil@quicinc.com>
+On Mon, Nov 18, 2024 at 02:25:20PM -0600, Rob Herring wrote:
+> > +properties:
+> > +  compatible:
+> > +    const: google,cros-ec-charge-state
+> > +
+> > +  min-milliamp:
+> > +    description: min current in milliamp.
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +
+> > +  max-milliamp:
+> > +    description: max current in milliamp.
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> 
+> Use standard units defined in property-units.yaml.
+> 
+> No constraints? 4000000 amps is okay?
+> 
 
-Enable UFS on the Qualcomm QCS615 Ride platform.
+Hi, I cannot find a good value as the max value, the will depend on what charge
+chip is used on that device. This is like a upper bound set from the kernel
+side, so setting it to the max uint32 value is acceptable (from the driver side
+when loading this config), not the desired current value. It is equivalent to
+kernel side do not specify any constraint. Surely, if kernel set a value that is
+larger than the max value, the EC will reject that request, either. The real
+current is bounded by the EC and the charge chip, so it will not damage any
+hardware.
+If we can find a meaningful constraint value to document it here, that would be
+great.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Sayali Lokhande <quic_sayalil@quicinc.com>
-Co-developed-by: Xin Liu <quic_liuxin@quicinc.com>
-Signed-off-by: Xin Liu <quic_liuxin@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs615-ride.dts | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+Would it be sufficient that I add the explanation to the description?
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-index ee6cab3924a6..79634646350b 100644
---- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
-@@ -214,6 +214,22 @@ &uart0 {
- 	status = "okay";
- };
- 
-+&ufs_mem_hc {
-+	vcc-supply = <&vreg_l17a>;
-+	vcc-max-microamp = <600000>;
-+	vccq2-supply = <&vreg_s4a>;
-+	vccq2-max-microamp = <600000>;
-+
-+	status = "okay";
-+};
-+
-+&ufs_mem_phy {
-+	vdda-phy-supply = <&vreg_l5a>;
-+	vdda-pll-supply = <&vreg_l12a>;
-+
-+	status = "okay";
-+};
-+
- &watchdog {
- 	clocks = <&sleep_clk>;
- };
--- 
-2.34.1
+> > +
+> > +  type:
+> 
+> Too generic. Property types are global. You need a vendor prefix for 
+> starters.
+> 
 
+Thank you, I will use a more specific name in the following patches.
+
+> > +    description: current limit type.
+> > +    enum:
+> > +      - charge
+> > +      - input
+> 
+> What if you need to describe both?
+> 
+
+We need to declare different DTS nods for each. This node is representing the
+constraint, not the charge chip itself.
+The voltage, min and max milliamp on each current type are different on a single
+charge chip. For example, I have a device that uses the charge chip rt9490, and
+it has the following set up:
+
+- Input current
+  - min-milliamp: 100
+  - max-milliamp: 3300
+- Charge current
+  - min-milliamp: 150
+  - max-milliamp: 5000
+
+I cannot find a clean way to merge different current type, max, and min milliamp
+just in a single DTS node.
+Also, we need to split different constraints into its own DTS node. It is
+because the a cooling device in the thermal framework need its own DTS node, so
+we can use it in the trip section.
 
