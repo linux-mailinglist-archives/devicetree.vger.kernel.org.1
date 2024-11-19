@@ -1,117 +1,151 @@
-Return-Path: <devicetree+bounces-122775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 000B99D24B8
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 12:22:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 90C7E9D24C8
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 12:26:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC7701F22066
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 11:22:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 472611F21595
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 11:26:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 098121C57B2;
-	Tue, 19 Nov 2024 11:22:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2ADF81C4A0E;
+	Tue, 19 Nov 2024 11:26:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kBligGuG"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="dD5In/S0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+Received: from smtp.smtpout.orange.fr (smtp-21.smtpout.orange.fr [80.12.242.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D24F1C4A08;
-	Tue, 19 Nov 2024 11:22:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 730A0198A37;
+	Tue, 19 Nov 2024 11:26:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732015346; cv=none; b=J4KMlAS6G+1SX6mAuDr2af2i5sKvYMp28iLUiUvjXgOnzoe8Oq7xMavS/0KoOysHV8AOe7uTNvFcTo8hPHgvrw7A1oeLIpsMSHDbTsOeaR7kPmctWYDofsQE8AL0qxY4aHllE2vn0Sv7RAE9PWbn89X/8sFerCIdl1MdIlpUSco=
+	t=1732015600; cv=none; b=Tkcw9N2q5AnbXHm3thpNOaLjFUFGca6ywVPOIWVjzFQZoWlL26H+nqlOkiF/ageX/PH5KUX6Slz17Uu4aIuAOiRZ4SxYrPMStiqQunfPJ9W1ZD0NvU1KPqmpf5EBVnGAt7YfgA2MzYJcJV8VphVj1kDMqBH2SEm1V6j534TSxrc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732015346; c=relaxed/simple;
-	bh=s5ETrXY55LebHUHKMiZ1o04YRrW/b57PlPPfpOBKVEU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=f4RVPVG5OF+B6N385wiw84Yk4O6My2FZIa53yMiCX6DgJw2v4tLpc9zvt2YixcvEACC0umKfPg8NtBLd2hCSkDO+mQULtkxU3F3dMfl1WRqa+hRoOJwNaC0CgpmkoEDfNIhhs23kcKcdQCkAlgnsC1/jJdUZR3ARUSjk4LWlojQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kBligGuG; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-20cf3e36a76so42678185ad.0;
-        Tue, 19 Nov 2024 03:22:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1732015345; x=1732620145; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=KGgRP8LyCA/ZR4LXi34oYBVO/Mzz1ZaBNCtp6VsfHdA=;
-        b=kBligGuGQHzCwjJTIVQJfeyZGkQpx/xn1jqpuSs8nOUB1/UmROylcy7xXw6RarDGdg
-         SKzvXdxEkW6N4b3+09ZesSba979JcjHtio3uu2jMq+yI4skOtCcT+XxeFh2UpR1dl9ZG
-         srMtMIj40480VYEqxuhI1/V13ZDDY/gp2DoQGjaEu9ddaKvPCCaIl6X/RDVC1tnem6dq
-         V4UfrWY1pjd2j/AyomVbxc067ytW3GyKp2G+3THGpWKdjEBMi5StZdVCCytyChqlOwYz
-         DmEqyqZxEsrhJCPPIg/8LxPV2rxyda8uh9d5NtaQNI+VvC26xzkgsG66S2KTVajI6U1Z
-         TTNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732015345; x=1732620145;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KGgRP8LyCA/ZR4LXi34oYBVO/Mzz1ZaBNCtp6VsfHdA=;
-        b=XFjzNSQZpo9Jw0T8Bbs/CTpP/1fb9bwvTr6lmnBUnxfJEXECT3DJ/ozrSDgSn53SCC
-         /eM5DrJUNuOcvWNKSCbo9wwiVL1uBQyS5bnSW8MOO48dbzih3I5iCbUnIDhHBOTrd24m
-         rgk/UAblyxWJkjCwWsrH4lpxM5BiyZdal3Vp9rTicF4z8q8vdqBfzLL3538a0aQCQ7LI
-         Sa9tQeBAC/OX/5BZh3RUZApxo12dvzTMWW4XuuV0XJMJf65khvApXZZM2vPBum6vZUkR
-         a+a4d0LImMXqOxABxzzgb+6t7KObDR0utVGIp+mrMpWcZ90lMHXIMM4x/MrkAUhtT/U1
-         eq0w==
-X-Forwarded-Encrypted: i=1; AJvYcCUeo0YzoPxeb+og3Sz8ayhzfte2fCecP6o2xLOuKpezncibUj2HoPV7E3fX3T6IPer/lToAemwtOuoo@vger.kernel.org, AJvYcCWNAvIllJFZw/ki9Il+yrGnggtPYGdochseT69mX+N1rLKa0Yz05DvI2Dhifh4M1UTrbm+zb1pqmOiG@vger.kernel.org, AJvYcCWsCBnBTJaRHLMQ3lTRrUuTp84ITXQq8BDHIyfMSMFCBpWNvnZpJuzP6rkOPwNgUD/z3eonLkfaYCd3Z2Rf@vger.kernel.org
-X-Gm-Message-State: AOJu0YzTjQZYB5fPMlyzXgdj7c/Qrh6r0uWQE85ZN51VBWLFP+KAhbWt
-	HTTY9sY1GrXUGOBbpdcrcA5Pm9KgTBD/XiaA2wv5PwkEMR7q7Xk4R3KsbG07
-X-Google-Smtp-Source: AGHT+IFarKhUqFYEoXpabqdId4ulB0jJiaGXNXCAQB82kibPT6v7z3Bx6epHnuzaHen6wC2saKb4fw==
-X-Received: by 2002:a17:902:da90:b0:212:42d1:1e44 with SMTP id d9443c01a7336-21242d1240fmr56337735ad.54.1732015344902;
-        Tue, 19 Nov 2024 03:22:24 -0800 (PST)
-Received: from localhost ([2804:30c:1618:9800:694b:286f:2b3a:5414])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2ea45daccbesm5384046a91.15.2024.11.19.03.22.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Nov 2024 03:22:24 -0800 (PST)
-Date: Tue, 19 Nov 2024 08:22:45 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, lars@metafoo.de,
-	Michael.Hennerich@analog.com, jic23@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] iio: adc: ad4000: Use device specific timing for
- SPI transfers
-Message-ID: <Zzx1BWSVhd2Y_wtN@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1731953012.git.marcelo.schmitt@analog.com>
- <284478615dd32deff29e4e10815cb49fa7d3b5d0.1731953012.git.marcelo.schmitt@analog.com>
- <74ae05a9-6fff-4088-a46c-0a68a5b64614@baylibre.com>
+	s=arc-20240116; t=1732015600; c=relaxed/simple;
+	bh=jikjswAKs7ol2d86wYoGsx6UY//r1CS50Ko2Q/uD/Io=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XTj0YeWDFr+26Su8EJFlLEAPGtd1YmyitqijGRAxKqW6gpRfKv6F0I8It1fNZPk+XSoTWQTCXROMG2HztKeaxCh+kqVUTKyzsLkePRSnM6ahQL/LLOHkjHvfEGHL/Yhg/txCRSY1oqgzkCug2sBLYCpf/aHjemsoU0FbyH6okoA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=dD5In/S0; arc=none smtp.client-ip=80.12.242.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [172.16.82.72] ([124.33.176.97])
+	by smtp.orange.fr with ESMTPA
+	id DMNHtEHNmNywhDMNIthG2G; Tue, 19 Nov 2024 12:26:35 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1732015595;
+	bh=d9GXcffo0UAX9pD8MRFRvCySp0v93Es0xkObTh1140o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=dD5In/S04frbfPzHzkSlfngFTsOTi/1BdloRL546rlbqNKsazcYCgHaFYx2xGnCWK
+	 DkRKSXvHVziTyYsylfNvmgM7XUBAn7TiJ9XUNGojfc96r7k/jQOueoXvGUUnOD290K
+	 P37KMcSaylJNiEgzRZIsDtxkD18NkhW62HlNEoJeJbXVpfde5GhyhV4ONTlrWX1a+O
+	 aY2Cj1KwuxtgfMyzd+KT5YreEiVwLtKZnwJnFTcCYgtverp+jT0hUn+ApIWLA+t/Zx
+	 bxOZBYw4aGn8VIEvQEpCD04GtgTWpOLPcev/awAWKQxe1ynVQ4ryGZNxu8nRNrw0Zj
+	 +scF5J1bswNBw==
+X-ME-Helo: [172.16.82.72]
+X-ME-Auth: bWFpbGhvbC52aW5jZW50QHdhbmFkb28uZnI=
+X-ME-Date: Tue, 19 Nov 2024 12:26:35 +0100
+X-ME-IP: 124.33.176.97
+Message-ID: <f84991f7-66c6-4366-9953-b230761b6b7a@wanadoo.fr>
+Date: Tue, 19 Nov 2024 20:26:26 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <74ae05a9-6fff-4088-a46c-0a68a5b64614@baylibre.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] can: flexcan: handle S32G2/S32G3 separate interrupt
+ lines
+To: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>,
+ Marc Kleine-Budde <mkl@pengutronix.de>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-can@vger.kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, NXP Linux Team <s32@nxp.com>,
+ Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>,
+ Enric Balletbo <eballetb@redhat.com>
+References: <20241119081053.4175940-1-ciprianmarian.costea@oss.nxp.com>
+ <20241119081053.4175940-4-ciprianmarian.costea@oss.nxp.com>
+ <57915ed9-e57e-4ca3-bc31-6405893c937e@wanadoo.fr>
+ <bfa5200d-6e56-417d-ac3b-52390398dba2@oss.nxp.com>
+Content-Language: en-US
+From: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+In-Reply-To: <bfa5200d-6e56-417d-ac3b-52390398dba2@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On 11/18, David Lechner wrote:
-> On 11/18/24 12:53 PM, Marcelo Schmitt wrote:
-> > The SPI transfers for AD4020, AD4021, and AD4022 have slightly different
-> > timing specifications. Use device specific timing constraints to set SPI
-> > transfer parameters. While tweaking time constraints, remove time related
-> > defines including unused AD4000_TQUIET1_NS.
-> > 
-> > Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> > ---
+On 19/11/2024 at 19:01, Ciprian Marian Costea wrote:
+> On 11/19/2024 11:26 AM, Vincent Mailhol wrote:
+>> On 19/11/2024 at 17:10, Ciprian Costea wrote:
+
+(...)
+
+>>>   +    if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SECONDARY_MB_IRQ) {
+>>> +        err = request_irq(priv->irq_secondary_mb,
+>>> +                  flexcan_irq, IRQF_SHARED, dev->name, dev);
+>>> +        if (err)
+>>> +            goto out_free_irq_err;
+>>> +    }
+>>
+>> Is the logic here correct?
+>>
+>>    request_irq(priv->irq_err, flexcan_irq, IRQF_SHARED, dev->name, dev);
+>>
+>> is called only if the device has the FLEXCAN_QUIRK_NR_IRQ_3 quirk.
+>>
+>> So, if the device has the FLEXCAN_QUIRK_SECONDARY_MB_IRQ but not the
+>> FLEXCAN_QUIRK_NR_IRQ_3, you may end up trying to free an irq which was
+>> not initialized.
+>>
+>> Did you confirm if it is safe to call free_irq() on an uninitialized irq?
+>>
+>> (and I can see that currently there is no such device with
+>> FLEXCAN_QUIRK_SECONDARY_MB_IRQ but without FLEXCAN_QUIRK_NR_IRQ_3, but
+>> who knows if such device will be introduced in the future?)
+>>
 > 
-> ...
+> Hello Vincent,
 > 
-> > +/*
-> > + * Same timing specifications for all of AD4000, AD4001, ..., AD4008, AD4010,
-> > + * ADAQ4001, and ADAQ4003.
-> > + */
-> > +static const struct ad4000_time_spec ad4000_t_spec = AD4000_TSPEC(320, 60);
-> > +
-> > +/* AD4020, AD4021, AD4022 */
-> > +static const struct ad4000_time_spec ad4020_t_spec = AD4000_TSPEC(350, 60);
+> Thanks for your review. Indeed this seems to be an incorrect logic since
+> I do not want to create any dependency between 'FLEXCAN_QUIRK_NR_IRQ_3'
+> and 'FLEXCAN_QUIRK_SECONDARY_MB_IRQ'.
 > 
-> I actually liked the way you did it in v1 better. This makes it harder to
-> see which number is which.
-> 
-May I add your reviewed-by tag if I change it back to v1 time_spec? :)
+> I will change the impacted section to:
+>     if (err) {
+>         if (priv->devtype_data.quirks & FLEXCAN_QUIRK_NR_IRQ_3)
+>             goto out_free_irq_err;
+>         else
+>             goto out_free_irq;
+>     }
+
+This is better. Alternatively, you could move the check into the label:
+
+  out_free_irq_err:
+  	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_NR_IRQ_3)
+  		free_irq(priv->irq_err, dev);
+
+But this is not a strong preference, I let you pick the one which you
+prefer.
+
+>>>       flexcan_chip_interrupts_enable(dev);
+>>>         netif_start_queue(dev);
+>>>         return 0;
+>>>   + out_free_irq_err:
+>>> +    free_irq(priv->irq_err, dev);
+>>>    out_free_irq_boff:
+>>>       free_irq(priv->irq_boff, dev);
+>>>    out_free_irq:
+
+(...)
+
+
+Yours sincerely,
+Vincent Mailhol
+
 
