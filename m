@@ -1,174 +1,206 @@
-Return-Path: <devicetree+bounces-122789-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39A459D2537
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 13:04:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE0A49D2545
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 13:07:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A2EE0B23CAB
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 12:04:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 575A6B2188B
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 12:07:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2B731C9EDA;
-	Tue, 19 Nov 2024 12:04:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 621BD1CACFA;
+	Tue, 19 Nov 2024 12:07:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="vc71cjsd"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="P13faH14"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC47F1C463F
-	for <devicetree@vger.kernel.org>; Tue, 19 Nov 2024 12:04:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA91114E2C0;
+	Tue, 19 Nov 2024 12:07:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732017863; cv=none; b=uQCffhZXN7KZ8o0U0b4uB1hN03VPxC24atyjmNGVN1kCsM9oqTosZQhOUdVsTKKifeqMnn5aRgXVsLDaB9CbA1t9+uQL1MkY7fHf7Gpq7WDNJnOk+1D+VKSM8vzFtvMM088rtpDsiErOaiyMuCNmSjtJzc+YxFOCx11qQttOMJs=
+	t=1732018027; cv=none; b=jY/S5s0coSSOsVSJClcRsQPUZ6BHUqKexcDzf7yby6FsmvXhTHCVDjMK0EIinC6YD2nfjymzmMoWVZl8/w8azrK4GL46+zGLilBtvGCMFiS8nkoWhWGAhPd2iAq//BSJXYQENHIp7O6OR6Fzhx7YaPiIfI6roI2xCRznlnyiC3g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732017863; c=relaxed/simple;
-	bh=rz2KLrwwLhGtEUjP5TagdHhlxf4NIXl+HuT6yxFML6s=;
-	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HtUh1mLw+J0IbTrIeuAziDZkq28KAylnjzXA3CtXrwPO2TQjHory92Fj2LSY0iBd/pTPtzm8z/idrRU47w/B2jlfERziCJb30mGAPvDu7L/9gpMuiv85rEV8ZqeGiUTKB3Gr8U5LkGV0BJGXMgdpAkjKHY+ehGojkgGAth5FftQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=vc71cjsd; arc=none smtp.client-ip=209.85.208.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2ff57619835so47251611fa.0
-        for <devicetree@vger.kernel.org>; Tue, 19 Nov 2024 04:04:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1732017860; x=1732622660; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:references
-         :mime-version:in-reply-to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WoKSxAA31MZTaszqylmhSRJ5z01T3YIo+No7ytpTdHw=;
-        b=vc71cjsdB4WllaMDSEXy6fPZZfGUpBoaZbIT/fmo5DlH4iVsg4O6Vnup4ON95DNaOp
-         zPTFMkSE++16I4qQoAhFfe4lwcp3u/q64x2OJa0lxUsNscw6Xof2lcI/QF7GljY1NnXd
-         ttv/iB/mMH4tWqdS1Mwf6w1IlQ0/JotFtl3VmsoIuS8PvI1P/f/EmwsjCmnqdhZZb85M
-         HeLyLPMeSS3R10Ncn9KnyK7Mdc5/EXfr57ytOC9pwbG9LI1gsw9dgDK2smXCLjUwCmOD
-         AAU5R/EbaUt9HfHLPDUJANGLWPp52owrYVui+aHst8YM9JfKn6FR6ov4pVBNVGT3JVao
-         2QqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732017860; x=1732622660;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:references
-         :mime-version:in-reply-to:from:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=WoKSxAA31MZTaszqylmhSRJ5z01T3YIo+No7ytpTdHw=;
-        b=ZPXDT4fSAF5pCA6b5fWnCmXaTBt3MimI2q/O1JmeGjOdOoh6vPY6mK9jvcggd3vh8e
-         1iJVF7bMidu59yAGpdIZ9RZznco1QVrJhrZluGK/HUWN4lYlUz+icaDJAouOaoNt/wJt
-         aYVyutKtHyNlXcxSxXoZ62YYGaUlfXxMtIaNo+NqOBHzWnlttHHnkmoHQj4wvm1zoFDB
-         r1lDzmucNCNWB/wYFPLJ8gOgwiGRgCFzU5P4zftCMVp8W1pJ6T/qXn4ZIDWr0HdSAlgt
-         5Y5cU4WjXoxzWMvREMbRYGEHX47OA03vM5GuobeQ9mhTmSjizj4BCer98XyVmpDGsJG/
-         KlHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVQdgbClkNNEzDWlxcu3QhKSOzl9BnscoePYJAYdo6opdvABuHBcAjdqjdHdLn+zrJXCTHOHFOeZ4+K@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy/wJSZ2Mu1GncwpLCB6i3SsCufX9p/CfF8b8xpWTqbzKTQfbLz
-	GI8oA8/rPfg2YM6JG2UJdwoey5Or0IZn4zFH98xOe/5CidPtpx3uOWcer6smihOqQXPjyM3nf50
-	WENL1Az8XxFZranjxsp6yc5XiC/67teIVVBxIqQ==
-X-Google-Smtp-Source: AGHT+IEerceyVJ5JcxrvedsqouZNp6jHQBnvDR5FHHap1MZUllto7WQTRg3X+wPTKZcHcUCqR5lxuEzu7z5AAutGPhM=
-X-Received: by 2002:a2e:b16a:0:b0:2ff:8977:64cf with SMTP id
- 38308e7fff4ca-2ff8977653dmr2742071fa.19.1732017859851; Tue, 19 Nov 2024
- 04:04:19 -0800 (PST)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 19 Nov 2024 12:04:19 +0000
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-In-Reply-To: <CAMuHMdXEWsx3YBewPC1s1Q-yZp1S9erpK5TgWzNxFH_JyM=R-Q@mail.gmail.com>
+	s=arc-20240116; t=1732018027; c=relaxed/simple;
+	bh=Y5J6YL850s+y137i+70MF2KmBb3pSuP0B+RaM5LNfT8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=QzKxNgdFUmTDki1ZkPbUI+KtZusnY7E1WVQ4gcGSCarFzjZsMFU8YZPcLyaiXPtyl93yx+wN1gqwFSGz4R+Dbxk180QTdhAocMr8YRzqJaQOOUyTZO6hYNB2la2T//bw4HhDran2MP5Me4pyoM/1M32DgJXl12r/Y5lypQdCCQw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=P13faH14; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AJ7rCK5028554;
+	Tue, 19 Nov 2024 12:07:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=5vMP88NfbfXvoUp0Qwznsb
+	T2ro8cNTpipcLWBUe9p2I=; b=P13faH14D9qDwOeB0X6N3gQ9RRR/31tr5HNqF9
+	8cdDDhAMmJPPd+KFkZF7vMfbnUzxjCkx+ypuq97A099agJ7gHgD/Z3pAG+Ig7Izb
+	olno9ftrVmBPkc7hAP0i4ynO7Lc+Vv8X1ivsZyLsKr7Uf13wVV25MMCNiOrxfr8q
+	FEfbHBXtR768dM4EvVBTp+jeHVvtISPv5MB6mGHlynfyYYZ3ilaRCfjO0wO1paVB
+	mmm30Vs2T0OeYFGbHrjxpMH8v9PQqCqUWvR8q1303tMVd1iVxyQXMkJuMd7NGYwi
+	rrI52Q9OZcOZzIlMN3qchM/VSShgR/X0Usf0dVpyKuATixAg==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4308y82e7h-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 19 Nov 2024 12:07:03 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AJC72BX020639
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 19 Nov 2024 12:07:02 GMT
+Received: from hu-lxu5-sha.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 19 Nov 2024 04:06:56 -0800
+From: Ling Xu <quic_lxu5@quicinc.com>
+To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <quic_kuiw@quicinc.com>, <quic_ekangupt@quicinc.com>, <kernel@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Ling Xu
+	<quic_lxu5@quicinc.com>
+Subject: [PATCH v3] arm64: qcom: qcs8300: Add ADSP and CDSP0 fastrpc nodes
+Date: Tue, 19 Nov 2024 17:36:35 +0530
+Message-ID: <20241119120635.687936-1-quic_lxu5@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241017184152.128395-1-marex@denx.de> <20241018132754.GA54765-robh@kernel.org>
- <3aa9e2f4-b1ad-46bf-a8c3-0d57cd3a7075@denx.de> <20241021181413.GA816269-robh@kernel.org>
- <CAMRc=McJ2_tT+iaLL3TMYPcMhSCLAWq-kOEvGzovuJfD+3MWFw@mail.gmail.com> <CAMuHMdXEWsx3YBewPC1s1Q-yZp1S9erpK5TgWzNxFH_JyM=R-Q@mail.gmail.com>
-Date: Tue, 19 Nov 2024 12:04:19 +0000
-Message-ID: <CAMRc=MfSySWMMdcTZtGrBqfJuUkePsVNLLvptqRQVbj78nmtug@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: at24: add ST M24256E Additional Write
- lockable page support
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Rob Herring <robh@kernel.org>, Marek Vasut <marex@denx.de>, linux-i2c@vger.kernel.org, 
-	Alexander Stein <alexander.stein@ew.tq-group.com>, Arnd Bergmann <arnd@arndb.de>, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
-	Christoph Niedermaier <cniedermaier@dh-electronics.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	devicetree@vger.kernel.org, kernel@dh-electronics.com, 
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: zWllfZyTA0jzNVPSDzkAwaVFPdiXaviU
+X-Proofpoint-GUID: zWllfZyTA0jzNVPSDzkAwaVFPdiXaviU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 phishscore=0
+ impostorscore=0 priorityscore=1501 lowpriorityscore=0 bulkscore=0
+ mlxscore=0 spamscore=0 adultscore=0 suspectscore=0 malwarescore=0
+ mlxlogscore=672 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411190088
 
-On Tue, 19 Nov 2024 12:01:54 +0100, Geert Uytterhoeven
-<geert@linux-m68k.org> said:
-> Hi Bartosz,
->
-> On Mon, Oct 21, 2024 at 8:36=E2=80=AFPM Bartosz Golaszewski <brgl@bgdev.p=
-l> wrote:
->> On Mon, Oct 21, 2024 at 8:14=E2=80=AFPM Rob Herring <robh@kernel.org> wr=
-ote:
->> > On Sun, Oct 20, 2024 at 06:29:13AM +0200, Marek Vasut wrote:
->> > > On 10/18/24 3:27 PM, Rob Herring wrote:
->> > > > On Thu, Oct 17, 2024 at 08:41:25PM +0200, Marek Vasut wrote:
->> > > > > The ST M24256E behaves as a regular M24C256, except for the E va=
-riant
->> > > > > which uses up another I2C address for Additional Write lockable =
-page.
->> > > > > This page is 64 Bytes long and can contain additional data. Add =
-entry
->> > > > > for it, so users can describe that page in DT. Note that users s=
-till
->> > > > > have to describe the main M24C256 area separately as that is on =
-separate
->> > > > > I2C address from this page.
->> > > >
->> > > > I think this should be modelled as 1 node having 2 addresses, not =
-2
->> > > > nodes.
->> > > We had the exact same discussion regarding M24C32D, see:
->> > >
->> > > https://lore.kernel.org/all/CAMRc=3DMdTu1gagX-L4_cHmN9aUCoKhN-b5i7yE=
-eszKSdr+BuROg@mail.gmail.com/
->> >
->> > Seems like kernel implementation details dictating the binding to me.
->>
->> Yeah, that's on me. I would have known better today but 8 years ago
->> the DT situation was much more volatile.
->
-> And there's no way we can fix that for new devices?  Perhaps even
-> for old devices, by counting the number of entries in the "reg"
-> compatible value?
->
+Add ADSP and CDSP0 fastrpc nodes for QCS8300 platform.
 
-For sure. We can always deprecate old bindings after upstreaming new ones b=
-ut
-we'd need to still carry the model ID in the compatible string and remain
-backward compatible with existing DTs.
+Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
+---
+This patch depends on patch https://lore.kernel.org/all/20240904-qcs8300_initial_dtsi-v1-0-d0ea9afdc007@quicinc.com/#t
+Changes since v1:
+ - Remove duplicate cdsp fastrpc nodes
+ - Add adsp memory-region and vmids
+Changes since v2:
+ - Remove extra duplicate cdsp fastrpc nodes
+---
+ arch/arm64/boot/dts/qcom/qcs8300.dtsi | 73 +++++++++++++++++++++++++++
+ 1 file changed, 73 insertions(+)
 
-So an existing example of:
+diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+index 2c35f96c3f28..90a4070ab042 100644
+--- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+@@ -5,6 +5,7 @@
+ 
+ #include <dt-bindings/clock/qcom,qcs8300-gcc.h>
+ #include <dt-bindings/clock/qcom,rpmh.h>
++#include <dt-bindings/firmware/qcom,scm.h>
+ #include <dt-bindings/interconnect/qcom,icc.h>
+ #include <dt-bindings/interconnect/qcom,qcs8300-rpmh.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+@@ -762,6 +763,38 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
+ 
+ 				label = "lpass";
+ 				qcom,remote-pid = <2>;
++
++				fastrpc {
++					compatible = "qcom,fastrpc";
++					qcom,glink-channels = "fastrpcglink-apps-dsp";
++					label = "adsp";
++					memory-region = <&adsp_rpc_remote_heap_mem>;
++					qcom,vmids = <QCOM_SCM_VMID_LPASS
++						      QCOM_SCM_VMID_ADSP_HEAP>;
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					compute-cb@3 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <3>;
++						iommus = <&apps_smmu 0x2003 0x0>;
++						dma-coherent;
++					};
++
++					compute-cb@4 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <4>;
++						iommus = <&apps_smmu 0x2004 0x0>;
++						dma-coherent;
++					};
++
++					compute-cb@5 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <5>;
++						iommus = <&apps_smmu 0x2005 0x0>;
++						dma-coherent;
++					};
++				};
+ 			};
+ 		};
+ 
+@@ -1361,6 +1394,46 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
+ 
+ 				label = "cdsp";
+ 				qcom,remote-pid = <5>;
++
++				fastrpc {
++					compatible = "qcom,fastrpc";
++					qcom,glink-channels = "fastrpcglink-apps-dsp";
++					label = "cdsp";
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					compute-cb@1 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <1>;
++						iommus = <&apps_smmu 0x19c1 0x0440>,
++							 <&apps_smmu 0x1961 0x0400>;
++						dma-coherent;
++					};
++
++					compute-cb@2 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <2>;
++						iommus = <&apps_smmu 0x19c2 0x0440>,
++							 <&apps_smmu 0x1962 0x0400>;
++						dma-coherent;
++					};
++
++					compute-cb@3 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <3>;
++						iommus = <&apps_smmu 0x19c3 0x0440>,
++							 <&apps_smmu 0x1963 0x0400>;
++						dma-coherent;
++					};
++
++					compute-cb@4 {
++						compatible = "qcom,fastrpc-compute-cb";
++						reg = <4>;
++						iommus = <&apps_smmu 0x19c4 0x0440>,
++							 <&apps_smmu 0x1964 0x0400>;
++						dma-coherent;
++					};
++				};
+ 			};
+ 		};
+ 	};
+-- 
+2.34.1
 
-	at24c01@57 {
-		compatible =3D "atmel,24c01";
-		reg =3D <0x57>;
-	};
-
-	at24cs01@5f {
-		compatible =3D "atmel,24cs01";
-		reg =3D <0x5f>;
-	};
-
-Would become:
-
-	at24cs01@57 {
-		compatible =3D "atmel,24cs01";
-		reg =3D <0x57>, <0x5f>;
-	};
-
-Now the driver takes the "atmel,24cs01" compatible and needs to count the '=
-reg'
-items to determine whether to create one or two nvmem sub-devices.
-
-It's nothing impossible but would be quite tedious and make the driver so m=
-uch
-more complex.
-
-I, for sure, don't have the bandwidth right now to tackle it but I'd happil=
-y
-help with testing and reviewing.
-
-Bart
 
