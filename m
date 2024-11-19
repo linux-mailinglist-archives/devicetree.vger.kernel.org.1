@@ -1,124 +1,172 @@
-Return-Path: <devicetree+bounces-122838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122839-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F168D9D2826
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 15:28:34 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6DD89D283A
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 15:33:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA8781F210D4
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 14:28:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AB2E0B266F7
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 14:32:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5191A1CEAB5;
-	Tue, 19 Nov 2024 14:28:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D7E31CC8BC;
+	Tue, 19 Nov 2024 14:32:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WvK0bjB6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h6XOFGi5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A2D01CCB37;
-	Tue, 19 Nov 2024 14:28:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FFDAE57D;
+	Tue, 19 Nov 2024 14:32:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732026508; cv=none; b=RYmmQzuNU1HoQpmK/s2WKTG6t7a8Gy5wmRBKi3v/S5cFTsNNBKBJfbsFR3OjSmF2qjl4MD3kxB7XYfTQA6m8bKlu6fozPKjTsfhh43DAIJfjp5kgZMdUDW4Hq5VsmeuD7X+5eX3q+fawCA7d+JanM4b2PDHnCdvVZzOqpRP2/LM=
+	t=1732026761; cv=none; b=UQLHzPNgSIXBK4464vtSN3dKO4b0PRl9gKlbBHw45ERA+CzG4iVQ7RZmiRCLfG7GlbwNyq7KLhyLqBhcKZ4shNXTII1fmqtBCPAsxIeArVM8O7a9Gz8fWQoO9USqiufVj+spk90JdiuDMUBjHLHEeT47WurI3c1/ceUlWJaAxXA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732026508; c=relaxed/simple;
-	bh=EljHuHfepTQAteLPcZoK7BrK4kfGbFZ2F4h2gkEyS7o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=j9QoeduX9FUaN9+T4pkfGXUN+t+ZDbsyx9m4OWG/XewDe7yZ4B7mp9nVcaiBJZeZd2+VVbtEwxuIC1CmERY0qcmgVcXWvDAkqFGZuhIdNVbZa6U9oXZqkW9C6b82bvU0eu8s8pwpCtpo1h6ERTF3p6IpNjrH4Rt5J1qt3+ZAhz4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WvK0bjB6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEDB5C4CED0;
-	Tue, 19 Nov 2024 14:28:24 +0000 (UTC)
+	s=arc-20240116; t=1732026761; c=relaxed/simple;
+	bh=Vy/xSgb5FedxmmMMg77kWeYZmEJ5Y6T3eOsGvrKqLlw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MZfDg77ESPDGSTvA1nzVtom8nXTEO0YDbPKtPx0UeGgA0P1Z025Em9HrvswLMmeYWLS8N5N2i3esQNm6amxU8G87WY/2Z7/QVDU6sdVOP/F3XfTd2VEI81JWJAN34poqoScTduNACHHv42okTHHdZGWw4MFlzx6yQSz5W3OGnQI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h6XOFGi5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C643BC4CED0;
+	Tue, 19 Nov 2024 14:32:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732026507;
-	bh=EljHuHfepTQAteLPcZoK7BrK4kfGbFZ2F4h2gkEyS7o=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=WvK0bjB6g7uboBcKH/cHQ1VCGWOyzXLQTLcvjc6HrjQaHi6KIX/5geHJs9tp8Zrfq
-	 ymPwUwee5Gm92nbKHsVYTNHA2eNajFYLWGuMDKdaJHV0F0Kkg79Unf0KU4CJdDq2Vh
-	 vxIkSBTkBjurDVGNFbpucfrzfhHnVRD42I7rnq2qs0K4kRLs/8nN49Hi24R9MHPWud
-	 9NC5heIDo+S5Y4XEbxXCpslUyCdy3KZwqTy2Sb4dzMmivebsq3SZwK9JQ/Fn/e/kP2
-	 ULgS2VjxaDYaJqNxee58GpUUepjYcz3ZT19SR6hn2UzEWz5MGRUwSfd4R4pPO7dxW4
-	 V9uamA0Varm/w==
-Message-ID: <25f72478-62c0-47c1-b2c0-3baf8627cc32@kernel.org>
-Date: Tue, 19 Nov 2024 15:28:23 +0100
+	s=k20201202; t=1732026761;
+	bh=Vy/xSgb5FedxmmMMg77kWeYZmEJ5Y6T3eOsGvrKqLlw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=h6XOFGi5qeg5oj2k+kdbwF+ixh5kgEgjwm8MbIs688ZKhKvHVW3ETGfgFjLrCxyH6
+	 VxnrfjfDTBzNFSVpN7WShHO6a+K6sMAA2Bpps9fNHg0BOdVt7MGtvoGLxzipuX8LVd
+	 keQEoUpoGobxE1RnCmGQTu8pKCCyySbVlrbM88gdEu5pN5fnO7WHvh2qXYmbxSFpOG
+	 tWC1VYB6gvRjSrVFSoGrQ4Ubkv59AebfUn9eyudM19VE4Jmr3NdhH8/Z2B2RXcErkj
+	 ZlVq03BZyfqRGK2C6hOkrzFuj5exaU4dAuJr3fZ3du9UtpQg+gtry64fquF4//KgnA
+	 ppWqcfICOUAeQ==
+Date: Tue, 19 Nov 2024 08:32:39 -0600
+From: Rob Herring <robh@kernel.org>
+To: "Sperling, Tobias" <Tobias.Sperling@softing.com>
+Cc: "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"jic23@kernel.org" <jic23@kernel.org>,
+	"lars@metafoo.de" <lars@metafoo.de>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: Introduce ADS7138
+Message-ID: <20241119143239.GA1201205-robh@kernel.org>
+References: <BE1P281MB24207662EAC941780807F88BEF5A2@BE1P281MB2420.DEUP281.PROD.OUTLOOK.COM>
+ <20241115173657.GA3440948-robh@kernel.org>
+ <BE1P281MB24200EE5C1D08DB1C330A51EEF272@BE1P281MB2420.DEUP281.PROD.OUTLOOK.COM>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: trivial-devices: add sensirion,sht3x
-To: JuenKit Yip <hunterteaegg@126.com>, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, jdelvare@suse.com, linux@roeck-us.net,
- peteryin.openbmc@gmail.com, noahwang.wang@outlook.com, festevam@gmail.com,
- marex@denx.de, lukas@wunner.de, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org
-References: <20241119140725.75297-1-hunterteaegg@126.com>
- <20241119140725.75297-2-hunterteaegg@126.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241119140725.75297-2-hunterteaegg@126.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <BE1P281MB24200EE5C1D08DB1C330A51EEF272@BE1P281MB2420.DEUP281.PROD.OUTLOOK.COM>
 
-On 19/11/2024 15:07, JuenKit Yip wrote:
-> add sensirion,sht3x as trivial device for devicetree support
+On Mon, Nov 18, 2024 at 01:43:02PM +0000, Sperling, Tobias wrote:
+> > On Wed, Nov 13, 2024 at 02:41:08PM +0000, Sperling, Tobias wrote:
+> > > >From 6a06973e1023ca6a128c8d426b4c87887117c084 Mon Sep 17 00:00:00
+> > 2001
+> > > From: Tobias Sperling <tobias.sperling@softing.com>
+> > > Date: Wed, 13 Nov 2024 14:52:49 +0100
+> > > Subject: [PATCH 1/2] dt-bindings: iio: adc: Introduce ADS7138
+> >
+> > Your patch is corrupted.
 > 
-> Signed-off-by: JuenKit Yip <hunterteaegg@126.com>
-> ---
->  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
-I see now you sent the same binding to proper addresses. This is
-therefore a RESEND and please mark it appropriately in the future. git
-format-patch -2 --subject-prefix="PATCH RESEND"
+> Yeah, might look a little different from what you are usually used to see, as
+> I had to copy the patch manually to the mails body. SMTP doesn't work
+> for us unfortunately. Anyway, the patch applies just fine with "git apply",
+> doesn't it for you?
 
-or similar command for b4.
+git-apply doesn't apply the commit message. git-am is what you want. It 
+tripped up my scripts, but that seems to because it has line-feed char 
+in Message-ID. It did apply manually running b4.
 
-Best regards,
-Krzysztof
+There's a b4 relay you can use to send if you can't get SMTP to work. 
+Messing with things manually is asking for trouble.
+
+> > > Add documentation for the driver of ADS7128 and ADS7138 12-bit, 8-channel
+> > > analog-to-digital converters. These ADCs have a wide operating range and
+> > > a wide feature set. Communication is based on the I2C interface.
+> > >
+> > > Signed-off-by: Tobias Sperling <tobias.sperling@softing.com>
+> > > ---
+> > >  .../bindings/iio/adc/ti,ads7138.yaml          | 60 +++++++++++++++++++
+> > >  1 file changed, 60 insertions(+)
+> > >  create mode 100644
+> > Documentation/devicetree/bindings/iio/adc/ti,ads7138.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads7138.yaml
+> > b/Documentation/devicetree/bindings/iio/adc/ti,ads7138.yaml
+> > > new file mode 100644
+> > > index 000000000000..c70ad5747828
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/iio/adc/ti,ads7138.yaml
+> > > @@ -0,0 +1,60 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id:
+> > http://devicetree/.
+> > org%2Fschemas%2Fiio%2Fadc%2Fti%2Cads7138.yaml%23&data=05%7C02%7C%
+> > 7Cf943e3cd23dd4c28422608dd059c1cd9%7Cfe3606fad3974238999768dcd7851f
+> > 64%7C1%7C0%7C638672890241515102%7CUnknown%7CTWFpbGZsb3d8eyJFb
+> > XB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpb
+> > CIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=KFK6uoMuDUTlwSRv5jUd%2FQ
+> > mBqKRHIDCq%2Bb1nWhOkZTk%3D&reserved=0
+> > > +$schema:
+> > http://devicetree/.
+> > org%2Fmeta-
+> > schemas%2Fcore.yaml%23&data=05%7C02%7C%7Cf943e3cd23dd4c28422608d
+> > d059c1cd9%7Cfe3606fad3974238999768dcd7851f64%7C1%7C0%7C638672890
+> > 241534499%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOi
+> > IwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%
+> > 7C%7C%7C&sdata=2Dj6PlC%2BzKkjcxWosWYMd9Wnh71dKJZfXx5af85vQf8%3D
+> > &reserved=0
+> > > +
+> > > +title: Texas Instruments ADS7128/ADS7138 Analog to Digital Converter (ADC)
+> > > +
+> > > +maintainers:
+> > > +  - Tobias Sperling <tobias.sperling@softing.com>
+> > > +
+> > > +description: |
+> > > +  The ADS7128 is 12-Bit, 8-Channel Sampling Analog to Digital Converter (ADC)
+> > > +  with an I2C interface.
+> > > +
+> > > +  Datasheets:
+> > > +
+> > https://www.ti.co/
+> > m%2Fproduct%2FADS7128&data=05%7C02%7C%7Cf943e3cd23dd4c28422608d
+> > d059c1cd9%7Cfe3606fad3974238999768dcd7851f64%7C1%7C0%7C638672890
+> > 241551566%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOi
+> > IwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%
+> > 7C%7C%7C&sdata=MtZjBaLGanD7%2BwQJZDc54CWVVkDbUV1jAv9PixBdOxk%3
+> > D&reserved=0
+> > > +
+> > https://www.ti.co/
+> > m%2Fproduct%2FADS7138&data=05%7C02%7C%7Cf943e3cd23dd4c28422608d
+> > d059c1cd9%7Cfe3606fad3974238999768dcd7851f64%7C1%7C0%7C638672890
+> > 241564942%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOi
+> > IwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%
+> > 7C%7C%7C&sdata=DlLY9HTzdOyvooQA%2FCI%2BQJu0REGlwP2mpR%2Bp6M8C
+> > 5yk%3D&reserved=0
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - ti,ads7128
+> > > +      - ti,ads7138
+> >
+> > What's the difference between the 2?
+> 
+> The 7128 has some more hardware features like a root-mean-square
+> module and a zero-crossing-detect module. Base functionality and
+> therefore, what's implemented in the driver yet, is the same, however.
+
+Please put that in the description.
+
+Rob
 
