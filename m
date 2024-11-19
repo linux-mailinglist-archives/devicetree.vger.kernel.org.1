@@ -1,160 +1,125 @@
-Return-Path: <devicetree+bounces-122793-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122794-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FB8A9D2633
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 13:55:39 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDCDC9D2640
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 13:59:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 76346B2CDD4
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 12:51:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D2C25B2F203
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 12:54:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 152831CC179;
-	Tue, 19 Nov 2024 12:51:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65E5C1CC16D;
+	Tue, 19 Nov 2024 12:53:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="UtSv5NgW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EBD11384BF
-	for <devicetree@vger.kernel.org>; Tue, 19 Nov 2024 12:51:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD69A1384BF;
+	Tue, 19 Nov 2024 12:53:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732020698; cv=none; b=YB35AV3E90SMVoeew1a662MZmgYvLF83ZzPggWCOVXNln5Ws4Bu1xdpiPquYZCsmdUK1itOE8zzOSAblOj1orlmvCsbUFGQmkXIkfCsiepXmEPCQjs3+AGMGtFpUhyyhB1nJm+lxlahq1Z/ZJKqDEwITF6NWvvHY/3Y/fGqWqB4=
+	t=1732020835; cv=none; b=HFm6hXvYL3VxsAcznzIZfgJhc4Jqy7Au992WbTMVwV2cFG5ed42OpjjjtnxM0Glo62AjaZgWJjeTbbsJuaIwlr0MD9nRYpEIVxh4UZeVz2g5rkrxSuRmizGZF/7kzSZ4nIO9vLwgSOHnA/U2LR6wr0Uh/ykVyAf7U2yvwUoin4I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732020698; c=relaxed/simple;
-	bh=8+kO+hmaFU9f3uoEfpMUg23Td4M9jDSb8ePHUvCGZKk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Mk6iU+rMLoMu4h40Q3qwMB/cvAxsGfAW92ifrcgAaCTFufZvzMvL0aL4dyYGk/h0nlRnQ6pz9EraKmSZoFyYVUO1svxPXWBeGpZWWIk5vYcwjvBdRrTTSYK12WYLEJVHEXNfTQaB8jOSZ4M+DIFSXgK/hYb27zpwft/kx5ub5MY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1tDNhc-0003uq-NH; Tue, 19 Nov 2024 13:51:32 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1tDNhc-001ZKn-0G;
-	Tue, 19 Nov 2024 13:51:32 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1tDNhb-003KVN-38;
-	Tue, 19 Nov 2024 13:51:31 +0100
-Date: Tue, 19 Nov 2024 13:51:31 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Sherry Sun <sherry.sun@nxp.com>
-Cc: Bough Chen <haibo.chen@nxp.com>,
-	POPESCU Catalin <catalin.popescu@leica-geosystems.com>,
-	Amitkumar Karwar <amitkumar.karwar@nxp.com>,
-	Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>,
-	"marcel@holtmann.org" <marcel@holtmann.org>,
-	"luiz.dentz@gmail.com" <luiz.dentz@gmail.com>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-	"linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Shenwei Wang <shenwei.wang@nxp.com>, Jun Li <jun.li@nxp.com>
-Subject: Re: [PATCH 1/2] dt-bindings: net: bluetooth: nxp: add support for
- supply and reset
-Message-ID: <20241119125131.pb5lkeryldsl7htq@pengutronix.de>
-References: <DB9PR04MB8429CF700571FE42C997FB9C924D2@DB9PR04MB8429.eurprd04.prod.outlook.com>
- <1b8864e5-0ec7-49c4-932a-89cfbaeacc9f@leica-geosystems.com>
- <DB9PR04MB842929186683C1DF13DCBD92924A2@DB9PR04MB8429.eurprd04.prod.outlook.com>
- <20241028090028.x6rzopvpcdvgouqv@pengutronix.de>
- <DB9PR04MB842960A18BB8570B04A64BEA924A2@DB9PR04MB8429.eurprd04.prod.outlook.com>
- <20241028115150.fgvqaem36lwxwvjh@pengutronix.de>
- <DB9PR04MB8429B10FA73E5333685103FB924A2@DB9PR04MB8429.eurprd04.prod.outlook.com>
- <20241028150048.qnqjxntns6quy7py@pengutronix.de>
- <20241118221759.wvrkvxeh4iop6jtt@pengutronix.de>
- <DB9PR04MB84299E3E1776C60F5D1F0FF792202@DB9PR04MB8429.eurprd04.prod.outlook.com>
+	s=arc-20240116; t=1732020835; c=relaxed/simple;
+	bh=WbijTlLuxpkWpdsD3x3JP84s5e5L3ZuB1ZIlacG8FSE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=gNWOEDRAaT9fdXFGH/PCOL8+Y3zjXzaOhySN3g1REoW6XAUUr39x5zVSgFB4U+3LdupGPRop3zXe4uS9aNZ830RVoVGpHMbAi3ppbv5+o/CZhj8oKXl5GUUA438sE0FshphU+MuN1hM4zpNsupAS2jQQSLFPp5GSUho9MGVUrSA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=UtSv5NgW; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AJCKPWj020192;
+	Tue, 19 Nov 2024 07:53:38 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=d/fmtXw+xu9z4a6CohZ5c0LZ7Ek
+	0JpzhOkkC7fKh0uU=; b=UtSv5NgWA4B2JZlrCKLHQp5bT0A6pZnmSxF2vzhGMhp
+	/mFfuF+o1cAahyf5jRJEXqkWotF0P4fH3u1fw+KxT1MfK8DoeILDpZ6wOR4bo5+n
+	IciCnTuVFgJbX6yI+5YI++lmmq3Def7mnyPjSJxdrTzns79nc2N58MjTItngg9tt
+	dU5/1AtHXVZgt6exxOSAG59oLud1dZSKm9NnGWXVOp+z15i7kOgTnKklanzgYRB8
+	hMnLB7HvVbDy/3j/8gdWTvKX83MCnx0xbIDsLcmLaVFcZUJmAuMwEfPfnXgGHcD+
+	j/Q7IhE/TgCoPYSUADjqMm+i/ZXlMdUY5YAfCkQQlyA==
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 43025m6h93-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 19 Nov 2024 07:53:38 -0500 (EST)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 4AJCrbLg020204
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 19 Nov 2024 07:53:37 -0500
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Tue, 19 Nov 2024 07:53:37 -0500
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Tue, 19 Nov 2024 07:53:37 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Tue, 19 Nov 2024 07:53:36 -0500
+Received: from work.ad.analog.com (HYB-hERzalRezfV.ad.analog.com [10.65.205.9])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 4AJCrOTZ007305;
+	Tue, 19 Nov 2024 07:53:26 -0500
+From: Marcelo Schmitt <marcelo.schmitt@analog.com>
+To: <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
+        <marcelo.schmitt@analog.com>, <jic23@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <marcelo.schmitt1@gmail.com>
+CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 0/4] Timestamp and PulSAR support for ad4000
+Date: Tue, 19 Nov 2024 09:53:19 -0300
+Message-ID: <cover.1732020224.git.marcelo.schmitt@analog.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DB9PR04MB84299E3E1776C60F5D1F0FF792202@DB9PR04MB8429.eurprd04.prod.outlook.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: yu27W09Z8PUvMZmwIqILqqMoC8lC3hSl
+X-Proofpoint-ORIG-GUID: yu27W09Z8PUvMZmwIqILqqMoC8lC3hSl
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
+ priorityscore=1501 bulkscore=0 mlxlogscore=999 lowpriorityscore=0
+ clxscore=1015 malwarescore=0 impostorscore=0 adultscore=0 spamscore=0
+ suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411190095
 
-On 24-11-19, Sherry Sun wrote:
-> 
-> > -----Original Message-----
-> > From: Marco Felsch <m.felsch@pengutronix.de>
-> > 
-> > Hi,
-> > 
-> > gentle ping on this discussion since I'm still convinced that this the correct
-> > approach to add the reset mechanism and handle the power.
-> 
-> Hi Marco,
-> 
-> Sorry for the late reply. After internal discussion, we still have
-> some confusion regarding this new feature.
-> This patch do improve the independent handling of wifi/BT, but with
-> the controlling granularity segmentation, many different wifi/BT use
-> cases need to be considered.
+Complement the ad4000 driver with a timestamp channel, a minor adjust in
+transfer timing, and support for single-channel PulSAR devices.
 
-Sure!
+Change log v2 -> v3
+[IIO]
+- Reverted to direct assignment of ad4000_time_spec structs.
 
-> For the case -- WLAN (SDIO) not used + BT (UART) used:
->
-> The ideal behavior of BT should be reset and the standalone BT FW
-> should be re-downloaded when unloading and re-loading the BT driver.
+V3 had very few changes so I only (re)tested it with AD7687.
 
-To make it clear, I assumed that it's clear that independent
-(sub-)device handling require independent firmware (fw) files, which can
-be the case. NXP already supplies independent FW files for bt and wifi.
-We just need to ensure that the drivers are using these.
+Link to v2: https://lore.kernel.org/linux-iio/cover.1731953012.git.marcelo.schmitt@analog.com/
+Link to v1: https://lore.kernel.org/linux-iio/cover.1731626099.git.marcelo.schmitt@analog.com/
 
-That said the bt driver already checks if the fw has to be downloaded.
+Marcelo Schmitt (4):
+  dt-bindings: iio: adc: adi,ad4000: Add PulSAR
+  iio: adc: ad4000: Add timestamp channel
+  iio: adc: ad4000: Use device specific timing for SPI transfers
+  iio: adc: ad4000: Add support for PulSAR devices
 
-> However, due to the regulator control and PDn reset control are bound
-> to the SDIO bus instead of the WLAN device, the SDIO bus may be ready
-> after kernel boot up.
+ .../bindings/iio/adc/adi,ad4000.yaml          |  71 ++++
+ drivers/iio/adc/ad4000.c                      | 311 +++++++++++++++---
+ 2 files changed, 331 insertions(+), 51 deletions(-)
 
-Right, but this is a separate discussion not belonging to these driver
-changes. Also it's the common chicken-egg issue. You need to power the
-bus and release the device-reset before you can check which device is
-connected and to check if there would be a proper driver.
 
-> Although the WLAN is not used(WLAN driver is not loaded and WLAN FW is
-> not downloaded), the corresponding regulator count and PDn reset count
-> are both incremented by 1 through MMC pwrseq. Then with the BT driver
-> remove & re-probe, the PDn reset cannot truly reset the BT chip due to
-> the count been +1 by MMC pwrseq.  So the BT will not reset and BT FW
-> won't be re-downloaded when re-loading the BT driver, right?
+base-commit: 9dd2270ca0b38ee16094817f4a53e7ba78e31567
+-- 
+2.45.2
 
-You're aware that the btnxpuart.c driver already has the support for an
-independent software based reset? Not sure what this sw-reset does, due
-to the lack of missing documentation, but this is the only option to
-over-come your above mentioned use-case.
-
-I have to ask, is this really a use-case for someone? Either your device
-supports both: WLAN and BT or only one of WLAN/BT. If it would be only
-BT or WLAN you just don't need the specify the other one within your
-devicetree.
-
-Furthermore, this patchset does not break any current use-case you/NXP
-has. You still can use the combined fw version and still can use the not
-so user friendly user-space dependency of: "wlan driver _must_ be
-loaded" before the "bt driver _can_ be loaded" by just not using the
-split power handling. For use-space which wants to use the split version
-because there is no such dependecy.
-
-Regards,
-  Marco
 
