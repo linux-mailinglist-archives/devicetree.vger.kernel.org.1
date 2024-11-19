@@ -1,57 +1,78 @@
-Return-Path: <devicetree+bounces-122684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E4609D1EB8
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 04:13:09 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1AFF9D1EC3
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 04:23:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0BCF5B22929
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 03:13:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3E9F2B22499
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 03:23:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 660E5148850;
-	Tue, 19 Nov 2024 03:12:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D1FE13777F;
+	Tue, 19 Nov 2024 03:23:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="o1X66wiF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from freeshell.de (freeshell.de [116.202.128.144])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E17CC14265F;
-	Tue, 19 Nov 2024 03:12:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 966F01EA90;
+	Tue, 19 Nov 2024 03:23:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731985969; cv=none; b=LXlUG3tGyVegNX5qi/rJ0/DllObBqdVKdixzhLMsy9iv50Kwu6dsBkc03Q9hE7PxdZPrIl73+MHNTPVV42NbWE9UiK/8r9f+kpYe1VUOVBTvnuAy0IRDdcjDlnBrsjRFOx0c8nWzLzUS66H+q3MnU4QFqgyovJxUOSIDbLWJ/Jc=
+	t=1731986624; cv=none; b=ryu7Gknrs94ZL/CvEpGGI8kE1twCcwZzoClb+IhZuks9BoGJcEDYW5Lv0dwZXmdE2jqZmd9ZukEVUdd639EdhERMDRrdVGqU9ndVH7eBPCSyacIIHgUz4v6z7OmAfF/TixVh+UUPJG8xYiIalc3AYoh05R6KJdM24IFlMMRuOCg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731985969; c=relaxed/simple;
-	bh=55lsoAMqnQW7RdluKV+aM23Lg9U3u195xDvNC5mF7TI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=RwL3ohhQqtedHFb7vzvk0LnrEQfUnAlPljFnh1wNyWuad5N6mD4EiJzgxKHpEkmZAObR30UjLFXNpKhEJLzYImMFDw9HQklx0691hceyQ9u3fH56Q2bOP1e6cnHfvQfmZjZz241K+Dw46W5UD9CISDRCzqm7H9RSmX2BojLAncs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
-Received: from hay.lan. (unknown [IPv6:2605:59c8:31de:bf00:6ecf:39ff:fe00:8375])
-	(Authenticated sender: e)
-	by freeshell.de (Postfix) with ESMTPSA id E0AA1B22848E;
-	Tue, 19 Nov 2024 04:12:42 +0100 (CET)
-From: E Shattow <e@freeshell.de>
-To: Henry Bell <dmoo_dv@protonmail.com>
-Cc: E Shattow <e@freeshell.de>,
-	Conor Dooley <conor@kernel.org>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/1] riscv: dts: starfive: jh7110-pine64-star64: enable usb0 host function
-Date: Mon, 18 Nov 2024 19:12:19 -0800
-Message-ID: <20241119031232.50726-2-e@freeshell.de>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241119031232.50726-1-e@freeshell.de>
-References: <20241119031232.50726-1-e@freeshell.de>
+	s=arc-20240116; t=1731986624; c=relaxed/simple;
+	bh=GFlGqjY/VVJjjiO67xTLvF1XwRG9gVfrJqEaFYrmed0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=WeBQl6mQn/RtpxZmBekIizHgWd/CzEXZkGqLBuNKfETCObAPJgaK8OyFSluWYlrk9fxqDTt8TajA05TinOMbHnFBU+p/eKbqZtCA4lskmMv2GJFcSMDmlH+5vx3jbdw1wDRKN9raUH54CqKzm9Ni6NxN2FxzTZ1Si1GgasXIwrc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=o1X66wiF; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AJ28h2O020206;
+	Mon, 18 Nov 2024 22:23:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=B7VVwe09JJvSKovEhmCTdIJ+zaE
+	ZO8DHn8K93fIRW5k=; b=o1X66wiF6CZbkcQSbsIJwqYJF42IJt9/dZ01S4T4CMz
+	WRYi45n6K2Nsnud4BOyFCQ8ycdGnUmmimUWsJTNGmFOD4Q3CXqd+quEvCcoUvLMj
+	Az9WFpOMyWUT8rjboX6WqUlbcvsEiDb2HHMmK3ZdXyrmI/mU7njUDHXc1IURDMAd
+	Ucw5lzGEZu2klApHwuAtNHjw08/bGtNVrOPhRv2T8Z5MrX/y/idPB3UjpY1HSi9x
+	hFdYVjSiJYn7Q+GrfmLpSEHm7YoM9rKIv19yd1emPhoACAjUjy2KUUSYI9P2OM15
+	1QFNKHKH1I3MvoU0elQs9AVgOAcTWz7O+7EOoYBH4EA==
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 43025m4ahy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 18 Nov 2024 22:23:35 -0500 (EST)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 4AJ3NXT5039435
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 18 Nov 2024 22:23:33 -0500
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Mon, 18 Nov
+ 2024 22:23:33 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Mon, 18 Nov 2024 22:23:33 -0500
+Received: from kim-VirtualBox.ad.analog.com (KPALLER2-L03.ad.analog.com [10.116.18.26])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 4AJ3NJqV002613;
+	Mon, 18 Nov 2024 22:23:22 -0500
+From: Kim Seer Paller <kimseer.paller@analog.com>
+To: <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Mike Looijmans <mike.looijmans@topic.nl>,
+        Kim Seer Paller
+	<kimseer.paller@analog.com>
+Subject: [PATCH v3 1/2] dt-bindings: power/supply: Add ltc4162-f/s and ltc4015
+Date: Tue, 19 Nov 2024 11:23:03 +0800
+Message-ID: <20241119032304.23588-1-kimseer.paller@analog.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,44 +80,65 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: f4ZXAkHp-GSBeAoaa0DskMkFTS0gJuT-
+X-Proofpoint-ORIG-GUID: f4ZXAkHp-GSBeAoaa0DskMkFTS0gJuT-
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
+ priorityscore=1501 bulkscore=0 mlxlogscore=999 lowpriorityscore=0
+ clxscore=1015 malwarescore=0 impostorscore=0 adultscore=0 spamscore=0
+ suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411190027
 
-Pine64 Star64 set host mode and vbus pin for JH7110 on-chip USB 2.0
+Add LTC4162-F/S and LTC4015 to the supported devices of LTC4162-L.
+They share a common set of registers. The only differences lie in the
+resolution value of the scaling factor for battery voltage and battery
+current measurement, input voltage, and input current for different
+battery chemistries. The differences also include the calculation of
+setting and getting the actual voltage applied to the charge voltage,
+as well as getting the die temperature.
 
-Signed-off-by: E Shattow <e@freeshell.de>
+This add compatible entries for ltc4162-f/s and ltc4015 and include
+datasheets for new devices.
+
+Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
 ---
- .../boot/dts/starfive/jh7110-pine64-star64.dts | 18 +++++++++++++++++-
- 1 file changed, 17 insertions(+), 1 deletion(-)
+V2 -> V3: Described differences in the programming model between variants/devices.
+V1 -> V2: Modified commit message describing differences between
+          variants/devices.
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts b/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
-index fe4a490ecc61..b764d4d92fd9 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
-+++ b/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
-@@ -80,7 +80,23 @@ &spi0 {
- 	status = "okay";
- };
+ .../devicetree/bindings/power/supply/ltc4162-l.yaml         | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml b/Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml
+index 29d536541..9b546150d 100644
+--- a/Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml
++++ b/Documentation/devicetree/bindings/power/supply/ltc4162-l.yaml
+@@ -17,12 +17,18 @@ description: |
+   panels, etc., and a rechargeable Lithium-Ion/Polymer battery.
  
-+&sysgpio {
-+	usb0_pins: usb0-0 {
-+		vbus-pins {
-+			pinmux = <GPIOMUX(25,  GPOUT_SYS_USB_DRIVE_VBUS,
-+					       GPOEN_ENABLE,
-+					       GPI_NONE)>;
-+			bias-disable;
-+			input-disable;
-+			input-schmitt-disable;
-+			slew-rate = <0>;
-+		};
-+	};
-+};
-+
- &usb0 {
--	dr_mode = "peripheral";
-+	dr_mode = "host";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&usb0_pins>;
- 	status = "okay";
- };
+   Specifications about the charger can be found at:
++    https://www.analog.com/en/products/ltc4162-l.html
++    https://www.analog.com/en/products/ltc4162-f.html
+     https://www.analog.com/en/products/ltc4162-s.html
++    https://www.analog.com/en/products/ltc4015.html
+ 
+ properties:
+   compatible:
+     enum:
+       - lltc,ltc4162-l
++      - lltc,ltc4162-f
++      - lltc,ltc4162-s
++      - lltc,ltc4015
+ 
+   reg:
+     maxItems: 1
+
+base-commit: 05d9044177c3e910921522e0209640d3b825a6ae
 -- 
-2.45.2
+2.34.1
 
 
