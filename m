@@ -1,62 +1,67 @@
-Return-Path: <devicetree+bounces-122922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122923-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73BC59D2C39
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 18:14:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 167B29D2C41
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 18:15:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3A4E02840CB
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 17:14:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF5C0284C7F
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 17:15:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 411901D0E39;
-	Tue, 19 Nov 2024 17:14:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 896B51D0438;
+	Tue, 19 Nov 2024 17:15:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Abev9CKP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mFkNmuFI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 120951CF5C7;
-	Tue, 19 Nov 2024 17:14:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6115414A639;
+	Tue, 19 Nov 2024 17:15:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732036452; cv=none; b=ZgDepKs9V61ICv+4ABRdHe+4qPLHf9ugv/++ObcoC0lvQji7PyWTEsCH90xVevM2HkoluYQvfmI4FKXkjyBCoJvCxl8KDHCVAnDPOBE3Txnt37ofRCwL0KG+oq/L4YCXWOGUCsum/LA3IPmo17SLAyHeI4Jm0IHR0rAiw5Eg4is=
+	t=1732036500; cv=none; b=OLBhyLJ2P6Z8EkBVznhYJq+S+7gO1I6tV2FNqQEyMMwAc3aVBw7zH1G8F2AbIKPdo/uz+udv1DCu5VxwM3vfXZ1NKQFxcLFydh2HVej+isaNT/AJr6YgPoa0mgJJuC46M6dnYZb2Tx7KVHUNlJ4M6C+SZBCt9CNdujsyykiyDGM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732036452; c=relaxed/simple;
-	bh=SpYWF5BuNymVlgtPmYea7bJ82YUuZDD1naojG4vo4W0=;
+	s=arc-20240116; t=1732036500; c=relaxed/simple;
+	bh=GN8+TZ7dF+OVIe4W1EKDcGDnhm2IukYPViQYE4iYxxI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X1X0WUUOC7ks4pWZSqFF48noWJ8wPUGNhrHjyPT70yjzgjCT/mTXre7a9+Ll55m8fA2gxq15ssI+2dVj43pRxhMd/LVlWArRwYGCMd+TwUUoKRLDiLgyGDPrh4t5SaXQUDuGjwacLSZrJUf5z5Atxv+u/ArtQxRgGZ7OOWYfrTo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Abev9CKP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55946C4CECF;
-	Tue, 19 Nov 2024 17:14:11 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=i6X8c2LaLiifQVJa/itHWIfdIUv75o0dx+HPfXFtEjboYNRONbtHoMkBAQzV2/m3ZZm0ush6YUafw1R+Hj/pwO7PlKdj+6NTwq+i2wvTgwFEmhslVSWOPZuXZXj6HlaKmvEKgJvmM5mrh7QitJRV/sOxmZN+OLIbixwGaqg+ptI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mFkNmuFI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A576AC4CECF;
+	Tue, 19 Nov 2024 17:14:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732036451;
-	bh=SpYWF5BuNymVlgtPmYea7bJ82YUuZDD1naojG4vo4W0=;
+	s=k20201202; t=1732036499;
+	bh=GN8+TZ7dF+OVIe4W1EKDcGDnhm2IukYPViQYE4iYxxI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Abev9CKPq6SLcS249mjBIdGpgW96Y2N9Jc6+YkuTkSC40mRIE+6vjDo3Xszgi9QWG
-	 wnv5Z3i5pGBc39/I0viYN9Yvj3xfFq4wxblnKlm4RmTpAxqjrrlwA0qQfTfaONSzE6
-	 VKRdMCBnJNbOCURTF7fwVL79Z1Tk+sAbzf1KzSGHIp5hWFLUB7BvdxcYF1V34mHsVc
-	 6uBCbtkvffaHBm03ZAf1aY+QHJ7eGYs7VxdCWW/N4pBrIG7VZDspc7KSxeAIVITNll
-	 1S/xkSrhBYfp7A0d/iSbIJo+F/MJKaBkm6tQQy4MZlmaz6OHuN3fRAY1YrLsM/YPqw
-	 Fdmq5j2mULoKw==
-Date: Tue, 19 Nov 2024 11:14:09 -0600
+	b=mFkNmuFI0VPYtiVbAwXPrbGkTuTUbPU6g9oXTqPo6Unhg+izBDfYIR4zM3nkFGI1k
+	 oOxQL0b5JS3pJjPUiOjTrjYWA2LhN6xCyZYG2TZVtBzk08qRTJM0kJhbVJFuLT+VW/
+	 TbQmcC8SQGV4WUvDYF6C76olltJCaKuhUdRU6eyQk3iiOFpM4i+xYfMVLKPrr1JBk1
+	 S6/0JvVCpvknj1HblDsNHhUpBKeWvNX/SUyXyROAFV6tuaA2b25rdu9Im3V+XdZ+xt
+	 GSV3+QDX00RH+S8AdpGtW6W0XHTOBzM5+xJt7+kqMmhoHHX1k5Tkh3vfidy5b+PNTa
+	 KhiQvZ+qcSIcA==
+Date: Tue, 19 Nov 2024 11:14:58 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>,
+	Maxime Ripard <mripard@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	David Airlie <airlied@gmail.com>, devicetree@vger.kernel.org,
+	kernel@collabora.com, Sandy Huang <hjc@rock-chips.com>,
+	linux-arm-kernel@lists.infradead.org,
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
+	Andy Yan <andy.yan@rock-chips.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH] dt-bindings: remoteproc: Consolidate SC8180X and SM8150
- PAS files
-Message-ID: <173203644923.1838066.16484557197129964234.robh@kernel.org>
-References: <20241116-topic-sc8180x_rproc_bindings-v1-1-ae5d3f7ab261@oss.qualcomm.com>
+	Simona Vetter <simona@ffwll.ch>
+Subject: Re: [PATCH 1/5] dt-bindings: display: vop2: Add optional PLL clock
+ properties
+Message-ID: <173203649757.1839089.16877007589155949446.robh@kernel.org>
+References: <20241116-vop2-hdmi0-disp-modes-v1-0-2bca51db4898@collabora.com>
+ <20241116-vop2-hdmi0-disp-modes-v1-1-2bca51db4898@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,22 +70,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241116-topic-sc8180x_rproc_bindings-v1-1-ae5d3f7ab261@oss.qualcomm.com>
+In-Reply-To: <20241116-vop2-hdmi0-disp-modes-v1-1-2bca51db4898@collabora.com>
 
 
-On Sat, 16 Nov 2024 12:40:04 +0100, Konrad Dybcio wrote:
-> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+On Sat, 16 Nov 2024 20:22:32 +0200, Cristian Ciocaltea wrote:
+> On RK3588, HDMI PHY PLL can be used as an alternative and more accurate
+> pixel clock source for VOP2 video ports 0, 1 and 2.
 > 
-> SC8180X PAS bindings are plain wrong, resulting in false-positive
-> dt checker errors. SC8180X's remoteprocs happen to be identical to
-> SM8150's from the kernel point of view, so reuse that binding instead.
+> Document the optional PLL clock properties corresponding to the two HDMI
+> PHYs available on the SoC.
 > 
-> Fixes: 4865ed136045 ("dt-bindings: remoteproc: qcom: pas: Add SC8180X adsp, cdsp and mpss")
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 > ---
->  .../bindings/remoteproc/qcom,sc8180x-pas.yaml      | 96 ----------------------
->  .../bindings/remoteproc/qcom,sm8150-pas.yaml       |  7 ++
->  2 files changed, 7 insertions(+), 96 deletions(-)
+>  Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
