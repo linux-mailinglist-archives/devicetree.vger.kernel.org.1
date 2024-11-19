@@ -1,110 +1,133 @@
-Return-Path: <devicetree+bounces-122976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 093F39D2F49
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 21:08:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 644CB9D2F55
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 21:11:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C2D0C283783
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 20:08:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2778CB272EB
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 20:11:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAD9A1D2223;
-	Tue, 19 Nov 2024 20:08:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10A1C1D2B10;
+	Tue, 19 Nov 2024 20:11:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="f+e0gTq0"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VPVzkLUf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94BA21D0B8A;
-	Tue, 19 Nov 2024 20:08:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FCCB153835;
+	Tue, 19 Nov 2024 20:11:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732046925; cv=none; b=NRP95SWKminuJx7+aBLWxo7q+V/jqzDT1vBo79Vmn57GAZYOGJEZ46UtJ0jCTwwiYa36f5KJ/nFfK5qqt6P08L+98ct2B3qBcYUa2pJTdR/Cn762OtGUkZxNs45FUKr6mAaBVp9G/w3tQ/bd8BCdH7UAqF/gcFxxHnpi4kWOnRs=
+	t=1732047073; cv=none; b=YeN2pLtlAAavL8V3VzILjs3IxRC72caxJM3p+dVUzfVTI/BOPPEizHzch9M/+pe4Ec/vihwXG4jjaA73p2GFJ1XYQM0gWCjheYbRuPtPJOX1/G01K4S7rR7wGuRssQ5//Du5MFb+O/K8sBOgEPfNR3OCnxcO8foVd1IcQ0UKq68=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732046925; c=relaxed/simple;
-	bh=lLzg9+6eTjOhVoncCX1Vabji7fScA+C+fCESNgIGa+c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BmRfRXmJRtzkWbXkMK9+bAyBafX5hpYTH3Jp1/dqcQouvrXJnkp02CoRk8xPJ54irC0n939TCPySWRyDng1sQpQptYltHC3QJ2rqeEjkrPhIjfdKyoJw9AHIB1TdmRKjQQrPAqGH+0fa0mMfgSMsuOWoVH17qCpLN+ljPUaUbqI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=f+e0gTq0; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=M75wr+RtGR69btb4zt6e59/ZF6kWZbGMj4HSvNiWvzU=; b=f+e0gTq0vLIOgdCVVAy5MBA56G
-	+oGx3wA072dSyK4Tp5LcqUgRzQqPHkpyv2Ma2mhVdCMwwmodTIXnF+NmETti+7WSnr40jH2PQ/NlJ
-	2QscEibO6cdC85nZidaoFHBUUCGrULKLM/81tcA2qEFsUdEtQchnrISF6aXgfZLGIR6PB9eEm8Gmr
-	wHiGc1xZv4/K4nCGZbdxRLpfegEGXYrRDGuILdFwJkJpTKRsjop4b/NxfGf4iBAuJTTHDKxp/gei9
-	dl/PXC4Q0FJfSZkgY/3FgqF8XF2X5KkyiHcz1ng9VcDwHEljCqW5wjdVWANPgcWIHx4l7vTqoH9qS
-	IXAhD9zQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:38454)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1tDUWO-0004Ky-2Z;
-	Tue, 19 Nov 2024 20:08:25 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1tDUWM-0006KU-05;
-	Tue, 19 Nov 2024 20:08:22 +0000
-Date: Tue, 19 Nov 2024 20:08:21 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Daniel Machon <daniel.machon@microchip.com>
-Cc: UNGLinuxDriver@microchip.com, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Lars Povlsen <lars.povlsen@microchip.com>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	jacob.e.keller@intel.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH net-next v3 4/8] net: sparx5: use
- phy_interface_mode_is_rgmii()
-Message-ID: <ZzzwNci1cHqsfHm4@shell.armlinux.org.uk>
-References: <20241118-sparx5-lan969x-switch-driver-4-v3-0-3cefee5e7e3a@microchip.com>
- <20241118-sparx5-lan969x-switch-driver-4-v3-4-3cefee5e7e3a@microchip.com>
+	s=arc-20240116; t=1732047073; c=relaxed/simple;
+	bh=rSituOJrRNz6zH8xI0pVCVWA9bP2bhYuyASCgbKHarY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Xnbt+gaqep09GYHgpzVBHSmRF/sBk0lXyHrJVviTHIpR8R13PFULwMmSMXJEeZGOFE86jnQiR0GvsnVTuYw2t9/ivbfynKCVpJrubfHc3cykYYlrTOuk6u7kgmEWQKmpqwC4f+2F7JSk3qqqo9b3XSYIzl0ILyaSrkRbZPD1D8Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=VPVzkLUf; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AJAYnfu007872;
+	Tue, 19 Nov 2024 20:11:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	sxPXjPDaTQBw3jBSkf+bpcp8+tu2oQqE7OEE9+eNkAM=; b=VPVzkLUfsd75mVuZ
+	Tx5wuPQJwbcmoxe2iepddlQ5Voan2tE5lplUULiX1pQKjUwXR1ceiZa0rL7g8DWd
+	Ah20LVZvg0d3VmE+BRZ1vSBBce5dhXUsl1petZ2G+WFfkPHyE0LADcsWpfs6YAXb
+	bdQeI8G32wCUVuBb4+UMgoY9nxTEJ3We/HYv2S+cH5E0MXFGsMCfs6gHgB7/EAa/
+	1NSEaGTZ/cAM9d+/9hgkA5debY7Zs8aSut44OmwwHj1XgEKGh1BQdvOF9kkrNW8m
+	IL7PqYb3oc7qZ+Od03yzgq9MgBmObTnnr99pmfv9/xw5DyDUgim4ijNkn7MbUDYl
+	kJDf6g==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4308y6usyn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 19 Nov 2024 20:11:11 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AJKBA6Z002838
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 19 Nov 2024 20:11:10 GMT
+Received: from [10.216.16.143] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 19 Nov
+ 2024 12:11:06 -0800
+Message-ID: <30fda0e2-f314-49b8-8c1c-bf4fac87050d@quicinc.com>
+Date: Wed, 20 Nov 2024 01:41:03 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241118-sparx5-lan969x-switch-driver-4-v3-4-3cefee5e7e3a@microchip.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: qcs9100: Update memory map for QCS9100
+ Ride and QCS9100 Ride Rev3
+To: Pratyush Brahma <quic_pbrahma@quicinc.com>,
+        Bjorn Andersson
+	<bjorn.andersson@example.com>,
+        Konrad Dybcio <konrad.dybcio@example.com>,
+        "Rob Herring" <rob.herring@example.com>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@example.com>,
+        Conor Dooley <conor.dooley@example.com>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_tengfan@quicinc.com>,
+        <quic_shashim@quicinc.com>
+References: <20241119092501.31111-1-quic_pbrahma@quicinc.com>
+Content-Language: en-US
+From: Kuldeep Singh <quic_kuldsing@quicinc.com>
+In-Reply-To: <20241119092501.31111-1-quic_pbrahma@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: H2nW38eyBv7ErXnkdnqSClquZtx3rPWD
+X-Proofpoint-GUID: H2nW38eyBv7ErXnkdnqSClquZtx3rPWD
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 suspectscore=0
+ impostorscore=0 bulkscore=0 mlxscore=0 malwarescore=0 mlxlogscore=806
+ phishscore=0 spamscore=0 priorityscore=1501 lowpriorityscore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411190150
 
-Hi,
 
-On Mon, Nov 18, 2024 at 02:00:50PM +0100, Daniel Machon wrote:
-> diff --git a/drivers/net/ethernet/microchip/sparx5/sparx5_phylink.c b/drivers/net/ethernet/microchip/sparx5/sparx5_phylink.c
-> index f8562c1a894d..cb55e05e5611 100644
-> --- a/drivers/net/ethernet/microchip/sparx5/sparx5_phylink.c
-> +++ b/drivers/net/ethernet/microchip/sparx5/sparx5_phylink.c
-> @@ -32,6 +32,9 @@ sparx5_phylink_mac_select_pcs(struct phylink_config *config,
->  {
->  	struct sparx5_port *port = netdev_priv(to_net_dev(config->dev));
->  
-> +	if (phy_interface_mode_is_rgmii(interface))
-> +		return NULL;
-> +
->  	return &port->phylink_pcs;
 
-Maybe turn this into positive logic - return the PCS only when the
-interface mode requires the PCS?
+On 11/19/2024 2:55 PM, Pratyush Brahma wrote:
+> This patch series is based on Tengfei Fan's patches [1] which adds support
+> for QCS9100 Ride and QCS9100 Ride Rev3 boards.
+> 
+> Some new carveouts (viz. gunyah_md and a few pil dtb carveouts) have been
+> introduced and the size and base addresses have been updated for
+> a few of existing carveouts compared to SA8775P. Also, tz_ffi_mem carveout
+> and its corresponding scm reference has been removed as it is not required
+> for these boards. Incorporate these changes in the updated memory map
+> for QCS9100 Ride and QCS9100 Rev3 boards.
+> 
+> [1] https://lore.kernel.org/all/20240911-add_qcs9100_support-v2-4-e43a71ceb017@quicinc.com/
+> 
+> Signed-off-by: Pratyush Brahma <quic_pbrahma@quicinc.com>
 
-Thanks.
+The memory map for qcs9100-ride-r3 and qcs9100-ride is exactly same.
+A good churn you are first deleting(based on sa8775p) and then re-adding
+for qcs9100-ride*.
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+I think it's better to move common qcs9100-ride* to a common file ex:
+qcs9100-ride.dtsi and keep specifics further to .dts files?
+
+This will ensure common entities are present at same place with no
+duplicates.
+
+--
+
+Regards
+Kuldeep
 
