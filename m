@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-122708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ABBB9D20E3
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 08:41:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C7E749D20F9
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 08:51:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 18ECBB2151E
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 07:41:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 74030B21A56
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 07:51:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE821195F28;
-	Tue, 19 Nov 2024 07:40:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24779196C7C;
+	Tue, 19 Nov 2024 07:50:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o1dK3y78"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tn+xRTUA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 910E91482F3;
-	Tue, 19 Nov 2024 07:40:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E91926E2BE;
+	Tue, 19 Nov 2024 07:50:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732002051; cv=none; b=gGm7TEmf+c0VyMjNoEa6VNT9pvV00paZg4AR8OKpTRAThYZBrlzDZPjgQApVv42IiraKl8hsUJC2HvUBI3aCJlGYxUsRgM2LyeQg3xtGE8z8T/4K/T1GUKT6D/36Sbh2HtKRBlk2LVkmfF+Q12Q1Kg6VqdQA7YT8hetKNKUTvxw=
+	t=1732002645; cv=none; b=rlZJpRMMyPT5V8eUcTTbRHRTwKURS/XJUpSnv1HJBifiP3gy0erAE1V+dlHXL2a1HdoTq+x55A9CQkQwTZe8wShyzmwK/cGri8k4/aPKT0uxdQKF7n9tOY6GPrS1I4/pdWW10ej0xGBszyKP2ibzLBPqLl9L25XeE0WFUxThgjM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732002051; c=relaxed/simple;
-	bh=kgkPNYxGxqHFjWOcGvWsb/pjlSuJLCGIWHdWG9UrqR0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=Kc+WWHIdWhB6Kd14gBZheymjVzDlTKbooDG/2egkfxCosweyBPP1zhW/088wXnQ7eRXP2OwY/THK7/dRTC6OVyrihzr45UUbSZF9ARjTD4mwyjWVfJeKWTX9nY3MJLsf2hPkGQSxfiSQB5sc+yZgR6c7cZiqYSL9g2sehFSmhN8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o1dK3y78; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AC6CC4CECF;
-	Tue, 19 Nov 2024 07:40:46 +0000 (UTC)
+	s=arc-20240116; t=1732002645; c=relaxed/simple;
+	bh=O40Vaqde/Al2ROtl8voyLDMNlGefus7LGsE/B7MtOJ0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NtaZftLqjvCe0egGMnzMqqxSGRmtJh3iJcVra0pRUk/kRTZNkcSD7U+0pD1r/6Jtdc9i5eMgsiBV8R1t+LhWEakSM9h9NadqsVeGgb6+ciuzouqccJNiiEnBjX4lMn+2W6EZzaQxM0XBTyHoAweyRG35sI6khlxqspx2lG/b6Ew=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tn+xRTUA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BE4DC4CECF;
+	Tue, 19 Nov 2024 07:50:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732002051;
-	bh=kgkPNYxGxqHFjWOcGvWsb/pjlSuJLCGIWHdWG9UrqR0=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=o1dK3y781Lf3gJcAaXWMpVBuRzQh1Bv1mydHDaKsufSvoCsoXDG4HyWvAGj6fiqMt
-	 vZGbq6fDIyMI297eAssyETvb2jDWQ6MMmnS5R67+joQwKRdgZVZrV7uJIhGfEUDjX2
-	 Ym3T6h2s2lbs60cQqo1lw2Noi47IIYvN2IbYVhmrhooMRpawWIzTdCmKt3rFw0MnDE
-	 81LtEX8a4sWNajxQ0MV5os1sihSW7shmKb+LBKlJjhL+KIExOAKtbSAUl8gBuUa/qj
-	 GWriVPndWsUBqjBXBqB4TB37FwnSLRndeaXPANwxkp2dNQQH/1syzw3mLJr3gVX//i
-	 U/n4VyXzI9Rdw==
-Message-ID: <10d4050b-47c8-4ba1-9c47-7fd12187186f@kernel.org>
-Date: Tue, 19 Nov 2024 08:40:44 +0100
+	s=k20201202; t=1732002644;
+	bh=O40Vaqde/Al2ROtl8voyLDMNlGefus7LGsE/B7MtOJ0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Tn+xRTUAK9wP2C9qyUr/m+/Z8ihDtRgbyfh59RFf5ND2/NfOuHcPxJ6jdBew1FJqS
+	 zGdtJyxpBCO9yMLR5MQCpg8bFxrweM5Pw6WA4VAZJYl2ZmAQBGOhOlGM+gpsnlaoyH
+	 WiqcZSGtDkpSZkkmgOjgebTOS4QfSm507Aiuj9gPdSnvr/Kwc8JD79NJqIaB6uyAPK
+	 kZzbiE6Qw8HGjyw00YEZ0ENYc1OX40cf2N2HfbRHIcXxnhowibEPR6z8+tczQ4YQ13
+	 G+pmS6FIz7bfoj7J+sGemd0APCbylgTwO6tzuLB55Ydxnd35HXyYxZbOQy8TOM/Dqf
+	 q0/zjR22wSgEQ==
+Message-ID: <80771196-0233-4c64-bf8f-f7a1ca0693c6@kernel.org>
+Date: Tue, 19 Nov 2024 08:50:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [net-next v2 1/7] dt-bindings: net: ftgmac100: support for
- AST2700
-To: Jacky Chou <jacky_chou@aspeedtech.com>, andrew+netdev@lunn.ch,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- p.zabel@pengutronix.de, netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20241118060207.141048-1-jacky_chou@aspeedtech.com>
- <20241118060207.141048-2-jacky_chou@aspeedtech.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: phy: Add ExynosAutov920 UFS PHY
+ bindings
+To: Sowon Na <sowon.na@samsung.com>, robh@kernel.org, conor+dt@kernel.org,
+ vkoul@kernel.org, alim.akhtar@samsung.com, kishon@kernel.org
+Cc: krzk+dt@kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20241118021009.2858849-1-sowon.na@samsung.com>
+ <CGME20241118021011epcas2p21593217ccf58afddad5ce36f510e7cb6@epcas2p2.samsung.com>
+ <20241118021009.2858849-2-sowon.na@samsung.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,23 +105,19 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241118060207.141048-2-jacky_chou@aspeedtech.com>
+In-Reply-To: <20241118021009.2858849-2-sowon.na@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/11/2024 07:02, Jacky Chou wrote:
-> The AST2700 is the 7th generation SoC from Aspeed.
-> Add compatible support for AST2700 in yaml.
+On 18/11/2024 03:10, Sowon Na wrote:
+> Add samsung,exynosautov920-ufs-phy compatible for ExynosAuto v920 SoC.
 > 
-> Signed-off-by: Jacky Chou <jacky_chou@aspeedtech.com>
+> Signed-off-by: Sowon Na <sowon.na@samsung.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
 
-Please use standard email subjects, so with the PATCH keyword in the
-title. `git format-patch -vX` helps here to create proper versioned
-patches. Another useful tool is b4. Skipping the PATCH keyword makes
-filtering of emails more difficult thus making the review process less
-convenient.
-
-For net next it is PATCH net-next
+Read carefully guides before posting new versions. You already got one
+such reminder, how many are needed?
 
 <form letter>
 This is a friendly reminder during the review process.
@@ -139,8 +136,6 @@ https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submittin
 
 If a tag was not added on purpose, please state why and what changed.
 </form letter>
-
-I am not going to do the work twice.
 
 Best regards,
 Krzysztof
