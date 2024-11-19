@@ -1,230 +1,240 @@
-Return-Path: <devicetree+bounces-122982-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122984-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 555D19D2FAD
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 21:42:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE4C79D302D
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 22:56:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9083FB2A04B
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 20:39:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 35459B20F4A
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 21:56:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A1C91D3566;
-	Tue, 19 Nov 2024 20:39:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C9741D2F64;
+	Tue, 19 Nov 2024 21:56:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fUdJEGNf"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="Wu1Uld26"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 357261D2F55;
-	Tue, 19 Nov 2024 20:39:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 754A51D0B9E;
+	Tue, 19 Nov 2024 21:56:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732048746; cv=none; b=JeVa87hsWr5IfhmOGdIk2kRTeryyJXitVo3Xgoq+Ic6VNunZRiMCr+QSHVYertMxiutWdKwXtBJTeLLJi7Rji15OYCuxe1P1cLhxT9eXUfey7u2ncxWM18RpzOuNG+cP6dlZlpikT9l+57ug8YrsOThBBj+bfO7ELMHlvIRL49w=
+	t=1732053401; cv=none; b=gW7/GjLBC0aj0vV1NZxpsChsOJEdBxgyK/jYB1Lx2a3090lDTCJaMXJmS1d2tebBYmgmEvT2HJja6SCee9MqyUfwecHileabCwooXQmm9m6VkfQFZV4+3GLdzK5+S4tMtGFyIFIezv1nfT+IL7Kfhz1fOkDjC0P7S6hgwYTNYEA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732048746; c=relaxed/simple;
-	bh=OOWExM1N60jCy1dSIf8NXBKIEYTUdBfF3QKNExZ85/s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZBPhe9jz5+tFWuGJ8mikUkZS0Pk7s8UhQLsnTVPjdZuQx0vWXENDMRPzDWpxDaBFkvhCfdo9Was+7P+Q40zHCyeyn1ziY9U7dSeovw5eiiOlJUUYofO4RLo+OE7iSuHQN6frnTRMG5+Wa1Al1u8Lw03hp0zAUoi6gCNwcRxES2o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fUdJEGNf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90738C4CECF;
-	Tue, 19 Nov 2024 20:39:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732048745;
-	bh=OOWExM1N60jCy1dSIf8NXBKIEYTUdBfF3QKNExZ85/s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fUdJEGNf8LcVFkS4Y/CHZrJRYqDVlgSp1kQtKjHAybajS3sjie9VoShoEaevbBPhW
-	 ki94a71CZqVvrGOo7s8W5Z8fuJrxDtqPccHIBE7cCLqVvZoLC/enAP39ybhA6173Jb
-	 N35VyndijJVXdMzwKFBuX2F3xs91DDblYtFFXUu9r0JyVn7yF9EkOG8vjwhP0wnhm1
-	 bWRtfU2PxlVb7B3BGn1flApnJG5KGRClE4rdvYQSP0+7B+tJU6rQTLS5/Sio/VYXqw
-	 UkSeXTNVdJvqhYlvthufmgJg0GDqQAcuW1FkEUwYk+0M8gpYjDUg/Aqyq7U9aRYOg5
-	 FrpeQC+YJuDTw==
-Date: Tue, 19 Nov 2024 14:39:03 -0600
-From: Rob Herring <robh@kernel.org>
-To: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Minda Chen <minda.chen@starfivetech.com>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Iyappan Subramanian <iyappan@os.amperecomputing.com>,
-	Keyur Chudgar <keyur@os.amperecomputing.com>,
-	Quan Nguyen <quan@os.amperecomputing.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	imx@lists.linux.dev, devicetree@vger.kernel.org,
-	NXP S32 Linux Team <s32@nxp.com>
-Subject: Re: [PATCH v5 13/16] dt-bindings: net: Add DT bindings for DWMAC on
- NXP S32G/R SoCs
-Message-ID: <20241119203903.GA2249015-robh@kernel.org>
-References: <20241119-upstream_s32cc_gmac-v5-0-7dcc90fcffef@oss.nxp.com>
- <20241119-upstream_s32cc_gmac-v5-13-7dcc90fcffef@oss.nxp.com>
+	s=arc-20240116; t=1732053401; c=relaxed/simple;
+	bh=eT54uuZM/nbKGW2p+dwXTqaPTVNBV3Nq3lV/KEE8ZXc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PcHjwgXWDCuXMptM+AH607ckfbNBWDH/zPUfg5WYM3fiJvrt6Fzojk6VA2iwhpjh0iBDso2w3bQDMv7BXL7/NmnJvo9CbV6perXAe6oJqIgNBmXgdh5zb/vodXqlW7fdO78syrzh2wH2NjR9KvH/gSGJHLz4yCyMLyDN1S5CiBs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=Wu1Uld26; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id D5335895BF;
+	Tue, 19 Nov 2024 22:56:34 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1732053397;
+	bh=atOqhpShv6nVPXJfhzq/Bh3Ko/bhRYVXc8Rnk2+8Rt4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Wu1Uld26U2/CKmnv3kHtE9x+XTdgM4pNc+e4mnZ4unWp2//I7x6JrgANcYps0EEtl
+	 yAUFXaNJqAfv48rOn49RHiC4FGgVzx8omnErPAEJh0p2hDH+30Ta1CKLbIz5LoJatl
+	 sCO9n0TN+/e8ufwdlQU9dOTsLBeI/TZg+piBf5WSjwlGmoplTC/YIioJmcISIj8CHR
+	 bk2mM9tWOJTsd5py0tloVaK8qHVzTSg1W6Ij9zQ7jX1uR453RQxI6OWOTJe9d3GT0j
+	 XxSNqPaGBDt8/n2qk7OjNGvOGwfPo+HxvTAvie9a7nBF417HYvg7GzC4qFCbe8YWE5
+	 xtEa69egQQGGg==
+Message-ID: <83be0a27-6b6c-4ba6-b9dc-f914a10abace@denx.de>
+Date: Tue, 19 Nov 2024 22:42:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241119-upstream_s32cc_gmac-v5-13-7dcc90fcffef@oss.nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 2/7] Revert "clk: imx: clk-imx8mp: Allow media_disp
+ pixel clock reconfigure parent rate"
+To: Ying Liu <victor.liu@nxp.com>, "imx@lists.linux.dev"
+ <imx@lists.linux.dev>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: "shawnguo@kernel.org" <shawnguo@kernel.org>,
+ "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+ "kernel@pengutronix.de" <kernel@pengutronix.de>,
+ "festevam@gmail.com" <festevam@gmail.com>, "robh@kernel.org"
+ <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+ "will@kernel.org" <will@kernel.org>,
+ "abelvesa@kernel.org" <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+ "mturquette@baylibre.com" <mturquette@baylibre.com>,
+ "sboyd@kernel.org" <sboyd@kernel.org>,
+ "andrzej.hajda@intel.com" <andrzej.hajda@intel.com>,
+ "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+ "rfoss@kernel.org" <rfoss@kernel.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ "jonas@kwiboo.se" <jonas@kwiboo.se>,
+ "jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ "mripard@kernel.org" <mripard@kernel.org>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>,
+ "airlied@gmail.com" <airlied@gmail.com>, "simona@ffwll.ch"
+ <simona@ffwll.ch>, "quic_bjorande@quicinc.com" <quic_bjorande@quicinc.com>,
+ "geert+renesas@glider.be" <geert+renesas@glider.be>,
+ "dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
+ "arnd@arndb.de" <arnd@arndb.de>,
+ "nfraprado@collabora.com" <nfraprado@collabora.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Miquel Raynal <miquel.raynal@bootlin.com>
+References: <20241114065759.3341908-1-victor.liu@nxp.com>
+ <20241114065759.3341908-3-victor.liu@nxp.com>
+ <df6ebdde-65f8-4aad-93c7-b1df695bd2ef@denx.de>
+ <AM7PR04MB7046546A882A8D48E135D84698272@AM7PR04MB7046.eurprd04.prod.outlook.com>
+ <8a4fd234-4c7b-4a04-990d-3222aaa5172d@denx.de>
+ <AM7PR04MB7046E282FD702ACE5E288F8998202@AM7PR04MB7046.eurprd04.prod.outlook.com>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <AM7PR04MB7046E282FD702ACE5E288F8998202@AM7PR04MB7046.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-On Tue, Nov 19, 2024 at 04:00:19PM +0100, Jan Petrous (OSS) wrote:
-> Add basic description for DWMAC ethernet IP on NXP S32G2xx, S32G3xx
-> and S32R45 automotive series SoCs.
+On 11/19/24 9:18 AM, Ying Liu wrote:
+
+[...]
+
+>> The TC9595 can drive an DP output, for that the clock which have to be
+>> set on the LCDIF cannot be predicted, as that information comes from the
+>> monitor EDID/DPCD. That is why the LCDIF has to be able to configure the
+>> Video PLL1 clock to accurate clock frequency.
+>>
+>> For the LVDS LDB, the use case is the other way around -- the pixel
+>> clock which should be generated by LCDIF and fed to LDB are known from
+>> the panel type listed in DT, but they should still be accurate.
 > 
-> Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
-> ---
->  .../devicetree/bindings/net/nxp,s32-dwmac.yaml     | 105 +++++++++++++++++++++
->  .../devicetree/bindings/net/snps,dwmac.yaml        |   3 +
->  2 files changed, 108 insertions(+)
+> Thanks for the information.  I think the key question is whether the
+> alternative solution(*) you mentioned below stands or not, in other words,
+> whether LCDIF1/LCDIF2/LDB drivers know that they are sharing a PLL
+> or not.
+
+I'll continue at the end ...
+
+>>> You still may assign an accurate PLL rate in DT.
+>>> This patch only makes the PLL rate be unchangeable dynamically in
+>>> runtime.  That means the existing imx8m-dhcom-som.dtsi would use
+>>> IMX8MP_VIDEO_PLL1_OUT(running at 1.0395GHz) as the parent clock
+>>> of IMX8MP_CLK_MEDIA_DISP1_PIX (for LCDIF1/DSI), since it includes
+>>> imx8mp.dsti.  I assume it should be able to support typical video modes
+>>> like 1080p60 video mode with 148.5MHz pixel clock at least with 1.0395GHz
+>>> PLL rate.
+>>
+>> This will break multiple DP monitors I tested so far I'm afraid. And I
+>> spent a LOT of time wrestling with the TC9595 bridge to make sure it
+>> actually does work well.
 > 
-> diff --git a/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml b/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml
-> new file mode 100644
-> index 000000000000..a141e826a295
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml
-> @@ -0,0 +1,105 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright 2021-2024 NXP
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/nxp,s32-dwmac.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP S32G2xx/S32G3xx/S32R45 GMAC ethernet controller
-> +
-> +maintainers:
-> +  - Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
-> +
-> +description:
-> +  This device is a Synopsys DWC IP, integrated on NXP S32G/R SoCs.
-> +  The SoC series S32G2xx and S32G3xx feature one DWMAC instance,
-> +  the SoC S32R45 has two instances. The devices can use RGMII/RMII/MII
-> +  interface over Pinctrl device or the output can be routed
-> +  to the embedded SerDes for SGMII connectivity.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: nxp,s32g2-dwmac
-> +      - items:
-> +        - enum:
-> +            - nxp,s32g3-dwmac
-> +            - nxp,s32r45-dwmac
-> +        - const: nxp,s32g2-dwmac
-> +
-> +  reg:
-> +    items:
-> +      - description: Main GMAC registers
-> +      - description: GMAC PHY mode control register
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  interrupt-names:
-> +    const: macirq
-> +
-> +  clocks:
-> +    items:
-> +      - description: Main GMAC clock
-> +      - description: Transmit clock
-> +      - description: Receive clock
-> +      - description: PTP reference clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: stmmaceth
-> +      - const: tx
-> +      - const: rx
-> +      - const: ptp_ref
-> +
-> +required:
-> +  - clocks
-> +  - clock-names
-> +
-> +allOf:
-> +  - $ref: snps,dwmac.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/phy/phy.h>
-> +    bus {
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-> +
-> +      ethernet@4033c000 {
-> +        compatible = "nxp,s32g2-dwmac";
-> +        reg = <0x0 0x4033c000 0x0 0x2000>, /* gmac IP */
-> +              <0x0 0x4007c004 0x0 0x4>;    /* GMAC_0_CTRL_STS */
-> +        interrupt-parent = <&gic>;
-> +        interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
-> +        interrupt-names = "macirq";
-> +        snps,mtl-rx-config = <&mtl_rx_setup>;
-> +        snps,mtl-tx-config = <&mtl_tx_setup>;
-> +        clocks = <&clks 24>, <&clks 17>, <&clks 16>, <&clks 15>;
-> +        clock-names = "stmmaceth", "tx", "rx", "ptp_ref";
-> +        phy-mode = "rgmii-id";
-> +        phy-handle = <&phy0>;
-> +
-> +        mtl_rx_setup: rx-queues-config {
-> +          snps,rx-queues-to-use = <5>;
-> +        };
-> +
-> +        mtl_tx_setup: tx-queues-config {
-> +          snps,tx-queues-to-use = <5>;
-> +        };
-> +
-> +        mdio {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +          compatible = "snps,dwmac-mdio";
-> +
-> +          phy0: ethernet-phy@0 {
-> +            reg = <0>;
-> +          };
-> +        };
-> +      };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> index 4e2ba1bf788c..a88d1c236eaf 100644
-> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> @@ -66,6 +66,9 @@ properties:
->          - ingenic,x2000-mac
->          - loongson,ls2k-dwmac
->          - loongson,ls7a-dwmac
-> +        - nxp,s32g2-dwmac
-> +        - nxp,s32g3-dwmac
-> +        - nxp,s32r-dwmac
+> If the DP monitors support typical video modes like 1080p60 with
+> 148.5MHz pixel clock rate, I assume these typical video modes work
+> still ok with this patch at least.  Please help confirm this, since if the
+> alternative solution(*) doesn't stand, we would know those video
+> modes still work ok with my solution(fixed PLL rate).
 
-You really only need to add nxp,s32g2-dwmac since it's always present.
+They do not work with the fixed PLL setting.
 
-Other than the yamllint issue,
+>>> Granted that less video modes read from DP monitor would
+>>> be supported without dynamically changeable PLL rates, this is something
+>>> we have to accept because some i.MX8MP platforms(like i.MX8MP EVK)
+>>> have to share IMX8MP_VIDEO_PLL1_OUT between LVDS and MIPI DSI
+>>> display pipelines.
+>>
+>> What I need is the use of two full PLL1443x (like Video PLL and Audio
+>> PLL1/2) , one for each display output, and those PLLs have to be fully
+>> configurable to produce accurate pixel clock for each connected panel.
+>> Otherwise I cannot make proper use of the video output capabilities of
+>> the MX8MP SoC.
+> 
+> Yeah, I understand your requirements.  However, it still depends on
+> whether the alternative solution(*) stands or not.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+I'll continue at the end ...
+
+>>> The missing part is that we need to do mode validation
+>>> for the MIPI DSI display pipeline either in samsung-dsim.c or lcdif_kms.c
+>>> to filter unsupported video mode out.  Is this missing mode validation
+>>> the cause of your failure case?
+>>
+>> I do want to support the various modes, I do not want to filter them
+>> out. They can be supported, the only "problem" is the shared Video PLL
+>> which is not really an actual problem in my case, because I do not use
+>> shared Video PLL, I use two separate PLLs.
+>>
+>> I think what is needed is for the LCDIF1/LCDIF2/LDB to figure out
+>> whether they share the Video PLL at all (you already suggested the clock
+>> subsystem can provide that information), and then if:
+> 
+> But, how to let LCDIF1/LCDIF2/LDB drivers to figure out that?
+> 
+> I didn't suggest that the clock subsystem can provide that information.
+
+... by end I mean here.
+
+One really nasty way I can think of is -- use find_node_by_compatible(), 
+look up all the relevant DT nodes, parse their clock properties, and 
+check whether they all point to the Video PLL or not.
+
+Maybe the clock subsystem has a better way, like list "neighbor" 
+consumers of some specific parent clock or something like that.
+
+[...]
+
+>> Can something like (*) above be implemented instead, so both Shared and
+>> separate PLLs would be supported ? That should solve both of our use
+>> cases, right ?
+> 
+> I don't see any clear way to implement something like(*).
+> 
+> Take the 3 i.MX8MP LCDIFs as one graphic card driven by one imx-lcdif
+> DRM instance?  Would it be too intrusive?
+
+Yes, and I think unnecessary, one can simply traverse and parse the DT 
+to determine the clock assignment?
+
+> Use clk_get_parent() to determine if the pixel clocks of LCDIF1&2 are
+> sharing PLL(note clk_get_parent() implementation contains a TODO:
+> Create a per-user clk.)?
+
+Maybe not necessary for this case.
+
+> How to do mode validation for the shared PLL case(note mode_valid()
+> callback is supposed to look at nothing more than passed-in mode)?
+> Use clk_set_rate_range() to fix the PLL rate(min == max)?
+
+This is a good question -- we can use fixed frequency set in DT for the 
+PLL in case it is shared, and set whatever optimal frequency if the PLL 
+is not shared. That would be a good first step I think (**).
+
+The next step would be to find a way to negotiate acceptable PLL 
+frequency between LCDIF1/LCDIF2/LDB in case the PLL is shared, but I do 
+agree this is non-trivial, hence next step.
+
+>>> I hope that we can agree on this solution first before spreading
+>>> discussions across different threads and eventually the NAK can be
+>>> taken back.
+>>
+>> I cannot really agree on a solution which breaks one of my use cases,
+>> but maybe there is an alternative how to support both options, see (*)
+>> above ?
+> 
+> I tend to say there is no any alternative solution to satisfy both
+> separate PLLs and shared PLL use cases, or even if there is one, it won't
+> be easy to implement.  If you know one, please shout it out.
+Maybe (*) with first step (**) would be doable ?
 
