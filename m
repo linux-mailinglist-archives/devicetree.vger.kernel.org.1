@@ -1,72 +1,59 @@
-Return-Path: <devicetree+bounces-122956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 094699D2E6B
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 19:57:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13F679D2E16
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 19:39:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8389BB284B5
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 18:16:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 24FB1B29BF8
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 18:18:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD4761D0438;
-	Tue, 19 Nov 2024 18:16:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E83761D0F63;
+	Tue, 19 Nov 2024 18:18:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RHwEy2jd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZwmhcXO/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E46740BE0;
-	Tue, 19 Nov 2024 18:16:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB79B1CDFCA;
+	Tue, 19 Nov 2024 18:18:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732040194; cv=none; b=Q2As/B89VwTBPQgEiJ8Lr2B/0MuovCGaL3ZJag4kk1v7RBsmJxPDndfv5CnSnY3QgMujO+pFQHBVWP+9IWYEf0NCG7nTsTx5zyhOz3qMLZcqYrtRlho5xaBh+i9EVXlZXJSdPqlkWGLYQpvcrY0crV0044N8VIUsIkMJvrHvRPw=
+	t=1732040315; cv=none; b=nO/8sx5oBe8m2m/F+rxPdcz5kaM//5L+8oIuCoX2rTlqRZzqNxfehu7YUbowGqZ9tTvDC7sGvA+NmaBvKN0TOC0fUu7dMr65jBDvzm0WilWTlE83crU6UKPD3srLCsrHy27OJlzsoj0YNftGSKHlqWefnxojU/90X43RfjoLWvI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732040194; c=relaxed/simple;
-	bh=YEyHF7qNpdjYiVOL7NYzxys2GSXjpUHFTISRNu/EFNY=;
+	s=arc-20240116; t=1732040315; c=relaxed/simple;
+	bh=Wo4rlPhE92EUOyHR0Tl4T39RGOZr5gNuIEk4zdKuEZA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cSLoJA/wMIPzT0m1XRBMkNDA53pbgr4kfqp4QZHxTdfxdzaekiRomIqeeZqPWtpR0wDaSDWOG3/EFTXTRLowFnVOnRHLqB7ZlL1cR2dG3XTEGHUGsiZ/ZlqIISRYGaQXvuFDA6esGBWOFpqcoiIyKb1RxDrGTs0iYQkxl51g/Jo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RHwEy2jd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3F12C4CECF;
-	Tue, 19 Nov 2024 18:16:33 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=aBm8OXNkbl+g7tyehwwy+mFW3qOF/snftAoHfJPTJXhLnqIkwQ4ztNe7fyD5wubmvtJu8tuIG/Go0s2Mc8CR40gz8CrJHJaaDcx8XrB86FuKUAeSsKDcZC5wd3z5JR9KZ+naiJteu5d5bq7w4SmgZ5fd9iWn4qJqBadzJmvCupQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZwmhcXO/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E83EC4CECF;
+	Tue, 19 Nov 2024 18:18:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732040194;
-	bh=YEyHF7qNpdjYiVOL7NYzxys2GSXjpUHFTISRNu/EFNY=;
+	s=k20201202; t=1732040313;
+	bh=Wo4rlPhE92EUOyHR0Tl4T39RGOZr5gNuIEk4zdKuEZA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RHwEy2jdbpbbXM9Rmn9rrT9dPGJzmy5r+SGvXoSKtIGbJv+1vZ5wC9fhnN0HmW1Gk
-	 aFIPGj7BAwwAaxWiOz3LTuUnoB5s0B5eCMDCJV208zgdnFc1GbbzC9w/4cCx1Y5QTp
-	 bNpEkcbNVUGmFjhs7Hc1NLiqBCIYU3QiA7OYZnMhCCTuMNL4nqBXlruVCkxfsBWTzh
-	 tSese9MGcZbtEewgiiJAQIoPKTQ8REOCrrue0uvzYyKgROHhf9mATmO8oYcNz5pPLc
-	 42gRLbWrXCI3861qN3nRbC+6kvC4dG3SibKMhByf3a3psVpcSXzM4XdAc46QsfeSGn
-	 CulDQVY0MiFNQ==
-Date: Tue, 19 Nov 2024 12:16:32 -0600
+	b=ZwmhcXO/6k1UcIam0xMjM1Bj2G4s8Y6JCdeSx+YAWiqCkcXJrcEc5cSgLkNR6gkI7
+	 eeL//YJ4Is8fMMrnmo9FjX4Ok/juwuu6/WTdREYITGLr4P3DZNHrtjKZlh8jucI7nS
+	 jxDwm7oTzxVUBrEKYbxH6zAGr/JxLAq2XR4Tae0tdpZ5hYQpkUNRKgNprRa8HJmngY
+	 13LDCxnEadBe7ID+0QWW32zivGv2fo5XJwVuUr7d5CcXS1OgOzvx6zUjjepz/1ebVI
+	 pLh5gdB2rDfbpAxOVDIgghZLrgHWzT/mrsDObonlwGmi9EhbPDRo4DAUDBAyR1SOzi
+	 0BxaSD++w77WQ==
+Date: Tue, 19 Nov 2024 12:18:31 -0600
 From: Rob Herring <robh@kernel.org>
-To: Romain Gantois <romain.gantois@bootlin.com>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Kory Maincent <kory.maincent@bootlin.com>,
-	linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v2 1/9] dt-bindings: misc: Describe TI FPC202 dual port
- controller
-Message-ID: <20241119181632.GA1957312-robh@kernel.org>
-References: <20241118-fpc202-v2-0-744e4f192a2d@bootlin.com>
- <20241118-fpc202-v2-1-744e4f192a2d@bootlin.com>
+To: Jacky Chou <jacky_chou@aspeedtech.com>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, krzk+dt@kernel.org,
+	conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
+	hkallweit1@gmail.com, linux@armlinux.org.uk, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [net-next 1/3] dt-bindings: net: add support for AST2700
+Message-ID: <20241119181831.GA1962443-robh@kernel.org>
+References: <20241118104735.3741749-1-jacky_chou@aspeedtech.com>
+ <20241118104735.3741749-2-jacky_chou@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,138 +62,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241118-fpc202-v2-1-744e4f192a2d@bootlin.com>
+In-Reply-To: <20241118104735.3741749-2-jacky_chou@aspeedtech.com>
 
-On Mon, Nov 18, 2024 at 11:13:00AM +0100, Romain Gantois wrote:
-> The FPC202 dual port controller serves as a low speed signal aggregator for
-> common port types, notably SFP. It provides access to I2C and low-speed
-> GPIO signals of a downstream device through a single upstream control
-> interface.
+On Mon, Nov 18, 2024 at 06:47:33PM +0800, Jacky Chou wrote:
+> The AST2700 is the 7th generation SoC from Aspeed.
+> Add compatible support for AST2700 in yaml.
+
+"Add compatible..." is obvious from the diff. Add something about why 
+the diff is how it is. For example, it is not compatible with AST2600 
+because...
+
 > 
-> Up to two logical I2C addresses can be accessed on each of the FPC202's
-> ports. The port controller acts as an I2C translator (ATR). It converts
-> addresses of incoming and outgoing I2C transactions. One use case of this
-> is accessing two SFP modules at logical address 0x50 from the same upstream
-> I2C controller, using two different client aliases.
-> 
-> Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
+> Signed-off-by: Jacky Chou <jacky_chou@aspeedtech.com>
 > ---
->  .../devicetree/bindings/misc/ti,fpc202.yaml        | 83 ++++++++++++++++++++++
->  MAINTAINERS                                        |  6 ++
->  2 files changed, 89 insertions(+)
+>  .../devicetree/bindings/net/aspeed,ast2600-mdio.yaml          | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/misc/ti,fpc202.yaml b/Documentation/devicetree/bindings/misc/ti,fpc202.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..1c7243f0325211d8cea3736cbe777c4318065b12
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/misc/ti,fpc202.yaml
-> @@ -0,0 +1,83 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/misc/ti,fpc202.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TI FPC202 dual port controller with expanded IOs
-> +
-> +maintainers:
-> +  - Romain Gantois <romain.gantois@bootlin.com>
-> +
-> +allOf:
-> +  - $ref: /schemas/i2c/i2c-atr.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: ti,fpc202
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  gpio-controller: true
-> +
-> +  "#gpio-cells":
-> +    const: 2
-> +
-> +  enable-gpios:
-> +    description:
-> +      Specifier for the GPIO connected to the EN pin.
-> +    maxItems: 1
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +patternProperties:
-> +  "^i2c@[0-1]$":
-> +    $ref: /schemas/i2c/i2c-controller.yaml
-> +    description: Downstream device ports 0 and 1
-
-'reg' is not covered by i2c-controller.yaml, so it needs to be 
-documented here. Along with a 'unevaluatedProperties: false'.
-
-> +
-> +required:
-> +  - compatible
-> +  - gpio-controller
-> +  - "#gpio-cells"
-> +  - reg
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - i2c@0
-> +  - i2c@1
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        i2c-atr@f {
-> +            compatible = "ti,fpc202";
-> +            reg = <0xf>;
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            gpio-controller;
-> +            #gpio-cells = <2>;
-> +
-> +            i2c@0 {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +                reg = <0>;
-> +            };
-> +
-> +            i2c@1 {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +                reg = <1>;
-> +            };
-> +        };
-> +    };
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index b878ddc99f94e7f6e8fa2c479c5a3f846c514730..8e702cefd2070790330eebf6d2a2b592cadb682d 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -23181,6 +23181,12 @@ F:	drivers/misc/tifm*
->  F:	drivers/mmc/host/tifm_sd.c
->  F:	include/linux/tifm.h
+> diff --git a/Documentation/devicetree/bindings/net/aspeed,ast2600-mdio.yaml b/Documentation/devicetree/bindings/net/aspeed,ast2600-mdio.yaml
+> index d6ef468495c5..6dadca099875 100644
+> --- a/Documentation/devicetree/bindings/net/aspeed,ast2600-mdio.yaml
+> +++ b/Documentation/devicetree/bindings/net/aspeed,ast2600-mdio.yaml
+> @@ -19,7 +19,9 @@ allOf:
 >  
-> +TI FPC202 DUAL PORT CONTROLLER
-> +M:	Romain Gantois <romain.gantois@bootlin.com>
-> +L:	linux-kernel@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/misc/ti,fpc202.yaml
-> +
->  TI FPD-LINK DRIVERS
->  M:	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
->  L:	linux-media@vger.kernel.org
-> 
+>  properties:
+>    compatible:
+> -    const: aspeed,ast2600-mdio
+> +    enum:
+> +      - aspeed,ast2600-mdio
+> +      - aspeed,ast2700-mdio
+>  
+>    reg:
+>      maxItems: 1
 > -- 
-> 2.47.0
+> 2.25.1
 > 
 
