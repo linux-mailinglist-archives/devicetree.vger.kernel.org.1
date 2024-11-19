@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-122666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122671-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11AF09D1DAB
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 02:58:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 677B79D1DBC
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 03:00:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A8181F2239B
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 01:58:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BC697B217C3
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 02:00:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 800781304AB;
-	Tue, 19 Nov 2024 01:58:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FC5B1369BB;
+	Tue, 19 Nov 2024 01:59:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sb7duX0n"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vp7GVmL4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95C4C5FB8D
-	for <devicetree@vger.kernel.org>; Tue, 19 Nov 2024 01:58:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 421DA135A53
+	for <devicetree@vger.kernel.org>; Tue, 19 Nov 2024 01:59:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1731981499; cv=none; b=OPea06gmw8TruxQBIwH73tJDE8uR79gIWRX1oMJ6Ia8ecchNie/+Z2r5mQlZ+KGpf/lIEzWsidf9t4QLIJk/h2Do7nOpGeS8Llobu6KeK3se8MmcuTMXAmr+aryAqvEXxJVklqXUYUy/rXmd2utFL5tENxaqPIQBunUnvzWuyQ4=
+	t=1731981596; cv=none; b=pdVJhH/C6tRaXXS2MaSOB9zbsTcV316utNKBkt4g21w4+a1UKZx+c3x7Od1T/VhJOSnf4ZZQtzhjQD/VVdhrQV+KOROrWHfTTW9WXeaBid7r5m9jZ/kdBqNP6YZ7n2ZP4BPfMz2aYWx7ogjfOGZP+faZZspiO7eMJiuasD445j0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1731981499; c=relaxed/simple;
-	bh=ib43JGOIZ1ATJp9/a9ElmBK4S1TyxSpfZHQfvMpHa/s=;
+	s=arc-20240116; t=1731981596; c=relaxed/simple;
+	bh=k7oEV0P5rFawVdEvlcJxF6gDevuu3haFSzWwECAaudI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jrBpZjRDQiQBV6tl3AumoG9FVFQG3d410iyYn1fg4T3JYRTN/iuCF3hSNwyc09raATLMqxTbltSYoNguDNg9rivcjZgzxTkinxeUAVkaaHbbDdofcCfusBw57f1PSARhAKEEK4ROE16yXJHbLWi+pUvzUIwKkt0Hn0wLlL3+9OY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sb7duX0n; arc=none smtp.client-ip=209.85.208.170
+	 Content-Type:Content-Disposition:In-Reply-To; b=ViGo7euJgp0Pe5mY4ZT7C3r4B26nOBm0aUUhwiosmLLsIOFcJTkoMvO1z8JcQnj581tE4yzQrMJtFWHDHxOnKqFRkOnxmqxhtOgDIbGNfFutqs63xwtfA4UdKY34mmhJaovI+iTdfjb611GuJ+zl0VNDg9u/v71WSv2RHScIUDE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vp7GVmL4; arc=none smtp.client-ip=209.85.208.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2fb4fa17044so23937591fa.3
-        for <devicetree@vger.kernel.org>; Mon, 18 Nov 2024 17:58:17 -0800 (PST)
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2ff589728e4so52181071fa.1
+        for <devicetree@vger.kernel.org>; Mon, 18 Nov 2024 17:59:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1731981496; x=1732586296; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1731981592; x=1732586392; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=wdC7Ydz7m1dNRr4+gLJERncdScN7zJGfk7xMkgiJr2o=;
-        b=sb7duX0nQharmQd8lGWsRWNFceN8fSeiJSAUt9HnEZxw36K+HS71/8J/Suw54AfoXz
-         M0SvTAkT6nv3x5RmiVVgPfTmjbyyP3JsA3kTC9sQ2oWocyEh3RYicuBjwa4Fk9N/vY2p
-         g/GPzZmk7t9NAWSHbuo4Y2rpLBkrt2fMDFn6EDN6vuOd4Y/UzauIdhv7zx8hT4YTldka
-         rc7wJxgOwc0LTV5aNvgUK/K/epsRe+NLHvEcbmYT/ZoZdTH0jayV5/cgWtWZnZgfIQxr
-         nadD1C/FYkCBDmC1oUxwofooLflMBeoT6PolNYsi4+UhPGaQ1P1w7/8JD1M9cXTfd4lM
-         SdPQ==
+        bh=z/OvNY52fWU5PD8o8xALIhnewUxZNHmsucUqv0krVUM=;
+        b=vp7GVmL4D/8FW1lqD4Cf7xpH39VDczkX3l9Edz6x1YWTAEyvqBsmbDim9ExdraoIMl
+         JWm7f145KqHUZgw0Q6Zj7xjbbEYAVsBd5OmPii1tHVzIkQdRqeFo8AR68+CD3JsL0hj5
+         vHdBnyEGymVgfOOC1Tj8cKoRjehA7voQUe03YUf5pELCvqzQXng46NETjMv9FlZB2Z+J
+         0U3Bk4h4U/TQlR1TjfOLti0/O1/eIeKr1mcllXmx4FgSdOkxYyiiITrjDVNh3LUyIMmc
+         oBYkfJAdS1GY1jbQRRJGeZTpUVXJEiI4LRWncFQ5PbEgHUkzxBP9eLURYCCoIXInaHeP
+         rpFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1731981496; x=1732586296;
+        d=1e100.net; s=20230601; t=1731981592; x=1732586392;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=wdC7Ydz7m1dNRr4+gLJERncdScN7zJGfk7xMkgiJr2o=;
-        b=YvGIghamObdz7kFN/g993nmarrFL7EumsKmO8fHZu+LDcm7gWNsm8YjCEVsZFdPqpv
-         MQp2vpFbrPfu7+XkGR5jksDUwnA6Im5cwCeEi85EW891xfPWIMoaf+h4NoSMNZC6Hk1x
-         Uvs42BHgCWf2gs6L0/dLpTYvjSSy/7g3FgOjXLpB8kcEr6YwEkKabDM524vKH4vD6CZN
-         YC20PKZ5K61YqtA279eI9FRGJ1DLjTOG928nK40TLZ1VPwW1lQYosBfpSeDr36iu15bn
-         RJO3GmiVOdHfpoZ7T1GssgLxn1bZ1wWF2i+XZ2e2RKpIflLbWAA/CZvVGJD2zNiIV7VP
-         Y5TA==
-X-Forwarded-Encrypted: i=1; AJvYcCVK/5dSd6wgoy0Ppt4IM/fS5R4qu239tzChBLOLgUEWwqCKKMFvSmgMm8tIUYmtEt46NuXtfaLLqnB5@vger.kernel.org
-X-Gm-Message-State: AOJu0YzK+kmrw9Kz9z3D2hGc89S+U9cJyIT5Jjf5F//sSwV0DHF8wcx1
-	XKFynBm58h7d7LMCwP7ViwpFegGbOOrnNu6aFVP7rSlCfozXGaIG5u/W7H/Kr6U=
-X-Google-Smtp-Source: AGHT+IFh0Cuv9/HfcvnF4zuwr0S46WRrJc62S0qKB/X9mLPdDDoNco2zDj4DDugU5E//exJwUKsY7g==
-X-Received: by 2002:a2e:bd02:0:b0:2ff:5630:b9a4 with SMTP id 38308e7fff4ca-2ff60711fe3mr60427691fa.38.1731981495555;
-        Mon, 18 Nov 2024 17:58:15 -0800 (PST)
+        bh=z/OvNY52fWU5PD8o8xALIhnewUxZNHmsucUqv0krVUM=;
+        b=O6KOoUlr6K52wWhVjDEb6qFnHVuQr/NNgFqc4PrSZjpl43gdmTp6BUl3WYDU/QtaGO
+         oZdcb11FkR5248TiZLpwItCfF7lQIlypV0TNF6tUe26yVlMSgY4yMu0ECQkmU97b3Fl2
+         G1MzDqsOgVmXUVb6pG3pWMphHauTsGEeuNDcxJudyCbCH475hiEmeWRkWH2twt7Ttj9f
+         AZ6yS1+bMHhOxgOiE2posZF04oWc8Fjwjw7IrcvKsFetBqmA3Hm4rpda/CJQvo0/gC4j
+         D/d5JdyLzs0cNwC7YeNtfKxWZqa1Wmmax465MwZvBuSdK+GirCEvGQgTRDrqta86yl9Z
+         Bdyw==
+X-Forwarded-Encrypted: i=1; AJvYcCWvt9CAlOPILYmkZDhMwEpYPsfnNpkePfI+eb+J7bMF9jLKFU7AqY3457NwEMvPWUm3eDbVnzcdbsWD@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywbqx+MONlGgFaahhRN5+iOmCDIho5m6IabDe0iMLf+Nnrl8C5J
+	Bu0Rds4q24dEuGcI4n6/US8nHgYKFYW5jWq6kd2ZTaahgsLO8LRSwmSJG4O6xao=
+X-Google-Smtp-Source: AGHT+IG2Rzq1QR5cEOlxhpbMBfxiVqxJwk/7ltOtHjroesTfT7lHwegu8IQ4MdLh+1a7pGLb3N5xuA==
+X-Received: by 2002:a05:651c:b25:b0:2f7:6371:6c5a with SMTP id 38308e7fff4ca-2ff83bc57femr4537501fa.16.1731981592104;
+        Mon, 18 Nov 2024 17:59:52 -0800 (PST)
 Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ff69851184sm10527051fa.15.2024.11.18.17.58.12
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ff69959957sm10782591fa.43.2024.11.18.17.59.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 18 Nov 2024 17:58:14 -0800 (PST)
-Date: Tue, 19 Nov 2024 03:58:10 +0200
+        Mon, 18 Nov 2024 17:59:50 -0800 (PST)
+Date: Tue, 19 Nov 2024 03:59:47 +0200
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To: Melody Olvera <quic_molvera@quicinc.com>
 Cc: Bjorn Andersson <andersson@kernel.org>, 
@@ -74,15 +74,14 @@ Cc: Bjorn Andersson <andersson@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
 	Taniya Das <quic_tdas@quicinc.com>, Trilok Soni <quic_tsoni@quicinc.com>, 
 	Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Subject: Re: [PATCH v2 2/7] clk: qcom: rpmh: Add support for SM8750 rpmh
- clocks
-Message-ID: <lyqiwzahl46fy2eqaz6g4wqwik623mstbjlew5mkfqj2zp4jxz@xjnt5uh2bc3p>
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 5/7] clk: qcom: Add support for GCC clock controller
+ on SM8750
+Message-ID: <xjfdqtiauxzmes3hwtgknjglu5rkp4mnyktsaxqtb7xmzsa2zx@phlkamgm47x4>
 References: <20241112002807.2804021-1-quic_molvera@quicinc.com>
- <20241112002807.2804021-3-quic_molvera@quicinc.com>
- <5pgwerxhqhyr2u47grqzgzvvng4rojzq4gozil7vy37bew5pqj@wt676vfjs7bg>
- <8d3c2efd-b6c3-4b01-ae01-78460f4e9f26@quicinc.com>
+ <20241112002807.2804021-6-quic_molvera@quicinc.com>
+ <n4h4jvxrsyahgmxedfsifhgmarw4rzn2cbg5pcvzo4ll3edziq@vgpvjco5hyb4>
+ <f2bf7790-7387-4eb6-8e1e-e555a20a717b@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,51 +90,131 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <8d3c2efd-b6c3-4b01-ae01-78460f4e9f26@quicinc.com>
+In-Reply-To: <f2bf7790-7387-4eb6-8e1e-e555a20a717b@quicinc.com>
 
-On Mon, Nov 18, 2024 at 10:53:16AM -0800, Melody Olvera wrote:
-> On 11/15/2024 7:31 AM, Dmitry Baryshkov wrote:
-> > On Mon, Nov 11, 2024 at 04:28:02PM -0800, Melody Olvera wrote:
-> > > From: Taniya Das <quic_tdas@quicinc.com>
-
-[...]
-
-> > > @@ -894,6 +919,7 @@ static const struct of_device_id clk_rpmh_match_table[] = {
-> > >   	{ .compatible = "qcom,sa8775p-rpmh-clk", .data = &clk_rpmh_sa8775p},
-> > >   	{ .compatible = "qcom,sar2130p-rpmh-clk", .data = &clk_rpmh_sar2130p},
-> > >   	{ .compatible = "qcom,sc7180-rpmh-clk", .data = &clk_rpmh_sc7180},
-> > > +	{ .compatible = "qcom,sc7280-rpmh-clk", .data = &clk_rpmh_sc7280},
-> > >   	{ .compatible = "qcom,sc8180x-rpmh-clk", .data = &clk_rpmh_sc8180x},
-> > >   	{ .compatible = "qcom,sc8280xp-rpmh-clk", .data = &clk_rpmh_sc8280xp},
-> > >   	{ .compatible = "qcom,sdm845-rpmh-clk", .data = &clk_rpmh_sdm845},
-> > > @@ -909,7 +935,7 @@ static const struct of_device_id clk_rpmh_match_table[] = {
-> > >   	{ .compatible = "qcom,sm8450-rpmh-clk", .data = &clk_rpmh_sm8450},
-> > >   	{ .compatible = "qcom,sm8550-rpmh-clk", .data = &clk_rpmh_sm8550},
-> > >   	{ .compatible = "qcom,sm8650-rpmh-clk", .data = &clk_rpmh_sm8650},
-> > > -	{ .compatible = "qcom,sc7280-rpmh-clk", .data = &clk_rpmh_sc7280},
-> > Please don't mix fixes and actual code. I'd suggest splitting sc7280
-> > move to the separate commit.
+On Mon, Nov 18, 2024 at 11:30:58AM -0800, Melody Olvera wrote:
 > 
-> Bryan O'Donoghue requested we sort these as part of this patch. I don't feel
-> strongly either way,
-> but clear guidance here would be appreciated.
+> 
+> On 11/15/2024 7:34 AM, Dmitry Baryshkov wrote:
+> > On Mon, Nov 11, 2024 at 04:28:05PM -0800, Melody Olvera wrote:
+> > > From: Taniya Das <quic_tdas@quicinc.com>
+> > > 
+> > > Add support for GCC Clock Controller for SM8750 platform.
+> > > 
+> > > Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> > > Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> > > ---
+> > >   drivers/clk/qcom/Kconfig      |    9 +
+> > >   drivers/clk/qcom/Makefile     |    1 +
+> > >   drivers/clk/qcom/gcc-sm8750.c | 3274 +++++++++++++++++++++++++++++++++
+> > >   3 files changed, 3284 insertions(+)
+> > >   create mode 100644 drivers/clk/qcom/gcc-sm8750.c
+> > > 
+> > > diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
+> > > index ef89d686cbc4..26bfb607235b 100644
+> > > --- a/drivers/clk/qcom/Kconfig
+> > > +++ b/drivers/clk/qcom/Kconfig
+> > > @@ -1130,6 +1130,15 @@ config SM_GCC_8650
+> > >   	  Say Y if you want to use peripheral devices such as UART,
+> > >   	  SPI, I2C, USB, SD/UFS, PCIe etc.
+> > > +config SM_GCC_8750
+> > > +	tristate "SM8750 Global Clock Controller"
+> > > +	depends on ARM64 || COMPILE_TEST
+> > > +	select QCOM_GDSC
+> > > +	help
+> > > +	  Support for the global clock controller on SM8750 devices.
+> > > +	  Say Y if you want to use peripheral devices such as UART,
+> > > +	  SPI, I2C, USB, SD/UFS, PCIe etc.
+> > > +
+> > >   config SM_GPUCC_4450
+> > >   	tristate "SM4450 Graphics Clock Controller"
+> > >   	depends on ARM64 || COMPILE_TEST
+> > > diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
+> > > index b09dbdc210eb..1875018d1100 100644
+> > > --- a/drivers/clk/qcom/Makefile
+> > > +++ b/drivers/clk/qcom/Makefile
+> > > @@ -143,6 +143,7 @@ obj-$(CONFIG_SM_GCC_8350) += gcc-sm8350.o
+> > >   obj-$(CONFIG_SM_GCC_8450) += gcc-sm8450.o
+> > >   obj-$(CONFIG_SM_GCC_8550) += gcc-sm8550.o
+> > >   obj-$(CONFIG_SM_GCC_8650) += gcc-sm8650.o
+> > > +obj-$(CONFIG_SM_GCC_8750) += gcc-sm8750.o
+> > >   obj-$(CONFIG_SM_GPUCC_4450) += gpucc-sm4450.o
+> > >   obj-$(CONFIG_SM_GPUCC_6115) += gpucc-sm6115.o
+> > >   obj-$(CONFIG_SM_GPUCC_6125) += gpucc-sm6125.o
+> > > diff --git a/drivers/clk/qcom/gcc-sm8750.c b/drivers/clk/qcom/gcc-sm8750.c
+> > > new file mode 100644
+> > > index 000000000000..faaefa42a039
+> > > --- /dev/null
+> > > +++ b/drivers/clk/qcom/gcc-sm8750.c
+> > > @@ -0,0 +1,3274 @@
+> > > +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +/*
+> > > + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
+> > > + */
+> > > +
+> > > +#include <linux/clk-provider.h>
+> > > +#include <linux/mod_devicetable.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/platform_device.h>
+> > > +#include <linux/regmap.h>
+> > > +
+> > > +#include <dt-bindings/clock/qcom,sm8750-gcc.h>
+> > > +
+> > > +#include "clk-alpha-pll.h"
+> > > +#include "clk-branch.h"
+> > > +#include "clk-pll.h"
+> > > +#include "clk-rcg.h"
+> > > +#include "clk-regmap.h"
+> > > +#include "clk-regmap-divider.h"
+> > > +#include "clk-regmap-mux.h"
+> > > +#include "clk-regmap-phy-mux.h"
+> > > +#include "common.h"
+> > > +#include "gdsc.h"
+> > > +#include "reset.h"
+> > > +
+> > > +enum {
+> > > +	DT_BI_TCXO,
+> > > +	DT_BI_TCXO_AO,
+> > > +	DT_PCIE_0_PIPE_CLK,
+> > > +	DT_SLEEP_CLK,
+> > > +	DT_UFS_PHY_RX_SYMBOL_0_CLK,
+> > > +	DT_UFS_PHY_RX_SYMBOL_1_CLK,
+> > > +	DT_UFS_PHY_TX_SYMBOL_0_CLK,
+> > > +	DT_USB3_PHY_WRAPPER_GCC_USB30_PIPE_CLK,
+> > This doesn't match Documentation/devicetree/bindings/clock/qcom,sm8650-gcc.yaml
+> 
+> Hmmm I see what seems to have happened here. You're correct; this doesn't
+> match the bindings
+> in sm8650-gcc. The v1 patchset had a new bindings file which matched the
+> sm8650 bindings, but also
+> didn't match the driver; however we only seemed to catch that the two
+> bindings matched and not the
+> fact that they didn't match the drivers.
 
-I don't see v1 of this patch on the linux-arm-msm list (hint: use b4
-tool to send patches), so I can not comment on what Bryan ment. But I'd
-definitely say, moving of the sc7280 entry is a _separate_ commit.
+I don't see v1. Please bring bindings back.
+
+> 
+> In terms of remedy I see two options. I'm fairly certain the driver here is
+> correct, so we can either
+> add the sm8750 bindings file back and remove the two lines about the PCIE 1
+> clocks or adjust the
+> sm8650 binding to encompass both sm8650 and sm8750. It's unclear to me how
+> precedented the latter
+> is; certainly having a single bindings file encompass both chips is
+> feasible, but I think I'm currently
+> leaning towards bringing back the original bindings file as that seems more
+> precedented. Lmk
+> your thoughts.
+
+How are you thinking to change SM8650 bindings without breaking the ABI
+/ backwards compatibility?
 
 > 
 > Thanks,
 > Melody
 > 
-> > 
-> > > +	{ .compatible = "qcom,sm8750-rpmh-clk", .data = &clk_rpmh_sm8750},
-> > >   	{ .compatible = "qcom,x1e80100-rpmh-clk", .data = &clk_rpmh_x1e80100},
-> > >   	{ }
-> > >   };
-> > > -- 
-> > > 2.46.1
-> > > 
+> > > +};
+> > > +
 > 
 
 -- 
