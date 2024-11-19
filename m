@@ -1,68 +1,64 @@
-Return-Path: <devicetree+bounces-122831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFB3C9D27A7
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 15:10:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE9AC9D2794
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 15:04:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 63146B2C3AC
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 13:55:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A7AAA1F2144C
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 14:04:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECA6E1CCEE4;
-	Tue, 19 Nov 2024 13:55:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA5B11CC88A;
+	Tue, 19 Nov 2024 14:04:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YsJTgP7O"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i0Bnor51"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6DB91CCB3A;
-	Tue, 19 Nov 2024 13:55:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F8CB1798C;
+	Tue, 19 Nov 2024 14:04:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732024544; cv=none; b=gvSYBoLfN+SUlr8OxwPK5wUE+ArjKGBxUMVSsDXKEXvqKxYkWxk+OxVQqApmfMX6DaLVSCydNjTsqTyn2ij+v6uziNRcxVzCx4+mm3thCh2c5CUt/TRqFG5UaY7+P+Y3JSW7iLXu9wGh+CzMM7Uj4SHQkqYgsEwlGsbqVnuPsxE=
+	t=1732025051; cv=none; b=YBHTgQbHLeC2ZeGK0kHgI6dwHbrJ80fHJpgmmCYFqu8s31wOwVvGCXRDHXPLUgvfAu0korT6GNxlS8qsEfjGg+eiN4KZLMySnKZOlYne0ZQ7IW4jKtdhBpS8AhvrhqkiHQbE78IMD4BZ3mKVFlyePEq5pak92oO+5/Hnzfq4rSk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732024544; c=relaxed/simple;
-	bh=9LG7YsYWIp1ZG6/QT8ybq/ypWUP4L1y8uQRWVVB9QP0=;
+	s=arc-20240116; t=1732025051; c=relaxed/simple;
+	bh=Pmwy0jA7PsPKZQWJtbUwBsQN+Sxfpeu4kZ56bbkjML0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=u6anivfhziH1qpDR00SNooxXNedoCII96jydtQfRjyy9wiBdIJDOQNHKe2U1YHE9sBdDba0+SMIZefKGMw8arMN4wwuZD8aCan+kcpbrOZF53nwlitFUEfwNlp2bWX5t1DOngwGlBi3XyPLFMKwtFtREZ2Zr98MdjyKZHA/2yas=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YsJTgP7O; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0853BC4CECF;
-	Tue, 19 Nov 2024 13:55:44 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=LsQXk7up+dU9oqN3KhQaQBjqlTEAryQG7Y3J/anFQmDCc8gdyQdFqFQXZHbweg/5E32Ksqd9h6NEDjgVoxH/ZpZMX7nAnAXEvLwqM1hUiP98xAIP9vA9ilVRTAtghiFAhbby5CZes1ylLv+3FvpQArvIIUqlb1T85cgK6qMA46c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i0Bnor51; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBC12C4CECF;
+	Tue, 19 Nov 2024 14:04:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732024544;
-	bh=9LG7YsYWIp1ZG6/QT8ybq/ypWUP4L1y8uQRWVVB9QP0=;
+	s=k20201202; t=1732025051;
+	bh=Pmwy0jA7PsPKZQWJtbUwBsQN+Sxfpeu4kZ56bbkjML0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YsJTgP7OUZXIMWJKyeMZcw4oMRTjB1QzhjHU/XJieZKkFtaSxjcm9jGsL7QOnJKKP
-	 9wsiTgZtAdfc5ex+Z8lcLcYfEiEn+9Afb5BCY2x10kZlXSoxFZp83/ZWqLdJ2aCf1K
-	 CuJLa+09f/K/pMwUbFhndD9j3Ot270HHENLdGagME3rJY+CzSLulnnciXpoC1OoZgn
-	 xu0c5/sedTXc9/qCF4BgPlYIVeZ3JAIs+Lx12ixMbYd8anoM0NBDZ5EghYg51zSHl1
-	 YWKHDpfs9BTixmrv5H4BiUZOx0uFpLhD31mnpCZS8gn0RBoLVY9jc8Cul0SbE+PMSw
-	 hB8/YN7rz4kiA==
-Date: Tue, 19 Nov 2024 07:55:42 -0600
+	b=i0Bnor514j21mV9m7EGCI0pbS7npTIyS6XbLVutVQTtBuNttpptK5zKQ62MUDFQ0M
+	 nZzoTC4zDsfMu2TzqZEtORVlEnBHN4/EMDj+2GEtyK3rZ+Fladtti44fYg1ziHvmfr
+	 uwBKOomy10R2PMTpHTNeTpLPnRz1iSOlGg8Y+AhWI4hSht7qCvTAxK+7LZghyZvWAH
+	 KL5W3hejxpB1Ztc6+ggt/U+Bs6lq6eut2phndQ2HT/N9FasEvZQTYTGgtbWriOQecL
+	 OvRdgz4L2yS5NbxY/Iu/ocEKbOjMInToOTvQu93tWXJruGdNpK2XmwCZaG3whuzGfe
+	 nKPQ1RrfKaDUg==
+Date: Tue, 19 Nov 2024 08:04:09 -0600
 From: Rob Herring <robh@kernel.org>
-To: Pengfei Li <pengfei.li_1@nxp.com>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
-	s.hauer@pengutronix.de, catalin.marinas@arm.com, will@kernel.org,
-	kernel@pengutronix.de, festevam@gmail.com,
-	francesco.dolcini@toradex.com, joao.goncalves@toradex.com,
-	marex@denx.de, hvilleneuve@dimonoff.com, peng.fan@nxp.com,
-	hiago.franco@toradex.com, frieder.schrempf@kontron.de,
-	alexander.stein@ew.tq-group.com, mwalle@kernel.org,
-	m.othacehe@gmail.com, Max.Merchel@ew.tq-group.com,
-	tharvey@gateworks.com, quic_bjorande@quicinc.com,
-	geert+renesas@glider.be, dmitry.baryshkov@linaro.org,
-	konradybcio@kernel.org, neil.armstrong@linaro.org, arnd@arndb.de,
-	nfraprado@collabora.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, ping.bai@nxp.com,
-	ye.li@nxp.com, aisheng.dong@nxp.com, frank.li@nxp.com
-Subject: Re: [PATCH v2 1/4] dt-bindings: arm: fsl: Add i.MX91 11x11 evk board
-Message-ID: <20241119135542.GA1076739-robh@kernel.org>
-References: <20241118051541.2621360-1-pengfei.li_1@nxp.com>
- <20241118051541.2621360-2-pengfei.li_1@nxp.com>
+To: Vasileios Amoiridis <vassilisamir@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Jonathan Cameron <jic23@kernel.org>, lars@metafoo.de,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	andriy.shevchenko@linux.intel.com, anshulusr@gmail.com,
+	gustavograzs@gmail.com, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 5/7] dt-bindings: iio: bosch,bme680: Add supply
+ properties
+Message-ID: <20241119140409.GA1093349-robh@kernel.org>
+References: <20241102131311.36210-1-vassilisamir@gmail.com>
+ <20241102131311.36210-6-vassilisamir@gmail.com>
+ <20241102153315.2175fd5b@jic23-huawei>
+ <6sucdv4k5jdovqgtaemeer4cnluvnl3xgyn57mo3elgwdmojrx@phu4gowaqtuv>
+ <20241104161033.GA228709-robh@kernel.org>
+ <ZzJRkCJcbCFSMcat@vamoirid-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,37 +67,66 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241118051541.2621360-2-pengfei.li_1@nxp.com>
+In-Reply-To: <ZzJRkCJcbCFSMcat@vamoirid-laptop>
 
-On Mon, Nov 18, 2024 at 01:15:38PM +0800, Pengfei Li wrote:
-> Add the board imx91-11x11-evk in the binding docuemnt.
+On Mon, Nov 11, 2024 at 07:48:48PM +0100, Vasileios Amoiridis wrote:
+> On Mon, Nov 04, 2024 at 10:10:33AM -0600, Rob Herring wrote:
+> > On Sun, Nov 03, 2024 at 10:46:46AM +0100, Krzysztof Kozlowski wrote:
+> > > On Sat, Nov 02, 2024 at 03:33:15PM +0000, Jonathan Cameron wrote:
+> > > > On Sat,  2 Nov 2024 14:13:09 +0100
+> > > > Vasileios Amoiridis <vassilisamir@gmail.com> wrote:
+> > > > 
+> > > > > Extend dt-binding for BME680 gas sensor device. The device incorporates
+> > > > > as well temperature, pressure and relative humidity sensors.
+> > > > This description should make it clear it is moving from trivial-devices.yaml
+> > > > 
+> > > > dt-bindings: iio: bosch,bme680: Move from trivial-bindings and add missing supplies.
+> > > > 
+> > > > Then say a little more on why you are moving it.
+> > > > 
+> > > > > 
+> > > > > Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
+> > > > 
+> > > > There was an open question on the previous version about
+> > > > setting the supplies as required (which I see you've removed).
+> > > > My understanding previously was that it is fine to make that change
+> > > > in a binding if it reflects supplies that are required to be enabled
+> > > > for the device to function at all.  If there were previously missing
+> > > > that's a binding bug we should fix.
+> > > > 
+> > > > I'd like a clarification from the DT binding maintainers on that.
+> > > > Obviously doesn't work for other users of dt bindings but in
+> > > > Linux this would be fine as they were already on for any board
+> > > > that worked and the regulator framework will through us a fake
+> > > > regulator for cases like this.
+> > > > 
+> > > > https://lore.kernel.org/all/20241022182451.00007ac0@Huawei.com/
+> > > > 
+> > > > Jonathan
+> > > 
+> > > That was Rob's objection so I will leave it to him, but putting my two
+> > > cents in for Linux it is not an ABI break because missing regulator
+> > > supplies are substituted with dummy ones. Unless something changed...
+> > 
+> > Shrug. I don't think we're entirely consistent on this. If we're saying 
+> > supplies are always required, then every device in trivial-devices.yaml 
+> > is wrong. Since Linux handles them missing, you can also argue that 
+> > supplies are never required.
+> > 
+> > I'd prefer not to special case regulators as an exception I have to 
+> > remember. I have some rudimentary ABI checking I'm working on that 
+> > checks for things like new required properties. Though it wouldn't catch 
+> > this particular change given it moves the schema.
+> > 
+> > Rob
 > 
-> Signed-off-by: Pengfei Li <pengfei.li_1@nxp.com>
+> Hi Jonathan,
+> 
+> According to Rob's answer, do you think that we can move on with the
+> last 3 patches as they are or do you want some changes?
 
-You missed Conor's ack. Please add tags when sending out new versions.
+Please update the commit message as Jonathan requested and resend 
+(though you might as well wait til the end of the merge window now).
 
-> ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> index 6e0dcf4307f1..5951317ce900 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -1332,6 +1332,12 @@ properties:
->                - fsl,imx8ulp-evk           # i.MX8ULP EVK Board
->            - const: fsl,imx8ulp
->  
-> +      - description: i.MX91 based Boards
-> +        items:
-> +          - enum:
-> +              - fsl,imx91-11x11-evk       # i.MX91 11x11 EVK Board
-> +          - const: fsl,imx91
-> +
->        - description: i.MX93 based Boards
->          items:
->            - enum:
-> -- 
-> 2.34.1
-> 
+Rob
 
