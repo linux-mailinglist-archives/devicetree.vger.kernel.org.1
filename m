@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-122730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3C2E9D223E
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 10:14:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9FD09D2249
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 10:16:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A50F72827C5
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 09:14:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F0381F22BB2
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 09:16:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 383711AE006;
-	Tue, 19 Nov 2024 09:13:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98A821C07D5;
+	Tue, 19 Nov 2024 09:15:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CXqjVkof"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NVZfePm6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 049DD19D07A;
-	Tue, 19 Nov 2024 09:13:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 657061B4F10;
+	Tue, 19 Nov 2024 09:15:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732007639; cv=none; b=ctJKWtOmEbpPK5xMDgBFyFo4n9JARnlt9ZiZIODCZYTDlMVJCuCVSJlesAmial4doAmSiSiInhY7hNrkE6CFmSnRKanlIsNUaTlBaS2kvDeII4EpacUJnev02a2bD1z+qCvIhUIlZNaIKEKD0Aac/lE0lWBBVGwr0hWK6oL139Q=
+	t=1732007753; cv=none; b=D5cou5cdOFEdi58z2gwqAOdCOGTeM5ZDWt7nmOGrK9o+xzZOdnOZcoX9GFm4zJAuLowJaf2YJ+cDm82mucjvxTczP7BUC80S2BfKoH/iWqGwcFAxl/t4kco/Vpl7Z9mgE3QKZLJnEt/b0OMA/2BBGZU4LHdVDavj4x7HYho3YWo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732007639; c=relaxed/simple;
-	bh=2VZx2V9CVxqf2nW+fj+4T81hvTJdFCbYTV71NmDqQeg=;
+	s=arc-20240116; t=1732007753; c=relaxed/simple;
+	bh=tuy3z6nrkIiSd+VzYQkPLNUJwFvXm0qjY4DKrPb4wfk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dzOjjvtxR3JkeRTfyviMbUzgeLanQo88KriJztcmRkq5WwTqppmNNNdzmx6llKlMh8q1xR6V2YtsaYgzwuL2x/gbm26bIvRMDigMEP4lR/BmYziy3dA5bJ+AI3nVbPfd1MDedPx+qGrzjoIwZuhzQ7yexr2oCabowgDFPsKwx/I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CXqjVkof; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E438C4CECF;
-	Tue, 19 Nov 2024 09:13:51 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=YVoDoNN9Xn6/5eCGZPqWrTlDxyv0Skr+o8t/UviI2lLRo1zOAIudHBicU8sahlPTRVDnbMICeR/A4uw/NA4pXyk6ROC9MjKBNBKW3aoaT8RW6XbiZMkpCyDJdvSPt2bE70ce0FKn40pqcGvHlvPKmWJ5L2DKM6n7wzHZSh2X9mw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NVZfePm6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73AB7C4CED2;
+	Tue, 19 Nov 2024 09:15:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732007638;
-	bh=2VZx2V9CVxqf2nW+fj+4T81hvTJdFCbYTV71NmDqQeg=;
+	s=k20201202; t=1732007752;
+	bh=tuy3z6nrkIiSd+VzYQkPLNUJwFvXm0qjY4DKrPb4wfk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CXqjVkofP/0q91qDo3Ommx4z8COey/ZCvwj/8e6JY14iGyYrPHZ2PSFQREUT02yJa
-	 rJajENc59J2Vbx3+4VgQZMoUKdL1xDjVDdkOM7tLgUFa4rLgji3BMGAan30Tx2mABY
-	 pW1L1aeuB4QHCA9QR+x1NuukkKDCpzjNTVrGore/0Pj+UgFIYYYgudZhjXKiTLw94Y
-	 uQGuN99ig4d1/EBV3ZaA0RvGBaOoSg0AmB/K0m1BGoK221mhtLTrnE4Lv67pweIj9/
-	 PMjclUbrMePquPrs1Uv5BsedP9egllo/Rg4sNqUeKNMyWlL/07RdCbjc3huwC336Gf
-	 BdjN2M4Kq6IVA==
-Message-ID: <9f347e95-7ce1-4339-9ccb-6bf2962d09d0@kernel.org>
-Date: Tue, 19 Nov 2024 10:13:50 +0100
+	b=NVZfePm6adrgsb9+gR8vzgmAo+JYnPcLMQUWDw/EAs+JrnnjN/aOGNgVBENscDiRT
+	 8tvIzjbvqpFEp03Nt/mxQbY3mJ8caD+Dmlv0eapaohgagMcRY2EQjGgvYGkuu+i7gQ
+	 7zWbzxzuBtdL5CeZdlBYt78hic6yRMQiQoOESCBakVg+/eT+pJdl+5XFfU1bnKJcjE
+	 IjL/NJAaeQoG7ZqqqwypI9b8wWfJ6xtAqsXFyXalthQwS6V94x6siRzlSPEQ96irWs
+	 5y5QcVIcma++DSUlFClcTfC8kFAsyZqiqr2xknLyWnPQJLDprRHjy0TaPyTr7EgSo0
+	 jeFzGNie1+S5w==
+Message-ID: <1651f579-6f9b-4c98-b273-0d7de4e99478@kernel.org>
+Date: Tue, 19 Nov 2024 10:15:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/4] dt-bindindgs: i2c: qcom,i2c-geni: Document shared
- flag
-To: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-Cc: konrad.dybcio@linaro.org, andersson@kernel.org, andi.shyti@kernel.org,
- linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
- conor+dt@kernel.org, agross@kernel.org, devicetree@vger.kernel.org,
- vkoul@kernel.org, linux@treblig.org, dan.carpenter@linaro.org,
- Frank.Li@nxp.com, konradybcio@kernel.org, bryan.odonoghue@linaro.org,
- krzk+dt@kernel.org, robh@kernel.org
-References: <20240927063108.2773304-1-quic_msavaliy@quicinc.com>
- <20240927063108.2773304-2-quic_msavaliy@quicinc.com>
- <we3wmw6e25y6e4443ndrduurwvkkpvuw7ozrizuys6pwxppwfy@2uq7uda4evhd>
- <6d81d8e7-ecd1-46f0-8ca3-617b5ee96990@quicinc.com>
+Subject: Re: [PATCH v5 01/17] dt-bindings: net: wireless: cc33xx: Add
+ ti,cc33xx.yaml
+To: "Nemanov, Michael" <michael.nemanov@ti.com>
+Cc: Kalle Valo <kvalo@kernel.org>, "David S . Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-wireless@vger.kernel.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Sabeeh Khan <sabeeh-khan@ti.com>
+References: <20241107125209.1736277-1-michael.nemanov@ti.com>
+ <20241107125209.1736277-2-michael.nemanov@ti.com>
+ <y4ffzjekeccqg2tv7d54ilwbz3nhm4jkcq3fyg5tmpbupsqirn@dq3kjtwkllds>
+ <2b0e95be-8192-416f-8655-631d6cecc336@ti.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,80 +109,57 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <6d81d8e7-ecd1-46f0-8ca3-617b5ee96990@quicinc.com>
+In-Reply-To: <2b0e95be-8192-416f-8655-631d6cecc336@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/11/2024 17:08, Mukesh Kumar Savaliya wrote:
-> 
-> 
-> On 9/27/2024 2:54 PM, Krzysztof Kozlowski wrote:
->> On Fri, Sep 27, 2024 at 12:01:05PM +0530, Mukesh Kumar Savaliya wrote:
->>> Adds qcom,shared-se flag usage. Use this when particular I2C serial
->>> controller needs to be shared between two subsystems.
+On 12/11/2024 07:45, Nemanov, Michael wrote:
+> On 11/8/2024 2:02 PM, Krzysztof Kozlowski wrote:
+>> On Thu, Nov 07, 2024 at 02:51:53PM +0200, Michael Nemanov wrote:
+>>> Add device-tree bindings for the CC33xx family.
 >>>
->>> SE = Serial Engine, meant for I2C controller here.
->>> TRE = Transfer Ring Element, refers to Queued Descriptor.
->>> SS = Subsystems (APPS processor, Modem, TZ, ADSP etc).
->>>
->>> Example :
->>> Two clients from different SS can share an I2C SE for same slave device
->>> OR their owned slave devices.
->>> Assume I2C Slave EEPROM device connected with I2C controller.
->>> Each client from ADSP SS and APPS Linux SS can perform i2c transactions.
->>> This gets serialized by lock TRE + DMA Transfers + Unlock TRE at HW level.
->>>
->>> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+>>> Signed-off-by: Michael Nemanov <michael.nemanov@ti.com>
 >>> ---
->>>   Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml | 4 ++++
->>>   1 file changed, 4 insertions(+)
+>>>   .../bindings/net/wireless/ti,cc33xx.yaml      | 59 +++++++++++++++++++
+>>>   1 file changed, 59 insertions(+)
+>>>   create mode 100644 Documentation/devicetree/bindings/net/wireless/ti,cc33xx.yaml
 >>>
->>> diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
->>> index 9f66a3bb1f80..3b9b20a0edff 100644
->>> --- a/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
->>> +++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
->>> @@ -60,6 +60,10 @@ properties:
->>>     power-domains:
->>>       maxItems: 1
->>>   
->>> +  qcom,shared-se:
->>> +    description: True if I2C needs to be shared between two or more subsystems(SS).
 >>
->> The "SS" and subsystem should be explained in the binding. Please do not
->> use some qcom-specific abbreviations here, but explain exactly, e.g.
->> processors like application processor and DSP.
+>> <form letter>
+>> This is a friendly reminder during the review process.
 >>
->> "se" is also not explained in the binding - please open it and look for
->> such explanation.
-> Sure, i thought cover letter explanation is good enough. I will add it 
-> per patch as cover letter will not be visible and go away after merge.
+>> It seems my or other reviewer's previous comments were not fully
+>> addressed. Maybe the feedback got lost between the quotes, maybe you
+>> just forgot to apply it. Please go back to the previous discussion and
+>> either implement all requested changes or keep discussing them.
 >>
->> This all should be rephrased to make it clear... We talked about this
->> and I do not see much of improvements except commit msg, so we are
->> making circles. I don't know, get someone internally to help you in
->> upstreaming this.
-> Let me retry to make it better.
-> Will make SS (subsystem) to system processor (can be APPS or DSP OR any 
-> other).
+>> Thank you.
+>> </form letter>
 >>
->> Is sharing of IP blocks going to be also for other devices? If yes, then
->> this should be one property for all Qualcomm devices. If not, then be
->> sure that this is the case because I will bring it up if you come with
->> one more solution for something else.
+>> Best regards,
+>> Krzysztof
 >>
-> IP blocks like SE can be shared. Here we are talking about I2C sharing.
-> In future it can be SPI sharing. But design wise it fits better to add 
-> flag per SE node. Same we shall be adding for SPI too in future.
 > 
-> Please let me know your further suggestions.
+> Are you referring to
+> 
+>> diff --git a/Documentation/devicetree/bindings/net/wireless/ti,cc33xx.yaml b/Documentation/devicetree/bindings/net/wireless/ti,cc33xx.yaml
+> 
+> ...
+> 
+>> +
+>> +properties:
+>> +  $nodename:
+>> +    pattern: "^wifi@2"
+> 
+> ?
+> 
+> If so, I replied here
+> https://lore.kernel.org/linux-wireless/8024aa1c-5bd1-40d8-b0c3-14b5fcd992e2@ti.com/#t
+> But if you don't think it's worthwhile I'll remove it.
 
-You responded 1.5 months after my message.
-
-I will provide you suggestions also 1.5 months, when I dig the context.
-Oh wait, all previous emails are long gone from my inbox...
-
-Anyway, my above comment stands for all Qualcomm reviews: stop coming up
-every month with twenty different "shared IP" properties.
+I asked you to remove it. It's not correct, not needed, not beneficial
+at all. It is actually harmful because limits re-use. dtc already checks
+this.
 
 Best regards,
 Krzysztof
