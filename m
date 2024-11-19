@@ -1,127 +1,132 @@
-Return-Path: <devicetree+bounces-122932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF5D69D2D7C
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 19:03:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F7C39D2CF1
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 18:49:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7DFF5B2D379
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 17:42:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6559E281314
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 17:49:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 500661D1F76;
-	Tue, 19 Nov 2024 17:41:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0311C1D1F44;
+	Tue, 19 Nov 2024 17:49:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ss2liA1C"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MJHuJ0az"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EAE01D1300;
-	Tue, 19 Nov 2024 17:41:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDF191CC89E;
+	Tue, 19 Nov 2024 17:49:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732038119; cv=none; b=Xy89lbhrwX30004MukNayylpRJcoFlVsbcWi+zXiELidSSFDbInoDhlab/o+BscVCzMjI0PZdtNwT5WDGvz+rQw4XWzAAGkPtOr5+rihHO5pq3lTt5aLZZHLzTLcsXj2cIgbYesnRgTGWyJ9t+Tu6/mdxlgDuo5HdukFttOY0XM=
+	t=1732038564; cv=none; b=pdlQy0VpOKe9DkTgAMWgp3CI15kiOo+oi57E/9qTXHjUWYVVpfKaz/wY0aQlOYR0iVHTRccavD8fk2RbPmloaDiERvXqEzcg2JrCqel3AYo1aHxoJIp2IvECfaNrtiAHI/xq9vnj3Z3U6gjsBkR4MH+plt7vtEOu7I7MmWHHZG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732038119; c=relaxed/simple;
-	bh=fC4Iu6ZTvWHVn0mAs02BF67Zmknk558M9DVYXjCgc4A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dQVKOAZEcRnxNlrkmP13qIwJ7F7fOwgtvBD/dQcjEvzOsWnns9JwxKcItOL6hLhQm5OfEaHzOLbX0Od8IIt32lhhFosIvhMw2DBQVj/oBej1Ik5Mmo68AfBh186EKRTcV1M35N/e1wSsw/wf1a+s6CccP7zEqQ7F5WXMhctN4tE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ss2liA1C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83357C4CED0;
-	Tue, 19 Nov 2024 17:41:58 +0000 (UTC)
+	s=arc-20240116; t=1732038564; c=relaxed/simple;
+	bh=FikHNGJ1QtpCtUQBGGfnptDmKYQVJIWUypOil92hb5k=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=HaeJUHSFFkcdQi/aHNjm2iHL52Bxz3lDGnKZExtRNhvPFDCfhJPsi9XzpCnRbtrlFDX2EYdEMjC3qQLj5hvtS1WFJYwqCCoRKQHo6GSsSm3nuYcaL4cSqS33Gol0XhuRBS57t9wOg6YBOpVRWw7cnckHhPmE6sFOiSkJjGhITLQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MJHuJ0az; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65628C4CED0;
+	Tue, 19 Nov 2024 17:49:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732038118;
-	bh=fC4Iu6ZTvWHVn0mAs02BF67Zmknk558M9DVYXjCgc4A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ss2liA1CbtHjZtbxReG294xHb1gK7mWNfZcPAT3S6IoLVxeHOZMI+N76tfRN18dpw
-	 L0tCD/2wgFXBxM1qWJDBHnZDl/jeJfSvEHTX64KLSF1Eqd1AT5HZnLaeeEifiYC+XE
-	 lzfgTvx/U3s/CbkjsUN/v/hPdBPOhRs0AnlvtVG0F7ff9y+iQ7JyaMYz5BzwDNwaqL
-	 Y6jZEput4/yxkde6XPdP7J7qVCn3OVSJuYQ8YpwqS3PL3KAOPep8m8CF2eRqxyswUn
-	 9TkeeWfUkuZBtlY/nZGfs6xrY9pj0jxfGmYU/5GRXFRCYHDkZzQmhcg24iyx4m/WQX
-	 y+yEn6R3bYzJw==
-Date: Tue, 19 Nov 2024 11:41:56 -0600
-From: Rob Herring <robh@kernel.org>
-To: Yijie Yang <quic_yijiyang@quicinc.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, quic_tingweiz@quicinc.com,
-	quic_aiquny@quicinc.com, quic_tengfan@quicinc.com,
-	quic_jiegan@quicinc.com, quic_jingyw@quicinc.com,
-	quic_jsuraj@quicinc.com
-Subject: Re: [PATCH 1/3] dt-bindings: net: qcom,ethqos: revise description
- for qcs615
-Message-ID: <20241119174156.GA1862978-robh@kernel.org>
-References: <20241118-schema-v1-0-11b7c1583c0c@quicinc.com>
- <20241118-schema-v1-1-11b7c1583c0c@quicinc.com>
+	s=k20201202; t=1732038564;
+	bh=FikHNGJ1QtpCtUQBGGfnptDmKYQVJIWUypOil92hb5k=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=MJHuJ0azEWjpXrStcQ0J+WZAoyZPGHeN5a+l3hTTfVe+wS3m51R9232FPyhk1yxA1
+	 x2EDzKx1PBPTDDQWHaAap6NCnInI8HutXS1RsnRuS8oQjNXsddfhpxBFiAcV59gLZ4
+	 bvItcnCywcxxim/MrbrczTJruEjBiOzfwcgWzoh2J6+i9dkpley0eSLt66G1SqgrQK
+	 hhUbyg0w8pMDNg9tvdxtSlhMmtkhmiV/1PKQ8MtXk4C9tMTLKIsDM9sJJT6KktO41Z
+	 TWv/m89T6xWDS0ckv3b5NyreUXo3cKZghSHot2ZGDY3PZSr3WMrF/FRez72W5hli5P
+	 EORtgqKcHgdxg==
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-6ee745e3b2bso333037b3.0;
+        Tue, 19 Nov 2024 09:49:24 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVaODcsrS1FFtzG9t66Nv3E1OHSUqG1S0JCQ3u+dvtvp7EmDVZ9xsNq5hXyDwh8nPS3/N4O3UMyXsWi@vger.kernel.org, AJvYcCWOixR1zlq7XiL5h4VyFwbK2b+RNqnfP8QtMyyhyYQ0QcBU63+Q0bj3K9jK6eAmafmypjSMi8JBTbcswPsI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw7GRWAGYy6/02syxkk0wJEhjQbRTOStAs/13I4cPra1iEml9tD
+	ApdN5v2N8VuftQIXr0Ly/0lAxtqLeP79I2WYNCURkj6HvRhklb1bC/0f5G5HnCc5JPpjHsz52ez
+	Vd6XhYRKed964tY38gJKyPFwaXA==
+X-Google-Smtp-Source: AGHT+IHcxvaZPuyKcnTQ+KCUfqN9GrPk6w9RFIomNZLRe4D2WigFnVWUl/PsIV32XxtrjlnyS5ch4EUpypla3iGIA+A=
+X-Received: by 2002:a05:690c:7010:b0:6dd:f81a:80fb with SMTP id
+ 00721157ae682-6eeaa326b8cmr36600807b3.1.1732038563632; Tue, 19 Nov 2024
+ 09:49:23 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241118-schema-v1-1-11b7c1583c0c@quicinc.com>
+References: <20241114195652.3068725-1-samuel.holland@sifive.com>
+ <20241119154117.GA1537069-robh@kernel.org> <1f78898b-f703-4fd9-8f68-c0835a85de9e@sifive.com>
+In-Reply-To: <1f78898b-f703-4fd9-8f68-c0835a85de9e@sifive.com>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 19 Nov 2024 11:49:11 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJ0K5z9rNHKNF1Xq8XnAkrxZaG-Th-e-G-zy5bo9_8=QA@mail.gmail.com>
+Message-ID: <CAL_JsqJ0K5z9rNHKNF1Xq8XnAkrxZaG-Th-e-G-zy5bo9_8=QA@mail.gmail.com>
+Subject: Re: [PATCH] of: property: fw_devlink: Do not use interrupt-parent directly
+To: Samuel Holland <samuel.holland@sifive.com>
+Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Nov 18, 2024 at 02:16:50PM +0800, Yijie Yang wrote:
-> The core version of EMAC on qcs615 has minor differences compared to that
-> on sm8150. During the bring-up routine, the loopback bit needs to be set,
-> and the Power-On Reset (POR) status of the registers isn't entirely
-> consistent with sm8150 either.
-> Therefore, it should be treated as a separate entity rather than a
-> fallback option.
+On Tue, Nov 19, 2024 at 10:47=E2=80=AFAM Samuel Holland
+<samuel.holland@sifive.com> wrote:
+>
+> Hi Rob,
+>
+> On 2024-11-19 9:41 AM, Rob Herring wrote:
+> > On Thu, Nov 14, 2024 at 11:56:49AM -0800, Samuel Holland wrote:
+> >> commit 7f00be96f125 ("of: property: Add device link support for
+> >> interrupt-parent, dmas and -gpio(s)") started adding device links for
+> >> the interrupt-parent property. Later, commit f265f06af194 ("of:
+> >> property: Fix fw_devlink handling of interrupts/interrupts-extended")
+> >> added full support for parsing the interrupts and interrupts-extended
+> >> properties, which includes looking up the node of the parent domain.
+> >> This made the handler for the interrupt-parent property redundant.
+> >>
+> >> In fact, creating device links based solely on interrupt-parent is
+> >> problematic, because it can create spurious cycles. A node may have
+> >> this property without itself being an interrupt controller or consumer=
+.
+> >> For example, this property is often present in the root node or a /soc
+> >> bus node to set the default interrupt parent for child nodes. However,
+> >> it is incorrect for the bus to depend on the interrupt controller, as
+> >> some of the bus's childre may not be interrupt consumers at all or may
+> >
+> > typo
+> >
+> >> have a different interrupt parent.
+> >>
+> >> Resolving these spurious dependency cycles can cause an incorrect prob=
+e
+> >> order for interrupt controller drivers. This was observed on a RISC-V
+> >> system with both an APLIC and IMSIC under /soc, where interrupt-parent
+> >> in /soc points to the APLIC, and the APLIC msi-parent points to the
+> >> IMSIC. fw_devlink found three dependency cycles and attempted to probe
+> >> the APLIC before the IMSIC. After applying this patch, there were no
+> >> dependency cycles and the probe order was correct.
+> >>
+> >> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
+> >
+> > I assume this should go to stable? It needs Fixes tags.
+>
+> What commit should I put in the Fixes tag? f265f06af194 ("of: property: F=
+ix
+> fw_devlink handling of interrupts/interrupts-extended"), because it finis=
+hed
+> making this code redundant? That commit didn't introduce any new bugs--th=
+is code
+> was always wrong--but I would be hesitant to backport this change any fur=
+ther,
+> because it might cause regressions without the "interrupts" property pars=
+ing in
+> place.
 
-'revise description' is not very specific. 'Drop fallback compatible for 
-qcom,qcs615-ethqos' would be better.
+I'd guess that f265f06af194 has been backported to everything with
+7f00be96f125. I think we want either all 3 commits or none of them. If
+something only works with a subset, then upstream is broken.
 
-However, this is an ABI change. You could leave the binding/dts alone 
-and only change the kernel driver to match on qcom,qcs615-ethqos to 
-achieve what you need. If there's a reason why the ABI change is okay, 
-then you need to detail that. Did the driver never work? Are there no 
-users yet?
-
-> 
-> Fixes: 32535b9410b8 ("dt-bindings: net: qcom,ethqos: add description for qcs615")
-> Signed-off-by: Yijie Yang <quic_yijiyang@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/net/qcom,ethqos.yaml | 5 +----
->  1 file changed, 1 insertion(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/qcom,ethqos.yaml b/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
-> index 0bcd593a7bd093d4475908d82585c36dd6b3a284..576a52742ff45d4984388bbc0fcc91fa91bab677 100644
-> --- a/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
-> +++ b/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
-> @@ -23,12 +23,9 @@ properties:
->            - enum:
->                - qcom,qcs8300-ethqos
->            - const: qcom,sa8775p-ethqos
-> -      - items:
-> -          - enum:
-> -              - qcom,qcs615-ethqos
-> -          - const: qcom,sm8150-ethqos
->        - enum:
->            - qcom,qcs404-ethqos
-> +          - qcom,qcs615-ethqos
->            - qcom,sa8775p-ethqos
->            - qcom,sc8280xp-ethqos
->            - qcom,sm8150-ethqos
-> 
-> -- 
-> 2.34.1
-> 
+Rob
 
