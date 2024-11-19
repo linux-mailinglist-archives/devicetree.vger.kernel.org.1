@@ -1,63 +1,72 @@
-Return-Path: <devicetree+bounces-122954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 430B69D2DA6
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 19:12:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 094699D2E6B
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 19:57:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CDCAC2829B0
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 18:12:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8389BB284B5
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 18:16:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 463DD1D172A;
-	Tue, 19 Nov 2024 18:12:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD4761D0438;
+	Tue, 19 Nov 2024 18:16:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RjyjfgPE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RHwEy2jd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F9891CDFCA;
-	Tue, 19 Nov 2024 18:12:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E46740BE0;
+	Tue, 19 Nov 2024 18:16:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732039960; cv=none; b=drkWmKvwP1RdPBcISg/enWdJZeAtwQIyLkxtt1TK4t4KteXe/UyIV0gB7GOEI4yMYjhkn4TfoadVww6ffO+n+FIF/K68b+aYrbKy5ozCFvFVmvy6VQOVXcdAIBCkE4LDo7CrxQ6MdMWorW3DNqZdYZuTkrrnm65ixTY4aFrwx8E=
+	t=1732040194; cv=none; b=Q2As/B89VwTBPQgEiJ8Lr2B/0MuovCGaL3ZJag4kk1v7RBsmJxPDndfv5CnSnY3QgMujO+pFQHBVWP+9IWYEf0NCG7nTsTx5zyhOz3qMLZcqYrtRlho5xaBh+i9EVXlZXJSdPqlkWGLYQpvcrY0crV0044N8VIUsIkMJvrHvRPw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732039960; c=relaxed/simple;
-	bh=+wbYj1AcnlE6pU8bR4zENHUExkruGEtGXcEXeHgtAlQ=;
+	s=arc-20240116; t=1732040194; c=relaxed/simple;
+	bh=YEyHF7qNpdjYiVOL7NYzxys2GSXjpUHFTISRNu/EFNY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XgEBDH5u+k56u52nwvbMG2ckX60A5Y0e2gVtOGUMWZHEYUXgEtqHoayaYhZ9KqjeQJvJwmeMY0qPgN+v6v9ATMhlyMT5sjCPjUnygYXQqcD0EuqV72QIPPzq+yYzcEpkkxprrVus0LMVi9pfPOL98P7J2x/hAoNJF1mpNHtVqm4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RjyjfgPE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 736BAC4CECF;
-	Tue, 19 Nov 2024 18:12:39 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=cSLoJA/wMIPzT0m1XRBMkNDA53pbgr4kfqp4QZHxTdfxdzaekiRomIqeeZqPWtpR0wDaSDWOG3/EFTXTRLowFnVOnRHLqB7ZlL1cR2dG3XTEGHUGsiZ/ZlqIISRYGaQXvuFDA6esGBWOFpqcoiIyKb1RxDrGTs0iYQkxl51g/Jo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RHwEy2jd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3F12C4CECF;
+	Tue, 19 Nov 2024 18:16:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732039959;
-	bh=+wbYj1AcnlE6pU8bR4zENHUExkruGEtGXcEXeHgtAlQ=;
+	s=k20201202; t=1732040194;
+	bh=YEyHF7qNpdjYiVOL7NYzxys2GSXjpUHFTISRNu/EFNY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RjyjfgPEAoxFatLZFmGR2PBmelIKrLaBAqYHegwKX+KelbP31+plkliWveQbHJHJx
-	 h+r+tlCjkoQMjFwAFqAC5KTr3xyo7PhyGQe6j/LAEfrXAUdbrBTnL8x61RNogiclOh
-	 0VCcpb/pnnxzSZSxOLxUrNTWV9Sk2zkMTRh0PkHCbv7u0keiWqQg6dPNheodVQn2N/
-	 TwSUMUOnSK+k6YsMpFtNFPnlWNUC9HCmSYGxkNRvrAAiW4c7Dnc1qIVuQwOdFnIUOi
-	 v0lRhl9MQsf8Rblk5Y+qsrLSaB41wL/L6foueUoHGNnd+4e3xJwXzXBts5U+VOQQ3z
-	 hU+ZE9CjWVVQA==
-Date: Tue, 19 Nov 2024 12:12:37 -0600
+	b=RHwEy2jdbpbbXM9Rmn9rrT9dPGJzmy5r+SGvXoSKtIGbJv+1vZ5wC9fhnN0HmW1Gk
+	 aFIPGj7BAwwAaxWiOz3LTuUnoB5s0B5eCMDCJV208zgdnFc1GbbzC9w/4cCx1Y5QTp
+	 bNpEkcbNVUGmFjhs7Hc1NLiqBCIYU3QiA7OYZnMhCCTuMNL4nqBXlruVCkxfsBWTzh
+	 tSese9MGcZbtEewgiiJAQIoPKTQ8REOCrrue0uvzYyKgROHhf9mATmO8oYcNz5pPLc
+	 42gRLbWrXCI3861qN3nRbC+6kvC4dG3SibKMhByf3a3psVpcSXzM4XdAc46QsfeSGn
+	 CulDQVY0MiFNQ==
+Date: Tue, 19 Nov 2024 12:16:32 -0600
 From: Rob Herring <robh@kernel.org>
-To: Joey Lu <a0987203069@gmail.com>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, krzk+dt@kernel.org,
-	conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
-	richardcochran@gmail.com, alexandre.torgue@foss.st.com,
-	joabreu@synopsys.com, ychuang3@nuvoton.com, schung@nuvoton.com,
-	yclu4@nuvoton.com, peppe.cavallaro@st.com,
-	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	openbmc@lists.ozlabs.org, linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH v3 1/3] dt-bindings: net: nuvoton: Add schema for Nuvoton
- MA35 family GMAC
-Message-ID: <20241119181237.GA1871579-robh@kernel.org>
-References: <20241118082707.8504-1-a0987203069@gmail.com>
- <20241118082707.8504-2-a0987203069@gmail.com>
+To: Romain Gantois <romain.gantois@bootlin.com>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Kory Maincent <kory.maincent@bootlin.com>,
+	linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+	linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v2 1/9] dt-bindings: misc: Describe TI FPC202 dual port
+ controller
+Message-ID: <20241119181632.GA1957312-robh@kernel.org>
+References: <20241118-fpc202-v2-0-744e4f192a2d@bootlin.com>
+ <20241118-fpc202-v2-1-744e4f192a2d@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,239 +75,138 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241118082707.8504-2-a0987203069@gmail.com>
+In-Reply-To: <20241118-fpc202-v2-1-744e4f192a2d@bootlin.com>
 
-On Mon, Nov 18, 2024 at 04:27:05PM +0800, Joey Lu wrote:
-> Create initial schema for Nuvoton MA35 family Gigabit MAC.
+On Mon, Nov 18, 2024 at 11:13:00AM +0100, Romain Gantois wrote:
+> The FPC202 dual port controller serves as a low speed signal aggregator for
+> common port types, notably SFP. It provides access to I2C and low-speed
+> GPIO signals of a downstream device through a single upstream control
+> interface.
 > 
-> Signed-off-by: Joey Lu <a0987203069@gmail.com>
+> Up to two logical I2C addresses can be accessed on each of the FPC202's
+> ports. The port controller acts as an I2C translator (ATR). It converts
+> addresses of incoming and outgoing I2C transactions. One use case of this
+> is accessing two SFP modules at logical address 0x50 from the same upstream
+> I2C controller, using two different client aliases.
+> 
+> Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
 > ---
->  .../bindings/net/nuvoton,ma35d1-dwmac.yaml    | 173 ++++++++++++++++++
->  .../devicetree/bindings/net/snps,dwmac.yaml   |   1 +
->  2 files changed, 174 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/nuvoton,ma35d1-dwmac.yaml
+>  .../devicetree/bindings/misc/ti,fpc202.yaml        | 83 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  6 ++
+>  2 files changed, 89 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/net/nuvoton,ma35d1-dwmac.yaml b/Documentation/devicetree/bindings/net/nuvoton,ma35d1-dwmac.yaml
+> diff --git a/Documentation/devicetree/bindings/misc/ti,fpc202.yaml b/Documentation/devicetree/bindings/misc/ti,fpc202.yaml
 > new file mode 100644
-> index 000000000000..92cbbcc72f2b
+> index 0000000000000000000000000000000000000000..1c7243f0325211d8cea3736cbe777c4318065b12
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/nuvoton,ma35d1-dwmac.yaml
-> @@ -0,0 +1,173 @@
+> +++ b/Documentation/devicetree/bindings/misc/ti,fpc202.yaml
+> @@ -0,0 +1,83 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/net/nuvoton,ma35d1-dwmac.yaml#
+> +$id: http://devicetree.org/schemas/misc/ti,fpc202.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Nuvoton DWMAC glue layer controller
+> +title: TI FPC202 dual port controller with expanded IOs
 > +
 > +maintainers:
-> +  - Joey Lu <yclu4@nuvoton.com>
-> +
-> +description:
-> +  Nuvoton 10/100/1000Mbps Gigabit Ethernet MAC Controller is based on
-> +  Synopsys DesignWare MAC (version 3.73a).
-> +
-> +# We need a select here so we don't match all nodes with 'snps,dwmac'
-
-You mean snps,dwmac-3.70a?
-
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - nuvoton,ma35d1-dwmac
-> +  required:
-> +    - compatible
+> +  - Romain Gantois <romain.gantois@bootlin.com>
 > +
 > +allOf:
-> +  - $ref: snps,dwmac.yaml#
+> +  - $ref: /schemas/i2c/i2c-atr.yaml#
 > +
 > +properties:
 > +  compatible:
-> +    oneOf:
-
-oneOf is not correct. I think you wanted 'items'.
-
-> +      - enum:
-> +          - nuvoton,ma35d1-dwmac
-> +      - const: snps,dwmac-3.70a
-
-But you said above the h/w is 3.73a.
-
-Really, I'd prefer to just drop this because it's not useful on its own. 
-But the driver does check for snps,dwmac-3.70a. All those 
-of_device_is_compatible() calls in the driver should really be replaced 
-with static match data structs.
-
+> +    const: ti,fpc202
 > +
 > +  reg:
-> +    description:
-> +      Register range should be one of the GMAC interface.
-
-Need to define how many entries and what they are if more than 1.
-
-> +
-> +  interrupts:
 > +    maxItems: 1
 > +
-> +  clocks:
-> +    items:
-> +      - description: MAC clock
-> +      - description: PTP clock
+> +  gpio-controller: true
 > +
-> +  clock-names:
-> +    items:
-> +      - const: stmmaceth
-> +      - const: ptp_ref
+> +  "#gpio-cells":
+> +    const: 2
 > +
-> +  nuvoton,sys:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    items:
-> +      - items:
-> +          - description: phandle to access syscon registers.
-> +          - description: GMAC interface ID.
-> +            enum:
-> +              - 0
-> +              - 1
+> +  enable-gpios:
 > +    description:
-> +      A phandle to the syscon with one argument that configures system registers
-> +      for MA35D1's two GMACs. The argument specifies the GMAC interface ID.
-> +
-> +  resets:
+> +      Specifier for the GPIO connected to the EN pin.
 > +    maxItems: 1
 > +
-> +  reset-names:
-> +    items:
-> +      - const: stmmaceth
+> +  '#address-cells':
+> +    const: 1
 > +
-> +  phy-mode:
-> +    enum:
-> +      - rmii
-> +      - rgmii
-> +      - rgmii-id
-> +      - rgmii-txid
-> +      - rgmii-rxid
+> +  '#size-cells':
+> +    const: 0
 > +
-> +  phy-handle:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +patternProperties:
+> +  "^i2c@[0-1]$":
+> +    $ref: /schemas/i2c/i2c-controller.yaml
+> +    description: Downstream device ports 0 and 1
 
-The type is already defined. Drop.
+'reg' is not covered by i2c-controller.yaml, so it needs to be 
+documented here. Along with a 'unevaluatedProperties: false'.
 
-> +    description:
-> +      Specifies a reference to a node representing a PHY device.
-> +
-> +  tx-internal-delay-ps:
-> +    enum: [0, 2000]
-> +    default: 0
-> +    description:
-> +      RGMII TX path delay used only when PHY operates in RGMII mode with
-> +      internal delay (phy-mode is 'rgmii-id' or 'rgmii-txid') in pico-seconds.
-> +
-> +  rx-internal-delay-ps:
-> +    enum: [0, 2000]
-> +    default: 0
-> +    description:
-> +      RGMII RX path delay used only when PHY operates in RGMII mode with
-> +      internal delay (phy-mode is 'rgmii-id' or 'rgmii-rxid') in pico-seconds.
-> +
-> +  mdio:
-> +    $ref: /schemas/net/mdio.yaml#
 > +
 > +required:
 > +  - compatible
+> +  - gpio-controller
+> +  - "#gpio-cells"
 > +  - reg
-> +  - interrupts
-> +  - interrupt-names
-> +  - clocks
-> +  - clock-names
-> +  - nuvoton,sys
-> +  - resets
-> +  - reset-names
-> +  - phy-mode
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - i2c@0
+> +  - i2c@1
 > +
 > +unevaluatedProperties: false
 > +
 > +examples:
 > +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/nuvoton,ma35d1-clk.h>
-> +    #include <dt-bindings/reset/nuvoton,ma35d1-reset.h>
-> +    //Example 1
-
-Not a useful comment.
-
-> +    gmac0: ethernet@40120000 {
-
-Drop unused labels.
-
-> +        compatible = "nuvoton,ma35d1-dwmac";
-> +        reg = <0x0 0x40120000 0x0 0x10000>;
-> +        interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
-> +        interrupt-names = "macirq";
-> +        clocks = <&clk EMAC0_GATE>, <&clk EPLL_DIV8>;
-> +        clock-names = "stmmaceth", "ptp_ref";
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
 > +
-> +        nuvoton,sys = <&sys 0>;
-> +        resets = <&sys MA35D1_RESET_GMAC0>;
-> +        reset-names = "stmmaceth";
-> +
-> +        phy-mode = "rgmii-id";
-> +        phy-handle = <&eth_phy0>;
-> +        mdio0: mdio {
-> +            compatible = "snps,dwmac-mdio";
+> +        i2c-atr@f {
+> +            compatible = "ti,fpc202";
+> +            reg = <0xf>;
 > +            #address-cells = <1>;
 > +            #size-cells = <0>;
 > +
-> +            eth_phy0: ethernet-phy@0 {
+> +            gpio-controller;
+> +            #gpio-cells = <2>;
+> +
+> +            i2c@0 {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
 > +                reg = <0>;
 > +            };
-> +        };
-> +    };
 > +
-> +  - |
-> +    //Example 2
-> +    gmac1: ethernet@40130000 {
-
-Drop the example. It's almost the same as the first one.
-
-> +        compatible = "nuvoton,ma35d1-dwmac";
-> +        reg = <0x0 0x40130000 0x0 0x10000>;
-> +        interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
-> +        interrupt-names = "macirq";
-> +        clocks = <&clk EMAC1_GATE>, <&clk EPLL_DIV8>;
-> +        clock-names = "stmmaceth", "ptp_ref";
-> +
-> +        nuvoton,sys = <&sys 1>;
-> +        resets = <&sys MA35D1_RESET_GMAC1>;
-> +        reset-names = "stmmaceth";
-> +
-> +        phy-mode = "rmii";
-> +        phy-handle = <&eth_phy1>;
-> +        mdio1: mdio {
-> +            compatible = "snps,dwmac-mdio";
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            eth_phy1: ethernet-phy@1 {
+> +            i2c@1 {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
 > +                reg = <1>;
 > +            };
 > +        };
 > +    };
-> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> index 4e2ba1bf788c..aecdb3d37b53 100644
-> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> @@ -66,6 +66,7 @@ properties:
->          - ingenic,x2000-mac
->          - loongson,ls2k-dwmac
->          - loongson,ls7a-dwmac
-> +        - nuvoton,ma35d1-dwmac
->          - qcom,qcs404-ethqos
->          - qcom,sa8775p-ethqos
->          - qcom,sc8280xp-ethqos
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index b878ddc99f94e7f6e8fa2c479c5a3f846c514730..8e702cefd2070790330eebf6d2a2b592cadb682d 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -23181,6 +23181,12 @@ F:	drivers/misc/tifm*
+>  F:	drivers/mmc/host/tifm_sd.c
+>  F:	include/linux/tifm.h
+>  
+> +TI FPC202 DUAL PORT CONTROLLER
+> +M:	Romain Gantois <romain.gantois@bootlin.com>
+> +L:	linux-kernel@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/misc/ti,fpc202.yaml
+> +
+>  TI FPD-LINK DRIVERS
+>  M:	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+>  L:	linux-media@vger.kernel.org
+> 
 > -- 
-> 2.34.1
+> 2.47.0
 > 
 
