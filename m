@@ -1,94 +1,101 @@
-Return-Path: <devicetree+bounces-122963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A2889D2EA4
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 20:16:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1139A9D2E76
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 20:02:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E88FAB28537
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 19:01:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB14B28119F
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 19:02:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3433D153BC1;
-	Tue, 19 Nov 2024 19:01:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2520192D77;
+	Tue, 19 Nov 2024 19:02:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="dO0X1I9g"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qZCf/9J/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A4DA13BACB;
-	Tue, 19 Nov 2024 19:01:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8321F148FF0;
+	Tue, 19 Nov 2024 19:02:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732042880; cv=none; b=hrUeiDRDvAX+9DmxbWAqqL/Av2hN3jw1B7FEe+H5bvQilHwtikdculK/vKyF0kW/fCVNW0MY01tk9pG+avHs1x8pryw5wQcQ32NYyIQNy3tHDdBCioVlLWAL0fVieEInUfwfW9qBfn6RQQl0knwnpP5VJGtVkhHCn6rgp/BowuI=
+	t=1732042949; cv=none; b=k4K/HFvBISpiFQ2yYsEES5abGYk02Or4fquqW8iW1zF/GocP3NoXM9tJ4JddAyp273WMhHSGCwHjRw3qHdPuqgu54yhgsCvukv5QA9SdYxZTgQrp5UxYaIyuj1IGo2vnNgkwj0CpbT2QCIXCoyhRuEnXwTyfYKtA/TOmJ+V4MXs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732042880; c=relaxed/simple;
-	bh=as1XVcosRkNzaH4BRJpnPhqnZ9iJCYHOUq2IzoL4jV8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fWgz49g948f0UYfs2BWO/u2W+cdVDOJWkIavdxjGWbxtPyh00wRORyVv+2l/FfS8G8dYnwyryiJy4KtBSWbm8+XMzWjlFxJqt18q74mBaqM1z4QAmrknb2BnWhpF1d+UL1AdbMQ+pYkH1PB3heQowuZV0voOxCcVXaO6SZmtdyg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=dO0X1I9g; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (31-10-206-125.static.upc.ch [31.10.206.125])
-	by mail11.truemail.it (Postfix) with ESMTPA id 3F0A51FAC7;
-	Tue, 19 Nov 2024 20:01:11 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1732042871;
-	bh=UrTn/7rSGKkdLfBOAcUSvtVasFAVwxg9Ht3qmWHbO4k=; h=From:To:Subject;
-	b=dO0X1I9gtg95s0+CuA9dLwF/VeTrEI8NLVnAfWrYYnOouPz6U4RIPdUBXHDFAcjaf
-	 dLMZUP9TXMcmrB+IZh8VT9Im5nRDsEuanxgcko04Ym5mamhSrUGfhBjaON9TFigj5Z
-	 CO0J2xJCKRJP5+Tx49eHyM64XI68NuSyx3ci6EbGWW4AUyJBMXGvomSyjbSUSdBXFV
-	 Bi5AZ3fmQOHng5iebh0qZsrboI6Uf/P1hyZNZB0W9Jnkrid9OUHR/inLRcCzYm3zlF
-	 pwo16o4Troc1wpXDkevHJIQOgRSaBkMzeawtOBWhSUaUs2gBOMnM1H4J0hL2azK+h2
-	 f/8/0Cw7TJWoQ==
-Date: Tue, 19 Nov 2024 20:01:06 +0100
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Thomas Richard <thomas.richard@bootlin.com>, Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>, u-kumar1@ti.com
-Cc: Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, gregory.clement@bootlin.com,
-	thomas.petazzoni@bootlin.com, richard.genoud@bootlin.com
-Subject: Re: [PATCH] arm64: dts: ti: k3-j784s4: use ti,j7200-padconf
- compatible
-Message-ID: <20241119190106.GA70080@francesco-nb>
-References: <20241113-j784s4-s2r-pinctrl-v1-1-19aeb62739bc@bootlin.com>
+	s=arc-20240116; t=1732042949; c=relaxed/simple;
+	bh=E49jqmxuC52oXSPUAi1XEszqvt4bPFByFmxllcDYwkk=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=mROxgGwYtL2BjE74wkpoOj+Yuqn0Vu4X5c68YjRV5ewX34jkxMx1ESmrxwjxstXE8mJ9i/M6JkVpaSdVPsCNjGjK/5YiuujIUN7GaKjVp373ObCLZlqhB10+XDtmAqFWCbzb1fWIrKYoqSLPLTddszVHsOkix9vK8nqKTQMP66Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qZCf/9J/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48D4CC4CECF;
+	Tue, 19 Nov 2024 19:02:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732042948;
+	bh=E49jqmxuC52oXSPUAi1XEszqvt4bPFByFmxllcDYwkk=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=qZCf/9J/OPpskuZ8lhWsKMw16bDbGfcJ5D7q/rqWCH+LzaLm0v2PB4eFGJdmuv8hR
+	 fHRfMy0096T5yyJGNA6WHlCcuaxxNFbX+13FbND1xdEQIaeSWqTsjJYhYsQkW5fYVN
+	 S5/JNkflj20EnXC9UnDStHtv/ZcrmqiWEZblP/Zr+qGznIT/JjvwSaMFPYfZ/MURxR
+	 xYA6KsCdkLoJx+LEqZB0tklf/3DC0oNwfLXOGVRz8I+Q5aeL5wKu8ei95siQMqcLnc
+	 PPpuqqHUPTdQHZW70Kpje/b3daDVJ0/ATipnunZt43/m5l892H70pO1ELhKVv7INiY
+	 yXiAAjh7mMtMg==
+From: Mark Brown <broonie@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org
+In-Reply-To: <20241115-topic-sdm450-upstream-lab-ibb-bindings-v1-1-1f4bff4583b0@linaro.org>
+References: <20241115-topic-sdm450-upstream-lab-ibb-bindings-v1-1-1f4bff4583b0@linaro.org>
+Subject: Re: [PATCH] dt-bindings: regulator: qcom-labibb-regulator:
+ document the pmi8950 labibb regulator
+Message-Id: <173204294600.75287.4594724569290758580.b4-ty@kernel.org>
+Date: Tue, 19 Nov 2024 19:02:26 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241113-j784s4-s2r-pinctrl-v1-1-19aeb62739bc@bootlin.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-9b746
 
-Hello Thomas and TI folks,
-
-On Wed, Nov 13, 2024 at 11:43:05AM +0100, Thomas Richard wrote:
-> Like on j7200, pinctrl contexts shall be saved and restored during
-> suspend-to-ram.
+On Fri, 15 Nov 2024 11:04:26 +0100, Neil Armstrong wrote:
+> Document the pmi8950 labibb regulator with the pmi8998 compatible
+> as fallback since they share the same hardware settings.
 > 
-> So use ti,j7200-padconf compatible.
 > 
-> Signed-off-by: Thomas Richard <thomas.richard@bootlin.com>
-> ---
-> Use ti,j7200-padconf compatible to save and restore pinctrl contexts during
-> suspend-to-ram.
-> ---
->  arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi       |  6 +++---
->  arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi | 12 ++++++------
 
-Do j784s4 supports any kind of low power mode and/or suspend to ram? My
-understanding was that this was not supported, but maybe there is some
-details that was lost when I was told this information.
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+
+Thanks!
+
+[1/1] dt-bindings: regulator: qcom-labibb-regulator: document the pmi8950 labibb regulator
+      commit: 5262bcbb41d526f944a91a6a6c88dfb6fba3889b
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
 Thanks,
-Francesco
-
+Mark
 
 
