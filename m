@@ -1,187 +1,232 @@
-Return-Path: <devicetree+bounces-122822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122823-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 587049D26EE
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 14:32:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1D1B9D2701
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 14:34:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 19BB9285CB7
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 13:32:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FE122812F7
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 13:34:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22B014C3D0;
-	Tue, 19 Nov 2024 13:32:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71EC152F88;
+	Tue, 19 Nov 2024 13:34:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zbjz/CO8"
+	dkim=pass (1024-bit key) header.d=BLAIZE.COM header.i=@BLAIZE.COM header.b="R8HuG8WC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-0063e101.pphosted.com (mx07-0063e101.pphosted.com [205.220.184.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E59761DFE1;
-	Tue, 19 Nov 2024 13:32:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732023132; cv=none; b=dzGdpmZLOovmrg+pzKDyPhLX+FbVdyCAW+97PhXR5iaOXqhQVRgFePN6ebA3M8gnvCS3pC+hJYe34L1GBhE1AsjvAyGnUwdro8/LQjPwrnyC2zIHSCf4LDD7tmGiTRftEVY6O6R72x6AYn2wnRDJ9NZmJ2DL5j+WQ9d4/uUF+jY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732023132; c=relaxed/simple;
-	bh=6ytICKKYqP31T4ieH1gVrmD+P04171RopjljjKeGzEg=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=saqoAi2uRGYrBq2hxcp/zJLGmSDB9+WvcFTAfQN82Kyg3LnFSoPjnoE9EFZ5JOh/jt1YWLwIBXcpYZGDaz6erK/B7bf87vwRC0VK7qtGpZJob/tCTrdJFnERd3RzbDzuLlEMgO+qvtKwMpiEi8Ko6Y7vs18ZGt79GV7JcJgzppM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zbjz/CO8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D1A6C4CECF;
-	Tue, 19 Nov 2024 13:32:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732023131;
-	bh=6ytICKKYqP31T4ieH1gVrmD+P04171RopjljjKeGzEg=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=Zbjz/CO8YX81y1wX+hXhU3n19BEpLeIvwllPIbxOGwzkjHTDQOG83+tjkSmbqrius
-	 xSjFi8RDcBdh6tBwdSdbxIxBFlhXu/0yXOr3TEY9CDvymhc0Kk+/CDfXiOC33/8474
-	 sBlSyg6kb02dNLH2G2ZDKdXqw9yb7ydeYyTSdMk59H2wdyRs9y0BRvJkSCQNlB15GK
-	 fD5FLjnVh46rmuIwfuH9LlQL5AaLxFBaD9xepRD7hjLmwshe/0AyiadwoLtARKBgvG
-	 FhK5TZ5tzky0t53n3aFqBAC6hDonGJW7D8JlkuGRfRjLjx8oFs4R3Q6kf/0x15gbqa
-	 gJy/y1FUnGoHQ==
-Date: Tue, 19 Nov 2024 07:32:09 -0600
-Content-Type: text/plain; charset="us-ascii"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A191F4C3D0;
+	Tue, 19 Nov 2024 13:34:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=205.220.184.123
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1732023253; cv=fail; b=iz0Ax0HB6PZ1ps0hHQFJVaNy4+iziAkCr9jvK2plF0fcOyfMYAwLAVxC1gvZ/+LIs1E/TTPke/48pQYD2KuoZN6WY3uXhb1Qd+7etnOmdftPFu3DiuYIQsIeDva3UxLY0OIESqKWC+M1HW+gL9bcdRv0m3ncXgLl+iWuQ71P1Fg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1732023253; c=relaxed/simple;
+	bh=+AAXerAzDQgDFl9ReD2gX8W42zyPkfXBvxU4Wnq6ae4=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=iQSFzw4eutZpV/erFBhUjA04GWqrza+DgpqOXn4+SqsHoIwjRFEL521J50beOheTT8WSiCBiy/CUrxtg1WxdAVpGrTUf0q0/jXc1vh94nKsxr6qy/4I32l5pbJXc8Hfgvz9GmNkltS+LI4KkVHw6uq4oX+IgvxJpTV5UTxSdrz0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=blaize.com; spf=pass smtp.mailfrom=blaize.com; dkim=pass (1024-bit key) header.d=BLAIZE.COM header.i=@BLAIZE.COM header.b=R8HuG8WC; arc=fail smtp.client-ip=205.220.184.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=blaize.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=blaize.com
+Received: from pps.filterd (m0247495.ppops.net [127.0.0.1])
+	by mx08-0063e101.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AJDI3IR025195;
+	Tue, 19 Nov 2024 13:33:43 GMT
+Received: from ma0pr01cu012.outbound.protection.outlook.com (mail-southindiaazlp17011028.outbound.protection.outlook.com [40.93.131.28])
+	by mx08-0063e101.pphosted.com (PPS) with ESMTPS id 42xhh31m07-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 19 Nov 2024 13:33:43 +0000 (GMT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=oQjLOwT/mx2WStTy+VGJYk4k6Q4Wqeh6eFu+MAzkghkkNdBkYrlVvD/RRz9iEGmJWQOOMLh1j9LavbXkPHUFjWN6//jzFIEWxtO0cvrn67DMqj5sWgIXBneLYO2AI/vKjm/2/7xwZMG4HBKHDsbiA5IdOZyHlEaF0tBSxyTJ5C07kXFiykhoSDWoMa1A6pyBvpP0qVh0kP4iWRjQT5nFrZvUAtm6im965OP6kxsZSzhT924cFuWKW+S8h4yH8sYPVqevvRkikbqhP94TyA3t/WC50fsDfZCui3V7ZjbHeFIEfFTjOI3H5LsycB9Ye95GRV7ROEjGkT2w7K3//uPZqA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+AAXerAzDQgDFl9ReD2gX8W42zyPkfXBvxU4Wnq6ae4=;
+ b=TBIMK3G1HatsJnVTL0NeCppCBScSHPQjzyvTfX0+e6r1N1S73ggT5EAuQEQr3dtgPr/GWAPOMSduykDr5Qze4d/V1A/JIeg7XAMv07t/f3WigZGkvoYeusPdyegDTLs4WKrOVIPj59wg9XGwRO/WyHZpTTyU0KdD3Bi4tYIyG7pvTLnshpPNdWZbq7rb4/sK+h+ay3MNlBBoUGI7akL4bdgriEebtyvtjjMEINA6LJnhOa5pCI1IWytik4zchgszuI0qOJs2QOlnA/+VjnKq0GgiLm/YlgiyvFz/MvlBfUebQdMuyjfcIH3kORcMkKd5YCOp/IlfiALhR1+ixquG2g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=blaize.com; dmarc=pass action=none header.from=blaize.com;
+ dkim=pass header.d=blaize.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=BLAIZE.COM;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+AAXerAzDQgDFl9ReD2gX8W42zyPkfXBvxU4Wnq6ae4=;
+ b=R8HuG8WCHQhrBgjtZrKIxFnKaxkW0Zdxhrk8fyQFJ+sxsSRlKzLq53JdbrN4EyFTkHeKMQXh9CAkoJoo8q+3/OJOy41rKFvmkOPvA38PZMCqvyNSrdEKsDYHet7fyrbga14ThyHuy7AKJJDl1AQ89UocioHF7aSvkRCJyQlEHKE=
+Received: from MA0PR01MB10184.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a01:12a::5)
+ by MAXPR01MB4469.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a01:2::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.24; Tue, 19 Nov
+ 2024 13:33:35 +0000
+Received: from MA0PR01MB10184.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::309a:12cf:74a4:5655]) by MA0PR01MB10184.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::309a:12cf:74a4:5655%3]) with mapi id 15.20.8158.023; Tue, 19 Nov 2024
+ 13:33:34 +0000
+Message-ID: <bc471aeb-e9fd-4aa9-9bcc-a59d3c2e47b8@blaize.com>
+Date: Tue, 19 Nov 2024 13:33:28 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/6] dt-bindings: Add Blaize vendor prefix
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        James Cowgill <james.cowgill@blaize.com>,
+        Matt Redfearn <matthew.redfearn@blaize.com>,
+        Neil Jones <neil.jones@blaize.com>,
+        Catalin Marinas
+ <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+        "soc@lists.linux.dev" <soc@lists.linux.dev>
+References: <20241115-blaize-blzp1600_init_board_support-v5-0-c09094e63dc5@blaize.com>
+ <20241115-blaize-blzp1600_init_board_support-v5-1-c09094e63dc5@blaize.com>
+ <c1885e24-8051-4c91-9870-18eb4218a2ff@kernel.org>
+Content-Language: en-US
+From: Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>
+In-Reply-To: <c1885e24-8051-4c91-9870-18eb4218a2ff@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: LO4P123CA0304.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:196::21) To MA0PR01MB10184.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:12a::5)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, quic_tengfan@quicinc.com, 
- Konrad Dybcio <konrad.dybcio@example.com>, 
- Rob Herring <rob.herring@example.com>, linux-kernel@vger.kernel.org, 
- Conor Dooley <conor.dooley@example.com>, linux-arm-msm@vger.kernel.org, 
- Bjorn Andersson <bjorn.andersson@example.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@example.com>, 
- quic_shashim@quicinc.com
-To: Pratyush Brahma <quic_pbrahma@quicinc.com>
-In-Reply-To: <20241119092501.31111-1-quic_pbrahma@quicinc.com>
-References: <20241119092501.31111-1-quic_pbrahma@quicinc.com>
-Message-Id: <173202311318.1042362.18237729758130915839.robh@kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcom: qcs9100: Update memory map for
- QCS9100 Ride and QCS9100 Ride Rev3
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MA0PR01MB10184:EE_|MAXPR01MB4469:EE_
+X-MS-Office365-Filtering-Correlation-Id: 77094ad2-0c99-4aab-b40f-08dd089ec423
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|1800799024|366016|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?YTJWVk9hZnFPTEQ2UU1yN2dmN0MyUFJwMUNwZXl2TkU0d1Y5Q0hiTTNoaFNQ?=
+ =?utf-8?B?Y2JmUWFWa2t4K2NVVi9qMEgrZVBkRGxWY1phWmV6Wno4QjN1QmNmM2JhSmdZ?=
+ =?utf-8?B?Q0lubkxlTUF6ZWt2ZVZJWlQ5c0JZLzczbWtNTytpTzBwU3J2emRrYzU3Ykdv?=
+ =?utf-8?B?Q1d5MHJEV2MxQVJVTUpJWExEMjJIR3ArSnFtTTByR2QzZnJXWm1UdU91eFY3?=
+ =?utf-8?B?b3cvbTRYNlNqYWRJN2hLbmh2WTRBdzVrUXZrU2o2SEFuT0ZSQUlKNDlQRnlL?=
+ =?utf-8?B?SjNnZ0dzb2VOajJYZC9PVDQrVnlPd3gzVU9CdG11T2gwWXdFL3JITG1zV3Bj?=
+ =?utf-8?B?QndSYUNMeFBENnNXTkpIb3VocXZNQlRpcFhYbTArcG5wb2tnL1d4R205dnB3?=
+ =?utf-8?B?Vm1SR2pXQ3NxZXF4akVyYlI3MEFNNTdWZU9FZnFMYWxBQjlLc1M3ZTdyU2ZS?=
+ =?utf-8?B?RnlVY3RqSTVlNE5VeVpQOGtlU01yRVR0aHFyZDVhWkZzcURscitLMlltOVd6?=
+ =?utf-8?B?elFZQmJHZnNqWWRWY3RvNTJKeERqaXVVN0hkRm5tN2V0Y21rbXZZdGh0UHBW?=
+ =?utf-8?B?MDQvanVzSmxUdUM3bEpMQmlDQmtKQnF5b3BlSnI0TU9EUElzQjlhanloYlha?=
+ =?utf-8?B?cWg5MmVwWStERVFIVE4zTXBVS1ZWeWJidFdqWWhwZjg3YUZVSXFYWm8raWp0?=
+ =?utf-8?B?T0RKbXZTUTdVcHJBRmZwcmJmMVAzR0ZERzIzYURsMHFLYjgvTndET0NuSWEr?=
+ =?utf-8?B?WnBIOW9seDhyYktwWENpOXV2eEhSbEJZNzU1RGRUb2Nrd2YwN1A0Y2lGY0Zr?=
+ =?utf-8?B?NUU4YkRtcXVia050NTNvdGh2NUI1cUxMVGNuL1FrRDRKL2V2NFQ4ajNVQWpK?=
+ =?utf-8?B?MkZ5S1MrdDRiN3R4dEE4RDRGL2NVc2NBYk81M01yZi80N1haNXdUNVJ0Z0pz?=
+ =?utf-8?B?eit6WkM4VnpZYlQ5cFFYR0p4TWkydjMxSW9WNklDaWlhR1QweFRtQzdSWDgy?=
+ =?utf-8?B?ZkZkVzRxTkRsckg2c0RDMmN3Q3p6TmpXenhjeTlXQ0Y2a3JCUnB6Y3NEQ2xv?=
+ =?utf-8?B?UDdMZWlmVjBCSXNGdTM1czdaS3FkbE9Fd3FsZk1FeGZvMXVHSjdVWENnYmY4?=
+ =?utf-8?B?eFFFTjRLbEFIalZlSlNhaUhWbVE1bVd2cm9RaXpYNjBNNDdKRjVacXZvS1Q5?=
+ =?utf-8?B?UGRMSk9NYzFhMXZvZXRVVFZvRlJkL0Y0RTlRekJiaGRVSEFGdEh5dnd1d1dX?=
+ =?utf-8?B?UnBEUVMxdUxSNjdHbUFHQldHMEs2WEU5ZGFzdkhPSGcvRksvbjJZbTVXS2VJ?=
+ =?utf-8?B?dmw5R093a3JWY3B4WUNXS3dOREY1emNFVEZxN0hadGJ5UHJ1eHJ6WHJlalVZ?=
+ =?utf-8?B?YTRDV1hHb0NISW1hcDlhT3ZoYVJmL09LQ2QwMTR5WjBBWjh5SEZKb0FkRHQ4?=
+ =?utf-8?B?ckllUTdzRjJQZ1grdmFtOEVlaWZMSEh6TWE4M09mWjZwM1JnNXJuK3hLMHVa?=
+ =?utf-8?B?N2RZdml1VFdJWnlLbTRlbHRxeVlXZkVON3lPU0toeWN3Sitmejh6VE1QQW85?=
+ =?utf-8?B?bXozVjBhWkJPekhPQ3BKL1ZEbUJwZWxPdHVvSWg1Z2g2SEZpMTYxTXlTcU80?=
+ =?utf-8?B?VjRJTDhSSll4NjFLNVNwQldvT0JUZEpFOStEVUF1T01PQlVPZ0t4bGh6QUVR?=
+ =?utf-8?B?M3VEWm5sa2RyY0djNDZid3c0RklIdDd0M3FvUTY0NGJnajU3VVlSK1lLZWJr?=
+ =?utf-8?Q?K6teegCk9ryerrdUPs=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MA0PR01MB10184.INDPRD01.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(921020);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?Q2RLYWdNT0U5MTBPSFhMeSs3U2hRbnBZRDQ0QkFzMWZzM3VlL3N5djFFT29X?=
+ =?utf-8?B?N2dtckY1ZzEvVFRRb0FhRVJtT0NjaEhyd3JKVmErN21ianNFY3FPNEwxZFd2?=
+ =?utf-8?B?dlhTc0RQTm03cUd6bmU1Q2hIalNNZE5FOVBjVVVlakdQMHg2Nkxic1p4Rk9V?=
+ =?utf-8?B?SGs1WW1kWng3U1VOWDhCNUQ4cUYxREZ0OTdrUERCckoxdHZMUWhqUUY3Y2oz?=
+ =?utf-8?B?UVRlMksvL0QwTFB2MWxWcEJENnh6VXM0QXlkZmtON2NTT1h6bTUvMGI3WWhr?=
+ =?utf-8?B?cUE2S05MVXo5UmFqeFRQSEZKOU1uRktwQ1pWYjJ1Rkc3UFNERnZoTmJLb0tv?=
+ =?utf-8?B?N0pTSWdvRmtVSlJsTFVDK0Q3eW9ueXdlZ2xZS29mSE5sTGFRWHZ5SXo0dWVL?=
+ =?utf-8?B?VXVvYy9nc29icVA0WUVnK0pOUUlCdWZFZGZNZ1RGaVNLQ3lxM3dlT1hLdXBv?=
+ =?utf-8?B?cWZwRFRHTGdDNndNTzFSS3FWWDdnbXZ4bzhlVVA3bTNGR0lVRGFqUkNmWk83?=
+ =?utf-8?B?dUZCcCtEYUpETmJMaXV1NFh2ZWdwQ2lFdzYyZ0tpRUZZeGhmZ0pYQVc1dS9U?=
+ =?utf-8?B?RkhiaUcyYWorb3B6L040Qm5nSWdHay81OTZZeHo2SXFWVVFnR0ZKbXBzZUxN?=
+ =?utf-8?B?cFkrbE0yNUo0MHhzNUNUQXVSNFZQT3BoeXE2bGNCU2tDUytuQWZsM3c1L2JD?=
+ =?utf-8?B?ODVMcklreVBCbEVDQXp2SHAzbDFqaHJrNWpkN2V2bFZWSFo1NUpPWFllQ0dk?=
+ =?utf-8?B?c1JocldRUFRLOXJPRjZrNjdiZGkyY3NnbGFtUkhqZXdsSGpGOFMvSWpyanhq?=
+ =?utf-8?B?Z1RvckJrcUtRbTRId1d4UjRpYkVlZEsyNTd3RXNYMW81bTd6d0JOTTJPT3p5?=
+ =?utf-8?B?cld1bCtyTk01NW94dDh4ZWZCWS8xQmlJd2NsQXBsTU90Q0tMSkVlQXdicW5a?=
+ =?utf-8?B?U0FvZWNxbWhKYk9aNUhjRm1WbC95YWFOdEw1ZGsvMDRhVkVPZ0duc2ZhYUta?=
+ =?utf-8?B?ei9kY2gvK3pydmVsSHV5VEdJNmtVWmZ2WFRuOHFPNmdXMVZ0NGVWREZGZWpJ?=
+ =?utf-8?B?NU5OKzB4MzdCdkJEeTRBMERBTnBKekdxbzRuRWxPWHNWRnNSZDR6RlBZZmRF?=
+ =?utf-8?B?b1crbXNjbXV5RnFEanhkd2xuTmxOUjd6WWZNaXRuMUtUTDZhV2lkNmVLekMz?=
+ =?utf-8?B?ZmdjbGhZdTZXYjdGZGR6SklrdS92M2Faa3pwZElTWkhQZGs1dGcvWUw4RmZw?=
+ =?utf-8?B?aGNVREhhbFdxeEVXYTEvZnRHYjRsRnJ1bjRLdGwvMkFwdnduMU9RVEo0MjNF?=
+ =?utf-8?B?TU4zWmRreUxJc2JTaERqeThjWWRxZm1xbDBEY1cxRGYvTkFKMDBpVDJwZVVs?=
+ =?utf-8?B?ZG5aZWt4RVM0WDBmYkh6WXdwWE9GNXNvdk5xaEFwcnlFTUVvTWpkc0hCMnBr?=
+ =?utf-8?B?WEtoSWJIeSs1cGN6TkNNZVhMZkZaOEFGZCsxb2t5UXBCdDF5UUh2amV3ZytG?=
+ =?utf-8?B?QVdwd1R4NFJrbTlFUFFHa1BxSTBlL0lpZTlLVENwMXJCSW83SXkwUjYwZnQx?=
+ =?utf-8?B?b2lZdkRqSEx4RU1rOVNBN0dWTFBTY3FNUXFHWVQyaDlHR0g2QkMvWUloMDJK?=
+ =?utf-8?B?TjM3cnpyMlVmZDhCMGNrTW54cU9ubkFvbDJ5ckxBN084T3lzVnpFbzJxaFgv?=
+ =?utf-8?B?WjF6OVdtakpHbTBJVktsb2p5T0NwbUJ3WStOZVRZclBFZXFyWC9GYkFzallw?=
+ =?utf-8?B?UkIxN3o5dk5zSjF1K3hXd2R0RHI2K0VVdWcwd1ZxcDgycDRSTDk0SkEwUWt0?=
+ =?utf-8?B?WWZxUmkyU2h1djg1Ym4vQ1c1a3kzSzFNaHhram9BaURIRjVWbFM0RWxOa0NE?=
+ =?utf-8?B?ZWRNSUMvNkNrR0dlR0JQTTZuejF3eDFTZVFBTjJ5T2VoSi9OZ2FSZ1V6U0po?=
+ =?utf-8?B?bWR4VndNRXVNMkY0SlB3STg1Sm01WE9VYUpXRVJyMmRDK2QrSGpZUEd6WFVJ?=
+ =?utf-8?B?allMZXQ1V25NR3NBck5XR2hCalhkcTdLTERwb0RVODhjNW5Sb0d1dkZjR3ZZ?=
+ =?utf-8?B?QVBEdnNGcFRLMW5CdGhLM2hpUXpEMnYrcExUL2duMFF1dlovUmR2RnpDenVs?=
+ =?utf-8?B?N0lZdGlFTnJ0UXFGYlJHeFVJcUpQNDlNRUM0aE0zeE9ldXNsOXRmOTZjT3dj?=
+ =?utf-8?Q?/tikrcmLzVDJpyWWRmrc8bg=3D?=
+X-OriginatorOrg: blaize.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 77094ad2-0c99-4aab-b40f-08dd089ec423
+X-MS-Exchange-CrossTenant-AuthSource: MA0PR01MB10184.INDPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2024 13:33:34.7560
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 9d1c3c89-8615-4064-88a7-bb1a8537c779
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: G6kbvE/FmBjNRMCzsh9FEcHkZub7nSUhm6nfVmV9+B+4pVIhAQzvBPqB7S+P1QdLVvnKvZEjzBlBoMfZCB4PEjYHBxxIkSK2PWxPLm3ul4M=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MAXPR01MB4469
+X-Authority-Analysis: v=2.4 cv=RPThHJi+ c=1 sm=1 tr=0 ts=673c93b7 cx=c_pps a=g6sBawl8R0naeIbhPH00Eg==:117 a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19 a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=VlfZXiiP6vEA:10 a=4MthsM0t3ikA:10
+ a=-5LYVjoNHPMA:10 a=SrsycIMJAAAA:8 a=VwQbUJbxAAAA:8 a=VSt9yKUrDmGmnA9fhqMA:9 a=QEXdDO2ut3YA:10 a=zapPnUM7SFj2ezx6rUw-:22
+X-Proofpoint-GUID: 87sWYVPv-czs5zeEbzhsCZaPm_6fIHlV
+X-Proofpoint-ORIG-GUID: 87sWYVPv-czs5zeEbzhsCZaPm_6fIHlV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.62.30
+ definitions=2024-11-19_05,2024-11-18_01,2024-09-30_01
+X-Proofpoint-Spam-Reason: orgsafe
 
+On 19/11/2024 13:05, Krzysztof Kozlowski wrote:
+> On 15/11/2024 15:58, Niko Pasaloukos wrote:
+>> Blaize, Inc. (www.blaize.com) is a SoC manufacturer with integrated
+>> programmable Graph-Streaming-Processors for AI and ML.
+>>
+>> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+>> Signed-off-by: Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>
+> Here and in all other patches - you still have the same checkpatch
+> warning I asked to fix.
+>
+>
+> git format-patch -6 -v5
+> scripts/checkpatch.pl v5*
+>
+> Your SoB does not match From. This MUST be fixed.
+>
+> Best regards,
+> Krzysztof
 
-On Tue, 19 Nov 2024 14:55:01 +0530, Pratyush Brahma wrote:
-> This patch series is based on Tengfei Fan's patches [1] which adds support
-> for QCS9100 Ride and QCS9100 Ride Rev3 boards.
-> 
-> Some new carveouts (viz. gunyah_md and a few pil dtb carveouts) have been
-> introduced and the size and base addresses have been updated for
-> a few of existing carveouts compared to SA8775P. Also, tz_ffi_mem carveout
-> and its corresponding scm reference has been removed as it is not required
-> for these boards. Incorporate these changes in the updated memory map
-> for QCS9100 Ride and QCS9100 Rev3 boards.
-> 
-> [1] https://lore.kernel.org/all/20240911-add_qcs9100_support-v2-4-e43a71ceb017@quicinc.com/
-> 
-> Signed-off-by: Pratyush Brahma <quic_pbrahma@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/qcs9100-ride-r3.dts | 100 +++++++++++++++++++
->  arch/arm64/boot/dts/qcom/qcs9100-ride.dts    |  99 ++++++++++++++++++
->  2 files changed, 199 insertions(+)
-> 
+Hi Krzysztof,
 
+Just to be certain and fix it properly, do you mean that the issue that you
+are talking about is that the 'From' appears as 'Niko Pasaloukos' and I am
+signing with SoB as 'Nikolaos Pasaloukos'?
+I'm really sorry, if that's the case, I will fix it and yes, there must be
+a misconfiguration on my system. Would I need to prepare a v6 for this?
+If it is not that, then I am really sorry but I will need more information.
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y qcom/qcs9100-ride-r3.dtb qcom/qcs9100-ride.dtb' for 20241119092501.31111-1-quic_pbrahma@quicinc.com:
-
-arch/arm64/boot/dts/qcom/qcs9100-ride.dtb: qcom,gpi-dma@800000: $nodename:0: 'qcom,gpi-dma@800000' does not match '^dma-controller(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/dma/qcom,gpi.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride-r3.dtb: qcom,gpi-dma@800000: $nodename:0: 'qcom,gpi-dma@800000' does not match '^dma-controller(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/dma/qcom,gpi.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride.dtb: bluetooth: 'vddwlcx-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride.dtb: bluetooth: 'vddwlmx-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride.dtb: bluetooth: 'vddrfa1p8-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride-r3.dtb: bluetooth: 'vddwlcx-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride-r3.dtb: bluetooth: 'vddwlmx-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride-r3.dtb: bluetooth: 'vddrfa1p8-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride.dtb: qcom,gpi-dma@900000: $nodename:0: 'qcom,gpi-dma@900000' does not match '^dma-controller(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/dma/qcom,gpi.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride-r3.dtb: qcom,gpi-dma@900000: $nodename:0: 'qcom,gpi-dma@900000' does not match '^dma-controller(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/dma/qcom,gpi.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride.dtb: qcom,gpi-dma@a00000: $nodename:0: 'qcom,gpi-dma@a00000' does not match '^dma-controller(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/dma/qcom,gpi.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride-r3.dtb: qcom,gpi-dma@a00000: $nodename:0: 'qcom,gpi-dma@a00000' does not match '^dma-controller(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/dma/qcom,gpi.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride.dtb: qcom,gpi-dma@b00000: $nodename:0: 'qcom,gpi-dma@b00000' does not match '^dma-controller(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/dma/qcom,gpi.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride-r3.dtb: qcom,gpi-dma@b00000: $nodename:0: 'qcom,gpi-dma@b00000' does not match '^dma-controller(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/dma/qcom,gpi.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride.dtb: crypto@1dfa000: compatible: 'oneOf' conditional failed, one must be fixed:
-	['qcom,sa8775p-qce', 'qcom,qce'] is too long
-	['qcom,sa8775p-qce', 'qcom,qce'] is too short
-	'qcom,crypto-v5.1' was expected
-	'qcom,crypto-v5.4' was expected
-	'qcom,sa8775p-qce' is not one of ['qcom,ipq4019-qce', 'qcom,sm8150-qce']
-	'qcom,sa8775p-qce' is not one of ['qcom,ipq6018-qce', 'qcom,ipq8074-qce', 'qcom,ipq9574-qce', 'qcom,msm8996-qce', 'qcom,qcm2290-qce', 'qcom,sdm845-qce', 'qcom,sm6115-qce']
-	'qcom,ipq4019-qce' was expected
-	'qcom,sm8150-qce' was expected
-	from schema $id: http://devicetree.org/schemas/crypto/qcom-qce.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride-r3.dtb: crypto@1dfa000: compatible: 'oneOf' conditional failed, one must be fixed:
-	['qcom,sa8775p-qce', 'qcom,qce'] is too long
-	['qcom,sa8775p-qce', 'qcom,qce'] is too short
-	'qcom,crypto-v5.1' was expected
-	'qcom,crypto-v5.4' was expected
-	'qcom,sa8775p-qce' is not one of ['qcom,ipq4019-qce', 'qcom,sm8150-qce']
-	'qcom,sa8775p-qce' is not one of ['qcom,ipq6018-qce', 'qcom,ipq8074-qce', 'qcom,ipq9574-qce', 'qcom,msm8996-qce', 'qcom,qcm2290-qce', 'qcom,sdm845-qce', 'qcom,sm6115-qce']
-	'qcom,ipq4019-qce' was expected
-	'qcom,sm8150-qce' was expected
-	from schema $id: http://devicetree.org/schemas/crypto/qcom-qce.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride.dtb: rsc@18200000: 'power-domains' is a required property
-	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,rpmh-rsc.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride-r3.dtb: rsc@18200000: 'power-domains' is a required property
-	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,rpmh-rsc.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride.dtb: ethernet@23000000: tx-queues-config: 'snps,tx-sched-sp' does not match any of the regexes: '^queue[0-9]$', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/net/qcom,ethqos.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride.dtb: ethernet@23000000: Unevaluated properties are not allowed ('interconnect-names', 'interconnects', 'phy-handle', 'phy-mode', 'power-domains', 'rx-fifo-depth', 'rx-queues-config', 'snps,mtl-rx-config', 'snps,mtl-tx-config', 'snps,pbl', 'snps,ps-speed', 'snps,tso', 'tx-fifo-depth', 'tx-queues-config' were unexpected)
-	from schema $id: http://devicetree.org/schemas/net/qcom,ethqos.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride-r3.dtb: ethernet@23000000: tx-queues-config: 'snps,tx-sched-sp' does not match any of the regexes: '^queue[0-9]$', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/net/qcom,ethqos.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride-r3.dtb: ethernet@23000000: Unevaluated properties are not allowed ('interconnect-names', 'interconnects', 'phy-handle', 'phy-mode', 'power-domains', 'rx-fifo-depth', 'rx-queues-config', 'snps,mtl-rx-config', 'snps,mtl-tx-config', 'snps,pbl', 'snps,ps-speed', 'snps,tso', 'tx-fifo-depth', 'tx-queues-config' were unexpected)
-	from schema $id: http://devicetree.org/schemas/net/qcom,ethqos.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride.dtb: ethernet@23040000: tx-queues-config: 'snps,tx-sched-sp' does not match any of the regexes: '^queue[0-9]$', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/net/qcom,ethqos.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride.dtb: ethernet@23040000: Unevaluated properties are not allowed ('interconnect-names', 'interconnects', 'mdio', 'phy-handle', 'phy-mode', 'power-domains', 'rx-fifo-depth', 'rx-queues-config', 'snps,mtl-rx-config', 'snps,mtl-tx-config', 'snps,pbl', 'snps,ps-speed', 'snps,tso', 'tx-fifo-depth', 'tx-queues-config' were unexpected)
-	from schema $id: http://devicetree.org/schemas/net/qcom,ethqos.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride-r3.dtb: ethernet@23040000: tx-queues-config: 'snps,tx-sched-sp' does not match any of the regexes: '^queue[0-9]$', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/net/qcom,ethqos.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride-r3.dtb: ethernet@23040000: Unevaluated properties are not allowed ('interconnect-names', 'interconnects', 'mdio', 'phy-handle', 'phy-mode', 'power-domains', 'rx-fifo-depth', 'rx-queues-config', 'snps,mtl-rx-config', 'snps,mtl-tx-config', 'snps,pbl', 'snps,ps-speed', 'snps,tso', 'tx-fifo-depth', 'tx-queues-config' were unexpected)
-	from schema $id: http://devicetree.org/schemas/net/qcom,ethqos.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride.dtb: wcn6855-pmu: 'vddpmumx-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/regulator/qcom,qca6390-pmu.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride.dtb: wcn6855-pmu: 'vddpmucx-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/regulator/qcom,qca6390-pmu.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride-r3.dtb: wcn6855-pmu: 'vddpmumx-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/regulator/qcom,qca6390-pmu.yaml#
-arch/arm64/boot/dts/qcom/qcs9100-ride-r3.dtb: wcn6855-pmu: 'vddpmucx-supply' is a required property
-	from schema $id: http://devicetree.org/schemas/regulator/qcom,qca6390-pmu.yaml#
-
-
-
-
+Best regards,
+Nikolaos Pasaloukos
 
 
