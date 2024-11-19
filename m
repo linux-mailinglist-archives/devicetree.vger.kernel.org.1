@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-122729-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-122730-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E4829D2237
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 10:11:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3C2E9D223E
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 10:14:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3FFD02823E2
-	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 09:11:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A50F72827C5
+	for <lists+devicetree@lfdr.de>; Tue, 19 Nov 2024 09:14:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FD801B4F10;
-	Tue, 19 Nov 2024 09:10:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 383711AE006;
+	Tue, 19 Nov 2024 09:13:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SPlVJLAl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CXqjVkof"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C5A419D072;
-	Tue, 19 Nov 2024 09:10:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 049DD19D07A;
+	Tue, 19 Nov 2024 09:13:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732007440; cv=none; b=Xi/m0jZ0lKyqUH/4yf9P/fu0osFzTJiLbDfMknE/sGFu+a4XQYvnQk5PTSQtfVJwU1T1UC4RmFqkvUZ2q763WkpDJAVryPN8fTk0pfJc2ZHUeJOXQNTVsgICSuf6V8jENeQWFg2sCON0agKbvSmB3wiLAwYg0xm0JLHkc45g+WU=
+	t=1732007639; cv=none; b=ctJKWtOmEbpPK5xMDgBFyFo4n9JARnlt9ZiZIODCZYTDlMVJCuCVSJlesAmial4doAmSiSiInhY7hNrkE6CFmSnRKanlIsNUaTlBaS2kvDeII4EpacUJnev02a2bD1z+qCvIhUIlZNaIKEKD0Aac/lE0lWBBVGwr0hWK6oL139Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732007440; c=relaxed/simple;
-	bh=klvYqdvZj+RbuOlNJ198QZqAWt60/GPJdcJ4YVksHnQ=;
+	s=arc-20240116; t=1732007639; c=relaxed/simple;
+	bh=2VZx2V9CVxqf2nW+fj+4T81hvTJdFCbYTV71NmDqQeg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OkxP9sGIRW4QoBS/uYZK4ZJqRkLdm+cOgXPf0zfbcJXgf3aoq703FNHGzYydhlByPnJIemh0DYOJVRYJdsn9G7C6sqJFr8Hr1dg5DMbNtzWxvlrxeTOtgfiG0NIywMi+IcnaWGIX5yB0oZgcWJ9EnrukSY+iQlPb3ZOANM5MSh8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SPlVJLAl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E930BC4CECF;
-	Tue, 19 Nov 2024 09:10:33 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=dzOjjvtxR3JkeRTfyviMbUzgeLanQo88KriJztcmRkq5WwTqppmNNNdzmx6llKlMh8q1xR6V2YtsaYgzwuL2x/gbm26bIvRMDigMEP4lR/BmYziy3dA5bJ+AI3nVbPfd1MDedPx+qGrzjoIwZuhzQ7yexr2oCabowgDFPsKwx/I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CXqjVkof; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E438C4CECF;
+	Tue, 19 Nov 2024 09:13:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732007439;
-	bh=klvYqdvZj+RbuOlNJ198QZqAWt60/GPJdcJ4YVksHnQ=;
+	s=k20201202; t=1732007638;
+	bh=2VZx2V9CVxqf2nW+fj+4T81hvTJdFCbYTV71NmDqQeg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SPlVJLAlOgxCWtJQzSHwjCN209bg88x6pc9XD+FZ3rykPebtUGROkz4itBCBac1zP
-	 H/i4n/yQpQGl1uhOJx1YNNBu2zeE8pJsVNtRZ0PsdXs0w8LWLM9NvQ31c5pXYv6qj9
-	 dWg86DnZQt13T0rixVzazJXTBqkFkxS93NyHkQNX+7UTLQeyEoLKZm1qH0EQDk/BAY
-	 1L5S32NdHcvQoNDV6cgJpUlSj0LKTOO6SuPcYy/Yn07LnZV0fuUP5nQMROHe642tP1
-	 6M0PQuviMBUGsDmdic9JAuX7p12PzRzQdTByfh0p44s03nCNL6fcPZfzOHBrxmKq2c
-	 jUYxkiKVtlcKg==
-Message-ID: <81ab828c-3584-491d-8ce7-0d309758457a@kernel.org>
-Date: Tue, 19 Nov 2024 10:10:31 +0100
+	b=CXqjVkofP/0q91qDo3Ommx4z8COey/ZCvwj/8e6JY14iGyYrPHZ2PSFQREUT02yJa
+	 rJajENc59J2Vbx3+4VgQZMoUKdL1xDjVDdkOM7tLgUFa4rLgji3BMGAan30Tx2mABY
+	 pW1L1aeuB4QHCA9QR+x1NuukkKDCpzjNTVrGore/0Pj+UgFIYYYgudZhjXKiTLw94Y
+	 uQGuN99ig4d1/EBV3ZaA0RvGBaOoSg0AmB/K0m1BGoK221mhtLTrnE4Lv67pweIj9/
+	 PMjclUbrMePquPrs1Uv5BsedP9egllo/Rg4sNqUeKNMyWlL/07RdCbjc3huwC336Gf
+	 BdjN2M4Kq6IVA==
+Message-ID: <9f347e95-7ce1-4339-9ccb-6bf2962d09d0@kernel.org>
+Date: Tue, 19 Nov 2024 10:13:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: net: can: atmel: Convert to json schema
-To: Charan.Pedumuru@microchip.com
-Cc: mkl@pengutronix.de, mailhol.vincent@wanadoo.fr, davem@davemloft.net,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, Nicolas.Ferre@microchip.com,
- alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
- linux-can@vger.kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20241003-can-v2-1-85701d3296dd@microchip.com>
- <xykmnsibdts7u73yu7b2vn3w55wx7puqo2nwhsji57th7lemym@f4l3ccxpevo4>
- <cd3a9342-3863-4a81-9b09-db7b8da1d561@microchip.com>
+Subject: Re: [PATCH v3 1/4] dt-bindindgs: i2c: qcom,i2c-geni: Document shared
+ flag
+To: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+Cc: konrad.dybcio@linaro.org, andersson@kernel.org, andi.shyti@kernel.org,
+ linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+ conor+dt@kernel.org, agross@kernel.org, devicetree@vger.kernel.org,
+ vkoul@kernel.org, linux@treblig.org, dan.carpenter@linaro.org,
+ Frank.Li@nxp.com, konradybcio@kernel.org, bryan.odonoghue@linaro.org,
+ krzk+dt@kernel.org, robh@kernel.org
+References: <20240927063108.2773304-1-quic_msavaliy@quicinc.com>
+ <20240927063108.2773304-2-quic_msavaliy@quicinc.com>
+ <we3wmw6e25y6e4443ndrduurwvkkpvuw7ozrizuys6pwxppwfy@2uq7uda4evhd>
+ <6d81d8e7-ecd1-46f0-8ca3-617b5ee96990@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,108 +109,80 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <cd3a9342-3863-4a81-9b09-db7b8da1d561@microchip.com>
+In-Reply-To: <6d81d8e7-ecd1-46f0-8ca3-617b5ee96990@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/11/2024 06:30, Charan.Pedumuru@microchip.com wrote:
-> On 03/10/24 14:04, Krzysztof Kozlowski wrote:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->>
->> On Thu, Oct 03, 2024 at 10:37:03AM +0530, Charan Pedumuru wrote:
->>> Convert atmel-can documentation to yaml format
+On 13/11/2024 17:08, Mukesh Kumar Savaliya wrote:
+> 
+> 
+> On 9/27/2024 2:54 PM, Krzysztof Kozlowski wrote:
+>> On Fri, Sep 27, 2024 at 12:01:05PM +0530, Mukesh Kumar Savaliya wrote:
+>>> Adds qcom,shared-se flag usage. Use this when particular I2C serial
+>>> controller needs to be shared between two subsystems.
 >>>
->>> Signed-off-by: Charan Pedumuru <charan.pedumuru@microchip.com>
->>> ---
->>> Changes in v2:
->>> - Renamed the title to "Microchip AT91 CAN controller"
->>> - Removed the unnecessary labels and add clock properties to examples
->>> - Removed if condition statements and made clock properties as default required properties
->>> - Link to v1: https://lore.kernel.org/r/20240912-can-v1-1-c5651b1809bb@microchip.com
->>> ---
->>>   .../bindings/net/can/atmel,at91sam9263-can.yaml    | 58 ++++++++++++++++++++++
->>>   .../devicetree/bindings/net/can/atmel-can.txt      | 15 ------
->>>   2 files changed, 58 insertions(+), 15 deletions(-)
+>>> SE = Serial Engine, meant for I2C controller here.
+>>> TRE = Transfer Ring Element, refers to Queued Descriptor.
+>>> SS = Subsystems (APPS processor, Modem, TZ, ADSP etc).
 >>>
->>> diff --git a/Documentation/devicetree/bindings/net/can/atmel,at91sam9263-can.yaml b/Documentation/devicetree/bindings/net/can/atmel,at91sam9263-can.yaml
->>> new file mode 100644
->>> index 000000000000..c818c01a718b
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/net/can/atmel,at91sam9263-can.yaml
->>> @@ -0,0 +1,58 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/net/can/atmel,at91sam9263-can.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Microchip AT91 CAN Controller
->>> +
->>> +maintainers:
->>> +  - Nicolas Ferre <nicolas.ferre@microchip.com>
->>> +
->>> +allOf:
->>> +  - $ref: can-controller.yaml#
->>> +
->>> +properties:
->>> +  compatible:
->>> +    oneOf:
->>> +      - enum:
->>> +          - atmel,at91sam9263-can
->>> +          - atmel,at91sam9x5-can
->>> +      - items:
->>> +          - enum:
->>> +              - microchip,sam9x60-can
->>> +          - const: atmel,at91sam9x5-can
->> That is not what old binding said.
-> 
-> Apologies for the late reply, the driver doesn't have compatible with 
-> "microchip,sam9x60-can",
-> so I made "atmel,at91sam9x5-can" as fallback driver
-
-Any changes to the binding must be clearly expressed in the commit msg,
-with appropriate reasoning.
-
-> 
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  interrupts:
->>> +    maxItems: 1
->>> +
->>> +  clocks:
->>> +    maxItems: 1
->>> +
->>> +  clock-names:
->>> +    items:
->>> +      - const: can_clk
->> These are new...
-> 
-> These were already defined in the previous revision.
-
-Any changes to the binding must be clearly expressed in the commit msg,
-with appropriate reasoning.
-
-
-> 
+>>> Example :
+>>> Two clients from different SS can share an I2C SE for same slave device
+>>> OR their owned slave devices.
+>>> Assume I2C Slave EEPROM device connected with I2C controller.
+>>> Each client from ADSP SS and APPS Linux SS can perform i2c transactions.
+>>> This gets serialized by lock TRE + DMA Transfers + Unlock TRE at HW level.
+>>>
+>>> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+>>> ---
+>>>   Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml | 4 ++++
+>>>   1 file changed, 4 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
+>>> index 9f66a3bb1f80..3b9b20a0edff 100644
+>>> --- a/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
+>>> +++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
+>>> @@ -60,6 +60,10 @@ properties:
+>>>     power-domains:
+>>>       maxItems: 1
+>>>   
+>>> +  qcom,shared-se:
+>>> +    description: True if I2C needs to be shared between two or more subsystems(SS).
 >>
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - interrupts
->>> +  - clocks
->>> +  - clock-names
->> Here the same. Each change to the binding should be explained (answer
->> to the: why) in commit msg.
+>> The "SS" and subsystem should be explained in the binding. Please do not
+>> use some qcom-specific abbreviations here, but explain exactly, e.g.
+>> processors like application processor and DSP.
+>>
+>> "se" is also not explained in the binding - please open it and look for
+>> such explanation.
+> Sure, i thought cover letter explanation is good enough. I will add it 
+> per patch as cover letter will not be visible and go away after merge.
+>>
+>> This all should be rephrased to make it clear... We talked about this
+>> and I do not see much of improvements except commit msg, so we are
+>> making circles. I don't know, get someone internally to help you in
+>> upstreaming this.
+> Let me retry to make it better.
+> Will make SS (subsystem) to system processor (can be APPS or DSP OR any 
+> other).
+>>
+>> Is sharing of IP blocks going to be also for other devices? If yes, then
+>> this should be one property for all Qualcomm devices. If not, then be
+>> sure that this is the case because I will bring it up if you come with
+>> one more solution for something else.
+>>
+> IP blocks like SE can be shared. Here we are talking about I2C sharing.
+> In future it can be SPI sharing. But design wise it fits better to add 
+> flag per SE node. Same we shall be adding for SPI too in future.
 > 
-> Sure, I will include the reason for changes in commit message for the 
-> next revision.
-> 
+> Please let me know your further suggestions.
 
-Why am I repeating myself...
+You responded 1.5 months after my message.
 
+I will provide you suggestions also 1.5 months, when I dig the context.
+Oh wait, all previous emails are long gone from my inbox...
+
+Anyway, my above comment stands for all Qualcomm reviews: stop coming up
+every month with twenty different "shared IP" properties.
 
 Best regards,
 Krzysztof
