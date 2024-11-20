@@ -1,373 +1,195 @@
-Return-Path: <devicetree+bounces-123346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123347-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C94479D4241
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 19:54:48 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B6D89D424B
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 19:57:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C75BC1F2247C
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 18:54:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 38CF9B291FB
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 18:56:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3A9B1B6555;
-	Wed, 20 Nov 2024 18:54:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86DDA1BBBC5;
+	Wed, 20 Nov 2024 18:56:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RcJUd8/W"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="Qq/6H8St"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-178.mta0.migadu.com (out-178.mta0.migadu.com [91.218.175.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04003824A0;
-	Wed, 20 Nov 2024 18:54:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AA6E27447
+	for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 18:56:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732128879; cv=none; b=OhgV3X+BjSto34TVZ+EjsaZVIMj93AdUqiwZalaC95NBvUP4vQMmRv5A/BxJ8aaMUt5RwjUemvFwUGDu3Tfx5dGDvqu3/MyrLmwQtghtYZCooB5gMZNUPEivBzY9HTor4xn9Hreq/xqUPJo+cJ4QvJQDH46kgcxyTh+8RTr40Jc=
+	t=1732128992; cv=none; b=QZIW/RnjlD+fWoKuGvG7Pr0zYeu7LDKEkIktHkRO3yFQcNdbqrcFWVAP3+SNsJgHPKU6xxA9+gWpjqhU8wupIsIS5TmXH+N1sxS0ic3JUBbqhqMeyLMuphrHbJSDCZG/ZjVjwbeulupcVa05emeK2ENkgzaB3XiDDZlPP296bPU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732128879; c=relaxed/simple;
-	bh=pgZb7KzJR7PCND8fGLHmXt4q8yO1ZiQtgM9nsPkQEyk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=px3MdRS+EACxTSK6rbYNOAnP9vCXiiY2ZgUX91eWvHYor9sPcJyVJHWEUNN2iMDDsQWUQ/GoOKByNi04pLAoLCVwA1hzNCB+odW58ekP5GDbcQnXF79keVq2Bp+nVWBeXob3kkTLt3/9siJH9bAmfjUM4VV1Qt7+BfvXAeiYimw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RcJUd8/W; arc=none smtp.client-ip=209.85.166.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-io1-f54.google.com with SMTP id ca18e2360f4ac-83aff992087so3757639f.3;
-        Wed, 20 Nov 2024 10:54:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1732128877; x=1732733677; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ywphHwRJ47bemIP9RZfgn34nLun0kYe1BEdTqOds8Rs=;
-        b=RcJUd8/WKDmsJQINGxxLCPUAy4tta6TicnZjnKtZCizrEvIT8LaiCp0ybcmjd4v4Gv
-         xTRdZ1Z7G9NiLldpKcl1MxhVioQphiHKDki3tsH/WqdNUSV++hA/cRW/h9TG05xqmBPP
-         dIt40Y213M3/zgqDADMnNEex96DaRPcHkimT7UH/0++BKQ26SNyXz2HygXYphdY5DbES
-         Q9LoAZVh0lxzUjvQNrRVGVsgDHEAy801zW7mM6Y2b8VQEv/OTNBYsT91MU2K1+Ot/ncs
-         wATHOtK1LHPlTjquSETWY8uoSdGjdujmym8UrkdYk4xlq0M68viPnpupxLVWpp5sQRo+
-         LeWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732128877; x=1732733677;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ywphHwRJ47bemIP9RZfgn34nLun0kYe1BEdTqOds8Rs=;
-        b=qDBoKHCwaPCemxM48yAJLjuveer5HnfcIfmG4Bhe3Y+sBzTqHANtMcSHD1ZPsQBeDG
-         JHIbIi5RPgQTpX0GUnWHBGPPgF2D5Kw+qyPQHUrAk6V0L+4ZUsgk8m8FhrIgPfkjOu99
-         WT2rpqNITtJfL76383KJIpRZGQFYLrZnhdQ27OP8tBUWtBS5li72L/UVYzFA0MYys6Ov
-         Ft4VdGEktEboFfTFpFt7ZPQDFiMIP7DhmSLLV7sgspNDx6dX9AgzGK/d6O85ZwwC1G/t
-         UNlO60uqaCpCEs9mVFhGievVT2KTj6Ylw2GG033Ewd5hYbPnr+V4D0qNHTiyo/gwPPu0
-         sC1g==
-X-Forwarded-Encrypted: i=1; AJvYcCUR2LYHTMH1W0TVaO9ll19DsppF834T9vjPz9KjBXxIN5LUnjLt9hzWextUa2rlA0jtedW5HIaeEgk8Gboa@vger.kernel.org, AJvYcCUzH+TwUJYUzeS+kJZh82pN0jPPAzmzr15dBv7h4jEQfemNcrN6aN/koX3ZkOdETbDyVoY6khzGBJlHwgAFTQ==@vger.kernel.org, AJvYcCX3NAIEzmJEi1jQFhL4pezZVwUY70lxCP/qw+2VFZjCdLGdF40SfNQ4Qh+OJ+Lscpdt8zNLfvr6PBk=@vger.kernel.org, AJvYcCX3YhLPvB8J06Ap7p5Q28QYaX+mnwDB7baxroMrFvrbO4AGRuA+GC/adnW4JQRNEQJFN76ZMCDzVHG9@vger.kernel.org
-X-Gm-Message-State: AOJu0YyThiuzgQxDDjSkX3F8UwWhjlQSmW0uVg0EUa6Vjv7Jjtrjx1Sz
-	j71UJxl13cZdIYM5HnzVaP1NhckjTcWBsuuu3GSvLsvXes167ejIoxs4ro92vlGWlzPx6Mj+Dg8
-	+BciGKyMMWl8XP4G8guo2DBWCMFw=
-X-Gm-Gg: ASbGncuu8fkq/0mOY0dUsBE39D68tiFlMpVqtA8FgUoarYSRc5uvY4lA48zhrL/Kl9/
-	OJ3NaXRuEu/z/A2cV82w9KRweaHszK/QFdgx3ajTEQ8XBNJQOQv20SxJBhcpm
-X-Google-Smtp-Source: AGHT+IHd8C0gyOGxo8kEUV2MAn22vYluHbM6lDo81yALGvxv3opZ3P+eFDcZSWKWEXJFXyRB4VB0sPN5xiZpchHYexo=
-X-Received: by 2002:a05:6602:6d8e:b0:834:d7b6:4fea with SMTP id
- ca18e2360f4ac-83eb5fce118mr454937039f.6.1732128877090; Wed, 20 Nov 2024
- 10:54:37 -0800 (PST)
+	s=arc-20240116; t=1732128992; c=relaxed/simple;
+	bh=6OMVb1cP7lwG0cKH2mxInLBQsdinK0PjS1MpnWYh0vs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WSuyaMpIkZn28kaPfnfNp77n+7mV+rpk2VuAovEIz9E5tWweB/N1pRwYyy66StGBw9gxK1X66OB3yX26f8jFmm0yBMk5+DZFIR8rGCNDRmHf45AE1zdj/VPjQfqgLR91Yv3SOYg68pUTFCAC2ChfOjNj/QCuoHsBq1g/8A+rA0M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=Qq/6H8St; arc=none smtp.client-ip=91.218.175.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Date: Wed, 20 Nov 2024 10:56:11 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1732128987;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=0l9hkEoEyIxKnpHx142wYDgJUJrgnU+jeao/cnQv+nc=;
+	b=Qq/6H8SthQ1x4jah1i77G9wcr1j2qvCYtJr/DWCGvQFQPp1/HrA/ZiJAMBBy2EQKfs0Znj
+	MlCNa36AaTrTYGG8QSqTx7V+JKe7Y9DjtGnLRuEZZxIFVMbcIK5sL5FVCVUhp5rmIEaIAn
+	i64F/YBlDgRC/BxhtauQv/zOTsYcvhg=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Russ Weight <russ.weight@linux.dev>
+To: Marco Felsch <m.felsch@pengutronix.de>
+Cc: Luis Chamberlain <mcgrof@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Kamel Bouhara <kamel.bouhara@bootlin.com>,
+	Marco Felsch <kernel@pengutronix.de>,
+	Henrik Rydberg <rydberg@bitmath.org>,
+	Danilo Krummrich <dakr@redhat.com>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org
+Subject: Re: [PATCH 2/5] firmware_loader: add support to handle
+ FW_UPLOAD_ERR_SKIP
+Message-ID: <20241120185611.43soqjcyruztby4f@4VRSMR2-DT.corp.robot.car>
+References: <20241119-v6-10-topic-touchscreen-axiom-v1-0-6124925b9718@pengutronix.de>
+ <20241119-v6-10-topic-touchscreen-axiom-v1-2-6124925b9718@pengutronix.de>
+ <20241120165049.jzsveoms2unxt3m6@4VRSMR2-DT.corp.robot.car>
+ <20241120173037.x6cro7r2wh5aoadg@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241119-topic-sm8x50-gpu-bw-vote-v2-0-4deb87be2498@linaro.org>
- <20241119-topic-sm8x50-gpu-bw-vote-v2-3-4deb87be2498@linaro.org> <fkezpguictntg2wkouwqipnaaiauo6vu46n7a2xzvlorzvyeaw@bbcpj3bs5eko>
-In-Reply-To: <fkezpguictntg2wkouwqipnaaiauo6vu46n7a2xzvlorzvyeaw@bbcpj3bs5eko>
-From: Rob Clark <robdclark@gmail.com>
-Date: Wed, 20 Nov 2024 10:54:24 -0800
-Message-ID: <CAF6AEGs6zT_kaTXNohUaA7KWZxZTr4byaoMoLAceuyqA7S+2CQ@mail.gmail.com>
-Subject: Re: [PATCH v2 03/11] drm/msm: adreno: move features bits in a
- separate variable
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Akhil P Oommen <quic_akhilpo@quicinc.com>, 
-	Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Sean Paul <sean@poorly.run>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Connor Abbott <cwabbott0@gmail.com>, linux-pm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241120173037.x6cro7r2wh5aoadg@pengutronix.de>
+X-Migadu-Flow: FLOW_OUT
 
-On Wed, Nov 20, 2024 at 3:18=E2=80=AFAM Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> On Tue, Nov 19, 2024 at 06:56:38PM +0100, Neil Armstrong wrote:
-> > Now the features defines have the right name, introduce a features
-> > bitfield and move the features defines in it, fixing all code checking
-> > for them.
-> >
-> > No functional changes intended.
->
-> I think it might be better to squahs this patch into the previous one,
-> it would simplify checking that we use .quirks for ADRENO_QUIRK_foo and
-> .features for ADRENO_FEAT_bar.
->
 
-IMHO better to keep this separated
+On Wed, Nov 20, 2024 at 06:30:37PM +0100, Marco Felsch wrote:
+> Hi,
+> 
+> On 24-11-20, Russ Weight wrote:
+> > On Tue, Nov 19, 2024 at 11:33:51PM +0100, Marco Felsch wrote:
+> > > It's no error if a driver indicates that the firmware is already
+> > > up-to-date and the update can be skipped.
+> > > 
+> > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > > ---
+> > >  drivers/base/firmware_loader/sysfs_upload.c | 4 ++++
+> > >  1 file changed, 4 insertions(+)
+> > > 
+> > > diff --git a/drivers/base/firmware_loader/sysfs_upload.c b/drivers/base/firmware_loader/sysfs_upload.c
+> > > index b3cbe5b156e3..44f3d8fa5e64 100644
+> > > --- a/drivers/base/firmware_loader/sysfs_upload.c
+> > > +++ b/drivers/base/firmware_loader/sysfs_upload.c
+> > > @@ -174,6 +174,10 @@ static void fw_upload_main(struct work_struct *work)
+> > >  	fw_upload_update_progress(fwlp, FW_UPLOAD_PROG_PREPARING);
+> > >  	ret = fwlp->ops->prepare(fwl, fwlp->data, fwlp->remaining_size);
+> > >  	if (ret != FW_UPLOAD_ERR_NONE) {
+> > > +		if (ret == FW_UPLOAD_ERR_SKIP) {
+> > > +			dev_info(fw_dev, "firmware already up-to-date, skip update\n");
+> > > +			ret = FW_UPLOAD_ERR_NONE;
+> > > +		}
+> > 
+> > If you change the error-code from FW_UPLOAD_ERR_SKIP to
+> > FW_UPLOAD_ERR_NONE, then the "skip" string provided in the previous
+> > patch will never be seen. There are currently no other instances where
+> 
+> Do we really need to set it? As explained within the commit message,
+> it's no error if FW_UPLOAD_ERR_SKIP is returned. The previous patch just
+> added all pieces which may be required later on.
+> 
+> > an error code requires special-case modifications to the fw_upload
+> > code and I don't think it is necessary to add it here.
+> 
+> Because at the moment no one is checking it except for the gb-beagleplay
+> driver. This driver prints a dev_warn() string and returns a failure.
+> Now the userspace needs some heuristic by parsing dmesg to check the
+> reason. This is rather complex and very error prone as the sting can be
+> changed in the future.
+> 
+> Therefore I added the support to have a simple error code which can be
+> returned by a driver. I'm open to return "skip" as error instead of
+> casting it to none. Both is fine for me since both allow the userspace
+> to easily check if the error is a 'real' error or if the fw-update was
+> just skipped due to already-up-to-date.
 
-But we don't have _that_ many features/quirks so I don't find
-combining them all that problematic
+Are you saying that you intend for the user-space code to see "skip"?
+Because in the current implementation, I don't think the user-space
+code would see "skip". If you ultimately return FW_UPLOAD_ERR_NONE,
+then cat'ing the error file should result in an empty file.
 
-BR,
--R
+> 
+> I wouldn't say that this is a special case, it is very common but no one
+> is performing a fw-version check. Therefore I added this to the common
+> code, to make it easier for driver devs.
 
-> >
-> > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> > ---
-> >  drivers/gpu/drm/msm/adreno/a6xx_catalog.c  | 34 +++++++++++++++-------=
---------
-> >  drivers/gpu/drm/msm/adreno/a6xx_gpu.c      |  4 ++--
-> >  drivers/gpu/drm/msm/adreno/adreno_device.c |  2 +-
-> >  drivers/gpu/drm/msm/adreno/adreno_gpu.h    |  7 +++---
-> >  4 files changed, 24 insertions(+), 23 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/msm/adreno/a6xx_catalog.c b/drivers/gpu/dr=
-m/msm/adreno/a6xx_catalog.c
-> > index 825c820def315968d508973c8ae40c7c7b646569..93f0d4bf50ba773ecde93e6=
-c29a2fcec24ebb7b3 100644
-> > --- a/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
-> > +++ b/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
-> > @@ -743,7 +743,7 @@ static const struct adreno_info a6xx_gpus[] =3D {
-> >               },
-> >               .gmem =3D SZ_512K,
-> >               .inactive_period =3D DRM_MSM_INACTIVE_PERIOD,
-> > -             .quirks =3D ADRENO_FEAT_HAS_CACHED_COHERENT,
-> > +             .features =3D ADRENO_FEAT_HAS_CACHED_COHERENT,
-> >               .init =3D a6xx_gpu_init,
-> >               .zapfw =3D "a615_zap.mbn",
-> >               .a6xx =3D &(const struct a6xx_info) {
-> > @@ -769,7 +769,7 @@ static const struct adreno_info a6xx_gpus[] =3D {
-> >               },
-> >               .gmem =3D SZ_512K,
-> >               .inactive_period =3D DRM_MSM_INACTIVE_PERIOD,
-> > -             .quirks =3D ADRENO_FEAT_HAS_CACHED_COHERENT,
-> > +             .features =3D ADRENO_FEAT_HAS_CACHED_COHERENT,
-> >               .init =3D a6xx_gpu_init,
-> >               .a6xx =3D &(const struct a6xx_info) {
-> >                       .protect =3D &a630_protect,
-> > @@ -839,7 +839,7 @@ static const struct adreno_info a6xx_gpus[] =3D {
-> >               },
-> >               .gmem =3D SZ_512K,
-> >               .inactive_period =3D DRM_MSM_INACTIVE_PERIOD,
-> > -             .quirks =3D ADRENO_FEAT_HAS_CACHED_COHERENT,
-> > +             .features =3D ADRENO_FEAT_HAS_CACHED_COHERENT,
-> >               .init =3D a6xx_gpu_init,
-> >               .zapfw =3D "a615_zap.mdt",
-> >               .a6xx =3D &(const struct a6xx_info) {
-> > @@ -864,7 +864,7 @@ static const struct adreno_info a6xx_gpus[] =3D {
-> >               },
-> >               .gmem =3D SZ_512K,
-> >               .inactive_period =3D DRM_MSM_INACTIVE_PERIOD,
-> > -             .quirks =3D ADRENO_FEAT_HAS_CACHED_COHERENT |
-> > +             .features =3D ADRENO_FEAT_HAS_CACHED_COHERENT |
-> >                         ADRENO_FEAT_HAS_HW_APRIV,
-> >               .init =3D a6xx_gpu_init,
-> >               .zapfw =3D "a620_zap.mbn",
-> > @@ -892,7 +892,7 @@ static const struct adreno_info a6xx_gpus[] =3D {
-> >               },
-> >               .gmem =3D SZ_1M,
-> >               .inactive_period =3D DRM_MSM_INACTIVE_PERIOD,
-> > -             .quirks =3D ADRENO_FEAT_HAS_CACHED_COHERENT,
-> > +             .features =3D ADRENO_FEAT_HAS_CACHED_COHERENT,
-> >               .init =3D a6xx_gpu_init,
-> >               .zapfw =3D "a630_zap.mdt",
-> >               .a6xx =3D &(const struct a6xx_info) {
-> > @@ -911,7 +911,7 @@ static const struct adreno_info a6xx_gpus[] =3D {
-> >               },
-> >               .gmem =3D SZ_1M,
-> >               .inactive_period =3D DRM_MSM_INACTIVE_PERIOD,
-> > -             .quirks =3D ADRENO_FEAT_HAS_CACHED_COHERENT,
-> > +             .features =3D ADRENO_FEAT_HAS_CACHED_COHERENT,
-> >               .init =3D a6xx_gpu_init,
-> >               .zapfw =3D "a640_zap.mdt",
-> >               .a6xx =3D &(const struct a6xx_info) {
-> > @@ -934,7 +934,7 @@ static const struct adreno_info a6xx_gpus[] =3D {
-> >               },
-> >               .gmem =3D SZ_1M + SZ_128K,
-> >               .inactive_period =3D DRM_MSM_INACTIVE_PERIOD,
-> > -             .quirks =3D ADRENO_FEAT_HAS_CACHED_COHERENT |
-> > +             .features =3D ADRENO_FEAT_HAS_CACHED_COHERENT |
-> >                       ADRENO_FEAT_HAS_HW_APRIV,
-> >               .init =3D a6xx_gpu_init,
-> >               .zapfw =3D "a650_zap.mdt",
-> > @@ -961,7 +961,7 @@ static const struct adreno_info a6xx_gpus[] =3D {
-> >               },
-> >               .gmem =3D SZ_1M + SZ_512K,
-> >               .inactive_period =3D DRM_MSM_INACTIVE_PERIOD,
-> > -             .quirks =3D ADRENO_FEAT_HAS_CACHED_COHERENT |
-> > +             .features =3D ADRENO_FEAT_HAS_CACHED_COHERENT |
-> >                       ADRENO_FEAT_HAS_HW_APRIV,
-> >               .init =3D a6xx_gpu_init,
-> >               .zapfw =3D "a660_zap.mdt",
-> > @@ -981,7 +981,7 @@ static const struct adreno_info a6xx_gpus[] =3D {
-> >               },
-> >               .gmem =3D SZ_1M + SZ_512K,
-> >               .inactive_period =3D DRM_MSM_INACTIVE_PERIOD,
-> > -             .quirks =3D ADRENO_FEAT_HAS_CACHED_COHERENT |
-> > +             .features =3D ADRENO_FEAT_HAS_CACHED_COHERENT |
-> >                       ADRENO_FEAT_HAS_HW_APRIV,
-> >               .init =3D a6xx_gpu_init,
-> >               .a6xx =3D &(const struct a6xx_info) {
-> > @@ -1000,7 +1000,7 @@ static const struct adreno_info a6xx_gpus[] =3D {
-> >               },
-> >               .gmem =3D SZ_512K,
-> >               .inactive_period =3D DRM_MSM_INACTIVE_PERIOD,
-> > -             .quirks =3D ADRENO_FEAT_HAS_CACHED_COHERENT |
-> > +             .features =3D ADRENO_FEAT_HAS_CACHED_COHERENT |
-> >                       ADRENO_FEAT_HAS_HW_APRIV,
-> >               .init =3D a6xx_gpu_init,
-> >               .zapfw =3D "a660_zap.mbn",
-> > @@ -1028,7 +1028,7 @@ static const struct adreno_info a6xx_gpus[] =3D {
-> >               },
-> >               .gmem =3D SZ_2M,
-> >               .inactive_period =3D DRM_MSM_INACTIVE_PERIOD,
-> > -             .quirks =3D ADRENO_FEAT_HAS_CACHED_COHERENT,
-> > +             .features =3D ADRENO_FEAT_HAS_CACHED_COHERENT,
-> >               .init =3D a6xx_gpu_init,
-> >               .zapfw =3D "a640_zap.mdt",
-> >               .a6xx =3D &(const struct a6xx_info) {
-> > @@ -1046,7 +1046,7 @@ static const struct adreno_info a6xx_gpus[] =3D {
-> >               },
-> >               .gmem =3D SZ_4M,
-> >               .inactive_period =3D DRM_MSM_INACTIVE_PERIOD,
-> > -             .quirks =3D ADRENO_FEAT_HAS_CACHED_COHERENT |
-> > +             .features =3D ADRENO_FEAT_HAS_CACHED_COHERENT |
-> >                       ADRENO_FEAT_HAS_HW_APRIV,
-> >               .init =3D a6xx_gpu_init,
-> >               .zapfw =3D "a690_zap.mdt",
-> > @@ -1331,7 +1331,7 @@ static const struct adreno_info a7xx_gpus[] =3D {
-> >               },
-> >               .gmem =3D SZ_128K,
-> >               .inactive_period =3D DRM_MSM_INACTIVE_PERIOD,
-> > -             .quirks =3D ADRENO_FEAT_HAS_HW_APRIV,
-> > +             .features =3D ADRENO_FEAT_HAS_HW_APRIV,
-> >               .init =3D a6xx_gpu_init,
-> >               .zapfw =3D "a702_zap.mbn",
-> >               .a6xx =3D &(const struct a6xx_info) {
-> > @@ -1355,7 +1355,7 @@ static const struct adreno_info a7xx_gpus[] =3D {
-> >               },
-> >               .gmem =3D SZ_2M,
-> >               .inactive_period =3D DRM_MSM_INACTIVE_PERIOD,
-> > -             .quirks =3D ADRENO_FEAT_HAS_CACHED_COHERENT |
-> > +             .features =3D ADRENO_FEAT_HAS_CACHED_COHERENT |
-> >                         ADRENO_FEAT_HAS_HW_APRIV |
-> >                         ADRENO_FEAT_PREEMPTION,
-> >               .init =3D a6xx_gpu_init,
-> > @@ -1377,7 +1377,7 @@ static const struct adreno_info a7xx_gpus[] =3D {
-> >               },
-> >               .gmem =3D 3 * SZ_1M,
-> >               .inactive_period =3D DRM_MSM_INACTIVE_PERIOD,
-> > -             .quirks =3D ADRENO_FEAT_HAS_CACHED_COHERENT |
-> > +             .features =3D ADRENO_FEAT_HAS_CACHED_COHERENT |
-> >                         ADRENO_FEAT_HAS_HW_APRIV |
-> >                         ADRENO_FEAT_PREEMPTION,
-> >               .init =3D a6xx_gpu_init,
-> > @@ -1400,7 +1400,7 @@ static const struct adreno_info a7xx_gpus[] =3D {
-> >               },
-> >               .gmem =3D 3 * SZ_1M,
-> >               .inactive_period =3D DRM_MSM_INACTIVE_PERIOD,
-> > -             .quirks =3D ADRENO_FEAT_HAS_CACHED_COHERENT |
-> > +             .features =3D ADRENO_FEAT_HAS_CACHED_COHERENT |
-> >                         ADRENO_FEAT_HAS_HW_APRIV |
-> >                         ADRENO_FEAT_PREEMPTION,
-> >               .init =3D a6xx_gpu_init,
-> > @@ -1422,7 +1422,7 @@ static const struct adreno_info a7xx_gpus[] =3D {
-> >               },
-> >               .gmem =3D 3 * SZ_1M,
-> >               .inactive_period =3D DRM_MSM_INACTIVE_PERIOD,
-> > -             .quirks =3D ADRENO_FEAT_HAS_CACHED_COHERENT |
-> > +             .features =3D ADRENO_FEAT_HAS_CACHED_COHERENT |
-> >                         ADRENO_FEAT_HAS_HW_APRIV |
-> >                         ADRENO_FEAT_PREEMPTION,
-> >               .init =3D a6xx_gpu_init,
-> > diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/ms=
-m/adreno/a6xx_gpu.c
-> > index 2ebd3fac212576a1507e0b6afe2560cd0408dd89..654d0cff421f15901cd4bf3=
-3b41e70004634ec75 100644
-> > --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-> > +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-> > @@ -2478,7 +2478,7 @@ struct msm_gpu *a6xx_gpu_init(struct drm_device *=
-dev)
-> >       adreno_gpu->gmu_is_wrapper =3D of_device_is_compatible(node, "qco=
-m,adreno-gmu-wrapper");
-> >
-> >       adreno_gpu->base.hw_apriv =3D
-> > -             !!(config->info->quirks & ADRENO_FEAT_HAS_HW_APRIV);
-> > +             !!(config->info->features & ADRENO_FEAT_HAS_HW_APRIV);
-> >
-> >       /* gpu->info only gets assigned in adreno_gpu_init() */
-> >       is_a7xx =3D config->info->family =3D=3D ADRENO_7XX_GEN1 ||
-> > @@ -2495,7 +2495,7 @@ struct msm_gpu *a6xx_gpu_init(struct drm_device *=
-dev)
-> >       }
-> >
-> >       if ((enable_preemption =3D=3D 1) || (enable_preemption =3D=3D -1 =
-&&
-> > -         (config->info->quirks & ADRENO_FEAT_PREEMPTION)))
-> > +         (config->info->features & ADRENO_FEAT_PREEMPTION)))
-> >               ret =3D adreno_gpu_init(dev, pdev, adreno_gpu, &funcs_a7x=
-x, 4);
-> >       else if (is_a7xx)
-> >               ret =3D adreno_gpu_init(dev, pdev, adreno_gpu, &funcs_a7x=
-x, 1);
-> > diff --git a/drivers/gpu/drm/msm/adreno/adreno_device.c b/drivers/gpu/d=
-rm/msm/adreno/adreno_device.c
-> > index 09d4569f77528c2a20cabc814668c4c930dd07f1..11a228472fa0cef3b6e4e21=
-a366470fbbc3ea8df 100644
-> > --- a/drivers/gpu/drm/msm/adreno/adreno_device.c
-> > +++ b/drivers/gpu/drm/msm/adreno/adreno_device.c
-> > @@ -207,7 +207,7 @@ static int adreno_bind(struct device *dev, struct d=
-evice *master, void *data)
-> >
-> >       priv->is_a2xx =3D info->family < ADRENO_3XX;
-> >       priv->has_cached_coherent =3D
-> > -             !!(info->quirks & ADRENO_FEAT_HAS_CACHED_COHERENT);
-> > +             !!(info->features & ADRENO_FEAT_HAS_CACHED_COHERENT);
-> >
-> >       gpu =3D info->init(drm);
-> >       if (IS_ERR(gpu)) {
-> > diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.h b/drivers/gpu/drm/=
-msm/adreno/adreno_gpu.h
-> > index 8782c25e8a393ec7d9dc23ad450908d039bd08c5..4702d4cfca3b58fb3cbb25c=
-b6805f1c19be2ebcb 100644
-> > --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.h
-> > +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
-> > @@ -55,9 +55,9 @@ enum adreno_family {
-> >  #define ADRENO_QUIRK_FAULT_DETECT_MASK               BIT(1)
-> >  #define ADRENO_QUIRK_LMLOADKILL_DISABLE              BIT(2)
-> >
-> > -#define ADRENO_FEAT_HAS_HW_APRIV             BIT(3)
-> > -#define ADRENO_FEAT_HAS_CACHED_COHERENT              BIT(4)
-> > -#define ADRENO_FEAT_PREEMPTION                       BIT(5)
-> > +#define ADRENO_FEAT_HAS_HW_APRIV             BIT(0)
-> > +#define ADRENO_FEAT_HAS_CACHED_COHERENT              BIT(1)
-> > +#define ADRENO_FEAT_PREEMPTION                       BIT(2)
-> >
-> >  /* Helper for formating the chip_id in the way that userspace tools li=
-ke
-> >   * crashdec expect.
-> > @@ -98,6 +98,7 @@ struct adreno_info {
-> >       uint32_t revn;
-> >       const char *fw[ADRENO_FW_MAX];
-> >       uint32_t gmem;
-> > +     u64 features;
-> >       u64 quirks;
-> >       struct msm_gpu *(*init)(struct drm_device *dev);
-> >       const char *zapfw;
-> >
-> > --
-> > 2.34.1
-> >
->
-> --
-> With best wishes
-> Dmitry
+By "special case" I meant to say that this is the first time this
+core code has had to know about any error codes other than
+FW_UPLOAD_ERR_NONE - and the first time that an error type alters
+the code flow.
+
+I understand that other drivers may also want to abort if the
+firmware being loaded is a duplicate.
+
+> 
+> > The dev_info() message above can be provided by the device driver
+> > that is using this API.
+> > 
+> > I think you can either:
+> > 
+> > (1) allow "skip" to be treated as an error. The update didn't happen...
+> 
+> Please see above.
+> 
+> > -or-
+> > 
+> > (2) The prepare function could detect the situation and set
+> >     a flag in the same device driver. Your write function could
+> >     set *written to the full data size and return without writing
+> >     anything. Your poll_complete handler could also return
+> >     FW_UPLOAD_ERR_NONE. Then you don't need to add FW_UPLOAD_ERR_SKIP
+> >     at all. You would get the info message from the device driver
+> >     and fw_upload would exit without an error.
+> 
+> Please see above. I don't think that this is special case and why making
+> the life hard for driver devs instead of having a well known fw
+> behaviour?
+
+If you are not opposed to treating it as an error, then all you need
+to add are the error code and the string to go with it.
+
+Instead of FW_UPLOAD_ERR_SKIP -> "skip", how about
+FW_UPLOAD_ERR_DUPLICATE -> "duplicate_firmware"?
+
+Thanks,
+- Russ
+
+> 
+> Regards,
+>   Marco
+> 
+> > 
+> > Thanks,
+> > - Russ
+> > 
+> > >  		fw_upload_set_error(fwlp, ret);
+> > >  		goto putdev_exit;
+> > >  	}
+> > > 
+> > > -- 
+> > > 2.39.5
+> > > 
+> > 
 
