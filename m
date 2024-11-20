@@ -1,212 +1,283 @@
-Return-Path: <devicetree+bounces-123353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123354-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3444F9D427F
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 20:18:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C29499D42C6
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 20:56:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7273C2847AC
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 19:18:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 459E91F23F15
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 19:56:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 097941C878E;
-	Wed, 20 Nov 2024 19:17:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AF3A1C305A;
+	Wed, 20 Nov 2024 19:54:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="t17vJq5G"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HuNpeeeb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CAB41C4A18
-	for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 19:17:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732130256; cv=none; b=Q84f1zgWDeLJEenszmk27iYbgFu3T7t/d0lnwQcqsxC8QUUyjcXma5hXdMG0g3Stc5pLr651lIVeDZJsBNGoyDvujkU0deJusDSLK7T0UlHTUdkXjUoT+AFJ0pJtjlr/JZs3TfyMVdo5mSnlFqSEHD4nwedbNVZZG3Rjm04OFJw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732130256; c=relaxed/simple;
-	bh=0yiuVppUNHZf3L7doCK7wAGWo0y2MOO+Z6YHaTA040U=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=F62AE4eiRCH4jIZHGOrmEmcR+ik/8xKSRGk65VOKK88T/au7eEhuNr3Te+rrsYxIrIroPc1GVVWfsYW2/F6y6BfZ9kejf+1Ex8w3t7BDJXab/wFpmquxHDA9dxiU44LAVTmr29NWX5xoOcpWRR+wRaL+L5ctFEIh6VtI5BHT8Co=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=t17vJq5G; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-382433611d0so23394f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 11:17:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1732130253; x=1732735053; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zitwIFEHcuodW9TqUQcqtnx2dFAFSgL0NQQ869EFe3Y=;
-        b=t17vJq5GZflSjl9fwl626cyiWNINUk1veEi96uUriy0hybVgckUZnz7n73KK86M/vg
-         59pRxX4pstrR8+JPFH4VwKuV0pwZ3eS9AnEWkMDAc7JYYjsJ3CSoKur4PckMMYqInqX5
-         LpEJ//7OPwWmHvMGZlDCX3BAln1GWB2EEJWU9Up1mGMNvUxXlG43Suz2/rpn2KMXwete
-         2uquAZ2L9OMyu1RetU92sVr+F3SvvBiUJ10pdcO5+yQMSLkQ/DDFmilceN/PFDroSN9x
-         39GptRn4Gthuv3IM5cClY/83vTqV+1AzSKEXLN635UwYD+MXP4mf2pd0Eo+rtQsvz1mD
-         phxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732130253; x=1732735053;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zitwIFEHcuodW9TqUQcqtnx2dFAFSgL0NQQ869EFe3Y=;
-        b=JZSs3f0bVXuPo/EIDRKZDGO/w1gOA1ELyI+ZgkQ3ljtUzFoRVMrBhz31plEhObZ4RA
-         lay/sKBShPYNsBzVk1xQm5ayfh4r80qa4ZK7zac89qdroECtYolNI/ac48bvgJjAYovD
-         LtMNatAaZimwgKsbCH3s+BWrmN6U5jQyT1+vRrWOYy5Kj7DmfJUe0IUKWe7DiuVvENCe
-         IrCysKP86fy7Rb03GSeE5VIcvU34id2gMF/DCZFZlmWN4eaBW4scUfBirctGquIGJvT6
-         hNksRstp+pAf04twtE1pEzA0yTZyRy48YltZ5X2ptsVoQcSV//uQt9W+NW3jMwdOw2k3
-         G4AA==
-X-Forwarded-Encrypted: i=1; AJvYcCVnoQukQcai7DBE19TNWZbbSPAElMyYMbbJdzDi7T7MTOuMbm6vWKBaDezyJEEC35EvLmRBKk1+pTWL@vger.kernel.org
-X-Gm-Message-State: AOJu0YwbJBavbp7+PKa+oRjoyxZAX2wV+LFrUVAlaoAQ/ft6CrZgGB50
-	bc8h0zflPW33Wi4dVk+X3juCyHrta6hu5bVblYLnXTcAsIiW4I7uTkSkPLsDNkg=
-X-Google-Smtp-Source: AGHT+IGDyoH11Pb2u0yiBU+8Fdfd66KoXkLqC8DdXiQbdQWJ60b113ZzD+VLCAp8swQ0TH5bSW7kRg==
-X-Received: by 2002:a05:6000:1fa3:b0:382:1b40:46ec with SMTP id ffacd0b85a97d-38254b25beamr4007449f8f.59.1732130253271;
-        Wed, 20 Nov 2024 11:17:33 -0800 (PST)
-Received: from [127.0.1.1] ([2a00:1098:3142:e::8])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3825a2c5ef2sm172457f8f.53.2024.11.20.11.17.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Nov 2024 11:17:32 -0800 (PST)
-From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Wed, 20 Nov 2024 19:17:06 +0000
-Subject: [PATCH v2 4/4] media: i2c: imx290: Add configuration for IMX462
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B090A1BCA04;
+	Wed, 20 Nov 2024 19:54:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=198.175.65.13
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1732132490; cv=fail; b=JkzYPW+bgGrRIfl8a6xbaMIBENZn4SjefeHe9aZlVFK8vWjAb0MXgnRIOPPFxnf9AJ0sNnszexodaT+qCKGukofW5wpemd3usCMYLZAdUnwnm9PEi98yObXaMRL4GGU+jEdTxbycm3sXKWyZqBNRYbecfwdVJTYI0AEinOEP3FA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1732132490; c=relaxed/simple;
+	bh=mi4cALduOE0DLIiyOL6qLFsqq22U+0toxNctldwqIA0=;
+	h=Message-ID:Date:Subject:To:CC:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=VNoTR44WjerQ3QDWwyJcjAVPSIuTDqyloDZBUXtf0jvoLa1REr6ySkVguBERZEA2jc6J1Q+7Oh1dtQr31bocOsMUgb2uJs4MDdFI+8BjWflbcUuDAlJuEmYHYyvGHorRrcFTtxjtxgT7/IyccupkEC3kICTLXi3wB/r05N+/nRA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=HuNpeeeb; arc=fail smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1732132488; x=1763668488;
+  h=message-id:date:subject:to:cc:references:from:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=mi4cALduOE0DLIiyOL6qLFsqq22U+0toxNctldwqIA0=;
+  b=HuNpeeebICnR4tOH0ve8Do8yFql/waGFHEAKUWBFT7g0qZrINJkRKdJs
+   a6cAz6mbMbcjaTe4dGH0x8QVT+Sh3X7lbW8I/LXakVBAUmtaxO0td/p0I
+   djR1eyj7+Zq64f3nvAjSWCFNwqWePQv8q8qwvlPysN4f75mU8xSv1AKz8
+   G0nzP02Wp75Ue+7Io6C32r7hd0Rf27aaTMHF4mTVYi/BmNObsbYZqwXGi
+   CnchaKCc/haVmZmuVmT7PyyTKZWZuHd4iPA2kuGUXW5seRMVGoiOI3Okb
+   yP6JmG1KI2ZCZKiabjgn0jXHXI2fumuYG0gab7HL1tpnJkpaQRzCHkEoF
+   Q==;
+X-CSE-ConnectionGUID: HfCT+9ZuQ5+G3WCJ70Wg0w==
+X-CSE-MsgGUID: 7x/InqzfQ0yysswlerzIFw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11262"; a="43284079"
+X-IronPort-AV: E=Sophos;i="6.12,170,1728975600"; 
+   d="scan'208";a="43284079"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2024 11:54:48 -0800
+X-CSE-ConnectionGUID: lzg5BQL0SNGJxVDg7JZasQ==
+X-CSE-MsgGUID: mJv9/NFuSXS2fvjKoA8QLg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,170,1728975600"; 
+   d="scan'208";a="113293395"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+  by fmviesa002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384; 20 Nov 2024 11:54:48 -0800
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Wed, 20 Nov 2024 11:54:47 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Wed, 20 Nov 2024 11:54:47 -0800
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.177)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Wed, 20 Nov 2024 11:54:47 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ZIbIi4c+2yAnA6R7AnaoFd2ZYViLaw1ZLUIvf8kDRqCDHB0Oto7pJ+cShEQc1fQNq+tkK5n2ZeJgYxQXdOy9fFZTsWoIXABfpMNUnxblV8HLdi26+bsm+EGjzEJzKHOd1HLGSkQ9TBef5n4aEdClPnwQ0tx1y8YlCOOqdDD6vO7EpBI18CAHeBvjHJokDFBPSMYCXZS2St0Fqb9IPLTf1/KaPPY4D2KAwyXHS5tD5Fjuzj1S4EV/KNxMRDQaWMSBlvmlLFKkMMjpA3ybUoYgZGdT8QivhP803mg0j6dVUXmr0bYutyadKfkqDG3ausJ4NdLE3xE7JkNUOk8vGxEu7Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xgSbHWhbjfggge+Oqc4nMd8verIroHgbm0ZQsxBVH8M=;
+ b=p2AzHCFqq/PB5sr+4lYXuzwBQ7D94ikke0UZU0I41W6yk+FOpLWwxV6y5jKO7b0vKYCnJT1VgNw2Tc++9yiuNyiRSY2LHfBcgaJGR1R7/U6nLt3BGxmcbtMZqYSgo3YnP/fOGIoTievVWl4EeQHZZIJEdcdb2UnTMWb9E99KVrxMFve/REZ/4yTToztBAvQ6OirkbRopyEogUwur7vuko47pfsMMx6I5ZtSEbw3qT4tb/Ga95KyYvyd4FmfqVaBo1o6awYU672EnaFKJnaQhziiusPrwhmORVctgWi2foQ6gXYeBW7MmCNkIdOgNIzcYmnmZOxgL0LZ8QpDlu+lo/A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CO1PR11MB5089.namprd11.prod.outlook.com (2603:10b6:303:9b::16)
+ by SN7PR11MB6680.namprd11.prod.outlook.com (2603:10b6:806:268::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.22; Wed, 20 Nov
+ 2024 19:54:43 +0000
+Received: from CO1PR11MB5089.namprd11.prod.outlook.com
+ ([fe80::7de8:e1b1:a3b:b8a8]) by CO1PR11MB5089.namprd11.prod.outlook.com
+ ([fe80::7de8:e1b1:a3b:b8a8%4]) with mapi id 15.20.8158.023; Wed, 20 Nov 2024
+ 19:54:43 +0000
+Message-ID: <b20ed55e-cb77-4821-9b5f-37cdf3d01df5@intel.com>
+Date: Wed, 20 Nov 2024 11:54:41 -0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net 1/2] net: ethernet: oa_tc6: fix infinite loop error
+ when tx credits becomes 0
+To: Parthiban Veerasooran <parthiban.veerasooran@microchip.com>,
+	<davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+	<pabeni@redhat.com>, <horms@kernel.org>, <saeedm@nvidia.com>,
+	<anthony.l.nguyen@intel.com>, <netdev@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <andrew@lunn.ch>, <corbet@lwn.net>,
+	<linux-doc@vger.kernel.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<devicetree@vger.kernel.org>, <horatiu.vultur@microchip.com>,
+	<ruanjinjie@huawei.com>, <steen.hegelund@microchip.com>,
+	<vladimir.oltean@nxp.com>
+CC: <masahiroy@kernel.org>, <alexanderduyck@fb.com>, <krzk+dt@kernel.org>,
+	<robh@kernel.org>, <rdunlap@infradead.org>, <hkallweit1@gmail.com>,
+	<linux@armlinux.org.uk>, <UNGLinuxDriver@microchip.com>,
+	<Thorsten.Kummermehr@microchip.com>, <Pier.Beruto@onsemi.com>,
+	<Selvamani.Rajagopal@onsemi.com>, <Nicolas.Ferre@microchip.com>,
+	<benjamin.bigler@bernformulastudent.ch>, <linux@bigler.io>,
+	<markku.vorne@kempower.com>
+References: <20241120135142.586845-1-parthiban.veerasooran@microchip.com>
+ <20241120135142.586845-2-parthiban.veerasooran@microchip.com>
+Content-Language: en-US
+From: Jacob Keller <jacob.e.keller@intel.com>
+In-Reply-To: <20241120135142.586845-2-parthiban.veerasooran@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MW3PR06CA0007.namprd06.prod.outlook.com
+ (2603:10b6:303:2a::12) To CO1PR11MB5089.namprd11.prod.outlook.com
+ (2603:10b6:303:9b::16)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241120-media-imx290-imx462-v2-4-7e562cf191d8@raspberrypi.com>
-References: <20241120-media-imx290-imx462-v2-0-7e562cf191d8@raspberrypi.com>
-In-Reply-To: <20241120-media-imx290-imx462-v2-0-7e562cf191d8@raspberrypi.com>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, 
- Dave Stevenson <dave.stevenson@raspberrypi.com>
-X-Mailer: b4 0.14.1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PR11MB5089:EE_|SN7PR11MB6680:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8d0ff541-d7d6-4d25-0908-08dd099d2d8c
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|7416014|366016|921020|7053199007;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?Rm9JaHdLaVJhTTdHQlZXak1UdzBXcW1HU2VINnVteDVaS21zVk1CMlFsMnFR?=
+ =?utf-8?B?dVE4Q2tybUI4WDhEdXd2SDlBK3hWQTN2NzNtd1F0eDFqSE13TmtPK3Y3Q0po?=
+ =?utf-8?B?bDc5RFc4TTg5aVpObkUwLzNVRFlidzlCRHVuZlMrK1FTSVBvNlJINTVhQ0k4?=
+ =?utf-8?B?YTJLNTFVdFV3RGV0UG9CZmRwMHpsemRQdGJHS3RhS3JzSE52eWJFK1pJVWpa?=
+ =?utf-8?B?RkcxRnd2R1ZrTC9qNC9GOHpSbVFpbGwwa2o5ZlZGSk9YU1pHQVZWcTB1bnpM?=
+ =?utf-8?B?OWlmcGZkci8vL0U2SWEySFpxMzdRVmZRczJiSnFBNGJIakNVaEdTM2hMRi9E?=
+ =?utf-8?B?eSsxRUhDV0ZnYm45TDkyaHBBTmxVM29la3NTYXR5bk1DaU5LaFpTdWpzQTFt?=
+ =?utf-8?B?MEIvTjdRdHViakVGek16VDdlcEpSU3YvZ29qTHF4dmpSQU9EL3d6U2cvbUMy?=
+ =?utf-8?B?QytZL1NFZHA0aEVad1ZrWkEwRTEwM0VtNmpVd09sMGxzbVFNUVAyUlBuMitt?=
+ =?utf-8?B?KzJQTy9uM09vV2F4bUE1aTlVbmxUVUtFbjFhT2J1L3NGeFdIdlN3MG5QWDMv?=
+ =?utf-8?B?Y0VaVS80Z3g2ZUlKTWtrT0dxTXovOUljVnlGYTZjc0RuQkJMRm1qVGkxNDI4?=
+ =?utf-8?B?eEUrWnhGTTA3U3hLWWQ1NGR2TG80RlI5djJacUR4a0FRNG1WZVR1MTQxTXds?=
+ =?utf-8?B?clgxS3F3WWwvUFJzbzFaTVVXRDg4d0tBWW13Tmw4RlN3RW9VV211RHh1REhx?=
+ =?utf-8?B?VGpQem1NNVFKbnNUTTUyQUV1Q2J0MWZZNFE2YWFRYUtManFRQmpxRkthUlZQ?=
+ =?utf-8?B?SVA2NzBSczZ1QUFtL3JRSnlOem0wekJNM0dXZjNXVUZFcGYwMG81Y2RUZFI2?=
+ =?utf-8?B?Q2xiQnBKTndHbG1sNnpwS0Nnb2hWZlkvOFNoQllHYXhKTlBMdDh3b0lnbExH?=
+ =?utf-8?B?K0FUNStvc3E0bXhzMzdhdExUakgvZ2kyVUc4cGY4UVY1WXF0aVdGK1h1REw1?=
+ =?utf-8?B?QWNEVFpyVTVzRERvY1dCR0c1YjN0ZnlHZUZxNk42d29nOFEraWhTT3JmWkZL?=
+ =?utf-8?B?QUNsNzJyeVdRQ3JUOG53enRXR3laS2lTWUlRbDRZd3RhL01Tak1HRUhPaCtw?=
+ =?utf-8?B?cUdTL0VreStqVUdaNU1RSWRYV0ZKOVB5cjQzc3pxeVlSK1V0TWRUY1l2WGha?=
+ =?utf-8?B?ei9TMksyMzU4amcvbGVxejYxdkwxMnMyZGZUT1pvdjA5aDRNNk0zeDRNYzVD?=
+ =?utf-8?B?WVJ2alhHSTZCd2FZVFcrYXhBVjloZ3lSVzVZdjBtUXdHYjVmdVh5Z3FGTVR1?=
+ =?utf-8?B?OGNkdW5TczIvbWFkNmtoRXhWWExxWk5VblZ3NVdKbEVNT0JlWFp2Um0wcjhS?=
+ =?utf-8?B?b0dmQWxDT1ljcDF2S0lBeTdIZHhTRHZsSTQ1MyttS0Q2Zm9vMHYrdzM4ZURJ?=
+ =?utf-8?B?OTdFZnA5Ky90aWtVYWgzYWZyQ0h2aEoxV2xoTDFZNGszeGdWNE0yS0M4UUtI?=
+ =?utf-8?B?K0REN1B6VHJUa3RFNFNuaVB0NzdxUzVaN2RSR2dZMmJMb0pjcTNEZTlZa01q?=
+ =?utf-8?B?TWFTOC9HN2xTWi9XMDYrdE9XQnVQYVd0Zkl2SUFndGtjUXZLM1EwenVZK2xH?=
+ =?utf-8?B?bVJUK1doOUpyMVdGUldFTHd1bndKSlB2SkNYYlBQVVU0d2hyMjU5dzJpaEk5?=
+ =?utf-8?B?NVdSMTVQcUtGbjNyNWNLUmhQSEVZeG9IMHFLeWJxaEpsOWlMeXlCS2hKbGlk?=
+ =?utf-8?B?dUtCNnRrODZrVFhVbDVmWStBQ0t1dW10a1FOK0hDeE9NSkJhbFd5dzFHSUlH?=
+ =?utf-8?Q?VWRPZTVzu/ADDDcQfMcJYwhJ4PV70d8PmCg7s=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB5089.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(921020)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cGlsTmtmVWJ6MVl2ZFRkSlpSOUp3bHVmVlJpa09TWnhPbk9XMDNidlNYdFRW?=
+ =?utf-8?B?cVVCQjhzSGhtb20rSERrbXErTHRSMGRYVk5rL3VWWitqWXptM3NEZVlyM0hU?=
+ =?utf-8?B?SFFhVlA0RU5DaXZPNjFTbWtGcW5pMmZvdTl4YjVFS1BwajdHTU5Wa3ZaNmJv?=
+ =?utf-8?B?VmJrWjNiSWh3cFplQWRPNEZGaWx4ODFyZGF1YWRqeDFUa3ZyQ0FGWG9hUk9U?=
+ =?utf-8?B?ai9NL0RvM3NObGhUaC9XZjIveU1BMjhWa3J1bi9QNWFkL09rY1F4OU8wLzhP?=
+ =?utf-8?B?RXExbndYeDh2Sm8wMEVOL3dPMDlmd1AyaVhOQ2tIRXI2d2c5T3A4WTVDTWVU?=
+ =?utf-8?B?blJ3Ky92Y1dYSGVqWGZVTExxNHV5Sjl5SmpmTGp0ZXlJZlIvakxWeHFqR3Vt?=
+ =?utf-8?B?MHp3MUhEdXduQ3JnekVxaW9HUUMvSzc5czZ0OVZCZXdlNlQzMkhRWmJGaTZ4?=
+ =?utf-8?B?bG9tWTR6MUxDZkE0eXN6RDVMemlSWm9OYXVRbGlwbFJreTV5aUl2QlBvalNV?=
+ =?utf-8?B?djh4NlZwaEtjRERzdTRLRXkwWUdLcUJjQm5TSjJNZjhUTnBRWFlFQU9SODJv?=
+ =?utf-8?B?d2dHS2gzUE96eTR1dzFvZFpNbEMzODQ4YktNTWEzZ1pnYzFESUNKaWUrTzZF?=
+ =?utf-8?B?UGJjMDZpaFZVRDYvRWQ2N3NtayswTmVsQ2dDWDNYbUUwdGNrbFVEZ0I5enhB?=
+ =?utf-8?B?NHd4SUlQYjIyZm8rK1BySDVvRHQvZ2dRZTIwcTdDYzZnY2MrWEdoUGNpc1hW?=
+ =?utf-8?B?U0s0SWV1NDlFeGtnMG9DTkdPbnMrODRWbVl5cFpjbVBZdGVHRVJvOGxuUytR?=
+ =?utf-8?B?WmtXU0syWk45Z1VTVFJEWTZTZmZUY05LeG9pT1Y0QWFSc3N3NDc2aG9BVWla?=
+ =?utf-8?B?VldoSE9xemFickZRYXp0YmV5bm1YSnNOWWNmR2pkS1UvRzN5dXFQN0U2bUdp?=
+ =?utf-8?B?enc4MUdhdTlDNmQzMVdUTXA5RlJ3WER4bjE1N25rZ0pCcGZhQ3ZWNENkT1hr?=
+ =?utf-8?B?ZFdyMkpwYWdXMnh2WmlDenlUeVhoK01sd3ZuOU1xR1lhUHBtSDFKL1Q1S09v?=
+ =?utf-8?B?OUZQNVZobzBKUG8rR0FQSmRYUlVKUjcyZnJWcTJYRGVkSHdpc2t2M0V6a25U?=
+ =?utf-8?B?Qk5rYytBT0JlNDVlYVJQa2N0SEZOT0VkUHg1aFczZW9icnhDcW9kV2JBMFV4?=
+ =?utf-8?B?Y0hsRzRCRWF6bEFzc1dDNnZrZnZmU0tnQnoyYnJiZGdUM0tFTWpLb0JQUUEy?=
+ =?utf-8?B?bEtJYVVSanBUR25JamhxVnNkZVpGdVFQOVV2NWxVL0JPZWtETWk5cWxKU240?=
+ =?utf-8?B?dkw0YmVSU3gwRHZyZ3VVbUhIVHJ4VWdpTkhTeEpIcFhCRnBoR2tnSzNRSElj?=
+ =?utf-8?B?eDlSK3diOEtQMmhsMUxZclAvUEhCclNCTVJMNE1zeUlrNUwzcU8vMGgzaHhy?=
+ =?utf-8?B?aUU5NlhNYmxseU9XODF5Nk4vQk5aa29DT2lFcmtDd0hidUVDZ3BIYjk1cHJy?=
+ =?utf-8?B?RmtPQTF1NzFXVUp1MXFDZDhKanRWS3R6NHJnUTZzZlBlWFRpTHIxRDRMcEo3?=
+ =?utf-8?B?TFZBWHdwYjdsKzFPSWpROXErd2Q0Wm4rRy9VbVNCUm44TkJiOXV2Wmk5TTZ4?=
+ =?utf-8?B?dXBUWUF6Skx2UGd4UDM4bFNiTFBZRnR2bnhXTjR6RXlkY0VKeDJKdHNlYWla?=
+ =?utf-8?B?Uy93LzBrOUoxSVM3WWErVkMwaDJJRXdHUXZTa01rTkszaTMzSzkralVTcFZu?=
+ =?utf-8?B?U1pSbmhjYTNsQ0dCaE1lMWdaSzFQU3U3UEtHOFRKQTNQTWFmbVFwd0VnS2xi?=
+ =?utf-8?B?Zk5tY2VsYWF1VTM2eDlMc0Q4S0dON3VsRXZGSlU4WDhVMnMrMHgyRFVnK0Nz?=
+ =?utf-8?B?TzRwdDFYek1GQ3FCVm5ENEx5NStYbjVBS0l4aDdCYTBEUFFQZkR5L1BKZ05t?=
+ =?utf-8?B?NEV0K25mWHpvcnpwUEREY1hkbFlQT1hFZisvZ0gwVXpUL1hhQW9vMmdvQ1hp?=
+ =?utf-8?B?L1FpWi9pSjd5K1NwM2VhT0QxYXZiVkgzbnFjVU5yWHRKeEltRUdYd3VEOWNQ?=
+ =?utf-8?B?aG45NElhQXY4MGFKWkJ6dDZWcStLNVp6WUh3TjNzcXVhYVpFaU9TcDc0a2VN?=
+ =?utf-8?B?RXpoajR5MjBMYVI3dEJ0NEpKSVlGR3U1djFJU0dLdFVGMHZQQ0llZ3dTVVUr?=
+ =?utf-8?B?OWc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8d0ff541-d7d6-4d25-0908-08dd099d2d8c
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5089.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2024 19:54:43.6361
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: fWHO38z/vcbv7T4MkT8Lsp89Bq/nAVeU5o0vxc7WKyHxoQ6bMKh4MrRnXHD0WiCUaLQamTLF/DwPUHIQfPqR01qzSkpGuoPl8sgXhMek7EA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6680
+X-OriginatorOrg: intel.com
 
-IMX462 is the successor to IMX290, and wants very minor
-changes to the register setup.
 
-Add the relevant configuration to support it.
 
-Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
----
- drivers/media/i2c/imx290.c | 66 ++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 66 insertions(+)
+On 11/20/2024 5:51 AM, Parthiban Veerasooran wrote:
+> SPI thread wakes up to perform SPI transfer whenever there is an TX skb
+> from n/w stack or interrupt from MAC-PHY. Ethernet frame from TX skb is
+> transferred based on the availability tx credits in the MAC-PHY which is
+> reported from the previous SPI transfer. Sometimes there is a possibility
+> that TX skb is available to transmit but there is no tx credits from
+> MAC-PHY. In this case, there will not be any SPI transfer but the thread
+> will be running in an endless loop until tx credits available again.
+> 
+> So checking the availability of tx credits along with TX skb will prevent
+> the above infinite loop. When the tx credits available again that will be
+> notified through interrupt which will trigger the SPI transfer to get the
+> available tx credits.
+> 
+> Fixes: 53fbde8ab21e ("net: ethernet: oa_tc6: implement transmit path to transfer tx ethernet frames")
+> Signed-off-by: Parthiban Veerasooran <parthiban.veerasooran@microchip.com>
+> ---
+>  drivers/net/ethernet/oa_tc6.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/net/ethernet/oa_tc6.c b/drivers/net/ethernet/oa_tc6.c
+> index f9c0dcd965c2..4c8b0ca922b7 100644
+> --- a/drivers/net/ethernet/oa_tc6.c
+> +++ b/drivers/net/ethernet/oa_tc6.c
+> @@ -1111,8 +1111,9 @@ static int oa_tc6_spi_thread_handler(void *data)
+>  		/* This kthread will be waken up if there is a tx skb or mac-phy
+>  		 * interrupt to perform spi transfer with tx chunks.
+>  		 */
+> -		wait_event_interruptible(tc6->spi_wq, tc6->waiting_tx_skb ||
+> -					 tc6->int_flag ||
+> +		wait_event_interruptible(tc6->spi_wq, tc6->int_flag ||
+> +					 (tc6->waiting_tx_skb &&
+> +					 tc6->tx_credits) ||
+>  					 kthread_should_stop());
+>  
 
-diff --git a/drivers/media/i2c/imx290.c b/drivers/media/i2c/imx290.c
-index 7d794a509670..3bad7779d0d0 100644
---- a/drivers/media/i2c/imx290.c
-+++ b/drivers/media/i2c/imx290.c
-@@ -170,6 +170,8 @@ enum imx290_model {
- 	IMX290_MODEL_IMX290LQR,
- 	IMX290_MODEL_IMX290LLR,
- 	IMX290_MODEL_IMX327LQR,
-+	IMX290_MODEL_IMX462LQR,
-+	IMX290_MODEL_IMX462LLR,
- };
- 
- struct imx290_model_info {
-@@ -316,6 +318,50 @@ static const struct cci_reg_sequence imx290_global_init_settings_290[] = {
- 	{ CCI_REG8(0x33b3), 0x04 },
- };
- 
-+static const struct cci_reg_sequence imx290_global_init_settings_462[] = {
-+	{ CCI_REG8(0x300f), 0x00 },
-+	{ CCI_REG8(0x3010), 0x21 },
-+	{ CCI_REG8(0x3011), 0x02 },
-+	{ CCI_REG8(0x3016), 0x09 },
-+	{ CCI_REG8(0x3070), 0x02 },
-+	{ CCI_REG8(0x3071), 0x11 },
-+	{ CCI_REG8(0x309b), 0x10 },
-+	{ CCI_REG8(0x309c), 0x22 },
-+	{ CCI_REG8(0x30a2), 0x02 },
-+	{ CCI_REG8(0x30a6), 0x20 },
-+	{ CCI_REG8(0x30a8), 0x20 },
-+	{ CCI_REG8(0x30aa), 0x20 },
-+	{ CCI_REG8(0x30ac), 0x20 },
-+	{ CCI_REG8(0x30b0), 0x43 },
-+	{ CCI_REG8(0x3119), 0x9e },
-+	{ CCI_REG8(0x311c), 0x1e },
-+	{ CCI_REG8(0x311e), 0x08 },
-+	{ CCI_REG8(0x3128), 0x05 },
-+	{ CCI_REG8(0x313d), 0x83 },
-+	{ CCI_REG8(0x3150), 0x03 },
-+	{ CCI_REG8(0x317e), 0x00 },
-+	{ CCI_REG8(0x32b8), 0x50 },
-+	{ CCI_REG8(0x32b9), 0x10 },
-+	{ CCI_REG8(0x32ba), 0x00 },
-+	{ CCI_REG8(0x32bb), 0x04 },
-+	{ CCI_REG8(0x32c8), 0x50 },
-+	{ CCI_REG8(0x32c9), 0x10 },
-+	{ CCI_REG8(0x32ca), 0x00 },
-+	{ CCI_REG8(0x32cb), 0x04 },
-+	{ CCI_REG8(0x332c), 0xd3 },
-+	{ CCI_REG8(0x332d), 0x10 },
-+	{ CCI_REG8(0x332e), 0x0d },
-+	{ CCI_REG8(0x3358), 0x06 },
-+	{ CCI_REG8(0x3359), 0xe1 },
-+	{ CCI_REG8(0x335a), 0x11 },
-+	{ CCI_REG8(0x3360), 0x1e },
-+	{ CCI_REG8(0x3361), 0x61 },
-+	{ CCI_REG8(0x3362), 0x10 },
-+	{ CCI_REG8(0x33b0), 0x50 },
-+	{ CCI_REG8(0x33b2), 0x1a },
-+	{ CCI_REG8(0x33b3), 0x04 },
-+};
-+
- #define IMX290_NUM_CLK_REGS	2
- static const struct cci_reg_sequence xclk_regs[][IMX290_NUM_CLK_REGS] = {
- 	[IMX290_CLK_37_125] = {
-@@ -1456,6 +1502,20 @@ static const struct imx290_model_info imx290_models[] = {
- 		.max_analog_gain = 98,
- 		.name = "imx327",
- 	},
-+	[IMX290_MODEL_IMX462LQR] = {
-+		.colour_variant = IMX290_VARIANT_COLOUR,
-+		.init_regs = imx290_global_init_settings_462,
-+		.init_regs_num = ARRAY_SIZE(imx290_global_init_settings_462),
-+		.max_analog_gain = 98,
-+		.name = "imx462",
-+	},
-+	[IMX290_MODEL_IMX462LLR] = {
-+		.colour_variant = IMX290_VARIANT_MONO,
-+		.init_regs = imx290_global_init_settings_462,
-+		.init_regs_num = ARRAY_SIZE(imx290_global_init_settings_462),
-+		.max_analog_gain = 98,
-+		.name = "imx462",
-+	},
- };
- 
- static int imx290_parse_dt(struct imx290 *imx290)
-@@ -1654,6 +1714,12 @@ static const struct of_device_id imx290_of_match[] = {
- 	}, {
- 		.compatible = "sony,imx327lqr",
- 		.data = &imx290_models[IMX290_MODEL_IMX327LQR],
-+	}, {
-+		.compatible = "sony,imx462lqr",
-+		.data = &imx290_models[IMX290_MODEL_IMX462LQR],
-+	}, {
-+		.compatible = "sony,imx462llr",
-+		.data = &imx290_models[IMX290_MODEL_IMX462LLR],
- 	},
- 	{ /* sentinel */ },
- };
+Ok, so previously we check:
 
--- 
-2.34.1
+waiting_tx_skb || int_flag
+
+Now we check:
+
+int_flag || (waiting_tx_skb && tx_credits) || kthread_should_stop.
+
+We didn't check kthread_should_stop before and this isn't mentioned in
+the commit message, (or at least its not clear to me).
+
+Whats the purpose behind that? I guess you want to wake up immediately
+when kthread_should_stop() so that we can shutdown the kthread ASAP? Is
+the condition "waiting_tx_skb && tx_credits" such that we might
+otherwise not wake up, but with just "waiting_tx_skb" we definitely wake
+up and stop earlier?
+
+I think that change makes sense but I don't like that it was not called
+out in the commit message.
+
+The code seems correct to me otherwise.
+
+>  		if (kthread_should_stop())
 
 
