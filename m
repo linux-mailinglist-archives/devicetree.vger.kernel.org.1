@@ -1,63 +1,48 @@
-Return-Path: <devicetree+bounces-123227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 850A99D3C7A
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 14:24:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A95849D3C87
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 14:28:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 010D21F220E4
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 13:24:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C5652B22956
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 13:28:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E90C51A2547;
-	Wed, 20 Nov 2024 13:24:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFCE21A4F12;
+	Wed, 20 Nov 2024 13:28:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="r80D51hq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SMU6uqm7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71A5D2AD00;
-	Wed, 20 Nov 2024 13:24:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ACEE1865E1;
+	Wed, 20 Nov 2024 13:28:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732109042; cv=none; b=H4aoVJxBA7csgyfP57pdixXRMUoiOK1I4/jgAl8zzXuVQ7UKOvf7AUhgs85527uFJU35OoUkkQdP9Oy6JcHryVjQ5GtkQKj44HPh7fTnyOwpd68bSxm5rzpS43INWayUIXUK/KCPv7B5AZHBvClUpivX3ILE6tamuYIQcwwtPvY=
+	t=1732109318; cv=none; b=g5723M/LXKaCAhJ/FQyVyy1enXQMwM1zs0vWvr0P/cQPcHPngyktZlmu0t29udZxg/H7271up3n66w/mwKvOTDKu3gXhPcmPhJce4Kg9okaVxW8WtlL+I58IjcoFCTY/ROipg2I5kJesbvkbfevhahWn5wsljysrcAX9M8DzE1s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732109042; c=relaxed/simple;
-	bh=GMpwch0dQGvd8JR9hupTeU3RE6+Z14Y3YuH++IcH4wg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=HAOXxNyUEQdeXVGQoREYM0R4FAl3I7wLKvWWXu+qRkxZg6fyJ5bF/P2CS/0AoAL6yiVayiJxcavd5aG3+gULoxvREzXKXdBa8M9qps2zdCfi/4UpYVD9kuiXk27G/5FMaqU4TCbNXmg5sId6PRS9KMMji5K2akBn7D9kEGirzHY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=r80D51hq; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4AKDNh4v008580;
-	Wed, 20 Nov 2024 07:23:43 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1732109023;
-	bh=/cDWTmckm/CkJEDcZQJhRIWR2v+kP8CPV8gAmteQrw0=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=r80D51hqBVfb5pyy4I1RpK2mhH2ceTvZfyTyznRgnoj/c+dGtyGQXPbNmM3HWnXZC
-	 2fSY6YMFSlwsl0QsoFBlsrQ1zhwyNTrJ5PsyxxJinr6moPtaojUlrduPZ931RStIJi
-	 ObVaIP8TLlVf4XHwdaLmDYqGrX/8xouACgR7fCn4=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4AKDNhwC037109
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 20 Nov 2024 07:23:43 -0600
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 20
- Nov 2024 07:23:42 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 20 Nov 2024 07:23:42 -0600
-Received: from [10.249.129.69] ([10.249.129.69])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4AKDNcal039209;
-	Wed, 20 Nov 2024 07:23:38 -0600
-Message-ID: <96ea0c11-e6e7-4801-9c06-2dc80b21b1ab@ti.com>
-Date: Wed, 20 Nov 2024 18:53:37 +0530
+	s=arc-20240116; t=1732109318; c=relaxed/simple;
+	bh=2SYPUnbF64G1mG9Exen+N+ass2ZbyJhetloW7CX9jF4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fEB1ujAyskCN8JmfEylhsvpX5lGZ0vrUfWenIRkIcjZ34iRqFvYP4p/wQsvLiHxRAH5yyOgCDKonsDrF85fW6+mz+nhRKQ9YJIbSYpzvwctXxBrl1AsemzDw3k137ruvZonbAIZYzq8qQwvlSLHrPfzrVvAzSlR3Qo4nemGRJEo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SMU6uqm7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75F65C4CECD;
+	Wed, 20 Nov 2024 13:28:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732109318;
+	bh=2SYPUnbF64G1mG9Exen+N+ass2ZbyJhetloW7CX9jF4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=SMU6uqm7o8dMHLj0CO1dmcANvsmN07hStwZlMOnpVkOwL5ym9uUN5hiwmT3P/qHSR
+	 V4/hNo68lJTiw9p9fDTMAVV5eBgd5AxNMcaCJ3ruaqG9hCgnsLHzIRTFtLKT6vLlZk
+	 OGN13GH6DHFGwG3jpnGXgkyRNP8oAlPTr28454N7pnwOsPbPMsw8uGJlH8XPr1JuR3
+	 I96kW5AWYjF35IR+a50XhUuwNXjyOw5f7QE+hrmv12s0mtv6YmKyZ4/k6zFkmKbX6c
+	 oSuRHR4uipaVIptsm2BIkm8uE7gVgCMHGOTNAeanyMc1zlaj5NBTulyRZl4gcbHwjH
+	 PmMjPkQRJgIjg==
+Message-ID: <a4146b5a-a229-4441-b123-d13e72ab4472@kernel.org>
+Date: Wed, 20 Nov 2024 14:28:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,114 +50,91 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: soc: ti: pruss: Add clocks for ICSSG
-To: Roger Quadros <rogerq@kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>,
-        MD Danish Anwar <danishanwar@ti.com>, <conor+dt@kernel.org>,
-        <krzk+dt@kernel.org>, <robh@kernel.org>, <ssantosh@kernel.org>,
-        <nm@ti.com>
-CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <s-anna@ti.com>, <kristo@kernel.org>,
-        <srk@ti.com>
-References: <20241113110955.3876045-1-danishanwar@ti.com>
- <20241113110955.3876045-2-danishanwar@ti.com>
- <adcc5aa5-0f51-4c69-b684-a1e0844c5e3f@kernel.org>
- <6e11c85a-5883-4a28-b5bd-98da28f20425@kernel.org>
- <d738bb00-e295-4d74-8ba2-efd82b6df2ea@ti.com>
- <e633232e-f0ad-43f7-9897-39836e6b98b4@kernel.org>
+Subject: Re: [PATCH v3 2/6] arm64: dts: qcom: qcs6490-rb3gen2: Add node for
+ qps615
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Krishna chaitanya chundru <quic_krichai@quicinc.com>,
+ andersson@kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ cros-qcom-dts-watchers@chromium.org, Jingoo Han <jingoohan1@gmail.com>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, quic_vbadigan@quicinc.com,
+ linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20241112-qps615_pwr-v3-0-29a1e98aa2b0@quicinc.com>
+ <20241112-qps615_pwr-v3-2-29a1e98aa2b0@quicinc.com>
+ <ngjwfsymvo2sucvzyoanhezjisjqgfgnlixrzjgxjzlfchni7y@lvgrfslpnqmo>
+ <yjwk3gnxkxmhnw36mawwvnpsckm3eier2smishlo2bdqa23jzu@mexrtjul2qlk>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: "Anwar, Md Danish" <a0501179@ti.com>
-In-Reply-To: <e633232e-f0ad-43f7-9897-39836e6b98b4@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <yjwk3gnxkxmhnw36mawwvnpsckm3eier2smishlo2bdqa23jzu@mexrtjul2qlk>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Roger,
-
-On 11/19/2024 4:15 PM, Roger Quadros wrote:
-> 
-> 
-> On 19/11/2024 08:12, Vignesh Raghavendra wrote:
+On 20/11/2024 12:03, Dmitry Baryshkov wrote:
+>>>  
+>>>  &apps_rsc {
+>>> @@ -684,6 +708,75 @@ &mdss_edp_phy {
+>>>  	status = "okay";
+>>>  };
+>>>  
+>>> +&pcie1_port {
+>>> +	pcie@0,0 {
+>>> +		compatible = "pci1179,0623";
 >>
->>
->> On 18/11/24 19:22, Roger Quadros wrote:
->>>
->>>
->>> On 18/11/2024 15:33, Roger Quadros wrote:
->>>> Hi,
->>>>
->>>> On 13/11/2024 13:09, MD Danish Anwar wrote:
->>>>> The ICSSG module has 7 clocks for each instance.
->>>>>
->>>>> These clocks are ICSSG0_CORE_CLK, ICSSG0_IEP_CLK, ICSSG0_ICLK,
->>>>> ICSSG0_UART_CLK, RGMII_MHZ_250_CLK, RGMII_MHZ_50_CLK and RGMII_MHZ_5_CLK
->>>>> These clocks are described in AM64x TRM Section 6.4.3 Table 6-398.
->>>>>
->>>>> Add these clocks to the dt binding of ICSSG.
->>>>>
->>>>> Link: https://www.ti.com/lit/pdf/spruim2 (AM64x TRM)
->>>>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
->>>>> ---
->>>>>  Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml | 10 ++++++++++
->>>>>  1 file changed, 10 insertions(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
->>>>> index 3cb1471cc6b6..927b3200e29e 100644
->>>>> --- a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
->>>>> +++ b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
->>>>> @@ -92,6 +92,16 @@ properties:
->>>>>      description: |
->>>>>        This property is as per sci-pm-domain.txt.
->>>>>  
->>>>> +  clocks:
->>>>> +    items:
->>>>> +      - description: ICSSG_CORE Clock
->>>>> +      - description: ICSSG_IEP Clock
->>>>> +      - description: ICSSG_RGMII_MHZ_250 Clock
->>>>> +      - description: ICSSG_RGMII_MHZ_50 Clock
->>>>> +      - description: ICSSG_RGMII_MHZ_5 Clock
->>>>> +      - description: ICSSG_UART Clock
->>>>> +      - description: ICSSG_ICLK Clock
->>>>> +
->>>>
->>>> There are actually many more clocks [1]
->>>> What is the purpose of adding all these clocks in the DT if driver doesn't
->>>> use them?
->>>>
->>
->> DT should completely describe the HW and not based on what Linux driver
->> needs. So its valid to describe all clock inputs to a module
->> irrespective of what driver does with it.
+>> The switch is part of SoC or board? This is confusing, I thought QPS615
+>> is the SoC.
 > 
-> Fair point. But there are a total 11 clocks instead of 7 in [1]
-> 
+> QCS615 is the SoC, QPS615 is a switch.
+OK, thanks for confirming. Just to be clear, I understand above as: it
+is only the switch, nothing else.
 
-I took the list of clocks from AM64x TRM [1] Section 6.4.3 Table 6-398.
-In the TRM only 7 clocks are mentioned per ICSSG instance which I have
-mentioned in the binding.
-
-[1] https://www.ti.com/lit/ug/spruim2h/spruim2h.pdf?ts=1732108738816
-
->>
->>>> Only CORE and IEP clocks parent can be configured via clock muxes.
->>>> Those are already defined in the icssg?_cfg nodes.
->>>
->>> Actually those clock muxes are internal to ICSSG.
->>> We still need to be able to set clock parents of CORE and IEP clock.
->>>
->>> So pruss block needs at most 2 clocks like you had in v2 of this patch?
->>>
->>>>
->>>> [1] - https://software-dl.ti.com/tisci/esd/22_01_02/5_soc_doc/am64x/clocks.html
->>>>
->>>>>  patternProperties:
->>>>>  
->>>>>    memories@[a-f0-9]+$:
->>>>
->>>
->>
-> 
-
--- 
-Thanks and Regards,
-Md Danish Anwar
+Best regards,
+Krzysztof
 
