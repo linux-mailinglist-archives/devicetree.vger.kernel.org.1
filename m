@@ -1,134 +1,194 @@
-Return-Path: <devicetree+bounces-123003-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123004-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A0D69D3230
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 03:32:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 950B19D323F
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 03:38:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A1D43B23E39
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 02:32:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 550252837DA
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 02:38:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79137487A7;
-	Wed, 20 Nov 2024 02:32:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D7FF1E485;
+	Wed, 20 Nov 2024 02:38:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=minyard-net.20230601.gappssmtp.com header.i=@minyard-net.20230601.gappssmtp.com header.b="Z57hFmuI"
+	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="qWcIUqxQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023077.outbound.protection.outlook.com [40.107.44.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E65A01E485
-	for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 02:32:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.41
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732069924; cv=none; b=OBNe5g3Q2EYQiuRh8b+fDG+1h5yPgxfWn+HOyHqlTIjNlQBwpGfCS1ueAiqDccml8+avg+Ibw8Z4OHgFbqAy9F8d12sV3jT9EMysGieVMZ5S9/0038+DQsiDabTVtj+AvEE0XfLJ8PCkVTjUH9A8CD7aIRMGnaAbYZbuODRTOqE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732069924; c=relaxed/simple;
-	bh=IJRHEBv22CCPwsTeJhDR5YAQTUAy4jX4+RLOHq4x16E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aoWAA/9XecV89IgLGhq8gC0UzYCLRbvYvMrJh3aedEluI6ubrVa4BwpZkrXY8nuOIUCq0+tMBQU0h0cUI9m0Ke9OsC7GXPmni7ccBYCMFNrLN63S6lzVd2aEcg17Wa45IDPKh2QsVEngNoDURd3qKICnfoOMX9zkaGkgUSVQCR4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=minyard.net; spf=none smtp.mailfrom=minyard.net; dkim=pass (2048-bit key) header.d=minyard-net.20230601.gappssmtp.com header.i=@minyard-net.20230601.gappssmtp.com header.b=Z57hFmuI; arc=none smtp.client-ip=209.85.160.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=minyard.net
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=minyard.net
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-294ec8e1d8aso2929311fac.1
-        for <devicetree@vger.kernel.org>; Tue, 19 Nov 2024 18:32:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=minyard-net.20230601.gappssmtp.com; s=20230601; t=1732069922; x=1732674722; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:reply-to
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=n3z610eh0qCJd2kaOZ7Lkn+Ilb4Xt4NLJTNRQhvjlOc=;
-        b=Z57hFmuIYsd1iXfgUkBx+0kTGHrJ1UbhSYfDzUAIeaq8/zNetdZjIlYGA2nk4bG5hc
-         V40H/HbiPtgwjpf2wL4NaKxaB+8h7tiX3MMUsZyUSWSx71yeg+yXiX9o45YdPHg/Q20D
-         PXCIkXQ7/LjWJ/2GyGb4SHtp8tnGPl7oQO4Nxuu9c4QY9thwNxRFq5KKwdACrVfwKT6U
-         koG5cPZfxTahoj5j6IFp5yq6sDAxbYjuv46sFGlJQccUbGQdzhnF6Gf4WXPHm5yz5XVf
-         ZPUztQmIowpe4HvSHN3fO2B6JDWpbSGC9ErgBv+MFb+hjGnVaWjII9RLmBSOeePJBTj0
-         Zzgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732069922; x=1732674722;
-        h=in-reply-to:content-disposition:mime-version:references:reply-to
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=n3z610eh0qCJd2kaOZ7Lkn+Ilb4Xt4NLJTNRQhvjlOc=;
-        b=jsNY/CABVBka3WjHP3vs1xQ5Dz1OQYkFfHg1xYgu9QYkC801ntD0+ciTINzTdZ0QZS
-         crjc4W6PPUBehlKzPeN/0pRlh0B9gKB8DkR9EjEQopwnJzNLSlRq3l/aM4bWhOZWFqp4
-         QsiUqccj8X6L5NYH/09jAqqCqef7n6g4Zqc9ZK9QaSfkXNoeKllnEQ+1Lz4g1WZnbP6y
-         /eJUdaz5faQcclnBh0i1DWpIf/4nMyetEh/sjINWoOdu6IA5e2mItc120cW5cNBLqNs1
-         eYkIhIfWfrBto5WwonG1Ki9d/UNeE0PstisyX3FelJIG3b7pLEU1LTnf83yRtqoH6neQ
-         PwPg==
-X-Forwarded-Encrypted: i=1; AJvYcCVZEfaH0PUph1ij7vqEYfY7RH9j4SHofHRc00Moo7gnVQJIFJ7g2Ymp3PE8aldufHvuoLCn6UEXoTwt@vger.kernel.org
-X-Gm-Message-State: AOJu0YyfViru0hay3AbPfPnKCix3oZr/oK5U8zJEXRvPh6f59ybQI4BI
-	TrvnjAp6qq+sTBuyYfTEtDJxZB+zpsmbUABf7zz1/lw2qCGaEVk7Tc5cQNsm4e8=
-X-Google-Smtp-Source: AGHT+IFfSumVh91w5x9msiZmygRxDbJS7v7w+BJEhWhfq2eMN5sfNcaNQ01peKn0p30SVbyVU7B39g==
-X-Received: by 2002:a05:6871:613:b0:296:e4bb:80f5 with SMTP id 586e51a60fabf-296e4bc1d99mr314446fac.36.1732069922013;
-        Tue, 19 Nov 2024 18:32:02 -0800 (PST)
-Received: from mail.minyard.net ([2001:470:b8f6:1b:ec53:8290:86a1:aa7c])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-29651945ee6sm3977928fac.29.2024.11.19.18.31.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Nov 2024 18:32:00 -0800 (PST)
-Date: Tue, 19 Nov 2024 20:31:56 -0600
-From: Corey Minyard <corey@minyard.net>
-To: Quan Nguyen <quan@os.amperecomputing.com>
-Cc: Potin Lai <potin.lai.pt@gmail.com>, Corey Minyard <minyard@acm.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Patrick Williams <patrick@stwcx.xyz>,
-	openipmi-developer@lists.sourceforge.net,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Cosmo Chou <cosmo.chou@quantatw.com>,
-	Potin Lai <potin.lai@quantatw.com>,
-	Cosmo Chou <chou.cosmo@gmail.com>
-Subject: Re: [PATCH v2 2/2] ipmi: ssif_bmc: add GPIO-based alert mechanism
-Message-ID: <Zz1KHCLwpOdsCagr@mail.minyard.net>
-Reply-To: corey@minyard.net
-References: <20241022-ssif-alert-gpios-v2-0-c7dd6dd17a7e@gmail.com>
- <20241022-ssif-alert-gpios-v2-2-c7dd6dd17a7e@gmail.com>
- <434333fb-5703-449e-83f2-46e85f34fd23@os.amperecomputing.com>
- <CAB9gMfphfY0H721G9qV8_3sm1d_RTnKkWbEOeqC-0ox9p4cfCQ@mail.gmail.com>
- <b2441bab-304b-4983-8780-43671e8add4b@os.amperecomputing.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FE30193;
+	Wed, 20 Nov 2024 02:38:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.77
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1732070316; cv=fail; b=CvEXC60Rr5AoCyfp2kseOQlOK+KPD3IthoDEh3nqgEC14pwJWIeGLnQeQ81BGRUsn4ND8ikGuOYJq3JokhlCbqh+9E0IdDBZ7LtOBEPfk8Q/OlU+SKD3eRXXmFjYggqDzKnDczsEIo9FZZuJV1ibQIqd0Zf1tg4ziEKRvGyBTo4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1732070316; c=relaxed/simple;
+	bh=fij/Nbhp4aRPoaZGp1ZLzq8EPsU2hYOZZUYPzT73NPo=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=dz4THXuyb391etDUmcf8Q0KEmp/HhS/znqRJyE343DAdiuGFt2poEovsRUcXGqLSMNkv6JWmkKNCmSRvqz4Jjvn2xUpQGotObzDhA+pt8PyUv8ux55wsZBzNUjWSM9dCH5OTWQS8uAwXRs1yRX2jMZkzEGUQ1DGU+bxgmWW1rJ4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=qWcIUqxQ; arc=fail smtp.client-ip=40.107.44.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ULWVG+PZU3Z7/7rzdumCQiUjlp3e77y+8aEdcn0UTs+Y1Eefg39oXsweFXovgNzJGDQzNE/4d3a7izBewZDTEgSB6uNExeBom3iuSi7qrZmPxz3BUFXVZazAXKFkaFMYirrWUrODAl3sWK8yh5QLG5kRPj5VkAGq1hZqdEJ0fLZgmivl0qIHIK/9DPCvqdmDLRMgXg1uWsXeWgmqxltbVMF8YYybM6A6NkCipFvOuRR53RNlCQ9kOGyxeKN5NJl5HjaWXjm5fdOnbJ8oihlJT8EfShNDn4XOqxFlNbAyxMpazBEHWW9FkQi4pez6iJSla1rT/r1mj5QwODWAYgWbMQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fij/Nbhp4aRPoaZGp1ZLzq8EPsU2hYOZZUYPzT73NPo=;
+ b=ojQEN+SRj1kJAUqEUpCcYuauA0SRfWI++JxA2xoJMTs3OCdT4K6EmrBuAEyiS8pS/6JZhKl5pyPe7PJPG7RPXtG9V+AN33obmuyCwtJatVpJup25iCfkZyA0o1z1KNI/RpdevkJQlpVo15iRpDldIl3unanITM1BDQpxDhCamlU7+tFjlWodoD37zU8Jjk+69KbO30yUhTp1WHb3CFfAbtykNRmyUHFaXzIyQMJI3/rbHoxvYUYh0ZU3O3dObZqbPwIHY3NEBUcH78F+Jpw/xZJ0lfNmDVpsEEh3YSyZ2mF7dDp+7oDWw4ISHK4wXQgiAN6Ciu9CeXm/ey9ttYIjFg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fij/Nbhp4aRPoaZGp1ZLzq8EPsU2hYOZZUYPzT73NPo=;
+ b=qWcIUqxQKNwdVulUTTOH4S0cTKFmtB1IvoD7OuWrVQpL8Dl0i212LigEWAHCUoALucH0PesqpQhkEySu+NXCwJxkHn48IyLT7cyZfA2boTmbKiVVTGgQbFZq33pYYpio/2iD24BZJq8JStGTItyKU9W2thxQCKQaC04EYSkQejlo7S0A1w1KILCV1NXxLhGsMQ+bj1hh3lWJpmwxOiI8quGe0YNOv4N64+SNViJbItrIyPhLVd+E5vPMG2f5FMSaMaQ1rAiS/8zaT75MMUQAp74T8SS4Yn9QVCSXHOqocG4eVfoeCZ1zS3Ywvl9r7CHh/hDoBYh0FEJlVc2nNUf/HA==
+Received: from SEYPR06MB5134.apcprd06.prod.outlook.com (2603:1096:101:5a::12)
+ by JH0PR06MB6740.apcprd06.prod.outlook.com (2603:1096:990:37::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8182.11; Wed, 20 Nov
+ 2024 02:38:25 +0000
+Received: from SEYPR06MB5134.apcprd06.prod.outlook.com
+ ([fe80::6b58:6014:be6e:2f28]) by SEYPR06MB5134.apcprd06.prod.outlook.com
+ ([fe80::6b58:6014:be6e:2f28%4]) with mapi id 15.20.8182.011; Wed, 20 Nov 2024
+ 02:38:25 +0000
+From: Jacky Chou <jacky_chou@aspeedtech.com>
+To: Rob Herring <robh@kernel.org>
+CC: "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>, "davem@davemloft.net"
+	<davem@davemloft.net>, "edumazet@google.com" <edumazet@google.com>,
+	"kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com" <pabeni@redhat.com>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "joel@jms.id.au" <joel@jms.id.au>,
+	"andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>,
+	"hkallweit1@gmail.com" <hkallweit1@gmail.com>, "linux@armlinux.org.uk"
+	<linux@armlinux.org.uk>, "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
+	<linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject:
+ =?big5?B?pl7C0DogW25ldC1uZXh0IDEvM10gZHQtYmluZGluZ3M6IG5ldDogYWRkIHN1cHBv?=
+ =?big5?Q?rt_for_AST2700?=
+Thread-Topic: [net-next 1/3] dt-bindings: net: add support for AST2700
+Thread-Index: AQHbOadLTi3HdZRPK0muT1IFdeAEcrK+65GAgACKxLA=
+Date: Wed, 20 Nov 2024 02:38:25 +0000
+Message-ID:
+ <SEYPR06MB5134C9B36659A0A0EDC9076E9D212@SEYPR06MB5134.apcprd06.prod.outlook.com>
+References: <20241118104735.3741749-1-jacky_chou@aspeedtech.com>
+ <20241118104735.3741749-2-jacky_chou@aspeedtech.com>
+ <20241119181831.GA1962443-robh@kernel.org>
+In-Reply-To: <20241119181831.GA1962443-robh@kernel.org>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=aspeedtech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SEYPR06MB5134:EE_|JH0PR06MB6740:EE_
+x-ms-office365-filtering-correlation-id: e8f86c1f-fe85-453d-696f-08dd090c68a7
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|366016|376014|7416014|38070700018;
+x-microsoft-antispam-message-info:
+ =?big5?B?SkYwbTh4MnphV29qUHJvcGMxYklNd3JIb04xZlpGVVNydHo2a2dKZ045K2FIakJJ?=
+ =?big5?B?NGRkbEp4VkJKYk1RRVc1c3V3REdLVGxpcEswb2E2ZGZHN0w5em10dkFDWHlIU3ZG?=
+ =?big5?B?YzBqT2FTYXlzVzNqaXhHK3FzTzlzZXhMbGdWbjVMWklMUVV6NVNUS0tzWEZQUith?=
+ =?big5?B?c05SM2NmVkxqdkpJNGRrSWZoTXdxSlk1Q09SOVBHdEpUWGNRUnVtTUw5OG5XZzRv?=
+ =?big5?B?a0o0bUNOdkR4RVFvVzRBeVJQRlFOa3c3T0crdzB3U1dYem85eEsvZGhTWUh1ODNl?=
+ =?big5?B?Q3dXWUZVNDZpbjdsNVVjalpvWXh3MEtXL3lJakR5NXgxVE1SekdEbE5ySHMzTmtn?=
+ =?big5?B?U2JyNEpxRVBNRnRzbWh4OTdjZWgyUVA5YVQvQTZkMzdxU05QQVJpRXozeXdVdk9m?=
+ =?big5?B?QlpkWlF2d2tVZjErbzhtU2xTR05TRktHWFdMOGg1NkRpQXdMb0VsZDFXTjA1Y3lz?=
+ =?big5?B?Z2VkZXNrU0VDREhTRnV2WDNGcXMyeXREVXM5cnhFUXNHWjJOWlRTUFVjNVpncERJ?=
+ =?big5?B?VHZNTTJBazZKczJ3VzFlSGpEQXAzVlFoTlNOQmxFSkFkTUI3Tk9aeWVJSkpKSk55?=
+ =?big5?B?ZkNMR3M4VWlWMHYvWkU3QVhOZkR5dFJkNmhnMVlMZ0JTR0lpMjJrSm02b1pOZ3Ex?=
+ =?big5?B?T3hpcEUrYWFzRWN3bzMrMFZsd0ZTdjZtcFR0azV2eE9zY1NHT29jb1MveDdVWE9k?=
+ =?big5?B?eExWcHI2MlBuM3JIenh1U0lrcDREWDVRVWRuNDFXdjJycWgrTElTOXdxbW9waWdP?=
+ =?big5?B?L0k5SjZSQzFsUnphN2t6ZUdFOW92RmxKdXk2WEZjT2xhU1UvNGRYNEhzL1NNTndX?=
+ =?big5?B?T3hNbW90L0hFaUdBbldZM3JxU1oxOWROVG91TWdSa3daclNQWm1DdnhkK3NLUkJh?=
+ =?big5?B?L1MzeEtNQjhMWVdrR2tRUHVKVDdpTjRGQjhuZ01hajJ0YWVxc013MnVKYW9yZWIw?=
+ =?big5?B?eUZRL1hpOHhEekNkcXZBc09FZUZvcUJMeDdtamloZGJQOUJYTGhwYUZmNSthWDJ5?=
+ =?big5?B?dmdJR2tnL05WYitjVktkVWdjaXFtYjdPY3IvemVJMWpLM013QTh3dmJTdmZzTFNt?=
+ =?big5?B?YkFWTXlxeE1yZ0lwUVdHbUJ6WmI3RjlmUGxpSjdGUGNjZ0xtelFSOWJQb3ByWStS?=
+ =?big5?B?U0ZQTEJZVFNLU3NMVjk4RzFsQmFzNmFTNGdoK1oxZUxOeXNIY1dlS0hqN2VxS0Iy?=
+ =?big5?B?SS9BMkdVeWowWmcrbnVKQWY5RjZNTlJ0VVljRFdyMWVCazdPdjIwdkFPRGgzeGFI?=
+ =?big5?B?TkJaVXhUWGhRNnh5K2dLLzR0NXlhcldrdm1hZmlyMVNiamhMdHZKTno1eEtqTXVZ?=
+ =?big5?B?ZDZsL3YzRHRuWXk4Rjd5YjFJbXYweU1hOXpkZzJXdmdOWE5IOEJMZ1pBckdoRFo2?=
+ =?big5?B?YUpWZElmdDlibVg4SVNnSkUvbjlaVXBwTXR1T2l1MndqbFBWZnpqTDRTVXhJcTRU?=
+ =?big5?B?bEZodWxRLzlQNThYTXNjdThOR2dkNzc4S3pJZTQxNW9odEtQU2tPSmRVaTRobFRl?=
+ =?big5?B?RGVOcWRRUDh0alVrd0pFc2Y5bGVnT0ZtQWZjMXJGa05VOTI2NXNkSkdMa1VSSmNr?=
+ =?big5?B?Y3lueCtmRWNFcjNwVEIrNkpaRkl3UmNnWEF6UFljQ2tHRHVuTlU2Y1hWb05OdFlX?=
+ =?big5?B?UDVlZ096UWNYVjNHMlpHZmdYMHh5ME8zYWs0VUVqZ1NIZ3dmYm54c1YxU2QxRFlE?=
+ =?big5?Q?7z8UX/TuxEWFHHP5BWbSTWPQ004dV2JKXAzu6hXtC3g=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:zh-tw;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEYPR06MB5134.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?big5?B?QkQ0UWRQRTYzc1VTcmExMENhcG1kV21sZWpBMGpUOWRlTGovMVMxbHFYQjIzUFc0?=
+ =?big5?B?ZG4yMVZkL2tITXJ6ZVo3VUtpcmpDVTJUTWl1MFlobGF0NXlEazlxQjIvaUVweUQr?=
+ =?big5?B?OS9iM21vME1SeDl1NEl1SllaVGh5RjNSQWpSNXd1bDRqK1Z4czJXaWR4WS9XS01S?=
+ =?big5?B?ZEhWb3puREJrSzdZZ1VRWURKK3VEbUlGdEVud1cxMG1FZFR4ZE1Mc0hKV1Qwakpm?=
+ =?big5?B?YVB1alFSdlkwTkhOMU9wa1VsLytNcjZGU2hROFl4NGhJUS9EZVJuMW9RYktySEJ1?=
+ =?big5?B?d0JGWW81dHZMS2hvSTFML1VoaGliMXg5T3V1YkhyWjI0cW03c0VXWGlsTWV2SFNQ?=
+ =?big5?B?SU9ubnFTWnpyRmF6ekgraGoxQzYzcjFkZCtLcW5HM21mVDl1MVhJblpKeHIwVkFl?=
+ =?big5?B?ZXU0cERBcWZQMUhwWGVZYkpraW85Y01RWDF6L21tTU9rZDlSbGhTVXdKdm1VMVpy?=
+ =?big5?B?NzhjanRKOWtlOXdSNS9PdDI0QTdyKzcveXNuSCsxMlZ0cFNyYWJpMmc4WWV6bkF4?=
+ =?big5?B?cTl6NVFKK2RsTVlGVEliL2pYakxjaE03S2JMUDJPREp4SUludUFMVW5wakdxejRE?=
+ =?big5?B?YVdQSE1qc0wzVVJPczNpa1VhcEhjMU44NUxFTjR0SnVYdHNjZ3cvRWVyT01palBK?=
+ =?big5?B?N3B1MTRmUWhFeHJJdWd5N01KTnE5cC9sbENETDBMYVZUM0ZQZHozL3JwcWtPSXZU?=
+ =?big5?B?TFZENnNZMEZMWEVwNGFmSjdudDJnTDNGYWNzcE16bzdHR0piQVdLVThoOTJ4T0xP?=
+ =?big5?B?SUh2dmNSQjJtbGMvdkVvdmxiMWRqTGZZUU1mZktjN3FOaGs3Wm1GY0ZJSlVEUjc3?=
+ =?big5?B?aGp2Umd3WFZESk9XbVN2VVA5clNFVE1kL3dEN0tRNkt5bFhWUHlPcmFueGhYSytL?=
+ =?big5?B?K1dtZEd6MWRxeVMyRWVCbjJBSW1xL3ZLK3dhdGZCQnNZQUJPYVJOdzZwQ3hlYi9H?=
+ =?big5?B?bFZTWW5zMll5cEYramZsMVYwWmFMVS8vN3VjeFE2KzJodjZVdG1SUDNpYnVkeHlB?=
+ =?big5?B?M1htajNiWGhXVEhHN2RHd252ZjlyR0x3bjM4dk9vamt3OTVSbkMxS3J3WmZDUk55?=
+ =?big5?B?aFNMVmx2dytoT3JONGJoRlA4OWtSd0JWTkR6dDlBckM3akxRZ044akJlZ05oY2RD?=
+ =?big5?B?SlIrYkhGbEQrQlEzTFoyR1RVdy9nTFJ5UWtBZ1NiRU1mYkMxVHpvZnRwOUtrczRj?=
+ =?big5?B?cVNwRmNpOTRxdXplb2dsdjZvSTdWWHlIZWNZcVgrckZUMjVPK3lmUzdaZGRUYXA2?=
+ =?big5?B?QXpCMG1TYzA5eHhuTjNmeXhHeXJXN2hHRlRuYXZEWFFPcWl4cUQ1cVlwbHBKaml5?=
+ =?big5?B?Q0M1bUpxUVFadE5uaTdHbldWYnN3ZGkzcFVGb3NRMXNvbjVEQm42WER0ckNGL1ZC?=
+ =?big5?B?Zmtpb3FmTDFLQytIanhjb2Eva2NCd0Z1RWk2UWxaN1hNQjJ1NC9DSEZsSXFFMUxw?=
+ =?big5?B?V1VDZGg4VEVlcmw1aGJteHNJS0Y2WHplbmIrWmkzZjRjMXBiTWQvVTVUYUx1NjlV?=
+ =?big5?B?eEVWYk5KdGM2LzlBK0xuaGU1Q3ZuSXluRTJTRnZMZ1hyVkpDSGZLSzVVbjkwc2lQ?=
+ =?big5?B?NVNqdVVWVW5XczZxbSs1SzFzTW1uTGJ4ZzZPYlpSbXpXbVhmc0h1UzdxVlQ5WjNa?=
+ =?big5?B?VkJybTMybWh5TWlvVncvS0VSYTBhNzBQM3QzOGRvWldDanBuV1FDUnllVDUrb1NE?=
+ =?big5?B?QlQxdDBYbVYxWnNkc0x6eG05Snc3OWdmclNzQkViWUpSQmxlWTdzR2o3UGNlUUVl?=
+ =?big5?B?S25rNmkrZ05iK0E0RUJuU0NnZVlVanltTGdjdGdiZ2JBNVhjQ0g3NTVhTGJqRy9P?=
+ =?big5?B?aEtseEJmaHY4RnliRWVkZ2xZZjhIMzMxMTJOTWJEUC85c3F6V2Nza2F6RTlkdUds?=
+ =?big5?B?VXBCUi9qa2hqY0dMZWhubkpTdGJIRzJkWnl3aE5HcGUwN3RvelZ5RVlxVUhqYnp2?=
+ =?big5?B?RHhKTnlOQzNJblZReXVuUHc1MER2THZqbWE1cE5yTTFSWGpPaEw0bXFuU01WQ2lz?=
+ =?big5?B?MHRSQSsrcE95UmlxR1NzekoxMitjUkdnbTNadlBSVFBOSlJkREE9PQ==?=
+Content-Type: text/plain; charset="big5"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b2441bab-304b-4983-8780-43671e8add4b@os.amperecomputing.com>
+X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SEYPR06MB5134.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e8f86c1f-fe85-453d-696f-08dd090c68a7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Nov 2024 02:38:25.6212
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: VwxoyYrvxity0s1Kgdtd2BRBMn3VEm2MlyoXP4XvhuRyWXD2ZuRv348Slpw5nmrBy9fa6Oz6odaq9ZopU3s9KMwBy4oGxBRWy0W27ydyh/o=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR06MB6740
 
-On Wed, Nov 20, 2024 at 08:58:47AM +0700, Quan Nguyen wrote:
-> On 19/11/2024 18:30, Corey Minyard wrote:
-> > I just saw this.  What makes you think alerts are not supported in ipmi_ssif?
-> 
-> Yes, Corey, I see alerts are supported in ipmi_ssif.
-> 
-> My apology about the unclear question, I was just curious about whether this
-> gpio-based alerts mechanism is confirmed through test with current ipmi_ssif
-> without any extra patches.
-
-Ah.  The way this would work would be that the GPIO is run to an
-interrupt on the host processor.  Generally all the alerting devices on
-the SMBus will "or" into that interrupt somehow.
-
-When the interrupt comes in, the host will issue a request to the SMBus
-alert address and each device that has an alert pending will respond
-with their address.  Because of the wire or of the SMBus, the lowest
-address will win.
-
-On Linux, the driver for that particular device will be told that an
-alert came in if it has registered for that alert.
-
-The GPIO is just an interrupt, so that should just work.  That's not the
-hard part.  There has to be some device tree work on the host side to
-map the interrupt to an SMBus alert for a specific bus.  (I think you
-can do this with ACPI, too, but I'm not sure.)  And the device, of
-course, must respond properly to the alert request.
-
-So the GPIO is not something that's unusual.  If it generates an
-interrupt (and all the other stuff is in place on the host side) it will
-work.
-
--corey
+SGkgUm9iLA0KDQpUaGFuayB5b3UgZm9yIHlvdXIgcmVwbGF5Lg0KDQo+ID4gVGhlIEFTVDI3MDAg
+aXMgdGhlIDd0aCBnZW5lcmF0aW9uIFNvQyBmcm9tIEFzcGVlZC4NCj4gPiBBZGQgY29tcGF0aWJs
+ZSBzdXBwb3J0IGZvciBBU1QyNzAwIGluIHlhbWwuDQo+IA0KPiAiQWRkIGNvbXBhdGlibGUuLi4i
+IGlzIG9idmlvdXMgZnJvbSB0aGUgZGlmZi4gQWRkIHNvbWV0aGluZyBhYm91dCB3aHkgdGhlIGRp
+ZmYNCj4gaXMgaG93IGl0IGlzLiBGb3IgZXhhbXBsZSwgaXQgaXMgbm90IGNvbXBhdGlibGUgd2l0
+aCBBU1QyNjAwIGJlY2F1c2UuLi4NCj4gDQoNCkkgdW5kZXJzdGFuZCB3aGF0IHlvdSBtZWFuLg0K
+V2Ugd2lsbCBjb250aW51ZSB0byB1c2UgY29tcGF0aWJsZSBhc3QyNjAwIGluIDd0aCBnZW5lcmF0
+aW9uLg0KDQpUaGFua3MsDQpKYWNreQ0KDQo=
 
