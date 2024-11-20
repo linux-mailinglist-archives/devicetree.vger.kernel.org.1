@@ -1,160 +1,222 @@
-Return-Path: <devicetree+bounces-123123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 438619D3722
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 10:37:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE7699D375A
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 10:47:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA5D01F23269
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 09:37:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F556282D57
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 09:47:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2340F19AA68;
-	Wed, 20 Nov 2024 09:37:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A11A7199238;
+	Wed, 20 Nov 2024 09:47:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=thaumatec-com.20230601.gappssmtp.com header.i=@thaumatec-com.20230601.gappssmtp.com header.b="CmFhOhld"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="alaojDzS";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="PsAOIOEQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fhigh-b3-smtp.messagingengine.com (fhigh-b3-smtp.messagingengine.com [202.12.124.154])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4984D1865E0
-	for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 09:37:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ADFD15C15F;
+	Wed, 20 Nov 2024 09:47:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.154
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732095452; cv=none; b=ny66dHEAAJYlPBUKzOdXo27J2gU4ccbdCGtIUsJRTl9ASzt4tlIu8cJfSo7x4Hw//+9zZ/LbD7nLu9lJRyGdOH6YWwMWjL7/DJOJ12rQk9UZRpANgnTWgz6AyEvuYbl0GdB7D4VvFOsrMJ0qugAK2/MKPyArfzi7ajUazlq/MBQ=
+	t=1732096068; cv=none; b=MbAfggHWUvwnWBu4E8Gj34UWeA46yAwqFws+fW+SMA9MZ3OELV2LssHDwuQxl3UZaepdnZyHyGrxCHnV+4xibwv+K7dGYxtWfqXwd6ZMoKAEgvFDRsjhIL/7cu9jSkkQONQ3WmJRtz7DFtbE8HbLMS6LtS3PvxOerj1OHa8GUpw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732095452; c=relaxed/simple;
-	bh=RYFxe0lqU+sUNDWO143WCfYxDJhMdEb9ZEFl/vv+Pas=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=YRoWfJxNPSK3nGeR0rsz3Sci9jyWOf+IxbYhekro2tSCXiRj/KUwqde1flhUoLad0hr8m9BEvm8uwOy4Z2tRxspf81lqr67UJN6vMtOLHpWE3NcBa8VQ8nCAlS78v1n1eoXoRgVl+bEKRBAa2g+h4IWE/eWaJvVoXLE6Trd5UDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thaumatec.com; spf=pass smtp.mailfrom=thaumatec.com; dkim=pass (2048-bit key) header.d=thaumatec-com.20230601.gappssmtp.com header.i=@thaumatec-com.20230601.gappssmtp.com header.b=CmFhOhld; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thaumatec.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thaumatec.com
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-38232cebb0cso3190994f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 01:37:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=thaumatec-com.20230601.gappssmtp.com; s=20230601; t=1732095447; x=1732700247; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=U4fsqGfyvQJKmn8zoPFdQOQX2dN/AEtzDhH6yM067EA=;
-        b=CmFhOhldudFXay2r1f4PLHrgwNyecwC/T/uxibmvRLxqyZz1MUscVFlQQc92Kx/dAO
-         hS65at/kXKupfAOGtcGUYZMHX7Df3x49ruQYHcCTIg3O5trLRqOzsrlm8Um3+hLLP5Hv
-         5D5c35jJBpOnrCZniW+8tkg8n94rPf7GnjkcBHIHVZlogM+T9Zhol84ioAJ4x+Qcry2E
-         U5eLpb8xs7M5csP9FudS53mN0DyG08KPC4L5drXhpbTIH+j1fTW293id1E98stIiwuN6
-         pMaBiffMuy4IaqagZNRSME/bCy2pamnLbnm2bqsPfCfR/K4FLvU8cLZuTumCFmttOPZn
-         iejg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732095447; x=1732700247;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=U4fsqGfyvQJKmn8zoPFdQOQX2dN/AEtzDhH6yM067EA=;
-        b=beF1/EKJGVGjFj4N0MjynGkdva7JgITiHOS/7MG+70n9iJ9e8KqVBXty72iQAF3BfL
-         lI46AM1JV6ct2OsRalUEXx91cZC0cicepwnrO3c2/4anKKtoIVSFkLVP2DCYMEaCI2Fc
-         vHrR2DDz0/ukmEmOkM/9GkMLggaxTzT5w0csTyOkwZk51aK9t+kC2FQTQOgm7f0UgS40
-         D4bshKyob0RrTQplR4MofwWwXrOynNX6qmo2jucxoGU2xqm53aRAF4EU2s6trh96WwMO
-         PFtWR+FT6Lm6W285ITNTPqYSdv1J9dkR7PcMY3rPVSPk4UxOq1YjiZ3bHLjOa/XIqsLm
-         WXVQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUxiAGg7qIl5zEc5vLXLDxmwAGmYwwnh5hCprcn29cjfBv4IY+yGj/FJts9wc3akeZNJ6SpUGg/meOa@vger.kernel.org
-X-Gm-Message-State: AOJu0YxUz2I76Hpn9/lCzWqjlBBe1DH4M+jD3T5jnC5GzG72x9ZT6F8U
-	coXkjG6JzIYa+h4nNtlWqQpjPL67h1dSBEfS9XPuSW26KcNdyEYfUoro0IYYxEs=
-X-Google-Smtp-Source: AGHT+IERdcVQmp8I/UOWOPIWa5oeyrgUNsR/Mbrq7h+WHYexcjQUaJAOdjbwnyqP/omN2/s+hyZreg==
-X-Received: by 2002:a5d:47aa:0:b0:382:6f2:df7b with SMTP id ffacd0b85a97d-38254adf3camr1373292f8f.12.1732095447599;
-        Wed, 20 Nov 2024 01:37:27 -0800 (PST)
-Received: from fedora.. ([91.90.172.13])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38254933c32sm1555709f8f.70.2024.11.20.01.37.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Nov 2024 01:37:27 -0800 (PST)
-From: Daniel Semkowicz <dse@thaumatec.com>
-To: heiko@sntech.de
-Cc: conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	kishon@kernel.org,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	quentin.schulz@cherry.de,
-	robh@kernel.org,
-	sebastian.reichel@collabora.com,
-	vkoul@kernel.org,
-	Daniel Semkowicz <dse@thaumatec.com>
-Subject: Re: [PATCH v3 0/2] MIPI DSI phy for rk3588
-Date: Wed, 20 Nov 2024 10:36:38 +0100
-Message-ID: <20241120093702.9018-1-dse@thaumatec.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241113221018.62150-1-heiko@sntech.de>
-References: <20241113221018.62150-1-heiko@sntech.de>
+	s=arc-20240116; t=1732096068; c=relaxed/simple;
+	bh=5ZyhF4+JpDSOAiJy1FlB8lD77wwk3IteGZEMtzByJrs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z24qn84HitI7+VE7CP6Y9YX4gSlFcs2nBkkwHgd7ScQgVTCQc4Kw79ScfxAE5581IkgvcJ+UmgB+XlKQqTyrJC+cYtUpxroptAO4hQ+uy8jTV9kLdGQU7pGO9U5yoTaCy27fEaByrQ740AfECtEW6PDszlQOyXvXZONpkUMVaaw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=alaojDzS; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=PsAOIOEQ; arc=none smtp.client-ip=202.12.124.154
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-06.internal (phl-compute-06.phl.internal [10.202.2.46])
+	by mailfhigh.stl.internal (Postfix) with ESMTP id E05C025401A6;
+	Wed, 20 Nov 2024 04:47:43 -0500 (EST)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+  by phl-compute-06.internal (MEProxy); Wed, 20 Nov 2024 04:47:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm3; t=1732096063;
+	 x=1732182463; bh=cLmLgK8o79bQ1+bKApcLpo+mE3WZa2SFq/bNwaTW+hs=; b=
+	alaojDzSIYLLYUhjmRqlCLysoXUeqBwM8bTxHBDHujyQ338Ch/IDjmPFU9tybWi3
+	rwtKcdeqO+5kWMGEGLhIE8uCSQMrK08e3BooZT8dFiXjBicOSZgUMYr5OaB7KZcz
+	Jwf78B49oMQ/nvboj0w41/jNgEFkrs/uGb7zYULyxmtZ2VWKtWCXMT9C0tfSq5hl
+	My21KoXksh7cGG5GqdkZlkO/Gd3e4sWhCaDixb9z9wVcQVMMZXcAjqHdXlWKGlk6
+	lF+55vnayAhU5OWoUOlwdZ/Yvd+xt5A2zNNM7iNV2Nh3qh1XRDR6v8pQyeghrs8q
+	gZOoMuHYppfKOX+Cm6ENvQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1732096063; x=
+	1732182463; bh=cLmLgK8o79bQ1+bKApcLpo+mE3WZa2SFq/bNwaTW+hs=; b=P
+	sAOIOEQOZEZaZ1smGA8X1owI1cg2dTeH6lmPVVOBha1UFVKGEkeaIDJyxlPe575D
+	mzpSvxCyd5npacMU1UWA/8HPfvazIKvyXiDKJ7J1qRS11iy3gL5Ms7VFbESYezx+
+	P0dNnHLIP4KpuAiwvQ1oG8U/80RrOIqpgozmymIlNHY3L/iLxSjFHEK1J9pNCwYq
+	5zjoViWrjpK2G8/lBVZZ5fpYe8XSNJ17EeSuqRzBSE9thRL+0UPt5MBkULlwGg8M
+	YlUu7CqLaIa9RUN+ei6et4wyLIZX6hatkOO9FOTUqOckuUpSLLy3c/csOoP4Hrkh
+	/e9ukaqwfe3ADg2ddwFsg==
+X-ME-Sender: <xms:PrA9Z1J9SsNr0mkilJ3zfbfd5V32mxiO8sYkRRn-QpCKvtI7PBqBog>
+    <xme:PrA9ZxIk3f7dMq-_KhxYgGVxU49xiyv_5KupkZQt-D4Nv__1UbPyaGv4AUZAjdgyt
+    rXPVpxMbHN4w4X3q0Y>
+X-ME-Received: <xmr:PrA9Z9vfiAY8GSCO5qVUfRHzi-URfulxpoHkfKAmk5HtEhhcYcqvCaOAWAux_ZR3MG8CrP6RnCAvpLWiNIlXP4TM0OWb-gvpLg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrfeeggddtkecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdpuffr
+    tefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnth
+    hsucdlqddutddtmdenucfjughrpeffhffvvefukfhfgggtugfgjgesthekredttddtjeen
+    ucfhrhhomheppfhikhhlrghsucfunpguvghrlhhunhguuceonhhikhhlrghsrdhsohguvg
+    hrlhhunhguodhrvghnvghsrghssehrrghgnhgrthgvtghhrdhsvgeqnecuggftrfgrthht
+    vghrnhepfefhleelhfffjefgfedugfegjeelhfevheeikefhueelgfdtfeeuhefftddvle
+    einecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepnhhi
+    khhlrghsrdhsohguvghrlhhunhguodhrvghnvghsrghssehrrghgnhgrthgvtghhrdhsvg
+    dpnhgspghrtghpthhtohepuddtpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehs
+    rghkrghrihdrrghilhhusheslhhinhhugidrihhnthgvlhdrtghomhdprhgtphhtthhope
+    hmtghhvghhrggssehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhn
+    vghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtg
+    hpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehgvggv
+    rhhtodhrvghnvghsrghssehglhhiuggvrhdrsggvpdhrtghpthhtoheplhgruhhrvghnth
+    drphhinhgthhgrrhhtsehiuggvrghsohhnsghorghrugdrtghomhdprhgtphhtthhopehl
+    ihhnuhigqdhmvgguihgrsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepug
+    gvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
+X-ME-Proxy: <xmx:P7A9Z2Z-LU6h39Ved_VkIkyX17Gdw1uEimmOtti0TxZxepXx9B6xIw>
+    <xmx:P7A9Z8Y5Ol9H3BO6YDU3IZ87wJqQ_9c_uN0EWswG83r1RXh37RpOkA>
+    <xmx:P7A9Z6AZIVNfEaL8vKsQGV2m2ZHKY6tUTr_HQLGjxXBys6EWwYbngQ>
+    <xmx:P7A9Z6Y6O_QwmrHukppB0CtO-Yids6CQ0UuxALycV_M7AathYEOeaA>
+    <xmx:P7A9Z5TJWqCtphDe9RUU8Yjf7QboitSSKIS0RVYiRFurYKP9-ZOuynyv>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 20 Nov 2024 04:47:42 -0500 (EST)
+Date: Wed, 20 Nov 2024 10:47:41 +0100
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 1/4] media: dt-bindings: Add property to describe CSI-2
+ C-PHY line orders
+Message-ID: <20241120094741.GS5315@ragnatech.se>
+References: <20241119221249.539610-1-niklas.soderlund+renesas@ragnatech.se>
+ <20241119221249.539610-2-niklas.soderlund+renesas@ragnatech.se>
+ <Zz2YjNHk-ZTlXztw@kekkonen.localdomain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <Zz2YjNHk-ZTlXztw@kekkonen.localdomain>
 
-Hello Heiko,
+Hi Sakari,
 
-> This adds the phy driver need for DSI output on rk3588.
+Tack för din feedback!
+
+On 2024-11-20 08:06:36 +0000, Sakari Ailus wrote:
+> Hejssan, Niklas!
 > 
-> The phy itself is used for both DSI output and CSI input, though the
-> CSI part for the whole chain needs a lot more work, so is left out for
-> now and only the DSI part implemented.
+> Tack för de här lapparna!
 > 
-> This allows the rk3588 with its current VOP support to drive a DSI display
-> using the DSI2 controller driver I'll submit in a next step.
+> On Tue, Nov 19, 2024 at 11:12:46PM +0100, Niklas Söderlund wrote:
+> > Each data lane on a CSI-2 C-PHY bus uses three phase encoding and is
+> > constructed from three physical wires. The wires are referred to as A, B
+> > and C and their default order is ABC. However to ease hardware design
+> > the specification allows for the wires to be switched in any order.
+> > 
+> > Add a vendor neutral property to describe the line order used. The
+> > property name 'line-orders', the possible values it can be assigned and
+> > there names are taken from the MIPI Discovery and Configuration (DisCo)
+> > Specification for Imaging.
+> > 
+> > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> > ---
+> >  .../bindings/media/video-interfaces.yaml      | 20 +++++++++++++++++++
+> >  include/dt-bindings/media/video-interfaces.h  |  7 +++++++
+> >  2 files changed, 27 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/media/video-interfaces.yaml b/Documentation/devicetree/bindings/media/video-interfaces.yaml
+> > index 26e3e7d7c67b..95491e5779ba 100644
+> > --- a/Documentation/devicetree/bindings/media/video-interfaces.yaml
+> > +++ b/Documentation/devicetree/bindings/media/video-interfaces.yaml
+> > @@ -210,6 +210,26 @@ properties:
+> >        lane-polarities property is omitted, the value must be interpreted as 0
+> >        (normal). This property is valid for serial busses only.
+> >  
+> > +  line-orders:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> > +    minItems: 1
+> > +    maxItems: 8
+> > +    enum:
+> > +      - 0 # ABC
+> > +      - 1 # ACB
+> > +      - 2 # BAC
+> > +      - 3 # BCA
+> > +      - 4 # CAB
+> > +      - 5 # CBA
 > 
-> Only generic phy interfaces are used, so the DSI part is pretty straight
-> forward.
+> Do you know hardware documentation using lettes for the lines? I do agree
+> it seems less confusing but I've seen only numbers being used.
+
+Yes the R-Car IP core documentation and schematics uses the ABC naming 
+for the lines. Unfortunately the documentation is not public.
+
 > 
-> changes in v3:
-> - add Krzysztof review tag to the binding
-> - address Sebastian's review comments
->   - better error handling
->   - dropping empty function
->   - headers
->   - not using of_match_ptr - this should also make the
->     test-robot happier
+> > +    description:
+> > +      An array of line orders of the CSI-2 C-PHY data lanes. The order of the
+> > +      lanes are the same as in data-lanes property. Valid values are 0-5 as
+> > +      defined in the MIPI Discovery and Configuration (DisCo) Specification for
+> > +      Imaging. The length of the array should be the same length as the
 > 
-> changes in v2:
-> - fix error in dt-binding example
-> - drop unused frequency table
-> - pull in some more recent improvements from the vendor-kernel
->   which includes a lot less magic values
-> - already include the support for rk3576
-> - use dev_err_probe
+> s/should/must/
 > 
-> Heiko Stuebner (2):
->   dt-bindings: phy: Add Rockchip MIPI CSI/DSI PHY schema
->   phy: rockchip: Add Samsung CSI/DSI Combo DCPHY driver
+> As this is a requirement for DTS authors in particular.
 > 
->  .../phy/rockchip,rk3588-mipi-dcphy.yaml       |   82 +
->  drivers/phy/rockchip/Kconfig                  |   12 +
->  drivers/phy/rockchip/Makefile                 |    1 +
->  .../phy/rockchip/phy-rockchip-samsung-dcphy.c | 1647 +++++++++++++++++
->  4 files changed, 1742 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/rockchip,rk3588-mipi-dcphy.yaml
->  create mode 100644 drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c
+> > +      data-lanes property. If the line-orders property is omitted, the value
+> > +      must be interpreted as 0 (ABC). This property is valid for CSI-2 C-PHY
+> 
+> I would:
+> 
+> s/must/shall/
+> 
+> > +      busses only.
+> > +
+> >    strobe:
+> >      $ref: /schemas/types.yaml#/definitions/uint32
+> >      enum: [ 0, 1 ]
+> > diff --git a/include/dt-bindings/media/video-interfaces.h b/include/dt-bindings/media/video-interfaces.h
+> > index 68ac4e05e37f..88b9d05d8075 100644
+> > --- a/include/dt-bindings/media/video-interfaces.h
+> > +++ b/include/dt-bindings/media/video-interfaces.h
+> > @@ -13,4 +13,11 @@
+> >  #define MEDIA_BUS_TYPE_PARALLEL			5
+> >  #define MEDIA_BUS_TYPE_BT656			6
+> >  
+> > +#define MEDIA_BUS_CSI2_CPHY_LINE_ORDER_ABC	0
+> > +#define MEDIA_BUS_CSI2_CPHY_LINE_ORDER_ACB	1
+> > +#define MEDIA_BUS_CSI2_CPHY_LINE_ORDER_BAC	2
+> > +#define MEDIA_BUS_CSI2_CPHY_LINE_ORDER_BCA	3
+> > +#define MEDIA_BUS_CSI2_CPHY_LINE_ORDER_CAB	4
+> > +#define MEDIA_BUS_CSI2_CPHY_LINE_ORDER_CBA	5
+> > +
+> >  #endif /* __DT_BINDINGS_MEDIA_VIDEO_INTERFACES_H__ */
 > 
 > -- 
-> 2.45.2
+> Med vänliga hälsningar,
+> 
+> Sakari Ailus
 
-Thank you very much for these patches!
-
-I tested this series on top of v6.12 with DSI/LVDS bridge
-in the following configuration:
-
-RK3588 Tiger SoM (dsi0) --> TC358775 DSI/LVDS bridge --> LVDS display
-
-I did not observe any undesirable artifacts on the display.
-Display blank/unblank works correctly.
-
-Tested-by: Daniel Semkowicz <dse@thaumatec.com>
-
-Kind regards
-Daniel
-
+-- 
+Kind Regards,
+Niklas Söderlund
 
