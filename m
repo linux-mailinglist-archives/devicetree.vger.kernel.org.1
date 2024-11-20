@@ -1,64 +1,63 @@
-Return-Path: <devicetree+bounces-123264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123275-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 717CC9D3DFF
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 15:51:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36B9D9D3E30
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 15:56:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 356D028305D
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 14:51:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BE0CAB303AE
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 14:55:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FABB1CB312;
-	Wed, 20 Nov 2024 14:47:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EF801D61AF;
+	Wed, 20 Nov 2024 14:48:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="FSaSWUlq"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="wn3rdKqh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2511B1C9EDC;
-	Wed, 20 Nov 2024 14:47:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A5931D61B1;
+	Wed, 20 Nov 2024 14:48:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732114055; cv=none; b=ZhRbBw3IK2z6WvX0r9H0emfQqa5P0/L0/p7ZvgwB3Bv729vbEEHtc+dLamcmz1LIfP3DN4DGhU5VSIZ2lTFUp+6mgynYyxFa4akpyG1Uy/Um4hf7gMJz6tpq4R6tUIfw4ysqba/p5Pq83GlbgdBtEqAnksNjbUofG80vrebCOGQ=
+	t=1732114113; cv=none; b=M/tAo0E39Bv68LQ89ZjPYitaf7UgalEFC6pzwem9CubJp93oSXXuU5T/KO8Zec9NBk+xTCm7PsI/1wRFaO1dopymknjyss9glVqSAS6B7/Yl2dUDViHDuQfe/nhIh+tO8iFf5FVxxhrAtW/1xPUat34g6oWdQ/RDr+UMZ7dNTXE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732114055; c=relaxed/simple;
-	bh=l4yWmKaDnzPRnoTIgOu9YNL5J2WtQTIDNXvo3j15U5I=;
+	s=arc-20240116; t=1732114113; c=relaxed/simple;
+	bh=t/0SQRI1cSS//aTtQhM8pHOAcWsSU3vBCA6aDbTVg3I=;
 	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IgLToYHZ/+KCAsNK9O6fkh0wwfRpmnfUBXs5Ux5z/NvuA5rcNpS4LxWA1X+0Z4xyVMUscJNgu4TuEgNlNssvq35wMTijX2YPm0J9SVdpj1jFhYTOWmBmh86+tSM0LsLOpnjQYVFyHa7MgBAWspkbBRTOIFTRGsloOvHjHA6LhNc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=FSaSWUlq; arc=none smtp.client-ip=198.47.19.141
+	 Content-Type:Content-Disposition:In-Reply-To; b=nBFQnOmYL6cjhAgHz9AR7rVkzPxOBHSEQyJZnVumZPjTl7owXbIRCW7rGYuhGXhbHkb+fwimNd5jIYyEQPAdStQ6/H0tTOH9ESloAbD55MTY9InygDQXQqoylTW6Pp+JG2z4P4CONlG8JKRdcFMVpvA/x+bn7nbnWe/PGbn3V6U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=wn3rdKqh; arc=none smtp.client-ip=198.47.23.249
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4AKElCpV069884;
-	Wed, 20 Nov 2024 08:47:12 -0600
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4AKEmLXx061696;
+	Wed, 20 Nov 2024 08:48:21 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1732114032;
-	bh=cynzEoYvDf0pcd1GzvErfNECaSezgc6N8fmmyfqTK1s=;
+	s=ti-com-17Q1; t=1732114101;
+	bh=0yO2zuf4irurHhzwC48kbucZy/ech29ZSQ7nZFb4Ofc=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=FSaSWUlqFgfSmcTU+UBy1yOBuvsIh4VFGFZ9INaWSePiOJDaEKGhPoJa9X7AnSz2o
-	 Pyfa9f9owuIsIHZkFKqhdknafVhkx/XW70itrOThTElRv5x+3obxkJIlGsXrqcNlAk
-	 qjsO3UU97ea/HhygFhmAA9zyjELBEVh0aJZZdrvc=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4AKElCPq020368
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 20 Nov 2024 08:47:12 -0600
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	b=wn3rdKqh6/qzH2Nr9CU0gRS5uKJUoXsUqn0pBZkwgwQRCPThKNQF25vbDt3M6FHGD
+	 0oGvI0FgXGabqgFReQpIUyk7cjnz2r6tzyk9PHMW0X2S99ebpy+u3siwIsCuVeI2LX
+	 iqP/WDwiNb9W/tcG+s66Z1M75CFA1OZySZMiSm/4=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4AKEmL9p090028;
+	Wed, 20 Nov 2024 08:48:21 -0600
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 20
- Nov 2024 08:47:12 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ Nov 2024 08:48:19 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 20 Nov 2024 08:47:12 -0600
+ Frontend Transport; Wed, 20 Nov 2024 08:48:19 -0600
 Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4AKElCLp004675;
-	Wed, 20 Nov 2024 08:47:12 -0600
-Date: Wed, 20 Nov 2024 08:47:12 -0600
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4AKEmJCU005699;
+	Wed, 20 Nov 2024 08:48:19 -0600
+Date: Wed, 20 Nov 2024 08:48:19 -0600
 From: Bryan Brattlof <bb@ti.com>
-To: Andrew Davis <afd@ti.com>
+To: Wadim Egorov <w.egorov@phytec.de>
 CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
         Tero
  Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -69,11 +68,11 @@ CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
         <linux-kernel@vger.kernel.org>
 Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-am62l: add initial reference
  board file
-Message-ID: <20241120144712.dxiu34ocv7xdv5rm@bryanbrattlof.com>
+Message-ID: <20241120144819.ugoczb3zd4r3reiq@bryanbrattlof.com>
 X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
 References: <20241117-am62lx-v1-0-4e71e42d781d@ti.com>
  <20241117-am62lx-v1-2-4e71e42d781d@ti.com>
- <c8834352-75a7-446e-95eb-809aaa5cb18b@ti.com>
+ <097c4aad-2c1b-4aae-a0c3-e7693210eddb@phytec.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,11 +81,13 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <c8834352-75a7-446e-95eb-809aaa5cb18b@ti.com>
+In-Reply-To: <097c4aad-2c1b-4aae-a0c3-e7693210eddb@phytec.de>
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On November 18, 2024 thus sayeth Andrew Davis:
-> On 11/17/24 11:34 PM, Bryan Brattlof wrote:
+On November 19, 2024 thus sayeth Wadim Egorov:
+> 
+> 
+> Am 18.11.24 um 06:34 schrieb Bryan Brattlof:
 > > From: Vignesh Raghavendra <vigneshr@ti.com>
 > > 
 > > Add the initial board file for the AM62L3's Evaluation Module.
@@ -121,15 +122,6 @@ On November 18, 2024 thus sayeth Andrew Davis:
 > > +
 > > +	aliases {
 > > +		serial2 = &main_uart0;
-> 
-> We usually have WKUP and MCU UARTs as serial0 and serial1, we don't
-> have that many, so we would never have serial1, only 0 and 2. Might
-> be time we drop this odd numbering convention, at least for AM62L
-> class parts..
-> 
-
-Good point. I'll see what I can come up with
-
 > > +	};
 > > +
 > > +	chosen {
@@ -143,12 +135,6 @@ Good point. I'll see what I can come up with
 > > +	};
 > > +
 > > +	reserved-memory {
-> 
-> Not needed until you have something to reserve.
-> 
-
-Ah I agree. I'll drop this next time.
-
 > > +		ranges;
 > > +		#address-cells = <2>;
 > > +		#size-cells = <2>;
@@ -160,19 +146,12 @@ Ah I agree. I'll drop this next time.
 > > +		pinctrl-single,pins = <
 > > +			AM62LX_IOPAD(0x01d4, PIN_INPUT, 1)	  /* (D7)  UART0_RXD */
 > > +			AM62LX_IOPAD(0x01d8, PIN_OUTPUT, 1)	  /* (A6)  UART0_TXD */
-> > +		>;
-> > +		bootph-all;
-> > +	};
-> > +};
-> > +
-> > +&main_uart0 {
-> > +	current-speed = <115200>;
 > 
-> current-speed is only for UARTs that can't detect their current speed,
-> our UART and driver can, so this line isn't needed.
+> Looking at other IOPAD definitions it seems that for any mux mode which is
+> not 0, the comment typically includes the ball name.
 > 
 
-Nice! I'll drop this property as well
+Good point. All add those for the next round.
 
 ~Bryan
 
