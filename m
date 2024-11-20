@@ -1,101 +1,152 @@
-Return-Path: <devicetree+bounces-123331-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123332-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D2489D415F
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 18:47:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4654D9D4142
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 18:38:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 48F23B2749B
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 17:11:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 55B5BB297DA
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 17:11:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5832156230;
-	Wed, 20 Nov 2024 17:10:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 146AD156F21;
+	Wed, 20 Nov 2024 17:11:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VCAmAgCF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="htf6KFMP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9131A14831E
-	for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 17:10:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2029155742;
+	Wed, 20 Nov 2024 17:11:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732122656; cv=none; b=GiDCvf0felNQ0inm4EjBnEXrVRD97kM2j7XzkEHQoalule9ZA1otSjIMHfNFBtbYq0K05w1fKXgVZddpMzDteZPNGJ6Mwq7ILfxeQW/ExUawtieQcKrMBL2VaPxx0frGcEML2T/7F4S7XZEgnBzjvV0foeNNXZH20DZzjtbp/zk=
+	t=1732122713; cv=none; b=qkmJYkLm4vc4ceT48VGGa5y3QItYBzeMWSeCZfNpHrC/OM1AH+Vt7gslDJz3s0luUUDKMjE7yoruyLkD77595Z67ubHRZO6H0qsSVGvhGUT/TmlGDKId8QnF52exi0RwV72jpdJjMQ1MZ11EN/ZMQ8dt69L33eXJuJhRAg9twxg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732122656; c=relaxed/simple;
-	bh=VJdjT6ppJprT4unzbTuHlpuOe7eotljxYhNyiiIDt0Y=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Z8ck8zlLirLruG54f1orGRg3ckYS1b5mdS5Yq0MHc/Eo8JwiFHGbnBrVMerjm0GQ8dhskbMrIWdDlfeOC+hX1lPK/wGhCofMoYEu3dyA7kDjEgQ37b/+OI/EHd94jS9fG8LTPeyEgBO8p7t/lCgSLU74JD5onoFjdTCy/9Xxve4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VCAmAgCF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9FF7C4CECD;
-	Wed, 20 Nov 2024 17:10:53 +0000 (UTC)
+	s=arc-20240116; t=1732122713; c=relaxed/simple;
+	bh=VqLXZHHF5Fsu/qHpCPLie3C1EsAICVv7NKvdM1FJX2c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gB2Q+EsN1HevfaIG5iacF040yy5abi7rLKl/1/TtIiMK0mslAU8VFEeIKkqTIarGHQ0JAb4DNWIRf6H39s9r1eAZjMNYHIOOt/PAQ0QkqYK5r3TsQizrtFy5UXj5do8UHi/3fB0bIaaYI9pNByqnaLj9LXi62R+o3QnKU977fs0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=htf6KFMP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44A1DC4CECD;
+	Wed, 20 Nov 2024 17:11:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732122656;
-	bh=VJdjT6ppJprT4unzbTuHlpuOe7eotljxYhNyiiIDt0Y=;
-	h=From:To:Cc:Subject:Date:From;
-	b=VCAmAgCFc4MqFHVUiXQOtPe3ldhIVEB2Vi3m5p6HeGLxcC/BWIaLuz/2A0b3ZPgsb
-	 0G8CSJ49EPe8GodYk6rK3siKIljTgwE5Tuuis6CZm21TkPUCKTq2Azc+qzRGXnUosW
-	 V0WQnpFrO3BbzIzo4+onMaVXEnZTnNccTSoyiA9smC/ZZrd6YosgZACnJy7Nw82Gk7
-	 HWWgah5+Sbg+YvFflit9WKCGR8LgOBF0KnlnQAi4MwwCnfrU9oNU8//4bpC40qQJj3
-	 5cWPsFQcDv66KEUQyU2vDTTbTEvyL569WX8jTDoqYtbVs3Tp8y09c6tcse5eMSsw9A
-	 Lv1lGAYd+YQDw==
-From: Niklas Cassel <cassel@kernel.org>
-To: Rob Herring <robh@kernel.org>,
+	s=k20201202; t=1732122712;
+	bh=VqLXZHHF5Fsu/qHpCPLie3C1EsAICVv7NKvdM1FJX2c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=htf6KFMPX26YChMBl7D2v80W4p4HGoHL3Y4bQkhPkfC80Ip2a81CD8VtXtmlZv7cd
+	 HM8jNf3fBEM8KHckklb3B508+vy4yvMeu38UKli4Yxxy/jWN9S7VXVbchpYdhOeWLd
+	 BkUQBduLQTrVQvT1DhtyA99JLXCdmdGb7oYuw1+/DJIxHllMGvZ3Tz1DUhDU8AAhLc
+	 ePF/YYlRRgjTECjntFlYiD4XT0lLxLxkOayv1Bt+Zv5vl+RDv/YTCLWCDL4revq9Tt
+	 XPP/WyDfHSg3/YXLHQx4vJe5U/M1OYYHdYzj1QwL8/Fts0lAkIc9/3bVk/QcmWZjlL
+	 X+IO9GztD1NBQ==
+Date: Wed, 20 Nov 2024 17:11:46 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Cedric Encarnacion <cedricjustine.encarnacion@analog.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-i2c@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+	Jean Delvare <jdelvare@suse.com>, Jonathan Corbet <corbet@lwn.net>,
+	Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: Damien Le Moal <dlemoal@kernel.org>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Niklas Cassel <cassel@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: [PATCH] arm64: dts: rockchip: rk3588: add msi-parent for pcie3x4_ep
-Date: Wed, 20 Nov 2024 18:10:49 +0100
-Message-ID: <20241120171048.2839621-2-cassel@kernel.org>
-X-Mailer: git-send-email 2.47.0
+	Radu Sabau <radu.sabau@analog.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	Alexis Czezar Torreno <alexisczezar.torreno@analog.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: (pmbus/adp1050): Add bindings
+ for adp1051, adp1055 and ltp8800
+Message-ID: <20241120-process-hulk-ecedcbf088f7@spud>
+References: <20241120035826.3920-1-cedricjustine.encarnacion@analog.com>
+ <20241120035826.3920-2-cedricjustine.encarnacion@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1246; i=cassel@kernel.org; h=from:subject; bh=VJdjT6ppJprT4unzbTuHlpuOe7eotljxYhNyiiIDt0Y=; b=owGbwMvMwCV2MsVw8cxjvkWMp9WSGNLtJCRWz16pzvmPVeuiPsvs2Q01M49MZPxpbvzUsut2x V+JMge3jlIWBjEuBlkxRRbfHy77i7vdpxxXvGMDM4eVCWQIAxenAEwkKoThn07qattteTXf3Gti txhsmS5ZZ//N7uG81Udl1+U3RHi1KDIy3DJmZznq97ry9LaV337Kq/sUXrDVvCa+4uuX0JXnreb lMwIA
-X-Developer-Key: i=cassel@kernel.org; a=openpgp; fpr=5ADE635C0E631CBBD5BE065A352FE6582ED9B5DA
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="tnO2aouk9cuaI/A+"
+Content-Disposition: inline
+In-Reply-To: <20241120035826.3920-2-cedricjustine.encarnacion@analog.com>
 
-Add msi-parent for the pcie3x4_ep PCI endpoint node.
 
-The pcie3x4_ep node should use the same msi-parent as the pcie3x4 node
-(which represents the PCIe controller running in Root Complex mode).
+--tnO2aouk9cuaI/A+
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The GIC ITS can be used to trigger an IRQ on the endpoint when any of
-the endpoint's PCI BARs are written to by the host[1].
+On Wed, Nov 20, 2024 at 11:58:25AM +0800, Cedric Encarnacion wrote:
+> add dt-bindings for adp1051, adp1055, and ltp8800 pmbus.
+>     ADP1051: 6 PWM for I/O Voltage, I/O Current, Temperature
+>     ADP1055: 6 PWM for I/O Voltage, I/O Current, Power, Temperature
+>     LTP8800-1A/-2/-4A: 150A/135A/200A DC/DC =B5Module Regulator
+>=20
+> Co-developed-by: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
+> Signed-off-by: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
+> Signed-off-by: Cedric Encarnacion <cedricjustine.encarnacion@analog.com>
 
-[1] https://lore.kernel.org/linux-pci/20241116-ep-msi-v8-0-6f1f68ffd1bb@nxp.com/
+Why did you drop my ack?
+https://lore.kernel.org/all/20241106-linoleum-kebab-decf14f54f76@spud/
 
-Signed-off-by: Niklas Cassel <cassel@kernel.org>
----
-Hello Heiko, this patch depends on:
-https://lore.kernel.org/linux-rockchip/20241107123732.1160063-2-cassel@kernel.org/
+> ---
+>  .../bindings/hwmon/pmbus/adi,adp1050.yaml         | 15 +++++++++++++--
+>  1 file changed, 13 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.ya=
+ml b/Documentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml
+> index 10c2204bc3df..af7530093942 100644
+> --- a/Documentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml
+> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/adi,adp1050.yaml
+> @@ -10,16 +10,27 @@ maintainers:
+>    - Radu Sabau <radu.sabau@analog.com>
+> =20
+>  description: |
+> -   The ADP1050 is used to monitor system voltages, currents and temperat=
+ures.
+> +   The ADP1050 and similar devices are used to monitor system voltages,
+> +   currents, power, and temperatures.
+> +
+>     Through the PMBus interface, the ADP1050 targets isolated power suppl=
+ies
+>     and has four individual monitors for input/output voltage, input curr=
+ent
+>     and temperature.
+>     Datasheet:
+>       https://www.analog.com/en/products/adp1050.html
+> +     https://www.analog.com/en/products/adp1051.html
+> +     https://www.analog.com/en/products/adp1055.html
+> +     https://www.analog.com/en/products/ltp8800-1a.html
+> +     https://www.analog.com/en/products/ltp8800-2.html
+> +     https://www.analog.com/en/products/ltp8800-4a.html
+> =20
+>  properties:
+>    compatible:
+> -    const: adi,adp1050
+> +    enum:
+> +      - adi,adp1050
+> +      - adi,adp1051
+> +      - adi,adp1055
+> +      - adi,ltp8800
+> =20
+>    reg:
+>      maxItems: 1
+> --=20
+> 2.39.5
+>=20
 
- arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+--tnO2aouk9cuaI/A+
+Content-Type: application/pgp-signature; name="signature.asc"
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi
-index 4a950907ea6f..ead151941e84 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi
-@@ -213,6 +213,7 @@ pcie3x4_ep: pcie-ep@fe150000 {
- 		interrupt-names = "sys", "pmc", "msg", "legacy", "err",
- 				  "dma0", "dma1", "dma2", "dma3";
- 		max-link-speed = <3>;
-+		msi-parent = <&its1 0x0000>;
- 		iommus = <&mmu600_pcie 0x0000>;
- 		num-lanes = <4>;
- 		phys = <&pcie30phy>;
--- 
-2.47.0
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZz4YUgAKCRB4tDGHoIJi
+0lWGAQCeKfqfC4k6HK47gzxSBIhux0vdbkTew1F44Lyp5cR3HwEA443zBoYImZMw
+aWnm85TY4THnTOMhNDElEokAC5kzbAc=
+=ZlEJ
+-----END PGP SIGNATURE-----
+
+--tnO2aouk9cuaI/A+--
 
