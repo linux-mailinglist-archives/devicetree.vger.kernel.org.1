@@ -1,44 +1,63 @@
-Return-Path: <devicetree+bounces-123361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDEE09D43DC
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 23:17:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEF6F9D43F9
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 23:36:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C0601F2260B
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 22:17:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17377282BDA
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 22:36:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87B6B155A34;
-	Wed, 20 Nov 2024 22:17:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93C9B19B3ED;
+	Wed, 20 Nov 2024 22:36:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="HfGTMpzk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbg156.qq.com (smtpbg156.qq.com [15.184.82.18])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C623C2F2A;
-	Wed, 20 Nov 2024 22:17:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=15.184.82.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44744188717;
+	Wed, 20 Nov 2024 22:36:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732141038; cv=none; b=d5WkQ8vW0SvuAblQ5CGqWvDG+q8BDlXe5mUOryeJKxG5byrjm4qUvLlJRQ13v7mKaog+3SybO3Jx2kVsmySU3o9fOG4xV+jU8Rq34Ff6MfCbj22neDQ9tz7sAruPGVxbuMLyjWWgbpQXpCSuEk6jJuEligFdGS2tcngLN8Go7O4=
+	t=1732142211; cv=none; b=A/ufDZiCFTDIOg9Jdkm6V7hVWMvofmw/2Sh99SJflxhwgBxMDrKDq8rj9pQS0r2/zOiV3CIoW2v/6Sh0kiTwU66NTj25fCn+iaEBDQWFt7bmI19KCWm1iIhP9DNVCu/RvaI9Id+3p/agcUTRhh113+wu6TvThyBVASrLqbexdWU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732141038; c=relaxed/simple;
-	bh=16DmVH9TsiygaaxczMaAcb5KsfLDoPR9ZqxXW8ea9+A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jsEVe4VHQeG65jdRMelpbrAC1PC+fT04QCy+QmJeVuZ1eJgHKVVYQMegzvuMd4pvILoZrwLnqdym00zYl+hMkXfKpC0xVxEGP9NbJTflmiP0ZXFjf2mo33BsPYU8lQfbgoPlLXMRbro9ceu1zbSvJhNw/DCc+ES9z138F+f/tKg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=15.184.82.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: bizesmtpip2t1732140984tymev5i
-X-QQ-Originating-IP: VFS7TXKFCL86VDvZbg+yeZ74TOGFmsQaL+ekJyN6cIk=
-Received: from [IPV6:240f:10b:7440:1:c3e4:b91c ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Thu, 21 Nov 2024 06:16:20 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 8514301682738835123
-Message-ID: <2664D23C9E354B20+5fb967f9-348d-4508-8e3e-b979e4e44b15@radxa.com>
-Date: Thu, 21 Nov 2024 07:16:20 +0900
+	s=arc-20240116; t=1732142211; c=relaxed/simple;
+	bh=2Cp5aaXjkP+a168HGxSLsBZhGl2+scjhbt48AyM8k80=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Qhr9JcHpZEsc0WCPYftHknVKCudJ5yMhb2Jm6ekdXVMj5jbjc7BXgoVAwv61GaQdxeDJFAW0JBK6j4s8IxiyeR/BitRbLUObQe5RFF29td+JzP0ABhGfhMLK7WQ9BvuZLl/fQq7LFNw5nXNLejgWGKXzZBdcyOEfMcE7vGyYvbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=HfGTMpzk; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AKJn2dx025955;
+	Wed, 20 Nov 2024 22:36:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	lUU8Tt86LNQJ0csNs06y2W4/lu/ueaR7HRud2/xtk6Y=; b=HfGTMpzkwigxCuQq
+	ewzf9kMNpccplf6sNLzhFq4qtqXH+wzWMzyKeKgJHvv+RPI7Fm0gg5wU0zZof8up
+	KNDodGyYRu8bBJCAOYcBTXfd3a/3L3kgFJkXbPpgriEXVyUVzlhamDWh5c6kg32W
+	W0o3JOLyS4BEvXKhFWmg5qxftCiW2PIJ5hjvrC6PrtlGoGRuucFLFTWEw1yN6PL1
+	XjL2GSUvSwPiiPItVj2xw5Z0ko7Nb//rfB3IHqIzNCWoOmQTnfYtft9Wxl+2fSLT
+	moOv/sSJzaqBCRuKrPYuCgn8/yInL5M6q4FdJvo21OXNKNYgLyl/mMoaQJ+rxV+i
+	JnOQVg==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 431byjj4vv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 20 Nov 2024 22:36:32 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AKMaUmn016740
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 20 Nov 2024 22:36:30 GMT
+Received: from [10.110.30.192] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 20 Nov
+ 2024 14:36:30 -0800
+Message-ID: <28302a54-d33a-45eb-be73-fcf3bfe45f90@quicinc.com>
+Date: Wed, 20 Nov 2024 14:36:29 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,186 +65,155 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/5] Improve Rockchip VOP2 display modes handling on
- RK3588 HDMI0
-To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
- Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
- <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: kernel@collabora.com, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20241116-vop2-hdmi0-disp-modes-v1-0-2bca51db4898@collabora.com>
+Subject: Re: [PATCH v30 15/30] ASoC: usb: Fetch ASoC card and pcm device
+ information
+To: Takashi Iwai <tiwai@suse.de>
+CC: <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <conor+dt@kernel.org>, <dmitry.torokhov@gmail.com>,
+        <corbet@lwn.net>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
+        <krzk+dt@kernel.org>, <pierre-louis.bossart@linux.intel.com>,
+        <Thinh.Nguyen@synopsys.com>, <tiwai@suse.com>, <robh@kernel.org>,
+        <gregkh@linuxfoundation.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-sound@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-input@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>
+References: <20241106193413.1730413-1-quic_wcheng@quicinc.com>
+ <20241106193413.1730413-16-quic_wcheng@quicinc.com>
+ <878qte3xgo.wl-tiwai@suse.de>
 Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <20241116-vop2-hdmi0-disp-modes-v1-0-2bca51db4898@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <878qte3xgo.wl-tiwai@suse.de>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
-X-QQ-XMAILINFO: NTznjAszAYlzZCkTA1LBjxVmPSqCfhy9wWIoOTAUAwRVwzgwNmFb0/PC
-	2to8mUOPqu+T6Cqii5rMgHmPlzB1+Z9kJLUH0y3BKP7TYuit2XIxF4tNLxkiuYZmNnjvJqS
-	0TPMA1llGaRbGTdx0SVupSLY/TlSgILI80Au/jstu1s/AvtMbs8LrTAjG0ydzYR73CZWPUK
-	r3y/xQwnOfSu5wgMBrLZ3nQJ9M8pbpPHsZ71sVrxToFyt9QpCA7U8exQ2x8fv+EKXDZCXPu
-	jEUSCkAvKjNs6zWWGhJx7cZchH734cZv4hGH5wi7dWb2W6+aCZUlWgdIOIse0VcIIVu+O0K
-	U19GfRk5ME+ycbEvfRmkx7AwKUVYUxhlU+3+3tdvgkbxh6UGxwHdhE7FQO5Vzy0cwBNK6Pd
-	yJ5hfBa4bzA4jIQj2rGMkaCyFfrazDQpQY/AZ3iLj9qJbfUnX4/SaVj5jJ8yzxEIPAXPbTG
-	qo/l0aNag/oLaR2M3qebVPEWv9yeDgsp2CBavcvaw2xllfGkhONgDTb9RsmTnW+iicUHHMK
-	6QeaLbpAaLl8NqC+0n3/v+hW8jwwKtClmBFD1ur8tB6nTjTN5k65mYCi/Zq8oF0Cfmkb4K7
-	RTrP+Kbq77fpOm+2DDaCj7xY/X1GMmFaBDmOjnVgKYLkou0rBIyEsUHOgEyOZvHoV8S/4co
-	T87Kl2FrQoBFlh/o5HMNPhDrFhepOTMQL/Bvaq2Ypjrp7QevzZKPqgp8Vjeyn3jVhR3h3PC
-	33EzMHmQ5hevAOdeBskNYBz8zFx4O6jD6Voz2XJ8aF5BJqx0F/66C5zuxfB+b3ZL/RqRbB0
-	wIF//IIKiZIVa7gjrQgNR3pHII6WuEe3ZqMssA2lHSOoyvaYeD+VKNOQ7JuQ7R69pfBgVWS
-	b0dIyFO3WHdzpWKkuvtuG8cCltvVUF1FPUIHvY3fPE0=
-X-QQ-XMRINFO: NyFYKkN4Ny6FSmKK/uo/jdU=
-X-QQ-RECHKSPAM: 0
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: O7wmN2mmlr7Akp3bt07XtRk4PbPO3_Os
+X-Proofpoint-ORIG-GUID: O7wmN2mmlr7Akp3bt07XtRk4PbPO3_Os
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1015
+ suspectscore=0 phishscore=0 lowpriorityscore=0 impostorscore=0
+ malwarescore=0 priorityscore=1501 bulkscore=0 adultscore=0 mlxlogscore=999
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411200161
 
-Hi,
+Hi Takashi,
 
-On 11/17/24 03:22, Cristian Ciocaltea wrote:
-> VOP2 support for RK3588 SoC is currently not capable to handle the full
-> range of display modes advertised by the connected screens, e.g. it
-> doesn't cope well with non-integer refresh rates like 59.94, 29.97,
-> 23.98, etc.
-> 
-> There are two HDMI PHYs available on RK3588, each providing a PLL that
-> can be used by three out of the four VOP2 video ports as an alternative
-> and more accurate pixel clock source. This is able to correctly handle
-> all display modes up to 4K@60Hz.
-> 
-> As for the moment HDMI1 output is not supported upstream, the patch
-> series targets HDMI0 only.
-> 
-> Additionally, note that testing any HDMI 2.0 specific modes, e.g.
-> 4K@60Hz, requires high TMDS clock ratio and scrambling support [1]. The
-> patch is usable but not yet ready to be submitted - I will handle this
-> soon.
-> 
-> Thanks,
-> Cristian
-> 
-> [1] https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/commits/rk3588-hdmi-bridge-next-20241115
-> 
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+On 11/20/2024 4:23 AM, Takashi Iwai wrote:
+> On Wed, 06 Nov 2024 20:33:58 +0100,
+> Wesley Cheng wrote:
+>> USB SND needs to know how the USB offload path is being routed.  This would
+>> allow for applications to open the corresponding sound card and pcm device
+>> when it wants to take the audio offload path.  This callback should return
+>> the mapped indexes based on the USB SND device information.
+>>
+>> Reviewed-by: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+>> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+>> ---
+>>  include/sound/soc-usb.h | 16 ++++++++++++++++
+>>  sound/soc/soc-usb.c     | 34 ++++++++++++++++++++++++++++++++++
+>>  2 files changed, 50 insertions(+)
+>>
+>> diff --git a/include/sound/soc-usb.h b/include/sound/soc-usb.h
+>> index 587ea07a8cf5..c3d3e8d62ac5 100644
+>> --- a/include/sound/soc-usb.h
+>> +++ b/include/sound/soc-usb.h
+>> @@ -36,6 +36,11 @@ struct snd_soc_usb_device {
+>>   * @list - list head for SND SOC struct list
+>>   * @component - reference to ASoC component
+>>   * @connection_status_cb - callback to notify connection events
+>> + * @update_offload_route_info - callback to fetch mapped ASoC card and pcm
+>> + *				device pair.  This is unrelated to the concept
+>> + *				of DAPM route.  The "route" argument carries
+>> + *				an array used for a kcontrol output and should
+>> + *				contain two integers, card and pcm device index
+>>   * @priv_data - driver data
+>>   **/
+>>  struct snd_soc_usb {
+>> @@ -44,6 +49,9 @@ struct snd_soc_usb {
+>>  	int (*connection_status_cb)(struct snd_soc_usb *usb,
+>>  				    struct snd_soc_usb_device *sdev,
+>>  				    bool connected);
+>> +	int (*update_offload_route_info)(struct snd_soc_component *component,
+>> +					 int card, int pcm, int direction,
+>> +					 long *route);
+>>  	void *priv_data;
+>>  };
+>>  
+>> @@ -61,6 +69,8 @@ int snd_soc_usb_setup_offload_jack(struct snd_soc_component *component,
+>>  int snd_soc_usb_disable_offload_jack(struct snd_soc_component *component);
+>>  int snd_soc_usb_enable_offload_jack(struct snd_soc_component *component,
+>>  				    struct snd_soc_jack *jack);
+>> +int snd_soc_usb_update_offload_route(struct device *dev, int card, int pcm,
+>> +				     int direction, long *route);
+>>  
+>>  struct snd_soc_usb *snd_soc_usb_allocate_port(struct snd_soc_component *component,
+>>  					      void *data);
+>> @@ -109,6 +119,12 @@ static inline int snd_soc_usb_enable_offload_jack(struct snd_soc_component *comp
+>>  	return 0;
+>>  }
+>>  
+>> +static int snd_soc_usb_update_offload_route(struct device *dev, int card, int pcm,
+>> +					    int direction, long *route)
+>> +{
+>> +	return -ENODEV;
+>> +}
+>> +
+>>  static inline struct snd_soc_usb *
+>>  snd_soc_usb_allocate_port(struct snd_soc_component *component, void *data)
+>>  {
+>> diff --git a/sound/soc/soc-usb.c b/sound/soc/soc-usb.c
+>> index ab914878e101..e56826f1df71 100644
+>> --- a/sound/soc/soc-usb.c
+>> +++ b/sound/soc/soc-usb.c
+>> @@ -145,6 +145,40 @@ int snd_soc_usb_enable_offload_jack(struct snd_soc_component *component,
+>>  }
+>>  EXPORT_SYMBOL_GPL(snd_soc_usb_enable_offload_jack);
+>>  
+>> +/**
+>> + * snd_soc_usb_update_offload_route - Find active USB offload path
+>> + * @dev - USB device to get offload status
+>> + * @card - USB card index
+>> + * @pcm - USB PCM device index
+>> + * @direction - playback or capture direction
+>> + * @route - pointer to route output array
+>> + *
+>> + * Fetch the current status for the USB SND card and PCM device indexes
+>> + * specified.  The "route" argument should be an array of integers being
+>> + * used for a kcontrol output.  The first element should have the selected
+>> + * card index, and the second element should have the selected pcm device
+>> + * index.
+>> + */
+>> +int snd_soc_usb_update_offload_route(struct device *dev, int card, int pcm,
+>> +				     int direction, long *route)
+>> +{
+>> +	struct snd_soc_usb *ctx;
+>> +	int ret = -EINVAL;
+>> +
+>> +	ctx = snd_soc_find_usb_ctx(dev);
+>> +	if (!ctx)
+>> +		return -ENODEV;
+>> +
+>> +	mutex_lock(&ctx_mutex);
+>> +	if (ctx && ctx->update_offload_route_info)
+>> +		ret = ctx->update_offload_route_info(ctx->component, card, pcm,
+>> +						     direction, route);
+>> +	mutex_unlock(&ctx_mutex);
+> The second ctx check is redundant.  And the locking scheme looks
+> dubious -- as ctx isn't protected by ctx_mutex after its retrieval via
+> snd_soc_find_usb_ctx(), even if you reacquire ctx_mutex, it may point
+> to an already released object (in theory).
+>
+> IOW, for a safer protection, you'd need to cover the whole
+> find-and-exec procedure via a single ctx_mutex lock action.
+>
+That's fair, will make the change to move the mutexes around.
 
-for whole series
+Thanks
 
-Tested-by: FUKAUMI Naoki <naoki@radxa.com>
-
-Diginnos DG-NP09D 8.9inch 1920x1200 display works with your patch!
-
-Name: HSE
-EISA ID: ___0001
-EDID version: 1.3
-EDID extension blocks: 1
-Screen size: 120.0 cm x 68.0 cm (54.30 inches, aspect ratio 16/9 = 1.76)
-Gamma: 2.2
-Digital signal
-Max video bandwidth: 160 MHz
-
-	HorizSync 14-91
-	VertRefresh 22-80
-
-	# Monitor preferred modeline (59.9 Hz vsync, 74.6 kHz hsync, ratio 
-16/10, 40x44 dpi)
-	ModeLine "1920x1200" 193.25 1920 2008 2052 2592 1200 1204 1209 1245 
-+hsync +vsync
-
-	# Monitor supported modeline (59.9 Hz vsync, 33.7 kHz hsync, 
-interlaced, ratio 16/9, 40 dpi)
-	ModeLine "1920x1080" 74.18 1920 2008 2052 2200 1080 1084 1094 1125 
-+hsync +vsync Interlace
-
-	# Monitor supported CEA modeline (59.9 Hz vsync, 31.5 kHz hsync, ratio 
-4/3, 13x17 dpi) (bad ratio)
-	ModeLine "640x480" 25.175 640 656 752 800 480 490 492 525 -hsync -vsync
-
-	# Monitor supported CEA modeline (59.9 Hz vsync, 31.5 kHz hsync, ratio 
-3/2, 15x17 dpi) (bad ratio)
-	ModeLine "720x480" 27 720 736 798 858 480 489 495 525 -hsync -vsync
-
-	# Monitor supported CEA modeline (59.9 Hz vsync, 31.5 kHz hsync, ratio 
-3/2, 15x17 dpi) (bad ratio)
-	ModeLine "720x480" 27 720 736 798 858 480 489 495 525 -hsync -vsync
-
-	# Monitor supported CEA modeline (60.0 Hz vsync, 45.0 kHz hsync, ratio 
-16/9, 27 dpi)
-	ModeLine "1280x720" 74.25 1280 1390 1430 1650 720 725 730 750 +hsync +vsync
-
-	# Monitor supported CEA modeline (60.0 Hz vsync, 33.8 kHz hsync, 
-interlaced, ratio 16/9, 40 dpi)
-	ModeLine "1920x1080" 74.25 1920 2008 2052 2200 1080 1084 1094 1125 
-+hsync +vsync Interlace
-
-	# Monitor supported CEA modeline (60.0 Hz vsync, 67.5 kHz hsync, ratio 
-16/9, 40 dpi)
-	ModeLine "1920x1080" 148.5 1920 2008 2052 2200 1080 1084 1089 1125 
-+hsync +vsync
-
-	# Monitor supported CEA modeline (50.0 Hz vsync, 31.2 kHz hsync, ratio 
-5/4, 15x21 dpi) (bad ratio)
-	ModeLine "720x576" 27 720 732 796 864 576 581 586 625 -hsync -vsync
-
-	# Monitor supported CEA modeline (50.0 Hz vsync, 37.5 kHz hsync, ratio 
-16/9, 27 dpi)
-	ModeLine "1280x720" 74.25 1280 1720 1760 1980 720 725 730 750 +hsync +vsync
-
-	# Monitor supported CEA modeline (50.0 Hz vsync, 28.1 kHz hsync, 
-interlaced, ratio 16/9, 40 dpi)
-	ModeLine "1920x1080" 74.25 1920 2448 2492 2640 1080 1084 1094 1125 
-+hsync +vsync Interlace
-
-	# Monitor supported CEA modeline (50.0 Hz vsync, 56.2 kHz hsync, ratio 
-16/9, 40 dpi)
-	ModeLine "1920x1080" 148.5 1920 2448 2492 2640 1080 1084 1089 1125 
-+hsync +vsync
-
-	# Monitor supported modeline (85.4 Hz vsync, 44.9 kHz hsync, ratio 
-0.97, 9x17 dpi) (bad ratio)
-	ModeLine "464x480" 27 464 480 542 602 480 489 495 525 -hsync -vsync
-
-	# Monitor supported modeline (50.0 Hz vsync, 37.5 kHz hsync, ratio 
-16/9, 27 dpi)
-	ModeLine "1280x720" 74.25 1280 1720 1760 1980 720 725 730 750 +hsync +vsync
-
-	# Monitor supported modeline (50.0 Hz vsync, 28.1 kHz hsync, 
-interlaced, ratio 16/9, 40 dpi)
-	ModeLine "1920x1080" 74.25 1920 2448 2492 2640 1080 1084 1094 1125 
-+hsync +vsync Interlace
-
-	# Monitor supported modeline (59.9 Hz vsync, 31.5 kHz hsync, ratio 3/2, 
-15x17 dpi) (bad ratio)
-	ModeLine "720x480" 27 720 736 798 858 480 489 495 525 -hsync -vsync
-
-	# Monitor supported modeline (50.0 Hz vsync, 31.2 kHz hsync, ratio 5/4, 
-15x21 dpi) (bad ratio)
-	ModeLine "720x576" 27 720 732 796 864 576 581 586 625 -hsync -vsync
-
-
-Best regards,
-
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
-
-> ---
-> Cristian Ciocaltea (5):
->        dt-bindings: display: vop2: Add optional PLL clock properties
->        drm/rockchip: vop2: Drop unnecessary if_pixclk_rate computation
->        drm/rockchip: vop2: Improve display modes handling on RK3588 HDMI0
->        arm64: dts: rockchip: Enable HDMI0 PHY clk provider on RK3588
->        arm64: dts: rockchip: Add HDMI0 PHY PLL clock source to VOP2 on RK3588
-> 
->   .../bindings/display/rockchip/rockchip-vop2.yaml   |  4 +++
->   arch/arm64/boot/dts/rockchip/rk3588-base.dtsi      |  7 +++--
->   drivers/gpu/drm/rockchip/rockchip_drm_vop2.c       | 36 +++++++++++++++++++++-
->   3 files changed, 44 insertions(+), 3 deletions(-)
-> ---
-> base-commit: 744cf71b8bdfcdd77aaf58395e068b7457634b2c
-> change-id: 20241116-vop2-hdmi0-disp-modes-b39e3619768f
+Wesley Cheng
 
 
