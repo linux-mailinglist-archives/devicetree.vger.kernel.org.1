@@ -1,91 +1,165 @@
-Return-Path: <devicetree+bounces-123081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123082-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9B4D9D35C4
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 09:45:40 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75EFA9D35D1
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 09:49:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF8FE283592
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 08:45:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 06BC6B2505E
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 08:49:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AA0616F900;
-	Wed, 20 Nov 2024 08:45:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78E4116D9B8;
+	Wed, 20 Nov 2024 08:48:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ENQOLDc9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u7f0vM2I"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2547E15B0EE;
-	Wed, 20 Nov 2024 08:45:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5071F15CD46;
+	Wed, 20 Nov 2024 08:48:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732092339; cv=none; b=evAUTE/YQlNbo94pZzGal0/eIGzmfLqE8my9vt7yKIEWIiP1YmdPVS6iyV+MS6ue8xiUuI8TZpu+jt+blBGJsy0DBTZpIhYB1gHZtYcPvWcG4qeroGwD0iM0CWo4CW6K3S4zCG7Wb0todYrgL1Frhc8KnMOe9aozOy35coRBv3k=
+	t=1732092539; cv=none; b=b0kswcJcj4cKV8Ahqsxib5EluRPAMC0CIJ+NUUCIblc7z0tSRuGFVs/okBUjHEtm3zj+6yta18sMDqsYH+owa1Rfh1ECHMuAzZW8Jq4LIgzyIDpja+QBnEl9+TJ52dptemFqByoOjfxIYoqQ+iJAJH5z3do7d0a1URM7H1fSpBY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732092339; c=relaxed/simple;
-	bh=o708dW0zpekdr4qHK55sfqdl8wG5Nu/+g3DIktqbevs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rSxjybGMj0FcMWCc3b88x57cl/ISDUwldXstcZ5T8+ijjZKQTtrnhptB4pF6A3AIryeyDq1opMj0RrgfNER37IEK/Pla3itniYM8A/eJLyqWKQw/SNBiOqPRq7H1tSwOpq+RBgfcVCH8bNWEBPBDUwuOJ1AQYGltPUIiKUK1SoM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ENQOLDc9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45B2CC4CECD;
-	Wed, 20 Nov 2024 08:45:38 +0000 (UTC)
+	s=arc-20240116; t=1732092539; c=relaxed/simple;
+	bh=tlURkDdJbTiE28ex0REYW/z3accfej8M+svuPoygbF0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Kza4FGpdJ6X31NUkdMXVwKjLFJWlQC2TJLFVAoCPF32KIMF+L+NT3l0fDZO6XqVn4UXev3DbvH1/kvqkBUPTcDUJSa3V8WRAl7p2KF+pHfA1Hl9ir2fH88ztw+BrZVrRpsIMvw1sHNeU5gGnR3YRonEZI+DY92xxh8sDrHbYdrA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u7f0vM2I; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3ED2C4CECD;
+	Wed, 20 Nov 2024 08:48:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732092338;
-	bh=o708dW0zpekdr4qHK55sfqdl8wG5Nu/+g3DIktqbevs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ENQOLDc9QlSnqdhpi5D3zXCMMfPjp+W242ba0E8V20RP4FD0uAEbL1XjgeTcXw5rR
-	 ZMp+mkKdTDwaJb+uuhLbkI46ajEPAR0PxWOa1Y9DBLiZwYLDxmgm3aVHjRuUJgJ6cZ
-	 HH0Y146jPZ/3JXkBZq00o7riCQaKfAlKMv/kealJDq7YwCkng/jvMRZwe00H5ALxcy
-	 q4XVXfT7XYRXqF7hWjeRbsKFRWXxNAxv1eQduNpqx7Qv2G0DjLSEMSEDUoXKvGrKNo
-	 ob7Yi6O+uC6vp4o+QggxaLzv+gAUjuy8A39xd2Ji1AdUisDBgDv/9cnXcugH6FL4bH
-	 bw3j4mq4W04WA==
-Date: Wed, 20 Nov 2024 09:45:35 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Marc Kleine-Budde <mkl@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	kernel@pengutronix.de, devicetree@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Leonard =?utf-8?B?R8O2aHJz?= <l.goehrs@pengutronix.de>
-Subject: Re: [PATCH 4/6] dt-bindings: arm: stm32: add compatible strings for
- Linux Automation LXA TAC gen 3
-Message-ID: <4t2tmuntv24lffk3ikgbsz7tbvkqosmd2xwurnzvk346daah22@wegcc3wreqpr>
-References: <20241119-lxa-tac-gen3-v1-0-e0ab0a369372@pengutronix.de>
- <20241119-lxa-tac-gen3-v1-4-e0ab0a369372@pengutronix.de>
+	s=k20201202; t=1732092538;
+	bh=tlURkDdJbTiE28ex0REYW/z3accfej8M+svuPoygbF0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=u7f0vM2Ii96hafzmSNstWpwy7tCXybBR83HOuCo2IAdH5ppIjbqPo1OgamvyZ4q6L
+	 1n6dxQVDbUQGhq12OpLYXOt4dpBjbIDUq+sjajvR3wTxm5hb4ZcQ1U75cVxxVJndcT
+	 UpDGXlC/TZ8bIMUBY2Dug7vZ00zyVxr10dCuuMJ7kgtO4vXxBLE7QtXdqI/xPlWxlq
+	 OuPx/qaxuU4Iq9u15uNoszeq0pzHvI4PHDlH8gvwmpEwuAwSbab73Ev0cgvZjbnSdc
+	 7QUMmF/NuQBAn7eNS6oIuWgMBTyaz2fzR853R7fF/cxbZjWcvu88W9SCTP1xQhsuuT
+	 Gh4pRHIm1Uk/w==
+Message-ID: <9896a38f-4b68-46a9-83b8-bf76abea47ba@kernel.org>
+Date: Wed, 20 Nov 2024 09:48:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20241119-lxa-tac-gen3-v1-4-e0ab0a369372@pengutronix.de>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] dt-bindings: w1: ds2482: Add vcc-supply property
+To: =?UTF-8?B?S3J5xaF0b2YgxIxlcm7DvQ==?= <cleverline1mc@gmail.com>,
+ Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Stefan Wahren <stefan.wahren@chargebyte.com>,
+ Ben Gardner <bgardner@wabtec.com>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20241115-ds2482-add-reg-v1-0-cc84b9aba126@gmail.com>
+ <20241115-ds2482-add-reg-v1-3-cc84b9aba126@gmail.com>
+ <20241115-happy-garter-2cf65f4b1290@spud>
+ <83c8487c-2c50-4315-8244-ff80632165e9@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <83c8487c-2c50-4315-8244-ff80632165e9@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Tue, Nov 19, 2024 at 12:35:01PM +0100, Marc Kleine-Budde wrote:
-> From: Leonard G=C3=B6hrs <l.goehrs@pengutronix.de>
->=20
-> The Linux Automation LXA TAC generation 3 is built around an
-> OSD32MP153x SiP with CPU, RAM, PMIC, Oscillator and EEPROM.
->=20
-> LXA TACs are a development tool for embedded devices with a focus on
-> embedded Linux devices.
->=20
-> Add compatible for the generation 3 based on the STM32MP153c.
->=20
-> Signed-off-by: Leonard G=C3=B6hrs <l.goehrs@pengutronix.de>
-> Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
-> ---
->  Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
+On 20/11/2024 09:34, Kryštof Černý wrote:
+> Hello,
+> 
+>> On Fri, Nov 15, 2024 at 03:58:06PM +0100, Kryštof Černý via B4 Relay wrote:
+>>> From: Kryštof Černý <cleverline1mc@gmail.com>
+>>>
+>>> Adds the newly added vcc-supply property to bindings.
+>>
+>> This commit message is a circular argument. You're adding it to the
+>> binding, which of course means it is newly added.
+> 
+> You are right, I will replace with "Adds the vcc-supply property to 
+> bindings." in the next version.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+No, please say why, e.g. because it was missing and device has it
+according to datasheet.
+
+> 
+>>>
+>>> Signed-off-by: Kryštof Černý <cleverline1mc@gmail.com>
+>>> ---
+>>>   Documentation/devicetree/bindings/w1/maxim,ds2482.yaml | 3 +++
+>>>   1 file changed, 3 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/w1/maxim,ds2482.yaml b/Documentation/devicetree/bindings/w1/maxim,ds2482.yaml
+>>> index 422becc6e1fa8d58665c5586ebdc611cd0b2c760..a6b9e0658ec858cb24b21cf64443a061bb43e4ef 100644
+>>> --- a/Documentation/devicetree/bindings/w1/maxim,ds2482.yaml
+>>> +++ b/Documentation/devicetree/bindings/w1/maxim,ds2482.yaml
+>>> @@ -25,6 +25,9 @@ properties:
+>>>     reg:
+>>>       maxItems: 1
+>>>   
+>>> +  vcc-supply:
+>>> +    description: phandle of the regulator that provides the supply voltage.
+>>
+>> "vcc-supply: true" should suffice.
+>>
+> 
+> Right, I suppose you mean to remove the description and just have 
+> "vcc-supply: true".
+> If so, could you explain why no description? Is it some standard property
+> or because the name is self-explanatory? If you mean to keep both, 
+> please reply.
+
+It's almost self-explanatory and your description does not give any more
+information. git grep for existing code - you will find also examples
+which give actual information, e.g. detailed PIN name and accepted voltages.
+
+
 
 Best regards,
 Krzysztof
-
 
