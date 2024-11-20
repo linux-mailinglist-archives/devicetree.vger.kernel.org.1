@@ -1,106 +1,175 @@
-Return-Path: <devicetree+bounces-123196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5B409D3A67
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 13:14:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B3AF9D3A7B
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 13:15:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B9A9281510
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 12:14:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C2232802A8
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 12:15:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA57819E999;
-	Wed, 20 Nov 2024 12:14:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97E851A2C19;
+	Wed, 20 Nov 2024 12:15:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f0ytCxhl"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="gYOVtqlp";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="PLT+iV2t";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="gYOVtqlp";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="PLT+iV2t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 458AC17BB2E;
-	Wed, 20 Nov 2024 12:14:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00EC119F13B;
+	Wed, 20 Nov 2024 12:15:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732104865; cv=none; b=psEzZUtZZ7Rxzu3UWA++JQoEfSDSYnIB5UJJvYleYiebCKk9ZRKSf6lksAlQUf8Q8UqbAaNtGw/u77D//mstZaQBSfXaJvd7oqiwEXOdP54DKW0oJl6VYTK87P15Ti5RBzv5H/nzIONuIkM9QPa4pzEwtKRPrt46ZeuKsIZZM8I=
+	t=1732104954; cv=none; b=djythtP0BOWCEXRxXuSqWngvA3t1PXfMUQ68KzJs7ggLfMcSMn9P0xD/CAKfKmHwKmXSKXeeaPyB10bdIyBiO903ceMoVRYf2i9gitioCmvPup0K2w30fzBb88VErPlms5XjqpkCGcUT92usKpuZHqMCKNqqchdMp8pWPmCzw7g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732104865; c=relaxed/simple;
-	bh=PzbFJgpJejzo+/+XvbJzbk4rHHTZNfWxfCMGHtccwj4=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=puqi45N58tXuitv+G2tUShNRzBJf8EsSpvfrZ6fOOOnDqnqhgZP1d4MXK2+WFQrh4WSST40t7gMHPKHclwqnYFcxz6m/rJZYP98fExFGqyuRlRgFnbTLli+B2VfhHPYROMHLthBdNBFK1u6Vae1z1Aglo6nMLpBsE1w57mFl9/Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f0ytCxhl; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-aa3a79d4d59so329487066b.3;
-        Wed, 20 Nov 2024 04:14:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1732104862; x=1732709662; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=PzbFJgpJejzo+/+XvbJzbk4rHHTZNfWxfCMGHtccwj4=;
-        b=f0ytCxhlKrDOMOC+QiPOPqGAamz8eBJ361CKlQSYlTNloLhSldiSZ1GHKjUqijjsGm
-         3SegBO+lrNZvi6/bLdTRHkabDLKLe2Gsz2BkSk7NpJi6Uynv6zHpC4EH5nO7t5ru+5qu
-         LcgVcjVjyoEpG/g9KMRZHdj7Sci+FQcftTJAHTV9/poBATHaWitzLjQKMrfUakZCWFO8
-         yoTuP5EjmqMVefNy9BTFMX2E4Zf3vtuhC8YfcCqjP7i089RbEy1RrZDA0mj8GZYkj93j
-         Z9seRIXAJ0B78qi6GaRK5GoMdRgyvQ9LicTbtsYjIzexr1rVLtiXBYEpnywPVwiVJPfO
-         ECNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732104862; x=1732709662;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PzbFJgpJejzo+/+XvbJzbk4rHHTZNfWxfCMGHtccwj4=;
-        b=eSHn4zuuytCpKmSrqBKM72m5ssbql6ors7WJvsVbuSduzE2z3RcnHAZ2v3SmBqRlja
-         kz/OlhbVDADyZRFSez/ttk/XfAFbVUcxGKxcZ3dtqMXWPnipWyvH/giFSSyDTJnSos6j
-         YQHr/JPBvA7H0dsjx+GfesReZEGEIcS3hhVwox7Jk0I8vXHRM8NNPO3kKMW/1N7ojfO4
-         DbKI5u2Y3bcG8qM3WCAa2IK8InPDJCh4Fc28PXYGWKTY9Zc7CiJYGtkIvCUk4bMFHkY0
-         LhPxgc9i0LoIwCIFeh+1nj4OIiKi2QZiKmcMFPArK1zkwlIJQmoAVd/g5iZ/Lh7wzcwq
-         5NNQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUh6brVIiuP/uCu5U1+MhIe2BzmNNBVm3OjyR7vSjmG4/HMIWB0V9cDaigFQpgGqxSLW4DXF6FzcWf3@vger.kernel.org, AJvYcCWxZZDIgi4w/rHBKQhY9fsxvLwMqpaPUth7vxGawqN1bqMH38xkyYnBy7qj5sntxNSH9VEaBgDk+z9OMK8R@vger.kernel.org
-X-Gm-Message-State: AOJu0YwC9Zo43LdFYJwiwU18bd8jqelqgU+0gyZ7uQKtGsaPsWd4Un5I
-	lbdgz87slqiW2ja1luuVyNOZCie33KHOxD8MiUYMwsEgi0wgZm2rSlWY+Q==
-X-Gm-Gg: ASbGnctjxr6AwhXz016mbe70Gbsu6jwoQU7AD8funqr3esrEji3ss90jruCPoFKhBPa
-	GVami1XVNa5V6LgfkakahXwZRY81R79Mm5WekDQs93XdQiCeNNLDTdycSS68DndT/S0+SeYCseW
-	sz7o0jiRCnL2x8QZa5d+DMbz2ROH3b61a9vjbzCn1AaaTvox9wHIUJTMPoMNv3eIbH0gi8mE+Jn
-	ZdGEfJc8cYE047fDek4xd0ImfyI8HktAEeHuQU5dRkTzy5n3AikQWC4G1gtgpdr6+kX0CzoiKcn
-	V6+RlEVXAi6K0A==
-X-Google-Smtp-Source: AGHT+IF39oYsW7utHgxHuY+7iTrA3rGekAAdCC6unwDTRCMsuaP4chYqSaWzpfz/ubmLWvb6kY2vMQ==
-X-Received: by 2002:a17:906:daca:b0:aa4:9ab1:19d5 with SMTP id a640c23a62f3a-aa4dd70a22fmr218519366b.42.1732104862437;
-        Wed, 20 Nov 2024 04:14:22 -0800 (PST)
-Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa20df56b08sm766292666b.79.2024.11.20.04.14.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Nov 2024 04:14:22 -0800 (PST)
-Date: Wed, 20 Nov 2024 13:14:20 +0100
-From: Stanislav Jakubek <stano.jakubek@gmail.com>
-To: robh@kernel.org
-Cc: baolin.wang@linux.alibaba.com, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org, orsonzhai@gmail.com,
-	zhang.lyra@gmail.com
-Subject: Re: [PATCH] arm64: dts: sprd: Remove unused and undocumented
- "constant_charge_voltage_max_microvolt" property
-Message-ID: <Zz3SnIiW_iu10rrs@standask-GA-A55M-S2HP>
+	s=arc-20240116; t=1732104954; c=relaxed/simple;
+	bh=rUWRVgIpsN+qqDYsytfpIupLDOZ51LODujjC8CHoTZc=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Av+8nAyDkjX00l7+mtT6TgjP+wvRGXmYGWuAjB4GBHpR+rvY5eQjej+M3LezOeW7TZ35n/yADj/DSRX/FBB/7TiXDFw8O1tg6VZIharb0jnM7MYxJnRVD5C6K4F/MUoz+6jlDwn6huG1lc33i+33DTX5uimBb+2kLRms0irV0K8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=gYOVtqlp; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=PLT+iV2t; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=gYOVtqlp; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=PLT+iV2t; arc=none smtp.client-ip=195.135.223.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id 4FC851F76E;
+	Wed, 20 Nov 2024 12:15:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1732104951; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=R6TtZOhsAKBtybCxBgSSK+eJqeEPxyGmEPvC3eHY3IE=;
+	b=gYOVtqlpmEBIa9ncQj3AZs8dQKvAiCR4NouHLPoIyceGzfa+l+G11v3RhG8V8olfA/nCEB
+	N70hRlx4JS9jC3mtKN14j0gA3K0y1/ig5FpTyZ9zv2wzMw7LuHSPkPOhU2MLV6UOPzt6TP
+	7UjF5/oMb/2ncozW5D8hM8ZyZ7jx1a0=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1732104951;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=R6TtZOhsAKBtybCxBgSSK+eJqeEPxyGmEPvC3eHY3IE=;
+	b=PLT+iV2tn7kwhTcYgDYYJeMI4PbScJS0Dan4ViISWeQxnIv820ibMmGlDIwOFlRNYyQjj0
+	Gv0bf7Xp5i90X3Dw==
+Authentication-Results: smtp-out2.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1732104951; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=R6TtZOhsAKBtybCxBgSSK+eJqeEPxyGmEPvC3eHY3IE=;
+	b=gYOVtqlpmEBIa9ncQj3AZs8dQKvAiCR4NouHLPoIyceGzfa+l+G11v3RhG8V8olfA/nCEB
+	N70hRlx4JS9jC3mtKN14j0gA3K0y1/ig5FpTyZ9zv2wzMw7LuHSPkPOhU2MLV6UOPzt6TP
+	7UjF5/oMb/2ncozW5D8hM8ZyZ7jx1a0=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1732104951;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=R6TtZOhsAKBtybCxBgSSK+eJqeEPxyGmEPvC3eHY3IE=;
+	b=PLT+iV2tn7kwhTcYgDYYJeMI4PbScJS0Dan4ViISWeQxnIv820ibMmGlDIwOFlRNYyQjj0
+	Gv0bf7Xp5i90X3Dw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 072FE137CF;
+	Wed, 20 Nov 2024 12:15:51 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id W9g0AffSPWfyCAAAD6G6ig
+	(envelope-from <tiwai@suse.de>); Wed, 20 Nov 2024 12:15:51 +0000
+Date: Wed, 20 Nov 2024 13:15:50 +0100
+Message-ID: <87a5du3xu1.wl-tiwai@suse.de>
+From: Takashi Iwai <tiwai@suse.de>
+To: Wesley Cheng <quic_wcheng@quicinc.com>
+Cc: <srinivas.kandagatla@linaro.org>,
+	<mathias.nyman@intel.com>,
+	<perex@perex.cz>,
+	<conor+dt@kernel.org>,
+	<dmitry.torokhov@gmail.com>,
+	<corbet@lwn.net>,
+	<broonie@kernel.org>,
+	<lgirdwood@gmail.com>,
+	<krzk+dt@kernel.org>,
+	<pierre-louis.bossart@linux.intel.com>,
+	<Thinh.Nguyen@synopsys.com>,
+	<tiwai@suse.com>,
+	<robh@kernel.org>,
+	<gregkh@linuxfoundation.org>,
+	<linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>,
+	<linux-sound@vger.kernel.org>,
+	<linux-usb@vger.kernel.org>,
+	<linux-input@vger.kernel.org>,
+	<linux-arm-msm@vger.kernel.org>,
+	<linux-doc@vger.kernel.org>
+Subject: Re: [PATCH v30 26/30] ALSA: usb-audio: qcom: Introduce QC USB SND offloading support
+In-Reply-To: <20241106193413.1730413-27-quic_wcheng@quicinc.com>
+References: <20241106193413.1730413-1-quic_wcheng@quicinc.com>
+	<20241106193413.1730413-27-quic_wcheng@quicinc.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/27.2 Mule/6.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241115193409.3618257-1-robh@kernel.org>
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-Spam-Level: 
+X-Spamd-Result: default: False [-1.80 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	TAGGED_RCPT(0.00)[dt];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_TLS_ALL(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[linaro.org,intel.com,perex.cz,kernel.org,gmail.com,lwn.net,linux.intel.com,synopsys.com,suse.com,linuxfoundation.org,vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FROM_EQ_ENVFROM(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	FUZZY_BLOCKED(0.00)[rspamd.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,imap1.dmz-prg2.suse.org:helo]
+X-Spam-Score: -1.80
+X-Spam-Flag: NO
 
-Hi Rob,
+On Wed, 06 Nov 2024 20:34:09 +0100,
+Wesley Cheng wrote:
+> +config SND_USB_AUDIO_QMI
+> +	tristate "Qualcomm Audio Offload driver"
+> +	depends on QCOM_QMI_HELPERS && SND_USB_AUDIO && USB_XHCI_SEC_INTR && SND_SOC_USB
+> +	select SND_PCM
 
-constant-charge-voltage-max-microvolt is a valid property, which I assume
-was the original intention here. I've already submitted a patch changing this
-to the documented property:
+This select is superfluous as it already depends on
+CONFIG_SND_USB_AUDIO that does select it.
 
-https://lore.kernel.org/lkml/aa557091d9494fdaa3eda75803f9ea97014c8832.1730918663.git.stano.jakubek@gmail.com/
+> diff --git a/sound/usb/qcom/Makefile b/sound/usb/qcom/Makefile
+> new file mode 100644
+> index 000000000000..a81c9b28d484
+> --- /dev/null
+> +++ b/sound/usb/qcom/Makefile
+> @@ -0,0 +1,2 @@
+> +snd-usb-audio-qmi-objs := usb_audio_qmi_v01.o qc_audio_offload.o
 
-Baolin also reviewed that patch... make of that what you will.
+Use snd-usb-audio-qmi-y instead of *-objs.
 
-Regards,
-Stanislav
+
+thanks,
+
+Takashi
 
