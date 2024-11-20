@@ -1,175 +1,241 @@
-Return-Path: <devicetree+bounces-123197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B3AF9D3A7B
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 13:15:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 568829D3A8F
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 13:20:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C2232802A8
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 12:15:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FE56280A66
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 12:20:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97E851A2C19;
-	Wed, 20 Nov 2024 12:15:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="gYOVtqlp";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="PLT+iV2t";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="gYOVtqlp";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="PLT+iV2t"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF08919F47A;
+	Wed, 20 Nov 2024 12:20:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00EC119F13B;
-	Wed, 20 Nov 2024 12:15:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E09516A92D
+	for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 12:20:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732104954; cv=none; b=djythtP0BOWCEXRxXuSqWngvA3t1PXfMUQ68KzJs7ggLfMcSMn9P0xD/CAKfKmHwKmXSKXeeaPyB10bdIyBiO903ceMoVRYf2i9gitioCmvPup0K2w30fzBb88VErPlms5XjqpkCGcUT92usKpuZHqMCKNqqchdMp8pWPmCzw7g=
+	t=1732105247; cv=none; b=bTa/FE4j1Au8nYvl5Jo6iCFUZWnwBrHeoqL2uhtJykh1AwaPw/u2xaa5/HrWuXwPdJdh8tLmUdY40h27EtwQ60lL51yJaGOmjgoLT8f+osEn57P8ksraE+dpisWng34RIhAXxekNqE2bVgYmXujgaFj5p9ZCsDx7NZH4alC/938=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732104954; c=relaxed/simple;
-	bh=rUWRVgIpsN+qqDYsytfpIupLDOZ51LODujjC8CHoTZc=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Av+8nAyDkjX00l7+mtT6TgjP+wvRGXmYGWuAjB4GBHpR+rvY5eQjej+M3LezOeW7TZ35n/yADj/DSRX/FBB/7TiXDFw8O1tg6VZIharb0jnM7MYxJnRVD5C6K4F/MUoz+6jlDwn6huG1lc33i+33DTX5uimBb+2kLRms0irV0K8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=gYOVtqlp; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=PLT+iV2t; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=gYOVtqlp; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=PLT+iV2t; arc=none smtp.client-ip=195.135.223.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+	s=arc-20240116; t=1732105247; c=relaxed/simple;
+	bh=kj3ra5UKlV2cQyYvss4eMDHnBmaGYC2AyxIjO52JTms=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XCQpElPxKFd39Ry+qAXlgC+eiviYWZwdYTW9g2ijhT3vaShmvyHXjlhVD8YjkGS3ibb4bVa2aU0pVaHB9y80lEPmMMjFO3Z0/f5NrsaZWkvQjM7bZoF+HBEGephFgZhKrxSUgDM6KPfnBSAGoc3Kos0pKOne/McBK+Ft5RgZmzg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tDjh8-0000az-4P; Wed, 20 Nov 2024 13:20:30 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tDjh7-001js0-21;
+	Wed, 20 Nov 2024 13:20:29 +0100
+Received: from pengutronix.de (pd9e59fec.dip0.t-ipconnect.de [217.229.159.236])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id 4FC851F76E;
-	Wed, 20 Nov 2024 12:15:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1732104951; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=R6TtZOhsAKBtybCxBgSSK+eJqeEPxyGmEPvC3eHY3IE=;
-	b=gYOVtqlpmEBIa9ncQj3AZs8dQKvAiCR4NouHLPoIyceGzfa+l+G11v3RhG8V8olfA/nCEB
-	N70hRlx4JS9jC3mtKN14j0gA3K0y1/ig5FpTyZ9zv2wzMw7LuHSPkPOhU2MLV6UOPzt6TP
-	7UjF5/oMb/2ncozW5D8hM8ZyZ7jx1a0=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1732104951;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=R6TtZOhsAKBtybCxBgSSK+eJqeEPxyGmEPvC3eHY3IE=;
-	b=PLT+iV2tn7kwhTcYgDYYJeMI4PbScJS0Dan4ViISWeQxnIv820ibMmGlDIwOFlRNYyQjj0
-	Gv0bf7Xp5i90X3Dw==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1732104951; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=R6TtZOhsAKBtybCxBgSSK+eJqeEPxyGmEPvC3eHY3IE=;
-	b=gYOVtqlpmEBIa9ncQj3AZs8dQKvAiCR4NouHLPoIyceGzfa+l+G11v3RhG8V8olfA/nCEB
-	N70hRlx4JS9jC3mtKN14j0gA3K0y1/ig5FpTyZ9zv2wzMw7LuHSPkPOhU2MLV6UOPzt6TP
-	7UjF5/oMb/2ncozW5D8hM8ZyZ7jx1a0=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1732104951;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=R6TtZOhsAKBtybCxBgSSK+eJqeEPxyGmEPvC3eHY3IE=;
-	b=PLT+iV2tn7kwhTcYgDYYJeMI4PbScJS0Dan4ViISWeQxnIv820ibMmGlDIwOFlRNYyQjj0
-	Gv0bf7Xp5i90X3Dw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 072FE137CF;
-	Wed, 20 Nov 2024 12:15:51 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id W9g0AffSPWfyCAAAD6G6ig
-	(envelope-from <tiwai@suse.de>); Wed, 20 Nov 2024 12:15:51 +0000
-Date: Wed, 20 Nov 2024 13:15:50 +0100
-Message-ID: <87a5du3xu1.wl-tiwai@suse.de>
-From: Takashi Iwai <tiwai@suse.de>
-To: Wesley Cheng <quic_wcheng@quicinc.com>
-Cc: <srinivas.kandagatla@linaro.org>,
-	<mathias.nyman@intel.com>,
-	<perex@perex.cz>,
-	<conor+dt@kernel.org>,
-	<dmitry.torokhov@gmail.com>,
-	<corbet@lwn.net>,
-	<broonie@kernel.org>,
-	<lgirdwood@gmail.com>,
-	<krzk+dt@kernel.org>,
-	<pierre-louis.bossart@linux.intel.com>,
-	<Thinh.Nguyen@synopsys.com>,
-	<tiwai@suse.com>,
-	<robh@kernel.org>,
-	<gregkh@linuxfoundation.org>,
-	<linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>,
-	<linux-sound@vger.kernel.org>,
-	<linux-usb@vger.kernel.org>,
-	<linux-input@vger.kernel.org>,
-	<linux-arm-msm@vger.kernel.org>,
-	<linux-doc@vger.kernel.org>
-Subject: Re: [PATCH v30 26/30] ALSA: usb-audio: qcom: Introduce QC USB SND offloading support
-In-Reply-To: <20241106193413.1730413-27-quic_wcheng@quicinc.com>
-References: <20241106193413.1730413-1-quic_wcheng@quicinc.com>
-	<20241106193413.1730413-27-quic_wcheng@quicinc.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/27.2 Mule/6.0
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 3C413377D2F;
+	Wed, 20 Nov 2024 12:20:29 +0000 (UTC)
+Date: Wed, 20 Nov 2024 13:20:28 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
+Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
+	Andrew Lunn <andrew+netdev@lunn.ch>, "David S . Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	imx@lists.linux.dev, NXP Linux Team <s32@nxp.com>, 
+	Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>, 
+	Enric Balletbo <eballetb@redhat.com>
+Subject: Re: [PATCH 3/3] can: flexcan: handle S32G2/S32G3 separate interrupt
+ lines
+Message-ID: <20241120-mindful-belligerent-mussel-501d72-mkl@pengutronix.de>
+References: <20241119081053.4175940-1-ciprianmarian.costea@oss.nxp.com>
+ <20241119081053.4175940-4-ciprianmarian.costea@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-Spam-Level: 
-X-Spamd-Result: default: False [-1.80 / 50.00];
-	BAYES_HAM(-3.00)[100.00%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	TAGGED_RCPT(0.00)[dt];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_TLS_ALL(0.00)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[linaro.org,intel.com,perex.cz,kernel.org,gmail.com,lwn.net,linux.intel.com,synopsys.com,suse.com,linuxfoundation.org,vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	FROM_EQ_ENVFROM(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	FUZZY_BLOCKED(0.00)[rspamd.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,imap1.dmz-prg2.suse.org:helo]
-X-Spam-Score: -1.80
-X-Spam-Flag: NO
-
-On Wed, 06 Nov 2024 20:34:09 +0100,
-Wesley Cheng wrote:
-> +config SND_USB_AUDIO_QMI
-> +	tristate "Qualcomm Audio Offload driver"
-> +	depends on QCOM_QMI_HELPERS && SND_USB_AUDIO && USB_XHCI_SEC_INTR && SND_SOC_USB
-> +	select SND_PCM
-
-This select is superfluous as it already depends on
-CONFIG_SND_USB_AUDIO that does select it.
-
-> diff --git a/sound/usb/qcom/Makefile b/sound/usb/qcom/Makefile
-> new file mode 100644
-> index 000000000000..a81c9b28d484
-> --- /dev/null
-> +++ b/sound/usb/qcom/Makefile
-> @@ -0,0 +1,2 @@
-> +snd-usb-audio-qmi-objs := usb_audio_qmi_v01.o qc_audio_offload.o
-
-Use snd-usb-audio-qmi-y instead of *-objs.
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="k7cj6qrunaieusmg"
+Content-Disposition: inline
+In-Reply-To: <20241119081053.4175940-4-ciprianmarian.costea@oss.nxp.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 
-thanks,
+--k7cj6qrunaieusmg
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 3/3] can: flexcan: handle S32G2/S32G3 separate interrupt
+ lines
+MIME-Version: 1.0
 
-Takashi
+On 19.11.2024 10:10:53, Ciprian Costea wrote:
+> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+>=20
+> On S32G2/S32G3 SoC, there are separate interrupts
+> for state change, bus errors, MBs 0-7 and MBs 8-127 respectively.
+>=20
+> In order to handle this FlexCAN hardware particularity, reuse
+> the 'FLEXCAN_QUIRK_NR_IRQ_3' quirk provided by mcf5441x's irq
+> handling support.
+>=20
+> Additionally, introduce 'FLEXCAN_QUIRK_SECONDARY_MB_IRQ' quirk,
+> which can be used in case there are two separate mailbox ranges
+> controlled by independent hardware interrupt lines, as it is
+> the case on S32G2/S32G3 SoC.
+
+Please move the quirk and quirk handling to the 2nd patch. The 3rd patch
+should only add the nxp,s32g2-flexcan compatible and the struct
+flexcan_devtype_data nxp_s32g2_devtype_data.
+
+>=20
+> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+> ---
+>  drivers/net/can/flexcan/flexcan-core.c | 25 +++++++++++++++++++++++--
+>  drivers/net/can/flexcan/flexcan.h      |  3 +++
+>  2 files changed, 26 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/net/can/flexcan/flexcan-core.c b/drivers/net/can/fle=
+xcan/flexcan-core.c
+> index f0dee04800d3..dc56d4a7d30b 100644
+> --- a/drivers/net/can/flexcan/flexcan-core.c
+> +++ b/drivers/net/can/flexcan/flexcan-core.c
+> @@ -390,9 +390,10 @@ static const struct flexcan_devtype_data nxp_s32g2_d=
+evtype_data =3D {
+>  	.quirks =3D FLEXCAN_QUIRK_DISABLE_RXFG | FLEXCAN_QUIRK_ENABLE_EACEN_RRS=
+ |
+>  		FLEXCAN_QUIRK_DISABLE_MECR | FLEXCAN_QUIRK_BROKEN_PERR_STATE |
+>  		FLEXCAN_QUIRK_USE_RX_MAILBOX | FLEXCAN_QUIRK_SUPPORT_FD |
+> -		FLEXCAN_QUIRK_SUPPORT_ECC |
+> +		FLEXCAN_QUIRK_SUPPORT_ECC | FLEXCAN_QUIRK_NR_IRQ_3 |
+>  		FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX |
+> -		FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX_RTR,
+> +		FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX_RTR |
+> +		FLEXCAN_QUIRK_SECONDARY_MB_IRQ,
+>  };
+> =20
+>  static const struct can_bittiming_const flexcan_bittiming_const =3D {
+> @@ -1771,12 +1772,21 @@ static int flexcan_open(struct net_device *dev)
+>  			goto out_free_irq_boff;
+>  	}
+> =20
+> +	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SECONDARY_MB_IRQ) {
+> +		err =3D request_irq(priv->irq_secondary_mb,
+> +				  flexcan_irq, IRQF_SHARED, dev->name, dev);
+> +		if (err)
+> +			goto out_free_irq_err;
+> +	}
+> +
+>  	flexcan_chip_interrupts_enable(dev);
+> =20
+>  	netif_start_queue(dev);
+> =20
+>  	return 0;
+> =20
+> + out_free_irq_err:
+> +	free_irq(priv->irq_err, dev);
+>   out_free_irq_boff:
+>  	free_irq(priv->irq_boff, dev);
+>   out_free_irq:
+> @@ -1808,6 +1818,9 @@ static int flexcan_close(struct net_device *dev)
+>  		free_irq(priv->irq_boff, dev);
+>  	}
+> =20
+> +	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SECONDARY_MB_IRQ)
+> +		free_irq(priv->irq_secondary_mb, dev);
+> +
+>  	free_irq(dev->irq, dev);
+>  	can_rx_offload_disable(&priv->offload);
+>  	flexcan_chip_stop_disable_on_error(dev);
+> @@ -2197,6 +2210,14 @@ static int flexcan_probe(struct platform_device *p=
+dev)
+>  		}
+>  	}
+> =20
+> +	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SECONDARY_MB_IRQ) {
+> +		priv->irq_secondary_mb =3D platform_get_irq(pdev, 3);
+> +		if (priv->irq_secondary_mb < 0) {
+> +			err =3D priv->irq_secondary_mb;
+> +			goto failed_platform_get_irq;
+> +		}
+> +	}
+> +
+>  	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SUPPORT_FD) {
+>  		priv->can.ctrlmode_supported |=3D CAN_CTRLMODE_FD |
+>  			CAN_CTRLMODE_FD_NON_ISO;
+> diff --git a/drivers/net/can/flexcan/flexcan.h b/drivers/net/can/flexcan/=
+flexcan.h
+> index 4933d8c7439e..d4b1a954c538 100644
+> --- a/drivers/net/can/flexcan/flexcan.h
+> +++ b/drivers/net/can/flexcan/flexcan.h
+> @@ -70,6 +70,8 @@
+>  #define FLEXCAN_QUIRK_SUPPORT_RX_FIFO BIT(16)
+>  /* Setup stop mode with ATF SCMI protocol to support wakeup */
+>  #define FLEXCAN_QUIRK_SETUP_STOP_MODE_SCMI BIT(17)
+> +/* Setup secondary mailbox interrupt */
+
+Describe why this quirk is needed. If you have a proper description in
+the commit message, you can copy it here.
+
+> +#define FLEXCAN_QUIRK_SECONDARY_MB_IRQ	BIT(18)
+> =20
+>  struct flexcan_devtype_data {
+>  	u32 quirks;		/* quirks needed for different IP cores */
+> @@ -105,6 +107,7 @@ struct flexcan_priv {
+>  	struct regulator *reg_xceiver;
+>  	struct flexcan_stop_mode stm;
+> =20
+> +	int irq_secondary_mb;
+
+Please place it after the irq_err, this way it's in order with the
+spread sheet.
+
+>  	int irq_boff;
+>  	int irq_err;
+> =20
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--k7cj6qrunaieusmg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmc91AkACgkQKDiiPnot
+vG9tvAf+MUCSC/bR1WQfJ6jsMBgAPuB/aRDz77YVLrt1feRFK0AkOLyXUW+PHbLn
+mvlvhVAUnT1vA7lcNOETI/mjKdDV1ISd9eK1ofJiUWzzYLGV5he0gfswT/7mCdHP
+RV708aOhXGyNokZHYfuEEF+Efbf1nqQuVoQUiZu+VHvvWNmG+fznr0kfB78jKehc
+K1OZIr5Pd8XPE5thxVzdnNUBDU87aX2auyyLwgnmI77ImHXjL8Mi1UP2UJYRu3UI
+bRd4+ZrX8QExbNNXiSiVxUUb6dWy271ORQ2KYcSfP0dOpyjH8bmJQyNIebuEEMk1
+gb3twa1WDvOBKuWDIXa5Lz3YH4VPDg==
+=3Q/0
+-----END PGP SIGNATURE-----
+
+--k7cj6qrunaieusmg--
 
