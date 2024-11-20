@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-123315-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123317-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EBEE9D4034
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 17:37:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B00C09D404D
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 17:41:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 163CF1F213D9
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 16:37:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A71A1F21F82
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 16:41:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 777B51527B1;
-	Wed, 20 Nov 2024 16:37:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E1A0153BF7;
+	Wed, 20 Nov 2024 16:41:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QMWSIgVt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YIA7nuKb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B49F145335;
-	Wed, 20 Nov 2024 16:37:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E31DD148FE8;
+	Wed, 20 Nov 2024 16:41:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732120662; cv=none; b=Cgr13CXGd6aSW949JSvi6sQ+gv8vUWrNji2UZEAmCbHhlaoezrVejlb6iGP8sEQw3up3/Q5QTQdFR/tLG6LPI2cgzG/hZuUcn8bVuaPQC3VhsxeJCdYy0fZV8Rc9X+6zlYvMkhKzadIcymMZ2mtvFrwfAWPj/9GddUTFTVT8zo4=
+	t=1732120905; cv=none; b=C0i5XtAvLaPhpIKMiqwKdiFOwf0uYf6+l0MLZG1DFWKVxN4IKrJ+2HvGRXvKQu4PaUz0++2AVX6e1EI1V7SvrZQvm+pdrKfwUG4yBMxsbjrtgY/qICSLE3sos2FsYlMJ3hfRQnV/DdTUaR5L53UQ65WgygHlbsTy/uaPU5pqIQs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732120662; c=relaxed/simple;
-	bh=MseR2j5hxTqT7Bar0/xqOpVboZgTwU8i2w8NcRlv5s4=;
+	s=arc-20240116; t=1732120905; c=relaxed/simple;
+	bh=aow1D5oiZOa2yWdRgBhIfhCOaZCz2R+6BfhiQAHq7SM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jPeemz/rZSIOYC+VNenkSWlXPAMrAtOXuxjKCGkVKn5vMXWkYQ/SRYKLI+JYKp2w6RimBX0FOg7VE5SqjuDECgVlqUHHZkWMhPR02+Sx12vEH1hKqINUG5G/QtRX6YY6NblQmRXgkNgCzxsL7NijRs/GUTslKlde/8VG9vYAh+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QMWSIgVt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 851C4C4CECD;
-	Wed, 20 Nov 2024 16:37:36 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=nYYFeDSthufzkZS+EkbeWKS7gL3c2EiFelEz2DTbMocImgteQEU8LS3sejIlU+yeKgBrDO+nnigr/qU1eWi/RIHmuhNmJ1RCU5CF1cYEWiXU2LD/biiDxa+VIB3YMgh320oT5VrJXXYcgHRX7VNZrHCVSb17moQULY3VsPHDyqQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YIA7nuKb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44596C4CECD;
+	Wed, 20 Nov 2024 16:41:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732120660;
-	bh=MseR2j5hxTqT7Bar0/xqOpVboZgTwU8i2w8NcRlv5s4=;
+	s=k20201202; t=1732120904;
+	bh=aow1D5oiZOa2yWdRgBhIfhCOaZCz2R+6BfhiQAHq7SM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QMWSIgVtcGml1aPdZ8hbOIM8g+T6EZigJrY91VWtxzfGrgTEgfs+N/9Q2lJ7Q7CFR
-	 lAEj9x9KchamdtSrvmPoNr2j88sALwzOqLjzyboLP0YFYRomvvphV/rS/oQ4JgwCBA
-	 ukSSjv44S3Dga/7oC+dHk7ycPqFyi6hUtQ9iSba2MViNzm3W7JpikZWu6F3X0TQ5ya
-	 aDWo7X3DGMUYnypoLi9K4W5ml13uSk8aWKcR/wxLu5zeyDSqHlHs3lMfjQ+4YE8vgj
-	 oro5JY5/u28wVHXb8aUkZNV9PoW1EGh07jAS27Y5dXeEwrcLxxFsSs1fMnyzy05lJt
-	 JHhl+JH//QFsA==
-Message-ID: <ecf58f72-39b9-4e9d-a2bb-8cc225b4f875@kernel.org>
-Date: Wed, 20 Nov 2024 17:37:34 +0100
+	b=YIA7nuKbVbuSMCY4GKe8nHZOKon2c3Z0lRtmAScjrWGeO3x/tPIhnDt+DEstqDQLS
+	 lmMZkBSzW8NDFgBOvgE9Nw+7O2rYnwVImD/uujdPyc4Cfo/+/POlzH+OhCClNTqbsQ
+	 w3jk+AKPwd+PVGaKOM6UxsscJcwV0UoK3hgSTUFq+X3eUGLFIeMpQ/AC1r9/NBeXtw
+	 XHQxWzTG70vUHMAE+K/V6zd2Z50yoYU6DwMelNtBz+MwPUP0uaxSp5faSTfCGBPMdD
+	 d2WgG3vRsLNwYat7Ay7u/p1o+PhjK+VXFga+k9XsrngjAYsbfd1KSih98ayburDcRr
+	 VbAcoMk/+RrfQ==
+Message-ID: <7f52e0d2-0934-49ca-9c7d-4ba88460096a@kernel.org>
+Date: Wed, 20 Nov 2024 17:41:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: chrome: add new binding
- google,cros-ec-chrage-state
-To: "Sung-Chi, Li" <lschyi@chromium.org>, Benson Leung <bleung@chromium.org>,
- Tzung-Bi Shih <tzungbi@kernel.org>, Guenter Roeck <groeck@chromium.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>
-Cc: linux-kernel@vger.kernel.org, chrome-platform@lists.linux.dev,
- devicetree@vger.kernel.org
-References: <20241118-add_charger_state-v1-0-94997079f35a@chromium.org>
- <20241118-add_charger_state-v1-2-94997079f35a@chromium.org>
+Subject: Re: [PATCH v3 0/5] arm64: qcom: Add support for QCS9075 boards
+To: Wasim Nazir <quic_wasimn@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kernel@quicinc.com
+References: <20241119174954.1219002-1-quic_wasimn@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,64 +103,19 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241118-add_charger_state-v1-2-94997079f35a@chromium.org>
+In-Reply-To: <20241119174954.1219002-1-quic_wasimn@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/11/2024 10:33, Sung-Chi, Li wrote:
-> Add new dt bindings for charge chip control. The charge chip control
-> dt configuration is used by the driver 'cros-ec-charge-state', which is
-> added in the commit "platform/chrome: cros_ec_charge_state: add new
-> driver to control charge".
+On 19/11/2024 18:49, Wasim Nazir wrote:
+> This series:
 > 
-> As these charge chip controls are connected under the ChromeOS Embedded
-> Controller (EC), also add the patternProperties to the
-> mfd/google,cros-ec bindings.
+> Add support for Qualcomm's rb8, ride/ride-r3 boards using QCS9075 SoC.
 > 
-> Signed-off-by: Sung-Chi, Li <lschyi@chromium.org>
-> ---
->  .../bindings/chrome/google,cros-charge-state.yaml  | 62 ++++++++++++++++++++++
->  .../devicetree/bindings/mfd/google,cros-ec.yaml    |  4 ++
->  2 files changed, 66 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/chrome/google,cros-charge-state.yaml b/Documentation/devicetree/bindings/chrome/google,cros-charge-state.yaml
-> new file mode 100644
-> index 000000000000..40e8f6988769
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/chrome/google,cros-charge-state.yaml
-> @@ -0,0 +1,62 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/chrome/google,cros-charge-state.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Google Chrome OS EC(Embedded Controller) charge state driver.
-
-Capitalize, drop driver, drop full stop.
-
-
-...
-
-> +examples:
-> +  - |+
-
-No need for +
-
-> +    spi {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      cros_ec: ec@0 {
-> +        compatible = "google,cros-ec-spi";
-> +        reg = <0>;
-> +        interrupts = <35 0>;
-> +
-> +        charge_chip_battery_current: charge-chip-battery {
-
-1. Drop unused label.
-2. So this is a battery? Then just "battery"... or this is a charger?
-Please look how power supplies are done. This should not be different.
+> QCS9075 is compatible IoT-industrial grade variant of SA8775p SoC
+How does it relate to qcs9100? Why this is not compatible with the
+other? It looks like you duplicate here a lot without trying to make
+these built on top of each other.
 
 Best regards,
 Krzysztof
