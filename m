@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-123067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123068-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EED89D3549
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 09:22:34 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99B2A9D3551
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 09:25:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2564D286A80
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 08:22:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 195D4B216E5
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 08:25:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F82215443D;
-	Wed, 20 Nov 2024 08:22:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FDE815533F;
+	Wed, 20 Nov 2024 08:25:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bF9Zttze"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FyJET/A3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06D5A1B7F4;
-	Wed, 20 Nov 2024 08:22:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 164341B7F4;
+	Wed, 20 Nov 2024 08:25:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732090949; cv=none; b=ENRYwYxJNaNMi5CeJQzxIIO9gfPsEbMlz3/71+mAb3s1w9KguqgXawtFWVH2e2tqlB3bRhtuaXg1UzOUXqjQunF/xQME+fRc/UB2aq5rPpZREUn6Mxeh3jBhp8BO4Lt4ypI3FZJa+SLVm7OE1+MkEWCCmeD8i94+nJ5lDuChuJs=
+	t=1732091152; cv=none; b=D2yIVpCfvh4xPQ5NvqIEdRKtHo1/OkI5s9N+5zj8zfRZF/yNDfNrTm3lpw3u6azZEJJJPKZUDdV5wtziG42QAbYwo46FzW0GY0icGqBYREIwsp9/BmpUYI/w3AfyAunAln0arVF9eO+Qw71nlaD7XiYvtR1z/Daem/vBkErvqJA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732090949; c=relaxed/simple;
-	bh=76zuNGW4eisgA6+rUAF0FiulsIP5rdtlV6s0x8DYYBA=;
+	s=arc-20240116; t=1732091152; c=relaxed/simple;
+	bh=4g2jYdwDFVMXNP1wEEU61wC8oYt/WiBu8Ec1k44MiQY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RXbKpVeLuvExVjTDOpkBFyXi4Yn0WWbGlmyCR9SCtCQxwJogO7FPlr6VOhrljHiRKvHBVf74lBe6ztYNuhkpH8Bwj47rwZaUkQuyW5azcYcBKLTQCFq4RODb5r8X1Uu4fxRjDPi7b6ZxbQVVOOXbgiC2nbYVDADdd4TeG8nRd1A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bF9Zttze; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F26FEC4CECD;
-	Wed, 20 Nov 2024 08:22:27 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=uDzeWa1iGh+2acDRwmwJupBZZAV1feVal3cnhgpAEaoFfaoTLhvIBrifhnAE3hq8IXdXZrFbryVR+UleR3cZ4jr2vCMxYGYqOEIDPUP6nxWpesaLLF8qZX5EYUn/nyUQoV0Wblgi6p/ypg3UwOTjd4QMFc3GZsk0HMdZHeeAvvw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FyJET/A3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBC96C4CECD;
+	Wed, 20 Nov 2024 08:25:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732090948;
-	bh=76zuNGW4eisgA6+rUAF0FiulsIP5rdtlV6s0x8DYYBA=;
+	s=k20201202; t=1732091151;
+	bh=4g2jYdwDFVMXNP1wEEU61wC8oYt/WiBu8Ec1k44MiQY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bF9Zttzesv7JIRF5B7lKUfzK3zcIwLwysn2ymuQcrxecpgPxrl+ohzHEhPfO57QE8
-	 7HaMyMC6/yPsRURu53Qo4PBnMVnduHf9IdWpWVSFpsUDIKELiNe3S2umd/FELw/A6S
-	 C4/0fvRigCUfJsr/4kPLvCT6xL+7p001tQ3uShpokS5oITAyngcZnQttPwWwppZeg9
-	 ICvjul2C1NKhCSFiyZk/UqAXH7qxz9c9LJM4PRyOpKmzsaiT7VirqElCYXRY0WB7on
-	 14pgurY9r+wzs2mYZxZ+PGTyP0RSJasfs78B+I5vixiLU0iPBCikoPAkBJdrHq226a
-	 GDWaWeJaY+9ng==
-Date: Wed, 20 Nov 2024 09:22:25 +0100
+	b=FyJET/A3qqX0Ig94Sej1L4KJxIx6MBcWHlXRQzQ/QC00uTg7Kz4e2SDgschEiztX0
+	 qsUmBlXJgyP1HWfE5y3sBYXn7BLtUZmFgjTwp478T8s7UmWHccCQdcfWhfKZ0qynWY
+	 is/JtZQYF6sjGdLFNYMgISflbcs25A5q0FM20rGE40Re7yvRaXAsBCZsmVfagB/Rgf
+	 MbRW5knUVzpY48jn9zCps6xlShXCK39P3iO/lt/0gz7N+qyleFmaQMzbwUku+d30uv
+	 C/lJ15TzHlVWDyRk6ZXsN8+yecETDan/501CADHfXMPF4B67ifFQp2p4nxJXeCcC8q
+	 5JWC9UMtALyVA==
+Date: Wed, 20 Nov 2024 09:25:48 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Matt Coster <matt.coster@imgtec.com>
 Cc: Frank Binns <frank.binns@imgtec.com>, David Airlie <airlied@gmail.com>, 
@@ -52,11 +52,10 @@ Cc: Frank Binns <frank.binns@imgtec.com>, David Airlie <airlied@gmail.com>,
 	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, dri-devel@lists.freedesktop.org, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
 	linux-arm-kernel@lists.infradead.org, Randolph Sapp <rs@ti.com>, Darren Etheridge <detheridge@ti.com>
-Subject: Re: [PATCH v2 01/21] dt-bindings: gpu: img: More explicit compatible
- strings
-Message-ID: <2pfix2ozehlfb6pwrrhxhqh7gho56dh33usrnaqxq7anstytsp@ij5y7zm5cqlu>
+Subject: Re: [PATCH v2 02/21] dt-bindings: gpu: img: Further constrain clocks
+Message-ID: <rdo2aye6lzlxtwxashbftwytyfa54gea2jmv3ww3hxuokdj3rk@pza4lgqlfa6l>
 References: <20241118-sets-bxs-4-64-patch-v1-v2-0-3fd45d9fb0cf@imgtec.com>
- <20241118-sets-bxs-4-64-patch-v1-v2-1-3fd45d9fb0cf@imgtec.com>
+ <20241118-sets-bxs-4-64-patch-v1-v2-2-3fd45d9fb0cf@imgtec.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,85 +64,78 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241118-sets-bxs-4-64-patch-v1-v2-1-3fd45d9fb0cf@imgtec.com>
+In-Reply-To: <20241118-sets-bxs-4-64-patch-v1-v2-2-3fd45d9fb0cf@imgtec.com>
 
-On Mon, Nov 18, 2024 at 01:01:53PM +0000, Matt Coster wrote:
-> The current compatible strings are not specific enough to constrain the
-
-No, they are specific enough.
-
-> hardware in devicetree. For example, the current "img,img-axe" string
-> refers to the entire family of Series AXE GPUs. The more specific
-> "img,img-axe-1-16m" string refers to the AXE-1-16M GPU which, unlike the
-> rest of its family, only uses a single power domain.
+On Mon, Nov 18, 2024 at 01:01:54PM +0000, Matt Coster wrote:
+> All Imagination GPUs use three clocks: core, mem and sys. All reasonably
+> modern Imagination GPUs also support a single-clock mode where the SoC
+> only hooks up core and the other two are derived internally. On GPUs which
+> support this mode, it is the default and most commonly used integration.
 > 
-> While in this instance there is already "ti,am62-gpu" for the more
-
-That's the specific compatible.
-
-> specific case, the intent here is to draw a line between properties
-> inherent to the IP core and choices made by the silicon vendor at
-> integration time. For example, the number of power domains is a property
-> of the IP core, whereas the decision to use one or three clocks (see
-> next patch) is a vendor one.
-> 
-> Work is currently underway to add support for volcanic-based Imagination
-> GPUs, for which bindings will be added in "img,powervr-volcanic.yaml".
-> The split between rogue and volcanic cores is non-obvious at times, so
-> add a generic top-level "img,img-rogue" compatible string here to allow
-> for simpler differentiation in devicetrees without referring back to the
-> bindings.
-> 
-> Make these changes now before introducing more compatible strings to keep
-> the legacy versions to a minimum.
+> Codify this "1 or 3" constraint in our bindings and hang the specifics off
+> the vendor compatible string to mirror the integration-time choice.
 > 
 > Signed-off-by: Matt Coster <matt.coster@imgtec.com>
 > ---
 > Changes in v2:
-> - Clarified justification for compatible strings
-> - Link to v1: https://lore.kernel.org/r/20241105-sets-bxs-4-64-patch-v1-v1-1-4ed30e865892@imgtec.com
+> - Simplified clocks constraints (P2)
+> - Link to v1: https://lore.kernel.org/r/20241105-sets-bxs-4-64-patch-v1-v1-2-4ed30e865892@imgtec.com
 > ---
->  .../devicetree/bindings/gpu/img,powervr-rogue.yaml    | 19 ++++++++++++++-----
->  1 file changed, 14 insertions(+), 5 deletions(-)
+>  .../devicetree/bindings/gpu/img,powervr-rogue.yaml   | 20 +++++++++++---------
+>  1 file changed, 11 insertions(+), 9 deletions(-)
 > 
 > diff --git a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-> index 256e252f8087fa0d6081f771a01601d34b66fe19..ef7070daf213277d0190fe319e202fdc597337d4 100644
+> index ef7070daf213277d0190fe319e202fdc597337d4..3b5a5b966585ac29ad104c7aef19881eca73ce80 100644
 > --- a/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
 > +++ b/Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml
-> @@ -12,10 +12,19 @@ maintainers:
+> @@ -29,16 +29,16 @@ properties:
+>    reg:
+>      maxItems: 1
 >  
->  properties:
->    compatible:
+> -  clocks:
+> -    minItems: 1
+> -    maxItems: 3
+> +  clocks: true
+
+NAK. Widest constraints always stay here.
+
+>  
+>    clock-names:
 > -    items:
-> -      - enum:
-> -          - ti,am62-gpu
-> -      - const: img,img-axe # IMG AXE GPU model/revision is fully discoverable
+> -      - const: core
+> -      - const: mem
+> -      - const: sys
+> -    minItems: 1
 > +    oneOf:
 > +      - items:
-> +          - enum:
-> +              - ti,am62-gpu
-> +          - const: img,img-axe-1-16m
-> +          - const: img,img-rogue
-
-NAK, that's ABI break. You are stuck with whatever you sent earlier.
-
-
-> +
-> +      # This legacy combination of compatible strings was introduced early on before the more
-> +      # specific GPU identifiers were used. Keep it around here for compatibility, but never use
-> +      # "img,img-axe" in new devicetrees.
-
-Wrap according to Linux coding style. But anyway this is not needed,
-just deprecate things.
-
+> +          - const: core
 > +      - items:
-> +          - const: ti,am62-gpu
-> +          - const: img,img-axe
+> +          - const: core
+> +          - const: mem
+> +          - const: sys
 
-So you want to use deprecated here?
+Why? Sorry, this is just wrong. This deviec has specific, one clock.
 
-Anyway, entire change is not needed and without proper justification.
-Your marketing terms are not proper justification.
+Anyway, this needs to use old syntax. You change here nothing.
+
+NAK
+
+>  
+>    interrupts:
+>      maxItems: 1
+> @@ -56,11 +56,13 @@ required:
+>  additionalProperties: false
+>  
+>  allOf:
+> +  # Vendor integrations using a single clock domain
+>    - if:
+>        properties:
+>          compatible:
+>            contains:
+> -            const: ti,am62-gpu
+> +            anyOf:
+
+Nope. That's not needed, not explained.
 
 Best regards,
 Krzysztof
