@@ -1,108 +1,84 @@
-Return-Path: <devicetree+bounces-123065-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123064-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95CC29D352B
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 09:16:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 178839D3529
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 09:16:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FD8B1F21CFE
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 08:16:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B9B7F1F21C4F
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 08:16:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90413189B8C;
-	Wed, 20 Nov 2024 08:15:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C2BB181B8D;
+	Wed, 20 Nov 2024 08:15:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YPoFWemU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11FB11791F4
-	for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 08:15:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18FFC179972;
+	Wed, 20 Nov 2024 08:15:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732090553; cv=none; b=WvcAslUzgS4Da0wCmnarS2RihuxWZL+TMVWbezBe9vVarFxKSzL/OB0LegBpBQw+TMnTAttk+tskVvq6bfJDvEQUTek1eadtG13ujUgHemMioUBZZGqtx03GYOgwYqcAYvbCESzNjwLRkbEkvEkTWK1dLMiy2Vwsdtp03xIZzr8=
+	t=1732090551; cv=none; b=Tv6JQTKRVq2oO9dYQkvGayOB+31FU24asIJ1peapCqdVCipLIfKOxzi5oAQBO52JRpv/CRM8qxVKbC9o2qmrXXIT36ZNED+Lwict1zKfApfyeQrW0xBG22PG1JyPpgNPoo8iaaO5RRjuniNJR3Q98yVQij0kMTfVGMxFAagv1Ho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732090553; c=relaxed/simple;
-	bh=DcSgKte2pcMYYVsB41U3WeGuLHfmOPxDsdB/xXu0KUQ=;
+	s=arc-20240116; t=1732090551; c=relaxed/simple;
+	bh=ER+is93n4lYOZttDpI/whgUvhKzjLaUNcd5aauAuCW0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uSv3197EdnLQb2b2oQwSyD4NaOzbFgnHmIlv/JBIHMzEcIEEnAtDT9j9sC7t47Pbabi/UXIqL5tTjzzsxh+je1/9GJn+tZnmFpLDsy/AiKuac5fxOqYzpIK5snQZqOqfQhtQ6e13Hpp8Mt6udioq5N6iqcwO3/P9/ai5UvhRRJw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1tDfs0-0005DZ-1o; Wed, 20 Nov 2024 09:15:28 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1tDfrz-001i4M-0n;
-	Wed, 20 Nov 2024 09:15:27 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1tDfrz-0059NO-0Q;
-	Wed, 20 Nov 2024 09:15:27 +0100
-Date: Wed, 20 Nov 2024 09:15:27 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Luis Chamberlain <mcgrof@kernel.org>,
-	Russ Weight <russ.weight@linux.dev>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Marco Felsch <kernel@pengutronix.de>,
-	Henrik Rydberg <rydberg@bitmath.org>,
-	Danilo Krummrich <dakr@redhat.com>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org
-Subject: Re: [PATCH 3/5] dt-bindings: vendor-prefixes: Add TouchNetix AS
-Message-ID: <20241120081527.s6pfo5soa2tqvra4@pengutronix.de>
-References: <20241119-v6-10-topic-touchscreen-axiom-v1-0-6124925b9718@pengutronix.de>
- <20241119-v6-10-topic-touchscreen-axiom-v1-3-6124925b9718@pengutronix.de>
- <b5hjephfcvdu2jjchodaj5u4yltvatdgmse7xvwkhaepn5dinv@sfl4utyuz34g>
+	 Content-Type:Content-Disposition:In-Reply-To; b=SMgqx5wACcgZvJBInElGMxjnArmzvoOrO6/KKrbpyZ+UNjkFJ2B+QAfwtIkFJwMd2FKNn60SvsUrheKQGA54oDj6+G4g5tXFSXA90jNDqzbtZSxuY59k351d2P19bn6Au5HySdbhbAq8Y9Xmxw44PADC4a/PH6si48xyDhtptgU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YPoFWemU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FA05C4CECD;
+	Wed, 20 Nov 2024 08:15:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732090550;
+	bh=ER+is93n4lYOZttDpI/whgUvhKzjLaUNcd5aauAuCW0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YPoFWemUvcosfDODbudqdu2KmrGycJSiIYJuDUxLHcbbUptPN0Kg7iHWtZWkZi6c+
+	 dQFaWH1VRHO1lSj6r8ah98lZtCW36YZRhtCJEMgqdA93rz7MqVQl5Cgh6uHxmekel8
+	 Jp5pwA/jB8k8JeICEh4TgQ34UuJmgEE24u8pXphhYQ9zixyxdX9RepoEkNk/vSdrwM
+	 vjL3R2hxKQ8j3sDQmljxY+kF4SRFe1pnU4WbtU0EE3QV5655QUjp+RqdD2VnCUG+Fs
+	 Mv/kdavO8rhRWpxY9tCGBDzfc6yNkMLOvdWQJhppM+SYAQcZvaLDaPHGGGGsldrieY
+	 cZvYhJy4pKStw==
+Date: Wed, 20 Nov 2024 09:15:47 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Melody Olvera <quic_molvera@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Taniya Das <quic_tdas@quicinc.com>, Trilok Soni <quic_tsoni@quicinc.com>, 
+	Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/7] dt-bindings: clock: qcom-rpmhcc: Add RPMHCC for
+ SM8750
+Message-ID: <p3rrr4gwkd2zsfly2r5zouzmbs5pasd2qz6mala7xy2knbb6kx@l4yminvuy563>
+References: <20241112002807.2804021-1-quic_molvera@quicinc.com>
+ <20241112002807.2804021-2-quic_molvera@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <b5hjephfcvdu2jjchodaj5u4yltvatdgmse7xvwkhaepn5dinv@sfl4utyuz34g>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20241112002807.2804021-2-quic_molvera@quicinc.com>
 
-On 24-11-20, Krzysztof Kozlowski wrote:
-> On Tue, Nov 19, 2024 at 11:33:52PM +0100, Marco Felsch wrote:
-> > From: Kamel Bouhara <kamel.bouhara@bootlin.com>
-> > 
-> > Add vendor prefix for TouchNetix AS (https://www.touchnetix.com/products/).
-> > 
-> > Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
-> > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Mon, Nov 11, 2024 at 04:28:01PM -0800, Melody Olvera wrote:
+> From: Taniya Das <quic_tdas@quicinc.com>
 > 
-> I think this did not happen (only Ack).
-
-Huh.. I used b4 to retrieve the latest Bootlin version. According [1] it
-was already present :/ I can drop it if you want.
-
-[1] https://lore.kernel.org/all/20240703142520.207066-3-kamel.bouhara@bootlin.com/
-
-Regards,
-  Marco
-
+> Update the documentation for clock rpmh driver on SM8750 SoCs.
 > 
-> Best regards,
-> Krzysztof
-> 
-> 
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/clock/qcom,rpmhcc.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
 
