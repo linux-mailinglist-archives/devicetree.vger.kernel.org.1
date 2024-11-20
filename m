@@ -1,236 +1,107 @@
-Return-Path: <devicetree+bounces-123086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F12D9D35EE
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 09:52:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A75B9D35F4
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 09:53:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DCE381F2149E
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 08:52:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 203F528384A
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 08:53:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1947417C7BD;
-	Wed, 20 Nov 2024 08:52:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B95C918A944;
+	Wed, 20 Nov 2024 08:53:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nS3fVpfi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 672332557A
-	for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 08:52:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85BD0189F54;
+	Wed, 20 Nov 2024 08:53:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732092740; cv=none; b=ObJHIMx/oQ7RgXhn5E2K/gMEvrTwHRqrYt11ixeD7z1Pk7uH0HVSuSC64i7lUhM0tlx8Npl3GpD4ldY7S5oGqqY5BADDB9jIrA0HzjkjiFn22iySebCCNWotNHOLifcjuMCtbYv74IoA+5ImMYDpQ866thd3pFUVmUjsEK9u8SM=
+	t=1732092781; cv=none; b=SEYewIF+hyy7Rgy9WPLDwq5RkKEzrm8cLprmL9NEk3E9GLPtk9WqZ2Hzulh5q3PG6zlUaxX858WvofUcz7ZdKDvKjO/Los0R4NsEW7gmSLUoS4Wk01Lc5t7A0U2QFr0rTB8h00rauN60/rG1jlojzmfeDtvIHDZgi+dczVJ1DO0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732092740; c=relaxed/simple;
-	bh=wLDscVPrKUCW2MnjsiJx9LPBUOOJcvzBta007Y92kZw=;
+	s=arc-20240116; t=1732092781; c=relaxed/simple;
+	bh=Hn6npxFVYkALgkljMWG2aKs+3PZdGymydRwuopKUxxo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BT/1c32BSi6vdgmibMl/dC6k0YFhXO1rxaLXaUnWmXnDY3zECkVrvrFc6SeAmaj598Odq8ILb6xpvgZg1Gic/tGbnerxC3VExLSCKBENIZJ7so3NUemKSTtv/9Ls7F0UuWlA5WtEWBICCLgYo5fDq+PvcqI/XpgADHjs1tkJbX0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tDgRO-0002oP-Mo; Wed, 20 Nov 2024 09:52:02 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tDgRO-001iC2-0u;
-	Wed, 20 Nov 2024 09:52:02 +0100
-Received: from pengutronix.de (pd9e59fec.dip0.t-ipconnect.de [217.229.159.236])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id E03E3377A75;
-	Wed, 20 Nov 2024 08:52:01 +0000 (UTC)
-Date: Wed, 20 Nov 2024 09:52:01 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
-Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S . Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	imx@lists.linux.dev, NXP Linux Team <s32@nxp.com>, 
-	Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>, 
-	Enric Balletbo <eballetb@redhat.com>
-Subject: Re: [PATCH 3/3] can: flexcan: handle S32G2/S32G3 separate interrupt
- lines
-Message-ID: <20241120-magnificent-accelerated-robin-70e7ef-mkl@pengutronix.de>
-References: <20241119081053.4175940-1-ciprianmarian.costea@oss.nxp.com>
- <20241119081053.4175940-4-ciprianmarian.costea@oss.nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=cxG9f/c95TH6xgSLFLsdrUF//OWVo7mjfgU4amB75D/f18dNzH+ktd4GxRVw6pQTiuE9eoyWKdUGbVNeYrdEXcZgEvQHSwWzXmNYFy4YE2F98OmKlMAZt3Pu4l2Z0ejFgowJXlLESniBcwj3/SzyuX2ydi0hX9eRHh+bKVi1zG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nS3fVpfi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B30E4C4CED7;
+	Wed, 20 Nov 2024 08:53:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732092781;
+	bh=Hn6npxFVYkALgkljMWG2aKs+3PZdGymydRwuopKUxxo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nS3fVpfipJGRTqGyEO4Kk0eskgpQElJA19ceS29wy5S9oOT3oxrP6GtYJZg05f9Qy
+	 aZ9hs+vBrc1bjJ994xpW6Kr77lD2lC36HghIVWt4GFZeoXck35lOb3Pbq9WjWxZtnq
+	 cFlEvwuUVYoyyK7nuvvEzkLvNixMKo3bthEh9EnVSke0Nof3WMsmFQDxyZeME2B4+N
+	 F1+f0o8oa6IA3Z6xJx5wFGu4c0ximz8m1FKlE+CSvsuInGq7tagASAi7vwuUzFWH9Y
+	 vlG4DZROcfCPBiTCHlmqwOvplsVhJyVGtjBySpZqLgGS4aV1KcpLyIV+oHbdFwE8ga
+	 gcMONahdMPHqA==
+Date: Wed, 20 Nov 2024 09:52:57 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Loic Poulain <loic.poulain@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
+	Jagadeesh Kona <quic_jkona@quicinc.com>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH 6/6] arm64: dts: qcom: x1e80100: Add CAMSS block
+ definition
+Message-ID: <vh6fvvminsq7eeovz6su336awgq56kc2r54mldmihgqxo2wkgt@wxciyxacp2ov>
+References: <20241119-b4-linux-next-24-11-18-dtsi-x1e80100-camss-v1-0-54075d75f654@linaro.org>
+ <20241119-b4-linux-next-24-11-18-dtsi-x1e80100-camss-v1-6-54075d75f654@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ez23ni5zujlwkjbj"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241119081053.4175940-4-ciprianmarian.costea@oss.nxp.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20241119-b4-linux-next-24-11-18-dtsi-x1e80100-camss-v1-6-54075d75f654@linaro.org>
 
-
---ez23ni5zujlwkjbj
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 3/3] can: flexcan: handle S32G2/S32G3 separate interrupt
- lines
-MIME-Version: 1.0
-
-On 19.11.2024 10:10:53, Ciprian Costea wrote:
-> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
->=20
-> On S32G2/S32G3 SoC, there are separate interrupts
-> for state change, bus errors, MBs 0-7 and MBs 8-127 respectively.
->=20
-> In order to handle this FlexCAN hardware particularity, reuse
-> the 'FLEXCAN_QUIRK_NR_IRQ_3' quirk provided by mcf5441x's irq
-> handling support.
->=20
-> Additionally, introduce 'FLEXCAN_QUIRK_SECONDARY_MB_IRQ' quirk,
-> which can be used in case there are two separate mailbox ranges
-> controlled by independent hardware interrupt lines, as it is
-> the case on S32G2/S32G3 SoC.
-
-Does the mainline driver already handle the 2nd mailbox range? Is there
-any downstream code yet?
-
-Marc
-
->=20
-> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+On Tue, Nov 19, 2024 at 01:10:35PM +0000, Bryan O'Donoghue wrote:
+> Add dtsi to describe the xe180100 CAMSS block
+> 
+> 4 x CSIPHY
+> 2 x CSID
+> 2 x CSID Lite
+> 2 x IFE
+> 2 x IFE Lite
+> 
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 > ---
->  drivers/net/can/flexcan/flexcan-core.c | 25 +++++++++++++++++++++++--
->  drivers/net/can/flexcan/flexcan.h      |  3 +++
->  2 files changed, 26 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/net/can/flexcan/flexcan-core.c b/drivers/net/can/fle=
-xcan/flexcan-core.c
-> index f0dee04800d3..dc56d4a7d30b 100644
-> --- a/drivers/net/can/flexcan/flexcan-core.c
-> +++ b/drivers/net/can/flexcan/flexcan-core.c
-> @@ -390,9 +390,10 @@ static const struct flexcan_devtype_data nxp_s32g2_d=
-evtype_data =3D {
->  	.quirks =3D FLEXCAN_QUIRK_DISABLE_RXFG | FLEXCAN_QUIRK_ENABLE_EACEN_RRS=
- |
->  		FLEXCAN_QUIRK_DISABLE_MECR | FLEXCAN_QUIRK_BROKEN_PERR_STATE |
->  		FLEXCAN_QUIRK_USE_RX_MAILBOX | FLEXCAN_QUIRK_SUPPORT_FD |
-> -		FLEXCAN_QUIRK_SUPPORT_ECC |
-> +		FLEXCAN_QUIRK_SUPPORT_ECC | FLEXCAN_QUIRK_NR_IRQ_3 |
->  		FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX |
-> -		FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX_RTR,
-> +		FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX_RTR |
-> +		FLEXCAN_QUIRK_SECONDARY_MB_IRQ,
->  };
-> =20
->  static const struct can_bittiming_const flexcan_bittiming_const =3D {
-> @@ -1771,12 +1772,21 @@ static int flexcan_open(struct net_device *dev)
->  			goto out_free_irq_boff;
->  	}
-> =20
-> +	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SECONDARY_MB_IRQ) {
-> +		err =3D request_irq(priv->irq_secondary_mb,
-> +				  flexcan_irq, IRQF_SHARED, dev->name, dev);
-> +		if (err)
-> +			goto out_free_irq_err;
-> +	}
+>  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 180 +++++++++++++++++++++++++++++++++
+>  1 file changed, 180 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> index c19754fdc7e0fa4f674ce19f813db77fe2615cf3..f23352493cb270c0fdc3c42add032286601db1e9 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> @@ -4730,6 +4730,186 @@ cci1_i2c1: i2c-bus@1 {
+>  			};
+>  		};
+>  
+> +		camss: camss@ac62000 {
+> +			compatible = "qcom,x1e80100-camss";
 > +
->  	flexcan_chip_interrupts_enable(dev);
-> =20
->  	netif_start_queue(dev);
-> =20
->  	return 0;
-> =20
-> + out_free_irq_err:
-> +	free_irq(priv->irq_err, dev);
->   out_free_irq_boff:
->  	free_irq(priv->irq_boff, dev);
->   out_free_irq:
-> @@ -1808,6 +1818,9 @@ static int flexcan_close(struct net_device *dev)
->  		free_irq(priv->irq_boff, dev);
->  	}
-> =20
-> +	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SECONDARY_MB_IRQ)
-> +		free_irq(priv->irq_secondary_mb, dev);
-> +
->  	free_irq(dev->irq, dev);
->  	can_rx_offload_disable(&priv->offload);
->  	flexcan_chip_stop_disable_on_error(dev);
-> @@ -2197,6 +2210,14 @@ static int flexcan_probe(struct platform_device *p=
-dev)
->  		}
->  	}
-> =20
-> +	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SECONDARY_MB_IRQ) {
-> +		priv->irq_secondary_mb =3D platform_get_irq(pdev, 3);
-> +		if (priv->irq_secondary_mb < 0) {
-> +			err =3D priv->irq_secondary_mb;
-> +			goto failed_platform_get_irq;
-> +		}
-> +	}
-> +
->  	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SUPPORT_FD) {
->  		priv->can.ctrlmode_supported |=3D CAN_CTRLMODE_FD |
->  			CAN_CTRLMODE_FD_NON_ISO;
-> diff --git a/drivers/net/can/flexcan/flexcan.h b/drivers/net/can/flexcan/=
-flexcan.h
-> index 4933d8c7439e..d4b1a954c538 100644
-> --- a/drivers/net/can/flexcan/flexcan.h
-> +++ b/drivers/net/can/flexcan/flexcan.h
-> @@ -70,6 +70,8 @@
->  #define FLEXCAN_QUIRK_SUPPORT_RX_FIFO BIT(16)
->  /* Setup stop mode with ATF SCMI protocol to support wakeup */
->  #define FLEXCAN_QUIRK_SETUP_STOP_MODE_SCMI BIT(17)
-> +/* Setup secondary mailbox interrupt */
-> +#define FLEXCAN_QUIRK_SECONDARY_MB_IRQ	BIT(18)
-> =20
->  struct flexcan_devtype_data {
->  	u32 quirks;		/* quirks needed for different IP cores */
-> @@ -105,6 +107,7 @@ struct flexcan_priv {
->  	struct regulator *reg_xceiver;
->  	struct flexcan_stop_mode stm;
-> =20
-> +	int irq_secondary_mb;
->  	int irq_boff;
->  	int irq_err;
-> =20
-> --=20
-> 2.45.2
->=20
->=20
->=20
+> +			reg = <0 0x0acb7000 0 0x2000>,
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+It does not look like you tested the DTS against bindings. Please run
+'make dtbs_check W=1' (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
 
---ez23ni5zujlwkjbj
-Content-Type: application/pgp-signature; name="signature.asc"
+Best regards,
+Krzysztof
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmc9oy4ACgkQKDiiPnot
-vG/NdQf6AtuniF8dcHrunU1m1SSRv5jc3w6XkosxNN8CKylVbbyk5j17sCoPxDBl
-x4dePWSbEBp/823861k6VQn+oYuNorZ97+WlAoreKizkbymQZ6kLWa6NyRSMGCTZ
-xuF74F1vPTX48tTgwQAbzZVe5yat+fgju7n6FRMml36vDSZT8DpvhneusodoVIil
-Zqrdy9hZKUQNLCx3/kiV8z6GF2bUMyo6bhCktHKD1iaF/uQBhgcPEkMiaESYkhPN
-zgUHkbePjkOtcuHvb5srNjM/1fRmvhbcv+eDHA9M+lA9hHsaz9JmN/8TW8e7iF2A
-eqOcFGfFbEDQsz2/QnvDacm1CMN/QQ==
-=wVkf
------END PGP SIGNATURE-----
-
---ez23ni5zujlwkjbj--
 
