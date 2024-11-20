@@ -1,179 +1,354 @@
-Return-Path: <devicetree+bounces-123324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FF659D407F
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 17:49:01 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE5529D4085
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 17:49:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1501D281A82
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 16:49:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57A881F268C6
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 16:49:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B79D714EC55;
-	Wed, 20 Nov 2024 16:48:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA94A1527B1;
+	Wed, 20 Nov 2024 16:49:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H+EndPRh"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="z57fzUXX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D9351474CC;
-	Wed, 20 Nov 2024 16:48:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6F6C145324
+	for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 16:49:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732121335; cv=none; b=mQa+DEkzks3dG3rw/lSgq0dnalhGBKZ9wcXaMql2ZN5ZxubZoXG37efkxB/t1SwjhZ5Ayvb2+iw8OAEXA51Waqt9Uv6wf9bT+e14A0Om9XRfTPxU7InRHQE2/EQTkJfxitQumGSnR4dG2+64M+CUMPERxVcGJ0exgq+VWVBRSXw=
+	t=1732121393; cv=none; b=HwdR6KikkAaTQcupljy4UawjR6uzbCugmMDsLkktVJKwOCajtZpYMRYsKNNyM8rIR8oQlPqxVjock/vHGRJdqc3DqSsooOHn+Qp9HkCy1f8IzVhOuzTjXIFWvqXcd9BjcjYUEIEFI6t/kwd5ht4jgNAnej3azFjr7UIhBTsQg90=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732121335; c=relaxed/simple;
-	bh=Xj2XGnCnlH9Wd8nMgGB5FfrrL5fgMMi97SviUhy/am4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GJfgqdORz0Yj/UD1625bqXuWkD32VDJJkuHP9dFyq/9D0rmd2Quh6TyYYpAOkYoFsNCC5S7OpBteq4Yv2+Tf+q3USnQDSJzvvi2GPkA2akDQ5i4K84NCyuYpjw+c9/k0hBtSKaILgEclLeLQ3F3MouOoF9qc9TYpvDVyMza9FEI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H+EndPRh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D785CC4CECD;
-	Wed, 20 Nov 2024 16:48:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732121335;
-	bh=Xj2XGnCnlH9Wd8nMgGB5FfrrL5fgMMi97SviUhy/am4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=H+EndPRhTsi7i44TUXsfXGdxSfoianw4lY75huz+86XqeQ4qkm57bVUQXwpb8D9DH
-	 QHvkMPukfO6dKiNgga/fEogkNXLqo1AoMMRJJA1JzVAjbtxeV6jqiZ3TepgvE8qBa8
-	 jVQh9qf6wyP8ORXtvtOfOPSujcSHZjtKjz6sPiRwYf1TXN1iHN7/l2QJDfFC9Hu/dX
-	 gM99gtoUMBSo/8WkTn6YIEIAUHU4exWGwCsf6iFIOsLUTRYPlp9dvVuI4N7Iv8Fsbn
-	 JEB7Q75yIbqwJkfVAWTyqWGhlfb/cUJm3yNx5FqHmFKOKMotYMcQGpz7UBR3bOTrtx
-	 E6fo1XiBZgK3Q==
-Date: Wed, 20 Nov 2024 16:48:47 +0000
-From: Conor Dooley <conor@kernel.org>
-To: keith zhao <keith.zhao@starfivetech.com>
-Cc: devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	andrzej.hajda@intel.com, neil.armstrong@linaro.org,
-	rfoss@kernel.org, Laurent.pinchart@ideasonboard.com,
-	jonas@kwiboo.se, jernej.skrabec@gmail.com,
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-	tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
-	william.qiu@starfivetech.com, xingyu.wu@starfivetech.com,
-	kernel@esmil.dk, paul.walmsley@sifive.com, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, p.zabel@pengutronix.de,
-	changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/9] riscv: dts: Add display property
-Message-ID: <20241120-ricotta-rescuer-90bad7c38e93@spud>
-References: <20241120061848.196754-1-keith.zhao@starfivetech.com>
- <20241120061848.196754-3-keith.zhao@starfivetech.com>
+	s=arc-20240116; t=1732121393; c=relaxed/simple;
+	bh=r8NZcBs2sEz8e6FZ/2Ioskl9LkSBNEeddoM2OKnec6A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Wxv+TCDjzhbts1H8qwYAtt5+l1hrx/0zvICXuWtaLPUYxnJXDISwcmUwgaiM+Q/VLHbM2SMxBgQDdNMZWmQIPmlg8jSQfnOiK61oYAyFQgK6OxfYRBy5Eub9sQMpsdCuRPdUgV0CUS5JfIgtWAtqLsK34axV1fKBuxNU0oBiDCA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=z57fzUXX; arc=none smtp.client-ip=209.85.128.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-6eebb54fc48so13128397b3.1
+        for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 08:49:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1732121390; x=1732726190; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FNJkcwRcgLMLMuE8q5mBbqQ2JyH7D/IwifRJTKex0/w=;
+        b=z57fzUXXWoAIT8Z//4QcISN7xowssG3AeyusMRGkkcWUBa3gyJPb95pAZHVg2C2LIv
+         LtYrqicOQiOR0+aKdxnutBz/uqQD14OiBc6E2GCc8PQrJCOc6m9/IOA4fWusg3hAOrLI
+         Lvys9uP6d/OLHnfDfLfKcd57YDjLVZC8zyLthTYhbiTTLf/jZHGqs3vzCpMmVejE1vha
+         eEElzpYRxtBkO6ANrXbL06yY2ABQM+27ovCLZYTJxXzY/tERCYjUahpt9qvesZUJPhdP
+         FdQdERVMN9RTn9L8QjPe93C2oK0Kr85VXYStykITZfy8aN8sxgD00eRvcn7fEhLHgKyR
+         uhtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732121390; x=1732726190;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FNJkcwRcgLMLMuE8q5mBbqQ2JyH7D/IwifRJTKex0/w=;
+        b=FaKWAx03aryF6wR4q/iZ8fnboL4teo+6Cez+7aif9WDb1iwhN7OQCP7EqXgVVU+ix5
+         Qynz2UcuDnNcSJxH1U3y7u/tWrLHRccckD/W9DBtTnOjN5PfElhkqhEQi7VSGL8zmXfS
+         4QtpKwaUe7srDFT0T9g3fj+hasX5VEN9SbTbKZFHfUnr9XpxmfWT7+wD0rwOW2AgUmBC
+         crQaR//riCDCONKBIqFlsCRr7zLeJ0zgW6egbufI0pC4Vi3WNspgB8ovArQ5nyRxKLH5
+         y0Q5ydVbxp2SAW+JZhRMv59FsJGZvG6MjCQR2H7uzBw6n15c8S6sDM4vD0RyEHrXDyl0
+         pYhQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWej/IVnRtLu7BlVnc/bK1/VmimBweveqadqgJ4rGWVlR+ukxAdNeeR+13hvZEB60GckM8kSpnCWIA5@vger.kernel.org
+X-Gm-Message-State: AOJu0YyMViGG4qfWOv6DenkOp7yYRrPl3GHZa/VrSSlOozCMFncrwMsz
+	QQOaG4F7efEuAOhLFgp++5+aaRdX7ISBYVvzOms7cEC3SsM30QtrxvVUCJBD1hs=
+X-Google-Smtp-Source: AGHT+IGwdWGaoYeSXKzm2/GlitpS+zOHktULnOeuKUobVI140EepHW/8+OKb4ahYFKL5oL68l9Ullw==
+X-Received: by 2002:a05:690c:46c4:b0:6e3:4436:56ba with SMTP id 00721157ae682-6eebd141ebamr40783437b3.8.1732121389779;
+        Wed, 20 Nov 2024 08:49:49 -0800 (PST)
+Received: from [192.168.40.12] (d24-150-219-207.home.cgocable.net. [24.150.219.207])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6d4381340f8sm12779316d6.110.2024.11.20.08.49.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Nov 2024 08:49:49 -0800 (PST)
+Message-ID: <5a6ad0dc-f777-4129-962f-e10a0f7d6ee1@baylibre.com>
+Date: Wed, 20 Nov 2024 11:49:48 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Etb5DlIYTN201Rze"
-Content-Disposition: inline
-In-Reply-To: <20241120061848.196754-3-keith.zhao@starfivetech.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RESEND v2 2/2] pwm: Add Nuvoton MA35D1 PWM controller
+ support
+To: Chi-Wen Weng <cwweng.linux@gmail.com>, ukleinek@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
+ devicetree@vger.kernel.org, ychuang3@nuvoton.com, schung@nuvoton.com,
+ cwweng@nuvoton.com
+References: <20241024104309.169510-1-cwweng.linux@gmail.com>
+ <20241024104309.169510-3-cwweng.linux@gmail.com>
+Content-Language: en-US
+From: Trevor Gamblin <tgamblin@baylibre.com>
+In-Reply-To: <20241024104309.169510-3-cwweng.linux@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+Hello,
 
---Etb5DlIYTN201Rze
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Nov 20, 2024 at 02:18:41PM +0800, keith zhao wrote:
-> Add the display DT nodes in Starfive JH7110 soc-specific DT file.
->=20
-> Signed-off-by: keith zhao <keith.zhao@starfivetech.com>
-
-$subject: "riscv: dts: Add display property"
-
-a) this is jh7110 exclusive, not for all riscv devicetrees
-b) you are adding more than a property
-
+On 2024-10-24 06:43, Chi-Wen Weng wrote:
+> This commit adds a generic PWM framework driver for Nuvoton MA35D1
+> PWM controller.
+>
+> Signed-off-by: Chi-Wen Weng <cwweng.linux@gmail.com>
 > ---
->  .../boot/dts/starfive/jh7110-common.dtsi      | 125 ++++++++++++++++++
->  arch/riscv/boot/dts/starfive/jh7110.dtsi      |  41 ++++++
->  2 files changed, 166 insertions(+)
->=20
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv=
-/boot/dts/starfive/jh7110-common.dtsi
-> index 9d77713f5361..301b56f2ef0c 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-> @@ -30,6 +30,25 @@ memory@40000000 {
->  		reg =3D <0x0 0x40000000 0x1 0x0>;
->  	};
-> =20
-> +	reserved-memory {
-> +		#address-cells =3D <2>;
-> +		#size-cells =3D <2>;
-> +		ranges;
+>   drivers/pwm/Kconfig      |   9 +++
+>   drivers/pwm/Makefile     |   1 +
+>   drivers/pwm/pwm-ma35d1.c | 169 +++++++++++++++++++++++++++++++++++++++
+>   3 files changed, 179 insertions(+)
+>   create mode 100644 drivers/pwm/pwm-ma35d1.c
+I don't see a MAINTAINERS entry? That needs to be added in the bindings 
+patch first, and then it should be updated to list this driver file.
+>
+> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+> index 0915c1e7df16..97b9e83af020 100644
+> --- a/drivers/pwm/Kconfig
+> +++ b/drivers/pwm/Kconfig
+> @@ -411,6 +411,15 @@ config PWM_LPSS_PLATFORM
+>   	  To compile this driver as a module, choose M here: the module
+>   	  will be called pwm-lpss-platform.
+>   
+> +config PWM_MA35D1
+> +	tristate "Nuvoton MA35D1 PWM support"
+> +	depends on ARCH_MA35 || COMPILE_TEST
+> +	help
+> +	  Generic PWM framework driver for Nuvoton MA35D1.
 > +
-> +		/* vout applies for space from this CMA
-
-"vout" could be a voltage, please be more specific. Comments should be
-wrapped at at least 80 chars. Linux coding style puts /* on a line of
-its own.
-
-> +		 * Without this CMA reservation,
-> +		 * vout may not work properly.
-> +		 */
-> +		linux,cma {
-> +			compatible =3D "shared-dma-pool";
-> +			reusable;
-> +			size =3D <0x0 0x20000000>;
-> +			alignment =3D <0x0 0x1000>;
-> +			alloc-ranges =3D <0x0 0x70000000 0x0 0x20000000>;
-> +			linux,cma-default;
-> +		};
-> +	};
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called pwm-ma35d1.
 > +
->  	gpio-restart {
->  		compatible =3D "gpio-restart";
->  		gpios =3D <&sysgpio 35 GPIO_ACTIVE_HIGH>;
-> @@ -62,12 +81,55 @@ codec {
->  			};
->  		};
->  	};
+>   config PWM_MESON
+>   	tristate "Amlogic Meson PWM driver"
+>   	depends on ARCH_MESON || COMPILE_TEST
+> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+> index 9081e0c0e9e0..c1d3a1d8add0 100644
+> --- a/drivers/pwm/Makefile
+> +++ b/drivers/pwm/Makefile
+> @@ -36,6 +36,7 @@ obj-$(CONFIG_PWM_LPC32XX)	+= pwm-lpc32xx.o
+>   obj-$(CONFIG_PWM_LPSS)		+= pwm-lpss.o
+>   obj-$(CONFIG_PWM_LPSS_PCI)	+= pwm-lpss-pci.o
+>   obj-$(CONFIG_PWM_LPSS_PLATFORM)	+= pwm-lpss-platform.o
+> +obj-$(CONFIG_PWM_MA35D1)	+= pwm-ma35d1.o
+>   obj-$(CONFIG_PWM_MESON)		+= pwm-meson.o
+>   obj-$(CONFIG_PWM_MEDIATEK)	+= pwm-mediatek.o
+>   obj-$(CONFIG_PWM_MICROCHIP_CORE)	+= pwm-microchip-core.o
+> diff --git a/drivers/pwm/pwm-ma35d1.c b/drivers/pwm/pwm-ma35d1.c
+> new file mode 100644
+> index 000000000000..0c4eec4a0b07
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-ma35d1.c
+> @@ -0,0 +1,169 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Driver for the Nuvoton MA35D1 PWM controller
+> + *
+> + * Copyright (C) 2024 Nuvoton Corporation
+> + *               Chi-Wen Weng <cwweng@nuvoton.com>
+> + */
 > +
-> +	hdmi_con: hdmi-con {
-> +		compatible =3D "hdmi-connector";
-> +		type =3D "a";
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pwm.h>
+> +#include <linux/io.h>
+> +#include <linux/clk.h>
+> +#include <linux/math64.h>
+These should be organized alphabetically.
 > +
-> +		port {
-> +			hdmi_con_in: endpoint {
-> +				remote-endpoint =3D <&hdmi_out_con>;
-> +			};
-> +		};
-> +	};
->  };
-> =20
->  &cpus {
->  	timebase-frequency =3D <4000000>;
->  };
-> =20
-> +&dc8200 {
-> +	status =3D "okay";
-> +	crtc_out: ports {
+> +/* The following are registers for PWM controller */
+> +#define REG_PWM_CTL0            (0x00)
+> +#define REG_PWM_CNTEN           (0x20)
+> +#define REG_PWM_PERIOD0         (0x30)
+> +#define REG_PWM_CMPDAT0         (0x50)
+> +#define REG_PWM_WGCTL0          (0xB0)
+> +#define REG_PWM_POLCTL          (0xD4)
+> +#define REG_PWM_POEN            (0xD8)
 
-blank line between properties and child nodes please.
+These too, I think - it will make it more readable for others.
 
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <0>;
+You should also prefix all of your macros to be more explicit about 
+their use, e.g. MA35D1_REG_PWM_CTL0. That way it's clearer that they're 
+specific to this driver and not from elsewhere.
+
 > +
-> +		dc_out0: port@0 {
+> +#define PWM_TOTAL_CHANNELS      6
+> +#define PWM_CH_REG_SIZE         4
+And these.
+> +
+> +struct nuvoton_pwm {
+> +	void __iomem *base;
+> +	u64 clkrate;
+> +};
+> +
+> +static inline struct nuvoton_pwm *to_nuvoton_pwm(struct pwm_chip *chip)
+> +{
+> +	return pwmchip_get_drvdata(chip);
+> +}
+> +
+> +static int nuvoton_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+> +			     const struct pwm_state *state)
+> +{
+> +	struct nuvoton_pwm *nvtpwm;
+> +	unsigned int ch = pwm->hwpwm;
+> +
+> +	nvtpwm = to_nuvoton_pwm(chip);
+> +	if (state->enabled) {
+> +		u64 duty_cycles, period_cycles;
+> +
+> +		/* Calculate the duty and period cycles */
+> +		duty_cycles = mul_u64_u64_div_u64(nvtpwm->clkrate,
+> +						  state->duty_cycle, NSEC_PER_SEC);
+> +		if (duty_cycles > 0xFFFF)
+> +			duty_cycles = 0xFFFF;
+It would be good to create a macro for this value 0xFFFF, e.g. 
+MA35D1_MAX_PWM_RATE.
+> +
+> +		period_cycles = mul_u64_u64_div_u64(nvtpwm->clkrate,
+> +						    state->period, NSEC_PER_SEC);
+> +		if (period_cycles > 0xFFFF)
+> +			period_cycles = 0xFFFF;
+> +
+> +		/* Write the duty and period cycles to registers */
+> +		writel(duty_cycles, nvtpwm->base + REG_PWM_CMPDAT0 + (ch * PWM_CH_REG_SIZE));
+> +		writel(period_cycles, nvtpwm->base + REG_PWM_PERIOD0 + (ch * PWM_CH_REG_SIZE));
 
-Cheers,
-Conor.
+Since you are using things like
 
---Etb5DlIYTN201Rze
-Content-Type: application/pgp-signature; name="signature.asc"
+nvtpwm->base + REG_PWM_CMPDAT0 + (ch * PWM_CH_REG_SIZE)
 
------BEGIN PGP SIGNATURE-----
+and similar so frequently, I suggest creating more macros for these 
+sorts of accesses to improve readability, e.g.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZz4S7wAKCRB4tDGHoIJi
-0lFnAQC5Cen9HmRFPLpRfCMQUx1G5Jj1IRCOVFmH1cknmLUOAQD+NaQFuXCPLkQt
-WA5fC3L7EGS8TK65udHTJdbrhlMQLQU=
-=Zb+5
------END PGP SIGNATURE-----
+#define MA35D1_PWM_CMPDAT0_ADDR(base, ch) 	base + REG_PWM_CMPDAT0 + (ch * PWM_CH_REG_SIZE));
 
---Etb5DlIYTN201Rze--
+or even
+
+#define MA35D1_PWM_CMPDAT0_ADDR(nvtpwm, ch) 	nvtpwm->base + REG_PWM_CMPDAT0 + (ch * PWM_CH_REG_SIZE));
+
+and then use those instead.
+
+> +		/* Enable counter */
+> +		writel(readl(nvtpwm->base + REG_PWM_CNTEN) | BIT(ch),
+> +		       nvtpwm->base + REG_PWM_CNTEN);
+Same for cases like this.
+> +		/* Enable output */
+> +		writel(readl(nvtpwm->base + REG_PWM_POEN) | BIT(ch),
+> +		       nvtpwm->base + REG_PWM_POEN);
+> +	} else {
+> +		/* Disable counter */
+> +		writel(readl(nvtpwm->base + REG_PWM_CNTEN) & ~BIT(ch),
+> +		       nvtpwm->base + REG_PWM_CNTEN);
+> +		/* Disable output */
+> +		writel(readl(nvtpwm->base + REG_PWM_POEN) & ~BIT(ch),
+> +		       nvtpwm->base + REG_PWM_POEN);
+> +	}
+> +
+> +	/* Set polarity state to register */
+> +	if (state->polarity == PWM_POLARITY_NORMAL)
+> +		writel(readl(nvtpwm->base + REG_PWM_POLCTL) & ~BIT(ch),
+> +		       nvtpwm->base + REG_PWM_POLCTL);
+> +	else
+> +		writel(readl(nvtpwm->base + REG_PWM_POLCTL) | BIT(ch),
+> +		       nvtpwm->base + REG_PWM_POLCTL);
+> +
+> +	return 0;
+> +}
+> +
+> +static int nuvoton_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
+> +				 struct pwm_state *state)
+> +{
+> +	struct nuvoton_pwm *nvtpwm;
+> +	unsigned int duty_cycles, period_cycles, cnten, outen, polarity;
+> +	unsigned int ch = pwm->hwpwm;
+> +
+> +	nvtpwm = to_nuvoton_pwm(chip);
+> +
+> +	cnten = readl(nvtpwm->base + REG_PWM_CNTEN);
+> +	outen = readl(nvtpwm->base + REG_PWM_POEN);
+> +	duty_cycles = readl(nvtpwm->base + REG_PWM_CMPDAT0 + (ch * PWM_CH_REG_SIZE));
+> +	period_cycles = readl(nvtpwm->base + REG_PWM_PERIOD0 + (ch * PWM_CH_REG_SIZE));
+> +	polarity = readl(nvtpwm->base + REG_PWM_POLCTL) & BIT(ch);
+> +
+> +	state->enabled = (cnten & BIT(ch)) && (outen & BIT(ch));
+> +	state->polarity = polarity ? PWM_POLARITY_INVERSED : PWM_POLARITY_NORMAL;
+> +	state->duty_cycle = DIV64_U64_ROUND_UP((u64)duty_cycles * NSEC_PER_SEC, nvtpwm->clkrate);
+> +	state->period = DIV64_U64_ROUND_UP((u64)period_cycles * NSEC_PER_SEC, nvtpwm->clkrate);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct pwm_ops nuvoton_pwm_ops = {
+> +	.apply = nuvoton_pwm_apply,
+> +	.get_state = nuvoton_pwm_get_state,
+> +};
+> +
+> +static int nuvoton_pwm_probe(struct platform_device *pdev)
+> +{
+> +	struct pwm_chip *chip;
+> +	struct nuvoton_pwm *nvtpwm;
+> +	struct clk *clk;
+> +	int ret;
+> +
+> +	chip = devm_pwmchip_alloc(&pdev->dev, PWM_TOTAL_CHANNELS, sizeof(*nvtpwm));
+> +	if (IS_ERR(chip))
+> +		return PTR_ERR(chip);
+> +
+> +	nvtpwm = to_nuvoton_pwm(chip);
+> +
+> +	nvtpwm->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(nvtpwm->base))
+> +		return PTR_ERR(nvtpwm->base);
+> +
+> +	clk = devm_clk_get_enabled(&pdev->dev, NULL);
+> +	if (IS_ERR(clk))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(clk), "unable to get the clock");
+> +
+> +	nvtpwm->clkrate = clk_get_rate(clk);
+> +	if (nvtpwm->clkrate > NSEC_PER_SEC)
+> +		return dev_err_probe(&pdev->dev, -EINVAL, "pwm clock out of range");
+> +
+> +	chip->ops = &nuvoton_pwm_ops;
+> +	chip->atomic = true;
+> +
+> +	ret = devm_pwmchip_add(&pdev->dev, chip);
+> +	if (ret < 0)
+> +		return dev_err_probe(&pdev->dev, ret, "unable to add pwm chip");
+> +
+> +	return 0;
+> +}
+
+As a final note, please be aware that there is a change to the PWM 
+subsystem coming in 6.13. You don't need to do anything now, but it's 
+worth considering how the driver might change once that hits mainline.
+
+You can find the changes here: 
+https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git/log/?h=pwm/duty_offset 
+.
+
+> +
+> +static const struct of_device_id nuvoton_pwm_of_match[] = {
+> +	{ .compatible = "nuvoton,ma35d1-pwm" },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, nuvoton_pwm_of_match);
+> +
+> +static struct platform_driver nuvoton_pwm_driver = {
+> +	.probe = nuvoton_pwm_probe,
+> +	.driver = {
+> +		.name = "nuvoton-pwm",
+> +		.of_match_table = nuvoton_pwm_of_match,
+> +	},
+> +};
+> +module_platform_driver(nuvoton_pwm_driver);
+> +
+> +MODULE_AUTHOR("Chi-Wen Weng <cwweng@nuvoton.com>");
+> +MODULE_DESCRIPTION("Nuvoton MA35D1 PWM driver");
+> +MODULE_LICENSE("GPL");
 
