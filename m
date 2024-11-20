@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-123073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123074-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1302D9D356A
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 09:30:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D9399D3571
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 09:32:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF6341F21FE5
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 08:30:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6C7EC1F2320D
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 08:32:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB2F9179972;
-	Wed, 20 Nov 2024 08:30:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48B60158DD8;
+	Wed, 20 Nov 2024 08:32:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qOKLWq7v"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WU/cpYpO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C08C41714CD;
-	Wed, 20 Nov 2024 08:30:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2014C8615A;
+	Wed, 20 Nov 2024 08:32:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732091409; cv=none; b=WeNnb4WRN7vXqTbv609cRnTY3XwB4NC8MDI01rSMYMAB6wFjrL9/6ue1T13bgZgfglekZ/OsWMcqdl5QFqHyEJ5AG0IyGsZ+9P21mJUjIsoJbc0CXFKrOxfMIYsH72HmS3blaISyj08Ty0tFq44R1YvcpMybp7TJVS42xXzmWkk=
+	t=1732091535; cv=none; b=fihAcc9HVaum7hgl+72qE2dRTMsbzDBVyAsvyZy8PKyYPROaCXGc5tBOWrmaL3Ty2NspgzL7ug95A0g+PCEdhCK+7m7Mgy7mFx1BrLC6s2TZTUM+j6Od7xnkHxIsH8+V3kHQ3wcedxZF/WW/cKR8ZAMJOiSaBwWvE73NHTSo+5c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732091409; c=relaxed/simple;
-	bh=Rs1/sSTqbSE/GeIRCfJw8WXtT97wPKIGNq5RaY9rXmY=;
+	s=arc-20240116; t=1732091535; c=relaxed/simple;
+	bh=6UHD4CiLpylVStYrvd1VFQTVTBZ0TOL/9FX4hXr4mkg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=B5sdYgy0/ShlDuvjIXwALJYCwUUzTl5LUbALnIYSnDpfuTVSjCk3OzbOemJnORng/bryHiUQ2dq4cSMiQ7DfAXXpyjAwq6KUHXN6JiYlLFhXQ7vvZp1aZnnyiKM515KU92MQYX0MKaWa1R1bvN+QVmsmHYNd9l1FcX4scztjpqE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qOKLWq7v; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23B62C4CECD;
-	Wed, 20 Nov 2024 08:30:02 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=oEQdPQhMopPBL2wmUY0iTor0ap2HxPX7yFI21hvwvqX9+bElk2CVmTjqgNHEdAEkRVeToZ8sl4lCBkw6jomvtAcduFAJ/lVhdUQm68jolADrqHpJiSHceuWmLI9o3uCuwqz3LRYP7jR5g61PkfdhMjPF8DmN7zZgn8Rz0eknWgE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WU/cpYpO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AA6EC4CECD;
+	Wed, 20 Nov 2024 08:32:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732091409;
-	bh=Rs1/sSTqbSE/GeIRCfJw8WXtT97wPKIGNq5RaY9rXmY=;
+	s=k20201202; t=1732091534;
+	bh=6UHD4CiLpylVStYrvd1VFQTVTBZ0TOL/9FX4hXr4mkg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qOKLWq7v2HasZs/2YuQmmx6rkLfJf00JqgWSy1/c2L0yh22mpDgvDnOEk70Ioq66g
-	 ugWQsldop2Z+17vOL1qaX+3+zZNUFUjQ3O9F9Cv+8CqAoe83IYGzz/UvbOFlQWfbAi
-	 PyGVbkHPRdaPFEDkCrfqFAhNVWZ+BU6YdPict2lZvgv0UubbBN7lsZzYH3ikEgnxnc
-	 H+rf92XZ8Rc3nXznc35HOegIbv2mhrJOjzTfUyV8RLcRpi2SqSi/ifWgaodvgJZr4g
-	 AchgnaIUkS4uVTqF+RQophE/5LCboo8qBfUZr5564JT1L3Y2pLEtAfd4XTftin2eVI
-	 E9u/kpR49sq8A==
-Message-ID: <ea0bc7ea-eaf7-492a-b412-dc86baba23ff@kernel.org>
-Date: Wed, 20 Nov 2024 09:30:00 +0100
+	b=WU/cpYpOOcqNHSD9QhlnIQlVGYNlqDCgoto/vDyNP9GNbZSScYgIEhtXmGhIJKbA0
+	 GLxhlS2DTg+VEQQ3kMXjp4HE0Q27QBkGr2Rnd3+CZIV99+PCRKwOubtSCGDAMhPPiH
+	 nWoQ2aUlDcVe5chjSGfVyLq5iZPSt2trgy5wPXzBlFfNN4ZpFb54V14xbShOpf+sQO
+	 Cypsd/WszFjGw1WAKLeVVg41ln0Qed8R4/Hm1pmBKZsho5XdkwctKnXAI0y4ZLs6yS
+	 6ToyM+Ovhn5vyveZA8jwgFf6dlOhp2xqKrprBhBXVCmv+m7NPe7oQXRju/1kQ0HQrq
+	 B15eYDKn99X7w==
+Message-ID: <e7974001-227e-4224-a895-21be5a1a3e3a@kernel.org>
+Date: Wed, 20 Nov 2024 09:32:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,8 +50,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 05/21] drm/imagination: Use more specific compatible
- strings
+Subject: Re: [PATCH v2 07/21] arm64: dts: ti: k3-am62: New GPU binding details
 To: Matt Coster <matt.coster@imgtec.com>, Frank Binns
  <frank.binns@imgtec.com>, David Airlie <airlied@gmail.com>,
  Simona Vetter <simona@ffwll.ch>,
@@ -64,7 +63,7 @@ Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  Randolph Sapp <rs@ti.com>, Darren Etheridge <detheridge@ti.com>
 References: <20241118-sets-bxs-4-64-patch-v1-v2-0-3fd45d9fb0cf@imgtec.com>
- <20241118-sets-bxs-4-64-patch-v1-v2-5-3fd45d9fb0cf@imgtec.com>
+ <20241118-sets-bxs-4-64-patch-v1-v2-7-3fd45d9fb0cf@imgtec.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,40 +109,46 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241118-sets-bxs-4-64-patch-v1-v2-5-3fd45d9fb0cf@imgtec.com>
+In-Reply-To: <20241118-sets-bxs-4-64-patch-v1-v2-7-3fd45d9fb0cf@imgtec.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 18/11/2024 14:01, Matt Coster wrote:
-> Follow-on from the companion dt-bindings change ("dt-bindings: gpu: img:
-> More explicit compatible strings"), deprecating "img,img-axe" in favour of
-> the more specific "img,img-axe-1-16m".
-> 
-> Keep the previous compatible string around for backwards compatibility.
+> Use the new compatible string introduced earlier (in "dt-bindings: gpu:
+> img: More explicit compatible strings") and add a name to the single power
+> domain for this GPU (introduced in "dt-bindings: gpu: img: Power domain
+> details").
 > 
 > Signed-off-by: Matt Coster <matt.coster@imgtec.com>
 > ---
 > Changes in v2:
 > - None
-> - Link to v1: https://lore.kernel.org/r/20241105-sets-bxs-4-64-patch-v1-v1-5-4ed30e865892@imgtec.com
-> ---
->  drivers/gpu/drm/imagination/pvr_drv.c | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/imagination/pvr_drv.c b/drivers/gpu/drm/imagination/pvr_drv.c
-> index 684a9b9a2247b8f5b0f4a91ec984af2cff5a4c29..fbd8802abcf1271e260209957d95ea705dbe7f14 100644
-> --- a/drivers/gpu/drm/imagination/pvr_drv.c
-> +++ b/drivers/gpu/drm/imagination/pvr_drv.c
-> @@ -1471,6 +1471,16 @@ static void pvr_remove(struct platform_device *plat_dev)
->  }
->  
->  static const struct of_device_id dt_match[] = {
-> +	{ .compatible = "img,img-rogue", .data = NULL },
-> +
-> +	/* All supported GPU models */
-> +	{ .compatible = "img,img-axe-1-16m", .data = NULL },
+> - Link to v1: https://lore.kernel.org/r/20241105-sets-bxs-4-64-patch-v1-v1-7-4ed30e865892@imgtec.com
 
-This makes no sense. It's the same as rogue. Use compatibility properly.
+Do not mix DTS with code. It always goes either to end of patchset or
+entirely separate.
+
+To be clear: this cannot be merged into DRM.
+
+
+> ---
+>  arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> index 5b92aef5b284b78749a01d44184b66e7776a124d..93dcc67c3138ad5b4a7ad6c9bcabb71a2b7e408d 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> @@ -693,12 +693,13 @@ ospi0: spi@fc40000 {
+>  	};
+>  
+>  	gpu: gpu@fd00000 {
+> -		compatible = "ti,am62-gpu", "img,img-axe";
+> +		compatible = "ti,am62-gpu", "img,img-axe-1-16m", "img,img-rogue";
+
+Definitely NAK, breaks users and nothing in commit msg provides any help
+on that, including why or how it affects potential users.
+
 
 Best regards,
 Krzysztof
