@@ -1,65 +1,79 @@
-Return-Path: <devicetree+bounces-123284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27CE89D3E4D
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 15:59:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 717CC9D3DFF
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 15:51:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1D4A2825B3
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 14:59:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 356D028305D
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 14:51:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 759781DDC3F;
-	Wed, 20 Nov 2024 14:49:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FABB1CB312;
+	Wed, 20 Nov 2024 14:47:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IaJ0u76B"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="FSaSWUlq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 034491DDC2D;
-	Wed, 20 Nov 2024 14:49:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2511B1C9EDC;
+	Wed, 20 Nov 2024 14:47:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732114161; cv=none; b=Gst1x/mbSVVLktEVUPgEVaokwtsf4gr/mGtXNqH2XM/OboQnwM92CSPmOtZXP04xCoIKlbvqPkFDk0aBrVe/pxIr3GBi/gqQ/o3Ql7u+PhZZchpYJGGABZqJdkqf8/mSXZCzCUbpi2AUocKX77S9GT1BLNgKLVlanHgJouN2+uU=
+	t=1732114055; cv=none; b=ZhRbBw3IK2z6WvX0r9H0emfQqa5P0/L0/p7ZvgwB3Bv729vbEEHtc+dLamcmz1LIfP3DN4DGhU5VSIZ2lTFUp+6mgynYyxFa4akpyG1Uy/Um4hf7gMJz6tpq4R6tUIfw4ysqba/p5Pq83GlbgdBtEqAnksNjbUofG80vrebCOGQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732114161; c=relaxed/simple;
-	bh=ljYka+yEPL7dtoadjp4FCBcNXplDLLPRhCJ9St112Pw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=CjRZTa0RU4oRuuYs1KnSemfIaUsgAYNNbHFXAoUGHwVhqpPiM9oK+eFLHovvynTvRl4rE/edH9aqm2kJ7x33tJzKyf/nvJ2Oh+EuzhnpC4BDHeR4BBNTz681kgFyx3fHCsgJBHb92XPENxRd4Otvcxlx7Ta72U0JPXkbSLIaDxY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IaJ0u76B; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AKAo9BA027179;
-	Wed, 20 Nov 2024 14:49:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Oxkw5D/JPs2UYjgb4jIX/CzNiPXlr+l6xOKDFt/4wo8=; b=IaJ0u76BSvUJlkw7
-	mBIQDg5rgT8/qkQCihfnx9cwjhFivODOWMP6kJtgVw0Bkq8nHCoelW1+/ijjmEfF
-	+mk68PYxVuT6198zwMnzLBtdnCNujhLvVJ5RVw2P7Et4eO3+jMhtV23yFQasAgi8
-	A4Eeisb/e2PlU+llfRkwEJtELgUiWBboYOsWdoB6bAQvohkqKCTQvlTPPXTqney/
-	FiZ5vCjWlaH86UF1AawrDiNHG7PG1wKB1o1ybrmtrHQ23ibyXQMiqL6EdHbbamSw
-	khPhFF/xJubJpoA0rpNIkYrAbLo2suLJdw2u2OqHmKzuz43O5bh/5CZA/UyPs6WL
-	xmuinA==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 431eby8k2a-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 20 Nov 2024 14:49:12 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AKEnBVK008175
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 20 Nov 2024 14:49:11 GMT
-Received: from hu-dikshita-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 20 Nov 2024 06:49:06 -0800
-From: Dikshita Agarwal <quic_dikshita@quicinc.com>
-Date: Wed, 20 Nov 2024 20:16:18 +0530
-Subject: [PATCH v6 28/28] media: MAINTAINERS: add Qualcomm iris video
- accelerator driver
+	s=arc-20240116; t=1732114055; c=relaxed/simple;
+	bh=l4yWmKaDnzPRnoTIgOu9YNL5J2WtQTIDNXvo3j15U5I=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IgLToYHZ/+KCAsNK9O6fkh0wwfRpmnfUBXs5Ux5z/NvuA5rcNpS4LxWA1X+0Z4xyVMUscJNgu4TuEgNlNssvq35wMTijX2YPm0J9SVdpj1jFhYTOWmBmh86+tSM0LsLOpnjQYVFyHa7MgBAWspkbBRTOIFTRGsloOvHjHA6LhNc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=FSaSWUlq; arc=none smtp.client-ip=198.47.19.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4AKElCpV069884;
+	Wed, 20 Nov 2024 08:47:12 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1732114032;
+	bh=cynzEoYvDf0pcd1GzvErfNECaSezgc6N8fmmyfqTK1s=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=FSaSWUlqFgfSmcTU+UBy1yOBuvsIh4VFGFZ9INaWSePiOJDaEKGhPoJa9X7AnSz2o
+	 Pyfa9f9owuIsIHZkFKqhdknafVhkx/XW70itrOThTElRv5x+3obxkJIlGsXrqcNlAk
+	 qjsO3UU97ea/HhygFhmAA9zyjELBEVh0aJZZdrvc=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4AKElCPq020368
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 20 Nov 2024 08:47:12 -0600
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 20
+ Nov 2024 08:47:12 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 20 Nov 2024 08:47:12 -0600
+Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4AKElCLp004675;
+	Wed, 20 Nov 2024 08:47:12 -0600
+Date: Wed, 20 Nov 2024 08:47:12 -0600
+From: Bryan Brattlof <bb@ti.com>
+To: Andrew Davis <afd@ti.com>
+CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-am62l: add initial reference
+ board file
+Message-ID: <20241120144712.dxiu34ocv7xdv5rm@bryanbrattlof.com>
+X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
+References: <20241117-am62lx-v1-0-4e71e42d781d@ti.com>
+ <20241117-am62lx-v1-2-4e71e42d781d@ti.com>
+ <c8834352-75a7-446e-95eb-809aaa5cb18b@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,90 +81,98 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20241120-qcom-video-iris-v6-28-a8cf6704e992@quicinc.com>
-References: <20241120-qcom-video-iris-v6-0-a8cf6704e992@quicinc.com>
-In-Reply-To: <20241120-qcom-video-iris-v6-0-a8cf6704e992@quicinc.com>
-To: Vikash Garodia <quic_vgarodia@quicinc.com>,
-        Abhinav Kumar
-	<quic_abhinavk@quicinc.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        "Rob
- Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-CC: Hans Verkuil <hverkuil@xs4all.nl>,
-        Sebastian Fricke
-	<sebastian.fricke@collabora.com>,
-        Bryan O'Donoghue
-	<bryan.odonoghue@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Nicolas Dufresne
-	<nicolas@ndufresne.ca>,
-        =?utf-8?q?Uwe_Kleine-K=C3=B6nig?=
-	<u.kleine-koenig@baylibre.com>,
-        Jianhua Lu <lujianhua000@gmail.com>, <linux-media@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        "Dikshita
- Agarwal" <quic_dikshita@quicinc.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1732113983; l=1060;
- i=quic_dikshita@quicinc.com; s=20240917; h=from:subject:message-id;
- bh=ljYka+yEPL7dtoadjp4FCBcNXplDLLPRhCJ9St112Pw=;
- b=ovc4qxub2F5eMzuCXputinphaVPxI3cGetGOXmj8SAIjge1rcdnJhU0POnKBgb3hyr6MJVd9D
- ZBxR87dTCKWDnalOJB/WvPsFvZfKi/bI+Z8MPEaODLiQLFi32cm7Ldz
-X-Developer-Key: i=quic_dikshita@quicinc.com; a=ed25519;
- pk=EEvKY6Ar1OI5SWf44FJ1Ebo1KuQEVbbf5UNPO+UHVhM=
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: hETFp3prU3poPUth79wLqhyv4yaz1gye
-X-Proofpoint-ORIG-GUID: hETFp3prU3poPUth79wLqhyv4yaz1gye
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- priorityscore=1501 lowpriorityscore=0 malwarescore=0 mlxlogscore=836
- spamscore=0 mlxscore=0 phishscore=0 suspectscore=0 bulkscore=0
- adultscore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2409260000 definitions=main-2411200098
+Content-Disposition: inline
+In-Reply-To: <c8834352-75a7-446e-95eb-809aaa5cb18b@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Add an entry for iris video decoder accelerator driver.
+On November 18, 2024 thus sayeth Andrew Davis:
+> On 11/17/24 11:34 PM, Bryan Brattlof wrote:
+> > From: Vignesh Raghavendra <vigneshr@ti.com>
+> > 
+> > Add the initial board file for the AM62L3's Evaluation Module.
+> > 
+> > Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> > Signed-off-by: Bryan Brattlof <bb@ti.com>
+> > ---
+> >   arch/arm64/boot/dts/ti/k3-am62l3-evm.dts | 54 ++++++++++++++++++++++++++++++++
+> >   1 file changed, 54 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts b/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts
+> > new file mode 100644
+> > index 0000000000000..2d59389765cab
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/ti/k3-am62l3-evm.dts
+> > @@ -0,0 +1,54 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only or MIT
+> > +/*
+> > + * Device Tree file for the AM62L3 Evaluation Module
+> > + * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.com/
+> > + *
+> > + * Technical Reference Manual: https://www.ti.com/lit/ug/sprujb4/sprujb4.pdf
+> > + */
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include "k3-am62l3.dtsi"
+> > +
+> > +/ {
+> > +	compatible = "ti,am62l3-evm", "ti,am62l3";
+> > +	model = "Texas Instruments AM62L3 Evaluation Module";
+> > +
+> > +	aliases {
+> > +		serial2 = &main_uart0;
+> 
+> We usually have WKUP and MCU UARTs as serial0 and serial1, we don't
+> have that many, so we would never have serial1, only 0 and 2. Might
+> be time we drop this odd numbering convention, at least for AM62L
+> class parts..
+> 
 
-Signed-off-by: Vikash Garodia <quic_vgarodia@quicinc.com>
-Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
----
- MAINTAINERS | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Good point. I'll see what I can come up with
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 7a14891a8fa9..d647e59d9912 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19156,6 +19156,16 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/regulator/vqmmc-ipq4019-regulator.yaml
- F:	drivers/regulator/vqmmc-ipq4019-regulator.c
- 
-+QUALCOMM IRIS VIDEO ACCELERATOR DRIVER
-+M:	Vikash Garodia <quic_vgarodia@quicinc.com>
-+M:	Dikshita Agarwal <quic_dikshita@quicinc.com>
-+R:	Abhinav Kumar <quic_abhinavk@quicinc.com>
-+L:	linux-media@vger.kernel.org
-+L:	linux-arm-msm@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/media/qcom,*-iris.yaml
-+F:	drivers/media/platform/qcom/iris/
-+
- QUALCOMM NAND CONTROLLER DRIVER
- M:	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
- L:	linux-mtd@lists.infradead.org
+> > +	};
+> > +
+> > +	chosen {
+> > +		stdout-path = &main_uart0;
+> > +	};
+> > +
+> > +	memory@80000000 {
+> > +		reg = <0x00000000 0x80000000 0x00000000 0x80000000>;
+> > +		device_type = "memory";
+> > +		bootph-all;
+> > +	};
+> > +
+> > +	reserved-memory {
+> 
+> Not needed until you have something to reserve.
+> 
 
--- 
-2.34.1
+Ah I agree. I'll drop this next time.
 
+> > +		ranges;
+> > +		#address-cells = <2>;
+> > +		#size-cells = <2>;
+> > +	};
+> > +};
+> > +
+> > +&pmx0 {
+> > +	main_uart0_pins_default: main_uart0-default-pins {
+> > +		pinctrl-single,pins = <
+> > +			AM62LX_IOPAD(0x01d4, PIN_INPUT, 1)	  /* (D7)  UART0_RXD */
+> > +			AM62LX_IOPAD(0x01d8, PIN_OUTPUT, 1)	  /* (A6)  UART0_TXD */
+> > +		>;
+> > +		bootph-all;
+> > +	};
+> > +};
+> > +
+> > +&main_uart0 {
+> > +	current-speed = <115200>;
+> 
+> current-speed is only for UARTs that can't detect their current speed,
+> our UART and driver can, so this line isn't needed.
+> 
+
+Nice! I'll drop this property as well
+
+~Bryan
 
