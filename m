@@ -1,145 +1,112 @@
-Return-Path: <devicetree+bounces-123105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D2F69D368D
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 10:13:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7073A9D3693
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 10:14:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8A403B25768
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 09:13:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D5DA11F23FBB
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 09:13:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4651419ABA3;
-	Wed, 20 Nov 2024 09:12:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE1A719C566;
+	Wed, 20 Nov 2024 09:13:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XlQf8K4S"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="gZg/oNrP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00576149C42;
-	Wed, 20 Nov 2024 09:12:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B23219993B
+	for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 09:13:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732093979; cv=none; b=qKMjggffqCyY0F5uMyWpXTeDx4F5lo/G1q3MmduHyoDtYnsM63TcYd6CLEqJB+pW944L0VEzXcjgRr3r4xaHG7LhomKGFWiKO2CbImPlNWsAcEcj5uqeBmBgUDSMFEmRgsIRbMo7DgjGcYDMu5JoOqD7Fcu777aRV6H/MQZLeaU=
+	t=1732093989; cv=none; b=MKO+U7H0O6q6KI5admFsXs14rQlybiT4ncoEzfAk+oVW5CX9VOhhNUQFUVaZWThEA9nrFfXl49e6ihVeNmTgtLEEM+NZrKaci7LikxM1atWv+maXctCtLoElk7kdG6UDVgZ3ZT9upDXs58hIV8Lsrue4H84bkNbGp9mH2XFrY1s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732093979; c=relaxed/simple;
-	bh=Nm+LTtFvJjr/ZzsiS8eN3+rLZHQExKr888yVJu40mtA=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Qde3qL2b7UrXZWoeMVpADyeEhw83DxjRv7+wSSz0E75Ur+KilNZZrDyoLM9cpecYaT5gNcEzpJdiCwNrFUCIVY5Cuktbl33mrojvMZJnoxAkzbHsOdz5DGT3tghqUZN2QdFaPrl2NnCT1CfJHser5bv5dWyGrN+9RBl5aFzQFSs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XlQf8K4S; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0C4CC4CECD;
-	Wed, 20 Nov 2024 09:12:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732093978;
-	bh=Nm+LTtFvJjr/ZzsiS8eN3+rLZHQExKr888yVJu40mtA=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=XlQf8K4SbGPAG13Togr2fzBC9lBuzzuZUHyyrwI0S0VIG6JHSMt+8DwCTcoLh67/S
-	 GVokmAsT9oJt/kUxUQVzGExfdKhCvVvhJeL32gjQ+kxRVgl5D/nHbm0f26vfG85ukW
-	 XNj4523nWVQZIvwl2I9EtUK6E0CY9qeARyew6PtU75ggN+StWJNYQSed+sM6nSWJyU
-	 w8am4Ov0uMuKyWc/9uhFm/K5Is9CuvV6UBSw4a6zqeCQxbjm7XRrrmRu2PdMbxSteS
-	 XQ03pWhPSVlcY+buU3ixN/o5NgV92cCaOwR/vafKxJX274ayJ+XHt4SgRubmAbXgQd
-	 7/feMm9LpW49g==
-Message-ID: <5527f0e2-1986-4eb5-b16a-86276db0cbb5@kernel.org>
-Date: Wed, 20 Nov 2024 10:12:49 +0100
+	s=arc-20240116; t=1732093989; c=relaxed/simple;
+	bh=R8Ubub1j12s1dhe7s2W5vcgnwmYKVfNDdspRFk/jI78=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rGF2UwpitJSYxIwS6N2R16dd3RSSNcsBdammPR04KLjEVqgPBhW92Pv/QGo80iRt57AMLGHxS+eh88xRepJaz4aypQK4rmuBWv4dLP2sGjHdm+mCsuJPjg1RWDe0EHMRajKkxtQCLGivb7Hg8Q7J8sGW+8L8nWDEkuiKLJgHvao=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=gZg/oNrP; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=R8Ub
+	ub1j12s1dhe7s2W5vcgnwmYKVfNDdspRFk/jI78=; b=gZg/oNrP/AoMiPDGFXQa
+	mrclJ7vKsw+7Pqld2FGRelZZhYUDUT511qJi161bL3AjnzeN8SHxjO2kVIcmfRy6
+	KbQxF0Orr02WFz2Is+/VnaNXpWbbzlVyfWO+sk7oLwk05EiOhbggSK0C3cZ1tmEY
+	HhA4ZoBSWHazPKUpuOq0GptYYMEJSvr7Fbpn03mM++n+AC4G2x+guInkKxune+mu
+	xxwmgU05JZO0Tb7LxOOKQ9KLYSVi0jStW/tflW7FgxAKOtUCsiyD61S0dRMK37ly
+	l+vrQiWgDJ2Ni2xCnM9B0Puh0xN8AaxN6LMLvP/mvfbQlVObA+CxQl9fdbY4uaAh
+	1g==
+Received: (qmail 844402 invoked from network); 20 Nov 2024 10:13:05 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 20 Nov 2024 10:13:05 +0100
+X-UD-Smtp-Session: l3s3148p1@Zv+2jlQnTOEgAwDPXxznANR4Jedc6XSv
+Date: Wed, 20 Nov 2024 10:13:05 +0100
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: renesas: rzg3s-smarc: Enable I2C1 and
+ connected power monitor
+Message-ID: <Zz2oIcGGmRouvZNK@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20241120085345.24638-2-wsa+renesas@sang-engineering.com>
+ <TY3PR01MB11346DB1A6D857AFD968DA9FB86212@TY3PR01MB11346.jpnprd01.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: can: fsl,flexcan: add S32G2/S32G3 SoC
- support
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>,
- Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S . Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, imx@lists.linux.dev,
- NXP Linux Team <s32@nxp.com>, Christophe Lizzi <clizzi@redhat.com>,
- Alberto Ruiz <aruizrui@redhat.com>, Enric Balletbo <eballetb@redhat.com>
-References: <20241119081053.4175940-1-ciprianmarian.costea@oss.nxp.com>
- <20241119081053.4175940-2-ciprianmarian.costea@oss.nxp.com>
- <o4uiphg4lcmdmvibiheyvqa4zmp3kijn7u3qo5c5mofemqaii7@fdn3h2hspks7>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <o4uiphg4lcmdmvibiheyvqa4zmp3kijn7u3qo5c5mofemqaii7@fdn3h2hspks7>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="sTpFBW7F+bKdsjaP"
+Content-Disposition: inline
+In-Reply-To: <TY3PR01MB11346DB1A6D857AFD968DA9FB86212@TY3PR01MB11346.jpnprd01.prod.outlook.com>
 
-On 20/11/2024 09:45, Krzysztof Kozlowski wrote:
-> On Tue, Nov 19, 2024 at 10:10:51AM +0200, Ciprian Costea wrote:
->>    reg:
->>      maxItems: 1
->> @@ -136,6 +138,23 @@ required:
->>    - reg
->>    - interrupts
->>  
->> +allOf:
->> +  - $ref: can-controller.yaml#
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            const: nxp,s32g2-flexcan
->> +    then:
->> +      properties:
->> +        interrupts:
->> +          minItems: 4
->> +          maxItems: 4
-> 
-> Top level says max is 1. You need to keep there widest constraints.
-And list items here instead...
 
-Best regards,
-Krzysztof
+--sTpFBW7F+bKdsjaP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+
+> How do we test this interface in linux? So far we use windows app to monitor the current.
+
+It exposes values in sysfs. Check 'Documentation/hwmon/isl28022.rst'
+
+
+--sTpFBW7F+bKdsjaP
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmc9qB0ACgkQFA3kzBSg
+KbaZGg/+Kj1qSFTLiKuuEimfluhwjb8/bltyXTYHrJe4XtoTgL52zdvCPZNCP/FL
+dSp0Hr1foWXCm45VJCnBjTyAbU/g2IBDh9Z6ZkK++OJjNmkTc57pKk4928WSEZf5
+Ri9b0xzTfR18HoGvVpbgSwwkgtqqUMdl6jFMKNN05Ss9/9ZIUxKem0+Ws76DmA4T
+9BmE3pEIcoaaK3oGNsh8uDhkHX5lQCimWiWNDW8RvSbCBzbQEIBCaqBRwM4cXKNr
+ZSP6h72/rinTZRiDR4wGET1mSTchQdEruK1UaICUQn+97F/mPJTIOTTKA2jCWceb
+F94lTMUX1q75reCRht4v8zbe1kyapVOhnmvqt49TITsk2buB6FvNrHMxTA8GLLXj
+psygfYsA4Kxer4NgGaCqUoSZ7jDWKhqCgNfMnsRVgZkCvOgqpPvM7YosYztO5jQd
+va0PvN3ZFSMtfTV7hqvpIIjjBOn7f1kEZj9kB53Nov/TVek8mo0iI0HwrWVcZPVE
+/fxenskByEC11HX7wk78E3b0+x/fec5gH9j46GUJXhqxxTK9Cvg9NbFqbYQWtkl+
+ymhQ9SxoLg+6YZaRrMm+RSDfAou9OAEQYASODguMi/v51WrfyoXs1TTtkuD4A9lR
+kCa9uNOqfrgGjqYCBfHOnjuuuFpn13SjB6i0HdWXJJyLqf2gfTA=
+=ae60
+-----END PGP SIGNATURE-----
+
+--sTpFBW7F+bKdsjaP--
 
