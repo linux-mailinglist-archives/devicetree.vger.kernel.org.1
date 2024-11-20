@@ -1,190 +1,149 @@
-Return-Path: <devicetree+bounces-123221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1830C9D3B1F
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 13:53:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A61B19D3BCB
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 14:02:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9FC56283550
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 12:53:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 690C1284654
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 13:02:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E06821A0AEA;
-	Wed, 20 Nov 2024 12:53:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=phytecmesstechnikgmbh.onmicrosoft.com header.i=@phytecmesstechnikgmbh.onmicrosoft.com header.b="DcRUwoWC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 269EF1C4A18;
+	Wed, 20 Nov 2024 13:00:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2094.outbound.protection.outlook.com [40.107.21.94])
+Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4530B1DFEF;
-	Wed, 20 Nov 2024 12:53:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.94
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732107190; cv=fail; b=FKb59KdFHFJJQkMpbQHvWfsoTJDrQl6a9mukOfrbfYcdZKD97tMcLqur6FsoQq4tFWLLlempk/C5ksFygWG3Rt9MfOEKdy8GB893RTnfW5tndldhLaODjGACqzqzX3KyDps0uWIpeKAJ9L231IIO452KNtdy3lzMDnox4L5YDKA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732107190; c=relaxed/simple;
-	bh=Sj0IVLlNFQ0Y7JBO9kkRDNkZbFY4o0852UIJwpIiUjQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=L2P0YvRr2sdrX8ZTS8EhMvPp7zOqACcy86K/pwT/D4NiwR5RhRSay71UK4L+t8m+7XDPRp3u5rcszoKfa4qLk9De+2spKaj3uLSLMyhcXtTKPE/8xyZxXNKcvoxF+JXWsdjvuMWjJfpXo9TzK3BfOg3SCvrdGdhoQ9KdejjD6K0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytecmesstechnikgmbh.onmicrosoft.com header.i=@phytecmesstechnikgmbh.onmicrosoft.com header.b=DcRUwoWC; arc=fail smtp.client-ip=40.107.21.94
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=pLbV5xkI0BGqCG8hwMp3OVeXWmID2dg45FLcmJ6X+Bwyez4hL2tVwON9auzzLPIRDD4qd5IyltfRrCqncRinsqM8Oa2pTUBsQACmoYYPTTRLEZfYASbxRLQVwdHeya5P/SVnvr/gNSkoovU/f8rCYu0Zo6uXqc8l84rV+wAnjQiXccoVjAQIODx6bx+8k8BGfoOoNj5aRk61UeXAVTp7ZVD3jNoUz+cA79N6hhryu+EcBgvWhi1oiKw33jbbwGiXOeKFR3rfpGNyd+g0pH8hQYG8mXp3+07wv6BdNR1bjzXHPup9a56bEsQNPQu4i/undEWsPsAA3EqyMU1xwIFlMA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Xtb1L/BECqqh2TzqQO7ieq8R/yPpFJsieu3zLom10vI=;
- b=runiQ+HgBIeN1vY4mvIpjNMtxqYuh1SGmGttc30sEkYKZv+/GW4NGPuSM5A8hOadMGyA687X/5wDiBTwHvBprvdhEczRe/rkK5PcLU6njaFAQsDrDy5c+Wbsw9ICbZI33sBzCTUC/Onu6s9c0sLCRGkzg0DBrjKCZi9EZsdJDyL9UdwO77Ga8CYGddZ8iTqbQ3eepsAGNWVMuVyf/c/6x+zZOh7fzTRftcFUhOYxq6l6lUua6UmfvdnYUo7BJpQTA2/IIIOLLE8w8SzX2Uggf0hOQU2isLh+bDa6YD6a0PNPv1S17vwTal3DL0M90Ois6IRL9+2DxzyLDywsZ5epjA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
- is 91.26.50.189) smtp.rcpttodomain=ti.com smtp.mailfrom=phytec.de; dmarc=none
- action=none header.from=phytec.de; dkim=none (message not signed); arc=none
- (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=phytecmesstechnikgmbh.onmicrosoft.com;
- s=selector1-phytecmesstechnikgmbh-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Xtb1L/BECqqh2TzqQO7ieq8R/yPpFJsieu3zLom10vI=;
- b=DcRUwoWCAuXBdRTdzc6cXCxFVgICq3jUpeuyWtJSIoKzANdA0Y8iNbhfKV0DO0erc8fZpl7qsHrazax1V375iDE3EV4OxcGAYU0eM9KMqCbSMrmDAC1+RhSRdhRyk9kO73NS4lBObpj5bQaNiK/arBj88UjtL/n0noX/GIuAQxM=
-Received: from DUZPR01CA0229.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:4b4::26) by AS8P195MB1846.EURP195.PROD.OUTLOOK.COM
- (2603:10a6:20b:52b::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.22; Wed, 20 Nov
- 2024 12:53:01 +0000
-Received: from DU6PEPF00009524.eurprd02.prod.outlook.com
- (2603:10a6:10:4b4:cafe::f4) by DUZPR01CA0229.outlook.office365.com
- (2603:10a6:10:4b4::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8182.15 via Frontend
- Transport; Wed, 20 Nov 2024 12:53:01 +0000
-X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 91.26.50.189)
- smtp.mailfrom=phytec.de; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=phytec.de;
-Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
- phytec.de discourages use of 91.26.50.189 as permitted sender)
-Received: from Diagnostix.phytec.de (91.26.50.189) by
- DU6PEPF00009524.mail.protection.outlook.com (10.167.8.5) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8182.16 via Frontend Transport; Wed, 20 Nov 2024 12:53:00 +0000
-Received: from Berlix.phytec.de (172.25.0.12) by Diagnostix.phytec.de
- (172.25.0.14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Wed, 20 Nov
- 2024 13:53:00 +0100
-Received: from [172.25.39.28] (172.25.0.11) by Berlix.phytec.de (172.25.0.12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Wed, 20 Nov
- 2024 13:52:59 +0100
-Message-ID: <9efdda6e-a401-4321-9680-905a1e70f392@phytec.de>
-Date: Wed, 20 Nov 2024 13:52:58 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 500701B0105;
+	Wed, 20 Nov 2024 12:59:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1732107601; cv=none; b=WNXKqC7oliJKZ+eMqc6GgzqR9z7udp4qEFIbq1nSFIQhFFWX0r9rYogaNAv6rucFZzCmqPisc+jXQ9uOqAUGzvbpdradCfpx0HPPo7gvCISEUenQIUoMwEiiRLUZlT82VqR/UTvwxnGhhSjtfr0kYtj/GgVVqFxafPpQ25Cdgko=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1732107601; c=relaxed/simple;
+	bh=/n7gnJWEqYQ37oWV1G2OFU/d148o/DHtkgUWto8DNjI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Rq/Iil2sSgl+7k8VcZyEQtOlEWNIeBvMfpCuH2bAnco35nkIYQ0Hu5n+IehmRdAieGHS2Kc8lJiijxoDRTi4q6k9fH8ddUfrMJqIo+X/6bG3QJgbVsR/hW8n4u+TcFkiVZ9XietTkDflUOlIgomUrlhCbjBWNTxU3D8EtVQD9RU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; arc=none smtp.client-ip=92.121.34.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id BC7771A01D3;
+	Wed, 20 Nov 2024 13:59:56 +0100 (CET)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id AF1A01A01C6;
+	Wed, 20 Nov 2024 13:59:56 +0100 (CET)
+Received: from lsv051416.swis.nl-cdc01.nxp.com (lsv051416.swis.nl-cdc01.nxp.com [10.168.48.122])
+	by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 6EBB3202E4;
+	Wed, 20 Nov 2024 13:59:56 +0100 (CET)
+Date: Wed, 20 Nov 2024 13:59:56 +0100
+From: Jan Petrous <jan.petrous@oss.nxp.com>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Minda Chen <minda.chen@starfivetech.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Iyappan Subramanian <iyappan@os.amperecomputing.com>,
+	Keyur Chudgar <keyur@os.amperecomputing.com>,
+	Quan Nguyen <quan@os.amperecomputing.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	imx@lists.linux.dev, devicetree@vger.kernel.org,
+	NXP S32 Linux Team <s32@nxp.com>
+Subject: Re: [PATCH v5 16/16] net: stmmac: platform: Fix PTP clock rate
+ reading
+Message-ID: <Zz3dTNCb2/I0iDXV@lsv051416.swis.nl-cdc01.nxp.com>
+References: <20241119-upstream_s32cc_gmac-v5-0-7dcc90fcffef@oss.nxp.com>
+ <20241119-upstream_s32cc_gmac-v5-16-7dcc90fcffef@oss.nxp.com>
+ <ZzzGO5zgDvIK6JJ_@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] arm64: dts: ti: k3-am64-main: Switch ICSSG clock
- to core clock
-To: MD Danish Anwar <danishanwar@ti.com>, <conor+dt@kernel.org>,
-	<krzk+dt@kernel.org>, <robh@kernel.org>, <ssantosh@kernel.org>, <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>
-CC: <srk@ti.com>, <devicetree@vger.kernel.org>, <kristo@kernel.org>,
-	<linux-kernel@vger.kernel.org>, Roger Quadros <rogerq@kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>
-References: <20241113110955.3876045-1-danishanwar@ti.com>
- <20241113110955.3876045-3-danishanwar@ti.com>
-Content-Language: en-US
-From: Wadim Egorov <w.egorov@phytec.de>
-In-Reply-To: <20241113110955.3876045-3-danishanwar@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: Berlix.phytec.de (172.25.0.12) To Berlix.phytec.de
- (172.25.0.12)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU6PEPF00009524:EE_|AS8P195MB1846:EE_
-X-MS-Office365-Filtering-Correlation-Id: af870ffc-6b7b-49ed-2257-08dd09624412
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|1800799024|82310400026|7416014|376014|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?cTV5c1E4MTRXSkdWKytHVG1xS3prVE00UW44V3g3bWxjT2s1YjVsd2ZDNjAv?=
- =?utf-8?B?VXQrQzV6a0c0ZVBUUUdSV3ZVNG9ncTJqSnpuZmkvUU1tWXBBaS9sY2gwQzRQ?=
- =?utf-8?B?dXFwYndUeGRXTTBlL2ljVGpxR0tKSktiRkQwbmp1R1FqanJid2hPekZWTzcw?=
- =?utf-8?B?UjBwcmNLUllVUElSYzZMc0doM0RHcUlSM3h6S0p1RS91YUozMUk0OU13ODZY?=
- =?utf-8?B?Z0tEdC8xUHF2N1ROTFNWSVN2bmRjZk5jUHNVbEpEZHoxTFVxck5sODFqdjZx?=
- =?utf-8?B?dWlxejNKaEp6RkNPUWZiSW5xeTZOV1NjVmhNWjFXbXI3ZVhuaXFpWklSQkwz?=
- =?utf-8?B?K3hpRS8wbkJOMGJBaWFyMUg3RFExenlLaHpWL0NpS00rU1BuWXQ0NFM2Qkta?=
- =?utf-8?B?ZlhSaHU4eVV4LzNHY2J4b1p2ZUhuWm9YMnFLcndVcGpmTzhBS01lR25jQ05P?=
- =?utf-8?B?MWRLY0NDeEM5NUFMVWE1d1J3NllnTGZqalBocXVMZ2R0TFJoOE1PNkhuRVN4?=
- =?utf-8?B?UVRWNVllU01wa0VwRWYzQndWV294bE0rU0s2QXVUbjVGdEtkVURldUNST2RB?=
- =?utf-8?B?cDJtSGg1d1djR0hsTE10bEx5NHlXRmVKN3YwM0R4Q0dFUkRpUzQwTGNpZ3Qr?=
- =?utf-8?B?VGtsNW5KcEhoUUVSa3FlTFZFNEt5R3VpZWxERVVmN0s3TWRVa0dXSlVRQVd2?=
- =?utf-8?B?L2k2VFY3MUptQkp1eXBkZlZuYmJkaGR3UWFWYzBGUW1LOHJnTytYT0lyYXZG?=
- =?utf-8?B?SHJIUXlKUVMyUWFUemVVZDlZMGZvVk44aVM0VStPd1ZzekN2aDlqZWtMVTRs?=
- =?utf-8?B?aGNhaHA1aHNGOHlCQk4rbndFeEhmemJQODhJM3F0SDJYRjFUbFJ3N3loQi9i?=
- =?utf-8?B?RTdhUEtOSGw1ajk2aEw1NVpKMDN6alltV2JaaG1nNVhXQ09jOGNIalNCNGhE?=
- =?utf-8?B?R3FCMEhDeVZhbEdSeS8wYkIwNUc2S1ZHZHdBYVZ0YTZVQVJVaDduS0luTC9s?=
- =?utf-8?B?dm4zdVlyMHJzSWIyK3RaSFI4RWJzMEdjSzhXL2xqcS8xb3ZOM2IzUjBWd21I?=
- =?utf-8?B?YWptQ3EySEFOVkNFM3FrWUVUUWk0ci9PZ2dmTkxDTnhQb2tMeFgxVHBLZXhh?=
- =?utf-8?B?eDZlRlY1QmlqcGpXbHdoUGtDRFIwdlNMQzN6eHlveVIzOVRCb2d6d0FQcWJj?=
- =?utf-8?B?TlQwRmZlMGFjVGcxTENvSXRQaUFGTkl0SlJjdWtCTzJsSkRhc2lTTUphZjM5?=
- =?utf-8?B?V0YrRVYvYThxTUlma0VvV0hyMWp0TWRScW9DVmpUa0dDQS9HSlg5ejNHRTZ0?=
- =?utf-8?B?UDJSdE1VS1AwYmJZRU1OVFBOR1FSbDBmQjB5NTBKakl2MVhBZzNMTWgwSndj?=
- =?utf-8?B?V0FzRXJ2azllVmZrZm1HSkNqdGhCb2tKblVYK1J6QWlXR0VkY1lLK01vNFhv?=
- =?utf-8?B?S2RpTVBZcjQxeU1aSE5jWVJnRDlFNFdlSlArczQ0T1JpRWlMUnFuaHpaZFBC?=
- =?utf-8?B?cVNvVnZiMFhXbDNtcEozK3ROSFZicmo0bjdhUWZpTmZ4eHp2L0FRWXNtWlZU?=
- =?utf-8?B?ZUxDdXBkRHlTcVR4WmZicHJTT3hUeGdBWmpOQ0FSaXQreW1NYzBCSjgrYXlo?=
- =?utf-8?B?dXAyek1rM2FhZU5xTDFPaERPVjZjeXpmR2tWT042L2ttbXEwbFh5bk55cGk1?=
- =?utf-8?B?WTAxLzBuQmZpVFlsclZQUlBWazA5Mkw0K2lwTmh4eXJQT2pUaUVjTW1lMWNx?=
- =?utf-8?B?cVlIbHlqSXJjRW9KN2dHYnZ5ZzU1TVFSb0NmemNHNWJmM3VUQTdaS1hnQTNR?=
- =?utf-8?B?NG9RSm1XZGR6N0JIZ1N2RDRzZE5YQlZVelkvUW1FNWkyNWN0cXJuOTFqQ3li?=
- =?utf-8?B?ZitTYWUxaFNYQjJRandwQUQvalhZeFREQWVZa21DVHpzRWc9PQ==?=
-X-Forefront-Antispam-Report:
-	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:Diagnostix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(82310400026)(7416014)(376014)(7053199007);DIR:OUT;SFP:1102;
-X-OriginatorOrg: phytec.de
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2024 12:53:00.9337
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: af870ffc-6b7b-49ed-2257-08dd09624412
-X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e609157c-80e2-446d-9be3-9c99c2399d29;Ip=[91.26.50.189];Helo=[Diagnostix.phytec.de]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DU6PEPF00009524.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8P195MB1846
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZzzGO5zgDvIK6JJ_@shell.armlinux.org.uk>
+X-Virus-Scanned: ClamAV using ClamSMTP
 
-
-
-Am 13.11.24 um 12:09 schrieb MD Danish Anwar:
-> ICSSG has 7 available clocks per instance. Add all the cloks to ICSSG
-> nodes. ICSSG currently uses ICSSG_ICLK (clk id 20) which operates at
-> 250MHz. Switch ICSSG clock to ICSSG_CORE clock (clk id 0) which operates at
-> 333MHz.
+On Tue, Nov 19, 2024 at 05:09:15PM +0000, Russell King (Oracle) wrote:
+> On Tue, Nov 19, 2024 at 04:00:22PM +0100, Jan Petrous via B4 Relay wrote:
+> > From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
+> > 
+> > The stmmac driver supports many vendors SoCs using Synopsys-licensed
+> > Ethernet controller IP. Most of these vendors reuse the stmmac_platform
+> > codebase, which has a potential PTP clock initialization issue.
+> > The PTP clock rate reading might require ungating what is not provided.
+> > 
+> > Fix the PTP clock initialization by enabling it immediately.
+> > 
+> > Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
+> > ---
+> >  drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> > index b1e4df1a86a0..db3e8ef4fc3a 100644
+> > --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> > +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
+> > @@ -632,7 +632,7 @@ stmmac_probe_config_dt(struct platform_device *pdev, u8 *mac)
+> >  	clk_prepare_enable(plat->pclk);
+> >  
+> >  	/* Fall-back to main clock in case of no PTP ref is passed */
+> > -	plat->clk_ptp_ref = devm_clk_get(&pdev->dev, "ptp_ref");
+> > +	plat->clk_ptp_ref = devm_clk_get_enabled(&pdev->dev, "ptp_ref");
+> >  	if (IS_ERR(plat->clk_ptp_ref)) {
+> >  		plat->clk_ptp_rate = clk_get_rate(plat->stmmac_clk);
+> >  		plat->clk_ptp_ref = NULL;
 > 
-> ICSSG_CORE clock will help get the most out of ICSSG as more cycles are
-> needed to fully support all ICSSG features.
+> Looking at where the driver makes use of clk_ptp_ref, it currently
+> prepares and enables this clock via stmmac_open(), disables and
+> unprepares via stmmac_release().
 > 
-> This commit also changes assigned-clock-parents of coreclk-mux to
-> ICSSG_CORE clock from ICSSG_ICLK.
+> There could be a platform where this is being used as a power saving
+> measure, and replacing devm_clk_get() with devm_clk_get_enabled() will
+> defeat that.
 > 
-> Performance update in dual mac mode
->    With ICSSG_CORE Clk @ 333MHz
->      Tx throughput - 934 Mbps
->      Rx throughput - 914 Mbps,
+> I would suggest that if you need the clock to be enabled in order to
+> get its rate, then the call to clk_get_rate() should have the
+> enable/disable around it to allow these other sites to work as they
+> have done.
 > 
->    With ICSSG_ICLK clk @ 250MHz,
->      Tx throughput - 920 Mbps
->      Rx throughput - 706 Mbps
-
-I can see similar improvements. Thank you.
-
+> Alternatively, we may take the view that the power saving is not
+> necessary, or stopping the clock is not a good idea (loss of time
+> in the 1588 block?) so the above changed would be sensible but only
+> if the clk_prepare_enable() and clk_disable_unprepare() calls on
+> this particular clock are also removed.
 > 
-> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+> I can't say which is the correct way forward.
+> 
 
-Tested on a phyBOARD-Electra-AM64x board,
+For me it looks more conservative way to use first option = enclose
+the clk_get_rate() with clk_prepare_enable() and clk_disable_unprepare()
+as this don't change the PTP clock status for other glue drivers.
 
-Tested-by: Wadim Egorov <w.egorov@phytec.de>
+BR.
+/Jan
 
