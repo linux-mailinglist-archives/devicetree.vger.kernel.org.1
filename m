@@ -1,156 +1,122 @@
-Return-Path: <devicetree+bounces-123139-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123140-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFA079D37FC
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 11:09:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8F1F9D3800
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 11:10:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ABDABB2E7EE
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 10:04:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F2A02833A2
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 10:10:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 352A119CC3F;
-	Wed, 20 Nov 2024 10:01:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B887519C54A;
+	Wed, 20 Nov 2024 10:10:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="XDH+EFjn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3DFE16F8E5
-	for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 10:01:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9B3318A6A8;
+	Wed, 20 Nov 2024 10:10:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732096897; cv=none; b=ChA6uBegFgf7kvIa5osS6GqXCCR6hP21KIfJVq7eqft62pYXt/aw2/DCR78ty/VHvMA9XxIgOjuyLpDqB/lKMBx6qo2jYTCtyT/lpmy76Dbg81CuYgGLYYZcyKMLawPz3QNCrpJlVmx39uv3L6bb/f1SZ48Jd/RgOqWQH0L0RiE=
+	t=1732097420; cv=none; b=NYx0Ds0ZbHRF6RaG1sK2fVCKWyIBFnIqqWErZv8akvAUgoANEZZ4B7bW6yt+xqOKJm5KmcrySKOcBAGQb6zUCgfu7QhqRkQLtaSL0uDtuPS48uf5UUKUf7FmRBohT8pumILRBQDrkyaYi25Si3bp7OLSdoW3owU03atLjHm4aNE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732096897; c=relaxed/simple;
-	bh=chcNovfSeV+DZRaWhommLahi04LyZbnfEGviJ3Q2E80=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Du/E/SLMe07Zu42HI0xaVocgmnU+XHanLMztRII7Hjg8xP7kR8zgYZikn/lXEkqL1mQTSFpzVHxR6581+JB/QV2jCrK5td/AXxz2uJhONxvL7yEMOLlO+XsA0CoiuJjXUK1MiMyZwGQk19jT9VinrZ2ubUEuv4wKLbzK0AzaG6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tDhWM-0008UK-HI; Wed, 20 Nov 2024 11:01:14 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tDhWL-001igc-02;
-	Wed, 20 Nov 2024 11:01:13 +0100
-Received: from pengutronix.de (pd9e59fec.dip0.t-ipconnect.de [217.229.159.236])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 8D2CF377B9F;
-	Wed, 20 Nov 2024 10:01:12 +0000 (UTC)
-Date: Wed, 20 Nov 2024 11:01:12 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S . Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	imx@lists.linux.dev, NXP Linux Team <s32@nxp.com>, 
-	Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>, 
-	Enric Balletbo <eballetb@redhat.com>
-Subject: Re: [PATCH 3/3] can: flexcan: handle S32G2/S32G3 separate interrupt
- lines
-Message-ID: <20241120-venomous-skilled-rottweiler-622b36-mkl@pengutronix.de>
-References: <20241119081053.4175940-1-ciprianmarian.costea@oss.nxp.com>
- <20241119081053.4175940-4-ciprianmarian.costea@oss.nxp.com>
- <20241120-magnificent-accelerated-robin-70e7ef-mkl@pengutronix.de>
- <c9d8ff57-730f-40d9-887e-d11aba87c4b5@oss.nxp.com>
+	s=arc-20240116; t=1732097420; c=relaxed/simple;
+	bh=2qaQ1SiUb+00EcaULYRvl95OFYYN7B8TVPyMTw8h0xc=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=IlAS74VutInWGFhLfYSX5E26DPG81+XDOBIsDjixMD9HpB/6132s9ibANg/w0tIet3oEcxJRNpRPL0iMktsJOltoISn1mrgJoITi2qm9mGaDoYSjbsf9cq4+hJXinVAHnO381Zo78aQjD0fltkbC1bhY5iIBR06+zTjhHqvBGvE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=XDH+EFjn; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1732097419; x=1763633419;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=2qaQ1SiUb+00EcaULYRvl95OFYYN7B8TVPyMTw8h0xc=;
+  b=XDH+EFjnbWnmr6yUyrqvCSA7+kkmmSFSuqaFtn9WWOGY4Ol77MVkdWF/
+   npUT+vO1h3uIBSmw5+mdyRE1omLBcfWiPkMPGX7aqN3jkYO4DSXD1ml1S
+   M3nd0y0ImaduczI5NCIgvfXeRWmTUKMgmmRc7vEL/slSVDnNICsAwnz3n
+   oVwjs5ukvKrGCBEI9O+CHjbb3ZEEK02Jx4dRJGjUIePUACwsB4CFtT4Pn
+   lVjeC+BP2LZU5nRWQ21G1UXVOdsIY1S83LJAfZ1chVbpvzCH31OHqxtUs
+   C2YGab6xjTtGx7Hb4UcmqRQFAs/7wXlOhmIqKgREHOwaPayavVKopT+p8
+   g==;
+X-CSE-ConnectionGUID: SiPX8Z95Sh2II+yWq8OwYw==
+X-CSE-MsgGUID: Y5GxdXWVSHejNCzyBoDztQ==
+X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; 
+   d="scan'208";a="35056919"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 20 Nov 2024 03:10:17 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 20 Nov 2024 03:09:37 -0700
+Received: from ROB-ULT-M76677.microchip.com (10.10.85.11) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Wed, 20 Nov 2024 03:09:33 -0700
+From: Andrei Simion <andrei.simion@microchip.com>
+To: <cristian.birsan@microchip.com>
+CC: <alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>,
+	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>, <krzk+dt@kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<mihai.sain@microchip.com>, <nicolas.ferre@microchip.com>, <robh@kernel.org>,
+	Andrei Simion <andrei.simion@microchip.com>
+Subject: Re: [PATCH 1/2] ARM: dts: microchip: sama5d29_curiosity: Add no-1-8-v property to sdmmc0 node
+Date: Wed, 20 Nov 2024 12:09:19 +0200
+Message-ID: <20241120100918.46190-1-andrei.simion@microchip.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20241119160107.598411-2-cristian.birsan@microchip.com>
+References: <20241119160107.598411-2-cristian.birsan@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="3wnxz2cl47oixl33"
-Content-Disposition: inline
-In-Reply-To: <c9d8ff57-730f-40d9-887e-d11aba87c4b5@oss.nxp.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
+> From: Cristian Birsan <cristian.birsan@microchip.com>
+>
+> Add no-1-8-v property to sdmmc0 node to keep VDDSDMMC power rail at 3.3V.
+> This property will stop the LDO regulator from switching to 1.8V when the
+> MMC core detects an UHS SD Card. VDDSDMMC power rail is used by all the
+> SDMMC interface pins in GPIO mode (PA0 - PA13).
+>
+> On this board, PA6 is used as GPIO to enable the power switch controlling
+> USB Vbus for the USB Host. The change is needed to fix the PA6 voltage
+> level to 3.3V instead of 1.8V.
+>
+> Fixes: d85c4229e925 ("ARM: dts: at91: sama5d29_curiosity: Add device tree for sama5d29_curiosity board")
+> Suggested-by: Mihai Sain <mihai.sain@microchip.com>
+> Signed-off-by: Cristian Birsan <cristian.birsan@microchip.com>
 
---3wnxz2cl47oixl33
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 3/3] can: flexcan: handle S32G2/S32G3 separate interrupt
- lines
-MIME-Version: 1.0
+Hi,
 
-On 20.11.2024 11:01:25, Ciprian Marian Costea wrote:
-> On 11/20/2024 10:52 AM, Marc Kleine-Budde wrote:
-> > On 19.11.2024 10:10:53, Ciprian Costea wrote:
-> > > From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-> > >=20
-> > > On S32G2/S32G3 SoC, there are separate interrupts
-> > > for state change, bus errors, MBs 0-7 and MBs 8-127 respectively.
-> > >=20
-> > > In order to handle this FlexCAN hardware particularity, reuse
-> > > the 'FLEXCAN_QUIRK_NR_IRQ_3' quirk provided by mcf5441x's irq
-> > > handling support.
-> > >=20
-> > > Additionally, introduce 'FLEXCAN_QUIRK_SECONDARY_MB_IRQ' quirk,
-> > > which can be used in case there are two separate mailbox ranges
-> > > controlled by independent hardware interrupt lines, as it is
-> > > the case on S32G2/S32G3 SoC.
-> >=20
-> > Does the mainline driver already handle the 2nd mailbox range? Is there
-> > any downstream code yet?
-> >=20
-> > Marc
-> >=20
->=20
-> Hello Marc,
->=20
-> The mainline driver already handles the 2nd mailbox range (same
-> 'flexcan_irq') is used. The only difference is that for the 2nd mailbox
-> range a separate interrupt line is used.
+Tested-by: Andrei Simion <andrei.simion@microchip.com>
 
-AFAICS the IP core supports up to 128 mailboxes, though the driver only
-supports 64 mailboxes. Which mailboxes do you mean by the "2nd mailbox
-range"? What about mailboxes 64..127, which IRQ will them?
+> ---
+>  arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts
+> index 951a0c97d3c6..5933840bb8f7 100644
+> --- a/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts
+> +++ b/arch/arm/boot/dts/microchip/at91-sama5d29_curiosity.dts
+> @@ -514,6 +514,7 @@ kernel@200000 {
+>
+>  &sdmmc0 {
+>  	bus-width = <4>;
+> +	no-1-8-v;
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_sdmmc0_default>;
+>  	disable-wp;
 
-> I do plan to upstream more patches to the flexcan driver but they relate =
-to
-> Power Management (Suspend and Resume routines) and I plan to do this in a
-> separate patchset.
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---3wnxz2cl47oixl33
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmc9s2UACgkQKDiiPnot
-vG+mXQf+NEq1bSfJ1c4c9BnkrCHdJ8Th83zFhGmdTCdimKVJda+UVE+kZXKkSkvf
-WQKn4pX291kNV4SbBw1YeWk/cbS7WrpHrFO3GzxNXYgftoLV00v21E3sH6hZYLVj
-cot8rw1k3M+bi/bhnrsBxZW+rTC4xJHVmU+AbAXXsUu4fXV0wdTtW7hndoBtnkio
-kTwU2duz2R/x5O6ni9vP7afjGVig43jtzXfLWPT7p3PHbMzB9Y3XCc8Lf4xsGR6o
-IQdi1LKVAr0OjFJiy6WmhJJ2YhByE/jVpEnfyRjAHmnr8jIclAg6q9IAtbChAXH2
-dX5EByDmnF8G0EJG/C0jPBczpI87dA==
-=ZtzX
------END PGP SIGNATURE-----
-
---3wnxz2cl47oixl33--
+Best Regards,
+--
+Andrei Simion
 
