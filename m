@@ -1,145 +1,177 @@
-Return-Path: <devicetree+bounces-123339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123340-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8319F9D413B
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 18:35:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14CFC9D41B9
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 18:56:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 42354280E59
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 17:35:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E84E3B24178
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 17:46:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B59E19F41C;
-	Wed, 20 Nov 2024 17:35:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D05BF19F43A;
+	Wed, 20 Nov 2024 17:46:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZBKxiblv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gSFv0Y6h"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C79AD5588F;
-	Wed, 20 Nov 2024 17:35:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FC5C15539A;
+	Wed, 20 Nov 2024 17:46:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732124140; cv=none; b=J/0aSU51gQ4TMlAQ2jvvONzj55DrMWaeGBsP3WCVfpzvPoZwcZesq97bhf87NKHOZfrbLmzDO09D04CXeHaAZfFAozoASxS/OiYyTXXWkJFAA53dDIb9tNHMhus8bTfO5hp3/TgOIQN6KxonGvOQ38+V/BOQbNEPdoxHbDLRKKA=
+	t=1732124802; cv=none; b=ixlhay8UuaRd6RnzeDHiE9r/69wdjEmaTvwJe2PZqNUWkbBUOSUQqvubabG0A2gmZ/NfEsvzwz88LLPELTme6nYLD5tWQVfeSwYAiaPFXVQCWjKQ9aXpRu3PlvSt7EPuGgbgIcjOqp77LLD4gC6SXa7NLZ3HWFY0O9/NBB7HHQA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732124140; c=relaxed/simple;
-	bh=CSuqCML4kJmQA6Wrl3wxaPZHEjyIHabwVgxjyIttfkU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BLIFXieV1eqOf3KDbTlnzq4Xb8R7zsQKMkYnRdx04VbiD46Tqa8h1o303Y7DjIXMqTlb/g9/kJnD7f58IiaGEIRfATbf63/X3p16GM6MuvXhmacIh19b2jdu5jfRErlkC5fJiUr4BC+jX3hgqWpOZmwVJsTm3p5QwNa1gJAVGOg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZBKxiblv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2AD5C4CECD;
-	Wed, 20 Nov 2024 17:35:35 +0000 (UTC)
+	s=arc-20240116; t=1732124802; c=relaxed/simple;
+	bh=IWeGbqt/aP9Z+v83QQBIzJ9NOFn4vM22aA07hXlz+O8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PqEyKZSfhh7wFA4qE7MD/A2lKn1xO/S2hx7TmCj8kr07Xx4JMZzB62ZMMS6gjvg2XbDF0G14FGLfU+cvqp/tM0PPiiWMg5SsCbvvyJKd+Pp9ueilYFcTno5Lb34HmBo3TI4XkLL4uufEUD0gNHuMS3gzpQPuKHff9WQVBZlYIdY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gSFv0Y6h; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CABC3C4CECD;
+	Wed, 20 Nov 2024 17:46:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732124140;
-	bh=CSuqCML4kJmQA6Wrl3wxaPZHEjyIHabwVgxjyIttfkU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZBKxiblveyb5QtKCQg5H5ei2JDTv4SPUEUiNI45CeHkE4D1Ut14z5L1Zolgex3tP3
-	 4Am6K6zrZ0ruLDuISVjkgWrc05ROAkV0VBRrO4zckhh5XQhSt1fakBymVC0rQPyFLG
-	 raNZ+3ugQwAtnZFrilVmejn1YLLc0PhsirLLll8U0Dgn9YNY4dnzAlfy5o8WEdPSrc
-	 QPM5eS0JxNCkGAvCNVvquCi9Im6dkZZ9BdVdUQlBA3vww2Sg9Pufx6UZatlnFXlui/
-	 mjoUYfQs0KAzJudIwWklHCo46vXLrjYXCINXb6m6sHRhKYE/PApTbg6VrWGQrCW7V6
-	 bwGKnBr/bvfEg==
-Message-ID: <dfe8e47e-6c31-4b11-b733-38e5bd0e49d3@kernel.org>
-Date: Wed, 20 Nov 2024 18:35:33 +0100
+	s=k20201202; t=1732124802;
+	bh=IWeGbqt/aP9Z+v83QQBIzJ9NOFn4vM22aA07hXlz+O8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gSFv0Y6h9roeAEtyMm+CahvnA61YwGAfn2GL1NT6D5Dol5PpgWDvHpEbkANV3/JS/
+	 ZbfUsCr+U68Z+/PZC7eKpcFv775sS6FOx/XsHpm/+39eIIV19kE0W8Luw+h4i73eT5
+	 Lbne7PV83ScJaDjpPtFIi3t2SZtQaOWF22TFNOsrmE+FwH7nggerTsaXyU9DWRVg/s
+	 yxA3ZQtGLdEkguak8xMiO3MDDI9zhMTPeXza9nWg50o965QZ9m6h9i2qA5HbSAuj+b
+	 0kB/AmTtpUvV1jkUS6SwZignCm1uf/9pcsrV2hv8iuGx5R0bB2XxCUxDQsSDf51484
+	 M7rNnaCLHdYhQ==
+Date: Wed, 20 Nov 2024 17:46:36 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Daniel Machon <daniel.machon@microchip.com>
+Cc: UNGLinuxDriver@microchip.com, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Lars Povlsen <lars.povlsen@microchip.com>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Russell King <linux@armlinux.org.uk>, jacob.e.keller@intel.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH net-next v2 8/8] dt-bindings: net: sparx5: document RGMII
+ MAC delays
+Message-ID: <20241120-decrease-wired-f6f21af817ce@spud>
+References: <20241113-sparx5-lan969x-switch-driver-4-v2-0-0db98ac096d1@microchip.com>
+ <20241113-sparx5-lan969x-switch-driver-4-v2-8-0db98ac096d1@microchip.com>
+ <20241114-liquefy-chasing-a85e284f14b9@spud>
+ <20241118105025.hjtji5cnl75rcrb4@DEN-DL-M70577>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: (pmbus/adp1050): Add bindings for
- adp1051, adp1055 and ltp8800
-To: Conor Dooley <conor@kernel.org>,
- Cedric Encarnacion <cedricjustine.encarnacion@analog.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-i2c@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-hwmon@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
- Jean Delvare <jdelvare@suse.com>, Jonathan Corbet <corbet@lwn.net>,
- Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Radu Sabau <radu.sabau@analog.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- Alexis Czezar Torreno <alexisczezar.torreno@analog.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-References: <20241120035826.3920-1-cedricjustine.encarnacion@analog.com>
- <20241120035826.3920-2-cedricjustine.encarnacion@analog.com>
- <20241120-process-hulk-ecedcbf088f7@spud>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241120-process-hulk-ecedcbf088f7@spud>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-On 20/11/2024 18:11, Conor Dooley wrote:
-> On Wed, Nov 20, 2024 at 11:58:25AM +0800, Cedric Encarnacion wrote:
->> add dt-bindings for adp1051, adp1055, and ltp8800 pmbus.
->>     ADP1051: 6 PWM for I/O Voltage, I/O Current, Temperature
->>     ADP1055: 6 PWM for I/O Voltage, I/O Current, Power, Temperature
->>     LTP8800-1A/-2/-4A: 150A/135A/200A DC/DC µModule Regulator
->>
->> Co-developed-by: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
->> Signed-off-by: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
->> Signed-off-by: Cedric Encarnacion <cedricjustine.encarnacion@analog.com>
-> 
-> Why did you drop my ack?
-> https://lore.kernel.org/all/20241106-linoleum-kebab-decf14f54f76@spud/
-So that's a v2? Or v3? Then should be marked correctly. Please start
-using b4. I already asked analog.com for this in few cases. Feel free
-not to use b4 if you send correct patches, but this is not the case here.
-
-A nit, subject: drop second/last, redundant "bindings for". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="2zHSNTjBPABr97aC"
+Content-Disposition: inline
+In-Reply-To: <20241118105025.hjtji5cnl75rcrb4@DEN-DL-M70577>
 
 
+--2zHSNTjBPABr97aC
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Krzysztof
+On Mon, Nov 18, 2024 at 10:50:25AM +0000, Daniel Machon wrote:
+> Hi Conor,
+>=20
+> > > The lan969x switch device supports two RGMII port interfaces that can=
+ be
+> > > configured for MAC level rx and tx delays.
+> > >=20
+> > > Document two new properties {rx,tx}-internal-delay-ps. Make them
+> > > required properties, if the phy-mode is one of: rgmii, rgmii_id,
+> > > rgmii-rxid or rgmii-txid. Also specify accepted values.
+> > >=20
+> > > Signed-off-by: Daniel Machon <daniel.machon@microchip.com>
+> > > ---
+> > >  .../bindings/net/microchip,sparx5-switch.yaml        | 20 ++++++++++=
+++++++++++
+> > >  1 file changed, 20 insertions(+)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/net/microchip,sparx5-s=
+witch.yaml b/Documentation/devicetree/bindings/net/microchip,sparx5-switch.=
+yaml
+> > > index dedfad526666..a3f2b70c5c77 100644
+> > > --- a/Documentation/devicetree/bindings/net/microchip,sparx5-switch.y=
+aml
+> > > +++ b/Documentation/devicetree/bindings/net/microchip,sparx5-switch.y=
+aml
+> > > @@ -129,6 +129,26 @@ properties:
+> > >              minimum: 0
+> > >              maximum: 383
+> > > =20
+> > > +        allOf:
+> > > +          - if:
+> > > +              properties:
+> > > +                phy-mode:
+> > > +                  contains:
+> > > +                    enum:
+> > > +                      - rgmii
+> > > +                      - rgmii-rxid
+> > > +                      - rgmii-txid
+> > > +                      - rgmii-id
+> > > +            then:
+> > > +              properties:
+> > > +                rx-internal-delay-ps:
+> > > +                  enum: [0, 1000, 1700, 2000, 2500, 3000, 3300]
+> > > +                tx-internal-delay-ps:
+> > > +                  enum: [0, 1000, 1700, 2000, 2500, 3000, 3300]
+> >=20
+> > Properties should be define at the top level and constrained in the
+> > if/then parts. Please move the property definitions out, and just leave
+> > the required: bit here.
+> >=20
+> > > +              required:
+> > > +                - rx-internal-delay-ps
+> > > +                - tx-internal-delay-ps
+> >=20
+> > You've got no else, so these properties are valid even for !rgmii?
+> >=20
+> > > +
+> > >          required:
+> > >            - reg
+> > >            - phys
+> >=20
+> > Additionally, please move the conditional bits below the required
+> > property list.
+> >=20
+> > Cheers,
+> > Conor.
+>=20
+> I will be getting rid of the 'required' constraints in v3. What I hear
+> you say, is that the two {rx,tx}-internal-delay-ps properties (incl.
+> their enum values) should be moved out of the if/else and to the
+> top-level - can you confirm this?
+
+> Is specifying the values
+> a property can take not considered a constraint?
+
+Actually, in this case the property isn't even defined (per
+ethernet-controller.yaml) if the phy-mode wasn't an rgmii one, so what
+you had here was probably fine. Ordinarily, that's not the case, so you'd
+have been setting constraints for only rgmii phy-modes and no
+constraints at all for non-rgmii phy-modes.
+
+
+
+--2zHSNTjBPABr97aC
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZz4gfAAKCRB4tDGHoIJi
+0u2lAQD4xPN6l1CFgILsMQlm4WvjtBORrt9dFeneTtKWr3k3AgD/e6O6OVSW6HTS
+wF4lBPCGhNRpUc4Ab2cECyQ2ZBI8cgQ=
+=fiLn
+-----END PGP SIGNATURE-----
+
+--2zHSNTjBPABr97aC--
 
