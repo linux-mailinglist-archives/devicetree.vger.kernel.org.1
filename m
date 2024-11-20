@@ -1,109 +1,114 @@
-Return-Path: <devicetree+bounces-123088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA77C9D35FA
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 09:54:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B00F49D35EA
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 09:51:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7EC7B283697
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 08:54:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76037283648
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 08:51:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C00617DFFA;
-	Wed, 20 Nov 2024 08:54:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6246176FB4;
+	Wed, 20 Nov 2024 08:51:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="HPXwIyP+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oUUyZy3/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C77A516F831
-	for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 08:54:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A3F0219ED;
+	Wed, 20 Nov 2024 08:51:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732092844; cv=none; b=EiihZCq7mUw9jE70E/TrXPVAlBWqu0HKWEPEi4875qGDsn6OqcGJCrjEEq4cBOa7fk4XseiUjGX4oWkr/t6wuNX3daYeoqoL3IUgO4kgJ3Ows1NR0syvmtVBSmSaS2pJPl+GHlV8CpFEGDDw7x9L2QEEYzeoc3ZRcOc0ht+BMjk=
+	t=1732092710; cv=none; b=OjvFogVt8aGDk6H4jezCsO7X+v55H5bWcMpbOGmtR7ufM5V0KcnIWjria64CILitCdYbVC/9OSZwsUzZrZl2y24Pa2l1EORTLnD3DYTfhH1IrRgeXwYIjKI+zVq2HJwttGSy6juu1O19yu3Ju7ATWUjfCCH51/KoitwW46Ac3RU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732092844; c=relaxed/simple;
-	bh=51UQGBmULonluEbQpgbhVHYS6EalistYtOLeMb1RpE8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=of3RtMHVnE15S3aye00Zr3MH7efYz0ABIraSy49kFH7KKejJIK24ZRfLgJn0m1mjS5lSQN4lAdQFqyHFsQIcKt1gNziQjFe8ukwC1bHd1VtO7rJspoRWZWV40PlBgQNMuFcYCm0F4FA2/83tsG9tGcn6uZIgRmybZ4gTOSRM9hI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=HPXwIyP+; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=from:to:cc:subject:date:message-id
-	:mime-version:content-transfer-encoding; s=k1; bh=9bTMNp9DbYwBHM
-	G/d5lcJpQICn9C3Vzzzug+gmRkH44=; b=HPXwIyP+XddsG160fafKfED5+lu8Hv
-	PbPTLj7unW6wqsJZ7NLHSHudjz4c3bOKT6nP4h//ydazg1h+oYrIu2BAfuhfB+f4
-	YoZl7f5+uIVeWOiBZA2ELuvG7oOftB3bBqDZZiAccExtACx7T1MUgVvIQzFGrG97
-	ZUZQLUaL/v2A01yhj0bChkGFpbc2YVQuD6eBLhkCGQFg4rjknW5x4oY6F5OEt5Fl
-	HISmOpvXHXKBVF9VGvakMHTW5jnAZ0F+jGWh4CkJgdKGJ4hm3knl86pzcubLsYO9
-	8dbZiTJXZkhkgDjh3SihXI5t0ziTxM+tVzYtx5oQrmrm/TON5M+V2dpA==
-Received: (qmail 838038 invoked from network); 20 Nov 2024 09:53:59 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 20 Nov 2024 09:53:59 +0100
-X-UD-Smtp-Session: l3s3148p1@RftrSlQnot4gAwDPXxznANR4Jedc6XSv
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-renesas-soc@vger.kernel.org
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: [PATCH] arm64: dts: renesas: rzg3s-smarc: Enable I2C1 and connected power monitor
-Date: Wed, 20 Nov 2024 09:49:59 +0100
-Message-ID: <20241120085345.24638-2-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.45.2
+	s=arc-20240116; t=1732092710; c=relaxed/simple;
+	bh=BxO/BxdTGerTXcUJdvsnxuM8k9xAKLCZFwgnIIVFapU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gOc+qhRA+vVPkAZAnoWnxIx/57ct5z02FtiJXzPdseLy5ICgQ6+3FOctLv2MnCSJseZHHW5H9NBMbrMt9nBSihHIgzBgcxIQ5RIU7Ia/4t4jfs/DJB82KxmGMkO5Qvk3r9Dx8Rzpjxq3NWsBqL6P7zVVhA90VI+tB85eR7Sa2MI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oUUyZy3/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 308FBC4CECD;
+	Wed, 20 Nov 2024 08:51:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732092710;
+	bh=BxO/BxdTGerTXcUJdvsnxuM8k9xAKLCZFwgnIIVFapU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oUUyZy3/Ta92koL1T0Sde9O6Zwzb/zg0sG721Rf4lYCdNpl2+Br8yP5e1EqrasMYV
+	 SXnYCyq3VYTkFTz0dOwvXeGhULOHc8vszy/Yt1UyBTpu+qYQwf8hA6cAXisqRhioMf
+	 qNKnSz1edHu52H5jAZwYskX10IwRtVm5idtFy9uI9nYaFn11ungwgYY6ZRNXX+lXh1
+	 sQFsoLGqAMUgo7h5gina0Wu1pyEFZ5aPsBuIyF4wf/7I3oe7ZwoZsA3rFmNUFBAhCM
+	 F/y5+zGcm+ThU8BsTtRoTMXuUG0tyHkVNAsw0Mv6isTILmmaGx/3kGN9mkzr9wG8Gc
+	 nlf/V1poJ7ZYg==
+Date: Wed, 20 Nov 2024 09:51:46 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Loic Poulain <loic.poulain@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
+	Jagadeesh Kona <quic_jkona@quicinc.com>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH 3/6] dt-bindings: clock: qcom: Add second power-domain to
+ CAMCC
+Message-ID: <t4zfzdzcidywo6c4f5t2sle7vsybuxqtw76ghhar5klivfliei@krbgqfe6po4g>
+References: <20241119-b4-linux-next-24-11-18-dtsi-x1e80100-camss-v1-0-54075d75f654@linaro.org>
+ <20241119-b4-linux-next-24-11-18-dtsi-x1e80100-camss-v1-3-54075d75f654@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241119-b4-linux-next-24-11-18-dtsi-x1e80100-camss-v1-3-54075d75f654@linaro.org>
 
-Enable I2C1 for the carrier board and the connected power monitor
-ISL28022. Limit the bus speed to the maximum the power monitor supports.
+On Tue, Nov 19, 2024 at 01:10:32PM +0000, Bryan O'Donoghue wrote:
+> The x1e80100 has two power-domains for the CAMCC not one.
+> 
+> Capture this as:
+> minItems:1
+> maxItems:2
+> 
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
+> index 0766f66c7dc4f6b81afa01f156c490f4f742fcee..afb7e37118b691658fc5cc71e97b110dcee7f22a 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
+> @@ -39,9 +39,10 @@ properties:
+>        - description: Sleep clock source
+>  
+>    power-domains:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 2
+>      description:
+> -      A phandle and PM domain specifier for the MMCX power domain.
+> +      A phandle and PM domain specifier for the MMCX or MCX power domains.
+>  
 
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
----
+Instead list the items with description and minItems
+minItems: 1
+items:
+  - description:
+  - description:
 
-i2c1 gets enabled in the current SoM-DTSI as well, but to be safe
-regarding other SoM DTSIs to come, I opted for explicitly enabling it in
-the carrier board as well.
+also add in allOf section if:then: constraining it for all variants
+(maxItems: 1 and minItems: 2).
 
-I picked the 'average-samples' value using my gut feeling. If someone
-has a reason to pick a better one, I am all for it.
+Optionally X1E could be moved to a new binding. I think this would be
+better, but I do not insist.
 
- arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
-index 7945d44e6ee1..5e4bfaeafd20 100644
---- a/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
-@@ -73,6 +73,19 @@ &i2c0 {
- 	clock-frequency = <1000000>;
- };
- 
-+&i2c1 {
-+	status = "okay";
-+
-+	clock-frequency = <400000>;
-+
-+	power-monitor@44 {
-+		compatible = "renesas,isl28022";
-+		reg = <0x44>;
-+		shunt-resistor-micro-ohms = <8000>;
-+		renesas,average-samples = <32>;
-+	};
-+};
-+
- &pinctrl {
- 	key-1-gpio-hog {
- 		gpio-hog;
--- 
-2.45.2
+Best regards,
+Krzysztof
 
 
