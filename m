@@ -1,137 +1,179 @@
-Return-Path: <devicetree+bounces-123059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCB439D3504
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 09:06:14 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 555689D3507
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 09:06:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E696281FBC
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 08:06:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A8551B21C9D
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 08:06:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA6DA15E5DC;
-	Wed, 20 Nov 2024 08:06:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73880159565;
+	Wed, 20 Nov 2024 08:06:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QBFXlqxC"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cpcSQKQD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D64B15B551;
-	Wed, 20 Nov 2024 08:06:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7D1A1F94A;
+	Wed, 20 Nov 2024 08:06:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732089967; cv=none; b=QymdmHB4MUoGXGz0Jw4ibTKYJ67LLZjCHEFUs85owztXyYVR+TdrLXxh+Tsnj313OTxqS30X9mJ3wOYwVzHWDum2uze0i9mCK+GbIvYj8egBb98+PKmEmqW9evkVUf+7Kd8BzDuXzWNhnjVmh08LWVCaczeDYkA+IrdCjsHOkhM=
+	t=1732090004; cv=none; b=pK7GSCYzzFTi6hv5cQKOiQ89KMrotZHxTtEDtcmdWDw03/lK+jKnRTEI2lGGtryM0MRSx4eXha0Tp7GU5bYIdIgRNUjHqZUU61pVCcsTgFlmINP6B3F/jsYiTG3oH0ZctLUXz75Yk2CCBowAUeuIzNnyIyKkANGl9ha7PbacmfI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732089967; c=relaxed/simple;
-	bh=4XpgWRwxRQX8N4sCs+G1yqWwX0N+g8TGTG4+ywFNqTY=;
+	s=arc-20240116; t=1732090004; c=relaxed/simple;
+	bh=uAhfSWvZR9Xm6RqA4GyYmx9riTr6JGITFU8rqgdrkzg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nJA12jfFhKGNfH/02054WCZq4fbNkjf4Xw2eucHksQ0/p24bZP4SktyRIumezIkc5eiQZf+x/hiqOMY7UnTvxUvaoSzy8nu5N2xFzPBbkT8p0mz0uqdjsxkWZ2OYlPgrW7k9oIe0CMV9AoSE7KVCCYnPxVv206DBgxNcZEsLJj0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QBFXlqxC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4273AC4CECD;
-	Wed, 20 Nov 2024 08:06:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732089967;
-	bh=4XpgWRwxRQX8N4sCs+G1yqWwX0N+g8TGTG4+ywFNqTY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QBFXlqxC4rM78DDgViewI8/dKlQaxXqNEHoFtPKzouuOYFG7SkBH7iBRBo5wYmTsJ
-	 /UbMoKqzxONL293iN90t76vu5Q8XJTwtaMZKf4bTZ55d9DtZxyJcW4eCQJy925ZVc0
-	 gBgYF37HE3JAEZe2cPTtpFOYEnyJYm0AjFqnQQ+PZbRAoYryhlgXFrsY7lHqa45lqN
-	 7ga4XGm8PgZJVaQSn/ufDk9z/+G+h4Bp0roZU2mkaELv6MsTyk+QdUxnXVFgLUx4xL
-	 UZGqMMdGJMWzuK4mYcH5CpibI/anrEB5Zkmied7DiK+Key5iki/TV8GV2jiwJySj6i
-	 RHHcBF7AIAL6w==
-Date: Wed, 20 Nov 2024 09:06:03 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-Cc: andersson@kernel.org, Bjorn Helgaas <bhelgaas@google.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
-	Jingoo Han <jingoohan1@gmail.com>, Bartosz Golaszewski <brgl@bgdev.pl>, quic_vbadigan@quicinc.com, 
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/6] arm64: dts: qcom: qcs6490-rb3gen2: Add node for
- qps615
-Message-ID: <ngjwfsymvo2sucvzyoanhezjisjqgfgnlixrzjgxjzlfchni7y@lvgrfslpnqmo>
-References: <20241112-qps615_pwr-v3-0-29a1e98aa2b0@quicinc.com>
- <20241112-qps615_pwr-v3-2-29a1e98aa2b0@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=qhNxqb0xcyGbV0e/x0f1hOqg8S28OiEZ96jChFG2XUZvjA2VsKKiyrejw9ptTwo5a36aeaKm91Jc6xuSv+JMMVSukKd2CsT7k+atsY4EIHnQtJf54mPw/JhouDsd6lVi5a0Mrokn/sNz51VYeHgju46RjUw3PFMwncoXs4E/giA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cpcSQKQD; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1732090003; x=1763626003;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=uAhfSWvZR9Xm6RqA4GyYmx9riTr6JGITFU8rqgdrkzg=;
+  b=cpcSQKQDmFsU1fpPr22TLmC+pbbHndQ8Zzs40C8ZcWRX6BteItHDee9c
+   94fNYbgNI+6Vv7G5TNWwuAFsza+5HnCZcobjugKwQ1nxMjMrrtPbkzbeS
+   dsfU30QSe7o4KjIe7Mvq5ne0kZj+jZAARw52GTPIo1BDsf6vxbY3UzlnW
+   BJNjroo2TlpxnVNIAjmqnaqrr3oehx+iQv+G3EFsxLibgl38WQ29FWrhd
+   RRRX/Qqe1ITjnYf8tdjEiGWqNVhgqmL/adBeTxJuNxcoebP+43BUC+ZSQ
+   L9kVhqVhlylS9ILiwY6sk9bbX+v6gcK9BpDqk/26YRod+e/r+evN47/gN
+   Q==;
+X-CSE-ConnectionGUID: w89hAE5fST+rGrLDrrhoYA==
+X-CSE-MsgGUID: I8pCPnk1RFy2TkiU6TWGAQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="32244785"
+X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; 
+   d="scan'208";a="32244785"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2024 00:06:42 -0800
+X-CSE-ConnectionGUID: uW301IhrRiiobyxyYRk0SQ==
+X-CSE-MsgGUID: sMSi2WYCSFetSsEcHrfo5g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; 
+   d="scan'208";a="90648439"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2024 00:06:40 -0800
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with ESMTP id D1A5E11F89A;
+	Wed, 20 Nov 2024 10:06:36 +0200 (EET)
+Date: Wed, 20 Nov 2024 08:06:36 +0000
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 1/4] media: dt-bindings: Add property to describe CSI-2
+ C-PHY line orders
+Message-ID: <Zz2YjNHk-ZTlXztw@kekkonen.localdomain>
+References: <20241119221249.539610-1-niklas.soderlund+renesas@ragnatech.se>
+ <20241119221249.539610-2-niklas.soderlund+renesas@ragnatech.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20241112-qps615_pwr-v3-2-29a1e98aa2b0@quicinc.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241119221249.539610-2-niklas.soderlund+renesas@ragnatech.se>
 
-On Tue, Nov 12, 2024 at 08:31:34PM +0530, Krishna chaitanya chundru wrote:
-> Add QPS615 PCIe switch node which has 3 downstream ports and in one
-> downstream port two embedded ethernet devices are present.
+Hejssan, Niklas!
+
+Tack för de här lapparna!
+
+On Tue, Nov 19, 2024 at 11:12:46PM +0100, Niklas Söderlund wrote:
+> Each data lane on a CSI-2 C-PHY bus uses three phase encoding and is
+> constructed from three physical wires. The wires are referred to as A, B
+> and C and their default order is ABC. However to ease hardware design
+> the specification allows for the wires to be switched in any order.
 > 
-> Power to the QPS615 is supplied through two LDO regulators, controlled
-> by two GPIOs, these are added as fixed regulators. And the QPS615 is
-> configured through i2c.
+> Add a vendor neutral property to describe the line order used. The
+> property name 'line-orders', the possible values it can be assigned and
+> there names are taken from the MIPI Discovery and Configuration (DisCo)
+> Specification for Imaging.
 > 
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 > ---
->  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 115 +++++++++++++++++++++++++++
->  arch/arm64/boot/dts/qcom/sc7280.dtsi         |   2 +-
->  2 files changed, 116 insertions(+), 1 deletion(-)
+>  .../bindings/media/video-interfaces.yaml      | 20 +++++++++++++++++++
+>  include/dt-bindings/media/video-interfaces.h  |  7 +++++++
+>  2 files changed, 27 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> index 0d45662b8028..0e890841b600 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> @@ -202,6 +202,30 @@ vph_pwr: vph-pwr-regulator {
->  		regulator-min-microvolt = <3700000>;
->  		regulator-max-microvolt = <3700000>;
->  	};
-> +
-> +	vdd_ntn_0p9: regulator-vdd-ntn-0p9 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VDD_NTN_0P9";
-> +		gpio = <&pm8350c_gpios 2 GPIO_ACTIVE_HIGH>;
-> +		regulator-min-microvolt = <899400>;
-> +		regulator-max-microvolt = <899400>;
-> +		enable-active-high;
-> +		pinctrl-0 = <&ntn_0p9_en>;
-> +		pinctrl-names = "default";
-> +		regulator-enable-ramp-delay = <4300>;
-> +	};
-> +
-> +	vdd_ntn_1p8: regulator-vdd-ntn-1p8 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VDD_NTN_1P8";
-> +		gpio = <&pm8350c_gpios 3 GPIO_ACTIVE_HIGH>;
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		enable-active-high;
-> +		pinctrl-0 = <&ntn_1p8_en>;
-> +		pinctrl-names = "default";
-> +		regulator-enable-ramp-delay = <10000>;
-> +	};
->  };
+> diff --git a/Documentation/devicetree/bindings/media/video-interfaces.yaml b/Documentation/devicetree/bindings/media/video-interfaces.yaml
+> index 26e3e7d7c67b..95491e5779ba 100644
+> --- a/Documentation/devicetree/bindings/media/video-interfaces.yaml
+> +++ b/Documentation/devicetree/bindings/media/video-interfaces.yaml
+> @@ -210,6 +210,26 @@ properties:
+>        lane-polarities property is omitted, the value must be interpreted as 0
+>        (normal). This property is valid for serial busses only.
 >  
->  &apps_rsc {
-> @@ -684,6 +708,75 @@ &mdss_edp_phy {
->  	status = "okay";
->  };
+> +  line-orders:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 1
+> +    maxItems: 8
+> +    enum:
+> +      - 0 # ABC
+> +      - 1 # ACB
+> +      - 2 # BAC
+> +      - 3 # BCA
+> +      - 4 # CAB
+> +      - 5 # CBA
+
+Do you know hardware documentation using lettes for the lines? I do agree
+it seems less confusing but I've seen only numbers being used.
+
+> +    description:
+> +      An array of line orders of the CSI-2 C-PHY data lanes. The order of the
+> +      lanes are the same as in data-lanes property. Valid values are 0-5 as
+> +      defined in the MIPI Discovery and Configuration (DisCo) Specification for
+> +      Imaging. The length of the array should be the same length as the
+
+s/should/must/
+
+As this is a requirement for DTS authors in particular.
+
+> +      data-lanes property. If the line-orders property is omitted, the value
+> +      must be interpreted as 0 (ABC). This property is valid for CSI-2 C-PHY
+
+I would:
+
+s/must/shall/
+
+> +      busses only.
+> +
+>    strobe:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      enum: [ 0, 1 ]
+> diff --git a/include/dt-bindings/media/video-interfaces.h b/include/dt-bindings/media/video-interfaces.h
+> index 68ac4e05e37f..88b9d05d8075 100644
+> --- a/include/dt-bindings/media/video-interfaces.h
+> +++ b/include/dt-bindings/media/video-interfaces.h
+> @@ -13,4 +13,11 @@
+>  #define MEDIA_BUS_TYPE_PARALLEL			5
+>  #define MEDIA_BUS_TYPE_BT656			6
 >  
-> +&pcie1_port {
-> +	pcie@0,0 {
-> +		compatible = "pci1179,0623";
+> +#define MEDIA_BUS_CSI2_CPHY_LINE_ORDER_ABC	0
+> +#define MEDIA_BUS_CSI2_CPHY_LINE_ORDER_ACB	1
+> +#define MEDIA_BUS_CSI2_CPHY_LINE_ORDER_BAC	2
+> +#define MEDIA_BUS_CSI2_CPHY_LINE_ORDER_BCA	3
+> +#define MEDIA_BUS_CSI2_CPHY_LINE_ORDER_CAB	4
+> +#define MEDIA_BUS_CSI2_CPHY_LINE_ORDER_CBA	5
+> +
+>  #endif /* __DT_BINDINGS_MEDIA_VIDEO_INTERFACES_H__ */
 
-The switch is part of SoC or board? This is confusing, I thought QPS615
-is the SoC.
+-- 
+Med vänliga hälsningar,
 
-> +		reg = <0x10000 0x0 0x0 0x0 0x0>;
-> +		#address-cells = <3>;
-> +		#size-cells = <2>;
-
-Best regards,
-Krzysztof
-
+Sakari Ailus
 
