@@ -1,84 +1,88 @@
-Return-Path: <devicetree+bounces-123181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123182-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8DBF9D39FA
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 12:55:00 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7BD09D3A48
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 13:09:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 87E971F24A2A
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 11:55:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6738FB221D8
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 11:55:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9591A1A264A;
-	Wed, 20 Nov 2024 11:52:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0316E1A706F;
+	Wed, 20 Nov 2024 11:53:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BJ0TGcz5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BCd0kegS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E8411A01D4
-	for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 11:52:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8342F1A4F12
+	for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 11:53:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732103555; cv=none; b=FMvHakFtOJkWcI5xt/n4nMi68VWhmiNrHZvqlQZIKSlEjfHQWajv0lAhSEjXq05XozNV46EYsSpeEK24m8cznEiEjJR98+PDI5iTEKGC7mIWBc8EuzbUTZtSO+EU3jy9oHmU86nHHSnxM15vvuBOeuGXXb7peKg4GFWg5ZQUNg4=
+	t=1732103604; cv=none; b=aMDYa33NKc+CBML3aPLNmRv6KBiVIda+C4E0EkW25kyUqptrt9NDHOCNIJZJXpy1DVyglsl9q81o2EnmOEYyVmcGG3VStOx8PRhXMObkZCOYWp40E6JdxHLyFFQ14/o/yIGwlclPHVfA+EplcAJTBD//owXxpzC3VH35X5eaSZw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732103555; c=relaxed/simple;
-	bh=R9P/mSKOsQgDZHYSnA6xvbU0oyS2tzJ046K4Aghxd2c=;
+	s=arc-20240116; t=1732103604; c=relaxed/simple;
+	bh=+MxPqx3dXMtmTTkh/KdDxAQTgcrpLDPNHcD87nDZzSM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ln06axjUmU3lU5zyNByXInFAxCNoS9Gg1AdALfQt+HxF+1uM8dCJv6NFPuulXRI5cQbNlhePF+dN6fgATzhI+Nb3FPsLXEcInoImb2LeRq0FfWnVUIwIsRRz3SFnP3hGUIONonbqV2tAiqOiiOQxkPXVRgEj2LJ29Ff4vGFYGWQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BJ0TGcz5; arc=none smtp.client-ip=209.85.167.41
+	 Content-Type:Content-Disposition:In-Reply-To; b=H3EW7ZicuLJzpJ0w3D86NTU/llZjmW2Bff/FpN8ZUPoghynBs7+zEiTALDzItMFTRU/iXYQG/G0jVuv4JvKhA8yLEXUXbnAc9vvAb1i4Phs6KJjQgWwweoxoM2+opXJ+JX/mxeZfwnJDfSgHm45f+7B1zqxEY7MvIx5NJiD3Exg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BCd0kegS; arc=none smtp.client-ip=209.85.208.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-539e5c15fd3so2044085e87.3
-        for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 03:52:32 -0800 (PST)
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2fb388e64b0so64334501fa.0
+        for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 03:53:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732103550; x=1732708350; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1732103601; x=1732708401; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ym6sQ4jNg6NAz3DL4w4A1dXlDy5B9Kp9zG6VDr3BqNw=;
-        b=BJ0TGcz5q1jVGUYMzP+XIjLQOP5iJgCE/qcWyxHCxuiPmQj8baB2jtWRcpPcDRvkJW
-         BcHDPVA1Ov1VVJDkM9oqMu7NlMFRCekw/5s2QnRtYIjjxbI76yZgc9dLTFAUDv+usfeJ
-         nE5ItDcdKc4bIpvR/c3x2jShnI8HLtJ1Q+EbzL54Zi6LaYbJRrmJQR+uj7o9shmlQk0v
-         ZoWOILwYkjcyE8T1MyfumZQlHKU9Wef+XwC9VAzRRDGV7iJtwZQZWNLw1kGGxJc60Zuc
-         gUlz7zky2fZvMzcY7xYF6q7tZHa3PGzx4zIzUsB1tX5+XxxjQ7cv2q3RhWkZFh+pxj4a
-         92+Q==
+        bh=USA1W1qx9HFfEjKLttxC4EE5U+gk9ptHIMuBPa1JZ40=;
+        b=BCd0kegS9thjEObRwXFyOwsxrqNu2RKpzBm6g286lpAzZhQLTgBLfMhvgKLQmOwN+9
+         +RvvyMuvyeLf5k8lDKe0dHAxhbkYp5oNYxaOOXMMgwT328QLwn8LE6lwRIENKvEe4BQI
+         pvrjiGE7KdAyWy4iRs9xii+ksKA6r6oeZCiFU+0bkMpbrkkogdmOf2HwYUJ/3Gytpn/7
+         XqxDSmOHOluZbPbML614dxK7xpI9InKc8DNkk0FybjJDjNwg9w4pmtsOoaH4sXFfnk93
+         /DUEuu2I9ksPUKIHfKP0Mnyk4/1sD/NPuM3v+fwAreu8SzC/7JFA4C+l0N6wzdveCy+4
+         v9sQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732103550; x=1732708350;
+        d=1e100.net; s=20230601; t=1732103601; x=1732708401;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ym6sQ4jNg6NAz3DL4w4A1dXlDy5B9Kp9zG6VDr3BqNw=;
-        b=dNDcqXQZYMSiJlhmNZYpaMVPa4OgMTZC7j/bzGHmx2XbUewhjDxnfbUHhHLAIT75DN
-         KDrjmkEXeqBGPRwZKqPwNbM0TXmFrvHh2zjJcVF63GGsdROuOgdinpGqSplLsUS9ylcd
-         02Di7+SlAZKv/oDmvd1pKsd7XyOkOORFcqSoJkFNCnWL8NDQ9u/+9YBcj+RhhWDoTQGe
-         l5zGHteSYqKi1Si9/03rZ7+i87mYJWrTjSQ27K826npHlDPuu+972Crcgn+eVd4gfDp0
-         lkjLYF5pp/l7ofWE1lAMXPWknekZbIjsZUX2X278WtSDR8bEGB48+pBPZVjE8u3T+bO8
-         dilg==
-X-Forwarded-Encrypted: i=1; AJvYcCXXainjHjqGjep9QXMcypWWf1wBaTMHUUCvbAr8LmnB1iH2J7n2fwwxmpjAT30d4zhbz9DVWvtIaLGM@vger.kernel.org
-X-Gm-Message-State: AOJu0YxoOGOPbGRTtC2sggA6k2nwA5PV+yG8P8NHMMZEiXmpCGZN+TXV
-	rbX2JCshUrrTK+6kWrOJ7UWGiVABFb6fyBx+zZ0iC8nwH2GpW4h82w3H4E8Of5Q=
-X-Google-Smtp-Source: AGHT+IH796j7yJ4hJd+DY4Ty2sJK0Q3wclTgxvZXjdfjeBOoVzy4zpbN0pmY5gJ/fhN9fzUW7ncZOw==
-X-Received: by 2002:a05:6512:3da0:b0:539:920a:f886 with SMTP id 2adb3069b0e04-53dc1372f70mr1037471e87.50.1732103550487;
-        Wed, 20 Nov 2024 03:52:30 -0800 (PST)
+        bh=USA1W1qx9HFfEjKLttxC4EE5U+gk9ptHIMuBPa1JZ40=;
+        b=KgGFiXj3EBNxaewUzFw+Gls67R/z7Gyv+ajgOMv8geLFwSMPEkr1jinvAeWjarOPHj
+         q6N9IHOaAQfnTM0/zVB2GxgvlFzi0OsBHxhiD4LlnomA9u0SJxzRttq34zAQrRP4iMhd
+         cv1FobqalRZBzd1TpcKaMOvgeOe8bjGDoWtHHFH4M/pBtX1H0NQH7TVPSTLwnx6vxgVX
+         ZcjnsQsmo6HbGihEDceLqSLx4XCLIiPW6DSQ2Jg9w3lz/qCw9Mb2I6NrejKlO/vdr2n/
+         qr76akwrpX1H1wR/fPKwCPMc3sD2cUSsLPQvBxHuff8CpBl/Cjo3p1Uf2Orwzrj9uGWX
+         8byw==
+X-Forwarded-Encrypted: i=1; AJvYcCVKrb+7lWU82+u+Tb+jfGpe9yo2Rart0JZfbOMtqwA8krvT/jp6jkZ8wcYegTThQJYinSZzIUdHyFb9@vger.kernel.org
+X-Gm-Message-State: AOJu0YylG2fqubiA3oqdkG3xeTJY/6NXwGDW1mxBimn9WjYyxJFvjQEJ
+	deOcHJiJDUrhEnvSPckK7scF6uY/M7r0WBThzn/WgHHI42eoe5yIX91QRJHku44=
+X-Google-Smtp-Source: AGHT+IFU8N7uQdXevfHD8jFBl1FBII5BkIFR59rGddbGn3KESnHWjFoPDuxOKOct3CyafHsEQL2nsg==
+X-Received: by 2002:a05:651c:88c:b0:2ef:20ae:d113 with SMTP id 38308e7fff4ca-2ff8dd32ac6mr14418721fa.40.1732103600720;
+        Wed, 20 Nov 2024 03:53:20 -0800 (PST)
 Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53dbd478304sm613468e87.233.2024.11.20.03.52.29
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ff69851184sm14554601fa.15.2024.11.20.03.53.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Nov 2024 03:52:30 -0800 (PST)
-Date: Wed, 20 Nov 2024 13:52:27 +0200
+        Wed, 20 Nov 2024 03:53:19 -0800 (PST)
+Date: Wed, 20 Nov 2024 13:53:17 +0200
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Wasim Nazir <quic_wasimn@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Loic Poulain <loic.poulain@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	kernel@quicinc.com
-Subject: Re: [PATCH v3 5/5] arm64: dts: qcom: Add support for QCS9075 Ride &
- Ride-r3
-Message-ID: <5oavwg33c7jj227df7fvuw3j7l5t4m72gkf7a6qpfjej57kotj@u6ze5am4tx77>
-References: <20241119174954.1219002-1-quic_wasimn@quicinc.com>
- <20241119174954.1219002-6-quic_wasimn@quicinc.com>
+	Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
+	Jagadeesh Kona <quic_jkona@quicinc.com>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH 3/6] dt-bindings: clock: qcom: Add second power-domain to
+ CAMCC
+Message-ID: <pl7og7jrwbkmfmphlvlzhov3kk2edsn2umxq4mt6dyadwb42h7@vg3zjmogwzf3>
+References: <20241119-b4-linux-next-24-11-18-dtsi-x1e80100-camss-v1-0-54075d75f654@linaro.org>
+ <20241119-b4-linux-next-24-11-18-dtsi-x1e80100-camss-v1-3-54075d75f654@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,21 +91,46 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241119174954.1219002-6-quic_wasimn@quicinc.com>
+In-Reply-To: <20241119-b4-linux-next-24-11-18-dtsi-x1e80100-camss-v1-3-54075d75f654@linaro.org>
 
-On Tue, Nov 19, 2024 at 11:19:54PM +0530, Wasim Nazir wrote:
-> Add device tree support for QCS9075 Ride & Ride-r3 boards.
-> QCS9075 Ride & Ride-r3 are similar to QCS9100 Ride and Ride-r3
-> boards but without safety monitoring feature of SAfety-IsLand
-> subsystem.
+On Tue, Nov 19, 2024 at 01:10:32PM +0000, Bryan O'Donoghue wrote:
+> The x1e80100 has two power-domains for the CAMCC not one.
 > 
-> Difference between ride and ride-r3 is the ethernet phy.
-> Ride uses 1G ethernet phy while ride-r3 uses 2.5G ethernet phy.
+> Capture this as:
+> minItems:1
+> maxItems:2
 > 
-> Signed-off-by: Wasim Nazir <quic_wasimn@quicinc.com>
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 > ---
+>  Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
+> index 0766f66c7dc4f6b81afa01f156c490f4f742fcee..afb7e37118b691658fc5cc71e97b110dcee7f22a 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-camcc.yaml
+> @@ -39,9 +39,10 @@ properties:
+>        - description: Sleep clock source
+>  
+>    power-domains:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 2
+>      description:
+> -      A phandle and PM domain specifier for the MMCX power domain.
+> +      A phandle and PM domain specifier for the MMCX or MCX power domains.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Should there be an if, selecting which platforms need 1 domain and which
+need both?
+
+>  
+>    required-opps:
+>      maxItems: 1
+> 
+> -- 
+> 2.45.2
+> 
+
 -- 
 With best wishes
 Dmitry
