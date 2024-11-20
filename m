@@ -1,142 +1,101 @@
-Return-Path: <devicetree+bounces-123330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDB6E9D40B2
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 18:00:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D2489D415F
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 18:47:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A39B1F219C2
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 17:00:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 48F23B2749B
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 17:11:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5187B155725;
-	Wed, 20 Nov 2024 17:00:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5832156230;
+	Wed, 20 Nov 2024 17:10:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tNzWInAv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VCAmAgCF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24C7914F12D;
-	Wed, 20 Nov 2024 17:00:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9131A14831E
+	for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 17:10:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732122022; cv=none; b=H4DCFZ3upvbB5U6nw0ZaZW1IEIlBvN3aP9fA4dxXw9KNIjrVtegvXk59uBXgNpPjPVCjhfdbg7pZ8DWDQ78/+r7sQgwdd5S9NqnOHIK0rL3OwSPTiYSvzpoQ1oe6LNWihL4LJlbGN4o8nR+bjR4zFn+E5BW7Z0ykKLO3CojemyI=
+	t=1732122656; cv=none; b=GiDCvf0felNQ0inm4EjBnEXrVRD97kM2j7XzkEHQoalule9ZA1otSjIMHfNFBtbYq0K05w1fKXgVZddpMzDteZPNGJ6Mwq7ILfxeQW/ExUawtieQcKrMBL2VaPxx0frGcEML2T/7F4S7XZEgnBzjvV0foeNNXZH20DZzjtbp/zk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732122022; c=relaxed/simple;
-	bh=bYzeSkQ9Bd7O4xF6AGbqkibiHuCXxUi77anWi3k2pSM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MLAg86HidVEH9RevNEhRHkgvUORhzQmluSK06rLFk3ox6s1cP8gYazaqWvrbqvqQPECNy3g746p5j0N34XPeW48VvhvLiuc5WtZqXkW/1nEZRJoweFKoA5gyMQEyFz6n90QA15iEI6nYq1d+RCw1pf9p/m37ylaqrZ8aUpoHm9Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tNzWInAv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7FBEC4CED7;
-	Wed, 20 Nov 2024 17:00:14 +0000 (UTC)
+	s=arc-20240116; t=1732122656; c=relaxed/simple;
+	bh=VJdjT6ppJprT4unzbTuHlpuOe7eotljxYhNyiiIDt0Y=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Z8ck8zlLirLruG54f1orGRg3ckYS1b5mdS5Yq0MHc/Eo8JwiFHGbnBrVMerjm0GQ8dhskbMrIWdDlfeOC+hX1lPK/wGhCofMoYEu3dyA7kDjEgQ37b/+OI/EHd94jS9fG8LTPeyEgBO8p7t/lCgSLU74JD5onoFjdTCy/9Xxve4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VCAmAgCF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9FF7C4CECD;
+	Wed, 20 Nov 2024 17:10:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732122018;
-	bh=bYzeSkQ9Bd7O4xF6AGbqkibiHuCXxUi77anWi3k2pSM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tNzWInAvu39W7dIAmftVg7wN3eLA5ELeCNBPa81lRhhpW5vHyPJiQexZQ3e82zNBj
-	 f648Dm+UOsUshsFtYeWntnzcnPqskWUj8N+KaOOMgt/EnyeDNx08zLrhV+LUP1J1UT
-	 RYBLhKoUpfaIUXPXnQ/akJz0Qz/tbP4ZWygaKWHt+GsvMYIZ+FSc0CgwdlIFm7Q0A8
-	 gmawmCC9PKDJk/xCxhxYjvqp2r2khRd0jyJTpMqQK6x8YZomkfz7zXSS3S4DMMLBzr
-	 OIbPLzdrmQgY/tinyD+GEPph+QxNhxFQdSo56/Yx4Fe6kvVs+Y52i0ZHneUyiiDJLD
-	 ra7psytEHwEbA==
-Message-ID: <252644d9-e304-45ee-91ed-a1452300840f@kernel.org>
-Date: Wed, 20 Nov 2024 18:00:12 +0100
+	s=k20201202; t=1732122656;
+	bh=VJdjT6ppJprT4unzbTuHlpuOe7eotljxYhNyiiIDt0Y=;
+	h=From:To:Cc:Subject:Date:From;
+	b=VCAmAgCFc4MqFHVUiXQOtPe3ldhIVEB2Vi3m5p6HeGLxcC/BWIaLuz/2A0b3ZPgsb
+	 0G8CSJ49EPe8GodYk6rK3siKIljTgwE5Tuuis6CZm21TkPUCKTq2Azc+qzRGXnUosW
+	 V0WQnpFrO3BbzIzo4+onMaVXEnZTnNccTSoyiA9smC/ZZrd6YosgZACnJy7Nw82Gk7
+	 HWWgah5+Sbg+YvFflit9WKCGR8LgOBF0KnlnQAi4MwwCnfrU9oNU8//4bpC40qQJj3
+	 5cWPsFQcDv66KEUQyU2vDTTbTEvyL569WX8jTDoqYtbVs3Tp8y09c6tcse5eMSsw9A
+	 Lv1lGAYd+YQDw==
+From: Niklas Cassel <cassel@kernel.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: Damien Le Moal <dlemoal@kernel.org>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Niklas Cassel <cassel@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: [PATCH] arm64: dts: rockchip: rk3588: add msi-parent for pcie3x4_ep
+Date: Wed, 20 Nov 2024 18:10:49 +0100
+Message-ID: <20241120171048.2839621-2-cassel@kernel.org>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: qcs8300: Add watchdog node
-To: Xin Liu <quic_liuxin@quicinc.com>, Bjorn Andersson
- <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com, quic_jiegan@quicinc.com,
- quic_aiquny@quicinc.com, quic_tingweiz@quicinc.com
-References: <20241119102315.3167607-1-quic_liuxin@quicinc.com>
- <20241119102315.3167607-3-quic_liuxin@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241119102315.3167607-3-quic_liuxin@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1246; i=cassel@kernel.org; h=from:subject; bh=VJdjT6ppJprT4unzbTuHlpuOe7eotljxYhNyiiIDt0Y=; b=owGbwMvMwCV2MsVw8cxjvkWMp9WSGNLtJCRWz16pzvmPVeuiPsvs2Q01M49MZPxpbvzUsut2x V+JMge3jlIWBjEuBlkxRRbfHy77i7vdpxxXvGMDM4eVCWQIAxenAEwkKoThn07qattteTXf3Gti txhsmS5ZZ//N7uG81Udl1+U3RHi1KDIy3DJmZznq97ry9LaV337Kq/sUXrDVvCa+4uuX0JXnreb lMwIA
+X-Developer-Key: i=cassel@kernel.org; a=openpgp; fpr=5ADE635C0E631CBBD5BE065A352FE6582ED9B5DA
+Content-Transfer-Encoding: 8bit
 
-On 19/11/2024 11:23, Xin Liu wrote:
-> Add the watchdog node for QCS8300 SoC.
-> 
-> Signed-off-by: Xin Liu <quic_liuxin@quicinc.com>
-> ---
+Add msi-parent for the pcie3x4_ep PCI endpoint node.
 
-<form letter>
-This is a friendly reminder during the review process.
+The pcie3x4_ep node should use the same msi-parent as the pcie3x4 node
+(which represents the PCIe controller running in Root Complex mode).
 
-It looks like you received a tag and forgot to add it.
+The GIC ITS can be used to trigger an IRQ on the endpoint when any of
+the endpoint's PCI BARs are written to by the host[1].
 
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
+[1] https://lore.kernel.org/linux-pci/20241116-ep-msi-v8-0-6f1f68ffd1bb@nxp.com/
 
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+Signed-off-by: Niklas Cassel <cassel@kernel.org>
+---
+Hello Heiko, this patch depends on:
+https://lore.kernel.org/linux-rockchip/20241107123732.1160063-2-cassel@kernel.org/
 
-If a tag was not added on purpose, please state why and what changed.
-</form letter>
+ arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
->  arch/arm64/boot/dts/qcom/qcs8300.dtsi | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs8300.
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi
+index 4a950907ea6f..ead151941e84 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-extra.dtsi
+@@ -213,6 +213,7 @@ pcie3x4_ep: pcie-ep@fe150000 {
+ 		interrupt-names = "sys", "pmc", "msg", "legacy", "err",
+ 				  "dma0", "dma1", "dma2", "dma3";
+ 		max-link-speed = <3>;
++		msi-parent = <&its1 0x0000>;
+ 		iommus = <&mmu600_pcie 0x0000>;
+ 		num-lanes = <4>;
+ 		phys = <&pcie30phy>;
+-- 
+2.47.0
+
 
