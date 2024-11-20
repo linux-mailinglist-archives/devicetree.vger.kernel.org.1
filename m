@@ -1,187 +1,162 @@
-Return-Path: <devicetree+bounces-123167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123168-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BAF19D398C
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 12:34:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC9D99D3992
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 12:36:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8E70282C79
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 11:34:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 718841F21F7A
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 11:36:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EB5D19D89E;
-	Wed, 20 Nov 2024 11:34:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23BF519E7F8;
+	Wed, 20 Nov 2024 11:36:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IR4+fqrd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FE5A197A87
-	for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 11:34:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95432199E84;
+	Wed, 20 Nov 2024 11:36:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732102451; cv=none; b=Zes7+sYj7EAQsIuscuHKOHgwVuK6MDn9EbvTCRkHiEV6/GFhOr+VrWvxcMuif5E4oGqOrGHbvU7eJCDBjkR6AzbBE/Hwl+9RXSs3Yz2HmafJ0V9EjM5oxnXzwD88s2LF+pLBbLhwrpo2i7PW+ZZGfdPv4TSKzJqj75V20ApFPs8=
+	t=1732102564; cv=none; b=rCh+OgnGzqIYqMJmxQKIe61mNyBDfmxcr5Tpkc7zUpk2D6c50CzuACdSNhSvjX6arvLSwIQvp8yMsgZQhKrYVxlufd2thuTqV3osTyhkVV70QzBK75noLsIV22EvzU6O51ZWJfrT5It2GzlCwh5PgU8PdLQfhato5zRZ1DqnVGw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732102451; c=relaxed/simple;
-	bh=rqYE/LDFYG+MmMRSDPJ7ITKApe4LdqoAau/AARTvmnQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O6moxBo9+RyfXBkZCpk4lZBB0WBGKT1H7oJeiPeWAW5FcXoDOxW09zcIbu2lpFl+ZloIR5ZYlQggbCheuVV9Clb2pLwOzMKCbYQSkkxiFGwS0GqbfMRCdaUISKF1kxf8RbaicBXw8Ap7uDkd7eI1nDQu+ZuOH4srNeGU1xSXaVI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tDixq-0000PP-So; Wed, 20 Nov 2024 12:33:42 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tDixp-001jS8-0J;
-	Wed, 20 Nov 2024 12:33:41 +0100
-Received: from pengutronix.de (pd9e59fec.dip0.t-ipconnect.de [217.229.159.236])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id ADF44377CB4;
-	Wed, 20 Nov 2024 11:33:40 +0000 (UTC)
-Date: Wed, 20 Nov 2024 12:33:40 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S . Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	imx@lists.linux.dev, NXP Linux Team <s32@nxp.com>, 
-	Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>, 
-	Enric Balletbo <eballetb@redhat.com>
-Subject: Re: [PATCH 3/3] can: flexcan: handle S32G2/S32G3 separate interrupt
- lines
-Message-ID: <20241120-spirited-vulture-of-coffee-423adb-mkl@pengutronix.de>
-References: <20241119081053.4175940-1-ciprianmarian.costea@oss.nxp.com>
- <20241119081053.4175940-4-ciprianmarian.costea@oss.nxp.com>
- <20241120-magnificent-accelerated-robin-70e7ef-mkl@pengutronix.de>
- <c9d8ff57-730f-40d9-887e-d11aba87c4b5@oss.nxp.com>
- <20241120-venomous-skilled-rottweiler-622b36-mkl@pengutronix.de>
- <aa73f763-44bc-4e59-ad4a-ccaedaeaf1e8@oss.nxp.com>
- <20241120-cheerful-pug-of-efficiency-bc9b22-mkl@pengutronix.de>
- <72d06daa-82ed-4dc6-8396-fb20c63f5456@oss.nxp.com>
- <20241120-rational-chocolate-marten-70ed52-mkl@pengutronix.de>
- <06acdf7f-3b35-48bc-ab2e-9578221b7aea@oss.nxp.com>
+	s=arc-20240116; t=1732102564; c=relaxed/simple;
+	bh=VqPdryv5FHgZvOOtmSROQ3KLGj/x+FdpXnFIQV8QZzc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=aPc6zTYpo+0DaGscYe0KR2fzNOPsSCgFZ6/OvjfH7fPCIvmUrrcJ9O7wdwPJr1mp9v9jWWUoufdwoPlMIqCgJu5v+fox03K887XEF9I8RLKsFaO4/jp9d9leEui7OCfL0ScKco2e38Y0aSQ5H3KDW1uYxxm7HXg/3DYI/PRlJP0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IR4+fqrd; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AK9FJfG029748;
+	Wed, 20 Nov 2024 11:35:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Oa2LZZiK+pbo5jdQvoe1rOEQalWxMsI1PB5zABeZAqY=; b=IR4+fqrdS3qoY7T1
+	Uuyw61jDD96ggUHFSXSe1s6nbpadB7xkfDBk2Du1QPo7H1mnRhh8qdnmWC8dd6Qr
+	mpCb+xYJBLd/hvRabNWrw6bpoI+vqPCCjVIgoPLHphYpGoevhX7QxS+LbFjUx3dQ
+	hLIvJFB5SjkMPJKdRFCipxoxrHoJp2Njmn2AcJ4gjqt5h4Fis7bGwuMbXvYaLAYP
+	MEo/0ugoEfkW541Ew8Jzwa21zqPYsNqAVNacsye1+Kyj34Gt8mjWSo+29drV1yQ8
+	9MK3lYXJ0MuS5IXy/Go9aifYoSP+GfdJnpQFjabsSNOsSjiVzfxbmwlK3ys1HL3K
+	R4a+nw==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4319528xgg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 20 Nov 2024 11:35:58 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AKBZw0A030836
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 20 Nov 2024 11:35:58 GMT
+Received: from [10.206.104.61] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 20 Nov
+ 2024 03:35:53 -0800
+Message-ID: <a741b71b-af04-44aa-9e08-a3f852b8a801@quicinc.com>
+Date: Wed, 20 Nov 2024 17:05:50 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="idbngjom6ttlxwj6"
-Content-Disposition: inline
-In-Reply-To: <06acdf7f-3b35-48bc-ab2e-9578221b7aea@oss.nxp.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/2] arm64: dts: qcom: sa8775p-ride: Enable Display
+ Port
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_riteshk@quicinc.com>,
+        <quic_vproddut@quicinc.com>, <quic_abhinavk@quicinc.com>
+References: <20241120105954.9665-1-quic_mukhopad@quicinc.com>
+ <20241120105954.9665-3-quic_mukhopad@quicinc.com>
+ <lkovymvjsbd44v2huij7paikvnmo7i7rrmkmvpha2wn5sc4hr3@ppr2dgvhzy6d>
+From: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
+In-Reply-To: <lkovymvjsbd44v2huij7paikvnmo7i7rrmkmvpha2wn5sc4hr3@ppr2dgvhzy6d>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: jDv-mbhgXW_C-AFm6NQOA8oiQONt91li
+X-Proofpoint-GUID: jDv-mbhgXW_C-AFm6NQOA8oiQONt91li
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
+ adultscore=0 priorityscore=1501 impostorscore=0 suspectscore=0
+ lowpriorityscore=0 mlxscore=0 clxscore=1015 spamscore=0 malwarescore=0
+ mlxlogscore=908 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411200079
 
 
---idbngjom6ttlxwj6
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 3/3] can: flexcan: handle S32G2/S32G3 separate interrupt
- lines
-MIME-Version: 1.0
+On 11/20/2024 4:42 PM, Dmitry Baryshkov wrote:
+> On Wed, Nov 20, 2024 at 04:29:54PM +0530, Soutrik Mukhopadhyay wrote:
+> > Enable DPTX0 and DPTX1 along with their corresponding PHYs for
+> > sa8775p-ride platform.
+> > 
+> > Signed-off-by: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi | 80 ++++++++++++++++++++++
+> >  1 file changed, 80 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+> > index adb71aeff339..4847e4942386 100644
+> > --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+> > @@ -27,6 +27,30 @@
+> >  	chosen {
+> >  		stdout-path = "serial0:115200n8";
+> >  	};
+> > +
+> > +	dp0-connector {
+> > +		compatible = "dp-connector";
+> > +		label = "DP0";
+>
+> Thundercomm's SA8775p RIDE platform doesn't show such a connector. At
+> least not on a device advertised on the web pages.
 
-On 20.11.2024 13:02:56, Ciprian Marian Costea wrote:
-> On 11/20/2024 12:54 PM, Marc Kleine-Budde wrote:
-> > On 20.11.2024 12:47:02, Ciprian Marian Costea wrote:
-> > > > > > > The mainline driver already handles the 2nd mailbox range (sa=
-me
-> > > > > > > 'flexcan_irq') is used. The only difference is that for the 2=
-nd mailbox
-> > > > > > > range a separate interrupt line is used.
-> > > > > >=20
-> > > > > > AFAICS the IP core supports up to 128 mailboxes, though the dri=
-ver only
-> > > > > > supports 64 mailboxes. Which mailboxes do you mean by the "2nd =
-mailbox
-> > > > > > range"? What about mailboxes 64..127, which IRQ will them?
-> > > > >=20
-> > > > > On S32G the following is the mapping between FlexCAN IRQs and mai=
-lboxes:
-> > > > > - IRQ line X -> Mailboxes 0-7
-> > > > > - IRQ line Y -> Mailboxes 8-127 (Logical OR of Message Buffer Int=
-errupt
-> > > > > lines 127 to 8)
-> > > > >=20
-> > > > > By 2nd range, I was refering to Mailboxes 8-127.
-> > > >=20
-> > > > Interesting, do you know why it's not symmetrical (0...63, 64...127=
-)?
-> > > > Can you point me to the documentation.
-> > >=20
-> > > Unfortunately I do not know why such hardware integration decisions h=
-ave
-> > > been made.
-> > >=20
-> > > Documentation for S32G3 SoC can be found on the official NXP website,
-> > > here:
-> > > https://www.nxp.com/products/processors-and-microcontrollers/s32-auto=
-motive-platform/s32g-vehicle-network-processors/s32g3-processors-for-vehicl=
-e-networking:S32G3
-> > >=20
-> > > But please note that you need to setup an account beforehand.
-> >=20
-> > I have that already, where is the mailbox to IRQ mapping described?
-> >=20
-> > regards,
-> > Marc
-> >=20
->=20
-> If you have successfully downloaded the Reference Manual for S32G2 or S32=
-G3
-> SoC, it should have attached an excel file describing all the interrupt
-> mappings.
 
-I downloaded the S32G3 Reference Manual:
+Are you referring to this product in the Thundercomm web page : SA8225P 
+and SA8775P
+Ride SX 4.0 Automotive Development Platform ? For this particular 
+product we can see
+eDP 0/1/2/3 serving as the dp connectors.
 
-| https://www.nxp.com/webapp/Download?colCode=3DRMS32G3
 
-It's a pdf. Where can I find the execl file?
-
-> In the excel file, if you search for 'FlexCAN_0' for example, you should =
-be
-> able to find IRQ lines 39 and 40 which correspond to Maiboxes 0-7 and 8-1=
-29
-> (ored) previously discussed.
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---idbngjom6ttlxwj6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmc9yREACgkQKDiiPnot
-vG/Bhwf/TmgOWpK70qWkVmuc6pmKnZd7518rr3HRby5yKjHlz9lMpMU+rdevXATt
-Eb1uT7wi4HkmIFcogcLaLaMiqlCd+r+4R4rdb1s93NNBMcTVqJPQUFcOGzmkW6Vm
-yhVdQRO2wbLTxizGSbKnJZEwVrSO+i45FBAzWiDOjfn5D4HTdcycQE7LQUr/d26l
-aBMOdm4qLqK/g5lnYFE6PipHYnhyTrVCRMJmBYItO7SvwhYf1lfMKx9JG6qUWINS
-tMJThoELNypy4s5miXbs6ohkPtcTDbcSFBMiBbc8d9aAUsJ0yjTmW5FQ8noxsaGX
-3y9ERfkDZbXgGXInziFvzYiXtXpRCQ==
-=qt5d
------END PGP SIGNATURE-----
-
---idbngjom6ttlxwj6--
+>
+> > +		type = "full-size";
+> > +
+> > +		port {
+> > +			dp0_connector_in: endpoint {
+> > +				remote-endpoint = <&mdss0_dp0_out>;
+> > +			};
+> > +		};
+> > +	};
+> > +
+> > +	dp1-connector {
+> > +		compatible = "dp-connector";
+> > +		label = "DP1";
+>
+> Same comment here.
+>
+> > +		type = "full-size";
+> > +
+> > +		port {
+> > +			dp1_connector_in: endpoint {
+> > +				remote-endpoint = <&mdss0_dp1_out>;
+> > +			};
+> > +		};
+> > +	};
+> >  };
+> >  
+> >  &apps_rsc {
+>
 
