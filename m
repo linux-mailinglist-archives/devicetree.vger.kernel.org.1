@@ -1,206 +1,167 @@
-Return-Path: <devicetree+bounces-123144-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123145-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F6E39D3843
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 11:23:42 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 641AC9D385F
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 11:29:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4EC59B2495A
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 10:18:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D58FB24052
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 10:29:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2757119C561;
-	Wed, 20 Nov 2024 10:18:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ejpY6x6K"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 026EE198E69;
+	Wed, 20 Nov 2024 10:29:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5765B198E69;
-	Wed, 20 Nov 2024 10:18:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13712156669
+	for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 10:29:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732097907; cv=none; b=qXXXwF2q64MxCZo+2WN94HmB52rYtaNji8ngVFiNnwQEbeGusLe1VCgQ39twLc+ymfOuD9fqnK0CdXVKS9+bo6zywpkf0Xq7moh4mHOdzFPTCbQykbme95U5jHJ/AFi+h5DlQvcU3VphAazCtaE8U0edtygtv7k48Ucq5DRzUPA=
+	t=1732098575; cv=none; b=eyK6Xa2Mj6CGYtG+ZssAly3CJEX6oBOzBE99uTmqAUtdkWvB0/HqqwYvzIx7WIpxjF46h53+GDorXrf2DZuHbUVak6WAuDQJCOsDmUpsa5Bpw+P4UOAHopTV7/jg83ShWUMtn5OYRwnZxGKfKs5Vu4p+uKny2gZ1KYJ8fDud4k4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732097907; c=relaxed/simple;
-	bh=uk7U3tS0/FmlL20TAwVmjFTAWbLGcMQYU5eHebmdlHw=;
+	s=arc-20240116; t=1732098575; c=relaxed/simple;
+	bh=23H9gHPGXWIFwFaXAOxGXFASvWgEWsTNPEZgfhVFxcA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dJbA8YQwtRPO6mgaPBqU+uBSbpV7QOsbqtBBJJK5Q19x/uEnDV6ydO4PnZ5Ryvj94uhu5O4Ss+ngLhGZUGPjJD1KVO8CctRRAVVy+JSQH/Ei00BPNBPpv9Tx7Ps8kYFFOB3LV5ZP6yaLWhbpxHTFIe1hK5b9aPilF2C6om6hLh8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ejpY6x6K; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1732097905; x=1763633905;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=uk7U3tS0/FmlL20TAwVmjFTAWbLGcMQYU5eHebmdlHw=;
-  b=ejpY6x6Kvo0LeSSTmDjvHOx0qZ7xJlEN5wJqp0ke8h2idgS0dkjBfcFp
-   VIG31Ll5cXE9AHUxzRqIJEWYbu9EHPICQ8LIry2V4LlGne+6YNcb3BQj+
-   83967UCFILdz2IMF+vfGQGmELVeXEmFCd21ywskW7yIZYD9ol2wkRa30O
-   84YYms431jSF9Fed9eTW2gxqtuyEx6ELl3jpnu30U8HCx6y/UNIvK3pHz
-   QiP6YVizkdIPp9fyshOtnerPPzto6ocKbz34KQD6Hts1/UsumS6jgZhfK
-   v+x5d8DB66NHpGFMcnvPV5YnWJdBJxcyaSGJdtX9rqHAKaOw4MFzcLfYL
-   g==;
-X-CSE-ConnectionGUID: N1/6DgsESQ67BUVIWc9hQQ==
-X-CSE-MsgGUID: XvwOh9eeSzijqfIsedPk8Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="49676105"
-X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; 
-   d="scan'208";a="49676105"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2024 02:18:25 -0800
-X-CSE-ConnectionGUID: MZSTaxwIS5iSOxOM6e10xw==
-X-CSE-MsgGUID: o+QlY7n+R2+coTKEzNPDrg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; 
-   d="scan'208";a="89981474"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2024 02:18:23 -0800
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with ESMTP id 593B211F89A;
-	Wed, 20 Nov 2024 12:18:19 +0200 (EET)
-Date: Wed, 20 Nov 2024 10:18:19 +0000
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 2/4] media: v4l: fwnode: Parse MiPI DisCo for C-PHY
- line-orders
-Message-ID: <Zz23a2GyW13rpyW2@kekkonen.localdomain>
-References: <20241119221249.539610-1-niklas.soderlund+renesas@ragnatech.se>
- <20241119221249.539610-3-niklas.soderlund+renesas@ragnatech.se>
- <Zz2Zgvjm21iv-qtc@kekkonen.localdomain>
- <20241120095030.GT5315@ragnatech.se>
+	 Content-Type:Content-Disposition:In-Reply-To; b=eOUVVAPwpj8U0OayeVvzbawDGxPED6/U6+WQOIQmz5+c6jT/ai7e3piFkg+ntxmbDZ3G9oQKoVwbyX2Y7xkiYVnj5x8hHELfiJCc0+7cL9txvXVSHut7/dY9XuIEEdSsjUxrRlyQoCqm673ioBtDgS1Z21wRh34I8/d57vlM538=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tDhxW-000572-NG; Wed, 20 Nov 2024 11:29:18 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tDhxV-001izl-32;
+	Wed, 20 Nov 2024 11:29:17 +0100
+Received: from pengutronix.de (pd9e59fec.dip0.t-ipconnect.de [217.229.159.236])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 7F4CF377BF7;
+	Wed, 20 Nov 2024 10:29:17 +0000 (UTC)
+Date: Wed, 20 Nov 2024 11:29:16 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
+	Andrew Lunn <andrew+netdev@lunn.ch>, "David S . Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	imx@lists.linux.dev, NXP Linux Team <s32@nxp.com>, 
+	Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>, 
+	Enric Balletbo <eballetb@redhat.com>
+Subject: Re: [PATCH 3/3] can: flexcan: handle S32G2/S32G3 separate interrupt
+ lines
+Message-ID: <20241120-cheerful-pug-of-efficiency-bc9b22-mkl@pengutronix.de>
+References: <20241119081053.4175940-1-ciprianmarian.costea@oss.nxp.com>
+ <20241119081053.4175940-4-ciprianmarian.costea@oss.nxp.com>
+ <20241120-magnificent-accelerated-robin-70e7ef-mkl@pengutronix.de>
+ <c9d8ff57-730f-40d9-887e-d11aba87c4b5@oss.nxp.com>
+ <20241120-venomous-skilled-rottweiler-622b36-mkl@pengutronix.de>
+ <aa73f763-44bc-4e59-ad4a-ccaedaeaf1e8@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="kijt5wci2gfkua6d"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241120095030.GT5315@ragnatech.se>
+In-Reply-To: <aa73f763-44bc-4e59-ad4a-ccaedaeaf1e8@oss.nxp.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hejssan, Niklas!
 
-On Wed, Nov 20, 2024 at 10:50:30AM +0100, Niklas Söderlund wrote:
-> Hello Sakari,
-> 
-> On 2024-11-20 08:10:42 +0000, Sakari Ailus wrote:
-> > Hejssan,
-> > 
-> > On Tue, Nov 19, 2024 at 11:12:47PM +0100, Niklas Söderlund wrote:
-> > > Extend the fwnode parsing to validate and fill in the CSI-2 C-PHY
-> > > line-orders order properties as defined in MIPI Discovery and
-> > > Configuration (DisCo) Specification for Imaging.
-> > > 
-> > > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> > > ---
-> > >  drivers/media/v4l2-core/v4l2-fwnode.c | 56 ++++++++++++++++++++++++++-
-> > >  include/media/v4l2-mediabus.h         | 21 ++++++++++
-> > >  2 files changed, 76 insertions(+), 1 deletion(-)
-> > > 
-> > > diff --git a/drivers/media/v4l2-core/v4l2-fwnode.c b/drivers/media/v4l2-core/v4l2-fwnode.c
-> > > index f19c8adf2c61..b8b2b7fb685e 100644
-> > > --- a/drivers/media/v4l2-core/v4l2-fwnode.c
-> > > +++ b/drivers/media/v4l2-core/v4l2-fwnode.c
-> > > @@ -127,7 +127,7 @@ static int v4l2_fwnode_endpoint_parse_csi2_bus(struct fwnode_handle *fwnode,
-> > >  {
-> > >  	struct v4l2_mbus_config_mipi_csi2 *bus = &vep->bus.mipi_csi2;
-> > >  	bool have_clk_lane = false, have_data_lanes = false,
-> > > -		have_lane_polarities = false;
-> > > +		have_lane_polarities = false, have_line_orders = false;
-> > >  	unsigned int flags = 0, lanes_used = 0;
-> > >  	u32 array[1 + V4L2_MBUS_CSI2_MAX_DATA_LANES];
-> > >  	u32 clock_lane = 0;
-> > > @@ -197,6 +197,17 @@ static int v4l2_fwnode_endpoint_parse_csi2_bus(struct fwnode_handle *fwnode,
-> > >  		have_lane_polarities = true;
-> > >  	}
-> > >  
-> > > +	rval = fwnode_property_count_u32(fwnode, "line-orders");
-> > > +	if (rval > 0) {
-> > > +		if (rval != num_data_lanes) {
-> > > +			pr_warn("invalid number of line-orders entries (need %u, got %u)\n",
-> > > +				num_data_lanes, rval);
-> > > +			return -EINVAL;
-> > > +		}
-> > > +
-> > > +		have_line_orders = true;
-> > > +	}
-> > > +
-> > >  	if (!fwnode_property_read_u32(fwnode, "clock-lanes", &v)) {
-> > >  		clock_lane = v;
-> > >  		pr_debug("clock lane position %u\n", v);
-> > > @@ -250,6 +261,49 @@ static int v4l2_fwnode_endpoint_parse_csi2_bus(struct fwnode_handle *fwnode,
-> > >  		} else {
-> > >  			pr_debug("no lane polarities defined, assuming not inverted\n");
-> > >  		}
-> > > +
-> > > +		if (have_line_orders) {
-> > > +			fwnode_property_read_u32_array(fwnode,
-> > > +						       "line-orders", array,
-> > > +						       num_data_lanes);
-> > > +
-> > > +			for (i = 0; i < num_data_lanes; i++) {
-> > > +				const char *order;
-> > > +
-> > > +				switch (array[i]) {
-> > > +				case 0:
-> > > +					order = "ABC";
-> > > +					break;
-> > > +				case 1:
-> > > +					order = "ACB";
-> > > +					break;
-> > > +				case 2:
-> > > +					order = "BAC";
-> > > +					break;
-> > > +				case 3:
-> > > +					order = "BCA";
-> > > +					break;
-> > > +				case 4:
-> > > +					order = "CAB";
-> > > +					break;
-> > > +				case 5:
-> > > +					order = "CBA";
-> > > +					break;
-> > 
-> > Please use an array instead.
-> > 
-> > > +				default:
-> > > +					pr_warn("lane %u invalid line-order assuming ABC (got %u)\n",
-> > > +						i, array[i]);
-> > > +					bus->line_orders[i] = V4L2_MBUS_CSI2_CPHY_LINE_ORDER_ABC;
-> > > +					continue;
-> > > +				}
-> > > +				bus->line_orders[i] = array[i];
-> > > +				pr_debug("lane %u line order %s", i, order);
-> > > +			}
-> > > +		} else {
-> > > +			for (i = 0; i < num_data_lanes; i++)
-> > > +				bus->line_orders[i] = V4L2_MBUS_CSI2_CPHY_LINE_ORDER_ABC;
-> > 
-> > A few lines could be wrapped above.
-> 
-> I'm not sure I understand this comment. Do you mean I could loop over 
-> num_data_lanes and initialize all lines to ABC before checking 
-> have_line_orders and that way avoid having to loop here and set the 
-> default ABC if we are out-of bounds in the switch?
+--kijt5wci2gfkua6d
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 3/3] can: flexcan: handle S32G2/S32G3 separate interrupt
+ lines
+MIME-Version: 1.0
 
-No, just that you'd wrap lines that are over 80 characters per line, unless
-there's some tangible reason to have them like that.
+On 20.11.2024 12:18:03, Ciprian Marian Costea wrote:
+> On 11/20/2024 12:01 PM, Marc Kleine-Budde wrote:
+> > On 20.11.2024 11:01:25, Ciprian Marian Costea wrote:
+> > > On 11/20/2024 10:52 AM, Marc Kleine-Budde wrote:
+> > > > On 19.11.2024 10:10:53, Ciprian Costea wrote:
+> > > > > From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+> > > > >=20
+> > > > > On S32G2/S32G3 SoC, there are separate interrupts
+> > > > > for state change, bus errors, MBs 0-7 and MBs 8-127 respectively.
+> > > > >=20
+> > > > > In order to handle this FlexCAN hardware particularity, reuse
+> > > > > the 'FLEXCAN_QUIRK_NR_IRQ_3' quirk provided by mcf5441x's irq
+> > > > > handling support.
+> > > > >=20
+> > > > > Additionally, introduce 'FLEXCAN_QUIRK_SECONDARY_MB_IRQ' quirk,
+> > > > > which can be used in case there are two separate mailbox ranges
+> > > > > controlled by independent hardware interrupt lines, as it is
+> > > > > the case on S32G2/S32G3 SoC.
+> > > >=20
+> > > > Does the mainline driver already handle the 2nd mailbox range? Is t=
+here
+> > > > any downstream code yet?
+> > > >=20
+> > > > Marc
+> > > >=20
+> > >=20
+> > > Hello Marc,
+> > >=20
+> > > The mainline driver already handles the 2nd mailbox range (same
+> > > 'flexcan_irq') is used. The only difference is that for the 2nd mailb=
+ox
+> > > range a separate interrupt line is used.
+> >=20
+> > AFAICS the IP core supports up to 128 mailboxes, though the driver only
+> > supports 64 mailboxes. Which mailboxes do you mean by the "2nd mailbox
+> > range"? What about mailboxes 64..127, which IRQ will them?
+>=20
+> On S32G the following is the mapping between FlexCAN IRQs and mailboxes:
+> - IRQ line X -> Mailboxes 0-7
+> - IRQ line Y -> Mailboxes 8-127 (Logical OR of Message Buffer Interrupt
+> lines 127 to 8)
+>=20
+> By 2nd range, I was refering to Mailboxes 8-127.
 
--- 
-Med vänliga hälsningar,
+Interesting, do you know why it's not symmetrical (0...63, 64...127)?
+Can you point me to the documentation.
 
-Sakari Ailus
+Thanks,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--kijt5wci2gfkua6d
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmc9ufoACgkQKDiiPnot
+vG8ucgf/X9VfFAXZtREwqubWb7BK3KnntMJvgBtE4ngwefZ35hzZV4TqFzhoSMV0
+UtVjzaQa5I5nAFHHzyer0VcdXmTq+d1X4Et3Wd+yiJSht1fcjLGKlqYsXeHApD9l
+PbfPvXijpBOdwoogVi+4tjHDRs8PvRFVex4S8Oh/F7yfHl0wjxJwpW5xGpZ3BPOo
+hzdZou4s3MYbTicKltC50pmZSQ1huW6OyEAi7OD2y4mpq87ccVIFVFMbpQIbhvzO
+bEPwDokYn9R3T/fOQFJbvk2oq1nhve7oJabp29AcUd1pOQbpOUod+qxD0lmQTKoG
+gyAD07GY3WGrv508MC6XFV55n3fODA==
+=/sVn
+-----END PGP SIGNATURE-----
+
+--kijt5wci2gfkua6d--
 
