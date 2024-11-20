@@ -1,241 +1,274 @@
-Return-Path: <devicetree+bounces-123198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 568829D3A8F
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 13:20:55 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8841C9D3AA1
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 13:27:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FE56280A66
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 12:20:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1BE50B23916
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 12:24:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF08919F47A;
-	Wed, 20 Nov 2024 12:20:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 664A31A2554;
+	Wed, 20 Nov 2024 12:24:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="KIx0blxU";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="2F3TC1vO";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="KIx0blxU";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="2F3TC1vO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E09516A92D
-	for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 12:20:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 860CD172BD5;
+	Wed, 20 Nov 2024 12:24:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732105247; cv=none; b=bTa/FE4j1Au8nYvl5Jo6iCFUZWnwBrHeoqL2uhtJykh1AwaPw/u2xaa5/HrWuXwPdJdh8tLmUdY40h27EtwQ60lL51yJaGOmjgoLT8f+osEn57P8ksraE+dpisWng34RIhAXxekNqE2bVgYmXujgaFj5p9ZCsDx7NZH4alC/938=
+	t=1732105445; cv=none; b=aUwiyEFlCqXpLLimcJ0sk7TevXnuGrTNSdCmkOMgEB91VJNqLlna24dpD8POMmbNWiLn/J1HEU7anwGog2FRIQd0YiEphTM6oSM2EueyLcWchLjPRSVPsBakuXxMAM1F8t6cizbtCd7Ojq7ItUb1TnSYcQP9Xl0zZkAqe3wLS1M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732105247; c=relaxed/simple;
-	bh=kj3ra5UKlV2cQyYvss4eMDHnBmaGYC2AyxIjO52JTms=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XCQpElPxKFd39Ry+qAXlgC+eiviYWZwdYTW9g2ijhT3vaShmvyHXjlhVD8YjkGS3ibb4bVa2aU0pVaHB9y80lEPmMMjFO3Z0/f5NrsaZWkvQjM7bZoF+HBEGephFgZhKrxSUgDM6KPfnBSAGoc3Kos0pKOne/McBK+Ft5RgZmzg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tDjh8-0000az-4P; Wed, 20 Nov 2024 13:20:30 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tDjh7-001js0-21;
-	Wed, 20 Nov 2024 13:20:29 +0100
-Received: from pengutronix.de (pd9e59fec.dip0.t-ipconnect.de [217.229.159.236])
+	s=arc-20240116; t=1732105445; c=relaxed/simple;
+	bh=K5K1Yw+04T/dpRHzJK4zgf/M5dBzfsDcoWJpc0vA5ww=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=tF1O2TOmNbwf9uc36E7XkVLr5Q66a/xI3RmofagDNpdOH5etNUbBt4YzjiS1xYPHRAZ5hBbGeiFhfyPNyXYycLer005d/T1H/0tnyF7IFXZ3dR//JwtrQiax/niUcLoL8p9ZsmO+J/eB8tD5NFh4FN54eWqAm66CHqF1wPwoxog=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=KIx0blxU; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=2F3TC1vO; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=KIx0blxU; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=2F3TC1vO; arc=none smtp.client-ip=195.135.223.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 3C413377D2F;
-	Wed, 20 Nov 2024 12:20:29 +0000 (UTC)
-Date: Wed, 20 Nov 2024 13:20:28 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
-Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S . Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	imx@lists.linux.dev, NXP Linux Team <s32@nxp.com>, 
-	Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>, 
-	Enric Balletbo <eballetb@redhat.com>
-Subject: Re: [PATCH 3/3] can: flexcan: handle S32G2/S32G3 separate interrupt
- lines
-Message-ID: <20241120-mindful-belligerent-mussel-501d72-mkl@pengutronix.de>
-References: <20241119081053.4175940-1-ciprianmarian.costea@oss.nxp.com>
- <20241119081053.4175940-4-ciprianmarian.costea@oss.nxp.com>
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id 152892198C;
+	Wed, 20 Nov 2024 12:23:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1732105436; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=sv1wEwUCRnJgcO3pMn8ORE+/2tjnCkxAdkeEeFOh8so=;
+	b=KIx0blxUFL9bJVyktEgCeBFKPKZ4WbAcpLdCS5burmflYn/+j3UQQUJPdMCZORNMVASxRl
+	z6OUNXLVsLki1TKHYFUkgAdDiLYnjwXdi//ECfCYp4UAzqfBKz8diRnHW+2+EVKzEuKw/o
+	bC3se6JPJ6HJxL0iubkT0Mp+N+OyQhY=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1732105436;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=sv1wEwUCRnJgcO3pMn8ORE+/2tjnCkxAdkeEeFOh8so=;
+	b=2F3TC1vOPjTWOxZJco88LmeS7C4NWtF8RBLcjRWOSrYL+/jkMJ9gOLwH+dEFxhfWvKuFMS
+	qS1svuKgbiab3nBA==
+Authentication-Results: smtp-out1.suse.de;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=KIx0blxU;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=2F3TC1vO
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1732105436; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=sv1wEwUCRnJgcO3pMn8ORE+/2tjnCkxAdkeEeFOh8so=;
+	b=KIx0blxUFL9bJVyktEgCeBFKPKZ4WbAcpLdCS5burmflYn/+j3UQQUJPdMCZORNMVASxRl
+	z6OUNXLVsLki1TKHYFUkgAdDiLYnjwXdi//ECfCYp4UAzqfBKz8diRnHW+2+EVKzEuKw/o
+	bC3se6JPJ6HJxL0iubkT0Mp+N+OyQhY=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1732105436;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=sv1wEwUCRnJgcO3pMn8ORE+/2tjnCkxAdkeEeFOh8so=;
+	b=2F3TC1vOPjTWOxZJco88LmeS7C4NWtF8RBLcjRWOSrYL+/jkMJ9gOLwH+dEFxhfWvKuFMS
+	qS1svuKgbiab3nBA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id C9373137CF;
+	Wed, 20 Nov 2024 12:23:55 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id F09UMNvUPWdlCwAAD6G6ig
+	(envelope-from <tiwai@suse.de>); Wed, 20 Nov 2024 12:23:55 +0000
+Date: Wed, 20 Nov 2024 13:23:51 +0100
+Message-ID: <878qte3xgo.wl-tiwai@suse.de>
+From: Takashi Iwai <tiwai@suse.de>
+To: Wesley Cheng <quic_wcheng@quicinc.com>
+Cc: <srinivas.kandagatla@linaro.org>,
+	<mathias.nyman@intel.com>,
+	<perex@perex.cz>,
+	<conor+dt@kernel.org>,
+	<dmitry.torokhov@gmail.com>,
+	<corbet@lwn.net>,
+	<broonie@kernel.org>,
+	<lgirdwood@gmail.com>,
+	<krzk+dt@kernel.org>,
+	<pierre-louis.bossart@linux.intel.com>,
+	<Thinh.Nguyen@synopsys.com>,
+	<tiwai@suse.com>,
+	<robh@kernel.org>,
+	<gregkh@linuxfoundation.org>,
+	<linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>,
+	<linux-sound@vger.kernel.org>,
+	<linux-usb@vger.kernel.org>,
+	<linux-input@vger.kernel.org>,
+	<linux-arm-msm@vger.kernel.org>,
+	<linux-doc@vger.kernel.org>
+Subject: Re: [PATCH v30 15/30] ASoC: usb: Fetch ASoC card and pcm device information
+In-Reply-To: <20241106193413.1730413-16-quic_wcheng@quicinc.com>
+References: <20241106193413.1730413-1-quic_wcheng@quicinc.com>
+	<20241106193413.1730413-16-quic_wcheng@quicinc.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/27.2 Mule/6.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="k7cj6qrunaieusmg"
-Content-Disposition: inline
-In-Reply-To: <20241119081053.4175940-4-ciprianmarian.costea@oss.nxp.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-Rspamd-Queue-Id: 152892198C
+X-Spam-Level: 
+X-Spamd-Result: default: False [-2.01 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	MID_CONTAINS_FROM(1.00)[];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	MIME_GOOD(-0.10)[text/plain];
+	MX_GOOD(-0.01)[];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+	FUZZY_BLOCKED(0.00)[rspamd.com];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[linaro.org,intel.com,perex.cz,kernel.org,gmail.com,lwn.net,linux.intel.com,synopsys.com,suse.com,linuxfoundation.org,vger.kernel.org];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_EQ_ENVFROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[dt];
+	ASN(0.00)[asn:25478, ipnet:::/0, country:RU];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_TLS_ALL(0.00)[];
+	DKIM_TRACE(0.00)[suse.de:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[quicinc.com:email,intel.com:email]
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Action: no action
+X-Spam-Score: -2.01
+X-Spam-Flag: NO
 
-
---k7cj6qrunaieusmg
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 3/3] can: flexcan: handle S32G2/S32G3 separate interrupt
- lines
-MIME-Version: 1.0
-
-On 19.11.2024 10:10:53, Ciprian Costea wrote:
-> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
->=20
-> On S32G2/S32G3 SoC, there are separate interrupts
-> for state change, bus errors, MBs 0-7 and MBs 8-127 respectively.
->=20
-> In order to handle this FlexCAN hardware particularity, reuse
-> the 'FLEXCAN_QUIRK_NR_IRQ_3' quirk provided by mcf5441x's irq
-> handling support.
->=20
-> Additionally, introduce 'FLEXCAN_QUIRK_SECONDARY_MB_IRQ' quirk,
-> which can be used in case there are two separate mailbox ranges
-> controlled by independent hardware interrupt lines, as it is
-> the case on S32G2/S32G3 SoC.
-
-Please move the quirk and quirk handling to the 2nd patch. The 3rd patch
-should only add the nxp,s32g2-flexcan compatible and the struct
-flexcan_devtype_data nxp_s32g2_devtype_data.
-
->=20
-> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+On Wed, 06 Nov 2024 20:33:58 +0100,
+Wesley Cheng wrote:
+> 
+> USB SND needs to know how the USB offload path is being routed.  This would
+> allow for applications to open the corresponding sound card and pcm device
+> when it wants to take the audio offload path.  This callback should return
+> the mapped indexes based on the USB SND device information.
+> 
+> Reviewed-by: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
 > ---
->  drivers/net/can/flexcan/flexcan-core.c | 25 +++++++++++++++++++++++--
->  drivers/net/can/flexcan/flexcan.h      |  3 +++
->  2 files changed, 26 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/net/can/flexcan/flexcan-core.c b/drivers/net/can/fle=
-xcan/flexcan-core.c
-> index f0dee04800d3..dc56d4a7d30b 100644
-> --- a/drivers/net/can/flexcan/flexcan-core.c
-> +++ b/drivers/net/can/flexcan/flexcan-core.c
-> @@ -390,9 +390,10 @@ static const struct flexcan_devtype_data nxp_s32g2_d=
-evtype_data =3D {
->  	.quirks =3D FLEXCAN_QUIRK_DISABLE_RXFG | FLEXCAN_QUIRK_ENABLE_EACEN_RRS=
- |
->  		FLEXCAN_QUIRK_DISABLE_MECR | FLEXCAN_QUIRK_BROKEN_PERR_STATE |
->  		FLEXCAN_QUIRK_USE_RX_MAILBOX | FLEXCAN_QUIRK_SUPPORT_FD |
-> -		FLEXCAN_QUIRK_SUPPORT_ECC |
-> +		FLEXCAN_QUIRK_SUPPORT_ECC | FLEXCAN_QUIRK_NR_IRQ_3 |
->  		FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX |
-> -		FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX_RTR,
-> +		FLEXCAN_QUIRK_SUPPORT_RX_MAILBOX_RTR |
-> +		FLEXCAN_QUIRK_SECONDARY_MB_IRQ,
+>  include/sound/soc-usb.h | 16 ++++++++++++++++
+>  sound/soc/soc-usb.c     | 34 ++++++++++++++++++++++++++++++++++
+>  2 files changed, 50 insertions(+)
+> 
+> diff --git a/include/sound/soc-usb.h b/include/sound/soc-usb.h
+> index 587ea07a8cf5..c3d3e8d62ac5 100644
+> --- a/include/sound/soc-usb.h
+> +++ b/include/sound/soc-usb.h
+> @@ -36,6 +36,11 @@ struct snd_soc_usb_device {
+>   * @list - list head for SND SOC struct list
+>   * @component - reference to ASoC component
+>   * @connection_status_cb - callback to notify connection events
+> + * @update_offload_route_info - callback to fetch mapped ASoC card and pcm
+> + *				device pair.  This is unrelated to the concept
+> + *				of DAPM route.  The "route" argument carries
+> + *				an array used for a kcontrol output and should
+> + *				contain two integers, card and pcm device index
+>   * @priv_data - driver data
+>   **/
+>  struct snd_soc_usb {
+> @@ -44,6 +49,9 @@ struct snd_soc_usb {
+>  	int (*connection_status_cb)(struct snd_soc_usb *usb,
+>  				    struct snd_soc_usb_device *sdev,
+>  				    bool connected);
+> +	int (*update_offload_route_info)(struct snd_soc_component *component,
+> +					 int card, int pcm, int direction,
+> +					 long *route);
+>  	void *priv_data;
 >  };
-> =20
->  static const struct can_bittiming_const flexcan_bittiming_const =3D {
-> @@ -1771,12 +1772,21 @@ static int flexcan_open(struct net_device *dev)
->  			goto out_free_irq_boff;
->  	}
-> =20
-> +	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SECONDARY_MB_IRQ) {
-> +		err =3D request_irq(priv->irq_secondary_mb,
-> +				  flexcan_irq, IRQF_SHARED, dev->name, dev);
-> +		if (err)
-> +			goto out_free_irq_err;
-> +	}
-> +
->  	flexcan_chip_interrupts_enable(dev);
-> =20
->  	netif_start_queue(dev);
-> =20
+>  
+> @@ -61,6 +69,8 @@ int snd_soc_usb_setup_offload_jack(struct snd_soc_component *component,
+>  int snd_soc_usb_disable_offload_jack(struct snd_soc_component *component);
+>  int snd_soc_usb_enable_offload_jack(struct snd_soc_component *component,
+>  				    struct snd_soc_jack *jack);
+> +int snd_soc_usb_update_offload_route(struct device *dev, int card, int pcm,
+> +				     int direction, long *route);
+>  
+>  struct snd_soc_usb *snd_soc_usb_allocate_port(struct snd_soc_component *component,
+>  					      void *data);
+> @@ -109,6 +119,12 @@ static inline int snd_soc_usb_enable_offload_jack(struct snd_soc_component *comp
 >  	return 0;
-> =20
-> + out_free_irq_err:
-> +	free_irq(priv->irq_err, dev);
->   out_free_irq_boff:
->  	free_irq(priv->irq_boff, dev);
->   out_free_irq:
-> @@ -1808,6 +1818,9 @@ static int flexcan_close(struct net_device *dev)
->  		free_irq(priv->irq_boff, dev);
->  	}
-> =20
-> +	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SECONDARY_MB_IRQ)
-> +		free_irq(priv->irq_secondary_mb, dev);
+>  }
+>  
+> +static int snd_soc_usb_update_offload_route(struct device *dev, int card, int pcm,
+> +					    int direction, long *route)
+> +{
+> +	return -ENODEV;
+> +}
 > +
->  	free_irq(dev->irq, dev);
->  	can_rx_offload_disable(&priv->offload);
->  	flexcan_chip_stop_disable_on_error(dev);
-> @@ -2197,6 +2210,14 @@ static int flexcan_probe(struct platform_device *p=
-dev)
->  		}
->  	}
-> =20
-> +	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SECONDARY_MB_IRQ) {
-> +		priv->irq_secondary_mb =3D platform_get_irq(pdev, 3);
-> +		if (priv->irq_secondary_mb < 0) {
-> +			err =3D priv->irq_secondary_mb;
-> +			goto failed_platform_get_irq;
-> +		}
-> +	}
+>  static inline struct snd_soc_usb *
+>  snd_soc_usb_allocate_port(struct snd_soc_component *component, void *data)
+>  {
+> diff --git a/sound/soc/soc-usb.c b/sound/soc/soc-usb.c
+> index ab914878e101..e56826f1df71 100644
+> --- a/sound/soc/soc-usb.c
+> +++ b/sound/soc/soc-usb.c
+> @@ -145,6 +145,40 @@ int snd_soc_usb_enable_offload_jack(struct snd_soc_component *component,
+>  }
+>  EXPORT_SYMBOL_GPL(snd_soc_usb_enable_offload_jack);
+>  
+> +/**
+> + * snd_soc_usb_update_offload_route - Find active USB offload path
+> + * @dev - USB device to get offload status
+> + * @card - USB card index
+> + * @pcm - USB PCM device index
+> + * @direction - playback or capture direction
+> + * @route - pointer to route output array
+> + *
+> + * Fetch the current status for the USB SND card and PCM device indexes
+> + * specified.  The "route" argument should be an array of integers being
+> + * used for a kcontrol output.  The first element should have the selected
+> + * card index, and the second element should have the selected pcm device
+> + * index.
+> + */
+> +int snd_soc_usb_update_offload_route(struct device *dev, int card, int pcm,
+> +				     int direction, long *route)
+> +{
+> +	struct snd_soc_usb *ctx;
+> +	int ret = -EINVAL;
 > +
->  	if (priv->devtype_data.quirks & FLEXCAN_QUIRK_SUPPORT_FD) {
->  		priv->can.ctrlmode_supported |=3D CAN_CTRLMODE_FD |
->  			CAN_CTRLMODE_FD_NON_ISO;
-> diff --git a/drivers/net/can/flexcan/flexcan.h b/drivers/net/can/flexcan/=
-flexcan.h
-> index 4933d8c7439e..d4b1a954c538 100644
-> --- a/drivers/net/can/flexcan/flexcan.h
-> +++ b/drivers/net/can/flexcan/flexcan.h
-> @@ -70,6 +70,8 @@
->  #define FLEXCAN_QUIRK_SUPPORT_RX_FIFO BIT(16)
->  /* Setup stop mode with ATF SCMI protocol to support wakeup */
->  #define FLEXCAN_QUIRK_SETUP_STOP_MODE_SCMI BIT(17)
-> +/* Setup secondary mailbox interrupt */
+> +	ctx = snd_soc_find_usb_ctx(dev);
+> +	if (!ctx)
+> +		return -ENODEV;
+> +
+> +	mutex_lock(&ctx_mutex);
+> +	if (ctx && ctx->update_offload_route_info)
+> +		ret = ctx->update_offload_route_info(ctx->component, card, pcm,
+> +						     direction, route);
+> +	mutex_unlock(&ctx_mutex);
 
-Describe why this quirk is needed. If you have a proper description in
-the commit message, you can copy it here.
+The second ctx check is redundant.  And the locking scheme looks
+dubious -- as ctx isn't protected by ctx_mutex after its retrieval via
+snd_soc_find_usb_ctx(), even if you reacquire ctx_mutex, it may point
+to an already released object (in theory).
 
-> +#define FLEXCAN_QUIRK_SECONDARY_MB_IRQ	BIT(18)
-> =20
->  struct flexcan_devtype_data {
->  	u32 quirks;		/* quirks needed for different IP cores */
-> @@ -105,6 +107,7 @@ struct flexcan_priv {
->  	struct regulator *reg_xceiver;
->  	struct flexcan_stop_mode stm;
-> =20
-> +	int irq_secondary_mb;
+IOW, for a safer protection, you'd need to cover the whole
+find-and-exec procedure via a single ctx_mutex lock action.
 
-Please place it after the irq_err, this way it's in order with the
-spread sheet.
 
->  	int irq_boff;
->  	int irq_err;
-> =20
+thanks,
 
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---k7cj6qrunaieusmg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmc91AkACgkQKDiiPnot
-vG9tvAf+MUCSC/bR1WQfJ6jsMBgAPuB/aRDz77YVLrt1feRFK0AkOLyXUW+PHbLn
-mvlvhVAUnT1vA7lcNOETI/mjKdDV1ISd9eK1ofJiUWzzYLGV5he0gfswT/7mCdHP
-RV708aOhXGyNokZHYfuEEF+Efbf1nqQuVoQUiZu+VHvvWNmG+fznr0kfB78jKehc
-K1OZIr5Pd8XPE5thxVzdnNUBDU87aX2auyyLwgnmI77ImHXjL8Mi1UP2UJYRu3UI
-bRd4+ZrX8QExbNNXiSiVxUUb6dWy271ORQ2KYcSfP0dOpyjH8bmJQyNIebuEEMk1
-gb3twa1WDvOBKuWDIXa5Lz3YH4VPDg==
-=3Q/0
------END PGP SIGNATURE-----
-
---k7cj6qrunaieusmg--
+Takashi
 
