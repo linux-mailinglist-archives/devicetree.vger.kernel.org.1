@@ -1,161 +1,173 @@
-Return-Path: <devicetree+bounces-123335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123336-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64EA79D4116
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 18:23:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FC5B9D41B0
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 18:52:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E9E741F21D4A
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 17:23:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7443EB2DBC6
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 17:31:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74B9D1A3031;
-	Wed, 20 Nov 2024 17:23:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gnJAFljC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C32E1AE014;
+	Wed, 20 Nov 2024 17:31:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 407D119F43A;
-	Wed, 20 Nov 2024 17:23:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 241A31AA1FB
+	for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 17:30:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732123399; cv=none; b=dAHQZ2Y3a8dIQQcOimCECMY7B+urV3ycouErIxn4Ci0iliKYiyV99axgI+M2egLBMDr2KSH28HTg2fYP2jZP7N1Y+/VXrV/D90jTM34qKSrwyPzoZ3lXd6lip9sd2hLAm6vc5IcrsyCOUBgkcFKn0IXnDHcn5D83HyTrKFhumyU=
+	t=1732123861; cv=none; b=fuXzMoO4KFXpOvOfKrjolx+OW20yHq9mxhT6XgjrLTZxrb7GDaA+1FRfnkcj0pyB2jg3zGuLAFeY/4mje7ltVONRrsxLr4QWlXjg1DlYDBqs8lg5OAWigaL6rlKg2kN1PFK8G5SBwrxA2/Z5vjO0TaRtSu2L5a4RG1Hp0dTrLww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732123399; c=relaxed/simple;
-	bh=4ZvBbp6vYapo6ZME8erDnAG/PnHlSCOd92QNOx9m6og=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oBnKiYprgvP3rA5a1N16nchjkmi/QQbAarUEEiF1k5Q6GFeKIzUd547dlMKnCShotihxYfze0TRlydlPp08/ySB594jVc7aZgJV21AV+IAf4OCJ+tkThiJDCjUEZB/lbh2psm9Do36k1goZJIU7iAblf7JeFATbPdyEJre0vM1k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gnJAFljC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B6FCC4CECD;
-	Wed, 20 Nov 2024 17:23:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732123398;
-	bh=4ZvBbp6vYapo6ZME8erDnAG/PnHlSCOd92QNOx9m6og=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gnJAFljC1MkvcUw5pH/nfVztANygux4Z35vd8K91jUCP0XkV703RAQdGF1LXYdkfc
-	 8eNsuLGjrR05Gmy3uyhQuUFCUFG4MVOylzLJ9nVBsQsffUAYzf37Zj7KgRymhdj6kx
-	 0OKnIwBedtk+8YB39J4kJ/VzqhoPh+2W7jkVXIrHfH1quarHOHBtnJ0BY61mYrkJ1m
-	 lm2HtF7hUXRAPCNxSR3elNerY5uR0cC0OgZNer/IIPGomObdr2FFOfZDuRhMc6clHz
-	 /EkyGkfpmZm4MqS4FvyF5fXsHq1v9tF56Ky8sxKBuSSDn0T2JMsdvbv8hoZYDgL9Gd
-	 QbBiXpJHqiKVw==
-Message-ID: <769d80cf-c4ce-48eb-964a-e5963f2ed138@kernel.org>
-Date: Wed, 20 Nov 2024 18:23:11 +0100
+	s=arc-20240116; t=1732123861; c=relaxed/simple;
+	bh=UdmBR0vlYUwE0j7Xk0Auu9zw64mJgjK4bcR4taYvDfk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QOSGgU8DQM3pfVFYqeIgG9v5ZeLI82c28kpXDwIToGhTqNshCqYGS/N6dJPTizBhCN3g2avi4Y1+1a+YkPlTqg/oD6cyFzmxbYScYFoEbIvlFdJQHyJJazvd0AjYokPAsl33QJriA/ZoEOb5KIjgKmoKKZ3jhaZ5tqDwfRwpNOQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1tDoXG-0006Fm-Im; Wed, 20 Nov 2024 18:30:38 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1tDoXF-001m6C-38;
+	Wed, 20 Nov 2024 18:30:37 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1tDoXF-005I5x-2m;
+	Wed, 20 Nov 2024 18:30:37 +0100
+Date: Wed, 20 Nov 2024 18:30:37 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Russ Weight <russ.weight@linux.dev>
+Cc: Luis Chamberlain <mcgrof@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Kamel Bouhara <kamel.bouhara@bootlin.com>,
+	Marco Felsch <kernel@pengutronix.de>,
+	Henrik Rydberg <rydberg@bitmath.org>,
+	Danilo Krummrich <dakr@redhat.com>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org
+Subject: Re: [PATCH 2/5] firmware_loader: add support to handle
+ FW_UPLOAD_ERR_SKIP
+Message-ID: <20241120173037.x6cro7r2wh5aoadg@pengutronix.de>
+References: <20241119-v6-10-topic-touchscreen-axiom-v1-0-6124925b9718@pengutronix.de>
+ <20241119-v6-10-topic-touchscreen-axiom-v1-2-6124925b9718@pengutronix.de>
+ <20241120165049.jzsveoms2unxt3m6@4VRSMR2-DT.corp.robot.car>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: iio: light: Add APDS9160 binding
-To: Conor Dooley <conor@kernel.org>, mgonellabolduc@dimonoff.com
-Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
- <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Nathan Chancellor <nathan@kernel.org>,
- Nick Desaulniers <ndesaulniers@google.com>, Bill Wendling
- <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
- Mikael Gonella-Bolduc <m.gonella.bolduc@gmail.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, llvm@lists.linux.dev,
- Hugo Villeneuve <hvilleneuve@dimonoff.com>
-References: <20241119-apds9160-driver-v1-0-fa00675b4ea4@dimonoff.com>
- <20241119-apds9160-driver-v1-1-fa00675b4ea4@dimonoff.com>
- <20241120-case-guy-7456f9f850fa@spud>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241120-case-guy-7456f9f850fa@spud>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241120165049.jzsveoms2unxt3m6@4VRSMR2-DT.corp.robot.car>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 20/11/2024 18:18, Conor Dooley wrote:
-> On Tue, Nov 19, 2024 at 03:36:56PM -0500, Mikael Gonella-Bolduc via B4 Relay wrote:
->> From: Mikael Gonella-Bolduc <mgonellabolduc@dimonoff.com>
->>
->> Add device tree bindings for APDS9160 driver
->>
->> Signed-off-by: Mikael Gonella-Bolduc <mgonellabolduc@dimonoff.com>
->> ---
->>  .../bindings/iio/light/avago,apds9160.yaml         | 50 ++++++++++++++++++++++
->>  1 file changed, 50 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/iio/light/avago,apds9160.yaml b/Documentation/devicetree/bindings/iio/light/avago,apds9160.yaml
->> new file mode 100644
->> index 0000000000000000000000000000000000000000..12e196b297fe523e4d324156041ef9c6900676eb
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/iio/light/avago,apds9160.yaml
->> @@ -0,0 +1,50 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/iio/light/avago,apds9160.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Broadcom Combined Proximity & Ambient light sensor
->> +
->> +maintainers:
->> +  - Mikael Gonella-Bolduc <m.gonella.bolduc@gmail.com>
->> +
->> +description: |
->> +  Datasheet: https://docs.broadcom.com/docs/APDS-9160-003-DS
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - avago,apds9160
->> +      - broadmobi,apds9160
+Hi,
+
+On 24-11-20, Russ Weight wrote:
+> On Tue, Nov 19, 2024 at 11:33:51PM +0100, Marco Felsch wrote:
+> > It's no error if a driver indicates that the firmware is already
+> > up-to-date and the update can be skipped.
+> > 
+> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > ---
+> >  drivers/base/firmware_loader/sysfs_upload.c | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> > 
+> > diff --git a/drivers/base/firmware_loader/sysfs_upload.c b/drivers/base/firmware_loader/sysfs_upload.c
+> > index b3cbe5b156e3..44f3d8fa5e64 100644
+> > --- a/drivers/base/firmware_loader/sysfs_upload.c
+> > +++ b/drivers/base/firmware_loader/sysfs_upload.c
+> > @@ -174,6 +174,10 @@ static void fw_upload_main(struct work_struct *work)
+> >  	fw_upload_update_progress(fwlp, FW_UPLOAD_PROG_PREPARING);
+> >  	ret = fwlp->ops->prepare(fwl, fwlp->data, fwlp->remaining_size);
+> >  	if (ret != FW_UPLOAD_ERR_NONE) {
+> > +		if (ret == FW_UPLOAD_ERR_SKIP) {
+> > +			dev_info(fw_dev, "firmware already up-to-date, skip update\n");
+> > +			ret = FW_UPLOAD_ERR_NONE;
+> > +		}
 > 
-> What is the difference between these two devices? There's no match data,
-> makes it seem like there should be a fallback going on here.
-Same device names suggest this is some legacy. We don't take new
-bindings for legacy stuff.
+> If you change the error-code from FW_UPLOAD_ERR_SKIP to
+> FW_UPLOAD_ERR_NONE, then the "skip" string provided in the previous
+> patch will never be seen. There are currently no other instances where
 
-Best regards,
-Krzysztof
+Do we really need to set it? As explained within the commit message,
+it's no error if FW_UPLOAD_ERR_SKIP is returned. The previous patch just
+added all pieces which may be required later on.
+
+> an error code requires special-case modifications to the fw_upload
+> code and I don't think it is necessary to add it here.
+
+Because at the moment no one is checking it except for the gb-beagleplay
+driver. This driver prints a dev_warn() string and returns a failure.
+Now the userspace needs some heuristic by parsing dmesg to check the
+reason. This is rather complex and very error prone as the sting can be
+changed in the future.
+
+Therefore I added the support to have a simple error code which can be
+returned by a driver. I'm open to return "skip" as error instead of
+casting it to none. Both is fine for me since both allow the userspace
+to easily check if the error is a 'real' error or if the fw-update was
+just skipped due to already-up-to-date.
+
+I wouldn't say that this is a special case, it is very common but no one
+is performing a fw-version check. Therefore I added this to the common
+code, to make it easier for driver devs.
+
+> The dev_info() message above can be provided by the device driver
+> that is using this API.
+> 
+> I think you can either:
+> 
+> (1) allow "skip" to be treated as an error. The update didn't happen...
+
+Please see above.
+
+> -or-
+> 
+> (2) The prepare function could detect the situation and set
+>     a flag in the same device driver. Your write function could
+>     set *written to the full data size and return without writing
+>     anything. Your poll_complete handler could also return
+>     FW_UPLOAD_ERR_NONE. Then you don't need to add FW_UPLOAD_ERR_SKIP
+>     at all. You would get the info message from the device driver
+>     and fw_upload would exit without an error.
+
+Please see above. I don't think that this is special case and why making
+the life hard for driver devs instead of having a well known fw
+behaviour?
+
+Regards,
+  Marco
+
+> 
+> Thanks,
+> - Russ
+> 
+> >  		fw_upload_set_error(fwlp, ret);
+> >  		goto putdev_exit;
+> >  	}
+> > 
+> > -- 
+> > 2.39.5
+> > 
+> 
 
