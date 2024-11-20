@@ -1,275 +1,183 @@
-Return-Path: <devicetree+bounces-123341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123342-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC9849D41A7
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 18:50:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D12599D41C2
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 19:00:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 727101F22D58
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 17:50:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 54CA51F232C4
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 18:00:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCCC019E97F;
-	Wed, 20 Nov 2024 17:50:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C94361AAE38;
+	Wed, 20 Nov 2024 18:00:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="QwMlDigO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZHo1a+x2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6C4E15534B
-	for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 17:50:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB8FB1F931;
+	Wed, 20 Nov 2024 18:00:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732125005; cv=none; b=dcPEEpbGhNxiU9GBQdWBhl7GH4kgGdKJtGOXYAql2a53PNLu+KU/jsTV59o5Yf1g/tnhA1awA305dO/V6NC+8niFnRPDsbKrbgI3GVJliClouZNY/mVvT3ZK12uHY0E3fYr1Ok8y6ko0aY4GVFU5NirAM5gs2LorGzR0AOhRpvI=
+	t=1732125625; cv=none; b=p0Wr32OqgA1TQrp3LScrr2/0lbYsa8ybK7CvN3X7/WHYpwvQcsYrAsMXnyCYT/Ub8i/P2YWOTh13BV/lZyeIyk4VGq+mxx8ImegAmBriLCgiPcT/wLA5LvsxN0UvzEeLa8nx3qysElUtEThQkF0IDBJ/BP9vHn3oLKPDlOfsIAI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732125005; c=relaxed/simple;
-	bh=ctKB3oeKjj9NcqK9Bp8nDnJcuGL7Hcfs+k6RJWcJrIs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OAoA1adGzVLAw9Tu6WOTGcjl+pEKV9hct1NTFfY/5GJW8MhaAw74eOX76ctvhPk1Rke1KmVlM1bbsOCzTKSJL+yC7AzmeK9I/5uL+j32neYrQE3Vxlm2WaEv/7zNNsE5/w/jDnWXCnAL98Xfcl3gD7tAcjmc9qNwoKMuNUNf6Zo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=QwMlDigO; arc=none smtp.client-ip=209.85.219.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-e382e549918so2159827276.2
-        for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 09:50:03 -0800 (PST)
+	s=arc-20240116; t=1732125625; c=relaxed/simple;
+	bh=i6R8kkJssIDgVcwuxFE7H4ZdlZSb15xvvuSUmk2sGwE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YY0kH6n8Ia3y06mh18bb//VK6K1BnZjjKS1+kNFQKk9WCiIxVwTcdAEYP4XWDOPOc08MYfYO3KeLSRoceuK3mc3NceQmFWUJMzCfs/96p1kLeabsFsqy+mxIFT5ylV+RFNPkR9mjp2fhd6ZsBam7zzMFsDIHGNhuFsMb3p4VmVU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZHo1a+x2; arc=none smtp.client-ip=209.85.210.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-71e592d7f6eso47679b3a.3;
+        Wed, 20 Nov 2024 10:00:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1732125003; x=1732729803; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=0F3J5tg+AZotRnRXcznOlKsQVCYryEIHrUkJAiTc9k8=;
-        b=QwMlDigOFis2AWW+4W4mcf27IpwzqAv88JMg3kvLMBic86xQkkaHXcDs9x42JX1kPg
-         TI79/Qf5jI/w9aRNdQ9YdsKNY/U1PdpnbUYiAaQAEeAfFiCmoF1fac9zGkgorOcIt3OU
-         Cno4DWhuObnum9cmTZ4aeK0A7f65ScakyfiJ8jQNEK281q+Njx+T+Ym3r0X/rE1DRrgz
-         Kk5DXfTzD8T8h3IgYEhTsht0QT/17B20POf8BiQsmgZP7q1uOwkUU2WVqym0MZHlJse5
-         JCc+/vMXr9KUMXXeAt8Ne50cja9u/j6tX59dsH9rkDzBDWcQwwK+NcuCAce9drBUbFMA
-         3sNQ==
+        d=gmail.com; s=20230601; t=1732125623; x=1732730423; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=pFC7gRuwEUwIU3goRx6tJJxo1gNezEBJEX3ODkGVP7Q=;
+        b=ZHo1a+x2MMRNIbzUTjLn62v6KS6C20iMtmZqPgDQ7H0AVjeKewV1kNcr+8rwooq4xH
+         6SDHOo6ny2SJV4+p7bPlxN1tpGSyiP1Gv3h5oYy4ShdN/P40KfHnQwDqVd9P2UhOAHx+
+         jpADAModaux+FVrlz3/wb+RtMAN+/dWm+wX/RKDKcUI8GmrDytUSCjt9C9/tIEl3wI6h
+         fwNBOXE2S0/2a4UhwoXAoO9l9MrKhoglCvYSYqRT4GuKapsYyn5VxrA3TCBofEhM5q/K
+         8epbvEO3VuLJ40nmVv78WmNPwopO6i+6y9v9IHpUTk5/r0gWSusF8QiXvo9gBxrNNHH9
+         cAJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732125003; x=1732729803;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0F3J5tg+AZotRnRXcznOlKsQVCYryEIHrUkJAiTc9k8=;
-        b=nLQsjl9CDITd0Vb4q0VvSwJ6aJ8Bt0DRCiFg2/mpNH9GX4aTt3vTGm+A0XIzK0wdnh
-         f0Bwif8syXCXdJPtqweKwgnB4dFM4zE9CWd/h7ZxV/bZ+yACQqj0wRldcHZ+U046Nd2L
-         gxv2w/aSXGULFDl67BOiR9x1P8+GxFapDEvAVFsku3XJtQeA13Gj/yOSgVxJXmmYq77e
-         zNEQ/pTRzw+ENiXU1npIvDIoob0cc8ZE7eKDnegB8rwjaOkLZXspAW//Yp/dGVUAovCH
-         em3xmlXw7l9eop01aVIla+zsXlwrK85hGsANuuXXVdpsjZKDo85mGF1ZArF47vzx9yLQ
-         7g7w==
-X-Forwarded-Encrypted: i=1; AJvYcCXDCt55ITu5HZWHYvxDPTXf/CtQrMOn4R+yVK8pToZyekRk1iscxl0G6I7oj85h5hrvdy114e0naC/6@vger.kernel.org
-X-Gm-Message-State: AOJu0YyP7TojciN8521K1X+bJmgS1xSuOMdZ5h+z3GzTHrAr+kgRezWx
-	dG14irgZmLsT+Vha64WZzmjyLxi7xCz+8SucbLHydcVIxV1ohrv/3Odoef9VYCmP67c2xmbI85C
-	/ycsqOlzRq+9DolhBRD3exzfkpxvGCNr5tJW2Ng==
-X-Gm-Gg: ASbGnctOvX42aRDFHbyM5SCqxEqfTRZc/pAHK4VzNw9NIQ7HMRwppD7x8NywjyTeexR
-	IAzpmvQOBVEO3g7Gjqhz586yIMfRBQbc=
-X-Google-Smtp-Source: AGHT+IGTsPe7+ZryXlme3kuG7tpC8pknkVkEwCPoK1Yb6RQtlnPSwnr6+Yz56M5D78wh2ynwe4hLWUH1/SKXZjgFBYw=
-X-Received: by 2002:a05:6902:2806:b0:e30:c944:eb11 with SMTP id
- 3f1490d57ef6-e38cb566994mr3277486276.14.1732125002629; Wed, 20 Nov 2024
- 09:50:02 -0800 (PST)
+        d=1e100.net; s=20230601; t=1732125623; x=1732730423;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pFC7gRuwEUwIU3goRx6tJJxo1gNezEBJEX3ODkGVP7Q=;
+        b=ajP7jk4+I9uo+R3JN07XxlzJm+Vygj92GcFjTVz2zxApPlTfuqrqreKEVD2tvIiU2O
+         eCOpPAZ9cDxK0+6M8LAXty6l5NDO8KuuujM5pxpuVMevN5jCMxg3FChZbomycOfdbQ3v
+         IFa9xwE7A/Nz54yhTUiujJVN8yPCeawWn6VE9ZAVwlGBn/gsYf+AXMcOwOr83a7VBia9
+         +iV4Z9t7pojfqhIjfNyTXYceuuFfe9NauK91bhy1jnKCEwHPICv3CqIVF/S+T2ZOQkwm
+         2KrHf1qpwpqDOlg8Z+VFr+bP5a+BL3zEW2xPANePN156Pdou8O6TAxswU8omec7pzYrW
+         /KaA==
+X-Forwarded-Encrypted: i=1; AJvYcCVXjHYl9uEFB128Eeg+bE0zmkddbQ535O/XoxM5KgPK9UILPa5u1ktbGnoMvKDCC5boN9CN/lcWbqmw@vger.kernel.org, AJvYcCW4AbHbbuRkMdoLPps5UH9TejNDxh6Lrm8mWG8PSRTRdmfdBomnRWZMP0whNQi/ZVlvS9HP4eVeXPBiSOn0@vger.kernel.org, AJvYcCWkAKTrZtBqDPEDEt3Cb2cCqrtdQ+tZnig4eXSBbS7XAjQ60Of7aar2CoEPvYDzznZDrOmtHu/i+G8=@vger.kernel.org, AJvYcCXwDCRi10x2K9P7sv5opvAMa+M07Y1BgERvhNQwtNq+q0r3KRfZr4DqkFO9cvgHq5aZjeUQ0bE+JKtmtqI=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwbPaaT87LfqZpxwJsqFjtR6DK9p1E6okOt29wYfcDpAPkYN8CX
+	velLVqtclRJfKQ25M/IuBR1yNr8aal1GB5J1LLDSEsLMp84o9s1D
+X-Google-Smtp-Source: AGHT+IGtBHU21hYZhI1zWHbxZDyKvXruQ8NMzZ+kLATwW64vi9AkorIQBMfuokaW5BaMWWjJNBy/LQ==
+X-Received: by 2002:a05:6a00:1495:b0:71e:108e:9c16 with SMTP id d2e1a72fcca58-724becb837fmr5156189b3a.12.1732125622771;
+        Wed, 20 Nov 2024 10:00:22 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7f8c1dce9afsm9756598a12.82.2024.11.20.10.00.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Nov 2024 10:00:21 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <e2e10b1e-cce3-409c-9327-178cbf4b0d64@roeck-us.net>
+Date: Wed, 20 Nov 2024 10:00:19 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241114-media-imx290-imx462-v1-0-c538a2e24786@raspberrypi.com>
- <20241114-media-imx290-imx462-v1-3-c538a2e24786@raspberrypi.com>
- <20241115000637.GK26171@pendragon.ideasonboard.com> <CAPY8ntBJu+mA3BcYkkVpr1L0jf2hp6e3kbpyGkB7mwbiDQDGzQ@mail.gmail.com>
- <20241118020745.GI31681@pendragon.ideasonboard.com>
-In-Reply-To: <20241118020745.GI31681@pendragon.ideasonboard.com>
-From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Wed, 20 Nov 2024 17:49:42 +0000
-Message-ID: <CAPY8ntCcwv=jvi4gHJqH=rWRy4uAHfCiq0zsPM5C53B4VPvWjg@mail.gmail.com>
-Subject: Re: [PATCH 3/3] media: i2c: imx290: Add configuration for IMX462
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, linux-media@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: (pmbus/adp1050): Add bindings for
+ adp1051, adp1055 and ltp8800
+To: Conor Dooley <conor@kernel.org>,
+ Cedric Encarnacion <cedricjustine.encarnacion@analog.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-i2c@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-hwmon@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+ Jonathan Corbet <corbet@lwn.net>,
+ Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Radu Sabau <radu.sabau@analog.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ Alexis Czezar Torreno <alexisczezar.torreno@analog.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+References: <20241120035826.3920-1-cedricjustine.encarnacion@analog.com>
+ <20241120035826.3920-2-cedricjustine.encarnacion@analog.com>
+ <20241120-process-hulk-ecedcbf088f7@spud>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20241120-process-hulk-ecedcbf088f7@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Laurent
+On 11/20/24 09:11, Conor Dooley wrote:
+> On Wed, Nov 20, 2024 at 11:58:25AM +0800, Cedric Encarnacion wrote:
+>> add dt-bindings for adp1051, adp1055, and ltp8800 pmbus.
+>>      ADP1051: 6 PWM for I/O Voltage, I/O Current, Temperature
+>>      ADP1055: 6 PWM for I/O Voltage, I/O Current, Power, Temperature
+>>      LTP8800-1A/-2/-4A: 150A/135A/200A DC/DC µModule Regulator
+>>
+>> Co-developed-by: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
+>> Signed-off-by: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
+>> Signed-off-by: Cedric Encarnacion <cedricjustine.encarnacion@analog.com>
+> 
+> Why did you drop my ack?
+> https://lore.kernel.org/all/20241106-linoleum-kebab-decf14f54f76@spud/
+> 
 
-On Mon, 18 Nov 2024 at 02:07, Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> Hi Dave,
->
-> On Fri, Nov 15, 2024 at 08:51:55AM +0000, Dave Stevenson wrote:
-> > On Fri, 15 Nov 2024 at 00:06, Laurent Pinchart wrote:
-> > > On Thu, Nov 14, 2024 at 04:01:15PM +0000, Dave Stevenson wrote:
-> > > > IMX462 is the successor to IMX290, and wants very minor
-> > > > changes to the register setup.
-> > > >
-> > > > Add the relevant configuration to support it.
-> > > >
-> > > > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
-> > > > ---
-> > > >  drivers/media/i2c/imx290.c | 66 ++++++++++++++++++++++++++++++++++++++++++++++
-> > > >  1 file changed, 66 insertions(+)
-> > > >
-> > > > diff --git a/drivers/media/i2c/imx290.c b/drivers/media/i2c/imx290.c
-> > > > index da654deb444a..f1780cc5d7cc 100644
-> > > > --- a/drivers/media/i2c/imx290.c
-> > > > +++ b/drivers/media/i2c/imx290.c
-> > > > @@ -170,6 +170,8 @@ enum imx290_model {
-> > > >       IMX290_MODEL_IMX290LQR,
-> > > >       IMX290_MODEL_IMX290LLR,
-> > > >       IMX290_MODEL_IMX327LQR,
-> > > > +     IMX290_MODEL_IMX462LQR,
-> > > > +     IMX290_MODEL_IMX462LLR,
-> > > >  };
-> > > >
-> > > >  struct imx290_model_info {
-> > > > @@ -316,6 +318,50 @@ static const struct cci_reg_sequence imx290_global_init_settings_290[] = {
-> > > >       { CCI_REG8(0x33b3), 0x04 },
-> > > >  };
-> > > >
-> > > > +static const struct cci_reg_sequence imx290_global_init_settings_462[] = {
-> > > > +     { CCI_REG8(0x300f), 0x00 },
-> > > > +     { CCI_REG8(0x3010), 0x21 },
-> > > > +     { CCI_REG8(0x3011), 0x02 },
-> > >
-> > > As far as I can tell, the only difference in the init sequence between
-> > > imx290_global_init_settings_290 and imx290_global_init_settings_462 is
-> > > 0x3011 register which is not present in imx290_global_init_settings_290.
-> > > It is however included in imx290_global_init_settings, and set to 0x02.
-> > > Could we therefore use imx290_global_init_settings_290 for the imx462 ?
-> >
-> > I'd done a comparison of the datasheets, and register 0x3011 was the
-> > only one that changed. I'd missed that it was in
-> > imx290_global_init_settings.
-> >
-> > My datasheets:
-> > IMX327LQR-C rev E17Z06B93 2019/03/25. 3011h "Set to 02h" (value
-> > changed in doc rev 0.3 from 0Ah)
-> > IMX290LQR-C rev E15510G82 2018/02/09. 3011h "Fixed to 00h" (always
-> > been that value).
-> > IMX462LQR-C rev E19Y13C13 2021/03/19. 3011h "Set to 02h" (value
-> > changed in doc rev 0.2 from 00h)
-> > The default value stated in all of them is 00h. In true Sony fashion,
-> > there's no description for that register functionality.
-> >
-> > So actually it looks like it was the addition of IMX327 in [1] should
-> > have changed that setting, unless someone else has a more recent
-> > datasheet for IMX290 that updates that.
->
-> I agree with this analysis. It may be that setting the register to 0x02
-> would be fine, but it's hard to tell. Maybe it could be worth asking
-> Sony ?
->
-> > cc Alexander as the author of that patch. I'll find any discussion on it later.
+There:
 
-I've looked back to find the earlier discussion.
+ > +    enum:
+ > +      - adi,adp1050
+ > +      - adi,adp1051
+ > +      - adi,adp1055
+ >
 
-v3 at [1] was the version that was merged. This added register 0x3011
-when previously it hadn't been set.
+Here:
 
-I had picked up at v2[2] that register 0x3011 should have been in
-imx290_global_init_settings_327 rather than
-imx290_global_init_settings, but that appeared not to have happened.
+ >> +    enum:
+ >> +      - adi,adp1050
+ >> +      - adi,adp1051
+ >> +      - adi,adp1055
+ >> +      - adi,ltp8800   <--
 
-In my book that makes it a regression for imx290 due to that patch,
-and we should correct it back to 0x00.
-I could check with Sony over that, but it seems overkill seeing as we
-have deviated from the originally submitted driver in a way that
-contradicts the datasheet.
+This is a combination of two patch series. I'd personally hesitant to carry
+Acks along in such situations.
 
-I'll send a v2 patchset on that basis.
+Guenter
 
-  Dave
-
-[1] https://lore.kernel.org/linux-media/20230217095221.499463-3-alexander.stein@ew.tq-group.com/
-[2] https://lore.kernel.org/linux-media/CAPY8ntB_25yge6MB87N642-bMG-hd9qCVkom4A-c-pBzk3a4mQ@mail.gmail.com/
-
-> >   Dave
-> >
-> > [1] https://github.com/torvalds/linux/commit/2d41947ec2c0140c65783982692c2e3d89853c47
-> >
-> > > > +     { CCI_REG8(0x3016), 0x09 },
-> > > > +     { CCI_REG8(0x3070), 0x02 },
-> > > > +     { CCI_REG8(0x3071), 0x11 },
-> > > > +     { CCI_REG8(0x309b), 0x10 },
-> > > > +     { CCI_REG8(0x309c), 0x22 },
-> > > > +     { CCI_REG8(0x30a2), 0x02 },
-> > > > +     { CCI_REG8(0x30a6), 0x20 },
-> > > > +     { CCI_REG8(0x30a8), 0x20 },
-> > > > +     { CCI_REG8(0x30aa), 0x20 },
-> > > > +     { CCI_REG8(0x30ac), 0x20 },
-> > > > +     { CCI_REG8(0x30b0), 0x43 },
-> > > > +     { CCI_REG8(0x3119), 0x9e },
-> > > > +     { CCI_REG8(0x311c), 0x1e },
-> > > > +     { CCI_REG8(0x311e), 0x08 },
-> > > > +     { CCI_REG8(0x3128), 0x05 },
-> > > > +     { CCI_REG8(0x313d), 0x83 },
-> > > > +     { CCI_REG8(0x3150), 0x03 },
-> > > > +     { CCI_REG8(0x317e), 0x00 },
-> > > > +     { CCI_REG8(0x32b8), 0x50 },
-> > > > +     { CCI_REG8(0x32b9), 0x10 },
-> > > > +     { CCI_REG8(0x32ba), 0x00 },
-> > > > +     { CCI_REG8(0x32bb), 0x04 },
-> > > > +     { CCI_REG8(0x32c8), 0x50 },
-> > > > +     { CCI_REG8(0x32c9), 0x10 },
-> > > > +     { CCI_REG8(0x32ca), 0x00 },
-> > > > +     { CCI_REG8(0x32cb), 0x04 },
-> > > > +     { CCI_REG8(0x332c), 0xd3 },
-> > > > +     { CCI_REG8(0x332d), 0x10 },
-> > > > +     { CCI_REG8(0x332e), 0x0d },
-> > > > +     { CCI_REG8(0x3358), 0x06 },
-> > > > +     { CCI_REG8(0x3359), 0xe1 },
-> > > > +     { CCI_REG8(0x335a), 0x11 },
-> > > > +     { CCI_REG8(0x3360), 0x1e },
-> > > > +     { CCI_REG8(0x3361), 0x61 },
-> > > > +     { CCI_REG8(0x3362), 0x10 },
-> > > > +     { CCI_REG8(0x33b0), 0x50 },
-> > > > +     { CCI_REG8(0x33b2), 0x1a },
-> > > > +     { CCI_REG8(0x33b3), 0x04 },
-> > > > +};
-> > > > +
-> > > >  #define IMX290_NUM_CLK_REGS  2
-> > > >  static const struct cci_reg_sequence xclk_regs[][IMX290_NUM_CLK_REGS] = {
-> > > >       [IMX290_CLK_37_125] = {
-> > > > @@ -1455,6 +1501,20 @@ static const struct imx290_model_info imx290_models[] = {
-> > > >               .max_analog_gain = 98,
-> > > >               .name = "imx327",
-> > > >       },
-> > > > +     [IMX290_MODEL_IMX462LQR] = {
-> > > > +             .colour_variant = IMX290_VARIANT_COLOUR,
-> > > > +             .init_regs = imx290_global_init_settings_462,
-> > > > +             .init_regs_num = ARRAY_SIZE(imx290_global_init_settings_462),
-> > > > +             .max_analog_gain = 98,
-> > > > +             .name = "imx462",
-> > > > +     },
-> > > > +     [IMX290_MODEL_IMX462LLR] = {
-> > > > +             .colour_variant = IMX290_VARIANT_MONO,
-> > > > +             .init_regs = imx290_global_init_settings_462,
-> > > > +             .init_regs_num = ARRAY_SIZE(imx290_global_init_settings_462),
-> > > > +             .max_analog_gain = 98,
-> > > > +             .name = "imx462",
-> > > > +     },
-> > > >  };
-> > > >
-> > > >  static int imx290_parse_dt(struct imx290 *imx290)
-> > > > @@ -1653,6 +1713,12 @@ static const struct of_device_id imx290_of_match[] = {
-> > > >       }, {
-> > > >               .compatible = "sony,imx327lqr",
-> > > >               .data = &imx290_models[IMX290_MODEL_IMX327LQR],
-> > > > +     }, {
-> > > > +             .compatible = "sony,imx462lqr",
-> > > > +             .data = &imx290_models[IMX290_MODEL_IMX462LQR],
-> > > > +     }, {
-> > > > +             .compatible = "sony,imx462llr",
-> > > > +             .data = &imx290_models[IMX290_MODEL_IMX462LLR],
-> > > >       },
-> > > >       { /* sentinel */ },
-> > > >  };
->
-> --
-> Regards,
->
-> Laurent Pinchart
 
