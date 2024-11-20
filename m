@@ -1,178 +1,108 @@
-Return-Path: <devicetree+bounces-123063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C93D9D351B
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 09:14:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95CC29D352B
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 09:16:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA7A11F22B6B
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 08:14:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FD8B1F21CFE
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 08:16:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 454D716EB56;
-	Wed, 20 Nov 2024 08:14:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BMhZmW39"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90413189B8C;
+	Wed, 20 Nov 2024 08:15:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17F351607AC;
-	Wed, 20 Nov 2024 08:14:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11FB11791F4
+	for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 08:15:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732090492; cv=none; b=etiIws4xhSA5pZyAlVy34ZdG3aabba0cW/8lx6A7Fu590S3M9RMv6SsZtbeqhRHbARsSYfxMefj9AocXV48j5k+RGVE42Rb0FjmBRCENnPdv0Kxk3t0LkCzpDOsyMRNqr/756dkRks9gKUoWf5ZtH2q8QeORNHoTcjzO1KDGtG4=
+	t=1732090553; cv=none; b=WvcAslUzgS4Da0wCmnarS2RihuxWZL+TMVWbezBe9vVarFxKSzL/OB0LegBpBQw+TMnTAttk+tskVvq6bfJDvEQUTek1eadtG13ujUgHemMioUBZZGqtx03GYOgwYqcAYvbCESzNjwLRkbEkvEkTWK1dLMiy2Vwsdtp03xIZzr8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732090492; c=relaxed/simple;
-	bh=Pa5Yk/HnUg5MvoN8XrOEvIq+CxCgif9sO1+RXnFkcJs=;
+	s=arc-20240116; t=1732090553; c=relaxed/simple;
+	bh=DcSgKte2pcMYYVsB41U3WeGuLHfmOPxDsdB/xXu0KUQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SXscmVNXffgY0JUSCLHkXIGFvNXPH3ysxRHN6DjpuKfkfnyx/vNmcvlTimasgdolCuMeb1fn6I+BuCYKg28IzqD6sRQv9DgT2q1VXd7d3DPXyfLuSxmR8hZY7UFUDqgEvKsrXfpCDzHSyNTMC1Agkhg2U4YFdu74CTbI0Wb1O5Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BMhZmW39; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7C35C4CED0;
-	Wed, 20 Nov 2024 08:14:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732090491;
-	bh=Pa5Yk/HnUg5MvoN8XrOEvIq+CxCgif9sO1+RXnFkcJs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BMhZmW39NqRKgsEWAhiU1mubH/U8UbcXZXtVyLN3LXyosLAQNCt9mOXNgQeImwiZs
-	 LgOhnWDMOiGIfjxjaeJ8RTEziWWFvIPsatgRPoL7M9R8tykr67pmS13jKgRUi/XLkC
-	 1ajCYkr++DcReFij4XyBQyAKA2sCH3LmdIM550tOXx2CbtpMOrEMgDSu/Rci5F85p6
-	 mVSy8GXiseCyL/rrNm67eK0xe9RlU6CAfNc5JfXf7fo5+BiXwwKaBzBj7+iY/ryo3Q
-	 58IQaDLU5fUehx21Boa8V+R5jKltJQSS28oF61gD5vTWYoSnuWUdvn5fZ32i5KUF4X
-	 zxE/fVchoJlTQ==
-Date: Wed, 20 Nov 2024 09:14:47 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>
-Cc: lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	marcelo.schmitt1@gmail.com, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/4] dt-bindings: iio: adc: adi,ad4000: Add PulSAR
-Message-ID: <5kz6ghe56yiprlvhyduv7olcrajvejyvulcpjav6doiyvr6dcl@6qlt4nebp4gb>
-References: <cover.1732020224.git.marcelo.schmitt@analog.com>
- <dd7fd54585e1230d2da86b5e3d4ed770256b0af2.1732020224.git.marcelo.schmitt@analog.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=uSv3197EdnLQb2b2oQwSyD4NaOzbFgnHmIlv/JBIHMzEcIEEnAtDT9j9sC7t47Pbabi/UXIqL5tTjzzsxh+je1/9GJn+tZnmFpLDsy/AiKuac5fxOqYzpIK5snQZqOqfQhtQ6e13Hpp8Mt6udioq5N6iqcwO3/P9/ai5UvhRRJw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1tDfs0-0005DZ-1o; Wed, 20 Nov 2024 09:15:28 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1tDfrz-001i4M-0n;
+	Wed, 20 Nov 2024 09:15:27 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1tDfrz-0059NO-0Q;
+	Wed, 20 Nov 2024 09:15:27 +0100
+Date: Wed, 20 Nov 2024 09:15:27 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Luis Chamberlain <mcgrof@kernel.org>,
+	Russ Weight <russ.weight@linux.dev>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Kamel Bouhara <kamel.bouhara@bootlin.com>,
+	Marco Felsch <kernel@pengutronix.de>,
+	Henrik Rydberg <rydberg@bitmath.org>,
+	Danilo Krummrich <dakr@redhat.com>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org
+Subject: Re: [PATCH 3/5] dt-bindings: vendor-prefixes: Add TouchNetix AS
+Message-ID: <20241120081527.s6pfo5soa2tqvra4@pengutronix.de>
+References: <20241119-v6-10-topic-touchscreen-axiom-v1-0-6124925b9718@pengutronix.de>
+ <20241119-v6-10-topic-touchscreen-axiom-v1-3-6124925b9718@pengutronix.de>
+ <b5hjephfcvdu2jjchodaj5u4yltvatdgmse7xvwkhaepn5dinv@sfl4utyuz34g>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <dd7fd54585e1230d2da86b5e3d4ed770256b0af2.1732020224.git.marcelo.schmitt@analog.com>
+In-Reply-To: <b5hjephfcvdu2jjchodaj5u4yltvatdgmse7xvwkhaepn5dinv@sfl4utyuz34g>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Tue, Nov 19, 2024 at 09:53:40AM -0300, Marcelo Schmitt wrote:
-> Extend the AD4000 series device tree documentation to also describe
-> PulSAR devices.
+On 24-11-20, Krzysztof Kozlowski wrote:
+> On Tue, Nov 19, 2024 at 11:33:52PM +0100, Marco Felsch wrote:
+> > From: Kamel Bouhara <kamel.bouhara@bootlin.com>
+> > 
+> > Add vendor prefix for TouchNetix AS (https://www.touchnetix.com/products/).
+> > 
+> > Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
+> > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> ---
-> No changes from v2 -> v3.
+> I think this did not happen (only Ack).
+
+Huh.. I used b4 to retrieve the latest Bootlin version. According [1] it
+was already present :/ I can drop it if you want.
+
+[1] https://lore.kernel.org/all/20240703142520.207066-3-kamel.bouhara@bootlin.com/
+
+Regards,
+  Marco
+
 > 
->  .../bindings/iio/adc/adi,ad4000.yaml          | 71 +++++++++++++++++++
->  1 file changed, 71 insertions(+)
+> Best regards,
+> Krzysztof
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4000.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad4000.yaml
-> index e413a9d8d2a2..4dbb3d2876f9 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad4000.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4000.yaml
-> @@ -19,6 +19,20 @@ description: |
->      https://www.analog.com/media/en/technical-documentation/data-sheets/ad4020-4021-4022.pdf
->      https://www.analog.com/media/en/technical-documentation/data-sheets/adaq4001.pdf
->      https://www.analog.com/media/en/technical-documentation/data-sheets/adaq4003.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7685.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7686.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7687.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7688.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7690.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7691.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7693.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7942.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7946.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7980.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7982.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7983.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7984.pdf
-> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7988-1_7988-5.pdf
->  
->  $ref: /schemas/spi/spi-peripheral-props.yaml#
->  
-> @@ -63,6 +77,37 @@ properties:
->  
->        - const: adi,adaq4003
->  
-> +      - const: adi,ad7946
-
-All such cases are just one enum. That's the preferred syntax.
-
-
-> +      - items:
-> +          - enum:
-> +              - adi,ad7942
-> +          - const: adi,ad7946
-> +
-> +      - const: adi,ad7983
-> +      - items:
-> +          - enum:
-> +              - adi,ad7980
-> +              - adi,ad7988-5
-> +              - adi,ad7686
-> +              - adi,ad7685
-
-Keep alphabetical order.
-
-> +              - adi,ad7988-1
-> +          - const: adi,ad7983
-> +
-> +      - const: adi,ad7688
-> +      - items:
-> +          - enum:
-> +              - adi,ad7693
-> +              - adi,ad7687
-> +          - const: adi,ad7688
-> +
-> +      - const: adi,ad7984
-> +      - items:
-> +          - enum:
-> +              - adi,ad7982
-> +              - adi,ad7690
-> +              - adi,ad7691
-> +          - const: adi,ad7984
-> +
->    reg:
->      maxItems: 1
->  
-> @@ -133,6 +178,32 @@ required:
->    - ref-supply
->  
->  allOf:
-> +  # Single-channel PulSAR devices have SDI either tied to VIO, GND, or host CS.
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - adi,ad7685
-
-Why do you need this? It's fallback is already here.
-
-> +              - adi,ad7686
-> +              - adi,ad7687
-> +              - adi,ad7688
-> +              - adi,ad7690
-> +              - adi,ad7691
-> +              - adi,ad7693
-> +              - adi,ad7942
-> +              - adi,ad7946
-> +              - adi,ad7980
-> +              - adi,ad7982
-> +              - adi,ad7983
-> +              - adi,ad7984
-> +              - adi,ad7988-1
-> +              - adi,ad7988-5
-
-Best regards,
-Krzysztof
-
+> 
 
