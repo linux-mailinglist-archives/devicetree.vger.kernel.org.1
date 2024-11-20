@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-123040-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123041-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10DA29D3432
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 08:38:32 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2EBF9D3437
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 08:39:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BEFA61F2313A
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 07:38:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D2AB3B22F42
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 07:39:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 548F4158DD8;
-	Wed, 20 Nov 2024 07:38:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03AD615B0E2;
+	Wed, 20 Nov 2024 07:39:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R6dbx5qo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s+tLXOqT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A9EB156676;
-	Wed, 20 Nov 2024 07:38:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C598215A86B;
+	Wed, 20 Nov 2024 07:39:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732088306; cv=none; b=pfpVs9IZh8IeXwa/rbMXqODCMvwrsT4J5t94NbFdo+GHFdj/W3wUNalASvBDFThPSEqkiyOjvk9hAANVg4boXeUIM/QpSvXcq4aqE+sT+ewSy3metMWzYyPk/X5TtIhTtRR4OxafmDBMAmzKE29SbRH4O2z4PDdw9eyf+qieKDw=
+	t=1732088377; cv=none; b=uyKk0qXNJH7TX8hxs0gtYQqLnweB22WdsJBbrKe4SjCeTZpy9x5Ti+6mKithVdeZE6JPhnJugXwv4/1aNg8X4DfcRLUcJsn3fPDYJNUxay3DDQ84CfY/MAbvKZsZhKZJucOy9ybdV4EX23NToo2Bglrre+Cq6CYdctkvT369VK0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732088306; c=relaxed/simple;
-	bh=hwd1mc/hlGAx6mR2RGmfLQm/PRsiMDhfOr0kBN/H+X8=;
+	s=arc-20240116; t=1732088377; c=relaxed/simple;
+	bh=10jt7KVZi9s0xQcr2Z+HAHYZm3YfRLEcR2KHUrrSBnY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ou7HMY9F97PaUjyh5EkaHk9hEY7uQL0Qu63uSnasGv8KNz2jCdItLkRnbZzKlps5UvwDP8za5pPvLexJTXsj9Z9mnLPRIGEHHzOYgYJoLrJXpT9tp2+rgsn+y0khvstPbul8JdqihRvt4II8n/LDPmLZZe77JDtDePZSXPxufLc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R6dbx5qo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89DE4C4CED0;
-	Wed, 20 Nov 2024 07:38:17 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=eMNbE+JZ7x8Zh9o0b/vVz0PhRp3hKdUGNLh3ccjOahk5B0OQ0mRBOAF6kr7WNSVr0BGQZbF/uuc6Bugc+vdyPQFuf6F1bBlXE/KZrriFeQsaq55DsC2a4Y0u8MWqWJ3OPl1tQPcKiqGf0RdYkjzVdct4poBEQOHZFzMt6mhu5Ck=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s+tLXOqT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AC77C4CECD;
+	Wed, 20 Nov 2024 07:39:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732088306;
-	bh=hwd1mc/hlGAx6mR2RGmfLQm/PRsiMDhfOr0kBN/H+X8=;
+	s=k20201202; t=1732088377;
+	bh=10jt7KVZi9s0xQcr2Z+HAHYZm3YfRLEcR2KHUrrSBnY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=R6dbx5qoP8BMYwsY5l3/+0UmVwR3Pny1NxP38lixmmnkdHFqa36GgstXCDUZry0Ez
-	 AY8IHqXMgKctmz48aw2vMsksU4hB8GF7Ri1xw3uMm338X9YqDS1oWmuQLx7gEUnGc+
-	 POYYG8HLtdk9Vg6/cdo940PziXXFkfjE01Cxg5H9+R9aP1WP+SF35QrEAj+GRNs6hd
-	 PEj78nnTX2mxNym+kAwAs9PG2iZnf7fGzmngydDBUo13Wz4kxY4O/GlnbdgxjXXvDt
-	 XT/cPFapXDK6pquzyIvHIsw+eNqbPeAWLxqI38MMgSb5FHvcK/BQe5H6EWz7G0aP1T
-	 E9wg4FD4SGC6w==
-Message-ID: <410ebbd0-2304-4d9e-8d4a-5e63ab29ada8@kernel.org>
-Date: Wed, 20 Nov 2024 08:38:15 +0100
+	b=s+tLXOqTlZEuEzLGuOZX2xrsZ6bTiMHaf3o4p+1rcRos1NepY+UjPKPpktBsR+tW6
+	 RVe7iHqndx3nO3aSA9SwZA5/cGkdgjFUOcOxUQa5cxawAw8tftFZaju4wHbmhM1vgG
+	 xBubE1C6spmCLj5gSXSnRT7bwWxucXeCdBwCGVFRzLMuiSsh0IlP0/UAy8K9QvxhyG
+	 76SPJw0iCoYJXdyB8FSJhxCEqDrrdbi/dzdWAOAs8k09FGPaQvjUyeb4bZkC7Hy/7f
+	 eCHvUucbnap8uss3KmIZc2Q5GWH3rWm0gjNUe9Bk48DioBD2fGTcVn0+sFP9UdrVgY
+	 2Y3shlQUcOXjg==
+Message-ID: <cb92e58c-f80c-4353-932f-c61a25ac8448@kernel.org>
+Date: Wed, 20 Nov 2024 08:39:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/9] drm: bridge: inno-hdmi: add inno bridge driver.
-To: keith zhao <keith.zhao@starfivetech.com>, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org
-Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
- Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com,
- william.qiu@starfivetech.com, xingyu.wu@starfivetech.com, kernel@esmil.dk,
- paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
- p.zabel@pengutronix.de, changhuang.liang@starfivetech.com,
- jack.zhu@starfivetech.com, linux-kernel@vger.kernel.org
-References: <20241120061848.196754-1-keith.zhao@starfivetech.com>
- <20241120061848.196754-4-keith.zhao@starfivetech.com>
+Subject: Re: [PATCH 1/2] dt-bindings: watchdog: Document Qualcomm IPQ5424
+To: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>, wim@linux-watchdog.org,
+ linux@roeck-us.net, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
+ quic_rjendra@quicinc.com, linux-arm-msm@vger.kernel.org,
+ linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: quic_srichara@quicinc.com, quic_varada@quicinc.com
+References: <20241120055248.657813-1-quic_mmanikan@quicinc.com>
+ <20241120055248.657813-2-quic_mmanikan@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,31 +105,17 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241120061848.196754-4-keith.zhao@starfivetech.com>
+In-Reply-To: <20241120055248.657813-2-quic_mmanikan@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/11/2024 07:18, keith zhao wrote:
-> +	/* Unmute hotplug interrupt */
-> +	hdmi_modb(hdmi, HDMI_STATUS, m_MASK_INT_HOTPLUG, v_MASK_INT_HOTPLUG(1));
-> +
-> +	ret = devm_request_threaded_irq(hdmi->dev, irq, inno_hdmi_hardirq,
-> +					inno_hdmi_irq, IRQF_SHARED,
-> +					dev_name(hdmi->dev), hdmi);
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(inno_hdmi_bind);
-> +
-> +MODULE_AUTHOR("Keith Zhao <keithzhao@starfivetech.com>");
-> +MODULE_DESCRIPTION("INNO HDMI transmitter driver");
-> +MODULE_LICENSE("GPL");
-> +MODULE_ALIAS("platform:inno-hdmi");
-
-You should not need MODULE_ALIAS() in normal cases. If you need it,
-usually it means your device ID table is wrong (e.g. misses either
-entries or MODULE_DEVICE_TABLE()). MODULE_ALIAS() is not a substitute
-for incomplete ID table.
-
+On 20/11/2024 06:52, Manikanta Mylavarapu wrote:
+> Add devicetree binding for watchdog present on Qualcomm IPQ5424 SoC.
+> 
+> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml | 1 +
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
