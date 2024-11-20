@@ -1,149 +1,140 @@
-Return-Path: <devicetree+bounces-123247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123248-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7190A9D3D58
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 15:18:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DFEF9D3D81
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 15:26:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 211E11F22445
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 14:18:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C8262829FD
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 14:26:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FE3D1D86CE;
-	Wed, 20 Nov 2024 14:09:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 496711ABEB5;
+	Wed, 20 Nov 2024 14:25:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="AZCZRucq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QSQbyIR4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FECF1D7E41
-	for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 14:09:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F6DA2746D;
+	Wed, 20 Nov 2024 14:25:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732111796; cv=none; b=HTLNVTlXksD9OgLUbARJVF7HgHuLJv++cPb2yDsknhPMty4q+30MLuQiAk+7ZLWymPDVP4wBXKnXiFpPmmVcRsNngOV5uwQLxuk+me3TbXuKgIqt5gAbvmRBjoor8YTy5MCLOejCoY4QGdtlYd/wcTP/SmdTTQeFEBEiTfIftW8=
+	t=1732112751; cv=none; b=r3p+6Qez00NxslsFRDPV0eWK88kKDrrCI25LL5FM76+z5CL6Hks9MaxuPaVLgVzGZZ4a619L4kEGWdoaC486VrcnQorW1bISrF7u0OpUsBJweoF8nDzmNjLbuidr2F9zbuPCXajvoxs7BV5zjgSa5Jxdf7TB/RlFYSNTzEzzMlA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732111796; c=relaxed/simple;
-	bh=CJT0iMPgfMMKY590TyF/jv0a/eQmMMiUwvdaVlMZsfs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=qVgvv/vQ8LFwj/H/HCTsHorhbBrXcIuTDlL4Lm9WxDUxxmr9fPy81tCT2UKxn/+lOoJ7Q6IP4I1+pyssubBlZo71yxpPhCJR0pOznqdvVICo4mzj/hHiHAkZfv9hSAXmkSriwx4sdE1xrBGDnQ3wAgrdgw9aSJLhI+/zXZmzIkY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=AZCZRucq; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-212776d6449so3698405ad.1
-        for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 06:09:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1732111794; x=1732716594; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZzaCab4EHiwWgil1/Ov6nfcjuRXdoG8N44OR/d6zxqU=;
-        b=AZCZRucqf7a15JSeZKFqNYU9351g+sAnoMOyy0GL8Qft4HPSuARV2oCNEiEi8RWDBE
-         u3tvm/ccKFQdL5nmawDoaSv6F0fEdk0x92hrTHtBfCU/N/BBk3fGXjZg9nlF0VHCqXlC
-         icZQY3UjDTpcU3A5VaAJbouuigAFN6cHmYckbVfMzDR0s59xkLPn1WSfKmLQGK9kko2u
-         6V3VicdTKWqQ6UrKgA7H19JTfM1PC4tI1cBNdDNOkO+Sn61DPrcAHoRgu1GWpc7VdZlg
-         iAUqXjTh0tgGJ/iAz8h1JsYP9OQQiAj5S4VehOrpPVetaPOXbiEfMjhZ1Uo4abxTfH9j
-         vteg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732111794; x=1732716594;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZzaCab4EHiwWgil1/Ov6nfcjuRXdoG8N44OR/d6zxqU=;
-        b=E+UH8xCVBCC6hT8eq16cCueS3CKpeeyPPW+F1y7KQmVdrTqXpAnFRlvFsX5N70ceUZ
-         gBUkuL/cmC22UvI+Zn9STlWRBivrN2YCfwoX/xaB0NV65fyKTCTTtZjagiM7uAPIZmFr
-         Dpg7vsHWFoI32j/cp/dIBNMzEv6rvY/A/xXfspRXqAT+jXF0yeKSRNvQFtADe5z2oaed
-         8GqL2sfqgSrtgRupo46E8b89Lao2xenEabJSreDVUXzYoENfDe3UgLFehH5GIygHIXm/
-         zLCYFYZxj/cHKylpC5xFId+yAkxt1Iww6uCGQVygIWv9BIXAfHG0T3uFNwPkdegSzkBc
-         0Z1g==
-X-Forwarded-Encrypted: i=1; AJvYcCX73iozKwSL/x6LA5z5V/DnrzF3XDTdypX+TRQxQmYIHOqfrhiH1nwfibXJ6OhrA/8m5CCg7vFKDVwU@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywi1+P19bGr6g7pZ8eahp0P05wGmWejDDHYoLHstL/ZQQh/i/0y
-	bcUZ7vAtMtkI243coTr9gmvxg1wU15DfvsJGHjTiyvrtvTKPAzLT1FjvQxAZueO4rTxIQC7rIZd
-	Z4srhHqx0C6H+QBo0jNuH9zKXElPAQoWepn6cYVrWtfoN6ddgw7EtNHHagKjF0DxcSB8bqXBvn6
-	I8RSStA/p6tjXyWTMTI8cYkzWWneGmno6LQWDIq4WiOhyWsg==
-X-Google-Smtp-Source: AGHT+IFOL5TGyzlW376Xm8KJIH1icYR3lg7mocMWM7r0WKrZePcwEdBegYT8u0kbgOQDNjc9If25Dg==
-X-Received: by 2002:a17:902:f688:b0:20c:a692:cf1e with SMTP id d9443c01a7336-2126ff7e7c6mr19809445ad.43.1732111793787;
-        Wed, 20 Nov 2024 06:09:53 -0800 (PST)
-Received: from [127.0.1.1] (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-211d0f474fcsm92502505ad.213.2024.11.20.06.09.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Nov 2024 06:09:53 -0800 (PST)
-From: Max Hsu <max.hsu@sifive.com>
-Date: Wed, 20 Nov 2024 22:09:34 +0800
-Subject: [PATCH RFC v3 3/3] riscv: KVM: Add Svukte extension support for
- Guest/VM
+	s=arc-20240116; t=1732112751; c=relaxed/simple;
+	bh=xOxfYFsF2N26nuxuY+OVvTpysL3ZcmMhuSwu/BO3DWk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=APFymU3G+bEgcGos4C/2oAetOkj50A3L4408LXXMOF3FFvI4Ic4Tl0Ku8SI8RVA7sNmv5c8pTuZeaAL83wuZvRj97j3i2WjWbUXofvw86aGCi1m8+nM8YQqd8K5spVMCCI8MW/k8/6XzthnY2qRT7Dnb2sguuQm4mkawd7Hj+7c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QSQbyIR4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9767FC4CED1;
+	Wed, 20 Nov 2024 14:25:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732112750;
+	bh=xOxfYFsF2N26nuxuY+OVvTpysL3ZcmMhuSwu/BO3DWk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=QSQbyIR4EXHX3jOAVCH8RAUCCOPTYFc6JfBvBJyRMxviJr4Pex2lpJN1NMFaBHV1T
+	 kGcI8Opv0Cz6egJ720FvrqLiVtwGLAol9IbW8jQ+nSZSkWmxJb6lvxyJiubSPlTIR7
+	 0zzba+7aB3926/BcaNvvn5ivifny2i5bxTJRaPaQdLbpdHco9JSjop576Z48I7szGy
+	 T4jaNmxqH1obdDm51/XEaZe6ZXevNFl/C/v3dYU43THs+ah3jukIq91Hh3r/e+CZ8k
+	 ceBjRF2e4WNIVhBrZqqy1pOkgvP+F5N+AmW8H2x8UFSDNf+BEqbVeNT9PcZ8KdYJ2F
+	 ASgawMGA2hryg==
+Message-ID: <afffd5e3-19e9-49a6-8854-039be1128922@kernel.org>
+Date: Wed, 20 Nov 2024 15:25:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: sprd: Remove unused and undocumented
+ "constant_charge_voltage_max_microvolt" property
+To: Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Stanislav Jakubek <stano.jakubek@gmail.com>, robh@kernel.org
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
+ linux-kernel@vger.kernel.org, orsonzhai@gmail.com, zhang.lyra@gmail.com
+References: <Zz3SnIiW_iu10rrs@standask-GA-A55M-S2HP>
+ <a31e5b41-d495-4b5e-996d-1cb0a1f6929f@linux.alibaba.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <a31e5b41-d495-4b5e-996d-1cb0a1f6929f@linux.alibaba.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241120-dev-maxh-svukte-v3-v3-3-1e533d41ae15@sifive.com>
-References: <20241120-dev-maxh-svukte-v3-v3-0-1e533d41ae15@sifive.com>
-In-Reply-To: <20241120-dev-maxh-svukte-v3-v3-0-1e533d41ae15@sifive.com>
-To: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Anup Patel <anup@brainfault.org>, Atish Patra <atishp@atishpatra.org>
-Cc: Palmer Dabbelt <palmer@sifive.com>, linux-riscv@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- kvm@vger.kernel.org, kvm-riscv@lists.infradead.org, 
- Max Hsu <max.hsu@sifive.com>, Samuel Holland <samuel.holland@sifive.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1321; i=max.hsu@sifive.com;
- h=from:subject:message-id; bh=CJT0iMPgfMMKY590TyF/jv0a/eQmMMiUwvdaVlMZsfs=;
- b=owEB7QES/pANAwAKAdID/Z0HeUC9AcsmYgBnPe2kadvH5t/olEh4nZ968ktrx/equF2lYqvX8
- y0+ccmYkHyJAbMEAAEKAB0WIQTqXmcbOhS2KZE9X2jSA/2dB3lAvQUCZz3tpAAKCRDSA/2dB3lA
- vQSQDACIUsjg3BUBC94txWJFJnsW+HdGsZK9TdrvP+9cahCFdSbYefBFYDX+F6qrGFGZ4xd1dZI
- FgYxgtdj1e571lb++BZPkfR4WVNcV3JrX5/B0UmnEXolTaLvraICuVl5r1gPmRDUbTKGlPGka/a
- hHMAQocMymw6cUu6/MM2ZTscgvJSzCEYgcdwJ9YPXvEKKsmaepFSBoZjfsL5SuJG/Ja3pyTgvCF
- X1/njUvmXBN5+VLfqj91GeLNPV5tCcYxZe1oLWqljxohLeXrEdmTy+4+1i6g4AsQi7vIsQs3Wzk
- cOy+tDP1uTNQrUQ6HVD8QT12FAUuH27qlxxJoSVy1YNWvDknVuM94hkLv7Y6O/eSNGNJGnlV1Kj
- I2IDHywxZohyBH7rV5Ny2An8bjvPfJHS1wf2r3G/gt6vNXu4qNDclE+TGyuawb4KxLkLtFx6RON
- DwJgbyToqac448RyXhmMEWoDDOMcfwnlsB7aqqbAFcN3VfhT4WQG7OlCWDJmnpSKyFbhw=
-X-Developer-Key: i=max.hsu@sifive.com; a=openpgp;
- fpr=EA5E671B3A14B629913D5F68D203FD9D077940BD
 
-Add KVM_RISCV_ISA_EXT_SVUKTE for VMM to detect the enablement
-or disablement the Svukte extension for Guest/VM
+On 20/11/2024 13:27, Baolin Wang wrote:
+> 
+> 
+> On 2024/11/20 20:14, Stanislav Jakubek wrote:
+>> Hi Rob,
+>>
+>> constant-charge-voltage-max-microvolt is a valid property, which I assume
+>> was the original intention here. I've already submitted a patch changing this
+>> to the documented property:
+>>
+>> https://lore.kernel.org/lkml/aa557091d9494fdaa3eda75803f9ea97014c8832.1730918663.git.stano.jakubek@gmail.com/
+>>
+>> Baolin also reviewed that patch... make of that what you will.
+> 
+> Ah, yes. Sorry I forgot your patch. Thanks for reminding.
 
-Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
-Signed-off-by: Max Hsu <max.hsu@sifive.com>
----
- arch/riscv/include/uapi/asm/kvm.h | 1 +
- arch/riscv/kvm/vcpu_onereg.c      | 1 +
- 2 files changed, 2 insertions(+)
+No one picked them up... I kept Stanislav's patches in my incoming/inbox
+folder for quite long time, because I pick up some random fixes here and
+there, but then forgot them and did not apply for v6.13-rc1. So they
+missed v6.13-rc1.
 
-diff --git a/arch/riscv/include/uapi/asm/kvm.h b/arch/riscv/include/uapi/asm/kvm.h
-index 4f24201376b17215315cf1fb8888d0a562dc76ac..158f9253658c4c28a533b2bda179fb48bf41e1fc 100644
---- a/arch/riscv/include/uapi/asm/kvm.h
-+++ b/arch/riscv/include/uapi/asm/kvm.h
-@@ -177,6 +177,7 @@ enum KVM_RISCV_ISA_EXT_ID {
- 	KVM_RISCV_ISA_EXT_ZAWRS,
- 	KVM_RISCV_ISA_EXT_SMNPM,
- 	KVM_RISCV_ISA_EXT_SSNPM,
-+	KVM_RISCV_ISA_EXT_SVUKTE,
- 	KVM_RISCV_ISA_EXT_MAX,
- };
- 
-diff --git a/arch/riscv/kvm/vcpu_onereg.c b/arch/riscv/kvm/vcpu_onereg.c
-index 5b68490ad9b75fef6a18289d8c5cf9291594e01e..4c3a77cdeed0956e21e53d1ab4e948a170ac5c5c 100644
---- a/arch/riscv/kvm/vcpu_onereg.c
-+++ b/arch/riscv/kvm/vcpu_onereg.c
-@@ -43,6 +43,7 @@ static const unsigned long kvm_isa_ext_arr[] = {
- 	KVM_ISA_EXT_ARR(SVINVAL),
- 	KVM_ISA_EXT_ARR(SVNAPOT),
- 	KVM_ISA_EXT_ARR(SVPBMT),
-+	KVM_ISA_EXT_ARR(SVUKTE),
- 	KVM_ISA_EXT_ARR(ZACAS),
- 	KVM_ISA_EXT_ARR(ZAWRS),
- 	KVM_ISA_EXT_ARR(ZBA),
+I am not the maintainer of that platform, so I don't care about it
+really, but I care about contributors work not being lost/ignored.
 
--- 
-2.43.2
+What is the plan with these and all other Spreadtrum patches? Are they
+going to be applied by you or other Spreadtrum maintainers? Do you need
+any help from us? Or maybe some clarifications of the process?
 
+Best regards,
+Krzysztof
 
