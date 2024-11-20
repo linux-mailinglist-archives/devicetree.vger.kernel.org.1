@@ -1,479 +1,256 @@
-Return-Path: <devicetree+bounces-123178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123179-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E5DB9D39EE
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 12:52:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 004EC9D39F3
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 12:53:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E11BE1F23812
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 11:52:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E2E41F21FD1
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 11:53:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17E1519F41C;
-	Wed, 20 Nov 2024 11:50:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EB671A7274;
+	Wed, 20 Nov 2024 11:51:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="c0XuMoN3"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="NZ8VMx1X";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="e1RIkwra";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="NZ8VMx1X";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="e1RIkwra"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C13D1A0BED;
-	Wed, 20 Nov 2024 11:49:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B77D19E98A;
+	Wed, 20 Nov 2024 11:51:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732103401; cv=none; b=cEs96iqEoq0IyTmGxZ/LiQcSI37Br543HMnLC71Ehyj1tew1YpXdalIvSVwM9VrLbuTrASUyJ2CCybeytTWbG94uau3Jt9Lc+aZae9CUfTfRoZN3Bx2EeFlePvm5aljYmRJT8WsWOruL2eb1IJ1ySjFTEWfA6+AK/KkfMvOlwIw=
+	t=1732103469; cv=none; b=gcR0kF6Xn+rgTpyMk94uv3lJjYbhF00JMKZI80emPVoQNnjF8elX4CZKsdZnnZxkYV6VruKRdLPh9qXcGVOGDMgCmDcvd6OLXVQwWOmi3qje0wcB2JjEX42mLo8X3M2JcjbH/VAio+uz44lK+GtwPzGUd7lJhnelxTeNIoi9UG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732103401; c=relaxed/simple;
-	bh=JbVhUtQoKVg89Tsfa9Ry4aZkEgusELoLUSeDUejcENk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UFSG902eIJcQCc1o9yfVbLhJ4Pu6DlTSEkfnSxu8OxAt3xOEDJcN/lfTCOp/RfGW3qZfkSQyN94Y/mUAgTc3wmkilcLV3Rcz4du2r2J5xFRBekPOMZj8WoF/VtH1jr6Sx5f3v/MOPw1xA6EHho4x7N8LStJrsvqMmdD0ySUQF+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=c0XuMoN3; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1732103396;
-	bh=JbVhUtQoKVg89Tsfa9Ry4aZkEgusELoLUSeDUejcENk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=c0XuMoN3Cyu1rTyR06g651e9hHrLWtE/+NH614uMOD1VnfLYtZ8isi8gx5Bm0LJZl
-	 mpIbVBSICMNcvsiRHD7Tk0ytPXyJH3pSzPYq3avtY0Y4W3WbEOxDpBq/kt6lBCFa0/
-	 erAjZS3md7iC2ktoMzZZMiDc7JYgNyZGSzi5DjIAahrvpm78ob6fI6bZwcXYdiTLjI
-	 rykXIYMncptLr5bt8VR+d4R0z/3df3CdCuLg2q2VLjOchCd9jMA2dV1WjjzRU8/b6m
-	 yXMex9UmupDRKz6yvLM6cCmPHxI8xd87NRCwsEognwNNeXUDtZGn8DbGu09M4qRd1k
-	 Kvf1bsvLOcQ8w==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	s=arc-20240116; t=1732103469; c=relaxed/simple;
+	bh=pfzD9JZysH5yH1K8T/llTAH2wZnCPrqr3Qfq5KmQ/PA=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=hv5MwcCrvI3P0NC8aRGx/xeMuArQKarM5PJTNw1hOCcA0RatuFTKYoU6XRjSDoCQ30txXR23BVxHD72XTBAENTGJ5kfy7CHhue6i8Ve9ymEwu+mJoNXmDCDy+zA3jlxgMwo2sWnoscNE7psutTluvahYGz5ciC4Wd4/wGef2y5Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=NZ8VMx1X; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=e1RIkwra; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=NZ8VMx1X; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=e1RIkwra; arc=none smtp.client-ip=195.135.223.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id EDFF017E3631;
-	Wed, 20 Nov 2024 12:49:55 +0100 (CET)
-Message-ID: <e32620d5-48f9-4290-9a5e-2d3e3eed0dfa@collabora.com>
-Date: Wed, 20 Nov 2024 12:49:55 +0100
+	by smtp-out1.suse.de (Postfix) with ESMTPS id A33B2219E2;
+	Wed, 20 Nov 2024 11:51:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1732103465; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=wkCw99QpcQVbtEHgXs/tUnm+ow4hNCf+q4EnIyOAeR4=;
+	b=NZ8VMx1XYrFobKh4o/w8jpD/iH1sEv9BFen2TGTOFVD1QwBm9bE6nxZ4qwd99lD2icHWhW
+	bXeBQ8Vb5a0hi8XmsbNLwLmBIff+372doL4HS/+kRpeBYChOQh0vR1nCIH41taLrTbRpCZ
+	xQaYlOAk3BPVDqOVYJl6iN16Tn52qSw=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1732103465;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=wkCw99QpcQVbtEHgXs/tUnm+ow4hNCf+q4EnIyOAeR4=;
+	b=e1RIkwraXqZsZ9lcOCc+0805j+kqDzkv4C+s5BpCEJi4/1+YOIHRmFLcRqTyPdxA89VXKH
+	nw/7bJp9xdvtkODg==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1732103465; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=wkCw99QpcQVbtEHgXs/tUnm+ow4hNCf+q4EnIyOAeR4=;
+	b=NZ8VMx1XYrFobKh4o/w8jpD/iH1sEv9BFen2TGTOFVD1QwBm9bE6nxZ4qwd99lD2icHWhW
+	bXeBQ8Vb5a0hi8XmsbNLwLmBIff+372doL4HS/+kRpeBYChOQh0vR1nCIH41taLrTbRpCZ
+	xQaYlOAk3BPVDqOVYJl6iN16Tn52qSw=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1732103465;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=wkCw99QpcQVbtEHgXs/tUnm+ow4hNCf+q4EnIyOAeR4=;
+	b=e1RIkwraXqZsZ9lcOCc+0805j+kqDzkv4C+s5BpCEJi4/1+YOIHRmFLcRqTyPdxA89VXKH
+	nw/7bJp9xdvtkODg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 6101F137CF;
+	Wed, 20 Nov 2024 11:51:05 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id SjS/FinNPWeyfwAAD6G6ig
+	(envelope-from <tiwai@suse.de>); Wed, 20 Nov 2024 11:51:05 +0000
+Date: Wed, 20 Nov 2024 12:51:05 +0100
+Message-ID: <87cyiq3yza.wl-tiwai@suse.de>
+From: Takashi Iwai <tiwai@suse.de>
+To: Wesley Cheng <quic_wcheng@quicinc.com>
+Cc: <srinivas.kandagatla@linaro.org>,
+	<mathias.nyman@intel.com>,
+	<perex@perex.cz>,
+	<conor+dt@kernel.org>,
+	<dmitry.torokhov@gmail.com>,
+	<corbet@lwn.net>,
+	<broonie@kernel.org>,
+	<lgirdwood@gmail.com>,
+	<krzk+dt@kernel.org>,
+	<pierre-louis.bossart@linux.intel.com>,
+	<Thinh.Nguyen@synopsys.com>,
+	<tiwai@suse.com>,
+	<robh@kernel.org>,
+	<gregkh@linuxfoundation.org>,
+	<linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>,
+	<linux-sound@vger.kernel.org>,
+	<linux-usb@vger.kernel.org>,
+	<linux-input@vger.kernel.org>,
+	<linux-arm-msm@vger.kernel.org>,
+	<linux-doc@vger.kernel.org>
+Subject: Re: [PATCH v30 07/30] ALSA: Add USB audio device jack type
+In-Reply-To: <20241106193413.1730413-8-quic_wcheng@quicinc.com>
+References: <20241106193413.1730413-1-quic_wcheng@quicinc.com>
+	<20241106193413.1730413-8-quic_wcheng@quicinc.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/27.2 Mule/6.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] memory: mtk-smi: mt8188: Add SMI clamp function
-To: Friday Yang <friday.yang@mediatek.com>, Yong Wu <yong.wu@mediatek.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20241120063701.8194-1-friday.yang@mediatek.com>
- <20241120063701.8194-3-friday.yang@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20241120063701.8194-3-friday.yang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-Spam-Level: 
+X-Spamd-Result: default: False [-1.80 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	TAGGED_RCPT(0.00)[dt];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_TLS_ALL(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[linaro.org,intel.com,perex.cz,kernel.org,gmail.com,lwn.net,linux.intel.com,synopsys.com,suse.com,linuxfoundation.org,vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	FROM_EQ_ENVFROM(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	FUZZY_BLOCKED(0.00)[rspamd.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,suse.de:mid,intel.com:email,quicinc.com:email]
+X-Spam-Score: -1.80
+X-Spam-Flag: NO
 
-Il 20/11/24 07:36, Friday Yang ha scritto:
-> In order to avoid handling glitch signal when MTCMOS on/off, SMI need
-> clamp and reset operation. Parse power reset settings for LARBs which
-> need to reset. Register genpd callback for SMI LARBs and apply reset
-> operations in the callback.
+On Wed, 06 Nov 2024 20:33:50 +0100,
+Wesley Cheng wrote:
 > 
-> Signed-off-by: Friday Yang <friday.yang@mediatek.com>
+> Add an USB jack type, in order to support notifying of a valid USB audio
+> device.  Since USB audio devices can have a slew of different
+> configurations that reach beyond the basic headset and headphone use cases,
+> classify these devices differently.
+> 
+> Reviewed-by: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+
+This one needs an ack from the input subsystem people.
+
+
+thanks,
+
+Takashi
+
 > ---
->   drivers/memory/mtk-smi.c | 175 ++++++++++++++++++++++++++++++++++++++-
->   1 file changed, 171 insertions(+), 4 deletions(-)
+>  include/linux/mod_devicetable.h        | 2 +-
+>  include/sound/jack.h                   | 4 +++-
+>  include/uapi/linux/input-event-codes.h | 3 ++-
+>  sound/core/jack.c                      | 6 ++++--
+>  4 files changed, 10 insertions(+), 5 deletions(-)
 > 
-> diff --git a/drivers/memory/mtk-smi.c b/drivers/memory/mtk-smi.c
-> index 2bc034dff691..c7119f655350 100644
-> --- a/drivers/memory/mtk-smi.c
-> +++ b/drivers/memory/mtk-smi.c
-> @@ -10,15 +10,21 @@
->   #include <linux/err.h>
->   #include <linux/io.h>
->   #include <linux/iopoll.h>
-> +#include <linux/mfd/syscon.h>
->   #include <linux/module.h>
->   #include <linux/of.h>
->   #include <linux/of_platform.h>
->   #include <linux/platform_device.h>
-> +#include <linux/pm_domain.h>
->   #include <linux/pm_runtime.h>
-> +#include <linux/regmap.h>
-> +#include <linux/reset.h>
-> +#include <linux/reset-controller.h>
->   #include <linux/soc/mediatek/mtk_sip_svc.h>
->   #include <soc/mediatek/smi.h>
->   #include <dt-bindings/memory/mt2701-larb-port.h>
->   #include <dt-bindings/memory/mtk-memory-port.h>
-> +#include <dt-bindings/reset/mt8188-resets.h>
->   
->   /* SMI COMMON */
->   #define SMI_L1LEN			0x100
-> @@ -36,6 +42,13 @@
->   #define SMI_DCM				0x300
->   #define SMI_DUMMY			0x444
->   
-> +#define SMI_COMMON_CLAMP_EN		0x3c0
-> +#define SMI_COMMON_CLAMP_EN_SET		0x3c4
-> +#define SMI_COMMON_CLAMP_EN_CLR		0x3c8
-> +#define SMI_COMMON_CLAMP_MASK(inport)	BIT(inport)
-> +
-> +#define SMI_SUB_COMM_INPORT_NR		(8)
-> +
->   /* SMI LARB */
->   #define SMI_LARB_SLP_CON                0xc
->   #define SLP_PROT_EN                     BIT(0)
-> @@ -134,6 +147,7 @@ struct mtk_smi_larb_gen {
->   	unsigned int			larb_direct_to_common_mask;
->   	unsigned int			flags_general;
->   	const u8			(*ostd)[SMI_LARB_PORT_NR_MAX];
-> +	const u8			*clamp_port;
->   };
->   
->   struct mtk_smi {
-> @@ -150,6 +164,7 @@ struct mtk_smi {
->   };
->   
->   struct mtk_smi_larb { /* larb: local arbiter */
-> +	struct device			*dev;
->   	struct mtk_smi			smi;
->   	void __iomem			*base;
->   	struct device			*smi_common_dev; /* common or sub-common dev */
-> @@ -157,6 +172,10 @@ struct mtk_smi_larb { /* larb: local arbiter */
->   	int				larbid;
->   	u32				*mmu;
->   	unsigned char			*bank;
-> +	struct regmap			*sub_comm_syscon;
-> +	u8				sub_comm_inport;
-> +	struct notifier_block		nb;
-> +	struct reset_control		*rst_con;
->   };
->   
->   static int
-> @@ -377,6 +396,19 @@ static const u8 mtk_smi_larb_mt8195_ostd[][SMI_LARB_PORT_NR_MAX] = {
->   	[28] = {0x1a, 0x0e, 0x0a, 0x0a, 0x0c, 0x0e, 0x10,},
->   };
->   
-> +static const u8 mtk_smi_larb_clamp_port_mt8188[] = {
-
-You can just set these to BIT(x) directly, like:
-
-	[MT8188_SMI_RST_LARB10] = BIT(0),
-
-so that you can check if there's actually a supported/valid clamp port in function
-mtk_smi_larb_parse_clamp_info() - check below for comments in that function.
-
-Note that you are declaring SMI_SUB_COMM_INPORT_NR = 8 and this means that there
-are a maximum of 8 ports, with each port having its own BIT, starting from BIT 0
-and ending at BIT 7 (so [7:0]).
-
-This means that we have a maximum of 8 bits here, so even if you assign BIT(x) it
-all still fits in a u8! :-)
-
-> +	[MT8188_SMI_RST_LARB10]		= 1,
-> +	[MT8188_SMI_RST_LARB11A]	= 2,
-> +	[MT8188_SMI_RST_LARB11C]	= 3,
-> +	[MT8188_SMI_RST_LARB12]		= 0,
-> +	[MT8188_SMI_RST_LARB11B]	= 2,
-> +	[MT8188_SMI_RST_LARB15]		= 1,
-> +	[MT8188_SMI_RST_LARB16B]	= 2,
-> +	[MT8188_SMI_RST_LARB17B]	= 3,
-> +	[MT8188_SMI_RST_LARB16A]	= 2,
-> +	[MT8188_SMI_RST_LARB17A]	= 3,
-> +};
-> +
->   static const struct mtk_smi_larb_gen mtk_smi_larb_mt2701 = {
->   	.port_in_larb = {
->   		LARB0_PORT_OFFSET, LARB1_PORT_OFFSET,
-> @@ -423,6 +455,7 @@ static const struct mtk_smi_larb_gen mtk_smi_larb_mt8188 = {
->   	.flags_general	            = MTK_SMI_FLAG_THRT_UPDATE | MTK_SMI_FLAG_SW_FLAG |
->   				      MTK_SMI_FLAG_SLEEP_CTL | MTK_SMI_FLAG_CFG_PORT_SEC_CTL,
->   	.ostd		            = mtk_smi_larb_mt8188_ostd,
-> +	.clamp_port                 = mtk_smi_larb_clamp_port_mt8188,
->   };
->   
->   static const struct mtk_smi_larb_gen mtk_smi_larb_mt8192 = {
-> @@ -472,6 +505,60 @@ static void mtk_smi_larb_sleep_ctrl_disable(struct mtk_smi_larb *larb)
->   	writel_relaxed(0, larb->base + SMI_LARB_SLP_CON);
->   }
->   
-> +static int mtk_smi_larb_clamp_protect_enable(struct device *dev)
-> +{
-> +	struct mtk_smi_larb *larb = dev_get_drvdata(dev);
-> +	int ret;
-> +
-> +	/* sub_comm_syscon could be NULL if larb directly linked to SMI common */
-> +	if (!larb->sub_comm_syscon)
-> +		return -EINVAL;
-> +
-> +	ret = regmap_write(larb->sub_comm_syscon, SMI_COMMON_CLAMP_EN_SET,
-> +			   SMI_COMMON_CLAMP_MASK(larb->sub_comm_inport));
-> +	if (ret)
-> +		dev_err(dev, "Unable to enable clamp, inport %d, ret %d\n",
-> +			larb->sub_comm_inport, ret);
-> +
-> +	return ret;
-> +}
-> +
-> +static int mtk_smi_larb_clamp_protect_disble(struct device *dev)
-
-typo: mtk_smi_larb_clamp_protect_disable
-
-> +{
-> +	struct mtk_smi_larb *larb = dev_get_drvdata(dev);
-> +	int ret;
-> +
-> +	/* sub_comm_syscon could be NULL if larb directly linked to SMI common */
-> +	if (!larb->sub_comm_syscon)
-> +		return -EINVAL;
-> +
-> +	ret = regmap_write(larb->sub_comm_syscon, SMI_COMMON_CLAMP_EN_CLR,
-> +			   SMI_COMMON_CLAMP_MASK(larb->sub_comm_inport));
-> +	if (ret)
-> +		dev_err(dev, "Unable to disable clamp, inport %d, ret %d\n",
-> +			larb->sub_comm_inport, ret);
-> +
-> +	return ret;
-> +}
-
-...but anyway, I would rather do it like that:
-
-static int mtk_smi_larb_clamp_protect_enable(struct device *dev, bool enable)
-{
-	struct mtk_smi_larb *larb = dev_get_drvdata(dev);
-	u32 reg;
-	int ret;
-
-	/* sub_comm_syscon could be NULL if larb directly linked to SMI common */
-	if (!larb->sub_comm_syscon)
-		return -EINVAL;
-
-	reg = enable ? SMI_COMMON_CLAMP_EN_SET : SMI_COMMON_CLAMP_EN_CLR;
-
-	ret = regmap_write(larb->sub_comm_syscon, reg,
-			   SMI_COMMON_CLAMP_MASK(larb->sub_comm_inport));
-	if (ret) {
-		dev_err(dev, "Unable to %s clamp for input port %d: %d\n",
-			enable ? "enable" : "disable",
-			larb->sub_comm_inport, ret);
-		return ret;
-	}
-
-	return 0;
-}
-
-...and then call it like
-ret = mtk_smi_larb_clamp_protect_enable(dev, true);
-
-or
-
-ret = mtk_smi_larb_clamp_protect_enable(dev, false);
-
-> +
-> +static int mtk_smi_genpd_callback(struct notifier_block *nb,
-> +				  unsigned long flags, void *data)
-> +{
-> +	struct mtk_smi_larb *larb = container_of(nb, struct mtk_smi_larb, nb);
-> +	struct device *dev = larb->dev;
-> +
-> +	if (flags == GENPD_NOTIFY_PRE_ON || flags == GENPD_NOTIFY_PRE_OFF) {
-> +		/* disable related SMI sub-common port */
-> +		mtk_smi_larb_clamp_protect_enable(dev);
-> +	} else if (flags == GENPD_NOTIFY_ON) {
-> +		/* enable related SMI sub-common port */
-> +		reset_control_reset(larb->rst_con);
-> +		mtk_smi_larb_clamp_protect_disble(dev);
-> +	}
-> +
-> +	return NOTIFY_OK;
-> +}
-> +
->   static int mtk_smi_device_link_common(struct device *dev, struct device **com_dev)
->   {
->   	struct platform_device *smi_com_pdev;
-> @@ -528,6 +615,66 @@ static int mtk_smi_dts_clk_init(struct device *dev, struct mtk_smi *smi,
->   	return ret;
->   }
->   
-> +static int mtk_smi_larb_parse_clamp_info(struct mtk_smi_larb *larb)
-> +{
-> +	struct device *dev = larb->dev;
-> +	const struct mtk_smi_larb_gen *larb_gen = larb->larb_gen;
-> +	struct device_node *smi_node;
-> +	struct of_phandle_args args;
-> +	int ret, index;
-> +
-> +	/* Only SMI LARBs located in camera and image subsys need to
-> +	 * apply clamp and reset operation, others can be skipped.
-> +	 */
-> +	ret = of_parse_phandle_with_fixed_args(dev->of_node,
-> +					       "resets", 1, 0, &args);
-> +	if (ret)
-> +		return 0;
-> +
-> +	smi_node = of_parse_phandle(dev->of_node, "mediatek,smi", 0);
-> +	if (!smi_node)
-> +		return -EINVAL;
-> +
-> +	index = args.args[0];
-> +	larb->sub_comm_inport = larb_gen->clamp_port[index];
-> +	larb->sub_comm_syscon = device_node_to_regmap(smi_node);
-> +	of_node_put(smi_node);
-
-If you declare BIT(x) as clamp_ports, or if your clamp_ports start from 1,
-anything that is not more than 0 is something that was not declared, and
-this means that you can then error check:
-
-if (!larb->sub_comm_inport)
-	return dev_err_probe(dev, -EINVAL, "Unknown clamp port for larb %d\n", index);
-
-> +
-> +	if (IS_ERR(larb->sub_comm_syscon) ||
-> +	    larb->sub_comm_inport >= SMI_SUB_COMM_INPORT_NR) {
-> +		larb->sub_comm_syscon = NULL;
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int mtk_smi_larb_parse_reset_info(struct mtk_smi_larb *larb)
-> +{
-> +	struct device *dev = larb->dev;
-> +	int ret;
-> +
-> +	/* Only SMI LARBs located in camera and image subsys need to
-> +	 * apply clamp and reset operation, others can be skipped.
-> +	 */
-> +	if (!of_find_property(dev->of_node, "resets", NULL))
-> +		return 0;
-
-You don't have to manually check whether 'resets' exists or not - that's already
-done (devm_)reset_control_get in a way, as that will return -ENOENT if there is
-no 'reset-names' property. Check the comments down there....
-
-> +
-> +	larb->rst_con = devm_reset_control_get(dev, "larb");
-> +	if (IS_ERR(larb->rst_con))
-> +		return dev_err_probe(dev, PTR_ERR(larb->rst_con),
-> +				     "Can not get larb reset controller\n");
-> +
-> +	larb->nb.notifier_call = mtk_smi_genpd_callback;
-> +	ret = dev_pm_genpd_add_notifier(dev, &larb->nb);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to add genpd callback %d\n", ret);
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->   static int mtk_smi_larb_probe(struct platform_device *pdev)
->   {
->   	struct mtk_smi_larb *larb;
-> @@ -538,6 +685,7 @@ static int mtk_smi_larb_probe(struct platform_device *pdev)
->   	if (!larb)
->   		return -ENOMEM;
->   
-> +	larb->dev = dev;
->   	larb->larb_gen = of_device_get_match_data(dev);
->   	larb->base = devm_platform_ioremap_resource(pdev, 0);
->   	if (IS_ERR(larb->base))
-> @@ -554,15 +702,29 @@ static int mtk_smi_larb_probe(struct platform_device *pdev)
->   	if (ret < 0)
->   		return ret;
->   
-> -	pm_runtime_enable(dev);
-
-	ret = mtk_smi_larb_parse_reset_optional(larb);
-
-Choose between:
-
-	if (ret == 0) {
-		ret = mtk_smi_larb_parse_smi_clamp(larb);
-		if (ret) {
-			dev_err_probe(dev, ret, "Failed to get SMI clamp\n");
-			goto err_link_remove;
-		}
-	} else if (ret != -ENOENT) {
-		dev_err_probe(dev, ret, "Cannot get larb resets\n");
-		goto err_link_remove;
-	} else {
-		/*
-		 * Only SMI LARBs located in camera and image subsys need to apply
-		 * clamp and reset operation. For the others, resets are optional.
-		 */
-		ret = 0;
-	}
-
-and...
-
-	if (ret && ret != -ENOENT) {
-		dev_err_probe .....
-	} else if (ret) {
-		/* only smi larbs .... */
-		ret = 0;
-	} else {
-		ret = mtk_smi_larb_parse_smi_clamp .....
-	}
-
-whatever you like the most.
-
-> +	/* find sub common to clamp larb for ISP software reset */
-> +	ret = mtk_smi_larb_parse_clamp_info(larb);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to get clamp setting for larb\n");
-> +		goto err_link_remove;
-> +	}
-> +
-> +	ret = mtk_smi_larb_parse_reset_info(larb);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to get power setting for larb\n");
-> +		goto err_link_remove;
-> +	}
-> +
->   	platform_set_drvdata(pdev, larb);
->   	ret = component_add(dev, &mtk_smi_larb_component_ops);
->   	if (ret)
-> -		goto err_pm_disable;
-> +		goto err_link_remove;
-> +
-> +	pm_runtime_enable(dev);
-> +
->   	return 0;
->   
-> -err_pm_disable:
-> -	pm_runtime_disable(dev);
-> +err_link_remove:
->   	device_link_remove(dev, larb->smi_common_dev);
->   	return ret;
->   }
-> @@ -686,6 +848,10 @@ static const struct mtk_smi_common_plat mtk_smi_common_mt8188_vpp = {
->   	.init     = mtk_smi_common_mt8195_init,
->   };
->   
-> +static const struct mtk_smi_common_plat mtk_smi_sub_common_mt8188 = {
-> +	.type     = MTK_SMI_GEN2_SUB_COMM,
-
-...no gals in MT8188?!
-
-Cheers,
-Angelo
-
-> +};
-> +
->   static const struct mtk_smi_common_plat mtk_smi_common_mt8192 = {
->   	.type     = MTK_SMI_GEN2,
->   	.has_gals = true,
-> @@ -729,6 +895,7 @@ static const struct of_device_id mtk_smi_common_of_ids[] = {
->   	{.compatible = "mediatek,mt8186-smi-common", .data = &mtk_smi_common_mt8186},
->   	{.compatible = "mediatek,mt8188-smi-common-vdo", .data = &mtk_smi_common_mt8188_vdo},
->   	{.compatible = "mediatek,mt8188-smi-common-vpp", .data = &mtk_smi_common_mt8188_vpp},
-> +	{.compatible = "mediatek,mt8188-smi-sub-common", .data = &mtk_smi_sub_common_mt8188},
->   	{.compatible = "mediatek,mt8192-smi-common", .data = &mtk_smi_common_mt8192},
->   	{.compatible = "mediatek,mt8195-smi-common-vdo", .data = &mtk_smi_common_mt8195_vdo},
->   	{.compatible = "mediatek,mt8195-smi-common-vpp", .data = &mtk_smi_common_mt8195_vpp},
-
-
+> diff --git a/include/linux/mod_devicetable.h b/include/linux/mod_devicetable.h
+> index 4338b1b4ac44..82826f5a3741 100644
+> --- a/include/linux/mod_devicetable.h
+> +++ b/include/linux/mod_devicetable.h
+> @@ -340,7 +340,7 @@ struct pcmcia_device_id {
+>  #define INPUT_DEVICE_ID_LED_MAX		0x0f
+>  #define INPUT_DEVICE_ID_SND_MAX		0x07
+>  #define INPUT_DEVICE_ID_FF_MAX		0x7f
+> -#define INPUT_DEVICE_ID_SW_MAX		0x10
+> +#define INPUT_DEVICE_ID_SW_MAX		0x11
+>  #define INPUT_DEVICE_ID_PROP_MAX	0x1f
+>  
+>  #define INPUT_DEVICE_ID_MATCH_BUS	1
+> diff --git a/include/sound/jack.h b/include/sound/jack.h
+> index 1ed90e2109e9..bd3f62281c97 100644
+> --- a/include/sound/jack.h
+> +++ b/include/sound/jack.h
+> @@ -22,6 +22,7 @@ struct input_dev;
+>   * @SND_JACK_VIDEOOUT: Video out
+>   * @SND_JACK_AVOUT: AV (Audio Video) out
+>   * @SND_JACK_LINEIN:  Line in
+> + * @SND_JACK_USB: USB audio device
+>   * @SND_JACK_BTN_0: Button 0
+>   * @SND_JACK_BTN_1: Button 1
+>   * @SND_JACK_BTN_2: Button 2
+> @@ -43,6 +44,7 @@ enum snd_jack_types {
+>  	SND_JACK_VIDEOOUT	= 0x0010,
+>  	SND_JACK_AVOUT		= SND_JACK_LINEOUT | SND_JACK_VIDEOOUT,
+>  	SND_JACK_LINEIN		= 0x0020,
+> +	SND_JACK_USB		= 0x0040,
+>  
+>  	/* Kept separate from switches to facilitate implementation */
+>  	SND_JACK_BTN_0		= 0x4000,
+> @@ -54,7 +56,7 @@ enum snd_jack_types {
+>  };
+>  
+>  /* Keep in sync with definitions above */
+> -#define SND_JACK_SWITCH_TYPES 6
+> +#define SND_JACK_SWITCH_TYPES 7
+>  
+>  struct snd_jack {
+>  	struct list_head kctl_list;
+> diff --git a/include/uapi/linux/input-event-codes.h b/include/uapi/linux/input-event-codes.h
+> index a4206723f503..f44b9f41d26f 100644
+> --- a/include/uapi/linux/input-event-codes.h
+> +++ b/include/uapi/linux/input-event-codes.h
+> @@ -924,7 +924,8 @@
+>  #define SW_MUTE_DEVICE		0x0e  /* set = device disabled */
+>  #define SW_PEN_INSERTED		0x0f  /* set = pen inserted */
+>  #define SW_MACHINE_COVER	0x10  /* set = cover closed */
+> -#define SW_MAX			0x10
+> +#define SW_USB_INSERT		0x11  /* set = USB audio device connected */
+> +#define SW_MAX			0x11
+>  #define SW_CNT			(SW_MAX+1)
+>  
+>  /*
+> diff --git a/sound/core/jack.c b/sound/core/jack.c
+> index e4bcecdf89b7..de7c603e92b7 100644
+> --- a/sound/core/jack.c
+> +++ b/sound/core/jack.c
+> @@ -34,6 +34,7 @@ static const int jack_switch_types[SND_JACK_SWITCH_TYPES] = {
+>  	SW_JACK_PHYSICAL_INSERT,
+>  	SW_VIDEOOUT_INSERT,
+>  	SW_LINEIN_INSERT,
+> +	SW_USB_INSERT,
+>  };
+>  #endif /* CONFIG_SND_JACK_INPUT_DEV */
+>  
+> @@ -241,8 +242,9 @@ static ssize_t jack_kctl_id_read(struct file *file,
+>  static const char * const jack_events_name[] = {
+>  	"HEADPHONE(0x0001)", "MICROPHONE(0x0002)", "LINEOUT(0x0004)",
+>  	"MECHANICAL(0x0008)", "VIDEOOUT(0x0010)", "LINEIN(0x0020)",
+> -	"", "", "", "BTN_5(0x0200)", "BTN_4(0x0400)", "BTN_3(0x0800)",
+> -	"BTN_2(0x1000)", "BTN_1(0x2000)", "BTN_0(0x4000)", "",
+> +	"USB(0x0040)", "", "", "BTN_5(0x0200)", "BTN_4(0x0400)",
+> +	"BTN_3(0x0800)", "BTN_2(0x1000)", "BTN_1(0x2000)", "BTN_0(0x4000)",
+> +	"",
+>  };
+>  
+>  /* the recommended buffer size is 256 */
 
