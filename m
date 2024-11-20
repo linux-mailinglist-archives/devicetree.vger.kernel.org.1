@@ -1,146 +1,150 @@
-Return-Path: <devicetree+bounces-123077-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123079-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75FEB9D358D
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 09:35:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA60A9D35AD
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 09:41:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B18A283054
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 08:35:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90E4C2833CF
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 08:41:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03E50166F07;
-	Wed, 20 Nov 2024 08:34:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9295215CD46;
+	Wed, 20 Nov 2024 08:41:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ax0Rbykp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VECQN232"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 459DE15B547;
-	Wed, 20 Nov 2024 08:34:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64A1E15B115;
+	Wed, 20 Nov 2024 08:41:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732091696; cv=none; b=G2+oHQMmy0rtT86AJmNkYxJu0TLRE+QJk7UuoiOnAeHJUE7BLNBVe1MJoU9EktKFufbvQIxmwFnzCpyV2HHFYOp92kc7oU4DUKF6w2uDpmNb3G/EUpnYf9a5bMYZG1osQMOhvg7ax+bvif+gTF7AMW4RXAPlz/qZzwe2NXC62gw=
+	t=1732092107; cv=none; b=i9IDWrBfiDg4UOWdp9TyMQe38sRCBg0djyMWb9V+0NccZ7WhffoPVRHl7ZXIfKpqud6AQI4pmpf+CFmArLCTl58AKqrI4mzAPhEjJyuay8Xj6QQtVWvm2Kr7Z9YeLBbp4Kw79FpxFGDgzN84txFOU2JYSjhVqqHLCZuzrNp0IhI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732091696; c=relaxed/simple;
-	bh=gJf8KkykDhkqdPk/zByKQs5feI7RZ+KmYJqtgsBYOac=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ry3mWAjoi1ESbwi/dBTtGSugSgSYV1tRvZ3Bx51jb3XfBocwJDxoua/pqI9AfpkcxFvRw9rAVjRhyTI4VcHZJTfJhnuf9TdTCTgFNSg6v2eP+ojrKT7rOaQKwAZq2mR7v42Lw0BRXqZeMfkhHvV5pGkalJXvVaR8vIF8+Rv7aHo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ax0Rbykp; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a9eb3794a04so778310866b.3;
-        Wed, 20 Nov 2024 00:34:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1732091693; x=1732696493; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1ZpGB3gn1k+A89OIAwadfCUnL30RH857Ljr3wZqpohk=;
-        b=Ax0RbykpMV+zLWexLV000DgBk23WZShb+JkHRmDwHDeKtnfI+E+3HssZ3Sp+gXX/+u
-         lHcfvWV70yvxWuhtRJsVMaQz9f6CvtigCQ6F921YVHCCYROTZJp4HMKYW9n3avkxF/jE
-         IpczT2Gnryh3YhyWzmKekJl5+hu6pNZwRTEMyvAsKEVMATe+r80R9NKIrQc5hkBsP+Zu
-         fgpoHISzVe0piM5njabb0f50Cn8etYJsB67kTUAnVliuMRc/kkvzTImBLYZxQlk5FRkK
-         fHbF7JHyOxXuGoEARrXXSmcbvrXj23OeN8O3xJ7tEFnqoDt7+vQIinA80N/pf0B4vrG0
-         wSgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732091693; x=1732696493;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1ZpGB3gn1k+A89OIAwadfCUnL30RH857Ljr3wZqpohk=;
-        b=k3fusm4nznBTLU6K51UX/cxK2rlTpExhqG/cVlBmWLpuIILrJzx2K8I3UOyqvKY7WO
-         0H3+EDTD4TWw+Wxw+Jarx9AaXsDZwI5hXyOhnRgwU3sznuMBuQ5eN8hxsE00qFe811gR
-         iaCXjpiEY1XGP7Nz0Jl7vnGEDURgKJktCRA0tzFsPOhTBGOq/SI6PSfO2sTkCcNKjHXW
-         m422fNL5UIspl8T4YASiLw2LuAz2dc4UCS772ctLqZWd4FKJ0EXQSYbww0hAis4IYh6r
-         7djuxumypSyGwBcbGHsyl0k1AV7TVaejo9lj5ZWRcXuMxYBlUwrs0JebBMEy1nR7Kyx6
-         FDDQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUpbpjf7YT3C6pXQuEAVAmGdAvWbRgsL/ADGM7sI7CPe1l0mHyJFH1FMrJegxCt1XV0oEvOZvk8YcEw@vger.kernel.org, AJvYcCUvSWcS9v9Ss29H5VQOIwhNV1AxzB2xd856CJpT76kqLOLYv5t5P3V/igNNH1Y3H+QhS51xwFhhUDaHnA84@vger.kernel.org
-X-Gm-Message-State: AOJu0YxjLKiRMByi4zckioW7bw1ZSwL7zVjMkIxVkND1a/h6T6gIEELO
-	FOlms03bJAL1InJOWHn+NtiTV4Q5UAeGqOtHM809Q05ma19hdgig
-X-Google-Smtp-Source: AGHT+IEvl73IvjHMDmWuPSwElKpJPW9hrZHFr3uhcPc+30Ttx5IP0BbniIngL57kRXyo0uXkW91kPA==
-X-Received: by 2002:a17:906:4fd0:b0:aa4:a814:3f78 with SMTP id a640c23a62f3a-aa4dd53db6bmr149013366b.1.1732091693418;
-        Wed, 20 Nov 2024 00:34:53 -0800 (PST)
-Received: from ?IPV6:2a02:e98:40:8092:7852:d118:dec4:8e58? ([2a02:e98:40:8092:7852:d118:dec4:8e58])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa20e046891sm739424566b.171.2024.11.20.00.34.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Nov 2024 00:34:53 -0800 (PST)
-Message-ID: <83c8487c-2c50-4315-8244-ff80632165e9@gmail.com>
-Date: Wed, 20 Nov 2024 09:34:52 +0100
+	s=arc-20240116; t=1732092107; c=relaxed/simple;
+	bh=4rfnlRucQnUgzLpd0n5nAO1dDQNhlvEJVooFv39keHQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Jbn/67n8DIO8Vmh5H5HAaA3m4TAnxU07QAh4pEQ4a/Zy9NUWPKDdqyiQC6m1mGg23YO3DwEMO3mM+vCAQydOMKRR/gQT4gjd67VwdMJ1LjK7m+l4f3C36+Q4mEgox4mC+cfrellw8KalwRTnXQwqBhEoBVaziFM7aN3yk4/nuoE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VECQN232; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38CE1C4CECD;
+	Wed, 20 Nov 2024 08:41:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732092106;
+	bh=4rfnlRucQnUgzLpd0n5nAO1dDQNhlvEJVooFv39keHQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VECQN232ULMNimccmpdbW1C1om6Kf4R7RvMR84F0yabWNow5lQfMHwQ/B6A/cjjh/
+	 UTmHEGpksoGNB/8wgoqDIzJJCbZYoeQwWe1tHY4n1GhQIWdzN9vQHhUe9pnYv2EXBI
+	 04Va3NGM4V+Z9XdwOoGO4GvfIvRBH3Yp4ZV1fCPvieTBvJIGpUd0qALi7JnI5WJe7y
+	 IN2N//7VtZGwQBw8ViTaIssdg459szyR6JkL2rT0D6zpKKahEL3Mb5l8zhxKn5bm1V
+	 kfaZcCnx0AsUpe5LmLvnv5gspYU6GRVNzfEqeoIz7N9GDVsF8CcW/GAFywkDJUYziB
+	 NFfsHLsgZJJhw==
+Date: Wed, 20 Nov 2024 09:41:43 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Ming-Jen Chen <mjchen0829@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-input@vger.kernel.org, linux-arm-kernel@lists.infradead.org, sudeep.holla@arm.com, 
+	arnd@arndb.de, peng.fan@nxp.com, conor+dt@kernel.org, krzk+dt@kernel.org, 
+	robh@kernel.org, dmitry.torokhov@gmail.com
+Subject: Re: [PATCH 1/2] dt-bindings: input: Add Nuvoton MA35D1 keypad
+Message-ID: <ql6m6qrdokwfu4iizn6wmvovawuc7kgg6jfzxebkmac5muz66e@myrjvq5jm7gg>
+References: <20241119025954.4161-1-mjchen0829@gmail.com>
+ <20241119025954.4161-2-mjchen0829@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] dt-bindings: w1: ds2482: Add vcc-supply property
-To: Conor Dooley <conor@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Stefan Wahren <stefan.wahren@chargebyte.com>,
- Ben Gardner <bgardner@wabtec.com>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20241115-ds2482-add-reg-v1-0-cc84b9aba126@gmail.com>
- <20241115-ds2482-add-reg-v1-3-cc84b9aba126@gmail.com>
- <20241115-happy-garter-2cf65f4b1290@spud>
-Content-Language: cs, en-US
-From: =?UTF-8?B?S3J5xaF0b2YgxIxlcm7DvQ==?= <cleverline1mc@gmail.com>
-In-Reply-To: <20241115-happy-garter-2cf65f4b1290@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241119025954.4161-2-mjchen0829@gmail.com>
 
-Hello,
-
-> On Fri, Nov 15, 2024 at 03:58:06PM +0100, Kryštof Černý via B4 Relay wrote:
->> From: Kryštof Černý <cleverline1mc@gmail.com>
->>
->> Adds the newly added vcc-supply property to bindings.
+On Tue, Nov 19, 2024 at 02:59:53AM +0000, Ming-Jen Chen wrote:
+> Add YAML bindings for MA35D1 SoC keypad.
 > 
-> This commit message is a circular argument. You're adding it to the
-> binding, which of course means it is newly added.
-
-You are right, I will replace with "Adds the vcc-supply property to 
-bindings." in the next version.
-
->>
->> Signed-off-by: Kryštof Černý <cleverline1mc@gmail.com>
->> ---
->>   Documentation/devicetree/bindings/w1/maxim,ds2482.yaml | 3 +++
->>   1 file changed, 3 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/w1/maxim,ds2482.yaml b/Documentation/devicetree/bindings/w1/maxim,ds2482.yaml
->> index 422becc6e1fa8d58665c5586ebdc611cd0b2c760..a6b9e0658ec858cb24b21cf64443a061bb43e4ef 100644
->> --- a/Documentation/devicetree/bindings/w1/maxim,ds2482.yaml
->> +++ b/Documentation/devicetree/bindings/w1/maxim,ds2482.yaml
->> @@ -25,6 +25,9 @@ properties:
->>     reg:
->>       maxItems: 1
->>   
->> +  vcc-supply:
->> +    description: phandle of the regulator that provides the supply voltage.
+> Signed-off-by: Ming-Jen Chen <mjchen0829@gmail.com>
+> ---
+>  .../bindings/input/nuvoton,ma35d1-keypad.yaml | 69 +++++++++++++++++++
+>  1 file changed, 69 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml
 > 
-> "vcc-supply: true" should suffice.
-> 
+> diff --git a/Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml b/Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml
+> new file mode 100644
+> index 000000000000..9ccd81a2574d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml
 
-Right, I suppose you mean to remove the description and just have 
-"vcc-supply: true".
-If so, could you explain why no description? Is it some standard property
-or because the name is self-explanatory? If you mean to keep both, 
-please reply.
+Filename matching compatible. You got this comment already.
 
->> +
->>   required:
->>     - compatible
->>     - reg
->>
->> -- 
->> 2.39.5
->>
->>
 
-Thank you for review,
-Kryštof Černý
+> @@ -0,0 +1,69 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/nuvoton,ma35d1-keypad.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Nuvoton MA35D1 Keypad
+> +
+> +maintainers:
+> +  - Ming-jen Chen <mjchen0829@gmail.com>
+> +
+> +allOf:
+> +  - $ref: /schemas/input/matrix-keymap.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: nuvoton,ma35d1-kpi
+> +
+> +  debounce-delay-ms:
+> +    description: Debounce delay time in milliseconds.
+> +    maxItems: 1
+> +
+> +  scan-interval-ms:
+> +    description: Scan interval time in milliseconds.
+> +    maxItems: 1
+> +
+> +  reg:
+> +    maxItems: 1
+
+Keep the same order of properties as in required: block.
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - linux,keymap
+> +  - keypad,num-rows
+> +  - keypad,num-columns
+> +  - debounce-delay-ms
+> +  - scan-interval-ms
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/input/input.h>
+> +    keypad@404A0000 {
+
+Lowercase hex
+
+> +      compatible = "nuvoton,ma35d1-kpi";
+> +      reg = <0x404A0000 0x10000>;
+
+Lowercase hex
+
+Best regards,
+Krzysztof
+
 
