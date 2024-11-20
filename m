@@ -1,57 +1,63 @@
-Return-Path: <devicetree+bounces-123079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123080-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA60A9D35AD
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 09:41:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A747E9D35BF
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 09:45:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 90E4C2833CF
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 08:41:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F11A6B219A2
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 08:45:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9295215CD46;
-	Wed, 20 Nov 2024 08:41:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B36BF18872D;
+	Wed, 20 Nov 2024 08:45:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VECQN232"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NyPTUCv1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64A1E15B115;
-	Wed, 20 Nov 2024 08:41:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E20A187844;
+	Wed, 20 Nov 2024 08:45:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732092107; cv=none; b=i9IDWrBfiDg4UOWdp9TyMQe38sRCBg0djyMWb9V+0NccZ7WhffoPVRHl7ZXIfKpqud6AQI4pmpf+CFmArLCTl58AKqrI4mzAPhEjJyuay8Xj6QQtVWvm2Kr7Z9YeLBbp4Kw79FpxFGDgzN84txFOU2JYSjhVqqHLCZuzrNp0IhI=
+	t=1732092309; cv=none; b=JOm6s4DLU/FoQ2yjnTDEPyU2Nh3occWN8L++OUnVaBbG3nSbho36HI6YhxvJRSoQtIrzyjTBHTpAhg3Ozzsz4joclgVWzKbvFM4/bzfxft/0D7b9p9dB4C3wsG8+Myu5kq7F8o0d9vK0U95pimn7pWoxRqrGneeLxdRftad48OE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732092107; c=relaxed/simple;
-	bh=4rfnlRucQnUgzLpd0n5nAO1dDQNhlvEJVooFv39keHQ=;
+	s=arc-20240116; t=1732092309; c=relaxed/simple;
+	bh=ER8VTQjXlCy4Gtz19zbr9xUxz4zX8GUYwLtW74f+WX8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jbn/67n8DIO8Vmh5H5HAaA3m4TAnxU07QAh4pEQ4a/Zy9NUWPKDdqyiQC6m1mGg23YO3DwEMO3mM+vCAQydOMKRR/gQT4gjd67VwdMJ1LjK7m+l4f3C36+Q4mEgox4mC+cfrellw8KalwRTnXQwqBhEoBVaziFM7aN3yk4/nuoE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VECQN232; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38CE1C4CECD;
-	Wed, 20 Nov 2024 08:41:46 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=VLU9f8vRWB1idmzrXBXuJ799k85pItLzFpTBJdFVWAJFoTZnUHeVYWUyaBMpcUK47GXQ88bZ+RptNgHLyuxyZ3UCkikzSOQwE5hFwLPOar5Vf2rjh7Mmk5ae3Hu/6CoouaKn7q+F3+t8DeWJMlJyW+r3rBjyQVH32HMNz8YBMvU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NyPTUCv1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 747CEC4CECD;
+	Wed, 20 Nov 2024 08:45:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732092106;
-	bh=4rfnlRucQnUgzLpd0n5nAO1dDQNhlvEJVooFv39keHQ=;
+	s=k20201202; t=1732092309;
+	bh=ER8VTQjXlCy4Gtz19zbr9xUxz4zX8GUYwLtW74f+WX8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VECQN232ULMNimccmpdbW1C1om6Kf4R7RvMR84F0yabWNow5lQfMHwQ/B6A/cjjh/
-	 UTmHEGpksoGNB/8wgoqDIzJJCbZYoeQwWe1tHY4n1GhQIWdzN9vQHhUe9pnYv2EXBI
-	 04Va3NGM4V+Z9XdwOoGO4GvfIvRBH3Yp4ZV1fCPvieTBvJIGpUd0qALi7JnI5WJe7y
-	 IN2N//7VtZGwQBw8ViTaIssdg459szyR6JkL2rT0D6zpKKahEL3Mb5l8zhxKn5bm1V
-	 kfaZcCnx0AsUpe5LmLvnv5gspYU6GRVNzfEqeoIz7N9GDVsF8CcW/GAFywkDJUYziB
-	 NFfsHLsgZJJhw==
-Date: Wed, 20 Nov 2024 09:41:43 +0100
+	b=NyPTUCv1MRqBxEaO6k8YrsKQ+xO11VNYo157Fi4abm42iDt2wnakdkXhleOacMJ/G
+	 Zg2Z93GUUt37lrKVfJ8EldZ8mbZIni2q//EQpv3TiQ2BUd/a1YoFMxGRzJpLgE3+QX
+	 rsVeGttAjMnZrR+fjfqpjc6A+8XZ/h7cUeQXON2gzSQU9rnljltoERAASsRC50i110
+	 vUiRxm/oKZK1O+kYf+3m5PqI1k5cZ+fdYpitk8Jtb3WAiLVJkrYNXOzBnq6eBg2hOf
+	 1/IQ/v7brumbNUdQ4naF6VS/tpNdUKW1hHLYjZ+U+Z9WwcOlNcHtBxY/OGKCDQQZkW
+	 3CrLXDBzqhQUA==
+Date: Wed, 20 Nov 2024 09:45:05 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ming-Jen Chen <mjchen0829@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-input@vger.kernel.org, linux-arm-kernel@lists.infradead.org, sudeep.holla@arm.com, 
-	arnd@arndb.de, peng.fan@nxp.com, conor+dt@kernel.org, krzk+dt@kernel.org, 
-	robh@kernel.org, dmitry.torokhov@gmail.com
-Subject: Re: [PATCH 1/2] dt-bindings: input: Add Nuvoton MA35D1 keypad
-Message-ID: <ql6m6qrdokwfu4iizn6wmvovawuc7kgg6jfzxebkmac5muz66e@myrjvq5jm7gg>
-References: <20241119025954.4161-1-mjchen0829@gmail.com>
- <20241119025954.4161-2-mjchen0829@gmail.com>
+To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>, 
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S . Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	imx@lists.linux.dev, NXP Linux Team <s32@nxp.com>, 
+	Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>, 
+	Enric Balletbo <eballetb@redhat.com>
+Subject: Re: [PATCH 1/3] dt-bindings: can: fsl,flexcan: add S32G2/S32G3 SoC
+ support
+Message-ID: <o4uiphg4lcmdmvibiheyvqa4zmp3kijn7u3qo5c5mofemqaii7@fdn3h2hspks7>
+References: <20241119081053.4175940-1-ciprianmarian.costea@oss.nxp.com>
+ <20241119081053.4175940-2-ciprianmarian.costea@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,89 +66,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241119025954.4161-2-mjchen0829@gmail.com>
+In-Reply-To: <20241119081053.4175940-2-ciprianmarian.costea@oss.nxp.com>
 
-On Tue, Nov 19, 2024 at 02:59:53AM +0000, Ming-Jen Chen wrote:
-> Add YAML bindings for MA35D1 SoC keypad.
-> 
-> Signed-off-by: Ming-Jen Chen <mjchen0829@gmail.com>
-> ---
->  .../bindings/input/nuvoton,ma35d1-keypad.yaml | 69 +++++++++++++++++++
->  1 file changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml b/Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml
-> new file mode 100644
-> index 000000000000..9ccd81a2574d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml
-
-Filename matching compatible. You got this comment already.
-
-
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/nuvoton,ma35d1-keypad.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Nuvoton MA35D1 Keypad
-> +
-> +maintainers:
-> +  - Ming-jen Chen <mjchen0829@gmail.com>
-> +
+On Tue, Nov 19, 2024 at 10:10:51AM +0200, Ciprian Costea wrote:
+>    reg:
+>      maxItems: 1
+> @@ -136,6 +138,23 @@ required:
+>    - reg
+>    - interrupts
+>  
 > +allOf:
-> +  - $ref: /schemas/input/matrix-keymap.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: nuvoton,ma35d1-kpi
-> +
-> +  debounce-delay-ms:
-> +    description: Debounce delay time in milliseconds.
-> +    maxItems: 1
-> +
-> +  scan-interval-ms:
-> +    description: Scan interval time in milliseconds.
-> +    maxItems: 1
-> +
-> +  reg:
-> +    maxItems: 1
+> +  - $ref: can-controller.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: nxp,s32g2-flexcan
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          minItems: 4
+> +          maxItems: 4
 
-Keep the same order of properties as in required: block.
+Top level says max is 1. You need to keep there widest constraints.
 
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - linux,keymap
-> +  - keypad,num-rows
-> +  - keypad,num-columns
-> +  - debounce-delay-ms
-> +  - scan-interval-ms
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/input/input.h>
-> +    keypad@404A0000 {
-
-Lowercase hex
-
-> +      compatible = "nuvoton,ma35d1-kpi";
-> +      reg = <0x404A0000 0x10000>;
-
-Lowercase hex
+> +    else:
+> +      properties:
+> +        interrupts:
+> +          maxItems: 1
 
 Best regards,
 Krzysztof
