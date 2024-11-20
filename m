@@ -1,213 +1,178 @@
-Return-Path: <devicetree+bounces-123242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 039D89D3CEA
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 14:59:18 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCE399D3D98
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 15:31:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B911128364F
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 13:59:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 74AB4B2CD93
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 14:16:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB51E1BC9EC;
-	Wed, 20 Nov 2024 13:58:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 878411BBBE8;
+	Wed, 20 Nov 2024 14:09:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="PxtP17H+"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="KTDjc7Cy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2069.outbound.protection.outlook.com [40.107.20.69])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f194.google.com (mail-pl1-f194.google.com [209.85.214.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D64391BBBE0;
-	Wed, 20 Nov 2024 13:58:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.69
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732111091; cv=fail; b=f4znswb2lzuNIim/WAtQQRCxJAz0B61KWaHyJAcFSXi/qdzC68BeZJUzZMezG7NWHdbDASweXl5CZFuYF4MzxduJ8v1XDV3JwZVsjRr/x68QoXzyQ4UQQOFKdrCajXqy1M/83CluoG5p8r8vovRMmacYsnD3uK/WCAhishjm5P0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732111091; c=relaxed/simple;
-	bh=g4Ia2Kpwpg9fO2OGqDK/TuiJJYs5AjW2bQms6C71U5U=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=YcPKHaXlexHK9B20cNHrhu+hGN9cWq+sgNs0h/Btk3kXcwhisTDb/7gGT7A7emkTLUNVLBMhyexlWSHzKCwcvE9d38VWFtBb2RHjNoCw/CJwiH0/b9w2szQqz/mVuI69Vv9yEaKYwL6Kfdchy5OMJigNVYA4SUZLPZBjmpjye4I=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=PxtP17H+; arc=fail smtp.client-ip=40.107.20.69
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=axUrhsft84zqPnvUQ1ZtT7/aZiu9y1U8bDAJbo4jhuOjDr2Ts8GoULUXARWO+dfCwqe6PlUAWR5YsBg17FE+/v8Kok91dL+kmhmzdGlvUFzIoez8eJg3AUbXi8ezxfmsn56ba7+wGdV7QXwpw0qQxbyQVf9hhZKLk2J8QXadtsQvt1gO9L4yxMXH/jwNpL4SjHmS8SgfjdZbI4NRqMM/0ZVwP0/XJHEO0FupPuzjtmr20jWdHBGlyrlZy/N1khXl3w6hWpR6S+V09K8Ren+SeQTwSi2wdm6TPutDuJR7KUSFZoh80/l4u2USSF2LVkLgO4TMliafvFPO2ZBknlTlRg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HAfx2zUwP+KPZ1xFwqtCpnRigR0wSLhqKDsmM3fdWh4=;
- b=SJpAlJjoI+H5jsdFpnyCNXmFMrKk9f35S9R1eRIdCapwrnASdZ9v+VWoqbx3YOdwa4o8USfyjXn7RQ3Q6sHL7Y0PkwKznZEuxuHPhhnicA1JZiyFhBDtd5OtoCxEQMjlUonQAgdEyOsbXzfQ1+P9HZxacd/hYopOdzdjM/VLjMDEQ8cLwPccU4Y8gG0FTP0zgaBkJBn0MJqPEx6kT4uxqh+HlQokqnazsbDW7yj2z9aO9Ilkyi7Go4Hi6Y4BoeAMjr95vBwGwD80yczINNg0cDW+KMUYHUwU/5GHwZYberaP46aRP6ybG2Kd6HWK2TSQC1fSQWKm8/snoeS2O6eUXA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HAfx2zUwP+KPZ1xFwqtCpnRigR0wSLhqKDsmM3fdWh4=;
- b=PxtP17H+Len88Tq/vejk1p4bw6pb/nYbCr3mVhAkTqw9ruFTOza/QRo88uEOODOTX8bzreouUB4+Su9QW+Homwk6MDiTtI/7+29kANk/xkTgDWpudccS9taAETXE4zawJjaWFW7oLCK31hdaM/XWm5XDeSZfB2nCpPr018GvmJWA9Ecej83u41gih/pgn17jSGauGsjksh9dQC3y9moDVJp+ZQqYZo1EMFYUeELjxfO9zjSIXbc8b3ICh4ObVirbxz7tYPbfNvmyvHYQuwfEilEsyRr0EOrHyD9klNbZ9Q0QbXZGUPK4xi2BCzrSoyE8Gcd1SAOqh6FUh4qMbLCDZg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AS8PR04MB8247.eurprd04.prod.outlook.com (2603:10a6:20b:3f2::13)
- by DB8PR04MB6825.eurprd04.prod.outlook.com (2603:10a6:10:112::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.23; Wed, 20 Nov
- 2024 13:58:04 +0000
-Received: from AS8PR04MB8247.eurprd04.prod.outlook.com
- ([fe80::84f7:e2c3:ceed:c0a6]) by AS8PR04MB8247.eurprd04.prod.outlook.com
- ([fe80::84f7:e2c3:ceed:c0a6%4]) with mapi id 15.20.8158.023; Wed, 20 Nov 2024
- 13:58:04 +0000
-From: Daniel Baluta <daniel.baluta@nxp.com>
-To: shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	festevam@gmail.com,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	frank.li@nxp.com,
-	aisheng.dong@nxp.com,
-	daniel.baluta@gmail.com,
-	laurentiu.mihalcea@nxp.com,
-	shengjiu.wang@nxp.com,
-	iuliana.prodan@nxp.com,
-	Daniel Baluta <daniel.baluta@nxp.com>
-Subject: [PATCH 5/5] arm64: dts: Add dsp rproc related mem regions
-Date: Wed, 20 Nov 2024 15:58:58 +0200
-Message-ID: <20241120135859.3133984-6-daniel.baluta@nxp.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241120135859.3133984-1-daniel.baluta@nxp.com>
-References: <20241120135859.3133984-1-daniel.baluta@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: AM8P190CA0002.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:20b:219::7) To AS8PR04MB8247.eurprd04.prod.outlook.com
- (2603:10a6:20b:3f2::13)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1A421AB521
+	for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 14:09:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.194
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1732111788; cv=none; b=C2/lHMKO/iuz3egiI0eNcDk9WhDdZv87qTF1TMHHd/AGlz5EsGV64jwCcZ8NB7/JxUKmza6cmcOPmXTozwBklg6BalmBdxdmhhDtxylMPk18HZbZplJ4Sbwvv6JOygQYa5PNj0SMZcdMuAuq2UVrpI78JLE6S49e9uBynlL7FEI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1732111788; c=relaxed/simple;
+	bh=ju5iaCTTGnlC8cKNSV/WW1suH3P3ww9XIffkT2cxxRo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=fjUTlkq26l9Ysz2FemSCbpCiZ5tubwA3IZVMF/lzf92u9kuxUIHDuYXDG0X+jsi+F3HqtFyi9AOh+qbN4LqazUANGPL8vhs2EDdLGO9v17p3+BNZqWGZqmH4LSX/SB/nKpwh67UWAf7R2sQ1GG9fzSkSxRFA7XOiCFrMVWLmA8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=KTDjc7Cy; arc=none smtp.client-ip=209.85.214.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-pl1-f194.google.com with SMTP id d9443c01a7336-20cb7139d9dso21975565ad.1
+        for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 06:09:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1732111786; x=1732716586; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cxrAHqhmG1JlcR3HvdHEoqSUwYkPTE5MTo5NUdeAECY=;
+        b=KTDjc7Cyo/GhLyvR8GLDBs5GfSvcMhYCLHM2Foo8AiX1CDyGDAapWfo7jsZxyEQQQP
+         nfXfVdiZQ9aoBZCE81dRtNzHjAdI5YUMLx8dPtXeVXAZ61U47bVYyoGvyBOAaVf8hxcl
+         DMof6Q935nleTzzkLVUmGng5fPfpg1QtzPh5NjRbrpq6LASOU29VdX2JDwCR2RKlqvZs
+         0mrY+BXZCrJ9sDlUHHuvynowpiQQ/oUbTXVDmDpv/dPN/wYrxL8sT14cLXykS46/DBni
+         08r3NwI/P4SPjtpeQU3rFhnc2D4h9Jv1LR3rfoB8X9y34hQYCp7AMa9JKQgaprz9eGi0
+         pdDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732111786; x=1732716586;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cxrAHqhmG1JlcR3HvdHEoqSUwYkPTE5MTo5NUdeAECY=;
+        b=oRqKWXrQRuhYcRgDAkjJCITmOmrfKGSL/hXc007mrODAlWmgqBc0ZJLHCBDACEbQvR
+         V7ltSOCr0FHUnrCJP6P4ybBkR2c87FciNQrixZSwKk2JZT4fIP7ouwNYaNGLyY80tDz2
+         CNMNH0bxTCnZXptSHmf7yhauIQ5jNqbXl4qEDlg780HBmEMv+AfqneM5xfBA5cdZE7dN
+         qwJGCjkOdTf2RmxphRvqKuJtoocJ1p9cEkUOi6VFFt4jgiTCvdI/TL1/q5Z4dxu6URa7
+         Up+948xVRWvprFrTmADshTReaRXGcDNgoQYwCgOYt2UDFk1syn05e71z1S3W4IYjG/IG
+         PjHQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWsslZMp7NdE3rX5NjnVQ00h4ijF//MzVwgQrsGjw+93NzW8Kz45MfU321v8OuSspuWY4mCQF6A53pM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy9W98/n2VAnJ2VRe+e6qDHFrDjPfDhkhT0x/DKdUw4OKWmykbR
+	lI4Wts7pnSfIHr1nsFpzMAUeGSyMhDcJMWjrahXYveYzIhdxk//5fToADwJHVKKneFF7KOs6RF3
+	piOco6tKQrag28w/z833eBQGdVutK/8LyxbtXu48oP6iernjETOqC0VvBsEZPc66cihr6OQrvSz
+	CpzIU2CtA+ttEZKsQsfXOr9gbs/8P81bUS5Zem/0DxJtw5+Btx
+X-Gm-Gg: ASbGncusJTXzcrs7LTcDSRJXGUcZek8OMC6VAwccGH8qvFKOX5vfaQQAETWJsjRA59z
+	5blFA8jUee9S7Owrbgc5Bf1SB2tee7OixSuxt/Woq+7jRiwUVJklziUXTpsE95mwnAyzFTKdPKl
+	ET0MBN44qmVKkDqNFuhDePbsbvy8nlsvSmqDD64y0I0x1qbpOp/o/03d2NjWNNT9ML1dyg/M5aW
+	tS2o77fHCN7JE0KDUrBsOwH2Z+hYl+GkOqexVwDno+Sy810Sqq1x8gI8qfq6vfr3EKZ+KgCRO4F
+	ssGMLg==
+X-Google-Smtp-Source: AGHT+IGUKS5hjt2wBeHFpNbOFGt9aCFT4yqBOEuCP8j8uWcxGmZ/D/8LQlPLEi80dxUfa7W2k1rhVQ==
+X-Received: by 2002:a17:902:e80f:b0:20c:cd23:449d with SMTP id d9443c01a7336-2126a456615mr36184435ad.46.1732111783883;
+        Wed, 20 Nov 2024 06:09:43 -0800 (PST)
+Received: from [127.0.1.1] (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-211d0f474fcsm92502505ad.213.2024.11.20.06.09.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Nov 2024 06:09:43 -0800 (PST)
+From: Max Hsu <max.hsu@sifive.com>
+Subject: [PATCH RFC v3 0/3] riscv: add Svukte extension
+Date: Wed, 20 Nov 2024 22:09:31 +0800
+Message-Id: <20241120-dev-maxh-svukte-v3-v3-0-1e533d41ae15@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8247:EE_|DB8PR04MB6825:EE_
-X-MS-Office365-Filtering-Correlation-Id: 649b82c6-2379-4e95-f866-08dd096b5aac
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|376014|366016|52116014|7416014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?en7d3HimUlNfa2uY5BLco/XyIr+Yh/NtajY/u0i0R+a2hplU6bPHTHDzLoTL?=
- =?us-ascii?Q?c3r0XostWxratjWnCj4dhghu9iQKPG3/k1AqtZ/SKTKT2Sj9c0cKVPi4SFuM?=
- =?us-ascii?Q?/vXXIAHELnjM7kSWrbgdBIlwECTbQgTec265xtlMek+yXUKcRcKGMehe1rgU?=
- =?us-ascii?Q?QCH2Hf4jPngj+hP+4wE9X2l2nE8DXmZgDFMHbvwMvsDPwsKsuAOueHzFNp6y?=
- =?us-ascii?Q?PtF1ttCxCn62TcoOCSwIkv5wpKH+BofuMrgrM0gZc10jpUsQUSjDY+1ESyiu?=
- =?us-ascii?Q?zZb0UQ+Sc2gbKCTC4hWmvUesfUvWExuXC4exk2P29XO6sAHDsCUWTBnmFZXs?=
- =?us-ascii?Q?t4XBZfJhpjkXG85hDQaZpbcQWPIRWT2lpEhtopgQ2rjzoEe5TD6rs82DnqxE?=
- =?us-ascii?Q?a0irRSEPQYINoPQ9qIIyhmXvAhgzbO80q/TVrvLI6cjWrL/CmtR/YJhjRHdJ?=
- =?us-ascii?Q?dK85lhcI8WPfLyIWO8HKjemKSJEUGd3DzyuuIS/Vm21lT2aHn1SvTvoWjg95?=
- =?us-ascii?Q?Ledmx+jKamfasB33c8+btChm/OHXZZaR4hdeePfn45Ycm4IHQLg0/x4QC9O6?=
- =?us-ascii?Q?DYqJJtgVSNaYAu9eqyuhPK8I+UDz0mFSftUYlpPKk3ytFhHbRXYA5MezEEnO?=
- =?us-ascii?Q?iJNt5gXe0Du3u9w6l8MpEPEpCxb93q7HRXCQmw4wOmVpSr4OHcv11DDGAK6m?=
- =?us-ascii?Q?ODTIFI7d6GL6ws/K/GKbihWPHasN/IAuhVWTO4uIHacicwxAleSNzvEoMxr+?=
- =?us-ascii?Q?ev9PVmkdW+5apRXLw03mpIdy0IlJf12TjyTkauk1zYwUYAyPiVlJorLoV5/P?=
- =?us-ascii?Q?uZ+RU4dhQAjBuaFRZOy9XDEA77Vz+myG3jUe1vJ7pbVdhRWObVSStLoKTX6j?=
- =?us-ascii?Q?WigwOqYwwhW1xVKJv6wZPBzpU5jAzJDhbXwFB3lmLCu8Y+6/FTBWYeuf0Dx2?=
- =?us-ascii?Q?Z9vU0maRMTJqKYWiFFSiioImvon4qVQ7pbR6rOraY2fDMBhvlubJDKPqJdXk?=
- =?us-ascii?Q?NdpIT/ttiS9FvBPYmvhTiVwHFLizWccBL7kVpNXe0aEUFy+Zw5xhiBE2QvXS?=
- =?us-ascii?Q?FyEfqpxazdhOwkerDrRcd0MKsMGQ/vOQupCf5FLOAqs8IPyliuzubdazyLsl?=
- =?us-ascii?Q?VvTN9vDEDQK2yaHXU8wSChnEWm+g9azvD58Q6uZOcwfCaCOxEANyhIukuzjh?=
- =?us-ascii?Q?4P1UZqKeiFoCpndNqOZb77/RBHXQsU3Bi7IvJmdrK6txZ1qYKdhSbwCp/ulO?=
- =?us-ascii?Q?aF8Qcu2lY96UAmAsBl3M0RDP6T7exo+Yo3a3ED9LnHhh2zT+MH+rBTykPJCN?=
- =?us-ascii?Q?IA4uPzQmasWoJVOFaOqvgr6aVGd4RdxDk7FqeKmOfIMesn3wdkBME6UQlSxe?=
- =?us-ascii?Q?XQ8v7UA=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8247.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016)(52116014)(7416014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?QRBgZrwDysJ9L+pw2BfkoaRZVoTw7PZkugWqCjME5/+Qv6EL4XdU1MMcA0U3?=
- =?us-ascii?Q?WhylRwFg73Zlbaq58snXjDPuX/RFW36mJiC8PJxKpvy78zA5joagiiiCj5AA?=
- =?us-ascii?Q?5rrmgOv5Nr4uRQV2VW77aRlGceT+eqX/xbpkIpWKKSU4pBE3FypKOwCut2jm?=
- =?us-ascii?Q?qVuSRNXSA94YHNFrm2sxqUJacgNdhiOTg+Am4x8UtrT/QcBfm74aHe1knRUa?=
- =?us-ascii?Q?3Dn50SiaDCDj4vZ0xLqPq1hi2r7KDXUA/BxFaSfWqm2JUx1DoJzVFYc67cT0?=
- =?us-ascii?Q?jdT3ae5pNhjfAlflfOgCpbVtS5Bmg3L+NRnqLDItUS+Ci4n54iWZ9liHJdeA?=
- =?us-ascii?Q?cQ6mqLLLvPXATse/zvdQ9WZATLNGyNjVlG7f+zRqEfg0yxen1tFCiXZRfp5H?=
- =?us-ascii?Q?QbnyYztq+lonvJN4ULjuWE76kdVoVL2PgAmkuRhGH1h3Jm9Xf5keMEe/7tvz?=
- =?us-ascii?Q?M8aHvVZZp93DlqmLzRp1TlKO8Nn4K7z21kPk0PmRetYlVHgvwvfqp8fvMeQn?=
- =?us-ascii?Q?aqmoR9rm/mO4yWAQdknzm2eFdU/7zQ2Sj0mmcGDXv7kAugm6MEv+ei7xZdEN?=
- =?us-ascii?Q?TtGl1I513Ijt5hvMhuYEWBuhGGrxP+2e+cVQYSn8/MR9FO+6B61Zx9Z/odBS?=
- =?us-ascii?Q?scO3gNKrhO0cPmbRVxe3Eib38R5kYd80HdGQbbznVXOkaExGnymwyRJg1sdM?=
- =?us-ascii?Q?WrJpjcyfE5uqDh3kw/Lo7dsBrLo2Xd6Zf0E6WQof9iYrfex1JnUeYcTiRAdB?=
- =?us-ascii?Q?1t93QkFHWr+CdVS8sfoSiIs4svQnf5eHn7zrrLLKGrCFKjZDy+JisZTvtuhd?=
- =?us-ascii?Q?3ChW2CGqF1nUgX5BSkHvyEcmEzJupbktzEqeDmjsqlbbTDKml9UOphK5dMx8?=
- =?us-ascii?Q?uYKBVwxEez1FwNCS1EXc/dJUDL+Rlvhl/wwx/medMPWEFxM79ZryhlrXKzPJ?=
- =?us-ascii?Q?vcCBawEzAHqAVFz1iiN2u1yhz2U7t91nIXWV/PwNKc4CLfWFiwwL9ajKU+PZ?=
- =?us-ascii?Q?2FxOFs4izo3wmipT/IsvyWSJJuiOM+5geVHRRte+TULvo2L5JfnqGziPz30R?=
- =?us-ascii?Q?wTSM2Wpq+r9js5n0unwa5O9LvT/rKxMDvlVgD8G2YEaHr9KpNEOTW8qTeqrY?=
- =?us-ascii?Q?XhFyG99iw8HbWOq4+F/rGZCBGqVAqdxuW2HexOJMCdhtiel6jwoT/Ld39A0s?=
- =?us-ascii?Q?SUiq8qZsRR28xeXwJeF2p40/U0ZMXusWQJN5/UiYS7QW/SH7zTKDdvZyBMGa?=
- =?us-ascii?Q?CnUyjGTvEidRYVLJBaj7Ad9xVqpyVVarhX8nUpvMg9x7h1d+cBYgMMlaX+BD?=
- =?us-ascii?Q?yiW/C2VAyzpXHfwCp9/hwXOTwscA45JuCC8omtADedIstgzdMinE+ZGG/stb?=
- =?us-ascii?Q?0cP0GcnqsDQuPwUOELwVK/hOBVA+PzeFQjmOU4G6WhnuTwTSM4vmeR+1GLKb?=
- =?us-ascii?Q?766hwzDvoQo/3i/6H/prY5WTfo61uai0B9sIZ73fJL1PiIZ48SsE4lfykpwR?=
- =?us-ascii?Q?lss0dFbaZYyjY+nA0kDcV1Bff7XI6TLIWBr5euXfi1NIvIkZfgQziIjK1h5T?=
- =?us-ascii?Q?dD8L28nNah6YNxMr1jvf2PvZg46I9UgYQAoQvyYX?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 649b82c6-2379-4e95-f866-08dd096b5aac
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8247.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2024 13:58:04.6709
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: M435VQAydxVl5wzy4/tTaIqgLO8OHPP1AW3e1Qe2wr5pb5g7KyrHKB7FgyUC+6iXLFBg1oVAPiQxSVp0ZkR9Iw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6825
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJztPWcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyjHUUlJIzE
+ vPSU3UzU4B8JSMDIxNDQ0NT3ZTUMt3cxIoM3eKy0uySVN0yY93ENBOzFDNTg8RkgyQloMaCotS
+ 0zAqwodFKQW7OSrG1tQCbJCqIaQAAAA==
+X-Change-ID: 20241115-dev-maxh-svukte-v3-af46d650ac0b
+To: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Anup Patel <anup@brainfault.org>, Atish Patra <atishp@atishpatra.org>
+Cc: Palmer Dabbelt <palmer@sifive.com>, linux-riscv@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ kvm@vger.kernel.org, kvm-riscv@lists.infradead.org, 
+ Max Hsu <max.hsu@sifive.com>, Samuel Holland <samuel.holland@sifive.com>, 
+ Deepak Gupta <debug@rivosinc.com>, Alexandre Ghiti <alexghiti@rivosinc.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2572; i=max.hsu@sifive.com;
+ h=from:subject:message-id; bh=ju5iaCTTGnlC8cKNSV/WW1suH3P3ww9XIffkT2cxxRo=;
+ b=owEB7QES/pANAwAKAdID/Z0HeUC9AcsmYgBnPe2kHNOLtJ3Nh25+lGk83izF/rgv0VNEkT6pu
+ REZcT4K5Y6JAbMEAAEKAB0WIQTqXmcbOhS2KZE9X2jSA/2dB3lAvQUCZz3tpAAKCRDSA/2dB3lA
+ vZfUC/sHvSkPEeYcaLuBEqUc3AcV2qThswESzWxUw4n7HTrnZVEWEif4jcdPYpXLMtrBY5zGlVk
+ FO4VpUrnYPxMYbz2NSMEqp5JeIOdWY8rBQqKYcV17s7v4XA3BfCXC9q/hXupXM2dEdLOYUGtpqq
+ LWyPTw5fuqFEShidGJktJK740GSqg0Rh8ybvwadf6/aP0bIGEYMflZbMn2JDo9Mc3b925/WaPgH
+ vgEPgPWoTC/c9MX6Pb+nPxvK6lE/98LSbKCLLSCJDJuo5Z5l+Li4RqRt/SvL8YeqvwOmlKVbtGk
+ cHz0q4XRKXyCSAg68Z/n/2rX410Nw9L8j0FxDjrmINiu6yge0/J/TiS2t5YRIoxmPYye0Yiz9A9
+ s2goi0wDboUE1uIlMD1AHbmBSqnfSJsCEmE2TnLsnlarYRY3a3WmBh6mNNqh4vpbUOTCI0tpz1F
+ 7zC6DVzOqR6FJ4zULNN7B0rlWhzSWStDMay5CJOKM2awK0czHIHoaHuStTJywSon057N8=
+X-Developer-Key: i=max.hsu@sifive.com; a=openpgp;
+ fpr=EA5E671B3A14B629913D5F68D203FD9D077940BD
 
-With imx8mp-evk board we are now configuring 'dsp' node for rproc usage,
-so add rproc specific memory regions.
+RISC-V privileged spec will be added with Svukte extension [1]
 
-Also, enable dsp node because it is ready to be used.
+Svukte introduce senvcfg.UKTE and hstatus.HUKTE bitfield.
+which makes user-mode access to supervisor memory raise page faults
+in constant time, mitigating attacks that attempt to discover the
+supervisor software's address-space layout.
 
-Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
+In the Linux kernel, since the hstatus.HU bit is not enabled,
+the following patches only enable the use of senvcfg.UKTE.
+
+For Guest environments, because a Guest OS (not limited to Linux)
+may hold mappings from GVA to GPA, the Guest OS should decide
+whether to enable the protection provided by the Svukte extension.
+Therefore, the functions kvm_riscv_vcpu_isa_(enable|disable)_allowed
+can use default case (which will return true) in the switch-case.
+
+If the Guest environment wants to change senvcfg.UKTE, KVM already
+provides the senvcfg CSR swap support via
+kvm_riscv_vcpu_swap_in_(host|guest)_state.
+Thus, there is no concern about the Guest OS affecting the Host OS.
+
+The following patches add
+- dt-binding of Svukte ISA string
+- CSR bit definition, ISA detection, senvcfg.UKTE enablement in kernel
+- KVM ISA support for Svukte extension
+
+Changes in v3:
+- rebase on riscv/for-next
+- fixed typo in the dt-binding for the Svukte ISA string
+- updated the commit message for KVM support for the Svukte extension
+- Link to v2: https://lore.kernel.org/all/20240927-dev-maxh-svukte-rebase-2-v2-0-9afe57c33aee@sifive.com/
+
+Changes in v2:
+- rebase on riscv/for-next (riscv-for-linus-6.12-mw1)
+- modify the description of dt-binding on Svukte ISA string
+- Link to v1: https://lore.kernel.org/all/20240920-dev-maxh-svukte-rebase-v1-0-7864a88a62bd@sifive.com/
+
+Link: https://github.com/riscv/riscv-isa-manual/pull/1564 [1]
+
+Signed-off-by: Max Hsu <max.hsu@sifive.com>
+
 ---
- arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 6 ++++++
- arch/arm64/boot/dts/freescale/imx8mp.dtsi    | 1 -
- 2 files changed, 6 insertions(+), 1 deletion(-)
+Max Hsu (3):
+      dt-bindings: riscv: Add Svukte entry
+      riscv: Add Svukte extension support
+      riscv: KVM: Add Svukte extension support for Guest/VM
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-index d26930f1a9e9..adb01a484d78 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-@@ -291,6 +291,12 @@ &aud2htx {
- 	status = "okay";
- };
- 
-+&dsp {
-+	memory-region = <&dsp_vdev0buffer>, <&dsp_vdev0vring0>,
-+			<&dsp_vdev0vring1>, <&dsp_reserved>;
-+	status = "okay";
-+};
-+
- &eqos {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_eqos>;
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index fa4ff75af12d..e6f3ac02689c 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -282,7 +282,6 @@ reserved-memory {
- 		dsp_reserved: dsp@92400000 {
- 			reg = <0 0x92400000 0 0x1000000>;
- 			no-map;
--			status = "disabled";
- 		};
- 	};
- 
+ Documentation/devicetree/bindings/riscv/extensions.yaml | 9 +++++++++
+ arch/riscv/include/asm/csr.h                            | 2 ++
+ arch/riscv/include/asm/hwcap.h                          | 1 +
+ arch/riscv/include/uapi/asm/kvm.h                       | 1 +
+ arch/riscv/kernel/cpufeature.c                          | 5 +++++
+ arch/riscv/kvm/vcpu_onereg.c                            | 1 +
+ 6 files changed, 19 insertions(+)
+---
+base-commit: 0eb512779d642b21ced83778287a0f7a3ca8f2a1
+change-id: 20241115-dev-maxh-svukte-v3-af46d650ac0b
+
+Best regards,
 -- 
-2.43.0
+Max Hsu <max.hsu@sifive.com>
 
 
