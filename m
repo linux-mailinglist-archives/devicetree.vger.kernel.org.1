@@ -1,188 +1,134 @@
-Return-Path: <devicetree+bounces-123348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F9F69D4264
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 20:14:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95A519D4274
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 20:17:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6051D28223F
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 19:14:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C6B6283848
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 19:17:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CE1F1BC061;
-	Wed, 20 Nov 2024 19:13:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 603E81C07D3;
+	Wed, 20 Nov 2024 19:17:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LHFCzK89"
+	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="CSfOZL55"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B7F21BD9CC;
-	Wed, 20 Nov 2024 19:13:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C470715820C
+	for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 19:17:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732130038; cv=none; b=uHGJQoiRfhwqDMobC3LkrdPeoMEO8Gk7pJaATa9UUkVzIR2jaQ47frCNsc3xFTCVwmN9rjBmfQ2boq5eAvwvWLBrlP1J9e31MkCNmIWUeNVHnxKkB8THsvioy4l6i8XPirgFkwN8VDSo6QNMkOEX+an8dKfGRRs3sCW7H5v9N9A=
+	t=1732130253; cv=none; b=ZIWZBjZNtr6HmFD5efb0Dia1iUENMgRY0FErFksM4euJqgfqo98WULVsMoz1vSJ9fbeXYNgKV+MEFzwtL9h852JRU8nwX4gcvaBHidiv0eidiJ5Hff2l74Yx9mlG4VoeY+Z5D4bqR+r1z84GWIEJIpa/yfQoHrcXZYcZWUxj8Us=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732130038; c=relaxed/simple;
-	bh=mEsKzUYLiMK+Irx2LHiLlacnbn1Jq9aoRKytVJw2fJE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=tuvK6Wql3w/tM8I+ygcb+6at9Axc/KbaCsoX+TAZY9mII/JdCn8cA7TNz/o/6W1xp+VznzgqlYaUowtzb5UrtXO8brQ4Uz9jMO+Jg7o7Vwl9DcYKahTITO9kbacpRV4yVsbx+9ug+3yhiOthb8KfAnfYd6rj8B+CXLj6/KHbqmc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LHFCzK89; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AKAjtv1004593;
-	Wed, 20 Nov 2024 19:13:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	PRgl+A5czD1vLYckMAcFjfhUCMb9rNaDVG9BQoUpWWo=; b=LHFCzK89UmfPRv6n
-	EZ0Xv3bacCjleZB4+w2zLYkkpljS4dwYkv6oW2qC+a0GzIyIut37r+Akl8TzuNzp
-	IKUFom+wPfq+Bnr2lCAz31VGne7QGa5PXcgVsGhIYmEi24LtGpgC7lWVO6yTFTcp
-	tyFfbqhYBPZajJT0Yu4E9XC8CLPRF7mm2XBPvytUykJgIeAZkw97NNskU6MBinac
-	eKO3W5Hz8xLoQFfvEUr4QwqOdUayrxwvHUSc7NvcDfOJCd6+2zdCK4Gw2Y5xTGdy
-	x+SSolBDrBHkz0IfcSLBpb7tSCVcMx44LDVjxpkGdVJgLWmMcb4UbGMHbOC1E42q
-	jyyZPg==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 431ea719ru-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 20 Nov 2024 19:13:36 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AKJDZhm018898
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 20 Nov 2024 19:13:35 GMT
-Received: from [10.110.30.192] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 20 Nov
- 2024 11:13:35 -0800
-Message-ID: <02c20b06-34ef-459b-9cd1-2d2735eb1352@quicinc.com>
-Date: Wed, 20 Nov 2024 11:13:34 -0800
+	s=arc-20240116; t=1732130253; c=relaxed/simple;
+	bh=vGcatcbsSuXPFzJR3D9welFSsng16vRjIJUPoyCUcOo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=qcXM3E9QU3B9SjUC/qaKmlw1lp3Z5VYvA6/J9XvuvO6lXufKtn+V9oe458JIdzG22u+G9og1Ny5E0gDogM75lwV7VAGSIn5cb9pw/nZsgncS+HBQHKxFPQ8axn74UtKzyka0XF9gYpaEKN+cui+zr80SUYhGf7vPORmgMJK+ALo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=CSfOZL55; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4314f38d274so493995e9.1
+        for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 11:17:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=raspberrypi.com; s=google; t=1732130249; x=1732735049; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jr7qqPzbHAkagf9kWZH8AFBjV0Ls4zMfwt5LoWCWDEI=;
+        b=CSfOZL5525XLRhDbzTsxEHBy3Jw6o5O632zGnHtRUhsLBfqEK0+TTmI+Mzeon74t/w
+         NVfNgyxyImlD/y5Du+HmYLZOil3QdwBkuy5j8otfNycD8osy+a+n0XoFOE5KHXdqdORf
+         urJksUYwjps1slXH8O/UoGsiFEsGUYodKxYeMJcz6BKHCUBmV9LCsTLvnCkpHK+M0sfV
+         TGMtQpx3Z3FyHG37/JtXGbbnJSaMJaU2HOtef7+gPG4x8mLLwpR39zIvaXlV4xQ4LkiP
+         mMq1/K2iXH1S+pABI33Ue3c/yqUeQU1De+nA8P/BPPDT8jEIDlEaTmL82AZXsm8EBA+H
+         bCmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732130249; x=1732735049;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jr7qqPzbHAkagf9kWZH8AFBjV0Ls4zMfwt5LoWCWDEI=;
+        b=QQviOa7inuJNjNcM+3rzcSce8UjPAbPTAhcImBK/l1obaON3VOuNRPWYvj5Sza/4Mc
+         0MUYTQEPINO5cT+Fgn/B2GG3loNwhdRuVvojlUWrIrJQcotsAHV/4ae+5ndCFCQtJsNp
+         msZlQixtNO+pXtl+/td3qi4UMVrGCYdHHhcL0+Ihv5zDwwtnHuQPa4cQ8ic1tikqVuvK
+         HQzvsn6oMyA0c4/vYFJVcdtiKp/F99C9+Xc7WsU7SMk2QT+NOL+FsqUaogD5UH9fnscs
+         4YUWgwmXC7WlGitBNeo6dBU5kCtddXWbnt+bnGvdJpsTH1UwOXXbYvCuInhbZLv48bYv
+         /0/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCU6PkCd3SRL1J7PsE0DYI63q1dJVkoezwrM5beHfFq7meDgiKud+5T2+YYmRHaD094cZMtpe8mrwI4R@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxb3XEZ99xK7jFUx+SDFJpQeMcJ6whvGNm2uYCzM9fRv0VWXmq3
+	IhPdgJjPEM8qR7S6SA1PM+n8yZb/KqGFqkiMCTdkzHmXKehDOpcnQYzKTj0fDsI=
+X-Google-Smtp-Source: AGHT+IHvFo9WlmxcMV8IjdperLMhQZjV3VgLzVSA3y+8HnawYzK6+2xS69U+wMdnZmgdTzRDcgK+WQ==
+X-Received: by 2002:a05:600c:1f11:b0:42a:a6b8:f09f with SMTP id 5b1f17b1804b1-4334f0154b9mr36081565e9.23.1732130249071;
+        Wed, 20 Nov 2024 11:17:29 -0800 (PST)
+Received: from [127.0.1.1] ([2a00:1098:3142:e::8])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3825a2c5ef2sm172457f8f.53.2024.11.20.11.17.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Nov 2024 11:17:28 -0800 (PST)
+From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Subject: [PATCH v2 0/4] media: i2c: imx290: Add support for imx462
+Date: Wed, 20 Nov 2024 19:17:02 +0000
+Message-Id: <20241120-media-imx290-imx462-v2-0-7e562cf191d8@raspberrypi.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v30 28/30] ALSA: usb-audio: Add USB offload route kcontrol
-To: Takashi Iwai <tiwai@suse.de>
-CC: <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <conor+dt@kernel.org>, <dmitry.torokhov@gmail.com>,
-        <corbet@lwn.net>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
-        <krzk+dt@kernel.org>, <pierre-louis.bossart@linux.intel.com>,
-        <Thinh.Nguyen@synopsys.com>, <tiwai@suse.com>, <robh@kernel.org>,
-        <gregkh@linuxfoundation.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-sound@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-input@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>
-References: <20241106193413.1730413-1-quic_wcheng@quicinc.com>
- <20241106193413.1730413-29-quic_wcheng@quicinc.com>
- <87bjya3xzw.wl-tiwai@suse.de>
-Content-Language: en-US
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <87bjya3xzw.wl-tiwai@suse.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: sqkKZTyGo3C_8Bm1FdjXq4-r8MU9hacU
-X-Proofpoint-ORIG-GUID: sqkKZTyGo3C_8Bm1FdjXq4-r8MU9hacU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 adultscore=0
- bulkscore=0 mlxscore=0 suspectscore=0 lowpriorityscore=0 clxscore=1015
- priorityscore=1501 impostorscore=0 malwarescore=0 mlxlogscore=999
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411200133
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAK41PmcC/32NSQ7CMBAEvxLNGaN4cBY48Q+Ug5eBzCGLxihKF
+ PnvOHkAp1a11NU7RBKmCI9iB6GFI09jBrwU4Hs7fkhxyAxYotFaGzVQYKt4WPFeHmFqVK4O2qN
+ xTeMqyMtZ6M3raX11mXuO30m282TRR/vft2hVKl/dWouEpmnrp9g4OxLZZr76aYAupfQDVR3xf
+ LwAAAA=
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, 
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.1
 
-Hi Takashi,
+imx462 is the successor to imx290 (and imx327 before that), and only
+requires a few very minor register tweaks.
 
-On 11/20/2024 4:12 AM, Takashi Iwai wrote:
-> On Wed, 06 Nov 2024 20:34:11 +0100,
-> Wesley Cheng wrote:
->> In order to allow userspace/applications know about USB offloading status,
->> expose a sound kcontrol that fetches information about which sound card
->> and PCM index the USB device is mapped to for supporting offloading.  In
->> the USB audio offloading framework, the ASoC BE DAI link is the entity
->> responsible for registering to the SOC USB layer.
->>
->> It is expected for the USB SND offloading driver to add the kcontrol to the
->> sound card associated with the USB audio device.  An example output would
->> look like:
->>
->> tinymix -D 1 get 'USB Offload Playback Route PCM#0'
->> -1, -1 (range -1->255)
->>
->> This example signifies that there is no mapped ASoC path available for the
->> USB SND device.
->>
->> tinymix -D 1 get 'USB Offload Playback Route PCM#0'
->> 0, 0 (range -1->255)
->>
->> This example signifies that the offload path is available over ASoC sound
->> card index#0 and PCM device#0.
->>
->> The USB offload kcontrol will be added in addition to the existing
->> kcontrols identified by the USB SND mixer.  The kcontrols used to modify
->> the USB audio device specific parameters are still valid and expected to be
->> used.  These parameters are not mirrored to the ASoC subsystem.
->>
->> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
-> IIRC, this representation of kcontrol was one argued issue; Pierre
-> expressed the concern about the complexity of the kcontrol.
-> I didn't follow exactly, but did we get consensus?
-So the part that Pierre had concerns on was that previously, the implementation was placing offload kcontrols to the ASoC platform card, and had some additional controls that complicated the offload implementation about the offload status for each USB audio device.  This was discussed here:
+Whilst at it I also fixed the todo over imx327 and imx290 having very
+slightly different maximum analog gains (29.4dB vs 30.0dB) and added
+that to the variant structure.
 
-https://lore.kernel.org/linux-usb/957b3c13-e4ba-45e3-b880-7a313e48c33f@quicinc.com/
+Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+---
+Changes in v2:
+- Added patch 2 to correct register 0x3011 to 0x00 on imx290.
+- Corrected title for dtbindings patch to remove duplicated "media"
+- Picked up tags.
+- Link to v1: https://lore.kernel.org/r/20241114-media-imx290-imx462-v1-0-c538a2e24786@raspberrypi.com
 
-To summarize, I made the decision to move the offload status kcontrols from ASoC --> USB SND and limited it to only one kcontrol (mapped offload device).  So now, there exists a kcontrol for every USB SND device (if the offload mixer is enabled), where it tells userspace the mapped ASoC platform card and pcm device that handles USB offloading, else you'll see the "-1, -1" pair, which means offload is not possible for that USB audio device.
+---
+Dave Stevenson (4):
+      media: i2c: imx290: Limit analogue gain according to module
+      media: i2c: imx290: Register 0x3011 varies between imx327 and imx290
+      media: dt-bindings: sony,imx290: Add IMX462 to the IMX290 binding
+      media: i2c: imx290: Add configuration for IMX462
 
-> Apart from that: the Kconfig defition below ...
->
->> +config SND_USB_OFFLOAD_MIXER
->> +	tristate "USB Audio Offload mixer control"
->> +	help
->> +	 Say Y to enable the USB audio offloading mixer controls.  This
->> +	 exposes an USB offload capable kcontrol to signal to applications
->> +	 about which platform sound card can support USB audio offload.
->> +	 The returning values specify the mapped ASoC card and PCM device
->> +	 the USB audio device is associated to.
-> ... and Makefile addition below ...
->
->> --- a/sound/usb/Makefile
->> +++ b/sound/usb/Makefile
->> @@ -36,3 +36,5 @@ obj-$(CONFIG_SND_USB_US122L) += snd-usbmidi-lib.o
->>  
->>  obj-$(CONFIG_SND) += misc/ usx2y/ caiaq/ 6fire/ hiface/ bcd2000/ qcom/
->>  obj-$(CONFIG_SND_USB_LINE6)	+= line6/
->> +
->> +obj-$(CONFIG_SND_USB_OFFLOAD_MIXER) += mixer_usb_offload.o
-> ... indicates that this code will be an individual module, although
-> it's solely used from snd-usb-audio-qmi driver.  This should be rather
-> a boolean and moved to sound/usb/qcom/, and linked to
-> snd-usb-audio-qmi driver itself, e.g.
->
-> --- a/sound/usb/qcom/Makefile
-> +++ b/sound/usb/qcom/Makefile
-> @@ -1,2 +1,3 @@
->  snd-usb-audio-qmi-objs := usb_audio_qmi_v01.o qc_audio_offload.o
-> +snd-usb-audio-qmi-$(CONFIG_SND_USB_OFFLOAD_MIXER) += mixer_usb_offload.o
->  obj-$(CONFIG_SND_USB_AUDIO_QMI) += snd-usb-audio-qmi.o
->
-> Then you can drop EXPORT_SYMBOL_GPL(), too.
+ .../devicetree/bindings/media/i2c/sony,imx290.yaml |  2 +
+ drivers/media/i2c/imx290.c                         | 81 ++++++++++++++++++++--
+ 2 files changed, 76 insertions(+), 7 deletions(-)
+---
+base-commit: ed61c59139509f76d3592683c90dc3fdc6e23cd6
+change-id: 20241114-media-imx290-imx462-b6d1c24b77b5
 
-Had a discussion with Pierre on this too below.
-
-https://lore.kernel.org/linux-usb/f507a228-4865-4df5-9215-bc59e330a82f@linux.intel.com/
-
-I remember you commenting to place it in this vendor offload module, which is what I did on v24.
-
-Thanks
-
-Wesley Cheng
+Best regards,
+-- 
+Dave Stevenson <dave.stevenson@raspberrypi.com>
 
 
