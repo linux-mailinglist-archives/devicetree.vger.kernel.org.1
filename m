@@ -1,160 +1,229 @@
-Return-Path: <devicetree+bounces-123185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123186-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE38E9D3A5B
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 13:12:22 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0DFA9D3A68
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 13:14:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CB0FBB2D2CC
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 11:57:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C9AC1B2A983
+	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 11:58:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D4D31A4F09;
-	Wed, 20 Nov 2024 11:55:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F2A61A0711;
+	Wed, 20 Nov 2024 11:58:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="EHLA8DMg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UqI0dZxF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BEAD19F41D;
-	Wed, 20 Nov 2024 11:55:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8117119F423
+	for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 11:57:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732103751; cv=none; b=emz72XEUd/wCQNNZSaufwKf7KTmcpvXmqVQ1HYS9ZeAP43NbTK9VRVaAosyznEulstq+gjlXxA0Lrd1npMnXKYOiB37885DnlqFYik4TVa8Plu/Ajy6b3Klc2FBz2UR6mlSusW4cEW89tX089BOVJMJa3lFuoR5UQflzNL3MGoA=
+	t=1732103880; cv=none; b=YBg8RXfS/GLgQCF6CVOgwAIrIbT6KMBiWL3SaOH3O2jbr3G7nShqrQq8UCGti8/efjC8YAPJPSUADkh7ZusOQEk/kznwvyOBmb0RnBoCxvLY06kI52rj8W2XjhoB0e1mUFpc0Hgmb3xtl/yI5jHm05aF5na7jNtXMpyNrjKSjOY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732103751; c=relaxed/simple;
-	bh=LKKBBEfzE2cUMCjgNuOL1nYgkM/Aqi5ZPzy8Ibang1w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=J2YpJjBuFFpH0uN5wkM3m6MyvD01JjWYxJbWGS2GilU/MPLPp50PdaAkoDPul0K+V12oqQeVrHcAMdf9lNGYPgNl43qXcVOj4/C+h7XqTRNUg7xfmhxZwlhN/EauRC9EkT6H3YmPJ4Sm0iaTMm2Z7l+G+DTNPyUyd6fHjN6L844=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=EHLA8DMg; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1732103747;
-	bh=LKKBBEfzE2cUMCjgNuOL1nYgkM/Aqi5ZPzy8Ibang1w=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EHLA8DMg8yHXcCZHC1W/0qb5Gd5PgwuGQP4kztP6cAfyrDec5pQMq+e2rzxDFWWYK
-	 BRy+2eZD0AHqu85dHUvMXdJD9IYjU8E+oFwH6QVZK3ubl5b7xWEW6oAOTJ0WYErzMT
-	 USm50NxflDXbHnaQDvl7HVtt/0ncOBoJ66dTs0NJdXFaTzyPaiyvcZPn0jN5fD8IOm
-	 5n2tS4TAXd4lHOz6UehGpFmtJoNjc4YORuFaSqxPAGez5dtIAnJeW/X5Gc/+6IwQYH
-	 OL5568NmacG/oAEmZYgRn+U0Fn8V59UDqwkUhRTdJ2kh/+Vd/zRu5x8Iyh38gcYnbq
-	 8Z7BG3v3lJjhQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id DFE3D17E3632;
-	Wed, 20 Nov 2024 12:55:46 +0100 (CET)
-Message-ID: <e1aa2b69-5c40-44a5-b0b5-2a262bcc72f3@collabora.com>
-Date: Wed, 20 Nov 2024 12:55:46 +0100
+	s=arc-20240116; t=1732103880; c=relaxed/simple;
+	bh=0e0nr2aDV/a5TiJuxeZ1nyQWXMPEjp/tJGOao9xoL1Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=e57h2DweLdEDIZ0V9WQd4o4bIyMgt/kNZcmCDeZa1hq6LU0Dk3Zkaf1Clz3h6NZK7/4M14q+hu+rD7Z3cMtL5MG8Gj+cc99vogbdXaaFgZBOqJcaI/MxefgKrmfwkCaqp5d+Fm/ZSjdo2KJwmPnB95z6R5jYQhmgH+ZVN478ICU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UqI0dZxF; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-53d9ff8ef3aso2384552e87.1
+        for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 03:57:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1732103876; x=1732708676; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=kkDJuRPym29fU3HSSlVBvB5wB9QK3I5iEUymjLs3BXM=;
+        b=UqI0dZxFjUM6pkeHNrTr9DZly81eUQuGEU7Q4qo+Xn+XbekRXeL3LNkbuLkgpCvBf5
+         2BLNPZOSMPIdBKYYc/dSYQat2V1qiSRZmQVbVJFOVMjuIBzYGbTn44wTx7G3gYiD1D1g
+         +gZH8FtNWiV7F95q0FV+/HLKtLG5ucCjCRvq7JfSm4gIHNDsvnjB3DPy/EbuAf8d9Mhi
+         HGxu4DrP/BXhXmPb2aJ/WHgLdF9k+ZxoUmoATip0Abilz4AuaPhHBc78XEhI6Zt4ivBO
+         /XSCmUb0bWR3cx6ZkJUOe5FnmSVKgltDvqCMcZusYShH3qbD8GRXTec2XRll7hFcW+OX
+         VcTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732103876; x=1732708676;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kkDJuRPym29fU3HSSlVBvB5wB9QK3I5iEUymjLs3BXM=;
+        b=YJrYZbf8oTnitVgArHE7EcHB9kVn04rFKzWWklqDJ/swm3Fg4nKDYiW5Rnrkgt+C4M
+         VKbftbJkrvMMGMjrV9Diynv4ZXovVKXpNi7UgsT4oOVP+5rIPHJMTceVzppnYAAiBjm6
+         hKUwjfI+IgRKXDmf+/ZJf9P8nbe4pQLvPW7VFHH8dWF4uzn+LlkIlwoM4A0qE79vwqd7
+         oKg+8C3cuzTHwde3IsmQTvFwmEAkyhCzDitgbn6gW47+oirWk0sUlmQ24eVEwGu3Zvzm
+         EcIchhxba0uQH2pogVS6OLrqAji+SYIt1n43muKt05E+2c+Pkw4tzR9Z0/WOOfwVlWrO
+         b55A==
+X-Forwarded-Encrypted: i=1; AJvYcCVyfem/ge1A1UkCRKgn1DpU6ZynZo1dXY/g/Q/CXtVeu0Uq4jGzePGC0ZndoZ4G9sWKtjXiQzMlfyil@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx6IiiE88NxHIi9kFyw3nRZfOBiN/OZit4AazPF1/aczqBxpkDi
+	rViWGNQ+7XKfOIBSDxqLJFVA42TzjaK/4ScyaDb2PgeEx1yxFEKx7RizPUuAjkk=
+X-Gm-Gg: ASbGnctWuvtKAQ3m3P7xAAVih8pLeZqN4MO35mW4Q6S9k9oVYJjYXtEI5lzvdIvPTD+
+	sr4gv/6kAfIO3+5dquoDVvn8oJ1SuOIBrIrV/l8Z4z3i2uGjeR6f1pQf4v/ZZoVMXOCqzKNFCje
+	Nqfykm2fpayGf0emYuuz3hYMflDYrMItJhEWTwdKvsCCQNaYxnvZSKqd4QVyy3bdkqM/hKFLHC6
+	mLsbwAm/njlySBzqzQ+F+1i2DY+mHy29kkDcuoDziGdAM/Bw3YI2A2j/JoCsjCw1gvavbbVdHvu
+	iGCJlMRaRL8OAMxIHQM/8eaz4tSrsA==
+X-Google-Smtp-Source: AGHT+IEhdK1oi5UhEJitu+CYeExmzTppA+htmFSLIfQ47nQb2OOw28dJBcmFit/oz+783D827lApYA==
+X-Received: by 2002:a05:6512:3b2a:b0:539:edea:9ed9 with SMTP id 2adb3069b0e04-53dc13275aamr1000536e87.1.1732103875668;
+        Wed, 20 Nov 2024 03:57:55 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53dbd4671d9sm606538e87.115.2024.11.20.03.57.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Nov 2024 03:57:54 -0800 (PST)
+Date: Wed, 20 Nov 2024 13:57:52 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Komal Bajaj <quic_kbajaj@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Melody Olvera <quic_molvera@quicinc.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] arm64: dts: qcom: qdu/qru1000-idp: Fix the voltage
+ setting
+Message-ID: <orvnnjclxlwrab34daxrepn3m3la3heogkxbncl44yjyn3wxkt@vnp4knb5nedo>
+References: <20241119070812.16079-1-quic_kbajaj@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: reset: mediatek: Add mt8188 SMI reset
- control binding
-To: Friday Yang <friday.yang@mediatek.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20241120063305.8135-1-friday.yang@mediatek.com>
- <20241120063305.8135-2-friday.yang@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20241120063305.8135-2-friday.yang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241119070812.16079-1-quic_kbajaj@quicinc.com>
 
-Il 20/11/24 07:32, Friday Yang ha scritto:
-> From: "Friday Yang" <friday.yang@mediatek.com>
+On Tue, Nov 19, 2024 at 12:38:11PM +0530, Komal Bajaj wrote:
+> While adding the USB support, it was found that the configuration
+> for regulator smps5 was incorrectly set. Upon cross verifying for
+> all the regulators, found that smps4, smps6 and smps8 are also
+> incorrectly configured. The patch corrects these configurations.
 > 
-> To support SMI clamp and reset operation in genpd callback, add
-> SMI LARB reset controller in the bindings. Add index in
-> mt8188-resets.h to query the reset signal in the SMI reset
-> control driver.
+> In particular -
+> - smps4 is 1.574V min and 2.04V max
+> - smps5 is 1.2V min and 1.4V max
+> - smps6 is 0.382V min and 1.12V max
+> - smps8 is fixed at 0.752V
+
+Could you please comment whether your values represent the min/max
+supported by the regulators themselves or the shared min/max by all the
+devices powered by the corresponding regulator?
+
 > 
-> Signed-off-by: Friday Yang <friday.yang@mediatek.com>
+> Fixes: d1f2cfe2f669 ("arm64: dts: qcom: Add base QDU1000/QRU1000 IDP DTs")
+> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
 > ---
->   .../bindings/reset/mediatek,smi-reset.yaml    | 53 +++++++++++++++++++
->   include/dt-bindings/reset/mt8188-resets.h     | 11 ++++
->   2 files changed, 64 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/reset/mediatek,smi-reset.yaml
+> Changes in v3 -
+> * Minor nit pick in commit message
+> * Link to v2: https://lore.kernel.org/all/20240524082236.24112-1-quic_kbajaj@quicinc.com/
 > 
-> diff --git a/Documentation/devicetree/bindings/reset/mediatek,smi-reset.yaml b/Documentation/devicetree/bindings/reset/mediatek,smi-reset.yaml
-> new file mode 100644
-> index 000000000000..77a6197a9846
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/reset/mediatek,smi-reset.yaml
-> @@ -0,0 +1,53 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (c) 2024 MediaTek Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/reset/mediatek,smi-reset.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek SMI Reset Controller
-> +
-> +maintainers:
-> +  - Friday Yang <friday.yang@mediatek.com>
-> +
-> +description: |
-> +  This reset controller node is used to perform reset management
-> +  of SMI larbs on MediaTek platform. It is used to implement various
-> +  reset functions required when SMI larbs apply clamp operation.
-> +
-> +  For list of all valid reset indices see
-> +    <dt-bindings/reset/mt8188-resets.h> for MT8188.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt8188-smi-reset
-> +
-> +  "#reset-cells":
-> +    const: 1
-> +    description:
-> +      The cell should be the device ID. SMI reset controller driver could
-> +      query the reset signal of each SMI larb by device ID.
-> +
-> +  mediatek,larb-rst:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Phandle of each subsys clock controller. SMI larbs are located in
-> +      these subsys. SMI needs to parse the node of each subsys clock
-> +      controller to get the register address, and then apply the reset
-> +      operation.
-> +
-> +required:
-> +  - compatible
-> +  - "#reset-cells"
-> +  - mediatek,larb-rst
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    reset-controller {
-> +        compatible = "mediatek,mt8188-smi-reset";
-> +        #reset-cells = <1>;
-> +        mediatek,larb-rst = <&imgsys1_dip_top>;
+> Changes in v2-
+> * Updated the commit message as suggested by Krzysztof
+> * Link to v1: https://lore.kernel.org/linux-arm-msm/20240514131038.28036-1-quic_kbajaj@quicinc.com/
+> ---
+>  arch/arm64/boot/dts/qcom/qdu1000-idp.dts | 16 ++++++++--------
+>  arch/arm64/boot/dts/qcom/qru1000-idp.dts | 16 ++++++++--------
+>  2 files changed, 16 insertions(+), 16 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+> index e65305f8136c..6e8f9007068b 100644
+> --- a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+> +++ b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+> @@ -96,20 +96,20 @@ vreg_s3a_1p05: smps3 {
+> 
+>  		vreg_s4a_1p8: smps4 {
+>  			regulator-name = "vreg_s4a_1p8";
+> -			regulator-min-microvolt = <1800000>;
+> -			regulator-max-microvolt = <1800000>;
+> +			regulator-min-microvolt = <1574000>;
+> +			regulator-max-microvolt = <2040000>;
+>  		};
+> 
+>  		vreg_s5a_2p0: smps5 {
+>  			regulator-name = "vreg_s5a_2p0";
+> -			regulator-min-microvolt = <1904000>;
+> -			regulator-max-microvolt = <2000000>;
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1400000>;
 
-I don't understand why would you be unable to add the SMI resets to the already
-currently supported reset code in the clock-controller driver itself, like done
-with literally all of the other clock controllers.
+Having 2.0 V regulator with the range of 1.2V - 1.4V is strange.
 
-Please clarify.
+>  		};
+> 
+>  		vreg_s6a_0p9: smps6 {
+>  			regulator-name = "vreg_s6a_0p9";
+> -			regulator-min-microvolt = <920000>;
+> -			regulator-max-microvolt = <1128000>;
+> +			regulator-min-microvolt = <382000>;
+> +			regulator-max-microvolt = <1120000>;
 
-Regards,
-Angelo
+The same applies to this regulator, 0.9V usually can not go to 0.382 V
+and still let the devices to continue working.
 
+>  		};
+> 
+>  		vreg_s7a_1p2: smps7 {
+> @@ -120,8 +120,8 @@ vreg_s7a_1p2: smps7 {
+> 
+>  		vreg_s8a_1p3: smps8 {
+>  			regulator-name = "vreg_s8a_1p3";
+> -			regulator-min-microvolt = <1352000>;
+> -			regulator-max-microvolt = <1352000>;
+> +			regulator-min-microvolt = <752000>;
+> +			regulator-max-microvolt = <752000>;
+
+1.3V at 0.752V?
+
+>  		};
+> 
+>  		vreg_l1a_0p91: ldo1 {
+> diff --git a/arch/arm64/boot/dts/qcom/qru1000-idp.dts b/arch/arm64/boot/dts/qcom/qru1000-idp.dts
+> index 1c781d9e24cf..8b0ddc187ca0 100644
+> --- a/arch/arm64/boot/dts/qcom/qru1000-idp.dts
+> +++ b/arch/arm64/boot/dts/qcom/qru1000-idp.dts
+> @@ -96,20 +96,20 @@ vreg_s3a_1p05: smps3 {
+> 
+>  		vreg_s4a_1p8: smps4 {
+>  			regulator-name = "vreg_s4a_1p8";
+> -			regulator-min-microvolt = <1800000>;
+> -			regulator-max-microvolt = <1800000>;
+> +			regulator-min-microvolt = <1574000>;
+> +			regulator-max-microvolt = <2040000>;
+>  		};
+> 
+>  		vreg_s5a_2p0: smps5 {
+>  			regulator-name = "vreg_s5a_2p0";
+> -			regulator-min-microvolt = <1904000>;
+> -			regulator-max-microvolt = <2000000>;
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1400000>;
+>  		};
+> 
+>  		vreg_s6a_0p9: smps6 {
+>  			regulator-name = "vreg_s6a_0p9";
+> -			regulator-min-microvolt = <920000>;
+> -			regulator-max-microvolt = <1128000>;
+> +			regulator-min-microvolt = <382000>;
+> +			regulator-max-microvolt = <1120000>;
+>  		};
+> 
+>  		vreg_s7a_1p2: smps7 {
+> @@ -120,8 +120,8 @@ vreg_s7a_1p2: smps7 {
+> 
+>  		vreg_s8a_1p3: smps8 {
+>  			regulator-name = "vreg_s8a_1p3";
+> -			regulator-min-microvolt = <1352000>;
+> -			regulator-max-microvolt = <1352000>;
+> +			regulator-min-microvolt = <752000>;
+> +			regulator-max-microvolt = <752000>;
+>  		};
+> 
+>  		vreg_l1a_0p91: ldo1 {
+> --
+> 2.46.0
+> 
+
+-- 
+With best wishes
+Dmitry
 
