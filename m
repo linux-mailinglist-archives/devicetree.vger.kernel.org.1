@@ -1,147 +1,136 @@
-Return-Path: <devicetree+bounces-123397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123402-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7F0B9D46B3
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 05:27:15 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 318339D46D2
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 05:36:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 51886B23429
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 04:27:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7C01EB238A6
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 04:36:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C86051C9ECE;
-	Thu, 21 Nov 2024 04:26:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73286433D1;
+	Thu, 21 Nov 2024 04:36:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="GnKNIoeg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Pmu2K4iq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97C0B14A0AA;
-	Thu, 21 Nov 2024 04:26:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03CBD230992;
+	Thu, 21 Nov 2024 04:36:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732163174; cv=none; b=pZjeRY/QDlpee7dO0X/y8MXEi8y0VpTb8fUL4iqly2j4IjWWGbG6mmULHfCT72WinNXJ0lCFgi9KPunA2QgQQjr0WNecAaEzXANI/PidWmIuTUnmjeitrQbUPJVilx8g1e0fLAzjANbEcZOgGSVx0SYsxXwXp/LhX3sqW3RNCqE=
+	t=1732163766; cv=none; b=DESq6rXOCYAdpU2SBQnjWgPrHaZS6ZDITWP8ivQm7NeGDB5Jo7lAKcqkyI1r4KebO531o+06ONObn3ktJPKyULtpJM9WQt/6LipKZ+k895gqgGtdtHq1t2AFtg05xPBDIrl5y9fV4h1JcjKwvV4VHvQofqzkC1GEsTNpJpsd41A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732163174; c=relaxed/simple;
-	bh=ck7bzPzFs8bYVuikk6zNFtTHiCWnawmfYq80NWJ1ZGQ=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=p1yn2Y/xx95p+Y3Lk6HcSimzu9Z6mA/9h8Pg42jic7Gs7OQDPw1QpHqrcBVoWaKQiUsk85uCH9WeCVrEQ7z5I1Bo/CntFf9C4T9sBtxYEWgY+ce+in2PgqSqpVa2F/A/zBRqSvoN8I555mK58jaypPKZXcEftc9n7kLop1MBSCY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=GnKNIoeg; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: b9de6e7ca7c011ef99858b75a2457dd9-20241121
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=lI/K4ucl8KGgsqsmNWx6aKov8gDN64MnPlyw9H+LSEw=;
-	b=GnKNIoegG9Rm8XJjX947Oipzo+PQaYedEaiS6SRZDwdrT4mUONXRRsseiCJTyDhVV/xY2/b3tT9zs1V9w1JOaHE1sxYhyN+hjp3OFjfOJgo3vf0A9S50JQqTveJV/ro36T1QRFuIziGiFe/Iai/OWX38O25uV4u7CHcmwdp9Zt0=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.44,REQID:09e9c10f-c67a-4d5c-a1f9-f198fd4660c2,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:464815b,CLOUDID:c435d6fe-58af-4a77-b036-41f515d81476,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:nil,Content:0,EDM:-3,IP
-	:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,
-	LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: b9de6e7ca7c011ef99858b75a2457dd9-20241121
-Received: from mtkmbs09n2.mediatek.inc [(172.21.101.94)] by mailgw01.mediatek.com
-	(envelope-from <jason-jh.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 855146494; Thu, 21 Nov 2024 12:26:06 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Thu, 21 Nov 2024 12:26:05 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Thu, 21 Nov 2024 12:26:05 +0800
-From: Jason-JH.Lin <jason-jh.lin@mediatek.com>
-To: Jassi Brar <jassisinghbrar@gmail.com>, Chun-Kuang Hu
-	<chunkuang.hu@kernel.org>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>, Mauro Carvalho Chehab
-	<mchehab@kernel.org>
-CC: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Moudy
- Ho <moudy.ho@mediatek.com>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-	<linux-mediatek@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-media@vger.kernel.org>, "Jason-JH . Lin" <jason-jh.lin@mediatek.com>,
-	Singo Chang <singo.chang@mediatek.com>, Nancy Lin <nancy.lin@mediatek.com>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH 8/8] media: mediatek: mdp3: Add pa_base due to CMDQ API change
-Date: Thu, 21 Nov 2024 12:26:02 +0800
-Message-ID: <20241121042602.32730-9-jason-jh.lin@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20241121042602.32730-1-jason-jh.lin@mediatek.com>
-References: <20241121042602.32730-1-jason-jh.lin@mediatek.com>
+	s=arc-20240116; t=1732163766; c=relaxed/simple;
+	bh=w/ZDhYOu0RkIOtqFQxjfFSWf+1RINjccP17wzWKW3yI=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:References:
+	 In-Reply-To:Content-Type; b=jV5cxrk3kRvi3JmjrYrE8Z/+/WEyDXuXaXdXpS/4ZRWO4ALh6YCrpgM8+HUXnd5of8dRrxKu4gHxW8WnQ4p3ub/XyTNyCCBXHiNKj2LUAXAScUwDE4KJNv4PW6ICbJq+R8N7rGLizlDBcvFezn9OQscuypPdnSTKK5gKz73M0H0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Pmu2K4iq; arc=none smtp.client-ip=209.85.210.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-71e4244fdc6so512762b3a.0;
+        Wed, 20 Nov 2024 20:36:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1732163764; x=1732768564; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :to:from:subject:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1/0XIMY2uA6o6zIyzy4M5ULjqGepYEcYqaZjgiCOkJw=;
+        b=Pmu2K4iqDrCCxmn8l2KgUS8Gb7cKSIILHjD9h9wyHJmcn0bl96YFr00f0c02blTjjS
+         6kHTI3Ve8wLuwbz8vgsTpoW/wlXJKKQj/Y+KweAyTScz0keI4SZ95fxrmJa5ApVPqMfy
+         Y4lKACOIE2D5XlZb5LVcPmwkBZq+TDcZrcfo7NkgtC5VMXwEoJpAI/zzyy1mhtCOFlma
+         mcUD/pU1YwU66tUTSQDUpMZi3QMwwee6P8dRNKSe+cLMCtq0uYq5geVyi9kqD4Gp/uos
+         Ka0O8B1yfR8G2/TICOUT9KIKxHzQMfApP/TVkibS8UNKQAjHf5YzRl+tgFRc2zxzZPez
+         VUGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732163764; x=1732768564;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :to:from:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1/0XIMY2uA6o6zIyzy4M5ULjqGepYEcYqaZjgiCOkJw=;
+        b=K70HboIrPW55kId334xGzFOps2WcGoo82CgLs6m26suZFypNSnFswu1B4rIm3H4G3B
+         YDNso5TA2IvZj5geI3j6CrscM54ZGlMSlPrwj6GnXMP/09/IMdhw4Whm7niC4jhMdU+v
+         CQ9bzcSkdioHPLZi9Halp+R6Wc8rV7sbBKTl4srqb3tmWfdDJhlVfJbcPYjcRXQZUA1L
+         H+2JVX8AlycDiNdfBMPS2nJHa5ih4aVt9yx6NaSbZoXa8aast/6pFfkte2fe1ItF9ZnY
+         WJbf0KYRYc38oHeK1LudiQK5nZgk4Cm80yRvFkQhhU09vE+IOQmwLLjbKFz+e40+cyPt
+         6hxQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU7AnUgbdG0H0BYG0VofK8eQHjv9yGabZLA+0zh01xHqG0gyseiaT0rUxsFzHUkAtJaTWbxaSRJZEusRd7r@vger.kernel.org, AJvYcCXd++veNDjV8ykP5hCUfJ8Ot3XP1mx13wsHmCbDWJQIxfADBA+3+WjUH4ZQkJBJ1cBNWjkVfHX6yE0m@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw2VqVDFfNEO9MFWXG6p3j6AEWAzpSmtZmdfEutPjOO2xJ0ykZb
+	lTg1y9n9gYyNFfeknLARPeT1vKmCbln+0aczKPJ20gxyzY95gSa3
+X-Google-Smtp-Source: AGHT+IFaemvzryO7WCLz5Ca6Xg1J+x2yyqw0JJSN0FkNyVQdTywTiZN7n88034g5Msg4VO8+oq5ykA==
+X-Received: by 2002:a05:6a00:21cd:b0:71e:1722:d019 with SMTP id d2e1a72fcca58-724bed5a647mr6328217b3a.22.1732163764184;
+        Wed, 20 Nov 2024 20:36:04 -0800 (PST)
+Received: from [10.10.14.80] (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7fbb659fccesm393651a12.73.2024.11.20.20.36.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Nov 2024 20:36:03 -0800 (PST)
+Message-ID: <b13e5063-3b07-43ec-a7cc-b19e73b7c9e0@gmail.com>
+Date: Thu, 21 Nov 2024 12:33:50 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK: N
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/6] Revise Meta(Facebook) Harma BMC(AST2600)
+From: PeterYin <peteryin.openbmc@gmail.com>
+To: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org
+References: <20241121025323.1403409-1-peteryin.openbmc@gmail.com>
+Content-Language: en-US
+In-Reply-To: <20241121025323.1403409-1-peteryin.openbmc@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-To support non-subsys ID hardware on new SoCs, the CMDQ API has been
-changed to include the pa_base parameter. This change accommodates
-the new interface requirements.
+Hi Andrew,
+   I believe this series' path will conflict with upstream due to 
+version differences between OpenBMC and upstream. I will update to the 
+latest version of the DTS from upstream and submit a new version 
+accordingly.
 
-Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
----
- drivers/media/platform/mediatek/mdp3/mtk-mdp3-cmdq.c | 4 ++--
- drivers/media/platform/mediatek/mdp3/mtk-mdp3-comp.h | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
+Thanks,
+Peter.
 
-diff --git a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-cmdq.c b/drivers/media/platform/mediatek/mdp3/mtk-mdp3-cmdq.c
-index ea2ea119dd2a..a0836d3b0cb8 100644
---- a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-cmdq.c
-+++ b/drivers/media/platform/mediatek/mdp3/mtk-mdp3-cmdq.c
-@@ -326,7 +326,7 @@ static int mdp_path_config_subfrm(struct mdp_cmdq_cmd *cmd,
- 	for (index = 0; index < ctrl->num_sets; index++) {
- 		set = &ctrl->sets[index];
- 		cmdq_pkt_write_mask(&cmd->pkt, set->subsys_id, set->reg,
--				    set->value, 0xFFFFFFFF);
-+				    (u16)set->reg, set->value, 0xFFFFFFFF);
- 	}
- 	/* Config sub-frame information */
- 	for (index = (num_comp - 1); index >= 0; index--) {
-@@ -382,7 +382,7 @@ static int mdp_path_config_subfrm(struct mdp_cmdq_cmd *cmd,
- 	for (index = 0; index < ctrl->num_sets; index++) {
- 		set = &ctrl->sets[index];
- 		cmdq_pkt_write_mask(&cmd->pkt, set->subsys_id, set->reg,
--				    0, 0xFFFFFFFF);
-+				    (u16)set->reg, 0, 0xFFFFFFFF);
- 	}
- 
- 	return 0;
-diff --git a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-comp.h b/drivers/media/platform/mediatek/mdp3/mtk-mdp3-comp.h
-index 3e5d2da1c807..ef36318e4742 100644
---- a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-comp.h
-+++ b/drivers/media/platform/mediatek/mdp3/mtk-mdp3-comp.h
-@@ -10,7 +10,7 @@
- #include "mtk-mdp3-cmdq.h"
- 
- #define MM_REG_WRITE_MASK(cmd, id, base, ofst, val, mask, ...)	\
--	cmdq_pkt_write_mask(&((cmd)->pkt), id,			\
-+	cmdq_pkt_write_mask(&((cmd)->pkt), id, base,		\
- 		(base) + (ofst), (val), (mask), ##__VA_ARGS__)
- 
- #define MM_REG_WRITE(cmd, id, base, ofst, val, mask, ...)	\
-@@ -52,7 +52,7 @@ do {								\
- #define MM_REG_POLL_MASK(cmd, id, base, ofst, val, _mask, ...)	\
- do {								\
- 	typeof(_mask) (_m) = (_mask);				\
--	cmdq_pkt_poll_mask(&((cmd)->pkt), id,			\
-+	cmdq_pkt_poll_mask(&((cmd)->pkt), id, base,		\
- 		(base) + (ofst), (val), (_m), ##__VA_ARGS__);	\
- } while (0)
- 
--- 
-2.43.0
-
+Peter Yin 於 11/21/24 10:53 寫道:
+> Summary:
+> Revise linux device tree entry related to Meta(Facebook) Harma
+> specific devices connected to BMC(AST2600) SoC.
+> 
+> Base on:
+> https://github.com/openbmc/linux/blob/dev-6.6/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
+> 
+> Base on:
+> https://lore.kernel.org/all/14e1a0f581417d4228aea8c2569598d42b4bd334.camel@codeconstruct.com.au/
+> 
+> v1->v2
+>    - Provide additional details for SGPIO.
+>    - Add adc128d818 device
+> 
+> v1
+>    - Patch 0001 - Harma: Revise node name
+>    - Patch 0002 - Harma: Add retimer device
+>    - Patch 0003 - Harma: Revise GPIO line name
+>    - Patch 0004 - Harma: add e1s power monitor
+>    - Patch 0005 - Harma: fan board io-expande
+>    - Patch 0006 - Harma: add adc128d818
+> 
+> Peter Yin (6):
+>    ARM: dts: aspeed: Harma: Revise node name
+>    ARM: dts: aspeed: Harma: Add retimer device
+>    ARM: dts: aspeed: Harma: Revise GPIO line name
+>    ARM: dts: aspeed: Harma: add e1s power monitor
+>    ARM: dts: aspeed: Harma: fan board io-expander
+>    ARM: dts: aspeed: Harma: add adc128d818
+> 
+>   .../dts/aspeed/aspeed-bmc-facebook-harma.dts  | 134 ++++++++++++++----
+>   1 file changed, 110 insertions(+), 24 deletions(-)
+> 
 
