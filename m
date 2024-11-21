@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-123508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA8859D4C37
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 12:48:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39D399D4C41
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 12:52:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81BA92817DE
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 11:48:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA17B1F21213
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 11:52:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C85AA1CEEB3;
-	Thu, 21 Nov 2024 11:48:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A66C1D07B7;
+	Thu, 21 Nov 2024 11:52:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CE1CJktb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uwmFRzzT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CFA11C728F;
-	Thu, 21 Nov 2024 11:48:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6704B1C728F;
+	Thu, 21 Nov 2024 11:52:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732189729; cv=none; b=g/4s0xEKugqGt7EJzn9tYht1z9QxtHDlqbi4tQ1aXLw9GRa2aTuue51aZjkVjPHeKLx3JzC47eg0pxTqi+rpR/SOX0gg22OOCNLmm6jkeBVL/IR5RYVSR9fKdefG4WeEXOb8gt9sVZW3LNsxAul3q5UGE8xjVKoB6ghRgMHG22s=
+	t=1732189927; cv=none; b=ICuEGdIerY3UAWMHzQvzoqZjL6rWqAspx7qKDASaiM/cX9/n3AWixsX6PapCT6RhKaVdUTVQM86AYlVqOFByH8A1ALbsNkAk8Q6TH9XFNGcWDSm/+U7ImIK8P0wMjId5cMPMb7Xa1BcibT5QgRn7YHNGOC4KM7nl2LL3Zrd41GQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732189729; c=relaxed/simple;
-	bh=Lln4VrhN/mq5eaevQiu66Tt1aqYvE3k+h4GNv20DvWQ=;
+	s=arc-20240116; t=1732189927; c=relaxed/simple;
+	bh=JmJb7CdQHlMyUmcJRnuGoCkSUFCK4e1wGznMYGv8oXs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nTTuvcx0Vv8tnPO5hae0+2szJDYPl6YO40AFJCW18QZqx6eCQagruuNa5MNVEkjwm3rE+JM43yfvlrqO61h3Azzz+mcumsf9HnMVC3+F6zwml/OAUqrLX9iq4KYZXvq6jvqbWQHReId2hxtnu46bN82+5Sv7Nb4vPEn/n0GWuoE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CE1CJktb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E00EC4CECC;
-	Thu, 21 Nov 2024 11:48:42 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Mytq2g1kELhb7EOjpq6YqvbN6a+EV3lJMBmZq2ZQUgUHNpcJMxr8k7ezm2mMGoNYpwj32aQk1P4BIHP8UXwouPm7O+QxEfY2etLGnkyQIBP5OerZx3F/ztmn7JFEAkUTIUWmq843bKXEqmWKrdQPtLUgPlUTlhO7SkdNNpEBja8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uwmFRzzT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A039C4CECC;
+	Thu, 21 Nov 2024 11:52:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732189729;
-	bh=Lln4VrhN/mq5eaevQiu66Tt1aqYvE3k+h4GNv20DvWQ=;
+	s=k20201202; t=1732189925;
+	bh=JmJb7CdQHlMyUmcJRnuGoCkSUFCK4e1wGznMYGv8oXs=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CE1CJktbM9/NSmnobls83HOvO7BOAjp1cgWnPsBm1epi/qHIQqE9WXDQ+TuDtKs2X
-	 uY/Oi8pqq24VnveLcNXzHKkNR5uF/xoK1ENALcaE8XB+2xq0jTS9cL9ME0z1Ubw3c4
-	 U/mLgDqaZVuftIUammEeg5HUGOixPJon4DxU920PtjptkoGIw11J1Vocm+MV6bPCS0
-	 Ta6vd9b7gWdNJJ5XcQB7Bliln238xuvYZy7x1mJrXzH2IbQw9f3cmNazAzs6116oGl
-	 m4LxqHx3bm7n0G74qlqfgaqQMvwsg5AVzzsYTdpFKOwCiOphfMupOnXAYllEM8ohhP
-	 Orl+MmdHuN3OQ==
-Message-ID: <c3f52576-918d-4e0f-8247-46cb468e5c77@kernel.org>
-Date: Thu, 21 Nov 2024 12:48:40 +0100
+	b=uwmFRzzT9GjPiqmNKvk3V8mCLrfNEZ2dRwYwznz0Qp/cSgxDnmJq27kfi6vtpXfmB
+	 FBf+K1Qels76OgfwxurnQH+QutWKfxSmQJ735IlOfNBdxmz2KuSpP6L4DqFi4wXoOj
+	 qd1D0nE5lp9RtYutw03FCK2pfZ0/gEDpx7CDebDDlZ+XL0G0I0CAX9lf5P9lQxBj1O
+	 3vSWHWJPmgDzV4uarzgIaMBUpVI3se13A36qd+Igg6/i4MK+k4tLAv592/H8fl1AQ4
+	 nRQuMoK9h1novvdIYWqYXWghgjnMVIS8CFd1d/8eoEG9HOeEuxvOl2vzcEYlaSNSJn
+	 hve3DMfN13O2w==
+Message-ID: <51653aac-76e0-4da2-aea8-16d62b570155@kernel.org>
+Date: Thu, 21 Nov 2024 12:51:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,34 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/8] dt-bindings: mailbox: mediatek: Add GCE header file
- for MT8196
-To: =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- =?UTF-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= <Singo.Chang@mediatek.com>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "simona@ffwll.ch" <simona@ffwll.ch>, "mchehab@kernel.org"
- <mchehab@kernel.org>, =?UTF-8?B?TW91ZHkgSG8gKOS9leWul+WOnyk=?=
- <Moudy.Ho@mediatek.com>, =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?=
- <Nancy.Lin@mediatek.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "robh@kernel.org" <robh@kernel.org>,
- Project_Global_Chrome_Upstream_Group
- <Project_Global_Chrome_Upstream_Group@mediatek.com>,
- "airlied@gmail.com" <airlied@gmail.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-References: <20241121042602.32730-1-jason-jh.lin@mediatek.com>
- <20241121042602.32730-2-jason-jh.lin@mediatek.com>
- <57kqls2wa67nh4a5yyr4amthmro3bjvrhnrdbdolrhr2lnmf6u@2h3cbl4jip4y>
- <40971559285bb60cbab476135ba81d364505113c.camel@mediatek.com>
+Subject: Re: [PATCH V5 4/4] interconnect: qcom: osm-l3: Add epss compatibles
+ for SA8775P SoC
+To: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>,
+ Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Odelu Kukatla <quic_okukatla@quicinc.com>,
+ Mike Tipton <quic_mdtipton@quicinc.com>, Sibi Sankar
+ <quic_sibis@quicinc.com>, linux-arm-msm@vger.kernel.org,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241121113006.28520-1-quic_rlaggysh@quicinc.com>
+ <20241121113006.28520-5-quic_rlaggysh@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -123,38 +109,47 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <40971559285bb60cbab476135ba81d364505113c.camel@mediatek.com>
+In-Reply-To: <20241121113006.28520-5-quic_rlaggysh@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 21/11/2024 11:51, Jason-JH Lin (林睿祥) wrote:
->>> Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
->>> ---
->>>  .../dt-bindings/mailbox/mediatek,mt8196-gce.h | 1449
->>> +++++++++++++++++
->>>  1 file changed, 1449 insertions(+)
->>>  create mode 100755 include/dt-bindings/mailbox/mediatek,mt8196-
->>> gce.h
->>
->> Please run scripts/checkpatch.pl and fix reported warnings. Then
->> please
->> run 'scripts/checkpatch.pl --strict' and (probably) fix more
->> warnings.
->> Some warnings can be ignored, especially from --strict run, but the
->> code
->> here looks like it needs a fix. Feel free to get in touch if the
->> warning
->> is not clear.
->>
->> This goes with the binding.
->>
+On 21/11/2024 12:30, Raviteja Laggyshetty wrote:
+> The EPSS instance in SA8775P uses PERF_STATE register instead of
+> REG_L3_VOTE to scale L3 clocks.
+> Along with SoC specific compatible, add new generic compatible
+> "qcom,epss-l3-perf" for PERF_STATE register based L3 scaling.
 > 
-> I thought I have done that, but I found a whitespace warning at #1328
-> now. I'll fix that at the next version.
-> Thanks for the reminder.
+> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
+> ---
+>  drivers/interconnect/qcom/osm-l3.c | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/interconnect/qcom/osm-l3.c b/drivers/interconnect/qcom/osm-l3.c
+> index a9405b7d251b..285afaa1f61e 100644
+> --- a/drivers/interconnect/qcom/osm-l3.c
+> +++ b/drivers/interconnect/qcom/osm-l3.c
+> @@ -318,6 +318,7 @@ static int qcom_osm_l3_probe(struct platform_device *pdev)
+>  
+>  static const struct of_device_id osm_l3_of_match[] = {
+>  	{ .compatible = "qcom,epss-l3", .data = &epss_l3_l3_vote },
+> +	{ .compatible = "qcom,epss-l3-perf", .data = &epss_l3_perf_state },
 
-There are multiple errors, including executable permission. I don't
-believe you run checkpatch.
+
+Hm? Why?
+
+>  	{ .compatible = "qcom,osm-l3", .data = &osm_l3 },
+>  	{ .compatible = "qcom,sc7180-osm-l3", .data = &osm_l3 },
+>  	{ .compatible = "qcom,sc7280-epss-l3", .data = &epss_l3_perf_state },
+> @@ -325,6 +326,7 @@ static const struct of_device_id osm_l3_of_match[] = {
+>  	{ .compatible = "qcom,sm8150-osm-l3", .data = &osm_l3 },
+>  	{ .compatible = "qcom,sc8180x-osm-l3", .data = &osm_l3 },
+>  	{ .compatible = "qcom,sm8250-epss-l3", .data = &epss_l3_perf_state },
+> +	{ .compatible = "qcom,sa8775p-epss-l3", .data = &epss_l3_perf_state },
+
+
+So this is compatible with sm8250. Use that one. Don't grow this table
+needlessly.
+
 
 Best regards,
 Krzysztof
