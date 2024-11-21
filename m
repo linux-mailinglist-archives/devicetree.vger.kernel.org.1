@@ -1,193 +1,146 @@
-Return-Path: <devicetree+bounces-123458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A37249D490E
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 09:42:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 832159D490C
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 09:42:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E71B8B21510
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 08:42:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F629B238CC
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 08:42:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB3781CD1FC;
-	Thu, 21 Nov 2024 08:41:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4A871CBEA3;
+	Thu, 21 Nov 2024 08:41:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="J35KY5cg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA5781CB322
-	for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 08:41:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21E77146A6B
+	for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 08:41:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732178513; cv=none; b=IzMz8tfBxUkXTHQPkmvhzyAjLGXJkMs+XtfauiBr+K0SRw9arMec0eNkFSAQFLlOY/VNlrdLjIQgFZFFpisBtLYsTtq49/9TE460VEPw8mKupw3uKhisuP4i7nxmeY0ctiJqijfCeTVQC/heY6LB9J0MLQfV0duZqsoRPS2MAYk=
+	t=1732178508; cv=none; b=Pc37rvuSD56Cy7LOrjbtbFhYbkWeyIhS/TjW2IgRTATQEqpJLBBqyiboMmFxXKw8WsuJIr6x+NnYOti06XnBpMBpn0jp0PtCWmk/dwt96sSMNMRpFSMue6skE8X2Jdx+874XWwn/WeXYEZm7K/hBcbrXjrQZkKBRRFEiBSSzZBI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732178513; c=relaxed/simple;
-	bh=+bA1rXPMFxjpumxBPBsgBXGYUAll8wqXn3zjiH2FOg0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H5GJCEU0qyHVXtMf0GZhNzDYTH9m/blwq6yOgQrbUZZfl9ziyNgaA8sxw6CHGlePKAntNsg0d7b8YHyeecEpGdBihXvhwxWmz4LLz6OTep8DuuSOLNMgCVPdqIWgd3kzf3CcU9kEKPvJ5OQbIvwvYbtyO0E1gYpoYl0NJdTx/RI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1tE2kh-00015R-L4; Thu, 21 Nov 2024 09:41:27 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1tE2kf-001sK9-2u;
-	Thu, 21 Nov 2024 09:41:25 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1tE2kf-00731R-2Z;
-	Thu, 21 Nov 2024 09:41:25 +0100
-Date: Thu, 21 Nov 2024 09:41:25 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Russ Weight <russ.weight@linux.dev>
-Cc: Luis Chamberlain <mcgrof@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Marco Felsch <kernel@pengutronix.de>,
-	Henrik Rydberg <rydberg@bitmath.org>,
-	Danilo Krummrich <dakr@redhat.com>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org
-Subject: Re: [PATCH 2/5] firmware_loader: add support to handle
- FW_UPLOAD_ERR_SKIP
-Message-ID: <20241121084125.3ldkyd7xotjvuq2r@pengutronix.de>
-References: <20241119-v6-10-topic-touchscreen-axiom-v1-0-6124925b9718@pengutronix.de>
- <20241119-v6-10-topic-touchscreen-axiom-v1-2-6124925b9718@pengutronix.de>
- <20241120165049.jzsveoms2unxt3m6@4VRSMR2-DT.corp.robot.car>
- <20241120173037.x6cro7r2wh5aoadg@pengutronix.de>
- <20241120185611.43soqjcyruztby4f@4VRSMR2-DT.corp.robot.car>
+	s=arc-20240116; t=1732178508; c=relaxed/simple;
+	bh=OakpjTtQorQ2BeUpm+/i89nPTw9w4eLYabvPpcRfSGw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=J/FP5UKk/AyJeeBB9riTpiUQMiC+T3t9GvlxVl3FZCNpICIbRU/0SyJWzBQ5c8AcufToz0hewoBSKQ8j39aN2dEbgRiXSVz8z0NKl/Tm4L1kVtllR9hebwKFpyx+fQ7Y1B1E4oaZNs8wBNzY1RBKva1BpZnVsWDVgMQNMULp2ck=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=J35KY5cg; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1732178506;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3EfxJ3fmdocd7gaMUfcoBEkyZJYyM0opLmf/LIX4Ouc=;
+	b=J35KY5cgWic08luRUh3wS2i/zFl8e/3RrptEUUiFPFgB9tCHEXcZiszF6bqyrUJ8uq1L7w
+	QOc96fkeST5KIchdaDrjuZqITniYKOY1lKLGRdQbVQ59fFzKp1iJSbVZmg2lrPh2aXM4hA
+	/5xpv/mYw2LAfPSsJslJSmk0qSPg2EM=
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
+ [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-516-1IuieFhEMUu1gRypnRd6Bg-1; Thu, 21 Nov 2024 03:41:43 -0500
+X-MC-Unique: 1IuieFhEMUu1gRypnRd6Bg-1
+X-Mimecast-MFC-AGG-ID: 1IuieFhEMUu1gRypnRd6Bg
+Received: by mail-wr1-f71.google.com with SMTP id ffacd0b85a97d-38242a78f3eso368988f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 00:41:43 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732178502; x=1732783302;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3EfxJ3fmdocd7gaMUfcoBEkyZJYyM0opLmf/LIX4Ouc=;
+        b=t4C3OCsRQGndx9egVlYhNvJ6kRLsH2/Eivxx3akRTT0g1sbNuvx9nKihMoYCemLsJf
+         3IVHAua2/0lbg6ccHSeK5ArNz+AbfUgcbzN5cyDNcLkYHeFiFhwsqYTOIVPjg+jHH+AS
+         at7N7qlcAdJPgxDEQ0XbT6B7CMLxSOOjO5v8GhaUUMklSQGEkEIg2dadrpBNowa6kMIR
+         EokVcDmo8K9tomo8ISjRBwogBMEWxnIHoU3FiqM5suLOjPWbCzQnr9zndzp7Ep1vMF1x
+         zjHByAPKJCQWLDOXpD+7VHuRrjLJBiykPPe/rfDcTGa7YOuPkQXEcamE1uDFNHHTUeJf
+         42bA==
+X-Forwarded-Encrypted: i=1; AJvYcCXVgwvdXkj3AtbEUDLRBapZcdUE099BZsM4CX/wg7kagrRYIgotqd7yJMBCKeGxS+8WHU5/q+H70cCj@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw1EiRf32xeFobGlzyMOxZyeMvPet0zUrIBQuFmSPwN+IJ+lM8r
+	TCt3LX2LjRfSoL2ySQa4xFHCf+LijCu5IIMCfGOOEcI1gEohI17nOL4n1WtuTryLME2bAVA/vJb
+	IYDwtFTLCNFVfAFuuPxrS0ucKR+DdKpqLCSiJhMMiBucj9T3AZGqcZCKgz8Q=
+X-Gm-Gg: ASbGncs1lP+zAHGxJ5HUHindDiZAnNu4KredDKxzjw+TadHavr0fFDQwjaMKtKyjNW1
+	yJXyuqfoE/lXuvVmih6uceBs6bZVkt+G0VC+Um2vSrVKWpGUk6k4jLZHA+XYBZN4x0WY/znQZb0
+	cuPcfYqHCh9wuGjMsEnubYxORMcq8rm1e2zvteWEfs8irbqkZAtIGRUs8j9C0k4hfaFFfbMevMT
+	fS16auHcIMMtOUQdpHoWWrRijYJqmG/GRwO3yGJA3X8J/ZEdu/zvUpIoytc1FV176NYGcWxRw==
+X-Received: by 2002:a5d:5f54:0:b0:382:383e:84d9 with SMTP id ffacd0b85a97d-38254b2905fmr5006767f8f.48.1732178502001;
+        Thu, 21 Nov 2024 00:41:42 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFWXza0JZ2QIRJ4eZp5svlyv9eMdR/9gHUUjPVmepznkQmbAhjCmDV1VegOdet0I40IWemEKw==
+X-Received: by 2002:a5d:5f54:0:b0:382:383e:84d9 with SMTP id ffacd0b85a97d-38254b2905fmr5006743f8f.48.1732178501624;
+        Thu, 21 Nov 2024 00:41:41 -0800 (PST)
+Received: from [192.168.88.24] (146-241-6-75.dyn.eolo.it. [146.241.6.75])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3825493ea2bsm4297621f8f.87.2024.11.21.00.41.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Nov 2024 00:41:41 -0800 (PST)
+Message-ID: <13a81556-d28c-46d0-85d6-d2fb1620d24e@redhat.com>
+Date: Thu, 21 Nov 2024 09:41:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241120185611.43soqjcyruztby4f@4VRSMR2-DT.corp.robot.car>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v3 0/7] Add Aspeed G7 FTGMAC100 support
+To: Jacky Chou <jacky_chou@aspeedtech.com>, andrew+netdev@lunn.ch,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
+ ratbert@faraday-tech.com, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20241120075017.2590228-1-jacky_chou@aspeedtech.com>
+Content-Language: en-US
+From: Paolo Abeni <pabeni@redhat.com>
+In-Reply-To: <20241120075017.2590228-1-jacky_chou@aspeedtech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 24-11-20, Russ Weight wrote:
+On 11/20/24 08:50, Jacky Chou wrote:
+> The Aspeed 7th generation SoC features three FTGMAC100.
+> The main difference from the previous generation is that the
+> FTGMAC100 adds support for 64-bit DMA capability. Another change
+> is that the RMII/RGMII pin strap configuration is changed to be set
+> in the bit 20 fo register 0x50.
 > 
-> On Wed, Nov 20, 2024 at 06:30:37PM +0100, Marco Felsch wrote:
-> > Hi,
-> > 
-> > On 24-11-20, Russ Weight wrote:
-> > > On Tue, Nov 19, 2024 at 11:33:51PM +0100, Marco Felsch wrote:
-> > > > It's no error if a driver indicates that the firmware is already
-> > > > up-to-date and the update can be skipped.
-> > > > 
-> > > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > > > ---
-> > > >  drivers/base/firmware_loader/sysfs_upload.c | 4 ++++
-> > > >  1 file changed, 4 insertions(+)
-> > > > 
-> > > > diff --git a/drivers/base/firmware_loader/sysfs_upload.c b/drivers/base/firmware_loader/sysfs_upload.c
-> > > > index b3cbe5b156e3..44f3d8fa5e64 100644
-> > > > --- a/drivers/base/firmware_loader/sysfs_upload.c
-> > > > +++ b/drivers/base/firmware_loader/sysfs_upload.c
-> > > > @@ -174,6 +174,10 @@ static void fw_upload_main(struct work_struct *work)
-> > > >  	fw_upload_update_progress(fwlp, FW_UPLOAD_PROG_PREPARING);
-> > > >  	ret = fwlp->ops->prepare(fwl, fwlp->data, fwlp->remaining_size);
-> > > >  	if (ret != FW_UPLOAD_ERR_NONE) {
-> > > > +		if (ret == FW_UPLOAD_ERR_SKIP) {
-> > > > +			dev_info(fw_dev, "firmware already up-to-date, skip update\n");
-> > > > +			ret = FW_UPLOAD_ERR_NONE;
-> > > > +		}
-> > > 
-> > > If you change the error-code from FW_UPLOAD_ERR_SKIP to
-> > > FW_UPLOAD_ERR_NONE, then the "skip" string provided in the previous
-> > > patch will never be seen. There are currently no other instances where
-> > 
-> > Do we really need to set it? As explained within the commit message,
-> > it's no error if FW_UPLOAD_ERR_SKIP is returned. The previous patch just
-> > added all pieces which may be required later on.
-> > 
-> > > an error code requires special-case modifications to the fw_upload
-> > > code and I don't think it is necessary to add it here.
-> > 
-> > Because at the moment no one is checking it except for the gb-beagleplay
-> > driver. This driver prints a dev_warn() string and returns a failure.
-> > Now the userspace needs some heuristic by parsing dmesg to check the
-> > reason. This is rather complex and very error prone as the sting can be
-> > changed in the future.
-> > 
-> > Therefore I added the support to have a simple error code which can be
-> > returned by a driver. I'm open to return "skip" as error instead of
-> > casting it to none. Both is fine for me since both allow the userspace
-> > to easily check if the error is a 'real' error or if the fw-update was
-> > just skipped due to already-up-to-date.
+> Jacky Chou (7):
+>   dt-bindings: net: ftgmac100: support for AST2700
+>   net: faraday: Add ARM64 in FTGMAC100 for AST2700
+>   net: ftgmac100: Add reset toggling for Aspeed SOCs
+>   net: ftgmac100: Add support for AST2700
+>   net: ftgmac100: add pin strap configuration for AST2700
+>   net: ftgmac100: Add 64-bit DMA support for AST2700
+>   net: ftgmac100: remove extra newline symbols
 > 
-> Are you saying that you intend for the user-space code to see "skip"?
-> Because in the current implementation, I don't think the user-space
-> code would see "skip". If you ultimately return FW_UPLOAD_ERR_NONE,
-> then cat'ing the error file should result in an empty file.
+>  .../bindings/net/faraday,ftgmac100.yaml       |  3 +-
+>  drivers/net/ethernet/faraday/Kconfig          |  5 +-
+>  drivers/net/ethernet/faraday/ftgmac100.c      | 77 +++++++++++++++----
+>  drivers/net/ethernet/faraday/ftgmac100.h      | 10 +++
+>  4 files changed, 75 insertions(+), 20 deletions(-)
 
-I know.
+## Form letter - net-next-closed
 
-> > I wouldn't say that this is a special case, it is very common but no one
-> > is performing a fw-version check. Therefore I added this to the common
-> > code, to make it easier for driver devs.
-> 
-> By "special case" I meant to say that this is the first time this
-> core code has had to know about any error codes other than
-> FW_UPLOAD_ERR_NONE - and the first time that an error type alters
-> the code flow.
-> 
-> I understand that other drivers may also want to abort if the
-> firmware being loaded is a duplicate.
+The merge window for v6.13 has begun and net-next is closed for new
+drivers, features, code refactoring and optimizations. We are currently
+accepting bug fixes only.
 
-:)
+Please repost when net-next reopens after Dec 2nd.
 
-> > > The dev_info() message above can be provided by the device driver
-> > > that is using this API.
-> > > 
-> > > I think you can either:
-> > > 
-> > > (1) allow "skip" to be treated as an error. The update didn't happen...
-> > 
-> > Please see above.
-> > 
-> > > -or-
-> > > 
-> > > (2) The prepare function could detect the situation and set
-> > >     a flag in the same device driver. Your write function could
-> > >     set *written to the full data size and return without writing
-> > >     anything. Your poll_complete handler could also return
-> > >     FW_UPLOAD_ERR_NONE. Then you don't need to add FW_UPLOAD_ERR_SKIP
-> > >     at all. You would get the info message from the device driver
-> > >     and fw_upload would exit without an error.
-> > 
-> > Please see above. I don't think that this is special case and why making
-> > the life hard for driver devs instead of having a well known fw
-> > behaviour?
-> 
-> If you are not opposed to treating it as an error, then all you need
-> to add are the error code and the string to go with it.
+RFC patches sent for review only are welcome at any time.
 
-Yep this works for me.
+See:
+https://www.kernel.org/doc/html/next/process/maintainer-netdev.html#development-cycle
 
-> Instead of FW_UPLOAD_ERR_SKIP -> "skip", how about
-> FW_UPLOAD_ERR_DUPLICATE -> "duplicate_firmware"?
 
-Fine by me :) I can use this if no one else comes up with a better idea
-for the string.
 
-Regards,
-  Marco
+
+
+
+
+
+
 
