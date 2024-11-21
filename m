@@ -1,64 +1,61 @@
-Return-Path: <devicetree+bounces-123451-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123452-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62B799D48C1
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 09:23:12 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3E109D48DF
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 09:29:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 102781F211C6
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 08:23:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 72A00B22CF7
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 08:29:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 600111CB313;
-	Thu, 21 Nov 2024 08:23:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DDD21CB53D;
+	Thu, 21 Nov 2024 08:29:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MVbnAJJB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PnAQzOn3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33D0E12FB1B;
-	Thu, 21 Nov 2024 08:23:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2803F1CB329;
+	Thu, 21 Nov 2024 08:29:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732177387; cv=none; b=Z5SAI+DbYjjXxUEn8AenYO1/adp8T7hGaVI/4yvfN/S9PswgONSLCqnlnAeK0pm952LmT/KlGBjhEHA8RcCiGIoVuv/eAfyB+MEzGf2iYCYels828qZ2fTA1NnveNhCqi56tKZ7wEbieiv0cZHbByUzc2adoFQCRzynXjTNzU6A=
+	t=1732177752; cv=none; b=JeIJkvRy5xBVmPKRUAb6SMBvYf1lOK1RP9JUU5Fzi+jZFKE+be07HWyks1L0RAv+DAJ2eGXkm4XQhYeP1EL2gAez1TkvAkCPeXFeg1iSJ4WlclfGsScIFkGzFj/Pwe1dbcWaiUpbTrSTrP4rjwMEQUKayvok4qy2ZNoiGotssNU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732177387; c=relaxed/simple;
-	bh=wUfTnjHQ2yL4NbL5Y4AFUH82UDKPs5WqKTu3tB1fwgk=;
+	s=arc-20240116; t=1732177752; c=relaxed/simple;
+	bh=jI8NHi8G+Wq7vsn+8sraQFg2O7HBgJMMZWRRb1whbGk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LYdd7JHEEHeQNQPavH/n07Fgp5/WElY361Zcd0RsP+Egn+uo0chaNP2MDuR4Hvbrnhur1LA+e5VKnRax7yUzJI9++KbzW/4a3ZDP+0rqrHyBWq/s593+QO0fjdFk0tHw9pRiA7dvLeWt0Pm6nb/jx3LdVbJ620qIrViiEmKjbrk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MVbnAJJB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0775C4CECC;
-	Thu, 21 Nov 2024 08:23:05 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=IS9bAZzYRw6agmLj/kuRaqvgmf85WRpG5ngR63eQPcD+bKpx1PWvKgWzD3ZYYxN5xmpzgiMKkkzIyB6Qso3BP/nVXnynP62ch2PMwKXeTEI8Jj1GLYuY++CJTRATWuw5tJoi3gLd9g16GaCptsKVmPcMYVMltUxxCgojTBusNWE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PnAQzOn3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D175CC4CECC;
+	Thu, 21 Nov 2024 08:29:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732177386;
-	bh=wUfTnjHQ2yL4NbL5Y4AFUH82UDKPs5WqKTu3tB1fwgk=;
+	s=k20201202; t=1732177751;
+	bh=jI8NHi8G+Wq7vsn+8sraQFg2O7HBgJMMZWRRb1whbGk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MVbnAJJB0YKzqkLAlv+RUlK1bsic7FFTr3PrQXxxLvDMpvYiEsNj+QN9blVHNBrRd
-	 vgV2DR9hjWxEx8BfsCc5nQUrG+ywgDIf5rE9YiVaDTVu2dv0j38g1AtXMjWtTEuaYL
-	 ZK3WTn+KG7uIdD+Hlb1InkCXDpAw8m1TDGBUqADKtEknIZkMLOZilgc7bmFq5JD3XA
-	 SQvZcTA2rS9DFCgbzPUuAckR0jEvsbjOk2a7WAqMZ00ZOBoS7ntM9I0wJAjY+jfS1h
-	 yvQ+7xPUT9qU1fZ6SgHFoZBI/4/5lCx4GB40DjxL5VaNtLDso7JCXBZzWx2HfnxT/y
-	 CjTct7UPCoYfw==
-Date: Thu, 21 Nov 2024 09:23:03 +0100
+	b=PnAQzOn3eltLr61OwJdBkrNCp84VdxjhOaWdJj5jwupNmUAW+fgCxGdVYi1u+4Uf6
+	 w8sOx+eYMqedJv3IH2gCsx+oFCmhqf83fEonTvFR2KABkkaoKyMrxZxVeB8SnarRls
+	 lSjeeIR60e3P017SBClhSDCT0XlWz2jLT7UHgwvRcI6cqm0ElOcmI9uzssomnkPen+
+	 7mxq4usUuT8tUvZxpbE8QmBanM4sSFdvgybqCsKqrVoBV/CJCcoObnZNo57iFedZsl
+	 ZDFGRYk5DBdEXxT2OZlZn0eax+v1BITx3xy68frt9dmCSMGDmJWhA38aVqrm5mvxht
+	 AqarzOygFaqvA==
+Date: Thu, 21 Nov 2024 09:29:08 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: keith zhao <keith.zhao@starfivetech.com>
-Cc: devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, 
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, 
-	simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	hjc@rock-chips.com, heiko@sntech.de, andy.yan@rock-chips.com, 
-	william.qiu@starfivetech.com, xingyu.wu@starfivetech.com, kernel@esmil.dk, 
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
-	p.zabel@pengutronix.de, changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com, 
+To: Charan Pedumuru <charan.pedumuru@microchip.com>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>, 
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Nicolas Ferre <nicolas.ferre@microchip.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>, Andrew Lunn <andrew+netdev@lunn.ch>, linux-can@vger.kernel.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/9] dt-bindings: display: bindings for
- starfive,JH7110 display pipeline
-Message-ID: <fza6u77alzm6ovzptkh7isztycn72pzae2f62kqeyj3f7ognou@lmp7cg4tr3yw>
-References: <20241120061848.196754-1-keith.zhao@starfivetech.com>
- <20241120061848.196754-2-keith.zhao@starfivetech.com>
+Subject: Re: [PATCH v3] dt-bindings: net: can: atmel: Convert to json schema
+Message-ID: <ahftyfnreh27z6jyvdf2wwhhp5rcbkydy6afnkct77ppqlko56@5cvw5bmzcjb6>
+References: <20241120-can-v3-1-da5bb4f6128d@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,100 +64,51 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241120061848.196754-2-keith.zhao@starfivetech.com>
+In-Reply-To: <20241120-can-v3-1-da5bb4f6128d@microchip.com>
 
-On Wed, Nov 20, 2024 at 02:18:40PM +0800, keith zhao wrote:
-> - Added bindings to support the display subsystem on the JH7110 SoC.
-
-Please do not use "This commit/patch/change" (implied) and past tense,
-but imperative mood. See longer explanation here:
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-
-> 
-> - Included the DC8200 display controller and Inno HDMI controller.
-> 
-> - Created innosilicon,inno-hdmi.yaml schema containing common properties
->   for the Inno DesignWare HDMI TX controller.
->   This isn't a full device tree binding specification,
->   but is intended to be referenced by platform-specific bindings
->   for the IP core.
-> 
-> Signed-off-by: keith zhao <keith.zhao@starfivetech.com>
-> ---
->  .../display/bridge/innosilicon,inno-hdmi.yaml |  45 +++++
->  .../display/rockchip/rockchip,inno-hdmi.yaml  |  27 +--
->  .../starfive/starfive,jh7110-dc8200.yaml      | 176 ++++++++++++++++++
->  .../starfive/starfive,jh7110-inno-hdmi.yaml   |  91 +++++++++
->  .../soc/starfive/starfive,jh7110-syscon.yaml  |   1 +
-
-I do not see how you addressed my feedback. I asked you to split the
-patch. Where is the split?
-
-Your answer to my request to split was "Background is ...", yeah, so
-what? You are not going to split?
-
-
->  MAINTAINERS                                   |   8 +
->  6 files changed, 323 insertions(+), 25 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/innosilicon,inno-hdmi.yaml
->  create mode 100644 Documentation/devicetree/bindings/display/starfive/starfive,jh7110-dc8200.yaml
->  create mode 100644 Documentation/devicetree/bindings/display/starfive/starfive,jh7110-inno-hdmi.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/innosilicon,inno-hdmi.yaml b/Documentation/devicetree/bindings/display/bridge/innosilicon,inno-hdmi.yaml
-> new file mode 100644
-> index 000000000000..f2543aebc312
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/innosilicon,inno-hdmi.yaml
-> @@ -0,0 +1,45 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/bridge/innosilicon,inno-hdmi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Common Properties for Innosilicon HDMI TX IP
-> +
-> +maintainers:
-> +  - keith zhao <keith.zhao@starfivetech.com>
-> +
-> +description: |
-
-Do not need '|' unless you need to preserve formatting.
-
-
-
-> +  Innosilicon HDMI TX is an HDMI transmission device integrated into the zap SoC.
-
-Keep and extend.
-
-> +  This document specifies the device tree properties for the INNO HDMI IP core.
-
-Keep... but what is INNO HDMI IP core? Another name? Different block?
-
-
-> +  It is intended to be referenced by platform-specific device tree bindings,
-> +  which will determine the necessity of each property.
-
-Not much improved here. Last two sentences are almost useless. Again -
-document the hardware. Drop this sentence.
-
-I already complained about this. I already complained that you keep
-ignoring my comments and this does not improve much.
-
-Since you did not implement my main feedback I am going to NAK the rest
-except one more thing:
+On Wed, Nov 20, 2024 at 01:58:08PM +0530, Charan Pedumuru wrote:
+> Convert old text based binding to json schema.
+> Changes during conversion:
+> - Add a fallback for `microchip,sam9x60-can` as it is compatible with the
+>   CAN IP core on `atmel,at91sam9x5-can`.
+> - Add the required properties `clock` and `clock-names`, which were
+>   missing in the original binding.
+> - Update examples and include appropriate file directives to resolve
+>   errors identified by `dt_binding_check` and `dtbs_check`.
 
 ...
 
-> +
-> +properties:
-> +  compatible:
-> +    const: "starfive,jh7110-inno-hdmi"
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/clock/at91.h>
+> +    can@f000c000 {
+> +          compatible = "atmel,at91sam9263-can";
 
-I could not be more specific in my previous feedback. Improvements? No.
-Stop wasting our time.
+If there is going to be any resend - fix the indentation: Use 4 spaces
+for example indentation.
 
-NAK.
+No need to resend just for this.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+---
+
+<form letter>
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you know the process, you can skip it (please do
+not feel offended by me posting it here - no bad intentions intended).
+If you do not know the process, here is a short explanation:
+
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+</form letter>
 
 Best regards,
 Krzysztof
