@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-123583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 160819D54BB
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 22:32:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 625319D54D3
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 22:39:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BCE1F1F22821
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 21:32:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 232DD2832A4
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 21:39:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 441961AAE06;
-	Thu, 21 Nov 2024 21:32:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35FC31D9324;
+	Thu, 21 Nov 2024 21:39:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="s9uT45ix"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SEKboTw4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4BAB4502F;
-	Thu, 21 Nov 2024 21:32:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04E621D47DC;
+	Thu, 21 Nov 2024 21:39:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732224766; cv=none; b=RJ6EeP+oU80iOGrehP9K2bZGIx6NtjQWp+44Z5914RgNtTHSSzolitVBiqQPvclUh0OUOtMlP3jI7xKJnsJV+lL5vtfz5WboTA4wqc4yDfMr8ViQUk4arErrxDGB1Oiy5ZI5ixl8EIq9Rg4Doqrj+OOvI5GgnYZTcuHeVS1dTaw=
+	t=1732225183; cv=none; b=dWc2KvQvAkIZCiUS/0lJea0aRTWT2C4Iwe8tfrHjMPe1eY0eQnGa0N45RzQ8cxJM5bbNFvwXObnvL34emF1vm38qoYmFQL4wTUjjWyWiFsiFlrgrVA6zBA5Br6dWqSyPt3AxyXvLhxoTLu1ZCvz6EFRGDOpTwlpzN2W2FgPAvS8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732224766; c=relaxed/simple;
-	bh=htrvxQ/acJt2mn32w1njKdyG5hdJdbkfDKs+NrdqLFY=;
+	s=arc-20240116; t=1732225183; c=relaxed/simple;
+	bh=t5evj8QlSvXour9hJpuwutaiF1DHjXLc0vuzkj1EIqA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BMqpM1eAFH7yKh3NlLwm0DOGOXZt2clgKrMOShgMvELh3CIYMcTXQjnBzXqaiDWpIuhQ8T6r9/EfFU325tx3rOrbtKUcrdw/cJyW5v6/WRHTxwswtE7PwSuiniE020lwS9UbW06KZd//5gxWg2iPkGfI/Lb9d4NG/9tnYIHjN+k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=s9uT45ix; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D9E1C4CECC;
-	Thu, 21 Nov 2024 21:32:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1732224765;
-	bh=htrvxQ/acJt2mn32w1njKdyG5hdJdbkfDKs+NrdqLFY=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=jumDui5uHrk1qJ+VTn/D49+CrAtsvOkwdIqyBvW1oiDnSqKpinc+0SsOoOfxhraCLK2AFdm3d7pc6eDNbBc3W+mMcZcIMFT5hNLdCXgOpXGm96uNekX8UTzuav0GBrLOedWQP8EJxVwF7ZSbqeMcXaI1dfRGE2q2cw+SEySHGoI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SEKboTw4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D63F1C4CECC;
+	Thu, 21 Nov 2024 21:39:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732225182;
+	bh=t5evj8QlSvXour9hJpuwutaiF1DHjXLc0vuzkj1EIqA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=s9uT45ixbZuVdMo+D7KF90yl/M4gz4FOZG+z4QHSwZQfBNYtRrDTQPsMu4MO3iA2k
-	 KELBNAWcrzFY/wAazJxMr+f7n9L4juBJIsbng4iTsYokcXzUXiV61ml2PxRXi/d1Z+
-	 sXDGeU4Ie5dXi7xqKv8lgIOngFjO7GAhkwmoxzjA=
-Date: Thu, 21 Nov 2024 22:32:19 +0100
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: geert+renesas@glider.be, magnus.damm@gmail.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, mturquette@baylibre.com,
-	sboyd@kernel.org, jirislaby@kernel.org, p.zabel@pengutronix.de,
-	lethal@linux-sh.org, g.liakhovetski@gmx.de,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
-	stable@vger.kernel.org
-Subject: Re: [PATCH v3 2/8] serial: sh-sci: Check if TX data was written to
- device in .tx_empty()
-Message-ID: <2024112128-faceted-moonstone-027f@gregkh>
-References: <20241115134401.3893008-1-claudiu.beznea.uj@bp.renesas.com>
- <20241115134401.3893008-3-claudiu.beznea.uj@bp.renesas.com>
+	b=SEKboTw4h1cJSjf7cu+qGesjrWqjo2bPnLXrZjYgmVbWMvGgqDmBK8EctnAN/DG0d
+	 4cpUCWt2Ci1ILuRX89ELTgrIQRjTS62J1jPHEVmOQZIz93C07K7F7ePUEzF+JwhHH9
+	 4oeytD1SobEjTBn9/WiNJJdL048vKj6Ah2L5HOG3l8urelYhBvVuO9EAdOnBsks2DB
+	 8D+pSvjHHYqKOHUOKApp/BOzDRkCaGTGkwlt94h6ag+GU0HAOERfa144b5hWrrdMiM
+	 G8Bg5qKcxvUmZdTjDwQABky5G6TVwFQ4CkyVB0VHgWM2rbgTwNm8mvte6BgwIm64A5
+	 GXNwayBWWUEvg==
+Date: Thu, 21 Nov 2024 15:39:40 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: linux-arm-kernel@lists.infradead.org, festevam@gmail.com,
+	vkoul@kernel.org, alexander.stein@ew.tq-group.com,
+	linux-usb@vger.kernel.org, jun.li@nxp.com, conor+dt@kernel.org,
+	krzk+dt@kernel.org, kishon@kernel.org, s.hauer@pengutronix.de,
+	kernel@pengutronix.de, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-phy@lists.infradead.org,
+	gregkh@linuxfoundation.org, shawnguo@kernel.org
+Subject: Re: [PATCH v2] dt-bindings: phy: imx8mq-usb: correct reference to
+ usb-switch.yaml
+Message-ID: <173222518009.3833281.16277279997685475186.robh@kernel.org>
+References: <20241119105017.917833-1-xu.yang_2@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,60 +63,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241115134401.3893008-3-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20241119105017.917833-1-xu.yang_2@nxp.com>
 
-On Fri, Nov 15, 2024 at 03:43:55PM +0200, Claudiu wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> 
-> On the Renesas RZ/G3S, when doing suspend to RAM, the uart_suspend_port()
-> is called. The uart_suspend_port() calls 3 times the
-> struct uart_port::ops::tx_empty() before shutting down the port.
-> 
-> According to the documentation, the struct uart_port::ops::tx_empty()
-> API tests whether the transmitter FIFO and shifter for the port is
-> empty.
-> 
-> The Renesas RZ/G3S SCIFA IP reports the number of data units stored in the
-> transmit FIFO through the FDR (FIFO Data Count Register). The data units
-> in the FIFOs are written in the shift register and transmitted from there.
-> The TEND bit in the Serial Status Register reports if the data was
-> transmitted from the shift register.
-> 
-> In the previous code, in the tx_empty() API implemented by the sh-sci
-> driver, it is considered that the TX is empty if the hardware reports the
-> TEND bit set and the number of data units in the FIFO is zero.
-> 
-> According to the HW manual, the TEND bit has the following meaning:
-> 
-> 0: Transmission is in the waiting state or in progress.
-> 1: Transmission is completed.
-> 
-> It has been noticed that when opening the serial device w/o using it and
-> then switch to a power saving mode, the tx_empty() call in the
-> uart_port_suspend() function fails, leading to the "Unable to drain
-> transmitter" message being printed on the console. This is because the
-> TEND=0 if nothing has been transmitted and the FIFOs are empty. As the
-> TEND=0 has double meaning (waiting state, in progress) we can't
-> determined the scenario described above.
-> 
-> Add a software workaround for this. This sets a variable if any data has
-> been sent on the serial console (when using PIO) or if the DMA callback has
-> been called (meaning something has been transmitted). In the tx_empty()
-> API the status of the DMA transaction is also checked and if it is
-> completed or in progress the code falls back in checking the hardware
-> registers instead of relying on the software variable.
-> 
-> Fixes: 73a19e4c0301 ("serial: sh-sci: Add DMA support.")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Why is this bug/regression fix burried in a long series?  It should be
-sent individually so that it could be applied on its own as it is not
-related to the other ones, right?
+On Tue, 19 Nov 2024 18:50:17 +0800, Xu Yang wrote:
+> The i.MX95 usb-phy can work with or without orientation-switch. With
+> current setting, if usb-phy works without orientation-switch, the
+> dt-schema check will show below error:
+> 
+> phy@4c1f0040: 'oneOf' conditional failed, one must be fixed:
+>         'port' is a required property
+>         'ports' is a required property
+>         from schema $id: http://devicetree.org/schemas/phy/fsl,imx8mq-usb-phy.yaml#
+> 
+> This will correct the behavior of referring to usb-switch.yaml.
+> 
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> 
+> ---
+> v2: remake patch and subject
+> ---
+>  .../devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml        | 7 ++-----
+>  1 file changed, 2 insertions(+), 5 deletions(-)
+> 
 
-Or are you ok with waiting for this to show up in 6.14-rc1?
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-thanks,
-
-greg k-h
 
