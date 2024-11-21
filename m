@@ -1,102 +1,178 @@
-Return-Path: <devicetree+bounces-123515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91FFA9D4CC5
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 13:26:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 546F39D4CD4
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 13:33:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57A12282A6E
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 12:26:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 149A5283584
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 12:33:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A739A1D2F74;
-	Thu, 21 Nov 2024 12:26:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04C5E1D2F48;
+	Thu, 21 Nov 2024 12:33:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="R0srzGz/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UwtaAaPv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DB661369AA;
-	Thu, 21 Nov 2024 12:26:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32AC316F288;
+	Thu, 21 Nov 2024 12:33:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732191990; cv=none; b=FmNAReHPpCdeOk0e58FcpJD1NU0ISHQ7VuMmRS75OL1Quy/+sASrBPuMwD/lglt9B/uNcINp3LnHpWdpmORQq2SI/kfJWgDxVX2hwGoABQZT+BCzWn/TVl37UhGz2Jb7/AQnriH7fdYtbDV3GJCc/2sTibM/PGP51gUeKWr0VbU=
+	t=1732192392; cv=none; b=CbKNaIU1R5zoJSUv/aaeqq1C89GjY/emnEVLlFurxmoNZAPRgcz91ZYl2elrY5iNV2LYTK5+zPjjc0pWh5kuHnykKyW6pCVkl1yECDWwmEl8CyjToMVxxvukZovd7YwQlNzRYn4BmnymE/8BrQHoWPABdW6rOoZc2TQ3h4nctH4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732191990; c=relaxed/simple;
-	bh=ulZTmxWVcjigR+qYZlOAySxZoDa70B4N5XreFIS+shA=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=kQK+vbUggA1CIx/EpAhZt5E9QOzrVYI7o+k24IfswQdj6d6+KH9q6s0IYd3vGsWBgq5u9S2XPhotsmdc26ys27iE7k2kSlXQiBNfG828A4Ei1VGRjoUITRuvvAszqByXLn/GAUgTXtCVlxCsSIFYyQRFOgbAg574eWARCwCqntw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=R0srzGz/; arc=none smtp.client-ip=209.85.208.54
+	s=arc-20240116; t=1732192392; c=relaxed/simple;
+	bh=88ITFPUUsfIwaCKYuNyjaXtYOTMKYnqEbbMPpd/oAnc=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=aauroCo7Uz4B8CU94aOU79LKK0RLy5kkCGOAGQYdKP4/bVzCw3reUKxgdKoeOPjc91coR8z7Pg0A2dSL4hInZfl36DGfajOdd3HQ8brj/lmwX1uw0PtM8qxWsuC3t1kTbQ5HpEiJ/LuUDjonx2yjc6HQvMNOW/XkCMLFSHTVdRA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UwtaAaPv; arc=none smtp.client-ip=209.85.218.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5cfadf851e2so1119356a12.2;
-        Thu, 21 Nov 2024 04:26:28 -0800 (PST)
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a99f3a5a44cso128877966b.3;
+        Thu, 21 Nov 2024 04:33:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1732191987; x=1732796787; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ulZTmxWVcjigR+qYZlOAySxZoDa70B4N5XreFIS+shA=;
-        b=R0srzGz/lYNJdpAq6kWY0f49xFiKRc/YJ4d3oDAB4ivIZqKQA9+Ofy8aj/1P+wlQ5K
-         1I6t4wq9FyvtGh3tqOhEOzoFnsmgZ4sp9WvV9dRPLEoex15sZ3jlZ0q/+hoyerJn36AV
-         dO/FyAFyrCgGYLo6xqlnxiHk4LyXH9zr6M3x/dQplR9QywMp1MmrVRDBKDJD4yxpa9k5
-         y+CotiCQMJ+QY6hWnX8cQkPkgB/RG3kay5BtqtBwilUMRMIToqrfj1UyoNZc8r7EJQTk
-         byRtmo5P+MSB4q+ApH/5nhh99ajH7BDVUAbuOxtRCvib3fL6Cwwy7dQ9PjpvxW21tufo
-         76Rw==
+        d=gmail.com; s=20230601; t=1732192389; x=1732797189; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MkLAD9Z/v55rtUvSWajMsLewz3MHOscGl7h7lwnVd/o=;
+        b=UwtaAaPvcw3ygmk5HicfpJgC8usk/68pRdiO8dcOyEqgOVL3XxyW+h0Xgh04j05b8l
+         NLufKlH56q9r88G2nNmIjtWwxin8z7p0RpP0aHqfSphcJ0eEakTsUrTjapKPxm8TQ3oS
+         nUckJ7fKOplo/T69aRZqHo8y1UiVy4cJfVebSdpJuQ4Ni5qagg46iO1Q9/vLGhXkH3Hl
+         SBL3DZQDGH6r5hOmYRHEkV4ja/nQ/3y3hBdaFNWLbJXk6WD24Ranq6kn0f0MPFlXcycr
+         JbkDMIP8TqpIiryYb0UEJNq0PUhzYdXNRcWMK/UJqss4nm6fwDRF+U/N+yachJmNesid
+         eCWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732191987; x=1732796787;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ulZTmxWVcjigR+qYZlOAySxZoDa70B4N5XreFIS+shA=;
-        b=Wh45jLLjMjZ9SPv6TbW9FL81xf0j8LwhlmkW5E68bqL3Lv2Pf40Ks/dfoIGHCexNYN
-         Ys6Xj+i54RcEV2HncbojCvXKQjSVnCX9g5R3THwJIoVuQTpa+YK1Zqi5K9IDy3V/jGe5
-         ZEcq2zrZ6jznFL69ZD16nmkroa1kl/ibrHKb0cRkjNlOdWWTZyRgYUKFd4fb6Y0+VrUN
-         yg3jjStD+SjBd2luQZERK1Hgeq1sKiueelx6bvNTpb5EsB8cAVJNBnAQSoUn2QbQO8Tt
-         UUBoGs6fT6XvqThQSYf1Ea02HTfIxGv28JGFEOM0ycCySc6qXcxu4lUl4JBBcdWY9nBI
-         YNuw==
-X-Forwarded-Encrypted: i=1; AJvYcCUU6QXF4lCu4ZSyzwRUenyCfjOPTxmioH6hn9EpHEGLmlWDnyW4u4MIm+cD2L+ockUKcDHDPg+nkgwM6xJo@vger.kernel.org, AJvYcCUddMuiFiAwp0xsRE58BbFRLpDYycU3wd4/VKahpuN6NXQSu8qAjLzLbzVH7aOrfpBuT5MX8cQozfvW@vger.kernel.org, AJvYcCWvTelfxF2oOrxPq5fSDUAeIgVp1Y7/0VFGPll63KTKn/F289Gu0SJA3TRceZscLFR9rbsiCyBAXDXb2SHn@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywczf6uo2VUkfCe60JlqAskHHnFBCKOEb6FAwQUsIjJa+zQieck
-	yMIUPv5DsfFyBAhybDTZCm+ALCWHlU+LZ3ydw8neg2nE6OGwmROY
-X-Google-Smtp-Source: AGHT+IFrlPjgnhHtms+P1z4/+5K49v6csfvM/F8Ofr1mnfFQczpBUaHxpJlITkS/2QI8N6xNFRSu+A==
-X-Received: by 2002:a05:6402:430b:b0:5cf:e13b:eed1 with SMTP id 4fb4d7f45d1cf-5cff4afe13emr5108404a12.7.1732191987077;
-        Thu, 21 Nov 2024 04:26:27 -0800 (PST)
-Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5cff44ef803sm1889137a12.28.2024.11.21.04.26.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Nov 2024 04:26:26 -0800 (PST)
-Date: Thu, 21 Nov 2024 13:26:24 +0100
-From: Stanislav Jakubek <stano.jakubek@gmail.com>
-To: wenhua.lin@unisoc.com
-Cc: Zhaochen.Su@unisoc.com, Zhirong.Qiu@unisoc.com,
-	baolin.wang@linux.alibaba.com, brgl@bgdev.pl, cixi.geng@linux.dev,
-	conor+dt@kernel.org, devicetree@vger.kernel.org,
-	gregkh@linuxfoundation.org, jirislaby@kernel.org,
-	krzk+dt@kernel.org, linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org, orsonzhai@gmail.com, robh@kernel.org,
-	wenhua.lin1994@gmail.com, xiongpeng.wu@unisoc.com,
-	zhang.lyra@gmail.com
-Subject: Re: [PATCH 2/2] dt-bindings: serial: Add a new compatible string for
- ums9632
-Message-ID: <Zz8m8PqHX_7VzgoP@standask-GA-A55M-S2HP>
+        d=1e100.net; s=20230601; t=1732192389; x=1732797189;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=MkLAD9Z/v55rtUvSWajMsLewz3MHOscGl7h7lwnVd/o=;
+        b=M2vYfZXZKathNoOC8BKrsJGs3qh0pg54Sp96BPWMTs0I/q8pB+XCRSaTVq7lUTB9Lv
+         kwFamdRzzRHN4h1fQa4Em/+nNq+L9o2N9Jl3BEA3+D+v6DOKd+5mgM6ya5Q00LgnKEgq
+         whq+RHgo+6+pMBmhTwgLSvrw3bI2aHfbrjKIZWc5d3zsFpyH7BP0OKk0sdPdBl4EawkI
+         en9UJbtIR+moByiHuk3CRslvsnDpr/ddpuMlrHHMPplaDn82ZbXozZin+YKwzdq+zupi
+         rPaDJi9ksB8QknsoX//HHsdkRBogbtvn8vnBlEaUDU+FIox+y8lGGLQH53XIWQvz7nvZ
+         NMdQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX0kLjBqWnAqpQBGMqNKCnOAsCQKNip8IFMILCK5p9+vky3CRXcRrtTqMbPwzJ/krTi4PRPKT2gDaSS@vger.kernel.org, AJvYcCXqrKNOpmyjnYyxUQ04i31sUCl4Mh07n+Qy2lZo39v17Olr5pfZOadlr5RU9920lJJoHyY4RRtVdKwSaWni@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw/ZZlB48CLX3T2iYuJltzA1mpZaUwLxGYbFcTQ2DqCZzq/9i6z
+	EHMuwjLUmJ10NsJtrVWM5iXLkfhq9o5Go22AywLBiMcVPqWKMCPz9vLYng==
+X-Gm-Gg: ASbGncshoBL1dA3mIaGrLTGHGs7gcdjrKc8Vo5XldgFIvwUltyJ591mrmxPyS57o2ME
+	sltYH8gkPJI9ba/Wg+NnWsGOggVw3u7ujaG0CMBlpKFyaUEQ8KDv+TI958q4mn0VRoPqTFpGS7Y
+	K59wp6IcFDAlBb0BoLswpyED1DDwrfqVo6BinRccHNZ62wYEZm9cOA8+6XOFc4Xe9lvzyoNKsCi
+	R2eyunMECQnquM6Y+3yJ5JWnQAxNd1Sqe5lfyzx3WAQ3OZyeead/R6gxRwM28w2Ogo5N8EKXsbP
+	/o7v31LmLKU9kkdrIXIVSLk=
+X-Google-Smtp-Source: AGHT+IGi5XImn6CCV/jgD2xDfB7VL/11etT59d4E0UzrzVRpXsOXNGpEtINU8S6PvWoN+MFhSuYmVw==
+X-Received: by 2002:a17:906:ef01:b0:a99:5d03:4687 with SMTP id a640c23a62f3a-aa4dd552458mr571297066b.21.1732192389085;
+        Thu, 21 Nov 2024 04:33:09 -0800 (PST)
+Received: from localhost (91-118-163-37.static.upcbusiness.at. [91.118.163.37])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa4f42d48b8sm75379666b.116.2024.11.21.04.33.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Nov 2024 04:33:08 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241113110516.2166328-3-Wenhua.Lin@unisoc.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 21 Nov 2024 13:33:07 +0100
+Message-Id: <D5RUYD6QBEC6.3CKN66RGZQGQH@gmail.com>
+Cc: <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <rickard.andersson@axis.com>,
+ <kernel@axis.com>, "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v6 1/2] dt-bindings: iio: light: Document TI OPT4060
+ RGBW sensor
+From: "Javier Carrasco" <javier.carrasco.cruz@gmail.com>
+To: "Per-Daniel Olsson" <perdaniel.olsson@axis.com>, "Jonathan Cameron"
+ <jic23@kernel.org>, "Lars-Peter Clausen" <lars@metafoo.de>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>
+X-Mailer: aerc 0.18.2
+References: <20241120163247.2791600-1-perdaniel.olsson@axis.com>
+ <20241120163247.2791600-2-perdaniel.olsson@axis.com>
+In-Reply-To: <20241120163247.2791600-2-perdaniel.olsson@axis.com>
 
-Correct me if I'm wrong, but this patch seems incorrect to me.
-The 1st patch suggets that the sc9632-uart is incompatible with sc9836-uart,
-but here you make it fallback to it anyway.
+On Wed Nov 20, 2024 at 5:32 PM CET, Per-Daniel Olsson wrote:
+> Add devicetree bindings for the OPT4060 RGBW color sensor.
+>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Per-Daniel Olsson <perdaniel.olsson@axis.com>
+> ---
+>  .../bindings/iio/light/ti,opt4060.yaml        | 51 +++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/light/ti,opt406=
+0.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/iio/light/ti,opt4060.yaml =
+b/Documentation/devicetree/bindings/iio/light/ti,opt4060.yaml
+> new file mode 100644
+> index 000000000000..0577e27db1ef
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/light/ti,opt4060.yaml
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/light/ti,opt4060.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Texas Instruments OPT4060 RGBW Color Sensor
+> +
+> +maintainers:
+> +  - Per-Daniel Olsson <perdaniel.olsson@axis.com>
+> +
+> +description:
+> +  Texas Instrument RGBW high resolution color sensor over I2C.
+> +  https://www.ti.com/lit/gpn/opt4060
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,opt4060
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
 
-Also, both of the patches seem to have made it to linux-next without the
-reviews/Acks from maintainers. Maybe Greg was a bit too fast here :)
+You could simply use vdd-supply: true, as it is obvious what it does.
 
-Regards,
-Stanislav
+> +  vdd-supply:
+> +    description: Regulator that provides power to the sensor.
+> +
+
+is vdd-supply not required?
+
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        light-sensor@44 {
+> +            compatible =3D "ti,opt4060";
+> +            reg =3D <0x44>;
+> +            vdd-supply =3D <&vdd_reg>;
+> +            interrupt-parent =3D <&gpio5>;
+> +            interrupts =3D <13 IRQ_TYPE_EDGE_FALLING>;
+> +        };
+> +    };
+> +...
+
+Best regards,
+Javier Carrasco
 
