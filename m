@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-123521-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123522-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 798499D4D7D
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 14:10:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B4509D4D8C
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 14:13:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92F7A283E44
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 13:10:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41458280F29
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 13:13:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99D1D1D7E4C;
-	Thu, 21 Nov 2024 13:10:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 338171CDFD2;
+	Thu, 21 Nov 2024 13:13:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tawtPhkv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jJXK6kXN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FFC11B0F0C;
-	Thu, 21 Nov 2024 13:10:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BAD21B0F0C;
+	Thu, 21 Nov 2024 13:13:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732194635; cv=none; b=PX508F+/zRYbafGn7JD/1DTInpKGVZse7QuydI5rzLrNfk2B9Mkf6Ga8Mq40cDaX8ptIgTwz8j82JTJ4GCHiEq1AHZ9O4I33WTfq4kN3hIGPYo7T4pJFMz7Q9FqK5GEG7qdxa50c8ZRYeUumUJ2Y5gg3jqPBs9xGwbb6VMYn0BI=
+	t=1732194805; cv=none; b=rZiln9v4z7hyZXJxKVYSHtcymRNNj2RYsCcaxKVtkYECO/birhR21ZbGLJhjNagPBct1m07hVlAUTUaY8aNBYKgsHhrZhr2lVhHbX2EuWanDAnnMISBdKhsmr1ZN0aOB2HCaK6pChq3tyM7RPE0gzllQMCy2nksq2xYHNFJVDLk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732194635; c=relaxed/simple;
-	bh=Q7e/7v/wkwzf+9WRZWI76lfTqRghf/xxHp0zdkSzu+U=;
+	s=arc-20240116; t=1732194805; c=relaxed/simple;
+	bh=T56RJic84mjGseWEFMdODkz00/doKV0DVthpc7FjRn4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XI0oecw3erl2OyolY62F1AJg3dw1VXTWVfxNZzGRVr393sjX6xaVDChDPblQyfjjcFkUnu5M/sqneVeaokQGHROE4xQTZykW55OngSri5uCu0xeH1WJ4WGCCQTp6wlvkGXXhPcvcNEA+0+1sXql2aSKTBPoeQVPUs/AFTqArn8I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tawtPhkv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6858EC4CECC;
-	Thu, 21 Nov 2024 13:10:31 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=tzZ71saMpIFw2jWpLCYUBLrrgUPWRp8V09p0bXomGzGyLwiPxwQP1LxqpgOKRekOWugsTzVr1eWuwVPG91dEEgnAnGaneOnwsh2amQFImL5X1U2Vq44LgUA5SICcfjjVkBhrR+ox/ldNUh5NBLL1BPlOh/Q4fGmKld+7ZNM3AB8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jJXK6kXN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89504C4CECC;
+	Thu, 21 Nov 2024 13:13:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732194635;
-	bh=Q7e/7v/wkwzf+9WRZWI76lfTqRghf/xxHp0zdkSzu+U=;
+	s=k20201202; t=1732194804;
+	bh=T56RJic84mjGseWEFMdODkz00/doKV0DVthpc7FjRn4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tawtPhkvVrm2LcvaCKjV6g8MeO3JOG8jZncu/ZDZzulDw2HSdMKZKba1yGDemoVGW
-	 yy7dPrP1XkRDf8bQeeL2H+6WF2GuVm5fIeP+Sozos2GuqCmQwWElP/Lrju6B7VzNRR
-	 Wa1SyJs4R+2xqYpRp1vnPVK6W9SK1MAqTtG9Z0gfjLC47waW+H1bYFeJLipl6c2rF+
-	 KwiJpurVykxwY+teUkL7EwnD8Nzx9WOrt4q1X7DZVmYqn7Bc9QuoSsmOqPiqEFP13D
-	 FB35V1EzOVOj0hSQ4m3kDYl44vKVzJzzqOTMzgmyv/TzpOF+ofy/EQ8e4uPB8mdfzh
-	 J9y0cBm244jkw==
-Message-ID: <1c755fb4-964a-4c7b-819f-f5cf54baddfb@kernel.org>
-Date: Thu, 21 Nov 2024 15:10:23 +0200
+	b=jJXK6kXNcg159HH1WH4Z/Rg49Y2MZqn8Nx4Mg2sV5thGdG9p/CwU8w0/2Ae8JyXOK
+	 xniA215zDKMjjOUg608GCGxCc7C1sYRIoefHh9bxw+azkQgnNy9+rUWRTZzMsyosIe
+	 4ElAcq/W+aYdJZUuRq2nwlWKMn+fAk/nD5thp44MmdrB85BVMKP41PsJ3etpBTbJiv
+	 XINFkfblHwx+akqNRduAN+S7PODfE72wlzZkOC8gdKschzKMNimICR5xXe212hcdPj
+	 UhyuWqBmMSS1kR9DsiXsvVQouv/Vy2ZW9O0uA47rr5pdi+22Y8cbgofmfqC5gxs7S7
+	 YyXrNN4iT1Syw==
+Message-ID: <97fbcaf0-ccd5-44d8-8600-f0e0c5c36d41@kernel.org>
+Date: Thu, 21 Nov 2024 15:13:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,33 +50,49 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: soc: ti: pruss: Add clocks for ICSSG
+Subject: Re: [PATCH v3 2/2] arm64: dts: ti: k3-am64-main: Switch ICSSG clock
+ to core clock
 To: MD Danish Anwar <danishanwar@ti.com>, conor+dt@kernel.org,
  krzk+dt@kernel.org, robh@kernel.org, ssantosh@kernel.org, nm@ti.com,
  Vignesh Raghavendra <vigneshr@ti.com>
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org, s-anna@ti.com, kristo@kernel.org, srk@ti.com
 References: <20241113110955.3876045-1-danishanwar@ti.com>
- <20241113110955.3876045-2-danishanwar@ti.com>
+ <20241113110955.3876045-3-danishanwar@ti.com>
 Content-Language: en-US
 From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20241113110955.3876045-2-danishanwar@ti.com>
+In-Reply-To: <20241113110955.3876045-3-danishanwar@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 
 
 On 13/11/2024 13:09, MD Danish Anwar wrote:
-> The ICSSG module has 7 clocks for each instance.
+> ICSSG has 7 available clocks per instance. Add all the cloks to ICSSG
+> nodes. ICSSG currently uses ICSSG_ICLK (clk id 20) which operates at
+> 250MHz. Switch ICSSG clock to ICSSG_CORE clock (clk id 0) which operates at
+> 333MHz.
 > 
-> These clocks are ICSSG0_CORE_CLK, ICSSG0_IEP_CLK, ICSSG0_ICLK,
-> ICSSG0_UART_CLK, RGMII_MHZ_250_CLK, RGMII_MHZ_50_CLK and RGMII_MHZ_5_CLK
-> These clocks are described in AM64x TRM Section 6.4.3 Table 6-398.
+> ICSSG_CORE clock will help get the most out of ICSSG as more cycles are
+> needed to fully support all ICSSG features.
 > 
-> Add these clocks to the dt binding of ICSSG.
+> This commit also changes assigned-clock-parents of coreclk-mux to
+> ICSSG_CORE clock from ICSSG_ICLK.
 > 
-> Link: https://www.ti.com/lit/pdf/spruim2 (AM64x TRM)
+> Performance update in dual mac mode
+>   With ICSSG_CORE Clk @ 333MHz
+>     Tx throughput - 934 Mbps
+>     Rx throughput - 914 Mbps,
+> 
+>   With ICSSG_ICLK clk @ 250MHz,
+>     Tx throughput - 920 Mbps
+>     Rx throughput - 706 Mbps
+> 
 > Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+
+It would be nice if you could send patches to update
+corresponding nodes in am65 and j721e platforms as well
+else we will start getting dtbs_check errors.
 
 Reviewed-by: Roger Quadros <rogerq@kernel.org>
 
