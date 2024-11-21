@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-123438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87A7C9D485B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 08:49:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E6149D4861
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 08:52:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 00258B20AA1
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 07:49:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C026D1F2206A
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 07:52:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1043A15C15C;
-	Thu, 21 Nov 2024 07:49:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3427B1C7B77;
+	Thu, 21 Nov 2024 07:52:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DZlWTr3o"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pzAeYQ2P"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D126614EC55;
-	Thu, 21 Nov 2024 07:49:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3C164206E;
+	Thu, 21 Nov 2024 07:52:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732175360; cv=none; b=pm3b8DDK4sp4+xxeemZ9A7ZxncrNjLjeGoUVJEh5Z198cLoqk4NvZdCQSc/23id4C1pkEMoDMzLa78CTR8w6h6Za7HdAI0F9qdZXHI2rRInEp39XxygyNhIRO/hF0QxRtRUHLLkLvE6Fe5gwlO64G6/9tccyhE4ElN20urZUt2o=
+	t=1732175549; cv=none; b=FfS8K81p8ys28DPkDl/DYHRdZgiQ44yAFm4PfWa6wDmdUWJdtF2o4nEa9ghsk1giGMLRx4dmpDHXEdxxo+BRGZinyltyI87SmdKLm3wxSQCQ7gggZQGUBIdkmnJgJWzUJnME2cWOigNxqRZksYApkV++F1niYfwGSvBIu+BVc0U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732175360; c=relaxed/simple;
-	bh=4CkwEdrsvB8pjMup6oXE57MFNJnD4/M2mjHbPK09Stc=;
+	s=arc-20240116; t=1732175549; c=relaxed/simple;
+	bh=FsZnS+BPUxlTWtLuYGviVz6SM4TotXdAK09EcB98b/o=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HDHYEzEj7uN569OZlOgIVODf2ueCAhXaxjLlPKJhfjE57VHk7GcZfM/JoYWFRzjy0Sd01mtjMSEnmGu9tjNqBYGEzhb1yIzvQIKSm/pfBgEtVGih9DdBf1x+dMxxkzrBvIjzqbNpwd9EXyrJNaIHy4EsuJ5n0zqG0clo8rRQB4c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DZlWTr3o; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D189C4CECC;
-	Thu, 21 Nov 2024 07:49:13 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=j5rdKBe1XjW/XTVrrT7AG/YgDbKeeNdPZqIknZfXHSFlC3JwXCN205u/qC5eVu+Bx06C5JKhk2Xxe3uMbtB0q8PKuslgPcEORIBpQ+vhF/br7Cte+Hlvu0smLbKUpcol3DLnPcFgLTpKHX5Z1Fp8DK/jQVUcPC/OQhYpblnMVmM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pzAeYQ2P; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAC7EC4CECC;
+	Thu, 21 Nov 2024 07:52:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732175359;
-	bh=4CkwEdrsvB8pjMup6oXE57MFNJnD4/M2mjHbPK09Stc=;
+	s=k20201202; t=1732175545;
+	bh=FsZnS+BPUxlTWtLuYGviVz6SM4TotXdAK09EcB98b/o=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DZlWTr3oLoGwyeRUh5amiaMkkIRRsfhg4C/vypWwJgAshIKG6HQe32Lm9lFPzjRlE
-	 DSvjfMQj5LQge6X6Vb706HXUUXNDfBqiEuPM0vvlLFCOJdmAmY3sBqYFkL1W6D3EUq
-	 5CHaUNmmdYkZWEz6Nz6X8Kb916TLSLleHCL1qEQ62FdRBc3fQ0Z0H+HGTUC03cRUwg
-	 GopbviQCsr3zOT223eSqbUXvBW0KCKbz1Po1FeBPpgCQ8dlgafRMzZtAO7Bb5EMSkd
-	 3VjzhSPpUJL9FkGLF7AAMFG+inmjAl/Kq5uKrveSgxuZlQhtKW56jKQkFcbTA+9rLU
-	 kDV5KKbWKWXZQ==
-Message-ID: <4c419118-83f8-4263-9d7c-8aef02908430@kernel.org>
-Date: Thu, 21 Nov 2024 08:49:11 +0100
+	b=pzAeYQ2P3Ucsqy2Xme2Jrmxbynq7t+1wPzAMRVotNI8uTk6HAppUuxX8h5GaI/73O
+	 fzR5I3gL2yH1l9JxM/h6Vn69mpN44AdV81P6+g7z5/ILjVu8WBqBxriNPldf0Kj3fb
+	 mFSdNPpGQJrYcYNpBYA2GZ1kZl5fxz7V19S2gBWrnrytlAgblf6pSchjFezLLPTwBS
+	 NT6I6VN3z6ffW8HD7FQjDni/7ftvQ6dH0NTxC7T5ia4/vTC29uQVWDJzz6Xrf0Ss1H
+	 mJhYXD2xqCYk/E3P4Irt9H+02RZD9cFFLltwnPz+v3oQnx0sojw/AW6Cd7/Ah8CxEJ
+	 pzuWwnMbGzG9g==
+Message-ID: <efafb881-2bfe-4d64-ae1b-4648ce43ec63@kernel.org>
+Date: Thu, 21 Nov 2024 08:52:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] dt-bindings: bluetooth: add 'qcom,product-variant'
-To: Cheng Jiang <quic_chejiang@quicinc.com>,
- Marcel Holtmann <marcel@holtmann.org>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
- Rocky Liao <quic_rjliao@quicinc.com>, quic_zijuhu@quicinc.com
-Cc: linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- quic_mohamull@quicinc.com
-References: <20241120095428.1122935-1-quic_chejiang@quicinc.com>
- <20241120095428.1122935-2-quic_chejiang@quicinc.com>
- <c8ae761a-732c-4def-ac6e-5e1b16a21ada@kernel.org>
- <0b0b55a2-ab80-4f6d-a4cf-c04acc94a989@quicinc.com>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: light: Add APDS9160 binding
+To: Mikael Gonella-Bolduc <mgonellabolduc@dimonoff.com>
+Cc: Conor Dooley <conor@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Nathan Chancellor <nathan@kernel.org>,
+ Nick Desaulniers <ndesaulniers@google.com>, Bill Wendling
+ <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
+ Mikael Gonella-Bolduc <m.gonella.bolduc@gmail.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, llvm@lists.linux.dev,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>
+References: <20241119-apds9160-driver-v1-0-fa00675b4ea4@dimonoff.com>
+ <20241119-apds9160-driver-v1-1-fa00675b4ea4@dimonoff.com>
+ <20241120-case-guy-7456f9f850fa@spud>
+ <769d80cf-c4ce-48eb-964a-e5963f2ed138@kernel.org> <Zz5F4JQVxA/AgNva@uva.nl>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,78 +111,57 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <0b0b55a2-ab80-4f6d-a4cf-c04acc94a989@quicinc.com>
+In-Reply-To: <Zz5F4JQVxA/AgNva@uva.nl>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/11/2024 05:06, Cheng Jiang wrote:
-> Hi Krzysztof,
-> 
-> On 11/21/2024 12:47 AM, Krzysztof Kozlowski wrote:
->> On 20/11/2024 10:54, Cheng Jiang wrote:
->>> Several Qualcomm projects will use the same Bluetooth chip, each
->>> focusing on different features. For instance, consumer projects
->>> prioritize the A2DP SRC feature, while IoT projects focus on the A2DP
->>> SINK feature, which may have more optimizations for coexistence when
->>> acting as a SINK. Due to the patch size, it is not feasible to include
->>> all features in a single firmware.
+On 20/11/2024 21:26, Mikael Gonella-Bolduc wrote:
+>>>> +$id: http://devicetree.org/schemas/iio/light/avago,apds9160.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Broadcom Combined Proximity & Ambient light sensor
+>>>> +
+>>>> +maintainers:
+>>>> +  - Mikael Gonella-Bolduc <m.gonella.bolduc@gmail.com>
+>>>> +
+>>>> +description: |
+>>>> +  Datasheet: https://docs.broadcom.com/docs/APDS-9160-003-DS
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    enum:
+>>>> +      - avago,apds9160
+>>>> +      - broadmobi,apds9160
 >>>
->>> Therefore, the 'product-variant' devicetree property is used to provide
->>> product information for the Bluetooth driver to load the appropriate
->>> firmware.
->>>
->>> If this property is not defined, the default firmware will be loaded,
->>> ensuring there are no backward compatibility issues with older
->>> devicetrees.
->>>
->>> The product-variant defines like this:
->>>   0 - 15 (16 bits) are product line specific definitions
->>>   16 - 23 (8 bits) are for the product line.
->>>   24 - 31 (8 bits) are reserved for future use, 0 currently
->>>
->>> |---------------------------------------------------------------------|
->>> |                       32 Bits                                       |
->>> |---------------------------------------------------------------------|
->>> |  31 - 24 (bits)   |    23 - 16 (bits)   | 15 - 0 (16 bits)          |
->>> |---------------------------------------------------------------------|
->>> |   Reserved        |    0: default       | 0: default                |
->>> |                   |    1: CE            |                           |
->>> |                   |    2: IoT           |                           |
->>> |                   |    3: Auto          |                           |
->>> |                   |    4: Reserved      |                           |
->>> |---------------------------------------------------------------------|
->>>
->>> Signed-off-by: Cheng Jiang <quic_chejiang@quicinc.com>
->>> ---
->>>  .../bindings/net/bluetooth/qualcomm-bluetooth.yaml          | 6 ++++++
->>>  1 file changed, 6 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
->>> index 7bb68311c609..9019fe7bcdc6 100644
->>> --- a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
->>> +++ b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
->>> @@ -110,6 +110,12 @@ properties:
->>>      description:
->>>        boot firmware is incorrectly passing the address in big-endian order
->>>  
->>> +  qcom,product-variant:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    description:
->>> +      specify the product information for driver to load the appropriate firmware
+>>> What is the difference between these two devices? There's no match data,
+>>> makes it seem like there should be a fallback going on here.
+>> Same device names suggest this is some legacy. We don't take new
+>> bindings for legacy stuff.
 >>
->> Nah, you have firmware-name for this.
->>
-> Currently "firmware-name" is used to specifythe nvm (config) file only,
-> we also need to specify the rampatch file (TLV). 
->  
-> Can we re-use the "firmware-name"? add two segments like the following?
-> firmware-name = "rampatch_xx.tlv",  "nvm_xx.bin";
+>> Best regards,
+>> Krzysztof
 > 
-> Or add a new property to specify the rampatch file? 
-> rampatch-name = "rampatch_xx.tlv";
-You can grow the property, it's a list. Order of items in the list must
-be fixed (specific), though. See other Qualcomm remoteproc PAS loaders
-which already use two entries.
+> Hi,
+> Thank you for the feedback.
+> 
+> There's no difference between these two devices, it's the same chip using two different names.
+> There's two names because the chip was first released before the Avago & Broadcom acquisition.
+> 
+> The datasheet available has the avago name in it and it's referenced using both names.
+> I did not know which name to include so I wrote both.
+
+Choose only one. Preferably newer one. Just notice that broadcom and
+broadmobi are a bit different entities, according to vendor prefixes.
+
+> 
+> It's old but still being produced today and active for new designs.
+> 
+> Is it too old for the driver to be mainlined?
+
+No, it is fine.
+
+> If not, which name should I use?
+
 
 Best regards,
 Krzysztof
