@@ -1,195 +1,195 @@
-Return-Path: <devicetree+bounces-123385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C0059D4652
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 04:46:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E5659D466D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 05:02:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 056A21F21AC8
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 03:46:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 07C701F22567
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 04:02:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0713A3B796;
-	Thu, 21 Nov 2024 03:45:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B0B370815;
+	Thu, 21 Nov 2024 04:02:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="RqZ15P5G"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="i6IobRGI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFD422309B6;
-	Thu, 21 Nov 2024 03:45:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FC62191;
+	Thu, 21 Nov 2024 04:02:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732160758; cv=none; b=I3GtHH1lozUgRE7XnPoh83odSVlahupt37G4ZaofuvCqWRB6XfJWea4tbyaamaIGoNjJzjmA3DJdimDXgZWOeusmWdJo4LBOfUUJcgrw8Cj8ykpr+3Y6QpAo7IVhS6mgZ/Sn8wJ86cR0FNu4Q8JWhiGhnPw+ok1CYzEA0W+nIiQ=
+	t=1732161770; cv=none; b=UAOKK1unj5rTYTRF3E2BPasYFtS5D0Bh316FHq3cTPjUeMPe3XRrw39Iv/VzddjZxuG09gjoR6ukbAADquVRsp/2qkr6d10U+quff5FRvLKZK/Dcm9f7slMf2uTkWpeWXmRUSCTSiUon/gnQ0Qcf7C27JfNMkWTYITYS8aizil0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732160758; c=relaxed/simple;
-	bh=W6NRhNfE/tN5Hbr1vVe7ak6L9aO11G7A1l6/pEAVtAk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AtYdVAVUlsGXvYkVGD43YSRcq/zEFFsDnn+iwqlKVnS4aFLsqROIwrDZQ4d0mYzNvw9MsU3pn7OhMVCnpVNR8+/poUut6pYmeKkM9s1rfZusXfGo6NxK83xigw8cHWGXwiPQ9O4qdP4CuE3YNbBJj1E8fv1Wzaci5ruuHkeBK3E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=RqZ15P5G; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id D831E219;
-	Thu, 21 Nov 2024 04:45:36 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1732160737;
-	bh=W6NRhNfE/tN5Hbr1vVe7ak6L9aO11G7A1l6/pEAVtAk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RqZ15P5GNl+znM1p21KhrhS9yJJ+oOxvta1u/t17xJ9auQg+4ohsHufLOVv0R6+XG
-	 ySCzDgYUW3FJ1BDlrVbJcFBcJOyq7iiRae2tvX/dPFWX/FyVBA2iYv1YUgxyMdtFxc
-	 b1VMAig4wULTt3/G9pjywCsDzPMGH1N/h6YiMLTs=
-Date: Thu, 21 Nov 2024 05:45:46 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 4/4] media: i2c: imx290: Add configuration for IMX462
-Message-ID: <20241121034546.GG12409@pendragon.ideasonboard.com>
-References: <20241120-media-imx290-imx462-v2-0-7e562cf191d8@raspberrypi.com>
- <20241120-media-imx290-imx462-v2-4-7e562cf191d8@raspberrypi.com>
+	s=arc-20240116; t=1732161770; c=relaxed/simple;
+	bh=4HH9e2DdIyD+Gb/EqyPsW6Fio0L3K9h91eEBO+nCvkU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=fxxjh12QhaFZ0WtyI0e3wA2Hc4/XjvUOIw8CBST46o+El8mzUYniH6RdkRuR4JGzDHAh9S6eQLp3NC6WLMnPfAP8WrDRilIaAlIXBBMyQ6XgiIPUhMVOnk/DP/skzvRCULchf2Rq6FU3/6cYKgBHhcSqYZJo4KFvOtfrORb6n/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=i6IobRGI; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AKJtrOv019248;
+	Thu, 21 Nov 2024 04:02:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	r8ppdMKfh51u5pgiAc1cpcSILYq3w01TytQeIjLxsk0=; b=i6IobRGIBkbdEiF+
+	YIdCAOX4mM8W9u09dvneeKfzs6BfhnOuWG6qNYtdXcRmaK9C06G965hkaqKUvU5n
+	VTjBsPw0RDo2XFWisJE9PzWYg7InX4pJDj/Ykvn87ByoOsp3p8w35/W83ooUY9vN
+	znVwY+wniEal2e9RBYwozfnRq79oQsjLG0gk98M92k/QuhTlaoYvKArrWMJYW6Oy
+	gSXMAnvteGnhP9geSQa2d9wrnF8QkZgXZA9Qat8sE5G+0I/kOs2enTMKh3GldKWW
+	C+dz7tIpWqVcaRfY9PdrNGAVB8lQI2j6qjzO9KUs1i9j58l1JhTvzxALGIGTShM8
+	lEdGeQ==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 431c7hjqtm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 21 Nov 2024 04:02:33 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AL42WN4017665
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 21 Nov 2024 04:02:32 GMT
+Received: from [10.231.216.175] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 20 Nov
+ 2024 20:02:27 -0800
+Message-ID: <fb5bc38b-83b3-4924-b1d0-39219a2927b4@quicinc.com>
+Date: Thu, 21 Nov 2024 12:02:23 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241120-media-imx290-imx462-v2-4-7e562cf191d8@raspberrypi.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/4] dt-bindings: bluetooth: add 'qcom,product-variant'
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Marcel Holtmann <marcel@holtmann.org>,
+        Luiz Augusto von Dentz
+	<luiz.dentz@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        "Balakrishna
+ Godavarthi" <quic_bgodavar@quicinc.com>,
+        Rocky Liao
+	<quic_rjliao@quicinc.com>, <quic_zijuhu@quicinc.com>,
+        <linux-bluetooth@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <quic_mohamull@quicinc.com>
+References: <20241120095428.1122935-1-quic_chejiang@quicinc.com>
+ <20241120095428.1122935-2-quic_chejiang@quicinc.com>
+ <454tdpuglu23nmxfqqesv42h5rk3vqiji7spo3naf2djqwojqt@6x3ram3lnlkq>
+Content-Language: en-US
+From: Cheng Jiang <quic_chejiang@quicinc.com>
+In-Reply-To: <454tdpuglu23nmxfqqesv42h5rk3vqiji7spo3naf2djqwojqt@6x3ram3lnlkq>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Kr0nPh-zQUBBVuPbSI-BU9tmQifDkabM
+X-Proofpoint-GUID: Kr0nPh-zQUBBVuPbSI-BU9tmQifDkabM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 adultscore=0
+ phishscore=0 priorityscore=1501 malwarescore=0 bulkscore=0 spamscore=0
+ mlxscore=0 impostorscore=0 suspectscore=0 lowpriorityscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411210028
 
-Hi Dave,
+Hi Dmitry, 
 
-Thank you for the patch.
-
-On Wed, Nov 20, 2024 at 07:17:06PM +0000, Dave Stevenson wrote:
-> IMX462 is the successor to IMX290, and wants very minor
-> changes to the register setup.
+On 11/20/2024 6:43 PM, Dmitry Baryshkov wrote:
+> On Wed, Nov 20, 2024 at 05:54:25PM +0800, Cheng Jiang wrote:
+>> Several Qualcomm projects will use the same Bluetooth chip, each
+>> focusing on different features. For instance, consumer projects
+>> prioritize the A2DP SRC feature, while IoT projects focus on the A2DP
+>> SINK feature, which may have more optimizations for coexistence when
+>> acting as a SINK. Due to the patch size, it is not feasible to include
+>> all features in a single firmware.
+>>
+>> Therefore, the 'product-variant' devicetree property is used to provide
+>> product information for the Bluetooth driver to load the appropriate
+>> firmware.
+>>
+>> If this property is not defined, the default firmware will be loaded,
+>> ensuring there are no backward compatibility issues with older
+>> devicetrees.
+>>
+>> The product-variant defines like this:
+>>   0 - 15 (16 bits) are product line specific definitions
+>>   16 - 23 (8 bits) are for the product line.
+>>   24 - 31 (8 bits) are reserved for future use, 0 currently
 > 
-> Add the relevant configuration to support it.
+> Please use text strings instead of encoding this information into random
+> integers and then using just 3 bits out of 32.
+Ack. Originally intended to make it more flexible for future use. It can be 
+text strings for current requirement.
 > 
-> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> ---
->  drivers/media/i2c/imx290.c | 66 ++++++++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 66 insertions(+)
+>>
+>> |---------------------------------------------------------------------|
+>> |                       32 Bits                                       |
+>> |---------------------------------------------------------------------|
+>> |  31 - 24 (bits)   |    23 - 16 (bits)   | 15 - 0 (16 bits)          |
+>> |---------------------------------------------------------------------|
+>> |   Reserved        |    0: default       | 0: default                |
+>> |                   |    1: CE            |                           |
+>> |                   |    2: IoT           |                           |
+>> |                   |    3: Auto          |                           |
+>> |                   |    4: Reserved      |                           |
+>> |---------------------------------------------------------------------|
+>>
+>> Signed-off-by: Cheng Jiang <quic_chejiang@quicinc.com>
+>> ---
+>>  .../bindings/net/bluetooth/qualcomm-bluetooth.yaml          | 6 ++++++
+>>  1 file changed, 6 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
+>> index 7bb68311c609..9019fe7bcdc6 100644
+>> --- a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
+>> +++ b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
+>> @@ -110,6 +110,12 @@ properties:
+>>      description:
+>>        boot firmware is incorrectly passing the address in big-endian order
+>>  
+>> +  qcom,product-variant:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    description:
+>> +      specify the product information for driver to load the appropriate firmware
 > 
-> diff --git a/drivers/media/i2c/imx290.c b/drivers/media/i2c/imx290.c
-> index 7d794a509670..3bad7779d0d0 100644
-> --- a/drivers/media/i2c/imx290.c
-> +++ b/drivers/media/i2c/imx290.c
-> @@ -170,6 +170,8 @@ enum imx290_model {
->  	IMX290_MODEL_IMX290LQR,
->  	IMX290_MODEL_IMX290LLR,
->  	IMX290_MODEL_IMX327LQR,
-> +	IMX290_MODEL_IMX462LQR,
-> +	IMX290_MODEL_IMX462LLR,
->  };
->  
->  struct imx290_model_info {
-> @@ -316,6 +318,50 @@ static const struct cci_reg_sequence imx290_global_init_settings_290[] = {
->  	{ CCI_REG8(0x33b3), 0x04 },
->  };
->  
-> +static const struct cci_reg_sequence imx290_global_init_settings_462[] = {
-> +	{ CCI_REG8(0x300f), 0x00 },
-> +	{ CCI_REG8(0x3010), 0x21 },
-> +	{ CCI_REG8(0x3011), 0x02 },
-> +	{ CCI_REG8(0x3016), 0x09 },
-> +	{ CCI_REG8(0x3070), 0x02 },
-> +	{ CCI_REG8(0x3071), 0x11 },
-> +	{ CCI_REG8(0x309b), 0x10 },
-> +	{ CCI_REG8(0x309c), 0x22 },
-> +	{ CCI_REG8(0x30a2), 0x02 },
-> +	{ CCI_REG8(0x30a6), 0x20 },
-> +	{ CCI_REG8(0x30a8), 0x20 },
-> +	{ CCI_REG8(0x30aa), 0x20 },
-> +	{ CCI_REG8(0x30ac), 0x20 },
-> +	{ CCI_REG8(0x30b0), 0x43 },
-> +	{ CCI_REG8(0x3119), 0x9e },
-> +	{ CCI_REG8(0x311c), 0x1e },
-> +	{ CCI_REG8(0x311e), 0x08 },
-> +	{ CCI_REG8(0x3128), 0x05 },
-> +	{ CCI_REG8(0x313d), 0x83 },
-> +	{ CCI_REG8(0x3150), 0x03 },
-> +	{ CCI_REG8(0x317e), 0x00 },
-> +	{ CCI_REG8(0x32b8), 0x50 },
-> +	{ CCI_REG8(0x32b9), 0x10 },
-> +	{ CCI_REG8(0x32ba), 0x00 },
-> +	{ CCI_REG8(0x32bb), 0x04 },
-> +	{ CCI_REG8(0x32c8), 0x50 },
-> +	{ CCI_REG8(0x32c9), 0x10 },
-> +	{ CCI_REG8(0x32ca), 0x00 },
-> +	{ CCI_REG8(0x32cb), 0x04 },
-> +	{ CCI_REG8(0x332c), 0xd3 },
-> +	{ CCI_REG8(0x332d), 0x10 },
-> +	{ CCI_REG8(0x332e), 0x0d },
-> +	{ CCI_REG8(0x3358), 0x06 },
-> +	{ CCI_REG8(0x3359), 0xe1 },
-> +	{ CCI_REG8(0x335a), 0x11 },
-> +	{ CCI_REG8(0x3360), 0x1e },
-> +	{ CCI_REG8(0x3361), 0x61 },
-> +	{ CCI_REG8(0x3362), 0x10 },
-> +	{ CCI_REG8(0x33b0), 0x50 },
-> +	{ CCI_REG8(0x33b2), 0x1a },
-> +	{ CCI_REG8(0x33b3), 0x04 },
-> +};
-> +
->  #define IMX290_NUM_CLK_REGS	2
->  static const struct cci_reg_sequence xclk_regs[][IMX290_NUM_CLK_REGS] = {
->  	[IMX290_CLK_37_125] = {
-> @@ -1456,6 +1502,20 @@ static const struct imx290_model_info imx290_models[] = {
->  		.max_analog_gain = 98,
->  		.name = "imx327",
->  	},
-> +	[IMX290_MODEL_IMX462LQR] = {
-> +		.colour_variant = IMX290_VARIANT_COLOUR,
-> +		.init_regs = imx290_global_init_settings_462,
-> +		.init_regs_num = ARRAY_SIZE(imx290_global_init_settings_462),
-> +		.max_analog_gain = 98,
-> +		.name = "imx462",
-> +	},
-> +	[IMX290_MODEL_IMX462LLR] = {
-> +		.colour_variant = IMX290_VARIANT_MONO,
-> +		.init_regs = imx290_global_init_settings_462,
-> +		.init_regs_num = ARRAY_SIZE(imx290_global_init_settings_462),
-> +		.max_analog_gain = 98,
-> +		.name = "imx462",
-> +	},
->  };
->  
->  static int imx290_parse_dt(struct imx290 *imx290)
-> @@ -1654,6 +1714,12 @@ static const struct of_device_id imx290_of_match[] = {
->  	}, {
->  		.compatible = "sony,imx327lqr",
->  		.data = &imx290_models[IMX290_MODEL_IMX327LQR],
-> +	}, {
-> +		.compatible = "sony,imx462lqr",
-> +		.data = &imx290_models[IMX290_MODEL_IMX462LQR],
-> +	}, {
-> +		.compatible = "sony,imx462llr",
-> +		.data = &imx290_models[IMX290_MODEL_IMX462LLR],
->  	},
->  	{ /* sentinel */ },
->  };
+> DT describes hardware. Is this a hardware property?
 
--- 
-Regards,
+It has been added to identify the firmware image for the platform. The driver
+parses it, and then the rampatch is selected from a specify directory. Currently, 
+there is a 'firmware-name' parameter, but it is only used to specify the NVM
+(config) file. We also need to specify the rampatch (TLV file).
 
-Laurent Pinchart
+
+Can we re-use the "firmware-name"? add two segments like the following?
+firmware-name = "rampatch_xx.tlv",  "nvm_xx.bin";
+
+Or add a new property to specify the rampatch file? 
+rampatch-name = "rampatch_xx.tlv";
+
+> 
+>> +
+>> +
+>>  required:
+>>    - compatible
+>>  
+>> -- 
+>> 2.25.1
+>>
+> 
+
 
