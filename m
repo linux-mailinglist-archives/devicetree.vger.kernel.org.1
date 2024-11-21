@@ -1,156 +1,149 @@
-Return-Path: <devicetree+bounces-123369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123370-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96F809D447D
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 00:31:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DCB59D44EF
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 01:37:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 571062832A4
-	for <lists+devicetree@lfdr.de>; Wed, 20 Nov 2024 23:31:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 06F11282DC8
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 00:37:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 924BC1B5ED2;
-	Wed, 20 Nov 2024 23:31:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 886792309B3;
+	Thu, 21 Nov 2024 00:37:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="dBoYJX1B"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Sy/kmpcT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D516189521
-	for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 23:31:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EFDB2F3B
+	for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 00:37:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732145489; cv=none; b=mEUWtyWfFahagvIexmCSG6C/Y7XxCzu7bSm0f24mJ2v8ZbbYgsotzOB7lGSmx+UBE9PwJmt10cDSV6YsN1IgR/CHK5SUOEANrrul2nASz0g54kIYRBcqoXRPtZDx26C0gMq7KFmuSZ5Oi0CbbW0VJXiDJIOFPI+DAR2OBLQ5G50=
+	t=1732149446; cv=none; b=KDxh+p+PS+x+FeqcpMBd/67roFylO9Oy+29kspBMKzunK4VUIW7ikz/FdygQVLm2S6yk3/mz883cU9WkxXls2OiNaKmSf1KgCQodxbQCfU3Hy5XbLW/E9oDmsHR1Luhwb+N7ryxZqR51bbpqXOkAVWzDrE5S1Q1l1Ci2oqrxls8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732145489; c=relaxed/simple;
-	bh=zNNjCjHxAKV7W/tDatRt9BVWmQmRJtpdS1cMtjJM+Y4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=AIozxLqwgj3amtszsZFS1jYulJ4V1fyV2GsUvp/uQiT7MZoGO9OfyEExb7iFJcmPUEKhsqElB4TRVdyShwhMABbsTpdoE4xzSWtNgFLp+5aP2m9me6w3EZZjFeblh5MvAykjdmdP8AfpVa9laArvflRdEfdrxvs28c67cYifxOQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=dBoYJX1B; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-21210fe8775so11601425ad.1
-        for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 15:31:27 -0800 (PST)
+	s=arc-20240116; t=1732149446; c=relaxed/simple;
+	bh=U1S0roCBZy6Yr/IN5az14AchlrK43tHpIByXaXPoH0A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oXBKcmH1ie0jFL8ql+MfnEj+qFE9vdEB8/vM36UI6acAq1DXPCyy6cd19saD7P3gpyKKFsUpEAoJWYqdyfgz+O5qZffM0WLBZ6q8N2RDSrCe6jXvKeBXX7IGyUhUtqg8NB1R1f3Nc+1jd636jqB7ZlZ7pm0AI8GMtD+4BLeHTso=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Sy/kmpcT; arc=none smtp.client-ip=209.85.208.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2fb5cdabac0so519281fa.0
+        for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 16:37:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1732145487; x=1732750287; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=fSqv89uy0nwc5dDPbI4XvXjKwme8rpzvHxwcukveaqQ=;
-        b=dBoYJX1BqgAcE9tq1mdaPHv3XjX+F+kMjp/Afx1s86yBOsRONCza/2pBlyxvTtXF1h
-         k1ZRDpcVn/M50UHOfWSB60Z0PKg+KlA/sdWobIJ3/0IM0C+uJYf00EEH3eURq8Z8gmv2
-         gjXYK0Vd4LstOezz6SyTpHs1/jLDj8ICuzwiLTus754xs1StXKWYV5rWmhPOuU6dhcyk
-         LYdDV+xmnA4VWL3nZi+fCFAyxe2TZ3EHmKI4tfmvN4TwnGBxkNHNiyP12OrR113OsWFe
-         37yihpvjeR3EZxTrgSFC0rl3WFXEJK2T47a0mRorKmGIVCMUedeJTN8PQ8jE1jj3MlQe
-         3wLA==
+        d=linaro.org; s=google; t=1732149443; x=1732754243; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YAuXluMpfSh0qDO+UckfWrXerNoxRK+af2VJkTt6Y4g=;
+        b=Sy/kmpcTwZM+69COId67IPOCa4YugyAXsuSPVcoY9yHEwBVGZ6IVnT1BQIVMfZdkc6
+         gFITm+wtk22RirvoctJ3TXWj4sa9gChSlZrVcPlXzjUJp1ef4QcN29+NRrWuxZ5j2gKY
+         Yl6tCVCqZQyPEs5iF7JqW8wckob9ds/wN96GCcaUvvErJmj7jxULtP09JQ0tfdYU/fDl
+         hVXHFgmv4vDulJ5Lq7GDHaoeJC86/hZgIIPBPgFWZ+USVm7gTsHzYOnMlBvGq6cX50Nj
+         trEncmtv9rArPj584tvykHjp4KGJkqtFzssMhcHcezm5ssjjpDkSZbUhE+qiIJtvdkuu
+         DzWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732145487; x=1732750287;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fSqv89uy0nwc5dDPbI4XvXjKwme8rpzvHxwcukveaqQ=;
-        b=reKxQq8XAGmlRvJwb+ForheJ74nAExRaG6vHdS6U+T8CW3/xahBwvMthmRtL2dX5Iy
-         nl9jfuoXnuON0iF0D7PdwfYnymSOqMVre5rcPqoX8+dM/l1hkYxxrHl55paaduPIO+D9
-         jWDyX0w+N3ElpgwQQkMPEsEWdSITjTPVhFX1DtXyPMjgXJiZOQEWzXos609bYqAmNBMb
-         9AwmgoJe6dDuGPIrvSubvTvsPTPpCFcRkPNQPcs8J3/wpGgUI7HEgcMlMHch78ueoLmc
-         NenEcTwx4vfZ7GJWac6b6KXjZUSpd4vMBF2QyR0V7kXapqxXeyG4Sf+e4Z21vVQI9feb
-         VluQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXJ9aXRi0+lbWpImwcUzocWymgRdtHJZD7BNyJuffdzpX34ciBGFd5XNHip04qKvLfK4PnGbGdguRRt@vger.kernel.org
-X-Gm-Message-State: AOJu0YyHTGGXkMpIYy88LTQ6HJBdZErcy+SHXiIxySDlmy8zl1sZ6ZsY
-	5IVxlaW3rWqXaFhFe+ufM6u8VFg58MIfIcgpv26Er4Ma9vR7RKtQQep+pZRPWBNuChYYEzG1KjA
-	E
-X-Google-Smtp-Source: AGHT+IG8+Dhf9R1FFvZlRBlQQYlb3BPblu14O9UczA4OS58b9VvtlNwVw8oEoDe5/zYh/oqsLmntZQ==
-X-Received: by 2002:a17:902:eccb:b0:205:8b84:d5e8 with SMTP id d9443c01a7336-21283ca84ebmr14588725ad.18.1732145487286;
-        Wed, 20 Nov 2024 15:31:27 -0800 (PST)
-Received: from sw06.internal.sifive.com ([4.53.31.132])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-212880d0761sm1078525ad.132.2024.11.20.15.31.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 20 Nov 2024 15:31:26 -0800 (PST)
-From: Samuel Holland <samuel.holland@sifive.com>
-To: Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>
-Cc: Anup Patel <apatel@ventanamicro.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Marc Zyngier <maz@kernel.org>,
-	stable@vger.kernel.org,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Thierry Reding <treding@nvidia.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] of: property: fw_devlink: Do not use interrupt-parent directly
-Date: Wed, 20 Nov 2024 15:31:16 -0800
-Message-ID: <20241120233124.3649382-1-samuel.holland@sifive.com>
-X-Mailer: git-send-email 2.45.1
+        d=1e100.net; s=20230601; t=1732149443; x=1732754243;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YAuXluMpfSh0qDO+UckfWrXerNoxRK+af2VJkTt6Y4g=;
+        b=bpo56iFNzAtUa3hJicvk9wnqbvI/jACXcBKyok5Bn11krfk75jS4/w+O2UK3pCwUMb
+         hyBhgGMKgg/+DQ7G+ugLdPfhOeml0mPCbFy/Cay3SZWTCirW3JJhMmcmuS8lHfMFXB5U
+         bcJ6bJ9RbmKtVQqkICwlU1z7kONaJh7SmWegipvy/xORQkm7T3loGc8qlVlAPxQlDrBB
+         JP7y7APTCMo7PKshg7HsQPfQlUoASeVvTnqhk56Cn9AJlSifg/D30e+smlZbeFxTLk7K
+         ldoyEAtJ7f0TsOPPmdvTQTRbga2gDQFLxWJMluDD6qa7N+nnYuuXIcUnCj6jjkRiz0ne
+         GIFA==
+X-Forwarded-Encrypted: i=1; AJvYcCUGYUFCVWdwQ9uTjJdoJy+kRSRTzCO6SuXj7UrrX5nR8Cg5F+guVzAGYP0jyFW5aBbEf4C0N0r6mDAB@vger.kernel.org
+X-Gm-Message-State: AOJu0YxsdVnMt/DsgptWifPRt/chBr9/NiTayryuabe6ijhAIqEgX06r
+	Z3KWuOBDRPYn7JpZiJ6xlU46A3ScXxd3vtYLtxBE+D8Zux3UD3sZ+yCO+Dxw+mI=
+X-Gm-Gg: ASbGncteOx41xuub9NqBHeOvikShfRn4w9M4AknoddSkXB0rB1o5GfGnwHLm3xvozUn
+	HbfP80HLQdD4sG5C5LZ2s3IUb4aZbtJdSHjgSnJN1rckduBGTJEliKB3xb6IHZAyT4Wb5RZtOha
+	YW6r1c+gK5/JUB83uWUAESxwVrAn/n0gm9gieoeG1wnJ6tOmRry8nyok/O41JY607l5ZFx32z26
+	NurJAimiEMKRmYN6C348b6H0p4lasbT5rTCo95JjS3bUcUJpQ1lCkyX3pViqvVB53JLaIr6rNu3
+	4/xY098tIdaIpyIamj7DUeexNFsX
+X-Google-Smtp-Source: AGHT+IFN9O08F0W2wl6yka9ElBfiou3gnBgywoKZF/lU+i/vNAQy12evwkDojEAvUqtsv0eO+fwRIA==
+X-Received: by 2002:a05:6512:3d12:b0:53d:a8a5:82d2 with SMTP id 2adb3069b0e04-53dc13281a8mr604562e87.3.1732149442659;
+        Wed, 20 Nov 2024 16:37:22 -0800 (PST)
+Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53dbd472766sm773787e87.204.2024.11.20.16.37.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Nov 2024 16:37:21 -0800 (PST)
+Message-ID: <f903025b-08ff-422c-a93e-fad911a7ee43@linaro.org>
+Date: Thu, 21 Nov 2024 02:37:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/6] dt-bindings: media: Add qcom,x1e80100-camss binding
+Content-Language: en-US
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Loic Poulain <loic.poulain@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Jagadeesh Kona <quic_jkona@quicinc.com>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-clk@vger.kernel.org
+References: <20241119-b4-linux-next-24-11-18-dtsi-x1e80100-camss-v1-0-54075d75f654@linaro.org>
+ <20241119-b4-linux-next-24-11-18-dtsi-x1e80100-camss-v1-2-54075d75f654@linaro.org>
+ <92f3f608-1ca6-4c41-9406-28c7ad589872@linaro.org>
+ <66d1c50f-ebfc-41c7-95a4-5d555b336da4@linaro.org>
+ <bb58d02f-9ed6-476f-8bc6-ad56cb35e37f@linaro.org>
+ <91afb347-e8ee-4a97-bd8b-9a1413051cb9@linaro.org>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <91afb347-e8ee-4a97-bd8b-9a1413051cb9@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-commit 7f00be96f125 ("of: property: Add device link support for
-interrupt-parent, dmas and -gpio(s)") started adding device links for
-the interrupt-parent property. commit 4104ca776ba3 ("of: property: Add
-fw_devlink support for interrupts") and commit f265f06af194 ("of:
-property: Fix fw_devlink handling of interrupts/interrupts-extended")
-later added full support for parsing the interrupts and
-interrupts-extended properties, which includes looking up the node of
-the parent domain. This made the handler for the interrupt-parent
-property redundant.
+On 11/21/24 01:27, Bryan O'Donoghue wrote:
+> On 20/11/2024 23:02, Vladimir Zapolskiy wrote:
+>> like "vdd-csiphy-0p9-supply" and "vdd-csiphy-1p2-supply"?
+> 
+> In theory, however I'd like to avoid adding endless strings of new names
+> into the driver code for each different power input.
 
-In fact, creating device links based solely on interrupt-parent is
-problematic, because it can create spurious cycles. A node may have
-this property without itself being an interrupt controller or consumer.
-For example, this property is often present in the root node or a /soc
-bus node to set the default interrupt parent for child nodes. However,
-it is incorrect for the bus to depend on the interrupt controller, as
-some of the bus's children may not be interrupt consumers at all or may
-have a different interrupt parent.
+I don't understand this argument, it's the same degree of endlessness as
+the endlessness of new designed SoCs. Should it be stopped now or what's
+the point here?
 
-Resolving these spurious dependency cycles can cause an incorrect probe
-order for interrupt controller drivers. This was observed on a RISC-V
-system with both an APLIC and IMSIC under /soc, where interrupt-parent
-in /soc points to the APLIC, and the APLIC msi-parent points to the
-IMSIC. fw_devlink found three dependency cycles and attempted to probe
-the APLIC before the IMSIC. After applying this patch, there were no
-dependency cycles and the probe order was correct.
+My argument is to represent the actual hardware instead of copying errors.
 
-Acked-by: Marc Zyngier <maz@kernel.org>
-Cc: stable@vger.kernel.org
-Fixes: 4104ca776ba3 ("of: property: Add fw_devlink support for interrupts")
-Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
----
+> We can add this additional string name though in the interim between now
+> and refactor for the PHY API.
 
-Changes in v2:
- - Fix typo in commit message
- - Add Fixes: tag and CC stable
+I don't see it as a good reason to copy an easy to correct mistake.
 
- drivers/of/property.c | 2 --
- 1 file changed, 2 deletions(-)
+>> Also you put a description like "supply to PHY refclk pll block", but if I
+>> remember correctly once you've said that the datasheet (of another SoC)
+>> does not give any clues about the usage of the supply, thus it invalidates
+>> the given description.
+> 
+> I'm surmising by extrapolation - that's "probably" what those are just
+> at different voltage levels based on previous iterations of this PHY.
 
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index 11b922fde7af..7bd8390f2fba 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1213,7 +1213,6 @@ DEFINE_SIMPLE_PROP(iommus, "iommus", "#iommu-cells")
- DEFINE_SIMPLE_PROP(mboxes, "mboxes", "#mbox-cells")
- DEFINE_SIMPLE_PROP(io_channels, "io-channels", "#io-channel-cells")
- DEFINE_SIMPLE_PROP(io_backends, "io-backends", "#io-backend-cells")
--DEFINE_SIMPLE_PROP(interrupt_parent, "interrupt-parent", NULL)
- DEFINE_SIMPLE_PROP(dmas, "dmas", "#dma-cells")
- DEFINE_SIMPLE_PROP(power_domains, "power-domains", "#power-domain-cells")
- DEFINE_SIMPLE_PROP(hwlocks, "hwlocks", "#hwlock-cells")
-@@ -1359,7 +1358,6 @@ static const struct supplier_bindings of_supplier_bindings[] = {
- 	{ .parse_prop = parse_mboxes, },
- 	{ .parse_prop = parse_io_channels, },
- 	{ .parse_prop = parse_io_backends, },
--	{ .parse_prop = parse_interrupt_parent, },
- 	{ .parse_prop = parse_dmas, .optional = true, },
- 	{ .parse_prop = parse_power_domains, },
- 	{ .parse_prop = parse_hwlocks, },
--- 
-2.45.1
+But this is proven to be wrong, let me kindly ask you to align with the SoC
+documentation here.
 
+> I'm just as happy not to describe this or to describe it as no mor that
+> the 1.2v supply etc.
+> 
+
+Thank you for understanding.
+
+--
+Best wishes,
+Vladimir
 
