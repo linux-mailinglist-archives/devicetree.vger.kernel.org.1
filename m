@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-123540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 224BA9D503F
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 16:58:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D2E29D509E
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 17:22:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 35F22B2633A
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 15:57:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E2EB21F22685
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 16:22:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD56A183CA2;
-	Thu, 21 Nov 2024 15:57:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19AEF156883;
+	Thu, 21 Nov 2024 16:21:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zn59k0+g"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S1n0trqC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A727D79C4;
-	Thu, 21 Nov 2024 15:57:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4B9455C29;
+	Thu, 21 Nov 2024 16:21:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732204654; cv=none; b=gmfzTNpuB4pywwNCzOtyiFlw9aKJhr9YR0rOlP67rM2V3lAoYEvugG1fMd0fTvEEt5e6VYJvGlBbM3mjU+rUR4KYdmHZn3Ilhgr516WPgPCt9YNxByJrZ5yVyGecMp3Uyn3w3dNLza1kWlWf+t7EXLE2eO9DNS/kdDeQOxrKOHY=
+	t=1732206115; cv=none; b=IcMFmO5OBJCeHfx2Mu0A15lCisV+8nRKln/jo2AJNWSPLqNkVwFkeTU+rbekk/mnqAdpy0b60ttnHYXIfHHi1VJmnO15r+YURjJqv6KYS959fC3T8oGWpAMtfPHpSQgknVqdI4SEeyn7i5LpheIExWlzoG3Pwb+rT9yzMMhP4RM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732204654; c=relaxed/simple;
-	bh=78XCzuQAis01dvUW8tyNUygy4rt4UcNrkXJW13eg8mc=;
+	s=arc-20240116; t=1732206115; c=relaxed/simple;
+	bh=HUjeARzEFKuZwmjuWN7jX9OgSWrkMg5m1nwX93o1uBU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=f31T8vjBfh3p3Ub/5I6mKeFwwZ4E7ZMGKnkZIp+n+TeeDXBOllVoFsPQ0kEM5bkCQbivCI73KWWifkZ5syS85xgftbfwv0CFzyxCNlLYfhKaPetmieuvJXPtWON9ET3qMtqme8FHsXP+UCrHAxVPmOj6w9tczb1kv6dGS8aIINE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zn59k0+g; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4470CC4CECC;
-	Thu, 21 Nov 2024 15:57:29 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=gSZPGQQoT6lLuUGSxlDKOtutIzfSXMRl9Z+pffaaPVdgcM78c8C93Qx4HB3p4EDgzSRhAvpDbf7szgw48cMBJ3U/h61/9zZCVuXiva3SiWZcbpR7VkhQO0w+q7/UVou/rEANCjHR6zuLw4ZYkkMDvNHTFVQls2deDnnfuQrJ+qA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S1n0trqC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78B58C4CECC;
+	Thu, 21 Nov 2024 16:21:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732204654;
-	bh=78XCzuQAis01dvUW8tyNUygy4rt4UcNrkXJW13eg8mc=;
+	s=k20201202; t=1732206114;
+	bh=HUjeARzEFKuZwmjuWN7jX9OgSWrkMg5m1nwX93o1uBU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Zn59k0+gekYRjERFP8iTUj7ndm1WBjA6RHWrfkzWYMhm2CnP2AzImofz7UZa/nsRt
-	 jYW40pVn82kMEWirs0kFfCg4p8MUXI+XMRM2tZMv44sIvrsQgSYtcN4VRREITPNK/+
-	 3UCjw2RaVVtdDeJ0Du4qAjDEVnFsCsDwMo/vrTy2Xa6B/bSdL8eVxE9akAHfDMekcu
-	 88jTLKt30ijtYwZSftW+9/6vX/w4OgVDM3od+NNVFI136bi3efRKrb7lRRynfYVz/G
-	 WaY/MeriuEjWO0WtQ/eWDauu6wNVNq8qPs/zIQbUsd9+f+ehPZV6tWfDoLR9pVFRJf
-	 FzrWwKlkhPQPw==
-Message-ID: <ab4a531f-94ad-48b6-9c01-2823e28df966@kernel.org>
-Date: Thu, 21 Nov 2024 16:57:27 +0100
+	b=S1n0trqCdN8V95A3uEbLK5W2AFrXe9GjXzAX37/mCzfn9kD+Wvy5AfBNWJ75VcGGk
+	 myWtVsK9KySF+0FOHMW/2FadUAKF2obLfIzz7Y0q6eIBM1v7bFeD+KJ8er1EVp/YAb
+	 4O00KtoNFJUoU9mG9yOIO4qmo8V3O8SP66gCsIuy5yzxJF6CheWaw3b7AgZR/X1iQa
+	 7SRW3oU2jGT61y8j4vt21XjQSIsEzwsB5wI3yVdgqW7AFttSZXkX+QhoSGythuspxA
+	 7iGtiulB9F/XT0YIjzGFP0YTlM8OIJ6UYcG07Kj7UAu2mQK57MxUWLtVUJ1JYU/Ix1
+	 5yANdkBNswnCQ==
+Message-ID: <d72a7a7d-ec78-4aac-8498-a9164e16615d@kernel.org>
+Date: Thu, 21 Nov 2024 17:21:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] dt-bindings: bluetooth: Add qca6698 compatible
- string
-To: Cheng Jiang <quic_chejiang@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Marcel Holtmann <marcel@holtmann.org>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
- Rocky Liao <quic_rjliao@quicinc.com>, quic_zijuhu@quicinc.com,
- linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- quic_mohamull@quicinc.com
-References: <20241120095428.1122935-1-quic_chejiang@quicinc.com>
- <20241120095428.1122935-3-quic_chejiang@quicinc.com>
- <smwxrjvdvyxw6tknucl6fb5jpjau2q4jcyjxpunbtt5ep6xsr4@ztuyfkrwgxoo>
- <44932c08-000f-4e6c-89b3-d7556a0a7a88@quicinc.com>
+Subject: Re: [PATCH 3/3] dt-bindings: w1: ds2482: Add vcc-supply property
+To: =?UTF-8?B?S3J5xaF0b2YgxIxlcm7DvQ==?= <cleverline1mc@gmail.com>,
+ Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Stefan Wahren <stefan.wahren@chargebyte.com>,
+ Ben Gardner <bgardner@wabtec.com>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20241115-ds2482-add-reg-v1-0-cc84b9aba126@gmail.com>
+ <20241115-ds2482-add-reg-v1-3-cc84b9aba126@gmail.com>
+ <20241115-happy-garter-2cf65f4b1290@spud>
+ <83c8487c-2c50-4315-8244-ff80632165e9@gmail.com>
+ <9896a38f-4b68-46a9-83b8-bf76abea47ba@kernel.org>
+ <f824fcb5-8c04-4a39-887c-64fed2439cef@gmail.com>
+ <48f0b74f-561b-4a5b-8311-e2cfddb92e3b@kernel.org>
+ <ee013b8f-5526-4f32-bde3-aaebfb49e4d0@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,24 +110,49 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <44932c08-000f-4e6c-89b3-d7556a0a7a88@quicinc.com>
+In-Reply-To: <ee013b8f-5526-4f32-bde3-aaebfb49e4d0@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 21/11/2024 05:12, Cheng Jiang wrote:
-> Hi Dmitry,
+On 21/11/2024 16:56, Kryštof Černý wrote:
 > 
-> On 11/20/2024 6:44 PM, Dmitry Baryshkov wrote:
->> On Wed, Nov 20, 2024 at 05:54:26PM +0800, Cheng Jiang wrote:
->>> Add QCA6698 qcom,qca6698-bt compatible strings.
+> 
+> Dne 21.11.2024 v 8:43 Krzysztof Kozlowski napsal(a):
+>> On 20/11/2024 23:53, Kryštof Černý wrote:
+>>> Hello,
+>>>
+>>>> On 20/11/2024 09:34, Kryštof Černý wrote:
+>>>>> Hello,
+>>>>>
+>>>>>> On Fri, Nov 15, 2024 at 03:58:06PM +0100, Kryštof Černý via B4 Relay wrote:
+>>>>>>> From: Kryštof Černý <cleverline1mc@gmail.com>
+>>>>>>>
+>>>>>>> Adds the newly added vcc-supply property to bindings.
+>>>>>>
+>>>>>> This commit message is a circular argument. You're adding it to the
+>>>>>> binding, which of course means it is newly added.
+>>>>>
+>>>>> You are right, I will replace with "Adds the vcc-supply property to
+>>>>> bindings." in the next version.
+>>>>
+>>>> No, please say why, e.g. because it was missing and device has it
+>>>> according to datasheet.
+>>>
+>>> Right, what about:
+>>>
+>>> Adds the optional vcc-supply property to bindings, informs if the device
+>>> needs a regulator to be turned on for its operation
 >>
->> Why? Is it the same chip as WCN6855 or a different chip? Is it
->> completely compatible?
->>
-> They are different chips. But it's compatible with WCN6855.
+>> It does not inform at all. All devices needs power, don't they? And what
+>> operation?
+> 
+> This is probably the best I can do:
+> 
+> 	ds2482 has a VCC pin, accepting 2.9-5.5 V. Allow optionally specifying 
+> a voltage regulator to power the chip.
 
-That's what the commit msg is for. Do not say what is obvious, visible
-from the diff.
+Keep only first sentence. Second is obvious, no need to repeat schema in
+free form text (and schema defines it is optional).
 
 Best regards,
 Krzysztof
