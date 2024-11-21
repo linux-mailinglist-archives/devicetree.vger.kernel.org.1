@@ -1,196 +1,145 @@
-Return-Path: <devicetree+bounces-123504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F1449D4C0D
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 12:35:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C2A389D4C19
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 12:38:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F00F8B260A8
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 11:35:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 42535B24882
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 11:38:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31FCE1C578C;
-	Thu, 21 Nov 2024 11:35:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97B631CB316;
+	Thu, 21 Nov 2024 11:38:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="oXNVZvAQ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="gcrE9/67"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2050.outbound.protection.outlook.com [40.107.237.50])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69DDE1E52D;
-	Thu, 21 Nov 2024 11:35:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.237.50
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732188923; cv=fail; b=RNGUNQBl2Rvc/AAxPyAsn4W/WgbH7BU5L0u/GAEZiXT1EBJwCSkOK8dtiYoyeRZvdqRu50oCLep6jz+MQFla4rc5Nt9CgciuKuW35kjTZ8FF3ksl4X338wqvNl7XR8acf00xd8xyXgYOfpUMTIeOeAvsg8X29jPNr6MdNzn094w=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732188923; c=relaxed/simple;
-	bh=NNuJrWpqNjGcC7MLrXg30FiOmxShOP7CzXOCcIhBMcA=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jDxdObRAQvCsQ3nfrJC+efoBo9oQGvDEJ91Mvf/3F+GSYYJ7J9mACcCyibQ1rGTXmR34Mr5lWrqFbnPsaN7zXKDHk+WsoymqEXQNqs3/mcx7DFidXeTN6zgtzkOj444HTq1APDX86AICkY1WyUEQduNyRwwQTTvMO83D3QyKgRE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=oXNVZvAQ; arc=fail smtp.client-ip=40.107.237.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tPYcF9TVS2ioNqOnV+WcPaKhYU4dild4QNnyvjif2SyeyuBYg+1VyosKnssB64sC60FsU3TdYlCq8BESQMT7QEsRRuk5Mf7WD334fGIospXCSsYkjI3HQkj1FDPrUpAtvh5G/zAocaz+wOdcIfknvm0xb+u6hkcrIBv5XE1UB8UR7xey9esWC5w6OGu4aN/RTF6H5np7gdmFogTJzQNRimluKOMwevDJn32Czm7PVzC/0OJfJrXC+VPl+XACAljj+ro+I0OG7K1TJkaYmmCR3lG0ZdE8ZnWG5KLs59VbnCKDy1VqPpBueOCE6KkiwjxwjjBn6o1EbzYbZ75D9vk4qA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xhROpGdcI64w59w4qMvXT3M7cVR1EEIilBuP6tLPXTc=;
- b=ZLiQPUgqdMMZerp2TFbI1y9Je4X0vbYWwc956YyqbnvvfgxB0Un7lw7ZAR6rVDFe09gYZ0iohrskny7Qx6pB+m3d6O0DosRf6RbycVBdwxEQMFh95iZRAe6DgbAEHTFhufVzQ5JlCes5F+W1P5P2AJ93m9J2jftZnakTg1z1PV5HUyw0JWf/sG6DoxriTU2d9yzyTnCxjCAyZUTCma0EHyutfZvotPu+q+5A/q6lK9k+RCnEPDg5X0lhSwN3Vh3p7BYPks+iwoLojCAQwvkyIzt5PSzvceAdwZEI9i3QsnLcBHtiJpNCe86lkSLMRp+nbjuL4kIna3d4WuqMLSvAeQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.12) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xhROpGdcI64w59w4qMvXT3M7cVR1EEIilBuP6tLPXTc=;
- b=oXNVZvAQZFU2NrpCf3r4YmJl35Cb6W0jeCOvmE9BKpD3cE8KW2JVrThZCdmxFwCZgdGSDTP/nuAEbNq7FAqlWF+klZZACBhXk7IZKiJO1UCrIdAE71/eL4UddVxK9ov72FjWbYQVwQfsuFDphA8+10MeNAYBIV87z1E3+Ld4BKU=
-Received: from PH7P221CA0022.NAMP221.PROD.OUTLOOK.COM (2603:10b6:510:32a::30)
- by MN0PR12MB6245.namprd12.prod.outlook.com (2603:10b6:208:3c3::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.27; Thu, 21 Nov
- 2024 11:35:17 +0000
-Received: from SN1PEPF0002BA4C.namprd03.prod.outlook.com
- (2603:10b6:510:32a:cafe::3) by PH7P221CA0022.outlook.office365.com
- (2603:10b6:510:32a::30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.25 via Frontend
- Transport; Thu, 21 Nov 2024 11:35:17 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.12)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.12 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.12; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.12) by
- SN1PEPF0002BA4C.mail.protection.outlook.com (10.167.242.69) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8182.16 via Frontend Transport; Thu, 21 Nov 2024 11:35:17 +0000
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 21 Nov
- 2024 05:35:13 -0600
-Received: from xsjwillw50.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Thu, 21 Nov 2024 05:35:12 -0600
-From: Naman Trivedi <naman.trivedimanojbhai@amd.com>
-To: <robh@kernel.org>, <michal.simek@amd.com>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <senthilnathan.thangaraj@amd.com>
-CC: <linux-kernel@vger.kernel.org>
-Subject: [PATCH] arm64: zynqmp: add clock-output-names property in clock nodes
-Date: Thu, 21 Nov 2024 03:35:12 -0800
-Message-ID: <20241121113512.992747-1-naman.trivedimanojbhai@amd.com>
-X-Mailer: git-send-email 2.25.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01D2F3C47B;
+	Thu, 21 Nov 2024 11:38:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1732189115; cv=none; b=LKdiTt6g7h7un0h87VOOJOJyRgtP3mxHf6egg7s6hvIf75PE3+0kmRTBnhq2OqwRSmdrIzr1v/vJZUCGKPZHSfoE7CdAW2h6MpB5jLJRS5eik4kPiQo132UZi2gN5DRElWxLfndPrqFTb9fmJnIp/HWlsEbGouaIdoNCIMuXRWk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1732189115; c=relaxed/simple;
+	bh=TktO2GCT6OnXrOXfOCRgOrtOaCnVDQkqu89HI9z1htE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=VQOubSZZ8GZYQzNzT0YdUi3FH0hXXsr1SC4kqqOaLO98M4z3zCdBTUeWv1ufYb1Lv2oKFLDOzU8HMeOwetBaYlFKf42CTa3jN64WVu3fAd3S+oQobeEKELLIVrX5YSc/yIVYgCanNedrTmYJsHymjkyd+0Z8fQunKkOz/+X2/5Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=gcrE9/67; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AL8uUPY003935;
+	Thu, 21 Nov 2024 11:38:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	4YRcO6b70jf15iw+nKaeBYvuDjp5NyM+Lyd4fqDywlU=; b=gcrE9/67B6ifTCMk
+	nKQU5EwKN8AY3Ag3Zbj3FT2LDBhFSYv2XMWiaryj301sBs+t4/cYys5vD1wYoJLT
+	ANeZyynnpPXgwNjj7EZG3gd9jW9gh9azdAq4s3aEGQRz7bhQ6VRTZ3WchPodd+Lq
+	I9nRzhdWD/jLygI2drBJhFJtktwn/nc08yD8mimwXXrinvUPZCX3JVXInKZb6Xgz
+	Zd3+R9xwiyyy5bvH1VC+f2edcWNmtnDwPJYvvOuapWMFYByCP8/X7WOweaMdwaSC
+	oA9al3OozE6R76Gwvl40brnLmYTRxN3edj7P6EbKo0cgBT8lqoIGz3rbmxkaragL
+	RKlfRw==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 431ce3bvrk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 21 Nov 2024 11:38:32 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4ALBcVtL025920
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 21 Nov 2024 11:38:31 GMT
+Received: from [10.216.44.227] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 21 Nov
+ 2024 03:38:26 -0800
+Message-ID: <f123a993-0cd5-4747-80fb-88acb2434880@quicinc.com>
+Date: Thu, 21 Nov 2024 17:08:22 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB04.amd.com: naman.trivedimanojbhai@amd.com does
- not designate permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002BA4C:EE_|MN0PR12MB6245:EE_
-X-MS-Office365-Filtering-Correlation-Id: 990e53de-efe3-474a-e2bf-08dd0a2092e5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|376014|1800799024|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?sFphxO3MDgo39/9eRyWOVG9bH02QPuUmLqxLJM12Q7kj14blNbjPxkih1Eb/?=
- =?us-ascii?Q?uwea989QclwQLwwCi1r7wIY8+JsglLiaRxhpDt5hWBq6oIyBZMBya4NEeFN+?=
- =?us-ascii?Q?iWH7LakyIZHXQ13HB89sFHmlNQmBxe2AIUej3Qt+Cy5269b2MIsVjeJqR40I?=
- =?us-ascii?Q?HBkCfjHjKe57l3B54BBtPS/YCzuKXfzDyVrwbdoEXvpgYRH1SKC1LTIyLRJU?=
- =?us-ascii?Q?jzzXX+QflHFkmyzeu/4QwZXn5xCqoar68CksBvfOTAMYvh3LQ1QDP7lnUhvq?=
- =?us-ascii?Q?8cdp9zIaWFyfXHfW10+B5Kmw2sZyqGNeqZWJ+X7RyIDF/H+kFvy32cGV0DhH?=
- =?us-ascii?Q?zqNJF83ZxI5w7v5F/OeZToDr9MqQMnwd1wOICe0wkPQjRjxmx3HBErOmtAvO?=
- =?us-ascii?Q?1Mxv94Xry8p29erzKW1ps2IKWALGXG1SN+mv8C++hIodl3olq/G2Z1VRa2IV?=
- =?us-ascii?Q?9/yQ6TZ/JwOQfpGQse9BheO6oATEiPsPLWWyH675oyV7nLDrPmeF1BJS25o2?=
- =?us-ascii?Q?zttfnhpbgCBqEyfccJvid1HuEcDLV5h7KO47kb2Z8+z62JPj7tTiiUNFTKX3?=
- =?us-ascii?Q?NpgD5Ex2Y7DjLbhICof6QclixGX+LN4GGSCnF9H19iqw0fAdBaV9pLe6XzMn?=
- =?us-ascii?Q?VkMgQXznFIQhGzYV3vBYZLc5Z/EFVbNFOeEv+4BYk92qqjV30ZMxffTNNvSN?=
- =?us-ascii?Q?o24rvY47S81aHL2SmhkBfTqJKrf9Ljd51UEoKOe8kBw1ao+aJWdfODwJhPfK?=
- =?us-ascii?Q?mVpEP7pF8dWp5AOHoWMp8yQ9lsjLINZM42LODGgQIC7mza1cPeQVijh5NyLm?=
- =?us-ascii?Q?Mhq9EGkrkkVq5p3TL9WA8v3HCz8SgIVQVQStAiq+mpncaWNsf0LyA8Dd4+++?=
- =?us-ascii?Q?zRXvWu+Ltq/V9ddWDyttHH+oWYIDJy8Fs+k9qDGEl3dRD4vxbZ9OEzn1nxZE?=
- =?us-ascii?Q?yTRUgfLm9aNjbV0LKtTxh947lnHZUqFqKrSf4qe4gtIRZRYgPK7aDDyHA63s?=
- =?us-ascii?Q?e+iYsjCb1VkEIN7HlsqPRGNJBbpjyq/BJgo2YyVr9mipzFv+Y7I/+Urd80hC?=
- =?us-ascii?Q?8wXkja7CjtmsTIU4zkf4AEKM24sNDnAA7I5uyQbtrvko36g3YSK/gWcUwH7y?=
- =?us-ascii?Q?f1dGTWGmSRJbenc+Jnrvd8NxQOv5f2VzYGs7dIlSpqBhLzGX9xNL5OhQAitM?=
- =?us-ascii?Q?TdHJR6bzIk08G3vlzPtp6uxxzBBVcgrQqx1kzVt97FOQZPtYentaxrFZSf9L?=
- =?us-ascii?Q?NiQdXJCwHfepdmnMKO5ar7jzMwR9v+tQlLmGYUlsX+NFhxyoxI7CnTw+GdZC?=
- =?us-ascii?Q?qiFbt4phxps+Y+5uSVVmGnyVWRtGE2Rzhx9nxWitFQRdg86HDfEwwrHORkcz?=
- =?us-ascii?Q?H0cFsWNPp+sv9PznVebdGCWCSau/Q9KedSPeNH4oJY/L3kNW9g=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.12;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:atlvpn-bp.amd.com;CAT:NONE;SFS:(13230040)(36860700013)(376014)(1800799024)(82310400026);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Nov 2024 11:35:17.5311
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 990e53de-efe3-474a-e2bf-08dd0a2092e5
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.12];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SN1PEPF0002BA4C.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6245
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: qcs9100: Update memory map for QCS9100
+ Ride and QCS9100 Ride Rev3
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Kuldeep Singh
+	<quic_kuldsing@quicinc.com>
+CC: Bjorn Andersson <bjorn.andersson@example.com>,
+        Konrad Dybcio
+	<konrad.dybcio@example.com>,
+        Rob Herring <rob.herring@example.com>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski@example.com>,
+        Conor Dooley
+	<conor.dooley@example.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_tengfan@quicinc.com>,
+        <quic_shashim@quicinc.com>, <quic_kbajaj@quicinc.com>
+References: <20241119092501.31111-1-quic_pbrahma@quicinc.com>
+ <30fda0e2-f314-49b8-8c1c-bf4fac87050d@quicinc.com>
+ <rnrxb5e7xcgnjp4y4id5m5dyswii6xipry3bvtpit2f4c3iqfy@qghr42jz6oze>
+Content-Language: en-US
+From: Pratyush Brahma <quic_pbrahma@quicinc.com>
+In-Reply-To: <rnrxb5e7xcgnjp4y4id5m5dyswii6xipry3bvtpit2f4c3iqfy@qghr42jz6oze>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 9n3Lo9Y5RQJnNB6QxYxqUc_ugdjnYlle
+X-Proofpoint-ORIG-GUID: 9n3Lo9Y5RQJnNB6QxYxqUc_ugdjnYlle
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ malwarescore=0 clxscore=1015 priorityscore=1501 impostorscore=0
+ bulkscore=0 mlxscore=0 adultscore=0 spamscore=0 mlxlogscore=898
+ suspectscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2409260000 definitions=main-2411210091
 
-Add clock-output-names property to all clock nodes, so that the resulting
-clock name do not change when clock node name is changed.
 
-Signed-off-by: Naman Trivedi <naman.trivedimanojbhai@amd.com>
----
- arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+On 11/20/2024 5:24 PM, Dmitry Baryshkov wrote:
+> On Wed, Nov 20, 2024 at 01:41:03AM +0530, Kuldeep Singh wrote:
+>>
+>> On 11/19/2024 2:55 PM, Pratyush Brahma wrote:
+>>> This patch series is based on Tengfei Fan's patches [1] which adds support
+>>> for QCS9100 Ride and QCS9100 Ride Rev3 boards.
+>>>
+>>> Some new carveouts (viz. gunyah_md and a few pil dtb carveouts) have been
+>>> introduced and the size and base addresses have been updated for
+>>> a few of existing carveouts compared to SA8775P. Also, tz_ffi_mem carveout
+>>> and its corresponding scm reference has been removed as it is not required
+>>> for these boards. Incorporate these changes in the updated memory map
+>>> for QCS9100 Ride and QCS9100 Rev3 boards.
+>>>
+>>> [1] https://lore.kernel.org/all/20240911-add_qcs9100_support-v2-4-e43a71ceb017@quicinc.com/
+>>>
+>>> Signed-off-by: Pratyush Brahma <quic_pbrahma@quicinc.com>
+>> The memory map for qcs9100-ride-r3 and qcs9100-ride is exactly same.
+>> A good churn you are first deleting(based on sa8775p) and then re-adding
+>> for qcs9100-ride*.
+>>
+>> I think it's better to move common qcs9100-ride* to a common file ex:
+>> qcs9100-ride.dtsi and keep specifics further to .dts files?
+>>
+>> This will ensure common entities are present at same place with no
+>> duplicates.
+> I'd second this proposal.
+Ok then, I see that there are some thermal and gpu enablement changes as 
+well in the pipeline to be posted.
+Having a common dtsi file for these iot socs would help in reducing the 
+duplication at board
+dts file level for all these changes. In that regard, does naming it
+"sa8775-iot.dtsi" sound good? The board files can include this dtsi.
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
-index 60d1b1acf9a0..a231122002da 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
-@@ -15,6 +15,7 @@ pss_ref_clk: pss_ref_clk {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <33333333>;
-+		clock-output-names = "pss_ref_clk";
- 	};
- 
- 	video_clk: video_clk {
-@@ -22,6 +23,7 @@ video_clk: video_clk {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <27000000>;
-+		clock-output-names = "video_clk";
- 	};
- 
- 	pss_alt_ref_clk: pss_alt_ref_clk {
-@@ -29,6 +31,7 @@ pss_alt_ref_clk: pss_alt_ref_clk {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <0>;
-+		clock-output-names = "pss_alt_ref_clk";
- 	};
- 
- 	gt_crx_ref_clk: gt_crx_ref_clk {
-@@ -36,6 +39,7 @@ gt_crx_ref_clk: gt_crx_ref_clk {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <108000000>;
-+		clock-output-names = "gt_crx_ref_clk";
- 	};
- 
- 	aux_ref_clk: aux_ref_clk {
-@@ -43,6 +47,7 @@ aux_ref_clk: aux_ref_clk {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <27000000>;
-+		clock-output-names = "aux_ref_clk";
- 	};
- };
- 
 -- 
-2.25.1
+Thanks and Regards
+Pratyush Brahma
 
 
