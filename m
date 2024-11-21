@@ -1,61 +1,58 @@
-Return-Path: <devicetree+bounces-123580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123581-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A1339D546D
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 22:02:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 277659D5472
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 22:05:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B3AA71F21750
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 21:02:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8BF6281B2B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 21:05:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63F6D1AD5D8;
-	Thu, 21 Nov 2024 21:02:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB0BD1C07D3;
+	Thu, 21 Nov 2024 21:05:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X1zAqew2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ko30Kico"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BC88145A03;
-	Thu, 21 Nov 2024 21:02:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA778145A03;
+	Thu, 21 Nov 2024 21:05:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732222958; cv=none; b=bhAfG/hBEtypyCxESJF9JK0vQNRWRjq5OOMjPRvJtYgkbmEYLlXZHK/0+2AwHpVCVg1LsLlGcDBBHX9KfMiie45ZxqjvDnjE5zzg4mr1CxC0HTkQO8WGEi48yC/g7/dB7Z6YDSyhdhrYgQNSb+lX+o0Cd9vufdzygsNOthzxC+A=
+	t=1732223115; cv=none; b=s9xQbWU6oAgumWJADi4N5Xy3lOXnPNnZYdglCXBYBHBOufMdCG6gqhkOkQS1HOrQxz74QikKyBad0rAD3HXeGLM5OkL71sOCiUDLkSGnyoo59u2xwPCcir/InEad+518xshuYeQIPmMuTgRLIzLXyiMiG/t4xdY3kPybebbjoo0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732222958; c=relaxed/simple;
-	bh=GM3w9B7r/t0zBm+hXRgtpgZU0x9idteO2H6rmGktuaE=;
+	s=arc-20240116; t=1732223115; c=relaxed/simple;
+	bh=X3eu61xg9llcnUKHcb0Q5Uo0q9OVZwoeWaPet4215wY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EDBQDtJnTGreX8XK5Dod4W2QL4JTbPORlOmhWH48bKQl7Pl2NRHM+pjrre3zzju4rHtScr7GY/POV4/P5n20hHZODEC1lp7mOZRx4KfL/6G8/99Zpra1qwTJxtFmIExzkgC0VVZQTz3+ovi1CH+yhRIbkBc9wZtC2kFY8JpbpNE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X1zAqew2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A3C7C4CECC;
-	Thu, 21 Nov 2024 21:02:37 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=IYV31IM+kT/xMM5s641ntQEe3rKbacX83UDNSJRjHMGzGPq6lOqwVE0zpoJmIiHMtcZTv+8m2LMaoFnwqSYGZSLzgms+rSKbyTGKgySo3iP+9vLhElTAYpMlNm0os3Y1HRQ3+UghzjLy4bKJ0R0kKS3I7VX7yXYIBBudITYgNWo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ko30Kico; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C4F4C4CECC;
+	Thu, 21 Nov 2024 21:05:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732222957;
-	bh=GM3w9B7r/t0zBm+hXRgtpgZU0x9idteO2H6rmGktuaE=;
+	s=k20201202; t=1732223115;
+	bh=X3eu61xg9llcnUKHcb0Q5Uo0q9OVZwoeWaPet4215wY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=X1zAqew2MWcEEWPd9iStevglFRhfKSXOylhXAK6bkhjqwDXmpznRQJINCU4m1GPPE
-	 PLdZ88moM1eAZ1roOlNBOKJrOzGmZzu0+Avl1rUuIyRh3kyevAGWE9+tYvsUKmQNsB
-	 Pyr+/wtS9OBbDl/IRXMRM9/pfebUb0Nd2XDgRuaNvoYpXBGFJvfBMaMhN9tgev7uK9
-	 Q0ljzrDg3kH9DIh5r4+Ep7HqFspUHrPHYN6rQq+4wotDF0YSFcIRHMH4h+VtqnkxlZ
-	 dp6B1P6Q9NOqlpxIIlYxqOMhE/DA1KTvOJyADV2rRcmqq5P1+R9qTYa9vMuMwTPQ6c
-	 96h2d2/jH8Lhw==
-Date: Thu, 21 Nov 2024 15:02:35 -0600
-From: Rob Herring <robh@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com,
-	simona@ffwll.ch, maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org, tzimmermann@suse.de, krzk+dt@kernel.org,
-	conor+dt@kernel.org, matthias.bgg@gmail.com, ck.hu@mediatek.com,
-	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v1 1/7] dt-bindings: display: mediatek: Add binding for
- HDMIv2 DDC
-Message-ID: <20241121210235.GA3798341-robh@kernel.org>
-References: <20241120124512.134278-1-angelogioacchino.delregno@collabora.com>
- <20241120124512.134278-2-angelogioacchino.delregno@collabora.com>
+	b=ko30KicoHx8gnZ/U7OKxZrl0iYK5pvTuG7i4fkptS/RpBBI+9pxGVJdnoMTAZUdTp
+	 JBT4M5+gbBtmuaJ6ggBgwnc7hfjkALeBjBqqmBErKqKJfPvCrODXXLETxMWVmk4x5Q
+	 8Rs/6vYBFmWkgWuKlUicKAOw4IJq6DN8+rnZFK7C8bNj3ZSrN0nM7YMfPfd1qgHG33
+	 ikLttYrZOXWg88HnwyyhY/j7+L4dbrSpAzErkAJUpbQcYu+4x/nJGyNlT2T8Icac6G
+	 riaXWOl919iNwVuIxnhrCWWUXGuFe+4p1//LtrUiihXw7scyAn/vqrxiDoAONFAfhA
+	 23oUPDSN1YJ5w==
+Date: Thu, 21 Nov 2024 15:05:14 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Vicentiu Galanopulo <vicentiu.galanopulo@remote-tech.co.uk>
+Cc: Lee Jones <lee@kernel.org>, linux-kernel@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+	linux-leds@vger.kernel.org, linux-doc@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>
+Subject: Re: [PATCH v9 2/3] dt-bindings: leds: Add LED1202 LED Controller
+Message-ID: <173222307644.3811087.7654504224510124517.robh@kernel.org>
+References: <20241121165829.8210-1-vicentiu.galanopulo@remote-tech.co.uk>
+ <20241121165829.8210-3-vicentiu.galanopulo@remote-tech.co.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,70 +61,52 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241120124512.134278-2-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20241121165829.8210-3-vicentiu.galanopulo@remote-tech.co.uk>
 
-On Wed, Nov 20, 2024 at 01:45:06PM +0100, AngeloGioacchino Del Regno wrote:
-> Add a binding for the Display Data Channel (DDC) IP in MediaTek
-> SoCs with version 2 HDMI TX IP.
+
+On Thu, 21 Nov 2024 16:58:24 +0000, Vicentiu Galanopulo wrote:
+> The LED1202 is a 12-channel low quiescent current LED driver with:
+>   * Supply range from 2.6 V to 5 V
+>   * 20 mA current capability per channel
+>   * 1.8 V compatible I2C control interface
+>   * 8-bit analog dimming individual control
+>   * 12-bit local PWM resolution
+>   * 8 programmable patterns
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> If the led node is present in the controller then the channel is
+> set to active.
+> 
+> Signed-off-by: Vicentiu Galanopulo <vicentiu.galanopulo@remote-tech.co.uk>
 > ---
->  .../mediatek/mediatek,mt8195-hdmi-ddc.yaml    | 41 +++++++++++++++++++
->  1 file changed, 41 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml
+> v1: https://lore.kernel.org/lkml/ZnCnnQfwuRueCIQ0@admins-Air/T/
+> v2: https://lore.kernel.org/all/ZniNdGgKyUMV-hjq@admins-Air/T/
+> v3: https://lore.kernel.org/all/ZniNdGgKyUMV-hjq@admins-Air/T/
 > 
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml
-> new file mode 100644
-> index 000000000000..d85e8ed2ffa7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml
-> @@ -0,0 +1,41 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek HDMI Display Data Channel (DDC) v2
-> +
-> +maintainers:
-> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> +  - CK Hu <ck.hu@mediatek.com>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: mediatek,mt8195-hdmi-ddc
-> +      - items:
-> +          - const: mediatek,mt8188-hdmi-ddc
-> +          - const: mediatek,mt8195-hdmi-ddc
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - clocks
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    hdmi {
-> +        hdmi_ddc: i2c {
-> +            compatible = "mediatek,mt8195-hdmi-ddc";
-> +            clocks = <&clk26m>;
-
-Is this really a separate block? Doesn't really look like it. You don't 
-even have registers to interact with it.
-
-> +        };
-> +    };
-> +...
-> -- 
-> 2.47.0
+> Changes in v4:
+>   - remove label property, use devm_led_classdev_register_ext instead
+> Changes in v3:
+>   - remove active property
+> Changes in v2:
+>   - renamed label to remove color from it
+>   - add color property for each node
+>   - add function and function-enumerator property for each node
 > 
+>  .../devicetree/bindings/leds/st,led1202.yaml  | 132 ++++++++++++++++++
+>  1 file changed, 132 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/st,led1202.yaml
+> 
+
+
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
+
+If a tag was not added on purpose, please state why and what changed.
+
+Missing tags:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+
 
