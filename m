@@ -1,112 +1,169 @@
-Return-Path: <devicetree+bounces-123581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 277659D5472
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 22:05:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDBAE9D54B8
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 22:31:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8BF6281B2B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 21:05:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C6631F2220C
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 21:31:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB0BD1C07D3;
-	Thu, 21 Nov 2024 21:05:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0221F1D12E1;
+	Thu, 21 Nov 2024 21:31:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ko30Kico"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="R5qOQcwo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [207.246.76.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA778145A03;
-	Thu, 21 Nov 2024 21:05:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C094199FC9
+	for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 21:30:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=207.246.76.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732223115; cv=none; b=s9xQbWU6oAgumWJADi4N5Xy3lOXnPNnZYdglCXBYBHBOufMdCG6gqhkOkQS1HOrQxz74QikKyBad0rAD3HXeGLM5OkL71sOCiUDLkSGnyoo59u2xwPCcir/InEad+518xshuYeQIPmMuTgRLIzLXyiMiG/t4xdY3kPybebbjoo0=
+	t=1732224659; cv=none; b=mrEL1xfsJVugemf2ZvAj0L8Xq1hTJ47wbpq91EA5klCJfxFy43pszv9oxgNLW1/QWmk8JOsPAnZKiJxFTFg827FcWFLqYazYHuDZJ+oYiiD5ujHXkYAa3dx0cFyQOKJQM+cYrBOUN/z9yykk807F3eMuLE0wk2pWDiKwHwCtYIE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732223115; c=relaxed/simple;
-	bh=X3eu61xg9llcnUKHcb0Q5Uo0q9OVZwoeWaPet4215wY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IYV31IM+kT/xMM5s641ntQEe3rKbacX83UDNSJRjHMGzGPq6lOqwVE0zpoJmIiHMtcZTv+8m2LMaoFnwqSYGZSLzgms+rSKbyTGKgySo3iP+9vLhElTAYpMlNm0os3Y1HRQ3+UghzjLy4bKJ0R0kKS3I7VX7yXYIBBudITYgNWo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ko30Kico; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C4F4C4CECC;
-	Thu, 21 Nov 2024 21:05:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732223115;
-	bh=X3eu61xg9llcnUKHcb0Q5Uo0q9OVZwoeWaPet4215wY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ko30KicoHx8gnZ/U7OKxZrl0iYK5pvTuG7i4fkptS/RpBBI+9pxGVJdnoMTAZUdTp
-	 JBT4M5+gbBtmuaJ6ggBgwnc7hfjkALeBjBqqmBErKqKJfPvCrODXXLETxMWVmk4x5Q
-	 8Rs/6vYBFmWkgWuKlUicKAOw4IJq6DN8+rnZFK7C8bNj3ZSrN0nM7YMfPfd1qgHG33
-	 ikLttYrZOXWg88HnwyyhY/j7+L4dbrSpAzErkAJUpbQcYu+4x/nJGyNlT2T8Icac6G
-	 riaXWOl919iNwVuIxnhrCWWUXGuFe+4p1//LtrUiihXw7scyAn/vqrxiDoAONFAfhA
-	 23oUPDSN1YJ5w==
-Date: Thu, 21 Nov 2024 15:05:14 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Vicentiu Galanopulo <vicentiu.galanopulo@remote-tech.co.uk>
-Cc: Lee Jones <lee@kernel.org>, linux-kernel@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
-	linux-leds@vger.kernel.org, linux-doc@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>
-Subject: Re: [PATCH v9 2/3] dt-bindings: leds: Add LED1202 LED Controller
-Message-ID: <173222307644.3811087.7654504224510124517.robh@kernel.org>
-References: <20241121165829.8210-1-vicentiu.galanopulo@remote-tech.co.uk>
- <20241121165829.8210-3-vicentiu.galanopulo@remote-tech.co.uk>
+	s=arc-20240116; t=1732224659; c=relaxed/simple;
+	bh=qO7jHExuYcIgIYqrF4r8nZrjDIet3PoxWTcbM/rE454=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eP0GCJphamdEFu5HPC9nxcXY04vw2RvHq5tD22YfFFP+yvj98tNh+Xoc65VHiAc4Lc3ycSFeKBLFUoogDnfEEkQMAQ/05bpG9SfZPWDsvtN+Xv2gcLisfcPL17l/0cd8YgWfcT3r2AezLU359rhCIaIiAAtxDDv4bMDZZMOKSec=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=R5qOQcwo; arc=none smtp.client-ip=207.246.76.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1732224639;
+ bh=BQUk7DU+3nfuaIMMujloLFuySh3vk/1W7HzQ+FogHsw=;
+ b=R5qOQcwoaJySMsCk8OgR3U8lacFEmvV2H2Hb96lVDaIKdlCI5Y7QjTLIx1Q2+RShsRj0vh2H6
+ O6fQOIxTa1KFqQ1jiF3mza7pTEdm57D/z3WLcbeTURa0Uo+sVdpzRvyuK2DI69EaMsNL0ls4mvh
+ y94EOOU7pGK3sF0Bj0ofYyAYCfvFv2iZ/oas2PrF1nFSiE0xEocIWioUl0QTbSeTVGdXA6Qd5bS
+ xB03o0C04aU3EA99t4f0/T3JyGzPeg5YCSGbW04j27PfWxxXDCFVtoxTYxC9us86n7BAkpNMT+q
+ 3ZivDca3kNp0qRx94JK6kcdnO3009+f7YiGYgYm9c+JA==
+Message-ID: <6c7ad585-2743-4f6d-919b-ab7c1eddfb01@kwiboo.se>
+Date: Thu, 21 Nov 2024 22:30:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241121165829.8210-3-vicentiu.galanopulo@remote-tech.co.uk>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add devicetree for the
+ ROC-RK3576-PC
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20241117201855.789945-1-heiko@sntech.de>
+ <20241117201855.789945-3-heiko@sntech.de>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20241117201855.789945-3-heiko@sntech.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Report-Abuse-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-ForwardEmail-Version: 0.4.40
+X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 207.246.76.47
+X-ForwardEmail-ID: 673fa67c7c98f709b83ac8b9
 
+Hi Heiko,
 
-On Thu, 21 Nov 2024 16:58:24 +0000, Vicentiu Galanopulo wrote:
-> The LED1202 is a 12-channel low quiescent current LED driver with:
->   * Supply range from 2.6 V to 5 V
->   * 20 mA current capability per channel
->   * 1.8 V compatible I2C control interface
->   * 8-bit analog dimming individual control
->   * 12-bit local PWM resolution
->   * 8 programmable patterns
+On 2024-11-17 21:18, Heiko Stuebner wrote:
+> As the name implies, it is built around the RK3576 SoC with 4x Cortex-A72
+> cores, four Cortex-A53 cores and Mali-G52 MC3 GPU.
 > 
-> If the led node is present in the controller then the channel is
-> set to active.
+> Storage options are EMMC, SD-Card, a 2242 M.2 slot and the possibility to
+> use UFS 2.0 storage.
 > 
-> Signed-off-by: Vicentiu Galanopulo <vicentiu.galanopulo@remote-tech.co.uk>
+> Video Output options are a HDMI port, a DSI connector as well as Display-
+> Port via the TypeC connector (all of them not yet supported).
+> 
+> Networking options are a Low-profile Gigabit Ethernet RJ45 port with
+> Motorcomm YT8531 PHY as well as WiFi via an AMPAK AP6256 module.
+> 
+> USB ports on the board are 1x USB 3.0 port, 1x USB 2.0 port, 1x USB Type-C
+> and it comes with 40-pin GPIO header
+> 
+> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 > ---
-> v1: https://lore.kernel.org/lkml/ZnCnnQfwuRueCIQ0@admins-Air/T/
-> v2: https://lore.kernel.org/all/ZniNdGgKyUMV-hjq@admins-Air/T/
-> v3: https://lore.kernel.org/all/ZniNdGgKyUMV-hjq@admins-Air/T/
+>  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>  .../arm64/boot/dts/rockchip/rk3576-roc-pc.dts | 745 ++++++++++++++++++
+>  2 files changed, 746 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3576-roc-pc.dts
 > 
-> Changes in v4:
->   - remove label property, use devm_led_classdev_register_ext instead
-> Changes in v3:
->   - remove active property
-> Changes in v2:
->   - renamed label to remove color from it
->   - add color property for each node
->   - add function and function-enumerator property for each node
-> 
->  .../devicetree/bindings/leds/st,led1202.yaml  | 132 ++++++++++++++++++
->  1 file changed, 132 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/st,led1202.yaml
-> 
+> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+> index ac7574bfbf94..3562d6e64b2e 100644
+> --- a/arch/arm64/boot/dts/rockchip/Makefile
+> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> @@ -130,6 +130,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-display-vz.dtbo
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-io-expander.dtbo
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-armsom-sige5.dtb
+> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-roc-pc.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-armsom-sige7.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-coolpi-cm5-evb.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-coolpi-cm5-genbook.dtb
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3576-roc-pc.dts b/arch/arm64/boot/dts/rockchip/rk3576-roc-pc.dts
+> new file mode 100644
+> index 000000000000..75ee18ef3817
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3576-roc-pc.dts
 
+[snip]
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
+> +&gmac0 {
+> +	/* Use rgmii-rxid mode to disable rx delay inside Soc */
+> +	phy-mode = "rgmii-rxid";
+> +	clock_in_out = "output";
+> +
+> +	snps,reset-gpio = <&gpio2 RK_PB5 GPIO_ACTIVE_LOW>;
+> +	snps,reset-active-low;
+> +	/* Reset time is 20ms, 100ms for rtl8211f */
+> +	snps,reset-delays-us = <0 20000 100000>;
 
-If a tag was not added on purpose, please state why and what changed.
+The snps,reset- props are deprecated, reset- props should probably be
+added to the rgmii_phy0 node.
 
-Missing tags:
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&eth0m0_miim
+> +		     &eth0m0_tx_bus2
+> +		     &eth0m0_rx_bus2
+> +		     &eth0m0_rgmii_clk
+> +		     &eth0m0_rgmii_bus
+> +		     &ethm0_clk0_25m_out>;
+> +
+> +	tx_delay = <0x21>;
+> +	/* rx_delay = <0x3f>; */
+> +
+> +	phy-handle = <&rgmii_phy0>;
+> +	status = "okay";
+> +};
+> +
+> +&mdio0 {
+> +	status = "okay";
+> +
+> +	rgmii_phy0: phy@1 {
+> +		compatible = "ethernet-phy-ieee802.3-c22";
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This could possible be changed to ethernet-phy-id001c.c916 if moving
+reset- props cause Ethernet phy detection issues and phy was not reset
+by bootloader.
 
+Regards,
+Jonas
 
+> +		reg = <0x1>;
+> +		clocks = <&cru REFCLKO25M_GMAC0_OUT>;
+> +	};
+> +};
+> +
+
+[snip]
 
 
