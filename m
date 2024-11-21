@@ -1,133 +1,74 @@
-Return-Path: <devicetree+bounces-123593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42D539D5598
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 23:44:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62D229D55B6
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 23:48:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C4FAD1F2490C
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 22:44:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B1F11F22985
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 22:48:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B6CD1DAC8E;
-	Thu, 21 Nov 2024 22:44:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF1661DDA37;
+	Thu, 21 Nov 2024 22:47:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="g3rBFSj+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kr6Sfjel"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA0771BD4EB
-	for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 22:44:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B32E15695;
+	Thu, 21 Nov 2024 22:47:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732229061; cv=none; b=S56wBTmnmhXpirRIk0PxHl3dwkC+fMPCwLwsUnujouHnawuPBAWelyajukzKw0FN6BZYfGUQUaVVb/Bx+2CZ+FPCd7hQ0Xt515lgxd1xkWaiDpYouag8sEixsr2GNg0tiA8Pq7WcwGnGYauGF82Ea82z50CnPKVcceXhN8pGh5w=
+	t=1732229267; cv=none; b=pC60zInUooYJU+83oU2v3ykctBr3j5qEKuTsRbYaym/0YlYgAE1SYrXJoyZRFk/o0CJrG0XsZ31w5E4J5i6TlqSwrLuI/EXqpKIp5wkRNKkv0CABXsmvCdP0jLB4eVv2ahxraxL4e+t1ElmlC2JmcqZDECVdtJF747IIuaxtd3Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732229061; c=relaxed/simple;
-	bh=UvqKl313UbCoQrV81fFTtqVbmffHswlTT+HQtjKyoJ0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SlnluL5ckzZ7B82wNYj1MUMOeRn0JlW3YPN8/Wge5zWj+bbI0WwhK2PdKm0YcO7x8JbkrnFaM0pCKmDHIw/4jYYFc1zNyZATnNnsIplozkL0n+VKr6pxss4TIeONFzCxwqa/NFXd01w6DxeiF5mF28LvRpGlWZcQYKKErPhy/JI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=g3rBFSj+; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2fb388e64b0so17911131fa.0
-        for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 14:44:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732229058; x=1732833858; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=q/Nja2Bb51yLaelcKPmFVLsubQx3+cZP82+7JwtW4Xk=;
-        b=g3rBFSj+cdb2AX+iX48C7PMjjZFTT9h1MTUkIcCOyk7kbfnHV0RQ98W6nG+aM+CHQi
-         3+9kVmMUWjQ2G8aecV0N1XMwYRQPZklcZ9ygPLE2/Fl3j0MUK3MZB4f36NMCdzX0EnNT
-         URfeh+mcVCEb8RdKF7Zl4xRAZUgDA6UTt5ateX3z3rmudcKaahZCy7GrUcODVke95y3h
-         O5MkiBqtIvIdfqR86hk433wRxWZxPAVkcr7YoPzkd5et3/aG4YuvCzZYRpW+StKni7NL
-         0RlVXsdrwTzq2P9UI6g3jzblCafTbRdWHLGlKTjheJjl5pcgfPyedBBD7CkWvSPCFQ2Q
-         OZZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732229058; x=1732833858;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=q/Nja2Bb51yLaelcKPmFVLsubQx3+cZP82+7JwtW4Xk=;
-        b=g2q4va+yUV4ml+dGNYeqLgl4KwnI9dYnr68JDS2pjgI+sPPhc685BLcUxRC9oguaL6
-         rVTDsxrGtxeCvlDAXnh3JMqW+ZsJtZDYNnuZlXpJmQvN5oSt1BhNh1/rzoHY5mWjUVyt
-         pXhJfcPn6HDRkrTcnFapQSmYoAj/FvngLxrXJZ5/93cuOOEtMNKmqUiQmeWBA6z68L39
-         PfTXezoMBwkw2WUa1Xi+Mx3TH9Iu8o+teX5TgHVRdmZmpIliy8EgX59XY51npYxO90Ow
-         5FPhMhPUqPisVDL1N+EojR/k8x9f2G84UrnezU77+X04wIyB+MwBHgJ7UCf6+7We1IGP
-         hllA==
-X-Forwarded-Encrypted: i=1; AJvYcCUm6yo33BUxGK+HkznBZ/DZhzXT6urZGBQ4xSSMqWUdV/YMSX23LcQOf4IKLjYTgg6Nvb/hpqUtfJQh@vger.kernel.org
-X-Gm-Message-State: AOJu0YxoG8qCOKPkLLFZ3Plx9CmjycnQ9Z6A6HDGB8/fGHh071ux7bYH
-	UXAAhKZ6xIQjvhP1hrRHIc8a2LS3B7i8C/GAYny5MHbr7Yy0ecRVu5jS6rG3zJw=
-X-Gm-Gg: ASbGnctHI0p5q5YmdZH9SbKcQ0gtOvYJNBNEpC/42EGMwblOc8StB/asoTuWaHmXtaz
-	OUEDOV6NdqD6oYM8XaJ4NVJfi2/Pa8CGsBJnbDmmXvbctA6SCNO51f8MK4JhjoilrNgsjF9QF1V
-	Xc5UAW6O4VOBal/D7ya/fygVeClS53blQIvstnSwZYZeeyiY553ZFlXfpHgDGdnNF23+rCX7gVJ
-	GxQzJCfisDOXoZ5iE1t3DLI+WN1pCTSHVxuzQ9YjQ6t3vv0pCRtwQvA83/mydD/PWmU//EZiKfV
-	l9QafUltxcNKl4cQPIoK/rDM8geFIg==
-X-Google-Smtp-Source: AGHT+IGbReTR075Ouxz1EQlRJI//zuSXefAabMn1r5zxrv9eXDCoMRD5JejlOdypknkykXEjg8Eg3g==
-X-Received: by 2002:a05:651c:221b:b0:2fb:5723:c9ea with SMTP id 38308e7fff4ca-2ffa716ce5fmr1747681fa.30.1732229057836;
-        Thu, 21 Nov 2024 14:44:17 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ffa53769f2sm665281fa.77.2024.11.21.14.44.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Nov 2024 14:44:16 -0800 (PST)
-Date: Fri, 22 Nov 2024 00:44:14 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Krishna chaitanya chundru <quic_krichai@quicinc.com>, 
-	andersson@kernel.org, Bjorn Helgaas <bhelgaas@google.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
-	Jingoo Han <jingoohan1@gmail.com>, Bartosz Golaszewski <brgl@bgdev.pl>, quic_vbadigan@quicinc.com, 
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/6] arm64: dts: qcom: qcs6490-rb3gen2: Add node for
- qps615
-Message-ID: <berrvurtuyujkgy7q7hn3flx5lfusrskxh5bo7xvp374zojcro@v5mkoea2xkds>
-References: <20241112-qps615_pwr-v3-0-29a1e98aa2b0@quicinc.com>
- <20241112-qps615_pwr-v3-2-29a1e98aa2b0@quicinc.com>
- <ngjwfsymvo2sucvzyoanhezjisjqgfgnlixrzjgxjzlfchni7y@lvgrfslpnqmo>
- <yjwk3gnxkxmhnw36mawwvnpsckm3eier2smishlo2bdqa23jzu@mexrtjul2qlk>
- <a4146b5a-a229-4441-b123-d13e72ab4472@kernel.org>
+	s=arc-20240116; t=1732229267; c=relaxed/simple;
+	bh=7Rh3LO8bqPl+/ohAPK4jPsOy54AsIdEjBGcFAnaoX30=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=TWFa1P15Bimts8R0U8A2/JMe+G9CdT1LSqxxaBw/PZugCpQ0MxeA4p1wgae2E3kNG7qO9sOQWABxOEFb2zbwHgndkMfXfauj06cUvK4v8TpUfNayqYChvYcwJCJhzOQ4fUQEblENlgFa+8/m1AU7X17EBoH05vQzmP1hvFAWj9Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kr6Sfjel; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E7F0C4CED1;
+	Thu, 21 Nov 2024 22:47:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732229267;
+	bh=7Rh3LO8bqPl+/ohAPK4jPsOy54AsIdEjBGcFAnaoX30=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=kr6SfjelJOok2BAk5NttJJeRSCSP9LIRA2nnQ6AIHRy40vBdokk4vG6cYfgaqxbm1
+	 /MvRM9u5364nRdRVDJQaBD11YvDTsQYU/Pyyk2+EeFByqxKGKVDSMoykEKD231zHBM
+	 fo7tjbm//Zc7Gu9o2EJQ8qiCath8hV9t3mwFKxWqSuKL2GvK+U/dt/A1wtfEZ9dZH8
+	 WQTSNdC/6Uq9wXdPju688Tf/uYkojnK8xHJpEkrht9O42ZfzO0ij/BkfytoGXDUmHK
+	 86a2Mc/cDMw2tnH7MDV2wflzWpm41FYJZnjN+RiJj1TiNZI60IteAjvPPw86k7CgSp
+	 MyiJ1i/fYzykg==
+Message-ID: <1cbb46bd59a85c0eb0b2e8319bb7ec63.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a4146b5a-a229-4441-b123-d13e72ab4472@kernel.org>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20241023-drm-vc4-2712-support-v1-34-1cc2d5594907@raspberrypi.com>
+References: <20241023-drm-vc4-2712-support-v1-0-1cc2d5594907@raspberrypi.com> <20241023-drm-vc4-2712-support-v1-34-1cc2d5594907@raspberrypi.com>
+Subject: Re: [PATCH 34/37] clk: bcm: rpi: Add disp clock
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, Dave Stevenson <dave.stevenson@raspberrypi.com>
+To: Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Catalin Marinas <catalin.marinas@arm.com>, Conor Dooley <conor+dt@kernel.org>, Dave Stevenson <dave.stevenson@raspberrypi.com>, David Airlie <airlied@gmail.com>, Florian Fainelli <florian.fainelli@broadcom.com>, Javier Martinez Canillas <javierm@redhat.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, =?utf-8?q?Ma=C3=ADra?= Canal <mcanal@igalia.com>, Michael Turquette <mturquette@baylibre.com>, Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, Ray Jui <rjui@broadcom.com>, Rob Herring <robh@kernel.org>, Scott Branden <sbranden@broadcom.com>, Simona Vetter <simona@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>, Will Deacon <will@kernel.org>
+Date: Thu, 21 Nov 2024 14:47:45 -0800
+User-Agent: alot/0.12.dev1+gaa8c22fdeedb
 
-On Wed, Nov 20, 2024 at 02:28:29PM +0100, Krzysztof Kozlowski wrote:
-> On 20/11/2024 12:03, Dmitry Baryshkov wrote:
-> >>>  
-> >>>  &apps_rsc {
-> >>> @@ -684,6 +708,75 @@ &mdss_edp_phy {
-> >>>  	status = "okay";
-> >>>  };
-> >>>  
-> >>> +&pcie1_port {
-> >>> +	pcie@0,0 {
-> >>> +		compatible = "pci1179,0623";
-> >>
-> >> The switch is part of SoC or board? This is confusing, I thought QPS615
-> >> is the SoC.
-> > 
-> > QCS615 is the SoC, QPS615 is a switch.
-> OK, thanks for confirming. Just to be clear, I understand above as: it
-> is only the switch, nothing else.
+Quoting Dave Stevenson (2024-10-23 09:50:31)
+> From: Maxime Ripard <mripard@kernel.org>
+>=20
+> BCM2712 has an extra clock exposed by the firmware called DISP, and used
+> by (at least) the HVS. Let's add it to the list of clocks to register in
+> Linux.
+>=20
+> Signed-off-by: Maxime Ripard <mripard@kernel.org>
+> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> ---
 
-PCIe switch, networking interface, but not the SoC (and not a part of
-the SoC).
-
-> 
-> Best regards,
-> Krzysztof
-
--- 
-With best wishes
-Dmitry
+Acked-by: Stephen Boyd <sboyd@kernel.org>
 
