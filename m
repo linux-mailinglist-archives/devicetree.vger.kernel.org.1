@@ -1,79 +1,48 @@
-Return-Path: <devicetree+bounces-123437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123438-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC4089D484E
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 08:47:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87A7C9D485B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 08:49:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C2BF2830C3
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 07:47:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 00258B20AA1
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 07:49:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C28D1AAE38;
-	Thu, 21 Nov 2024 07:47:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1043A15C15C;
+	Thu, 21 Nov 2024 07:49:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Cjg2UNQK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DZlWTr3o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D5754206E
-	for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 07:47:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D126614EC55;
+	Thu, 21 Nov 2024 07:49:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732175251; cv=none; b=SnnA5sBecZfIGq05l1IFcR5K6QMj7AFJqjTy+kl+r4aoneQsV0uzW2BeghDcbzLZ2PuUaKfulWW0UH61dJfbtcH983TlYDnV3IgNCmiQXnZOcHxbSG7eIvHcYRdByJS9RxiFF2rusWCPaDmwA6gnKj/4VxaeE7atGPg95UAIDH0=
+	t=1732175360; cv=none; b=pm3b8DDK4sp4+xxeemZ9A7ZxncrNjLjeGoUVJEh5Z198cLoqk4NvZdCQSc/23id4C1pkEMoDMzLa78CTR8w6h6Za7HdAI0F9qdZXHI2rRInEp39XxygyNhIRO/hF0QxRtRUHLLkLvE6Fe5gwlO64G6/9tccyhE4ElN20urZUt2o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732175251; c=relaxed/simple;
-	bh=YeL2ghLeyHXtI4iH/ZhL0JaPrgj8DbmE6O6mhpAS8yQ=;
+	s=arc-20240116; t=1732175360; c=relaxed/simple;
+	bh=4CkwEdrsvB8pjMup6oXE57MFNJnD4/M2mjHbPK09Stc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Kf566lVs79KE8GNq5/xi7IjthcwJkcdYSS41UGEGk6s12b/0mSnKBqYHLxAfjstfE6Tj3IRprAItCmuiOjDJADRI1KkxPkJaNA2vwhko2qGw36BQmgKjqtDLgxQ9n3RD71kNOgtqO4aoboVYN0qOsQgV+HHxq+oGerME6rebxTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Cjg2UNQK; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-43158124a54so179545e9.3
-        for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 23:47:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732175248; x=1732780048; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=BS5ZRVYZSc50G5o4Vd0b7F4JpLeCAVQYGlYkmwTCAMk=;
-        b=Cjg2UNQKQyRsFYZoF3ufvdJDoffY0aOIk8EfBH/1m7EnkKJJq2uOd2TYjxJpL8bvvz
-         gLCFl8tfdbFBBf9DQEyUoVOeoHvfmY6xRJNGIY4TpaTFEiLPkgQeT0iwzXBlJQSo7eKf
-         YObt3dk4RMJA2g6TCWJOnBbHTiIRaHTkrgRsvk1D7wh4JkiBrkc8gUaRkU407S6WLDjX
-         9gmJR5/81+Rz0OBmlXGMDh+k7eSmNFZkcSIHALV+s8GVvyOiBGiVxBWGeyzR8fi/WWbi
-         z6491WG7Ytiy5QcQxlLHiY17I+shjR2NCz7p1HmstAuEDOSyiwkiAEu6piVt1+NVS+Ur
-         KlGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732175248; x=1732780048;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BS5ZRVYZSc50G5o4Vd0b7F4JpLeCAVQYGlYkmwTCAMk=;
-        b=e5SFAfvSMMaxRvAtfY2rddjNVZrKepmt1QA5fu3kVpP3AAbIpS9qPcTMyDtQDkzmj/
-         T2j6oe3yNBuRqAS+ke9X/XrXrIHMKURXwMUFTfJpXRrgB/eT2Y1i63vKmEE/3+C+X638
-         25RjP3Uhpo55ZyTputQV7CHF01bvXtV2wsm/XgBNF/WnUw5EqxlHUbTSGSipQueWbWJD
-         YMwUnFo++pm1DQYMSvcJ6ThG50dcNZerpWQFhhEgVCVhnZfjbVBCrGJRlt1ZiH78dsCb
-         0YBH/Fved7fK7b+EIDghAkmq5FoEKFsqbL9Iero/fgWiZN4cFruxF/d6G/2gDRML6FbC
-         Qe2w==
-X-Forwarded-Encrypted: i=1; AJvYcCVIga3hbSfFMY5lOSEEZtMF8gyYQJO2o1aQMJzFoQ5H6hthRqy1WTDzYoR/tep1VV1yNPzC4G99EeXO@vger.kernel.org
-X-Gm-Message-State: AOJu0YyPoEpCZxA9Ks3p2eGSLu6H9LhJgWhqr2mBMio15QjJVtivx6/j
-	qsyWRxmmsiNhUnbxqCjmjwITfQ80fFn3GfnTeiH0Q1m7d1UqCS/EMezJWdG6JMg=
-X-Gm-Gg: ASbGncsd8qPsyIjKNS0sL8zXtAxXP7LD971encbSyChhQqOrBUjeYCBTjcwXTQX/aEP
-	WJw7cNBYTnjPwT1f3YgafQE5wzhz59rXGaHkcTux9UOP869xIwa5A+faQPathDLWv7JVVRqWsHo
-	IqMSMCjBOHp8Qx1n/PZCj1kuWV9Yl+z0xNSoFAbYNGv30zV90Y8WbUlipb100NIBNSjauN408sX
-	a+uMo6ym4rxoWMDx/pcs/kkvVQUkJeb9tsLICxsx+/ZO96AchTCwoeJ/pxy1oebB+3jUA==
-X-Google-Smtp-Source: AGHT+IFxWcMgmH8My3CD7LJZvACg4t39rhilu21wZCuNimks2qFogI/hGPY45e0t1ZOyRKzNa/Kt2A==
-X-Received: by 2002:a05:600c:4fcf:b0:42c:aeee:e604 with SMTP id 5b1f17b1804b1-4334f030467mr22124675e9.8.1732175248624;
-        Wed, 20 Nov 2024 23:47:28 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.211.167])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-382549452a1sm4073701f8f.106.2024.11.20.23.47.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 20 Nov 2024 23:47:28 -0800 (PST)
-Message-ID: <94c90aef-9807-473d-b71d-168282d87570@linaro.org>
-Date: Thu, 21 Nov 2024 08:47:26 +0100
+	 In-Reply-To:Content-Type; b=HDHYEzEj7uN569OZlOgIVODf2ueCAhXaxjLlPKJhfjE57VHk7GcZfM/JoYWFRzjy0Sd01mtjMSEnmGu9tjNqBYGEzhb1yIzvQIKSm/pfBgEtVGih9DdBf1x+dMxxkzrBvIjzqbNpwd9EXyrJNaIHy4EsuJ5n0zqG0clo8rRQB4c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DZlWTr3o; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D189C4CECC;
+	Thu, 21 Nov 2024 07:49:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732175359;
+	bh=4CkwEdrsvB8pjMup6oXE57MFNJnD4/M2mjHbPK09Stc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=DZlWTr3oLoGwyeRUh5amiaMkkIRRsfhg4C/vypWwJgAshIKG6HQe32Lm9lFPzjRlE
+	 DSvjfMQj5LQge6X6Vb706HXUUXNDfBqiEuPM0vvlLFCOJdmAmY3sBqYFkL1W6D3EUq
+	 5CHaUNmmdYkZWEz6Nz6X8Kb916TLSLleHCL1qEQ62FdRBc3fQ0Z0H+HGTUC03cRUwg
+	 GopbviQCsr3zOT223eSqbUXvBW0KCKbz1Po1FeBPpgCQ8dlgafRMzZtAO7Bb5EMSkd
+	 3VjzhSPpUJL9FkGLF7AAMFG+inmjAl/Kq5uKrveSgxuZlQhtKW56jKQkFcbTA+9rLU
+	 kDV5KKbWKWXZQ==
+Message-ID: <4c419118-83f8-4263-9d7c-8aef02908430@kernel.org>
+Date: Thu, 21 Nov 2024 08:49:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,25 +50,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] dt-bindings: vendor-prefixes: Add TouchNetix AS
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: Luis Chamberlain <mcgrof@kernel.org>, Russ Weight
- <russ.weight@linux.dev>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Andrew Morton <akpm@linux-foundation.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Kamel Bouhara <kamel.bouhara@bootlin.com>,
- Marco Felsch <kernel@pengutronix.de>, Henrik Rydberg <rydberg@bitmath.org>,
- Danilo Krummrich <dakr@redhat.com>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-input@vger.kernel.org
-References: <20241119-v6-10-topic-touchscreen-axiom-v1-0-6124925b9718@pengutronix.de>
- <20241119-v6-10-topic-touchscreen-axiom-v1-3-6124925b9718@pengutronix.de>
- <b5hjephfcvdu2jjchodaj5u4yltvatdgmse7xvwkhaepn5dinv@sfl4utyuz34g>
- <20241120081527.s6pfo5soa2tqvra4@pengutronix.de>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2 1/4] dt-bindings: bluetooth: add 'qcom,product-variant'
+To: Cheng Jiang <quic_chejiang@quicinc.com>,
+ Marcel Holtmann <marcel@holtmann.org>,
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
+ Rocky Liao <quic_rjliao@quicinc.com>, quic_zijuhu@quicinc.com
+Cc: linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ quic_mohamull@quicinc.com
+References: <20241120095428.1122935-1-quic_chejiang@quicinc.com>
+ <20241120095428.1122935-2-quic_chejiang@quicinc.com>
+ <c8ae761a-732c-4def-ac6e-5e1b16a21ada@kernel.org>
+ <0b0b55a2-ab80-4f6d-a4cf-c04acc94a989@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
  JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
@@ -109,63 +78,111 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  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
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20241120081527.s6pfo5soa2tqvra4@pengutronix.de>
+ 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 fv0=
+In-Reply-To: <0b0b55a2-ab80-4f6d-a4cf-c04acc94a989@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/11/2024 09:15, Marco Felsch wrote:
-> On 24-11-20, Krzysztof Kozlowski wrote:
->> On Tue, Nov 19, 2024 at 11:33:52PM +0100, Marco Felsch wrote:
->>> From: Kamel Bouhara <kamel.bouhara@bootlin.com>
+On 21/11/2024 05:06, Cheng Jiang wrote:
+> Hi Krzysztof,
+> 
+> On 11/21/2024 12:47 AM, Krzysztof Kozlowski wrote:
+>> On 20/11/2024 10:54, Cheng Jiang wrote:
+>>> Several Qualcomm projects will use the same Bluetooth chip, each
+>>> focusing on different features. For instance, consumer projects
+>>> prioritize the A2DP SRC feature, while IoT projects focus on the A2DP
+>>> SINK feature, which may have more optimizations for coexistence when
+>>> acting as a SINK. Due to the patch size, it is not feasible to include
+>>> all features in a single firmware.
 >>>
->>> Add vendor prefix for TouchNetix AS (https://www.touchnetix.com/products/).
+>>> Therefore, the 'product-variant' devicetree property is used to provide
+>>> product information for the Bluetooth driver to load the appropriate
+>>> firmware.
 >>>
->>> Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
->>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> If this property is not defined, the default firmware will be loaded,
+>>> ensuring there are no backward compatibility issues with older
+>>> devicetrees.
+>>>
+>>> The product-variant defines like this:
+>>>   0 - 15 (16 bits) are product line specific definitions
+>>>   16 - 23 (8 bits) are for the product line.
+>>>   24 - 31 (8 bits) are reserved for future use, 0 currently
+>>>
+>>> |---------------------------------------------------------------------|
+>>> |                       32 Bits                                       |
+>>> |---------------------------------------------------------------------|
+>>> |  31 - 24 (bits)   |    23 - 16 (bits)   | 15 - 0 (16 bits)          |
+>>> |---------------------------------------------------------------------|
+>>> |   Reserved        |    0: default       | 0: default                |
+>>> |                   |    1: CE            |                           |
+>>> |                   |    2: IoT           |                           |
+>>> |                   |    3: Auto          |                           |
+>>> |                   |    4: Reserved      |                           |
+>>> |---------------------------------------------------------------------|
+>>>
+>>> Signed-off-by: Cheng Jiang <quic_chejiang@quicinc.com>
+>>> ---
+>>>  .../bindings/net/bluetooth/qualcomm-bluetooth.yaml          | 6 ++++++
+>>>  1 file changed, 6 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
+>>> index 7bb68311c609..9019fe7bcdc6 100644
+>>> --- a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
+>>> +++ b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
+>>> @@ -110,6 +110,12 @@ properties:
+>>>      description:
+>>>        boot firmware is incorrectly passing the address in big-endian order
+>>>  
+>>> +  qcom,product-variant:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    description:
+>>> +      specify the product information for driver to load the appropriate firmware
 >>
->> I think this did not happen (only Ack).
+>> Nah, you have firmware-name for this.
+>>
+> Currently "firmware-name" is used to specifythe nvm (config) file only,
+> we also need to specify the rampatch file (TLV). 
+>  
+> Can we re-use the "firmware-name"? add two segments like the following?
+> firmware-name = "rampatch_xx.tlv",  "nvm_xx.bin";
 > 
-> Huh.. I used b4 to retrieve the latest Bootlin version. According [1] it
-> was already present :/ I can drop it if you want.
-> 
-> [1] https://lore.kernel.org/all/20240703142520.207066-3-kamel.bouhara@bootlin.com/
-> 
-Hm? This points to entirely different patch!
+> Or add a new property to specify the rampatch file? 
+> rampatch-name = "rampatch_xx.tlv";
+You can grow the property, it's a list. Order of items in the list must
+be fixed (specific), though. See other Qualcomm remoteproc PAS loaders
+which already use two entries.
 
 Best regards,
 Krzysztof
