@@ -1,144 +1,83 @@
-Return-Path: <devicetree+bounces-123455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11B7A9D48F9
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 09:38:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 209D89D48FE
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 09:39:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8AAD7B217B0
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 08:38:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9490282CE2
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 08:39:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43EC715ADB4;
-	Thu, 21 Nov 2024 08:38:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5D8A1BE84B;
+	Thu, 21 Nov 2024 08:39:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="FpiIU6sb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AKsvwfjA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87FC61C9EDC;
-	Thu, 21 Nov 2024 08:38:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BE3115ADB4;
+	Thu, 21 Nov 2024 08:39:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732178304; cv=none; b=gA3/SwSsW09qVxu49fkqG92Fsa37XrjzlzvkoGKCmAQKv7qzrzgRlUgWNa2B/6uLtD3B+0Yx7WjNphgbBLTJVa24stP/H2bI8euMI9M7d6+G93ceNCnpDThj5kwHv6ZzBN6faW2GhRxngAthryBfXxAeL7ch1RmzZ8L0UeIIcNc=
+	t=1732178373; cv=none; b=bDuiMzPviXOsY7IxFSau6X1SY63zeH7/z6+ERM8Ir95tn4/FHJcYf49a/z3C5rcQfCM7INWtvkId+uULfllJFbLiP6+ONye46sH9N3r01nKVT3o+LwJ/muFV134lOc9NZZ9hIEsdVohUd3O4vAffJWij6uhxp8ns2h6lCUuKbGY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732178304; c=relaxed/simple;
-	bh=4Mj935QMoc0VRJ/01ktsGEBOR95L286nivQ5m8U2iw0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=gpyYa/0HvIWEQI3IuJbsiwUsmTqB1gZ41tnM5N0v8vFqM/VLwtvTMiIW9cEO+2yqQY5YSMyqTw+CYrFmyCGYZYI98yAGx0FDH1ESpOkB0NljY0NCpiB8weoqVZFrLFuC328eey4zh2ktoCFDLeIB9OqdHHURoqQ+DNlf54iyhuM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=FpiIU6sb; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AL7xaoc015290;
-	Thu, 21 Nov 2024 08:38:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	tB0KnnanTcHNjDGVYNGLDMZfTGK9vcYncMo3+GSBNxU=; b=FpiIU6sb+Atbrrtv
-	RvWijmTAK6Elnu3X0A5qS0tKbPyqKtxenRYT7/equZ1v7UEq97eOmw4TFRkj8+Vl
-	c6LPJ0mltkgnisTCV0rrUFPwywopvDASrK5OwUjSbR4qVTvZIhtVRxXqebIZnh0+
-	vEAXMLVLEZkOBezkpH1sTukf5QJSmc042DjkAAN7ZMl6FGadImoXQmeVEmHBs34T
-	M0oYDADllPEn3efbnM8T9ncACL5Sssvk045Mj/cB4htm3pV178A+jl6DKjPYxBX8
-	kmTUsX3gsmiH/TJR09O/Kw3TkdukvzouIsijyvlrb7ASsM7trnYzvqOJI7lMOd2a
-	VLh/5Q==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4320y9g4tv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 21 Nov 2024 08:38:01 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AL8c0LZ029995
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 21 Nov 2024 08:38:00 GMT
-Received: from [10.64.68.72] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 21 Nov
- 2024 00:37:53 -0800
-Message-ID: <242451d6-2b77-417c-bd98-4455f739dc0d@quicinc.com>
-Date: Thu, 21 Nov 2024 16:37:48 +0800
+	s=arc-20240116; t=1732178373; c=relaxed/simple;
+	bh=SUvWzbHGe7kApkeBmO6P2id2KlN/J7nuQhPn4eL2GIA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=E+3gNhmUrybZvgebaTJcSGOfhGiyvWkjQKr9an2i2HuctfFFLvBXi8zrI4iQhcrGGtyKvpCQOHNYP4p8ch6N1YqURuA99e3edhUCLBwpdblk31/rVc9SBNYA0sv6SAY4txIsq0OMkdtQP731gHMM4pAjsOzEJpPF0sasSzON52Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AKsvwfjA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E740C4CECC;
+	Thu, 21 Nov 2024 08:39:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732178373;
+	bh=SUvWzbHGe7kApkeBmO6P2id2KlN/J7nuQhPn4eL2GIA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AKsvwfjAZ6SGQoFQEVeGNmAIkbQkY477sov7z1nGhsTVAXulxrk7umXUn1ZbJDzha
+	 e5YoQG1nbBXnmLiBCX6ASPmve/V5n3WjfecR2IO8hDKD9M0l4zmVk+iE1DOVaANvUr
+	 A2pHOMwTsvZRVr+/A/LK1XVstnPv+1cm06LIaGicbSL2uVIItj3HaVGtwVdpQT2DlT
+	 JtaizkXMAwgtphjzkdHVqijdl/q08BiE6MO4TfPraoP/zBgYWICw+bVE9iFumkAN+k
+	 2ZFsN93OCPMBkuJgnLxmpvxgVCd3z4l0b5/i4yToeGONZoLtxKTO2IiqCv7iFArc2l
+	 1Oog9ipylULig==
+Date: Thu, 21 Nov 2024 09:39:29 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, 
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, 
+	simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	matthias.bgg@gmail.com, ck.hu@mediatek.com, jitao.shi@mediatek.com, 
+	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v1 1/6] dt-bindings: display: mediatek: dpi: Add MT8195
+ and MT8188 compat
+Message-ID: <tutddhqzp37frzi7fkvljrjemfwfmcfgv44eetaalodc5pmauc@h4hklzisfyfk>
+References: <20241120124420.133914-1-angelogioacchino.delregno@collabora.com>
+ <20241120124420.133914-2-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: ufs: qcom: Add UFS Host Controller
- for QCS615
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-CC: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>, Andy Gross <agross@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-scsi@vger.kernel.org>, <quic_jiegan@quicinc.com>,
-        <quic_aiquny@quicinc.com>, <quic_tingweiz@quicinc.com>,
-        <quic_sayalil@quicinc.com>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>
-References: <20241119022050.2995511-1-quic_liuxin@quicinc.com>
- <20241119022050.2995511-2-quic_liuxin@quicinc.com>
- <d9c3dc82-24e5-465d-bd1c-7a7c97e17136@kernel.org>
- <eae9d141-9c88-4856-9287-2ba6ea6f4a06@kernel.org>
-From: Xin Liu <quic_liuxin@quicinc.com>
-In-Reply-To: <eae9d141-9c88-4856-9287-2ba6ea6f4a06@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: C-wGCnRF7NJ8TW3zITJPRtXg76QtxZEB
-X-Proofpoint-ORIG-GUID: C-wGCnRF7NJ8TW3zITJPRtXg76QtxZEB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- phishscore=0 impostorscore=0 suspectscore=0 lowpriorityscore=0
- mlxlogscore=861 spamscore=0 mlxscore=0 malwarescore=0 clxscore=1015
- adultscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411210067
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241120124420.133914-2-angelogioacchino.delregno@collabora.com>
 
-
-
-在 2024/11/21 15:40, Krzysztof Kozlowski 写道:
-> On 20/11/2024 17:57, Krzysztof Kozlowski wrote:
->> On 19/11/2024 03:20, Xin Liu wrote:
->>> From: Sayali Lokhande <quic_sayalil@quicinc.com>
->>>
->>> Document the Universal Flash Storage(UFS) Host Controller on the Qualcomm
->>> QCS615 Platform.
->>>
->>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->>> Signed-off-by: Sayali Lokhande <quic_sayalil@quicinc.com>
->>> Co-developed-by: Xin Liu <quic_liuxin@quicinc.com>
->>> Signed-off-by: Xin Liu <quic_liuxin@quicinc.com>
->> That's a bit odd SoB chain. First, these are just one-liners. Second,
->> who authored the patches?
-> To be clear: SoB regarding authorship is correct, but regarding Acks and
-> Reviews is not. Savali did not receive these tags. If so, please point
-> to lore discussion with it.
+On Wed, Nov 20, 2024 at 01:44:15PM +0100, AngeloGioacchino Del Regno wrote:
+> Add compatibles for the Digital Parallel Interface (DPI) block
+> found in the MT8195 and MT8188 SoCs: inside of the chip, this one
+> is directly connected to the HDMI block.
 > 
-> All this needs fixing.
-Thank you for your comments. These are the two reviews I received. One 
-is your reviewd-by, and the other is Manivannan's acked-by.I have also 
-cc Sayali on the email.
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  .../devicetree/bindings/display/mediatek/mediatek,dpi.yaml   | 5 +++++
+>  1 file changed, 5 insertions(+)
 
-https://lore.kernel.org/linux-arm-msm/rv3ukz6rhgp3x32s74nbftmoqmdxjxmoii3zsd4wipmhudyq7q@ha4l2svl5lim/
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-https://lore.kernel.org/linux-arm-msm/20241112075619.2ilsccnnk4leqmdy@thinkpad/
-> 
-> Best regards,
-> Krzysztof
+Best regards,
+Krzysztof
 
 
