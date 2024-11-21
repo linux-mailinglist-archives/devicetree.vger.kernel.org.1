@@ -1,131 +1,171 @@
-Return-Path: <devicetree+bounces-123519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AF6C9D4D77
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 14:07:10 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0250C9D4D7A
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 14:09:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 371951F25877
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 13:07:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 905E1B25518
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 13:09:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EA031D47B3;
-	Thu, 21 Nov 2024 13:07:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1626D1D5CE0;
+	Thu, 21 Nov 2024 13:08:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mbybtKKj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mHsc4yE6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAFD31B0F0C;
-	Thu, 21 Nov 2024 13:07:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E28571D0DF7;
+	Thu, 21 Nov 2024 13:08:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732194424; cv=none; b=NCOHAzcU9Ct9TZ/FBUrrp8zQuAujRDDwSpA6bqOYgYsOWwEMUZ9wLv5R5uvrwfLFekNumH42NN3s+2ysb/sOmPVtqml05QbIs3ZW0ZvgniOD8wlfXsshNpQZk8hFVT7HAyHU4dqqaTFc6yaym2qPckfBTe7LXojZdTcdAcmje00=
+	t=1732194538; cv=none; b=CmVzKnUMY6+MTNLJiw7sGrMCIvsKe1PaIEONvPgYIiyZQZyHTE1i2BoXu6PhiRMRGV2EKUHMX1ctGDm6ny/6C2cQIflftn9P1gnTuFBZOxPF6OyzjhQCGJQ04aUWqLI4nTsSIgymtDznZG5Ew7C7koEd/3VLkHaPUQD06jsVbLY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732194424; c=relaxed/simple;
-	bh=Z8PA0Mh/Y/MUPN5YQmqGz8Ls/8n0KHR881FuitZX5v4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bD0CtcW4Da/IQ7Biw2CqtDAIH/lye4021JMFwKipFXsCiLGe3cOx75XJTbGw8wQpwqSPUpJQ/qX3hfu8RQkQaRadNnOdGuU4lCapV5UG4EbaTAoyB1ZWYRAcQ8dy+yVP/4HKgqjNLU+TgyeLGmjRrofHtjwSk2uwWdkPLlrohLM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mbybtKKj; arc=none smtp.client-ip=192.198.163.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1732194423; x=1763730423;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Z8PA0Mh/Y/MUPN5YQmqGz8Ls/8n0KHR881FuitZX5v4=;
-  b=mbybtKKjC7XZ3Sn3Ft6TX5KmUxqcBEgEaW8vydk85fxa+hSdvDsPUZMb
-   7Rmv8ZMI3j70D3AhgVmf9/jcRLXbr8TvGQ4Jraem/vKxoBc0cQbcQKhUH
-   acIZkYEubVafx303edUMoPIRbCa3wEcshIkOdKE65wpm3V3VLwx7CQd+W
-   JTofVByqNN9xBHIbxbAMpcp8sxr16L015dWS9t7D0JlxqJi+E/62iTNbU
-   ihPSPyTJMo7bvDRD8mGBeuj8OP20dWMh5Ss/jcilHHzB1Bl8er5IE/SNN
-   Y0Xvg1k3u3GgETJQCZXonPtgOGrpredl9wJVH71DRRtZRdjPc5FMRYwvm
-   A==;
-X-CSE-ConnectionGUID: V9Wkhpr0RUuVH6kUTLnejQ==
-X-CSE-MsgGUID: GNC0P2UOSduhEADUaBCYiw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11263"; a="32420295"
-X-IronPort-AV: E=Sophos;i="6.12,172,1728975600"; 
-   d="scan'208";a="32420295"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Nov 2024 05:07:02 -0800
-X-CSE-ConnectionGUID: i5LY9JAdRtOBT0lh04KPHQ==
-X-CSE-MsgGUID: 81eOr58CRuia8XfsGnK2dg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,172,1728975600"; 
-   d="scan'208";a="89852236"
-Received: from lkp-server01.sh.intel.com (HELO 8122d2fc1967) ([10.239.97.150])
-  by fmviesa006.fm.intel.com with ESMTP; 21 Nov 2024 05:06:59 -0800
-Received: from kbuild by 8122d2fc1967 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tE6tc-000309-3B;
-	Thu, 21 Nov 2024 13:06:56 +0000
-Date: Thu, 21 Nov 2024 21:05:57 +0800
-From: kernel test robot <lkp@intel.com>
-To: "Sung-Chi, Li" <lschyi@chromium.org>,
-	Benson Leung <bleung@chromium.org>,
-	Tzung-Bi Shih <tzungbi@kernel.org>,
-	Guenter Roeck <groeck@chromium.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
-	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] platform/chrome: cros_ec_charge_state: add new
- driver to control charge
-Message-ID: <202411212036.M5ujDUNV-lkp@intel.com>
-References: <20241118-add_charger_state-v1-1-94997079f35a@chromium.org>
+	s=arc-20240116; t=1732194538; c=relaxed/simple;
+	bh=TI71bCsHyJmW5bcuA/G5CsKR520eaTS3Cnh8kMl95EI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QSoDiCi88+DqiS1Hreke+om7ltS41nIYA1qMr0L3xwpkXHzIqnM50urb/iwMO+xV10btxXkwoap909RcGhD3HQQ/h31Bg/hMceXT0+uQ+zIzriBPm9AEU3yNAvA8kvLTzNG76Em9zLBX0AUn+bw425OKK6T8bpiDshAo6JRqj0c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mHsc4yE6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D211C4CECD;
+	Thu, 21 Nov 2024 13:08:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732194537;
+	bh=TI71bCsHyJmW5bcuA/G5CsKR520eaTS3Cnh8kMl95EI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=mHsc4yE66AWoqGwLyIYDx4pCZeLC6SXGuQbRNgI+rz7aPWcqtwhI7oecMFXcnlQ6J
+	 +OZX5PJs285R1aaGbpxE6fQv0dgaHNMjk6aFoOXJSIT5RUI1MXAp87A4sMtndNOnkt
+	 o6OJCkhyHXoGO7++jeIBiDkigElDCifTX30DaVaAMnbr9SJeYQAcRbrqy5vTRrmDZ3
+	 qKV4FB3NWy3LcusQsgmS+TlfRtmwrk+4CPsyl9neqmYcrMEUupFte9ZFWL9qbQ7qOZ
+	 FwfDfKNyRN2x+ZbRFJzTcjePL8Cdast4SGArGNNN9oPPACePpCce2Wes6OAySp2OX6
+	 aBqMbwNEVbO2g==
+Message-ID: <dbdfc894-2a63-460a-a10e-e290385ea2e6@kernel.org>
+Date: Thu, 21 Nov 2024 15:08:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241118-add_charger_state-v1-1-94997079f35a@chromium.org>
-
-Hi Li,
-
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on lee-mfd/for-mfd-next]
-[also build test WARNING on robh/for-next groeck-staging/hwmon-next chrome-platform/for-next chrome-platform/for-firmware-next lee-mfd/for-mfd-fixes linus/master v6.12 next-20241121]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Sung-Chi-Li/platform-chrome-cros_ec_charge_state-add-new-driver-to-control-charge/20241121-112442
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git for-mfd-next
-patch link:    https://lore.kernel.org/r/20241118-add_charger_state-v1-1-94997079f35a%40chromium.org
-patch subject: [PATCH 1/3] platform/chrome: cros_ec_charge_state: add new driver to control charge
-config: m68k-allyesconfig (https://download.01.org/0day-ci/archive/20241121/202411212036.M5ujDUNV-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241121/202411212036.M5ujDUNV-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202411212036.M5ujDUNV-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/platform/chrome/cros_ec_charge_state.c:198:40: warning: 'cros_ec_charge_state_id' defined but not used [-Wunused-const-variable=]
-     198 | static const struct platform_device_id cros_ec_charge_state_id[] = {
-         |                                        ^~~~~~~~~~~~~~~~~~~~~~~
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings: soc: ti: pruss: Add clocks for ICSSG
+To: "Anwar, Md Danish" <a0501179@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, MD Danish Anwar <danishanwar@ti.com>,
+ conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+ ssantosh@kernel.org, nm@ti.com
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, s-anna@ti.com, kristo@kernel.org, srk@ti.com
+References: <20241113110955.3876045-1-danishanwar@ti.com>
+ <20241113110955.3876045-2-danishanwar@ti.com>
+ <adcc5aa5-0f51-4c69-b684-a1e0844c5e3f@kernel.org>
+ <6e11c85a-5883-4a28-b5bd-98da28f20425@kernel.org>
+ <d738bb00-e295-4d74-8ba2-efd82b6df2ea@ti.com>
+ <e633232e-f0ad-43f7-9897-39836e6b98b4@kernel.org>
+ <96ea0c11-e6e7-4801-9c06-2dc80b21b1ab@ti.com>
+Content-Language: en-US
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <96ea0c11-e6e7-4801-9c06-2dc80b21b1ab@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 
-vim +/cros_ec_charge_state_id +198 drivers/platform/chrome/cros_ec_charge_state.c
 
-   197	
- > 198	static const struct platform_device_id cros_ec_charge_state_id[] = {
-   199		{ DRV_NAME,  0 },
-   200		{}
-   201	};
-   202	
+On 20/11/2024 15:23, Anwar, Md Danish wrote:
+> Hi Roger,
+> 
+> On 11/19/2024 4:15 PM, Roger Quadros wrote:
+>>
+>>
+>> On 19/11/2024 08:12, Vignesh Raghavendra wrote:
+>>>
+>>>
+>>> On 18/11/24 19:22, Roger Quadros wrote:
+>>>>
+>>>>
+>>>> On 18/11/2024 15:33, Roger Quadros wrote:
+>>>>> Hi,
+>>>>>
+>>>>> On 13/11/2024 13:09, MD Danish Anwar wrote:
+>>>>>> The ICSSG module has 7 clocks for each instance.
+>>>>>>
+>>>>>> These clocks are ICSSG0_CORE_CLK, ICSSG0_IEP_CLK, ICSSG0_ICLK,
+>>>>>> ICSSG0_UART_CLK, RGMII_MHZ_250_CLK, RGMII_MHZ_50_CLK and RGMII_MHZ_5_CLK
+>>>>>> These clocks are described in AM64x TRM Section 6.4.3 Table 6-398.
+>>>>>>
+>>>>>> Add these clocks to the dt binding of ICSSG.
+>>>>>>
+>>>>>> Link: https://www.ti.com/lit/pdf/spruim2 (AM64x TRM)
+>>>>>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+>>>>>> ---
+>>>>>>  Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml | 10 ++++++++++
+>>>>>>  1 file changed, 10 insertions(+)
+>>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+>>>>>> index 3cb1471cc6b6..927b3200e29e 100644
+>>>>>> --- a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+>>>>>> +++ b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+>>>>>> @@ -92,6 +92,16 @@ properties:
+>>>>>>      description: |
+>>>>>>        This property is as per sci-pm-domain.txt.
+>>>>>>  
+>>>>>> +  clocks:
+>>>>>> +    items:
+>>>>>> +      - description: ICSSG_CORE Clock
+>>>>>> +      - description: ICSSG_IEP Clock
+>>>>>> +      - description: ICSSG_RGMII_MHZ_250 Clock
+>>>>>> +      - description: ICSSG_RGMII_MHZ_50 Clock
+>>>>>> +      - description: ICSSG_RGMII_MHZ_5 Clock
+>>>>>> +      - description: ICSSG_UART Clock
+>>>>>> +      - description: ICSSG_ICLK Clock
+>>>>>> +
+>>>>>
+>>>>> There are actually many more clocks [1]
+>>>>> What is the purpose of adding all these clocks in the DT if driver doesn't
+>>>>> use them?
+>>>>>
+>>>
+>>> DT should completely describe the HW and not based on what Linux driver
+>>> needs. So its valid to describe all clock inputs to a module
+>>> irrespective of what driver does with it.
+>>
+>> Fair point. But there are a total 11 clocks instead of 7 in [1]
+>>
+> 
+> I took the list of clocks from AM64x TRM [1] Section 6.4.3 Table 6-398.
+> In the TRM only 7 clocks are mentioned per ICSSG instance which I have
+> mentioned in the binding.
+> 
+> [1] https://www.ti.com/lit/ug/spruim2h/spruim2h.pdf?ts=1732108738816
+
+OK thanks for the clarification. It looks like the same in AM65 and J721e TRMs as well.
+So it is fine.
+
+> 
+>>>
+>>>>> Only CORE and IEP clocks parent can be configured via clock muxes.
+>>>>> Those are already defined in the icssg?_cfg nodes.
+>>>>
+>>>> Actually those clock muxes are internal to ICSSG.
+>>>> We still need to be able to set clock parents of CORE and IEP clock.
+>>>>
+>>>> So pruss block needs at most 2 clocks like you had in v2 of this patch?
+>>>>
+>>>>>
+>>>>> [1] - https://software-dl.ti.com/tisci/esd/22_01_02/5_soc_doc/am64x/clocks.html
+>>>>>
+>>>>>>  patternProperties:
+>>>>>>  
+>>>>>>    memories@[a-f0-9]+$:
+>>>>>
+>>>>
+>>>
+>>
+> 
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+cheers,
+-roger
+
 
