@@ -1,281 +1,372 @@
-Return-Path: <devicetree+bounces-123528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123529-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11D3B9D4DF2
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 14:42:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2D3E9D4E0F
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 14:47:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C6D2D281748
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 13:42:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 483DA1F21B9B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 13:47:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C7891D9324;
-	Thu, 21 Nov 2024 13:41:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CD651C7B99;
+	Thu, 21 Nov 2024 13:47:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="IS9fSqTl";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="3aeivZ6h"
+	dkim=pass (1024-bit key) header.d=t-8ch.de header.i=@t-8ch.de header.b="IahvPf2G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-a6-smtp.messagingengine.com (fout-a6-smtp.messagingengine.com [103.168.172.149])
+Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CD131D9592;
-	Thu, 21 Nov 2024 13:41:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.149
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0392A17BD3;
+	Thu, 21 Nov 2024 13:47:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.126.157
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732196512; cv=none; b=n2uwPdNGKVAXmPK6EclVNy6SGLm9XkIgdvfFBnse1y647G8A/vz3GKwuJRrsgHchryoLYHUHpVW7EcCsvO2F+Hd4WbSmbJpGa2I/DSzoCUtjYTYXu+lTsGv14GzXa/gI6inyvZSxa68qfVj6jVNDDWwCxTJKs10v89HCYgT8QD8=
+	t=1732196865; cv=none; b=SS8sS1lkFFGI8240wE///gFl4/OuQ4+2MYimCFZ1QzKIuP/MyaOFhtZjmOzWlr9ZbfgRJ18ZS2eUc6VSXEyZxgDLzAnFdNXLluO4QtKHY1KDtQbOp6jIeRn9LwQke5n7DESoTrJLWdg5X3LeWM7agNsON8Egvm0RdFhEde7sE+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732196512; c=relaxed/simple;
-	bh=SAh5j4sQm3/rxfJOnu1J5G2uBjs1g8Fmz2NZQB9Nb/Y=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DbBTWQPH3owxobLFWaZwCqqLX5j10jaLddlMSXvJd7R0GUR3qlnhLergdoFS/4IjbSWdazATtWxFpU1UbrvxtpsrEPa+4nePqN4+XO/QdXQlvURpz1YJHvJRsiWSRrVvDhPqg5jF1nQwPnHdujkZwyFZmWdi2Ng/S4kFxXA1PpQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=IS9fSqTl; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=3aeivZ6h; arc=none smtp.client-ip=103.168.172.149
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from phl-compute-01.internal (phl-compute-01.phl.internal [10.202.2.41])
-	by mailfout.phl.internal (Postfix) with ESMTP id C2D1213801B5;
-	Thu, 21 Nov 2024 08:41:49 -0500 (EST)
-Received: from phl-mailfrontend-02 ([10.202.2.163])
-  by phl-compute-01.internal (MEProxy); Thu, 21 Nov 2024 08:41:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm3; t=1732196509;
-	 x=1732282909; bh=BteyqdTqeFE45omOjvPvOTy8X+JhDJuyouFhWjaJcBg=; b=
-	IS9fSqTlLd6VZ7Ttihd0llqhbgTiAoMLV82IaioWEhaYNBxRBL3CxzaxJvRUXJ4W
-	9oUrqqdSsl4HPQquskHMAQpaDpzmFSJTI+K7EpPohn/jMjtNLGzFiLikLWEm2z0x
-	XbbIvMNjXhsacxax3ZjFd7ysq/vW6wZvljaImu1ySBD3IRry1lNRjshuwnOkA4Pb
-	QVkW7hmHdQkz2FmYQbb139AnVfcrqViC4YcL3WbsAJztL6gwQKDEhP/em5FUmCSc
-	O7uYmLAIUgDq+H5bXh41Om9NPNs9a1oOq+V2bgvuGeA1vQ/DKOZWpLYdAXSYAAGO
-	vywCDb7lUbqc5DOHti2IBQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1732196509; x=
-	1732282909; bh=BteyqdTqeFE45omOjvPvOTy8X+JhDJuyouFhWjaJcBg=; b=3
-	aeivZ6h4pOmgRzxgqbuGu+a0Vh4wSoElwAQFSD2d7xIbrx1vJjUvGdqSAbkRZGQP
-	RB+W8O5Vouzslx+v0qNXH8cAfNu/h1Aj9a2vPqMPP7uZFNRV3lwSzGbVDEz5gO+J
-	KOa5Q8Ijzx6ELSV35iJ2fcN65B085B+S0SPREiRfEykphNQdkaELOovKxWqXzMpe
-	f+2ZM06WqeTKviy9jp71bxnJCgwF/Hdfmvzj0JxKDBkL44NWL8mWcCjdJXzYBsv0
-	1o3wAl6fsklfjTQkurKUxX9M/aHXUYhEtp7OUlUtjmPAAweVFm4l615L8eqGl0vv
-	+ROLF7dxcn5KfYtnjNy7g==
-X-ME-Sender: <xms:nTg_Z1q_m1tebtRXxGvJJ93QN1ipceGYrvIfS4aoYGfuRmriVz6jJw>
-    <xme:nTg_Z3pxKarWYkowBYgTSsKqJS1ZFu-HnL9P2JheVOhECg6DAe9ZmL_w_gKY_nZd5
-    UbfYE_jxlZtHJr0JIw>
-X-ME-Received: <xmr:nTg_ZyNFcQ8ibkiL4wFO0M2HQ3I-0DdRaRmhKghWgiyMa47Ig_Li_DXuaGAjxq2EDCyzkXVJ1HA2_1RGy4o6Dm72xQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrfeeigdehgecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdpuffr
-    tefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnth
-    hsucdlqddutddtmdenucfjughrpefhvfevufffkffojghfgggtgfesthekredtredtjeen
-    ucfhrhhomheppfhikhhlrghsucfunpguvghrlhhunhguuceonhhikhhlrghsrdhsohguvg
-    hrlhhunhguodhrvghnvghsrghssehrrghgnhgrthgvtghhrdhsvgeqnecuggftrfgrthht
-    vghrnhepheeigfeuveeutdefhfehgeekvedtleeuueekveefudehhffhjeffgfegffelfe
-    egnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepnhhi
-    khhlrghsrdhsohguvghrlhhunhgusehrrghgnhgrthgvtghhrdhsvgdpnhgspghrtghpth
-    htohepuddupdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehsrghkrghrihdrrghi
-    lhhusheslhhinhhugidrihhnthgvlhdrtghomhdprhgtphhtthhopehmtghhvghhrggsse
-    hkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhr
-    tghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonh
-    horhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehgvggvrhhtodhrvghnvghs
-    rghssehglhhiuggvrhdrsggvpdhrtghpthhtoheplhgruhhrvghnthdrphhinhgthhgrrh
-    htsehiuggvrghsohhnsghorghrugdrtghomhdprhgtphhtthhopehlihhnuhigqdhmvggu
-    ihgrsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvg
-    gvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
-X-ME-Proxy: <xmx:nTg_Zw5Of7LobEZt6id9cpAFcfet4EjaVwBbUpxo8lxwONmm_OY4QA>
-    <xmx:nTg_Z06UgLWmh62AAlCVQh13a-nkPXotazH0cEWwZTRIdWz-Q6J5hw>
-    <xmx:nTg_Z4jVy6lgk8tDoUr16sWKsNSqd8nyIVit4hytzj81D7yBHtbNxg>
-    <xmx:nTg_Z26sn6nP-NQPny1kRcVpNyjuvE6IwjJNecISIFEl0M1X1B48jg>
-    <xmx:nTg_Z0haorSfuiEJnWzAoSatejCZ77MCzBk6y1IhdX2etil3SLe-0vC9>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 21 Nov 2024 08:41:48 -0500 (EST)
-From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Cc: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Subject: [PATCH v2 4/4] media: rcar-csi2: Allow specifying C-PHY line order
-Date: Thu, 21 Nov 2024 14:41:08 +0100
-Message-ID: <20241121134108.2029925-5-niklas.soderlund+renesas@ragnatech.se>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241121134108.2029925-1-niklas.soderlund+renesas@ragnatech.se>
-References: <20241121134108.2029925-1-niklas.soderlund+renesas@ragnatech.se>
+	s=arc-20240116; t=1732196865; c=relaxed/simple;
+	bh=EY0YjTtKFXnef9mF9s2fMNuqjKya2i2ClO/4BN1jClA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mrJK/bFHHKMpgc+QI9zWofyb/53LbyNHcjhJM2/92CrZYdaWs7DPXbcQGG7cxEP8PZgYOxTC1onLeuq+hMYp5f1m2fi/WMivJFThcNy9JvgKA+FJAZR3HWYHs7R+g0GADTNCvdWpTd425eQ0CsLnYsxSIFHCh24mTNyZMmt2GHE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=t-8ch.de; spf=pass smtp.mailfrom=t-8ch.de; dkim=pass (1024-bit key) header.d=t-8ch.de header.i=@t-8ch.de header.b=IahvPf2G; arc=none smtp.client-ip=159.69.126.157
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=t-8ch.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=t-8ch.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=t-8ch.de; s=mail;
+	t=1732196852; bh=EY0YjTtKFXnef9mF9s2fMNuqjKya2i2ClO/4BN1jClA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IahvPf2GzfWn2L4FGwff36/r6quxMBmGb0vJ6c7BM3A3ytYow7FAPcqEczpAVtzUh
+	 6eocAMN/JTjen/VwKViuxTeiN+N2at5p4bZ7KoNFUotmnhx4Bvt8O3vAwG09J5HJ0x
+	 VciwNRvs+8zEbLPA2fowLgIoBL0bMH2wjkVdrzlU=
+Date: Thu, 21 Nov 2024 14:47:32 +0100
+From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <thomas@t-8ch.de>
+To: "Sung-Chi, Li" <lschyi@chromium.org>
+Cc: Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
+	Guenter Roeck <groeck@chromium.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
+	linux-kernel@vger.kernel.org, chrome-platform@lists.linux.dev, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] platform/chrome: cros_ec_charge_state: add new
+ driver to control charge
+Message-ID: <8fcf9154-6c0d-42eb-901b-0cc9e731e757@t-8ch.de>
+References: <20241118-add_charger_state-v1-0-94997079f35a@chromium.org>
+ <20241118-add_charger_state-v1-1-94997079f35a@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241118-add_charger_state-v1-1-94997079f35a@chromium.org>
 
-Later versions of the V4H datasheet adds documentation for the line
-order register needed to support all possible configurations. Extend the
-driver to take the line order for each data line into account when
-configuring the device.
+On 2024-11-18 17:33:46+0800, Sung-Chi, Li wrote:
+> Implement the new platform driver cros_ec_charge_state to have low finer
+> control over the charge current flow through the charge chip connected
+> on ChromeOS Embedded Controller (EC).
+> 
+> The driver reads configured charge chip configurations from the device
+> tree, and register these chip controls as thermal zone devices, so they
+> are controllable from the thermal subsystem.
+> 
+> As such, corresponding DTS changes are needed, and here is a sample DTS
+> configuration:
+> 
+> ```
+> &cros_ec {
+> 	charge-chip-battery {
+> 		compatible = "google,cros-ec-charge-state";
+> 		type = "charge";
+> 		min-milliamp = <150>;
+> 		max-milliamp = <5000>;
+> 	};
+> };
+> ```
+> 
+> Signed-off-by: Sung-Chi, Li <lschyi@chromium.org>
+> ---
+>  drivers/platform/chrome/Kconfig                |  11 ++
+>  drivers/platform/chrome/Makefile               |   1 +
+>  drivers/platform/chrome/cros_ec_charge_state.c | 215 +++++++++++++++++++++++++
+>  3 files changed, 227 insertions(+)
+> 
+> diff --git a/drivers/platform/chrome/Kconfig b/drivers/platform/chrome/Kconfig
+> index 7dbeb786352a..34d00d8823cb 100644
+> --- a/drivers/platform/chrome/Kconfig
+> +++ b/drivers/platform/chrome/Kconfig
+> @@ -297,6 +297,17 @@ config CROS_TYPEC_SWITCH
+>  	  To compile this driver as a module, choose M here: the module will be
+>  	  called cros_typec_switch.
+>  
+> +config CROS_CHARGE_STATE
+> +	tristate "ChromeOS EC Charger Chip  Control"
+> +	depends on MFD_CROS_EC_DEV
 
-Unfortunately not all registers initially thought to be involved in line
-order configuration where directly related. One magic value is still in
-the driver and left as-is, but it is not related to line order as that
-procedure have now been documented.
+Should depend on THERMAL_OF.
+Otherwise the driver will be built and loaded on non-OF platforms but
+probing can never succeed.
 
-Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
----
- drivers/media/platform/renesas/rcar-csi2.c | 74 ++++++++++++++++++++--
- 1 file changed, 67 insertions(+), 7 deletions(-)
+> +	default MFD_CROS_EC_DEV
+> +	help
+> +	  If you say Y here, you get support for configuring the battery
+> +	  charging and system input current.
+> +
+> +	  To compile this driver as a module, choose M here: the module will be
+> +	  called cros-ec-charge-state.
+> +
+>  source "drivers/platform/chrome/wilco_ec/Kconfig"
+>  
+>  # Kunit test cases
+> diff --git a/drivers/platform/chrome/Makefile b/drivers/platform/chrome/Makefile
+> index 2dcc6ccc2302..01c7154ae119 100644
+> --- a/drivers/platform/chrome/Makefile
+> +++ b/drivers/platform/chrome/Makefile
+> @@ -32,6 +32,7 @@ obj-$(CONFIG_CROS_EC_SYSFS)		+= cros_ec_sysfs.o
+>  obj-$(CONFIG_CROS_HPS_I2C)		+= cros_hps_i2c.o
+>  obj-$(CONFIG_CROS_USBPD_LOGGER)		+= cros_usbpd_logger.o
+>  obj-$(CONFIG_CROS_USBPD_NOTIFY)		+= cros_usbpd_notify.o
+> +obj-$(CONFIG_CROS_CHARGE_STATE)		+= cros_ec_charge_state.o
+>  
+>  obj-$(CONFIG_WILCO_EC)			+= wilco_ec/
+>  
+> diff --git a/drivers/platform/chrome/cros_ec_charge_state.c b/drivers/platform/chrome/cros_ec_charge_state.c
+> new file mode 100644
+> index 000000000000..3fed5b48bc92
+> --- /dev/null
+> +++ b/drivers/platform/chrome/cros_ec_charge_state.c
+> @@ -0,0 +1,215 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Charge state driver for ChromeOS Embedded Controller
+> + *
+> + * Copyright 2024 Google LLC
+> + *
+> + * This driver exports the low level control over charge chip connected to EC
+> + * which allows to manipulate the current used to charge the battery, and also
+> + * manipulate the current input to the whole system.
+> + * This driver also registers that charge chip as a thermal cooling device.
+> + */
+> +
+> +#include <linux/of.h>
+> +#include <linux/platform_data/cros_ec_commands.h>
+> +#include <linux/platform_data/cros_ec_proto.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/thermal.h>
+> +
+> +#define DRV_NAME "cros-ec-charge-state"
+> +#define CHARGE_TYPE_CHARGE "charge"
+> +#define CHARGE_TYPE_INPUT "input"
+> +
+> +struct cros_ec_charge_state_data {
+> +	struct cros_ec_device *ec_dev;
+> +	struct device *dev;
+> +	enum charge_state_params charge_type;
+> +	uint32_t min_milliamp;
+> +	uint32_t max_milliamp;
+> +};
+> +
+> +static int
+> +cros_ec_charge_state_get_current_limit(struct cros_ec_device *ec_dev,
+> +				       enum charge_state_params charge_type,
+> +				       uint32_t *limit)
+> +{
+> +	struct ec_params_charge_state param;
+> +	struct ec_response_charge_state state;
+> +	int ret;
+> +
+> +	param.cmd = CHARGE_STATE_CMD_GET_PARAM;
+> +	param.get_param.param = charge_type;
+> +	ret = cros_ec_cmd(ec_dev, 0, EC_CMD_CHARGE_STATE, &param, sizeof(param),
+> +			  &state, sizeof(state));
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	*limit = cpu_to_le32(state.get_param.value);
 
-diff --git a/drivers/media/platform/renesas/rcar-csi2.c b/drivers/media/platform/renesas/rcar-csi2.c
-index 27ffdd28cbf7..8a0b6a68e194 100644
---- a/drivers/media/platform/renesas/rcar-csi2.c
-+++ b/drivers/media/platform/renesas/rcar-csi2.c
-@@ -183,17 +183,19 @@ struct rcar_csi2;
- #define V4H_CORE_DIG_IOCTRL_RW_AFE_CB_CTRL_2_REG(n)	(0x23840 + ((n) * 2)) /* n = 0 - 11 */
- #define V4H_CORE_DIG_RW_COMMON_REG(n)			(0x23880 + ((n) * 2)) /* n = 0 - 15 */
- #define V4H_CORE_DIG_ANACTRL_RW_COMMON_ANACTRL_REG(n)	(0x239e0 + ((n) * 2)) /* n = 0 - 3 */
--#define V4H_CORE_DIG_CLANE_1_RW_CFG_0_REG		0x2a400
- #define V4H_CORE_DIG_CLANE_1_RW_HS_TX_6_REG		0x2a60c
- 
- /* V4H C-PHY */
- #define V4H_CORE_DIG_RW_TRIO0_REG(n)			(0x22100 + ((n) * 2)) /* n = 0 - 3 */
- #define V4H_CORE_DIG_RW_TRIO1_REG(n)			(0x22500 + ((n) * 2)) /* n = 0 - 3 */
- #define V4H_CORE_DIG_RW_TRIO2_REG(n)			(0x22900 + ((n) * 2)) /* n = 0 - 3 */
-+#define V4H_CORE_DIG_CLANE_0_RW_CFG_0_REG		0x2a000
- #define V4H_CORE_DIG_CLANE_0_RW_LP_0_REG		0x2a080
- #define V4H_CORE_DIG_CLANE_0_RW_HS_RX_REG(n)		(0x2a100 + ((n) * 2)) /* n = 0 - 6 */
-+#define V4H_CORE_DIG_CLANE_1_RW_CFG_0_REG		0x2a400
- #define V4H_CORE_DIG_CLANE_1_RW_LP_0_REG		0x2a480
- #define V4H_CORE_DIG_CLANE_1_RW_HS_RX_REG(n)		(0x2a500 + ((n) * 2)) /* n = 0 - 6 */
-+#define V4H_CORE_DIG_CLANE_2_RW_CFG_0_REG		0x2a800
- #define V4H_CORE_DIG_CLANE_2_RW_LP_0_REG		0x2a880
- #define V4H_CORE_DIG_CLANE_2_RW_HS_RX_REG(n)		(0x2a900 + ((n) * 2)) /* n = 0 - 6 */
- 
-@@ -672,6 +674,21 @@ static const struct rcar_csi2_format *rcsi2_code_to_fmt(unsigned int code)
- 	return NULL;
- }
- 
-+struct rcsi2_cphy_line_order {
-+	enum v4l2_mbus_csi2_cphy_line_orders_type order;
-+	u16 cfg;
-+	u16 ctrl29;
-+};
-+
-+static const struct rcsi2_cphy_line_order rcsi2_cphy_line_orders[] = {
-+	{ .order = V4L2_MBUS_CSI2_CPHY_LINE_ORDER_ABC, .cfg = 0x0, .ctrl29 = 0x0 },
-+	{ .order = V4L2_MBUS_CSI2_CPHY_LINE_ORDER_ACB, .cfg = 0xa, .ctrl29 = 0x1 },
-+	{ .order = V4L2_MBUS_CSI2_CPHY_LINE_ORDER_BAC, .cfg = 0xc, .ctrl29 = 0x1 },
-+	{ .order = V4L2_MBUS_CSI2_CPHY_LINE_ORDER_BCA, .cfg = 0x5, .ctrl29 = 0x0 },
-+	{ .order = V4L2_MBUS_CSI2_CPHY_LINE_ORDER_CAB, .cfg = 0x3, .ctrl29 = 0x0 },
-+	{ .order = V4L2_MBUS_CSI2_CPHY_LINE_ORDER_CBA, .cfg = 0x9, .ctrl29 = 0x1 }
-+};
-+
- enum rcar_csi2_pads {
- 	RCAR_CSI2_SINK,
- 	RCAR_CSI2_SOURCE_VC0,
-@@ -722,6 +739,7 @@ struct rcar_csi2 {
- 	bool cphy;
- 	unsigned short lanes;
- 	unsigned char lane_swap[4];
-+	enum v4l2_mbus_csi2_cphy_line_orders_type line_orders[3];
- };
- 
- static inline struct rcar_csi2 *sd_to_csi2(struct v4l2_subdev *sd)
-@@ -754,11 +772,24 @@ static void rcsi2_write(struct rcar_csi2 *priv, unsigned int reg, u32 data)
- 	iowrite32(data, priv->base + reg);
- }
- 
-+static u16 rcsi2_read16(struct rcar_csi2 *priv, unsigned int reg)
-+{
-+	return ioread16(priv->base + reg);
-+}
-+
- static void rcsi2_write16(struct rcar_csi2 *priv, unsigned int reg, u16 data)
- {
- 	iowrite16(data, priv->base + reg);
- }
- 
-+static void rcsi2_modify16(struct rcar_csi2 *priv, unsigned int reg, u16 data, u16 mask)
-+{
-+	u16 val;
-+
-+	val = rcsi2_read16(priv, reg) & ~mask;
-+	rcsi2_write16(priv, reg, val | data);
-+}
-+
- static int rcsi2_phtw_write(struct rcar_csi2 *priv, u8 data, u8 code)
- {
- 	unsigned int timeout;
-@@ -1112,6 +1143,26 @@ static int rcsi2_start_receiver_gen3(struct rcar_csi2 *priv,
- 	return 0;
- }
- 
-+static void rsci2_set_line_order(struct rcar_csi2 *priv,
-+				 enum v4l2_mbus_csi2_cphy_line_orders_type order,
-+				 unsigned int cfgreg, unsigned int ctrlreg)
-+{
-+	const struct rcsi2_cphy_line_order *info = NULL;
-+
-+	for (unsigned int i = 0; i < ARRAY_SIZE(rcsi2_cphy_line_orders); i++) {
-+		if (rcsi2_cphy_line_orders[i].order == order) {
-+			info = &rcsi2_cphy_line_orders[i];
-+			break;
-+		}
-+	}
-+
-+	if (!info)
-+		return;
-+
-+	rcsi2_modify16(priv, cfgreg, info->cfg, 0x000f);
-+	rcsi2_modify16(priv, ctrlreg, info->ctrl29, 0x0100);
-+}
-+
- static int rcsi2_wait_phy_start_v4h(struct rcar_csi2 *priv, u32 match)
- {
- 	unsigned int timeout;
-@@ -1189,12 +1240,18 @@ static int rcsi2_c_phy_setting_v4h(struct rcar_csi2 *priv, int msps)
- 	rcsi2_write16(priv, V4H_CORE_DIG_RW_TRIO1_REG(1), conf->trio1);
- 	rcsi2_write16(priv, V4H_CORE_DIG_RW_TRIO2_REG(1), conf->trio1);
- 
--	/*
--	 * Configure pin-swap.
--	 * TODO: This registers is not documented yet, the values should depend
--	 * on the 'clock-lanes' and 'data-lanes' devicetree properties.
--	 */
--	rcsi2_write16(priv, V4H_CORE_DIG_CLANE_1_RW_CFG_0_REG, 0xf5);
-+	/* Configure data line order. */
-+	rsci2_set_line_order(priv, priv->line_orders[0],
-+			     V4H_CORE_DIG_CLANE_0_RW_CFG_0_REG,
-+			     V4H_CORE_DIG_IOCTRL_RW_AFE_LANE0_CTRL_2_REG(9));
-+	rsci2_set_line_order(priv, priv->line_orders[1],
-+			     V4H_CORE_DIG_CLANE_1_RW_CFG_0_REG,
-+			     V4H_CORE_DIG_IOCTRL_RW_AFE_LANE1_CTRL_2_REG(9));
-+	rsci2_set_line_order(priv, priv->line_orders[2],
-+			     V4H_CORE_DIG_CLANE_2_RW_CFG_0_REG,
-+			     V4H_CORE_DIG_IOCTRL_RW_AFE_LANE2_CTRL_2_REG(9));
-+
-+	/* TODO: This registers is not documented. */
- 	rcsi2_write16(priv, V4H_CORE_DIG_CLANE_1_RW_HS_TX_6_REG, 0x5000);
- 
- 	/* Leave Shutdown mode */
-@@ -1732,6 +1789,9 @@ static int rcsi2_parse_v4l2(struct rcar_csi2 *priv,
- 		}
- 	}
- 
-+	for (i = 0; i < ARRAY_SIZE(priv->line_orders); i++)
-+		priv->line_orders[i] = vep->bus.mipi_csi2.line_orders[i];
-+
- 	return 0;
- }
- 
--- 
-2.47.0
+The cros_ec core itself does not handle BE systems.
+So I'm not sure if it's worth trying to handle it in the driver.
 
+> +	return 0;
+> +}
+> +
+> +static int
+> +cros_ec_charge_state_set_current_limit(struct cros_ec_device *ec_dev,
+> +				       enum charge_state_params charge_type,
+> +				       uint32_t limit)
+> +{
+> +	struct ec_params_charge_state param;
+> +	int ret;
+> +
+> +	param.cmd = CHARGE_STATE_CMD_SET_PARAM;
+> +	param.set_param.param = charge_type;
+> +	param.set_param.value = cpu_to_le32(limit);
+> +	ret = cros_ec_cmd(ec_dev, 0, EC_CMD_CHARGE_STATE, &param, sizeof(param),
+> +			  NULL, 0);
+> +	return (ret < 0) ? ret : 0;
+> +}
+> +
+> +static int
+> +cros_ec_charge_state_get_max_state(struct thermal_cooling_device *cdev,
+> +				   unsigned long *state)
+> +{
+> +	struct cros_ec_charge_state_data *data = cdev->devdata;
+> +	*state = data->max_milliamp;
+> +	return 0;
+> +}
+> +
+> +static int
+> +cros_ec_charge_state_get_cur_state(struct thermal_cooling_device *cdev,
+> +				   unsigned long *state)
+> +{
+> +	struct cros_ec_charge_state_data *data = cdev->devdata;
+> +	uint32_t limit;
+> +	int ret;
+> +
+> +	ret = cros_ec_charge_state_get_current_limit(data->ec_dev,
+> +						     data->charge_type, &limit);
+> +	if (ret) {
+> +		dev_err(data->dev, "failed to get current state: %d", ret);
+> +		return ret;
+> +	}
+> +
+> +	*state = data->max_milliamp - limit;
+> +	return 0;
+> +}
+> +
+> +static int
+> +cros_ec_charge_state_set_cur_state(struct thermal_cooling_device *cdev,
+> +				   unsigned long state)
+> +{
+> +	struct cros_ec_charge_state_data *data = cdev->devdata;
+> +	uint32_t limit = data->max_milliamp - state;
+> +
+> +	if (limit < data->min_milliamp) {
+> +		dev_warn(
+> +			data->dev,
+> +			"failed to set current %u lower than minimum %d; set to minimum",
+> +			limit, data->min_milliamp);
+> +		limit = data->min_milliamp;
+> +	}
+> +
+> +	state = data->max_milliamp - limit;
+> +	return cros_ec_charge_state_set_current_limit(
+> +		data->ec_dev, data->charge_type, (uint32_t)state);
+> +}
+> +
+> +static const struct thermal_cooling_device_ops
+> +	cros_ec_charge_state_cooling_device_ops = {
+> +		.get_max_state = cros_ec_charge_state_get_max_state,
+> +		.get_cur_state = cros_ec_charge_state_get_cur_state,
+> +		.set_cur_state = cros_ec_charge_state_set_cur_state,
+> +	};
+> +
+> +static int
+> +cros_ec_charge_state_register_charge_chip(struct device *dev,
+> +					  struct device_node *node,
+> +					  struct cros_ec_device *cros_ec)
+> +{
+> +	struct cros_ec_charge_state_data *data;
+> +	struct thermal_cooling_device *cdev;
+> +	const char *type_val = NULL;
+> +	int ret;
+> +
+> +	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+> +	if (!data)
+> +		return -ENOMEM;
+> +
+> +	ret = of_property_read_string(node, "type", &type_val);
+> +	if (ret) {
+> +		dev_err(dev, "failed to get charge type: %d", ret);
+> +		return ret;
+
+return dev_err_probe(dev, ...)
+
+> +	}
+> +
+> +	if (!strcmp(type_val, CHARGE_TYPE_CHARGE)) {
+> +		data->charge_type = CS_PARAM_CHG_CURRENT;
+> +	} else if (!strcmp(type_val, CHARGE_TYPE_INPUT)) {
+> +		data->charge_type = CS_PARAM_CHG_INPUT_CURRENT;
+> +	} else {
+> +		dev_err(dev, "unknown charge type: %s", type_val);
+> +		return -1;
+> +	}
+> +
+> +	ret = of_property_read_u32(node, "min-milliamp", &data->min_milliamp);
+> +	if (ret) {
+> +		dev_err(dev, "failed to get min-milliamp data: %d", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = of_property_read_u32(node, "max-milliamp", &data->max_milliamp);
+> +	if (ret) {
+> +		dev_err(dev, "failed to get max-milliamp data: %d", ret);
+> +		return ret;
+> +	}
+> +
+> +	data->ec_dev = cros_ec;
+> +	data->dev = dev;
+> +
+> +	cdev = devm_thermal_of_cooling_device_register(
+> +		dev, node, node->name, data,
+> +		&cros_ec_charge_state_cooling_device_ops);
+> +	if (IS_ERR_VALUE(cdev)) {
+> +		dev_err(dev,
+> +			"failed to register charge chip %s as cooling device: %pe",
+> +			node->name, cdev);
+> +		return PTR_ERR(cdev);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int cros_ec_charge_state_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct cros_ec_dev *ec_dev = dev_get_drvdata(dev->parent);
+> +	struct cros_ec_device *cros_ec = ec_dev->ec_dev;
+> +	struct device_node *child;
+> +
+> +	for_each_available_child_of_node(cros_ec->dev->of_node, child) {
+> +		if (!of_device_is_compatible(child,
+> +					     "google,cros-ec-charge-state"))
+> +			continue;
+> +		if (cros_ec_charge_state_register_charge_chip(dev, child,
+> +							      cros_ec))
+> +			continue;
+> +	}
+
+If no chips are matched -ENODEV would be better.
+And errors should be reported from probe().
+
+Given that this is only useable with OF configuration, would it make
+more sense to probe it via OF instead of MFD?
+
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct platform_device_id cros_ec_charge_state_id[] = {
+> +	{ DRV_NAME,  0 },
+> +	{}
+> +};
+
+Reference this in the platform_driver below.
+
+> +static struct platform_driver cros_ec_chargedev_driver = {
+> +	.driver = {
+> +		.name = DRV_NAME,
+> +	},
+> +	.probe = cros_ec_charge_state_probe,
+> +};
+> +
+> +module_platform_driver(cros_ec_chargedev_driver);
+> +
+> +MODULE_DEVICE_TABLE(platform, cros_ec_charge_state_id);
+> +MODULE_DESCRIPTION("ChromeOS EC Charge State Driver");
+> +MODULE_AUTHOR("Sung-Chi, Li <lschyi@chromium.org>");
+> +MODULE_LICENSE("GPL");
+> 
+> -- 
+> 2.47.0.338.g60cca15819-goog
+> 
 
