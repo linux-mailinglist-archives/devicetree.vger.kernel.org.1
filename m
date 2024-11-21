@@ -1,169 +1,122 @@
-Return-Path: <devicetree+bounces-123582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDBAE9D54B8
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 22:31:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 160819D54BB
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 22:32:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C6631F2220C
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 21:31:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BCE1F1F22821
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 21:32:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0221F1D12E1;
-	Thu, 21 Nov 2024 21:31:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 441961AAE06;
+	Thu, 21 Nov 2024 21:32:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="R5qOQcwo"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="s9uT45ix"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [207.246.76.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C094199FC9
-	for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 21:30:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=207.246.76.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4BAB4502F;
+	Thu, 21 Nov 2024 21:32:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732224659; cv=none; b=mrEL1xfsJVugemf2ZvAj0L8Xq1hTJ47wbpq91EA5klCJfxFy43pszv9oxgNLW1/QWmk8JOsPAnZKiJxFTFg827FcWFLqYazYHuDZJ+oYiiD5ujHXkYAa3dx0cFyQOKJQM+cYrBOUN/z9yykk807F3eMuLE0wk2pWDiKwHwCtYIE=
+	t=1732224766; cv=none; b=RJ6EeP+oU80iOGrehP9K2bZGIx6NtjQWp+44Z5914RgNtTHSSzolitVBiqQPvclUh0OUOtMlP3jI7xKJnsJV+lL5vtfz5WboTA4wqc4yDfMr8ViQUk4arErrxDGB1Oiy5ZI5ixl8EIq9Rg4Doqrj+OOvI5GgnYZTcuHeVS1dTaw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732224659; c=relaxed/simple;
-	bh=qO7jHExuYcIgIYqrF4r8nZrjDIet3PoxWTcbM/rE454=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eP0GCJphamdEFu5HPC9nxcXY04vw2RvHq5tD22YfFFP+yvj98tNh+Xoc65VHiAc4Lc3ycSFeKBLFUoogDnfEEkQMAQ/05bpG9SfZPWDsvtN+Xv2gcLisfcPL17l/0cd8YgWfcT3r2AezLU359rhCIaIiAAtxDDv4bMDZZMOKSec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=R5qOQcwo; arc=none smtp.client-ip=207.246.76.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1732224639;
- bh=BQUk7DU+3nfuaIMMujloLFuySh3vk/1W7HzQ+FogHsw=;
- b=R5qOQcwoaJySMsCk8OgR3U8lacFEmvV2H2Hb96lVDaIKdlCI5Y7QjTLIx1Q2+RShsRj0vh2H6
- O6fQOIxTa1KFqQ1jiF3mza7pTEdm57D/z3WLcbeTURa0Uo+sVdpzRvyuK2DI69EaMsNL0ls4mvh
- y94EOOU7pGK3sF0Bj0ofYyAYCfvFv2iZ/oas2PrF1nFSiE0xEocIWioUl0QTbSeTVGdXA6Qd5bS
- xB03o0C04aU3EA99t4f0/T3JyGzPeg5YCSGbW04j27PfWxxXDCFVtoxTYxC9us86n7BAkpNMT+q
- 3ZivDca3kNp0qRx94JK6kcdnO3009+f7YiGYgYm9c+JA==
-Message-ID: <6c7ad585-2743-4f6d-919b-ab7c1eddfb01@kwiboo.se>
-Date: Thu, 21 Nov 2024 22:30:30 +0100
+	s=arc-20240116; t=1732224766; c=relaxed/simple;
+	bh=htrvxQ/acJt2mn32w1njKdyG5hdJdbkfDKs+NrdqLFY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BMqpM1eAFH7yKh3NlLwm0DOGOXZt2clgKrMOShgMvELh3CIYMcTXQjnBzXqaiDWpIuhQ8T6r9/EfFU325tx3rOrbtKUcrdw/cJyW5v6/WRHTxwswtE7PwSuiniE020lwS9UbW06KZd//5gxWg2iPkGfI/Lb9d4NG/9tnYIHjN+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=s9uT45ix; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D9E1C4CECC;
+	Thu, 21 Nov 2024 21:32:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1732224765;
+	bh=htrvxQ/acJt2mn32w1njKdyG5hdJdbkfDKs+NrdqLFY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=s9uT45ixbZuVdMo+D7KF90yl/M4gz4FOZG+z4QHSwZQfBNYtRrDTQPsMu4MO3iA2k
+	 KELBNAWcrzFY/wAazJxMr+f7n9L4juBJIsbng4iTsYokcXzUXiV61ml2PxRXi/d1Z+
+	 sXDGeU4Ie5dXi7xqKv8lgIOngFjO7GAhkwmoxzjA=
+Date: Thu, 21 Nov 2024 22:32:19 +0100
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: geert+renesas@glider.be, magnus.damm@gmail.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, mturquette@baylibre.com,
+	sboyd@kernel.org, jirislaby@kernel.org, p.zabel@pengutronix.de,
+	lethal@linux-sh.org, g.liakhovetski@gmx.de,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+	stable@vger.kernel.org
+Subject: Re: [PATCH v3 2/8] serial: sh-sci: Check if TX data was written to
+ device in .tx_empty()
+Message-ID: <2024112128-faceted-moonstone-027f@gregkh>
+References: <20241115134401.3893008-1-claudiu.beznea.uj@bp.renesas.com>
+ <20241115134401.3893008-3-claudiu.beznea.uj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add devicetree for the
- ROC-RK3576-PC
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20241117201855.789945-1-heiko@sntech.de>
- <20241117201855.789945-3-heiko@sntech.de>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20241117201855.789945-3-heiko@sntech.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Report-Abuse-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-ForwardEmail-Version: 0.4.40
-X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 207.246.76.47
-X-ForwardEmail-ID: 673fa67c7c98f709b83ac8b9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241115134401.3893008-3-claudiu.beznea.uj@bp.renesas.com>
 
-Hi Heiko,
-
-On 2024-11-17 21:18, Heiko Stuebner wrote:
-> As the name implies, it is built around the RK3576 SoC with 4x Cortex-A72
-> cores, four Cortex-A53 cores and Mali-G52 MC3 GPU.
+On Fri, Nov 15, 2024 at 03:43:55PM +0200, Claudiu wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 > 
-> Storage options are EMMC, SD-Card, a 2242 M.2 slot and the possibility to
-> use UFS 2.0 storage.
+> On the Renesas RZ/G3S, when doing suspend to RAM, the uart_suspend_port()
+> is called. The uart_suspend_port() calls 3 times the
+> struct uart_port::ops::tx_empty() before shutting down the port.
 > 
-> Video Output options are a HDMI port, a DSI connector as well as Display-
-> Port via the TypeC connector (all of them not yet supported).
+> According to the documentation, the struct uart_port::ops::tx_empty()
+> API tests whether the transmitter FIFO and shifter for the port is
+> empty.
 > 
-> Networking options are a Low-profile Gigabit Ethernet RJ45 port with
-> Motorcomm YT8531 PHY as well as WiFi via an AMPAK AP6256 module.
+> The Renesas RZ/G3S SCIFA IP reports the number of data units stored in the
+> transmit FIFO through the FDR (FIFO Data Count Register). The data units
+> in the FIFOs are written in the shift register and transmitted from there.
+> The TEND bit in the Serial Status Register reports if the data was
+> transmitted from the shift register.
 > 
-> USB ports on the board are 1x USB 3.0 port, 1x USB 2.0 port, 1x USB Type-C
-> and it comes with 40-pin GPIO header
+> In the previous code, in the tx_empty() API implemented by the sh-sci
+> driver, it is considered that the TX is empty if the hardware reports the
+> TEND bit set and the number of data units in the FIFO is zero.
 > 
-> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-> ---
->  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->  .../arm64/boot/dts/rockchip/rk3576-roc-pc.dts | 745 ++++++++++++++++++
->  2 files changed, 746 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3576-roc-pc.dts
+> According to the HW manual, the TEND bit has the following meaning:
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-> index ac7574bfbf94..3562d6e64b2e 100644
-> --- a/arch/arm64/boot/dts/rockchip/Makefile
-> +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> @@ -130,6 +130,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-display-vz.dtbo
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-io-expander.dtbo
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-armsom-sige5.dtb
-> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-roc-pc.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-armsom-sige7.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-coolpi-cm5-evb.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-coolpi-cm5-genbook.dtb
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3576-roc-pc.dts b/arch/arm64/boot/dts/rockchip/rk3576-roc-pc.dts
-> new file mode 100644
-> index 000000000000..75ee18ef3817
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3576-roc-pc.dts
+> 0: Transmission is in the waiting state or in progress.
+> 1: Transmission is completed.
+> 
+> It has been noticed that when opening the serial device w/o using it and
+> then switch to a power saving mode, the tx_empty() call in the
+> uart_port_suspend() function fails, leading to the "Unable to drain
+> transmitter" message being printed on the console. This is because the
+> TEND=0 if nothing has been transmitted and the FIFOs are empty. As the
+> TEND=0 has double meaning (waiting state, in progress) we can't
+> determined the scenario described above.
+> 
+> Add a software workaround for this. This sets a variable if any data has
+> been sent on the serial console (when using PIO) or if the DMA callback has
+> been called (meaning something has been transmitted). In the tx_empty()
+> API the status of the DMA transaction is also checked and if it is
+> completed or in progress the code falls back in checking the hardware
+> registers instead of relying on the software variable.
+> 
+> Fixes: 73a19e4c0301 ("serial: sh-sci: Add DMA support.")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-[snip]
+Why is this bug/regression fix burried in a long series?  It should be
+sent individually so that it could be applied on its own as it is not
+related to the other ones, right?
 
-> +&gmac0 {
-> +	/* Use rgmii-rxid mode to disable rx delay inside Soc */
-> +	phy-mode = "rgmii-rxid";
-> +	clock_in_out = "output";
-> +
-> +	snps,reset-gpio = <&gpio2 RK_PB5 GPIO_ACTIVE_LOW>;
-> +	snps,reset-active-low;
-> +	/* Reset time is 20ms, 100ms for rtl8211f */
-> +	snps,reset-delays-us = <0 20000 100000>;
+Or are you ok with waiting for this to show up in 6.14-rc1?
 
-The snps,reset- props are deprecated, reset- props should probably be
-added to the rgmii_phy0 node.
+thanks,
 
-> +
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&eth0m0_miim
-> +		     &eth0m0_tx_bus2
-> +		     &eth0m0_rx_bus2
-> +		     &eth0m0_rgmii_clk
-> +		     &eth0m0_rgmii_bus
-> +		     &ethm0_clk0_25m_out>;
-> +
-> +	tx_delay = <0x21>;
-> +	/* rx_delay = <0x3f>; */
-> +
-> +	phy-handle = <&rgmii_phy0>;
-> +	status = "okay";
-> +};
-> +
-> +&mdio0 {
-> +	status = "okay";
-> +
-> +	rgmii_phy0: phy@1 {
-> +		compatible = "ethernet-phy-ieee802.3-c22";
-
-This could possible be changed to ethernet-phy-id001c.c916 if moving
-reset- props cause Ethernet phy detection issues and phy was not reset
-by bootloader.
-
-Regards,
-Jonas
-
-> +		reg = <0x1>;
-> +		clocks = <&cru REFCLKO25M_GMAC0_OUT>;
-> +	};
-> +};
-> +
-
-[snip]
-
+greg k-h
 
