@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-123452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3E109D48DF
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 09:29:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFE529D48E6
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 09:33:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 72A00B22CF7
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 08:29:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85D042822BD
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 08:33:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DDD21CB53D;
-	Thu, 21 Nov 2024 08:29:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F08A61B0F0C;
+	Thu, 21 Nov 2024 08:33:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PnAQzOn3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ti0bBJev"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2803F1CB329;
-	Thu, 21 Nov 2024 08:29:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C97EF16F288;
+	Thu, 21 Nov 2024 08:33:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732177752; cv=none; b=JeIJkvRy5xBVmPKRUAb6SMBvYf1lOK1RP9JUU5Fzi+jZFKE+be07HWyks1L0RAv+DAJ2eGXkm4XQhYeP1EL2gAez1TkvAkCPeXFeg1iSJ4WlclfGsScIFkGzFj/Pwe1dbcWaiUpbTrSTrP4rjwMEQUKayvok4qy2ZNoiGotssNU=
+	t=1732178031; cv=none; b=kmgtRZy9gR0Oi8bvr0ornsogOsMVT8A4KFC54pNODK5+VYZxe82kkOdhJ20mmn0aHZwoC58jzaUUPo2m3wBhpuqNPQoxtPGw3ROYKEyvLUBjMZY4PVlIhmw6jD23AaPOqgiY1tGljDVotXt1zgKiFGGhbhktdfj4EypL2LcbLr4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732177752; c=relaxed/simple;
-	bh=jI8NHi8G+Wq7vsn+8sraQFg2O7HBgJMMZWRRb1whbGk=;
+	s=arc-20240116; t=1732178031; c=relaxed/simple;
+	bh=UVjC0lCppiZvBvU2+0HigKCKmBE9kV1WjWjDjVRBwE4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IS9bAZzYRw6agmLj/kuRaqvgmf85WRpG5ngR63eQPcD+bKpx1PWvKgWzD3ZYYxN5xmpzgiMKkkzIyB6Qso3BP/nVXnynP62ch2PMwKXeTEI8Jj1GLYuY++CJTRATWuw5tJoi3gLd9g16GaCptsKVmPcMYVMltUxxCgojTBusNWE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PnAQzOn3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D175CC4CECC;
-	Thu, 21 Nov 2024 08:29:10 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=MsmOBjwgHFPQw/NoU4sIn1l++hMj9z0f9x/+koBummgRxCW1vjnPP5J53CDsq4bpu4/mrNXtH+hKdKi4r7KJ897RKyuf34MZE0lFMxl0jYO4l9QpJN0dyD29cWusPsO5+DpTpUYnSzNrqIhDE5DklkSElMlm7IK+fnVCLrRN7MI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ti0bBJev; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CEA7C4CECE;
+	Thu, 21 Nov 2024 08:33:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732177751;
-	bh=jI8NHi8G+Wq7vsn+8sraQFg2O7HBgJMMZWRRb1whbGk=;
+	s=k20201202; t=1732178031;
+	bh=UVjC0lCppiZvBvU2+0HigKCKmBE9kV1WjWjDjVRBwE4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PnAQzOn3eltLr61OwJdBkrNCp84VdxjhOaWdJj5jwupNmUAW+fgCxGdVYi1u+4Uf6
-	 w8sOx+eYMqedJv3IH2gCsx+oFCmhqf83fEonTvFR2KABkkaoKyMrxZxVeB8SnarRls
-	 lSjeeIR60e3P017SBClhSDCT0XlWz2jLT7UHgwvRcI6cqm0ElOcmI9uzssomnkPen+
-	 7mxq4usUuT8tUvZxpbE8QmBanM4sSFdvgybqCsKqrVoBV/CJCcoObnZNo57iFedZsl
-	 ZDFGRYk5DBdEXxT2OZlZn0eax+v1BITx3xy68frt9dmCSMGDmJWhA38aVqrm5mvxht
-	 AqarzOygFaqvA==
-Date: Thu, 21 Nov 2024 09:29:08 +0100
+	b=ti0bBJevIFY8qI62pjuK02REqFvaKiofsgncbwXVs1ECJiUdZx+2FdldMx3yV2eJM
+	 49Mw7OkthBNxaiCBN0XTKTYtbfC000cv6M7BnVVR5AcbAW3BG0VVMK0jZiCiokhkkz
+	 G8BkGJdReMQYF7QjCBr1C7+Hb6lB/aJRoJGHyQxkW9YsanbS7tF+S08FGBh4Wn7Uzy
+	 0jAYDuoU9IGt8FS96rGZfSf/dz8W5KFadxGskjscN8viNcD4JazBQmY0Ye/rhmNkM8
+	 4M1gnyahkq/dJhizwMva/bbf35uK70qk7Qm0VNaqvqFrb3M/sMNm7ITUHWQbdRmiI5
+	 pMFY3qBibpeDA==
+Date: Thu, 21 Nov 2024 09:33:48 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Charan Pedumuru <charan.pedumuru@microchip.com>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>, 
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+To: Friday Yang <friday.yang@mediatek.com>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Nicolas Ferre <nicolas.ferre@microchip.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>, Andrew Lunn <andrew+netdev@lunn.ch>, linux-can@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: net: can: atmel: Convert to json schema
-Message-ID: <ahftyfnreh27z6jyvdf2wwhhp5rcbkydy6afnkct77ppqlko56@5cvw5bmzcjb6>
-References: <20241120-can-v3-1-da5bb4f6128d@microchip.com>
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: reset: mediatek: Add mt8188 SMI
+ reset control binding
+Message-ID: <w4vy6wpjdnadpgmjn322wgwqch7udywjidfvmztexxkthiqzxo@uerntotbvr5c>
+References: <20241120063305.8135-1-friday.yang@mediatek.com>
+ <20241120063305.8135-2-friday.yang@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,51 +63,68 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241120-can-v3-1-da5bb4f6128d@microchip.com>
+In-Reply-To: <20241120063305.8135-2-friday.yang@mediatek.com>
 
-On Wed, Nov 20, 2024 at 01:58:08PM +0530, Charan Pedumuru wrote:
-> Convert old text based binding to json schema.
-> Changes during conversion:
-> - Add a fallback for `microchip,sam9x60-can` as it is compatible with the
->   CAN IP core on `atmel,at91sam9x5-can`.
-> - Add the required properties `clock` and `clock-names`, which were
->   missing in the original binding.
-> - Update examples and include appropriate file directives to resolve
->   errors identified by `dt_binding_check` and `dtbs_check`.
+On Wed, Nov 20, 2024 at 02:32:55PM +0800, Friday Yang wrote:
+> From: "Friday Yang" <friday.yang@mediatek.com>
+> 
+> To support SMI clamp and reset operation in genpd callback, add
+> SMI LARB reset controller in the bindings. Add index in
+> mt8188-resets.h to query the reset signal in the SMI reset
+> control driver.
+> 
+> Signed-off-by: Friday Yang <friday.yang@mediatek.com>
+> ---
+>  .../bindings/reset/mediatek,smi-reset.yaml    | 53 +++++++++++++++++++
+>  include/dt-bindings/reset/mt8188-resets.h     | 11 ++++
+>  2 files changed, 64 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/reset/mediatek,smi-reset.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/reset/mediatek,smi-reset.yaml b/Documentation/devicetree/bindings/reset/mediatek,smi-reset.yaml
+> new file mode 100644
+> index 000000000000..77a6197a9846
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/reset/mediatek,smi-reset.yaml
+> @@ -0,0 +1,53 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (c) 2024 MediaTek Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/reset/mediatek,smi-reset.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek SMI Reset Controller
+> +
+> +maintainers:
+> +  - Friday Yang <friday.yang@mediatek.com>
+> +
+> +description: |
+> +  This reset controller node is used to perform reset management
+> +  of SMI larbs on MediaTek platform. It is used to implement various
+> +  reset functions required when SMI larbs apply clamp operation.
+> +
+> +  For list of all valid reset indices see
+> +    <dt-bindings/reset/mt8188-resets.h> for MT8188.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - mediatek,mt8188-smi-reset
+> +
 
-...
+Where is MMIO space?
 
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/clock/at91.h>
-> +    can@f000c000 {
-> +          compatible = "atmel,at91sam9263-can";
+> +  "#reset-cells":
+> +    const: 1
+> +    description:
+> +      The cell should be the device ID. SMI reset controller driver could
+> +      query the reset signal of each SMI larb by device ID.
+> +
+> +  mediatek,larb-rst:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
 
-If there is going to be any resend - fix the indentation: Use 4 spaces
-for example indentation.
-
-No need to resend just for this.
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
----
-
-<form letter>
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
-</form letter>
+Ah, here it is? No, that is not how you access device MMIO. Use reg
+property for this. That's a gross misrepresentation of hardware.
 
 Best regards,
 Krzysztof
