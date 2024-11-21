@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-123603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 043F29D566F
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 00:53:57 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D27109D567B
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 00:57:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B89C528236B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 23:53:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 52A90B22F7B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 23:57:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C0C31D042A;
-	Thu, 21 Nov 2024 23:53:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3094D1D9A66;
+	Thu, 21 Nov 2024 23:57:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vNkkLBX+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xsN2lZhE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F11955C29
-	for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 23:53:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C1521C9DC9
+	for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 23:57:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732233232; cv=none; b=fYocDJQYQWp4oKl/01p04gosHjelUaVsksG5Gx57uw9qhen/72zwulDu3hJh2Px7PcuW4E1PiTDtZDoNBRyquw7B4BdfI+sD6Y55qezC0szDenJv8S7x+brW0RMQbwDWeGQVUvcmSbOeUED6yVxzquHUKfHctox4yXS88XPXo6w=
+	t=1732233441; cv=none; b=CBYJ5HLpvH4oIzVOUzh4kzfWKRRlKaAksk1DDIiQ4RBkDxySkViQh+voup/6557Iz0992Q+jyn1KF8O/zLCARJIz5pdzi38g9txWBV98hzlsLeqDNHx/QCV+si05tKXtR8Ye/FrzrX42/Hutvln1HrlM+7AslKR1fGZhLMEyQok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732233232; c=relaxed/simple;
-	bh=iRQjNllQOAzzZ/cUbX8ekd1erp5vq0DrBRgI2zgDUPA=;
+	s=arc-20240116; t=1732233441; c=relaxed/simple;
+	bh=UMOpRKdbXrU4NoO+Ttp5Od2ly8k7VvCMhCAhmP5R6P4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sPQD5HSdyqCvllMZoNb8JJwq2sXryDdA0YsaGk8HH6mQtWnEcuQXs4BdRplqCXVQbkdz8Fv30bEzmmw7//MruSLj2yYHfGSQ/twSJZyH/3OEQiIIJ/dGfSZzNYPK6nIij0tpYngAqg/1RRyCzz9KWO26ZTSWSmTBNg6/W8br2AE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vNkkLBX+; arc=none smtp.client-ip=209.85.208.177
+	 Content-Type:Content-Disposition:In-Reply-To; b=okSYyPU2ICx5EcrgNhH2uXQ/ZMs2bzkA19ooKTaZUDI0gxwzXp5IKR0OWQw0H06chNB9fSIUK4NcrRan7czH5Uoy7t/4MNPcZIzP6F/xtEQ7xtPCjjZnzwjBXNXCM+6nBeKKvfroFF9wcEIjRmN0Bf8e3m6T6gdK+a91LG7INT4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xsN2lZhE; arc=none smtp.client-ip=209.85.167.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2fb4af0b6beso26627571fa.3
-        for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 15:53:49 -0800 (PST)
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-539f84907caso1629026e87.3
+        for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 15:57:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732233228; x=1732838028; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1732233436; x=1732838236; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=rW4FHPt7LjmFH4gYgk/9ZboeDDlIoBJNyfpaoR1qrpc=;
-        b=vNkkLBX++oLTqOFJLfpe29Jrhgj1M+fUkaAG2EGk3PCgDRzH7yu0/Ce1tNyqU9AfKz
-         vYAjG41UrApcEgCoM1KPL0DomobSajG4z+UVu9t3j8ieRowG6fv+Toj2/EMAlM1n5tRc
-         Yvo85s52/MhzOVheEbkX5qMHUAUw2VakIFa7aTBH4w34Qp2dRkXt9VJBeCMaAlFC52i2
-         DvvPCIKM1/ClFJk2iF/oAHAh1RVFP6xTXTep9FoF7IfCCAt9LQZUriCsDgrKXTH12LaP
-         m44hbgQyN7VDshbLAKEgbeoEgoz/WVkglJh3kG7bcat8nfLgmN/GXX7jaKTUnS2D6cfW
-         pcAw==
+        bh=FGZRbTR/uK+ftQ2TfPgufc2P+z5Ye/l5g2WR5F5d4JQ=;
+        b=xsN2lZhEjxXAohLSxNO/BfjqGK7hbvrD8iodSQjRcXisrpqkq0t5dISYgk2zL2IG7W
+         8x17ia2DKt54LtQjvSjT3F2OeUEr50JdUU5e+D/z5u5QtuYS2nO91En6hLVyenKY6lNd
+         KLEw6/uXV1v+Suwg+AOjb+MAee6WZVa4Rtj3AUYXTPtY1EnC4aMjgjUOxMVWr9k4suHC
+         iGjdYgJ5jGECXv4JRvMhDoezubeVpoblX6a2a0o7/mMP/rrIqQCN5khkZD0KnOt+j0iq
+         ZfQ8mH/QVoiXkZKSyBvAQFrNOc8RMO6L5hZZEw9xPc9M1zcR9xJNH9G8JML2tJFEiuX7
+         GsEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732233228; x=1732838028;
+        d=1e100.net; s=20230601; t=1732233436; x=1732838236;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=rW4FHPt7LjmFH4gYgk/9ZboeDDlIoBJNyfpaoR1qrpc=;
-        b=RbIpjqFDsTUdmWrnqgjMcjIQ3WzG6ic9sGNxMaFdu+qGT32hd/3LGFelduqfPSrauZ
-         LrbMUv7TG6J/2Hey407EWrLloim/Lx1shNydhnousaNNJv0KVYCo8ZCXXzvUhHbDt2MG
-         UoHpG20TU5FhGQxJgOxYDNbMAZdUt5dkHqkdJ1WJ3JzwbVC+GQUslAeitz2EPiv220Q4
-         JJ4vNtm9AWvipgh2BnKe0l7iLyAoek/kahllHEgkvnoJVbjxvCaq4/gBMUf+iNJpuLwh
-         mEed6xCLps1/IcoUu6qxvbTW6KmhyhcouNFCBwXOeJmWElHSk7ILVRavNGZWDF8vEnj1
-         O+vQ==
-X-Gm-Message-State: AOJu0YzOIb4k37IgxjqbP/YXyxiZxAPf+F6MK48GWrVxznK+uuqtVdbs
-	asWKwGo2YgcfQym7qry05cbJSkhglQj4zYrrjhGBEpvaH0Xf7T0cRYd+03ciIHI=
-X-Gm-Gg: ASbGncv/FJBxhZnSLHetgFKAQJHXacmuEK0Kig+puVn4nI+QI9sT/GF+EEQkK/dFJck
-	fNerUGpZAt142cRpzsf+/+UXXj49pX1psf7ewHIVSY+tbLgu/2fnxeyl41f2S1rsRo2h1asdJIu
-	0JmADvInVKci/T5+6pdymxzyeCf3M/YwX9kRhanmOCJkwOu3w3uPezv1lLxbKAGeNGhplE6Zp1R
-	/rSAXaCR1u28K4AFYuIpL485se0dJy6ZeDMPC4iutMCNb6bIeI4yjmcrfqy+G/I7KgT64fmSQe+
-	v1FA8RmNwCOtL5JOkJRK8tlcKBnf6Q==
-X-Google-Smtp-Source: AGHT+IEKFx5rkvWucHRO2zn/USpeu8y9JV60QFsZKo6nRTS2RPOH5OFs4cMCGnsdocitEz0+L01gtg==
-X-Received: by 2002:a2e:a58d:0:b0:2fb:6110:c5df with SMTP id 38308e7fff4ca-2ffa716d343mr3992251fa.31.1732233228136;
-        Thu, 21 Nov 2024 15:53:48 -0800 (PST)
+        bh=FGZRbTR/uK+ftQ2TfPgufc2P+z5Ye/l5g2WR5F5d4JQ=;
+        b=OMogrNXXaX/oxLZ/fI6WZnzEWbiqrgBqY+rVoe6ai0EECSbi7R2Xrm6EqUG0GWqykj
+         YwZTy80vR/0k7ItLOo/YlB2m0Rew9TGXdU5b30e6XGUq91OCtDXlzNZGVIHlixUrpdjY
+         khpprf/Oj6F3f97A6mqcmgupXNge3LxYAt2es95euOhcECD+u1gK5WECIzm1kOlfmSkR
+         pHOR0MChYFgk195ZbT6fHoCcroDcJ3TxUTC9Bz5Rs/at/YfVSVVhmTHsdTeMh/3L97O/
+         BTDzRBL3al7aUt3zSTwDCKcG0fhZGn2qOHLX+Bv7Z9+OrVw4Qs1cQ00062sFDS3QmnGb
+         iUIw==
+X-Gm-Message-State: AOJu0YyfXv/V9jco8i/vedcgzlrPtxAEaDozmYnfLkK74VKD6h5yK7Yq
+	8xyDvHcxn9H27pJw7AbJGbDxcS/cw+keYfy9DrSgtsPVnzzj7HYr8Vhoa+c3ov0=
+X-Gm-Gg: ASbGncuPbq5C6Mt39nyG9oYw6KCD+4pTz7goxtMdm50T7q6sXnVkS7UnwathqnB2cIB
+	mUr/EdfCZkbtcDP3CYbnJ9zkopnLxZdGVqQuUwacjKHmU/Hzwl6jlHRg8JhaDqVfZU4FWii3up8
+	RNeIH4dmD9H2j1rBSP1atOyawF2Qx0jlInakiHbLnThUCrr0uToFl4ZtGbAGGE/iUOKo5siUdoz
+	qexDtkj5ysu+M2Bh7DMVrNTUnS867fHKNMdbWl1Mv+mlOjYM9BrY8IjIf/i8+k4YwkG+YZ54EJi
+	qBR0sjALTIqUh5lRk4CpSasG0FSlgA==
+X-Google-Smtp-Source: AGHT+IEmXbDQJcAUYj6lojIiC9JM4M4ujCCevK4TnX7twcBWShy1O7UHHnGrFWe77gpB0XWeTqJyWw==
+X-Received: by 2002:a05:6512:b10:b0:539:adb0:b91 with SMTP id 2adb3069b0e04-53dd3ab11a5mr254370e87.57.1732233436333;
+        Thu, 21 Nov 2024 15:57:16 -0800 (PST)
 Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ffa7587d0esm359121fa.61.2024.11.21.15.53.46
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53dd2481e38sm114731e87.123.2024.11.21.15.57.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Nov 2024 15:53:46 -0800 (PST)
-Date: Fri, 22 Nov 2024 01:53:45 +0200
+        Thu, 21 Nov 2024 15:57:14 -0800 (PST)
+Date: Fri, 22 Nov 2024 01:57:12 +0200
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To: keith zhao <keith.zhao@starfivetech.com>
 Cc: devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
@@ -84,7 +84,7 @@ Cc: devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
 	p.zabel@pengutronix.de, changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com, 
 	linux-kernel@vger.kernel.org
 Subject: Re: [PATCH v5 3/9] drm: bridge: inno-hdmi: add inno bridge driver.
-Message-ID: <djnuoqr5mj576xzbhs72vuz6ji4ayluinb4fr257okik2l762x@ocd4cm7f65pl>
+Message-ID: <u4iaxbpuozap5rhjraxktq2wzxwdpqxj7ldglpvsmvpnxcutuz@ak2eiwtb5fg5>
 References: <20241120061848.196754-1-keith.zhao@starfivetech.com>
  <20241120061848.196754-4-keith.zhao@starfivetech.com>
 Precedence: bulk
@@ -141,95 +141,12 @@ On Wed, Nov 20, 2024 at 02:18:42PM +0800, keith zhao wrote:
 >  F:	Documentation/devicetree/bindings/display/starfive/
 > +F:	drivers/gpu/drm/bridge/innosilicon/
 > +F:	include/drm/bridge/inno_hdmi.h
+
+Separate entry, please. This is not specific to StarFive.
+
 >  
 >  DRM DRIVER FOR SYNAPTICS R63353 PANELS
 >  M:	Michael Trimarchi <michael@amarulasolutions.com>
-> diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
-> index 683cb33805b2..37be5dd5213f 100644
-> --- a/drivers/gpu/drm/bridge/Kconfig
-> +++ b/drivers/gpu/drm/bridge/Kconfig
-> @@ -423,6 +423,8 @@ source "drivers/gpu/drm/bridge/cadence/Kconfig"
->  
->  source "drivers/gpu/drm/bridge/imx/Kconfig"
->  
-> +source "drivers/gpu/drm/bridge/innosilicon/Kconfig"
-> +
->  source "drivers/gpu/drm/bridge/synopsys/Kconfig"
->  
->  endmenu
-> diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/bridge/Makefile
-> index 3daf803ce80b..866d1e0fd8aa 100644
-> --- a/drivers/gpu/drm/bridge/Makefile
-> +++ b/drivers/gpu/drm/bridge/Makefile
-> @@ -41,4 +41,5 @@ obj-$(CONFIG_DRM_ITE_IT66121) += ite-it66121.o
->  obj-y += analogix/
->  obj-y += cadence/
->  obj-y += imx/
-> +obj-y += innosilicon/
->  obj-y += synopsys/
-> diff --git a/drivers/gpu/drm/bridge/innosilicon/Kconfig b/drivers/gpu/drm/bridge/innosilicon/Kconfig
-> new file mode 100644
-> index 000000000000..73dbed3b1c4d
-> --- /dev/null
-> +++ b/drivers/gpu/drm/bridge/innosilicon/Kconfig
-> @@ -0,0 +1,6 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +config DRM_INNO_HDMI
-> +	tristate
-> +	help
-> +	  Support the common interface which is part of the INNO
-> +	  Designware HDMI block.
-> diff --git a/drivers/gpu/drm/bridge/innosilicon/Makefile b/drivers/gpu/drm/bridge/innosilicon/Makefile
-> new file mode 100644
-> index 000000000000..3b3a961ab9fb
-> --- /dev/null
-> +++ b/drivers/gpu/drm/bridge/innosilicon/Makefile
-> @@ -0,0 +1,2 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +obj-$(CONFIG_DRM_INNO_HDMI) += inno-hdmi.o
-> diff --git a/drivers/gpu/drm/bridge/innosilicon/inno-hdmi.c b/drivers/gpu/drm/bridge/innosilicon/inno-hdmi.c
-> new file mode 100644
-> index 000000000000..c26132b41bdf
-> --- /dev/null
-> +++ b/drivers/gpu/drm/bridge/innosilicon/inno-hdmi.c
-> @@ -0,0 +1,376 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) Fuzhou Rockchip Electronics Co.Ltd
-> + *    Zheng Yang <zhengyang@rock-chips.com>
-> + *    Yakir Yang <ykk@rock-chips.com>
-> + * Copyright (C) StarFive Technology Co., Ltd.
-> + */
-> +
-> +#include <linux/irq.h>
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/err.h>
-> +#include <linux/i2c.h>
-> +#include <linux/mutex.h>
-> +#include <linux/platform_device.h>
-> +
-> +#include <drm/bridge/inno_hdmi.h>
-> +#include <drm/display/drm_hdmi_state_helper.h>
-> +#include <drm/drm_atomic.h>
-> +#include <drm/drm_atomic_helper.h>
-> +#include <drm/drm_edid.h>
-> +#include <drm/drm_of.h>
-> +#include <drm/drm_print.h>
-> +#include <drm/drm_probe_helper.h>
-> +#include <drm/drm_bridge.h>
-> +#include <drm/drm_bridge_connector.h>
-> +
-> +#include "inno-hdmi.h"
-> +
-> +u8 hdmi_readb(struct inno_hdmi *hdmi, u16 offset)
-> +{
-> +	return readl_relaxed(hdmi->regs + (offset) * 0x04);
-> +}
-> +EXPORT_SYMBOL_GPL(hdmi_readb);
-
-Not to mention that hdmi_foo() is too generic. Please use some common
-prefix through the file. At least inno_hdmi_foo() will be much better.
 
 -- 
 With best wishes
