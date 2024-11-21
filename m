@@ -1,85 +1,96 @@
-Return-Path: <devicetree+bounces-123592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05ACB9D558A
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 23:37:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42D539D5598
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 23:44:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9FDB52829E4
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 22:37:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C4FAD1F2490C
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 22:44:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 760521D9324;
-	Thu, 21 Nov 2024 22:37:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B6CD1DAC8E;
+	Thu, 21 Nov 2024 22:44:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jVKzZhxO"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="g3rBFSj+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F5DC1CBE81;
-	Thu, 21 Nov 2024 22:37:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA0771BD4EB
+	for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 22:44:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732228626; cv=none; b=altGW6yQGR+T1LAuBBTcRnCYxMUHKZZDVo5pifgsB2H/QcXU3WZ4vgjFQFXCEZQ1wm9KhM091jt7yKqKvVcP1mJ2JeiibvFWzgInIdma/YiXnXbi+dLmReRndR4bdUyYzJ9JLIEVMsaWzy5TvBbq0EH9IFE1jkBqtifva/m4ZMo=
+	t=1732229061; cv=none; b=S56wBTmnmhXpirRIk0PxHl3dwkC+fMPCwLwsUnujouHnawuPBAWelyajukzKw0FN6BZYfGUQUaVVb/Bx+2CZ+FPCd7hQ0Xt515lgxd1xkWaiDpYouag8sEixsr2GNg0tiA8Pq7WcwGnGYauGF82Ea82z50CnPKVcceXhN8pGh5w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732228626; c=relaxed/simple;
-	bh=MUGLVwS75jQUSL12uOeu0NQbPRYbChsHCYEPGyBY20A=;
+	s=arc-20240116; t=1732229061; c=relaxed/simple;
+	bh=UvqKl313UbCoQrV81fFTtqVbmffHswlTT+HQtjKyoJ0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FVKv86E4DAXSd9RVoX7XHsf/3HCZ+RTAxcYYcwfP1b7f0DQrO0VfHeN/ynNybSvDy59smEGZws2gTgmHyBUBZxO/diSLL8OkZz/FTpF9007VZsgKrDqg8YYRhQP3p4UK6ZkLj4uOVo7RkUMmqN4JmL03B5QUbzCE2S6LHv7R1ss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jVKzZhxO; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1732228625; x=1763764625;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=MUGLVwS75jQUSL12uOeu0NQbPRYbChsHCYEPGyBY20A=;
-  b=jVKzZhxOfnSlhdcN3BiOmzxPAyohDCSnZIYmGzYYVomBL7a+LH6H3++7
-   RXjlMT7BMYPJC9Wzn0ep2K3ikDcKk4WNstjUOuJ4lrMGSTuKJL8SbbJP5
-   qMRMzIHYNm7fPDLE9XKkJyZoIpGNlJgZXH5YGfWISBe1CmOxwcX5JSWaa
-   TBGYy6JEjYqmfavS0QLgSDRQuHk8l1jqHxI1LdD6TDAyTkYVbKhhipfM5
-   kIoX3Ur6bQTIJ4Aewb18xUjxDRRejv71gS6ddjgW1yva/ErCSY3Ked4gp
-   N0fV7RoPhJ5OTrq+RbNxX55IzIzE1L7dR5WtbmVvN+XBY9LrpRS8beZ8f
-   w==;
-X-CSE-ConnectionGUID: Z2O2Dn8WQ1KzzJdbibXsvg==
-X-CSE-MsgGUID: RTm4L1kIQaKZ/kaqBOFAeA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11263"; a="49889254"
-X-IronPort-AV: E=Sophos;i="6.12,173,1728975600"; 
-   d="scan'208";a="49889254"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Nov 2024 14:37:04 -0800
-X-CSE-ConnectionGUID: u4lzi55QQtuEqcueIDQ7aA==
-X-CSE-MsgGUID: HC93Hgp/RFyhgB78eC/uvQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,173,1728975600"; 
-   d="scan'208";a="94480413"
-Received: from lkp-server01.sh.intel.com (HELO 8122d2fc1967) ([10.239.97.150])
-  by fmviesa003.fm.intel.com with ESMTP; 21 Nov 2024 14:37:00 -0800
-Received: from kbuild by 8122d2fc1967 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tEFnG-0003QJ-0N;
-	Thu, 21 Nov 2024 22:36:58 +0000
-Date: Fri, 22 Nov 2024 06:36:14 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chester Lin <chester62515@gmail.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, NXP S32 Linux <s32@nxp.com>,
-	Christophe Lizzi <clizzi@redhat.com>,
-	Alberto Ruiz <aruizrui@redhat.com>,
-	Enric Balletbo <eballetb@redhat.com>,
-	Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-Subject: Re: [PATCH v5 2/2] serial: fsl_linflexuart: add clock management
-Message-ID: <202411220621.UfubUV0X-lkp@intel.com>
-References: <20241118154449.3895692-3-ciprianmarian.costea@oss.nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=SlnluL5ckzZ7B82wNYj1MUMOeRn0JlW3YPN8/Wge5zWj+bbI0WwhK2PdKm0YcO7x8JbkrnFaM0pCKmDHIw/4jYYFc1zNyZATnNnsIplozkL0n+VKr6pxss4TIeONFzCxwqa/NFXd01w6DxeiF5mF28LvRpGlWZcQYKKErPhy/JI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=g3rBFSj+; arc=none smtp.client-ip=209.85.208.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2fb388e64b0so17911131fa.0
+        for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 14:44:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1732229058; x=1732833858; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=q/Nja2Bb51yLaelcKPmFVLsubQx3+cZP82+7JwtW4Xk=;
+        b=g3rBFSj+cdb2AX+iX48C7PMjjZFTT9h1MTUkIcCOyk7kbfnHV0RQ98W6nG+aM+CHQi
+         3+9kVmMUWjQ2G8aecV0N1XMwYRQPZklcZ9ygPLE2/Fl3j0MUK3MZB4f36NMCdzX0EnNT
+         URfeh+mcVCEb8RdKF7Zl4xRAZUgDA6UTt5ateX3z3rmudcKaahZCy7GrUcODVke95y3h
+         O5MkiBqtIvIdfqR86hk433wRxWZxPAVkcr7YoPzkd5et3/aG4YuvCzZYRpW+StKni7NL
+         0RlVXsdrwTzq2P9UI6g3jzblCafTbRdWHLGlKTjheJjl5pcgfPyedBBD7CkWvSPCFQ2Q
+         OZZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732229058; x=1732833858;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=q/Nja2Bb51yLaelcKPmFVLsubQx3+cZP82+7JwtW4Xk=;
+        b=g2q4va+yUV4ml+dGNYeqLgl4KwnI9dYnr68JDS2pjgI+sPPhc685BLcUxRC9oguaL6
+         rVTDsxrGtxeCvlDAXnh3JMqW+ZsJtZDYNnuZlXpJmQvN5oSt1BhNh1/rzoHY5mWjUVyt
+         pXhJfcPn6HDRkrTcnFapQSmYoAj/FvngLxrXJZ5/93cuOOEtMNKmqUiQmeWBA6z68L39
+         PfTXezoMBwkw2WUa1Xi+Mx3TH9Iu8o+teX5TgHVRdmZmpIliy8EgX59XY51npYxO90Ow
+         5FPhMhPUqPisVDL1N+EojR/k8x9f2G84UrnezU77+X04wIyB+MwBHgJ7UCf6+7We1IGP
+         hllA==
+X-Forwarded-Encrypted: i=1; AJvYcCUm6yo33BUxGK+HkznBZ/DZhzXT6urZGBQ4xSSMqWUdV/YMSX23LcQOf4IKLjYTgg6Nvb/hpqUtfJQh@vger.kernel.org
+X-Gm-Message-State: AOJu0YxoG8qCOKPkLLFZ3Plx9CmjycnQ9Z6A6HDGB8/fGHh071ux7bYH
+	UXAAhKZ6xIQjvhP1hrRHIc8a2LS3B7i8C/GAYny5MHbr7Yy0ecRVu5jS6rG3zJw=
+X-Gm-Gg: ASbGnctHI0p5q5YmdZH9SbKcQ0gtOvYJNBNEpC/42EGMwblOc8StB/asoTuWaHmXtaz
+	OUEDOV6NdqD6oYM8XaJ4NVJfi2/Pa8CGsBJnbDmmXvbctA6SCNO51f8MK4JhjoilrNgsjF9QF1V
+	Xc5UAW6O4VOBal/D7ya/fygVeClS53blQIvstnSwZYZeeyiY553ZFlXfpHgDGdnNF23+rCX7gVJ
+	GxQzJCfisDOXoZ5iE1t3DLI+WN1pCTSHVxuzQ9YjQ6t3vv0pCRtwQvA83/mydD/PWmU//EZiKfV
+	l9QafUltxcNKl4cQPIoK/rDM8geFIg==
+X-Google-Smtp-Source: AGHT+IGbReTR075Ouxz1EQlRJI//zuSXefAabMn1r5zxrv9eXDCoMRD5JejlOdypknkykXEjg8Eg3g==
+X-Received: by 2002:a05:651c:221b:b0:2fb:5723:c9ea with SMTP id 38308e7fff4ca-2ffa716ce5fmr1747681fa.30.1732229057836;
+        Thu, 21 Nov 2024 14:44:17 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ffa53769f2sm665281fa.77.2024.11.21.14.44.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Nov 2024 14:44:16 -0800 (PST)
+Date: Fri, 22 Nov 2024 00:44:14 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Krishna chaitanya chundru <quic_krichai@quicinc.com>, 
+	andersson@kernel.org, Bjorn Helgaas <bhelgaas@google.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
+	Jingoo Han <jingoohan1@gmail.com>, Bartosz Golaszewski <brgl@bgdev.pl>, quic_vbadigan@quicinc.com, 
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/6] arm64: dts: qcom: qcs6490-rb3gen2: Add node for
+ qps615
+Message-ID: <berrvurtuyujkgy7q7hn3flx5lfusrskxh5bo7xvp374zojcro@v5mkoea2xkds>
+References: <20241112-qps615_pwr-v3-0-29a1e98aa2b0@quicinc.com>
+ <20241112-qps615_pwr-v3-2-29a1e98aa2b0@quicinc.com>
+ <ngjwfsymvo2sucvzyoanhezjisjqgfgnlixrzjgxjzlfchni7y@lvgrfslpnqmo>
+ <yjwk3gnxkxmhnw36mawwvnpsckm3eier2smishlo2bdqa23jzu@mexrtjul2qlk>
+ <a4146b5a-a229-4441-b123-d13e72ab4472@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,133 +99,35 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241118154449.3895692-3-ciprianmarian.costea@oss.nxp.com>
+In-Reply-To: <a4146b5a-a229-4441-b123-d13e72ab4472@kernel.org>
 
-Hi Ciprian,
+On Wed, Nov 20, 2024 at 02:28:29PM +0100, Krzysztof Kozlowski wrote:
+> On 20/11/2024 12:03, Dmitry Baryshkov wrote:
+> >>>  
+> >>>  &apps_rsc {
+> >>> @@ -684,6 +708,75 @@ &mdss_edp_phy {
+> >>>  	status = "okay";
+> >>>  };
+> >>>  
+> >>> +&pcie1_port {
+> >>> +	pcie@0,0 {
+> >>> +		compatible = "pci1179,0623";
+> >>
+> >> The switch is part of SoC or board? This is confusing, I thought QPS615
+> >> is the SoC.
+> > 
+> > QCS615 is the SoC, QPS615 is a switch.
+> OK, thanks for confirming. Just to be clear, I understand above as: it
+> is only the switch, nothing else.
 
-kernel test robot noticed the following build errors:
+PCIe switch, networking interface, but not the SoC (and not a part of
+the SoC).
 
-[auto build test ERROR on tty/tty-testing]
-[also build test ERROR on tty/tty-next tty/tty-linus usb/usb-testing usb/usb-next usb/usb-linus robh/for-next linus/master v6.12 next-20241121]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Ciprian-Costea/dt-bindings-serial-fsl-linflexuart-add-clock-definitions/20241121-130303
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty.git tty-testing
-patch link:    https://lore.kernel.org/r/20241118154449.3895692-3-ciprianmarian.costea%40oss.nxp.com
-patch subject: [PATCH v5 2/2] serial: fsl_linflexuart: add clock management
-config: arm64-randconfig-001-20241122 (https://download.01.org/0day-ci/archive/20241122/202411220621.UfubUV0X-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241122/202411220621.UfubUV0X-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202411220621.UfubUV0X-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from include/linux/platform_device.h:13,
-                    from drivers/tty/serial/fsl_linflexuart.c:15:
-   drivers/tty/serial/fsl_linflexuart.c: In function 'linflex_probe':
->> drivers/tty/serial/fsl_linflexuart.c:904:40: error: 'linflex_disable_clks' undeclared (first use in this function)
-     904 |                                        linflex_disable_clks, lfport);
-         |                                        ^~~~~~~~~~~~~~~~~~~~
-   include/linux/device.h:421:41: note: in definition of macro 'devm_add_action_or_reset'
-     421 |         __devm_add_action_or_reset(dev, action, data, #action)
-         |                                         ^~~~~~
-   drivers/tty/serial/fsl_linflexuart.c:904:40: note: each undeclared identifier is reported only once for each function it appears in
-     904 |                                        linflex_disable_clks, lfport);
-         |                                        ^~~~~~~~~~~~~~~~~~~~
-   include/linux/device.h:421:41: note: in definition of macro 'devm_add_action_or_reset'
-     421 |         __devm_add_action_or_reset(dev, action, data, #action)
-         |                                         ^~~~~~
-
-
-vim +/linflex_disable_clks +904 drivers/tty/serial/fsl_linflexuart.c
-
-   835	
-   836	static int linflex_probe(struct platform_device *pdev)
-   837	{
-   838		struct device_node *np = pdev->dev.of_node;
-   839		struct linflex_port *lfport;
-   840		struct uart_port *sport;
-   841		struct resource *res;
-   842		int i, ret;
-   843	
-   844		lfport = devm_kzalloc(&pdev->dev, sizeof(*lfport), GFP_KERNEL);
-   845		if (!lfport)
-   846			return -ENOMEM;
-   847	
-   848		ret = of_alias_get_id(np, "serial");
-   849		if (ret < 0) {
-   850			dev_err(&pdev->dev, "failed to get alias id, errno %d\n", ret);
-   851			return ret;
-   852		}
-   853		if (ret >= UART_NR) {
-   854			dev_err(&pdev->dev, "driver limited to %d serial ports\n",
-   855				UART_NR);
-   856			return -ENOMEM;
-   857		}
-   858	
-   859		sport = &lfport->port;
-   860		sport->line = ret;
-   861	
-   862		lfport->devtype_data = of_device_get_match_data(&pdev->dev);
-   863		if (!lfport->devtype_data)
-   864			return dev_err_probe(&pdev->dev, -ENODEV,
-   865					"Failed to get linflexuart driver data\n");
-   866	
-   867		sport->membase = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
-   868		if (IS_ERR(sport->membase))
-   869			return PTR_ERR(sport->membase);
-   870		sport->mapbase = res->start;
-   871	
-   872		ret = platform_get_irq(pdev, 0);
-   873		if (ret < 0)
-   874			return ret;
-   875	
-   876		sport->dev = &pdev->dev;
-   877		sport->iotype = UPIO_MEM;
-   878		sport->irq = ret;
-   879		sport->ops = &linflex_pops;
-   880		sport->flags = UPF_BOOT_AUTOCONF;
-   881		sport->has_sysrq = IS_ENABLED(CONFIG_SERIAL_FSL_LINFLEXUART_CONSOLE);
-   882	
-   883		lfport->clks = devm_kmalloc_array(&pdev->dev, lfport->devtype_data->n_clks,
-   884						  sizeof(*lfport->clks), GFP_KERNEL);
-   885		if (!lfport->clks)
-   886			return -ENOMEM;
-   887	
-   888		for (i = 0; i < lfport->devtype_data->n_clks; i++)
-   889			lfport->clks[i].id = lfport->devtype_data->clks_names[i];
-   890	
-   891		ret = devm_clk_bulk_get_optional(&pdev->dev,
-   892						 lfport->devtype_data->n_clks, lfport->clks);
-   893		if (ret)
-   894			return dev_err_probe(&pdev->dev, ret,
-   895					"Failed to get linflexuart clocks\n");
-   896	
-   897		ret = clk_bulk_prepare_enable(lfport->devtype_data->n_clks,
-   898					      lfport->clks);
-   899		if (ret)
-   900			return dev_err_probe(&pdev->dev, ret,
-   901					"Failed to enable linflexuart clocks\n");
-   902	
-   903		ret = devm_add_action_or_reset(&pdev->dev,
- > 904					       linflex_disable_clks, lfport);
-   905		if (ret)
-   906			return ret;
-   907	
-   908		linflex_ports[sport->line] = sport;
-   909		platform_set_drvdata(pdev, lfport);
-   910	
-   911		return uart_add_one_port(&linflex_reg, sport);
-   912	}
-   913	
+> 
+> Best regards,
+> Krzysztof
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+With best wishes
+Dmitry
 
