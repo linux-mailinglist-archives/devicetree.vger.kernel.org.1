@@ -1,63 +1,74 @@
-Return-Path: <devicetree+bounces-123513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123514-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26EF89D4C68
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 12:58:49 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 664A39D4C9D
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 13:14:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7EE861F21740
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 11:58:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 960C8B21BD5
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 12:12:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A99651D3562;
-	Thu, 21 Nov 2024 11:58:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61C171D2F55;
+	Thu, 21 Nov 2024 12:12:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Z/+zDL76"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W19JaGFf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 209EA1CD1EE;
-	Thu, 21 Nov 2024 11:58:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F1EB1CEAAC;
+	Thu, 21 Nov 2024 12:12:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732190324; cv=none; b=b3ZE13mBO4JfN4+3ojnocjaeVlYaGrWXpeP2a01xMTMPCDH13biiQGdjLT2RFwhj3DFHDT6CD27jVFdGUDCdsydY9mG5Ela63Otzaq0J02st/Ed8eRtlwg7/uyMoPpnYTLGL9onaP8zxh7HYs6dy9cZl9/VPdtfl+xSnVqyuong=
+	t=1732191142; cv=none; b=UZE2Ve8/Pf3GTzEYquFDeqR1xqnN40T0C9XU5XKWfCUr8HwQj13VGvfuA8CU0eARzQmSOELH3otiep0AtwU4i+IoqTQyfM/VLvx9e7GOpAO9vvqP9e7Di57cDUB5woCcZ0emT3NRhfGyVSlkRJ04QICjRoCHbmpRbo4xYrS+8E8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732190324; c=relaxed/simple;
-	bh=f75J4Z01SgbdmT+hfVnffrS67T2lmrDvQ6sXIzT0TxY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=GwY+/TW+aUjsR46mFXgprPd1ffII8VmGbuuHftFBjo6z+nhe2tAxBT9YrNyxj8sxbKoGOo+NbGBRdokBVVGV1fEOtfrLybqphVoh4eQuHJOU+t8b201ozla9s7CzL/o0rUUEdXEUNxZqVCYPMmrQDTtNZ+Fd+vwK6+c9I1/f6WE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Z/+zDL76; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AL8txNq025887;
-	Thu, 21 Nov 2024 11:58:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	RgsWpf6+Sd43Rc5sq6mSIoTvfA0falFXbwKIv24/NX4=; b=Z/+zDL76duqckeND
-	Y0q0cBB3sXB8jS3VhGxO0nO1zmUdapuwSECImjvA85nRiUqmTc2LktH4lTuvjYEy
-	P65LE7qAIR+Cbe12+FMR/iyZVHpF0yCVGu/AYHYkwrFSupD+j4rzWNFvkLVFZuA8
-	Wvd79J6YA9vFfRzbTdwLR3YpHqTXi1lNVQX/1+WGd/GUl6w6lyr2i0WFV0M7eUru
-	gLuv3sNse3fHdR6VkZ/9JuwsuoMWu5p1ssd9GfrrJN3aqe3gOd2pD196D1ya7DqK
-	omFSA7hZfea50Z44b4vEBWOkDhsiUnzMvB+4yjiJ0F9FyFl7oK1Nb+PiW5xqVtiv
-	M3hWUg==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 431byjm0v2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 21 Nov 2024 11:58:39 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4ALBwciu029380
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 21 Nov 2024 11:58:38 GMT
-Received: from [10.64.68.72] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 21 Nov
- 2024 03:58:31 -0800
-Message-ID: <b16bb82c-a14a-4bc1-997b-97e709d3a462@quicinc.com>
-Date: Thu, 21 Nov 2024 19:58:28 +0800
+	s=arc-20240116; t=1732191142; c=relaxed/simple;
+	bh=6lZJfyn/kHRQnhS0J6EOOfgo9qdHUV3QfefJKYnl1tI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=E4Rcqbli7FGaR06wDgyArrYc2h0nCnci9KuxIcO1WGIlbR3COaBer1L21oPO4UvLvZioSeXiugIcfr3ly2Kwlxxl3PPJIOpZu3cmY7bVOGTlC7WTjkgNy4cr+b8irz8nyeOOJ5H3nLuTlvu33KmwG+0cdwH1u4xwX6rghbqwkPg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W19JaGFf; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-5cf9ef18ae9so3724393a12.1;
+        Thu, 21 Nov 2024 04:12:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1732191138; x=1732795938; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+F8zuB1/KXMHxiBc/j3bHml8rN9MzuOmzg1mIDkrOEA=;
+        b=W19JaGFfS4EdZN8sihJ1PnsR/5H/smYd8uzqk3axs87OhxSYLbyyiKiXUGJN7kJKeK
+         cBbJ3D8dlWZOFZlbIsWayEisDPGOsrLlmYs8sv/zrEkXWhjQxNo3vPHFPN+2M1JLs05r
+         lvQHwVTlMb+cj72D2ZWqUA4S6KmSAlIScga2LcjOwF0+ENoUsJlmuYngvTTDbXg9QUzp
+         zjO5TgM/6NGqnyvsa+ZwgyCWMd2qsEajPxILAFiSfIWQqI19sovQFWZcNGKmN9OKkSKQ
+         q0wfbfSB9r2wTvHmNrlG0bwop2siIzRHjkUNP9A3qg24PQ1nNber9MyJ4U7G+leXkXU8
+         CXBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732191138; x=1732795938;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+F8zuB1/KXMHxiBc/j3bHml8rN9MzuOmzg1mIDkrOEA=;
+        b=noFjEa2MRwCGWf5O5zOyxfCb8ELL/3OEIFHvsmiTBp3zgd5EwLlojfEqx2jM8w3igQ
+         Y3huAdG26Q1mfBFgc8zlA3mrvjTo8kRw6brThUr5mPhh9iaiBLPUmn7Ti7vURr5/uK4M
+         ulDt4bLKeGc3OEbdKz2jjgIq8lkjIUsR+OUdoRM93jwg+DkjknyaTSd3z26JfMuKyAxH
+         5tZF8X9ZdaUt/I048j0lcUVK3ISI8Ya/zvPcuRRMLfim+32re8mixTVx73vX38NzLM62
+         dSwW0/2Cs0yKpKDxltQQsEf1t1nd45/yBXOP2EGq0jkeLcjXkO/i45Q6/xrvJavwn1Co
+         JVhQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUhB+wFNDDNxdS4Og+ADIViAm8RBYFvi4LpO72N4PYef9OuDL2xLR4u7AU9HnZu7xSYLpwaOLGpKcTC@vger.kernel.org, AJvYcCWcSAGkgSdoIdXzLpJVp6Hnq2+Fcabah7yxwmS7ktYvXtKEJIpEZnksPueN/+UmTc82CivRk3ioM31ohJKW@vger.kernel.org, AJvYcCWfsl/tmkiODQyZvZq+roFat844+xK2l9XoSqYPE0TdKLAHBimTNelU9CGZm3l43g90qBee5XK5xbMC@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywtg4T+uXovxD2JNOC9IcMC7n5BplVwqD8GB5IJErlJOhCYgpPa
+	XgD39z4xsiQcmMg8tzUk95wQGbG1v+tXXc/5jHnvH/vz0eeUFvmM
+X-Google-Smtp-Source: AGHT+IFX25LpafsfOgQKeciNFXNPD4CoElchAGaqtiKyRCcLsdDbU7LqGaAnw4Ee0mmoYyfGgDFQFQ==
+X-Received: by 2002:a17:907:3f02:b0:a99:6265:ed35 with SMTP id a640c23a62f3a-aa4efb8ccefmr324942466b.10.1732191138284;
+        Thu, 21 Nov 2024 04:12:18 -0800 (PST)
+Received: from [10.10.40.97] (91-118-163-37.static.upcbusiness.at. [91.118.163.37])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa4f4181818sm73858866b.82.2024.11.21.04.12.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 21 Nov 2024 04:12:17 -0800 (PST)
+Message-ID: <a3bd83fb-589e-4814-9595-8f6343ecda83@gmail.com>
+Date: Thu, 21 Nov 2024 13:12:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,88 +76,338 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: qcs8300-ride: Add watchdog node
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
-        <quic_jiegan@quicinc.com>, <quic_aiquny@quicinc.com>,
-        <quic_tingweiz@quicinc.com>
-References: <20241119102315.3167607-1-quic_liuxin@quicinc.com>
- <20241119102315.3167607-4-quic_liuxin@quicinc.com>
- <5d670f55-1ebe-4034-a6a5-e68417c6e486@kernel.org>
- <64ec97a7-8e91-44d7-85ff-8b00304214fc@quicinc.com>
- <a1dde768-aeb8-4777-b4f9-d3c52b046fbd@kernel.org>
-From: Xin Liu <quic_liuxin@quicinc.com>
-In-Reply-To: <a1dde768-aeb8-4777-b4f9-d3c52b046fbd@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: U3Ej_iqsDzgJZoFxZUnlZFh9bI6zgAS8
-X-Proofpoint-ORIG-GUID: U3Ej_iqsDzgJZoFxZUnlZFh9bI6zgAS8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1015
- suspectscore=0 phishscore=0 lowpriorityscore=0 impostorscore=0
- malwarescore=0 priorityscore=1501 bulkscore=0 adultscore=0 mlxlogscore=999
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411210094
+Subject: Re: [PATCH 2/2] iio: light: Add APDS9160 ALS & Proximity sensor
+ driver
+To: mgonellabolduc@dimonoff.com, Jonathan Cameron <jic23@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Nathan Chancellor <nathan@kernel.org>,
+ Nick Desaulniers <ndesaulniers@google.com>, Bill Wendling
+ <morbo@google.com>, Justin Stitt <justinstitt@google.com>
+Cc: Mikael Gonella-Bolduc <m.gonella.bolduc@gmail.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, llvm@lists.linux.dev,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>
+References: <20241119-apds9160-driver-v1-0-fa00675b4ea4@dimonoff.com>
+ <20241119-apds9160-driver-v1-2-fa00675b4ea4@dimonoff.com>
+Content-Language: en-US, de-AT
+From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+In-Reply-To: <20241119-apds9160-driver-v1-2-fa00675b4ea4@dimonoff.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+Hi Mikael,
 
+a few comments inline to add to what Krzysztof pointed out.
 
-在 2024/11/21 18:19, Krzysztof Kozlowski 写道:
-> On 21/11/2024 10:44, Xin Liu wrote:
->>
->>
->> 在 2024/11/21 0:59, Krzysztof Kozlowski 写道:
->>> On 19/11/2024 11:23, Xin Liu wrote:
->>>> Add watchdog clock on the Qualcomm QCS8300 Ride platform.
->>>>
->>>> Signed-off-by: Xin Liu <quic_liuxin@quicinc.com>
->>>> ---
->>>>    arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 4 ++++
->>>>    1 file changed, 4 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
->>>> index 7eed19a694c3..3024338bcfbc 100644
->>>> --- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
->>>> +++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
->>>> @@ -265,3 +265,7 @@ &ufs_mem_phy {
->>>>    	vdda-pll-supply = <&vreg_l5a>;
->>>>    	status = "okay";
->>>>    };
->>>> +
->>>> +&watchdog {
->>>> +    clocks = <&sleep_clk>;
->>>> +};
->>>> \ No newline at end of file
->>>
->>> Look, your patches have errors...
->>>
->> This is the information when I apply my patch.
->> ../linux-next$ git am ./wdt/test.patch
->> Applying: arm64: dts: qcom: qcs8300-ride: Add watchdog node
->> ../linux-next$
->>
->> There are no error messages here.
+On 19/11/2024 21:36, Mikael Gonella-Bolduc via B4 Relay wrote:
+> From: Mikael Gonella-Bolduc <mgonellabolduc@dimonoff.com>
 > 
-> So I made up that above error message? You sent patch with an error
-> message. I responded directly under it, so what can I say more?
+> APDS9160 is a combination of ALS and proximity sensors.
 > 
-> You refuse to fix this, so I NAK this patch.
-Sorry, that's not what I meant. I realize my mistake and I will fix this 
-issue in the next version. Thank you for your comments.
-> Best regards,
-> Krzysztof
+> This patch add supports for:
+>     - Intensity clear data and illuminance data
+>     - Proximity data
+>     - Gain control, rate control
+>     - Event thresholds
+> 
+> Signed-off-by: Mikael Gonella-Bolduc <mgonellabolduc@dimonoff.com>
+> ---
+>  MAINTAINERS                  |    7 +
+>  drivers/iio/light/Kconfig    |   13 +
+>  drivers/iio/light/Makefile   |    1 +
+>  drivers/iio/light/apds9160.c | 1420 ++++++++++++++++++++++++++++++++++++++++++
+>  4 files changed, 1441 insertions(+)
+> 
 
+...
+
+> +config APDS9160
+> +	tristate "APDS9160 combined als and proximity sensors"
+> +	select REGMAP_I2C
+> +	select IIO_BUFFER
+> +	select IIO_KFIFO_BUF
+> +	depends on I2C
+> +	help
+> +	   Say Y here if you want to build a driver for Broadcom APDS9160
+> +	   combined ambient light and proximity sensor chip.
+> +
+
+You can drop that "If unsure, say N here." as it is not common for such
+drivers in IIO. There are a couple of entries in the whole subsystem
+(not in this Kconfig, though) with this sentence, and some of them could
+be dropped too.
+
+> +	   To compile this driver as a module, choose M here: the
+> +	   module will be called apds9160. If unsure, say N here.
+> +
+>  config APDS9300
+>  	tristate "APDS9300 ambient light sensor"
+>  	depends on I2C
+
+...
+
+
+> +
+> +static int apds9160_write_raw(struct iio_dev *indio_dev,
+> +			      struct iio_chan_spec const *chan, int val,
+> +			      int val2, long mask)
+> +{
+> +	struct apds9160_chip *data = iio_priv(indio_dev);
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_INT_TIME:
+> +		if (val2 != 0)
+> +			return -EINVAL;
+> +		switch (chan->type) {
+> +		case IIO_INTENSITY:
+> +			return apds9160_set_als_int_time(data, val);
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +	case IIO_CHAN_INFO_SAMP_FREQ:
+> +		if (val2 != 0)
+> +			return -EINVAL;
+> +		switch (chan->type) {
+> +		case IIO_PROXIMITY:
+> +			return apds9160_set_ps_rate(data, val);
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +	case IIO_CHAN_INFO_HARDWAREGAIN:
+> +		if (val2 != 0)
+> +			return -EINVAL;
+> +		switch (chan->type) {
+> +		case IIO_INTENSITY:
+> +			return apds9160_set_als_gain(data, val);
+> +		case IIO_PROXIMITY:
+> +			return apds9160_set_ps_gain(data, val);
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +	case IIO_CHAN_INFO_CALIBSCALE:
+> +		if (val2 != 0)
+> +			return -EINVAL;
+> +		switch (chan->type) {
+> +		case IIO_PROXIMITY:
+> +			return apds9160_set_ps_cancellation_level(data, val);
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +	case IIO_CHAN_INFO_CALIBBIAS:
+> +		if (val2 != 0)
+> +			return -EINVAL;
+> +		switch (chan->type) {
+> +		case IIO_PROXIMITY:
+> +			return apds9160_set_ps_analog_cancellation(data, val);
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +	case IIO_CHAN_INFO_RAW:
+> +		if (val2 != 0)
+> +			return -EINVAL;
+> +		switch (chan->type) {
+> +		case IIO_CURRENT:
+> +			return apds9160_set_ps_current(data, val);
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+
+If you only have a switch with a return in every path, this return 0
+can't be reached.
+
+> +	return 0;
+> +}
+> +
+> +static inline int apds9160_get_thres_reg(const struct iio_chan_spec *chan,
+> +					 enum iio_event_direction dir, u8 *reg)
+> +{
+> +	switch (dir) {
+> +	case IIO_EV_DIR_RISING:
+> +		switch (chan->type) {
+> +		case IIO_PROXIMITY:
+> +			*reg = APDS9160_REG_PS_THRES_HI_LSB;
+> +			break;
+> +		case IIO_INTENSITY:
+> +			*reg = APDS9160_REG_LS_THRES_UP_LSB;
+> +			break;
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +		break;
+> +	case IIO_EV_DIR_FALLING:
+> +		switch (chan->type) {
+> +		case IIO_PROXIMITY:
+> +			*reg = APDS9160_REG_PS_THRES_LO_LSB;
+> +			break;
+> +		case IIO_INTENSITY:
+> +			*reg = APDS9160_REG_LS_THRES_LO_LSB;
+> +			break;
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int apds9160_read_event(struct iio_dev *indio_dev,
+> +			       const struct iio_chan_spec *chan,
+> +			       enum iio_event_type type,
+> +			       enum iio_event_direction dir,
+> +			       enum iio_event_info info, int *val, int *val2)
+> +{
+> +	u8 reg;
+> +
+> +	int ret = 0;
+> +	struct apds9160_chip *data = iio_priv(indio_dev);
+> +
+> +	if (info != IIO_EV_INFO_VALUE)
+> +		return -EINVAL;
+> +
+> +	ret = apds9160_get_thres_reg(chan, dir, &reg);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (chan->type == IIO_PROXIMITY) {
+> +		__le16 buf;
+> +
+> +		ret = regmap_bulk_read(data->regmap, reg, &buf, 2);
+> +		if (ret < 0)
+> +			return ret;
+> +		*val = le16_to_cpu(buf);
+> +	} else if (chan->type == IIO_INTENSITY) {
+> +		__le32 buf = 0;
+> +
+> +		ret = regmap_bulk_read(data->regmap, reg, &buf, 3);
+> +		if (ret < 0)
+> +			return ret;
+> +		*val = le32_to_cpu(buf);
+
+Missing braces for that else (use them in all arms if you need them in one).
+
+> +	} else
+> +		return -EINVAL;
+> +
+> +	*val2 = 0;
+> +
+> +	return IIO_VAL_INT;
+> +}
+> +
+> +static int apds9160_write_event(struct iio_dev *indio_dev,
+> +				const struct iio_chan_spec *chan,
+> +				enum iio_event_type type,
+> +				enum iio_event_direction dir,
+> +				enum iio_event_info info, int val, int val2)
+> +{
+> +	u8 reg;
+> +	int ret = 0;
+> +	struct apds9160_chip *data = iio_priv(indio_dev);
+> +
+> +	if (info != IIO_EV_INFO_VALUE)
+> +		return -EINVAL;
+> +
+> +	ret = apds9160_get_thres_reg(chan, dir, &reg);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (chan->type == IIO_PROXIMITY) {
+> +		if (val < 0 || val > APDS9160_PS_THRES_MAX)
+> +			return -EINVAL;
+> +		__le16 buf;
+> +
+> +		buf = cpu_to_le16(val);
+> +		ret = regmap_bulk_write(data->regmap, reg, &buf, 2);
+> +		if (ret < 0)
+> +			return ret;
+> +	} else if (chan->type == IIO_INTENSITY) {
+> +		if (val < 0 || val > APDS9160_LS_THRES_MAX)
+> +			return -EINVAL;
+> +		__le32 buf = 0;
+> +
+> +		buf = cpu_to_le32(val);
+> +		ret = regmap_bulk_write(data->regmap, reg, &buf, 3);
+> +		if (ret < 0)
+> +		
+
+Same here.
+
+	return ret;
+> +	} else
+> +		return -EINVAL;
+> +
+> +	return 0;
+> +}
+> +
+> +static int apds9160_read_event_config(struct iio_dev *indio_dev,
+> +				      const struct iio_chan_spec *chan,
+> +				      enum iio_event_type type,
+> +				      enum iio_event_direction dir)
+> +{
+> +	struct apds9160_chip *data = iio_priv(indio_dev);
+> +
+> +	switch (chan->type) {
+> +	case IIO_PROXIMITY:
+> +		return data->ps_int;
+> +	case IIO_INTENSITY:
+> +		return data->als_int;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+
+The 'state' argument is now a bool. To avoid issues, please rebase to
+newer branches like linux-next, iio/testing iio/togreg. Otherwise it
+will not compile with that modification. data->ps_int should then become
+a bool too.
+
+> +static int apds9160_write_event_config(struct iio_dev *indio_dev,
+> +				       const struct iio_chan_spec *chan,
+> +				       enum iio_event_type type,
+> +				       enum iio_event_direction dir, int state)
+> +{
+> +	struct apds9160_chip *data = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	state = !!state;
+> +
+> +	switch (chan->type) {
+> +	case IIO_PROXIMITY:
+> +		if (data->ps_int == state)
+> +			return -EINVAL;
+> +
+> +		ret = regmap_field_write(data->reg_int_ps, state);
+> +		if (ret)
+> +			return ret;
+> +		data->ps_int = state;
+> +		break;
+> +	case IIO_INTENSITY:
+> +		if (data->als_int == state)
+> +			return -EINVAL;
+> +
+> +		ret = regmap_field_write(data->reg_int_als, state);
+> +		if (ret)
+> +			return ret;
+> +		data->als_int = state;
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+
+
+Best regards,
+Javier Carrasco
 
