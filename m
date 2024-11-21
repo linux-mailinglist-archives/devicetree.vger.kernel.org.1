@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-123478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 598099D4A54
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 11:00:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CF5D9D4A5B
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 11:01:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1890D282762
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 10:00:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DCD621F21DA0
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 10:01:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 333131CB522;
-	Thu, 21 Nov 2024 10:00:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CCC91CD211;
+	Thu, 21 Nov 2024 10:01:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GDOgK7zu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="F4LOCfhh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7080B126C05
-	for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 10:00:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3D47126C05
+	for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 10:01:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732183252; cv=none; b=lNfKxfeTHx21Hq9hZwzhWm0YJpMPdboLNCKmCbM+DOC1nOyU97nQ0qyMPR5UsD2kNJa8+ENhYDYG4izCy+r56nrO+6YC2cz/fVSiPL0LuS327oOZJZUqlKrCUmhFDiRu8r6PwAUiAQwpdFTDL7T2hBuJ+QnjakUtc7jWKESti70=
+	t=1732183300; cv=none; b=gpQhFZtslyA5qsgz35YhtNzEhX9TvH/Ojaa9tU20B0u0SP5hAogJ/kten2nYbxkSz0Dbpk6il3u3oFKZiMgz4/HeHA9eDhVv9SabjQF2E2d0++rHepG2WjitrCNBo4L8cBIwq1MvIQdLkZO4yfpg8/pJMPPp5Sj5iYoR8vVf6xo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732183252; c=relaxed/simple;
-	bh=zmq/RKWM99HdwXgqchWwwJMhCjTilAE9DZvU3qOwtFk=;
+	s=arc-20240116; t=1732183300; c=relaxed/simple;
+	bh=JjNvXC0ZmNL9tTmmEX68lHKJt4TdXge4SCVOn8mxtSo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jn74R/OlJY4ZGU5z3RooaYWLPt4b33/kaLZHkVKR5EVydt6lCVRl1iHfHRxyUrNV/miuR+AtI5+jBVR0QHdv5rRZ/pKfmaWjLFpcNp+IB3kC8f6axUxzr2D5r90Nq2vtVDgzODb75hNv277NPS9GE7FUiIuT5nt4vcz9rd65lZY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GDOgK7zu; arc=none smtp.client-ip=209.85.221.47
+	 In-Reply-To:Content-Type; b=TbxQr91pqvPBuErtSJLIV2zw9UJannZtCeyY5qHjOHPJdbO3MhBpVsC0ESEGiLdjvYZW2dzWO5xtYHmEZWCqNM00CT3qCK6MJwEdskIR0sUbmH3V7WAIry3pAb7Tn6wg15NwFSpINRbCmsp4MRyoC84W7JkhHlbf2iz5qNCHEvY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=F4LOCfhh; arc=none smtp.client-ip=209.85.128.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3821a8c7c5cso103552f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 02:00:50 -0800 (PST)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-43159555f29so266775e9.3
+        for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 02:01:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732183249; x=1732788049; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1732183296; x=1732788096; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=ohOQNJmsf3U6TDKszzvPMzrw+ckEcCqCGtLbTdkd4VI=;
-        b=GDOgK7zuc9QLEdt1yKdx6B8SJkitVZzVhsdWd8R6kIh9CnJh+KvUAlVM0MosvLu6Hi
-         F7eqamxwr6cDy2ear/IaFxXPlRK20FJ8/nTM363ef9uUx0YMk8QcLzix3DmXo7NGzfbf
-         A/AJDaoyXhGsC0UXythPeXVcVTaiymtFh5AG+B0dlla6ZlnyM/KipI/i5n/6u4Ds3Os8
-         r5MCwbA9JGAiOgbQ/yMfnw1fLh6XCNWI8XL2gRh4WJp1qNGJR5eRXIE2eavfzyCrcbwb
-         z8c4ibnqy6c1yG5TiO8Mx3RyLtktFsCB8GMhg6VMh+C6cyw7+l3WyuLbIKrpzbKB5s9U
-         SbhA==
+        bh=rmhHnsY+RuLEc30H9+/JH1oprc05PF6GVYC48mw3MuY=;
+        b=F4LOCfhhw4/uKrj2Mmt3GzkePi/yH8ZpUmj7sqJRPGz0vIkTldaZdQtOnAF1YbDs0r
+         Jx1tDrlZtNAq9QQsslqIWA5P+c/JcCBdcvLyQ93Nf1lhIMVPDlDOryhUF00yNmXkTddd
+         3624X+vMExHiUglGsYwZgtOHrx7NXi0RGJZesdbWLWvFJnB79Qn6ALIw8TnsKlQMmLQk
+         JzBbM8oZhYJpx8nOWMq59Gvoey1z3TW4Ckufc+TWJj9NJM1OJGHkxM1+heMbXcM9hgtK
+         gQhdb9kKFUEzKiBi48OAr9u/KkaJTD9K/62le5+Ae5MYEl89d0sefyHMm2zCmp0/8ysE
+         1F5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732183249; x=1732788049;
+        d=1e100.net; s=20230601; t=1732183296; x=1732788096;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ohOQNJmsf3U6TDKszzvPMzrw+ckEcCqCGtLbTdkd4VI=;
-        b=PxzLkzRB9JE6fDHkGgmOhbGUenUdVDj40hgVeS/0vkDubmk2z1n8V3yQAZYclZOlzN
-         PWxSU8ifMwqfFhcZ1oB+oEBQruvbRLWASWUeYSr3ygEahrZfNiinLl2D+iSEZvSj6sqp
-         6Hkw0ZvWUESeoLU8zSmlT480ob/47ZlrwrhE1GYr+f3mTTYCv3twc/aAJNTxFMD3+Gh7
-         Uwm+X7PwH5qEX83U6dyD143W88EvMp8lZrscW3JEhR3fMNiKjygTZNp4hcuw8KUDgPLS
-         AoBDXTUQsWmhVZrCMHmuSZnBRVZC3aBxVgn+efTA11Ykdfsa7PQ659iS2bh/7C4oPDk1
-         UDoQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWN5iQyfcyHjUkV4a3OPwWrWa/21kibVh0JFCmh86XzgLHZIhjR1pBZjYddwzAIiJEgS/+3ByjGBudo@vger.kernel.org
-X-Gm-Message-State: AOJu0YwUCBXJDsEci/RGAaLoyx1UncakFU6Pp5yYNYtQySNFnzTFd/j2
-	zNeD6dKrgLSLutmRHCymgIUxEgwjtIqg83DcDok9Mbn8FoXnkeksWUJKc5tHgFE=
-X-Gm-Gg: ASbGncuwmhYntqk/4CKFPt92gVzRUqdEh8qzlNf4CjZYi6NPL2LupoVThBPzy/sv1Mt
-	5PywVVPc/PKxSKY11OblA5Gl2e7usjs18qLM++Th7xmXwsUKyqFgeHNhO8B5ksoxaGgdGp5acew
-	RqJ6llDYBq1jU6vYg4TXBUZcCpUPC6pUXKRJckTU7B6yk/d9tNuwWK8bFBTYocK3h2zwt8IOiGT
-	shf5B6c8pDm6uUZm4naKLkYyqHzklNZwINcb12yZqHHK7TaO7FQOOkt+yF+G8Bx/xm8BA==
-X-Google-Smtp-Source: AGHT+IHIFM5RBsRG92ctCgN9LYsLIXa/i1YN768XTyEt+22HhO06rCb9tOnTK+/qVkjSO7/LnVXQDQ==
-X-Received: by 2002:a05:6000:1f8b:b0:37e:d940:a9fe with SMTP id ffacd0b85a97d-38254b2feb1mr1914976f8f.13.1732183248773;
-        Thu, 21 Nov 2024 02:00:48 -0800 (PST)
+        bh=rmhHnsY+RuLEc30H9+/JH1oprc05PF6GVYC48mw3MuY=;
+        b=fYNtVD0i9dB3izsT94PBT98W9s2TxbxapYTm9+QkScgAPBvZ6Iie0U9v/HrTol30es
+         jBQBrZICxKx0GQZ29GF/zcb+A4xJkH4EvwBFevSnawb4RlrkRDikE/bDcyLrkIW4lOCj
+         5u1KCu4HodWZVRU4yvrJO/59kTLPJrs9v9jJEUXrgNzKd/WlrXpbENxzzvcJwByrmc/l
+         UPUqDwF3n9lM6QHk8tvkzCvZ0h7EH1tKH7vXjpsVHrri7YA46ohalt8SaiQQuPmmRBED
+         EbpK9keZGMljoaadcWQIJ3ca2rktmlA0QNT8dcs5JJr70WTsDYrmjWNJ77ALBOUGGmE9
+         4owg==
+X-Forwarded-Encrypted: i=1; AJvYcCWu15qEB1ucFyXqQEA/2Y94xGZFiyTEVyVHIbYy+CiEf1xn3EvyJWYekvyq0AxKAOXMFryLdqrnSJlR@vger.kernel.org
+X-Gm-Message-State: AOJu0YxPdupMNvLnzIEx7ElUTi1LbibPqXDtrWcjSEqo+2671/d8KXYN
+	4rX2xr8W/48CLx2XF7uCDnOQb4y03TKbTq7pLlr2BPT2fUb40p1RT1tJMDFXXtQ=
+X-Gm-Gg: ASbGnctqPYwHkwmcVjexsSu/sDdiHxJqw5z/3bG6KNelR1qpTpzZhUVtLYGLDET2a+K
+	8hN6gf9RAOYzyBRmTU1p+jLSg/VvUVHNwEOTlNBu6GACB5QzFk3zHJdFMKTpCgSuuE9nOhZaiO2
+	qCgyIbgE+KULRnvPoP7x9uK9ySXiqsxVf2WaUtOBSAeus2lpCwhXav38dVOh9/dmCwbZ8taasRA
+	pZaqZqUxkVZ5X469LFq0ou2eeH3WJdjtjMOjyt2l0IY4du6zTqv35vY8ta3YbWqbkB6Tg==
+X-Google-Smtp-Source: AGHT+IGid3k2FbUqpmxPUw0L/CPBfwbLK7sR1jKTvwOdIaiv7UN/Cz5YznPz0xaogVOdoCqoXeZsjg==
+X-Received: by 2002:a05:600c:444f:b0:430:4db0:3ffd with SMTP id 5b1f17b1804b1-4334f013d8cmr21221655e9.4.1732183294620;
+        Thu, 21 Nov 2024 02:01:34 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.211.167])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-433b4616843sm48827745e9.20.2024.11.21.02.00.45
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-433b45f9d99sm51608945e9.13.2024.11.21.02.01.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 21 Nov 2024 02:00:47 -0800 (PST)
-Message-ID: <12ee900f-ed9d-4339-ba96-87c22c5ecbcf@linaro.org>
-Date: Thu, 21 Nov 2024 11:00:45 +0100
+        Thu, 21 Nov 2024 02:01:34 -0800 (PST)
+Message-ID: <26392a7f-82c6-4b7b-829e-76f3d78115d1@linaro.org>
+Date: Thu, 21 Nov 2024 11:01:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,25 +81,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] dt-bindings: vendor-prefixes: Add TouchNetix AS
-To: Marco Felsch <m.felsch@pengutronix.de>,
- Kamel BOUHARA <kamel.bouhara@bootlin.com>
-Cc: Luis Chamberlain <mcgrof@kernel.org>, Russ Weight
- <russ.weight@linux.dev>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Andrew Morton <akpm@linux-foundation.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Marco Felsch <kernel@pengutronix.de>, Henrik Rydberg <rydberg@bitmath.org>,
- Danilo Krummrich <dakr@redhat.com>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-input@vger.kernel.org
-References: <20241119-v6-10-topic-touchscreen-axiom-v1-0-6124925b9718@pengutronix.de>
- <20241119-v6-10-topic-touchscreen-axiom-v1-3-6124925b9718@pengutronix.de>
- <b5hjephfcvdu2jjchodaj5u4yltvatdgmse7xvwkhaepn5dinv@sfl4utyuz34g>
- <20241120081527.s6pfo5soa2tqvra4@pengutronix.de>
- <94c90aef-9807-473d-b71d-168282d87570@linaro.org>
- <3c072ad8e4a15cd23a195855f8e68bfa@bootlin.com>
- <20241121084549.4bzebpuusjreqiik@pengutronix.de>
+Subject: Re: [PATCH v2 1/3] dt-bindings: ufs: qcom: Add UFS Host Controller
+ for QCS615
+To: Xin Liu <quic_liuxin@quicinc.com>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+ <kishon@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>,
+ Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org,
+ quic_jiegan@quicinc.com, quic_aiquny@quicinc.com, quic_tingweiz@quicinc.com,
+ quic_sayalil@quicinc.com
+References: <20241119022050.2995511-1-quic_liuxin@quicinc.com>
+ <20241119022050.2995511-2-quic_liuxin@quicinc.com>
+ <d9c3dc82-24e5-465d-bd1c-7a7c97e17136@kernel.org>
+ <eae9d141-9c88-4856-9287-2ba6ea6f4a06@kernel.org>
+ <242451d6-2b77-417c-bd98-4455f739dc0d@quicinc.com>
 Content-Language: en-US
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -146,69 +148,44 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20241121084549.4bzebpuusjreqiik@pengutronix.de>
+In-Reply-To: <242451d6-2b77-417c-bd98-4455f739dc0d@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 21/11/2024 09:45, Marco Felsch wrote:
-> On 24-11-21, Kamel BOUHARA wrote:
->> Le 2024-11-21 08:47, Krzysztof Kozlowski a écrit :
->>> On 20/11/2024 09:15, Marco Felsch wrote:
->>>> On 24-11-20, Krzysztof Kozlowski wrote:
->>>>> On Tue, Nov 19, 2024 at 11:33:52PM +0100, Marco Felsch wrote:
->>>>>> From: Kamel Bouhara <kamel.bouhara@bootlin.com>
->>>>>>
->>>>>> Add vendor prefix for TouchNetix AS
->>>>>> (https://www.touchnetix.com/products/).
->>>>>>
->>>>>> Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
->>>>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>>
->>>>> I think this did not happen (only Ack).
->>>>
->>>> Huh.. I used b4 to retrieve the latest Bootlin version. According
->>>> [1] it
->>>> was already present :/ I can drop it if you want.
->>>>
->>>> [1] https://lore.kernel.org/all/20240703142520.207066-3-kamel.bouhara@bootlin.com/
->>>>
->>> Hm? This points to entirely different patch!
->>>
->>
->> Hello Marco,
->>
->> I think the last review from Krzystof is on v7 [1] ?
->>
->> [1]: https://lore.kernel.org/linux-kernel/821ce1d4-bc15-4764-bbe0-315c57e8536e@linaro.org/
+On 21/11/2024 09:37, Xin Liu wrote:
 > 
-> Yeah Krzysztof is right, I pointed to the wrong patch, but still I
-> didn't added the reviewed-by tag but b4 did. I ran it again and here it
-> is:
-
-
-I know, it happens sometimes. I also experienced it.
-
 > 
-> $ b4 am https://lore.kernel.org/all/20240703142520.207066-3-kamel.bouhara@bootlin.com/
-> Grabbing thread from lore.kernel.org/all/20240703142520.207066-3-kamel.bouhara@bootlin.com/t.mbox.gz
-> Analyzing 9 messages in the thread
-> Looking for additional code-review trailers on lore.kernel.org
-> Analyzing 137 code-review messages
-> Checking attestation on all messages, may take a moment...
-> ---
->   ✓ [PATCH v16 1/3] dt-bindings: vendor-prefixes: Add TouchNetix AS
->     + Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> (✗ DKIM/linaro.org)
->   ✓ [PATCH v16 2/3] dt-bindings: input: Add TouchNetix axiom touchscreen
->   ✓ [PATCH v16 3/3] Input: Add TouchNetix axiom i2c touchscreen driver
->   ---
->   ✓ Signed: DKIM/bootlin.com
-> ---
-> Total patches: 3
+> 在 2024/11/21 15:40, Krzysztof Kozlowski 写道:
+>> On 20/11/2024 17:57, Krzysztof Kozlowski wrote:
+>>> On 19/11/2024 03:20, Xin Liu wrote:
+>>>> From: Sayali Lokhande <quic_sayalil@quicinc.com>
+>>>>
+>>>> Document the Universal Flash Storage(UFS) Host Controller on the Qualcomm
+>>>> QCS615 Platform.
+>>>>
+>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>> Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+>>>> Signed-off-by: Sayali Lokhande <quic_sayalil@quicinc.com>
+>>>> Co-developed-by: Xin Liu <quic_liuxin@quicinc.com>
+>>>> Signed-off-by: Xin Liu <quic_liuxin@quicinc.com>
+>>> That's a bit odd SoB chain. First, these are just one-liners. Second,
+>>> who authored the patches?
+>> To be clear: SoB regarding authorship is correct, but regarding Acks and
+>> Reviews is not. Savali did not receive these tags. If so, please point
+>> to lore discussion with it.
+>>
+>> All this needs fixing.
+> Thank you for your comments. These are the two reviews I received. One 
+> is your reviewd-by, and the other is Manivannan's acked-by.I have also 
+> cc Sayali on the email.
 > 
-> Krzysztof I'm sorry, shall I drop it from the next version?
+> https://lore.kernel.org/linux-arm-msm/rv3ukz6rhgp3x32s74nbftmoqmdxjxmoii3zsd4wipmhudyq7q@ha4l2svl5lim/
+> 
+> https://lore.kernel.org/linux-arm-msm/20241112075619.2ilsccnnk4leqmdy@thinkpad/
 
-Yeah, please drop from this patch and keep only Ack here.
+I meant order of tags. Who received them? You, not Sayali. Then they
+cannot be before Sayali SoB.
+
 
 Best regards,
 Krzysztof
