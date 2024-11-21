@@ -1,145 +1,173 @@
-Return-Path: <devicetree+bounces-123572-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123573-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 915569D52C9
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 19:50:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63E059D5350
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 20:13:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5139E282B36
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 18:50:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 250CE282936
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 19:12:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E47D1BF7E5;
-	Thu, 21 Nov 2024 18:50:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38AF41BC9ED;
+	Thu, 21 Nov 2024 19:12:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PnlRvgmv"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mox8aOIc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 541D94B5C1
-	for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 18:50:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA69D1AAE38;
+	Thu, 21 Nov 2024 19:12:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732215044; cv=none; b=AHpEoNarqLg24q9O3aojGYBVKeUfCpWGvz+fecVLoIZZ46pDGOuqIknwSiytsQ75Wm0bp9EfgaiQ/5geTqcnorHDPD0SutrZGFSs9IBFZNYd2J/dzrqKkJb9dfiQBqLqpQRetg6oeIIArIWc6q/QJ7uquixYDOzLaONk0pWoWQQ=
+	t=1732216374; cv=none; b=aEeXXHSxyJy3o/diGPB3MZQOcC2mCNP4bxWUdLBGjgjPSkEgaG2PmfTjbVstzMSd9PgM/xCkJxsClJspfDLJ+vOMtDFlHPAi1Cv9zVx8QewiH3f+Ub2r9iwlS/VZEpPWcN0NiuXNNoq36+ndtHpd2UWW6xeWXlp0PYL7taxFLmg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732215044; c=relaxed/simple;
-	bh=QxhytElEQlV9KEcf1qGU/kHOFBrKLIqmqeobJDMIfdk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZwhXoCoOOCBHHRdXR8WQaTMPCnZB8Teu0sscxzChxIKQvH0cTJsweZf3304acRj2tsYLpVK9N9cJf27HtiDY000L0rNp6SmQ6oncSJucsak+/JivwiZXG+BS3G22HS4FK1vtFNLS99hVlGdoOOI4qNglle4auIkxCGLjkR8S71E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PnlRvgmv; arc=none smtp.client-ip=209.85.208.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2ff99b5ede4so11624771fa.1
-        for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 10:50:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732215039; x=1732819839; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=7VdCN1lqNouTv5fI9/HnXjA5jG6LjBgxZhTU1QtUgLk=;
-        b=PnlRvgmvCPuMVcKIkdZTjiPJNyc180LEGahDtSeOFiMDGFrcvQERw0izX2vOFpaDl8
-         kcUW4FtCMPjx2I/1EeNHEp/N3ZABp8XggM+vvEJIsUYj9xAfLabKVDqqiLRyl5aMnMQK
-         BbeZX7qs+lfUsAmLNDCH7jkDTbxDJTTzl17z6TdFKHe0eVy1XBI4wFJlUbGILGC5Oery
-         LoNz1+/RjNSubQTZFOashrXT0QPZkjBPfQOxRyV/n3+QCtoOy1NPGaRNRl5Joo4CLdQu
-         AJ61zVTANoOWxR/sLuNm6IgP5Pp0AqDhR3lRS/C2HGCBiCJelVRrjL0St+KX0S5+UQwb
-         OgQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732215039; x=1732819839;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7VdCN1lqNouTv5fI9/HnXjA5jG6LjBgxZhTU1QtUgLk=;
-        b=Ab/cNHwRb6uv+lkcpmaFWPdjrbvFPpbtoTFRM7QJAg423yWWxWNlcp+u7jXOCw4rBF
-         It9QRWZ3ZRPt+n4C1K/5mEuZUfxfeA50Ee2uuwn4uXcdARKor9cS5tAyhmI6WBQUtAUT
-         lEuoHjAavfdCJKlGj/jpu7OMwMVF1KCI1B0czYBmpgxgOL7EIz3a2TXYXgC8JxqRdJLW
-         hIyukWjbrtmVuyuct8agH2cYLXEDDAJvvENKneLCfv/Q3ClJZH7dQdqWZMfXpwwH4O9Y
-         bbjH5XwwwHJfZDejHu1OxQ45iTZpMTgJ2p8jA1huPCc6vHGYhSdp7acmf38iviA9HtIV
-         Delg==
-X-Forwarded-Encrypted: i=1; AJvYcCXPvh33qtWPGgkiSqt2326cCV8SXpombmtdkB5EF8Rzg+PHySgSfTOWm2v+fGlACq68KyaeeA8wV5kD@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyqg3XYI7XGx4+ZrfQpmGAYyYwSDovTddKJHqzNZZvRUq7YAZuu
-	O+YMym94aIk5XwvKoPQ3zYX++c5FigCUBALr5Ry1zW1Hdh+JL012pVFocGwUiKs=
-X-Gm-Gg: ASbGncsSN0QPpN0Uz9xiRr/qsNIEnedAuVTIVVP403GPmjIRgdQtxzukt2Sy+QVuOYi
-	0VoDMNfpYMpH8PBfxGW1Lga9wiqeJ1Uh+A0W1UlsyMQMSt9iScF5Zl3gvic2xfIhFzB6myIKKQw
-	vLnvGkNXONeDcW3iD6KNa8DkSDchc2qvaftb/pksq4oo2wmpU6pf1+qxEzYk73wMYj9RykrflRM
-	q1rda0yzG24sIGy9yyDgq59CWOPJSea/QBS2DpYyTegIFXighGoA+6D5GQTt1Ro3LLCsCFKiZlU
-	8ZGr+9xX/AWoVq+uDMHghPuODH1UMw==
-X-Google-Smtp-Source: AGHT+IGawGN4JuBpuedSADFiEa8NGYWZ3m0+/DjVOzB7JMih6J9Gx73uzRw29DICHWEIBPvcPjyc5Q==
-X-Received: by 2002:a05:6512:457:b0:53c:761c:2a14 with SMTP id 2adb3069b0e04-53dc133b17cmr2947245e87.29.1732215039560;
-        Thu, 21 Nov 2024 10:50:39 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53dd249998asm45033e87.264.2024.11.21.10.50.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Nov 2024 10:50:38 -0800 (PST)
-Date: Thu, 21 Nov 2024 20:50:36 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Pratyush Brahma <quic_pbrahma@quicinc.com>
-Cc: Kuldeep Singh <quic_kuldsing@quicinc.com>, 
-	Bjorn Andersson <bjorn.andersson@example.com>, Konrad Dybcio <konrad.dybcio@example.com>, 
-	Rob Herring <rob.herring@example.com>, Krzysztof Kozlowski <krzysztof.kozlowski@example.com>, 
-	Conor Dooley <conor.dooley@example.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, quic_tengfan@quicinc.com, quic_shashim@quicinc.com, 
-	quic_kbajaj@quicinc.com
-Subject: Re: [PATCH] arm64: dts: qcom: qcs9100: Update memory map for QCS9100
- Ride and QCS9100 Ride Rev3
-Message-ID: <lg5fszrlw7x6yamlyr2vck5ribdfddkjwi47t35qlxamrxd4nc@orwj6vafpnng>
-References: <20241119092501.31111-1-quic_pbrahma@quicinc.com>
- <30fda0e2-f314-49b8-8c1c-bf4fac87050d@quicinc.com>
- <rnrxb5e7xcgnjp4y4id5m5dyswii6xipry3bvtpit2f4c3iqfy@qghr42jz6oze>
- <f123a993-0cd5-4747-80fb-88acb2434880@quicinc.com>
+	s=arc-20240116; t=1732216374; c=relaxed/simple;
+	bh=5Bd7LzDbv3LnxTsz/uRdJOLzWHfUYMPl3aGPFxTFfrU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Z/ThIUHXi6OFg1fd2Esg0si73ST1gXja22h6e1vlPxIEy36zCTvbEl3TyDWT6w1x+bOLUrpDKQSmX4i/hxBVcBdktwBHZAqW6JmnoKs/+rXPcQgrN3rkp1YPGbLKT0BRk0N88v/oflCnAv/P4vt/qKogKXHFPIxThNz8tunfvEI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mox8aOIc; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1732216372; x=1763752372;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=5Bd7LzDbv3LnxTsz/uRdJOLzWHfUYMPl3aGPFxTFfrU=;
+  b=mox8aOIcfKD6XwNrfUHkLQlrTpUPKRgwwz8gbXFs2LcYRmlCM1J1/Mk7
+   f/ybdkUnwISH7TLV57E6QtTSmJeH64azQACOAqWVQ0Hl8Cn2zSf8O2kcg
+   qOiIwHXpcMxfRNlTz2wQ0fanpOwoXl0AuzmmEMqjTrqZvaDXgJlFwx8P4
+   xLiPQzWJrOPw8ov5AjQPkEU8H0b/9xaJ7DERPmJJCbyxAhQN44B0RauqW
+   8b2ytxyHAMwzfnhtSlK7huHR7/y0wDJu6DqaFfnbfEE5O9Q70Lt1yrKI3
+   +oXkeYCeliqShpufZmP9KEnV6J4HD3R/oj+Js1gPWF2MVmDA9xOWfQ1Ow
+   Q==;
+X-CSE-ConnectionGUID: C6iJb40rTJCvncJ807hRMg==
+X-CSE-MsgGUID: SSvVNgARRYynrqn2ko63gA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11263"; a="36016362"
+X-IronPort-AV: E=Sophos;i="6.12,173,1728975600"; 
+   d="scan'208";a="36016362"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Nov 2024 11:12:51 -0800
+X-CSE-ConnectionGUID: oyr9oEs0QU+cFCfA4HYePQ==
+X-CSE-MsgGUID: ACM/sc+ZRSe64iH80jUS9Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,173,1728975600"; 
+   d="scan'208";a="113631196"
+Received: from mattu-haswell.fi.intel.com (HELO [10.237.72.199]) ([10.237.72.199])
+  by fmviesa002.fm.intel.com with ESMTP; 21 Nov 2024 11:12:45 -0800
+Message-ID: <17890837-f74f-483f-bbfe-658b3e8176d6@linux.intel.com>
+Date: Thu, 21 Nov 2024 21:15:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f123a993-0cd5-4747-80fb-88acb2434880@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v30 02/30] xhci: sec-intr: add initial api to register a
+ secondary interrupter entity
+To: Wesley Cheng <quic_wcheng@quicinc.com>, srinivas.kandagatla@linaro.org,
+ mathias.nyman@intel.com, perex@perex.cz, conor+dt@kernel.org,
+ dmitry.torokhov@gmail.com, corbet@lwn.net, broonie@kernel.org,
+ lgirdwood@gmail.com, krzk+dt@kernel.org,
+ pierre-louis.bossart@linux.intel.com, Thinh.Nguyen@synopsys.com,
+ tiwai@suse.com, robh@kernel.org, gregkh@linuxfoundation.org
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-sound@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-doc@vger.kernel.org
+References: <20241106193413.1730413-1-quic_wcheng@quicinc.com>
+ <20241106193413.1730413-3-quic_wcheng@quicinc.com>
+ <9b86a2c9-de7f-46b7-b63d-451ebc9c87dd@linux.intel.com>
+ <2384956c-7aae-4890-8dca-f12e9874709f@quicinc.com>
+Content-Language: en-US
+From: Mathias Nyman <mathias.nyman@linux.intel.com>
+In-Reply-To: <2384956c-7aae-4890-8dca-f12e9874709f@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Thu, Nov 21, 2024 at 05:08:22PM +0530, Pratyush Brahma wrote:
+On 21.11.2024 3.34, Wesley Cheng wrote:
+> Hi Mathias,
 > 
-> On 11/20/2024 5:24 PM, Dmitry Baryshkov wrote:
-> > On Wed, Nov 20, 2024 at 01:41:03AM +0530, Kuldeep Singh wrote:
-> > > 
-> > > On 11/19/2024 2:55 PM, Pratyush Brahma wrote:
-> > > > This patch series is based on Tengfei Fan's patches [1] which adds support
-> > > > for QCS9100 Ride and QCS9100 Ride Rev3 boards.
-> > > > 
-> > > > Some new carveouts (viz. gunyah_md and a few pil dtb carveouts) have been
-> > > > introduced and the size and base addresses have been updated for
-> > > > a few of existing carveouts compared to SA8775P. Also, tz_ffi_mem carveout
-> > > > and its corresponding scm reference has been removed as it is not required
-> > > > for these boards. Incorporate these changes in the updated memory map
-> > > > for QCS9100 Ride and QCS9100 Rev3 boards.
-> > > > 
-> > > > [1] https://lore.kernel.org/all/20240911-add_qcs9100_support-v2-4-e43a71ceb017@quicinc.com/
-> > > > 
-> > > > Signed-off-by: Pratyush Brahma <quic_pbrahma@quicinc.com>
-> > > The memory map for qcs9100-ride-r3 and qcs9100-ride is exactly same.
-> > > A good churn you are first deleting(based on sa8775p) and then re-adding
-> > > for qcs9100-ride*.
-> > > 
-> > > I think it's better to move common qcs9100-ride* to a common file ex:
-> > > qcs9100-ride.dtsi and keep specifics further to .dts files?
-> > > 
-> > > This will ensure common entities are present at same place with no
-> > > duplicates.
-> > I'd second this proposal.
-> Ok then, I see that there are some thermal and gpu enablement changes as
-> well in the pipeline to be posted.
+> On 11/20/2024 6:36 AM, Mathias Nyman wrote:
+>> On 6.11.2024 21.33, Wesley Cheng wrote:
+>>> From: Mathias Nyman <mathias.nyman@linux.intel.com>
+>>>
+>>> Introduce XHCI sec intr, which manages the USB endpoints being requested by
+>>> a client driver.  This is used for when client drivers are attempting to
+>>> offload USB endpoints to another entity for handling USB transfers.  XHCI
+>>> sec intr will allow for drivers to fetch the required information about the
+>>> transfer ring, so the user can submit transfers independently.  Expose the
+>>> required APIs for drivers to register and request for a USB endpoint and to
+>>> manage XHCI secondary interrupters.
+>>>
+>>> Driver renaming, multiple ring segment page linking, proper endpoint clean
+>>> up, and allowing module compilation added by Wesley Cheng to complete
+>>> original concept code by Mathias Nyman.
+>>>
+>>> Signed-off-by: Mathias Nyman <mathias.nyman@linux.intel.com>
+>>> Co-developed-by: Wesley Cheng <quic_wcheng@quicinc.com>
+>>> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+>>> ---
+>>>    drivers/usb/host/Kconfig          |  11 +
+>>>    drivers/usb/host/Makefile         |   2 +
+>>>    drivers/usb/host/xhci-sec-intr.c  | 438 ++++++++++++++++++++++++++++++
+>>>    drivers/usb/host/xhci.h           |   4 +
+>>>    include/linux/usb/xhci-sec-intr.h |  70 +++++
+>>>    5 files changed, 525 insertions(+)
+>>>    create mode 100644 drivers/usb/host/xhci-sec-intr.c
+>>>    create mode 100644 include/linux/usb/xhci-sec-intr.h
+>>>
+>>> diff --git a/drivers/usb/host/Kconfig b/drivers/usb/host/Kconfig
+>>> index d011d6c753ed..a2d549e3e076 100644
+>>> --- a/drivers/usb/host/Kconfig
+>>> +++ b/drivers/usb/host/Kconfig
+>>> @@ -104,6 +104,17 @@ config USB_XHCI_RZV2M
+>>>          Say 'Y' to enable the support for the xHCI host controller
+>>>          found in Renesas RZ/V2M SoC.
+>>>    +config USB_XHCI_SEC_INTR
+>>> +    tristate "xHCI support for secondary interrupter management"
+>>> +    help
+>>> +      Say 'Y' to enable the support for the xHCI secondary management.
+>>> +      Provide a mechanism for a sideband datapath for payload associated
+>>> +      with audio class endpoints. This allows for an audio DSP to use
+>>> +      xHCI USB endpoints directly, allowing CPU to sleep while playing
+>>> +      audio.  This is not the same feature as the audio sideband
+>>> +      capability mentioned within the xHCI specification, and continues
+>>> +      to utilize main system memory for data transfers.
+>>
+>> This same API should be used for the hardware xHCI sideband capability.
+>> We should add a function that checks which types of xHC sideband capability xHC
+>> hardware can support, and pick and pass a type to xhci xhci_sec_intr_register()
+>> when registering a sideband/sec_intr
+> 
+> Just to make sure we're on the same page, when you mention the term sideband capability, are you referring to section 7.9 xHCI Audio Sideband Capability in the xHCI spec?  If so, I'm not entirely sure if that capability relies much on secondary interrupters.  From reading the material, it just seems like its a way to map audio endpoints directly to another USB device connected to the controller? (I might be wrong, couldn't find much about potential use cases)
 
-What kind of changes? It's really hard to make a judgement if you don't
-describe what is happening.
+Yes, that is the one, 7.9 xHCI Audio Sideband Capability.
 
-> Having a common dtsi file for these iot socs would help in reducing the
-> duplication at board
-> dts file level for all these changes. In that regard, does naming it
-> "sa8775-iot.dtsi" sound good? The board files can include this dtsi.
+I had that in mind when I started writing the sideband API.
+This is why registering a sideband and requesting a secondary interrupter
+are done in separate functions.
+The concept if still similar even if '7.9 Audio Sideband Capability' doesn't
+need a secondary interrupter, we want to tell xhci driver/xHC hardware that
+one connected usb device/endpoint handling is offloaded somewhere else.
 
-qcs9100.dtsi?
+I don't think we should write another API for that one just because more is
+done by firmware than by xhci driver.
 
--- 
-With best wishes
-Dmitry
+The only change for now would be to add some "sideband_type" parameter to
+xhci_sec_intr_register(struct usb_device *udev, enum sideband_type), fail the
+registration if isn't "software", and save the type in struct xhci_sec_intr
+
+I'll add hardware sideband support (7.9 Audio Sideband) later, but it would be
+nice to not change the API then.
+
+The name change from sideband to sec-intr is a bit unfortunate with this in
+mind. Was there some reason for it?
+
+Thanks
+Mathias
 
