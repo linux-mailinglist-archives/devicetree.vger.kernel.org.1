@@ -1,156 +1,143 @@
-Return-Path: <devicetree+bounces-123483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123485-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDE389D4A94
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 11:18:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 324ED9D4A98
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 11:18:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83242282FCB
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 10:18:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB605283054
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 10:18:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E94C1C3026;
-	Thu, 21 Nov 2024 10:18:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD6AD1CD202;
+	Thu, 21 Nov 2024 10:18:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="kkZ8CDWe"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="CE5VMrST"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A53F2309B6;
-	Thu, 21 Nov 2024 10:18:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC4BD1CBA1B
+	for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 10:18:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732184294; cv=none; b=H+ZNAZxchYWBFOyVKmVx/tg8IMd208GZKH+hK8RKEgybJaExqBwvaS+Xnx3sJmG0955p9BTfzFA5v3UyjZ3PRuxpthNF9AyGBzCPsq3wIxBDiV7vgiklY+5D40hNRBgMGD1lqgFptLH/vpOhsDmjsFYTO+2k1jW6cI7v9oDZpqQ=
+	t=1732184310; cv=none; b=J2oQRCEV7dA4gcpGiZAxaRSKy0fe+8tNajI1+WRtNhE+cqFj47CWN1vnketJ+lbfVHx7oTg8zWVcr7X80lTPbYmh4q8IofCBIKJvza53+MwgWu9khFxxs2/dABCjQGFYpmrfrOIKu00m8ix+/SXimGeY6C36ZkkUO7UkfVRDkR8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732184294; c=relaxed/simple;
-	bh=t0c2i8+GlYTfqDD9xH1LK6zNin2RsOoo+ALw02hJUzo=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=LYHhamUpmkEplD4Rr4YJkTzjcTqC5nSFJbXq8P1PmdaH2JX8CDQQmylCL8N3Kqs37+yKl51MfJOMlbc3jJg8QmyjfeiLYn4CspLtpycFNc1aTYUU+4LEXKFaPvo/7M3lkya6wMFvmD8p8aqpFCFm3pT367vVmUjWhhoVHP7PseU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=kkZ8CDWe; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id EB3AC20002;
-	Thu, 21 Nov 2024 10:18:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1732184288;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=PSpipFllfpXYYHDQWPsv/JoqwKuQO0NyaVwH5k8jcGY=;
-	b=kkZ8CDWeHL9oj3zg2E3STPYPZD7riH0WgjIXJzDp1aFWevI2EPp6QntDBcqIXbiY1evq/J
-	l7GXMAN0QM+saJUBNgiJJnP13bt5gOAZEG9bI+PCqXtqxZT3bUKZwBupho21e0FffKAC/7
-	g0NWW1+UPe76/Ef9UMo3RwzM/VgdE2lC+FjNT4Sb6lZ8KY/Dz6jfmfE2i1+V8FaEKs2hIj
-	UlqPvLjO5ehQ5JL7NmsGhTwin6cT9YXswiarpD5pQLj+g6tkTwSLXVMK+dioneoPF1L8x2
-	QdkqxEhEgTal33CY0NZV3Qp2ikTlysNwIdI+gGOVnR1CA+06XDHc+dPLpM7tYg==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>, Romain Gantois
- <romain.gantois@bootlin.com>, Thomas Bonnefille
- <thomas.bonnefille@bootlin.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>,  Rob Herring <robh+dt@kernel.org>,
-  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,  Thomas
- Petazzoni <thomas.petazzoni@bootlin.com>,  Herve Codina
- <herve.codina@bootlin.com>,  Milan Stevanovic <milan.stevanovic@se.com>,
-  Jimmy Lalande <jimmy.lalande@se.com>,  Pascal Eberhard
- <pascal.eberhard@se.com>,  linux-renesas-soc@vger.kernel.org,
-  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,  Gareth
- Williams <gareth.williams.jx@renesas.com>,  Wolfram Sang
- <wsa+renesas@sang-engineering.com>
-Subject: Re: [PATCH v2 2/2] ARM: dts: r9a06g032: add r9a06g032-rzn1d400-eb
- board device-tree
-In-Reply-To: <CAMuHMdX4nMA6HSu=UkNEWJWKK432VB5YVQCWn_rDZ6mNSv+41g@mail.gmail.com>
-	(Geert Uytterhoeven's message of "Tue, 12 Nov 2024 11:50:29 +0100")
-References: <20230209133507.150571-1-clement.leger@bootlin.com>
-	<20230209133507.150571-3-clement.leger@bootlin.com>
-	<CAMuHMdWUorkDYXZvsd-9rjwEkeJYC_FMfexZHaGYHDry=9Yjdg@mail.gmail.com>
-	<20230215092933.2f71ece0@fixe.home>
-	<20230215115441.361aed53@fixe.home>
-	<CAMuHMdVhGFyrWx6oD-K9WhZRtYT_xJ_kWRA+vhdvB_JubFk8YA@mail.gmail.com>
-	<CAMuHMdX4nMA6HSu=UkNEWJWKK432VB5YVQCWn_rDZ6mNSv+41g@mail.gmail.com>
-User-Agent: mu4e 1.12.7; emacs 29.4
-Date: Thu, 21 Nov 2024 11:18:07 +0100
-Message-ID: <87mshsvqjk.fsf@bootlin.com>
+	s=arc-20240116; t=1732184310; c=relaxed/simple;
+	bh=50fDtCwdlLAXgTUvQCXPWs2a7JSngg3l2XnXQKureNw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=PsHwbkhuIQMoYvtM+i4PjwTgrbSXIRMJPrNTuKO8xDnwHXj7aOqFhyT9hZH1Wj8eRJlW4/137eE82Z9947cTerab1MalXkM3K8oyrVOB8fD/jTT/kP58zYngFrz7N0JCvgp1JGDy6rb/fWazMpvhnqOuXrSuwRorYd64vk+YJwU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=CE5VMrST; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-3823cae4be1so429755f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 02:18:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1732184306; x=1732789106; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1vhg//+9gK9skfAKoRMQAk1PtzxhM2yRzEZGGXcWEoo=;
+        b=CE5VMrSTG+/uUm/xP0LY+WJDCS1LCVDE+uMoYJCL8rHtaPXp5S0qIajHKxyn5YyQqS
+         /nsnKgPz0jv7S6Ya0PZilsHGBCA5Esuz8NRYGBu4+7+UIdBZDWQcwxyxRPj4cVGjcMCA
+         033eZDdHiam9gshJu8r1qhpzTRTno1wLxKq061lIIUaGNx8/A5tNEX5vN4Sm3O6eYSSD
+         UbCVEC0TAUBi/+EbFU5uyw769y62d0MXiUpuSz9zXvqYS8ZuKRrgUNgryr419iB5mjEq
+         H8rB7nUYv6cTdgN5lZjZoq/mxHE7jQtgFBK5/DSBjQtIjzx/UIkIcOjzTd8Pm6NZMXIh
+         sFEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732184306; x=1732789106;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1vhg//+9gK9skfAKoRMQAk1PtzxhM2yRzEZGGXcWEoo=;
+        b=VdwR4BVQXacH2jop17/egrbVPrg9OzwqyWwGYJYDl9zfc+hGaWVLXWZDE4HXioNmzq
+         dq6RBlSwf3YP/wfFqanwsJ9JW1wax5EbE5m8e7OhY8GOHS0TSp7yuDV6Bgno/MEneK2T
+         0laoVKIOboHU/r8JpLaiirgYqmKeOHuqTeequccsK3/yjgOuaPaXt3I49l9/eU4Hyxx1
+         uOzLhWusQIRjUWh8Pv0ab1DICkM71qOEBoCshfTj203h9ESZVxt8eYU7D40HI4NhduKg
+         szl7MXIZ7mL9kJ7hX8qH/9NNUp5B9MWJkV3LVFLECvhMN+xaVlMjTR1RYjngcSBR67sq
+         9l5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWGn32xXLgOdyVK2Vde0IcJ63WcLs4+jNoQCuCQhjKIXwg1PgDcJi/QyqIFJJspPxc4HXQQJbwRQGWB@vger.kernel.org
+X-Gm-Message-State: AOJu0YyvryCI7D4iCivfgFss9DxLReBaSbbAa48G3UlEjSrdcaP9vB4r
+	njfbZIsmpsFzq9bPerfbIqnvqwMvWiOY7tk1gejTaQHKCTbjzV59Zo3/zxUQSXI=
+X-Google-Smtp-Source: AGHT+IGBW7L660mzuPSTV297VS/czb6kj0Q0yR8PtJ9nj19x1enKRAJUUVHucWAHQnMBQx+HVW4jjQ==
+X-Received: by 2002:a05:6000:796:b0:382:372a:5722 with SMTP id ffacd0b85a97d-38254b0e452mr4741387f8f.37.1732184305578;
+        Thu, 21 Nov 2024 02:18:25 -0800 (PST)
+Received: from [127.0.1.1] (frhb82016ds.ikexpress.com. [185.246.87.17])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38254910796sm4598065f8f.47.2024.11.21.02.18.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Nov 2024 02:18:25 -0800 (PST)
+From: Guillaume Stols <gstols@baylibre.com>
+Subject: [PATCH 0/9] Add support for Software mode on AD7606's iio backend
+ driver
+Date: Thu, 21 Nov 2024 10:18:22 +0000
+Message-Id: <20241121-ad7606_add_iio_backend_software_mode-v1-0-8a693a5e3fa9@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAO4IP2cC/yWNyw6DIBAAf8XsuTQIFqO/0hiC7NJuGsWCfSTGf
+ y+px5nDzAaZElOGvtog0Zszx7lAfarA3918I8FYGJRUTS1lJxy2RhrrEC1ztKPzD5rR5hjWj0t
+ kp4gkLqbFzutOqUZDSS2JAn//m+twcKLnq9zWQ8LoMgkfp4nXviphEWIS5lzrEYZ9/wEgiwSDp
+ wAAAA==
+To: Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Jonathan Cameron <jic23@kernel.org>, Nuno Sa <nuno.sa@analog.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Michael Hennerich <michael.hennerich@analog.com>, 
+ devicetree@vger.kernel.org, dlechner@baylibre.com, jstephan@baylibre.com, 
+ aardelean@baylibre.com, adureghello@baylibre.com, 
+ Guillaume Stols <gstols@baylibre.com>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1732184304; l=1846;
+ i=gstols@baylibre.com; s=20240417; h=from:subject:message-id;
+ bh=50fDtCwdlLAXgTUvQCXPWs2a7JSngg3l2XnXQKureNw=;
+ b=JtEIB3cy6xUpkjoNi88WS64a1EN36dL1aR81+1h2XpI2/dFQNvx51GRJLAOVh3RlKZkDoO4P7
+ H9PblPCK032BEA1KIvh7ou+qvGBbf6Sm5uPKkUqAz87McSJ/eyzkQtw
+X-Developer-Key: i=gstols@baylibre.com; a=ed25519;
+ pk=XvMm5WHuV67sGYOJZqIYzXndbaJOlNd8Q6li6vnb4Cs=
 
-Hello Geert,
+This series adds the support for software mode when the ADC is used in
+iio_backend mode.
+The bus access is based on Angelo's ad3552 implementation, that is we
+have a particular compatible for the backend (here axi-adc) version
+supporting the ad7606's register writing, and the ad7606 is defined as a
+child node of the backend in the devicetree.
+Small changes are added to make the code a bit more straightforward to
+understand, and more compact.
 
-On 12/11/2024 at 11:50:29 +01, Geert Uytterhoeven <geert@linux-m68k.org> wr=
-ote:
+Signed-off-by: Guillaume Stols <gstols@baylibre.com>
+---
+Guillaume Stols (9):
+      iio: adc: ad7606: Fix hardcoded offset in the ADC channels
+      dt-bindings: iio: dac: adi-axi-adc: Add ad7606 variant
+      iio:adc: ad7606: Move the software mode configuration
+      iio: adc: ad7606: Move software functions into common file
+      iio: adc: adi-axi-adc: Add platform children support
+      iio: adc: adi-axi-adc: Add support for AD7606 register writing
+      iio: adc: ad7606: change r/w_register signature
+      iio: adc: ad7606: Simplify channel macros
+      iio: adc: ad7606: Add support for writing registers when using backend
 
-> Hi Cl=C3=A9ment,
->
-> On Wed, Feb 15, 2023 at 12:31=E2=80=AFPM Geert Uytterhoeven
-> <geert@linux-m68k.org> wrote:
->> On Wed, Feb 15, 2023 at 11:52 AM Cl=C3=A9ment L=C3=A9ger
->> <clement.leger@bootlin.com> wrote:
->> > Le Wed, 15 Feb 2023 09:29:33 +0100,
->> > Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com> a =C3=A9crit :
->> > > Le Tue, 14 Feb 2023 17:25:14 +0100,
->> > > Geert Uytterhoeven <geert@linux-m68k.org> a =C3=A9crit :
->> > > > On Thu, Feb 9, 2023 at 2:32 PM Cl=C3=A9ment L=C3=A9ger <clement.le=
-ger@bootlin.com> wrote:
->> > > > > The EB board (Expansion board) supports both RZ/N1D and RZ-N1S. =
-Since this
->> > > > > configuration targets only the RZ/N1D, it is named r9a06g032-rzn=
-1d400-eb.
->> > > > > It adds support for the 2 additional switch ports (port C and D)=
- that are
->> > > > > available on that board.
->> > > > >
->> > > > > Signed-off-by: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.co=
-m>
->> > > >
->> > > > Thanks for your patch!
->> > > >
->> > > > > --- /dev/null
->> > > > > +++ b/arch/arm/boot/dts/r9a06g032-rzn1d400-eb.dts
->>
->> > > > > +       pinctrl-0 =3D <&pins_eth1>, <&pins_eth2>, <&pins_eth3>, =
-<&pins_eth4>,
->> > > > > +                   <&pins_mdio1>;
->> > > > > +
->> > > > > +       mdio {
->> > > > > +               /* CN15 and CN16 switches must be configured in =
-MDIO2 mode */
->> > > > > +               switch0phy1: ethernet-phy@1 {
->> > > > > +                       reg =3D <1>;
->> > > > > +                       marvell,reg-init =3D <3 16 0 0x1010>;
->> > > >
->> > > > marvell,reg-init is not documented in any DT bindings document?
->> > >
->> > > Indeed, this is not somethiong that should be made available here. I=
-t's
->> > > only inverting the LED polarity but supported by some internal patch.
->> > > I'll remove that.
->>
->> > I actually was confused by a property I added in another device-tree b=
-ut
->> > marvell,reg-init exists, is handled by the marvell phy driver and used
->> > in a few device-trees. Strangely, it is not documented anywhere. So I
->> > can either remove that (and the LED won't work properly) or let it live
->> > depending on what you prefer.
->>
->> In that case, please keep it.
->> But the property really should be documented, one day...
->
-> Any plans to follow-up?
+ .../devicetree/bindings/iio/adc/adi,axi-adc.yaml   |   7 +
+ drivers/iio/adc/ad7606.c                           | 202 +++++++++++++++++----
+ drivers/iio/adc/ad7606.h                           | 113 ++++++++----
+ drivers/iio/adc/ad7606_bi.h                        |  16 ++
+ drivers/iio/adc/ad7606_par.c                       |  58 +++++-
+ drivers/iio/adc/ad7606_spi.c                       | 141 +-------------
+ drivers/iio/adc/adi-axi-adc.c                      | 178 +++++++++++++++++-
+ 7 files changed, 500 insertions(+), 215 deletions(-)
+---
+base-commit: 33d38f912d5ca05501c9bbfe14e0150da9ca85b6
+change-id: 20241009-ad7606_add_iio_backend_software_mode-567d9c392243
 
-Cl=C3=A9ment is no longer working with us; most of his ongoing work has been
-offloaded to colleagues and mostly taken care of but this one has
-clearly fallen into the cracks :)
+Best regards,
+--
+Guillaume Stols <gstols@baylibre.com>
 
-I'm adding two colleagues in Cc in case they can have a look.
-
-Cheers,
-Miqu=C3=A8l
 
