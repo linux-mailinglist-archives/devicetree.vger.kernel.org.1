@@ -1,99 +1,177 @@
-Return-Path: <devicetree+bounces-123441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35C089D4897
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 09:14:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EE829D48A1
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 09:19:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 95090B2332C
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 08:14:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B13001F2241A
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 08:19:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C1CB1CACE9;
-	Thu, 21 Nov 2024 08:14:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCE9F1C1F35;
+	Thu, 21 Nov 2024 08:19:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="iykhJj5P"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PR68RSX8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E759B1AA7A6;
-	Thu, 21 Nov 2024 08:13:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE5574502F;
+	Thu, 21 Nov 2024 08:19:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732176843; cv=none; b=nwy/5xLiixhAVaQrDxGY1zr7xxlbM51u9BKTJn+pS4/WqJ9qg5EwB5fCf5ej7Frhmhtj4WtSPa8a7HQ1Xq4mZg1DcRS5VEI8QcLbTtHu0h9pnRc07uuvIQhzxo0ojP99DJMwbxltOaq/vI8hp5xrnvkLDhXHQScYPNnEmqNNyxA=
+	t=1732177179; cv=none; b=Hk1/Kf2MOJUT2hdOgIe4N7HLRyFfcH4PRkSPbr28POvb/uJTltF73YxRUieDfgNMMWuFADzz4ApO75pB6ha5PbrwBNb0ONJuUI23+vhvhoGcTIjcJT3HZ11vfVNFnXCBtpFYFk5bf+EtTuawaKd5sz1l34FXTxrt70XjCpSGvqU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732176843; c=relaxed/simple;
-	bh=CafMYVZ79DZqi/C5+exbASPocFVFWBObt8oXVHiDf3I=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=aWEFmwxmtqv8YZBkFERnh9iklmsqZZ400w4E+uonGYkiceLstE5DNk/aIlGV6gOcwLID/fp83VhWmWnYt4JhqZwjjQSeEI4k4r9U2nrij4tDywD7Kbj9uET+X1NIKb8mwpzcevIMYWwOGi1H1Y7FZcktqx4q1vcfU+gAXhFEdKQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=iykhJj5P; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id C75B2C0002;
-	Thu, 21 Nov 2024 08:13:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1732176831;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=o/7TdB2V8Qari8AxpRA55wppeVs7piY9IdN4S6uXBi0=;
-	b=iykhJj5P5oKabyN/wbVvS/lWLB59wkctPUKwkPDJ4hcaCH9DkyzaCk9vC+7cINQ32qDIZk
-	JOvrC1fpxMhBSx9scFzhO7+jR9R7DXppEoMCyRoW4ont/6IAIo/NeweCrVVkXzeRfYq6q1
-	HHH5UyV4a7nii78i3zdWexowkO9b9DA/t3gvJfAJqI8kWN62LAD9KHS9468T848n7RRwV8
-	WBQjRnzZi8Uk3K5RyZaoOh+raIDHzkCz+DGEba0aN2woidWTdIxN0P81Z6PaByyU61LwDB
-	EL8+XmnlbP9EAx/CeJoSpdFEwMM2xzfQhD1WUEcCn1h9jWMiC2nG2qZzrc0AAQ==
+	s=arc-20240116; t=1732177179; c=relaxed/simple;
+	bh=WPdD5/UEOPjLoF6A+GIsLEj9CnaP14w3kT6NsIlW4wA=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=CcZ/LIcKdSIyphqmWTaydN12+T2CTdUPqrrRI0OmMZZL/uKIo8XfLYlrKCnt5AzRbW8jPNC1qOHBUIbHtu26rVvdb1y3HHWV/ark3EQokjbzJRmbn3zlz684z6MslIkyf8cNSUgLh9znXI+TKNATBLbGeKXOUnmHZLWWCzT2dVg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PR68RSX8; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-53c779ef19cso601770e87.3;
+        Thu, 21 Nov 2024 00:19:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1732177176; x=1732781976; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tFdEv+UI9GjMZSRUyorsGzJEYalDRkuczdcBGUSZQTM=;
+        b=PR68RSX8nVaSAxNfTvSd0+5Dv4kyD1I34KlrOK7OzAEInu/vDaXUu4LJokwCMBkQwP
+         KBwKlFcvvNWacm0/AG2SYhbE/F6HYI16lAucfy3UaqbYj8MzrhLN9gmlisX+pjXzz4Jy
+         xCDyjbmwgAPH4UytPo6wrkt68/uqptHcmFiX9/ZhjXZu/P2WleEp3GIb+ddhnhwrsx2W
+         brF2yxBUNlcWYoFCyvqgVtuW7aQYoUpWbNNqUUsN2gHtem0ZvlihNgtjV/i7zHtmgYxW
+         AeihxBC40zBX93MULr47gj1HLieA94NgpX0cc1Mbi8gXxBGfRh43nAw+GBuGcwT7WogG
+         kU9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732177176; x=1732781976;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tFdEv+UI9GjMZSRUyorsGzJEYalDRkuczdcBGUSZQTM=;
+        b=ASyzEtle0/14EzePuzAcRMygJVK861upUi0hcuDVBx3jE0Zw9NCWVWrdGCmQJhKU2v
+         5igowI67UTawivADRAYm6WZS31Ct7cCiJLHDHv37xbBeykOYTLBcVRcxhCUqpjCm14vT
+         vJ/MYOMhGMCcm2AO5It1gHZI85hyTJXJQ4hsxK54MQ6suZCtXhyM7X1taZFhwyx5EZSa
+         XYpQYXDGJ4Bb+XQBHLX9MLlnpBc8KVKlybvzeBwajc81Y3bu2f0akQKRV9L1G61eCkU5
+         HF5kK7cE1ux2XiVV9BeP37BldP0z3xitImxdRk45ESPWQFISyv2FlGPWseHsnJIT1qr2
+         HfrQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUvXifFCurvBYLPQMugldEO44JgBkS3m7KQuzg1fXygjAgVQ1WvnkNbq1RdiCmuguEsypr/+tBVY4OA@vger.kernel.org, AJvYcCVBjZVVEZZ2TBPUxMtSwshw0yTM6m3qJVFVWvYJxsmngoWHCpfwWtNaP5694GJJRM5JcQkGjeCpV0WK@vger.kernel.org, AJvYcCXwoDBj5Gj0BYnfAmlbbWapbD8RgWFnHC/YW8xLzuFlKY+KEwVmOqC5DSIMqWIYJYWT/fAmeA0rXUau7H0f@vger.kernel.org
+X-Gm-Message-State: AOJu0YycMPyuGVI4L/JdL369WIc4fsusbHsPwCSwLs8zAMiTLFQsRBI0
+	iwvZ0ljBfb1+YPIOcBvzB6KK6Qh7i/s6s0s732QVYDwXeqjRmseuASY5cdq2
+X-Google-Smtp-Source: AGHT+IHhyhrhbQSvtvUTpaBHdlwQYymca0wYStYyTz3imcKjZYpxET3kcRP5cRgFg1pAlCdVehN2eA==
+X-Received: by 2002:a19:6b15:0:b0:53d:c15a:307d with SMTP id 2adb3069b0e04-53dc15a328amr1871624e87.45.1732177175518;
+        Thu, 21 Nov 2024 00:19:35 -0800 (PST)
+Received: from mva-rohm ([213.255.186.46])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53dbd4723c0sm890050e87.194.2024.11.21.00.19.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Nov 2024 00:19:33 -0800 (PST)
+Date: Thu, 21 Nov 2024 10:19:23 +0200
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/8] Support ROHM KX134ACR-LBZ
+Message-ID: <cover.1732105157.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Thu, 21 Nov 2024 09:13:49 +0100
-From: Kamel BOUHARA <kamel.bouhara@bootlin.com>
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: Luis Chamberlain <mcgrof@kernel.org>, Russ Weight
- <russ.weight@linux.dev>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Andrew Morton
- <akpm@linux-foundation.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Dmitry
- Torokhov <dmitry.torokhov@gmail.com>, Marco Felsch <kernel@pengutronix.de>,
- Henrik Rydberg <rydberg@bitmath.org>, Danilo Krummrich <dakr@redhat.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-input@vger.kernel.org, Krzysztof Kozlowski
- <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH 0/5] Input: Add support for TouchNetix aXiom touchscreen
-In-Reply-To: <20241119-v6-10-topic-touchscreen-axiom-v1-0-6124925b9718@pengutronix.de>
-References: <20241119-v6-10-topic-touchscreen-axiom-v1-0-6124925b9718@pengutronix.de>
-Message-ID: <560bfaab3c6d1fb1190f0b1daa55e797@bootlin.com>
-X-Sender: kamel.bouhara@bootlin.com
-Organization: Bootlin
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: kamel.bouhara@bootlin.com
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="+z5gtmrLHvQWYdLR"
+Content-Disposition: inline
 
-Le 2024-11-19 23:33, Marco Felsch a écrit :
-> Hi,
-> 
 
-Hi Marco,
+--+z5gtmrLHvQWYdLR
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> This adds the initial support for the TouchNetix aXiom touchcontroller
-> family.
-> 
-> This series is the successor of [1] (many thanks to Bootlin) but I
-> started from a fresh v1 since I had to rework the driver completely.
-> 
+This patch series introduces support for ROHM KX134ACR-LBZ and
+KX134-1211 accelerometers.
 
-Thanks for taking over and I honestly think it's good idea to completely
-start it from scratch, I should have done it as well.
+The KX134ACR-LBZ is almost identical to the KX132ACR-LBZ. Similarly the
+KX134-1211 is almost identical to the KX132-1211. The differencies
+visible to the driver are different g-ranges and the "Who am I"
+-identification register's values.
 
-Greetings,
---
-Kamel Bouhara, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+This series does also convert parts of the GTS helpers and the kx022a
+driver to use __cleanup - based scoped free/unlock operations, and fixes
+the value of required wait time after sensor reset. The wait time value
+fixup is cosmetic/documentational, as the time that has been slept has
+likely been larger than required due to the msleep() implementation.
+
+Revision history:
+v1 =3D> v2:
+ - Rebased on iio-fixes to avoid conflicts with queued fixes.
+ - Added the reset delay change to the series to avoid conflicts. Was
+   previously sent as an individual patch:
+   https://lore.kernel.org/all/ZzWfXbjaDkFnu_Jg@mva-rohm/
+ - Added support for kx134-1211
+
+The v1 can be found from:
+https://lore.kernel.org/all/cover.1731495937.git.mazziesaccount@gmail.com/
+
+
+The patch 1/8 is the delay fixup mentioned above.
+
+The patch 2/8 contains GTS helper change, which is independent from the
+rest of the series. It can be applied/rejected independently.
+
+Patch 3/8 changes kx022a to use scoped mutexes. It can also be applied
+as an independent improvement even if the kx134acr-lbz support was not
+added.
+
+Patch 4/8 adds mechanisms for supporting sensors with different
+g-ranges in the kx022a driver.
+
+5-8/8 add support for new hardware, kx134acr-lbz and kx134-1211.
+
+---
+
+Matti Vaittinen (8):
+  iio: accel: kx022a: Improve reset delay
+  iio: gts: Simplify using __free
+  iio: accel: kx022a: Use cleanup.h helpers
+  iio: accel: kx022a: Support ICs with different G-ranges
+  dt-bindings: ROHM KX134ACR-LBZ
+  iio: kx022a: Support ROHM KX134ACR-LBZ
+  dt-bindings: iio: kx022a: Support KX134-1211
+  iio: accel: kx022a: Support KX134-1211
+
+ .../bindings/iio/accel/kionix,kx022a.yaml     |  11 +-
+ drivers/iio/accel/kionix-kx022a-i2c.c         |   4 +
+ drivers/iio/accel/kionix-kx022a-spi.c         |   4 +
+ drivers/iio/accel/kionix-kx022a.c             | 170 ++++++++++++------
+ drivers/iio/accel/kionix-kx022a.h             |   6 +
+ drivers/iio/industrialio-gts-helper.c         |  19 +-
+ 6 files changed, 147 insertions(+), 67 deletions(-)
+
+--=20
+2.47.0
+
+
+--+z5gtmrLHvQWYdLR
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmc+7QYACgkQeFA3/03a
+ocUxdgf/WIjdPxRbMVlVfOS1RcZcxBagWdrHGmSaHVbs1fc5gDm3E/VcxO/JNBR5
+kYhooddWQ1z/8zixVa9rAoXzP5j34b2PfvYuOTAVynUJ0TAsouNMbAosZ6dKhbN2
+I1sxIR8lzpzXikv/VIQG9rv3nd8FUi/i5b2oKOS+081ifyydQyr5JImUigg6Iwf4
+6sdUgksO8ZABXEvOiFU/KdSEzlfK1KUFLK905OCK2CthHn/DxhUycmzVw+JIz/85
+YeFhEwFawGY2YhsuVqmvKMAzjuP6B9RiR3AimSmDjmWJcDLmKs5gIs1xsHJwpTFU
+m94x26ADD2VZkLSlMXCfJq0xnaqNHg==
+=dyFF
+-----END PGP SIGNATURE-----
+
+--+z5gtmrLHvQWYdLR--
 
