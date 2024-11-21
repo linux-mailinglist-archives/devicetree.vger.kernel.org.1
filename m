@@ -1,156 +1,220 @@
-Return-Path: <devicetree+bounces-123591-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123592-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 774BA9D556D
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 23:26:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05ACB9D558A
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 23:37:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 79BF3B241C8
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 22:26:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9FDB52829E4
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 22:37:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1AED1DC05D;
-	Thu, 21 Nov 2024 22:26:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 760521D9324;
+	Thu, 21 Nov 2024 22:37:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UwIK5szI"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jVKzZhxO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D0C61D9592
-	for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 22:26:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F5DC1CBE81;
+	Thu, 21 Nov 2024 22:37:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732227998; cv=none; b=l3XrXMyMU0FkKDrmZmo1ps8FyGSQxsg5WsfE25BQhSuF+Ljp5k4WnO3WNbm4iIWVXizUaNyIRQ+mri62JfS+F4PyqYVR/EsBGN8OWK5hrubrBlp4og18K/0fm2yKPYo3ORr85E4EABrBejJnlASWdm7KiUs+l7rPwk0iM0U7Opg=
+	t=1732228626; cv=none; b=altGW6yQGR+T1LAuBBTcRnCYxMUHKZZDVo5pifgsB2H/QcXU3WZ4vgjFQFXCEZQ1wm9KhM091jt7yKqKvVcP1mJ2JeiibvFWzgInIdma/YiXnXbi+dLmReRndR4bdUyYzJ9JLIEVMsaWzy5TvBbq0EH9IFE1jkBqtifva/m4ZMo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732227998; c=relaxed/simple;
-	bh=MwpJjmqk4TaUXolDoFjm8xRXP+trTfjnw6QHzDw4V2w=;
+	s=arc-20240116; t=1732228626; c=relaxed/simple;
+	bh=MUGLVwS75jQUSL12uOeu0NQbPRYbChsHCYEPGyBY20A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OJW0YKQfzqLGnscjKZlL/Yx+rt+CH9J1m8XQow7ABzDvV9U/R5d1GluGIan0C5rHqXXub/enyPus4gm2YUl+MxISplj+4Fx16ZG4sB3H3YMYrOImdutJVz21ZktKZZJlBCI58+MJelj0xYUSdKxarKewETW4qnwtjLKJI8fWr3U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UwIK5szI; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-539f6e1f756so1544832e87.0
-        for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 14:26:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732227995; x=1732832795; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=67XPB05AyK/btByIcMqDcORxZdqhCZravm4pxfm3Pu0=;
-        b=UwIK5szIklVZ+K8cHMJgeCno0m0tJ5dVaS/TR+mw7/db0hq5rJfH0TywIvegraB+uH
-         V+IU2DeXkGBH/bx/5XR3E8XpZSU0OsO4TExqIxVqANJ6kzuaFSDqtnFcW1kxZKIdVyZv
-         HLYbTZIM2o6OZABSqsigaSwOchfvcz1TaLnamHVkKT4jRWbn+RjXQqRLZwuIqc5M+A8t
-         DPRKAtI3uWNQG/aRbk1dkQnxMJUR1W9a4kYjcMAy/1Q/cYf0b858zTviGASE/qAT4zcJ
-         YhlB0XQF2l+Ky7iSQS5fmDJkvyBZvH/GXk/L8e4Yw47HcjRal4E1NMfCzBZrP7HJDJY/
-         aCGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732227995; x=1732832795;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=67XPB05AyK/btByIcMqDcORxZdqhCZravm4pxfm3Pu0=;
-        b=pSTHLXm4RBtF32WSYWYssHsH9m/lcau0FxUbvmy/qjxu2AD7aP/enHZujPgBYsdV2b
-         Ys8zWvZMmSSWKRP/1bY0XWeRCEZQWVUUJbx1KXZxcnse2HlQgNpIxBBvveQjo62WVIwn
-         XWSkb4aCsIPYgZuHaYv46Uaf5OMbrJxU0MaI63G0g3c/ujRZwhnvOayuioqYXuge5Rey
-         OCMOYEi1z/C/I5ZrESXKHxYaA0xPOSQ9dAGFmWhKZZFFiZsNGvtc+LzJw1lADMec5lSO
-         uMCEiztlqL2bjNB0y+ua+ykjtjrM+9Ac0i0H+KWU0I8kDVO/pSzxEgkrpeYNQfZW7aNB
-         G2wA==
-X-Forwarded-Encrypted: i=1; AJvYcCU7+rShLtB2HwblaP5e3NMOBMJp6r+3MVsU+PWptBmFm/sqCfUGQDPCjPEpksK2xj5bpgLVmq4YQBo7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy74O+yylOGyXJHq+cbcmHk9FX0/dB0x1cOSbPN2lOngsQ/S9BT
-	GsAhUHm0xkLRSIYO1nfzIlhMw9zOgoXNYQu5vMa4jaIY7MYcpuANwbCTalwdIaQ=
-X-Gm-Gg: ASbGncsBzjNfqg+OxYKYm8r6nrJSZRWdUtDhCmNGeLAZJAro+oYta6DRGtvl9y49iKp
-	3ueFZDnSZPuJwJs/DPC4dV3qK3sAZWQCJO1hC3yOozgixSBhMqBfWWM7E4oAJLN68yOsEAEZfsF
-	PQIsntdyrT5NVSzZqt8x4TpFKrHpit6grYnwk6MzZ/SS0lRlcw3KpF018i2Pap6b2ejnfiIfESv
-	uRnEsUU+vUiKsIRcMKCJuu1pKuff2Gyfc8Zjt43oGdOXpuskTWp1C8DTkl+VlxSOyYNwBeHPHy+
-	0Y/HalLqlQ5qj9NQX74XXFyNOIG6lQ==
-X-Google-Smtp-Source: AGHT+IGyBizlR5e3z6q8Kh1rpMDNes/K8kFNxBRPrj+BG0t/rWUv5BsFgygFTTFBPiukIv0RjnFnNg==
-X-Received: by 2002:a05:6512:3f0f:b0:53d:c2cd:79d7 with SMTP id 2adb3069b0e04-53dd39b5b70mr266678e87.53.1732227995234;
-        Thu, 21 Nov 2024 14:26:35 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53dd244574esm99474e87.33.2024.11.21.14.26.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Nov 2024 14:26:33 -0800 (PST)
-Date: Fri, 22 Nov 2024 00:26:31 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Rob Clark <robdclark@gmail.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
-	Akhil P Oommen <quic_akhilpo@quicinc.com>, Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>, 
-	Stephen Boyd <sboyd@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Sean Paul <sean@poorly.run>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Connor Abbott <cwabbott0@gmail.com>, linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 03/11] drm/msm: adreno: move features bits in a
- separate variable
-Message-ID: <ch7vrgkjnhabjdw53l3tjqv4p7oyfcfsgctlfb7gxpm5qiqs6k@5vkjha5jkfy6>
-References: <20241119-topic-sm8x50-gpu-bw-vote-v2-0-4deb87be2498@linaro.org>
- <20241119-topic-sm8x50-gpu-bw-vote-v2-3-4deb87be2498@linaro.org>
- <fkezpguictntg2wkouwqipnaaiauo6vu46n7a2xzvlorzvyeaw@bbcpj3bs5eko>
- <CAF6AEGs6zT_kaTXNohUaA7KWZxZTr4byaoMoLAceuyqA7S+2CQ@mail.gmail.com>
- <dtt6d427u5yep3i3b3zxxef7uh572aeu3vtatmjvpbqfpjbvjc@epkkr7oumncn>
- <CAF6AEGsr2WoOdytWzDU_TJJh4myPj3B943LMisxisnA45rLFKA@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=FVKv86E4DAXSd9RVoX7XHsf/3HCZ+RTAxcYYcwfP1b7f0DQrO0VfHeN/ynNybSvDy59smEGZws2gTgmHyBUBZxO/diSLL8OkZz/FTpF9007VZsgKrDqg8YYRhQP3p4UK6ZkLj4uOVo7RkUMmqN4JmL03B5QUbzCE2S6LHv7R1ss=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jVKzZhxO; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1732228625; x=1763764625;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=MUGLVwS75jQUSL12uOeu0NQbPRYbChsHCYEPGyBY20A=;
+  b=jVKzZhxOfnSlhdcN3BiOmzxPAyohDCSnZIYmGzYYVomBL7a+LH6H3++7
+   RXjlMT7BMYPJC9Wzn0ep2K3ikDcKk4WNstjUOuJ4lrMGSTuKJL8SbbJP5
+   qMRMzIHYNm7fPDLE9XKkJyZoIpGNlJgZXH5YGfWISBe1CmOxwcX5JSWaa
+   TBGYy6JEjYqmfavS0QLgSDRQuHk8l1jqHxI1LdD6TDAyTkYVbKhhipfM5
+   kIoX3Ur6bQTIJ4Aewb18xUjxDRRejv71gS6ddjgW1yva/ErCSY3Ked4gp
+   N0fV7RoPhJ5OTrq+RbNxX55IzIzE1L7dR5WtbmVvN+XBY9LrpRS8beZ8f
+   w==;
+X-CSE-ConnectionGUID: Z2O2Dn8WQ1KzzJdbibXsvg==
+X-CSE-MsgGUID: RTm4L1kIQaKZ/kaqBOFAeA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11263"; a="49889254"
+X-IronPort-AV: E=Sophos;i="6.12,173,1728975600"; 
+   d="scan'208";a="49889254"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Nov 2024 14:37:04 -0800
+X-CSE-ConnectionGUID: u4lzi55QQtuEqcueIDQ7aA==
+X-CSE-MsgGUID: HC93Hgp/RFyhgB78eC/uvQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,173,1728975600"; 
+   d="scan'208";a="94480413"
+Received: from lkp-server01.sh.intel.com (HELO 8122d2fc1967) ([10.239.97.150])
+  by fmviesa003.fm.intel.com with ESMTP; 21 Nov 2024 14:37:00 -0800
+Received: from kbuild by 8122d2fc1967 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tEFnG-0003QJ-0N;
+	Thu, 21 Nov 2024 22:36:58 +0000
+Date: Fri, 22 Nov 2024 06:36:14 +0800
+From: kernel test robot <lkp@intel.com>
+To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chester Lin <chester62515@gmail.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, NXP S32 Linux <s32@nxp.com>,
+	Christophe Lizzi <clizzi@redhat.com>,
+	Alberto Ruiz <aruizrui@redhat.com>,
+	Enric Balletbo <eballetb@redhat.com>,
+	Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+Subject: Re: [PATCH v5 2/2] serial: fsl_linflexuart: add clock management
+Message-ID: <202411220621.UfubUV0X-lkp@intel.com>
+References: <20241118154449.3895692-3-ciprianmarian.costea@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAF6AEGsr2WoOdytWzDU_TJJh4myPj3B943LMisxisnA45rLFKA@mail.gmail.com>
+In-Reply-To: <20241118154449.3895692-3-ciprianmarian.costea@oss.nxp.com>
 
-On Thu, Nov 21, 2024 at 11:48:28AM -0800, Rob Clark wrote:
-> On Thu, Nov 21, 2024 at 10:44 AM Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> wrote:
-> >
-> > On Wed, Nov 20, 2024 at 10:54:24AM -0800, Rob Clark wrote:
-> > > On Wed, Nov 20, 2024 at 3:18 AM Dmitry Baryshkov
-> > > <dmitry.baryshkov@linaro.org> wrote:
-> > > >
-> > > > On Tue, Nov 19, 2024 at 06:56:38PM +0100, Neil Armstrong wrote:
-> > > > > Now the features defines have the right name, introduce a features
-> > > > > bitfield and move the features defines in it, fixing all code checking
-> > > > > for them.
-> > > > >
-> > > > > No functional changes intended.
-> > > >
-> > > > I think it might be better to squahs this patch into the previous one,
-> > > > it would simplify checking that we use .quirks for ADRENO_QUIRK_foo and
-> > > > .features for ADRENO_FEAT_bar.
-> > > >
-> > >
-> > > IMHO better to keep this separated
-> >
-> > If they are separated, it is easy to overlook presense of a statement
-> > checking .quirks against ADRENO_FEAT_bar.
-> 
-> Maybe just drop this patch.. we don't really have so many
-> quirks+features so a single bitmask is fine and avoids this
-> wrong-bitmask-problem in the first place.
+Hi Ciprian,
 
-SGTM too.
+kernel test robot noticed the following build errors:
 
-> 
-> BR,
-> -R
-> 
-> > >
-> > > But we don't have _that_ many features/quirks so I don't find
-> > > combining them all that problematic
-> > >
-> >
-> > --
-> > With best wishes
-> > Dmitry
+[auto build test ERROR on tty/tty-testing]
+[also build test ERROR on tty/tty-next tty/tty-linus usb/usb-testing usb/usb-next usb/usb-linus robh/for-next linus/master v6.12 next-20241121]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Ciprian-Costea/dt-bindings-serial-fsl-linflexuart-add-clock-definitions/20241121-130303
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty.git tty-testing
+patch link:    https://lore.kernel.org/r/20241118154449.3895692-3-ciprianmarian.costea%40oss.nxp.com
+patch subject: [PATCH v5 2/2] serial: fsl_linflexuart: add clock management
+config: arm64-randconfig-001-20241122 (https://download.01.org/0day-ci/archive/20241122/202411220621.UfubUV0X-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241122/202411220621.UfubUV0X-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202411220621.UfubUV0X-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from include/linux/platform_device.h:13,
+                    from drivers/tty/serial/fsl_linflexuart.c:15:
+   drivers/tty/serial/fsl_linflexuart.c: In function 'linflex_probe':
+>> drivers/tty/serial/fsl_linflexuart.c:904:40: error: 'linflex_disable_clks' undeclared (first use in this function)
+     904 |                                        linflex_disable_clks, lfport);
+         |                                        ^~~~~~~~~~~~~~~~~~~~
+   include/linux/device.h:421:41: note: in definition of macro 'devm_add_action_or_reset'
+     421 |         __devm_add_action_or_reset(dev, action, data, #action)
+         |                                         ^~~~~~
+   drivers/tty/serial/fsl_linflexuart.c:904:40: note: each undeclared identifier is reported only once for each function it appears in
+     904 |                                        linflex_disable_clks, lfport);
+         |                                        ^~~~~~~~~~~~~~~~~~~~
+   include/linux/device.h:421:41: note: in definition of macro 'devm_add_action_or_reset'
+     421 |         __devm_add_action_or_reset(dev, action, data, #action)
+         |                                         ^~~~~~
+
+
+vim +/linflex_disable_clks +904 drivers/tty/serial/fsl_linflexuart.c
+
+   835	
+   836	static int linflex_probe(struct platform_device *pdev)
+   837	{
+   838		struct device_node *np = pdev->dev.of_node;
+   839		struct linflex_port *lfport;
+   840		struct uart_port *sport;
+   841		struct resource *res;
+   842		int i, ret;
+   843	
+   844		lfport = devm_kzalloc(&pdev->dev, sizeof(*lfport), GFP_KERNEL);
+   845		if (!lfport)
+   846			return -ENOMEM;
+   847	
+   848		ret = of_alias_get_id(np, "serial");
+   849		if (ret < 0) {
+   850			dev_err(&pdev->dev, "failed to get alias id, errno %d\n", ret);
+   851			return ret;
+   852		}
+   853		if (ret >= UART_NR) {
+   854			dev_err(&pdev->dev, "driver limited to %d serial ports\n",
+   855				UART_NR);
+   856			return -ENOMEM;
+   857		}
+   858	
+   859		sport = &lfport->port;
+   860		sport->line = ret;
+   861	
+   862		lfport->devtype_data = of_device_get_match_data(&pdev->dev);
+   863		if (!lfport->devtype_data)
+   864			return dev_err_probe(&pdev->dev, -ENODEV,
+   865					"Failed to get linflexuart driver data\n");
+   866	
+   867		sport->membase = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
+   868		if (IS_ERR(sport->membase))
+   869			return PTR_ERR(sport->membase);
+   870		sport->mapbase = res->start;
+   871	
+   872		ret = platform_get_irq(pdev, 0);
+   873		if (ret < 0)
+   874			return ret;
+   875	
+   876		sport->dev = &pdev->dev;
+   877		sport->iotype = UPIO_MEM;
+   878		sport->irq = ret;
+   879		sport->ops = &linflex_pops;
+   880		sport->flags = UPF_BOOT_AUTOCONF;
+   881		sport->has_sysrq = IS_ENABLED(CONFIG_SERIAL_FSL_LINFLEXUART_CONSOLE);
+   882	
+   883		lfport->clks = devm_kmalloc_array(&pdev->dev, lfport->devtype_data->n_clks,
+   884						  sizeof(*lfport->clks), GFP_KERNEL);
+   885		if (!lfport->clks)
+   886			return -ENOMEM;
+   887	
+   888		for (i = 0; i < lfport->devtype_data->n_clks; i++)
+   889			lfport->clks[i].id = lfport->devtype_data->clks_names[i];
+   890	
+   891		ret = devm_clk_bulk_get_optional(&pdev->dev,
+   892						 lfport->devtype_data->n_clks, lfport->clks);
+   893		if (ret)
+   894			return dev_err_probe(&pdev->dev, ret,
+   895					"Failed to get linflexuart clocks\n");
+   896	
+   897		ret = clk_bulk_prepare_enable(lfport->devtype_data->n_clks,
+   898					      lfport->clks);
+   899		if (ret)
+   900			return dev_err_probe(&pdev->dev, ret,
+   901					"Failed to enable linflexuart clocks\n");
+   902	
+   903		ret = devm_add_action_or_reset(&pdev->dev,
+ > 904					       linflex_disable_clks, lfport);
+   905		if (ret)
+   906			return ret;
+   907	
+   908		linflex_ports[sport->line] = sport;
+   909		platform_set_drvdata(pdev, lfport);
+   910	
+   911		return uart_add_one_port(&linflex_reg, sport);
+   912	}
+   913	
 
 -- 
-With best wishes
-Dmitry
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
