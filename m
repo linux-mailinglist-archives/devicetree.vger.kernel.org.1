@@ -1,129 +1,187 @@
-Return-Path: <devicetree+bounces-123523-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123524-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AC679D4DDC
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 14:34:50 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAE019D4DE8
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 14:41:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB3AA1F243AD
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 13:34:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5CDEDB20D99
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 13:41:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DFAA1D358D;
-	Thu, 21 Nov 2024 13:34:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ACAE1D3644;
+	Thu, 21 Nov 2024 13:41:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YhP5tC6i"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="beCyBhGP";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="t1mcqBt2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fhigh-a1-smtp.messagingengine.com (fhigh-a1-smtp.messagingengine.com [103.168.172.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E2B574068;
-	Thu, 21 Nov 2024 13:34:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0B54155330;
+	Thu, 21 Nov 2024 13:41:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732196084; cv=none; b=i4GTUYH+wEU5EyDX/aNBSnuoCUDBbt33awVFycbZWJ7Bboy5mUKlg9FyZBCazeW6de6bJAjL+VGaxR7ujTbtvncYn6ifFDQS/EsrdFv7jQnD4v3p7KxLHr/HdEA4nldAIosvllxjqQhb3KvTUBTU3k8L7OGTFT+itkmPbDWbMt0=
+	t=1732196504; cv=none; b=PeeU+xS1c+x9u9U3TTDo9hG6V6wZenBauhYYShLe2hiX1Cg0YjVrBC5aGyvYP4CdWhDhkS3tegVh89bUjotZ/p9tWLXVuAfQFgKqH/juPWf/ahlZcz23wh6cXTRIUAJwySbM6EcrHm8k75Bf9gRu5e//iUjAmqR7ZC9jjoWMeGg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732196084; c=relaxed/simple;
-	bh=3VAWSEMdPqFgjrGm6l2Uy/QQVQCT9+sxRgSacC4mFtU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CuM3BdIq3CQ5DO/btsyGk77WYgnjxrusjFmmUpQzhuvKu+pcF9292SFZ+eIhDFei107ychDBbHQkorRZFQro+JquscLMlCtBvy4lKGDf0thqpNZ78d9jiWaHv5ZEhW9p3/+3ehBUPx5BXKvLCwM0Ew2oFZWxVguKOCs+R0qfb4I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YhP5tC6i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3127AC4CECC;
-	Thu, 21 Nov 2024 13:34:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732196083;
-	bh=3VAWSEMdPqFgjrGm6l2Uy/QQVQCT9+sxRgSacC4mFtU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YhP5tC6iyvSmiZslllmusYS0qVZ1CBR/TK+kr53RiIDmgUdQIPkUO6QYLOE8b1b8w
-	 hktIhfY5Mm4CMcJAPI8zx6o0UxBwDxaBusuUaQwRW029ZzmCrdSW9FepabmcZ7GWPq
-	 CYRoI+7yvhM4/VgiLyltwmHx6YcRGiVIg/jE9Ea2WK8YM/Avea1iiNFTQDXESuGInS
-	 gv8ZZswo6CPvtD6kIIrgLFk+P5G1Pj5NgqZqDzzvB9gsuZSdh2SnET5e3b2yEUfdGT
-	 FPqGg+/3kCeQ4WUmrkoS5bFlVpm955FHb/G1lb+Tz7OQuAHRJBEBPDHPd3YolmVbvc
-	 HAfWG9uvtGgVA==
-Message-ID: <0b9495e8-b89e-4fff-b7a0-060d7631522a@kernel.org>
-Date: Thu, 21 Nov 2024 14:34:35 +0100
+	s=arc-20240116; t=1732196504; c=relaxed/simple;
+	bh=3GbjA5vulskTvk0OIgMGa2PjjXD5aeIgekFv8HIMNmc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=rpofEeIsomOg3CzkdAQ+NCaVTyIicoP8aEmPVhbzOvRVTX/DcD0XmC+qG1dc0uJ97q5TZn5B0iCDKrK5+qIP6sIvs8Z3eYvAqqu83qaK3kB7kcKq5nRgAcEtMZ3oGqcV/YH6Qm3Qgzv5q++JIlYNB0IzrlrJH7Tp8FiX87eHumI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=beCyBhGP; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=t1mcqBt2; arc=none smtp.client-ip=103.168.172.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-02.internal (phl-compute-02.phl.internal [10.202.2.42])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id DE16A114012F;
+	Thu, 21 Nov 2024 08:41:39 -0500 (EST)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-02.internal (MEProxy); Thu, 21 Nov 2024 08:41:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:message-id:mime-version:reply-to
+	:subject:subject:to:to; s=fm3; t=1732196499; x=1732282899; bh=1v
+	4pQI8MULZCGaoQXp1s33OVUx8nOpuohEqpTrGxGh4=; b=beCyBhGPHp1tgGiDGn
+	sxDMPyvE87LrfoxR1yIWsPeQM5ebVX6lqgLiFEq7WTUdpz2sKIcbSIS6INQIUzzd
+	17BX2duKUT/gAjbNklNl9B+xAZMFnxV11w5wfmXEQZIeP8s6004WviwdxIr8vlcx
+	d9y/O/yUvh7My2aOek6sgs1YOHugIwZVzuuvEqUgYH8Cw5HCK6ZoSPeVDK00JAbC
+	yhjQOqB6GCryDRmb9hsDCiPUTPjUUAFBdJseP3+HuH6gRv+t72CeQsKX5fJmKiRf
+	pKwxZeAdWHnqiMukXJPa5mPURJuPqI3gtvhf/Ys8f9o3cYCSAjrIqeHnu+EDeSPY
+	ed2w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm1; t=1732196499; x=1732282899; bh=1v4pQI8MULZCGaoQXp1s33OVUx8n
+	OpuohEqpTrGxGh4=; b=t1mcqBt2YVZ9wdjuzDTL0lSLdfItDhcUOSJBJuEWq92u
+	JijyW736T3Z7khX8WZC4rrOj4o5kVc2tkWFHosk+i+spEcFRpfWariEq0cqcVcJ/
+	A+/WOQdW9D+Q7leubmEOszgMjbSKwdQ9WykcO0fwUpEubVz+jgm4WI1FMHRefj1y
+	PbDaqIEm+e10laOK4ylYYpCqmarzt0Eht5RVs9KwFTdKzJAC8s01ljYK28eVGOeX
+	iQCwfbQcluQ6tyeyKph50NTZXXoRebmqtP8SgD/JfduXxprmIGPA+Bybu1o+Lgo/
+	LbqC6OBPks75TrnP7+aAueyPGNe24l99lEnO1DCG5A==
+X-ME-Sender: <xms:kzg_Z6oRFtmJBqmF594m6BVX5AT89nC1pc6cJvyJ158d11YWN5kL_A>
+    <xme:kzg_Z4pd8j5xiac4WGN6cUD9MxX3PwKw-wQQMofzuNp0yeP_th4POvybGNsau0HYy
+    vTF_us2zJXGDIX0b5I>
+X-ME-Received: <xmr:kzg_Z_Mn1Gvb4cAPJGMkvPK0SE4ORg9LZHRiFfu1rp4qgyFKkIzCxoe7dP6Le10Vq_8gp-7nuV4g6cqv_GYvxJUFVw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrfeeigdehgecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdpuffr
+    tefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnth
+    hsucdlqddutddtmdenucfjughrpefhvfevufffkffogggtgfesthekredtredtjeenucfh
+    rhhomheppfhikhhlrghsucfunpguvghrlhhunhguuceonhhikhhlrghsrdhsohguvghrlh
+    hunhguodhrvghnvghsrghssehrrghgnhgrthgvtghhrdhsvgeqnecuggftrfgrthhtvghr
+    nhepheduleetteekgffffedufeeuvdejiedvkefhveeifeegffehledtvdevhfefteegne
+    cuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepnhhikhhl
+    rghsrdhsohguvghrlhhunhgusehrrghgnhgrthgvtghhrdhsvgdpnhgspghrtghpthhtoh
+    epuddupdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehsrghkrghrihdrrghilhhu
+    sheslhhinhhugidrihhnthgvlhdrtghomhdprhgtphhtthhopehmtghhvghhrggssehkvg
+    hrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghp
+    thhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorh
+    doughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehgvggvrhhtodhrvghnvghsrghs
+    sehglhhiuggvrhdrsggvpdhrtghpthhtoheplhgruhhrvghnthdrphhinhgthhgrrhhtse
+    hiuggvrghsohhnsghorghrugdrtghomhdprhgtphhtthhopehlihhnuhigqdhmvgguihgr
+    sehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvggvse
+    hvghgvrhdrkhgvrhhnvghlrdhorhhg
+X-ME-Proxy: <xmx:kzg_Z57AIFi2ws511-PpKmLB5fpAmTgmOf59V9C6wLiL7pvjL1kv0A>
+    <xmx:kzg_Z56768Q5K1TMOHASpQ5K-dPufnZSAElWXXsA9SMXMU6SbPVC9w>
+    <xmx:kzg_Z5hyfR1TyGOQQDQNdXNr4JjPKlA92-NzeZM-jZdmM02WNoP0cA>
+    <xmx:kzg_Zz7sGyof-VyFY-x6IZrkdQT82I2896l40KrYDzVee7XEez2LDA>
+    <xmx:kzg_Z1hbNaNeKe3iJzBNiVMU8C45YK5NUrUj2V1vSFqsx-br8jF3biyJ>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 21 Nov 2024 08:41:38 -0500 (EST)
+From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Cc: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH v2 0/4] media: v4l: fwnode: Add support for CSI-2 C-PHY line orders
+Date: Thu, 21 Nov 2024 14:41:04 +0100
+Message-ID: <20241121134108.2029925-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: serial: Add a new compatible string for
- ums9632
-To: Stanislav Jakubek <stano.jakubek@gmail.com>, wenhua.lin@unisoc.com
-Cc: Zhaochen.Su@unisoc.com, Zhirong.Qiu@unisoc.com,
- baolin.wang@linux.alibaba.com, brgl@bgdev.pl, cixi.geng@linux.dev,
- conor+dt@kernel.org, devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
- jirislaby@kernel.org, krzk+dt@kernel.org, linux-kernel@vger.kernel.org,
- linux-serial@vger.kernel.org, orsonzhai@gmail.com, robh@kernel.org,
- wenhua.lin1994@gmail.com, xiongpeng.wu@unisoc.com, zhang.lyra@gmail.com
-References: <Zz8m8PqHX_7VzgoP@standask-GA-A55M-S2HP>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <Zz8m8PqHX_7VzgoP@standask-GA-A55M-S2HP>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 21/11/2024 13:26, Stanislav Jakubek wrote:
-> Correct me if I'm wrong, but this patch seems incorrect to me.
-> The 1st patch suggets that the sc9632-uart is incompatible with sc9836-uart,
-> but here you make it fallback to it anyway.
-> 
-> Also, both of the patches seem to have made it to linux-next without the
-> reviews/Acks from maintainers. Maybe Greg was a bit too fast here :)
+Hello,
 
-Yeah, this looks odd and considering totally empty commit msg (nothing
-useful there), it looks like wrong choice.
+This series aims to extend the video interface bindings with a new
+property to describe the CSI-2 C-PHY line orders. In comparison with
+CSI-2 D-PHY where each data-lane is constructed from two lines making up
+a differential pair the C-PHY uses three phase encoding constructed from
+three lines to create a single data lane.
 
-Please explain the compatibility aspects. In the future: you have entire
-commit msg to describe the hardware, instead of repeating the obvious -
-what is visible from the diff.
+The three lines making up the C-PHY data lane are labeled A, B and C in
+the specification and can be ordered in any combination (ABC, ACB, BAC,
+BCA, CAB and CBA). This can be compared to the D-PHY model where the two
+lines in the differential pair can be "normal" or "inverted" to do the
+same thing.
 
-Best regards,
-Krzysztof
+For the D-PHY uses-case the exists a property 'lane-polarities' can be
+used to describe this line wiring. However there are no property to
+describe this ordering of the C-PHY lines in the video interfaces
+definition nor in the V4L2 fwnode structures or parser.
+
+Patch 1/4 extends the video bindings with a new property 'line-orders'
+which can describe this property of the C-PHY. The property name and the
+const values used for different line configurations are taken from the
+MIPI Discovery and Configuration (DisCo) Specification for Imaging
+document.
+
+Patch 2/4 extends the V4L2 fwnode data structure and parser to consume
+and exposes this property to drivers.
+
+While patch 3/4 and 4/4 adds an example use of the property both in the
+bindings and in the driver using the R-Car CSI-2 receiver driver on V4H.
+
+A note on the changes to the R-Car driver not relevant to the core V4L2
+or bindings work. The V4H WhiteHawk development platform is the only
+model where the CSI-2 bus is used in a C-PHY configuration. Early
+datasheets where used to add support for it and at that time the line
+order registers where not documented so magic values where used as-is.
+This have been addressed in later versions of the datasheet and this can
+now be done properly.
+
+The magic values used however configured one of the data lanes used in a
+BCA configuration, which is required for proper operation on that
+development platform. Thus the change in patch 4/4 breaks proper
+operation with older DTS files lacking the new line-orders property.
+
+I think this is fine as the only known use-case for this platform is
+together with the MAX96712 CSI-2 transmitter and for this we only have a
+staging driver capable of generating test patterns. To extend this to a
+capture pipeline capable of capturing frames from a real source DTS
+changes are needed to describe the video source, so an updated DTS are
+need anyhow.
+
+See individual patches for changelog.
+
+Niklas Söderlund (4):
+  media: dt-bindings: Add property to describe CSI-2 C-PHY line orders
+  media: v4l: fwnode: Parse MiPI DisCo for C-PHY line-orders
+  arm64: dts: renesas: white-hawk-csi-dsi: Define CSI-2 data line orders
+  media: rcar-csi2: Allow specifying C-PHY line order
+
+ .../bindings/media/video-interfaces.yaml      | 21 ++++++
+ .../boot/dts/renesas/white-hawk-csi-dsi.dtsi  |  6 ++
+ drivers/media/platform/renesas/rcar-csi2.c    | 74 +++++++++++++++++--
+ drivers/media/v4l2-core/v4l2-fwnode.c         | 43 ++++++++++-
+ include/dt-bindings/media/video-interfaces.h  |  7 ++
+ include/media/v4l2-mediabus.h                 | 21 ++++++
+ 6 files changed, 164 insertions(+), 8 deletions(-)
+
+-- 
+2.47.0
+
 
