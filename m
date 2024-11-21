@@ -1,144 +1,138 @@
-Return-Path: <devicetree+bounces-123417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 304669D4741
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 06:22:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CA1C9D4763
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 07:01:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA4A128257C
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 05:22:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B7EC61F22086
+	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 06:01:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA3E01465B3;
-	Thu, 21 Nov 2024 05:22:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F15AB1487DC;
+	Thu, 21 Nov 2024 06:01:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jaybZBP7"
+	dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b="CpJU8sRz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C4E812B169;
-	Thu, 21 Nov 2024 05:22:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 269341369B4
+	for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 06:01:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732166546; cv=none; b=T0QVBJvvoAxELq3gXdvcRa0IzMdLMA79FCNgg9yrzJz0gDaG2zao2ixQmw0+N1WKo6tvuqSqDmVfw/XC9AwnNzHGHu/lAxLsplVLDlCBPQbvXuyusUZqsD9BfS8ZiNR3dYehLW8PCqhY4LB41BlkQt+RyzbA3BYW0uqXAE/vOGY=
+	t=1732168895; cv=none; b=epllwKvzTc8BPUxwx/xBr2d2yUtYc+1dwrwITFadJAdPV104Rs55XZv1fhed7K8y8MQYRKQovvbmAfZvePlyy7PkzOW3L6GVsR3qu5qrA9doCHLzeyur50rHR4tRWlf1lTwOtQk+n0Ohd5ElvhA6I7UM9IhIgLUj7prTGS9evGE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732166546; c=relaxed/simple;
-	bh=O2R+Se3YyvXNMKWRAdtvYEJ5Z8PdAdt1UDa7qVQHg0k=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Kjw54ghHs8WMWZCh440RjGk3a6N8K9ktOFDqqp8seQ7LV/8eatIPkmmkQetnJ8gD68U/7T081EQTgfUDnbn2zdT192/19njV3JNgK3+YaZt5f2Li1Uj06UkghEcQkGHCgvyR2nrACL9cogs3KX6UuTYHU9uCBXqaM2dGovM7i68=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=jaybZBP7; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AKJtuxU014470;
-	Thu, 21 Nov 2024 05:22:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=5DDY66amN31GTcow/rxIj+ou
-	5DSlmyR7PX6Pd+ZJwzU=; b=jaybZBP7K6fxyT51dSjP0dr9NxFoqN9PFtuKr66s
-	GeTvx6AwmlZUzYVzNtyBV+3E7jsFAjXe/Q//ohk3BghysFAj35Siz+kiGtrBa5ku
-	DYYi98KfOkWHIyXr+mXK1/sWYxZCOdHW2sq8gkJeftyKGIx0p7SMXnfJ2btNyiIH
-	VCaq5alGxzdx51uIPosaOi8t1zFFYcCEdwjPVhACBMu6wt73hODgTwyBNw+20ddN
-	jHBOX+jbY6PA2q1nxrBEWoRzZ+7kw82aDcLPDBKwAiu8atMy1NkyxvYgC4XTtn+6
-	OssvNId5WXDe4gVJfsAa2PRTlz998znug0i9YvONaqEUKw==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4308y9809s-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 21 Nov 2024 05:22:21 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AL5MKYs024893
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 21 Nov 2024 05:22:20 GMT
-Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 20 Nov 2024 21:22:17 -0800
-Date: Thu, 21 Nov 2024 10:52:12 +0530
-From: Varadarajan Narayanan <quic_varada@quicinc.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <andersson@kernel.org>, <konradybcio@kernel.org>, <conor@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 2/3] soc: qcom: llcc: Update configuration data for
- IPQ5424
-Message-ID: <Zz7DhDSihJmbmDkz@hu-varada-blr.qualcomm.com>
-References: <20241119060754.3350320-1-quic_varada@quicinc.com>
- <20241119060754.3350320-3-quic_varada@quicinc.com>
- <fkpp4ii254ewtmhg2j4nnjarvl7qkvet7i7urr6xhbblcmdb3u@tcbwmfqrnch2>
+	s=arc-20240116; t=1732168895; c=relaxed/simple;
+	bh=ayAF/Veqgd3KzXVypEg2pEzxccluRkLQTpGNhJAtHko=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BYUmSE4KFzPC3yDLiMH/vaJCPdlmwRdQtrVN8t8/YViR2muUwRQKYp/qpLrP1IlZuhhiTTyaMyx5sxfGkq4OaFsx+fCVztvS+3mga4whATwQv3PqpU0G6xRG3pbW+e3Tr8PTaNK4BxwhsungxqrVUwJ+qA9tjvwYwI7fnQo3nRE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org; spf=none smtp.mailfrom=nigauri.org; dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b=CpJU8sRz; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=nigauri.org
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a9e8522c10bso81969266b.1
+        for <devicetree@vger.kernel.org>; Wed, 20 Nov 2024 22:01:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nigauri-org.20230601.gappssmtp.com; s=20230601; t=1732168892; x=1732773692; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pXBYO7IREaqcFC1AY+U6gH0DW+PukJ6oZRwSeQifutI=;
+        b=CpJU8sRzY2EEa+z5YeRkrhaF3FQjLdDh7emQQT/LnPbqFAf8CPIiYAHlrripuJUR3B
+         Gdcz/najSPZKLBTkEqYZFVTIP5RRXLA/4//XfEk/divhYiRVba0sPXLyHWW+slEYFStl
+         0h4LI9au/JIv3UBWVzapthJrquo3+7jZQjC09QUPi7Tj5hR5OhzZv2tiCUzUIuwtHEpw
+         0bzyOQmMPmYW++s0IgjIxzgJMwos/6Y2ba/i9FwWjj4dqzvOzYNmL+V/ZmqO9TJxB53I
+         oRhc7HV7iXo26jWR1QeVR1qpQXTX4yb7Dm7otAsF4r8jyjPwaAq4+aX2K4miuLTlJFM1
+         kuGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732168892; x=1732773692;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pXBYO7IREaqcFC1AY+U6gH0DW+PukJ6oZRwSeQifutI=;
+        b=d+68LiYNmOUPzU/rlh68TuQ4SZYsIxVTLkFly3ME9f7NvIKba1502HrvVgr4JTeLpR
+         pBJ3hcxyAdzmqsvtvSdQyz91/eHDTFGVPZexwS6ZqruaD7BfcYOVXXf3x5ARkygVH1WN
+         RfoYsrurAOx1yD2C2mYzAhBxWdWqsHPzJ9VVpLvG1vYroBcsSfniR8/5u9DRJ1xma2aL
+         +uMKtaVihzrTDjNHxeO0sBXP12Qwzqx/QmtGV4IP2F+h1n8NawnHmAYda4Gv/mQi/Q1+
+         x/pFFuQIzL2nVqhmuU/3w9q+hmVaSoFhel2Z/TftYqQr5ouwULFNJJmi5z9tw1mkmaXc
+         4cbA==
+X-Forwarded-Encrypted: i=1; AJvYcCXT591ufUyYgw0AFfpf5kItuCQ2ahdqrHAXExrML/dPM8VZX2LzpTbuTMN+HUDaAjvz2LwwJl9lM0BI@vger.kernel.org
+X-Gm-Message-State: AOJu0YzFDGniY2fic9XcNKG1Qmvx3LU07JBKm/YwOHjcKmjurORtHuY3
+	jAjKknm9lfDjjK6A4OYqCrKkKowcGrQksQ1KVXGwqFj5os5PAkLxlVdLqDGUPekpN5q839VqkGW
+	CrRRtwRzJqmQhYicJfkYvu86A60MJ0ZeapSM=
+X-Google-Smtp-Source: AGHT+IErmyO6Auj29nMzsQsciAeQieUSQ40mWvouilmqn2J8jN6CWiJnyXtOkmFurSkWnL1C/48LjVI6yqaWSkbNQBg=
+X-Received: by 2002:a17:907:3d92:b0:a9e:85f8:2a6d with SMTP id
+ a640c23a62f3a-aa4ef969eedmr214855766b.11.1732168892228; Wed, 20 Nov 2024
+ 22:01:32 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <fkpp4ii254ewtmhg2j4nnjarvl7qkvet7i7urr6xhbblcmdb3u@tcbwmfqrnch2>
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: diRcvg8aito_3blNMXnP40nf1O-NutPF
-X-Proofpoint-ORIG-GUID: diRcvg8aito_3blNMXnP40nf1O-NutPF
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
- phishscore=0 suspectscore=0 adultscore=0 clxscore=1015 priorityscore=1501
- lowpriorityscore=0 spamscore=0 bulkscore=0 mlxlogscore=999 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
- definitions=main-2411210040
+References: <20241004061541.1666280-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <CABMQnVK_RUC84QQ5zb+ZpuMOZcFMNV6HzEYAfmX4bOrRm+rvTw@mail.gmail.com> <90978892-2086-4c70-9698-0957cc71abb8@lunn.ch>
+In-Reply-To: <90978892-2086-4c70-9698-0957cc71abb8@lunn.ch>
+From: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+Date: Thu, 21 Nov 2024 15:01:06 +0900
+Message-ID: <CABMQnVJES+VoqNYNgo3zxFkTJVYkR=ZCwWsEFEe=QhKyaYie9w@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: socfpga: sodia: Fix mdio bus probe and PHY ID
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: dinguyen@kernel.org, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	stable@vger.kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 20, 2024 at 02:40:41PM +0200, Dmitry Baryshkov wrote:
-> On Tue, Nov 19, 2024 at 11:37:53AM +0530, Varadarajan Narayanan wrote:
-> > The 'broadcast' register space is present only in chipsets that
-> > have multiple instances of LLCC IP. Since IPQ5424 has only one
-> > instance, both the LLCC and LLCC_BROADCAST points to the same
-> > register space.
-> >
-> > Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> > ---
-> > v3: Rebase to ToT
-> >     Remove 'need_llcc_cfg = true'
-> >
-> > v2: Use 'true/false' instead of '1/0' for boolean variables.
-> >     Add 'no_broadcast_register' to qcom_llcc_config structure
-> >     to identify SoC without LLCC_BROADCAST register space instead
-> >     of using 'num_banks'.
-> > ---
-> >  drivers/soc/qcom/llcc-qcom.c | 57 ++++++++++++++++++++++++++++++++++--
-> >  1 file changed, 55 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/soc/qcom/llcc-qcom.c b/drivers/soc/qcom/llcc-qcom.c
-> > index 32c3bc887cef..106f2619277a 100644
-> > --- a/drivers/soc/qcom/llcc-qcom.c
-> > +++ b/drivers/soc/qcom/llcc-qcom.c
+Hi Andrew,
 
-	[ . . . ]
+Thanks for your review.
 
-> >  	/* Extract version of the IP */
-> > @@ -4032,6 +4084,7 @@ static const struct of_device_id qcom_llcc_of_match[] = {
-> >  	{ .compatible = "qcom,qcs615-llcc", .data = &qcs615_cfgs},
-> >  	{ .compatible = "qcom,qcs8300-llcc", .data = &qcs8300_cfgs},
-> >  	{ .compatible = "qcom,qdu1000-llcc", .data = &qdu1000_cfgs},
-> > +	{ .compatible = "qcom,ipq5424-llcc", .data = &ipq5424_cfgs},
+2024=E5=B9=B411=E6=9C=8818=E6=97=A5(=E6=9C=88) 5:06 Andrew Lunn <andrew@lun=
+n.ch>:
 >
-> I wonder why is this getting inserted at this point. The list is sorted
-> and your entry definitely is not in the correct place.
+> On Sun, Nov 17, 2024 at 05:53:51PM +0900, Nobuhiro Iwamatsu wrote:
+> > Hi Dinh,
+> >
+> > Please check and apply this patch?
+> >
+> > Thanks,
+> >   Nobuhiro
+> >
+> > 2024=E5=B9=B410=E6=9C=884=E6=97=A5(=E9=87=91) 15:16 Nobuhiro Iwamatsu <=
+iwamatsu@nigauri.org>:
+> > >
+> > > From: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+> > >
+> > > On SoCFPGA/Sodia board, mdio bus cannot be probed, so the PHY cannot =
+be
+> > > found and the network device does not work.
+> > >
+> > > ```
+> > > stmmaceth ff702000.ethernet eth0: __stmmac_open: Cannot attach to PHY=
+ (error: -19)
+> > > ```
+> > >
+> > > To probe the mdio bus, add "snps,dwmac-mdio" as compatible string of =
+the
+> > > mdio bus. Also the PHY ID connected to this board is 4. Therefore, ch=
+ange
+> > > to 4.
 >
-> Please review if your addition is breaking sorting order in other places
-> too.
+> It is the address which is 4, not the ID.
 
-Sorry, have fixed this here and in the dt-bindings yaml file
-and posted v4. Please review.
+Thanks, I will fix it.
 
-Thanks
-Varada
+>
+>         Andrew
 
-> >  	{ .compatible = "qcom,sa8775p-llcc", .data = &sa8775p_cfgs },
-> >  	{ .compatible = "qcom,sar1130p-llcc", .data = &sar1130p_cfgs },
-> >  	{ .compatible = "qcom,sar2130p-llcc", .data = &sar2130p_cfgs },
+Best regards,
+  Nobuhiro
+
+--=20
+Nobuhiro Iwamatsu
+   iwamatsu at {nigauri.org / debian.org / kernel.org}
+   GPG ID: 32247FBB40AD1FA6
 
