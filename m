@@ -1,107 +1,86 @@
-Return-Path: <devicetree+bounces-123663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123661-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DD519D5A0F
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 08:35:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3F719D59FB
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 08:30:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4347B282810
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 07:35:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B30E28110F
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 07:30:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60FBC170854;
-	Fri, 22 Nov 2024 07:35:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 001C2170836;
+	Fri, 22 Nov 2024 07:30:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="owF4NObT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42C661465A0
-	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 07:35:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD98D1632F5;
+	Fri, 22 Nov 2024 07:30:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732260928; cv=none; b=USgQGNLSGR3kx4Zc+hegMbWbr8EMHGjcUnav/sKb4Z2Vp3MvJnBNeFtqNzdUhdIl7TkPbcWFqrbl6SZnXpat1IGShNBRmNunwme6atNUA/bObxn5SxVZxPQ9EY9cm5SCXN9OJqooB6R5DBjbYwdHukq3hkuf9wTVKfKj5Sm0TLk=
+	t=1732260648; cv=none; b=gTQJ8Piuep2t8m7nComEgnxhfz6uqbKB+uAm58c9dT+ez6+nZWLqILEmHOoOalYXGUNpkVFbzl1Qdf3OiW4Zd5IcwhZY4JAYb7fj1ogzmM97II+3yfvhvisdO1omdYHP2C7Bjeg1GZ6NRlgOxjGWEjjKr/n4XMfGpNUiyflt+wc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732260928; c=relaxed/simple;
-	bh=2lyAFtM/NXX7ptxWn1aoHTThoZPVaN08k3AXxU3AM3Q=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=eAnXJlqi7yfktxTRj/OC3X5cCLO/7n8fozlUWcDeURo0Hzstax+RzNnXrtk6jFJxTcPSFEfkRDMsf/B2zW1/YTsydTae6K3OHKKlmmceLeQvZLslz8/KICeiSixj4o4CLy7xl6JYwHTnzOIClVc1Zalj4tMZSnaDoigw4UzprDs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from amadeus-Vostro-3710.lan (unknown [IPV6:240e:3b3:2c04:2930::1])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 3848de85;
-	Fri, 22 Nov 2024 15:30:13 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Yifeng Zhao <yifeng.zhao@rock-chips.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Chukun Pan <amadeus@jmu.edu.cn>,
-	FUKAUMI Naoki <naoki@radxa.com>,
-	Michael Zimmermann <sigmaepsilon92@gmail.com>
-Subject: [PATCH 2/2] phy: rockchip: naneng-combphy: fix phy reset
-Date: Fri, 22 Nov 2024 15:30:06 +0800
-Message-Id: <20241122073006.99309-2-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241122073006.99309-1-amadeus@jmu.edu.cn>
-References: <20241122073006.99309-1-amadeus@jmu.edu.cn>
+	s=arc-20240116; t=1732260648; c=relaxed/simple;
+	bh=9FHokJBvilp2Maa1P56wWPmPxjN1yEESCPlKt2evFuQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=chGNZhdTaO1gzGx7hKxhfQAlTVxtvd+FhbSKHFwBUu0i/ShuH9IyR+yMN0U0bVIjr51VbijLmY17if7++uKNb1/s9oy9yu3KGLJyh1gUllCAKJaqmjj2yWpKPuDqH9PtqHLADeqH2TVUKyi8yJ17aLr7Mmb9fdTQn2glKAqoKEc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=owF4NObT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99FAFC4CECE;
+	Fri, 22 Nov 2024 07:30:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732260648;
+	bh=9FHokJBvilp2Maa1P56wWPmPxjN1yEESCPlKt2evFuQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=owF4NObTxxbff9fN21+lqaNFdY4R8Lq9N0EZu8vaql89qNquvxf+h8ukmiXVtO57L
+	 gyHAfAQ8onWvTQCqdIUEQ0KlVm8K1XAyX/01Vo+pY04G4dl6GFYXfENh7GG7Nmm2B8
+	 jPX8+v/sgNqY6qZ5zfipSiIvCDsRUwS8yq78UbL/s5mrma4LR1yJ0pW+8UNR1X4U5m
+	 DKd2JudpOjuJURw+R57IsXb9c1cC8XOyYw2ZwVPPcVmAjkqwSojHOu3P9r+t+NsUUS
+	 /eLWFBsoqsbK3iJLIxOBTDIJ22dP9ThTZpDbp1sy004fz5F7c1bHstfS3kpY0INhN1
+	 YqShz/oCiMyyQ==
+Date: Fri, 22 Nov 2024 08:30:45 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
+Cc: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Odelu Kukatla <quic_okukatla@quicinc.com>, Mike Tipton <quic_mdtipton@quicinc.com>, 
+	Sibi Sankar <quic_sibis@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V5 1/4] dt-bindings: interconnect: Add EPSS L3 compatible
+ for SA8775P
+Message-ID: <gxlgrgwscpz7fw57aj6cqbrcyr6ovv755bgb5ix656op6jr5h4@pnbx4ze4qv22>
+References: <20241121113006.28520-1-quic_rlaggysh@quicinc.com>
+ <20241121113006.28520-2-quic_rlaggysh@quicinc.com>
+ <bda810ab-68d8-4265-87c3-a6d021092e62@kernel.org>
+ <10e4fd4e-559d-4164-ab94-d5f0a60ffc22@quicinc.com>
+ <53876db8-4401-481d-8684-af7e135d481e@kernel.org>
+ <82fc7b99-bc3e-4a9b-a472-c1b70671f21a@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDSxpPVkpMGksZSx1IH0pPSVYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlJT0seQUgZSEFJGEtPQUlCSEtBQUpZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	tVSktLVUtZBg++
-X-HM-Tid: 0a9352c74bac03a2kunm3848de85
-X-HM-MType: 10
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PhQ6Sgw5LjIsHT9LPi8sTyIp
-	Pz4wCTRVSlVKTEhJSU1LTUpPS0lPVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlP
-	Sx5BSBlIQUkYS09BSUJIS0FBSllXWQgBWUFKT0pPNwY+
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <82fc7b99-bc3e-4a9b-a472-c1b70671f21a@quicinc.com>
 
-Currently, the USB port via combophy on the RK3528/RK3588 SoC is broken.
+On Fri, Nov 22, 2024 at 12:46:37PM +0530, Raviteja Laggyshetty wrote:
+> > 
+> >> But received comment from konrad to add both SoC-specific and generic compatibles.
+> > 
+> > I went through the history and don't see anything like that. Point to
+> > the specific email please, if you disagree.
+> > 
+> https://patchwork.kernel.org/project/linux-pm/patch/20241026123058.28258-2-quic_rlaggysh@quicinc.com/#26104591
 
-  usb usb8-port1: Cannot enable. Maybe the USB cable is bad?
+I read this message and it does not say to use generic compatible.
 
-This is due to the combphy of RK3528/RK3588 SoC has multiple resets, but
-only "phy resets" need assert and deassert, "apb resets" don't need.
-So change the driver to only match the phy resets, which is also what
-the vendor kernel does.
-
-Fixes: 7160820d742a ("phy: rockchip: add naneng combo phy for RK3568")
-Cc: FUKAUMI Naoki <naoki@radxa.com>
-Cc: Michael Zimmermann <sigmaepsilon92@gmail.com>
-Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
----
- drivers/phy/rockchip/phy-rockchip-naneng-combphy.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
-index 0a9989e41237..2eb3329ca23f 100644
---- a/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
-+++ b/drivers/phy/rockchip/phy-rockchip-naneng-combphy.c
-@@ -309,7 +309,7 @@ static int rockchip_combphy_parse_dt(struct device *dev, struct rockchip_combphy
- 
- 	priv->ext_refclk = device_property_present(dev, "rockchip,ext-refclk");
- 
--	priv->phy_rst = devm_reset_control_array_get_exclusive(dev);
-+	priv->phy_rst = devm_reset_control_get(dev, "phy");
- 	if (IS_ERR(priv->phy_rst))
- 		return dev_err_probe(dev, PTR_ERR(priv->phy_rst), "failed to get phy reset\n");
- 
--- 
-2.25.1
+Best regards,
+Krzysztof
 
 
