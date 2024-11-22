@@ -1,180 +1,130 @@
-Return-Path: <devicetree+bounces-123630-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0141A9D5832
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 03:16:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B81A69D584C
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 03:30:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 835B11F2314A
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 02:16:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3035C282124
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 02:29:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5D7E3B1A1;
-	Fri, 22 Nov 2024 02:16:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EF8970838;
+	Fri, 22 Nov 2024 02:29:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fI+Xqnqy"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="leVA3bQL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BCAA13AF2;
-	Fri, 22 Nov 2024 02:16:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 705D1230988;
+	Fri, 22 Nov 2024 02:29:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732241799; cv=none; b=bacE0EHwZYrLfUFYA3UkhC0OTyH3hEnsUzcQzjf1BDVZZ5DRl9Du0UXCfxGgJoiZCchSJUpmqEqRX2ZRJMeVPt9WjakBMdG4TNGKZOyCgbp3qu0fKZrJOUFXXY1wTYbAi9UsQVQH4YiuA3SM2YqtkPSKeSj2XVQy9t2IiAWmPY4=
+	t=1732242581; cv=none; b=jYS+X1ZZjaG2kKN9xWpEp0mVlImKbL1ubLwOtv8YNPvWMXi2gt7Bt6LfXSc+OZ7VxG9WFG5Sh9Br6Wd2DQ1rAoz5yTIzjaVs/C4iNzQo2ZlAr4bZ/49gvi00CRKFeIz7rXSIwzvRlXJPdjG2L/rIRQ0tfhf4h+vvRJmofy6XeDY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732241799; c=relaxed/simple;
-	bh=Qxh4VoR988MNVHxZSNX1FHhxIqHmcSJo0UM6ZWkc/Bs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=T8R4qiFjAJMg62x+hedzPgq3GqIifCMLOxOGqJj2A/d9adcKztjcOECde3HuTDzCmE4zKttdq1JwcAtv8jp1FMMji0rFKAJnGTINjSwyubefnE5aJygwfmQBGTn2g32pb0YSJuLX6Dknb5gRgdEWJR9Q2YkYOmbdAmrCgtPIEJU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fI+Xqnqy; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4ALGl6HL020915;
-	Fri, 22 Nov 2024 02:16:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	lC9EgTBbCvdZ5THVVrfvLHr8NQOqRmsT50MIRnTyFAM=; b=fI+Xqnqyca8AmoPa
-	aooPib76VnF4co9uuRrm991k9n30L3AzxTi/dLEXe1kHYoc0gjpIgXwGyEuCUjZN
-	HhYujmKp/jvdvi84uQw4OxBJcNKUyTju8NmsAfL8C7liAlazka4MD/5qBMRmGIdp
-	1nHNNz1lwb/78avdaPo3vB3YkRnvJIgudVoFrexvh72C9JTsI9JtcRtJzCdG6uub
-	n/CPS50FVQE84HKcLZwas0XgDWFdafI5+qaOctgDQ+9nr65kNgwWpzFx4/Gdxx6p
-	YBjGvL8MbFdru1ZgOKbSRC+b2RaibhrJ7kIH1tyC5MSKTKDAeeo8BNICFadfHipg
-	diHtIg==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4320wk2ryq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 22 Nov 2024 02:16:32 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AM2GS16031392
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 22 Nov 2024 02:16:28 GMT
-Received: from [10.253.34.50] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 21 Nov
- 2024 18:16:24 -0800
-Message-ID: <856982c0-f411-48c6-9ef0-c2b21f849304@quicinc.com>
-Date: Fri, 22 Nov 2024 10:16:21 +0800
+	s=arc-20240116; t=1732242581; c=relaxed/simple;
+	bh=ygXdHoYgdDV8uhUQRvreb/w1Nsb+bH9PmhGFMqtau+E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WOdhpvYAm+7b7lU3kPb+DX+GqddMRzikpPHRiIOtFwhUR56VB7yOoZVsdcJw6A9DUWzDAnP91Eu2p9qSAJTJnLmKTrx8ImixdslfkYSwOogc00M1V4c+++5Cg5F08fH93jg1nLUlLGLS0JJb84PRksWwmd58dU+Wr+zM4DPylHg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=leVA3bQL; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1732242580; x=1763778580;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ygXdHoYgdDV8uhUQRvreb/w1Nsb+bH9PmhGFMqtau+E=;
+  b=leVA3bQLs1t1CdF/bHyrVzqEfvlUnnQxmjQSTUIH25TPd6JG/RBrhUp7
+   J4MpkpuilTPrcsvDsW+SNgd4E2fPnq0uS+PwXX5WO+Z2BKLrXsC10cgqd
+   qpJ0QRdRGrQYeGoH2kKgf6WG6RYn78ESt3cwnmEBEhezxUozq1Y6HSyIQ
+   u/naThSHSiJtP+Nwvh9glUKvbzquKKxPAfygX7yOA/zLL4R2O11g7i5E3
+   SurYWouJkpYHhllw3wVD77Qi1qjacOxS1lXTiPNAr5tntO6gOR8om8pJo
+   5p3RVsXka7ue6CE+PJnsHqnN8pPwqgJu4QkGA4VUV1qZoXHnx5w6J4pOo
+   A==;
+X-CSE-ConnectionGUID: LFFFaWKZRviz5MsfVeq+Uw==
+X-CSE-MsgGUID: 1zOqwdHnQmGyL5tIxIw6fQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11263"; a="43764557"
+X-IronPort-AV: E=Sophos;i="6.12,174,1728975600"; 
+   d="scan'208";a="43764557"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Nov 2024 18:29:37 -0800
+X-CSE-ConnectionGUID: h0ffBcEBS0CwwylnBUecLg==
+X-CSE-MsgGUID: TZLT3qEHTNWFslZClvwikw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,174,1728975600"; 
+   d="scan'208";a="90601994"
+Received: from lkp-server01.sh.intel.com (HELO 8122d2fc1967) ([10.239.97.150])
+  by fmviesa008.fm.intel.com with ESMTP; 21 Nov 2024 18:29:30 -0800
+Received: from kbuild by 8122d2fc1967 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tEJQG-0003av-0G;
+	Fri, 22 Nov 2024 02:29:28 +0000
+Date: Fri, 22 Nov 2024 10:28:38 +0800
+From: kernel test robot <lkp@intel.com>
+To: keith zhao <keith.zhao@starfivetech.com>, devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org
+Cc: Paul Gazzillo <paul@pgazz.com>,
+	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+	oe-kbuild-all@lists.linux.dev, andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org, rfoss@kernel.org,
+	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+	jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
+	simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, hjc@rock-chips.com, heiko@sntech.de,
+	andy.yan@rock-chips.com, william.qiu@starfivetech.com,
+	xingyu.wu@starfivetech.com, kernel@esmil.dk,
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	p.zabel@pengutronix.de, changhuang.liang@starfivetech.com,
+	keith.zhao@starfivetech.com, jack.zhu@starfivetech.com,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 4/9] drm/vs: Add Hardware Functions for VS DC8200
+Message-ID: <202411221030.71tSpXt2-lkp@intel.com>
+References: <20241120061848.196754-5-keith.zhao@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] dt-bindings: bluetooth: Add qca6698 compatible
- string
-To: "Cheng Jiang (IOE)" <quic_chejiang@quicinc.com>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>
-CC: Marcel Holtmann <marcel@holtmann.org>,
-        Luiz Augusto von Dentz
-	<luiz.dentz@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        "Balakrishna
- Godavarthi" <quic_bgodavar@quicinc.com>,
-        Rocky Liao
-	<quic_rjliao@quicinc.com>,
-        <linux-bluetooth@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <quic_mohamull@quicinc.com>
-References: <20241120095428.1122935-1-quic_chejiang@quicinc.com>
- <20241120095428.1122935-3-quic_chejiang@quicinc.com>
- <smwxrjvdvyxw6tknucl6fb5jpjau2q4jcyjxpunbtt5ep6xsr4@ztuyfkrwgxoo>
- <44932c08-000f-4e6c-89b3-d7556a0a7a88@quicinc.com>
- <CAA8EJpq1u6ngze81LKAcGzQEJz=yJ-u6MjvRMJHdKp3aPVnewg@mail.gmail.com>
- <e8645b6c-7f78-4051-9e29-2276197714ed@quicinc.com>
-Content-Language: en-US
-From: quic_zijuhu <quic_zijuhu@quicinc.com>
-In-Reply-To: <e8645b6c-7f78-4051-9e29-2276197714ed@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: O5pYA4s_CJCRiKY4m2Hy-A1WWwdxm6W-
-X-Proofpoint-GUID: O5pYA4s_CJCRiKY4m2Hy-A1WWwdxm6W-
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 impostorscore=0
- malwarescore=0 lowpriorityscore=0 suspectscore=0 mlxlogscore=999
- adultscore=0 mlxscore=0 bulkscore=0 clxscore=1011 priorityscore=1501
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411220018
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241120061848.196754-5-keith.zhao@starfivetech.com>
 
-On 11/22/2024 9:55 AM, Cheng Jiang (IOE) wrote:
-> Hi Dmitry,
-> 
-> On 11/22/2024 12:28 AM, Dmitry Baryshkov wrote:
->> On Thu, 21 Nov 2024 at 06:12, Cheng Jiang <quic_chejiang@quicinc.com> wrote:
->>>
->>> Hi Dmitry,
->>>
->>> On 11/20/2024 6:44 PM, Dmitry Baryshkov wrote:
->>>> On Wed, Nov 20, 2024 at 05:54:26PM +0800, Cheng Jiang wrote:
->>>>> Add QCA6698 qcom,qca6698-bt compatible strings.
->>>>
->>>> Why? Is it the same chip as WCN6855 or a different chip? Is it
->>>> completely compatible?
->>>>
->>> They are different chips. But it's compatible with WCN6855.
->>
->> So, do we really need new compat? Will/can it use the same firmware?
-> We need to use a different firmware. Let me check if using 
-> "firmware-name" allows us to omit the new soc type. 
-> From the driver's perspective, the only change is the need to load a 
-> different firmware.
-> 
+Hi keith,
 
-it is a good idea to use existing optional property firmware-name to
-specify RAMPATCH additionally. that would simplify logic a lot for your
-requirements. (^^)(^^).
+kernel test robot noticed the following build warnings:
 
->>
->>>>>
->>>>> Signed-off-by: Cheng Jiang <quic_chejiang@quicinc.com>
->>>>> ---
->>>>>  .../devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml   | 2 ++
->>>>>  1 file changed, 2 insertions(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
->>>>> index 9019fe7bcdc6..527f947289af 100644
->>>>> --- a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
->>>>> +++ b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
->>>>> @@ -18,6 +18,7 @@ properties:
->>>>>      enum:
->>>>>        - qcom,qca2066-bt
->>>>>        - qcom,qca6174-bt
->>>>> +      - qcom,qca6698-bt
->>>>>        - qcom,qca9377-bt
->>>>>        - qcom,wcn3988-bt
->>>>>        - qcom,wcn3990-bt
->>>>> @@ -175,6 +176,7 @@ allOf:
->>>>>          compatible:
->>>>>            contains:
->>>>>              enum:
->>>>> +              - qcom,qca6698-bt
->>>>>                - qcom,wcn6855-bt
->>>>>      then:
->>>>>        required:
->>>>> --
->>>>> 2.25.1
->>>>>
->>>>
->>>
->>
->>
-> 
+[auto build test WARNING on linus/master]
+[also build test WARNING on v6.12 next-20241121]
+[cannot apply to drm-misc/drm-misc-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/keith-zhao/dt-bindings-display-bindings-for-starfive-JH7110-display-pipeline/20241121-145710
+base:   linus/master
+patch link:    https://lore.kernel.org/r/20241120061848.196754-5-keith.zhao%40starfivetech.com
+patch subject: [PATCH v5 4/9] drm/vs: Add Hardware Functions for VS DC8200
+config: xtensa-kismet-CONFIG_CMA-CONFIG_DRM_VERISILICON_DC8200-0-0 (https://download.01.org/0day-ci/archive/20241122/202411221030.71tSpXt2-lkp@intel.com/config)
+reproduce: (https://download.01.org/0day-ci/archive/20241122/202411221030.71tSpXt2-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202411221030.71tSpXt2-lkp@intel.com/
+
+kismet warnings: (new ones prefixed by >>)
+>> kismet: WARNING: unmet direct dependencies detected for CMA when selected by DRM_VERISILICON_DC8200
+   WARNING: unmet direct dependencies detected for CMA
+     Depends on [n]: MMU [=n]
+     Selected by [y]:
+     - DRM_VERISILICON_DC8200 [=y] && HAS_IOMEM [=y] && DRM [=y] && HAVE_DMA_CONTIGUOUS [=y]
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
