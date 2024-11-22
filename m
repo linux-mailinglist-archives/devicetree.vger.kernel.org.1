@@ -1,334 +1,128 @@
-Return-Path: <devicetree+bounces-123765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5A2E9D5E8B
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 13:06:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 904D79D5E92
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 13:09:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 415ABB21DE2
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 12:05:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 272C6281191
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 12:09:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C5EE1DDC39;
-	Fri, 22 Nov 2024 12:05:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 979211D9595;
+	Fri, 22 Nov 2024 12:09:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="XsHpgckC"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="FTneeyND"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 162AF2AE96
-	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 12:05:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A47E4500E
+	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 12:09:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732277154; cv=none; b=iNK6nherdwfFGjOLusj94fDhhtJUx5lKyIB+DAPgMnLRs1j7t165kHm096jvtadPHg+kFJsib6B+I8qTkMdMO5uLaYAcoskNiGbEzfTb838ap85qmO65+L+lCgHegc+EusruH4RiwzlfGZfqkXqKG9dstHllY+xzM2B67xum9GI=
+	t=1732277360; cv=none; b=WbKpiiHOx0EZLs7rw+3Juj9n5GaJ9rWv5zfVZQ7Xhssep75WpgsB9937UCp/hUw1h76MfX5C868lLh/+w/4RFpVI3NDwYGMOy5HIlulCR6/+dUkxtro3zNR3rut3i1F7bNrvopjPwDexuanYe47ob9/cT3+EzrCHvvYmzKSb5sQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732277154; c=relaxed/simple;
-	bh=nC70DHI6JmN62v3WH0A1S5saG1XNJEDFSGcxO9nNAxI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=R309osaqvNiqXAfEKerjpjGrx505vOw4Xq+M4OD4Y6mv5VQ6sfRsb9yHvww+lmfXRdI8ZINn8nNKfQQ/Jl6MamiTTV0JCSxG97H+oKLnaz0IG+s9JfeV5f9RypbmDfuvi8WsjfLpgseuVXwyQRPTqFEKRr/ABP69EQY4cJHiKlI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=XsHpgckC; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5cfcb7183deso5365453a12.0
-        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 04:05:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1732277150; x=1732881950; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4awdIKHOc9tiTWW/sGRWFK525oUkjPltfSOQCltNHK8=;
-        b=XsHpgckC9ayV3m8IcvUikWCo/CJPrgJxchusfeo6lrP2n9Ny/4MlLx8Ri5aStbg6ii
-         EPEeGnRwhnzEt6X9YJ0U5HPpf/gd1yXhJ+NuaFqY5nVMJgA5uid01kdYcblyCd5gY9jq
-         mqePOrKIH2Po0uS6FCaL844jm0ShXf4G1NSKfJFaHySTjxr0DhCD8LjQmZHaDnfHMevh
-         YyUitV+5CACSXZeq84uIMmNxZpYRuP7IDSyLwACLWGITVZ6NcWkEXsr2TMLxIrUpwMGG
-         bz49J3w6sF4UutUTANJwxjhrwMU8QsMGMJIq0i5B3IE54rBINA/g++iEL6xdPGq6O+bs
-         WWKg==
+	s=arc-20240116; t=1732277360; c=relaxed/simple;
+	bh=f3I4gqxCEIx4XLDLokX5S8VXumoKTGDeUDBMTyPNel0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=HX487Ubtcw5vebtvHBiwVfLj5nOS6aLXcvWezVQZPB/gjvvD+hVXW7SmNQXKoWe2Hcuigj3WLZOZ/CsyYj6ABovrYqF/v1o6gSoFOcfyoREfDI2xb8TgHmyJE2o8/+V24O81wcs4xsA1lRObRdC6NJvspucH48l4/qNvTrE5zSk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FTneeyND; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AM86MA7015290
+	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 12:09:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	sgfQ5I0CQl8UfQ3flsk4bhkJPTEDMQpM6xgAt6l3YTk=; b=FTneeyNDQWEvHnxQ
+	xz3fChARcBrFbrWPZBmXiIYv+ZWIzHoa7KjZD7bIG4sWL3ErgQbQEskXkUmCOJDn
+	IMnKImaXWh+QBJNrycrxskgyl+zbFzAolx2N91lKSuzUehpOCRoy+ZtCmFSRN4DM
+	86vbyv9vSNHTdSab4uhCPYmiSyDiWou+ry+/EZSehk8HhGGB5Bdm5cV2v30BFp1w
+	M/t0QsvPJ4mBDl0dmdP2u/8MDc2BiBfLkL0tY0JUEj6b+bIOdGTx4sAriePn8wym
+	7UulJlnP8sHvkLjOgnj3fxYsP7+wgcToPKwR+1Ib5ag/bGcx6Ki/r2GHZNe9oBuS
+	a9FBFQ==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4320y9m37f-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 12:09:18 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-460e81465f8so4620101cf.0
+        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 04:09:17 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732277150; x=1732881950;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4awdIKHOc9tiTWW/sGRWFK525oUkjPltfSOQCltNHK8=;
-        b=MnaM4Pscq1zHJSuvZrA1L+T28ysgKo/9d6qI+4Nm4VjlqqKK5dCJgogdqA/OY0He5X
-         wBTo0AXojNj5lmvLyprekh1gvHd8s+S0y6wlmDGq6JPZDnkcahreOW5YGkHJr2rrd5EQ
-         axdc+GCc/waLsKQ6e2He6M9qYO/ELzcc3/Ak4mkdxNLnccdSxQgmlR30ba7hK6w/0Dgs
-         vESjj84tSeuolj0ToQvQy4HV85Dy6HG3By68WulgiMEJnm71lSLT47ZOv/jo7oQ6jEAZ
-         sVvvsdksUD59PUeqfMZvDL9C4vnw2ZLO8jbOdAKwdlFzyh/Kys15HR4JpCiXadSD6+NA
-         6PIw==
-X-Forwarded-Encrypted: i=1; AJvYcCVWeGXEr2gya4OeZ6qfISgQyfevziC/jPLAOb+SDcK7ijkmcOpyMe/FtC2kBoIxNI8fLCcgH2Aq6rMf@vger.kernel.org
-X-Gm-Message-State: AOJu0YyT4PLJWRcjVgp5TwYemQ+tDmRPgvLusGjSr+3Qnzjsl5JEYqau
-	rccsmhwYpVYx0MCpSx3x/KVpSy+Gn36ZINvX+NKhzAK/l01KIu5MWbf4Najn6yo0Ug3ru8nLf+U
-	83NOF5R9Ztudb7whhpIYC7c8eF84yZxzJk/mZwQ==
-X-Gm-Gg: ASbGncvLs7yP3Tmz87iHST3eG5rV8RZE+RsApuom2Ccsr3+AGuazDH9LBJIGHaKSezV
-	IZ465muPFyitWlA7Ny5rkbuFnQ4/v/Q==
-X-Google-Smtp-Source: AGHT+IFWFYdsVIpAWJgT1gtIynsJvUXbIXbPCzIef0ApS6AMShnnTq5vw0bsEUMO1YOnSWNsqqmfLQ4iMDl5v7PuDGo=
-X-Received: by 2002:a17:907:31c5:b0:a9a:e0b8:5bac with SMTP id
- a640c23a62f3a-aa4efe2a1f6mr606014366b.23.1732277150378; Fri, 22 Nov 2024
- 04:05:50 -0800 (PST)
+        d=1e100.net; s=20230601; t=1732277357; x=1732882157;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=sgfQ5I0CQl8UfQ3flsk4bhkJPTEDMQpM6xgAt6l3YTk=;
+        b=cBLBEa84m8L+iS++Vz3u/o1fjiSwBXicHzAJ+Q/ZtI0MaTMcqJB4kNyuTcykX+XRs5
+         9MbCS3CgO/Dwb8pnexjcsftt1qDlC4Km/4kQESVTH/fkN2i+LBEZqs8NOeGNy6Cq25yd
+         OwdDHgqQSGa9e/SSldg6+NtNBlmaZbm8HbcswbT+srQOe7UbFrsV8009uSBTKNW8yGEQ
+         b8DcZ7JWDUgpACo1c7LX5Nmam8K60+z6+BmeanUb3/ELmOg0QRBKciIXFLOeWGt23PbM
+         JDe+dmcQKrlak39yu5+EyTTW0a0mQDXLOrOJnz1dqTgQu17hOKinx/y1lBgxQukHNiaj
+         ikog==
+X-Forwarded-Encrypted: i=1; AJvYcCVgSQTcDnJeC/+L29USvRJ9lJ1sNkStADfS7/+a2qqMkCOz8UaEyonWk0crxVG+H/cXhmMD2k+Wa2zK@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy29L3O1HB/fxrBEd+hkYPgVeEYDR5kck+EdB0IPcxQP+qvoWkU
+	jBNjlhRnbK25QX/XIq4GCJcJl1a8q1RZ9XZLxL5lcz4pDgBaBlZgc1HfBedvNZvBNmMFel1YKD6
+	gSWqQNapvoN3NgIn77MhKOGIPursVtuK+J4YrUZb3uSdxS42wHUlMepIfEIAj
+X-Gm-Gg: ASbGncvOU0poSte9PI5c4gjQktO8Tdn3EfBZou5vqnYI0venEl8RD6hpFD7Wd5oS8G7
+	TGGl2KZZEtnSesmQ2T2lj3o0Tr2UidrDGOnOrxDhd4d8aiFotJ5WExw6/QKeoEhRi8EDU1714ya
+	HD3clylDLMdDqhcRv0uPD97HGWyusNzMWV5VMq26a/5EhtoTsSBg5PFdP0HA4eZV4Ike1NpGm1Y
+	8epXzk0aXbdAjgWK49oawyiiXhQ6P+DvpU2QGhQ21a8wKVYgTtAc+nZJHzYQAmoKnLVvvdrUEhv
+	YCjl8lH9eG/K8+EodMjpY6SlG54GuA==
+X-Received: by 2002:a05:620a:4393:b0:7ae:64d1:d31 with SMTP id af79cd13be357-7b51451a49amr145613185a.6.1732277356795;
+        Fri, 22 Nov 2024 04:09:16 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFIvmb/Y1Kc36T84MfAddlUEPXu02tmNhvl1dBN2N1NQHDvFihw8x5CC9BRGYVlS2+hubr+Lg==
+X-Received: by 2002:a05:620a:4393:b0:7ae:64d1:d31 with SMTP id af79cd13be357-7b51451a49amr145611585a.6.1732277356421;
+        Fri, 22 Nov 2024 04:09:16 -0800 (PST)
+Received: from [192.168.212.29] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa50b5300e1sm91807966b.106.2024.11.22.04.09.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 22 Nov 2024 04:09:15 -0800 (PST)
+Message-ID: <7da6fa27-0967-4fd7-af75-0141fde79b3b@oss.qualcomm.com>
+Date: Fri, 22 Nov 2024 13:09:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241121-add-mtk-isp-3-0-support-v7-0-b04dc9610619@baylibre.com>
- <20241121-add-mtk-isp-3-0-support-v7-4-b04dc9610619@baylibre.com>
- <767085562b5efb43f248e8528bb154a6c30d3999.camel@mediatek.com>
- <CAEHHSvaePj2MUg+zgmkpZF4HTj_F9ED0RxuzQr2oOAUJgOieng@mail.gmail.com>
- <bd73658d8ceac0ce236f08f31065350123056724.camel@mediatek.com>
- <CAEHHSvZLx3MqzK_qheiXm1UsB=i=8f2QbGTpXPkdU2aqUJtvww@mail.gmail.com> <b234ccf388cfc933d7941cbe94ce6ae590ad17e1.camel@mediatek.com>
-In-Reply-To: <b234ccf388cfc933d7941cbe94ce6ae590ad17e1.camel@mediatek.com>
-From: Julien Stephan <jstephan@baylibre.com>
-Date: Fri, 22 Nov 2024 13:05:38 +0100
-Message-ID: <CAEHHSvbGKOV6x8B9Hr_8_-UJD_AoR3aX9acAtwg4Nkgjsf0yow@mail.gmail.com>
-Subject: Re: [PATCH v7 4/5] media: platform: mediatek: isp: add mediatek
- ISP3.0 camsv
-To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, 
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"paul.elder@ideasonboard.com" <paul.elder@ideasonboard.com>, "mchehab@kernel.org" <mchehab@kernel.org>, 
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "robh@kernel.org" <robh@kernel.org>, 
-	=?UTF-8?B?QW5keSBIc2llaCAo6Kyd5pm655qTKQ==?= <Andy.Hsieh@mediatek.com>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, 
-	"laurent.pinchart@ideasonboard.com" <laurent.pinchart@ideasonboard.com>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "fsylvestre@baylibre.com" <fsylvestre@baylibre.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	"pnguyen@baylibre.com" <pnguyen@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/3] soc: qcom: llcc: Update configuration data for
+ IPQ5424
+To: Varadarajan Narayanan <quic_varada@quicinc.com>, andersson@kernel.org,
+        konradybcio@kernel.org, conor@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20241121051935.1055222-1-quic_varada@quicinc.com>
+ <20241121051935.1055222-3-quic_varada@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20241121051935.1055222-3-quic_varada@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: MU6_eeqjQtVse0MOf9rKgeWISGkgS115
+X-Proofpoint-ORIG-GUID: MU6_eeqjQtVse0MOf9rKgeWISGkgS115
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ phishscore=0 impostorscore=0 suspectscore=0 lowpriorityscore=0
+ mlxlogscore=907 spamscore=0 mlxscore=0 malwarescore=0 clxscore=1015
+ adultscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411220103
 
-Le ven. 22 nov. 2024 =C3=A0 11:01, CK Hu (=E8=83=A1=E4=BF=8A=E5=85=89) <ck.=
-hu@mediatek.com> a =C3=A9crit :
->
-> On Fri, 2024-11-22 at 10:50 +0100, Julien Stephan wrote:
-> > External email : Please do not click links or open attachments until yo=
-u have verified the sender or the content.
-> >
-> >
-> > Le ven. 22 nov. 2024 =C3=A0 10:49, CK Hu (=E8=83=A1=E4=BF=8A=E5=85=89) =
-<ck.hu@mediatek.com> a =C3=A9crit :
-> > >
-> > > On Fri, 2024-11-22 at 10:25 +0100, Julien Stephan wrote:
-> > > > External email : Please do not click links or open attachments unti=
-l you have verified the sender or the content.
-> > > >
-> > > >
-> > > > Le ven. 22 nov. 2024 =C3=A0 09:41, CK Hu (=E8=83=A1=E4=BF=8A=E5=85=
-=89) <ck.hu@mediatek.com> a =C3=A9crit :
-> > > > >
-> > > > > Hi, Julien:
-> > > > >
-> > > > > On Thu, 2024-11-21 at 09:53 +0100, Julien Stephan wrote:
-> > > > > > External email : Please do not click links or open attachments =
-until you have verified the sender or the content.
-> > > > > >
-> > > > > >
-> > > > > > From: Phi-bang Nguyen <pnguyen@baylibre.com>
-> > > > > >
-> > > > > > This driver provides a path to bypass the SoC ISP so that image=
- data
-> > > > > > coming from the SENINF can go directly into memory without any =
-image
-> > > > > > processing. This allows the use of an external ISP.
-> > > > > >
-> > > > > > Signed-off-by: Phi-bang Nguyen <pnguyen@baylibre.com>
-> > > > > > Signed-off-by: Florian Sylvestre <fsylvestre@baylibre.com>
-> > > > > > [Paul Elder fix irq locking]
-> > > > > > Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
-> > > > > > Co-developed-by: Laurent Pinchart <laurent.pinchart@ideasonboar=
-d.com>
-> > > > > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.=
-com>
-> > > > > > Co-developed-by: Julien Stephan <jstephan@baylibre.com>
-> > > > > > Signed-off-by: Julien Stephan <jstephan@baylibre.com>
-> > > > > > ---
-> > > > >
-> > > > > [snip]
-> > > > >
-> > > > > > +static irqreturn_t isp_irq_camsv30(int irq, void *data)
-> > > > > > +{
-> > > > > > +       struct mtk_cam_dev *cam_dev =3D (struct mtk_cam_dev *)d=
-ata;
-> > > > > > +       struct mtk_cam_dev_buffer *buf;
-> > > > > > +       unsigned int irq_status;
-> > > > > > +
-> > > > > > +       spin_lock(&cam_dev->buf_list_lock);
-> > > > > > +
-> > > > > > +       irq_status =3D mtk_camsv30_read(cam_dev, CAMSV_INT_STAT=
-US);
-> > > > > > +
-> > > > > > +       if (irq_status & INT_ST_MASK_CAMSV_ERR)
-> > > > > > +               dev_err(cam_dev->dev, "irq error 0x%lx\n",
-> > > > > > +                       irq_status & INT_ST_MASK_CAMSV_ERR);
-> > > > > > +
-> > > > > > +       /* De-queue frame */
-> > > > > > +       if (irq_status & CAMSV_IRQ_PASS1_DON) {
-> > > > > > +               cam_dev->sequence++;
-> > > > > > +
-> > > > > > +               buf =3D list_first_entry_or_null(&cam_dev->buf_=
-list,
-> > > > > > +                                              struct mtk_cam_d=
-ev_buffer,
-> > > > > > +                                              list);
-> > > > > > +               if (buf) {
-> > > > > > +                       buf->v4l2_buf.sequence =3D cam_dev->seq=
-uence;
-> > > > > > +                       buf->v4l2_buf.vb2_buf.timestamp =3D
-> > > > > > +                               ktime_get_ns();
-> > > > > > +                       vb2_buffer_done(&buf->v4l2_buf.vb2_buf,
-> > > > > > +                                       VB2_BUF_STATE_DONE);
-> > > > > > +                       list_del(&buf->list);
-> > > > > > +               }
-> > > > > > +
-> > > > > > +               buf =3D list_first_entry_or_null(&cam_dev->buf_=
-list,
-> > > > > > +                                              struct mtk_cam_d=
-ev_buffer,
-> > > > > > +                                              list);
-> > > > > > +               if (buf)
-> > > > > > +                       mtk_camsv30_update_buffers_add(cam_dev,=
- buf);
-> > > > >
-> > > > > If buf =3D=3D NULL, so hardware would automatically stop DMA?
-> > > > > I don't know how this hardware work.
-> > > > > Below is my imagine about this hardware.
-> > > > >
-> > > > > 1. Software use CAMSV_IMGO_FBC_RCNT_INC to increase software buff=
-er index.
-> > > > > 2. Hardware has a hardware buffer index. After hardware finish on=
-e frame, hardware buffer index increase.
-> > > > > 3. After software buffer index increase, hardware start DMA.
-> > > > > 4. When hardware buffer index is equal to software buffer index, =
-hardware automatically stop DMA.
-> > > > >
-> > > > > Does the hardware work as my imagine?
-> > > > > If hardware could automatically stop DMA, add comment to describe=
-.
-> > > > > If hardware could not automatically stop DMA, software should do =
-something to stop DMA when buf =3D=3D NULL.
-> > > > >
-> > > >
-> > > > You are right except that dma is not stopped but frames are
-> > > > automatically dropped by hardware until a new buffer is enqueued an=
-d
-> > > > software uses CAMSV_IMGO_FBC_RCNT_INC to increase the software buff=
-er
-> > > > index.
-> > > >
-> > > > What about adding the following comment:
-> > > >
-> > > > /*
-> > > > * If there is no user buffer available, hardware will drop automati=
-cally
-> > > > * frames until buf_queue is called
-> > > > */
-> > >
-> > > You say DMA is not stopped. Do you mean hardware still write data int=
-o latest buffer which would be dequeued to user space?
-> > > I think hardware should not write data into the buffer which has been=
- take away by user space.
-> > > I think software should do something to stop DMA. Maybe use mtk_camsv=
-30_cmos_vf_hw_disable() to stop DMA.
-> > >
-> >
-> > No, I said frame is dropped.. It does not write any data.
->
-> OK, for me, DMA mean memory access. Not writing any data is equal to stop=
- DMA for me.
-> The comment is OK for me now. But it may change after we discuss fbc_inc.
->
+On 21.11.2024 6:19 AM, Varadarajan Narayanan wrote:
+> The 'broadcast' register space is present only in chipsets that
+> have multiple instances of LLCC IP. Since IPQ5424 has only one
+> instance, both the LLCC and LLCC_BROADCAST points to the same
+> register space.
+> 
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> ---
 
-OK, sorry for confusion!
-Did you notice my previous reply about fbc_inc?
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Cheers
-Julien
-
-> Regards,
-> CK
->
-> >
-> > > Regards,
-> > > CK
-> > >
-> > > >
-> > > > Let me know if that works for you
-> > > >
-> > > > Cheers
-> > > > Julien
-> > > >
-> > > > > Regards,
-> > > > > CK
-> > > > >
-> > > > > > +       }
-> > > > > > +
-> > > > > > +       spin_unlock(&cam_dev->buf_list_lock);
-> > > > > > +
-> > > > > > +       return IRQ_HANDLED;
-> > > > > > +}
-> > > > > > +
-> > > > >
-> > > > > ************* MEDIATEK Confidentiality Notice *******************=
-*
-> > > > > The information contained in this e-mail message (including any
-> > > > > attachments) may be confidential, proprietary, privileged, or oth=
-erwise
-> > > > > exempt from disclosure under applicable laws. It is intended to b=
-e
-> > > > > conveyed only to the designated recipient(s). Any use, disseminat=
-ion,
-> > > > > distribution, printing, retaining or copying of this e-mail (incl=
-uding its
-> > > > > attachments) by unintended recipient(s) is strictly prohibited an=
-d may
-> > > > > be unlawful. If you are not an intended recipient of this e-mail,=
- or believe
-> > > > > that you have received this e-mail in error, please notify the se=
-nder
-> > > > > immediately (by replying to this e-mail), delete any and all copi=
-es of
-> > > > > this e-mail (including any attachments) from your system, and do =
-not
-> > > > > disclose the content of this e-mail to any other person. Thank yo=
-u!
-> > >
-> > > ************* MEDIATEK Confidentiality Notice ********************
-> > > The information contained in this e-mail message (including any
-> > > attachments) may be confidential, proprietary, privileged, or otherwi=
-se
-> > > exempt from disclosure under applicable laws. It is intended to be
-> > > conveyed only to the designated recipient(s). Any use, dissemination,
-> > > distribution, printing, retaining or copying of this e-mail (includin=
-g its
-> > > attachments) by unintended recipient(s) is strictly prohibited and ma=
-y
-> > > be unlawful. If you are not an intended recipient of this e-mail, or =
-believe
-> > > that you have received this e-mail in error, please notify the sender
-> > > immediately (by replying to this e-mail), delete any and all copies o=
-f
-> > > this e-mail (including any attachments) from your system, and do not
-> > > disclose the content of this e-mail to any other person. Thank you!
-> >
-> >
->
-> ************* MEDIATEK Confidentiality Notice ********************
-> The information contained in this e-mail message (including any
-> attachments) may be confidential, proprietary, privileged, or otherwise
-> exempt from disclosure under applicable laws. It is intended to be
-> conveyed only to the designated recipient(s). Any use, dissemination,
-> distribution, printing, retaining or copying of this e-mail (including it=
-s
-> attachments) by unintended recipient(s) is strictly prohibited and may
-> be unlawful. If you are not an intended recipient of this e-mail, or beli=
-eve
-> that you have received this e-mail in error, please notify the sender
-> immediately (by replying to this e-mail), delete any and all copies of
-> this e-mail (including any attachments) from your system, and do not
-> disclose the content of this e-mail to any other person. Thank you!
+Konrad
 
