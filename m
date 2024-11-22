@@ -1,227 +1,112 @@
-Return-Path: <devicetree+bounces-123701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F03EB9D5BDF
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 10:26:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 591459D5BE9
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 10:26:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 773551F22020
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 09:26:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E952A1F232C1
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 09:26:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B91B189BBA;
-	Fri, 22 Nov 2024 09:25:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9D311CB305;
+	Fri, 22 Nov 2024 09:26:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="0VltoJIc"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Am26H4Fd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED0D1176AB6
-	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 09:25:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74AB818B47B
+	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 09:26:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732267553; cv=none; b=CjGHMaovkZYOWLj+8eGXgbvQYDe/VHd64nmS6lJR41cMT0lHydLu87Mq+EKxnVdOGUbAvFGVlNCpyEBgxgWMPHO1mlQwkUvZOu5VHePD6ybMeAjuAiB/Nn6GA001WqHyGMlpLHpJeXfvkFm0USOMP9b/ileUF/spUvxevsixixM=
+	t=1732267585; cv=none; b=e+YEI4+JsSD6w8TjdW5tVhA5CVIHCfY5GeL92mvKgFkPK3vvHT/fJacflFBYXC98lCBPUkyHHKNOLrMk6WQHznQsROX96fT1YZMwslC380nAIjrOcZ4n8xcw9unf7T1z9WeY8hfRHogsNI1yRDBJXnD+oJl1e/apJ5NfVaFFeT0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732267553; c=relaxed/simple;
-	bh=yc0fJubc64CpPPPO5rh39xdgkeVNt62XS7Y+a6w3kRw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=lZQkzvkjfEdHjLAdYByxcQ/GFfL7InRmajQm3JPdqvjAgZPoYTlIi3yCy5jX83K0ScqzbB0keYPAbOPELnxu8rO5fphHC3bu/HslZZsfYyeZZf3QDye4Rj/Y0KCMcmzM1RFILsu2PGN1QuTASW5+fPwqOw3M3qcUy32D54Yp5wE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=0VltoJIc; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a9ec267b879so304835166b.2
-        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 01:25:51 -0800 (PST)
+	s=arc-20240116; t=1732267585; c=relaxed/simple;
+	bh=dCo5WcETBMcNS9Qzzve6l/My5/g1x7ep5vh7uZGOmFU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fwdO/1LB7fzjqcQ61x/RRd7RVSKYOw5Fw/Jcg3Pb6gppMwkdzCIgS9TjPxJeX4qQxr6hBeaB7vmFovRXyk1T+F5PkivBWLpur5lZCVP0ZOASh/GVEyw6v+eJ3wGu17nniu+k5mWjvZKV+E9ZhK7zXIBGFvPATuMxBTiso/mUE7U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Am26H4Fd; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-53dd8eb55c4so135847e87.3
+        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 01:26:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1732267550; x=1732872350; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8kGVIObe0vVdWgPVNKUPs0E9cZC3gBnTEl6g/zCTMjk=;
-        b=0VltoJIc8irbMu1L8+SU00irK/xc6YJXfFgUWctDq9jEA0BST5Qh5romhDMHGnV08u
-         pbe2DQY9/Lkegu9b/S6vcIP07haf93v2VkOvOYlA18PRN4A8JUyTuGMDWkJqJmv0+NxV
-         eLF8B9RcQ3TLLRuaDr+36xprpXBNk26KcsDbF74Dvs87P8eDivxkGQqDE4UTnuM66Qjr
-         HkGZ9tOBq4tptjCgQlaBWPcin8R5dM238NRI36f6WpKlKE40s+HNJU40iHcToraR41Tw
-         pxHAbHkLkc+HCWGyLMvZYMD5TqZdpGOM8PM8mxw6a1g+HOI1mtT1mzqUUOBjACWF9s3T
-         WBLg==
+        d=linaro.org; s=google; t=1732267582; x=1732872382; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=FkQ5Ep9WmP3Y9BsrfbLwUHrvE7faiWZQ86IAEJDAzQs=;
+        b=Am26H4FdOs0u4J6kJCtyhZeJDSflM7/VdzYJKykIy3Sx5MQsOVeEHuYfmvjl02QHlT
+         b0POBXIsWoPKQMoqP5v7gcE51ZyBY+gp/mXLXjDiAOmfM20oCRJX6pXSfwOY9GIXOdoS
+         1tZ4yjGzhdmrNdbJjYVr5capzQtpD8nXvS4PS/rWf03+W6nNKTAVjl+e178QD+isk/eY
+         URTCjHhKr+kkEghkWPt3lzavFqHpSwns3wsVWiAtG9uaKYOBZ3AenChWVgPO8zj5UTcI
+         f7iiIDdKfv5vW5r9CSmOBm7kZT21pDiVN7ZnKaMors3ZRGWUiCkHnUFuzzp5TT9PHJOs
+         U/4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732267550; x=1732872350;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8kGVIObe0vVdWgPVNKUPs0E9cZC3gBnTEl6g/zCTMjk=;
-        b=MP/CF8kwkznc7fhMj/hoTofRsURmFKEqdOYa8hArvfUpl945EamyQ512QvryTlDW4a
-         1YYGFq9jVZdJtzZFEMtWititDQekm0BDZOCOJpGQOtVObCzwpMUWblQxpz7hP2TA6nmb
-         hCTh0lfMe3lPKJwhy6irVfm89LR6HRIHrSoS/gN7sqKuZxyX5L/AILcXBzIM5ZHR1l0W
-         rQH4ZRiq1K0WrKr1xR0ooa5aAEBfK64uSUQqKzQfhluMGY+C8wB5WSlcww3NlYP3UseM
-         Q1woKUtTMSWXS0InImUpUKlOuab2CVwVapzO3WK86V3W3DjctMFZAU/QI/2qAZLCAS2m
-         ZkLA==
-X-Forwarded-Encrypted: i=1; AJvYcCVB0rhnJq/7FcMQiFkkj20hguJSKALkkiGntQ4BrZ/8Feeiv0WglLJSAs4Erl4PGFRPhBwFDSqNAN8S@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz03dQoFINaWj7K1VgfxaCdRQBnPInF3vZxbogEPzTn9vb0S1U+
-	eXk/wrqqnMyK5vkAetfhZMCVSpASi9lGCSqeg9bE6mSusn2uSCcNlf2XMwLTrnPEnOSAVPe1Ydw
-	YZLwc8hj1U4YO5Jlr9Xbo6NJxHBWH35Fw9Ey/d/G53fnqMaiwLlM=
-X-Gm-Gg: ASbGncuGc1rlCl/061ye/Bfx8uZtNALqaOLXamTAbua4N+fsnQ40bk0Lm58GsIlKPt4
-	fK6tb5CEiQM36CXiGo5rFob7e9b4inQ==
-X-Google-Smtp-Source: AGHT+IGelwCxgal9/XHOQ4gQV2eBA2tvjKzser7OohWcveCSBW6AFI6GvR8S/BH009DfNRCjqG5gbgXZGS6L6ZzyHyQ=
-X-Received: by 2002:a17:906:3101:b0:a99:5f16:3539 with SMTP id
- a640c23a62f3a-aa509694028mr173072766b.0.1732267550340; Fri, 22 Nov 2024
- 01:25:50 -0800 (PST)
+        d=1e100.net; s=20230601; t=1732267582; x=1732872382;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FkQ5Ep9WmP3Y9BsrfbLwUHrvE7faiWZQ86IAEJDAzQs=;
+        b=vG81wdxmKAJ9V54x7QT9vkHCZr44UJ93N5a1b09Na6pmwsexsHOcSoyIj1g1lnZW/e
+         xR1TwTgUAxDlMR1dDKwRW/4R+3FsaQUZ2x8o3oJy2U85F0n1+9S4yfJ41NehI4b+E8sS
+         u9IfYWp/CsT6oDz8g3ZcVLMpeQAlgP8yd+XaQmS9G09fmdC8mzYRP+boIQQNWRk2xWtG
+         NmrOhUrw0cDTdhT6VLC4c18MbvjZYyUwzh0+l///p5G/8qcQpJWkab4Ae3lMJez905Kw
+         Wbll0W4RyHqtOpbTshGvCIwRjHgyjECYiO3qSyNmwhuhfF0zpyt7PNqOSoLjnR9Peylj
+         WbZg==
+X-Forwarded-Encrypted: i=1; AJvYcCVR9tfxegnHgc8IClh6vr3AjVmexXlH/Ob4VpayWD5W+2N16M1izSQI0sb+30oTVo4//27TyxqEznVS@vger.kernel.org
+X-Gm-Message-State: AOJu0YzzvMAxLx6d5BmMxxMHFGmm2AAiySz9ZHyiYUM9JOUjK5Y8BEC8
+	HEZ1FikQl/AXYzS0rNIf1AwpH7CTmjSn0LnBpX/G5EYvKNI1rj76n+ubnNhXS3w=
+X-Gm-Gg: ASbGncuQEe6wjemJl8tBqB9O/dEe28m+6kPfTRc3YH3JqX3DYarhwlGC4zpgYpKbgdu
+	+/50dQCnsUNbZlYTFkcQKnqhPs0UidyKUTSKCTlcUoEW7EzhzZjMM5BQq6QHunEx6Zl0GkcgARO
+	NmtRe0xXPEeS52Sl5tPXH7T6rLU/XRZ9y1G95QzwCeyqJHtgbs8DdKnvPe8nMi2+ZELC36nY5VI
+	cnMYPZ7FVSLM3PxYwAh/7XpNaZRRnxUjUvxgAZhoxMhZFG/xxW1NC2Wg0gg4Qi9M+3BrjfVhxD4
+	+vzrQp8fN3EWHMvuMe0rJryhHyj9VA==
+X-Google-Smtp-Source: AGHT+IGjOSOUXKHpIv4ORalMWAD+9J6EICd3dwbmza26pZuvNjV9lmhvE7Y1AsjhDuKglOVOtMxGNA==
+X-Received: by 2002:a05:6512:3a8d:b0:539:8bc6:694a with SMTP id 2adb3069b0e04-53dd39b55a0mr908182e87.43.1732267581687;
+        Fri, 22 Nov 2024 01:26:21 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53dd2489adfsm301413e87.185.2024.11.22.01.26.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Nov 2024 01:26:20 -0800 (PST)
+Date: Fri, 22 Nov 2024 11:26:17 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Konrad Dybcio <konradybcio@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: x1e80100-romulus: Set up PS8830s
+Message-ID: <yb6hq6cknqizlmtap5n6lnp7gvswuakay5wrateuqakzjxfy4y@5fqsezlwqbm3>
+References: <20241122-topic-sl7_feat2-v1-0-33e616be879b@oss.qualcomm.com>
+ <20241122-topic-sl7_feat2-v1-3-33e616be879b@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241121-add-mtk-isp-3-0-support-v7-0-b04dc9610619@baylibre.com>
- <20241121-add-mtk-isp-3-0-support-v7-4-b04dc9610619@baylibre.com> <767085562b5efb43f248e8528bb154a6c30d3999.camel@mediatek.com>
-In-Reply-To: <767085562b5efb43f248e8528bb154a6c30d3999.camel@mediatek.com>
-From: Julien Stephan <jstephan@baylibre.com>
-Date: Fri, 22 Nov 2024 10:25:39 +0100
-Message-ID: <CAEHHSvaePj2MUg+zgmkpZF4HTj_F9ED0RxuzQr2oOAUJgOieng@mail.gmail.com>
-Subject: Re: [PATCH v7 4/5] media: platform: mediatek: isp: add mediatek
- ISP3.0 camsv
-To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
-Cc: "mchehab@kernel.org" <mchehab@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"robh@kernel.org" <robh@kernel.org>, =?UTF-8?B?QW5keSBIc2llaCAo6Kyd5pm655qTKQ==?= <Andy.Hsieh@mediatek.com>, 
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, 
-	"laurent.pinchart@ideasonboard.com" <laurent.pinchart@ideasonboard.com>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, 
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"paul.elder@ideasonboard.com" <paul.elder@ideasonboard.com>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"fsylvestre@baylibre.com" <fsylvestre@baylibre.com>, "pnguyen@baylibre.com" <pnguyen@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241122-topic-sl7_feat2-v1-3-33e616be879b@oss.qualcomm.com>
 
-Le ven. 22 nov. 2024 =C3=A0 09:41, CK Hu (=E8=83=A1=E4=BF=8A=E5=85=89) <ck.=
-hu@mediatek.com> a =C3=A9crit :
->
-> Hi, Julien:
->
-> On Thu, 2024-11-21 at 09:53 +0100, Julien Stephan wrote:
-> > External email : Please do not click links or open attachments until yo=
-u have verified the sender or the content.
-> >
-> >
-> > From: Phi-bang Nguyen <pnguyen@baylibre.com>
-> >
-> > This driver provides a path to bypass the SoC ISP so that image data
-> > coming from the SENINF can go directly into memory without any image
-> > processing. This allows the use of an external ISP.
-> >
-> > Signed-off-by: Phi-bang Nguyen <pnguyen@baylibre.com>
-> > Signed-off-by: Florian Sylvestre <fsylvestre@baylibre.com>
-> > [Paul Elder fix irq locking]
-> > Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
-> > Co-developed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Co-developed-by: Julien Stephan <jstephan@baylibre.com>
-> > Signed-off-by: Julien Stephan <jstephan@baylibre.com>
-> > ---
->
-> [snip]
->
-> > +static irqreturn_t isp_irq_camsv30(int irq, void *data)
-> > +{
-> > +       struct mtk_cam_dev *cam_dev =3D (struct mtk_cam_dev *)data;
-> > +       struct mtk_cam_dev_buffer *buf;
-> > +       unsigned int irq_status;
-> > +
-> > +       spin_lock(&cam_dev->buf_list_lock);
-> > +
-> > +       irq_status =3D mtk_camsv30_read(cam_dev, CAMSV_INT_STATUS);
-> > +
-> > +       if (irq_status & INT_ST_MASK_CAMSV_ERR)
-> > +               dev_err(cam_dev->dev, "irq error 0x%lx\n",
-> > +                       irq_status & INT_ST_MASK_CAMSV_ERR);
-> > +
-> > +       /* De-queue frame */
-> > +       if (irq_status & CAMSV_IRQ_PASS1_DON) {
-> > +               cam_dev->sequence++;
-> > +
-> > +               buf =3D list_first_entry_or_null(&cam_dev->buf_list,
-> > +                                              struct mtk_cam_dev_buffe=
-r,
-> > +                                              list);
-> > +               if (buf) {
-> > +                       buf->v4l2_buf.sequence =3D cam_dev->sequence;
-> > +                       buf->v4l2_buf.vb2_buf.timestamp =3D
-> > +                               ktime_get_ns();
-> > +                       vb2_buffer_done(&buf->v4l2_buf.vb2_buf,
-> > +                                       VB2_BUF_STATE_DONE);
-> > +                       list_del(&buf->list);
-> > +               }
-> > +
-> > +               buf =3D list_first_entry_or_null(&cam_dev->buf_list,
-> > +                                              struct mtk_cam_dev_buffe=
-r,
-> > +                                              list);
-> > +               if (buf)
-> > +                       mtk_camsv30_update_buffers_add(cam_dev, buf);
->
-> If buf =3D=3D NULL, so hardware would automatically stop DMA?
-> I don't know how this hardware work.
-> Below is my imagine about this hardware.
->
-> 1. Software use CAMSV_IMGO_FBC_RCNT_INC to increase software buffer index=
-.
-> 2. Hardware has a hardware buffer index. After hardware finish one frame,=
- hardware buffer index increase.
-> 3. After software buffer index increase, hardware start DMA.
-> 4. When hardware buffer index is equal to software buffer index, hardware=
- automatically stop DMA.
->
-> Does the hardware work as my imagine?
-> If hardware could automatically stop DMA, add comment to describe.
-> If hardware could not automatically stop DMA, software should do somethin=
-g to stop DMA when buf =3D=3D NULL.
->
+On Fri, Nov 22, 2024 at 03:14:12AM +0100, Konrad Dybcio wrote:
+> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> 
+> The Laptop 7 features two USB-C ports, each one sporting a PS8830 USB-C
+> retimer/mux. Wire them up.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> ---
+>  .../boot/dts/qcom/x1e80100-microsoft-romulus.dtsi  | 282 ++++++++++++++++++++-
+>  1 file changed, 276 insertions(+), 6 deletions(-)
+> 
 
-You are right except that dma is not stopped but frames are
-automatically dropped by hardware until a new buffer is enqueued and
-software uses CAMSV_IMGO_FBC_RCNT_INC to increase the software buffer
-index.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-What about adding the following comment:
-
-/*
-* If there is no user buffer available, hardware will drop automatically
-* frames until buf_queue is called
-*/
-
-Let me know if that works for you
-
-Cheers
-Julien
-
-> Regards,
-> CK
->
-> > +       }
-> > +
-> > +       spin_unlock(&cam_dev->buf_list_lock);
-> > +
-> > +       return IRQ_HANDLED;
-> > +}
-> > +
->
-> ************* MEDIATEK Confidentiality Notice ********************
-> The information contained in this e-mail message (including any
-> attachments) may be confidential, proprietary, privileged, or otherwise
-> exempt from disclosure under applicable laws. It is intended to be
-> conveyed only to the designated recipient(s). Any use, dissemination,
-> distribution, printing, retaining or copying of this e-mail (including it=
-s
-> attachments) by unintended recipient(s) is strictly prohibited and may
-> be unlawful. If you are not an intended recipient of this e-mail, or beli=
-eve
-> that you have received this e-mail in error, please notify the sender
-> immediately (by replying to this e-mail), delete any and all copies of
-> this e-mail (including any attachments) from your system, and do not
-> disclose the content of this e-mail to any other person. Thank you!
+-- 
+With best wishes
+Dmitry
 
