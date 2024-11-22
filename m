@@ -1,144 +1,271 @@
-Return-Path: <devicetree+bounces-123831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60CA19D62CE
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 18:13:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D68819D62D5
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 18:19:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96A421606DC
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 17:13:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 530C9160E27
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 17:19:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EE941DF732;
-	Fri, 22 Nov 2024 17:13:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E01C13B797;
+	Fri, 22 Nov 2024 17:19:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nk8/ZEKW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bnn2Fsuj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1FEB18AEA
-	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 17:13:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 108981CD3F;
+	Fri, 22 Nov 2024 17:19:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732295628; cv=none; b=hS5qdi8zqMIazPmUhiKLvXBceeu3VgapD3/Yz9fpMoHCmYaPNo68cJ4uQL9jWxPTaimDx1OaXd9NLj3V6Qq7aLr1k8wxnrG5LMODyX9c7jARhCHbYJv+PClmXLGYqaJS+sNk6/Q1KLoHm4vLuzGOG82197P8ie/e+hxSkDwtpPA=
+	t=1732295991; cv=none; b=Zuv7Gsu6MGrpA4m12phr2qoVIKsH0Q9q9w5dIFyGOI/KYtAbREAw94u6E7LQALgPNu4f3ruvKD7GojW/l09WuCxt+TkCPLT5Tv9v1WQ03nhnX+xavQir8FiY0BzKvbPrO5WDGhIugFfEE7GSmDVDaMTTzvKadKBR3XOYrh5LRYM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732295628; c=relaxed/simple;
-	bh=9Utb13MynaifzSiCb+13ADGTdToHf99pkQJS+1gzmyo=;
+	s=arc-20240116; t=1732295991; c=relaxed/simple;
+	bh=waV7+AAb5Y8M9iMdxGMu/fQy+kgyki67VfwPunud9NY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=L7/tS0wwXv9aqU6qpmqUP9tfdics8puQPJycj4HHN7pnZ5VXKjoPs2vMzuHtzerEmqb5lI/pZ9MeCeNRZCICr6VCUILzCriJxWKK8icehdtAF+G9ydTHMhcDktY3oGRZzrx2BU1wuLlcLDIBsGizHG0H0dbATU2Z9FAcswgarSk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nk8/ZEKW; arc=none smtp.client-ip=209.85.210.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-72410cc7be9so2213249b3a.0
-        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 09:13:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732295626; x=1732900426; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=J3Ifp0rGPbm/e/7rhcYVsj05S6iHCWRwu0XzDIJa52Y=;
-        b=nk8/ZEKW2PV3KjMJXctgOrzTlgaBZUgzJz3Bex6+Zg4TREgegX7hDHKGr90Y1mSOTq
-         eySz0LamewHMbLT9WEoerK6BnyfPr7BbVv+wUIW8kv4WxprTnyf9XPfC98RkQwQJxu5n
-         SW08zcnHCoKpUNLqU54xXPAEbi2UyodstPc12E5k6m3wNIbG37ve+Psgk5X2LJS0oLgS
-         02YPD8Rswdf8+Q+ncJampQ3ceL0PHCwK7V3FhczW38z9sEP5JGPxjU/mB/p8wIWbvXG6
-         yBZVtvd17n0MkUhFghg/MRvrO2A/MtkdyReAym5XpINNNpeVoF+SWq3CQ51BAxQxHQUL
-         NarQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732295626; x=1732900426;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=J3Ifp0rGPbm/e/7rhcYVsj05S6iHCWRwu0XzDIJa52Y=;
-        b=DHIITGiPYl/vT60LCy66uUIZ/GMr1anXw9wQguvC/eMQihoIqNAhYDPVZroO2wapCu
-         PA65wVJd0LZNBmlOHNMLl5UX4CZFuFRLkPtC62/VxpV7mgUH/uV7ppP5/0yDx4z5IVxb
-         YXEYJz9EkPMpLm3aB1MQcai/O6AngBZ2mrtaEgplK6mXnKAqe9lRvuoRlL8eU0dm+oeg
-         3Q250/ATv3dbJBm0RGlkIcMyEdOs85yt3iGiRgeGKsHQtMOZHQuaIyFCkum0PbPuRrOO
-         aX3tnN0GnDkzxdCGzTLxgJ23ATiUDzUb4mRCO6OsGQ0qpdy5wu/NkKcLUhYZFfyvDi5k
-         9qcg==
-X-Forwarded-Encrypted: i=1; AJvYcCUSg3sW+rjiaxVmUEuyIYxGZus1hzKc1h9jbZR8PKcRbrL7YV9gZ1NDiBk5HScwGtDInVdM6D+bHTRa@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw8at45+z+kwVKh17vlWGudf0ou3EGukKOR9tju9K8BrG31g6XX
-	BdWhEIU7EiLwJzWMhEpiANQ32c7WvkGkLFN/D30kcI7rTRVR0XyyJcieYBEn0A==
-X-Gm-Gg: ASbGncujfvB+iWkfAnbmcd3iRfS/ItzHYHO5vtStAiUxitA+H1PTj4fYmguZRGkXC51
-	1eoeTOl6e43PktCwPcWdXkFZVe9zn2Dsryxoe0MicZJCIjMJB+d1uvmjQyeNUbuYapFPzBRsj1V
-	yPwafunJ4FlHfLPFt+cx3E+ZRwnbUFha3bqDwmv1t1mbrQs6WYLKiukfVub6I/vlT2RDt6siSM5
-	9qW6HzVXSY7k8xR3mWyXLEBhvhTeYS0vpFLG6/ImJ1umCqPWKYH7ArkBj6s
-X-Google-Smtp-Source: AGHT+IFSLoW5PIBSR6LBkAITjbzrM29xeBOvFQPIeej5XJi4ofiDVZntpwn9iotOelT7YjAqhB/X7A==
-X-Received: by 2002:a05:6a00:a8f:b0:724:62b3:58da with SMTP id d2e1a72fcca58-724df5de418mr4726297b3a.6.1732295626152;
-        Fri, 22 Nov 2024 09:13:46 -0800 (PST)
-Received: from thinkpad ([49.207.202.49])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-724e0fca304sm1684411b3a.175.2024.11.22.09.13.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Nov 2024 09:13:45 -0800 (PST)
-Date: Fri, 22 Nov 2024 22:43:40 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Richard Zhu <hongxing.zhu@nxp.com>, l.stach@pengutronix.de,
-	bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-	imx@lists.linux.dev, kernel@pengutronix.de,
-	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 10/10] arm64: dts: imx95: Add ref clock for i.MX95 PCIe
-Message-ID: <20241122171340.4uwlddrwadg3vyz4@thinkpad>
-References: <20241101070610.1267391-1-hongxing.zhu@nxp.com>
- <20241101070610.1267391-11-hongxing.zhu@nxp.com>
- <20241115071605.qwy4hfqmrnaknokl@thinkpad>
- <ZzeE0lR8DGG214qq@lizhi-Precision-Tower-5810>
+	 Content-Type:Content-Disposition:In-Reply-To; b=U1SGRO0c/HO4hyYoCHxp5zu5V15WEl8C5Eg4oSkGuOCCOhxIAlEOxELWS+jthUFl9SFWzsEuhnjKJflJnN9zC3q+/AZHaYBaXdp67urHrR/3Bc5o+CuZ/kc6odzkETaV2O0d0CNzj6TZ0TRg5+YErNA/e+5a3T7SbbT+xbMRIZc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bnn2Fsuj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16569C4CECE;
+	Fri, 22 Nov 2024 17:19:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732295990;
+	bh=waV7+AAb5Y8M9iMdxGMu/fQy+kgyki67VfwPunud9NY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bnn2FsujabL4JDddq3Wo2K6JOzWq2Dm46woRjGDzm/93AOJvQheqzkR2WnAnm/tgp
+	 AUcueINnU9gfCjIxoqwuj4JEaNeByRZnRJU9qBXRfkoBvMXH7joZV08B5Z08tggI+3
+	 bN/g1BTB6BbaSYZpax1gs+al8kRJWTwaDJYY+kJ1MxXa7gpxVe84rUynYCsDue8jim
+	 55nfU/tEBAuMGABCbr6oXXwYHbFRjg+tArOOLQ5wZAym0g/Y+JwIK2Wfp+8He8HMU/
+	 T7Y/C/vXI30E/CTabFzJjyDTbyZ4iyZhNRiQTSDcWuIBQ/v19VFCVu2a8Iv8K3C7u4
+	 Game0E6FnTTHw==
+Date: Fri, 22 Nov 2024 18:19:46 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, 
+	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Juxin Gao <gaojuxin@loongson.cn>, Huacai Chen <chenhuacai@kernel.org>, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, 
+	Sean Young <sean@mess.org>
+Subject: Re: [PATCH v7 2/2] pwm: Add Loongson PWM controller support
+Message-ID: <6hqpifyfbr5ignvtvsz6p7hkje44xlvbdqwgq5t3ef64kufy3p@2tmp4ftiv42c>
+References: <cover.1729583747.git.zhoubinbin@loongson.cn>
+ <66bcb210478df5215e4e31e4f25c25194d6163ca.1729583747.git.zhoubinbin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="b6hccmbwih6ueur4"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZzeE0lR8DGG214qq@lizhi-Precision-Tower-5810>
+In-Reply-To: <66bcb210478df5215e4e31e4f25c25194d6163ca.1729583747.git.zhoubinbin@loongson.cn>
 
-On Fri, Nov 15, 2024 at 12:28:50PM -0500, Frank Li wrote:
-> On Fri, Nov 15, 2024 at 12:46:05PM +0530, Manivannan Sadhasivam wrote:
-> > On Fri, Nov 01, 2024 at 03:06:10PM +0800, Richard Zhu wrote:
-> > > Add ref clock for i.MX95 PCIe here, when the internal PLL is used as
-> > > PCIe reference clock.
-> > >
-> > > Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> > > Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> > > ---
-> > >  arch/arm64/boot/dts/freescale/imx95.dtsi | 18 ++++++++++++++----
-> > >  1 file changed, 14 insertions(+), 4 deletions(-)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
-> > > index 03661e76550f..5cb504b5f851 100644
-> > > --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
-> > > +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
-> > > @@ -1473,6 +1473,14 @@ smmu: iommu@490d0000 {
-> > >  			};
-> > >  		};
-> > >
-> > > +		hsio_blk_ctl: syscon@4c0100c0 {
-> > > +			compatible = "nxp,imx95-hsio-blk-ctl", "syscon";
-> > > +			reg = <0x0 0x4c0100c0 0x0 0x4>;
-> > > +			#clock-cells = <1>;
-> > > +			clocks = <&dummy>;
-> >
-> > What does this 'dummy' clock do? Looks like it doesn't have a frequency at all.
-> > Is bootloader updating it? But the name looks wierd.
-> 
-> dummy clock is not used for this instance, which needn't at all. Leave here
-> just keep compatible with the other instance.
-> 
-> Some instance of "nxp,imx95-hsio-blk-ctl" required input clocks. but this
-> one is not, so put dummy here.
-> 
 
-DT should describe the hardware and hardware cannot have dummy clock. If the IP
-requires a clock, then pass relevant clock (even if it is a fixed-clock).
+--b6hccmbwih6ueur4
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: Re: [PATCH v7 2/2] pwm: Add Loongson PWM controller support
+MIME-Version: 1.0
 
-- Mani
+Hello,
 
--- 
-மணிவண்ணன் சதாசிவம்
+I now finally comne around to review your patch. Thanks for your
+patience.
+
+On Tue, Oct 22, 2024 at 05:04:15PM +0800, Binbin Zhou wrote:
+> diff --git a/drivers/pwm/pwm-loongson.c b/drivers/pwm/pwm-loongson.c
+> new file mode 100644
+> index 000000000000..4c9b14efadc3
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-loongson.c
+> @@ -0,0 +1,288 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) 2017-2024 Loongson Technology Corporation Limited.
+> + *
+> + * Loongson PWM driver
+> + *
+> + * For Loongson's PWM IP block documentation please refer Chapter 11 of
+> + * Reference Manual: https://loongson.github.io/LoongArch-Documentation/Loongson-7A1000-usermanual-EN.pdf
+> + *
+> + * Author: Juxin Gao <gaojuxin@loongson.cn>
+> + * Further cleanup and restructuring by:
+> + *         Binbin Zhou <zhoubinbin@loongson.cn>
+> + *
+> + * Limitations:
+> + * - The buffer register value should be written before the CTRL register.
+
+This isn't an interesting point for the high level description. I'd hope
+the driver cares for this implementation detail.
+
+> + * - When disabled the output is driven to 0 independent of the configured
+> + *   polarity.
+> + */
+> +
+> +#include <linux/acpi.h>
+> +#include <linux/clk.h>
+> +#include <linux/device.h>
+> +#include <linux/init.h>
+> +#include <linux/io.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pwm.h>
+> +#include <linux/units.h>
+> +
+> +/* Loongson PWM registers */
+> +#define LOONGSON_PWM_REG_DUTY		0x4 /* Low Pulse Buffer Register */
+> +#define LOONGSON_PWM_REG_PERIOD		0x8 /* Pulse Period Buffer Register */
+> +#define LOONGSON_PWM_REG_CTRL		0xc /* Control Register */
+> +
+> +/* Control register bits */
+> +#define LOONGSON_PWM_CTRL_EN		BIT(0)  /* Counter Enable Bit */
+> +#define LOONGSON_PWM_CTRL_OE		BIT(3)  /* Pulse Output Enable Control Bit, Valid Low */
+> +#define LOONGSON_PWM_CTRL_SINGLE	BIT(4)  /* Single Pulse Control Bit */
+> +#define LOONGSON_PWM_CTRL_INTE		BIT(5)  /* Interrupt Enable Bit */
+> +#define LOONGSON_PWM_CTRL_INT		BIT(6)  /* Interrupt Bit */
+> +#define LOONGSON_PWM_CTRL_RST		BIT(7)  /* Counter Reset Bit */
+> +#define LOONGSON_PWM_CTRL_CAPTE		BIT(8)  /* Measurement Pulse Enable Bit */
+> +#define LOONGSON_PWM_CTRL_INVERT	BIT(9)  /* Output flip-flop Enable Bit */
+> +#define LOONGSON_PWM_CTRL_DZONE		BIT(10) /* Anti-dead Zone Enable Bit */
+
+Most of these are unused. And you only ever access the CTRL register
+using read-modify-write. So I guess the behaviour of the hardware
+depends on how the bootloader (or boot rom) initialized these bits. I
+would prefer if you could this more deterministic.
+
+> +#define LOONGSON_PWM_FREQ_STD		(50 * HZ_PER_KHZ)
+
+Maybe it's just me, but I think the HZ_PER_KHZ doesn't add readability
+and I would have just done:
+
+	/* default input clk frequency for the ACPI case */
+	#define LOONGSON_PWM_FREQ_DEFAULT	50000 /* Hz */
+
+> [...]
+> +static int pwm_loongson_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+> +			      const struct pwm_state *state)
+> +{
+> +	int ret;
+> +	u64 period, duty_cycle;
+> +	bool enabled = pwm->state.enabled;
+> +
+> +	if (!state->enabled) {
+> +		if (enabled)
+> +			pwm_loongson_disable(chip, pwm);
+> +		return 0;
+> +	}
+> +
+> +	ret = pwm_loongson_set_polarity(chip, pwm, state->polarity);
+> +	if (ret)
+> +		return ret;
+
+Is setting the polarity shadowed in hardware or does it take effect
+immediately? If the latter please mention that the output might glitch
+on reconfiguration in the Limitations section above.. Another
+"opportunity" to glitch is in pwm_loongson_config() above when
+LOONGSON_PWM_REG_DUTY is written but LOONGSON_PWM_REG_PERIOD isn't yet.
+
+> +	period = min(state->period, NANOHZ_PER_HZ);
+> +	duty_cycle = min(state->duty_cycle, NANOHZ_PER_HZ);
+
+period and duty_cycle are measured in nanoseconds. So NSEC_PER_SEC is
+more natural to them than NANOHZ_PER_HZ.
+
+> +	ret = pwm_loongson_config(chip, pwm, duty_cycle, period);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!enabled && state->enabled)
+> +		ret = pwm_loongson_enable(chip, pwm);
+> +
+> +	return ret;
+> +}
+> [...]
+> +static int pwm_loongson_probe(struct platform_device *pdev)
+> +{
+> +	int ret;
+> +	struct pwm_chip *chip;
+> +	struct pwm_loongson_ddata *ddata;
+> +	struct device *dev = &pdev->dev;
+> +
+> +	chip = devm_pwmchip_alloc(dev, 1, sizeof(*ddata));
+> +	if (IS_ERR(chip))
+> +		return PTR_ERR(chip);
+> +	ddata = to_pwm_loongson_ddata(chip);
+> +
+> +	ddata->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(ddata->base))
+> +		return PTR_ERR(ddata->base);
+> +
+> +	if (!has_acpi_companion(dev)) {
+> +		ddata->clk = devm_clk_get_enabled(dev, NULL);
+> +		if (IS_ERR(ddata->clk))
+> +			return dev_err_probe(dev, PTR_ERR(ddata->clk),
+> +					     "failed to get pwm clock\n");
+> +		ddata->clk_rate = clk_get_rate(ddata->clk);
+
+I guess you rely on the clockrate to not change. So please add a call to
+devm_clk_rate_exclusive_get().
+
+> +	} else {
+> +		ddata->clk_rate = LOONGSON_PWM_FREQ_STD;
+
+I thought that clk_get() also works for devices described by ACPI?
+
+Maybe something like this gives more flexibility:
+
+	ddata->clk = devm_clk_get_optional_enabled(dev, NULL);
+	if (IS_ERR(ddata->clk))
+		return dev_err_probe(...);
+
+	if (ddata->clk) {
+		ret = devm_clk_rate_exclusive_get(...);
+		if (ret)
+			return ret;
+
+		ddata->clk_rate = clk_get_rate(ddata->clk);
+	} else {
+		ddata->clk_rate = LOONGSON_PWM_FREQ_STD;
+	}
+
+and it's conceptually easier given that it doesn't have to care about
+the device being described in ACPI or dt.
+
+Just a suggestion.
+
+> +	}
+> +
+> +	chip->ops = &pwm_loongson_ops;
+> +	chip->atomic = true;
+> +	dev_set_drvdata(dev, chip);
+> +
+> +	ret = devm_pwmchip_add(dev, chip);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "failed to add PWM chip\n");
+> +
+> +	return 0;
+> +}
+
+--b6hccmbwih6ueur4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmdAvS8ACgkQj4D7WH0S
+/k4Zagf+NKVWJp2/FdYvO+2gSLIpZplN7HRGHvMTNL4jYXyDA8ssDmfdIhCUbV49
+YqCQCNqA2Dsd+7cRhni8/DStvoUhDbUGus/xq46Ks6rv6yvVATzLYrZUxMNofK9Z
+NqilGnCVeKI4UOB0QHVlGDSioB6Pa4MdGsQtr5WIOZnQtd+OMDmymAqP7BL8SBqp
+7GKCIktuIGXm9AyM4oT2FWBVH2aFnp2l7XMK5JtaVzFyyfOCidbim+QNuUblvO1Q
+8zM5cTA32zksTuNz37hO8kYmnjYcqGamQyCP8SmwFSPfC1bKPAWwVFlbX57LEEgW
+IZddwUrQnikQfN3uVsGM+la0jnOZrQ==
+=qUi3
+-----END PGP SIGNATURE-----
+
+--b6hccmbwih6ueur4--
 
