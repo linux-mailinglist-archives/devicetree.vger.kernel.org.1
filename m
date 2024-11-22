@@ -1,169 +1,117 @@
-Return-Path: <devicetree+bounces-123683-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123684-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D04CA9D5AEA
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 09:18:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EE7F9D5B17
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 09:38:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D8B11F2293A
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 08:18:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 052742831E4
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 08:38:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C84418BC22;
-	Fri, 22 Nov 2024 08:17:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7D7D18787D;
+	Fri, 22 Nov 2024 08:37:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="A86UuIKc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rlQOR6xr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 875A518A6BF
-	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 08:17:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8732B17BEA4;
+	Fri, 22 Nov 2024 08:37:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732263474; cv=none; b=MYy7qVAoCXTzyUToW2KowAzckf7vJaUJtA+l5GevJYP5pEkgGVTJN2e1bWYT4sVcWcAiry9MtWu6dRpNy+AtN6ixj6chJAj/IFNnVWupQBPnj4hba8JfSkQCnrvF0B+WMLp7fkwjv4UklxzE+Bwt5LdGYDV58pZviflrHsJavew=
+	t=1732264676; cv=none; b=VmjWkU2TO6ZZKPDvYQ9ezX0lARk1x2QEfxjkzKtuYrhCgiycTGLutlUC1s46QjIEkA5pZLEqm4lpYTdgJxVIaKXOKoPng7xofeEYkGLQgH1K/k53OMerAq3eD6zSl3NZqtQaSjMvb4AM8tdZnwr2BXr+QXCXCh3xPi783cx+QxE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732263474; c=relaxed/simple;
-	bh=boBUZED71KdfqGSGw6POXs81i1ZDX0l63rl2uX3ndUY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Dan3ozy/u84rG5rTQNWS1DHF562oC3FABlcWCYRT3R4QTxMnLD+8AYWA4aP0JX00lNyOP9IPm9VWYyORkB/2wz9Uv1pBg+RJdBrpmozomT9/AlUkqIXq5s0V1d47c4mbb8VDKZOQp4CnWWfKsyQvVXRlbhnok08ZFOKRaTL0j8E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=A86UuIKc; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-38245e072e8so1665119f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 00:17:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1732263470; x=1732868270; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3LYPzAVO9GrxpJTZAkUlAwOS3/mbRjtzYaoHCe2V1hE=;
-        b=A86UuIKcJOWnfh6BTs2k6URjFs6JPYkje4N9UR42Y5w6AeZjAJAIOyZ/HkCz06Oc/+
-         EDC77sO7/Cbre4vovx8E9Ti35Mi/AwAp6bgtudslxQ8UEZERUloWohDuus5/mTQ1XEbN
-         Y34K/fUwGzrP4XAfH06qY7xwO4VJjGDL8OJunFQ622uq6Oy46qdyQPAE+Iw6e9G2Phnm
-         1UKINkxuQAo62KkcMBl1UhDm9EvFKdh4Q9Kf4HKAv0cP2xM/Kk9RLj5qizSGqahz7l/P
-         fRwTeGnGPWPoiAHXzn6a+2Ya86EssNz3dBzggB5cnU/kRz3d+unpO/4Q4kLBUqRksCc2
-         J7qA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732263470; x=1732868270;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3LYPzAVO9GrxpJTZAkUlAwOS3/mbRjtzYaoHCe2V1hE=;
-        b=vcx+6VBqTrX9Ut53B0M+awysd0TtttCHYl3+5Fdb+fVhMy/6/6OBL3w+wbZyqvck39
-         qgyiGKCO4m5c/2OA9mv1YWCVjlgGTFN6CvECgNI8ceQOuti1Mk2oqr64WlLMr2sG4UmS
-         nPk3b0CrVXzsKZWbmnR0D4+nEP18IbWHoj0L63IX+qO+005EkiED80EogyWmdrH4f0Ve
-         1omqWMOYG8Ft297wwjzbx9w6tx9isIaByEPr7m1r5isOVldpRL9eFs+gslJmvKuz7ZUZ
-         bsJljCuCPhhK1qAvpVCTMLH8qYV7/PsvZjoJnQcIXHJQQdGj6xF5I87zRtLFNZdZUsE9
-         3FVg==
-X-Forwarded-Encrypted: i=1; AJvYcCWfmRDsjII4RU5cvLnwFw7v1a1OOYNyZTnBbwExqVhvFv1lc+TtYKJl6eazOXU5d6mtj4rL2/nuSU1D@vger.kernel.org
-X-Gm-Message-State: AOJu0YwJ/UW18trUFTdkdpDOpaIfIkKOzN8tRK9r5+//DNFSQYO+IIcz
-	HtDcwg3hvH8gctgYAMh9DKJU/L2vM9+5wft2g1m9i4z5xwZWq41bBw4aAUNbU1o=
-X-Gm-Gg: ASbGncv0P/dnsOObYJogcGM/FRFqdbH6hos9B7wVHXomMKBEvKw6inut9xjUndC7kS3
-	GarsiZTmajQ6rc7If3NXXC+DpOVkM1xwmuL+H+NYtfbTVWQ4UhKfUkKs/SdWErMGnWIuoycJBpy
-	LsWtDuJ4B0J0ZkVWXdAJkTEPZFQBC3pTIMC2vXkaMjovhHybhoHlukD55zZN2XJh9DEWUofCfBE
-	NzkfcomEYnzCegvvkLiLIoPh+gRh/1iv4vigZpc7m8S8auxMHU40NrIow==
-X-Google-Smtp-Source: AGHT+IG24uth11H3seaGIlK86z9Idb5xroXboR3d9BNbuTnG7ATgertZjJsq4KPOn8S8cOPUQJ6gqw==
-X-Received: by 2002:a05:6000:2d02:b0:382:504d:31d with SMTP id ffacd0b85a97d-38260bc79f6mr1467237f8f.40.1732263469676;
-        Fri, 22 Nov 2024 00:17:49 -0800 (PST)
-Received: from [192.168.50.4] ([82.78.167.28])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3825fbc44f7sm1755264f8f.82.2024.11.22.00.17.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Nov 2024 00:17:49 -0800 (PST)
-Message-ID: <bf8aa2ca-8a5e-4484-8f93-c74b7c6e0db9@tuxon.dev>
-Date: Fri, 22 Nov 2024 10:17:46 +0200
+	s=arc-20240116; t=1732264676; c=relaxed/simple;
+	bh=YRPhCjHnMkScpSE7BaUeWOkkkpQu14NpMm1EVAUeUFo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dgQBYCC6Ubxypisx2IrJOLUlS0FO3IqNdIjpp//qford39w9OWDBmgb23d73rbniCM0SzL4pO75gG1V0FS1hTO+/KOrU7ghNYkEe5yTyqUjW6Abd+gua4FrSZ4sCsWdZB6dyDLVjP0hoJiEgjeo+gapM9fvyUA849sx7YklxxIM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rlQOR6xr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05D4EC4CECE;
+	Fri, 22 Nov 2024 08:37:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732264676;
+	bh=YRPhCjHnMkScpSE7BaUeWOkkkpQu14NpMm1EVAUeUFo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rlQOR6xrYCqf57fxGFgqbkaoiW1BaKannEDb205TFQx1q4XrT4atygpg02CUTkhbt
+	 yKx8LM9w9BfyWY0i7/ZahsUGTMa9e82/lPJGqF06WaOeCu/X8szTuzZNSNbU5ycDNa
+	 g+khhWqQU/l31l8uXwG2KrzX8K2RjrrOFBX/gR2dRVZBaVAo7fpGzVgaskVFVWTnRB
+	 MR0pN4Sl8EsiF1DN0Olfgm6pW05hHgIgEtAObkccCaAhDKHSaNA3U2Pm+rg/16zo8k
+	 kOACaBpv8P6xYDobnXQg9iKZEoI+p60M4YjZTdexeTx1Y6Gv/blg1hJ/jLfHbJ0sqF
+	 V/jMkIsTQILug==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1tEPAh-000000001y3-3Fnj;
+	Fri, 22 Nov 2024 09:37:47 +0100
+Date: Fri, 22 Nov 2024 09:37:47 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Sibi Sankar <quic_sibis@quicinc.com>
+Cc: Cristian Marussi <cristian.marussi@arm.com>, sudeep.holla@arm.com,
+	andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, quic_rgottimu@quicinc.com,
+	quic_kshivnan@quicinc.com, conor+dt@kernel.org,
+	arm-scmi@vger.kernel.org
+Subject: Re: [PATCH V4 0/5] arm_scmi: vendors: Qualcomm Generic Vendor
+ Extensions
+Message-ID: <Z0BC203BhGEmXcJi@hovoldconsulting.com>
+References: <20241007061023.1978380-1-quic_sibis@quicinc.com>
+ <ZytnRc94iKUfMYH0@hovoldconsulting.com>
+ <ZyvLktLUZOGP-LH5@pluto>
+ <Zy4qvedrmkRdPR3x@hovoldconsulting.com>
+ <8d42682b-0fa7-3962-da12-728cfe64903b@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/8] serial: sh-sci: Check if TX data was written to
- device in .tx_empty()
-To: Greg KH <gregkh@linuxfoundation.org>
-Cc: geert+renesas@glider.be, magnus.damm@gmail.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, mturquette@baylibre.com,
- sboyd@kernel.org, jirislaby@kernel.org, p.zabel@pengutronix.de,
- lethal@linux-sh.org, g.liakhovetski@gmx.de,
- linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-serial@vger.kernel.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, stable@vger.kernel.org
-References: <20241115134401.3893008-1-claudiu.beznea.uj@bp.renesas.com>
- <20241115134401.3893008-3-claudiu.beznea.uj@bp.renesas.com>
- <2024112128-faceted-moonstone-027f@gregkh>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Content-Language: en-US
-In-Reply-To: <2024112128-faceted-moonstone-027f@gregkh>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8d42682b-0fa7-3962-da12-728cfe64903b@quicinc.com>
 
-Hi, Greg,
+On Thu, Nov 14, 2024 at 09:52:12AM +0530, Sibi Sankar wrote:
+> On 11/8/24 20:44, Johan Hovold wrote:
 
-On 21.11.2024 23:32, Greg KH wrote:
-> On Fri, Nov 15, 2024 at 03:43:55PM +0200, Claudiu wrote:
->> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>
->> On the Renesas RZ/G3S, when doing suspend to RAM, the uart_suspend_port()
->> is called. The uart_suspend_port() calls 3 times the
->> struct uart_port::ops::tx_empty() before shutting down the port.
->>
->> According to the documentation, the struct uart_port::ops::tx_empty()
->> API tests whether the transmitter FIFO and shifter for the port is
->> empty.
->>
->> The Renesas RZ/G3S SCIFA IP reports the number of data units stored in the
->> transmit FIFO through the FDR (FIFO Data Count Register). The data units
->> in the FIFOs are written in the shift register and transmitted from there.
->> The TEND bit in the Serial Status Register reports if the data was
->> transmitted from the shift register.
->>
->> In the previous code, in the tx_empty() API implemented by the sh-sci
->> driver, it is considered that the TX is empty if the hardware reports the
->> TEND bit set and the number of data units in the FIFO is zero.
->>
->> According to the HW manual, the TEND bit has the following meaning:
->>
->> 0: Transmission is in the waiting state or in progress.
->> 1: Transmission is completed.
->>
->> It has been noticed that when opening the serial device w/o using it and
->> then switch to a power saving mode, the tx_empty() call in the
->> uart_port_suspend() function fails, leading to the "Unable to drain
->> transmitter" message being printed on the console. This is because the
->> TEND=0 if nothing has been transmitted and the FIFOs are empty. As the
->> TEND=0 has double meaning (waiting state, in progress) we can't
->> determined the scenario described above.
->>
->> Add a software workaround for this. This sets a variable if any data has
->> been sent on the serial console (when using PIO) or if the DMA callback has
->> been called (meaning something has been transmitted). In the tx_empty()
->> API the status of the DMA transaction is also checked and if it is
->> completed or in progress the code falls back in checking the hardware
->> registers instead of relying on the software variable.
->>
->> Fixes: 73a19e4c0301 ("serial: sh-sci: Add DMA support.")
->> Cc: stable@vger.kernel.org
->> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >> On Wed, Nov 06, 2024 at 01:55:33PM +0100, Johan Hovold wrote:
+
+> >>> Second, after loading the protocol and client drivers manually (in that
+> >>> order, shouldn't the client driver pull in the protocol?), I got:
+> >>>
+> >>> 	scmi_module: Loaded SCMI Vendor Protocol 0x80 - Qualcomm  20000
+> >>> 	arm-scmi arm-scmi.0.auto: QCOM Generic Vendor Version 1.0
+> >>> 	scmi-qcom-generic-ext-memlat scmi_dev.5: error -EOPNOTSUPP: failed to configure common events
+> >>> 	scmi-qcom-generic-ext-memlat scmi_dev.5: probe with driver scmi-qcom-generic-ext-memlat failed with error -95
+> >>>
+> >>> which seems to suggest that the firmware on my CRD does not support this
+> >>> feature. Is that the way this should be interpreted? And does that mean
+> >>> that non of the commercial laptops supports this either?
+
+> > Yeah, hopefully Sibi can shed some light on this. I'm using the DT
+> > patch (5/5) from this series, which according to the commit message is
+> > supposed to enable bus scaling on the x1e80100 platform. So I guess
+> > something is missing in my firmware.
 > 
-> Why is this bug/regression fix burried in a long series?  It should be
-> sent individually so that it could be applied on its own as it is not
-> related to the other ones, right?
+> Nah, it's probably just because of the algo string used.
+> The past few series used caps MEMLAT string instead of
+> memlat to pass the tuneables, looks like all the laptops
+> havn't really switched to it yet. Will revert back to
+> using to lower case memlat so that all devices are
+> supported. Thanks for trying the series out!
 
-It is related to the suspend to RAM support added in this series.
+I have a Lenovo ThinkPad T14s set up now so I gave this series a spin
+there too, and there I do *not* see the above mentioned -EOPNOSUPP error
+and the memlat driver probes successfully.
 
-> 
-> Or are you ok with waiting for this to show up in 6.14-rc1?
+On the other hand, this series seems to have no effect on a kernel
+compilation benchmark. Is that expected?
 
-I'll resend it individually.
+And does this mean that you should stick with the uppercase "MEMLAT"
+string after all? The firmware on my CRD is not the latest one, but I am
+using the latest available firmware for the T14s.
 
-Thank you,
-Claudiu Beznea
-
-> 
-> thanks,
-> 
-> greg k-h
+Johan
 
