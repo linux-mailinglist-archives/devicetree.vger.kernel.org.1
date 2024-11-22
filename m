@@ -1,64 +1,62 @@
-Return-Path: <devicetree+bounces-123661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123664-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3F719D59FB
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 08:30:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E0DD9D5A1A
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 08:38:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B30E28110F
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 07:30:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A180AB21509
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 07:38:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 001C2170836;
-	Fri, 22 Nov 2024 07:30:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0F23170A37;
+	Fri, 22 Nov 2024 07:38:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="owF4NObT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U7gAYW49"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD98D1632F5;
-	Fri, 22 Nov 2024 07:30:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F41C165EE3;
+	Fri, 22 Nov 2024 07:38:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732260648; cv=none; b=gTQJ8Piuep2t8m7nComEgnxhfz6uqbKB+uAm58c9dT+ez6+nZWLqILEmHOoOalYXGUNpkVFbzl1Qdf3OiW4Zd5IcwhZY4JAYb7fj1ogzmM97II+3yfvhvisdO1omdYHP2C7Bjeg1GZ6NRlgOxjGWEjjKr/n4XMfGpNUiyflt+wc=
+	t=1732261121; cv=none; b=MYKDBlEyi8zunVU1/AH5CPiT/F72ZH5r4GBh2CgYrYbejjM+YAUo5eCI/LRhcLtKXkJrmdxIYaatD8eUWkvWY58RKuoYZkO0C74Q7aX9mK8jsNo+fOXzObg0f5fbE3ryd53cHv6eoKwDrjXPceXVHS8kiTXNtju/QzFamG9ukb4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732260648; c=relaxed/simple;
-	bh=9FHokJBvilp2Maa1P56wWPmPxjN1yEESCPlKt2evFuQ=;
+	s=arc-20240116; t=1732261121; c=relaxed/simple;
+	bh=Il4u2JmKDCqigPfRRYGfxmRB1iP4DLOiIY1PedxhxEo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=chGNZhdTaO1gzGx7hKxhfQAlTVxtvd+FhbSKHFwBUu0i/ShuH9IyR+yMN0U0bVIjr51VbijLmY17if7++uKNb1/s9oy9yu3KGLJyh1gUllCAKJaqmjj2yWpKPuDqH9PtqHLADeqH2TVUKyi8yJ17aLr7Mmb9fdTQn2glKAqoKEc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=owF4NObT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99FAFC4CECE;
-	Fri, 22 Nov 2024 07:30:47 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Lc7Gw6x9C0comkNzqskkcW+SWTaPky3ac3yTStyCpAXOvI3Gy+TOmTmGmqrDvxl0uWMt0A0fLA/0utEwXfdHeRw83XdNwVqE3g3McxyTVI42+HGJtuNDs/5nnDJqPvgrrtvFtoadBxE59pXRdAr9iRajz5pbfJ3VgTUHsLiAZTE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U7gAYW49; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F754C4CECE;
+	Fri, 22 Nov 2024 07:38:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732260648;
-	bh=9FHokJBvilp2Maa1P56wWPmPxjN1yEESCPlKt2evFuQ=;
+	s=k20201202; t=1732261121;
+	bh=Il4u2JmKDCqigPfRRYGfxmRB1iP4DLOiIY1PedxhxEo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=owF4NObTxxbff9fN21+lqaNFdY4R8Lq9N0EZu8vaql89qNquvxf+h8ukmiXVtO57L
-	 gyHAfAQ8onWvTQCqdIUEQ0KlVm8K1XAyX/01Vo+pY04G4dl6GFYXfENh7GG7Nmm2B8
-	 jPX8+v/sgNqY6qZ5zfipSiIvCDsRUwS8yq78UbL/s5mrma4LR1yJ0pW+8UNR1X4U5m
-	 DKd2JudpOjuJURw+R57IsXb9c1cC8XOyYw2ZwVPPcVmAjkqwSojHOu3P9r+t+NsUUS
-	 /eLWFBsoqsbK3iJLIxOBTDIJ22dP9ThTZpDbp1sy004fz5F7c1bHstfS3kpY0INhN1
-	 YqShz/oCiMyyQ==
-Date: Fri, 22 Nov 2024 08:30:45 +0100
+	b=U7gAYW49N2xAlLY+uS+rUOgVk2yvCC40uzA0KE8BvOaEPCmP0L4ti3VAEea5+eidP
+	 8AjTLg4COd0PPjfAPm28xiafKY2YinZXcdWbK88MyAfzxRZIT2+nnAodi7qGSW2GNz
+	 UaaD89+d9An15M/84bRSyiXb1QX6X0t84Ny0KyuoirP84M7NFblj+YcIyramAFmQAD
+	 r2eW1w6AZI4ErSacmpdjVUi3oM7mni+1FyOMlpkZJzNL87ON+Jfyjni5PBeY35l1ux
+	 RKn+kJaTUhFu+766u3FZcMwHH8XP7dK4qXoI36hSk1EvPrMSuK/GkblOA+RI4S2SNa
+	 6R86tJqYS7R5g==
+Date: Fri, 22 Nov 2024 08:38:38 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
-Cc: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Odelu Kukatla <quic_okukatla@quicinc.com>, Mike Tipton <quic_mdtipton@quicinc.com>, 
-	Sibi Sankar <quic_sibis@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V5 1/4] dt-bindings: interconnect: Add EPSS L3 compatible
- for SA8775P
-Message-ID: <gxlgrgwscpz7fw57aj6cqbrcyr6ovv755bgb5ix656op6jr5h4@pnbx4ze4qv22>
-References: <20241121113006.28520-1-quic_rlaggysh@quicinc.com>
- <20241121113006.28520-2-quic_rlaggysh@quicinc.com>
- <bda810ab-68d8-4265-87c3-a6d021092e62@kernel.org>
- <10e4fd4e-559d-4164-ab94-d5f0a60ffc22@quicinc.com>
- <53876db8-4401-481d-8684-af7e135d481e@kernel.org>
- <82fc7b99-bc3e-4a9b-a472-c1b70671f21a@quicinc.com>
+To: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org, 
+	manivannan.sadhasivam@linaro.org, bhelgaas@google.com, kw@linux.com, lpieralisi@kernel.org, 
+	quic_qianyu@quicinc.com, conor+dt@kernel.org, neil.armstrong@linaro.org, 
+	andersson@kernel.org, konradybcio@kernel.org, quic_tsoni@quicinc.com, 
+	quic_shashim@quicinc.com, quic_kaushalk@quicinc.com, quic_tdas@quicinc.com, 
+	quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com, kernel@quicinc.com, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-phy@lists.infradead.org, Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Subject: Re: [PATCH v2 1/6] dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy:
+ Document the QCS615 QMP PCIe PHY Gen3 x1
+Message-ID: <dpuqj6hsqourl7ln66maezhcpmdrnnju22u5vs7mvre5aotkki@y6p2bbkre6pf>
+References: <20241122023314.1616353-1-quic_ziyuzhan@quicinc.com>
+ <20241122023314.1616353-2-quic_ziyuzhan@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,18 +65,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <82fc7b99-bc3e-4a9b-a472-c1b70671f21a@quicinc.com>
+In-Reply-To: <20241122023314.1616353-2-quic_ziyuzhan@quicinc.com>
 
-On Fri, Nov 22, 2024 at 12:46:37PM +0530, Raviteja Laggyshetty wrote:
-> > 
-> >> But received comment from konrad to add both SoC-specific and generic compatibles.
-> > 
-> > I went through the history and don't see anything like that. Point to
-> > the specific email please, if you disagree.
-> > 
-> https://patchwork.kernel.org/project/linux-pm/patch/20241026123058.28258-2-quic_rlaggysh@quicinc.com/#26104591
+On Fri, Nov 22, 2024 at 10:33:09AM +0800, Ziyue Zhang wrote:
+> From: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+> 
+> Document the QMP PCIe PHY on the QCS615 platform.
+> 
+> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+> ---
+>  .../devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml     | 2 ++
+>  1 file changed, 2 insertions(+)
 
-I read this message and it does not say to use generic compatible.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+---
+
+<form letter>
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you know the process, you can skip it (please do
+not feel offended by me posting it here - no bad intentions intended).
+If you do not know the process, here is a short explanation:
+
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+</form letter>
 
 Best regards,
 Krzysztof
