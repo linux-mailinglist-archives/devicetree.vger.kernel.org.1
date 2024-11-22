@@ -1,87 +1,87 @@
-Return-Path: <devicetree+bounces-123768-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123769-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7A929D5ECA
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 13:28:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9DF09D5EDB
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 13:35:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E404B243F0
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 12:27:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B013F281EFD
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 12:35:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8F1A1DE8B3;
-	Fri, 22 Nov 2024 12:27:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23D5F1DE2A5;
+	Fri, 22 Nov 2024 12:35:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LikYZeHl"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LGK7fAGG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D0C41DE4D1
-	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 12:27:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94F4A171088
+	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 12:35:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732278427; cv=none; b=BdIGG8wYgQzxel0cSBd1a7Xu4rQLOn2FX1/g5Sc4LlukYJW+1GKRTh4b72mE/2ocXNmTcjXFcDGy7fMX1fMcPP4+tkTLDQ22s0JQhuSPWIABEWU2pgd4Y3kVMaDLWDP7Gd3saC0m/FgXbwD1m1Fxs2ayZdJO8aBDZMdyyEFmWUE=
+	t=1732278925; cv=none; b=NyeGzmw9yhURLD9TLeJXirQ5jH4rMaJDHhkTu6c7J0NO/Jdmg0A7DNPumkq0HuW+KHMpjWnF5T7aHWQpuzVVG/XBcY3/M5jN52EsMa3ewJx6nKWcGszhnOPaE5NsJ6nztb+aUkSJhwiIuhKwQZZLOma1d62YSzg6Q2ML/27DEA4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732278427; c=relaxed/simple;
-	bh=4aiIpJh+eaWD1gIxrNVIvVmyVJxSvmNVIjIhN4N/AG0=;
+	s=arc-20240116; t=1732278925; c=relaxed/simple;
+	bh=/bSeenWD6NQdC1PBVIiMjftf/dqROH/FvwdD2Hsyblo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=j/F9LLWA3TJOxdA4cnhAXDdlBelhCcPTPz2Nb3uPzphrt39ypPgUjwHbTTGA5Ac58jidcUvVHMS+u7YYt5S4y71ggrOR3x2NWu1f8m+ApF7oC63pDhpgnGUeaWNKs7xvLzS1eYlqub5M0S1mh8H1fHvtmE2qgN2AHn5/VRog0Hg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LikYZeHl; arc=none smtp.client-ip=205.220.168.131
+	 In-Reply-To:Content-Type; b=PC0guNach6AyTLIkQc4nhPf7Xyq2p8Rdw61iK/tVVQ9ik2FS5d5XO8h/CBX3oO+g1o5VI3cBxM6Av6E+CSHhc+f4TbN0cvonXmQ73fSHed7UUR76T1jHga6yhl3PHua1F5nv9RZ6s5r9uqdklZ9Z8t3oQ7PN+Y9M3SQh+IVDfaA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LGK7fAGG; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AM4WV9I019747
-	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 12:27:05 GMT
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AM36TZH025019
+	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 12:35:22 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	+wZgnTIzj6zzY7f1RVOrNUBpDHPvehTTFEmYM7pOCzU=; b=LikYZeHlygIePHea
-	W2zu2mlbFotHL93VjTEWOlsvaRtkmZ2vo/v4hUhRglgAwN2t/arperusDMZbt1Zn
-	81t0bIRs7+td6oa6IZOKeZkaLLnxM7J8KF7XzAHYSWMVovwS0rNN7wcY86nBeXqC
-	G1wUCrGosXQTQqz+FbA/KPnTVl9iObtRNZIlJO8f4DTAnqvuQWnWZbTcgCcZAekg
-	RKGBb/o//uk9xgMznAu0Z/CAKDalDlNASEPd2yengspNl24eZ9vY/HRdMHdvpPqU
-	JnfPbY1K1ummTCW3agzvWxSDJItJyHislLObTOQ5HxzW9epKvBXfpagWkcggSt7j
-	dFNLWw==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4326atb265-1
+	YmBijtaeUIMD2Q4qws8xURzuS2h9kjPL7kzv3y/aSvM=; b=LGK7fAGGXMuDsXuu
+	PbvILGJVBbxKQFy2xuPDyoq2o0SCdnKnqo9tJx8L0n096n4Vf+UzS9STZFTuvGyE
+	DRdmf27hQeWcu5k4XIiIPG6VfiSACX20A3lYTINN2O8ud1ej5LPZIzt5kfixGS34
+	VJonUSFLZL6rlV+lmEpEKXr9VdZNyHGhdJ/HTcnjt0xcSUdVFKDYJUZfmpjlR8dZ
+	rdLUPo9tSREuHMxzMKRcZtYEs30bG9tSU4mMicXvq45zkB7RiCBScJXRzNu14fBp
+	qZHrJj5tx8YonBIZ/zAmDLid7fs+hSYZpyLAzNDRWjZmVr7FKMBVvr9qFOCBT5cb
+	e0ahUQ==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43251nkb1s-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 12:27:05 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7b14459d04bso18895785a.1
-        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 04:27:05 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 12:35:22 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6d40e1142f2so4940336d6.3
+        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 04:35:22 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732278424; x=1732883224;
+        d=1e100.net; s=20230601; t=1732278921; x=1732883721;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+wZgnTIzj6zzY7f1RVOrNUBpDHPvehTTFEmYM7pOCzU=;
-        b=DxP+oxK0MlP1DiBRiA38/n6/g0f80/fIPAjb/aTVfiDp5/14MvyASGCwvk2+dQ+xgY
-         i+itdx1+lJythxa8yxQ/6U92Z03CIEnCiBOaL6cScaQwGqnSWboR4vhWnck2nNoqj1+Y
-         N7M2ptdQ+p3sZrPveOk2Nr8DsH0igB00T9OM6R+OBTcqhNgfLWy8278MWeTEk2y5izy/
-         DTertHpzrpcibktHhivdWGDt7ieWaWuhaik/rkS6piiKhoT2qRIZD+IjAjuMzw7ifnz3
-         1SSMj3IOoSKjkPkCZrkjnPMWoy7t/W2RmXz/6Pl4ltroMBhsvGxEP3jVEZEHjICGcy0F
-         vtFg==
-X-Forwarded-Encrypted: i=1; AJvYcCV622+be49sKEopdRq3/tWw7sYH7nbZUQ53124ygLPJiD2HUrinmXJK0mH++ovkRpC31TyX3UmDOJCY@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz40cVj++hetdoO2gwmWtJ5y9NhgRdfN29Qu8zZQBSvJA/z/cGe
-	3S9SgKheFdMNI2eWfr9AfgM16v73TRXh5fNiuRy5QRD+m1bgtcMBPq9pS72spVTgYnuxu50vBE9
-	DL3Sw8F1HsEppzxClemeYehVjPtWS0HmWW69aGzPmXCHN16SFbdfpj9WlDKXIDabdv5YV
-X-Gm-Gg: ASbGncvkE7FxOnCp2BTWqmqwOlhpso6ObB2mK9cakobQUpO438Rc6WtuRa1pV9JrA1x
-	I7UEdZX8vj9FmA3ZaHFdqz72+EKAKhCuo5bYfVuhYQ8e56wK0G6uNnFI0zPmdsfycDobhT5n8rL
-	lOeO01SssHXTrdM3TSTdb354ev3cTTiLDGEqosn4qsM5NNtfGoDjEVc1ptDEOiKcyHuTD/oGnU6
-	QMDaZqhZWbElCE7CMJGxmjHbIgD3WP2fRcv9xoptV5EcPk6R4E/2h1NZxtkFkyQwbij9qIASe8N
-	ONI3inExbA0QEyARRf0bITrqPzw6Gfs=
-X-Received: by 2002:a05:620a:19a3:b0:7b3:2107:302d with SMTP id af79cd13be357-7b51461660cmr166624485a.16.1732278423877;
-        Fri, 22 Nov 2024 04:27:03 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGAti18gerkPsJy9ehvlQkHYHYc+es+uoyJF0X67DaPecp+BaAqZTDlar6rEtD5dCOPx62iFg==
-X-Received: by 2002:a05:620a:19a3:b0:7b3:2107:302d with SMTP id af79cd13be357-7b51461660cmr166622685a.16.1732278423450;
-        Fri, 22 Nov 2024 04:27:03 -0800 (PST)
+        bh=YmBijtaeUIMD2Q4qws8xURzuS2h9kjPL7kzv3y/aSvM=;
+        b=MJbyFvhkTMGHmU4HB6Rx1mgi819aXg3g1MQh3s2KQyXz6A8taFoZf3zDTfLH/IwkVJ
+         DxKH/ypZaYFzIieTo2vxJD05Z8iKgPps2GcZ1TjrRkrnXdSEm77WYutJMslJ0e37WQNn
+         EbD3aUQvF9r7wBlxYSS3AIohNPt7or93ld+L1AkZB/bq0cspMCylccm2bmuoIVfB5Lop
+         4hiWbNKS9IKHltCEr7kf1v3wAqqqUPEukqHz88uhcIsXskbHmuZarQy38w4skOr687Uu
+         sHS7XTh+Gradgew0YlE777BHR39CxaK67hOq+P9bUhG6lqwvjLBVSHUkmYOnBChoEUX0
+         kwlQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXjrOD1qkw7kxKsVEzrPatJuprrV2gfD0vD4v3rfdnn7moc9bqBcr/PBw/A5ICPzgBIK9lWFyk+3R+9@vger.kernel.org
+X-Gm-Message-State: AOJu0YwW5hfFRruskcoxspOpFJrJ8IOIeZ1Yr1ppL2dJHn2TFqNnBviv
+	LbNRDLLzRELpEfuCfWIkeL/eN6XcVcbKxVYDBEp7aZJVNgL9YRUg25bw73GzeO2HKTMFRzOUTPX
+	sCZQuw9mWzAYbcJViYxrU6SUccGDPnEDcfQ/prqUbq2Op76vcd3AH2ksrUuIk
+X-Gm-Gg: ASbGncuqSu+lIJgYVlwjhymFDVaO+va1IgnimII0Gm0h+ryuVGRQ80SrttgPhaAR5Se
+	H2tJ6sJtSAQfFEKImbdqQwVHofo60lBqi4dVFZve69Y9IJhOYi4utSXdQXN9Sx66C2kO55B7Z7k
+	r33zuchdV7FVfyz93iU8bd3nSA4mItQIUUFfSiC0IycoV+LJw9r37g3OtckBMiD4gGMhezWyhhF
+	h4lZdmfjIqWOKxzLaYeudaZ8vjgDG1P4i67OIEASV8R9hdubps4gPS/+sfE5Tv2OSCMsBS6aXDN
+	T2WmY3dBiXRd8nCzs3muL9mrpPCugos=
+X-Received: by 2002:a05:620a:6283:b0:7b0:6e8:9508 with SMTP id af79cd13be357-7b5144ad110mr161955285a.5.1732278921640;
+        Fri, 22 Nov 2024 04:35:21 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IF8uIE6oiCtMgsiJkE35Zoovx430qO4c5U0D4F91/nuFLw5NZvdNcCQH20F0lI4XhKW9QuIIQ==
+X-Received: by 2002:a05:620a:6283:b0:7b0:6e8:9508 with SMTP id af79cd13be357-7b5144ad110mr161953985a.5.1732278921290;
+        Fri, 22 Nov 2024 04:35:21 -0800 (PST)
 Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa50b28dd83sm95189866b.25.2024.11.22.04.27.01
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d02062428fsm754087a12.40.2024.11.22.04.35.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Nov 2024 04:27:03 -0800 (PST)
-Message-ID: <c2800557-225d-4fbd-83ee-d4b72eb587ce@oss.qualcomm.com>
-Date: Fri, 22 Nov 2024 13:27:00 +0100
+        Fri, 22 Nov 2024 04:35:20 -0800 (PST)
+Message-ID: <bf27f92a-5fc6-4b09-8653-4ac3ef438d4f@oss.qualcomm.com>
+Date: Fri, 22 Nov 2024 13:35:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,89 +89,75 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: qcs615-ride: Enable ethernet
- node
-To: Yijie Yang <quic_yijiyang@quicinc.com>, Andrew Lunn <andrew@lunn.ch>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Richard Cochran <richardcochran@gmail.com>,
+Subject: Re: [PATCH v8 3/7] thermal/drivers/tsens: Add TSENS enable and
+ calibration support for V2
+To: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>,
+        srinivas.kandagatla@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, amitk@kernel.org, thara.gopinath@gmail.com,
+        rafael@kernel.org, daniel.lezcano@linaro.org, rui.zhang@intel.com,
+        lukasz.luba@arm.com, andersson@kernel.org, konradybcio@kernel.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-References: <20241118-dts_qcs615-v2-0-e62b924a3cbd@quicinc.com>
- <20241118-dts_qcs615-v2-2-e62b924a3cbd@quicinc.com>
- <ececbbe1-07b3-4050-b3a4-3de9451ac7d7@lunn.ch>
- <89a4f120-6cfd-416d-ab55-f0bdf069d9ce@quicinc.com>
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Cc: quic_srichara@quicinc.com, quic_varada@quicinc.com
+References: <20241115103957.1157495-1-quic_mmanikan@quicinc.com>
+ <20241115103957.1157495-4-quic_mmanikan@quicinc.com>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <89a4f120-6cfd-416d-ab55-f0bdf069d9ce@quicinc.com>
+In-Reply-To: <20241115103957.1157495-4-quic_mmanikan@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: V40KqOYUaUZnaKhBN7evqri_J5oo4_7b
-X-Proofpoint-GUID: V40KqOYUaUZnaKhBN7evqri_J5oo4_7b
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: ImKXuRzqP8euOwPFA1QRpO3E6z0o5Y-S
+X-Proofpoint-GUID: ImKXuRzqP8euOwPFA1QRpO3E6z0o5Y-S
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
  definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- malwarescore=0 clxscore=1015 mlxlogscore=797 lowpriorityscore=0
- phishscore=0 adultscore=0 priorityscore=1501 bulkscore=0 spamscore=0
- mlxscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411220106
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0 mlxscore=0
+ spamscore=0 impostorscore=0 phishscore=0 mlxlogscore=999 adultscore=0
+ malwarescore=0 bulkscore=0 clxscore=1015 suspectscore=0 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2411220106
 
-On 19.11.2024 11:09 AM, Yijie Yang wrote:
+On 15.11.2024 11:39 AM, Manikanta Mylavarapu wrote:
+> From: Praveenkumar I <quic_ipkumar@quicinc.com>
 > 
+> SoCs without RPM need to enable sensors and calibrate them from the kernel.
+> The IPQ5332 and IPQ5424 use the tsens v2.3.3 IP and do not have RPM.
+> Therefore, add a new calibration function for V2, as the tsens.c calib
+> function only supports V1. Also add new feature_config, ops and data for
+> IPQ5332, IPQ5424.
 > 
-> On 2024-11-19 09:27, Andrew Lunn wrote:
->> On Mon, Nov 18, 2024 at 02:44:02PM +0800, Yijie Yang wrote:
->>> Enable the ethernet node, add the phy node and pinctrl for ethernet.
->>>
->>> Signed-off-by: Yijie Yang <quic_yijiyang@quicinc.com>
->>> ---
->>>   arch/arm64/boot/dts/qcom/qcs615-ride.dts | 106 +++++++++++++++++++++++++++++++
->>>   1 file changed, 106 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
->>> index ee6cab3924a6d71f29934a8debba3a832882abdd..299be3aa17a0633d808f4b5d32aed946f07d5dfd 100644
->>> --- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
->>> +++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
->>> @@ -5,6 +5,7 @@
->>>   /dts-v1/;
->>>     #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
->>> +#include <dt-bindings/gpio/gpio.h>
->>>   #include "qcs615.dtsi"
->>>   / {
->>>       model = "Qualcomm Technologies, Inc. QCS615 Ride";
->>> @@ -196,6 +197,60 @@ vreg_l17a: ldo17 {
->>>       };
->>>   };
->>>   +&ethernet {
->>> +    status = "okay";
->>> +
->>> +    pinctrl-0 = <&ethernet_defaults>;
->>> +    pinctrl-names = "default";
->>> +
->>> +    phy-handle = <&rgmii_phy>;
->>> +    phy-mode = "rgmii";
->>
->> That is unusual. Does the board have extra long clock lines?
+> Although the TSENS IP supports 16 sensors, not all are used. The hw_id
+> is used to enable the relevant sensors.
 > 
-> Do you mean to imply that using RGMII mode is unusual? While the EMAC controller supports various modes, due to hardware design limitations, only RGMII mode can be effectively implemented.
+> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+> ---
 
-Is that a board-specific issue, or something that concerns the SoC itself?
+[...]
 
-> 
->>
->>> +    max-speed = <1000>;
->>
->> Why do you have this property? It is normally used to slow the MAC
->> down because of issues at higher speeds.
-> 
-> According to the databoot, the EMAC in RGMII mode can support speeds of up to 1Gbps.
+> +{
+> +	u32 shift = V2_SHIFT_DEFAULT;
+> +	u32 slope = V2_SLOPE_DEFAULT, czero = V2_CZERO_DEFAULT, val;
 
-I believe the question Andrew is asking is "how is that effectively
-different from the default setting (omitting the property)?"
+Please don't mix initialized and uninitialized variables in the same line,
+I think it would be the cleanest if you initialized the ones you want on
+separate lines and then declared val separately as well (and preferably
+in reverse-Christmas-tree order)
+
+[...]
+
+> +	}
+> +
+> +	val =	FIELD_PREP(CONVERSION_SHIFT_MASK, shift) |
+
+tab->space after '='
+
+[...]
+
+> +	/* Select temperature format, unit is deci-Celsius */
+> +	regmap_field_write(priv->rf[CODE_OR_TEMP], RSEULT_FORMAT_TEMP);
+
+"result"?
 
 Konrad
 
