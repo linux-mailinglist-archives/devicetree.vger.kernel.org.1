@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-123749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12E429D5D7C
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 11:50:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE48A9D5D7E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 11:50:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C025C1F22D8F
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 10:50:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F6D0280D7F
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 10:50:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 175B21DE4FC;
-	Fri, 22 Nov 2024 10:49:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0F9D1DE8B3;
+	Fri, 22 Nov 2024 10:49:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="ffXCv0Dv"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="I7tafmFd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 830841DE4C5
-	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 10:49:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BFD81DE88D
+	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 10:49:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732272595; cv=none; b=TSj/EMlr5qiahlhRZ2Gdj0xXUEJ6uI4GwhdtKymM4GbBNXFzz6cQDSMtLXTJnpAIK9f46tOd53OX3QLGThygVtwsksw7ddBLSM9jfsn79sHfly4rQDNhF/sWBp+J+BN2mC6OcLahchbd0e/i4GliN2UHrobgZSzn8F+KvlDRmsE=
+	t=1732272598; cv=none; b=kecuc4ofvrrp/f8uy10y3YyQI+Z1b/N0yMECmtV1nJcmUi5e8psq3hIuHTiS/TpT/FzayvfG4qMaheOYK47m/kKHbpeWD8SiQKqyI/vRCwBpqqWRj7iWK2wUfguH8zsEhO3gy71wkNillN6b9H0tCTNBsRNgVKA1a7ac4KFh0G8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732272595; c=relaxed/simple;
-	bh=tgRUJj6ITNEzj0a1c6+NTV/uxYtD9IZiLPipY7pVz8I=;
+	s=arc-20240116; t=1732272598; c=relaxed/simple;
+	bh=gobJPR7BiiOI45bnDw9pztj4HKIRqW871T5/80TcRuM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=E4cAxJo9L3pLtxZxNFKkChbqDnEDx0L6lRi8n+AaaNU/HltYfW49PhMYT+5bVNAiELyPKzNo3VysF3hjoOJbfP9LspVY1CSpltYc1n1aatWVUyufX92H2xWpSAy9kT/oKYs0kvgxrlzJZIJMyJgf3ZfoL94QSgBKN0Fl6wKPQDc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=ffXCv0Dv; arc=none smtp.client-ip=209.85.218.42
+	 MIME-Version; b=PRIIycG00+sAxcv4AuBSuHBS2DtBv4jR8oKWBR5udSJaNjvcD1IOWAzvw56EgK+I0oUgVdFXf8zMtz4ox7S+eM5Q8nqDUTcU+pjJzKcZMAR31laGha01AqBB84Ca+xcWosFqJeklrDHvJQVeD8+kriYSq1J6HHkh/9lw8qdipw0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=I7tafmFd; arc=none smtp.client-ip=209.85.167.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a9ed49edd41so330437366b.0
-        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 02:49:53 -0800 (PST)
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-53dd8eb55c4so277259e87.3
+        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 02:49:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1732272592; x=1732877392; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1732272594; x=1732877394; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=HrinVQn1Cbi8/ijEcpv1A5N1VQp4jJYPom9JnVjcWsM=;
-        b=ffXCv0Dv5i11x3IOovzSZPJNze0P9Qk7EnjHsGCCZxZy3N0k7oo5vSu3pR23eYIZtp
-         1hGDaPEnkkgQK0+y8RXK8dd4Ki1O9AwWbeAJglmLLh85POsmRQlcBU7hwuYYruiAZeI2
-         bfcDhm/jBq57rcRL8pK2dcPQ0+lZF8zL1ethM=
+        bh=RLHN8wkoHUGlQMEmXBTJaWCn1OfqGPyiyli52ySvaP0=;
+        b=I7tafmFdYODrylMkLnum5Lk4YD/Xd6EPTseJ+BItoDAmCl+JHef7/jejVqvJjkykLG
+         TPCuJAC36kcey/p0kNWNZ8fn5MTeoeK6O0IlLLi6CKoaJ/WHHjA1VzJCku/oG2ECA5po
+         KacZrIs2eE3XWmOAvkLRo0BweZH9M9N3OTjlk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732272592; x=1732877392;
+        d=1e100.net; s=20230601; t=1732272594; x=1732877394;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=HrinVQn1Cbi8/ijEcpv1A5N1VQp4jJYPom9JnVjcWsM=;
-        b=FIUah/Hv8Wdi2cq8mfwc2oVpJqdpcOHUnAuwBvbjplsshEupm26J90SLIlCJuU8VtV
-         E6EfEEi89pU1mB4ffjZeAq4xvciXwH/MKruwXnXvgVGUl5NxKMcnMskiBZZZQBE4uGKi
-         B9Vhi0vFeojyjtB4oZ/XbZOlYgmjRlVNR25L0kmKO307NTbJ/hmnmtsBY6VCe/nL0WiC
-         wtkGhg7aSBiPZ7k97t2NLorqMbKDL6b6K6Rh/Z4w3oJ1SWwAYrEo0T46WKaMsu9/Thw1
-         1FQFmIrovxVLjtXKTwzRKDCsiKcYwYB3TitxEGtDsPLdGhmhLCzpocFRaQuZWSLLhWEz
-         u+RQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWLeGNc4xSsridyNFhp/Xk67VfzLrZEPD6ZYXeSTjUta7/bQ8Ux2FqOa24MjmL9IWQa3NbzFnVNLbcI@vger.kernel.org
-X-Gm-Message-State: AOJu0YxxyWUfc0hy6RuddKUInnESHgu7Z7zanetVu1VXbDdLFgYgerLv
-	5PFSIm11vSznJt9fpig7BIOuSF4eHncejZNNwgLSfGYXZh2B3ubcLF5hPm0AYCLkGX41tRR/ttc
+        bh=RLHN8wkoHUGlQMEmXBTJaWCn1OfqGPyiyli52ySvaP0=;
+        b=ttzcj6ybvypIALCooX8AUnr1AUAULlDc5RB/7FCVQ6VZQMnnG9BGSXL4dkUCJVfH9r
+         k+9nqZUv5Bt/q8lrRRKHB7rv1PiddA5DEyyxc3J9XBcyh1aZbh5GBRW6VPvGPelxk0D6
+         DwsIC70ubPx1jHlmSqzU5jCPGvF7MizytNlHTrNv1wm8zdNa2xq2c4cbfE6IupBs+irb
+         u9ifYjSIvF+e+TaYaPQuX0TZN9iTYJPoKHrVQZ6PtqRKZUD/zqGAj5YthXHiHsceBElO
+         pSLm1VakssDuOef52X+tLP8RPXi5uBLbY/Nzdlgg31GUDsFv4x/0KeIQLJkSC06l8wle
+         M9CA==
+X-Forwarded-Encrypted: i=1; AJvYcCVsswb/Nwzxv3T925YsFZLbD5wbrITXD62gtLC4hzEfB+Kv/fLkEPmCHay373UwHQVU9wMbSW9l4zZG@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzb4KqkIrqd24ykphy/QSosvfJ5sAQewrCEJhftCiAxLG0W+dT9
+	5V6Y6o1z7uFilvFJ7e8qS9R+VlPjNuDbpjP3ria07uBtKNf1wi6Ga1Kudzd3MlwqiTAoq1vn8SM
 	=
-X-Gm-Gg: ASbGncvBCUe5f0UIeLTR8nwBfcr/91YU7BmMVPH0qCcFLPPtuUsZB72QJwvN/1zebav
-	3NoSoHtU7THOlnFmGJguLeHdgcWDObgdzFUMp9RvhqJqZEeHe0FxPA4QJDPTgV0h4BsddUHw//0
-	7Yja/qlmpWbQl1Tgdb7hyfLM0+DDWyC0SUPL4Ydp+1OZKa9OxSnoftdARdk48KUJY7Or92BcGLB
-	viRo89kK4BrV7LcLQ5VaxsqWdn9IXloXO/cn8OvcbUpcsHSphLA99rjcCAo7vT3VKZfGU6abtwi
-	2hkUa09o
-X-Google-Smtp-Source: AGHT+IHZnZfKf7gehP3fB8C/hlSWOPVc1U3PpxHVeONSc0QcHH0SfvWm4T58Y60rMJ4GvxkG1gycAw==
-X-Received: by 2002:a17:906:1daa:b0:aa5:73c:8d33 with SMTP id a640c23a62f3a-aa5099fc310mr200688966b.35.1732272592002;
-        Fri, 22 Nov 2024 02:49:52 -0800 (PST)
+X-Gm-Gg: ASbGncv1CvVs99cVehcNLKsaTZANaOZiViIjux9R3hEh4iu91PpP1/L4rdIsvRF9lue
+	L63eJPhCyXft9Z3Fq2DwQZaXGcnbRDkps8S8QzDzPSIAQLwp/1CqUa7KHis6gXVsrmeOVtUJ4sl
+	c7BRVlQzYYzvUUa7mPz/AxF+RA5gbCVtbBIgAD/JTBD0RdhXx/DlOFtiC+PonDXNlHQYG6Zllue
+	DiesHnTg2fjsgwUahZSMzIlFUGTDvqyXQNLCQeoOr3gTNrmWZX5Jh0XfAAOrFJjlIdX6w+DVR2K
+	ojSs7Knf
+X-Google-Smtp-Source: AGHT+IH/E9cZVbOLr3aWyR71KhjZSZe/SblDsZroQWh/I02TfB8d/Fxm6sr0TV4T5BGeXA4G5D2sKg==
+X-Received: by 2002:a05:6512:4028:b0:53d:d727:a93f with SMTP id 2adb3069b0e04-53dd727b3f9mr599894e87.48.1732272593865;
+        Fri, 22 Nov 2024 02:49:53 -0800 (PST)
 Received: from localhost (30.171.91.34.bc.googleusercontent.com. [34.91.171.30])
-        by smtp.gmail.com with UTF8SMTPSA id a640c23a62f3a-aa50b52fe87sm82614666b.117.2024.11.22.02.49.51
+        by smtp.gmail.com with UTF8SMTPSA id a640c23a62f3a-aa50b57c1cdsm82681266b.145.2024.11.22.02.49.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Nov 2024 02:49:51 -0800 (PST)
+        Fri, 22 Nov 2024 02:49:53 -0800 (PST)
 From: Wojciech Macek <wmacek@chromium.org>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -85,9 +85,9 @@ To: Rob Herring <robh@kernel.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org
 Cc: Wojciech Macek <wmacek@chromium.org>
-Subject: [PATCH v1 1/2] dt-bindings: arm: mediatek: Add MT8186 Starmie Chromebooks
-Date: Fri, 22 Nov 2024 10:49:37 +0000
-Message-ID: <20241122104938.1437925-2-wmacek@chromium.org>
+Subject: [PATCH v1 2/2] arm64: dts: mediatek: mt8186: Add Starmie device
+Date: Fri, 22 Nov 2024 10:49:38 +0000
+Message-ID: <20241122104938.1437925-3-wmacek@chromium.org>
 X-Mailer: git-send-email 2.47.0.371.ga323438b13-goog
 In-Reply-To: <20241122104938.1437925-1-wmacek@chromium.org>
 References: <20241122104938.1437925-1-wmacek@chromium.org>
@@ -99,34 +99,605 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add an entry for the MT8186 based Starmie Chromebooks, also known as the
-ASUS Chromebook Enterprise CM30 Detachable (CM3001). The device is
-a tablet style chromebook.
+Add support for Starmie Chromebooks.
 
 Signed-off-by: Wojciech Macek <wmacek@chromium.org>
 ---
- Documentation/devicetree/bindings/arm/mediatek.yaml | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ arch/arm64/boot/dts/mediatek/Makefile         |   2 +
+ .../mediatek/mt8186-corsola-starmie-sku0.dts  |  29 ++
+ .../mediatek/mt8186-corsola-starmie-sku1.dts  |  46 ++
+ .../dts/mediatek/mt8186-corsola-starmie.dtsi  | 480 ++++++++++++++++++
+ 4 files changed, 557 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-starmie-sku0.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-starmie-sku1.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-starmie.dtsi
 
-diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
-index 1d4bb50fcd8d9..df38bcf7c1b61 100644
---- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-+++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-@@ -263,6 +263,14 @@ properties:
-           - const: google,steelix-sku196608
-           - const: google,steelix
-           - const: mediatek,mt8186
-+      - description: Google Starmie (ASUS Chromebook Enterprise CM30 Detachable)
-+          - const: google,starmie-sku0
-+          - const: google,starmie-sku1
-+          - const: google,starmie-sku2
-+          - const: google,starmie-sku3
-+          - const: google,starmie-sku4
-+          - const: google,starmie
-+          - const: mediatek,mt8186
-       - description: Google Steelix (Lenovo 300e Yoga Chromebook Gen 4)
-         items:
-           - enum:
+diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
+index 8fd7b2bb7a159..2ee6266ddf43d 100644
+--- a/arch/arm64/boot/dts/mediatek/Makefile
++++ b/arch/arm64/boot/dts/mediatek/Makefile
+@@ -59,6 +59,8 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-magneton-sku393216.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-magneton-sku393217.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-magneton-sku393218.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-rusty-sku196608.dtb
++dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-starmie-sku0.dtb
++dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-starmie-sku1.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-steelix-sku131072.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-steelix-sku131073.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8186-corsola-tentacool-sku327681.dtb
+diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-starmie-sku0.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-starmie-sku0.dts
+new file mode 100644
+index 0000000000000..ca0b8492bbef5
+--- /dev/null
++++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-starmie-sku0.dts
+@@ -0,0 +1,29 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
++/*
++ * Copyright 2023 Google LLC
++ */
++
++/dts-v1/;
++#include "mt8186-corsola-starmie.dtsi"
++
++/ {
++	model = "Google Starmie sku0 board";
++	compatible = "google,starmie-sku0", "google,starmie-sku2",
++		     "google,starmie-sku3", "google,starmie",
++		     "mediatek,mt8186";
++};
++
++&panel {
++	compatible = "starry,ili9882t";
++};
++
++&i2c_tunnel {
++	/delete-node/ sbs-battery@b;
++
++	battery: sbs-battery@f {
++		compatible = "sbs,sbs-battery";
++		reg = <0xf>;
++		sbs,i2c-retry-count = <2>;
++		sbs,poll-retry-count = <1>;
++	};
++};
+diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-starmie-sku1.dts b/arch/arm64/boot/dts/mediatek/mt8186-corsola-starmie-sku1.dts
+new file mode 100644
+index 0000000000000..2ba4c083a58c6
+--- /dev/null
++++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-starmie-sku1.dts
+@@ -0,0 +1,46 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
++/*
++ * Copyright 2023 Google LLC
++ */
++
++/dts-v1/;
++#include "mt8186-corsola-starmie.dtsi"
++
++/ {
++	model = "Google Starmie sku1 board";
++	compatible = "google,starmie-sku1", "google,starmie-sku4",
++		     "google,starmie", "mediatek,mt8186";
++};
++
++&panel {
++	compatible = "starry,himax83102-j02";
++};
++
++&i2c1 {
++	/delete-node/ touchscreen@41;
++	touchscreen_himax: touchscreen@4f {
++		status = "okay";
++
++		compatible = "hid-over-i2c";
++		reg = <0x4f>;
++		interrupt-parent = <&pio>;
++		interrupts = <12 IRQ_TYPE_LEVEL_LOW>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&touchscreen_pins>;
++		vdd-supply = <&mt6366_vio18_reg>;
++		panel = <&panel>;
++		post-power-on-delay-ms = <450>;
++		hid-descr-addr = <0x0001>;
++	};
++};
++
++&i2c_tunnel {
++	/delete-node/ sbs-battery@b;
++
++	battery: sbs-battery@f {
++		compatible = "sbs,sbs-battery";
++		reg = <0xf>;
++		sbs,i2c-retry-count = <2>;
++		sbs,poll-retry-count = <1>;
++	};
++};
+diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-starmie.dtsi b/arch/arm64/boot/dts/mediatek/mt8186-corsola-starmie.dtsi
+new file mode 100644
+index 0000000000000..28ac65d28143e
+--- /dev/null
++++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-starmie.dtsi
+@@ -0,0 +1,480 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
++/*
++ * Copyright 2023 Google LLC
++ */
++
++/dts-v1/;
++#include "mt8186-corsola.dtsi"
++
++/delete-node/ &dsi_out;
++/delete-node/ &keyboard_controller;
++
++/ {
++	en_pp6000_mipi_disp_150ma: en-pp6000-mipi-disp-150ma {
++		compatible = "regulator-fixed";
++		regulator-name = "en_pp6000_mipi_disp_150ma";
++		gpio = <&pio 154 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pp6000_mipi_disp_150ma_fixed_pins>;
++	};
++
++	tboard_thermistor1: thermal-sensor1 {
++		compatible = "generic-adc-thermal";
++		#thermal-sensor-cells = <0>;
++		io-channels = <&auxadc 0>;
++		io-channel-names = "sensor-channel";
++		temperature-lookup-table = <    (-5000) 1492
++						0 1413
++						5000 1324
++						10000 1227
++						15000 1121
++						20000 1017
++						25000 900
++						30000 797
++						35000 698
++						40000 606
++						45000 522
++						50000 449
++						55000 383
++						60000 327
++						65000 278
++						70000 236
++						75000 201
++						80000 171
++						85000 145
++						90000 163
++						95000 124
++						100000 91
++						105000 78
++						110000 67
++						115000 58
++						120000 50
++						125000 44>;
++	};
++
++	tboard_thermistor2: thermal-sensor2 {
++		compatible = "generic-adc-thermal";
++		#thermal-sensor-cells = <0>;
++		io-channels = <&auxadc 1>;
++		io-channel-names = "sensor-channel";
++		temperature-lookup-table = <    (-5000) 1492
++						0 1413
++						5000 1324
++						10000 1227
++						15000 1121
++						20000 1017
++						25000 900
++						30000 797
++						35000 698
++						40000 606
++						45000 522
++						50000 449
++						55000 383
++						60000 327
++						65000 278
++						70000 236
++						75000 201
++						80000 171
++						85000 145
++						90000 163
++						95000 124
++						100000 91
++						105000 78
++						110000 67
++						115000 58
++						120000 50
++						125000 44>;
++	};
++};
++
++&cros_ec {
++	cbas: cbas {
++		compatible = "google,cros-cbas";
++	};
++
++	keyboard-controller {
++		compatible = "google,cros-ec-keyb-switches";
++	};
++};
++
++&dsi0 {
++	status = "okay";
++	#address-cells = <1>;
++	#size-cells = <0>;
++	panel: panel@0 {
++		/* compatible will be set in board dts */
++		reg = <0>;
++		enable-gpios = <&pio 98 0>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&panel_pins_default>;
++		avdd-supply = <&en_pp6000_mipi_disp>;
++		avee-supply = <&en_pp6000_mipi_disp_150ma>;
++		pp1800-supply = <&mt6366_vio18_reg>;
++		backlight = <&backlight_lcd0>;
++		rotation = <270>;
++		port {
++			panel_in: endpoint {
++				remote-endpoint = <&dsi_out>;
++			};
++		};
++	};
++
++	ports {
++		port {
++			dsi_out: endpoint {
++				remote-endpoint = <&panel_in>;
++			};
++		};
++	};
++};
++
++&i2c0 {
++	status = "disabled";
++};
++
++&i2c1 {
++	touchscreen: touchscreen@41 {
++		status = "okay";
++
++		compatible = "ilitek,ili9882t";
++		reg = <0x41>;
++		interrupt-parent = <&pio>;
++		interrupts = <12 IRQ_TYPE_LEVEL_LOW>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&touchscreen_pins>;
++		panel = <&panel>;
++		reset-gpios = <&pio 60 GPIO_ACTIVE_LOW>;
++		vccio-supply = <&mt6366_vio18_reg>;
++	};
++};
++
++&i2c2 {
++	status = "disabled";
++};
++
++&i2c4 {
++	status = "disabled";
++};
++
++&i2c5 {
++	clock-frequency = <400000>;
++
++};
++
++&mmc1_pins_default {
++	pins-clk {
++		drive-strength = <MTK_DRIVE_8mA>;
++	};
++
++	pins-cmd-dat {
++		drive-strength = <MTK_DRIVE_8mA>;
++	};
++};
++
++&mmc1_pins_uhs {
++	pins-clk {
++		drive-strength = <MTK_DRIVE_8mA>;
++	};
++
++	pins-cmd-dat {
++		drive-strength = <MTK_DRIVE_8mA>;
++	};
++};
++
++&pen_insert {
++	wakeup-event-action = <EV_ACT_ANY>;
++};
++
++&pio {
++	/* 185 lines */
++	gpio-line-names = "TP",
++			  "TP",
++			  "TP",
++			  "I2S0_HP_DI",
++			  "I2S3_DP_SPKR_DO",
++			  "SAR_INT_ODL",
++			  "BT_WAKE_AP_ODL",
++			  "WIFI_INT_ODL",
++			  "DPBRDG_INT_ODL",
++			  "NC",
++			  "EC_AP_HPD_OD",
++			  "NC",
++			  "TCHSCR_INT_1V8_ODL",
++			  "EC_AP_INT_ODL",
++			  "EC_IN_RW_ODL",
++			  "GSC_AP_INT_ODL",
++			  /*
++			   * AP_FLASH_WP_L is crossystem ABI. Rev1 schematics
++			   * call it AP_WP_ODL.
++			   */
++			  "AP_FLASH_WP_L",
++			  "HP_INT_ODL",
++			  "PEN_EJECT_OD",
++			  "NC",
++			  "NC",
++			  "UCAM_SEN_EN",
++			  "NC",
++			  "NC",
++			  "NC",
++			  "I2S2_DP_SPK_MCK",
++			  "I2S2_DP_SPKR_BCK",
++			  "I2S2_DP_SPKR_LRCK",
++			  "NC",
++			  "NC",
++			  "NC",
++			  "NC",
++			  "UART_GSC_TX_AP_RX",
++			  "UART_AP_TX_GSC_RX",
++			  "UART_DBGCON_TX_ADSP_RX",
++			  "UART_ADSP_TX_DBGCON_RX",
++			  "NC",
++			  "TCHSCR_REPORT_DISABLE",
++			  "NC",
++			  "EN_PP1800_DPBRDG",
++			  "SPI_AP_CLK_EC",
++			  "SPI_AP_CS_EC_L",
++			  "SPI_AP_DO_EC_DI",
++			  "SPI_AP_DI_EC_DO",
++			  "SPI_AP_CLK_GSC",
++			  "SPI_AP_CS_GSC_L",
++			  "SPI_AP_DO_GSC_DI",
++			  "SPI_AP_DI_GSC_DO",
++			  "UART_DBGCON_TX_SCP_RX",
++			  "UART_SCP_TX_DBGCON_RX",
++			  "EN_PP1200_CAM_X",
++			  "WLAN_MODULE_RST_L",
++			  "NC",
++			  "NC",
++			  "NC",
++			  "NC",
++			  "I2S1_HP_DO",
++			  "I2S1_HP_BCK",
++			  "I2S1_HP_LRCK",
++			  "I2S1_HP_MCK",
++			  "TCHSCR_RST_1V8_L",
++			  "SPI_AP_CLK_ROM",
++			  "SPI_AP_CS_ROM_L",
++			  "SPI_AP_DO_ROM_DI",
++			  "SPI_AP_DI_ROM_DO",
++			  "NC",
++			  "NC",
++			  "EMMC_STRB",
++			  "EMMC_CLK",
++			  "EMMC_CMD",
++			  "EMMC_RST_L",
++			  "EMMC_DATA0",
++			  "EMMC_DATA1",
++			  "EMMC_DATA2",
++			  "EMMC_DATA3",
++			  "EMMC_DATA4",
++			  "EMMC_DATA5",
++			  "EMMC_DATA6",
++			  "EMMC_DATA7",
++			  "AP_KPCOL0",
++			  "NC",
++			  "NC",
++			  "NC",
++			  "TP",
++			  "SDIO_CLK",
++			  "SDIO_CMD",
++			  "SDIO_DATA0",
++			  "SDIO_DATA1",
++			  "SDIO_DATA2",
++			  "SDIO_DATA3",
++			  "NC",
++			  "NC",
++			  "NC",
++			  "NC",
++			  "NC",
++			  "NC",
++			  "NC",
++			  "MIPI_BL_PWM_1V8",
++			  "DISP_RST_1V8_L",
++			  "MIPI_DPI_CLK",
++			  "MIPI_DPI_VSYNC",
++			  "MIPI_DPI_HSYNC",
++			  "MIPI_DPI_DE",
++			  "MIPI_DPI_D0",
++			  "MIPI_DPI_D1",
++			  "MIPI_DPI_D2",
++			  "MIPI_DPI_D3",
++			  "MIPI_DPI_D4",
++			  "MIPI_DPI_D5",
++			  "MIPI_DPI_D6",
++			  "MIPI_DPI_DA7",
++			  "MIPI_DPI_D8",
++			  "MIPI_DPI_D9",
++			  "MIPI_DPI_D10",
++			  "MIPI_DPI_D11",
++			  "PCM_BT_CLK",
++			  "PCM_BT_SYNC",
++			  "PCM_BT_DI",
++			  "PCM_BT_DO",
++			  "JTAG_TMS_TP",
++			  "JTAG_TCK_TP",
++			  "JTAG_TDI_TP",
++			  "JTAG_TDO_TP",
++			  "JTAG_TRSTN_TP",
++			  "NC",
++			  "NC",
++			  "UCAM_DET_ODL",
++			  "NC",
++			  "NC",
++			  "AP_I2C_TCHSCR_SCL_1V8",
++			  "AP_I2C_TCHSCR_SDA_1V8",
++			  "NC",
++			  "NC",
++			  "AP_I2C_DPBRDG_SCL_1V8",
++			  "AP_I2C_DPBRDG_SDA_1V8",
++			  "NC",
++			  "NC",
++			  "AP_I2C_AUD_SCL_1V8",
++			  "AP_I2C_AUD_SDA_1V8",
++			  "AP_I2C_DISP_SCL_1V8",
++			  "AP_I2C_DISP_SDA_1V8",
++			  "NC",
++			  "NC",
++			  "NC",
++			  "NC",
++			  "SCP_I2C_SENSOR_SCL_1V8",
++			  "SCP_I2C_SENSOR_SDA_1V8",
++			  "AP_EC_WARM_RST_REQ",
++			  "AP_XHCI_INIT_DONE",
++			  "USB3_HUB_RST_L",
++			  "EN_SPKR",
++			  "BEEP_ON",
++			  "AP_DISP_BKLTEN",
++			  "EN_PP6000_MIPI_DISP",
++			  "EN_PP6000_MIPI_DISP_150MA",
++			  "BT_KILL_1V8_L",
++			  "WIFI_KILL_1V8_L",
++			  "PWRAP_SPI0_CSN",
++			  "PWRAP_SPI0_CK",
++			  "PWRAP_SPI0_MO",
++			  "PWRAP_SPI0_MI",
++			  "SRCLKENA0",
++			  "SRCLKENA1",
++			  "SCP_VREQ_VAO",
++			  "AP_RTC_CLK32K",
++			  "AP_PMIC_WDTRST_L",
++			  "AUD_CLK_MOSI",
++			  "AUD_SYNC_MOSI",
++			  "AUD_DAT_MOSI0",
++			  "AUD_DAT_MOSI1",
++			  "AUD_CLK_MISO",
++			  "AUD_SYNC_MISO",
++			  "AUD_DAT_MISO0",
++			  "AUD_DAT_MISO1",
++			  "NC",
++			  "NC",
++			  "NC",
++			  "DPBRDG_RST_L",
++			  "LTE_W_DISABLE_L",
++			  "LTE_SAR_DETECT_L",
++			  "EN_PP3300_LTE_X",
++			  "LTE_PWR_OFF_L",
++			  "LTE_RESET_L",
++			  "TP",
++			  "TP";
++
++	dpi_pin_default: dpi-pin-default {
++		pins-cmd-dat {
++			pinmux = <PINMUX_GPIO103__FUNC_GPIO103>,
++				 <PINMUX_GPIO104__FUNC_GPIO104>,
++				 <PINMUX_GPIO105__FUNC_GPIO105>,
++				 <PINMUX_GPIO106__FUNC_GPIO106>,
++				 <PINMUX_GPIO107__FUNC_GPIO107>,
++				 <PINMUX_GPIO108__FUNC_GPIO108>,
++				 <PINMUX_GPIO109__FUNC_GPIO109>,
++				 <PINMUX_GPIO110__FUNC_GPIO110>,
++				 <PINMUX_GPIO111__FUNC_GPIO111>,
++				 <PINMUX_GPIO112__FUNC_GPIO112>,
++				 <PINMUX_GPIO113__FUNC_GPIO113>,
++				 <PINMUX_GPIO114__FUNC_GPIO114>,
++				 <PINMUX_GPIO101__FUNC_GPIO101>,
++				 <PINMUX_GPIO100__FUNC_GPIO100>,
++				 <PINMUX_GPIO102__FUNC_GPIO102>,
++				 <PINMUX_GPIO99__FUNC_GPIO99>;
++			drive-strength = <MTK_DRIVE_10mA>;
++			output-low;
++		};
++	};
++
++	dpi_pin_func: dpi-pin-func {
++		pins-cmd-dat {
++			pinmux = <PINMUX_GPIO103__FUNC_DPI_DATA0>,
++				 <PINMUX_GPIO104__FUNC_DPI_DATA1>,
++				 <PINMUX_GPIO105__FUNC_DPI_DATA2>,
++				 <PINMUX_GPIO106__FUNC_DPI_DATA3>,
++				 <PINMUX_GPIO107__FUNC_DPI_DATA4>,
++				 <PINMUX_GPIO108__FUNC_DPI_DATA5>,
++				 <PINMUX_GPIO109__FUNC_DPI_DATA6>,
++				 <PINMUX_GPIO110__FUNC_DPI_DATA7>,
++				 <PINMUX_GPIO111__FUNC_DPI_DATA8>,
++				 <PINMUX_GPIO112__FUNC_DPI_DATA9>,
++				 <PINMUX_GPIO113__FUNC_DPI_DATA10>,
++				 <PINMUX_GPIO114__FUNC_DPI_DATA11>,
++				 <PINMUX_GPIO101__FUNC_DPI_HSYNC>,
++				 <PINMUX_GPIO100__FUNC_DPI_VSYNC>,
++				 <PINMUX_GPIO102__FUNC_DPI_DE>,
++				 <PINMUX_GPIO99__FUNC_DPI_PCLK>;
++			drive-strength = <MTK_DRIVE_10mA>;
++		};
++	};
++
++	edp_panel_fixed_pins: edp-panel-fixed-pins {
++		pins1 {
++			pinmux = <PINMUX_GPIO153__FUNC_GPIO153>;
++			output-low;
++		};
++	};
++
++	pp6000_mipi_disp_150ma_fixed_pins: pp6000-mipi-disp-150ma-fixed-pins {
++		pins1 {
++			pinmux = <PINMUX_GPIO154__FUNC_GPIO154>;
++			output-low;
++		};
++	};
++
++	panel_pins_default: panel-pins-default {
++		pins1 {
++			pinmux = <PINMUX_GPIO98__FUNC_GPIO98>;
++			output-low;
++		};
++	};
++	wifi_pins_pwrseq: wifipwrseq {
++		pins-wifi-enable {
++			pinmux = <PINMUX_GPIO51__FUNC_GPIO51>;
++		};
++	};
++};
++
++&usb_c1 {
++	status = "disabled";
++};
++
++&thermal_zones {
++	tboard1 {
++		polling-delay = <1000>; /* milliseconds */
++		polling-delay-passive = <0>; /* milliseconds */
++		thermal-sensors = <&tboard_thermistor1>;
++	};
++
++	tboard2 {
++		polling-delay = <1000>; /* milliseconds */
++		polling-delay-passive = <0>; /* milliseconds */
++		thermal-sensors = <&tboard_thermistor2>;
++	};
++};
++
++&wifi_pwrseq {
++	reset-gpios = <&pio 51 1>;
++};
++
++en_pp6000_mipi_disp: &pp3300_disp_x {
++	regulator-name = "en_pp6000_mipi_disp";
++	gpio = <&pio 153 GPIO_ACTIVE_HIGH>;
++	regulator-enable-ramp-delay = <3000>;
++	/delete-property/ regulator-boot-on;
++};
 -- 
 2.47.0.371.ga323438b13-goog
 
