@@ -1,150 +1,112 @@
-Return-Path: <devicetree+bounces-123660-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123662-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBDBA9D59F0
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 08:25:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1C589D5A0E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 08:35:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A1FCA281E7E
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 07:25:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 672DB281D6D
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 07:35:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F22BF1632F8;
-	Fri, 22 Nov 2024 07:25:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hWjePwgy"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F296C1632E8;
+	Fri, 22 Nov 2024 07:35:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mail-m49197.qiye.163.com (mail-m49197.qiye.163.com [45.254.49.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 869EB1465A0;
-	Fri, 22 Nov 2024 07:25:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67ADE3C2F
+	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 07:35:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732260302; cv=none; b=eRxQx1hekihVjS86Bbw569JuTKhSCvAMAsWNWKp1pCjzAgj9ZdhAIdl8Vn57Z7tEM16aq6dqLKc0HGQ5OlVY5gU/CgYSpDklil/fz+qsyv8csORwAIllxbwKm+u+IrzJrp29BDxNTMkVMqyCzCfEAe3KRvAMr+bRx/3PQrnWC0Y=
+	t=1732260925; cv=none; b=knwx8TM+v1AsTzXFiStE7yX6OM3Ss8iS1tS0nQMnj6xXZKXbR0pmasVU3UdMB+41fvmslTr8aguY0muP26GMvqdRz9h6Bv2MCHrnRMO/EcgYAwCvkkHQTLlR+djDwob+ayJ/umqIZB4dqCdOM1+rB/pldHC9hjzsPhJ96CxsEQw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732260302; c=relaxed/simple;
-	bh=7ESMhw6qWFkb1s9kF5O6ikkxZs/870Smg/4qvKVpSa4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=h+fgKwQ6CaoE4e6/H5RQ01kQ5H4bWwrBXNAbzQzc/mh8H8mYHpp793jcM40Sz93DUu1bCG7tKxrs6WUMscCbaKZY7+797ypviWkbZ5inM4YDVy56I88AsNa0ArMcTIHTFcSOtBqRrjzXm0uZi72vxjHJz2Jl0/azOmt2cm5yxdg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hWjePwgy; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4ALJPchJ019239;
-	Fri, 22 Nov 2024 07:24:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	mZOchEo22wWGYZOOArnnZSYty6lEalNJAgJuZtAfWZs=; b=hWjePwgyCsJqiwkK
-	U0Aj8p4NjcIe00XL8JnXtIQJ0V5vF5aZbCGwpoi0ZZEZeqCGseW9FD+77ZI5awaB
-	lfwYOhnvMy4hWHW2y7RKR9XpGLKJnWXMmQ2uX9yBlMTlrkMieaHxybz/bWaJzWEF
-	AFKnv7wpmDnOBXHNzJWgfnmiDET8YCh2sERSt6s2Y/UVQvdTdXQKM20WBoGcNvP6
-	MgF1LXq2hiEcVF3E+m90vtRHZkGpX9d/vyeVdUfYjXfty+jZr0dooUl+z/yBiuvx
-	Uhosas6BrIoVf57dFZOFM4aO/XuLcGX7IcQA+YHPUKCyBneEMoEpzmVOquK6Jboh
-	+jKt/Q==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 431c7hpm1y-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 22 Nov 2024 07:24:58 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AM7OwR7028349
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 22 Nov 2024 07:24:58 GMT
-Received: from [10.216.2.20] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 21 Nov
- 2024 23:24:53 -0800
-Message-ID: <d0848961-f5d4-46eb-b1ab-99ae6a0e07e1@quicinc.com>
-Date: Fri, 22 Nov 2024 12:54:50 +0530
+	s=arc-20240116; t=1732260925; c=relaxed/simple;
+	bh=jTIYzOFYfdf9GfP/cownXX/COTZ45Lz5c9+OhoDt2rc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Pp9eZRjXO5MI76DJDJ3dNKjsyO4UozmueH0n+zBxuujFxOIDJwWh3YLu42hh1TmXP/5DNZm79sNUz29dsuhawNvMgBkMdAqAe4909D9/CV1uu4hxbsblI3jRNPgkyqtoBKq2QYvPGVo+kmn3f7YQCsK+E9k6iBUm1t8GTDzf838=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from amadeus-Vostro-3710.lan (unknown [IPV6:240e:3b3:2c04:2930::1])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 3848de84;
+	Fri, 22 Nov 2024 15:30:09 +0800 (GMT+08:00)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Chukun Pan <amadeus@jmu.edu.cn>
+Subject: [PATCH 1/2] arm64: dts: rockchip: rk3568: add reset-names for combphy
+Date: Fri, 22 Nov 2024 15:30:05 +0800
+Message-Id: <20241122073006.99309-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V5 4/4] interconnect: qcom: osm-l3: Add epss compatibles
- for SA8775P SoC
-To: Krzysztof Kozlowski <krzk@kernel.org>, Georgi Djakov <djakov@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-CC: Odelu Kukatla <quic_okukatla@quicinc.com>,
-        Mike Tipton
-	<quic_mdtipton@quicinc.com>,
-        Sibi Sankar <quic_sibis@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20241121113006.28520-1-quic_rlaggysh@quicinc.com>
- <20241121113006.28520-5-quic_rlaggysh@quicinc.com>
- <51653aac-76e0-4da2-aea8-16d62b570155@kernel.org>
-Content-Language: en-US
-From: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
-In-Reply-To: <51653aac-76e0-4da2-aea8-16d62b570155@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: -HGI-8ePDZ8bgJxOYgPlSZJXtjCujxKl
-X-Proofpoint-GUID: -HGI-8ePDZ8bgJxOYgPlSZJXtjCujxKl
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
- phishscore=0 priorityscore=1501 malwarescore=0 bulkscore=0 spamscore=0
- mlxscore=0 impostorscore=0 suspectscore=0 lowpriorityscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411220060
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDQxhKVhgZQ0tDTUNPTE1NTVYeHw5VEwETFhoSFy
+	QUDg9ZV1kYEgtZQVlJT0seQUgZSEFJGEtPQUlCSEtBQUpZV1kWGg8SFR0UWUFZT0tIVUpLSUJDQ0
+	1VSktLVUtZBg++
+X-HM-Tid: 0a9352c73fde03a2kunm3848de84
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Oj46Eww4PTIjTj8QECk*Tx8y
+	QjkaClZVSlVKTEhJSU1LTUpKSktCVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlP
+	Sx5BSBlIQUkYS09BSUJIS0FBSllXWQgBWUFKTU5CNwY+
 
+The reset-names of combphy are missing, add it.
 
+Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+---
+ arch/arm64/boot/dts/rockchip/rk3568.dtsi      | 1 +
+ arch/arm64/boot/dts/rockchip/rk356x-base.dtsi | 2 ++
+ 2 files changed, 3 insertions(+)
 
-On 11/21/2024 5:21 PM, Krzysztof Kozlowski wrote:
-> On 21/11/2024 12:30, Raviteja Laggyshetty wrote:
->> The EPSS instance in SA8775P uses PERF_STATE register instead of
->> REG_L3_VOTE to scale L3 clocks.
->> Along with SoC specific compatible, add new generic compatible
->> "qcom,epss-l3-perf" for PERF_STATE register based L3 scaling.
->>
->> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
->> ---
->>  drivers/interconnect/qcom/osm-l3.c | 2 ++
->>  1 file changed, 2 insertions(+)
->>
->> diff --git a/drivers/interconnect/qcom/osm-l3.c b/drivers/interconnect/qcom/osm-l3.c
->> index a9405b7d251b..285afaa1f61e 100644
->> --- a/drivers/interconnect/qcom/osm-l3.c
->> +++ b/drivers/interconnect/qcom/osm-l3.c
->> @@ -318,6 +318,7 @@ static int qcom_osm_l3_probe(struct platform_device *pdev)
->>  
->>  static const struct of_device_id osm_l3_of_match[] = {
->>  	{ .compatible = "qcom,epss-l3", .data = &epss_l3_l3_vote },
->> +	{ .compatible = "qcom,epss-l3-perf", .data = &epss_l3_perf_state },
-> 
-> 
-> Hm? Why?
-> 
->>  	{ .compatible = "qcom,osm-l3", .data = &osm_l3 },
->>  	{ .compatible = "qcom,sc7180-osm-l3", .data = &osm_l3 },
->>  	{ .compatible = "qcom,sc7280-epss-l3", .data = &epss_l3_perf_state },
->> @@ -325,6 +326,7 @@ static const struct of_device_id osm_l3_of_match[] = {
->>  	{ .compatible = "qcom,sm8150-osm-l3", .data = &osm_l3 },
->>  	{ .compatible = "qcom,sc8180x-osm-l3", .data = &osm_l3 },
->>  	{ .compatible = "qcom,sm8250-epss-l3", .data = &epss_l3_perf_state },
->> +	{ .compatible = "qcom,sa8775p-epss-l3", .data = &epss_l3_perf_state },
-> 
-> 
-> So this is compatible with sm8250. Use that one. Don't grow this table
-> needlessly.
-> 
-Will make use of sm8250 compatible in next patch revision.
-> 
-> Best regards,
-> Krzysztof
+diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+index ecaefe208e3e..695cccbdab0f 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+@@ -350,6 +350,7 @@ combphy0: phy@fe820000 {
+ 		assigned-clocks = <&pmucru CLK_PCIEPHY0_REF>;
+ 		assigned-clock-rates = <100000000>;
+ 		resets = <&cru SRST_PIPEPHY0>;
++		reset-names = "phy";
+ 		rockchip,pipe-grf = <&pipegrf>;
+ 		rockchip,pipe-phy-grf = <&pipe_phy_grf0>;
+ 		#phy-cells = <1>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
+index 62be06f3b863..e55390629114 100644
+--- a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
+@@ -1681,6 +1681,7 @@ combphy1: phy@fe830000 {
+ 		assigned-clocks = <&pmucru CLK_PCIEPHY1_REF>;
+ 		assigned-clock-rates = <100000000>;
+ 		resets = <&cru SRST_PIPEPHY1>;
++		reset-names = "phy";
+ 		rockchip,pipe-grf = <&pipegrf>;
+ 		rockchip,pipe-phy-grf = <&pipe_phy_grf1>;
+ 		#phy-cells = <1>;
+@@ -1697,6 +1698,7 @@ combphy2: phy@fe840000 {
+ 		assigned-clocks = <&pmucru CLK_PCIEPHY2_REF>;
+ 		assigned-clock-rates = <100000000>;
+ 		resets = <&cru SRST_PIPEPHY2>;
++		reset-names = "phy";
+ 		rockchip,pipe-grf = <&pipegrf>;
+ 		rockchip,pipe-phy-grf = <&pipe_phy_grf2>;
+ 		#phy-cells = <1>;
+-- 
+2.25.1
 
 
