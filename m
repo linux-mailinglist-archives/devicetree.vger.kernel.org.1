@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-123758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123759-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D35B9D5E2C
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 12:34:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE3659D5E2E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 12:34:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C11E81F22736
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 11:34:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D84BB22B4C
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 11:34:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55E341DED75;
-	Fri, 22 Nov 2024 11:34:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CF3A1DED7F;
+	Fri, 22 Nov 2024 11:34:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="MHIb072r"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="qu6C+tfe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32B651DED53
-	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 11:34:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB3491CBE81
+	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 11:34:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732275246; cv=none; b=ezCzhIJwuZjPanpAYLvxpq08vF2y1W4qx44pI75tgtzJOE6hWYVs5y3hA+9qkdU75J1drTmIvHnrtThYtXZ26JVYUbm1Uryf08M36Hfb62l7lT6QUzra33k7JEwSSlD35ykIWv0r77JQudubldYsPE/CsS2lnL5+1haXIL6cwkc=
+	t=1732275247; cv=none; b=Bi9BTfWzSAJfLVFNqNm8tqn2Lq86MSkXMpiGexkOPg7AxGtLiZBno4ZZbuOw8T54VBjPSq8+NgmoUgyaNJp5ZMjNA19VtK1YBm2hq6Nm8OZlKyWfTbY0KJmvYqRVdHsPhre91qEak6mjNeg/AwGceyty9b0G9Kw0mVp1uS48e9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732275246; c=relaxed/simple;
-	bh=sUW8vIxfv4BfM2wnxDmei7rYENfZBPESOqgmgidvtHE=;
+	s=arc-20240116; t=1732275247; c=relaxed/simple;
+	bh=Fwu9pQaKK4bs27HnVW7THTQBGwD2l8i0eSmDYU2vXCo=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Gg1xCsJmX+02tNVau9uJV/2IC8btrObbVdpVVQudZgxEiAhfuKfcBKZEhYEgeSAvB1+Ppl7RjE047zelJFSniOVKJVxo/OfZ8dpvY7kl2lkkoTznnczyJVcNOgkiRNmTIS6FcNaydRbThfExlwLFj8NoHF2k3iz9kD8L64Z9h7o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=MHIb072r; arc=none smtp.client-ip=209.85.167.54
+	 MIME-Version:Content-Type; b=gyemv1l+PQBRbvhhg/i8ECWUBrbS4sa5B+vGy0EK+ozyW9CRInI1mCvR9ljw3hu4E5V7Q0QGbglTo1qjFXcydFOnWBszMrx7KXT6LibpRjslpN4dvcBZyS1TgzhzfrQHFhGkWN2ev9HXOzbm+VrV+Yxa1PDt4eKEY7UrYxoUxlo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=qu6C+tfe; arc=none smtp.client-ip=209.85.167.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-539f6e1f756so2222097e87.0
-        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 03:34:03 -0800 (PST)
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-53d9ff8f1e4so2207222e87.2
+        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 03:34:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1732275242; x=1732880042; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1732275244; x=1732880044; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=C2YBz8TSJ/wQwdEWCNJcg595g05SvWsgpN9AQhkbH0E=;
-        b=MHIb072rioDssqQlLaLpq3hN0xwq2yw6/1cz/UCxsleVn7cOnYsHleDA2MjpBTOBBn
-         kGr4ZDjZAcKCDuOqLUJkJcMTJ9lKHWMQbitaEj2OlrF83RI9b80fabyIXokxflY4Xaim
-         DgVA5RJjoNWWsLXyQZhWOTvIvAac3TQgY1cGLE4pWkRBXS/VEzQ1YVBzFFz42ndbvPBQ
-         /VKl0AqMFxevE0VTQmY2BbrHYM27dnQjEGV4mgp9hJUxdXmvJ3xWjthZFMsIxEQO3QuB
-         MmgTXqR4ziNqqCuo4s47Ou//2KPzir2UMUXAgQkv2pMrAxj6go/FhwRdtOztMT53lExq
-         SJWQ==
+        bh=QpgNB9SWivbZpiMjps5KlWBpMotrye0qsJeGvBEzXWI=;
+        b=qu6C+tfet0aqvhpbY2YuBHE1wgt7vUxcoRkgEI+zTI7Zqm7nn/Sly4dCl7YAcWJW3k
+         AbqN3fSKlKlhpY+jgXeMhZK2zKNTbYTAtasjoBdWWnblmGwtHd3kKHTsPo/doMB2kT6p
+         G7Ky+bW014wnP34lZxwNJLSNrXkHmLyt9CDGbfzoT0eiVo+8/eIHzwD1VtnS9QpgFb2L
+         DAXPxJ2Cg0RYtjbNe09Dv/++va6s1Ip5jWsZR0v5Riu8zNyUwkqmQzsTK3WFDAMJp9Py
+         0rDRd54HrKd1Cdv5kUkMHqV6P9XjNagjDid+uVFZALnbFW3BRsWnZna2FnhYw1PkecYm
+         qGbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732275242; x=1732880042;
+        d=1e100.net; s=20230601; t=1732275244; x=1732880044;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=C2YBz8TSJ/wQwdEWCNJcg595g05SvWsgpN9AQhkbH0E=;
-        b=qtIgiEsbni19MEVy/81CYoPJFiTrwAKxtYYEextCukZSkw8YO4o9ZqPpO0x7bhdRkw
-         sY+W/ItrlYF9fIedpWFKNCe+qdaC3RXNSh2wlG5js+jZhQHHGEr/ibweF5U3/FprIo+A
-         kLV/vqsfQALKdqRPc0/PRMXQf4rMH8wTPpM7RIc/b8/aLjTtoeD1ppljA5Pi1N5NprrF
-         FJLDuy6N1YpMZJadQNTcZAU3u14VoiTRxEVbNV+azni1mX/TnRPihDCc9qCSX0NOXR78
-         wj+hh5sQa95JKVnlR5QLdD1vU9/+0AHRONBiRXIYWOrEofoFBPxALs+DmFzZ4GmS0QZu
-         ErsQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWGwwzlGQfXm7hOqnG/uMVz0KnI9lFo/pP94K3R1dCvI9udrxNfaFhlPSy75VfLl0qbEmbwu1Ej02tX@vger.kernel.org
-X-Gm-Message-State: AOJu0YwTOyeSWiwGd08zgQKJxSsB1HoQ2qrRuY7EmZh3du+4JQY/zslR
-	E3d5uMIidn4yN3sPN8JnhwwrljvxTk3wjuloW9mPS9dqSVx3p8uJOpLAEby62o4=
-X-Gm-Gg: ASbGncu5cf+jxzi9FXaoZGMtPkwfEmntGRg/ZJuEd01LFtwhxRebqjuPGccaXQJ1BeU
-	tTL6BQQoKW3bS6wsGcV5a7gvJYEJuYxF1WQ32xTjkmHDtDmEuLo2UHgmB7EutdZ582HkaX6p2r5
-	D1+N6Lb7xwVy8qpOYyCqjRO8pM+3ikpU1mAQl6hBMYpEBFfQ39ssaI12ve3IszT0GcOEKUBn9H3
-	FLqatuO3SU5OYQ4gF0h1jrVz8atBWq5LPwVwDb4CHdaOODi8vVkdDN0uxE6M+E+cUSnkRJ9N8gw
-	j24=
-X-Google-Smtp-Source: AGHT+IFTjFBny5aoe0n7bZuFkvivpcYbYcV2t6thsKVVD+xX2yD+tIQrArcuNDydxMpFcu43+piQvA==
-X-Received: by 2002:a05:6512:281c:b0:53d:d592:cf46 with SMTP id 2adb3069b0e04-53dd592cfa7mr1008180e87.8.1732275242307;
-        Fri, 22 Nov 2024 03:34:02 -0800 (PST)
+        bh=QpgNB9SWivbZpiMjps5KlWBpMotrye0qsJeGvBEzXWI=;
+        b=MIR+a3hPueIZ2eCZXf0l0lbbEvaQC+iELgaWBpdxnWvXmH8HcMhT/pVN/ijw9wgUU+
+         1gHkKQXhsR6ZM6468nadan8yyz4L13B0A1aRjOkTJuH5RcfHk3VKF5lAyMPgeOKVwxY0
+         7W93lw+Aj+sQAOxAyZ14Xa5BkA6SIvlkXQmE8nRGNIadqPD2rbkxGByyMjK5iONYMpRy
+         Qenl85CVmgsqHorNs9lLifJN/bJjBefBrXtSt/sMn/UK2E69suMnZKqoY0nBRhrXaHq1
+         uc9kGBBCzwACyO6G3y0Nf7FuBfKWOsloB6fC6HgXXwIRSO0MrEFlOqLWRHHc+VTMkAq0
+         AffQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU5QB6ll53BlPpfka1/9LsrThU8aDCXQNEqVYoY+mPFCxndz2SKW3ZvgZB6OfuR3tCrwHGVIPcFNbsT@vger.kernel.org
+X-Gm-Message-State: AOJu0YwAlJP0zC7HQ7MweQjnStezodsELfhwf50UpZqs45Ybge2nzWJg
+	y0+yNf3iXm+6Qmm7B5W1yDb7mHh6qmI6Y+9ECrmkMUpqq9lVdMb0Zd5eaTtW5vk=
+X-Gm-Gg: ASbGncvOUhMzp1l2IiMzEAuY4xAEoKYY9mkJn4XBMBFn/A+ybMuKIoW04T0uRxjg35u
+	LXPhGwCHCo6gDsynyFhUsbrE+GYmLhx9LKrkE/zLzhdn2iN9ooz2I8ldPs7A5JLaIIPCm596zxH
+	G6YFbFBumr7w+BP9dujw5G3W3tKkdyAb31pJ/OUD+X7kP0jJRbvtNbuBE4NzaPjIt3HwTjX4uGL
+	9JhHgGUdzJDfieD4K+RLJi7liwbuLtlRhWylmbJIIRvw4iTWH4sT8VHM6ImTmWxAS6hwZVg9Zrd
+	9GM=
+X-Google-Smtp-Source: AGHT+IGY4KL3gCdwtgcr2ARFmOwxE6aZ74yS1b6Efv6OiNkTxvo9zl48r2AjcV4V65Rv+zVV1h8AXQ==
+X-Received: by 2002:a05:6512:130e:b0:539:8d2c:c01c with SMTP id 2adb3069b0e04-53dd39b56a2mr1338934e87.41.1732275243991;
+        Fri, 22 Nov 2024 03:34:03 -0800 (PST)
 Received: from localhost (p509159f1.dip0.t-ipconnect.de. [80.145.89.241])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3825fbc42d4sm2186558f8f.85.2024.11.22.03.34.01
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3825fbc3531sm2196400f8f.80.2024.11.22.03.34.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Nov 2024 03:34:01 -0800 (PST)
+        Fri, 22 Nov 2024 03:34:03 -0800 (PST)
 From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
 To: Jonathan Cameron <jic23@kernel.org>,
 	Lars-Peter Clausen <lars@metafoo.de>,
@@ -87,9 +87,9 @@ Cc: Alexandru Ardelean <aardelean@baylibre.com>,
 	Rob Herring <robh@kernel.org>,
 	devicetree@vger.kernel.org,
 	linux-iio@vger.kernel.org
-Subject: [PATCH v3 04/10] iio: adc: ad_sigma_delta: Add support for reading irq status using a GPIO
-Date: Fri, 22 Nov 2024 12:33:23 +0100
-Message-ID: <20241122113322.242875-16-u.kleine-koenig@baylibre.com>
+Subject: [PATCH v3 05/10] iio: adc: ad_sigma_delta: Handle CS assertion as intended in ad_sd_read_reg_raw()
+Date: Fri, 22 Nov 2024 12:33:24 +0100
+Message-ID: <20241122113322.242875-17-u.kleine-koenig@baylibre.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241122113322.242875-12-u.kleine-koenig@baylibre.com>
 References: <20241122113322.242875-12-u.kleine-koenig@baylibre.com>
@@ -100,102 +100,33 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3790; i=u.kleine-koenig@baylibre.com; h=from:subject; bh=sUW8vIxfv4BfM2wnxDmei7rYENfZBPESOqgmgidvtHE=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBnQGwMkeVRPlBCDIXN05q38+9ftBM2B8Nxh7jYa KUjbePFP9yJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZ0BsDAAKCRCPgPtYfRL+ Tl94B/9wAwfVq1gfejPKim6bMzkJepByvnAStoHY1yUe1K9TLbw6n2S9DractZ76kpYX/OTy8EH CkypjR5ftqznGM5gddWo+5rFrFAZ/HTA7RKM+Zk+Ff3HHZt2jGKSs8Gagy6DsfGSt6GZIvrKj6C apJHEp3GQxvDWWfE75yfX0f8P+EmIEdmAEDEoVB6KK7Kj8jxn//Wx9O0oSnAb1Xa4i1fYtU3dOE c3aH/dHk/ORGpB7ZjJ0gt6cD7o0UcmE/3nRfMDoxi3q0XL6a1cXlWITjGnAaCyi7OAqniJRmC/o Hi7zzG49WD2iFwa6fSGiK7Kh/k4fSWyP4SM9SIEzUGifH3Ov
+X-Developer-Signature: v=1; a=openpgp-sha256; l=900; i=u.kleine-koenig@baylibre.com; h=from:subject; bh=Fwu9pQaKK4bs27HnVW7THTQBGwD2l8i0eSmDYU2vXCo=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBnQGwP+uX3MtJEWS+RfPimNiqvazuzBpl/Y/8il dAOidMUjOCJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZ0BsDwAKCRCPgPtYfRL+ TtQeCACfyQe6khjGWPIs1NVzkex84kRh0k98KqeDcKOtxhCaZH9NuGYdsMLcAbk9ZqX6bPkvO5m bXHALbVMq1mIo8nyfqd3FXsnNOgAstiP27UHFEoZYoX8delxVGSXFpu9wrXDNN6P/ckZbgIngHy fm5nhBvhEYYaH4ZaFGmVzxQ5MrXQL9I/mBlJQZCuJSqn8cuWM0+2gmrkHPEkeBgQxeF42CYU9Rk Ge5koPf9IR1VdKGlTxomJy2Zl3cawmaHIMJkxEaAl/Gz8vTlY7IdP/aUikBK9nssZn6iTncyAcb Cm60Ob3X+v++8+50hE/as31pef+RAyTSP1Aw5mGy+6D/i/BT
 X-Developer-Key: i=u.kleine-koenig@baylibre.com; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
 Content-Transfer-Encoding: 8bit
 
-Some of the ADCs by Analog signal their irq condition on the MISO line.
-So typically that line is connected to an SPI controller and a GPIO. The
-GPIO is used as input and the respective interrupt is enabled when the
-last SPI transfer is completed.
+When struct ad_sigma_delta::keep_cs_asserted was introduced only
+register writing was adapted to honor this new flag. Also respect it
+when reading a register.
 
-Depending on the GPIO controller the toggling MISO line might make the
-interrupt pending even while it's masked. In that case the irq handler
-is called immediately after irq_enable() and so before the device
-actually pulls that line low which results in non-sense values being
-reported to the upper layers.
-
-The only way to find out if the line was actually pulled low is to read
-the GPIO. (There is a flag in AD7124's status register that also signals
-if an interrupt was asserted, but reading that register toggles the MISO
-line and so might trigger another spurious interrupt.)
-
-Add the possibility to specify an interrupt GPIO in the machine
-description in addition to the plain interrupt. This GPIO is used then
-to check if the irq line is actually active in the irq handler.
-
+Fixes: df1d80aee963 ("iio: ad_sigma_delta: Properly handle SPI bus locking vs CS assertion")
 Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
 ---
- drivers/iio/adc/ad_sigma_delta.c       | 35 ++++++++++++++++++++++----
- include/linux/iio/adc/ad_sigma_delta.h |  1 +
- 2 files changed, 31 insertions(+), 5 deletions(-)
+ drivers/iio/adc/ad_sigma_delta.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/iio/adc/ad_sigma_delta.c b/drivers/iio/adc/ad_sigma_delta.c
-index ea4aabd3960a..4c8d986b6609 100644
+index 4c8d986b6609..5e7e5cb908d8 100644
 --- a/drivers/iio/adc/ad_sigma_delta.c
 +++ b/drivers/iio/adc/ad_sigma_delta.c
-@@ -539,12 +539,29 @@ static irqreturn_t ad_sd_data_rdy_trig_poll(int irq, void *private)
- {
- 	struct ad_sigma_delta *sigma_delta = private;
- 
--	complete(&sigma_delta->completion);
--	disable_irq_nosync(irq);
--	sigma_delta->irq_dis = true;
--	iio_trigger_poll(sigma_delta->trig);
-+	/*
-+	 * AD7124 and a few others use the same physical line for interrupt
-+	 * reporting (nRDY) and MISO.
-+	 * As MISO toggles when reading a register, this likely results in a
-+	 * pending interrupt. This has two consequences: a) The irq might
-+	 * trigger immediately after it's enabled even though the conversion
-+	 * isn't done yet; and b) checking the STATUS register's nRDY flag is
-+	 * off-limits as reading that would trigger another irq event.
-+	 *
-+	 * So read the MOSI line as GPIO (if available) and only trigger the irq
-+	 * if the line is active.
-+	 */
- 
--	return IRQ_HANDLED;
-+	if (!sigma_delta->rdy_gpiod || gpiod_get_value(sigma_delta->rdy_gpiod)) {
-+		complete(&sigma_delta->completion);
-+		disable_irq_nosync(irq);
-+		sigma_delta->irq_dis = true;
-+		iio_trigger_poll(sigma_delta->trig);
-+
-+		return IRQ_HANDLED;
-+	} else {
-+		return IRQ_NONE;
-+	}
- }
- 
- /**
-@@ -679,6 +696,14 @@ int ad_sd_init(struct ad_sigma_delta *sigma_delta, struct iio_dev *indio_dev,
- 	else
- 		sigma_delta->irq_line = spi->irq;
- 
-+	sigma_delta->rdy_gpiod = devm_gpiod_get_optional(&spi->dev, "rdy", GPIOD_IN);
-+	if (IS_ERR(sigma_delta->rdy_gpiod))
-+		return dev_err_probe(&spi->dev, PTR_ERR(sigma_delta->rdy_gpiod),
-+				     "Failed to find rdy gpio\n");
-+
-+	if (sigma_delta->rdy_gpiod && !sigma_delta->irq_line)
-+		sigma_delta->irq_line = gpiod_to_irq(sigma_delta->rdy_gpiod);
-+
- 	iio_device_set_drvdata(indio_dev, sigma_delta);
- 
- 	return 0;
-diff --git a/include/linux/iio/adc/ad_sigma_delta.h b/include/linux/iio/adc/ad_sigma_delta.h
-index f8c1d2505940..866b4c21794b 100644
---- a/include/linux/iio/adc/ad_sigma_delta.h
-+++ b/include/linux/iio/adc/ad_sigma_delta.h
-@@ -96,6 +96,7 @@ struct ad_sigma_delta {
- 	unsigned int		active_slots;
- 	unsigned int		current_slot;
- 	unsigned int		num_slots;
-+	struct gpio_desc	*rdy_gpiod;
- 	int		irq_line;
- 	bool			status_appended;
- 	/* map slots to channels in order to know what to expect from devices */
+@@ -109,7 +109,7 @@ static int ad_sd_read_reg_raw(struct ad_sigma_delta *sigma_delta,
+ 		}, {
+ 			.rx_buf = val,
+ 			.len = size,
+-			.cs_change = sigma_delta->bus_locked,
++			.cs_change = sigma_delta->keep_cs_asserted,
+ 		},
+ 	};
+ 	struct spi_message m;
 -- 
 2.45.2
 
