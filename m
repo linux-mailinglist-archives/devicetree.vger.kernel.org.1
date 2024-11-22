@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-123756-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123757-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 670E89D5E25
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 12:34:11 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2D3C9D5E2B
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 12:34:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 27ED3280E99
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 11:34:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4B4A9B207AF
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 11:34:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BC451DDA3E;
-	Fri, 22 Nov 2024 11:34:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C46FB1DED5F;
+	Fri, 22 Nov 2024 11:34:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="YGBMnUyr"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="XwY2jMWm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09F0B1DE2C0
-	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 11:34:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 945871DE4FB
+	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 11:34:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732275242; cv=none; b=R7nDtaB2mQErCya39+hWHBBPb20GtuGijWJKFIeY6LceFzKVPjYtO+eo6M7s8LxB3ecLVA0PX4JnWC8L+WOhrROW8aMdsh461dlnCOn85uD6uPrETx2d5v+NtpusL8Vilqmv7p9k7mRKYqDlje+kB1DeRQmezaMzQJy1NpTDks4=
+	t=1732275245; cv=none; b=YnQsufUyzguC3po4ZzSIp0chb8WSmYoVTZm2rPZIKnqrFZFUKBKTHgY9chTbzpfNt3kUDy4Pv+Vf8ONyB8GJka3aGiE919Yk2floiERvG1P5wIiiEftw7acLWx/rmUd1EafWxqpAtAC72feL5mcwmtaf5ehv2IsR2NoKD+jZ/bk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732275242; c=relaxed/simple;
-	bh=UpCDFbHiLoBrphP0ZQ6Ni+CRtV5VYT4LknAceCYNRfw=;
+	s=arc-20240116; t=1732275245; c=relaxed/simple;
+	bh=LR5pHXckvZl5Tv7d1tyrP9QH9OzPMit0Fd60NybG8t8=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=juS/rux5lCPoMLvdrGIVFMQNcaNzQAR+ZPKeiJOt/CFdADbMS9k6mjI3aYw9zyjC1MyU3xqQLRRfpauzZ7T1YAHSj8u35Nvm46N+Fxtjv6hePkYoY0HUfxfqQ6qpX+nCdUhfUIKWGC6SfL0zh4cnw9w06L0/bsLuGC23Q6rsO+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=YGBMnUyr; arc=none smtp.client-ip=209.85.167.51
+	 MIME-Version:Content-Type; b=OXjZkQwSMMXoktZ3OlMiCcf5O/EzBjaqCZfT9bMagw/5rWWLVFyFxUMgBd//HIXfOml3JIrZsRyFyEmbOD6LL742e7uM4gYPOw31UXfegfnkTqol4WSb94rQs9n3wdQVx5XXBcoXkkKriouixMDsT8xdJB8jh0zF3wLMI0p1KsA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=XwY2jMWm; arc=none smtp.client-ip=209.85.167.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-53da6801c6dso1749592e87.0
-        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 03:34:00 -0800 (PST)
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-53dd9e853ccso41099e87.1
+        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 03:34:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1732275239; x=1732880039; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1732275241; x=1732880041; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=RITSuX/h//gaahWszdW0fpwFRnABn01F981JW4yCXNU=;
-        b=YGBMnUyrP+1gw90WRkl279Kwbo27y98bVjfyMD7kR9B73C+vbxlNEkQLdZCekFnfyr
-         2JIzgdWik/38Elt168Sm19Cbd00ygu5Sgshsn6H6gip1Jxv+rus3yFIGPHqpbwB3a9cV
-         ROORz2oDoAnPqSha3n58Fa9myno4Y6Y6bB7d2oCI0ZsKUQgxuo1gy5jel9jEqxp/x7kW
-         oVVpPATVatuxxXMU8Y+1ZYs2LZTkfOkRU4n7tJM/EIx+YcHCDYbjGs+qen6chJc4dq4x
-         gJxMEE4JYrG5DyPcvOUqbjIOb1o4iFNj8dx/XLgHW9mAABGYSn9lopxJs9fXXeHDGwRm
-         4OuA==
+        bh=G3DONvhJN+q3bgNzEaY4EWEouwcZMkht5kfoO/Vdpd4=;
+        b=XwY2jMWmfFFcQNiM/VXZntksJfBF9ZlLMnoGhhT8qKqYW2deNv+FVaJzi6EJgaA61v
+         6ZPdUMjF+IWsNwjc7LXy0lKxaEhddUQMlPPqD4atj/mTi5jPhUepXWY5mCtjzKsAes/U
+         YLJE5rT5+u02yn7r+GaxyaS+xIF18qqvVIBf2JML3fBDmhHVV6qI+kIf2OJtAiU4+ZY5
+         cqMuoBj8tRNItt0lH6qdPTUMSpwndziFjfoVV5XyIYkfzaNFC/5clddAsZWgGaW87KQs
+         NJpOybGay6m6YZ9O6Me5YFJHyasn8++UN/bZGq7yKWaJS2XRVzjrDFKbWg6dBdIJXkJj
+         OCVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732275239; x=1732880039;
+        d=1e100.net; s=20230601; t=1732275241; x=1732880041;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=RITSuX/h//gaahWszdW0fpwFRnABn01F981JW4yCXNU=;
-        b=NplKeTFiphoRjuTSSvSXKrtUrG4DhejilgLtCNhgHtN47XL4v3S/MqMx/VIj8K2DaA
-         BgDf4OqTkzLwihAeX7FTd+OdKG0hQA47Q2V1UQBZMsrxve39JHzMGvwVj2wpUDhy6v2u
-         W9Ziyg4gznEDHvbURadRG8zv+9JMaJ04q8+VxDYRs6cAqPKjedoZQq6FPA9PrES1Y57/
-         mgi6/vypFaIeaopgRrHedG6tiQIfyg969JGQt7XDVWtuEzyRrI2FVMnR36eKYkN1I5RB
-         iP5njZxG0P+3aq+wNZoqbmWfnuwwdKmfChwCGoXNBK9jZZrcN5DHR7QnNwvL+NIKuCMc
-         EgIw==
-X-Forwarded-Encrypted: i=1; AJvYcCWv6Ua7WpS8CHhp8RdWUDUfpRMRbojYKt5mhv6XHBk80gC1lFNS7ESuydOBOP5ut+VZrvzxUIW6vW0U@vger.kernel.org
-X-Gm-Message-State: AOJu0YwEncRm7Z5JsG/uC7zkF0Z32AnYYrOVEZ0hjnM2HIOzpChUC9tE
-	ehFSJHvk7QzbANcZ95iNx+lxKhI0AhdhBI8fLK4wkjJ9WS/jxU+znuTecvAR8mI=
-X-Gm-Gg: ASbGncuNqjz27bL766XT+dfKJF8w1oqSrTZSCDSZYgWCuE8AShO+S3naKzo+ZczdEUf
-	x6h2RPy+UlnXfczbHBX2F76utZHkiWsvns6jaeOzJ4kD3qEnZ0G4wWiikw6tMtHvzBpGi/MkyQg
-	FDewXYy1y4GatfEZU9FYFHx75QCtQtqG+EE9yCRdQY7Mu4A3JeU4t8IKI2/Q/ZUYCDjjrQMy0Co
-	2prXPbpf4GX+rALf7Y9ZFTChQJf6roo69m7oVEILJRHIYC8wR9NIzLg2jqY+sc6l5BjjI9+YHXg
-	DgU=
-X-Google-Smtp-Source: AGHT+IFuJlxu5HJfwHL/G0HKYtzazTpe1NMfuln7ItQncr5JbRlzXCpYYyf6DYgRhYgcBMftOMdt0Q==
-X-Received: by 2002:a05:6512:b81:b0:539:ddf1:ac6f with SMTP id 2adb3069b0e04-53dd39a4c7dmr1223377e87.46.1732275239075;
-        Fri, 22 Nov 2024 03:33:59 -0800 (PST)
+        bh=G3DONvhJN+q3bgNzEaY4EWEouwcZMkht5kfoO/Vdpd4=;
+        b=euowJQe/4f+qwATMn3rf34YQEil/n2zjCwvWQX80nnHx9W4yeyvrL4ipdTho+2ely/
+         KfkaoZS6lOV9K+/C/0oV9XcUad3OtcZlotoh1qJU9hmBjDt42ZfzSiNRWxTAoUIKlZ/R
+         CRCCXAqX7PyGedjGuqUMx9D4A5F7Uxi3BrxBC8BIebQqPpE5ceES3W2P3Q2+gkZhvuPe
+         LT1y4oA94By+jhGOkGr6bMb/+JQEtBm99zkOLQa2EPQ63rEMPMcl2lpUjY1xqZsnYBOA
+         BQkm4ce9a+KODIja3mbMPm7lqZtldjm6agiqT7kDwYTNlEM0C1nRT/3YyErXyb2c5wjW
+         PmSg==
+X-Forwarded-Encrypted: i=1; AJvYcCXXBsPF3a3b1LhNoQ04rZrDU3WGSuNgT9g85Uo5nKUjdWsgG74XWaYvmVZmF55hJkimFO0BpCt+NBAj@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw9S3zwcpQGokq4WI4ZQMJreE2kBSjdp2K+K0EvYfczGAaQ074L
+	MasueJeIoD4MmfRnNfUmJAHslXM5MF72HoNvtjAAbfX1rVSD/Qg/aSGroWhC4gs=
+X-Gm-Gg: ASbGncsUYWmZcfdlGM0Rd+g9GDA0EYvk7Fpunq+wuxyQX+vW7cxPBjwKsFVn87qvNjC
+	Js/8gu2gukJaIwb+kgZBO34Mm7GJwEGO59UunXQiQ40B9NwPs/R9WadWKuebiqy0Y34EVVAn6KV
+	OVai0AWKPwPvo1Ulv5GglS255+JsIbpAduTWz2beijAchkVA0SiIVudiS5ec27QRckpJ7Z849lX
+	iTkBTpPVdsWwdR8iDQak+EIIITj4qLCmx68W5G26gWFhqKXFUVbSBLG4rvKWovW0Ii5KLqvh6v3
+	j9U=
+X-Google-Smtp-Source: AGHT+IEjFwOuMWDydiQ9Eny5j247ZIzsJsm74p6LBuQ6gWy1+9S09E/I7z022prykzF996YrBb0eOw==
+X-Received: by 2002:a05:6512:10ca:b0:53d:a9dd:5a05 with SMTP id 2adb3069b0e04-53dd39a5365mr1322534e87.46.1732275240647;
+        Fri, 22 Nov 2024 03:34:00 -0800 (PST)
 Received: from localhost (p509159f1.dip0.t-ipconnect.de. [80.145.89.241])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-433cde9800fsm24416405e9.40.2024.11.22.03.33.58
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3825fb30bfdsm2157536f8f.56.2024.11.22.03.34.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Nov 2024 03:33:58 -0800 (PST)
+        Fri, 22 Nov 2024 03:34:00 -0800 (PST)
 From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
 To: Jonathan Cameron <jic23@kernel.org>,
 	Lars-Peter Clausen <lars@metafoo.de>,
@@ -87,9 +87,9 @@ Cc: Alexandru Ardelean <aardelean@baylibre.com>,
 	Rob Herring <robh@kernel.org>,
 	devicetree@vger.kernel.org,
 	linux-iio@vger.kernel.org
-Subject: [PATCH v3 02/10] iio: adc: ad7124: Refuse invalid input specifiers
-Date: Fri, 22 Nov 2024 12:33:21 +0100
-Message-ID: <20241122113322.242875-14-u.kleine-koenig@baylibre.com>
+Subject: [PATCH v3 03/10] dt-bindings: iio: adc: adi,ad7124: Allow specifications of a gpio for irq line
+Date: Fri, 22 Nov 2024 12:33:22 +0100
+Message-ID: <20241122113322.242875-15-u.kleine-koenig@baylibre.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241122113322.242875-12-u.kleine-koenig@baylibre.com>
 References: <20241122113322.242875-12-u.kleine-koenig@baylibre.com>
@@ -100,64 +100,60 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2144; i=u.kleine-koenig@baylibre.com; h=from:subject; bh=UpCDFbHiLoBrphP0ZQ6Ni+CRtV5VYT4LknAceCYNRfw=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBnQGwH+1KZ5UiwNQ58Q3K97bSFf9BrVCEAt6t2k PM5wp0FvtGJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZ0BsBwAKCRCPgPtYfRL+ TiUaB/4gYCNz94dKkWDcW0KKqFeOXvfsVUzt5cxSiRjARESlRrGbLd/24tMnF2r/tweF8QefAyn Q8eL0bowPaRpgKTQiNizArUA2g2PYxidP8ECNMVLw3y+FDabYZ+3m4JyI/htn20q5T/v9e22Rs0 y5i6nhXoK4xyieeuZOeubKPKPrQKjhi/YHN3MXcQadAV9WSDdwfjDFLNkMJiy+e0YKM9GE+lLEC cmEtaczQc9lV8kc3xlrwf1TLVvWVCy8AwwfMv9HS8PAGDIcQiCKBava15JfC+Mx7CSXuOvBg64V HgYGh53ihBgzqjiEijuCD/hEQwGXCPYIIIpCqiDrs140+/oR
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1905; i=u.kleine-koenig@baylibre.com; h=from:subject; bh=LR5pHXckvZl5Tv7d1tyrP9QH9OzPMit0Fd60NybG8t8=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBnQGwK3n0rFUM30pvMNf0ReBZRIcrNLiAQoOy/d bLmRqnRrsKJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZ0BsCgAKCRCPgPtYfRL+ TnR+CACN4VPCHsuSilSXsvvasA4WJ1MsIkTRD4pl2WLgcQO4UVd2c+rgE3f8GcTEJJPEJ7hHlyp GCCwJG8VnTiXDwhy/tTgThdp+0jispOOYSd0IInnPhkXoPCldh8mMSXZ/TbtPLQbvEnvvpbhBCy xtgbFzSQijGhKeZlyFe3+2itLaNw6pldUMhzAbTw3c+x9/n20FbGunCfBqSZtksGGZwYv8kdIDB sPCzZE2szpxkrerQsxV1foDGtccVlw0qPXNu0hfm9vZxSzKLT7PPxMFIPBldkKFiuKC+j2zX8Hk NROdSun/Cg9oC5Abjw4CEWRbVDNOTJCGzW8hDZrQ5scU1Rlf
 X-Developer-Key: i=u.kleine-koenig@baylibre.com; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
 Content-Transfer-Encoding: 8bit
 
-The ad7124-4 has 8 analog inputs; the input select values 8 to 15 are
-reserved and not to be used. These are fine for ad7124-8. For both
-ad7124-4 and ad7124-8 values bigger than 15 are internal channels that
-might appear as inputs in the channels specified in the device
-description according to the description of commit f1794fd7bdf7 ("iio:
-adc: ad7124: Remove input number limitation"), values bigger than 31
-don't fit into the respective register bit field and the driver masked
-them to smaller values.
+For the AD7124 chip the logical irq line (̅R̅D̅Y) is physically on the same
+pin as the spi MISO output (DOUT) and so reading a register might
+trigger an interrupt. For correct operation it's critical that the
+actual state of the pin can be read to judge if an interrupt event is a
+real one or just a spurious one triggered by toggling the line in its
+MISO mode.
 
-Check for these invalid input specifiers and fail to probe if one is
-found.
+Allow specification of an "rdy-gpios" property that references a GPIO
+that can be used for that purpose. While this is typically the same GPIO
+also used (implicitly) as interrupt source, it is still supposed that
+the interrupt is specified as before and usual.
 
-Fixes: f1794fd7bdf7 ("iio: adc: ad7124: Remove input number limitation")
 Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
 ---
- drivers/iio/adc/ad7124.c | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+ Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/iio/adc/ad7124.c b/drivers/iio/adc/ad7124.c
-index 5352b26bb391..1f3342373f1c 100644
---- a/drivers/iio/adc/ad7124.c
-+++ b/drivers/iio/adc/ad7124.c
-@@ -807,6 +807,19 @@ static int ad7124_check_chip_id(struct ad7124_state *st)
- 	return 0;
- }
+diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
+index 35ed04350e28..ebe77cbe87ff 100644
+--- a/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
+@@ -37,6 +37,12 @@ properties:
+     description: IRQ line for the ADC
+     maxItems: 1
  
-+/*
-+ * Input specifiers 8 - 15 are explicitly reserved for ad7124-4
-+ * while they are fine for ad7124-8. Values above 31 don't fit
-+ * into the register field and so are invalid for sure.
-+ */
-+static bool ad7124_valid_input_select(unsigned int ain, const struct ad7124_chip_info *info)
-+{
-+	if (ain >= info->num_inputs && ain < 16)
-+		return false;
++  rdy-gpios:
++    description: |
++      GPIO reading the ̅R̅D̅Y line. Useful to reliably detect the interrupt
++      condition.
++    maxItems: 1
 +
-+	return ain <= FIELD_MAX(AD7124_CHANNEL_AINM_MSK);
-+}
-+
- static int ad7124_parse_channel_config(struct iio_dev *indio_dev,
- 				       struct device *dev)
- {
-@@ -859,6 +872,11 @@ static int ad7124_parse_channel_config(struct iio_dev *indio_dev,
- 		if (ret)
- 			return ret;
+   '#address-cells':
+     const: 1
  
-+		if (!ad7124_valid_input_select(ain[0], st->chip_info) ||
-+		    !ad7124_valid_input_select(ain[1], st->chip_info))
-+			return dev_err_probe(dev, -EINVAL,
-+					     "diff-channels property of %pfwP contains invalid data\n", child);
-+
- 		st->channels[channel].nr = channel;
- 		st->channels[channel].ain = AD7124_CHANNEL_AINP(ain[0]) |
- 						  AD7124_CHANNEL_AINM(ain[1]);
+@@ -111,6 +117,7 @@ unevaluatedProperties: false
+ 
+ examples:
+   - |
++    #include <dt-bindings/gpio/gpio.h>
+     spi {
+       #address-cells = <1>;
+       #size-cells = <0>;
+@@ -121,6 +128,7 @@ examples:
+         spi-max-frequency = <5000000>;
+         interrupts = <25 2>;
+         interrupt-parent = <&gpio>;
++        rdy-gpios = <&gpio 25 GPIO_ACTIVE_LOW>;
+         refin1-supply = <&adc_vref>;
+         clocks = <&ad7124_mclk>;
+         clock-names = "mclk";
 -- 
 2.45.2
 
