@@ -1,55 +1,96 @@
-Return-Path: <devicetree+bounces-123744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E0A49D5D2A
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 11:21:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EDD69D5D3B
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 11:23:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 166441F219C0
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 10:21:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4FD582831EF
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 10:23:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 553471D86ED;
-	Fri, 22 Nov 2024 10:21:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83D5F1DE883;
+	Fri, 22 Nov 2024 10:22:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=t-8ch.de header.i=@t-8ch.de header.b="SFThPj4C"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="E4E8tg14"
 X-Original-To: devicetree@vger.kernel.org
-Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2E41165EE6;
-	Fri, 22 Nov 2024 10:21:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.126.157
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7C571D363F
+	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 10:22:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732270885; cv=none; b=tO2XEBUkuWOwYt3gOyVVuX1Ynad0U9VCkmK31ah3LhyCZn9frabAsaSHP85G7ZYNKqzBmuQo16FjnRa1VmofM9CRxLe9MzGuIX1y3zwdSJCA1ec+QFfLm2vStI556VAzO1glXa7gMSfwlYeHnNp+sHY+7tq9lwHLoPny5vfy8n8=
+	t=1732270970; cv=none; b=fsLtS96yDwuE92NCcj12SKMGqI3hHg/0UWr8n/VUFbe77ogfHYIGrVPuJdw8Asn2gxfIPCAiKeqHoDRGnC2KiS/7ywCSCoXJPPcTMpz5CS2THgW+YKLBY15KMvmZunXqlUP0WJNbMtbO2bQRsEobgx1FWyF+5SBBj83dSuputNo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732270885; c=relaxed/simple;
-	bh=1LWGdxgjKMEqxkfBZhwVMju1YBlsPo35yU1MFU7teB0=;
+	s=arc-20240116; t=1732270970; c=relaxed/simple;
+	bh=FUMOsTI1XKBWnpseE8vk0dVqvDxYGIbH+QH+cNwOnAI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LsDUkfqBZZkEe81PNeB5SaTS0XQf5RgUuBKMi2hSmGDoiA3JK4VP3zgkzVtps2aehwWMVnJ/c2NZLPW9ZVoMVspG0Q3WwkMKOkl8SfSoHs40154r3L/wi1ZICheB67pAADedEWaM/m8xbZ14o0E6AXg1KIGqaaBr4CzyJUIUj7A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=t-8ch.de; spf=pass smtp.mailfrom=t-8ch.de; dkim=pass (1024-bit key) header.d=t-8ch.de header.i=@t-8ch.de header.b=SFThPj4C; arc=none smtp.client-ip=159.69.126.157
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=t-8ch.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=t-8ch.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=t-8ch.de; s=mail;
-	t=1732270879; bh=1LWGdxgjKMEqxkfBZhwVMju1YBlsPo35yU1MFU7teB0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SFThPj4CBn+1wWSbHDM6v+GVIrojRoJ6YIQ+iCYB7blrxfoycKQAgBT3CRGTweGs+
-	 LFR6m+NAiy2r1dhSdl2P3naqmjmQ34t/jHGWvS7nSXTeWKvFwCW2r7SScsmmmWvlBT
-	 4j+pBp2hUmD/Dl4481mTm6qX+Pq1A0Wugc4b9BVQ=
-Date: Fri, 22 Nov 2024 11:21:18 +0100
-From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <thomas@t-8ch.de>
-To: Sung-Chi Li <lschyi@chromium.org>
-Cc: Benson Leung <bleung@chromium.org>, 
-	Guenter Roeck <groeck@chromium.org>, Sebastian Reichel <sre@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, chrome-platform@lists.linux.dev, linux-pm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] power: supply: cros_usbpd-charger: extend as a
- thermal of cooling device
-Message-ID: <f805c0d8-a7f7-4e03-8d8c-0c13baa02ac4@t-8ch.de>
-References: <20241122-extend_power_limit-v1-0-a3ecd87afa76@chromium.org>
- <20241122-extend_power_limit-v1-1-a3ecd87afa76@chromium.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=LAE/VkVAfTMPqitYcBf5N9IjIXjNMQkPIf1MCAWcDW+6xlXEhxl/OpYE9GeCAK0ciUdUMNjMtxQpwuyJxI24rcSBJqEbwwnLU4b7m1yiH0nP/aAqgM+fwTakZ5W9cjNY2Q3DuovVM/1D0mou1+7fjuKiEn9AUc6idT8e4TEpgYM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=E4E8tg14; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-53da24e9673so2059457e87.2
+        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 02:22:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1732270967; x=1732875767; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ISPB4u0k/IY3WdqyYBfvJI1MUBGbBsUm1AW/lweuam4=;
+        b=E4E8tg14BnFU6aqnJV+wSX/8IlXVgoEozhcYuhOzWUIMXXj6U/X4Yq3ir0TPKLSvd6
+         Vj9ly0Og7QiZTArctGx489cqOic4bxWpT9RA/u6c7tvyuOTKhUP+Q7tfHP75diBmXqT6
+         F4XhTUWg3pJmwPown+9Ze3iAFllM96aVSgoUxDrKAgI02awf37iODbuoyJDxttorcOfJ
+         TY1tom/SIFcGlG1uZSz8HFehAhi4QjG2IZPENCeoL7diEYheTj01EZMpOECijDP3I8Ov
+         sKvGzOZyADvNQi5PP1xhVaYV/4Mgp29YQRrDTm51jMZVooXFjx4WhAmsyu/FpNbEwCja
+         f7mA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732270967; x=1732875767;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ISPB4u0k/IY3WdqyYBfvJI1MUBGbBsUm1AW/lweuam4=;
+        b=jtO5Riy9OqoHW85uZI5pv94l/Y9n9YAmzwBk0XTgZQAeOr1V8GRYL3Iu474jffLKWC
+         Pif8BJsZj/UKtdiKeuXj3DzbwqGTKK6TANQmDs6zG10GgyGJb6OjWcyTbGQSswJrlj46
+         B83XT98/O1wZTf9gh1e3DvjisXPyXpmfGbzW4SfFoYG/RQlmmRE39XIQIwYRhARl9Gsd
+         RsijiOfz5ibMGcCc1sA2KwEMxGm3C+7NIVDgG0Q4oFNN4RqeCDXJTf5fdo1tCk5WmkBp
+         aGoY6qNGiqYINWAIJ0cpziM/Um31TKt+tHEGFeHac4rBRryNfwYQjLB2I0PiJgTvajW0
+         7Pjg==
+X-Forwarded-Encrypted: i=1; AJvYcCVmpojIMrj13LpEXdp1jUFDqnlS87I5IGRzDIVnIsq0flYfQVRg6Ikl80Qb4Ue0L2xvskVwHARpgwyy@vger.kernel.org
+X-Gm-Message-State: AOJu0YwXwUTrKk2IHxmsPj3VxINvJ9GKVikc6eIz9eWABvN/mx2w6yMG
+	4ha6tVBeX1vqIQr667YoXm6xU5AcdlM1l+KHPcNYG9iD+6s0lqAG/Qif9eTPucA=
+X-Gm-Gg: ASbGncuM/HpYzRTv5SEDYYHI+NJM6EpjMg1dbC+H0CnTizEzMdyicpD51cFWvQzAYTt
+	9qPnCqLXcS/g6AcugwJpeGpI0qtTNdBBfZAYD7yporxXvEyCokDogUjHw/Puh66GRCwFVJ0achj
+	TZ+mFfJa4Mp2gZZpIueRXs9bmdsLHu8WLDXYX76v9IsXBOHPVXMxG4px1QWdY6TUVbHWZuak3J1
+	NJvpCBNktx4QZehjf61dN/2WVBHdSwsvMbcGUbSYHUCbbrciBjUkWFxXAYJi283fJpQq2JhnMN5
+	yfohDh8feZ69QJJ6Linr4KfgmvD4kQ==
+X-Google-Smtp-Source: AGHT+IFS7C183Wt8hN7C/INKvkL1qt9YbaPn5aBu73dBkn87fnUOLWLXeKl+x6xSQFdRyLKoKS4qmA==
+X-Received: by 2002:ac2:51b5:0:b0:53d:d3ff:77f6 with SMTP id 2adb3069b0e04-53dd3ff77fdmr829792e87.46.1732270966827;
+        Fri, 22 Nov 2024 02:22:46 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53dd88b54cbsm62838e87.214.2024.11.22.02.22.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Nov 2024 02:22:45 -0800 (PST)
+Date: Fri, 22 Nov 2024 12:22:43 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Fange Zhang <quic_fangez@quicinc.com>
+Cc: Rob Clark <robdclark@gmail.com>, 
+	Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Krishna Manikandan <quic_mkrishn@quicinc.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, Li Liu <quic_lliu6@quicinc.com>, 
+	Xiangxu Yin <quic_xiangxuy@quicinc.com>, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 9/9] arm64: dts: qcom: Add display support for QCS615
+ RIDE board
+Message-ID: <azdmcs7uafw3n6cqbq4ei66oybzhtyvdyz2xl4wtaf3u5zextb@vdhbs6wnbeg4>
+References: <20241122-add-display-support-for-qcs615-platform-v3-0-35252e3a51fe@quicinc.com>
+ <20241122-add-display-support-for-qcs615-platform-v3-9-35252e3a51fe@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,220 +99,116 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241122-extend_power_limit-v1-1-a3ecd87afa76@chromium.org>
+In-Reply-To: <20241122-add-display-support-for-qcs615-platform-v3-9-35252e3a51fe@quicinc.com>
 
-On 2024-11-22 11:47:21+0800, Sung-Chi Li wrote:
-> cros_usbpd-charger is the driver that takes care the system input power
-> from the pd charger. This driver also exposes the functionality to limit
-> input current.
+On Fri, Nov 22, 2024 at 05:56:52PM +0800, Fange Zhang wrote:
+> From: Li Liu <quic_lliu6@quicinc.com>
 > 
-> We can extend this driver to make it as a passive thermal cooling
-> device by limiting the input current. As such, this commit implements
-> the required cooling methods and OF style registration.
+> Add display MDSS and DSI configuration for QCS615 RIDE board.
+> QCS615 has a DP port, and DP support will be added in a later patch.
 > 
-> Signed-off-by: Sung-Chi Li <lschyi@chromium.org>
+> Signed-off-by: Li Liu <quic_lliu6@quicinc.com>
+> Signed-off-by: Fange Zhang <quic_fangez@quicinc.com>
 > ---
->  drivers/power/supply/cros_usbpd-charger.c | 98 +++++++++++++++++++++++++++++--
->  1 file changed, 93 insertions(+), 5 deletions(-)
-
-A dependency from CHARGER_CROS_PCHG to THERMAL needs to be added to
-drivers/power/supply/Kconfig.
-
+>  arch/arm64/boot/dts/qcom/qcs615-ride.dts | 76 ++++++++++++++++++++++++++++++++
+>  1 file changed, 76 insertions(+)
 > 
-> diff --git a/drivers/power/supply/cros_usbpd-charger.c b/drivers/power/supply/cros_usbpd-charger.c
-> index 47d3f58aa15c..a0451630cdd7 100644
-> --- a/drivers/power/supply/cros_usbpd-charger.c
-> +++ b/drivers/power/supply/cros_usbpd-charger.c
-> @@ -13,6 +13,9 @@
->  #include <linux/platform_device.h>
->  #include <linux/power_supply.h>
->  #include <linux/slab.h>
-> +#ifdef CONFIG_THERMAL_OF
-
-Remove this ifdef. The header is perfectly usable in any case.
-
-Actually the CONFIG_THERMAL_OF dependency is not needed at all.
-It is only necessary for devm_thermal_of_zone_register() but not 
-devm_thermal_of_cooling_device_register() which you are using.
-I am confused.
-
-OTOH you are adding the #cooling-cells OF property which itself seems to
-be only used by devm_thermal_of_zone_register(), so I'm now even more
-confused.
-
-In general, try to also test the driver configurations
-!CONFIG_THERMAL_OF and !CONFIG_THERMAL.
-
-> +#include <linux/thermal.h>
-> +#endif /* CONFIG_THERMAL_OF */
+> diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+> index ee6cab3924a6d71f29934a8debba3a832882abdd..cc7dadc411ab79b9e60ccb15eaff84ea5f997c4c 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+> @@ -202,6 +202,82 @@ &gcc {
+>  		 <&sleep_clk>;
+>  };
 >  
->  #define CHARGER_USBPD_DIR_NAME			"CROS_USBPD_CHARGER%d"
->  #define CHARGER_DEDICATED_DIR_NAME		"CROS_DEDICATED_CHARGER"
-> @@ -22,6 +25,7 @@
->  					 sizeof(CHARGER_DEDICATED_DIR_NAME))
->  #define CHARGER_CACHE_UPDATE_DELAY		msecs_to_jiffies(500)
->  #define CHARGER_MANUFACTURER_MODEL_LENGTH	32
-> +#define CHARGER_COOLING_INTERVALS		10
->  
->  #define DRV_NAME "cros-usbpd-charger"
->  
-> @@ -76,6 +80,8 @@ static enum power_supply_property cros_usbpd_dedicated_charger_props[] = {
->  /* Input voltage/current limit in mV/mA. Default to none. */
->  static u16 input_voltage_limit = EC_POWER_LIMIT_NONE;
->  static u16 input_current_limit = EC_POWER_LIMIT_NONE;
-> +/* Cooling level interns of current limit */
-> +static u16 input_current_cooling_level;
->  
->  static bool cros_usbpd_charger_port_is_dedicated(struct port_data *port)
->  {
-> @@ -459,13 +465,20 @@ static int cros_usbpd_charger_set_prop(struct power_supply *psy,
->  			break;
->  
->  		input_current_limit = intval;
-> -		if (input_current_limit == EC_POWER_LIMIT_NONE)
-> +		if (input_current_limit == EC_POWER_LIMIT_NONE) {
->  			dev_info(dev,
->  			  "External Current Limit cleared for all ports\n");
-> -		else
-> -			dev_info(dev,
-> -			  "External Current Limit set to %dmA for all ports\n",
-> -			  input_current_limit);
-> +			input_current_cooling_level = 0;
-> +		} else {
-> +			dev_info(
-> +				dev,
-> +				"External Current Limit set to %dmA for all ports\n",
-> +				input_current_limit);
-> +			input_current_cooling_level =
-> +				input_current_limit *
-> +				CHARGER_COOLING_INTERVALS /
-> +				port->psy_current_max;
+> +&i2c2 {
+> +	clock-frequency = <400000>;
+> +	status = "okay";
+> +
+> +	ioexp: gpio@3e {
+> +		compatible = "semtech,sx1509q";
+> +		reg = <0x3e>;
+> +		interrupt-parent = <&tlmm>;
+> +		interrupts = <58 0>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +		interrupt-controller;
+> +		#interrupt-cells = <2>;
+> +		semtech,probe-reset;
+> +	};
+> +
+> +	i2c-mux@77 {
+> +		compatible = "nxp,pca9542";
+> +		reg = <0x77>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		i2c@0 {
+> +			reg = <0>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			anx7625@58 {
+> +				compatible = "analogix,anx7625";
+> +				reg = <0x58>;
+> +				interrupt-parent = <&ioexp>;
+> +				interrupts = <0 0>;
+> +				enable-gpios = <&tlmm 4 GPIO_ACTIVE_HIGH>;
+> +				reset-gpios = <&tlmm 5 GPIO_ACTIVE_HIGH>;
+> +				wakeup-source;
+> +
+> +				ports {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					port@0 {
+> +						reg = <0>;
+> +						anx_7625_in: endpoint {
+> +							remote-endpoint = <&mdss_dsi0_out>;
+> +						};
+> +					};
+> +
+> +					port@1 {
+> +						reg = <1>;
+> +						anx_7625_out: endpoint {
+> +						};
 
-This seems to be a very spammy driver...
+Where is it connected? Is it DP port? USB-C? eDP?
 
-> +		}
->  		break;
->  	case POWER_SUPPLY_PROP_INPUT_VOLTAGE_LIMIT:
->  		ret = cros_usbpd_charger_set_ext_power_limit(charger,
-> @@ -525,6 +538,66 @@ static void cros_usbpd_charger_unregister_notifier(void *data)
->  	cros_usbpd_unregister_notify(&charger->notifier);
->  }
->  
-> +#ifdef CONFIG_THERMAL_OF
-> +static int
-> +cros_usbpd_charger_get_max_cooling_state(struct thermal_cooling_device *cdev,
-> +					 unsigned long *cooling_level)
-> +{
-> +	*cooling_level = CHARGER_COOLING_INTERVALS;
-> +	return 0;
-> +}
-> +
-> +static int
-> +cros_usbpd_charger_get_cur_cooling_state(struct thermal_cooling_device *cdev,
-> +					 unsigned long *cooling_level)
-> +{
-> +	*cooling_level = input_current_cooling_level;
-> +	return 0;
-> +}
-> +
-> +static int
-> +cros_usbpd_charger_set_cur_cooling_state(struct thermal_cooling_device *cdev,
-> +					 unsigned long cooling_level)
-> +{
-> +	struct charger_data *charger = cdev->devdata;
-> +	struct port_data *port;
-> +	int current_limit;
-> +	int idx = -1;
-> +	int ret;
-> +
-> +	for (int i = 0; i < charger->num_registered_psy; i++) {
-> +		port = charger->ports[i];
-> +		if (port->psy_status == POWER_SUPPLY_STATUS_CHARGING) {
-> +			idx = i;
-> +			break;
-> +		}
-> +	}
-
-Why not register one cooling device per charger?
-It would make things more predictable.
-I have no experience with the thermal subsystem, so this is just a
-guess.
-
-> +
-> +	if (idx == -1)
-> +		return -EINVAL;
-> +
-> +	current_limit =
-> +		port->psy_current_max - (cooling_level * port->psy_current_max /
-> +					 CHARGER_COOLING_INTERVALS);
-> +	ret = cros_usbpd_charger_set_ext_power_limit(charger, current_limit,
-> +						     input_voltage_limit);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	input_current_limit = (current_limit == port->psy_current_max) ?
-> +				      EC_POWER_LIMIT_NONE :
-> +				      current_limit;
-> +	input_current_cooling_level = cooling_level;
-> +	return 0;
-> +}
-> +
-> +static struct thermal_cooling_device_ops cros_usbpd_charger_cooling_ops = {
-
-const
-
-> +	.get_max_state = cros_usbpd_charger_get_max_cooling_state,
-> +	.get_cur_state = cros_usbpd_charger_get_cur_cooling_state,
-> +	.set_cur_state = cros_usbpd_charger_set_cur_cooling_state,
+> +					};
+> +				};
+> +			};
+> +		};
+> +	};
 > +};
-> +#endif /* CONFIG_THERMAL_OF */
 > +
->  static int cros_usbpd_charger_probe(struct platform_device *pd)
->  {
->  	struct cros_ec_dev *ec_dev = dev_get_drvdata(pd->dev.parent);
-> @@ -534,6 +607,9 @@ static int cros_usbpd_charger_probe(struct platform_device *pd)
->  	struct charger_data *charger;
->  	struct power_supply *psy;
->  	struct port_data *port;
-> +#ifdef CONFIG_THERMAL_OF
-> +	struct thermal_cooling_device *cdev;
-> +#endif /* CONFIG_THERMAL_OF */
->  	int ret = -EINVAL;
->  	int i;
->  
-> @@ -674,6 +750,18 @@ static int cros_usbpd_charger_probe(struct platform_device *pd)
->  			goto fail;
->  	}
->  
-> +#ifdef CONFIG_THERMAL_OF
-
-Avoid ifdef in .c files.
-Use if (IS_ENABLED(CONFIG_THERMAL_OF)) in the normal code flow.
-The compiler will optimize away all the unreachable code.
-
-> +	cdev = devm_thermal_of_cooling_device_register(
-> +		dev, ec_device->dev->of_node, DRV_NAME, charger,
-> +		&cros_usbpd_charger_cooling_ops);
-> +	if (IS_ERR(cdev)) {
-> +		dev_err(dev,
-> +			"Failing register thermal cooling device (err:%pe)\n",
-> +			cdev);
-
-dev_err_probe().
-
-> +		goto fail;
-
-Does the call to devm_thermal_of_cooling_device_register() work if there
-is no OF configuration?
-
-> +	}
-> +#endif /* CONFIG_THERMAL_OF */
+> +&mdss {
+> +	status = "okay";
+> +};
 > +
->  	return 0;
->  
->  fail:
+> +&mdss_dsi0 {
+> +	vdda-supply = <&vreg_l11a>;
+> +	status = "okay";
+> +};
+> +
+> +&mdss_dsi0_out {
+> +	remote-endpoint = <&anx_7625_in>;
+> +	data-lanes = <0 1 2 3>;
+> +};
+> +
+> +&mdss_dsi0_phy {
+> +	vdds-supply = <&vreg_l5a>;
+> +	status = "okay";
+> +};
+> +
+>  &qupv3_id_0 {
+>  	status = "okay";
+>  };
 > 
 > -- 
-> 2.47.0.371.ga323438b13-goog
+> 2.34.1
 > 
+
+-- 
+With best wishes
+Dmitry
 
