@@ -1,130 +1,157 @@
-Return-Path: <devicetree+bounces-123631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B81A69D584C
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 03:30:00 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A8819D5857
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 03:34:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3035C282124
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 02:29:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1B6A3B21A0C
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 02:34:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EF8970838;
-	Fri, 22 Nov 2024 02:29:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E85231632D1;
+	Fri, 22 Nov 2024 02:33:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="leVA3bQL"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Nr3Hz46v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 705D1230988;
-	Fri, 22 Nov 2024 02:29:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58FA715B13C;
+	Fri, 22 Nov 2024 02:33:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732242581; cv=none; b=jYS+X1ZZjaG2kKN9xWpEp0mVlImKbL1ubLwOtv8YNPvWMXi2gt7Bt6LfXSc+OZ7VxG9WFG5Sh9Br6Wd2DQ1rAoz5yTIzjaVs/C4iNzQo2ZlAr4bZ/49gvi00CRKFeIz7rXSIwzvRlXJPdjG2L/rIRQ0tfhf4h+vvRJmofy6XeDY=
+	t=1732242816; cv=none; b=TjnBYfRio55PqxalthomT3lgqs+zTda/iXAroRWb0KR9RnRm+fFEqeJS9PbbN++aIU9f/ml21cgRBju55sOiK7zL140Kw0kxbKeiU8Ng+O+KIOSWsrl97ZiNHEDxWuK618sDA6+WkcYyIBd+dURr5EMSa5nEUZiSOSVCeXRLh3M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732242581; c=relaxed/simple;
-	bh=ygXdHoYgdDV8uhUQRvreb/w1Nsb+bH9PmhGFMqtau+E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WOdhpvYAm+7b7lU3kPb+DX+GqddMRzikpPHRiIOtFwhUR56VB7yOoZVsdcJw6A9DUWzDAnP91Eu2p9qSAJTJnLmKTrx8ImixdslfkYSwOogc00M1V4c+++5Cg5F08fH93jg1nLUlLGLS0JJb84PRksWwmd58dU+Wr+zM4DPylHg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=leVA3bQL; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1732242580; x=1763778580;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ygXdHoYgdDV8uhUQRvreb/w1Nsb+bH9PmhGFMqtau+E=;
-  b=leVA3bQLs1t1CdF/bHyrVzqEfvlUnnQxmjQSTUIH25TPd6JG/RBrhUp7
-   J4MpkpuilTPrcsvDsW+SNgd4E2fPnq0uS+PwXX5WO+Z2BKLrXsC10cgqd
-   qpJ0QRdRGrQYeGoH2kKgf6WG6RYn78ESt3cwnmEBEhezxUozq1Y6HSyIQ
-   u/naThSHSiJtP+Nwvh9glUKvbzquKKxPAfygX7yOA/zLL4R2O11g7i5E3
-   SurYWouJkpYHhllw3wVD77Qi1qjacOxS1lXTiPNAr5tntO6gOR8om8pJo
-   5p3RVsXka7ue6CE+PJnsHqnN8pPwqgJu4QkGA4VUV1qZoXHnx5w6J4pOo
-   A==;
-X-CSE-ConnectionGUID: LFFFaWKZRviz5MsfVeq+Uw==
-X-CSE-MsgGUID: 1zOqwdHnQmGyL5tIxIw6fQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11263"; a="43764557"
-X-IronPort-AV: E=Sophos;i="6.12,174,1728975600"; 
-   d="scan'208";a="43764557"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Nov 2024 18:29:37 -0800
-X-CSE-ConnectionGUID: h0ffBcEBS0CwwylnBUecLg==
-X-CSE-MsgGUID: TZLT3qEHTNWFslZClvwikw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,174,1728975600"; 
-   d="scan'208";a="90601994"
-Received: from lkp-server01.sh.intel.com (HELO 8122d2fc1967) ([10.239.97.150])
-  by fmviesa008.fm.intel.com with ESMTP; 21 Nov 2024 18:29:30 -0800
-Received: from kbuild by 8122d2fc1967 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tEJQG-0003av-0G;
-	Fri, 22 Nov 2024 02:29:28 +0000
-Date: Fri, 22 Nov 2024 10:28:38 +0800
-From: kernel test robot <lkp@intel.com>
-To: keith zhao <keith.zhao@starfivetech.com>, devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org
-Cc: Paul Gazzillo <paul@pgazz.com>,
-	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-	oe-kbuild-all@lists.linux.dev, andrzej.hajda@intel.com,
-	neil.armstrong@linaro.org, rfoss@kernel.org,
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-	jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
-	simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, hjc@rock-chips.com, heiko@sntech.de,
-	andy.yan@rock-chips.com, william.qiu@starfivetech.com,
-	xingyu.wu@starfivetech.com, kernel@esmil.dk,
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	p.zabel@pengutronix.de, changhuang.liang@starfivetech.com,
-	keith.zhao@starfivetech.com, jack.zhu@starfivetech.com,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 4/9] drm/vs: Add Hardware Functions for VS DC8200
-Message-ID: <202411221030.71tSpXt2-lkp@intel.com>
-References: <20241120061848.196754-5-keith.zhao@starfivetech.com>
+	s=arc-20240116; t=1732242816; c=relaxed/simple;
+	bh=Wv8aaKMNXf5fFFoMivRouy3WF3ZddCnD93YPIXhVAak=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=OXRaVkGDtXODYlyKWa0fNNRniBfxi6eAXGnJWOEsetWHBdrttHpJReNAvjAhALwIHGFCNcs4W3YG16uUKl/W0ugosSPqozkBWtYXR20+4bqaze18kx3l0lWb5IwGjK3AJIihTdJdRsMJEv55F3c7vP9UqWhmowrje9u88bGnZIw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Nr3Hz46v; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AM2MnQo027670;
+	Fri, 22 Nov 2024 02:33:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=HbaacPoWw+zHbgHVwFJSi1KfOdWJJI5d9BS
+	LFWotaX4=; b=Nr3Hz46vxRrE35c9rnFbg6IOGTV90qJra/1vxm0FkqfGEdvV1OZ
+	pTu2xwYnfrWasACE7PV5C5RZyTlcUciHYKRTixPK1irdsXR2R2SYx4Pfnka21qdp
+	pECO7Gwr4GeYlzO+Y/1FCaLuGsP6iR3uAZZCgSWn8SZLdQvs9Qy0VoK2HkO3h1xL
+	G/iQUfHBzVA9dyr9CF8fLYQMNUmP1XRre54NllvRdlpkCfdQNwMbo0SLFwH4f2Uj
+	5iWLQwFnxeGKnwkamfNRNAMD9xfErc0TSIrWkbUe09UPw2Lxy6PHUUvZVdOzMqsg
+	kj0Ttq3/eYrMMuybRZAjlrNil4Ess/Tz1IQ==
+Received: from aptaippmta02.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com [103.229.16.4])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 432h4dr0qk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 22 Nov 2024 02:33:23 +0000 (GMT)
+Received: from pps.filterd (APTAIPPMTA02.qualcomm.com [127.0.0.1])
+	by APTAIPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 4AM2XKTq014105;
+	Fri, 22 Nov 2024 02:33:20 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APTAIPPMTA02.qualcomm.com (PPS) with ESMTPS id 42xmfkuj8j-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 22 Nov 2024 02:33:20 +0000
+Received: from APTAIPPMTA02.qualcomm.com (APTAIPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 4AM2XKaE014099;
+	Fri, 22 Nov 2024 02:33:20 GMT
+Received: from cse-cd02-lnx.ap.qualcomm.com (cse-cd02-lnx.qualcomm.com [10.64.75.246])
+	by APTAIPPMTA02.qualcomm.com (PPS) with ESMTPS id 4AM2XJYe014095
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 22 Nov 2024 02:33:20 +0000
+Received: by cse-cd02-lnx.ap.qualcomm.com (Postfix, from userid 4438065)
+	id 7EDBA17FB; Fri, 22 Nov 2024 10:33:18 +0800 (CST)
+From: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+To: vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org,
+        manivannan.sadhasivam@linaro.org, bhelgaas@google.com, kw@linux.com,
+        lpieralisi@kernel.org, quic_qianyu@quicinc.com, conor+dt@kernel.org,
+        neil.armstrong@linaro.org, andersson@kernel.org,
+        konradybcio@kernel.org
+Cc: quic_tsoni@quicinc.com, quic_shashim@quicinc.com,
+        quic_kaushalk@quicinc.com, quic_tdas@quicinc.com,
+        quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com, kernel@quicinc.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        Ziyue Zhang <quic_ziyuzhan@quicinc.com>,
+        Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Subject: [PATCH v2 0/6] pci: qcom: Add QCS615 PCIe support 
+Date: Fri, 22 Nov 2024 10:33:08 +0800
+Message-Id: <20241122023314.1616353-1-quic_ziyuzhan@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241120061848.196754-5-keith.zhao@starfivetech.com>
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: VHTHthiz7Zm4uUP0Cjwvhf89zYjEefSV
+X-Proofpoint-GUID: VHTHthiz7Zm4uUP0Cjwvhf89zYjEefSV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 suspectscore=0
+ clxscore=1015 phishscore=0 malwarescore=0 impostorscore=0
+ lowpriorityscore=0 mlxlogscore=779 spamscore=0 adultscore=0 mlxscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411220020
 
-Hi keith,
+This series adds document, phy, configs support for PCIe in QCS615.
+The series depend on the following devicetree and smmu.
 
-kernel test robot noticed the following build warnings:
+Base DT:
+https://lore.kernel.org/all/20241104-add_initial_support_for_qcs615-v5-0-9dde8d7b80b0@quicinc.com/
 
-[auto build test WARNING on linus/master]
-[also build test WARNING on v6.12 next-20241121]
-[cannot apply to drm-misc/drm-misc-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+APPS SMMU:
+https://lore.kernel.org/all/20241105032107.9552-1-quic_qqzhou@quicinc.com/
 
-url:    https://github.com/intel-lab-lkp/linux/commits/keith-zhao/dt-bindings-display-bindings-for-starfive-JH7110-display-pipeline/20241121-145710
-base:   linus/master
-patch link:    https://lore.kernel.org/r/20241120061848.196754-5-keith.zhao%40starfivetech.com
-patch subject: [PATCH v5 4/9] drm/vs: Add Hardware Functions for VS DC8200
-config: xtensa-kismet-CONFIG_CMA-CONFIG_DRM_VERISILICON_DC8200-0-0 (https://download.01.org/0day-ci/archive/20241122/202411221030.71tSpXt2-lkp@intel.com/config)
-reproduce: (https://download.01.org/0day-ci/archive/20241122/202411221030.71tSpXt2-lkp@intel.com/reproduce)
+Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
+---
+Have following changes:
+	- Add compatible and phy compatible for qcs615 platform.
+	- Add support for GEN3 x1 PCIe PHY found on Qualcomm QCS615 platform.
+	- Add a new Document the QCS615 PCIe Controller
+	- Add the compatible for QCS615 PCIe controller.
+	- Add configurations in devicetree for PCIe, including registers, clocks, interrupts and phy setting sequence.
+	- Add configurations in devicetree for PCIe, platform related gpios, PMIC regulators, etc.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202411221030.71tSpXt2-lkp@intel.com/
+Changes in v2:
+- Update commit message for qcs615 phy
+- Update qcs615 phy, using lowercase hex
+- Removed redundant function
+- split the soc dtsi and the platform dts into two changes
+- Link to v1: https://lore.kernel.org/all/20241118082619.177201-1-quic_ziyuzhan@quicinc.com/
 
-kismet warnings: (new ones prefixed by >>)
->> kismet: WARNING: unmet direct dependencies detected for CMA when selected by DRM_VERISILICON_DC8200
-   WARNING: unmet direct dependencies detected for CMA
-     Depends on [n]: MMU [=n]
-     Selected by [y]:
-     - DRM_VERISILICON_DC8200 [=y] && HAS_IOMEM [=y] && DRM [=y] && HAVE_DMA_CONTIGUOUS [=y]
+Krishna chaitanya chundru (5):
+  dt-bindings: phy: qcom,sc8280xp-qmp-pcie-phy: Document the QCS615 QMP
+    PCIe PHY Gen3 x1
+  phy: qcom: qmp: Add phy register and clk setting for QCS615 PCIe
+  dt-bindings: PCI: qcom: Document the QCS615 PCIe Controller
+  PCI: qcom: Add QCS615 PCIe support
+  arm64: dts: qcom: qcs615: enable pcie for qcs615 board dts
 
+Ziyue Zhang (1):
+  arm64: dts: qcom: qcs615: enable pcie for qcs615 soc
+
+ .../bindings/pci/qcom,pcie-qcs615.yaml        | 161 ++++++++++++++++++
+ .../phy/qcom,sc8280xp-qmp-pcie-phy.yaml       |   2 +
+ arch/arm64/boot/dts/qcom/qcs615-ride.dts      |  42 +++++
+ arch/arm64/boot/dts/qcom/qcs615.dtsi          | 158 +++++++++++++++++
+ drivers/pci/controller/dwc/pcie-qcom.c        |   1 +
+ drivers/phy/qualcomm/phy-qcom-qmp-pcie.c      | 105 ++++++++++++
+ drivers/phy/qualcomm/phy-qcom-qmp-pcs-v2.h    |   1 +
+ 7 files changed, 470 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/qcom,pcie-qcs615.yaml
+
+
+base-commit: ee5d1329f3de0b8cb77084715c1179627a9d599c
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
 
