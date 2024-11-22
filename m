@@ -1,101 +1,92 @@
-Return-Path: <devicetree+bounces-123826-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123827-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 487869D6281
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 17:47:33 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42A109D62AC
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 17:57:34 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 949D8160F2A
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 16:47:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C951AB2137A
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 16:57:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DFEF1DF961;
-	Fri, 22 Nov 2024 16:47:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D2121DF72C;
+	Fri, 22 Nov 2024 16:57:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="N7sxXxm2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DzN8NUdD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F422E5D477
-	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 16:47:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B12F21B5ECB
+	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 16:57:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732294042; cv=none; b=ljCFoHGX1oS20WBdupeZRIiN4ZwYWkKzdMDaHQhb6SZYhXu1SGMoFpdr72EN7GzDZEynvXG41V/JQzmNAUHTaVG5h84+vRyyZEkpYPsqvmUHTespU2iLDajsbMe/vXfLtdaK8/pIFghZs+dqoulyV1aHkffZT8jWP5dvwvsm7xA=
+	t=1732294643; cv=none; b=Fv4DGQOR98XYnkmep6ajaHkIRYjtOGD8CTBZ4jED6tRue3G9oudiJoSGJzQkkkV6i1JWNDJSGO1Vt3edM/2hsAQ9Td7/9iG+wb9ea8/I3JGeUa11f9aLHIUzHvVuEoP+d47KWjq51G3tpBFOjs1FzEa1lIOt3sECTcDPRMiFc5E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732294042; c=relaxed/simple;
-	bh=ItNTKavT00h+piga1HTfcObBvAtBiGxqCrbjRJ1Tavc=;
+	s=arc-20240116; t=1732294643; c=relaxed/simple;
+	bh=ZNhJ0AnnhsP1xQ5LpsDqA3efNo9VGhUGzrAteBE+23s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FJP3YA0F0E8sGDRfyBtJXi5oqXfgOEDyF7R984aBEZ72eTA0aWpdm1gHitGoDGvYkZiO8dz8RIayiK5/6tFKBbDFHYXQgkjvR14I6hm4kpEP9fu61ykyQCgdYvKLbdOPkrv1EoQRUuQ8GJLl1mLFluj55/DTf7iV9268tEPrq0o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=N7sxXxm2; arc=none smtp.client-ip=209.85.214.178
+	 Content-Type:Content-Disposition:In-Reply-To; b=cKc/kdVlbEAKw5CC0wXx3r4wga/k8O8fyJpUvdg7AVKRj4MUs8k1agT+/OrTZgGOEi9uKYZZapmWJj9xzTZvB5IBUlh0l1ouD6AvtAS8yJ3SrbJ+97QtZTmL4VGwf8yMcx4l/JwBggqMZC6en08e/UI2dmuxVroTcZW1H0yVNlw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DzN8NUdD; arc=none smtp.client-ip=209.85.214.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-212884028a3so14085645ad.0
-        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 08:47:20 -0800 (PST)
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-212884028a3so14157455ad.0
+        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 08:57:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732294040; x=1732898840; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1732294639; x=1732899439; darn=vger.kernel.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=kzq5xBGhrLm4GuYMaG3vOjkgbW2jTLhEik+B/AfpKr0=;
-        b=N7sxXxm28qpSXdKXM1+JiWGvFRcSNDETzc91Xq/qDHCDzGC+Q7wjdupj7fQnIRqf7z
-         qOd1jUlf2NO/MXy3qRwmHqEjJUVksk9IuTtuNdVwvareJuu41Oot2YKDmqaZb5wMiPJZ
-         d9Cw/Z3hSFZ2KEtSRk4A0H+aNVDgDVzPs5nnGauQD5KeStHBiJNRvDTK+AlaoyyPcL2T
-         g2uskKblMTx4NkQ+KozZqPC/aspdSRiC0Wzr9YMwGvJz1aGM2/sZvffUMukkkx6Trg7u
-         ONTSqxQ9394/HY6LpZzlhR/8uljXKZrtZ0IEOFDZZakqTukL1ZaHU/0Kaze+SjCgPjGg
-         OOQw==
+        bh=FZwDSMvFnipM0RD36mLVFKH4L1T4MEAtnhkfsYAv+8A=;
+        b=DzN8NUdDbQpmQAdaoEpIXWnp08e/npx6EmJAM8JakMqMmqIppy50mR9ngjEDIvaWIn
+         5xM34u9ssPBDcvuhaHn+VcZC5j0VbJtDmQFJXJf4s1qf6I3rppcO/NIdalKYGx2n2voZ
+         Nb5b4iBo0iEtVNRgXQEd+LgEl1A4/sGRs/7aL7H2HFVX70JoerR8+RMfzPu+2krn47jH
+         fmwjOqZIdl2A2nED1Xgi+reld+CHBQwUAVVdIvGg8fJvpVV9SOTxJsHVINMofoxU7W1w
+         FtJpmskiJmsaM1HAPGqW8BrJR8e8kQk5l6fxLn0p+k+UQI76KYVta+/GklsaBcL7oZLN
+         kGhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732294040; x=1732898840;
+        d=1e100.net; s=20230601; t=1732294639; x=1732899439;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kzq5xBGhrLm4GuYMaG3vOjkgbW2jTLhEik+B/AfpKr0=;
-        b=qzibBtDXZ9T1NtJbgM92rKw2cQhBKdn0pkhtMhZQVXiXNQw7+AXPwveXQmN/Qz40Ts
-         Bcs3gRa+dVLIprI1d3ri3pjg54a7aXyDGT/51bmpikPAvUbB3Kffjewn39GgPRBLdrZm
-         Ob0w4j9f/Mv7Yk7JzvCKuceMDR1VPmitUY4ByQaJvjv0JZ4+o3hZKcBD7BIYn1gIx0W9
-         PsiAZFp3V8MfnqRvDmajFqcn19dX3duq4HEYTmYgX0EXC6ituMrdZJcTEfDQdXyBboMK
-         JEaZCd+nLJtDhXGVvGQVeY94vZeuNWunhWxSFwmO1lVB801sg7gnG6NNQxG5gRAMuR4H
-         A2Qw==
-X-Forwarded-Encrypted: i=1; AJvYcCXYkj8tEbb2jk1CHxX+bD/FWNy5/jxy5oMjbedsjFk8vMC4GGmpkCMA43g9j3VQdZcBPqeR7OfQwCK5@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6aFsQJ3FMp5u+7n0d3zo4iFzkLHiMVgsXTkZKXj6Wc5voB846
-	KWZhakZtC3Ot74rahJ9eelbQkGYFJzKpFi5l6Wg2EtoQjpb2XlSq/bgq3or9VA==
-X-Gm-Gg: ASbGncsMDeozawbub5vsVyv56RI63g7dXWaD2ma54txamecjEq10R7B+e+pDkTCJ9Nu
-	nsPh6IJBTp0Q+gBnFvuEnDPlru2sdeXdtKH9dbS02nFg0RatikLnA04e3bVRnQnRaZWrrvD3CeU
-	Z/87UK6xqVIC8GuCnGc6O0EaOfKYM8dmhbjXMvOtGon4gQXg3h9qrQ+sF/rzFVnLYaG1pjs5Bxf
-	Hu1Zzs+tJYtsVp6cMXKDyjQT0QaWhqoBJp+5BECtHehU5LSjeYvG9B4tk/q
-X-Google-Smtp-Source: AGHT+IH2RH2HUiPHMzLk35ACiz5SeB6Uib1iKjXQGa54thdOMDLFrThNUfglBoU0p2O84vxcD04wlg==
-X-Received: by 2002:a17:902:f70d:b0:212:35f5:b564 with SMTP id d9443c01a7336-2129fe2669emr56816865ad.7.1732294040271;
-        Fri, 22 Nov 2024 08:47:20 -0800 (PST)
+        bh=FZwDSMvFnipM0RD36mLVFKH4L1T4MEAtnhkfsYAv+8A=;
+        b=nv1KbN6AGI6+gCw2PqKjkV1I0X1kJyumxBq6J1QTfzXBdBqLhqpAv4CRXe2zbRYbhU
+         ImkA591m7dpLs9A1Q48eVEp7xDn5TgeW3fMqllohzrXIJoOvXZ4jMLksv+p+pzOvu+X+
+         1rZGPeERR08hmGjWVDcRZN0+5ynrlk2NDwrenDth3Z5U+QkSn9i6ClAk3IVz4RwQ2sbO
+         sDV4K/lItCENjyNb09+ig9N7b9fRmBP810zOa6Aptr3JWWmwOn6y3EymNMMUqeoU/l6/
+         IeeEwkSXrcFkGNuWp2huwO7Tx507q20ZhYtmjjPN/nLmw4xx+UUhpN7bF9feGF3clV5p
+         6r7A==
+X-Forwarded-Encrypted: i=1; AJvYcCUz9bo4lN6OILid80t2D7G+iNpq5QnbdvXJWONFPdQ1nS2LmbOSxUD9vNWPfdFdBUwLvicMYdfxh2cv@vger.kernel.org
+X-Gm-Message-State: AOJu0YxdbOTPwoRvAJanX8I4JWQixlOZ8NA5R2KuIx1y+V5Gz1iiuC2J
+	irBUuOFGJfnaq9yhUXUfo9GQQiA3Pb31d+tZ5eVcLnWylUP2IAV1KzTDaehd7Q==
+X-Gm-Gg: ASbGncuzz34r2bkXi9JoWUE7P5/t93jPZFHs1eGlht6UlUFZsNbGjsEqSXcyqAMwc+t
+	Wf7zVgVPx0u/tLA6jo71IZNMZg4y19QBsuaTqzDn6umBtCIqKzpW/wDJQfy206S7J/HpAJeHST6
+	W+x5e48vuFd6rxphV2mSR8Cqhnfj+jz3u4uwLg9kH38iKyoUnvDF90hx6b8eOcm8Buq61OjRrwh
+	vDkKYb/Hpkuxo6DuPkRGJi7zXg3t9UFrZDLvPJ8eoLZG8wbTsmtP4pBaQoM
+X-Google-Smtp-Source: AGHT+IEBQTm+mdF5/l17srn1QQIlJ8cpbCtyU3PjuFrTHKPmmM8RGnmeO63H3UfI8TU8tQ6zNeMktQ==
+X-Received: by 2002:a17:902:d2c3:b0:20c:6bff:fcb1 with SMTP id d9443c01a7336-2129fe0903emr55796195ad.1.1732294639012;
+        Fri, 22 Nov 2024 08:57:19 -0800 (PST)
 Received: from thinkpad ([49.207.202.49])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2129dba357bsm18336365ad.88.2024.11.22.08.47.15
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2129dc21a1asm18338035ad.222.2024.11.22.08.57.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Nov 2024 08:47:19 -0800 (PST)
-Date: Fri, 22 Nov 2024 22:17:14 +0530
+        Fri, 22 Nov 2024 08:57:18 -0800 (PST)
+Date: Fri, 22 Nov 2024 22:27:12 +0530
 From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Hongxing Zhu <hongxing.zhu@nxp.com>
-Cc: "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-	"bhelgaas@google.com" <bhelgaas@google.com>,
-	"lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-	"kw@linux.com" <kw@linux.com>, "robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"shawnguo@kernel.org" <shawnguo@kernel.org>,
-	Frank Li <frank.li@nxp.com>,
-	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-	"festevam@gmail.com" <festevam@gmail.com>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"kernel@pengutronix.de" <kernel@pengutronix.de>,
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Richard Zhu <hongxing.zhu@nxp.com>, l.stach@pengutronix.de,
+	bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
+	imx@lists.linux.dev, kernel@pengutronix.de,
+	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Subject: Re: [PATCH v6 08/10] PCI: imx6: Use dwc common suspend resume method
-Message-ID: <20241122164714.aj4dzv32zixdj7pq@thinkpad>
+Message-ID: <20241122165712.5m7xuycxzjzatf35@thinkpad>
 References: <20241101070610.1267391-1-hongxing.zhu@nxp.com>
  <20241101070610.1267391-9-hongxing.zhu@nxp.com>
  <20241115070932.vt4cqshyjtks2hq4@thinkpad>
- <AS8PR04MB867625A97A43FE5352FC0E768C272@AS8PR04MB8676.eurprd04.prod.outlook.com>
+ <ZzeHGd/vfNFgsID2@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -105,37 +96,53 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <AS8PR04MB867625A97A43FE5352FC0E768C272@AS8PR04MB8676.eurprd04.prod.outlook.com>
+In-Reply-To: <ZzeHGd/vfNFgsID2@lizhi-Precision-Tower-5810>
 
-On Mon, Nov 18, 2024 at 03:00:44AM +0000, Hongxing Zhu wrote:
-
-[...]
-
-> > > -static void imx_pcie_pm_turnoff(struct imx_pcie *imx_pcie) -{
-> > > -	struct device *dev = imx_pcie->pci->dev;
-> > > -
-> > > -	/* Some variants have a turnoff reset in DT */
-> > > -	if (imx_pcie->turnoff_reset) {
-> > > -		reset_control_assert(imx_pcie->turnoff_reset);
-> > > -		reset_control_deassert(imx_pcie->turnoff_reset);
-> > 
-> > Where these are handled in imx_pcie_pme_turn_off()? If you removed them
-> > intentionally for a reason, it should be mentioned in commit message.
-> > 
-> How about add the following descriptions into commit message?
-> SRC interface is used to do the PME_TURN_OFF operations before. It's not very
-
-What is SRC?
-
->  suitable. Now DWC common driver can do the PME_TURN_OFF kick off. Switch to
->  this common methods, and remove the useless turnoff_reset manipulate codes.
+On Fri, Nov 15, 2024 at 12:38:33PM -0500, Frank Li wrote:
+> On Fri, Nov 15, 2024 at 12:39:32PM +0530, Manivannan Sadhasivam wrote:
+> > On Fri, Nov 01, 2024 at 03:06:08PM +0800, Richard Zhu wrote:
+> > > From: Frank Li <Frank.Li@nxp.com>
+> > >
+> > > Call common dwc suspend/resume function. Use dwc common iATU method to
+> > > send out PME_TURN_OFF message. In Old DWC implementations,
+> > > PCIE_ATU_INHIBIT_PAYLOAD bit in iATU Ctrl2 register is reserved. So the
+> > > generic DWC implementation of sending the PME_Turn_Off message using a
+> > > dummy MMIO write cannot be used. Use previouse method to kick off
+> > > PME_TURN_OFF MSG for these platforms.
+> > >
+> > > Replace the imx_pcie_stop_link() and imx_pcie_host_exit() by
+> > > dw_pcie_suspend_noirq() in imx_pcie_suspend_noirq().
+> > >
+> > > Since dw_pcie_suspend_noirq() already does these, see below call stack:
+> > > dw_pcie_suspend_noirq()
+> > >   dw_pcie_stop_link();
+> > >     imx_pcie_stop_link();
+> > >   pci->pp.ops->deinit();
+> > >     imx_pcie_host_exit();
+> > >
+> > > Replace the imx_pcie_host_init(), dw_pcie_setup_rc() and
+> > > imx_pcie_start_link() by dw_pcie_resume_noirq() in
+> > > imx_pcie_resume_noirq().
+> > >
+> > > Since dw_pcie_resume_noirq() already does these, see below call stack:
+> > > dw_pcie_resume_noirq()
+> > >   pci->pp.ops->init();
+> > >     imx_pcie_host_init();
+> > >   dw_pcie_setup_rc();
+> > >   dw_pcie_start_link();
+> > >     imx_pcie_start_link();
+> > >
+> >
+> > Are these two changes (dw_pcie_suspend_noirq(), dw_pcie_resume_noirq()) related
+> > to this patch? If not, these should be in a separate patch.
+> 
+> 
+> Sorry, this patch have not touch dw_pcie_suspend_noirq() and
+> dw_pcie_resume_noirq()'s implement, just call it. I have not understood
+> what's your means.
 > 
 
-Hmm, so 'turnoff_reset' is used to send PME_Turn_Off msg?
-
-If so, then you need to say in such a way that the reader should understand
-'turnoff_reset' was used to send PME_Turn_Off and since the DWC implementation
-is used, it is not needed now.
+Sorry, I got confused. Please ignore above comment.
 
 - Mani
 
