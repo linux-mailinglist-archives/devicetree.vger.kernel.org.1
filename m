@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-123605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123606-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D16C99D5689
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 01:05:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78E279D568E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 01:08:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 29483B225D7
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 00:05:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 38EEE281048
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 00:08:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B01FCA31;
-	Fri, 22 Nov 2024 00:05:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E2FB17C;
+	Fri, 22 Nov 2024 00:08:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LlxZxPb1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jZwGUJCI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F3613C17
-	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 00:05:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E28B635
+	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 00:08:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732233941; cv=none; b=ujhFTWKNvNvbcsNVvaoZdOVbXqJWqj8D7I7HD3diSuNpcKqG4lCNlBwiygLmG++dOSFPcMLrdPdCGZwlpeGPI9opakPPPqmFCzshplkwwMFYC0tjTLfGnIx1+oyAaBCVgZn508VyHzDplnD2EFqVTW4ou8BYnOyIGXYiayihj3A=
+	t=1732234130; cv=none; b=MfzdG3ciZdDr4AfnpN19HXlGNPKzbhQeah+eyqzK/lsIy6WD0ElAWboHkLwhM/chcYZX7Q1Qfdwm2oS7eitlyLj98ZwWgwNy9GphbCQzbAq+sjh0EnFLT48Vil8B27gyf5I5dTRpFWFs79WEKK3FllFY71BMQnBEkNYtQqJOXiM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732233941; c=relaxed/simple;
-	bh=g3qyTejlxBsm7CcUloGJMGfZgM/UjN7NBBtoVLDD+CQ=;
+	s=arc-20240116; t=1732234130; c=relaxed/simple;
+	bh=8QY0OoK99j6oVx8eixrtqtZjvjlLwAKj9WJXGC3Ants=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UzdTB5bAVR2pZTlMaUPHbbPtxPR40yTDoAmecHeIaeICRQeez4hZyDn/C1SuLfX39D1b+b5J+EIrs9z6tv6buFOOcyNmC/pbauY4tDpaIPYnvEeSHeJEaY9RnSWHPGf471rX2daRi/VBsiXCJHzfVLkaBadbeoaTt6OUKXNeWi4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LlxZxPb1; arc=none smtp.client-ip=209.85.167.53
+	 Content-Type:Content-Disposition:In-Reply-To; b=BkSdKECWq4qpj2tIslVaiGa4Yv+1EhlaVVFjAUi9v/AnPyy5P7m9ni+k083T7omR+Zwf9mUxyqCWTO8vl6LSueWXrq+ZCeNdsh0w+EpqQHQyxm8KsiGKbUziPts4rE0o7Uix9QAoXXEcpKnoE5NSfrt2YsafxSE1n0AV6dmvkT0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jZwGUJCI; arc=none smtp.client-ip=209.85.167.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-53d9ff8ef3aso1816036e87.1
-        for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 16:05:38 -0800 (PST)
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-53da4fd084dso2732752e87.0
+        for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 16:08:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732233937; x=1732838737; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1732234126; x=1732838926; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1KAyJQfZm0CmYLeM6T1KNFUS7Aq70PuFpi7a8qa4S44=;
-        b=LlxZxPb1Rt8I2WwAyk+RMQ6UvpB8IzUcQvd9ScCza0LZTquBS6HnbvLElpnmcyanv8
-         YzvXmwgJdJOlVO3KaGsV6zrPUvPsv88kQE36Ei2tIGGQ7/sKuc+atlUvDZvVKOnlZNrD
-         hIk7Z55MeeFebpqIUt9bO5I0Jyj2KUNmzNdcC4xlzeOsBG96pM6h9//1zBZ7xlRQi5hH
-         7sPjk6SOVLyLzsbEuCF4Od+H7NNWkjTPxFBK8VWFuHAZ2Vy21PT4UtGvzsNzRvV35iDv
-         0Aaelw/PFBpB8XWb76cLaWMAac/XaN6980HFG7agH2HRnLhs8Zqzuao9Z/CZJhdLnz86
-         NVew==
+        bh=Pb10zmYHQSv3I83zcr7E+6kREcna9ZYNd5sNu4/LV7s=;
+        b=jZwGUJCIjy/OBiAsXU38+IsoIlXzBW8rfsWcdDAujRNQKPpqGun8d7sho4EXpxV/EI
+         uJt4Y8IJpLsWzaMpRyqu+0ox+jDr6DJ3c3CycRy7hmAlusl05HMEmnt8m0dB2ZPMoVzM
+         u5P9LbP/BiUeXTc+s5BQRAW3Dg4egTLNGu5FNDl5OHJwhWj/6wg1HWJYhh8K4SxG+1pY
+         r5sm8gmIHvf5+I0E70gxOXv5gzTn8EOoiDYj4CrqiH6gguR4OJmpg4kADRxrx7TzAvhs
+         qoshMs8cuxFf/oZkqyAnrXHSMI2kb2uD0dYDZG1Cam5MfzdBuNd0iYa/bo9ofNrJ6bmg
+         eJOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732233937; x=1732838737;
+        d=1e100.net; s=20230601; t=1732234126; x=1732838926;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=1KAyJQfZm0CmYLeM6T1KNFUS7Aq70PuFpi7a8qa4S44=;
-        b=f4Pk+NnbDxC/pAcl0DO9ovhUMBpvHM0Lkx9p3910VFCmxMFSo5FQnn2XNs1ww/kY20
-         1BrD6CDSgOhHz3ykR93Hqz0YFIIUEzMjqp/xGwAT4Eyfz8eHMDQLQWzYPP6Owdp9uhdb
-         kVjCaFt+1MwdSjIvOK38DFlBPpomT1bzzJuBMGBFB96Ksm0XG/LG+TAhh3ys6sk0sQaV
-         yIvRGW1krT+g3BksOPs4RC5P3NUvU/CtN8fLfmrlXjk85kFOYy7C4Tkwb9xvXFZKMADI
-         5noyZ67YfXShHcdLPvJ+Sd7O4k5S21yuIUZIsXqIRRGRPfYhFlTyPaxEXEO/jOenSx6B
-         Zo8A==
-X-Gm-Message-State: AOJu0YxAR+Sps3DHpPmNzZ9+7pfGmD89S+6BZRIz36Ns8kXzJwH64hoQ
-	fOluUKqvTgdzSq2shn21VHfZTQGonGseTSSgO8aNxUsQJcA2WKnKRPSm6jBnQ/8=
-X-Gm-Gg: ASbGncuIU/AgM9XNTKdEPJQ6fwShJ79oyFDYnwrdRCKNfUP/J8EbaqfFscYLV0M+7xj
-	EjJ4f6XsvTgDPWubwdpz+KbLNrBVOv89tRNltOWfy4uFvUrMi0K8CkPY+65Z6sBTV4vOXPWuWbL
-	q5sIlCi1/N5+J4OFTfSTTHy6BVTcPNEtrI3g5mn/UaQb0Yf9GrNKQkHsuU/mGxgLzgxI9Yujn5G
-	AlHGWQCfokV3B7JIVAogThnkwtNtfKSfI/JzxzVtnOpcm3aI/YVaOyoEcTgjNUPPH/RH+SqsCE/
-	ZczkEV+Co7ra0+uDp3tr8tL4Au3xPA==
-X-Google-Smtp-Source: AGHT+IGIMj4eDI4++nV9lsviqxg12ESwR9WEilZyyjFk+Pe0y3db1ZelPCRJMMwTSxiydGqYm4vhag==
-X-Received: by 2002:a05:6512:b9a:b0:53d:d137:d7a4 with SMTP id 2adb3069b0e04-53dd3aac10bmr293144e87.53.1732233937136;
-        Thu, 21 Nov 2024 16:05:37 -0800 (PST)
+        bh=Pb10zmYHQSv3I83zcr7E+6kREcna9ZYNd5sNu4/LV7s=;
+        b=O1F3tRUE4qk4WwRp3RWVnKu8YMD8BRdrBmuY12Bam3sdRsYbbvEWdOBni+sLcI74ZI
+         jVyBUWrxZr9DwJrJIiJQPH8a0TIouW6uNonOVY2hzANF9DyjxuA3TMKx/C4Motn4QExW
+         HQmhdY8ibl9RD+VVTLRK9j8crrHIlmaGU4yfTG2BICjLUCsU3CA9bWDz6pLbV+5zv1dD
+         mzhy1FLPpVwGBmSxC4E5PKpuM7KuRGxKG43BeY67qF7HgNI92rGLauzmu1vaizb26z6O
+         4grqbEvr77cz42FAj1X6gcL0/PFVwNVKRxDgadPsuh9GiDxKxzbk0jgGAz4pQ+SRUdR9
+         g5hw==
+X-Gm-Message-State: AOJu0Yzv3d0wLfNEICTp8aqzVC3ljmfEW1QJQAOk4kiIyscXB4OerJA2
+	GIZ9fnIemZ0yQ3wKkEY/bvH+EI6Ie7cYl7cigqFbL8LSd2/a/+ILmhvWKoz7ofQ=
+X-Gm-Gg: ASbGncsTG31uGoP9BRiW/hsGtkpw+bZYivBjNiHcVz8UFpLBM7I91sJcDeFAx1ylxUk
+	msKGag6kmfn8DKWyit9F4tnHZHD9XwZNeX7RCHPdKdxLaAeRaWun7nAJkNFOlmfGVGsa3tnNfRE
+	7/Y8a7P2TEer0SrGJwJVZMwgAX/LktP099JEDwF0HAPnwl/IZHMEGjb8O4inzy3FN8ILXqglvi+
+	YMJvReYhJDNq6QEmcMEPzkQAOAJEKMaIhxbJouUewXd4YynbwzbsEOB+gaq1laRKFIzRhhqb4v8
+	fRr3U7xeixYM/T99BAcmPv5WBP9pvQ==
+X-Google-Smtp-Source: AGHT+IEuYo3TXwIBAta2+QFFKa258N+W0wLgiRkvqaQO6FoTfco4TU0xkpE/1Qfqy0nPr2pRscBPLQ==
+X-Received: by 2002:a05:6512:2247:b0:53d:d06c:cdf8 with SMTP id 2adb3069b0e04-53dd06ccfbamr1006096e87.1.1732234126460;
+        Thu, 21 Nov 2024 16:08:46 -0800 (PST)
 Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53dd2445843sm123234e87.19.2024.11.21.16.05.35
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53dd2489841sm120742e87.178.2024.11.21.16.08.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Nov 2024 16:05:35 -0800 (PST)
-Date: Fri, 22 Nov 2024 02:05:33 +0200
+        Thu, 21 Nov 2024 16:08:44 -0800 (PST)
+Date: Fri, 22 Nov 2024 02:08:42 +0200
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To: keith zhao <keith.zhao@starfivetech.com>
 Cc: devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
@@ -83,10 +83,10 @@ Cc: devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
 	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
 	p.zabel@pengutronix.de, changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com, 
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 4/9] drm/vs: Add Hardware Functions for VS DC8200
-Message-ID: <kuoayjr6gfwsq3zbdeafmzx3kw27amkhmljlbpk4brgjkizm37@7wwjwg3tckjz>
+Subject: Re: [PATCH v5 5/9] drm/vs: Add Base API for VS Mode Configuration
+Message-ID: <6nztdhkgx5wm5byq46jbhivws4kvwpnmnc7r5jsqaqm5rlzb2k@dz7ohbcirnd4>
 References: <20241120061848.196754-1-keith.zhao@starfivetech.com>
- <20241120061848.196754-5-keith.zhao@starfivetech.com>
+ <20241120061848.196754-6-keith.zhao@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,160 +95,107 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241120061848.196754-5-keith.zhao@starfivetech.com>
+In-Reply-To: <20241120061848.196754-6-keith.zhao@starfivetech.com>
 
-On Wed, Nov 20, 2024 at 02:18:43PM +0800, keith zhao wrote:
-> This commit introduces hardware-based APIs for
-> the VS DRM related to the DC8200
-
-This doesn't describe anything. I've asked to describe the hardware.
-Also please don't use phrases as "This commit does this and this". See
-Documentation/process/submitting-patches.rst
-
+On Wed, Nov 20, 2024 at 02:18:44PM +0800, keith zhao wrote:
+> This commit adds a base API for configuring VS modes,
+> which will streamline the setup and management of display modes
+> in the VS DRM subsystem.
 > 
+> In this implementation, we are using drm_atomic_helper_commit_tail_rpm()
+> instead of drm_atomic_helper_commit_tail() to ensure that
+> we skip planes related to inactive CRTCs.
+> 
+> This helps to optimize the commit process and reduces unnecessary overhead
+> when dealing with inactive display resources.
+
+ * This is an alternative implementation for the
+ * &drm_mode_config_helper_funcs.atomic_commit_tail hook, for drivers
+ * that support runtime_pm or need the CRTC to be enabled to perform a
+ * commit. Otherwise, one should use the default implementation
+ * drm_atomic_helper_commit_tail().
+
+Neither of the cases seem to apply here. Please use
+drm_atomic_helper_commit_tail().
+
 > Signed-off-by: keith zhao <keith.zhao@starfivetech.com>
 > ---
->  MAINTAINERS                            |    1 +
->  drivers/gpu/drm/Kconfig                |    2 +
->  drivers/gpu/drm/Makefile               |    1 +
->  drivers/gpu/drm/verisilicon/Kconfig    |   13 +
->  drivers/gpu/drm/verisilicon/Makefile   |    5 +
->  drivers/gpu/drm/verisilicon/vs_dc_hw.c | 1104 ++++++++++++++++++++++++
->  drivers/gpu/drm/verisilicon/vs_dc_hw.h |  492 +++++++++++
->  drivers/gpu/drm/verisilicon/vs_type.h  |   54 ++
->  8 files changed, 1672 insertions(+)
->  create mode 100644 drivers/gpu/drm/verisilicon/Kconfig
->  create mode 100644 drivers/gpu/drm/verisilicon/Makefile
->  create mode 100644 drivers/gpu/drm/verisilicon/vs_dc_hw.c
->  create mode 100644 drivers/gpu/drm/verisilicon/vs_dc_hw.h
->  create mode 100644 drivers/gpu/drm/verisilicon/vs_type.h
+>  drivers/gpu/drm/verisilicon/Makefile     |  3 ++-
+>  drivers/gpu/drm/verisilicon/vs_modeset.c | 31 ++++++++++++++++++++++++
+>  drivers/gpu/drm/verisilicon/vs_modeset.h | 10 ++++++++
+>  3 files changed, 43 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/gpu/drm/verisilicon/vs_modeset.c
+>  create mode 100644 drivers/gpu/drm/verisilicon/vs_modeset.h
 > 
-
-[...]
-
-> +
-> +struct dc_hw {
-> +	enum dc_hw_out		out[DC_DISPLAY_NUM];
-> +	void __iomem		*hi_base;
-> +	void __iomem		*reg_base;
-> +	struct dc_hw_plane_reg	reg[DC_LAYER_NUM];
-> +
-> +	struct dc_hw_gamma	gamma[DC_DISPLAY_NUM];
-> +	struct vs_dc_info	*info;
-> +};
-> +
-> +struct vs_dc_plane {
-> +	enum dc_hw_plane_id id;
-> +	u32 offset;
-> +};
-> +
-> +struct vs_dc {
-> +	struct vs_crtc		*crtc[DC_DISPLAY_NUM];
-
-"Not defined here. Please drop and add when it is actually defined.",
-this was in v4.
-
-> +	struct dc_hw		hw;
-> +
-> +	struct vs_dc_plane	planes[PLANE_NUM];
-> +};
-> +
-> +int dc_hw_init(struct vs_dc *dc);
-> +void dc_hw_disable_plane(struct vs_dc *dc, u8 id);
-> +void dc_hw_update_cursor(struct dc_hw *hw, u8 id, dma_addr_t dma_addr,
-> +			 u32 crtc_w, u32 crtc_x, u32 crtc_y,
-> +			 s32 hotspot_x, int32_t hotspot_y);
-> +void dc_hw_disable_cursor(struct dc_hw *hw, u8 id);
-> +void dc_hw_update_gamma(struct dc_hw *hw, u8 id, u16 index,
-> +			u16 r, u16 g, u16 b);
-> +void dc_hw_enable_gamma(struct dc_hw *hw, u8 id, bool enable);
-> +void dc_hw_enable(struct dc_hw *hw, int id, struct drm_display_mode *mode,
-> +		  u8 encoder_type, u32 output_fmt);
-> +void dc_hw_disable(struct dc_hw *hw, int id);
-> +void dc_hw_enable_interrupt(struct dc_hw *hw);
-> +void dc_hw_disable_interrupt(struct dc_hw *hw);
-> +void dc_hw_get_interrupt(struct dc_hw *hw, u8 *status);
-> +void dc_hw_enable_shadow_register(struct vs_dc *dc, bool enable);
-> +void dc_hw_set_out(struct dc_hw *hw, enum dc_hw_out out, u8 id);
-> +void dc_hw_commit(struct dc_hw *hw);
-> +void dc_plane_hw_update_format_colorspace(struct vs_dc *dc, u32 format,
-> +					  enum drm_color_encoding encoding, u8 id, bool is_yuv);
-> +void dc_plane_hw_update_address(struct vs_dc *dc, u8 id, u32 format, dma_addr_t *dma_addr,
-> +				struct drm_framebuffer *drm_fb, struct drm_rect *src);
-> +void dc_plane_hw_update_format(struct vs_dc *dc, u32 format, enum drm_color_encoding encoding,
-> +			       unsigned int rotation, bool visible, unsigned int zpos,
-> +			       u8 id, u8 display_id);
-> +void dc_plane_hw_update_scale(struct vs_dc *dc, struct drm_rect *src, struct drm_rect *dst,
-> +			      u8 id, u8 display_id, unsigned int rotation);
-> +void dc_plane_hw_update_blend(struct vs_dc *dc, u16 alpha, u16 pixel_blend_mode,
-> +			      u8 id, u8 display_id);
-> +
-> +#endif /* __VS_DC_HW_H__ */
-> diff --git a/drivers/gpu/drm/verisilicon/vs_type.h b/drivers/gpu/drm/verisilicon/vs_type.h
+> diff --git a/drivers/gpu/drm/verisilicon/Makefile b/drivers/gpu/drm/verisilicon/Makefile
+> index 7da54b259940..842867dad4cb 100644
+> --- a/drivers/gpu/drm/verisilicon/Makefile
+> +++ b/drivers/gpu/drm/verisilicon/Makefile
+> @@ -1,5 +1,6 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  
+> -vs_drm-objs := vs_dc_hw.o
+> +vs_drm-objs := vs_dc_hw.o \
+> +	       vs_modeset.o
+>  
+>  obj-$(CONFIG_DRM_VERISILICON_DC8200) += vs_drm.o
+> diff --git a/drivers/gpu/drm/verisilicon/vs_modeset.c b/drivers/gpu/drm/verisilicon/vs_modeset.c
 > new file mode 100644
-> index 000000000000..e9c4ef3cacd6
+> index 000000000000..0873a3465143
 > --- /dev/null
-> +++ b/drivers/gpu/drm/verisilicon/vs_type.h
-> @@ -0,0 +1,54 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
+> +++ b/drivers/gpu/drm/verisilicon/vs_modeset.c
+> @@ -0,0 +1,31 @@
+> +// SPDX-License-Identifier: GPL-2.0
 > +/*
 > + * Copyright (C) VeriSilicon Holdings Co., Ltd.
 > + */
+> +#include <drm/drm_atomic_helper.h>
+> +#include <drm/drm_fb_helper.h>
+> +#include <drm/drm_gem_framebuffer_helper.h>
 > +
-> +#ifndef __VS_TYPE_H__
-> +#define __VS_TYPE_H__
+> +#include "vs_modeset.h"
 > +
-> +enum drm_plane_type;
-> +
-> +struct vs_plane_data {
-> +	unsigned int num_formats;
-> +	const u32 *formats;
-> +	u8 num_modifiers;
-> +	const u64 *modifiers;
-> +	unsigned int min_width;
-> +	unsigned int min_height;
-> +	unsigned int max_width;
-> +	unsigned int max_height;
-> +	unsigned int rotation;
-> +	unsigned int blend_mode;
-> +	unsigned int color_encoding;
-> +	int min_scale; /* 16.16 fixed point */
-> +	int max_scale; /* 16.16 fixed point */
-> +	u8   zpos;
+> +static const struct drm_mode_config_funcs vs_mode_config_funcs = {
+> +	.fb_create			 = drm_gem_fb_create,
+> +	.atomic_check		 = drm_atomic_helper_check,
+> +	.atomic_commit		 = drm_atomic_helper_commit,
 > +};
+> +
+> +static struct drm_mode_config_helper_funcs vs_mode_config_helpers = {
+> +	.atomic_commit_tail = drm_atomic_helper_commit_tail_rpm,
+> +};
+> +
+> +void vs_mode_config_init(struct drm_device *dev)
+> +{
+> +	int ret;
+> +
+> +	ret = drmm_mode_config_init(dev);
+> +	if (ret)
+> +		return;
+> +
+> +	dev->mode_config.funcs = &vs_mode_config_funcs;
+> +	dev->mode_config.helper_private = &vs_mode_config_helpers;
+> +}
+> diff --git a/drivers/gpu/drm/verisilicon/vs_modeset.h b/drivers/gpu/drm/verisilicon/vs_modeset.h
+> new file mode 100644
+> index 000000000000..bd04f81d2ad2
+> --- /dev/null
+> +++ b/drivers/gpu/drm/verisilicon/vs_modeset.h
+> @@ -0,0 +1,10 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright (C) 2020 VeriSilicon Holdings Co., Ltd.
+> + */
+> +
+> +#ifndef __VS_MODESET_H__
+> +#define __VS_MODESET_H__
+> +
+> +void vs_mode_config_init(struct drm_device *dev);
+> +#endif /* __VS_FB_H__ */
 
-Doesn't seem to be used in this patch. I think in v4 I've already asked
-to drop everything (data types, fields, defines) that are not used by
-_this_ patch. Readd them later, as required.
+There is no point in having single-function headers, please find
+something more global.
 
-> +
-> +struct vs_plane_info {
-> +	u32 id;
-> +	const struct vs_plane_data *data;
-> +	enum drm_plane_type type;
-> +};
-> +
-> +struct vs_dc_info {
-> +	const char *name;
-> +
-> +	u8 panel_num;
-> +
-> +	/* planes */
-> +	u8 plane_num;
-> +
-> +	u8 layer_num;
-> +	u8 primary_num;
-> +	u8 overlay_num;
-> +	u8 cursor_num;
-> +	const struct vs_plane_info *info;
-> +	/* 0 means no gamma LUT */
-> +	u16 gamma_size;
-> +	u8 gamma_bits;
-> +
-> +	u16 pitch_alignment;
-> +};
-> +
-> +#endif /* __VS_TYPE_H__ */
 > -- 
 > 2.34.1
 > 
