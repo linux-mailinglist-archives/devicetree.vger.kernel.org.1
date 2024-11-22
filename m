@@ -1,87 +1,87 @@
-Return-Path: <devicetree+bounces-123798-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123799-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 430399D5FCE
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 14:41:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2815F9D5FDA
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 14:43:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B92EC1F22CC5
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 13:40:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D3F681F22A3B
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 13:43:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5E5226AF6;
-	Fri, 22 Nov 2024 13:40:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AC9E2AEFE;
+	Fri, 22 Nov 2024 13:43:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="TKboz4EF"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ML4U6GSH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB5E4182B4
-	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 13:40:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F23719BBA
+	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 13:43:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732282850; cv=none; b=MBxOSZ0fYQxny32krKDQaOkWdaU1nir5VNUukcq8pVVay37fx97xYBhGkF5lzdSudPZ2z5VQNitKq3K5YOfDM73VjQzgr7l4SrcdMUtb3GK++qBWyg9Wr+kA4Nl+4U4gpCzcMoUxB1xfnm1YcIT8QvUwxei+neC4FdlLWA9HGtY=
+	t=1732282986; cv=none; b=oSKi+L5/nyncMkmqJo9ZOWnBnwKFcnF9lJ7OBSoctQ8aLbaOjPxSJH7XtxqyeG3AddpPBiD7+8FWGVg6vDBSB8aicHNeGTJ30KT+vt2/FZtkCHF9my1o2TZpiQCJcpdah33ljQA1dVgtpaUMrcjmYW5V3tpCjac5t0X26MnL5aE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732282850; c=relaxed/simple;
-	bh=Kp/24QwYbDI+D/YE1SXVqEO9Lm13GmtYqS9Ue9eTfOU=;
+	s=arc-20240116; t=1732282986; c=relaxed/simple;
+	bh=mUBMZZqal/zQohdwT6EZNdZQME9eFfnneurHUwJz3TQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=crzoON6zeXVhXERkrbsoKiRPA7X8HgpVRiJn0T5tfcjq4uKmSM5pEZgdQLFs4C5H5OabjUtFLSnIOHzUUiHhRmU+o7WzL3z/31iGLF3Im5+p2rgIt9Kzw4FRNQrpbQW6VVNaoILr9uK1ZbjZfvXcUwEfLhqnEqfuowT15pvJbsI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=TKboz4EF; arc=none smtp.client-ip=205.220.180.131
+	 In-Reply-To:Content-Type; b=SOEpw53KANU072OpZ5drKCZ+lrjDb4pSa77gPqdlxwqvwxxuPrwu7VnCabsmeMMINKjHkvYBNiJAVKRuB58yQAHflQqzLrxNpDh28AvVKsG9M7DO/t52ljEIl+guDw2jMrEHXOM45kbxnW45W/WThFTS5xTkYqGuEOJU1jvpaPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ML4U6GSH; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AMCHGCk029251
-	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 13:40:48 GMT
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AM7ZRZR015590
+	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 13:43:02 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	9YxKM1aS6D02+szZVaQt14eLLw2dbeFbZpQyV+FRSfw=; b=TKboz4EFVHG/nWqa
-	7Tc+cQOEtZVSBkxUi29I6qj3As3zRVkfh58f/39j5BWVa3HbT6ozNLkNfmv3nNWh
-	oJs1cgNEcRxofu8f5bwyqp9FWK9vUY5ysT+JyoVVOWXS/eL2ZPZL31WgdaS4yV4M
-	rtyzxn1pQpNNQbCwntIogxP66he8oCLE79hQCBbuG0bZFy6m6/R8AKOTr51mkPnB
-	xMGjGMm6a88OcR1GeKYU2pwJxm1zQR7IBsLkb/L8aKA5c/u0k78JRhAC0RlYQDof
-	BpGA8F/6PK0K6jYEkeJDUdK2rCIjmSn1JKY1vmiD5K8dwgxwO7k7eXrMU5RarBxR
-	3K08+g==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 432h4dsj8e-1
+	I4jyN5sgIKsB6Ac+agW1/Q5Zjbq+xV9LLsj7FAcZutI=; b=ML4U6GSH7KJo9+Tw
+	F9GXRdZUv/op0bnfOvkSwFo0X4ry/+IvNlonZWWRAIfd1Usjg5s5n1tpsjLfPm6/
+	rTj7uZ8KOMfhmfzvTVfKz/pboODFFFpgtJGlmfiZ/IBg+cnimCw4nwu1T0FC/LN6
+	I8EbmDDRUoCRdzmIe3LbsZDW3HmpqBDqv4mag3pMzxPS9pXgGwJ+pJ92U/J1guWS
+	jHICk46wAJLHuCXZ6a2OLsrqTUxz7qdpxfaqEYOv0JhwtCwfgQxv63z2KnClapNH
+	jFBziL0CC5QeSfGvbD6GT9t62JfoxEG5bsPpvfR4JhfZeecGNjHNuaXVfm612gGt
+	Bzkccw==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4320y9ma8j-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 13:40:47 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7b145f2d7bdso14841785a.2
-        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 05:40:47 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 13:43:02 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6d41c6c7bc1so5696696d6.0
+        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 05:43:02 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732282846; x=1732887646;
+        d=1e100.net; s=20230601; t=1732282981; x=1732887781;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9YxKM1aS6D02+szZVaQt14eLLw2dbeFbZpQyV+FRSfw=;
-        b=doG2lGp7y50GeUt4BIvrRyN29nUNVNTspTBWnzvi0XtmZXDjQ9YlD3J6CuAyz4TnUV
-         y8A1eFY+Jx98XBy3osWEIhcBTFIC5CArABvfPq4iTJveTyPUFCDSrUSYQMnagilLqvBI
-         VMCQqSu9OThPnj7EsijmyTkTcph8AYzM2xZzxI85tynVJawnbdN1Ed0Xaa+pBfNH07IN
-         +4i93X861KTL23PA4i10v+EWdvmaAfTGo2RewDN/8EirBtEaWiUcxsd+uDVFMQlJc1xU
-         hu5fpN8IA49lclOIet+f6M5bgYRoYeNZP+1/ow/0f1m+dP58Q4cXrf93/PPhNkRoBfeG
-         6N2A==
-X-Forwarded-Encrypted: i=1; AJvYcCUTzX6dFrv4vn7rHQPlJNSJVuZlq0DpoBRVbc66Kl9l+k1mgyLPsGrPvGTQBTMnTHikw6C+AZsKJTeH@vger.kernel.org
-X-Gm-Message-State: AOJu0YxRpyiC5e/sbdJuUqv+2mV1TYJdbayNdABwk9hiO4GLE4wV+FE7
-	sXWg7cc6NysBp25j0us+TbgtVOkjxARcyEeIXM55WwY/L0WEee5HeHKIcHmUFjuZH6AnyUNQOYy
-	aYu+8Zfv9cZktR56Mob8gCYqpIFqXxYZVSn1SOOCZGncSIxCuZkr0n9xrUURq
-X-Gm-Gg: ASbGncvFxlZsTO7N7TelKMjlKeH11a1B5DNCPIb2YHy2z64gVI7yEuxvOqJ3NxU+H+B
-	n37Rz4mT2cjnZiDRbfZixlGBa7XLVoTuCxhx2kysP7UrTFmtBQOnfIsSVAveup+d6ey5uCySxRx
-	XuLAxJHrm6c+qHYGR//qixa4q8d57+tUbg0xXQ5ERQvKO7Zc0uDk9hJF7sqjkiDlqtbikWMbeT9
-	Cv3sr+GTqe9KjMKrAOGo0LQECjESAe4S/YOecd/erwwb0KOB5lBBt8GOaAsgArumr0YJwZBa70Z
-	PMMc3oSlhIy5HnylUZOvuUfV1w2y37s=
-X-Received: by 2002:a05:620a:1a90:b0:7b1:aeb3:8cc8 with SMTP id af79cd13be357-7b5143e2d53mr174436185a.0.1732282846687;
-        Fri, 22 Nov 2024 05:40:46 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGXGNumdZdSYybkI01sEQNxSeLwadn5nIEeM0rXqU3TOxlAdFxpisS54Pj9uZRXr9K53cdmWQ==
-X-Received: by 2002:a05:620a:1a90:b0:7b1:aeb3:8cc8 with SMTP id af79cd13be357-7b5143e2d53mr174434485a.0.1732282846324;
-        Fri, 22 Nov 2024 05:40:46 -0800 (PST)
+        bh=I4jyN5sgIKsB6Ac+agW1/Q5Zjbq+xV9LLsj7FAcZutI=;
+        b=LOdDcMAP2vCHT85y/T0wKmRAP3DdPdYTBY91wijk1ZIHpnHiFXtjS8YxDlHTdP2Lme
+         z1zlOCcTsdyOcV2Gu8OzbsJ/T4x7/Kwsi+L6Jhr8dZBj9sBzvV14S7CaqrMuPqP6QSi9
+         7YIVzaBDUy75nv9rCOnvV/2pzJ/3d9svoQ6EB6QMKX1SDl9lyD7EdRURN6nJU35JihXv
+         yBE6L+bAcwRAORck18hl8mAetANtBvWFfChNNMQc5PwbipAwINZjECjnbo4eKtjKjal5
+         xIVGbkRPYBq+flyQHGzL5OHYcXOFz/S05dmseEGrek3FXSutnuI9SZ+lFKnT3sfzHbHV
+         aZJA==
+X-Forwarded-Encrypted: i=1; AJvYcCXFdwVz9oGh3JTb1bi35eqCNdktlk7d0XH1tgi9Euqw8hrL98W2hF3z+xFNp+tFmTp4lrfJLuVR8EBk@vger.kernel.org
+X-Gm-Message-State: AOJu0YxKLGbHuGjzzX7bm1LF36PKWyYyTpntJvAMVGykhGZl45YAZXVJ
+	OyofB+zpeR2hAr+HhlvQowKmwwxDmutSA6TQ2v0XdRpNx1NvNAvD8fpDH7dLhJMhMEP/HwgRfK+
+	3xLoiz+vbM/1ytJv/p/p/xvrNwW4nKOP95JmuD6sFLfBgGU1ZtvRKkR4IouXm
+X-Gm-Gg: ASbGncs4X8dvWSzcydprvTL+KTOyHfzohPx5N0rsbl6CvtFGAiDrA+j/JS8O6sQ+MtY
+	6y3FhWmIL9Kr2c99bA+Wts/2sbpr8aRoWuWxsSn1Vc1ZYZ7zpVVaTgn7OPuH2hcnTb3JOZ1B2oT
+	7iPMr1zMvAOm3+sEp5ZFG1+U6+RR62n7fiN4mAVlXZOA1B5jOpALTGz5MInfviFnXm1aFvQoQDk
+	wOU6c/aJpD68fT2sbb0X5rdJUgMP1D7aMWaGSogpQWgfIVOltg9pkmcNiIelb8IptKiASkWHTYR
+	FF+CWULUm81IP7266rcr2kO2WAq2ox0=
+X-Received: by 2002:a05:620a:4593:b0:79f:70f:ee0b with SMTP id af79cd13be357-7b5144c18admr171826185a.6.1732282981146;
+        Fri, 22 Nov 2024 05:43:01 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IE6qWdpFprMy+djvMsdCITWGkdx6i8r/hwcoEINJOKRyzD0W2OkpAMxFf70grZjlw3X3/R3nQ==
+X-Received: by 2002:a05:620a:4593:b0:79f:70f:ee0b with SMTP id af79cd13be357-7b5144c18admr171823385a.6.1732282980786;
+        Fri, 22 Nov 2024 05:43:00 -0800 (PST)
 Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa50b52ffd3sm101578566b.101.2024.11.22.05.40.43
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d01d41af2esm939297a12.84.2024.11.22.05.42.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Nov 2024 05:40:45 -0800 (PST)
-Message-ID: <4d2a9f76-f6e6-4897-9569-6d325a6e62cb@oss.qualcomm.com>
-Date: Fri, 22 Nov 2024 14:40:42 +0100
+        Fri, 22 Nov 2024 05:42:59 -0800 (PST)
+Message-ID: <8508988c-a74b-4f65-8060-30a0cb5afa64@oss.qualcomm.com>
+Date: Fri, 22 Nov 2024 14:42:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,8 +89,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/4] dmaengine: gpi: Add Lock and Unlock TRE support to
- access I2C exclusively
+Subject: Re: [PATCH v4 4/4] i2c: i2c-qcom-geni: Enable i2c controller sharing
+ between two subsystems
 To: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>,
         Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
         konrad.dybcio@linaro.org, andersson@kernel.org, andi.shyti@kernel.org,
@@ -102,65 +102,85 @@ To: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>,
         krzk+dt@kernel.org, robh@kernel.org
 Cc: quic_vdadhani@quicinc.com
 References: <20241113161413.3821858-1-quic_msavaliy@quicinc.com>
- <20241113161413.3821858-3-quic_msavaliy@quicinc.com>
- <87cc1f1e-85d2-40cb-b3b3-8935004f4f98@oss.qualcomm.com>
- <5a39b6d0-600f-455f-9ba7-29787f9085ce@quicinc.com>
+ <20241113161413.3821858-5-quic_msavaliy@quicinc.com>
+ <37762281-4903-4b2d-8f44-3cc4d988558d@oss.qualcomm.com>
+ <cbbb78c9-54ec-453a-92ec-6b174bd3d9cb@quicinc.com>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <5a39b6d0-600f-455f-9ba7-29787f9085ce@quicinc.com>
+In-Reply-To: <cbbb78c9-54ec-453a-92ec-6b174bd3d9cb@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: Kflzs-y3ZY6B2jc9aRRhitA7ZoVzkTdC
-X-Proofpoint-GUID: Kflzs-y3ZY6B2jc9aRRhitA7ZoVzkTdC
+X-Proofpoint-GUID: rgMGb9CSED-Jtl2NaiDPfrPEaR0Z32rj
+X-Proofpoint-ORIG-GUID: rgMGb9CSED-Jtl2NaiDPfrPEaR0Z32rj
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
  definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 suspectscore=0
- clxscore=1015 phishscore=0 malwarescore=0 impostorscore=0
- lowpriorityscore=0 mlxlogscore=999 spamscore=0 adultscore=0 mlxscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411220114
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ phishscore=0 impostorscore=0 suspectscore=0 lowpriorityscore=0
+ mlxlogscore=999 spamscore=0 mlxscore=0 malwarescore=0 clxscore=1015
+ adultscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411220115
 
-On 18.11.2024 6:46 AM, Mukesh Kumar Savaliya wrote:
-> Thanks Konrad for the review !
+On 18.11.2024 6:45 AM, Mukesh Kumar Savaliya wrote:
+> Thanks for the review konrad !
 > 
-> On 11/16/2024 12:53 AM, Konrad Dybcio wrote:
+> On 11/16/2024 12:58 AM, Konrad Dybcio wrote:
 >> On 13.11.2024 5:14 PM, Mukesh Kumar Savaliya wrote:
->>> GSI DMA provides specific TREs(Transfer ring element) namely Lock and
->>> Unlock TRE. It provides mutually exclusive access to I2C controller from
->>> any of the processor(Apps,ADSP). Lock prevents other subsystems from
->>> concurrently performing DMA transfers and avoids disturbance to data path.
->>> Basically for shared I2C usecase, lock the SE(Serial Engine) for one of
->>> the processor, complete the transfer, unlock the SE.
+>>> Add support to share I2C controller in multiprocessor system in a mutually
+>>> exclusive way. Use "qcom,shared-se" flag in a particular i2c instance node
+>>> if the usecase requires i2c controller to be shared.
+>>
+>> Can we read back some value from the registers to know whether such sharing
+>> takes place?
+> Actually, HW register doesn't provide such mechanism, it's add on feature if SE is programmed for GSI mode.
+
+So it's more of an unwritten contract between subsystems.. okay
+
+>>
+>>> Sharing of I2C SE(Serial engine) is possible only for GSI mode as client
+>>> from each processor can queue transfers over its own GPII Channel. For
+>>> non GSI mode, we should force disable this feature even if set by user
+>>> from DT by mistake.
+>>
+>> The DT is to be taken authoritatively
+>>
+> To clarify - Does it mean i should not have SW disable this feature OR override  ? And let it continue in non GSI mode even it's not going to work ?
+
+If a configuration is invalid, you should return -EINVAL from probe,
+with an appropriate error message.
+
 >>>
->>> Apply Lock TRE for the first transfer of shared SE and Apply Unlock
->>> TRE for the last transfer.
+>>> I2C driver just need to mark first_msg and last_msg flag to help indicate
+>>> GPI driver to take lock and unlock TRE there by protecting from concurrent
+>>> access from other EE or Subsystem.
 >>>
->>> Also change MAX_TRE macro to 5 from 3 because of the two additional TREs.
+>>> gpi_create_i2c_tre() function at gpi.c will take care of adding Lock and
+>>> Unlock TRE for the respective transfer operations.
+>>>
+>>> Since the GPIOs are also shared between two SS, do not unconfigure them
+>>> during runtime suspend. This will allow other SS to continue to transfer
+>>> the data without any disturbance over the IO lines.
+>>>
+>>> For example, Assume an I2C EEPROM device connected with an I2C controller.
+>>> Each client from ADSP and APPS processor can perform i2c transactions
+>>> without any disturbance from each other.
 >>>
 >>> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
 >>> ---
-
-[...]
-
->>>   +    /* create lock tre for first tranfser */
->>> +    if (i2c->shared_se && i2c->first_msg) {
 >>
->> Does the first/last logic handle errors well? i.e. what if we
->> have >= 3 transfers and:
+>> [...]
 >>
->> 1) the first transfer succeeds but the last doesn't
->> 2) the first transfer succeeds, the second one doesn't and the lock
->>     is submitted again
->> 3) the unlock never suceeds
+>>>       } else {
+>>>           gi2c->gpi_mode = false;
+>>> +
+>>> +        /* Force disable shared SE case for non GSI mode */
+>>> +        gi2c->se.shared_geni_se = false;
 >>
-> geni_i2c_gpi_xfer() takes care of any of the error. Upon error, it does dma_engine_terminate_sync() which resets all the pipes. Internal downstream also has same implementation.
+>> Doing this silently sounds rather odd..
+> we can have Some SW logging added ?
 
-Okay, this sounds reassuring.
-
-Since the TRE would be locked to APSS, I'm guessing we don't ever need
-to worry about gpi_terminate_all() being executed halfway through a
-non-APSS transaction?
+Normally such overrides mandate a warning/notice, but as I said above,
+we should disallow such combinations altogether for sanity
 
 Konrad
 
