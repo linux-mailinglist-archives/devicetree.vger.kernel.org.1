@@ -1,214 +1,258 @@
-Return-Path: <devicetree+bounces-123723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0E2F9D5C96
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 10:57:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C7FA9D5CBE
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 11:00:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 99B3228294E
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 09:57:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DDC29281B70
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 10:00:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B44301D86E8;
-	Fri, 22 Nov 2024 09:57:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FA171DE3AD;
+	Fri, 22 Nov 2024 09:59:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="GKqnaG9p"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lLaU/E4e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2070.outbound.protection.outlook.com [40.107.92.70])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BAB91D63FC;
-	Fri, 22 Nov 2024 09:57:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.92.70
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732269445; cv=fail; b=fhGAmuuAPBr/eUa3VxnlyFtX6CTWohocm5mckuVYs3qw4X0b9g0tOQPdjTS1Xj6hYQC37ReTW0CAgiczAyi2BV7ItxHJv6xzYCZ/FOsFYC7UF7yo212uHvy2XMyyuNm1g9pDNTFRgZoId2oj/47lTKnpdnY+fNN3zWzBfylSpb8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732269445; c=relaxed/simple;
-	bh=3CZ+mHqjNZuKuoFt5h/Dzy+0DvFsjt2wUunbGRE/Js8=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=GOsXT9XkQ+zhOZbVjijCYdBWVLzAnluycPzt4jY6Uy0aRn3QSKldo3OfWC0O9YUIl4Tn8L6iYFxna5VPP4TfCgMqxtU//Fa7OtuQ4JZG4TkOtdNWQ3ZpuLeVkoOcvKOtkNLpEZUnsho8g7206WIIYq2ijPZNRGnOvUh7/ZQv7Nw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=GKqnaG9p; arc=fail smtp.client-ip=40.107.92.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Qzk54WaBoQIedqASaDVkDXo0htK1XfRUq8cEc3SASClcMw9meElj2NiCPVaMKin/VKLuvhPM3JJ6TB0E8Ht0bQY1LEWRHE04H6xA2nQaS7U6c1C+F1rXnsQTwtTYpE8E+B12Yxp1ClsrYhNkntuPQ5sTeK4VPdbPFDOh/c9Qd4oD8dPccGX+kzw09xNTO603bEEAfEpAA1iq9fDJIwzY/gy9KWiuHuVlmcuusaVkW4Y1RG71T76OdISqyct+GzVrXJEFdDk7+zgpIiXatFfivX4MIvXbeS/AIPZtD8J59nS5B6/EeNGS9kqIPuX3KHbDKuWgh2pvvdTgj1O64oKQHA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4rdeCnBSJluG5jTTgeN6PQcOlpDr2fg/d8wdCEXhE6s=;
- b=NPX1ZchGw/ZW5WAyt3fN+okgumR5Wcl0hpC03QuFfhEv4rIe9EbVCaLWV/IXwGMCSayCruTGXj/xD3b5KKAWwmMrlXPJEmnqGEa1QA6yo9DcyQ+H5TWhHUna4vuFNPe7Cbh3fZqPfNkM3Rwkp32rDmse8YjF6r/H2npIoJbcKSP4rOhaP7LDzGBNce8C3tZrpOL67r+EVl1FTmsqAU7E/CaE2iHC2rPUduWi8rltmwXbEfiBDJxYx/mOLcNpr0gm84gaWYIHamiUT7VRaBUuOXenPodHWQIypYss7/cnERnknHSCkS4woJPeYyMutwRwtCNRmXws8nR95i6VLhKDAA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.12) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4rdeCnBSJluG5jTTgeN6PQcOlpDr2fg/d8wdCEXhE6s=;
- b=GKqnaG9pTWvFqFYXFsGiv+hHUctZ9RXgYTygHxgW633msBXnXK/CYI/rNcSuyRSEcGDRuesy/MOeZyR4m1bQsozk1CIt+IrxFqnOhTkFjffnwg//FbODgkOF3xwGoy1Zqa8UthGbQJMNvkFx1PbrzHhH3x6LjxQqH6qUXN0tXwI=
-Received: from BN7PR06CA0046.namprd06.prod.outlook.com (2603:10b6:408:34::23)
- by PH8PR12MB7327.namprd12.prod.outlook.com (2603:10b6:510:215::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.22; Fri, 22 Nov
- 2024 09:57:15 +0000
-Received: from BL6PEPF00022573.namprd02.prod.outlook.com
- (2603:10b6:408:34:cafe::20) by BN7PR06CA0046.outlook.office365.com
- (2603:10b6:408:34::23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.24 via Frontend
- Transport; Fri, 22 Nov 2024 09:57:14 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.12)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.12 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.12; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.12) by
- BL6PEPF00022573.mail.protection.outlook.com (10.167.249.41) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8182.16 via Frontend Transport; Fri, 22 Nov 2024 09:57:14 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 22 Nov
- 2024 03:57:13 -0600
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 22 Nov
- 2024 03:57:13 -0600
-Received: from xsjwillw50.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Fri, 22 Nov 2024 03:57:13 -0600
-From: Naman Trivedi <naman.trivedimanojbhai@amd.com>
-To: <robh@kernel.org>, <michal.simek@amd.com>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <senthilnathan.thangaraj@amd.com>
-CC: <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2] arm64: zynqmp: add clock-output-names property in clock nodes
-Date: Fri, 22 Nov 2024 01:57:12 -0800
-Message-ID: <20241122095712.1166883-1-naman.trivedimanojbhai@amd.com>
-X-Mailer: git-send-email 2.25.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4694C1DE3A2;
+	Fri, 22 Nov 2024 09:59:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1732269575; cv=none; b=e45hZagyMvm22vEDjV9fvvQ8PyRg6HtikMryqBaD2r3BdPaseL6lRmNwXsv0xFwY7mM9MczKwOpfjOLO6Qgk9Y9gUBVf0PaicOkKQoVWJVjBUoJ2p+WK5e5xcF78FDUOJuj9lJmPFzOW6mJ0kt9EOpr1BIxZMUHh2renTjJ9xvE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1732269575; c=relaxed/simple;
+	bh=0ftWDSX41M/H1Xuk75QeX8CBR8oUnrbEjm0UfJzEf30=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gPg0kP8xQvT2heEWZNfEsnhdXjzSVo2x7F8O8bdNMSpJhoeVgKpfqo7v1JtENYNwNf7Cf0t2UyfYb6rf8sA+cIgAD8h1//HrNDvMq+exQvaBUWrV/3yykjGHp44sGNSQB9uC2AClzI9mG7yGgld/kSalOx5CCQgBZc0RVDzJh/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lLaU/E4e; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26B23C4CED7;
+	Fri, 22 Nov 2024 09:59:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732269573;
+	bh=0ftWDSX41M/H1Xuk75QeX8CBR8oUnrbEjm0UfJzEf30=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=lLaU/E4eB91C5DQq/cwO3HkPlxay7OZkwOSTa4d+Mzc0NC6prGZaSYqckUGJjWvQC
+	 kRbyEKtNdCNNio3/5r5gfrRb9vOlDlPj9uoewaO7KFVBsV1EecD1O02gMGSY4E4kWO
+	 CXKO4x2IY0U1XGHA1fKCW5840MPSMVcTSqdKzU1Or846i20CoBAY9+DGbroYkenMkM
+	 nALzxJi+4E2tg5Lv6LnqKWO+ApZ76wyx6W7VpI+VDACfAgaEw3tCNjXn2kFJEbWWv+
+	 7+rJ+LMn0DPKZpUD9pFHqFZPqgvZZ39clgtj35x+PMg7OGuDOBW89YtIQGJKx1G10a
+	 pr7XgGGBDj9Ng==
+Message-ID: <34f5e893-bb52-4e48-a854-0967b39cae28@kernel.org>
+Date: Fri, 22 Nov 2024 10:59:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] memory: mtk-smi: mt8188: Add SMI clamp function
+To: =?UTF-8?B?RnJpZGF5IFlhbmcgKOadqOmYsyk=?= <Friday.Yang@mediatek.com>,
+ "robh@kernel.org" <robh@kernel.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ =?UTF-8?B?WW9uZyBXdSAo5ZC05YuHKQ==?= <Yong.Wu@mediatek.com>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ Project_Global_Chrome_Upstream_Group
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>
+References: <20241120063701.8194-1-friday.yang@mediatek.com>
+ <20241120063701.8194-3-friday.yang@mediatek.com>
+ <5bf3bdab-8614-4024-a9da-f7f58414c0af@kernel.org>
+ <e18bf1ba05c86b26fb4f18c444a19b391df29c55.camel@mediatek.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <e18bf1ba05c86b26fb4f18c444a19b391df29c55.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF00022573:EE_|PH8PR12MB7327:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7b243870-f736-4402-9d5e-08dd0adc0a98
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|36860700013|1800799024|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?QvhdRRlLviOOleRwtcKWYnCvUpR5XUG+CFAfZURlXS78CeqxT1/FHqYtHBh9?=
- =?us-ascii?Q?xpPL80qEcGgWA5sDOhHJz+4EC0eQ8hWzew+25YGrfZFJ3qmaYKWaVr25Ex8U?=
- =?us-ascii?Q?ZLGTv2cQj7XeZBeWvsnB32sxYDlPEhNaE6iucJUwmDQcxD4TdQcojuZYr3Tu?=
- =?us-ascii?Q?AfO+4wsAtAS3nfmarYEjyG8E6SzW/eg4kDiUT/YM9Qc4+h0PwiWpfl8u1x+V?=
- =?us-ascii?Q?4LIZNj0nBjm/VASlAHyELziuiXPmbExPY+upq2XIdCwT63gwwt5XEMafKQG2?=
- =?us-ascii?Q?jvPDqG9guxZ1eM/HBfbVFPd58fvKCXeBUOIe8BRbVrqNcPtp1Bcvj+SfCWRN?=
- =?us-ascii?Q?67peBesXQDg03jsKz2zzQCevovbPJMav7g3VNL8zaZua9g9EYWzVrridxF8b?=
- =?us-ascii?Q?oRmdTqsDD/4wCSDzcBGYUQ5dNhFK9fS2xKG7QqH5psKyEMQiDrvTO0TpA3j+?=
- =?us-ascii?Q?TvlWUlhzXr+7hRhRXTc4IKucPDUZkzR48/XyvDE1xMKGTTZTkTstnfjAgVao?=
- =?us-ascii?Q?3ZhNM2CNxbgWhLMNF3KndX/qA1uu8UbOo1Rs4VcChF6iWWhhI1A4jD7j6NbM?=
- =?us-ascii?Q?2vAGGxYyHoWDCAukm1A+Hvhx6huaLmrQTdkBbkMJbG9ui22MuJNqfAFai6xv?=
- =?us-ascii?Q?lg5tHuULPbvFLCLntj+s9rRkU5R5dRE4hAQ/Sa7MWPqzJuFBujXMiE/LgRUV?=
- =?us-ascii?Q?pZnKzzGxxbDRYo05I6kqplemtaM7iyEpFmom6Ec+qg+rcxaBVoXi3LYjKtct?=
- =?us-ascii?Q?5SLlwgMbOcnCmTz1uJcpu1/UuRVE0aBoWZb/CJAHNBKRgSE+ycq9NdwTxc/h?=
- =?us-ascii?Q?J9NdHrCh38yxfA3/YeMAOFNwYLk2sGxBvQbpzbnYzP4EgpOg3s15AilrcdGz?=
- =?us-ascii?Q?EtCkbnlX0iUOs+ZoCDtryBQbsyMn7cTplvX+w2LUdRMkh7Aa5evAgwlrnAr4?=
- =?us-ascii?Q?A7+A00VdrWCkCmVgXlUEoPgTM1ZyBGn2kqxiEwB41RlT8TrZBDGxpXDuoXqq?=
- =?us-ascii?Q?hJQbo2I3VmTBxvJxmDUEKATfNIsE6yvYcsYVi9jYK383BfUTr9ekaDHmVn6Y?=
- =?us-ascii?Q?gihaZE3GMe41vIkn2VcVEqzl3szwKm7bmUde00tfdVHzzI8s4MKEgO9wbzMm?=
- =?us-ascii?Q?Dg5QzB1lZurnsozKjBEHTGp4TTkUeMxMqGI9ZaJ0bIe8iPSsmlMDgRcSrQ3w?=
- =?us-ascii?Q?sVeRe2+YauNXdZW4q2SuiVRWFtGFhHpyivJJRqvJHYikUGmWmMrBq5RWUdYI?=
- =?us-ascii?Q?4tcCOXgX2kWrkF+/OHurX/bumMY735dLV5WMb+n6xsxRjnGjhmcw46sGsfNc?=
- =?us-ascii?Q?ND0czxN+wXWtD8kecWNdU9GmNRA0hdO2gHmG3f148ySzQ5h32cXj4+AV/PEV?=
- =?us-ascii?Q?cdiqS14=3D?=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.12;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:atlvpn-bp.amd.com;CAT:NONE;SFS:(13230040)(376014)(36860700013)(1800799024)(82310400026);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Nov 2024 09:57:14.2085
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7b243870-f736-4402-9d5e-08dd0adc0a98
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.12];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BL6PEPF00022573.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7327
 
-Add clock-output-names property to clock nodes, so that the resulting
-clock name do not change when clock node name is changed.
-Also, replace underscores with hyphens in the clock node names as per
-dt-schema rule.
+On 22/11/2024 10:41, Friday Yang (杨阳) wrote:
+> On Wed, 2024-11-20 at 08:49 +0100, Krzysztof Kozlowski wrote:
+>> External email : Please do not click links or open attachments until
+>> you have verified the sender or the content.
+>>
+>>
+>> On 20/11/2024 07:36, Friday Yang wrote:
+>>> In order to avoid handling glitch signal when MTCMOS on/off, SMI
+>>> need
+>>> clamp and reset operation. Parse power reset settings for LARBs
+>>> which
+>>> need to reset. Register genpd callback for SMI LARBs and apply
+>>> reset
+>>> operations in the callback.
+>>>
+>>> Signed-off-by: Friday Yang <friday.yang@mediatek.com>
+>>> ---
+>>>  drivers/memory/mtk-smi.c | 175
+>>> ++++++++++++++++++++++++++++++++++++++-
+>>>  1 file changed, 171 insertions(+), 4 deletions(-)
+>>>
+>>> diff --git a/drivers/memory/mtk-smi.c b/drivers/memory/mtk-smi.c
+>>> index 2bc034dff691..c7119f655350 100644
+>>> --- a/drivers/memory/mtk-smi.c
+>>> +++ b/drivers/memory/mtk-smi.c
+>>> @@ -10,15 +10,21 @@
+>>>  #include <linux/err.h>
+>>>  #include <linux/io.h>
+>>>  #include <linux/iopoll.h>
+>>> +#include <linux/mfd/syscon.h>
+>>
+>> Where do you use it?
+> 
+> device_node_to_regmap need this header file.
 
-Signed-off-by: Naman Trivedi <naman.trivedimanojbhai@amd.com>
----
-v1: https://lore.kernel.org/all/c5d6effa-bdcf-49e3-a4bf-3713db889b70@kernel.org
-Changes v1 -> v2:
-- Fix the clock node names by replacing underscore with hyphen.
----
- arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi | 15 ++++++++++-----
- 1 file changed, 10 insertions(+), 5 deletions(-)
+Ah, indeed, but then I wonder why you parse phandle instead of using
+standard syscon API: syscon_regmap_lookup_by_phandle().
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
-index 60d1b1acf9a0..385fed8a852a 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
-@@ -10,39 +10,44 @@
- 
- #include <dt-bindings/clock/xlnx-zynqmp-clk.h>
- / {
--	pss_ref_clk: pss_ref_clk {
-+	pss_ref_clk: pss-ref-clk {
- 		bootph-all;
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <33333333>;
-+		clock-output-names = "pss_ref_clk";
- 	};
- 
--	video_clk: video_clk {
-+	video_clk: video-clk {
- 		bootph-all;
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <27000000>;
-+		clock-output-names = "video_clk";
- 	};
- 
--	pss_alt_ref_clk: pss_alt_ref_clk {
-+	pss_alt_ref_clk: pss-alt-ref-clk {
- 		bootph-all;
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <0>;
-+		clock-output-names = "pss_alt_ref_clk";
- 	};
- 
--	gt_crx_ref_clk: gt_crx_ref_clk {
-+	gt_crx_ref_clk: gt-crx-ref-clk {
- 		bootph-all;
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <108000000>;
-+		clock-output-names = "gt_crx_ref_clk";
- 	};
- 
--	aux_ref_clk: aux_ref_clk {
-+	aux_ref_clk: aux-ref-clk {
- 		bootph-all;
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <27000000>;
-+		clock-output-names = "aux_ref_clk";
- 	};
- };
- 
--- 
-2.25.1
 
+> 
+>>
+>>>  #include <linux/module.h>
+>>>  #include <linux/of.h>
+>>>  #include <linux/of_platform.h>
+>>>  #include <linux/platform_device.h>
+>>> +#include <linux/pm_domain.h>
+>>
+>> Where do you use it?
+> 
+> dev_pm_genpd_add_notifier need this header file.
+
+ack
+
+> 
+>>
+>>>  #include <linux/pm_runtime.h>
+>>> +#include <linux/regmap.h>
+>>
+>> Where do you use it?
+> 
+> regmap_write need this header file.
+
+ack
+
+> 
+>>
+>>> +#include <linux/reset.h>
+>>> +#include <linux/reset-controller.h>
+>>>  #include <linux/soc/mediatek/mtk_sip_svc.h>
+>>>  #include <soc/mediatek/smi.h>
+>>>  #include <dt-bindings/memory/mt2701-larb-port.h>
+>>>  #include <dt-bindings/memory/mtk-memory-port.h>
+>>> +#include <dt-bindings/reset/mt8188-resets.h>
+>>>
+>>
+>> ...
+> 
+> reset_control_reset/devm_reset_control_get need reset.h
+> But reset-controller.h could be removed.
+> MT8188_SMI_RST_LARB10 and other index need mt8188-resets.h 
+> 
+>>
+>>>
+>>> +static int mtk_smi_larb_parse_clamp_info(struct mtk_smi_larb
+>>> *larb)
+>>> +{
+>>> +     struct device *dev = larb->dev;
+>>> +     const struct mtk_smi_larb_gen *larb_gen = larb->larb_gen;
+>>> +     struct device_node *smi_node;
+>>> +     struct of_phandle_args args;
+>>> +     int ret, index;
+>>> +
+>>> +     /* Only SMI LARBs located in camera and image subsys need to
+>>
+>> Use Linux coding style.
+> 
+> Sorry for the mistake, I will fix it.
+> 
+>>
+>>> +      * apply clamp and reset operation, others can be skipped.
+>>> +      */
+>>> +     ret = of_parse_phandle_with_fixed_args(dev->of_node,
+>>> +                                            "resets", 1, 0,
+>>> &args);
+>>
+>> NAK
+>>
+>>> +     if (ret)
+>>> +             return 0;
+>>> +
+>>> +     smi_node = of_parse_phandle(dev->of_node, "mediatek,smi", 0);
+>>> +     if (!smi_node)
+>>> +             return -EINVAL;
+>>> +
+>>> +     index = args.args[0];
+>>
+>> That's reset, not clamp port. NAK.
+> 
+> I could change from 'clamp_port' to 'reset_port'.
+> This index is used for getting the port id from the array
+> 'mtk_smi_larb_clamp_port_mt8188 ' in SMI driver.
+
+Index is for reset, not for port ID.
+
+> It could also be used for getting the reset signal in
+> SMI reset controller driver.
+> 
+
+Look at my comments from previous version - they were not under reset
+property. The argument for reset is for reset provider, not this reset
+consumer.
+
+BTW, when you link to previous versions of patchset, link to lore, not
+patchwork. Or just use b4.
+
+Best regards,
+Krzysztof
 
