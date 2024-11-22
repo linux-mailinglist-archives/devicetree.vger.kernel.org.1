@@ -1,124 +1,241 @@
-Return-Path: <devicetree+bounces-123823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123824-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C23B9D626F
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 17:39:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2270A9D627C
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 17:44:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 20DDAB2127F
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 16:39:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 812D9B21479
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 16:44:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38F24158DA3;
-	Fri, 22 Nov 2024 16:39:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1AC91DF720;
+	Fri, 22 Nov 2024 16:44:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JXlH+ds6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S2EojH6Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF35D7E792;
-	Fri, 22 Nov 2024 16:39:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5F261DE8B0
+	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 16:44:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732293574; cv=none; b=DC3rE9Dw5BuwWUJCGfjIr9SZu63RlfxrsPAIlZ/2zB0TRTfUNPK69t0+joTyntWbhp13FWAB0ZUCkeZg5HaKclxwi/TJYMxsrUpFicLeX0x6pFf7OjBvpQ2xs7+F1cevbrci+/DIquyRBSaiU4I2SPqMKB/ngf0KHLBtbm0TgpQ=
+	t=1732293876; cv=none; b=cgwXsnIQG46sGKpTN1l8Z99Rv7SXcaslXp5q+1grrpfno6AR5erTluM8a/5dpmcjfTpTDwSQeTuZanpYoTRXU+AN88yTh9xHksF61w1kLrruyZedI1SrXRnsRJCiEo8oWCR+sTC+hOqWsqm8KEf73ksarO6qqU+iZyo2mLnY2lk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732293574; c=relaxed/simple;
-	bh=bVfmMZd++g9VWmMX2EizjlOyv67G/BQQFuNfEa0NLiE=;
+	s=arc-20240116; t=1732293876; c=relaxed/simple;
+	bh=gRXAN2GhFByioHeJclpQRULpgQOeLPlr8+w40Lu99vw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lxyLvIDBWwGNTVVCmjotk45B6BevuNnRiYotr1SS3e8nMclnJYsqx0kqmKrBeHFWViuXHrdvGEiwhGPr6nTXfpMCuJ6sCil1u5SRUXAqvCu2jrM94S+9GZwWcTP//iKBmDMVe2+hp28PeZ4TFPFyG//EML41bzaaV0NK66KrFFs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JXlH+ds6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1623C4CECE;
-	Fri, 22 Nov 2024 16:39:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732293573;
-	bh=bVfmMZd++g9VWmMX2EizjlOyv67G/BQQFuNfEa0NLiE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JXlH+ds6Bu4vcaxouVy9GHIJMQYhksn+5FEcsZbKwO1qG5QNztSK6Ejo6PzyTPdbl
-	 xPzR6GS/0CyoCC+O6m9Iq0iQl/W+6OHNKSUaxTMFB4aGA6OzTukQDHqlflA0NXysPe
-	 PAQI/8kjW+/XtNdbjEipZhEbBzuK3JoBGhZnOU3C+jWNHonND/cgmJunlqLeXnsaxT
-	 U7+onLtWXO9aMMcX3wJkkj+AmPt5zYAO3b3b0SW9M4rvHHlBs+DsBCC8erIs3gTlTJ
-	 oPI0TPO6JtfDzyFKtoMtWVESP9iQRt5PMh4J+3eHluJnyXJqyLhyAHHNQdwpwUWKWb
-	 na+zzTSqnxuKA==
-Date: Fri, 22 Nov 2024 17:39:30 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Guillaume Stols <gstols@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Jonathan Corbet <corbet@lwn.net>, linux-pwm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, aardelean@baylibre.com, 
-	dlechner@baylibre.com, jstephan@baylibre.com, nuno.sa@analog.com, 
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH v5 7/8] iio: adc: ad7606: Add iio-backend support
-Message-ID: <gmv5tncy7xwgbc64na7ib42hdthojsfrusauk4hez5zmc6hh2k@4jfk74vt2gcb>
-References: <20241015-ad7606_add_iio_backend_support-v5-0-654faf1ae08c@baylibre.com>
- <20241015-ad7606_add_iio_backend_support-v5-7-654faf1ae08c@baylibre.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=l2ZByWyGrJidgE2DIA++DW26Ml3jzhN6m/Cyy19iuErEX5pZuI7mXcTo2Z9mfW6X5A0goY3k+2OByzbELyARddNujenHAmHshDhzcUce/9PVp157xo59zAUeGcWw8P+TLjB9chiqTzlVheb6PeCw82VxXGgXz2MSzibWgIYmDgM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=S2EojH6Y; arc=none smtp.client-ip=209.85.210.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-724d8422dbaso1585697b3a.0
+        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 08:44:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1732293873; x=1732898673; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=IwR2oPIQAt5cBP8ivKC91SEZVyVQIhFtIJGjJD68WpY=;
+        b=S2EojH6YrFGb81BD7+xxtr/EXLr5m7ZNqasBtgRiiIGvnTij9Z/+4yQHncFw+w2T0a
+         rtQY9c45y+3l3yLHWeBCZMkpruLUWiQLmhmgfjfL67hHMPQFzS5qQqgyZMMfASYAJcdM
+         KqJwqLeQTMY1i4yHj3nMa22pwUvAOfnBpJzf0ZTM1Tlfmknn59SfnTD3lbhjSRynZFXB
+         FFI0XdvIKSHd3SGSKgc9as7doJH9+GNqStb6LgYExyhlBoH/mXirzeqyrGtfaLowyi0v
+         ukt9Mch1pjF0UqOctfXJn8SLvhI/RUC7yBqGEvJNjjM64GGdNbfW3qRdPz7dVuyNnxga
+         jSSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732293873; x=1732898673;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IwR2oPIQAt5cBP8ivKC91SEZVyVQIhFtIJGjJD68WpY=;
+        b=SZSQU/dDXIikNY4BJqgmR9vAI95Zfk+ae1L6xjvD9+T3v3QxLNBeFdtBI3/N6d7ct3
+         RucrLD7659GwJWHhEhLar56fAHRLg/8h7mjUDWCVHWZWyo0iRSIZWWYOLt+uUs+podPP
+         5gRdylUfo92/gdmHl34n5BGxAN0M1s7w0H4wnEALQNGg/SbuYc+86Vcyem++TXdEkJJX
+         apVIT4AdQNid+XUKklhqpDhcltlGkh41dqan3balHYuhrvA1atNnKGjUGHBjHjaqoGly
+         HmJcHGFdtqF8PNCY7TVDdm29FCoRRakk5a3pSNFHKEuWiMXoS1+YYbZcEZdVYFAtsYFJ
+         mWVg==
+X-Forwarded-Encrypted: i=1; AJvYcCVKjl8ji7Q3GhllgTbV+Xf9SV2OKXE7dRLvaByB5LAl6vPKzJJ/qYqL93/0yR5HacO+ESZZSAhP4i8T@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx17hLTLSqTF0kqQWqczzqzgdciuuhyNm8HE8fdYtADnwcPuZbE
+	gMxYxIvRlBz53DguquMpStgyqGvAMj+cR/Hp8erB4OXGTyEhUF0msoLTTt4n1w==
+X-Gm-Gg: ASbGncso+R8bhCnU8r8eEjPr5rBx7hgJ8LJ5Nx064fLTSEpANGFSB54Ibc+nc5Wf4rb
+	TV9RiKGYsYi4es5f+2cmLcGZxTUWAQhwi7JlUJggIWoidbscWmXgl0QFKxvrsBkFz1aaMXA+8fY
+	gjEuqgCAL6GEyiWRWusU0JrK3GOBQ0yIxyj4jN9f2TW0mAcJnQi2RaIqNzYYwkKkTjOpUJXQP1a
+	mkeaeUghf7vUcbPbE7RwNgKEpcVTAUcyW7UtCxRjjsWEkA0Yr0sSiGVZxgq
+X-Google-Smtp-Source: AGHT+IHgULISyXOq5TQcOtW3Twh+i1nObBb6S6wCbmH2FUwOM/cGRvZbPtQMUa46S4dJNMfTxBufDg==
+X-Received: by 2002:a05:6a00:9a3:b0:71e:5de:ad6d with SMTP id d2e1a72fcca58-724df6b81c4mr4858528b3a.24.1732293873177;
+        Fri, 22 Nov 2024 08:44:33 -0800 (PST)
+Received: from thinkpad ([49.207.202.49])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7fbcc1e3fdbsm1607239a12.30.2024.11.22.08.44.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Nov 2024 08:44:32 -0800 (PST)
+Date: Fri, 22 Nov 2024 22:14:26 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Hongxing Zhu <hongxing.zhu@nxp.com>
+Cc: "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+	"bhelgaas@google.com" <bhelgaas@google.com>,
+	"lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+	"kw@linux.com" <kw@linux.com>, "robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"shawnguo@kernel.org" <shawnguo@kernel.org>,
+	Frank Li <frank.li@nxp.com>,
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+	"festevam@gmail.com" <festevam@gmail.com>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"kernel@pengutronix.de" <kernel@pengutronix.de>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v6 02/10] PCI: imx6: Add ref clock for i.MX95 PCIe
+Message-ID: <20241122164426.55zgf36oewcjxjvz@thinkpad>
+References: <20241101070610.1267391-1-hongxing.zhu@nxp.com>
+ <20241101070610.1267391-3-hongxing.zhu@nxp.com>
+ <20241115063816.xpjqgm2j34enhe7s@thinkpad>
+ <AS8PR04MB86767205982E13C2771614AB8C272@AS8PR04MB8676.eurprd04.prod.outlook.com>
+ <AS8PR04MB8676DFD33B926A2EC57577CC8C202@AS8PR04MB8676.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="g6qhxoz5xykc4ajk"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241015-ad7606_add_iio_backend_support-v5-7-654faf1ae08c@baylibre.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <AS8PR04MB8676DFD33B926A2EC57577CC8C202@AS8PR04MB8676.eurprd04.prod.outlook.com>
 
+On Tue, Nov 19, 2024 at 05:38:30AM +0000, Hongxing Zhu wrote:
+> > -----Original Message-----
+> > From: Hongxing Zhu
+> > Sent: 2024年11月18日 10:59
+> > To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > Cc: l.stach@pengutronix.de; bhelgaas@google.com; lpieralisi@kernel.org;
+> > kw@linux.com; robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org;
+> > shawnguo@kernel.org; Frank Li <frank.li@nxp.com>; s.hauer@pengutronix.de;
+> > festevam@gmail.com; imx@lists.linux.dev; kernel@pengutronix.de;
+> > linux-pci@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
+> > Subject: RE: [PATCH v6 02/10] PCI: imx6: Add ref clock for i.MX95 PCIe
+> > 
+> > > -----Original Message-----
+> > > From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > > Sent: 2024年11月15日 14:38
+> > > To: Hongxing Zhu <hongxing.zhu@nxp.com>
+> > > Cc: l.stach@pengutronix.de; bhelgaas@google.com;
+> > > lpieralisi@kernel.org; kw@linux.com; robh@kernel.org;
+> > > krzk+dt@kernel.org; conor+dt@kernel.org; shawnguo@kernel.org; Frank Li
+> > > <frank.li@nxp.com>; s.hauer@pengutronix.de; festevam@gmail.com;
+> > > imx@lists.linux.dev; kernel@pengutronix.de; linux-pci@vger.kernel.org;
+> > > linux-arm-kernel@lists.infradead.org; devicetree@vger.kernel.org;
+> > > linux-kernel@vger.kernel.org
+> > > Subject: Re: [PATCH v6 02/10] PCI: imx6: Add ref clock for i.MX95 PCIe
+> > >
+> > > On Fri, Nov 01, 2024 at 03:06:02PM +0800, Richard Zhu wrote:
+> > > > Add "ref" clock to enable reference clock. To avoid the DT
+> > > > compatibility, i.MX95 REF clock might be optional.
+> > >
+> > > Your wording is not correct. Perhaps you wanted to say, "To avoid
+> > > breaking DT backwards compatibility"?
+> > >
+> > Yes, you're right. Thanks.
+> > 
+> > > > Replace the
+> > > > devm_clk_bulk_get() by devm_clk_bulk_get_optional() to fetch
+> > > > i.MX95 PCIe optional clocks in driver.
+> > > >
+> > > > If use external clock, ref clock should point to external reference.
+> > > >
+> > > > If use internal clock, CREF_EN in LAST_TO_REG controls reference
+> > > > output, which implement in drivers/clk/imx/clk-imx95-blk-ctl.c.
+> > > >
+> > > > Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> > > > Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> > > > ---
+> > > >  drivers/pci/controller/dwc/pci-imx6.c | 19 +++++++++++++------
+> > > >  1 file changed, 13 insertions(+), 6 deletions(-)
+> > > >
+> > > > diff --git a/drivers/pci/controller/dwc/pci-imx6.c
+> > > > b/drivers/pci/controller/dwc/pci-imx6.c
+> > > > index 808d1f105417..bc8567677a67 100644
+> > > > --- a/drivers/pci/controller/dwc/pci-imx6.c
+> > > > +++ b/drivers/pci/controller/dwc/pci-imx6.c
+> > > > @@ -82,6 +82,7 @@ enum imx_pcie_variants {
+> > > >  #define IMX_PCIE_FLAG_HAS_SERDES		BIT(6)
+> > > >  #define IMX_PCIE_FLAG_SUPPORT_64BIT		BIT(7)
+> > > >  #define IMX_PCIE_FLAG_CPU_ADDR_FIXUP		BIT(8)
+> > > > +#define IMX_PCIE_FLAG_CUSTOM_PME_TURNOFF	BIT(9)
+> > > >
+> > > >  #define imx_check_flag(pci, val)	(pci->drvdata->flags & val)
+> > > >
+> > > > @@ -98,6 +99,7 @@ struct imx_pcie_drvdata {
+> > > >  	const char *gpr;
+> > > >  	const char * const *clk_names;
+> > > >  	const u32 clks_cnt;
+> > > > +	const u32 clks_optional_cnt;
+> > > >  	const u32 ltssm_off;
+> > > >  	const u32 ltssm_mask;
+> > > >  	const u32 mode_off[IMX_PCIE_MAX_INSTANCES]; @@ -1278,9
+> > +1280,8
+> > > @@
+> > > > static int imx_pcie_probe(struct platform_device *pdev)
+> > > >  	struct device_node *np;
+> > > >  	struct resource *dbi_base;
+> > > >  	struct device_node *node = dev->of_node;
+> > > > -	int ret;
+> > > > +	int ret, i, req_cnt;
+> > > >  	u16 val;
+> > > > -	int i;
+> > > >
+> > > >  	imx_pcie = devm_kzalloc(dev, sizeof(*imx_pcie), GFP_KERNEL);
+> > > >  	if (!imx_pcie)
+> > > > @@ -1330,7 +1331,10 @@ static int imx_pcie_probe(struct
+> > > platform_device *pdev)
+> > > >  		imx_pcie->clks[i].id = imx_pcie->drvdata->clk_names[i];
+> > > >
+> > > >  	/* Fetch clocks */
+> > > > -	ret = devm_clk_bulk_get(dev, imx_pcie->drvdata->clks_cnt,
+> > > imx_pcie->clks);
+> > > > +	req_cnt = imx_pcie->drvdata->clks_cnt -
+> > > imx_pcie->drvdata->clks_optional_cnt;
+> > > > +	ret = devm_clk_bulk_get(dev, req_cnt, imx_pcie->clks);
+> > > > +	ret |= devm_clk_bulk_get_optional(dev,
+> > > imx_pcie->drvdata->clks_optional_cnt,
+> > > > +					  imx_pcie->clks + req_cnt);
+> > >
+> > > Why do you need to use 'clk_bulk' API to get a single reference clock?
+> > > Just use devm_clk_get_optional(dev, "ref")
+> > It's easier to add more optional clks in future. I can change to use
+> > devm_clk_get_optional(dev, "ref") here if you insistent.
+> Since the clock fetch is not distinguished by platforms explicitly.
+> devm_clk_get_optional(dev, "ref") can be used only when i.MX95 specification
+>  is added.
+> -       ret |= devm_clk_bulk_get_optional(dev, imx_pcie->drvdata->clks_optional_cnt,
+> -                                         imx_pcie->clks + req_cnt);
+>         if (ret)
+>                 return ret;
+> +       for (i = 0; i < imx_pcie->drvdata->clks_optional_cnt; i++) {
+> +               imx_pcie->clks[req_cnt + i].clk = devm_clk_get_optional(dev,
+> +                               imx_pcie->drvdata->clk_names[req_cnt + i]);
+> +               if (IS_ERR(imx_pcie->clks[req_cnt + i].clk))
+> +                       return PTR_ERR(imx_pcie->clks[req_cnt + i].clk);
+> +       }
+> 
+> Or
+> -       ret |= devm_clk_bulk_get_optional(dev, imx_pcie->drvdata->clks_optional_cnt,
+> -                                         imx_pcie->clks + req_cnt);
+>         if (ret)
+>                 return ret;
+> +       if (imx_pcie->drvdata->variant == IMX95) {
 
---g6qhxoz5xykc4ajk
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v5 7/8] iio: adc: ad7606: Add iio-backend support
-MIME-Version: 1.0
+Why do you need this check? If there is no clock, devm_clk_get_optional() will
+return NULL, so you can just do IS_ERR() without any checks.
 
-On Tue, Oct 15, 2024 at 01:56:20PM +0000, Guillaume Stols wrote:
-> @@ -640,6 +665,14 @@ static int ad7606_read_raw(struct iio_dev *indio_dev,
->  	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
->  		*val =3D st->oversampling;
->  		return IIO_VAL_INT;
-> +	case IIO_CHAN_INFO_SAMP_FREQ:
-> +		/*
-> +		 * TODO: return the real frequency intead of the requested one once
-> +		 * pwm_get_state_hw comes upstream.
-> +		 */
-> +		pwm_get_state(st->cnvst_pwm, &cnvst_pwm_state);
-> +		*val =3D DIV_ROUND_CLOSEST_ULL(NSEC_PER_SEC, cnvst_pwm_state.period);
-> +		return IIO_VAL_INT;
->  	}
->  	return -EINVAL;
->  }
+- Mani
 
-Being late to the party as the patch is already applied:
-
-ad7606_set_sampling_freq() uses DIV_ROUND_UP_ULL to determine the period
-=66rom freq. So I guess you should a down-rounding div here to calculate
-freq from period.
-
-Having said that, pwm_get_state_hw() is in mainline and will be included
-in v6.13-rc1.
-
-Best regards
-Uwe
-
---g6qhxoz5xykc4ajk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmdAs78ACgkQj4D7WH0S
-/k5jlAgAirnhx9PpmZaNqFxVmISvdk94dasdcSLa7jDqkiXnNJ0oxpyUVc8lm0N6
-NNMqQZbz66q+mmza4KXN1Oz+TPgQqZApnnp58F6ECUpurA6vgB4anXwBqiN0v8PZ
-/zklo+JiCsfLuu3fkM9raKXBxRQh4xJm7PM7WTK15vzsfJCeMANwixBroV6qYtij
-qj2TqzB1yhXmvt7jk4Wk6saLFPB03OHxEbY1QFFOorBXvx6vatRfTaRKTRf2HT9i
-FAjJsluo4KiVaHYhHJwNebI0BiVzIeYKGcda4qTKoDabKW9Xu6Ikt/v2nOcAvuC9
-z5qCVuQ/q08owpk8L41RdCHFLS5W1g==
-=Cj6w
------END PGP SIGNATURE-----
-
---g6qhxoz5xykc4ajk--
+-- 
+மணிவண்ணன் சதாசிவம்
 
