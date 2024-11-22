@@ -1,138 +1,223 @@
-Return-Path: <devicetree+bounces-123835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0B4B9D6412
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 19:19:49 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 621989D642E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 19:29:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 22AFEB2138C
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 18:19:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AB931B20DF4
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 18:29:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74D7E1DF968;
-	Fri, 22 Nov 2024 18:19:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B50421DF96B;
+	Fri, 22 Nov 2024 18:29:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="sxuc5hLi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oiK+1IHj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BEFC5FDA7
-	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 18:19:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8591315CD60;
+	Fri, 22 Nov 2024 18:29:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732299582; cv=none; b=dfpfyp8c6uwT/jlwLUudzsk4dPpKsxqkr6yMgAOqLWFfCxVM4EJs1y4xaTSGz/AYpVrFj6JYT3oGLEnOsUS2hFoQZXPrmVQ6r0jWsMzDwUdj9WbZDRqjG8TmQhy9E5p2vvkOCpkRyH8FCuzeRIV+TB7qNJNK9xSSGtMKxYxodvU=
+	t=1732300152; cv=none; b=pvga5JImNUYDpvsc+yE3I811rHCOtJlWFQS12u7I7byeCnvSiqAPmhOTkfQujpthasp6k8fyDV0WybSZJVvxBEIZn1Kes0BgiI0lbMTAR1LmqONWFk9mo8oqnj88I1nwqA4TuNSB20SIXxlvdyPcr72F13yKTuzjLyTCw4RFgWY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732299582; c=relaxed/simple;
-	bh=Y/szpWo/ys5eOgrnr/yCWl5Q/XYjOwfcIY1LSn3QnO0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PnglPxh/PKo1uQmgNk8XnsYsPiahbiCj5alB21TAuaDP54Jus/ff0S1qM8YScAndYSgGo2gcmmYNbRgiKq3LyqRgEkq0nFk7XH883F1Yk5ZtZJzSvucPxTtjYni+siLd2zMB+SQXU8JqIbzzlu75Eb3SwGSRc6ILn5MlNuaPrqU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=sxuc5hLi; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4315eeb2601so27741445e9.2
-        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 10:19:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1732299579; x=1732904379; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y/szpWo/ys5eOgrnr/yCWl5Q/XYjOwfcIY1LSn3QnO0=;
-        b=sxuc5hLizFRGzYrNpnpdQYCFmaCjPmH7/F1f47k5NNb+liw4i4SV1n7zH0GwCMqTvK
-         w5a6OPiRFHRZOBsS9qeM6SjYYgaz1FVAjPa19qKY4jfzLEkuy+4BOsDje8+9jmWJaGMt
-         pX29lw8J8R1GN7UGURV6rdnBW2F5CdU7gOuLhVXClgnfQ9XEZXLe0aHWRH3JSZfWU72U
-         K3VNyX9eCjnMpedIdvbthN+QgQ0mfJ7xoBEbaJhMCqjyzfd2aEiIE7ihxZXx9TtU/XSz
-         St6yG0fNmjOl22DHM6SOD/s5UPlvNT9Hir7SvcNO5Qbz8Di3xM1PTgBGmVS2p20OrKLi
-         tE2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732299579; x=1732904379;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Y/szpWo/ys5eOgrnr/yCWl5Q/XYjOwfcIY1LSn3QnO0=;
-        b=k5N2/S7q8K589HAHmTAT0h59nxQBs18zzgzM7LQPu5zjaqqRSeW2siSoLHIh4vpENU
-         xuQuHYy0azSKhvTIi3tF65zLJ0WTZiDvMj2OAzAgKTwcDUcwDmpF0/66wf1DvMlnj934
-         eR9PXkPZGO6wtdX+P7GoVNMIqtmQ5DVqOsAzRLZrHKC1iePD/78F+uJIOtRJzMVWO0q2
-         o5igPmngVFqOmR4U9wYv9wJpKKxHtBQVZwsc6OhXQ+91Wf1yFk2OvUgTbUpQH0314TxT
-         O8EDiQQDjoOLRo1xkd5Nfxx2eAI1fOexCbcx9ltdKju9aSyx/mtgAprV4gkFV29C7o17
-         F0Hg==
-X-Forwarded-Encrypted: i=1; AJvYcCVTMFTXKwMzlQzaw11G+adf2wNHDQgtZHpPH5ylfoMjya1oo3qDo/5UoexNMYkQLzME8puuTLxKENv5@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy4pgGEz66OHHqmeYLamngZskaz0FM0OQLUHv1eRDK8OgY56DEJ
-	/j0CksSaU+u/4vSeOt/mL5/NCEtPxXnkZD8qB5p5+FQPWNbl3om1+Vj2caUFcoo=
-X-Gm-Gg: ASbGncuPpRACVNmIc/0EkPGLZvv64n+LqUtebdMrEUT7tJUCTGgs68nTIa3k18u8vPa
-	UnWG70cZQ41R/nUwevCX1uZ3RJ+tMZ7UTzzHebTdbxk1+t5iFJohnA21g3k2EKJQcU3Q1bwT6W5
-	lubko1MjGm4YahTiX+t7FGaqV3GtKOIOwFqnB2Pr5hTmWL57Tg/0sxHpg7eelDs3bE3gzZRLzwO
-	m14HF19t1FeIAs51git4b3kF8SYyCLWqmFkpkUPv50oXy+Ir3D9O7dTF9T7zUDEQKrr0SUvG8BF
-	f8c=
-X-Google-Smtp-Source: AGHT+IHYgqyxcn7ucR1MIiQZTgSIh6mW4ccnkdqYQzi0krIec0OTdQIPnvkbAwgUxoudmZsboq/NBw==
-X-Received: by 2002:a05:6000:1a8d:b0:382:5141:f63d with SMTP id ffacd0b85a97d-38260bda2bamr3775937f8f.53.1732299578845;
-        Fri, 22 Nov 2024 10:19:38 -0800 (PST)
-Received: from localhost (p509159f1.dip0.t-ipconnect.de. [80.145.89.241])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3825faff9cdsm3040747f8f.28.2024.11.22.10.19.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Nov 2024 10:19:37 -0800 (PST)
-Date: Fri, 22 Nov 2024 19:19:36 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jisheng Zhang <jszhang@kernel.org>, Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
-Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: pwm: marvell,berlin-pwm: Convert from txt
- to yaml
-Message-ID: <nluphhnqls27ebacfskxed77lcxtvoinzd3kozjqbgxsjl23vr@rl6vbrskuoce>
-References: <20241029160837.590199-2-u.kleine-koenig@baylibre.com>
+	s=arc-20240116; t=1732300152; c=relaxed/simple;
+	bh=cpCYLUptjUavyLM1gGDWmsWt7dvqaaPy8JYrWmWGODw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=P/Z1u+SOqU/c54/dT260oXkn5s9DhD7KKuN+pOym+9mxhY93K9pD+5jG1ucpzmDadtKSYastrdnkLMhcCVJ9JKEcsUKIhbaAF7hdHAJswgZR4d9pr6WVcM55WvBIFE4izwNHYhoUSwllf+m3KfqkSeR7VNfG1AzK0ZUo01N1xBY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oiK+1IHj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE507C4CECE;
+	Fri, 22 Nov 2024 18:29:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732300152;
+	bh=cpCYLUptjUavyLM1gGDWmsWt7dvqaaPy8JYrWmWGODw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=oiK+1IHjEVmPx3ggwiGLPVPX4CkYYfW0BijKUkvCxeJ2Z8GJV9v190rn2ahBuPBTR
+	 phYCLMnAPu2MDGKS/HVHvspsGs3Is60lDksCbPOZI1M4BpUApAboyJ7wa3hcI5riMo
+	 KgiD53PxrJzJDKFHb6Vdq2TjEXCpIqJweKS9SCYBG10lw9PcNPHWxikDdGcKjmNIDc
+	 MyB9vfeCaW+51v1Naks4tbJoF10yaBGDBFdyL7/YjrFWvd6Y+OtKzhIF1PdodoyjPv
+	 2agjAygAdSSj0TYMbD8iD4WEpJbnkP2Z7r7MJtiFpl0fK7EK148jUhg+DtBO6yyys8
+	 6nADVm7HsNgEw==
+Message-ID: <a311de1b-cd59-4f67-9bd1-61596a54c8cd@kernel.org>
+Date: Fri, 22 Nov 2024 19:29:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="cwaoxzgjpu3vrxek"
-Content-Disposition: inline
-In-Reply-To: <20241029160837.590199-2-u.kleine-koenig@baylibre.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/4] dt-bindings: iio: adc: adi,ad4000: Add PulSAR
+To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, lars@metafoo.de,
+ Michael.Hennerich@analog.com, jic23@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <cover.1732020224.git.marcelo.schmitt@analog.com>
+ <dd7fd54585e1230d2da86b5e3d4ed770256b0af2.1732020224.git.marcelo.schmitt@analog.com>
+ <5kz6ghe56yiprlvhyduv7olcrajvejyvulcpjav6doiyvr6dcl@6qlt4nebp4gb>
+ <Z0CkOTGhGhfV18OG@debian-BULLSEYE-live-builder-AMD64>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <Z0CkOTGhGhfV18OG@debian-BULLSEYE-live-builder-AMD64>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+On 22/11/2024 16:33, Marcelo Schmitt wrote:
+>>
+>>> +      - items:
+>>> +          - enum:
+>>> +              - adi,ad7942
+>>> +          - const: adi,ad7946
+>>> +
+>>> +      - const: adi,ad7983
+>>> +      - items:
+>>> +          - enum:
+>>> +              - adi,ad7980
+>>> +              - adi,ad7988-5
+>>> +              - adi,ad7686
+>>> +              - adi,ad7685
+>>
+>> Keep alphabetical order.
+> 
+> Do the fallbacks declared here have any impact on the match try order or on how
+> the compatible list should be ordered?
+
+I don't understand, we do not talk about fallbacks. I also do not
+understand at all how this relates to my comment.
+
+> The only significant difference between each group of devices is the sample rate.
+> A faster device can read at slower sample rates so if somebody knows to have
+> a 16-bit pseudo-differential PulSAR but doesn't know about the exact model they
+> could have a compatible like
+>       compatible = "adi,ad7980", "adi,ad7988-5", "adi,ad7686", "adi,ad7685",
+>                    "adi,ad7988-1", "adi,ad7983";
+
+Can't you autodetect this?
+
+> 
+> to try from fastest to slowest device.
+> The dt doc would indicate that order in the fallback list?
+>       - items:
+>           - enum:
+>               - adi,ad7980    # Fastest 16-bit pseudo-differential ADC
+>               - adi,ad7988-5  # 2nd fastest 16-bit pseudo-differential ADC
+>               - adi,ad7686    # 3rd fastest 16-bit pseudo-differential ADC
+>               - adi,ad7685    # 4th fastest 16-bit pseudo-differential ADC
+>               - adi,ad7988-1  # 5th fastest 16-bit pseudo-differential ADC
+>           - const: adi,ad7983 # Slowest 16-bit pseudo-differential ADC
+
+Again, only one fallback here, not sure what are you asking about. BTW,
+DT spec explains compatibles...
+
+> 
+> https://www.analog.com/media/en/technical-documentation/data-sheets/ad7691.pdf
+> has a nice table with the different devices and sample rates.
+> 
+> writing-bindings.rst says "DO use fallback compatibles when devices are the same
+> as or a subset of prior implementations."
+> But, how can we use fallbacks properly?
+
+How DT spec and tutorials like elinux ask... What is exactly the problem
+or question?
+
+> From Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml I'm
+
+How LVDS bridge is related to this one here?
+
+> inferring only one fallback should be provided per group of devices.
+> 
+>>
+>>> +              - adi,ad7988-1
+>>> +          - const: adi,ad7983
+>>> +
+>>> +      - const: adi,ad7688
+>>> +      - items:
+>>> +          - enum:
+>>> +              - adi,ad7693
+>>> +              - adi,ad7687
+>>> +          - const: adi,ad7688
+>>> +
+>>> +      - const: adi,ad7984
+>>> +      - items:
+>>> +          - enum:
+>>> +              - adi,ad7982
+>>> +              - adi,ad7690
+>>> +              - adi,ad7691
+>>> +          - const: adi,ad7984
+>>> +
+>>>    reg:
+>>>      maxItems: 1
+>>>  
+>>> @@ -133,6 +178,32 @@ required:
+>>>    - ref-supply
+>>>  
+>>>  allOf:
+>>> +  # Single-channel PulSAR devices have SDI either tied to VIO, GND, or host CS.
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            enum:
+>>> +              - adi,ad7685
+>>
+>> Why do you need this? It's fallback is already here.
+> 
+> So dtbs_check can provide an error message if for example compatible = "adi,ad7687";
+> and adi,sdi-pin = "sdi";
 
 
---cwaoxzgjpu3vrxek
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH] dt-bindings: pwm: marvell,berlin-pwm: Convert from txt
- to yaml
-MIME-Version: 1.0
+I mean this compatible, not if clause.
 
-Hello,
 
-On Tue, Oct 29, 2024 at 05:08:36PM +0100, Uwe Kleine-K=F6nig wrote:
-> the only addition is the list of maintainers. I optimistically added
-> Jisheng Zhang and Sebastian Hesselbarth as they are the maintainers for
-> the platform containing this type of device. Please speak up if you
-> don't want to be listed.
 
-Objection perioded terminated and applied to
 
-https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git pwm/for-=
-nexxt
-
-as 6.14-rc1 material.
-
-Best regards
-Uwe
-
---cwaoxzgjpu3vrxek
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmdAyzUACgkQj4D7WH0S
-/k7gDgf/XeAncYRqGT88fPlHqsOX01CaslhpkRoAcl9yAaABozqPs5H1dix/F7lA
-5KiOcAzSuYfTdVuke7YK58uTyvLd21PuPFUyXkMEGzOzH4QdxmLdN7Qt7DG4uyxf
-Ru13E9zAr+j5C8XBzQgu2OwZqkAq9Vhxt5tzVu2DbhkA/fEyxcqzkjjLqk+7MTGJ
-LG7mIFNElJ5XQBKprhALxqG8Z6ZTMofnWvcZ6Jf5nPNFmMV48AOS872nCeNF3teb
-5juYTkOHGFt11caUGofNHuIGYYp3tQYLOx60XluY/NL6mbW+tVFC4Q1pzpm5y9Rf
-rnvA6L+T8gNItKdp/lFYYZuiXUKXHw==
-=mtGB
------END PGP SIGNATURE-----
-
---cwaoxzgjpu3vrxek--
+Best regards,
+Krzysztof
 
