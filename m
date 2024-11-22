@@ -1,102 +1,92 @@
-Return-Path: <devicetree+bounces-123830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DA569D62C6
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 18:10:57 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60CA19D62CE
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 18:13:54 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADA4C2822CC
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 17:10:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96A421606DC
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 17:13:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CB3D1DF260;
-	Fri, 22 Nov 2024 17:10:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EE941DF732;
+	Fri, 22 Nov 2024 17:13:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eEHbJ5Cn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nk8/ZEKW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9668A42056
-	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 17:10:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1FEB18AEA
+	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 17:13:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732295452; cv=none; b=Owo9sjHOcWTJxDUrnup3VhaAhu/+2I0mhJQ1uas0TxhGcVFM/6F1ySpcd1FXWuqKNR+XzN9vyVfq8knYGe8TxLIQMSEIPYzLGl7U6UyKqiQ0ZU21NSh9rckxyxbcO3J3g83XTfagcxvFVP3EtV18qKF2Z21y05x316hY3SZEKno=
+	t=1732295628; cv=none; b=hS5qdi8zqMIazPmUhiKLvXBceeu3VgapD3/Yz9fpMoHCmYaPNo68cJ4uQL9jWxPTaimDx1OaXd9NLj3V6Qq7aLr1k8wxnrG5LMODyX9c7jARhCHbYJv+PClmXLGYqaJS+sNk6/Q1KLoHm4vLuzGOG82197P8ie/e+hxSkDwtpPA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732295452; c=relaxed/simple;
-	bh=JSfJBNYEbA8FDDOxY/qXqSPsOBH8pc0lxdl5eHk3OHg=;
+	s=arc-20240116; t=1732295628; c=relaxed/simple;
+	bh=9Utb13MynaifzSiCb+13ADGTdToHf99pkQJS+1gzmyo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VtxO1Yq7xw8Ja+ztjIpqlKWCwp9XkWQHtK1XSyiW23N76ujud1lbn4y30549iKvrUga3vx2CqoYn43k2Znnq782wEMi3BF9r5Z2oPCL7+KswTfPuuiUbTFTIeK8fHU6QqFndCa570fEVervzsEdgT5DmPs4CYL92lqcgkox7fKI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eEHbJ5Cn; arc=none smtp.client-ip=209.85.215.169
+	 Content-Type:Content-Disposition:In-Reply-To; b=L7/tS0wwXv9aqU6qpmqUP9tfdics8puQPJycj4HHN7pnZ5VXKjoPs2vMzuHtzerEmqb5lI/pZ9MeCeNRZCICr6VCUILzCriJxWKK8icehdtAF+G9ydTHMhcDktY3oGRZzrx2BU1wuLlcLDIBsGizHG0H0dbATU2Z9FAcswgarSk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nk8/ZEKW; arc=none smtp.client-ip=209.85.210.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-7eb0bc007edso1631949a12.3
-        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 09:10:50 -0800 (PST)
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-72410cc7be9so2213249b3a.0
+        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 09:13:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732295450; x=1732900250; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1732295626; x=1732900426; darn=vger.kernel.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=m9Rzu/atJszaZiZQ8bphSysVEtM05e/rUjckRGXXQa8=;
-        b=eEHbJ5Cnr2LP8QZElbeawTkXgevrD8ABRlNJvZt1JkG9R+miEgmgPO82jiaFVKeau0
-         sYR9Qa3JIM8DlJuMwGsHosxuRynXh4QW0N4EmYr3ygqHL9zyXOp7JewevuBEPBhbpu2O
-         aYA9Ozni6L4o7LO8v6+UmOCogpUHNooCv5dRIG2YhOHIfkiyxG/VdL/Is7eNt7ePUccd
-         6c/2mxkv9oIeMW5N1VKoWnU0yxuIz/TnhuvOW/wUycHtIbCp+d0RyCcTgGBEb2OIGHZK
-         iMgJDM2WAF7Br9pBVBawATHk1B6eKy+KXtCkqpfURGwyNtZi2beo9VNsFDSo+Y7nav0m
-         Skzw==
+        bh=J3Ifp0rGPbm/e/7rhcYVsj05S6iHCWRwu0XzDIJa52Y=;
+        b=nk8/ZEKW2PV3KjMJXctgOrzTlgaBZUgzJz3Bex6+Zg4TREgegX7hDHKGr90Y1mSOTq
+         eySz0LamewHMbLT9WEoerK6BnyfPr7BbVv+wUIW8kv4WxprTnyf9XPfC98RkQwQJxu5n
+         SW08zcnHCoKpUNLqU54xXPAEbi2UyodstPc12E5k6m3wNIbG37ve+Psgk5X2LJS0oLgS
+         02YPD8Rswdf8+Q+ncJampQ3ceL0PHCwK7V3FhczW38z9sEP5JGPxjU/mB/p8wIWbvXG6
+         yBZVtvd17n0MkUhFghg/MRvrO2A/MtkdyReAym5XpINNNpeVoF+SWq3CQ51BAxQxHQUL
+         NarQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732295450; x=1732900250;
+        d=1e100.net; s=20230601; t=1732295626; x=1732900426;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=m9Rzu/atJszaZiZQ8bphSysVEtM05e/rUjckRGXXQa8=;
-        b=ItgPPEW6xpyYsmWwmBKqeZ1G7agZpwz/7tmbHrnaxAdNhcnd4TNtaJSKo2fKKOL+db
-         4fWUlK6Kk+zmkTZcJ859fndSrxYwCDo5yeMnUTJ7K4aOgrDJxdUXLpGV2AXMbsWZjRXP
-         pf5n50G2vAqSs8ZG0JzK2T3ELlK6M6J6Ti7ge5QJmlIsNeAjrgfAvQxid7UTy8FElpb9
-         3RfVKLhEB89vX8U3sp9zBN2QtAcGLT3KVEszt5ZOFdPqHsJ5K6K6JFWPLqVZOW64iFCF
-         Q0RlbqhPNVNgd9/cH3bNUNUC+ypM6wj+V3OPpbVEagyrE/VDDeDL5AX9o7cDlOTn/DKj
-         myTw==
-X-Forwarded-Encrypted: i=1; AJvYcCWLH1jOnUm4BbE61vE+Fk3MBpUlcsHYzvhZAr4TX9PEYkjYWzKnC9do7ySOs8GCGtmgC2oTHPlQa+XY@vger.kernel.org
-X-Gm-Message-State: AOJu0YyH/WteCO7WlQt5cV8IMat1sxICng7ixd+fDCjds9pd8kdIlbMK
-	tfj4LExd/5OWllyiCbSfXLCfsvvvpaIFRhO+2ZVmjPuSAbyVYl1uu5gicJe1+g==
-X-Gm-Gg: ASbGncuWmq38aYymfo0DPbIzjXIdlX47S6Z4KyXa7wWSI+rhGSjwKQfRVgCfwz/AeMO
-	/Ooj6EwsKOx4kwZSyiBGSynYK3SwOSaYD0jBcqA2CM4f9HyOZSDI/ShYRiMxfsvyV+e8uD5+9Pn
-	gireSV6M9Ws9DWfKUoEqW55+P+oNZRRe+6WUK4qeVqbzezQgBLgySiuuqkP1CpZIQp//NWjQqst
-	47Wr9/F7TFr6kCyXTMe3Cwjl0aCI3qyarkv/JbwI89F2Qz+7Rox3qUFw22y
-X-Google-Smtp-Source: AGHT+IFIhc1R40hXLVSot1qpNb47cXTxZcrRwISXx0lJGKYTEDxVxH0DwKBYDolmma7+CJxTTAgLkQ==
-X-Received: by 2002:a05:6a20:d503:b0:1c6:fb66:cfe with SMTP id adf61e73a8af0-1e09e45ff0emr4838841637.21.1732295449974;
-        Fri, 22 Nov 2024 09:10:49 -0800 (PST)
+        bh=J3Ifp0rGPbm/e/7rhcYVsj05S6iHCWRwu0XzDIJa52Y=;
+        b=DHIITGiPYl/vT60LCy66uUIZ/GMr1anXw9wQguvC/eMQihoIqNAhYDPVZroO2wapCu
+         PA65wVJd0LZNBmlOHNMLl5UX4CZFuFRLkPtC62/VxpV7mgUH/uV7ppP5/0yDx4z5IVxb
+         YXEYJz9EkPMpLm3aB1MQcai/O6AngBZ2mrtaEgplK6mXnKAqe9lRvuoRlL8eU0dm+oeg
+         3Q250/ATv3dbJBm0RGlkIcMyEdOs85yt3iGiRgeGKsHQtMOZHQuaIyFCkum0PbPuRrOO
+         aX3tnN0GnDkzxdCGzTLxgJ23ATiUDzUb4mRCO6OsGQ0qpdy5wu/NkKcLUhYZFfyvDi5k
+         9qcg==
+X-Forwarded-Encrypted: i=1; AJvYcCUSg3sW+rjiaxVmUEuyIYxGZus1hzKc1h9jbZR8PKcRbrL7YV9gZ1NDiBk5HScwGtDInVdM6D+bHTRa@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8at45+z+kwVKh17vlWGudf0ou3EGukKOR9tju9K8BrG31g6XX
+	BdWhEIU7EiLwJzWMhEpiANQ32c7WvkGkLFN/D30kcI7rTRVR0XyyJcieYBEn0A==
+X-Gm-Gg: ASbGncujfvB+iWkfAnbmcd3iRfS/ItzHYHO5vtStAiUxitA+H1PTj4fYmguZRGkXC51
+	1eoeTOl6e43PktCwPcWdXkFZVe9zn2Dsryxoe0MicZJCIjMJB+d1uvmjQyeNUbuYapFPzBRsj1V
+	yPwafunJ4FlHfLPFt+cx3E+ZRwnbUFha3bqDwmv1t1mbrQs6WYLKiukfVub6I/vlT2RDt6siSM5
+	9qW6HzVXSY7k8xR3mWyXLEBhvhTeYS0vpFLG6/ImJ1umCqPWKYH7ArkBj6s
+X-Google-Smtp-Source: AGHT+IFSLoW5PIBSR6LBkAITjbzrM29xeBOvFQPIeej5XJi4ofiDVZntpwn9iotOelT7YjAqhB/X7A==
+X-Received: by 2002:a05:6a00:a8f:b0:724:62b3:58da with SMTP id d2e1a72fcca58-724df5de418mr4726297b3a.6.1732295626152;
+        Fri, 22 Nov 2024 09:13:46 -0800 (PST)
 Received: from thinkpad ([49.207.202.49])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-724de57a562sm1847026b3a.195.2024.11.22.09.10.45
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-724e0fca304sm1684411b3a.175.2024.11.22.09.13.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Nov 2024 09:10:49 -0800 (PST)
-Date: Fri, 22 Nov 2024 22:40:43 +0530
+        Fri, 22 Nov 2024 09:13:45 -0800 (PST)
+Date: Fri, 22 Nov 2024 22:43:40 +0530
 From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Hongxing Zhu <hongxing.zhu@nxp.com>
-Cc: "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-	"bhelgaas@google.com" <bhelgaas@google.com>,
-	"lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-	"kw@linux.com" <kw@linux.com>, "robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"shawnguo@kernel.org" <shawnguo@kernel.org>,
-	Frank Li <frank.li@nxp.com>,
-	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-	"festevam@gmail.com" <festevam@gmail.com>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"kernel@pengutronix.de" <kernel@pengutronix.de>,
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v6 04/10] PCI: imx6: Correct controller_id generation
- logic for i.MX7D
-Message-ID: <20241122171043.j2xh4fvdo6goq7o2@thinkpad>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Richard Zhu <hongxing.zhu@nxp.com>, l.stach@pengutronix.de,
+	bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
+	imx@lists.linux.dev, kernel@pengutronix.de,
+	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 10/10] arm64: dts: imx95: Add ref clock for i.MX95 PCIe
+Message-ID: <20241122171340.4uwlddrwadg3vyz4@thinkpad>
 References: <20241101070610.1267391-1-hongxing.zhu@nxp.com>
- <20241101070610.1267391-5-hongxing.zhu@nxp.com>
- <20241115064321.3cuqng7bzmphiomw@thinkpad>
- <AS8PR04MB8676989276C723C26DADFB5D8C272@AS8PR04MB8676.eurprd04.prod.outlook.com>
+ <20241101070610.1267391-11-hongxing.zhu@nxp.com>
+ <20241115071605.qwy4hfqmrnaknokl@thinkpad>
+ <ZzeE0lR8DGG214qq@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -106,38 +96,46 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <AS8PR04MB8676989276C723C26DADFB5D8C272@AS8PR04MB8676.eurprd04.prod.outlook.com>
+In-Reply-To: <ZzeE0lR8DGG214qq@lizhi-Precision-Tower-5810>
 
-On Mon, Nov 18, 2024 at 02:59:48AM +0000, Hongxing Zhu wrote:
-> > -----Original Message-----
-> > From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > Sent: 2024年11月15日 14:43
-> > To: Hongxing Zhu <hongxing.zhu@nxp.com>
-> > Cc: l.stach@pengutronix.de; bhelgaas@google.com; lpieralisi@kernel.org;
-> > kw@linux.com; robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org;
-> > shawnguo@kernel.org; Frank Li <frank.li@nxp.com>;
-> > s.hauer@pengutronix.de; festevam@gmail.com; imx@lists.linux.dev;
-> > kernel@pengutronix.de; linux-pci@vger.kernel.org;
-> > linux-arm-kernel@lists.infradead.org; devicetree@vger.kernel.org;
-> > linux-kernel@vger.kernel.org
-> > Subject: Re: [PATCH v6 04/10] PCI: imx6: Correct controller_id generation
-> > logic for i.MX7D
-> > 
-> > On Fri, Nov 01, 2024 at 03:06:04PM +0800, Richard Zhu wrote:
-> > > i.MX7D only has one PCIe controller, so controller_id should always be 0.
-> > > The previous code is incorrect although yielding the correct result.
-> > > Fix by removing IMX7D from the switch case branch.
+On Fri, Nov 15, 2024 at 12:28:50PM -0500, Frank Li wrote:
+> On Fri, Nov 15, 2024 at 12:46:05PM +0530, Manivannan Sadhasivam wrote:
+> > On Fri, Nov 01, 2024 at 03:06:10PM +0800, Richard Zhu wrote:
+> > > Add ref clock for i.MX95 PCIe here, when the internal PLL is used as
+> > > PCIe reference clock.
 > > >
-> > 
-> > Worth adding a fixes tag?
-> > 
-> It's originated from commit 2d8ed461dbc9 ("PCI: imx6: Add support for i.MX8MQ")
+> > > Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> > > Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> > > ---
+> > >  arch/arm64/boot/dts/freescale/imx95.dtsi | 18 ++++++++++++++----
+> > >  1 file changed, 14 insertions(+), 4 deletions(-)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
+> > > index 03661e76550f..5cb504b5f851 100644
+> > > --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
+> > > +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
+> > > @@ -1473,6 +1473,14 @@ smmu: iommu@490d0000 {
+> > >  			};
+> > >  		};
+> > >
+> > > +		hsio_blk_ctl: syscon@4c0100c0 {
+> > > +			compatible = "nxp,imx95-hsio-blk-ctl", "syscon";
+> > > +			reg = <0x0 0x4c0100c0 0x0 0x4>;
+> > > +			#clock-cells = <1>;
+> > > +			clocks = <&dummy>;
+> >
+> > What does this 'dummy' clock do? Looks like it doesn't have a frequency at all.
+> > Is bootloader updating it? But the name looks wierd.
 > 
-> How about to add one Fixes tag like this?
-> Fixes: commit 2d8ed461dbc9 ("PCI: imx6: Add support for i.MX8MQ")
+> dummy clock is not used for this instance, which needn't at all. Leave here
+> just keep compatible with the other instance.
+> 
+> Some instance of "nxp,imx95-hsio-blk-ctl" required input clocks. but this
+> one is not, so put dummy here.
 > 
 
-Okay.
+DT should describe the hardware and hardware cannot have dummy clock. If the IP
+requires a clock, then pass relevant clock (even if it is a fixed-clock).
 
 - Mani
 
