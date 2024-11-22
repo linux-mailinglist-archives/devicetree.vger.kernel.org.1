@@ -1,59 +1,68 @@
-Return-Path: <devicetree+bounces-123832-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D68819D62D5
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 18:19:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DE349D640C
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 19:17:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 530C9160E27
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 17:19:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A04B4161A4F
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 18:16:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E01C13B797;
-	Fri, 22 Nov 2024 17:19:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB4561DFE0C;
+	Fri, 22 Nov 2024 18:16:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bnn2Fsuj"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="XfoqYq5M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 108981CD3F;
-	Fri, 22 Nov 2024 17:19:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732295991; cv=none; b=Zuv7Gsu6MGrpA4m12phr2qoVIKsH0Q9q9w5dIFyGOI/KYtAbREAw94u6E7LQALgPNu4f3ruvKD7GojW/l09WuCxt+TkCPLT5Tv9v1WQ03nhnX+xavQir8FiY0BzKvbPrO5WDGhIugFfEE7GSmDVDaMTTzvKadKBR3XOYrh5LRYM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732295991; c=relaxed/simple;
-	bh=waV7+AAb5Y8M9iMdxGMu/fQy+kgyki67VfwPunud9NY=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCD4A1DFE04;
+	Fri, 22 Nov 2024 18:16:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1732299400; cv=pass; b=A52YMzrmAIsuxCGjLUHFEXrvM5kkT8Xp1hOAuHFBxFoBB2x+1qe6C0LfpkBJIjOEsvxdFwwKINYKbHdiciZF34LWSYWpLfqZMvqPp5OFsMk0LR4Lc0z3k9Z3+imr7oemK48A5ydyGKpqhZmTTWXZ186GpD5B+7wm/jCP9mvGrXY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1732299400; c=relaxed/simple;
+	bh=J6fxtSSrpQptw57qRwRrjvXN9CIKBgOIw2j5ghgWmvE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U1SGRO0c/HO4hyYoCHxp5zu5V15WEl8C5Eg4oSkGuOCCOhxIAlEOxELWS+jthUFl9SFWzsEuhnjKJflJnN9zC3q+/AZHaYBaXdp67urHrR/3Bc5o+CuZ/kc6odzkETaV2O0d0CNzj6TZ0TRg5+YErNA/e+5a3T7SbbT+xbMRIZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bnn2Fsuj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16569C4CECE;
-	Fri, 22 Nov 2024 17:19:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732295990;
-	bh=waV7+AAb5Y8M9iMdxGMu/fQy+kgyki67VfwPunud9NY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bnn2FsujabL4JDddq3Wo2K6JOzWq2Dm46woRjGDzm/93AOJvQheqzkR2WnAnm/tgp
-	 AUcueINnU9gfCjIxoqwuj4JEaNeByRZnRJU9qBXRfkoBvMXH7joZV08B5Z08tggI+3
-	 bN/g1BTB6BbaSYZpax1gs+al8kRJWTwaDJYY+kJ1MxXa7gpxVe84rUynYCsDue8jim
-	 55nfU/tEBAuMGABCbr6oXXwYHbFRjg+tArOOLQ5wZAym0g/Y+JwIK2Wfp+8He8HMU/
-	 T7Y/C/vXI30E/CTabFzJjyDTbyZ4iyZhNRiQTSDcWuIBQ/v19VFCVu2a8Iv8K3C7u4
-	 Game0E6FnTTHw==
-Date: Fri, 22 Nov 2024 18:19:46 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, 
-	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Juxin Gao <gaojuxin@loongson.cn>, Huacai Chen <chenhuacai@kernel.org>, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, 
-	Sean Young <sean@mess.org>
-Subject: Re: [PATCH v7 2/2] pwm: Add Loongson PWM controller support
-Message-ID: <6hqpifyfbr5ignvtvsz6p7hkje44xlvbdqwgq5t3ef64kufy3p@2tmp4ftiv42c>
-References: <cover.1729583747.git.zhoubinbin@loongson.cn>
- <66bcb210478df5215e4e31e4f25c25194d6163ca.1729583747.git.zhoubinbin@loongson.cn>
+	 Content-Type:Content-Disposition:In-Reply-To; b=SxT0vF9aWeGrS+iuNz8P0MsRaKS784FBFvT/p4WV3qfJcxgop48tRhFgoOLJLozQNqKwSrw5HAPVVYrdiSlIivAzy24L3o8uRkpHPuhlbsFensZqEQif1jwsmyv0C2JLyCp5ku1quvpEPsnSxS7xHkBKGJuifg1zRi3VRRc0XDQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=XfoqYq5M; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1732299385; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=mWrR/MIIKZNZpZ/6AdRpQLm0JkRVejo7tOKMih3WC6BlYMNy8dZHjhYTz5das4bdLRGL78LyIgDOWIt9flw9jLDXYvEFDmR55jm+fOnh7jNWYjmLPVlVxgTbiAxZJh9KEWusQ6kKxRVe/c8AwIggDicXX88i83sQrtV0CnYyhlk=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1732299385; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=t9pP/PHvr2gDzzkISxCFjGDZOpY33IndDzzlRxuzxkQ=; 
+	b=oCp3eeZD4WUeQ879DZYzGLtozGj360keC4hRwBG35JYsFrUE8QxyaxKuhs4Wa2md4ACMRPOsOTAEPv8jyygw4tJmE/jmRbma/WKpS1uy15PsV3FICLsqaDXSpr2JMddrz+xdzr8JCnyHPe/dWwyGEenHLnHoWsTQ5li6WH6LpjM=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1732299385;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=t9pP/PHvr2gDzzkISxCFjGDZOpY33IndDzzlRxuzxkQ=;
+	b=XfoqYq5M7uwqyIpsohWgrhRdlWGFrMP+UuAr0PvWE1OTZZM7TtKZrEfQeAoezQjN
+	BRu9QY+lNYf7mo5pysaAv67aEt8oxi3JCecT3UaqpRG8Sfqesv57edcyls6laO8dM8u
+	0TZmV33+/Agq1Yu+pvlRgu5QuUpLqahmD0ZKJl/w=
+Received: by mx.zohomail.com with SMTPS id 1732299383586840.2282759601966;
+	Fri, 22 Nov 2024 10:16:23 -0800 (PST)
+Received: by mercury (Postfix, from userid 1000)
+	id 26BDC10604B0; Fri, 22 Nov 2024 19:16:19 +0100 (CET)
+Date: Fri, 22 Nov 2024 19:16:19 +0100
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, quentin.schulz@cherry.de, 
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/2] MIPI DSI phy for rk3588
+Message-ID: <iwmyaf3ygr6kpjfrspox52yt32xbw4vjuwg2ggqi7knr75b542@yldac2lh6dhy>
+References: <20241113221018.62150-1-heiko@sntech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,211 +70,93 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="b6hccmbwih6ueur4"
+	protocol="application/pgp-signature"; boundary="uvan6vjaye2so442"
 Content-Disposition: inline
-In-Reply-To: <66bcb210478df5215e4e31e4f25c25194d6163ca.1729583747.git.zhoubinbin@loongson.cn>
+In-Reply-To: <20241113221018.62150-1-heiko@sntech.de>
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-1.3.1/232.230.92
+X-ZohoMailClient: External
 
 
---b6hccmbwih6ueur4
+--uvan6vjaye2so442
 Content-Type: text/plain; protected-headers=v1; charset=us-ascii
 Content-Disposition: inline
-Subject: Re: [PATCH v7 2/2] pwm: Add Loongson PWM controller support
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 0/2] MIPI DSI phy for rk3588
 MIME-Version: 1.0
 
-Hello,
+Hi,
 
-I now finally comne around to review your patch. Thanks for your
-patience.
+On Wed, Nov 13, 2024 at 11:10:16PM +0100, Heiko Stuebner wrote:
+> This adds the phy driver need for DSI output on rk3588.
+>=20
+> The phy itself is used for both DSI output and CSI input, though the
+> CSI part for the whole chain needs a lot more work, so is left out for
+> now and only the DSI part implemented.
+>=20
+> This allows the rk3588 with its current VOP support to drive a DSI display
+> using the DSI2 controller driver I'll submit in a next step.
+>=20
+> Only generic phy interfaces are used, so the DSI part is pretty straight
+> forward.
+>=20
+> changes in v3:
+> - add Krzysztof review tag to the binding
+> - address Sebastian's review comments
+>   - better error handling
+>   - dropping empty function
+>   - headers
+>   - not using of_match_ptr - this should also make the
+>     test-robot happier
+>=20
+> changes in v2:
+> - fix error in dt-binding example
+> - drop unused frequency table
+> - pull in some more recent improvements from the vendor-kernel
+>   which includes a lot less magic values
+> - already include the support for rk3576
+> - use dev_err_probe
+>=20
+> Heiko Stuebner (2):
+>   dt-bindings: phy: Add Rockchip MIPI CSI/DSI PHY schema
+>   phy: rockchip: Add Samsung CSI/DSI Combo DCPHY driver
+>=20
+>  .../phy/rockchip,rk3588-mipi-dcphy.yaml       |   82 +
+>  drivers/phy/rockchip/Kconfig                  |   12 +
+>  drivers/phy/rockchip/Makefile                 |    1 +
+>  .../phy/rockchip/phy-rockchip-samsung-dcphy.c | 1647 +++++++++++++++++
+>  4 files changed, 1742 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/rockchip,rk3588=
+-mipi-dcphy.yaml
+>  create mode 100644 drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c
 
-On Tue, Oct 22, 2024 at 05:04:15PM +0800, Binbin Zhou wrote:
-> diff --git a/drivers/pwm/pwm-loongson.c b/drivers/pwm/pwm-loongson.c
-> new file mode 100644
-> index 000000000000..4c9b14efadc3
-> --- /dev/null
-> +++ b/drivers/pwm/pwm-loongson.c
-> @@ -0,0 +1,288 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) 2017-2024 Loongson Technology Corporation Limited.
-> + *
-> + * Loongson PWM driver
-> + *
-> + * For Loongson's PWM IP block documentation please refer Chapter 11 of
-> + * Reference Manual: https://loongson.github.io/LoongArch-Documentation/Loongson-7A1000-usermanual-EN.pdf
-> + *
-> + * Author: Juxin Gao <gaojuxin@loongson.cn>
-> + * Further cleanup and restructuring by:
-> + *         Binbin Zhou <zhoubinbin@loongson.cn>
-> + *
-> + * Limitations:
-> + * - The buffer register value should be written before the CTRL register.
+The series works for me on the RK3588 EVB1:
 
-This isn't an interesting point for the high level description. I'd hope
-the driver cares for this implementation detail.
+Tested-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 
-> + * - When disabled the output is driven to 0 independent of the configured
-> + *   polarity.
-> + */
-> +
-> +#include <linux/acpi.h>
-> +#include <linux/clk.h>
-> +#include <linux/device.h>
-> +#include <linux/init.h>
-> +#include <linux/io.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pwm.h>
-> +#include <linux/units.h>
-> +
-> +/* Loongson PWM registers */
-> +#define LOONGSON_PWM_REG_DUTY		0x4 /* Low Pulse Buffer Register */
-> +#define LOONGSON_PWM_REG_PERIOD		0x8 /* Pulse Period Buffer Register */
-> +#define LOONGSON_PWM_REG_CTRL		0xc /* Control Register */
-> +
-> +/* Control register bits */
-> +#define LOONGSON_PWM_CTRL_EN		BIT(0)  /* Counter Enable Bit */
-> +#define LOONGSON_PWM_CTRL_OE		BIT(3)  /* Pulse Output Enable Control Bit, Valid Low */
-> +#define LOONGSON_PWM_CTRL_SINGLE	BIT(4)  /* Single Pulse Control Bit */
-> +#define LOONGSON_PWM_CTRL_INTE		BIT(5)  /* Interrupt Enable Bit */
-> +#define LOONGSON_PWM_CTRL_INT		BIT(6)  /* Interrupt Bit */
-> +#define LOONGSON_PWM_CTRL_RST		BIT(7)  /* Counter Reset Bit */
-> +#define LOONGSON_PWM_CTRL_CAPTE		BIT(8)  /* Measurement Pulse Enable Bit */
-> +#define LOONGSON_PWM_CTRL_INVERT	BIT(9)  /* Output flip-flop Enable Bit */
-> +#define LOONGSON_PWM_CTRL_DZONE		BIT(10) /* Anti-dead Zone Enable Bit */
+Greetings,
 
-Most of these are unused. And you only ever access the CTRL register
-using read-modify-write. So I guess the behaviour of the hardware
-depends on how the bootloader (or boot rom) initialized these bits. I
-would prefer if you could this more deterministic.
+-- Sebastian
 
-> +#define LOONGSON_PWM_FREQ_STD		(50 * HZ_PER_KHZ)
-
-Maybe it's just me, but I think the HZ_PER_KHZ doesn't add readability
-and I would have just done:
-
-	/* default input clk frequency for the ACPI case */
-	#define LOONGSON_PWM_FREQ_DEFAULT	50000 /* Hz */
-
-> [...]
-> +static int pwm_loongson_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-> +			      const struct pwm_state *state)
-> +{
-> +	int ret;
-> +	u64 period, duty_cycle;
-> +	bool enabled = pwm->state.enabled;
-> +
-> +	if (!state->enabled) {
-> +		if (enabled)
-> +			pwm_loongson_disable(chip, pwm);
-> +		return 0;
-> +	}
-> +
-> +	ret = pwm_loongson_set_polarity(chip, pwm, state->polarity);
-> +	if (ret)
-> +		return ret;
-
-Is setting the polarity shadowed in hardware or does it take effect
-immediately? If the latter please mention that the output might glitch
-on reconfiguration in the Limitations section above.. Another
-"opportunity" to glitch is in pwm_loongson_config() above when
-LOONGSON_PWM_REG_DUTY is written but LOONGSON_PWM_REG_PERIOD isn't yet.
-
-> +	period = min(state->period, NANOHZ_PER_HZ);
-> +	duty_cycle = min(state->duty_cycle, NANOHZ_PER_HZ);
-
-period and duty_cycle are measured in nanoseconds. So NSEC_PER_SEC is
-more natural to them than NANOHZ_PER_HZ.
-
-> +	ret = pwm_loongson_config(chip, pwm, duty_cycle, period);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (!enabled && state->enabled)
-> +		ret = pwm_loongson_enable(chip, pwm);
-> +
-> +	return ret;
-> +}
-> [...]
-> +static int pwm_loongson_probe(struct platform_device *pdev)
-> +{
-> +	int ret;
-> +	struct pwm_chip *chip;
-> +	struct pwm_loongson_ddata *ddata;
-> +	struct device *dev = &pdev->dev;
-> +
-> +	chip = devm_pwmchip_alloc(dev, 1, sizeof(*ddata));
-> +	if (IS_ERR(chip))
-> +		return PTR_ERR(chip);
-> +	ddata = to_pwm_loongson_ddata(chip);
-> +
-> +	ddata->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(ddata->base))
-> +		return PTR_ERR(ddata->base);
-> +
-> +	if (!has_acpi_companion(dev)) {
-> +		ddata->clk = devm_clk_get_enabled(dev, NULL);
-> +		if (IS_ERR(ddata->clk))
-> +			return dev_err_probe(dev, PTR_ERR(ddata->clk),
-> +					     "failed to get pwm clock\n");
-> +		ddata->clk_rate = clk_get_rate(ddata->clk);
-
-I guess you rely on the clockrate to not change. So please add a call to
-devm_clk_rate_exclusive_get().
-
-> +	} else {
-> +		ddata->clk_rate = LOONGSON_PWM_FREQ_STD;
-
-I thought that clk_get() also works for devices described by ACPI?
-
-Maybe something like this gives more flexibility:
-
-	ddata->clk = devm_clk_get_optional_enabled(dev, NULL);
-	if (IS_ERR(ddata->clk))
-		return dev_err_probe(...);
-
-	if (ddata->clk) {
-		ret = devm_clk_rate_exclusive_get(...);
-		if (ret)
-			return ret;
-
-		ddata->clk_rate = clk_get_rate(ddata->clk);
-	} else {
-		ddata->clk_rate = LOONGSON_PWM_FREQ_STD;
-	}
-
-and it's conceptually easier given that it doesn't have to care about
-the device being described in ACPI or dt.
-
-Just a suggestion.
-
-> +	}
-> +
-> +	chip->ops = &pwm_loongson_ops;
-> +	chip->atomic = true;
-> +	dev_set_drvdata(dev, chip);
-> +
-> +	ret = devm_pwmchip_add(dev, chip);
-> +	if (ret < 0)
-> +		return dev_err_probe(dev, ret, "failed to add PWM chip\n");
-> +
-> +	return 0;
-> +}
-
---b6hccmbwih6ueur4
+--uvan6vjaye2so442
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmdAvS8ACgkQj4D7WH0S
-/k4Zagf+NKVWJp2/FdYvO+2gSLIpZplN7HRGHvMTNL4jYXyDA8ssDmfdIhCUbV49
-YqCQCNqA2Dsd+7cRhni8/DStvoUhDbUGus/xq46Ks6rv6yvVATzLYrZUxMNofK9Z
-NqilGnCVeKI4UOB0QHVlGDSioB6Pa4MdGsQtr5WIOZnQtd+OMDmymAqP7BL8SBqp
-7GKCIktuIGXm9AyM4oT2FWBVH2aFnp2l7XMK5JtaVzFyyfOCidbim+QNuUblvO1Q
-8zM5cTA32zksTuNz37hO8kYmnjYcqGamQyCP8SmwFSPfC1bKPAWwVFlbX57LEEgW
-IZddwUrQnikQfN3uVsGM+la0jnOZrQ==
-=qUi3
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmdAym8ACgkQ2O7X88g7
++poztw//Q8nMPJS+hjF2Kk1qa3Q6fvMbFbG6oEuQmaFHMvJRRXZ0bS2H8DXEi75o
+D6XHgJTAsk05z6NXwMa8kGwVhL5YYzUHvBlVbDuRmFfVBsCvl+ETVKGnpebcXxkS
+jzn9UcyE+Qt1yrhJ/Q8oAWOHRgbkR+2PvVPsj/mwLNOFejFD1JSil9O+GOjUbFBH
+LETPO0PDdVjRUJUcWF3T31mWOfgFW3njT5tzFx56EX3Nsvrz1aIx9RsD/c1GWN35
+919EZBuXoT7E7nxFAlNEQ/VUtwPbuexd7ejtdoezJaoCHgK8vn3sZckHUjQgMllk
+m9s/V8ILJv/wyDoTkk3Ywn9DgIeWAgFNInCw0fi8/kGlF6Ju9AfIanGD7BHa0WxK
+3JfARYErXMllyv3V/zWjBkKPOrHSg/npZ6bnzC44VVHthoHvkJUez1Vifeh3Nmmr
+k/1VmCmIeBATIK92K8gcsj0tsiIBITDNyrbZsX1jZ+DAI/4jHz1NbOSw0gzezy7e
+WiyqB857c2S3caWftU8nfuFSGk5aKnhB9FZG7SGlQ/ln2jKmmTxmggVu/rBJZwh1
+KzONElwB2FyODDKuxnnQR0sBS30V/nhyovM45tMa5/5nfisut8b1i56lWx1KwmWg
+ey1nGl0SAkZLX4SdWDZd6shlm4+WWrBVfgwBzy2Pp+74P9qvi2U=
+=LZU3
 -----END PGP SIGNATURE-----
 
---b6hccmbwih6ueur4--
+--uvan6vjaye2so442--
 
