@@ -1,169 +1,131 @@
-Return-Path: <devicetree+bounces-123679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AF6A9D5AA1
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 09:06:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40B1C9D5AA6
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 09:07:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 510BC2834B5
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 08:06:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1E601F21CC4
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 08:07:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E59518595E;
-	Fri, 22 Nov 2024 08:06:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C819189B82;
+	Fri, 22 Nov 2024 08:06:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="bl0QVVYP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T/EABDjz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D27E17D8A9;
-	Fri, 22 Nov 2024 08:05:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D05418787C;
+	Fri, 22 Nov 2024 08:06:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732262761; cv=none; b=cEd1DNOW+EcTCpj+ucwnfXFa6QdoVqWmCizftLrkj2heEhoH/SmMG0pZi3dz4RCulao9/1Thnl46TieDa0f/noHHB/TZUcrVPMpQ6UowW4nIQNMUmggGO+slGgYMNHnSxic/SlWqeqf/3s9BSgRbVw3weN1yV5RI9GL07lcWXto=
+	t=1732262815; cv=none; b=lSFjD7sKNFvWER1lF9wG9anvZWYALjAKDedQMlhpVbWvgzkPQjhDnkbcz9bhxP3mhQHd8F0Nt0Ax7IwWv7z1kHvijTmhXtWYdZFjjRUfyNJCjK14Tj3YqWLLDL3FUxyFRmchnObiKLhMPVPITh8qGXOOZ+1NdSs/sFIM0eLnypw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732262761; c=relaxed/simple;
-	bh=x1b5yns0kG4sf7nOEqgzB78tAxBQeRDGz4ZSwFyrogM=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rAYszRrl3RAY1mLkiMzegE6fIBioasQ4lwyhmilMmWNDjP0U8ieCDxTuJDVhqDNdoK5hL2w5+rNxlynTDi/zo4Kmhx31MEu0UBz5mOQ7DNhy0XMpqfkZ7VV9UPSwsVFMB9+Mv2HiXRcRwfz8BRLItDTjo5r7sr2Q/ypgUP8F4hI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=bl0QVVYP; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1732262760; x=1763798760;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=x1b5yns0kG4sf7nOEqgzB78tAxBQeRDGz4ZSwFyrogM=;
-  b=bl0QVVYPkj5Ji2Md8QlfB5AC3k8pG9KvKAIXzVRpVlWuMq8j9BxAEtQ3
-   l8JHuoH9t4UvlogTqNfdEJH4w0fDZ0kD/ho032eKMAPrdrP7IJR+S4DGv
-   3/IEEBecl0dJ7a7Jokt669kD8OmZZ9EAcbZ1m2Q2M2mzV0xa7Zg8cXusU
-   JthnCEyZ0gviaN4pK1mzkdGZtb0IW8u7gUPsYVfthwynio4KUFtHhm5+q
-   iRrDPmTMCyTdJ57XQtxGycHJHkFzd8DmYq7GpfhoCdHsQ4NcZXhHiFeL4
-   EZFCmjTqgYvLI30m+hYsUTNRJkrvXLZFbV1D6KeWDLYSCjExIeh7ASbmQ
-   A==;
-X-CSE-ConnectionGUID: 1R1gq0hdRfOMYCXRCiBJmQ==
-X-CSE-MsgGUID: l0P3LG4iRe6wOxoKJnSVXA==
-X-IronPort-AV: E=Sophos;i="6.12,175,1728975600"; 
-   d="scan'208";a="265826808"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 22 Nov 2024 01:05:59 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 22 Nov 2024 01:05:47 -0700
-Received: from archlinux.microchip.com (10.10.85.11) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Fri, 22 Nov 2024 01:05:45 -0700
-From: Mihai Sain <mihai.sain@microchip.com>
-To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-	<claudiu.beznea@tuxon.dev>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-CC: Mihai Sain <mihai.sain@microchip.com>
-Subject: [PATCH 2/2] ARM: dts: microchip: sam9x75_curiosity: Add power monitor support
-Date: Fri, 22 Nov 2024 10:05:23 +0200
-Message-ID: <20241122080523.3941-3-mihai.sain@microchip.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241122080523.3941-1-mihai.sain@microchip.com>
-References: <20241122080523.3941-1-mihai.sain@microchip.com>
+	s=arc-20240116; t=1732262815; c=relaxed/simple;
+	bh=hEvXNFAbKlLA5ycugqwHzMWIE5TPFsHSStNQ7IozSjQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=n4KALscDHlad1VO6ZeaaOKPtm76c2aKXIYrINurcJPTLLRqlyr+0bHbOnG9VqCUhnA7cIpPdQqijFUSNz+UGokiwOxtOSmb8Jpeyo3VS92vbhhPwLtVODTmw1Tq3BI2hmNH+gOVUYfBbKYcD4d4QZjN10Hv47CkmmTiW9YVKIx4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T/EABDjz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31842C4CECE;
+	Fri, 22 Nov 2024 08:06:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732262814;
+	bh=hEvXNFAbKlLA5ycugqwHzMWIE5TPFsHSStNQ7IozSjQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=T/EABDjzLiFjpLj+4JnD6M1QszY1n9gOuE/Oi96V2wbiUI5SBsZguKCgTGxZlT97x
+	 wLZ9jI808UVyxZyafkDmnkGaBnuq0a8Nild9305CxVDvDa4blb73Zjfsc2sLPAprRL
+	 B8DS0f0w+J72kDw+axG5LNTQ9H1w8965eHdFlb/oo2FlCZdmlb1TmdtlacfHTCop7R
+	 PSUPaZMJSM1DlhoHH8Dcyt5rKk1pl1F+z8phkk2AdGVn0C6bCMoDC3Zfg4cd4gc3td
+	 gamSq+Ehw75+gJ9RqsoR2uH/MZLWUn9Sva3oAesE3JKvam6yhnlROhIe728ebbOJ8c
+	 hBJ8XteHU7hHA==
+Date: Fri, 22 Nov 2024 09:06:52 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc: =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>, 
+	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Ray Jui <rjui@broadcom.com>, 
+	Scott Branden <sbranden@broadcom.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Javier Martinez Canillas <javierm@redhat.com>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Stefan Wahren <wahrenst@gmx.net>, 
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
+	Dom Cobley <popcornmix@gmail.com>
+Subject: Re: [PATCH 00/37] drm/vc4: Add support for BCM2712 / Pi5 display
+ hardware
+Message-ID: <20241122-orthodox-mantis-of-reading-2dcdcf@houat>
+References: <20241023-drm-vc4-2712-support-v1-0-1cc2d5594907@raspberrypi.com>
+ <CAPY8ntBM=34pTiQ=t-CjtYEE5Ax6D=EtiY-sLT1keUkUMXuLeA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="p4qucrakavsqq3j5"
+Content-Disposition: inline
+In-Reply-To: <CAPY8ntBM=34pTiQ=t-CjtYEE5Ax6D=EtiY-sLT1keUkUMXuLeA@mail.gmail.com>
 
-Add PAC1934 support in order to monitor the board power consumption.
-Device is connected on flexcom7 in twi mode.
 
-[root@SAM9X75 ~]$ awk -f pac1934.awk
-VDD3V3 current:   10.675 mA, voltage: 3295.41 mV
-VDDOUT4 current:  5.7625 mA, voltage: 1196.78 mV
-VDDCORE current: 115.442 mA, voltage: 1243.65 mV
-VDDIODDR current: 29.585 mA, voltage: 1345.21 mV
+--p4qucrakavsqq3j5
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 00/37] drm/vc4: Add support for BCM2712 / Pi5 display
+ hardware
+MIME-Version: 1.0
 
-Signed-off-by: Mihai Sain <mihai.sain@microchip.com>
----
- .../dts/microchip/at91-sam9x75_curiosity.dts  | 52 +++++++++++++++++++
- 1 file changed, 52 insertions(+)
+On Thu, Nov 21, 2024 at 03:37:00PM +0000, Dave Stevenson wrote:
+> On Wed, 23 Oct 2024 at 17:50, Dave Stevenson
+> <dave.stevenson@raspberrypi.com> wrote:
+> >
+> > This series adds the required DRM, clock, and DT changes
+> > required to support the display hardware on Pi5.
+> > There are a couple of minor fixes first before the main patches.
+> >
+> > Many of the patches were authored by Maxime whilst working
+> > for us, however there have been a number of fixes squashed
+> > into his original patches as issues have been found. I also
+> > reworked the way UBM allocations are done to avoid double
+> > buffering of the handles as they are quite a limited resource.
+> >
+> > There are 2 variants of the IP. Most Pi5's released to date
+> > have used the C1 step of the SoC, whilst the 2GB Pi5 released
+> > in August is using the D0 step, as will other boards in future.
+> >
+> > Due to various reasons the register map got reworked between
+> > the steps, so there is extra code to handle the differences.
+> > Which step is in use is read out of the hardware, so they
+> > share a compatible string.
+>=20
+> A gentle ping on the patches for clk-raspberrypi (patches 29-33) and
+> Broadcom DT (patches 34-36).
+>=20
+> All the DRM and dtbinding ones are reviewed or acked (thank you!).
 
-diff --git a/arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts
-index d453800f8e35..76d7a756e08c 100644
---- a/arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts
-+++ b/arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts
-@@ -198,6 +198,52 @@ regulator-state-standby {
- 	};
- };
- 
-+&flx7 {
-+	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_TWI>;
-+	status = "okay";
-+};
-+
-+&i2c7 {
-+	dmas = <0>, <0>;
-+	i2c-analog-filter;
-+	i2c-digital-filter;
-+	i2c-digital-filter-width-ns = <35>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_flx7_default>;
-+	status = "okay";
-+
-+	power-monitor@10 {
-+		compatible = "microchip,pac1934";
-+		reg = <0x10>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		channel@1 {
-+			reg = <0x1>;
-+			shunt-resistor-micro-ohms = <10000>;
-+			label = "VDD3V3";
-+		};
-+
-+		channel@2 {
-+			reg = <0x2>;
-+			shunt-resistor-micro-ohms = <10000>;
-+			label = "VDDOUT4";
-+		};
-+
-+		channel@3 {
-+			reg = <0x3>;
-+			shunt-resistor-micro-ohms = <10000>;
-+			label = "VDDCORE";
-+		};
-+
-+		channel@4 {
-+			reg = <0x4>;
-+			shunt-resistor-micro-ohms = <10000>;
-+			label = "VDDIODDR";
-+		};
-+	};
-+};
-+
- &i2s {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_i2s_default>;
-@@ -231,6 +277,12 @@ pinctrl_flx6_default: flx6-default {
- 				<AT91_PIOA 24 AT91_PERIPH_A AT91_PINCTRL_PULL_UP>,
- 				<AT91_PIOA 25 AT91_PERIPH_A AT91_PINCTRL_PULL_UP>;
- 		};
-+
-+		pinctrl_flx7_default: flx7-default {
-+			atmel,pins =
-+				<AT91_PIOC 0 AT91_PERIPH_C AT91_PINCTRL_PULL_UP>,
-+				<AT91_PIOC 1 AT91_PERIPH_C AT91_PINCTRL_PULL_UP>;
-+		};
- 	};
- 
- 	gpio-keys {
--- 
-2.47.0
+If the bindings and DRM patches are all merged, you can merge these at
+least.
 
+Maxime
+
+--p4qucrakavsqq3j5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ0A7lwAKCRAnX84Zoj2+
+doaCAYD4iZV09q1bBU7gjietZumaTJnk/0RYajiLIHHMerpOFe3il/ObO1rzaMBm
+mOT0urABgPae6EbuMjtidxyyV0XhCMisWgYstcv23glemnLPC9awB+uSoIJHPW1e
+2lHvcCHC6A==
+=RgkZ
+-----END PGP SIGNATURE-----
+
+--p4qucrakavsqq3j5--
 
