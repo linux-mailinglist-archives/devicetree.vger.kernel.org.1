@@ -1,154 +1,181 @@
-Return-Path: <devicetree+bounces-123694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123695-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BD539D5B60
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 09:56:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8AFA9D5BBA
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 10:19:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43F781F21BB7
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 08:56:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 08021B223E1
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 09:19:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 723DC1CB528;
-	Fri, 22 Nov 2024 08:56:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AC8018A6C8;
+	Fri, 22 Nov 2024 09:16:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="STjR9WOA"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="qFCbMxfi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 963271C82E3
-	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 08:56:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E040A1386D7
+	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 09:16:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732265794; cv=none; b=jnUrzNAU80XuR1c4TaXjsYrTv9zinB0yBYtiF8WofAPxK9psIOcsgxkG+2Fbqu4Gpup3ETXFPCqPtYT1msfxBlItRVTro1CVTRqfPcXGpI8j6C2cTZqxN+hHZL/mfPHbnguEA3vp6dVzjEXhFmC5hDG9ZKwVNojAi4I+frpnc0I=
+	t=1732266993; cv=none; b=f10KtIjAxX/fkge7kZfrkCcJJ511T8P21Y6+91UmABAy1Q8u/LA5v8B9xVGCUDDeF6xXFKns+roj0uTU2rqPXgqiRmuRVPKPE7d61suBjrmzXnFtVw+lvKMtHPaEu/htUbfxliTUvZPKZf9RYpCtFpVFqqHqYTNxksVb0H7zVjU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732265794; c=relaxed/simple;
-	bh=iDnkUJ6+qKrz4yi0lcczfYKLL8cZ5N7uOIHYPvi8lfk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=nA8f/jfJmqKHaSY05SAKgE9LvpUJzNcatV0Th81kcjpj1wtXLIbsaRBLJgiIG1h/HIsuETvyYv/dk9dBjo8gED/x++cBRAAgNn61pRhDccnpYWpZTXfk0keyyEed/HlRIz3KUjP6Jp7hoWqa3Hd7bMWh2xX7HpxcYOay1sIBoPY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=STjR9WOA; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4314ff68358so2775495e9.1
-        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 00:56:32 -0800 (PST)
+	s=arc-20240116; t=1732266993; c=relaxed/simple;
+	bh=o90CHZRpVvcY6X6OVN0QN/QQm/8RXj3aSZTwO4Uj74k=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=cyqsoJcchMw6KFJU/XxBfaCr4xVs55T26r3x2DQ3PsoSzZw2gkLugAFAyEP+Wi83V02ACD/MLwNQDbYWMkxg4/UQiGP1lvJH/bDEl7CiwGwXJV0/e12w5fwSW9ceFMfHf84un5XY77aE6bYOyOLdLBCm9HnQ8mbNsL8coXkkOFM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=qFCbMxfi; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a9ed7d8c86cso317442166b.2
+        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 01:16:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732265791; x=1732870591; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1732266989; x=1732871789; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=xMexPyi4X/XFWoEQeqC/jUtxuZa+FuBdiAX8hec2Nrk=;
-        b=STjR9WOAU1BhogK0WnpXaPCmSz1cgKONAl7SKKqFCfjsjl32iab+Ee1O1E3aEguSUd
-         U2JJIwWSnM5VrmSt7uMm5JCsXMa1md5h5MEXM700gy4AuFS2xLGqpe+yWyBuDwFeJ4Wu
-         b+W23qE0eJYz/AtXgrMlETP+7WF2dfMd7rw3mYE2WknZktk8Dy5BkVhKhPsGj3bK2Srh
-         J68olxtQw/Ogs5bOpYFE6Nh9NoEZ9RjN8obApoRsO63CeCGbSyGLOuse0oRiVg8hxhJc
-         d4E4RICM+M6A8Jre9OhqYnCDutZtYZ3KV4gj0lHeUWKW4YunDYt/dBhigh+qz2D2g19W
-         yVdw==
+        bh=+cONwVFe9h3jPRUrTJqjZ38mmUsRgHE6KH95XCIxtkE=;
+        b=qFCbMxfipICqZznjHJJTi3JPVwQM1+rUoG1RoLhWVto/t6rg4iPOzxP7L/qE/ow0RG
+         20cknoJWApFdholFhQDMU5W74uQbR8BzA45Ncoz/xBMAZirzt7eNMKC0WgLl5kR6mkkM
+         Tc3gR09pi5IMce91UX3+psDpvWyG3WXBmQvz0kFIGdZm2JaWiR1v4Y1qOMuHuLf2ZX7a
+         FnOTeGUx8r0wvpFZNQit8M/otlCiu+o8TBERIT/n6lqKu5viH2YYs2qgQPl5nMRXxapi
+         kHvy+LGGSxoXFC+1b20VX0MDtXLAwmDIiIGx0CATQ0c2FzZth8xkCQXRRh7Lh00wekuY
+         4pIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732265791; x=1732870591;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1732266989; x=1732871789;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=xMexPyi4X/XFWoEQeqC/jUtxuZa+FuBdiAX8hec2Nrk=;
-        b=v7K600kHKgdOprPmSLyu4WHwAOsFdKrvygs2ZH1CfMk8tvPPOYYceYZIXPV23y6L37
-         JCI2P4YxYf3F85VkWhTWMObfZtAa/gDb5CS7kJm5eW5LC2ziRbCiNqFutFiQT3ntggpY
-         pfB1T8CQEF2Xa/pWzLIa0GdnOd0Npop0ZrmPzzUsjYlylrmTzcuPqQeqOfxvZs6torS7
-         jW2n0ky/cEULsjOhhjc+Cgm0IiTf5ld2jVQycipS+D5WFlcZA+jIopFGQdXyYT0l3LjN
-         7UfBPwwfBAGrrVIvEwmWcDZYUYMcrEcFOdkPAZZUTaRCIiXT2r+ShxvPElmuHT8sByad
-         aUQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX8033JcwOqCnf1w2gsoQZHyrkDp2NKddgLZhxzYNxxhukLq8iPHhIemGpNEQpOMt8t9uQU8qxmy7qS@vger.kernel.org
-X-Gm-Message-State: AOJu0YwptqRaqhnvzW5Pe5hwLiB1qQl0J0pvnS0UqMcjHmEV7c4cMV0I
-	nRcFIPDKEamRSxcscmt+1+05QA/u4WO81anARezhKx2xHtNxhGjvhngHWtIVJug=
-X-Gm-Gg: ASbGnctkUV2UJTVH8mrQWBWt84IR/ACx8L36ywKvOV/1zUTyx4BAgzAxJVdL7gI8TWh
-	CBT5s5lVjTIBiKSZhhbWJm2XlCcmDjgcYvei2Xpsw5KsoR72dwHMR+WXRwNn0jZn4mpgx2zHAIG
-	X8uQfGgmNBr3uRhpqmEKyvSqf3IqL5Y++YKtXaCBqhfY5L3CKnG9ulyAjY4+FkmDKjssU28TOxe
-	8hcMiZcvklJ8zB+CMVwM0Gjuo9Mh/udTEGvxJbllpSe/Xbx2XyD2LqR51p82lmE
-X-Google-Smtp-Source: AGHT+IGkV8XGhRtLXA/2oeLLvXbpa9yNqrwoZ1wN+JqNTZm6ToUQ8b+at7MqfHbeoQ8SEFNb6oTHFA==
-X-Received: by 2002:a05:6000:4028:b0:382:4e71:1a12 with SMTP id ffacd0b85a97d-38260b465d0mr560916f8f.1.1732265790809;
-        Fri, 22 Nov 2024 00:56:30 -0800 (PST)
-Received: from krzk-bin.. ([178.197.211.167])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-433cde97c68sm20320695e9.36.2024.11.22.00.56.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Nov 2024 00:56:29 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	linux-arm-msm@vger.kernel.org,
-	linux-remoteproc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] remoteproc: qcom: pas: Add SM8750 MPSS
-Date: Fri, 22 Nov 2024 09:56:23 +0100
-Message-ID: <20241122085623.19988-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241122085623.19988-1-krzysztof.kozlowski@linaro.org>
-References: <20241122085623.19988-1-krzysztof.kozlowski@linaro.org>
+        bh=+cONwVFe9h3jPRUrTJqjZ38mmUsRgHE6KH95XCIxtkE=;
+        b=ojrQ4Sbop2pvYV7+MTj9tMCnFEhJ2GTwVHF3JqwvpKNMVDWSgCL59pg6hJGCaoimZg
+         hfNqKxQIZaQH7eSQZbVbAfZKDbh9JaKLW+ppNWkmf0gjozbKBuBZasvdsTgUn+mMZvqp
+         GrccnCzc8kvNqufNcNMUmND1cGo/tPWhBlcdYSEJGvrJzrmrU1Zr9/V3cx0drqDrFcNB
+         avESKPl97YrRNQIkjMXp4yaKcLr3WafMsyF59M27efsDDzKwWNyG9ty30wF1btmRwLj9
+         hBl1lCV6qd6E0epyVgElA+GczWR/fEr2Sbe2Qy/dxtCZ7Fnf1ZPhZ9ADmk+SaQPZN2KT
+         v5FQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXFh+TeJD44R0nDfGyK3A5T1jpR6Tz8P2yRDuemGdhNaHmLWY8XR8SYCKlReb2AIQL+jrtGD8XoE07A@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx76k6gTOHHrI+z61pjTkJx0KYajz6HYXcmzyk+lXNvXPhdteDE
+	BlzyI1n9PSEnGV1FdbepePM50DTy+FOxauFO3cuYgKnJaOBLfJbRsei9WBP7y+TNiVzHgPKeVo9
+	pEqAJm1luO/vZvpJgBOZnIKwxgvdGvFkV2WgtNQ==
+X-Gm-Gg: ASbGncsCwX++GHHy4N3R0tNhcTgfjhTYnmAusBWS2qOnCLT4RprIngp2ram+rh94gqL
+	GLTf0KB4mAFGMDcCaTWBTm+OjBcwlyQ==
+X-Google-Smtp-Source: AGHT+IGBIJn2l6iW1Ximwej5Nomk1X6Bfwt6JsYUR9VUOC3nDn5WmX59qNhA/dgRca4VNr6bv6dLyhB1J1APS3de4mI=
+X-Received: by 2002:a17:906:3101:b0:a9a:dc3:c86e with SMTP id
+ a640c23a62f3a-aa50990b1aamr172667166b.11.1732266989281; Fri, 22 Nov 2024
+ 01:16:29 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20241121-add-mtk-isp-3-0-support-v7-0-b04dc9610619@baylibre.com>
+ <20241121-add-mtk-isp-3-0-support-v7-4-b04dc9610619@baylibre.com> <85ab1984c04b1eddbea71006ab5d95cb4333d838.camel@mediatek.com>
+In-Reply-To: <85ab1984c04b1eddbea71006ab5d95cb4333d838.camel@mediatek.com>
+From: Julien Stephan <jstephan@baylibre.com>
+Date: Fri, 22 Nov 2024 10:16:18 +0100
+Message-ID: <CAEHHSvaEzCGZt3GpKBNDGUphetR7JWfJ7SZfvAU=O-3M4WZY7w@mail.gmail.com>
+Subject: Re: [PATCH v7 4/5] media: platform: mediatek: isp: add mediatek
+ ISP3.0 camsv
+To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
+Cc: "mchehab@kernel.org" <mchehab@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
+	"robh@kernel.org" <robh@kernel.org>, =?UTF-8?B?QW5keSBIc2llaCAo6Kyd5pm655qTKQ==?= <Andy.Hsieh@mediatek.com>, 
+	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, 
+	"laurent.pinchart@ideasonboard.com" <laurent.pinchart@ideasonboard.com>, 
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, 
+	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"paul.elder@ideasonboard.com" <paul.elder@ideasonboard.com>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"fsylvestre@baylibre.com" <fsylvestre@baylibre.com>, "pnguyen@baylibre.com" <pnguyen@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add remote processor PAS loaders for SM8750 MPSS (modem), which differs
-from SM8650 by lack of fifth memory region for Qlink Logging.
+Le ven. 22 nov. 2024 =C3=A0 08:54, CK Hu (=E8=83=A1=E4=BF=8A=E5=85=89) <ck.=
+hu@mediatek.com> a =C3=A9crit :
+>
+> Hi, Julien:
+>
+> On Thu, 2024-11-21 at 09:53 +0100, Julien Stephan wrote:
+> > External email : Please do not click links or open attachments until yo=
+u have verified the sender or the content.
+> >
+> >
+> > From: Phi-bang Nguyen <pnguyen@baylibre.com>
+> >
+> > This driver provides a path to bypass the SoC ISP so that image data
+> > coming from the SENINF can go directly into memory without any image
+> > processing. This allows the use of an external ISP.
+> >
+> > Signed-off-by: Phi-bang Nguyen <pnguyen@baylibre.com>
+> > Signed-off-by: Florian Sylvestre <fsylvestre@baylibre.com>
+> > [Paul Elder fix irq locking]
+> > Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
+> > Co-developed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Co-developed-by: Julien Stephan <jstephan@baylibre.com>
+> > Signed-off-by: Julien Stephan <jstephan@baylibre.com>
+> > ---
+>
+> [snip]
+>
+> > +static void mtk_cam_cmos_vf_enable(struct mtk_cam_dev *cam_dev,
+> > +                                  bool enable, bool pak_en)
+> > +{
+> > +       if (enable)
+> > +               cam_dev->hw_functions->mtk_cam_cmos_vf_hw_enable(cam_de=
+v);
+>
+> Directly call mtk_camsv30_cmos_vf_hw_enable().
+> This has discussed in previous version [1].
+>
+> [1] https://patchwork.kernel.org/project/linux-mediatek/patch/20240729-ad=
+d-mtk-isp-3-0-support-v6-4-c374c9e0c672@baylibre.com/#25966327
+>
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- drivers/remoteproc/qcom_q6v5_pas.c | 25 +++++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
+Hi CK,
 
-diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
-index 97c4bdd9222a..c34b7780f786 100644
---- a/drivers/remoteproc/qcom_q6v5_pas.c
-+++ b/drivers/remoteproc/qcom_q6v5_pas.c
-@@ -1409,6 +1409,30 @@ static const struct adsp_data sm8650_mpss_resource = {
- 	.region_assign_vmid = QCOM_SCM_VMID_MSS_MSA,
- };
- 
-+static const struct adsp_data sm8750_mpss_resource = {
-+	.crash_reason_smem = 421,
-+	.firmware_name = "modem.mdt",
-+	.dtb_firmware_name = "modem_dtb.mdt",
-+	.pas_id = 4,
-+	.dtb_pas_id = 0x26,
-+	.minidump_id = 3,
-+	.auto_boot = false,
-+	.decrypt_shutdown = true,
-+	.proxy_pd_names = (char*[]){
-+		"cx",
-+		"mss",
-+		NULL
-+	},
-+	.load_state = "modem",
-+	.ssr_name = "mpss",
-+	.sysmon_name = "modem",
-+	.ssctl_id = 0x12,
-+	.smem_host_id = 1,
-+	.region_assign_idx = 2,
-+	.region_assign_count = 2,
-+	.region_assign_vmid = QCOM_SCM_VMID_MSS_MSA,
-+};
-+
- static const struct of_device_id adsp_of_match[] = {
- 	{ .compatible = "qcom,msm8226-adsp-pil", .data = &adsp_resource_init},
- 	{ .compatible = "qcom,msm8953-adsp-pil", .data = &msm8996_adsp_resource},
-@@ -1474,6 +1498,7 @@ static const struct of_device_id adsp_of_match[] = {
- 	{ .compatible = "qcom,sm8650-adsp-pas", .data = &sm8550_adsp_resource},
- 	{ .compatible = "qcom,sm8650-cdsp-pas", .data = &sm8650_cdsp_resource},
- 	{ .compatible = "qcom,sm8650-mpss-pas", .data = &sm8650_mpss_resource},
-+	{ .compatible = "qcom,sm8750-mpss-pas", .data = &sm8750_mpss_resource},
- 	{ .compatible = "qcom,x1e80100-adsp-pas", .data = &x1e80100_adsp_resource},
- 	{ .compatible = "qcom,x1e80100-cdsp-pas", .data = &x1e80100_cdsp_resource},
- 	{ },
--- 
-2.43.0
+I forgot about that discussion sorry :/
+I guess you want me to completely remove the  mtk_cam_hw_functions struct?
+In that case, what do you prefer:
+- keep mtk_camsv30_hw.c and put signatures in mtkcamsv30_hw.h and
+include mtk_camsv30_hw.h in mtk_camsv_video.c
+- rename mtk_camsv30_hw.c to mtk_camsv_hw.c (and all functions) and
+put signatures in mtk_camsv_hw.h
 
+Cheers
+Julien
+
+> Regards,
+> CK
+>
+> > +       else
+> > +               cam_dev->hw_functions->mtk_cam_cmos_vf_hw_disable(cam_d=
+ev);
+> > +}
+> > +
+>
+> >
+>
+> ************* MEDIATEK Confidentiality Notice ********************
+> The information contained in this e-mail message (including any
+> attachments) may be confidential, proprietary, privileged, or otherwise
+> exempt from disclosure under applicable laws. It is intended to be
+> conveyed only to the designated recipient(s). Any use, dissemination,
+> distribution, printing, retaining or copying of this e-mail (including it=
+s
+> attachments) by unintended recipient(s) is strictly prohibited and may
+> be unlawful. If you are not an intended recipient of this e-mail, or beli=
+eve
+> that you have received this e-mail in error, please notify the sender
+> immediately (by replying to this e-mail), delete any and all copies of
+> this e-mail (including any attachments) from your system, and do not
+> disclose the content of this e-mail to any other person. Thank you!
 
