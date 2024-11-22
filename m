@@ -1,277 +1,265 @@
-Return-Path: <devicetree+bounces-123711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123724-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F15E19D5C6C
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 10:52:09 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF1929D5CA1
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 10:59:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6EAA11F2290B
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 09:52:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 479C6B231BF
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 09:59:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 556F31DE4D6;
-	Fri, 22 Nov 2024 09:51:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96B5F1C9B84;
+	Fri, 22 Nov 2024 09:59:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="pn26vLy9"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="AEYLFD6b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CA891DB54C
-	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 09:51:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9EDE18A6DC;
+	Fri, 22 Nov 2024 09:59:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732269072; cv=none; b=CCud2Y2ibVQYZV2b9SBvto0uVC7xolW0vqCs7o8MzTdmRP4W08jkhEXDvmZzaxgKZvhu/VfsSv2XQOOjbzEM6oHqlO09eJt0BLvfp1+nK6IGE5t6l9YcQTfq6uy0iUT3j16T/O+gNt7Bpj0k7ihBkvwfjih8QAozfOWOfztEXB0=
+	t=1732269547; cv=none; b=a2g7/HCJKZVvzPYFk/THgsegDubWjhuxgt3gjUJ5NaWu5qyEDz+rRm8Wc/fYexg70B6WskJLgHH6mbHPr+RP83A2ItirpFipCgSQf5ioTyETVmTviL49il9sXdnHBwyzDDYnDpYDz+lHd1iHsX3PcPzgdePStnDlm0dG7Uy6vY4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732269072; c=relaxed/simple;
-	bh=VSxL2vXjFQHEkYh66t3x3efNNjrn4/60enBHM3LZn7c=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LHNnJ5kywFMcB84dIBKIIl6ABKQBPTWbdQ59+xOer5ZQw66GNHvSzduuPUCze3FZm0FJv5Sl1pmRgRiQK9XQyBZgDFMdrUskSFadnY3eREJ7an7MWIr2vaHxgu7Rx3Sw2ApNmYN9xMKzWG90gwIa3PMrXmqeQv4mPoyyJSS6sDk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=pn26vLy9; arc=none smtp.client-ip=209.85.218.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-aa51bf95ce1so44083466b.3
-        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 01:51:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1732269068; x=1732873868; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8CB8WOobi0NsUlzpJw2qyuKbbHXDJo9rU7wn4TqR3oA=;
-        b=pn26vLy9XBOnIcpepV3I0+JeF2xLrDbzCBagHxLQWhHWU1g2f0pnw9K0bCqPPdAyyf
-         XS00YwbkH03Szi927+oNGwa7vAMTbK7nN05mRa6S3F9aqruLK2MfFqm4UGy4hVuoePGZ
-         eJs5jVOqOZCE3sgJOWpfhh3DAdS1WRKjzmlj0oGCAS2pNIMFx16FbtH8MmllHaof4Kvb
-         rXDi3+hrYRqz6Roguh5+3vDYJbsQFMjrWWwbKxLD1UuvMuoF022afCSOZQwAb+9U6qvi
-         27FpIMC64HKOIQaB9mqzLQuzA5mnZ6Jx/b0Zcxrqs2kMWY5p8kKOdwb+KzeRj8JysPks
-         qEPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732269068; x=1732873868;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8CB8WOobi0NsUlzpJw2qyuKbbHXDJo9rU7wn4TqR3oA=;
-        b=X6tEdPfpp/NRoeau9FFPC3cV9MzukaAuOXnNkfYEIxGU8ZNCeHO4cmLv8KonD99FDv
-         Iu/L/tG+DaQbQ+34mjT0EP4inNJ+bCdRVWEVrUF5pcgrGPMmpHK35hkdYxx64+C2/95/
-         KS1/Y/xxiWCrjdyJe8sPgyLoV4QUL4jC/GoUD9dC/b1U9jX4zJo24SjmuhlaQtJMnvll
-         3a3fgkJO26SSlTqX1PQvudtrK9vzokWf60ExJFHOULi23aivO4uMvNwj6YFVBjyfnzMx
-         XS+EIlBsBhCphXbLhx9x2/ex3yzZlG+NDbo0PNp+7SkLQI0nlucgVLfVIPB8YidtxQC8
-         G8+Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWhULlqMzWr8paATQE03/E442Aurazb2rVRZ7aKi4LKz9yGg3Sa/BqFsJdqY1nSUQQZ5Zq1XaFQMwRE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzc3XFBiGUJU1nAHLGJDv6IJTztt2eQ47JWuaMZVJbEkpGf09Gy
-	2IKDteX+H1fzr1KeJ+RyQlXd5iUVoadRlcz0LobgBtFRaOJpGnUDttBLrSF6pee2OqnYCX141w9
-	woFFf4dieJVdUEd3EDOLFi+gOz6yQ8GgWkLdkZg==
-X-Gm-Gg: ASbGncvV/nRWbviaTlgRdiyjvbpXouGTz/55UNc0W7qRl+sIrvftV/nJCoKn6fHcx12
-	VQLZj/i9kEPltskPCOawI/cZd03pEHA==
-X-Google-Smtp-Source: AGHT+IEkU0Mn40THI/AVHurhKWm5N7rlSNrjj7ZiLosKeFVer5SPt3gDYvZssurTE0nVTHMxqmXqPCZcZcDt8ABysRo=
-X-Received: by 2002:a17:907:771a:b0:a9a:5cf8:9e40 with SMTP id
- a640c23a62f3a-aa5099fb9f6mr154285266b.24.1732269068577; Fri, 22 Nov 2024
- 01:51:08 -0800 (PST)
+	s=arc-20240116; t=1732269547; c=relaxed/simple;
+	bh=hWA2D4wHps5pueio3pYCUA1Rqom0bBEVdMwteSrKAFs=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=snus3BpoVdCFt9qSqWJIfiXudzfvx5BgkKWOAZjMslh+DIXZ13yl+L1C4CwcoWRJvl1ckXInPPubtYRn9nrXxLbpey7m7dpj5D4IibjEQ8vX5YjfN19lklMl1KHpA7mkNs4yqwgtqcTqwp8QEtGTc6mlVyXOdvLdyAnT1gnXz0E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=AEYLFD6b; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AM86MwS015290;
+	Fri, 22 Nov 2024 09:58:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=Oo7HikWZjO7o4h8uvE+hBs
+	svbZ8a0Y9HAjNRBm40WBc=; b=AEYLFD6b/ub2x+7u9ki5P2oe+NnhIz46nGyZ23
+	iTMy0KvCvufbCd89ztRohxYjzfupHXqWY1a7HhHCQPjBmI6LdnolwsU3p8lfI91e
+	23SfO8HG1C/Jxby+8210vGJfLLA6vL25a3tv+rfA2QZZJ9QnCaJWn3bqWj1JBlGa
+	SWRGIQkS/CBtMJ2SKwpvZ7I9Xma7K0nB77RJyeSYgKTVapzJOnipUmejEyp6Z+Q2
+	XarQ/pObcQKTV3Ki5mQGoddpsEHIaBkqoYeRjwwLcxzMmgfbwKiRmJ47eO5t/3WZ
+	sEeUy1impFOX4uNbzlF/XrqdPV6MDSA1x8pgjXpkjhy3BjwQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4320y9krgq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 22 Nov 2024 09:58:43 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AM9whGv007649
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 22 Nov 2024 09:58:43 GMT
+Received: from robotics-lnxbld017.ap.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Fri, 22 Nov 2024 01:58:36 -0800
+From: Fange Zhang <quic_fangez@quicinc.com>
+Subject: [PATCH v3 0/9] Add display support for QCS615 platform
+Date: Fri, 22 Nov 2024 17:56:43 +0800
+Message-ID: <20241122-add-display-support-for-qcs615-platform-v3-0-35252e3a51fe@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241121-add-mtk-isp-3-0-support-v7-0-b04dc9610619@baylibre.com>
- <20241121-add-mtk-isp-3-0-support-v7-4-b04dc9610619@baylibre.com>
- <767085562b5efb43f248e8528bb154a6c30d3999.camel@mediatek.com>
- <CAEHHSvaePj2MUg+zgmkpZF4HTj_F9ED0RxuzQr2oOAUJgOieng@mail.gmail.com> <bd73658d8ceac0ce236f08f31065350123056724.camel@mediatek.com>
-In-Reply-To: <bd73658d8ceac0ce236f08f31065350123056724.camel@mediatek.com>
-From: Julien Stephan <jstephan@baylibre.com>
-Date: Fri, 22 Nov 2024 10:50:57 +0100
-Message-ID: <CAEHHSvZLx3MqzK_qheiXm1UsB=i=8f2QbGTpXPkdU2aqUJtvww@mail.gmail.com>
-Subject: Re: [PATCH v7 4/5] media: platform: mediatek: isp: add mediatek
- ISP3.0 camsv
-To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, 
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"paul.elder@ideasonboard.com" <paul.elder@ideasonboard.com>, "mchehab@kernel.org" <mchehab@kernel.org>, 
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "robh@kernel.org" <robh@kernel.org>, 
-	=?UTF-8?B?QW5keSBIc2llaCAo6Kyd5pm655qTKQ==?= <Andy.Hsieh@mediatek.com>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, 
-	"laurent.pinchart@ideasonboard.com" <laurent.pinchart@ideasonboard.com>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "fsylvestre@baylibre.com" <fsylvestre@baylibre.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	"pnguyen@baylibre.com" <pnguyen@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGlVQGcC/52S3YrbMBCFXyX4ehX0LzuU0vdYFiNrRo2obSWSY
+ 7pd8u6V7SwltBdJL2dgvnN0dD6qjClgrg67jyrhHHKIYxnEy65yRzt+RxKgzBWnXDLGOLEABEI
+ +9fad5MvpFNNEfEzk7LJmipT9VMaBaCMRtKuRKVoV2imhDz9Xpde3bU54vhTBaVtWA+ZsV8HD7
+ suqRzn/5Lo+uh8EUpgxkVkSTgQYpi1QaGrzrYBcGN3exeHrovYUSz7LYlQuObRhDFOwfXvLoS0
+ Pb28asyKUNABYg+lq2tGHsIoKzqjZN0rxYms5ac/nX8d4eeS8AGopBNtzpaWWgrCNMIOF8pfhI
+ Qv1Z0rDsAXl4jil2PdLVqI8yoDoOHChPPiniTCRMQJmMrOC6rjWjbOOai7/QnU2IynDEKbDruF
+ Nh9Z3aKxzKLg25YgxhUwgFd5rVFTJ2lZLtY4hTzG9r52e2dqtW0Di4fqu/tCZhvHGSy/v/K0qM
+ /9DpmwrxI38z0IsQInesoZBB3APfNn9h0VeiLw2Ajvtu1o39xav1+tv7Z7s4d4DAAA=
+X-Change-ID: 20241112-add-display-support-for-qcs615-platform-674ed6c8e150
+To: Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar
+	<quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard
+	<mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie
+	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        "Bjorn
+ Andersson" <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, "Li
+ Liu" <quic_lliu6@quicinc.com>,
+        Fange Zhang <quic_fangez@quicinc.com>,
+        "Xiangxu Yin" <quic_xiangxuy@quicinc.com>
+CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1732269514; l=7370;
+ i=quic_fangez@quicinc.com; s=20241014; h=from:subject:message-id;
+ bh=hWA2D4wHps5pueio3pYCUA1Rqom0bBEVdMwteSrKAFs=;
+ b=VX+AvZl0xeQt3wxbfrrHLOeXezFOI+qIgfmeOuw82KJe1LMivhg1oXJhDRm/fYyv2BmRQaVjV
+ GyihA1icA6HDwQCQKyBYiFU6zKyenFkuuTem1QMEd6Haoy/VGiFu7BU
+X-Developer-Key: i=quic_fangez@quicinc.com; a=ed25519;
+ pk=tJv8Cz0npA34ynt53o5GaQfBC0ySFhyb2FGj+V2Use4=
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: XGYdlXSlf7zHHntipg-iiUssa7r6MNeS
+X-Proofpoint-ORIG-GUID: XGYdlXSlf7zHHntipg-iiUssa7r6MNeS
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ phishscore=0 impostorscore=0 suspectscore=0 lowpriorityscore=0
+ mlxlogscore=999 spamscore=0 mlxscore=0 malwarescore=0 clxscore=1015
+ adultscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411220084
 
-Le ven. 22 nov. 2024 =C3=A0 10:49, CK Hu (=E8=83=A1=E4=BF=8A=E5=85=89) <ck.=
-hu@mediatek.com> a =C3=A9crit :
->
-> On Fri, 2024-11-22 at 10:25 +0100, Julien Stephan wrote:
-> > External email : Please do not click links or open attachments until yo=
-u have verified the sender or the content.
-> >
-> >
-> > Le ven. 22 nov. 2024 =C3=A0 09:41, CK Hu (=E8=83=A1=E4=BF=8A=E5=85=89) =
-<ck.hu@mediatek.com> a =C3=A9crit :
-> > >
-> > > Hi, Julien:
-> > >
-> > > On Thu, 2024-11-21 at 09:53 +0100, Julien Stephan wrote:
-> > > > External email : Please do not click links or open attachments unti=
-l you have verified the sender or the content.
-> > > >
-> > > >
-> > > > From: Phi-bang Nguyen <pnguyen@baylibre.com>
-> > > >
-> > > > This driver provides a path to bypass the SoC ISP so that image dat=
-a
-> > > > coming from the SENINF can go directly into memory without any imag=
-e
-> > > > processing. This allows the use of an external ISP.
-> > > >
-> > > > Signed-off-by: Phi-bang Nguyen <pnguyen@baylibre.com>
-> > > > Signed-off-by: Florian Sylvestre <fsylvestre@baylibre.com>
-> > > > [Paul Elder fix irq locking]
-> > > > Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
-> > > > Co-developed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.co=
-m>
-> > > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > > Co-developed-by: Julien Stephan <jstephan@baylibre.com>
-> > > > Signed-off-by: Julien Stephan <jstephan@baylibre.com>
-> > > > ---
-> > >
-> > > [snip]
-> > >
-> > > > +static irqreturn_t isp_irq_camsv30(int irq, void *data)
-> > > > +{
-> > > > +       struct mtk_cam_dev *cam_dev =3D (struct mtk_cam_dev *)data;
-> > > > +       struct mtk_cam_dev_buffer *buf;
-> > > > +       unsigned int irq_status;
-> > > > +
-> > > > +       spin_lock(&cam_dev->buf_list_lock);
-> > > > +
-> > > > +       irq_status =3D mtk_camsv30_read(cam_dev, CAMSV_INT_STATUS);
-> > > > +
-> > > > +       if (irq_status & INT_ST_MASK_CAMSV_ERR)
-> > > > +               dev_err(cam_dev->dev, "irq error 0x%lx\n",
-> > > > +                       irq_status & INT_ST_MASK_CAMSV_ERR);
-> > > > +
-> > > > +       /* De-queue frame */
-> > > > +       if (irq_status & CAMSV_IRQ_PASS1_DON) {
-> > > > +               cam_dev->sequence++;
-> > > > +
-> > > > +               buf =3D list_first_entry_or_null(&cam_dev->buf_list=
-,
-> > > > +                                              struct mtk_cam_dev_b=
-uffer,
-> > > > +                                              list);
-> > > > +               if (buf) {
-> > > > +                       buf->v4l2_buf.sequence =3D cam_dev->sequenc=
-e;
-> > > > +                       buf->v4l2_buf.vb2_buf.timestamp =3D
-> > > > +                               ktime_get_ns();
-> > > > +                       vb2_buffer_done(&buf->v4l2_buf.vb2_buf,
-> > > > +                                       VB2_BUF_STATE_DONE);
-> > > > +                       list_del(&buf->list);
-> > > > +               }
-> > > > +
-> > > > +               buf =3D list_first_entry_or_null(&cam_dev->buf_list=
-,
-> > > > +                                              struct mtk_cam_dev_b=
-uffer,
-> > > > +                                              list);
-> > > > +               if (buf)
-> > > > +                       mtk_camsv30_update_buffers_add(cam_dev, buf=
-);
-> > >
-> > > If buf =3D=3D NULL, so hardware would automatically stop DMA?
-> > > I don't know how this hardware work.
-> > > Below is my imagine about this hardware.
-> > >
-> > > 1. Software use CAMSV_IMGO_FBC_RCNT_INC to increase software buffer i=
-ndex.
-> > > 2. Hardware has a hardware buffer index. After hardware finish one fr=
-ame, hardware buffer index increase.
-> > > 3. After software buffer index increase, hardware start DMA.
-> > > 4. When hardware buffer index is equal to software buffer index, hard=
-ware automatically stop DMA.
-> > >
-> > > Does the hardware work as my imagine?
-> > > If hardware could automatically stop DMA, add comment to describe.
-> > > If hardware could not automatically stop DMA, software should do some=
-thing to stop DMA when buf =3D=3D NULL.
-> > >
-> >
-> > You are right except that dma is not stopped but frames are
-> > automatically dropped by hardware until a new buffer is enqueued and
-> > software uses CAMSV_IMGO_FBC_RCNT_INC to increase the software buffer
-> > index.
-> >
-> > What about adding the following comment:
-> >
-> > /*
-> > * If there is no user buffer available, hardware will drop automaticall=
-y
-> > * frames until buf_queue is called
-> > */
->
-> You say DMA is not stopped. Do you mean hardware still write data into la=
-test buffer which would be dequeued to user space?
-> I think hardware should not write data into the buffer which has been tak=
-e away by user space.
-> I think software should do something to stop DMA. Maybe use mtk_camsv30_c=
-mos_vf_hw_disable() to stop DMA.
->
+This series aims to enable display on the QCS615 platform
 
-No, I said frame is dropped.. It does not write any data.
+1.Add MDSS & DPU support for QCS615
+2.Add DSI support for QCS615     
 
-> Regards,
-> CK
->
-> >
-> > Let me know if that works for you
-> >
-> > Cheers
-> > Julien
-> >
-> > > Regards,
-> > > CK
-> > >
-> > > > +       }
-> > > > +
-> > > > +       spin_unlock(&cam_dev->buf_list_lock);
-> > > > +
-> > > > +       return IRQ_HANDLED;
-> > > > +}
-> > > > +
-> > >
-> > > ************* MEDIATEK Confidentiality Notice ********************
-> > > The information contained in this e-mail message (including any
-> > > attachments) may be confidential, proprietary, privileged, or otherwi=
-se
-> > > exempt from disclosure under applicable laws. It is intended to be
-> > > conveyed only to the designated recipient(s). Any use, dissemination,
-> > > distribution, printing, retaining or copying of this e-mail (includin=
-g its
-> > > attachments) by unintended recipient(s) is strictly prohibited and ma=
-y
-> > > be unlawful. If you are not an intended recipient of this e-mail, or =
-believe
-> > > that you have received this e-mail in error, please notify the sender
-> > > immediately (by replying to this e-mail), delete any and all copies o=
-f
-> > > this e-mail (including any attachments) from your system, and do not
-> > > disclose the content of this e-mail to any other person. Thank you!
->
-> ************* MEDIATEK Confidentiality Notice ********************
-> The information contained in this e-mail message (including any
-> attachments) may be confidential, proprietary, privileged, or otherwise
-> exempt from disclosure under applicable laws. It is intended to be
-> conveyed only to the designated recipient(s). Any use, dissemination,
-> distribution, printing, retaining or copying of this e-mail (including it=
-s
-> attachments) by unintended recipient(s) is strictly prohibited and may
-> be unlawful. If you are not an intended recipient of this e-mail, or beli=
-eve
-> that you have received this e-mail in error, please notify the sender
-> immediately (by replying to this e-mail), delete any and all copies of
-> this e-mail (including any attachments) from your system, and do not
-> disclose the content of this e-mail to any other person. Thank you!
+QCS615 platform supports DisplayPort, and this feature will be added in a future patch
+
+This patch series depends on below patch series:
+- rpmhcc
+https://lore.kernel.org/all/20241022-qcs615-clock-driver-v4-2-3d716ad0d987@quicinc.com/
+- gcc
+https://lore.kernel.org/all/20241022-qcs615-clock-driver-v4-4-3d716ad0d987@quicinc.com/
+- base
+https://lore.kernel.org/all/20241104-add_initial_support_for_qcs615-v5-0-9dde8d7b80b0@quicinc.com/
+- Apps SMMU
+https://lore.kernel.org/all/20241105032107.9552-4-quic_qqzhou@quicinc.com/
+- I2C
+https://lore.kernel.org/all/20241111084331.2564643-1-quic_vdadhani@quicinc.com/
+- dispcc
+https://lore.kernel.org/all/20241108-qcs615-mm-clockcontroller-v3-0-7d3b2d235fdf@quicinc.com/
+- dispcc dts
+https://lore.kernel.org/lkml/20241108-qcs615-mm-dt-nodes-v1-0-b2669cac0624@quicinc.com/
+
+Signed-off-by: Li Liu <quic_lliu6@quicinc.com>
+Signed-off-by: Fange Zhang <quic_fangez@quicinc.com>
+---
+Changes in v3:
+- Add reg_bus_bw for sm6150_data [Dmitry]
+- Remove patch for SX150X defconfig [Dmitry]
+- Remove dsi0_hpd_cfg_pins from ioexp [Dmitry]
+- Remove dsi0_cdet_cfg_pins from ioexpa [Dmitry]
+- Remove tlmm node for ioexp_intr_active and ioAexp_reset_active [Dmitry]
+- Remove qcs615_dsi_regulators and reuse sdm845_dsi_cfg [Dmitry, Konrad]
+- Rename qcs615/QCS615 to sm6150/SM6150 for whole patch [Dmitry]
+- Rename qcom,dsi-phy-14nm-615 to qcom,sm6150-dsi-phy-14nm [Dmitry]
+- Rename qcom,qcs615-dsi-ctrl to qcom,sm6150-dsi-ctrl [Dmitry]
+- Rename qcom,qcs615-dpu to qcom,sm6150-dpu [Dmitry]
+- Rename qcom,qcs615-mdss to qcom,sm6150-mdss [Dmitry]
+- Split drm dsi patch to dsi and dsi phy [Dmitry]
+- Update yaml clocks node with ephemeral nodes and remove unsed include [Dmitry, Rob]
+- Link to v2: https://lore.kernel.org/r/20241113-add-display-support-for-qcs615-platform-v2-0-2873eb6fb869@quicinc.com
+
+Changes in v2:
+- Add QCS615 DP controller comment in commit message [Dmitry]
+- Add comments for dsi_dp_hpd_cfg_pins and dsi_dp_cdet_cfg_pins [Dmitry]
+- Add missing port@1 for connector for anx7625 [Dmitry]
+- Change 0 to QCOM_ICC_TAG_ALWAYS for mdss interconnects [Dmitry]
+- Change 0 to GPIO_ACTIVE_HIGH for GPIO flags [Dmitry]
+- Move anx_7625 to same node [Dmitry]
+- Move status to last in mdss_dsi0 [Dmitry]
+- Rename dsi0_hpd_cfg_pins to dsi_dp_hpd_cfg_pins in ioexp [Dmitry]
+- Rename dsi0_cdet_cfg_pins to dsi_dp_cdet_cfg_pins in ioexp [Dmitry]
+- Rename anx_7625_1 to dsi_anx_7625 in ioexp [Dmitry]
+- Remove absent block in qcs615_lm [Dmitry]
+- Remove merge_3d value in qcs615_pp [Dmitry]
+- Remove redundant annotation in qcs615_sspp [Dmitry]
+- Remove unsupported dsi clk from dsi0_opp_table [Dmitry]
+- Remove dp_hpd_cfg_pins node from ioexp [Dmitry]
+- Splite drm driver patches to mdss, dpu and dsi [Dmitry]
+- Link to v2: https://lore.kernel.org/r/20241014-add_display_support_for_qcs615-v1-0-4efa191dbdd4@quicinc.com
+
+---
+Li Liu (9):
+      dt-bindings: display/msm: Add SM6150 DSI phy
+      dt-bindings: display/msm: dsi-controller-main: Document SM6150
+      dt-bindings: display/msm: Add SM6150 MDSS & DPU
+      drm/msm: mdss: Add SM6150 support
+      drm/msm/dpu: Add SM6150 support
+      drm/msm/dsi: Add dsi phy support for SM6150
+      drm/msm/dsi: Add support for SM6150
+      arm64: dts: qcom: Add display support for QCS615
+      arm64: dts: qcom: Add display support for QCS615 RIDE board
+
+ .../bindings/display/msm/dsi-controller-main.yaml  |   1 +
+ .../bindings/display/msm/dsi-phy-14nm.yaml         |   1 +
+ .../bindings/display/msm/qcom,sm6150-dpu.yaml      | 113 +++++++++
+ .../bindings/display/msm/qcom,sm6150-mdss.yaml     | 250 ++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/qcs615-ride.dts           |  76 ++++++
+ arch/arm64/boot/dts/qcom/qcs615.dtsi               | 186 ++++++++++++++-
+ .../gpu/drm/msm/disp/dpu1/catalog/dpu_5_3_sm6150.h | 263 +++++++++++++++++++++
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c     |   1 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h     |   1 +
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c            |   1 +
+ drivers/gpu/drm/msm/dsi/dsi_cfg.c                  |   4 +-
+ drivers/gpu/drm/msm/dsi/dsi_cfg.h                  |   1 +
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy.c              |   2 +
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy.h              |   1 +
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c         |  21 ++
+ drivers/gpu/drm/msm/msm_mdss.c                     |   8 +
+ 16 files changed, 928 insertions(+), 2 deletions(-)
+---
+base-commit: 929beafbe7acce3267c06115e13e03ff6e50548a
+change-id: 20241112-add-display-support-for-qcs615-platform-674ed6c8e150
+prerequisite-message-id: <20241022-qcs615-clock-driver-v4-2-3d716ad0d987@quicinc.com>
+prerequisite-patch-id: cd9fc0a399ab430e293764d0911a38109664ca91
+prerequisite-patch-id: 07f2c7378c7bbd560f26b61785b6814270647f1b
+prerequisite-patch-id: a57054b890d767b45cca87e71b4a0f6bf6914c2f
+prerequisite-patch-id: 5a8e9ea15a2c3d60b4dbdf11b4e2695742d6333c
+prerequisite-message-id: <20241022-qcs615-clock-driver-v4-4-3d716ad0d987@quicinc.com>
+prerequisite-patch-id: cd9fc0a399ab430e293764d0911a38109664ca91
+prerequisite-patch-id: 07f2c7378c7bbd560f26b61785b6814270647f1b
+prerequisite-patch-id: a57054b890d767b45cca87e71b4a0f6bf6914c2f
+prerequisite-patch-id: 5a8e9ea15a2c3d60b4dbdf11b4e2695742d6333c
+prerequisite-message-id: <20241104-add_initial_support_for_qcs615-v5-0-9dde8d7b80b0@quicinc.com>
+prerequisite-patch-id: 09782474af7eecf1013425fd34f9d2f082fb3616
+prerequisite-patch-id: 04ca722967256efddc402b7bab94136a5174b0b9
+prerequisite-patch-id: 82481c82a20345548e2cb292d3098ed51843b809
+prerequisite-patch-id: 3bd8edd83297815fcb1b81fcd891d3c14908442f
+prerequisite-patch-id: fc1cfec4ecd56e669c161c4d2c3797fc0abff0ae
+prerequisite-message-id: <20241105032107.9552-4-quic_qqzhou@quicinc.com>
+prerequisite-patch-id: aaa7214fe86fade46ae5c245e0a44625fae1bad3
+prerequisite-patch-id: 4db9f55207af45c6b64fff4f8929648a7fb44669
+prerequisite-patch-id: 89ce719a863bf5e909989877f15f82b51552e449
+prerequisite-message-id: <20241111084331.2564643-1-quic_vdadhani@quicinc.com>
+prerequisite-patch-id: 3f9489c89f3e632abfc5c3ca2e8eca2ce23093b0
+prerequisite-message-id: <20241108-qcs615-mm-clockcontroller-v3-0-7d3b2d235fdf@quicinc.com>
+prerequisite-patch-id: 748a4e51bbedae9c6ebdbd642b2fd1badf958788
+prerequisite-patch-id: 72a894a3b19fdbd431e1cec9397365bc5b27abfe
+prerequisite-patch-id: da2b7a74f1afd58833c6a9a4544a0e271720641f
+prerequisite-patch-id: 40b79fe0b9101f5db3bddad23551c1123572aee5
+prerequisite-patch-id: cb93e5798f6bfe8cc3044c4ce973e3ae5f20dc6b
+prerequisite-patch-id: 13b0dbf97ac1865d241791afb4b46a28ca499523
+prerequisite-patch-id: 807019bedabd47c04f7ac78e9461d0b5a6e9131b
+prerequisite-patch-id: 8e2e841401fefbd96d78dd4a7c47514058c83bf2
+prerequisite-patch-id: 125bb8cb367109ba22cededf6e78754579e1ed03
+prerequisite-patch-id: b3cc42570d5826a4704f7702e7b26af9a0fe57b0
+prerequisite-patch-id: df8e2fdd997cbf6c0a107f1871ed9e2caaa97582
+prerequisite-message-id: <20241108-qcs615-mm-dt-nodes-v1-0-b2669cac0624@quicinc.com>
+prerequisite-patch-id: bcb1328b70868bb9c87c0e4c48e5c9d38853bc60
+prerequisite-patch-id: 8844a4661902eb44406639a3b7344416a0c88ed9
+
+Best regards,
+-- 
+fangez <quic_fangez@quicinc.com>
+
 
