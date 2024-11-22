@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-123604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D27109D567B
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 00:57:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D16C99D5689
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 01:05:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 52A90B22F7B
-	for <lists+devicetree@lfdr.de>; Thu, 21 Nov 2024 23:57:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 29483B225D7
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 00:05:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3094D1D9A66;
-	Thu, 21 Nov 2024 23:57:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B01FCA31;
+	Fri, 22 Nov 2024 00:05:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xsN2lZhE"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LlxZxPb1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C1521C9DC9
-	for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 23:57:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F3613C17
+	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 00:05:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732233441; cv=none; b=CBYJ5HLpvH4oIzVOUzh4kzfWKRRlKaAksk1DDIiQ4RBkDxySkViQh+voup/6557Iz0992Q+jyn1KF8O/zLCARJIz5pdzi38g9txWBV98hzlsLeqDNHx/QCV+si05tKXtR8Ye/FrzrX42/Hutvln1HrlM+7AslKR1fGZhLMEyQok=
+	t=1732233941; cv=none; b=ujhFTWKNvNvbcsNVvaoZdOVbXqJWqj8D7I7HD3diSuNpcKqG4lCNlBwiygLmG++dOSFPcMLrdPdCGZwlpeGPI9opakPPPqmFCzshplkwwMFYC0tjTLfGnIx1+oyAaBCVgZn508VyHzDplnD2EFqVTW4ou8BYnOyIGXYiayihj3A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732233441; c=relaxed/simple;
-	bh=UMOpRKdbXrU4NoO+Ttp5Od2ly8k7VvCMhCAhmP5R6P4=;
+	s=arc-20240116; t=1732233941; c=relaxed/simple;
+	bh=g3qyTejlxBsm7CcUloGJMGfZgM/UjN7NBBtoVLDD+CQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=okSYyPU2ICx5EcrgNhH2uXQ/ZMs2bzkA19ooKTaZUDI0gxwzXp5IKR0OWQw0H06chNB9fSIUK4NcrRan7czH5Uoy7t/4MNPcZIzP6F/xtEQ7xtPCjjZnzwjBXNXCM+6nBeKKvfroFF9wcEIjRmN0Bf8e3m6T6gdK+a91LG7INT4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xsN2lZhE; arc=none smtp.client-ip=209.85.167.41
+	 Content-Type:Content-Disposition:In-Reply-To; b=UzdTB5bAVR2pZTlMaUPHbbPtxPR40yTDoAmecHeIaeICRQeez4hZyDn/C1SuLfX39D1b+b5J+EIrs9z6tv6buFOOcyNmC/pbauY4tDpaIPYnvEeSHeJEaY9RnSWHPGf471rX2daRi/VBsiXCJHzfVLkaBadbeoaTt6OUKXNeWi4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LlxZxPb1; arc=none smtp.client-ip=209.85.167.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-539f84907caso1629026e87.3
-        for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 15:57:18 -0800 (PST)
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-53d9ff8ef3aso1816036e87.1
+        for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 16:05:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732233436; x=1732838236; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1732233937; x=1732838737; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=FGZRbTR/uK+ftQ2TfPgufc2P+z5Ye/l5g2WR5F5d4JQ=;
-        b=xsN2lZhEjxXAohLSxNO/BfjqGK7hbvrD8iodSQjRcXisrpqkq0t5dISYgk2zL2IG7W
-         8x17ia2DKt54LtQjvSjT3F2OeUEr50JdUU5e+D/z5u5QtuYS2nO91En6hLVyenKY6lNd
-         KLEw6/uXV1v+Suwg+AOjb+MAee6WZVa4Rtj3AUYXTPtY1EnC4aMjgjUOxMVWr9k4suHC
-         iGjdYgJ5jGECXv4JRvMhDoezubeVpoblX6a2a0o7/mMP/rrIqQCN5khkZD0KnOt+j0iq
-         ZfQ8mH/QVoiXkZKSyBvAQFrNOc8RMO6L5hZZEw9xPc9M1zcR9xJNH9G8JML2tJFEiuX7
-         GsEA==
+        bh=1KAyJQfZm0CmYLeM6T1KNFUS7Aq70PuFpi7a8qa4S44=;
+        b=LlxZxPb1Rt8I2WwAyk+RMQ6UvpB8IzUcQvd9ScCza0LZTquBS6HnbvLElpnmcyanv8
+         YzvXmwgJdJOlVO3KaGsV6zrPUvPsv88kQE36Ei2tIGGQ7/sKuc+atlUvDZvVKOnlZNrD
+         hIk7Z55MeeFebpqIUt9bO5I0Jyj2KUNmzNdcC4xlzeOsBG96pM6h9//1zBZ7xlRQi5hH
+         7sPjk6SOVLyLzsbEuCF4Od+H7NNWkjTPxFBK8VWFuHAZ2Vy21PT4UtGvzsNzRvV35iDv
+         0Aaelw/PFBpB8XWb76cLaWMAac/XaN6980HFG7agH2HRnLhs8Zqzuao9Z/CZJhdLnz86
+         NVew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732233436; x=1732838236;
+        d=1e100.net; s=20230601; t=1732233937; x=1732838737;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=FGZRbTR/uK+ftQ2TfPgufc2P+z5Ye/l5g2WR5F5d4JQ=;
-        b=OMogrNXXaX/oxLZ/fI6WZnzEWbiqrgBqY+rVoe6ai0EECSbi7R2Xrm6EqUG0GWqykj
-         YwZTy80vR/0k7ItLOo/YlB2m0Rew9TGXdU5b30e6XGUq91OCtDXlzNZGVIHlixUrpdjY
-         khpprf/Oj6F3f97A6mqcmgupXNge3LxYAt2es95euOhcECD+u1gK5WECIzm1kOlfmSkR
-         pHOR0MChYFgk195ZbT6fHoCcroDcJ3TxUTC9Bz5Rs/at/YfVSVVhmTHsdTeMh/3L97O/
-         BTDzRBL3al7aUt3zSTwDCKcG0fhZGn2qOHLX+Bv7Z9+OrVw4Qs1cQ00062sFDS3QmnGb
-         iUIw==
-X-Gm-Message-State: AOJu0YyfXv/V9jco8i/vedcgzlrPtxAEaDozmYnfLkK74VKD6h5yK7Yq
-	8xyDvHcxn9H27pJw7AbJGbDxcS/cw+keYfy9DrSgtsPVnzzj7HYr8Vhoa+c3ov0=
-X-Gm-Gg: ASbGncuPbq5C6Mt39nyG9oYw6KCD+4pTz7goxtMdm50T7q6sXnVkS7UnwathqnB2cIB
-	mUr/EdfCZkbtcDP3CYbnJ9zkopnLxZdGVqQuUwacjKHmU/Hzwl6jlHRg8JhaDqVfZU4FWii3up8
-	RNeIH4dmD9H2j1rBSP1atOyawF2Qx0jlInakiHbLnThUCrr0uToFl4ZtGbAGGE/iUOKo5siUdoz
-	qexDtkj5ysu+M2Bh7DMVrNTUnS867fHKNMdbWl1Mv+mlOjYM9BrY8IjIf/i8+k4YwkG+YZ54EJi
-	qBR0sjALTIqUh5lRk4CpSasG0FSlgA==
-X-Google-Smtp-Source: AGHT+IEmXbDQJcAUYj6lojIiC9JM4M4ujCCevK4TnX7twcBWShy1O7UHHnGrFWe77gpB0XWeTqJyWw==
-X-Received: by 2002:a05:6512:b10:b0:539:adb0:b91 with SMTP id 2adb3069b0e04-53dd3ab11a5mr254370e87.57.1732233436333;
-        Thu, 21 Nov 2024 15:57:16 -0800 (PST)
+        bh=1KAyJQfZm0CmYLeM6T1KNFUS7Aq70PuFpi7a8qa4S44=;
+        b=f4Pk+NnbDxC/pAcl0DO9ovhUMBpvHM0Lkx9p3910VFCmxMFSo5FQnn2XNs1ww/kY20
+         1BrD6CDSgOhHz3ykR93Hqz0YFIIUEzMjqp/xGwAT4Eyfz8eHMDQLQWzYPP6Owdp9uhdb
+         kVjCaFt+1MwdSjIvOK38DFlBPpomT1bzzJuBMGBFB96Ksm0XG/LG+TAhh3ys6sk0sQaV
+         yIvRGW1krT+g3BksOPs4RC5P3NUvU/CtN8fLfmrlXjk85kFOYy7C4Tkwb9xvXFZKMADI
+         5noyZ67YfXShHcdLPvJ+Sd7O4k5S21yuIUZIsXqIRRGRPfYhFlTyPaxEXEO/jOenSx6B
+         Zo8A==
+X-Gm-Message-State: AOJu0YxAR+Sps3DHpPmNzZ9+7pfGmD89S+6BZRIz36Ns8kXzJwH64hoQ
+	fOluUKqvTgdzSq2shn21VHfZTQGonGseTSSgO8aNxUsQJcA2WKnKRPSm6jBnQ/8=
+X-Gm-Gg: ASbGncuIU/AgM9XNTKdEPJQ6fwShJ79oyFDYnwrdRCKNfUP/J8EbaqfFscYLV0M+7xj
+	EjJ4f6XsvTgDPWubwdpz+KbLNrBVOv89tRNltOWfy4uFvUrMi0K8CkPY+65Z6sBTV4vOXPWuWbL
+	q5sIlCi1/N5+J4OFTfSTTHy6BVTcPNEtrI3g5mn/UaQb0Yf9GrNKQkHsuU/mGxgLzgxI9Yujn5G
+	AlHGWQCfokV3B7JIVAogThnkwtNtfKSfI/JzxzVtnOpcm3aI/YVaOyoEcTgjNUPPH/RH+SqsCE/
+	ZczkEV+Co7ra0+uDp3tr8tL4Au3xPA==
+X-Google-Smtp-Source: AGHT+IGIMj4eDI4++nV9lsviqxg12ESwR9WEilZyyjFk+Pe0y3db1ZelPCRJMMwTSxiydGqYm4vhag==
+X-Received: by 2002:a05:6512:b9a:b0:53d:d137:d7a4 with SMTP id 2adb3069b0e04-53dd3aac10bmr293144e87.53.1732233937136;
+        Thu, 21 Nov 2024 16:05:37 -0800 (PST)
 Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53dd2481e38sm114731e87.123.2024.11.21.15.57.13
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53dd2445843sm123234e87.19.2024.11.21.16.05.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 21 Nov 2024 15:57:14 -0800 (PST)
-Date: Fri, 22 Nov 2024 01:57:12 +0200
+        Thu, 21 Nov 2024 16:05:35 -0800 (PST)
+Date: Fri, 22 Nov 2024 02:05:33 +0200
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To: keith zhao <keith.zhao@starfivetech.com>
 Cc: devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
@@ -83,10 +83,10 @@ Cc: devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
 	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
 	p.zabel@pengutronix.de, changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com, 
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 3/9] drm: bridge: inno-hdmi: add inno bridge driver.
-Message-ID: <u4iaxbpuozap5rhjraxktq2wzxwdpqxj7ldglpvsmvpnxcutuz@ak2eiwtb5fg5>
+Subject: Re: [PATCH v5 4/9] drm/vs: Add Hardware Functions for VS DC8200
+Message-ID: <kuoayjr6gfwsq3zbdeafmzx3kw27amkhmljlbpk4brgjkizm37@7wwjwg3tckjz>
 References: <20241120061848.196754-1-keith.zhao@starfivetech.com>
- <20241120061848.196754-4-keith.zhao@starfivetech.com>
+ <20241120061848.196754-5-keith.zhao@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,58 +95,163 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241120061848.196754-4-keith.zhao@starfivetech.com>
+In-Reply-To: <20241120061848.196754-5-keith.zhao@starfivetech.com>
 
-On Wed, Nov 20, 2024 at 02:18:42PM +0800, keith zhao wrote:
-> move rochchip inno hdmi connector to a newly created directory named
-> inno-hdmi.c, and rename rockchip/inno_hdmi.c to
-> rockchip/inno_hdmi-rockchip.c
-> 
-> This patch refines the Innosilicon HDMI architecture by abstracting
-> the existing connector into a bridge architecture.
-> The drm_bridge_connector_init function is used to create the connector.
+On Wed, Nov 20, 2024 at 02:18:43PM +0800, keith zhao wrote:
+> This commit introduces hardware-based APIs for
+> the VS DRM related to the DC8200
+
+This doesn't describe anything. I've asked to describe the hardware.
+Also please don't use phrases as "This commit does this and this". See
+Documentation/process/submitting-patches.rst
+
 > 
 > Signed-off-by: keith zhao <keith.zhao@starfivetech.com>
 > ---
->  MAINTAINERS                                   |    2 +
->  drivers/gpu/drm/bridge/Kconfig                |    2 +
->  drivers/gpu/drm/bridge/Makefile               |    1 +
->  drivers/gpu/drm/bridge/innosilicon/Kconfig    |    6 +
->  drivers/gpu/drm/bridge/innosilicon/Makefile   |    2 +
->  .../gpu/drm/bridge/innosilicon/inno-hdmi.c    |  376 ++++++
->  .../gpu/drm/bridge/innosilicon/inno-hdmi.h    |   34 +
->  drivers/gpu/drm/rockchip/Kconfig              |    1 +
->  drivers/gpu/drm/rockchip/Makefile             |    2 +-
->  drivers/gpu/drm/rockchip/inno_hdmi-rockchip.c |  690 +++++++++++
->  .../{inno_hdmi.h => inno_hdmi-rockchip.h}     |    0
->  drivers/gpu/drm/rockchip/inno_hdmi.c          | 1025 -----------------
->  include/drm/bridge/inno_hdmi.h                |   56 +
->  13 files changed, 1171 insertions(+), 1026 deletions(-)
->  create mode 100644 drivers/gpu/drm/bridge/innosilicon/Kconfig
->  create mode 100644 drivers/gpu/drm/bridge/innosilicon/Makefile
->  create mode 100644 drivers/gpu/drm/bridge/innosilicon/inno-hdmi.c
->  create mode 100644 drivers/gpu/drm/bridge/innosilicon/inno-hdmi.h
->  create mode 100644 drivers/gpu/drm/rockchip/inno_hdmi-rockchip.c
->  rename drivers/gpu/drm/rockchip/{inno_hdmi.h => inno_hdmi-rockchip.h} (100%)
->  delete mode 100644 drivers/gpu/drm/rockchip/inno_hdmi.c
->  create mode 100644 include/drm/bridge/inno_hdmi.h
+>  MAINTAINERS                            |    1 +
+>  drivers/gpu/drm/Kconfig                |    2 +
+>  drivers/gpu/drm/Makefile               |    1 +
+>  drivers/gpu/drm/verisilicon/Kconfig    |   13 +
+>  drivers/gpu/drm/verisilicon/Makefile   |    5 +
+>  drivers/gpu/drm/verisilicon/vs_dc_hw.c | 1104 ++++++++++++++++++++++++
+>  drivers/gpu/drm/verisilicon/vs_dc_hw.h |  492 +++++++++++
+>  drivers/gpu/drm/verisilicon/vs_type.h  |   54 ++
+>  8 files changed, 1672 insertions(+)
+>  create mode 100644 drivers/gpu/drm/verisilicon/Kconfig
+>  create mode 100644 drivers/gpu/drm/verisilicon/Makefile
+>  create mode 100644 drivers/gpu/drm/verisilicon/vs_dc_hw.c
+>  create mode 100644 drivers/gpu/drm/verisilicon/vs_dc_hw.h
+>  create mode 100644 drivers/gpu/drm/verisilicon/vs_type.h
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index f787dd625497..7766ee0bdd74 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -7439,6 +7439,8 @@ S:	Maintained
->  T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
->  F:	Documentation/devicetree/bindings/display/bridge/innosilicon,inno-hdmi.yaml
->  F:	Documentation/devicetree/bindings/display/starfive/
-> +F:	drivers/gpu/drm/bridge/innosilicon/
-> +F:	include/drm/bridge/inno_hdmi.h
 
-Separate entry, please. This is not specific to StarFive.
+[...]
 
->  
->  DRM DRIVER FOR SYNAPTICS R63353 PANELS
->  M:	Michael Trimarchi <michael@amarulasolutions.com>
+> +
+> +struct dc_hw {
+> +	enum dc_hw_out		out[DC_DISPLAY_NUM];
+> +	void __iomem		*hi_base;
+> +	void __iomem		*reg_base;
+> +	struct dc_hw_plane_reg	reg[DC_LAYER_NUM];
+> +
+> +	struct dc_hw_gamma	gamma[DC_DISPLAY_NUM];
+> +	struct vs_dc_info	*info;
+> +};
+> +
+> +struct vs_dc_plane {
+> +	enum dc_hw_plane_id id;
+> +	u32 offset;
+> +};
+> +
+> +struct vs_dc {
+> +	struct vs_crtc		*crtc[DC_DISPLAY_NUM];
+
+"Not defined here. Please drop and add when it is actually defined.",
+this was in v4.
+
+> +	struct dc_hw		hw;
+> +
+> +	struct vs_dc_plane	planes[PLANE_NUM];
+> +};
+> +
+> +int dc_hw_init(struct vs_dc *dc);
+> +void dc_hw_disable_plane(struct vs_dc *dc, u8 id);
+> +void dc_hw_update_cursor(struct dc_hw *hw, u8 id, dma_addr_t dma_addr,
+> +			 u32 crtc_w, u32 crtc_x, u32 crtc_y,
+> +			 s32 hotspot_x, int32_t hotspot_y);
+> +void dc_hw_disable_cursor(struct dc_hw *hw, u8 id);
+> +void dc_hw_update_gamma(struct dc_hw *hw, u8 id, u16 index,
+> +			u16 r, u16 g, u16 b);
+> +void dc_hw_enable_gamma(struct dc_hw *hw, u8 id, bool enable);
+> +void dc_hw_enable(struct dc_hw *hw, int id, struct drm_display_mode *mode,
+> +		  u8 encoder_type, u32 output_fmt);
+> +void dc_hw_disable(struct dc_hw *hw, int id);
+> +void dc_hw_enable_interrupt(struct dc_hw *hw);
+> +void dc_hw_disable_interrupt(struct dc_hw *hw);
+> +void dc_hw_get_interrupt(struct dc_hw *hw, u8 *status);
+> +void dc_hw_enable_shadow_register(struct vs_dc *dc, bool enable);
+> +void dc_hw_set_out(struct dc_hw *hw, enum dc_hw_out out, u8 id);
+> +void dc_hw_commit(struct dc_hw *hw);
+> +void dc_plane_hw_update_format_colorspace(struct vs_dc *dc, u32 format,
+> +					  enum drm_color_encoding encoding, u8 id, bool is_yuv);
+> +void dc_plane_hw_update_address(struct vs_dc *dc, u8 id, u32 format, dma_addr_t *dma_addr,
+> +				struct drm_framebuffer *drm_fb, struct drm_rect *src);
+> +void dc_plane_hw_update_format(struct vs_dc *dc, u32 format, enum drm_color_encoding encoding,
+> +			       unsigned int rotation, bool visible, unsigned int zpos,
+> +			       u8 id, u8 display_id);
+> +void dc_plane_hw_update_scale(struct vs_dc *dc, struct drm_rect *src, struct drm_rect *dst,
+> +			      u8 id, u8 display_id, unsigned int rotation);
+> +void dc_plane_hw_update_blend(struct vs_dc *dc, u16 alpha, u16 pixel_blend_mode,
+> +			      u8 id, u8 display_id);
+> +
+> +#endif /* __VS_DC_HW_H__ */
+> diff --git a/drivers/gpu/drm/verisilicon/vs_type.h b/drivers/gpu/drm/verisilicon/vs_type.h
+> new file mode 100644
+> index 000000000000..e9c4ef3cacd6
+> --- /dev/null
+> +++ b/drivers/gpu/drm/verisilicon/vs_type.h
+> @@ -0,0 +1,54 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright (C) VeriSilicon Holdings Co., Ltd.
+> + */
+> +
+> +#ifndef __VS_TYPE_H__
+> +#define __VS_TYPE_H__
+> +
+> +enum drm_plane_type;
+> +
+> +struct vs_plane_data {
+> +	unsigned int num_formats;
+> +	const u32 *formats;
+> +	u8 num_modifiers;
+> +	const u64 *modifiers;
+> +	unsigned int min_width;
+> +	unsigned int min_height;
+> +	unsigned int max_width;
+> +	unsigned int max_height;
+> +	unsigned int rotation;
+> +	unsigned int blend_mode;
+> +	unsigned int color_encoding;
+> +	int min_scale; /* 16.16 fixed point */
+> +	int max_scale; /* 16.16 fixed point */
+> +	u8   zpos;
+> +};
+
+Doesn't seem to be used in this patch. I think in v4 I've already asked
+to drop everything (data types, fields, defines) that are not used by
+_this_ patch. Readd them later, as required.
+
+> +
+> +struct vs_plane_info {
+> +	u32 id;
+> +	const struct vs_plane_data *data;
+> +	enum drm_plane_type type;
+> +};
+> +
+> +struct vs_dc_info {
+> +	const char *name;
+> +
+> +	u8 panel_num;
+> +
+> +	/* planes */
+> +	u8 plane_num;
+> +
+> +	u8 layer_num;
+> +	u8 primary_num;
+> +	u8 overlay_num;
+> +	u8 cursor_num;
+> +	const struct vs_plane_info *info;
+> +	/* 0 means no gamma LUT */
+> +	u16 gamma_size;
+> +	u8 gamma_bits;
+> +
+> +	u16 pitch_alignment;
+> +};
+> +
+> +#endif /* __VS_TYPE_H__ */
+> -- 
+> 2.34.1
+> 
 
 -- 
 With best wishes
