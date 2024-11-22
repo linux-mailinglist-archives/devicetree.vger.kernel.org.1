@@ -1,144 +1,112 @@
-Return-Path: <devicetree+bounces-123818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63B709D6198
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 16:55:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 24F339D61C1
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 17:14:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E4C43B2316D
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 15:55:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B42EDB2391A
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 16:14:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F30019E988;
-	Fri, 22 Nov 2024 15:55:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72A971DDA32;
+	Fri, 22 Nov 2024 16:14:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="d81hbEfg"
+	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="V1hwB9KD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4759F82485
-	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 15:55:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D55BE2FC23;
+	Fri, 22 Nov 2024 16:14:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732290925; cv=none; b=B9Vl0T7AA1ZRdAxfS8cEoRrqqYOzaW/mML6chWvKsszIZkzk38dk3+k8HDlN40NLyOSt26k0yDh8mx9lSd7fl6Sb2vnfvCLFLkTaALAxFgUR6CddoYZUp9I6eqf8BjFWs/GJxFqOwpsEZBfGkenroMPRpWkXkCb+SpYa348PnVQ=
+	t=1732292046; cv=none; b=AJZ4cuiZZHaTR68rMRO4ESw42ETu8DW6aZxTxoeuaYDQaX+yZ0MNevgm5Ej27ArAxrO6T4PMXyAnDFoxNZq+QivR9tk6NtTeFyyuWZ4MFoUj9qvakS6lrWMxnn3jTevbbPyq+yQx5ozNHRUjYBr6rTX0XGr7c4XxwAcV31e7Jcg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732290925; c=relaxed/simple;
-	bh=rx329TESTmhAMZsXIxwVU/NVQSGC3jHHkc8C1HZbClI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bOxPG8IKpFH+V8v26C/9cT8Zg+QPJAYZx2Anz7w0E4wve6WJ30jZs0/Zl27g7Xn6gHXThGfPV7VDBqCLBvLNc93T++KXf1SIcqvQgVfSo+2dfi0raPjncWFwpJgB5TSk44t+vgZNBqFPxt7hYAWq6QqpURuQcsyrR4hufyuKH+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=d81hbEfg; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4316cce103dso26107545e9.3
-        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 07:55:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1732290922; x=1732895722; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=rx329TESTmhAMZsXIxwVU/NVQSGC3jHHkc8C1HZbClI=;
-        b=d81hbEfg4InUiwMRwLyjFFPW4iulghtM3Q0QaPrrI/YTF7SK5VA69tJF74de4EUQz/
-         IrtdasYcgWWADYekXB52yhEzLH42YnoUlXVd/JNQ0VXNaN8EcMRD44NBqtjSoEHO2dor
-         Npsug0oRtcsEaXgedfXGrwFZNzgHchRHzHE7Wks7rHxX/CY3yCgQU9SLEMJp9UUlYO6b
-         PCn0I4ld5bc5awWFrSWj1CsjQ6Jf3BER0jqb0UO/aOFvQUojW7W2X6yzt5nga4iKBcmX
-         gyPkirfdNr/lR0hkpS2grMryBl8nbJar4B4XcQF+nK2Y3QtU0sJ82OsxglIselUxYEN+
-         nqIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732290922; x=1732895722;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rx329TESTmhAMZsXIxwVU/NVQSGC3jHHkc8C1HZbClI=;
-        b=igLEkflf5RpfXvWEF+ffjMFF0iN4zZg8tu1FErFj+iyDv6L4neMHel1O/ahOQzceyA
-         RNGEBZLWvsY+DeJfEA2hYy+BqEdvewPIQeNCguOTcg7N/zwVm+L1xc0Wx7lw29I7ptei
-         t/Av/Cl849NAqgvVM2kuhpby8RoFBCLpjiFJIrhX9/XoRbJudg9Rin7Go94N3Z0nFKnz
-         I8yOM6I5HOhDyiVtwKIWJMyajcTVNpCcHVJOdzn1VW21qgYgWwEj5CfDl+Oiw2JwKnhp
-         HqqzV4muUNYYm2CPTZEmLuOpXvSc17lNLcqWbpvzSDsfS064kGyeD+uWvbrn0Yp88kgY
-         ISdg==
-X-Forwarded-Encrypted: i=1; AJvYcCXpU8ch9fzWeBjxRuXDzuRkSD8aPmIR3lKFtHcfTkJhAcu33c1wpEPgJVbJ06Bkq2wjiWyAUz1GUijV@vger.kernel.org
-X-Gm-Message-State: AOJu0YwQ/Xj8sVoEHINmuzPa0tQquXYFMowi0qxtMtpLmU2u/TwZBpTo
-	8OkgU1vTbaQfP61nlqvJlpx8//ZG86uhDTqEhrbvd29zLifKyBTD2lkcNrWpPaA=
-X-Gm-Gg: ASbGnctEojGh2+dTn5qEYl1TKJMyuoPUxsVJwDZ8Lk5pVFA2PSS65c31MSNJinRibKJ
-	vnY2x9mUuupZxIeJXWGl7zVB2DQLnSkXvxVNN8HXQNO/8sf4XYYEKFsr5AmNt19tQ13gaO8vD0y
-	o02WQdtBTWCgJTl9i+ccJ8T16jfdFiUVHuAHEzf2QgOUcOcoCt62kSpxZTz3Gd3ZoEBOJDbEb8d
-	XW6TRWf8xdI7/8qf/i3Zn1SdM+/9bwq62lFquth9mqjiFOd0Iwj8Asb6OzCF8UcnJZwWEAD4lOa
-	CkY=
-X-Google-Smtp-Source: AGHT+IFrO3KEqN68vFGAeO8LsBeIZclekowTscV0QmcXDjoem/GSu9RHvDAiaUQK+L601EJDOnilJQ==
-X-Received: by 2002:a05:600c:1c0b:b0:431:5c3d:1700 with SMTP id 5b1f17b1804b1-433ce48fc6amr31932085e9.21.1732290921725;
-        Fri, 22 Nov 2024 07:55:21 -0800 (PST)
-Received: from localhost (p509159f1.dip0.t-ipconnect.de. [80.145.89.241])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-433b464320csm94651495e9.38.2024.11.22.07.55.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Nov 2024 07:55:20 -0800 (PST)
-Date: Fri, 22 Nov 2024 16:55:19 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Trevor Gamblin <tgamblin@baylibre.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Alexandru Ardelean <aardelean@baylibre.com>, Alisa-Dariana Roman <alisa.roman@analog.com>, 
-	Andy Shevchenko <andy.shevchenko@gmail.com>, Conor Dooley <conor+dt@kernel.org>, 
-	David Lechner <dlechner@baylibre.com>, Dumitru Ceclan <dumitru.ceclan@analog.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>, Rob Herring <robh@kernel.org>, 
-	devicetree@vger.kernel.org, linux-iio@vger.kernel.org
-Subject: Re: [PATCH v3 05/10] iio: adc: ad_sigma_delta: Handle CS assertion
- as intended in ad_sd_read_reg_raw()
-Message-ID: <2ndmufosl7xbdc7zq5pmbli5zpmzr6knac2yjp2xulqbwpqylz@lho3gb4kqkwf>
-References: <20241122113322.242875-12-u.kleine-koenig@baylibre.com>
- <20241122113322.242875-17-u.kleine-koenig@baylibre.com>
- <ac642b48-89fb-4f93-bc4b-30ae01773b9e@baylibre.com>
+	s=arc-20240116; t=1732292046; c=relaxed/simple;
+	bh=0EA4UV4RNGE7xqGqlrrJvHIA53WJ1uWQg6/4nAZb2Vc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=IZ+0cbzGFSyXE50trdekOO823Tlnc3hh0i7LNBn2ggC/CJkRWA9DzMPal+Si+YCFxx96TLoJQtqIb0aU14/ZZ5txTYvR/5wit46AUNR6aBAGWdLoJujToSjraGgqDbImlPYkEQS5XYT0473nB8QaaGBC7fhkOolUMb/A8aqxXQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=V1hwB9KD; arc=none smtp.client-ip=193.68.50.107
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
+Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
+	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id 580BBA048D;
+	Fri, 22 Nov 2024 17:13:59 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:from:from:message-id:mime-version:reply-to:subject:subject:to
+	:to; s=mail; bh=3nQSFIndLHlk5B599D4K9i6Wy/lcEPJpfLWck+sxXK8=; b=
+	V1hwB9KDoD7MK/AAh0RD4IKKiCgdZt9qaWNHb7qqVCixDSXpQ7NdY39maGKNEfM9
+	VtJQ/Fem7fmGXY7yOI63l71zTmIMnIW8zKfPjDBhDffnOIREOy3qImsBrkvGO1tT
+	YQtR0in3J5WUY/FQ2JfCq0Tl0H/hxb5ShX2J2/YmkyPhUBQ8H90X5qqSajs6bCmD
+	IcfiNNDVH5UiM6yfhxPmG4gwRI3UN/ABfjo+N+kYAAYkK9awxJeAJ3tlLoXDg5gN
+	tPIQ6RAbvvVBLlOM9SXA/+xbLi8tHwvlKtIkXAM33Rcp7pVBj8KfnMN+jK77aVoH
+	cAM3CXVH3aAWpLx0bGwxqjhpUNOkuFGUJWL+c6DWmDwGbyevV0WFsK4WpH5KlMvX
+	s7ZO8YChllnUILGnI/RPLG0wvDjU5ihsiXbp8FEKS5IMrx6wm9zJ4z/MI8DX2NvM
+	dbjz7fIP9seh/PyPk+6XvRLo5iMEtsEaa4xB7pkWabrpyoRMOsLHuXPimgn0G74K
+	VcDrNUly9Cd51BoTWgWrwZGDspFQ45oBYjwO4soVSrpjUeIhZiPWHTIDj0z0Jb1O
+	6sROahwf/HfQtuU43jyTygaeWRGqQyuIjD2tfFy/sFq9YYV74fLF1IYDttTAg4F+
+	Zui8qgO3hGGIALdSNn6o/2gRCMA7rLDYXqxYxRcZc1w=
+From: =?UTF-8?q?Cs=C3=B3k=C3=A1s=2C=20Bence?= <csokas.bence@prolan.hu>
+To: <dmaengine@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-sunxi@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>
+CC: =?UTF-8?q?Cs=C3=B3k=C3=A1s=2C=20Bence?= <csokas.bence@prolan.hu>, "Mark
+ Brown" <broonie@kernel.org>, Mesih Kilinc <mesihkilinc@gmail.com>, Vinod Koul
+	<vkoul@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
+	<jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, "Chen-Yu
+ Tsai" <wens@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, Philipp Zabel
+	<p.zabel@pengutronix.de>, Conor Dooley <conor.dooley@microchip.com>, "Rob
+ Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, Amit Singh Tomar <amitsinght@marvell.com>
+Subject: [PATCH v5 0/5] Add support for DMA of F1C100s
+Date: Fri, 22 Nov 2024 17:11:23 +0100
+Message-ID: <20241122161128.2619172-1-csokas.bence@prolan.hu>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ula66wo7fhl3q5hx"
-Content-Disposition: inline
-In-Reply-To: <ac642b48-89fb-4f93-bc4b-30ae01773b9e@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ESET-AS: R=OK;S=0;OP=CALC;TIME=1732292038;VERSION=7980;MC=955160253;ID=83447;TRN=0;CRV=0;IPC=;SP=0;SIPS=0;PI=3;F=0
+X-ESET-Antispam: OK
+X-EsetResult: clean, is OK
+X-EsetId: 37303A2980D94855607263
+
+Support for Allwinner F1C100s/200s series audio was
+submitted in 2018 as an RFC series, but was not merged,
+despite having only minor errors. However, this is
+essential for having audio on these SoCs.
+This series was forward-ported/rebased to the best of
+my abilities, on top of Linus' tree as of now:
+commit 28eb75e178d3 ("Merge tag 'drm-next-2024-11-21' of https://gitlab.freedesktop.org/drm/kernel")
+
+Link: https://lore.kernel.org/all/cover.1543782328.git.mesihkilinc@gmail.com/
+
+As requested by many, this series will now be split in 2, the DMA and the
+ALSA/ASoC codec driver. This is the DMA part of the series.
+
+Csókás, Bence (1):
+  dt-bindings: dmaengine: Add Allwinner suniv F1C100s DMA
+
+Mesih Kilinc (4):
+  dma-engine: sun4i: Add a quirk to support different chips
+  dma-engine: sun4i: Add has_reset option to quirk
+  dma-engine: sun4i: Add support for Allwinner suniv F1C100s
+  ARM: dts: suniv: f1c100s: Add support for DMA
+
+ .../bindings/dma/allwinner,sun4i-a10-dma.yaml |   4 +-
+ .../arm/boot/dts/allwinner/suniv-f1c100s.dtsi |  10 +
+ drivers/dma/Kconfig                           |   4 +-
+ drivers/dma/sun4i-dma.c                       | 208 +++++++++++++++---
+ 4 files changed, 191 insertions(+), 35 deletions(-)
+
+-- 
+2.34.1
 
 
---ula66wo7fhl3q5hx
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 05/10] iio: adc: ad_sigma_delta: Handle CS assertion
- as intended in ad_sd_read_reg_raw()
-MIME-Version: 1.0
-
-Hello Trevor,
-
-On Fri, Nov 22, 2024 at 10:16:07AM -0500, Trevor Gamblin wrote:
-> On 2024-11-22 06:33, Uwe Kleine-K=F6nig wrote:
-> > When struct ad_sigma_delta::keep_cs_asserted was introduced only
-> > register writing was adapted to honor this new flag. Also respect it
-> > when reading a register.
-> >=20
-> > Fixes: df1d80aee963 ("iio: ad_sigma_delta: Properly handle SPI bus lock=
-ing vs CS assertion")
-> > Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@baylibre.com>
-> Reviewed-by: Trevor Gamblin <tgamblin@baylibre.com>
-
-Oh, you already provided your Reviewed-by tag on the initial submission.
-Sorry to have missed to add it myself and thanks to have provided it again.
-
-Uwe
-
---ula66wo7fhl3q5hx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmdAqWQACgkQj4D7WH0S
-/k7DlggAqbUNfMkbK9NCydTDEeZ515zks3yMT+t4Chosspx4NIe2PpbB0dPHaQSI
-m+qZS2Jpl/okcfFhIpEImwFvvemij1eyiOMm6n8/0g5+i9/aQFQ9RlY53VKtsGon
-dwez8hbEO6RXKJseots56r7YXX6enutjEqejxBFcYxyqfSjnwVVlniLvXx1/IamC
-U/4dHcQZGfk3Qy87rvHAopQ93Z6t19UCHF4F8C/gucVDD6Mp4OMqCLyCGZ35IQvf
-hEbsFCcscBAVYunNykabjpvMG1C+qeu1fs5tKey4VlKD9h+plreARaPdzN8e5Soo
-LxO1e8c3Z8jASKbldfyZ325K3LR+kg==
-=VsGT
------END PGP SIGNATURE-----
-
---ula66wo7fhl3q5hx--
 
