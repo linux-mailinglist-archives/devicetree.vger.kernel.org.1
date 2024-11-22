@@ -1,112 +1,144 @@
-Return-Path: <devicetree+bounces-123825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 633B89D627E
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 17:44:52 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 487869D6281
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 17:47:33 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8821EB213E1
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 16:44:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 949D8160F2A
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 16:47:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F9661DF75E;
-	Fri, 22 Nov 2024 16:44:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DFEF1DF961;
+	Fri, 22 Nov 2024 16:47:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="iaVEXsLx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="N7sxXxm2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 855B41DF275
-	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 16:44:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F422E5D477
+	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 16:47:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732293878; cv=none; b=JwjuI6QttPDowRgLAkb1n5FwAlKVNGgcIXmxkkAGRCHrjVRD5ArxaZF3IPhUx958rM3BmxM5iW3Hc0QbJdbGasFsT5frikyRuWZDpqmVCw8gc/Cp0rVUK4QMi5RcoCSFZilQpNRMsHWwgy8TVBNfwy+hfMsiBx0Rv4hy60eN1Yg=
+	t=1732294042; cv=none; b=ljCFoHGX1oS20WBdupeZRIiN4ZwYWkKzdMDaHQhb6SZYhXu1SGMoFpdr72EN7GzDZEynvXG41V/JQzmNAUHTaVG5h84+vRyyZEkpYPsqvmUHTespU2iLDajsbMe/vXfLtdaK8/pIFghZs+dqoulyV1aHkffZT8jWP5dvwvsm7xA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732293878; c=relaxed/simple;
-	bh=OP7jIjAssaBavEB3Z5dHyvMwl1uaAest0+Ee9D9Eqmg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=T7ZqP1RHg9rD8n6t50tKagzJFJdQKLjHvMl4h3ZWVx1mcAqAkfMIxv67bjposuD9u/I/JmFjmWN5KiFKWoplBDdawyjZ//+UxVHJMgf07lsT/zjRFhGduoZGuIpRdXdhJYO5NDPY3nxdreuQkBI9RZJ4xo8JiAc7hzKYtAb1L2Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=iaVEXsLx; arc=none smtp.client-ip=209.85.160.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-qt1-f173.google.com with SMTP id d75a77b69052e-4609d8874b1so15024141cf.3
-        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 08:44:35 -0800 (PST)
+	s=arc-20240116; t=1732294042; c=relaxed/simple;
+	bh=ItNTKavT00h+piga1HTfcObBvAtBiGxqCrbjRJ1Tavc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FJP3YA0F0E8sGDRfyBtJXi5oqXfgOEDyF7R984aBEZ72eTA0aWpdm1gHitGoDGvYkZiO8dz8RIayiK5/6tFKBbDFHYXQgkjvR14I6hm4kpEP9fu61ykyQCgdYvKLbdOPkrv1EoQRUuQ8GJLl1mLFluj55/DTf7iV9268tEPrq0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=N7sxXxm2; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-212884028a3so14085645ad.0
+        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 08:47:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1732293874; x=1732898674; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OP7jIjAssaBavEB3Z5dHyvMwl1uaAest0+Ee9D9Eqmg=;
-        b=iaVEXsLxl2PmdQJ+gu6BSRVnnD4A6FhybyCyD0MneG5ORFsphYkK83oVSlb36vuEwn
-         qSphVgr4SnViY5FpNsu6FmoHn5g8HzGr2uVWeW1sYI4p+gNiaIvkA2RuTPiqf2P1egXT
-         pAqUUjHEss+cSqc11r9NqtAofnRdX9tcmxfE0pPdQWTXBKCjY97L6KMnlVEk3PCcIzOh
-         5fhW8HrOKKj3qgp916lENPWgFhEbNlbfUEo9I2XwAh4DHb53oxij5obY+pG5xrRydev/
-         QMT0U5Pv4UUw6Bzs03Pn12U36i5RGZEpfzmsn2pJDDNMKodQcA6ZeRS+ooCN92+WnHeB
-         ANNA==
+        d=linaro.org; s=google; t=1732294040; x=1732898840; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=kzq5xBGhrLm4GuYMaG3vOjkgbW2jTLhEik+B/AfpKr0=;
+        b=N7sxXxm28qpSXdKXM1+JiWGvFRcSNDETzc91Xq/qDHCDzGC+Q7wjdupj7fQnIRqf7z
+         qOd1jUlf2NO/MXy3qRwmHqEjJUVksk9IuTtuNdVwvareJuu41Oot2YKDmqaZb5wMiPJZ
+         d9Cw/Z3hSFZ2KEtSRk4A0H+aNVDgDVzPs5nnGauQD5KeStHBiJNRvDTK+AlaoyyPcL2T
+         g2uskKblMTx4NkQ+KozZqPC/aspdSRiC0Wzr9YMwGvJz1aGM2/sZvffUMukkkx6Trg7u
+         ONTSqxQ9394/HY6LpZzlhR/8uljXKZrtZ0IEOFDZZakqTukL1ZaHU/0Kaze+SjCgPjGg
+         OOQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732293874; x=1732898674;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1732294040; x=1732898840;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OP7jIjAssaBavEB3Z5dHyvMwl1uaAest0+Ee9D9Eqmg=;
-        b=ZjFFgm7pDdEMmg0iu1eTIchv2juv5JMvWFcWarPV0/Dq+jo+OVg5OuFM1/yk2QxVAZ
-         rfNc35tN5LhDlRoszZqqxoq7jrnlOxahVk/RR0Kv3aKOa0bgbLBAgRKVxtxq+uZQbXfW
-         1gB1IxYViMtLhwm4bRX2ppJTn9cM5nQMe761Uqxk5xe9xKRqgJnvoCvbC95KgErAzNYn
-         dNZh8GR0/eMHgsdDqwkyabz1xZ9LT8TUupXtHI1oLvT06RUI5poWQu2htDrE/XR/9kZw
-         fpWZwy7pO7G+EzQ4zZH4IpBXc48qzxcmlZWbPTqZ54so1E78lPfJ+3jYti83yormW1gP
-         dekg==
-X-Forwarded-Encrypted: i=1; AJvYcCWx2VI3A/H62qTN7m+RH5WUz+GjuPnxVuhvGa4TCeATZ+1kPuQsQQlFO4n7kzZJpPdAmBr3llW1Gyqz@vger.kernel.org
-X-Gm-Message-State: AOJu0YwgEscTFMOMHBWfjVgCx24cGZcTO0rKAPfwBTS/8/kBfxHOIKIQ
-	HdzlrSYX0GLxzWv588d6xAH7EL38UeY5E6NtQwFU4SR5qjvVEegIc5ut/UZCjpo=
-X-Gm-Gg: ASbGnctpHwPMO63YCNXaPAZ4fVm1viJ/iINGm6NBbo/+VwI+MfkjqY3JhYxCazCoPi3
-	BiJTtgWdgtz+kfzEUSGK9Oz/9hFDbE3z8Dqpcu8otgukneDQDc4pqzn8huBxjQErFJq63JoecRt
-	w/YgWaYXq4uWpFW5ZM9wIWJ2NxB9vvnAzcc4LWJKbX0FDlqtU774hMrBgg0dEksD1+KKxvCcEqd
-	ifwBqdvZTnkhel1H5hZBZlN5HrzeIaN3TokmOroaKmyz0a64pF7SzMtyoXZEKAP/TsrXbntq89s
-	EKngsjN752nnX/6aHw==
-X-Google-Smtp-Source: AGHT+IHnTtl4XzgQI6Cj/5Tw1+c6s1eOk2gCKDFSgR+4tzc5/FOY9V3ehAztDo7DybxRc1Stip+1XQ==
-X-Received: by 2002:a05:622a:4a86:b0:461:17e6:27ae with SMTP id d75a77b69052e-4653d5a6b9cmr53354531cf.24.1732293874474;
-        Fri, 22 Nov 2024 08:44:34 -0800 (PST)
-Received: from [192.168.40.12] (d24-150-219-207.home.cgocable.net. [24.150.219.207])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4653c49016bsm13278711cf.87.2024.11.22.08.44.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 22 Nov 2024 08:44:33 -0800 (PST)
-Message-ID: <12e62693-adcd-4da4-94ad-e56e98c11cc1@baylibre.com>
-Date: Fri, 22 Nov 2024 11:44:32 -0500
+        bh=kzq5xBGhrLm4GuYMaG3vOjkgbW2jTLhEik+B/AfpKr0=;
+        b=qzibBtDXZ9T1NtJbgM92rKw2cQhBKdn0pkhtMhZQVXiXNQw7+AXPwveXQmN/Qz40Ts
+         Bcs3gRa+dVLIprI1d3ri3pjg54a7aXyDGT/51bmpikPAvUbB3Kffjewn39GgPRBLdrZm
+         Ob0w4j9f/Mv7Yk7JzvCKuceMDR1VPmitUY4ByQaJvjv0JZ4+o3hZKcBD7BIYn1gIx0W9
+         PsiAZFp3V8MfnqRvDmajFqcn19dX3duq4HEYTmYgX0EXC6ituMrdZJcTEfDQdXyBboMK
+         JEaZCd+nLJtDhXGVvGQVeY94vZeuNWunhWxSFwmO1lVB801sg7gnG6NNQxG5gRAMuR4H
+         A2Qw==
+X-Forwarded-Encrypted: i=1; AJvYcCXYkj8tEbb2jk1CHxX+bD/FWNy5/jxy5oMjbedsjFk8vMC4GGmpkCMA43g9j3VQdZcBPqeR7OfQwCK5@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6aFsQJ3FMp5u+7n0d3zo4iFzkLHiMVgsXTkZKXj6Wc5voB846
+	KWZhakZtC3Ot74rahJ9eelbQkGYFJzKpFi5l6Wg2EtoQjpb2XlSq/bgq3or9VA==
+X-Gm-Gg: ASbGncsMDeozawbub5vsVyv56RI63g7dXWaD2ma54txamecjEq10R7B+e+pDkTCJ9Nu
+	nsPh6IJBTp0Q+gBnFvuEnDPlru2sdeXdtKH9dbS02nFg0RatikLnA04e3bVRnQnRaZWrrvD3CeU
+	Z/87UK6xqVIC8GuCnGc6O0EaOfKYM8dmhbjXMvOtGon4gQXg3h9qrQ+sF/rzFVnLYaG1pjs5Bxf
+	Hu1Zzs+tJYtsVp6cMXKDyjQT0QaWhqoBJp+5BECtHehU5LSjeYvG9B4tk/q
+X-Google-Smtp-Source: AGHT+IH2RH2HUiPHMzLk35ACiz5SeB6Uib1iKjXQGa54thdOMDLFrThNUfglBoU0p2O84vxcD04wlg==
+X-Received: by 2002:a17:902:f70d:b0:212:35f5:b564 with SMTP id d9443c01a7336-2129fe2669emr56816865ad.7.1732294040271;
+        Fri, 22 Nov 2024 08:47:20 -0800 (PST)
+Received: from thinkpad ([49.207.202.49])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2129dba357bsm18336365ad.88.2024.11.22.08.47.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Nov 2024 08:47:19 -0800 (PST)
+Date: Fri, 22 Nov 2024 22:17:14 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Hongxing Zhu <hongxing.zhu@nxp.com>
+Cc: "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+	"bhelgaas@google.com" <bhelgaas@google.com>,
+	"lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+	"kw@linux.com" <kw@linux.com>, "robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"shawnguo@kernel.org" <shawnguo@kernel.org>,
+	Frank Li <frank.li@nxp.com>,
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+	"festevam@gmail.com" <festevam@gmail.com>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"kernel@pengutronix.de" <kernel@pengutronix.de>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v6 08/10] PCI: imx6: Use dwc common suspend resume method
+Message-ID: <20241122164714.aj4dzv32zixdj7pq@thinkpad>
+References: <20241101070610.1267391-1-hongxing.zhu@nxp.com>
+ <20241101070610.1267391-9-hongxing.zhu@nxp.com>
+ <20241115070932.vt4cqshyjtks2hq4@thinkpad>
+ <AS8PR04MB867625A97A43FE5352FC0E768C272@AS8PR04MB8676.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 09/10] iio: adc: ad7124: Add error reporting during
- probe
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
- Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>
-Cc: Alexandru Ardelean <aardelean@baylibre.com>,
- Alisa-Dariana Roman <alisa.roman@analog.com>,
- Andy Shevchenko <andy.shevchenko@gmail.com>,
- Conor Dooley <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>,
- Dumitru Ceclan <dumitru.ceclan@analog.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
- Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- linux-iio@vger.kernel.org
-References: <20241122113322.242875-12-u.kleine-koenig@baylibre.com>
- <20241122113322.242875-21-u.kleine-koenig@baylibre.com>
-Content-Language: en-US
-From: Trevor Gamblin <tgamblin@baylibre.com>
-In-Reply-To: <20241122113322.242875-21-u.kleine-koenig@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <AS8PR04MB867625A97A43FE5352FC0E768C272@AS8PR04MB8676.eurprd04.prod.outlook.com>
 
+On Mon, Nov 18, 2024 at 03:00:44AM +0000, Hongxing Zhu wrote:
 
-On 2024-11-22 06:33, Uwe Kleine-König wrote:
-> A driver that silently fails to probe is annoying and hard to debug. So
-> add messages in the error paths of the probe function.
->
-> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
-Reviewed-by: Trevor Gamblin <tgamblin@baylibre.com>
+[...]
+
+> > > -static void imx_pcie_pm_turnoff(struct imx_pcie *imx_pcie) -{
+> > > -	struct device *dev = imx_pcie->pci->dev;
+> > > -
+> > > -	/* Some variants have a turnoff reset in DT */
+> > > -	if (imx_pcie->turnoff_reset) {
+> > > -		reset_control_assert(imx_pcie->turnoff_reset);
+> > > -		reset_control_deassert(imx_pcie->turnoff_reset);
+> > 
+> > Where these are handled in imx_pcie_pme_turn_off()? If you removed them
+> > intentionally for a reason, it should be mentioned in commit message.
+> > 
+> How about add the following descriptions into commit message?
+> SRC interface is used to do the PME_TURN_OFF operations before. It's not very
+
+What is SRC?
+
+>  suitable. Now DWC common driver can do the PME_TURN_OFF kick off. Switch to
+>  this common methods, and remove the useless turnoff_reset manipulate codes.
+> 
+
+Hmm, so 'turnoff_reset' is used to send PME_Turn_Off msg?
+
+If so, then you need to say in such a way that the reader should understand
+'turnoff_reset' was used to send PME_Turn_Off and since the DWC implementation
+is used, it is not needed now.
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
