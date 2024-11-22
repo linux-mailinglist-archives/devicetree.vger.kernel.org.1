@@ -1,767 +1,242 @@
-Return-Path: <devicetree+bounces-123658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123659-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 602519D59E5
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 08:21:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DDD4D9D59EE
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 08:24:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D70B91F231CB
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 07:21:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 631681F22D26
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 07:24:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF62517624F;
-	Fri, 22 Nov 2024 07:20:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7AF81509B6;
+	Fri, 22 Nov 2024 07:24:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="n+au/w+1"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="amGBv9ph";
+	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="vEoVZ0cB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD608176233;
-	Fri, 22 Nov 2024 07:20:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732260049; cv=none; b=WG6inDrQMgBAqBrl/PPkzaqrtLh94K24FRcNmZrrpwiTOXw4wypEdIFVfyBGHyOxov88++hHf5P08YxALVpT4asSS5yhWSHjtIJV5Wxcurjohunns2289GYY1Rn7M3tv8nzMWnqeNHaoJ76N2UijjBNTiacTpWycJg9KOaABCqY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732260049; c=relaxed/simple;
-	bh=havQ2a1lqF69LHyEub0b6hrXdMcBJJEbTYQ2UPI/RBk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=owLNSBAPmZLCjItSunbWMhfiq0qCozkeBDjLsY+Q1g2eaPJTE0kmRKFBk+VpHFs5nkxXs9Y/XsrZTQw8lb4w/fCnmNmRJU9Hod7WbuMYQrgEfyln852RZAtefA4YRLVXDjwcZldJ8uqb6w92Y7HgjF+I9uXOgn+/EvsYUTZAsIw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=n+au/w+1; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4ALLKnfC003945;
-	Fri, 22 Nov 2024 07:20:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	AfMWMS6bQuaKkxfn3sl4uCqG1JO9YzBNBPXyYRmdESU=; b=n+au/w+11k8LF2Fr
-	m9XJ7LFBd0jNWzuSzYxY//rD2sqWgu+1zJeSsn5UM4YeuBlyBpDAeWk7rDCkjqQC
-	TOazusXWEJZ3zsptAM2LFmDtitdFLO0mywCYN86B2jUitSWs29ueuFIHGa+FmWuE
-	SpkkQaM86thrTkc0djLIB2N0TLpMrrDnwNrhAcvMKAt3ANCwbiEEnW0qGFF1Zdf5
-	K1TutFZyDuS5Gib5Uw2zm5mYZj+5llVz6VVI97EgQlqPqqdfy3Gu+7ueHVHZZw4s
-	h3LuUXZTpb1ED1tnMPEle2GqqMZ9cQZCfzkUNsHVvzYuxbt179lGDajKn7gdWHcX
-	jO669w==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 431ce3eh1a-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 22 Nov 2024 07:20:40 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AM7Kd0U012600
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 22 Nov 2024 07:20:39 GMT
-Received: from [10.231.216.175] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 21 Nov
- 2024 23:20:34 -0800
-Message-ID: <b7fd096d-ab4a-4ffb-94d5-3511d46fd1de@quicinc.com>
-Date: Fri, 22 Nov 2024 15:20:31 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B877870838;
+	Fri, 22 Nov 2024 07:24:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=210.61.82.184
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1732260254; cv=fail; b=d3qxPlH8dXWsgdMb3g36VeuisJqpL7htrLCK06QnMduL3TBHVKvMrW/QWhoyyl+EjrzHDbZnivkvZZKx/L9fdoeeJsyxHcJnIvLScWJP7Jdi/hpVWJz0jJKkKclgEVWTg6B06eGyYzWqQ+MgIG6vK2JrpkFXQPe0ZCjw41c7yjw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1732260254; c=relaxed/simple;
+	bh=Ojkzv0F797xYpp0hDlVpLIZ+TuNAsimFraQKjyHTquI=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=dtB7S3KJ4E/NBSCduaRJg7/2kWpucU34FdFgKHhVFRO91d7A7Wy6an207ZRVj0dZ5yqM7oCIXty7Dk2Jw2mbL1fKuTQt35gYRnCkHCNqWnNiQotXb/Amx67eJv3b63Roq+mYrEuJIAxkapbsB6r56S+qQeXccvrbWZjBNBuALo8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=amGBv9ph; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=vEoVZ0cB; arc=fail smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: bd21f9a4a8a211efbd192953cf12861f-20241122
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=Ojkzv0F797xYpp0hDlVpLIZ+TuNAsimFraQKjyHTquI=;
+	b=amGBv9phlbmDTQf7wYng+8MVncq2bCto8WFl1X/lgsOO0CJM54tIJxyucR6/0o7qCb1YRbHGLSyZ2GGLG8Nq7y0XiMH1VVvrUt4clSF/87FLHP1XCf4OZuMKKNChQxG8Jb8sVp1GXkM8r2mAVTs+gk8LRKjB39nN1rzwvGU4z6E=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.44,REQID:f6439fec-ec38-4bbe-ba87-8b807553ba42,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:464815b,CLOUDID:797939b9-596a-4e31-81f2-cae532fa1b81,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102,TC:nil,Content:0,EDM
+	:-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0
+	,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: bd21f9a4a8a211efbd192953cf12861f-20241122
+Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw02.mediatek.com
+	(envelope-from <ck.hu@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 384543377; Fri, 22 Nov 2024 15:23:58 +0800
+Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Fri, 22 Nov 2024 15:23:55 +0800
+Received: from SEYPR02CU001.outbound.protection.outlook.com (172.21.101.237)
+ by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Fri, 22 Nov 2024 15:23:55 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=bfTY839SHxGtWnPSe7lMu018HKMVkYrIRTyfLHBRu+9Hpqbhg6tbsXe6Jxlwc5ngo0cVqoBzt/EcdKMKq9Ojj6eEd9TkNmZ8jhXAbgmlchKdQDUL6Fp/gFPh/0xnKn1NtMCBCYDbVRKGwc9+BznIGhMj3+6PHpVQiyfKHVCdrGr/f+oj/Wz5h144yrY3AIZ+SN71VtUAwDSn/5OAIV4CNYCEfBWVMxyg/QQV1gxdmmjIMe29PwBNJBfmVmsqsTfXQEnTfjHwIz6EWOiRH2Kfx29TBfWNkfcoFXMrWhci4EdkApK35sg/pX6b0MkhpbWbFukYgC+J2N+IBiuPJnqLBQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Ojkzv0F797xYpp0hDlVpLIZ+TuNAsimFraQKjyHTquI=;
+ b=bB7u9ELjbdxH3usTc5L+TZRxqmu8cd+U/LFZd1fuz8lK1gDDIJNOXrdzHDKvAa59lYY+6gOpL/owjO27v44afDln6nvVFGgeZ6Rmvch0zfLkSZ8DLY7YX8sfnllRj3mzCPMHaguKOzBnXY1jiKW3TUYhK0zfCkmxLYA8MNfhiss4Echn8qtLzS8t9LH9kRC28dZWb0pQBo0ZSWjOFaXW0eMD+hXNqIBejVNTo79vbqjzeihYNyYrXHuiata2m7t55cOVpcLrmFkRpXsMkqgYLgSMsN25V3qTTTq+FBxWjGL6eehuwin1+hsdeUZG5gs6BWu7ugZ30j/Q6yvxeP5wzQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Ojkzv0F797xYpp0hDlVpLIZ+TuNAsimFraQKjyHTquI=;
+ b=vEoVZ0cBuNuUjEX8EZ5OKYxPnp8HRcVE6ce/jPco4Zrt43Hua6lWtBnwYdb2l3uTLAASilDb/adT9+rh2NecNjQvnkH+CSdrzeavX3cX5pSgfUrhv/zOj7g3IZ0qiwzgvw5bQnQNS/GLxp8eIibbHWkzS8tPnvr6rjVvKIs4fEc=
+Received: from TYZPR03MB6624.apcprd03.prod.outlook.com (2603:1096:400:1f4::13)
+ by KL1PR03MB7287.apcprd03.prod.outlook.com (2603:1096:820:eb::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.21; Fri, 22 Nov
+ 2024 07:23:52 +0000
+Received: from TYZPR03MB6624.apcprd03.prod.outlook.com
+ ([fe80::9ce6:1e85:c4a7:2a54]) by TYZPR03MB6624.apcprd03.prod.outlook.com
+ ([fe80::9ce6:1e85:c4a7:2a54%7]) with mapi id 15.20.8158.017; Fri, 22 Nov 2024
+ 07:23:52 +0000
+From: =?utf-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	"chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
+CC: "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "simona@ffwll.ch"
+	<simona@ffwll.ch>, "tzimmermann@suse.de" <tzimmermann@suse.de>,
+	"mripard@kernel.org" <mripard@kernel.org>,
+	=?utf-8?B?Sml0YW8gU2hpICjnn7PorrDmtpsp?= <jitao.shi@mediatek.com>,
+	"kernel@collabora.com" <kernel@collabora.com>, "p.zabel@pengutronix.de"
+	<p.zabel@pengutronix.de>, "maarten.lankhorst@linux.intel.com"
+	<maarten.lankhorst@linux.intel.com>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	"airlied@gmail.com" <airlied@gmail.com>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "matthias.bgg@gmail.com"
+	<matthias.bgg@gmail.com>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>
+Subject: Re: [PATCH v1 6/6] drm/mediatek: Add support for MT8195 Digital
+ Parallel Interface
+Thread-Topic: [PATCH v1 6/6] drm/mediatek: Add support for MT8195 Digital
+ Parallel Interface
+Thread-Index: AQHbO0o2kTOzG2fD30avrRutQMN1rbLC6GCA
+Date: Fri, 22 Nov 2024 07:23:52 +0000
+Message-ID: <1b966a136f02b5586749a9c3d0bcec6c75224e49.camel@mediatek.com>
+References: <20241120124420.133914-1-angelogioacchino.delregno@collabora.com>
+	 <20241120124420.133914-7-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20241120124420.133914-7-angelogioacchino.delregno@collabora.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYZPR03MB6624:EE_|KL1PR03MB7287:EE_
+x-ms-office365-filtering-correlation-id: 708f5e5a-2bc0-411c-6bd1-08dd0ac69dd4
+x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|366016|38070700018;
+x-microsoft-antispam-message-info: =?utf-8?B?MloycjV5TnV5aXNPc0tSVHBuVEdQSWtXbzhaWmcrOHY5L0gxZGt4R1ZSemFi?=
+ =?utf-8?B?M0pWazFrTWZPVUNTdjBOYUFpWXloR0k2V2N6aTNhWW5jdmZ2d2NSVlFaVHpq?=
+ =?utf-8?B?eGZqc1RuRlMweS9hZ3EySE5MTzkvZ3Z3SjVURFZ2SlZQamlHSkF4Z1Z3VUVw?=
+ =?utf-8?B?M3YyMGNOS3YwbUg5UHl5R3lXbXlpbEc2VzBvUWlHWHJwU29HNlErbmN2OEJN?=
+ =?utf-8?B?NFFVVWpXQ3BqYkF0SWVTaEI3dEFUcXVvQTI5a1l3SkFKVXFreitZcjZxVUdy?=
+ =?utf-8?B?VVRLSWxOa2tGRDBTTE1pWmlpam43U01iUjA3M0Z1OXlqakZ0WDkvUE9kMGJo?=
+ =?utf-8?B?cGw3WlJGU0J2eXFscHh3b0p2SGEzTWh1NEE0QmVtNlVmS0hWcTB4dW8rc2JE?=
+ =?utf-8?B?YXBUVERmNXg4MVZ6QWs1TXc2emJUUGVMMDhnN3FJbnFoVHh4QWhLTE51WmdG?=
+ =?utf-8?B?OEd5SU9SKy9Ha0plbUk2WnlEUXFYb3MyREp2MnozeTlYdEgra0JsRXludElD?=
+ =?utf-8?B?WjJxQkRkRmE2K3RPN2lPNTBNTkVmZmJqYTg5VFZYN0VaU0EyN2hENkZkOUhj?=
+ =?utf-8?B?WXI4WnpRY3hrN3ZKYThFdUJrbXhoY0xIdE8wNGpqTkFjUUppZFE5a3FLcWJC?=
+ =?utf-8?B?dnByWnpJNm5aNEZjcHVIb2hZTVZ5TGJHejBVWlc2cDhPSUlIUE1ZemdKTlho?=
+ =?utf-8?B?K3hCOEd6cVpSSG5OSnNFNUhlUVU4VWRROTdJajBscC84RGNoZzhJYmZ0TUFj?=
+ =?utf-8?B?bktxQjBmbDN5SitjeDVOQk5IZkRRdDlHVUd1Y1I5aklPb2FwTVE5N0pDNmpW?=
+ =?utf-8?B?WnVjTStZV2RrbjdiSlNNYndJWTNWQmI1WFA0SVJUZllPdCtVaTdWWlp0a1Nu?=
+ =?utf-8?B?ZFhuSFV1Q1FDUzRuZ296ZHN2TElGaU16cXhYU1NRNmp6a2hpMVdvK2ZLclp4?=
+ =?utf-8?B?b3hpRHBIWUNtaTFPRWRhajNVOEVocFBPT1hEd2FtSWN6bloxNWYzeERZQlFW?=
+ =?utf-8?B?SmptMUlMdnFWQk1DeEd4bGJPRDlDejBBbCt6eGdhRlkwd3grUkY2T0NOMU10?=
+ =?utf-8?B?TXpNV2F6R1Y5TERlVFl0TllBVElrQURVZnFoTktyT1pDS2VYTnY4TUZZTzNT?=
+ =?utf-8?B?QWcwUS9nTDgwMUIvMDNzL0NyUkhjUmU4bUpYVU02TEFLMGhSNldyZ1ZnUllF?=
+ =?utf-8?B?ci9JQmRrbHFBQVZQa1ptODNCTTZKMEtnU1F6YlNDNUI1WWpjVWFHZExRYUwv?=
+ =?utf-8?B?TDl6eUxlTG8vcEVpTWlML3lIVklST3dzMGZNZ3lUNmFkWkpqZndaampROTZx?=
+ =?utf-8?B?cnZzdDMrTW5ndktieTFKcnRsTlpoQVdOUkpPL0FZeVBpaFd3QndlTG5nYjYw?=
+ =?utf-8?B?VEp6L3d6a0wxQ2NweHFMQ3hOZDJVUU1wdjdHcmI4b2NvMXlHcXlpTFlpTEpV?=
+ =?utf-8?B?UWc4SDFyUjdjMktTSFZpdlpEcXBsTlVVWXJ0TXNLZVZPdEJlSG1XV3FOOTZi?=
+ =?utf-8?B?bnVPN2hoSGc5di9jWE5GOWhyVDN4cGRwRmVlLzcvQVcyV24yc3laNE5teWN0?=
+ =?utf-8?B?S3dySUY2bVdmWU0wbkNlZDM1R1YzeTdVdTFramdwSTNnYmpkOU5tVDNWOFJn?=
+ =?utf-8?B?VHh2NEVaV0FnZG5WWkswQy81RDBtNkQ1eFh1UXlIbFAwc2tSS2ZEOEhpQVJy?=
+ =?utf-8?B?Z0ZIUlpUN094NzhvcHBVNHJwWG1jQ2hOWWJscTVWeHNFQTd0YkQweGlpQ1N0?=
+ =?utf-8?B?RmdUVCt2N2NkY3lxN1lMamszbTcwNnRzOS9QZGJIRGZuOTludFZkUXZEQW5v?=
+ =?utf-8?B?QXllcXB1QTdpNlc0dzNpNUM3TWo1UUFsRnBtdGdOVk0wVzBLQmROU244SFFX?=
+ =?utf-8?B?djFsYjc4QVpEQm10a1dGQXdrNlFJY0c4bXEyQ0Iwd2lvS0E9PQ==?=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6624.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Z0FPTmh1YjZMZ3MxU0ZjMll0MmZxVW5Xa0RwUEJkaW1LdmE3SDJnWU1mdGZt?=
+ =?utf-8?B?Q3BNc3hjUE5VeUgvZlg4RDRUWFd3cUdVeFZHaG5UUW9YcEZkTGpxNVlhSyto?=
+ =?utf-8?B?MWxKMEMzK05sdTllNUVENzU5NldQN0tRdS9lUnRLMUdFMTNHWU1ISWRRWHJs?=
+ =?utf-8?B?ck9taGlrZnlpb3BDVGp5RXd2WjZZWTZFUkRRWmVnN3ovTVg2TnUyVkhaY1VN?=
+ =?utf-8?B?Yjh2QU4xZ3ZTVjhlZFEvN2g2NmFJRXVNbmM1OGdiZ0RScDZieXJ0cEQxWElT?=
+ =?utf-8?B?WVNHWjZxazJSMlpqV3prSXlWdTI1aG9Uc01qZFJhU1RlMkd6ZlJ4OGwxSGxP?=
+ =?utf-8?B?R1NzQ1Q2QXNQTFMvemR0SjFHOFMxMkhQSHBORUpHV1dFZm8wZlBYdDJFZVN6?=
+ =?utf-8?B?NE5RT1BVbVBsLy9CN0Q0a1hLZlA3cy9Kb041ZGZZdVorc2pCOXNFVnZSMVNi?=
+ =?utf-8?B?b1JSYXppOHVBcnVkRVZvbjBDUXpFUnJ3ZXNTSEtVZmdYNjN6cnowckxiSlQ5?=
+ =?utf-8?B?OGY3WWlLc0c3blVNSnI0TFNZLzluYzFUVG4xL2tEZ1hmMWRaQUExMkV5TERp?=
+ =?utf-8?B?cjkrL1Rpb0haZUZaUENzR1l6cTI0QnMvY3YrQW9MbDJwTjdRdUNhcGFDWSs0?=
+ =?utf-8?B?VFlKRFMrRnlOTzVXcGVyWkJDdXY1YkY4VHdvZkFSekdzcTAzR3hvUTZkTTdV?=
+ =?utf-8?B?Z1F4UXplc3VRYmM5S1BjaHhQSURkNHZmSHMzSDlVbU5KSFVMZDVCTzlLRGw1?=
+ =?utf-8?B?QTZLR0tHZnhCRDkvSXdBbDZIZWZ1OUF2Sjd5c21wenpTb2JyZjJkOEpibzRV?=
+ =?utf-8?B?MjBpZXhvd3JueE94ZDlxZVM5clpQT0poM3IyWGpKYlgrUXhIREVTUHdNeDJS?=
+ =?utf-8?B?TERVNzJZbElLS0F5R2hML1MxRjBjc0hRNHQzdFlHR09rV2piTDdXMGkxYzA4?=
+ =?utf-8?B?dWdNMjZMTklhdFFhbHBWMXo4ZjFmYm5ZSFNMWjRtM1pxc2t2Zm45NnVNWUc5?=
+ =?utf-8?B?MlE2M1hHdkw4b2F0elBjSTVYTUtxbWV4MzdhS080aURTUU5YWDdLRVF1bnZE?=
+ =?utf-8?B?NUdVbUhDWERVQ0dUTnZ1cXJuczBqa3piRDdzUW5DYTVneWJvd2NrZGFIWXZD?=
+ =?utf-8?B?djNyZXRMc0EzQkJYNXhveDkvVGw4ODBldnpOVnNSV1ptOEJZWDVZaWRaU0J1?=
+ =?utf-8?B?STE2cWVJVGpFR2wxU2o1cm01NWJObGprbUNTMUtHQlVJOFNaTGRqL09MN2JT?=
+ =?utf-8?B?c0JoTW0rNjZsUXFQakpHY2RHb3gwQkh4UlNjbVIySkRLV2l2VnhYcC9oUjJH?=
+ =?utf-8?B?eXZuU2N6R2IyT3hIZEdreUJyNFZoazZMWXE5OGRhTXFaTGoraDQwRS96RDky?=
+ =?utf-8?B?TFhsT3NWMTlvU245dGVUclZlaGtsSjZnL3JzOTlLOGszVGt5WUNoZERlSWJS?=
+ =?utf-8?B?Z3V1MzNXVFVhenhpMjJndFQ5REpWdFNvS0FmTlZVYWxldnJ2Q3AzbVZWeDl6?=
+ =?utf-8?B?cWtYaHB4TFZBQmZRR2dlZW9UT2dWOUlYNEQ1Rnk3RFYra2dTZktrS1BNSzJR?=
+ =?utf-8?B?M2lrN3YvS096VFF2MHFXSVNzMXFtUFl0alcvc05FSWZGTDNUdWR2ZjdPR2Zk?=
+ =?utf-8?B?T2N0TUV0WmJmZWp1a3FRbHYxQkVRdlRmbWdiaks4OVRQTjNYdlBVTkdXRDJm?=
+ =?utf-8?B?YmxaWmp1TUZGNS8yRkp5TEk2enRleWZ2blV3T1MzbzFmOEx4S0FjR0FDUThx?=
+ =?utf-8?B?VjZrWVhLdHNzaDYybW5GNmFBZ2YvaVRaN3ZQUlpPNllZQ3VxUjR0TXQ3WWNl?=
+ =?utf-8?B?NHNwZTB1YnFBWTczL1Z5Sm56NFIzOE5qRCttK1grSjk2NlpaVUo4SFovSEM5?=
+ =?utf-8?B?UWVDRTBFaXh0QzMrKzBaeVJKQytDRnRGVk51bG5ySHR5QTRGc3ZDbkxUejJU?=
+ =?utf-8?B?VTFyOHJHd2FxSTNuNjRrYy80K3hXVDVRc3kyVnc2RHgvVCtDU1lZeWRPa0Vh?=
+ =?utf-8?B?dS96dWhnRjBFWjFvQjY4YloxL0pveUo5S3lNQVRhKzYzSTgrMHJJTHNCSkhS?=
+ =?utf-8?B?eFh5cEZvSnpSN2YrcG5KV05LdGVVck5xTC90bzA0d3ZYdHBtNmYyNnllelZS?=
+ =?utf-8?Q?+LAhPqMUKAzYM3eugHVywt+ot?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <054478776F854348A1FE066411837584@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] Bluetooth: hci_qca: add qcom,product-variant
- properties
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Marcel Holtmann <marcel@holtmann.org>,
-        Luiz Augusto von Dentz
-	<luiz.dentz@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        "Balakrishna
- Godavarthi" <quic_bgodavar@quicinc.com>,
-        Rocky Liao
-	<quic_rjliao@quicinc.com>, <quic_zijuhu@quicinc.com>,
-        <linux-bluetooth@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <quic_mohamull@quicinc.com>
-References: <20241120095428.1122935-1-quic_chejiang@quicinc.com>
- <20241120095428.1122935-5-quic_chejiang@quicinc.com>
- <l4c2rfhlgvljh5micwjfz5bsdxeogmjt3pda6dqadooujliomk@acqolhks3fmq>
- <73edea3d-58d9-4eb4-9c18-cc247fde190b@quicinc.com>
- <n6qrnx6ibxxlwgahbbsqs44iqc2brrjv7om5vcmig5rqzqqdgm@zx3tlpvlxpv2>
-Content-Language: en-US
-From: "Cheng Jiang (IOE)" <quic_chejiang@quicinc.com>
-In-Reply-To: <n6qrnx6ibxxlwgahbbsqs44iqc2brrjv7om5vcmig5rqzqqdgm@zx3tlpvlxpv2>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: t3SQKwkAYxMD65eMYnXH0Oge8-Q5rQZ3
-X-Proofpoint-ORIG-GUID: t3SQKwkAYxMD65eMYnXH0Oge8-Q5rQZ3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- malwarescore=0 clxscore=1015 priorityscore=1501 impostorscore=0
- bulkscore=0 mlxscore=0 adultscore=0 spamscore=0 mlxlogscore=999
- suspectscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2409260000 definitions=main-2411220059
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6624.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 708f5e5a-2bc0-411c-6bd1-08dd0ac69dd4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Nov 2024 07:23:52.4024
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 03FsjyZ2Z/ygNoR+1Ze1SomG0SBh35bb4oHVbaHS9ICsuTwm55osEYpGhSb7+Qespy+9kPXWC5mZ60EC4pf+eQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR03MB7287
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--8.212600-8.000000
+X-TMASE-MatchedRID: 5+1rHnqhWUQNtKv7cnNXnSa1MaKuob8PCJpCCsn6HCHBnyal/eRn3gzR
+	CsGHURLuwpcJm2NYlPAF6GY0Fb6yCsME2BsoiKJMbc297PAGtWZTm6UYlo7la5soi2XrUn/J+ZL
+	5o+vRV7wDpAZ2/B/Blg1fA1QHegDv3QfwsVk0UbuGrPnef/I+erh6LNUF3FoegNxHQiiffI/Ywz
+	adQjhAeU992cna+7wlZyMWcibO/JI=
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--8.212600-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP:
+	D33D2749FD7CE81A60F314169709458C433B3B2DD11D2EF273E2D5CCDAE540802000:8
 
-Hi Dmitry,
-
-On 11/22/2024 2:41 AM, Dmitry Baryshkov wrote:
-> On Thu, Nov 21, 2024 at 12:40:27PM +0800, Cheng Jiang wrote:
->> Hi Dmitry,
->>
->> On 11/20/2024 6:57 PM, Dmitry Baryshkov wrote:
->>> On Wed, Nov 20, 2024 at 05:54:28PM +0800, Cheng Jiang wrote:
->>>> Since different products use the same SoC chip, features cannot
->>>> be included in a single patch. Use the qcom,product-variant to
->>>> load the appropriate firmware.
->>>
->>> I can not understand this: what kind of features are so different that
->>> you can not include them into a single firmware image? Please enable all
->>> users with all possible features instead of tying them to a product
->>> segment. If I'm missing something, please provide additional
->>> information.
->> We have serveral projects for different cusomters, but may use the same 
->> soc chip (different boards). Customer have different requriements. For
->> some customer focus on A2DP SINK role, they need a high throughput PKI of
->> BTC, then firmware requires more optimizaiton for coexistence when acting
->> as SINK role. While other projects only act as A2DP Source, they need the
->> optimizaiton for coexistence when acting as SRC role  For basic Bluetooth
->> functions, they are included, but we can't included all the feature in a
->> signle firmware. 
-> 
-> This description corresponds to the use-case / software description
-> rather than the hardware differences. DT describes the hardware. Please
-> don't use DT to segment the users. If your customer needs a different
-> firmware, they can use distro or BSP-specific ways to implement that
-> instead of hardcoding this information in the hardware description.
-> Consider somebody using IoT as a low-power PC.
-> 
->> For PC projects, the focus is on A2DP SRC and HFP AG roles. Meanwhile,
->> for IoT projects, the focus is on A2DP SINK and HFP Client roles.
-> 
-> What does that mean for the users? Does that mean that we can not use
-> RBn boards as SBC devices? Or will audio quality be lowered on such
-> devices?
-> 
-No. It can be used as both SRC and SINK role. Audio quality is the same.
-This is just to explain that different customers/products may have 
-different requirements. We need both the software and hardware 
-optimization to meet the requirements.
-
-What's more, if the platform to which the BT chipsets are attached is 
-Qualcomm instead of a third-party option, there may be more Qualcomm-specific 
-features available.
-
-That’s why we need to override the BT firmware rampatch sometimes. We will
-use the existing property firmware-name for our purpose instead of the current
-solution. Thank you for your valuable comments.
-
->>  
->>>
->>>>
->>>> The qcom,product-variant provides product line information, which
->>>> the driver uses to load firmware from different directories.
->>>>
->>>> If it's not defined in dts, the default firmware will be loaded.
->>>>
->>>> Signed-off-by: Cheng Jiang <quic_chejiang@quicinc.com>
->>>> ---
->>>>  drivers/bluetooth/btqca.c   | 142 +++++++++++++++++++++++++++++-------
->>>>  drivers/bluetooth/btqca.h   |  11 ++-
->>>>  drivers/bluetooth/hci_qca.c |  73 +++++++++---------
->>>>  3 files changed, 164 insertions(+), 62 deletions(-)
->>>>
->>>> diff --git a/drivers/bluetooth/btqca.c b/drivers/bluetooth/btqca.c
->>>> index dfbbac92242a..0845e5a60412 100644
->>>> --- a/drivers/bluetooth/btqca.c
->>>> +++ b/drivers/bluetooth/btqca.c
->>>> @@ -700,8 +700,79 @@ static int qca_check_bdaddr(struct hci_dev *hdev, const struct qca_fw_config *co
->>>>  	return 0;
->>>>  }
->>>>  
->>>> -static void qca_generate_hsp_nvm_name(char *fwname, size_t max_size,
->>>> -		struct qca_btsoc_version ver, u8 rom_ver, u16 bid)
->>>> +
->>>> +const char *qca_get_soc_name(enum qca_btsoc_type soc_type)
->>>> +{
->>>> +	const char *soc_name = "";
->>>> +
->>>> +	switch (soc_type) {
->>>> +	case QCA_QCA2066:
->>>> +		soc_name = "QCA2066";
->>>> +		break;
->>>> +
->>>> +	case QCA_QCA6698:
->>>> +		soc_name = "QCA6698";
->>>> +		break;
->>>> +
->>>> +	case QCA_WCN3988:
->>>> +	case QCA_WCN3990:
->>>> +	case QCA_WCN3991:
->>>> +	case QCA_WCN3998:
->>>> +		soc_name = "WCN399x";
->>>> +		break;
->>>> +
->>>> +	case QCA_WCN6750:
->>>> +		soc_name = "WCN6750";
->>>> +		break;
->>>> +
->>>> +	case QCA_WCN6855:
->>>> +		soc_name = "WCN6855";
->>>> +		break;
->>>> +
->>>> +	case QCA_WCN7850:
->>>> +		soc_name = "WCN7850";
->>>> +		break;
->>>> +
->>>> +	default:
->>>> +		soc_name = "ROME/QCA6390";
->>>> +	}
->>>> +
->>>> +	return soc_name;
->>>> +}
->>>> +EXPORT_SYMBOL_GPL(qca_get_soc_name);
->>>> +
->>>> +static void qca_get_firmware_path(enum qca_btsoc_type soc_type, char *fw_path,
->>>> +		size_t max_size, enum qca_product_type product_type)
->>>> +{
->>>> +	const char *fw_dir = NULL;
->>>> +
->>>> +	switch (product_type) {
->>>> +	case QCA_MCC:
->>>> +		fw_dir = "qca";
->>>> +		break;
->>>> +	case QCA_CE:
->>>> +		fw_dir = "qca/ce";
->>>> +		break;
->>>> +	case QCA_IOT:
->>>> +		fw_dir = "qca/iot";
->>>> +		break;
->>>> +	case QCA_AUTO:
->>>> +		fw_dir = "qca/auto";
->>>> +		break;
->>>> +	default:
->>>> +		fw_dir = "qca";
->>>> +		break;
->>>> +	}
->>>> +
->>>> +	if (product_type == QCA_IOT)
->>>> +		snprintf(fw_path, max_size, "%s/%s", fw_dir, qca_get_soc_name(soc_type));
->>>
->>> Why do you need even more nesting for IoT products? "qca/iot/ROME/QCA6390"
->>> also looks strange, but perfectly possible with your patch
->> It's intended to separate the firmware from the IoT product and the existing product.
-> 
-> 
-> I asked, why do you need additional nesting. Isn't just qca/iot/XXbtfwYY
-> enough for your usecase?
-> 
->>>
->>>> +	else
->>>> +		snprintf(fw_path, max_size, "%s", fw_dir);
->>>
->>> Without the IoT platform you can just include a static string.
->> Ack.
->>>
->>>> +}
->>>> +
->>>> +static void qca_generate_hsp_nvm_name(enum qca_btsoc_type soc_type, char *fwname,
->>>> +		size_t max_size, const char *fw_path, struct qca_btsoc_version ver, u8 rom_ver,
->>>> +		u16 bid)
->>>>  {
->>>>  	const char *variant;
->>>>  
->>>> @@ -712,33 +783,36 @@ static void qca_generate_hsp_nvm_name(char *fwname, size_t max_size,
->>>>  		variant = "";
->>>>  
->>>>  	if (bid == 0x0)
->>>> -		snprintf(fwname, max_size, "qca/hpnv%02x%s.bin", rom_ver, variant);
->>>> +		snprintf(fwname, max_size, "%s/hpnv%02x%s.bin", fw_path, rom_ver, variant);
->>>>  	else
->>>> -		snprintf(fwname, max_size, "qca/hpnv%02x%s.%x", rom_ver, variant, bid);
->>>> +		snprintf(fwname, max_size, "%s/hpnv%02x%s.%x", fw_path, rom_ver, variant, bid);
->>>>  }
->>>>  
->>>> -static inline void qca_get_nvm_name_generic(struct qca_fw_config *cfg,
->>>> +static inline void qca_get_nvm_name_generic(struct qca_fw_config *cfg, const char *fw_path,
->>>>  					    const char *stem, u8 rom_ver, u16 bid)
->>>>  {
->>>>  	if (bid == 0x0)
->>>> -		snprintf(cfg->fwname, sizeof(cfg->fwname), "qca/%snv%02x.bin", stem, rom_ver);
->>>> +		snprintf(cfg->fwname, sizeof(cfg->fwname),
->>>> +			 "%s/%snv%02x.bin", fw_path, stem, rom_ver);
->>>>  	else if (bid & 0xff00)
->>>>  		snprintf(cfg->fwname, sizeof(cfg->fwname),
->>>> -			 "qca/%snv%02x.b%x", stem, rom_ver, bid);
->>>> +			 "%s/%snv%02x.b%x", fw_path, stem, rom_ver, bid);
->>>>  	else
->>>>  		snprintf(cfg->fwname, sizeof(cfg->fwname),
->>>> -			 "qca/%snv%02x.b%02x", stem, rom_ver, bid);
->>>> +			 "%s/%snv%02x.b%02x", fw_path, stem, rom_ver, bid);
->>>>  }
->>>>  
->>>>  int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
->>>>  		   enum qca_btsoc_type soc_type, struct qca_btsoc_version ver,
->>>> -		   const char *firmware_name)
->>>> +		   const char *firmware_name, uint32_t product_variant)
->>>>  {
->>>>  	struct qca_fw_config config = {};
->>>>  	int err;
->>>>  	u8 rom_ver = 0;
->>>>  	u32 soc_ver;
->>>>  	u16 boardid = 0;
->>>> +	enum qca_product_type product_type;
->>>> +	char fw_path[64] = {0};
->>>
->>> No need to init it with lame data.
->> Ack.
->>>
->>>>  
->>>>  	bt_dev_dbg(hdev, "QCA setup on UART");
->>>>  
->>>> @@ -759,6 +833,10 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
->>>>  	if (soc_type == QCA_WCN6750)
->>>>  		qca_send_patch_config_cmd(hdev);
->>>>  
->>>> +	/* Get the f/w path based on product variant */
->>>> +	product_type = (product_variant >> 16) & 0xff;
->>>> +	qca_get_firmware_path(soc_type, fw_path, sizeof(fw_path), product_type);
->>>> +
->>>>  	/* Download rampatch file */
->>>>  	config.type = TLV_TYPE_PATCH;
->>>>  	switch (soc_type) {
->>>> @@ -766,19 +844,23 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
->>>>  	case QCA_WCN3991:
->>>>  	case QCA_WCN3998:
->>>>  		snprintf(config.fwname, sizeof(config.fwname),
->>>> -			 "qca/crbtfw%02x.tlv", rom_ver);
->>>> +			 "%s/crbtfw%02x.tlv", fw_path, rom_ver);
->>>>  		break;
->>>>  	case QCA_WCN3988:
->>>>  		snprintf(config.fwname, sizeof(config.fwname),
->>>> -			 "qca/apbtfw%02x.tlv", rom_ver);
->>>> +			 "%s/apbtfw%02x.tlv", fw_path, rom_ver);
->>>>  		break;
->>>>  	case QCA_QCA2066:
->>>>  		snprintf(config.fwname, sizeof(config.fwname),
->>>> -			 "qca/hpbtfw%02x.tlv", rom_ver);
->>>> +			 "%s/hpbtfw%02x.tlv", fw_path, rom_ver);
->>>>  		break;
->>>>  	case QCA_QCA6390:
->>>>  		snprintf(config.fwname, sizeof(config.fwname),
->>>> -			 "qca/htbtfw%02x.tlv", rom_ver);
->>>> +			 "%s/htbtfw%02x.tlv", fw_path, rom_ver);
->>>> +		break;
->>>> +	case QCA_QCA6698:
->>>> +		snprintf(config.fwname, sizeof(config.fwname),
->>>> +			 "%s/hpbtfw%02x.tlv", fw_path, rom_ver);
->>>>  		break;
->>>>  	case QCA_WCN6750:
->>>>  		/* Choose mbn file by default.If mbn file is not found
->>>> @@ -786,19 +868,19 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
->>>>  		 */
->>>>  		config.type = ELF_TYPE_PATCH;
->>>>  		snprintf(config.fwname, sizeof(config.fwname),
->>>> -			 "qca/msbtfw%02x.mbn", rom_ver);
->>>> +			 "%s/msbtfw%02x.mbn", fw_path, rom_ver);
->>>>  		break;
->>>>  	case QCA_WCN6855:
->>>>  		snprintf(config.fwname, sizeof(config.fwname),
->>>> -			 "qca/hpbtfw%02x.tlv", rom_ver);
->>>> +			 "%s/hpbtfw%02x.tlv", fw_path, rom_ver);
->>>>  		break;
->>>>  	case QCA_WCN7850:
->>>>  		snprintf(config.fwname, sizeof(config.fwname),
->>>> -			 "qca/hmtbtfw%02x.tlv", rom_ver);
->>>> +			 "%s/hmtbtfw%02x.tlv", fw_path, rom_ver);
->>>>  		break;
->>>>  	default:
->>>>  		snprintf(config.fwname, sizeof(config.fwname),
->>>> -			 "qca/rampatch_%08x.bin", soc_ver);
->>>> +			 "%s/rampatch_%08x.bin", fw_path, soc_ver);
->>>>  	}
->>>>  
->>>>  	err = qca_download_firmware(hdev, &config, soc_type, rom_ver);
->>>> @@ -810,7 +892,8 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
->>>>  	/* Give the controller some time to get ready to receive the NVM */
->>>>  	msleep(10);
->>>>  
->>>> -	if (soc_type == QCA_QCA2066 || soc_type == QCA_WCN7850)
->>>> +	if (soc_type == QCA_QCA2066 || soc_type == QCA_WCN7850 ||
->>>> +		soc_type == QCA_QCA6698)
->>>>  		qca_read_fw_board_id(hdev, &boardid);
->>>>  
->>>>  	/* Download NVM configuration */
->>>> @@ -825,39 +908,40 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
->>>>  		case QCA_WCN3998:
->>>>  			if (le32_to_cpu(ver.soc_id) == QCA_WCN3991_SOC_ID) {
->>>>  				snprintf(config.fwname, sizeof(config.fwname),
->>>> -					 "qca/crnv%02xu.bin", rom_ver);
->>>> +					 "%s/crnv%02xu.bin", fw_path, rom_ver);
->>>>  			} else {
->>>>  				snprintf(config.fwname, sizeof(config.fwname),
->>>> -					 "qca/crnv%02x.bin", rom_ver);
->>>> +					 "%s/crnv%02x.bin", fw_path, rom_ver);
->>>>  			}
->>>>  			break;
->>>>  		case QCA_WCN3988:
->>>>  			snprintf(config.fwname, sizeof(config.fwname),
->>>> -				 "qca/apnv%02x.bin", rom_ver);
->>>> +				 "%s/apnv%02x.bin", fw_path, rom_ver);
->>>>  			break;
->>>>  		case QCA_QCA2066:
->>>> -			qca_generate_hsp_nvm_name(config.fwname,
->>>> -				sizeof(config.fwname), ver, rom_ver, boardid);
->>>> +		case QCA_QCA6698:
->>>> +			qca_generate_hsp_nvm_name(soc_type, config.fwname,
->>>> +				sizeof(config.fwname), fw_path, ver, rom_ver, boardid);
->>>>  			break;
->>>>  		case QCA_QCA6390:
->>>>  			snprintf(config.fwname, sizeof(config.fwname),
->>>> -				 "qca/htnv%02x.bin", rom_ver);
->>>> +				 "%s/htnv%02x.bin", fw_path, rom_ver);
->>>>  			break;
->>>>  		case QCA_WCN6750:
->>>>  			snprintf(config.fwname, sizeof(config.fwname),
->>>> -				 "qca/msnv%02x.bin", rom_ver);
->>>> +				 "%s/msnv%02x.bin", fw_path, rom_ver);
->>>>  			break;
->>>>  		case QCA_WCN6855:
->>>>  			snprintf(config.fwname, sizeof(config.fwname),
->>>> -				 "qca/hpnv%02x.bin", rom_ver);
->>>> +				 "%s/hpnv%02x.bin", fw_path, rom_ver);
->>>>  			break;
->>>>  		case QCA_WCN7850:
->>>> -			qca_get_nvm_name_generic(&config, "hmt", rom_ver, boardid);
->>>> +			qca_get_nvm_name_generic(&config, "hmt", fw_path, rom_ver, boardid);
->>>>  			break;
->>>>  
->>>>  		default:
->>>>  			snprintf(config.fwname, sizeof(config.fwname),
->>>> -				 "qca/nvm_%08x.bin", soc_ver);
->>>> +				 "%s/nvm_%08x.bin", fw_path, soc_ver);
->>>>  		}
->>>>  	}
->>>>  
->>>> @@ -871,6 +955,7 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
->>>>  	case QCA_WCN3991:
->>>>  	case QCA_QCA2066:
->>>>  	case QCA_QCA6390:
->>>> +	case QCA_QCA6698:
->>>
->>> This wasn't mentioned in the commit message. Please separate unrelated
->>> changes into separate patches.
->> ACK.
->>>
->>>>  	case QCA_WCN6750:
->>>>  	case QCA_WCN6855:
->>>>  	case QCA_WCN7850:
->>>> @@ -909,6 +994,7 @@ int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
->>>>  	case QCA_WCN6750:
->>>>  	case QCA_WCN6855:
->>>>  	case QCA_WCN7850:
->>>> +	case QCA_QCA6698:
->>>>  		/* get fw build info */
->>>>  		err = qca_read_fw_build_info(hdev);
->>>>  		if (err < 0)
->>>> diff --git a/drivers/bluetooth/btqca.h b/drivers/bluetooth/btqca.h
->>>> index bb5207d7a8c7..baa3f979d017 100644
->>>> --- a/drivers/bluetooth/btqca.h
->>>> +++ b/drivers/bluetooth/btqca.h
->>>> @@ -151,21 +151,30 @@ enum qca_btsoc_type {
->>>>  	QCA_WCN3991,
->>>>  	QCA_QCA2066,
->>>>  	QCA_QCA6390,
->>>> +	QCA_QCA6698,
->>>>  	QCA_WCN6750,
->>>>  	QCA_WCN6855,
->>>>  	QCA_WCN7850,
->>>>  };
->>>>  
->>>> +enum qca_product_type {
->>>> +	QCA_MCC = 0,
->>>> +	QCA_CE,
->>>> +	QCA_IOT,
->>>> +	QCA_AUTO,
->>>
->>> What is MCC? CE?
-> 
-> And the question got ignored. Sad.
-> 
->>>
->>>> +};
->>>> +
->>>>  #if IS_ENABLED(CONFIG_BT_QCA)
->>>>  
->>>>  int qca_set_bdaddr_rome(struct hci_dev *hdev, const bdaddr_t *bdaddr);
->>>>  int qca_uart_setup(struct hci_dev *hdev, uint8_t baudrate,
->>>>  		   enum qca_btsoc_type soc_type, struct qca_btsoc_version ver,
->>>> -		   const char *firmware_name);
->>>> +		   const char *firmware_name, uint32_t product_variant);
->>>>  int qca_read_soc_version(struct hci_dev *hdev, struct qca_btsoc_version *ver,
->>>>  			 enum qca_btsoc_type);
->>>>  int qca_set_bdaddr(struct hci_dev *hdev, const bdaddr_t *bdaddr);
->>>>  int qca_send_pre_shutdown_cmd(struct hci_dev *hdev);
->>>> +const char *qca_get_soc_name(enum qca_btsoc_type soc_type);
->>>>  #else
->>>>  
->>>>  static inline int qca_set_bdaddr_rome(struct hci_dev *hdev, const bdaddr_t *bdaddr)
->>>> diff --git a/drivers/bluetooth/hci_qca.c b/drivers/bluetooth/hci_qca.c
->>>> index 37129e6cb0eb..69fec890eb8c 100644
->>>> --- a/drivers/bluetooth/hci_qca.c
->>>> +++ b/drivers/bluetooth/hci_qca.c
->>>> @@ -227,6 +227,7 @@ struct qca_serdev {
->>>>  	struct qca_power *bt_power;
->>>>  	u32 init_speed;
->>>>  	u32 oper_speed;
->>>> +	u32 product_variant;
->>>>  	bool bdaddr_property_broken;
->>>>  	const char *firmware_name;
->>>>  };
->>>> @@ -1361,6 +1362,7 @@ static int qca_set_baudrate(struct hci_dev *hdev, uint8_t baudrate)
->>>>  	case QCA_WCN6750:
->>>>  	case QCA_WCN6855:
->>>>  	case QCA_WCN7850:
->>>> +	case QCA_QCA6698:
->>>>  		usleep_range(1000, 10000);
->>>>  		break;
->>>>  
->>>> @@ -1447,6 +1449,7 @@ static int qca_check_speeds(struct hci_uart *hu)
->>>>  	case QCA_WCN6750:
->>>>  	case QCA_WCN6855:
->>>>  	case QCA_WCN7850:
->>>> +	case QCA_QCA6698:
->>>>  		if (!qca_get_speed(hu, QCA_INIT_SPEED) &&
->>>>  		    !qca_get_speed(hu, QCA_OPER_SPEED))
->>>>  			return -EINVAL;
->>>> @@ -1489,6 +1492,7 @@ static int qca_set_speed(struct hci_uart *hu, enum qca_speed_type speed_type)
->>>>  		case QCA_WCN6750:
->>>>  		case QCA_WCN6855:
->>>>  		case QCA_WCN7850:
->>>> +		case QCA_QCA6698:
->>>>  			hci_uart_set_flow_control(hu, true);
->>>>  			break;
->>>>  
->>>> @@ -1523,6 +1527,7 @@ static int qca_set_speed(struct hci_uart *hu, enum qca_speed_type speed_type)
->>>>  		case QCA_WCN6750:
->>>>  		case QCA_WCN6855:
->>>>  		case QCA_WCN7850:
->>>> +		case QCA_QCA6698:
->>>>  			hci_uart_set_flow_control(hu, false);
->>>>  			break;
->>>>  
->>>> @@ -1803,6 +1808,7 @@ static int qca_power_on(struct hci_dev *hdev)
->>>>  	case QCA_WCN6855:
->>>>  	case QCA_WCN7850:
->>>>  	case QCA_QCA6390:
->>>> +	case QCA_QCA6698:
->>>>  		ret = qca_regulator_init(hu);
->>>>  		break;
->>>>  
->>>> @@ -1858,7 +1864,6 @@ static int qca_setup(struct hci_uart *hu)
->>>>  	int ret;
->>>>  	struct qca_btsoc_version ver;
->>>>  	struct qca_serdev *qcadev;
->>>> -	const char *soc_name;
->>>>  
->>>>  	ret = qca_check_speeds(hu);
->>>>  	if (ret)
->>>> @@ -1873,34 +1878,7 @@ static int qca_setup(struct hci_uart *hu)
->>>>  	 */
->>>>  	set_bit(HCI_QUIRK_SIMULTANEOUS_DISCOVERY, &hdev->quirks);
->>>>  
->>>> -	switch (soc_type) {
->>>> -	case QCA_QCA2066:
->>>> -		soc_name = "qca2066";
->>>> -		break;
->>>> -
->>>> -	case QCA_WCN3988:
->>>> -	case QCA_WCN3990:
->>>> -	case QCA_WCN3991:
->>>> -	case QCA_WCN3998:
->>>> -		soc_name = "wcn399x";
->>>> -		break;
->>>> -
->>>> -	case QCA_WCN6750:
->>>> -		soc_name = "wcn6750";
->>>> -		break;
->>>> -
->>>> -	case QCA_WCN6855:
->>>> -		soc_name = "wcn6855";
->>>> -		break;
->>>> -
->>>> -	case QCA_WCN7850:
->>>> -		soc_name = "wcn7850";
->>>> -		break;
->>>> -
->>>> -	default:
->>>> -		soc_name = "ROME/QCA6390";
->>>> -	}
->>>> -	bt_dev_info(hdev, "setting up %s", soc_name);
->>>> +	bt_dev_info(hdev, "setting up %s", qca_get_soc_name(soc_type));
->>>>  
->>>>  	qca->memdump_state = QCA_MEMDUMP_IDLE;
->>>>  
->>>> @@ -1919,6 +1897,7 @@ static int qca_setup(struct hci_uart *hu)
->>>>  	case QCA_WCN6750:
->>>>  	case QCA_WCN6855:
->>>>  	case QCA_WCN7850:
->>>> +	case QCA_QCA6698:
->>>>  		qcadev = serdev_device_get_drvdata(hu->serdev);
->>>>  		if (qcadev->bdaddr_property_broken)
->>>>  			set_bit(HCI_QUIRK_BDADDR_PROPERTY_BROKEN, &hdev->quirks);
->>>> @@ -1952,6 +1931,7 @@ static int qca_setup(struct hci_uart *hu)
->>>>  	case QCA_WCN6750:
->>>>  	case QCA_WCN6855:
->>>>  	case QCA_WCN7850:
->>>> +	case QCA_QCA6698:
->>>>  		break;
->>>>  
->>>>  	default:
->>>> @@ -1963,7 +1943,7 @@ static int qca_setup(struct hci_uart *hu)
->>>>  
->>>>  	/* Setup patch / NVM configurations */
->>>>  	ret = qca_uart_setup(hdev, qca_baudrate, soc_type, ver,
->>>> -			firmware_name);
->>>> +			firmware_name, qcadev->product_variant);
->>>>  	if (!ret) {
->>>>  		clear_bit(QCA_IBS_DISABLED, &qca->flags);
->>>>  		qca_debugfs_init(hdev);
->>>> @@ -2089,6 +2069,20 @@ static const struct qca_device_data qca_soc_data_qca6390 __maybe_unused = {
->>>>  	.num_vregs = 0,
->>>>  };
->>>>  
->>>> +static const struct qca_device_data qca_soc_data_qca6698 __maybe_unused = {
->>>> +	.soc_type = QCA_QCA6698,
->>>> +	.vregs = (struct qca_vreg []) {
->>>> +		{ "vddio", 5000 },
->>>> +		{ "vddbtcxmx", 126000 },
->>>> +		{ "vddrfacmn", 12500 },
->>>> +		{ "vddrfa0p8", 102000 },
->>>> +		{ "vddrfa1p7", 302000 },
->>>> +		{ "vddrfa1p2", 257000 },
->>>
->>> No need to describe regulators, use PMU and powerseq.
-> 
-> And this one...
-> 
->>>
->>>> +	},
->>>> +	.num_vregs = 6,
->>>> +	.capabilities = QCA_CAP_WIDEBAND_SPEECH | QCA_CAP_VALID_LE_STATES,
->>>> +};
->>>
->>> Why can't you use the qca_soc_data_wcn6855?
-> 
-> And this one...
-> 
->>>
->>>> +
->>>>  static const struct qca_device_data qca_soc_data_wcn6750 __maybe_unused = {
->>>>  	.soc_type = QCA_WCN6750,
->>>>  	.vregs = (struct qca_vreg []) {
->>>> @@ -2165,7 +2159,7 @@ static void qca_power_shutdown(struct hci_uart *hu)
->>>>  		pwrseq_power_off(power->pwrseq);
->>>>  		set_bit(QCA_BT_OFF, &qca->flags);
->>>>  		return;
->>>> -        }
->>>> +	}
->>>
->>> Completely unrelated, cleanups go to a separate patch.
->> Ack.
->>>
->>>>  
->>>>  	switch (soc_type) {
->>>>  	case QCA_WCN3988:
->>>> @@ -2179,6 +2173,7 @@ static void qca_power_shutdown(struct hci_uart *hu)
->>>>  
->>>>  	case QCA_WCN6750:
->>>>  	case QCA_WCN6855:
->>>> +	case QCA_QCA6698:
->>>>  		gpiod_set_value_cansleep(qcadev->bt_en, 0);
->>>>  		msleep(100);
->>>>  		qca_regulator_disable(qcadev);
->>>> @@ -2313,6 +2308,12 @@ static int qca_serdev_probe(struct serdev_device *serdev)
->>>>  					 &qcadev->firmware_name);
->>>>  	device_property_read_u32(&serdev->dev, "max-speed",
->>>>  				 &qcadev->oper_speed);
->>>> +	device_property_read_u32(&serdev->dev, "qcom,product-variant",
->>>> +				 &qcadev->product_variant);
->>>> +
->>>> +	if (qcadev->product_variant != 0)
->>>> +		BT_INFO("QC Product Variant: 0x%08x", qcadev->product_variant);
->>>
->>> Don't spam users with useless hex numbers. Printing the sensible string
->>> should be fine though.
->>>
->>>> +
->>>>  	if (!qcadev->oper_speed)
->>>>  		BT_DBG("UART will pick default operating speed");
->>>>  
->>>> @@ -2333,6 +2334,7 @@ static int qca_serdev_probe(struct serdev_device *serdev)
->>>>  	case QCA_WCN6855:
->>>>  	case QCA_WCN7850:
->>>>  	case QCA_QCA6390:
->>>> +	case QCA_QCA6698:
->>>>  		qcadev->bt_power = devm_kzalloc(&serdev->dev,
->>>>  						sizeof(struct qca_power),
->>>>  						GFP_KERNEL);
->>>> @@ -2346,6 +2348,7 @@ static int qca_serdev_probe(struct serdev_device *serdev)
->>>>  	switch (qcadev->btsoc_type) {
->>>>  	case QCA_WCN6855:
->>>>  	case QCA_WCN7850:
->>>> +	case QCA_QCA6698:
->>>>  		if (!device_property_present(&serdev->dev, "enable-gpios")) {
->>>>  			/*
->>>>  			 * Backward compatibility with old DT sources. If the
->>>> @@ -2380,7 +2383,8 @@ static int qca_serdev_probe(struct serdev_device *serdev)
->>>>  					       GPIOD_OUT_LOW);
->>>>  		if (IS_ERR(qcadev->bt_en) &&
->>>>  		    (data->soc_type == QCA_WCN6750 ||
->>>> -		     data->soc_type == QCA_WCN6855)) {
->>>> +		     data->soc_type == QCA_WCN6855 ||
->>>> +		     data->soc_type == QCA_QCA6698)) {
->>>>  			dev_err(&serdev->dev, "failed to acquire BT_EN gpio\n");
->>>>  			return PTR_ERR(qcadev->bt_en);
->>>>  		}
->>>> @@ -2393,7 +2397,8 @@ static int qca_serdev_probe(struct serdev_device *serdev)
->>>>  		if (IS_ERR(qcadev->sw_ctrl) &&
->>>>  		    (data->soc_type == QCA_WCN6750 ||
->>>>  		     data->soc_type == QCA_WCN6855 ||
->>>> -		     data->soc_type == QCA_WCN7850)) {
->>>> +		     data->soc_type == QCA_WCN7850 ||
->>>> +		     data->soc_type == QCA_QCA6698)) {
->>>>  			dev_err(&serdev->dev, "failed to acquire SW_CTRL gpio\n");
->>>>  			return PTR_ERR(qcadev->sw_ctrl);
->>>>  		}
->>>> @@ -2475,6 +2480,7 @@ static void qca_serdev_remove(struct serdev_device *serdev)
->>>>  	case QCA_WCN6750:
->>>>  	case QCA_WCN6855:
->>>>  	case QCA_WCN7850:
->>>> +	case QCA_QCA6698:
->>>>  		if (power->vregs_on)
->>>>  			qca_power_shutdown(&qcadev->serdev_hu);
->>>>  		break;
->>>> @@ -2669,6 +2675,7 @@ static const struct of_device_id qca_bluetooth_of_match[] = {
->>>>  	{ .compatible = "qcom,qca2066-bt", .data = &qca_soc_data_qca2066},
->>>>  	{ .compatible = "qcom,qca6174-bt" },
->>>>  	{ .compatible = "qcom,qca6390-bt", .data = &qca_soc_data_qca6390},
->>>> +	{ .compatible = "qcom,qca6698-bt", .data = &qca_soc_data_qca6698},
->>>>  	{ .compatible = "qcom,qca9377-bt" },
->>>>  	{ .compatible = "qcom,wcn3988-bt", .data = &qca_soc_data_wcn3988},
->>>>  	{ .compatible = "qcom,wcn3990-bt", .data = &qca_soc_data_wcn3990},
->>>> -- 
->>>> 2.25.1
->>>>
->>>
->>
-> 
-
+SGksIEFuZ2VsbzoNCg0KT24gV2VkLCAyMDI0LTExLTIwIGF0IDEzOjQ0ICswMTAwLCBBbmdlbG9H
+aW9hY2NoaW5vIERlbCBSZWdubyB3cm90ZToNCj4gRXh0ZXJuYWwgZW1haWwgOiBQbGVhc2UgZG8g
+bm90IGNsaWNrIGxpbmtzIG9yIG9wZW4gYXR0YWNobWVudHMgdW50aWwgeW91IGhhdmUgdmVyaWZp
+ZWQgdGhlIHNlbmRlciBvciB0aGUgY29udGVudC4NCj4gDQo+IA0KPiBBZGQgc3VwcG9ydCBmb3Ig
+dGhlIERQSSBibG9jayBmb3VuZCBpbiB0aGUgTVQ4MTk1IGFuZCBNVDgxODggU29Dcy4NCj4gSW5z
+aWRlIG9mIHRoZSBTb0MsIHRoaXMgYmxvY2sgaXMgZGlyZWN0bHkgY29ubmVjdGVkIHRvIHRoZSBI
+RE1JIElQLg0KDQpJbiBNVDgxNzMsIERQSTAgaXMgZGlyZWN0bHkgY29ubmVjdGVkIHRvIEhETUku
+DQpUaGUgZmlyc3QgdmVyc2lvbiBvZiB0aGlzIGRyaXZlciBpcyBqdXN0IGZvciBNVDgxNzMgRFBJ
+MC4NCkRvZXMgTVQ4MTczIERQSTAgbmVlZCB0aGlzIG1vZGlmaWNhdGlvbj8NCk9yIHRoaXMgbW9k
+aWZpY2F0aW9uIGlzIGp1c3QgZm9yIE1UODE4OCBhbmQgTVQ4MTk1LCB0aGVuIHRoZSBkZXNjcmlw
+dGlvbiBzaG91bGQgYmUgbW9yZSB0aGFuICdkaXJlY3RseSBjb25uZWN0ZWQnLg0KDQpSZWdhcmRz
+LA0KQ0sNCg0KPiANCj4gU2lnbmVkLW9mZi1ieTogQW5nZWxvR2lvYWNjaGlubyBEZWwgUmVnbm8g
+PGFuZ2Vsb2dpb2FjY2hpbm8uZGVscmVnbm9AY29sbGFib3JhLmNvbT4NCj4gLS0tDQo=
 
