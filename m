@@ -1,148 +1,141 @@
-Return-Path: <devicetree+bounces-123613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123614-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 757A69D5708
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 02:21:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB4DE9D57DC
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 02:55:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 287601F2306D
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 01:21:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A9CD1F22172
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 01:55:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ECEF7081F;
-	Fri, 22 Nov 2024 01:21:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67634175D54;
+	Fri, 22 Nov 2024 01:53:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="CTc6EXIK"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="ntba1n+U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com [209.85.215.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 887E22309AC;
-	Fri, 22 Nov 2024 01:21:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6826175D20
+	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 01:53:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732238484; cv=none; b=U0pQ1+y1XIUE1ZlH8av1jPWpQKQUsfpZhZpAV7FLUDkmsPuHcNpvAlvbXUVWBk1lUNrILN1GClh8KBBJDQxruhyuEkCOJKRPblso39zDxLFDy/g78tPb/JVsJOv1t3ATFfd+hgwZbp7pdt1YC9gq2+YXewxaacHFsnU6KHLKETA=
+	t=1732240390; cv=none; b=U6N0gFJ6n1Jv1AODGDCDnAeCXM37b8KGRl1COSqWza2uUPiUrTxYR2RV5nCRkgf+UDnA558SM43W/5cj3yEznwaPp7Q3olfp4q3RbrRiDVFcSFDkK9/SmSUoeViaA3TQkVaS40QjjfrPsC92d24Pnv9j79CQgf0MZKgnhXLgVYE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732238484; c=relaxed/simple;
-	bh=YxeYppzDf7V8g4Tbcz+mEhSb/412HQZ+neLnniD2HVI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=JGt8svCC6a2WIFQ1Y2LZtUe/oh7q1zlZvM4RRu/4paM/tqcDemAltaJAL0GwHWByIn8QBdWI5c/WzzLVUXLFCNMnpO7v+rLsaBkh6t1PKiBM6Ig/F9B6CKX4tNWjsNt++xfSNW4hogO7fZfi4HQjxBqBOpjtu7XJ3Elk2IfkdQw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=CTc6EXIK; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4ALKxwOE002369;
-	Fri, 22 Nov 2024 01:20:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	mJY+C2OrUNq8Cv/RftLal0ztMq2TbuzpXQ7+SdQmAU4=; b=CTc6EXIKke9fSPk7
-	mcmffX4yJhwHbTI1K7gXt59cXgLZ4DFcRqS6aLyP5DItJ02+V5Gam/067tg+Rf2l
-	LKbi/5n4f88FOTmotPeEllpLpNIRVKoUUyQCVtvCoBrpg6JE1J9igZDcgb95DING
-	YxzK0+76mXPzM/PdFSSoO9PrpsiCuoNIYKid4IET26kNLQtfrvtXgMW5Sk4nbRO7
-	Ax1IR3AhTdhram6z7UtmTs+Cwzu/POGjzH1t7irzh/p9hKi51oB6JMajm1eVKl4D
-	JvJfPBXgVNV5ElO+wBi5nyKRTLyPYI9g4iDD1IslADgsH7q8Mkb3+v1OK99tO7L3
-	NulYBw==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 431ea75cwn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 22 Nov 2024 01:20:54 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AM1KrKK021474
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 22 Nov 2024 01:20:53 GMT
-Received: from [10.253.13.126] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 21 Nov
- 2024 17:20:46 -0800
-Message-ID: <32eb38dd-1176-4356-b36c-00aa34a07040@quicinc.com>
-Date: Fri, 22 Nov 2024 09:20:44 +0800
+	s=arc-20240116; t=1732240390; c=relaxed/simple;
+	bh=9Gp11wURsPmM1pehQpfczGqb8HtkTf/exkB97GkATNU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Y4wxZqpfsQ3mJE+jTY9u8Q7qRPekL0UlX9k9zDqsErN8PqUodbeOpzcriTp86JHnxiCP26l/wA1XDLAY3i1fKwe+k8jM2awOPHrZmxaPDU1ksKvQTc9GHaDIbpAIS9zUtAxkqN66CD2rRd5Am67KQ9jaTMvAQ2f3uHR3U6P3NXM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=ntba1n+U; arc=none smtp.client-ip=209.85.215.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pg1-f174.google.com with SMTP id 41be03b00d2f7-7fbce800ee5so211540a12.2
+        for <devicetree@vger.kernel.org>; Thu, 21 Nov 2024 17:53:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1732240388; x=1732845188; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=3x8fo8ZdaZL0NcelbjOrkia6dNLJwkoa+yeWX98rz5Y=;
+        b=ntba1n+U1aZ8ueNcS9WCkGjWKfWiZh/31OGOAvghUMxAEpuZIPm6GYz5BSYkvfGCb7
+         //VDpAqAGE05CnR8jIUVT7T6xTau/yo+buZGciQB5db5DlYJrHJhIhjHzhwcMdH9xMQp
+         59pT0jACE/NATTRfj1Nrf0KIxZuvrdrs5fuDE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732240388; x=1732845188;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3x8fo8ZdaZL0NcelbjOrkia6dNLJwkoa+yeWX98rz5Y=;
+        b=TMSqp0+TDV1sTB2vWK/+OD6AY7BCWJJDPsvfYizqqDmCTeENTS8Xdnkt8YfBWgHdx9
+         emP0m9v5h55suyG/GM2ZFInZENB8jA0ZZNJ8OhbIIsAulNsRzk7TaqHP8GNtrXziAUcY
+         z4hhzHcZgZsI/MqedroGlCm5r46h7kPFpfv2GtQtDBXz0ujSgJqMoX1hl+OzK1R79z2+
+         UDuvwJJ/w8bPbuBom5UiXr29jGX9o+ox7Sm1k1salhqYHsAssBKJVI0ZoXT28WlL2MKd
+         l7NDDREYp2CzxulND+sPHJe23o06IzOmkhW4AN7CLkkmzDcV+WPoRLFfO34M/K2VMOJb
+         0wrg==
+X-Forwarded-Encrypted: i=1; AJvYcCXSYgBenn2ysjExpcIZ+aQQFQueSjuSInHZaxIBbF21OlrrqoeVfA9Blg2rrxEtKn0sqigJW2dB0eFi@vger.kernel.org
+X-Gm-Message-State: AOJu0YwFlRBzqYXJsXnQyEINW+20Vd8RV+GgXMOk3GIUcggmzve84/RS
+	vCOMQTpk9Aa3m/EXnby3/98mnkQDGq879pzP9r8StHth9T6laNKy3m3B9XJQog==
+X-Gm-Gg: ASbGncurQibmL76dCh245wGwcI82wjsR/VZqB/sZTZwEZbLjUH3f0cCEAHqGnayGEpb
+	V39DeqXDvv9durK+tQP3JL0NJ1GoJwiJXYzE9K5va1nkfh29Kn/c80/4Rj86W7j5f7SFBXal2pp
+	Q2YTgwKUNAKsE5Etf6P3wgVGp2NTBnOh+vrliuJHkA4X1DBOrBbpprskq5O2tm1uJoU7KFkeWzr
+	Lm+tLtZSR+XP/zInTH1pJ5KPLTWqj0gDk7+AGiA/6A=
+X-Google-Smtp-Source: AGHT+IF1rzuF3haOxVKx1OXtXDkDX/sEISCXgMO2PAx7+IkM05srtj8d/7FtAHkiZLQS2l8phBPE4g==
+X-Received: by 2002:a05:6a21:338a:b0:1db:f0af:2277 with SMTP id adf61e73a8af0-1e09e63211amr1302998637.38.1732240388215;
+        Thu, 21 Nov 2024 17:53:08 -0800 (PST)
+Received: from google.com ([2401:fa00:1:10:533e:26bf:b63:973a])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-724de47d186sm451941b3a.76.2024.11.21.17.53.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 21 Nov 2024 17:53:07 -0800 (PST)
+Date: Fri, 22 Nov 2024 09:53:04 +0800
+From: "Sung-Chi, Li" <lschyi@chromium.org>
+To: Thomas =?iso-8859-1?Q?Wei=DFschuh?= <thomas@t-8ch.de>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Benson Leung <bleung@chromium.org>,
+	Tzung-Bi Shih <tzungbi@kernel.org>,
+	Guenter Roeck <groeck@chromium.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+	linux-kernel@vger.kernel.org, chrome-platform@lists.linux.dev,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] platform/chrome: cros_ec_charge_state: add new
+ driver to control charge
+Message-ID: <Zz_kACWsTYt9CPbV@google.com>
+References: <20241118-add_charger_state-v1-0-94997079f35a@chromium.org>
+ <20241118-add_charger_state-v1-1-94997079f35a@chromium.org>
+ <8fcf9154-6c0d-42eb-901b-0cc9e731e757@t-8ch.de>
+ <1e8bf721-f930-4365-be48-a8c5964c1457@kernel.org>
+ <7fc1bbbc-3cba-45bd-a5b6-0029cb5bb8fd@t-8ch.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] Add standalone ethernet MAC entries for qcs615
-To: Paolo Abeni <pabeni@redhat.com>, Vinod Koul <vkoul@kernel.org>,
-        "Andrew
- Lunn" <andrew+netdev@lunn.ch>,
-        "David S. Miller" <davem@davemloft.net>,
-        "Eric
- Dumazet" <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        "Alexandre
- Torgue" <alexandre.torgue@foss.st.com>,
-        Giuseppe Cavallaro
-	<peppe.cavallaro@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <netdev@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <quic_tingweiz@quicinc.com>,
-        <quic_aiquny@quicinc.com>, <quic_tengfan@quicinc.com>,
-        <quic_jiegan@quicinc.com>, <quic_jingyw@quicinc.com>,
-        <quic_jsuraj@quicinc.com>
-References: <20241118-schema-v1-0-11b7c1583c0c@quicinc.com>
- <3cfc2e90-c9b4-425d-80f4-ddace9aff021@redhat.com>
-Content-Language: en-US
-From: Yijie Yang <quic_yijiyang@quicinc.com>
-In-Reply-To: <3cfc2e90-c9b4-425d-80f4-ddace9aff021@redhat.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: dYuuCkmnewuO-08MOeB_S_9jO_bMNVm_
-X-Proofpoint-ORIG-GUID: dYuuCkmnewuO-08MOeB_S_9jO_bMNVm_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 adultscore=0
- bulkscore=0 mlxscore=0 suspectscore=0 lowpriorityscore=0 clxscore=1015
- priorityscore=1501 impostorscore=0 malwarescore=0 mlxlogscore=587
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411220009
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <7fc1bbbc-3cba-45bd-a5b6-0029cb5bb8fd@t-8ch.de>
 
-
-
-On 2024-11-19 19:18, Paolo Abeni wrote:
-> On 11/18/24 07:16, Yijie Yang wrote:
->> Add separate EMAC entries for qcs615 since its core version is 2.3.1,
->> compared to sm8150's 2.1.2.
->>
->> Signed-off-by: Yijie Yang <quic_yijiyang@quicinc.com>
-> ## Form letter - net-next-closed
+On Thu, Nov 21, 2024 at 03:11:30PM +0100, Thomas Weißschuh wrote:
+> On 2024-11-21 15:00:13+0100, Krzysztof Kozlowski wrote:
+> > On 21/11/2024 14:47, Thomas Weißschuh wrote:
+> > > 
+> > >> +
+> > >> +	return 0;
+> > >> +}
+> > >> +
+> > >> +static const struct platform_device_id cros_ec_charge_state_id[] = {
+> > >> +	{ DRV_NAME,  0 },
+> > >> +	{}
+> > >> +};
+> > > 
+> > > Reference this in the platform_driver below.
+> > 
+> > And missing module device table... This wasn't ever tested as module.
 > 
-> The merge window for v6.13 has begun and net-next is closed for new
-> drivers, features, code refactoring and optimizations. We are currently
-> accepting bug fixes only.
-> 
-> Please repost when net-next reopens after Dec 2nd.
-> 
-> RFC patches sent for review only are welcome at any time.
-> 
-> See:
-> https://www.kernel.org/doc/html/next/process/maintainer-netdev.html#development-cycle
-> 
+> It has one in the general MODULE_*() macro soup at the end of the file.
+> But yes, it should be moved where it can be found, right after
+> cros_ec_charge_state_id.
 
-Thank you for the reminder.
+Thank you all for spending time reviewing my changes, and I am very sorry that
+I made so such careless mistakes. All these input are very valuable, and I
+learnt a lot from them, and I will prevent these mistakes in future commits.
 
-> 
+As we have seen lots of inputs from the DTS change commit, and I spent lot of
+time coming up a better solution for achieving my goal (export certain
+mechanisms, such that we can limit the charger chip current as a cooling
+device), I think maybe extending functionalities in the 
+driver/power/supply/cros_usbpd-charger.c would be a better approach. As a
+result, I will stop the development on this series. So anyone is helping on this
+series can stop review these changes.
 
--- 
-Best Regards,
-Yijie
+However, because I am kind of new to developing the kernel driver module, any
+inputs are welcome, and I have to say I really learnt a lot from mistakes
+pointed by all of you, and I shall not make same mistakes in future
+contributions.
 
+Best,
+Sung-Chi Li
 
