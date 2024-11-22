@@ -1,155 +1,246 @@
-Return-Path: <devicetree+bounces-123814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 130549D6156
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 16:27:40 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CB2C9D6161
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 16:32:58 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E1BFB160550
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 15:27:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C53B28196A
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 15:32:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 983A41DF747;
-	Fri, 22 Nov 2024 15:27:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3B51524B0;
+	Fri, 22 Nov 2024 15:32:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="P1p9zTcu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MqbQBJRj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D62911DE2BE
-	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 15:27:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3290013AC1;
+	Fri, 22 Nov 2024 15:32:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732289227; cv=none; b=mYWJ2H0CUoRNto7Ut4f5av8VAuoPfxnt03tWkBK9xpBpNjIVYaLbHePJzw+5y0PqLTkAM0GPys7DYnUG6bJVIpW2+kSAdnsKZe4v35U0FUT33i/1TI4dlVAnPza80xSZ7uDnAGrLkJOcqCJfne7FRcNR5XwxSAMVsMFnXVA//fg=
+	t=1732289573; cv=none; b=KWv4NN2T9ug1tP/GnY4s8nc8queTWbwL18rJf4M9PBGnKuNEVU6KaHNpWbg1mO2Jkbiew06on+pJO+8cGIkOMjSMV1vJJS2WBN6kLYSYmUT0XxNcdY4YPZC9tqrgoL21N+sj2BIkCL+PFZg4Ovrgqvfe2iLtL9bwKgZ+UXQYA0Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732289227; c=relaxed/simple;
-	bh=qjecPisH1rDv0vmW4e3Z5k4GWR0TA6ZJS+WGTzwZWHQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=oDFBVH7OeOk39DPTDi5IYBY+lxzDO2ZT5njQmzoxvuKFVk7RuQV4WRp8zpu+qrQh/k6dScFusjsw2X8zu1qcqQMAIhvshxGesT6U0eRtuxnIMF4TQOJgNRn+QRcuQvyFXHXeTJ+vdHI4Ug+0cFrU1ZKAOdxqs8z/0P4EEULVuEM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=P1p9zTcu; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-431506d4f3bso1991425e9.0
-        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 07:27:05 -0800 (PST)
+	s=arc-20240116; t=1732289573; c=relaxed/simple;
+	bh=0FclO1/fy/StBe40uIFRtdGhOrnTErVR8/u5v+4B8YU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=j2SkM7CFYPIqQTiamf4zt0nzwTksPcoBpCVDo24rj/EfpcYbxqoRY057nd3UZezj1p06EMWxci+nOjk6J9MAFajkdTOjeqWsMBxWjyO2RGxTfnvbt+UITgYIdjPgVErTe130jk24LHF4x4n3hSi2klAGKZxGS1/Pel6dQ7Os31U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MqbQBJRj; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-21262a191a5so21023025ad.0;
+        Fri, 22 Nov 2024 07:32:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732289224; x=1732894024; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0X1Xegl4oVpMjzZ8PB7qzQH/4FIAntXlEuYmUQlA770=;
-        b=P1p9zTcuEjExdh+BEeflgQrlhbkpyxsZxeJQCuB9bfS/5/bYpNbOJVpumsNRvUOHKq
-         mvkpt5zIxBjGlmwt7gnX08HApaWYLc/SRcwClpnAkGBWKW7i03xOQilQPFYOM/D6ka/z
-         JQBzhMZtdQ2tfJqWzmiCiRLSPNImSOt7bNEbCj+S96oi6TGl+OrhbM47q2ZWy6muGX6u
-         1/m4v8QYuUJOC4TQ1L5eaC9BzHSZX1d3d34M3Tn/Y4XtbCr/D5IU4aBcfB7CaW9ie6qu
-         AbsBwsKYY8ftk4e7VZYgJ2UracQQzldpUs4eufU1xoVh0wWkw+T7u8QTqLLzYM4DUS7G
-         xRBQ==
+        d=gmail.com; s=20230601; t=1732289571; x=1732894371; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=NEihtZELJslqzYx1qKoHiiJG/a0GTxJmxX3Q8r6D26c=;
+        b=MqbQBJRj5ucYUPpz6RxQAouHQp/7KzI/bRGxOIuPPdCF+3sxbE66NoCrNr1Q/MCouA
+         xJuJP93uPSVkNwR6ScTbbjzCqb1zPtFY3pzKEU7sJs0PaI/OaR+ae9kGycPt+O2J06NA
+         QUB5Nkhq3zVPp/GGSGWmWqyg4+2/GiO0tMcvUQ4vEo1jakByufoZtBzJOeBw2ghEPgTP
+         /MdAgaiL1vRuqjFEOnfwfudz42Xbk0PtA5hroaFqrrFo5m6cNSKxYkZ3zBIpY35ib6fJ
+         ojLkEQqyAF/IpJboE1d403p6iztmwtxR06zNSCjAeDWX6PXAAFzOe5upPDBI7NRDzrQ3
+         KKnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732289224; x=1732894024;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0X1Xegl4oVpMjzZ8PB7qzQH/4FIAntXlEuYmUQlA770=;
-        b=ADt+S8PJRJ6kzeogFQTwTQ6tNi13obEEGiHKoBeR7G6JH9Kmqm+UDjc96QT1Wkw1ei
-         FEgJS0h4a75aE997w1qS5czomz8eZI0C+H9GPFQzP6Av6GmnM0cI50tkFdvwz9hI+8iP
-         eFDz5SGn+wlPRptvaBQcX0HUQCHP58NeeXeaR7ax4HSX6cs1370sP8/xrWjFFopIsyRH
-         I+voqHXgYX8vTvbLPC7unH87mcQkXJ2+lrJ256NLNYCyEivkqL2SjEid2jcSHX3hZ50X
-         Wv31BhqH1TDIkdxugvL+ZH0S3uIb6QfkZOy/3y6KUMm96lCL6fh5vIcXICbCQdAmT4qx
-         +L6w==
-X-Forwarded-Encrypted: i=1; AJvYcCWCVNc1JYEojHYOAr83nI/7PdiGZh+LMa2RcDZWibWaPGZRimCFDlWKX1IMuPYtJLjb6YqCEYb5Haa7@vger.kernel.org
-X-Gm-Message-State: AOJu0YxEfTq/2RKa4AbC88qmJBFh4uw7Ub+b/8tTQMNPNbDHGaZagtdG
-	PKTYhTC9VdngvsrKyjkbuUr8w+JOr9iUDMs9LTZeYXgycsTfktP0Rs5oiITdxBE=
-X-Gm-Gg: ASbGnct4R1Zr0nu7tGyz6DIGZCyI5L9DLKf0tnLCj7ElJ1/9dFQHMKp9NgrRLRSyhys
-	oK9uWc4beSjBm5nrjl25WyLPeGKoKWymSF+7K2Z8AaiVgIqeumgi9xLxyiZVX1wpwozbUlvMBs/
-	WbZG7D3kkFwCoWMkdxSAIPbMpSVLcGELb5Tp5YkvYpITSqtIqLPM/fNdKxjSymIGKWGEYlX0K5H
-	mvz5d+hnwiaK8o6BF9O2xSQPJdMZBoxrVrpn7o8d9BTH4WD//+ZJsmCl+vR0Vg7GA==
-X-Google-Smtp-Source: AGHT+IFH6jXnahHKvEKTrcqIFxJfwrjr+1CcU0LecZfJrqwau291DbTfkYHttu8w0eM6MmGhjaWi2w==
-X-Received: by 2002:a05:600c:1c03:b0:430:52ec:1e2a with SMTP id 5b1f17b1804b1-433ce4aa1c1mr12469075e9.7.1732289224313;
-        Fri, 22 Nov 2024 07:27:04 -0800 (PST)
-Received: from [127.0.1.1] ([178.197.211.167])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-433b45d4c68sm93002935e9.22.2024.11.22.07.27.03
+        d=1e100.net; s=20230601; t=1732289571; x=1732894371;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NEihtZELJslqzYx1qKoHiiJG/a0GTxJmxX3Q8r6D26c=;
+        b=QEuyyGhNw4IYjR9G2JyAJSW0I2zeBO7ip28hEurFQIqkcBNQqc7JB20/McqaVTuWE+
+         xDOjRfS+WNXbdt+za6f3opMzFQ/IRFTTvcVdc/na8QdU4U7GMQxGElY+TVzhN/VVxDUC
+         xdRxQPNult9wtbZZHdpAMHA3wBHNQhJEgX9DefNQeUZRIGyQyZWGxDE78Frmq7gOU3M1
+         dUSSbaAQA5HXWBc/sY9MmLAwZhll1Z+a2xrkhdmRqsPaFnkztqn+yRKNa6wM5nLXjbSC
+         /z3p/eLMwBWMLzlUeVKLZALMPMv+QZmPQG7QGTfi8AE2n/RX7TqnsjdxbvnK9xMGa/Hj
+         35cQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVCiTauoduooxYP7EEN0+o3QJP9xz5NRFRFU1ffwtLLkPuUIVlCA0M3FURr7SpjfTk9mNta3NiXM86J@vger.kernel.org, AJvYcCXBetW8b1sS0pP71j6mopHfv96HU108AwOVV9kPV06tAoBPGWxtkLz0edi8Py9PvOEjrhfrozBykLFD@vger.kernel.org, AJvYcCXrWNq8payfRYV/LSIU7BDdxJku6vKEKljA1PbDZfqoQCtjFcdtV5PGs06C2lBFuRD8BgmI37jOeOgpD4ld@vger.kernel.org
+X-Gm-Message-State: AOJu0YzCiZ8pRqojeuftSDLb5VOLo8/EA4JwHgvAONNbcuLSOsVMbZZU
+	oSavqkN7s/vrtOaN93QfpOAvOoTjBhv4CimUOzRFWPhfHxM5EjSa
+X-Gm-Gg: ASbGncseQKmhowILgYIVcVjDD0PGW0NBoAn6edtqhe9iU3vbVuqZZEx1TImtIwH/5YH
+	1rK7dPqMRpkkhtm/jaIZVgA14I/h6QkbODzrxVz+SmYoCqwtEZBzYQcQbdRpvkSrg//FX6Z9IAy
+	5FIx7q1/TLNxiHeQbuqeCk7Nwky27c4iiefHy0iaGgXntHmnfyrRUq9uYhvzkk+LyulTFiLT4tg
+	b5j1pnC3NDNXTx4JtblfD3GvTgjIzvKIw1zTm1/O8H0F1B1Y3A6xgmKmAFl
+X-Google-Smtp-Source: AGHT+IFz6WAw7NYuRZ7C2FqbMDhOZ1uFfidu6y5aHIwF3/RrVeM5N56quWuhGpWrbBCgLUylhAm/0Q==
+X-Received: by 2002:a17:903:2311:b0:20c:6bff:fc88 with SMTP id d9443c01a7336-2129f239d0bmr37000985ad.28.1732289571066;
+        Fri, 22 Nov 2024 07:32:51 -0800 (PST)
+Received: from localhost ([2804:30c:1618:9800:694b:286f:2b3a:5414])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2129dc2aaccsm17485065ad.278.2024.11.22.07.32.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Nov 2024 07:27:03 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Fri, 22 Nov 2024 16:26:51 +0100
-Subject: [PATCH 4/4] arm64: dts: qcom: sm8750-qrd: Enable CDSP and mention
- MPSS
+        Fri, 22 Nov 2024 07:32:50 -0800 (PST)
+Date: Fri, 22 Nov 2024 12:33:13 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, lars@metafoo.de,
+	Michael.Hennerich@analog.com, jic23@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/4] dt-bindings: iio: adc: adi,ad4000: Add PulSAR
+Message-ID: <Z0CkOTGhGhfV18OG@debian-BULLSEYE-live-builder-AMD64>
+References: <cover.1732020224.git.marcelo.schmitt@analog.com>
+ <dd7fd54585e1230d2da86b5e3d4ed770256b0af2.1732020224.git.marcelo.schmitt@analog.com>
+ <5kz6ghe56yiprlvhyduv7olcrajvejyvulcpjav6doiyvr6dcl@6qlt4nebp4gb>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241122-b4-sm8750-cdsp-v1-4-9a69a889d1b7@linaro.org>
-References: <20241122-b4-sm8750-cdsp-v1-0-9a69a889d1b7@linaro.org>
-In-Reply-To: <20241122-b4-sm8750-cdsp-v1-0-9a69a889d1b7@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=981;
- i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=qjecPisH1rDv0vmW4e3Z5k4GWR0TA6ZJS+WGTzwZWHQ=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBnQKLAImNxV7FL9Y805KQGpPyfRUNmJWupleiZ1
- xHDFKUZM92JAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZ0CiwAAKCRDBN2bmhouD
- 14fUD/9+MGN9EtNpnhWMVCubiXnLItxYnghxOB6jcruviHcyqwxYrmHMQHYDaxa69m2y7tubP0s
- ixkobsktYXURi7urv/JxDulHtlTgBN7a1lfsKs1vd3eVbAgJUKCLfRHth7DoM1j4C2wT+j0wnAf
- jVG49hZxFDHGY1Cp8SNwUHdNkwIhJPa7yi06BgAB/X/7wD/a0WY+eNkbesACnDNryFWJIsKppA0
- QYi+RxWtXjzHaRkRFcPC10vQVquBRXGC6MnoYijmhpwhCKYywMkrjBr1r4eTCM9bfdZs3XLb8N/
- BHf2Wt9qBiPoaWSIYFxy7DOQXUKWjKEscryWQYPoWGdeUb5skYJ5a428242MIaUnaNh1FsqKQBb
- N1xWUX3ipZFwiu8PbgwMqGrfbxhaMfV0Ajsd9fARujY4aAMfhrB5++f0JKjGkN3hW7twvWmYxbG
- pl1a8BKRB4/9MgA+lNbybORe/c5gNYVY5usbCptWyH3kGDPLYO/epsC0YGM2Kf+aFuC8URQQKYP
- JzFwfhPUbFHBE+9/rQx0ECshR68UP/n4jES0MKofv1/oGBL0ohA7H49aN0PHVYheTPUa/68OSI0
- sTV7O9sCnHAx1geMU/2sfN6BfuzA0cP/opX7bVUKIjlWTnpaKl8/AMtkvzey4DW4KH6eH6nSNG7
- gakbmYF5n5l1B/Q==
-X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
- fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5kz6ghe56yiprlvhyduv7olcrajvejyvulcpjav6doiyvr6dcl@6qlt4nebp4gb>
 
-Enable the CDSP and MPSS (modem) on QRD8750 board.
+On 11/20, Krzysztof Kozlowski wrote:
+> On Tue, Nov 19, 2024 at 09:53:40AM -0300, Marcelo Schmitt wrote:
+> > Extend the AD4000 series device tree documentation to also describe
+> > PulSAR devices.
+> > 
+> > Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> > ---
+> > No changes from v2 -> v3.
+> > 
+> >  .../bindings/iio/adc/adi,ad4000.yaml          | 71 +++++++++++++++++++
+> >  1 file changed, 71 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4000.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad4000.yaml
+> > index e413a9d8d2a2..4dbb3d2876f9 100644
+> > --- a/Documentation/devicetree/bindings/iio/adc/adi,ad4000.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4000.yaml
+> > @@ -19,6 +19,20 @@ description: |
+> >      https://www.analog.com/media/en/technical-documentation/data-sheets/ad4020-4021-4022.pdf
+> >      https://www.analog.com/media/en/technical-documentation/data-sheets/adaq4001.pdf
+> >      https://www.analog.com/media/en/technical-documentation/data-sheets/adaq4003.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7685.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7686.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7687.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7688.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7690.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7691.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7693.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7942.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7946.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7980.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7982.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7983.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7984.pdf
+> > +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7988-1_7988-5.pdf
+> >  
+> >  $ref: /schemas/spi/spi-peripheral-props.yaml#
+> >  
+> > @@ -63,6 +77,37 @@ properties:
+> >  
+> >        - const: adi,adaq4003
+> >  
+> > +      - const: adi,ad7946
+> 
+> All such cases are just one enum. That's the preferred syntax.
+> 
+Ack
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> > +      - items:
+> > +          - enum:
+> > +              - adi,ad7942
+> > +          - const: adi,ad7946
+> > +
+> > +      - const: adi,ad7983
+> > +      - items:
+> > +          - enum:
+> > +              - adi,ad7980
+> > +              - adi,ad7988-5
+> > +              - adi,ad7686
+> > +              - adi,ad7685
+> 
+> Keep alphabetical order.
 
----
+Do the fallbacks declared here have any impact on the match try order or on how
+the compatible list should be ordered?
+The only significant difference between each group of devices is the sample rate.
+A faster device can read at slower sample rates so if somebody knows to have
+a 16-bit pseudo-differential PulSAR but doesn't know about the exact model they
+could have a compatible like
+      compatible = "adi,ad7980", "adi,ad7988-5", "adi,ad7686", "adi,ad7685",
+                   "adi,ad7988-1", "adi,ad7983";
 
-Not tested on QRD hardware.
----
- arch/arm64/boot/dts/qcom/sm8750-qrd.dts | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+to try from fastest to slowest device.
+The dt doc would indicate that order in the fallback list?
+      - items:
+          - enum:
+              - adi,ad7980    # Fastest 16-bit pseudo-differential ADC
+              - adi,ad7988-5  # 2nd fastest 16-bit pseudo-differential ADC
+              - adi,ad7686    # 3rd fastest 16-bit pseudo-differential ADC
+              - adi,ad7685    # 4th fastest 16-bit pseudo-differential ADC
+              - adi,ad7988-1  # 5th fastest 16-bit pseudo-differential ADC
+          - const: adi,ad7983 # Slowest 16-bit pseudo-differential ADC
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8750-qrd.dts b/arch/arm64/boot/dts/qcom/sm8750-qrd.dts
-index 341774bb042ff88af8acf49c2f0ef14f9994dfc9..840a6d8f8a24670a01376f8fce511da222159016 100644
---- a/arch/arm64/boot/dts/qcom/sm8750-qrd.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8750-qrd.dts
-@@ -789,6 +789,20 @@ &remoteproc_adsp {
- 	status = "okay";
- };
- 
-+&remoteproc_cdsp {
-+	firmware-name = "qcom/sm8750/cdsp.mbn",
-+			"qcom/sm8750/cdsp_dtb.mbn";
-+
-+	status = "okay";
-+};
-+
-+&remoteproc_mpss {
-+	firmware-name = "qcom/sm8750/modem.mbn",
-+			"qcom/sm8750/modem_dtb.mbn";
-+
-+	status = "okay";
-+};
-+
- &tlmm {
- 	/* reserved for secure world */
- 	gpio-reserved-ranges = <36 4>, <74 1>;
+https://www.analog.com/media/en/technical-documentation/data-sheets/ad7691.pdf
+has a nice table with the different devices and sample rates.
 
--- 
-2.43.0
+writing-bindings.rst says "DO use fallback compatibles when devices are the same
+as or a subset of prior implementations."
+But, how can we use fallbacks properly?
+From Documentation/devicetree/bindings/display/bridge/lvds-codec.yaml I'm
+inferring only one fallback should be provided per group of devices.
 
+> 
+> > +              - adi,ad7988-1
+> > +          - const: adi,ad7983
+> > +
+> > +      - const: adi,ad7688
+> > +      - items:
+> > +          - enum:
+> > +              - adi,ad7693
+> > +              - adi,ad7687
+> > +          - const: adi,ad7688
+> > +
+> > +      - const: adi,ad7984
+> > +      - items:
+> > +          - enum:
+> > +              - adi,ad7982
+> > +              - adi,ad7690
+> > +              - adi,ad7691
+> > +          - const: adi,ad7984
+> > +
+> >    reg:
+> >      maxItems: 1
+> >  
+> > @@ -133,6 +178,32 @@ required:
+> >    - ref-supply
+> >  
+> >  allOf:
+> > +  # Single-channel PulSAR devices have SDI either tied to VIO, GND, or host CS.
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - adi,ad7685
+> 
+> Why do you need this? It's fallback is already here.
+
+So dtbs_check can provide an error message if for example compatible = "adi,ad7687";
+and adi,sdi-pin = "sdi";
+
+zynq-coraz7s-ad7687.dtb: adc@0: adi,sdi-pin:0: 'sdi' is not one of ['high', 'low', 'cs']
+> 
+> > +              - adi,ad7686
+> > +              - adi,ad7687
+> > +              - adi,ad7688
+> > +              - adi,ad7690
+> > +              - adi,ad7691
+> > +              - adi,ad7693
+> > +              - adi,ad7942
+> > +              - adi,ad7946
+> > +              - adi,ad7980
+> > +              - adi,ad7982
+> > +              - adi,ad7983
+> > +              - adi,ad7984
+> > +              - adi,ad7988-1
+> > +              - adi,ad7988-5
+> 
+> Best regards,
+> Krzysztof
+> 
 
