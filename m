@@ -1,151 +1,227 @@
-Return-Path: <devicetree+bounces-123700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123701-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36FC09D5BDC
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 10:23:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F03EB9D5BDF
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 10:26:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D6DFD1F226CA
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 09:23:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 773551F22020
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 09:26:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCD8018BBA2;
-	Fri, 22 Nov 2024 09:23:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B91B189BBA;
+	Fri, 22 Nov 2024 09:25:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q6asVVv3"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="0VltoJIc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B636170A3A
-	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 09:23:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED0D1176AB6
+	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 09:25:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732267415; cv=none; b=i2APwh9ta9faOfqenAGuO+5SnbrbR5XRFwGfLN97No0C98zcsi/gXVPA1vuJ75SwlrwscTpEm9ixsZbHi1CvbhMIzFT3U0wI0UnTT+ZdjotOmyXuCVnJKBeXv3S1o0Zuvo1TzarmXmSqJwS0/Gw4kYaDFzKAeX9HnBJBlo0suu8=
+	t=1732267553; cv=none; b=CjGHMaovkZYOWLj+8eGXgbvQYDe/VHd64nmS6lJR41cMT0lHydLu87Mq+EKxnVdOGUbAvFGVlNCpyEBgxgWMPHO1mlQwkUvZOu5VHePD6ybMeAjuAiB/Nn6GA001WqHyGMlpLHpJeXfvkFm0USOMP9b/ileUF/spUvxevsixixM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732267415; c=relaxed/simple;
-	bh=xFMZvabyNfUiA/8Wj48YsMRAw5ewZrh7Siydup+xXLY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J//auo5Ld4DZSauMKPaHJqj4uVgKAtCYkzb8xkz3hEKBDWi40C1sGZ1Aymt+ZSk1bR/SCgqJ5sw/pwoaBzE8KdVouYkS+u9ihX2VI+LR1wm7uaYF1qg88vXA8H+63ticnAP27c8HkgJVPxqBy2H4u/GnkhWPpetwadWqMILpg8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=q6asVVv3; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-53dd8a528feso128969e87.3
-        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 01:23:32 -0800 (PST)
+	s=arc-20240116; t=1732267553; c=relaxed/simple;
+	bh=yc0fJubc64CpPPPO5rh39xdgkeVNt62XS7Y+a6w3kRw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lZQkzvkjfEdHjLAdYByxcQ/GFfL7InRmajQm3JPdqvjAgZPoYTlIi3yCy5jX83K0ScqzbB0keYPAbOPELnxu8rO5fphHC3bu/HslZZsfYyeZZf3QDye4Rj/Y0KCMcmzM1RFILsu2PGN1QuTASW5+fPwqOw3M3qcUy32D54Yp5wE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=0VltoJIc; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a9ec267b879so304835166b.2
+        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 01:25:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732267411; x=1732872211; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=uN6BAz+250rWr3QrVnp7fqpel9Dn0qE7RRFpgwycROI=;
-        b=q6asVVv33kZ+39YQR5Keun5in/539l+DF3QOOV9EwJ0Z6hmIEEmMjHDX0ydAEIfe0R
-         XG/SBA4zcgD69WzZeviQepXLe61HTHp+P7r435YXvoJ8el1RxM50HZFCYSM7HRHuqVfn
-         w+fQBr3CzZfiVL6E/5nJajrFqPhY7TwvgkM876oS1yWKq1WEpA2H4EtAMUb7DL1WGEmu
-         sOjLoCNR1OOSN5I/Z0YVwMBbR3xuGtC7wS5e8MH7pGd7mL+3MGBX4x4vdJxemSWTdvTP
-         /tF4qFwyIZ1afBB3XlenSOeDYppZlXAtrzMIFDF6huFHc9ff8DA6GTKsaT/yL9BbHnLj
-         2pCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732267411; x=1732872211;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1732267550; x=1732872350; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=uN6BAz+250rWr3QrVnp7fqpel9Dn0qE7RRFpgwycROI=;
-        b=LGOHKUB32wHSynrMX/sxDV1+TJCjIDG5g9W6II4xViR5oByfslQagPsJTH6Ng1MbNZ
-         FcYqexOF7yMaK8bI7eFs9a7IaHEbzqvv7eYe8omDS/C/hgkjD9btWU68KUw7YTni9zb8
-         FE7mJ7e2sN+Jn8jyg1uA3aHStkfHUyOAY0YnNDzm6DgmV6o0JuLvoo34YY3zdy0nMeTa
-         Yu/z4tlF8CVat6l3qieBPdh5BV5fKt8/gzBCIk0VBYBQsj9EoBjmgyk9SWziY2mzBvsn
-         4Yz10qO+RfKWAkY/Jns5eh3LPDDQt+RdgUviVkEDPpLdE2+MZr3IuFc8Uc91MJNkUz2y
-         fMHg==
-X-Forwarded-Encrypted: i=1; AJvYcCWKbwYHY9mbE9FQ3cps+KN2zgC83MLFZSpW4xD92+hyyyeyudiAp4ucOHY2cEkehGgzCbRewroVUCKG@vger.kernel.org
-X-Gm-Message-State: AOJu0YxdSOAtACuIhjli7npaMGD2i4XyVV6lbhL7vOkBztscH9DUoNX+
-	DTd6yzKnuGqPecBzlutEWYOmUJuCK1E6v+U3GhuZzz+wIPL0hfGCyA/t/rpnxyo=
-X-Gm-Gg: ASbGncsyfomQJEHsUL5nMzO0W3FuBLevSYsXSdesJ9N+l4y/6Jd91pC93WYkVLGLZvh
-	VxbRySef0TpBL9EBkJqQB74Vyq2yfbMN1vqp4ZbOm4wF0Hdvlk0h6C8Ggygj49/qL12OSGMbKHu
-	eUX1TbgGMeqVTmcXLdTWlFBal2XCCu6lj1vVMaASDMe03jHvYbgqoXZaCp7KnOLZmAV4hxoZdZT
-	WRFQ3bXoWuwj8FoFHM5mEZYfygTZoUuX2aTDuMGgJ7sskSGWPCJh/4Qwq+5l0iFed+KKsKvY9CM
-	6CN1XDheGyFzq4HWpS3JqNnbFHB6jQ==
-X-Google-Smtp-Source: AGHT+IEy5OBr1xCpPRhgqUBV6HF76ekcP2Na1oRdF7zIBTe9ZiJib+9fvPBcZ7Vk0hs6xn28u4KMpA==
-X-Received: by 2002:a05:6512:1384:b0:53d:cee1:df89 with SMTP id 2adb3069b0e04-53dd36a07bdmr1088047e87.13.1732267411364;
-        Fri, 22 Nov 2024 01:23:31 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53dd248b7d2sm301855e87.221.2024.11.22.01.23.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Nov 2024 01:23:30 -0800 (PST)
-Date: Fri, 22 Nov 2024 11:23:27 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org, 
-	manivannan.sadhasivam@linaro.org, bhelgaas@google.com, kw@linux.com, lpieralisi@kernel.org, 
-	quic_qianyu@quicinc.com, conor+dt@kernel.org, neil.armstrong@linaro.org, 
-	andersson@kernel.org, konradybcio@kernel.org, quic_tsoni@quicinc.com, 
-	quic_shashim@quicinc.com, quic_kaushalk@quicinc.com, quic_tdas@quicinc.com, 
-	quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com, kernel@quicinc.com, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-phy@lists.infradead.org, Krishna chaitanya chundru <quic_krichai@quicinc.com>
-Subject: Re: [PATCH v2 3/6] dt-bindings: PCI: qcom: Document the QCS615 PCIe
- Controller
-Message-ID: <crjcmjgf6eab4p4m7y4wqh5mo3mv6z2mcoa3zn4wdnwjzh73rw@z6ksq3efbzoj>
-References: <20241122023314.1616353-1-quic_ziyuzhan@quicinc.com>
- <20241122023314.1616353-4-quic_ziyuzhan@quicinc.com>
+        bh=8kGVIObe0vVdWgPVNKUPs0E9cZC3gBnTEl6g/zCTMjk=;
+        b=0VltoJIc8irbMu1L8+SU00irK/xc6YJXfFgUWctDq9jEA0BST5Qh5romhDMHGnV08u
+         pbe2DQY9/Lkegu9b/S6vcIP07haf93v2VkOvOYlA18PRN4A8JUyTuGMDWkJqJmv0+NxV
+         eLF8B9RcQ3TLLRuaDr+36xprpXBNk26KcsDbF74Dvs87P8eDivxkGQqDE4UTnuM66Qjr
+         HkGZ9tOBq4tptjCgQlaBWPcin8R5dM238NRI36f6WpKlKE40s+HNJU40iHcToraR41Tw
+         pxHAbHkLkc+HCWGyLMvZYMD5TqZdpGOM8PM8mxw6a1g+HOI1mtT1mzqUUOBjACWF9s3T
+         WBLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732267550; x=1732872350;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8kGVIObe0vVdWgPVNKUPs0E9cZC3gBnTEl6g/zCTMjk=;
+        b=MP/CF8kwkznc7fhMj/hoTofRsURmFKEqdOYa8hArvfUpl945EamyQ512QvryTlDW4a
+         1YYGFq9jVZdJtzZFEMtWititDQekm0BDZOCOJpGQOtVObCzwpMUWblQxpz7hP2TA6nmb
+         hCTh0lfMe3lPKJwhy6irVfm89LR6HRIHrSoS/gN7sqKuZxyX5L/AILcXBzIM5ZHR1l0W
+         rQH4ZRiq1K0WrKr1xR0ooa5aAEBfK64uSUQqKzQfhluMGY+C8wB5WSlcww3NlYP3UseM
+         Q1woKUtTMSWXS0InImUpUKlOuab2CVwVapzO3WK86V3W3DjctMFZAU/QI/2qAZLCAS2m
+         ZkLA==
+X-Forwarded-Encrypted: i=1; AJvYcCVB0rhnJq/7FcMQiFkkj20hguJSKALkkiGntQ4BrZ/8Feeiv0WglLJSAs4Erl4PGFRPhBwFDSqNAN8S@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz03dQoFINaWj7K1VgfxaCdRQBnPInF3vZxbogEPzTn9vb0S1U+
+	eXk/wrqqnMyK5vkAetfhZMCVSpASi9lGCSqeg9bE6mSusn2uSCcNlf2XMwLTrnPEnOSAVPe1Ydw
+	YZLwc8hj1U4YO5Jlr9Xbo6NJxHBWH35Fw9Ey/d/G53fnqMaiwLlM=
+X-Gm-Gg: ASbGncuGc1rlCl/061ye/Bfx8uZtNALqaOLXamTAbua4N+fsnQ40bk0Lm58GsIlKPt4
+	fK6tb5CEiQM36CXiGo5rFob7e9b4inQ==
+X-Google-Smtp-Source: AGHT+IGelwCxgal9/XHOQ4gQV2eBA2tvjKzser7OohWcveCSBW6AFI6GvR8S/BH009DfNRCjqG5gbgXZGS6L6ZzyHyQ=
+X-Received: by 2002:a17:906:3101:b0:a99:5f16:3539 with SMTP id
+ a640c23a62f3a-aa509694028mr173072766b.0.1732267550340; Fri, 22 Nov 2024
+ 01:25:50 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241122023314.1616353-4-quic_ziyuzhan@quicinc.com>
+References: <20241121-add-mtk-isp-3-0-support-v7-0-b04dc9610619@baylibre.com>
+ <20241121-add-mtk-isp-3-0-support-v7-4-b04dc9610619@baylibre.com> <767085562b5efb43f248e8528bb154a6c30d3999.camel@mediatek.com>
+In-Reply-To: <767085562b5efb43f248e8528bb154a6c30d3999.camel@mediatek.com>
+From: Julien Stephan <jstephan@baylibre.com>
+Date: Fri, 22 Nov 2024 10:25:39 +0100
+Message-ID: <CAEHHSvaePj2MUg+zgmkpZF4HTj_F9ED0RxuzQr2oOAUJgOieng@mail.gmail.com>
+Subject: Re: [PATCH v7 4/5] media: platform: mediatek: isp: add mediatek
+ ISP3.0 camsv
+To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
+Cc: "mchehab@kernel.org" <mchehab@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
+	"robh@kernel.org" <robh@kernel.org>, =?UTF-8?B?QW5keSBIc2llaCAo6Kyd5pm655qTKQ==?= <Andy.Hsieh@mediatek.com>, 
+	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, 
+	"laurent.pinchart@ideasonboard.com" <laurent.pinchart@ideasonboard.com>, 
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, 
+	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"paul.elder@ideasonboard.com" <paul.elder@ideasonboard.com>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"fsylvestre@baylibre.com" <fsylvestre@baylibre.com>, "pnguyen@baylibre.com" <pnguyen@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 22, 2024 at 10:33:11AM +0800, Ziyue Zhang wrote:
-> From: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> 
-> Add dedicated schema for the PCIe controllers found on QCS615.
-> Due to qcs615's clock-names do not match any of the existing
-> dt-bindings, a new compatible for qcs615 is needed.
-> 
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-> ---
->  .../bindings/pci/qcom,pcie-qcs615.yaml        | 161 ++++++++++++++++++
->  1 file changed, 161 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/qcom,pcie-qcs615.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-qcs615.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-qcs615.yaml
-> new file mode 100644
-> index 000000000000..8f7571538d23
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-qcs615.yaml
-> @@ -0,0 +1,161 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/qcom,pcie-qcs615.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm QCS615 PCI Express Root Complex
-> +
-> +maintainers:
-> +  - Bjorn Andersson <andersson@kernel.org>
-> +  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> +
-> +description:
-> +  Qualcomm QCS615 SoC (and compatible) PCIe root complex controller is based on
-> +  the Synopsys DesignWare PCIe IP.
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,pcie-qcs615
+Le ven. 22 nov. 2024 =C3=A0 09:41, CK Hu (=E8=83=A1=E4=BF=8A=E5=85=89) <ck.=
+hu@mediatek.com> a =C3=A9crit :
+>
+> Hi, Julien:
+>
+> On Thu, 2024-11-21 at 09:53 +0100, Julien Stephan wrote:
+> > External email : Please do not click links or open attachments until yo=
+u have verified the sender or the content.
+> >
+> >
+> > From: Phi-bang Nguyen <pnguyen@baylibre.com>
+> >
+> > This driver provides a path to bypass the SoC ISP so that image data
+> > coming from the SENINF can go directly into memory without any image
+> > processing. This allows the use of an external ISP.
+> >
+> > Signed-off-by: Phi-bang Nguyen <pnguyen@baylibre.com>
+> > Signed-off-by: Florian Sylvestre <fsylvestre@baylibre.com>
+> > [Paul Elder fix irq locking]
+> > Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
+> > Co-developed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Co-developed-by: Julien Stephan <jstephan@baylibre.com>
+> > Signed-off-by: Julien Stephan <jstephan@baylibre.com>
+> > ---
+>
+> [snip]
+>
+> > +static irqreturn_t isp_irq_camsv30(int irq, void *data)
+> > +{
+> > +       struct mtk_cam_dev *cam_dev =3D (struct mtk_cam_dev *)data;
+> > +       struct mtk_cam_dev_buffer *buf;
+> > +       unsigned int irq_status;
+> > +
+> > +       spin_lock(&cam_dev->buf_list_lock);
+> > +
+> > +       irq_status =3D mtk_camsv30_read(cam_dev, CAMSV_INT_STATUS);
+> > +
+> > +       if (irq_status & INT_ST_MASK_CAMSV_ERR)
+> > +               dev_err(cam_dev->dev, "irq error 0x%lx\n",
+> > +                       irq_status & INT_ST_MASK_CAMSV_ERR);
+> > +
+> > +       /* De-queue frame */
+> > +       if (irq_status & CAMSV_IRQ_PASS1_DON) {
+> > +               cam_dev->sequence++;
+> > +
+> > +               buf =3D list_first_entry_or_null(&cam_dev->buf_list,
+> > +                                              struct mtk_cam_dev_buffe=
+r,
+> > +                                              list);
+> > +               if (buf) {
+> > +                       buf->v4l2_buf.sequence =3D cam_dev->sequence;
+> > +                       buf->v4l2_buf.vb2_buf.timestamp =3D
+> > +                               ktime_get_ns();
+> > +                       vb2_buffer_done(&buf->v4l2_buf.vb2_buf,
+> > +                                       VB2_BUF_STATE_DONE);
+> > +                       list_del(&buf->list);
+> > +               }
+> > +
+> > +               buf =3D list_first_entry_or_null(&cam_dev->buf_list,
+> > +                                              struct mtk_cam_dev_buffe=
+r,
+> > +                                              list);
+> > +               if (buf)
+> > +                       mtk_camsv30_update_buffers_add(cam_dev, buf);
+>
+> If buf =3D=3D NULL, so hardware would automatically stop DMA?
+> I don't know how this hardware work.
+> Below is my imagine about this hardware.
+>
+> 1. Software use CAMSV_IMGO_FBC_RCNT_INC to increase software buffer index=
+.
+> 2. Hardware has a hardware buffer index. After hardware finish one frame,=
+ hardware buffer index increase.
+> 3. After software buffer index increase, hardware start DMA.
+> 4. When hardware buffer index is equal to software buffer index, hardware=
+ automatically stop DMA.
+>
+> Does the hardware work as my imagine?
+> If hardware could automatically stop DMA, add comment to describe.
+> If hardware could not automatically stop DMA, software should do somethin=
+g to stop DMA when buf =3D=3D NULL.
+>
 
-I thought that this should break qcom-soc.yaml.
+You are right except that dma is not stopped but frames are
+automatically dropped by hardware until a new buffer is enqueued and
+software uses CAMSV_IMGO_FBC_RCNT_INC to increase the software buffer
+index.
 
-> +
-> +  reg:
-> +    minItems: 6
-> +    maxItems: 6
-> +
+What about adding the following comment:
 
--- 
-With best wishes
-Dmitry
+/*
+* If there is no user buffer available, hardware will drop automatically
+* frames until buf_queue is called
+*/
+
+Let me know if that works for you
+
+Cheers
+Julien
+
+> Regards,
+> CK
+>
+> > +       }
+> > +
+> > +       spin_unlock(&cam_dev->buf_list_lock);
+> > +
+> > +       return IRQ_HANDLED;
+> > +}
+> > +
+>
+> ************* MEDIATEK Confidentiality Notice ********************
+> The information contained in this e-mail message (including any
+> attachments) may be confidential, proprietary, privileged, or otherwise
+> exempt from disclosure under applicable laws. It is intended to be
+> conveyed only to the designated recipient(s). Any use, dissemination,
+> distribution, printing, retaining or copying of this e-mail (including it=
+s
+> attachments) by unintended recipient(s) is strictly prohibited and may
+> be unlawful. If you are not an intended recipient of this e-mail, or beli=
+eve
+> that you have received this e-mail in error, please notify the sender
+> immediately (by replying to this e-mail), delete any and all copies of
+> this e-mail (including any attachments) from your system, and do not
+> disclose the content of this e-mail to any other person. Thank you!
 
