@@ -1,133 +1,101 @@
-Return-Path: <devicetree+bounces-123665-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123668-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9FD59D5A22
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 08:44:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 331F59D5A3E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 08:49:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8EAD52824E9
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 07:44:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B561EB209F8
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 07:49:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 428C0172777;
-	Fri, 22 Nov 2024 07:44:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CBEE17AE00;
+	Fri, 22 Nov 2024 07:49:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="RPNdS20R"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qhLcJcVY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2D1513AA38;
-	Fri, 22 Nov 2024 07:44:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41D53175D44;
+	Fri, 22 Nov 2024 07:49:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732261462; cv=none; b=bRrE2m8Eee2z5P8XAQFsgS3VVQaCRk9OOIbTnyR4O7vX3QQ0Dfauz7wDmVqC8nYhFH/A2VWylPQBhAVl8z8r9APf18NIVtCpue7ACDrProqv5J69mg9YaMjkVku4aj0anF5okUwKCMeWmEtSwffZ4mmicpSqTayTkqM4M5LfGts=
+	t=1732261758; cv=none; b=Rsfa3zzSnwZlzxj34oZ0f4/X/vKoUK8qBXdQW92qGuxkorP/EXCHYNhy4wwvEr0WYREJw7nlxqRRwdoDf8U5JHcKt9q09DDrtZKZZ2FdKloFpVY+C+ENQ8M2tlOLXcO9GbNxFHVfYtNEa7erbCb7vxqPBqbtn53ZiH7+g4wAZhE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732261462; c=relaxed/simple;
-	bh=bdWnhDVGnXdGm2E6QLfNnASfWPjEMbx2RpXDmdCGLxY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SW0yc9+eaHWcOuuQEjAiD5J7WsWS8NwG1Zj9TNVOEc2JTObk+rU3f1ruqJMTfeqPkgYUKFwYmt4sToeXtL7OL1pfQUleFTjh7GM7jvlmIxkSjXhQrhqx9hLALjLq0eJ1PEUw5qUrZO/aCum5yY5KW2INsx7tbt4Fzq4fmvVM3FU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=RPNdS20R; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AM0d34H004520;
-	Fri, 22 Nov 2024 07:44:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	jCCAuMluOYsDYfcKJoa6kUG59ya1M0Ihu5AHWo0H7NA=; b=RPNdS20RzoPfCdh0
-	Tg5cDAbkmP3MmMdHbftgqqqEXw8t0BCkcO9Hrvh7Kjrum5wgtZW82bflN90XQ607
-	yzvKSToigKqSFpvwRQLiREiaXLXyFIx0JbfhzxmRjlnNJABharMwCj/H0yCDS0yV
-	pDfINl8kRba0mBZFRJc3o5oXFgA7dv4PpcFTfsRMjCV1Jt73EpUozZnjqz9f/OQI
-	KHkjYSb9YEdHFcL8hp7s0LxzXQ9xrDqS2yiLB346wb/yRZ7EnpvP9rFZexlqHGuT
-	0NSfZXcNNBOKO433q28sKYDfShWbxbiCTXBkn9uiOTaQIpMRO8xuDtqKmmnr+SCd
-	lUvT5Q==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 431ea765sr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 22 Nov 2024 07:44:16 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AM7iFj2005015
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 22 Nov 2024 07:44:15 GMT
-Received: from hu-yrangana-hyd.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 21 Nov 2024 23:44:11 -0800
-From: Yuvaraj Ranganathan <quic_yrangana@quicinc.com>
-To: Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller"
-	<davem@davemloft.net>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Vinod Koul
-	<vkoul@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_yrangana@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: [PATCH V4 2/2] arm64: dts: qcom: qcs8300: add TRNG node
-Date: Fri, 22 Nov 2024 13:13:46 +0530
-Message-ID: <20241122074346.4084606-3-quic_yrangana@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241122074346.4084606-1-quic_yrangana@quicinc.com>
-References: <20241122074346.4084606-1-quic_yrangana@quicinc.com>
+	s=arc-20240116; t=1732261758; c=relaxed/simple;
+	bh=S+qNBPkjkTjMFUl0CwAxU9iquNF+lNSPF4WWI6IeZ1Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nBbjsl5o/8C2YAghX2x0o/9QvnxcheHuS6qwd/7LbUnHFLLc7Ij3uwTglgJRisohDQJVR6JDir/FZ7OCvgTo1ZiO2S+8WwMvzjPDSasbVlQWG1aMGYnt3NwdSUUf/zvQxcHxkewUfPkuJm/xOv9qKV9WKuCgStM30DTGE3m189I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qhLcJcVY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDA12C4CECE;
+	Fri, 22 Nov 2024 07:49:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732261757;
+	bh=S+qNBPkjkTjMFUl0CwAxU9iquNF+lNSPF4WWI6IeZ1Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qhLcJcVYCiPouCekC36rvLGUitMNUMMFkrWn3TCuJjEWt3gWny/l9HRmAjxKdnvqO
+	 5NJxW84aKV+ExKhZDgikWWcpnkv2iwwF9t437CGv/GaJtY6TwuE9wGLJiW2fKps2Ka
+	 LgeAHePnZ9oa0jF0m3B8+rhpbQiZ27TImOcFsPx1GkLf+xXfBURDIr/zuSdmmbEtTH
+	 P/mQ5TU6+1hkwwOIyQk2rDgiffX7GI08xqRKpazwEdAMUBaNuuFVCmUXttNewSlW3Q
+	 uLHR4drxlArP1s9p/B7HAQfHr6oJQxe219wm32VIjpVJydOp70ejDFDFKnG/nhDdif
+	 30Uv1XrJkpBEQ==
+Date: Fri, 22 Nov 2024 08:49:14 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Sung-Chi Li <lschyi@chromium.org>
+Cc: Benson Leung <bleung@chromium.org>, 
+	Guenter Roeck <groeck@chromium.org>, Sebastian Reichel <sre@kernel.org>, Lee Jones <lee@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, chrome-platform@lists.linux.dev, linux-pm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: mfd: cros-ec: add properties for
+ thermal cooling cells
+Message-ID: <4f5sahkxxqb5qonh676igaiadkxv2pbhbibu6wtx4yenplfn4o@yvidi4ujavhr>
+References: <20241122-extend_power_limit-v1-0-a3ecd87afa76@chromium.org>
+ <20241122-extend_power_limit-v1-2-a3ecd87afa76@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Zt3cUjwYzDyI2rnl2tFDvOZEU_VCYYFV
-X-Proofpoint-ORIG-GUID: Zt3cUjwYzDyI2rnl2tFDvOZEU_VCYYFV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 adultscore=0
- bulkscore=0 mlxscore=0 suspectscore=0 lowpriorityscore=0 clxscore=1015
- priorityscore=1501 impostorscore=0 malwarescore=0 mlxlogscore=912
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411220063
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241122-extend_power_limit-v1-2-a3ecd87afa76@chromium.org>
 
-The qcs8300 SoC has a True Random Number Generator, add the node with
-the correct compatible set.
+On Fri, Nov 22, 2024 at 11:47:22AM +0800, Sung-Chi Li wrote:
+> The cros_ec supports limiting the input current to act as a passive
+> thermal cooling device. Add the property '#cooling-cells' bindings, such
+> that thermal framework can recognize cros_ec as a valid thermal cooling
+> device.
+> 
+> Signed-off-by: Sung-Chi Li <lschyi@chromium.org>
+> ---
+>  Documentation/devicetree/bindings/mfd/google,cros-ec.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> index aac8819bd00b..2b6f098057af 100644
+> --- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+> @@ -96,6 +96,9 @@ properties:
+>    '#gpio-cells':
+>      const: 2
+>  
+> +  '#cooling-cells':
+> +    const: 2
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Reviewed-by: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Signed-off-by: Yuvaraj Ranganathan <quic_yrangana@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs8300.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+This is not a cooling device. BTW, your commit msg is somehow circular.
+"Add cooling to make it a cooling device because it will be then cooling
+device."
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-index 2c35f96c3f28..a95baa432872 100644
---- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-@@ -588,6 +588,11 @@ &clk_virt SLAVE_QUP_CORE_0 0>,
- 			};
- 		};
- 
-+		rng@10d2000 {
-+			compatible = "qcom,qcs8300-trng", "qcom,trng";
-+			reg = <0x0 0x010d2000 0x0 0x1000>;
-+		};
-+
- 		config_noc: interconnect@14c0000 {
- 			compatible = "qcom,qcs8300-config-noc";
- 			reg = <0x0 0x014c0000 0x0 0x13080>;
--- 
-2.34.1
+Power supply already provides necessary framework for managing charging
+current and temperatures. If this is to stay, you need to explain why
+this is suitable to be considered a thermal zone or system cooling
+device (not power supply or input power cooling).
+
+Best regards,
+Krzysztof
 
 
