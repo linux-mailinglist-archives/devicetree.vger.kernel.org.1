@@ -1,110 +1,129 @@
-Return-Path: <devicetree+bounces-123751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D92D9D5DAE
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 12:03:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 900D39D5E1E
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 12:33:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 63B88285336
-	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 11:03:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55CC3281075
+	for <lists+devicetree@lfdr.de>; Fri, 22 Nov 2024 11:33:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0E6C1DED58;
-	Fri, 22 Nov 2024 11:00:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E10F21DE8B5;
+	Fri, 22 Nov 2024 11:33:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OKm/vIOg"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="SJ5aoE3o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFFC01DE8B8
-	for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 11:00:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36B3A1DE2D2;
+	Fri, 22 Nov 2024 11:33:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732273254; cv=none; b=DLPejKAiEEYtyNMo2ev7ra+rnf1fH51UhFDmbdA0jTixOnQTIbOiGaT5Bs+4lAJmCTltETcWyoC7AHnWzydP5xlEFVyWsAUAXxVx+Mv8gS9GDjdP5LizmutmEwI7RnBZkgk5rms6uKvjLXT4p9PQQY7dpaEP1G8koLU+EidgFRI=
+	t=1732275191; cv=none; b=B8laCzP2o3fyKtzdfkqiGoDK2Paf5F3HHqHwqfx9t9rGHdS/ZA/akRA7NCljpGtP9zfYpfNIVw8cNjQ9vwLFVFDN3LEo2Yhw5D40T6kaakv31fslaURE4XpcTprwPRtNiSj0cruZ1ktLwtUujjxPg/U3u1aNbKCx5W7i7Htro+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732273254; c=relaxed/simple;
-	bh=esQkEv+bJkBiPxQO0jmazrQSqkgqrNZcKbFEDiYk7rw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ASjduHH+HXoU7dag+XgGTayi85VZQznerIW975qP6YV7y+9U7Muw/3lG29m5XwyclAX/N8mNk+ItDreTnTQ/NZDnMEZVfr9HeeCE1MKezoZnvU5wbguiqrfKPTDqWn2uugAx/Rt/j9fpoyNLwJ0a5DBLQ+QYWXWIV6Ph80R+7tc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OKm/vIOg; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-539f84907caso2151763e87.3
-        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 03:00:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732273251; x=1732878051; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=AlkHc4CfnQoPn1A5gJ9s0BPlf2Z29rGqNglkoIekDGw=;
-        b=OKm/vIOg4BlzkqHDJHW+9yr7BCvKPt0Ylt1uUzMiL/bhnc26chJvvppOWUsyh4+3gl
-         sfH8MBJhxk68a0UaqKnJkcpDC6WP7yEXq6z1RbMW45rhydHKciv0mUitCVB50CI5ni0w
-         xnBVLHa1BMVqB9BVpt9lJ+jIEptgQoFrEXNvx/6X1waZp1E3wT9BhwWhBX+gq/QXU+oi
-         XLy9qSxnFu641XBIMGN1G04ijor5fTWF588mz9cFSGruCvd1qOc08YEIPNDVtTXXKKfk
-         daHOypB7GjS9UVTUJLoB7l/aGTXUa3cJPV9zK8RCm++W0IDOI5fU3cxHLnMTyEehU0VM
-         abEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732273251; x=1732878051;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AlkHc4CfnQoPn1A5gJ9s0BPlf2Z29rGqNglkoIekDGw=;
-        b=HnPZHyAYMmNZD2E/DrOVUxM3HYxe1wH10lgQtfTXXbXeK6l1aR9L96Tu4V6Ts4uLHw
-         VXfi30ZgFAQku1AmzP4vxTsvX0VV7Ap31KzQwW4ICh++Hhvwh82fQJYl/oyr+VFd2xAu
-         Dh3nZkgmcPWbOK7VC+tcKFOnZxJHgFaH4eTD9I63rV/uUoLyEUVghRtwaHpufbElWRLw
-         G0tL4y9faPNLd2YiAmvX17x2y4DowC/wxVRf13DwGrn/k08/hUv8tfE0hxRwFcR8Cf+o
-         DSYt2cm68WbM9HzjmbDg2IoXJWf6aOkiN1SZeNQxydWpBxgCLO4sXER28LF72PEIqycc
-         6H/w==
-X-Forwarded-Encrypted: i=1; AJvYcCVTK8BYjLMfqu0i7/L5CpSbHDFNJRdHhj1dqEPFvnMTotPh5FoHc8Y9uKw8h6f3ZdFqjE2znX9d2IiJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YyPOo4mELNaeHcmJU8VuZ7BmS+6PBNztelyQeHfxdOMSfOfyQcE
-	r6X9f/GKt0Jlc/6aQxbOLM8O4wbzmMVP2CG+7WMWrTqRqZYA+frcl60kmEJnpJEcYCAigUJUiNM
-	2
-X-Gm-Gg: ASbGncvXHUFvRJ55dpEXYpQhybw54P54zTbFNHfv7MDRshcdQFfmQ0q1RiR+RXEIGdy
-	YlEamYmkMtoWwXkUs/FnrA8oebhDuiB5EMo18jA6m/ybZ17Hla3uw7FF3xLkEV/nJGPVgwOE4jg
-	P0A/+ys+CO6qDqztcfwJzbQHcJs50yHKwKs4d8h6PKZRbTOjafi7YiAPQkBlv4uoEJ9QxDUzlGO
-	N9kOgbrpJRG1yq7KtxYLsRbIcApzun7aaWxsOKUlkQSUsn35jGH/BsjErrOPdOe7D1CUBDEiklV
-	30l7Q5IiMgkfJoah8TBCdMlt3hfKig==
-X-Google-Smtp-Source: AGHT+IHRcfY0IeVLi53bK8dwcq3XFuy2uo8jqF7yK68qsQJ+2p/GgmOCR9UBE7JD6UnJ50+els3Mjw==
-X-Received: by 2002:a05:6512:3b8e:b0:53d:d0c5:4ca9 with SMTP id 2adb3069b0e04-53dd389cd1bmr937303e87.26.1732273250848;
-        Fri, 22 Nov 2024 03:00:50 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53dd24456b2sm327282e87.56.2024.11.22.03.00.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 22 Nov 2024 03:00:49 -0800 (PST)
-Date: Fri, 22 Nov 2024 13:00:47 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Tingguo Cheng <quic_tingguoc@quicinc.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@quicinc.com, 
-	quic_kotarake@quicinc.com, quic_kamalw@quicinc.com, quic_skakitap@quicinc.com, 
-	quic_fenglinw@quicinc.com
-Subject: Re: [PATCH] arm64: dts: qcom: sa8775p: pmic: enable rtc
-Message-ID: <4gwmrfnzqqlawgkgjd4fj3t4nkpulnxuzsc756v6uxz4dlq6mm@dhv2aqkdx7du>
-References: <20240902104302.3959670-1-quic_tingguoc@quicinc.com>
+	s=arc-20240116; t=1732275191; c=relaxed/simple;
+	bh=TeNwswg1hkcm5NrYEE4/qOtpl/kIp4I7ZBECogJ/1o8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=MUh43XmofAUneTAQWHJxm6UMoQAySqBKR8AEhVD6jroAnyPCsX8sWJSTplhKKg92DvBJz6yBkta7JdURnW7W9FjiutTHdpjdctbBrM/rpIhnlsVa6Gk/Lmk+Mh1MW+mueh/OinMxZ9w6Ok750+Yj85E7x3L8ccn1PcMFhmLh+1A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=SJ5aoE3o; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AM6e4rO015518;
+	Fri, 22 Nov 2024 06:32:54 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=SFHUr+0ffpzpCmFD4QpoGc4xgUW
+	Bwn015YdQhBOwfMw=; b=SJ5aoE3oYPvgVAWUzZAgDdHrKJUSAM7SKLoBdEbfvtk
+	65C4HAP2wrfRkcF+dHK/F1KwfbIs6DWTKeY7bd5GfYksn2H0JzYLjX6wZDqfGDaQ
+	5BAs+1vWtS9PkIgt4/OZOCKMzlRjVT5BguOxeqMozpxm5eaKd6V6UsAnKKFB7TIq
+	OxA9cKM6vbVI6I4mtbyqMjHWp11pftz1WZ7BVuoNoaCvHilOxBBM+7K+dt5LJ1+c
+	WwIuSL75lJpY0LoN8ehfDZ3AaJ32ym5yTxIazm/HEntr8mFFhm+rEChtFKa0c/Ev
+	7h10PNoi/QDP7KbrVpLrvuCpNcKQmBe+RaftG1MpFxw==
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 43170g56ug-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 22 Nov 2024 06:32:54 -0500 (EST)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 4AMBWr3J054996
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 22 Nov 2024 06:32:53 -0500
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 22 Nov 2024 06:32:53 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 22 Nov 2024 06:32:53 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Fri, 22 Nov 2024 06:32:53 -0500
+Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.168])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 4AMBWhjH011707;
+	Fri, 22 Nov 2024 06:32:45 -0500
+From: Antoniu Miclaus <antoniu.miclaus@analog.com>
+To: <jic23@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pwm@vger.kernel.org>
+CC: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Subject: [PATCH 1/2] dt-bindings: iio: adf4371: add rdiv2 and doubler
+Date: Fri, 22 Nov 2024 13:32:13 +0200
+Message-ID: <20241122113226.49346-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240902104302.3959670-1-quic_tingguoc@quicinc.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: llMGW39BNZAMSCuCIOeJsupQEczoVbLt
+X-Proofpoint-ORIG-GUID: llMGW39BNZAMSCuCIOeJsupQEczoVbLt
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 impostorscore=0
+ mlxlogscore=999 priorityscore=1501 clxscore=1015 lowpriorityscore=0
+ bulkscore=0 malwarescore=0 mlxscore=0 suspectscore=0 spamscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411220098
 
-On Mon, Sep 02, 2024 at 06:43:02PM +0800, Tingguo Cheng wrote:
-> Add RTC node, the RTC is controlled by PMIC device via spmi bus.
-> 
-> Signed-off-by: Tingguo Cheng <quic_tingguoc@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
+Add support for reference doubler enable and reference divide by 2
+clock.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+---
+ .../devicetree/bindings/iio/frequency/adf4371.yaml    | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
+index 1cb2adaf66f9..ef241c38520c 100644
+--- a/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
++++ b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
+@@ -40,6 +40,17 @@ properties:
+       output stage will shut down until the ADF4371/ADF4372 achieves lock as
+       measured by the digital lock detect circuitry.
+ 
++  adi,reference-doubler-enable:
++    type: boolean
++    description:
++      If this property is present, the reference doubler block is enabled.
++
++  adi,adi,reference-div2-enable:
++    type: boolean
++    description:
++      If this property is present, the reference divide by 2 clock is enabled.
++      This feature can be used to provide a 50% duty cycle signal to the PFD.
++
+ required:
+   - compatible
+   - reg
 -- 
-With best wishes
-Dmitry
+2.47.0
+
 
