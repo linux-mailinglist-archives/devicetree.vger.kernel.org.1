@@ -1,60 +1,73 @@
-Return-Path: <devicetree+bounces-123876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123877-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA32A9D6969
-	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 15:24:34 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C298E9D6976
+	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 15:40:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3BB9FB2132C
-	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 14:24:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 52E31B21709
+	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 14:40:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1809D134AB;
-	Sat, 23 Nov 2024 14:24:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D66B1CF96;
+	Sat, 23 Nov 2024 14:40:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qlLGrl/S"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NatNFwUu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E088FA94A;
-	Sat, 23 Nov 2024 14:24:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FFD2566A;
+	Sat, 23 Nov 2024 14:40:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732371869; cv=none; b=CVjSk3Q/K6jexvGE8XvNGrw1a6O+CzbAO/rhJjpCf4t3A4CmKAavAdnIk4MgAEB4TrV8VuxHxr/yVj7h6bEVxB9Hp6kcTTkK1SsF/IKGIBot9gJK611/YVisWIq/VSw0xcFFZKAJrn+yPiGZEOowv1iWLMIcaxg929bQQg45Zdw=
+	t=1732372821; cv=none; b=YHy0/QY0YMS3NSsz+9xxWMxz+dzRCL6CqD/geTnFrs73R0bYOo6KJeMCtjz+WpbMiF3vETlJX7znFMs44ZOlDdKY8gjPo1nVtAg3dS0rXVWQMVdVh43wcqUyl2ZX/rikDx0bs+HyGTcP1Dq88BBr8ylqrGxlqfelqV/OsxP9qUk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732371869; c=relaxed/simple;
-	bh=21pet+UbnZk6M3WD2Has0vbe6ZaGqUROrqpc2l3qUsA=;
+	s=arc-20240116; t=1732372821; c=relaxed/simple;
+	bh=pzNGUf+6z/1XgHhq8qeQF67X0+VudCkDC0u/GMsWE/M=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dc4z7G+NuUnRb/NdP/2Pa9Tye4BTiR3NUSMX4PfO0+wEo32Xi3gjMgJR8QNp7SY/7aM/0UjhoYrgkd14ajjlKdOnkAyuPdVb9E/eobundPrw7yLvzm1/fLGwRhydl2DcHenKuTYayWQ79csPP6K4qr53Qvkqckb0lqeflgaq9Q4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qlLGrl/S; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50B42C4CECD;
-	Sat, 23 Nov 2024 14:24:24 +0000 (UTC)
+	 MIME-Version:Content-Type; b=UXPyKX1u6k2JvQaOgQBzza22hWbm6TMJjz5D/0BGYtbwrUW0cmEsx62EK5+lBB2Ocq2C8shCSWNFf7EBbRH1t9G1JmLvRzaQoNoplgTh6LcWron5N2cKb0Oq+rR0bLr0LT7dAtLip2QE/hePBWrt8nvz9P/1FYnLs/YwTrvZRqI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NatNFwUu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35FB6C4CECD;
+	Sat, 23 Nov 2024 14:40:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732371868;
-	bh=21pet+UbnZk6M3WD2Has0vbe6ZaGqUROrqpc2l3qUsA=;
+	s=k20201202; t=1732372821;
+	bh=pzNGUf+6z/1XgHhq8qeQF67X0+VudCkDC0u/GMsWE/M=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=qlLGrl/Sxh4V5iTvEvoIndXr3fLiXPcpnWq36jinpfJMek0gUV8WBqlgEgwO6w/7b
-	 1lMdze9qt+fYnZ3Apfd3X+xVz5k/Pd1HIjYa7l3fglPUocwUkvi6sMJ/AvBVceIMce
-	 6hoYBAu4eUMCoDlVDuq6lXtT6U+wIcUdCYQg/GBNZpi9KYd4N0ndOLXNeJtKQx3+YX
-	 R+O+LENwqTJx4+LdTSm7PHAHRLtXJjCD9imM7V2+/Y/kCWBX0/BeZYZp3FQ7G/LfYE
-	 gNJ6vgnA9yZK/e35ossF2QBPTybvBhBa6DMPaFrUr57FearHEgYJxE2k2/0qcNihdG
-	 AOZLsISR8MtvQ==
-Date: Sat, 23 Nov 2024 14:24:20 +0000
+	b=NatNFwUuhkd8QXIVCUMLkkgfZGT0pXlHMRq7Z1IgGtHoNA3YbFJuwWNJ27WDlIdlL
+	 jrmXxEnatm1TjpnPl47ryyMpQcJwpYFqL9oDz/i2HNkYLKNgLohHdFIjNp4PL36hme
+	 BVj8Kpl4FXh9hCqgO75Df3RIf6lmbYPgTsvrjD43B5UFOaTKKr29/x/qhi+jH9MATQ
+	 gpox1EzJx7Nt+LkQki80jOrxZ70ZDkg4wuHwakOPFbqjNgm/sD27xkvxj8J2i4ftdR
+	 pD5wYd7Qf+ek6k3bdYglrb8P1iMSuhkecL8H12m767ULYpVh+dcHovQjPpJlYwOWmY
+	 Xie2/AQD89Kjg==
+Date: Sat, 23 Nov 2024 14:40:10 +0000
 From: Jonathan Cameron <jic23@kernel.org>
-To: Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <u.kleine-koenig@baylibre.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, David Lechner
- <dlechner@baylibre.com>, Dumitru Ceclan <dumitru.ceclan@analog.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Lars-Peter Clausen
- <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Nuno
- Sa <nuno.sa@analog.com>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org, linux-iio@vger.kernel.org
-Subject: Re: [PATCH v2 0/4] iio: adc: ad7124: Make it work on de10-nano
-Message-ID: <20241123142420.7e20992a@jic23-huawei>
-In-Reply-To: <fsx4mtvhqfoszazxflokargabseia2vs44necuuvinyhw5ggjf@c73ibquopv42>
-References: <20241028160748.489596-6-u.kleine-koenig@baylibre.com>
-	<fsx4mtvhqfoszazxflokargabseia2vs44necuuvinyhw5ggjf@c73ibquopv42>
+To: Aren <aren@peacevolution.org>
+Cc: Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <u.kleine-koenig@baylibre.com>,
+ Andy Shevchenko <andy.shevchenko@gmail.com>, Lars-Peter Clausen
+ <lars@metafoo.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai
+ <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland
+ <samuel@sholland.org>, Kaustabh Chakraborty <kauschluss@disroot.org>,
+ =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <trabarni@gmail.com>, Ondrej Jirman
+ <megi@xff.cz>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, Dragan Simic <dsimic@manjaro.org>,
+ phone-devel@vger.kernel.org
+Subject: Re: [PATCH v4 4/6] iio: light: stk3310: use dev_err_probe where
+ possible
+Message-ID: <20241123144010.38871d3c@jic23-huawei>
+In-Reply-To: <6jwurbs27slfpsredvpxfgwjkurkqvfmzccaxnfgtuh4aks3c6@ciapprv3wsex>
+References: <20241102195037.3013934-3-aren@peacevolution.org>
+	<20241102195037.3013934-11-aren@peacevolution.org>
+	<ZyiIcDaANjxwtCz-@smile.fi.intel.com>
+	<m7x526sv5krgt4t2whn5ykyktoz5u7ihsxv3qa5yue3ucbk6lb@37spwsmlcylm>
+	<ZzEPACoblmcQD9yu@surfacebook.localdomain>
+	<xubjmxig4luag27ifnmqmv3x3bvzhwczwvw34kw6tssaa2d24t@ysnqh5e3g7sz>
+	<ZzHSE9Nrf4YySJrq@smile.fi.intel.com>
+	<4ibd5tgpt3uzbmouqdiiv5pvfxebo5qsmgn3xh6rlb73qevatv@cajznxqnlca3>
+	<6jwurbs27slfpsredvpxfgwjkurkqvfmzccaxnfgtuh4aks3c6@ciapprv3wsex>
 X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -65,94 +78,94 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, 18 Nov 2024 19:12:22 +0100
-Uwe Kleine-K=C3=B6nig <u.kleine-koenig@baylibre.com> wrote:
+On Tue, 12 Nov 2024 18:11:37 -0500
+Aren <aren@peacevolution.org> wrote:
 
-> Hello,
+> On Tue, Nov 12, 2024 at 11:15:54AM +0100, Uwe Kleine-K=C3=B6nig wrote:
+> > Hello Andy, hello Aren,
+> >=20
+> > On Mon, Nov 11, 2024 at 11:44:51AM +0200, Andy Shevchenko wrote: =20
+> > > On Sun, Nov 10, 2024 at 04:34:30PM -0500, Aren wrote: =20
+> > > > On Sun, Nov 10, 2024 at 09:52:32PM +0200, Andy Shevchenko wrote: =20
+> > > > > Sun, Nov 10, 2024 at 02:14:24PM -0500, Aren kirjoitti: =20
+> > >=20
+> > > You can do it differently
+> > >=20
+> > > #define STK3310_REGFIELD(name)							\
+> > > do {										\
+> > > 	data->reg_##name =3D							\
+> > > 		devm_regmap_field_alloc(dev, regmap, stk3310_reg_field_##name);	\
+> > > 	if (IS_ERR(data->reg_##name))						\
+> > > 		return dev_err_probe(dev, PTR_ERR(data->reg_##name),		\
+> > > 				     "reg field alloc failed.\n");		\
+> > > } while (0)
+> > >  =20
+> > > > #define STK3310_REGFIELD(name) ({						\
+> > > > 	data->reg_##name =3D devm_regmap_field_alloc(dev, regmap,			\
+> > > > 						   stk3310_reg_field_##name);   \
+> > > > 	if (IS_ERR(data->reg_##name))						\
+> > > > 		return dev_err_probe(dev, PTR_ERR(data->reg_##name),		\
+> > > > 				     "reg field alloc failed\n");		\
+> > > > }) =20
+> > >=20
+> > > I am against unneeded use of GNU extensions.
+> > >  =20
+> > > > > > replacing "do { } while (0)" with "({ })" and deindenting could=
+ make
+> > > > > > enough room to clean this up the formatting of this macro thoug=
+h. =20
+> > > > >=20
+> > > > > do {} while (0) is C standard, ({}) is not. =20
+> > > >=20
+> > > > ({ }) is used throughout the kernel, and is documented as such[1]. I
+> > > > don't see a reason to avoid it, if it helps readability. =20
+> > >=20
+> > > I don't see how it makes things better here, and not everybody is fam=
+iliar with
+> > > the concept even if it's used in the kernel here and there. Also if a=
+ tool is
+> > > being used in one case it doesn't mean it's suitable for another. =20
+> >=20
+> > Just to throw in my subjective view here: I don't expect anyone with
+> > some base level knowledge of C will have doubts about the semantics of
+> > ({ ... }) and compared to that I find do { ... } while (0) less optimal,
+> > because it's more verbose and when spotting the "do {" part, the
+> > semantic only gets clear when you also see the "while (0)". Having said
+> > that I also dislike the "do" starting on column 0, IMHO the RHS of the
+> > #define should be intended. =20
 >=20
-> On Mon, Oct 28, 2024 at 05:07:49PM +0100, Uwe Kleine-K=C3=B6nig wrote:
-> > this is iteration v2 to make ad7124 work on de10-nano. (Implicit) v1 is
-> > available at
-> > https://lore.kernel.org/linux-iio/20241024171703.201436-5-u.kleine-koen=
-ig@baylibre.com.
-> >=20
-> > The changes since v1:
-> >=20
-> > - Write 0 instead of 0x0001 to disable channels. While 0x0001 is the
-> >   reset default value for these registers (apart from the channel 0 one)
-> >   there is no sensible reason to use that value (i.e.
-> >   AD7124_CHANNEL_AINP(0) | AD7124_CHANNEL_AINM(1)) as the value is
-> >   reprogrammed before use anyhow. This addresses the feedback that the
-> >   magic value 0x0001 should better be constructed using register bit
-> >   field defintions.
-> >=20
-> > - Add maxItems: 1 to the new property defined in the binding patch (Krz=
-ysztof)
-> >=20
-> > - Rename property to rdy-gpios (Rob)
-> >=20
-> > - Use rdy-gpios only for gpio reading and continue using the usual irq
-> >   defintion for the interrupt (Jonathan). I was surprised I can use bot=
-h the
-> >   GPIO as input and the matching irq.
-> >=20
-> > - patch #1 is new, and use GPIO_ACTIVE_LOW in the gpio descriptor
-> >   instead of 2.
-> >=20
-> > Jonathan voiced concerns about the reliability of this solution and
-> > proposed to implement polling. I'm convinced the solution implemented
-> > here is robust, so I see no need to implement polling today.
-> >=20
-> > Still open questions:
-> >=20
-> >  - Is rdy-gpios the right name. The line is named =CC=85R=CC=85D=CC=85Y=
-, so maybe nrdy-gpios? Or
-> >    nRDY-gpios? =20
+> Thank you, this sums up my opinion on this better than I could have (and
+> some bits I hadn't considered).
 >=20
-> David said that rdy-gpios looks right in combination with the
-> GPIO_ACTIVE_LOW flag. Makes sense to me to negate only in a single
-> location.
+> > So if you ask me, this is not an unneeded use of an extension. The
+> > extension is used to improve readabilty and I blame the C standard to
+> > not support this syntax.
+> >=20
+> > While I'm in critics mode: I consider hiding a return in a macro bad
+> > style. =20
 >=20
-> >  - Jonathan wanted some input from ADI about this series and the
-> >    hardware details. =20
->=20
-> I think the hardware is understood now reasonably well and from the
-> discussion with tglx it's also clear that the issue is expected and
-> fixed at the right place. Although probably not all hardware
-> configurations can benefit from the modification, I still consider this
-> a beneficial modification because it allows at least some (most?)
-> machines to use the irq instead of polling.
+> Yeah... probably worse than any of the formatting options here. I guess
+> the proper way would be to use devm_regmap_field_bulk_alloc, but that's
+> well outside the scope of this series. Perhaps it would make sense to
+> move the macro definition to just before the function it's used in so
+> it's at least a little easier to spot?
 
-Agreed. Sorry for slow response; day job got too busy for a while.
+It's only used 8 times.  I'd just get rid of the macro - which now
+has even less advantage as the change here reduces the length of the
+macro.
 
->=20
-> There is a patch series on the list for ad7124
-> (https://lore.kernel.org/linux-iio/cover.1731404695.git.u.kleine-koenig@b=
-aylibre.com/)
-> that for now didn't get feedback, and I found another race condition in
-> the sigma_delta driver helper and now wonder how to proceed here. If we
-> agree in general that the rdy-gpios patches are ok to be applied, I'd
-> base the fix for the latest race condition on top of these. Should I
-> better collect all in-flight patches in a single series, or just post
-> the new patches (with a proper --base=3D parameter to format-patch)?
+Normally I'd argue it should be a precursor patch, but here I think it is
+fine to just do it in this patch to avoid a lot of churn.
 
-Subject to perhaps adding a little more docs to the DT patch to strongly
-encourage use of the GPIO binding if IRQ controller capable (or double wire=
-d)
+No macro, no disagreement on formatting ;)
 
-Make sure those patches were you feel a fixes tag is appropriate go first
-(which incidentally includes patch 4 from this series and some or
-all of other series).
-
-Given we are very early in the cycle I'll pick the fixes up and get them
-upstream soon after rc1 then we can queue up the bulk of this which is=20
-a little complex to consider a fix as material for next merge window.
-We can think about backporting after that.
+I'm not really sure why I let this macro in to begin with. I normally
+push back on this sort of thing. Must have been a low caffeine day :(
 
 Jonathan
 
+
 >=20
-> Best regards
-> Uwe
+>  - Aren
 
 
