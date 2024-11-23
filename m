@@ -1,132 +1,139 @@
-Return-Path: <devicetree+bounces-123856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C62CB9D687F
-	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 10:49:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D5109D68A1
+	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 11:37:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A1B4281C91
-	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 09:49:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF607281AAA
+	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 10:37:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62D3817557C;
-	Sat, 23 Nov 2024 09:49:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9FE817C7CE;
+	Sat, 23 Nov 2024 10:37:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=envs.net header.i=@envs.net header.b="pcZ7Fb8Q"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mC4DLkYA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.envs.net (mail.envs.net [5.199.136.28])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 708FE15FD01;
-	Sat, 23 Nov 2024 09:48:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.199.136.28
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A077E81AC8;
+	Sat, 23 Nov 2024 10:37:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732355340; cv=none; b=RsDk2b2J0bDva7Uw3H5CDvE8lOcquVjD17ybCEr2jH3jhpFDAN4PZnwbk4Z29cFsbqOyQRNQYZh7keupnlQlLZf5b1LonsWnsDD7kPo0pL6LmVJoeS0sa8b8DYbA/FatApmbxFhW56CwmbjnL51O3JkH805AzkmbbCKnFpTm/1E=
+	t=1732358258; cv=none; b=oI88bdMzxyL9aTdzDtKbAyCDYri1Rp1kjOyVW96vU1jrTkc6YFKx+iVTFlCwIfC7BpbALTYnSafH5JIwua08QwqfNVuNpcUYeN7fZX6hAeRJFuXQyqvv3JmXVxfCVARlubVw9hpaofQvc12Br8RoPq9wR3moWKnFcr807UaZ/y4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732355340; c=relaxed/simple;
-	bh=b9DgWi3HDId8jGnB5/Y/2iUYqOB0IMaFoHQi0OCHXY0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GALV71p3mRmwcWXvyV4QmQqov+Q22sWbLkAyoP8Zrzy8iq8Sxj6EUoQONLLM93qFut0pr/RQaI+RUp6KJ12EcLiga4r1RZRe4LwVd6fgZwGmodcj1ikGtkFRZZcC/S6C91xbTgKHILw+lg1F6A1/nfAsQb1/24PDl4lOZy00x5c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=envs.net; spf=pass smtp.mailfrom=envs.net; dkim=pass (4096-bit key) header.d=envs.net header.i=@envs.net header.b=pcZ7Fb8Q; arc=none smtp.client-ip=5.199.136.28
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=envs.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=envs.net
-Received: from localhost (mail.envs.net [127.0.0.1])
-	by mail.envs.net (Postfix) with ESMTP id B2B4A38A3D0F;
-	Sat, 23 Nov 2024 09:48:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=envs.net; s=modoboa;
-	t=1732355325; bh=yFyEp0MoYgySRhFcq3OK+n4TQ5uvb01KCJj/x8f1Pe0=;
-	h=From:To:Cc:Subject:Date:From;
-	b=pcZ7Fb8QcXdr8KH5eaSebZJyTOktzLW5mRzD+gCm3q2T9YGmctSR18V6WYJdgzRRf
-	 zJQSS7zXXmzIxrRUp5WxdO7Ta5QU+o1Fb/dDbL1i6lOVqTM18kw3U5097hv8L2gAeA
-	 No6TRDX4dDsyqGN2Q0zTJfu6x0yeFRq6KMKgi7KRHmGOGIYwzurNg4mECq8zDvNfHb
-	 pv+Hwqsz9QMILMbQvO1ZVomvvSuXzouy/sqiZZBOvi3lWPlZx5qoxlGY9LgWDJ67nl
-	 kkXK/3jS9mXggQaoTMlNVNSS27DCA8xsekVveQfmcY6peKO48Oemm8DmKl9OS6//t5
-	 PxoDAw7risqaQmdYjgLxPQ1ZYOWKJG8DyfYykqw02VWMKZ6WxGztahizWp4X1FHQTQ
-	 KqL9vMfpo9DNjS2QoEBsefuPTKNZVAo3euvIMqbuLy+IxYuXqoq+3YuNtUTphYPlEm
-	 l8/D5L5Lof07GVCZ4HVKXDyh7UV3kU0MshpaWgVMFHaoouluoTOfc9ojkTH+Kciu4E
-	 fZg3k2Uin8+bM3hzF0Oh8SEfWep7DS1OaJ77+QHcFuvAUXp3moYLhewJUhsI44hHm9
-	 RKVQfjkvDyAQoY+X/04ViY1GmiBx0djERX9eQd90wfEBY1mi16c3zuAOC9FJE4tVxg
-	 jnLYGf3f3k2E7Ag9UgmFzFsY=
-X-Virus-Scanned: Debian amavisd-new at mail.envs.net
-Received: from mail.envs.net ([127.0.0.1])
-	by localhost (mail.envs.net [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id 0x7StVgY1Qnz; Sat, 23 Nov 2024 09:48:42 +0000 (UTC)
-Received: from xtexx.eu.org (unknown [120.230.227.23])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.envs.net (Postfix) with ESMTPSA;
-	Sat, 23 Nov 2024 09:48:42 +0000 (UTC)
-From: Bingwu Zhang <xtex@envs.net>
-To: David Gibson <david@gibson.dropbear.id.au>,
-	devicetree-compiler@vger.kernel.org
-Cc: Bingwu Zhang <xtexchooser@duck.com>,
-	devicetree@vger.kernel.org,
-	~xtex/staging@lists.sr.ht
-Subject: [PATCH v2] libfdt: Remove fdt parameter from overlay_fixup_one_phandle
-Date: Sat, 23 Nov 2024 17:48:14 +0800
-Message-ID: <20241123094814.15504-2-xtex@envs.net>
-X-Mailer: git-send-email 2.47.0
+	s=arc-20240116; t=1732358258; c=relaxed/simple;
+	bh=PzMZ72Z71bHownk54H4oqMOjYw2DS3p4x+O65zcoeFo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=D5BTB1wNhZjNdfxmGV0LFydpJRXoFfERi9GikPGwrD4oY6kshNSZPp6qQvTQGh15Mzbxbk2TCMYe/kAGUSiWSmidfC2VbhBOdGkuuRvGHOl6bQIRV7VKvwVcsGAGMpWKmJ5CRg1PrfLNHTQbnnQ1Yblte7rtZL9EMwgkX6M1ijY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mC4DLkYA; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1732358257; x=1763894257;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=PzMZ72Z71bHownk54H4oqMOjYw2DS3p4x+O65zcoeFo=;
+  b=mC4DLkYAE0r+owBspmz+IsUElVuyJhWKd3RXVX6Hqk0mNdy0MSzG6uPW
+   pX/YgpABc3h7ZDnVkhEcwSVi4WH3yzLEJa3jL2s8ZOQMJbT0kcyipUCb7
+   jCGgEIvaO4GD3XTYOo/YIfkj9Ja8O1fd1n7Nb6ruUDvGzGIQAyd3nBdFq
+   dSyfys5LDEBBod5Yv7RPtpGkkeNl/5/IUzDZWVp+qJzCdWeTISaX9Zr78
+   rf/N79AFGzcHpZhcAxbfpRDdxVoWxnnr8uYni+PF8Iw5+iyQiuUzFwykO
+   B7Hk0SXLSi/09LcEESoEdt4V7bgBnpCyxkJhHwT5h6l+NtqBUqO06Hsfd
+   A==;
+X-CSE-ConnectionGUID: 39igVUW/SpKrzasaDAB3mA==
+X-CSE-MsgGUID: EsLtZ2RKRvqdBpFjbK2CCQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11264"; a="43912616"
+X-IronPort-AV: E=Sophos;i="6.12,178,1728975600"; 
+   d="scan'208";a="43912616"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2024 02:37:36 -0800
+X-CSE-ConnectionGUID: +RD5Yp9eSiGJxq8Sp+pejQ==
+X-CSE-MsgGUID: 9h8GyPJtSF+ajVYA9ZqASA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,178,1728975600"; 
+   d="scan'208";a="95579719"
+Received: from lkp-server01.sh.intel.com (HELO 8122d2fc1967) ([10.239.97.150])
+  by fmviesa004.fm.intel.com with ESMTP; 23 Nov 2024 02:37:33 -0800
+Received: from kbuild by 8122d2fc1967 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tEnW7-0004Zb-17;
+	Sat, 23 Nov 2024 10:37:31 +0000
+Date: Sat, 23 Nov 2024 18:36:35 +0800
+From: kernel test robot <lkp@intel.com>
+To: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>,
+	Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev,
+	Odelu Kukatla <quic_okukatla@quicinc.com>,
+	Mike Tipton <quic_mdtipton@quicinc.com>,
+	linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] interconnect: qcom: sdx75: Drop QP0 related
+ interconnect and BCM nodes
+Message-ID: <202411232022.F33FHrZo-lkp@intel.com>
+References: <20241121172737.255-3-quic_rlaggysh@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1973; i=xtexchooser@duck.com; h=from:subject; bh=ysMKuOHj0GcDGBU/fk1eqdjXhgwXVUk8Jucs34/lFIU=; b=owGbwMvMwCW2U4Ij7wZL9ETG02pJDOmOS+5pNTW9r5r4pUaWsz/f/Z25SeXMRpttX95n7v8SZ GS59KNxRykLgxgXg6yYIkuRYYM3q046v+iyclmYOaxMIEMYuDgFYCLG2gy/mN7pHXq6zkeJYUb2 Y8NN/42OJq8/KffwVI/vsqZIjs6zOxj+GXYv67H8fmpV/HMtwaa2rzn8TKKFWQzbisuvvtCe5va dCwA=
-X-Developer-Key: i=xtexchooser@duck.com; a=openpgp; fpr=7231804B052C670F15A6771DB918086ED8045B91
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241121172737.255-3-quic_rlaggysh@quicinc.com>
 
-From: Bingwu Zhang <xtexchooser@duck.com>
+Hi Raviteja,
 
-When compiling with -Wall -Wextra, the unused fdt parameter becomes a
-warning. With -Werror, it becomes an error and fails the build.
+kernel test robot noticed the following build errors:
 
-As the parameter is not used in the function, let's remove it.
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.12 next-20241122]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Signed-off-by: Bingwu Zhang <xtexchooser@duck.com>
----
-Changes from v1:
- - Remove fdt parameter rather than suppressing the warning directly
-Link: https://lore.kernel.org/devicetree-compiler/20241116101228.164707-5-xtex@envs.net/ # v1
----
- libfdt/fdt_overlay.c | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+url:    https://github.com/intel-lab-lkp/linux/commits/Raviteja-Laggyshetty/dt-bindings-interconnect-qcom-drop-QPIC_CORE-IDs/20241122-013857
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20241121172737.255-3-quic_rlaggysh%40quicinc.com
+patch subject: [PATCH 2/2] interconnect: qcom: sdx75: Drop QP0 related interconnect and BCM nodes
+config: arm-allmodconfig (https://download.01.org/0day-ci/archive/20241123/202411232022.F33FHrZo-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241123/202411232022.F33FHrZo-lkp@intel.com/reproduce)
 
-diff --git a/libfdt/fdt_overlay.c b/libfdt/fdt_overlay.c
-index f61ca7ed2f0b..e6b9eb643958 100644
---- a/libfdt/fdt_overlay.c
-+++ b/libfdt/fdt_overlay.c
-@@ -307,7 +307,6 @@ static int overlay_update_local_references(void *fdto, uint32_t delta)
- 
- /**
-  * overlay_fixup_one_phandle - Set an overlay phandle to the base one
-- * @fdt: Base Device Tree blob
-  * @fdto: Device tree overlay blob
-  * @symbols_off: Node offset of the symbols node in the base device tree
-  * @path: Path to a node holding a phandle in the overlay
-@@ -328,8 +327,7 @@ static int overlay_update_local_references(void *fdto, uint32_t delta)
-  *      0 on success
-  *      Negative error code on failure
-  */
--static int overlay_fixup_one_phandle(void *fdt, void *fdto,
--				     int symbols_off,
-+static int overlay_fixup_one_phandle(void *fdto, int symbols_off,
- 				     const char *path, uint32_t path_len,
- 				     const char *name, uint32_t name_len,
- 				     int poffset, uint32_t phandle)
-@@ -443,7 +441,7 @@ static int overlay_fixup_phandle(void *fdt, void *fdto, int symbols_off,
- 		if ((*endptr != '\0') || (endptr <= (sep + 1)))
- 			return -FDT_ERR_BADOVERLAY;
- 
--		ret = overlay_fixup_one_phandle(fdt, fdto, symbols_off,
-+		ret = overlay_fixup_one_phandle(fdto, symbols_off,
- 						path, path_len, name, name_len,
- 						poffset, phandle);
- 		if (ret)
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202411232022.F33FHrZo-lkp@intel.com/
 
-base-commit: b3bbee6b1242b4bb84fcb31365b76a3a45be3b6b
+All errors (new ones prefixed by >>):
+
+>> drivers/interconnect/qcom/sdx75.c:878:10: error: 'bcm_qp0' undeclared here (not in a function); did you mean 'bcm_qup0'?
+     878 |         &bcm_qp0,
+         |          ^~~~~~~
+         |          bcm_qup0
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for GET_FREE_REGION
+   Depends on [n]: SPARSEMEM [=n]
+   Selected by [m]:
+   - RESOURCE_KUNIT_TEST [=m] && RUNTIME_TESTING_MENU [=y] && KUNIT [=m]
+
+
+vim +878 drivers/interconnect/qcom/sdx75.c
+
+3642b4e5cbfe48 Rohit Agarwal 2023-09-13  876  
+3642b4e5cbfe48 Rohit Agarwal 2023-09-13  877  static struct qcom_icc_bcm * const clk_virt_bcms[] = {
+3642b4e5cbfe48 Rohit Agarwal 2023-09-13 @878  	&bcm_qp0,
+3642b4e5cbfe48 Rohit Agarwal 2023-09-13  879  	&bcm_qup0,
+3642b4e5cbfe48 Rohit Agarwal 2023-09-13  880  };
+3642b4e5cbfe48 Rohit Agarwal 2023-09-13  881  
+
 -- 
-2.47.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
