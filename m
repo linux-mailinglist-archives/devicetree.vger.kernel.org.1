@@ -1,156 +1,251 @@
-Return-Path: <devicetree+bounces-123923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123924-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B94D9D6B37
-	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 20:43:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 546799D6B41
+	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 20:47:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F323A2823B5
-	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 19:43:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A4C63282139
+	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 19:47:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A00E71990D3;
-	Sat, 23 Nov 2024 19:43:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 850AD16DEB3;
+	Sat, 23 Nov 2024 19:47:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ZfwFLNaZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Pvz+ltHO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79FED225D7;
-	Sat, 23 Nov 2024 19:43:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E83E06F099;
+	Sat, 23 Nov 2024 19:47:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732391021; cv=none; b=Led9rabl7vWuCDAzEwcsOwJVX63FXLWv66ygPYAiitjbZCdHGmVdZ/R5b7+KRKaBhSsFJKa+ksgx3KYU7xyD/oXk1pI5A5UGLkogsxYAgLzUECA9haCVrl8ujqCuw777VWvD447E+ZNN7TN7wp1tcfFhPEYgS7SXiroMENdWq1c=
+	t=1732391253; cv=none; b=Xp7w4TCqcfMU1qmOMerUyzwiYdg+OC5hdNmHwtTxRJeg1/7bASq5SeEBOS+kRd3Lfmypy9lIlIb6BlukSxb09z6rHG/bTqfz1i1hlRiQ3f7AvBPcOAAyerDFZSBnYHelcjtmKqn3CfPYRol2wc3HABBvTyEvt2d0IHW6S+8hw7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732391021; c=relaxed/simple;
-	bh=tGPOgclemoMu7/cMWJ8L6U5QW//GoJwlV7nmam601mM=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b9kAAy//Qv7Cvm0M2a9OBw7ta5seLReNujvfUJdggNZYVkT42bmIQo9DR3X+qQppWPYzY/WcGJV8GrMhPr1UtGg6z0m5WBKwfu1ca00rMahh3RY+xks2dsETHRF6clfw6MKIENG0nwhzOOg8FAeIBaVQtHwfeiRkJ2zuzDU6Wm8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ZfwFLNaZ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4ANJ2ZDL021590;
-	Sat, 23 Nov 2024 19:43:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=rTIOLT43gtxqh17Vq7x24Lsb
-	prvLiFCTG8dAMH1h/xg=; b=ZfwFLNaZIiMB+elaiYXtRH7SsQtiD3CJfEbv5/sq
-	ZLKJQufPK5OUYCPjcIdFxLfXOAC6ZTSgqRgQKwv09P1TIWZ2W6GGzQJtYPTYiLsN
-	C1xy6Jr9KV+zcMLuyzAQXZlLk3XgQv7r5jEobBalsSwigCjHWw9ghlXfouSRjWiN
-	BJ2/I0K/dU+SIGMT94AMMs+oXdKwWYpQbMyKknVv6Dk3pmh7ec8fQN/k5HtADLDf
-	t/aj/9ACnH+PQeRPgbLsOHpr/Q0gi7D5TVCT8Z9ekcQPTWr9zZuZj0xR+I4nSeA0
-	KGWggdO2zIZ0Z4pgnUadBhvT3/dVx87o9+PV4AyXBfZeFg==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4338b894c6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 23 Nov 2024 19:43:27 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4ANJhQJ0011605
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 23 Nov 2024 19:43:26 GMT
-Received: from hu-akhilpo-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Sat, 23 Nov 2024 11:43:19 -0800
-Date: Sun, 24 Nov 2024 01:13:16 +0530
-From: Akhil P Oommen <quic_akhilpo@quicinc.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-CC: Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        "Stephen
- Boyd" <sboyd@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Clark
-	<robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        "Dmitry
- Baryshkov" <dmitry.baryshkov@linaro.org>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, "Simona
- Vetter" <simona@ffwll.ch>,
-        Bjorn Andersson <andersson@kernel.org>, Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>,
-        Connor Abbott <cwabbott0@gmail.com>, <linux-pm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>, <freedreno@lists.freedesktop.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 04/11] drm/msm: adreno: add GMU_BW_VOTE feature flag
-Message-ID: <20241123194316.yqvovktcptfep4dr@hu-akhilpo-hyd.qualcomm.com>
-References: <20241119-topic-sm8x50-gpu-bw-vote-v2-0-4deb87be2498@linaro.org>
- <20241119-topic-sm8x50-gpu-bw-vote-v2-4-4deb87be2498@linaro.org>
+	s=arc-20240116; t=1732391253; c=relaxed/simple;
+	bh=aZA3trjlfivLV4xAqz8KmDMOR/afSd2+Nsdl23oV524=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=R/sdgBxcACXOQrc/P1jCUoNCeakIZISpX+dXcuUS5EoGmlQpd7ywh74ifVS3e0APzGXNkRn98/frccg/89pWUBdgmtJ/cVxK0d6l8gDUc1mm9iGNPlA/9ux4JTgEmEt6s8WrylGOiJHWCIrGWYLrhJCSZOpOb/CGN2xC+epk+s8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Pvz+ltHO; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-21260cfc918so23196825ad.0;
+        Sat, 23 Nov 2024 11:47:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1732391251; x=1732996051; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NIisu+SInmO8aU5o7J4/R5vnmz4PGenJ0iDGtFRy0GM=;
+        b=Pvz+ltHOvi2k5iCj2IQzx8Ra1SNt8U+ZQ0QqBsdWG9UXCAm4a9wMhYyW4YZdcPyfDs
+         vKdfUQ62BagHTEaxW8BR/FaOIv25fekplLPeFTjJcfgIwZGQsaBv0FxEu25KCa9t8Mso
+         2NhwUJB/yzTpFhctBIobUMttSr+BJFUebYWVRvd6FfXLIC3Oe0YxbFOGO+xA17U2MwNx
+         wWpf9wWJfndJmWVKnWeHhNlp6TIzKxUn/xrBw/0qGB19Y3rWyAxPq6/WLKnpWidWB8Cz
+         fDls5XtEeW6ZNKkSMswUjaQDmqAEoTRWQHMctnEP2wsk8oUPglEKb3VmacK6kaqEaBql
+         S81g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732391251; x=1732996051;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=NIisu+SInmO8aU5o7J4/R5vnmz4PGenJ0iDGtFRy0GM=;
+        b=tlmjEIPwKN1RcGXgWwbcl9b9009Ll7X2nrvOrcuiv0fWsGMi+amrIK7GBqqIrindhV
+         JykV+B9++Fmhtt26YRbA3IwxF/QVO49V9wlV8OInCZ2r2t4SnnCrhRZTGNuNFY7cWmit
+         fcK0J/VjxjLGM3XGZ6Tpe7kYhHtGZ9rdvMEkw/eQQcNGn6IMRO3qj8Rc5coAjftW+Qez
+         N8Azdvx6ZrVeo48nBGoihJo55QhEXttASO8bGcy6Z6XF5gIcdEibBhOapzw9zmfTNxfq
+         p5s5Ihi9d2Slbn6PO8gm3oqodkzEPepOOBG0IFG3CCXBZRa3rfnVe/IrZ/YrT9QaO4Iu
+         zu1g==
+X-Forwarded-Encrypted: i=1; AJvYcCU1v/nyeF3DAqkG0BkT14ZFNvXCw5xjXoOgnVr3uTETYdYrxLiAIHnvsCN7xw/cIj9HxHlgUDCpuz/lpgb2@vger.kernel.org, AJvYcCVBppl4J0tYR6mgzmm7iEZdtQzilvL0QEW1Re//rTQVMUHbNkbzcwyp1XjG5/oPdCVfuf7Ecs5+I/YE@vger.kernel.org, AJvYcCVu3HVLPurZd6GPdY/HHY0SZ1pxZimHlz+bMxfRZpjvGtsN4Tprp2Y2OTcBadRtJa4J0HQQht/sbE+U@vger.kernel.org
+X-Gm-Message-State: AOJu0YyHcfVpcWwwr8uPZxoZPYEK7nMNpzQ45To1c8rEIlE1XF7HwD8J
+	dKNruLb8EcRyrN0XBDJHzmAfc5ZfMtQtASdEZ0heVLbctyMWo2iX/8KmJ7tdUXPh91Fr0QBd8T8
+	AZJlSU7k/0IIJs6Hc5uae/VrwyWBN9Ngg
+X-Gm-Gg: ASbGnctxuP40i3k12iCO9Ui7k7QtlGW4e7ZvUyua5R6If9yNUNZlrSwKpOfEGA7aEMu
+	33kQWJy50+2EZfouo1kiXw2NuAy0mbKk=
+X-Google-Smtp-Source: AGHT+IER882hxWGxdnLbHc4WL+b6BKZBCKwOSHKs1j9B4N3y0JbmongRgfkv5XWs473nMaR5UvS6LxycIeafIw7+oY8=
+X-Received: by 2002:a17:902:ea09:b0:20b:b93f:300a with SMTP id
+ d9443c01a7336-2129f72fe53mr91133915ad.7.1732391250925; Sat, 23 Nov 2024
+ 11:47:30 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20241119-topic-sm8x50-gpu-bw-vote-v2-4-4deb87be2498@linaro.org>
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: ryrIuRNVzSxZaJQeCU3vSDCY0aamOJEC
-X-Proofpoint-GUID: ryrIuRNVzSxZaJQeCU3vSDCY0aamOJEC
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
- adultscore=0 mlxscore=0 priorityscore=1501 lowpriorityscore=0 bulkscore=0
- phishscore=0 malwarescore=0 suspectscore=0 mlxlogscore=999 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
- definitions=main-2411230162
+References: <20241114065759.3341908-1-victor.liu@nxp.com> <20241114065759.3341908-3-victor.liu@nxp.com>
+ <df6ebdde-65f8-4aad-93c7-b1df695bd2ef@denx.de> <AM7PR04MB7046546A882A8D48E135D84698272@AM7PR04MB7046.eurprd04.prod.outlook.com>
+ <8a4fd234-4c7b-4a04-990d-3222aaa5172d@denx.de> <AM7PR04MB7046E282FD702ACE5E288F8998202@AM7PR04MB7046.eurprd04.prod.outlook.com>
+ <83be0a27-6b6c-4ba6-b9dc-f914a10abace@denx.de> <AM7PR04MB7046587167BF790549B8560F98212@AM7PR04MB7046.eurprd04.prod.outlook.com>
+ <c5ab63da-21ec-4c0d-8ecc-3745943d806f@denx.de> <AM7PR04MB7046D404841394382324DE7198232@AM7PR04MB7046.eurprd04.prod.outlook.com>
+In-Reply-To: <AM7PR04MB7046D404841394382324DE7198232@AM7PR04MB7046.eurprd04.prod.outlook.com>
+From: Adam Ford <aford173@gmail.com>
+Date: Sat, 23 Nov 2024 13:47:19 -0600
+Message-ID: <CAHCN7xJsTo=yRxkqPwvt5hX0UTFvF+gBVOqcjrR2jSq4jKzV3g@mail.gmail.com>
+Subject: Re: [PATCH v7 2/7] Revert "clk: imx: clk-imx8mp: Allow media_disp
+ pixel clock reconfigure parent rate"
+To: Ying Liu <victor.liu@nxp.com>
+Cc: Marek Vasut <marex@denx.de>, "imx@lists.linux.dev" <imx@lists.linux.dev>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, 
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
+	"shawnguo@kernel.org" <shawnguo@kernel.org>, "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, 
+	"kernel@pengutronix.de" <kernel@pengutronix.de>, "festevam@gmail.com" <festevam@gmail.com>, 
+	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>, 
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "catalin.marinas@arm.com" <catalin.marinas@arm.com>, 
+	"will@kernel.org" <will@kernel.org>, "abelvesa@kernel.org" <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
+	"mturquette@baylibre.com" <mturquette@baylibre.com>, "sboyd@kernel.org" <sboyd@kernel.org>, 
+	"andrzej.hajda@intel.com" <andrzej.hajda@intel.com>, 
+	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>, "rfoss@kernel.org" <rfoss@kernel.org>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, "jonas@kwiboo.se" <jonas@kwiboo.se>, 
+	"jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>, 
+	"maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>, 
+	"mripard@kernel.org" <mripard@kernel.org>, "tzimmermann@suse.de" <tzimmermann@suse.de>, 
+	"airlied@gmail.com" <airlied@gmail.com>, "simona@ffwll.ch" <simona@ffwll.ch>, 
+	"quic_bjorande@quicinc.com" <quic_bjorande@quicinc.com>, 
+	"geert+renesas@glider.be" <geert+renesas@glider.be>, 
+	"dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>, "arnd@arndb.de" <arnd@arndb.de>, 
+	"nfraprado@collabora.com" <nfraprado@collabora.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+	Miquel Raynal <miquel.raynal@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Nov 19, 2024 at 06:56:39PM +0100, Neil Armstrong wrote:
-> The Adreno GMU Management Unit (GNU) can also scale the DDR Bandwidth
-> along the Frequency and Power Domain level, but by default we leave the
-> OPP core vote for the interconnect ddr path.
-> 
-> While scaling via the interconnect path was sufficient, newer GPUs
-> like the A750 requires specific vote paremeters and bandwidth to
-> achieve full functionality.
-> 
-> While the feature will require some data in a6xx_info, it's safer
-> to only enable tested platforms with this flag first.
-> 
-> Add a new feature enabling DDR Bandwidth vote via GMU.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  drivers/gpu/drm/msm/adreno/adreno_gpu.h | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.h b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
-> index 4702d4cfca3b58fb3cbb25cb6805f1c19be2ebcb..394b96eb6c83354ae008b15b562bedb96cd391dd 100644
-> --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.h
-> +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
-> @@ -58,6 +58,7 @@ enum adreno_family {
->  #define ADRENO_FEAT_HAS_HW_APRIV		BIT(0)
->  #define ADRENO_FEAT_HAS_CACHED_COHERENT		BIT(1)
->  #define ADRENO_FEAT_PREEMPTION			BIT(2)
-> +#define ADRENO_FEAT_GMU_BW_VOTE			BIT(3)
+On Thu, Nov 21, 2024 at 9:39=E2=80=AFPM Ying Liu <victor.liu@nxp.com> wrote=
+:
+>
+> On 11/22/24, Marek Vasut wrote:
+> > On 11/20/24 7:38 AM, Ying Liu wrote:
+> >
+> > [...]
+> >
+> > >>> If the DP monitors support typical video modes like 1080p60 with
+> > >>> 148.5MHz pixel clock rate, I assume these typical video modes work
+> > >>> still ok with this patch at least.  Please help confirm this, since=
+ if the
+> > >>> alternative solution(*) doesn't stand, we would know those video
+> > >>> modes still work ok with my solution(fixed PLL rate).
+> > >>
+> > >> They do not work with the fixed PLL setting.
+> > >
+> > > Why?  Did you assign a sensible fixed PLL rate in DT?
+> >
+> > Whatever was in imx8mp.dtsi does not really work for all the panels.
+> > Please keep in mind that the use case I have does not include only
+> > 1920x1080 "standard" panels, but also other resolutions.
+>
+> It looks like you are still sticking to the idea of supporting all potent=
+ially
+> valid video modes by trying to find an "alternative" solution, while
+> neglecting that the solution *could be* never working.
+>
+> >
+> > > Can you please compare clk_summary output for the failing cases
+> > > before and after this patch is applied? I assume that if you use
+> > > the fixed PLL rate same to the rate which works before this patch is
+> > > applied, the typical video modes still just work after this patch is
+> > > applied.
+> >
+> > I'm afraid I do not need to support only typical video modes, but also
+> > the other "atypical" modes.
+>
+> If the "alternative" solution doesn't work, we'll end up using the "fixed
+> PLL rate" solution.  It that case, some video modes would be filtered
+> out as a sacrifice.
+>
+> >
+> > [...]
+> >
+> > >> One really nasty way I can think of is -- use find_node_by_compatibl=
+e(),
+> > >> look up all the relevant DT nodes, parse their clock properties, and
+> > >> check whether they all point to the Video PLL or not.
+> > >
+> > > That's nasty.  It looks even more nasty when considering the fact tha=
+t
+> > > i.MX93 LCDIF is also driven by imx-lcdif DRM while only i.MX8MP LCDIF
+> > > needs the nasty check, because i.MX93 SoC embeds only one LCDIF.
+> >
+> > The check can be skipped based on compatible string.
+> >
+> > I agree it is nasty, but it is a start. Are there better ideas ?
+>
+> No good idea from me.
+>
+> >
+> > >> Maybe the clock subsystem has a better way, like list "neighbor"
+> > >> consumers of some specific parent clock or something like that.
+> > >
+> > > What will imx-lcdif DRM look like by using this way? Get the ancestor=
+ PLL
+> > > clock of pixel clock(media_disp{1,2}_pix_root_clk), list all child cl=
+ocks
+> > > (media_disp1_pix and/or media_disp2_pix + other possible clocks) of t=
+he
+> > > PLL clock in a string array and find media_disp1_pix + media_disp2_pi=
+x
+> > > in it?
+> > >
+> > > Doesn't look nice, either.
+> >
+> > One other option came to my mind -- place a virtual clock between the
+> > Video PLL and consumers (LCDIF1/2/LDB), and then have the virtual clock
+> > driver do the clock rate negotiation in some .round_rate callback. That
+> > is also nasty, but it is another idea. If there is a clock specifically
+> > implemented to negotiate best upstream clock rate for all of its
+> > consumers, and it is aware of the consumer behavior details and
+> > requirements, maybe that could work ?
+>
+> A mighty virtual clock?  I'm not sure if that would work or not.
 
-Do we really need a feature flag for this? We have to carry this for every
-GPU going forward. IB voting is supported on all GMUs from A6xx GEN2 and
-newer. So we can just check that along with whether the bw table is
-dynamically generated or not.
+From a power-consumption perspective, it seems to me like running the
+clocks at the lowest value instead of setting a really high rate which
+divides down would save power.
 
--Akhil
-
->  
->  /* Helper for formating the chip_id in the way that userspace tools like
->   * crashdec expect.
-> 
-> -- 
-> 2.34.1
-> 
+adam
+>
+> >
+> > >> [...]
+> > >>
+> > >>>> Can something like (*) above be implemented instead, so both Share=
+d
+> > >> and
+> > >>>> separate PLLs would be supported ? That should solve both of our u=
+se
+> > >>>> cases, right ?
+> > >>>
+> > >>> I don't see any clear way to implement something like(*).
+> > >>>
+> > >>> Take the 3 i.MX8MP LCDIFs as one graphic card driven by one imx-lcd=
+if
+> > >>> DRM instance?  Would it be too intrusive?
+> > >>
+> > >> Yes, and I think unnecessary, one can simply traverse and parse the =
+DT
+> > >> to determine the clock assignment?
+> > >
+> > > Yes, people can traverse and parse DT, but it's nasty.
+> > >
+> > > In addition, one may argue that now that CLK_SET_RATE_PARENT flag
+> > > is set for the pixel clocks, all potential video modes read from EDID
+> > > should be supported when only either LVDS display pipeline or MIPI DS=
+I
+> > > display pipeline is active in the shared PLL case.  This requires one
+> > > single DRM instance to detect single or dual active display pipelines
+> > > dynamically, hence this single DRM instance becomes necessary.
+> >
+> > Would single virtual clock which do the frequency negotiation between
+> > multiple DRM consumers work too ?
+>
+> Not sure if it would work or not, but I'm sure that one single DRM instan=
+ce
+> means atomic check/commit for the display pipelines as a whole, hence
+> awareness of active display pipeline number in an atomic way.
+>
+> >
+> > I do not have much to add to the points below.
+>
+> Regards,
+> Liu Ying
 
