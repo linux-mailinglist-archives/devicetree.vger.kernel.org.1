@@ -1,118 +1,126 @@
-Return-Path: <devicetree+bounces-123928-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123929-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3F6F9D6BA5
-	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 22:32:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA4379D6BB7
+	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 23:09:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6E73DB21C9F
-	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 21:32:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E48AB21230
+	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 22:09:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9B0418A6DE;
-	Sat, 23 Nov 2024 21:32:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E7F019F101;
+	Sat, 23 Nov 2024 22:09:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="79uBzN66"
+	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="mrheDw3f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFFBE7CF16;
-	Sat, 23 Nov 2024 21:32:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CF1A2905;
+	Sat, 23 Nov 2024 22:09:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732397525; cv=none; b=RpioYeu3DqeuEliLuvklLDzj7LyXlz6Y4XNX4LpuOlVNR2Wr3ig5NXzJ0xnZHKZwgrN6xpZ1Mrywk29re6PGscLKKBngeACUESjuFM5PgQ/lfq9ipFt/YceXjnfLLfiHPIzDvZxD61eFZmSdC4vHVtJCijJawYlMN3PSGrY+4I4=
+	t=1732399766; cv=none; b=qAm4Lhe3NT7GjADFAo06dTHX1s05zbfuvohL7DlSsybHDjS2mTA0jIDlNx+vweTH+DQ54YcSoHOIx1gPIp1CDYR0yFljdyP7xHVF+W6BDU0+kIhNaVIiblqzcU13QfTILZRdH8y4IizZwi9PU01i/7PtnDhtDpa4lcaREInJx6A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732397525; c=relaxed/simple;
-	bh=gHwJmvzf21afgQoTvb2Bj0IrycV+YiiikoPnuvfjgsQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VgWLjgssXIJ6SdUeJ6dI0txVfF4PSRLgxUyrgsmttJrQhTPxSwGbvjR8yLyVCbeERSxYrfDKjO5G6eS1DDX6Ot6Dug5QTmHU84tDhmYEUFDIaiGpK6r35OY+s9DW4ICiIilD7WBvx4Sjt+rO0k4jt0Im8tCb/5pSCmtgdv4euI4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=79uBzN66; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=zXUvUoL/OnaPQoLr5nrWhyhwl+PNI5Cabcfe7EiPBO0=; b=79uBzN66XDG3kLDz/RGUmS2Tfg
-	KsgILZO6wuZiDIuY2XJaHEyPjrIlrh309mXHfmBxhWllYKNiHdmEeMu7ouFMPCVVHL3JNJt0NgJXA
-	N/av56wGSxpZcnd8/7b2VaCGWeG15pLgKzanI+6Aq4g2+7lK9eItwqH3D8M06BXbZcn6V/bIeaU2b
-	2DncUejHN/IS/oNaBgvzaLMFsqoEsR/EymHYm/nfy4BGyc0/auYaRlOxBzdxetAYCCoNzLvZqPZcI
-	YqeR5CzuAUAsl6Ux78hvvPINAIXVvF7ehDopYjdXeIE42UnAhKIjvqEZyv80l2FT+Tt9hBjILl9ve
-	qFKomYFg==;
-Date: Sat, 23 Nov 2024 22:31:50 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Mithil Bavishi <bavishimithil@gmail.com>
-Cc: Laurent.pinchart@ideasonboard.com, aaro.koskinen@iki.fi,
- airlied@gmail.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, jernej.skrabec@gmail.com, jonas@kwiboo.se,
- khilman@baylibre.com, krzk+dt@kernel.org, linux-hardening@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- neil.armstrong@linaro.org, prabhakar.mahadev-lad.rj@bp.renesas.com,
- quic_jesszhan@quicinc.com, rfoss@kernel.org, robh@kernel.org,
- rogerq@kernel.org, simona@ffwll.ch, thierry.reding@gmail.com,
- tony@atomide.com, tzimmermann@suse.de
-Subject: Re: [PATCH v3 10/10] ARM: dts: ti: omap: samsung-espresso10: Add
- initial support for Galaxy Tab 2 10.1
-Message-ID: <20241123223150.28d4002b@akair>
-In-Reply-To: <20241123192633.2049-1-bavishimithil@gmail.com>
-References: <20241123200202.684d8bc5@akair>
-	<20241123192633.2049-1-bavishimithil@gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1732399766; c=relaxed/simple;
+	bh=ly8oeaIOAg6lQzNJz3++JQOR8O7rdaXLBJTqDo2MTiA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=LOGJcsBn60lZHXDZ0TWaA7XgtZ0ISNQZxkb+TdEbhpzxHcuMswo13yW7DGjSlqKsi3P/kpy1tv+yRW2valpJmIirdOO3oNyih5ZS2ghjC31OaQuW7/T5TobA5xuODoBtYygnvK7KANKpTUhGQHY+G53CX/GgJKyJ0BTtbCZ0EfA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=mrheDw3f; arc=none smtp.client-ip=193.68.50.107
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
+Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
+	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id 23AC3A037C;
+	Sat, 23 Nov 2024 23:09:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:from:from:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to; s=mail; bh=ggcfDzy4T2wd6OE/Z3K6
+	o9nCDGY9SIX9C7Zth5qGkkw=; b=mrheDw3f9/c1M7uWYdSdjXZfspL54nuwPSA9
+	kwVUd78i8gy+792IM4dEZ/atzbyV3kg2iMPD5d00RenG5xkdYl8h6xGJq+Wo8m7O
+	tT4T34BCbLSC76luZhkGS6feezabh2pVoBdZawsTApjGI7FuWbf6ldS1garKQD7N
+	IDEfkrsDNg9UnaM/jjMOoc4Aph7eU93iBLB1nptj+oRrDTDAQZv/j3nGLFrt3zuB
+	74jY6EVfjBmm5NSUCgJbgxF9nGjjLKGRnhVlLVjNBOo5tYYz/3BVVkkDnnuo+fJK
+	3Cl6dXDOi+LOea+NXBaEBi4bx6pse5vDC1LUfjFvOuIFSn1xh07ul/hBvKmoeAmC
+	bfBjuQXB+OZYVT5RrCdIqrlGqC6hFo2IflskErKu2y8Cf/zSutPki9Cz5W84x8Yd
+	thpGg1uzT0Rwi+rLA0PyIcDNLOXXLljPowOxLa4ugzyfdgfmtgSKhEYlWRRJlH/J
+	8lra0RngSM8VIu1KwSs2U3tROUV+NzLiffS97CHf9k7NC5gQKgBsITbfrHU0NfnY
+	geAgpFHg67fBDpvHhOeN8AfCruIBapj8MJRrs5xtitJDYmDyv14QkG3J08YHgtwH
+	XHPkS3BYsUo1snyytbl3NHTpI1J04nZZIrJmdJVg2RiH84QU16rmZsqw2yeBAFnO
+	D4Sk4Vw=
+Message-ID: <f5f4be27-4d8c-4832-998f-8477030a21cb@prolan.hu>
+Date: Sat, 23 Nov 2024 23:09:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/5] dt-bindings: sound: Add Allwinner suniv F1C100s
+ Audio Codec
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <mripard@kernel.org>,
+	<linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-sunxi@lists.linux.dev>,
+	<linux-kernel@vger.kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, "Mark
+ Brown" <broonie@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Jernej
+ Skrabec" <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>
+References: <20241123123900.2656837-1-csokas.bence@prolan.hu>
+ <20241123123900.2656837-3-csokas.bence@prolan.hu>
+ <juzxtwlr5ayvjrrqem2hr3nbyem6oajwrvveio5brlzazdafov@r2aehknf4shv>
+Content-Language: en-US
+From: =?UTF-8?B?Q3PDs2vDoXMgQmVuY2U=?= <csokas.bence@prolan.hu>
+In-Reply-To: <juzxtwlr5ayvjrrqem2hr3nbyem6oajwrvveio5brlzazdafov@r2aehknf4shv>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: ATLAS.intranet.prolan.hu (10.254.0.229) To
+ ATLAS.intranet.prolan.hu (10.254.0.229)
+X-EsetResult: clean, is OK
+X-EsetId: 37303A2980D94855607D61
 
-Am Sat, 23 Nov 2024 19:26:33 +0000
-schrieb Mithil Bavishi <bavishimithil@gmail.com>:
+Hi,
 
-> > well, look at the schematics and see how it is wired ;-)  
+On 2024. 11. 23. 17:22, Krzysztof Kozlowski wrote:
+> On Sat, Nov 23, 2024 at 01:39:00PM +0100, Csókás, Bence wrote:
+>> Add compatible string for Allwinner suniv F1C100s audio codec.
+>>
+>> [ csokas.bence: Reimplement Mesih Kilinc's binding in YAML ]
+>> Signed-off-by: Csókás, Bence <csokas.bence@prolan.hu>
+>> ---
+>>   .../sound/allwinner,sun4i-a10-codec.yaml      | 31 +++++++++++++++++++
+>>   1 file changed, 31 insertions(+)
+>>
 > 
-> Schematic mentions vddtx, vdda, vdd and vbus, so unsure about that.
-> VDDTX is the one with 2.8V, VDD and VBUS are at 1.8V and VDDA is grounded,
-> it just gets the input from GDNA from the same touch sensor.
-> 
-> > As the vendor kernel seem to
-> > set i2c to gpio mode, so probably because the vio-supply is powered
-> > down according to the board file you posted.
-> > So it might be vio-supply only or vio and vdd-supply combined.
-> > In any case document what you have seen in the vendor kernel.  
-> 
-> https://github.com/Unlegacy-Android/android_kernel_ti_omap4/blob/3.4/common/arch/arm/mach-omap2/board-espresso-input.c
-> This just makes it more confusing. Very confused on what is what now xD.
-> reg_touch_ldo_en is 2.8V which goes to VDDTX, it is gpmc_nwp.gpio_54 - TSP_LDO_ON
-> ldo6 is 1.8V presumably ldo6 (VAP_IO_1.8V) which goes to VDD, VBUS.
-> 
-well, I think I2C bus runs at 1.8V, and there is IO_1.8V in the name,
-so vio-supply should be something at 1.8V, so probably ldo6 is
-vio-supply. Maybe add a remark in the comments. But then it might be
-not a good idea to turn that off in suspend. if the other regulator is
-kept on.
+> Missing changelog - what happened here? If no changes, why ignoring
+> received tag?
 
-> > basically says that standard touchscreen properties are accepted below
-> > rmi4-f11.   
+Sorry, I just forgot to collect it, that's all.
+
+> <form letter>
+> This is a friendly reminder during the review process.
 > 
-> But we do not use any of those properties. If you're talking about the
-> touchscreen-size-x/y, even in the examples those are out of rmi4-f11, in
-> the parent node.
->
-Where do you see those examples? Here touchscreen-invert-y is below
-rmi4-f11.
-https://elixir.bootlin.com/linux/v6.12/source/Documentation/devicetree/bindings/input/syna,rmi4.yaml#L269
+> It looks like you received a tag and forgot to add it.
+> 
+> If you do not know the process, here is a short explanation: Please add
+> Acked-by/Reviewed-by/Tested-by tags when posting new versions, under
+> or above your Signed-off-by tag. Tag is "received", when provided
+> in a message replied to you on the mailing list. Tools like b4 can help
+> here. However, there's no need to repost patches *only* to add the tags.
+> The upstream maintainer will do that for tags received on the version
+> they apply.
+> 
+> https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+> 
+> If a tag was not added on purpose, please state why and what changed.
+> </form letter>
+> 
+> Best regards,
+> Krzysztof
 
-We have also the warning from dtbs_check:
-arch/arm/boot/dts/ti/omap/omap4-samsung-espresso10.dtb:
-synaptics-rmi4-i2c@20: Unevaluated properties are not allowed
-('avdd-supply', 'touchscreen-size-x', 'touchscreen-size-y' were
-unexpected)
+Bence
 
-Regards,
-Andreas
 
