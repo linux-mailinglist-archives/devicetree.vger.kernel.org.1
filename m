@@ -1,327 +1,363 @@
-Return-Path: <devicetree+bounces-123847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B59189D676C
-	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 04:59:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECB269D6790
+	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 06:01:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B5481615EC
-	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 03:59:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 439A4161350
+	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 05:01:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 258E1817;
-	Sat, 23 Nov 2024 03:59:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B7CF13BC2F;
+	Sat, 23 Nov 2024 05:01:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=xry111.site header.i=@xry111.site header.b="dSDCvDEL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hWmAjqPm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from xry111.site (xry111.site [89.208.246.23])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50AA146BF;
-	Sat, 23 Nov 2024 03:59:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.208.246.23
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9EDA7346F
+	for <devicetree@vger.kernel.org>; Sat, 23 Nov 2024 05:01:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732334352; cv=none; b=E5j/k1fvaq5EGpImk6P0vGtTogn0SvqIfpL5HdeOtpZAqqFMBqwbjE20ntiyor0rV0q/nnnxoMjjh/+pByytA52xjgwTBqCh/j94p1Y+bQ7Koe0TV1XJ+/WjRKwGOfx6oLmyQCw6MYFGtw0FoXNr79f6iui/XHoFYcT2NGVcqOg=
+	t=1732338094; cv=none; b=RTXxGDvZXrzu4TZGihqvdjShTL4MrwjD4AsvYPgpJpEhW/c7pR9w3p0BSLuMCMndlDHKYJvUoaRlOIC+Vjtj8gdGLcPFH1PmIOVpRkROn7Bl+PdwdAQbIH4K6U6fxOSggC3ND6vhRy5JXGYbqK35TZ+s829P1ozZCIoCe20wcQE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732334352; c=relaxed/simple;
-	bh=qmQwjQMvRXA/d/ueVbokWMFZUHwHWn63WzKVHDaXqB4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=KEvRi5uXYG+gb8+j+v6z7l0EjCIVbWdid7nKezDq5ccHebdJkBK50ytdQgx0ihbtiBd0qwQISsTFtV4rNhI280WMuEdjHhjIeUfQRwgVnRtbJYv/iXiX+gx1Cu2lDemEU1Dh1fl4OAhtFZxhlAxMXjZ4AQ3uh7r/JMhMM7GA2CE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=xry111.site; spf=pass smtp.mailfrom=xry111.site; dkim=pass (1024-bit key) header.d=xry111.site header.i=@xry111.site header.b=dSDCvDEL; arc=none smtp.client-ip=89.208.246.23
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=xry111.site
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xry111.site
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xry111.site;
-	s=default; t=1732334340;
-	bh=3m6ZtMQPzOJszJqf0ZWZ4ZnY88ZlKomQ6zudX5AgoJ8=;
-	h=From:To:Cc:Subject:Date:From;
-	b=dSDCvDELr9XzGuDeXbR1j2nMyu9jRkl/yf+xDYd/YgqqmmeAPTQZeJmdD21g0nwvQ
-	 CuLsgFX+83ocDTjsw3bONbsb76nZ9ykTHino5vHckguhuYAc/lj/pnsAe6OAj15ixA
-	 krBeQx8nRgP7prlQtPh59nzohiAPdQg3W3/VbTSQ=
-Received: from stargazer.. (unknown [IPv6:240e:358:11e8:1100:dc73:854d:832e:4])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (secp384r1) server-digest SHA384)
-	(Client did not present a certificate)
-	(Authenticated sender: xry111@xry111.site)
-	by xry111.site (Postfix) with ESMTPSA id 76206670C1;
-	Fri, 22 Nov 2024 22:58:56 -0500 (EST)
-From: Xi Ruoyao <xry111@xry111.site>
-To: Jiaxun Yang <jiaxun.yang@flygoat.com>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1732338094; c=relaxed/simple;
+	bh=z/w/ztYIED66c9kco/FCKsV8axfLYuNctYlUQNWX8wg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PZSOkohOC2ajx3sNjWlCe40FyH8Wh9kUNmiGL1vzF6GtQtLFsg59Qxgyl5UrP+v4EJIAYyfJENcDUdiQ6O33kk0MMziW35RH5qtxcH7Gm95HAIbhxD6FZwrvK4Vxn7n8Dp4kjsvxZ5DDCYaUd+uKqyHapg441FteNLiVe8HvCrc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hWmAjqPm; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-21271dc4084so27466895ad.2
+        for <devicetree@vger.kernel.org>; Fri, 22 Nov 2024 21:01:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1732338092; x=1732942892; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=RRhZxdnf68b3VsEoqUMxxKiNnq7Wqv07flN0P13doWw=;
+        b=hWmAjqPmgwEWkCDBTHNag9oV3vhO8DqgmpOspyf5EC5g5lqqeMZPqeiX9AbU1708EL
+         zwDRjg4sw4dB/IkzeshbSmhrNWJXsFaRH5/mC+yBb2JknTUCpyehBs0/rPiF9h29ZPtJ
+         n0HKmCZ2Oz70+pM/cX8u7aG2UWfx6sj8fekuDjKHRRJ2PmFpH5nW2PfD7XUZR+LdewHQ
+         yTCn+Yv2upWYqeTn+nnkaUbcUjXzcd4zCFPw0OkvB9buIJTwQFJHWPpOByPmYdbUD73A
+         kOANGF+WomVH9hFS4GdBfBG5+AYVeHkjQ9vRJ6CGlyeRNwm0vZj74VE6p5vUd0kHUbR7
+         C8Vg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732338092; x=1732942892;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RRhZxdnf68b3VsEoqUMxxKiNnq7Wqv07flN0P13doWw=;
+        b=TH9PO1amE7JJdHGgNXvuhqZfELFt1SK+H2eUufcfDOG/ZR4APzsYuLg0g6yQNFTv8N
+         f+3DKbtUOGEs5teHJHHx3ZZczOFthhMdos1iQZxVBftwddG4X3lTmIHoGTpBh4GDMNOP
+         D4cZuQ1TNni11xiLrsfgIB65Mh0ygsMBsC30ao0h/jjodGvai5aGrSlIAIp7ru1Zyivb
+         OfJSlyxqIbcqXVliLqVM6kymLxuqsCnw6d4/kXDAvqSuszcGebYJDs/bf9NvHmnQVnsv
+         thqR7/7Dh6RsocI4736FpcQ9636NaJ+WPJYrSXTQeViE1uX1abdeiSi8JfiVLhHzpO2q
+         Vbbw==
+X-Forwarded-Encrypted: i=1; AJvYcCVZu1Qg/nIvzHL4RtPEttvW9iOtKW1cOMGDGvPFdDOp0IYkaBiwMjw1LolBG5BK9e6yNrdNP777e2SO@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyst3yGS63g80kn8qiY2uwjNZ1xL1/XLi3U/wKnYtkHOfqoCJDg
+	rXJnGXRYs31zNFRarObhnfQtUq5uXFGBQOt7b6m79Sx5ZY7vb5GdwgelZXGiew==
+X-Gm-Gg: ASbGncsRaFiNRK8OyTjVmCjkbewAdR1qyeUHz2ObSe6Q+cSrHauFxYIpalXdKJX3KU1
+	SXMjSgVBu3Z46u/TuBMhWdivmPCETdmRiClROlZj3jeLhS6Yk8eqyOmPQn19rcnzv1ZTF8OfC+Y
+	tom58GYWC8zpShfxSynNDfYOOqaY4dTkK3uWyzBIeEuix9uzNaEwisJilxhzhZiwRUitaai5qZ8
+	Q+a43JNoonTZRAq0UvCBapVOLL1u0or+xm8ewDuLLKWMY4vQ9F4mpGq0xLwfqc34w==
+X-Google-Smtp-Source: AGHT+IGYsyYlJyUW6FgltnPqSi5ulCgwfmePAnggpg17kRbIAxFCCAEp3D4QZGlxfqp4EXy+h9CrHg==
+X-Received: by 2002:a17:902:f652:b0:20c:5533:36da with SMTP id d9443c01a7336-2129f68034fmr73499945ad.42.1732338091863;
+        Fri, 22 Nov 2024 21:01:31 -0800 (PST)
+Received: from thinkpad ([2409:40f2:101e:13d7:85cf:a1c4:6490:6f75])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2129db87dc9sm25049555ad.7.2024.11.22.21.01.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 22 Nov 2024 21:01:31 -0800 (PST)
+Date: Sat, 23 Nov 2024 10:31:18 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Shawn Lin <shawn.lin@rock-chips.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	"James E . J . Bottomley" <James.Bottomley@HansenPartnership.com>,
+	"Martin K . Petersen" <martin.petersen@oracle.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: Yanteng Si <si.yanteng@linux.dev>,
-	devicetree@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Xi Ruoyao <xry111@xry111.site>
-Subject: [PATCH] MIPS: Loongson64: DTS: Really fix PCIe port nodes for ls7a
-Date: Sat, 23 Nov 2024 11:57:37 +0800
-Message-ID: <20241123035737.24722-1-xry111@xry111.site>
-X-Mailer: git-send-email 2.47.0
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	"Rafael J . Wysocki" <rafael@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Avri Altman <avri.altman@wdc.com>,
+	Bart Van Assche <bvanassche@acm.org>,
+	YiFeng Zhao <zyf@rock-chips.com>, Liang Chen <cl@rock-chips.com>,
+	linux-scsi@vger.kernel.org, linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v5 6/7] scsi: ufs: rockchip: initial support for UFS
+Message-ID: <20241123050118.g52fxwdzggsyk6en@thinkpad>
+References: <1731048987-229149-1-git-send-email-shawn.lin@rock-chips.com>
+ <1731048987-229149-7-git-send-email-shawn.lin@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <1731048987-229149-7-git-send-email-shawn.lin@rock-chips.com>
 
-Fix the dtc warnings:
+On Fri, Nov 08, 2024 at 02:56:25PM +0800, Shawn Lin wrote:
+> RK3576 SoC contains a UFS controller, add initial support for it.
+> The features are:
+> (1) support UFS 2.0 features
+> (2) High speed up to HS-G3
+> (3) 2RX-2TX lanes
+> (4) auto H8 entry and exit
+> 
+> Software limitation:
+> (1) HCE procedure: enable controller->enable intr->dme_reset->dme_enable
+> (2) disable unipro timeout values before power mode change
+> 
+> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+> ---
+> 
+> Changes in v5:
+> - use device_set_awake_path() and disable ref_out_clk in suspend
+> - remove pd_id from header
+> - recontruct ufs_rockchip_hce_enable_notify() to workaround hce enable
+>   without using new quirk
+> 
+> Changes in v4:
+> - deal with power domain of rpm and spm suggested by Ulf
+> - Fix typo and disable clks in ufs_rockchip_remove
+> - remove clk_disable_unprepare(host->ref_out_clk) from
+>   ufs_rockchip_remove
+> 
+> Changes in v3:
+> - reword Kconfig description
+> - elaborate more about controller in commit msg
+> - use rockchip,rk3576-ufshc for compatible
+> - remove useless header file
+> - remove inline for ufshcd_is_device_present
+> - use usleep_range instead
+> - remove initialization, reverse Xmas order
+> - remove useless varibles
+> - check vops for null
+> - other small fixes for err path
+> - remove pm_runtime_set_active
+> - fix the active and inactive reset-gpios logic
+> - fix rpm_lvl and spm_lvl to 5 and move to end of probe path
+> - remove unnecessary system PM callbacks
+> - use UFSHCI_QUIRK_DME_RESET_ENABLE_AFTER_HCE instead
+>   of UFSHCI_QUIRK_BROKEN_HCE
+> 
+> Changes in v2: None
+> 
+>  drivers/ufs/host/Kconfig        |  12 ++
+>  drivers/ufs/host/Makefile       |   1 +
+>  drivers/ufs/host/ufs-rockchip.c | 368 ++++++++++++++++++++++++++++++++++++++++
+>  drivers/ufs/host/ufs-rockchip.h |  48 ++++++
+>  4 files changed, 429 insertions(+)
+>  create mode 100644 drivers/ufs/host/ufs-rockchip.c
+>  create mode 100644 drivers/ufs/host/ufs-rockchip.h
+> 
+> diff --git a/drivers/ufs/host/Kconfig b/drivers/ufs/host/Kconfig
+> index 580c8d0..191fbd7 100644
+> --- a/drivers/ufs/host/Kconfig
+> +++ b/drivers/ufs/host/Kconfig
+> @@ -142,3 +142,15 @@ config SCSI_UFS_SPRD
+>  
+>  	  Select this if you have UFS controller on Unisoc chipset.
+>  	  If unsure, say N.
+> +
+> +config SCSI_UFS_ROCKCHIP
+> +	tristate "Rockchip UFS host controller driver"
+> +	depends on SCSI_UFSHCD_PLATFORM && (ARCH_ROCKCHIP || COMPILE_TEST)
+> +	help
+> +	  This selects the Rockchip specific additions to UFSHCD platform driver.
+> +	  UFS host on Rockchip needs some vendor specific configuration before
+> +	  accessing the hardware which includes PHY configuration and vendor
+> +	  specific registers.
+> +
+> +	  Select this if you have UFS controller on Rockchip chipset.
+> +	  If unsure, say N.
+> diff --git a/drivers/ufs/host/Makefile b/drivers/ufs/host/Makefile
+> index 4573aea..2f97feb 100644
+> --- a/drivers/ufs/host/Makefile
+> +++ b/drivers/ufs/host/Makefile
+> @@ -10,5 +10,6 @@ obj-$(CONFIG_SCSI_UFSHCD_PLATFORM) += ufshcd-pltfrm.o
+>  obj-$(CONFIG_SCSI_UFS_HISI) += ufs-hisi.o
+>  obj-$(CONFIG_SCSI_UFS_MEDIATEK) += ufs-mediatek.o
+>  obj-$(CONFIG_SCSI_UFS_RENESAS) += ufs-renesas.o
+> +obj-$(CONFIG_SCSI_UFS_ROCKCHIP) += ufs-rockchip.o
+>  obj-$(CONFIG_SCSI_UFS_SPRD) += ufs-sprd.o
+>  obj-$(CONFIG_SCSI_UFS_TI_J721E) += ti-j721e-ufs.o
+> diff --git a/drivers/ufs/host/ufs-rockchip.c b/drivers/ufs/host/ufs-rockchip.c
+> new file mode 100644
+> index 0000000..b087ce0
+> --- /dev/null
+> +++ b/drivers/ufs/host/ufs-rockchip.c
 
-    arch/mips/boot/dts/loongson/ls7a-pch.dtsi:68.16-416.5: Warning (interrupt_provider): /bus@10000000/pci@1a000000: '#interrupt-cells' found, but node is not an interrupt provider
-    arch/mips/boot/dts/loongson/ls7a-pch.dtsi:68.16-416.5: Warning (interrupt_provider): /bus@10000000/pci@1a000000: '#interrupt-cells' found, but node is not an interrupt provider
-    arch/mips/boot/dts/loongson/loongson64g_4core_ls7a.dtb: Warning (interrupt_map): Failed prerequisite 'interrupt_provider'
+[...]
 
-And a runtime warning introduced in commit 045b14ca5c36 ("of: WARN on
-deprecated #address-cells/#size-cells handling"):
+> +
+> +	host->clks[0].id = "core";
+> +	host->clks[1].id = "pclk";
+> +	host->clks[2].id = "pclk_mphy";
+> +	err = devm_clk_bulk_get_optional(dev, UFS_MAX_CLKS, host->clks);
 
-    WARNING: CPU: 0 PID: 1 at drivers/of/base.c:106 of_bus_n_addr_cells+0x9c/0xe0
-    Missing '#address-cells' in /bus@10000000/pci@1a000000/pci_bridge@9,0
+Still not using clk_bulk_get_all()? as suggested previously?
 
-The fix is similar to commit d89a415ff8d5 ("MIPS: Loongson64: DTS: Fix PCIe
-port nodes for ls7a"), which has fixed the issue for ls2k (despite its
-subject mentions ls7a).
+> +	if (err)
+> +		return dev_err_probe(dev, err, "failed to get clocks\n");
+> +
+> +	err = clk_bulk_prepare_enable(UFS_MAX_CLKS, host->clks);
+> +	if (err)
+> +		return dev_err_probe(dev, err, "failed to enable clocks\n");
+> +
+> +	host->hba = hba;
+> +
+> +	ufshcd_set_variant(hba, host);
+> +
+> +	return 0;
+> +}
+> +
+> +static int ufs_rockchip_rk3576_init(struct ufs_hba *hba)
+> +{
+> +	struct device *dev = hba->dev;
+> +	int ret;
+> +
+> +	hba->quirks = UFSHCD_QUIRK_SKIP_DEF_UNIPRO_TIMEOUT_SETTING;
+> +
+> +	/* Enable BKOPS when suspend */
+> +	hba->caps |= UFSHCD_CAP_AUTO_BKOPS_SUSPEND;
+> +	/* Enable putting device into deep sleep */
+> +	hba->caps |= UFSHCD_CAP_DEEPSLEEP;
+> +	/* Enable devfreq of UFS */
+> +	hba->caps |= UFSHCD_CAP_CLK_SCALING;
+> +	/* Enable WriteBooster */
+> +	hba->caps |= UFSHCD_CAP_WB_EN;
+> +
+> +	ret = ufs_rockchip_common_init(hba);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "ufs common init fail\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static int ufs_rockchip_device_reset(struct ufs_hba *hba)
+> +{
+> +	struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
+> +
+> +	/* Active the reset-gpios */
+> +	gpiod_set_value_cansleep(host->rst_gpio, 1);
+> +	usleep_range(20, 25);
+> +
+> +	/* Inactive the reset-gpios */
+> +	gpiod_set_value_cansleep(host->rst_gpio, 0);
+> +	usleep_range(20, 25);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct ufs_hba_variant_ops ufs_hba_rk3576_vops = {
+> +	.name = "rk3576",
+> +	.init = ufs_rockchip_rk3576_init,
+> +	.device_reset = ufs_rockchip_device_reset,
+> +	.hce_enable_notify = ufs_rockchip_hce_enable_notify,
+> +	.phy_initialization = ufs_rockchip_rk3576_phy_init,
+> +};
+> +
+> +static const struct of_device_id ufs_rockchip_of_match[] = {
+> +	{ .compatible = "rockchip,rk3576-ufshc", .data = &ufs_hba_rk3576_vops },
+> +};
+> +MODULE_DEVICE_TABLE(of, ufs_rockchip_of_match);
+> +
+> +static int ufs_rockchip_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	const struct ufs_hba_variant_ops *vops;
+> +	struct ufs_hba *hba;
+> +	int err;
+> +
+> +	vops = device_get_match_data(dev);
+> +	if (!vops)
+> +		return dev_err_probe(dev, -EINVAL, "ufs_hba_variant_ops not defined.\n");
+> +
+> +	err = ufshcd_pltfrm_init(pdev, vops);
+> +	if (err)
+> +		return dev_err_probe(dev, err, "ufshcd_pltfrm_init failed\n");
+> +
+> +	hba = platform_get_drvdata(pdev);
+> +	/* Set the default desired pm level in case no users set via sysfs */
+> +	ufs_rockchip_set_pm_lvl(hba);
 
-Signed-off-by: Xi Ruoyao <xry111@xry111.site>
----
- arch/mips/boot/dts/loongson/ls7a-pch.dtsi | 73 +++++++++++++++++++----
- 1 file changed, 60 insertions(+), 13 deletions(-)
+Is it possible to move this to ufs_rockchip_rk3576_init()?
 
-diff --git a/arch/mips/boot/dts/loongson/ls7a-pch.dtsi b/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
-index cce9428afc41..ee71045883e7 100644
---- a/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
-+++ b/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
-@@ -70,7 +70,6 @@ pci@1a000000 {
- 			device_type = "pci";
- 			#address-cells = <3>;
- 			#size-cells = <2>;
--			#interrupt-cells = <2>;
- 			msi-parent = <&msi>;
- 
- 			reg = <0 0x1a000000 0 0x02000000>,
-@@ -234,7 +233,7 @@ phy1: ethernet-phy@1 {
- 				};
- 			};
- 
--			pci_bridge@9,0 {
-+			pcie@9,0 {
- 				compatible = "pci0014,7a19.1",
- 						   "pci0014,7a19",
- 						   "pciclass060400",
-@@ -244,12 +243,16 @@ pci_bridge@9,0 {
- 				interrupts = <32 IRQ_TYPE_LEVEL_HIGH>;
- 				interrupt-parent = <&pic>;
- 
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
- 				#interrupt-cells = <1>;
- 				interrupt-map-mask = <0 0 0 0>;
- 				interrupt-map = <0 0 0 0 &pic 32 IRQ_TYPE_LEVEL_HIGH>;
-+				ranges;
- 			};
- 
--			pci_bridge@a,0 {
-+			pcie@a,0 {
- 				compatible = "pci0014,7a09.1",
- 						   "pci0014,7a09",
- 						   "pciclass060400",
-@@ -259,12 +262,16 @@ pci_bridge@a,0 {
- 				interrupts = <33 IRQ_TYPE_LEVEL_HIGH>;
- 				interrupt-parent = <&pic>;
- 
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
- 				#interrupt-cells = <1>;
- 				interrupt-map-mask = <0 0 0 0>;
- 				interrupt-map = <0 0 0 0 &pic 33 IRQ_TYPE_LEVEL_HIGH>;
-+				ranges;
- 			};
- 
--			pci_bridge@b,0 {
-+			pcie@b,0 {
- 				compatible = "pci0014,7a09.1",
- 						   "pci0014,7a09",
- 						   "pciclass060400",
-@@ -274,12 +281,16 @@ pci_bridge@b,0 {
- 				interrupts = <34 IRQ_TYPE_LEVEL_HIGH>;
- 				interrupt-parent = <&pic>;
- 
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
- 				#interrupt-cells = <1>;
- 				interrupt-map-mask = <0 0 0 0>;
- 				interrupt-map = <0 0 0 0 &pic 34 IRQ_TYPE_LEVEL_HIGH>;
-+				ranges;
- 			};
- 
--			pci_bridge@c,0 {
-+			pcie@c,0 {
- 				compatible = "pci0014,7a09.1",
- 						   "pci0014,7a09",
- 						   "pciclass060400",
-@@ -289,12 +300,16 @@ pci_bridge@c,0 {
- 				interrupts = <35 IRQ_TYPE_LEVEL_HIGH>;
- 				interrupt-parent = <&pic>;
- 
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
- 				#interrupt-cells = <1>;
- 				interrupt-map-mask = <0 0 0 0>;
- 				interrupt-map = <0 0 0 0 &pic 35 IRQ_TYPE_LEVEL_HIGH>;
-+				ranges;
- 			};
- 
--			pci_bridge@d,0 {
-+			pcie@d,0 {
- 				compatible = "pci0014,7a19.1",
- 						   "pci0014,7a19",
- 						   "pciclass060400",
-@@ -304,12 +319,16 @@ pci_bridge@d,0 {
- 				interrupts = <36 IRQ_TYPE_LEVEL_HIGH>;
- 				interrupt-parent = <&pic>;
- 
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
- 				#interrupt-cells = <1>;
- 				interrupt-map-mask = <0 0 0 0>;
- 				interrupt-map = <0 0 0 0 &pic 36 IRQ_TYPE_LEVEL_HIGH>;
-+				ranges;
- 			};
- 
--			pci_bridge@e,0 {
-+			pcie@e,0 {
- 				compatible = "pci0014,7a09.1",
- 						   "pci0014,7a09",
- 						   "pciclass060400",
-@@ -319,12 +338,16 @@ pci_bridge@e,0 {
- 				interrupts = <37 IRQ_TYPE_LEVEL_HIGH>;
- 				interrupt-parent = <&pic>;
- 
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
- 				#interrupt-cells = <1>;
- 				interrupt-map-mask = <0 0 0 0>;
- 				interrupt-map = <0 0 0 0 &pic 37 IRQ_TYPE_LEVEL_HIGH>;
-+				ranges;
- 			};
- 
--			pci_bridge@f,0 {
-+			pcie@f,0 {
- 				compatible = "pci0014,7a29.1",
- 						   "pci0014,7a29",
- 						   "pciclass060400",
-@@ -334,12 +357,16 @@ pci_bridge@f,0 {
- 				interrupts = <40 IRQ_TYPE_LEVEL_HIGH>;
- 				interrupt-parent = <&pic>;
- 
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
- 				#interrupt-cells = <1>;
- 				interrupt-map-mask = <0 0 0 0>;
- 				interrupt-map = <0 0 0 0 &pic 40 IRQ_TYPE_LEVEL_HIGH>;
-+				ranges;
- 			};
- 
--			pci_bridge@10,0 {
-+			pcie@10,0 {
- 				compatible = "pci0014,7a19.1",
- 						   "pci0014,7a19",
- 						   "pciclass060400",
-@@ -349,12 +376,16 @@ pci_bridge@10,0 {
- 				interrupts = <41 IRQ_TYPE_LEVEL_HIGH>;
- 				interrupt-parent = <&pic>;
- 
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
- 				#interrupt-cells = <1>;
- 				interrupt-map-mask = <0 0 0 0>;
- 				interrupt-map = <0 0 0 0 &pic 41 IRQ_TYPE_LEVEL_HIGH>;
-+				ranges;
- 			};
- 
--			pci_bridge@11,0 {
-+			pcie@11,0 {
- 				compatible = "pci0014,7a29.1",
- 						   "pci0014,7a29",
- 						   "pciclass060400",
-@@ -364,12 +395,16 @@ pci_bridge@11,0 {
- 				interrupts = <42 IRQ_TYPE_LEVEL_HIGH>;
- 				interrupt-parent = <&pic>;
- 
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
- 				#interrupt-cells = <1>;
- 				interrupt-map-mask = <0 0 0 0>;
- 				interrupt-map = <0 0 0 0 &pic 42 IRQ_TYPE_LEVEL_HIGH>;
-+				ranges;
- 			};
- 
--			pci_bridge@12,0 {
-+			pcie@12,0 {
- 				compatible = "pci0014,7a19.1",
- 						   "pci0014,7a19",
- 						   "pciclass060400",
-@@ -379,12 +414,16 @@ pci_bridge@12,0 {
- 				interrupts = <43 IRQ_TYPE_LEVEL_HIGH>;
- 				interrupt-parent = <&pic>;
- 
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
- 				#interrupt-cells = <1>;
- 				interrupt-map-mask = <0 0 0 0>;
- 				interrupt-map = <0 0 0 0 &pic 43 IRQ_TYPE_LEVEL_HIGH>;
-+				ranges;
- 			};
- 
--			pci_bridge@13,0 {
-+			pcie@13,0 {
- 				compatible = "pci0014,7a29.1",
- 						   "pci0014,7a29",
- 						   "pciclass060400",
-@@ -394,12 +433,16 @@ pci_bridge@13,0 {
- 				interrupts = <38 IRQ_TYPE_LEVEL_HIGH>;
- 				interrupt-parent = <&pic>;
- 
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
- 				#interrupt-cells = <1>;
- 				interrupt-map-mask = <0 0 0 0>;
- 				interrupt-map = <0 0 0 0 &pic 38 IRQ_TYPE_LEVEL_HIGH>;
-+				ranges;
- 			};
- 
--			pci_bridge@14,0 {
-+			pcie@14,0 {
- 				compatible = "pci0014,7a19.1",
- 						   "pci0014,7a19",
- 						   "pciclass060400",
-@@ -409,9 +452,13 @@ pci_bridge@14,0 {
- 				interrupts = <39 IRQ_TYPE_LEVEL_HIGH>;
- 				interrupt-parent = <&pic>;
- 
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
- 				#interrupt-cells = <1>;
- 				interrupt-map-mask = <0 0 0 0>;
- 				interrupt-map = <0 0 0 0 &pic 39 IRQ_TYPE_LEVEL_HIGH>;
-+				ranges;
- 			};
- 		};
- 
+> +
+> +	return 0;
+> +}
+> +
+> +static void ufs_rockchip_remove(struct platform_device *pdev)
+> +{
+> +	struct ufs_hba *hba = platform_get_drvdata(pdev);
+> +	struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
+> +
+> +	pm_runtime_forbid(&pdev->dev);
+> +	pm_runtime_get_noresume(&pdev->dev);
+> +	ufshcd_remove(hba);
+> +	ufshcd_dealloc_host(hba);
+
+You wouldn't need these if you rebase this series on top of scsi/for-next.
+
+> +	clk_bulk_disable_unprepare(UFS_MAX_CLKS, host->clks);
+> +}
+> +
+> +#ifdef CONFIG_PM
+> +static int ufs_rockchip_runtime_suspend(struct device *dev)
+> +{
+> +	struct ufs_hba *hba = dev_get_drvdata(dev);
+> +	struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
+> +
+> +	clk_disable_unprepare(host->ref_out_clk);
+> +
+> +	/* Shouldn't power down if rpm_lvl is less than level 5. */
+> +	dev_pm_genpd_rpm_always_on(dev, hba->rpm_lvl < UFS_PM_LVL_5 ? true : false);
+> +
+> +	return ufshcd_runtime_suspend(dev);
+> +}
+> +
+> +static int ufs_rockchip_runtime_resume(struct device *dev)
+> +{
+> +	struct ufs_hba *hba = dev_get_drvdata(dev);
+> +	struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
+> +	int err;
+> +
+> +	err = clk_prepare_enable(host->ref_out_clk);
+> +	if (err) {
+> +		dev_err(hba->dev, "failed to enable ref out clock %d\n", err);
+> +		return err;
+> +	}
+> +
+> +	reset_control_assert(host->rst);
+> +	usleep_range(1, 2);
+> +	reset_control_deassert(host->rst);
+> +
+> +	return ufshcd_runtime_resume(dev);
+> +}
+> +#endif
+> +
+> +#ifdef CONFIG_PM_SLEEP
+> +static int ufs_rockchip_system_suspend(struct device *dev)
+> +{
+> +	struct ufs_hba *hba = dev_get_drvdata(dev);
+> +	struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
+> +	int err;
+> +
+> +	if (hba->spm_lvl < UFS_PM_LVL_5)
+> +		device_set_awake_path(dev);
+
+It'd be worth adding a comment here as the API naming is not very clear now.
+
+- Mani
+
 -- 
-2.47.0
-
+மணிவண்ணன் சதாசிவம்
 
