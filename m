@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-123875-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1FAB9D693B
-	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 14:21:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA32A9D6969
+	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 15:24:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0A3F6B21C0D
-	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 13:21:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3BB9FB2132C
+	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 14:24:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98D9A18A6B8;
-	Sat, 23 Nov 2024 13:21:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1809D134AB;
+	Sat, 23 Nov 2024 14:24:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ALLx14eK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qlLGrl/S"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ADBB23098E;
-	Sat, 23 Nov 2024 13:21:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E088FA94A;
+	Sat, 23 Nov 2024 14:24:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732368080; cv=none; b=kbJ/rQHufj82f4cbCsEVUHVh6oisLPdhPxha9hy5qdVywCQCd1EoXJDTha10CmvYL/zHFwGGbC4L4Urdq8vsDcgTMs5rWDsGFKchNJY77z/o4ir41Iwj460b6xjP7o3xHc/Ok7t8vw/M3p4c5zSHt6OnmpuqONmysRQrSX8K9JU=
+	t=1732371869; cv=none; b=CVjSk3Q/K6jexvGE8XvNGrw1a6O+CzbAO/rhJjpCf4t3A4CmKAavAdnIk4MgAEB4TrV8VuxHxr/yVj7h6bEVxB9Hp6kcTTkK1SsF/IKGIBot9gJK611/YVisWIq/VSw0xcFFZKAJrn+yPiGZEOowv1iWLMIcaxg929bQQg45Zdw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732368080; c=relaxed/simple;
-	bh=FAmEvsYjY2eUZI2qbLtFctsmsTQ9p22GNJnHD1cqov0=;
+	s=arc-20240116; t=1732371869; c=relaxed/simple;
+	bh=21pet+UbnZk6M3WD2Has0vbe6ZaGqUROrqpc2l3qUsA=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=aW+sW2033HrRrw5D0sER/rVrfppL3xzR329sXlwwifGMYMjkBGcqOmwYcN/6k+SeEs2NTz2VgrSIoPN1uZlcX6alrXCSQBDIGXaCUeYUbzC+ZLnSiIHBYb/VPsLOEhzKoVeQ9u+fFNEb39ebyG1n7J8Gv0AtNUgeIQxmwOd9ts0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ALLx14eK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F13BC4CECD;
-	Sat, 23 Nov 2024 13:21:15 +0000 (UTC)
+	 MIME-Version:Content-Type; b=dc4z7G+NuUnRb/NdP/2Pa9Tye4BTiR3NUSMX4PfO0+wEo32Xi3gjMgJR8QNp7SY/7aM/0UjhoYrgkd14ajjlKdOnkAyuPdVb9E/eobundPrw7yLvzm1/fLGwRhydl2DcHenKuTYayWQ79csPP6K4qr53Qvkqckb0lqeflgaq9Q4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qlLGrl/S; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50B42C4CECD;
+	Sat, 23 Nov 2024 14:24:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732368079;
-	bh=FAmEvsYjY2eUZI2qbLtFctsmsTQ9p22GNJnHD1cqov0=;
+	s=k20201202; t=1732371868;
+	bh=21pet+UbnZk6M3WD2Has0vbe6ZaGqUROrqpc2l3qUsA=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ALLx14eKgm45LnSfqpDx44FXdbOm3W7BmgO8z2BZDaSUSFtk2yn1XDogDkh8NZKmB
-	 ZDrMhw0K9Hva32AsPJheAHyrlN5D4D+A9Lt24dn5hAR1jQS9HnJu9y7PpkN+LlWaeb
-	 fV2cUZ+cg9kktaXZjClG3VackhDLLVWbKMUvatrgPhd/+9GfKa8cFmdzxdy31ouAFa
-	 qDfAYSnYU4YWwETPM5vkpID5ui+WnjhBBmAQSpVTUstkfheQOFpGRRTYD90Ddh+K9h
-	 5KXioAMQH73hvwUbU2LBky9hOoEMo7yMibv+t+lGHsIp4w/zXcBksi0pWUdNbg2sYF
-	 tcKY4I65whMYA==
-Date: Sat, 23 Nov 2024 13:21:10 +0000
+	b=qlLGrl/Sxh4V5iTvEvoIndXr3fLiXPcpnWq36jinpfJMek0gUV8WBqlgEgwO6w/7b
+	 1lMdze9qt+fYnZ3Apfd3X+xVz5k/Pd1HIjYa7l3fglPUocwUkvi6sMJ/AvBVceIMce
+	 6hoYBAu4eUMCoDlVDuq6lXtT6U+wIcUdCYQg/GBNZpi9KYd4N0ndOLXNeJtKQx3+YX
+	 R+O+LENwqTJx4+LdTSm7PHAHRLtXJjCD9imM7V2+/Y/kCWBX0/BeZYZp3FQ7G/LfYE
+	 gNJ6vgnA9yZK/e35ossF2QBPTybvBhBa6DMPaFrUr57FearHEgYJxE2k2/0qcNihdG
+	 AOZLsISR8MtvQ==
+Date: Sat, 23 Nov 2024 14:24:20 +0000
 From: Jonathan Cameron <jic23@kernel.org>
-To: Yasin Lee <yasin.lee.x@gmail.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, yasin.lee.x@outlook.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: tyhx,hx9023s: Add performance
- tuning configuration
-Message-ID: <20241123132110.15570171@jic23-huawei>
-In-Reply-To: <b59f6933-e1f1-49e9-be61-3e3b4323da87@gmail.com>
-References: <20241017-add-performance-tuning-configuration-v3-0-e7289791f523@gmail.com>
-	<20241017-add-performance-tuning-configuration-v3-1-e7289791f523@gmail.com>
-	<20241020140638.127a9dbf@jic23-huawei>
-	<b59f6933-e1f1-49e9-be61-3e3b4323da87@gmail.com>
+To: Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <u.kleine-koenig@baylibre.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, David Lechner
+ <dlechner@baylibre.com>, Dumitru Ceclan <dumitru.ceclan@analog.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Nuno
+ Sa <nuno.sa@analog.com>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, linux-iio@vger.kernel.org
+Subject: Re: [PATCH v2 0/4] iio: adc: ad7124: Make it work on de10-nano
+Message-ID: <20241123142420.7e20992a@jic23-huawei>
+In-Reply-To: <fsx4mtvhqfoszazxflokargabseia2vs44necuuvinyhw5ggjf@c73ibquopv42>
+References: <20241028160748.489596-6-u.kleine-koenig@baylibre.com>
+	<fsx4mtvhqfoszazxflokargabseia2vs44necuuvinyhw5ggjf@c73ibquopv42>
 X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -63,83 +62,97 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, 14 Nov 2024 23:16:51 +0800
-Yasin Lee <yasin.lee.x@gmail.com> wrote:
+On Mon, 18 Nov 2024 19:12:22 +0100
+Uwe Kleine-K=C3=B6nig <u.kleine-koenig@baylibre.com> wrote:
 
-> On 10/20/24 21:06, Jonathan Cameron wrote:
-> > On Thu, 17 Oct 2024 18:36:44 +0800
-> > Yasin Lee <yasin.lee.x@gmail.com> wrote:
-> >  
-> >> When hardware design introduces significant sensor data noise,
-> >> performance can be improved by adjusting register settings.  
-> > Questions inline. Mostly around why these controls belong in DT.
-> > What do they have to do with hardware / wiring etc rather than being
-> > appropriate for userspace controls.
-> >
-> > So almost all are definite no to being suitable for device tree bindings.
-> >
-> > Jonathan
-> >  
-> Hi Jonathan,
-> 
-> Thank you for the suggestions in your recent email. Following your 
-> advice, I discussed these configurations in detail with engineers from 
-> the HX9023S supplier. Based on their feedback, these settings are not 
-> intended to be exposed to end-users. Typically, these configurations are 
-> adjusted during the DVT phase of the end product by the supplier to 
-> optimize performance, after which they are finalized and not meant to be 
-> modified dynamically at the user level.
-> 
-> Given this approach, it seems more appropriate to provide these settings 
-> as part of a firmware file, allowing the configuration to be kept 
-> internal and managed without user-level access. If this approach aligns 
-> with your thoughts, I can prepare and submit a new patch focused on 
-> firmware parsing and handling for these configurations.
+> Hello,
+>=20
+> On Mon, Oct 28, 2024 at 05:07:49PM +0100, Uwe Kleine-K=C3=B6nig wrote:
+> > this is iteration v2 to make ad7124 work on de10-nano. (Implicit) v1 is
+> > available at
+> > https://lore.kernel.org/linux-iio/20241024171703.201436-5-u.kleine-koen=
+ig@baylibre.com.
+> >=20
+> > The changes since v1:
+> >=20
+> > - Write 0 instead of 0x0001 to disable channels. While 0x0001 is the
+> >   reset default value for these registers (apart from the channel 0 one)
+> >   there is no sensible reason to use that value (i.e.
+> >   AD7124_CHANNEL_AINP(0) | AD7124_CHANNEL_AINM(1)) as the value is
+> >   reprogrammed before use anyhow. This addresses the feedback that the
+> >   magic value 0x0001 should better be constructed using register bit
+> >   field defintions.
+> >=20
+> > - Add maxItems: 1 to the new property defined in the binding patch (Krz=
+ysztof)
+> >=20
+> > - Rename property to rdy-gpios (Rob)
+> >=20
+> > - Use rdy-gpios only for gpio reading and continue using the usual irq
+> >   defintion for the interrupt (Jonathan). I was surprised I can use bot=
+h the
+> >   GPIO as input and the matching irq.
+> >=20
+> > - patch #1 is new, and use GPIO_ACTIVE_LOW in the gpio descriptor
+> >   instead of 2.
+> >=20
+> > Jonathan voiced concerns about the reliability of this solution and
+> > proposed to implement polling. I'm convinced the solution implemented
+> > here is robust, so I see no need to implement polling today.
+> >=20
+> > Still open questions:
+> >=20
+> >  - Is rdy-gpios the right name. The line is named =CC=85R=CC=85D=CC=85Y=
+, so maybe nrdy-gpios? Or
+> >    nRDY-gpios? =20
+>=20
+> David said that rdy-gpios looks right in combination with the
+> GPIO_ACTIVE_LOW flag. Makes sense to me to negate only in a single
+> location.
+>=20
+> >  - Jonathan wanted some input from ADI about this series and the
+> >    hardware details. =20
+>=20
+> I think the hardware is understood now reasonably well and from the
+> discussion with tglx it's also clear that the issue is expected and
+> fixed at the right place. Although probably not all hardware
+> configurations can benefit from the modification, I still consider this
+> a beneficial modification because it allows at least some (most?)
+> machines to use the irq instead of polling.
 
-Whilst I agree that a typical user may well not modify these settings
-that doesn't necessarily make them suitable for control from the
-Device Tree. Some may be but settings like ODR are about use case
-not physical hardware. Average and OSR are normally a question of
-trading off noise against data rate - that's policy not a fundamental
-characteristic of the hardware. Filter controls are similar.
+Agreed. Sorry for slow response; day job got too busy for a while.
 
-For other such as Dither, there may hardware configurations where it
-doesn't need to be turned, only but does it do any harm? I'd be
-somewhat surprised if the right thing to do there isn't to just hard
-code it to turned on.
+>=20
+> There is a patch series on the list for ad7124
+> (https://lore.kernel.org/linux-iio/cover.1731404695.git.u.kleine-koenig@b=
+aylibre.com/)
+> that for now didn't get feedback, and I found another race condition in
+> the sigma_delta driver helper and now wonder how to proceed here. If we
+> agree in general that the rdy-gpios patches are ok to be applied, I'd
+> base the fix for the latest race condition on top of these. Should I
+> better collect all in-flight patches in a single series, or just post
+> the new patches (with a proper --base=3D parameter to format-patch)?
 
-The enabling of dataready interrupt is entirely down to how the
-device is being used, not the platform.
+Subject to perhaps adding a little more docs to the DT patch to strongly
+encourage use of the GPIO binding if IRQ controller capable (or double wire=
+d)
 
-If these devices are being used in embedded platforms for a specific
-purpose, then a simple udev rule or similar can configure the
-defaults whilst still allowing them to be easily tweaked.
-If you are dealing with standardized software it will already understand
-many of the userspace ABI calls and have appropriate configuration files.
+Make sure those patches were you feel a fixes tag is appropriate go first
+(which incidentally includes patch 4 from this series and some or
+all of other series).
 
-That is the appropriate level for such control, not device
-tree.
-
-If you have a strong case why a setting is never a policy decision
-but rather a hard characteristic of the system, then that one may
-be appropriate for DT.  Examples of this in the past have been things
-like output voltage ranges for DACs because the hardware beyond
-this device may only cope with some settings.
+Given we are very early in the cycle I'll pick the fixes up and get them
+upstream soon after rc1 then we can queue up the bulk of this which is=20
+a little complex to consider a fix as material for next merge window.
+We can think about backporting after that.
 
 Jonathan
 
-
-
-> 
-> Thank you again for your valuable guidance, and I look forward to your 
-> feedback.
-> 
-> Best regards,
-> Yasin Lee
-> 
-> 
+>=20
+> Best regards
+> Uwe
 
 
