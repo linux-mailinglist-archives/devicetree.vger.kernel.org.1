@@ -1,110 +1,103 @@
-Return-Path: <devicetree+bounces-123887-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123888-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8219B9D69EB
-	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 17:13:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0B929D69F0
+	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 17:14:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 13CF5B21075
-	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 16:13:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 31688B21C48
+	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 16:14:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7446811F7;
-	Sat, 23 Nov 2024 16:13:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 826B5126BED;
+	Sat, 23 Nov 2024 16:14:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nrlrFsPX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fCgDdIaH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72A304D8D0;
-	Sat, 23 Nov 2024 16:13:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52DAE225D7;
+	Sat, 23 Nov 2024 16:14:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732378429; cv=none; b=XJsmj9/zvPY7hF1nvnfJK2g/ILnqQ4z0KeyIKnwTu98cI9FSVZ1UDigVcVAAoHwOiVwYqrzVvaPIIQwr5io3RQ5qddHAHs/BnIUTJNZmCQptcGXhupMzZ2kN4O6JRDQaKJQesvX7qFx6vT94d3N8zm/DdkfL/g8vuv68EyZdlxc=
+	t=1732378473; cv=none; b=ChyOhhxlDlzTO1q0YuD7cm20ldELPG2dM34VE7hsuzjtBPgT/H+CqyeGZKCQjlOxJWvDgjb2btPgdZhMHGnaBiu6S/9gyvLwDZm5WVtfLwA+FqJthcfe+5hBcY3pINrEgEBzLxUqmor3iAqbHfkPGjFpnIwIrC1/EKWLtn2E3uM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732378429; c=relaxed/simple;
-	bh=QW1sglxsrkcGK+O4SS6T/kq6QuJj9k5GRbXNxF6HJKo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=H9SofTLRB2AbGoeLoJmI/a+vHrd+B1c28TTChwhJLuRR/Q1WM4fv9AYEB08nNDPAPJN22Mwh6P4++w6mKJXQTkXuMJeEcvPNzvDwsTUlLwMf5zWj627zCB2wYeESsmhHaTWh20EOe2YXgt2M3PsCQkTyPtcyD5N72eu9eYOKzmI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nrlrFsPX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7948CC4CECD;
-	Sat, 23 Nov 2024 16:13:46 +0000 (UTC)
+	s=arc-20240116; t=1732378473; c=relaxed/simple;
+	bh=E02GaD6C2zW4KVX9ewnciYeUTWpwJEUwwnHlZ+OyWAA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Yx7GLz9gJ0/m5CHMP2KlBfkvgd0rIhp3WtVUQ5O0V8Ojb2qx1Ow7L1YrJjTXUgzMq99uX33gnnKxTO5WXFMpbOrjtVZT5FdjRsVfv82qOyWn3vchukELjXQ6lPaecFyQ+w1+hTcPVhcn/EXJ5x7gRfs934KHqAr4ym3OufSeSrM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fCgDdIaH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D9FDC4CECD;
+	Sat, 23 Nov 2024 16:14:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732378429;
-	bh=QW1sglxsrkcGK+O4SS6T/kq6QuJj9k5GRbXNxF6HJKo=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=nrlrFsPXCKoH5MgV7FKK9fSS6nqJzv78J2TlZ+v4T89MC9VTIMUlNUBJd61q0FirG
-	 K+iOq2au5SiS7reNDDNAchu6jIIYKzzpoGV92vSP8EO7BOoAropGL0l/P/a5PM9L6x
-	 E8B0mwVsHqE3x4JGczSGmqOMtj0BP4J0iyj4wEwFAPIBJ/IVML/PDJ8ntf54H2ztBh
-	 JNaDy/3wVJIeiwHub/RMbgX+Fn1utyZskgdSAM+aANrocgvyb7ygJ4Uvlrl1ZKxqTn
-	 OzaG1dHjahavzFLz6tGXr5PxnM+Q81vldlACl/AAjRDWSY1ZFkc0/dSpmJM3ozMMku
-	 +e1alM69Mk9OQ==
-Date: Sat, 23 Nov 2024 16:13:41 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: <robh@kernel.org>, <conor+dt@kernel.org>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-pwm@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adf4371: add rdiv2 and doubler
-Message-ID: <20241123161341.56d2e9bb@jic23-huawei>
-In-Reply-To: <20241122113226.49346-1-antoniu.miclaus@analog.com>
-References: <20241122113226.49346-1-antoniu.miclaus@analog.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=k20201202; t=1732378472;
+	bh=E02GaD6C2zW4KVX9ewnciYeUTWpwJEUwwnHlZ+OyWAA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fCgDdIaHZ/hdTwWsN6WgLvT5q0urJF4+Z5E/Sa8AebGnhIzjcjzdtMv6lQT0jgxWH
+	 9Q7kcXz2wXkEUfRPjU/pr/3HijAkVNFBs3IbCVREQlCA0kzZTm2OMGUqMa9nrIvTCG
+	 hI3w87j2uxmb/Ma4j2q79eV7AM1WYYzS09T+EEyci8RdtdOa9nExvQx4FwY5XA6eUw
+	 8uN9zRfIfcMu21Qbz5sBoLo0PgV+eFT0i4FhwAO1Pcyp/og3VKhJ2EegX/qVntPKbt
+	 yRoU4YqT7JkZL15r1sGVOapWJckzUEXe7c7UeTIlWOGJl3ol2qXdLF4+CY4EOYaRoM
+	 t31g5QM/vq8sA==
+Date: Sat, 23 Nov 2024 17:14:29 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Fange Zhang <quic_fangez@quicinc.com>
+Cc: Rob Clark <robdclark@gmail.com>, 
+	Abhinav Kumar <quic_abhinavk@quicinc.com>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Krishna Manikandan <quic_mkrishn@quicinc.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, Li Liu <quic_lliu6@quicinc.com>, 
+	Xiangxu Yin <quic_xiangxuy@quicinc.com>, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 0/9] Add display support for QCS615 platform
+Message-ID: <2ihy463xjiguluacmd3qhlskjtrpotk4mmflqdtgm3qhjzcrif@x2ckw5h6xqyj>
+References: <20241122-add-display-support-for-qcs615-platform-v3-0-35252e3a51fe@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241122-add-display-support-for-qcs615-platform-v3-0-35252e3a51fe@quicinc.com>
 
-On Fri, 22 Nov 2024 13:32:13 +0200
-Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
-
-> Add support for reference doubler enable and reference divide by 2
-> clock.
+On Fri, Nov 22, 2024 at 05:56:43PM +0800, Fange Zhang wrote:
+> This series aims to enable display on the QCS615 platform
 > 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-
-why are these not things that are derivable from the required output
-frequency vs the clock frequency that comes in?
-
-Would have been good perhaps to have a cover letter with some description
-of how these features are used in practice.
-
-Thanks,
-
-Jonathan
-
-
-> ---
->  .../devicetree/bindings/iio/frequency/adf4371.yaml    | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+> 1.Add MDSS & DPU support for QCS615
+> 2.Add DSI support for QCS615     
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
-> index 1cb2adaf66f9..ef241c38520c 100644
-> --- a/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
-> +++ b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
-> @@ -40,6 +40,17 @@ properties:
->        output stage will shut down until the ADF4371/ADF4372 achieves lock as
->        measured by the digital lock detect circuitry.
->  
-> +  adi,reference-doubler-enable:
-> +    type: boolean
-> +    description:
-> +      If this property is present, the reference doubler block is enabled.
-> +
-> +  adi,adi,reference-div2-enable:
-> +    type: boolean
-> +    description:
-> +      If this property is present, the reference divide by 2 clock is enabled.
-> +      This feature can be used to provide a 50% duty cycle signal to the PFD.
-> +
->  required:
->    - compatible
->    - reg
+> QCS615 platform supports DisplayPort, and this feature will be added in a future patch
+> 
+> This patch series depends on below patch series:
+> - rpmhcc
+> https://lore.kernel.org/all/20241022-qcs615-clock-driver-v4-2-3d716ad0d987@quicinc.com/
+> - gcc
+> https://lore.kernel.org/all/20241022-qcs615-clock-driver-v4-4-3d716ad0d987@quicinc.com/
+> - base
+> https://lore.kernel.org/all/20241104-add_initial_support_for_qcs615-v5-0-9dde8d7b80b0@quicinc.com/
+> - Apps SMMU
+> https://lore.kernel.org/all/20241105032107.9552-4-quic_qqzhou@quicinc.com/
+> - I2C
+> https://lore.kernel.org/all/20241111084331.2564643-1-quic_vdadhani@quicinc.com/
+> - dispcc
+> https://lore.kernel.org/all/20241108-qcs615-mm-clockcontroller-v3-0-7d3b2d235fdf@quicinc.com/
+> - dispcc dts
+> https://lore.kernel.org/lkml/20241108-qcs615-mm-dt-nodes-v1-0-b2669cac0624@quicinc.com/
+
+Which makes it unmergeable and untestable. I suggest decouple
+dependencies.
+
+Best regards,
+Krzysztof
 
 
