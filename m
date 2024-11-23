@@ -1,82 +1,48 @@
-Return-Path: <devicetree+bounces-123857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123859-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D5109D68A1
-	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 11:37:43 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D1B59D68B2
+	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 12:04:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF607281AAA
-	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 10:37:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DFBBEB219D2
+	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 11:04:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9FE817C7CE;
-	Sat, 23 Nov 2024 10:37:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mC4DLkYA"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 142EB189F36;
+	Sat, 23 Nov 2024 11:04:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A077E81AC8;
-	Sat, 23 Nov 2024 10:37:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3627417A597;
+	Sat, 23 Nov 2024 11:04:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.175.24.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732358258; cv=none; b=oI88bdMzxyL9aTdzDtKbAyCDYri1Rp1kjOyVW96vU1jrTkc6YFKx+iVTFlCwIfC7BpbALTYnSafH5JIwua08QwqfNVuNpcUYeN7fZX6hAeRJFuXQyqvv3JmXVxfCVARlubVw9hpaofQvc12Br8RoPq9wR3moWKnFcr807UaZ/y4=
+	t=1732359889; cv=none; b=T+eFZFLSAbyDYohlZrhRSMclurcTis2DuQDtS03MuoleAgfSMly3u0unGIqKG5ZAmJMuaiu4Txp/VtM18wOMoxbdGfXIVBNr51Lg97rlzqWQxvAvjtr85of/4Ys/nXXybseERHGppNQZOiUtdaxvLA0tCJDzo39S46q6xJQaCls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732358258; c=relaxed/simple;
-	bh=PzMZ72Z71bHownk54H4oqMOjYw2DS3p4x+O65zcoeFo=;
+	s=arc-20240116; t=1732359889; c=relaxed/simple;
+	bh=r9TUH17IaqiaL45Bk2Wppfnh6MBLRfLGtZRFjibldSU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D5BTB1wNhZjNdfxmGV0LFydpJRXoFfERi9GikPGwrD4oY6kshNSZPp6qQvTQGh15Mzbxbk2TCMYe/kAGUSiWSmidfC2VbhBOdGkuuRvGHOl6bQIRV7VKvwVcsGAGMpWKmJ5CRg1PrfLNHTQbnnQ1Yblte7rtZL9EMwgkX6M1ijY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mC4DLkYA; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1732358257; x=1763894257;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=PzMZ72Z71bHownk54H4oqMOjYw2DS3p4x+O65zcoeFo=;
-  b=mC4DLkYAE0r+owBspmz+IsUElVuyJhWKd3RXVX6Hqk0mNdy0MSzG6uPW
-   pX/YgpABc3h7ZDnVkhEcwSVi4WH3yzLEJa3jL2s8ZOQMJbT0kcyipUCb7
-   jCGgEIvaO4GD3XTYOo/YIfkj9Ja8O1fd1n7Nb6ruUDvGzGIQAyd3nBdFq
-   dSyfys5LDEBBod5Yv7RPtpGkkeNl/5/IUzDZWVp+qJzCdWeTISaX9Zr78
-   rf/N79AFGzcHpZhcAxbfpRDdxVoWxnnr8uYni+PF8Iw5+iyQiuUzFwykO
-   B7Hk0SXLSi/09LcEESoEdt4V7bgBnpCyxkJhHwT5h6l+NtqBUqO06Hsfd
-   A==;
-X-CSE-ConnectionGUID: 39igVUW/SpKrzasaDAB3mA==
-X-CSE-MsgGUID: EsLtZ2RKRvqdBpFjbK2CCQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11264"; a="43912616"
-X-IronPort-AV: E=Sophos;i="6.12,178,1728975600"; 
-   d="scan'208";a="43912616"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2024 02:37:36 -0800
-X-CSE-ConnectionGUID: +RD5Yp9eSiGJxq8Sp+pejQ==
-X-CSE-MsgGUID: 9h8GyPJtSF+ajVYA9ZqASA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,178,1728975600"; 
-   d="scan'208";a="95579719"
-Received: from lkp-server01.sh.intel.com (HELO 8122d2fc1967) ([10.239.97.150])
-  by fmviesa004.fm.intel.com with ESMTP; 23 Nov 2024 02:37:33 -0800
-Received: from kbuild by 8122d2fc1967 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tEnW7-0004Zb-17;
-	Sat, 23 Nov 2024 10:37:31 +0000
-Date: Sat, 23 Nov 2024 18:36:35 +0800
-From: kernel test robot <lkp@intel.com>
-To: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>,
-	Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev,
-	Odelu Kukatla <quic_okukatla@quicinc.com>,
-	Mike Tipton <quic_mdtipton@quicinc.com>,
-	linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] interconnect: qcom: sdx75: Drop QP0 related
- interconnect and BCM nodes
-Message-ID: <202411232022.F33FHrZo-lkp@intel.com>
-References: <20241121172737.255-3-quic_rlaggysh@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=eE2DNg7Y5OMCEgCpd8147VezXyP94furR0i2RHiN3nMhHG7588e770htnNdPNepvE1YmTdraaD3WJ8+sPo403SSvEo8uZ9yFY2c0RXfZx//q16ShDoAbL9lO0DigjB2tKuS5uyTh30NPcrXVFs2EKo4sO3hLtKZfexYNlAkLpds=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de; spf=pass smtp.mailfrom=alpha.franken.de; arc=none smtp.client-ip=193.175.24.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alpha.franken.de
+Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
+	id 1tEnw5-0005um-00; Sat, 23 Nov 2024 12:04:21 +0100
+Received: by alpha.franken.de (Postfix, from userid 1000)
+	id DEAE8C013D; Sat, 23 Nov 2024 12:02:28 +0100 (CET)
+Date: Sat, 23 Nov 2024 12:02:28 +0100
+From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To: Xi Ruoyao <xry111@xry111.site>
+Cc: Jiaxun Yang <jiaxun.yang@flygoat.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Yanteng Si <si.yanteng@linux.dev>, devicetree@vger.kernel.org,
+	linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] MIPS: Loongson64: DTS: Really fix PCIe port nodes for
+ ls7a
+Message-ID: <Z0G2RBj2k+ZKU+ld@alpha.franken.de>
+References: <20241123035737.24722-1-xry111@xry111.site>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,55 +51,35 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241121172737.255-3-quic_rlaggysh@quicinc.com>
+In-Reply-To: <20241123035737.24722-1-xry111@xry111.site>
 
-Hi Raviteja,
+On Sat, Nov 23, 2024 at 11:57:37AM +0800, Xi Ruoyao wrote:
+> Fix the dtc warnings:
+> 
+>     arch/mips/boot/dts/loongson/ls7a-pch.dtsi:68.16-416.5: Warning (interrupt_provider): /bus@10000000/pci@1a000000: '#interrupt-cells' found, but node is not an interrupt provider
+>     arch/mips/boot/dts/loongson/ls7a-pch.dtsi:68.16-416.5: Warning (interrupt_provider): /bus@10000000/pci@1a000000: '#interrupt-cells' found, but node is not an interrupt provider
+>     arch/mips/boot/dts/loongson/loongson64g_4core_ls7a.dtb: Warning (interrupt_map): Failed prerequisite 'interrupt_provider'
+> 
+> And a runtime warning introduced in commit 045b14ca5c36 ("of: WARN on
+> deprecated #address-cells/#size-cells handling"):
+> 
+>     WARNING: CPU: 0 PID: 1 at drivers/of/base.c:106 of_bus_n_addr_cells+0x9c/0xe0
+>     Missing '#address-cells' in /bus@10000000/pci@1a000000/pci_bridge@9,0
+> 
+> The fix is similar to commit d89a415ff8d5 ("MIPS: Loongson64: DTS: Fix PCIe
+> port nodes for ls7a"), which has fixed the issue for ls2k (despite its
+> subject mentions ls7a).
+> 
+> Signed-off-by: Xi Ruoyao <xry111@xry111.site>
+> ---
+>  arch/mips/boot/dts/loongson/ls7a-pch.dtsi | 73 +++++++++++++++++++----
+>  1 file changed, 60 insertions(+), 13 deletions(-)
 
-kernel test robot noticed the following build errors:
+applied to mips-next.
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.12 next-20241122]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Raviteja-Laggyshetty/dt-bindings-interconnect-qcom-drop-QPIC_CORE-IDs/20241122-013857
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20241121172737.255-3-quic_rlaggysh%40quicinc.com
-patch subject: [PATCH 2/2] interconnect: qcom: sdx75: Drop QP0 related interconnect and BCM nodes
-config: arm-allmodconfig (https://download.01.org/0day-ci/archive/20241123/202411232022.F33FHrZo-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241123/202411232022.F33FHrZo-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202411232022.F33FHrZo-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/interconnect/qcom/sdx75.c:878:10: error: 'bcm_qp0' undeclared here (not in a function); did you mean 'bcm_qup0'?
-     878 |         &bcm_qp0,
-         |          ^~~~~~~
-         |          bcm_qup0
-
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for GET_FREE_REGION
-   Depends on [n]: SPARSEMEM [=n]
-   Selected by [m]:
-   - RESOURCE_KUNIT_TEST [=m] && RUNTIME_TESTING_MENU [=y] && KUNIT [=m]
-
-
-vim +878 drivers/interconnect/qcom/sdx75.c
-
-3642b4e5cbfe48 Rohit Agarwal 2023-09-13  876  
-3642b4e5cbfe48 Rohit Agarwal 2023-09-13  877  static struct qcom_icc_bcm * const clk_virt_bcms[] = {
-3642b4e5cbfe48 Rohit Agarwal 2023-09-13 @878  	&bcm_qp0,
-3642b4e5cbfe48 Rohit Agarwal 2023-09-13  879  	&bcm_qup0,
-3642b4e5cbfe48 Rohit Agarwal 2023-09-13  880  };
-3642b4e5cbfe48 Rohit Agarwal 2023-09-13  881  
+Thomas.
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
 
