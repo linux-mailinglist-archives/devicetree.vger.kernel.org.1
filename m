@@ -1,111 +1,164 @@
-Return-Path: <devicetree+bounces-123881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 004069D69AE
-	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 16:37:16 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 608859D69CF
+	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 16:56:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A7A45281AA6
-	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 15:37:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8F7B3B217E7
+	for <lists+devicetree@lfdr.de>; Sat, 23 Nov 2024 15:56:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06F1D2868B;
-	Sat, 23 Nov 2024 15:37:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E95DA3398B;
+	Sat, 23 Nov 2024 15:56:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Swdxg81U"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="icXeyQxB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8B7723098E;
-	Sat, 23 Nov 2024 15:37:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4369E2943F;
+	Sat, 23 Nov 2024 15:56:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732376232; cv=none; b=M5syeT7oK0lixZHRb0lxP0/zvYO7nkM54KPJWI1+NxOatiNYjyX4y2LUp3FtpekcfeGY8Cg4ANEHBIkv7SauK3n6CtghS6M3s3wX1eKU5ax+QI/BuRV5Z7FTBHz+lyMZsBAsk6ttm0TeTe6zoj4LRdhBm2jJ4UJ83X7YsYDpJfk=
+	t=1732377406; cv=none; b=fLj06iglNjKIbV3SJsxPSGaQJnVIvCHFrev+cIFM+Ae8+wO00uE8Hwnwix9Q6lqJJxtIL2UA6QcvK0d1aIu9ZcTto+PYbg8Ms/rZyuBE1Qz0KkxrYYjNr17b+Gye03j4EW4Ego9FJ5HxlGqD0A6DO4YnRSJ1bRgZJOjxVyv4B68=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732376232; c=relaxed/simple;
-	bh=RPiOqidyOV/NWVQ9oXhA/VUulFLzx1Lvj2UzV1aNtnw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lO7YIbTcxamxY2wIEejWDyPZOzdEZoIawmZ7pCWcQ+UjjXjHRbsP0bo4iCbEIyKaiaUgrCAOYY5yNCpV/qlfJpVL//7bmenuNO7UmRXS+t7ElQUo3EMMxNlMGhESKU4zeLrpzBPC0SS3VBcUVlx5bDEW/mdzfXFkLvX4PL/VAaU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Swdxg81U; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B9D2C4CECD;
-	Sat, 23 Nov 2024 15:37:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732376232;
-	bh=RPiOqidyOV/NWVQ9oXhA/VUulFLzx1Lvj2UzV1aNtnw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Swdxg81U3ta3VJQSnie2oqvQcr6TiAaqw1AH5Es5uDrU+1D9P7c23qmT6Icm2xS8m
-	 llRakM7FbuvUxOCgTufMzUkDVUoid7KNt/Q66drJLqtEsJksk2iN4b0PTzekUQ2XJ2
-	 o+ACpXjZkM9MwsXkNLqoT728BJPDpcvC7hBC8KwINGOFMS12osGRSXLeKZXCUjq74d
-	 wyCnZJaFOHHujQH+QcqymW+H6hPBSdTauwvaMFdMDpCyobhS3xgmAqSjW1VRI4RFr4
-	 fYe6XoxGdH14yBtnLXK9lIkbEj6CpTHSckHAstJXM7kEqZ47qo6V5o4J8/Tfp7IWSq
-	 ecbUuYLdzEPgg==
-Date: Sat, 23 Nov 2024 15:37:02 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Sean Nyekjaer <sean@geanix.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, imx@lists.linux.dev, Han Xu <han.xu@nxp.com>,
- Haibo Chen <haibo.chen@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>
-Subject: Re: [PATCH v2 0/4] iio: accel: fxls8962af: add fxls8967af and
- fxls8974cf
-Message-ID: <20241123153702.38ae115c@jic23-huawei>
-In-Reply-To: <20241115-fxls-v2-0-95f3df9228ed@nxp.com>
-References: <20241115-fxls-v2-0-95f3df9228ed@nxp.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1732377406; c=relaxed/simple;
+	bh=9YvKJJUYKOQQj/XXgK4v1/NRI7+lGgmBsUraJqPjh/M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bC5w8YgDnrO27Q7b6jKt4htZRWN3vtyvnO/KrUuKJgifq1/m3Tc6Z8JeCP+OcRG1EMdZW7+EHq9mZRNkyMaMvrbiO/QWJvgGD5eOCLeRxBMQhzGmcD+pibtWUZCzjz9HHJMUG0TRLysvRwscspIlLMdXZDz4WFXIWgcmXZ9/wso=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=icXeyQxB; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-21260cfc918so22693665ad.0;
+        Sat, 23 Nov 2024 07:56:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1732377404; x=1732982204; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wdhhpCg+taJ4xsLRypTZUl8HmDm+NFsq0ODj29ISJ0M=;
+        b=icXeyQxBS22O961MBUERL4WjCaWQx/0h3RJutZie7zuLLFLKi12or/+t+cJxjcmIvB
+         GZ36/xtLwRPmOTRwsXTdeIphLLrd17owWzjhIbD9BYDBc4WjrXBIZ9T9hODl9Jw5gBDW
+         95W4G4ukFFMiCV82haMdxnRiM35tvUcVttIZAf8ctxSLIjDfjwoa87OlRg8ODreTaGbc
+         j+UIEse/O9O+rJKeITUxJpsb2t4fRMBfZ8k2WWFByf4u9Bnl/79uABdZGI2NXTqKPlum
+         9Fqf5+BmdIKsfn1FOQEb3FRnEeh1KdPJvnlFMqahgyXx0+39g1ZwlXEBKOqvCSF49Mro
+         A9cA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732377404; x=1732982204;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wdhhpCg+taJ4xsLRypTZUl8HmDm+NFsq0ODj29ISJ0M=;
+        b=niNPGLGG4zAmIU6LEsAs4Fk/gaETGnHm9I2Pj8CTLglOMzejqNh8e3fzrwbuNazpJj
+         4RlYN1MFtKGP++gg0P8vlBmR18P9KoSIWADliZGiMtYNArBBumb9DMZqVq/dOwW5SsmG
+         mUSM5XSOwGQL0zkBaWUxPcHH0Ce9PGZms0SzDlcGkfeKoYM6r7C/hCLQxnwMY0X3cM4H
+         f+fiR82/DBHMyCV5QQzOCk02cYj56UCWesJY+rNUNVJDijpbjREnN2KSykXYthtdgZF3
+         tR5YtV4wRk+Ze6hDe92Ae/UEtqRie9fBQF3hWh/YwjTnUDtISDQXWfTu8anCHKCZmM5y
+         YDpw==
+X-Forwarded-Encrypted: i=1; AJvYcCXavWEBsfHtjcddWyKw/N5NbviUHdIxeVP2GW1kGetFsCNAilbaT7hipEaTjvCgA+AQ0yUPTRUQARhU@vger.kernel.org, AJvYcCXqQxazFqH/oQZwYGQ8/oxocSdMsDHA+H4BxP+EKtl8aPPvxVHOwHCceC09tpGhIZ2ClKfXvnDnzP7BUd/7@vger.kernel.org
+X-Gm-Message-State: AOJu0YzPuMmoJ1xVQ/tHSqI6/GbAIr/S5akqLMDPDIknrEWMiLLNvJvT
+	99K5EMwwtqTQn6wL6+tg70qO5AXGlDBunqOasgBqws4/r1qV7Rkp
+X-Gm-Gg: ASbGnctr2VxLXTWinWOqFIVffIMNx+z/8DOmm0DUTrucdA78hvnHD2RZiF5GH7jl1sT
+	Tq9WJg6pASuNP//s2SVfuYhRvhe02haKDnUGPE4mlYp0ijanCsCe24LVkinWwAKIk/3Ox/8S6Q3
+	5WS5bpCNI4fH1M1iuwBpegg/oHg86gsCbDaMdpTenJPrBaIcCs5g6tzfeetURXGGKFMcpWxnSFV
+	g3YglHf3DKiSSzSHdrVQRw9ewnPfsU99TwlBAG4Uu/2I8xfRjbu+lxhx+5soaU=
+X-Google-Smtp-Source: AGHT+IHB49Ds6XF42rhaBzmjNmAHIN7vXsDlDSoz7p5lUyfP90T9HB2pni6uH8yauXHUV/+wJVdjQw==
+X-Received: by 2002:a17:903:283:b0:20e:57c8:6ab3 with SMTP id d9443c01a7336-2129f7300c2mr99379585ad.4.1732377404385;
+        Sat, 23 Nov 2024 07:56:44 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2129dc131d1sm34098095ad.187.2024.11.23.07.56.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 23 Nov 2024 07:56:43 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Sat, 23 Nov 2024 07:56:42 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Sandy Huang <hjc@rock-chips.com>,
+	Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
+	Andy Yan <andy.yan@rock-chips.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mark Yao <markyao0591@gmail.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Simona Vetter <simona@ffwll.ch>,
+	Simona Vetter <simona.vetter@ffwll.ch>,
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+	kernel@collabora.com, Alexandre ARNOUD <aarnoud@me.com>,
+	Luis de Arquer <ldearquer@gmail.com>,
+	Algea Cao <algea.cao@rock-chips.com>
+Subject: Re: [v10,3/3] drm/rockchip: Add basic RK3588 HDMI output support
+Message-ID: <790091a1-00af-43bb-8cdf-814f4cc38d83@roeck-us.net>
+References: <20241016-b4-rk3588-bridge-upstream-v10-3-87ef92a6d14e@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241016-b4-rk3588-bridge-upstream-v10-3-87ef92a6d14e@collabora.com>
 
-On Fri, 15 Nov 2024 15:23:56 -0500
-Frank Li <Frank.Li@nxp.com> wrote:
-
-> fxls8967af and fxls8974cf are similar with fxls8962af, only change ID.
+On Wed, Oct 16, 2024 at 11:06:53PM +0300, Cristian Ciocaltea wrote:
+> The RK3588 SoC family integrates the newer Synopsys DesignWare HDMI 2.1
+> Quad-Pixel (QP) TX controller IP and a HDMI/eDP TX Combo PHY based on a
+> Samsung IP block.
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Add just the basic support for now, i.e. RGB output up to 4K@60Hz,
+> without audio, CEC or any of the HDMI 2.1 specific features.
+> 
+> Co-developed-by: Algea Cao <algea.cao@rock-chips.com>
+> Signed-off-by: Algea Cao <algea.cao@rock-chips.com>
+> Tested-by: Heiko Stuebner <heiko@sntech.de>
+> Reviewed-by: Maxime Ripard <mripard@kernel.org>
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> ---
+[ ... ]
 
-Applied to the togreg branch of iio.git and initially pushed out as testing
-for 0-day to take a look.  I'll rebase on rc1 once available.
+> +static void dw_hdmi_qp_rockchip_encoder_enable(struct drm_encoder *encoder)
+> +{
+> +	struct rockchip_hdmi_qp *hdmi = to_rockchip_hdmi_qp(encoder);
+> +	struct drm_crtc *crtc = encoder->crtc;
+> +	unsigned long long rate;
+> +
+> +	/* Unconditionally switch to TMDS as FRL is not yet supported */
+> +	gpiod_set_value(hdmi->enable_gpio, 1);
+> +
+> +	if (crtc && crtc->state) {
+> +		rate = drm_hdmi_compute_mode_clock(&crtc->state->adjusted_mode,
+> +						   8, HDMI_COLORSPACE_RGB);
+> +		clk_set_rate(hdmi->ref_clk, rate);
+> +		/*
+> +		 * FIXME: Temporary workaround to pass pixel clock rate
+> +		 * to the PHY driver until phy_configure_opts_hdmi
+> +		 * becomes available in the PHY API. See also the related
+> +		 * comment in rk_hdptx_phy_power_on() from
+> +		 * drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
+> +		 */
+> +		phy_set_bus_width(hdmi->phy, rate / 100);
+
+On 32-bit systems:
+
+ERROR: modpost: "__udivdi3" [drivers/gpu/drm/rockchip/rockchipdrm.ko] undefined!
+
+in the mainline kernel.
+
+If the driver is not build tested (much less working) on 32-bit builds,
+please consider restricting it to 64 bit builds.
 
 Thanks,
-
-Jonathan
-
-
-> ---
-> Changes in v2:
-> - make nxp,fxls8967af and nxp,fxls8974cf fallback to nxp,fxls8962af.
-> - Link to v1: https://lore.kernel.org/r/20241113-fxls-v1-0-5e48ff1b1fb8@nxp.com
-> 
-> ---
-> Haibo Chen (1):
->       iio: accel: fxls8962af: add fxls8974cf support
-> 
-> Han Xu (3):
->       dt-bindings: iio: accel: fxls8962af: add compatible string 'nxp,fxls8967af'
->       dt-bindings: iio: accel: fxls8962af: add compatible string 'nxp,fxls8974cf'
->       iio: accel: fxls8962af: add fxls8967af support
-> 
->  .../devicetree/bindings/iio/accel/nxp,fxls8962af.yaml      | 14 +++++++++++---
->  drivers/iio/accel/fxls8962af-core.c                        | 14 ++++++++++++++
->  drivers/iio/accel/fxls8962af-i2c.c                         |  2 ++
->  drivers/iio/accel/fxls8962af.h                             |  2 ++
->  4 files changed, 29 insertions(+), 3 deletions(-)
-> ---
-> base-commit: bd05b9a700c10473c2f52bf12c5c5938c30e80b0
-> change-id: 20241113-fxls-d93a888889f7
-> 
-> Best regards,
-> ---
-> Frank Li <Frank.Li@nxp.com>
-> 
-
+Guenter
 
