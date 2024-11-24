@@ -1,163 +1,186 @@
-Return-Path: <devicetree+bounces-123970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 505059D6D7E
-	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 11:05:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7BE59D6D88
+	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 11:22:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ABDB9B212E0
-	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 10:05:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53FDB28122B
+	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 10:22:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6A75189B91;
-	Sun, 24 Nov 2024 10:05:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA1C2154444;
+	Sun, 24 Nov 2024 10:22:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="A0CZfEhQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WPOeQKcV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9184918871D
-	for <devicetree@vger.kernel.org>; Sun, 24 Nov 2024 10:05:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D11413FC7;
+	Sun, 24 Nov 2024 10:22:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732442715; cv=none; b=XN1244PbFLhWFB6CxJ6gD/BG14yZBzicfgG9mnqYyfr0m+HKKEnT1yC+r0WBBlv+/VuGKvP7RGS9/r+PCKC4SISWXQ88FB+U4X9flD9FDzEVq3OqdjvNlGF4W9CYLBcyKYW9OJEYvjkFaIwnZYlOI6vt9eVDNazRAVpqIWtNqLE=
+	t=1732443725; cv=none; b=XcwAeo/Sn2tpFv+NpBfUXW+ojuhIT5iW3ivmTsmy78CoAvtf8XRyrs+t2sxSdxL5JN5FQbiNki2QU1mrtADzyO12mRV6Px15qZzJWabSr2XrgaKFBvyOoCSbSIcueHDg8faNntwdpUtT4wBy5e98cMYJwtCX6a3RZYww0KwQyOU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732442715; c=relaxed/simple;
-	bh=00GKzIkIov7sWC7YYf/fsmzjuTtHwftcYafHQRVNIQM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=I0nRCCYSf53o0IcXHWfbkcjWKxUTOeDgaJcR6AtRxuhmHNxJ1KT8X2mwiN0MAzddbeAAFzeO3PBd5usyqvdTSiH2TcDMLo4zNnUvc4Y3qkbAfkMgP2qi6rD/oDUCSN1PyhmX/AoVdZVlvACHJMpBe+cSm/2CF4ihfb3DbTQC8jk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=A0CZfEhQ; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-aa549f2f9d2so37373066b.3
-        for <devicetree@vger.kernel.org>; Sun, 24 Nov 2024 02:05:13 -0800 (PST)
+	s=arc-20240116; t=1732443725; c=relaxed/simple;
+	bh=9oCTn0OuRR2ZYCAbf59HtSXH94Vj+xyQ4b0OVmshtos=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lYvHjf4r8lpfITcfjhWfBvD+3KcnFBovlD9ZsVkMYnlEM0iTmEb7CxG6fe5K3/VltustqO/Hi6bqf7cDj2z/qVCMKmktKvD5D9O1XeQCt9OcZPirhfg2BYmQXS+Fhhkape7T+k2smnhljlnOh1jySomafuuaCOIBFO3fUjFvmXc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WPOeQKcV; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4315baa51d8so31649915e9.0;
+        Sun, 24 Nov 2024 02:22:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1732442712; x=1733047512; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lk2GE1arbul51a1ynLU7Q9xhqGMt1ZdTPnPwO47t9KY=;
-        b=A0CZfEhQgZuNQ8XUXPzjnRT3zv6xBUgrbIEApsB8YDOs+8YIt6aLdgPxacHdQ6fGrE
-         4rbfMu2q8qqYnuLIAR1xVGQ9TpkMSD0a2KZh3sQp6U8s85NT1p6PzRiDkCkcxacIPULI
-         PpyvC6I2LjBos1zcw2mVC3LUUUKHC7J65nGvJZfOsfIeULRJyQyWZxMRcDKWVhB8hCG3
-         jyJM+Ee0ouYLEjtxx49p3j3PxwwUv75dSK0CSD725e4iBtgnBuarA8bLlmM/ZWv+uNTR
-         FiJGb/+P4PLKzu9MD7zgH900QuuWIWC04chcWChMeq5TUNYpN6x14sCDQiQf1UNgirm2
-         JSrg==
+        d=gmail.com; s=20230601; t=1732443722; x=1733048522; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EARY631trTP8bPGVF4+FUq8WRYwqoko+NV4e4AJDVS4=;
+        b=WPOeQKcVMVs9ZJNj58IfPhbI1qO42/tVKegUoSOZ2LcQcxZB/cros5LxCchboD9jZp
+         Wj7LV8uRjOLon5WLtKZijkaT4W9pkufJ0H6iaPVO7l9ZrgBr1uJ4QSHT7P/dbvwz4wCe
+         2NbhK1v6YAMvmoZdP9TKJZ0zB16fIlymzFRUGO7QDvzIr0EZCssV3ZUjZLNPqjSbkZAx
+         C/etrZUSz2yL/s6W8BBUfnP2meZEMWe4JrNzhIbCh6cfDesTNwT/MdqwozQGYYKoGMLx
+         lgs2U+bycDshaGv3QmsM/jY2YRmmvk0opOWdHioIGzX++ch1V0vcqLsLJ67C9d/A0Tk3
+         cSlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732442712; x=1733047512;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lk2GE1arbul51a1ynLU7Q9xhqGMt1ZdTPnPwO47t9KY=;
-        b=CWFgO+UCX/K89yG2tZPzQdiHg7HOeWRHwCbga9Tu25AjWokRozM5kkmEvvSbfCPkYr
-         Ei3yUcfPN9/M+1WqachP0WVpgkJsOspzey7TjJ9cg4NqYumdxZ6Dhso0qkvqYRE1T76x
-         J4T/aWCbfLnIc3PfSkckbjQLc0Ol9ZEifo+xRnfERdDl05RbjSDttnyzvR7Ela7Q78Vu
-         5rWrhxoD3mmRJ5clVWGoM8xdOgGyLmgrIpCQr+ICQ+W3aQ1YnCCg0OtJVA/mRhQ5CCDm
-         UR2DqBGztNhw8J6MPP7goUDJpuo/t16B3bYyXzXiAS4/yZqse3wcf6PWPUjldbfjA0Fb
-         rWTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW43aka+4hw7Non3Z1BD5qu4WL7a7VthVuW8ccA+p0JqL9KwlCojEPgiVD/6T+ousms9UAQ0gCorWg1@vger.kernel.org
-X-Gm-Message-State: AOJu0YzyW5wEPbkynsCi3CS4YBy6PurIHc4blMwO17xeRWyLJTZn33UO
-	7yK/fLgMkWmrLNUGkijsi4zB7M/Yow4nF+tPmd25iM2rqD5kd7PQNR5lO1ocFYU=
-X-Gm-Gg: ASbGncszecdJIDiApN284JW1Kq9ejBokZRc7MKxsIiGSyywC4T0A3JB/+lFF3Ium/Mf
-	6BMI54mxhlYKFfhyWHVyeCfCESsjGEXs0xwT65uYdEHLByy+az/u9Z/Uns8K810k7N048tmTaUJ
-	KdbL4Pwf/gaIvbYG8xis9l83jbWZg04StozhbGADbp9CuYrr4NJSTh18vXYI+Qv10sdX3/xpBcs
-	cJgGQPvwbQC1oJPNv0FJNpkdTZ8jKkm4wk3xv6swLiATiFY4u+eUu31iuwuoYbiEgnw1faHWk6k
-	HwbER9SyUWpiNeZqvZ1i
-X-Google-Smtp-Source: AGHT+IHzhjRJgC4zyn46rADf4coPj01YWTVyf6AHNKqiCSQA366o1m7GZGOpC6OvPXD6QZ4IdkHEbQ==
-X-Received: by 2002:a17:907:770d:b0:aa5:29ef:3aa6 with SMTP id a640c23a62f3a-aa529ef3b9fmr468828366b.23.1732442711875;
-        Sun, 24 Nov 2024 02:05:11 -0800 (PST)
-Received: from localhost (host-79-49-220-127.retail.telecomitalia.it. [79.49.220.127])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa50b57bda2sm325822466b.146.2024.11.24.02.05.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 Nov 2024 02:05:11 -0800 (PST)
-From: Andrea della Porta <andrea.porta@suse.com>
-To: Andrea della Porta <andrea.porta@suse.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof Wilczynski <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Saravana Kannan <saravanak@google.com>,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Andrew Lunn <andrew@lunn.ch>
-Cc: stable@vger.kernel.org
-Subject: [PATCH v2 2/2] of: address: Preserve the flags portion on 1:1 dma-ranges mapping
-Date: Sun, 24 Nov 2024 11:05:37 +0100
-Message-ID: <e51ae57874e58a9b349c35e2e877425ebc075d7a.1732441813.git.andrea.porta@suse.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <cover.1732441813.git.andrea.porta@suse.com>
-References: <cover.1732441813.git.andrea.porta@suse.com>
+        d=1e100.net; s=20230601; t=1732443722; x=1733048522;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EARY631trTP8bPGVF4+FUq8WRYwqoko+NV4e4AJDVS4=;
+        b=BjbNgxnvUdcyBxz7nFiRygNo2y6Xa7VD53+5POUcbO1WxJnbzHwqzAMGdaP4m3nd1J
+         bYJDR909GlMR/GvG2awVLpm4cRR+eHpmo6ulC3PWBo1S6KMU6ItsbEOAjf8R0D7G80Uc
+         v+dkqqEjuqg/AwLruoEfqqb3HwnyiCbq0NlMvaEXjp7li0cP13YFn/r7xmubSYK2aKgK
+         1JuodCJIzhtJlrfv4yNLhm83gkK9ayFkixm5tAfQ817mjBcNJyPidtZJoWkdMyPxDNSl
+         gayO46QuHcmHQihhWR3vJlAqHwdM6ErrzTkNPzpRAXHL64PwBcr8zYdZlaHIsbXtFxWW
+         5ueQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVw9kCnKimMF1PgoR6BaNxj22XAk1kqVvkroB443AIpOKrbEbgPdQR/gt4lpd+QUF7coJNIdm2wk/sc@vger.kernel.org, AJvYcCW+3A86580nhUl0OxY7S/J3CplxdtzpOm41HcjTyfKDaZhi7b7t3w6DOBKKoSAC1ibqF+7N6YBOuqIH4URu@vger.kernel.org
+X-Gm-Message-State: AOJu0YzwdL0yB97St0HqYXKcWrJz39KnKwsHkNk/9a893qQOwjzSxIT1
+	j4xFAGEmO3uwd1huevbxDDKk6GgV+Sfdd5v1bytzCtWG3QORFOZI
+X-Gm-Gg: ASbGncv7FjYAEdp7DguflGN/tDenGSwnLRmNZS0nom/qK7TSajtNxomC9zK3087LwUs
+	jFd8XyR6Zz0tAF5ypMivoE3W6wgr8HYaIt6L0utSUwjWbVLSBk9/U9hG0w5f1PphgorfHxH1lGL
+	QYBvQ/EuVhINQvKQXU5fLiK9I016gPFnlLghaKo1LsiwLFYZKs5UiDmQmo+N6AgzwW9dQ+4gWhP
+	XCVHbjff6iuRmWeEYaKKyZRYGGoEqj5CIS9IuFgmau17hKSCY1jZmZ+p3GC9CKiCrNsLo5CO8k7
+	REA1aUqxvDnk8FFEZVJ6kIdWVlyK1Q==
+X-Google-Smtp-Source: AGHT+IF90ZCmjQclncaeSHdtxHJLKaUTR0zA5IJT87d4aV/v6gyuaYoZ5id52sQMUI8wUQFT+DWspA==
+X-Received: by 2002:a05:600c:4712:b0:432:7c08:d0ff with SMTP id 5b1f17b1804b1-433ce48ee2amr67395605e9.23.1732443721726;
+        Sun, 24 Nov 2024 02:22:01 -0800 (PST)
+Received: from [192.168.2.120] (cst-prg-110-166.cust.vodafone.cz. [46.135.110.166])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4349f2e1b3bsm1036125e9.25.2024.11.24.02.22.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 24 Nov 2024 02:22:00 -0800 (PST)
+Message-ID: <c8f40177-1d81-4c8e-8319-e78623cded42@gmail.com>
+Date: Sun, 24 Nov 2024 11:22:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] w1: ds2482: Add regulator support
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Stefan Wahren <stefan.wahren@chargebyte.com>,
+ Ben Gardner <bgardner@wabtec.com>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20241122-ds2482-add-reg-v2-0-a5a03ee74da7@gmail.com>
+ <20241122-ds2482-add-reg-v2-1-a5a03ee74da7@gmail.com>
+ <2ff7omfp752zdtzozcle5jn7nsyonsbqgjefrx5t4lncoer5bw@wb76uxg26ugg>
+Content-Language: cs, en-US
+From: =?UTF-8?B?S3J5xaF0b2YgxIxlcm7DvQ==?= <cleverline1mc@gmail.com>
+In-Reply-To: <2ff7omfp752zdtzozcle5jn7nsyonsbqgjefrx5t4lncoer5bw@wb76uxg26ugg>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-A missing or empty dma-ranges in a DT node implies a 1:1 mapping for dma
-translations. In this specific case, the current behaviour is to zero out
-the entire specifier so that the translation could be carried on as an
-offset from zero. This includes address specifier that has flags (e.g.
-PCI ranges).
+> On Fri, Nov 22, 2024 at 09:53:57AM +0100, Kryštof Černý wrote:
+>> Adds a support for attaching a supply regulator.
+>>
+>> Signed-off-by: Kryštof Černý <cleverline1mc@gmail.com>
+>> ---
+>>   drivers/w1/masters/ds2482.c | 21 +++++++++++++++++++++
+>>   1 file changed, 21 insertions(+)
+>>
+>> diff --git a/drivers/w1/masters/ds2482.c b/drivers/w1/masters/ds2482.c
+>> index a2ecbb863c57f38bffc8e3cd463db1940e603179..3fb35e92fc1587dc4e609c0061fa5057e0027a80 100644
+>> --- a/drivers/w1/masters/ds2482.c
+>> +++ b/drivers/w1/masters/ds2482.c
+>> @@ -15,6 +15,7 @@
+>>   #include <linux/slab.h>
+>>   #include <linux/i2c.h>
+>>   #include <linux/delay.h>
+>> +#include <linux/regulator/consumer.h>
+>>   
+>>   #include <linux/w1.h>
+>>   
+>> @@ -117,6 +118,9 @@ struct ds2482_data {
+>>   	u8			channel;
+>>   	u8			read_prt;	/* see DS2482_PTR_CODE_xxx */
+>>   	u8			reg_config;
+>> +
+>> +	/* reference to the optional regulator */
+> 
+> Drop comment, obvious.
 
-Once the flags portion has been zeroed, the translation chain is broken
-since the mapping functions will check the upcoming address specifier
-against mismatching flags, always failing the 1:1 mapping and its entire
-purpose of always succeeding.
+I will drop all the other comments, as they seem to have the same level
+of "obviousness" as this one to me.
 
-Set to zero only the address portion while passing the flags through.
 
-Fixes: dbbdee94734b ("of/address: Merge all of the bus translation code")
-Cc: stable@vger.kernel.org
-Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-Tested-by: Herve Codina <herve.codina@bootlin.com>
----
- drivers/of/address.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+>> +	struct regulator *vcc_reg;
+> 
+> Missing indentation after type - see earlier lines.
 
-diff --git a/drivers/of/address.c b/drivers/of/address.c
-index 286f0c161e33..b3479586bd4d 100644
---- a/drivers/of/address.c
-+++ b/drivers/of/address.c
-@@ -455,7 +455,8 @@ static int of_translate_one(struct device_node *parent, struct of_bus *bus,
- 	}
- 	if (ranges == NULL || rlen == 0) {
- 		offset = of_read_number(addr, na);
--		memset(addr, 0, pna * 4);
-+		/* set address to zero, pass flags through */
-+		memset(addr + pbus->flag_cells, 0, (pna - pbus->flag_cells) * 4);
- 		pr_debug("empty ranges; 1:1 translation\n");
- 		goto finish;
- 	}
--- 
-2.35.3
+struct will be removed with switching to devm_regulator_get_enable().
 
+> 
+>>   };
+>>   
+>>   
+>> @@ -445,6 +449,7 @@ static int ds2482_probe(struct i2c_client *client)
+>>   	int err = -ENODEV;
+>>   	int temp1;
+>>   	int idx;
+>> +	int ret;
+>>   
+>>   	if (!i2c_check_functionality(client->adapter,
+>>   				     I2C_FUNC_SMBUS_WRITE_BYTE_DATA |
+>> @@ -457,6 +462,18 @@ static int ds2482_probe(struct i2c_client *client)
+>>   		goto exit;
+>>   	}
+>>   
+>> +	/* Get the vcc regulator */
+>> +	data->vcc_reg = devm_regulator_get(&client->dev, "vcc");
+>> +	if (IS_ERR(data->vcc_reg))
+>> +		return PTR_ERR(data->vcc_reg);
+>> +
+>> +	/* Enable the vcc regulator */
+>> +	ret = regulator_enable(data->vcc_reg);
+> 
+> You wanted devm_regulator_get_enable().
+> 
+> ... but your comment also suggests devm_regulator_get_enable_optional().
+> 
+
+This is a good point, my implementation is based on observation of a few 
+other drivers and it's not needed in this case. This will reduce the 
+amount of changes.
+
+I think my wording was not correct. By optionally I meant that most 
+hardware designs do not use a separate power supply regulator, so they 
+do not need to specify one, but the device needs power to function.
+My current view is that it should not be optional after all, so I would 
+go with devm_regulator_get_enable(). Could you please tell me your view 
+on this?
+
+> 
+> Best regards,
+> Krzysztof
+> 
+
+Thank you very much for the review,
+Kryštof Černý
 
