@@ -1,84 +1,228 @@
-Return-Path: <devicetree+bounces-123986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0066E9D6E01
-	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 12:03:24 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50DC09D6E08
+	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 12:40:29 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7678BB21044
-	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 11:03:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C1B5F161A2F
+	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 11:40:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74DEB14885E;
-	Sun, 24 Nov 2024 11:03:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA9BE186E40;
+	Sun, 24 Nov 2024 11:40:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pLZSJ31s"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="FcQwNb1N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49206F9F8;
-	Sun, 24 Nov 2024 11:03:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66F967CF16;
+	Sun, 24 Nov 2024 11:40:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732446198; cv=none; b=ewvmPHscCmliiTwOpzagOOnl5pmxngvUryniFRGRqfmXSxaOFA5jW4QSS+buLyLaeLY5DjyOwP4sCcT0a77bVGNVPIoUTsKq8pTVFK9deLp+5c/q9VcvMWZlkFwEJl0FOTWvyKQRoK374n/8UEg5rdMR07vEtNKLS/dcyiolDeE=
+	t=1732448424; cv=none; b=toyM+1UrOPdiXjajNz6o+eMxuP1VzXyHhwwiGhcxo3+Gdja6JuxIvgxwcKHtp+hacjHlx/8XWyZiUQJ9XpQtKCO2HgOa2zrAyvvZSvxeSibb793Oub1vQL59nbTvVyyuj/u9OYc3SPR+cj5L9zrdjo6NKJ0R5syxGZVI+l3GNyw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732446198; c=relaxed/simple;
-	bh=EfW2avhhyK3SyPtpaAqnOLD1oU9lkffmDg7NK1/wkew=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HWuzd9b1Slu2zyfOTPTOMvp2/xqgFd7jBJNj5WxnHYn8c3bxhR4f1TcpsVEDtOWDqFzCHEQDwiS33iz8RZmGm82zLe2mZCif9ecrS0OFmFvYhbzeNP94KjiRTnxQsP5fpG5Y2cT/563U1/odLoEiJFtqsA6qds8ZlFZAizQ3o5s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pLZSJ31s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 371F5C4CECC;
-	Sun, 24 Nov 2024 11:03:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732446197;
-	bh=EfW2avhhyK3SyPtpaAqnOLD1oU9lkffmDg7NK1/wkew=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pLZSJ31sxLHPX52vcluqFRHNKkJJAlRfqWlGEmoLMJ1+j/cuVlhPgaxXoJ6qLP5wh
-	 Iy/YUKzz5O7sKsMSTJKfoJ/2w7YOnZoDV5UP7sf9w6zWHyRQCl2SB8fWlgnX1eBlsd
-	 456LbUFs4zhVaB4RL50pABi05FedCNEbeIe/VG9P9i4CbUfw5qOLM7L3FJ4YxPk3cg
-	 L4wi2q1lhWrx3PpNh5AEKw34P/N/FgWNg2ViWhG8W3BS/STVBU3HPEpagfonPP4XZm
-	 XOEgXROvuQBc0Eww2FRbgGkT367bzq+FqclL+jIkJmsyk66MASEVpIeZUMWRk7RcVL
-	 bq4IQYm3vm0ug==
-Date: Sun, 24 Nov 2024 12:03:14 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Kim Seer Paller <kimseer.paller@analog.com>
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Mike Looijmans <mike.looijmans@topic.nl>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: power/supply: Add ltc4162-f/s and
- ltc4015
-Message-ID: <ax7fbdlm6a2ysqkiwi54bf5jr67ynavphu2cw6o37x6co43xz6@3znvedsd6vrq>
-References: <20241124053643.6602-1-kimseer.paller@analog.com>
+	s=arc-20240116; t=1732448424; c=relaxed/simple;
+	bh=1bhDdSxVvYJHrSbY9Pm9YLToIwNMuQRQ/r+JsdA9se0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=as6Wm7pV1SF1V145uiAZ9fiq/79Tjfoo0w1ewLlcidCT6xiTKgnYIE5fZ28NpZLe/h7+DIuwIPJvMZO5BIJKuiIwc8jMmPDoP5b6dSMhmFtUmszmjQDGTvN+Mf4P0B6JzV8kn5OuVBSonNloFuAiN8woTck+EWRNBD+phrosQqs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=FcQwNb1N; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=J3BQnHmMzJvRzOGoxvKw6fbWVPHb009ceAjCw5kM6Qk=; b=FcQwNb1Nxc86U2alMAKKQijXNV
+	5BVPN2Tp0UqXl5qkKq7DIEA9jHHTZucMj98AqTokHXNRwUyIYA8rM24FF58r/vPu+ZYbRoW2jUbRl
+	h7dyNgeBbYFl5ytnPtVTFb5TOMurDcszoejPbvXlSH3IDz/1rhecHcctN4oSqyJSxx1KQkiHYRabV
+	R3lNBZcleSSsxMWX6EP2N66v1A0ZuQbbPNe5hE9Exqdhe/igS7mIls5fVDaWtfOL7AbPq3EuTaLm6
+	cNM67DvtSyO7z0aytWmPPOYY1Euod7ueersLrJYo2CMRdXIK5kD/BhUcsfPqzXHFMMB78ZsAzpwYl
+	vHoAjocQ==;
+Received: from i5e86190f.versanet.de ([94.134.25.15] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tFAyF-00047c-Or; Sun, 24 Nov 2024 12:40:07 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, quentin.schulz@cherry.de, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Heiko Stuebner <heiko.stuebner@cherry.de>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject:
+ Re: [PATCH v3 1/2] dt-bindings: phy: Add Rockchip MIPI CSI/DSI PHY schema
+Date: Sun, 24 Nov 2024 12:40:06 +0100
+Message-ID: <8454190.T7Z3S40VBb@diego>
+In-Reply-To: <udad4qf3o7kt45nuz6gxsvsmprh4rnyfxfogopmih6ucznizih@7oj2jrnlfonz>
+References:
+ <20241113221018.62150-1-heiko@sntech.de>
+ <20241113221018.62150-2-heiko@sntech.de>
+ <udad4qf3o7kt45nuz6gxsvsmprh4rnyfxfogopmih6ucznizih@7oj2jrnlfonz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241124053643.6602-1-kimseer.paller@analog.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Sun, Nov 24, 2024 at 01:36:42PM +0800, Kim Seer Paller wrote:
-> Add LTC4162-F/S and LTC4015 to the supported devices of LTC4162-L.
-> They share a common set of registers. The only differences lie in the
-> resolution value of the scaling factor for battery voltage and battery
-> current measurement, input voltage, and input current for different
-> battery chemistries. The differences also include the calculation of
-> setting and getting the actual voltage applied to the charge voltage,
-> as well as getting the die temperature.
+Am Freitag, 22. November 2024, 19:49:20 CET schrieb Sebastian Reichel:
+> Hi,
 > 
-> This add compatible entries for ltc4162-f/s and ltc4015 and include
-> datasheets for new devices.
+> On Wed, Nov 13, 2024 at 11:10:17PM +0100, Heiko Stuebner wrote:
+> > From: Heiko Stuebner <heiko.stuebner@cherry.de>
+> > 
+> > Add dt-binding schema for the MIPI CSI/DSI PHY found on
+> > Rockchip RK3588 SoCs.
+> > 
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
+> > ---
+> >  .../phy/rockchip,rk3588-mipi-dcphy.yaml       | 82 +++++++++++++++++++
+> >  1 file changed, 82 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/phy/rockchip,rk3588-mipi-dcphy.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/phy/rockchip,rk3588-mipi-dcphy.yaml b/Documentation/devicetree/bindings/phy/rockchip,rk3588-mipi-dcphy.yaml
+> > new file mode 100644
+> > index 000000000000..5ee8d7246fa0
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/phy/rockchip,rk3588-mipi-dcphy.yaml
+> > @@ -0,0 +1,82 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/phy/rockchip,rk3588-mipi-dcphy.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Rockchip MIPI CSI/DSI PHY with Samsung IP block
+> > +
+> > +maintainers:
+> > +  - Guochun Huang <hero.huang@rock-chips.com>
+> > +  - Heiko Stuebner <heiko@sntech.de>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - rockchip,rk3576-mipi-dcphy
+> > +      - rockchip,rk3588-mipi-dcphy
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  "#phy-cells":
+> > +    const: 0
 > 
-> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
+> I would expect an argument to select between D-PHY and C-PHY mode,
+> so that the binding is ready for it even when the driver does not
+> yet support it. E.g. something like
+> 
+>   '#phy-cells':
+>     const: 1
+>     description: |
+>       Supported modes are:
+>         - PHY_TYPE_DPHY
+>         - PHY_TYPE_CPHY
+>       See include/dt-bindings/phy/phy.h for constants.
+> 
+> This would match how it works for the naneng Combo PHY to switch
+> between PCIe/SATA/USB3. Also Mediatek CSI DC-PHY handles it that
+> way upstream (with just D-PHY being supported). I see that the
+> driver stack you send upstream expects, that the PHY user (e.g.
+> the DSI controller) instead manually calls phy_set_mode(phy, <mode>).
+> To me it seems more sensible to just get this automaically from DT.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+The mode-selection for the phy is definitly tied to the hardware-design.
+Depending on how the board is designed, it'll always do either D-PHY
+or C-PHY mode.
 
-Best regards,
-Krzysztof
+I guess it mostly just feels strange when so far the parameter was
+used to identify say an individual clock from the clock controller.
+
+But reading the Medietek discussion (up to [0]) it looks like that is
+a nice way to do this, so I'll adapt things in the next version.
+
+
+Heiko
+
+
+[0] https://lore.kernel.org/all/20230608200552.GA3303349-robh@kernel.org/
+
+
+> Otherwise the whole series LGTM.
+> 
+> Greetings,
+> 
+> -- Sebastian
+> 
+> > +  clocks:
+> > +    maxItems: 2
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: pclk
+> > +      - const: ref
+> > +
+> > +  resets:
+> > +    maxItems: 4
+> > +
+> > +  reset-names:
+> > +    items:
+> > +      - const: m_phy
+> > +      - const: apb
+> > +      - const: grf
+> > +      - const: s_phy
+> > +
+> > +  rockchip,grf:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description:
+> > +      Phandle to the syscon managing the 'mipi dcphy general register files'.
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - clocks
+> > +  - clock-names
+> > +  - resets
+> > +  - reset-names
+> > +  - "#phy-cells"
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
+> > +    #include <dt-bindings/reset/rockchip,rk3588-cru.h>
+> > +
+> > +    soc {
+> > +      #address-cells = <2>;
+> > +      #size-cells = <2>;
+> > +
+> > +      phy@feda0000 {
+> > +        compatible = "rockchip,rk3588-mipi-dcphy";
+> > +        reg = <0x0 0xfeda0000 0x0 0x10000>;
+> > +        clocks = <&cru PCLK_MIPI_DCPHY0>,
+> > +                 <&cru CLK_USBDPPHY_MIPIDCPPHY_REF>;
+> > +        clock-names = "pclk", "ref";
+> > +        resets = <&cru SRST_M_MIPI_DCPHY0>,
+> > +                 <&cru SRST_P_MIPI_DCPHY0>,
+> > +                 <&cru SRST_P_MIPI_DCPHY0_GRF>,
+> > +                 <&cru SRST_S_MIPI_DCPHY0>;
+> > +        reset-names = "m_phy", "apb", "grf", "s_phy";
+> > +        rockchip,grf = <&mipidcphy0_grf>;
+> > +        #phy-cells = <0>;
+> > +      };
+> > +    };
+> 
+
+
+
 
 
