@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-124045-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124046-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64E7B9D76E9
-	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 18:53:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3EEB9D76EC
+	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 18:53:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 007F01626FC
-	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 17:53:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F0AE162774
+	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 17:53:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01F0677F11;
-	Sun, 24 Nov 2024 17:53:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF09C7DA6A;
+	Sun, 24 Nov 2024 17:53:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="MtfJ1aP1"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="hB27/prD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.205])
+Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.209])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8208229A9
-	for <devicetree@vger.kernel.org>; Sun, 24 Nov 2024 17:53:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.205
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 625812500C7
+	for <devicetree@vger.kernel.org>; Sun, 24 Nov 2024 17:53:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.209
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732470796; cv=none; b=D3xJ1xSRVKDbUyPaTzYOEmenvkK5p2inDePP7Ziep3vBioFE+I+Kq9KgVTSN+cTbeyPzzmAPkGnlF/+i+SwyJdqpcn7vLihY3dzbJK5ZWS0lFd4dxI92GwPs3jUrTtdqT8q9QbWLFtM74dKuAkXuRKJF69sso6sU7uztq9BPpeI=
+	t=1732470822; cv=none; b=gFf7vHzjeWvzbwYATRu4vCTozGQBNhxmtOmKRe9hFCaBFPaeyNvzjCZWXmonBu0wSpoZD4jmep10xB1/tQGxqCcNbEJ3Z6VbB5AdSnj43Rn33FwUeaeGNIRdiF2Q9L0Vd+p87rucstMax8GIofjqhTUwZIID+fPbrNMnov4aFaw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732470796; c=relaxed/simple;
-	bh=CjUEiOEgo0/5UmQ1LrntixY7y5S5TqQ7OyWWeDdh65g=;
+	s=arc-20240116; t=1732470822; c=relaxed/simple;
+	bh=NtLLGDy/FwmKZxXQ0kklJcO9KR8K2FQHsQWn7P9eRLA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=M+SW2wsn639cyDoP17WLv5UVYs1IeEIww/xhn/NrKQciI9hZc0M0zXm3BOc/ilCpH/2LwXK1Tq40ui+FBLbWc11UPqRvR3pc6SO6TN4RGv04BRianbfGuvN9E8315SSAEAWr15ojsIVE21kAj0cDvOE4YbCzs9p2GNvt/s1DQlA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=MtfJ1aP1; arc=none smtp.client-ip=192.19.144.205
+	 MIME-Version; b=ekj2fBMLrjKc2KCykAsqI2PYM0T6PyawY7+xtpzBG6G4i5zGJNziINrZBXPNyXze9bJzZAyigpmOmbRB25rfIAQOa/q5l/vwNf/bna/nKL/pMSHddvDSNix6KbNfanVku8h7ezkgC/GukBULP+gMPLmsDxO5KKq7HrkalvcSxfI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=hB27/prD; arc=none smtp.client-ip=192.19.144.209
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
 Received: from mail-lvn-it-01.lvn.broadcom.net (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
-	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 8E648C0000FF;
-	Sun, 24 Nov 2024 09:53:14 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 8E648C0000FF
+	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 6FBCCC0005CA;
+	Sun, 24 Nov 2024 09:53:40 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 6FBCCC0005CA
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
-	s=dkimrelay; t=1732470794;
-	bh=CjUEiOEgo0/5UmQ1LrntixY7y5S5TqQ7OyWWeDdh65g=;
+	s=dkimrelay; t=1732470820;
+	bh=NtLLGDy/FwmKZxXQ0kklJcO9KR8K2FQHsQWn7P9eRLA=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=MtfJ1aP1TWoXyGX13fk0D4zDWT6012ivrO14N2vKUvgAB+RUpnmetfbAXcfxdHd0q
-	 Ppew/pZLCeeBO/TISWpvoxkAY4o5kGaPSv59pqFW4HiV9Ph4Tczj1EtMjJe5hoELuQ
-	 r1bCDwRbEAT4Gx6JOPRFng1riprLSnSDJANTwOBM=
+	b=hB27/prDb4hvJO17+Nv0ppTOWYtrsAJ7WyJJmlMa0919TX7SMc6cFFykSyhbPp6Hg
+	 A7d9tx9FI9YmpEZ6rZzXRCBcnkvdZnTfHKj29JnWsnXwXneFYY0Eu9aQZbozBX2SE3
+	 pKdR8j2pNN2B7ZfdvUxjcKkbPRbInXJFFWQcSMBo=
 Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail-lvn-it-01.lvn.broadcom.net (Postfix) with ESMTPSA id 1E94E18041CAC6;
-	Sun, 24 Nov 2024 09:53:14 -0800 (PST)
+	by mail-lvn-it-01.lvn.broadcom.net (Postfix) with ESMTPSA id 0BFA618041CAC6;
+	Sun, 24 Nov 2024 09:53:40 -0800 (PST)
 From: Florian Fainelli <florian.fainelli@broadcom.com>
 To: bcm-kernel-feedback-list@broadcom.com,
 	Linus Walleij <linus.walleij@linaro.org>,
@@ -62,12 +62,12 @@ To: bcm-kernel-feedback-list@broadcom.com,
 Cc: Florian Fainelli <f.fainelli@gmail.com>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 1/9] ARM: dts: bcm6846: Add iproc rng
-Date: Sun, 24 Nov 2024 09:53:13 -0800
-Message-ID: <20241124175313.717344-1-florian.fainelli@broadcom.com>
+Subject: Re: [PATCH v3 2/9] ARM: dts: bcm6846: Enable watchdog
+Date: Sun, 24 Nov 2024 09:53:39 -0800
+Message-ID: <20241124175339.717478-1-florian.fainelli@broadcom.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241019-genexis-xg6846b-base-v3-1-8375a0e1f89f@linaro.org>
-References: <20241019-genexis-xg6846b-base-v3-0-8375a0e1f89f@linaro.org> <20241019-genexis-xg6846b-base-v3-1-8375a0e1f89f@linaro.org>
+In-Reply-To: <20241019-genexis-xg6846b-base-v3-2-8375a0e1f89f@linaro.org>
+References: <20241019-genexis-xg6846b-base-v3-0-8375a0e1f89f@linaro.org> <20241019-genexis-xg6846b-base-v3-2-8375a0e1f89f@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,9 +78,9 @@ Content-Transfer-Encoding: 8bit
 
 From: Florian Fainelli <f.fainelli@gmail.com>
 
-On Sat, 19 Oct 2024 22:39:30 +0200, Linus Walleij <linus.walleij@linaro.org> wrote:
-> The bcm6846 has a standard iproc 200 RNG which is already
-> fully supported by bindings, so just add it to the DTS file.
+On Sat, 19 Oct 2024 22:39:31 +0200, Linus Walleij <linus.walleij@linaro.org> wrote:
+> The BCM6846 has a BCM7038-compatible watchdog timer, just
+> add it to the device tree.
 > 
 > Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
