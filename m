@@ -1,69 +1,72 @@
-Return-Path: <devicetree+bounces-124043-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124044-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D26989D76D5
-	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 18:45:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42D279D76D6
+	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 18:45:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 71058283819
-	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 17:45:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07D632826A4
+	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 17:45:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A400751016;
-	Sun, 24 Nov 2024 17:45:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D79797346D;
+	Sun, 24 Nov 2024 17:45:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="O14rHKNV"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="lbZTG1Mk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay.smtp-ext.broadcom.com (saphodev.broadcom.com [192.19.144.205])
+Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.209])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 794E118B03;
-	Sun, 24 Nov 2024 17:45:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.205
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 417F75464B;
+	Sun, 24 Nov 2024 17:45:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.209
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732470310; cv=none; b=aBqW1JEBOhdJVOawym1NWvOH0/nWRag1voa7nudkF9RtpB1RGj0eE8fa8qTv8gsuR1fQ+Rl30SxjR+YtnrFFF3Z6iujgRevW245fd+H4JmraDdn08cJTwdnHC0HQlFm9Vjn2TR/rVMENu65V2DYGI4Eu0WB1ef/7MsQjl3zxl1g=
+	t=1732470334; cv=none; b=LHtzvRFWasmLhn+4bnflsi32wHoq8Q25ZH+653Dl1l3mzRO+68VZyH9aTBdxRTGS98U75iEFwO4Epa7i3RP391C2J43/49Ddux51a27K9V/wz7QIfhCWfAJ5E1JZXfGcnP2Wv9hAsiQD838J3VcBJOx3A2Ek7FTIqAbkLF/wDVk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732470310; c=relaxed/simple;
-	bh=naozf7B+svGSZsTQ6gTWOETT7Tz1OxiscnzlD5eNm84=;
+	s=arc-20240116; t=1732470334; c=relaxed/simple;
+	bh=KJiwNKB+6HY4s6PD4bB+NeEGvWMCyutvgtWEsQJTrvE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=TwLsYnMlCEfs+25NKWEqhYSih02UiEsL6fnw0PlIngQGZ8e+ejIsbBEVAAHC9A003JtY8KYNH+QrA1nNiBdST3g6fApQfwwLFuJB7kOs057UgvIUaVDI2CrqHrJdQ+ADvGmKQAIDNl3hszAY8+SBkkZNmnyFeaf1DWZUPn1WJ2E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=O14rHKNV; arc=none smtp.client-ip=192.19.144.205
+	 MIME-Version; b=JcmgWMkwXBXMkSjJkKiU6z6o+E1unCZSUbwCsGmnkcs3/yqlEUPxYV/bWjpgvAInpVPWf7Dg3pJSvaGHjhmjrcEes9iwoBJLbomHo3jaPsVsNGHL5XViTmkJlaw39CqFfv/96CQsXyLUN6BEEjS5NsBrtBTmvTzLUWXKFTnK5nY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=lbZTG1Mk; arc=none smtp.client-ip=192.19.144.209
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
 Received: from mail-lvn-it-01.lvn.broadcom.net (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
-	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 7EA38C0005EA;
-	Sun, 24 Nov 2024 09:45:07 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 7EA38C0005EA
+	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 4372AC000C6E;
+	Sun, 24 Nov 2024 09:45:32 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 4372AC000C6E
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
-	s=dkimrelay; t=1732470307;
-	bh=naozf7B+svGSZsTQ6gTWOETT7Tz1OxiscnzlD5eNm84=;
+	s=dkimrelay; t=1732470332;
+	bh=KJiwNKB+6HY4s6PD4bB+NeEGvWMCyutvgtWEsQJTrvE=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=O14rHKNVZFLIepu7TlBhUc/iugDhVfJBCdG7qn5Bnfcfin00XUBRfIxTGdZJ2GHyl
-	 m4juPCBf0B4BaOSHylpdRWYmaO1ZWspksVb+tx11WsLeeP1bMRX/cqRVljcZDlpok4
-	 0Hw2LkTGvooKRugYd0ijF+DLLtPGS7QyVQLilXTM=
+	b=lbZTG1Mkb0L/Jx10XXxz7b6ZTbbN8ncH9TAxu3AwewBIkWOT+sMwAKfPZtKCIrP4w
+	 YFYGPPcjt820H3YJ4g6xLTjl59uB7A8oOf4Wy5e72PBB2ugkanqrq1wgZ23yrgV+by
+	 MiC0NkL/FEVyeHrM2CVBxYu6j7EytreyBk0IM0SM=
 Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail-lvn-it-01.lvn.broadcom.net (Postfix) with ESMTPSA id 21AD518041CAC6;
-	Sun, 24 Nov 2024 09:45:07 -0800 (PST)
+	by mail-lvn-it-01.lvn.broadcom.net (Postfix) with ESMTPSA id D296718041CAC6;
+	Sun, 24 Nov 2024 09:45:31 -0800 (PST)
 From: Florian Fainelli <florian.fainelli@broadcom.com>
 To: bcm-kernel-feedback-list@broadcom.com,
 	"Rob Herring (Arm)" <robh@kernel.org>,
-	Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Hauke Mehrtens <hauke@hauke-m.de>,
+	=?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>,
+	Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>
 Cc: Florian Fainelli <f.fainelli@gmail.com>,
-	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: broadcom: Remove unused and undocumented properties
-Date: Sun, 24 Nov 2024 09:45:06 -0800
-Message-ID: <20241124174506.716145-1-florian.fainelli@broadcom.com>
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] arm: dts: broadcom: Remove unused and undocumented properties
+Date: Sun, 24 Nov 2024 09:45:31 -0800
+Message-ID: <20241124174531.716317-1-florian.fainelli@broadcom.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241115193854.3624123-1-robh@kernel.org>
-References: <20241115193854.3624123-1-robh@kernel.org>
+In-Reply-To: <20241115193904.3624350-1-robh@kernel.org>
+References: <20241115193904.3624350-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,14 +77,14 @@ Content-Transfer-Encoding: 8bit
 
 From: Florian Fainelli <f.fainelli@gmail.com>
 
-On Fri, 15 Nov 2024 13:38:53 -0600, "Rob Herring (Arm)" <robh@kernel.org> wrote:
+On Fri, 15 Nov 2024 13:39:01 -0600, "Rob Herring (Arm)" <robh@kernel.org> wrote:
 > Remove properties which are both unused in the kernel and undocumented.
 > Most likely they are leftovers from downstream.
 > 
 > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 > ---
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree-arm64/next, thanks!
+Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
 --
 Florian
 
