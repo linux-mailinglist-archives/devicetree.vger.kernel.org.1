@@ -1,228 +1,212 @@
-Return-Path: <devicetree+bounces-123987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50DC09D6E08
-	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 12:40:29 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C1B5F161A2F
-	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 11:40:25 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA9BE186E40;
-	Sun, 24 Nov 2024 11:40:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="FcQwNb1N"
-X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CF5E9D6E12
+	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 13:29:13 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66F967CF16;
-	Sun, 24 Nov 2024 11:40:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732448424; cv=none; b=toyM+1UrOPdiXjajNz6o+eMxuP1VzXyHhwwiGhcxo3+Gdja6JuxIvgxwcKHtp+hacjHlx/8XWyZiUQJ9XpQtKCO2HgOa2zrAyvvZSvxeSibb793Oub1vQL59nbTvVyyuj/u9OYc3SPR+cj5L9zrdjo6NKJ0R5syxGZVI+l3GNyw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732448424; c=relaxed/simple;
-	bh=1bhDdSxVvYJHrSbY9Pm9YLToIwNMuQRQ/r+JsdA9se0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=as6Wm7pV1SF1V145uiAZ9fiq/79Tjfoo0w1ewLlcidCT6xiTKgnYIE5fZ28NpZLe/h7+DIuwIPJvMZO5BIJKuiIwc8jMmPDoP5b6dSMhmFtUmszmjQDGTvN+Mf4P0B6JzV8kn5OuVBSonNloFuAiN8woTck+EWRNBD+phrosQqs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=FcQwNb1N; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=J3BQnHmMzJvRzOGoxvKw6fbWVPHb009ceAjCw5kM6Qk=; b=FcQwNb1Nxc86U2alMAKKQijXNV
-	5BVPN2Tp0UqXl5qkKq7DIEA9jHHTZucMj98AqTokHXNRwUyIYA8rM24FF58r/vPu+ZYbRoW2jUbRl
-	h7dyNgeBbYFl5ytnPtVTFb5TOMurDcszoejPbvXlSH3IDz/1rhecHcctN4oSqyJSxx1KQkiHYRabV
-	R3lNBZcleSSsxMWX6EP2N66v1A0ZuQbbPNe5hE9Exqdhe/igS7mIls5fVDaWtfOL7AbPq3EuTaLm6
-	cNM67DvtSyO7z0aytWmPPOYY1Euod7ueersLrJYo2CMRdXIK5kD/BhUcsfPqzXHFMMB78ZsAzpwYl
-	vHoAjocQ==;
-Received: from i5e86190f.versanet.de ([94.134.25.15] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tFAyF-00047c-Or; Sun, 24 Nov 2024 12:40:07 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, quentin.schulz@cherry.de, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Heiko Stuebner <heiko.stuebner@cherry.de>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject:
- Re: [PATCH v3 1/2] dt-bindings: phy: Add Rockchip MIPI CSI/DSI PHY schema
-Date: Sun, 24 Nov 2024 12:40:06 +0100
-Message-ID: <8454190.T7Z3S40VBb@diego>
-In-Reply-To: <udad4qf3o7kt45nuz6gxsvsmprh4rnyfxfogopmih6ucznizih@7oj2jrnlfonz>
-References:
- <20241113221018.62150-1-heiko@sntech.de>
- <20241113221018.62150-2-heiko@sntech.de>
- <udad4qf3o7kt45nuz6gxsvsmprh4rnyfxfogopmih6ucznizih@7oj2jrnlfonz>
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC17D281378
+	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 12:29:11 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D526188591;
+	Sun, 24 Nov 2024 12:29:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="chhyFUda"
+X-Original-To: devicetree@vger.kernel.org
+Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02olkn2044.outbound.protection.outlook.com [40.92.50.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E2F32C80;
+	Sun, 24 Nov 2024 12:29:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.50.44
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1732451349; cv=fail; b=h5eTw6vdT+zNT8qDybS+MHG5gCl7vlDWYPs8IXz3ke3PFWe2xlde5IswekAJAUpStsITZ0Ltc0RH7s+GMoMY31Q/uiYnyV65A0K3aUyDXwT88U5/HjmLAWE8KkIxRZ7KtdmdB0AmrXKUWy1pnULioYaTChWam3nql4yRgVebfAQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1732451349; c=relaxed/simple;
+	bh=bCIZP4oCFKcZG5GJEyxocxru6kF3XRoxBloXErb4CFo=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=jqJrdK6BXYRpaDp6MkZNFF4LA+qygItBJcaY38db0cQIUGDlTu7n2YaNDK/SzAseM9T7rDd4Wl6g4ILpXdaDykymdnJ6MOc+84p046iv/dz72TgFj2j9gk1KSpiVSJCtH8KfI9lBo1SPUxE8dgMgu+l1sqUiVzUTeIg25uiDvM0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com; spf=pass smtp.mailfrom=hotmail.com; dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b=chhyFUda; arc=fail smtp.client-ip=40.92.50.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hotmail.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=lFq0uNUDEpm7Y5WFj75TJA9jeF2tXg51F7B+mQ6b+FJso6MQs1LLUYIZxb9Jq7Foq/66B5lPl6vuVsxSXmT0ZgH1RkuIBv2MqbelzxYq20h6v3iPBLFahW1SxqikQ47fsBUNtwvOgBnyPgOm5H3huBs6gbxuJhWRBvaA6zWgmCmi6yudvSuCGcuZuDPw0WVM3qOP9+KiOh6VHb2pO4BNX+s87OQr2Fvai+BldL8xyiqiQJgyxviIfdRNf0+nGdXOsEhBdVfX+ZgYs7a3MvCppbVYwcw0vcRgrF+ojjUC5szu87lOfqPakmFzPzv9xn2UcSzNjL+IeJeqPSqsEb72tg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=MGGS3klio0UUsKLYs6iSA54Yomidx+mPyy/obJ3W4EA=;
+ b=dpbUPsxAjpDEKCncHhFB/fkzGXUhLc8wwlQz8gcZEkpaTa3TJJ8ss4/PBAidtyKS0YAt7sxdvJT/RNHObhPJXf0TdXVteBViUBHuKwyQYsWlqYKVfpktTsDVq4NN86azuXbKEljTsl985DOUVy8CMTFi0vXNhXseDxt71pSwZRV0H/GJj6Y1Arb0aZk3e4FPwWka3JZBvHnhYg0BFgcJSmXsrDsZv+CT/H36wGv4AHcUvVb5WCOhZGufz9rp0mCWM5ROtOX+JSkPpLhgXE+F6x+ysMTdq3fc5jkszcNCkoVLtgBB5ozc3Owe96Hv4HvHKvBYdoBawUGVVWz/VXKj/A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MGGS3klio0UUsKLYs6iSA54Yomidx+mPyy/obJ3W4EA=;
+ b=chhyFUdatmLzocY2Of5KWOhAh/xQqL3ompjOF+w9A7QQmm6s1cDuBC6FTld/JGLbfqoeOWfG9eU+g6f0uB/TWpIR72JvSofhOOJJ4XwUXhZc+ti6gCJmDZoUYWoJYpRAaPeIR4lW1Q03BLfVyBp6XD5QSPdw2P4cQX1xpuYdDa6fAMCEIr3Bh7bGSm6d6RIdcpo4APjegzoniJ2k5R5KHa1CjaCSA0b4szBCD8eIMq423QBH4yw/vZTOxEmnO0Kr9X1EwdxiO2sLEf3gp0wiRkR6vIhOKIBp3OfVaWj9Wwmaw8pZkILH9jQz76DYMZMgFmR0lonxq/kUHpX4ajDORg==
+Received: from VE1P189MB1024.EURP189.PROD.OUTLOOK.COM (2603:10a6:800:149::13)
+ by AS2P189MB2470.EURP189.PROD.OUTLOOK.COM (2603:10a6:20b:595::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8182.18; Sun, 24 Nov
+ 2024 12:29:04 +0000
+Received: from VE1P189MB1024.EURP189.PROD.OUTLOOK.COM
+ ([fe80::4c0a:a901:4d3c:e0bb]) by VE1P189MB1024.EURP189.PROD.OUTLOOK.COM
+ ([fe80::4c0a:a901:4d3c:e0bb%4]) with mapi id 15.20.8158.024; Sun, 24 Nov 2024
+ 12:29:04 +0000
+Message-ID:
+ <VE1P189MB1024FED800B8291EFAA52B15E32D2@VE1P189MB1024.EURP189.PROD.OUTLOOK.COM>
+Date: Sun, 24 Nov 2024 13:29:02 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/4] dt-bindings: display: panel: samsung,atna56ac03:
+ Document ATNA56AC03
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Douglas Anderson
+ <dianders@chromium.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org
+References: <20241124-asus_qcom_display-v3-0-002b723b1920@hotmail.com>
+ <20241124-asus_qcom_display-v3-1-002b723b1920@hotmail.com>
+ <k27rqbfvuon3uppgyhcfhcmlqv7ritbn35fmhuljnw2ievqnia@rey3cljv2p2n>
+Content-Language: en-US
+From: Maud Spierings <maud_spierings@hotmail.com>
+In-Reply-To: <k27rqbfvuon3uppgyhcfhcmlqv7ritbn35fmhuljnw2ievqnia@rey3cljv2p2n>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AM0PR04CA0091.eurprd04.prod.outlook.com
+ (2603:10a6:208:be::32) To VE1P189MB1024.EURP189.PROD.OUTLOOK.COM
+ (2603:10a6:800:149::13)
+X-Microsoft-Original-Message-ID:
+ <90015c1b-f654-4460-a4d7-af0c2123d500@hotmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VE1P189MB1024:EE_|AS2P189MB2470:EE_
+X-MS-Office365-Filtering-Correlation-Id: f511afa6-8780-49b0-218a-08dd0c83957c
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|5072599009|461199028|19110799003|6090799003|8060799006|15080799006|440099028|3412199025|4302099013|10035399004|1602099012;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?THB5bWNHeTAySHBsV21SWnExRUswdmVDcENwL2s0VHRldDBDRWI4Y05qUGE3?=
+ =?utf-8?B?N1NtcHhwbzU2L1pJTUJqaXpUMngxN2tUTHBXNXdaUGFKU3J3YWZoWEVQZExU?=
+ =?utf-8?B?b0N3SWdmSVorL0dOWUdTSFJxRVR5YWprUkJmN0I0NGxvS202RWlaclhqYzhJ?=
+ =?utf-8?B?Rm9OVXFwUWh1Nk52dVZmVHhNYlo1aDhIdnprU1ZySytBalExYzN2eGNra25H?=
+ =?utf-8?B?Uk5FTGFOaGtUL3lnU1BsYmQxQXlDM0tWZ0puSjh4aG5SSkltcVdkcndGK29q?=
+ =?utf-8?B?eUR4dkQvWG03enpZYmYveHRyZzdwZm1TSWFZaXBDRkQ4UmgrVGcwRGZQL0tr?=
+ =?utf-8?B?UVVrTE9aYW5SQlVrQU9BeVljbTVzTGdrbDdMOXM0U0FJNGdpYitXVmgvc0RV?=
+ =?utf-8?B?OHd1OTVQa0toSTV1K0dNQXAxMTlZZml4QTFvSkhlNllaQmNhaTVPYnZodTFa?=
+ =?utf-8?B?L3dGWDR0TWs3NFd4bFE0VVZ0K3djbDJra3lVUEdxSDBMYjdDYWJHVGwrQ2Nn?=
+ =?utf-8?B?dG5HNmEydjRwa0U4K2xOd284Wm5lTGg5VkRPSGZrbjZQa2d4d1NXcE5JaFVE?=
+ =?utf-8?B?SjdvMlJ4TW1zREdSaUYyRHJld0o5NGRZeWRrVG4wQWM4ODBmNFJjOEErd1FP?=
+ =?utf-8?B?czRrSGpqK0FmTDRpQ0FDaHFlT2R4KzVsM2hCUXZJNjFhZzkzVFh0Y3lIOXlF?=
+ =?utf-8?B?OENMNmJlK2x2OTd5UDlxOXhJMGlRTDlLeE1QdFZ6eEhmQU5CWjczb0JJSGoy?=
+ =?utf-8?B?VU94d090YW9XdWQ2aE42Q1VnZlduS0wvTGZvTG04cGh0U3NqaXhBNFEvOFcw?=
+ =?utf-8?B?YW9xT0I0aVFHN3dQdkd6djNreDVjM3UvaGVxZFByd1JwQ3hhWU9kdDdNaFR0?=
+ =?utf-8?B?cUx2SDM4SlM2TGVJVW94QW5Wa1pRMFdQM1BnY01EaHQycnhQUXUvV3NFTXpl?=
+ =?utf-8?B?dUxuQWNpYzlUWTJNR3BLY1JXR2JIMXFhbzMrZHRwOVlITm9pbTUxY2cwNldt?=
+ =?utf-8?B?d0RDQjJrRmxHUFlWZ21tY0YvWkFEc0lWTlJuY3Bmb2d6eVJVaUJTSDBwSlA3?=
+ =?utf-8?B?V3ZGeWw4b0tqSlhGR0kvMTR1YllXSHJaUVpIRVM5bU1TTVlrMnV3TGo3Q1JN?=
+ =?utf-8?B?MkZxUXVCaC9mQ1UwNkNuWW9acC8yWnR2VlNKWkRkYmRRWHU5L2Q1SDcxeEh4?=
+ =?utf-8?B?NmxMdW9aQ2xPVWI0aFI2VEtmWFB0U2l2S2FzUGxDMkdDQU1aUXdDdEpqQkxB?=
+ =?utf-8?B?a0gxZmQ0QTIwU0pHU1NHdWplWFZESVg4WTYrOUpVZ0xHdCtqODlTNGdCZnhL?=
+ =?utf-8?B?VmJlTDhPL08xMDVQRkRIam9qSzh4MHpkSGNOV0Z5RktWYmVaTVc3S2pVeXVs?=
+ =?utf-8?B?aGE1U0xkSWlwOW83QU90SWFsU0hSQlJpczdvbXRueWZXT0xUVGZhU3AyR0cr?=
+ =?utf-8?B?UkJRUXI0SEl3VzJGQzA4dEM3RFN6eDZTazdSVThleURBcGQyR05kZjMvY0Mz?=
+ =?utf-8?B?TDBnd3M5cFVXZWR2blh5V0JrMnlHdHJYNzB5VlV4bFNrVllnRm9TbU5hOEFu?=
+ =?utf-8?B?dUIxUT09?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?S1ZLOStTdUZmVEhqUzE0VTVwcXNXZW9xSWJxeEJDd0t6d0Fzci9RT01kQTRR?=
+ =?utf-8?B?NzNLZFhyTVdNaldzekFRdktFaE1UTFU5ZklRemdMN1pkUE1FbkRzOGNHRitF?=
+ =?utf-8?B?VXk4U3lzdko2Vi9KaXcrajRUYzIzS0Z5Z2dLVW5xSlNJY1JYak85d2VSMDRE?=
+ =?utf-8?B?K2JicjdhaHczSHRDQVJSNGhsVnR5TVZnMVhyRDlPWVUxaXhnMkhHdm5wQkln?=
+ =?utf-8?B?SklsZVdpR0pPaUloZE9nS0lNdmtSVWgxVjRZN05yVThYNU9DSUIwbklqK1NO?=
+ =?utf-8?B?TEt6NU50dkNLY0tBRnNCRFlVWDhqZE13R2x6bWF6MTByNmRnOHhnQUpXeTc1?=
+ =?utf-8?B?Q3RmWGZKMVZHTGY3Vm1IR28ycGI2TDFkWmxXU1VyR3UvZmc2U1I1RDBUbjJQ?=
+ =?utf-8?B?S202RXprYVM3aytXcHpxVGJnY21pOC9OcXAxU3k0WUFHTE1oaDVCT2hYemlO?=
+ =?utf-8?B?emhzYmRtd05tZ2FvYytzSllEa1NQakVRd2tnaml4WEZPTFgyZlNMbW9XWUxt?=
+ =?utf-8?B?dm5JVmx3d0hPRXJiOXBLRXRFRDJta29qa2s0aXZuTFZld1B2cE1PUmsxWStP?=
+ =?utf-8?B?UlhsMjZNYUJCN1lDYjdEbkt4Qm1qOHpKWGdXTVlXWnZFQzlGaGpOZzZJMGJ0?=
+ =?utf-8?B?STdyYjk3ay81bks0SFhvaEp2YlJtRVlIZUs1RUJWK1VPTDQrVWtHZmtmRUhQ?=
+ =?utf-8?B?UGRueDQvUENvOFhYY0k2L3c1ckFQWlJxRmFwMjZteTVNVG5oZGROSzZ5cU1W?=
+ =?utf-8?B?TWk3Mlg0SzNPTFFhenkrOUV1bFIybEVGVWx6UG1zTklrR0I4UENqWEZMK1Js?=
+ =?utf-8?B?SE41Nk9VRlowYldtQ0xmT0JoUU9uRGJQMUZRd1l3Rmc2V01HUHAxZ0tVWWhi?=
+ =?utf-8?B?cEpDaUIxVWhEN0hna2hxWWM4cm1TcXZEbk1pQVI4RE1DWkEzdVhBVFU4WHly?=
+ =?utf-8?B?WVo0SHV2Rm81bCs1WnZLTlM1ZHFKdnFtKzhYMDV3enJvcXE1cjFJeTY4TGNw?=
+ =?utf-8?B?OEFYN3Npei9mcHB5WFRYY1NYZEFvVWJ3WEN6N1I5eHRTWGpMNlU4Z0l5Y2lO?=
+ =?utf-8?B?dXVIbXoyYTZuUjNVMjRpTFBMUUxhYUJzMWdabFRjSTBPL2JzYk5oeUdid0s0?=
+ =?utf-8?B?b0oySkkzSk9qUlpFZ3c1ak1BU2JWdWFjaEU0RzdLWGFYcldOa25mSTdWYWgw?=
+ =?utf-8?B?eUlHc1lleUVYajgxR3hlS25ScFdUM0EwekJpcFViWkZ6WHVZT0xlOWZtTGFV?=
+ =?utf-8?B?V1pLNmxsMnFqbG9QdVRwS0xyb2xVMmxNRm5NZ1BuNENSN0l6ck9SY2RhYSta?=
+ =?utf-8?B?MERrVHFSM0tES0lRZkVScUJXUzY3Yzh2MU5WeXpjVkNSbWhzMGFxNWMyeFBX?=
+ =?utf-8?B?M1pEMGUrQXc5U2hpa0REd0F4QUN6aGxueFJPR05Td0gyTlRHYVQxT2FjK3FB?=
+ =?utf-8?B?YTlXcnV3eFUyUmlFSU42UXo3ZC93MTM2MmtGTm9BN3RQbE1pV0N6Vi91WmFI?=
+ =?utf-8?B?R1N5WTNSQ2FvQjV2WHRYeTgyTzFMYkN3SjNxdnY5NXY4SG9YMzl4MVhJY0pw?=
+ =?utf-8?B?UjNJRHlRMVBPWFhiTDh3QWJEYzAyd1NFVkh4aU9XLzlBR0ZHUCt0Y2RmeHhB?=
+ =?utf-8?B?NkpWSHJ0dDFaTnBTOFdHZWJkRTZSVEtrVThjSU1lVmJCRlUrbUUyeUJPeDZa?=
+ =?utf-8?B?dTV6UkcvWjhDMmprVG9Cb2xmTWNJUUNKMHJIaEhkNEhjam51WGFZUkFxN2NS?=
+ =?utf-8?Q?IFuwLwFXMsRpT+vIJt/n0NAfpxf84CRlgPygy4i?=
+X-OriginatorOrg: sct-15-20-7719-19-msonline-outlook-3b3e0.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: f511afa6-8780-49b0-218a-08dd0c83957c
+X-MS-Exchange-CrossTenant-AuthSource: VE1P189MB1024.EURP189.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2024 12:29:04.7520
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS2P189MB2470
 
-Am Freitag, 22. November 2024, 19:49:20 CET schrieb Sebastian Reichel:
-> Hi,
-> 
-> On Wed, Nov 13, 2024 at 11:10:17PM +0100, Heiko Stuebner wrote:
-> > From: Heiko Stuebner <heiko.stuebner@cherry.de>
-> > 
-> > Add dt-binding schema for the MIPI CSI/DSI PHY found on
-> > Rockchip RK3588 SoCs.
-> > 
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
-> > ---
-> >  .../phy/rockchip,rk3588-mipi-dcphy.yaml       | 82 +++++++++++++++++++
-> >  1 file changed, 82 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/phy/rockchip,rk3588-mipi-dcphy.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/phy/rockchip,rk3588-mipi-dcphy.yaml b/Documentation/devicetree/bindings/phy/rockchip,rk3588-mipi-dcphy.yaml
-> > new file mode 100644
-> > index 000000000000..5ee8d7246fa0
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/phy/rockchip,rk3588-mipi-dcphy.yaml
-> > @@ -0,0 +1,82 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/phy/rockchip,rk3588-mipi-dcphy.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Rockchip MIPI CSI/DSI PHY with Samsung IP block
-> > +
-> > +maintainers:
-> > +  - Guochun Huang <hero.huang@rock-chips.com>
-> > +  - Heiko Stuebner <heiko@sntech.de>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - rockchip,rk3576-mipi-dcphy
-> > +      - rockchip,rk3588-mipi-dcphy
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  "#phy-cells":
-> > +    const: 0
-> 
-> I would expect an argument to select between D-PHY and C-PHY mode,
-> so that the binding is ready for it even when the driver does not
-> yet support it. E.g. something like
-> 
->   '#phy-cells':
->     const: 1
->     description: |
->       Supported modes are:
->         - PHY_TYPE_DPHY
->         - PHY_TYPE_CPHY
->       See include/dt-bindings/phy/phy.h for constants.
-> 
-> This would match how it works for the naneng Combo PHY to switch
-> between PCIe/SATA/USB3. Also Mediatek CSI DC-PHY handles it that
-> way upstream (with just D-PHY being supported). I see that the
-> driver stack you send upstream expects, that the PHY user (e.g.
-> the DSI controller) instead manually calls phy_set_mode(phy, <mode>).
-> To me it seems more sensible to just get this automaically from DT.
+On 11/24/24 12:00 PM, Krzysztof Kozlowski wrote:
+> On Sun, Nov 24, 2024 at 11:00:57AM +0100, Maud Spierings wrote:
+>> The Samsung ATNA56AC03 panel is an AMOLED eDP panel.
+>> It is similar to the ATNA33xc20 except it is larger and has a different
+>> resolution.
+>>
+>> Signed-off-by: Maud Spierings <maud_spierings@hotmail.com>
+>> ---
+> <form letter>
+> This is a friendly reminder during the review process.
+>
+> It looks like you received a tag and forgot to add it.
+>
+> If you do not know the process, here is a short explanation: Please add
+> Acked-by/Reviewed-by/Tested-by tags when posting new versions, under
+> or above your Signed-off-by tag. Tag is "received", when provided
+> in a message replied to you on the mailing list. Tools like b4 can help
+> here. However, there's no need to repost patches *only* to add the tags.
+> The upstream maintainer will do that for tags received on the version
+> they apply.
+>
+> https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+>
+> If a tag was not added on purpose, please state why and what changed.
+> </form letter>
+>
+> Best regards,
+> Krzysztof
+>
+I did indeed completely miss it, only focussed on the correction, Should 
+I make a new version?
+Also this is my first time replying on the list so I hope this goes well.
 
-The mode-selection for the phy is definitly tied to the hardware-design.
-Depending on how the board is designed, it'll always do either D-PHY
-or C-PHY mode.
-
-I guess it mostly just feels strange when so far the parameter was
-used to identify say an individual clock from the clock controller.
-
-But reading the Medietek discussion (up to [0]) it looks like that is
-a nice way to do this, so I'll adapt things in the next version.
-
-
-Heiko
-
-
-[0] https://lore.kernel.org/all/20230608200552.GA3303349-robh@kernel.org/
-
-
-> Otherwise the whole series LGTM.
-> 
-> Greetings,
-> 
-> -- Sebastian
-> 
-> > +  clocks:
-> > +    maxItems: 2
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: pclk
-> > +      - const: ref
-> > +
-> > +  resets:
-> > +    maxItems: 4
-> > +
-> > +  reset-names:
-> > +    items:
-> > +      - const: m_phy
-> > +      - const: apb
-> > +      - const: grf
-> > +      - const: s_phy
-> > +
-> > +  rockchip,grf:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description:
-> > +      Phandle to the syscon managing the 'mipi dcphy general register files'.
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +  - clock-names
-> > +  - resets
-> > +  - reset-names
-> > +  - "#phy-cells"
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
-> > +    #include <dt-bindings/reset/rockchip,rk3588-cru.h>
-> > +
-> > +    soc {
-> > +      #address-cells = <2>;
-> > +      #size-cells = <2>;
-> > +
-> > +      phy@feda0000 {
-> > +        compatible = "rockchip,rk3588-mipi-dcphy";
-> > +        reg = <0x0 0xfeda0000 0x0 0x10000>;
-> > +        clocks = <&cru PCLK_MIPI_DCPHY0>,
-> > +                 <&cru CLK_USBDPPHY_MIPIDCPPHY_REF>;
-> > +        clock-names = "pclk", "ref";
-> > +        resets = <&cru SRST_M_MIPI_DCPHY0>,
-> > +                 <&cru SRST_P_MIPI_DCPHY0>,
-> > +                 <&cru SRST_P_MIPI_DCPHY0_GRF>,
-> > +                 <&cru SRST_S_MIPI_DCPHY0>;
-> > +        reset-names = "m_phy", "apb", "grf", "s_phy";
-> > +        rockchip,grf = <&mipidcphy0_grf>;
-> > +        #phy-cells = <0>;
-> > +      };
-> > +    };
-> 
+When I add one of these tags it should be in the commit message of that 
+patch below three dashes?
 
 
-
+Best regards,
+Maud
 
 
