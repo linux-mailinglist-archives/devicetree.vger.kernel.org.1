@@ -1,79 +1,48 @@
-Return-Path: <devicetree+bounces-123971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-123972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7BE59D6D88
-	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 11:22:10 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D020F9D6DBC
+	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 11:50:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53FDB28122B
-	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 10:22:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 96717B21014
+	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 10:50:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA1C2154444;
-	Sun, 24 Nov 2024 10:22:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 407081836D9;
+	Sun, 24 Nov 2024 10:50:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WPOeQKcV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m2AP3zQx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D11413FC7;
-	Sun, 24 Nov 2024 10:22:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14ACC2AF16;
+	Sun, 24 Nov 2024 10:50:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732443725; cv=none; b=XcwAeo/Sn2tpFv+NpBfUXW+ojuhIT5iW3ivmTsmy78CoAvtf8XRyrs+t2sxSdxL5JN5FQbiNki2QU1mrtADzyO12mRV6Px15qZzJWabSr2XrgaKFBvyOoCSbSIcueHDg8faNntwdpUtT4wBy5e98cMYJwtCX6a3RZYww0KwQyOU=
+	t=1732445423; cv=none; b=aXHyrUjYutKBqtQU4nQ/DRDmr5z10bzTr/7MXO1ylILr615e5/A8nGXElz4ADGckuxFEfaOuTNNuAlf4hwkJdjdGhvV+Di1H/6chHgVh8BcRWbWbhh8ne6z2eUOCgbk/ZWnTeNOgBMVyiIJH5N+HjvpX9cHaI3MqVjn7HyUR9eY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732443725; c=relaxed/simple;
-	bh=9oCTn0OuRR2ZYCAbf59HtSXH94Vj+xyQ4b0OVmshtos=;
+	s=arc-20240116; t=1732445423; c=relaxed/simple;
+	bh=ZrnJ+jDwRbENGrk48WfqaEHSTZRZdNi7M8l9PrYAq44=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lYvHjf4r8lpfITcfjhWfBvD+3KcnFBovlD9ZsVkMYnlEM0iTmEb7CxG6fe5K3/VltustqO/Hi6bqf7cDj2z/qVCMKmktKvD5D9O1XeQCt9OcZPirhfg2BYmQXS+Fhhkape7T+k2smnhljlnOh1jySomafuuaCOIBFO3fUjFvmXc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WPOeQKcV; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4315baa51d8so31649915e9.0;
-        Sun, 24 Nov 2024 02:22:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1732443722; x=1733048522; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EARY631trTP8bPGVF4+FUq8WRYwqoko+NV4e4AJDVS4=;
-        b=WPOeQKcVMVs9ZJNj58IfPhbI1qO42/tVKegUoSOZ2LcQcxZB/cros5LxCchboD9jZp
-         Wj7LV8uRjOLon5WLtKZijkaT4W9pkufJ0H6iaPVO7l9ZrgBr1uJ4QSHT7P/dbvwz4wCe
-         2NbhK1v6YAMvmoZdP9TKJZ0zB16fIlymzFRUGO7QDvzIr0EZCssV3ZUjZLNPqjSbkZAx
-         C/etrZUSz2yL/s6W8BBUfnP2meZEMWe4JrNzhIbCh6cfDesTNwT/MdqwozQGYYKoGMLx
-         lgs2U+bycDshaGv3QmsM/jY2YRmmvk0opOWdHioIGzX++ch1V0vcqLsLJ67C9d/A0Tk3
-         cSlw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732443722; x=1733048522;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EARY631trTP8bPGVF4+FUq8WRYwqoko+NV4e4AJDVS4=;
-        b=BjbNgxnvUdcyBxz7nFiRygNo2y6Xa7VD53+5POUcbO1WxJnbzHwqzAMGdaP4m3nd1J
-         bYJDR909GlMR/GvG2awVLpm4cRR+eHpmo6ulC3PWBo1S6KMU6ItsbEOAjf8R0D7G80Uc
-         v+dkqqEjuqg/AwLruoEfqqb3HwnyiCbq0NlMvaEXjp7li0cP13YFn/r7xmubSYK2aKgK
-         1JuodCJIzhtJlrfv4yNLhm83gkK9ayFkixm5tAfQ817mjBcNJyPidtZJoWkdMyPxDNSl
-         gayO46QuHcmHQihhWR3vJlAqHwdM6ErrzTkNPzpRAXHL64PwBcr8zYdZlaHIsbXtFxWW
-         5ueQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVw9kCnKimMF1PgoR6BaNxj22XAk1kqVvkroB443AIpOKrbEbgPdQR/gt4lpd+QUF7coJNIdm2wk/sc@vger.kernel.org, AJvYcCW+3A86580nhUl0OxY7S/J3CplxdtzpOm41HcjTyfKDaZhi7b7t3w6DOBKKoSAC1ibqF+7N6YBOuqIH4URu@vger.kernel.org
-X-Gm-Message-State: AOJu0YzwdL0yB97St0HqYXKcWrJz39KnKwsHkNk/9a893qQOwjzSxIT1
-	j4xFAGEmO3uwd1huevbxDDKk6GgV+Sfdd5v1bytzCtWG3QORFOZI
-X-Gm-Gg: ASbGncv7FjYAEdp7DguflGN/tDenGSwnLRmNZS0nom/qK7TSajtNxomC9zK3087LwUs
-	jFd8XyR6Zz0tAF5ypMivoE3W6wgr8HYaIt6L0utSUwjWbVLSBk9/U9hG0w5f1PphgorfHxH1lGL
-	QYBvQ/EuVhINQvKQXU5fLiK9I016gPFnlLghaKo1LsiwLFYZKs5UiDmQmo+N6AgzwW9dQ+4gWhP
-	XCVHbjff6iuRmWeEYaKKyZRYGGoEqj5CIS9IuFgmau17hKSCY1jZmZ+p3GC9CKiCrNsLo5CO8k7
-	REA1aUqxvDnk8FFEZVJ6kIdWVlyK1Q==
-X-Google-Smtp-Source: AGHT+IF90ZCmjQclncaeSHdtxHJLKaUTR0zA5IJT87d4aV/v6gyuaYoZ5id52sQMUI8wUQFT+DWspA==
-X-Received: by 2002:a05:600c:4712:b0:432:7c08:d0ff with SMTP id 5b1f17b1804b1-433ce48ee2amr67395605e9.23.1732443721726;
-        Sun, 24 Nov 2024 02:22:01 -0800 (PST)
-Received: from [192.168.2.120] (cst-prg-110-166.cust.vodafone.cz. [46.135.110.166])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4349f2e1b3bsm1036125e9.25.2024.11.24.02.22.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 24 Nov 2024 02:22:00 -0800 (PST)
-Message-ID: <c8f40177-1d81-4c8e-8319-e78623cded42@gmail.com>
-Date: Sun, 24 Nov 2024 11:22:00 +0100
+	 In-Reply-To:Content-Type; b=I8hZgbLCmfBEEkQFpKpAMw1SDLAi3l58h4xVY4azLh/DulQBvr9qA1uPkr72RPi/8g2oAbhWL8I2WV6eehf+CQ1qdtAuP3bkeTJDeoR8mxyG/W34M93Mm/wytwuiNYuooyRfnepD3E1qiqFTUCBI2Tv3ptcLc7y16lp0XcdBCS8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m2AP3zQx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AA64C4CECC;
+	Sun, 24 Nov 2024 10:50:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732445422;
+	bh=ZrnJ+jDwRbENGrk48WfqaEHSTZRZdNi7M8l9PrYAq44=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=m2AP3zQx1r6eEEfueXPoI/sbM8g5SC5EEbComdOwH6Fx3gJKS/m8Dl/LV/Y3YXbWt
+	 eNOZqp2cFZ/xNJAtsalHiaSlVlATR876fdatc4MT2R/zxMLxsvCy1qqUIyqpLlWWUX
+	 oodAvbHcuRrOeY0L4CiYQLyEyVcEA7pscRBhytLLaYOb6ykj3pSmPuD05aATA8atEg
+	 X2v9eYK7EqVjCbiysMCnjxZ8SNzTFz1DKMYt9o8MPd99aq5HbZ1ZijigexN0VWaoP/
+	 dvFKH7gEgCtQmZGdgjS0S/zu2PiAHYS/nqXEIneKwtBVlF6VtuAxC0AzkSomt503B2
+	 LVo7wAYaWTnZw==
+Message-ID: <40684c50-6f6d-493c-97db-ff3bd8883259@kernel.org>
+Date: Sun, 24 Nov 2024 11:50:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,7 +51,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v2 1/3] w1: ds2482: Add regulator support
-To: Krzysztof Kozlowski <krzk@kernel.org>
+To: =?UTF-8?B?S3J5xaF0b2YgxIxlcm7DvQ==?= <cleverline1mc@gmail.com>
 Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
  Stefan Wahren <stefan.wahren@chargebyte.com>,
  Ben Gardner <bgardner@wabtec.com>, linux-kernel@vger.kernel.org,
@@ -90,97 +59,85 @@ Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
 References: <20241122-ds2482-add-reg-v2-0-a5a03ee74da7@gmail.com>
  <20241122-ds2482-add-reg-v2-1-a5a03ee74da7@gmail.com>
  <2ff7omfp752zdtzozcle5jn7nsyonsbqgjefrx5t4lncoer5bw@wb76uxg26ugg>
-Content-Language: cs, en-US
-From: =?UTF-8?B?S3J5xaF0b2YgxIxlcm7DvQ==?= <cleverline1mc@gmail.com>
-In-Reply-To: <2ff7omfp752zdtzozcle5jn7nsyonsbqgjefrx5t4lncoer5bw@wb76uxg26ugg>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ <c8f40177-1d81-4c8e-8319-e78623cded42@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <c8f40177-1d81-4c8e-8319-e78623cded42@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-> On Fri, Nov 22, 2024 at 09:53:57AM +0100, Kryštof Černý wrote:
->> Adds a support for attaching a supply regulator.
+On 24/11/2024 11:22, Kryštof Černý wrote:
+>>> +	/* Get the vcc regulator */
+>>> +	data->vcc_reg = devm_regulator_get(&client->dev, "vcc");
+>>> +	if (IS_ERR(data->vcc_reg))
+>>> +		return PTR_ERR(data->vcc_reg);
+>>> +
+>>> +	/* Enable the vcc regulator */
+>>> +	ret = regulator_enable(data->vcc_reg);
 >>
->> Signed-off-by: Kryštof Černý <cleverline1mc@gmail.com>
->> ---
->>   drivers/w1/masters/ds2482.c | 21 +++++++++++++++++++++
->>   1 file changed, 21 insertions(+)
+>> You wanted devm_regulator_get_enable().
 >>
->> diff --git a/drivers/w1/masters/ds2482.c b/drivers/w1/masters/ds2482.c
->> index a2ecbb863c57f38bffc8e3cd463db1940e603179..3fb35e92fc1587dc4e609c0061fa5057e0027a80 100644
->> --- a/drivers/w1/masters/ds2482.c
->> +++ b/drivers/w1/masters/ds2482.c
->> @@ -15,6 +15,7 @@
->>   #include <linux/slab.h>
->>   #include <linux/i2c.h>
->>   #include <linux/delay.h>
->> +#include <linux/regulator/consumer.h>
->>   
->>   #include <linux/w1.h>
->>   
->> @@ -117,6 +118,9 @@ struct ds2482_data {
->>   	u8			channel;
->>   	u8			read_prt;	/* see DS2482_PTR_CODE_xxx */
->>   	u8			reg_config;
->> +
->> +	/* reference to the optional regulator */
+>> ... but your comment also suggests devm_regulator_get_enable_optional().
+>>
 > 
-> Drop comment, obvious.
-
-I will drop all the other comments, as they seem to have the same level
-of "obviousness" as this one to me.
-
-
+> This is a good point, my implementation is based on observation of a few 
+> other drivers and it's not needed in this case. This will reduce the 
+> amount of changes.
 > 
->> +	struct regulator *vcc_reg;
-> 
-> Missing indentation after type - see earlier lines.
-
-struct will be removed with switching to devm_regulator_get_enable().
-
-> 
->>   };
->>   
->>   
->> @@ -445,6 +449,7 @@ static int ds2482_probe(struct i2c_client *client)
->>   	int err = -ENODEV;
->>   	int temp1;
->>   	int idx;
->> +	int ret;
->>   
->>   	if (!i2c_check_functionality(client->adapter,
->>   				     I2C_FUNC_SMBUS_WRITE_BYTE_DATA |
->> @@ -457,6 +462,18 @@ static int ds2482_probe(struct i2c_client *client)
->>   		goto exit;
->>   	}
->>   
->> +	/* Get the vcc regulator */
->> +	data->vcc_reg = devm_regulator_get(&client->dev, "vcc");
->> +	if (IS_ERR(data->vcc_reg))
->> +		return PTR_ERR(data->vcc_reg);
->> +
->> +	/* Enable the vcc regulator */
->> +	ret = regulator_enable(data->vcc_reg);
-> 
-> You wanted devm_regulator_get_enable().
-> 
-> ... but your comment also suggests devm_regulator_get_enable_optional().
+> I think my wording was not correct. By optionally I meant that most 
+> hardware designs do not use a separate power supply regulator, so they 
+> do not need to specify one, but the device needs power to function.
+> My current view is that it should not be optional after all, so I would 
+> go with devm_regulator_get_enable(). Could you please tell me your view 
+> on this?
 > 
 
-This is a good point, my implementation is based on observation of a few 
-other drivers and it's not needed in this case. This will reduce the 
-amount of changes.
 
-I think my wording was not correct. By optionally I meant that most 
-hardware designs do not use a separate power supply regulator, so they 
-do not need to specify one, but the device needs power to function.
-My current view is that it should not be optional after all, so I would 
-go with devm_regulator_get_enable(). Could you please tell me your view 
-on this?
+Sure, fine.
 
-> 
-> Best regards,
-> Krzysztof
-> 
-
-Thank you very much for the review,
-Kryštof Černý
+Best regards,
+Krzysztof
 
