@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-124046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124047-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3EEB9D76EC
-	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 18:53:45 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4F0AE162774
-	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 17:53:42 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF09C7DA6A;
-	Sun, 24 Nov 2024 17:53:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="hB27/prD"
-X-Original-To: devicetree@vger.kernel.org
-Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.209])
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 110439D7760
+	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 19:33:18 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 625812500C7
-	for <devicetree@vger.kernel.org>; Sun, 24 Nov 2024 17:53:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.209
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 91B3BB29842
+	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 17:54:03 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D26F47DA88;
+	Sun, 24 Nov 2024 17:53:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="dUXF/ejp"
+X-Original-To: devicetree@vger.kernel.org
+Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.207])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67BFE2500C7
+	for <devicetree@vger.kernel.org>; Sun, 24 Nov 2024 17:53:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.207
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732470822; cv=none; b=gFf7vHzjeWvzbwYATRu4vCTozGQBNhxmtOmKRe9hFCaBFPaeyNvzjCZWXmonBu0wSpoZD4jmep10xB1/tQGxqCcNbEJ3Z6VbB5AdSnj43Rn33FwUeaeGNIRdiF2Q9L0Vd+p87rucstMax8GIofjqhTUwZIID+fPbrNMnov4aFaw=
+	t=1732470833; cv=none; b=C/Xx27TNeLwvMetC//jrety+N/N+vKPmmbECGOoUfQ/C4jy/SK4bgO1gCwO1rJXEYRsXOjcHqtHHA84OjAYVsNsynWwp54t69JOpmBkivseYyMzukmdG5YSPTIdmPWG032cLDTPpJtivr7Hkh9DQHJ31GvIBe/kunJbZEaZWTmw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732470822; c=relaxed/simple;
-	bh=NtLLGDy/FwmKZxXQ0kklJcO9KR8K2FQHsQWn7P9eRLA=;
+	s=arc-20240116; t=1732470833; c=relaxed/simple;
+	bh=pO37iYz1GHmNlpK2h9/Rk6Yf6YEcoAXM+LLc0flzDH0=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ekj2fBMLrjKc2KCykAsqI2PYM0T6PyawY7+xtpzBG6G4i5zGJNziINrZBXPNyXze9bJzZAyigpmOmbRB25rfIAQOa/q5l/vwNf/bna/nKL/pMSHddvDSNix6KbNfanVku8h7ezkgC/GukBULP+gMPLmsDxO5KKq7HrkalvcSxfI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=hB27/prD; arc=none smtp.client-ip=192.19.144.209
+	 MIME-Version; b=iMULkGlW0yODFTWm++u2b2SY5rPdJk69t+U3es9Z8CWWGYIfRHsBgYjTOZrJy+nQAWIJoN8NbnzMqQSc/Hy9X+LjXImjchTsLf7JDgBmy5h/0C/knkG8nkhzMjgAeOZ6sugnvKn+mbqNOrZcCXQInXVUdOItBE/zYuweUU4P8ss=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=dUXF/ejp; arc=none smtp.client-ip=192.19.144.207
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
 Received: from mail-lvn-it-01.lvn.broadcom.net (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
-	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 6FBCCC0005CA;
-	Sun, 24 Nov 2024 09:53:40 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 6FBCCC0005CA
+	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 80920C001500;
+	Sun, 24 Nov 2024 09:53:51 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 80920C001500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
-	s=dkimrelay; t=1732470820;
-	bh=NtLLGDy/FwmKZxXQ0kklJcO9KR8K2FQHsQWn7P9eRLA=;
+	s=dkimrelay; t=1732470831;
+	bh=pO37iYz1GHmNlpK2h9/Rk6Yf6YEcoAXM+LLc0flzDH0=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=hB27/prDb4hvJO17+Nv0ppTOWYtrsAJ7WyJJmlMa0919TX7SMc6cFFykSyhbPp6Hg
-	 A7d9tx9FI9YmpEZ6rZzXRCBcnkvdZnTfHKj29JnWsnXwXneFYY0Eu9aQZbozBX2SE3
-	 pKdR8j2pNN2B7ZfdvUxjcKkbPRbInXJFFWQcSMBo=
+	b=dUXF/ejpboIuqs01VIuFnERnEQ5wR1ToHIXHRQ3TeZP6oSKI7oC3SJCQEQRa+f3zQ
+	 /Yr0lhjYoM6oq+cRpWYgFjqDelawTfobyqLeMrvTLwGo5p76HqTaAAQhLYlbGle7dd
+	 jN1RWHc/19NNvzkbp+IiSsfHdC61sOyIAZcqOy5U=
 Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mail-lvn-it-01.lvn.broadcom.net (Postfix) with ESMTPSA id 0BFA618041CAC6;
-	Sun, 24 Nov 2024 09:53:40 -0800 (PST)
+	by mail-lvn-it-01.lvn.broadcom.net (Postfix) with ESMTPSA id 1A4CD18041CAC6;
+	Sun, 24 Nov 2024 09:53:51 -0800 (PST)
 From: Florian Fainelli <florian.fainelli@broadcom.com>
 To: bcm-kernel-feedback-list@broadcom.com,
 	Linus Walleij <linus.walleij@linaro.org>,
@@ -62,12 +62,12 @@ To: bcm-kernel-feedback-list@broadcom.com,
 Cc: Florian Fainelli <f.fainelli@gmail.com>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 2/9] ARM: dts: bcm6846: Enable watchdog
-Date: Sun, 24 Nov 2024 09:53:39 -0800
-Message-ID: <20241124175339.717478-1-florian.fainelli@broadcom.com>
+Subject: Re: [PATCH v3 3/9] ARM: dts: bcm6846: Add GPIO blocks
+Date: Sun, 24 Nov 2024 09:53:50 -0800
+Message-ID: <20241124175350.717568-1-florian.fainelli@broadcom.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241019-genexis-xg6846b-base-v3-2-8375a0e1f89f@linaro.org>
-References: <20241019-genexis-xg6846b-base-v3-0-8375a0e1f89f@linaro.org> <20241019-genexis-xg6846b-base-v3-2-8375a0e1f89f@linaro.org>
+In-Reply-To: <20241019-genexis-xg6846b-base-v3-3-8375a0e1f89f@linaro.org>
+References: <20241019-genexis-xg6846b-base-v3-0-8375a0e1f89f@linaro.org> <20241019-genexis-xg6846b-base-v3-3-8375a0e1f89f@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,9 +78,13 @@ Content-Transfer-Encoding: 8bit
 
 From: Florian Fainelli <f.fainelli@gmail.com>
 
-On Sat, 19 Oct 2024 22:39:31 +0200, Linus Walleij <linus.walleij@linaro.org> wrote:
-> The BCM6846 has a BCM7038-compatible watchdog timer, just
-> add it to the device tree.
+On Sat, 19 Oct 2024 22:39:32 +0200, Linus Walleij <linus.walleij@linaro.org> wrote:
+> The BCM6846 has the same simplistic GPIOs as some other
+> Broadcom SoCs: plain memory-mapped registers with up to
+> 8 blocks of 32 GPIOs each totalling 256 GPIOs.
+> 
+> Users of the SoC can selectively enable the GPIO blocks
+> actually used with a certain design.
 > 
 > Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
