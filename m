@@ -1,184 +1,87 @@
-Return-Path: <devicetree+bounces-124042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124043-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5C729D76C7
-	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 18:38:33 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 62677164336
-	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 17:38:30 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 759307346D;
-	Sun, 24 Nov 2024 17:38:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ktZ/kAV1"
-X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D26989D76D5
+	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 18:45:15 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42E622500C7;
-	Sun, 24 Nov 2024 17:38:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 71058283819
+	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 17:45:14 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A400751016;
+	Sun, 24 Nov 2024 17:45:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="O14rHKNV"
+X-Original-To: devicetree@vger.kernel.org
+Received: from relay.smtp-ext.broadcom.com (saphodev.broadcom.com [192.19.144.205])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 794E118B03;
+	Sun, 24 Nov 2024 17:45:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.205
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732469909; cv=none; b=GNlFpVpOkkl7shoOvfWE8QQTVW8OjTG93ZtFOAPSnuHsB3oppfV0Jir9NS0fMry+P6O++IRvIsdQogOfMcNJgVu1W4Qy/9dD3OAHX22/4Zsvytn8hksXOJ05ap/4oo1aM2HTXkhHmK3mZ/lyy2fjUHfMFFcHWNjx8d+QNUsjtio=
+	t=1732470310; cv=none; b=aBqW1JEBOhdJVOawym1NWvOH0/nWRag1voa7nudkF9RtpB1RGj0eE8fa8qTv8gsuR1fQ+Rl30SxjR+YtnrFFF3Z6iujgRevW245fd+H4JmraDdn08cJTwdnHC0HQlFm9Vjn2TR/rVMENu65V2DYGI4Eu0WB1ef/7MsQjl3zxl1g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732469909; c=relaxed/simple;
-	bh=2u13NQ7J6VXWBF2VazhwstoZDCg5yJnOa4ZwoATCQ4s=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=AfOwGvkoeekxlSxwJAhAg+zEh72bpPBHcXideINClzHRBtpLI9EZDUgFcxIvhOWWc6LXSZV1HbEr3n7TRB3QeEIEljPWvocSbIhYSpMSkME0bG/UaOy/jrvlRgbaKPecE64fVAD17iot5b9GAiN7GFzbl4PH+TEvDSEDL7cXvfY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ktZ/kAV1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3175C4CECC;
-	Sun, 24 Nov 2024 17:38:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732469908;
-	bh=2u13NQ7J6VXWBF2VazhwstoZDCg5yJnOa4ZwoATCQ4s=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ktZ/kAV1WydFWue7C2v0tHKXMIUBS7MwUSYXNxe4s2uOkWCXALQzt59tRhAa8brK2
-	 12VK4z/Q+EbiiP/4XbiprwqZeSR+LmGBMjF+PnUsFNqZR3GoHrPe9DJ8BG4qt7SFlY
-	 NHBHUjUVIhTUiEMkoEZtxiR6Iobgn1Ff+KFqQB79YnuDhTUxe0XMp4G6pu09LVhLvB
-	 cZ+7QaTC8bkNirKNrDLMhzj9A2Z05LmqHZOA3B3xDpmSqP6lTibOCA3hE+0gh9E4dH
-	 SvGl7x9I8E8OkZyNo2O5sxojRA8WCjozb17CNBQ6+rPOFVYeI6I6drnP7wFXLrX0aM
-	 IDrCaIqb0y1OQ==
-Date: Sun, 24 Nov 2024 17:38:19 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Uwe
- =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <ukleinek@kernel.org>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, David
- Jander <david@protonic.nl>, Martin Sperl <kernel@martin.sperl.org>,
- linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v5 16/16] doc: iio: ad4695: add SPI offload support
-Message-ID: <20241124173819.224b5940@jic23-huawei>
-In-Reply-To: <20241115-dlech-mainline-spi-engine-offload-2-v5-16-bea815bd5ea5@baylibre.com>
-References: <20241115-dlech-mainline-spi-engine-offload-2-v5-0-bea815bd5ea5@baylibre.com>
-	<20241115-dlech-mainline-spi-engine-offload-2-v5-16-bea815bd5ea5@baylibre.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1732470310; c=relaxed/simple;
+	bh=naozf7B+svGSZsTQ6gTWOETT7Tz1OxiscnzlD5eNm84=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=TwLsYnMlCEfs+25NKWEqhYSih02UiEsL6fnw0PlIngQGZ8e+ejIsbBEVAAHC9A003JtY8KYNH+QrA1nNiBdST3g6fApQfwwLFuJB7kOs057UgvIUaVDI2CrqHrJdQ+ADvGmKQAIDNl3hszAY8+SBkkZNmnyFeaf1DWZUPn1WJ2E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=O14rHKNV; arc=none smtp.client-ip=192.19.144.205
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: from mail-lvn-it-01.lvn.broadcom.net (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
+	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 7EA38C0005EA;
+	Sun, 24 Nov 2024 09:45:07 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 7EA38C0005EA
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
+	s=dkimrelay; t=1732470307;
+	bh=naozf7B+svGSZsTQ6gTWOETT7Tz1OxiscnzlD5eNm84=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=O14rHKNVZFLIepu7TlBhUc/iugDhVfJBCdG7qn5Bnfcfin00XUBRfIxTGdZJ2GHyl
+	 m4juPCBf0B4BaOSHylpdRWYmaO1ZWspksVb+tx11WsLeeP1bMRX/cqRVljcZDlpok4
+	 0Hw2LkTGvooKRugYd0ijF+DLLtPGS7QyVQLilXTM=
+Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mail-lvn-it-01.lvn.broadcom.net (Postfix) with ESMTPSA id 21AD518041CAC6;
+	Sun, 24 Nov 2024 09:45:07 -0800 (PST)
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+To: bcm-kernel-feedback-list@broadcom.com,
+	"Rob Herring (Arm)" <robh@kernel.org>,
+	Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Florian Fainelli <f.fainelli@gmail.com>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: broadcom: Remove unused and undocumented properties
+Date: Sun, 24 Nov 2024 09:45:06 -0800
+Message-ID: <20241124174506.716145-1-florian.fainelli@broadcom.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20241115193854.3624123-1-robh@kernel.org>
+References: <20241115193854.3624123-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On Fri, 15 Nov 2024 14:18:55 -0600
-David Lechner <dlechner@baylibre.com> wrote:
+From: Florian Fainelli <f.fainelli@gmail.com>
 
-> Document SPI offload support for the ad4695 driver.
+On Fri, 15 Nov 2024 13:38:53 -0600, "Rob Herring (Arm)" <robh@kernel.org> wrote:
+> Remove properties which are both unused in the kernel and undocumented.
+> Most likely they are leftovers from downstream.
 > 
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 > ---
-> 
-> v5 changes: new patch in v5
-> ---
->  Documentation/iio/ad4695.rst | 68 ++++++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 68 insertions(+)
-> 
-> diff --git a/Documentation/iio/ad4695.rst b/Documentation/iio/ad4695.rst
-> index 9ec8bf466c15..8009a0c272bc 100644
-> --- a/Documentation/iio/ad4695.rst
-> +++ b/Documentation/iio/ad4695.rst
-> @@ -47,6 +47,36 @@ In this mode, CNV and CS are tied together and there is a single SDO line.
->  To use this mode, in the device tree, omit the ``cnv-gpios`` and
->  ``spi-rx-bus-width`` properties.
->  
-> +SPI offload wiring
-> +^^^^^^^^^^^^^^^^^^
-> +
-> +When used with a SPI offload, the supported wiring configuration is:
-> +
-> +.. code-block::
-> +
-> +    +-------------+         +-------------+
-> +    |    GP0/BUSY |-------->| TRIGGER     |
-> +    |          CS |<--------| CS          |
-> +    |             |         |             |
-> +    |     ADC     |         |     SPI     |
-> +    |             |         |             |
-> +    |         SDI |<--------| SDO         |
-> +    |         SDO |-------->| SDI         |
-> +    |        SCLK |<--------| SCLK        |
-> +    |             |         |             |
-> +    |             |         +-------------+
-> +    |         CNV |<-----+--| PWM         |
-> +    |             |      +--| GPIO        |
-> +    +-------------+         +-------------+
-> +
-> +In this case, both the ``cnv-gpios`` and  ``pwms`` properties are required.
-> +The ``#trigger-source-cells = <2>`` property is also required to connect back
-> +to the SPI offload. The SPI offload will have ``trigger-sources`` property
-> +with cells to indicate the busy signal and which GPx pin is used, e.g
-> +``<&ad4695 AD4695_TRIGGER_EVENT_BUSY AD4695_TRIGGER_PIN_GP0>``.
-> +
-> +.. seealso:: `SPI offload support`_
-> +
->  Channel configuration
->  ---------------------
->  
-> @@ -158,6 +188,27 @@ Unimplemented features
->  - GPIO support
->  - CRC support
->  
-> +SPI offload support
-> +===================
-> +
-> +To be able to achieve the maximum sample rate, the driver can be used with the
-> +`AXI SPI Engine`_ to provide SPI offload support.
-> +
-> +.. _AXI SPI Engine: http://analogdevicesinc.github.io/hdl/projects/ad469x_fmc/index.html
-> +
-> +.. seealso:: `SPI offload wiring`_
-> +
-> +When SPI offload is being used, some attributes will be different.
-> +
-> +* ``trigger`` directory is removed.
-> +* ``in_voltage0_sampling_frequency`` attributes are added for setting the sample
-> +  rate.
-> +* ``in_voltage0_sampling_frequency_available`` attributes are added for querying
-> +  the max sample rate.
-> +* ``timestamp`` channel is removed.
-> +* Buffer data format may be different compared to when offload is not used,
-> +  e.g. the ``in_voltage0_type`` attribute.
-> +
->  Device buffers
->  ==============
->  
-> @@ -165,3 +216,20 @@ This driver supports hardware triggered buffers. This uses the "advanced
->  sequencer" feature of the chip to trigger a burst of conversions.
->  
->  Also see :doc:`iio_devbuf` for more general information.
-> +
-> +Effective sample rate for buffered reads
-> +----------------------------------------
-> +
-> +When SPI offload is not used, the sample rate is determined by the trigger that
-> +is manually configured in userspace. All enabled channels will be read in a
-> +burst when the trigger is received.
-> +
-> +When SPI offload is used, the sample rate is configured per channel. All
-> +all channels will have the same rate, so only one ``sampling_frequency``
-Double all.
-> +attribute needs to be set. Since this rate determines the delay between each
-> +individual conversion, the effective sample rate for each sample is actually
-> +the sum of the periods of each enabled channel in a buffered read. In other
-> +words, it is the value of the ``sampling_frequency`` attribute divided by the
-> +number of enabled channels. So if 4 channels are enabled, with the
-> +``sampling_frequency`` attributes set to 1 MHz, the effective sample rate is
-> +250 kHz.
-If you are exposing that as a single sampling_frequency I think we should be
-adjusting the frequency so it represents the same thing in both modes.
 
-So divide by the number of channels (conversely run faster if more channels
-enabled).
-
-Jonathan
-> 
-
+Applied to https://github.com/Broadcom/stblinux/commits/devicetree-arm64/next, thanks!
+--
+Florian
 
