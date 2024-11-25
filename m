@@ -1,112 +1,110 @@
-Return-Path: <devicetree+bounces-124384-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124385-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D6AA9D8988
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 16:40:37 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 133689D8A08
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 17:13:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1112B28453E
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 15:40:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1FE71B3F058
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 15:46:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4006E1B4143;
-	Mon, 25 Nov 2024 15:40:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4DAA194AC7;
+	Mon, 25 Nov 2024 15:46:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="T9YNyApc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aeXbfRzx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E88881B4129;
-	Mon, 25 Nov 2024 15:40:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB216291E;
+	Mon, 25 Nov 2024 15:46:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732549226; cv=none; b=BWeKOfJNjH1PlUAZ9P7qcTipl9G1KVE3NNmqou5OP+4jcWmws/cYBIpXx35qRQE/pn1vxt1glbfryW4ZX0c1cXUUY4mGQz4xrR4TA4UHcpEbU7WAQBhz+bzmMmtRMn85eic9QgeyJbgVJIILiABIrxSwADw0IK1DtqSgC6sNxds=
+	t=1732549582; cv=none; b=M5OoIskJHKyMBcRYbytG4Z0k7EDUgH+gQPfqoeqKGBOHK4w/YNwrGSfX9+QfFtxIBFKTuclFbllINQnQa65tBRmr4YYe5PSeUtGX5VI7nnMbVyS8V4UbKPgxkmGAlR+mdWUE9uJR8h0pqNWjfUcKprbaJnnpPLqkOVNVkAkGCDE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732549226; c=relaxed/simple;
-	bh=DMxASQFiv5QBuW8Wp1m0A2qe7VA8svcArqc5KMbwIjc=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:In-Reply-To:
-	 Content-Type; b=n2NeRRtmZGJw5lnH9DzAM5vyvCui3EjWNUYAPi4ETZGo0241IJqfN2C6PgS2AKk6tC+eNuqNqEPTJ3vV3LnPTKvPK/ZL3BwyQFeVIYVFPo+tT9vvAjpIMvgHL5WmQaP5EU1rrQTo+/Yf/FxGinPYAHhBPnjzkCvy0Yxg0pObDcE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=T9YNyApc; arc=none smtp.client-ip=212.227.15.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1732549214; x=1733154014; i=wahrenst@gmx.net;
-	bh=DMxASQFiv5QBuW8Wp1m0A2qe7VA8svcArqc5KMbwIjc=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:From:Subject:To:
-	 Cc:In-Reply-To:Content-Type:Content-Transfer-Encoding:cc:
-	 content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=T9YNyApcr8CnkrOW4eR7TzkxvC7xzO1pLbFzsXiAbimUzoF+oWYfamQt4T6AMU5O
-	 PPp23VHHBKMs4vtLZPKp83RcwFtA4l2pc/0vYVsybIkg310Fhi20XgF63Xksmv2gN
-	 K4vFcNO+i2v594rC+U+G9sr8s8rxVo2KPYF2QbdL37JqZG7bOT7NXGxyrVJzS4kD/
-	 1qlTJrk3xOnNJECZ+FYZlTRuAzfQwciAYKpLGH9rE9ZpGK2vvY+ZCoMRiY1p/KpXH
-	 rOFBs7sj7Ps2O7q8rML6ORL14MtzT/bsDUUc5PX8G4oONlTDRpk+JqQb13ikUIRwQ
-	 fa+T+2UC3VPyU9tcaw==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.105] ([37.4.251.153]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1N49h5-1tgEtr1WxV-00w8AY; Mon, 25
- Nov 2024 16:40:14 +0100
-Message-ID: <29371514-caf7-4f1f-981e-bb52c40f7bdb@gmx.net>
-Date: Mon, 25 Nov 2024 16:40:13 +0100
+	s=arc-20240116; t=1732549582; c=relaxed/simple;
+	bh=dWqz9RFJ1FBuVTDfQfATkz3kc1MiNoOOxO5kbvjsrmU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jWM278Cg/5Ea9N0rqvGFGxpCF1JZzPf9JcErk00m1Hs6n0LMuvSFcvvYer9yc0kvOM1gfrvUJH+MHFjKUhDVFJ4nZeGW19SPbLoV+cK1IxE/Nuu2RGdX5V1jem3eO+qIFx3txZRIcrV1WEXKIaMHPyYTUGhMLyY91yn6EOERUTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aeXbfRzx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3478DC4AF09;
+	Mon, 25 Nov 2024 15:46:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732549582;
+	bh=dWqz9RFJ1FBuVTDfQfATkz3kc1MiNoOOxO5kbvjsrmU=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=aeXbfRzxulmCryo5pQuixXxTOoHM22b7jLaJ6lCjz/2xLrMrD0SumRblMErmeymE3
+	 gZZ5k0a7X64DSsjkIPIq/ezHC5UKdcUf3rwYvplhKxe8C+ydL9hms9cY40yk2bHRJw
+	 w0l1U4xy+AM2dvl+KfQwZ0hf66ooI+Ylw4YaFbyl+/uaRFmyssaRxy7FuRGK/m5iX9
+	 dk5Ni0zEJ5gF5Cu+dzO968unNfz9yUGyrhWSh9JxxYIJoO6rmGzZKNl4wbCRlG7O94
+	 FJsY5sabhEvIn88vN3WOZdbxYG2MNQrKTofYs9fzY4SFWdr/8Zzre8Txg8FJ7oL1pr
+	 4Nxmi0AfV8Lfg==
+Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e3884cd186aso4513427276.1;
+        Mon, 25 Nov 2024 07:46:22 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUjuyQTrNy/qp73Zrez0oNdZWW98Id3El1Ty+gge5/xxH8S/DFIGR727oA0238koMejlSgCvE6feo1qEtoD@vger.kernel.org, AJvYcCXW8kJrBzg0Dxr8ApQpOIPBsKQkebwBL2hWja0zZsefSomcK9WdhcQDAwJ6ouToepSpQ6i7GVmIaJ32@vger.kernel.org
+X-Gm-Message-State: AOJu0YxY6MqPCWd39wcn+x8ynl8yHL0gAkyAlnWSpRlQI00yiNVgbaUl
+	3m0FSJmoA2Iks+2waFpDMLkj4kp9dG4H+AUzD0/FJyZuj0FCPpZtZx3KNUHiuZo2nUi2o15u9ys
+	FGto/eTW1wgCYtUJzlOxMpR/vRA==
+X-Google-Smtp-Source: AGHT+IEV3s+qT8XjK9WFDYlP0XGh1nqrPGJ0w33/rxXIERYLVMi0Ic+g1WwEtanEy9d5dnZGgSojV0Fm2l057iBsLR0=
+X-Received: by 2002:a05:6902:72e:b0:e35:d8b1:571e with SMTP id
+ 3f1490d57ef6-e38f8b0a979mr10608748276.10.1732549581435; Mon, 25 Nov 2024
+ 07:46:21 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Stefan Wahren <wahrenst@gmx.net>
-Subject: Re: [PATCH v3 3/3] dt-bindings: w1: ds2482: Add vcc-supply property
-To: =?UTF-8?B?S3J5xaF0b2YgxIxlcm7DvQ==?= <cleverline1mc@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Ben Gardner <bgardner@wabtec.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>
-Content-Language: en-US
-In-Reply-To: <20241124-ds2482-add-reg-v3-3-806df39c9454@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+References: <20241125113151.107812-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20241125113151.107812-1-krzysztof.kozlowski@linaro.org>
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 25 Nov 2024 09:46:10 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqL6e28pZ9G55Ab6SJO_xNK1R7D-xReC8girvP9VMUk=2Q@mail.gmail.com>
+Message-ID: <CAL_JsqL6e28pZ9G55Ab6SJO_xNK1R7D-xReC8girvP9VMUk=2Q@mail.gmail.com>
+Subject: Re: [PATCH] of: Add Google Juniper to excluded default cells list
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Sasha Levin <sashal@kernel.org>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, Chen-Yu Tsai <wenst@chromium.org>, 
+	Conor Dooley <conor@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:usTGB3KqY7rt1IVtdUR9XQQYHdY3KFABw9PesgHJB9xYQFj2mun
- P1y+rk3jPAxZH7vGFdxVoJQ+wlmkn0dLqyjZI+kvxG6YExz+mA8rFbqEZ7uDIiZD6lXRyWv
- voQ1cLj6lcr9RZrzdi8++hAWjUMzuxVXy50Z740Yo6f7Q25xdNQQhZg7H0u/J2OOQQ+ehtL
- iOY3fkBljZ8KoYyiCE2zQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:PPdh3LNaZo4=;opzhgqlLWWx+oosKaVivtnZarJO
- rZNFGM9OxuiVHfRsm2OW5GAtawsgRZJryF/ePmVxAaY9ir6SkQEGKlK334UDUCrqNboccAkSp
- 5Qm1Z28HUUdNtj7evdRUnrVkjADmtwYGfBy1X4eMC2ToEPoVjZtyVIol9IRAOG6MC0GPdrTSg
- tngrL3xcq/Ftt1cYnz7gK3K4kkEGpqoxfyPZSaX0DIXovehoGYjPCb8mFDdYRPdVBrAZcmtJi
- HDeZViHaqrhGUuRKvDixlXwxPKimP9GVq9MS+Utt7UP3TQkgW69+K6zwFARfGNWQKfqPCRvkz
- JHU/z2S80cdTkOde0Y7TKDj4DZHiW1WfoM+lJ1xhLpbzLc4au1iqL1xnvv95GiWkRs6ZL1Xpg
- 6uMd+H8KD/PDLo33y43xV1iFwoXdZLfTGdR6zurZPNHCSzGRBxBz174GFSZ4xcMK+2aa4/Vi3
- esVallSsLb2lLFKh15bmNvtyXl1hUmCOl03oZavlEzSaxmYqfB6H0cufyj/c68JOaHAjouUO5
- 4tnXoanyus+DMnoKvvmHFT4KxLUaoL3Yj9KR2IcQUfIQ7cYr4cB3jB8G5OgI4AAMu0DPw4XBQ
- cyyq1Oqu6sWvJqNXrhKSS+HGaS+vYRJaMD7eZB7twY29HqDkOaD45gWbJ5S8WReR2j2PbDtml
- 5LaBLX5h4+GxudgxwE9BOc6mAx+xLYA/V1QJMnrBD/rX86hPrQ6iS2xszkvkBvCXLlSCTelCG
- nDnNdslf5BNYs501UJv7XaolzOXnKy3enpSeVgMl1MQcY1CCJr/l22AdusxLeX90/f8ChQ/qR
- 02AdQuowvZ5UbfwEmEgCFcSnp14pJGqRYd/A37BlBNXebRZkX/EBxbo6WXLHgXe8mSbGhdMdW
- PYS2AvAGmSgFtBWoxUnXvw/PHAk96VGHYL7QNvc7vd6+qyHNBShTIb2YDfYOwGwlafUWjtqF7
- Bi5eerlmzRpK5231ub+B8CYjyXQmsdoweFZdzLRIJwNhkzU9/8yahd7CTiwK/vMpaCJpU1Msd
- jMDofI+8gZn1/32c8lt76g0QcWWZ/qGxojc2oe4lLXP0HtPaa2AHjy+AZ4KSPyJ+/raM7R81b
- vUX+oU4WjUFUQKCRllmEiP55z8fzpS
 
-Hi Kry=C5=A1tof,
-
-[fix messageid]
-
-> From: Kry=C5=A1tof =C4=8Cern=C3=BD <cleverline1mc@gmail.com>
+On Mon, Nov 25, 2024 at 5:32=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> ds2482 has a VCC pin, accepting 2.9-5.5 V.
+> Google Juniper platforms have a very old bootloader which populates
+> /firmware node without proper address/size-cells leading to warnings:
 >
-> Signed-off-by: Kry=C5=A1tof =C4=8Cern=C3=BD <cleverline1mc@gmail.com>
+>   Missing '#address-cells' in /firmware
+>   WARNING: CPU: 0 PID: 1 at drivers/of/base.c:106 of_bus_n_addr_cells+0x9=
+0/0xf0
+>   Modules linked in:
+>   CPU: 0 UID: 0 PID: 1 Comm: swapper/0 Not tainted 6.12.0 #1 933ab9971ff4=
+d5dc58cb378a96f64c7f72e3454d
+>   Hardware name: Google juniper sku16 board (DT)
+>   ...
+>   Missing '#size-cells' in /firmware
+>   WARNING: CPU: 0 PID: 1 at drivers/of/base.c:133 of_bus_n_size_cells+0x9=
+0/0xf0
+>   Modules linked in:
+>   CPU: 0 UID: 0 PID: 1 Comm: swapper/0 Tainted: G        W          6.12.=
+0 #1 933ab9971ff4d5dc58cb378a96f64c7f72e3454d
+>   Tainted: [W]=3DWARN
+>   Hardware name: Google juniper sku16 board (DT)
+>
+> The platform won't receive updated bootloader/firmware so add it to
+> excluded platform list to silence the warning.
 
-Sorry, I'm not able to reply from my chargebyte address.
+I'm interested to know what needs these in /firmware. /firmware is
+supposed to be for things without an MMIO interface. An alternative
+solution is to add the properties. That doesn't require
+CONFIG_OF_DYNAMIC and is often the approach powerpc uses.
 
-I'm fine with the content of this patch, but in case you need to send a
-v4 please make this the first patch of the series.
+I'm also wondering if ranges is also missing?
 
-Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
-
+Rob
 
