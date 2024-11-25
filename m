@@ -1,101 +1,114 @@
-Return-Path: <devicetree+bounces-124346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 555089D86DC
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 14:46:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A2199D86F5
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 14:48:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B31E28698C
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 13:46:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C12E828665F
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 13:48:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AAD31ADFE0;
-	Mon, 25 Nov 2024 13:46:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C3D31ADFE0;
+	Mon, 25 Nov 2024 13:48:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="hMGtm8cJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Is0dvLPp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21E3F1AB50C;
-	Mon, 25 Nov 2024 13:46:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86D6B1ACDE8;
+	Mon, 25 Nov 2024 13:48:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732542397; cv=none; b=E+8n7Ph9Qork5di4ji+rY7BDh+nj+qKlQ1na0rxqTemRQCP8QbMxPVfvUMgO/m3vSmdpTWDJ2/t1ho4Qxn0POtrQeHB5o/vKsajnU0eDzMLpy6pxJKx230XM9Ltw4r5pFOguNWJOe75tbFrikJfIAuNd7V1r6A7fayp1dUQlBkU=
+	t=1732542485; cv=none; b=p4dob8kKVkqZr+r2uI+gLnQJnappT3TLdY43D6waGrjyr1e6Nr7j5F3nYO51XaPrWH9zV+7n0VygrCK48nlz76jZxPRcU9s56S7JZIec6gQQlYve2rInw8K+eiZONShfHWr8pvZyHnOCFZOWMh8JBcpYyowa9GoAwKY4myTL7co=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732542397; c=relaxed/simple;
-	bh=zHg0cBNfdYbjM9MEZTXwxY4+WQFYxNEwJMWk1/4ajvw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hon5I7dSLqF/h4X084BO+WHDsrh3XFFgFhf3i79EVNc8w7iauyq3briJKAtSr/45t/VoEAFE/RH+mgpYODbISK5zXZ4/dW2RiZp99WX4Ywj+O2dn0WWjgDNj7KOU/7hyAnxm+F9kWhiJGictcghov7X6yZNDyQwIxuO9XMcbRAI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=hMGtm8cJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FC89C4CECE;
-	Mon, 25 Nov 2024 13:46:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1732542396;
-	bh=zHg0cBNfdYbjM9MEZTXwxY4+WQFYxNEwJMWk1/4ajvw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hMGtm8cJbYPdtLCQPCIbIDikJESoTZ9tvTSkiOhsPrScHBWIsqgnp1BZZwFvANfZ8
-	 UF0Wh+w9c6AAs9GtcAYw8JdyKCDQUTnKDTQFJ4Hi/J669bgudW4/pystJlY45DW2+q
-	 PXV+9BgVvAsC+CACXHZkS0iwMIwGOMLYTjEc/6Xw=
-Date: Mon, 25 Nov 2024 14:46:08 +0100
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Andrea della Porta <andrea.porta@suse.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof Wilczynski <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH v4 08/10] misc: rp1: RaspberryPi RP1 misc driver
-Message-ID: <2024112535-viper-uncivil-3054@gregkh>
-References: <cover.1732444746.git.andrea.porta@suse.com>
- <c48e6b9b178cdaa01b92ae82e8fd24c2ba5f170c.1732444746.git.andrea.porta@suse.com>
+	s=arc-20240116; t=1732542485; c=relaxed/simple;
+	bh=r9lkHO1FFzLwQ6iFQt3hcN9n6ULg/dlsFSnIbCI5/TU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pmdIssePEKrLidMP7BGYLwJsk1xSmVq9rT7zt4nSTpc9GPXLNkN+q16G9CvA3cngpAdObzFNnKbEfkTveThFjjYzplZlJ8ZvQax1BWK8mfDhWEqFI5GtDSc7EOBit05PHVAQoujPRN+gjGa6/GH21WURx6CQRhU0CSniCqmiK14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Is0dvLPp; arc=none smtp.client-ip=209.85.208.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-5cfe5da1251so5519527a12.1;
+        Mon, 25 Nov 2024 05:48:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1732542482; x=1733147282; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6fA1F5WZzvKo1QuPRZbBAhyS6aNTDvmwps9SWjuQ01U=;
+        b=Is0dvLPpdcZ4A+3AbJKewBuqkz2UmlhDfnc4N47JehJHmetx8BtglWhdNTrkjIH67/
+         Tgr7C0SgBiVdliLfXwgPBuh3NaKDHhfDKZkyXfO77vGRN5I4jGeq9XPTM2oRoQBZUT1O
+         bjUVLGtPYyGAZugYOMFGTBSO+yxevAJ1h0zPYHH1YFABnCM/ObH2QehvSIJhb2KYzKVu
+         0zi4Xll7RfKF3D99UwJAcYob9cQNsrpQBgtHOpg5cRkkoZFDeQd0p5Qq99Qq7a8wddMd
+         h22Ced2JKdVM2tp9DcJ0CVqy9kmt/Exd44yfu31Khme3s/f1reQMIPz90HFWMM3ujEfa
+         zHTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732542482; x=1733147282;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6fA1F5WZzvKo1QuPRZbBAhyS6aNTDvmwps9SWjuQ01U=;
+        b=UO3no1XHK6Wb8qJt4Qaq0rEugiljMoxG47SP2sX+UXGIK4nqdZM03IE7bLTOKtcNOm
+         yuFTuhIcnT5xfmv3KS/UeHcSZRF8i7MY8U3NMTHWfqr2vM+2Q5o1gI7fLfxKDwjRADc2
+         aukmPuc2NqwqeW1SLtPrL7oxo8/kmB8NDCQbCRqZcqy+F3429eu7SBtmXMW27wc6E77R
+         ADZe4Z0W9zuAwAHXvSZiBG6tm8PlK+7I4VZG+p7IrCcVQJDpQhmvRZX15KHx+qXI6TsU
+         2+5NeM3NmWfhLz3fLr3iEh0XJMcM34GWAic7KCnqUWtfZyU/n/Z3Jzl7dLaRY4jbNLhQ
+         a+BA==
+X-Forwarded-Encrypted: i=1; AJvYcCWHCufahhcItnR/GcRmSCiiLMJmzryw5Q08jCbQKOjxASCcpTjBUge9QRIeNoNA9wncw0el6B28+d4h@vger.kernel.org, AJvYcCWfU3uUwvP6bk5fgVGwqilsMWFUJWZapsgpgMu2QAFkqLt2DTbz+Bf7Xieb1M/elOPjNRY75usE9IAG@vger.kernel.org
+X-Gm-Message-State: AOJu0YzBpqS2i2OzCQGw5zMbpdcjjLnSTtxD+1b0vMsYgQQRyT3/2Ieu
+	eMcT1kif/pod0kyOmRUz6tjsLAvt1SR9udFndWeJF6qRZ7Eqf3srEsvJ/ap+uHL8InuRU0gbmGb
+	3OnzeE4EZAoFCDtwnIB5sv3+b4A4=
+X-Gm-Gg: ASbGncsNUCHbkQsEjRdrUba4+XxmeeENmG2azrco0p+P3f0tSF9m+7XVbI8YLqwBAuQ
+	UamYd7zDtcZTNrZO51LmwUuW1Q+C3q05wbw==
+X-Google-Smtp-Source: AGHT+IHcbV66eT+bwaP/+AEbTKqcauCg3LmlqWNWCdN1eoerWIsVQ7yse2m70EOdWHdwTsHonAStf+FnNnnFL85D2mM=
+X-Received: by 2002:a17:906:31c5:b0:aa5:225f:47d9 with SMTP id
+ a640c23a62f3a-aa5225fb282mr868286066b.29.1732542481607; Mon, 25 Nov 2024
+ 05:48:01 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c48e6b9b178cdaa01b92ae82e8fd24c2ba5f170c.1732444746.git.andrea.porta@suse.com>
+References: <20241122113322.242875-12-u.kleine-koenig@baylibre.com>
+ <20241122113322.242875-22-u.kleine-koenig@baylibre.com> <CAHp75Ve_sD-a-m4pYmKrT=LhajO=F7TG7KM7AsM47J0=ksVgNw@mail.gmail.com>
+ <eghe47rkwxmcfkamayemvwfksonrwbysaadakbdm4lvzcsy4ee@7gftiif7ka6i>
+In-Reply-To: <eghe47rkwxmcfkamayemvwfksonrwbysaadakbdm4lvzcsy4ee@7gftiif7ka6i>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Mon, 25 Nov 2024 15:47:25 +0200
+Message-ID: <CAHp75Ve3hBhCMFkjA4-hiLfGQLeeGt_74e=PwTH_nF1NCYiyOA@mail.gmail.com>
+Subject: Re: [PATCH v3 10/10] iio: adc: ad7124: Implement temperature measurement
+To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Alexandru Ardelean <aardelean@baylibre.com>, 
+	Alisa-Dariana Roman <alisa.roman@analog.com>, Conor Dooley <conor+dt@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, Dumitru Ceclan <dumitru.ceclan@analog.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>, Rob Herring <robh@kernel.org>, 
+	devicetree@vger.kernel.org, linux-iio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sun, Nov 24, 2024 at 11:51:45AM +0100, Andrea della Porta wrote:
-> --- a/include/linux/pci_ids.h
-> +++ b/include/linux/pci_ids.h
-> @@ -2611,6 +2611,9 @@
->  #define PCI_VENDOR_ID_TEKRAM		0x1de1
->  #define PCI_DEVICE_ID_TEKRAM_DC290	0xdc29
->  
-> +#define PCI_VENDOR_ID_RPI		0x1de4
-> +#define PCI_DEVICE_ID_RPI_RP1_C0	0x0001
+On Mon, Nov 25, 2024 at 1:27=E2=80=AFPM Uwe Kleine-K=C3=B6nig
+<u.kleine-koenig@baylibre.com> wrote:
+> On Fri, Nov 22, 2024 at 10:31:07PM +0200, Andy Shevchenko wrote:
+> > On Fri, Nov 22, 2024 at 1:34=E2=80=AFPM Uwe Kleine-K=C3=B6nig
+> > <u.kleine-koenig@baylibre.com> wrote:
+> > > +       /* Add one for temperature */
+> > > +       st->num_channels =3D min(num_channels + 1, AD7124_MAX_CHANNEL=
+S);
+> >
+> > Is the type of both arguments the same?
+>
+> Hmm, my compiler is happy with it at least. I don't understand why
+> though. I'll do a few more tests ...
 
-As you only use these in one file, please read the top of this file for
-why this isn't needed here, but rather should be back in that one
-driver.
+If num_channels is signed int or shorter than (independently on the
+sign) int, then it's obvious why. + 1 makes it int.
 
-thanks,
-
-greg k-h
+--=20
+With Best Regards,
+Andy Shevchenko
 
