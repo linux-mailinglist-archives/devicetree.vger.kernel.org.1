@@ -1,234 +1,83 @@
-Return-Path: <devicetree+bounces-124469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 374D79D8E0B
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 22:32:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC88A9D8E0E
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 22:33:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB80B28BE93
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 21:32:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9185828B360
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 21:33:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 535B31C07C3;
-	Mon, 25 Nov 2024 21:32:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B8EB1B87EB;
+	Mon, 25 Nov 2024 21:33:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="FdjJDigJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZMFJLHg0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D9811B85EC;
-	Mon, 25 Nov 2024 21:32:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 319C419066E;
+	Mon, 25 Nov 2024 21:33:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732570331; cv=none; b=dbbnvRctZT47SZFI8g8ITTd2Eif2B2SzP9AFJJ5zehx1vukmhPGrDInGZEZ21K1q+I5P/lwtRosJCurtsWQJppZd9wpdyA9Bc5hkd/hS1oM0wK0O8tqQNUaohly3TZARZTtW9PnCLCb9nVXhmTqyJ02zChDRcDQxPPibjxR/pw0=
+	t=1732570388; cv=none; b=sNSnHk+ztZrBr7e0OXr+3Ou5rdcKxJaYINdhBG6R0Gp7fj69e3dGJu5MbAADraleQwCjuESBKEPRD0xpy1OFSRgRNKVwa1U5Rhc2A4Gqt7qYGksUR+hW5vv6vVYYGQqblWufMAn9/cF21BZRDTS9n35iYWKpe2z/dqUaqUL1mmw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732570331; c=relaxed/simple;
-	bh=GPCAMd3TfLnxHRss3bbCCKtehW/uyMInYMpMNWYIi4s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=o/S7kCjktdVw2d5MIRF6/HE7WgI2PjRhhJyO7KQL35W7nEX00igOSZAkqSkivS4GaWG7gz980KRX926RwkaV3dLrQsx5z4eYJ0IlFN4hA2ezoM5pCCMwP7TiUYsi1KfyXU0RmW6bA96PD+z51rCJbW9gAi7AqG/BRgr7XuOSIww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=FdjJDigJ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4APK3kUs017784;
-	Mon, 25 Nov 2024 21:32:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	BB37u5M57i2z42YMFE7SFFWnWbXMXcugCE1MiPFv4Z4=; b=FdjJDigJLyB+0IiV
-	uat9o22d/w+8DZT2H95DMfCxfnJjFTnfdU3TTHbmFQKwdf464+p6nOMdvw1der2b
-	PhUGRcMApCrYQY0x7caLrC876K0sVp1K+571AYBAdJaIXMhJGPk58h9SqiFRzNIW
-	BIKc7+Q/XW63Lb6uA64K5sdRblo61JS+c846mwRZA2m0aYiKqC+g4Oi7Npwcgy63
-	5H9LYKnHBRDIKVTFN5UrUyuIobFOT2VDHQoJAOrg9BxglfoBKQhQiQWSUrcLRj0Z
-	TZIYwGwZXRD7e8eitXMEdMJ84ejdFxKjVPX/sNNSZpEMcc/LNizFcJvcC7czQh3n
-	EGujLw==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 433dny5gpe-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 25 Nov 2024 21:31:59 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4APLVxEG014067
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 25 Nov 2024 21:31:59 GMT
-Received: from [10.71.111.113] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 25 Nov
- 2024 13:31:58 -0800
-Message-ID: <3d9d3d18-9028-4dbc-8e72-3ed70edc97f4@quicinc.com>
-Date: Mon, 25 Nov 2024 13:31:58 -0800
+	s=arc-20240116; t=1732570388; c=relaxed/simple;
+	bh=uY7jnyAlzoQXL7KcBI2CiyOBUKz+IVZNC1RgfNxXBlo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Ze0zHH/RefOtAXoE6ytvLEyUP3Ff69XLHIlkbf82JcWJOBMLiQrckMm4+RhmwBeOWIpO1jlhTP8ndsjZKPRlfSbqCRAen/e+P0Dd3zqs5m+OPzCsG4avlk2LaZsTFIj28yjM4fHkcAioH8AbgTxnXbIXm0zozRGX3ARBiG6dhS8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZMFJLHg0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EC2BC4CECE;
+	Mon, 25 Nov 2024 21:33:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732570387;
+	bh=uY7jnyAlzoQXL7KcBI2CiyOBUKz+IVZNC1RgfNxXBlo=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=ZMFJLHg0yDzXpj5S/OS8ghB98MJ3zIk99CvSaCd4+yphsIJob9SCafvtdC5Y2ma3P
+	 WRUHBU2SKcOXQjeoSgLJNMhhbv84wNgt5AjsM9kElhifoWbYtnGOYqyUK5yUjh1+nG
+	 v1Qly6RuKmdsDcYhdYug5Ypd0vyfQB24r81cA+iju9MuA4SGe0Gx9+aswO/ps1PYuP
+	 U2cLNRS5W2f0CqXjqrHr33s9z+2/HC38LZvEjiI9/K88fv+Qekj3Z/nK07RrB9bhCP
+	 mKheTRyQ2zVgl7GUBrKYkuONOlJ8ZNNE2ojmkq7P4pCGMOfqLcFPlNWWIU8kwPXP0j
+	 +COiWk81U4NuQ==
+Date: Mon, 25 Nov 2024 21:32:59 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Jean-Baptiste Maneyrol <Jean-Baptiste.Maneyrol@tdk.com>
+Cc: Frank Li <Frank.Li@nxp.com>, Lars-Peter Clausen <lars@metafoo.de>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, "linux-iio@vger.kernel.org"
+ <linux-iio@vger.kernel.org>, "devicetree@vger.kernel.org"
+ <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, Han Xu <han.xu@nxp.com>
+Subject: Re: [PATCH v2 2/2] iio: gyro: Add support for iam20380 sensor
+Message-ID: <20241125213259.180db011@jic23-huawei>
+In-Reply-To: <FR3P281MB1757CC51713A1A6C418B2A57CE2E2@FR3P281MB1757.DEUP281.PROD.OUTLOOK.COM>
+References: <20241115-iam20380-v2-0-d8d9dc6891f5@nxp.com>
+	<20241115-iam20380-v2-2-d8d9dc6891f5@nxp.com>
+	<FR3P281MB17572DAAB3B3145EE7AD56E6CE212@FR3P281MB1757.DEUP281.PROD.OUTLOOK.COM>
+	<20241123153333.51e4a517@jic23-huawei>
+	<FR3P281MB1757CC51713A1A6C418B2A57CE2E2@FR3P281MB1757.DEUP281.PROD.OUTLOOK.COM>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/7] clk: qcom: Add support for GCC clock controller on
- SM8750
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        Trilok Soni
-	<quic_tsoni@quicinc.com>,
-        Satya Durga Srinivasu Prabhala
-	<quic_satyap@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20241112002807.2804021-1-quic_molvera@quicinc.com>
- <20241112002807.2804021-6-quic_molvera@quicinc.com>
- <n4h4jvxrsyahgmxedfsifhgmarw4rzn2cbg5pcvzo4ll3edziq@vgpvjco5hyb4>
- <f2bf7790-7387-4eb6-8e1e-e555a20a717b@quicinc.com>
- <xjfdqtiauxzmes3hwtgknjglu5rkp4mnyktsaxqtb7xmzsa2zx@phlkamgm47x4>
-Content-Language: en-US
-From: Melody Olvera <quic_molvera@quicinc.com>
-In-Reply-To: <xjfdqtiauxzmes3hwtgknjglu5rkp4mnyktsaxqtb7xmzsa2zx@phlkamgm47x4>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: u84ly2cQOz28e0ZxANsHhkMfFhqz4kIs
-X-Proofpoint-ORIG-GUID: u84ly2cQOz28e0ZxANsHhkMfFhqz4kIs
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 bulkscore=0
- suspectscore=0 spamscore=0 malwarescore=0 phishscore=0 clxscore=1015
- impostorscore=0 mlxlogscore=999 adultscore=0 lowpriorityscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411250179
 
+On Mon, 25 Nov 2024 11:43:24 +0000
+Jean-Baptiste Maneyrol <Jean-Baptiste.Maneyrol@tdk.com> wrote:
 
-
-On 11/18/2024 5:59 PM, Dmitry Baryshkov wrote:
-> On Mon, Nov 18, 2024 at 11:30:58AM -0800, Melody Olvera wrote:
->>
->> On 11/15/2024 7:34 AM, Dmitry Baryshkov wrote:
->>> On Mon, Nov 11, 2024 at 04:28:05PM -0800, Melody Olvera wrote:
->>>> From: Taniya Das <quic_tdas@quicinc.com>
->>>>
->>>> Add support for GCC Clock Controller for SM8750 platform.
->>>>
->>>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
->>>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
->>>> ---
->>>>    drivers/clk/qcom/Kconfig      |    9 +
->>>>    drivers/clk/qcom/Makefile     |    1 +
->>>>    drivers/clk/qcom/gcc-sm8750.c | 3274 +++++++++++++++++++++++++++++++++
->>>>    3 files changed, 3284 insertions(+)
->>>>    create mode 100644 drivers/clk/qcom/gcc-sm8750.c
->>>>
->>>> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
->>>> index ef89d686cbc4..26bfb607235b 100644
->>>> --- a/drivers/clk/qcom/Kconfig
->>>> +++ b/drivers/clk/qcom/Kconfig
->>>> @@ -1130,6 +1130,15 @@ config SM_GCC_8650
->>>>    	  Say Y if you want to use peripheral devices such as UART,
->>>>    	  SPI, I2C, USB, SD/UFS, PCIe etc.
->>>> +config SM_GCC_8750
->>>> +	tristate "SM8750 Global Clock Controller"
->>>> +	depends on ARM64 || COMPILE_TEST
->>>> +	select QCOM_GDSC
->>>> +	help
->>>> +	  Support for the global clock controller on SM8750 devices.
->>>> +	  Say Y if you want to use peripheral devices such as UART,
->>>> +	  SPI, I2C, USB, SD/UFS, PCIe etc.
->>>> +
->>>>    config SM_GPUCC_4450
->>>>    	tristate "SM4450 Graphics Clock Controller"
->>>>    	depends on ARM64 || COMPILE_TEST
->>>> diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
->>>> index b09dbdc210eb..1875018d1100 100644
->>>> --- a/drivers/clk/qcom/Makefile
->>>> +++ b/drivers/clk/qcom/Makefile
->>>> @@ -143,6 +143,7 @@ obj-$(CONFIG_SM_GCC_8350) += gcc-sm8350.o
->>>>    obj-$(CONFIG_SM_GCC_8450) += gcc-sm8450.o
->>>>    obj-$(CONFIG_SM_GCC_8550) += gcc-sm8550.o
->>>>    obj-$(CONFIG_SM_GCC_8650) += gcc-sm8650.o
->>>> +obj-$(CONFIG_SM_GCC_8750) += gcc-sm8750.o
->>>>    obj-$(CONFIG_SM_GPUCC_4450) += gpucc-sm4450.o
->>>>    obj-$(CONFIG_SM_GPUCC_6115) += gpucc-sm6115.o
->>>>    obj-$(CONFIG_SM_GPUCC_6125) += gpucc-sm6125.o
->>>> diff --git a/drivers/clk/qcom/gcc-sm8750.c b/drivers/clk/qcom/gcc-sm8750.c
->>>> new file mode 100644
->>>> index 000000000000..faaefa42a039
->>>> --- /dev/null
->>>> +++ b/drivers/clk/qcom/gcc-sm8750.c
->>>> @@ -0,0 +1,3274 @@
->>>> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>> +/*
->>>> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
->>>> + */
->>>> +
->>>> +#include <linux/clk-provider.h>
->>>> +#include <linux/mod_devicetable.h>
->>>> +#include <linux/module.h>
->>>> +#include <linux/platform_device.h>
->>>> +#include <linux/regmap.h>
->>>> +
->>>> +#include <dt-bindings/clock/qcom,sm8750-gcc.h>
->>>> +
->>>> +#include "clk-alpha-pll.h"
->>>> +#include "clk-branch.h"
->>>> +#include "clk-pll.h"
->>>> +#include "clk-rcg.h"
->>>> +#include "clk-regmap.h"
->>>> +#include "clk-regmap-divider.h"
->>>> +#include "clk-regmap-mux.h"
->>>> +#include "clk-regmap-phy-mux.h"
->>>> +#include "common.h"
->>>> +#include "gdsc.h"
->>>> +#include "reset.h"
->>>> +
->>>> +enum {
->>>> +	DT_BI_TCXO,
->>>> +	DT_BI_TCXO_AO,
->>>> +	DT_PCIE_0_PIPE_CLK,
->>>> +	DT_SLEEP_CLK,
->>>> +	DT_UFS_PHY_RX_SYMBOL_0_CLK,
->>>> +	DT_UFS_PHY_RX_SYMBOL_1_CLK,
->>>> +	DT_UFS_PHY_TX_SYMBOL_0_CLK,
->>>> +	DT_USB3_PHY_WRAPPER_GCC_USB30_PIPE_CLK,
->>> This doesn't match Documentation/devicetree/bindings/clock/qcom,sm8650-gcc.yaml
->> Hmmm I see what seems to have happened here. You're correct; this doesn't
->> match the bindings
->> in sm8650-gcc. The v1 patchset had a new bindings file which matched the
->> sm8650 bindings, but also
->> didn't match the driver; however we only seemed to catch that the two
->> bindings matched and not the
->> fact that they didn't match the drivers.
-> I don't see v1. Please bring bindings back.
-
-Will do.
-
->
->> In terms of remedy I see two options. I'm fairly certain the driver here is
->> correct, so we can either
->> add the sm8750 bindings file back and remove the two lines about the PCIE 1
->> clocks or adjust the
->> sm8650 binding to encompass both sm8650 and sm8750. It's unclear to me how
->> precedented the latter
->> is; certainly having a single bindings file encompass both chips is
->> feasible, but I think I'm currently
->> leaning towards bringing back the original bindings file as that seems more
->> precedented. Lmk
->> your thoughts.
-> How are you thinking to change SM8650 bindings without breaking the ABI
-> / backwards compatibility?
-
-
-Giant if-then (read: poorly).
-
-Thanks,
-Melody
+> Hello,
+> 
+> thanks for the confirmation, Jonathan.
+> 
+> Then, it's good for me.
+> 
+> Acked-by: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+Applied. Thanks,
+J
 
