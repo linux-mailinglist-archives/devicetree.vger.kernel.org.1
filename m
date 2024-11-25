@@ -1,463 +1,136 @@
-Return-Path: <devicetree+bounces-124252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124245-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D8489D8294
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 10:38:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81ED89D829B
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 10:39:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9CFC0286F2E
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 09:38:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E31B4B29F8A
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 09:36:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC5CD1AD3E4;
-	Mon, 25 Nov 2024 09:35:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3B381990CE;
+	Mon, 25 Nov 2024 09:34:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="ATPq4A/N"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DVD1zrZG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2047.outbound.protection.outlook.com [40.107.21.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C934D194C78;
-	Mon, 25 Nov 2024 09:35:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.47
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732527333; cv=fail; b=FWf43YCzDxr4CW6qW4uZMKF7On6BtM9u0V1Hy2Mv4+2FZ3yWnone2DlI9LDQ+U5T3xuLppsTFtDkJtwqd8BQpfHRAdPVniKtu80iULDfwthOcOE0xXjyEYP8Bmzo7fGK8ozUib1Rzv4arD3ePVXcEab4aqCwZNc2ZllmGw6brRc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732527333; c=relaxed/simple;
-	bh=0//Ac5mIoLtyfNFV6gBPcUrgkrLVHeGtygx4RkzlR6g=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=KkxGjlZnJoc22ol6S9sj7vOqKNZ9LFmhlLADLFSerCPR2J3txPal/MwfxCQRJywY/foiFWYFd1MDxJNdCGeImSqJsx9XcwIUY8XQz0YzuxnGeY3hVZqcsHAXEeCDOt1rXwjyonxBs3NL2CDTMn63Vj+pjeGOv26NInlrRNSM1aE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=ATPq4A/N; arc=fail smtp.client-ip=40.107.21.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EldOVN05nDd9cbi4BrOBzhS8lJNxmO2QmFt42XYoBVMVGhUT1ZUFzqktepFbqocB1dFfHsEfLZ+xIH3djqsGm1KPKS0T/PXqZFlPgWgb8JIRS90u4pFQVoqpAaNcsVK7afntAgAs3QWeRAmpKceOEOJVBD16LeeTrML9Hj2M5+gTrYJET9khBFJbZW7Z5Z70wahJFHD5XV0OhrzsYjlVRAXmliryrpiQTK3Rb6aI2fQXnA1ZFP4bfTNXcVqktN/iAjBwETecAT1GlFX1xkB+rEjZRKMsOe21x2NbXh81baGmidSxHOPjHzvWnrlyycjPwgQ1XCWIXut+rYIJBgMF8Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KlDRWuyL54wp6gCAfR0Z30yGWUbPwOprkje730daaMk=;
- b=QdWXXsbF+uIF2Y/lS8QY7VEmAA3eTpkM7yoN5Fhzhy1TWTd6TXNBrpZXfgYkoEXGfc0CzfQsu4PzOw2CANwCJPYgSxS5gao430lv41ifTE/0AQPdeGJeYCcU+npFtxysPnQ6uqL3XK9PFnUnfYoBcnfE+f8rZ972h4Rs5VyKqZBFzgFltv6vKEp7xEe2WMA52o9PUvqe5X267ZJiuQV4ZiQAk97F9Zd5KDk0IrbotfdEuSzorvBPM/LdTcY7NC9diygXiaBa+ePaZOnyeN+9hr/qkT6hgR0IdLm/quCRrtB8e06dteCauxkTsYq5fmzdRR44l7hxJrDVNkdrxByLjg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KlDRWuyL54wp6gCAfR0Z30yGWUbPwOprkje730daaMk=;
- b=ATPq4A/NwkMcWbdLLi5PNZZw8S0o4m2Dxi7/ohWQsocIMhHZuryNf5VKJV47QRtljzoz42OxtpBx0VItRa6hiAPSqSnVrXaV6sPCi7G4bu3ZDObjuZxbMxnN8TzQYyMBEozabig7lVtErBgsfwY+lE7Rv6Bly9RZ0R77OkPs32s6YkIDmZoJxXhQD1WoqcutV2xH7mlRRRPvVApRSRJp3YV/nUaTQtRhNDg0WO7PkghHn41ljDqH7zOVBHpM1AYmG9AAXO/EdafrWxKMeNE22wTK3auZvUz2/CsJIk/CuTccGGRayi7k5NL+nHJLAz3Kx7rUa2f0XfbP22yu/TbiUA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
- by GVXPR04MB10754.eurprd04.prod.outlook.com (2603:10a6:150:225::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.27; Mon, 25 Nov
- 2024 09:35:27 +0000
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::d1ce:ea15:6648:6f90]) by AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::d1ce:ea15:6648:6f90%6]) with mapi id 15.20.8182.019; Mon, 25 Nov 2024
- 09:35:27 +0000
-From: Liu Ying <victor.liu@nxp.com>
-To: dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org
-Cc: p.zabel@pengutronix.de,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	airlied@gmail.com,
-	simona@ffwll.ch,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	glx@linutronix.de,
-	vkoul@kernel.org,
-	kishon@kernel.org,
-	aisheng.dong@nxp.com,
-	agx@sigxcpu.org,
-	francesco@dolcini.it,
-	frank.li@nxp.com,
-	dmitry.baryshkov@linaro.org
-Subject: [DO NOT MERGE PATCH v4 19/19] arm64: dts: imx8qxp-mek: Add MX8-DLVDS-LCD1 display module support
-Date: Mon, 25 Nov 2024 17:33:16 +0800
-Message-Id: <20241125093316.2357162-20-victor.liu@nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241125093316.2357162-1-victor.liu@nxp.com>
-References: <20241125093316.2357162-1-victor.liu@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR01CA0131.apcprd01.prod.exchangelabs.com
- (2603:1096:4:40::35) To AM7PR04MB7046.eurprd04.prod.outlook.com
- (2603:10a6:20b:113::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4687198A25;
+	Mon, 25 Nov 2024 09:34:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1732527284; cv=none; b=a4HqiAn5hbQ3ZTEq0SHxutleM+Sx0N9Sf5aEFqb70Exbuxp0grW0akjjHnsyFdEtn+cY166I95hLZwUmZgg7s8lQqX5xBGtLaKGRQQlI105vJ+eslXd0PAfp6Vm/H2DWJr5s/KZyu2cEP9kbtaTmrBFnZg+wC+uYxEg9H9reDlU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1732527284; c=relaxed/simple;
+	bh=aEd8JicAIhvbCPxzPqoHzg82D93ao+tgZQjfIKhBIxA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LjHTXI/Sa5zvyCvSIIeCdG06Pqshv/WS6azpmlZ6vLhuYc4QHA+c1/IE+c8Y9MkTTuWXkGtrjd8wFSzwEpgTrc1ZNs1zuEveJkq4tJw87Mp7EQdMX7FKPtY+EhUYomaXE4PrWc7Mlurw4LK0LSeHDEtKZ8CH6JGKMDcpZB2cUVs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DVD1zrZG; arc=none smtp.client-ip=209.85.167.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-53dd9e853ccso2188163e87.1;
+        Mon, 25 Nov 2024 01:34:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1732527281; x=1733132081; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=X9wuvld3OUKP0Z53IhY2KuPlXHoSpFVfKj48/VMdmqw=;
+        b=DVD1zrZGpRln2BD90M4ZhzMvcKz0Sm0S1KDSkbxIxDXUQhyzBa/mX/vqcFeXEXrPeK
+         khXRc1xmV23NXtYsRtNpFY/hZX8sHvqT2kci3g5jGnynGWGF+Xijubt3zSNimqpegKmo
+         fple0XxMuFR7TQP4eNsqhSIDLYb3ByDLkVVXiwBaucevf1wE0RAJmplpjxEkQ3quV9Cn
+         7wnZEqnQcVhvGSwBsJb07ILR1o5hDH8TMWfShl1VazQ1lGDAJfivrqBGv8X7hO5tOF9Z
+         QjPHituBsouzrVH+hCRGct4ph5vt/QT203z7mHjMbQEHaInMr/tE4Rn51zbUx8fXXA+G
+         E/Tg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732527281; x=1733132081;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=X9wuvld3OUKP0Z53IhY2KuPlXHoSpFVfKj48/VMdmqw=;
+        b=PlHHf0GCdilAzNsKEwklL+W/0Qs6GbfjH0fnLjO+XU+8qTr+tiEfE7VfIgx8o0PZGk
+         qGZrzHpPjHxWOgJBaiSK2qgc8PnDWlR9g9eLP2Mdw49zYmFNxzNlqofsYWKgi9nQE7rn
+         KdDVWkt8pBQXfLPNKwXbF7ivwu+oWi12iCs6TfocVk6widf9sw0uglnx06RyZHO43bH0
+         EjiabUOMvUT6KEO5JYWDLhFhuDGkaduLoUWOvwImhe2tuwueLQsTjVPb3ShAUuVisaSS
+         rXkqz9w+etsA1/J92s1Y2oY67cNHXp1xytOy8Scza6Dm6ACDXR4oZ2Y+gFDRrbQ9GQQQ
+         aZXw==
+X-Forwarded-Encrypted: i=1; AJvYcCV+tZIHLqcY2o6GIacCwpBNZrTVA1lL+g/6AJIKYsgyKMM+6+1TI8EN6ROdJg3fQkmLdDgDa9+5wAcJoJ9D@vger.kernel.org, AJvYcCWhAc2MRBOma4yZi2Od/yQ4hecC/M2v+Rg1p7nFtb4DYE+lVTYadT/EkTcIx58Hp1qn4RayRXTZ6aTB@vger.kernel.org, AJvYcCXkzKCJSobccBFROeEulLEUoE5rMVFwB4HKdFZCYoRh91xN3j8Woh2fEtXI/UDsXF3uDHzOHK9+DS8O@vger.kernel.org
+X-Gm-Message-State: AOJu0YwWlw9uOnpgaUfROdm0mwDCUYZHCubOFgYxuxUjiLnipSEzil5w
+	4XIZgz2S2c1A7gvF6ZaM5PBGvEggKojG2dQqCoak2o5cQl1UYudI
+X-Gm-Gg: ASbGncuThXzJdqZRxfhXAVzHag20FlZ47iR5IP/QI5LUdASgKocznWXkDMi/MFd15az
+	b4kHJovXoJPsTOmYjw4ij5ux1WlFa5moHnU5OJsSvB7RPPIzzrRJ3j6+NpD5hatK8VXTaotW/o3
+	Nz38LvvbkRbHQTqDOJb7t2GHuGdHTe1EwKvIXWB9nAamKWS6GsJzyNOeiEVKF6oqosEY2g4ZzPQ
+	eZaP35oBZ2nH6vSRP/MVVhDA+zMpPlzdco65LT2qWrZKu9lSlZ7AR6VjTwCRS0=
+X-Google-Smtp-Source: AGHT+IH2bSfrof1H1g/If9fx94RrbmySHIGMr5WYjh6HzkcR7IBfZjdkbF15PwCGVeWGPT9q5mdpMw==
+X-Received: by 2002:ac2:5688:0:b0:536:741a:6bad with SMTP id 2adb3069b0e04-53dd35a4cc1mr5876768e87.12.1732527280572;
+        Mon, 25 Nov 2024 01:34:40 -0800 (PST)
+Received: from [172.16.183.207] ([213.255.186.46])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53ddab93a2esm1218463e87.257.2024.11.25.01.34.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Nov 2024 01:34:38 -0800 (PST)
+Message-ID: <bda7eaff-1315-46d0-83b4-a14060c2af1c@gmail.com>
+Date: Mon, 25 Nov 2024 11:34:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|GVXPR04MB10754:EE_
-X-MS-Office365-Filtering-Correlation-Id: 72f34ec2-4113-4919-1f92-08dd0d347e67
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|52116014|7416014|1800799024|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?4/XeDlgcN+schisSfs7xT+rwRSSypRJ9LR3U3C/NdHjX1L76Xzb2dlGItLLv?=
- =?us-ascii?Q?JnkBczi0b9WrP7aIehnHDyTrvbJoXirebAZLImbjBMa/EKRzJVfVQLRw4Ez7?=
- =?us-ascii?Q?AnXl6eSbrqSDblPhbgp6FYNnOpjP4h9s/l9WLi7C0FUi4WvoQ86TLBPi2kkU?=
- =?us-ascii?Q?3F3J4dCEBGN4T1cJNmDmb3AjfA+eK+xDb1zz6KEMSUyALMs53/z3hF6YlGjo?=
- =?us-ascii?Q?onNTe0M+dHXLCLYF1tTdPvhk5CckxxySZGGY4fowzRXiX79EbxuzHRoLHp2K?=
- =?us-ascii?Q?5zi7yGA4pxtdalb+os9FEapF5klO/ECTg9JrMBVAyxIaf1sqIIj8kbylGvkD?=
- =?us-ascii?Q?3Owv/+hPKCzsXUq8ufRtmAqcE8cwxstmmPzoTNI8YJ1i5gPO4daSZn1bnHAJ?=
- =?us-ascii?Q?pb29duqNRhff/ecJRMCN2kT+9xL5EgfJnW8tEPJOv2gaFQLZo1LjhVTbUFtX?=
- =?us-ascii?Q?wQeMLzbH/UFIu4JdPo9PtrnHO9dbf9qYAudYMMc6MgM0aAsPNlxGjJEFwGwO?=
- =?us-ascii?Q?04Dydwfoqp/Cy2fmjPKYa8sKquJj3HXKm5PqQ/zHCDnW6JvnhkATDgIrXBJr?=
- =?us-ascii?Q?tEpki8FSYZgMutbM2eSJ7tXHd5yt1xY/QlxM5XJy626zF3Nbb8iab8AQosmp?=
- =?us-ascii?Q?iIiX/Fw/T22tgtRQbKhVFLhjgqTTBvq5iv+LjEC34HDWIsgoVGCN4jaBCR1t?=
- =?us-ascii?Q?kHLpZzgfABdYUWY4Ppz1urWo/me3EXnvwcj4LNB0nWqW2zk8muAtrwbtAaMH?=
- =?us-ascii?Q?ElEfGeyxS0cACfS03UBum6aQ9Qq7ayUiAgrd09AkRzruqxndcOw93ra/t3Eq?=
- =?us-ascii?Q?5EmUWmOhft87pBmNQw9YRGQgbHWbV9Ltzi058uzWVrCpVtAFmahiNosatCgs?=
- =?us-ascii?Q?lORtlTWkRIMAGUamKkr1utqPJvSIhc9pBLcr+o/LU24grG5+FivSShpYmDMJ?=
- =?us-ascii?Q?IR0FN1giKS5gFscCwcxVkAhTcMwBv/VRPluNPBOcUjPh8Si7Fm8MptupOchk?=
- =?us-ascii?Q?Ky/lhNZ28s7HPcwXiIOVOF9TeI82gxgc51TXXMTmuPRun8zzzt+kMbHpz2Lf?=
- =?us-ascii?Q?qt3WVNcNGe0BX44seiIzIadxiYDXhGqrV4CEaQHMJEN8Ll8jwA68Cy7T9JOt?=
- =?us-ascii?Q?24oc5vLgz601DVMcBqTVxSxZr7hcMFUwTcDQVqWFM2NGto+qBdnMwGgwPz5t?=
- =?us-ascii?Q?mUM7QjLg0bfvU2eNEgN8NWtgSsemELwcEERGWP35gDSeouE0NPWE/CZ2onL+?=
- =?us-ascii?Q?l49G7dJD9M0eeqFwnJjZ/HtUn/kS2n/sktydq6WC40+UJ1mwkKDFMbycZRLs?=
- =?us-ascii?Q?HMRVoKNjHKX+WgX4RyiLWSU7TJ4NU0wRfQWxdZvc/6j7xPt4H3UeBTU7YwDE?=
- =?us-ascii?Q?/z60KW8j9xP4AMuGXEsJ66zdHHxqF/JM1Xt5I3EmnWzzsNEiwQ=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(52116014)(7416014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?lssQBRCgOvSw3bNnhUxwtzSMmrnUxHVvQa+9gKI5KFxoRL5Sj69jqBGR0fB9?=
- =?us-ascii?Q?t8SJOfkwOrbz9ULUqWuzZSpiWZvftc6P/9mpajLn4ZoqrBY3nrFzLpjMOrGm?=
- =?us-ascii?Q?jgmnmUNxEaolGULJwfTAEUp55f5xyjleI5V68HvDQsOX/jR54RkJ8TUR4gcm?=
- =?us-ascii?Q?F0IiOnkn8zn52Y0CJ7SEuubIMBpqGHUYgnq/DkR04PiFPeaczS/2PdTLrua8?=
- =?us-ascii?Q?Ra4fr78FFNH3Yri4FrEjFnwdfvnCY+FjhEaFO1uSolP07U4hFRxo2j17W3De?=
- =?us-ascii?Q?1baRyx4BG4t+jH8od4IpaNiAbwN679+Wf+jzmA1ovWywPQzXoVO0DrxcaoCd?=
- =?us-ascii?Q?yx2TQAGh6l/Z3qy1n/eH26czj0GuITw/7R9CS1MRfA3Ovcgn7JxvrgEcRTqD?=
- =?us-ascii?Q?Xa0rNWPmESVF1sneDtqrBJtUIeF+PzERfGj8+vdJRjR10ZZp3gqRbmie7muR?=
- =?us-ascii?Q?7lNON0jlQfrzhknTmZZvmrnSe7c/ug1F28OIzTnhcppDCvB5oQ0QXuHWXMPE?=
- =?us-ascii?Q?id9NWgXRwTVScaNXuycQDXuHFnWRj6Rwd+PYIliYVdoMqLaDOvHT8pUe//OF?=
- =?us-ascii?Q?j3Zz1nMvmCiTuXw/9ikBPvIIRocvt21jikZIS4C1YojvMq3dYwrFss0Vehvi?=
- =?us-ascii?Q?+5LiP/k+Xd1Z6PmHGMn7aLDio+68f2BVnd23+3plS29m9vsEaEKkr43p2IJW?=
- =?us-ascii?Q?UY7j1QAtG+5ycMXd6YBnQ0xzcu1PLLFQVNnbXR6vnjWlKtYY/PxE6rWxC2NL?=
- =?us-ascii?Q?HtvwJ9Vmn1E/Qz5faEA63BNwaLCitJ8uhxTIMy6GgXuP07sCBgQSCi7srcmn?=
- =?us-ascii?Q?j8bMOGAQ4Lj1ZylAbE+LwEApeZaetEKgO5WUfyCKjY6PHSVd+qZETs3Ik/tz?=
- =?us-ascii?Q?3uKeFsw3EPmQZQ3BbKIl/AVfT6aukqoN1Ceoacqi9+Uxn7h+43ew8WPZvLHK?=
- =?us-ascii?Q?u+PITaAVzm4yjpfLl0wyW9GI1/yRkTTOyAk6ZJZ93lpPlAZc++Syljk2t+H8?=
- =?us-ascii?Q?UJrphy2DoCH8JQGe24mAwIzYbhpKfQ0kmZTuJ4pj+LQxiuFahKMb1oAPVcun?=
- =?us-ascii?Q?9u2zGkk3gK803yU7EM9QwCcqyHg2/lhJwnpLdNllXRsRaUZvnNZluWzIXaKL?=
- =?us-ascii?Q?6KHTdeqYj5cx1+NiZVyk1fouu6VoZOLa2ZE0M5rN6Fhg4ls/m1a/iud2C62Q?=
- =?us-ascii?Q?eGcsQmt328VLi0hE5OTvX7YfOOeGfjelUxhwvMH2WFPpDUmT+vaA5ZW/hOy1?=
- =?us-ascii?Q?u/9+M2glKDXaxCYKvsNnMJ0gqfh0MBqaVljOu/iNqpl0CkIuNtWkyoC2AHdu?=
- =?us-ascii?Q?Nw/LJe/a+8HykCeUiy6c1GMjIpWYrSq5OhgXbObeYWWrvVcARmISt5qiAhLK?=
- =?us-ascii?Q?WTCvBuuA1uz2sBlmgpvYGwV3TSE9xJyobPhJF4MqTtlGVfdT+g/v4CqaQRjg?=
- =?us-ascii?Q?sX4QMh7mLpk16UNH9SINNbFr4Iq7jZ1bil0W9Ynj0E7ozdANOw7YqWspaQx7?=
- =?us-ascii?Q?W2M+k0QgGN6kxM8O96vtTccTOMO4kIPFQBD+cr4RFuwQ+4NpjaU86DpL9FMW?=
- =?us-ascii?Q?DV4EEtIznO5ECMAq5UxaxTnEAYFhggHFE1+a734T?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 72f34ec2-4113-4919-1f92-08dd0d347e67
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2024 09:35:26.9759
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: k/fbLJ+W/rK0xtp5BRHrzdDBLili2tbip6NOwSPMXthYrHJl8PJUsE6KEfclv4tnd2RMoQsX73BtJOeWGMUAOg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10754
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/8] iio: accel: kx022a: Use cleanup.h helpers
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <cover.1732105157.git.mazziesaccount@gmail.com>
+ <037985fe50fe79c79b9df95fa7b4e577378f9a60.1732105157.git.mazziesaccount@gmail.com>
+ <20241123164223.25656985@jic23-huawei>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20241123164223.25656985@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-MX8-DLVDS-LCD1 display module integrates a KOE TX26D202VM0BWA LCD panel
-and a touch IC.  Add an overlay to support the LCD panel on i.MX8qxp
-MEK.  mipi_lvds_0_ldb channel0 and mipi_lvds_1_ldb channel1 send odd
-and even pixels to the panel respectively.
+Hello Jonathan,
 
-Signed-off-by: Liu Ying <victor.liu@nxp.com>
----
-v4:
-* No change.
+Thanks again!
 
-v3:
-* No change.
+On 23/11/2024 18:42, Jonathan Cameron wrote:
+> On Thu, 21 Nov 2024 10:20:23 +0200
+> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+> 
+>> A few functions in KX022A need to use mutex for protecting the
+>> enabling/disabling of the measurement while configurations are being
+>> made. Some of the functions can be slightly simplified by using the
+>> __cleanup based scoped mutexes, which allows dropping the goto based
+>> unlocking at error path.
+>>
+>> Simplify error paths using guard(mutex).
+>>
+>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> Now we have guard(), the main reason (I think) for the
+> combined on + lock and off + unlock paths is gone. So can
+> we just flatten those and do the locking at caller.
 
-v2:
-* New patch. (Francesco)
+I did consider this too :)
 
- arch/arm64/boot/dts/freescale/Makefile        |   4 +
- .../imx8qxp-mek-mx8-dlvds-lcd1-lvds0-odd.dtso | 183 ++++++++++++++++++
- arch/arm64/boot/dts/freescale/imx8qxp-mek.dts |  30 +++
- 3 files changed, 217 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8qxp-mek-mx8-dlvds-lcd1-lvds0-odd.dtso
+Why I decided to keep it as it is, (even though we need the extra 
+mutex_unlock() at certain error path) is because I kind of like the 
+lock+off and unlock+on functions. This locking does not protect data, 
+but really a sequence of operations that needs to be done while sensor 
+is OFF state. It's almost like a doc saying that "please, ensure the 
+sensor is OFF for the following operations" :)
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 42e6482a31cb..a22476e81cc7 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -254,6 +254,10 @@ dtb-$(CONFIG_ARCH_MXC) += imx8qxp-colibri-eval-v3.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8qxp-colibri-iris.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8qxp-colibri-iris-v2.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8qxp-mek.dtb
-+
-+imx8qxp-mek-mx8-dlvds-lcd1-lvds0-odd-dtbs += imx8qxp-mek.dtb imx8qxp-mek-mx8-dlvds-lcd1-lvds0-odd.dtbo
-+dtb-$(CONFIG_ARCH_MXC) += imx8qxp-mek-mx8-dlvds-lcd1-lvds0-odd.dtb
-+
- dtb-$(CONFIG_ARCH_MXC) += imx8qxp-tqma8xqp-mba8xx.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8ulp-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-9x9-qsb.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-mek-mx8-dlvds-lcd1-lvds0-odd.dtso b/arch/arm64/boot/dts/freescale/imx8qxp-mek-mx8-dlvds-lcd1-lvds0-odd.dtso
-new file mode 100644
-index 000000000000..7ddd90e68754
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8qxp-mek-mx8-dlvds-lcd1-lvds0-odd.dtso
-@@ -0,0 +1,183 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2024 NXP
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/firmware/imx/rsrc.h>
-+
-+&{/} {
-+	panel-lvds0 {
-+		compatible = "koe,tx26d202vm0bwa";
-+		backlight = <&backlight_lvds1>;
-+		power-supply = <&reg_vcc_per_3v3>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				dual-lvds-odd-pixels;
-+
-+				panel_lvds0_in: endpoint {
-+					remote-endpoint = <&lvds0_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+				dual-lvds-even-pixels;
-+
-+				panel_lvds1_in: endpoint {
-+					remote-endpoint = <&lvds1_out>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&backlight_lvds1 {
-+	status = "okay";
-+};
-+
-+&dc0_framegen0 {
-+	assigned-clocks = <&clk IMX_SC_R_DC_0_PLL_0 IMX_SC_PM_CLK_PLL>,
-+			  <&clk IMX_SC_R_DC_0 IMX_SC_PM_CLK_MISC0>;
-+	assigned-clock-parents = <0>,
-+				 <&clk IMX_SC_R_DC_0_PLL_0 IMX_SC_PM_CLK_PLL>;
-+	assigned-clock-rates = <940320000>;
-+};
-+
-+&dc0_pixel_link0 {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@1 {
-+			reg = <1>;
-+
-+			status = "okay";
-+		};
-+	};
-+};
-+
-+&dc0_pc {
-+	status = "okay";
-+
-+	channel@0 {
-+		status = "okay";
-+	};
-+};
-+
-+&mipi_lvds_0_ldb {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	fsl,companion-ldb = <&mipi_lvds_1_ldb>;
-+	status = "okay";
-+
-+	channel@0 {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <0>;
-+		status = "okay";
-+
-+		port@1 {
-+			reg = <1>;
-+
-+			lvds0_out: endpoint {
-+				remote-endpoint = <&panel_lvds0_in>;
-+			};
-+		};
-+	};
-+};
-+
-+&mipi_lvds_0_phy {
-+	status = "okay";
-+};
-+
-+&mipi_lvds_0_pxl2dpi {
-+	fsl,companion-pxl2dpi = <&mipi_lvds_1_pxl2dpi>;
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+
-+			mipi_lvds_0_pxl2dpi_dc0_pixel_link0: endpoint@0 {
-+				status = "okay";
-+			};
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+
-+			mipi_lvds_0_pxl2dpi_mipi_lvds_0_ldb_ch0: endpoint@0 {
-+				status = "okay";
-+			};
-+		};
-+	};
-+};
-+
-+&mipi_lvds_1_ldb {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	channel@1 {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <1>;
-+		status = "okay";
-+
-+		port@1 {
-+			reg = <1>;
-+
-+			lvds1_out: endpoint {
-+				remote-endpoint = <&panel_lvds1_in>;
-+			};
-+		};
-+	};
-+};
-+
-+&mipi_lvds_1_phy {
-+	status = "okay";
-+};
-+
-+&mipi_lvds_1_pwm {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pwm_mipi_lvds1>;
-+	status = "okay";
-+};
-+
-+&mipi_lvds_1_pxl2dpi {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+
-+			mipi_lvds_1_pxl2dpi_dc0_pixel_link0: endpoint@1 {
-+				status = "okay";
-+			};
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+
-+			mipi_lvds_1_pxl2dpi_mipi_lvds_1_ldb_ch1: endpoint@1 {
-+				status = "okay";
-+			};
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-index c7b4015c7bf7..cb999be00c22 100644
---- a/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8qxp-mek.dts
-@@ -21,6 +21,16 @@ chosen {
- 		stdout-path = &lpuart0;
- 	};
- 
-+	backlight_lvds1: backlight-lvds1 {
-+		compatible = "pwm-backlight";
-+		pwms = <&mipi_lvds_1_pwm 0 100000 0>;
-+		brightness-levels = <0 100>;
-+		num-interpolated-steps = <100>;
-+		default-brightness-level = <100>;
-+		power-supply = <&reg_vcc_12v0>;
-+		status = "disabled";
-+	};
-+
- 	imx8x_cm4: imx8x-cm4 {
- 		compatible = "fsl,imx8qxp-cm4";
- 		mbox-names = "tx", "rx", "rxdb";
-@@ -58,6 +68,20 @@ dsp_vdev0buffer: memory@94300000 {
- 		};
- 	};
- 
-+	reg_vcc_12v0: regulator-vcc-12v0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_12V0";
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+	};
-+
-+	reg_vcc_per_3v3: regulator-vcc-per-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_PER_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
- 	reg_usdhc2_vmmc: usdhc2-vmmc {
- 		compatible = "regulator-fixed";
- 		regulator-name = "SD1_SPWR";
-@@ -785,6 +809,12 @@ IMX8QXP_FLEXCAN2_RX_ADMA_UART3_RX       0x06000020
- 		>;
- 	};
- 
-+	pinctrl_pwm_mipi_lvds1: mipilvds1pwmgrp {
-+		fsl,pins = <
-+			IMX8QXP_MIPI_DSI1_GPIO0_00_MIPI_DSI1_PWM0_OUT		0x00000020
-+		>;
-+	};
-+
- 	pinctrl_pcieb: pcieagrp {
- 		fsl,pins = <
- 			IMX8QXP_PCIE_CTRL0_PERST_B_LSIO_GPIO4_IO00		0x06000021
--- 
-2.34.1
+(Another thing is that we do claim the direct mode in write_raw, and 
+goto is still handy for releasing it. Scoped guards won't play nicely 
+with goto. Yes, we could probably use the __cleanup for direct mode, but 
+I still like the lock+off, unlock+on for the reason above)
 
+Yours,
+	-- Matti
 
