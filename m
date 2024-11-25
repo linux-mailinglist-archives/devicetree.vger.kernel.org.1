@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-124309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124311-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6D289D848A
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 12:33:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDDBE9D849D
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 12:38:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58D8C161169
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 11:33:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51203168D3E
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 11:38:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B723E185949;
-	Mon, 25 Nov 2024 11:33:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE106193072;
+	Mon, 25 Nov 2024 11:38:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BTG14RGl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="s6gdHiif"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDDBD17B4EC
-	for <devicetree@vger.kernel.org>; Mon, 25 Nov 2024 11:33:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2FFD185949
+	for <devicetree@vger.kernel.org>; Mon, 25 Nov 2024 11:38:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732534433; cv=none; b=aciGO/dMn5f+AOedja5e+EpCwdTgi5/q8/6dYWgSrSeV57jtYeWrAx+1nFQNoig/zAUeC38GOggq9oNxNDgTCxzlwpQVlvG95Nqz9JVIo5OqmuQNclyDwNwhFtulbJ6NGexYdLUf/nHMAf/K+ig249fK+JnuuBxWqnkdAqMXuyU=
+	t=1732534693; cv=none; b=GnwSc90B9J3s7QD3EeT3bGDE3YGYxA7nCJqggmjUtImXL0ySrvD6UxLCLBDYwcs8I2cdoYAFqgeNjXKKtQjphWpP4QGOkwap3Rch8lNa+LOgS0wMIC4Giv1hgkXVFR181DkxanPamudEsXk8WBu8vV2XKvPImX40KRo/5hE+HEE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732534433; c=relaxed/simple;
-	bh=Y0pO1oyhjAPKL5nt1aPK7xIJvGf12wHU9jf95wCj+IA=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=chNj3XcAaDPZIrLPNPd6kPomOrDRMVcDuFIqmF2j2YcE/HCl6sbrTLMvqGXT7RyE9A7NQpTs77CGAvp+H2iG2cFu3suddFzHOc/d2TGLL9L61DkJOVX00xbtNB7au3MsU6xzDR2LC/2TrdjTaBo2HSodio34+H+pm56pf4hQ4xI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BTG14RGl; arc=none smtp.client-ip=209.85.221.48
+	s=arc-20240116; t=1732534693; c=relaxed/simple;
+	bh=mwnwMPsyl+SR2TJEFI1GIutXd7qNeetlprHnd/ODHQU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=V3ixTcqz6khyVtuoCfgugT4x1rlsjuCtkVbagf6KlJPy6rd+MdrOrZdldyFwFX7dUfhD2Hx1w3AqZAZbPew4AawtGAp0qflvppRbaTWMj3lo3Jsze1YludalO5XP0Gy0DKm6tEQVmMplTr3S5F9cg12891liZw/ThvT06CYno4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=s6gdHiif; arc=none smtp.client-ip=209.85.221.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-382611d2631so247354f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 25 Nov 2024 03:33:51 -0800 (PST)
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3822e64b2d8so140393f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 25 Nov 2024 03:38:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732534430; x=1733139230; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1732534690; x=1733139490; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:from:subject:user-agent:mime-version:date
+         :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=bq1myq/LdEjHthwXVChnvJN8lXo7LXiqyVkAx0EDVHU=;
-        b=BTG14RGltFr0PgcCAT2GVgDfoH0rwICl6xVV9xFb5C/317m1lO7WU9KVnTtzlMdRnK
-         vZqOjRZZhWXbKb/XDOCZ7TMxlgLiBiCnmReVfF8sDAO/Xk7PyN89flwIKF5jpdiKjKv/
-         2+rMMHrn0VRMEI33qp5cPNQ3YueimE9DmycZBudnAOm7KHghdm+2AfNudG3TGcDsMuD0
-         Px0hYFwDzoJzN3tnZ/mn6MbQ66kT6rPZFE+j6u5FFQ8AUL673FxqFzVlVVREf4zeDjcB
-         5dtZEpdJ85SnVUfnvLhr7FAQEFHdA0cR8ntaMh7718JGFUpBGUFcuoE4ntpAle7fZERI
-         Tc0g==
+        bh=Tat/NKK070c3qC2tUrKRZht2FUvVoXySm4EDmfAlo2A=;
+        b=s6gdHiifFCwR/s3Q6n9tZtQ9vHXHSkircai4xa55Wy+W18iAF6Ngs83GVb6s4GOMNL
+         hTJCXKAy+9N9BYtD44xsCHZW5tbjczDSaUak8m42MaSWmchPUfRuReeosl19OBnH1TPB
+         vowbARKJaSv0WBP3e7zT0ZjTYJy0R/q1PtL2nki4vrFVCBrey4JEOJ5i7badLyAB88bu
+         kdu9vj2i0oHv4jh02HQ7f9XAJLYeXCITrlO+jv8HBjkpKtqlOIfMTczeRWZGF4CIkW68
+         iFGjlpuBHxXrYarbr6Ft6sh23b6XCpANYENc3Mjvm3P8FgTrmYxvxrB5QhVPVTLkIJ51
+         q2aA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732534430; x=1733139230;
+        d=1e100.net; s=20230601; t=1732534690; x=1733139490;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:from:subject:user-agent:mime-version:date
+         :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=bq1myq/LdEjHthwXVChnvJN8lXo7LXiqyVkAx0EDVHU=;
-        b=u9rSdPo1TsDm5n+fZMGieWRyyfmBB0GHMKdcOtP8qwyHWFNRsul2zzOeWQvX9zKGm5
-         XdCDLK1xbq5Aun9y8Q+fV7Z0hmrXl8CA/fcFMJYWoj6xLeJP+hNpw6uJOLT5gBpOS9VX
-         JEvPUZGTC4RBn5cgoBrY5IaMsE03C+oz8NmeXqLWDws3IEl7MFfB55go3VqJA6RfKT6P
-         kJ/ns5cjZVL8S2TA8O936T8Chrn9BxjgYUfsLIU8ohauGiTR1auEuyArvDQU4FdWBKSz
-         GfV3fhtugYof/70fQolb2F5KqrLsOgSTsFo12Mn57G78IhjWchAi8T1eqiYKhRdXS/0R
-         umAA==
-X-Forwarded-Encrypted: i=1; AJvYcCXqg4k5uHQbEqC4Ks4mH+0WQ8VqMnhPdgusvkL7sudyNptylINHkSeppttOzHUplpiByE6+LWsiRrJu@vger.kernel.org
-X-Gm-Message-State: AOJu0YyJe+/sF4BLgiRmTBJti/Bwyh+CDcf2k19GYRRNyPDnXaJQfgy7
-	UNy9WvQGRdgudfbZlGbzp7hZ97XcQKwjVLExBGJSVpW2JuqIZniu1Rs9UJfIFgQ=
-X-Gm-Gg: ASbGnctMujlzN/xYvgNSbqPjAw3OD6LVEmEXgzfURaZD9T2qktueoEoouTZSvkUbjg9
-	mJrY4t733KYM3gKqZOgdeUJdRFCymqUmGGAXtFXrNLIxrX/fBB1KoCV/UIwxwI+ydKr/cRsPC6W
-	0gn4qa9LbRzQ3WMI9UmW245D5HpNZENYSTAftblZaHBguxktZnruRL/fJE8wZb/6Scn96pgfhgg
-	uQrhl9XitHpKRiCuaNNM2+V7oZmQGUJITju3YdNMwkWU2oJYbtmsc1b4QBdfqL9QYgHWA==
-X-Google-Smtp-Source: AGHT+IF2vPou6F+jFBQByuXLqF7Zv4HrZFxhrlsMBFUJP6yPAfwqoinw08bfxrm53NuMVRE8xcx+xg==
-X-Received: by 2002:a05:6000:2a7:b0:382:3ef9:dfbc with SMTP id ffacd0b85a97d-38260ba3df8mr3414325f8f.5.1732534430139;
-        Mon, 25 Nov 2024 03:33:50 -0800 (PST)
+        bh=Tat/NKK070c3qC2tUrKRZht2FUvVoXySm4EDmfAlo2A=;
+        b=tDgZcU/0FkYoqWisTpUXJe36eAl62BytqhvHO1jgs4I8ep4sJ07OWSEpLCXey+obVL
+         jFu+vdF0QGnRS/WURAJ6b0qPuaC9jR3PMY7nCxmMVZMznoZv9R8gsrtfpqtjGI/OfRQy
+         Lti8p3llE5fH8U4B6vf0z/i5uCVHP3g/8CNMNZkwoqswMTV9FT4lUKWOVmLjWyAz/j9C
+         BwhyAdOgPbDITaesnHZSikh06Xs802NDCZCaFbWQ9LHecPZB6V1bOupRbSFg+/w7pvRc
+         1egNXdepMtOMhU48ApaF6biEzoh5tvN/G8BR02vdbeoTqEHzRMIuORFmu43LYHT8wLNJ
+         dEAw==
+X-Forwarded-Encrypted: i=1; AJvYcCX3ouFednwJiWiVFpZIsjKn/PBTkrV/Klpv2PMScjuAkIcateDzs7EjROFd4RdGN+LLzlJZ8OC7LW/l@vger.kernel.org
+X-Gm-Message-State: AOJu0YxYjRIk5xW/1sIih5vEwbI8I2Qn7gZ/6vQDDdkcCp1JYTMWU3du
+	c8rySeI0yTr3qsxAqaZE5yE2OtcPyo/w1mJySNAYMEj434TMWMtQcHGa+E+uBSo=
+X-Gm-Gg: ASbGncvLoRdb/HnCTHewsdptSD3xBeG5cMXNJb9Rw5cm26LoExJZdpHBFU55ZTpBee4
+	6vU2FTFz5Ub6Xhh7l/zq6mLMZAZGJMGPphJLxdojvHIpR/WsVc7jaIfBB3QyyFiZXizok53mr9x
+	FuisIUzgNi3FSVF1KFI3+KGdxMe/hh7iSC7Dd1IIn+Q+UURk1XchmYP/cC0QHU9SD8FFSBtQKhO
+	8i7Fl6RAkan3hSejUih8WK2/yQPktzVMmJSjgLhyfu3SnIHOTE0eDAQb8oulpqDFow8Ow==
+X-Google-Smtp-Source: AGHT+IGUuX3DsYKmr/xRhAnzo44NQ2k0mO5CfY3Chxq9GT1NIftKZaQz77/Whg+N0TTRIxfXnPGhiw==
+X-Received: by 2002:a05:6000:1f81:b0:382:5206:8b7a with SMTP id ffacd0b85a97d-38260be5288mr4213583f8f.13.1732534690242;
+        Mon, 25 Nov 2024 03:38:10 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.211.167])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434a15d86a4sm14158975e9.36.2024.11.25.03.33.48
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3825fb537dfsm10107284f8f.63.2024.11.25.03.38.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Nov 2024 03:33:49 -0800 (PST)
-Message-ID: <e77669ea-9edd-4321-8d17-4da40161b59d@linaro.org>
-Date: Mon, 25 Nov 2024 12:33:48 +0100
+        Mon, 25 Nov 2024 03:38:09 -0800 (PST)
+Message-ID: <c97c05cf-9cf2-40e7-8f50-2f438721c394@linaro.org>
+Date: Mon, 25 Nov 2024 12:38:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,22 +81,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [GIT PULL] Devicetree updates for v6.13
+Subject: Re: [PATCH] of: Add Google Juniper to excluded default cells list
+To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Sasha Levin <sashal@kernel.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Chen-Yu Tsai
+ <wenst@chromium.org>, Conor Dooley <conor@kernel.org>
+References: <20241125113151.107812-1-krzysztof.kozlowski@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Chen-Yu Tsai <wenst@chromium.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Sasha Levin <sashal@kernel.org>, Rob Herring <robh@kernel.org>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Saravana Kannan <saravanak@google.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Matthias Brugger <matthias.bgg@gmail.com>
-References: <20241118210730.GA3331421-robh@kernel.org>
- <Z0NUdoG17EwuCigT@sashalap> <c25e6a80-f6dc-4ef9-a90d-0fa09cbbc217@linaro.org>
- <Z0NbeyTwxo-M4Lgi@sashalap>
- <936bf452-3d1f-4940-9a91-69efcdc6985e@collabora.com>
- <CAGXv+5FLkZbZVHNkfRWuT+OioZ0TG=u2WfaFCx-jZFi73QHnVg@mail.gmail.com>
- <19ba4910-f909-41b4-ba62-c904bc37d41d@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -142,59 +135,102 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <19ba4910-f909-41b4-ba62-c904bc37d41d@linaro.org>
+In-Reply-To: <20241125113151.107812-1-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 25/11/2024 12:00, Krzysztof Kozlowski wrote:
-> On 25/11/2024 11:34, Chen-Yu Tsai wrote:
->> On Mon, Nov 25, 2024 at 5:48 PM AngeloGioacchino Del Regno
->> <angelogioacchino.delregno@collabora.com> wrote:
->>>
->>> Il 24/11/24 17:59, Sasha Levin ha scritto:
->>>> On Sun, Nov 24, 2024 at 05:47:33PM +0100, Krzysztof Kozlowski wrote:
->>>>> On 24/11/2024 17:29, Sasha Levin wrote:
->>>>>> Hi Rob,
->>>>>>
->>>>>> On Mon, Nov 18, 2024 at 03:07:30PM -0600, Rob Herring wrote:
->>>>>>>      of: WARN on deprecated #address-cells/#size-cells handling
->>>>>>
->>>>>> With the commit above, I've started seeing boot warnings on a few
->>>>>
->>>>> And same boards do not report problems on the next?
->>>>
->>>> Looks like they do. I haven't checked it previously, but I see that we
->>>> have similar warnings on a few boards that KernelCI is testing -next on.
->>>>
->>>
->>> That's... horrendous.
->>>
->>> I hope that we can get a proper fix with a bootloader update on these (now very
->>> old) devices... Adding a Google engineer to the loop so that he can follow up
->>> internally.
->>
->> AFAIK that's unlikely going to happen given the resources needed from
->> the ODMs for a firmware re-qualification. Or we would have fixed the GIC
->> bug in ATF and had pseudo-NMI.
->>
->> Some of the firmware code involved is 10 years old, so even the RK3399
->> Chromebooks, which no longer have support, could suffer from this as
->> well.
->>
->>> The alternative would be to hack-in a firmware node to mt8183-kukui.dtsi, but....
->>> ...ugh. That'd be indeed a hack for the sole purpose of fixing a bootloader that
->>> is acting in a broken way, and I don't like that at all (...and I'm sure I'm not
->>> alone!).
->>
+On 25/11/2024 12:31, Krzysztof Kozlowski wrote:
+> Google Juniper platforms have a very old bootloader which populates
+> /firmware node without proper address/size-cells leading to warnings:
 > 
-> Then we should add it to the exception list. Let me take a look at this.
-https://lore.kernel.org/linux-devicetree/20241125113151.107812-1-krzysztof.kozlowski@linaro.org/T/#u
+>   Missing '#address-cells' in /firmware
+>   WARNING: CPU: 0 PID: 1 at drivers/of/base.c:106 of_bus_n_addr_cells+0x90/0xf0
+>   Modules linked in:
+>   CPU: 0 UID: 0 PID: 1 Comm: swapper/0 Not tainted 6.12.0 #1 933ab9971ff4d5dc58cb378a96f64c7f72e3454d
+>   Hardware name: Google juniper sku16 board (DT)
+>   ...
+>   Missing '#size-cells' in /firmware
+>   WARNING: CPU: 0 PID: 1 at drivers/of/base.c:133 of_bus_n_size_cells+0x90/0xf0
+>   Modules linked in:
+>   CPU: 0 UID: 0 PID: 1 Comm: swapper/0 Tainted: G        W          6.12.0 #1 933ab9971ff4d5dc58cb378a96f64c7f72e3454d
+>   Tainted: [W]=WARN
+>   Hardware name: Google juniper sku16 board (DT)
+> 
+> The platform won't receive updated bootloader/firmware so add it to
+> excluded platform list to silence the warning.
+> 
+> Reported-by: Sasha Levin <sashal@kernel.org>
+> Closes: https://lore.kernel.org/all/Z0NUdoG17EwuCigT@sashalap/
+> Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Cc: Matthias Brugger <matthias.bgg@gmail.com>
+> Cc: Chen-Yu Tsai <wenst@chromium.org>
+> Cc: Conor Dooley <conor@kernel.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  drivers/of/base.c | 26 ++++++++++++++++++++++++--
+>  1 file changed, 24 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/of/base.c b/drivers/of/base.c
+> index a8b0c42bdc8e..13f0b2877ee0 100644
+> --- a/drivers/of/base.c
+> +++ b/drivers/of/base.c
+> @@ -56,6 +56,16 @@ DEFINE_MUTEX(of_mutex);
+>   */
+>  DEFINE_RAW_SPINLOCK(devtree_lock);
+>  
+> +/*
+> + * List of machines running old firmware without explicit #address-cells and
+> + * #size-cells values for parent nodes, which are most likely not going get any
+> + * update.
+> + */
+> +static const char * const excluded_default_cells_compats[] = {
+> +	"google,juniper",
+> +	NULL
+> +};
+> +
+>  bool of_node_name_eq(const struct device_node *np, const char *name)
+>  {
+>  	const char *node_name;
+> @@ -91,6 +101,17 @@ static bool __of_node_is_type(const struct device_node *np, const char *type)
+>  	IS_ENABLED(CONFIG_SPARC) \
+>  )
+>  
+> +static bool excluded_default_cells_machines(void)
+> +{
+> +	/* Do not repeat the machine checks for every bus */
+> +	static int excluded_machine = -1;
+> +
+> +	if (excluded_machine < 0)
+> +		excluded_machine = of_machine_compatible_match(excluded_default_cells_compats);
+> +
+> +	return !!excluded_machine;
+> +}
+> +
+>  int of_bus_n_addr_cells(struct device_node *np)
+>  {
+>  	u32 cells;
+> @@ -103,7 +124,7 @@ int of_bus_n_addr_cells(struct device_node *np)
+>  		 * is deprecated. Any platforms which hit this warning should
+>  		 * be added to the excluded list.
+>  		 */
+> -		WARN_ONCE(!EXCLUDED_DEFAULT_CELLS_PLATFORMS,
+> +		WARN_ONCE(!EXCLUDED_DEFAULT_CELLS_PLATFORMS && !excluded_default_cells_machines(),
+>  			  "Missing '#address-cells' in %pOF\n", np);
+>  	}
+>  	return OF_ROOT_NODE_ADDR_CELLS_DEFAULT;
+> @@ -125,12 +146,13 @@ int of_bus_n_size_cells(struct device_node *np)
+>  	for (; np; np = np->parent) {
+>  		if (!of_property_read_u32(np, "#size-cells", &cells))
+>  			return cells;
+> +
 
-I sent a fix for this platform only. You did not paste links to other
-failing platforms (and sorry but kernelci web interface was absolutely
-unmanageable and unusable, so I am not going to even try to look for
-them) so not sure who should be added to list of exceptions.
 
+This was not intentional, I'll fix it in v2.
+
+Obviously this code is not really SMP aware, but even with store tearing
+I don't think it will be issue. Worst case the
+of_machine_compatible_match() will be called more than one, which is not
+fatal and might not justify atomics or locks.
 
 Best regards,
 Krzysztof
