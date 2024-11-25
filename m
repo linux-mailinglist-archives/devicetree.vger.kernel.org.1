@@ -1,268 +1,219 @@
-Return-Path: <devicetree+bounces-124461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 162E99D8D38
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 21:05:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA55E9D8D6B
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 21:33:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 904F8B22FAF
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 20:04:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6AA7E286B4A
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 20:33:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A2B21C07C0;
-	Mon, 25 Nov 2024 20:04:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A160C1BBBC8;
+	Mon, 25 Nov 2024 20:33:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LCYukZYB"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Oob8mAq8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A43A1552FC;
-	Mon, 25 Nov 2024 20:04:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76AEE181CE1;
+	Mon, 25 Nov 2024 20:33:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732565056; cv=none; b=h/8rc+mKOHAIAzZLY/rg24TcIMLfpov0+h5q2xQemxtX66yt+ZpkjAPR5K2tjP6Vn99k1SkcbIkJuYhOWTY+7LuCOQyNXWq/Q0uuDzHFDCaTWiSiocqn6BTnau9xfJrhFADGweu0m5cWtab9zJot/RqC15w4ad3Xc29Tp+koCE8=
+	t=1732566806; cv=none; b=eHJ0bEXps50EBNVJG1HsRJCthJwOTi2Qzq5rBJhvcsJDk+IVh7D4uo4x3/ntDtjsLxzl9ezdL272rCY9ObX1XHq+dCAoE5gcYA3fnAwqFPF+VDuzCK9SnUYCnm6iPBFH3l6rCI1ex3GYC7xe6w/sj0WmcELhKRzGjR0GtROcbEk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732565056; c=relaxed/simple;
-	bh=0jeOnmsSROXYZ+myVdKpJjRbTdKaje8IhFLtxe2XRM8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=o06bqscMbWJiLQ4TtgapXUtEG/bLdjasqfMHmV/a2g6UnBXmFkTs+x9s5Zc1vrobfO/YlpG6RbEn6y+0GdkKGiZYM9KJWqpmeUjf6E3urpeFVM4WRPu08N88BJ4YKHeSL0L2E37B0dra98rl8Qj7x0OQq+aaIskiC6YvDlEqT+g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LCYukZYB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9047C4CECE;
-	Mon, 25 Nov 2024 20:04:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732565055;
-	bh=0jeOnmsSROXYZ+myVdKpJjRbTdKaje8IhFLtxe2XRM8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=LCYukZYBsEixjABFBhgWYAdY3agpkay4QRtX+/WBJU67Z1CyyTibXrnEVrvZKLKvG
-	 wcKl5TA9/btkpyjfVaeSDSIXH5H8ixp5KZcUDKB93qUozFLdduDWU5yk/vY0uXpahP
-	 BqocKb3e5u+jNmsekfyV4pLBRBj130Bm5sAFTgCAXBfBGx5oKVgYqvgXFm9fIDJgj9
-	 LPNIQ2UQjVYWFXRbkPI5yRRkiU2T3Bbye5r2K8b4nmuUVByHMBN2ppCM/R5DR+6J+E
-	 izBq3L3Kf/N+7/beFyRIpry03XQPLw5HcZ0xQ3T9oS0L3rPhRFd3NiXtpfOLIo0TZI
-	 7gp/mQ81MFuuA==
-Date: Mon, 25 Nov 2024 20:04:05 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Ciprian Hegbeli <ciprian.hegbeli@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, "Rob Herring" <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- Javier Carrasco <javier.carrasco.cruz@gmail.com>, Kim Seer Paller
- <kimseer.paller@analog.com>, Antoniu Miclaus <antoniu.miclaus@analog.com>,
- <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: frequency: Add ADF4382
-Message-ID: <20241125200405.1d5dd495@jic23-huawei>
-In-Reply-To: <20241114130340.7354-2-ciprian.hegbeli@analog.com>
-References: <20241114130340.7354-1-ciprian.hegbeli@analog.com>
-	<20241114130340.7354-2-ciprian.hegbeli@analog.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1732566806; c=relaxed/simple;
+	bh=Uqz7a4sPXvnjaUxPZ+YCYB+4Kmxi8l8O0znJw9BiFvo=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
+	 In-Reply-To:Content-Type; b=aXIlHAMRSdxCrv4XWSssmv8B/8IZUhhRfn4FSt3IMpB8cIfLQ6zIb+lUnHPk7EKqyf5Uaq1HzU3dZOeanXqL7wZU7z6VEnG1TX3LsSUoGswuMqOH8R7472uMhoJsqYjFY5atefS6Tt+p3uBIN6Vysiro570asKKoEmIt2jhjzSo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Oob8mAq8; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4APJZW8J016332;
+	Mon, 25 Nov 2024 20:33:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	lMJw5yo0FOgWaQH+j3OGpbM3FauPstx2VfkaHJNAIGU=; b=Oob8mAq8IElqpqKr
+	y2+Qpy9lSP7Q3VrJXJACZQJKNe0BXOW9bRjogud4IMBfcrpquB8vJtLEk+zgK88f
+	U99kudzvcoGDistNGqOARFBn0Fa7gBhvDdsfgckkxKibRwoyx0j/7RmYs9v8hW71
+	kt8hwOq468zsUC1DZsazwxIa9oW9B84EmhLm3JZk7kz2/JUwQmVtIGCT4BV8mglx
+	wnwU47BBdm1Oz00vF1XQC3s7jxkGXja8tHikeJATZowBvMh+iU2GblvKc1inqCIi
+	ikNOgmSvjQvCSTOeXeuBDsqa9L04X4AqWdSbDR48JFbiYKoHOuNFdMQHF97LL8sf
+	ydevyg==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4334rd67ch-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 25 Nov 2024 20:33:06 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4APKX4k5025346
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 25 Nov 2024 20:33:04 GMT
+Received: from [10.110.81.241] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 25 Nov
+ 2024 12:33:03 -0800
+Message-ID: <8fc53dd9-0c26-410c-b1b1-3d6df7894a44@quicinc.com>
+Date: Mon, 25 Nov 2024 12:33:03 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla Thunderbird
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+Subject: Re: [PATCH v30 28/30] ALSA: usb-audio: Add USB offload route kcontrol
+To: Takashi Iwai <tiwai@suse.de>
+CC: <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <conor+dt@kernel.org>, <dmitry.torokhov@gmail.com>,
+        <corbet@lwn.net>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
+        <krzk+dt@kernel.org>, <pierre-louis.bossart@linux.intel.dev>,
+        <Thinh.Nguyen@synopsys.com>, <tiwai@suse.com>, <robh@kernel.org>,
+        <gregkh@linuxfoundation.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-sound@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-input@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>
+References: <20241106193413.1730413-1-quic_wcheng@quicinc.com>
+ <20241106193413.1730413-29-quic_wcheng@quicinc.com>
+ <87bjya3xzw.wl-tiwai@suse.de>
+ <02c20b06-34ef-459b-9cd1-2d2735eb1352@quicinc.com>
+ <87zfls1t7x.wl-tiwai@suse.de>
+Content-Language: en-US
+In-Reply-To: <87zfls1t7x.wl-tiwai@suse.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: GBDQF2YIkOXH2dvk_aUVeSXZoFBT9G8g
+X-Proofpoint-GUID: GBDQF2YIkOXH2dvk_aUVeSXZoFBT9G8g
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
+ bulkscore=0 clxscore=1011 suspectscore=0 priorityscore=1501 malwarescore=0
+ spamscore=0 adultscore=0 impostorscore=0 phishscore=0 mlxlogscore=999
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2411250171
 
-On Thu, 14 Nov 2024 15:03:10 +0200
-Ciprian Hegbeli <ciprian.hegbeli@analog.com> wrote:
+Hi Takashi,
 
-Hi Ciprian,
+On 11/21/2024 7:50 AM, Takashi Iwai wrote:
+> On Wed, 20 Nov 2024 20:13:34 +0100,
+> Wesley Cheng wrote:
+>> Hi Takashi,
+>>
+>> On 11/20/2024 4:12 AM, Takashi Iwai wrote:
+>>> On Wed, 06 Nov 2024 20:34:11 +0100,
+>>> Wesley Cheng wrote:
+>>>> In order to allow userspace/applications know about USB offloading status,
+>>>> expose a sound kcontrol that fetches information about which sound card
+>>>> and PCM index the USB device is mapped to for supporting offloading.  In
+>>>> the USB audio offloading framework, the ASoC BE DAI link is the entity
+>>>> responsible for registering to the SOC USB layer.
+>>>>
+>>>> It is expected for the USB SND offloading driver to add the kcontrol to the
+>>>> sound card associated with the USB audio device.  An example output would
+>>>> look like:
+>>>>
+>>>> tinymix -D 1 get 'USB Offload Playback Route PCM#0'
+>>>> -1, -1 (range -1->255)
+>>>>
+>>>> This example signifies that there is no mapped ASoC path available for the
+>>>> USB SND device.
+>>>>
+>>>> tinymix -D 1 get 'USB Offload Playback Route PCM#0'
+>>>> 0, 0 (range -1->255)
+>>>>
+>>>> This example signifies that the offload path is available over ASoC sound
+>>>> card index#0 and PCM device#0.
+>>>>
+>>>> The USB offload kcontrol will be added in addition to the existing
+>>>> kcontrols identified by the USB SND mixer.  The kcontrols used to modify
+>>>> the USB audio device specific parameters are still valid and expected to be
+>>>> used.  These parameters are not mirrored to the ASoC subsystem.
+>>>>
+>>>> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+>>> IIRC, this representation of kcontrol was one argued issue; Pierre
+>>> expressed the concern about the complexity of the kcontrol.
+>>> I didn't follow exactly, but did we get consensus?
+>> So the part that Pierre had concerns on was that previously, the
+>>> implementation was placing offload kcontrols to the ASoC platform
+>>> card, and had some additional controls that complicated the
+>>> offload implementation about the offload status for each USB audio
+>>> device.  This was discussed here:
+>> https://lore.kernel.org/linux-usb/957b3c13-e4ba-45e3-b880-7a313e48c33f@quicinc.com/
+>>
+>> To summarize, I made the decision to move the offload status
+>> kcontrols from ASoC --> USB SND and limited it to only one kcontrol
+>> (mapped offload device).  So now, there exists a kcontrol for every
+>> USB SND device (if the offload mixer is enabled), where it tells
+>> userspace the mapped ASoC platform card and pcm device that handles
+>> USB offloading, else you'll see the "-1, -1" pair, which means
+>> offload is not possible for that USB audio device.
+> OK, the simplification is good.  But I wonder whether the current
+> representation is the best.  Why not just providing two controls per
+> PCM, one for card and one for device, instead of two integer array?
+> It would look more intuitive to me.
+>
 
-> The ADF4382A is a high performance, ultralow jitter, Frac-N PLL
-> with integrated VCO ideally suited for LO generation for 5G applications
-> or data converter clock applications. The high performance
-
-5G or data converter clock applications.
-(no need to say applications twice)
-
-> PLL has a figure of merit of -239 dBc/Hz, low 1/f Noise and
-> high PFD frequency of 625MHz in integer mode that can achieve
-> ultralow in-band noise and integrated jitter. The ADF4382A can
-> generate frequencies in a fundamental octave range of 11.5 GHz to
-> 21 GHz, thereby eliminating the need for sub-harmonic filters. The
-> divide by 2 and 4 output dividers on the part allow frequencies to
-> be generated from 5.75GHz to 10.5GHz and 2.875GHz to 5.25GHz
-> respectively.
-Wrap this lot to 75 chars otherwise that's fine if more detail than
-many bother with! :)
-
-> 
-> Signed-off-by: Ciprian Hegbeli <ciprian.hegbeli@analog.com>
-
-A few additional comments from me inline.
-
-> ---
->  .../bindings/iio/frequency/adi,adf4382.yaml   | 141 ++++++++++++++++++
->  1 file changed, 141 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/frequency/adi,adf4382.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/frequency/adi,adf4382.yaml b/Documentation/devicetree/bindings/iio/frequency/adi,adf4382.yaml
-> new file mode 100644
-> index 000000000000..44a29ac7a2e8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/frequency/adi,adf4382.yaml
-> @@ -0,0 +1,141 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/frequency/adi,adf4382.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ADF4382 Microwave Wideband Synthesizer with Integrated VCO
-> +
-> +maintainers:
-> +  - Antoniu Miclaus <antoniu.miclaus@analog.com>
-> +  - Ciprian Hegbeli <ciprian.hegbeli@analog.com>
-> +
-> +description: The ADF4382 is a high performance, ultralow jitter, Frac-N PLL with
-> +   integrated VCO ideally suited for LO generation for 5G applications
-> +   or data converter clock applications.
-
-> +
-> +   https://www.analog.com/en/products/adf4382a.html
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,adf4382
-> +      - adi,adf4382a
-Description only talks about the a variant. Why is the one without the a?
-
-
-> +  adi,charge-pump-microamp:
-> +    description:
-> +      The charge pump current that the external loop filter was designed for.
-> +      If this property is not specified, then the charge pump current is set to the
-> +      default 11100uA. The valid values are listed below. However, if the set value is
-> +      not supported, the driver will look for the closest valid charge pump current.
-
-Don't talk about the driver in a dt-binding. So delete last two sentences.
-
-> +    anyOf:
-> +      - enum: [790, 990, 1190, 1380, 1590, 1980, 2390, 2790, 3180, 3970, 4770, 5570, 6330, 7910, 9510, 11100]
-> +
-> +  adi,ref-divider:
-> +    description:
-> +      Input divider of the reference frequency, cannot be lower then 1 or
-> +      higher then 63.
-Why can this not be derived by the required settings in the driver?
-That is, why is this a characteristic of the board design?
-
-> +    allOf:
-> +      - $ref: /schemas/types.yaml#/definitions/uint32
-> +      - minimum: 1
-> +      - maximum: 63
-> +      - default: 1
-> +    maxItems: 1
-Don't think the maxItems is needed.
-> +
-> +  adi,ref-doubler-enable:
-As above. We should be able to figure out if this is necessary to meet
-a particular requested output.
-
-> +    description:
-> +      Enables the doubling of the reference clock.
-> +    type: boolean
-> +    maxItems: 1
-> +
-> +  adi,bleed-word:
-> +    description:
-> +      A small programmable constant charge pump current, known as bleed current,
-> +      can be used to optimize the phase noise and fractional spurious signals
-> +      in fractional mode.
-Can we express this in standard units for current?
-Also call it bleed-current.
-
-> +    allOf:
-> +      - $ref: /schemas/types.yaml#/definitions/uint32
-> +      - minimum: 0
-> +      - maximum: 4095
-> +      - default: 0
-> +    maxItems: 1
-As above, do we need maxItems?
-
-> +
-> +  adi,power-up-frequency:
-> +    description:
-> +      PLL tunes to the set frequency on probe or defaults to 2,305 GHz.
-> +    allOf:
-> +      - $ref: /schemas/types.yaml#/definitions/uint64
-> +      - minimum: 687500000
-> +      - maximum: 22000000000
-> +      - default: 2305000000
-Why does a default power up frequency make sense?
-I'd kind of expect the device to not put anything out until software
-has configured it.
-
-> +    maxItems: 1
-> +
-> +  adi,output-power-value:
-> +    description:
-> +      The output power amplitude level which will be applied for both channels
-> +      at startup.
-As above. Feels like this should be configured by userspace before anything is
-enabled.  I'd be happy with limits if those make sense (as might reflect what
-the circuitry can cope with).
-
-> +    allOf:
-> +      - $ref: /schemas/types.yaml#/definitions/uint32
-> +      - minimum: 0
-> +      - maximum: 15
-> +      - default: 11
-> +    maxItems: 1
-> +
-> +  adi,spi-3wire-enable:
-> +    description:
-> +      Uses SPI in 3 wire mode, by default is uses 4 wire mode.
-Is this standard SPI 3 wire, or an ADI variant?
-Is spi-3wire from main spi binding appropriate?
-
-> +    type: boolean
-> +    maxItems: 1
-> +
-> +  adi,cmos-3v3:
-> +    description:
-> +      Sets the SPI logic to 3.3V, by defautl it uses 1,8V.
-spell check.
-
-How do you configure it given with the wrong voltage is the
-SPI bus reliable?
+I could separate it, but we would have to have a pair of controls for each available USB PCM playback stream supported by the device.  However, before I get into making that change, I think the decision for either two or one FE needs to be decided.  Again, I think the 2 FE approach is much less invasive to the USB SND/ASoC core files, and ensures the legacy USB SND path still works through the non-offloaded data path. 
 
 
-> +    type: boolean
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-supplies usually required.
+>>> Apart from that: the Kconfig defition below ...
+>>>
+>>>> +config SND_USB_OFFLOAD_MIXER
+>>>> +	tristate "USB Audio Offload mixer control"
+>>>> +	help
+>>>> +	 Say Y to enable the USB audio offloading mixer controls.  This
+>>>> +	 exposes an USB offload capable kcontrol to signal to applications
+>>>> +	 about which platform sound card can support USB audio offload.
+>>>> +	 The returning values specify the mapped ASoC card and PCM device
+>>>> +	 the USB audio device is associated to.
+>>> ... and Makefile addition below ...
+>>>
+>>>> --- a/sound/usb/Makefile
+>>>> +++ b/sound/usb/Makefile
+>>>> @@ -36,3 +36,5 @@ obj-$(CONFIG_SND_USB_US122L) += snd-usbmidi-lib.o
+>>>>  
+>>>>  obj-$(CONFIG_SND) += misc/ usx2y/ caiaq/ 6fire/ hiface/ bcd2000/ qcom/
+>>>>  obj-$(CONFIG_SND_USB_LINE6)	+= line6/
+>>>> +
+>>>> +obj-$(CONFIG_SND_USB_OFFLOAD_MIXER) += mixer_usb_offload.o
+>>> ... indicates that this code will be an individual module, although
+>>> it's solely used from snd-usb-audio-qmi driver.  This should be rather
+>>> a boolean and moved to sound/usb/qcom/, and linked to
+>>> snd-usb-audio-qmi driver itself, e.g.
+>>>
+>>> --- a/sound/usb/qcom/Makefile
+>>> +++ b/sound/usb/qcom/Makefile
+>>> @@ -1,2 +1,3 @@
+>>>  snd-usb-audio-qmi-objs := usb_audio_qmi_v01.o qc_audio_offload.o
+>>> +snd-usb-audio-qmi-$(CONFIG_SND_USB_OFFLOAD_MIXER) += mixer_usb_offload.o
+>>>  obj-$(CONFIG_SND_USB_AUDIO_QMI) += snd-usb-audio-qmi.o
+>>>
+>>> Then you can drop EXPORT_SYMBOL_GPL(), too.
+>> Had a discussion with Pierre on this too below.
+>>
+>> https://lore.kernel.org/linux-usb/f507a228-4865-4df5-9215-bc59e330a82f@linux.intel.com/
+>>
+>> I remember you commenting to place it in this vendor offload module,
+>> which is what I did on v24.
+> I assume that my early comment was based on your old implementations,
+> and I guess it was because the mixer part didn't belong to the qcom
+> stuff.  Now it belongs solely to qcom, the situation changed; it makes
+> no sense to make it an individual module at all.
+>
+>
+I guess Pierre's feedback was that he believed this should be vendor agnostic, because any vendor that could potentially support USB audio offload should have the same kcontrol within the USB SND device.  Hence the reason for keeping it within generic code.  Since QC is the only user of this now.  Do you prefer to make this part of the vendor module for now, until another user comes along and introduces offload support?
 
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        frequency@0 {
-Indentation is a bit random.
-Stick to 4 spaces throughout.
+Thanks
 
-> +          compatible = "adi,adf4382";
-> +          reg = <0>;
-> +          spi-max-frequency = <1000000>;
-> +          clocks = <&adf4382_clkin>;
-> +          clock-names = "ref_clk";
-> +          adi,charge-pump-current = <15>;
-> +          adi,ref-divider = <1>;
-> +        };
-> +    };
-> +...
+Wesley Cheng
 
 
