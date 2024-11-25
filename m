@@ -1,191 +1,167 @@
-Return-Path: <devicetree+bounces-124366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12EEE9D88E3
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 16:13:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FEF49D88F7
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 16:16:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C40A8281945
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 15:13:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 535F728642F
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 15:16:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EBC31B3926;
-	Mon, 25 Nov 2024 15:13:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C68F6194AD1;
+	Mon, 25 Nov 2024 15:16:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P6ruaafA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mFQpEc4K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BFDA1AC453;
-	Mon, 25 Nov 2024 15:13:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D75818D625;
+	Mon, 25 Nov 2024 15:16:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732547595; cv=none; b=Ufi/7WQjBE694fVpXgOhkAUhVeoLybghVdZACM2dEGGoc1SHhRmg3ec0ly1J+emcPhdGvRFRuEtFVnNGxpjNdxKQWVrDHUdf5lmAHbdgCx335jiI2EAgiqdQEtnMw2lfHR1esN/lqKwQj08VT11KiuUC5qvDt2zUy1hPKf4c3kE=
+	t=1732547768; cv=none; b=aF1aaLq+U/TvuH3xHyrneRz/mOLVw4/E+YyJpNuGn/w1JZMcAmjAwWF9UGLhjqOlvr49A/AT1c03sHmB59l5Lcs7B8AtXKUYOUvryz4JF7MzmCZaiVjtR3Aq5OyQyepa46Chm50mBYbPOmX+Bzs/4Igk07Tt41cva6XP+aH/mIc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732547595; c=relaxed/simple;
-	bh=BsyKX6vvZXO6hyTAnWAhmcMb39KdsKIPgutxDoUf/8g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bIGv1WkKnc41Kz2CCnLSNkdJSrKIHMeRzDoeoMXcc0Jt34OnOO5e6S7+0o8oFymUKRGDC6Uv/88kgRTw2HmguqpOuYog1QW5+YsShaPYGtPUxwRDSJe3JAQMXLCO1PJw5KgfF9q3EF8c1zdkBs3QXXWOABu5e2cpQzPAAXzzuvE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P6ruaafA; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-20cf3e36a76so44030845ad.0;
-        Mon, 25 Nov 2024 07:13:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1732547593; x=1733152393; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=hWIkfUGCL9W1Zq8MHpEKhoEtRwgrNR9DLJVdVZwUULI=;
-        b=P6ruaafAcaqKRhlOZdeewkOz10xGdSsHzkKpq+gXsd3N6Zh2avrZEaPjlJrNm7m7f8
-         mCqPAOcf4LtRN8C5b+sD9Mi3c70EjcSMYPYCdI+S8/9jJsjiBHZSpYsid41LxahYSs0w
-         NJkwm9Wpt1EWhqAimrCfvErtmd2WgPB/su34jw4KFXd8FALpU6bH/WvyvudEDjgVqzU/
-         ilo15fmaAaSinOcaq4+EeL3gf3o69S8Dj5uswCYvQaTuuys5tn8skMRobsSy+GjjJ0g9
-         1rV+TYuTTRTeCrGyUQlgE1HR3iuasMgTOMkdyHJX12ujN6bC14PsH26cmLIMTG6HS57v
-         DQIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732547593; x=1733152393;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hWIkfUGCL9W1Zq8MHpEKhoEtRwgrNR9DLJVdVZwUULI=;
-        b=dLDYrFB27tBbyuKSGDtV9QWPruG967xINgo5T5vTMgHsoDGixC6gffmgYRMWqanTKA
-         FTTZ1y1WT+OGHSGkM7ML3tsHTunVcAD/afbhDWrcsahFsR7uc8S3etT8xu0MBvX60woh
-         +ZrfIour3/1Ar33KtzW70t8v2Lw64QrU3Z4w9VgPiLX/H8XxOOMxidEcZ7a0luYPmqN0
-         ELLKWhHSHYNMPbZCoWpvnza59Fp7mzfecmW2Exaiuw1+CR81KU1PzQwRzyVtD7xyZ7y/
-         6DanjuODeNpe4A++wWWDSdtMWoaInLt2Ua/Pwg3t5DKbeZOlL1dgfDHpOHuo1Pr0tfP+
-         0KkA==
-X-Forwarded-Encrypted: i=1; AJvYcCUgkpn+tm55ZciCAbuQVRn95s99zswTpeX5PeKyhVGkJ/X1BTYxc2FM3Uea9nGEln0CtxbEJkU/FtCELJo=@vger.kernel.org, AJvYcCUxM5jjSCQDhBKQCdrQzkm6/KEnY9WT5juRx9ACP5zL1wWDJXh/P18wiMm6MqrtSr/PYDBK6BWHzliBAUaA@vger.kernel.org, AJvYcCXCiWqmBLMN05haLRm90+Xayt+BMTWB9yMBC4IFuuGQn8dNn2RqP8pn2uufx0wWszGdSRkCsXSqPLnu@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzmv7/99sS9M3MpRIUA/ktm5bHYv3J1yCB6woktEvRNpoaQSDJW
-	7ssmbW8AHIYO20LblSKI5GVAsDuF821IvJblg6Y72QfBNQfvPyQundnhUQ==
-X-Gm-Gg: ASbGncu9osjOZpOtgXO+vPmXN2Rh8cHTnY/OdrhrwBGO+ql0KlWvuCBdZyM1HpW8qq5
-	PxTo/G+5IMhghdM+4NALdT3/tp3AqSMzHpA54k0EW0iso1Ro22RGZ933JMKACgSp05em7qMLxEN
-	hMQLhHurp9OiA9VShOXLptaVTqd9vup1DKJpGf0lDqfiAwK7Ej1SUYN17QuEowEg1BvBlDV/WwN
-	pthYwWm3DuLYMtCP7vViJ6RWYIWqtJ+8abLoRID8kD0kW1zDCqS9uTj/MCijuavZ80OhVBdb0R8
-	+GzBcFlJOCwZ/cod4i4ha1A=
-X-Google-Smtp-Source: AGHT+IH3avj46PI2YmdHD4XdBJ/CME2+CtrwR1lq6ajtQWeRonWYz4xkncuORRFHdz7BiObxVsK+Lg==
-X-Received: by 2002:a17:902:e743:b0:20c:f261:2516 with SMTP id d9443c01a7336-2129f67b19amr188974355ad.8.1732547592793;
-        Mon, 25 Nov 2024 07:13:12 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2129dc23a35sm66188195ad.250.2024.11.25.07.13.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Nov 2024 07:13:11 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <893bbd30-300f-4138-8f68-64573e1f0140@roeck-us.net>
-Date: Mon, 25 Nov 2024 07:13:09 -0800
+	s=arc-20240116; t=1732547768; c=relaxed/simple;
+	bh=4aBhIIas2g47XBD+Cj3ATIb9SfoU/xoQ7kIOCisb/Yw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=bd6XLbLhtSEnkKukJ47qwxLuj6VqZzmCqmUntWJ4NSRuYjAnWU36Qn1Rz+R5slGdG3zm5loh+E3xMLiW2Lpz4yaiWcL99AcM52DaEh7fFGmt2VMdS7TQNHO+wcOpeBtM7FSfqZBQKnvJnKQ0azl37hKY+Bs/erytNaMTPxJDReA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mFQpEc4K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 313E6C4CED3;
+	Mon, 25 Nov 2024 15:16:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732547768;
+	bh=4aBhIIas2g47XBD+Cj3ATIb9SfoU/xoQ7kIOCisb/Yw=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=mFQpEc4KUlWTi3xhk3J5Dd3opD45BUdR4HmXoViaKo53iOmlr3LT5tyqr26r0EjM+
+	 uiVymGX4CknVBSsNVCi/9RYahmsE+G73wX7VjwOTjslDYnMY2F40bAmFB9NKtHmw/a
+	 +S8Miz0rLXM9DdibDrqL9YovNxNw3+bz3+8XWkbS4Mso/an65FozRCARqLlRNkgW43
+	 J7nH2T9v91SKhyG3Flpcor9xZnTPagCeiHiyqVqeDhRwBx136kEVjfWdmrSjPy2pG+
+	 LKOxrj3pMzqdfMrDnLAUigzIHUG/t7AqDbGeGUelcMkyG+ONaBxCoKEnI5RLUOKwRJ
+	 gzliRU/L+lBAA==
+Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-e387e50d98eso3592174276.2;
+        Mon, 25 Nov 2024 07:16:08 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWdLgd+kFGOOkUorpkidSBK9i7Ps86J0EU1q1bXHeKlDvg8JnLle6MYTxCqxXdUL9QmHXYcpRZOd2jD@vger.kernel.org, AJvYcCXaZJDabfBl9lT6FSb71ZCGuw0aK8+NGhZJkdIwIvtY8K7MbqwBOdJKnYLIaDrvUEadDVz3KQj41JrXW24w@vger.kernel.org
+X-Gm-Message-State: AOJu0YzA69edjFnNRnxkVK0NLfJ4M0NcQhMl4mx/Sd8D0ia20W+HiTj6
+	pK4hkh+gq/vzOiB47YLksqHxwXvTkqwcb+C/gKT0myQRwL/tyyFAkVCVcNL7ZOb5jnT1kcn/HXu
+	Mot2Eazbqhn/9JsPmTUHoxxvC1g==
+X-Google-Smtp-Source: AGHT+IGfSzF+AAME0JLl7fPi7vJS2kbZWkzSHN4h0kq1G3ex531cZ18jVRYlr+fRubX4QkZcl6FJxvXJwzkjWhqg6UE=
+X-Received: by 2002:a05:6902:c02:b0:e38:b6be:1d66 with SMTP id
+ 3f1490d57ef6-e38f8c0945fmr12034812276.46.1732547767078; Mon, 25 Nov 2024
+ 07:16:07 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] dt-bindings: mfd: Add properties for thermal
- sensor cells
-To: Krzysztof Kozlowski <krzk@kernel.org>, "Sung-Chi, Li"
- <lschyi@chromium.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Benson Leung <bleung@chromium.org>,
- Guenter Roeck <groeck@chromium.org>, =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?=
- <thomas@weissschuh.net>, Jean Delvare <jdelvare@suse.com>,
- devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
- linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org
-References: <20241111074904.1059268-1-lschyi@chromium.org>
- <20241113024000.3327161-1-lschyi@chromium.org>
- <20241113024000.3327161-2-lschyi@chromium.org>
- <4efe981f-f7ae-41c7-9c12-2aa3a5d2d046@roeck-us.net>
- <eb1c249c-5f42-4878-8934-09d6ea5c43f2@kernel.org>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <eb1c249c-5f42-4878-8934-09d6ea5c43f2@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20241118210730.GA3331421-robh@kernel.org> <Z0NUdoG17EwuCigT@sashalap>
+ <c25e6a80-f6dc-4ef9-a90d-0fa09cbbc217@linaro.org> <Z0NbeyTwxo-M4Lgi@sashalap>
+ <936bf452-3d1f-4940-9a91-69efcdc6985e@collabora.com> <CAGXv+5FLkZbZVHNkfRWuT+OioZ0TG=u2WfaFCx-jZFi73QHnVg@mail.gmail.com>
+ <19ba4910-f909-41b4-ba62-c904bc37d41d@linaro.org> <e77669ea-9edd-4321-8d17-4da40161b59d@linaro.org>
+ <Z0R6myuCR4Jpmc_y@sashalap>
+In-Reply-To: <Z0R6myuCR4Jpmc_y@sashalap>
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 25 Nov 2024 09:15:56 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+QBweDZ+1=FXq7Hez=+mhiOxOvurr3rP0+3y_FCd49Ew@mail.gmail.com>
+Message-ID: <CAL_Jsq+QBweDZ+1=FXq7Hez=+mhiOxOvurr3rP0+3y_FCd49Ew@mail.gmail.com>
+Subject: Re: [GIT PULL] Devicetree updates for v6.13
+To: Sasha Levin <sashal@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Chen-Yu Tsai <wenst@chromium.org>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Linus Torvalds <torvalds@linux-foundation.org>, Saravana Kannan <saravanak@google.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Matthias Brugger <matthias.bgg@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 11/25/24 00:52, Krzysztof Kozlowski wrote:
-> On 13/11/2024 04:05, Guenter Roeck wrote:
->> On 11/12/24 18:39, Sung-Chi, Li wrote:
->>> The cros_ec supports reading thermal values from thermal sensors
->>> connect to it. Add the property '#thermal-sensor-cells' bindings, such
->>> that thermal framework can recognize cros_ec as a valid thermal device.
->>>
->>> Signed-off-by: Sung-Chi, Li <lschyi@chromium.org>
->>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
->>> ---
->>>    Changes in v2:
->>>      - Add changes for DTS binding.
->>>    Changes in v3:
->>>      - Remove unneeded Change-Id tag in commit message.
->>> ---
->>
->> I can't apply this one (not in hwmon space), so
->>
->> Acked-by: Guenter Roeck <linux@roeck-us.net>
->>
->> with the assumption that Lee will pick it up.
-> 
-> This was merged, while I was AFK, so the ship has sailed, but let me
-> state here objection for any future discussions:
-> 
-> NAK, this is not a thermal sensor. The commit msg explains what they
-> want to achieve, but that's not a valid reason to add property from
-> different class of devices.
-> 
-> This is some hardware/temperature monitoring device or power supply, not
-> part of SoC, not integrated into any SoC thermal zone. Calling it
+On Mon, Nov 25, 2024 at 7:24=E2=80=AFAM Sasha Levin <sashal@kernel.org> wro=
+te:
+>
+> On Mon, Nov 25, 2024 at 12:33:48PM +0100, Krzysztof Kozlowski wrote:
+> >On 25/11/2024 12:00, Krzysztof Kozlowski wrote:
+> >> On 25/11/2024 11:34, Chen-Yu Tsai wrote:
+> >>> On Mon, Nov 25, 2024 at 5:48=E2=80=AFPM AngeloGioacchino Del Regno
+> >>> <angelogioacchino.delregno@collabora.com> wrote:
+> >>>>
+> >>>> Il 24/11/24 17:59, Sasha Levin ha scritto:
+> >>>>> On Sun, Nov 24, 2024 at 05:47:33PM +0100, Krzysztof Kozlowski wrote=
+:
+> >>>>>> On 24/11/2024 17:29, Sasha Levin wrote:
+> >>>>>>> Hi Rob,
+> >>>>>>>
+> >>>>>>> On Mon, Nov 18, 2024 at 03:07:30PM -0600, Rob Herring wrote:
+> >>>>>>>>      of: WARN on deprecated #address-cells/#size-cells handling
+> >>>>>>>
+> >>>>>>> With the commit above, I've started seeing boot warnings on a few
+> >>>>>>
+> >>>>>> And same boards do not report problems on the next?
+> >>>>>
+> >>>>> Looks like they do. I haven't checked it previously, but I see that=
+ we
+> >>>>> have similar warnings on a few boards that KernelCI is testing -nex=
+t on.
+> >>>>>
+> >>>>
+> >>>> That's... horrendous.
+> >>>>
+> >>>> I hope that we can get a proper fix with a bootloader update on thes=
+e (now very
+> >>>> old) devices... Adding a Google engineer to the loop so that he can =
+follow up
+> >>>> internally.
+> >>>
+> >>> AFAIK that's unlikely going to happen given the resources needed from
+> >>> the ODMs for a firmware re-qualification. Or we would have fixed the =
+GIC
+> >>> bug in ATF and had pseudo-NMI.
+> >>>
+> >>> Some of the firmware code involved is 10 years old, so even the RK339=
+9
+> >>> Chromebooks, which no longer have support, could suffer from this as
+> >>> well.
+> >>>
+> >>>> The alternative would be to hack-in a firmware node to mt8183-kukui.=
+dtsi, but....
+> >>>> ...ugh. That'd be indeed a hack for the sole purpose of fixing a boo=
+tloader that
+> >>>> is acting in a broken way, and I don't like that at all (...and I'm =
+sure I'm not
+> >>>> alone!).
+> >>>
+> >>
+> >> Then we should add it to the exception list. Let me take a look at thi=
+s.
+> >https://lore.kernel.org/linux-devicetree/20241125113151.107812-1-krzyszt=
+of.kozlowski@linaro.org/T/#u
+> >
+> >I sent a fix for this platform only. You did not paste links to other
+> >failing platforms (and sorry but kernelci web interface was absolutely
+> >unmanageable and unusable, so I am not going to even try to look for
+> >them) so not sure who should be added to list of exceptions.
+>
+> The new dashboard isn't *that* bad :)
 
-I am confused. We have several thermal sensors registering as thermal
-zone, and fan controllers registering themselves as thermal cooling devices.
+You are reporting this issue because it is that bad. I tested this on
+KCI before this even went to next. I gave up trying to get boot logs
+out from all the boards. Though which boards run seems to be a crap
+shoot, but that's not a dashboard problem.
 
-Are you saying that this is all not permitted because they are not part
-of a SoC ?
+>
+> A list of platforms that show this issue:
+>
+> - google,spherion-rev3 | google,spherion-rev2
+> - google,steelix-sku131072 | google,steelix
+> - google,tomato-rev2 | google,tomato | mediatek,mt8195
+> - google,juniper-sku16 | google,juniper | mediatek,mt8183
+> - google,kingoftown | qcom,sc7180
+> - google,lazor-rev5-sku5 | google,lazor-rev5-sku6
 
-Guenter
+Can I get a dump of the DTB for one of these boards? The upstream dts
+files don't seem to have a /firmware node.
 
+Rob
 
