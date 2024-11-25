@@ -1,98 +1,128 @@
-Return-Path: <devicetree+bounces-124435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124436-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BD409D8C16
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 19:16:16 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5812216237B
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 18:16:12 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C42811B87E3;
-	Mon, 25 Nov 2024 18:16:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="uJLWCbek"
-X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB89E9D8C27
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 19:24:09 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F288063C;
-	Mon, 25 Nov 2024 18:16:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AE6E4B243E4
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 18:24:02 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB9A91B87C3;
+	Mon, 25 Nov 2024 18:23:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e4x+JV+4"
+X-Original-To: devicetree@vger.kernel.org
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FA3A1B3943;
+	Mon, 25 Nov 2024 18:23:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732558569; cv=none; b=TsrWg//RGkyiz+vZVTJ2szkW/6oJ77gltflFN+h+qHbP/mLCKfLNdgW0/kvuM1WnE7vMtTedVRT73otWj+sgHHcCd0YBImFRRfZzcqsTcvt0JYa3KR90GdkxTBikPOjG5Zdp0KbQe8B4rOCZ0WP7ZxKzMZAWj4c9FbJfIMiKkTA=
+	t=1732559037; cv=none; b=hOO9f2nEO8Mu/3Y5BZwu6WE+PNEFkPeSlgOwwcl+CJB/+u2dc0SmwVs8Hbsq6Yxp25VdtBxsJrzAPzgkbK0ggDzPxUBfsGux5I5LHRnfAKXk21B/CROw/mP1952u4EXoEsv7TbeTQp0sXT7UdsM2jjgsdrpYfQRDzNTLWdIlLr4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732558569; c=relaxed/simple;
-	bh=oiq1zrNM7MPah04xqeO0vB5cKM+NE7Jf6VS+nMsCj7Q=;
+	s=arc-20240116; t=1732559037; c=relaxed/simple;
+	bh=FEnfJKu8BFsY79SSwoKzJxBfw021YIRRMqklGnoZg7c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uDFgt4mgLiqotYdKX6/Y32JMZlDm3Axhch8EZ8pmoh/E5HhLr2pBIFF5oh2WcyZEP+CpPbuJqabiCqRCaYKi8wM5XUTPiVQxSEVca8X5qcdcfMIBdaRORPbEBdSI6niWnhiRDNK/qn1dcMivuszUofVHYOCekA2G4+eWuy7dXF0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=uJLWCbek; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=qGdhb61ltiN5zkSj8z5rn1OCVWx5MPUP99AQrJmD3bo=; b=uJLWCbekA3nma5sKI3Z2hdpVxV
-	na0iTLHeWUiNelhI7CCh66R2r09U/TXPoLOojWt1TvpwCObZxwbhQuEMILXlaIc1wE/fpXnwzcK0V
-	RNADZTbKWsNiERZcFhhnO3y8Axma7JR7vXzV8JTv9ZZUq8D/Sv8JCMUEBRdqvfGBfRoE=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tFdcy-00EPwf-NY; Mon, 25 Nov 2024 19:16:04 +0100
-Date: Mon, 25 Nov 2024 19:16:04 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-Cc: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	linux-clk@vger.kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH v2 4/4] arm64: dts: agilex5: initial support for Arrow
- AXE5-Eagle
-Message-ID: <062e1d60-29a0-4e92-8c78-e961b130166b@lunn.ch>
-References: <20241125-v6-12-topic-socfpga-agilex5-v2-0-864256ecc7b2@pengutronix.de>
- <20241125-v6-12-topic-socfpga-agilex5-v2-4-864256ecc7b2@pengutronix.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Hj+hxgJqTRtGjbcv6tCdk0FjODjtJzPUwq/tG2nkXEF0d0D2ECNPqzueXUlncUX//+NGcbSZzj8neagGWsofQHdsJ0sniXw/mURoCOl8aMX+jxZzMLeeO/kt9i4YL2psvVEhy4NrwEJWc0UsHswbzbgCFAK/WQTr18kRJEa56ZU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e4x+JV+4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9533EC4CECE;
+	Mon, 25 Nov 2024 18:23:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732559037;
+	bh=FEnfJKu8BFsY79SSwoKzJxBfw021YIRRMqklGnoZg7c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=e4x+JV+4TLj/641DvnEomE+s05vAVx2khLlIX+WVTOL5mMmJtzdK1df2SXXf18ttq
+	 rU9Lc+wXSWSGHHvpIbR5my06OvGj9v6wakQoQCQwANXxnS3QKRooly4tluFGZxTT3d
+	 bVJvn9QAc9I9Awj/PaDHVhue+ngtzgK57kk5zcAat+Y9YUF4hH7INKuprMfW+Yhv6W
+	 LtbJGt/Dz4JcAWnVn+ewMbpQZ9YQUNIIwKnuw+9ZGiuLKH0JW2/gwCg2pmFape3vUT
+	 nxWXbv2mwZnAeiVeQ4f95CnA+Je5+0GtSc56sZzQ2aroKTl78cazl4pNJYJcGSN4K8
+	 6fHObgWuI6vaw==
+Date: Mon, 25 Nov 2024 18:23:53 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: jic23@kernel.org, robh@kernel.org, conor+dt@kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adf4371: add rdiv2 and doubler
+Message-ID: <20241125-rotting-brim-162582b5ad42@spud>
+References: <20241125112643.10459-1-antoniu.miclaus@analog.com>
+ <20241125112643.10459-2-antoniu.miclaus@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="AR3vOxY7YAd4jTmS"
+Content-Disposition: inline
+In-Reply-To: <20241125112643.10459-2-antoniu.miclaus@analog.com>
+
+
+--AR3vOxY7YAd4jTmS
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241125-v6-12-topic-socfpga-agilex5-v2-4-864256ecc7b2@pengutronix.de>
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Nov 25, 2024 at 11:33:23AM +0100, Steffen Trumtrar wrote:
-> The Arrow AXE5-Eagle is an Intel Agilex5 SoCFPGA based board with:
-> 
->    - 1x PCIe Gen4.0 edge connector
->    - 4-port USB HUB
->    - 2x 1Gb Ethernet
+On Mon, Nov 25, 2024 at 01:26:40PM +0200, Antoniu Miclaus wrote:
+> Add support for reference doubler enable and reference divide by 2
+> clock.
 
+You're still missing an explanation here for why these cannot be derived
+=66rom the required output frequency vs the input frequency.
 
-> +&gmac2 {
-> +	status = "okay";
-> +	phy-mode = "rgmii-id";
-> +	phy-handle = <&emac2_phy0>;
+>=20
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> ---
+> no changes in v2. (added cover letter as requested)
+>  .../devicetree/bindings/iio/frequency/adf4371.yaml    | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml=
+ b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
+> index 1cb2adaf66f9..ef241c38520c 100644
+> --- a/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
+> +++ b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
+> @@ -40,6 +40,17 @@ properties:
+>        output stage will shut down until the ADF4371/ADF4372 achieves loc=
+k as
+>        measured by the digital lock detect circuitry.
+> =20
+> +  adi,reference-doubler-enable:
+> +    type: boolean
+> +    description:
+> +      If this property is present, the reference doubler block is enable=
+d.
 > +
-> +	mdio0 {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		compatible = "snps,dwmac-mdio";
-> +		emac2_phy0: ethernet-phy@1 {
-> +			reg = <0x1>;
-> +		};
-> +	};
-> +};
+> +  adi,adi,reference-div2-enable:
+> +    type: boolean
+> +    description:
+> +      If this property is present, the reference divide by 2 clock is en=
+abled.
+> +      This feature can be used to provide a 50% duty cycle signal to the=
+ PFD.
+> +
+>  required:
+>    - compatible
+>    - reg
+> --=20
+> 2.47.0
+>=20
 
-It might be hiding somewhere, but i only see one Ethernet interface
-here? Where is the second one?
+--AR3vOxY7YAd4jTmS
+Content-Type: application/pgp-signature; name="signature.asc"
 
-	Andrew
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ0TAuQAKCRB4tDGHoIJi
+0gGdAP0ZgwYPH6bIZifcDRAHpGwlSAIXXCWJNn0APgzsBZpCuQEAp1G65MyvRK9v
+Rv+tnTXqNsUE76LG5QDkQZr/jd9muQg=
+=d7g1
+-----END PGP SIGNATURE-----
+
+--AR3vOxY7YAd4jTmS--
 
