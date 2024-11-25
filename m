@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-124180-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124181-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E21E99D7D0C
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 09:39:51 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 938A29D7D18
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 09:43:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3DD7282755
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 08:39:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1FDF8B23CBF
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 08:43:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A7C918BBB4;
-	Mon, 25 Nov 2024 08:39:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1D2B18C006;
+	Mon, 25 Nov 2024 08:43:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hps3RqUp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ga6xIN0p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5F9D18B475;
-	Mon, 25 Nov 2024 08:39:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 798AC18B47C;
+	Mon, 25 Nov 2024 08:43:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732523988; cv=none; b=m4f0wQYVBdS/oKf365QDiuqVNwvqZrFZB76qXbCU7c20JwKdPt0a4paEJJiB73/f4sGyN40JmSTbMPG4h8vaoMqh6P7CMTLcdF7KNtS4OQKhifh7+WWNVSj3317LSzt4LZ4wsobNuCRhvnIJjMNni6SzKNk2jmonY9SFUUxhuYQ=
+	t=1732524215; cv=none; b=amSve0Gc2jZNG1v1hqPPdciLAcQ6GGxVMEhHKcM38Ia8KSvZrzJ7LsJI67d5UZn5Pylh2/1JPa/kWmGb7rfAmPSmm2fNLjFNlY90QAIHD/ewUIlr+xBsuRoIwv2w31o4IioKJXdO1hqkFv7wjiD1Akrl8vYQuhGLp9r57yn2UM0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732523988; c=relaxed/simple;
-	bh=ig8emEzPWioOsYmGSaXyq1eJQNLNTFvuW4Z5UDhK6t4=;
+	s=arc-20240116; t=1732524215; c=relaxed/simple;
+	bh=AsbyBTK9GRr6ucLVmXwxS+szhGmlI1Yq48V5IFbo/Dg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dz4Rj/CB5Zj9Y0NfFPq9a2MMcf+3PmpONju3nGCAQU8hdGw2ytrgYh7v1EZMOSmnH1WNlJjxwjqNBur17+AfLj8DRlswAS47S8c6GOhZMzmK2N0iCa9RFzDnh5EgkIFkSW/hFce9Oe0ayr+Pq+rUC90Apxpzzf5kMvmX3QFavfE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hps3RqUp; arc=none smtp.client-ip=209.85.210.169
+	 In-Reply-To:Content-Type; b=LuXs+ByYpyEfmz8I3qEy+E+ZyC3VQFWMDbsk9MYH81TS8ZbQ5R8HSHqBmhGD+dQvVxx9bPrZa0s/yDvYLISsLi6yTfsquR0NdEN0+gsHnD0kSjdpj8m9j/aRPcIbrIpuMDUhQf52y3B9ou6IsYZEgRGwT5/5VmixjakEgzRKri0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ga6xIN0p; arc=none smtp.client-ip=209.85.215.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-7250844b0ecso667521b3a.1;
-        Mon, 25 Nov 2024 00:39:46 -0800 (PST)
+Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-7eae96e6624so3256726a12.2;
+        Mon, 25 Nov 2024 00:43:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1732523986; x=1733128786; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1732524214; x=1733129014; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=0KGuZp0wmnF7hzmfITp90xIKhOfwwLfqha6id3DNJEw=;
-        b=hps3RqUpcFP8uqBms6b/RssrA3M2unF50cIOtnYZny+vKMXQIBnvoyLGDaf+6/jlbY
-         +L2zR8k8Aju80daFh8WzPd4jLOEyA5iCni0HDW4O6Yv6zL1PbpmWSgaqSsafBbl0zz+j
-         r//r6bb4u+cF2MAepkIrmq40Es1L/xESz5vR8Gp6fAGcX+BsJsxOM1qAAuRcqAJD8PxS
-         kYaEUsaWkax4qMnOkMjk0eyrmgAaYD10PnUKzhEtiNoLoVfKUdytGhMqmeEiE7ZOpNBT
-         hCtAR4UFa8ckhE1ddj82+DrqdywRQ/sy1q6sjbNN8nKq2QwrhUh2KbJbyspZEMYyGjaA
-         gE2w==
+        bh=pI8BQQ/T5SVzIWF61zZavJ6P7DIvRK0aGvjhr4khLmI=;
+        b=Ga6xIN0pZuskKgCpajQ8gL+WZRsmWkB1w7GGPTrsTGndIgRoEQ1p1UTMhLjAaQexnv
+         C5ceka8oEuR7REU+GipXwduZc2vSa6Hmf74Jgh0GK8x/PQRKJM+QaMLi1K2dQBeZRr8N
+         A+77Rf9JNEVCkel8fmVfnGj3u6z5iVXslVVxFUObNjm2Y09yqgD9ySDFHfBqeqAuDmrZ
+         +BXY5Wz2PDxbYJB/dEiFfJUy6cnJMneKhWywZA/laFFLvMBhmbjumqYL2X9EId0i1Dfr
+         ba1+ZaoILwxtQ6cv1YVXb0kxVQ6RcqN/Dx/b4lNvXBPzAuxEzuU7u0No5L/ZFM4OrAx4
+         YesA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732523986; x=1733128786;
+        d=1e100.net; s=20230601; t=1732524214; x=1733129014;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0KGuZp0wmnF7hzmfITp90xIKhOfwwLfqha6id3DNJEw=;
-        b=mExYkRz4Lo1H2h4peG4Px/jcx9qAF5EKB0SO9ziuEaMy5PuYgUPzf0MdUIEU9E7YN5
-         gIGrmcBZ2nFh0UNpgRzQmjxXxoZh9GobkPzg+/WPODR4RooAWKEdqxlfhnG7V/FS3GwF
-         y6zFKiTMNvXHi8Q6lFwHpYSoDkb82EeWiC9TzbrVrwaEVfC1Ei/8LzxyGI89LPmSF+Je
-         EP6qTyuUv/ndod44LjpRBHaR80aAjNx42VEoli78zd5KBfTbCsYuqx+f4daSHHiVHd62
-         P4rgua2p8Cp1uNML66AzslJgACeFtRLjy2Udu7gehePnJQYNu9M9POtqMC0+/54UG9tn
-         8ztg==
-X-Forwarded-Encrypted: i=1; AJvYcCX9RnMvqeG57f4fcwMt6ncU3V7fiqGIiFVTRabzRGsw0oz2JFBpOO5c7916Rbw+llCsVeGFXOxWPTUrtKX8@vger.kernel.org, AJvYcCXO4VMg8KJzQ4Hc28FUmxv/JATuiXhFQHcqmB4IcN0wS/1jR9ilobNDu/nRtPyeHpP8a7ta8QRbntEg@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy8TgOGNPjQnV+sVx0bNlTMJHCTz8yFcrbL59uPkzNO8Sl2bSN/
-	Yu2hQ+UyS/uQftQuJMwQBhsnpQt/u/YCNgZ5U6avyb/3JOzC1qve
-X-Gm-Gg: ASbGncsCkC40+FaD/ncH+pf9RZHUT7sMHxibYXx1iwQ+cU8/mFzg+8zPrhw1CQz45Hy
-	JiTfoIcbwA2/3wGdDXLJbEZVOjHba9WiC5l6RD85Kui+SBT0fxKhFyctIwrlWy4+e3WQ6YTOcQR
-	IC7KO0bYOr/YBD+h1akohwMQwNsxzhcyBn2VvdsgaYpe8xYhbAN3eOIveTtJpUYcsEvRTkhwfKE
-	me3OtIU2YES7Y9vHZB8qEI65w/INdd3ShnbOQu7uP8fAFa7s1G1M7UG5fpQjv7TPLu3
-X-Google-Smtp-Source: AGHT+IHU1nyBULHIR2177tUcXa0ze8GqotcNDT6gsNhsvTrJblPUvYHMUa+RMDMyUkRWs6wbq9n4YA==
-X-Received: by 2002:a05:6a00:1251:b0:71e:cb:e7bf with SMTP id d2e1a72fcca58-724df66a8abmr14741216b3a.18.1732523985898;
-        Mon, 25 Nov 2024 00:39:45 -0800 (PST)
+        bh=pI8BQQ/T5SVzIWF61zZavJ6P7DIvRK0aGvjhr4khLmI=;
+        b=FJ7J4Ab1y0LLgNMBAwHzn6hAt4fevdmEOVvu/Bb6jSq1Wi1F1ofSJMCHnpJ5M3+uOS
+         vSgUnAKnpA8hbrROb1LgRAVgCKyZrJ9EnprhFUqoaJ5T5UrGUpBptM3EsIpQyo4vrNL9
+         lL2qJcQn6KrGVPJw4LK/9ckQKP/tgiFZL4JqW2EnF4ZERvRVYbup+k25u/Bd939/4PEu
+         UI+6NxbyhRqMUyKEM0pjMwbV/blzYW5VGWCVKsMM3DUCIyTDdU0MZVYD6lQArBMZJ/BK
+         j7x5IYuqeJXMSdCIjqz36OQ6lHhs72kCaGbvWfuMgNLJBRh2lgyTmqlamXDugGPETggN
+         mZSQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVVbSJDfV8j3EskkCF8axbmmmD/uqwXEtBnqHNwWVynCncGak38wHcmRQCvxAUdE4nhvhLyhCqTrcuZ6b8b@vger.kernel.org, AJvYcCX/ZW+Gza6z0CoPleABuDzfxoH0sWQBAhaeEnlcIkxOLbbaiw4PPg1TTUyjUArdD++UEFuTDRroFVg9@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz0a1KlftjtXHqEejW+Wq+Of5DhmpXnyvBbmTvgJQDtQzurghv/
+	WI5PA2UBvK3RQnyBKgPLqe5yEIyy5ay2PMR76DgI1Ku7asbp8WOM
+X-Gm-Gg: ASbGncvuF6ciffuTZAAbdLzVTqJNpwEmfjnb8c/J5zLCVCxErkiBkvanoi02ThBma/A
+	RuyJg/8AYJOmbsQcGYkjdQ4Bxv/pSwV8usyuA04hBW04t2HzYE62B1g7/AXv0JJeuUOvjkN5E52
+	bhiCZMovn5ZqNFfljorvxAB3oHFnjO/76+TCRdK/wVUkJZsAP0kLb1aGh26J2pO0TjTPhlcSbMO
+	BpgmmPIr2EVLTjGBOHjMFtd1dSkHOgK8I0kiLcDA8qMZjSWAOYEKAEq4yOwhu9o4s4G
+X-Google-Smtp-Source: AGHT+IGhgxcXQ0ft9/Za4vorVCq/dkomo2GMsbGwiP5RlHt6aZtAoqt6aKppLpP3grbtnbLAwPJzMA==
+X-Received: by 2002:a05:6a21:7881:b0:1e0:c92a:c838 with SMTP id adf61e73a8af0-1e0c92ac9e8mr5471906637.35.1732524213648;
+        Mon, 25 Nov 2024 00:43:33 -0800 (PST)
 Received: from [192.168.0.115] ([59.188.211.160])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-724de454c55sm5838914b3a.35.2024.11.25.00.39.42
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2129db9fdd5sm59524145ad.58.2024.11.25.00.43.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Nov 2024 00:39:45 -0800 (PST)
-Message-ID: <4381e1ef-6113-4fe5-a48a-ea4c163dd103@gmail.com>
-Date: Mon, 25 Nov 2024 16:39:39 +0800
+        Mon, 25 Nov 2024 00:43:33 -0800 (PST)
+Message-ID: <4a3c832b-0c8d-4487-b1bc-122450a57516@gmail.com>
+Date: Mon, 25 Nov 2024 16:43:28 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,114 +104,8 @@ Content-Transfer-Encoding: 8bit
 
 
 Sasha Finkelstein via B4 Relay 於 2024/11/25 早上6:29 寫道:
-> From: Sasha Finkelstein <fnkl.kernel@gmail.com>
-> 
-> Adds device tree entries for the touchbar screen
-> 
-> Co-developed-by: Janne Grunau <j@jannau.net>
-> Signed-off-by: Janne Grunau <j@jannau.net>
-> Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
-> ---
->  arch/arm64/boot/dts/apple/t8103-j293.dts |  8 ++++++++
->  arch/arm64/boot/dts/apple/t8103.dtsi     | 26 ++++++++++++++++++++++++++
->  arch/arm64/boot/dts/apple/t8112-j493.dts | 15 +++++++++++++++
->  arch/arm64/boot/dts/apple/t8112.dtsi     | 25 +++++++++++++++++++++++++
->  4 files changed, 74 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/apple/t8103-j293.dts b/arch/arm64/boot/dts/apple/t8103-j293.dts
-> index 56b0c67bfcda321b60c621de092643017693ff91..349a8fce6b0b8ccf3305f940ba7242e2c1a67754 100644
-> --- a/arch/arm64/boot/dts/apple/t8103-j293.dts
-> +++ b/arch/arm64/boot/dts/apple/t8103-j293.dts
-> @@ -49,3 +49,11 @@ &i2c4 {
->  &fpwm1 {
->  	status = "okay";
->  };
-> +
-> +&display_dfr {
 
-Inconsistent placement of #address-cells and #size-cells.
-> +	status = "okay";
-
-There should be a blank line here.
-> +	dfr_panel: panel@0 {
-> +		compatible = "apple,summit";
-> +		reg = <0>;
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
-> index 9b0dad6b618444ac6b1c9735c50cccfc3965f947..b377c92c5db3cb4fea53ae2c5dd85acf038429a3 100644
-> --- a/arch/arm64/boot/dts/apple/t8103.dtsi
-> +++ b/arch/arm64/boot/dts/apple/t8103.dtsi
-> @@ -356,6 +356,32 @@ cpufreq_p: performance-controller@211e20000 {
->  			#performance-domain-cells = <0>;
->  		};
->  
-> +		display_dfr: display-pipe@228200000 {
-> +			compatible = "apple,t8103-display-pipe", "apple,h7-display-pipe";
-> +			reg-names = "be", "fe", "mipi";
-> +			reg = <0x2 0x28200000 0x0 0xc000>,
-> +				<0x2 0x28400000 0x0 0x4000>,
-> +				<0x2 0x28600000 0x0 0x100000>;
-> +			power-domains = <&ps_dispdfr_fe>, <&ps_dispdfr_be>, <&ps_mipi_dsi>;
-> +			interrupt-parent = <&aic>;
-> +			interrupts = <AIC_IRQ 502 IRQ_TYPE_LEVEL_HIGH>,
-> +				<AIC_IRQ 506 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "be", "fe";
-> +			status = "disabled";
-> +			iommus = <&displaydfr_dart 0>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-
-Inconsistent placement of #address-cells and #size-cells.
-> +		};
-> +
-> +		displaydfr_dart: iommu@228304000 {
-> +			compatible = "apple,t8103-dart";
-> +			reg = <0x2 0x28304000 0x0 0x4000>;
-> +			interrupt-parent = <&aic>;
-> +			interrupts = <AIC_IRQ 504 IRQ_TYPE_LEVEL_HIGH>;
-> +			#iommu-cells = <1>;
-> +			power-domains = <&ps_dispdfr_fe>;
-Not every M1 (T8103) device has a touch bar. Disable it here and
-then enable it in t8103-j293.dts.
-
-> +		};
-> +
->  		sio_dart: iommu@235004000 {
->  			compatible = "apple,t8103-dart";
->  			reg = <0x2 0x35004000 0x0 0x4000>;
-> diff --git a/arch/arm64/boot/dts/apple/t8112-j493.dts b/arch/arm64/boot/dts/apple/t8112-j493.dts
-> index 0ad908349f55406783942735a2e9dad54cda00ec..80e371495f3e097f91e94549c7ac2949609f566f 100644
-> --- a/arch/arm64/boot/dts/apple/t8112-j493.dts
-> +++ b/arch/arm64/boot/dts/apple/t8112-j493.dts
-> @@ -35,6 +35,21 @@ led-0 {
->  	};
->  };
->  
-> +&display_dfr {
-> +	status = "okay";
-status should be after other properties, before child nodes.
-
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-
-Inconsistent placement of #address-cells and #size-cells. I would place
-them in
-t8112.dtsi.
-> +
-> +	dfr_panel: panel@0 {
-> +		compatible = "apple,summit";
-> +		reg = <0>;
-> +	};
-> +};
-> +
-> +&displaydfr_dart {
-> +	status = "okay";
-> +};
-> +
->  /*
->   * Force the bus number assignments so that we can declare some of the
->   * on-board devices and properties that are populated by the bootloader
+[...]
 > diff --git a/arch/arm64/boot/dts/apple/t8112.dtsi b/arch/arm64/boot/dts/apple/t8112.dtsi
 > index 1666e6ab250bc0be9b8318e3c8fc903ccd3f3760..726b11376692580abb129b9be35107bee1550a93 100644
 > --- a/arch/arm64/boot/dts/apple/t8112.dtsi
@@ -232,23 +126,11 @@ t8112.dtsi.
 > +				<AIC_IRQ 618 IRQ_TYPE_LEVEL_HIGH>;
 > +			interrupt-names = "be", "fe";
 > +			status = "disabled";
+
+Forgot to add, status should go after other properties here as well.
 > +			iommus = <&displaydfr_dart 0>;
 > +		};
-> +
-> +		displaydfr_dart: iommu@228304000 {
-> +			compatible = "apple,t8110-dart";
-> +			reg = <0x2 0x28304000 0x0 0x4000>;
-> +			interrupt-parent = <&aic>;
-> +			interrupts = <AIC_IRQ 616 IRQ_TYPE_LEVEL_HIGH>;
-> +			#iommu-cells = <1>;
-> +			power-domains = <&ps_dispdfr_fe>;
-> +			status = "disabled";
-> +		};
-> +
->  		sio_dart: iommu@235004000 {
->  			compatible = "apple,t8110-dart";
->  			reg = <0x2 0x35004000 0x0 0x4000>;
-> 
+[...]
 
 Nick Chan
 
