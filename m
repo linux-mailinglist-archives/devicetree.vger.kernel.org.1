@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-124292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124293-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C35C89D846D
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 12:27:32 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7F869D8434
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 12:18:48 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8428FB275E0
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 11:10:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 49271166173
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 11:18:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89D60195390;
-	Mon, 25 Nov 2024 11:10:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA204195808;
+	Mon, 25 Nov 2024 11:18:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ZK/8K1yg"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="20PBngV+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25E07192589
-	for <devicetree@vger.kernel.org>; Mon, 25 Nov 2024 11:10:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52A3A194C7D
+	for <devicetree@vger.kernel.org>; Mon, 25 Nov 2024 11:18:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732533038; cv=none; b=M8A3LetPKJbDh1iTt2nYXq3IsnhOVJBrfvYladNhsi0HNTHFYCcW9JfXV3/daVpAy74jNFc5AKriEDUy26xHRPshSp+n10dNh2ZnWeFEOx3oX7PG0HwiYIhPsLzPAWK2bdBme9HALOQHfe1AZRX1QTMqcael6N3vkIb92F9ZmbM=
+	t=1732533523; cv=none; b=OHH21g63IPbWZ1XO5zZ3reyRbLLP8hdHfApmApH7WmZKm528Q1sMsigy4p8VxPlm8PsepffU6Mgrn8mqFTtzftjWGpNWYOZbicJBe5uGTaeijJgdLLidQmECkVCIvvleKNg2fW9zUJ3AMaF+9pqbulUlLeVtB2UXemnj1b+Bv5c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732533038; c=relaxed/simple;
-	bh=SSsdzoEO7ae66YhRKiZJu4mT23BLdMBzS3b4caOe2ME=;
+	s=arc-20240116; t=1732533523; c=relaxed/simple;
+	bh=NEXnkmUpNhcGagRcr6DpkooLnj0tGVVohyKmbBIxAY4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c+ZydjCvPwfeI5aYDwG5NA1x+suZJipMyl3Cqvn60pgG1yfRK8l1WzrKupi1D4t7ktgGulxP5gZ0zKpMg/Yq8ulVGRauCDAzej91DRdcTVq7VhMzoAihxN2dFwhRhTdtuB3fACsf3gtPPr2y3PHxMil+B5xDsdvYoAEFpRF0MfQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ZK/8K1yg; arc=none smtp.client-ip=209.85.128.53
+	 Content-Type:Content-Disposition:In-Reply-To; b=OlhntDnU986xMVz9dZ4h8iz/JHmrdGYp8CPkY2PvJt1oTlTdJount700ScuvAKh+dOSPhztgzCQWnEmPcoqW/VYuLjyg05vpOcnmncrrjELbiQmJhwZrgOBQwA5nNgPmmzWCDOhE/3jxkTqyll66XuTbp4SpLtFBe4IgCqbT2as=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=20PBngV+; arc=none smtp.client-ip=209.85.128.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4316a44d1bbso39090815e9.3
-        for <devicetree@vger.kernel.org>; Mon, 25 Nov 2024 03:10:35 -0800 (PST)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-43152b79d25so39250595e9.1
+        for <devicetree@vger.kernel.org>; Mon, 25 Nov 2024 03:18:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1732533034; x=1733137834; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1732533520; x=1733138320; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=tE53KbDWMiiAf/aKVsGRzxKZZ0crEJNrFhFlNRt0ZRM=;
-        b=ZK/8K1ygbiZHVmapXjhPEJEHTsNq+OM2CfRtMW36nUkb2RecFhASAD4UZ8uY92ZmX1
-         35UDxQAMB2j8pxKWDE6dccp08otDpM+1xS/mD523vQPX9BZs97Xg+zNeTTSJ5TRqd3hv
-         zL6m6qQBE8/WxgGhNQsMXtFEYCa0Zu74cUfNxy1qM/KbB1pjo0N23yvcn6PBXfiqIjVm
-         YB+cJ8sxaoQ68JJSyEzW4RFyoBua2wsFaHr0ASbavUOa5p/UE9iOUqVWqbSOd3eMjoJd
-         +gRjUOTjHKrUdUzAFlApBpivEJDGPgFRUupFY793YvLCWzLru5DEh5LPAksn0NkOIEHp
-         N1PA==
+        bh=jgpbbNEkmgykeByyCVQ3DYDysEEYXvtEqm0PcuXiWnk=;
+        b=20PBngV+QQ9/NCLJv9AjZgOfsC0gdE+rOZO2aVf1n22js1JwWw78zeyz0u2le0XFjk
+         p/1ZvVrxM6ynRUj2xliCp5sRQnBAoc/TAvRouxOcXTqOgQAxNLKdAzHtWjj+vrMTBaQh
+         oQyHUc3RmyBNRCMNuwPgzJmP+rWqb+AXg7rEef0tF9mQHj9mmalOu0sPYsG0qYfnc6Wn
+         qjzaZXJyIfNJiir9kIVkowZmnwk2kvqOVXm//pcpLTa/qwnmoL9zJTHRIh14G57U2SNW
+         P0LSXqIjo5rhtkkXmpGvCS6+bTwoiVbTrewoxfHKP59Tj5artPU0+gBGFQcyr6rlyhFX
+         wJUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732533034; x=1733137834;
+        d=1e100.net; s=20230601; t=1732533520; x=1733138320;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=tE53KbDWMiiAf/aKVsGRzxKZZ0crEJNrFhFlNRt0ZRM=;
-        b=N+gQ3KdJH2pTX0hDnELi1RV2Xq7IPn6ZBNtLbQrboU623EBO2w3AGX9suLbt3NwESM
-         X8sdjiYPIVyWN0uNt17r+yLtiRz7lQzivRMsvvIlgDgauzE03cLSy7twhTacMP/wKNbp
-         dt04Tkh22cJOPpASgu86hrVAK8eFFiYJf1TRva0IyS3ZJeLq2X1ci1dSRhsc9xivW1ix
-         jRgboUnpgI16tNsHA2LJVnEu1T/xzf3GE4wHyW7hnuBUt3M/Gp/yobA190cOR4h4JPcA
-         dR79KulToNTixVWgyOUoKykRYiy7DzZbFju3aWww2ktzIFfZqrdtCQN1dxHVAURmm7L5
-         SgnQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX3oJyboy1wAMkgVJsuVPZ6cZNvyeyltfOH/77GySEKgJoRsqfEWctllmCZhXVJRJzqKVL9kWkoUol1@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy3g16kOVzVx7T7dzUDOqBycmqyMFgmXLzQUq9m9+LuSHy1F3ew
-	SD0Dzw7bjqAjObbZvb0iuq1OARYJI4Xx+bonb/+TPLlyuM/jKdtz6Jbtgtm8vBE=
-X-Gm-Gg: ASbGncvRLDi7Oe0uilzsXtxn1Cj4VFvs6SEORKKYbdwmrV9Ozzk22yjBMJq0+LcF0FM
-	D4yFnGKzQkMFwVUFaZtnkJkbnD9KpjtlymV95MaAmAl+mFe50zicrHPFednXZxD1K+qvpkmNTag
-	jLA2LI2FO7RCXZ+/kbDqL4hMffTpyyKr6pRS8tU1+TMrc7dAYoq64LKqEHRhJ5AMGhgf3pOSxZs
-	vC8mb+27CnmCLIEpOpBoFoXdOo3gtygFXEPw1F5Z9cqiKP04KeUM6tR5eMrT6o/8ZTBiYBLRtTM
-	umgAAqCafRtrZIViKOkeZyWTi/EmpbW7NZxgdw==
-X-Google-Smtp-Source: AGHT+IHMEHm5zNtM1TTxkOFBU3qXDBZ8yRBvrqoYqldxa34W1szM+0x/kReY7l1aFR+msWNJm5wB6g==
-X-Received: by 2002:a5d:6487:0:b0:382:3d08:e978 with SMTP id ffacd0b85a97d-38260b46d13mr10288557f8f.11.1732533034324;
-        Mon, 25 Nov 2024 03:10:34 -0800 (PST)
+        bh=jgpbbNEkmgykeByyCVQ3DYDysEEYXvtEqm0PcuXiWnk=;
+        b=dLYQ8FtSOzpxQNcLOE4T65fx/adwEtrm/nlci11sNuc6V+wZVhaQZ0MjVv+F9NJEt5
+         EdMxVa3elrRgsEKA1WFaobFe136iuphfkDaaVzz7IIm4GZA2AsNS1hTAgzz/IgllwcZo
+         i76hIsAaQTHWOwtgsKBS0jQH//vFRbZu7VnIR/IGv3J5N/nraVhhqPAh0SOtwBF/XSUG
+         /At1x1xKOGr0tu8RRPIo1Lfk13zAWhVqGMrOELYRfQiiXi+ZVOG+JuTSGLldKOJ7tqJg
+         gI7XjbTKBZrnekjfq43MqjoZRCcanJNzuoDIuJLJbeSgDZMcZzRFVOX9HlBcnK9RqxZS
+         5d2w==
+X-Forwarded-Encrypted: i=1; AJvYcCXQUprfPAa22kzRg2z+cPRWBactc8tj31p+IdhU5lY2U9ItupL+9gqpcUHigpJbf93p/5VR4onhYSBb@vger.kernel.org
+X-Gm-Message-State: AOJu0Yza0l8EbRgKY8i4vVfZ/D7dwb7xMBMgmwOIb+VNdyOALYHRyxZO
+	ZHMNtLd2tpVJZ3V7krCIDf71YnySLalRqq2vNc4Ane7uB99d6vHXwkYGh1Ta1dY=
+X-Gm-Gg: ASbGncu1qzXpnvuazJ2ZNg6KggA4bYlAtZSsyDR/HdEHgly6qMN7nqy2coC4kh5LmbI
+	ntEgynN0ZiaMwWtrXsIBJMOhLTFBhA2otahxKRG8o5HSvJMWuAECXNRTV2qsOE9B9j6Gi+5aMZd
+	U3HXTOINKx+RX5U1FTTr3EMyKxDcPUSMcUG4c40aIhYqTNbdWBO9/a81Ovd0H3lX7y3BiBZVqxi
+	pN8WMVJ5XMtbrDefHiugSS3vZfPlgmdLVhZbmJwEijJbx53bbJMZaGXwWBNZsdVlwszeDqmcs0l
+	kP0vV+aXc1LcUO2jZV1lePJ7PhUjT6nwB+UV4A==
+X-Google-Smtp-Source: AGHT+IGdH/1xkGe0FxMfcw0BJDlcTwbp3cxANiuceTiyzSfv5C+lXqoyYhq0xioqTflZztkvT1oBRQ==
+X-Received: by 2002:a5d:64c3:0:b0:37c:cc67:8b1f with SMTP id ffacd0b85a97d-38260be3f72mr9001002f8f.48.1732533519689;
+        Mon, 25 Nov 2024 03:18:39 -0800 (PST)
 Received: from localhost (p200300f65f242d005bbc9b581c6b9666.dip0.t-ipconnect.de. [2003:f6:5f24:2d00:5bbc:9b58:1c6b:9666])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3825fbedf58sm10019510f8f.103.2024.11.25.03.10.33
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3825fbedf63sm10142315f8f.102.2024.11.25.03.18.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Nov 2024 03:10:33 -0800 (PST)
-Date: Mon, 25 Nov 2024 12:10:32 +0100
+        Mon, 25 Nov 2024 03:18:39 -0800 (PST)
+Date: Mon, 25 Nov 2024 12:18:37 +0100
 From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
 To: Andy Shevchenko <andy.shevchenko@gmail.com>
 Cc: Jonathan Cameron <jic23@kernel.org>, 
@@ -81,12 +81,12 @@ Cc: Jonathan Cameron <jic23@kernel.org>,
 	Dumitru Ceclan <dumitru.ceclan@analog.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
 	Nuno Sa <nuno.sa@analog.com>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
 	linux-iio@vger.kernel.org
-Subject: Re: [PATCH v3 08/10] iio: adc: ad_sigma_delta: Check for previous
- ready signals
-Message-ID: <7s7y76t4vggoirklkk7kpc6hcazs3woxeoiblfxzgejlckux54@ek4opdkgfkdb>
+Subject: Re: [PATCH v3 09/10] iio: adc: ad7124: Add error reporting during
+ probe
+Message-ID: <rtuckitd5jy4mpt3kaytrj7wjqh6cvy6oqhsypoonoxkznmxzi@b4l3hg7teqys>
 References: <20241122113322.242875-12-u.kleine-koenig@baylibre.com>
- <20241122113322.242875-20-u.kleine-koenig@baylibre.com>
- <CAHp75Vd_jVnf+oY7Y19pFiRVNUNT24J9i9spRRag-e0bw73pSw@mail.gmail.com>
+ <20241122113322.242875-21-u.kleine-koenig@baylibre.com>
+ <CAHp75VfX7Rtx96mY8V_9M+m1y_zwuoz+VGcmoF75YTjoT9NF8g@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,64 +94,67 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="tfbhahlraekzzkm7"
+	protocol="application/pgp-signature"; boundary="rxk76zajr5xqamz3"
 Content-Disposition: inline
-In-Reply-To: <CAHp75Vd_jVnf+oY7Y19pFiRVNUNT24J9i9spRRag-e0bw73pSw@mail.gmail.com>
+In-Reply-To: <CAHp75VfX7Rtx96mY8V_9M+m1y_zwuoz+VGcmoF75YTjoT9NF8g@mail.gmail.com>
 
 
---tfbhahlraekzzkm7
+--rxk76zajr5xqamz3
 Content-Type: text/plain; protected-headers=v1; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 08/10] iio: adc: ad_sigma_delta: Check for previous
- ready signals
+Subject: Re: [PATCH v3 09/10] iio: adc: ad7124: Add error reporting during
+ probe
 MIME-Version: 1.0
 
-Hello Andy,
-
-On Fri, Nov 22, 2024 at 10:17:51PM +0200, Andy Shevchenko wrote:
+On Fri, Nov 22, 2024 at 10:25:43PM +0200, Andy Shevchenko wrote:
 > On Fri, Nov 22, 2024 at 1:34=E2=80=AFPM Uwe Kleine-K=C3=B6nig
 > <u.kleine-koenig@baylibre.com> wrote:
-> > +static int ad_sigma_delta_clear_pending_event(struct ad_sigma_delta *s=
-igma_delta)
-> > +{
-> > +       int ret =3D 0;
+> >
+> > A driver that silently fails to probe is annoying and hard to debug. So
+> > add messages in the error paths of the probe function.
 >=20
-> Unneeded assignment, see below.
-
-With the changes you suggested below this can get a more local scope,
-too. That's what I did for v4.
-=20
-> > +               spi_message_add_tail(&t[1], &m);
+> ...
 >=20
-> Instead you can also use
+> > +/* Only called during probe, so dev_err_probe() can be used */
 >=20
->   if (...)
->     spi_message_init_with_transfers(..., 2);
->   else
->     spi_message_init_with_transfers(..., 1);
+> It's a harmless comment, but I think dev_err_probe() name is good
+> enough to give such a hint.
 
-I kept it as is to match the register read function.
+Seems to be subjective. I guess I found already too many functions using
+dev_err_probe() that are called also after .probe().
 
-Implemented your other suggestions, stay tuned for v4.
+> >         ret =3D ad7124_soft_reset(st);
+> >         if (ret < 0)
+>=20
+> > +               /* ad7124_soft_reset() already emitted an error message=
+ */
+>=20
+> To me it looks like an almost useless comment.
+
+Same as above. If one of the first thoughts when you look at this code
+is: "Huh, no error message in this exit code", it helps.
+
+I ignored your side notes for now as they wouldn't affect this patch. I
+made a note for later however.
 
 Best regards
 Uwe
 
---tfbhahlraekzzkm7
+--rxk76zajr5xqamz3
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmdEWyYACgkQj4D7WH0S
-/k7wYgf9EEGL1nMWAsY4W9LxayNjd5LFpdUS6EOFPet1L+7W4zwiitwulXO4v2kI
-FbLeG2r+tWJbvoMHT/RkOXPgQAWxzNMcAHCCAxYLUjDIUsYBKniqCK8f16nvKg3L
-gyn9o+UKXUIZxCMXmcd9HvrFpjyP6pwTGmPy0hBNeyglPTqxa7JdzxlbIVO5xlqG
-RBXII3K5uFvjDfEziCvHNcHAERgE13u5UQQZxYsvue6xHUJgPBnle/BNHLSrRhsi
-t15OpsPSy0I/EMna/gAGz40fXZ3snWzgDlEC4cCBBNlT5z/PaaVhPR/YemexrlAV
-sO1DOGt0I8pkOuyRSJCuBr0awDdInA==
-=iwwL
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmdEXQsACgkQj4D7WH0S
+/k7P4wf/dDEkByXl89Aj6HC/hhXcKyFIaOM3CCD9SSOqqjPA/aLPJko431hRUTtY
+1Vi0Bvl1UzbYEZT4pTjmgTCicAuLS81J9h1d5gxPWcJ7bMzb/kDLouNXnREC/fgs
+b/21vjgJ2p0z9XJgRG676nYcxugzDAfobrB2Qlm2hiB40KVF4RRd5SDsNir6yPRH
+jnTtOWMF6pH3m6cXF7fkRmnXmZE1S86OuvN0UGJOsL2bsr0v1ZDvny0JgQ1dHjY0
+28QhAzAyhDF9VpZpFR0DS5CICsMSVBPYNykNzlzdSjXj/Dmf36lU4NOF0TNFjSUH
+XWD6a888CC2Fj5P7HxTQL2DXatHxXg==
+=W0o4
 -----END PGP SIGNATURE-----
 
---tfbhahlraekzzkm7--
+--rxk76zajr5xqamz3--
 
