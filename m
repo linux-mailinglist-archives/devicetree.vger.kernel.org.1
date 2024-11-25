@@ -1,133 +1,119 @@
-Return-Path: <devicetree+bounces-124285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AE709D83D3
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 11:52:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F86C9D83DD
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 11:53:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81B3D2898E6
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 10:52:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4394228A736
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 10:53:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48702192B88;
-	Mon, 25 Nov 2024 10:51:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75FDD194147;
+	Mon, 25 Nov 2024 10:53:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V4tuBI4f"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="ZYfrj838"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ABCF17DFF2;
-	Mon, 25 Nov 2024 10:51:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0B3E192B7F;
+	Mon, 25 Nov 2024 10:53:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732531897; cv=none; b=VUxXEAgTQ8kVvZQBstodBqkqwsBY3XHxYcZ3UbrrlaGYtO+La5gWykdbxnjVURAl1JVoFVem5jiSfrz7JhG+z7hJkrg9Ke4SdD/i5G7gi+I7dAUV7ucg6NuCwUb5dsqj9o3QO0l7wHwfekjb68W/SBohGStywJNncmMvVDp8YM4=
+	t=1732531988; cv=none; b=LL014ecsm0RxFp2j6JTA1aRtZ9xZbuyeHRUxHDBWmOFLe412SSrY/RAjZPAX5RD3SuBoDmieejcCWZafeFrUcsVo0nb5laoTTlSwUPC7PG4XGQtMNL4CJVBKBsy40uqIMaS6vqGlm3GyYRkuroc5nYYnXp7AvuRTxzdgjsGnt3g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732531897; c=relaxed/simple;
-	bh=KskUYDOafEEpUyFS31TIrHEYG3ez8mPbthzKMzQhMwI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CrqJKyXSkFbzv+YFCZyFmJ6/dqCKIDC/Dsj7XZiOzEUjDBDsOl0LvJmCh9H680odDJAx+ycwA/W+stkPrxY0SRuiCKzc2FXDIjk+gRLt/+s5tenKUUqVQAoo57pLz/UPNPRA5khfcedc9dOG6Vg3YZZIEonDGm0xt1Qo+4pwXKU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V4tuBI4f; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8B7DC4CECE;
-	Mon, 25 Nov 2024 10:51:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732531896;
-	bh=KskUYDOafEEpUyFS31TIrHEYG3ez8mPbthzKMzQhMwI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=V4tuBI4fG0F4rZBd7otOSEQPP6MZn/49rKgMOhYw5SU195j4YAE2EbrRmgjCTH5+o
-	 ZXxT0ul5wTvdRKEeLNaFLjFPQnNIM2Gpoj63/L/Mvj8QDgRmNwoY6pm9O86+QmvuyQ
-	 XN2SQNpg9gJcILOqeBCStLERSTVoleQe20dHU8SpOxmJAGKq2uw/QFK5CdIjrqS/aC
-	 Dl6vk5qBNHqsf4QLK8OTt0oiaIJ99VZS4x5+aI2VbvYescw3ND/FLaXZCJkzxTLgzT
-	 x+EW9BoDuWlY3J2vDM/bhbJVAl0IeMKXL5pkBIZswADmG9VbMvZawktnNp6haUQv4m
-	 +bAk6pPGq8gHA==
-Message-ID: <017ae0c6-b221-4486-a2b9-d29b5a82e7de@kernel.org>
-Date: Mon, 25 Nov 2024 11:51:30 +0100
+	s=arc-20240116; t=1732531988; c=relaxed/simple;
+	bh=3jcBf0eL6Gi2Rg6poX5bDC7FF84+Wlh4gqM+ewFsiIA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jYvaKV1DcopHj1cuWcO07QHiYEa48InQTHdm/X5+kAwTYTKYIDzStXooseAr8+xyIk2HcGv8YqmncUfVftm/ODkR5Lu43Z0knjzNaaYUlfOSpmo0CJXNSg+wJ7ozjGNc0ISpqX7tgiFCgNmEV1T0gO72XuQPWs7EWnX0CRXat1Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=ZYfrj838; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from gaggiata.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 1E756262A7;
+	Mon, 25 Nov 2024 11:52:58 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1732531978;
+	bh=hmQWA+nwpDDcGMMWDzj5b5llGkioHK+B9GAwscWHsf8=;
+	h=Received:From:To:Subject;
+	b=ZYfrj838yqQBq+MD5xjL1RdFq/zTs84dqXtTqrLEVI0BvgjI7PabTQ+4t8f3ceZx1
+	 +bgbcTJZG7kJm4sOAnseL56ApNbSwEcXv/OEmNp6qXqdzdEkw1FK5JlaHxMKxaFuzT
+	 Mvi8WDOvCkgBqs6ZuhRkXzc0NC56CBxP7xMrpBfZ4ltng4O+6hYdQvaxyo0xd/x+aK
+	 a7I2mVi6aU8U9duQei/4IcijBLyfFagIRTjS5R4R4qCxTPaulnhlTbOLpex4GQvrdX
+	 d86c5tDbtN75uV2MqQ/fauaRApXM9BOtbWOQmhUhhqHd8TNHTBcouEc1vNdB8K8C75
+	 8VrGTNu6GvA9g==
+Received: by gaggiata.pivistrello.it (Postfix, from userid 1000)
+	id ADFCE7F996; Mon, 25 Nov 2024 11:52:57 +0100 (CET)
+Date: Mon, 25 Nov 2024 11:52:57 +0100
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Liu Ying <victor.liu@nxp.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+	p.zabel@pengutronix.de, maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
+	simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+	kernel@pengutronix.de, festevam@gmail.com, glx@linutronix.de,
+	vkoul@kernel.org, kishon@kernel.org, aisheng.dong@nxp.com,
+	agx@sigxcpu.org, francesco@dolcini.it, frank.li@nxp.com,
+	dmitry.baryshkov@linaro.org
+Subject: Re: [DO NOT MERGE PATCH v4 16/19] arm64: dts: imx8qxp: Add display
+ controller subsystem
+Message-ID: <Z0RXCYZ_7fBvpcvd@gaggiata.pivistrello.it>
+References: <20241125093316.2357162-1-victor.liu@nxp.com>
+ <20241125093316.2357162-17-victor.liu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] arm64: dts: agilex5: initial support for Arrow
- AXE5-Eagle
-To: Steffen Trumtrar <s.trumtrar@pengutronix.de>,
- Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Richard Cochran <richardcochran@gmail.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org, linux-clk@vger.kernel.org, kernel@pengutronix.de
-References: <20241125-v6-12-topic-socfpga-agilex5-v2-0-864256ecc7b2@pengutronix.de>
- <20241125-v6-12-topic-socfpga-agilex5-v2-4-864256ecc7b2@pengutronix.de>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241125-v6-12-topic-socfpga-agilex5-v2-4-864256ecc7b2@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241125093316.2357162-17-victor.liu@nxp.com>
 
-On 25/11/2024 11:33, Steffen Trumtrar wrote:
-> The Arrow AXE5-Eagle is an Intel Agilex5 SoCFPGA based board with:
+On Mon, Nov 25, 2024 at 05:33:13PM +0800, Liu Ying wrote:
+> Add display controller subsystem in i.MX8qxp SoC.
 > 
->    - 1x PCIe Gen4.0 edge connector
->    - 4-port USB HUB
->    - 2x 1Gb Ethernet
->    - microSD
->    - HDMI output
->    - 2x 10Gb SFP+ cages
-> 
-> As most devices aren't supported mainline yet, this is only the initial
-> support for the board.
-> 
-> Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-> ---
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+...
 
-Best regards,
-Krzysztof
+> diff --git a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
+> index 05138326f0a5..35cc82cbbcd1 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
+> @@ -20,6 +20,27 @@ / {
+>  	#size-cells = <2>;
+>  
+>  	aliases {
+> +		dc0 = &dc0;
+> +		dc0-constframe0 = &dc0_constframe0;
+> +		dc0-constframe1 = &dc0_constframe1;
+> +		dc0-constframe4 = &dc0_constframe4;
+> +		dc0-constframe5 = &dc0_constframe5;
+> +		dc0-display-engine0 = &dc0_display_engine0;
+> +		dc0-display-engine1 = &dc0_display_engine1;
+> +		dc0-extdst0 = &dc0_extdst0;
+> +		dc0-extdst1 = &dc0_extdst1;
+> +		dc0-extdst4 = &dc0_extdst4;
+> +		dc0-extdst5 = &dc0_extdst5;
+> +		dc0-fetchlayer0 = &dc0_fetchlayer0;
+> +		dc0-fetchwarp2 = &dc0_fetchwarp2;
+> +		dc0-framegen0 = &dc0_framegen0;
+> +		dc0-framegen1 = &dc0_framegen1;
+> +		dc0-layerblend0 = &dc0_layerblend0;
+> +		dc0-layerblend1 = &dc0_layerblend1;
+> +		dc0-layerblend2 = &dc0_layerblend2;
+> +		dc0-layerblend3 = &dc0_layerblend3;
+> +		dc0-tcon0 = &dc0_tcon0;
+> +		dc0-tcon1 = &dc0_tcon1;
+
+what would you use those aliases for?
+
+Francesco
+
 
