@@ -1,48 +1,87 @@
-Return-Path: <devicetree+bounces-124389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124390-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA5BA9D8A11
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 17:15:14 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 468499D8AA3
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 17:52:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ADEE4B381B7
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 15:55:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E2C2DB45817
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 15:55:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F3571B3930;
-	Mon, 25 Nov 2024 15:55:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13A0C1B4F15;
+	Mon, 25 Nov 2024 15:55:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u9nJABZT"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="N0kwbz3y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4644C1AD3F6;
-	Mon, 25 Nov 2024 15:55:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A35751B4F0A
+	for <devicetree@vger.kernel.org>; Mon, 25 Nov 2024 15:55:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732550121; cv=none; b=PPe5GDBsVvFrCL10ozbhMJRi9NOiUSeFP48paujEewhuls/TzSFevDZbE3bZn43Gb0b4kLVXaSLq8mewj1tMq7aOWjLDo0RTw9hdIu5MyYr2uWV9RlxAbvZSNJMdbr/zc1xyKapW2m02Y3jzhptlfyDM8F6VHaithF6VERiSmmw=
+	t=1732550127; cv=none; b=EYd+n8/ezcwQJk8w5GS+8LlPqfkBKTAGRObeK00208wsB/v8ZBVyokcD24tDfNWVwOVHQ45ZmY6CUdlGRQ9K018f6G29FzDruBkrsnvg3zt4mbYWfCD9BixdsRMMi0B03kFgwH7cLxV2vx2U3Axt6WQC598Rwalw9kwvsHFAvDQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732550121; c=relaxed/simple;
-	bh=6nb7rr8QU8TGBkfRkmr1O484yACQyvb7R6mQiqhnEOM=;
+	s=arc-20240116; t=1732550127; c=relaxed/simple;
+	bh=iw+rPfggrY5VC4rUJfukTlhjBi05xw7ms9YCcpumBQ0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iuPDofg7jZ+5faeEjsmOKomNRMRPPR00TO6yyy935+QZYFPf+w12BPt/8XIPJVQNSho8KncWGEFrjPAmJ7DyL5AuK+Igy+bHKNXJ3le8M+Z5v5MakvoZZkrALh9rCulTjlfMHKEu7ukuPrcqZk2hLKwgZaAa96u2QOy5rbrtsPA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u9nJABZT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47456C4CED3;
-	Mon, 25 Nov 2024 15:55:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732550120;
-	bh=6nb7rr8QU8TGBkfRkmr1O484yACQyvb7R6mQiqhnEOM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=u9nJABZTLzV5WkKiT4Eu8PAtJpkNQjQyJdf46KjYxxxKMKwqIsnBaoxTBNM3pCMEu
-	 FpHXHaUfKKpEMPpyP9H7ey9+kWXJrImo2uMF3/oXtB5oOspXW/TFDfqdsexgrwvLaV
-	 +7v/kUzshQ0+LwjRirkcGLx1oUiMBpN3cVJaUmDWoheOzoYx84/wzRDOkbHPHx/1jf
-	 5KqKVM8YIitJdKrivaTW98rUCIxpkuvoTKblixie5G6Tm737u6H//Lni1ao6BMtpn6
-	 wAuEYqOkX7szicTKjgsL9Ktm8tUbIckdDPyDZf9ny+E8One1+KrDWhwYeiw8Z0FxYZ
-	 /R9Xxmni88hyA==
-Message-ID: <474cef98-4644-4838-b07c-950ad7515b73@kernel.org>
-Date: Mon, 25 Nov 2024 16:55:14 +0100
+	 In-Reply-To:Content-Type; b=Z+Tzmtw7eTv4olig9SE+mmWElxcU2WutGBpoD23z8AHmm0tjPvNIjqbqKsVGb6GqWXyEW406OZ0+puqwEM2fYcQKIjNkjQ5pO3UeWrYwzrrYulSO/5aNl0deuG3xYHA7g9003RgLdyr1oMHPZbznJ/0Yc3dvtw506FFbtWnxHos=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=N0kwbz3y; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4APAokp2032403
+	for <devicetree@vger.kernel.org>; Mon, 25 Nov 2024 15:55:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	wOGRZpFoHgxved77btthetZSo7CITcrNrmZpFVCz+PY=; b=N0kwbz3yQa0D5wBe
+	Y1XY3mLBumti9Np4GsU6E1NKNxq+pvlHnfHb2ur17ld8kMeivjf8XK8e/F31bl8b
+	lJTiZWOJpJ+mK5BzvPDhIUPTSiu+TzsPRNgHN0UHFWNC/uQiQOY5z3OdMbAh2YrH
+	eDegIpTTx01YR29o/u6ori3Qh6QbYgOI+QvQ5+QM9tkJ43HixzkkPB4fCtQtFSEY
+	q/t9T/K3I9U5rLtkxPNmpUFCtWUjOp6DMVYe0E7eweCUhV2rL2uMKkghvA7U3p+W
+	LraoWnc06DEsbkmQFBZWcECs8YT/JYYShviDW966JtyY3KcBZb3c06CC5Qhk+CWm
+	hcDaFw==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4334rd5ksr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 25 Nov 2024 15:55:23 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-46699075dd4so2012441cf.3
+        for <devicetree@vger.kernel.org>; Mon, 25 Nov 2024 07:55:23 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732550122; x=1733154922;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wOGRZpFoHgxved77btthetZSo7CITcrNrmZpFVCz+PY=;
+        b=PRKut8l8GRETW046O1Q1GDhK5osPMbyAdty2pLX9EXpi5SOCJ5NLqqB9PkDqYeWBMi
+         CW6E7JV4GPnwZeW3VmG4QHSrzlr8yzmGOrPi2hGbva2QIzkQwCBXCXJARygiOSswDjjW
+         yr+zQujJVKtkC5GOunL1nojrpGWbWtOKr1bSQRED9OHNrjX0nJ3+Rob5OuhaSMWJIsdZ
+         CTp3kxLgcxSH/qu03qZmS/fIpz+HaPVRaykZnrLI05kwydBAnyEy9QM8XopjWPGebkEj
+         2vHL0hEWkRnB+hCJaKbgga6cW+hsWX3c6Na1i0Swrv6c5ipxdpY66yqI4x8uIso/7UOD
+         mQKg==
+X-Forwarded-Encrypted: i=1; AJvYcCX8xa6t1vWG/tMBwvTAacuBVtJfsddZZ10y0NT/UhWH9bKGV0BESH0ilE3PA5ll6GAjLiihBElqFLNB@vger.kernel.org
+X-Gm-Message-State: AOJu0YzwgTxsJtk2LGg3BCm0jrKsZ5EpzmpIMXxkY/5FhvyFFlbT8FDt
+	ti9RRU9DJTZS1rlZgZMbQ9tRsdRsvKr0Q0mG/HlyHzX5R5OPj/QemOIQIMtMZvtR0a9d7X13Pet
+	1k4WLPXymiCAuc41x+QU9XZPYznRjcb3BSoqovlMKSyjXL3sRDVQvB6E28lqM
+X-Gm-Gg: ASbGncuds5aCZ1+ci8ssUNEHhvedk5DxH94g+fVBqT4kN5ciCHaW+TfodCafP0vgv5+
+	Zv5yKUCxSO8HseoeP823+Eo5XNkXONKVFPpXlvRHeLRN4o4ciQfnaDC3e+DIT1FvgYF6rwhQtCt
+	22OKCBOQw9k/Ik0sIWKa8HzuBJ6Ol1ujVaf7ehQWU5YFoIq0XvouYUih4fydB2+m5C9tqgK9WNU
+	JuxfaSzJ82587Pr9xRcnXowLugOuP6xOMp9F5KDods6o8RIzZxX2kw65Km7wbPUQ/1Dlbn3gqJa
+	UZ287hPeA3It0UpvP1TW4wnLMwY0EEc=
+X-Received: by 2002:a05:622a:5a88:b0:463:648d:56 with SMTP id d75a77b69052e-466a1631b99mr3846571cf.5.1732550122529;
+        Mon, 25 Nov 2024 07:55:22 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFvYEgygVYS4qX3kr5MvnR4AXZaywoeI2KXLjKEA9NYyrbjDttFDrc2jND/pxdsEt55oFzgcQ==
+X-Received: by 2002:a05:622a:5a88:b0:463:648d:56 with SMTP id d75a77b69052e-466a1631b99mr3846321cf.5.1732550121992;
+        Mon, 25 Nov 2024 07:55:21 -0800 (PST)
+Received: from [192.168.212.126] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa50b2f5322sm479277166b.70.2024.11.25.07.55.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Nov 2024 07:55:21 -0800 (PST)
+Message-ID: <71ff8a13-843a-434c-b5ac-3ad6171eb7bb@oss.qualcomm.com>
+Date: Mon, 25 Nov 2024 16:55:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,105 +89,53 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/4] dt-bindings: qcom,qcs615-venus: add support for
- video hardware
-To: "Renjiang Han (QUIC)" <quic_renjiang@quicinc.com>
-Cc: Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
- "Vikash Garodia (QUIC)" <quic_vgarodia@quicinc.com>,
- "bryan.odonoghue@linaro.org" <bryan.odonoghue@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20241125-add-venus-for-qcs615-v3-0-5a376b97a68e@quicinc.com>
- <20241125-add-venus-for-qcs615-v3-1-5a376b97a68e@quicinc.com>
- <jovwobfcbc344eqrcgxeaxlz2mzgolxqaldvxzmvp5p3rxj3se@fudhzbx5hf2e>
- <18cc654b4377463e8783de0b4659a27d@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v4 2/2] arm64: dts: qcom: Enable USB controllers for
+ QCS8300
+To: Krishna Kurapati <quic_kriskura@quicinc.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, quic_ppratap@quicinc.com,
+        quic_jackp@quicinc.com
+References: <20241114055152.1562116-1-quic_kriskura@quicinc.com>
+ <20241114055152.1562116-3-quic_kriskura@quicinc.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <18cc654b4377463e8783de0b4659a27d@quicinc.com>
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20241114055152.1562116-3-quic_kriskura@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: 130LCtV__S0UwvzwIA-8pZDYNCRDrnKM
+X-Proofpoint-GUID: 130LCtV__S0UwvzwIA-8pZDYNCRDrnKM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
+ bulkscore=0 clxscore=1015 suspectscore=0 priorityscore=1501 malwarescore=0
+ spamscore=0 adultscore=0 impostorscore=0 phishscore=0 mlxlogscore=603
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2411250133
 
-On 25/11/2024 16:49, Renjiang Han (QUIC) wrote:
->>> +  video-decoder:
->>> +    type: object
->>> +
->>> +    additionalProperties: false
->>> +
->>> +    properties:
->>> +      compatible:
->>> +        const: venus-decoder
->>> +
->>> +    required:
->>> +      - compatible
->>> +
->>> +  video-encoder:
->>> +    type: object
+On 14.11.2024 6:51 AM, Krishna Kurapati wrote:
+
+subject:
+"arm64: dts: qcom: qcs8300-ride: Enable USB controllers"
+
+> Enable primary USB controller on QCS8300 Ride platform. The primary USB
+> controller is made "peripheral", as this is intended to be connected to
+> a host for debugging use cases.
 > 
->> Both nodes are useless - no resources here, nothing to control.
->> Do not add nodes just to instantiate Linux drivers. Drop them.
-> Do you mean I should remove video-decoder and video-encoder from here?
+> For using the controller in host mode, changing the dr_mode and adding
+> appropriate pinctrl nodes to provide vbus would be sufficient.
+> 
+> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> ---
 
-Yes, that's my suggestion.
+With that:
 
-> If so, do I also need to remove these two nodes from the dtsi file and add
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Yes
-
-> them in the qcs615-ride.dts file?
-
-Well, no, how would it pass dtbs_check?
-
-Don't add nodes purely for Linux driver instantiation.
-
-Best regards,
-Krzysztof
+Konrad
 
