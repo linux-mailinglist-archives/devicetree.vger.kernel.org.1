@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-124149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 748EE9D7C0C
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 08:39:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75DC09D7C15
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 08:40:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C55F2B22038
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 07:39:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3BB712812C4
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 07:40:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 660C51779B8;
-	Mon, 25 Nov 2024 07:39:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17D0B14375C;
+	Mon, 25 Nov 2024 07:40:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mpb0Zwt/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tnjVmaHC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A7E713C809;
-	Mon, 25 Nov 2024 07:39:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D66DE82876;
+	Mon, 25 Nov 2024 07:40:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732520343; cv=none; b=KRvD8AqFJ4xA+H5moVckDs6iuziD777KEv8n1KEZThBi0yn1jYstmvr8OBvOQtK2kEZ3FJiWy1LjHnPwppmrJVgh8TPj+FQIm0xve0WwJvStK9L1dAhqV24AFOCbCYyl0/Jnk7cvuXbqrMeWbhzG99uoUrR4FIUec+TsooGTzX4=
+	t=1732520446; cv=none; b=JjVwHaz3dl4Cc5qLxWGtzQiKYSUragmJ2NonOSkMPi2W4oxeWb5IyUn3yPZX0bdjDsAAt71KnsZbSv9Xce7ZEKxUMtbd71GOv2HOVM8ve1KhVcrl0GCgVkGmKzUTBsqMTvm7IVYnESu/fZ5ZkS6NQlzg8WrmeR/G1NiR6PNjKwE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732520343; c=relaxed/simple;
-	bh=+b1e/mt/rASvRc2qyFWPlgsPaR3LlsYiglmILqDBPM0=;
+	s=arc-20240116; t=1732520446; c=relaxed/simple;
+	bh=J07ooMYbifRO4lE86kyFEGuhqgft9JSr5J+0XMD81tk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Fxem8OX2vAuEx7Pv5uo7c/QjBECJ7tg71wwT0C7nzHuv51hVGxrypK4QNb9TlG4aHBqoashf4rBvGemOeX4tkancxTO8cjT3KPihwbhj6zTRYVovqFGvR7VmwAP860sa372u9OyF2/mrnY7PGRwvtqZ1PMF1QFir3vWYgXJpZhY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mpb0Zwt/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 014ABC4CECE;
-	Mon, 25 Nov 2024 07:38:57 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=bJAOeubr+i7u8j/tiC08969KXhYF7InL0b71EA6Bd9AnMo8dc+PkkyZ0qnpZBy86c6DeMbnKwAmFJmeamAPGmH4Khh0hVGnjbQh84O8rVBUBBsgt1roBemTvwLT3WHrtj14YbhuM4DWCdjRJQg8vWLoxgunVlUw6eCT5OXv28QE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tnjVmaHC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9F67C4CECE;
+	Mon, 25 Nov 2024 07:40:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732520342;
-	bh=+b1e/mt/rASvRc2qyFWPlgsPaR3LlsYiglmILqDBPM0=;
+	s=k20201202; t=1732520445;
+	bh=J07ooMYbifRO4lE86kyFEGuhqgft9JSr5J+0XMD81tk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mpb0Zwt/G+ijFjB0lpsgjSdJuasnTGJJGNbPSilyB7g+VI9p5aC1SB6bM0B/lqV5E
-	 bcdm7TTcJ0zOrM74jOFDnKW8y3koLjemxNxygWDZI3MHAiFXhFJ5/gn0AARs+Y1Y4u
-	 YZOJP9Sdg3pWMoAb47gdjifoXFHMkbt7HcKRr368HK04XyR6SDFwn/xQXyIpxT9xKc
-	 azjr8IXqAlfC48tJtQ7Xxer+GJVomoGMn+0VFadXo0Vp00wNEiWiJaR0QWKmWhrPWk
-	 bhkf6zdzSqlxMwkYmXeYrElegK35NKeHv/ZNE1y58IEEbbVz29oteNGnNuNKXd6T3s
-	 nETRoGSWcYiTg==
-Message-ID: <d1e8b3e9-526d-4910-8b15-6cce2c8526db@kernel.org>
-Date: Mon, 25 Nov 2024 08:38:55 +0100
+	b=tnjVmaHCAF/N12A6/xDb6zRacrqU0g0YymkyDzbAkjKk0Z7HwrQawWfupj0xIjdwJ
+	 uSjDTGv9dAS2cJ+kBELh40JYQriAvfii4lrv4HttH627Za9Aw8JSHg384y/CmYWK9p
+	 0qLeLM+cNtOlkhKHVZBBhT7Vbhus4UUj57/UGKebEA26ticiZH1cUcvEHg7pKRfVNi
+	 wCKOI0bUX8ApNys7Xw+90eIvhjkLIaaDIa+ZBbdP7sLe99TePGxAYrysSkVunVurEq
+	 b8GwEdzR13B43N077x2vt8EWFVpwC786jg3BtEImgg4T4VHzJBRuACVCsDIRoUA05N
+	 Ri+yZrmRepn4w==
+Message-ID: <b203d90d-91bc-437b-9b91-1085034ed716@kernel.org>
+Date: Mon, 25 Nov 2024 08:40:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] dt-bindings: display: panel: Add another panel for
- RG35XX Plus (Rev6)
-To: Hironori KIKUCHI <kikuchan98@gmail.com>
-Cc: linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+Subject: Re: [PATCH v3 1/6] dt-bindings: PCI: Add binding for qps615
+To: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
+Cc: andersson@kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Paul Cercueil <paul@crapouillou.net>,
- Christophe Branchereau <cbranchereau@gmail.com>,
- Ryan Walklin <ryan@testtoast.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org
-References: <20241124080220.1657238-1-kikuchan98@gmail.com>
- <20241124080220.1657238-2-kikuchan98@gmail.com>
- <f0d983f7-5f60-4cb7-9522-ef4429359c52@kernel.org>
- <945786cc-1d6d-4a45-b9df-26d9335fd271@kernel.org>
- <CAG40kxH8bQHauBAd1B=UpC7LLAJoS=ETKczL=QWBKqvk=VKh_w@mail.gmail.com>
+ Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ cros-qcom-dts-watchers@chromium.org, Jingoo Han <jingoohan1@gmail.com>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, quic_vbadigan@quicinc.com,
+ linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20241112-qps615_pwr-v3-0-29a1e98aa2b0@quicinc.com>
+ <20241112-qps615_pwr-v3-1-29a1e98aa2b0@quicinc.com>
+ <poruhxgxnkhvqij5q7z4toxzcsk2gvkyj6ewicsfxj6xl3i3un@msgyeeyb6hsf>
+ <42425b92-6e0d-a77b-8733-e50614bcb3a8@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,69 +111,35 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <CAG40kxH8bQHauBAd1B=UpC7LLAJoS=ETKczL=QWBKqvk=VKh_w@mail.gmail.com>
+In-Reply-To: <42425b92-6e0d-a77b-8733-e50614bcb3a8@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 24/11/2024 20:14, Hironori KIKUCHI wrote:
-> Hello Krzysztof,
-> 
-> Thank you for reviewing.
-> 
->> no wildcards
-> 
-> Sorry, but I believe these are not wildcards.
-> 
-> As discussed previously, the integrating vendor and device name are
-> preferred instead of the OEM serial for unidentified OEM panels.
-> These compatible strings are based on the actual device names:
->   "RG35XX Plus", "RG 40XXV", "RG40XX H", and "RG CubeXX"
-> You can refer to
-> https://anbernic.com/collections/handheld-game-console for the full
+On 24/11/2024 02:41, Krishna Chaitanya Chundru wrote:
+>> ...
+>>
+>>> +  qps615,axi-clk-freq-hz:
+>>
+>> That's a downstream code you send us.
+>>
+>> Anyway, why assigned clock rates do not work for you? You are
+>> re-implementing legacy property now under different name :/
+>>
+>> The assigned clock rates comes in to the picture when we are using clock
+> framework to control the clocks. For this switch there are no clocks 
+> needs to be control, the moment we power on the switch clocks are
+> enabled by default. This switch provides a mechanism to control the
+> frequency using i2c. And switch supports only two frequencies i.e
 
 
-Then explain this in commit msg.
+frequency of what, since there are no clocks?
 
-> line-up.
-> 
-> Oh, regarding "rg40xx-panel", it might have been separated to
-> "rg40xx-v-panel" and "rg40xx-h-panel".
-> 
-> 
->> don't duplicate schemas
-> 
-> The old schemas "leadtek,ltk035c5444t", "fascontek,fs035vg158", and
-> "anbernic,rg35xx-plus-panel" exist independently.
+> 125MHz and 250MHZ by default it runs on 250MHz, we can do one i2c
+> write with which switch runs in 125MHz.
+
+How doing a write is relevant? Or you want to say you can control clock?
 
 
-So you duplicate them. I wrote: Don't duplicate.
-
-> So I had to add new schemas since the new ones are not compatible with
-> the old ones.
-
-No, you do not have to. There is no such thing as schema compatible with
-schema.
-
-
-> 
-> Perhaps the compatibles should be like this:
->   compatible = "anbernic,rg35xx-plus-panel", "newvision,nv3052c";
-> as some others do.
-
-We do not talk about compatibles.
-
-> 
-> In this way, the schema files would be a single file and not be messed
-> up, but it would break the previously defined schemas.
-
-
-What? No, it would not  break. Don't touch existing compatibles.
-
-> 
-> How should I deal with this?
-> Any suggestions or advice would be greatly appreciated.
-
-The same as with all other changes: add to existing files.
 
 Best regards,
 Krzysztof
