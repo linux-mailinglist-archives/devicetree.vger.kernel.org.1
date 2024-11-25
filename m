@@ -1,196 +1,238 @@
-Return-Path: <devicetree+bounces-124412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD15B9D8B08
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 18:09:03 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4195C160661
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 17:09:00 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AEF51B4F3D;
-	Mon, 25 Nov 2024 17:09:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="cHsTFMeE"
-X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2058.outbound.protection.outlook.com [40.107.21.58])
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A47B09D8B49
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 18:27:28 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 807A9178378;
-	Mon, 25 Nov 2024 17:08:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.58
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732554540; cv=fail; b=mQYpdNEj4hF4cIWqqPohdy48kFKaBSgBfMQQjK9qMRlDwqEjO4KD7dbHOr4gFR1diF3+us8MC8PFtxkoG7F/J4P7dqODdejdRChMUp6qycwenINviehveN+cIo6oPO36w8zRx9kXXumnD8i3TsD6XBXXX79Yx4iqXgBq5nBrXLE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732554540; c=relaxed/simple;
-	bh=74MY7GJTCnUgz38Ih/FQuy0UXp/S8tZmZ0TqZTbs7w8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=Fc7Dhf2Tm3WAHS2D0yTNT4gRujVwn2QWhEozx44wutwNi+oqLlbd1L7TmPQ6Q8IB+UHviH8xDzX2Sxdwr6UAynIYpd+Om7L7avZ0yHX3jPzlqDq5e38jNTNeOt6mS6M94phYUzrgX2D1CXX1oY8ZL7RAscORv1zZn4t6JKCF/0Y=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=cHsTFMeE; arc=fail smtp.client-ip=40.107.21.58
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tONTAgnLmIdnPW2H6csfVmOlP1c22LqOJ1PQT6jkfs0BxVPdhfmaUl2mOs+m5UEGUZVOxWB4PNh2LB91SThl6Y+CrMIYy/wQHqceERmlwhe/s5FzsgYamqZMhdufXbx+XD+7s/Y0HZVO3UKsdzCaORe94LNtQQoCAabK05qA+/XWlLUvJsAG7ViQUj+NxmrYkjwEeHvzBOnhyCKoSMN/UAWbnc/1EQI7Z554bFaVKJewBnrx8T/ehpcmtcy0MhTCeJVA/k5vpvvnN/zvHrOxQq4idHxqk+fYqEyCw3ojyVVe65rZBKGb15rRuqtgZ/2x7LGhQM7SK9TcPbTbAOCiIg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6KEC8mmgv7sNYTn8usghLRkWJi89iMS+7e0/a6Ob/uA=;
- b=LxSda7By0jkmv2abCUwtQdA8rMqxULJxx0TOzp1fagYBeqZrxE+qJ03oDiYyzWwuDd1lGjrXQNwJZciEb+YiqBnK4sb10TiW2MiMD1gBn+JvYHGvZPR/JCz24ck5VFFajFv3Vt8Ql7iNaT1u91mTIwTWb+obj099AyRHzbbCT6Al5OLNGuiQCbbwawhcrrqzM4KQS2e5wuNrkNihJkR5ycQg16vm7rqHy7lWhtACzc8h1tJlidrnVl8qMMcODaRQikKz7vXGXydVAtC9GTUfH7bnEO2b7OcpLqq0oxrHmlmZiiRpY+p5XM6xhwv9TOudxxQd7gUjDDL1yg/c/VKNZA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6KEC8mmgv7sNYTn8usghLRkWJi89iMS+7e0/a6Ob/uA=;
- b=cHsTFMeEjUSfKlJT59AVM+/O5Ph1z0AqkdZW+FwWrGhngBlYaJyHP0gxpGYoWj5h6LOzHlXZp2GtM9olMg35QGrl80boW6qNVXjuanVuMQh8OYT3meLiS1RGHCSYuFJzGENkcA484a3dZo/3g0koz8tCVk64ZxmVOhnseyL+FC1phQX+ZQjBxA9fIWszCrkWecgnDJO4KT7EfIDVrwLdG9mXI7XjoUG1ZIQBCDdYwRZ7LtkgsBBao/ln3ueM80eCFs57kYj32rgycfyi8rxHJdR32tqfxPQXnI1vABUJIZaowU/FvGIVZgDNMp5wQpWfxZx6Dyf39X3vWS0Lhi5hew==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by DBAPR04MB7478.eurprd04.prod.outlook.com (2603:10a6:10:1b3::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8182.18; Mon, 25 Nov
- 2024 17:08:55 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8182.019; Mon, 25 Nov 2024
- 17:08:55 +0000
-Date: Mon, 25 Nov 2024 12:08:39 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Daniel Baluta <daniel.baluta@nxp.com>
-Cc: shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	aisheng.dong@nxp.com, daniel.baluta@gmail.com,
-	laurentiu.mihalcea@nxp.com, shengjiu.wang@nxp.com,
-	iuliana.prodan@nxp.com, a.fatoum@pengutronix.de
-Subject: Re: [PATCH v2 4/6] dt-bindings: clock: imx8mp: Add syscon compatible
-Message-ID: <Z0SvF2tQR14jrHet@lizhi-Precision-Tower-5810>
-References: <20241125152427.136883-1-daniel.baluta@nxp.com>
- <20241125152427.136883-5-daniel.baluta@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241125152427.136883-5-daniel.baluta@nxp.com>
-X-ClientProxiedBy: RO2P215CA0038.LAMP215.PROD.OUTLOOK.COM (2603:10d6:10:d::7)
- To PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9047FB28FF6
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 17:12:55 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA8F71B6D06;
+	Mon, 25 Nov 2024 17:12:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ctOCiO4u"
+X-Original-To: devicetree@vger.kernel.org
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8EC61ABEAC;
+	Mon, 25 Nov 2024 17:12:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1732554771; cv=none; b=tbITWgVB1I1OP7q7lfvCGzNVYhAQRfG+yJcjhQ5ZYQu6yZMZrd8r5pS1BKJXEpxoo+CbPzqCjltKvhyTcBi9svtxN6NtGpUauSyiqQ4M6nEi7nSqFJYKgNuFHtLwWm5I+OhVrL3jPGe0QjqNtu5JFvvICucxaQiCdvOIsU31iB8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1732554771; c=relaxed/simple;
+	bh=KtOOnhBNVpAKdAt3JpdknAUI1CMe4LmkorKrMIv82RQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dYJp9Fu5XjxkXwIKIwBrlgfiAeSIt3uq/p20dJNf89i3fydd6XQhVCq4YL72RHgCs4DKThcypkmCUiKXd/eMzQgzC/eLXPnAoOZUpRagDWQB5KtGx3VPXJLIfYBQgVZXLdsQ3HuDx+KyQ0BKvlGAambVkEawZfyewMkS10MzdWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ctOCiO4u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54EF7C4CECF;
+	Mon, 25 Nov 2024 17:12:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732554771;
+	bh=KtOOnhBNVpAKdAt3JpdknAUI1CMe4LmkorKrMIv82RQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ctOCiO4uXrYbXIPuqEYW7Q9lND6/6xO0fPromgXDIiozCIJ0ogxIqkRWv+NIWbbqx
+	 PPHDijT6HN64vkNjwHDvLCl3pXbqDIoBK3YhBI9hOOWVQ5IzoZB2ZSB2HZ1sIYLtLg
+	 RaSvQ/gpZ2/dmwisb1D5qcDkwbgnZPDrc0pyumj3NOckYBOCK3vxbHr+8MwzycjU4Q
+	 UJeQpc/pJkPd5ck9dg7AWPGaPGHkJYQOhOnghxaPq4VY9aNKeAmjXZecWULK09a7kS
+	 XmRWQGt+34xtlRNUwETK/nqBP0BtpaN8dU5ein2QwAat+w0PcJxAdbpB5gz3cqgxqg
+	 A4LiDAzZjtGBQ==
+Message-ID: <fd20d991-60ca-41b0-adda-c2272975cd0a@kernel.org>
+Date: Mon, 25 Nov 2024 18:12:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DBAPR04MB7478:EE_
-X-MS-Office365-Filtering-Correlation-Id: cd072e92-2552-4e92-4d72-08dd0d73d7a5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|52116014|7416014|366016|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?b17MQrnxtGjW7jWMj83uo+pzVW6U/VerA0+juVLnYssxhlzS6xDrzChjJ0Oh?=
- =?us-ascii?Q?WIh5tDyBoAti7MEE3GCb4wMit9Ngyh1xE4red+Ph80Qd36q/nsNGwli0GVET?=
- =?us-ascii?Q?mAFNkAO99DjJ44upDm7DZ6h8NC8SjEYCBDWylD80uG8uUYke/l3UOuAHNvSR?=
- =?us-ascii?Q?lP39i+AWutTT4oQpLd14yOjOHbAWOl4BerbfxHWFAZVigTXdvYbmzKIh2oS1?=
- =?us-ascii?Q?t8WmP4UlE1Z84halNYNRBBeMblbAmNvCaWQG4XGk19njBTafYtiZ02j79pTh?=
- =?us-ascii?Q?ZhX9IgqLUszt+Mu5pjYWKyO5FID9fsbc05Ctawg1VgD1cqUsVUIhOWYApy8d?=
- =?us-ascii?Q?HbecycJUOZojbzgPBoGSfXY/MlrPxx9FyrraPV3nSWciuAVMnFHdY43g+dpd?=
- =?us-ascii?Q?3ty5hqguKheX8eXhYOwkckB+FZoEtdzV8abUmKLTp0RFLHHVZtIQ7xrrwFR0?=
- =?us-ascii?Q?Fh+129AD/noUvS8tiryyQiJR9ANqozHDSPM103GbdESDgY4FUIebW7blWjMV?=
- =?us-ascii?Q?Pfyi1v9GjvWwDghEg6V3VYL8XPJXmxJSeuJ/P5YRW6IKMkvyR3uTdgqjzwIA?=
- =?us-ascii?Q?QdMJuMuWy0zHq6+ndYcc1BLKu3bNjQWuOCzn64DUmsN6eMR7n8w7oZrzfwwI?=
- =?us-ascii?Q?W2YuJqpb+Fp1Hl3+brobTglmS4cdJ2nMAlvnQShqv/9CmEE4lIr9k/I1mBDG?=
- =?us-ascii?Q?eE3DBkzcVEHcUWebEWfP6fxPcy5bxYKykRcoQFg43Y53tJqIfTc3WeG7zEk2?=
- =?us-ascii?Q?lLu6jYGNNMhjVEsjdsa5NS9BGLCFgM1yeG3nVMi8jEiXLeB/MtZEHJ46D6VL?=
- =?us-ascii?Q?CxNKDk8i4bU14FQ5M7ltHj8+v2WugZ9TUyDtAg5rYrGg+0In6pVPskIWfw/7?=
- =?us-ascii?Q?WBufOE6pM+ZvDPt/8EvxOxQeDRyKq+k597hmz48SfsMw5cRJCaRtoxqLDsCL?=
- =?us-ascii?Q?46S9VGoXAaT9Q+WvGCkNijsdTPETPYCRNq9FxGkYbigB4PCbWwRFxXY8qYPz?=
- =?us-ascii?Q?cQb4yaRZ/uJh9sYsSyRtYmP0AteinVNVB5/5mwbwrVVZHSbxVnUeo1U8gVQV?=
- =?us-ascii?Q?EEGtD55jBazwfPt+RPqy6TvHHeNTNWK2Lr81iLgTB5gJWcnq0V42H0dpo4Ai?=
- =?us-ascii?Q?72fG2Ks1oSfkz183obvULk4jksLxrktZ25J7BzMJ+zj44uQmg1eGidwquE8M?=
- =?us-ascii?Q?Pd7DFkgvJEADG0/sTCX07ZZXTHHBgm5mJbCkdUpVGndZ1mytaJjLzA/A7zDJ?=
- =?us-ascii?Q?IpF5t5XFIaqQNqCq5vYV4Rb6FQRtLVKREllIaqN7ymBKb54jwWtVKuBj/Wp2?=
- =?us-ascii?Q?WAGxCqMpzsdKMA14slegQhAoQ5bdUtrlFLMhXnTvsvbjpWkFGgNTIWsqbf90?=
- =?us-ascii?Q?Y6nB2uGGvZmiASEwNunebs/24VWfz6oiRY4DCoPiHMUbpVJC2A=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(52116014)(7416014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?xabxd1rFqaD8stDAZcpL1B6pdKGlsqXG+Vr1sJOS6h0ymEtqVZgC2reTAiIs?=
- =?us-ascii?Q?GULouURwoQIfOUfKMkAEu87FwSFh3GZaAuMSP3gXOaB7a999GYskiw9yw+CK?=
- =?us-ascii?Q?BLbPuHw31VaAwniPr8lWK+AOE9zowOEgvf7hMOc9AZmb1lR0CoFVbDuwoQ+z?=
- =?us-ascii?Q?NB0mYjhUQwnqvpWLOjmMDVvwVHxcPXS6xhUeE3qQ9dlYkaT+X2D5CkleUwOK?=
- =?us-ascii?Q?J5WsNuTdj5Z3NnpfvbLGkfT4PzRusMwm2pcAWkZjuOBqXMw55QqvZT7fnUY+?=
- =?us-ascii?Q?5T655HW/0YyLaFqzlEBVAeuetfQokRNfIYhUykd8l+nYCUxfWpZTrn/LLroh?=
- =?us-ascii?Q?ilYWt6IaVSfjX0ZfoxNgfO3H3fRdOQD2KMuvQlt+LuTrBh8UU/qhKgl7Ctmn?=
- =?us-ascii?Q?d0XRuQjSDnD3tlst4TWF7rELVfZb7NebVCktgvGF3d77yHnP98FZY3JIKWAI?=
- =?us-ascii?Q?c5lVmcIrTWgb1+14WA7Y8Ux+91fCXiYZsuQWKuq/PENsQ2oALGDVLFQOwBS9?=
- =?us-ascii?Q?znTjyFAuX/OcJqppPkNveCBmykLdlzzniu/QEboji91e9uLJ6wvEnTYr4sKJ?=
- =?us-ascii?Q?TQ50A2YtS0eXBneCIGr92hAG0A4ulHqoHlp0g+AstvDVzZSZKyo6ktH+N9Sm?=
- =?us-ascii?Q?zjUn+TmkUbH2xCT3NKKNlT9nNYmSs7m3FgqQ17SAlJBU4RwvI0+ZvoqwM6v+?=
- =?us-ascii?Q?SNfnZjkyQRlJ3tuBSf/Q/G2e79m957vSDgx7wrNM7nzEucsb0jfJi+Iwceqs?=
- =?us-ascii?Q?zdGxUsy7/B/IfgSOI3wXkjBFDvEfoW45+60IOy9WOIp2IZDlE2d2LQykPhq7?=
- =?us-ascii?Q?SXZiVSPR8ucKfZS8xkttCSZ6Tcg95fgWXucRxHX/dTj2QS6rBHOZNX836xmZ?=
- =?us-ascii?Q?uosgKzFtYF5tVQOY54W799PIMGG5taqWkaEjsq33U3WiyKJ7shZfuWRTEIqm?=
- =?us-ascii?Q?+00Aky1C4ShUJqfs1gTVwYs0h2tewFAG/ds37Ou1wfHeboowsf6KTMksh1Ru?=
- =?us-ascii?Q?mbCj+MIofsnPHezyMGe9Fs+8b8tN8Etc6+4tewul2UuSFYq9vvUaW/bzKyu1?=
- =?us-ascii?Q?7Cg1NJpao4Apomy48ojW7s4oxqBUdSl2eHr/EeXKICxdbVEn3HapdHDKEJNv?=
- =?us-ascii?Q?GnPW+qtDjRwsnOv+BQLu3YLoqLvaQNvFIJxddaS0OMDiRXjQkydJP36ilk5I?=
- =?us-ascii?Q?bkIQKKRCVApSYUzbepHZpxylWKqUTY5XP+chK9NrBd9+b+WOawNY0CyJcZEa?=
- =?us-ascii?Q?+ySmBB8/0CBWkwH5uq8RH604o0rmfkmatfDUCrbLKRF91IV0MfY1PMihyBj7?=
- =?us-ascii?Q?pNB1QUctn38Z7nFK9z18WNy8oQnNLlnFENygkmLX5eHF55cizk/tEuHHOKjQ?=
- =?us-ascii?Q?R7euaMlJmCbfee2PidCLqamiiZwrNu7wv6XBLzBaKZ/aKnTvlorfNMq3R6+9?=
- =?us-ascii?Q?/L3640A8BqFbX9MkyqjgjoxA4hUzLG1NfR01ILu1sN81N54/thx5tPfh4+MC?=
- =?us-ascii?Q?0pKkIB+d7dJBtyHuXmKOI6pWjSHplPaPMzXWLN0H6bCPL0gOSwxVIAxYCwDH?=
- =?us-ascii?Q?511nRjx2fyrpHLkIhAE=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cd072e92-2552-4e92-4d72-08dd0d73d7a5
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2024 17:08:54.9161
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: KsZQTl+SUuwT75e5TvA29CIIhMbvJ69zHL+RELxncEEOKVFcne4f+6Elxz7apH0pvMmqRfsJKyAiaAvH7x5bJA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR04MB7478
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] dt-bindings: mfd: Add properties for thermal
+ sensor cells
+To: Guenter Roeck <linux@roeck-us.net>, "Sung-Chi, Li" <lschyi@chromium.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Benson Leung <bleung@chromium.org>,
+ Guenter Roeck <groeck@chromium.org>, =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?=
+ <thomas@weissschuh.net>, Jean Delvare <jdelvare@suse.com>,
+ devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
+ linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org
+References: <20241111074904.1059268-1-lschyi@chromium.org>
+ <20241113024000.3327161-1-lschyi@chromium.org>
+ <20241113024000.3327161-2-lschyi@chromium.org>
+ <4efe981f-f7ae-41c7-9c12-2aa3a5d2d046@roeck-us.net>
+ <eb1c249c-5f42-4878-8934-09d6ea5c43f2@kernel.org>
+ <893bbd30-300f-4138-8f68-64573e1f0140@roeck-us.net>
+ <61541768-1b32-4473-a569-850323a6c7a1@kernel.org>
+ <eda10481-d1f2-45c4-a5ff-0f26398fe6bf@roeck-us.net>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <eda10481-d1f2-45c4-a5ff-0f26398fe6bf@roeck-us.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Nov 25, 2024 at 05:24:24PM +0200, Daniel Baluta wrote:
-> imx8mp audiomix contains a set of registers used to control
-> the DSP.
->
-> The dsp will use this to acquire o reference to audiomix registers
-> and handle the registers to control the dsp.
+On 25/11/2024 17:41, Guenter Roeck wrote:
+>>>>>
+>>>>> with the assumption that Lee will pick it up.
+>>>>
+>>>> This was merged, while I was AFK, so the ship has sailed, but let me
+>>>> state here objection for any future discussions:
+>>>>
+>>>> NAK, this is not a thermal sensor. The commit msg explains what they
+>>>> want to achieve, but that's not a valid reason to add property from
+>>>> different class of devices.
+>>>>
+>>>> This is some hardware/temperature monitoring device or power supply, not
+>>>> part of SoC, not integrated into any SoC thermal zone. Calling it
+>>>
+>>> I am confused. We have several thermal sensors registering as thermal
+>>> zone, and fan controllers registering themselves as thermal cooling devices.
+>>>
+>>> Are you saying that this is all not permitted because they are not part
+>>> of a SoC ?
+>>
+>>
+>> These are fine, because they monitor or cool down the SoC.  Sensor can
+>> be under the die.  Fan for battery or for battery charger also would be
+>> fine, because it is a real cooling device.  It literally cools.
+>>
+> 
+> Sorry, I don't get the distinction since you specifically refer to the SoC.
+> How about drive temperatures ? RAM temperatures ? Temperatures reported
 
-Look like this is NOT good method to direct operate these register. If it
-is reset, you should export it as reset interface. If it is clock, you
-should export it as clock interface.
+Several of them are part of the SoC, like DDR. But even if they are not,
+I agree they could be a thermal sensor, but I would stop before calling
+them thermal zones and this patchset leads to such calling.
 
-Frank
+> by networking chips ? Power supply temperatures ? We have all those registering
+> thermal zones. The ASUS EC controller driver registers thermal zones
+> for its temperature sensors. Dell and HP drivers do the same.
 
->
-> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
-> ---
->  Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml b/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml
-> index 6588a17a7d9a..f368682f3633 100644
-> --- a/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml
-> +++ b/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml
-> @@ -15,7 +15,9 @@ description: |
->
->  properties:
->    compatible:
-> -    const: fsl,imx8mp-audio-blk-ctrl
-> +    items:
-> +      - const: fsl,imx8mp-audio-blk-ctrl
-> +      - const: syscon
->
->    reg:
->      maxItems: 1
-> --
-> 2.43.0
->
+Maybe we need to clarify that thermal sensors and zones are not specific
+to SoCs?
+
+For now all bindings say:
+"thermal-sensor: device that measures temperature, has SoC-specific
+bindings"
+
+
+> 
+>> But treating battery charger as cooling device is not correct, IMHO.
+> 
+> Confused. The patch you object to isn't introducing a cooling device,
+> it is introducing #thermal-sensor-cells. The EC reports temperature
+
+
+The next patchset is. This is one of the problems with series from
+Sung-Chi, Li - they add hardware description piece by piece, to match
+the driver needs, while we expect to see complete hardware picture.
+
+In the complete picture (f:lschyi@chromium.org in lore) you would see
+the battery being called a cooling sensor with explanation:
+
+"The cros_ec supports limiting the input current to act as a passive
+thermal cooling device. Add the property '#cooling-cells' bindings, such
+that thermal framework can recognize cros_ec as a valid thermal cooling
+device."
+
+
+
+> sensor results, and the driver wants to register those as thermal zones.
+> Yes, it may well be that one of those temperature sensors is close to
+> a battery charger, but I am not even sure if that is really the case.
+
+Hm, my impression based on very limited commit msg was that it is about
+battery.
+
+Probably I don't understand how the hardware looks here, but sorry,
+commit msgs and bindings descriptions are for a reason - to help me
+understanding it.
+
+> 
+>> Battery charger does not cool anything down and already we have there
+>> properties for managing thermal and current aspects.
+>>
+> Agreed, but unless I am missing something that isn't done here.
+
+Yep, I connected two separate patchsets, because they form greater work
+of making power supply a cooling device, AFAIU.
+
+> 
+>> BTW, if power supply bindings miss some thermal aspects, then let's grow
+>> the common binding first and agree on common aspects.
+>>
+> 
+> I don't even know how the two patches are associated with power supplies
+> or battery chargers in the first place. All they try to do is to enable
+> adding the temperature sensor values reported by the EC in Chromebooks
+> to thermal zones. I don't recall any previous limitations on the ability
+> to register thermal sensors as thermal zone with the thermal subsystem,
+> and I am trying to understand what those limitations are.
+> 
+> So far my approach was "ok, someone wants to register a thermal sensor as
+> thermal zone - fine, let's do that. We have close to 50 thermal sensors on
+> a variety of devices - including but not limited to disk drives, memory,
+> Ethernet controllers, Ethernet PHYs, SFPs, RTCs, and ECs - registering
+> as thermal zones from hardware monitoring drivers. I don't recall anyone
+> ever saying "no, you can't do that".
+> 
+> I am trying to understand if some of those are inappropriate and, if so,
+> why that is the case.
+
+
+Probably would be nice to drop remaining references to SoC from thermal
+bindings and just interpret thermal zones as system-wide.
+
+I retract than my objects against sensor cells, but I keep my objection
+of changing these bindings piece by piece. This should be one complete
+work for bindings so we see what this hardware is supposed to do.
+
+Best regards,
+Krzysztof
 
