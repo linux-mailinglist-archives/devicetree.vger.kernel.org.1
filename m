@@ -1,193 +1,162 @@
-Return-Path: <devicetree+bounces-124447-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124448-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B35F49D8C6A
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 19:48:34 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51B889D8C73
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 19:50:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5544AB2B2B6
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 18:46:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F512B2AC7C
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 18:48:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C30481B87CF;
-	Mon, 25 Nov 2024 18:46:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C24881B87FA;
+	Mon, 25 Nov 2024 18:48:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="UbvvzZVu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kjye1Ri1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BDEF1B415F;
-	Mon, 25 Nov 2024 18:46:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84E9E1B85CA;
+	Mon, 25 Nov 2024 18:48:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732560400; cv=none; b=cNLTBCCuUkrjMNk7drOFKy+PgtQRzPnossz3090WDWXNpVL/xxNxg4iwrvdcqxDeIvLo6qENjgTjWqR/PvqKv0sGWb2NSNkpc5ylkLUp3yJdVfg3M+Dg9rh6vltZ2lI8Jh4iwHyl0NiGs65MQlSdeQkanx/WIBXemrspl4cWuWg=
+	t=1732560516; cv=none; b=FJgl8YTUPiXzeQ4h+DiEIt1FteN0HqtVAwxTU8XvdM1Vrl4bZX3PteueLdad/CkCNIMsb9xr4ZlWiSFKk2SsVL5gIiIX6X2GRRlHTQNZw9E2vkvbmUWvBt1hyR7Wq2fUE6B+DlDbJpsLCiauj8DwrNWJLzgT8/6NKPBk5kirUV0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732560400; c=relaxed/simple;
-	bh=TtCTNFPcZR1bxUiEExyk0yCLrSQrn/3Cwwf3KVjbDlw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=Lb6E9Gw1RsZXKEhNs4FKOCD3cM4hr1xRFtLOyoZLEoLQXzWcouDtKD/lURfs2uuVIrsRGrlTFCwCJG/E3cIGne4Z72vlq/C+sGnynKNEEiDIfdj4H4Px5M3BhpKyMdR10VWuiOrLlgp8SE67+o5otWV1rqcypm7j+oN1qxBOiUc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=UbvvzZVu; arc=none smtp.client-ip=212.227.17.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1732560372; x=1733165172; i=wahrenst@gmx.net;
-	bh=emLMo1HXRsgcAfvEKOdWs2P0cK3UlzUQkPf6wBXgm10=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=UbvvzZVuPhUnZZ0ypsubMf5GycjB/MfzmOzYT9ifDG6BGk4ZJbJFQFHV8s+rEUsV
-	 WS4loA48l08T6kZktUQOSB4VgFMp4eL4NAso/Nzq5L87QtyUyV6BrfE7hMASZF/5H
-	 BhkA+I+XZhJgNp6hkOt1ontjIiKg/Bmss+UOJMSdXePrCju9YO3CVJ5ZufjhUXQTd
-	 gU9yNhm5Lb4WUB1SaUWqdW3le/B5C0LpHTuBN9kEzBfsLmg09mRvoHwKCrymvMXqh
-	 odUeh71KSybRhii8wsDDHvAaDWntc6yIUa4HxU0SYXmks3OG6mAKL8d8ezGodrhRt
-	 /R5O8QYESgcL6H6CHw==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.105] ([37.4.251.153]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MK3Vu-1szdNq0QvO-00KkV2; Mon, 25
- Nov 2024 19:46:12 +0100
-Message-ID: <0c6fa2cc-3a7e-4db2-bbad-7c19a876937e@gmx.net>
-Date: Mon, 25 Nov 2024 19:46:10 +0100
+	s=arc-20240116; t=1732560516; c=relaxed/simple;
+	bh=iIoOus4blNmLJvI367kCSBxRvmQLM+vJ+uL517h3aaA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Bascef8rtvh3JSnvUkMdpTy5FmvW1lVF+BV5hrqKShT5cP/QqjjrppVF1FrahDlvq3ZdorbyLgqgpuXS/IsUfA+cWiCPRfsc+voXvlzK62B88VTTC3A6AAvpfrioDZH+TbSBHi6VKEqc+31+DbwHDaTzz6aP2UG46wUqK/3acCk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kjye1Ri1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18686C4CECE;
+	Mon, 25 Nov 2024 18:48:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732560516;
+	bh=iIoOus4blNmLJvI367kCSBxRvmQLM+vJ+uL517h3aaA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kjye1Ri15GPM/2NjsSO7bpfi3t1tkh6/0ikAD89I8KHnorIec93jo3Ul//+0Dn6xG
+	 Dz2/a4+IaJGu0TUP1GHj4YfWxjd+uhqyUmo5rZGa53My4VtPyIdLoePH2grM/Gxx2h
+	 QPIH77cJ6ShYAXPaSzgmghCnCQ/vBT0t64wadjbbhXWar4NZVyVhisfCsDnYPw4rNT
+	 J21D28kIztoBwmsvlNkA6UkamD7ZIzyPDrtu+lAr1vXKfr+HJQY0PlJscYZxTpGIYE
+	 4AGJOZFQyjw1rtjvxNoiojHFy8ZOu5JRt2AJy1I5NHBAjMhZlpy6rkI6Dl5zSOkKl6
+	 JaVHtFb8nwXWA==
+Date: Mon, 25 Nov 2024 18:48:30 +0000
+From: Conor Dooley <conor@kernel.org>
+To: "Encarnacion, Cedric justine" <Cedricjustine.Encarnacion@analog.com>
+Cc: Guenter Roeck <linux@roeck-us.net>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+	Jean Delvare <jdelvare@suse.com>, Jonathan Corbet <corbet@lwn.net>,
+	Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"Sabau, Radu bogdan" <Radu.Sabau@analog.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	"Torreno, Alexis Czezar" <AlexisCzezar.Torreno@analog.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: (pmbus/adp1050): Add bindings
+ for adp1051, adp1055 and ltp8800
+Message-ID: <20241125-clever-unpeeled-61362034cf24@spud>
+References: <20241120035826.3920-1-cedricjustine.encarnacion@analog.com>
+ <20241120035826.3920-2-cedricjustine.encarnacion@analog.com>
+ <20241120-process-hulk-ecedcbf088f7@spud>
+ <e2e10b1e-cce3-409c-9327-178cbf4b0d64@roeck-us.net>
+ <20241123-paced-osmosis-007bf72c4b02@spud>
+ <20241123-submersed-overdue-ce999ccccc72@spud>
+ <PH0PR03MB69389916EC3C46C3A1F228AE8E2E2@PH0PR03MB6938.namprd03.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 06/10] pinctrl: rp1: Implement RaspberryPi RP1 gpio
- support
-To: Andrea della Porta <andrea.porta@suse.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Krzysztof Wilczynski <kw@linux.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Linus Walleij
- <linus.walleij@linaro.org>, Catalin Marinas <catalin.marinas@arm.com>,
- Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
- Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic
- <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
- Masahiro Yamada <masahiroy@kernel.org>,
- Herve Codina <herve.codina@bootlin.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Andrew Lunn <andrew@lunn.ch>
-References: <cover.1732444746.git.andrea.porta@suse.com>
- <1257f76168ae03dba027bd33e6fca31b8df29c35.1732444746.git.andrea.porta@suse.com>
-Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <1257f76168ae03dba027bd33e6fca31b8df29c35.1732444746.git.andrea.porta@suse.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Provags-ID: V03:K1:BPxstd5PG9ii50gxD3QFzCia8ZtZfz1FrMC9GEaSmohukVFc8pM
- 4pPyBwPOV1gpyguV4e7aOdGci0vuMRPoCFFJC2WjtJ5SAOdZLn3B1ru/Y0lJ9+yTQylu76E
- cNd94z5KkcKxxBU8JWjbgVMQDNVmNZ/pvxmKODJa+97tmp8HqcWWqqg2Vbr4gJcqwonmHx3
- Wus5KRt3hTWH9+DKCYRgA==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:TfkttF/NobQ=;RJQ4AN65XloMCZXRYId0Lyvr73F
- STq7YLJ96O9szCp1wZFJ6wAEVftm4lorvf5J29jJywz0XoJlQd3vu+DpEXsdfv5L8U3Jcau5m
- y7+81SXU61H3xi+IKKSzVx3VR5CZpAwv4vm6Dawqnb5l+XutNhhkCLj3DMIRISaSJmsfaM0hs
- OkX7zCbA3ftjGQ1yExO/PCnfKNNHdaWj1X7W/nV6P4kSGKyxM6ISrifJ5CNFo+veLzHbX3WMy
- iq3ggFg/+IDdXJhPC79ycPS06lAuznETUlU8hCUGGkxnTzQWAIaA91vr94Cp7N68oUA07isWf
- lWnJY0+feGQsID6+dItAG2Z/05faSirflzo/mVclsdThy//3g7iHqCS1mSiDYVNwZEOMn9w0G
- raiXOkVBT6V1wFa2KqydLYrn6v3Cv35EIlRp/pfLRISJd18rTWyNbmUabckxAygEXN9SDm7Qh
- 9iE05MqyBT0v6IBZXKKIwvGVRVPLJXjGDF5OJmhy7xq9aZ5LrbMkHimJB0WraFbUwYpClZBdx
- KPT3bMzcwFFRXIBDnNMjJHbnjcrDx/s1Kzs7F89BIV/29MnTL908vmRnFtXMMaGGHK4nL2UcL
- Bs0HihL+qt3qPQREKCVVz2BFn9+U3Ti2zBYePgOhFHBlYJ5XqNLLB0x5SiR/L46PoYYT55W4B
- 8SFVAJAzPvaUUWscxr6fFGrSVe49kuoeEtSUM2NOTrQZZ/ZwUiWKBL0tyuifHv5dp8TYfNNUp
- SrdVq5yiLr7/C7KDqGYyTgHeHXRqFzidU7szXanNfFNnsPeFDMpFHstFzxZbR/9go/tXgNB4m
- yU4iu1GFK0sYJifORjsDW992/kjvcNR27Hd3rxi+zsJm/CawqVzn0/0cJQ7L4dYtz8YrD08tK
- 3QPwR8eTcEaMfbCVTuGXAaEWtjzyBbRLLGhD/ecm0jYZx6wAy55022I/J
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="a4xeAmARkWBmeFmd"
+Content-Disposition: inline
+In-Reply-To: <PH0PR03MB69389916EC3C46C3A1F228AE8E2E2@PH0PR03MB6938.namprd03.prod.outlook.com>
 
-Hi Andrea,
 
-Am 24.11.24 um 11:51 schrieb Andrea della Porta:
-> The RP1 is an MFD supporting a gpio controller and /pinmux/pinctrl.
-> Add minimum support for the gpio only portion. The driver is in
-> pinctrl folder since upcoming patches will add the pinmux/pinctrl
-> support where the gpio part can be seen as an addition.
->
-> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
->   MAINTAINERS                   |   1 +
->   drivers/pinctrl/Kconfig       |  11 +
->   drivers/pinctrl/Makefile      |   1 +
->   drivers/pinctrl/pinctrl-rp1.c | 789 ++++++++++++++++++++++++++++++++++
->   4 files changed, 802 insertions(+)
->   create mode 100644 drivers/pinctrl/pinctrl-rp1.c
-...
-> +
-> +static int rp1_pinctrl_probe(struct platform_device *pdev)
-> +{
-> +	struct regmap *gpio_regmap, *rio_regmap, *pads_regmap;
-> +	struct rp1_pinctrl *pc = &rp1_pinctrl_data;
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *np = dev->of_node;
-> +	struct gpio_irq_chip *girq;
-> +	int err, i;
-> +
-> +	pc->dev = dev;
-> +	pc->gpio_chip = rp1_gpio_chip;
-> +	pc->gpio_chip.parent = dev;
-> +
-> +	pc->gpio_base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(pc->gpio_base))
-> +		return dev_err_probe(dev, PTR_ERR(pc->gpio_base), "could not get GPIO IO memory\n");
-> +
-> +	pc->rio_base = devm_platform_ioremap_resource(pdev, 1);
-> +	if (IS_ERR(pc->rio_base))
-> +		return dev_err_probe(dev, PTR_ERR(pc->rio_base), "could not get RIO IO memory\n");
-> +
-> +	pc->pads_base = devm_platform_ioremap_resource(pdev, 2);
-> +	if (IS_ERR(pc->pads_base))
-> +		return dev_err_probe(dev, PTR_ERR(pc->pads_base), "could not get PADS IO memory\n");
-> +
-> +	gpio_regmap = devm_regmap_init_mmio(dev, pc->gpio_base,
-> +					    &rp1_pinctrl_regmap_cfg);
-> +	if (IS_ERR(gpio_regmap))
-> +		return dev_err_probe(dev, PTR_ERR(gpio_regmap), "could not init GPIO regmap\n");
-> +
-> +	rio_regmap = devm_regmap_init_mmio(dev, pc->rio_base,
-> +					   &rp1_pinctrl_regmap_cfg);
-> +	if (IS_ERR(rio_regmap))
-> +		return dev_err_probe(dev, PTR_ERR(rio_regmap), "could not init RIO regmap\n");
-> +
-> +	pads_regmap = devm_regmap_init_mmio(dev, pc->pads_base,
-> +					    &rp1_pinctrl_regmap_cfg);
-> +	if (IS_ERR(pads_regmap))
-> +		return dev_err_probe(dev, PTR_ERR(pads_regmap), "could not init PADS regmap\n");
-> +
-> +	for (i = 0; i < RP1_NUM_BANKS; i++) {
-> +		const struct rp1_iobank_desc *bank = &rp1_iobanks[i];
-> +		int j;
-> +
-> +		for (j = 0; j < bank->num_gpios; j++) {
-> +			struct rp1_pin_info *pin =
-> +				&pc->pins[bank->min_gpio + j];
-> +			int reg_off;
-> +
-> +			pin->num = bank->min_gpio + j;
-> +			pin->bank = i;
-> +			pin->offset = j;
-> +
-> +			reg_off = bank->gpio_offset + pin->offset
-> +				  * sizeof(u32) * 2;
-Just a nit: the first * belongs in the line above
+--a4xeAmARkWBmeFmd
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Except of this:
+On Mon, Nov 25, 2024 at 02:44:32AM +0000, Encarnacion, Cedric justine wrote:
+> > On Sat, Nov 23, 2024 at 07:56:21PM +0000, Conor Dooley wrote:
+> > > On Wed, Nov 20, 2024 at 10:00:19AM -0800, Guenter Roeck wrote:
+> > > > On 11/20/24 09:11, Conor Dooley wrote:
+> > > > > On Wed, Nov 20, 2024 at 11:58:25AM +0800, Cedric Encarnacion wrot=
+e:
+> > > > > > add dt-bindings for adp1051, adp1055, and ltp8800 pmbus.
+> > > > > >      ADP1051: 6 PWM for I/O Voltage, I/O Current, Temperature
+> > > > > >      ADP1055: 6 PWM for I/O Voltage, I/O Current, Power, Temper=
+ature
+> > > > > >      LTP8800-1A/-2/-4A: 150A/135A/200A DC/DC =B5Module Regulator
+> > > > > >
+> > > > > > Co-developed-by: Alexis Czezar Torreno
+> > <alexisczezar.torreno@analog.com>
+> > > > > > Signed-off-by: Alexis Czezar Torreno <alexisczezar.torreno@anal=
+og.com>
+> > > > > > Signed-off-by: Cedric Encarnacion
+> > <cedricjustine.encarnacion@analog.com>
+> > > > >
+> > > > > Why did you drop my ack?
+> > > > > https://lore.kernel.org/all/20241106-linoleum-kebab-
+> > decf14f54f76@spud/
+> > > > >
+> > > >
+> > > > There:
+> > > >
+> > > > > +    enum:
+> > > > > +      - adi,adp1050
+> > > > > +      - adi,adp1051
+> > > > > +      - adi,adp1055
+> > > > >
+> > > >
+> > > > Here:
+> > > >
+> > > > >> +    enum:
+> > > > >> +      - adi,adp1050
+> > > > >> +      - adi,adp1051
+> > > > >> +      - adi,adp1055
+> > > > >> +      - adi,ltp8800   <--
+> > > >
+> > > > This is a combination of two patch series. I'd personally hesitant =
+to carry
+> > > > Acks along in such situations.
+> > >
+> > > Ah, I didn't notice that. Thanks for pointing it out. Cedric, in the
+> > > future please mention things like this if you drop an ack.
+> >=20
+> > Whoops, forgot to mention that Cedric can grab the ack from the link
+> > above when they resubmit.
+>=20
+> Okay. I will be carrying on acks in the future for cases like this.
 
-Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
+I mean, I don't disagree with Guenter that in this case he would
+hesitate to carry the ack as I probably would drop it too.
+The difference compared to what happened here is that I would mention
+/why/ I dropped it.
+If you're going to carry it while merging two series and resetting the
+patch number, it's good to reference where you got the ack from to
+avoid confusing people, particularly given the patch was modified
+compared to what got acked.
+
+--a4xeAmARkWBmeFmd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ0TGfgAKCRB4tDGHoIJi
+0jzGAQCnTzuHvmQrqBEoH6S7P+Si69DXAWR9mQvLGRyvDxIObQD/ad/f6nCtiHM4
+9BCEFdcooDYlT2W/I8QN8v4X8BS+JQ4=
+=41g9
+-----END PGP SIGNATURE-----
+
+--a4xeAmARkWBmeFmd--
 
