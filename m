@@ -1,128 +1,156 @@
-Return-Path: <devicetree+bounces-124436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124445-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB89E9D8C27
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 19:24:09 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9B319D8C57
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 19:40:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AE6E4B243E4
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 18:24:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6790FB24132
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 18:40:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB9A91B87C3;
-	Mon, 25 Nov 2024 18:23:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9E2D1B87F1;
+	Mon, 25 Nov 2024 18:39:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e4x+JV+4"
+	dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b="qvOqs+gp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FA3A1B3943;
-	Mon, 25 Nov 2024 18:23:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08DCE1B652B;
+	Mon, 25 Nov 2024 18:39:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732559037; cv=none; b=hOO9f2nEO8Mu/3Y5BZwu6WE+PNEFkPeSlgOwwcl+CJB/+u2dc0SmwVs8Hbsq6Yxp25VdtBxsJrzAPzgkbK0ggDzPxUBfsGux5I5LHRnfAKXk21B/CROw/mP1952u4EXoEsv7TbeTQp0sXT7UdsM2jjgsdrpYfQRDzNTLWdIlLr4=
+	t=1732559998; cv=none; b=aL1OVE62ZQdSVSz8DZ7jyTHTiztDCWeE60QZV35YAsHix+LEyV7uTiTWAjVCcpG/kQ+Y02x59smXAT1BvYp1zijlEpjWfaElm5el98abUJ4XPvRcnhNBy4eRvT/JCb3mHy5ZJ5Atc2crpZiVz+m4Y0s4QeMolbM6f8thF7T0lY4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732559037; c=relaxed/simple;
-	bh=FEnfJKu8BFsY79SSwoKzJxBfw021YIRRMqklGnoZg7c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Hj+hxgJqTRtGjbcv6tCdk0FjODjtJzPUwq/tG2nkXEF0d0D2ECNPqzueXUlncUX//+NGcbSZzj8neagGWsofQHdsJ0sniXw/mURoCOl8aMX+jxZzMLeeO/kt9i4YL2psvVEhy4NrwEJWc0UsHswbzbgCFAK/WQTr18kRJEa56ZU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e4x+JV+4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9533EC4CECE;
-	Mon, 25 Nov 2024 18:23:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732559037;
-	bh=FEnfJKu8BFsY79SSwoKzJxBfw021YIRRMqklGnoZg7c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=e4x+JV+4TLj/641DvnEomE+s05vAVx2khLlIX+WVTOL5mMmJtzdK1df2SXXf18ttq
-	 rU9Lc+wXSWSGHHvpIbR5my06OvGj9v6wakQoQCQwANXxnS3QKRooly4tluFGZxTT3d
-	 bVJvn9QAc9I9Awj/PaDHVhue+ngtzgK57kk5zcAat+Y9YUF4hH7INKuprMfW+Yhv6W
-	 LtbJGt/Dz4JcAWnVn+ewMbpQZ9YQUNIIwKnuw+9ZGiuLKH0JW2/gwCg2pmFape3vUT
-	 nxWXbv2mwZnAeiVeQ4f95CnA+Je5+0GtSc56sZzQ2aroKTl78cazl4pNJYJcGSN4K8
-	 6fHObgWuI6vaw==
-Date: Mon, 25 Nov 2024 18:23:53 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: jic23@kernel.org, robh@kernel.org, conor+dt@kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adf4371: add rdiv2 and doubler
-Message-ID: <20241125-rotting-brim-162582b5ad42@spud>
-References: <20241125112643.10459-1-antoniu.miclaus@analog.com>
- <20241125112643.10459-2-antoniu.miclaus@analog.com>
+	s=arc-20240116; t=1732559998; c=relaxed/simple;
+	bh=QTNUyu6bIK6b/Q2YSqfwYB4dNsbfycYWitzeCgC22W4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KnyhWx4AhFK5N8S4l+0tMOvMto6W0Wnpn8l9Fl+D/1K3KRDs6wgZ460HjcpewZ6umIZrMNKOFIdS5+BiFygYF1P1r8TdSxls4jD+NIVop9zY43TVnhnGknuDqLdIkoLQ8cZyHKAcqi2AfFEamrMnKkpEexIccsnRyCSOL1wNUNk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz; spf=pass smtp.mailfrom=oldschoolsolutions.biz; dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b=qvOqs+gp; arc=none smtp.client-ip=212.227.17.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oldschoolsolutions.biz
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=oldschoolsolutions.biz; s=s1-ionos; t=1732559988; x=1733164788;
+	i=jens.glathe@oldschoolsolutions.biz;
+	bh=gnJiQRYs6QwmyqD9t2RNLsEiCy/YJhARjRjeHI7aWpo=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=qvOqs+gpOxDAAfsnnl29IgJ9+IUlCE51mEWPJVTPvdY+NlwOk3njBLdML3yfLlf6
+	 JaMJmXuYoVowRknaI7Ynjqf5W8n15UIbAFeANMBzuR/yScGckF7wFmdXpSI0HEtae
+	 Ac+KI8C4nLYgx2Qyn7VUABu6Xj1L3ahbzOhDaNsFKeF5QWVlusKSrlz1hUdhIGVCq
+	 MZ8GjBMwFSo3r/E9bFh4l0mIL0FaN8rXA7tKvVU2U5L4EfDMR1NGyOymRinbDd2FB
+	 +l6snq+qlU27a+VKFdg0DPNQbcKC92BzuTUZr7i9U58H8THxRw3ITfxgYYHCM0yTF
+	 ThPDvFkXx3pqPz9XfQ==
+X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
+Received: from [192.168.0.128] ([84.175.94.57]) by mrelayeu.kundenserver.de
+ (mreue107 [212.227.15.183]) with ESMTPSA (Nemesis) id
+ 1N0nOF-1tad4i38WD-014thg; Mon, 25 Nov 2024 19:25:41 +0100
+Message-ID: <562bdcfd-1595-422a-884b-09c36db72737@oldschoolsolutions.biz>
+Date: Mon, 25 Nov 2024 19:25:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="AR3vOxY7YAd4jTmS"
-Content-Disposition: inline
-In-Reply-To: <20241125112643.10459-2-antoniu.miclaus@analog.com>
-
-
---AR3vOxY7YAd4jTmS
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] drm/panel-edp: Add unknown BOE panel for HP Omnibook
+ X14
+To: Doug Anderson <dianders@chromium.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Kalle Valo <kvalo@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
+References: <20241124-hp-omnibook-x14-v1-0-e4262f0254fa@oldschoolsolutions.biz>
+ <20241124-hp-omnibook-x14-v1-3-e4262f0254fa@oldschoolsolutions.biz>
+ <CAD=FV=V2JhWsK4-gHL72ttXdNA0U2p6YojN+DXtWxNSOjD-ZSw@mail.gmail.com>
+Content-Language: en-US
+From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+In-Reply-To: <CAD=FV=V2JhWsK4-gHL72ttXdNA0U2p6YojN+DXtWxNSOjD-ZSw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:4Rp+He4zRJWJsM20vMzGBIK+m1xvgdFn8GRdJEwqYwor5a0x0dT
+ muFVYQg/AFDhGZylCTr83u0vV58aHi/Q3SEz7ZVVyqVgYY3ij1MCenKds50zoZ3eWdkj0mA
+ +yCxQEY0braBwijbRkEbHVu8xnerxqkGM/WA7l8NOKTvkj3yBkRW7IKyOHA2MMhKhUm8PoC
+ OZsMOlHf2ohZZquptc2CA==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:gHXC/Afb5ww=;DhcZEeJtIif2fug0ZyZybrBlaWU
+ VS03m8oZCAZ+kszH8zjF7VDzByZVKT4ZJy/pc2mtZnMaR9woQVSW4JMEHhew8Wq8c8XlwHJr4
+ MkoF2rcLT83exY7M6kSDb8SDIGaMGJ1HCQXLjdmat158GvOBUU5k2Nu0tDv6csiSm3fhIpYSo
+ u5QUycc02R2yvEOHO0bgBvlreaNPusLgLRWurOgUIl+cLmfESrQv6kxZ9d95D2k9QBysSB+DI
+ fb/MxclzKczwCsKFFsjPlMHUuumZtWYcnBWPwZoh1ylielLiBQk0TNH3IsD+ht2J2SoZMRHDp
+ Oblms67oDsfdZoyHqwJgcxuS6O8s8FiTA6ou64kHgOMP6Ij8zxUJupO9/exJG95dqaaz57nyf
+ J0XEFcRrbnN3iuX5M045yEFYaWk3QMccBbGOyqR5ioCfa828kxZdAPUgHuUg1HpphVSdvdRQ+
+ VKRqdRyZ+4PBheDL0vJ7ioUqBohPDC1KZo+vhiu4cB9y6XiZuWWnblLbb9qBjOSZ/xhSrNCU9
+ 0izuCfjpY+ndjyspolA1Ps1ZM5Vu6SVgAKi6B+Tib+EcprXDFQMrJt2xR7ciiCcBSEMoEYd2O
+ SsCQOcilGgrfu/8mHGrzV3AvunF/xc9rME+rCWlwwbQlKh6HC8ler98Tn9knGwoBjgjbEfiZb
+ YcrIZcxrHuk5Q2yd3rtbWklu/QKTaYrogB2jChHi3Ve001ZEqm0h9VZC2iGkeZ8yDz1V6fbza
+ UmQwLU9IPsxbpi3u20+DaCylrDiCgnInIoDhK96Rs/xaVZ6DKJTVbcqxJnzo8kOaWrCC0IKXz
+ DoTNntMxGx8XYsh0JxUyq0EL2sZl3E6Z8Dxe/Gk2SBgT8t++InsuT1GZ+nCXhkEe/7
 
-On Mon, Nov 25, 2024 at 01:26:40PM +0200, Antoniu Miclaus wrote:
-> Add support for reference doubler enable and reference divide by 2
-> clock.
+Hi Doug,
 
-You're still missing an explanation here for why these cannot be derived
-=66rom the required output frequency vs the input frequency.
+On 25.11.24 18:53, Doug Anderson wrote:
+> Hi,
+>
+> On Sun, Nov 24, 2024 at 5:20=E2=80=AFAM Jens Glathe via B4 Relay
+> <devnull+jens.glathe.oldschoolsolutions.biz@kernel.org> wrote:
+>> From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+>>
+>> [...]
+>>
+>> There are no timings in it, sadly.
+> Yeah, and like other BOE panels also no model info in the EDID. Sigh.
+> I guess "Unknown" it is until someone can officially add it.
+>
+>
+>> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+>> ---
+>>   drivers/gpu/drm/panel/panel-edp.c | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/drivers/gpu/drm/panel/panel-edp.c b/drivers/gpu/drm/panel/=
+panel-edp.c
+>> index 8566e9cf2f82a..403679e506fa4 100644
+>> --- a/drivers/gpu/drm/panel/panel-edp.c
+>> +++ b/drivers/gpu/drm/panel/panel-edp.c
+>> @@ -1915,6 +1915,7 @@ static const struct edp_panel_entry edp_panels[] =
+=3D {
+>>          EDP_PANEL_ENTRY('B', 'O', 'E', 0x0c20, &delay_200_500_e80, "NT=
+140FHM-N47"),
+>>          EDP_PANEL_ENTRY('B', 'O', 'E', 0x0cb6, &delay_200_500_e200, "N=
+T116WHM-N44"),
+>>          EDP_PANEL_ENTRY('B', 'O', 'E', 0x0cfa, &delay_200_500_e50, "NV=
+116WHM-A4D"),
+>> +       EDP_PANEL_ENTRY('B', 'O', 'E', 0x0c93, &delay_200_500_e200, "Un=
+known"),
+> This is sorted incorrectly. I'll fix it for you this time while
+> applying, but in the future make sure you sort numerically. 0x0c93
+> should be before 0x0cb6.
+>
+Thank you, haven't seen it. I would have reordered it in V2, but now it
+stays that way. Yay!
 
->=20
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> ---
-> no changes in v2. (added cover letter as requested)
->  .../devicetree/bindings/iio/frequency/adf4371.yaml    | 11 +++++++++++
->  1 file changed, 11 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml=
- b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
-> index 1cb2adaf66f9..ef241c38520c 100644
-> --- a/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
-> +++ b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
-> @@ -40,6 +40,17 @@ properties:
->        output stage will shut down until the ADF4371/ADF4372 achieves loc=
-k as
->        measured by the digital lock detect circuitry.
-> =20
-> +  adi,reference-doubler-enable:
-> +    type: boolean
-> +    description:
-> +      If this property is present, the reference doubler block is enable=
-d.
-> +
-> +  adi,adi,reference-div2-enable:
-> +    type: boolean
-> +    description:
-> +      If this property is present, the reference divide by 2 clock is en=
-abled.
-> +      This feature can be used to provide a 50% duty cycle signal to the=
- PFD.
-> +
->  required:
->    - compatible
->    - reg
-> --=20
-> 2.47.0
->=20
+with best regards
 
---AR3vOxY7YAd4jTmS
-Content-Type: application/pgp-signature; name="signature.asc"
+Jens
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ0TAuQAKCRB4tDGHoIJi
-0gGdAP0ZgwYPH6bIZifcDRAHpGwlSAIXXCWJNn0APgzsBZpCuQEAp1G65MyvRK9v
-Rv+tnTXqNsUE76LG5QDkQZr/jd9muQg=
-=d7g1
------END PGP SIGNATURE-----
-
---AR3vOxY7YAd4jTmS--
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+>
+> Pushed to drm-misc-next:
+>
+> [3/4] drm/panel-edp: Add unknown BOE panel for HP Omnibook X14
+>        commit: c1bae6802ee9c8ad8e3c1df7ca3174d6b4b260e5
 
