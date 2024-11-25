@@ -1,177 +1,138 @@
-Return-Path: <devicetree+bounces-124387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A49B99D89A9
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 16:49:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57A329D89C7
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 16:55:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6547F284EA5
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 15:49:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1777428475E
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 15:55:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B4631B4129;
-	Mon, 25 Nov 2024 15:49:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB3881AD3F6;
+	Mon, 25 Nov 2024 15:55:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="nqeSHWKC"
+	dkim=pass (2048-bit key) header.d=marcan.st header.i=@marcan.st header.b="UBjsckh9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79BDC44C94;
-	Mon, 25 Nov 2024 15:49:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E346044C94;
+	Mon, 25 Nov 2024 15:55:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.63.210.85
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732549781; cv=none; b=oQwWBMD+yOLE+q59x1eIkJyJXq/rZaGHH7m1Cn06sYGuFH7ZdLqB65NAqfkqCFsRKHGcrCA6LUXwLWcNOu5z41a/5ZUj4oNSoR1eL7a1dMg7JgNMdSmxQo5ICcFbgsOgCgUefMB/HTtB5PE+31kjfeE4h2I9P/O9VHzegoGvqEI=
+	t=1732550113; cv=none; b=eKdcVKAsfJyRk/LHaZDf7KTeLox/8KEUP61m3haM9/0TdNh3iuiGeoszu3tdvaj3PN7BJw/35yDBFlhLLxOXGXwfxrcFoT19wayuI8cowIdcMnmmgHN0ngm1QygxKUhcvB9AhG6umOLVI4yDgpWygOqGCbpijV8wqIccRQSRlgU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732549781; c=relaxed/simple;
-	bh=BagwbimB9mVeZIN+ux/kKsFB52R0ap/BIYaUJgjIASM=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=UP7wuQ7XPfcqtgK7dmO1hg2KZSMMh8sl6JbtBAKdkOMYnFpzt+0A3zLGrKEu8pw6AqUrJ5Qx38JCs13ccZ916jp2JBQXlvp2mQSfNlDqVwQkb2LWskj4aGibTxsNN9OIi+pKFR4ahQClbK2bfk5RigYC5H/yuCQBTfNl3/1mXYw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=nqeSHWKC; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4APBML6p014123;
-	Mon, 25 Nov 2024 15:49:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	BagwbimB9mVeZIN+ux/kKsFB52R0ap/BIYaUJgjIASM=; b=nqeSHWKCRQY/zgP1
-	g3ZjyvDxN0uS2glMM0Aw/mfOUFRINK/5BWY9E5MKwAXg9OxjvkTQXto7ScArCgjz
-	8AMKGO7OLxVLFAVxLxCmp6Rcmc5b2sesLjI9HuGvs+p59rDCd7hOg46W97oQC8sj
-	wcSmgR6PvljHXC63Couiul/svo3vm/FXQMPw4RA1wTz6OeSNXUDfC2rlmBxFTRxo
-	n53imkwtwwfSMHQqJhTATKQADz6EJ+NhLFzvYEOe8UAj2hFYaN09fhRUoCc/7gM4
-	rPtTZaRs2toKxWqk6avy7lDO1Z6MCgqdqT7zR2pcHw62qdsZh3+ZihaCtKNg9/4T
-	V0kz6Q==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4334dmwkau-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 25 Nov 2024 15:49:33 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4APFnWQQ002921
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 25 Nov 2024 15:49:32 GMT
-Received: from nalasex01c.na.qualcomm.com (10.47.97.35) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 25 Nov 2024 07:49:31 -0800
-Received: from nalasex01c.na.qualcomm.com ([fe80::5da8:4d0f:c16a:a1d]) by
- nalasex01c.na.qualcomm.com ([fe80::5da8:4d0f:c16a:a1d%11]) with mapi id
- 15.02.1544.009; Mon, 25 Nov 2024 07:49:31 -0800
-From: "Renjiang Han (QUIC)" <quic_renjiang@quicinc.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
-        "Vikash Garodia (QUIC)"
-	<quic_vgarodia@quicinc.com>,
-        "bryan.odonoghue@linaro.org"
-	<bryan.odonoghue@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        "Rob Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Conor Dooley" <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad Dybcio" <konradybcio@kernel.org>,
-        "linux-media@vger.kernel.org"
-	<linux-media@vger.kernel.org>,
-        "linux-arm-msm@vger.kernel.org"
-	<linux-arm-msm@vger.kernel.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v3 1/4] dt-bindings: qcom,qcs615-venus: add support for
- video hardware
-Thread-Topic: [PATCH v3 1/4] dt-bindings: qcom,qcs615-venus: add support for
- video hardware
-Thread-Index: AQHbPvvNBcmhQ7jCvUeLTdcFK605vrLIJWyA///8ehA=
-Date: Mon, 25 Nov 2024 15:49:31 +0000
-Message-ID: <18cc654b4377463e8783de0b4659a27d@quicinc.com>
-References: <20241125-add-venus-for-qcs615-v3-0-5a376b97a68e@quicinc.com>
- <20241125-add-venus-for-qcs615-v3-1-5a376b97a68e@quicinc.com>
- <jovwobfcbc344eqrcgxeaxlz2mzgolxqaldvxzmvp5p3rxj3se@fudhzbx5hf2e>
-In-Reply-To: <jovwobfcbc344eqrcgxeaxlz2mzgolxqaldvxzmvp5p3rxj3se@fudhzbx5hf2e>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1732550113; c=relaxed/simple;
+	bh=Nbi7jGHMHqCOiVJdgNk+yM5Aex5D7yPTPOFZz9QtO4Y=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=ezESWFEBRnS9bUAoNQq/hlzsoFDD6TXNSFdt9KowBn/RXrsAIrPis4fJt+2/wriw8/f+OQ/qh0b9yGRnoV/3yEHrmBpmONbkSyyR1aWZElpvq8E9fUb5zVJa2T/S49/Lo+FFnwjPvpyS82baQWHFr/tCyAe6v3FhShZUmpIcxJg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=marcan.st; spf=pass smtp.mailfrom=marcan.st; dkim=pass (2048-bit key) header.d=marcan.st header.i=@marcan.st header.b=UBjsckh9; arc=none smtp.client-ip=212.63.210.85
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=marcan.st
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marcan.st
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: marcan@marcan.st)
+	by mail.marcansoft.com (Postfix) with ESMTPSA id BF2F541A48;
+	Mon, 25 Nov 2024 15:55:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=marcan.st; s=default;
+	t=1732550109; bh=Nbi7jGHMHqCOiVJdgNk+yM5Aex5D7yPTPOFZz9QtO4Y=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References;
+	b=UBjsckh9mezNpgAv1OBbxdguxzVBpMiV456rgWaUT13XQgWO+iA7HihREOcrTh7Cf
+	 9MMScOaAT2AXHeLQdaF+BpipbD6nkUaH7cwmcjECCORCcJBQ+d/g/9+1irOEhFY5Fv
+	 gpvDptEQ4r4BhTuWaHZRyt/V9sa/cSnUhu16TzQsLPcpTa3LwOkxb0O5jy6TdZ56q/
+	 vukcqHwux/0UYuDXEuRQr/ckvDjB1yI0mwVygvHum2kOYQJvsQdaNhMi5E+VPUej/t
+	 6NBI0BP2Nb/Ipwd//qkRFHAv0YZic4IykczXrOODGeKKJHxJFlfd4Gj9FoqNddkXU9
+	 Tap+AiIiLaxKg==
+Date: Mon, 25 Nov 2024 16:55:04 +0100
+From: Hector Martin <marcan@marcan.st>
+To: Maxime Ripard <mripard@kernel.org>
+CC: Sasha Finkelstein <fnkl.kernel@gmail.com>, neil.armstrong@linaro.org,
+ Sven Peter <sven@svenpeter.dev>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, asahi@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Janne Grunau <j@jannau.net>
+Subject: Re: [PATCH 2/5] gpu: drm: adp: Add Apple Display Pipe driver
+User-Agent: K-9 Mail for Android
+In-Reply-To: <20241125-gabby-furry-rooster-cf28a9@houat>
+References: <20241124-adpdrm-v1-0-3191d8e6e49a@gmail.com> <20241124-adpdrm-v1-2-3191d8e6e49a@gmail.com> <10d0aa88-de2e-4856-a137-301519e58b2d@linaro.org> <CAMT+MTRWZWj=3AP7wyooXr49-W4vcm0ZbAoqPyEuNkQBMOaJfw@mail.gmail.com> <cc71021e-b53d-4eda-bad8-abb4df13575f@marcan.st> <20241125-gabby-furry-rooster-cf28a9@houat>
+Message-ID: <891D03B0-1A2C-4C38-85F2-F8CBBAC1A5CC@marcan.st>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 1XYZDBYywCo-kjBS4jw64C43yQQiHrpT
-X-Proofpoint-ORIG-GUID: 1XYZDBYywCo-kjBS4jw64C43yQQiHrpT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- priorityscore=1501 mlxlogscore=999 phishscore=0 mlxscore=0
- lowpriorityscore=0 suspectscore=0 malwarescore=0 adultscore=0 spamscore=0
- impostorscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2409260000 definitions=main-2411250132
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-T24gTW9uIDExLzI1LzIwMjQgMzo1MCBQTSwgS3J6eXN6dG9mIEtvemxvd3NraSB3cm90ZToNCj4g
-T24gTW9uLCBOb3YgMjUsIDIwMjQgYXQgMTE6MDQ6NDlBTSArMDUzMCwgUmVuamlhbmcgSGFuIHdy
-b3RlOg0KPiA+IEFkZCBzdXBwb3J0IGZvciBRdWFsY29tbSB2aWRlbyBhY2NlbGVyYXRpb24gaGFy
-ZHdhcmUgdXNlZCBmb3IgdmlkZW8gDQo+ID4gc3RyZWFtIGRlY29kaW5nIGFuZCBlbmNvZGluZyBv
-biBRQ09NIFFDUzYxNS4NCj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5OiBSZW5qaWFuZyBIYW4gPHF1
-aWNfcmVuamlhbmdAcXVpY2luYy5jb20+ID4NCj4gPiAtLS0NCj4gPiAgLi4uL2JpbmRpbmdzL21l
-ZGlhL3Fjb20scWNzNjE1LXZlbnVzLnlhbWwgICAgICAgICAgfCAxODIgKysrKysrKysrKysrKysr
-KysrKysrDQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCAxODIgaW5zZXJ0aW9ucygrKQ0KPiA+IA0KPiA+
-IGRpZmYgLS1naXQgDQo+ID4gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWVk
-aWEvcWNvbSxxY3M2MTUtdmVudXMueWFtbCANCj4gPiBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJl
-ZS9iaW5kaW5ncy9tZWRpYS9xY29tLHFjczYxNS12ZW51cy55YW1sDQoNCj4gRGVwZW5kZW5jeSBm
-b3IgdGhpcyBwYXRjaCBtdXN0IGJlIG1lbnRpb25lZCBoZXJlLg0KDQo+IEFtb3VudCBvZiBkZXBl
-bmRlbmNpZXMgbWFrZSBpdCB1bm1lcmdlYWJsZSBhbmQgdW50ZXN0ZWFibGUuDQo+IEkgc3VnZ2Vz
-dCBkZWNvdXBsaW5nIGRlcGVuZGVuY2llcyBieSByZW1vdmluZyBjbG9jayBjb25zdGFudHMuDQoN
-ClRoYW5rcyBmb3IgeW91ciBjb21tZW50LCBJIHdpbGwgdHJ5IHRvIHJlbW92ZSB0aGUgY2xvY2sg
-Y29uc3RhbnRzDQphbmQgdXNlIGNsb2NrIGlkIGluc3RlYWQuDQoNCj4gPiBuZXcgZmlsZSBtb2Rl
-IDEwMDY0NA0KPiA+IGluZGV4IA0KPiA+IDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAw
-MDAwMDAwMDAuLjdhM2EwMWZmMDZkOGI2MmJjMjQyNGEwYTI0ODUNCj4gPiA3Yzg2YzY4NjVmODkN
-Cj4gPiAtLS0gL2Rldi9udWxsDQo+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
-bmRpbmdzL21lZGlhL3Fjb20scWNzNjE1LXZlbnVzLnlhbWwNCj4gPiBAQCAtMCwwICsxLDE4MiBA
-QA0KPiA+ICsjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiAoR1BMLTIuMCBPUiBCU0QtMi1DbGF1
-c2UpICVZQU1MIDEuMg0KPiA+ICstLS0NCj4gPiArJGlkOiBodHRwOi8vZGV2aWNldHJlZS5vcmcv
-c2NoZW1hcy9tZWRpYS9xY29tLHFjczYxNS12ZW51cy55YW1sIw0KPiA+ICskc2NoZW1hOiBodHRw
-Oi8vZGV2aWNldHJlZS5vcmcvbWV0YS1zY2hlbWFzL2NvcmUueWFtbCMNCj4gPiArDQo+ID4gK3Rp
-dGxlOiBRdWFsY29tbSBRQ1M2MTUgVmVudXMgdmlkZW8gZW5jb2RlIGFuZCBkZWNvZGUgYWNjZWxl
-cmF0b3JzDQo+ID4gKw0KPiA+ICttYWludGFpbmVyczoNCj4gPiArICAtIFN0YW5pbWlyIFZhcmJh
-bm92IDxzdGFuaW1pci5rLnZhcmJhbm92QGdtYWlsLmNvbT4gPg0KPiA+ICsgIC0gVmlrYXNoIEdh
-cm9kaWEgPHF1aWNfdmdhcm9kaWFAcXVpY2luYy5jb20+ID4NCj4gPiArDQo+ID4gK2Rlc2NyaXB0
-aW9uOg0KPiA+ICsgIFRoZSBWZW51cyBJUCBpcyBhIHZpZGVvIGVuY29kZSBhbmQgZGVjb2RlIGFj
-Y2VsZXJhdG9yIHByZXNlbnQNCj4gPiArICBvbiBRdWFsY29tbSBwbGF0Zm9ybXMNCj4gPiArDQo+
-ID4gK2FsbE9mOg0KPiA+ICsgIC0gJHJlZjogcWNvbSx2ZW51cy1jb21tb24ueWFtbCMNCj4gPiAr
-DQo+ID4gK3Byb3BlcnRpZXM6DQo+ID4gKyAgY29tcGF0aWJsZToNCj4gPiArICAgIGNvbnN0OiBx
-Y29tLHFjczYxNS12ZW51cw0KPiA+ICsNCj4gPiArICBwb3dlci1kb21haW5zOg0KPiA+ICsgICAg
-bWluSXRlbXM6IDINCj4gPiArICAgIG1heEl0ZW1zOiAzDQo+ID4gKw0KPiA+ICsgIHBvd2VyLWRv
-bWFpbi1uYW1lczoNCj4gPiArICAgIG1pbkl0ZW1zOiAyDQo+ID4gKyAgICBpdGVtczoNCj4gPiAr
-ICAgICAgLSBjb25zdDogdmVudXMNCj4gPiArICAgICAgLSBjb25zdDogdmNvZGVjMA0KPiA+ICsg
-ICAgICAtIGNvbnN0OiBjeA0KPiA+ICsNCj4gPiArICBjbG9ja3M6DQo+ID4gKyAgICBtYXhJdGVt
-czogNQ0KPiA+ICsNCj4gPiArICBjbG9jay1uYW1lczoNCj4gPiArICAgIGl0ZW1zOg0KPiA+ICsg
-ICAgICAtIGNvbnN0OiBjb3JlDQo+ID4gKyAgICAgIC0gY29uc3Q6IGlmYWNlDQo+ID4gKyAgICAg
-IC0gY29uc3Q6IGJ1cw0KPiA+ICsgICAgICAtIGNvbnN0OiB2Y29kZWMwX2NvcmUNCj4gPiArICAg
-ICAgLSBjb25zdDogdmNvZGVjMF9idXMNCj4gPiArDQo+ID4gKyAgaW9tbXVzOg0KPiA+ICsgICAg
-bWF4SXRlbXM6IDENCj4gPiArDQo+ID4gKyAgbWVtb3J5LXJlZ2lvbjoNCj4gPiArICAgIG1heEl0
-ZW1zOiAxDQo+ID4gKw0KPiA+ICsgIGludGVyY29ubmVjdHM6DQo+ID4gKyAgICBtYXhJdGVtczog
-Mg0KPiA+ICsNCj4gPiArICBpbnRlcmNvbm5lY3QtbmFtZXM6DQo+ID4gKyAgICBpdGVtczoNCj4g
-PiArICAgICAgLSBjb25zdDogdmlkZW8tbWVtDQo+ID4gKyAgICAgIC0gY29uc3Q6IGNwdS1jZmcN
-Cj4gPiArDQo+ID4gKyAgb3BlcmF0aW5nLXBvaW50cy12MjogdHJ1ZQ0KPiA+ICsNCj4gPiArICBv
-cHAtdGFibGU6DQo+ID4gKyAgICB0eXBlOiBvYmplY3QNCj4gPiArDQo+ID4gKyAgdmlkZW8tZGVj
-b2RlcjoNCj4gPiArICAgIHR5cGU6IG9iamVjdA0KPiA+ICsNCj4gPiArICAgIGFkZGl0aW9uYWxQ
-cm9wZXJ0aWVzOiBmYWxzZQ0KPiA+ICsNCj4gPiArICAgIHByb3BlcnRpZXM6DQo+ID4gKyAgICAg
-IGNvbXBhdGlibGU6DQo+ID4gKyAgICAgICAgY29uc3Q6IHZlbnVzLWRlY29kZXINCj4gPiArDQo+
-ID4gKyAgICByZXF1aXJlZDoNCj4gPiArICAgICAgLSBjb21wYXRpYmxlDQo+ID4gKw0KPiA+ICsg
-IHZpZGVvLWVuY29kZXI6DQo+ID4gKyAgICB0eXBlOiBvYmplY3QNCg0KPiBCb3RoIG5vZGVzIGFy
-ZSB1c2VsZXNzIC0gbm8gcmVzb3VyY2VzIGhlcmUsIG5vdGhpbmcgdG8gY29udHJvbC4NCj4gRG8g
-bm90IGFkZCBub2RlcyBqdXN0IHRvIGluc3RhbnRpYXRlIExpbnV4IGRyaXZlcnMuIERyb3AgdGhl
-bS4NCkRvIHlvdSBtZWFuIEkgc2hvdWxkIHJlbW92ZSB2aWRlby1kZWNvZGVyIGFuZCB2aWRlby1l
-bmNvZGVyIGZyb20gaGVyZT8NCklmIHNvLCBkbyBJIGFsc28gbmVlZCB0byByZW1vdmUgdGhlc2Ug
-dHdvIG5vZGVzIGZyb20gdGhlIGR0c2kgZmlsZSBhbmQgYWRkDQp0aGVtIGluIHRoZSBxY3M2MTUt
-cmlkZS5kdHMgZmlsZT8NCg0KPiBCZXN0IHJlZ2FyZHMsDQo+IEtyenlzenRvZg0K
+On November 25, 2024 4:28:00 PM GMT+01:00, Maxime Ripard <mripard@kernel=2E=
+org> wrote:
+>On Mon, Nov 25, 2024 at 11:24:25PM +0900, Hector Martin wrote:
+>>=20
+>>=20
+>> On 2024/11/25 20:24, Sasha Finkelstein wrote:
+>> > On Mon, 25 Nov 2024 at 09:50, Neil Armstrong <neil=2Earmstrong@linaro=
+=2Eorg> wrote:
+>> >>
+>> >> So this controller only supports a single mode ???????
+>> >>
+>> > Most likely=2E On all devices it is connected to a single built-in di=
+splay=2E
+>>=20
+>> More specifically, the controller obviously supports multiple modes but
+>> it is pre-initialized by the bootloader for the single hardwired
+>> display's only mode=2E So as far as the driver is concerned, there is a
+>> single possible mode, and there's no point in trying to be more generic
+>> if there is no hardware that would use that=2E
+>
+>It's not only about being generic, it's also about fitting nicely in the
+>usual abstractions=2E You could also always register a single panel, with
+>a single timing set, and the driver would never see anything else=2E And
+>still fall within the usual pattern=2E
+>
+>> In general, it is not possible/practical to be generic for reverse
+>> engineered hardware with no specs documenting how to drive it
+>> generically=2E You just can't know how to implement the options that ar=
+e
+>> never used in practice=2E I spent a lot of time on exceptions to this
+>> rule for the GPIO and SPI controllers, and that's not going to happen
+>> for more complex hardware like MIPI DSI=2E
+>
+>How is GPIO or SPI even remotely related to that discussion? We are
+>different maintainers, with different concerns, and different things to
+>care about=2E
+>
+>Also, "My way or the highway" is never a great discussion opener=2E
+
+This was not an attempt to push back on the review feedback at all=2E I wa=
+s just trying to add context about *why* the controller will never be used =
+with nor support more than a single mode, not argue about how that should b=
+e implemented=2E Sorry if it came across as otherwise=2E
+
+GPIO and SPI are relevant not because of anything related to the kernel, b=
+ut because I was able to reverse engineer the generic features of those con=
+trollers quite comprehensively by literally probing a GPIO routed to an ext=
+ernal USB-C port with a custom test bench and an oscilloscope (for GPIO) an=
+d by using the GPIO registers along with a bespoke bare-metal test platform=
+ as a "software" logic analyzer to inspect the signals generated as I twidd=
+led register bits (for SPI)=2E I'd love to have all hardware comprehensivel=
+y documented like that (I did GPIO and SPI because I wanted to, not because=
+ any maintainer asked for it), but as you might imagine, this kind of deep =
+hardware RE doesn't scale and isn't practical for anything more complex, an=
+d I was just trying to convey that fact=2E
+
+(Sending from mobile, apologies for the likely dodgy line wrap)
+
+
+-- Hector
 
