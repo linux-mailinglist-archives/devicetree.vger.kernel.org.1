@@ -1,140 +1,110 @@
-Return-Path: <devicetree+bounces-124305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC45F9D846F
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 12:28:02 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC40B9D8476
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 12:28:53 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12BEB2860DE
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 11:28:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B43F164798
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 11:28:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D931D19992D;
-	Mon, 25 Nov 2024 11:27:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14B4719D062;
+	Mon, 25 Nov 2024 11:28:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Vi5yMCPp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dNk7wmox"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4439D1AAE09
-	for <devicetree@vger.kernel.org>; Mon, 25 Nov 2024 11:27:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D8FD19D8B2;
+	Mon, 25 Nov 2024 11:28:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732534041; cv=none; b=PZoQ6+jtJAcaviLqVE6dCDPhds8R75sYoV0Tqhbn6Xmlfd8/Je5qgVLrWWNkfhRV3XjxNt4ovNZz5LQS0PlNUTFqsi4X6C4raQn102QHlbOXAr6AIFsYYoFYiRoLurxb0tHa3JwoA5H1bsboseX5/A+ShOc50iO7eVbFAFfXvoY=
+	t=1732534111; cv=none; b=h9TNrDwHOvV1rWl0/DJ2mIt96vsZDg7/Dqu5mVobNnAE34dZm3rYOqrKXDw32FeJaLQhCRxPKrfvgeXN3IP3xH2qdIpyCHW4MBnn/96rXItizcD2mbQDt+r7LAhD3ZKXMIlkWVGCum445wrfzQ6z+FvQfgNWWvEVWvZdnV8mFt4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732534041; c=relaxed/simple;
-	bh=WDl0bA26jgbiFrgSk5IXgePauTchroaaGp8NMU8IqPE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gqeVRxMEdkW8D3P1oKWY2I+dtFSWE5OXUUkvTfB5C9wWShIUUJhiRONoJxXXomwRNPuRUYRCkIgUKzZt4AoD4Auef+r5CL4SDty+mRoPqfu/UWRe2fyEykt9NMCxE7y9fFEqC8SNBGBeC7KN6sPihNCObPu/pdpldjTwcaH+0J4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Vi5yMCPp; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3823cf963f1so2686753f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 25 Nov 2024 03:27:19 -0800 (PST)
+	s=arc-20240116; t=1732534111; c=relaxed/simple;
+	bh=W07z30b8rfRq3CgjyuyiqZnTwm7THv2X4yGm/T/qTMA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WOS8frMqbnz2tampPCpA0/d+oUFrk5IFs+P+MPzMI3jDBn8BEDv/nzViS1V2LplYTzICVPeTggGDsoPs2gBvdWx9aSBkbjDs7dXd4lMULKspik0XC/8BRAE0Qqkpg0daeLLIxNVVENqxUSwx5Kmo8OKwEJ9fF9Cpo/k4A8nszP0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dNk7wmox; arc=none smtp.client-ip=209.85.219.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e3873c7c9b4so4694272276.3;
+        Mon, 25 Nov 2024 03:28:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1732534037; x=1733138837; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=/6W/TcW+FzL/8d8uwhMwfU+3kKX+iaCdQ6aLKFwbtfQ=;
-        b=Vi5yMCPpajMos6kplKLn0Zp0rQ37vgyoJw1hG4FGRaq0emYN89Yoc/VJFb/qS7GlYj
-         riO+mgIcs7W8/rnTmiC8+mxa891HzAVIzfhECl9Fb0uvZuzIsKB/6F8ZBlS9XVN63Ina
-         h4cY1eYkpvJ3Vjws5UVY6ebN6OoVcvvxQfTSUNshzELoAxkptVAby2hUgWgVTWNOiJZO
-         GmYy4MlHMxLP7bV9GZ6QkQ9fCBp6qVm+4NqJwS5L8AxACsExocu96jDWKSvZmLHYfKzk
-         dxWlB2cJy5Yr2X06EINKmsUENbe8oAKj6va7PWTO+WRj9r2QwksCo8LShhlhwZVHfJwl
-         ESBA==
+        d=gmail.com; s=20230601; t=1732534109; x=1733138909; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=SFECZUVYn+5chgSQNbqMPjSGONkR4VwEA2mP4hQOs0U=;
+        b=dNk7wmoxdqDkNV0W0ifJ7doXL1e8dllVbdd9A2WBkxBjpqr4P/qa2JHZGfyMviYzPr
+         sZc46SCL9s2irUGtpcJc4Wh25AzikopBtUz/eZXfD27Nvksvs+peHYtjVzvd/xbV3nHh
+         gj7VJWeOtufODls8PgPlNogfqKn1u3dc2PN8Y2vsA4HrzhpZWs1CYbR0uQ/j+y+oB1WQ
+         4c8LolhlJC/zBQzZ2lC3rKDzXk0+FYAAT2h6lB5vojpLUGrmryd+vhwtcxLwuIyHjFuB
+         YnXEKnHVYpk4zBWDeGmM7xw879ywQxk8znOv97a75CMlqec3MZ+2aLoK06GFmEMtBHCa
+         8VGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732534037; x=1733138837;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/6W/TcW+FzL/8d8uwhMwfU+3kKX+iaCdQ6aLKFwbtfQ=;
-        b=AEyQL55siGBbj7w9q87wBVRlK2qHdnJxNdiX1drSItzvmqtEHPab437dWjIp+6tqNV
-         uVsdGVtvx0Ew750adQ9Li+p0e/MTM5jlCJ0lMc5cRuY7rTqaNy84HiH6jehxk2OCrbYA
-         jx5j+QHYddT7ylWbpQ8brHgFyQpRmDM9GvUFBvxIUpZU4EXXbGRgNwd5SV7qIthNBlwh
-         bSMA/NJzT3Wyj63qPzgCVVmgZxSAtxnim8a88A55HuYi00lxyqu6FFVIrgRoxHRj8STO
-         +X6+wg2CStxhzuqqq6R4NUF8V3ncxADvrBf8zMLqfXcHe5s+BKIfSuOV65DW9j9N8m2i
-         ReNQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW+u0jj6fl2lm3J82arhnlT1gdHqHv/6vk6pfadNjXmYyR8LPWKv3GExtxyz1XIHOE32O4Zvf7rrB+a@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyw5yy1ZbhpBwD0doWyyEtjtlx2Wzwn+qFQNhO2ZAVls5eHho0M
-	H+LPQ157Rogef9DTYyP86qLitqgf6Lsja9Vj59Cq3knLxg7WhWOigfWIuetsolc=
-X-Gm-Gg: ASbGncsm6LC8CKiX/uE2VOUqUZoTFqPt6ELsuXD/QhNeBBKs1HA6BegHjA2CxfOQlV9
-	9zP5auCCfOeSBYXgH+twyH2Kb8mYyCZ/DbTYGLWiNYk6HYuHDEO0M8q1r9wgoy7NkLmZhsg/ZGQ
-	teflgRBaWIEGn3pwaKxd1WChdaPBgcTL474oRJlXS7Epnm4BYV7OHiScWA3lQlBjYSFHiwdDpqg
-	kBOV4luUcJwZQlR4gmKcsBoPktcqbFUYrKM4E32q1FfDGjdkIM2ea6O3UUglklEQYdr9vROnoB8
-	NOzUYmy5tK7T98dDiKEVcIBt+J6cdic8f7OX7w==
-X-Google-Smtp-Source: AGHT+IFv+LaRoSpqPLBzP55J1LGA76RLnlorbc6Kvzp2ZM8a0jgP6t0dbM/2WuhnW+/2vowoHiwUhg==
-X-Received: by 2002:a05:6000:18ac:b0:382:4b43:c3a with SMTP id ffacd0b85a97d-38260b45e0cmr11044948f8f.2.1732534037626;
-        Mon, 25 Nov 2024 03:27:17 -0800 (PST)
-Received: from localhost (p200300f65f242d005bbc9b581c6b9666.dip0.t-ipconnect.de. [2003:f6:5f24:2d00:5bbc:9b58:1c6b:9666])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3825fbedce3sm10097370f8f.97.2024.11.25.03.27.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Nov 2024 03:27:17 -0800 (PST)
-Date: Mon, 25 Nov 2024 12:27:15 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Alexandru Ardelean <aardelean@baylibre.com>, Alisa-Dariana Roman <alisa.roman@analog.com>, 
-	Conor Dooley <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	Dumitru Ceclan <dumitru.ceclan@analog.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Nuno Sa <nuno.sa@analog.com>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-iio@vger.kernel.org
-Subject: Re: [PATCH v3 10/10] iio: adc: ad7124: Implement temperature
- measurement
-Message-ID: <eghe47rkwxmcfkamayemvwfksonrwbysaadakbdm4lvzcsy4ee@7gftiif7ka6i>
-References: <20241122113322.242875-12-u.kleine-koenig@baylibre.com>
- <20241122113322.242875-22-u.kleine-koenig@baylibre.com>
- <CAHp75Ve_sD-a-m4pYmKrT=LhajO=F7TG7KM7AsM47J0=ksVgNw@mail.gmail.com>
+        d=1e100.net; s=20230601; t=1732534109; x=1733138909;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SFECZUVYn+5chgSQNbqMPjSGONkR4VwEA2mP4hQOs0U=;
+        b=xJpfRRmolpy7c979i36U5yM9Cet1OVY0DsA8KbVqb2gqYQ9zBr/6xdE4bpelez1rlC
+         jLjHCP5CNun1g8ePS+5KyZBJMz4IFzrbK6aDgKfsqSwJu/M4sPzTKwqGPR19+DMJ2UjF
+         LGIR/+4XL2hqSnYfrcSg+ssYOec3B4LwbdSgwAvedyvDva/DuGltnap4I6n6qwnqWu+L
+         3jmH1xFuUp5o4/POmHXsP561uCKAtwJgJKZVjp9PjluwV5WGvcmwck5CMhmxl+jNuDQ4
+         Ebv5bx08mtjBMzgqSI6ANVhPXydDrPREetl93y3CiHd4d/saOvXEM0uCHlj4QQT7jx1O
+         1ZDA==
+X-Forwarded-Encrypted: i=1; AJvYcCUpwatpjvj9ZkTsqbaLwcPSFZDB/QcP+xK3ctZ2XodWlO8+tyVb8QqgM0iAr8QLFs1uanxuwjhv+wQn52y1@vger.kernel.org, AJvYcCXxWax0b+wTeFzst8gAu/xOueXofsd7rCwa9lvHImkdgctsfrXSv78gVbAYhsl9qtEGsNA0sg2VPVDn@vger.kernel.org
+X-Gm-Message-State: AOJu0YzeY81sW77OH1IYiRORwNdI5TifnquYcbB+SWmN+Ht//AQKenOs
+	LxzAALSeHb/amtOOSTFRY6RkCYcjX4eZwVpmfEs+J0h8I2/4zqQFklHWF4Vxn4+QOhKN5AMK1ab
+	no8i3nxL4WEfIv+fvtHowY9SsvW8=
+X-Gm-Gg: ASbGncvvAS5R2yjcUuvG82LLROOEZZ/hw3Lh+vsndZ/ippM3pLFlhygQ/GXzYLWM2xc
+	nNU7l49UEGCbiPSAKybqURov8yy+TBCzU
+X-Google-Smtp-Source: AGHT+IEvMXbz/ATLbtPNpdoZq7utk3jT6G8l9B0pfvfJrNTPtha9rgk1sBFORpJxaDQfmVMujvdo14mu83hAF3M4v5c=
+X-Received: by 2002:a05:6902:1503:b0:e38:a34f:ff91 with SMTP id
+ 3f1490d57ef6-e38f8ad814dmr9422644276.6.1732534109466; Mon, 25 Nov 2024
+ 03:28:29 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="bs2c2lob2wt3zs3e"
-Content-Disposition: inline
-In-Reply-To: <CAHp75Ve_sD-a-m4pYmKrT=LhajO=F7TG7KM7AsM47J0=ksVgNw@mail.gmail.com>
+References: <20241124-adpdrm-v1-0-3191d8e6e49a@gmail.com> <20241124-adpdrm-v1-3-3191d8e6e49a@gmail.com>
+ <3bac31fc-57aa-4234-b10b-d48d3bbfa344@linaro.org>
+In-Reply-To: <3bac31fc-57aa-4234-b10b-d48d3bbfa344@linaro.org>
+From: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Date: Mon, 25 Nov 2024 12:28:18 +0100
+Message-ID: <CAMT+MTSDWK1dwgMHbNxAHab5_45xDn7YTfZDUdUL5Zjx++X4kw@mail.gmail.com>
+Subject: Re: [PATCH 3/5] gpu: drm: adp: Add a backlight driver for the Summit LCD
+To: neil.armstrong@linaro.org
+Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jessica Zhang <quic_jesszhan@quicinc.com>, asahi@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Nick Chan <towinchenmi@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 
+On Mon, 25 Nov 2024 at 09:45, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+> > +static int summit_suspend(struct device *dev)
+> > +{
+> > +     struct summit_data *panel = dev_get_drvdata(dev);
+> > +
+> > +     int err = mipi_dsi_dcs_set_display_brightness(panel->dsi, 0);
+> > +
+> > +     if (err < 0)
+> > +             return err;
+> > +     return 0;
+>
+> Just return err here, add a common function to set a brighness value and
+> avoid duplicate code like here.
 
---bs2c2lob2wt3zs3e
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 10/10] iio: adc: ad7124: Implement temperature
- measurement
-MIME-Version: 1.0
-
-On Fri, Nov 22, 2024 at 10:31:07PM +0200, Andy Shevchenko wrote:
-> On Fri, Nov 22, 2024 at 1:34=E2=80=AFPM Uwe Kleine-K=C3=B6nig
-> <u.kleine-koenig@baylibre.com> wrote:
-> > +       /* Add one for temperature */
-> > +       st->num_channels =3D min(num_channels + 1, AD7124_MAX_CHANNELS);
->=20
-> Is the type of both arguments the same?
-
-Hmm, my compiler is happy with it at least. I don't understand why
-though. I'll do a few more tests ...
-
-Best regards
-Uwe
-
---bs2c2lob2wt3zs3e
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmdEXxEACgkQj4D7WH0S
-/k6i4wf8DW0o0Rcu5ZujKf4zLtPWyNxenG/CRn4rhq3mhs5LwG6CXR8hxZ/0rtLR
-YFTCiFD1HcyQWwDhdEgqsUx8fJu8jFOHdfFElnBzbcd3fiXf4h3bPhXmws9O/8rN
-XNnD482R9+/BPsbG1ZIsbH38rodpTa4a8P8KMw44fcUO1sNmgS2fXd+ddDHT3wM/
-kL8P7vOufEMMYCMTS4rIBMc51mnukRuBCU03YdZO4ht5sk8jHlYQ1/2/1fyzHQ4l
-piDxyNU+LKafY2LlFuvCKUPsie5c7PlFwj+XLbP2E9u7oaIHTtT2nWB+n6gU4lOm
-SRT51CVU9ruP63dJ09Y8h2cPAOH0vg==
-=UAaT
------END PGP SIGNATURE-----
-
---bs2c2lob2wt3zs3e--
+I felt that mipi_dsi_dcs_set_display_brightness is common enough, is it not?
+Ack on all other changes, will be done for v2.
 
