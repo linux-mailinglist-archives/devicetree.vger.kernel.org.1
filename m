@@ -1,62 +1,61 @@
-Return-Path: <devicetree+bounces-124152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A06E89D7C1C
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 08:45:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 073989D7C25
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 08:50:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2AEA61631B9
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 07:45:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8DB4F16327F
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 07:50:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BCF712EBEA;
-	Mon, 25 Nov 2024 07:45:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3A721885B8;
+	Mon, 25 Nov 2024 07:50:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MYFrveyd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SZSoNzB2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C64C2500AE;
-	Mon, 25 Nov 2024 07:45:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8210C2500AE;
+	Mon, 25 Nov 2024 07:50:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732520750; cv=none; b=rR1zfDoaRC0vfGi3MHF1UiZlgSPjwcqh1R+02BgJpzS7W/l+RUYrWaj83tWJ7w6Fl5mb3dNQ2nBi82NCXO01BNujvWfkqEshDz0ZXK9e/zIj4UI/OssMzEJtra7AhtVQIzYwMA0lIcE7u6SwF99GYzBZ2x0oFuS7p/RyYu9LJ2c=
+	t=1732521009; cv=none; b=B+i7dvKmuE07y5FXMdUAP5Jd7pNa3xaFUZ3ptKzvFlpTF+fd4D4hMoZq+etMwWrGnvQFuUk6QLJpUu3pBF/CY6ZeXMmx8/UvQ+JLmaPPNB3JPsX3rfBTBQnXw5oXjce1rRiSMcfwswMpaQzUh9FpSwjW831znJkgrEb0RHiCErM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732520750; c=relaxed/simple;
-	bh=QkmKRQufxVbtOJlGOhCoU0r8+2yxxJyk9PPJcIydGG4=;
+	s=arc-20240116; t=1732521009; c=relaxed/simple;
+	bh=IFztWVAF65de6cRpCdLQxb+SIYrWJTKez/F93l2L0uk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PhofHyj+CN37BFu0tgckGwNh1Sier5xfciCPZqTw/TObDgKvRR+VUDiEUG/Yv+IekIYcyF2si1x9BHzMPtylCnvSUEqLFj0ouKZLTKlrIN1ftS1ir1FoKt1w80Pz/Yhx2+DtpSU0Y3VFM7WLZB4ZoWXVqI1lNIKd2muufhIZJ0Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MYFrveyd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A65BC4CECE;
-	Mon, 25 Nov 2024 07:45:48 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=C8TdVkcRqYtmnRxAMmpj1cZ84efgbStEJy8tffDiKgDQ9rs24VHlQt7Ps+/9TZn2QsufW6zARbsd8EJ10tB2rH6fmH++LpxESn1JYrtXB5iGgiiE8RkFLeDCFfoQOe6PfU4jMuOFCl4T7SiYBvKaKe188FUIfLFl2D0Auh2xI6w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SZSoNzB2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2972AC4CED6;
+	Mon, 25 Nov 2024 07:50:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732520749;
-	bh=QkmKRQufxVbtOJlGOhCoU0r8+2yxxJyk9PPJcIydGG4=;
+	s=k20201202; t=1732521009;
+	bh=IFztWVAF65de6cRpCdLQxb+SIYrWJTKez/F93l2L0uk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MYFrveydLiYRWlAIyh8GYlL0YM9Q896zpfUzgrP0F9/Go8fZEYiUzoU56kg8PVMbI
-	 c0BolaJeNa1960vBUIJdWNczsAwuU5LjEenBa9nIm0/SHrtDlUGMjs0ASf9Y2QWrbi
-	 odnBkyNsXl3TUXYUj0aXwkubOMoLldrvbsHk65USwfjW0KoIiZc/H739irmyq9cjsK
-	 Jp/0N6/JvyJK7ut2EnOqctMa9QNnFqxpIK8EClS/Ro9X7CCRi1BX8TzQJx6jfDhA4b
-	 Es3cOdNVgtyzREvIT7yFzdZmmMVMlyl54De87aPPHr5dcZwxTVVMwuz9KvqfDHN1mE
-	 CY9x0i+yy68Ag==
-Date: Mon, 25 Nov 2024 08:45:46 +0100
+	b=SZSoNzB2nuYXNnrLIyXxsPCTaC55j8dSpIlgtEjqRKpNmLMbzBYDQU0L5jsbXxoNr
+	 /mZuSWuzK5TegeqSlb1P9lg8Glh8xjbVFPCUxr0utO9154AfxN9eiKbETcBw59urAb
+	 i3w54SU28ZCp7zJBI8fQlB/I6jLGJ8RihaJEjnz9tRZSN34GM3wu3FyHVzcNcTBIlf
+	 LmNhuwryKzqvNikrRWZmCRWTIx9jISUG8xcThiClH2M858izyetfWujYEZPh6nGrRt
+	 wn85TUo6iTRtDFkaKeti9XzquLfptioxxypVmcN06k9TDkFNplCiT0jqtLeEh9OJch
+	 m8bXXI/5E9Rjg==
+Date: Mon, 25 Nov 2024 08:50:05 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Sasha Finkelstein <fnkl.kernel@gmail.com>
-Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+To: Renjiang Han <quic_renjiang@quicinc.com>
+Cc: Stanimir Varbanov <stanimir.k.varbanov@gmail.com>, 
+	Vikash Garodia <quic_vgarodia@quicinc.com>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, asahi@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/5] dt-bindgins: display: Add Apple pre-DCP display
- controller bindings
-Message-ID: <ksdp54qj55v7igvvcshl6y2cxpmqy7rlsh4xsixpptjn7s7wlu@76ejtq6ytvbp>
-References: <20241124-adpdrm-v1-0-3191d8e6e49a@gmail.com>
- <20241124-adpdrm-v1-1-3191d8e6e49a@gmail.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: qcom,qcs615-venus: add support for
+ video hardware
+Message-ID: <jovwobfcbc344eqrcgxeaxlz2mzgolxqaldvxzmvp5p3rxj3se@fudhzbx5hf2e>
+References: <20241125-add-venus-for-qcs615-v3-0-5a376b97a68e@quicinc.com>
+ <20241125-add-venus-for-qcs615-v3-1-5a376b97a68e@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,144 +64,111 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241124-adpdrm-v1-1-3191d8e6e49a@gmail.com>
+In-Reply-To: <20241125-add-venus-for-qcs615-v3-1-5a376b97a68e@quicinc.com>
 
-On Sun, Nov 24, 2024 at 11:29:24PM +0100, Sasha Finkelstein wrote:
-> Add bindings for a secondary display controller present on certain
-> Apple laptops.
+On Mon, Nov 25, 2024 at 11:04:49AM +0530, Renjiang Han wrote:
+> Add support for Qualcomm video acceleration hardware used for video
+> stream decoding and encoding on QCOM QCS615.
 > 
-> Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
+> Signed-off-by: Renjiang Han <quic_renjiang@quicinc.com>
 > ---
->  .../bindings/display/apple,display-pipe.yaml       | 59 ++++++++++++++++++++++
->  .../bindings/display/panel/apple,summit.yaml       | 24 +++++++++
->  2 files changed, 83 insertions(+)
+>  .../bindings/media/qcom,qcs615-venus.yaml          | 182 +++++++++++++++++++++
+>  1 file changed, 182 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/apple,display-pipe.yaml b/Documentation/devicetree/bindings/display/apple,display-pipe.yaml
+> diff --git a/Documentation/devicetree/bindings/media/qcom,qcs615-venus.yaml b/Documentation/devicetree/bindings/media/qcom,qcs615-venus.yaml
+
+Dependency for this patch must be mentioned here.
+
+Amount of dependencies make it unmergeable and untesteable. I suggest
+decoupling dependencies by removing clock constants.
+
+
 > new file mode 100644
-> index 0000000000000000000000000000000000000000..bd25ddc6e09dd636c0221c854e594113f6011866
+> index 0000000000000000000000000000000000000000..7a3a01ff06d8b62bc2424a0a24857c86c6865f89
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/apple,display-pipe.yaml
-
-No, use fallback compatible as filename.
-
-> @@ -0,0 +1,59 @@
+> +++ b/Documentation/devicetree/bindings/media/qcom,qcs615-venus.yaml
+> @@ -0,0 +1,182 @@
 > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/display/apple,display-pipe.yaml#
+> +$id: http://devicetree.org/schemas/media/qcom,qcs615-venus.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Apple pre-DCP display controller.
+> +title: Qualcomm QCS615 Venus video encode and decode accelerators
 > +
 > +maintainers:
-> +  - asahi@lists.linux.dev
-> +  - Sasha Finkelstein <fnkl.kernel@gmail.com>
+> +  - Stanimir Varbanov <stanimir.k.varbanov@gmail.com>
+> +  - Vikash Garodia <quic_vgarodia@quicinc.com>
 > +
-> +description: |
-
-Drop |
-
-> +  A secondary display controller used to drive the "touchbar" on certain
-> +  Apple laptops.
+> +description:
+> +  The Venus IP is a video encode and decode accelerator present
+> +  on Qualcomm platforms
+> +
+> +allOf:
+> +  - $ref: qcom,venus-common.yaml#
 > +
 > +properties:
 > +  compatible:
-> +    items:
-> +      - enum:
-> +        - "apple,t8112-display-pipe"
-> +        - "apple,t8103-display-pipe"
-> +      - const: "apple,h7-display-pipe"
-
-
-This wasn't tested... Drop all quotes. Do you see any file with quotes?
-Why doing things entirely different than everyone else?
-
+> +    const: qcom,qcs615-venus
 > +
-> +  reg:
-> +    minItems: 3
-
-Drop
-
+> +  power-domains:
+> +    minItems: 2
 > +    maxItems: 3
 > +
-> +  reg-names:
-> +    items:
-> +      - const: be
-> +      - const: fe
-> +      - const: mipi
-> +
-> +  power-domains: true
-
-List the items instead or maxItems: 1.
-
-> +
-> +  interrupts:
+> +  power-domain-names:
 > +    minItems: 2
-
-Drop
-
+> +    items:
+> +      - const: venus
+> +      - const: vcodec0
+> +      - const: cx
+> +
+> +  clocks:
+> +    maxItems: 5
+> +
+> +  clock-names:
+> +    items:
+> +      - const: core
+> +      - const: iface
+> +      - const: bus
+> +      - const: vcodec0_core
+> +      - const: vcodec0_bus
+> +
+> +  iommus:
+> +    maxItems: 1
+> +
+> +  memory-region:
+> +    maxItems: 1
+> +
+> +  interconnects:
 > +    maxItems: 2
 > +
-> +  interrupt-names:
+> +  interconnect-names:
 > +    items:
-> +      - const: be
-> +      - const: fe
+> +      - const: video-mem
+> +      - const: cpu-cfg
 > +
-> +  iommus: true
-
-
-maxItems: 1
-
+> +  operating-points-v2: true
 > +
-> +  "#address-cells":
-> +    const: 1
+> +  opp-table:
+> +    type: object
 > +
-> +  "#size-cells":
-> +    const: 0
+> +  video-decoder:
+> +    type: object
 > +
-> +additionalProperties: true
-
-This cannot be true. Must be false.
-
+> +    additionalProperties: false
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-
-This goes before additionalProperties.
-
-Missing example: that's a strong NAK and prove that this could not be
-even tested.
-
-Do you see any device schema without example? No. Do not develop things
-differently, Apple is not unique, special or exceptional.
-
-
-> diff --git a/Documentation/devicetree/bindings/display/panel/apple,summit.yaml b/Documentation/devicetree/bindings/display/panel/apple,summit.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..dc281c1f52c1ed07cc2f7f804dcfd2f3b4239d89
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/apple,summit.yaml
-> @@ -0,0 +1,24 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/apple,summit.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +    properties:
+> +      compatible:
+> +        const: venus-decoder
 > +
-> +title: Apple "Summit" display panel.
+> +    required:
+> +      - compatible
 > +
-> +maintainers:
-> +  - asahi@lists.linux.dev
-> +  - Sasha Finkelstein <fnkl.kernel@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: apple,summit
+> +  video-encoder:
+> +    type: object
 
-No, too generic. Panels need much more properties, this is heavily
-incomplete. See other panel bindings.
+Both nodes are useless - no resources here, nothing to control. Do not
+add nodes just to instantiate Linux drivers. Drop them.
 
 Best regards,
 Krzysztof
