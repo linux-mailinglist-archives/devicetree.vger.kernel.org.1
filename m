@@ -1,163 +1,225 @@
-Return-Path: <devicetree+bounces-124416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 071E89D8B66
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 18:36:33 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D63D9D8B80
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 18:44:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 50C1C284C40
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 17:36:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 11386B29045
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 17:43:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E84B1B652B;
-	Mon, 25 Nov 2024 17:36:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A1031B86F6;
+	Mon, 25 Nov 2024 17:43:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="lpXsQtce"
+	dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b="LlO1db+X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05olkn2080.outbound.protection.outlook.com [40.92.91.80])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A46114D43D;
-	Mon, 25 Nov 2024 17:36:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732556186; cv=none; b=rksB12gOiEeoyjm+pj6xbnvVzKKupzhnOD9EkLK8RyyZ/Q/iBOJqQR1cWA8DwsYpoK+HQ3K6oZ/S8KfJ49s2ra3i2qZRIF3igfr2KyjiuSogbA7Kz8xIvLW+ea3e+9NMQaBmdJX9MDobYuIHjT+bx5HCgeUfLTDqSPmgF3lRxNI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732556186; c=relaxed/simple;
-	bh=AvqfISnEDH0te3fGy14dfdBmQ7eZEZWEwQrKZrCufAc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IvF7VinaBdWiyEfuomWbMXdiVOZlmz/ARqDaPLneTPZqbM4MVrvIJEqtPFTRoiSqB36y+qd6O/fYvjR/SkDXDzijsmvQaTpmsZESTZsQ201W3NlfQmcaFSS/xONjcvEBU83srfrGsVqCXQNEwLwieW8NnICi9XcgTaPrwIGM93M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=lpXsQtce; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 361FA229;
-	Mon, 25 Nov 2024 18:35:59 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1732556159;
-	bh=AvqfISnEDH0te3fGy14dfdBmQ7eZEZWEwQrKZrCufAc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lpXsQtcehsBKeIPR/t0GFL1Spk29mYTN2DpzDrvfrsaTG0tpx+FkcV46i1pex5m4C
-	 n4vQIzzZo8rm67ISwhxBdD39v6oDN9F7inxwBcKLfS/9X68wZMsgYMdVUDuf2otj6y
-	 h9kYCCM/Y+bznP0f2uQK9DAV0tsUu7c0e0NTNhKo=
-Date: Mon, 25 Nov 2024 19:36:11 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Julien Stephan <jstephan@baylibre.com>
-Cc: CK Hu =?utf-8?B?KOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
-	"mchehab@kernel.org" <mchehab@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"robh@kernel.org" <robh@kernel.org>,
-	Andy Hsieh =?utf-8?B?KOisneaZuueakyk=?= <Andy.Hsieh@mediatek.com>,
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"paul.elder@ideasonboard.com" <paul.elder@ideasonboard.com>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"fsylvestre@baylibre.com" <fsylvestre@baylibre.com>
-Subject: Re: [PATCH v7 4/5] media: platform: mediatek: isp: add mediatek
- ISP3.0 camsv
-Message-ID: <20241125173611.GS19381@pendragon.ideasonboard.com>
-References: <20241121-add-mtk-isp-3-0-support-v7-0-b04dc9610619@baylibre.com>
- <20241121-add-mtk-isp-3-0-support-v7-4-b04dc9610619@baylibre.com>
- <d17dfb29f60bfa1889aa554ef16c9ddec272520d.camel@mediatek.com>
- <CAEHHSvbScBhn=6rSOApQ=K9JEpwL6JPpJnJy929mLXHhxQ=3FQ@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8F6714D43D;
+	Mon, 25 Nov 2024 17:43:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.91.80
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1732556624; cv=fail; b=L4ffu09dJl/zatlUHehFDJdYkaUVyjlJZr54TiLtcneBVcEOAbljqtHo2GH/6cJzY33UEi385j3ySEvd1ykCf6dAEUQ1nlq6YjsNTHKc4oiL/+phjcrs9Ucv4iRAtMg3Yb6iILMpvBBhgRmYsLXqMUQUC7Q/jwrRpF8XDojxFC8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1732556624; c=relaxed/simple;
+	bh=Iac71OGknZULrbnzf7M0GlkyWRgrHJpn9X0qDW18Xno=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=RtvOQhs3djXfFmW4EViNotRGtm9TR+uqYl7nYG+oHiSGEiqDt+XrpYZSpQRwl9lREG5AWke5/sd4qaFsrmvWAesS1sC+x9tiTZpqtnNWZ6Q7go6ZwkpBVzAKojfBGFoyA8RqBurVFZnWE8w3r4pSg627pfkPPzBtXeXQLB6w44k=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com; spf=pass smtp.mailfrom=hotmail.com; dkim=pass (2048-bit key) header.d=hotmail.com header.i=@hotmail.com header.b=LlO1db+X; arc=fail smtp.client-ip=40.92.91.80
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hotmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hotmail.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=mIGlbs694EyDB/S9XYwLWbDSyQ6lI+Sp3jyI/A5w6UvSDNCoKLON9sfPcWrtKbymAuwRVbdB9rvzknSBPMMots0guUTa4d34OLNREWRKUMInG96QQPDYOMiVQnxUKvX8A1qEEATX8HFipJp4S/J1dRzZVbf/2fwM9yfmVeRjbN9x1/FVolPR2EXMgGuxLR00GpAsEeY5wwOLkMhF4Z1fLzKv3d80p3nOCi0D2NqxNAjLhkt+03YDjDenKuV5KrqdKbinNlcI5WazC9I5Co02zvudFK6TUogL+CCsCFDYzvGwVxU8boqeC5k59iXIfOrH47JA4gkg0/fMwzkz7feMZg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=b+tn3iAUt15RN7TXuN0IEUR+AtUt6jFmM9jeIwj87X8=;
+ b=BjRLkfD4hAafRaNSGoj6dLq1mhRxcflN3k4lNFmGJHVHRHl5BWxCbf1tdAFWe1iV+NTLSFXPnNXDN3xsWTdz1Kchc09RmIU2v+dVjaTOOs0n+aOhhG9LxGeYBzPb0FtZAOKDv2ESFRBibhx6720brWe5RnMqrNUov+vxBcGsRKhHdhxvzLiELDpd7eHJExPWuUitXCOlTdsKEk+ZRHB2sqK5nPL9cvvkr1TerHIpk7yewLONMa5Hj5G3ZtqR+4n9VN3h+rrCDgZ2UfVhtyMtZ0/K9Kga34S9RqgEdjGqCAFtORfDgb+/ng2S70CXx2dBadO6PJQA+dCKCfC2cLJDAA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=b+tn3iAUt15RN7TXuN0IEUR+AtUt6jFmM9jeIwj87X8=;
+ b=LlO1db+X33V0Skmzj3cTQuL3hbaLOvlLv+tUDL7XqwHvbmNxtSNAoE4Dx+przMauLDH4DxGgR176ipRv8gjDwz+tlNJx0/zOe5GxT3i11cGZhHz+gTPI/uVCpY8kpbvWDXkKZcau8vA8liPVk5P07Od4dteLj5+bcksjr/x6gNzraIb9O8YHCKRF0Lf6J3S2xfeysIB9DtmZAD3y7uwjZ6FWKF4fuPkurz5cMMGVvvOC54t+diCpoqE8z41szc0u2fU8eEj6UUbKg3iZDrfWhYEKvX2UEfgzW2foKH9sWnNx1wh/4hLuNxXLMu5fNn8EN2G57jD1f+8zUCGWYgILIw==
+Received: from VE1P189MB1024.EURP189.PROD.OUTLOOK.COM (2603:10a6:800:149::13)
+ by DU4P189MB2682.EURP189.PROD.OUTLOOK.COM (2603:10a6:10:563::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.22; Mon, 25 Nov
+ 2024 17:43:34 +0000
+Received: from VE1P189MB1024.EURP189.PROD.OUTLOOK.COM
+ ([fe80::4c0a:a901:4d3c:e0bb]) by VE1P189MB1024.EURP189.PROD.OUTLOOK.COM
+ ([fe80::4c0a:a901:4d3c:e0bb%4]) with mapi id 15.20.8158.024; Mon, 25 Nov 2024
+ 17:43:34 +0000
+Message-ID:
+ <VE1P189MB10249A3A525D8282E35D18F2E32E2@VE1P189MB1024.EURP189.PROD.OUTLOOK.COM>
+Date: Mon, 25 Nov 2024 18:43:32 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/4] arm64: dts: qcom: x1e80100-vivobook-s15: Use the
+ samsung,atna33xc20 panel driver
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Douglas Anderson
+ <dianders@chromium.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20241124-asus_qcom_display-v3-0-002b723b1920@hotmail.com>
+ <20241124-asus_qcom_display-v3-2-002b723b1920@hotmail.com>
+ <af6f4b48-7e9b-4561-818d-150fe954d821@oss.qualcomm.com>
+Content-Language: en-US
+From: Maud Spierings <maud_spierings@hotmail.com>
+In-Reply-To: <af6f4b48-7e9b-4561-818d-150fe954d821@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AM8P190CA0013.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:20b:219::18) To VE1P189MB1024.EURP189.PROD.OUTLOOK.COM
+ (2603:10a6:800:149::13)
+X-Microsoft-Original-Message-ID:
+ <b2b59027-0ef3-415d-b542-d778a19dddc0@hotmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAEHHSvbScBhn=6rSOApQ=K9JEpwL6JPpJnJy929mLXHhxQ=3FQ@mail.gmail.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VE1P189MB1024:EE_|DU4P189MB2682:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1de3620e-0f1e-4041-c961-08dd0d78aecb
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|5072599009|461199028|8060799006|15080799006|6090799003|19110799003|440099028|3412199025;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?QUlBWFhuVDFDNS8rdFhVSkVPMEVndWNINnFxUjJ4NmNMNmhIeEwrZGh6WUhS?=
+ =?utf-8?B?VmtNZm9UWmdqQW5VZi9KKzNYYVpBc2JxeGdkUjBWWE8rZmN5TkM3cmUyakM5?=
+ =?utf-8?B?cFhwY0F0QjYwS3ZoODlVR1AxQVdiYUN5b3Y0ZFk4NWxSL095L1Vid2JCRDJj?=
+ =?utf-8?B?N050N3pxamZ3bExHZG1lV0F3Nms0Yzg0QytGbDVwT01YM2JLUUNQNG12Qk5s?=
+ =?utf-8?B?TUthckJxVUoxU1lKL2E3N2lTYU5GTlRYU3I0dzRQSHo5UzRxOUZhOHRHNzl6?=
+ =?utf-8?B?MC9VS0cwdm4rOEwvcUkyUlo0WHExTkFKTVJxZnluRElOL2FhWlE2c2VmRWtm?=
+ =?utf-8?B?MTVTeUYyNm41R0tlWS8zdm00THQ3TmJxQWZkdXNkb2FSNXBNbFFFOEROTzZr?=
+ =?utf-8?B?QzQrQ2o5YjREYmMrUnhEQjI4VkFWZ2JHSnA4a0hYMFVOU1kvaXlmMjdyMmor?=
+ =?utf-8?B?Ykd6aXVGcGZha3JrYXdkaGdyVzVuNHE1eDl2Q214WFV6dVpvMGZkL1FBS3hU?=
+ =?utf-8?B?ekRWdEVCMFJPcEpEYmRVVzRMV21RMUo3d0VMd0JYR3dLazlDS2dqa2hpYW4z?=
+ =?utf-8?B?aE5WNHVDbThpTTMzSG5OVDIycnh6c1JEdVluYy9KY3lPU2t2UXFLR3RLdmdU?=
+ =?utf-8?B?NzVhelRIa1lFOHpmMVUrN2ZJbmpadGI3VTFvRG9vQ21CRGFwTmRheTh3K3RP?=
+ =?utf-8?B?bFpkR29vM2kvT0ZCUERtaERWVTBSNTg5T0hCMlpITFZmY05yRzFHampWbG95?=
+ =?utf-8?B?ZlE4TUZ2ZzJ4aXBUWk85UFd1bEpBSWJmVUt6eDFWaXYzZ2lQMVg4QmdORkxt?=
+ =?utf-8?B?anhLdVZiOUVLaldWa1QzSzM1Z2ZCd0Y5WHVKaEhTNnRDdmxVTHd5anBJMlJa?=
+ =?utf-8?B?Vyt6RElseSt3WmJ0U2Y1b09idVFpaXBkekE5bGVJU2p1c25xOWF1STdFcThR?=
+ =?utf-8?B?RHgzQ3ZDdDZNdzVpdWZ6Q2hTR3hFejE3OW9JWmg5UDNGUnBHVWJBNUt2NUth?=
+ =?utf-8?B?QlRaTEQrVTBaRVRDbWZZTGwwcldmeHB4YU5SQzFnOUVGY24wVi9ub2x4cXdn?=
+ =?utf-8?B?WnVBUlhoOXQ4V3BUQkZNMUVhcmVXK1l6bzY5cXZVRk5HbGN0ZDk4RFZQSFhl?=
+ =?utf-8?B?YXFSNEFialIrNWtML3RYQUU4bStUaFBrSmxJZHAvdUlVd1h3SEtLSWd0NlNT?=
+ =?utf-8?B?UDZlR1BZcUY5Y2xRUWtOTXhvbHF3RXN0VEQ4WFR3bFR5UUhSd2Jzdk9EcVJ2?=
+ =?utf-8?B?aHlQazVydkVneTVQZUpoWVpGNlZiUXhYVE9rdThaeEgvYUVSVUZxTWZETXZZ?=
+ =?utf-8?B?MGVBMjZQVjVCYXFqSTZZWTR6cDIyVjNwQWhKOFIwWi9BM0xMSDVQQi9LeStZ?=
+ =?utf-8?Q?w4OnO7+EsstOgoL5d+bsm8m/6cllQ67c=3D?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?b3A1TWJrZ290SFpBUENjUHZoWXlkR2tpS1hreFdtNTBhd1hucVJWUFNlVXpp?=
+ =?utf-8?B?bjBEZC9ydmxDc1ZRem1oeDNYM3dQQVY2aDVTaWthd2tmZjFJVU1TVDRvR2pJ?=
+ =?utf-8?B?L1JUdXFaR1dWTERhWXkyWmxpZnBORVBDS1Q5TlI5bUptVlBzRmZwMStCb1Fn?=
+ =?utf-8?B?anlQZTVOM2xtenNWbXozTW5iVTFRU2RhdjM1SnZpMThtanVDcjRTN0k1czBS?=
+ =?utf-8?B?cmR6NWcrdnpzcWZIREdTaHAxU2dMaEhZZzZ4WWxlcVNEWDlPZTJKN0RFNEJu?=
+ =?utf-8?B?SnYycmV2Zll5ZElZQWtoT2ZKMXA2RHUrREoyMVJab2ljeHh6UVlZZnFtanQx?=
+ =?utf-8?B?OER5SzVMUW5ObjNNV2tQSGx1bDQ3MDExTHhhR21BenRkSU0yK0lrQllBTTZj?=
+ =?utf-8?B?MGxLa0VnRGRESHJmcU1kVGZrQ3luaFBzYThYNVkyODRQcDF3aXIvZFU2TDBX?=
+ =?utf-8?B?RGo1WElkamR0RGNUODhkR1BiTnBBUVpNbFg1RWtiNTE1L0xHK0lYak1naHpm?=
+ =?utf-8?B?bXpTSU03d29FNWcwYmJKY2VtTE85VjNwS3lOaEM3M3RxcnIwck4vTmJEbTcz?=
+ =?utf-8?B?UnU1UUFia1pTK1ZTb2NPUmVGL2djampLT1RkOUYvN0puQzFmWVp2dmg4MnpG?=
+ =?utf-8?B?bHU3SkVjR1ZPTXBlRzdtOTkyUm9qWjFHbVh5UFFXUVdkQkxvL0tqK0xFaERi?=
+ =?utf-8?B?dFhVT3lHK0N4QmJsRTJNbDhMMnpndWVKS2QxYlZoeWlmUHJDRDRwVWEvcHNQ?=
+ =?utf-8?B?NlQ1di84OGFpckxnWklheDBqcGhVai80U0xhcS9GRVR3aElueGdQeHMyMzNB?=
+ =?utf-8?B?M3dWQnhsNElBWTVMdGlCSktIRmVtYzRPZDVQbEFUTk5sTU4rR1JnRDJPYU5P?=
+ =?utf-8?B?QXI5S1p4Q2dxdUU2NzVPdkJYc0pVRUFLbGFyaUV1U0NGZklaM2FBUmg3RHBQ?=
+ =?utf-8?B?NmlHVVkxeWJEaWM3bldVSzNBTHRwSWsxUDM1aTY0NVkyU0RuVmdKZytlOFRn?=
+ =?utf-8?B?UVdTbDh0alp6OEw5dXRKOTJnSm9CMG0zK1BFV0xiUkZMNlFibkZjMDNSSTZE?=
+ =?utf-8?B?aTJYNDN4TXNITlRNQ1RoWUtqcFF0U0tiL1NhWlIrQ01scG5heFRxOUNqUFMy?=
+ =?utf-8?B?TTBxMTJ0aEVxMkd4QTRCWnJuVjVzdFVpUkg0WjFGRjZKeSsxdkdkSCs5R3Br?=
+ =?utf-8?B?YkxzQ0V0Yjd6cjVpQUFIOUVZbEJTWlA5eFRIN0JVNi9yTENUaUVPdlhSc3lY?=
+ =?utf-8?B?cmlhNVQ5S2JSeG9xZndqT0lOdEVBRG1YcC9aSGtTZUd0ZG5BSEpZaG4xQ0pT?=
+ =?utf-8?B?NitnU3JDdE9ONVdFcHZnRjBFalVGc3Brc1piUWl3azNzNjNVTXMwaENwaU52?=
+ =?utf-8?B?RWEzRzI5RTNTdzZMZFRzZVN0Tml3RUxmTmd5aGxyaUN1MzNQSEdqOStQS28z?=
+ =?utf-8?B?UHBPdlV5QzZmaG5lOVlqQS9IZkZ2R09PSm1KbERtN2RmamNvNzJRZTdFSnc4?=
+ =?utf-8?B?NnNENUtNRFNKMjVVMWdHMXIzdXZaYnRCblFuRDk2OWJMT1NFdmx3QWtkL1da?=
+ =?utf-8?B?bHErNjRXT054R3FSRnVvNWN1eTZPcU44MUNiTUxNMGpsOEtzdTlFZHJnVUti?=
+ =?utf-8?B?alZYY3MxejVsS2h4TzVMSjdKOEdINE82dzdQbmd5bFNVQWNaREhuM3VCaCtv?=
+ =?utf-8?B?ZmdQS0VqLzdJMjY5TDZubTA0ZXgrUURNbkdrOENjTTJqQVNmRWM5K1hpaWFl?=
+ =?utf-8?Q?zzbuNf5H2yJY42ulRCIhTPk3tnUrS3F+eEnnFoO?=
+X-OriginatorOrg: sct-15-20-7719-19-msonline-outlook-3b3e0.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1de3620e-0f1e-4041-c961-08dd0d78aecb
+X-MS-Exchange-CrossTenant-AuthSource: VE1P189MB1024.EURP189.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2024 17:43:34.1007
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4P189MB2682
 
-On Mon, Nov 25, 2024 at 03:40:18PM +0100, Julien Stephan wrote:
-> Le lun. 25 nov. 2024 à 09:14, CK Hu (胡俊光) <ck.hu@mediatek.com> a écrit :
-> > On Thu, 2024-11-21 at 09:53 +0100, Julien Stephan wrote:
-> > >
-> > > From: Phi-bang Nguyen <pnguyen@baylibre.com>
-> > >
-> > > This driver provides a path to bypass the SoC ISP so that image data
-> > > coming from the SENINF can go directly into memory without any image
-> > > processing. This allows the use of an external ISP.
-> > >
-> > > Signed-off-by: Phi-bang Nguyen <pnguyen@baylibre.com>
-> > > Signed-off-by: Florian Sylvestre <fsylvestre@baylibre.com>
-> > > [Paul Elder fix irq locking]
-> > > Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
-> > > Co-developed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > Co-developed-by: Julien Stephan <jstephan@baylibre.com>
-> > > Signed-off-by: Julien Stephan <jstephan@baylibre.com>
-> > > ---
-> >
-> > [snip]
-> >
-> > > +static void mtk_camsv30_update_buffers_add(struct mtk_cam_dev *cam_dev,
-> > > +                                          struct mtk_cam_dev_buffer *buf)
-> > > +{
-> > > +       mtk_camsv30_img0_write(cam_dev, CAMSV_IMGO_SV_BASE_ADDR, buf->daddr);
-> > > +}
-> > > +
-> >
-> > [snip]
-> >
-> > > +static void mtk_camsv30_fbc_inc(struct mtk_cam_dev *cam_dev)
-> > > +{
-> > > +       unsigned int fbc_val;
-> > > +
-> > > +       if (pm_runtime_resume_and_get(cam_dev->dev) < 0) {
-> >
-> > I think this pm_runtime_resume_and_get() is not necessary.
-> > mtk_camsv30_fbc_inc() is called only in mtk_cam_vb2_buf_queue().
-> > But when buf_list is empty, mtk_camsv30_update_buffers_add() is called before this function.
-> > But mtk_camsv30_update_buffers_add() does not call pm_runtime_resume_and_get() and it works normally.
-> > So this function is not necessary to call pm_runtime_resume_and_get().
-> 
-> Hi CK,
-> 
-> This one is actually needed because .buf_queue can be called before
-> .start_streaming in case a user requests to prepare buffers before
-> streaming.
-> But you are right, if a user requests to alloc buffer before streaming
-> mtk_camsv_update_buffers_address will be called without pm. Streaming
-> still works because in start streaming we call
-> mtk_camsv_update_buffers_address again.
-> So maybe I should put the pm stuff in mtk_cam_vb2_buf_queue ?
+On 11/25/24 1:21 PM, Konrad Dybcio wrote:
+> On 24.11.2024 11:00 AM, Maud Spierings via B4 Relay wrote:
+>> From: Maud Spierings <maud_spierings@hotmail.com>
+>>
+>> The Asus vivobook s15 uses the ATNA56AC03 panel.
+>> This panel is controlled by the atna33xc20 driver instead of the generic
+>> edp-panel driver
+>>
+>> Signed-off-by: Maud Spierings <maud_spierings@hotmail.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts | 16 +++++++++++++++-
+>>   1 file changed, 15 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
+>> index f25991b887de3fca0092c5f81c881c5d8bd71aac..dbc85aff50a95bfc2ac11528d1901979ec7b1501 100644
+>> --- a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
+>> +++ b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
+>> @@ -407,9 +407,13 @@ &mdss_dp3 {
+>>   
+>>   	aux-bus {
+>>   		panel {
+>> -			compatible = "edp-panel";
+>> +			compatible = "samsung,atna56ac03", "samsung,atna33xc20";
+>> +			enable-gpios = <&pmc8380_3_gpios 4 GPIO_ACTIVE_HIGH>;
+>>   			power-supply = <&vreg_edp_3p3>;
+>>   
+>> +			pinctrl-0 = <&edp_bl_en>;
+>> +			pinctrl-names = "default";
+>> +
+>>   			port {
+>>   				edp_panel_in: endpoint {
+>>   					remote-endpoint = <&mdss_dp3_out>;
+>> @@ -475,6 +479,16 @@ &pcie6a_phy {
+>>   	status = "okay";
+>>   };
+>>   
+>> +&pmc8380_3_gpios {
+>> +	edp_bl_en: edp-bl-en-state {
+>> +		pins = "gpio4";
+>> +		function = "normal";
+>> +		power-source = <0>;
+> This is <1> on other boards.. I'm guessing you verified this against
+> at-boot values?
+>
+> Konrad
+I checked all the other gpios in these patches but it seems I did not do 
+the same for this one. It is indeed supposed to be <1>, I wonder if the 
+lenovo slim 7 dts is wrong too then.
 
-mtk_cam_vb2_buf_queue() should only touch the hardware if streaming has
-been started, otherwise it shhould just put the buffers in a queue and
-return immediately, and the initial hardware setup should be done when
-starting streaming. There should be no need to handle runtime PM in this
-function or in mtk_cam_vb2_buf_queue().
+Anyways, I will fix this, with a couple of other parameters that have to 
+be added as well.
 
-> > In other register setting function, please also check this pm function is necessary or not.
-> >
-> > Regards,
-> > CK
-> >
-> > > +               dev_err(cam_dev->dev, "failed to get pm_runtime\n");
-> > > +               return;
-> > > +       }
-> > > +
-> > > +       fbc_val = mtk_camsv30_read(cam_dev, CAMSV_IMGO_FBC);
-> > > +       fbc_val |= CAMSV_IMGO_FBC_RCNT_INC;
-> > > +       mtk_camsv30_write(cam_dev, CAMSV_IMGO_FBC, fbc_val);
-> > > +       fbc_val &= ~CAMSV_IMGO_FBC_RCNT_INC;
-> > > +       mtk_camsv30_write(cam_dev, CAMSV_IMGO_FBC, fbc_val);
-> > > +
-> > > +       pm_runtime_put_autosuspend(cam_dev->dev);
-> > > +}
-> > > +
+Terribly sorry for the lack of checking and thank you for spotting this.
 
--- 
-Regards,
+Kind regards, Maud
 
-Laurent Pinchart
 
