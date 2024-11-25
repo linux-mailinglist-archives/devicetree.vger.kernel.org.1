@@ -1,60 +1,63 @@
-Return-Path: <devicetree+bounces-124449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0AF69D8C78
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 19:51:15 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C8D99D8C76
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 19:51:08 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A95A6B235BB
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 18:50:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E3F6916A900
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 18:51:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F2711B87FB;
-	Mon, 25 Nov 2024 18:50:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 748B71B87FB;
+	Mon, 25 Nov 2024 18:51:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="utwzIvjI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GWZ1NxSS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DD251B87ED;
-	Mon, 25 Nov 2024 18:50:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48D9A1AF0CB;
+	Mon, 25 Nov 2024 18:51:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732560609; cv=none; b=nU1w7dvALtbQfhtkK14qo2TK1xudyMkaZ430t/NMhisCD5QquOPN93enPeerFvQG2fDiKocwrxFc38PDOUGfaEeQXxgQNrjuDaOSh7kbMl+L7hY/6VM/0kk8FVpmSzlMUama1wQpaadi52sJTPNTZQ7lny8pAQCu+Vd8v1oyOlY=
+	t=1732560664; cv=none; b=ky4rLDKANLNNSUS2zZvDMsL+4vvrTAnxfUUOnHW6JCyZN1XXJiDtEjSQOy/U80gtvs0vvsogIR84vd07jWFgO1PGUmk4Y8R/omwiudwbafj8Yh2C/jrqqr5oPN/ODIEdr5qgaWwFVjlzvvxxWn/LIWA6BnmK7hLgpGc/lLazVQY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732560609; c=relaxed/simple;
-	bh=hy3kAK8dBc/P3+3R55Y4KPBRh40qNF5lRW24dklHEck=;
+	s=arc-20240116; t=1732560664; c=relaxed/simple;
+	bh=uY0pXsQaVdcCrBZgW210jEd2AjTKJ2oEZwRc9gu+FXc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ol/wjQwS2fZAU/vzqKduYx6BVAUNJOJrOwrSxyz90KLyYPiFUcQGeSi/uyPdrg67ddK9VAWuasyl0JW8USmHO+ZrtDRtqirFzrXUZ6SDmwzYPOIklrTt0b7h3XygYknOe/oT99IL8x78Tk6nmbWQ+YPRyxb+quAObJha9bunsFA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=utwzIvjI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E89A1C4CECE;
-	Mon, 25 Nov 2024 18:50:06 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=rdtgvNHu/jZaDlCOvCRJggRwQUY+mBVxXJnYxDyFuH3a7Zh9a/ojVuD1Xj66U2mebhKYHMQ6Hj0gQL3lKNE2XlTrSJGlahXDhzd67ol3AuW517Dyv8wbXTulSkAA5p18Wq9kLhO8XOAb3oCtrkejTGsPvC9CzYBzhyHDcsViwwE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GWZ1NxSS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60A0BC4CECE;
+	Mon, 25 Nov 2024 18:51:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732560609;
-	bh=hy3kAK8dBc/P3+3R55Y4KPBRh40qNF5lRW24dklHEck=;
+	s=k20201202; t=1732560663;
+	bh=uY0pXsQaVdcCrBZgW210jEd2AjTKJ2oEZwRc9gu+FXc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=utwzIvjIoQOdm92rT9kk+/2iCQSk50Y8rkF7YdlCMdiwTPh43CZuCPmAWXTmFzpqw
-	 fo3h3ctWTbUyO824tEwrbqjlTvuDVFhCbjsH5iHKoZzhDzdMTFDzrYoPYWWWFx7O9j
-	 Nn8dzi2tX1JUyz3pzWwbjlOmzID+WLM71Mt9+i1V5JdpgoC4xi6wPYJmXA065Czd6f
-	 LFxDJDEmyl9kgrj8Gg+gcXIWyX3DXFL5cJQVA1fSYDo+1/1l75Q5E6Yfb53M7DNof2
-	 TlFaU5gDtK4YFtL0M26ZLzODmGb7FGXUOxUGjVIMMBsBx8okouvlMzMBdbB7/EZBgK
-	 ujT8i2hECHunw==
-Date: Mon, 25 Nov 2024 18:50:04 +0000
+	b=GWZ1NxSS9BMUzonxxLaX9nW/stfZtQ1qOU5P6/38nHJIav3FeVmGCHTaiquXh6Iaz
+	 bTFLkLckDVBgpXt8WakDjRI7cfrNbxWnqqharYMXG51mcqpTWbeyNkbxZ1orGkHdpf
+	 pQofC3T7O4UDO6sHM6LTJE20HJ386PjKd4z+0Vyz75hVzVNzI/VacjIVrsxdtWtHxn
+	 G/oC9D1aw76LXVOuXzphFtkTGcKMUk1EYAMmdV4h1yeo3m4rRA/dK4COgMXH93cKkE
+	 crH/sRCEiZP1vSdmX6jimw86ydadyKXgLj2MM4P8YnfTLi/kvj2KmChEWfxfl7l/Xc
+	 lbM+jl5MYCIvQ==
+Date: Mon, 25 Nov 2024 18:50:59 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: Add SM8750 MPSS and CDSP
-Message-ID: <20241125-culinary-twig-29b2b67af221@spud>
-References: <20241122085623.19988-1-krzysztof.kozlowski@linaro.org>
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: Re: [PATCH 01/12] dt-bindings: serial: renesas: Document RZ/G3E
+ (r9a09g047) scif
+Message-ID: <20241125-exfoliate-seventh-2b2a6c7d189d@spud>
+References: <20241122124558.149827-1-biju.das.jz@bp.renesas.com>
+ <20241122124558.149827-2-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,39 +65,35 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="XBqM4UBW3vx0FdUJ"
+	protocol="application/pgp-signature"; boundary="QE3t0M+FoEU3AQlN"
 Content-Disposition: inline
-In-Reply-To: <20241122085623.19988-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20241122124558.149827-2-biju.das.jz@bp.renesas.com>
 
 
---XBqM4UBW3vx0FdUJ
+--QE3t0M+FoEU3AQlN
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 22, 2024 at 09:56:22AM +0100, Krzysztof Kozlowski wrote:
-> Add remote processor PAS loaders for SM8750 MPSS (modem) and CDSP
-> processors.  Both are compatible with earlier SM8650 with minor
-> differences:
-> 1. SM8750 CDSP has one more sixth shutdown interrupt.
-> 2. SM8750 MPSS lacks fifth memory region for Qlink Logging, according to
->    downstream sources.  There might be other differences, because the
->    modem currently crashes after starting.
+On Fri, Nov 22, 2024 at 12:45:37PM +0000, Biju Das wrote:
+> Document scif bindings for the Renesas RZ/G3E (a.k.a r9a09g047) SoC.
+> SCIF interface in Renesas RZ/G3E is similar to the one available in
+> RZ/V2H.
 >=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---XBqM4UBW3vx0FdUJ
+--QE3t0M+FoEU3AQlN
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ0TG3AAKCRB4tDGHoIJi
-0hjJAP910O0tTk+WuQEq+rvPO367XFc11RrVOfesMzbRZNwk3gD/XUcqjAfrbcaR
-71l/bVl0yE5gGqlBFOtACKDsJuxIqg8=
-=Jps6
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ0THEwAKCRB4tDGHoIJi
+0jSiAQC6DJ7Hl2ThbVm2585g5FPEpePXgveHUJQImz5HtJPDuAEA3nxlwFl+0bau
+7G92XuItZPTpWmfQjSTHwpwm0n6zQgg=
+=wQ4R
 -----END PGP SIGNATURE-----
 
---XBqM4UBW3vx0FdUJ--
+--QE3t0M+FoEU3AQlN--
 
