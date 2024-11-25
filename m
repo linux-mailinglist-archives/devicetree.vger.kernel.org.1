@@ -1,81 +1,54 @@
-Return-Path: <devicetree+bounces-124382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124383-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3FDD9D8A82
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 17:38:52 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A94119D8981
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 16:39:18 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B6C9168CA5
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 15:39:15 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE1451B393C;
+	Mon, 25 Nov 2024 15:39:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="faOHw3qO"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F1380B2A83F
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 15:37:43 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 576BF1B393C;
-	Mon, 25 Nov 2024 15:37:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a2FbMizl"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 842741AC448
-	for <devicetree@vger.kernel.org>; Mon, 25 Nov 2024 15:37:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA44A1AC448;
+	Mon, 25 Nov 2024 15:39:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732549060; cv=none; b=ckc+tZw7awD/YbVXtuqqnQy5Q1H2NtIRFs4xj4DaD/oodzvZuXxQouzjEANUmVkeEDocZSKC+D7nEa2eSN/EN2Rh8Emxbl8IUGmYbhSgWvmT/r+ZTJ9IxaAbZ+j0PQM6FU4gITFTN04TLIbIEORj585/qLYWp8lB9wZt34Dr1uc=
+	t=1732549153; cv=none; b=fFsgz6vScWyYVl3vIg1J/xS7+5oLn9Nh0Xb+mtc3VSrg/MhzT2EwPrWW/Xbp38WnR3XGVkyoF8et54BWl5DYb0vA4Wp2gaSzD71pcwCh2SHoJjf46yWi17cVeexGIDUl+jGQGQ5e1NKmXuGJ29LL85UdxcpL/aw0k9HFTkyW/OI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732549060; c=relaxed/simple;
-	bh=G9neb+XkH6gOH+GosPEzMre6WvIqpGwyQ7NQSc5QvYU=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=VPJ5KzZwA4q9H8Le71twDS2r4HTtldmMasixLuCdHVLdZfCoAoN/SF/qdLGGnhxpExmCyW9KFc1yrbdulz+WjGG7567sXcQ6uwo9LtMfIpaOwiPEvYoPW2Vl1fT3vktnjpbLNxTVdq/UYkNj8WO4OVdhc9mIPOn9ULLBG3wa67Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=a2FbMizl; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-53de367b85dso1364667e87.3
-        for <devicetree@vger.kernel.org>; Mon, 25 Nov 2024 07:37:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732549056; x=1733153856; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3Hg71u/nSxxdt/8mQpbUuh2Vaj/SF/MUnmwqWlHQVd0=;
-        b=a2FbMizl7hnrZXwjSh5ucemSsBRwr3cnEwyVFP7AwW+rtvQMjDWqqXhr34JFazRTeZ
-         r9Gvk7HTpv0uwfh+FopCOl0Wdij0zAzGGmz1SDvuf3BOCeoPGjJXWiXjvPQ8fLNuf9Vp
-         VBAuU2sAG0T+u/W6fs/O3aMJnwhOkWduC0le3eXMhNpR7wSqOmCOaNSLFWiIajRX1jFI
-         RMJDMZyEyK1pfGH8QmtfBQPFqFetVNqK2Dy7fg5vUGlsS3MmsRyTsuD3AaF6vRmlHFB6
-         05sHKISl3OAwJb8iBIAS3qxi4W1zfmrdHIoKG42oLybc7hP42+qe/JM5ZzXmwt9kjdBz
-         aoYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732549056; x=1733153856;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=3Hg71u/nSxxdt/8mQpbUuh2Vaj/SF/MUnmwqWlHQVd0=;
-        b=Ze4C4SdPAJIV+XYZJzEvEpCxOmVKVtxKe1NrfkQSL7MexOmsqyYl8AoIwV2HOH8eIg
-         n9MG3DMlKRuqGaCMLXFNDu1VMNY5lxzWsE8spgWd+F2gQ5lQc694P5K9pOiXNcTpK/fD
-         8fNcUZhVynwQHkjWXFiliAHWdtcnGBWONbhHV9Mo0jAaPWgIgORDhGRcLS5/jx5sg8KZ
-         vrhqBahYXRT1k3rK11F31Hy0inaNMrNq53B2+RdaObRz8HM3HgywyG0MbyWPoO2HobFO
-         8CmIsrtU9RIMYnRX4wzY7RPQ+V/1UoJP9x8uAbrDYdZgEdGHlIMf+KRUN6pSzdGBivLx
-         00nw==
-X-Forwarded-Encrypted: i=1; AJvYcCVPxznz7JwRTELg6Ywx5ba5hJwZIRVFKPkwveSg/1vv8m9M+8+Bftv+JyaGiII5+uVDxunIVX9gLOJ1@vger.kernel.org
-X-Gm-Message-State: AOJu0YydI6REW89xZYuk6SV7AAxtJPX+TdPWFYw+ssHbhOJgY6y4oEdV
-	mukvsRmTd3/GJhwlsLItt0I7PyR9xktpucRpyr7jW8F8o5rLbTOd2oBtHuVPkUQ=
-X-Gm-Gg: ASbGncsIxMJaGZ54ITrOhBotl3mqm4YbZN93sjYrke4z71PrSlK6Y4ITjaIFhPOWK+r
-	U7DqGUAAgzUDfqIiCuX2izIZQjPj/0riBDD2WLRfy+rN2S0v98FAz+2lg2BjFVPP65Xg8vKoQ2f
-	smjteWmFdKt2yl6Hxn+sBf5SuRmaD/3mReaAycaQrbcMbY0HHquLQfNQDfEku7Lgzep37OnPg9B
-	jMwcsMfBpBvGTrd4cwMzC+LLMQKr6/p88hQJGidYffaZaz43aGSyiRK13ucIom+LMxFijYNB2tU
-	dFb0x4neLCpgu+bLspR4sTCmo60=
-X-Google-Smtp-Source: AGHT+IHmC/h4cTUnON85E6sO/QnQqtWoSOkY3lw5hIYTrZwaGeM/PrXuqTSpTpCW43QaBSIa3xvw0g==
-X-Received: by 2002:a05:6512:1247:b0:53d:a9a4:7567 with SMTP id 2adb3069b0e04-53dd39b4f71mr6398723e87.48.1732549056577;
-        Mon, 25 Nov 2024 07:37:36 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:9dc0:6c46:415c:5f8b? ([2a01:e0a:982:cbb0:9dc0:6c46:415c:5f8b])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4349ca82957sm66277205e9.33.2024.11.25.07.37.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Nov 2024 07:37:36 -0800 (PST)
-Message-ID: <48f3bb08-a591-401c-bc0c-6af0506a1b1f@linaro.org>
-Date: Mon, 25 Nov 2024 16:37:35 +0100
+	s=arc-20240116; t=1732549153; c=relaxed/simple;
+	bh=z+ueDwTi1FSEUiAFpqYNlRAcOCUi1kGZm9AIgB6v0IM=;
+	h=Message-ID:Date:MIME-Version:To:Cc:From:Subject:Content-Type; b=bi3BYw8pBnQUocDgi8t2AwPeicolyUqYDAO4FW9ZT8ZfoBEWxhSMIlSpw79p2YKiXzs3IbWviv6061XL+AKWttrUMNsGj7V0OoJdg96cMhxgOo5yIM22Do90SAqa8S6Jcgw0xPAmx2p+fHzT+8t7KnDH64mGi9+UEGXHkdM2Wmc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=faOHw3qO; arc=none smtp.client-ip=212.227.15.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1732549142; x=1733153942; i=wahrenst@gmx.net;
+	bh=z+ueDwTi1FSEUiAFpqYNlRAcOCUi1kGZm9AIgB6v0IM=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:From:
+	 Subject:Content-Type:Content-Transfer-Encoding:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=faOHw3qOwAL8wWM88GMgvb8zIAdkEW5jwJUUwgW5ARf6YuETw6BAYwKodKm3K17V
+	 BPA21tQOPiHzllSSYbo1AAMpMziX1OiLpHzLVt59UqAWyBU2y1/jIh+QgKZuIoczr
+	 uwfbvGtDkZB68cSWjR/T0j/wlfZgFClB2vHFHmUY5/5Oa2baPp0gOcPFPt+g1ChXc
+	 OC31l7vaBYWZaxTD1uwoji0JdzYAZAX4R/uoBqq4jXwrISBJJgBM9yD1eXAtX5j7P
+	 rPGAS304WG7s/RW7mz9jVUPU00ojTcowzV0CflXfnjG0LcNVO0Q66umNShgN7FxLC
+	 wPxFl20W06CN8VgvMA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.105] ([37.4.251.153]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MWih0-1tDTbS1GLg-00KbfN; Mon, 25
+ Nov 2024 16:39:02 +0100
+Message-ID: <a052fb31-c021-483d-a0a2-55fff196048f@gmx.net>
+Date: Mon, 25 Nov 2024 16:39:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,95 +56,49 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 2/5] gpu: drm: adp: Add Apple Display Pipe driver
-To: Hector Martin <marcan@marcan.st>,
- Sasha Finkelstein <fnkl.kernel@gmail.com>
-Cc: Sven Peter <sven@svenpeter.dev>, Alyssa Rosenzweig
- <alyssa@rosenzweig.io>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jessica Zhang <quic_jesszhan@quicinc.com>,
- asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Janne Grunau <j@jannau.net>
-References: <20241124-adpdrm-v1-0-3191d8e6e49a@gmail.com>
- <20241124-adpdrm-v1-2-3191d8e6e49a@gmail.com>
- <10d0aa88-de2e-4856-a137-301519e58b2d@linaro.org>
- <CAMT+MTRWZWj=3AP7wyooXr49-W4vcm0ZbAoqPyEuNkQBMOaJfw@mail.gmail.com>
- <cc71021e-b53d-4eda-bad8-abb4df13575f@marcan.st>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <cc71021e-b53d-4eda-bad8-abb4df13575f@marcan.st>
+Content-Language: en-US
+To: =?UTF-8?B?S3J5xaF0b2YgxIxlcm7DvQ==?= <cleverline1mc@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Ben Gardner <bgardner@wabtec.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>
+From: Stefan Wahren <wahrenst@gmx.net>
+Subject: Re: [PATCH v3 3/3] dt-bindings: w1: ds2482: Add vcc-supply property
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:RgvGnme+nn/BmD0pY4d2ccqxah7EVyW+j8kv0PKnuWa9CbHcfQB
+ 7TGHAOyCMe9hvBM5o2r2R83Pvqu0VMp/HMKA8rO8sHK6LxQ1Ll+JwWDG9RtjxB/x3+uN4R3
+ 35T1E8SkKJJgV7QC/f6eOY0bWKufurleqVj2hvT7BuomCZZ1aIjtrtfdgbeOwwsS2iDhowb
+ 989TtKMDvhAGb2ihVL+Ww==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:+btVzO60sTo=;9QMht7vsyZtfdgCsNOIqv76Dvcv
+ fWkARg20JUuqvh+2yE+o9J54sw9hP/pA1cC4TuXrN01YHJnIR+RiYgtTzXrcRqzWIdvmrNCKC
+ zshyI6IaJ0v71o291fcmhZMuHIELmYgdSPTStg1mA/ueeh15IHLSfjAvjbcBmjoqSlO8zcra0
+ C/BtJCCFsya51hAU9V0xrKmWFBetazA8D+sdbF35MBUtwDQugiLm0W9V20G62IZkkUbMc9uRM
+ Gj49ZVi9KVWZaTpVdzfVcSI8cYpT9TmcBQKOEjdH6gSenSefd73hV/u6EkwaqMJEKkqWKXEsd
+ TZAPw8O8NgTejjfjr1+yAhvi+WHPoVOfnwVKhgZXiCOuYdEUVgj4QLSPCmcQo/wT8HFEIsTSc
+ FTuUn3ZXXKNt42df7gg8EAe5SE+8KAYNIGFad8xPefCp1i27Q0nVr4AF05PCv3yNsO+UuGx+Y
+ dV4OZV3seTQ3oInjkPKEIGfDpAQP8TiW45tyddafmMfwYNjgq9epfI/PN3ilMkxfQ1y8VE2VD
+ /aobLVt8s93cvdX01Tc3h+LMumX2WmKQ+vD6VYqxzUzfesBTBL3DDmzJL7xVyI0bzBnno4izI
+ y1dwJe7prrbe+527zqZHBsNZKbsFrPmWNkhZ12DncJir+LlerxCV4Mnn6u9hZKc6yKg2QNQ+Z
+ I1Pi2pfSOjlizdebACbUCzmlF6zeGPCL2smHljNG1YJLlyqRQzVKVtRp9HdIlekESGQwG2oCH
+ 0Goqi0s68cYngQy9gwUIW8rYngi2Ep8hjzzp8ceMUWRqLvj1aEqVcs2Xs+ZY4AiB1LU+7bebB
+ tYeGv5UMb3JJAymF713DeEaDxfvvCUxYPMcb6b5G+AOI82FPdYsgfhVw9afLQp75N7kK65HPj
+ xgC35MiCc4+0DpcL3iYRV9yrSIqgFqnxFsbj4t3Z6iEBxkpFX7NguKKl+
 
-Hi Hector,
+Hi Kry=C5=A1tof,
 
-On 25/11/2024 15:24, Hector Martin wrote:
-> 
-> 
-> On 2024/11/25 20:24, Sasha Finkelstein wrote:
->> On Mon, 25 Nov 2024 at 09:50, Neil Armstrong <neil.armstrong@linaro.org> wrote:
->>>
->>> So this controller only supports a single mode ???????
->>>
->> Most likely. On all devices it is connected to a single built-in display.
-> 
-> More specifically, the controller obviously supports multiple modes but
-> it is pre-initialized by the bootloader for the single hardwired
-> display's only mode. So as far as the driver is concerned, there is a
-> single possible mode, and there's no point in trying to be more generic
-> if there is no hardware that would use that.
+ > From: Kry=C5=A1tof =C4=8Cern=C3=BD <cleverline1mc@gmail.com>
+ >
+ > ds2482 has a VCC pin, accepting 2.9-5.5 V.
+ >
+ > Signed-off-by: Kry=C5=A1tof =C4=8Cern=C3=BD <cleverline1mc@gmail.com>
 
-I totally got the point, I just asked to slightly change the design to fit
-the overall DRM/DSI/Panel architecture.
+Sorry, I'm not able to reply from my chargebyte address.
 
-> 
-> In general, it is not possible/practical to be generic for reverse
-> engineered hardware with no specs documenting how to drive it
-> generically. You just can't know how to implement the options that are
-> never used in practice. I spent a lot of time on exceptions to this rule
-> for the GPIO and SPI controllers, and that's not going to happen for
-> more complex hardware like MIPI DSI.
+I'm fine with the content of this patch, but in case you need to send a
+v4 please make this the first patch of the series.
 
-I'm fine with the overall actual design since it's a special usecase
-for a special display present on only a few SKUs.
-
-Nevertheless, as Maxime expressed, you should still try to fit nicely
-on the abstractions, or change the abstractions.
-
-Neil
-
-> 
-> - Hector
-> 
-
+Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
 
