@@ -1,110 +1,184 @@
-Return-Path: <devicetree+bounces-124100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124101-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D270B9D79F4
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 03:07:06 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 26EA8162C99
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 02:06:59 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4278718027;
-	Mon, 25 Nov 2024 02:06:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MYCyg9Na"
-X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AD259D7A0A
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 03:20:25 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1582317C60;
-	Mon, 25 Nov 2024 02:06:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCC3A280FE7
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 02:20:23 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 932162500C9;
+	Mon, 25 Nov 2024 02:20:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VESBtHs3"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC60E539A;
+	Mon, 25 Nov 2024 02:20:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732500413; cv=none; b=tt0ibwoTTcxm+R/5gevmUH2m13S4r7k3YYYDUOIeSELoLsyciHi/QPdfac/K9z2mxBlJuwZ9rw2sczxIFb2lmgdpQ1x7NjE4zo3wn+T9+5/Jpy73J2+3E2CvWCa+x2ZZrfVEndYUOjsm2lAQv2gB0bLwyPTrvojuK2wCMMsrGDo=
+	t=1732501221; cv=none; b=D71aBjX24Q28s9M20Sr49LMSwwjdwOcCFOH/LwWKHKWy5H+6uq4qJVYT/3p2xBPd7tbpK0mcA7waDIK5yhe9PjKSU27ORtGgxgNr6/g7qsJ791CCQvQsqOJ1dTqUDF5gHCQmV5DOUOsg1MnhwvmXF1vwT0zTbxuFdXM1OQFlqnA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732500413; c=relaxed/simple;
-	bh=Gu5Wu6oqy5RrPJGF75jiB8mV6u7GUvi00veqq4oAV6I=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=YouYvHkcsUwAr7lnYucoUGb3+BDYIMhnz19TM0OdCpaZTvMya7zS3GSYy1otCzS4xiigKUwpF3UEh+oIQd/R6sbcOOYVXFw6f5LAaOMBJvwa3+qCUfVq6md69ADuSR5rVm1/PwMYZH7mZ5XtiJeYvflmHBpvgBwTMzF+DQuXSLo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MYCyg9Na; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B31A7C4CED9;
-	Mon, 25 Nov 2024 02:06:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732500412;
-	bh=Gu5Wu6oqy5RrPJGF75jiB8mV6u7GUvi00veqq4oAV6I=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=MYCyg9Na2ZSPDLA10+VfV7vvGR536PZbxkdwlN9SVGiZXCNzmI4JkyDU4ml3fYcz8
-	 HOYLlKb2i8HldOFxv15S6gVnl2YWa8yYMfxL9gqs9YYgLXWpcE/DVzlDug1xD9AIUs
-	 xgoTY0HkEL1a5n/pQBK1zMeJRptg9wNThp07WVrBCiIL5cFOpefCPGp8BjBHUqKHRN
-	 Kbj7ZpslOPuKDpu1i7WKRP9xiMw7t1d3k3MO99sMOmwKaAaBDL0ISNZb4MUcli10bc
-	 r/JBxZUf/mUqJvtjdoBd7DjhpSa0A2R2aT6B04oJ2vAL0JntI9gx2hsAYXZvxVmRzC
-	 wk+GWhxiBC0VA==
-Date: Sun, 24 Nov 2024 20:06:51 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1732501221; c=relaxed/simple;
+	bh=aKFcQ/fHtdKz0ODHzEPNO4APsuqME9RMV3b2C4hSq10=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=n79Z9kfssHMpMiQY6ygUUielq7Dn7an1yec4Yfb8qgLtzVMZzhrxWQ020XFe0d1ZZ7DzOSWA/T5w/IvE+Z+btfyCEuPkkip1u6zaVel+DPnAJHlxBGzzS4T5MfP8qW3dJKihPk9dAooOh5eVXBE6HnNrhglaR1JtzlbTZxciPRM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=VESBtHs3; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AONBuvl026562;
+	Mon, 25 Nov 2024 02:20:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=weMK2IPGHtlB2h8VJY4ZkVIc
+	0uwz1nC6r5XORnvCWRU=; b=VESBtHs3f2906F6kYTX+TPJ9MSnfXQVSNTDOjwDE
+	0CEaYWCpN6vpT1m6i/dNWwq2hEj4E7ZubGF3Yh6pUf7wWYc5LxN8L55VuS+Lb+gs
+	nOXImB4hIPK5RpqrB3k464ibHI3z209Jigpl+tuXItXJPEtd6LBdyoAJnWrDA0Dc
+	tbXHCGtqgcnzfn4GJKDse1NpL1ZmrGqfBrgwEK0QM140ETOve2ICO1VJhxqLGGtp
+	tBjVkx24XOl54+KowQtp1RSWEdhBNEGM0BHS+bc+UoOcfMEYomkM1Cf+81qfc+vJ
+	j/v/ujoIXT+kbTwgO3ghmjuwtgfI+FJXAGqsXCyXHfG5fg==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4338b8b174-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 25 Nov 2024 02:20:13 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AP2KCo7020522
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 25 Nov 2024 02:20:12 GMT
+Received: from cse-cd02-lnx.ap.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Sun, 24 Nov 2024 18:20:07 -0800
+Date: Mon, 25 Nov 2024 10:20:00 +0800
+From: Yuanjie Yang <quic_yuanjiey@quicinc.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, <ulf.hansson@linaro.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <bhupesh.sharma@linaro.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>
+CC: <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <quic_tingweiz@quicinc.com>, <quic_yuanjiey@quicinc.com>,
+        <quic_zhgao@quicinc.com>
+Subject: Re: [PATCH v3 1/2] arm64: dts: qcom: qcs615: add SDHC1 and SDHC2
+Message-ID: <Z0Pe0B9LsjpRHkkS@cse-cd02-lnx.ap.qualcomm.com>
+References: <20241122065101.1918470-1-quic_yuanjiey@quicinc.com>
+ <20241122065101.1918470-2-quic_yuanjiey@quicinc.com>
+ <f9b01690-8940-4f8b-b142-6c2ec4db3e83@kernel.org>
+ <Z0BDYiVaLQXaMsle@cse-cd02-lnx.ap.qualcomm.com>
+ <ccbc6324-0dcb-405a-901a-12dc33a8130c@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, asahi@lists.linux.dev, 
- David Airlie <airlied@gmail.com>, devicetree@vger.kernel.org, 
- Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
- linux-arm-kernel@lists.infradead.org, 
- Jessica Zhang <quic_jesszhan@quicinc.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Hector Martin <marcan@marcan.st>, linux-kernel@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, Simona Vetter <simona@ffwll.ch>, 
- Sven Peter <sven@svenpeter.dev>
-To: Sasha Finkelstein <fnkl.kernel@gmail.com>
-In-Reply-To: <20241124-adpdrm-v1-1-3191d8e6e49a@gmail.com>
-References: <20241124-adpdrm-v1-0-3191d8e6e49a@gmail.com>
- <20241124-adpdrm-v1-1-3191d8e6e49a@gmail.com>
-Message-Id: <173250040970.6667.2839660338071681474.robh@kernel.org>
-Subject: Re: [PATCH 1/5] dt-bindgins: display: Add Apple pre-DCP display
- controller bindings
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <ccbc6324-0dcb-405a-901a-12dc33a8130c@kernel.org>
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: jchMbIhawoy5L2ZIk6ukDaaSae-GO7rT
+X-Proofpoint-GUID: jchMbIhawoy5L2ZIk6ukDaaSae-GO7rT
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
+ adultscore=0 mlxscore=0 priorityscore=1501 lowpriorityscore=0 bulkscore=0
+ phishscore=0 malwarescore=0 suspectscore=0 mlxlogscore=999 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2411250018
 
-
-On Sun, 24 Nov 2024 23:29:24 +0100, Sasha Finkelstein wrote:
-> Add bindings for a secondary display controller present on certain
-> Apple laptops.
+On Fri, Nov 22, 2024 at 01:35:28PM +0100, Krzysztof Kozlowski wrote:
+> On 22/11/2024 09:40, Yuanjie Yang wrote:
+> > On Fri, Nov 22, 2024 at 08:04:31AM +0100, Krzysztof Kozlowski wrote:
+> >> On 22/11/2024 07:51, Yuanjie Yang wrote:
+> >>> Add SDHC1 and SDHC2 support to the QCS615 Ride platform.
+> >>>
+> >>> Signed-off-by: Yuanjie Yang <quic_yuanjiey@quicinc.com>
+> >>> ---
+> >>>  arch/arm64/boot/dts/qcom/qcs615.dtsi | 198 +++++++++++++++++++++++++++
+> >>>  1 file changed, 198 insertions(+)
+> >>>
+> >>> diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+> >>> index 590beb37f441..37c6ab217c96 100644
+> >>> --- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
+> >>> +++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+> >>> @@ -399,6 +399,65 @@ qfprom: efuse@780000 {
+> >>>  			#size-cells = <1>;
+> >>>  		};
+> >>>  
+> >>> +		sdhc_1: mmc@7c4000 {
+> >>> +			compatible = "qcom,qcs615-sdhci", "qcom,sdhci-msm-v5";
+> >>> +			reg = <0x0 0x007c4000 0x0 0x1000>,
+> >>> +			      <0x0 0x007c5000 0x0 0x1000>;
+> >>> +			reg-names = "hc",
+> >>> +				    "cqhci";
+> >>> +
+> >>> +			interrupts = <GIC_SPI 641 IRQ_TYPE_LEVEL_HIGH>,
+> >>> +				     <GIC_SPI 644 IRQ_TYPE_LEVEL_HIGH>;
+> >>> +			interrupt-names = "hc_irq",
+> >>> +					  "pwr_irq";
+> >>> +
+> >>> +			clocks = <&gcc GCC_SDCC1_AHB_CLK>,
+> >>> +				 <&gcc GCC_SDCC1_APPS_CLK>,
+> >>> +				 <&rpmhcc RPMH_CXO_CLK>,
+> >>> +				 <&gcc GCC_SDCC1_ICE_CORE_CLK>;
+> >>> +			clock-names = "iface",
+> >>> +				      "core",
+> >>> +				      "xo",
+> >>> +				      "ice";
+> >>> +
+> >>> +			resets = <&gcc GCC_SDCC1_BCR>;
+> >>> +
+> >>> +			power-domains = <&rpmhpd RPMHPD_CX>;
+> >>> +			operating-points-v2 = <&sdhc1_opp_table>;
+> >>> +			iommus = <&apps_smmu 0x02c0 0x0>;
+> >>> +			interconnects = <&aggre1_noc MASTER_SDCC_1 QCOM_ICC_TAG_ALWAYS
+> >>> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+> >>> +					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+> >>> +					 &config_noc SLAVE_SDCC_1 QCOM_ICC_TAG_ALWAYS>;
+> >>> +			interconnect-names = "sdhc-ddr",
+> >>> +					     "cpu-sdhc";
+> >>> +
+> >>> +			bus-width = <8>;
+> >>> +			qcom,dll-config = <0x000f642c>;
+> >>> +			qcom,ddr-config = <0x80040868>;
+> >>> +			supports-cqe;
+> >>> +			dma-coherent;
+> >>> +			mmc-ddr-1_8v;
+> >>> +			mmc-hs200-1_8v;
+> >>> +			mmc-hs400-1_8v;
+> >>> +			mmc-hs400-enhanced-strobe;
+> >>
+> >> These are properties of memory, not SoC. If the node is disabled, means
+> >> memory is not attached to the SoC, right?
+> >>
+> >>> +			status = "disabled";
+> > Thanks, I think qcom,dll-config and qcom,ddr-config are properties of Soc,
+> > they are memory configurations that need to be written to the ioaddr.
+> > And mmc-ddr-1_8v,mmc-hs200-1_8v,mmc-hs400-1_8v are bus speed config,
+> > they indicate the bus speed at which the host contoller can operate.
+> > If the node is disabled, which means Soc don't support these properties.
+> No, that is not the meaning of node is disabled. When node is disabled,
+> it means board does not have attached memory.
 > 
-> Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
-> ---
->  .../bindings/display/apple,display-pipe.yaml       | 59 ++++++++++++++++++++++
->  .../bindings/display/panel/apple,summit.yaml       | 24 +++++++++
->  2 files changed, 83 insertions(+)
-> 
+> Move the memory related properties  to the board.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Thanks, Ok I understand, I will move the memory related
+properties(qcom,dll-config and qcom,ddr-config) to the
+board dts in next version.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/display/apple,display-pipe.yaml:21:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+> Best regards,
+> Krzysztof
 
-dtschema/dtc warnings/errors:
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241124-adpdrm-v1-1-3191d8e6e49a@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Thanks,
+Yuanjie
 
