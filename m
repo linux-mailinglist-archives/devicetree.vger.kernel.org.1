@@ -1,122 +1,246 @@
-Return-Path: <devicetree+bounces-124344-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124345-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A82CA9D86B2
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 14:43:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E22C49D86D9
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 14:46:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D6DE28BDF6
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 13:43:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98B12285664
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 13:46:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC2B51AB517;
-	Mon, 25 Nov 2024 13:43:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D75B1AC456;
+	Mon, 25 Nov 2024 13:46:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="noW6Bvmd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YbCcKPkA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5743D18872F;
-	Mon, 25 Nov 2024 13:43:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F104D18872F;
+	Mon, 25 Nov 2024 13:46:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732542184; cv=none; b=ZTKwPWDoY7mP+j7olY4Qg+aU45KVIcOPdr7O/8xaN3AkvmuInvziP3g5/jeyPvFwQVolgGYQON7ZP0FTKM6V5LAHQRHr3jmrBzA0vOhQ1yrm6Vhr/XWIVbmhzdDosEhQGm93V6K1C3i4fyKpgPa2tO0p1VlsO+RnnsvLAjk76rI=
+	t=1732542375; cv=none; b=Ua2bo6CzCbTRrCUhvpvax6HD/ERIiQOgEQ3jdE06aLAUhLKlrX+6fvqMCUglbogyckKJCzo2sX8fGIEG/cfg16HvWsJ0me+/ojb14HTLo5MRZR2OefwnVKTrTUNI3b9VasiUCBtc5VHZRpLMDdSHk7N3kVzPX6iV/gniCCH5mnw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732542184; c=relaxed/simple;
-	bh=Vh96bJoOwrNFyO6Sp6Hhb3hniflnbzfSe79opOPAAMU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VgLtNDQtl9eG+j25bmu4QfMBjsUwB1KlGPFDECFuqGKNLMBQibX0x11PPlb5iNMij+kKghmzwtcM2TzCSBHDEB5ACM4ECPbvCtfaYDsX6Y3PEsGwnXf+EvcoKzIRhSIPj2RFjsCxnJB2tH6GAr7hMDC6WU1SyL+4NIHca8jeHPQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=noW6Bvmd; arc=none smtp.client-ip=209.85.216.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-2ea33a70fdfso745121a91.2;
-        Mon, 25 Nov 2024 05:43:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1732542182; x=1733146982; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Vh96bJoOwrNFyO6Sp6Hhb3hniflnbzfSe79opOPAAMU=;
-        b=noW6Bvmdaa106xjizH8vxD6ha0cJauBwo+L+7I4cPb8XcFdE5CD9jg1rnSkO7PBC6g
-         FVLw5TQh53aC8Gd8lGI5sEGrbkoFc1DheD80KQAA9iBAGRA8K0is/AtjQHjGz7Y9Hw2h
-         k/nd8eT70bcVLFA9Fk16eJ9mzW6KdpsbvDBWW9ufMTehLbiF8PC9XULzhd1m3QtjamH1
-         L8wAq5gFmCPmXUYd7xQpnnz+CRunuzASD54dRGLe3M+TF5VYFtYO0I7pRGCRmaNd6kWW
-         9IsiGU2CcrDv7pQVXFRJhT3LrPB4wgoRsQr8a48Aqeifwds5W4eZCPHUJobxoZ1Gycx1
-         IIrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732542182; x=1733146982;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Vh96bJoOwrNFyO6Sp6Hhb3hniflnbzfSe79opOPAAMU=;
-        b=NKA9tz7ByTXcekBGab1dWYOfwc5yhiVB/5Bobe5Pp/xVmyfZ53Nx9XX8i9YiQa7K67
-         VH2QkDwUG7k7I3i1sxqaYliysQW6wDjn8mGr9WRhY5M/DoL8ia5yvJPV3Ip8lR/6mjpF
-         zAbnRt5Hj/kn1B3kbZjQs/Yt+3mBIhPgd5TTtsRDwFLEd9E4z9Z2A8ApnwHZhuQySMGI
-         qAhiwaAJBqkmE2OavapcEQbmYlG/qCQ8dM/ZxEeJzLHNqjkHWdF1SbXi2/Zd7/xZtVkb
-         gpnbyNIqLaLlx/H1OshAfw70oaBy8R8VsFSBeW9PDLMmZKoELmvu+zepfAMvcZTSemnA
-         UTmA==
-X-Forwarded-Encrypted: i=1; AJvYcCUoKxkJVNr7juowc0bIt3lbygMfM54GOuNRF7Q8WTioR6tZyDBJyzYw5QnQCe5+oynuYGyO5X3k8Bw4@vger.kernel.org, AJvYcCW6InM7epr34y62uqmjodh4KMMDQH5XQ9Z5PPRNuu6Hb6uyGvIeg0Op8gEvFQigKScRNVyX4TywurWhOH/i@vger.kernel.org, AJvYcCWA/mmnEIOLDDqpe0Ru5I4wsTbnND41y9ax716GFwFN4n92/YIqaHEI1mOmtd4CtJEthfP2t+j0DwVqeQTEHlM=@vger.kernel.org, AJvYcCWLGwMN4ENLamSDGYlTlEwpjUwq/9v8KqvG2Fdyj36DqiQOTG6lCFUV4XRTLn0P2hYkdkhqWF4IbR+h@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNa4P5OpnhgNYwPo/x9HsKUClueQMTBknHpnIdnYn6DzmExeb2
-	8UWF30AZa656b3FuUx/AGkIzGmUaROtumuRDTt1+Vh5lOLs26gRikyw/09rUZZ2FU8Bw+EjlUe+
-	8tY2bWeOC204IJHQeZTYIAQQcb7o=
-X-Gm-Gg: ASbGncsWp2ogAmuC3RJ3rGxVfk7GTuCFqMTCcLmBNksFdsX5C2oRkZvh1BvIL9BXJTv
-	sSpkkHQhvYZIEKzr9AJT6tH30Vm9zLGw=
-X-Google-Smtp-Source: AGHT+IGY3uQ6gtttopQGEvmtnMN78gZwZv98uC/pEs79Qk0Z00BiITe4CR6H5hcbiNZimM0EEV3FxfcxB0atDxrBtDA=
-X-Received: by 2002:a17:90b:4d11:b0:2ea:c2d3:a079 with SMTP id
- 98e67ed59e1d1-2ede7daaf62mr58486a91.3.1732542182583; Mon, 25 Nov 2024
- 05:43:02 -0800 (PST)
+	s=arc-20240116; t=1732542375; c=relaxed/simple;
+	bh=K6+biCOj1EJW76S/bxKgAp/0jtJ6hpnfLFl8aCpX1kk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=S9coZtUjC381a8KqG2myFJn0V8yWJocLgSO/R/boNpKxnMGb1itH5llKJTvwTs/nvT5qt8GIgSBHT+GlvyV+QNSvf+M2mS7S40uvgXalZYRJTT3vCX5+YU7J+92I3iSm//hCDufoEN06L7RdkSsD4hlqi+GcOw2ruDtHhwxsfqo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YbCcKPkA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E346C4CECE;
+	Mon, 25 Nov 2024 13:46:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732542374;
+	bh=K6+biCOj1EJW76S/bxKgAp/0jtJ6hpnfLFl8aCpX1kk=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=YbCcKPkAmTxo6obVn92cj7syWiLgZkzCsB61EG4qJy8slBEBjPfbPFkqNcR4LA5Ui
+	 AdArG9hsgq4Nf95pGETmezFJD6tFGOeRX1DIb45gW2SfLjdp/Hh1tfpZi1Et/WY1/f
+	 8I+PCaVJZmdoOiRhxmAf9oqdJAPCYlX57PWIWvQg+O9hxgwkWQ6wHHMhTBM9hpGNjv
+	 o7rb8k/UKuzNvH8oNqb47kbVqQ7R0z9migtlMfEO3+QO7QyH/Zlr4xoMdK0c7NsCM/
+	 brHRWNmBUBumA1jpJMYXerB8adhqiB8vtc2xSCFoYa0elfkVwT5Q4ltnKt/7vtX7pN
+	 unI+8bHcx3+ew==
+Message-ID: <9eeae001-92b2-40da-ba75-b03c95eb7139@kernel.org>
+Date: Mon, 25 Nov 2024 14:46:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241022213221.2383-1-dakr@kernel.org> <20241022213221.2383-6-dakr@kernel.org>
-In-Reply-To: <20241022213221.2383-6-dakr@kernel.org>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Mon, 25 Nov 2024 14:42:50 +0100
-Message-ID: <CANiq72moksyUHEYDXu3G_=FaLdXpNJrrihnw5QFhWaRZbdeT3A@mail.gmail.com>
-Subject: Re: [PATCH v3 05/16] rust: implement `IdArray`, `IdTable` and `RawDeviceId`
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com, 
-	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com, 
-	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me, 
-	tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com, 
-	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net, 
-	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org, 
-	daniel.almeida@collabora.com, saravanak@google.com, 
-	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	Wedson Almeida Filho <wedsonaf@gmail.com>, Fabien Parent <fabien.parent@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/7] dt-bindings: iio: Add adis16550 bindings
+To: Robert Budai <robert.budai@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Nuno Sa <nuno.sa@analog.com>,
+ Ramona Gradinariu <ramona.gradinariu@analog.com>,
+ Antoniu Miclaus <antoniu.miclaus@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
+References: <20241125133520.24328-1-robert.budai@analog.com>
+ <20241125133520.24328-6-robert.budai@analog.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241125133520.24328-6-robert.budai@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Oct 22, 2024 at 11:33=E2=80=AFPM Danilo Krummrich <dakr@kernel.org>=
- wrote:
->
-> +#![allow(stable_features)]
+On 25/11/2024 14:35, Robert Budai wrote:
+> Document the ADIS16550 device devicetree bindings.
+> 
+> Co-developed-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> Signed-off-by: Ramona Gradinariu <ramona.gradinariu@analog.com>
+> Signed-off-by: Robert Budai <robert.budai@analog.com>
+> ---
+> 
+> v2:
+> - signed of by submitter
+> 
+>  .../bindings/iio/imu/adi,adis16550.yaml       | 97 +++++++++++++++++++
+>  MAINTAINERS                                   |  9 ++
+>  2 files changed, 106 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/imu/adi,adis16550.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/imu/adi,adis16550.yaml b/Documentation/devicetree/bindings/iio/imu/adi,adis16550.yaml
+> new file mode 100644
+> index 000000000000..767b500afbaa
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/imu/adi,adis16550.yaml
+> @@ -0,0 +1,97 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/imu/adi,adis16550.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices ADIS16550 and similar IMUs
+> +
+> +maintainers:
+> +  - Nuno Sa <nuno.sa@analog.com>
+> +  - Ramona Gradinariu <ramona.gradinariu@analog.com>
+> +  - Antoniu Miclaus <antoniu.miclaus@analog.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,adis16550
+> +      - adi,adis16550w
 
-This should be possible to remove (starting with v6.11 we do this in
-the command line).
 
-> +// Stable in Rust 1.83
-> +#![feature(const_mut_refs)]
-> +#![feature(const_ptr_write)]
-> +#![feature(const_maybe_uninit_as_mut_ptr)]
+What is the difference between them? You have description and commit msg
+for this.
 
-`const_refs_to_cell` is also stable in 1.83, so you could move it also here=
-.
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-cpha: true
+> +
+> +  spi-cpol: true
+> +
+> +  spi-max-frequency:
+> +    maximum: 15000000
+> +
+> +  vdd-supply: true
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    description:
+> +      Must be the device tree identifier of the RESET pin. If specified,
 
-Having said that, to be consistent, I would just put them above sorted
-with the rest -- the compiler can tell us and we track this elsewhere
-(just added the last two here to our issue #2 list). Either way, it is
-not a big deal, this list will be going away soon and we can
-celebrate! :)
+Do not describe DT syntax.
+s/Must be the device tree identifier of the//
+Instead something like "RESET active low pin".
 
-Thanks!
 
-Cheers,
-Miguel
+> +      it will be asserted during driver probe. As the line is active low,
+> +      it should be marked GPIO_ACTIVE_LOW.
+
+This is false. It should not. Instead, it should be marked according to
+the board design. You can have there inverter.
+
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +    description: If not provided, then the internal clock is used.
+> +
+> +  adi,sync-mode:
+> +    $ref: /schemas/types.yaml#/definitions/string
+
+Do not redefine properties. You are stuck with what is there already :/
+
+> +    description: |
+> +      Configures the device SYNC pin.
+> +      scaled_sync:  Device handles internally custom scaled
+> +                    sync mode. It is stored in a designated register.
+> +    enum:
+> +      - direct_sync
+> +      - scaled_sync
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - spi-cpha
+> +  - spi-cpol
+> +  - spi-max-frequency
+> +  - vdd-supply
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        adi,sync-mode:
+> +          enum: [direct_sync, scaled_sync]
+
+This does not make sense. There is no other option in this enum. Not
+sure what you wanted to achieve here. If dependency on property then
+required, see example-schema.
+
+> +
+> +    then:
+> +      dependencies:
+> +        adi,sync-mode: [ clocks ]
+> +
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +additionalProperties: false
+
+unevaluatedProperties false
+
+
+
+Best regards,
+Krzysztof
 
