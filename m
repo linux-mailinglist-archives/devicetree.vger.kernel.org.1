@@ -1,48 +1,81 @@
-Return-Path: <devicetree+bounces-124365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EE499D89CD
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 16:55:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12EEE9D88E3
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 16:13:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5A56BB2BFBE
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 15:07:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C40A8281945
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 15:13:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BA781B21BC;
-	Mon, 25 Nov 2024 15:07:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EBC31B3926;
+	Mon, 25 Nov 2024 15:13:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s0txlxm5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P6ruaafA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CEF41B0F06;
-	Mon, 25 Nov 2024 15:07:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BFDA1AC453;
+	Mon, 25 Nov 2024 15:13:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732547222; cv=none; b=XX9+hwSao+Lh9Nkvllci3Xjn6cwsDCape3rZc+R1NWZ0HC1eiaBRxBqjUkV8wxNxg9lHfl0w6c03VbQwQSDoeYzSPhSrn2NtEY3Z2n/ktFa+WdipnNNcnfQ2NJ5YdPNQQx3xJuKyvSWgDMN+iWXOrZFF3EY5M6+qN78qJovAx18=
+	t=1732547595; cv=none; b=Ufi/7WQjBE694fVpXgOhkAUhVeoLybghVdZACM2dEGGoc1SHhRmg3ec0ly1J+emcPhdGvRFRuEtFVnNGxpjNdxKQWVrDHUdf5lmAHbdgCx335jiI2EAgiqdQEtnMw2lfHR1esN/lqKwQj08VT11KiuUC5qvDt2zUy1hPKf4c3kE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732547222; c=relaxed/simple;
-	bh=GuYBNacdFjyx0Mbh71rlmpj4hWJscIplgCjbtQear9M=;
+	s=arc-20240116; t=1732547595; c=relaxed/simple;
+	bh=BsyKX6vvZXO6hyTAnWAhmcMb39KdsKIPgutxDoUf/8g=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HF/9zDOwAB+DCa5D1RImun9627zP65z3V7dJ1RuvBjqYHRpvyFfiOk862Dyalf7y9zf+k7ibzYjK1ZVh0KAm3Ra1O+xWElVvxriXXoW++3OyUlNdG66+73j4fs2TJRu0aFDDRn0zH3v8EKpnQQYaDo4dIrPrEZVSZ03OsGsoTtM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s0txlxm5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2476C4CECE;
-	Mon, 25 Nov 2024 15:06:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732547221;
-	bh=GuYBNacdFjyx0Mbh71rlmpj4hWJscIplgCjbtQear9M=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=s0txlxm5DH7fkuXmCbMHdJjxanaPqrwHzWGzZFXZW6E3BhyPVe58RB2DouMmfP/fJ
-	 OFcdUjnR+J/qci2PU1eM0AdDDgy27trkSXLLjSkoGWwotkFDNuikqRJEIFUK/gjHGb
-	 C3DyokQDGuXRqaI09iTwTNFSDSEDJfO5/a1/lLdGuEgUapgYTgrUHJoRbLX9YgrujE
-	 fTS1L1lz9/SoGJ736FeA+QURaeAYtMr6IfT8iaGnUpL0oG2wpMTeoJd0FW9RO8GsVR
-	 brIRceOMBJhYYZGeKoMW4qE7aM6mkHrKWcUAcxuIE6ix1cHoSRKZpAynk1TVe9VYEA
-	 SWwCO+v5GusKA==
-Message-ID: <e647e8c7-6df9-44f5-abcc-34db74b8e266@kernel.org>
-Date: Mon, 25 Nov 2024 16:06:54 +0100
+	 In-Reply-To:Content-Type; b=bIGv1WkKnc41Kz2CCnLSNkdJSrKIHMeRzDoeoMXcc0Jt34OnOO5e6S7+0o8oFymUKRGDC6Uv/88kgRTw2HmguqpOuYog1QW5+YsShaPYGtPUxwRDSJe3JAQMXLCO1PJw5KgfF9q3EF8c1zdkBs3QXXWOABu5e2cpQzPAAXzzuvE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P6ruaafA; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-20cf3e36a76so44030845ad.0;
+        Mon, 25 Nov 2024 07:13:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1732547593; x=1733152393; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=hWIkfUGCL9W1Zq8MHpEKhoEtRwgrNR9DLJVdVZwUULI=;
+        b=P6ruaafAcaqKRhlOZdeewkOz10xGdSsHzkKpq+gXsd3N6Zh2avrZEaPjlJrNm7m7f8
+         mCqPAOcf4LtRN8C5b+sD9Mi3c70EjcSMYPYCdI+S8/9jJsjiBHZSpYsid41LxahYSs0w
+         NJkwm9Wpt1EWhqAimrCfvErtmd2WgPB/su34jw4KFXd8FALpU6bH/WvyvudEDjgVqzU/
+         ilo15fmaAaSinOcaq4+EeL3gf3o69S8Dj5uswCYvQaTuuys5tn8skMRobsSy+GjjJ0g9
+         1rV+TYuTTRTeCrGyUQlgE1HR3iuasMgTOMkdyHJX12ujN6bC14PsH26cmLIMTG6HS57v
+         DQIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732547593; x=1733152393;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hWIkfUGCL9W1Zq8MHpEKhoEtRwgrNR9DLJVdVZwUULI=;
+        b=dLDYrFB27tBbyuKSGDtV9QWPruG967xINgo5T5vTMgHsoDGixC6gffmgYRMWqanTKA
+         FTTZ1y1WT+OGHSGkM7ML3tsHTunVcAD/afbhDWrcsahFsR7uc8S3etT8xu0MBvX60woh
+         +ZrfIour3/1Ar33KtzW70t8v2Lw64QrU3Z4w9VgPiLX/H8XxOOMxidEcZ7a0luYPmqN0
+         ELLKWhHSHYNMPbZCoWpvnza59Fp7mzfecmW2Exaiuw1+CR81KU1PzQwRzyVtD7xyZ7y/
+         6DanjuODeNpe4A++wWWDSdtMWoaInLt2Ua/Pwg3t5DKbeZOlL1dgfDHpOHuo1Pr0tfP+
+         0KkA==
+X-Forwarded-Encrypted: i=1; AJvYcCUgkpn+tm55ZciCAbuQVRn95s99zswTpeX5PeKyhVGkJ/X1BTYxc2FM3Uea9nGEln0CtxbEJkU/FtCELJo=@vger.kernel.org, AJvYcCUxM5jjSCQDhBKQCdrQzkm6/KEnY9WT5juRx9ACP5zL1wWDJXh/P18wiMm6MqrtSr/PYDBK6BWHzliBAUaA@vger.kernel.org, AJvYcCXCiWqmBLMN05haLRm90+Xayt+BMTWB9yMBC4IFuuGQn8dNn2RqP8pn2uufx0wWszGdSRkCsXSqPLnu@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzmv7/99sS9M3MpRIUA/ktm5bHYv3J1yCB6woktEvRNpoaQSDJW
+	7ssmbW8AHIYO20LblSKI5GVAsDuF821IvJblg6Y72QfBNQfvPyQundnhUQ==
+X-Gm-Gg: ASbGncu9osjOZpOtgXO+vPmXN2Rh8cHTnY/OdrhrwBGO+ql0KlWvuCBdZyM1HpW8qq5
+	PxTo/G+5IMhghdM+4NALdT3/tp3AqSMzHpA54k0EW0iso1Ro22RGZ933JMKACgSp05em7qMLxEN
+	hMQLhHurp9OiA9VShOXLptaVTqd9vup1DKJpGf0lDqfiAwK7Ej1SUYN17QuEowEg1BvBlDV/WwN
+	pthYwWm3DuLYMtCP7vViJ6RWYIWqtJ+8abLoRID8kD0kW1zDCqS9uTj/MCijuavZ80OhVBdb0R8
+	+GzBcFlJOCwZ/cod4i4ha1A=
+X-Google-Smtp-Source: AGHT+IH3avj46PI2YmdHD4XdBJ/CME2+CtrwR1lq6ajtQWeRonWYz4xkncuORRFHdz7BiObxVsK+Lg==
+X-Received: by 2002:a17:902:e743:b0:20c:f261:2516 with SMTP id d9443c01a7336-2129f67b19amr188974355ad.8.1732547592793;
+        Mon, 25 Nov 2024 07:13:12 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2129dc23a35sm66188195ad.250.2024.11.25.07.13.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Nov 2024 07:13:11 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <893bbd30-300f-4138-8f68-64573e1f0140@roeck-us.net>
+Date: Mon, 25 Nov 2024 07:13:09 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,113 +83,109 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] gpu: drm: adp: Add a backlight driver for the Summit
- LCD
-To: Nick Chan <towinchenmi@gmail.com>, fnkl.kernel@gmail.com,
- Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
- Alyssa Rosenzweig <alyssa@rosenzweig.io>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+Subject: Re: [PATCH v3 2/2] dt-bindings: mfd: Add properties for thermal
+ sensor cells
+To: Krzysztof Kozlowski <krzk@kernel.org>, "Sung-Chi, Li"
+ <lschyi@chromium.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>, Lee Jones <lee@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, asahi@lists.linux.dev
-Cc: linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20241124-adpdrm-v1-0-3191d8e6e49a@gmail.com>
- <20241124-adpdrm-v1-3-3191d8e6e49a@gmail.com>
- <f2181c71-db23-4d94-9afb-cb8f2fc46bea@kernel.org>
- <3a6fb7fd-eb3d-428b-a37c-f04d81e7fbd0@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ Conor Dooley <conor+dt@kernel.org>, Benson Leung <bleung@chromium.org>,
+ Guenter Roeck <groeck@chromium.org>, =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?=
+ <thomas@weissschuh.net>, Jean Delvare <jdelvare@suse.com>,
+ devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
+ linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org
+References: <20241111074904.1059268-1-lschyi@chromium.org>
+ <20241113024000.3327161-1-lschyi@chromium.org>
+ <20241113024000.3327161-2-lschyi@chromium.org>
+ <4efe981f-f7ae-41c7-9c12-2aa3a5d2d046@roeck-us.net>
+ <eb1c249c-5f42-4878-8934-09d6ea5c43f2@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <3a6fb7fd-eb3d-428b-a37c-f04d81e7fbd0@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <eb1c249c-5f42-4878-8934-09d6ea5c43f2@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 25/11/2024 16:03, Nick Chan wrote:
->>> +static int summit_probe(struct mipi_dsi_device *dsi)
->>> +{
->>> +	struct backlight_properties props = { 0 };
->>> +	struct device *dev = &dsi->dev;
->>> +	struct summit_data *panel;
->>> +
->>> +	panel = devm_kzalloc(dev, sizeof(*panel), GFP_KERNEL);
->>> +	if (!panel)
->>> +		return -ENOMEM;
->>> +
->>> +	mipi_dsi_set_drvdata(dsi, panel);
->>> +	panel->dsi = dsi;
->>> +
->>> +	int ret = device_property_read_u32(dev, "max-brightness", &props.max_brightness);
->> That's an undocumented property, which suggests you did not test your DTS.
+On 11/25/24 00:52, Krzysztof Kozlowski wrote:
+> On 13/11/2024 04:05, Guenter Roeck wrote:
+>> On 11/12/24 18:39, Sung-Chi, Li wrote:
+>>> The cros_ec supports reading thermal values from thermal sensors
+>>> connect to it. Add the property '#thermal-sensor-cells' bindings, such
+>>> that thermal framework can recognize cros_ec as a valid thermal device.
+>>>
+>>> Signed-off-by: Sung-Chi, Li <lschyi@chromium.org>
+>>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>>> ---
+>>>    Changes in v2:
+>>>      - Add changes for DTS binding.
+>>>    Changes in v3:
+>>>      - Remove unneeded Change-Id tag in commit message.
+>>> ---
+>>
+>> I can't apply this one (not in hwmon space), so
+>>
+>> Acked-by: Guenter Roeck <linux@roeck-us.net>
+>>
+>> with the assumption that Lee will pick it up.
 > 
-> Actually, testing the DTS would not have caught this issue. For more
-> context,
-
-If you mean that property is not in your DTS, then right, it would not
-be caught. But otherwise it would.
-
-Anyway, I pointed out testing as helping tool for your development, just
-like building with clang W=1 will spare you some review comments or bugs.
-
-> all summit panels found in touch bar have a max brightness of 255, but the
-> summit panel in Apple A11 devices like the iPhone X is latter found to have
-> a max brightness of 2047.
+> This was merged, while I was AFK, so the ship has sailed, but let me
+> state here objection for any future discussions:
 > 
-> However, A11 cannot be properly supported right now due to not having a
-> driver
-> for the DART IOMMU.
+> NAK, this is not a thermal sensor. The commit msg explains what they
+> want to achieve, but that's not a valid reason to add property from
+> different class of devices.
 > 
-> In the meantime, max-brightness could documented and be made required,
-> and the
-> default 255 brightness could be removed.
+> This is some hardware/temperature monitoring device or power supply, not
+> part of SoC, not integrated into any SoC thermal zone. Calling it
 
-BTW, max-brightness is a property of backlight, not panel, I think.
+I am confused. We have several thermal sensors registering as thermal
+zone, and fan controllers registering themselves as thermal cooling devices.
 
-Best regards,
-Krzysztof
+Are you saying that this is all not permitted because they are not part
+of a SoC ?
+
+Guenter
+
 
