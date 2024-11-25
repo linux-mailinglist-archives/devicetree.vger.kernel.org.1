@@ -1,194 +1,181 @@
-Return-Path: <devicetree+bounces-124121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 674E69D7B13
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 06:19:08 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A0209D7B1E
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 06:25:39 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 807BFB21C37
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 05:19:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 11A5C162D9B
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 05:25:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BEEB15666D;
-	Mon, 25 Nov 2024 05:18:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB03F145B2C;
+	Mon, 25 Nov 2024 05:25:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="F75XnEPV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b20ncJuu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB56E13D51E
-	for <devicetree@vger.kernel.org>; Mon, 25 Nov 2024 05:18:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20F8F12C470;
+	Mon, 25 Nov 2024 05:25:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732511938; cv=none; b=qBuBMYsxnhS3MWot0PMQlhFTGMLoukoFV3CVhjsY6Q/3e2aUYR67V8e5uOeA9CvZTcK8kzIdKQSw7sO3XK9nZ2BCQfwV9E3YXa/owYIvZCxqx+0S8aBaPFUVv/0SF58tRyqBwm048asObQq2VLugS/LdYyO2ORzs+PDzTAdPgAs=
+	t=1732512332; cv=none; b=qJZamRqaKMJpoVOWln19V5Jv4KtB5+91QV/RomvsmpBCY9hFLGMMrg/8E1ZM71pGmifoPgajRo6mdHVmgelUjLT9P/ULASo4xEXnae6mXNBvZnavy9sqmW89oaM+MxGS1nXZ+2WY3k0innVkjy9rEc7axRUbn3gL7UePUC59+Vk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732511938; c=relaxed/simple;
-	bh=d1Dut7jE5J/B+Susaxwzt3MhoFXRYaj51BZEMNt/SE0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WffqRkqHLrJkn6MQ1daJipAqchONFes7feqdWCedTtEOY5C4yyTX8tVFkxRHQcsjg2w2eZ/hfnk/H7kG4k9ADLdlouPc1T1bBBcKlntnTZ3qFkh0PiNDdcduOx3tXEasNiafKQDfaKnv+dpgRI5AgJ7c8AGGw5Yra5OSnltzzf4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=F75XnEPV; arc=none smtp.client-ip=209.85.210.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-724f1004c79so1124754b3a.2
-        for <devicetree@vger.kernel.org>; Sun, 24 Nov 2024 21:18:56 -0800 (PST)
+	s=arc-20240116; t=1732512332; c=relaxed/simple;
+	bh=X6LD3FmHc+u3nY+0KyYGuWCF4ESD8ARpzF8l7Gk/SLg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=eQuzCralwlU/UneEuw42EStHJK05663AiIIAKt+pDFFYtkYXWtPyT8iZsIbfQDr+NwaDbCKGP7U0Oc5+J4CeSaVme4wYMPdxQIMXenlvNtveLoGhSltVm/YYP3JFQ1H/oKijkhz/ZA/zXB0hyGJ57OaUfHzi8x1vFv4wzdNyKzA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=b20ncJuu; arc=none smtp.client-ip=209.85.167.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f174.google.com with SMTP id 5614622812f47-3ea32bd689eso548843b6e.1;
+        Sun, 24 Nov 2024 21:25:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732511936; x=1733116736; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=CaT7XHkUStAmSWQ7uMJ9CTvA+0ljM0SSdqJ8hkuHKAE=;
-        b=F75XnEPV6jOcnDPr1TfsQRj1v/hPdgVb07WuHhBqCGPgUN/havzAhLkJK1NHdb04ch
-         qqRtm2TBiOtCjEHduQpeLdaBl0LSrWeR315Q2q0aotDT/W7Nneqlv/1Ve2qVHRoQ/ISs
-         2/2s5soASIkYzPne+kURguvr7AfNPyAc9B5fhou63U6sfZg5XZW75CGzeaWq9OFKnG2j
-         XNw9HR7Uho3WNCrhwviTkmyu/LHOM/dFHK5V+Xz+zhFzz/wRxd9dquf6hIgOtICBOm3P
-         idgRFeNYa01ngQ5s6T5+aDcqN+Wqt5fQrBNlzIRqckJvjx0jWHcvFY0rRqiZKpFFf8U2
-         Qd6Q==
+        d=gmail.com; s=20230601; t=1732512330; x=1733117130; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5NWNdeipp9Lz+yCgnatMjLdoGegxlT8lsdQAdmeK6GM=;
+        b=b20ncJuuWkMsFfY8sRFdzKhcc7AxRXU4EkX7+IcaR6WNZbbpoGlpuOPNzmxHhmkr0W
+         DajqkRX4nqGEWd9GvHa1pbiVBL36JYzg06Jq0Z8P4H7iIv8X1b+ZfT4SCZOv3Eo+5Mqx
+         KqzVM1wyT5L7mmTh/0ayjrxO49Dz8u/8e2+VrJ1TQYfSHw+ey+VZ58ecOBjPVHnYqZEs
+         ERjP+ndEGVpA10yzkrQy9Xa+5PtrmW6I3kHx/1EoFp4quTqOTDZD8rKTFY2RCZbxK97B
+         VpcrGbrEoDDSoYjRBcpyLX1keLeiZL6AMnypRa+QhWhvjbW8SH1VwhqN55Ayg8R6xVeP
+         /I1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732511936; x=1733116736;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CaT7XHkUStAmSWQ7uMJ9CTvA+0ljM0SSdqJ8hkuHKAE=;
-        b=hLwZqtvN4ySROsu8oO+QXa0/ooftF6cB8h+yzZMCRepTNu9cOUaJzS6eF1KAHpuKYi
-         wEzeYKeyYwP2QbS4SiQD6nGvnUCe1cyQtDHetkzBAmEV0VWun77hqMxVzrYV+0wAPTD0
-         TB1gHc7LO7BJ+tlVh6CukRradShkETvRRALCHN/QPkdwL5sKKXNGj54kF+BfKsgZZv+0
-         CXgSHCWHU/BaLZtPBcRIqgz1DWL73B5sqxhA8F7MoV0n1YOo3R5puP56ZTt85aMvZ6GC
-         dncajeVo5Q+dHV9SL7hMQbL25Fnfw1zVfqdDVFV4bgD9j4GkeA4+HvLexkBAvKogI7YU
-         9IxQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWoKxJxF2k2C5l1GQOg4gewuklUTgEijufc7CnMebz/rM3aQwx3Km+8IOxmdqCNxZVw1jvdbBo0IvV5@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw2TrjeXApfVorkShmIK3KhOmPD4QG0K3OxycSWsiKlM27x1g3o
-	C6NTIG7Ut1yNcZ4vOIn1zgvUg05sW3kaFV2lWwD9NGecuXuoq4giKy3V+1dAcCY=
-X-Gm-Gg: ASbGnct4KJVQAhRa2rfgvjRKqHJiG+FVtazvAV1TVFrxhEW4aTbGNjiXLO3FN9pN4ag
-	1nV/kd+DZ7NGzfJhx3lGIRWam9Vq+8c35r2SttOEsQxQwt1Nig3URtWmVvoOMG73nH7t8wl2vwC
-	J7MlEv71vBXB6oIaR8Tcn02ebUXfum00MswO9fix7DG7G5X2W4wwHXzrsbxeSR3txo1WFoHVYcb
-	PQOOoJ+DIc3lfbWZyGFmHRLvdlLmA0BCgbSkLfn/zZ1NN42Bj8Y
-X-Google-Smtp-Source: AGHT+IGe6EIORCJn7aV9npBgDcZpDnf5jw/DaCFfKxvU0lKTbT+0M9zATqm1b+aolILMH8BpHhsBzw==
-X-Received: by 2002:a05:6a00:2d10:b0:71e:4a51:2007 with SMTP id d2e1a72fcca58-724df3c77ffmr14298594b3a.4.1732511936149;
-        Sun, 24 Nov 2024 21:18:56 -0800 (PST)
-Received: from localhost ([122.172.86.146])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-724de474c9fsm5506878b3a.44.2024.11.24.21.18.55
+        d=1e100.net; s=20230601; t=1732512330; x=1733117130;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5NWNdeipp9Lz+yCgnatMjLdoGegxlT8lsdQAdmeK6GM=;
+        b=NDQry+ZBAyQOPtbmS93SJWFbQ8OB1o+vNBypdmCgaLNVWUDX0EGuV4ZhdEmMai+n3a
+         skal8pdc5aCaiQtH6+iqE32BZnNdIDBrLEQ9q2Q8kOfbUdbGC3F0x7OR4zie2g8okPJs
+         N5pLnadV30D3zFUpUgQ5gQJn36Qur3jgxNOMjyQYqKdt9CmLoarNKXI9WUNlTYpvPt6a
+         wEHyB/U/bDvdRmPzEXSnWEa9S/VcrY8iTuOhtTB9/uKOtbHQwDYnx0x2DI64bG485dWF
+         /Pwa4SXiy7KzasvLeLwdD/2kToF14N6BPBXpGsZpocbeHCIDMC5B1m0n0eL+oPlD4Hxy
+         lH/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWlB7uhnITaViCQi2Ow7xQxfrptCm/k6XXlXZ9+RdEPWGJyxxIEBswt7bPJYhTYBveSpE8kwPcLnkAz@vger.kernel.org, AJvYcCXjA9WjPoi3+ydJKbuZ41FNptSOv13qjlvUs/wIL/3tP6n4yitpNRY+qQxOJzEfHuKkE38ogihgdqSBm/oc@vger.kernel.org
+X-Gm-Message-State: AOJu0YxkcE7LYc/0BB8yqDqkSb17wIhWJyBFAKavXsXEUelJU8NJJ+fT
+	ITPFbJvF1U6iNBtsUTNCMjTiXgOTcp51ovqKLD7mEVv8IKCaerhu
+X-Gm-Gg: ASbGncuZIbzLTFAnsUIAXpxrl54LpNFZ48kneg4ejrcWQNMZgkeUB9gC0M13b/8RfF0
+	Dl0UoeJ/BKwjC3R1NRdSona8R1JHl5zdAKJScaW7XqmBYlQW4HYpTrrJK/wqjqM0dE2Tee0Q0eR
+	Dilq/NZiZRno+KJbB4cGd27XtA998NqDg7nl9IfduRy2cuZgYiAiUyumT8+QrKE794keZ1wwGC3
+	ToOitbQZ4W125LwtnKvqtpSbEaptCWGsE87tUVCTJM3IivFh4NfneBL4WxqhwQmMHDNUfd6kT5V
+	2DN6klUwULulRPhb60vCE/+BX03qRR7ynlY=
+X-Google-Smtp-Source: AGHT+IEThhx0hkE8eNOImQOECxAu4miExvbPkYIPbmiK1xCB8nCLXsvTsOlU0MGcVv6gP4Op5+TxkA==
+X-Received: by 2002:a05:6808:14c7:b0:3e5:c7f8:ad7d with SMTP id 5614622812f47-3e915b57082mr10486001b6e.39.1732512330089;
+        Sun, 24 Nov 2024 21:25:30 -0800 (PST)
+Received: from localhost.localdomain (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7fbcc1e2490sm5698557a12.31.2024.11.24.21.25.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 Nov 2024 21:18:55 -0800 (PST)
-Date: Mon, 25 Nov 2024 10:48:53 +0530
-From: Viresh Kumar <viresh.kumar@linaro.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Akhil P Oommen <quic_akhilpo@quicinc.com>,
-	Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Connor Abbott <cwabbott0@gmail.com>, linux-pm@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 01/11] opp: core: implement dev_pm_opp_get_bw
-Message-ID: <20241125051853.taeysx2nhmrwoyde@vireshk-i7>
-References: <20241119-topic-sm8x50-gpu-bw-vote-v2-0-4deb87be2498@linaro.org>
- <20241119-topic-sm8x50-gpu-bw-vote-v2-1-4deb87be2498@linaro.org>
+        Sun, 24 Nov 2024 21:25:29 -0800 (PST)
+From: Hui-Ping Chen <hpchen0nvt@gmail.com>
+To: miquel.raynal@bootlin.com,
+	richard@nod.at,
+	vigneshr@ti.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	nikita.shubin@maquefel.me,
+	arnd@arndb.de,
+	vkoul@kernel.org,
+	esben@geanix.com
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-mtd@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Hui-Ping Chen <hpchen0nvt@gmail.com>
+Subject: [PATCH v9 0/2] Add support for nuvoton ma35 nand controller
+Date: Mon, 25 Nov 2024 05:25:22 +0000
+Message-Id: <20241125052524.135362-1-hpchen0nvt@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241119-topic-sm8x50-gpu-bw-vote-v2-1-4deb87be2498@linaro.org>
+Content-Transfer-Encoding: 8bit
 
-On 19-11-24, 18:56, Neil Armstrong wrote:
-> Add and implement the dev_pm_opp_get_bw() to retrieve
-> the OPP's bandwidth in the same way as the dev_pm_opp_get_voltage()
-> helper.
-> 
-> Retrieving bandwidth is required in the case of the Adreno GPU
-> where the GPU Management Unit can handle the Bandwidth scaling.
-> 
-> The helper can get the peak or average bandwidth for any of
-> the interconnect path.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  drivers/opp/core.c     | 25 +++++++++++++++++++++++++
->  include/linux/pm_opp.h |  7 +++++++
->  2 files changed, 32 insertions(+)
-> 
-> diff --git a/drivers/opp/core.c b/drivers/opp/core.c
-> index 494f8860220d97fc690ebab5ed3b7f5f04f22d73..864b9b99b0129acaffaf45c584c5f34b8bababed 100644
-> --- a/drivers/opp/core.c
-> +++ b/drivers/opp/core.c
-> @@ -106,6 +106,31 @@ static bool assert_single_clk(struct opp_table *opp_table)
->  	return !WARN_ON(opp_table->clk_count > 1);
->  }
->  
-> +/**
-> + * dev_pm_opp_get_bw() - Gets the bandwidth corresponding to an opp
-> + * @opp:	opp for which voltage has to be returned for
+This patch series adds the mtd nand driver for the nuvoton ma35 ARMv8 SoC.
+It includes DT binding documentation and the ma35 mtd nand driver.
 
-                              bandwidth
+v9:
+  - Update ma35d1 mtd nand driver
+    - Remove NAND_NO_SUBPAGE_WRITE flag.
+    - Remove of_get_property().
+    - Add ecc.write_subpage and ecc.read_subpage.
 
-> + * @peak:	select peak or average bandwidth
-> + * @index:	bandwidth index
-> + *
-> + * Return: bandwidth in kBps, else return 0
-> + */
-> +unsigned long dev_pm_opp_get_bw(struct dev_pm_opp *opp, bool peak, int index)
-> +{
-> +	if (IS_ERR_OR_NULL(opp)) {
-> +		pr_err("%s: Invalid parameters\n", __func__);
-> +		return 0;
-> +	}
-> +
-> +	if (index > opp->opp_table->path_count)
-> +		return 0;
-> +
-> +	if (!opp->bandwidth)
-> +		return 0;
-> +
-> +	return peak ? opp->bandwidth[index].peak : opp->bandwidth[index].avg;
-> +}
-> +EXPORT_SYMBOL_GPL(dev_pm_opp_get_bw);
-> +
->  /**
->   * dev_pm_opp_get_voltage() - Gets the voltage corresponding to an opp
->   * @opp:	opp for which voltage has to be returned for
-> diff --git a/include/linux/pm_opp.h b/include/linux/pm_opp.h
-> index 6424692c30b71fca471a1b7d63e018605dd9324b..cd9a257b8e7766d6c8631351a10a845c88414a74 100644
-> --- a/include/linux/pm_opp.h
-> +++ b/include/linux/pm_opp.h
-> @@ -106,6 +106,8 @@ struct dev_pm_opp_data {
->  struct opp_table *dev_pm_opp_get_opp_table(struct device *dev);
->  void dev_pm_opp_put_opp_table(struct opp_table *opp_table);
->  
-> +unsigned long dev_pm_opp_get_bw(struct dev_pm_opp *opp, bool peak, int index);
-> +
->  unsigned long dev_pm_opp_get_voltage(struct dev_pm_opp *opp);
->  
->  int dev_pm_opp_get_supplies(struct dev_pm_opp *opp, struct dev_pm_opp_supply *supplies);
-> @@ -209,6 +211,11 @@ static inline struct opp_table *dev_pm_opp_get_opp_table_indexed(struct device *
->  
->  static inline void dev_pm_opp_put_opp_table(struct opp_table *opp_table) {}
->  
-> +static inline unsigned long dev_pm_opp_get_bw(struct dev_pm_opp *opp, bool peak, int index)
-> +{
-> +	return 0;
-> +}
-> +
->  static inline unsigned long dev_pm_opp_get_voltage(struct dev_pm_opp *opp)
->  {
->  	return 0;
+v8:
+  - Update ma35d1 mtd nand driver
+    - Rename to nuvoton-ma35d1-nand-controller.c.
+    - Use switch case instead of if else.
+    - Move some parameters to be set during initialization.
+    - Fix the ecc.read_page return value issue.
+    - Add enable/disable ECC engine before and after reading/writing the page.
+    - Return IRQ_NONE if (isr & INT_DMA) == 0.
+    - Move the HW ECC related settings to ON_HOST.
+    - Move hw_init() to probe.
 
-Applied. Thanks.
+v7:
+  - Update nuvoton,ma35d1-nand.yaml
+    - Remove required 'nand-ecc-step-size' and 'nand-ecc-strength'.
+    - Add 'reg' for chip select.
+  - Update ma35d1 mtd nand driver
+    - Update space and comments style.
+    - Add chip select setting from DT.
+    - Add switch case which supports various ECC configurations.
+    - Set reset before NAND controller enable.
+
+v6:
+  - Update ma35d1 mtd nand driver
+    - Remove extra blank lines and add comments.
+
+v5:
+  - Update ma35d1 mtd nand driver
+    - Remove unnecessary definitions and comments.
+    - Modified DMA API call sequence.
+    - Move the ECC check out of the interrupt handler.
+      Check it after reading a page.
+
+v4:
+  - Update nuvoton,ma35d1-nand.yaml
+    - rename 'nuvoton,ma35d1-nand' to 'nuvoton,ma35d1-nand-controller'.
+  - Update ma35d1 mtd nand driver
+    - Rewrite the NAND driver using the exec_op API.
+
+v3:
+  - Update ma35d1 mtd nand driver
+    - Release IRQ handler.
+    - Remove unused functions.
+    - Remove '.owner'.
+
+v2:
+  - Update nuvoton,ma35d1-nand.yaml
+    - Adjust the order and remove any unnecessary items.
+    - Add 'nand-ecc-step-size' and 'nand-ecc-strength' to the required list.
+  - Update ma35d1 mtd nand driver
+    - Fix coding style.
+    - Use 'devm_clk_get' instead of 'of_clk_get'.
+    - Use 'dev_err_probe' instead of 'dev_err'.
+    - Remove 'pr_info' and 'of_match_ptr'.
+    - Remove 'module_init' and 'module_exit'.
+
+
+Hui-Ping Chen (2):
+  dt-bindings: mtd: nuvoton,ma35d1-nand: add new bindings
+  mtd: rawnand: nuvoton: add new driver for the Nuvoton MA35 SoC
+
+ .../bindings/mtd/nuvoton,ma35d1-nand.yaml     |   95 ++
+ drivers/mtd/nand/raw/Kconfig                  |    8 +
+ drivers/mtd/nand/raw/Makefile                 |    1 +
+ .../nand/raw/nuvoton-ma35d1-nand-controller.c | 1024 +++++++++++++++++
+ 4 files changed, 1128 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mtd/nuvoton,ma35d1-nand.yaml
+ create mode 100644 drivers/mtd/nand/raw/nuvoton-ma35d1-nand-controller.c
 
 -- 
-viresh
+2.25.1
+
 
