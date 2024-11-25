@@ -1,54 +1,55 @@
-Return-Path: <devicetree+bounces-124383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124384-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A94119D8981
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 16:39:18 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B6C9168CA5
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 15:39:15 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE1451B393C;
-	Mon, 25 Nov 2024 15:39:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="faOHw3qO"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D6AA9D8988
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 16:40:37 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA44A1AC448;
-	Mon, 25 Nov 2024 15:39:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1112B28453E
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 15:40:36 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4006E1B4143;
+	Mon, 25 Nov 2024 15:40:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="T9YNyApc"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E88881B4129;
+	Mon, 25 Nov 2024 15:40:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732549153; cv=none; b=fFsgz6vScWyYVl3vIg1J/xS7+5oLn9Nh0Xb+mtc3VSrg/MhzT2EwPrWW/Xbp38WnR3XGVkyoF8et54BWl5DYb0vA4Wp2gaSzD71pcwCh2SHoJjf46yWi17cVeexGIDUl+jGQGQ5e1NKmXuGJ29LL85UdxcpL/aw0k9HFTkyW/OI=
+	t=1732549226; cv=none; b=BWeKOfJNjH1PlUAZ9P7qcTipl9G1KVE3NNmqou5OP+4jcWmws/cYBIpXx35qRQE/pn1vxt1glbfryW4ZX0c1cXUUY4mGQz4xrR4TA4UHcpEbU7WAQBhz+bzmMmtRMn85eic9QgeyJbgVJIILiABIrxSwADw0IK1DtqSgC6sNxds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732549153; c=relaxed/simple;
-	bh=z+ueDwTi1FSEUiAFpqYNlRAcOCUi1kGZm9AIgB6v0IM=;
-	h=Message-ID:Date:MIME-Version:To:Cc:From:Subject:Content-Type; b=bi3BYw8pBnQUocDgi8t2AwPeicolyUqYDAO4FW9ZT8ZfoBEWxhSMIlSpw79p2YKiXzs3IbWviv6061XL+AKWttrUMNsGj7V0OoJdg96cMhxgOo5yIM22Do90SAqa8S6Jcgw0xPAmx2p+fHzT+8t7KnDH64mGi9+UEGXHkdM2Wmc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=faOHw3qO; arc=none smtp.client-ip=212.227.15.19
+	s=arc-20240116; t=1732549226; c=relaxed/simple;
+	bh=DMxASQFiv5QBuW8Wp1m0A2qe7VA8svcArqc5KMbwIjc=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:In-Reply-To:
+	 Content-Type; b=n2NeRRtmZGJw5lnH9DzAM5vyvCui3EjWNUYAPi4ETZGo0241IJqfN2C6PgS2AKk6tC+eNuqNqEPTJ3vV3LnPTKvPK/ZL3BwyQFeVIYVFPo+tT9vvAjpIMvgHL5WmQaP5EU1rrQTo+/Yf/FxGinPYAHhBPnjzkCvy0Yxg0pObDcE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=T9YNyApc; arc=none smtp.client-ip=212.227.15.18
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1732549142; x=1733153942; i=wahrenst@gmx.net;
-	bh=z+ueDwTi1FSEUiAFpqYNlRAcOCUi1kGZm9AIgB6v0IM=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:From:
-	 Subject:Content-Type:Content-Transfer-Encoding:cc:
+	s=s31663417; t=1732549214; x=1733154014; i=wahrenst@gmx.net;
+	bh=DMxASQFiv5QBuW8Wp1m0A2qe7VA8svcArqc5KMbwIjc=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:From:Subject:To:
+	 Cc:In-Reply-To:Content-Type:Content-Transfer-Encoding:cc:
 	 content-transfer-encoding:content-type:date:from:message-id:
 	 mime-version:reply-to:subject:to;
-	b=faOHw3qOwAL8wWM88GMgvb8zIAdkEW5jwJUUwgW5ARf6YuETw6BAYwKodKm3K17V
-	 BPA21tQOPiHzllSSYbo1AAMpMziX1OiLpHzLVt59UqAWyBU2y1/jIh+QgKZuIoczr
-	 uwfbvGtDkZB68cSWjR/T0j/wlfZgFClB2vHFHmUY5/5Oa2baPp0gOcPFPt+g1ChXc
-	 OC31l7vaBYWZaxTD1uwoji0JdzYAZAX4R/uoBqq4jXwrISBJJgBM9yD1eXAtX5j7P
-	 rPGAS304WG7s/RW7mz9jVUPU00ojTcowzV0CflXfnjG0LcNVO0Q66umNShgN7FxLC
-	 wPxFl20W06CN8VgvMA==
+	b=T9YNyApcr8CnkrOW4eR7TzkxvC7xzO1pLbFzsXiAbimUzoF+oWYfamQt4T6AMU5O
+	 PPp23VHHBKMs4vtLZPKp83RcwFtA4l2pc/0vYVsybIkg310Fhi20XgF63Xksmv2gN
+	 K4vFcNO+i2v594rC+U+G9sr8s8rxVo2KPYF2QbdL37JqZG7bOT7NXGxyrVJzS4kD/
+	 1qlTJrk3xOnNJECZ+FYZlTRuAzfQwciAYKpLGH9rE9ZpGK2vvY+ZCoMRiY1p/KpXH
+	 rOFBs7sj7Ps2O7q8rML6ORL14MtzT/bsDUUc5PX8G4oONlTDRpk+JqQb13ikUIRwQ
+	 fa+T+2UC3VPyU9tcaw==
 X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
 Received: from [192.168.1.105] ([37.4.251.153]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MWih0-1tDTbS1GLg-00KbfN; Mon, 25
- Nov 2024 16:39:02 +0100
-Message-ID: <a052fb31-c021-483d-a0a2-55fff196048f@gmx.net>
-Date: Mon, 25 Nov 2024 16:39:01 +0100
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1N49h5-1tgEtr1WxV-00w8AY; Mon, 25
+ Nov 2024 16:40:14 +0100
+Message-ID: <29371514-caf7-4f1f-981e-bb52c40f7bdb@gmx.net>
+Date: Mon, 25 Nov 2024 16:40:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,44 +57,50 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+Subject: Re: [PATCH v3 3/3] dt-bindings: w1: ds2482: Add vcc-supply property
 To: =?UTF-8?B?S3J5xaF0b2YgxIxlcm7DvQ==?= <cleverline1mc@gmail.com>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>, Ben Gardner <bgardner@wabtec.com>,
  Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
  "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
  <devicetree@vger.kernel.org>
-From: Stefan Wahren <wahrenst@gmx.net>
-Subject: Re: [PATCH v3 3/3] dt-bindings: w1: ds2482: Add vcc-supply property
+Content-Language: en-US
+In-Reply-To: <20241124-ds2482-add-reg-v3-3-806df39c9454@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:RgvGnme+nn/BmD0pY4d2ccqxah7EVyW+j8kv0PKnuWa9CbHcfQB
- 7TGHAOyCMe9hvBM5o2r2R83Pvqu0VMp/HMKA8rO8sHK6LxQ1Ll+JwWDG9RtjxB/x3+uN4R3
- 35T1E8SkKJJgV7QC/f6eOY0bWKufurleqVj2hvT7BuomCZZ1aIjtrtfdgbeOwwsS2iDhowb
- 989TtKMDvhAGb2ihVL+Ww==
+X-Provags-ID: V03:K1:usTGB3KqY7rt1IVtdUR9XQQYHdY3KFABw9PesgHJB9xYQFj2mun
+ P1y+rk3jPAxZH7vGFdxVoJQ+wlmkn0dLqyjZI+kvxG6YExz+mA8rFbqEZ7uDIiZD6lXRyWv
+ voQ1cLj6lcr9RZrzdi8++hAWjUMzuxVXy50Z740Yo6f7Q25xdNQQhZg7H0u/J2OOQQ+ehtL
+ iOY3fkBljZ8KoYyiCE2zQ==
 X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:+btVzO60sTo=;9QMht7vsyZtfdgCsNOIqv76Dvcv
- fWkARg20JUuqvh+2yE+o9J54sw9hP/pA1cC4TuXrN01YHJnIR+RiYgtTzXrcRqzWIdvmrNCKC
- zshyI6IaJ0v71o291fcmhZMuHIELmYgdSPTStg1mA/ueeh15IHLSfjAvjbcBmjoqSlO8zcra0
- C/BtJCCFsya51hAU9V0xrKmWFBetazA8D+sdbF35MBUtwDQugiLm0W9V20G62IZkkUbMc9uRM
- Gj49ZVi9KVWZaTpVdzfVcSI8cYpT9TmcBQKOEjdH6gSenSefd73hV/u6EkwaqMJEKkqWKXEsd
- TZAPw8O8NgTejjfjr1+yAhvi+WHPoVOfnwVKhgZXiCOuYdEUVgj4QLSPCmcQo/wT8HFEIsTSc
- FTuUn3ZXXKNt42df7gg8EAe5SE+8KAYNIGFad8xPefCp1i27Q0nVr4AF05PCv3yNsO+UuGx+Y
- dV4OZV3seTQ3oInjkPKEIGfDpAQP8TiW45tyddafmMfwYNjgq9epfI/PN3ilMkxfQ1y8VE2VD
- /aobLVt8s93cvdX01Tc3h+LMumX2WmKQ+vD6VYqxzUzfesBTBL3DDmzJL7xVyI0bzBnno4izI
- y1dwJe7prrbe+527zqZHBsNZKbsFrPmWNkhZ12DncJir+LlerxCV4Mnn6u9hZKc6yKg2QNQ+Z
- I1Pi2pfSOjlizdebACbUCzmlF6zeGPCL2smHljNG1YJLlyqRQzVKVtRp9HdIlekESGQwG2oCH
- 0Goqi0s68cYngQy9gwUIW8rYngi2Ep8hjzzp8ceMUWRqLvj1aEqVcs2Xs+ZY4AiB1LU+7bebB
- tYeGv5UMb3JJAymF713DeEaDxfvvCUxYPMcb6b5G+AOI82FPdYsgfhVw9afLQp75N7kK65HPj
- xgC35MiCc4+0DpcL3iYRV9yrSIqgFqnxFsbj4t3Z6iEBxkpFX7NguKKl+
+UI-OutboundReport: notjunk:1;M01:P0:PPdh3LNaZo4=;opzhgqlLWWx+oosKaVivtnZarJO
+ rZNFGM9OxuiVHfRsm2OW5GAtawsgRZJryF/ePmVxAaY9ir6SkQEGKlK334UDUCrqNboccAkSp
+ 5Qm1Z28HUUdNtj7evdRUnrVkjADmtwYGfBy1X4eMC2ToEPoVjZtyVIol9IRAOG6MC0GPdrTSg
+ tngrL3xcq/Ftt1cYnz7gK3K4kkEGpqoxfyPZSaX0DIXovehoGYjPCb8mFDdYRPdVBrAZcmtJi
+ HDeZViHaqrhGUuRKvDixlXwxPKimP9GVq9MS+Utt7UP3TQkgW69+K6zwFARfGNWQKfqPCRvkz
+ JHU/z2S80cdTkOde0Y7TKDj4DZHiW1WfoM+lJ1xhLpbzLc4au1iqL1xnvv95GiWkRs6ZL1Xpg
+ 6uMd+H8KD/PDLo33y43xV1iFwoXdZLfTGdR6zurZPNHCSzGRBxBz174GFSZ4xcMK+2aa4/Vi3
+ esVallSsLb2lLFKh15bmNvtyXl1hUmCOl03oZavlEzSaxmYqfB6H0cufyj/c68JOaHAjouUO5
+ 4tnXoanyus+DMnoKvvmHFT4KxLUaoL3Yj9KR2IcQUfIQ7cYr4cB3jB8G5OgI4AAMu0DPw4XBQ
+ cyyq1Oqu6sWvJqNXrhKSS+HGaS+vYRJaMD7eZB7twY29HqDkOaD45gWbJ5S8WReR2j2PbDtml
+ 5LaBLX5h4+GxudgxwE9BOc6mAx+xLYA/V1QJMnrBD/rX86hPrQ6iS2xszkvkBvCXLlSCTelCG
+ nDnNdslf5BNYs501UJv7XaolzOXnKy3enpSeVgMl1MQcY1CCJr/l22AdusxLeX90/f8ChQ/qR
+ 02AdQuowvZ5UbfwEmEgCFcSnp14pJGqRYd/A37BlBNXebRZkX/EBxbo6WXLHgXe8mSbGhdMdW
+ PYS2AvAGmSgFtBWoxUnXvw/PHAk96VGHYL7QNvc7vd6+qyHNBShTIb2YDfYOwGwlafUWjtqF7
+ Bi5eerlmzRpK5231ub+B8CYjyXQmsdoweFZdzLRIJwNhkzU9/8yahd7CTiwK/vMpaCJpU1Msd
+ jMDofI+8gZn1/32c8lt76g0QcWWZ/qGxojc2oe4lLXP0HtPaa2AHjy+AZ4KSPyJ+/raM7R81b
+ vUX+oU4WjUFUQKCRllmEiP55z8fzpS
 
 Hi Kry=C5=A1tof,
 
- > From: Kry=C5=A1tof =C4=8Cern=C3=BD <cleverline1mc@gmail.com>
- >
- > ds2482 has a VCC pin, accepting 2.9-5.5 V.
- >
- > Signed-off-by: Kry=C5=A1tof =C4=8Cern=C3=BD <cleverline1mc@gmail.com>
+[fix messageid]
+
+> From: Kry=C5=A1tof =C4=8Cern=C3=BD <cleverline1mc@gmail.com>
+>
+> ds2482 has a VCC pin, accepting 2.9-5.5 V.
+>
+> Signed-off-by: Kry=C5=A1tof =C4=8Cern=C3=BD <cleverline1mc@gmail.com>
 
 Sorry, I'm not able to reply from my chargebyte address.
 
@@ -101,4 +108,5 @@ I'm fine with the content of this patch, but in case you need to send a
 v4 please make this the first patch of the series.
 
 Reviewed-by: Stefan Wahren <wahrenst@gmx.net>
+
 
