@@ -1,66 +1,66 @@
-Return-Path: <devicetree+bounces-124467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124466-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEA819D8E01
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 22:30:40 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 531EF165744
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 21:30:37 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A618D1CD210;
-	Mon, 25 Nov 2024 21:30:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="IMaMPSBR"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 226179D8E35
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 22:51:37 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 716801CCEF8;
-	Mon, 25 Nov 2024 21:30:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CCCA7B293E2
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 21:30:09 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71F9E19048F;
+	Mon, 25 Nov 2024 21:30:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oSjwt2+Z"
+X-Original-To: devicetree@vger.kernel.org
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A858188010;
+	Mon, 25 Nov 2024 21:30:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732570215; cv=none; b=kwRvDZ1oaDQ8+xAKFpdTn6EOXVSnb0zSaZcsue5ijT0CDw+dwHPYCat+v33VpG6O/he33O2uppv0+OdnEDBTdPgojLU0Uz1jPc6ecgLIfe9G2NNEOC/ZP0CqpALg/uOZg2c3nH0MStb2NbpDOHf3ctSWxzzVZ9RyS2rL6cjdB+M=
+	t=1732570205; cv=none; b=Q5CLMeU9ZCrgiIyny2ZhiA1OmCRKShCRmSlauOneBAi4rEhvMFyTupQUQQF/uIObmR2igXQ/De7qMOQSgy4Uhu6wcrlXNxxf8dhpEmT+yUA/0Zq1WnhlV3OCA/1jFCIv6nZFx0rJxnjlnOfASAHIslk/kNdsH1MNSjm44eK3MTs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732570215; c=relaxed/simple;
-	bh=4O6BXFuQzDtPnFLXu56acl6DbuUQWT9MKV7AxwD9Dso=;
+	s=arc-20240116; t=1732570205; c=relaxed/simple;
+	bh=ccHnVZ69+9d59Nu5DADSW7/w79ZvzuCfeu6NFvAXE/s=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=itdux1DULhvXyOV5+UoUENz6apvJPyrDohjXmLmRHYTj0BeQGWp/NxLwn5ADmn3NIbTz+qqcBtjIPEgUtoNFHWMHOADH/sVAU9Lk+ZIMN+kAESMfET3efoBNN9uE+9ygscaJBjh2Jp1epal/dlwAMyy46P/Oxo0jPOIEbeh81KY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=IMaMPSBR; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=OBqvw9C3qDYIhkxocUnc72l/ACN2rkhM5PpmpOhWLfI=; b=IMaMPSBRYPv6NoiXYdzaappXwf
-	fqyl4xtfVzMsq6XB1LVKxzy6tpvZk+nTqAV1I2Yzu+NSyn2gtOzpW5GBWzNGRvT1RJJ/UEj+x/xO/
-	2vY++hWKxTrfX2MjKLAnzxS3GIgthJt61sNDWCU7gEX9WQgCX4xaLoPUUfArWvrIDAdAnbgTnPr3q
-	x6C5oK3RrQCn8ybV9nfoCrbmCdcGANVDCchNXZo/R7c4X10wKs8ISihnUjNrxTBiJoThTKbKX4gXc
-	wBXmqEVMUb2u+RWuuKS/WRcb5Vg/v/VTdtZEYJNKWMnxPbNcGJSRoPTQjbgjQznOzO3i0W6Q/LzeT
-	Wvfsizbw==;
-Date: Mon, 25 Nov 2024 22:29:46 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Mithil Bavishi <bavishimithil@gmail.com>
-Cc: Laurent.pinchart@ideasonboard.com, aaro.koskinen@iki.fi,
- airlied@gmail.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, jernej.skrabec@gmail.com, jonas@kwiboo.se,
- khilman@baylibre.com, krzk+dt@kernel.org, linux-hardening@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- neil.armstrong@linaro.org, prabhakar.mahadev-lad.rj@bp.renesas.com,
- quic_jesszhan@quicinc.com, rfoss@kernel.org, robh@kernel.org,
- rogerq@kernel.org, simona@ffwll.ch, thierry.reding@gmail.com,
- tony@atomide.com, tzimmermann@suse.de
-Subject: Re: [PATCH v3 06/10] ARM: dts: ti: omap: espresso-common: Add
- common device tree for Samsung Galaxy Tab 2 series
-Message-ID: <20241125222946.51fa8cec@akair>
-In-Reply-To: <20241123181405.861-1-bavishimithil@gmail.com>
-References: <20241112100616.5349ad37@akair>
-	<20241123181405.861-1-bavishimithil@gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	 MIME-Version:Content-Type; b=HCL8jRpPr2+7IGqLMbZMq9zvp4CtECceZ/uCtv1qNdwchNR1HolF2GdeV/KAgFdqTV42GXhbWKX50EuSHCrHf87y1URTK+NQsTXsWKf+mfCHuiB80hUfX1LtySrqVvbeLqY+c0N6V2ATq+7cP9wfYYcy0Cqb6l9j9HLnmRHf2Kk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oSjwt2+Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A667AC4CECE;
+	Mon, 25 Nov 2024 21:29:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732570204;
+	bh=ccHnVZ69+9d59Nu5DADSW7/w79ZvzuCfeu6NFvAXE/s=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=oSjwt2+ZOZ6O1jAZJI0LTdhB8bPA0PY6hApxfzOQarKjkY9AA4vmW+vfq/RfFe/qJ
+	 COvPy/Ho5Q9/hNsKHSh5+GtvpgGdg+iT8ayXuihLmIoTQ/gMn9gFvPCyg8BHwcGWuG
+	 Veh51KCIrmOYRss8J8PspxI/NLco+18JMKgvUEEFxlVhixjOlwL/Hi+I5MKibOKwNo
+	 EjJIuBbfmvt3eLEE7v5wYcDHHXmSRnA7fraJwbJ4qgllVXoTi6mP6pyKG+O++iIyyL
+	 j4hXUvmuJ9dNEAj8b1torJDZdxy4IwLQ4obcb5/xjL53SDO+CQwXKVzh+ePk7OOLmH
+	 lek7+t3ptIyeQ==
+Date: Mon, 25 Nov 2024 21:29:55 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Uwe
+ =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <ukleinek@kernel.org>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, David
+ Jander <david@protonic.nl>, Martin Sperl <kernel@martin.sperl.org>,
+ linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v5 01/16] spi: add basic support for SPI offloading
+Message-ID: <20241125212955.6d5748b5@jic23-huawei>
+In-Reply-To: <22bc45a0-9d14-480a-bcce-bae394166967@baylibre.com>
+References: <20241115-dlech-mainline-spi-engine-offload-2-v5-0-bea815bd5ea5@baylibre.com>
+	<20241115-dlech-mainline-spi-engine-offload-2-v5-1-bea815bd5ea5@baylibre.com>
+	<20241124163241.4699161f@jic23-huawei>
+	<22bc45a0-9d14-480a-bcce-bae394166967@baylibre.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,197 +70,73 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-Am Sat, 23 Nov 2024 18:14:05 +0000
-schrieb Mithil Bavishi <bavishimithil@gmail.com>:
+On Sun, 24 Nov 2024 12:01:23 -0600
+David Lechner <dlechner@baylibre.com> wrote:
 
-> > > +			no-map;
-> > > +			reg = <0xA0000000 0x200000>;  
-> >
-> > If used for ramoops, then there should be a compatible = "ramoops"
-> > see Documentation/devicetree/bindings/reserved-memory/ramoops.yaml  
-> > > +		};
-> > > +
-> > > +		continuous_splash: framebuffer@bef00000{
-> > > +			reg = <0xbef00000 (1024 * 600 * 4)>;
-> > > +			no-map;
-> > > +		};
-> > > +	};
-> > > +
-> > > +	chosen { 
-> > > +		#address-cells = <1>;
-> > > +		#size-cells = <1>;
-> > > +		ranges;  
+> On 11/24/24 10:32 AM, Jonathan Cameron wrote:
+> > On Fri, 15 Nov 2024 14:18:40 -0600
+> > David Lechner <dlechner@baylibre.com> wrote:
+> >   
+> >> Add the basic infrastructure to support SPI offload providers and
+> >> consumers.
+> >>  
+> 
+> ...
+> 
+> >> +	resource = kzalloc(sizeof(*resource), GFP_KERNEL);
+> >> +	if (!resource)
+> >> +		return ERR_PTR(-ENOMEM);
+> >> +
+> >> +	resource->controller = spi->controller;
+> >> +	resource->offload = spi->controller->get_offload(spi, config);
+> >> +	ret = PTR_ERR_OR_ZERO(resource->offload);
+> >> +	if (ret) {  
+> > Why not simply
+> > 	if (IS_ERR(resource->offload) {
+> > 		kfree(resource);
+> > 		return resource->offload;
+> > 	}  
+> >> +		kfree(resource);
+> >> +		return ERR_PTR(ret);
+> >> +	}  
+> 
+> Hmm... maybe somewhere along the way ret was being checked again
+> after this, but doesn't to be the case anymore.
+> 
+> >> +
+> >> +	ret = devm_add_action_or_reset(dev, spi_offload_put, resource);
+> >> +	if (ret)
+> >> +		return ERR_PTR(ret);
+> >> +
+> >> +	return resource->offload;
+> >> +}
+> >> +EXPORT_SYMBOL_GPL(devm_spi_offload_get);  
+> >   
+> >> diff --git a/include/linux/spi/spi-offload.h b/include/linux/spi/spi-offload.h
+> >> new file mode 100644
+> >> index 000000000000..81b115fc89bf
+> >> --- /dev/null
+> >> +++ b/include/linux/spi/spi-offload.h  
+> >   
+> >> +
+> >> +MODULE_IMPORT_NS(SPI_OFFLOAD);  
 > > 
-> > hmm, no bus here, so no need for address/size-cells, rather specify
-> > stdout-path, etc.  
+> > This is rarely done in headers. (only pwm.h does it I think)
+> > I'd push it down into code that uses this.  
 > 
-> Will be dropping rampoops_region, and chosen nodes. They were used
-> initially for debugging, since we now have drm for display and other
-> means to get logs, these are not required.
+> Yes, it was Uwe that suggested that I put it in the header. :-)
 > 
-you might want to set stdout-path in chosen for earlycon to work.
+> Are there any unwanted side effects of having it in the header?
+Reviewer surprise?
+:)
 
-> > > +	i2c-gpio-5 {
-> > > +		compatible = "i2c-gpio";
-> > > +		sda-gpios = <&gpio4 2 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> > > +		scl-gpios = <&gpio4 3 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> > > +		i2c-gpio,delay-us = <10>;
-> > > +		#address-cells = <1>;
-> > > +		#size-cells = <0>;  
-> > hmm, no pinmux here?   
+Up to Mark as he gets to enjoy this code for ever.
+
 > 
-> Cannot seem to find it in the muxset given in vendor kernel.
-
-If in doubt, you can get it via busybox devmem from a working system,
-look in the reference manual for the gpios, I think they are at:
-for sda: 0x4A1000DE 
-for scl: 0x4A1000E0
-Now you need Mode 3 with input pullup.
-
-> These are placeholders for now and hold other devices like smb136
-> charger, stmpe811 adc etc. Drivers for which I need to upstream first.
-> 
-> https://github.com/MightyM17/linux_pvr/blob/testing/arch/arm/boot/dts/omap4-samsung-espresso7.dts#L10-L24
-> 
-> So for now is it better to drop them?
-> 
-keep them and add comments for the devices without driver/binding, so
-people can get in touch regarding driver testing, etc.
-
-E.g. like this one:
-https://elixir.bootlin.com/linux/v6.12/source/arch/arm/boot/dts/nxp/imx/imx50-kobo-aura.dts#L138
-
-Regarding missing devices:
-btw: you know that the wm1811 is covered by the wm8994 driver?
-
-[...]
-> > It might be an idea to use a dedicated wakeup irq instead of
-> > explicitely specifying WAKEUP_EN like you did for the uart.
-> > That counts for other occurances of WAKEUP_EN as well.  
-> 
-> Could you point out to some examples having this change?
-> I have just followed how muxset mentioned it. I assume this can be
-> worked on later as well.
-> 
-Look around for pmx_core in the devicetrees, you find e.g:
-in motorola-mapphone-common.dtsi:
-
-        tmp105@48 {
-                compatible = "ti,tmp105";
-                reg = <0x48>;
-                pinctrl-0 = <&tmp105_irq>;
-                pinctrl-names = "default";
-                /* kpd_row0.gpio_178 */
-                interrupts-extended = <&gpio6 18 IRQ_TYPE_EDGE_FALLING
-                                       &omap4_pmx_core 0x14e>;
-                interrupt-names = "irq", "wakeup";
-                wakeup-source;
-        };
-
-and of course the uart interrupts in your submission. There is an
-offset of 0x40 between things in OMAP4_IOPAD and &omap4_pmx_core 0x...
-
-So you replace some WAKEUP_EN with such a wakeup interrupt and
-wakeup-source property. You do not need to do that for stuff in the
-wakeup domain (GPIO1). That should work for any i2c device with
-interrupts. With that, you can control wakeup from suspend via
-/sys/i2c/devices/X-YY/power/wakeup (or maybe power/wakeup of subdevices
-thereof.
-
-Regarding Wifi or Bluetooth wakeup, I doubt that WAKEUP_EN has any
-effect. If BT or Wifi wakeup is enabled, the gpio is kept active so
-power consumption is elevated anyways and nothing sleeps what can be
-woken up by WAKEUP_EN unless the driver supports a dedicated wakeup irq.
-
-So I think, replace the WAKEUP_EN for wakeup irqs for i2c stuff and
-remove the WAKEUP_EN in wifi/bt if it has no effect there.
- 
-> > generic node names:
-> > pmic@48  
-> 
-> Changed.
-> 
-> > > +	accelerometer@18 {
-> > > +		compatible = "bosch,bma254";
-> > > +		reg = <0x18>;
-> > > +		vdd-supply = <&ldo4>;
-> > > +		vddio-supply = <&ldo5>;
-> > > +		interrupt-parent = <&gpio4>;
-> > > +		interrupts = <25 (IRQ_TYPE_LEVEL_HIGH | IRQ_TYPE_EDGE_RISING)>,
-> > > +			<26 (IRQ_TYPE_LEVEL_HIGH | IRQ_TYPE_EDGE_RISING)>;  
 > > 
-> > this looks odd, binding says IRQ_TYPE_EDGE_RISING. Why do you think you
-> > need both? After something is rising, it is high, so both seem not to
-> > make sense.  
-> 
-> https://github.com/torvalds/linux/commit/5640fed3035e88c3ce1361e6fc93f4e72468f307
-> This was worked on before the above mentioned change, hence the confusion.
-> bma180 schema wants both the interrupts, I do not know why, but now it has
-> moved to the bma255 schema which makes more sense.
-> Fixed it according to new schema.
-> 
-> > +		mount-matrix =  "-1",  "0",  "0",
-> > +				"0",  "1",  "0",
-> > +				"0",  "0", "1";  
-> 
-> > hmm, checking twice, since I mixed up something earlier. This just
-> > inverts x values, so we are mirroring across y-z plane, that does not
-> > look like a rotation matrix, so it does not describe how it is mounted.
-> > Eg. the n900 has two -1 in there, that is a turn by 180 degree.
-> > 
-> > Your mount-matrix would be achieved, by cutting the chip into ultra
-> > thin slices, sorting them upside down and glueing that together. I
-> > doubt somebody does that.  
-> 
-> Went through the mount matrix docs multiple times. It seems fairly
-> straightforward for the accelerometer. being just a matrix that we can
-> multiply to get a desired result.
+> > It might be worth splitting the header into a spi-offload-provider.h
+> > and spi-offload-consumer.h with a common spi-offload-types.h included
+> > by both.
+> >   
 
-In your opinion, you can use the matrix for any kind of conversion of
-the values. which can mathematically be done. Which a matrix you can
-scale things e.g. too. But there is also the scale parameter. So I
-doubt that there are limits what should be done with that matrix.
-
-In my understanding, the matrix is for describing how the chip is
-rotated towards the rest of the device not for anything else.
-bosch,bma255.yaml clearly says:
- mount-matrix:
-    description: an optional 3x3 mounting rotation matrix.
-
-*rotation*
-
-> My intention is to flip the x values thus having a -1 in there.
-
-And I do not have an idea how the chip can be turned in the device to
-require that kind of matrix ... 180 degree turns need two flips ...
-
-> What I do not understand is the logic of how you came to the conclusion
-> of "cutting the chip into ultra thin slices, sorting them upside down and
-> glueing". 
-besides of this hypothetical operation.
-
-> The matrix seems correct and works as intended as well.
-
-So maybe the chip is weird and maybe that is the most practical way is
-to correct that weidness with the matrix as well and throw away any
-dogmatics. Checking..
- 
-Comparing with n900
-Datasheets: I do not find a datasheet for the BMA254, but for some
-similar chips:
-https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bma253-ds000.pdf
-https://www.geeetech.com/Documents/BST-BMA180-DS000.pdf
-
-vs.
-
-https://www.st.com/resource/en/datasheet/lis302dl.pdf
-
-No flipping in the axis direction between the them. So either both
-n900 and espresso would need single mirroring (=flip one axis) or none.
-
-So if n900 matrix is correct, than you need another -1 in there to have
-some 180 degree rotation.
-
-Regards,
-Andreas
 
