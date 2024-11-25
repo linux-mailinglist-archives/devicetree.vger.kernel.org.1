@@ -1,134 +1,158 @@
-Return-Path: <devicetree+bounces-124094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90D4F9D78D5
-	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 23:44:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 86B279D79CF
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 02:39:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5BEFC163986
-	for <lists+devicetree@lfdr.de>; Sun, 24 Nov 2024 22:44:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D90916366B
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 01:39:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E21391922ED;
-	Sun, 24 Nov 2024 22:43:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 472D617D2;
+	Mon, 25 Nov 2024 01:39:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="obIfsu6L"
+	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="GjpqeT1A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9D33190661;
-	Sun, 24 Nov 2024 22:43:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87E238BE8;
+	Mon, 25 Nov 2024 01:39:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732488195; cv=none; b=PTOy0NvdsfN7/lxyFq2Sg0N8kaXq8cExzVjDAvOIZ55cYGRHtiXtxzWGevNPUnUwBWgwCWXbnr/FJK/rJherqiwRJfy+qPuyqq94j/xUkss4Cb4RnVQ6weJ+gou7H0A8K8BHHoDLWfmGob3IRiJ2yfcCT4FjwEvSKZzzn/ucocc=
+	t=1732498777; cv=none; b=bLWXrLiiXNJ4gOPG+IoNY9XWg17jnp6ZWSQp/qtOkH7NZ4YZaC0dPs6gzCv0Hwf4q3+8s1t1AwmQH+JR3acdJjfIbVvrc47abfrek+xSbwd6up23sRtWTIscdkM7RuF3sVKga7ORuQD1H5Vv/q6rKnv3VkuW7/X61yxW2mfsv4k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732488195; c=relaxed/simple;
-	bh=UAx7hsbe3NxsaMfRJIOHUluosRkeIJDbnICHb6UgDS8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=aF8gqdF+fzxH6UJMnqcLkZ7YN0+6LS9swWCZGO8+d1N6XLaAMDEF04ZIRdoCexGAft2hJO/CGHrZtvOtVjmLg6OnNXoXVl3Lfvo5E58VEnYH+AfT9Evjs7PYkWW73V99VZj9jPrqJ+XIJTHCNkjDLrpGI4bHzyZbLBGDHIdv4As=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=obIfsu6L; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 0E300C4AF16;
-	Sun, 24 Nov 2024 22:43:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732488195;
-	bh=UAx7hsbe3NxsaMfRJIOHUluosRkeIJDbnICHb6UgDS8=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=obIfsu6L+Gj4DmMU8dlXmY2dp2aYS+5cyVfJlfHK+fHGVZPLzUJuLXerCMoSdJrdh
-	 CYZCAgvStTfuyaO6gN3SaOKjjT4yFTxAMWAsV5/hy4t9nI63Q1ytjaSIZL2rrxVX1E
-	 slKy/aV0h+YlPSVfN5g9xXY3wQzBxfZ1tLBR3xJEvE8/iNcrh96SWHZWeOizAPVtFs
-	 4f8irmX+1nlBWCM8rzwTxwCh60eQY9Yrvg5c9Ib8/v/dijvH4R/qORhf97J+RLY1rN
-	 +QLspSfS+dbyZTlGq5iniiDB+4Njg5DcQRTgoEK4aMXC5rOI9SEHWLOaRibyZ8Qt9d
-	 4NepqdYW6WcTw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E81DAD3B7C9;
-	Sun, 24 Nov 2024 22:43:14 +0000 (UTC)
-From: Jan Petrous via B4 Relay <devnull+jan.petrous.oss.nxp.com@kernel.org>
-Date: Sun, 24 Nov 2024 23:42:46 +0100
-Subject: [PATCH RFC net-next v6 15/15] MAINTAINERS: Add Jan Petrous as the
- NXP S32G/R DWMAC driver maintainer
+	s=arc-20240116; t=1732498777; c=relaxed/simple;
+	bh=plLh5g0E009ZeeZsYggNtDau5wT70lekcFjq/8KKGME=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=J7i0fcLVUqxZckqocWFD8PbqTJMM/hzyVt4pk69djwGkDPdbS3qThnSfKXZPvAH39KhWKX7yKzrEr7rTGVNEf/55YNEYwkcFJtEOKMg66qn924lrCqJF4OY+gy9+fZT0KRxo2BD4fTZ9t3Jvy8oFogtF0BKkHuOrd8e+B6jOI2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=GjpqeT1A; arc=none smtp.client-ip=150.107.74.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gibson.dropbear.id.au; s=202410; t=1732498765;
+	bh=h/E8fNY9+4YrWd9ShlbvpvksIm8BK62na9HRO3FhKXg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GjpqeT1Al4n1XNmpAwmGYd12wv9T+o/CCFzWKF0bpWnCLI7NKoffoQhBU+G2YFBYs
+	 us5ax0SEMypDGTFHbBZ/Hwn8rFCZgoN76CdsOMVa7Y03skihWzv9bEB06LR7HJSOzZ
+	 PdCIgPvAQyGilYGQBLNeBzkUA0HYsTc6lf8ovNW5JJOYYCV2eZAQ3mcNLAT+H/82oj
+	 kzsoq4p0sUCuV2iLJdEbmmAk+UrvS0E8C1YmUf5R+wCRsRGzM5IjMRhgfBfnFly2zL
+	 efVMyZiWLsDQGgzuf5jWGdZcW6q1uZz/k2NYBk395TpOwGH16DFwFOt1VaWWvIa1gf
+	 AL95IX7hr5P3g==
+Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
+	id 4XxSzx36slz4xcr; Mon, 25 Nov 2024 12:39:25 +1100 (AEDT)
+Date: Mon, 25 Nov 2024 12:26:57 +1100
+From: David Gibson <david@gibson.dropbear.id.au>
+To: Bingwu Zhang <xtex@envs.net>
+Cc: devicetree-compiler@vger.kernel.org,
+	Bingwu Zhang <xtexchooser@duck.com>, devicetree@vger.kernel.org,
+	~xtex/staging@lists.sr.ht
+Subject: Re: [PATCH v2] libfdt: Remove fdt parameter from
+ overlay_fixup_one_phandle
+Message-ID: <Z0PSYSEF74lQQURr@zatzit>
+References: <20241123094814.15504-2-xtex@envs.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241124-upstream_s32cc_gmac-v6-15-dc5718ccf001@oss.nxp.com>
-References: <20241124-upstream_s32cc_gmac-v6-0-dc5718ccf001@oss.nxp.com>
-In-Reply-To: <20241124-upstream_s32cc_gmac-v6-0-dc5718ccf001@oss.nxp.com>
-To: Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Jose Abreu <joabreu@synopsys.com>, "David S. Miller" <davem@davemloft.net>, 
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
- Paolo Abeni <pabeni@redhat.com>, Vinod Koul <vkoul@kernel.org>, 
- Richard Cochran <richardcochran@gmail.com>, Andrew Lunn <andrew@lunn.ch>, 
- Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Emil Renner Berthing <kernel@esmil.dk>, 
- Minda Chen <minda.chen@starfivetech.com>, 
- Nicolas Ferre <nicolas.ferre@microchip.com>, 
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
- Iyappan Subramanian <iyappan@os.amperecomputing.com>, 
- Keyur Chudgar <keyur@os.amperecomputing.com>, 
- Quan Nguyen <quan@os.amperecomputing.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
- Andrew Lunn <andrew+netdev@lunn.ch>
-Cc: linux-stm32@st-md-mailman.stormreply.com, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org, imx@lists.linux.dev, 
- devicetree@vger.kernel.org, NXP S32 Linux Team <s32@nxp.com>, 
- "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1732488190; l=915;
- i=jan.petrous@oss.nxp.com; s=20240922; h=from:subject:message-id;
- bh=AB+C+oFGx/nUk90lBuH2NQMFBAAsgdQa1O4ljHjBgAU=;
- b=Kywb2KIXNROek0tfQQzkmWXDOrb1hA03ssVjFY+r9P584GKXG9ul+AcMtcMT/BvX5dYjTs5dh
- CIXotOx9/3lBROcgwIOof2FDu87i41hzr64p7oqLbJ+hrKolWPMQzVy
-X-Developer-Key: i=jan.petrous@oss.nxp.com; a=ed25519;
- pk=Ke3wwK7rb2Me9UQRf6vR8AsfJZfhTyoDaxkUCqmSWYY=
-X-Endpoint-Received: by B4 Relay for jan.petrous@oss.nxp.com/20240922 with
- auth_id=217
-X-Original-From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
-Reply-To: jan.petrous@oss.nxp.com
-
-From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
-
-Add myself as NXP S32G/R DWMAC Ethernet driver maintainer.
-
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e7f017097701..f1cf5dfe5998 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2809,6 +2809,13 @@ S:	Maintained
- F:	arch/arm64/boot/dts/freescale/s32g*.dts*
- F:	drivers/pinctrl/nxp/
- 
-+ARM/NXP S32G/S32R DWMAC ETHERNET DRIVER
-+M:	Jan Petrous <jan.petrous@oss.nxp.com>
-+L:	NXP S32 Linux Team <s32@nxp.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml
-+F:	drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
-+
- ARM/Orion SoC/Technologic Systems TS-78xx platform support
- M:	Alexander Clouter <alex@digriz.org.uk>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-
--- 
-2.47.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="YDjXnWfiiYXBGpYs"
+Content-Disposition: inline
+In-Reply-To: <20241123094814.15504-2-xtex@envs.net>
 
 
+--YDjXnWfiiYXBGpYs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Sat, Nov 23, 2024 at 05:48:14PM +0800, Bingwu Zhang wrote:
+> From: Bingwu Zhang <xtexchooser@duck.com>
+>=20
+> When compiling with -Wall -Wextra, the unused fdt parameter becomes a
+> warning. With -Werror, it becomes an error and fails the build.
+>=20
+> As the parameter is not used in the function, let's remove it.
+>=20
+> Signed-off-by: Bingwu Zhang <xtexchooser@duck.com>
+
+Merged, thanks!
+
+> ---
+> Changes from v1:
+>  - Remove fdt parameter rather than suppressing the warning directly
+> Link: https://lore.kernel.org/devicetree-compiler/20241116101228.164707-5=
+-xtex@envs.net/ # v1
+> ---
+>  libfdt/fdt_overlay.c | 6 ++----
+>  1 file changed, 2 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/libfdt/fdt_overlay.c b/libfdt/fdt_overlay.c
+> index f61ca7ed2f0b..e6b9eb643958 100644
+> --- a/libfdt/fdt_overlay.c
+> +++ b/libfdt/fdt_overlay.c
+> @@ -307,7 +307,6 @@ static int overlay_update_local_references(void *fdto=
+, uint32_t delta)
+> =20
+>  /**
+>   * overlay_fixup_one_phandle - Set an overlay phandle to the base one
+> - * @fdt: Base Device Tree blob
+>   * @fdto: Device tree overlay blob
+>   * @symbols_off: Node offset of the symbols node in the base device tree
+>   * @path: Path to a node holding a phandle in the overlay
+> @@ -328,8 +327,7 @@ static int overlay_update_local_references(void *fdto=
+, uint32_t delta)
+>   *      0 on success
+>   *      Negative error code on failure
+>   */
+> -static int overlay_fixup_one_phandle(void *fdt, void *fdto,
+> -				     int symbols_off,
+> +static int overlay_fixup_one_phandle(void *fdto, int symbols_off,
+>  				     const char *path, uint32_t path_len,
+>  				     const char *name, uint32_t name_len,
+>  				     int poffset, uint32_t phandle)
+> @@ -443,7 +441,7 @@ static int overlay_fixup_phandle(void *fdt, void *fdt=
+o, int symbols_off,
+>  		if ((*endptr !=3D '\0') || (endptr <=3D (sep + 1)))
+>  			return -FDT_ERR_BADOVERLAY;
+> =20
+> -		ret =3D overlay_fixup_one_phandle(fdt, fdto, symbols_off,
+> +		ret =3D overlay_fixup_one_phandle(fdto, symbols_off,
+>  						path, path_len, name, name_len,
+>  						poffset, phandle);
+>  		if (ret)
+>=20
+> base-commit: b3bbee6b1242b4bb84fcb31365b76a3a45be3b6b
+
+--=20
+David Gibson (he or they)	| I'll have my music baroque, and my code
+david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
+				| around.
+http://www.ozlabs.org/~dgibson
+
+--YDjXnWfiiYXBGpYs
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmdD0mAACgkQzQJF27ox
+2GfjQA/8CxWHMiSQpo8v1BNR0tEuSYrs9SkppP+VZbA/Fw0/XMcUxYZQbr2JKPmd
+m/5duD6QHg40GEaOclFTSu6rIwnNwYqE4kFDZiI4GegMhC87EltoetGeaKGQMOAU
+0G9b1D4CDHIQ1PVEz4wnC4sHcBYaU13JhDPOhNCX+jQyw4O8d/TEhEnuiWFwZ2zX
+0fQiPVs48Xe5TPk7ii172n9bFHE88rBv6o67a8unHiLWnpxfB9a+cAYsOLhU2WGP
+dArdb07ZVVLlhlLeMt/xUrZRZQM5NRCJz2w1jlggaAWA3deizCXkbQV21DsONfQn
+AxPkEb5ggv74mlL7JALOUPKAgw6q2/VhG7eSA8r0984OOefphaJTyft7A+l/c/Nf
+4RX+1o6B4rtFdt/ceQJ4vrQnbVly52RIZcUk+uv/OvpJn3gOyT2u8nyvHbtFNwD9
++4r29JlhmaAgp2ISmIsfUugQbT1L5jvoIqer2iqz6MEYv0qjQuMSqyKw2c90jBTg
+rMWeE4Lh4kKkYPbV8yWeH7kOQHmUR0LFh+ahPqt4rI7qP826+okIeoC88RUlvG12
+Q52v4ZntBuNe9xNgBO7ZjhgeU6DdZmOwofnZ3C8Xkvqpkr8+CEs+LoFtLp+3x4Bz
+mhTd62FfntzZpu52cZnc25J7+xuGRVQSQ//i9pEFwX8TNk2QXDU=
+=NBCt
+-----END PGP SIGNATURE-----
+
+--YDjXnWfiiYXBGpYs--
 
