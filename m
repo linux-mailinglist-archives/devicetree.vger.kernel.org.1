@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-124258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F6839D82AF
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 10:41:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3026A9D82D5
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 10:49:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C45F163D58
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 09:41:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA454163B4E
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 09:49:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2DEB1922E7;
-	Mon, 25 Nov 2024 09:40:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3AF5194123;
+	Mon, 25 Nov 2024 09:48:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="iqaRCXmA"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ZIGvJkMl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B335F190676;
-	Mon, 25 Nov 2024 09:40:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE41C193070;
+	Mon, 25 Nov 2024 09:48:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732527627; cv=none; b=PLYtizZIjnDk1WYDRIxGhGQSPJcfLyRX0rStKBhPu7oOj1JPA9IDeyfDDsT9Tbrt1w/bbWQkzhhKe9mS3lXkcsYVNesDu0dzQ9uLmkgy+y8u4hO/m8pLgP1gLsVlabjuPuH8iv2nyaTvDbZHUsYzTd/FiqUXhluxprvEbmUbbbo=
+	t=1732528116; cv=none; b=P0IETgIwY0t03zE3No7qCPNghq/ZtYT4xuJB7YqAsnDZP+I1vYfGrzbCd/6YRfy7YQ6J9mnJkLWHJDKqnZiUk2Qu7ESOWoumCzxx1gke6szalNUZezubITONmC5htchxuezR+EfAW+tk1b7uidslkcpgpvhbIepIsbeRX1elAJk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732527627; c=relaxed/simple;
-	bh=d9COl/HNryGOtsnndDDZCpiMYa8ON1Clq6F2gVqRaWE=;
+	s=arc-20240116; t=1732528116; c=relaxed/simple;
+	bh=xjFVmTiejNfLGymZmTJjeWiE7RMUlR67+u0DzoVZfkw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dfPTvXDpmtgqAFQ8juuPyUa78QIpZoJbUnywPTavzccAozSV+z2MJ4kBqv+q4TT9aGH76586t6PJ4D9kilC5D0nqyKdObC4AcGEfUXWvPTpJet57hbM4kZpDcap+5DY6BbRD9n1xulhDOGor0C21CrcfifLdxif2NQUIrWmZjas=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=iqaRCXmA; arc=none smtp.client-ip=148.251.105.195
+	 In-Reply-To:Content-Type; b=Kmdyx3mmgPNCo56Qqel3oIyx6O6rIkykgszY1YZAZ2q2U4rZGW7NAUCzkQoEju7Z+mDH1pEutAif4mHpM5u+MmVzQxINSUsZtsiRXB4fVNXin/Y6nTCXPH1QmaqM8NF1H2JkUCdEpZS04K7zAax5mX4soQZHdYs8CkhBsnCDR7A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ZIGvJkMl; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1732527623;
-	bh=d9COl/HNryGOtsnndDDZCpiMYa8ON1Clq6F2gVqRaWE=;
+	s=mail; t=1732528113;
+	bh=xjFVmTiejNfLGymZmTJjeWiE7RMUlR67+u0DzoVZfkw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=iqaRCXmAPGiFTo1xKAHvs4MZJXM3fxG9nD+pGnOJH7t3F8fOjFY1lGQaL8bKiloKf
-	 ZdPABCbAi2V2rifIE0bqa0vz0fP8elp3cdd7f/HN9SAXqMUBeGahFmPOuoFmKyjy3a
-	 plnUOVhIR9yAiBt2DMkkop93hprpv1YhrmQB8cOXVfHfG06To05w69kjaWHUFq9oXS
-	 FqkF9KSjpOacEuIf9Tsga2hDnDt0P6BK8EwICMxz86CDJi7vro+JIKolJkPLzI/23H
-	 l2fp8cnzDXAeg/gEYfUt2HIJp13OUUrgHH8sBH8TCvJQDAa5QG5V+XwC5dFGk3nb1U
-	 KpR10zPAMkeew==
+	b=ZIGvJkMl8FjWlk3eJDolvdTpNwKQ0/BnFOvz+lMKWSNIMVRRFBaar1ie/pXq4ywHZ
+	 QlTf+DwWC+l8aIk2UvDDZKQznxUos8a1yHkDVGX0+W76Fzcn8ExVqZTgGEwraPsZut
+	 530FEn+vrgmPdbDWhNT1DFotLfIpndUGS1Av2FBmPiHd5jkZdXSgEvowoyd75C8vp5
+	 oa2AMiWA6lvYvPQJb8xapxL5g6Fs5YrYIKzFr+VpWcuyTAmx3DDnuPGm1I/qiWArp5
+	 53i6mMzmRRLjKo48Tbx4/BtJyWjs66uQhyAvBVcBHH9yNhXsujTLF9yuZu9Fn/wG0g
+	 jzd0+JVWoV86A==
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 2B51017E1411;
-	Mon, 25 Nov 2024 10:40:23 +0100 (CET)
-Message-ID: <03b5a671-e0c0-4d18-a103-e7f0ab18e20e@collabora.com>
-Date: Mon, 25 Nov 2024 10:40:22 +0100
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9620717E1437;
+	Mon, 25 Nov 2024 10:48:32 +0100 (CET)
+Message-ID: <936bf452-3d1f-4940-9a91-69efcdc6985e@collabora.com>
+Date: Mon, 25 Nov 2024 10:48:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,49 +57,52 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 7/7] drm/mediatek: Introduce HDMI/DDC v2 for
- MT8195/MT8188
-To: Maxime Ripard <mripard@kernel.org>
-Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@gmail.com,
- simona@ffwll.ch, maarten.lankhorst@linux.intel.com, tzimmermann@suse.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- matthias.bgg@gmail.com, ck.hu@mediatek.com, dri-devel@lists.freedesktop.org,
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- kernel@collabora.com
-References: <20241120124512.134278-1-angelogioacchino.delregno@collabora.com>
- <20241120124512.134278-8-angelogioacchino.delregno@collabora.com>
- <20241122-cobra-of-authentic-discourse-e2c5b6@houat>
+Subject: Re: [GIT PULL] Devicetree updates for v6.13
+To: Sasha Levin <sashal@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh@kernel.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ Saravana Kannan <saravanak@google.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Matthias Brugger <matthias.bgg@gmail.com>,
+ Chen-Yu Tsai <wenst@chromium.org>
+References: <20241118210730.GA3331421-robh@kernel.org>
+ <Z0NUdoG17EwuCigT@sashalap> <c25e6a80-f6dc-4ef9-a90d-0fa09cbbc217@linaro.org>
+ <Z0NbeyTwxo-M4Lgi@sashalap>
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-In-Reply-To: <20241122-cobra-of-authentic-discourse-e2c5b6@houat>
+In-Reply-To: <Z0NbeyTwxo-M4Lgi@sashalap>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Il 22/11/24 10:20, Maxime Ripard ha scritto:
-> Hi,
-> 
-> On Wed, Nov 20, 2024 at 01:45:12PM +0100, AngeloGioacchino Del Regno wrote:
->> Add support for the newer HDMI-TX (Encoder) v2 and DDC v2 IPs
->> found in MediaTek's MT8195, MT8188 SoC and their variants, and
->> including support for display modes up to 4k60 and for HDMI
->> Audio, as per the HDMI 2.0 spec.
+Il 24/11/24 17:59, Sasha Levin ha scritto:
+> On Sun, Nov 24, 2024 at 05:47:33PM +0100, Krzysztof Kozlowski wrote:
+>> On 24/11/2024 17:29, Sasha Levin wrote:
+>>> Hi Rob,
+>>>
+>>> On Mon, Nov 18, 2024 at 03:07:30PM -0600, Rob Herring wrote:
+>>>>      of: WARN on deprecated #address-cells/#size-cells handling
+>>>
+>>> With the commit above, I've started seeing boot warnings on a few
 >>
->> HDCP and CEC functionalities are also supported by this hardware,
->> but are not included in this commit.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> And same boards do not report problems on the next?
 > 
-> Just a heads-up, you should really be using the new HDMI helpers, it'll
-> remove a lot of boilerplate and potential bugs.
+> Looks like they do. I haven't checked it previously, but I see that we
+> have similar warnings on a few boards that KernelCI is testing -next on.
 > 
-> Maxime
 
-Hmm... the state helper you mean? Or the inflight series from Dmitry?
+That's... horrendous.
 
-In any case... yeah, you're right, let me check which helpers I can use: that's
-going to be done for v2 :-)
+I hope that we can get a proper fix with a bootloader update on these (now very
+old) devices... Adding a Google engineer to the loop so that he can follow up
+internally.
 
-Thanks!
+The alternative would be to hack-in a firmware node to mt8183-kukui.dtsi, but....
+...ugh. That'd be indeed a hack for the sole purpose of fixing a bootloader that
+is acting in a broken way, and I don't like that at all (...and I'm sure I'm not
+alone!).
+
+Thanks,
 Angelo
 
