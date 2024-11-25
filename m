@@ -1,149 +1,267 @@
-Return-Path: <devicetree+bounces-124323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CA809D85B9
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 13:58:15 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0930D9D85E3
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 14:06:48 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9058A1696CD
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 13:06:44 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDFCB1A76D2;
+	Mon, 25 Nov 2024 13:06:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="V3Fq5c/R"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74DA7286ECE
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 12:58:00 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC92A1A01C3;
-	Mon, 25 Nov 2024 12:57:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="j+KkSO/s"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 494A11714AC
-	for <devicetree@vger.kernel.org>; Mon, 25 Nov 2024 12:57:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4368D18D625;
+	Mon, 25 Nov 2024 13:06:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732539476; cv=none; b=PR9cDgU7KA01T11qtkkrrsSMM5+n/d3nqgXkxg+Pm4FA9D2sZrLq1QFhKNE7yy/VeIa6uf7t4mq7WAzU3RBAzeW9lYELWqCYKWs3Z84fdhXx7YuuNBrLzuio5JOlPGM9O7o3MIIywMywNqJ0qxCWGpyCd7kOF3jInv8ul2MofKk=
+	t=1732540002; cv=none; b=K/X9iDEqcoOw5KL7VYGrMGymXtj+0I0QXijIglTjjIQg+ZMRvU+U3WSEhsvpnkN7OOMju5XwE0Z46uu4ZOMJtMVXmw8qPT1Rk9Q12Z4dA6NajpqFNxb44ywIYpzuoTwwvriQOt2IfRBctLQb/dg0x95BM/Tl5fd6Tp5uVgXtZrQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732539476; c=relaxed/simple;
-	bh=NmAtDEeeHIbvNgfXMeLVH7ObwbLrSZk2z7XkoWcaSms=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=N9ed+w+XKdJKoucrMoPW2Nk72nPzqElUzB4zGHWh/gdkOmoqcI9Sh9gIPjT/giemC7qVAeRM5rSjj1gstzgptNR4qf1zy75bTLMa5YZQyKCVk/9VWq0J7uBxcWzDWG/4tApf1OrpZAhVqLcuuR9UDgqFp3B6r+jvYs10EN2CEQo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=j+KkSO/s; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-431616c23b5so24678055e9.0
-        for <devicetree@vger.kernel.org>; Mon, 25 Nov 2024 04:57:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732539474; x=1733144274; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LK/o3FUGaKRZErsXHi8EyRs052osGciSWNJJ6Un26Ds=;
-        b=j+KkSO/sRQXLuWXPraVis7P3zDCOWFMOfi7zlbZVM8mlGWELtg0OAJgaIlkMwA4jZ8
-         cyWVh3mtMD0udmxaAlyqXORUgzSXzGVgjzvbF+nDbVgBTA1c3qD64qlzMqjNqZjgGccs
-         43X4MC4HgLJNUgPIujSGZHootPUEFhg+1F3Qsu1XC+P/qPnfL+51TB+cuTwgBZ7Ab94Y
-         2anvfNL1NfhlhWt6wn/4KYvkPeSG/yfvGsywVA5MbUDmK1iIo4yY1aXALukUCiJtFcD2
-         hCD4S/IdFC+H9aC383NRalr+ZDow7V0SbXSHhyDKzihg5YyLs1zKGfZDnaTMSLLA/Nqm
-         k7VQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732539474; x=1733144274;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=LK/o3FUGaKRZErsXHi8EyRs052osGciSWNJJ6Un26Ds=;
-        b=cZpeDFv563dugSO4em6GTGE9fUyFtt+xgkCHQ6EQwhbPDlR4+i6sg9xXKqXN/GQfyg
-         ii8iiE1llb5tChtGoDp9pR7e6NVnALjuEeW1OXAuxyt1y54/cqurej6XvYWKgze0QFAv
-         G5ZB3zzdHRfHsFjWWEmYpInw5xk/MJz4QDBOoBNr72kN8TWwIl9lK6AR2eGk7G2a3RoL
-         H0XFiU4Pp3uyBEwwEJFfg0nGN2W74z3igqnQmIb19ZPkTQw6spUshpLMlHomP6UluIau
-         lTNVtQhpp3r7ulMQYbnpX8UX74pfqX66AjNlei9hZzQTaRisw5gM5Mrp3lM35W09Fiet
-         Z1uw==
-X-Forwarded-Encrypted: i=1; AJvYcCXrjUhLaH55voIapYBTHJG9ivSQ2IeOU9IstHHCjU0AlUg6inMzRDdzxHhfGYyA+JP8qrM4tSMMIO98@vger.kernel.org
-X-Gm-Message-State: AOJu0YzjWDQRe23hF6Z4ARsess0aGDIjlztbSzKHKmSJ3fnlDxYrVHQY
-	ZMLEfDKSDIfldg0zKM97GM2b4Q/dXZVswJctiMJuoi1e7W1ECu+9keHpFPMMzhY=
-X-Gm-Gg: ASbGncvYjYiOm8m/fBJnXTihkVmDKIkiU8WSUZTWmmj+cub5iBrkf4eYpNCT2pziQmL
-	hhoclIZYQTNU9KlPAJGcJnG+LqJA+yVUvUmLx1VGwvXp2W2XKQdivw8HKhwUmYtUop0tQaBAWdQ
-	hRQ3pmiOIFdTSWS1pdiD5rvjMcp3pu+VGM2ylPTPnQpDyUs5/1tUzUtmjbZre667S30ccDynvsK
-	0MJ8brhVJg4YUPlP16wvXXorMatPYdkwirjmXDVQ+UdgmQzYK62VbaDl1U82+wBS9HrJc+C/Dwm
-	xAKXNlELbblVjV2161EmY25Xv+c=
-X-Google-Smtp-Source: AGHT+IHp9ZbYEEuOqvzmzN9bYFgBoyUQCliRxucIR2i6oG6nzBgRHtwS7cuLaCKRHjn/8s+t8OKggQ==
-X-Received: by 2002:a05:600c:1e1e:b0:42c:b603:422 with SMTP id 5b1f17b1804b1-433cdb0b504mr101998665e9.8.1732539473751;
-        Mon, 25 Nov 2024 04:57:53 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:9dc0:6c46:415c:5f8b? ([2a01:e0a:982:cbb0:9dc0:6c46:415c:5f8b])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4349dc19fd3sm52076065e9.39.2024.11.25.04.57.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Nov 2024 04:57:53 -0800 (PST)
-Message-ID: <c6b0273f-16f3-4469-a4b8-9564f7355400@linaro.org>
-Date: Mon, 25 Nov 2024 13:57:52 +0100
+	s=arc-20240116; t=1732540002; c=relaxed/simple;
+	bh=63ymZBgIhRHieQGE1s3TsXh4WFym6/lDUnsYvlHbp4w=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=NCDFMmc4lQhtyWralJ0QAxCm85/sFfEaZVAZy8uADsEhJcXsnskhx3/n86fQUPxJfr3euhFrOhux9Warva5UNlx//lg65M8MB3G10toWH3Fw9jW5zJ52mqwQGwZaO0plfAhTRVhbn/XKTTTdC/WcTtoK1ufa4N6f9e/xmpok2ro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=V3Fq5c/R; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4APAiYxx021756;
+	Mon, 25 Nov 2024 13:06:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:message-id:mime-version:subject:to; s=
+	qcppdkim1; bh=SW0O5hhp6DzPjtFUzAhfzsYrqYku9NVQyHIUwKJqKbU=; b=V3
+	Fq5c/RyViW9OMJCcVPFNGrriaPuby2YpLnYv82QM0gfHAR8SGNe8C7yaWanki2eB
+	iV8HI1dKVcXf6wb0niGky7HHhW6PuBLCR/pYpjLcx/5Z2XoQDC1peZu5nGU3vGn8
+	cVyhemB5MGyiEcuAGJM8tvspzdYjrCz/1WGpXkISB6abZHY3dfhdJi8J+HKG/I3f
+	+kPt1/3/abaRVUGcRULFHGnHw94S0ubgKXglf/bdLIHeCdMVQYDIPnnJHQVn+H9M
+	MGrA7RQa3NN+x2mkud+tEZeom++XgXyEIWbUIuM1lCcOcUnJSEcAWxkLUQoYg5VY
+	7RWCZ0/W/Is9X/7/vD+Q==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4334rd542f-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 25 Nov 2024 13:06:24 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4APD6NlA017795
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 25 Nov 2024 13:06:23 GMT
+Received: from taozha2-gv.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 25 Nov 2024 05:06:20 -0800
+From: Tao Zhang <quic_taozha@quicinc.com>
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach
+	<mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Leo Yan
+	<leo.yan@linux.dev>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>
+CC: Tao Zhang <quic_taozha@quicinc.com>, <coresight@lists.linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+Subject: [PATCH v6 0/4] source filtering for multi-port output
+Date: Mon, 25 Nov 2024 21:05:51 +0800
+Message-ID: <20241125130555.19924-1-quic_taozha@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 2/5] gpu: drm: adp: Add Apple Display Pipe driver
-To: Sasha Finkelstein <fnkl.kernel@gmail.com>
-Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
- Alyssa Rosenzweig <alyssa@rosenzweig.io>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jessica Zhang
- <quic_jesszhan@quicinc.com>, asahi@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Janne Grunau <j@jannau.net>
-References: <20241124-adpdrm-v1-0-3191d8e6e49a@gmail.com>
- <20241124-adpdrm-v1-2-3191d8e6e49a@gmail.com>
- <10d0aa88-de2e-4856-a137-301519e58b2d@linaro.org>
- <CAMT+MTRWZWj=3AP7wyooXr49-W4vcm0ZbAoqPyEuNkQBMOaJfw@mail.gmail.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <CAMT+MTRWZWj=3AP7wyooXr49-W4vcm0ZbAoqPyEuNkQBMOaJfw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: IC-hJ3IBjW57KPAdo1Txtz-7Exud0jTt
+X-Proofpoint-GUID: IC-hJ3IBjW57KPAdo1Txtz-7Exud0jTt
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
+ bulkscore=0 clxscore=1015 suspectscore=0 priorityscore=1501 malwarescore=0
+ spamscore=0 adultscore=0 impostorscore=0 phishscore=0 mlxlogscore=999
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2411250112
 
-On 25/11/2024 12:24, Sasha Finkelstein wrote:
-> On Mon, 25 Nov 2024 at 09:50, Neil Armstrong <neil.armstrong@linaro.org> wrote:
->>
->> So this controller only supports a single mode ???????
->>
-> Most likely. On all devices it is connected to a single built-in display.
-> 
-> Ack on all other changes, will be fixed for v2.
+In our hardware design, by combining a funnel and a replicator, it
+implement a hardware device with one-to-one correspondence between
+output ports and input ports. The programming usage on this device
+is the same as funnel. The software uses a funnel and a static
+replicator to implement the driver of this device. Since original
+funnels only support a single output connection and original
+replicator only support a single input connection, the code needs
+to be modified to support this new feature. The following is a
+typical topology diagram of multi-port output mechanism.
+|----------|     |---------|     |----------|   |---------|
+|  TPDM 0  |     | Source0 |     | Source 1 |   | TPDM 1  |
+|----------|     |---------|     |----------|   |---------|
+      |                |                |             |
+      |                |                |             |
+      |      --------- |                |             |
+      |      |                          |             |
+      |      |                          |             |
+      |      |                          |             |
+   \-------------/ ----------------------             |
+    \  Funnel 0 /  |                                  |
+     -----------   |     ------------------------------
+          |        |     |
+          |        |     |
+        \------------------/
+         \    Funnel 1    /     ----|
+          \--------------/          |
+                  |                 |----> Combine a funnel and a
+                  |                 |      static replicator
+          /-----------------\       |
+         /    replicator 0   \  ----|
+        /---------------------\
+             |     |      |
+             |     |      |-----------|
+             |     |---------|        |
+             |               |TPDM0   |TPDM1
+             |            \-----------------/
+             |             \   TPDA 0      /
+             |              \-------------/
+             |                    |
+             |                    |
+             |Source0/1           |
+          \-------------------------------/
+           \           Funnel 2          /
+            \---------------------------/
 
-OK, so instead make the panel driver return this single mode
-and from the display driver just filter out anything that's
-not ADP_SCREEN_VSIZE & ADP_SCREEN_HSIZE.
+Changes in V6:
+1. Optimize the prompt content of the warning log
+when the filter handle is not a trace source.
+-- Suzuki K Poulose
+2. Reset the filter device and fwnode if it is not
+a trace source.
+-- Suzuki K Poulose
 
-Neil
+Changes in V5:
+1. Replace "filter-src" with "filter-source" in the
+dt-binding document.
+-- Suzuki K Poulose
+2. Optimize the comments of the patch "coresight:
+Add support for trace filtering by source" due to bad
+example.
+-- Suzuki K Poulose
+3. Correct spelling errors in the patch "coresight:
+Add support for trace filtering by source".
+-- Suzuki K Poulose
+4. Optimize the function "coresight_blocks_source".
+-- Suzuki K Poulose
+5. Add { } in the function "of_coresight_parse_endpoint".
+-- Suzuki K Poulose
+6. Adjust the order of the patches.
+-- Suzuki K Poulose
+7. Adjust the alignment in "coresight-platform.c".
+-- Suzuki K Poulose
+
+Changes in V4:
+1. Use "coresight_get_source(path)" in the function
+"coresight_disable_path_from" instead of explicitly
+passing the source.
+-- Suzuki K Poulose
+2. Optimize the order of the input parameters for
+"_coresight_build_path".
+-- Suzuki K Poulose
+3. Reuse the method "coresight_block_source" in
+"_coresight_build_path".
+-- Suzuki K Poulose
+4. Remove the unnecessary () in "coresight_build_path".
+-- Suzuki K Poulose
+5. Add a helper to check if a device is SOURCE.
+-- Suzuki K Poulose
+6. Adjust the posistion of setting "still_orphan" in
+"coresight_build_path".
+-- Suzuki K Poulose
+
+Changes in V3:
+1. Rename the function "coresight_source_filter" to
+"coresight_block_source". And refine this function.
+-- Suzuki K Poulose
+2. Rename the parameters of the function
+"coresight_find_out_connection" to avoid confusion.
+-- Suzuki K Poulose
+3. Get the source of path in "coresight_enable_path" and
+"coresight_disable_path".
+-- Suzuki K Poulose
+4. Fix filter source device before skip the port in
+"coresight_orphan_match".
+-- Suzuki K Poulose
+5. Make sure the device still orphan if whter is a filter
+source firmware node but the filter source device is null.
+-- Suzuki K Poulose
+6. Walk through the entire coresight bus and fixup the
+"filter_src_dev" if the source is being removed.
+-- Suzuki K Poulose
+7. Refine the commit description of patch#2.
+-- Suzuki K Poulose
+8. Fix the warning reported by kernel test robot.
+-- kernel test robot.
+9. Use the source device directly if the port has a
+hardcoded filter in "tpda_get_element_size".
+-- Suzuki K Poulose
+
+Changes in V2:
+1. Change the reference for endpoint property in dt-binding.
+-- Krzysztof Kozlowski
+2. Change the property name "filter_src" to "filter-src".
+-- Krzysztof Kozlowski
+3. Fix the errors in running 'make dt_binding_check'.
+-- Rob Herring
+4. Pass in the source parameter instead of path.
+-- Suzuki K Poulose
+5. Reset the "filter_src_dev" if the "src" csdev is being removed.
+-- Suzuki K Poulose
+6. Add a warning if the "filter_src_dev" is of not the
+type DEV_TYPE_SOURCE.
+-- Suzuki K Poulose
+7. Optimize the procedure for handling all possible cases.
+-- Suzuki K Poulose
+
+Changes in V1:
+1. Add a static replicator connect to a funnel to implement the
+correspondence between the output ports and the input ports on
+funnels.
+-- Suzuki K Poulose
+2. Add filter_src_dev and filter_src_dev phandle to
+"coresight_connection" struct, and populate them if there is one.
+-- Suzuki K Poulose
+3. To look at the phandle and then fixup/remove the filter_src
+device in fixup/remove connections.
+-- Suzuki K Poulose
+4. When TPDA reads DSB/CMB element size, it is implemented by
+looking up filter src device in the connections.
+-- Suzuki K Poulose
+
+Tao Zhang (4):
+  dt-bindings: arm: qcom,coresight-static-replicator: Add property for
+    source filtering
+  coresight: Add a helper to check if a device is source
+  coresight: Add support for trace filtering by source
+  coresight-tpda: Optimize the function of reading element size
+
+ .../arm/arm,coresight-static-replicator.yaml  |  19 ++-
+ drivers/hwtracing/coresight/coresight-core.c  | 113 +++++++++++++++---
+ .../hwtracing/coresight/coresight-platform.c  |  21 ++++
+ drivers/hwtracing/coresight/coresight-tpda.c  |  13 +-
+ include/linux/coresight.h                     |  12 +-
+ 5 files changed, 155 insertions(+), 23 deletions(-)
+
+-- 
+2.17.1
+
 
