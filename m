@@ -1,137 +1,205 @@
-Return-Path: <devicetree+bounces-124277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124280-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0A4B9D8378
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 11:35:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D0079D83C0
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 11:48:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 622CB1639E7
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 10:35:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9392F165274
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 10:48:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43C00193064;
-	Mon, 25 Nov 2024 10:35:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83609192B99;
+	Mon, 25 Nov 2024 10:48:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="RDxglYsK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J98DXJ2o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68F37192D91
-	for <devicetree@vger.kernel.org>; Mon, 25 Nov 2024 10:35:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5131618D65F;
+	Mon, 25 Nov 2024 10:48:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732530906; cv=none; b=UIwSHZneq8V8GyUtQWHpnbsXlH7Ij7zLXNMbzn80iAXav2dRDoaI2VtWuzPrqI9Yh6Fh5/OROeygraBRFZVG3p2IZJQh07R5ZWYHobveblqQXVHcmy4aqwDDrAwVnMOFl1GOvE0jhJW/FUAJxHVHpccL2CJDh0HidCUcHH/aldY=
+	t=1732531721; cv=none; b=VJXQn2vTuLohynggTDkSNQEv2KqNNHOHiOI0b1CQswTC6X4Nlw+3GmVGdUSawCzq70GNe1R/CoKG9lXitOttIRZawur+A17Xv1jFi7I0QLHdTZXP7+3yveyU6m1hMOSAkkM9bPEnoBSRTwdwbMvzx/CfE9skXZ+2HmfbJeqO5AE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732530906; c=relaxed/simple;
-	bh=/G/uZopYt4hv+Lcz+c+B3nmd7SEVZd3MKlPVcqayPqw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=TxFg2gt4XnYtfRbEseZQo+viMPTnLSjE8ssrbsz5b6qwLBq0hsuhRX7ol5yUVZrQoJkdPnU48yLbJ1ux+iE1Kue/wnL+sHca3+XS5j4/dEdzzys29+qiOvFeiPqOEFHgNrdjuayut8LuI/aEQMFcY9ZWRzSYj6u3WY7ZcbOlVjs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=RDxglYsK; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-53de6b7da14so246862e87.0
-        for <devicetree@vger.kernel.org>; Mon, 25 Nov 2024 02:35:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1732530902; x=1733135702; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XxmYpn9UtZbrjXXIUIvDISofsYXFdnT0oXzeCM6Ecds=;
-        b=RDxglYsKNWiN38QgulZOLgqrixYImvvRddiYyB0GqzCh4DYMuFOdOxOd7+Yg5oughv
-         xgXpIPzITH6hH3fJAbcGwkUiurs5d7cDM/KSXiMijkJTS+tf3A1oGaqBjxTOnJ+v5xy+
-         Zd/MElaYMnYB/pNVb1pRICN/V0L815nsBNyvo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732530902; x=1733135702;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XxmYpn9UtZbrjXXIUIvDISofsYXFdnT0oXzeCM6Ecds=;
-        b=gFMd20ObUkeXVYQkn0YfSgwShT79BODyiTgyFzXHr6erD1Z/utd19bgV/xVPsn8SXW
-         4OpFUhD/vRVlwZQQYK0IdjYaQDOe5rbm0CPQ/D8kscH7rQRg8xJqCyqbgyBTZRJ9lHZf
-         mVxUyMjVIBSrGIzbTNTyJ5CaSNJLcAAVQG4XJnjlde/SuIvb1B+SA0RdmzGtPJmLRiLd
-         tmvSC/HdbwA9xNSUCJi216MwlXnwWmRMn6tTcj+JjseP99Ppkcfbi1zBVMwrU3Ks/Vog
-         gSTdfhpOLy/mZ5xtNshkRIa1E0/kKaEUWdNPdz3H4+bi87T+KClgjIBh7PH7cWJEDteg
-         kXhw==
-X-Forwarded-Encrypted: i=1; AJvYcCUMo2AJvlLzRvQv0CMqhHhy7TsOVLwdqRnXISebqqGRPZ7U9QkDYT9QcjNgheo//TD5AfNI4cuISmT1@vger.kernel.org
-X-Gm-Message-State: AOJu0Yywb9o0QLFPBLU5fAX+RE+cZbd/UQRLP0wOC8xjaU6xxoZNr1y8
-	4l5plnXOZhh7qS+EgNCiDBYpxgHTDtRiw+4vDeVBi3vcgB9h0itJJa4fRwiPnLXbuYw7VsuLRfs
-	rcsy4kD5uH6pHc4l54msvyRiQahNIh3s+Wi6n
-X-Gm-Gg: ASbGnct4lOsv/MRfybVOpc1rdPmosvd6xT3nrdWsrgvf3sH2oonfs1cv21Uv8G+7zg5
-	jKNuye4/vPRHkchoPv/qBOrEf+1+7usSkUzsc3vj/mvHwwqo+J7Q+nbBOePs=
-X-Google-Smtp-Source: AGHT+IEHifAyOLUrLFj5xqVNxTMQjPyhca/EKW65f9INz6n+Tx1MkLVmt7BlGlUvHohU6t7pp/A9okdrwg3M/nkVXj4=
-X-Received: by 2002:a05:6512:6c7:b0:53d:de36:d0e5 with SMTP id
- 2adb3069b0e04-53dde36d13fmr2346053e87.14.1732530902422; Mon, 25 Nov 2024
- 02:35:02 -0800 (PST)
+	s=arc-20240116; t=1732531721; c=relaxed/simple;
+	bh=h1YEpGzy8wIbqVyNfoJYPSakPkmHlngjAYqW44BkKCY=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=XxQJ63J/HodffuNbtCFVlM+J+f3i8sBpDEe7Zgwl1QguQdhGgiSkdMHtYldC+DhYsAQPrSNtem0woFBka1mJOa/VgElHqRv3hF18LBa4mVf6zuuOgGi6dCnty92yss9HcAy5FFdM6Nr5UoLSrLsPPMcC6eBHgozBUXG1w9IRWm8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J98DXJ2o; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7670FC4CECE;
+	Mon, 25 Nov 2024 10:48:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732531720;
+	bh=h1YEpGzy8wIbqVyNfoJYPSakPkmHlngjAYqW44BkKCY=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=J98DXJ2o7PaoE44EPgC+zl0A938TWSEYOj6mFaoewJWhD7j/xGE4sesBUaJPlKpgi
+	 3lLr3WtL9Nk3Q9Fj7jIYeby+xI8QssLvBcwZz1uZl/pQVbygdS6fh4FmzomrH4rLwE
+	 nqeGLLSSLfuqdOkl9f/p1H7NAtacnJMNglIvrcy6FQW0Sq34Jgg+BVfyOaMYHQ8/rf
+	 cMyiLftYNOveOfFx02Kt9LAMwxcEBTTQFh2rR1qVwg8nhxNi1CtoiZTOGF2APKaZRA
+	 LDgRPlekhBd14Smttm0E1vxbbTgFQWRMYYZGtOzlIS4NzFFoyuO/PEtYCJ4309WinG
+	 6ms3ZW8aEEZXw==
+Message-ID: <a753d1f3-26a8-4f26-89b5-d4cd62f7afae@kernel.org>
+Date: Mon, 25 Nov 2024 11:48:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241118210730.GA3331421-robh@kernel.org> <Z0NUdoG17EwuCigT@sashalap>
- <c25e6a80-f6dc-4ef9-a90d-0fa09cbbc217@linaro.org> <Z0NbeyTwxo-M4Lgi@sashalap> <936bf452-3d1f-4940-9a91-69efcdc6985e@collabora.com>
-In-Reply-To: <936bf452-3d1f-4940-9a91-69efcdc6985e@collabora.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Mon, 25 Nov 2024 18:34:51 +0800
-Message-ID: <CAGXv+5FLkZbZVHNkfRWuT+OioZ0TG=u2WfaFCx-jZFi73QHnVg@mail.gmail.com>
-Subject: Re: [GIT PULL] Devicetree updates for v6.13
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Sasha Levin <sashal@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Linus Torvalds <torvalds@linux-foundation.org>, 
-	Saravana Kannan <saravanak@google.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Matthias Brugger <matthias.bgg@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] dt-bindings: mfd: cros-ec: add properties for thermal
+ cooling cells
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: "Sung-Chi, Li" <lschyi@chromium.org>
+Cc: Benson Leung <bleung@chromium.org>, Guenter Roeck <groeck@chromium.org>,
+ Sebastian Reichel <sre@kernel.org>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, chrome-platform@lists.linux.dev,
+ linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20241122-extend_power_limit-v1-0-a3ecd87afa76@chromium.org>
+ <20241122-extend_power_limit-v1-2-a3ecd87afa76@chromium.org>
+ <4f5sahkxxqb5qonh676igaiadkxv2pbhbibu6wtx4yenplfn4o@yvidi4ujavhr>
+ <Z0Pl3muZx716QSed@google.com>
+ <c2e9a97e-129d-4a82-9e81-b1391b4b6ff9@kernel.org>
+ <Z0Q4vGXbvU3j9H65@google.com>
+ <d31298f5-718f-45cc-9387-7412b68b5b0f@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <d31298f5-718f-45cc-9387-7412b68b5b0f@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Nov 25, 2024 at 5:48=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 24/11/24 17:59, Sasha Levin ha scritto:
-> > On Sun, Nov 24, 2024 at 05:47:33PM +0100, Krzysztof Kozlowski wrote:
-> >> On 24/11/2024 17:29, Sasha Levin wrote:
-> >>> Hi Rob,
-> >>>
-> >>> On Mon, Nov 18, 2024 at 03:07:30PM -0600, Rob Herring wrote:
-> >>>>      of: WARN on deprecated #address-cells/#size-cells handling
-> >>>
-> >>> With the commit above, I've started seeing boot warnings on a few
-> >>
-> >> And same boards do not report problems on the next?
-> >
-> > Looks like they do. I haven't checked it previously, but I see that we
-> > have similar warnings on a few boards that KernelCI is testing -next on=
-.
-> >
->
-> That's... horrendous.
->
-> I hope that we can get a proper fix with a bootloader update on these (no=
-w very
-> old) devices... Adding a Google engineer to the loop so that he can follo=
-w up
-> internally.
+On 25/11/2024 09:48, Krzysztof Kozlowski wrote:
+> On 25/11/2024 09:43, Sung-Chi, Li wrote:
+>> On Mon, Nov 25, 2024 at 08:32:19AM +0100, Krzysztof Kozlowski wrote:
+>>> On 25/11/2024 03:50, Sung-Chi, Li wrote:
+>>>> On Fri, Nov 22, 2024 at 08:49:14AM +0100, Krzysztof Kozlowski wrote:
+>>>>> On Fri, Nov 22, 2024 at 11:47:22AM +0800, Sung-Chi Li wrote:
+>>>>>> The cros_ec supports limiting the input current to act as a passive
+>>>>>> thermal cooling device. Add the property '#cooling-cells' bindings, such
+>>>>>> that thermal framework can recognize cros_ec as a valid thermal cooling
+>>>>>> device.
+>>>>>>
+>>>>>> Signed-off-by: Sung-Chi Li <lschyi@chromium.org>
+>>>>>> ---
+>>>>>>  Documentation/devicetree/bindings/mfd/google,cros-ec.yaml | 3 +++
+>>>>>>  1 file changed, 3 insertions(+)
+>>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+>>>>>> index aac8819bd00b..2b6f098057af 100644
+>>>>>> --- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+>>>>>> +++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+>>>>>> @@ -96,6 +96,9 @@ properties:
+>>>>>>    '#gpio-cells':
+>>>>>>      const: 2
+>>>>>>  
+>>>>>> +  '#cooling-cells':
+>>>>>> +    const: 2
+>>>>>
+>>>>> This is not a cooling device. BTW, your commit msg is somehow circular.
+>>>>> "Add cooling to make it a cooling device because it will be then cooling
+>>>>> device."
+>>>>>
+>>>>> Power supply already provides necessary framework for managing charging
+>>>>> current and temperatures. If this is to stay, you need to explain why
+>>>>> this is suitable to be considered a thermal zone or system cooling
+>>>>> device (not power supply or input power cooling).
+>>>>>
+>>>>> Best regards,
+>>>>> Krzysztof
+>>>>>
+>>>>
+>>>> Thank you, I will rephrase the commit message. The reason to not to use the
+>>>> managing charging current and temperatures in the power supply framework is
+>>>> that:
+>>>>
+>>>> - The EC may not have the thermal sensor value for the charger, and there is no
+>>>>   protocol for getting the thermal sensor value for the charger (there is
+>>>>   command for reading thermal sensor values, but there is no specification for
+>>>>   what sensor index is for the charger, if the charger provides thermal value).
+>>>> - The managing mechanism only take the charger thermal value into account, and
+>>>>   I would like to control the current based on the thermal condition of the
+>>>>   whole device.
+>>>>
+>>>> I will include these explanation in the following changes.
+>>>
+>>>
+>>> This does not explain me why this is supposed to be thermal zone. I
+>>> already said it, but let's repeat: This is not a thermal zone. This
+>>> isn't thermal zone sensor, either.
+>>
+>> Hi, I added the explanation in the commit message in v2, in short, I need to use
+>> different thermal sensors, and need finer thermal controls, so I have to use
+>> thermal zone. This is included in the v2 commit message.
+> You resolved nothing there. I don't care that "you need to use thermal
+> sensors". That's not a valid reason. If next time you say "I need to
+> make it a current regulator", shall we accept incorrect description? No.
+> 
+> I repeat multiple times: this is not a SoC cooling device, this is not a
+> thermal zone and not a thermal sensor.
+> 
+> This is a power supply or charger or battery. Eventually it might be
+> hardware monitoring sensor. Use appropriate properties for this category
+> of device.
 
-AFAIK that's unlikely going to happen given the resources needed from
-the ODMs for a firmware re-qualification. Or we would have fixed the GIC
-bug in ATF and had pseudo-NMI.
+One more comment, inspired by re-thinking this why watching grey heron
+nearby: you sent first binding patch for thermal-sensor-cells, then
+later for cooling. Sorry, that's wrong process: you are supposed to send
+complete bindings for your hardware. Sending it piece by piece is a
+proof you do it for the driver, so again completely wrong
+intentions/rationale of making DT changes. It also hides from us
+complete picture of the hardware and makes decision difficult.
 
-Some of the firmware code involved is 10 years old, so even the RK3399
-Chromebooks, which no longer have support, could suffer from this as
-well.
+Another reason for not accepting this and your previous bindings
+contribution.
 
-> The alternative would be to hack-in a firmware node to mt8183-kukui.dtsi,=
- but....
-> ...ugh. That'd be indeed a hack for the sole purpose of fixing a bootload=
-er that
-> is acting in a broken way, and I don't like that at all (...and I'm sure =
-I'm not
-> alone!).
-
-
-Regards
-ChenYu
+To recap: send *complete* bindings for the hardware.
+Best regards,
+Krzysztof
 
