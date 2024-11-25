@@ -1,141 +1,226 @@
-Return-Path: <devicetree+bounces-124297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124298-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 026F09D8445
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 12:20:43 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5666E9D8456
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 12:24:18 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96D48165C5A
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 11:20:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 180BB28445B
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 11:24:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92F0D198A31;
-	Mon, 25 Nov 2024 11:20:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA8A31990D3;
+	Mon, 25 Nov 2024 11:24:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="3NB21rEO"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="lNUv0XCS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A041F195985
-	for <devicetree@vger.kernel.org>; Mon, 25 Nov 2024 11:20:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25061198A25;
+	Mon, 25 Nov 2024 11:24:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732533638; cv=none; b=cVSYJGEpp3fJ6r2Sws5w3HjR/i71wmVT93gIIAbm5NW0XphfxOXb7+CiqDRUwZNDVfirpp5R9fbh4sF+9dIrtE9Q0om5wglaCTvU/VVYWloKmkCQk8StOKxXgcImh8CNWTIaUvYXaUpqaswDen7Bmg01fCQFdBwCsfRSdyveVgQ=
+	t=1732533852; cv=none; b=KBZSHiW6JNZuKs1L3C5fAHkdNCotwF8mG+qeeReCdsWUFHo8+TH6vuubcehp2SMQ86j6H0Q9tF3h/IcT+aLkEBNJnb3FgwA2e/RTt9lDupZKMzNTNH6g/4MoyD1GyqSzCaxu8jnZba1B3xTdIVG8bc525J5gYJJ84LGRHVjOU/w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732533638; c=relaxed/simple;
-	bh=4NtGvxzD+fFspqlflwA+Rymkb6c4QHmxgS8pOAnb+lY=;
+	s=arc-20240116; t=1732533852; c=relaxed/simple;
+	bh=9XSrtMyvUrSDpVncOK3Cu4eq7Kbx4R6lVGbVFgG8+ic=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ti6oHLIOoSuWa7ZcQArnhEYnQ7OheffYhpZeWslaxiHms1Dw7Jpu3q/UatEXaR8jSUPW1YwO2SF7gjPoYhg7KEKLBEbkYEXLIF6DB81Ui4YVRmufrs1m1KPg5BO7yqOZN4gWuN+miaRaCBZlvyWcN+TNdm4r7yd35tlgKFMioqs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=3NB21rEO; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-382411ea5eeso2382835f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 25 Nov 2024 03:20:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1732533635; x=1733138435; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=4NtGvxzD+fFspqlflwA+Rymkb6c4QHmxgS8pOAnb+lY=;
-        b=3NB21rEOYYwGjsciaRkROXZONTuVyAPJVUsvDnfSp7KdsqwensQHH+faw4u3XJ6Lw1
-         wfuSt71AvBf/rZT6BRb7V6UBZTd3rV8to2chUcyKr+5CeVmotvE9vE7QiVvzwWY4Y2pH
-         88G+4tuoWnivOsFuhTT7agqRYtMt4uz8/55wz/STvPIjK2k7KLdFDj2c7dhxeo/LoaGx
-         O2knzyllD3iQo9L3ZO8rcs6aamXZISY5caBXBcjDZ8VaQ8J9ON+gTatxCDacG/b/9oS1
-         hiMOw3+3GU0VU6h1f/1FBMh6QM58Iz2OC51Waqn9XfQyLfP+g/vLSmx/FeWBFDCdizp1
-         +kag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732533635; x=1733138435;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4NtGvxzD+fFspqlflwA+Rymkb6c4QHmxgS8pOAnb+lY=;
-        b=Suf6Wg1rnK9EOOaqeAMuR2SFa/hsADqqQJdmns9fTC1pnosjeOmp7Eoc1jaTJQvUjD
-         wJOgf3lhl3bj9JRP+WTqUJAjYKYr2XY8TOwU4zFUsBJAxW2Ji/g6XfxIhHXKi0zRViTx
-         je6pxuzm86wEXi1OmCJ8NKg1xdfd8eGlElHNMUvm7wmRvN10ANf8KU5eKwBYLxEOaoRz
-         61wNa7wg6uAl6HcEMrWbmz3QfTiOOLIOC4T4Bo+BmLdetano19DJeBlafvgE+CCGaBWq
-         xnyUI+wEjARSTsSGDOZh85B+3sXjKLKwL4FTtX9X7PM6+9sj+FqzQ/Cdas94OGKZxNew
-         qW/g==
-X-Forwarded-Encrypted: i=1; AJvYcCVTEUuj8umKsDnjyebgLLnJb3LX49Bzrs3oqo2KJkbMcgKKUkq2j547UsFsKvCvDrOvgH4kTiEpkT8o@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxj8dj6Vb0Vr18jJiKD+v1pgPQHzZ96HkqzNA48/4LGbRsEO50V
-	b5QtkIh3VvT9//N/+Ln81FWS5FgQdEiTB0bg5yJElFRjPHfmp2j1uNp4D6UjI2A=
-X-Gm-Gg: ASbGncugJipzHl7rtyBFM7mjXeJyt3ZB720atPslXbYgr0kiWG+kUSmqvc2cxa/jHcw
-	pLoW/CWOdUinva24Gj7aPajcUp2gOvKktg5iVCUfYINfWd+Lz0u1v6AXTFqdTopHanVo+RZsNUT
-	eX3Zj5nfOfv1l+Uj4JJUukhTy80hjeWmWo17z3iFFjc1z9VMfFKqPZPSHfj+QNesVHL9jPCnxgz
-	+04Nux4pRYT9XqduClI3q/Ej/MDOeti8QeIUESMIgBAoLnVntG24FTzXk0rtNpblOLrc42bf7Dp
-	vdPm8jAP+cHZFCGysJBiy7V9b3RAIpKvaY550g==
-X-Google-Smtp-Source: AGHT+IE5NQoWZWUcygqi3zPIjzjSMWwkFjE+qgKCP9orIfEB74DriSSBzMyCKrWBuqPzSnW4jBdQhg==
-X-Received: by 2002:a05:6000:18ab:b0:37d:46ad:127f with SMTP id ffacd0b85a97d-38259d4fa13mr13893975f8f.26.1732533634851;
-        Mon, 25 Nov 2024 03:20:34 -0800 (PST)
-Received: from localhost (p200300f65f242d005bbc9b581c6b9666.dip0.t-ipconnect.de. [2003:f6:5f24:2d00:5bbc:9b58:1c6b:9666])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4349d8b6da4sm50771125e9.24.2024.11.25.03.20.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 25 Nov 2024 03:20:34 -0800 (PST)
-Date: Mon, 25 Nov 2024 12:20:33 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Trevor Gamblin <tgamblin@baylibre.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Alexandru Ardelean <aardelean@baylibre.com>, Alisa-Dariana Roman <alisa.roman@analog.com>, 
-	Andy Shevchenko <andy.shevchenko@gmail.com>, Conor Dooley <conor+dt@kernel.org>, 
-	David Lechner <dlechner@baylibre.com>, Dumitru Ceclan <dumitru.ceclan@analog.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>, Rob Herring <robh@kernel.org>, 
-	devicetree@vger.kernel.org, linux-iio@vger.kernel.org
-Subject: Re: [PATCH v3 09/10] iio: adc: ad7124: Add error reporting during
- probe
-Message-ID: <ddle4am42lhi7iq4zfkoliqceh6qxfvy3uefwfl72zokhraxze@fnpvgjzarudt>
-References: <20241122113322.242875-12-u.kleine-koenig@baylibre.com>
- <20241122113322.242875-21-u.kleine-koenig@baylibre.com>
- <12e62693-adcd-4da4-94ad-e56e98c11cc1@baylibre.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=oq+09Ceppz1YmjHh+qVVhGogNGri4GvtJlA2lu8wo3Fbx+ikwkQuUy4p9maXTTFdtSn2RpXzYy9+GAhEGJby2jCutJApByJwwFdn9TLGwy3EvKnbv3tE4XbpHZl1oTXLBniawi3EcMFBhOrBB6jKPBfvgDPvsDztAjOpA/TtSOo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=lNUv0XCS; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id B8A206B5;
+	Mon, 25 Nov 2024 12:23:47 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1732533827;
+	bh=9XSrtMyvUrSDpVncOK3Cu4eq7Kbx4R6lVGbVFgG8+ic=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lNUv0XCSX8ExKTvjC7nk7Ekdpied3X/jF7Sv5GUef6pfX26pFLYWQNkKixsEbYaCc
+	 lZlC5tKn+Ke+8XtcFpuiXX3yOAKUYjQpj1XP/sD5FzDhWDWoFwV3g+dt5CQDOu2v3/
+	 7Edm0c1XkhgXFe9E+ewgTLFZDRjFFnyYB0AcFb3w=
+Date: Mon, 25 Nov 2024 13:24:00 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Julien Stephan <jstephan@baylibre.com>
+Cc: Andy Hsieh <andy.hsieh@mediatek.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v7 2/5] dt-bindings: media: add mediatek ISP3.0 camsv
+Message-ID: <20241125112400.GQ19381@pendragon.ideasonboard.com>
+References: <20241121-add-mtk-isp-3-0-support-v7-0-b04dc9610619@baylibre.com>
+ <20241121-add-mtk-isp-3-0-support-v7-2-b04dc9610619@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="jf2ode3p4cncq22h"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <12e62693-adcd-4da4-94ad-e56e98c11cc1@baylibre.com>
+In-Reply-To: <20241121-add-mtk-isp-3-0-support-v7-2-b04dc9610619@baylibre.com>
 
+Hi Julien,
 
---jf2ode3p4cncq22h
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 09/10] iio: adc: ad7124: Add error reporting during
- probe
-MIME-Version: 1.0
+Thank you for the patch.
 
-On Fri, Nov 22, 2024 at 11:44:32AM -0500, Trevor Gamblin wrote:
->=20
-> On 2024-11-22 06:33, Uwe Kleine-K=F6nig wrote:
-> > A driver that silently fails to probe is annoying and hard to debug. So
-> > add messages in the error paths of the probe function.
-> >=20
-> > Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@baylibre.com>
-> Reviewed-by: Trevor Gamblin <tgamblin@baylibre.com>
+On Thu, Nov 21, 2024 at 09:53:16AM +0100, Julien Stephan wrote:
+> From: Phi-bang Nguyen <pnguyen@baylibre.com>
+> 
+> This adds the bindings, for the ISP3.0 camsv module embedded in
+> some Mediatek SoC, such as the mt8365
+> 
+> Signed-off-by: Phi-bang Nguyen <pnguyen@baylibre.com>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
+> ---
+>  .../bindings/media/mediatek,mt8365-camsv.yaml      | 109 +++++++++++++++++++++
+>  MAINTAINERS                                        |   1 +
+>  2 files changed, 110 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,mt8365-camsv.yaml b/Documentation/devicetree/bindings/media/mediatek,mt8365-camsv.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..fdd07675645917fbcd692606c836efd07e50ac0c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/mediatek,mt8365-camsv.yaml
+> @@ -0,0 +1,109 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (c) 2023 MediaTek, BayLibre
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/mediatek,mt8365-camsv.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek CAMSV 3.0
+> +
+> +maintainers:
+> +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> +  - Julien Stephan <jstephan@baylibre.com>
+> +  - Andy Hsieh <andy.hsieh@mediatek.com>
+> +
+> +description:
+> +  The CAMSV is a video capture device that includes a DMA engine connected to
+> +  the SENINF CSI-2 receivers. The number of CAMSVs depend on the SoC model.
+> +
+> +properties:
+> +  compatible:
+> +    const: mediatek,mt8365-camsv
+> +
+> +  reg:
+> +    items:
+> +      - description: camsv base
+> +      - description: img0 base
+> +      - description: tg base
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: cam clock
+> +      - description: camtg clock
+> +      - description: camsv clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: cam
+> +      - const: camtg
+> +      - const: camsv
+> +
+> +  iommus:
+> +    maxItems: 1
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Connection to the SENINF output
+> +
+> +    required:
+> +      - port@0
+> +
+> +required:
+> +  - compatible
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - power-domains
+> +  - iommus
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/clock/mediatek,mt8365-clk.h>
 
-With the changes that Andy suggested I didn't add your tag yet. So if
-you miss it in v4, *this time* it was a concious choice. :-)
+I would sort the headers alphabetically.
 
-Best regards and thanks,
-Uwe
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
---jf2ode3p4cncq22h
-Content-Type: application/pgp-signature; name="signature.asc"
+> +    #include <dt-bindings/memory/mediatek,mt8365-larb-port.h>
+> +    #include <dt-bindings/power/mediatek,mt8365-power.h>
+> +
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        camsv@15050000 {
+> +            compatible = "mediatek,mt8365-camsv";
+> +            reg = <0 0x15050000 0 0x0040>,
+> +                  <0 0x15050208 0 0x0020>,
+> +                  <0 0x15050400 0 0x0100>;
+> +            interrupts = <GIC_SPI 186 IRQ_TYPE_LEVEL_LOW>;
+> +            clocks = <&camsys CLK_CAM>,
+> +                     <&camsys CLK_CAMTG>,
+> +                     <&camsys CLK_CAMSV0>;
+> +            clock-names = "cam", "camtg", "camsv";
+> +            iommus = <&iommu M4U_PORT_CAM_IMGO>;
+> +            power-domains = <&spm MT8365_POWER_DOMAIN_CAM>;
+> +
+> +            ports {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +                port@0 {
+> +                    reg = <0>;
+> +                    camsv1_endpoint: endpoint {
+> +                        remote-endpoint = <&seninf_camsv1_endpoint>;
+> +                    };
+> +                };
+> +            };
+> +        };
+> +    };
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 242c54c88a4a22fc0cbe5c4fc5d7b0d0f84b329e..6147629405c8d40b00c4755a4ee27a746b26f782 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -14570,6 +14570,7 @@ M:	Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>  M:	Julien Stephan <jstephan@baylibre.com>
+>  M:	Andy Hsieh <andy.hsieh@mediatek.com>
+>  S:	Supported
+> +F:	Documentation/devicetree/bindings/media/mediatek,mt8365-camsv.yaml
+>  F:	Documentation/devicetree/bindings/media/mediatek,mt8365-seninf.yaml
+>  
+>  MEDIATEK SMI DRIVER
 
------BEGIN PGP SIGNATURE-----
+-- 
+Regards,
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmdEXX4ACgkQj4D7WH0S
-/k5ntwgAqfnRspGuM/iXoJKuwlTib0q86iKNsoE8GTCc9weX77H5TZckeWTVsJkN
-5+/8Am/ZnD9lxNLo5n7VgDbPDohlUmdkcaAhThsIO68itjaycpuyUfpCCYheHAQu
-o9e6ZzeiTp92kDns20osLjz/NbbxNLNiBrLK7tGd4slPjbH4yHRFBY1/Q0obMNSd
-GkvENtetodEx/wGoquAJyGhODgjOiWuVaR4nPOb9um1KRlRiiDDbxFPJb0rcgC8B
-I2Oifph3v11EzHC+uVl1fkiRcWxs5LuE9Xhh7Nnfad2EFbzZ1Pb3Qit0gRcKjFc0
-sg09R76MzW5WLHMyXK9n9Il6BC688w==
-=YSs8
------END PGP SIGNATURE-----
-
---jf2ode3p4cncq22h--
+Laurent Pinchart
 
