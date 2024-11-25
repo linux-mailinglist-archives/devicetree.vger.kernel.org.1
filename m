@@ -1,73 +1,91 @@
-Return-Path: <devicetree+bounces-124170-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124171-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB2439D7CC9
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 09:19:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0090C9D7CD0
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 09:21:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4705216361E
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 08:19:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 91DF0162C8B
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 08:21:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F21C218C004;
-	Mon, 25 Nov 2024 08:18:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C7B5185B78;
+	Mon, 25 Nov 2024 08:21:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="GxoXJ/22"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="lIgl0WCU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50EFA187FFA;
-	Mon, 25 Nov 2024 08:18:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7173C5103F
+	for <devicetree@vger.kernel.org>; Mon, 25 Nov 2024 08:21:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732522729; cv=none; b=uSqU2QEd01a3RP1ObCr4FaLGjN2Ecpa1IECh7yGf0K6DF7A68Cme2TGVJc1yjkaY0yMp/k+Odn840u6/Cz3NzyII0MZ2ga6ETEAyeXT1bN1/VKHtddm13IYvPV4gm/NYwQ/85bnDWB4nYU5tl2tZ7sOFLnI+h/nsuMfpckerm20=
+	t=1732522904; cv=none; b=jl86CZWEOUvUUcY2egtzfa9yhmvMAvKA7UA0pQBsejauNHvpZrzIEA/geqBVgPZVtYxMyMph+W5AojX7JxKkb56P3xgGz8GgntbKNpKrTnCU+naahz5j++EjDav1F/sKDTdVyXnv5awKypNaeeGa74fKCXxbHN9aSb5gKiWlRns=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732522729; c=relaxed/simple;
-	bh=ZX1ZqI1YZjNHBFyWQbcbP5xLEDCCE8n1EjqmEndKfwQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=HkpMeuic74Wt9xEpAJ1vkGqtext9xi5ZeogkplLnC7XmIlUD9LuiTos/sToWpYdKbX/U/PWS5bUEEKGuBeDYX0OUVG1SYaySs6/Kv7JHgu+0J+6dkD1AfC4kfxpJLpjvE8M50ryu9R4G3eq1+PIv4UtLxGOpy2s7uNf1p9OZXfU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=GxoXJ/22; arc=none smtp.client-ip=46.19.9.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-	s=default; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=Fz+uR78BPobXOPH4VNcUExmCEFHzoQ3zmdQQSjSRm7U=; b=GxoXJ/22YO08Nfly/PaSQVMVDF
-	MFDzqtH5rkViWvXSw5zVi9dNzgF2gAwYLVQ/ESC53yGPfSuID2S+L16QqJBk3nbqDBZoQtXWD4qfS
-	pQW0oADXfBY4JcFtEnVNbr+jNTWsOYDA+L3o3GD5sfGsYGHcR148W0t1d4i3RsnMKorEgaBRFaGkY
-	VgmRs87Y8GpHk2tUqUlgcxWQMboCHd7sz3Z0EMohPTwZRd9QTScsr6W46hhrlo8rxKJFShjYXns0+
-	cSSHMomdSIkSCyv/AElkJJo4XpLw+fufuGyFEn2azhL4OT6e0tRTlrmG3fd+ZkavxxL6oc3sqYfxt
-	nKoFceTQ==;
-Received: from [91.26.50.162] (port=58340 helo=and-HP-Z4..)
-	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <andrej.picej@norik.com>)
-	id 1tFUIx-00Eq70-0B;
-	Mon, 25 Nov 2024 09:18:46 +0100
-From: Andrej Picej <andrej.picej@norik.com>
-To: shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
+	s=arc-20240116; t=1732522904; c=relaxed/simple;
+	bh=UoSKl7TJOogkZt4o8FxS/fJ8sB2gC0Uf1Z0S6lETcEg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=tIwCb4MpEuzpzi5EqMNT7FbclEcYFAe3eMmBz64KNJQk7j1gWXXmqJUDBRBQSOKtUHepEdN7+WFj1awmqmcbGehhLa9zLbG9qV5yMw4m2yuRx/7Xi3xM3GkbUEWWTAv/OgkNelDIS+b15TG1p17eIOkg+XkQjaxkS5uRWx/UyD4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=lIgl0WCU; arc=none smtp.client-ip=209.85.208.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5cfaeed515bso5472745a12.1
+        for <devicetree@vger.kernel.org>; Mon, 25 Nov 2024 00:21:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1732522901; x=1733127701; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=V/7BP+eiBJ3tguIkvumVtoPzEUTFOBtF5H0ionm7gQI=;
+        b=lIgl0WCUZ9tNOV8wf9jNkygrR+jJdOoHqmh0oKg1Q2VBBJjPbbfSv+04MrPKoRsPic
+         jERmmnbdcTwFc+8E9QMYvJ3Z8PfcSOeeiNG/JSUsY+NIGl7FAoxnE4WHNhrZYuPtHrXy
+         qbOAfCXRaf0k9U2jrKpuF5CycaGW402U+s57w=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732522901; x=1733127701;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=V/7BP+eiBJ3tguIkvumVtoPzEUTFOBtF5H0ionm7gQI=;
+        b=IPvqONHXsIH110VgceIuoTNFtQFTt4S4/JJVd7lKWYtQCV+83dU7ZuvYEHmfoDPbLJ
+         QyXZkmWvqHbmvATWTVbJL9JsfX+AJdT0Bw4cgPqraKo/AHzUxjRdAWS/lf2qSQxB72JH
+         KX9sFDYhvoTFnSfvhSjBAocUaEEg2iiC1O0OvFCuRNkn32A5GJV84y8LKAFci4C9GT7Z
+         oRDxm/rsAgF6iak0LrxGDaKLFraBiVGg9wUzO1b5QSkYJ+N3hYRyY3Ys5VlU8R1nDB3f
+         XD3mIhQ1DlVND/rq95iLHK+mSVDnp1Pf/VX7IWxLxJOMp1rohtoSZwRxFm0xVfbwgL0Y
+         nQcw==
+X-Forwarded-Encrypted: i=1; AJvYcCUO1y99mPhgW81+RoxfLhzYaRJmwoMAXl1v24I5hQjN0r8rnEmcfT+woJEVQ3z0PVFdKTrKfo/+2dza@vger.kernel.org
+X-Gm-Message-State: AOJu0YxtS3rQqe21zpljdwT4SmHA+cC1oO6UIGGzaEnTJUEn5PjPuWDP
+	DDMCnmoVGU7rG/LSNCWFz2prRQAkvxLwH0cV4cweuyZvPhstWL14vgY0J0qWUQ==
+X-Gm-Gg: ASbGnct3Q/ZwLQX12IkkNczruhCnj7PRY0zE3madGlTwGX+k1y6OyWDP6Ka1+lnjFkF
+	qr1wTaiA4IidaBauNXVkOcqtOgKniGuyieo1HmMH2eIQh8rqQvCpp9v8MvVsMJt7GSeOCRPp+VE
+	Pq48jcB0leKT6A/vLYIWHjcgCvSNlrEDxA/Cq+gr5JUXoLOLOGHIzMb6/3AXtivt0EP6xSKvg9V
+	lwsoMHIlxdtjPRxkfR2uEiiDKjxgtUwHurCC4W1SpUtca4D2u77VqcpmzB04LVpaSlU+tv/xKUI
+	5dxX9u+f
+X-Google-Smtp-Source: AGHT+IGY+FX04mfzxmplompk/IW14NqbgJnlcBAfKd6jUF+oXS9F+fBvE0X/zqk8o3s+U3ZXOSneZg==
+X-Received: by 2002:a05:6402:234e:b0:5cf:e894:8de9 with SMTP id 4fb4d7f45d1cf-5d0205c6315mr10497739a12.3.1732522900638;
+        Mon, 25 Nov 2024 00:21:40 -0800 (PST)
+Received: from localhost (30.171.91.34.bc.googleusercontent.com. [34.91.171.30])
+        by smtp.gmail.com with UTF8SMTPSA id a640c23a62f3a-aa50b28f719sm430537166b.12.2024.11.25.00.21.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 25 Nov 2024 00:21:40 -0800 (PST)
+From: Wojciech Macek <wmacek@chromium.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Chen-Yu Tsai <wenst@chromium.org>,
+	Rafal Milecki <rafal@milecki.pl>,
+	Hsin-Yi Wang <hsinyi@chromium.org>,
+	Sean Wang <sean.wang@mediatek.com>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	upstream@lists.phytec.de
-Subject: [PATCH 15/15] arm64: dts: imx8mm-phycore-som: Add overlay to disable SPI NOR flash
-Date: Mon, 25 Nov 2024 09:18:14 +0100
-Message-Id: <20241125081814.397352-16-andrej.picej@norik.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241125081814.397352-1-andrej.picej@norik.com>
-References: <20241125081814.397352-1-andrej.picej@norik.com>
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Cc: Wojciech Macek <wmacek@chromium.org>
+Subject: [PATCH v2 0/2] Add Starmie Chromebook
+Date: Mon, 25 Nov 2024 08:21:27 +0000
+Message-ID: <20241125082130.2390310-1-wmacek@chromium.org>
+X-Mailer: git-send-email 2.47.0.371.ga323438b13-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,71 +93,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
-X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
 
-From: Teresa Remmet <t.remmet@phytec.de>
+Add an entry for the MT8186 based Starmie Chromebooks, also
+known as the ASUS Chromebook Enterprise CM30 Detachable (CM3001).
+The device is a tablet style chromebook.
 
-There are SoM variants with no SPI NOR flash populated. Add overlay to be
-able to support this.
+Wojciech Macek (2):
+  dt-bindings: arm: mediatek: Add MT8186 Starmie Chromebooks
+  arm64: dts: mediatek: mt8186: Add Starmie device
 
-Signed-off-by: Teresa Remmet <t.remmet@phytec.de>
-Signed-off-by: Andrej Picej <andrej.picej@norik.com>
----
- arch/arm64/boot/dts/freescale/Makefile           |  2 ++
- .../freescale/imx8mm-phycore-no-spiflash.dtso    | 16 ++++++++++++++++
- 2 files changed, 18 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-phycore-no-spiflash.dtso
+ .../devicetree/bindings/arm/mediatek.yaml     |  13 +
+ arch/arm64/boot/dts/mediatek/Makefile         |   2 +
+ .../mediatek/mt8186-corsola-starmie-sku0.dts  |  29 ++
+ .../mediatek/mt8186-corsola-starmie-sku1.dts  |  46 ++
+ .../dts/mediatek/mt8186-corsola-starmie.dtsi  | 480 ++++++++++++++++++
+ 5 files changed, 570 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-starmie-sku0.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-starmie-sku1.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8186-corsola-starmie.dtsi
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index da6ddce6b7c7..6dcefd58996d 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -126,11 +126,13 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-phyboard-polis-rdk.dtb
- imx8mm-phyboard-polis-peb-av-10-dtbs += imx8mm-phyboard-polis-rdk.dtb imx8mm-phyboard-polis-peb-av-10.dtbo
- imx8mm-phyboard-polis-peb-eval-01-dtbs += imx8mm-phyboard-polis-rdk.dtb imx8mm-phyboard-polis-peb-eval-01.dtbo
- imx8mm-phycore-no-eth-dtbs += imx8mm-phyboard-polis-rdk.dtb imx8mm-phycore-no-eth.dtbo
-+imx8mm-phycore-no-spiflash-dtbs += imx8mm-phyboard-polis-rdk.dtb imx8mm-phycore-no-spiflash.dtbo
- imx8mm-phycore-rpmsg-dtbs += imx8mm-phyboard-polis-rdk.dtb imx8mm-phycore-rpmsg.dtbo
- 
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-phyboard-polis-peb-av-10.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-phyboard-polis-peb-eval-01.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-phycore-no-eth.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mm-phycore-no-spiflash.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-phycore-rpmsg.dtb
- 
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-phygate-tauri-l.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-phycore-no-spiflash.dtso b/arch/arm64/boot/dts/freescale/imx8mm-phycore-no-spiflash.dtso
-new file mode 100644
-index 000000000000..71918a3241d5
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-phycore-no-spiflash.dtso
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2024 PHYTEC Messtechnik GmbH
-+ * Author: Teresa Remmet <t.remmet@phytec.de>
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&flexspi {
-+	status = "disabled";
-+};
-+
-+&som_flash {
-+	status = "disabled";
-+};
 -- 
-2.34.1
+2.47.0.371.ga323438b13-goog
 
 
