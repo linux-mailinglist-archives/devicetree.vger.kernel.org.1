@@ -1,121 +1,122 @@
-Return-Path: <devicetree+bounces-124255-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124257-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A9E39D82E1
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 10:52:11 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD0399D82AC
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 10:40:59 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9EF7DB246A0
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 09:39:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C78B163D43
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 09:40:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31AD8193086;
-	Mon, 25 Nov 2024 09:37:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C694192B63;
+	Mon, 25 Nov 2024 09:40:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="aAj1LIyd"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="ViisyC8Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94999190676;
-	Mon, 25 Nov 2024 09:37:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5262119258E;
+	Mon, 25 Nov 2024 09:40:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732527450; cv=none; b=DIeXcDY/yN9ucPpbbYcm1jdrI5gCWpxQl4LJ7Kxuhg0QdetIdMVV+iLXNbt2/XBl466U7K3jS3Tcv/hNFanyV49L7emYZnqJLzhg6ct/WtdNqo4ni75vgeIv4kBYT45kKhMu64qPs9upM4vVmTLx6p3H1jAgGKxR09C7Rv99yic=
+	t=1732527607; cv=none; b=ZGScIc/mvd+o6Ihq2tSczUHO8Kks9JlcKR2nU0jlW3ZOEA+pSWMtOsYYiGBJlJvjZ81ogT48tBPnLD1RdMcPkAeRzdE15b7QsrtjdVu1oJ8vsUAmf1gZZs1QbCAIp4lSp7Pw5Cw8N9ZBn0oGEIXl+fro1M+Q0giuBXJadES+yGw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732527450; c=relaxed/simple;
-	bh=DSLAVJ2q2j4+qW2l9jGXFmje1cGAmPDjmJ3VRUAlu68=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UzS0xbKmpUhgd+sCCoet9XWSSFVRG1lcGu/kYQ4wAxlvnz6AuDiLgSGjiIOY6vcBUYUneMFK3dLMPg+ywuDgiY1mDZbIVGmdakbdg3RyX7CA8bsGzdVPSSR5ZOXBiz/+uMtrm7KSqn/nWguLmfgGz93hnyTm2vTZvT8BqCMMII4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=aAj1LIyd; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AONdfGM017784;
-	Mon, 25 Nov 2024 09:37:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	o26imvBN67a9vqKERvDdum5IMrLcQaUa05hXb141jo0=; b=aAj1LIyd+THl6XZg
-	CIdbl12F7wNMQhZ3Z8ADWrOSuR1j8R7yHNTDnBPBGbvgFecXLPsxKwdWJ+qheFiW
-	Lps3o7ZBgoFfffickMZ167jUEIrBd3JERTGfGN0G4VaI09fVzRjEdzLBEzc/FCCC
-	U2K1PzZ6agAjcwNLYf24cXwM7/+v3UcNoPGCFDA55pUroRR3KGo7PfPpoT4t/a5C
-	cTn0JKeLPTGm6GZcBK28KJQRtXZXDoCntLtwmUsaFMtzfkjC4oeBVh0xRwNsEtbL
-	4lHLzhLWcupmjv8aNGKbGDhkRp3+8Ce7j6wGW53+fo1SibeiGAhMFI9iVLmOegu3
-	xJn8AQ==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 433dny3h1e-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 25 Nov 2024 09:37:25 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AP9bP3P017411
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 25 Nov 2024 09:37:25 GMT
-Received: from liuxin-gv.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 25 Nov 2024 01:37:19 -0800
-From: Xin Liu <quic_liuxin@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
-        <quic_jiegan@quicinc.com>, <quic_aiquny@quicinc.com>,
-        <quic_tingweiz@quicinc.com>
-Subject: [PATCH v3 3/3] arm64: dts: qcom: qcs8300-ride: Add watchdog node
-Date: Mon, 25 Nov 2024 17:35:03 +0800
-Message-ID: <20241125093503.1162412-4-quic_liuxin@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241125093503.1162412-1-quic_liuxin@quicinc.com>
-References: <20241125093503.1162412-1-quic_liuxin@quicinc.com>
+	s=arc-20240116; t=1732527607; c=relaxed/simple;
+	bh=fjvHCtsrcUmA++YpYkQVAoscDYRnPiL5YwSB8toYJko=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=C8sfqdSf9QzWkCZbOxq/MDxzg1QfZ/Xnu54/B47xTaIIaBTZqoCpRoF2YJ7lvTgCWBb6t8/WjYux09dFSqwCcvealxgxMBRJs41xhyR2Z+Fy026SmKCixS6ZWYRIupQ82JLAPgmroznHkGplYel2zaXzgdfYvxR20KXLaPyeQmc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=ViisyC8Q; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 63C924AD;
+	Mon, 25 Nov 2024 10:39:41 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1732527581;
+	bh=fjvHCtsrcUmA++YpYkQVAoscDYRnPiL5YwSB8toYJko=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ViisyC8QDyeKlOdGMoyCDkkUz9lS2mUe7RDbQolPD0vVgAwat79kxKWiZ0y+sV7yY
+	 a8Cxznb39RqLQ7SllZskTPC3A3U3DbaDDeRwJTzfr6t+Vnlh+Oqch9RH39Y+X51wiu
+	 zNFm6iD3tPTyMW8JbNn0OrO5dLB33347M0i0Y1no=
+Date: Mon, 25 Nov 2024 11:39:53 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: CK Hu =?utf-8?B?KOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
+Cc: "mchehab@kernel.org" <mchehab@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>,
+	Andy Hsieh =?utf-8?B?KOisneaZuueakyk=?= <Andy.Hsieh@mediatek.com>,
+	Julien Stephan <jstephan@baylibre.com>,
+	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"paul.elder@ideasonboard.com" <paul.elder@ideasonboard.com>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"fsylvestre@baylibre.com" <fsylvestre@baylibre.com>
+Subject: Re: [PATCH v7 4/5] media: platform: mediatek: isp: add mediatek
+ ISP3.0 camsv
+Message-ID: <20241125093953.GM19381@pendragon.ideasonboard.com>
+References: <20241121-add-mtk-isp-3-0-support-v7-0-b04dc9610619@baylibre.com>
+ <20241121-add-mtk-isp-3-0-support-v7-4-b04dc9610619@baylibre.com>
+ <a9aa69dc8d025f0b133f33de6428ffec5a881a2a.camel@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: K3w5-ZypYIhXtUPnpvccrPzMur73tUNN
-X-Proofpoint-ORIG-GUID: K3w5-ZypYIhXtUPnpvccrPzMur73tUNN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 bulkscore=0
- suspectscore=0 spamscore=0 malwarescore=0 phishscore=0 clxscore=1015
- impostorscore=0 mlxlogscore=955 adultscore=0 lowpriorityscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411250082
+In-Reply-To: <a9aa69dc8d025f0b133f33de6428ffec5a881a2a.camel@mediatek.com>
 
-Add watchdog clock on the Qualcomm QCS8300 Ride platform.
+On Mon, Nov 25, 2024 at 06:59:59AM +0000, CK Hu (胡俊光) wrote:
+> Hi, Julien:
+> 
+> On Thu, 2024-11-21 at 09:53 +0100, Julien Stephan wrote:
+> >
+> > From: Phi-bang Nguyen <pnguyen@baylibre.com>
+> >
+> > This driver provides a path to bypass the SoC ISP so that image data
+> > coming from the SENINF can go directly into memory without any image
+> > processing. This allows the use of an external ISP.
+> >
+> > Signed-off-by: Phi-bang Nguyen <pnguyen@baylibre.com>
+> > Signed-off-by: Florian Sylvestre <fsylvestre@baylibre.com>
+> > [Paul Elder fix irq locking]
+> > Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
+> > Co-developed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Co-developed-by: Julien Stephan <jstephan@baylibre.com>
+> > Signed-off-by: Julien Stephan <jstephan@baylibre.com>
+> > ---
+> 
+> [snip]
+> 
+> > +static const struct mtk_cam_conf camsv30_conf = {
+> > +       .tg_sen_mode = 0x00010002U, /* TIME_STP_EN = 1. DBL_DATA_BUS = 1 */
+> > +       .module_en = 0x40000001U, /* enable double buffer and TG */
+> > +       .imgo_con = 0x80000080U, /* DMA FIFO depth and burst */
+> > +       .imgo_con2 = 0x00020002U, /* DMA priority */
+> 
+> Now support only one SoC, so it's not necessary make these SoC variable.
+> They could be constant symbol now.
 
-Signed-off-by: Xin Liu <quic_liuxin@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+This I would keep as a mtk_cam_conf structure instance, as I think it
+makes it clear what we consider to be model-specific without hindering
+readability. I don't have a very strong opinion though.
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-index 7eed19a694c3..d4e4c7a8b453 100644
---- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-@@ -265,3 +265,7 @@ &ufs_mem_phy {
- 	vdda-pll-supply = <&vreg_l5a>;
- 	status = "okay";
- };
-+
-+&watchdog {
-+    clocks = <&sleep_clk>;
-+};
+> > +};
+> > +
+
 -- 
-2.34.1
+Regards,
 
+Laurent Pinchart
 
