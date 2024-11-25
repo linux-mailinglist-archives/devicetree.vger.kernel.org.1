@@ -1,58 +1,63 @@
-Return-Path: <devicetree+bounces-124439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48E249D8C3C
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 19:31:48 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D34679D8C41
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 19:33:07 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16F792849B3
-	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 18:31:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 760701681E2
+	for <lists+devicetree@lfdr.de>; Mon, 25 Nov 2024 18:33:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C33E1B87C4;
-	Mon, 25 Nov 2024 18:31:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27B801B87C4;
+	Mon, 25 Nov 2024 18:33:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GHjScz9a"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c83eWiLQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F9051B3948;
-	Mon, 25 Nov 2024 18:31:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F41CB1B3948;
+	Mon, 25 Nov 2024 18:33:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732559504; cv=none; b=fGsEz3QhmpcEqSQP26KhFiXckLNLC7K7oHPxbV7tbm0PjbwMf3nGIBX1SwXy0bkGKZbU18o78mmncoNS5s2YG/QS1tLrEcEVoORvjKTvjkxKBK6xKUrpMk/JbagdnPV6dSdqDMAjW5+64LOjB461r4iBZJsm7pDNZc64WXVNKkM=
+	t=1732559584; cv=none; b=BDWcN78/iwsBso3Q0dw6dunu1IkSUeP0uiR/lMxCLe3tXHYTn8V8JiFZ2c+LimQ9Ntk0Lo2UfuwJjaU95y4sjeRIAuFRsToBkhdy6rvQ88GI62ReSMmV+tE5QmB7Dg1xTERDxoGcdW73ZrX3mGgYcrTT6BdqsKyDiX5NdUUTgX0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732559504; c=relaxed/simple;
-	bh=Poe+Ou4l+6O6W5GecO5bjPgSMkD4GLn8esqFU0IFep0=;
+	s=arc-20240116; t=1732559584; c=relaxed/simple;
+	bh=XPUrGuMMAcW/OVsRVSyqN34mwK7tASsk3ayOdMQ2BrQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gQoBHyTxKNHGXgG4FK9byxYmW4Hm+6CcghumOd32j+QfPkwFWvObmM5cw9hgvVPb2YpE/+uxJRWK6/SnWOsBtHrSvK4F6sHY60YcVEX1xmcpey1bahKCg8TXtAydQX7ZURTIo1KHE2wro3/PaxerxQhxHgwWe/pQCD480ntrm10=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GHjScz9a; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57FE8C4CECE;
-	Mon, 25 Nov 2024 18:31:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=h73DP2TrctWfdiFEKfFD+TMr2O2xIzOSTwlO6mPq+mTa/BOWliCibeiGFIBxiM7c+Clcx8sinbn6FGMSSPnFeC4dCF0ejsjQzmvNDl/Xy5QosjGqZKDc+HfGE3JfoTF9ORGIi2WBrwLYjEhrZ3iTgh958xppeXBIW95k+l9+CAY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c83eWiLQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11E1CC4CECE;
+	Mon, 25 Nov 2024 18:33:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732559503;
-	bh=Poe+Ou4l+6O6W5GecO5bjPgSMkD4GLn8esqFU0IFep0=;
+	s=k20201202; t=1732559583;
+	bh=XPUrGuMMAcW/OVsRVSyqN34mwK7tASsk3ayOdMQ2BrQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GHjScz9aVfpCAkTBN/9qcqFS2GM8NcozocB3Ngl4I5WsSxkiYYgT0LE1+75tHpd2+
-	 TH52RI5H2/kwNEAnH4tn3z59Mg/ueM7FpdF2AEm6xZAVDi2a0Wo6EbwxdHmq1PruRg
-	 Lo/CG25loTPKwEHAPjTNqG50WaUDd/0KfHNS9PrnT1ci2K1zmBxi1j2bfy+pAy7sHt
-	 2s+UTR24ODjCd3yY+dNCXFvDCNpXaVbSMPU7EoDCJrZFDf1L9Gj1uIhH0GOiDHlhdt
-	 tO3/PI7GhGAzTZzT/iN3VeudKSaqIZsG7ljG89IjKwEpI7kgUA+MwyNE1viXe7ZzrW
-	 KtvSbvgQKHpkw==
-Date: Mon, 25 Nov 2024 18:31:39 +0000
+	b=c83eWiLQtk308+lVQ8ed3HoNaIyk3Rj2k0+Bm7vAsGYXKT6YSmrnYpgDvmrbX4HWW
+	 IcfiXV3b00sD2MLfRlHaNJ0MytgmskAF1zb3YhOH2or7DrN6KLXZtOZCgOY/fnLJPn
+	 LBsRyCoSYhhlVoa+Ui88ZFL8PcO5dSV1C3BtS0Aljd08Bao034U8GVsx1m+W6Km8OB
+	 DGGD6rWSP2t/cQyuhBvmMG1mzfPr1KbD3c82VgY+h+X5t5UsEHhuKIIeNKZirFRECZ
+	 0oF4TNnoHFVnBR/ftEqycW9ipJKhJME4JhubAj46pWERSrI06oQXgxy7lFFfgcLFOJ
+	 ilKRKVYMf20+A==
+Date: Mon, 25 Nov 2024 18:32:58 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Vaishnav Achath <vaishnav.a@ti.com>
-Cc: peter.ujfalusi@gmail.com, vkoul@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	u-kumar1@ti.com, j-choudhary@ti.com, vigneshr@ti.com
-Subject: Re: [PATCH 2/2] dmaengine: ti: k3-udma: Add TX channel data in AM62A
- CSIRX DMSS
-Message-ID: <20241125-hardener-jockey-d8d57f6a9430@spud>
-References: <20241125083914.2934815-1-vaishnav.a@ti.com>
- <20241125083914.2934815-2-vaishnav.a@ti.com>
+To: Wojciech Macek <wmacek@chromium.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Chen-Yu Tsai <wenst@chromium.org>, Rafal Milecki <rafal@milecki.pl>,
+	Hsin-Yi Wang <hsinyi@chromium.org>,
+	Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: mediatek: Add MT8186 Starmie
+ Chromebooks
+Message-ID: <20241125-snowcap-sulphate-34944bd70cf3@spud>
+References: <20241125082130.2390310-1-wmacek@chromium.org>
+ <20241125082130.2390310-2-wmacek@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,66 +65,75 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ONFPeZ2tioFdg7FB"
+	protocol="application/pgp-signature"; boundary="Wh9skrtDV6fn0xn2"
 Content-Disposition: inline
-In-Reply-To: <20241125083914.2934815-2-vaishnav.a@ti.com>
+In-Reply-To: <20241125082130.2390310-2-wmacek@chromium.org>
 
 
---ONFPeZ2tioFdg7FB
+--Wh9skrtDV6fn0xn2
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Nov 25, 2024 at 02:09:14PM +0530, Vaishnav Achath wrote:
-> J722S/AM67 uses the same BCDMA CSIRX IP as AM62A, but it supports
-> TX channels as well in addition to RX.
-
-This doesn't make sense. You say that the am62a doesn't have a tx
-channel ("but it supports TX as well") but then modify the struct for
-the am62a to add a tx channel. Does that not break things on the am62a?
-
-
-> Add the BCDMA TCHAN information
-> in the am62a_dmss_csi_soc_data so as to support all the platforms in the
-> family with same compatible. UDMA_CAP2_TCHAN_CNT indicates the presence
-> of TX channels and it will be 0 for platforms without TX support.
+On Mon, Nov 25, 2024 at 08:21:28AM +0000, Wojciech Macek wrote:
+> Add an entry for the MT8186 based Starmie Chromebooks, also known as the
+> ASUS Chromebook Enterprise CM30 Detachable (CM3001). The device is
+> a tablet style chromebook.
 >=20
-> Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
+> Signed-off-by: Wojciech Macek <wmacek@chromium.org>
 > ---
 >=20
-> CSI2RX capture test results on J722S EVM with IMX219:
-> https://gist.github.com/vaishnavachath/e2eaed62ee8f53428ee9b830aaa02cc3
+> Changelog v2-v1:
+>  - Fixed items/const bidings description in mediatek.yaml
 >=20
->  drivers/dma/ti/k3-udma.c | 2 ++
->  1 file changed, 2 insertions(+)
+>  Documentation/devicetree/bindings/arm/mediatek.yaml | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
 >=20
-> diff --git a/drivers/dma/ti/k3-udma.c b/drivers/dma/ti/k3-udma.c
-> index b3f27b3f9209..4130f50979d4 100644
-> --- a/drivers/dma/ti/k3-udma.c
-> +++ b/drivers/dma/ti/k3-udma.c
-> @@ -4340,6 +4340,8 @@ static struct udma_match_data j721e_mcu_data =3D {
-> =20
->  static struct udma_soc_data am62a_dmss_csi_soc_data =3D {
->  	.oes =3D {
-> +		.bcdma_tchan_data =3D 0x800,
-> +		.bcdma_tchan_ring =3D 0xa00,
->  		.bcdma_rchan_data =3D 0xe00,
->  		.bcdma_rchan_ring =3D 0x1000,
->  	},
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Docume=
+ntation/devicetree/bindings/arm/mediatek.yaml
+> index 1d4bb50fcd8d9..6191a5320c148 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> @@ -263,6 +263,19 @@ properties:
+>            - const: google,steelix-sku196608
+>            - const: google,steelix
+>            - const: mediatek,mt8186
+> +      - description: Google Starmie (ASUS Chromebook Enterprise CM30 (CM=
+3001))
+> +        items:
+> +          - const: google,starmie-sku0
+> +          - const: google,starmie-sku2
+> +          - const: google,starmie-sku3
+
+Compatible order here is back to making little sense. Why is the oldest
+SKU, in both cases, appearing first?
+
+> +          - const: google,starmie
+> +          - const: mediatek,mt8186
+> +      - description: Google Starmie (ASUS Chromebook Enterprise CM30 (CM=
+3001))
+> +        items:
+> +          - const: google,starmie-sku1
+> +          - const: google,starmie-sku4
+> +          - const: google,starmie
+> +          - const: mediatek,mt8186
+>        - description: Google Steelix (Lenovo 300e Yoga Chromebook Gen 4)
+>          items:
+>            - enum:
 > --=20
-> 2.34.1
+> 2.47.0.371.ga323438b13-goog
 >=20
 
---ONFPeZ2tioFdg7FB
+--Wh9skrtDV6fn0xn2
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ0TCiwAKCRB4tDGHoIJi
-0gqKAQCe0SNMHmEZbd+OGYhiCx7AYYLgWcuj+9LCVKpPMbWabwEAiFTaZHesxW8J
-aUSOcYWESY5yll72kHHkfgMC1TCh/Q4=
-=6NNf
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ0TC2gAKCRB4tDGHoIJi
+0oaxAQCZHgNmPQd9+Cn3CFOz2dqRT//vyTXJ1vq1kjtmdOBQcgEA9bGlmcOZIM/6
+8Tkopk7Mo6mHOIAP7E6tk5DhzNYvZgY=
+=JxmB
 -----END PGP SIGNATURE-----
 
---ONFPeZ2tioFdg7FB--
+--Wh9skrtDV6fn0xn2--
 
