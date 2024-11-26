@@ -1,113 +1,94 @@
-Return-Path: <devicetree+bounces-124492-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124493-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEDF19D90AC
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 04:14:44 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEEF69D90BA
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 04:36:48 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7D5A0B262FD
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 03:14:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 704DF166BDB
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 03:36:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 661DA42AA2;
-	Tue, 26 Nov 2024 03:14:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57A69199BC;
+	Tue, 26 Nov 2024 03:36:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="nGD81mL1"
+	dkim=pass (2048-bit key) header.d=ellerman.id.au header.i=@ellerman.id.au header.b="UArujJNC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEF1628E3F;
-	Tue, 26 Nov 2024 03:14:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FA1AD51C;
+	Tue, 26 Nov 2024 03:36:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732590879; cv=none; b=nreGn/7qxTHrHrweoUqiArO5U474s4gEOoOHpMefys7aCZNtZGzGqQ2rbITDWu7Y2ookvKOjSrjG5/dJXwv320w/wAKg8r79QOCsDlaJVyEc3wsI5bDV+vHEb7yt5twWUJRv9NAwdK0Pd79rTmWrw3OFUCCow4/u1VXV8+6BnSI=
+	t=1732592205; cv=none; b=SGgsYWCIdkcu11Vw5VTjaAfV3KSntTDcFy4+nkr4P/VyNykCNL6DcWjBEvWXPFRB8tf9MRJ4LHUTj1tNshKzQTJllOnZqQ59kF8YtRiy1NY8IP/mJSuPZD8/PwW2MLslyKdhNs01XHPq0gXcn/UE8v0TpCqUsbGpWjFZxlzzT+k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732590879; c=relaxed/simple;
-	bh=Sk9kkwCuCy8PUE33oshNHfMfKY7r0BCRIeH31kF8TLI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=EDJwOVAUevDIbFBqo+sx1L4HRdEGxvM1NYLp3sjp+cEHlmEcWna1u3hHWycnnmSSkFJ6FEWoD+kd+7ru4Cxlq0M3nu0pa6/KSoubwNp0xIJqV7Hqo8vjG/ecZ5rOyunuuXnOpOPRZQx/Cpy8xxduRapRgLkFE4rX8dSXWd+yUzs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=nGD81mL1; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AQ3DMWb010309;
-	Tue, 26 Nov 2024 03:14:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	5Co7QXRqtHi1nYPU4uviM4aDdYR7Kosy6nTvXKt1uu8=; b=nGD81mL1eRmVMvy/
-	qrfKbRoFn9Uczvzr3B1yvlK7HhBqDY5bF+ezYGs0F26TTOoyIvXJHw2rM2yInGgt
-	aaUwctUfSXwMcVbzsFE/DOdfnRw2elG0rDNRhUW9szZwmba2REfMFzltPJsg8o0V
-	0OazVgryeRJZWKeE9p5uQ7rzDiaoxqrYCrWlZxGsHXPahnmSocNQa1LGnqPwxAQn
-	OmO+Wp01ew9pz1ioEkb/BpEQ9poFTI80xs/CI4Kw0DK0p0VZs05cHF8Mrydu1sit
-	lZrwPb7fLcJxERyXZUltUJ8L3NLBZvG7fIL7Foi0x4AyvRCb6E/uUIkZHHctgSRu
-	2nKNTA==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 434sw99tp4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 26 Nov 2024 03:14:34 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AQ3EXTC012414
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 26 Nov 2024 03:14:33 GMT
-Received: from [10.64.68.72] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 25 Nov
- 2024 19:14:27 -0800
-Message-ID: <c77d69d3-d809-4996-b203-e9496e169a8f@quicinc.com>
-Date: Tue, 26 Nov 2024 11:14:25 +0800
+	s=arc-20240116; t=1732592205; c=relaxed/simple;
+	bh=qwqh95MJ/nfBFFV/woCExG+ob+AztGp2q/5LGjxsCZw=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=S0y+hQWLbXg8iK1emmCQAptyBU6CxQ8FI6Ju3pASthpfn6LT60VbJu0/cEPQv0+C9Lm6W8avL2wf3ImyfJNiVm59XIxaIxTww5dQN90LctQfyCmmhCjgFJ3O3/1BedX76d4RwsgmJng244FDiNfiLNfkBwq+QMOLS1etCB+Kgnc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ellerman.id.au; spf=pass smtp.mailfrom=ellerman.id.au; dkim=pass (2048-bit key) header.d=ellerman.id.au header.i=@ellerman.id.au header.b=UArujJNC; arc=none smtp.client-ip=150.107.74.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ellerman.id.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ellerman.id.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
+	s=201909; t=1732592198;
+	bh=vHiA1DRTO6Lz/YaaxntcT3ZGiZJBg9vrvS0JqD9lF8E=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=UArujJNCgfKANdoEUFU/xDCir05HT5vCMXOIZj8M45wg/RePEIz0kM/Y5TQ+vJ+i5
+	 XUQ9uh+k1oZEA4MJ28mW7EJdLbPRW9OTcQ4OFjpNemNAqgpKeRM3UGFzBaU0gytSqt
+	 Xhy/IM3n3qPp9zy9MDhV8D9KQRg+MLTfl+lWNNbCynmFM+szYgXaYG85nSsxTzGuTB
+	 XAXf6KSPoPTAUaROrcmCIofctWQ0AGGacFAUFXOvQ0XGkfiPYc30WAZb+3EWTrY9na
+	 fNWfNvjrPJacvtMc6mkYlA/cxYV+lN6axkowIbJBdUAmCfHRtZYZyAZ/sb6t0QLqzI
+	 5DnoaG//47g+Q==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by mail.ozlabs.org (Postfix) with ESMTPSA id 4Xy7Xj6YMGz4xft;
+	Tue, 26 Nov 2024 14:36:37 +1100 (AEDT)
+From: Michael Ellerman <mpe@ellerman.id.au>
+To: "Rob Herring (Arm)" <robh@kernel.org>, Saravana Kannan
+ <saravanak@google.com>
+Cc: linuxppc-dev@lists.ozlabs.org, Conor Dooley <conor@kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] of: WARN on deprecated #address-cells/#size-cells
+ handling
+In-Reply-To: <87jzdfcm3l.fsf@mpe.ellerman.id.au>
+References: <20241106171028.3830266-1-robh@kernel.org>
+ <87jzdfcm3l.fsf@mpe.ellerman.id.au>
+Date: Tue, 26 Nov 2024 14:36:32 +1100
+Message-ID: <87plmi7jjz.fsf@mpe.ellerman.id.au>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: qcs8300-ride: Add watchdog node
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kernel@quicinc.com>, <quic_jiegan@quicinc.com>,
-        <quic_aiquny@quicinc.com>, <quic_tingweiz@quicinc.com>
-References: <20241125093503.1162412-1-quic_liuxin@quicinc.com>
- <20241125093503.1162412-4-quic_liuxin@quicinc.com>
- <wty3opxcapeesat2bnai6ntbk4utwxk2hf56w4hymwjxj57ora@6f7f2lwtdcpo>
-From: Xin Liu <quic_liuxin@quicinc.com>
-In-Reply-To: <wty3opxcapeesat2bnai6ntbk4utwxk2hf56w4hymwjxj57ora@6f7f2lwtdcpo>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 74L2HVY5EriYyKUuj4CBFEbctOnxFFdy
-X-Proofpoint-ORIG-GUID: 74L2HVY5EriYyKUuj4CBFEbctOnxFFdy
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- mlxlogscore=633 adultscore=0 spamscore=0 impostorscore=0
- priorityscore=1501 phishscore=0 clxscore=1015 mlxscore=0
- lowpriorityscore=0 bulkscore=0 malwarescore=0 classifier=spam adjust=0
- reason=mlx scancount=1 engine=8.19.0-2409260000
- definitions=main-2411260025
+Content-Type: text/plain
 
+Michael Ellerman <mpe@ellerman.id.au> writes:
+> "Rob Herring (Arm)" <robh@kernel.org> writes:
+>> While OpenFirmware originally allowed walking parent nodes and default
+>> root values for #address-cells and #size-cells, FDT has long required
+>> explicit values. It's been a warning in dtc for the root node since the
+>> beginning (2005) and for any parent node since 2007. Of course, not all
+>> FDT uses dtc, but that should be the majority by far. The various
+>> extracted OF devicetrees I have dating back to the 1990s (various
+>> PowerMac, OLPC, PASemi Nemo) all have explicit root node properties.
+>
+> I have various old device trees that have been given to me over the
+> years, and as far as I can tell they all have these properties (some of
+> them are partial trees so it's hard to be 100% sure).
+>
+> So LGTM.
 
+Turns out I was wrong.
 
-在 2024/11/26 0:45, Dmitry Baryshkov 写道:
-> I'd really prefer to have this in the SoC dtsi. It's not a part that can
-> change between boards.
+The warning about #size-cells hits on some powermacs, possible fixup
+patch here:
 
-I think you're right, this clock won't change because of the board The 
-reason for placing it on the board is that sleep_clk is defined on the 
-board. The following link is the suggestion you once provided:
-https://lore.kernel.org/all/4kopdkvbkrpcpzwteezm427ml5putqvzsnfkpmg76spsple7l5@mg7v3ihwxnit/
+  https://lore.kernel.org/linuxppc-dev/20241126025710.591683-1-mpe@ellerman.id.au/
 
+cheers
 
