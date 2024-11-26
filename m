@@ -1,171 +1,145 @@
-Return-Path: <devicetree+bounces-124640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D73359D97C1
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 13:56:49 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7F4F9D97DD
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 14:00:43 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EB3B8165B85
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 12:56:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7DFCF2829B6
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 13:00:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4C3C1D4354;
-	Tue, 26 Nov 2024 12:56:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E57801CDFA9;
+	Tue, 26 Nov 2024 13:00:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tUZNBKqo"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="e17Ru0lW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot05.ext.ti.com (lelvem-ot05.ext.ti.com [198.47.23.236])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46C0D1D4324
-	for <devicetree@vger.kernel.org>; Tue, 26 Nov 2024 12:56:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B72517489;
+	Tue, 26 Nov 2024 13:00:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.236
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732625785; cv=none; b=Tb20BZqwLhue+yBVXSTT8DJul+2Umgwk58yqrhDmWOVrS1GCobkTHmu4r85u2fH5E7Jiv/0L10DpzvVyZMhzEjJUlN1HpNsqMxHVXzHbRwdzojxtzTLrBH2ethQ8l9tX+nxbk4SctVaqI3xb8wxBwDGZVdNfpXONRkA1VBrPaNE=
+	t=1732626038; cv=none; b=jPNbfCtIJYpcbz1BIsodjxNBZqB1/0BrhSl+b/20O6Dabpbo3RzQ24MMvBCg+Mw3XSM5g2uofyVIAbbFIWFx5W8nBmpZIXrA9bC0cEDQqGO93Ycj1D6Dl7Mphg7o93kJbfU79qrBhs2of7iDkY25Lz0wEhnaHPk9qzZhbLzS9p8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732625785; c=relaxed/simple;
-	bh=TfjTGWQaDFmp9+wS6+9ipI5j9jCprYMO03bsaV8msQQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fArYyvnd48PSrfqbngv/lTvGfudNJijdgdE6G1nBYb3QRz0ncABHIH6rgJgfUBNWwzZHwcrQIEPaX8eHtRjNcWWcnqJ3GVWW+YeouHQat6vtTGbd+THlBPJDkE+THgqqZ028FvWdfcJ8dFM2YZE+E7+lugNEuf/f780Sud2MQKM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tUZNBKqo; arc=none smtp.client-ip=209.85.214.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-212a3067b11so46494345ad.3
-        for <devicetree@vger.kernel.org>; Tue, 26 Nov 2024 04:56:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732625783; x=1733230583; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=YY215mVBF/BsyIyjPcQ5YdAmE/7mcXahP/kNz5RyMwA=;
-        b=tUZNBKqoYN5o9F2YcDoN5qwCVmv5Leka0vhz1kNI1bZLv13ecMRELbhRCZZ3XUi/jp
-         HUqytxkeMOtxdO801G1fYdEC1Auy8x9BMlbqp/uCMBbPAjwl/c1iFDdypFHUTvJhRbAD
-         6uNSTiUfOCRGL2lL0eoymokAJTVataOZvUSg3XfdtCNxN3wzi+foKhfzG5ZG5yI33Lpj
-         Y6g08Lc1PQ4NpwAH41U0qLfDAN+evzz+rrGfi+CoZw8X94/j52kwKh3R1TRxgI2ryfzb
-         bJkyTo1vURXOJew30cq87YH1R8usbHFAu+bsmzDDypXFjxshJX8Bb1rsJwnsNfyy7gQ5
-         5MWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732625783; x=1733230583;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YY215mVBF/BsyIyjPcQ5YdAmE/7mcXahP/kNz5RyMwA=;
-        b=t65axHW9wZ2VQtZQ+xRuXgK3R+gLLAVRkl8ta4k2r/VLIulDoJcY269PHWeb8KG0EF
-         Lo4tZFORdat1NXzYlM1646vA3dUOewRtpq3MQnY87w2tKIsKZ6u359v82LFVABpJ4BIN
-         w13nUAspbzRK51q0x6HgTT/pCJVXjcQCaEshzp8k/XdVXPyEpyYB3YIha1Fc8nQXaXMH
-         ht6anoAPXhMyVHScrF6Ve4twdRpcIsmJN57ndBa0jjsYDRUkJ8IyJC9YbnsZ+q3QwzwV
-         oLCNawmvd+IJY0aJ9Hj1CeVhaCWO5ByJ8kFN38en7Qqf1pjpPfiJYWxQ+cM2AWzm/7jq
-         VvFg==
-X-Forwarded-Encrypted: i=1; AJvYcCU6zl2V7hDLmsXocpxTj9B+t5XLynL9Lc07GNEUjjiGh/GSoUZDeVlksFmF5gK5sYhmqFUq31aCd8pQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YyOnkaC5LKPUh6pWgP92/LNMGj3mx0olqkoGcuP5audBmx9Z7ed
-	s2c3ShtlbPPM3ptq+D7H9W32KW/8D3Bkzlk84awHsnHy0C6LBqBHhOFSFzitHw==
-X-Gm-Gg: ASbGncs7QFP3isQEvn7nzPd9ZWHynClb1JNlumoqyVk1N0E0xM7h6Ffgy6vhlJZuC4l
-	CmwmCa2omG/7o+iLvhqB3Sm7o2vKjmZxZzLQa+tFOO4X70GenTngiLK7LtJQO2+7jGxlhg5DVcb
-	MGr20eOi9TX0tX9xkGDjLt5dECGHsA/LHGINXvqgi0ALRtHFaVTbYTTLSqhP8kiF7nu3UkcmHhO
-	F33G+TB0tPt8MIIeBoQXn/dHedp3v5YK7VkNT+1MLOBgn67Pk6QltilZB23
-X-Google-Smtp-Source: AGHT+IFGZO6YwIydzhnaKn6anetOGg2+48yG+FxdkhfkcKfSo66F6npaVl3d/51tMhwslnENrkjuQA==
-X-Received: by 2002:a17:902:fc4f:b0:20c:9821:69af with SMTP id d9443c01a7336-2129f797977mr204224095ad.45.1732625783658;
-        Tue, 26 Nov 2024 04:56:23 -0800 (PST)
-Received: from thinkpad ([120.60.136.64])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2129dc2210dsm83601765ad.245.2024.11.26.04.56.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Nov 2024 04:56:23 -0800 (PST)
-Date: Tue, 26 Nov 2024 18:26:18 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm8650: Add 'global' interrupt to
- the PCIe RC nodes
-Message-ID: <20241126125618.v7spvqvm4cdqpa5g@thinkpad>
-References: <20241126-topic-sm8x50-pcie-global-irq-v1-0-4049cfccd073@linaro.org>
- <20241126-topic-sm8x50-pcie-global-irq-v1-3-4049cfccd073@linaro.org>
+	s=arc-20240116; t=1732626038; c=relaxed/simple;
+	bh=rb4RKEfu0UEtBVz6z1dX9J6uuYRBunQZLoY/ueS2YSQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=P+3xTOLXST2DjilIgoO/FMmFCb3jglGxnk/7CjlBe8DyoELVZp37pqpYGTsDsDSMQJnfx6OCcTRVWiFjrRpfgJJCZkHLUezSfJKf9xL5cbNZhw/tB3N0kZ+SO7BzXNST0I9Ln7JQ8322rH3f8g7im09wM/cpX/HEyFS+oeXbSn0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=e17Ru0lW; arc=none smtp.client-ip=198.47.23.236
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelvem-ot05.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 4AQCwYKb675617
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Tue, 26 Nov 2024 06:58:34 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1732625914;
+	bh=J0JZ8DiQ4nkkyJ4v4OOJuFMwA5FpDWZfEAp+egaaJ/U=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=e17Ru0lW+ltXO0ID357PPUFJetmCJqUhSb40sfMFUG6PK4pAlkQ2w6zaxAP7bsWm6
+	 +6/bTppQj4KWTgKH+HpzpW+/oQdk6FNSKIybzgrhrWdG4SwiR1ffl5BzUjTL0BJOwt
+	 kh44V6Bbgm+cN/C4wfyXk9dPAKMFOlrPfaA27o/8=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4AQCwY0a026953;
+	Tue, 26 Nov 2024 06:58:34 -0600
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 26
+ Nov 2024 06:58:34 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 26 Nov 2024 06:58:34 -0600
+Received: from [10.24.69.142] ([10.24.69.142])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4AQCwUaP106029;
+	Tue, 26 Nov 2024 06:58:30 -0600
+Message-ID: <8fe8eb6c-2ec7-4f07-9043-99a8d87e2613@ti.com>
+Date: Tue, 26 Nov 2024 18:28:29 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241126-topic-sm8x50-pcie-global-irq-v1-3-4049cfccd073@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] dmaengine: ti: k3-udma: Add TX channel data in AM62A
+ CSIRX DMSS
+To: Conor Dooley <conor@kernel.org>
+CC: <peter.ujfalusi@gmail.com>, <vkoul@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>,
+        <j-choudhary@ti.com>, <vigneshr@ti.com>
+References: <20241125083914.2934815-1-vaishnav.a@ti.com>
+ <20241125083914.2934815-2-vaishnav.a@ti.com>
+ <20241125-hardener-jockey-d8d57f6a9430@spud>
+Content-Language: en-US
+From: Vaishnav Achath <vaishnav.a@ti.com>
+In-Reply-To: <20241125-hardener-jockey-d8d57f6a9430@spud>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Tue, Nov 26, 2024 at 11:22:51AM +0100, Neil Armstrong wrote:
-> Qcom PCIe RC controllers are capable of generating 'global' SPI interrupt
-> to the host CPUs. This interrupt can be used by the device driver to
-> identify events such as PCIe link specific events, safety events, etc...
-> 
-> Hence, add it to the PCIe RC node along with the existing MSI interrupts.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Hi Conor,
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-
-- Mani
-
-> ---
->  arch/arm64/boot/dts/qcom/sm8650.dtsi | 12 ++++++++----
->  1 file changed, 8 insertions(+), 4 deletions(-)
+On 26/11/24 00:01, Conor Dooley wrote:
+> On Mon, Nov 25, 2024 at 02:09:14PM +0530, Vaishnav Achath wrote:
+>> J722S/AM67 uses the same BCDMA CSIRX IP as AM62A, but it supports
+>> TX channels as well in addition to RX.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> index 01ac3769ffa62ffb83c5c51878e2823e1982eb67..f394fadf11f9ac1f781d31f514946bd5060fa56f 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> @@ -2233,7 +2233,8 @@ pcie0: pcie@1c00000 {
->  				     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
->  				     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
->  				     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
-> -				     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
-> +				     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
->  			interrupt-names = "msi0",
->  					  "msi1",
->  					  "msi2",
-> @@ -2241,7 +2242,8 @@ pcie0: pcie@1c00000 {
->  					  "msi4",
->  					  "msi5",
->  					  "msi6",
-> -					  "msi7";
-> +					  "msi7",
-> +					  "global";
->  
->  			clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
->  				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
-> @@ -2365,7 +2367,8 @@ pcie1: pcie@1c08000 {
->  				     <GIC_SPI 313 IRQ_TYPE_LEVEL_HIGH>,
->  				     <GIC_SPI 314 IRQ_TYPE_LEVEL_HIGH>,
->  				     <GIC_SPI 374 IRQ_TYPE_LEVEL_HIGH>,
-> -				     <GIC_SPI 375 IRQ_TYPE_LEVEL_HIGH>;
-> +				     <GIC_SPI 375 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>;
->  			interrupt-names = "msi0",
->  					  "msi1",
->  					  "msi2",
-> @@ -2373,7 +2376,8 @@ pcie1: pcie@1c08000 {
->  					  "msi4",
->  					  "msi5",
->  					  "msi6",
-> -					  "msi7";
-> +					  "msi7",
-> +					  "global";
->  
->  			clocks = <&gcc GCC_PCIE_1_AUX_CLK>,
->  				 <&gcc GCC_PCIE_1_CFG_AHB_CLK>,
-> 
-> -- 
-> 2.34.1
+> This doesn't make sense. You say that the am62a doesn't have a tx
+> channel ("but it supports TX as well") but then modify the struct for
+> the am62a to add a tx channel. Does that not break things on the am62a?
 > 
 
--- 
-மணிவண்ணன் சதாசிவம்
+Thank you for the review, I have sent a v2 of this series adding new 
+compatible as suggested, after looking at it again, the J722S BCDMA CSI
+is more similar to J721S2 in terms of having RX and TX support, so 
+updated in that way.
+
+The below changes did not really break AM62A since the driver checks 
+hardware capability registers (TCHAN_CNT) to detect presence of TX 
+channels and then only use the Output Event Steering(OES) data below.
+
+V2:
+
+https://lore.kernel.org/all/20241126125158.37744-1-vaishnav.a@ti.com/
+
+Thanks and Regards,
+Vaishnav
+
+> 
+>> Add the BCDMA TCHAN information
+>> in the am62a_dmss_csi_soc_data so as to support all the platforms in the
+>> family with same compatible. UDMA_CAP2_TCHAN_CNT indicates the presence
+>> of TX channels and it will be 0 for platforms without TX support.
+>>
+>> Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
+>> ---
+>>
+>> CSI2RX capture test results on J722S EVM with IMX219:
+>> https://gist.github.com/vaishnavachath/e2eaed62ee8f53428ee9b830aaa02cc3
+>>
+>>   drivers/dma/ti/k3-udma.c | 2 ++
+>>   1 file changed, 2 insertions(+)
+>>
+>> diff --git a/drivers/dma/ti/k3-udma.c b/drivers/dma/ti/k3-udma.c
+>> index b3f27b3f9209..4130f50979d4 100644
+>> --- a/drivers/dma/ti/k3-udma.c
+>> +++ b/drivers/dma/ti/k3-udma.c
+>> @@ -4340,6 +4340,8 @@ static struct udma_match_data j721e_mcu_data = {
+>>   
+>>   static struct udma_soc_data am62a_dmss_csi_soc_data = {
+>>   	.oes = {
+>> +		.bcdma_tchan_data = 0x800,
+>> +		.bcdma_tchan_ring = 0xa00,
+>>   		.bcdma_rchan_data = 0xe00,
+>>   		.bcdma_rchan_ring = 0x1000,
+>>   	},
+>> -- 
+>> 2.34.1
+>>
 
