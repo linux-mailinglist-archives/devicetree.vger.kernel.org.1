@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-124686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124687-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B64B9D996A
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 15:16:39 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 266479D9977
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 15:19:28 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E62B3284275
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 14:16:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B5A5F160EF8
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 14:19:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 978611D5AC2;
-	Tue, 26 Nov 2024 14:16:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2F502EAE6;
+	Tue, 26 Nov 2024 14:19:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YPstQx2Y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MkwT/R/h"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63C822EAE6;
-	Tue, 26 Nov 2024 14:16:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 738DF8F7D;
+	Tue, 26 Nov 2024 14:19:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732630572; cv=none; b=Lekjc0OTdHQzuweXJpPdew8wn4teQjFLYXXcFr8D/t9hAfD+FW3gezfbp1so1p5v77HPI0R3/YoO2BmY9IHfd4OlcIoQCzaPSINor9JeQN2kZZy5eUA1fWFz681L5wB+RlYZumG+BZeNDT2U6ZzJ8va4JcbCeHNM1zzo/F/lb98=
+	t=1732630763; cv=none; b=uSpK9+7GevsxZahUfXecs3I8RrG0FXUSJLRkZmHnN1O7xNXpz01rqykN2aCaQPKFTboDLLyq2lB92QNooHOXBLwxDISAq4irBtf4otW1+rW70x+rc5PyWl+PV1yNqD83gW9Bylpd1D1U3ZFxv2KXLvwYUqHAssc1hanwQ3bovLE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732630572; c=relaxed/simple;
-	bh=I0z5NGCjDqT2SS9cQr4ENYsZ84Bi4HR8cOZurH91D8w=;
+	s=arc-20240116; t=1732630763; c=relaxed/simple;
+	bh=hx3KkNJJWQgAgwnAAG9TOmPWE+HQ2sGGMQzGQxEUIeA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pu8gWnoOnsTzC1iFxqhIp7XTdwgMy9YPqVnxuz+/80DjVvbgbq98QmgM8y9skQNp/HEUws/UPr4/OL6HiezDKpz/w55PCrTpUhc0Zm5i/ejcdbg78sd1/sf1E2m+l2JIFc6fFZZJp4EI9kdHiOU1rdcbIUfdpoQaNoNuQxCR4p4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YPstQx2Y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83C0BC4CECF;
-	Tue, 26 Nov 2024 14:16:09 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=iS8ONl3RAVPN00mU/tvuIdqSeXM0GWpoA9E0xcHaZ4i+zz2PPChfCcCXtaDhZmpIRAAot/jkl3LvURD53jtvSbxyBUHY8KNJFys/R4bjlPH1IO1nKWpyVam7bgH/TtgVrHFUgvYf928z0ZoZeanhdCiLjhiBb6EQSGs5EAGMKa8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MkwT/R/h; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77C10C4CED2;
+	Tue, 26 Nov 2024 14:19:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732630572;
-	bh=I0z5NGCjDqT2SS9cQr4ENYsZ84Bi4HR8cOZurH91D8w=;
+	s=k20201202; t=1732630763;
+	bh=hx3KkNJJWQgAgwnAAG9TOmPWE+HQ2sGGMQzGQxEUIeA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YPstQx2Y6NnzTW34GYSyM4Lk5/XnRl6memiQi76BvdE/R9RDS5KfFOm4mQOK7Ajmh
-	 SQvpKeNZzg5Z6k03NlRq4UHh9kRLx8lt82tplaz6Q7gSFHT9G6jm8MviwEBOoyeMKT
-	 P6VzIZMMD0SbrgGYaO+YKXNmUapS9wsJUVokiWyxtZBbEyjUfSCdKYVdnZPhNL0X3D
-	 VCfixzPj+H7VOMv9Jgs3nHOoGwJO8pc/NwNR1OrKdZ0v2NJUEp/gxgSNck15gGsrql
-	 RKeedajGtVS2djvvPlLxdFVwF9DvhPBtMWuvKqH8gMhBwsa5Lo4UqkvWdvTG2XXS4g
-	 9zy7cu/15ZZXw==
-Message-ID: <efa8fd22-ca67-4cb1-a8b0-41c86ba58153@kernel.org>
-Date: Tue, 26 Nov 2024 15:16:08 +0100
+	b=MkwT/R/hmTffZFOysun70nYfj0e1tOd9apQ7w9TwegciccuLPzgoYOcXkPdicsTBG
+	 cceBO39wm7cPi9ALnKl5h1I5C8XRJkxF6QNQnp7jKhhu4+LEgr/WvDaaryEorQf0dW
+	 0ci08yxaoZ8vg0LO3LWXqfMgFz2bh7QratJX+CIvq/SYH8E/d+lRzLnm3+5SFxZYZm
+	 2XhHvdjsONVlki1UVt6Ka12qTAXIo7nwWkqJpi+z4VoHMSE+Nmz0egU2uGCrelH7Go
+	 qffovnpRNb3GALm/kGSjV/1JxVj4uHxq6Lc+98DOFafcI1bVS9PydEre2oXMnqA8VE
+	 U1etyFyDM64DA==
+Message-ID: <8399720e-2a91-4374-b049-ff1d7e66d83e@kernel.org>
+Date: Tue, 26 Nov 2024 15:19:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/2] iio: light: Add support for TI OPT4060 color
- sensor
-To: Per-Daniel Olsson <perdaniel.olsson@axis.com>,
- Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, rickard.andersson@axis.com, kernel@axis.com
-References: <20241126140002.1564564-1-perdaniel.olsson@axis.com>
- <20241126140002.1564564-3-perdaniel.olsson@axis.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: dma: ti: k3-bcdma: Add J722S CSI
+ BCDMA
+To: Vaishnav Achath <vaishnav.a@ti.com>, peter.ujfalusi@gmail.com,
+ vkoul@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ dmaengine@vger.kernel.org, devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org, u-kumar1@ti.com, j-choudhary@ti.com,
+ vigneshr@ti.com
+References: <20241126125158.37744-1-vaishnav.a@ti.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,40 +103,51 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241126140002.1564564-3-perdaniel.olsson@axis.com>
+In-Reply-To: <20241126125158.37744-1-vaishnav.a@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26/11/2024 15:00, Per-Daniel Olsson wrote:
-> +
-> +The driver supports scaled values for red, green and blue. The raw values are
-> +scaled so that for a particular test light source, typically white, the
-> +measurement intensity is the same across the different color channels. This is
-> +calculated in the following way:
-> +
-> +R = RED_RAW x 2.4
-> +G = GREEN_RAW x 1.0
-> +B = BLUE_RAW x 1.3
-> +
-> +The values are accessed from:
-> +/sys/bus/iio/devices/iio:deviceX/in_intensity_red_scale
-> +/sys/bus/iio/devices/iio:deviceX/in_intensity_green_scale
-> +/sys/bus/iio/devices/iio:deviceX/in_intensity_blue_scale
-> +
-> +The data sheet suggests using the scaled values to normalize the scaled R, G
-> +and B values. This is useful to get a value for the ratio between colors
-> +independent of light intensity. A userspace appliction can do this in the
-> +following way:
-> +
-> +R_NORMALIZED = R / (R + G + B)
-> +G_NORMALIZED = G / (R + G + B)
-> +B_NORMALIZED = B / (R + G + B)
-> +
-> +See section 8.4.5.2 in the data sheet for additional details.
-> \ No newline at end of file
+On 26/11/2024 13:51, Vaishnav Achath wrote:
+> J722S CSI BCDMA is similar to J721S2 CSI BCDMA and
+> supports both RX and TX channels. Add an entry for
+> J722S CSIRX BCDMA.
+
+Please wrap commit message according to Linux coding style / submission
+process (neither too early nor over the limit):
+https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+
+> 
+> Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
+> ---
+> 
+> V1->V2:
+>   * Address review from Conor to add new J722S compatible
+>   * J722S BCDMA is more similar to J721S2 in terms of RX/TX support,
+>   add an entry alongside J721S2 instead of modifying AM62A.
+> 
+> V1: https://lore.kernel.org/all/20241125083914.2934815-1-vaishnav.a@ti.com/
+> 
+>  Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml b/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
+> index 27b8e1636560..37832c71bd8e 100644
+> --- a/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
+> +++ b/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
+> @@ -196,7 +196,9 @@ allOf:
+>        properties:
+>          compatible:
+>            contains:
+> -            const: ti,j721s2-dmss-bcdma-csi
+> +            enum:
+> +              - ti,j721s2-dmss-bcdma-csi
+> +              - ti,j722s-dmss-bcdma-csi
+
+This compatible was never documented. There is no dependency here, no
+cover letter explaining where is this compatible introduced.
 
 
-You still have patch warnings.
+
 
 Best regards,
 Krzysztof
