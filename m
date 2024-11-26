@@ -1,166 +1,131 @@
-Return-Path: <devicetree+bounces-124751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124752-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57D029D9CAB
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 18:37:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A8109D9CC9
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 18:44:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 15E8AB25277
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 17:33:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB538283228
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 17:44:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37AF41DACB4;
-	Tue, 26 Nov 2024 17:33:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A6951DACB4;
+	Tue, 26 Nov 2024 17:44:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=smile.fr header.i=@smile.fr header.b="JoinQbsy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KpKV1Hhq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAD6A1CEE9B
-	for <devicetree@vger.kernel.org>; Tue, 26 Nov 2024 17:33:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E55181CEE9B;
+	Tue, 26 Nov 2024 17:44:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732642397; cv=none; b=j6Uw3p36+ycWwHQFxW4Vd9O6TfZiD0hTwcz4DM/jj3racrZVKDmgu3xFMxocrMYJ6JzL8lz1PL5hASByn1XaCs26Br4OXwuspKxqEYXpEtYXqGqS35QGVaaOiZyW8167N6E8E6XwPjKCCnmlzPtGZdhIqowZLFmotLrO2mPB3Vs=
+	t=1732643060; cv=none; b=J/NVmIh5AHoqPpuP3Yn0bq1aqD4oLJ8OrgCQEQpwnMmjDbVGl5G3HzHusTOK/xwcMZNbHsW/tmACJRvYqkNlVpvUwzJxvvhzUwNGmr8PIcN22/ietBzMuCWP+l777wOI9UIVY0MRXD5PoZIjqqgpHQ0TFyckUMJg1UbuEmmPuVs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732642397; c=relaxed/simple;
-	bh=eHuuzWF/RBD95AGh3ZSbBDHlU1JgErlDYZ2iVCVoQCk=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=eZwdUXoOz79VZPBHKZTsrCf2qFQTwcc3E35y2Ux+e/kXQ0T+QHbRhJs0BZwUeOyhU3qR4F/NcJgtiBJqWmYAFNaiQffbvTdBehl9qd/RSxd6hS8B2DrhnaVB8wmr9ObEhEIu4ejQQ1qY/U0wszy1MAaRKcvxGBemut7yK4TatGc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=smile.fr; spf=pass smtp.mailfrom=smile.fr; dkim=pass (1024-bit key) header.d=smile.fr header.i=@smile.fr header.b=JoinQbsy; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=smile.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=smile.fr
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3824a8a5c56so4028645f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 26 Nov 2024 09:33:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=smile.fr; s=google; t=1732642392; x=1733247192; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=9oOV6Xf/f1fBBujFiCnK10GJBxK35mB0wxBS2n5gZfU=;
-        b=JoinQbsy8YTH9AIbeBWuvutA+CMsxhnroeRA3jbDy6959dJ+Kz9fsFJhk1kdDJrEvk
-         NokJOCaIPl39cHr7zznmSEjqDLl3OUBw/cil01PUfCa0PBu2t662+SM4x1ii3ikPKAx+
-         AnqkYZ5Qu6PoYEVSJiu7riooknill1bLqe1qU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732642392; x=1733247192;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9oOV6Xf/f1fBBujFiCnK10GJBxK35mB0wxBS2n5gZfU=;
-        b=OPnmmQjJ8tg4vk9ODQ0GaPPEqFNtetWiod9xvEaOeFKzxeKVGdAJxQABq34Zs9q9jP
-         4pGtTXVYU4u3SE4PRH7zz2lqQ6mVVlF1rpEuIFJ81BdkQCfEDAMoO2gU8KLTXIgLvDpk
-         xkW+yAmx6NGH1l8vq6gibTyH4yHllHXi0cr3qodEiL2DEabyYoZml005ska05fpf0XHP
-         uFQ8GjTE7xDxQUzkwVByFwnpjV7Bqh7+JnW1HsssRMr6M0fTKrFhq1Za733KbVE6TN25
-         AASxJJxsprj3aNm7Dndw8jt0lc5qhAlHcj2o41GtyNccLc5bCs/38yLBxdbDdh17lIvo
-         Kchg==
-X-Gm-Message-State: AOJu0YwLOtwPXlPY9X+l2qKMTz/O/X6l0SPVzp6SDVzuVunWdKVbhbZY
-	67/aNwzjRKvl8A/0nID24g8agxUtvTy1dkfJgJAgkjIyQr/ekGIuv3BYcbe6u2LroH8cfFO3cWM
-	e
-X-Gm-Gg: ASbGncudykbyG8y3SU5MO6zFWBLeiK5eA/3zTQS8I0022JsGOsosBWU8Y0qcCVZK11g
-	llKChRpWD8VYO+7eTyr/QbZDuJkCZnD9N3JK8hNSPirSi/qh2jwK817i4huNfeDfYZ17ivp+DPL
-	aeMly8CnBhOH3VpNIU9i4fMBUqxxEtst52wcVD/t74D0HT2ixpR1vcygtZerzMs9fNg+3DabKPD
-	sfOtxnZT6FjEIP+kDaXuTgzhocK7oGnJ5uQvOMEkAT63EIVWjKx720jG6DFUY52Fumd+9ZVaR36
-	OhA33VSyBMDxWPaJtTViqbm9mLBeBGuyNs611sqUE/HlQXM=
-X-Google-Smtp-Source: AGHT+IH+jDs/Oi/Yj699wtUEbjT8GQBWJI0mOVavIZ5Y1ZVm3lZYt0A+bSeHwUyDg6sCEgug0Vl6Ag==
-X-Received: by 2002:a05:6000:18ac:b0:382:4b43:c3a with SMTP id ffacd0b85a97d-38260b45e0cmr16212760f8f.2.1732642391966;
-        Tue, 26 Nov 2024 09:33:11 -0800 (PST)
-Received: from P-NTS-Evian.home (2a01cb05949d5800e3ef2d7a4131071f.ipv6.abo.wanadoo.fr. [2a01:cb05:949d:5800:e3ef:2d7a:4131:71f])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3825fbe901esm14043844f8f.87.2024.11.26.09.33.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Nov 2024 09:33:11 -0800 (PST)
-From: Romain Naour <romain.naour@smile.fr>
-To: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org,
-	linux-omap@vger.kernel.org,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	kristo@kernel.org,
-	vigneshr@ti.com,
-	nm@ti.com,
-	Romain Naour <romain.naour@skf.com>
-Subject: [PATCH] arm64: dts: ti: k3-j721e-beagleboneai64: Enable ACSPCIE output for PCIe1
-Date: Tue, 26 Nov 2024 18:33:07 +0100
-Message-ID: <20241126173307.4054601-1-romain.naour@smile.fr>
-X-Mailer: git-send-email 2.45.0
+	s=arc-20240116; t=1732643060; c=relaxed/simple;
+	bh=H+B1pmwxkp1dv88qtjfJSxvPjDOd7r063O1/Yfy0BFU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=d67HZe9uo9w4tIYrQ+VWU9U/YYZmgul5ptB4k8hsPXOEf7fL4F9aBtHyJaIrN22BXc+tZTMZ0ox6/BCfmPAZCwtLw+K+zP+iUWkFraWGslLMCwvrWPP419+TI4GGo8NWjj6r+OqsbLjnQSG4Qt70/GFyRD0+1MQ2ugBl5rYPFQU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KpKV1Hhq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B27BAC4CECF;
+	Tue, 26 Nov 2024 17:44:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732643059;
+	bh=H+B1pmwxkp1dv88qtjfJSxvPjDOd7r063O1/Yfy0BFU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KpKV1Hhq7cwiwPfR81pTvR4jA9M2AofYd8uf7eG5wecW99jo0uQaBEdqORgLa3oAH
+	 tGnAJxDhuxiPdPOzioql4BcjDMVVJf1nKlAdSX96ZXo2eVUBzFjq12DmeyQ3XCU5Vt
+	 Zl0J40NLZvc8b9SftfW79MnyGihjfn6LoJyha71k90VWumhTEghsyIsyQOH8AEmwtX
+	 WBryR76k5fhob/QWDKTrPuvMi56i46c18MI5Ttchh0ShuurAEN7o9JN6TL9ogPelZc
+	 0ybUgKvLxPmHG70OcuhGCw8EAmhpTUJCIbatDuiVPdpiHpjS7JLeGV7ErKPfxqIAa2
+	 Lyd2nq4sVde5g==
+Date: Tue, 26 Nov 2024 17:44:14 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, quentin.schulz@cherry.de,
+	sebastian.reichel@collabora.com, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	dse@thaumatec.com, Heiko Stuebner <heiko.stuebner@cherry.de>
+Subject: Re: [PATCH v4 1/2] dt-bindings: phy: Add Rockchip MIPI C-/D-PHY
+ schema
+Message-ID: <20241126-pastrami-gusty-8b9df32ae00c@spud>
+References: <20241126131736.465111-1-heiko@sntech.de>
+ <20241126131736.465111-2-heiko@sntech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="g+V6TT2oeeGyoz7X"
+Content-Disposition: inline
+In-Reply-To: <20241126131736.465111-2-heiko@sntech.de>
 
-From: Romain Naour <romain.naour@skf.com>
 
-Unlike the SK-TDA4VM (k3-j721e-sk) board, there is no clock generator
-(CDCI6214RGET) on the BeagleBone AI-64 (k3-j721e-beagleboneai64) to
-provide PCIe refclk signal to PCIe Endponts. So the ACSPCIE module must
-provide refclk through PCIe_REFCLK pins.
+--g+V6TT2oeeGyoz7X
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Use the new "ti,syscon-acspcie-proxy-ctrl" property to enable ACSPCIE
-module's PAD IO Buffers.
+On Tue, Nov 26, 2024 at 02:17:34PM +0100, Heiko Stuebner wrote:
+> From: Heiko Stuebner <heiko.stuebner@cherry.de>
+>=20
+> Add dt-binding schema for the MIPI C-/D-PHY found on
+> Rockchip RK3588 SoCs.
+>=20
+> Tested-by: Daniel Semkowicz <dse@thaumatec.com>
+> Tested-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
+> ---
+>  .../phy/rockchip,rk3588-mipi-dcphy.yaml       | 87 +++++++++++++++++++
+>  1 file changed, 87 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/rockchip,rk3588=
+-mipi-dcphy.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/phy/rockchip,rk3588-mipi-d=
+cphy.yaml b/Documentation/devicetree/bindings/phy/rockchip,rk3588-mipi-dcph=
+y.yaml
+> new file mode 100644
+> index 000000000000..c8ff5ba22a86
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/rockchip,rk3588-mipi-dcphy.ya=
+ml
+> @@ -0,0 +1,87 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/rockchip,rk3588-mipi-dcphy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rockchip MIPI D-/C-PHY with Samsung IP block
+> +
+> +maintainers:
+> +  - Guochun Huang <hero.huang@rock-chips.com>
+> +  - Heiko Stuebner <heiko@sntech.de>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - rockchip,rk3576-mipi-dcphy
+> +      - rockchip,rk3588-mipi-dcphy
 
-Signed-off-by: Romain Naour <romain.naour@skf.com>
----
-With this patch, we can remove "HACK: Sierra: Drive clock out" patch
-applied on vendor kernel for BeagleBone AI-64:
-https://openbeagle.org/beagleboard/linux/-/commit/ad65d7ef675966cdbc5d75f2bd545fad1914ba9b
----
- arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts |  4 ++++
- arch/arm64/boot/dts/ti/k3-j721e-main.dtsi          | 10 ++++++++--
- 2 files changed, 12 insertions(+), 2 deletions(-)
+How many phys do each of these SoCs have?
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-index fb899c99753e..681e3af7ce6e 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-@@ -859,6 +859,10 @@ &pcie1_rc {
- 	num-lanes = <2>;
- 	max-link-speed = <3>;
- 	reset-gpios = <&main_gpio0 22 GPIO_ACTIVE_HIGH>;
-+	/* There is no on-board or external reference clock generators,
-+	 * use refclk from the ACSPCIE module's PAD IO Buffers.
-+	 */
-+	ti,syscon-acspcie-proxy-ctrl = <&acspcie0_proxy_ctrl 0x3>;
- };
- 
- &ufs_wrapper {
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-index 0da785be80ff..9f47e7672922 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-@@ -5,6 +5,7 @@
-  * Copyright (C) 2016-2024 Texas Instruments Incorporated - https://www.ti.com/
-  */
- #include <dt-bindings/phy/phy.h>
-+#include <dt-bindings/phy/phy-cadence.h>
- #include <dt-bindings/phy/phy-ti.h>
- #include <dt-bindings/mux/mux.h>
- 
-@@ -82,6 +83,11 @@ ehrpwm_tbclk: clock-controller@4140 {
- 			reg = <0x4140 0x18>;
- 			#clock-cells = <1>;
- 		};
-+
-+		acspcie0_proxy_ctrl: acspcie0-ctrl@18090 {
-+			compatible = "ti,j784s4-acspcie-proxy-ctrl", "syscon";
-+			reg = <0x18090 0x4>;
-+		};
- 	};
- 
- 	main_ehrpwm0: pwm@3000000 {
-@@ -978,8 +984,8 @@ pcie1_rc: pcie@2910000 {
- 		max-link-speed = <3>;
- 		num-lanes = <2>;
- 		power-domains = <&k3_pds 240 TI_SCI_PD_EXCLUSIVE>;
--		clocks = <&k3_clks 240 1>;
--		clock-names = "fck";
-+		clocks = <&k3_clks 240 1>, <&serdes1 CDNS_SIERRA_DERIVED_REFCLK>;
-+		clock-names = "fck", "pcie_refclk";
- 		#address-cells = <3>;
- 		#size-cells = <2>;
- 		bus-range = <0x0 0xff>;
--- 
-2.45.0
+--g+V6TT2oeeGyoz7X
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ0YI7gAKCRB4tDGHoIJi
+0uLsAQCgiUeTJIfJn0aeODBRIBm/tzLSKrztICS5Y7I3++Ae1QEAljjpGbDuyu90
+nr0OwQId+7pypocuTFIbd8uRgymesAU=
+=OpzG
+-----END PGP SIGNATURE-----
+
+--g+V6TT2oeeGyoz7X--
 
