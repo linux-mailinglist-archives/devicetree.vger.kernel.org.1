@@ -1,145 +1,129 @@
-Return-Path: <devicetree+bounces-124641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124645-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7F4F9D97DD
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 14:00:43 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 260F99D9804
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 14:07:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7DFCF2829B6
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 13:00:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F217FB2AFC3
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 13:05:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E57801CDFA9;
-	Tue, 26 Nov 2024 13:00:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 051CA1D54D1;
+	Tue, 26 Nov 2024 13:05:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="e17Ru0lW"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="YeY2nuOk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot05.ext.ti.com (lelvem-ot05.ext.ti.com [198.47.23.236])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B72517489;
-	Tue, 26 Nov 2024 13:00:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.236
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BEA31D5146;
+	Tue, 26 Nov 2024 13:05:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732626038; cv=none; b=jPNbfCtIJYpcbz1BIsodjxNBZqB1/0BrhSl+b/20O6Dabpbo3RzQ24MMvBCg+Mw3XSM5g2uofyVIAbbFIWFx5W8nBmpZIXrA9bC0cEDQqGO93Ycj1D6Dl7Mphg7o93kJbfU79qrBhs2of7iDkY25Lz0wEhnaHPk9qzZhbLzS9p8=
+	t=1732626321; cv=none; b=aCnOIn30anLvff4XAHaYkFGTd4/bjFOPehuqZKLC92tAicNjFIM0mVDcT1MFdC1ChzYPOAdhJck0Ig4E277GWww42kjuSjPSjlAJu46NiXy3xa9O6vjvt01HOSUwfZT16bDFEkSsTli8w2Vub2gmB+NDV56NIHeOiBfSYAzU7Mg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732626038; c=relaxed/simple;
-	bh=rb4RKEfu0UEtBVz6z1dX9J6uuYRBunQZLoY/ueS2YSQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=P+3xTOLXST2DjilIgoO/FMmFCb3jglGxnk/7CjlBe8DyoELVZp37pqpYGTsDsDSMQJnfx6OCcTRVWiFjrRpfgJJCZkHLUezSfJKf9xL5cbNZhw/tB3N0kZ+SO7BzXNST0I9Ln7JQ8322rH3f8g7im09wM/cpX/HEyFS+oeXbSn0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=e17Ru0lW; arc=none smtp.client-ip=198.47.23.236
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelvem-ot05.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 4AQCwYKb675617
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-	Tue, 26 Nov 2024 06:58:34 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1732625914;
-	bh=J0JZ8DiQ4nkkyJ4v4OOJuFMwA5FpDWZfEAp+egaaJ/U=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=e17Ru0lW+ltXO0ID357PPUFJetmCJqUhSb40sfMFUG6PK4pAlkQ2w6zaxAP7bsWm6
-	 +6/bTppQj4KWTgKH+HpzpW+/oQdk6FNSKIybzgrhrWdG4SwiR1ffl5BzUjTL0BJOwt
-	 kh44V6Bbgm+cN/C4wfyXk9dPAKMFOlrPfaA27o/8=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4AQCwY0a026953;
-	Tue, 26 Nov 2024 06:58:34 -0600
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 26
- Nov 2024 06:58:34 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 26 Nov 2024 06:58:34 -0600
-Received: from [10.24.69.142] ([10.24.69.142])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4AQCwUaP106029;
-	Tue, 26 Nov 2024 06:58:30 -0600
-Message-ID: <8fe8eb6c-2ec7-4f07-9043-99a8d87e2613@ti.com>
-Date: Tue, 26 Nov 2024 18:28:29 +0530
+	s=arc-20240116; t=1732626321; c=relaxed/simple;
+	bh=bs+D/VLQKALMxSpo6LsDkKVnb9wdoMMKnJiwVmzmF+k=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=TiYomv53JoXf1eqm3PBRaRS2zkImdcq312JUyZbL8MbqR/tlLG3e8qwI8SMDuZ7zosNucIZBfMUJ8l9JRZCa0mpdtH1TEGAgfxEZ2VVm8UXHdEYuqq76a8sUa7MB4BJ0geIASxexVhM+1Mg6oKJhXCEoAxWcdy0Uw7RBi43+9Ow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=YeY2nuOk; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AQAk54s003890;
+	Tue, 26 Nov 2024 14:04:54 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=cqT5IxySTKXfbHsipjA41j
+	fpwmNQnAvDQits4qChS3A=; b=YeY2nuOkbe0Jvh4UjGdW6+PDtxnZl4c7DH6xqV
+	VTtm2wb3GOp7LjPismVzkYp219DSb+JiLXBWdw86Kvtr4dhfiNS6qIPC3eQlvQGo
+	X5AxngvJ/XeZvaMcjl52ZK+E8i8EcohuetNQvuclxQub0tZx356Up3f8ENjWK1Pq
+	0o3Lc13qS/7ZvDARSd/zXMYg91hA24lRm8JYZmPegR5kwoCMZI4v/frx8iljw1Tx
+	5AuPXloIYPNFoCihIqNpS2tkjp93o8ir4Mu8yig5m1ZWYxkClUohj0ePOusXMkE6
+	PW1OylwOXEvDK/dAMj+b1Vp/u3YqKSQns7Pg+ZaYRoDyRK8w==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4336tfmxcr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 26 Nov 2024 14:04:54 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id B96E34004C;
+	Tue, 26 Nov 2024 14:03:28 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 659DD26EEEE;
+	Tue, 26 Nov 2024 14:00:26 +0100 (CET)
+Received: from localhost (10.129.178.212) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Tue, 26 Nov
+ 2024 14:00:26 +0100
+From: Christian Bruel <christian.bruel@foss.st.com>
+To: <lpieralisi@kernel.org>, <kw@linux.com>,
+        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
+        <bhelgaas@google.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
+        <p.zabel@pengutronix.de>, <cassel@kernel.org>,
+        <quic_schintav@quicinc.com>, <fabrice.gasnier@foss.st.com>
+CC: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        Christian Bruel <christian.bruel@foss.st.com>
+Subject: [PATCH v1 0/5] Add STM32MP25 PCIe drivers
+Date: Tue, 26 Nov 2024 13:59:59 +0100
+Message-ID: <20241126130004.1570091-1-christian.bruel@foss.st.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dmaengine: ti: k3-udma: Add TX channel data in AM62A
- CSIRX DMSS
-To: Conor Dooley <conor@kernel.org>
-CC: <peter.ujfalusi@gmail.com>, <vkoul@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>,
-        <j-choudhary@ti.com>, <vigneshr@ti.com>
-References: <20241125083914.2934815-1-vaishnav.a@ti.com>
- <20241125083914.2934815-2-vaishnav.a@ti.com>
- <20241125-hardener-jockey-d8d57f6a9430@spud>
-Content-Language: en-US
-From: Vaishnav Achath <vaishnav.a@ti.com>
-In-Reply-To: <20241125-hardener-jockey-d8d57f6a9430@spud>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-Hi Conor,
+This patch series adds PCIe drivers STM32MP25 SoC from STMicrolectronics
+and respective yaml schema for the root complex and device modes.
 
-On 26/11/24 00:01, Conor Dooley wrote:
-> On Mon, Nov 25, 2024 at 02:09:14PM +0530, Vaishnav Achath wrote:
->> J722S/AM67 uses the same BCDMA CSIRX IP as AM62A, but it supports
->> TX channels as well in addition to RX.
-> 
-> This doesn't make sense. You say that the am62a doesn't have a tx
-> channel ("but it supports TX as well") but then modify the struct for
-> the am62a to add a tx channel. Does that not break things on the am62a?
-> 
+Changes in v1:
+   Address comments from Rob Herring and Bjorn Helgaas:
+   - Drop st,limit-mrrs and st,max-payload-size from this patchset
+   - Remove single reset and clocks binding names and misc yaml cleanups
+   - Split RC/EP common bindings to a separate schema file
+   - Use correct PCIE_T_PERST_CLK_US and PCIE_T_RRS_READY_MS defines
+   - Use .remove instead of .remove_new
+   - Fix bar reset sequence in EP driver
+   - Use cleanup blocks for error handling
+   - Cosmetic fixes
+   
+Christian Bruel (5):
+  dt-bindings: PCI: Add STM32MP25 PCIe root complex bindings
+  PCI: stm32: Add PCIe host support for STM32MP25
+  dt-bindings: PCI: Add STM32MP25 PCIe endpoint bindings
+  PCI: stm32: Add PCIe endpoint support for STM32MP25
+  MAINTAINERS: add entry for ST STM32MP25 PCIe drivers
 
-Thank you for the review, I have sent a v2 of this series adding new 
-compatible as suggested, after looking at it again, the J722S BCDMA CSI
-is more similar to J721S2 in terms of having RX and TX support, so 
-updated in that way.
+ .../bindings/pci/st,stm32-pcie-common.yaml    |  45 ++
+ .../bindings/pci/st,stm32-pcie-ep.yaml        |  61 +++
+ .../bindings/pci/st,stm32-pcie-host.yaml      |  99 ++++
+ MAINTAINERS                                   |   7 +
+ drivers/pci/controller/dwc/Kconfig            |  24 +
+ drivers/pci/controller/dwc/Makefile           |   2 +
+ drivers/pci/controller/dwc/pcie-stm32-ep.c    | 445 ++++++++++++++++++
+ drivers/pci/controller/dwc/pcie-stm32.c       | 402 ++++++++++++++++
+ drivers/pci/controller/dwc/pcie-stm32.h       |  17 +
+ 9 files changed, 1102 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/st,stm32-pcie-common.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/st,stm32-pcie-ep.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/st,stm32-pcie-host.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-stm32-ep.c
+ create mode 100644 drivers/pci/controller/dwc/pcie-stm32.c
+ create mode 100644 drivers/pci/controller/dwc/pcie-stm32.h
 
-The below changes did not really break AM62A since the driver checks 
-hardware capability registers (TCHAN_CNT) to detect presence of TX 
-channels and then only use the Output Event Steering(OES) data below.
+-- 
+2.34.1
 
-V2:
-
-https://lore.kernel.org/all/20241126125158.37744-1-vaishnav.a@ti.com/
-
-Thanks and Regards,
-Vaishnav
-
-> 
->> Add the BCDMA TCHAN information
->> in the am62a_dmss_csi_soc_data so as to support all the platforms in the
->> family with same compatible. UDMA_CAP2_TCHAN_CNT indicates the presence
->> of TX channels and it will be 0 for platforms without TX support.
->>
->> Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
->> ---
->>
->> CSI2RX capture test results on J722S EVM with IMX219:
->> https://gist.github.com/vaishnavachath/e2eaed62ee8f53428ee9b830aaa02cc3
->>
->>   drivers/dma/ti/k3-udma.c | 2 ++
->>   1 file changed, 2 insertions(+)
->>
->> diff --git a/drivers/dma/ti/k3-udma.c b/drivers/dma/ti/k3-udma.c
->> index b3f27b3f9209..4130f50979d4 100644
->> --- a/drivers/dma/ti/k3-udma.c
->> +++ b/drivers/dma/ti/k3-udma.c
->> @@ -4340,6 +4340,8 @@ static struct udma_match_data j721e_mcu_data = {
->>   
->>   static struct udma_soc_data am62a_dmss_csi_soc_data = {
->>   	.oes = {
->> +		.bcdma_tchan_data = 0x800,
->> +		.bcdma_tchan_ring = 0xa00,
->>   		.bcdma_rchan_data = 0xe00,
->>   		.bcdma_rchan_ring = 0x1000,
->>   	},
->> -- 
->> 2.34.1
->>
 
