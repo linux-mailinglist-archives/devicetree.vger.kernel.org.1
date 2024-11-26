@@ -1,139 +1,103 @@
-Return-Path: <devicetree+bounces-124773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F31F9D9D5C
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 19:29:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCFBE9D9D6F
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 19:34:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 94AB7283C08
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 18:29:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8366A282563
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 18:34:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ADC91DDC01;
-	Tue, 26 Nov 2024 18:29:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E8801DE3AA;
+	Tue, 26 Nov 2024 18:34:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ekiUFx4i"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aP44LUSW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E1F21D618E;
-	Tue, 26 Nov 2024 18:29:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74E8E1DE2B3;
+	Tue, 26 Nov 2024 18:34:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732645769; cv=none; b=C/4EVVqGdpbhoePbov7g4Zsz2axhJlAMbksHyVlEUYT1Dv0kkRGWqqDl5z4iN5xFWXmNfSYjXQDFNp0fn4XW3Euw0lMo3GkKXaQqbWHRCuGtc5ak0BoOZRvT+RsL0j0D/hAN/BGGRRf6blNz5XSQcAOroyC0INcaKpisubaTf3s=
+	t=1732646049; cv=none; b=EvbV9y2JXU8uUQwmtyKbVMWsvJO+JrEPX1L28qQN0++Md/qyGu7io5luQ9vFom+1RGalJb/ZGFnPbJE3oJIN1AD3usG69t99NM406YOIT60BO/vi12/GEfe/kNnJPKkWy6mO2WHNf/W0rObGpg+bNVclAtGbC5mxBggXuqjJ+48=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732645769; c=relaxed/simple;
-	bh=mlBR4SaoE+u827nLxsWeIfa91R887W+zu/bZR0OStBM=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EPfWWDa8GjLuwU/gbylBPafwAWUkUxnltsMhjzlk0uZVz3Xe0mZdFXP+3K14kzzfITGEdzlZhVCscTyVSwwTCAHPMj4fyAbXnbrn6TuilfzIfyzYOf/cxvpxCfJC219dUfxB4IsaBwfw5Ws2r1hCHhBBlzdpOBCYcmnx2v3lLp0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ekiUFx4i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 042D2C4CECF;
-	Tue, 26 Nov 2024 18:29:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732645768;
-	bh=mlBR4SaoE+u827nLxsWeIfa91R887W+zu/bZR0OStBM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ekiUFx4ij69pFLk75OW+EO/3UgEswc3vhCXMSE8YWKlemV3IbMcKlEGiYTgJs/GZ3
-	 ZbTCV4Uz0mR3bZn+EQ79IL9obhOyt8vUboEK/UzaXICyL/P++oEL3PrrUxBVpnFjjy
-	 R8lwL7J8PNK8rTAMkMwhQeVWwBYA+kPpqPHq5/QYURSq+cQxnL5qQzXZBH62OLyPD+
-	 6WClbIN9eDTzyJiZnAjzFJW5nz+YBvUpOq1lKX1ge7JLrtBRxzRJ3loZpACYpmRqOA
-	 ol2xHwljgyGMdMyeL4QNCVaJxqGGkRjQ0HQQ7ggzFBjq9XWcIZH9runA+ppqK1K/ZY
-	 fXdE26TDwpz/w==
-Date: Tue, 26 Nov 2024 18:29:19 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Guillaume Stols <gstols@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, dlechner@baylibre.com, jstephan@baylibre.com,
- aardelean@baylibre.com, adureghello@baylibre.com
-Subject: Re: [PATCH 4/9] iio: adc: ad7606: Move software functions into
- common file
-Message-ID: <20241126182919.2b0aabb6@jic23-huawei>
-In-Reply-To: <20241121-ad7606_add_iio_backend_software_mode-v1-4-8a693a5e3fa9@baylibre.com>
-References: <20241121-ad7606_add_iio_backend_software_mode-v1-0-8a693a5e3fa9@baylibre.com>
-	<20241121-ad7606_add_iio_backend_software_mode-v1-4-8a693a5e3fa9@baylibre.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1732646049; c=relaxed/simple;
+	bh=B5ZdijXHGTf9/VBMxXk0sgaeGJSHANk1xhdrCGF3VVs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jcXBG+IBMWDGFCMaEI4biJreigbvkNITPfOQmxrXvQ9x6EEAvGbh/A872Y71qL1lnxs/jvPa1vPhrdmytJxB7NAL0v8l3X0chkO47ltumkxbceytd0huMJIUxNpie3yIryOo3DBS/u04CgEN+uPLhrCJyWxIlC4ftAVtl/pjMe8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aP44LUSW; arc=none smtp.client-ip=209.85.219.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-e382589e8fdso5807556276.0;
+        Tue, 26 Nov 2024 10:34:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1732646047; x=1733250847; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=B5ZdijXHGTf9/VBMxXk0sgaeGJSHANk1xhdrCGF3VVs=;
+        b=aP44LUSWZZz4wd59KY9A4CpeISbNFLShnxxJ2+d7IXSE1Jad0TcLa6F7Qq+nXTqXyw
+         9dO+E97SwAbciwKB1VPHb/txg4DfHrzXcoIhO9fCjG/VoIEAQJ8GCpjuLtAXJz3eeu0y
+         ubzXqX4DOmJHb8+3QKan8zi9t0SLhrFP+8LGNPFeCMqOUWgJ+t0OJD34M8Olsi7GtpyW
+         i0baWMgAevZE7PChKwsr1rhYoXfoYQ/KlnzB+4hQbjEIBdLPHL13PJtmZI34nrlPPKvE
+         ku8gWz0JwXwWxlHcOySD2tPf5m5XsAInrqtpy8iawvkt5nf99un4tXtk3bocSjXR4w5l
+         dfQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732646047; x=1733250847;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=B5ZdijXHGTf9/VBMxXk0sgaeGJSHANk1xhdrCGF3VVs=;
+        b=LBpM/WMFaLyh1dMp7cjvdbuMsgIhXje5BGrMP44VcNW5NVe8cE6Tuu8ULQT5/NdwEU
+         /0IZAjXJEesPZmlRSv2owp7BUetuQbRBJ5+/OmLeRjI7FhsoLkG5BUWF6LYgRYwrEPzD
+         r+P5MTvkkTO+xpKgoXMZd3w85Ge1ZkDjUr3ZB96zxqEgbHBjsE0HBNCtOlEztkpJc3Nc
+         fSoJDfRz9mlNQEQw/Z+BYXlr4LJ8EVOYYf70CSubSxYu33OEBPPhNzh9vHCvkvplhABX
+         mKjPScJIk0SnnkxF7730D1GJp0jNyBzafkZovfTssyZVH0EACxM5eklJbH+gyAYdooKd
+         GRqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVBU1tNQdluJP+GUx9gQ8yNSaw33gHOYlCglIsWs48DQnldLxaL2rnhMZKixAlNy9PIeOhSGGgOeuIy@vger.kernel.org, AJvYcCVSMBKrpVtm5cQjGvybMWHHxka4iXMQ8vSqySBmmUWwlF9st9D8SAj+FDWBEqVqQGSeCgpTKNr1rzZ6wCXN@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywu5QM1B9Nv+v8E9kDGit6Pj6vgBSyP9vw2x3LIAKP10ZN8sChS
+	4u5O8PZULsJMhT63/DJxY3S8pkDj3+tMcxm7T1KklUuxuwIm9DLJnXl8G9wpYNaUMToJrYlNdCt
+	iML1sTpOhU65f3WsLjLjXHnImswY=
+X-Gm-Gg: ASbGncuQztMFyzLGajx9l/Zi8AOggKLGNtw7QlnTkqdW+3ap52b5wNnt5S+pN9maimC
+	wQXfit3WHP3mgJzXvpszhdfaWwJdOyGov
+X-Google-Smtp-Source: AGHT+IEAKAQZoBZRcCS59s6ATzOJRqSPoDhyFrhH0wpI4a7G9pyRjoqsbwGfh6mDJveSJ2gv3edzPDtBsyPh4VazY1Y=
+X-Received: by 2002:a05:6902:2606:b0:e30:e9b8:abcc with SMTP id
+ 3f1490d57ef6-e395b973db9mr91652276.48.1732646047430; Tue, 26 Nov 2024
+ 10:34:07 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20241126-adpdrm-v2-0-c90485336c09@gmail.com> <20241126-adpdrm-v2-1-c90485336c09@gmail.com>
+ <050d1398-cfc2-4921-b82a-95eecbcddba4@kernel.org>
+In-Reply-To: <050d1398-cfc2-4921-b82a-95eecbcddba4@kernel.org>
+From: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Date: Tue, 26 Nov 2024 19:33:56 +0100
+Message-ID: <CAMT+MTRJrN1_LBm+Ba6wh1BcdG0co-AHY8t4rnLuLAV=75wZbA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: display: Add Apple pre-DCP display
+ controller bindings
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Thu, 21 Nov 2024 10:18:26 +0000
-Guillaume Stols <gstols@baylibre.com> wrote:
+On Tue, 26 Nov 2024 at 17:46, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> Please take a look how other bindings define ports. You miss here
+> several items and more important - description what are these ports for.
 
-> Since the register are always the same, whatever bus is used, moving the
-> software functions into the main file avoids the code to be duplicated
-> in both SPI and parallel version of the driver.
-> 
-> Signed-off-by: Guillaume Stols <gstols@baylibre.com>
-> ---
->  drivers/iio/adc/ad7606.c     | 128 ++++++++++++++++++++++++++++++++++++++++--
->  drivers/iio/adc/ad7606.h     |  37 ++++++++++--
->  drivers/iio/adc/ad7606_spi.c | 131 +------------------------------------------
->  3 files changed, 156 insertions(+), 140 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/ad7606.c b/drivers/iio/adc/ad7606.c
-> index 828603ed18f6..df0e49bc4bdb 100644
-> --- a/drivers/iio/adc/ad7606.c
-> +++ b/drivers/iio/adc/ad7606.c
-> @@ -85,6 +85,10 @@ static const unsigned int ad7606_oversampling_avail[7] = {
->  	1, 2, 4, 8, 16, 32, 64,
->  };
->  
-> +static const unsigned int ad7606B_oversampling_avail[9] = {
-
-Same in original code, but why capital B?
-
-I think you didn't remove this as intended from ad7606_spi.c
-so we have a duplicate.
-
-
-> +	1, 2, 4, 8, 16, 32, 64, 128, 256
-> +};
-> +
->  static const unsigned int ad7616_oversampling_avail[8] = {
->  	1, 2, 4, 8, 16, 32, 64, 128,
->  };
-> @@ -187,6 +191,8 @@ static int ad7608_chan_scale_setup(struct iio_dev *indio_dev,
->  				   struct iio_chan_spec *chan, int ch);
->  static int ad7609_chan_scale_setup(struct iio_dev *indio_dev,
->  				   struct iio_chan_spec *chan, int ch);
-> +static int ad7616_sw_mode_setup(struct iio_dev *indio_dev);
-> +static int ad7606B_sw_mode_setup(struct iio_dev *indio_dev);
-Similar question. Why capital B?  We make ad lowercase, so I'd think it makes
-sense for the B as well.
-
-
-
-> +
-> +static int ad7616_write_os_sw(struct iio_dev *indio_dev, int val)
-> +{
-> +	struct ad7606_state *st = iio_priv(indio_dev);
-> +
-> +	return ad7606_write_mask(st, AD7616_CONFIGURATION_REGISTER,
-> +				     AD7616_OS_MASK, val << 2);
-> +}
-> +
-> +static int ad7606_write_scale_sw(struct iio_dev *indio_dev, int ch, int val)
-> +{
-> +	struct ad7606_state *st = iio_priv(indio_dev);
-> +
-> +	return ad7606_write_mask(st,
-> +				     AD7606_RANGE_CH_ADDR(ch),
-> +				     AD7606_RANGE_CH_MSK(ch),
-> +				     AD7606_RANGE_CH_MODE(ch, val));
-
-Odd alignment.
-
-> +}
-
+Aside from missing descriptions, this definition is copied almost verbatim from
+snps,dw-mipi-dsi.
+Ack on the rest of the comments, those and the descriptions will be
+fixed for v3.
 
