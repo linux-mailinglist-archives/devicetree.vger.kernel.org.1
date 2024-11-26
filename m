@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-124559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7822F9D9425
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 10:22:13 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95FA39D942A
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 10:22:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DA1D2867ED
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 09:22:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 18829B290E2
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 09:22:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D5C71CEAC2;
-	Tue, 26 Nov 2024 09:21:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13CDD1CF5E2;
+	Tue, 26 Nov 2024 09:21:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="IirP2PBv"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="k2w87Jjk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E0B31CBE8C
-	for <devicetree@vger.kernel.org>; Tue, 26 Nov 2024 09:21:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 449A61CEAB3
+	for <devicetree@vger.kernel.org>; Tue, 26 Nov 2024 09:21:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732612877; cv=none; b=Bw+xhkP8VolFZIcO/rKWH+hAueUtNzxQbN/SkzvtfAlr50X4KmUNtrDl60PuLJoXwMt2zmxZr9RJfO0e3rlF/vy4itTj+jiyRMNq6jIb5iqLXPy0gOfmdBm+9baEcfrk0x53VHwgcGoaY5WwF7IfRj9j8DHzvMiJdIcwuroS+Vc=
+	t=1732612878; cv=none; b=HmKzKsTeHQ9WzaKECzcJX0pB53dvuNPq4cxi854QkHv02my4QK6n8H+psBvfwjIcDcyBTCW85s3TURSkP+7p6lLxyxRt6759FDNqVCUAo16nKqEj0gvEzOaPme/N5Z2cyF72uU44BeB15VJPnnj31UmisVLe8muW0K9sgxD0WVo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732612877; c=relaxed/simple;
-	bh=4F232ENECAOLomVUSY8tBxTq5zAbQQSu7jUMFMN+Pp4=;
+	s=arc-20240116; t=1732612878; c=relaxed/simple;
+	bh=peR4Vif7woHWK7GGXYa577M+2RIwJeK0uX7OsLiQUiU=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=h9qhs/+XBkQtZMKNvq1hbqFGGLYfnLN1fE06rIFiY90/ncP/uAccDYuP06HIyBQyk2oWqaesAoRJFkGXVufLke27MRZlZ2nboD+naNhe3d6QLJMhtt/GPqDex18Ss9OHkfg8e2Bwn7U9BhTeQmRG2vNvBbb+ztXaiipTL84E0Yo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=IirP2PBv; arc=none smtp.client-ip=209.85.128.52
+	 MIME-Version; b=HRNUFy8Gvjcg5y++dh5AbARzDwAIDDyqEerBUm7cmLyyC/Zlhkp3BuTVEBpHa2c2aXxl9NU+cBn2eGZSi+QjwMyLKeQ+Epp7FfmnbMUjjWgU+S0iqdwrsi43/bfMAM+18McjFa44gjOwbGQ7B9Uj4x4dpUoTzjNZkt/RA2K6HzE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=k2w87Jjk; arc=none smtp.client-ip=209.85.128.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-434a044dce2so20409555e9.2
-        for <devicetree@vger.kernel.org>; Tue, 26 Nov 2024 01:21:15 -0800 (PST)
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-432d866f70fso49735745e9.2
+        for <devicetree@vger.kernel.org>; Tue, 26 Nov 2024 01:21:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1732612874; x=1733217674; darn=vger.kernel.org;
+        d=tuxon.dev; s=google; t=1732612876; x=1733217676; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=LKW3EfLpg9xj1NAX34ulRBb1/poqN6qEBq3WFAZfenM=;
-        b=IirP2PBvcho0H6iTKUBPqaFzZSLbr1s7FmnuIkmTtgERTsDdFAzdIRHukfAB2WgkpW
-         3vGQapU8wAhXsndg+PAL+Mt3Y0nI5ePH+lHgwdVr29Lmf12twCqc0vR/ABqtQvET9ICv
-         ZgXCMAPJdtcginb9Hy+pvQf6zGMIhJhbuv9PaNW3sS0SF4luQBW3CIvAN5+sHujMMCbZ
-         DZjj1EBi/vf0xotjebPF8mbkXsZ/5+GtFUXqPEnnQ3XH9SxrlFxc1ceFghiUYRAnZvJR
-         F6U9iXNYMBbXmP1x5wJbzMroauFk030pDfTT2bnCCa9snMx7W6fNONnlSsML246LhHnu
-         wnbA==
+        bh=sn4qpT/iGLCOuVRl/HhbV74eVKZi/FzZDWa4nL4zSFw=;
+        b=k2w87JjkHiabvDLC4jaRhmjbfFPncA2OiY4Gaxwqmhc5ne188YaKHCRXNjLeianRqW
+         1493NnWQGtdSNN7Axs8Q3bg5IWUWBQcQm4koKNyZAfBQK5lP9tnG2IWpSf8ULwHhQK2p
+         x+3wNDSM2BDkbdFDIqnl1mGB2g7zjbqy6FGGotYxIAHz90d/iw9dWV1N4U8w0wm+hvbt
+         PrhPOrvOevVl+8ZO9I6tY6+yZDQ7vippzhKOM1YmjuuqY4X2HfkZ+rGlW2KcMSPbtR0Z
+         q/iPzepPY3vNz1N5Ec4far7nRrhIgx3o5mpIdhRuY2o0EFGRlTT1+oGZwsyN6rN+GIlL
+         aBhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732612874; x=1733217674;
+        d=1e100.net; s=20230601; t=1732612876; x=1733217676;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=LKW3EfLpg9xj1NAX34ulRBb1/poqN6qEBq3WFAZfenM=;
-        b=bWnX/6RyBrucMK+Jq40Eb88GucTdKLcmGPbU26Se7M9+BFrJFFjDoBYxLZJMLiti+q
-         dj+fC6pGCI46UZirzJ4qtA4nE1UzZb9BZEsVEWqhX+JMYGc/ZNNrnkxqiwPr9jXnFfKQ
-         6YNjeTZcvNY0xPi17Nz9hFdT7VzLh/dHCk8Z25LMh4XaqjQFN887evxu/E/aDHSJtGlc
-         C4srxBSUVBktOqfb5+/xOIRtK6dBguqYEJ2vietpwkJFuiu89jCDkKN0shyQrm4CekXH
-         u/+ZoLaeIvEAealMmIMEqZdEkrn/K6afYcR1WrgGinN37dTQJ4u1oXDay+DufVU+eUsk
-         X+HA==
-X-Forwarded-Encrypted: i=1; AJvYcCXnVdxk3RVF2r0YcHAym4G0ubuwpIQCpjvwOBbZMBvQ6knh5iNUPKnVcgtawlUPO5mmJc4rPHDNHSDg@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx0tqJPu/8hXxcyb6IfV+4rxhPETCc42F7wc5ML+GCfIoFC2Z26
-	r+4IrVhfmy5yhzasITJ91Fupgv8VSIKfpXVH3qh9auvDRpGX9U6LTvK9qNRd+q4=
-X-Gm-Gg: ASbGncsWjeLkgfyJgSwT7MMrhf2LgMvbs0GUNZw6Y0H5fhkxow4qUJSQE+JJXV2aXtS
-	1ZxjnSCtG1qi2vxzt3DImhIbVDRD7t2+leQ5Jb+jA61WVkH4J5uFHICj9o/2YZrHsT8rewpik0H
-	05HElc5bIsjhv1ecgqBhiW+ppV79/CI4rwGr3Dz9b2JbvwRCuiKE1lrPI8kbKWQVeirpLEPidWr
-	ux0WDknp0UqeZdrAreATe8K9mq+z/CC0syDr2Yvz+ENhuOihZ6M5AVSMeAeoZ4dVBbJfyXDZyFS
-	joM=
-X-Google-Smtp-Source: AGHT+IE7w+dBoCGCxxbUApCfNcapHwRVn5rVPYIN6Suv5fX7t/i3bspO7Ak4XFCK5NYSFpFy53f9sQ==
-X-Received: by 2002:a05:600c:5122:b0:428:d31:ef25 with SMTP id 5b1f17b1804b1-433ce41ffc9mr177417025e9.12.1732612874002;
-        Tue, 26 Nov 2024 01:21:14 -0800 (PST)
+        bh=sn4qpT/iGLCOuVRl/HhbV74eVKZi/FzZDWa4nL4zSFw=;
+        b=D0jdteevMWhPALslU4DBuXqL9zB6V2hiqkLraVacXDh8FMeoWmbp0XjcafVP64otbN
+         RT25W16ksI9d38ooDVctf2tRkTgVZRND2DUcGGQqvohIjd3B3LbHvbfyLH2gbmWbw/Gq
+         /KVPOnpDkSX3w14nAARKpP/n4GsxikTGLldp+QrEMHSgK1hBfeywDxkvI/6g8shZLd1A
+         KnkNIU7Gpg8jfHJyh55JJg5rpG2I6FCkyzjX6DOpBHopUD5G9YCXCELV+ZwE+qxW5zRB
+         cYAkYLMdlUK75UFwePo4GBguQeA9f1bzKJbdeq7osmzUoV1l/+SveOZLvV4rL5M6f660
+         lohw==
+X-Forwarded-Encrypted: i=1; AJvYcCUxG8///ZcSMp/eMvbpjeqTGtNEYfKFS4v+bHEpgJvg7VJkewAkPUznYjKylk8bYXKxFgP7rx0qFyUH@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw3dTleVdD2DXOrQ4ZscsLgH3ZcOs32ROcg9DnEeHhA7nX1Grwo
+	YVSfilAG3Uqf1NLOsg5eDQcSTLW4I6VlCtPnprQzg/ESuxfR4NSdUOa1FpbBeGQ=
+X-Gm-Gg: ASbGncuu7WyhNPXVnF1nHmu8zLN3nifmjplGKdnarW+gGjMyeGb22HT5n3UoleptfSs
+	wUG0UlMLjisEqR8SUqV47f6RUtBi68MXQvZLYZZZktRsb0MNs5nGwnKGB5u5/ei2eHYqhuOU7XN
+	bhKf2TPLD0oI15y3bOvInXtH7xtioH+A8KZN1hjaLoqbfJV9+Su+KfYv8nHwUWxXsujmraomanu
+	diBJyab9sQusXhvrleg8Vus8lwRTL1AT2rqDqdtDhhR2zlzItXlrrs0J3WJhc8TU4pYjXh/sQUD
+	T6g=
+X-Google-Smtp-Source: AGHT+IEownUh3zO6s9pCDV0Clvw+JlHntDQwx/j8qHfP92J8/y9dWvLESVOAtn+7QOc0lvgJXmcboQ==
+X-Received: by 2002:a5d:5f4b:0:b0:382:1831:f7db with SMTP id ffacd0b85a97d-38260b59bc9mr13021685f8f.19.1732612875617;
+        Tue, 26 Nov 2024 01:21:15 -0800 (PST)
 Received: from claudiu-X670E-Pro-RS.. ([82.78.167.28])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3825fbc3a47sm13027694f8f.73.2024.11.26.01.21.12
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3825fbc3a47sm13027694f8f.73.2024.11.26.01.21.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Nov 2024 01:21:13 -0800 (PST)
+        Tue, 26 Nov 2024 01:21:15 -0800 (PST)
 From: Claudiu <claudiu.beznea@tuxon.dev>
 X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
 To: vkoul@kernel.org,
@@ -91,10 +91,11 @@ Cc: linux-phy@lists.infradead.org,
 	linux-renesas-soc@vger.kernel.org,
 	linux-usb@vger.kernel.org,
 	claudiu.beznea@tuxon.dev,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: [PATCH v2 05/15] soc: renesas: rz-sysc: Move RZ/G3S SoC detection to the SYSC driver
-Date: Tue, 26 Nov 2024 11:20:40 +0200
-Message-Id: <20241126092050.1825607-6-claudiu.beznea.uj@bp.renesas.com>
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v2 06/15] dt-bindings: usb: renesas,usbhs: Document RZ/G3S SoC
+Date: Tue, 26 Nov 2024 11:20:41 +0200
+Message-Id: <20241126092050.1825607-7-claudiu.beznea.uj@bp.renesas.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20241126092050.1825607-1-claudiu.beznea.uj@bp.renesas.com>
 References: <20241126092050.1825607-1-claudiu.beznea.uj@bp.renesas.com>
@@ -108,88 +109,41 @@ Content-Transfer-Encoding: 8bit
 
 From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Now that we have SoC detection in the RZ SYSC driver, move the RZ/G3S
-SoC detection to it. The SYSC provides SoC ID in its own registers.
+The USBHS IP block on RZ/G3S SoC is identitcal to the one found on the
+RZ/G2L device. Document the RZ/G3S USBHS IP block.
 
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 ---
 
 Changes in v2:
-- this was handled though patch 05/16 in v1 
-- provide SoC specific init data through the SoC specific driver
+- this was patch 09/16 in v1
+- collected tags
 
- drivers/soc/renesas/r9a08g045-sysc.c | 12 ++++++++++++
- drivers/soc/renesas/renesas-soc.c    | 12 ------------
- 2 files changed, 12 insertions(+), 12 deletions(-)
+ Documentation/devicetree/bindings/usb/renesas,usbhs.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/soc/renesas/r9a08g045-sysc.c b/drivers/soc/renesas/r9a08g045-sysc.c
-index ceea738aee72..81970db300b2 100644
---- a/drivers/soc/renesas/r9a08g045-sysc.c
-+++ b/drivers/soc/renesas/r9a08g045-sysc.c
-@@ -11,6 +11,9 @@
+diff --git a/Documentation/devicetree/bindings/usb/renesas,usbhs.yaml b/Documentation/devicetree/bindings/usb/renesas,usbhs.yaml
+index b23ef29bf794..980f325341d4 100644
+--- a/Documentation/devicetree/bindings/usb/renesas,usbhs.yaml
++++ b/Documentation/devicetree/bindings/usb/renesas,usbhs.yaml
+@@ -26,6 +26,7 @@ properties:
+               - renesas,usbhs-r9a07g043 # RZ/G2UL and RZ/Five
+               - renesas,usbhs-r9a07g044 # RZ/G2{L,LC}
+               - renesas,usbhs-r9a07g054 # RZ/V2L
++              - renesas,usbhs-r9a08g045 # RZ/G3S
+           - const: renesas,rzg2l-usbhs
  
- #include "rz-sysc.h"
- 
-+#define SYS_LSI_DEVID		0xa04
-+#define SYS_LSI_DEVID_REV	GENMASK(31, 28)
-+#define SYS_LSI_DEVID_SPECIFIC	GENMASK(27, 0)
- #define SYS_USB_PWRRDY		0xd70
- #define SYS_USB_PWRRDY_PWRRDY_N	BIT(0)
- #define SYS_MAX_REG		0xe20
-@@ -24,7 +27,16 @@ static const struct rz_sysc_signal_init_data rzg3s_sysc_signals_init_data[] __in
- 	}
- };
- 
-+static const struct rz_sysc_soc_id_init_data rzg3s_sysc_soc_id_init_data __initconst = {
-+	.family = "RZ/G3S",
-+	.id = 0x85e0447,
-+	.offset = SYS_LSI_DEVID,
-+	.revision_mask = SYS_LSI_DEVID_REV,
-+	.specific_id_mask = SYS_LSI_DEVID_SPECIFIC
-+};
-+
- const struct rz_sysc_init_data rzg3s_sysc_init_data = {
-+	.soc_id_init_data = &rzg3s_sysc_soc_id_init_data,
- 	.signals_init_data = rzg3s_sysc_signals_init_data,
- 	.num_signals = ARRAY_SIZE(rzg3s_sysc_signals_init_data),
- 	.max_register_offset = SYS_MAX_REG,
-diff --git a/drivers/soc/renesas/renesas-soc.c b/drivers/soc/renesas/renesas-soc.c
-index 172d59e6fbcf..425d9037dcd0 100644
---- a/drivers/soc/renesas/renesas-soc.c
-+++ b/drivers/soc/renesas/renesas-soc.c
-@@ -71,10 +71,6 @@ static const struct renesas_family fam_rzg2ul __initconst __maybe_unused = {
- 	.name	= "RZ/G2UL",
- };
- 
--static const struct renesas_family fam_rzg3s __initconst __maybe_unused = {
--	.name	= "RZ/G3S",
--};
--
- static const struct renesas_family fam_rzv2h __initconst __maybe_unused = {
- 	.name	= "RZ/V2H",
- };
-@@ -176,11 +172,6 @@ static const struct renesas_soc soc_rz_g2ul __initconst __maybe_unused = {
- 	.id     = 0x8450447,
- };
- 
--static const struct renesas_soc soc_rz_g3s __initconst __maybe_unused = {
--	.family = &fam_rzg3s,
--	.id	= 0x85e0447,
--};
--
- static const struct renesas_soc soc_rz_v2h __initconst __maybe_unused = {
- 	.family = &fam_rzv2h,
- 	.id     = 0x847a447,
-@@ -410,9 +401,6 @@ static const struct of_device_id renesas_socs[] __initconst __maybe_unused = {
- #ifdef CONFIG_ARCH_R9A07G054
- 	{ .compatible = "renesas,r9a07g054",	.data = &soc_rz_v2l },
- #endif
--#ifdef CONFIG_ARCH_R9A08G045
--	{ .compatible = "renesas,r9a08g045",	.data = &soc_rz_g3s },
--#endif
- #ifdef CONFIG_ARCH_R9A09G011
- 	{ .compatible = "renesas,r9a09g011",	.data = &soc_rz_v2m },
- #endif
+       - items:
+@@ -130,6 +131,7 @@ allOf:
+               - renesas,usbhs-r9a07g043
+               - renesas,usbhs-r9a07g044
+               - renesas,usbhs-r9a07g054
++              - renesas,usbhs-r9a08g045
+     then:
+       properties:
+         interrupts:
 -- 
 2.39.2
 
