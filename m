@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-124780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124781-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 429349D9DC7
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 20:04:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB8CF9D9DD3
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 20:08:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D23E0166A96
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 19:04:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 87F3A168AB1
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 19:08:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABF881DDC2B;
-	Tue, 26 Nov 2024 19:04:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EEDE1DE2C4;
+	Tue, 26 Nov 2024 19:08:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z29qgN7Y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uLyLfWD2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82C181DD529;
-	Tue, 26 Nov 2024 19:04:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E12451DDC38;
+	Tue, 26 Nov 2024 19:08:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732647883; cv=none; b=rVZ/PLQPVBjS8penG8Z+ltL0cVzu1D0oDzon3zRplLu+u6gM46sW9uz1sWzMDwyRBXTrUvg8ngEkvZ1PWyh7gE8bwfK5FyDNTh4uJoYeISKQVKc3t8yQmnVIobwT7g3H45KQha9i0KJxx5vE0avxXvHSg8+jWxL/YUJln4MQtlI=
+	t=1732648097; cv=none; b=Rp8J/4XrmqN3uZLa20uM8oHj3Dsrbkr9T4GHFo4Tk7xM9PQ4DLWnncix91BJ8EK4I3EcEg2l6TU8NYCqGo+rZbk1nfmIqDYerzQ3gxL0f7d43+lm3UjvBE0L2pRLO2m7+7C7legkVBKQIRU+DI2B61nwh9Z347XtBBSl8KV4sZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732647883; c=relaxed/simple;
-	bh=+mf68xlLx7KgwnDTeOl9Bn2WskxaGDYLqwnAUlB4Isk=;
+	s=arc-20240116; t=1732648097; c=relaxed/simple;
+	bh=nIeRagzK58V7Ks73k5Bp/hvKPVTIaUQkmSrD3W8O7NY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Nq8anCSRjNKmRtP0/VN33hfI96uWBLE9bztEN6ygQifWDrJ5Z0HdVf9Ztv5Jv/iCA/YpC7EgQ6z2l6sVTJmTEl2aOoSgq56VTP+XbPAs4ega4IpnUaFHD9f7+y0uKX9oIVu0Vma6xsHFbu7BPKPEcL5YzBQVp25vLxpuAQCuNj8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z29qgN7Y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D96EC4CECF;
-	Tue, 26 Nov 2024 19:04:39 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=BV+EULD2BQ3FbZeY5YvoeOdisRtWPxWOPTRajcg9Cp16UJeYSvBumVOqIx57lM8nnQpc8cR6n+d3AtriVTmem4VpSkVNGkP2v10GEw4eKPXyqrz+BytgocdTn5iAw2zIlasKkaBpAZmX1HsXA7pJer1mkjCTFXT4d8nQchqFogE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uLyLfWD2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD999C4CECF;
+	Tue, 26 Nov 2024 19:08:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732647883;
-	bh=+mf68xlLx7KgwnDTeOl9Bn2WskxaGDYLqwnAUlB4Isk=;
+	s=k20201202; t=1732648096;
+	bh=nIeRagzK58V7Ks73k5Bp/hvKPVTIaUQkmSrD3W8O7NY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Z29qgN7YEASNNAQS6rQQgujOVDzxLhbry77wGPIiWuUg9+ORkpLxY9ll5hb0v9qrm
-	 D5Wd2g7MmYnZ5y8lh8G84DDvQTI/VbQqjS4XgmI4oQY9HQTlLHX7WgRSx8j8dAaijB
-	 YdUtlNGtLIdo+8YD1kpZpPunPQ0qGc7h1Vs7BEZEzpNe7L0V8mmXwJSOBWtnMb/cCM
-	 b2tDYTEIkJLf9I1HKkaMbbr8CGeRwBT3RoVe2kxa7X7rwRYoZKcJg0nvMBX8B3rlDA
-	 VkkyyBEk2RSt2i4MxW5AK44hzNcfUuhKgwlG0rT76uEA3HEMsnH8F28YR0QJQgiPDa
-	 JIougiKkPZOGg==
-Message-ID: <5e2d2174-44a7-4143-8562-4dcdb5ad6c94@kernel.org>
-Date: Tue, 26 Nov 2024 20:04:36 +0100
+	b=uLyLfWD2YgCpffsqKYq5DoxElUAqDbqLTD6NhN5v8zyvx8QEN1VONjztSr17ppksQ
+	 ZaZfToyi/5TWdIPLujLvwq6ITfO5GZqv7CtA1VjkPxFJoba3KYi68gl51m8Cipp4lk
+	 m9n0hL2Yt2R9U+MfrJAm2rtOz1RqVh796fnt8ZzCaPH8spbI4t5t70LUSjR8lNWo1x
+	 WPZB7BeJ5nRWeFYhr8gAdLu77NJOay6OKANo+yiMN43X/gCJhDenMg/qAzysbcejzw
+	 eKQBR2ka5o7rryBkizbYobTAgHldx4lz5bAusfgAyHxDxd9aBVcMjBMZBhZxcKh9y6
+	 NvaKMZYwPvIwQ==
+Message-ID: <0c4f7e62-bf9e-4e4f-8493-db1e56773f38@kernel.org>
+Date: Tue, 26 Nov 2024 20:08:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,13 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: k3-j721e-beagleboneai64: Enable ACSPCIE
- output for PCIe1
-To: Romain Naour <romain.naour@smile.fr>, devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
- conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, kristo@kernel.org,
- vigneshr@ti.com, nm@ti.com, Romain Naour <romain.naour@skf.com>
-References: <20241126173307.4054601-1-romain.naour@smile.fr>
+Subject: Re: [PATCH v5 1/4] dt-bindings: rtc: add schema for NXP S32G2/S32G3
+ SoCs
+To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Catalin Marinas
+ <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ imx@lists.linux.dev, NXP S32 Linux <s32@nxp.com>,
+ Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>,
+ Enric Balletbo <eballetb@redhat.com>,
+ Bogdan-Gabriel Roman <bogdan-gabriel.roman@nxp.com>,
+ Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
+References: <20241126114940.421143-1-ciprianmarian.costea@oss.nxp.com>
+ <20241126114940.421143-2-ciprianmarian.costea@oss.nxp.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,78 +111,61 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241126173307.4054601-1-romain.naour@smile.fr>
+In-Reply-To: <20241126114940.421143-2-ciprianmarian.costea@oss.nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26/11/2024 18:33, Romain Naour wrote:
-> From: Romain Naour <romain.naour@skf.com>
-> 
-> Unlike the SK-TDA4VM (k3-j721e-sk) board, there is no clock generator
-> (CDCI6214RGET) on the BeagleBone AI-64 (k3-j721e-beagleboneai64) to
-> provide PCIe refclk signal to PCIe Endponts. So the ACSPCIE module must
-> provide refclk through PCIe_REFCLK pins.
-> 
-> Use the new "ti,syscon-acspcie-proxy-ctrl" property to enable ACSPCIE
-> module's PAD IO Buffers.
-> 
-> Signed-off-by: Romain Naour <romain.naour@skf.com>
-> ---
-> With this patch, we can remove "HACK: Sierra: Drive clock out" patch
-> applied on vendor kernel for BeagleBone AI-64:
-> https://openbeagle.org/beagleboard/linux/-/commit/ad65d7ef675966cdbc5d75f2bd545fad1914ba9b
-> ---
->  arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts |  4 ++++
->  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi          | 10 ++++++++--
->  2 files changed, 12 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-> index fb899c99753e..681e3af7ce6e 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
-> @@ -859,6 +859,10 @@ &pcie1_rc {
->  	num-lanes = <2>;
->  	max-link-speed = <3>;
->  	reset-gpios = <&main_gpio0 22 GPIO_ACTIVE_HIGH>;
-> +	/* There is no on-board or external reference clock generators,
-
-Please use generic style comments, not netdev.
-
-> +	 * use refclk from the ACSPCIE module's PAD IO Buffers.
-> +	 */
-> +	ti,syscon-acspcie-proxy-ctrl = <&acspcie0_proxy_ctrl 0x3>;
->  };
->  
->  &ufs_wrapper {
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> index 0da785be80ff..9f47e7672922 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> @@ -5,6 +5,7 @@
->   * Copyright (C) 2016-2024 Texas Instruments Incorporated - https://www.ti.com/
->   */
->  #include <dt-bindings/phy/phy.h>
-> +#include <dt-bindings/phy/phy-cadence.h>
->  #include <dt-bindings/phy/phy-ti.h>
->  #include <dt-bindings/mux/mux.h>
->  
-> @@ -82,6 +83,11 @@ ehrpwm_tbclk: clock-controller@4140 {
->  			reg = <0x4140 0x18>;
->  			#clock-cells = <1>;
->  		};
+On 26/11/2024 12:49, Ciprian Costea wrote:
 > +
-> +		acspcie0_proxy_ctrl: acspcie0-ctrl@18090 {
+> +title: NXP S32G2/S32G3 Real Time Clock (RTC)
+> +
+> +maintainers:
+> +  - Bogdan Hamciuc <bogdan.hamciuc@nxp.com>
+> +  - Ciprian Marian Costea <ciprianmarian.costea@nxp.com>
+> +
+> +description:
+> +  RTC hardware module present on S32G2/S32G3 SoCs is used as a wakeup source.
+> +  It is not kept alive during system reset and it is not battery-powered.
 
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+Does this mean that this is not a standard RTC thus standard RTC schema
+does not apply?
 
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - nxp,s32g2-rtc
+> +      - items:
+> +          - const: nxp,s32g3-rtc
+> +          - const: nxp,s32g2-rtc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: ipg clock drives the access to the RTC iomapped registers
+> +      - description: Clock source for the RTC module. Can be selected between
+> +          4 different clock sources using an integrated hardware mux.
+> +          On S32G2/S32G3 SoCs, 'source0' is the SIRC clock (~32KHz) and it is
+> +          available during standby and runtime. 'source1' is reserved and cannot
 
-> +			compatible = "ti,j784s4-acspcie-proxy-ctrl", "syscon";
+I am not sure what are the benefits of allowing to choose a clock which
+cannot be used. I think source1 should be dropped.
 
-I am not familiar with naming, so is this j784s4 or j721e or K3 SoC?
-Compatible should be SoC specific.
-
+> +          be used. 'source2' is the FIRC clock and it is only available during
+> +          runtime providing a better resolution (~48MHz). 'source3' is an external
+> +          RTC clock source which can be additionally added in hardware.
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ipg
+> +      - enum: [ source0, source1, source2, source3 ]
+> +
 Best regards,
 Krzysztof
 
