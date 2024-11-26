@@ -1,61 +1,57 @@
-Return-Path: <devicetree+bounces-124508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A1939D9251
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 08:19:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1704D9D925F
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 08:23:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2EF2D2837E7
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 07:19:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D0E0B283776
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 07:23:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43D531917FB;
-	Tue, 26 Nov 2024 07:19:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D67A1898FC;
+	Tue, 26 Nov 2024 07:23:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RG7ZnBH4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qwQ90EYe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A6981898FC;
-	Tue, 26 Nov 2024 07:19:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1660539A;
+	Tue, 26 Nov 2024 07:23:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732605549; cv=none; b=W8NqpT2FyPgZ4UIw1BUubMBasQqSCyku28ELiO5Pa/+nTMQbjU4OpmSKnzFQq8pn3BqCw3t4S9jVcVYu6bk5ya87p9aek3mz0S4VpUUPKTi3qMxKDPsbjJu5KmVLvPb3fIbkS22cGG2vLZze/29wVANlH/ukd7kvedYF2k1AEfE=
+	t=1732605835; cv=none; b=BWLqBf8S2n6yicuzWs+5xGlzPU62tTLFZnHy5ToFDqv16BfVlwbUBSbHEI+0ID9iZw9DPKvrDNue+9trxHDIYt7ruzl+SDNRfPs1tYzXWYH/6tVmehl9ZpAG+0e4yF7xnaP813WyON0giNST2qEp6GWlomV0YpS3j86fMt8X+NI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732605549; c=relaxed/simple;
-	bh=/h87k1FDp1WC2VzUI6S8sjWKocwTaIiJ1ZT69Aei16k=;
+	s=arc-20240116; t=1732605835; c=relaxed/simple;
+	bh=Wb/+hKHIh7LY07ySKwUV/LcU3Fue0Ngg9WI2NnlHTOk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hvFlNy7nOH8SmNTAHgBLxUtmon2pCBVcwhcI0m7QQYI8VKlUnGUTvggJ8f7lGnqiNq73/NhvPZw/47aARnYNZijMkN+tqZdvoRz2m5/tzSOGzj37ZJfGWcAIKEAbQAl5EP7h45Gg+OJYhIxq2H/8GP02MIe0Vvo408tNg6o25X8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RG7ZnBH4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99A12C4CED2;
-	Tue, 26 Nov 2024 07:19:07 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lXXT+dmgnioGdBDeTK+jyaG4xKTVoQhKLw3w1d03h/auWus8FVy2cZ7YvGw1zhYEsffxNh6zG/blbsZO4NQgT4YOsLWKoFTMd+cWFRGO73CuM82XwY7UL+yUF4QcJF8+84htdWSCP02FJ6DMbm3GFGoQfvvxkOJ6cMrEv2wUbU0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qwQ90EYe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4173C4CECF;
+	Tue, 26 Nov 2024 07:23:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732605548;
-	bh=/h87k1FDp1WC2VzUI6S8sjWKocwTaIiJ1ZT69Aei16k=;
+	s=k20201202; t=1732605834;
+	bh=Wb/+hKHIh7LY07ySKwUV/LcU3Fue0Ngg9WI2NnlHTOk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RG7ZnBH4LTJCfQ9mUNJN180Zjq5tHx7KY2IjU+qmvWBydXBh513L/x12lTxEhqXPx
-	 yPkWsZ4p3wQdICvAlp3ax2IO92HcRrNbU8JqDLQmTsfymbRaJr0ls/rU/oRy1Y8j7s
-	 9nwgeJapxwrPHjK1YkGwjJDJuS+OwiIccdw+qZRwkeQiv6MKNDsx0CZ+QMMghXOHw4
-	 SHTjeHsy3kJGLiQIHRO6UuNI3cT5dUxXmr09kNiyM5fqzM+RVKSapE7lS3R7pey0WE
-	 Jp8ZEsD0e9KbQu9mdPUc3FWpiDrAYtSsuC8UdYUZm5AWclxgj+2wpw3uQ6WY4vbEiB
-	 DmlKuQvrq+yQA==
-Date: Tue, 26 Nov 2024 08:19:04 +0100
+	b=qwQ90EYeB6CsXbI+cW4qQ0u12KZgW6p6KGbyvxy2RE56Ep19vbDFwGN9SOzaF4GfT
+	 4USObg7RjE4ZlCck9jsTqP+B/Ff/Q6SiSBwTUBSsypRHjRADQ6/mccRJDeE/WNCXDr
+	 6QEuAq7gLJdk2AZKlW9DosH9Kq2CaMdaFP9RypJzqtLWx951UayVu9ofUvVNy6qiib
+	 THagF957Qapx3276fXt6++RMCXsKkrfzntmNlSwtFaUCSAn1AtN30FTzEnXxZ14q+1
+	 ubeyKipzPrdTeBPVZY2FT6UHNbsgI07/toBfASzGMRPveWKH3eOMivfqe516WTHHKI
+	 Ufc5hqAWC/jUA==
+Date: Tue, 26 Nov 2024 08:23:51 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>, 
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, NXP S32 Linux <s32@nxp.com>, 
-	imx@lists.linux.dev, Christophe Lizzi <clizzi@redhat.com>, 
-	Alberto Ruiz <aruizrui@redhat.com>, Enric Balletbo <eballetb@redhat.com>, 
-	Frank Li <Frank.Li@nxp.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: can: fsl,flexcan: add S32G2/S32G3
- SoC support
-Message-ID: <y2fbsxg4pney2iapzcdooxyz6l3pmw6ms2ddupf637svitelbt@wthu23ld5ryq>
-References: <20241125163103.4166207-1-ciprianmarian.costea@oss.nxp.com>
- <20241125163103.4166207-2-ciprianmarian.costea@oss.nxp.com>
+To: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+Cc: andersson@kernel.org, linus.walleij@linaro.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, konradybcio@kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, quic_srichara@quicinc.com, quic_varada@quicinc.com
+Subject: Re: [PATCH 1/4] dt-bindings: pinctrl: qcom: update spi0 function
+Message-ID: <koi3cev67wnswztrax2f56gwbuvousltqegwdkhmojvpcy7xqu@w7g6xebpdzuk>
+References: <20241122124505.1688436-1-quic_mmanikan@quicinc.com>
+ <20241122124505.1688436-2-quic_mmanikan@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,89 +60,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241125163103.4166207-2-ciprianmarian.costea@oss.nxp.com>
+In-Reply-To: <20241122124505.1688436-2-quic_mmanikan@quicinc.com>
 
-On Mon, Nov 25, 2024 at 06:31:00PM +0200, Ciprian Costea wrote:
-> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+On Fri, Nov 22, 2024 at 06:15:02PM +0530, Manikanta Mylavarapu wrote:
+> The GPIO configuration differs for the spi0 clk, cs, miso, mosi pins.
+> Therefore, split the spi0 pin group and document each pin function.
 > 
-> Add S32G2/S32G3 SoCs compatible strings.
-> 
-> A particularity for these SoCs is the presence of separate interrupts for
-> state change, bus errors, MBs 0-7 and MBs 8-127 respectively.
-> 
-> Increase maxItems of 'interrupts' to 4 for S32G based SoCs and keep the
-> same restriction for other SoCs.
-> 
-> Also, as part of this commit, move the 'allOf' after the required
-> properties to make the documentation easier to read.
-> 
-> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-
-You made multiple changes afterwards, which invalidated the review. See
-submitting-patches which explain what to do in such case.
-
+> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
 > ---
->  .../bindings/net/can/fsl,flexcan.yaml         | 46 +++++++++++++++++--
->  1 file changed, 42 insertions(+), 4 deletions(-)
 
-...
+Missing Fixes tag.
 
->      maxItems: 2
-> @@ -136,6 +143,37 @@ required:
->    - reg
->    - interrupts
->  
-> +allOf:
-> +  - $ref: can-controller.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: nxp,s32g2-flexcan
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          items:
-> +            - description:
-> +                Message Buffer interrupt for mailboxes 0-7
-
-Keep it in one line.
-
-> +            - description:
-> +                Interrupt indicating that the CAN bus went to Buss Off state
-
-s/Interrupt indicating that//
-Buss Off state status?
-
-> +            - description:
-> +                Interrupt indicating that errors were detected on the CAN bus
-
-Error detection?
-
-> +            - description:
-> +                Message Buffer interrupt for mailboxes 8-127 (ored)
-> +        interrupt-names:
-> +          items:
-> +            - const: mb_0-7
-
-Choose one: either underscores or hyphens. Keep it consistent in your
-bindings.
-
-> +            - const: state
-> +            - const: berr
-> +            - const: mb_8-127
-
-Choose one: either underscores or hyphens. Keep it consistent in your
-bindings.
-
-> +      required:
-> +        - compatible
-> +        - reg
-> +        - interrupts
-> +        - interrupt-names
-
-What happened to "else:"? Why all other devices now have up to 4 interrupts?
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
