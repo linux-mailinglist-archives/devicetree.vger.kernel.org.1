@@ -1,79 +1,66 @@
-Return-Path: <devicetree+bounces-124586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124587-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EDF99D94FC
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 10:58:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 296A19D94E3
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 10:52:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7B804B256AF
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 09:39:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3F41BB2D2C9
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 09:42:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48C431BC07E;
-	Tue, 26 Nov 2024 09:39:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FC511BC07E;
+	Tue, 26 Nov 2024 09:42:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MFKsGixv"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linumiz.com header.i=@linumiz.com header.b="f4g0+9GD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from omta034.useast.a.cloudfilter.net (omta034.useast.a.cloudfilter.net [44.202.169.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C700E1B87DC;
-	Tue, 26 Nov 2024 09:39:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78CDB1BC063
+	for <devicetree@vger.kernel.org>; Tue, 26 Nov 2024 09:42:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=44.202.169.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732613981; cv=none; b=PLzOkhfucPhhoto2bkpKIJQ5MDkMFpZSCOpZbIZp4F83yUkOPfiJGCzkZgra8L/FUT8TqYeGwP8G2X3k5P1p23jOexlfyp8PIymJLKfH/2/HDeVytrDbVGJOEm7BBGJklVr7VMSUhtAZOay65meqZajsiFLWARFOTGZaSd4DAps=
+	t=1732614157; cv=none; b=uRJsQgHcMLdCXnp9TCkFBnR6ebYMrZzIABRfTC+KlXlv3uoc7Iu6zxpM0PDjfJyG1odH5OuvNVbEBDxZBP9PtBvq95iNSB6MVMc5TR4wbDAI+Q8aRpYXWGcFViRB+sPjrRRCgn6vxW5FgpdJiy5oIVp9bN0AjB94ccngRyQlv0U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732613981; c=relaxed/simple;
-	bh=x5vz3UvNPlBdlG60StyTVo9p138kaUqViCWZ0XC3kVs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sLe/Ms15hYMHhgXMAQId4qOgq244XzkRmdpnVJ10qCwcoUB1nVZIgqZ6XJTGE8JIVZnDroJyquZofgpCtTan162WrCH3rir8zsWArOsy1Jr7DL8+yI2JksUAupvKYT6fx0dZFeHn3zYY/ryqPsGySu5QaaIXzFmw9tYLE5ty5eU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MFKsGixv; arc=none smtp.client-ip=209.85.167.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-3ea55a2a38bso584732b6e.1;
-        Tue, 26 Nov 2024 01:39:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1732613979; x=1733218779; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5VqTNP1l3I0fkOuZ3WrWUQyb1/49E8EQXioZGwnik0g=;
-        b=MFKsGixvD+9eJSCnbOjLSu8R1F3nLmWN5vBUZVVms4M1hzpOl4hRj6k49N0oFfXXMB
-         Mf9pqyGkwYlWMdAes3JlxwpWyi6k/q9D/l2R2jB248F23QsM+ya/4Y5VjvzvqkMnf/o1
-         x6N9JKQ9NqA+doG29aPJXWG6XKIMwwkthWt6d519JJcbQ+GF1A9SHoMTnk/hvcRF6tPm
-         u5FriqD3nxf2zZRfvO8to/YRT+xYHIdE3q4uRCcsyCV2zeOEnSw6muLkS/Q2vvAZbvDr
-         fX7U6W1QCuEhmpd7xF3rOMT/+3q1xteiAwgSu1lrVMCQMY5bu2rRJidX/rGmbS/Shlz3
-         cM5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732613979; x=1733218779;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5VqTNP1l3I0fkOuZ3WrWUQyb1/49E8EQXioZGwnik0g=;
-        b=rS53xcxawP3F3Ol1kTFgEl4ljZ19LmGUbHZLqS8/3VZ/o5UPMDJbjuWS55QcZSrYPP
-         hx+hqD5UQ5UjYThtPLaCPjvaSjL/+Fgt7tXwhrlMEVV5X9RKMDJtHfQ4gK43TANkpaZ4
-         OkwmZj3ZYygFlyRW8L9M9BnSBru3LdQ08T4mSOd8TTiQev7s+99K8iOpc/DmjtC4WxDC
-         thiJs5M61EQvM1NUAIzUiZ8kMXy1vkWNMuxbmnp0ISX/2mGiH+y3XC64OYnOXrKJZ2M3
-         BvYOVx/Wzh2W2/Z2yYsLwX4x/9gKVPGQ5SLpu1i2DryzXQyT13fjyu3daxWPshx7T9r7
-         Jh3A==
-X-Forwarded-Encrypted: i=1; AJvYcCX1vNpXOiBDTudc0bOU191ejyB/pojWSkZ29L5T9gCsbp5H6D4FT7dkKCBK2JO18J59Wgf+BVO0Wm/mWYQG@vger.kernel.org, AJvYcCX6wtAs7U0kwd/49WgPA/lIVK8AjUTghnmIN2aIj5jwdHgu2qwUTNy5DfBM7kRv//EHz58DLDDEV9U3@vger.kernel.org, AJvYcCXhRUdhCrKLZj/vEe2im7T7oOKCcQSVMKcae+rkI/OAf7qW71M+mqxyLHyRaGNU4mwapnUc5Lcx@vger.kernel.org
-X-Gm-Message-State: AOJu0YyQ1jHbxdEmJosLKbPz+BT2aOwb6QBeKunoguYjRPj0Y4iO4pJZ
-	FSrEK9MGPpT6xxQUwhmkhs/XvOaQD9j5OFd0c/1c9C9f3yQDFHzW
-X-Gm-Gg: ASbGncvUx5cKifdopJVgOdfWOqhSCGgTj+Jv+Ee+F9KAD6Ip+B8RrbNc5kKP7yVDCwG
-	4GbT5PBmwVmkHS21ZqTqNwlin43YhfeKPPc9rQ1Kc6wHMNP7ITbP5+8/UoUm+DN84zWLFdueK1B
-	oOHAUZ9ZVqAk7AH+8Q72yJNu/iz0FeAQudN/p4ih3Y0fJdVj0MvJiySwZu3rmlnKxnCTRHCK8u2
-	pK4mDHurBTXlqilo/4zUbCUkgmn1fZvVbAt8LjA5VRV6sXNemdb/qm5/TniN9JCL6+qtl1DLRQT
-	rF3X66GGegtpONqpdfhTahRvJXrO
-X-Google-Smtp-Source: AGHT+IGrPjDu68pnnnryOtllFazbBZWaKbpvb8qp33lzobhDwUA1rKma6IACU9y0c2nXW4nq4Bk1hA==
-X-Received: by 2002:a05:6808:2395:b0:3e7:5cfa:87d1 with SMTP id 5614622812f47-3e915aef033mr13135476b6e.27.1732613978760;
-        Tue, 26 Nov 2024 01:39:38 -0800 (PST)
-Received: from [192.168.0.100] (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-724de531247sm8159148b3a.104.2024.11.26.01.39.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Nov 2024 01:39:38 -0800 (PST)
-Message-ID: <75e4881c-8b04-4b57-ab0d-e7eb18b31a84@gmail.com>
-Date: Tue, 26 Nov 2024 17:39:31 +0800
+	s=arc-20240116; t=1732614157; c=relaxed/simple;
+	bh=oZ1V4vxuGuPJ4NWtIPdUqCuYLvnjiunTez6SrHPrbUo=;
+	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=MoJDVxhNVN+PBABA/0SQyB13E7O0aasltUURntltRe4FLKyXZUkspssNHj79BHzOWMOn2PCpKtqe94l3X60lwjRFflroMMdqTXY62501QR+raZrxkYQSpRxmpN1GFovSJBbSGpVoqwHhChrL4oXajvaOMwWuAOKjPRHfrCyF3NY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com; spf=pass smtp.mailfrom=linumiz.com; dkim=pass (2048-bit key) header.d=linumiz.com header.i=@linumiz.com header.b=f4g0+9GD; arc=none smtp.client-ip=44.202.169.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linumiz.com
+Received: from eig-obgw-6007a.ext.cloudfilter.net ([10.0.30.247])
+	by cmsmtp with ESMTPS
+	id Fc5vtDpKyrKrbFs5Ut5XmA; Tue, 26 Nov 2024 09:42:28 +0000
+Received: from md-in-79.webhostbox.net ([43.225.55.182])
+	by cmsmtp with ESMTPS
+	id Fs5QtR5gjXDcgFs5Rt4jtj; Tue, 26 Nov 2024 09:42:26 +0000
+X-Authority-Analysis: v=2.4 cv=MedquY/f c=1 sm=1 tr=0 ts=67459802
+ a=LfuyaZh/8e9VOkaVZk0aRw==:117 a=kofhyyBXuK/oEhdxNjf66Q==:17
+ a=IkcTkHD0fZMA:10 a=VlfZXiiP6vEA:10 a=-pn6D5nKLtMA:10
+ a=f_B5aOHfkBoSN7RXA7sA:9 a=QEXdDO2ut3YA:10 a=ZCPYImcxYIQFgLOT52_G:22
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=linumiz.com
+	; s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:To:Subject:Cc:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=yZTKBGpgZf4XrglD2qS6e5aAZ3GC73kLE5Jc5m/+dAo=; b=f4g0+9GDPOzz75ZfRU1iGvo9Da
+	Kd3j9Kp8gp9z2h+xkawGHunTbemVrWVs1y3BuhTJBH22jkZkQdgk7ih6zbaZemLd+6BTB9cili7+9
+	dX6mf8b1mPr3+ubA/7Js6NT01UIGsRh4SKmMXDuRly4UNUMOBDMk7TF/khDM1yXWIojaRgd5B/Kc7
+	14dWo43PqSCvvBFDsRWwZeNulxnBk08XylH/+f4b1JBnsxGr5omZkJL4yXTX42gZNfzvRc8maoXqs
+	AzaHjW95uuCygwuAkftjrxOF7kxeRmj+Q2zX1X0qpfepyN9abHp/HYm9znxkf9l19xl8UQci45sHB
+	zKD9lOkw==;
+Received: from [122.165.245.213] (port=37436 helo=[192.168.1.5])
+	by md-in-79.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <parthiban@linumiz.com>)
+	id 1tFs5H-0042ui-2L;
+	Tue, 26 Nov 2024 15:12:15 +0530
+Message-ID: <34590e17-92be-405e-a072-e86d0dcb7234@linumiz.com>
+Date: Tue, 26 Nov 2024 15:12:10 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,48 +68,73 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] net: stmmac: dwmac-nuvoton: Add dwmac glue for
- Nuvoton MA35 family
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, mcoquelin.stm32@gmail.com, richardcochran@gmail.com,
- alexandre.torgue@foss.st.com, joabreu@synopsys.com, ychuang3@nuvoton.com,
- schung@nuvoton.com, yclu4@nuvoton.com, peppe.cavallaro@st.com,
- linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- openbmc@lists.ozlabs.org, linux-stm32@st-md-mailman.stormreply.com
-References: <20241118082707.8504-1-a0987203069@gmail.com>
- <20241118082707.8504-4-a0987203069@gmail.com>
- <klp4a7orsswfvh7s33575glcxhlwql2b7otrpchvucajydihsi@dqdkugwf5ze5>
+Cc: parthiban@linumiz.com, Frank Binns <frank.binns@imgtec.com>,
+ Matt Coster <matt.coster@imgtec.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: gpu: add reset control property
+To: Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor@kernel.org>
+References: <20241125-pvr-reset-v1-0-b437b8052948@linumiz.com>
+ <20241125-pvr-reset-v1-1-b437b8052948@linumiz.com>
+ <20241125-dress-disliking-2bf22dd4450e@spud>
+ <ec0c0a4f-9555-42bb-adac-3ba574fe82cc@linumiz.com>
+ <42a9cd04-135b-40e9-ab42-a4a4a4f3ae27@kernel.org>
 Content-Language: en-US
-From: Joey Lu <a0987203069@gmail.com>
-In-Reply-To: <klp4a7orsswfvh7s33575glcxhlwql2b7otrpchvucajydihsi@dqdkugwf5ze5>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From: Parthiban <parthiban@linumiz.com>
+Organization: Linumiz
+In-Reply-To: <42a9cd04-135b-40e9-ab42-a4a4a4f3ae27@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - md-in-79.webhostbox.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - linumiz.com
+X-BWhitelist: no
+X-Source-IP: 122.165.245.213
+X-Source-L: No
+X-Exim-ID: 1tFs5H-0042ui-2L
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: ([192.168.1.5]) [122.165.245.213]:37436
+X-Source-Auth: parthiban@linumiz.com
+X-Email-Count: 3
+X-Org: HG=dishared_whb_net_legacy;ORG=directi;
+X-Source-Cap: bGludW1jbWM7aG9zdGdhdG9yO21kLWluLTc5LndlYmhvc3Rib3gubmV0
+X-Local-Domain: yes
+X-CMAE-Envelope: MS4xfBM7+Z9gEnhqkyz/tLzbt9JnWuK41qHTURRYV3Zbzlz5vztRbRNOpSN8WElRF06ByQXotCECZcCOPJbcVTINjqc/b8hm3BbomYJJb+WOAjM2xfB/yPIc
+ 7g5+gLZgsSEd628mIesq7OgC9s6cZ8riWKBWRWDs319JLgcdzM0U0LrBXSfU9toX9hSw9vSRdZkifyFh4hh2VDNcCtlqe4Z+92I=
 
-Dear Uwe,
+On 11/26/24 3:02 PM, Krzysztof Kozlowski wrote:
+> On 26/11/2024 04:46, Parthiban wrote:
+>> On 11/25/24 11:37 PM, Conor Dooley wrote:
+>>> On Mon, Nov 25, 2024 at 10:07:03PM +0530, Parthiban Nallathambi wrote:
+>>>> GE8300 in Allwinner A133 have reset control from the ccu.
+>>>> Add the resets property as optional one to control it.
+>>>
+>>> There's no specific compatible here for an a133, but the binding
+>>> requires one. Where is your dts patch?
+>> A133 GPU is still work in progress in both Kernel and Mesa3D. Also power
+>> domain support needs an additional driver.
+>>
+>> But reset control is independent of those changes. Should reset control
+>> needs to be clubbed GPU dts changes?
+> How is it independent? Are you adding it for the new platforms? If yes,
+> then it is part of new platforms. Don't add properties which are not used.
+Thanks for the review. Will address the points together when adding support
+for GE8300 GPU.
 
-Thank you for the details!
+Thanks,
+Parthiban
 
-Uwe Kleine-König 於 11/20/2024 10:56 PM 寫道:
-> Hello,
->
-> On Mon, Nov 18, 2024 at 04:27:07PM +0800, Joey Lu wrote:
->> +static struct platform_driver nuvoton_dwmac_driver = {
->> +	.probe  = nuvoton_gmac_probe,
->> +	.remove_new = stmmac_pltfr_remove,
-> Please use .remove instead of .remove_new.
->
-> Thanks
-> Uwe
-
-I will use .remove instead.
-
-Thanks!
-
-BR,
-
-Joey
+> 
+> Best regards,
+> Krzysztof
 
 
