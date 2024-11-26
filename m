@@ -1,138 +1,156 @@
-Return-Path: <devicetree+bounces-124797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3D339D9EAF
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 22:14:57 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 85CF1166D67
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 21:14:54 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 394BB1DF73C;
-	Tue, 26 Nov 2024 21:14:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="lBu2E4/z";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="rtkRwH0d"
-X-Original-To: devicetree@vger.kernel.org
-Received: from fout-b1-smtp.messagingengine.com (fout-b1-smtp.messagingengine.com [202.12.124.144])
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FF2B9D9F00
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 22:52:20 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF8211B87D0;
-	Tue, 26 Nov 2024 21:14:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.144
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E6930B22E00
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 21:52:17 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D7251DFD8C;
+	Tue, 26 Nov 2024 21:52:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Lb+EdiDa"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B98281DF978;
+	Tue, 26 Nov 2024 21:52:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732655694; cv=none; b=KIHsvC8us77xyhhVzuBLfbxJjL4uZXwHzvO8Oov9XTxGAGPzx+B2dH605knb6x8U6YaZU7BjQ/GIzPm9aFhuzcgXyatpDXuUJrIROnHuoWg4kBAiDLN5TqWHhf/iA1MfOPzLrUYbPW8NgtarxaQ3zKcx+ks2wrIHr3eiDHk5QRI=
+	t=1732657934; cv=none; b=KyYv3gNBUlk/EazVTIo46M3a8Epfkzf7zjes6TiEXoPvHmwBvgbjjpnlxdo/iuL43BYcclE/W60vYT6bkH5SUQBc/dPJPCly28YRPFoCe4KNL2f/1j7HAIfJaOjLp3ku7mknQVE2OdyjYCAAD5NcB3a4tRqspbxkyLHbLqykNlY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732655694; c=relaxed/simple;
-	bh=ZB7Q8EEDQ5v9izbjOswDLmoKdV8o6G2P6LvqbjXJHSQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dzCCwarLZ7NUYHwuu2jVeuhcYc9lHvHUW3BSoRrYXUJ2XbjOgoYZEzsLCRhCEqy5n9yv+Nu2a9pltI2XzfpY2Tm5dGc3B5vDXLektNWH+6NbdWUZhG+Fw7SF1WBKuTmLgytzerw/zYV+at4s1VvKTrYNejIEAu8zDR4Gc628ifg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=lBu2E4/z; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=rtkRwH0d; arc=none smtp.client-ip=202.12.124.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jannau.net
-Received: from phl-compute-07.internal (phl-compute-07.phl.internal [10.202.2.47])
-	by mailfout.stl.internal (Postfix) with ESMTP id DB14B11401E0;
-	Tue, 26 Nov 2024 16:14:50 -0500 (EST)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-07.internal (MEProxy); Tue, 26 Nov 2024 16:14:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
-	:cc:content-type:content-type:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:subject
-	:subject:to:to; s=fm2; t=1732655690; x=1732742090; bh=MaXb4heZ4E
-	PnEKRXMD9E8/ioruljb7zXBz5GaHOjAgc=; b=lBu2E4/zs0WgHUJoQajbt+gZuE
-	yqjTlQ4rQR4Y3+bjRLp3GtmBtnNE5mzAbET4DSQIU7QxeTU5bSyGnGkA9m2GGBxQ
-	iJbxdPQnkfRVStL74ulUtxv4SJINwh8AsvWd6cmdg2YAImUjaedxLHUsoNEcNVT4
-	ZW230QDCDF3voT746WIm9CM+qO9SiC0+T6SuxRTx+ySo7KcrT5y+jEAyR+oYM8Dz
-	sLm/Kw5fBvJeNgiUDQLZ/x0b568T3jEIdaKX9spIrQhpKDitcV3K0HjjvaQu54Md
-	bBNQ5e/9rMtxjMrlffAwF9DCMIEmvkOm9cHujCC+3AMcVcWTEEUBiTBj6G9g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
-	1732655690; x=1732742090; bh=MaXb4heZ4EPnEKRXMD9E8/ioruljb7zXBz5
-	GaHOjAgc=; b=rtkRwH0dtRSFGOsJepoew66M3vMRe7ZB80Us9I5IHnMMuY3RI2T
-	RSsjjjkjCkwWh7Yl98yXST1sOcfwGXw8zUm+sPyfJu8qwLTN3HL0UBDZ3anNyQHD
-	XQe133SkGIzlNhPPUzjUqY7aMofvba45jwYzf17oAXU4mzqqqbgf7qSoQKu8p295
-	a3e3R81mk7enM6uje8wIcIEYGAvFLA7neB/FPdFqGnxKC5aFvV8pAsZfIlO2Jj7+
-	B7b8zshClGjBNWpQnM5yj29oZ3VBHARoq1pk/NxgRcZspr06HKl7lyYpHjqyp0A6
-	DwBgXmGPfoiqjX/noQoPzzsNeWrttRzH57A==
-X-ME-Sender: <xms:STpGZygne0mCYayUw16B08xX97doriCb8l2xJGLNgpEZN1HAaMNvzA>
-    <xme:STpGZzC4c_-5idzsWIEuBaNvCp6KpqqmPymGi2M3oYyCps8vrdYKPEKmMsmGZ956f
-    ZBkIaldho37a6SqElM>
-X-ME-Received: <xmr:STpGZ6HkYB9sM6kTxTubh13I0MnNCl1JlvwdvHDyYcKSo1uZjuM7NsKPgEjuy2iQ_NcuGxr2AK-2Cjlsv5MMiOg4tTmkgfYgQX0>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrgeejgddugedvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
-    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
-    htshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggujgesthdtredttddtjeen
-    ucfhrhhomheplfgrnhhnvgcuifhruhhnrghuuceojhesjhgrnhhnrghurdhnvghtqeenuc
-    ggtffrrghtthgvrhhnpefgudeuffelfeekgeeukedtheekjeettdfftddujefhvdehtefg
-    iefgledtueefjeenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrh
-    fuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepjhesjhgrnhhnrghurdhnvght
-    pdhnsggprhgtphhtthhopedugedpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepfh
-    hnkhhlrdhkvghrnhgvlhesghhmrghilhdrtghomhdprhgtphhtthhopehmrghrtggrnhes
-    mhgrrhgtrghnrdhsthdprhgtphhtthhopehsvhgvnhesshhvvghnphgvthgvrhdruggvvh
-    dprhgtphhtthhopegrlhihshhsrgesrhhoshgvnhiifigvihhgrdhiohdprhgtphhtthho
-    pegumhhithhrhidrthhorhhokhhhohhvsehgmhgrihhlrdgtohhmpdhrtghpthhtoheprh
-    hosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgv
-    lhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtg
-    hpthhtoheprhihuggsvghrghessghithhmrghthhdrohhrgh
-X-ME-Proxy: <xmx:SjpGZ7Rq-RBSf09Ib4ULSHmIxrbx_bj_eHcVdiKAcmth01EgkKknbQ>
-    <xmx:SjpGZ_zqQwIVwyWJpWBVa6inzMm3faUMvqQTNkcE5qKuGeXdPpYSng>
-    <xmx:SjpGZ54RQKUb6QuBu5Us9q-yBTctgFRCpDPE4q5Zrtr98iDCQaeDQQ>
-    <xmx:SjpGZ8wFYaBNKgwtefQA8bZIfAARZHMet2pCc-1i0wpoGgA0BUgFNg>
-    <xmx:SjpGZ0KSsMX1BWZR0TMY8r_z3ZpRt1RWRqfrUxYcqySUndNuBUjgchjq>
-Feedback-ID: i47b949f6:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 26 Nov 2024 16:14:49 -0500 (EST)
-Date: Tue, 26 Nov 2024 22:14:47 +0100
-From: Janne Grunau <j@jannau.net>
-To: fnkl.kernel@gmail.com
-Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Henrik Rydberg <rydberg@bitmath.org>, asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/4] arm64: dts: apple: Add touchbar digitizer nodes
-Message-ID: <20241126211447.GA3782493@robin.jannau.net>
-References: <20241126-z2-v1-0-c43c4cc6200d@gmail.com>
- <20241126-z2-v1-3-c43c4cc6200d@gmail.com>
+	s=arc-20240116; t=1732657934; c=relaxed/simple;
+	bh=60YY1uJHN5RmyPT0N3NyyFjI+6rugN3T5a91BrLQmog=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=rlcDuukrfq2P9y4B8XWN72MnPqVZGpUIQgcdbcE9t/ibRW/iOOMB0bEvW0m0MM5xYR/J94g8zo5l5otzq/c4tUGoHWiivgeTji2LKLdLPBxuWuOQoDrfl/dXlnjQuH3jITF8f0+RTQvMjZHM9M8mr6bNsw0wzZwhEJXCF6JrwdM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Lb+EdiDa; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-38248b810ffso4622460f8f.0;
+        Tue, 26 Nov 2024 13:52:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1732657931; x=1733262731; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=g5gX/28xeOa4H8evb/+QhxlU0Ge1xRM184LPoeNAkm0=;
+        b=Lb+EdiDavA2rbwtelhVd9LFRFxUpp7Gsy2R299kHaBQWQNMjL3FYrf8VusKoYYwaJb
+         gP+9bcv1WGPsmAfAHdUagWl9RNYJG3DGvh3hKrIkVdbj8v93/G1EMxL7MzmECfTz9wA9
+         FEGfj6yU0hnjzAdxtAaUlFEf/LXP+Wq4Bv9qbGf5nvMP7lq/tPBgKbxDcdEaEK79s4OQ
+         /cmpEWO9JOj15fD9uKkkUJS2DC6YhkszBPNUcb7cK0sbqOI61yB3le3IKHNkqFPad/pW
+         mBLszGEBmt7j4mlDhDOwKjXpusPvieN6yNay+dUbdxLFMwWgtR1Qx2sjFakkTFjY/BtM
+         KkIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732657931; x=1733262731;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=g5gX/28xeOa4H8evb/+QhxlU0Ge1xRM184LPoeNAkm0=;
+        b=hiMY2mpASeQsc5rOn0AmEaKKVpn/X5CTgqB0hNz34W7dH4WpTmG05vgW3/rW2vY7u8
+         w98FKsSuCGDZJKG/xYdQKOJ17gNF/1TZIXj/hmSzSGvN3MbDclrZ6tFjS8dz8ApdJ2ww
+         C4hL+e3ivddWqKvVI4QAdu4vBZiAwklBUsyDDaRi6h978NOTuXqUiOZNKZwLRM/Ov4BB
+         mLDe2bUXoa9nF10mzX1MYPM1bz8uEcTdrb2D2Imdo9PbchMllXre8cQoQhJqPRl6eYsw
+         j6WIirBSu1sNMM0uuh3Nf/PE8LR7E2LmM2Qw02oj3fdn6q6ufc7vmx6MuHC0qbR2CErf
+         KAtw==
+X-Forwarded-Encrypted: i=1; AJvYcCUsQbycl4rDnDSDOHKght0H+S6M3BNSUTWKhy10e4RmRQP1QJcsNx5ZYDFbNTxbdm1zudK7aydLBzuf@vger.kernel.org, AJvYcCXQvEeCVzBbqDi6ncaSp4wgoOHGN1+GjwMBDcjRbfoEfJV2Fzx8LP64hedmemJn2LMVZm4Ib94dIj9kWgeM@vger.kernel.org
+X-Gm-Message-State: AOJu0YzJz3U25/E3RbfzaMGJCMbYzu8pC/fScGplGPG4ZOAPx07w7vIe
+	p1t/j1Ew+Buu8HZE2EIkacy8lzZx5sXHx5up4+SUDPzW82cv9Xf6zwms7Q==
+X-Gm-Gg: ASbGnct2vC9ofcm2yKfHosgtzrIvNqV5Dtz/mPkppeS8mJnt+AxiNB9GDCs4zn8YDDE
+	/9DtZzFrCq3QgZuwS1rQyFiCb0cQbiy0104eRRhDJkdUSHWW/F1KSnVVQN7rFjUKyqrcmHJixeC
+	yvOHS9Vt4MRto4azEmZP/nAyLh53daZcLm3pveB40ENNemhZXEVk/kWtZp+wE+QNDK5yR9AFhOB
+	iQnxXdC/0fDE6Mk+C/dxyX3qPGRnrBG3h9NrlH7O9gfjObrZJPSlk7oy2NqehhlA012EUb43qaA
+	ps336HMYtones6G6oCjRtMCK/k1kdEwxQBy6BxAepWw4Zci9zViVEhV9eZ8xtwAyP1q+Wuc=
+X-Google-Smtp-Source: AGHT+IHx9E6n645bJw+ZZMCpLPj3WAsAZR5gALncm6d5O3N4akt8jlgIOb9O5YKY5Ed0Cyk35sfEvA==
+X-Received: by 2002:a05:6000:491a:b0:385:bc42:52e4 with SMTP id ffacd0b85a97d-385c6eba8bemr439856f8f.24.1732657930933;
+        Tue, 26 Nov 2024 13:52:10 -0800 (PST)
+Received: from [127.0.1.1] (2a02-8389-41cf-e200-d42c-04c9-936b-d14b.cable.dynamic.v6.surfer.at. [2a02:8389:41cf:e200:d42c:4c9:936b:d14b])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3825fafedbcsm14570297f8f.41.2024.11.26.13.52.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Nov 2024 13:52:10 -0800 (PST)
+From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Subject: [PATCH 0/2] iio: light: add support for veml6031x00 ALS series
+Date: Tue, 26 Nov 2024 22:51:53 +0100
+Message-Id: <20241126-veml6031x00-v1-0-4affa62bfefd@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241126-z2-v1-3-c43c4cc6200d@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPlCRmcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxNDQwNL3bLU3BwzA2PDCgMD3cRESxMz45REAzOTRCWgjoKi1LTMCrBp0bG
+ 1tQDIlbMgXQAAAA==
+To: Jonathan Cameron <jic23@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Rishi Gupta <gupt21@gmail.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>
+X-Mailer: b4 0.14-dev
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1732657929; l=2445;
+ i=javier.carrasco.cruz@gmail.com; s=20240312; h=from:subject:message-id;
+ bh=60YY1uJHN5RmyPT0N3NyyFjI+6rugN3T5a91BrLQmog=;
+ b=nLvxAp1Flieg+ccgqL+pbACAzaYRC5dw+toK4qOvYTs3/tt7l0V3fBDyk2t9xVu5l3TiQ9v8q
+ 7tNtE33MXayDhk0Ok9wl7MvMSdC5eE6MhYnlzZ1wupurSG6xFVUFWRA
+X-Developer-Key: i=javier.carrasco.cruz@gmail.com; a=ed25519;
+ pk=lzSIvIzMz0JhJrzLXI0HAdPwsNPSSmEn6RbS+PTS9aQ=
 
-On Tue, Nov 26, 2024 at 09:48:01PM +0100, Sasha Finkelstein via B4 Relay wrote:
-> From: Sasha Finkelstein <fnkl.kernel@gmail.com>
-> 
-> Adds device tree entries for the touchbar digitizer
-> 
-> Co-developed-by: Janne Grunau <j@jannau.net>
-> Signed-off-by: Janne Grunau <j@jannau.net>
-> Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
-> ---
->  arch/arm64/boot/dts/apple/t8103-j293.dts | 24 ++++++++++++++++++++++++
->  arch/arm64/boot/dts/apple/t8103.dtsi     | 19 +++++++++++++++++++
->  arch/arm64/boot/dts/apple/t8112-j493.dts | 20 ++++++++++++++++++++
->  arch/arm64/boot/dts/apple/t8112.dtsi     | 14 ++++++++++++++
+These ambient light sensors with I2C interface provide two light
+channels (ALS and IR), high/low threshold alarms with configurable
+persistence, and a data ready signal.
 
-The changes in t8103.dtsi and t8112.dtsi conflict with my "Add Apple SPI
-controller and spi-nor dt nodes" in
-https://lore.kernel.org/asahi/20241102-asahi-spi-dt-v1-0-7ac44c0a88f9@jannau.net/
+The devices covered by this driver have the same resolution and they
+share most of their functionality. These are the differences between
+them:
 
-I think it makes more sense to add the spi controller nodes in one go
-instead of piece by piece based on device support.
+ - Device ID: accessible via two 8-byte registers, different values for
+   veml6031x00/veml6031x01 and veml60311x00/veml60311x01.
+ - I2C address: same grouping, 0x29 and 0x10 I2C addresses.
+ - AEC qualification: AEC-Q100 for veml6031x00/veml60311x00 and
+   AEC-Q101 for veml6031x01/veml60311x01.
 
-Janne
+The alarms and the data ready signals share the interrupt pin, and an
+interrupt status register must be accessed to identify the source. Such
+multiplexing is not new in IIO, and I have followed existing examples
+for it. The persistence setting (own attribute) to trigger the alarms
+uses the pattern that has already been used for the veml6030.
+
+The device configuration is in general documented in the datasheet and
+the application note. There is an exception, though: the activation of
+the "active force" mode that is required for the data ready signal must
+be carried out in two steps even though the affected bits are located in
+the same register: first ALS_AF (active force mode enable) must be set,
+and then ALS_TRIG (active force trigger setting) must be enabled. I have
+added a brief commentary in the code to explain this behavior, which has
+been confirmed by the manufacturer.
+
+This driver has been tested with the four supported devices separately
+as well as in pairs where the I2C addresses don't overlap.
+
+Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+---
+Javier Carrasco (2):
+      dt-bindings: iio: light: veml6030: add veml6031x00 ALS series
+      iio: light: add support for veml6031x00 ALS series
+
+ .../bindings/iio/light/vishay,veml6030.yaml        |   23 +-
+ MAINTAINERS                                        |    6 +
+ drivers/iio/light/Kconfig                          |   13 +
+ drivers/iio/light/Makefile                         |    1 +
+ drivers/iio/light/veml6031x00.c                    | 1129 ++++++++++++++++++++
+ 5 files changed, 1171 insertions(+), 1 deletion(-)
+---
+base-commit: a61ff7eac77e86de828fe28c4e42b8ae9ec2b195
+change-id: 20241109-veml6031x00-aa9463da064a
+
+Best regards,
+-- 
+Javier Carrasco <javier.carrasco.cruz@gmail.com>
+
 
