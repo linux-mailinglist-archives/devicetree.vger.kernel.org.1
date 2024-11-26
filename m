@@ -1,80 +1,71 @@
-Return-Path: <devicetree+bounces-124642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124648-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C92C9D97F2
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 14:05:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60F949D981B
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 14:18:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E99EC166F0F
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 13:05:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A24116470E
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 13:17:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FA251D3564;
-	Tue, 26 Nov 2024 13:05:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8B781D2B22;
+	Tue, 26 Nov 2024 13:17:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="DNvlWt8f"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="nmF8GsAY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 819FA2F32;
-	Tue, 26 Nov 2024 13:05:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DE591BDAA1;
+	Tue, 26 Nov 2024 13:17:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732626319; cv=none; b=JHon8KW8w1Msoh9YIGO7G0iKM7gphDF9Fs6gw1lu3PfCnWzb0hAee1SiyJNdrgZoZCxvPgTCw5Z4iZP3svS+aeS+9159UHzwDIO5zdbsZ62CTObtiudr0nQqRf7YIrNTRC8X6RAlENb/PiAu2lmOdEu2A+cBpBOHWIxDdg8sSpw=
+	t=1732627076; cv=none; b=ZzOP+r3tvUBXSDqaHjMog3+CjbTNZ414c9ykeqmx90eBKNLUYkTT77a/5ZuLsEz53clyjSnvAMD2Zd1d8RGrvqHvkfzImHvII9YIVYG0cYo9t2fdCd+szJKB5NhydJ3w0c8oE5XyJ7pKR7lAgNgxhmg5cJzGAjJ8R5o3SbfCnD4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732626319; c=relaxed/simple;
-	bh=cBDcw6MY+Oq4uidtM01Vq+OPI1urLBoDdxYLI1m/Ius=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bSbQEjgpfiVV2YijUcmiHpNW/8mAIGT2Mxap6pQ2a0ziR7F2mL8JqckLlomRKK2djCF5qFMM9nPMqD3bGzwATfQS2HCiiAKpZt6aelM1AULGvcj7XQDRFOBiSuf/L2l2g2/vwNxdm/sxBl+6tKj5jJY2hc9Zri3BQGizIhsUGqc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=DNvlWt8f; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AQAk5IR003880;
-	Tue, 26 Nov 2024 14:04:49 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	yZhwlZeZQoMpb1RlyyjILd8T/ILSIB2hivP2H9gbW7g=; b=DNvlWt8fMZLqD2vB
-	Q9QLpb1qcsyiTWu3gtk+Bkx63qc4m+sSPpRgbySdIJlB9BoonWYpyWhkgBAWyuAC
-	AasjTihhT1bbCzUb/3dG0wYY0KUTprTEnwneAm1ffAcGeE3yDCi4G2l9gj6Oc/d5
-	cyEDonQFb3cL4uACUQuckK9izDu/mO7OX8ODAW7/1iticGXoJkf/vIRDqxLboFm5
-	ZlABrfnOrqIc5KCoQ/CQJAcfKSP838OTceXo9ASSGvjt4gkQXiaGFZWa296ezSkA
-	6RQQ5CMVTupGa4k4j4Y2A+DN4MKOlDz7mRhUHkSov5GZUiWxM7cgfkf8LLgRcusD
-	+Nxh/w==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4336tfmxca-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 26 Nov 2024 14:04:49 +0100 (CET)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id DA1C140050;
-	Tue, 26 Nov 2024 14:03:32 +0100 (CET)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 4C970286EC2;
-	Tue, 26 Nov 2024 14:01:29 +0100 (CET)
-Received: from localhost (10.129.178.212) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Tue, 26 Nov
- 2024 14:01:29 +0100
-From: Christian Bruel <christian.bruel@foss.st.com>
-To: <lpieralisi@kernel.org>, <kw@linux.com>,
-        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
-        <bhelgaas@google.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
-        <p.zabel@pengutronix.de>, <cassel@kernel.org>,
-        <quic_schintav@quicinc.com>, <fabrice.gasnier@foss.st.com>
-CC: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        Christian Bruel <christian.bruel@foss.st.com>
-Subject: [PATCH v1 5/5] MAINTAINERS: add entry for ST STM32MP25 PCIe drivers
-Date: Tue, 26 Nov 2024 14:00:04 +0100
-Message-ID: <20241126130004.1570091-6-christian.bruel@foss.st.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241126130004.1570091-1-christian.bruel@foss.st.com>
-References: <20241126130004.1570091-1-christian.bruel@foss.st.com>
+	s=arc-20240116; t=1732627076; c=relaxed/simple;
+	bh=QfkHnYilLbsLlTP7MRagTgqk3o4w0cN/W+S6ioLWAPg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=SVvqs5dqCVTCkQ+yDvMfSkyGqu1wE+h35cb4Oa7wxtmSlWgoRoj1F0zp5nHstyAqR4hLtYhKsQWp7uLvAKDVZvUkoXzDSrpj8VXKl5GsmVPFnnh5S9ymmH4f2kzrulztNZbdcJf4z0JcY1PadUyERlS+fMOoFQbDtc3Tdba2Nzg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=nmF8GsAY; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:
+	Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=4/koaIM9Q80mkdAO8h6VeJJ2lCEZ0Z0nfGBdynTc+f8=; b=nmF8GsAYVNNoUw56AGl8jYnHcJ
+	GnPjzYIrZzPdF6Q3wGhtlFHPsIxjSlNrfDr9mIj3L60IlxHdOgHXNOFw0sJFKs0jXWwiLgOR6eojd
+	0ZsWVJLUgsA94jpXRNNcD1ORh4FI9sc8YfwjY9hTadnv6E27qlfXH+vmnU2NkCGH8Uiq/P6lMhTdc
+	NqDed/14NJt/WvG3vWf2sT7BOQ/RyaKY3YlfLcqpJi/9xIOVLI96BritZ4NQMw3ex6QMs40WytqoC
+	9IYZeOyVmTbdaDvKgUZvdH9XojJUMOcaCHPwd5XoHz10FsqNiEcKa6/iAvx1PxYojEdZt6JOs5fRe
+	gnjq83tg==;
+Received: from i5e86190f.versanet.de ([94.134.25.15] helo=phil..)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tFvRh-0007zi-ST; Tue, 26 Nov 2024 14:17:37 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: vkoul@kernel.org,
+	kishon@kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	quentin.schulz@cherry.de,
+	sebastian.reichel@collabora.com,
+	heiko@sntech.de,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	dse@thaumatec.com
+Subject: [PATCH v4 0/2] MIPI DSI phy for rk3588
+Date: Tue, 26 Nov 2024 14:17:33 +0100
+Message-ID: <20241126131736.465111-1-heiko@sntech.de>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,39 +73,59 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-Add myself as maintainer of STM32MP25 PCIe host and PCIe endpoint drivers
+This adds the phy driver need for DSI output on rk3588.
 
-Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+The phy itself is used for both DSI output and CSI input, though the
+CSI part for the whole chain needs a lot more work, so is left out for
+now and only the DSI part implemented.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 4803908768e8..277e1cc0769e 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17912,6 +17912,13 @@ L:	linux-samsung-soc@vger.kernel.org
- S:	Maintained
- F:	drivers/pci/controller/dwc/pci-exynos.c
- 
-+PCI DRIVER FOR STM32MP25
-+M:	Christian Bruel <christian.bruel@foss.st.com>
-+L:	linux-pci@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/pci/st,stm32-pcie-*.yaml
-+F:	drivers/pci/controller/dwc/*stm32*
-+
- PCI DRIVER FOR SYNOPSYS DESIGNWARE
- M:	Jingoo Han <jingoohan1@gmail.com>
- M:	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+This allows the rk3588 with its current VOP support to drive a DSI display
+using the DSI2 controller driver I'll submit in a next step.
+
+Only generic phy interfaces are used, so the DSI part is pretty straight
+forward.
+
+changes in v4:
+- moved to #phy-cells = 1 as suggested by Sebastian, with the argument
+  denoting the requested phy-type (C-PHY, D-PHY). This works similarly
+  how the Mediatek C/D-PHY already implements this, see mails around:
+  https://lore.kernel.org/all/20230608200552.GA3303349-robh@kernel.org/
+- dropped Krzysztof's review tag from the binding because of this
+- dropped custom UPDATE macro and use FIELD_PREP instead
+- build a FIELD_PREP_HIWORD macro for the GRF settings
+- add received Tested-by tags
+
+changes in v3:
+- add Krzysztof review tag to the binding
+- address Sebastian's review comments
+  - better error handling
+  - dropping empty function
+  - headers
+  - not using of_match_ptr - this should also make the
+    test-robot happier
+
+changes in v2:
+- fix error in dt-binding example
+- drop unused frequency table
+- pull in some more recent improvements from the vendor-kernel
+  which includes a lot less magic values
+- already include the support for rk3576
+- use dev_err_probe
+
+Heiko Stuebner (2):
+  dt-bindings: phy: Add Rockchip MIPI C-/D-PHY schema
+  phy: rockchip: Add Samsung MIPI D-/C-PHY driver
+
+ .../phy/rockchip,rk3588-mipi-dcphy.yaml       |   87 +
+ drivers/phy/rockchip/Kconfig                  |   12 +
+ drivers/phy/rockchip/Makefile                 |    1 +
+ .../phy/rockchip/phy-rockchip-samsung-dcphy.c | 1602 +++++++++++++++++
+ 4 files changed, 1702 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/rockchip,rk3588-mipi-dcphy.yaml
+ create mode 100644 drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c
+
 -- 
-2.34.1
+2.45.2
 
 
