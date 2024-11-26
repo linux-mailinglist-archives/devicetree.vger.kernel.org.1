@@ -1,144 +1,154 @@
-Return-Path: <devicetree+bounces-124507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124508-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 004959D9222
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 08:07:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A1939D9251
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 08:19:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5B547B2192C
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 07:07:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2EF2D2837E7
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 07:19:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D4B6190072;
-	Tue, 26 Nov 2024 07:07:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43D531917FB;
+	Tue, 26 Nov 2024 07:19:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="crLsR3FB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RG7ZnBH4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E054B17BB6;
-	Tue, 26 Nov 2024 07:07:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A6981898FC;
+	Tue, 26 Nov 2024 07:19:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732604853; cv=none; b=gN81fJhEJRQavkz08aUTddow8jTb5lwwgt7Fq4Yq9T0Jkkyg/LhF4xcATYjg8/WiaceG2Bfzg+1nxvNF7hVzyL8tLm+DhFcfY/kqyKFNWF0QF2bj6697eec5Xmkx+Jc633QJXr2xftd95shC8eFRcJ6HX5KCPM+he2tJAQ6WpvM=
+	t=1732605549; cv=none; b=W8NqpT2FyPgZ4UIw1BUubMBasQqSCyku28ELiO5Pa/+nTMQbjU4OpmSKnzFQq8pn3BqCw3t4S9jVcVYu6bk5ya87p9aek3mz0S4VpUUPKTi3qMxKDPsbjJu5KmVLvPb3fIbkS22cGG2vLZze/29wVANlH/ukd7kvedYF2k1AEfE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732604853; c=relaxed/simple;
-	bh=oPO52LB/U7xQho2r49527yxBuQMvPupJ01h8KpNLvvs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=i/h1dfzVr43YoAY8u4oP3cdD1OGCwImRRzw21INKTa15uNsu2fawFTgZGGZq3F7ziy0Xt3i8f0qnVuFv+k/cLIAUr2T1ieWfrNX4IuMcmuyXTv3VAguSuWWeigWXxbl7l+WpLArbEquiDDz1TW0p5SgLkeBUs2IS/uWGDhZeIcA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=crLsR3FB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38D41C4CECF;
-	Tue, 26 Nov 2024 07:07:27 +0000 (UTC)
+	s=arc-20240116; t=1732605549; c=relaxed/simple;
+	bh=/h87k1FDp1WC2VzUI6S8sjWKocwTaIiJ1ZT69Aei16k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hvFlNy7nOH8SmNTAHgBLxUtmon2pCBVcwhcI0m7QQYI8VKlUnGUTvggJ8f7lGnqiNq73/NhvPZw/47aARnYNZijMkN+tqZdvoRz2m5/tzSOGzj37ZJfGWcAIKEAbQAl5EP7h45Gg+OJYhIxq2H/8GP02MIe0Vvo408tNg6o25X8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RG7ZnBH4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99A12C4CED2;
+	Tue, 26 Nov 2024 07:19:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732604852;
-	bh=oPO52LB/U7xQho2r49527yxBuQMvPupJ01h8KpNLvvs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=crLsR3FBNEEU6XGcjk6ie84sMW5UJzk7SWGFNS5BSTOwPFHf6QntfPKLgUb4W9kkL
-	 1MXhlEBFFTSr+YS9GBVqnLXjYmEa3q1e2fF8BuoOHnlOsjllcEPnnlRo97ij03vxPb
-	 HV3LyuYDzuE77uufFTq1A0BP3XNJ7W0xhm84uv27o3OtkQRMf0d+/IgSlnxTDesIrz
-	 VaK4kLNU8pBNX82j3COKIEDot0VPLcCooUha/BCl1+t7S6WyuXGbYcgJTWyF7JC+nI
-	 Pi//97PIru4w5k8jTzoW4eIQjZSkdfB0EG1dS5Y9Lk7NwbM3QRq7xXrwSAnXauJCMC
-	 29qu71X1+qumQ==
-Message-ID: <fab9ebcd-535c-49c0-b356-ca6a4886049b@kernel.org>
-Date: Tue, 26 Nov 2024 08:07:26 +0100
+	s=k20201202; t=1732605548;
+	bh=/h87k1FDp1WC2VzUI6S8sjWKocwTaIiJ1ZT69Aei16k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RG7ZnBH4LTJCfQ9mUNJN180Zjq5tHx7KY2IjU+qmvWBydXBh513L/x12lTxEhqXPx
+	 yPkWsZ4p3wQdICvAlp3ax2IO92HcRrNbU8JqDLQmTsfymbRaJr0ls/rU/oRy1Y8j7s
+	 9nwgeJapxwrPHjK1YkGwjJDJuS+OwiIccdw+qZRwkeQiv6MKNDsx0CZ+QMMghXOHw4
+	 SHTjeHsy3kJGLiQIHRO6UuNI3cT5dUxXmr09kNiyM5fqzM+RVKSapE7lS3R7pey0WE
+	 Jp8ZEsD0e9KbQu9mdPUc3FWpiDrAYtSsuC8UdYUZm5AWclxgj+2wpw3uQ6WY4vbEiB
+	 DmlKuQvrq+yQA==
+Date: Tue, 26 Nov 2024 08:19:04 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>, 
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, NXP S32 Linux <s32@nxp.com>, 
+	imx@lists.linux.dev, Christophe Lizzi <clizzi@redhat.com>, 
+	Alberto Ruiz <aruizrui@redhat.com>, Enric Balletbo <eballetb@redhat.com>, 
+	Frank Li <Frank.Li@nxp.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: can: fsl,flexcan: add S32G2/S32G3
+ SoC support
+Message-ID: <y2fbsxg4pney2iapzcdooxyz6l3pmw6ms2ddupf637svitelbt@wthu23ld5ryq>
+References: <20241125163103.4166207-1-ciprianmarian.costea@oss.nxp.com>
+ <20241125163103.4166207-2-ciprianmarian.costea@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: memory-controllers: Add support for
- Versal NET EDAC
-To: "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
- "git (AMD-Xilinx)" <git@amd.com>, "robh@kernel.org" <robh@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>, "bp@alien8.de" <bp@alien8.de>,
- "tony.luck@intel.com" <tony.luck@intel.com>,
- "james.morse@arm.com" <james.morse@arm.com>,
- "mchehab@kernel.org" <mchehab@kernel.org>, "rric@kernel.org"
- <rric@kernel.org>
-References: <20241122100625.24571-1-shubhrajyoti.datta@amd.com>
- <20241122100625.24571-2-shubhrajyoti.datta@amd.com>
- <uw5yvotdr4u5uau7bqjj2qdmkf5ay2bm7km3zhqunbixzljlw6@wi6cujvdhesk>
- <SA1PR12MB89479EFB910D009F2F3A7641812F2@SA1PR12MB8947.namprd12.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <SA1PR12MB89479EFB910D009F2F3A7641812F2@SA1PR12MB8947.namprd12.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241125163103.4166207-2-ciprianmarian.costea@oss.nxp.com>
 
-On 26/11/2024 07:57, Datta, Shubhrajyoti wrote:
-> [AMD Official Use Only - AMD Internal Distribution Only]
+On Mon, Nov 25, 2024 at 06:31:00PM +0200, Ciprian Costea wrote:
+> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+> 
+> Add S32G2/S32G3 SoCs compatible strings.
+> 
+> A particularity for these SoCs is the presence of separate interrupts for
+> state change, bus errors, MBs 0-7 and MBs 8-127 respectively.
+> 
+> Increase maxItems of 'interrupts' to 4 for S32G based SoCs and keep the
+> same restriction for other SoCs.
+> 
+> Also, as part of this commit, move the 'allOf' after the required
+> properties to make the documentation easier to read.
+> 
+> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
 
-What is this? Why would we bother? How does it affect me?
+You made multiple changes afterwards, which invalidated the review. See
+submitting-patches which explain what to do in such case.
 
-Please remove all corporate boilerplate.
-
+> ---
+>  .../bindings/net/can/fsl,flexcan.yaml         | 46 +++++++++++++++++--
+>  1 file changed, 42 insertions(+), 4 deletions(-)
 
 ...
 
->>> +
->>> +required:
->>> +  - compatible
->>
->> Eh, no resources? How do you talk with the hardware? This looks way too Linuxy...
-> 
-> The address space is secure, making it inaccessible to Linux. In this setup, the secure firmware (NMC)
->  communicates the necessary information to Linux through RPMsg.
+>      maxItems: 2
+> @@ -136,6 +143,37 @@ required:
+>    - reg
+>    - interrupts
+>  
+> +allOf:
+> +  - $ref: can-controller.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: nxp,s32g2-flexcan
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          items:
+> +            - description:
+> +                Message Buffer interrupt for mailboxes 0-7
 
+Keep it in one line.
 
-Don't you need to acquire a reference to the rpmsg interface? Don't you
-need to encode the device dependency? All this is achieved with phandles
-and proper driver support.
+> +            - description:
+> +                Interrupt indicating that the CAN bus went to Buss Off state
+
+s/Interrupt indicating that//
+Buss Off state status?
+
+> +            - description:
+> +                Interrupt indicating that errors were detected on the CAN bus
+
+Error detection?
+
+> +            - description:
+> +                Message Buffer interrupt for mailboxes 8-127 (ored)
+> +        interrupt-names:
+> +          items:
+> +            - const: mb_0-7
+
+Choose one: either underscores or hyphens. Keep it consistent in your
+bindings.
+
+> +            - const: state
+> +            - const: berr
+> +            - const: mb_8-127
+
+Choose one: either underscores or hyphens. Keep it consistent in your
+bindings.
+
+> +      required:
+> +        - compatible
+> +        - reg
+> +        - interrupts
+> +        - interrupt-names
+
+What happened to "else:"? Why all other devices now have up to 4 interrupts?
 
 Best regards,
 Krzysztof
+
 
