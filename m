@@ -1,146 +1,107 @@
-Return-Path: <devicetree+bounces-124651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD69B9D98A3
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 14:37:34 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 766E6163025
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 13:37:31 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D56C9DDCD;
-	Tue, 26 Nov 2024 13:37:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tWNooiF1"
-X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 183CA9D98B1
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 14:40:54 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE429BA49;
-	Tue, 26 Nov 2024 13:37:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E5E1AB2467C
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 13:39:58 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 606201DA23;
+	Tue, 26 Nov 2024 13:39:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="cGTHpe+P"
+X-Original-To: devicetree@vger.kernel.org
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C36E7C8EB;
+	Tue, 26 Nov 2024 13:39:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732628250; cv=none; b=ZfvZcRiTkf2izr/NSiTMYIHz4mWaUSJa7KwCeNgELI0hHMSzWtAIjffZd5xG2CSN4rGEH5vDKmCQMEzYjYlCLcelIoOaQ8i7NCFMsOaFoY8yBpikwuTNVIrHQLTvheOwpE8d5XLjRJQnFZg9WYTRMQU9t/TGu6tiASSiZX2cbf8=
+	t=1732628394; cv=none; b=pdESCFL5F5VX/aKO5HLDHX5LaQhiqPfarkSs8uU7qhtCrDW7hoAz+OhAMMTVdzFUcafKjf4eZmxtTvEc3jY791x0YBNkz4rUQiZrGL10i0biCwOr3znhViAi4YfxNgVrgADSn5S/OBegrHQMFy4anPhy9ix9UF20jXAuLQFm6R8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732628250; c=relaxed/simple;
-	bh=VbOkG7UxlyHWlguAL2j5KGuPIwyUxslVDdZfokzx/f0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=j221aicR2e0ubVvZE8pz5ntWH8kynP+LpmM4H95Lp4njaY0QuVhNbLcN4Tc2D0EzgT2YHifzPQCS2pAa5f56EvVmY8pjiHRB7KGh9dJKsuJIlOx12cgCrFLqCUtld0FPcDfJemOqEXiEJiYARzH660CHEvj7Hp35r8js7OwHCac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tWNooiF1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E144C4CED2;
-	Tue, 26 Nov 2024 13:37:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732628250;
-	bh=VbOkG7UxlyHWlguAL2j5KGuPIwyUxslVDdZfokzx/f0=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=tWNooiF16pOSDmb1iMlDJG01LKQojiwCvtI97+t8rc31hnW1mqLconLH2q1DZiEdT
-	 pHv6PFGvgVLx4syDuoJu8xJrqjnybRngr1i0zBeOFHuYenp2y9XeR/dI7EZEmRw+cm
-	 Zzy4BEf2WxuGT3wACU+VHjLVcgmloEfTdKTxLSKHSUIXNtUemBQFf6DelxO5XEFlom
-	 WLkGw9d8GK2tzjd6Ulnb/87zBq5khVWxoLDk33nQj7cKH2MEcVozwE/zZeS1/Yw1aY
-	 waTMoaLK+g5xrawAGmbQdPfmnsgf6XJ8NmIKMhKaNABKnCrDMmzHzheUBoemTGpOe0
-	 9+vISiy2Z3TmQ==
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-6eeca49d8baso43215617b3.0;
-        Tue, 26 Nov 2024 05:37:30 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVhtFv3dU7C2AVYSZWQKU4AdVcSvfT7A9ehv62gND+ETN4drc2P2KPwVgNR1u2xuSOoF+Wa0SUwAEIM@vger.kernel.org, AJvYcCVmxVnoJtyE63qIS/xykvyCqdoSxtEjpoBLq0M2IjO528IJ+7RYUWPzwkJUemPvYdBCt47aqM4kmKFwSlx6@vger.kernel.org
-X-Gm-Message-State: AOJu0YyiT1VSK+og4I731g/4nnWDcI1jqasG8BMZ4PAcZFyUrjT/+Tg5
-	8nD3+7KihNzJL++Il+e5RdGibdeQckC7YFTrmSxbsGkdA09uOlYgpGfdDu9i7ZXwqLP0L4NcWwW
-	3o6u5LGzX0w7hlxGcKObZhsYpkA==
-X-Google-Smtp-Source: AGHT+IEnXFbOa9aXTSk7jlPCIgSVpFPdSMelXI3aGNVoBWCaVRayUlLEtrcRuuQMm6/x5KJIU4FdbHA5bt4fqU7rYtE=
-X-Received: by 2002:a05:690c:968e:b0:6ea:6644:ddf8 with SMTP id
- 00721157ae682-6ef23a65d69mr27243007b3.0.1732628249338; Tue, 26 Nov 2024
- 05:37:29 -0800 (PST)
+	s=arc-20240116; t=1732628394; c=relaxed/simple;
+	bh=E9pUbK72JOvDbvWr6iCrPeY/6XaWCCuTh5wTNQ0T4+E=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=kmqf/DCUUnaCBI9pDH/dcIfSchBtUFaSUh91/BPixY/7BIYVII93uqtmt9akAyP3+dtFt5t1pLSwGp+EHL3hT5ffCj7i1naetGz926UTsqeJA+mHSkVcgvkpUWrrHhQgsSc4RxePj/kyWi4czorwNLvh7VULHWSkr6SzYffyEVQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=cGTHpe+P; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=tN0r84mltrzWKXImKJPU4zA3MIm8jfWmB/JmJnj+81A=; b=cGTHpe+PbK5cetpMFRQwt0vOma
+	IKOaMrbpCHEttoujvWhb+esxr/IJylAxWpnIf6oPVztXWgiIozWpdwCcf5nlzE+qPrPWhc2VhAZEJ
+	9lMJA34Trj5JhmDmUP8Kjgrua3Ij5DkAvWZnZJfr2pA8XO0cCIp4Ip3e64gcjWnzrTZcwJXIPKkku
+	0ehWv/PL65V1Tqft1Arq2nPDfKaWG+a/8EcBFJRI6vlcEpojC8hjuayzHEWJC2ckVroBpSWKBYbsF
+	fEiNoXJMQXoQXWkUO7WmkS4XTFm15tcnvC+A5qasNX5771F3SNdgtXBC2+igR8zN20Zb/jSMKGS/N
+	S3umjoAw==;
+Received: from i5e86190f.versanet.de ([94.134.25.15] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tFvmZ-0008Sx-N7; Tue, 26 Nov 2024 14:39:11 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Diederik de Haas <didi.debian@cknow.org>
+Cc: andy.yan@rock-chips.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+ rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ quentin.schulz@cherry.de, Heiko Stuebner <heiko.stuebner@cherry.de>
+Subject: Re: [PATCH 3/3] drm/rockchip: Add MIPI DSI2 glue driver for RK3588
+Date: Tue, 26 Nov 2024 14:39:10 +0100
+Message-ID: <9368781.CDJkKcVGEf@diego>
+In-Reply-To: <D5F4UD59MUJG.2HFCTRSPELO98@cknow.org>
+References:
+ <20241106123304.422854-1-heiko@sntech.de>
+ <20241106123304.422854-4-heiko@sntech.de>
+ <D5F4UD59MUJG.2HFCTRSPELO98@cknow.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241126025710.591683-1-mpe@ellerman.id.au>
-In-Reply-To: <20241126025710.591683-1-mpe@ellerman.id.au>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 26 Nov 2024 07:37:17 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKJzAoxFQ30rJbH7D7zmGtZ+jNpw2BL45dqjOUe2fFbwA@mail.gmail.com>
-Message-ID: <CAL_JsqKJzAoxFQ30rJbH7D7zmGtZ+jNpw2BL45dqjOUe2fFbwA@mail.gmail.com>
-Subject: Re: [PATCH] powerpc/prom_init: Fixup missing powermac #size-cells
-To: Michael Ellerman <mpe@ellerman.id.au>
-Cc: linuxppc-dev@lists.ozlabs.org, saravanak@google.com, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Mon, Nov 25, 2024 at 8:57=E2=80=AFPM Michael Ellerman <mpe@ellerman.id.a=
-u> wrote:
->
-> On some powermacs `escc` nodes are missing `#size-cells` properties,
-> which is deprecated and now triggers a warning at boot since commit
-> 045b14ca5c36 ("of: WARN on deprecated #address-cells/#size-cells
-> handling").
->
-> For example:
->
->   Missing '#size-cells' in /pci@f2000000/mac-io@c/escc@13000
->   WARNING: CPU: 0 PID: 0 at drivers/of/base.c:133 of_bus_n_size_cells+0x9=
-8/0x108
->   Hardware name: PowerMac3,1 7400 0xc0209 PowerMac
->   ...
->   Call Trace:
->     of_bus_n_size_cells+0x98/0x108 (unreliable)
->     of_bus_default_count_cells+0x40/0x60
->     __of_get_address+0xc8/0x21c
->     __of_address_to_resource+0x5c/0x228
->     pmz_init_port+0x5c/0x2ec
->     pmz_probe.isra.0+0x144/0x1e4
->     pmz_console_init+0x10/0x48
->     console_init+0xcc/0x138
->     start_kernel+0x5c4/0x694
->
-> As powermacs boot via prom_init it's possible to add the missing
-> properties to the device tree during boot, avoiding the warning. Note
-> that `escc-legacy` nodes are also missing `#size-cells` properties, but
-> they are skipped by the macio driver, so leave them alone.
->
-> Depends-on: 045b14ca5c36 ("of: WARN on deprecated #address-cells/#size-ce=
-lls handling")
-> Signed-off-by: Michael Ellerman <mpe@ellerman.id.au>
-> ---
->  arch/powerpc/kernel/prom_init.c | 29 +++++++++++++++++++++++++++--
->  1 file changed, 27 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/powerpc/kernel/prom_init.c b/arch/powerpc/kernel/prom_i=
-nit.c
-> index 73210e5bcfa7..8e776ba39497 100644
-> --- a/arch/powerpc/kernel/prom_init.c
-> +++ b/arch/powerpc/kernel/prom_init.c
-> @@ -2848,7 +2848,7 @@ static void __init fixup_device_tree_chrp(void)
->  #endif
->
->  #if defined(CONFIG_PPC64) && defined(CONFIG_PPC_PMAC)
-> -static void __init fixup_device_tree_pmac(void)
-> +static void __init fixup_device_tree_pmac64(void)
->  {
->         phandle u3, i2c, mpic;
->         u32 u3_rev;
-> @@ -2888,7 +2888,31 @@ static void __init fixup_device_tree_pmac(void)
->                      &parent, sizeof(parent));
->  }
->  #else
-> -#define fixup_device_tree_pmac()
-> +#define fixup_device_tree_pmac64()
-> +#endif
-> +
-> +#ifdef CONFIG_PPC_PMAC
-> +static void __init fixup_device_tree_pmac(void)
-> +{
-> +       __be32 val =3D 1;
-> +       char type[8];
-> +       phandle node;
+Hi,
 
-I suppose you are keeping the existing style, but you could use
-IS_ENABLED() here instead of #ifdef.
+Am Mittwoch, 6. November 2024, 14:33:25 CET schrieb Diederik de Haas:
+> > +#define IPI_DEPTH_5_6_5_BITS		0x02
+> > +#define IPI_DEPTH_6_BITS		0x03
+> > +#define IPI_DEPTH_8_BITS		0x05
+> > +#define IPI_DEPTH_10_BITS		0x06
+> 
+> Possibly dumb remark (sorry):
+> drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi2.c also defines these
+> values, so wouldn't it be better if they're defined in 1 place?
 
-Either way,
+they are quite device-specific, so for me it doesn't really make sense
+to try to centralize them. I.e. these are the values that need to go into
+the GRF register to select a specific depth and are more or less the
+same by chance.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+I still remember quite well the answer to why Rockchip hardware engineers
+sometimes shuffle around similar grf entries between socs "because they
+want to" ;-)
+
+At least for the rk3576, they seem to stay the same for now, though part
+of me just expects the values to change in the future.
+
+So personally I'd like to keep them where they are :-)
+
+Heiko
+
+
 
