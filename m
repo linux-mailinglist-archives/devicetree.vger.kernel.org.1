@@ -1,119 +1,179 @@
-Return-Path: <devicetree+bounces-124689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124690-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C8F89D998A
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 15:22:22 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EA339D99C4
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 15:39:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC81E282E05
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 14:22:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 72D7CB22AB2
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 14:32:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 575CB1D5AB5;
-	Tue, 26 Nov 2024 14:22:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00FE11D434F;
+	Tue, 26 Nov 2024 14:32:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ENF/T8Zr"
+	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="LqOIXcsx";
+	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="JLb0ZdQ2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bayard.4d2.org (bayard.4d2.org [5.78.89.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C2072EAE6
-	for <devicetree@vger.kernel.org>; Tue, 26 Nov 2024 14:22:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00F5C1C36;
+	Tue, 26 Nov 2024 14:32:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.78.89.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732630938; cv=none; b=hxkWpBfT+mpoWEyROeTVURgdfK7NLz2xwTxMjedJ3/V8nl1011N+6g2t0rg0pS0hPtxNul+MNkXXmH0IAX+/hYaQBLkpczDAGi11QZlHibqpa0e+KnSW+Kj+0FE5wod9bKBwa0lw3hFCkVFiHwtAqTaIhCsWuXjen8zWhGXzOIU=
+	t=1732631534; cv=none; b=NYSSBQ1K1Z3fbq2XsRTZKZ76GFDOrR3HT72jGkktscDx12aAVdwG7lFzJW3LL1uszipQwwMc0NK5ftTPicQUUnLeIizAunmqu5KmGjhiSNdA36AvGpABHVwEXGpEiMTs1UY15h5cyK7orJl50RNkUvo6OObcVTX8eNIKpFJGG1o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732630938; c=relaxed/simple;
-	bh=SOSUQAOlh5dpiHg97YBtYq96KsfsNqWvdPKUV2/BcQQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Mm6CXYLqo2hVXyas76LwpWTmzfn5m1ZjNYnNqwBIfg5ML4cR92X/fpb4wtNK2W7cKyovkXE4Coj4kbobkfPEXfRlcAhx0it5PXPoArTACJE6lSo6eEokvnCupAv3588JPP2a9satK+kAIPWHviAZjK7mn5qdKAu8pGivwN9fiTg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ENF/T8Zr; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-53de5ec22adso2517759e87.3
-        for <devicetree@vger.kernel.org>; Tue, 26 Nov 2024 06:22:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732630935; x=1733235735; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=NvxvLshTV6jYerFVYx7chEJSlAAM8Tt1+r2hoHp2IbE=;
-        b=ENF/T8ZriMV9+IJsXkIg6O+Ipmx8gw3iirWWAsknY5Ru3zhqQuQbhjHkxFHVllaId/
-         htWDD+xwBC2j/wChfkI6mR08CLZGeAp+Gwo34iYpaqsf72BkBWPLG9j/O3kShDGy2G+V
-         v0EfptUH5270F7ArdKAJP48MGNKEyFA6E8ybd7cu9CHRzZiL4L7fa4nf41AVmDnZx1pE
-         GWSWgWw2XfjM+PPtSPnkRUwyqhsVaqV6Z3Y1k+1vNS1IPtCpGmCxSazawawYMdHnU/mg
-         RTQ28goK6oaDp0wkzGj5i3K5glou4HaS+fkOuEVD1oCwkk6S+TCMTZLdkBMGicnuIA4X
-         RAKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732630935; x=1733235735;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NvxvLshTV6jYerFVYx7chEJSlAAM8Tt1+r2hoHp2IbE=;
-        b=HC5zuWSB9LYthHr7pyVVgoTDvhd+BHe5uyJlBjWCb6ivbJXgQtkLYBSzG+m0DH2dPk
-         SbpCbtBmyopTcI0yZxl+a8iP2Lm3/uh8McrWOWYX28OIIly0hs+IFUHudCMa5cITUibn
-         3dI8MI8wGz/eNFIJRPwEAsZOIc50KXfJzKPCwAqCKKQzyfPkkPV+9xSokqOWVfc1HLeL
-         94TK4ikMuqMU4pFh0miN96GfOrZOsL5wm2UxZl/G5mHp0iOQDh9QxqyGXER3HMGKy4Q/
-         Ge0y+aFfLbLm3Wse1/fuWb7X6vrAXXd+S+RfIycBBXtCeu9HteZpJjJ/DYP2kVhOfp1K
-         rPJw==
-X-Forwarded-Encrypted: i=1; AJvYcCWAVkOhwubIvq/Tbgqd5qFke2PNf/eXdJV60Xr3k6ufrQ3PjIdWmugjSXjEB26Dna1nHgUISiEdTf23@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywk7JXiMXaqoEjoXJKwXkLegh9e7BqPQpv6EAPU8F31f5N/qP6Q
-	71mMBi+iyP7CRktQ0l+9/Qn5uQ5FdJ6azYMBzSNSTlmWFQYik4JshpGp5f6oklE=
-X-Gm-Gg: ASbGncsnTReX2k9NMsSBcScWFGGUPjewIQOQWqqppx00BCR8P7q33cHIJySEGoQ5Yn7
-	sR4wdCLjlHdNmEErK3c2qvoASHQSxkrzTamAlL3zNRHtunNx0tP+/1JgeLK5zd3lCaICy0ExtxR
-	lArryUr+CeKyuPikKT7dJjaZeu0qpZ0AbJrXmQuTxv85ZiOr3t+DUR8A88z7BalcVo60bpE1wgf
-	9GBrexEBXEYSP5J1PZ47lCvUbF1V0RbOb1FPb3SFyW+UwhtS/2BDIXmVXU33Jf9oOvOXFL6dKrc
-	muUiHnuEkhbJlwNHbzRJC6STuOcyFw==
-X-Google-Smtp-Source: AGHT+IEAl7X75IiAncEt/phKEqkFqYtoa4WMTlsSJtcMFByYuTRg6SCQ3j0BgI9MU+tyzTVAw8Jtng==
-X-Received: by 2002:a05:6512:4022:b0:53d:ed70:1a74 with SMTP id 2adb3069b0e04-53ded701abamr1046438e87.34.1732630934648;
-        Tue, 26 Nov 2024 06:22:14 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53dd24811b0sm2054224e87.162.2024.11.26.06.22.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Nov 2024 06:22:13 -0800 (PST)
-Date: Tue, 26 Nov 2024 16:22:12 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Akhil P Oommen <quic_akhilpo@quicinc.com>
-Cc: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Jie Zhang <quic_jiezh@quicinc.com>
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: qcs615: Add gpu and gmu nodes
-Message-ID: <b22n5muywlavttjo2iub7uijqbonoeifkqhrqlvfrqadiod3tl@l5mrikdtbyp6>
-References: <20241126-qcs615-gpu-dt-v1-0-a87782976dad@quicinc.com>
- <20241126-qcs615-gpu-dt-v1-2-a87782976dad@quicinc.com>
+	s=arc-20240116; t=1732631534; c=relaxed/simple;
+	bh=ufwLq/hepWd8Zhi0T5Z2rKCIOMMzX59F6ACCSuFg6Tk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jAvHhmOvLAqAPge5zIsu3MDAqvfQDm8Z0tdXY0RPk8iZ31OMZCnKeUqThrLploG7zM8Waz1rqOxM5xbMOw/nvfyjwaKe0FoQvsUIiyQMe1oNzpZKePzTJa/7bvQQgHJwmvXw2voOudV1kM368oW7KFGdLxCxPrq0+2tWEe+cILw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=LqOIXcsx; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=JLb0ZdQ2; arc=none smtp.client-ip=5.78.89.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
+Received: from bayard.4d2.org (bayard.4d2.org [127.0.0.1])
+	by bayard.4d2.org (Postfix) with ESMTP id B96E7122FE26;
+	Tue, 26 Nov 2024 06:32:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
+	t=1732631524; bh=ufwLq/hepWd8Zhi0T5Z2rKCIOMMzX59F6ACCSuFg6Tk=;
+	h=From:To:Cc:Subject:Date:From;
+	b=LqOIXcsxLuQzPlvURJwIGw2l9ZVHof1hoiav6amj7EfC3z9IeH/L/O1KYlo2cTwoZ
+	 1TW9VBPq4IDf9kOiMlsXb1XmZxTestIonui53VH0GkyduYDg1SU4CWkxDQHmSyqNah
+	 JRUL/t6N+JqSk+omcghnN/QzdZpBxnZE8yu6hSL1cDhqREPsXmzhpD3ICzY3zjOBh+
+	 B1urE+kxq2lpJgjiO+uvD1JsyxdvzitiiOrNWhmdEQ3PPSuQb8/oHN/hUbVOLW+DFX
+	 3GQL6WybLX4lQBmtCLwODkFDzCy23QEot/nhqTw1BT39QrRrxuWPdZbcpZcjUxCN7G
+	 BvkF/TIgwGljA==
+X-Virus-Scanned: amavisd-new at 4d2.org
+Authentication-Results: bayard.4d2.org (amavisd-new); dkim=pass (2048-bit key)
+ header.d=4d2.org
+Received: from bayard.4d2.org ([127.0.0.1])
+ by bayard.4d2.org (bayard.4d2.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id 1K28dH7PxUPH; Tue, 26 Nov 2024 06:31:59 -0800 (PST)
+Received: from localhost.localdomain (unknown [119.39.112.187])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: heylenay@4d2.org)
+	by bayard.4d2.org (Postfix) with ESMTPSA id 20610122FE1A;
+	Tue, 26 Nov 2024 06:31:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
+	t=1732631519; bh=ufwLq/hepWd8Zhi0T5Z2rKCIOMMzX59F6ACCSuFg6Tk=;
+	h=From:To:Cc:Subject:Date:From;
+	b=JLb0ZdQ2sbAxuzHfsd4408ZeCj8kDWn0aXxXxL5Xz01HXKbhHMGg/uXmzC7IvO4JI
+	 k1KbBhLo+7Tryn3PgeRArgnpWQ+bk/G0XaaZAApcQlK0vcDT16FycfXmVLiofKH0Dh
+	 jLo6QF0trfZrjWouK9MqGa8/a2pinB0hNT+lOnpG9k+bHE4oA1O1xiUAXbtpbQweyg
+	 zkiEgf+n2T0WzGfrtIs6FtB4xLrYzBX19VVEqeMnlHTU87wj0s99BOxpihRK9zdGZB
+	 pAL1SAu1b75fQgvVkPn6h5JYV3oyzKUwFz7QcSTC0nygXQpIqNNAkxjA1Z2ZxF7XvG
+	 Og17MlFdEH/Zg==
+From: Haylen Chu <heylenay@4d2.org>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Haylen Chu <heylenay@outlook.com>
+Cc: linux-riscv@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Chen Wang <unicornxdotw@foxmail.com>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Haylen Chu <heylenay@4d2.org>
+Subject: [PATCH v3 0/3] Add clock controller support for Spacemit K1
+Date: Tue, 26 Nov 2024 14:31:23 +0000
+Message-ID: <20241126143125.9980-2-heylenay@4d2.org>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241126-qcs615-gpu-dt-v1-2-a87782976dad@quicinc.com>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Nov 26, 2024 at 07:36:48PM +0530, Akhil P Oommen wrote:
-> From: Jie Zhang <quic_jiezh@quicinc.com>
-> 
-> Add gpu and gmu nodes for qcs615 chipset.
-> 
-> Signed-off-by: Jie Zhang <quic_jiezh@quicinc.com>
-> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/qcs615.dtsi | 86 ++++++++++++++++++++++++++++++++++++
->  1 file changed, 86 insertions(+)
-> 
+The clock tree of Spacemit K1 is managed by several independent
+controllers in different SoC parts. In this series, all clock hardwares
+in APBS, MPMU, APBC and APMU, are implemented. With some changes to UART
+driver, CPU cores and UARTs could be brought up (see below). More clocks
+will be implemented later soon.
 
-Clocks might need changing to follow the schema changes. Otherwise:
+No device tree changes are included since Spacemit K1 UART needs two
+clocks to operate, but for now the driver gets only one. I would like to
+defer the changes until this is resolved.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+This driver has been tested on BananaPi-F3 board and successfully
+brought up I2C, RTC, mmc and ethernet controllers. A clock tree dump
+could be obtained here[1].
 
+[1]: https://gist.github.com/heylenayy/ebc6316692dd3aff56575dbf0eb4f1a9
+
+Link: https://developer.spacemit.com/documentation?token=LCrKwWDasiJuROkVNusc2pWTnEb
+
+Changed from v2
+- dt-binding fixes
+- misc improvements in code
+- drop unnecessary spinlock in the driver
+- implement missing bus clocks
+- Link to v2: https://lore.kernel.org/all/SEYPR01MB4221829A2CD4D4C1704BABD7D7602@SEYPR01MB4221.apcprd01.prod.exchangelabs.com/
+
+Changed from v1
+- add SoC prefix (k1)
+- relicense dt-binding header
+- misc fixes and style improvements for dt-binding
+- document spacemit,k1-syscon
+- implement all APBS, MPMU, APBC and APMU clocks
+- code cleanup
+- Link to v1: https://lore.kernel.org/all/SEYPR01MB4221B3178F5233EAB5149E41D7902@SEYPR01MB4221.apcprd01.prod.exchangelabs.com/
+
+Haylen Chu (3):
+  dt-bindings: clock: spacemit: Add clock controllers of Spacemit K1 SoC
+  dt-bindings: soc: spacemit: Add spacemit,k1-syscon
+  clk: spacemit: Add clock support for Spacemit K1 SoC
+
+ .../bindings/clock/spacemit,k1-ccu.yaml       |   57 +
+ .../soc/spacemit/spacemit,k1-syscon.yaml      |   86 +
+ drivers/clk/Kconfig                           |    1 +
+ drivers/clk/Makefile                          |    1 +
+ drivers/clk/spacemit/Kconfig                  |   20 +
+ drivers/clk/spacemit/Makefile                 |    5 +
+ drivers/clk/spacemit/ccu-k1.c                 | 1747 +++++++++++++++++
+ drivers/clk/spacemit/ccu_common.h             |   62 +
+ drivers/clk/spacemit/ccu_ddn.c                |  146 ++
+ drivers/clk/spacemit/ccu_ddn.h                |   85 +
+ drivers/clk/spacemit/ccu_mix.c                |  296 +++
+ drivers/clk/spacemit/ccu_mix.h                |  336 ++++
+ drivers/clk/spacemit/ccu_pll.c                |  198 ++
+ drivers/clk/spacemit/ccu_pll.h                |   80 +
+ include/dt-bindings/clock/spacemit,k1-ccu.h   |  246 +++
+ 15 files changed, 3366 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/spacemit,k1-ccu.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
+ create mode 100644 drivers/clk/spacemit/Kconfig
+ create mode 100644 drivers/clk/spacemit/Makefile
+ create mode 100644 drivers/clk/spacemit/ccu-k1.c
+ create mode 100644 drivers/clk/spacemit/ccu_common.h
+ create mode 100644 drivers/clk/spacemit/ccu_ddn.c
+ create mode 100644 drivers/clk/spacemit/ccu_ddn.h
+ create mode 100644 drivers/clk/spacemit/ccu_mix.c
+ create mode 100644 drivers/clk/spacemit/ccu_mix.h
+ create mode 100644 drivers/clk/spacemit/ccu_pll.c
+ create mode 100644 drivers/clk/spacemit/ccu_pll.h
+ create mode 100644 include/dt-bindings/clock/spacemit,k1-ccu.h
+
+
+base-commit: 2d5404caa8c7bb5c4e0435f94b28834ae5456623
+prerequisite-patch-id: 47dcf6861f7d434d25855b379e6d7ef4ce369c9c
+prerequisite-patch-id: 77787fe82911923aff15ccf565e8fa451538c3a6
+prerequisite-patch-id: b0bdb1742d96c5738f05262c3b0059102761390b
+prerequisite-patch-id: 3927d39d8d77e35d5bfe53d9950da574ff8f2054
+prerequisite-patch-id: a98039136a4796252a6029e474f03906f2541643
+prerequisite-patch-id: c95f6dc0547a2a63a76e3cba0cf5c623b212b4e6
+prerequisite-patch-id: 66e750e438ee959ddc2a6f0650814a2d8c989139
+prerequisite-patch-id: 29a0fd8c36c1a4340f0d0b68a4c34d2b8abfb1ab
+prerequisite-patch-id: 0bdfff661c33c380d1cf00a6c68688e05f88c0b3
+prerequisite-patch-id: 99f15718e0bfbb7ed1a96dfa19f35841b004dae9
 -- 
-With best wishes
-Dmitry
+2.47.0
+
 
