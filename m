@@ -1,243 +1,147 @@
-Return-Path: <devicetree+bounces-124700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124701-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43F5A9D99E6
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 15:47:44 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CBD77166A67
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 14:47:40 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E7BA15575D;
-	Tue, 26 Nov 2024 14:47:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="TuPA1sWR"
-X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C3D89D99E8
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 15:48:43 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD9BC28F5;
-	Tue, 26 Nov 2024 14:47:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6073F284426
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 14:48:42 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFD051B85C2;
+	Tue, 26 Nov 2024 14:48:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CxNbk1Ii"
+X-Original-To: devicetree@vger.kernel.org
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B286A28F5;
+	Tue, 26 Nov 2024 14:48:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732632456; cv=none; b=qT6PstM7DtJr7xkAKAqshYN91kbvC7e0SCrKFyJd28GeuAIiF6nLUE0lIGct37ClbqhcWmLmp/7DBZ0dIDC5NHER5myuYXLC9zc93EoJ6qUzW7CVCIWusPzE4T2++PRyaAqnsWL+dKXybC6lY5D7PlVijwMEm/cbu2TN13Ts+OU=
+	t=1732632518; cv=none; b=G7OQ0ag38186cGXj0+e/S+ZJc3SwUYNrZpjQsjoE9H6ZU7kk44c6dZePZ9HirO8GR8zbR70GRmqlF9GP3OXY/ko1lnKsZtFtUo22vxpJ+3W+NgIaJa7fbFbe+cDpKUjw8SNEPdb62Vjle9ZUmpRs6pqCo+CnTA88Y/AP2cjsj44=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732632456; c=relaxed/simple;
-	bh=wAz1xDCKhJgqk5DwEqBMcBkCLcJyc51V1pm8kWdzdAc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=W1Pm/lB0WOiphHvTD52ExlkQJ1o6Ij2kuCZ7b73ljxfL91foRFQHyYzCvYzZ4Ue+n4tsx2IUctx6MARLwwLErtapOFCsmTQ+KDChaSUj1E453/+2s4gfqdmLF7v51polYPUU2lgpwpjf9vxgu8upFYvFc7b4kOmXpZVhC7kpkHI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=TuPA1sWR; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=OwjmPcSu14wQCPYgJgge82L9Ll6baGo005ISnWVoQlM=; b=TuPA1sWR/GwtWBHkIHSECIpxQi
-	Ghc2I/6IumfrTaeGyMaVa8vs0aaH6NeLNexkbnar4QlVWgmaOUelJYUl9h0nj9Y7u+t2lpgt6zeL+
-	fwxZCNj+4sivu83rVU0tYihZoea1gWRDTE7/VeOPMMFTXhbDjzN2LckhvCYJbB9pNpuN/ZmrAytBd
-	2Uf5gT0UPncgU4ZqzK9ZOW80lIaYRJFt8DR64Se0/qd3qHcqkPewXV3hxws/FAB/HEYlPDa8z0yR9
-	bCGeKwhsjK2FIBJyiC2wiQySkPTz0D9AIIhlxTZhtvDLHSK1B/rYU3HAcOFCibU9JmW+2Rh75cFBG
-	jHqwEgKA==;
-Received: from i5e86190f.versanet.de ([94.134.25.15] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tFwq3-0000rm-TY; Tue, 26 Nov 2024 15:46:51 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: neil.armstrong@linaro.org
-Cc: andy.yan@rock-chips.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andrzej.hajda@intel.com, rfoss@kernel.org,
- Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, quentin.schulz@cherry.de,
- Heiko Stuebner <heiko.stuebner@cherry.de>
-Subject:
- Re: [PATCH 1/3] drm/bridge/synopsys: Add MIPI DSI2 host controller bridge
-Date: Tue, 26 Nov 2024 15:46:50 +0100
-Message-ID: <1909309.CQOukoFCf9@diego>
-In-Reply-To: <881f2820-ff18-4d60-8bf3-f8cca1be5914@linaro.org>
-References:
- <20241106123304.422854-1-heiko@sntech.de>
- <20241106123304.422854-2-heiko@sntech.de>
- <881f2820-ff18-4d60-8bf3-f8cca1be5914@linaro.org>
+	s=arc-20240116; t=1732632518; c=relaxed/simple;
+	bh=UWMmLOb48Cslo60AINMqs75+15z/Wodb7L/G+tl2Wv8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jyMn6QJXYQivWC6aEw8KwY1e0yqvopLs2wdddd6Ch5T2sAysIDad4S7KEFsV9g8AYCwmVfSQ2//njOHcWcRjr+hkOF1ZAJARXVUah9Xo/4YPQ8Xj5ZY/L2RTzAbN2hZokTG5Or+/f6A/sjvNrTaNzXNvmtib2GDq+gTtZXqwRho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CxNbk1Ii; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C9ADC4CECF;
+	Tue, 26 Nov 2024 14:48:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732632518;
+	bh=UWMmLOb48Cslo60AINMqs75+15z/Wodb7L/G+tl2Wv8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=CxNbk1Ii4ro6NglDuQN89WyHwk+nQlPCJ6vYcEOLlSktW4qAzbsOR74hd9CB2Kk1Y
+	 0DSfBidSV9t9i9gftZsjLcfTzLZgzU5TbL77cjxdlmzZ5ELAwCIw3Z6BkyUq8Gi9Me
+	 nLV3Mo7HLL3+Qwf4O1G8YW8BgSxprULQK6zWYXJM5zpQIQN/A2aDqIcPaCwvg+rJsu
+	 Iwe/NRySAmdUhMXHkcr+LR489LFJ1vQCtZURJ414KOAvhvNwMxIGLIWGb8wLvseDdY
+	 uX8P3KKxMDra9qODsu9/SsRb3vqrHejJyHXJRM7aDr/Wxu8/bEQn2ZR0H52Kh2TZcw
+	 eznDa/zxgeUnQ==
+Message-ID: <64bf96a3-e28c-4c47-b7b3-e227bbaa7aee@kernel.org>
+Date: Tue, 26 Nov 2024 15:48:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/3] dt-bindings: clock: spacemit: Add clock
+ controllers of Spacemit K1 SoC
+To: Haylen Chu <heylenay@4d2.org>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Haylen Chu <heylenay@outlook.com>
+Cc: linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Inochi Amaoto <inochiama@outlook.com>, Chen Wang <unicornxdotw@foxmail.com>,
+ Jisheng Zhang <jszhang@kernel.org>
+References: <20241126143125.9980-2-heylenay@4d2.org>
+ <20241126143125.9980-3-heylenay@4d2.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241126143125.9980-3-heylenay@4d2.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On 26/11/2024 15:31, Haylen Chu wrote:
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - spacemit,k1-ccu-apbs
+> +      - spacemit,k1-ccu-mpmu
+> +      - spacemit,k1-ccu-apbc
+> +      - spacemit,k1-ccu-apmu
+> +
+> +  clocks:
+> +    maxItems: 4
+> +
+> +  clock-names:
+> +    items:
+> +      - const: osc_32k
 
-Am Mittwoch, 6. November 2024, 14:54:39 CET schrieb neil.armstrong@linaro.org:
-> > +#define UPDATE(v, h, l)			(((v) << (l)) & GENMASK((h), (l)))
-> 
-> I'm not super fan of this macro, overall I thinkg you should switch to
-> regmap and make use of regmap_update_bits and drop dsi2_write/read wrappers
-> to readl/writel.
+osc
 
-Yep you're right. That macro acutally is just FIELD_PREP in disguise ;-)
-So I've gone with that (and regmap).
+> +      - const: vctcxo_1m
+> +      - const: vctcxo_3m
+> +      - const: vctcxo_24m
+> +
+> +  spacemit,mpmu:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle to the syscon managing "Main PMU (MPMU)" registers. It is used to
+> +      check PLL lock status.
 
+Why your example does not have it? Example code is supposed to be complete.
 
-> <snip>
-> 
-> > +
-> > +static struct dw_mipi_dsi2 *
-> > +__dw_mipi_dsi2_probe(struct platform_device *pdev,
-> > +		     const struct dw_mipi_dsi2_plat_data *plat_data)
-> > +{
-> > +	struct device *dev = &pdev->dev;
-> > +	struct reset_control *apb_rst;
-> > +	struct dw_mipi_dsi2 *dsi2;
-> > +	int ret;
-> > +
-> > +	dsi2 = devm_kzalloc(dev, sizeof(*dsi2), GFP_KERNEL);
-> > +	if (!dsi2)
-> > +		return ERR_PTR(-ENOMEM);
-> > +
-> > +	dsi2->dev = dev;
-> > +	dsi2->plat_data = plat_data;
-> > +
-> > +	if (!plat_data->phy_ops->init || !plat_data->phy_ops->get_lane_mbps ||
-> > +	    !plat_data->phy_ops->get_timing)
-> > +		return dev_err_ptr_probe(dev, -ENODEV, "Phy not properly configured\n");
-> > +
-> > +	if (!plat_data->base) {
-> > +		dsi2->base = devm_platform_ioremap_resource(pdev, 0);
-> > +		if (IS_ERR(dsi2->base))
-> > +			return ERR_PTR(-ENODEV);
-> > +	} else {
-> > +		dsi2->base = plat_data->base;
-> > +	}
-> > +
-> > +	dsi2->pclk = devm_clk_get(dev, "pclk");
-> > +	if (IS_ERR(dsi2->pclk))
-> > +		return dev_err_cast_probe(dev, dsi2->pclk, "Unable to get pclk\n");
-> > +
-> > +	dsi2->sys_clk = devm_clk_get(dev, "sys");
-> > +	if (IS_ERR(dsi2->sys_clk))
-> > +		return dev_err_cast_probe(dev, dsi2->sys_clk, "Unable to get sys_clk\n");
-> > +
-> > +	/*
-> > +	 * Note that the reset was not defined in the initial device tree, so
-> > +	 * we have to be prepared for it not being found.
-> > +	 */
-> > +	apb_rst = devm_reset_control_get_optional_exclusive(dev, "apb");
-> > +	if (IS_ERR(apb_rst))
-> > +		return dev_err_cast_probe(dev, apb_rst, "Unable to get reset control\n");
-> > +
-> > +	if (apb_rst) {
-> > +		ret = clk_prepare_enable(dsi2->pclk);
-> > +		if (ret) {
-> > +			dev_err(dev, "%s: Failed to enable pclk\n", __func__);
-> > +			return ERR_PTR(ret);
-> > +		}
-> > +
-> > +		reset_control_assert(apb_rst);
-> > +		usleep_range(10, 20);
-> > +		reset_control_deassert(apb_rst);
-> > +
-> > +		clk_disable_unprepare(dsi2->pclk);
-> > +	}
-> > +
-> > +	pm_runtime_enable(dev);
-> > +
-> > +	dsi2->dsi_host.ops = &dw_mipi_dsi2_host_ops;
-> > +	dsi2->dsi_host.dev = dev;
-> > +	ret = mipi_dsi_host_register(&dsi2->dsi_host);
-> > +	if (ret) {
-> > +		dev_err(dev, "Failed to register MIPI host: %d\n", ret);
-> > +		pm_runtime_disable(dev);
-> > +		return ERR_PTR(ret);
-> > +	}
-> > +
-> > +	dsi2->bridge.driver_private = dsi2;
-> > +	dsi2->bridge.funcs = &dw_mipi_dsi2_bridge_funcs;
-> > +	dsi2->bridge.of_node = pdev->dev.of_node;
-> > +
-> > +	return dsi2;
-> > +}
-> > +
-> > +static void __dw_mipi_dsi2_remove(struct dw_mipi_dsi2 *dsi2)
-> > +{
-> > +	mipi_dsi_host_unregister(&dsi2->dsi_host);
-> > +
-> > +	pm_runtime_disable(dsi2->dev);
-> > +}
-> > +
-> > +/*
-> > + * Probe/remove API, used from platforms based on the DRM bridge API.
-> > + */
-> > +struct dw_mipi_dsi2 *
-> > +dw_mipi_dsi2_probe(struct platform_device *pdev,
-> > +		   const struct dw_mipi_dsi2_plat_data *plat_data)
-> > +{
-> > +	return __dw_mipi_dsi2_probe(pdev, plat_data);
-> > +}
-> > +EXPORT_SYMBOL_GPL(dw_mipi_dsi2_probe);
-> > +
-> > +void dw_mipi_dsi2_remove(struct dw_mipi_dsi2 *dsi2)
-> > +{
-> > +	__dw_mipi_dsi2_remove(dsi2);
-> > +}
-> > +EXPORT_SYMBOL_GPL(dw_mipi_dsi2_remove);
-> 
-> Since it's not use yet, you should probably drop those since it's dead
-> code.
-
-Though it is used. The Rockchip glue in patch 3 calls 
-	dsi2->dmd = dw_mipi_dsi2_probe(pdev, &dsi2->pdata);
-in its dw_mipi_dsi2_rockchip_probe() and
-	dw_mipi_dsi2_remove(dsi2->dmd);
-in its dw_mipi_dsi2_rockchip_remove() for the whole bridge setup
-
-Similarly the below bind/unbind functions are called for the bridge-attach
-from the component part of the Rockchip glue.
-
-Which is the same way the dsi1 driver handles things right now.
-
-
-> > +
-> > +/*
-> > + * Bind/unbind API, used from platforms based on the component framework.
-> > + */
-> > +int dw_mipi_dsi2_bind(struct dw_mipi_dsi2 *dsi2, struct drm_encoder *encoder)
-> > +{
-> > +	return drm_bridge_attach(encoder, &dsi2->bridge, NULL, 0);
-> > +}
-> > +EXPORT_SYMBOL_GPL(dw_mipi_dsi2_bind);
-> > +
-> > +void dw_mipi_dsi2_unbind(struct dw_mipi_dsi2 *dsi2)
-> > +{
-> > +}
-> > +EXPORT_SYMBOL_GPL(dw_mipi_dsi2_unbind);
-
-[...]
-
-> > +struct dw_mipi_dsi2 *dw_mipi_dsi2_probe(struct platform_device *pdev,
-> > +					const struct dw_mipi_dsi2_plat_data *plat_data);
-> > +void dw_mipi_dsi2_remove(struct dw_mipi_dsi2 *dsi2);
-> > +int dw_mipi_dsi2_bind(struct dw_mipi_dsi2 *dsi2, struct drm_encoder *encoder);
-> > +void dw_mipi_dsi2_unbind(struct dw_mipi_dsi2 *dsi2);
-> > +
-> > +#endif /* __DW_MIPI_DSI2__ */
-> 
-> Overall the driver is very close to dw-mipi-dsi, si it's overall good!
-
-that was the intention ... so that I don't introduce issues that were
-already solved elsewhere ;-) .
-
-Heiko
-
-
+Best regards,
+Krzysztof
 
