@@ -1,117 +1,156 @@
-Return-Path: <devicetree+bounces-124763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEAF39D9D08
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 19:00:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B70B39D9D0E
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 19:03:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 94173281A50
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 18:00:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7745D2818A0
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 18:03:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87CEC1DAC92;
-	Tue, 26 Nov 2024 18:00:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B84A1DA2E5;
+	Tue, 26 Nov 2024 18:03:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DzTY7WiW"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QQQqCRPe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A128BA3F;
-	Tue, 26 Nov 2024 18:00:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A906BBA3F;
+	Tue, 26 Nov 2024 18:03:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732644046; cv=none; b=pHjs7zfPQ0olQVVMqTjDdSzReB+51KtzCCYFaH+QP2Rr81xGgWtuROLSTMryHj+8q3cZyhSh1xN4ge2BDbyaWYh/0DkzZWUj5r1gElGPIsvHiDNCRsNS19aAHmEQO9nwjjlP8yBS9o19bYiRI3yW5WKTDHsR/6I42JWr9wYodOY=
+	t=1732644195; cv=none; b=YHpBQNu64wNbWvgUQ4d1QVQU0DyYsktE3A4MdSe8M8yKtOdGVj1j9BSv4nLZIXi3zM/z2bKuMlBBY/rlHkBT3FPQJtn6AGFWqUp7dFlw5izlsO4VBNCTZHtLDfxykwcFgUaXEjkI9u9kVCqp2MeF3PyQa7tBeuebDj4x2wrRFQc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732644046; c=relaxed/simple;
-	bh=G8Ue2YK7XyQ4L5ZvfEYu5UVIaIPbpJF33cbai+gBe8A=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fOyWI0UUeknMvcF+BmSgjxlG420FvMoH1hDRamLccqeGj1HbHHEQwlydCpMQQG8fptmUgrAQlYMwgrcgyYM8h9574ZZcGiUS2FOiUuqsiScrStF/Ygc9ON/gSmYQovpUgi7eZ4FPC7bx0tBiGtAMPn7jEcS2XifIKhip0t3yYSU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DzTY7WiW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8754C4CECF;
-	Tue, 26 Nov 2024 18:00:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732644046;
-	bh=G8Ue2YK7XyQ4L5ZvfEYu5UVIaIPbpJF33cbai+gBe8A=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=DzTY7WiW6agFtu1F9rj3T0NU74qthQblOg/IUQc0WeDagJTIFEDPv3M3HdS65PzP2
-	 rYZsSXDWF//Nz3Bi5AiuP40qkSwjwaxG4G6cPAalOcMWY4mU7G6KU65amdxslHENDB
-	 ERxsiPCJ75CHZg4CBdVXokuwtIzw9F9VhKgp0+k8USTzPyFVyuitfegIZ7qFBZz81V
-	 8LiFBQEDXUEZYp+jqJ40rtwJ6Ldy9FNfWHgJXDR/QvxC2KYyZSwFB/ZcgO9R+mBy0C
-	 GmWufpQMv+2ytlRnxviUtvrdDyBewmCw8UnLnob5QrruFBAb0jHzxY4QJIMsJAvGFT
-	 wBeqoAAzXfrVQ==
-Date: Tue, 26 Nov 2024 18:00:35 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Guillaume Stols <gstols@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, dlechner@baylibre.com, jstephan@baylibre.com,
- aardelean@baylibre.com, adureghello@baylibre.com
-Subject: Re: [PATCH 0/9] Add support for Software mode on AD7606's iio
- backend driver
-Message-ID: <20241126180035.4a2afb01@jic23-huawei>
-In-Reply-To: <20241121-ad7606_add_iio_backend_software_mode-v1-0-8a693a5e3fa9@baylibre.com>
-References: <20241121-ad7606_add_iio_backend_software_mode-v1-0-8a693a5e3fa9@baylibre.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1732644195; c=relaxed/simple;
+	bh=5PqnkY0UT/Y8RerUW9AMiSamToUq+LkOdwsrcV1qTrY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=X3WMSi1MREBM/CGA5b4Eku+scjMnIjQdHLppjO7x+DmOOtjjQWcd5ABgnyni9TImorU2VCkUZ31kZVuKBCnEf6kdASSZswu0zbXMnfc6hBvtJKK0a4ScCNpe0GxOkKsX2jchp0UrRIAiJNvqN/QAIWLlwbZYKm1w/6GSiLHpMlE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QQQqCRPe; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AQGNRVh014563;
+	Tue, 26 Nov 2024 18:03:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	eLFfmwMNX8oACc1OcseR0boZkSPFH7gQpMUdOiOOJSc=; b=QQQqCRPeEDNqE9c4
+	bpVe7DaFJ/sRgOp3FJtvlqDqGdwzeINRNoKX03RfVS65xNUPEgcg5qnP+UHAnfz1
+	BI+B2CSjaOizS+KU2ByvM0CCsed5/YfvZklV4kPTEYg2OvAIOVbgP2CSNyWoyDOQ
+	fEyWRnXM4PhPs72JFkPpC1AoZ+TyDAqyy+QAJsBfbHg4raq+Ai3Ii0lTNCpt6xf4
+	ZHQGK+OkU1j5In4Z6xTEdt0sMMNyRqQ1r2a/BKx/UKcoxYSrFp/lWm3JU+j7H7lC
+	A+P9jalBPzwn9nscnnaC1JHjZr8TcRWnO2lXA3zV02ohvLLHlYHL1y72TWmewxhq
+	HbBWvA==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 434nyg52gy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 26 Nov 2024 18:03:09 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AQI38Nu017639
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 26 Nov 2024 18:03:08 GMT
+Received: from [10.216.42.0] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 26 Nov
+ 2024 10:03:04 -0800
+Message-ID: <ff7c9b83-0ac7-43a0-a86a-2fed66728a32@quicinc.com>
+Date: Tue, 26 Nov 2024 23:32:59 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/3] arm64: dts: qcom: sar2130p: add support for
+ SAR2130P
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, Konrad Dybcio
+	<konradybcio@kernel.org>
+References: <20241102-sar2130p-dt-v4-0-60b7220fd0dd@linaro.org>
+ <20241102-sar2130p-dt-v4-2-60b7220fd0dd@linaro.org>
+Content-Language: en-US
+From: Krishna Kurapati <quic_kriskura@quicinc.com>
+In-Reply-To: <20241102-sar2130p-dt-v4-2-60b7220fd0dd@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: rAmCluWhWbtDopzYsEijdRKagTKcDR2Y
+X-Proofpoint-ORIG-GUID: rAmCluWhWbtDopzYsEijdRKagTKcDR2Y
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
+ mlxlogscore=999 clxscore=1015 mlxscore=0 adultscore=0 lowpriorityscore=0
+ impostorscore=0 suspectscore=0 malwarescore=0 bulkscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411260143
 
-On Thu, 21 Nov 2024 10:18:22 +0000
-Guillaume Stols <gstols@baylibre.com> wrote:
 
-> This series adds the support for software mode when the ADC is used in
-> iio_backend mode.
 
-I'm not sure form this description what "software mode" means.
-
-Perhaps some more info on that for v2?
-
-> The bus access is based on Angelo's ad3552 implementation, that is we
-> have a particular compatible for the backend (here axi-adc) version
-> supporting the ad7606's register writing, and the ad7606 is defined as a
-> child node of the backend in the devicetree.
-> Small changes are added to make the code a bit more straightforward to
-> understand, and more compact.
+On 11/2/2024 8:33 AM, Dmitry Baryshkov wrote:
+> Add DT file for the Qualcomm SAR2130P platform.
 > 
-> Signed-off-by: Guillaume Stols <gstols@baylibre.com>
+> Co-developed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
-> Guillaume Stols (9):
->       iio: adc: ad7606: Fix hardcoded offset in the ADC channels
->       dt-bindings: iio: dac: adi-axi-adc: Add ad7606 variant
->       iio:adc: ad7606: Move the software mode configuration
->       iio: adc: ad7606: Move software functions into common file
->       iio: adc: adi-axi-adc: Add platform children support
->       iio: adc: adi-axi-adc: Add support for AD7606 register writing
->       iio: adc: ad7606: change r/w_register signature
->       iio: adc: ad7606: Simplify channel macros
->       iio: adc: ad7606: Add support for writing registers when using backend
-> 
->  .../devicetree/bindings/iio/adc/adi,axi-adc.yaml   |   7 +
->  drivers/iio/adc/ad7606.c                           | 202 +++++++++++++++++----
->  drivers/iio/adc/ad7606.h                           | 113 ++++++++----
->  drivers/iio/adc/ad7606_bi.h                        |  16 ++
->  drivers/iio/adc/ad7606_par.c                       |  58 +++++-
->  drivers/iio/adc/ad7606_spi.c                       | 141 +-------------
->  drivers/iio/adc/adi-axi-adc.c                      | 178 +++++++++++++++++-
->  7 files changed, 500 insertions(+), 215 deletions(-)
-> ---
-> base-commit: 33d38f912d5ca05501c9bbfe14e0150da9ca85b6
-> change-id: 20241009-ad7606_add_iio_backend_software_mode-567d9c392243
-> 
-> Best regards,
-> --
-> Guillaume Stols <gstols@baylibre.com>
-> 
+>   arch/arm64/boot/dts/qcom/sar2130p.dtsi | 3123 ++++++++++++++++++++++++++++++++
+>   1 file changed, 3123 insertions(+)
 > 
 
+[...]
+
+> +		usb_dp_qmpphy: phy@88e8000 {
+> +			compatible = "qcom,sar2130p-qmp-usb3-dp-phy";
+> +			reg = <0x0 0x088e8000 0x0 0x3000>;
+> +
+> +			clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
+> +				 <&rpmhcc RPMH_CXO_CLK>,
+> +				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
+> +				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
+> +			clock-names = "aux", "ref", "com_aux", "usb3_pipe";
+> +
+> +			power-domains = <&gcc USB3_PHY_GDSC>;
+> +
+> +			resets = <&gcc GCC_USB3_PHY_PRIM_BCR>,
+> +				 <&gcc GCC_USB3_DP_PHY_PRIM_BCR>;
+> +			reset-names = "phy", "common";
+> +
+> +			#clock-cells = <1>;
+> +			#phy-cells = <1>;
+> +
+> +			orientation-switch;
+> +
+> +			status = "disabled";
+> +
+
+Hi Dmitry,
+
+  Sorry for asking this question after code got merged. I forgot about 
+asking this last time when I commented on your patch and provided the HS 
+Phy IRQ value.
+
+  In SAR2130P, I remember that the lane orientation is reversed. As in 
+on normal targets, if the orientatin GPIO reads "0" it means LANE_A but 
+on SAR2130 it means LANE_B. Can you confirm if superspeed was tested 
+only in one orientation only.
+
+  I can push code for setting orienation properly for this target if you 
+can confirm that orienation is read reverse on SAR2130P.
+
+Regards,
+Krishna,
 
