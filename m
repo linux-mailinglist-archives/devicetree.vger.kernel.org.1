@@ -1,223 +1,137 @@
-Return-Path: <devicetree+bounces-124606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124607-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19CEE9D95FC
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 12:06:48 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADCEE9D961D
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 12:22:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9962DB288E7
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 11:00:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D8632B22E35
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 11:20:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0CEB1BD517;
-	Tue, 26 Nov 2024 11:00:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 255581CDA19;
+	Tue, 26 Nov 2024 11:20:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AQbq9R87"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F3EF366
-	for <devicetree@vger.kernel.org>; Tue, 26 Nov 2024 11:00:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEFF31CCEE7;
+	Tue, 26 Nov 2024 11:20:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732618810; cv=none; b=j3UwgY0+AXCBl82baXjS72DN5kZi/bLwkPUKfm1cMu6RCsTUJMmX38/ZMCQjeH7+sC93vmW5akWn2sVNNMuwWVF5lf/pTCCSvZBMhT25bYHqpYnxT2c/fm/snMuXlKv1sAJpAKv95D3YcxAnfOvbXlQDmgdJA/1lN3ZjNgLme0o=
+	t=1732620030; cv=none; b=jgwOVpC+guaqMQNn/7gCPciIwAMF/lfGb6l+NaPxln3fS3uSHC0j5qlzdTA/eaSFJZLbD1u1cBJudNCnCsP4lgwptbmFrXJ2h1OQGUTodPTrKhALXhyHimNMVzlNuaisgoiEPMqNvQ+mmXG1vIOJdfv8RCxpoCKxK4TRFle2+uQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732618810; c=relaxed/simple;
-	bh=KZOy2PsGSLeRARy7LZDQ2bm+JG1QxNV2pkuwwj66+wk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fCU6wbll0PsPPrJeVp713n2Gm6f6WdZsIWiiKNd7SwuJ6Ih8mkhRF30YhTgZhDPBv9vv/SoTM6JI0jM3wDTVoFY7gD8QLOx9rcdey6ZEX37SP9nxfERGCv9IxoXdxUNwfTko8a/6kGAA4/70y6qqUv8+hx4VsYe8y5z5zPzawSI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tFtIG-0004nI-4y; Tue, 26 Nov 2024 11:59:44 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tFtIE-000EZ5-2X;
-	Tue, 26 Nov 2024 11:59:43 +0100
-Received: from pengutronix.de (pd9e59fec.dip0.t-ipconnect.de [217.229.159.236])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 2BC9A37D91F;
-	Tue, 26 Nov 2024 10:59:43 +0000 (UTC)
-Date: Tue, 26 Nov 2024 11:59:42 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>, 
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, NXP S32 Linux <s32@nxp.com>, 
-	imx@lists.linux.dev, Christophe Lizzi <clizzi@redhat.com>, 
-	Alberto Ruiz <aruizrui@redhat.com>, Enric Balletbo <eballetb@redhat.com>, 
-	Frank Li <Frank.Li@nxp.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: can: fsl,flexcan: add S32G2/S32G3
- SoC support
-Message-ID: <20241126-independent-crocodile-of-finesse-106009-mkl@pengutronix.de>
-References: <20241125163103.4166207-1-ciprianmarian.costea@oss.nxp.com>
- <20241125163103.4166207-2-ciprianmarian.costea@oss.nxp.com>
- <y2fbsxg4pney2iapzcdooxyz6l3pmw6ms2ddupf637svitelbt@wthu23ld5ryq>
+	s=arc-20240116; t=1732620030; c=relaxed/simple;
+	bh=6vAVYKTiBM1cHHQpgfvxU5XHJSx1M1+pXINMLRKkf7w=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=c+bsToiqlE5wUGsVXCY9PugjXXkDLNpZa7CkLiwf1mpTbJYFtRwxY5P6zfYH5XWi4bheYSwdH0xxJLuxIKOXb0R2G3cVXuFIbzHz7PAZjJPxtZ1WX73KS2cPkMm+3d4v4EzaYLCBaZEOSfNoucZlpkUrmU+4xsH0LbeCqYsPANw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AQbq9R87; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-21200c749bfso53588635ad.1;
+        Tue, 26 Nov 2024 03:20:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1732620027; x=1733224827; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=sEBwZCx8NPUgEcdmfQO/S+vdhBOxXQpHUc12agCsHis=;
+        b=AQbq9R87dWDrWOG0ejUdLe3CdWrHVhXDSg/NnwrD+cmuTRG3A7X+hKfDXwimEPsYLm
+         aqD/Uk9Tafmc/5TaKdzyI+oi7N6K31klULKrPgGJ/akWQP9dsj19CLa98Ymvh/HzGkaV
+         KyF2X8W8wRtwoGlUJrvghyeSE20d/EqO7zVr+rmK0yoPMDtmUoOzmQnB+mYK7oPmqmS4
+         6SIuiq43PIUa5KuMI3r5sVCzaQ/ThfqqWeFfnmYIVT+35YTOQAxC7inPsEKiZDvc1+dX
+         kHqSREAzKkv0rVkdfVkoNBKCB8WmtL2fHsvuanGI4Yv9CzA4ucdqs9lHyEVl4VI8GJH8
+         xNog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732620027; x=1733224827;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sEBwZCx8NPUgEcdmfQO/S+vdhBOxXQpHUc12agCsHis=;
+        b=Tp2D1BoTJGfREJ9eJhxaM7P93wULxp72RvnkezKSTEJ+vFMZ0WOc8OMBWGz2mAwFjW
+         ZoBh7JVWFOTS9CyOc/okHmbtu7WImQzFR/mq/g/oLMmBuntvq0B1U06lkkJ8uLQ/UQFY
+         DPASXtaL0jfVHP2HvSeRFWq4+Oc4VrImDfIyxToZdfijyZ1K8WlGblEDtCuIJvmQCJB1
+         V434D2SC3vDhWXmPQ63UfzGdlTPNKHL4lt+57j6kj4U1i7KL3nvkw2ylpFORepywUI74
+         DUl+d+pgCR0n+F6YvLz4VQm2s360erDPJURWqFfDsKiu+D7GjdK6TlMFp/00NjI3PD9f
+         lFiw==
+X-Forwarded-Encrypted: i=1; AJvYcCU/chxOdOAkKcCrrJWDxlGooX2nffBUdkUMBqykT4XYABz3V36iPbg6xLo3y+DKaOdtAfS7ksoJIHwN@vger.kernel.org, AJvYcCUCbcvTR3taUnjQkzXaPObWUYHiaNHOXcfL38aqW5Y8FBSUytB6evOaIE+0qQuLDLs5n3U4N02Q4xNp6lEr@vger.kernel.org
+X-Gm-Message-State: AOJu0YyQo99GfIRyTAVFP+NUm2gA1T4KIUIUk+7AQFEb4hQEUDV5NwWH
+	ShRzEMj+uP9BBfRYkuiPM/aCFuA1F+tUzGxpw2z7iR4IFv9oY0HmvZwxBPOp
+X-Gm-Gg: ASbGncsy357rNPhukNNCG9Ird6xTSovZdSLV0VNvje2aMetvIqG+WJEV2pcbkJTpBSE
+	6WsBkwU44XARMwNJpxamxOZ7wJ7H98b+iNp58OpLCKUVQ6aBLDD712Ozal5xubADYdi/aQa3htv
+	e/89m8bECYnyKEH8pHh3vfh2b+cVmpq1lvwNXvue+PpsIGywcYZYLICVyD4GuK62nQu2Dz4G7gA
+	vsYgvovX19/93ohraLhZw41vOUCvTM8JCIFgIjNihP/5/392bQnD1gS3CfP8TvTlYGAw+ujZUI0
+	6821QbkqVuFRcntSs7JVnmJMQynRt8Uj2Mb2w/xDHKX8Tgcwa6pPOs8ulVNlTtDM
+X-Google-Smtp-Source: AGHT+IGjrX9bFz6qa84/F16kDGT6fonLi587arQ3HaODJ+5CESb0p6QYyvh+erm3gzBxo60c5al2IA==
+X-Received: by 2002:a17:902:db0f:b0:20c:b485:eda3 with SMTP id d9443c01a7336-2129f2262a6mr206975015ad.20.1732620026715;
+        Tue, 26 Nov 2024 03:20:26 -0800 (PST)
+Received: from jason-System-Product-Name.dhcpserver.bu9bmc.local (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2129dba5d4bsm82210885ad.80.2024.11.26.03.20.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Nov 2024 03:20:26 -0800 (PST)
+From: Jason Hsu <jasonhell19@gmail.com>
+X-Google-Original-From: Jason Hsu <jason-hsu@quantatw.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	joel@jms.id.au,
+	andrew@codeconstruct.com.au,
+	patrick@stwcx.xyz,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Cc: yang.chen@quantatw.com,
+	jerry.lin@quantatw.com,
+	Jason Hsu <jason-hsu@quantatw.com>,
+	Jason-Hsu <jasonhell19@gmail.com>
+Subject: [PATCH v4 0/2] Add Meta(Facebook) Ventura BMC(AST2600)
+Date: Tue, 26 Nov 2024 19:18:15 +0800
+Message-Id: <20241126111817.2331577-1-jason-hsu@quantatw.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="dfsenyb7jvpat5a3"
-Content-Disposition: inline
-In-Reply-To: <y2fbsxg4pney2iapzcdooxyz6l3pmw6ms2ddupf637svitelbt@wthu23ld5ryq>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 
+Add Linux device tree entry related to Meta(Facebook) Ventura specific
+devices connected to BMC(AST2600) SoC.
 
---dfsenyb7jvpat5a3
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 1/3] dt-bindings: can: fsl,flexcan: add S32G2/S32G3
- SoC support
-MIME-Version: 1.0
+Signed-off-by: Jason-Hsu <jasonhell19@gmail.com>
+---
+v1:
+    1. Create ventura dts file.
+    2. Add commit msg.
+    3. Use format-patch to generate patch.
+    4. Add subject prefixes matching the subsystem.
+---
+v2:
+---
+    1. Modify email content.
+v3:
+---
+    1. Add mail list.
+v4:
+    1. Apply git send-email --thread option.
+    2. Sort nodes in the dts alphanumerically. 
+---
+Jason Hsu (1):
+  ARM: dts: aspeed: ventura: add Meta Ventura BMC
 
-On 26.11.2024 08:19:04, Krzysztof Kozlowski wrote:
-> On Mon, Nov 25, 2024 at 06:31:00PM +0200, Ciprian Costea wrote:
-> > From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-> >=20
-> > Add S32G2/S32G3 SoCs compatible strings.
-> >=20
-> > A particularity for these SoCs is the presence of separate interrupts f=
-or
-> > state change, bus errors, MBs 0-7 and MBs 8-127 respectively.
-> >=20
-> > Increase maxItems of 'interrupts' to 4 for S32G based SoCs and keep the
-> > same restriction for other SoCs.
-> >=20
-> > Also, as part of this commit, move the 'allOf' after the required
-> > properties to make the documentation easier to read.
-> >=20
-> > Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-> > Reviewed-by: Frank Li <Frank.Li@nxp.com>
->=20
-> You made multiple changes afterwards, which invalidated the review. See
-> submitting-patches which explain what to do in such case.
->=20
-> > ---
-> >  .../bindings/net/can/fsl,flexcan.yaml         | 46 +++++++++++++++++--
-> >  1 file changed, 42 insertions(+), 4 deletions(-)
->=20
-> ...
->=20
-> >      maxItems: 2
-> > @@ -136,6 +143,37 @@ required:
-> >    - reg
-> >    - interrupts
-> > =20
-> > +allOf:
-> > +  - $ref: can-controller.yaml#
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: nxp,s32g2-flexcan
-> > +    then:
-> > +      properties:
-> > +        interrupts:
-> > +          items:
-> > +            - description:
-> > +                Message Buffer interrupt for mailboxes 0-7
->=20
-> Keep it in one line.
+Jason-Hsu (1):
+  dt-bindings: arm: aspeed: add Meta Ventura board
 
-According to the excel sheet the IRQ is also for the enhanced RX FIFO.
+ .../bindings/arm/aspeed/aspeed.yaml           |   1 +
+ arch/arm/boot/dts/aspeed/Makefile             |   1 +
+ .../aspeed/aspeed-bmc-facebook-ventura.dts    | 883 ++++++++++++++++++
+ 3 files changed, 885 insertions(+)
+ create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dts
 
->=20
-> > +            - description:
-> > +                Interrupt indicating that the CAN bus went to Buss Off=
- state
->=20
-> s/Interrupt indicating that//
-> Buss Off state status?
+-- 
+2.34.1
 
-What about: "Device went into Bus Off state"
-
-However from the excel sheet I read it as a device changes state, to Bus
-Off, finished Bus Off or transition from error counters from < 96 to >=3D 9=
-6.
-
-So "Device state change" would be a more complete description?
-
-> > +            - description:
-> > +                Interrupt indicating that errors were detected on the =
-CAN bus
->=20
-> Error detection?
->=20
-> > +            - description:
-> > +                Message Buffer interrupt for mailboxes 8-127 (ored)
-
-nitpick: all these different events for the other interrupts are ored,
-so IMHO you can omit the "(ored)".
-
-> > +        interrupt-names:
-> > +          items:
-> > +            - const: mb_0-7
->=20
-> Choose one: either underscores or hyphens. Keep it consistent in your
-> bindings.
-
-> > +            - const: state
-> > +            - const: berr
-
-The order of IRQ names is not consistent with the description.
-
-> > +            - const: mb_8-127
->=20
-> Choose one: either underscores or hyphens. Keep it consistent in your
-> bindings.
->=20
-> > +      required:
-> > +        - compatible
-> > +        - reg
-> > +        - interrupts
-> > +        - interrupt-names
->=20
-> What happened to "else:"? Why all other devices now have up to 4 interrup=
-ts?
-
-Do you already have a dtsi snippet for the flexcan nodes? Please make
-sure that the interrupts are correctly mapped.
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---dfsenyb7jvpat5a3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmdFqhsACgkQKDiiPnot
-vG/LTgf+Mwp1q1vMJAIFstJubBhTvSCwOJbyA++jfcLd3MuPutHUalDu0aHMeb77
-A9Us5XLu3d3zwqFhPmSBC2pZYS/71wq7193lTCvD3W/PFx5o5NjHv8QK5Zr2zYIM
-hPVDVWPPJHHLp/sqKCfpOWUbyXvedKLAmtqcSjk11iUiUHisiMUWpgX6KQ9X/a/2
-bIYYgHBm9EVitdDY49MzdwJH6+tE+xZ9qsfrgEgT1QpGDoD1TErBuijcAyxn/LW6
-XSsLhDu/HDsmV499Wj9lSuaHo1+E8Zm6Yy0XVJWdOOO4VisvVOkbFbP51NcEPyez
-7RhKu4VQEpP+m49vw8rQT+wEIy6Vjg==
-=KwpE
------END PGP SIGNATURE-----
-
---dfsenyb7jvpat5a3--
 
