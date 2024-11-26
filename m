@@ -1,174 +1,120 @@
-Return-Path: <devicetree+bounces-124693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124695-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB40C9D99BB
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 15:38:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12FA79D99CD
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 15:42:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CC8B0B284C6
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 14:33:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C0979B29A68
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 14:38:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71AE81D61BB;
-	Tue, 26 Nov 2024 14:32:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 291971D5CC5;
+	Tue, 26 Nov 2024 14:38:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="lUbRFCy8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QWGqYGU+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E90FE1D63C3;
-	Tue, 26 Nov 2024 14:32:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC0001D5AB7;
+	Tue, 26 Nov 2024 14:38:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732631557; cv=none; b=PpN9XoAvdsLn+rbty2Ng6JdNpO+dbhTxeTBAKe/7uRVXI+fOQOlBBHMkconUaIQ0U6FHkz+FHH34V8YibwVFXUMQIrvgW/7I+ZtfxvgyTa8TYYNx1DvoixG4bsKpygtPYRcmaMHR8Jw5wqOGQaNfvVI3RoQPvlHONyBVdUFPgVM=
+	t=1732631914; cv=none; b=MlAZjHVzTEBgv3leZR520gegyjfSeQigOkBVd2c/jwtGST9WgeFybcm9lu5bVKjmuroAt84hdH0zrgW7jCrjEjD5I9xpgh6BFx1S9hrcvbeC0b9ckKgDJwmHrVTVLowWG5aoispdo4soBvzOxrltcAcl8CgNLlNOxj7YouOsKxs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732631557; c=relaxed/simple;
-	bh=tZ6X4oREnIGl6HAYFDdpLL5qeg3Z/HDLf14vPOueGwI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=PWnYBttFektqbmd2ha79RzcKJUYLdIR4d6q70oN79jjdUQjlNtI98qRx7dGbYB0Jmcn3HE3Aq3aTMtFMrKDLi1s/qtdTk2gg620caMB1IS37USTUlzzbRBP+UN9TyuWd6HvONfDoy1yLIM0vewzE+At2HozMeRwbTy0ljnKLI24=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=lUbRFCy8; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AQ9IGMl002756;
-	Tue, 26 Nov 2024 14:32:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	0McT3u2UtBYIGESRseYSXbKWBEqm2xZcNgozQTddrsw=; b=lUbRFCy8kfQr/wAF
-	HD/UycUSx5odBQglea4Mc9yqRJv75MJnbGxE2HEwizcnYDt4BdiKN4OPFk8rkoQl
-	hyx3NjEXZo2r8+VwYknMwFUF7R+PTQ4L4chH2OHB+tP2fQokbLej1gmtSl6ojp7G
-	70SL3P7fiPjQ5bGB6WIyVB4CuDpFj+09X04pHA+8ASuZGAfjEvSOrqxhNUSJVbWw
-	AY/Dl8YWPqchFNB4g2r2sHKOHQ97bhy1LMb90injovp3LJp4OstCo+jHV1cUJ4uv
-	JkxVLcCep8sMch2ElI1FD8XQQKbwTN04Ftw24e5QhllTANwEtStcFHHGSKARRIf4
-	qdp/BA==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4334rd8n2s-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 26 Nov 2024 14:32:21 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AQEWKI8025940
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 26 Nov 2024 14:32:20 GMT
-Received: from [10.216.49.153] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 26 Nov
- 2024 06:32:13 -0800
-Message-ID: <9f25f7bb-9c3e-4c26-ac54-6b467bb1811d@quicinc.com>
-Date: Tue, 26 Nov 2024 20:02:10 +0530
+	s=arc-20240116; t=1732631914; c=relaxed/simple;
+	bh=gaEdBLAIz7P49l/o5H51QYLoUNT4ajXgna3oxySU6X0=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=aKD0hrVrHitCyumxj3nDMMljUqveBMYCEGm2V8+r7qcDg8EMJes4NU+nJ3OEZevQp/9aT3q5Loe49Vwk8mFIvPAu6hucJt5MsibagJ+2OjNL/AIHzse9GA9N/iGjLFQzB5KfB6fYUnG7ki4FBcxFHgcpQ/u8yLG0kYytRNQbnPQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QWGqYGU+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54A0CC4CECF;
+	Tue, 26 Nov 2024 14:38:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732631913;
+	bh=gaEdBLAIz7P49l/o5H51QYLoUNT4ajXgna3oxySU6X0=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=QWGqYGU+7lxDyWQ8GeVwa/EskJ57WuPDmJc0ZGG66OFNNvafWBoJ8aT/8lI8IH+3p
+	 2JIycrGmAyWX72drR7fejKuWiLjLnrXMX22HviT0VACSLoIa578e28lkp+11Abjxa2
+	 o0s9QLoEruipfKCI+6JkM16sxH1F9R7yYWPIK/B9ggQA0SET3+qyBgrmkb2FU/Vpwh
+	 ZJaUHYwB/AUh0ypc/4DMGeTZH4I0thXfJVdrI96162zNPbQIsB6T+yMcb+31Yhk03a
+	 WkgOUV4u90G7dE+WIZSKkmjL8FyvwcJjU0zMEcgQzVdpCo5nCnak43MCmOq4GMeBmr
+	 nAc0kUCrFYyug==
+Date: Tue, 26 Nov 2024 08:38:31 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: display/msm: gpu: Document A612 GPU
-To: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        "Konrad
- Dybcio" <konradybcio@kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Bjorn
- Andersson" <andersson@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20241126-qcs615-gpu-dt-v1-0-a87782976dad@quicinc.com>
- <20241126-qcs615-gpu-dt-v1-1-a87782976dad@quicinc.com>
-Content-Language: en-US
-From: Akhil P Oommen <quic_akhilpo@quicinc.com>
-In-Reply-To: <20241126-qcs615-gpu-dt-v1-1-a87782976dad@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 0t1pvriL9XgHNuWOVPVa1qeq6-ddHv-x
-X-Proofpoint-GUID: 0t1pvriL9XgHNuWOVPVa1qeq6-ddHv-x
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
- bulkscore=0 clxscore=1015 suspectscore=0 priorityscore=1501 malwarescore=0
- spamscore=0 adultscore=0 impostorscore=0 phishscore=0 mlxlogscore=999
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
- definitions=main-2411260117
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: bhelgaas@google.com, cassel@kernel.org, fabrice.gasnier@foss.st.com, 
+ quic_schintav@quicinc.com, linux-pci@vger.kernel.org, lpieralisi@kernel.org, 
+ linux-stm32@st-md-mailman.stormreply.com, kw@linux.com, conor+dt@kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ p.zabel@pengutronix.de, mcoquelin.stm32@gmail.com, krzk+dt@kernel.org, 
+ devicetree@vger.kernel.org, alexandre.torgue@foss.st.com, 
+ manivannan.sadhasivam@linaro.org
+To: Christian Bruel <christian.bruel@foss.st.com>
+In-Reply-To: <20241126130004.1570091-2-christian.bruel@foss.st.com>
+References: <20241126130004.1570091-1-christian.bruel@foss.st.com>
+ <20241126130004.1570091-2-christian.bruel@foss.st.com>
+Message-Id: <173263191160.224313.7510313063987746316.robh@kernel.org>
+Subject: Re: [PATCH v1 1/5] dt-bindings: PCI: Add STM32MP25 PCIe root
+ complex bindings
 
-On 11/26/2024 7:36 PM, Akhil P Oommen wrote:
-> A612 GPU requires an additional smmu_vote clock. Update the bindings to
-> reflect this.
+
+On Tue, 26 Nov 2024 14:00:00 +0100, Christian Bruel wrote:
+> Document the bindings for STM32MP25 PCIe Controller configured in
+> root complex mode.
 > 
-> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
+> Supports 4 legacy interrupts and MSI interrupts from the ARM
+> GICv2m controller.
+> 
+> STM32 PCIe may be in a power domain which is the case for the STM32MP25
+> based boards.
+> 
+> Supports wake# from wake-gpios
+> 
+> Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
 > ---
->  .../devicetree/bindings/display/msm/gpu.yaml       | 28 ++++++++++++----------
->  1 file changed, 16 insertions(+), 12 deletions(-)
+>  .../bindings/pci/st,stm32-pcie-common.yaml    | 45 +++++++++
+>  .../bindings/pci/st,stm32-pcie-host.yaml      | 99 +++++++++++++++++++
+>  2 files changed, 144 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pci/st,stm32-pcie-common.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pci/st,stm32-pcie-host.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/display/msm/gpu.yaml b/Documentation/devicetree/bindings/display/msm/gpu.yaml
-> index 6ddc72fd85b04537ea270754a897b4e7eb269641..201150d3151b55c26c95832d36f4e02f66060a25 100644
-> --- a/Documentation/devicetree/bindings/display/msm/gpu.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/gpu.yaml
-> @@ -187,6 +187,7 @@ allOf:
->              enum:
->                - qcom,adreno-610.0
->                - qcom,adreno-619.1
-> +              - qcom,adreno-612.0
->      then:
->        properties:
->          clocks:
-> @@ -195,18 +196,21 @@ allOf:
->  
->          clock-names:
->            items:
-> -            - const: core
-> -              description: GPU Core clock
-> -            - const: iface
-> -              description: GPU Interface clock
-> -            - const: mem_iface
-> -              description: GPU Memory Interface clock
-> -            - const: alt_mem_iface
-> -              description: GPU Alternative Memory Interface clock
-> -            - const: gmu
-> -              description: CX GMU clock
-> -            - const: xo
-> -              description: GPUCC clocksource clock
-> +            anyOf:
-> +              - const: core
-> +                description: GPU Core clock
-> +              - const: iface
-> +                description: GPU Interface clock
-> +              - const: mem_iface
-> +                description: GPU Memory Interface clock
-> +              - const: alt_mem_iface
-> +                description: GPU Alternative Memory Interface clock
-> +              - const: gmu
-> +                description: CX GMU clock
-> +              - const: xo
-> +                description: GPUCC clocksource clock
-> +              - const: smmu_vote
-> +                description: GPUCC clocksource clock
 
-Forgot to update the description. will fix.
+My bot found errors running 'make dt_binding_check' on your patch:
 
--Akhil
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/pci/st,stm32-pcie-common.yaml:45:1: [warning] too many blank lines (2 > 1) (empty-lines)
 
->  
->          reg-names:
->            minItems: 1
-> 
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/st,stm32-pcie-common.yaml: 'oneOf' conditional failed, one must be fixed:
+	'unevaluatedProperties' is a required property
+	'additionalProperties' is a required property
+	hint: Either unevaluatedProperties or additionalProperties must be present
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241126130004.1570091-2-christian.bruel@foss.st.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
