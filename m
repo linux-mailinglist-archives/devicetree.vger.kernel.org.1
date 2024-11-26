@@ -1,127 +1,139 @@
-Return-Path: <devicetree+bounces-124772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124773-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CAF09D9D56
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 19:26:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F31F9D9D5C
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 19:29:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1373EB26458
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 18:26:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 94AB7283C08
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 18:29:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B90611DDA35;
-	Tue, 26 Nov 2024 18:25:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ADC91DDC01;
+	Tue, 26 Nov 2024 18:29:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nlUhaB8o"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ekiUFx4i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5458E1DD884;
-	Tue, 26 Nov 2024 18:25:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E1F21D618E;
+	Tue, 26 Nov 2024 18:29:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732645558; cv=none; b=FTrBKtcGYq7/8c6GGyoIbkr/sVdlorklvWSlapaZ7/Sh9PaJWbRFUzdFSoaVuSyy5efoZ0p+VfkDhqQ8tcKiPUBMdegCCZ3b2yPUyvOydHMDGX9Aw8r9d9i/nAanMILrX3vbPWFwJiDvz9v4EEwK4lvDdoy34UwU5lCjP+U5uEU=
+	t=1732645769; cv=none; b=C/4EVVqGdpbhoePbov7g4Zsz2axhJlAMbksHyVlEUYT1Dv0kkRGWqqDl5z4iN5xFWXmNfSYjXQDFNp0fn4XW3Euw0lMo3GkKXaQqbWHRCuGtc5ak0BoOZRvT+RsL0j0D/hAN/BGGRRf6blNz5XSQcAOroyC0INcaKpisubaTf3s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732645558; c=relaxed/simple;
-	bh=aoBiFqPehAaj5iMKLKw4nSGmmuIy/JR8WRaPdR+Q9nA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LaathjJMKsa9WoZWt8E0xUkty0JdHsqZ3BO2747oQ41x0uNig3L3cdO8yWY+JqFswL8nTK9LlVEz4qBDJx+Vj1A0lSBq7DGlDOlF6778wNC7rJ24N2nxATHs7MDvBQ0aeDOsOQCFBPeeoyYvBWc4jNEViOPA9+hX/RsPKMuRXN0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nlUhaB8o; arc=none smtp.client-ip=209.85.210.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-724fee568aaso3048647b3a.1;
-        Tue, 26 Nov 2024 10:25:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1732645555; x=1733250355; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pGO4VEjmMCTpy6yKK70GikOB6XhW54AbxXkx7kdm35k=;
-        b=nlUhaB8ohq7292S1nmqPLp/O0+1uK9GVwOl5Jvh2u6+RJ1sR3AFo2R2VLltC+6HBLa
-         qIgTao0ENP4ninGW+zCygxoTThu0rhj3AzoWFzYh3X5pPBzm7WE/rlFvsvedarA6G+/y
-         8UxKnjO4pSD40sL5Oxe4SI9QpnjyfXu/YUkdm3Kpfw+W55/19n6u3o73uQwdhjw7aElm
-         C5+zWNZ7cC4pnxUy1Pzpyyya80PL6BO0Ywgkz3OAtdDcNAZ+mxCciNXiUPzRt9N5e6w7
-         QJ0daZU0GK3/Q07Zyig1AjF2gw2LTgXmgyYHPBQAW413b24XRiA1ECMeNYrSO11zsMQ7
-         m48g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732645555; x=1733250355;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pGO4VEjmMCTpy6yKK70GikOB6XhW54AbxXkx7kdm35k=;
-        b=BB2SPkBMIWWQPze6o7+jd34SUO8jEU8VgkS5DTm6oIAKwg6wKGmelnOQKYbjE/Z8ax
-         SQ8n5EQvaj38IzrGM9fVwQonve3+dRcmRUTwUSxa01GuRrOKypduYcG1rYQX2zY5Ny28
-         GO4LJDGQNZB6dbcFaG7mZQXPxBJa+AFDzGQ1XCKJCJyTMz4RZGV4RJKl+rgal87mzOZM
-         F7N+BTmjULpXWiSG0NhyNiurMXOKoQ4+9syyIg+C6ogTr6bf6lRsq3GjeExVpfeZhm8r
-         tGmo+lf2w/OufoPZgjES8wMeCUYG51a4Ck+KWa1f5uDS0T8HDES+2fQkKf1mMdwQ8Et1
-         twRw==
-X-Forwarded-Encrypted: i=1; AJvYcCUY70pjhieHi3mUCn82fzG7xaoSaGD9oAFrMs1dFt+PdleMnLNz8q3M4/1r65oCwD8cdTDdHS0Xn1tliVBr@vger.kernel.org, AJvYcCXU+/DQzw36Qf5Lvrbjcu5SB8BB5OQea02szvnQseXf77iHt4zUciTMesoMKofxkJCs9pAMotprn3qE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw3kmHyxFdMq+uLdd9W+ob/LcB2cWQifG5Wqg3n0gkbh1FbKzT+
-	fx+nBbEgATSJclWuMuEFCZ3rYzN8EhlrTuHuLM92RSHoHCAtivHe
-X-Gm-Gg: ASbGnctnjbmshRVmJOm/ChXhLCvf2i0evAu8ddLtT2TAIMybclMrx/gAAeFbsmKrIHP
-	PKbZ+yMcP9DfohEwzWqYDxOKL0H8AYHJ+Jkxwr2zAHFzPdzuH7LabmPK+K4YxpWumbXD3cEmnI2
-	cNWaudKgYqBdKt4R/jZC6BoY7bqrKfT016gjVCdj9/j/AQiIXou/2CgK11IPxDTKw2NeSzjy7jX
-	6S+122my2K0GgK6dGpcFN3qLYqff9OsblrlZJmnMKXSuPj5YR0DhfuuVQ==
-X-Google-Smtp-Source: AGHT+IGIW8YWKhxplj7PnOWubg8KaT/VQiw22cMgLmX8nunNS6CMBCZlxtxFLFqpa21jqQ2K9VRpzA==
-X-Received: by 2002:a05:6a00:3d52:b0:71e:cb5:2219 with SMTP id d2e1a72fcca58-7253004b06bmr165886b3a.9.1732645555470;
-        Tue, 26 Nov 2024 10:25:55 -0800 (PST)
-Received: from [192.168.0.122] ([59.188.211.160])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-724de531b50sm8971221b3a.101.2024.11.26.10.25.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Nov 2024 10:25:55 -0800 (PST)
-Message-ID: <e0f78e42-6454-4855-9004-05d90ba6895f@gmail.com>
-Date: Wed, 27 Nov 2024 02:25:49 +0800
+	s=arc-20240116; t=1732645769; c=relaxed/simple;
+	bh=mlBR4SaoE+u827nLxsWeIfa91R887W+zu/bZR0OStBM=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=EPfWWDa8GjLuwU/gbylBPafwAWUkUxnltsMhjzlk0uZVz3Xe0mZdFXP+3K14kzzfITGEdzlZhVCscTyVSwwTCAHPMj4fyAbXnbrn6TuilfzIfyzYOf/cxvpxCfJC219dUfxB4IsaBwfw5Ws2r1hCHhBBlzdpOBCYcmnx2v3lLp0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ekiUFx4i; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 042D2C4CECF;
+	Tue, 26 Nov 2024 18:29:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732645768;
+	bh=mlBR4SaoE+u827nLxsWeIfa91R887W+zu/bZR0OStBM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=ekiUFx4ij69pFLk75OW+EO/3UgEswc3vhCXMSE8YWKlemV3IbMcKlEGiYTgJs/GZ3
+	 ZbTCV4Uz0mR3bZn+EQ79IL9obhOyt8vUboEK/UzaXICyL/P++oEL3PrrUxBVpnFjjy
+	 R8lwL7J8PNK8rTAMkMwhQeVWwBYA+kPpqPHq5/QYURSq+cQxnL5qQzXZBH62OLyPD+
+	 6WClbIN9eDTzyJiZnAjzFJW5nz+YBvUpOq1lKX1ge7JLrtBRxzRJ3loZpACYpmRqOA
+	 ol2xHwljgyGMdMyeL4QNCVaJxqGGkRjQ0HQQ7ggzFBjq9XWcIZH9runA+ppqK1K/ZY
+	 fXdE26TDwpz/w==
+Date: Tue, 26 Nov 2024 18:29:19 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Guillaume Stols <gstols@baylibre.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, dlechner@baylibre.com, jstephan@baylibre.com,
+ aardelean@baylibre.com, adureghello@baylibre.com
+Subject: Re: [PATCH 4/9] iio: adc: ad7606: Move software functions into
+ common file
+Message-ID: <20241126182919.2b0aabb6@jic23-huawei>
+In-Reply-To: <20241121-ad7606_add_iio_backend_software_mode-v1-4-8a693a5e3fa9@baylibre.com>
+References: <20241121-ad7606_add_iio_backend_software_mode-v1-0-8a693a5e3fa9@baylibre.com>
+	<20241121-ad7606_add_iio_backend_software_mode-v1-4-8a693a5e3fa9@baylibre.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] dt-bindings: display: Add Apple pre-DCP display
- controller bindings
-To: fnkl.kernel@gmail.com, Hector Martin <marcan@marcan.st>,
- Sven Peter <sven@svenpeter.dev>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, asahi@lists.linux.dev
-Cc: linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20241126-adpdrm-v2-0-c90485336c09@gmail.com>
- <20241126-adpdrm-v2-1-c90485336c09@gmail.com>
-Content-Language: en-MW
-From: Nick Chan <towinchenmi@gmail.com>
-In-Reply-To: <20241126-adpdrm-v2-1-c90485336c09@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
+On Thu, 21 Nov 2024 10:18:26 +0000
+Guillaume Stols <gstols@baylibre.com> wrote:
+
+> Since the register are always the same, whatever bus is used, moving the
+> software functions into the main file avoids the code to be duplicated
+> in both SPI and parallel version of the driver.
+> 
+> Signed-off-by: Guillaume Stols <gstols@baylibre.com>
+> ---
+>  drivers/iio/adc/ad7606.c     | 128 ++++++++++++++++++++++++++++++++++++++++--
+>  drivers/iio/adc/ad7606.h     |  37 ++++++++++--
+>  drivers/iio/adc/ad7606_spi.c | 131 +------------------------------------------
+>  3 files changed, 156 insertions(+), 140 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/ad7606.c b/drivers/iio/adc/ad7606.c
+> index 828603ed18f6..df0e49bc4bdb 100644
+> --- a/drivers/iio/adc/ad7606.c
+> +++ b/drivers/iio/adc/ad7606.c
+> @@ -85,6 +85,10 @@ static const unsigned int ad7606_oversampling_avail[7] = {
+>  	1, 2, 4, 8, 16, 32, 64,
+>  };
+>  
+> +static const unsigned int ad7606B_oversampling_avail[9] = {
+
+Same in original code, but why capital B?
+
+I think you didn't remove this as intended from ad7606_spi.c
+so we have a duplicate.
 
 
-On 27/11/2024 00:34, Sasha Finkelstein via B4 Relay wrote:
-
-[...]
-> diff --git a/Documentation/devicetree/bindings/display/apple,h7-display-pipe-mipi.yaml b/Documentation/devicetree/bindings/display/apple,h7-display-pipe-mipi.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..2cf2f50e9fc7329a5b424d5ddf8c34cad2ebb6be
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/apple,h7-display-pipe-mipi.yaml
-[...]
+> +	1, 2, 4, 8, 16, 32, 64, 128, 256
+> +};
 > +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  reg-names:
-> +    const: mipi
-> +
-Drop. Not needed as there is only one reg now.
+>  static const unsigned int ad7616_oversampling_avail[8] = {
+>  	1, 2, 4, 8, 16, 32, 64, 128,
+>  };
+> @@ -187,6 +191,8 @@ static int ad7608_chan_scale_setup(struct iio_dev *indio_dev,
+>  				   struct iio_chan_spec *chan, int ch);
+>  static int ad7609_chan_scale_setup(struct iio_dev *indio_dev,
+>  				   struct iio_chan_spec *chan, int ch);
+> +static int ad7616_sw_mode_setup(struct iio_dev *indio_dev);
+> +static int ad7606B_sw_mode_setup(struct iio_dev *indio_dev);
+Similar question. Why capital B?  We make ad lowercase, so I'd think it makes
+sense for the B as well.
 
-[...]
 
-Nick Chan
+
+> +
+> +static int ad7616_write_os_sw(struct iio_dev *indio_dev, int val)
+> +{
+> +	struct ad7606_state *st = iio_priv(indio_dev);
+> +
+> +	return ad7606_write_mask(st, AD7616_CONFIGURATION_REGISTER,
+> +				     AD7616_OS_MASK, val << 2);
+> +}
+> +
+> +static int ad7606_write_scale_sw(struct iio_dev *indio_dev, int ch, int val)
+> +{
+> +	struct ad7606_state *st = iio_priv(indio_dev);
+> +
+> +	return ad7606_write_mask(st,
+> +				     AD7606_RANGE_CH_ADDR(ch),
+> +				     AD7606_RANGE_CH_MSK(ch),
+> +				     AD7606_RANGE_CH_MODE(ch, val));
+
+Odd alignment.
+
+> +}
+
 
