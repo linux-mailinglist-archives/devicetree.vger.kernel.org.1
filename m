@@ -1,152 +1,179 @@
-Return-Path: <devicetree+bounces-124779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4E9A9D9DB2
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 19:58:37 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 429349D9DC7
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 20:04:54 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C9BF2B2B834
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 18:49:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D23E0166A96
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 19:04:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15AC51DDC05;
-	Tue, 26 Nov 2024 18:49:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABF881DDC2B;
+	Tue, 26 Nov 2024 19:04:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="USzxeqaw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z29qgN7Y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA7A51DA614;
-	Tue, 26 Nov 2024 18:49:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82C181DD529;
+	Tue, 26 Nov 2024 19:04:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732646951; cv=none; b=i0y9q4WSpLVfwKuBdoBugc5Ct0qMlsOF/u13gghdnFlCQKNlV7FR/xJ/Pc8cXsv2kvlEnFgLFQb5fMlWkOLgTh3MgctpbdB7g334DIc9vvgrBmuYNDY2zL5P/CYT0YCZvBOpCjQxFRcKppxFJWLe29El3Nrl1+nUzADMAWXKvc8=
+	t=1732647883; cv=none; b=rVZ/PLQPVBjS8penG8Z+ltL0cVzu1D0oDzon3zRplLu+u6gM46sW9uz1sWzMDwyRBXTrUvg8ngEkvZ1PWyh7gE8bwfK5FyDNTh4uJoYeISKQVKc3t8yQmnVIobwT7g3H45KQha9i0KJxx5vE0avxXvHSg8+jWxL/YUJln4MQtlI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732646951; c=relaxed/simple;
-	bh=ZtPBQKk9PTIaQVnyuOg00v4/13J+GN9z4uCbr3BSDLk=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ViQqrweU1ovQ5u4jT9ip9Yw8cYNbMkJy/S3i1EC9tg0iLmpBVb9d+41V9X6KyYSde4R171PKfZ//vxCBMqyPMghRrejCNlDnaO/QceM8BdK0/Q432qCHp/emHZFHKMtNVISeIzPpbrhkxyEkTgS9Uh3kBOHBHzKrxb4RtxO5uEY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=USzxeqaw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F052C4CECF;
-	Tue, 26 Nov 2024 18:48:56 +0000 (UTC)
+	s=arc-20240116; t=1732647883; c=relaxed/simple;
+	bh=+mf68xlLx7KgwnDTeOl9Bn2WskxaGDYLqwnAUlB4Isk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Nq8anCSRjNKmRtP0/VN33hfI96uWBLE9bztEN6ygQifWDrJ5Z0HdVf9Ztv5Jv/iCA/YpC7EgQ6z2l6sVTJmTEl2aOoSgq56VTP+XbPAs4ega4IpnUaFHD9f7+y0uKX9oIVu0Vma6xsHFbu7BPKPEcL5YzBQVp25vLxpuAQCuNj8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z29qgN7Y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D96EC4CECF;
+	Tue, 26 Nov 2024 19:04:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732646950;
-	bh=ZtPBQKk9PTIaQVnyuOg00v4/13J+GN9z4uCbr3BSDLk=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=USzxeqawwweQQpD6/JeQidpKFv1Ak3/4gfblR6RxC4U+bNzehg9+w25aYHO3e++3o
-	 WubSQSAjyeHDqSYkOT6kWOgAkzNa4sssSiADArS/1Kj5wRce8sg62iv/WnsAR/ACAa
-	 iVBmyuivVGoyytlIC6YUSOU3Vp3uSr9CvF8Y/RKkyYUWrfCv0hH0NfxSZZWCDWxlHe
-	 qvh7RCOJdQKprj/mUzIR08OC1UbzrBbg8j1uvswKJai03gknl1vBtOOtlj1W/jdwG2
-	 wk0PZODUd6Xyjof7OIObFBrHuESDlkixWCmdCgZd7jF+CePA8zFS9CwToQ5DLlR0SK
-	 Hs/ya/BAtEilA==
-Date: Tue, 26 Nov 2024 18:48:51 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Guillaume Stols <gstols@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, dlechner@baylibre.com, jstephan@baylibre.com,
- aardelean@baylibre.com, adureghello@baylibre.com
-Subject: Re: [PATCH 9/9] iio: adc: ad7606: Add support for writing registers
- when using backend
-Message-ID: <20241126184851.5d28793e@jic23-huawei>
-In-Reply-To: <20241121-ad7606_add_iio_backend_software_mode-v1-9-8a693a5e3fa9@baylibre.com>
-References: <20241121-ad7606_add_iio_backend_software_mode-v1-0-8a693a5e3fa9@baylibre.com>
-	<20241121-ad7606_add_iio_backend_software_mode-v1-9-8a693a5e3fa9@baylibre.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=k20201202; t=1732647883;
+	bh=+mf68xlLx7KgwnDTeOl9Bn2WskxaGDYLqwnAUlB4Isk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Z29qgN7YEASNNAQS6rQQgujOVDzxLhbry77wGPIiWuUg9+ORkpLxY9ll5hb0v9qrm
+	 D5Wd2g7MmYnZ5y8lh8G84DDvQTI/VbQqjS4XgmI4oQY9HQTlLHX7WgRSx8j8dAaijB
+	 YdUtlNGtLIdo+8YD1kpZpPunPQ0qGc7h1Vs7BEZEzpNe7L0V8mmXwJSOBWtnMb/cCM
+	 b2tDYTEIkJLf9I1HKkaMbbr8CGeRwBT3RoVe2kxa7X7rwRYoZKcJg0nvMBX8B3rlDA
+	 VkkyyBEk2RSt2i4MxW5AK44hzNcfUuhKgwlG0rT76uEA3HEMsnH8F28YR0QJQgiPDa
+	 JIougiKkPZOGg==
+Message-ID: <5e2d2174-44a7-4143-8562-4dcdb5ad6c94@kernel.org>
+Date: Tue, 26 Nov 2024 20:04:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: ti: k3-j721e-beagleboneai64: Enable ACSPCIE
+ output for PCIe1
+To: Romain Naour <romain.naour@smile.fr>, devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
+ conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, kristo@kernel.org,
+ vigneshr@ti.com, nm@ti.com, Romain Naour <romain.naour@skf.com>
+References: <20241126173307.4054601-1-romain.naour@smile.fr>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241126173307.4054601-1-romain.naour@smile.fr>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Thu, 21 Nov 2024 10:18:31 +0000
-Guillaume Stols <gstols@baylibre.com> wrote:
-
-> Adds the logic for effectively enabling the software mode for the
-> iio-backend, i.e enabling the software mode channel configuration and
-> implementing the register writing functions.
+On 26/11/2024 18:33, Romain Naour wrote:
+> From: Romain Naour <romain.naour@skf.com>
 > 
-> Signed-off-by: Guillaume Stols <gstols@baylibre.com>
+> Unlike the SK-TDA4VM (k3-j721e-sk) board, there is no clock generator
+> (CDCI6214RGET) on the BeagleBone AI-64 (k3-j721e-beagleboneai64) to
+> provide PCIe refclk signal to PCIe Endponts. So the ACSPCIE module must
+> provide refclk through PCIe_REFCLK pins.
+> 
+> Use the new "ti,syscon-acspcie-proxy-ctrl" property to enable ACSPCIE
+> module's PAD IO Buffers.
+> 
+> Signed-off-by: Romain Naour <romain.naour@skf.com>
+> ---
+> With this patch, we can remove "HACK: Sierra: Drive clock out" patch
+> applied on vendor kernel for BeagleBone AI-64:
+> https://openbeagle.org/beagleboard/linux/-/commit/ad65d7ef675966cdbc5d75f2bd545fad1914ba9b
+> ---
+>  arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts |  4 ++++
+>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi          | 10 ++++++++--
+>  2 files changed, 12 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+> index fb899c99753e..681e3af7ce6e 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+> @@ -859,6 +859,10 @@ &pcie1_rc {
+>  	num-lanes = <2>;
+>  	max-link-speed = <3>;
+>  	reset-gpios = <&main_gpio0 22 GPIO_ACTIVE_HIGH>;
+> +	/* There is no on-board or external reference clock generators,
 
-A few comments inline, but basically looks fine to me.
+Please use generic style comments, not netdev.
 
-Thanks,
-
-Jonathan
-
-> diff --git a/drivers/iio/adc/ad7606_par.c b/drivers/iio/adc/ad7606_par.c
-> index a25182a3daa7..0c1177f436f3 100644
-> --- a/drivers/iio/adc/ad7606_par.c
-> +++ b/drivers/iio/adc/ad7606_par.c
-
->  static int ad7606_bi_update_scan_mode(struct iio_dev *indio_dev, const unsigned long *scan_mask)
->  {
->  	struct ad7606_state *st = iio_priv(indio_dev);
-> @@ -70,7 +83,7 @@ static int ad7606_bi_setup_iio_backend(struct device *dev, struct iio_dev *indio
->  	if (ret)
->  		return ret;
+> +	 * use refclk from the ACSPCIE module's PAD IO Buffers.
+> +	 */
+> +	ti,syscon-acspcie-proxy-ctrl = <&acspcie0_proxy_ctrl 0x3>;
+>  };
 >  
-> -	ret = devm_iio_backend_enable(dev, st->back);
-> +	ret = devm_iio_backend_enable(st->dev, st->back);
-
-Is that a different dev? That's not obvious...
-
->  	if (ret)
->  		return ret;
+>  &ufs_wrapper {
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> index 0da785be80ff..9f47e7672922 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> @@ -5,6 +5,7 @@
+>   * Copyright (C) 2016-2024 Texas Instruments Incorporated - https://www.ti.com/
+>   */
+>  #include <dt-bindings/phy/phy.h>
+> +#include <dt-bindings/phy/phy-cadence.h>
+>  #include <dt-bindings/phy/phy-ti.h>
+>  #include <dt-bindings/mux/mux.h>
 >  
-> @@ -86,9 +99,52 @@ static int ad7606_bi_setup_iio_backend(struct device *dev, struct iio_dev *indio
->  	return 0;
->  }
->  
-> +static int ad7606_bi_reg_read(struct iio_dev *indio_dev, unsigned int addr)
-> +{
-> +	struct ad7606_state *st = iio_priv(indio_dev);
-> +	int val, ret;
-> +	struct ad7606_platform_data *pdata =  st->dev->platform_data;
+> @@ -82,6 +83,11 @@ ehrpwm_tbclk: clock-controller@4140 {
+>  			reg = <0x4140 0x18>;
+>  			#clock-cells = <1>;
+>  		};
 > +
-> +	iio_device_claim_direct_scoped(return -EBUSY, indio_dev) {
-> +		ret = pdata->bus_reg_read(st->back,
-> +					addr,
-> +					&val);
+> +		acspcie0_proxy_ctrl: acspcie0-ctrl@18090 {
 
-As below.
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 
-> +	}
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return val;
-> +}
-> +
-> +static int ad7606_bi_reg_write(struct iio_dev *indio_dev,
-> +			       unsigned int addr,
-> +			       unsigned int val)
-> +{
-> +	struct ad7606_state *st = iio_priv(indio_dev);
-> +	struct ad7606_platform_data *pdata =  st->dev->platform_data;
-> +	int ret;
-> +
-> +	iio_device_claim_direct_scoped(return -EBUSY, indio_dev) {
 
-Given David's if_not_cond_guard() should land shortly I'd prefer
-to use that going forwards for cases like this.
+> +			compatible = "ti,j784s4-acspcie-proxy-ctrl", "syscon";
 
-> +	ret = pdata->bus_reg_write(st->back,
-> +					addr,
-> +					val);
-Put parameters all on one line.
-+ return here (which needs the new if_not_cond_guard() to avoid
-confusing the compiler).
+I am not familiar with naming, so is this j784s4 or j721e or K3 SoC?
+Compatible should be SoC specific.
 
-> +	}
-> +	return ret;
-> +}
+Best regards,
+Krzysztof
 
