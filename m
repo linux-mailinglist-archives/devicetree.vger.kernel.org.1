@@ -1,62 +1,58 @@
-Return-Path: <devicetree+bounces-124513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124514-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD3E39D9282
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 08:35:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 517D29D9293
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 08:37:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53C9F166C06
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 07:35:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA8DE166C9D
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 07:37:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 824B6192D69;
-	Tue, 26 Nov 2024 07:35:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C18F1940B3;
+	Tue, 26 Nov 2024 07:37:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Dx2pqvaB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b+OsL5e2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54EC91885B8;
-	Tue, 26 Nov 2024 07:35:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E23D192D69;
+	Tue, 26 Nov 2024 07:37:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732606500; cv=none; b=LO9iohPJGDbCVodOCwuS3Ii2kVdzdCqXuhFpsqxlox+yWCqbG/rrRD26mFMrk3xFsavBtcmzlKMpPQzK7ubWgAyloWmeBRIOuHtwodrD9F34luV3w7N0JhWCteKBxq9cawarQ9fbYZED8vNkYaINu6YQ7x8ffQS+4kWqA+kGABc=
+	t=1732606659; cv=none; b=CpRPbE9CbbKn/vBkPowC4PvvBtkoNlexjiGx37QNtsXpWeJqAclaO/JtUrIY537JdML1xgWZDa1afc0g/v/i41X842fJoGxbinwxj0x5uQpL7wfTvM2fBpqQqvabueia/x679DLj+maGrUqwmQ8ypcqoNdbxDTAzfrdqH8znx/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732606500; c=relaxed/simple;
-	bh=wUr44H5GS4NSD1WGUipzyvMEA/+0GcABo061UQc51VI=;
+	s=arc-20240116; t=1732606659; c=relaxed/simple;
+	bh=r++3Qo7JVxc4zP3NbHwY47VSgGg58VDRmi+G71l8cAU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kQliqVOuGVRks9dh3w3FK/DC4DiZLbZiufvWL0dfjclbqX1Zbcasz2rL6NCYofpnNfHmIM2kDVowIPl+YnzCPsVaBfj4EPF30ceJI+knMmpLjHy4YxZA8zVzM+kySBSGz3iRDbLl40TuxqMpQ13/zJiQqTabNY5RkSd/iJ/Fzx0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Dx2pqvaB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E174C4CECF;
-	Tue, 26 Nov 2024 07:34:58 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=kMi4s0MuFIuWrcm61K/J4bIGLF9MJvZhlLOOhC+ucyYPxD4yPaZ0S7IJda004/eZcHlDHff97UCBniKcbDIAGvQrk3N7d9/Fs7FvBQRT39kFs5hObgV/mNnEaQl7rEP0wO9sTshS7dfid52BzuSvZT6TUyYGWI7LUQ+99qdejo8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b+OsL5e2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21035C4CECF;
+	Tue, 26 Nov 2024 07:37:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732606499;
-	bh=wUr44H5GS4NSD1WGUipzyvMEA/+0GcABo061UQc51VI=;
+	s=k20201202; t=1732606658;
+	bh=r++3Qo7JVxc4zP3NbHwY47VSgGg58VDRmi+G71l8cAU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Dx2pqvaBxI74ZFOc90YuhwDywjiNY+QgR31y0ajpHqeZ84sQvfl8UAgZNTRiXhaQZ
-	 BVhmswCqeDIYC9NodHrBlfkrqw7ZL7S/qpCaEh+jgFKMUP1byM4kniCcngOskoCMvp
-	 eVCgXkJwIhRrInN7v3DgRwsc37J1jaqHnPpexz9dPfMEYeSE1qzk3KE1P6HvPfi8zV
-	 RlbqyLIwzWKWCys6jWS2UK5uFFpXx0T9LZuTbF/fFXl1O5njZtJvKPANQ+N5/FebZL
-	 OJBD4d7axZgkAm/AaNssiJD56OZXRxnE47rBx1hPdJeIE1MlcEHB+/Hj670EOad/8W
-	 HTK0seABv6CQw==
-Date: Tue, 26 Nov 2024 08:34:56 +0100
+	b=b+OsL5e2jt0v1wI37WnVDynehv54EZ+19kfRw7zwBXYJs7jGd6/lCUH2E+KuGGMn+
+	 CRs9s1DT7vM9mrsbFkqfXjzE2zcv+PRPT8PRaqhbf6udC5ErysrrMYq+rfqOmVFczx
+	 C3ORS0aQWiCjlScWQ6yzEdarj2RI5x4cTMdL7eXJ/sWxK7ikVlONunFWyetZo9XkMr
+	 O4hUSrMjH4Cj9wpdZSEMzUQD81ROfLBEsbY1Xc24nkuGU8cyN1I+TYs5789waEszgR
+	 mzyEpyVmm5/0WDxdSKa7kKRMCA0HSiCWbjMcPUiiAbULv14b5JOFCh70F1NzLGOtxr
+	 KDCInoFuHzHMw==
+Date: Tue, 26 Nov 2024 08:37:35 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Douglas Anderson <dianders@chromium.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Kalle Valo <kvalo@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 1/4] dt-bindings: arm: qcom: Add HP Omnibook X 14
-Message-ID: <dgilzuguxfvzqndp4rjm4hlhejgporfvollk4sqwquk34g4pka@dinzg2kfk4x2>
-References: <20241124-hp-omnibook-x14-v1-0-e4262f0254fa@oldschoolsolutions.biz>
- <20241124-hp-omnibook-x14-v1-1-e4262f0254fa@oldschoolsolutions.biz>
+To: Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Mathias Nyman <mathias.nyman@intel.com>, 
+	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: usb: mtk-xhci: add support mt8196
+Message-ID: <uy22btn4qv3gc3glizyuzdlxawgvvjgk765jjjk6mj4ftadbyv@hh62ph3ug5gg>
+References: <20241126025507.29605-1-chunfeng.yun@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,20 +61,16 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241124-hp-omnibook-x14-v1-1-e4262f0254fa@oldschoolsolutions.biz>
+In-Reply-To: <20241126025507.29605-1-chunfeng.yun@mediatek.com>
 
-On Sun, Nov 24, 2024 at 02:20:15PM +0100, Jens Glathe wrote:
-> Add compatible values for the HP Omnibook X Laptop 14-fe0750ng,
-> using "hp,omnibook-x14"
+On Tue, Nov 26, 2024 at 10:55:06AM +0800, Chunfeng Yun wrote:
+> There are 2 USB controllers on mt8196, each controller's wakeup control is
+> different, add some specific versions for them, and add compatilbe for it.
 > 
-> The laptop is based on the Snapdragon X Elite (x1e80100) SoC.
-> 
-> PDF link: https://www8.hp.com/h20195/V2/GetPDF.aspx/c08989140
-> 
-> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 > ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
