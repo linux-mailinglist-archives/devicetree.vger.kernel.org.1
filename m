@@ -1,151 +1,200 @@
-Return-Path: <devicetree+bounces-124593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3739B9D951B
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 11:07:33 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C46D9166221
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 10:07:29 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D57261B4F08;
-	Tue, 26 Nov 2024 10:07:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cHp4m4CQ"
-X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B24B9D9538
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 11:12:00 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3FA219340F;
-	Tue, 26 Nov 2024 10:07:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 51E19B2186B
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 10:08:37 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31D7B1B85E4;
+	Tue, 26 Nov 2024 10:08:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="ccVSqWg1"
+X-Original-To: devicetree@vger.kernel.org
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E6461B4F08
+	for <devicetree@vger.kernel.org>; Tue, 26 Nov 2024 10:08:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732615649; cv=none; b=NRec7fEW5In4X12cqKt6EeL5YXi0J7btGl102DNWirTYvcNu7sc73NFyC8bZeGmQiWKXXRfwpA0hP+I8x2L/CS45yyA3tFmeA/uR3TF41deuUKq4y30KRBIZPCojJxvusuz7nru9Ze4pBgQls6XhM1py5EQuYI52QUlPdqGZL8A=
+	t=1732615714; cv=none; b=s4PQ1lV9aMb3IK38gPuQItGXBm79Yhh5d+QKU9PxXSo+T0xNwB8IdEQbHV4eFeNWNu06ofyW5NsmzB/b1NjGwdd4/wObDga4Rd/hLev1rDn6de0gOpNar2/UjcRvyRPQM7VBjdUCJbl+O+w+XZHW91awolESRvn/lC72TJar+Jo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732615649; c=relaxed/simple;
-	bh=08V2Ehp1TurYo5xH2DUCZKDhrGeQsLgJSq0tCqQ+IRk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PBgw+LYPqD1BAfJsy2A669RQjLhTlSZ45GbMakdjhkq2s/sYAa8BQclT9fa0VYCZb9NxW1umomhP8fIIxjF/mLPzUuD7r2mqVMlFcSYV+aDv45nTR9rACcYOMCZvFdQexVrtwhYQy0eTx1LUniGbx+v+ofvcd1TCdBH5UXN0qU8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cHp4m4CQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CFDBC4CECF;
-	Tue, 26 Nov 2024 10:07:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732615649;
-	bh=08V2Ehp1TurYo5xH2DUCZKDhrGeQsLgJSq0tCqQ+IRk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cHp4m4CQO8jHtjYkTVgeOzAG+TtLbiapq4/NUrSTaMYpHS8M0RijYOYitl/HGbtkV
-	 llUlWZbFdPgfYuP2vhRFGjmIrXkjQmnEHAg9sYBb61hsXN3YCnvXg8iRJigMVQ0NN7
-	 34uQRMw/0J6Q4DPsXvlEh7lP2N5B2Wc3ENCU1CuRBLO5rOyqA4bvKHemn4vUNQY5Vh
-	 mHFi6oluuVfo8YtfLwq1n/aXmHcPoCq1/n8d4LTrs9/684pFYnoY8K6+s1kewGFc+A
-	 RNVfSmmZ+koZLgoKQxtCBHLdgYIKw1Jy8T/BGNHQUFA77xNvSz7DVe0RqVPP+Yy7Te
-	 pbmIbzQ72BX/Q==
-Message-ID: <ad5893a8-d84a-4b36-bf89-08203bba726a@kernel.org>
-Date: Tue, 26 Nov 2024 11:07:21 +0100
+	s=arc-20240116; t=1732615714; c=relaxed/simple;
+	bh=5lJZ/nF8cuFm2xPe38in1zalOui1QM9koL2E5RnWTsI=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=e+i+Z/02jLf+jtxamhcU1doRgz7va5eQOAJMW3jDDhWhCr75NJCUcvR8JvTiiB+wUYh5m/R0GoH2IhoMYcBHW0GLcLJN8OCvQRLIc3p2P+D3xJXaUWRzgfe+vNlr8P9seZWUDFkl5rhnRBgdooLvx7/3r4k5I0oGrTWz60L8wag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=ccVSqWg1; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1732615710;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=Fq9q0biky9OpRw0dbtbwOh/TCxHi9sqzOOofCo6yTKw=;
+	b=ccVSqWg1KGbR/okYZTBXmZb0lHW0hZdUkBkfBwqAT5ATPCXIHpU2m9pWWgPL02W9DvFIe/
+	D4zBTtvMMmDijYDum7h2v9+CWfHzhzpJcq6UbN6VwU8Fgs1xKsfsQihmwbGnKKZLWjCID7
+	btD0r37CvmOP8K5jqznDoQcG1RcHsOY=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-371-OcYkdmyLOwCku0eyWy8NNg-1; Tue, 26 Nov 2024 05:08:27 -0500
+X-MC-Unique: OcYkdmyLOwCku0eyWy8NNg-1
+X-Mimecast-MFC-AGG-ID: OcYkdmyLOwCku0eyWy8NNg
+Received: by mail-wm1-f71.google.com with SMTP id 5b1f17b1804b1-43493335c55so3289095e9.3
+        for <devicetree@vger.kernel.org>; Tue, 26 Nov 2024 02:08:27 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732615706; x=1733220506;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Fq9q0biky9OpRw0dbtbwOh/TCxHi9sqzOOofCo6yTKw=;
+        b=TwRwG0qVgAw8/VjfXFHW1DPN6gAA8yv5rljYTH0LvFmPbvUWPwY091R8fDC43B3Z1y
+         QlQU+o0ME9645tYDdn1kyRxVUJjPv2LBZANShCy6+S1YbR7hcJ43hm3+E/FlG2k4pX4B
+         M+Olufk1D42xkA//1yVOsqAAEmJ6iFll0E/lfVZd3Bnn+JZIzT6ShxfBveXF6XvRL550
+         wOw+6LIk5WiD3jXE9uaxdoRoA4qzD0ZwyjXNuYCV08AdN2wRq63DiBLtrrtYG+bfyVwm
+         MDUujN7+WVOlNfDT9gE7ziGJCexzIno8G4CiFRtOl9eN+rkuKr3YSy0jK9xJqdfYZg64
+         c1vA==
+X-Forwarded-Encrypted: i=1; AJvYcCU6YJmgmKuwmFt6se+Ah5F3Bsq9Sl3vYdP7fsiMlLMDhLlZPf0fOzWuQWP5+saiVATojnjTHVi9xhN8@vger.kernel.org
+X-Gm-Message-State: AOJu0YwYxi1F8y2PCn9A8Lf6UZAhnsSju85fEAJR6AKPNDPc3FtVPxnS
+	QVb4PxVD9E5DegyjaxPvpZwM5DEyv6VlZXxNl/+7QBkfoiOFmSNiGWHKobp8H/xvwnjo4UaTTfZ
+	bbPP0KeW+K845VLW6vCVk34grICmlcSy4Pp96OT2B5Jh/vbzZVjTlCjeWzsk=
+X-Gm-Gg: ASbGncsyTw+MIPsHFS+P+71oYpvXddZnTCsy/ago7AF1eWdBYwspKRAbePSJmCKNoE3
+	fekzgSakNEdyWM1YQn+jCe+cCmwHSx5XMqVgQhm0wWVbyjFYJsFSNVNrxxiLhEZaYWgy0bkBEIf
+	FoWJNcAjrNIEy2aXsSiND9Yrtyu7MVgvyRsH617uijEdRNcaHOXkMrdN2ysnlhI/s8XaVcc0I61
+	3Sn6v4+sB89vc9YwR0lgqRP/h7wqP0JmE/bgxhuLzxou6vqdeecg6kCWahcvVhetR2uaFeNN6yd
+	xW1jjCKssPIJJ2bC
+X-Received: by 2002:a05:600c:5490:b0:42c:b63d:df3 with SMTP id 5b1f17b1804b1-434a35089e5mr13353365e9.0.1732615706556;
+        Tue, 26 Nov 2024 02:08:26 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGcdvb3S8cnPM7PxynTPeWCPWcNAxtPzHc8ZlB/++BpaqHt+EG4RUx3doFnbJGVCosm9yICXg==
+X-Received: by 2002:a05:600c:5490:b0:42c:b63d:df3 with SMTP id 5b1f17b1804b1-434a35089e5mr13353195e9.0.1732615706130;
+        Tue, 26 Nov 2024 02:08:26 -0800 (PST)
+Received: from [192.168.1.51] (50.red-83-45-91.dynamicip.rima-tde.net. [83.45.91.50])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3825fb4ecd8sm12851203f8f.60.2024.11.26.02.08.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Nov 2024 02:08:25 -0800 (PST)
+From: Enric Balletbo i Serra <eballetb@redhat.com>
+Date: Tue, 26 Nov 2024 11:08:19 +0100
+Subject: [PATCH] arm64: dts: ti: k3-am69-sk: Add USB SuperSpeed support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/4] dt-bindings: qcom,qcs615-venus: add support for
- video hardware
-To: Renjiang Han <quic_renjiang@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, quic_qiweil@quicinc.com
-References: <20241125-add-venus-for-qcs615-v3-0-5a376b97a68e@quicinc.com>
- <20241125-add-venus-for-qcs615-v3-1-5a376b97a68e@quicinc.com>
- <kdyhkb3tt2lgfuopz7twxjwpfur6vuezaqlc7s7aozkz6ek2as@m2nvqcb5ww4u>
- <7df4fded-8c20-4562-9a18-2a122733dfae@quicinc.com>
- <d11866a7-0d43-4da6-8bee-d72b3e0649aa@kernel.org>
- <26353cfa-5c74-4b80-933d-f719b0d4f738@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <26353cfa-5c74-4b80-933d-f719b0d4f738@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20241126-am69sk-dt-usb-v1-1-aa55aed7b89e@redhat.com>
+X-B4-Tracking: v=1; b=H4sIABKeRWcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxNDQyMz3cRcM8vibN2UEt3S4iRdC0tDC4PUNFOLNIsUJaCegqLUtMwKsHn
+ RsbW1AD6mwZFfAAAA
+X-Change-ID: 20241126-am69sk-dt-usb-89180ef58f8d
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Dasnavis Sabiya <sabiya.d@ti.com>, 
+ Enric Balletbo i Serra <eballetb@redhat.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1732615705; l=2485;
+ i=eballetb@redhat.com; s=20241113; h=from:subject:message-id;
+ bh=bT/35JMF1+qLpDfXB2Q3jx1Ol/t4nxsjkwGX8bY51Jo=;
+ b=7jrfrXs1ya8OfzpPtuUbESrW1gPpkkr97NF+q5NtsQDPkoHtxktfWvCWP3xFRyuifAGaqF1sa
+ CY6Hs9aSQoPAGPlL1ge9DEYSisj6VWHBHQ2Kv9gb5vkRvlYiHceUzg3
+X-Developer-Key: i=eballetb@redhat.com; a=ed25519;
+ pk=xAM6APjLnjm98JkE7JdP1GytrxFUrcDLr+fvzW1Dlyw=
 
-On 26/11/2024 10:58, Renjiang Han wrote:
-> 
-> On 11/26/2024 5:34 PM, Krzysztof Kozlowski wrote:
->> On 26/11/2024 09:57, Renjiang Han wrote:
->>>>> +description:
->>>>> +  The Venus IP is a video encode and decode accelerator present
->>>>> +  on Qualcomm platforms
->>>>> +
->>>>> +allOf:
->>>>> +  - $ref: qcom,venus-common.yaml#
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    const: qcom,qcs615-venus
->>>> Please extend sc7180-venus.yaml instead. No need to duplicate
->>>> unnecessary things.
->>> Thanks for your review. But I'm sorry I can't get it. The devicetree for
->>>
->>> qcs615-venus is in qcs615.dtsi. I'm not sure how to use sc7180-venus.yaml
->>>
->>> instead.
->> DTSI is not relevant here to the bindings. I don't understand the
->> problem, so not sure what you are asking here about.
-> The opp-table parameters are different in devicetree. Can we also use 
-> the same yaml file?
+From: Dasnavis Sabiya <sabiya.d@ti.com>
 
-Please look at existing bindings for other devices.
+AM69 SK board has two stacked USB3 connectors:
+   1. USB3 (Stacked TypeA + TypeC)
+   2. USB3 TypeA Hub interfaced through TUSB8041.
+
+The board uses SERDES0 Lane 3 for USB3 IP. So update the
+SerDes lane info for PCIe and USB. Add the pin mux data
+and enable USB 3.0 support with its respective SERDES settings.
+
+Signed-off-by: Dasnavis Sabiya <sabiya.d@ti.com>
+Signed-off-by: Enric Balletbo i Serra <eballetb@redhat.com>
+---
+I've been carrying this patch for quite long time in my builds to have
+support for USB on my AM69-SK board without problems. For some reason this
+patch was never send to upstream or I couldn't find it. So I took the
+opportunity, now that I rebased my build, to send upstream.
+
+I have maintained the original author of the downstream patch as is
+basically his work.
+---
+ arch/arm64/boot/dts/ti/k3-am69-sk.dts | 33 +++++++++++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+index 1e36965a14032ca07143230855e04b9549f1d0d1..72797f4b689c1d069bf395d6d4fe1846dc4e4297 100644
+--- a/arch/arm64/boot/dts/ti/k3-am69-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am69-sk.dts
+@@ -484,6 +484,12 @@ J784S4_IOPAD(0x09C, PIN_OUTPUT, 0) /* (AF35) MCAN7_TX */
+ 		>;
+ 	};
+ 
++	main_usbss0_pins_default: main-usbss0-default-pins {
++		pinctrl-single,pins = <
++			J784S4_IOPAD(0x0EC, PIN_OUTPUT, 6) /* (AN37) TIMER_IO1.USB0_DRVVBUS */
++		>;
++	};
++
+ };
+ 
+ &wkup_pmx0 {
+@@ -1299,6 +1305,14 @@ serdes0_pcie_link: phy@0 {
+ 		cdns,phy-type = <PHY_TYPE_PCIE>;
+ 		resets = <&serdes_wiz0 1>, <&serdes_wiz0 2>, <&serdes_wiz0 3>;
+ 	};
++
++	serdes0_usb_link: phy@3 {
++		reg = <3>;
++		cdns,num-lanes = <1>;
++		#phy-cells = <0>;
++		cdns,phy-type = <PHY_TYPE_USB3>;
++		resets = <&serdes_wiz0 4>;
++	};
+ };
+ 
+ &serdes_wiz1 {
+@@ -1339,3 +1353,22 @@ &pcie3_rc {
+ 	phy-names = "pcie-phy";
+ 	num-lanes = <1>;
+ };
++
++&usb_serdes_mux {
++	idle-states = <0>; /* USB0 to SERDES0 */
++};
++
++&usbss0 {
++	status = "okay";
++	pinctrl-0 = <&main_usbss0_pins_default>;
++	pinctrl-names = "default";
++	ti,vbus-divider;
++};
++
++&usb0 {
++	status = "okay";
++	dr_mode = "host";
++	maximum-speed = "super-speed";
++	phys = <&serdes0_usb_link>;
++	phy-names = "cdns3,usb3-phy";
++};
+
+---
+base-commit: 7eef7e306d3c40a0c5b9ff6adc9b273cc894dbd5
+change-id: 20241126-am69sk-dt-usb-89180ef58f8d
 
 Best regards,
-Krzysztof
+-- 
+Enric Balletbo i Serra <eballetb@redhat.com>
+
 
