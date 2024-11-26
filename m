@@ -1,141 +1,144 @@
-Return-Path: <devicetree+bounces-124496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124497-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 320549D90D9
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 04:53:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66DCF9D910D
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 05:36:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B8ED0B2117C
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 03:53:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D156288804
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 04:36:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9880780BEC;
-	Tue, 26 Nov 2024 03:53:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B6817DA68;
+	Tue, 26 Nov 2024 04:36:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Jz2xoc22"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dRO0XKyB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4BB542A80
-	for <devicetree@vger.kernel.org>; Tue, 26 Nov 2024 03:53:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 720FF2260C;
+	Tue, 26 Nov 2024 04:36:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732593211; cv=none; b=jACU+oHQCCnN6SsoBeB7pAPxLX4Ee78h4Mt4E9UHWd939d5+4eX5vPtkANg7CEdbiSZmB5KqkU1Tf3xfaxqAK+p7akU21AcozL/+D/rGPgIoFznExQkHAZfJcQnY7kcFOF6QkbnnR6yxIwefL9svpj4Z+ca90/GibJGABsvOKBk=
+	t=1732595783; cv=none; b=fOjduOHJbBJ9+3KDhuzp5hnNvWRw8YaSfdxPH2ZoAGD+BGw3JYGrtUE5WeAcZzCTLosihdObZae6PCI0JAF77u4F64g8428cQ83duLTXUTre5wULBzc+l5jLmNud9MZVa7u/bPKRACYLQCKvcEM/F4iEIRQWKV6wgUgqCDzrY18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732593211; c=relaxed/simple;
-	bh=FrUsNULivxcVoqmFzn2PjE2p47NGik4sHvTM4nqcV1E=;
+	s=arc-20240116; t=1732595783; c=relaxed/simple;
+	bh=n248E6cQcbmvG8TJRwSTTgSI3ENxL08+73ZTFK+rZTc=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rf974DcOVaJFZUctcNlkZwZIC4QOxwTkbck6UY3i02wisS54p/+WeiYdQS81Q7SGrU5Pv1cbL0n0v5B5d7UV7rOhP1z7oFrrIPkMCdcME643mly6Ntw4a2ptaSSMPWiCiH1kOUGgRFr8e22gHCZukF+USKI0HSz/XoZYOVwk9lA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Jz2xoc22; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-53dd57589c8so3909163e87.1
-        for <devicetree@vger.kernel.org>; Mon, 25 Nov 2024 19:53:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1732593208; x=1733198008; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=36c/HAD52p/Ko65f314flr6IbH5n/HZuzOyyN6pe2Uo=;
-        b=Jz2xoc22YF4/zMwlfHn0EJHeTlxSFycqNcSb5KjH4JSmgIQippND05LZGbkhAXrkY6
-         Nw9D994wMELA83XgL7ajMkLDsiceYpMvopPR6Th9A3R1r+mQ+MyATrFU67SPHr5US6Pp
-         jeh2vQKzEVZ6T8Ycvbis3aiU6svtDuurDhjFc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732593208; x=1733198008;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=36c/HAD52p/Ko65f314flr6IbH5n/HZuzOyyN6pe2Uo=;
-        b=e/nDAS8utrPy80ZKGc0CbIBf/qTqAe3TO7VBwI1WjOoAbfObfPfv0dGP7FDa74bj3O
-         VH0UCk51cw0Dzu68CAM9Gsn7NspVfU2p0N314qltUCiH2xIpSdGOxtYUmfmJZkaTLBEc
-         CCCS2lsfFL1xo+GkUWORK6mjzsaWsqEMbcLi5FsUKV22up5VNXJ+QsMN2juaBpQS/Dy4
-         Wbg/MkYNYZQLEAHN1mqMewjAyk98Q4A+e0N9IVS6K9A2FKjRsIXh9EUtTmTTSaBFEt5O
-         0wcwEceBSQzC7rkeYYngxc0aNbww648CADNNtUDUgt/JvNk3Wf2SsNz/b1XfwZj0o6Nh
-         v4nQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWohusRP5hWKv3wtwmuJWiPLtAaEsCt4vzEerl0QSxqEMjMzhO/Sw0ROQPBXslipYSFAxcCbXElmx4F@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxyibe33OPFQJ6tVNJLLymOynGpcnR9vytlMD6w54mKzUVUsPj+
-	p3mn87BlFTrEeng2GmT0W5Ukc3EscQwDqdgVRV68YasdSincyULHS84snLbsY79CykUULaFUMaX
-	fXVkXIxJMVllP+1ZFgV5tnRwEkppTbs4cLD6i
-X-Gm-Gg: ASbGncvUnGFTOHPSd5LkKVSn6A9hFtQbobBn7MOEWZ4GAAfm+1mgWAeB8LRJ4WIEeLP
-	G3rtese7a3oVQQwhA16h7/Js5wik+4lCuUp2RTgL3uvBssIhrJtJy7oQvquY=
-X-Google-Smtp-Source: AGHT+IHlTCF6xqqXC9D5Ru5D7akZvI7lG8VNYgnh/Aq2hlV7URcGaHr1iOvC5Yx6DB77+Nk2LpYBhWPz/8xUj8dgOgw=
-X-Received: by 2002:a05:6512:32ca:b0:539:f922:bd3a with SMTP id
- 2adb3069b0e04-53de88505bcmr528168e87.25.1732593207946; Mon, 25 Nov 2024
- 19:53:27 -0800 (PST)
+	 To:Cc:Content-Type; b=rgV0RZDzH8dPo/ZR+OWYqkQB7tnelMMpG7TB1ozMrh6pVcEU/BZkjkXn1i1CZulDLrICQ2Om5RqZB7tr+eZC0mOJ+lDfqyStHrrnhIElkbB5qGsZZH8AQLg4ZglNDxxGXf3k/ikqtAFkK3oUxKaM49LxvfEWaDhsSdinfL8MTTY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dRO0XKyB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE223C4CEDD;
+	Tue, 26 Nov 2024 04:36:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732595782;
+	bh=n248E6cQcbmvG8TJRwSTTgSI3ENxL08+73ZTFK+rZTc=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+	b=dRO0XKyBjn5Sm3VWOtwEUo+mqxF3CJpxJhf7SGeFt3aAk0EY1RLRSSLYDcV4UFsqa
+	 DQbM3IKx+Zh1bZb5C99QSgnqGNG6HFZ+zkcHa0aWVGnSu9mZW9yses0V9y5LpQ9x+d
+	 H6qZFutUXdVT0TyU/A1nxrNzHhMhXjyqsV4s2lPnXsV2/c0cS8yPD+EiZfCgYN7PTl
+	 kDT29DR1x3H7PmDXixZxEOplD1Y6m6TaNHPhsSZd/BN6NgDnelC9wOaaC38z5ivMTL
+	 8D6M99i+s6d6EXL2pGV9QDalRNAGgfJFkD1RbLpxmaQJGDf5qwqitKLRBROHcdY5/T
+	 kn4+2MCFbgxUQ==
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2ffc016f301so19627291fa.1;
+        Mon, 25 Nov 2024 20:36:22 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCW4uJ3hiT3BEVVL/ZVkbFJQ2rqbhB4fYwPFnML7dFzOU9SCcz9T00EzrAO0C51CZle95Xe1FukJNDua@vger.kernel.org, AJvYcCXgrd6T5sKkbARnZjAqVdtvDOtQs/V91//hPFbbfgLe+4mZz5KZ3WWM34EbA04b5qrgGdPmtjTShXGpz+Kf@vger.kernel.org
+X-Gm-Message-State: AOJu0YxRmeFJ5UO9BRcD7bc++ZDsUuNbttwureOGRaCtEfsA+61CRq7f
+	XSIzWfha3FRuPwiW+nJvPcF0FpIKKb+gUyHbNmm9ye6ckql6ZT6+Za7sEYLkibMxXmpXjv74SuM
+	4ZOuEugaHY8ZdgNPy6YY+kjgCN/w=
+X-Google-Smtp-Source: AGHT+IHMAT53tm+g3nrPUDVGLRawbIHJgSk3HrbNUkSwnVRCsvyn/bk3pAQYfMYGomGQd/Wz+5r8KSfUblsBUM7L9ck=
+X-Received: by 2002:a05:651c:1987:b0:2ff:bae5:90fe with SMTP id
+ 38308e7fff4ca-2ffbae5952bmr34535991fa.13.1732595781097; Mon, 25 Nov 2024
+ 20:36:21 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241125113151.107812-1-krzysztof.kozlowski@linaro.org> <CAL_JsqL6e28pZ9G55Ab6SJO_xNK1R7D-xReC8girvP9VMUk=2Q@mail.gmail.com>
-In-Reply-To: <CAL_JsqL6e28pZ9G55Ab6SJO_xNK1R7D-xReC8girvP9VMUk=2Q@mail.gmail.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Tue, 26 Nov 2024 11:53:16 +0800
-Message-ID: <CAGXv+5HKCQUNuaeJLdR2O8-VBjpu8ydOcoP0AKP3-__RmrCxRw@mail.gmail.com>
-Subject: Re: [PATCH] of: Add Google Juniper to excluded default cells list
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Sasha Levin <sashal@kernel.org>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, Conor Dooley <conor@kernel.org>
+References: <20241125082130.2390310-1-wmacek@chromium.org> <20241125082130.2390310-2-wmacek@chromium.org>
+ <20241125-snowcap-sulphate-34944bd70cf3@spud>
+In-Reply-To: <20241125-snowcap-sulphate-34944bd70cf3@spud>
+Reply-To: wens@kernel.org
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Tue, 26 Nov 2024 12:36:08 +0800
+X-Gmail-Original-Message-ID: <CAGb2v655Bfx44XBPH24FKuEFTJ3ngjbAPEpNBn5vyLZfNGKt+Q@mail.gmail.com>
+Message-ID: <CAGb2v655Bfx44XBPH24FKuEFTJ3ngjbAPEpNBn5vyLZfNGKt+Q@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: mediatek: Add MT8186 Starmie Chromebooks
+To: Conor Dooley <conor@kernel.org>
+Cc: Wojciech Macek <wmacek@chromium.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Chen-Yu Tsai <wenst@chromium.org>, 
+	Rafal Milecki <rafal@milecki.pl>, Hsin-Yi Wang <hsinyi@chromium.org>, 
+	Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Nov 25, 2024 at 11:46=E2=80=AFPM Rob Herring <robh@kernel.org> wrot=
-e:
+On Tue, Nov 26, 2024 at 2:34=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
+te:
 >
-> On Mon, Nov 25, 2024 at 5:32=E2=80=AFAM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
+> On Mon, Nov 25, 2024 at 08:21:28AM +0000, Wojciech Macek wrote:
+> > Add an entry for the MT8186 based Starmie Chromebooks, also known as th=
+e
+> > ASUS Chromebook Enterprise CM30 Detachable (CM3001). The device is
+> > a tablet style chromebook.
 > >
-> > Google Juniper platforms have a very old bootloader which populates
-> > /firmware node without proper address/size-cells leading to warnings:
+> > Signed-off-by: Wojciech Macek <wmacek@chromium.org>
+> > ---
 > >
-> >   Missing '#address-cells' in /firmware
-> >   WARNING: CPU: 0 PID: 1 at drivers/of/base.c:106 of_bus_n_addr_cells+0=
-x90/0xf0
-> >   Modules linked in:
-> >   CPU: 0 UID: 0 PID: 1 Comm: swapper/0 Not tainted 6.12.0 #1 933ab9971f=
-f4d5dc58cb378a96f64c7f72e3454d
-> >   Hardware name: Google juniper sku16 board (DT)
-> >   ...
-> >   Missing '#size-cells' in /firmware
-> >   WARNING: CPU: 0 PID: 1 at drivers/of/base.c:133 of_bus_n_size_cells+0=
-x90/0xf0
-> >   Modules linked in:
-> >   CPU: 0 UID: 0 PID: 1 Comm: swapper/0 Tainted: G        W          6.1=
-2.0 #1 933ab9971ff4d5dc58cb378a96f64c7f72e3454d
-> >   Tainted: [W]=3DWARN
-> >   Hardware name: Google juniper sku16 board (DT)
+> > Changelog v2-v1:
+> >  - Fixed items/const bidings description in mediatek.yaml
 > >
-> > The platform won't receive updated bootloader/firmware so add it to
-> > excluded platform list to silence the warning.
+> >  Documentation/devicetree/bindings/arm/mediatek.yaml | 13 +++++++++++++
+> >  1 file changed, 13 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Docu=
+mentation/devicetree/bindings/arm/mediatek.yaml
+> > index 1d4bb50fcd8d9..6191a5320c148 100644
+> > --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> > @@ -263,6 +263,19 @@ properties:
+> >            - const: google,steelix-sku196608
+> >            - const: google,steelix
+> >            - const: mediatek,mt8186
+> > +      - description: Google Starmie (ASUS Chromebook Enterprise CM30 (=
+CM3001))
+> > +        items:
+> > +          - const: google,starmie-sku0
+> > +          - const: google,starmie-sku2
+> > +          - const: google,starmie-sku3
+>
+> Compatible order here is back to making little sense. Why is the oldest
+> SKU, in both cases, appearing first?
 
-Unfortunately this isn't the only platform affected. AFAIK basically any
-ARM-based Chromebook out there has the same issue.
-
-> I'm interested to know what needs these in /firmware. /firmware is
-> supposed to be for things without an MMIO interface. An alternative
-> solution is to add the properties. That doesn't require
-> CONFIG_OF_DYNAMIC and is often the approach powerpc uses.
-
-The regs point to a memory region that contains bits left by coreboot,
-the coreboot table and the CBMEM region. The latter encompasses the
-former, and also includes things such as the coreboot boot log.
-These are covered by the binding firmware/coreboot.txt and supported
-by drivers under drivers/firmware/google/.
-
-> I'm also wondering if ranges is also missing?
-
-It has an empty "ranges" property. I dug through our repository, and it
-looks like the code was added [1] back in the ARMv7 days for the Nyan
-(Tegra K1) series of Chromebooks. The code was never updated to use
-64-bit addresses.
+FWIW the SKU number has no particular ordering. They were released together=
+.
+SKU denotes different configurations (memory, storage, touchscreen and othe=
+r
+component options). OOTH revisions would actually have chronological meanin=
+g.
 
 
 ChenYu
 
-[1] https://crrev.com/c/203693
+> > +          - const: google,starmie
+> > +          - const: mediatek,mt8186
+> > +      - description: Google Starmie (ASUS Chromebook Enterprise CM30 (=
+CM3001))
+> > +        items:
+> > +          - const: google,starmie-sku1
+> > +          - const: google,starmie-sku4
+> > +          - const: google,starmie
+> > +          - const: mediatek,mt8186
+> >        - description: Google Steelix (Lenovo 300e Yoga Chromebook Gen 4=
+)
+> >          items:
+> >            - enum:
+> > --
+> > 2.47.0.371.ga323438b13-goog
+> >
 
