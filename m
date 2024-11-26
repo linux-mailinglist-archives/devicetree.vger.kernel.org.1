@@ -1,62 +1,58 @@
-Return-Path: <devicetree+bounces-124758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124759-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C52CD9D9CF6
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 18:56:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 403039D9CFE
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 18:58:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 370E1285AF3
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 17:56:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 04A3F285715
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 17:58:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 293EA1DC745;
-	Tue, 26 Nov 2024 17:56:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40CDD1DC04C;
+	Tue, 26 Nov 2024 17:58:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CGpCcL44"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="huA6gbY2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 013541DC1A7;
-	Tue, 26 Nov 2024 17:55:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13A91D299;
+	Tue, 26 Nov 2024 17:58:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732643760; cv=none; b=W3t/qXomeVCkXDVCQTLpDBT83hWRlESk2mLkFU4VXPxwlMdymlm6FqyN4NQl9X+bMtniWo/NBnIQ5Gvt8Dy4TNSa5NfXG2GFcERjMBsTdjBsIJFpju5GvZ6msbwHT/m4pX0GfAGDEqQ/+ycSGbAzrUnhRoVz3u00bqEsM9z138Y=
+	t=1732643898; cv=none; b=ku51hS5mN7njgKiLAhI35Y/EC1h45nveJvj0bBABDPOOz4bI5x1xVF/TXyiJgnDRHRZIvs+s0mHIfZ4sBuWENc17F3oOq0gnag2xwQWDABKX93EQe+BrnpSsed3lxA/lH8vkoXjYjERmqfjPTXb3iYzfLkrLfioutENsXveSicA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732643760; c=relaxed/simple;
-	bh=yoe2aMfpN0ZQwA0Nsmhpzu/IECyL8ebWI8rzUr9nDcM=;
+	s=arc-20240116; t=1732643898; c=relaxed/simple;
+	bh=IDyL1pulAzUpnCICZ2IVyP2Lsx+Gle/0XJ4/G7Zn+0k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Qiwm5+rtL5hxFmsGRODP/3vSmwSDqGaMhNt+pZ43M/6/OxtfGjn6pqYCqVFTcE0G1aU4eRS5ToBv3rELpFletjmfCojUGwoyO8NJ5DaDwjMGyNYmbwabhSy4VIgn/8kLQc5WIy6JPjI1a/nwYZGRRH4bd5yzoHRak3yvO7akfmQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CGpCcL44; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B93DBC4CED2;
-	Tue, 26 Nov 2024 17:55:57 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=KVVvrI9o/CaUo+XWYRKVFG3BZuGtGgzU8RavW4VZvW9SOgvZE/TKzS7zb4ArHKe6svXOYtuGZkvkQC3mN2ih/l4eh17q9iGwIMOSWhqNZY/n9Ogtn8Ltd+eoFWvGsubPkFDIBk6ItnJHGjSgkxZfXeb4PW+fJVX3j+IQIXKTrLE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=huA6gbY2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B874C4CECF;
+	Tue, 26 Nov 2024 17:58:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732643759;
-	bh=yoe2aMfpN0ZQwA0Nsmhpzu/IECyL8ebWI8rzUr9nDcM=;
+	s=k20201202; t=1732643897;
+	bh=IDyL1pulAzUpnCICZ2IVyP2Lsx+Gle/0XJ4/G7Zn+0k=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CGpCcL44tIaBfqJ9h8Z6sSrq9vHUy4aknC6G7Yo/7UA9UmZIDIDMX/8kSL4GCCuo6
-	 QV5fzIM7GEq4Ta01ZJzxgDNeG0SFr1FDaCrvwzGS2acld1bmJYq67cwvE6sYlXPloa
-	 21h8NgWZvFUYQD6RyqnVUxqPLACQdFPNO78BzwBxBVo2nw4279WZVO1Ybt9IkJf/Wl
-	 dqPqmO30OHeDEypdbWQ0lJ7KTj+iATvqEI8I9bSa9Scqwz16j338xUMegFUdS6ERpI
-	 hc4lpSrUv8SguVxbCQl0N5ffOqsXIAq0FRMICd4SPqQMd58cNxqElEZ7slI/xfeqcz
-	 Hx+j55aj3Ml6g==
-Date: Tue, 26 Nov 2024 17:55:55 +0000
+	b=huA6gbY2lE5dDy+0x+tm3yHSKuwnCNcQxIyL30aWJTvSZOCU8GkgKdpQmHVLBCT70
+	 bHwN117Wn/ApYDnSBK6Lw+iswXvGAMoa04S6o1T7caJRaiGpI19Z5WVFICqpdtEdNI
+	 Zu+1UFAFP2g7O6fOfvSYtR3Dh2dAtUxeUHaX/rvwxCjj6/80knxXTncrvJfCBwbPBC
+	 gvcRn80elYFOidWYq6zf3TUuj/393MvVRoMaaRynTl5HtSXliJSqC86bSqnwhfJlFj
+	 G3iJTB+7JenPrWAQYGy1B1gSuyGqdnM9UU7akk+XomH93G2zqGJsHYPxNwkC7pu9yp
+	 QP/xganUQ2pEg==
+Date: Tue, 26 Nov 2024 17:58:13 +0000
 From: Conor Dooley <conor@kernel.org>
-To: E Shattow <e@freeshell.de>
-Cc: Jisheng Zhang <jszhang@kernel.org>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/1] riscv: dts: starfive: jh7110-milkv-mars: enable
- usb0 host function
-Message-ID: <20241126-overlying-estranged-97adaac4d1aa@spud>
-References: <20241126075740.17419-1-e@freeshell.de>
- <20241126075740.17419-2-e@freeshell.de>
+To: Ming Yu <a0282524688@gmail.com>
+Cc: tmyu0@nuvoton.com, jic23@kernel.org, lars@metafoo.de, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, cmo@melexis.com,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: iio: temperature: Add support for
+ NCT7718W
+Message-ID: <20241126-shimmer-such-35cf44076981@spud>
+References: <20241126074005.546447-1-tmyu0@nuvoton.com>
+ <20241126074005.546447-2-tmyu0@nuvoton.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,76 +60,94 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Z5dDKqBsszanwcNU"
+	protocol="application/pgp-signature"; boundary="dNtPWRtJs9yXj6o/"
 Content-Disposition: inline
-In-Reply-To: <20241126075740.17419-2-e@freeshell.de>
+In-Reply-To: <20241126074005.546447-2-tmyu0@nuvoton.com>
 
 
---Z5dDKqBsszanwcNU
+--dNtPWRtJs9yXj6o/
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Emil,
-
-On Mon, Nov 25, 2024 at 11:57:25PM -0800, E Shattow wrote:
-> Milk-V Mars set JH7110 on-chip USB host mode and vbus pin assignment
+On Tue, Nov 26, 2024 at 03:40:04PM +0800, Ming Yu wrote:
+> Add devicetree binding document for Nuvoton NCT7718W thermal sensor.
 >=20
-> Signed-off-by: E Shattow <e@freeshell.de>
+> Signed-off-by: Ming Yu <tmyu0@nuvoton.com>
+> ---
+>  .../iio/temperature/nuvoton,nct7718.yaml      | 44 +++++++++++++++++++
+>  MAINTAINERS                                   |  6 +++
+>  2 files changed, 50 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/temperature/nuv=
+oton,nct7718.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/temperature/nuvoton,nc=
+t7718.yaml b/Documentation/devicetree/bindings/iio/temperature/nuvoton,nct7=
+718.yaml
+> new file mode 100644
+> index 000000000000..a3573e3d454d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/temperature/nuvoton,nct7718.y=
+aml
+> @@ -0,0 +1,44 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/temperature/nuvoton,nct7718.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Nuvoton NCT7718W Thermal Sensor IC
+> +
+> +maintainers:
+> +  - Ming Yu <tmyu0@nuvoton.com>
+> +
+> +description:
+> +  https://www.nuvoton.com/resource-files/Nuvoton_NCT7718W_Datasheet_V11.=
+pdf
+> +
+> +properties:
+> +  compatible:
+> +    const: nuvoton,nct7718
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
 
-Could you look at this please?
+Please add the vdd supply as a required property.
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        temp-sensor@4c {
+
+The generic node name is actually temperature-sensor.
 
 Thanks,
 Conor.
 
-> ---
->  .../boot/dts/starfive/jh7110-milkv-mars.dts    | 18 +++++++++++++++++-
->  1 file changed, 17 insertions(+), 1 deletion(-)
->=20
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts b/arch/ri=
-scv/boot/dts/starfive/jh7110-milkv-mars.dts
-> index 0d248b671d4b..3bd62ab78523 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-milkv-mars.dts
-> @@ -53,7 +53,23 @@ &spi0 {
->  	status =3D "okay";
->  };
-> =20
-> +&sysgpio {
-> +	usb0_pins: usb0-0 {
-> +		vbus-pins {
-> +			pinmux =3D <GPIOMUX(25, GPOUT_SYS_USB_DRIVE_VBUS,
-> +					      GPOEN_ENABLE,
-> +					      GPI_NONE)>;
-> +			bias-disable;
-> +			input-disable;
-> +			input-schmitt-disable;
-> +			slew-rate =3D <0>;
-> +		};
-> +	};
-> +};
-> +
->  &usb0 {
-> -	dr_mode =3D "peripheral";
-> +	dr_mode =3D "host";
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&usb0_pins>;
->  	status =3D "okay";
->  };
-> --=20
-> 2.45.2
->=20
-
---Z5dDKqBsszanwcNU
+--dNtPWRtJs9yXj6o/
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ0YLqwAKCRB4tDGHoIJi
-0sjcAP0XHuNi8u8P9di83xPPA/z8nh20Ql4kpuMWbj0CYh8ibgD+No+pVtoiDPwV
-dh4QqWI+PJHY/AoivxsquLxdzqhPYgg=
-=Tsrh
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ0YMNQAKCRB4tDGHoIJi
+0nokAQDoyXilFegkgBLlN8uAdhsEDKKTDTM7KyXTgD69rrMOQAD8CHTTuHl20Ra7
+tbOHlPE/7Q6aPc/faLPpUVLHe3lfSwU=
+=1jDZ
 -----END PGP SIGNATURE-----
 
---Z5dDKqBsszanwcNU--
+--dNtPWRtJs9yXj6o/--
 
