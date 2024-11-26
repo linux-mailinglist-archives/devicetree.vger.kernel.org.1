@@ -1,132 +1,101 @@
-Return-Path: <devicetree+bounces-124730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B33E09D9B4E
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 17:23:17 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE77D9D9BCD
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 17:49:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 795262825FB
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 16:23:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 75DD1B26329
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 16:34:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 809411D89ED;
-	Tue, 26 Nov 2024 16:21:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C6C11D8DF9;
+	Tue, 26 Nov 2024 16:34:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fMCYUhPy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O9P5IhGf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 589371D63FD;
-	Tue, 26 Nov 2024 16:21:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9E311D89ED;
+	Tue, 26 Nov 2024 16:34:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732638080; cv=none; b=gG1kme4YqiRq1+zNWNBjbBBU+ozIKCgSWq6go6Et/eUprRrafz2p+tisPSrlvAzY6NC1EOgMRhXddEyHcAdHz95sYEhOYCXOZxCoGJihePwZpzbz1r0ltJYw2s8q4JQ184KCrrPADlAdkkBMEKq5DdbES8SKzzqc3YWyqdzoTMc=
+	t=1732638863; cv=none; b=ZWl9Xzs0vbRHahP9bl3iXQ2nHau+v36GAjPFWSYxXXxZmY4Wbjd2l9hIW71df5n7zf66J0v7gOhgYDePI8oUu1SlhMurkEpC44Y20J/FfY+NOucjm38jwEgp3D9PXmH8qpsmMi7DVAQK3FZgpa3Fkzf+olO6oBPZG8bpEkq3LLo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732638080; c=relaxed/simple;
-	bh=5NmvJsX5yjhL48h+migyyRcy62wI2+uB4AjXYTR6pJc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FAHTEObokE149jCAbQUVwSBtNhn3UsQRJylvSrhKj+8xfQVzjttvjecPtyxAj3m/9KZYmezU8/FTHJh2C6EmkvMa1bJYNEfKsOEYaIeWAToyoPsfIabopP2wGyHXDqvIwyAlJRU2uVMW7P40VfbV5YY757EeBpFoFfDiEcnsqpk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fMCYUhPy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39030C4CECF;
-	Tue, 26 Nov 2024 16:21:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732638079;
-	bh=5NmvJsX5yjhL48h+migyyRcy62wI2+uB4AjXYTR6pJc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fMCYUhPyDHSp70aRs9lCF0ePGlUnJoPz828YujfSa5tOGr4vA6E3+XgtSxhgioCF2
-	 Wyq6iM1Q/77BYaDvbRD1baY9O7wwWxdZxei4UpzAK9qv84fQc+6QIqOjDLX6qztRR2
-	 SnTzDzk1Rwq3pZMn/J6aDk2MytEj/5YzyLJdxXmyrpUgXCITa6qh0yJB9cw+QdyjDM
-	 gTJSFF1zFKwQP61UEKjXvySx03BNVpJCpFWxf+A4hiJJh7MAQy5OxYHe25V1P9j4pR
-	 gO+kqmHrvdI63kKJTIL24Y2lg//H3aARdtFw0isypQy6EGOThndUrnn4CKo4r9YaHj
-	 3r0F1YxOLwTiw==
-Date: Tue, 26 Nov 2024 16:21:13 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Valentina Fernandez <valentina.fernandezalanis@microchip.com>,
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	ycliang@andestech.com, prabhakar.mahadev-lad.rj@bp.renesas.com,
-	peterlin@andestech.com, samuel.holland@sifive.com,
-	conor.dooley@microchip.com, alexghiti@rivosinc.com,
-	ruanjinjie@huawei.com, takakura@valinux.co.jp, conor+dt@kernel.org,
-	jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 3/4] dt-bindings: mailbox: add binding for Microchip
- IPC mailbox controller
-Message-ID: <20241126-pulmonary-krypton-30da3faa8482@spud>
-References: <20241125175818.213108-1-valentina.fernandezalanis@microchip.com>
- <20241125175818.213108-4-valentina.fernandezalanis@microchip.com>
- <vkw7o25szfn2upi5776xdojg5n5fxxaxwynth5kynjwjqzrgua@5lwrjqgzlxzi>
+	s=arc-20240116; t=1732638863; c=relaxed/simple;
+	bh=81kUDK2FfLp/WGQa7o8TpKjDjzqNKseVMcIR/5Kc37Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=X0Hi5GO6+JudbHVRPQTFJLhJSpKruSpm0ZQBbDmeviGrCT8gEoVKSfH387OlEkSTQx5B7chtkpxaCyYWH1W4qAk8EuoVCvFERMRmkOL+kBRsfRCzEcJkk2un7VFCdudq5r29vfDwv+74CZNSZe8DUHxiHb1Yso5X/qQKuT0hJzk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=O9P5IhGf; arc=none smtp.client-ip=209.85.219.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-e38939a89bfso5347954276.3;
+        Tue, 26 Nov 2024 08:34:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1732638861; x=1733243661; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=81kUDK2FfLp/WGQa7o8TpKjDjzqNKseVMcIR/5Kc37Q=;
+        b=O9P5IhGfCQT7z0e3U66NUd40XwkRjEu4Wh9JoEoyNKofJ5yul+qqMdH1xuuqOLphwe
+         Lc0RZPUl8WfpdEw874juzMkDfzQ1UllQCnEdE7x7ZgvOtYRZPlDcRNS6wER2PZqMBbKj
+         i0g4wYgk9fOhoWuvJYFGfiWh2BimGTplMiFOaqUvZ44gfbiI8m66lam2kMRxpBXFhXs5
+         Y5BlK5/9YHNsceVSfJ8iaocHk3rZm/3K/k/02O+9syuk9APZHlQS/KL2EFM8iiJ1RyO6
+         8P/hK0ObPIqwmck84sOfQ6mQKar2FKX394mKbWTM0rMmg/y90GlykybTTvX9Xa4CidtV
+         McJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732638861; x=1733243661;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=81kUDK2FfLp/WGQa7o8TpKjDjzqNKseVMcIR/5Kc37Q=;
+        b=mH1+OUtDOP24RNVG1dP/C7cWaIkUsn6QjKr4pltTKYbmyNH3pb83WMJmekhRoo/6Fe
+         lKh7NwnmGCwv2lqdOx7GvrgP1BnWCrTAoPOvO+k4eOlmKfpxsWmv6hV2KgTH9u710Nyl
+         XKuakt8tJEJXRMj/KQhmjY8Lt+25UVRO8+fSQS7pi5IIfYh81+Z1v2UKJ9FIun9OuJez
+         I2U4qqpwDzxh+h5z2FnSN+HILxmwCziw7FKhTPt5BhsDVQi0pieTsqox8qdrEll+a5rx
+         gz0gj4NFKVcute0ZzJ+B07wBdNVXMsqq8/ugPA3xhxLah6p1+trKxu4i+ZaGh6ZrokUV
+         TPKg==
+X-Forwarded-Encrypted: i=1; AJvYcCUNMRu93Oe/0KkwdPI6/k7rv8lBLxgluq5Rd+uGabrHNrszg6icDmyejyK7cnhVMxIpuR0XedDdOyER@vger.kernel.org, AJvYcCXb9TLqxCimjpHLBxnJtW+8peryD5nt07LthI2looFMArh/w2a+sAZb7BUBbAbq3TlnVLihdWLBcOnnbddN@vger.kernel.org
+X-Gm-Message-State: AOJu0YyTjtdu7uy+RQ6Plmb6nEq0pCEAGOfCe/AZQjTDU0Boica1BgKR
+	+0uoh6zCafhK0r1sT4379MS7csKeFKipinD7CIIfY/lKQKZfiE4t/rwCQOnWOh5DWudLMbx3y8f
+	Fy1ii3r2w63/81D0OZu38vTtcqgs=
+X-Gm-Gg: ASbGncvjt/NdWLmflQJSEXQGLynyf9RJmAhnlDDf2frXdge3koW7bEJ0kp6nZwhmocp
+	lWWpTuGJRyf263Sd0q+skOpK9JA/ADx7T
+X-Google-Smtp-Source: AGHT+IH0rBw+xuH2VbnRPCa0ythGe+vmqwLZcKnDRV9jeUgWhfvMABxWAASqLF5EJD3NVkEYkOzdFIsrWd4Mu4/XXZw=
+X-Received: by 2002:a05:6902:703:b0:e2b:d4c8:c5e9 with SMTP id
+ 3f1490d57ef6-e38f8ad708dmr15164230276.11.1732638860727; Tue, 26 Nov 2024
+ 08:34:20 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="UHhEcYF+Tebg/wAN"
-Content-Disposition: inline
-In-Reply-To: <vkw7o25szfn2upi5776xdojg5n5fxxaxwynth5kynjwjqzrgua@5lwrjqgzlxzi>
+References: <20241124-adpdrm-v1-0-3191d8e6e49a@gmail.com> <20241124-adpdrm-v1-3-3191d8e6e49a@gmail.com>
+ <f2181c71-db23-4d94-9afb-cb8f2fc46bea@kernel.org> <3a6fb7fd-eb3d-428b-a37c-f04d81e7fbd0@gmail.com>
+ <e647e8c7-6df9-44f5-abcc-34db74b8e266@kernel.org>
+In-Reply-To: <e647e8c7-6df9-44f5-abcc-34db74b8e266@kernel.org>
+From: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Date: Tue, 26 Nov 2024 17:34:09 +0100
+Message-ID: <CAMT+MTSetzODw-cbteQOgEYmEgpiFBVP5eDgjvyHGqofCU=VXg@mail.gmail.com>
+Subject: Re: [PATCH 3/5] gpu: drm: adp: Add a backlight driver for the Summit LCD
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Nick Chan <towinchenmi@gmail.com>, Hector Martin <marcan@marcan.st>, 
+	Sven Peter <sven@svenpeter.dev>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-
---UHhEcYF+Tebg/wAN
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Nov 26, 2024 at 08:04:38AM +0100, Krzysztof Kozlowski wrote:
-> On Mon, Nov 25, 2024 at 05:58:17PM +0000, Valentina Fernandez wrote:
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - description:
-> > +          Intended for use by software running in supervisor privileged
-> > +          mode (s-mode). This SBI interface is compatible with the Mi-V
-> > +          Inter-hart Communication (IHC) IP.
-> > +        const: microchip,sbi-ipc
-> > +
-> > +      - description:
-> > +          Intended for use by the SBI implementation in machine mode
-> > +          (m-mode), this compatible string is for the MIV_IHC Soft-IP.
-> > +        const: microchip,miv-ihc-rtl-v2
-
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: microchip,sbi-ipc
-> > +    then:
-> > +      properties:
-> > +        reg: false
->=20
-> What does this mean in reality? Device does not have IO address space?
-> Then it is completely different programming model, isn't it?
-
-Ye, different programming models. Two compatibles for the same hardware,
-but one represents the m-mode/firmware programming model that has MMIO
-access and is the SBI implementation and the other the s-mode/OS
-programming model that uses ecalls provided by the SBI implementation.
-
-> > +        microchip,ihc-chan-disabled-mask: false
-> > +    else:
-> > +      required:
-> > +        - reg
-> > +        - microchip,ihc-chan-disabled-mask
-
-
---UHhEcYF+Tebg/wAN
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ0X1eQAKCRB4tDGHoIJi
-0pV3AP9Q0WEJXVAedx6l0dgDDRC1T1u7gst2xaLmNAJdZULXCgD+NGtzaOJiNZfr
-DFwVWzDxNzpUytgABiEoCMczznCo0w8=
-=XItn
------END PGP SIGNATURE-----
-
---UHhEcYF+Tebg/wAN--
+On Mon, 25 Nov 2024 at 16:07, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>
+> BTW, max-brightness is a property of backlight, not panel, I think.
+This is an oled panel, so no separate backlight device, the mipi commands
+just change the pixel brightness. There is prior art in other bindings on having
+the max-brightness property attached to the panel itself.
 
