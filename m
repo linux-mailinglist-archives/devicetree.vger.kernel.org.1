@@ -1,107 +1,154 @@
-Return-Path: <devicetree+bounces-124501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124502-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE3A99D91EF
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 07:49:25 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 924421660FE
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 06:49:22 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 579D0190472;
-	Tue, 26 Nov 2024 06:49:17 +0000 (UTC)
-X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 142FA9D91F4
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 07:50:57 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C318A18DF93
-	for <devicetree@vger.kernel.org>; Tue, 26 Nov 2024 06:49:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 99289B2526A
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 06:50:54 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECF3A17E473;
+	Tue, 26 Nov 2024 06:50:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="aMEhKCAp"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A8131A260;
+	Tue, 26 Nov 2024 06:50:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732603757; cv=none; b=oBjPu5beKGrXMMjPGsfNZRcQu71dwt28q3uHRAKeqaxzy0wiLg2av6DOW4iGSR51znM0ZWX/fVOMJOBMvekaP1fwwHsSpOOXVfdzLwXGkGx4oshryaYZhY1GqQh56JGdkva4cA24E5vWEL4O2ZntJk2zuRWsPKyKxNesV5EE6vM=
+	t=1732603850; cv=none; b=r1tK4dxlcQlAly22HlN4mjbaGUls5yjOcUcWD+Iybd7Elp0pBiR2U3DOAuSryNi+GgZW2bNWhbV8X4sZ0UIlbIv8KQCgraRCfblMXuL/TS3Xr8kxg0Ka6los7qM/pMdPL/kaugiAhGjIgNDAkb5fsX8qpJScYigAaLo5eGO7N4M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732603757; c=relaxed/simple;
-	bh=aPYtwxgZhw35UXv7IJQFDNx0YGXcgrG5lruABDTFbnc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bmpMnOd3obXvpiwCcwkmhvc6hnvib/c6vUj06xoQPUww3HOzjOvSWCXEQnNvPDjbGHbrkfvQAzppYfj3sGa7em30bm3BHrZ9fBsy5QYAgSrNGmtxRfGyek0xxyoLrDW46MzhSUaSvXp3YTRM4amdQE69mXEHxFqS+CamVW+CeDU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1tFpNh-0000ba-00; Tue, 26 Nov 2024 07:49:05 +0100
-Message-ID: <f8d5e367-5648-4941-9d65-adfbe6d3c0dc@pengutronix.de>
-Date: Tue, 26 Nov 2024 07:49:04 +0100
+	s=arc-20240116; t=1732603850; c=relaxed/simple;
+	bh=P8PZRcNd4tTQCge9mgB4g9bdXLpi4U9nQjjtlVEv4d8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=TUJE7lJ5ImxtSLaqhNcy/HSVrlgjut9DmnvQd5p4K9GNa0TNbm4Ixvc6shJCiQsPmjmq201yVy8Bh1xr1GZbHzevmcw1nQ/llrNwctESHq1cvkX2Z7dHVNAlBD97WGRXwNe3uqi/0y9MV4rxcofnvd57H6Csd0wY0pOB0lBKAwg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=aMEhKCAp; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AQ5bdgl010667;
+	Tue, 26 Nov 2024 06:50:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	srMcnyxoj0w+hwEi9C3TsBzhfGs038zKSSvCCggophM=; b=aMEhKCApviaoiC7a
+	eAZDpQfQSvEdCZqmiT//wkKRBolFVwvGG5B0ZZ4dt8dtGvr94K/sAKMi9sRBDYoa
+	RvnskO0PAdByaLr1wy0W6CWnfNkamLgZu3jEGScDb2snAsyZyS6UNmUVPq1LflW9
+	VYsGvjedy+BzSqEdCxHZxpny+JXrWuiuoupaBORqWe8268QFEb55ZPXtRlUmJVrB
+	xEYt4sfOG04Ady1fXB0LAp0IfN57/ENcGk+VIEytx27FHhFNMzRoeUWANORjQFEh
+	vjKnSerhZYaD/Ckymf7zBtDsCj+U3zFENhNk5Mp2Sdi0VUIAJ6de/9T8JDCz8+lN
+	UZCkOg==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 434mx73ddw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 26 Nov 2024 06:50:38 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AQ6obg6003071
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 26 Nov 2024 06:50:37 GMT
+Received: from [10.216.8.10] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 25 Nov
+ 2024 22:50:31 -0800
+Message-ID: <cce7507f-a2c4-6f96-f993-b9a7e9217ffa@quicinc.com>
+Date: Tue, 26 Nov 2024 12:20:28 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/6] arm64: dts: Add dsp rproc related mem regions
-To: Daniel Baluta <daniel.baluta@nxp.com>, shawnguo@kernel.org,
- s.hauer@pengutronix.de, kernel@pengutronix.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- frank.li@nxp.com, aisheng.dong@nxp.com, daniel.baluta@gmail.com,
- laurentiu.mihalcea@nxp.com, shengjiu.wang@nxp.com, iuliana.prodan@nxp.com
-References: <20241125152427.136883-1-daniel.baluta@nxp.com>
- <20241125152427.136883-7-daniel.baluta@nxp.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v3 1/6] dt-bindings: PCI: Add binding for qps615
 Content-Language: en-US
-From: Ahmad Fatoum <a.fatoum@pengutronix.de>
-In-Reply-To: <20241125152427.136883-7-daniel.baluta@nxp.com>
-Content-Type: text/plain; charset=UTF-8
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: <andersson@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+        "Lorenzo
+ Pieralisi" <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?=
+	<kw@linux.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        "Rob Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor Dooley" <conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        <cros-qcom-dts-watchers@chromium.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Bartosz Golaszewski <brgl@bgdev.pl>,
+        <quic_vbadigan@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20241112-qps615_pwr-v3-0-29a1e98aa2b0@quicinc.com>
+ <20241112-qps615_pwr-v3-1-29a1e98aa2b0@quicinc.com>
+ <poruhxgxnkhvqij5q7z4toxzcsk2gvkyj6ewicsfxj6xl3i3un@msgyeeyb6hsf>
+ <42425b92-6e0d-a77b-8733-e50614bcb3a8@quicinc.com>
+ <b203d90d-91bc-437b-9b91-1085034ed716@kernel.org>
+From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
+In-Reply-To: <b203d90d-91bc-437b-9b91-1085034ed716@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: -3kNUEx0cSXvKgCcmrqpIVjVDgvfqwiQ
+X-Proofpoint-ORIG-GUID: -3kNUEx0cSXvKgCcmrqpIVjVDgvfqwiQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
+ mlxlogscore=671 malwarescore=0 adultscore=0 spamscore=0 mlxscore=0
+ bulkscore=0 phishscore=0 lowpriorityscore=0 suspectscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411260052
 
-On 25.11.24 16:24, Daniel Baluta wrote:
-> With imx8mp-evk board we are now configuring 'dsp' node for rproc usage,
-> so add rproc specific memory regions.
+
+
+On 11/25/2024 1:10 PM, Krzysztof Kozlowski wrote:
+> On 24/11/2024 02:41, Krishna Chaitanya Chundru wrote:
+>>> ...
+>>> 
+>>>> +  qps615,axi-clk-freq-hz:
+>>> 
+>>> That's a downstream code you send us.
+>>> 
+>>> Anyway, why assigned clock rates do not work for you? You are 
+>>> re-implementing legacy property now under different name :/
+>>> 
+>>> The assigned clock rates comes in to the picture when we are 
+>>> using clock
+>> framework to control the clocks. For this switch there are no 
+>> clocks needs to be control, the moment we power on the switch 
+>> clocks are enabled by default. This switch provides a mechanism to 
+>> control the frequency using i2c. And switch supports only two 
+>> frequencies i.e
 > 
-> Also, enable dsp node because it is ready to be used.
 > 
-> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
-
-Reviewed-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
-
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+> frequency of what, since there are no clocks?
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-> index d26930f1a9e9..c732ee79772d 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-> @@ -291,6 +291,16 @@ &aud2htx {
->  	status = "okay";
->  };
->  
-> +&dsp_reserved {
-> +	status = "okay";
-> +};
-> +
-> +&dsp {
-> +	memory-region = <&dsp_vdev0buffer>, <&dsp_vdev0vring0>,
-> +			<&dsp_vdev0vring1>, <&dsp_reserved>;
-> +	status = "okay";
-> +};
-> +
->  &eqos {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&pinctrl_eqos>;
+The axi clock frequency internal to the switch, host can't control
+the enablement of the clocks it can control only the frequency.
 
+we already had a discussion on this on v2[1], and we taught you agreed
+on this property.
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+[1] 
+https://lore.kernel.org/netdev/d1af1eac-f9bd-7a8e-586b-5c2a76445145@codeaurora.org/T/#m3d5864c758f2e05fa15ba522aad6a37e3417bd9f
+
+- Krishna Chaitanya.
+>> 125MHz and 250MHZ by default it runs on 250MHz, we can do one i2c 
+>> write with which switch runs in 125MHz.
+> 
+> How doing a write is relevant? Or you want to say you can control 
+> clock?
+> 
+> 
+> 
+> Best regards, Krzysztof
 
