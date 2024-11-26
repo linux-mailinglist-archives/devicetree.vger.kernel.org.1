@@ -1,179 +1,124 @@
-Return-Path: <devicetree+bounces-124710-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F2C49D9A68
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 16:26:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AB609D9A6E
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 16:31:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6FFA7B21CED
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 15:24:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 631FAB22D2B
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 15:30:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 500C61D619F;
-	Tue, 26 Nov 2024 15:24:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6B751D61A1;
+	Tue, 26 Nov 2024 15:30:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="iEMo2MWz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z0l+cgm8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E35E1D45E5;
-	Tue, 26 Nov 2024 15:24:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E4541917E6;
+	Tue, 26 Nov 2024 15:30:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732634694; cv=none; b=UG1qBVK9n/hSMofXm3DOfGfU9KGSorvyAtiLHLO30dLcEWeNd2dfDTvHKHPqyPgUvj5gAobnJdG/jb44S8B15kQ/jj7LU/4sJNg2ZSstKpcdRoqQDKbXvGR3BPeA8jkUJn4jGXt6+sQmqr5UjjgZ5Ph8hbHz3l8hyhhTg91zQ8E=
+	t=1732635011; cv=none; b=KYGB42Ur+RFACOWe3YlZK9DNPFJ27dl4NLIlBPovkwNJwv2LQyn2cnDAU1/+RbNJ2okm8hsYcTYV8xXvKuY5GTc0LFPcQSUDmIlezMVk8a08bOwM3ohsTl8h4Byh468VwPhXveN2mB8DnvsOm6GKmZyP1p6bJcIOIYzuO2LJcbQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732634694; c=relaxed/simple;
-	bh=m8JifkIcWKn2vScoQAglbez3I2ckcKkP5Tw545MTy3s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=QiaPEq3GvIO+8ZOpcWDh2wLrKCv9tebKDjTPiCaiyEAMn4CtL9w2ySv0sqwhT7B3OClOIDQLaEx4fx8bpYwKRWyMSSbfSzmtXZoJEXGgvlP2Fu52wsvtji01uZSJ78+afstHegHHi0z2ZJ1rNCSKY/MtlEAFicEBiMHZT6xz+Vo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=iEMo2MWz; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AQEteBo009477;
-	Tue, 26 Nov 2024 15:24:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	/1cZnQT68TGHVierbrKfkfuNZesBX//u5csAVytjwqQ=; b=iEMo2MWz5aOUwmva
-	95lAnjY5+9nYXFQduIRGGOjcliMhkeKYrAzbUqY6tMwI1ANGJzQbFjKAwGon+ws3
-	f1HnosXLMCvMu9r4t0Mtk+MNfRJ6MwArhA0w4NiEUCpwr7AwdkK3PlZn1t8vPkWj
-	TQJ1YaIPJHxGYJ2t7Gmo3YbQtBX4BmtHUs19VVyDKSTTMOzNs6pQEAQdXT2WAybs
-	C3m1IQMqX4chw9ygc179PDhJPWcII8zfOKXUUWHVQEJvqJOhSfmUwL4Ui2Rnegfh
-	swU7XQuoB/tTPQWNDgV0TjH08BdypENzIgOwfYTvx8vaKjyj9vGTgohS7FTTiIJo
-	HGKXeg==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 435gha82ep-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 26 Nov 2024 15:24:36 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AQFOZMg030262
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 26 Nov 2024 15:24:35 GMT
-Received: from [10.216.49.153] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 26 Nov
- 2024 07:24:29 -0800
-Message-ID: <56b6f58e-e100-4dfd-b764-a9c3f5aad887@quicinc.com>
-Date: Tue, 26 Nov 2024 20:54:26 +0530
+	s=arc-20240116; t=1732635011; c=relaxed/simple;
+	bh=3lCN6+M4YRWXxu55EQBJT4kfjQmI6NsK2j4LNx9CC/U=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YG1QYlv7JmlAtNKCQug3+DpVsCXhfsmmZBom+1Y6FGc/tIltF9lBJSlXCpMUz9ApHiLsscN/A8faAr4ir48wPSTANtrxNvFdwCeQdbghoi3ZPkzqp4ZE0k+Hx1DXZrlHouskPywI3ETpDoh10LAXH6+IAoL60gjPCVOkN7Ncfuo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z0l+cgm8; arc=none smtp.client-ip=209.85.210.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-724f42c1c38so2826242b3a.1;
+        Tue, 26 Nov 2024 07:30:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1732635009; x=1733239809; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3lCN6+M4YRWXxu55EQBJT4kfjQmI6NsK2j4LNx9CC/U=;
+        b=Z0l+cgm883SbWU1oQT1Zvgbj6yu2vAfbvWldBJD5JOD8lJr3BZ+kVU4HbqMu5MnLUO
+         uy6ii9S7/tbcB6fheuYgYntloEpAHr/xyjCaFwnGZq8PGiJyBl9wQTtd2hCToOWGksHq
+         UtTsVOa/cxWBlsxJwN9cmp3HDKyawYd4wHqXLMD1fN8XWW0aBpmBdyR6ZtnhZGFK58zT
+         NApjpYWqpYAkcL+j2Pt+N5LERK7VIDKUqNNAWspldW3q8P9twLLFtKTUgxkQLuBZDDaN
+         /9ymxyoqBEZ44rx85BhqRO2ZLQ/s7LLjmSVfN4LLGEokteKm4dCysBM0zIE02WeXF8SO
+         dhbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732635009; x=1733239809;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3lCN6+M4YRWXxu55EQBJT4kfjQmI6NsK2j4LNx9CC/U=;
+        b=NrsloLBIfTWShSbDkc0NKJYs/mvTa5k2rPLs6iogZzuDy0yWiRKIyEQ+MyW3y6l+/G
+         rovKsn+Mm4i675FTfo83MgM8U7o+9WXuWcD3NSA2tgEYbXTj7OMp7XkAcMXP/oeYshlz
+         VzEnG7b82p9TzoSX57pAMNEwoYOdFvFHAdWBAACy15FCTM2R2DYQDZdCcPhRcmDeIWly
+         KeD/of7+28L57+NtAo/dkaymM5g93XUME2BQwWyRWmbwFcV5xQfXLM/VppahTSnFBc9R
+         sVrwXF+I3qXUqN11ozH1XP8qErSwoTEUzerxoCPxHeCTnSwzqKMHzhrsozdLNkfglmYp
+         UvkQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW0ytaEZqHRWYzTEKYcZOgpa8ftYw+35FEk0eOb07SDpG5O5/uwx+8J/bbve5ii1rF74EDerrnl/hc8WCnY@vger.kernel.org, AJvYcCWWxiW3TTX4mkBjZRjGTTHrE7icXIFtt/rnjqkURATzjR4O9PF9cwWVAJYar5s0wfsC07BghERMUGfW@vger.kernel.org
+X-Gm-Message-State: AOJu0YyQtHuw0mefBdiXp/bbu0ddlLA77D7fDrdha4b8taXMMWndaab9
+	vQLbHMnD/hZKMjLmRQhZICQ7sT/QtwlzBPOYAcz/lJYIus6hnXZZsa3y0mIUfBDa6Rwav13+G+S
+	FEKDOpeP9CNppbdoMKfvRXb0HCYKvNRwh
+X-Gm-Gg: ASbGncvhV9wXTLnhsSisCM8ylx19sOwqNUKptG9atv368Wa9bNvvQdohjFPGBLc5EcL
+	j5fT5ROnCibjj3tUu0rPYNrG/nvk=
+X-Google-Smtp-Source: AGHT+IE+SmZiC8p1bNoQl+mNZuGid7/lVlvbrYFavOShe+NZ2CQZoGtsNSljGtzXmRs6oybFN33p4fu0cBJQOnn1jEM=
+X-Received: by 2002:a05:6a00:92a2:b0:71e:f14:869c with SMTP id
+ d2e1a72fcca58-724df5d4b2fmr22690572b3a.6.1732635009446; Tue, 26 Nov 2024
+ 07:30:09 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: display/msm: gpu: Document A612 GPU
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Clark <robdclark@gmail.com>,
-        Sean Paul <sean@poorly.run>, Konrad Dybcio <konradybcio@kernel.org>,
-        "Abhinav
- Kumar" <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Bjorn
- Andersson" <andersson@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20241126-qcs615-gpu-dt-v1-0-a87782976dad@quicinc.com>
- <20241126-qcs615-gpu-dt-v1-1-a87782976dad@quicinc.com>
- <680a9f92-1d29-410b-bc63-a998d2d64e9e@kernel.org>
-Content-Language: en-US
-From: Akhil P Oommen <quic_akhilpo@quicinc.com>
-In-Reply-To: <680a9f92-1d29-410b-bc63-a998d2d64e9e@kernel.org>
+References: <20241125152427.136883-1-daniel.baluta@nxp.com>
+ <20241125152427.136883-5-daniel.baluta@nxp.com> <Z0SvF2tQR14jrHet@lizhi-Precision-Tower-5810>
+In-Reply-To: <Z0SvF2tQR14jrHet@lizhi-Precision-Tower-5810>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Tue, 26 Nov 2024 17:31:21 +0200
+Message-ID: <CAEnQRZAVmza+A5QC1Xq4dsw1WBtdp0EoM505+UzrCKe15+vqhA@mail.gmail.com>
+Subject: Re: [PATCH v2 4/6] dt-bindings: clock: imx8mp: Add syscon compatible
+To: Frank Li <Frank.li@nxp.com>
+Cc: Daniel Baluta <daniel.baluta@nxp.com>, shawnguo@kernel.org, s.hauer@pengutronix.de, 
+	kernel@pengutronix.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, festevam@gmail.com, devicetree@vger.kernel.org, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, aisheng.dong@nxp.com, 
+	laurentiu.mihalcea@nxp.com, shengjiu.wang@nxp.com, iuliana.prodan@nxp.com, 
+	a.fatoum@pengutronix.de
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 1dm9BEiApSTMSpTxBBdyVG4XYFulg3k1
-X-Proofpoint-GUID: 1dm9BEiApSTMSpTxBBdyVG4XYFulg3k1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
- lowpriorityscore=0 phishscore=0 mlxscore=0 malwarescore=0 impostorscore=0
- clxscore=1015 bulkscore=0 priorityscore=1501 suspectscore=0 adultscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411260124
+Content-Transfer-Encoding: quoted-printable
 
-On 11/26/2024 7:42 PM, Krzysztof Kozlowski wrote:
-> On 26/11/2024 15:06, Akhil P Oommen wrote:
->> A612 GPU requires an additional smmu_vote clock. Update the bindings to
->> reflect this.
->>
->> Signed-off-by: Akhil P Oommen <quic_akhilpo@quicinc.com>
->> ---
->>  .../devicetree/bindings/display/msm/gpu.yaml       | 28 ++++++++++++----------
->>  1 file changed, 16 insertions(+), 12 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/display/msm/gpu.yaml b/Documentation/devicetree/bindings/display/msm/gpu.yaml
->> index 6ddc72fd85b04537ea270754a897b4e7eb269641..201150d3151b55c26c95832d36f4e02f66060a25 100644
->> --- a/Documentation/devicetree/bindings/display/msm/gpu.yaml
->> +++ b/Documentation/devicetree/bindings/display/msm/gpu.yaml
->> @@ -187,6 +187,7 @@ allOf:
->>              enum:
->>                - qcom,adreno-610.0
->>                - qcom,adreno-619.1
->> +              - qcom,adreno-612.0
-> 
-> Keep things ordered.
+On Mon, Nov 25, 2024 at 7:08=E2=80=AFPM Frank Li <Frank.li@nxp.com> wrote:
+>
+> On Mon, Nov 25, 2024 at 05:24:24PM +0200, Daniel Baluta wrote:
+> > imx8mp audiomix contains a set of registers used to control
+> > the DSP.
+> >
+> > The dsp will use this to acquire o reference to audiomix registers
+> > and handle the registers to control the dsp.
+>
+> Look like this is NOT good method to direct operate these register. If it
+> is reset, you should export it as reset interface. If it is clock, you
+> should export it as clock interface.
 
-Ack.
 
-> 
->>      then:
->>        properties:
->>          clocks:
->> @@ -195,18 +196,21 @@ allOf:
->>  
->>          clock-names:
->>            items:
->> -            - const: core
->> -              description: GPU Core clock
->> -            - const: iface
->> -              description: GPU Interface clock
->> -            - const: mem_iface
->> -              description: GPU Memory Interface clock
->> -            - const: alt_mem_iface
->> -              description: GPU Alternative Memory Interface clock
->> -            - const: gmu
->> -              description: CX GMU clock
->> -            - const: xo
->> -              description: GPUCC clocksource clock
->> +            anyOf:
-> 
-> No, this makes everything total mess. Why xo now is allowed to be first
-> clock?
-> 
-> Drop and explain in commit msg why other devices now get smmu clock.
+Hi Frank,
 
-I thought it was okay to make this list a bit flexible. Btw, the other
-existing clock-names list for a5x and older gpus uses "anyOf".
+The code to handle this is already upstream and used for:
 
-I suppose the suggestion is to add a separate clock-names list for A612
-with strict ordering. Is that correct?
+Remoteproc
 
--Akhil
+https://elixir.bootlin.com/linux/v6.12/source/drivers/remoteproc/imx_dsp_rp=
+roc.c#L991
 
-> 
-> BTW, I am pretty sure this breaks existing platforms.
-> 
-> Best regards,
-> Krzysztof
+and Sound Open Firmware
 
+https://elixir.bootlin.com/linux/v6.12/source/sound/soc/sof/imx/imx8m.c#L23=
+7
+
+I'm not sure if it worths the effort to refactor this for such a
+simple operation.
 
