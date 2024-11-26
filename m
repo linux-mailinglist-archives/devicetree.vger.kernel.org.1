@@ -1,195 +1,148 @@
-Return-Path: <devicetree+bounces-124542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E0A79D9373
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 09:40:51 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F9699D937A
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 09:43:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F206D283899
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 08:40:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8DF8DB2502E
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 08:43:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF4A31B0F26;
-	Tue, 26 Nov 2024 08:40:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E116194A75;
+	Tue, 26 Nov 2024 08:43:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d3VzyJhP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LysdB1sj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45CB8194A75;
-	Tue, 26 Nov 2024 08:40:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BF2714A85;
+	Tue, 26 Nov 2024 08:43:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732610442; cv=none; b=NkAnIB9wS/OAG5o134/5VF5QK2WYlmGEXSaLvLA9Cd3+/UWc9GoBIQjKoj3O2oQX5Ac/XGICDL0OIR9yct8/4SQRkYchvywHLk+P3k3fYm9krhQp6HnmoYppXaj+CkztlF5MqjXJUw3GDoOG1TzsIDq/vPOem4xjNeta7zWvaiA=
+	t=1732610600; cv=none; b=JsLc0tRIJbnk68FNXRkioYMFV0Y0zEqS3yZfZqu45odOpz7O3tEAVXXcx8bUeMJcEzJKvB3rh+R4gURrCbZqe1NFC8t4WtbB61MzlE43+7hKCD8U809ZeKowI69mNTyoojmwU+zzppC5y/4F8/AJk4IMbTiTY/Sb0/KjZI9lleA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732610442; c=relaxed/simple;
-	bh=4/jGPyL/3u3yhDTB4NpPx6N/Pb9fNOscghgs7DOlaEU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Xcj2QDbl6J6x+SuE2plRlaPWVMhyPeH+whJoMIMHBzgurgDpkle76+HqpnqqWy6NP35msQXQFumAj1OQz+4CslHuA2PlZpcGhBNPezGzTyjkY3/iYgp4K7fbpj3y4JVAMAfge/XKGtz/wv3wUSunTBuPYUPqfNVlkE+FwFIuX3g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d3VzyJhP; arc=none smtp.client-ip=209.85.216.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-2e9ed2dbfc8so930622a91.1;
-        Tue, 26 Nov 2024 00:40:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1732610440; x=1733215240; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nZbkyUg3DJojK6s7+U9GX4KB3joCQxD93TIhVy5Jp/Q=;
-        b=d3VzyJhP3lYvpZ9lz93D8jeWIPcW3YaxkX7p9qIFx6epNUgWcewWVOCeOvWLdmZ0w8
-         ltMdvpJYtuSfvj7jnOdyfKHjZVVgHYMJQIRxTktdUhzlmmQtW19oYJ6zBIyrUTtT1NMO
-         pFM9XmkFRKAcX7DU0N6UQe6CDv5SrxyZc4J+kzrhqXtCZlF/TyKy5XuKlaFRHqY4NCch
-         ML/HY3faxHS9kkbaqjafqAq5d3zuwV2wqSazefe0uOyHD9/asMx5VmvXNVh6rJMBgR9I
-         ww8mYYRxR1qr9RUn3CVejjOFnfKhhofnZ6hMIPvFSL16Nki7rKFeW3Hxy5oCV+eARkwz
-         B6QA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732610440; x=1733215240;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nZbkyUg3DJojK6s7+U9GX4KB3joCQxD93TIhVy5Jp/Q=;
-        b=qKZzMlwzh4oA+LLF2g1WAxqU2/yhwUVQBCwbKH4IEb8VxldA6ZdB/3gxnKpbEIyAj4
-         RRXL+rt5umZHwmDKFLoqnMbI1lbGpe4TUa5lY22X+vyKzmI4KCcYT+t1IaINSHayJUki
-         1+cxhYb/1GglwvhxnsCUiviUX/0YITbLfNnN3YpBd2uCQr4s8yWLGia+/WMEiqZ8Rcxc
-         pZ1ywXGdPBcOPHm3GioW/YeHL7CDlLy1eRvA839wZ6m/GVnKHQoBK6vuP0IquCrCMc5B
-         Tk51BiCIUc8g/akuZ2HUjygYvMMPqVjBpDZ5dOPmKHC8CcI00QaKMzGgSTcp05zX9SZS
-         /QKA==
-X-Forwarded-Encrypted: i=1; AJvYcCULzWBVhSWAQx/QdaDhWJ2hNNNHJQQoK3QEQdpdJFj2MTBe844eladVeRwPNJakEIxsazsAnaM5lC19@vger.kernel.org, AJvYcCVlAfWcRWsX2Vl/Gd3zHPUQbqY8elTWe6gp0GTV+RstNWT1a3cTkOsmYIjjo1ro+kgXl27Bkis/wSACfZvW@vger.kernel.org, AJvYcCWsDq2X3CnPzOgQoGkw2q9WKKpAWikK+pCMWnaeqXFXE1XSZSqah7HIvcMiJ1KuTF96QR/bYZUpLR1I@vger.kernel.org
-X-Gm-Message-State: AOJu0YywVAb+juFQUevCAqvsGFSi8vOUViw1EXaEvl+jhKz2LWQQSRna
-	yMqOmSTAbvfspFF+hANxIwzvhPie5OI7Ji/gBk6XTrJHf+/UXNbE
-X-Gm-Gg: ASbGncuXq1jowuTr6q3KHwmxku074K46ixJPpYq9zQ2fpyAyvVqt9Vl9w1U/CrwNpac
-	bXSJRD52AAXlM9iMd1ax2qgOiUqsGs/oi+nrfFjzRff1HW/3u7AApS4NmvXkpiTvNwOxQMKpI6h
-	b0T4d/J9jvXovip5QZl2EuGilW70pyVJlbQVXx/WQG2qp/cvx8ypxEh7pPUsskfCP3Naml4SugA
-	Ll0iIW1mHP61fY6ZuO6MYabhxgbDubEVF4yF64YDWIXs/02TFJrNOeXFw==
-X-Google-Smtp-Source: AGHT+IF73PAhzAjUuYL9DhFf8aYaTBl/YTsoSJ+wi/AHDobSA/YfTuwlQrt5I17R1mJE9tAyni/nlA==
-X-Received: by 2002:a17:90b:4c45:b0:2ea:853a:99e0 with SMTP id 98e67ed59e1d1-2ede7e40e93mr1800169a91.5.1732610440452;
-        Tue, 26 Nov 2024 00:40:40 -0800 (PST)
-Received: from [100.116.227.126] ([45.32.86.188])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2ead02eca46sm11706500a91.7.2024.11.26.00.40.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Nov 2024 00:40:39 -0800 (PST)
-Message-ID: <ea141f1f-b0b0-4bcd-ac30-8ee533860f5d@gmail.com>
-Date: Tue, 26 Nov 2024 16:40:32 +0800
+	s=arc-20240116; t=1732610600; c=relaxed/simple;
+	bh=KO4QChkeXAG6Ye9voL0kF1b9b0iezByykeh0B91eWOU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sDSW44T/WkQ1jaxCmjRWXrqhZVKlaZo27ienQeXGbP+MaDGD+tbgacrmm08RbwUoU19JnstWkqAwN34r12fTjhuMNhJ3ae16PropSEj5Fum/XDJOrsWaL1QrMgnFBGJkR0BE0cXYaDsB8D3cZspoBBNe2GAQj+6Dxb0O2Rj48CY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LysdB1sj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5ADDDC4CECF;
+	Tue, 26 Nov 2024 08:43:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732610599;
+	bh=KO4QChkeXAG6Ye9voL0kF1b9b0iezByykeh0B91eWOU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LysdB1sjC85kARHi4P1uA6mphsyY2WNeU6Uoxlf4hYuWmaSplc0EO98GwvqXyuGtj
+	 eC67M2vKoBHT0dpJxsNGcS0A87DyoJOWyZ1PUfXZhYL0J82fETMOmOlOT5+9iFh75F
+	 G43EGLPROxWeYcr2AXeve0GXF3zj4UdtjYPFQVkpd1yTceukMTw5xY91uef8jFiEua
+	 0u3ARhK5hIugNZ0UiPnvbhYm/ZxOMmZ7CQm3urOdgFDnaFK0cxWD9jyaM4S9gsTk4P
+	 Mm1fbOdhSW3QDg3zZcP8RpjamEowa7SlewSs+efHysJ/fvyV1o7iEVn1iGlgGTvP8L
+	 ZwuS+fw6CB1+g==
+Date: Tue, 26 Nov 2024 09:43:17 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Liu Ying <victor.liu@nxp.com>
+Cc: Francesco Dolcini <francesco@dolcini.it>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
+	p.zabel@pengutronix.de, maarten.lankhorst@linux.intel.com, tzimmermann@suse.de, 
+	airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, 
+	kernel@pengutronix.de, festevam@gmail.com, glx@linutronix.de, vkoul@kernel.org, 
+	kishon@kernel.org, aisheng.dong@nxp.com, agx@sigxcpu.org, frank.li@nxp.com, 
+	dmitry.baryshkov@linaro.org
+Subject: Re: [DO NOT MERGE PATCH v4 16/19] arm64: dts: imx8qxp: Add display
+ controller subsystem
+Message-ID: <20241126-overjoyed-futuristic-saluki-cb6cc7@houat>
+References: <20241125093316.2357162-1-victor.liu@nxp.com>
+ <20241125093316.2357162-17-victor.liu@nxp.com>
+ <Z0RXCYZ_7fBvpcvd@gaggiata.pivistrello.it>
+ <d004dfe7-d019-4f53-8373-c8c4e031748c@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: iio: tyhx,hx9023s: Add performance
- tuning configuration
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, yasin.lee.x@outlook.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20241017-add-performance-tuning-configuration-v3-0-e7289791f523@gmail.com>
- <20241017-add-performance-tuning-configuration-v3-1-e7289791f523@gmail.com>
- <20241020140638.127a9dbf@jic23-huawei>
- <b59f6933-e1f1-49e9-be61-3e3b4323da87@gmail.com>
- <20241123132110.15570171@jic23-huawei>
-Content-Language: en-US
-From: Yasin Lee <yasin.lee.x@gmail.com>
-In-Reply-To: <20241123132110.15570171@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="fgeuvrs34ws7krrf"
+Content-Disposition: inline
+In-Reply-To: <d004dfe7-d019-4f53-8373-c8c4e031748c@nxp.com>
 
 
-On 11/23/24 21:21, Jonathan Cameron wrote:
-> On Thu, 14 Nov 2024 23:16:51 +0800
-> Yasin Lee <yasin.lee.x@gmail.com> wrote:
->
->> On 10/20/24 21:06, Jonathan Cameron wrote:
->>> On Thu, 17 Oct 2024 18:36:44 +0800
->>> Yasin Lee <yasin.lee.x@gmail.com> wrote:
->>>   
->>>> When hardware design introduces significant sensor data noise,
->>>> performance can be improved by adjusting register settings.
->>> Questions inline. Mostly around why these controls belong in DT.
->>> What do they have to do with hardware / wiring etc rather than being
->>> appropriate for userspace controls.
->>>
->>> So almost all are definite no to being suitable for device tree bindings.
->>>
->>> Jonathan
->>>   
->> Hi Jonathan,
->>
->> Thank you for the suggestions in your recent email. Following your
->> advice, I discussed these configurations in detail with engineers from
->> the HX9023S supplier. Based on their feedback, these settings are not
->> intended to be exposed to end-users. Typically, these configurations are
->> adjusted during the DVT phase of the end product by the supplier to
->> optimize performance, after which they are finalized and not meant to be
->> modified dynamically at the user level.
->>
->> Given this approach, it seems more appropriate to provide these settings
->> as part of a firmware file, allowing the configuration to be kept
->> internal and managed without user-level access. If this approach aligns
->> with your thoughts, I can prepare and submit a new patch focused on
->> firmware parsing and handling for these configurations.
-> Whilst I agree that a typical user may well not modify these settings
-> that doesn't necessarily make them suitable for control from the
-> Device Tree. Some may be but settings like ODR are about use case
-> not physical hardware. Average and OSR are normally a question of
-> trading off noise against data rate - that's policy not a fundamental
-> characteristic of the hardware. Filter controls are similar.
->
-> For other such as Dither, there may hardware configurations where it
-> doesn't need to be turned, only but does it do any harm? I'd be
-> somewhat surprised if the right thing to do there isn't to just hard
-> code it to turned on.
->
-> The enabling of dataready interrupt is entirely down to how the
-> device is being used, not the platform.
->
-> If these devices are being used in embedded platforms for a specific
-> purpose, then a simple udev rule or similar can configure the
-> defaults whilst still allowing them to be easily tweaked.
-> If you are dealing with standardized software it will already understand
-> many of the userspace ABI calls and have appropriate configuration files.
->
-> That is the appropriate level for such control, not device
-> tree.
->
-> If you have a strong case why a setting is never a policy decision
-> but rather a hard characteristic of the system, then that one may
-> be appropriate for DT.  Examples of this in the past have been things
-> like output voltage ranges for DACs because the hardware beyond
-> this device may only cope with some settings.
->
-> Jonathan
->
-Hi Jonathan,
+--fgeuvrs34ws7krrf
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [DO NOT MERGE PATCH v4 16/19] arm64: dts: imx8qxp: Add display
+ controller subsystem
+MIME-Version: 1.0
 
-Thank you for your detailed explanation and insights. I fully agree with 
-your point that settings such as ODR, Average, OSR, and filter-related 
-configurations, being policy-driven, should not be included in the 
-Device Tree.
+On Tue, Nov 26, 2024 at 10:08:26AM +0800, Liu Ying wrote:
+> On 11/25/2024, Francesco Dolcini wrote:
+> > On Mon, Nov 25, 2024 at 05:33:13PM +0800, Liu Ying wrote:
+> >> Add display controller subsystem in i.MX8qxp SoC.
+> >>
+> >> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> >=20
+> > ...
+> >=20
+> >> diff --git a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi b/arch/arm64/b=
+oot/dts/freescale/imx8qxp.dtsi
+> >> index 05138326f0a5..35cc82cbbcd1 100644
+> >> --- a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
+> >> +++ b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
+> >> @@ -20,6 +20,27 @@ / {
+> >>  	#size-cells =3D <2>;
+> >> =20
+> >>  	aliases {
+> >> +		dc0 =3D &dc0;
+> >> +		dc0-constframe0 =3D &dc0_constframe0;
+> >> +		dc0-constframe1 =3D &dc0_constframe1;
+> >> +		dc0-constframe4 =3D &dc0_constframe4;
+> >> +		dc0-constframe5 =3D &dc0_constframe5;
+> >> +		dc0-display-engine0 =3D &dc0_display_engine0;
+> >> +		dc0-display-engine1 =3D &dc0_display_engine1;
+> >> +		dc0-extdst0 =3D &dc0_extdst0;
+> >> +		dc0-extdst1 =3D &dc0_extdst1;
+> >> +		dc0-extdst4 =3D &dc0_extdst4;
+> >> +		dc0-extdst5 =3D &dc0_extdst5;
+> >> +		dc0-fetchlayer0 =3D &dc0_fetchlayer0;
+> >> +		dc0-fetchwarp2 =3D &dc0_fetchwarp2;
+> >> +		dc0-framegen0 =3D &dc0_framegen0;
+> >> +		dc0-framegen1 =3D &dc0_framegen1;
+> >> +		dc0-layerblend0 =3D &dc0_layerblend0;
+> >> +		dc0-layerblend1 =3D &dc0_layerblend1;
+> >> +		dc0-layerblend2 =3D &dc0_layerblend2;
+> >> +		dc0-layerblend3 =3D &dc0_layerblend3;
+> >> +		dc0-tcon0 =3D &dc0_tcon0;
+> >> +		dc0-tcon1 =3D &dc0_tcon1;
+> >=20
+> > what would you use those aliases for?
+>=20
+> They are used to get the instance numbers of display controller
+> and display controller's internal processing units from display
+> driver, e.g., patch 9 & 10 get instance numbers of some display
+> controller's internal processing units.
 
-As you mentioned, the dither setting is typically left disabled in most 
-cases. This device is indeed used for specific purposes in embedded 
-platforms, and there is no requirement for runtime flexibility in 
-adjusting these configurations.
+AFAIK, it's not listed anywhere in your bindings. Did you get an
+acked-by from a DT maintainer for those aliases as well?
 
-Given this, I have decided to drop this submission. Moving forward, I 
-plan to address varying hardware requirements by adapting these 
-configurations using a firmware-based approach.
+Maxime
 
-Thank you again for your guidance and support!
+--fgeuvrs34ws7krrf
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Best regards,
-Yasin Lee
->
->> Thank you again for your valuable guidance, and I look forward to your
->> feedback.
->>
->> Best regards,
->> Yasin Lee
->>
->>
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ0WKJAAKCRAnX84Zoj2+
+dv4FAX967eYE5R0RWLQVTJQQ3qJdNEVy6ugNTjWr8xtIy2N8MIIRzNEYEwwM1k4I
+4XQfvwoBgKYYryHo1ibtm7ah1MNmHl1h0R5wMhd+pMQv6UR7szQ8hWR4Bz3qc4SU
+9QJkkLsfPQ==
+=oNFh
+-----END PGP SIGNATURE-----
+
+--fgeuvrs34ws7krrf--
 
