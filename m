@@ -1,1429 +1,259 @@
-Return-Path: <devicetree+bounces-124696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124698-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 381289D99CF
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 15:42:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A9459D99D7
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 15:44:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A4231166110
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 14:42:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3180A166973
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 14:44:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 116A71D5CE3;
-	Tue, 26 Nov 2024 14:42:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 652461D63C0;
+	Tue, 26 Nov 2024 14:44:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kAQHyKyu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qcvLQa8U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AC9FBE46
-	for <devicetree@vger.kernel.org>; Tue, 26 Nov 2024 14:42:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3390ABE46;
+	Tue, 26 Nov 2024 14:44:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732632163; cv=none; b=kCp2Kkor8CkdXMPTz/J6KG61gHGZyQOkfxV0twI0Exqh9EsDg9i9GotyJ5M0I0owvQpemDTgOeO2NoQjmnpimwgbHVym08eV+4FMUzshN1b5FIBuJIs+N7a6xthh1DegLzXjSo/NK5J6HZxTpb3Fq9LSKZ9JkDeFEjEuIy4nHfk=
+	t=1732632272; cv=none; b=thykGGN51kZjWbS2BkGaWrIYxNjKMBMtmcKrw7StFPOscI+zPckeepv1cmmt8XfOdjNX1diVzR2Crn/TxY+EgLIZN7MQy7i0HMSNC0BKrNZG8/wxd8zNzgz9kUL2Nahdq+C+M5THSJgmUb7N/3ZHP8ImlAqmruPKWQTnn8EdQzo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732632163; c=relaxed/simple;
-	bh=ULpfQE/tBMDBlSe/E9jYN+d2SiMQZ2WWwBIjrORJYow=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AgvHrEaXR3x0J4/zXYbLp7ewpXJUccSpuHB3BNxG9iwtQ5uTGgM7wwyxMyS3l4l42iTPQhfH30d5vUojuIivFpr0e94aRYb/r+fg2JRlB2SJDICP8zDpRb9dXpZrk9Yn++U7owuravWAIi0Fz07Ld/znA+ON97KvtMHmqjlEXXc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kAQHyKyu; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-53de035ea13so2524417e87.0
-        for <devicetree@vger.kernel.org>; Tue, 26 Nov 2024 06:42:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732632157; x=1733236957; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Mpq6+pbMqtjEwOgwsYZhAbx3rpo/4OHlnQuBS8x75/I=;
-        b=kAQHyKyuSDEGn1CpM1g/CEeUyQVinHaioNepYEbdljDDpLkHcdhZbcvi8PNKE6Byo9
-         VELuoC0zmW5WLGzADALIV+gDKYzfxzlR9r0go3tEQy2prWFzEgjwwW7/PuRPMp+d82Rz
-         l5FAVtQbVmKjBYUJDo2/BcMIdFvrPFDI5OwIApcKx9U5hSS7dGvyQ5KYTAOUfShg0eP1
-         owEFTgX4uC/5Q9Eurmb2b001kw+1UEILAghXtcuI/bmEWCYhIqG7FkSC/2PDrtzEZcGP
-         teH0DfCVrukvtJx04EyNWoFdEeuaE8iAsPpMuZZ0r3adwo/xKI4cZWHrO5J8GXsfv4Rg
-         G/cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732632157; x=1733236957;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Mpq6+pbMqtjEwOgwsYZhAbx3rpo/4OHlnQuBS8x75/I=;
-        b=Zkib0AioEcxv3B44+h7OBbn3KaJFFDibux/ZvxRkN+vjJNQs8jlWRSIWo0w6trOcKC
-         cZEOQrZq59tL5HYz/ihETXdyivJHRu4VrlB2BrB3LFDwiwAlOOfh0Ka8Fq50GcghiScQ
-         76uC0QG38+SAGikjq2VU+Kf9XKeXMl9MXIxPFFV46X2wzp24/p/SnNytzUFdHm6oHCCj
-         tO8to4W4E9jzL9jSab+kkasrKvXDfi5uT6IGTIhRt6f2v5oPxz8iFEKd3AY3kaYYxrGF
-         5TMZJsEW2DCFo6dBZopRMhMQP6lm9m2a5S+OffwKIi1BrBEImqJSwTtxmquE0/65Zjcj
-         MjCA==
-X-Forwarded-Encrypted: i=1; AJvYcCUkZt//J1SnQ0vCZHndOhqtDqqaOOHPLWBYLnX9vmOW3JqdI2o3MerkJLVmyvdYB+KU3VkGjYJWtp1d@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXWxtJ3ueiPYw2/MgavHg+QKekREKUEWKSqWxQ2/TSMM57c55v
-	QbjiZSk8NBiHsiIIdm+zUPpSIz5gfsHhg3WK09R1lpnGis+QeWXcKClcjd+vNnQ=
-X-Gm-Gg: ASbGncsa9daGGiOFephioF8ClR57L2GvdDbitRJrxOsOhp1RHNaZvR2+Vl8VP2hAzSU
-	Wj+4e9izgjgofIO5XSdhOA5cqF42Wu1GDJBuSvP7wjKDn6Pb4IzUP+/lqar/yKpie2AJJZb18L7
-	rfJ3VI0uWKQ4NRWGZLfO1GzDR/wa5PZlao03S1SGWikBwDybPyZfr2RRjx9+fbEtV3ZT7s96HoM
-	Zf70VmD4IaL3r814Z6/X0r/OsWDbc0Jv3/xZPCL2ncF0+RIGxfgKgt5FjyS4lj9g8lmvgGDSZ2m
-	KvbyNH5MbGJl4D0qZs0c9UWSy6D1Zg==
-X-Google-Smtp-Source: AGHT+IFnmMaIBizQZ3N3V95vKb5fydjtBpB0Jbe5KSUIeCJj0DvzESJgEsj0YtwNq9dC8F/78NAewQ==
-X-Received: by 2002:a05:6512:3994:b0:53d:e4cc:f5f0 with SMTP id 2adb3069b0e04-53de4ccf894mr3737749e87.33.1732632157133;
-        Tue, 26 Nov 2024 06:42:37 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53dd24519b6sm2049282e87.106.2024.11.26.06.42.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Nov 2024 06:42:36 -0800 (PST)
-Date: Tue, 26 Nov 2024 16:42:34 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Sandor Yu <Sandor.yu@nxp.com>
-Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, 
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com, 
-	daniel@ffwll.ch, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com, vkoul@kernel.org, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, mripard@kernel.org, 
-	kernel@pengutronix.de, linux-imx@nxp.com, oliver.brown@nxp.com, 
-	alexander.stein@ew.tq-group.com, sam@ravnborg.org
-Subject: Re: [PATCH v19 6/8] phy: freescale: Add DisplayPort/HDMI Combo-PHY
- driver for i.MX8MQ
-Message-ID: <slkpvbemsrz5jv4cafp7k4pdj3smpl575w2dtmjoheoqqrh32j@2wi5564jzawg>
-References: <cover.1732627815.git.Sandor.yu@nxp.com>
- <4ef8252825d7a962b440519fb17fdcd5dd817672.1732627815.git.Sandor.yu@nxp.com>
+	s=arc-20240116; t=1732632272; c=relaxed/simple;
+	bh=Rp1i+YK9SNFf15Z19uehbh8DuABXEgZ7TwsuCaYXqak=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rGgrxm/FVlkxarlKSInIm5w4sZPsINYOoNhPbp6qEjgXWC+Fwk4megx7hXXhGzZJlCLrses34See6xWaX7DS6SmemUdguk2VsTUprj3IgKCVQ4uuTvzqbdfLNJk0XUTYkBarcxZP/smXWJ6WP/kFXXZ2lxqTitq2ePcG9IQ0Ldo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qcvLQa8U; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2776C4CEDC;
+	Tue, 26 Nov 2024 14:44:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732632271;
+	bh=Rp1i+YK9SNFf15Z19uehbh8DuABXEgZ7TwsuCaYXqak=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=qcvLQa8UILu+IXYCyCKgwQ+6at8fPzw90s/e082v9PVuTmwA3oc0qCwf3IxAKL6Yh
+	 xrIObF09eu/ufCmad8Ob466LyVLoLTdH0UnZj1o1A3aIqpGnnEsOhfzEx9j6d1G5mJ
+	 gTPfWxmYTLV0AHRjKQa2seov9LTvWWKxGUVCjlyiuR+H1UD6oyoQuxsA3p8+qb5AN5
+	 /b2Bpa+ayaNkXWp7u1i8LFLZVCC/C9dwedt5o2FRvw0BonI9oIR9ZFFd06Cd9W5m6A
+	 fCX10JmKSjnsOHatMVJRzK18amO9qtzAorzyB8LSfiE3ODPyzvTyE68x5e9IMNTruw
+	 JgAHemVwXtlOw==
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-e382589e8fdso5584039276.0;
+        Tue, 26 Nov 2024 06:44:31 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU7Pi2RW6CjD+UCq8hewZ/7Zk/9e4BLp8PpfBYEXCGJUfKNupN7jnugOaigivW6cRM6w1WvSffrDbIk@vger.kernel.org, AJvYcCUWamdOxHaPf26GWnT6rdRxrMjU2yx26S3xv5vD2jpFfRA1dre9wKKH27Y5xYYclzoBI26gBs0cZi1U@vger.kernel.org, AJvYcCVr/udCGztPYnyha+g6mo9ODyViIb8TNM1ZyHlEw213rjaGZBxeacmlf9hVSKnl6qcTxt7T9I0Iw7uYO0tpxes=@vger.kernel.org, AJvYcCXazFO+e4oh1U0bjBoITa8ZyBo1ckOrz/jqa57DPfwuxU21ZtwQMW5iq5tbgWouKSpxH1k0KnFlpY/FU7Qs@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxp3dhtjJH1toniHW2+ZX5664FoO15KLzUBSiULSppkQg2w2NcJ
+	xDHWbjyv3sLnpweBjmOEmCOFCmEsNfUCttCX04c7kam5BJkH4Vm0EaEvPVe+aLrLApOf64Bs+gP
+	Vrond5cWem2agyOjgM0bazFYVBg==
+X-Google-Smtp-Source: AGHT+IFmFJWf1WU6vBi8vHbFV0pukUSqPQpDYvejuGLEmStp7nUfeWncTakw2iHQ5OwZwQV3oIpkHHmir4p5muQOzRI=
+X-Received: by 2002:a05:6902:278a:b0:e38:b48b:5fc3 with SMTP id
+ 3f1490d57ef6-e38f8be3986mr13689567276.32.1732632270826; Tue, 26 Nov 2024
+ 06:44:30 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4ef8252825d7a962b440519fb17fdcd5dd817672.1732627815.git.Sandor.yu@nxp.com>
+References: <20241022213221.2383-1-dakr@kernel.org> <20241022213221.2383-16-dakr@kernel.org>
+ <20241022234712.GB1848992-robh@kernel.org> <ZxibWpcswZxz5A07@pollux>
+ <20241023142355.GA623906-robh@kernel.org> <Zx9kR4OhT1pErzEk@pollux>
+ <CAL_JsqLVdoQNSSDCfGcf0wCZE9VQphRhHKANxhpei_UoFzkN9g@mail.gmail.com> <Z0XBbLb8NRQg_dek@cassiopeiae>
+In-Reply-To: <Z0XBbLb8NRQg_dek@cassiopeiae>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 26 Nov 2024 08:44:19 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+TV486zw=hAWkFnNbPeA08mJh_4kVVJLSXiYkzWcOVDg@mail.gmail.com>
+Message-ID: <CAL_Jsq+TV486zw=hAWkFnNbPeA08mJh_4kVVJLSXiYkzWcOVDg@mail.gmail.com>
+Subject: Re: [PATCH v3 15/16] rust: platform: add basic platform device /
+ driver abstractions
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com, 
+	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com, 
+	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me, 
+	tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com, 
+	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net, 
+	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com, 
+	daniel.almeida@collabora.com, saravanak@google.com, 
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Nov 26, 2024 at 10:11:51PM +0800, Sandor Yu wrote:
-> Add Cadence HDP-TX DisplayPort and HDMI PHY driver for i.MX8MQ.
-> 
-> Cadence HDP-TX PHY could be put in either DP mode or
-> HDMI mode base on the configuration chosen.
-> DisplayPort or HDMI PHY mode is configured in the driver.
-> 
-> Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
-> v18->v19:
-> - Simplify the PLL tables by removing unused and constant data
-> - Remove PHY power management, controller driver will handle them.
-> - Remove enum dp_link_rate
-> - Introduce read_pll_timeout.
-> - Update clock management as devm_clk_get_enabled() introduced.
-> - Remove cdns_hdptx_phy_init() and cdns_hdptx_phy_remove().
-> 
-> v17->v18:
-> - fix build error as code rebase to latest kernel version.
-> 
->  drivers/phy/freescale/Kconfig                |   10 +
->  drivers/phy/freescale/Makefile               |    1 +
->  drivers/phy/freescale/phy-fsl-imx8mq-hdptx.c | 1237 ++++++++++++++++++
->  3 files changed, 1248 insertions(+)
->  create mode 100644 drivers/phy/freescale/phy-fsl-imx8mq-hdptx.c
-> 
-> diff --git a/drivers/phy/freescale/Kconfig b/drivers/phy/freescale/Kconfig
-> index dcd9acff6d01a..bbd17e9556cc3 100644
-> --- a/drivers/phy/freescale/Kconfig
-> +++ b/drivers/phy/freescale/Kconfig
-> @@ -35,6 +35,16 @@ config PHY_FSL_IMX8M_PCIE
->  	  Enable this to add support for the PCIE PHY as found on
->  	  i.MX8M family of SOCs.
->  
-> +config PHY_FSL_IMX8MQ_HDPTX
-> +	tristate "Freescale i.MX8MQ DP/HDMI PHY support"
-> +	depends on OF && HAS_IOMEM
-> +	depends on COMMON_CLK
-> +	depends on CDNS_MHDP_HELPER
+On Tue, Nov 26, 2024 at 6:39=E2=80=AFAM Danilo Krummrich <dakr@kernel.org> =
+wrote:
+>
+> On Wed, Oct 30, 2024 at 07:23:47AM -0500, Rob Herring wrote:
+> > On Mon, Oct 28, 2024 at 5:15=E2=80=AFAM Danilo Krummrich <dakr@kernel.o=
+rg> wrote:
+> > >
+> > > On Wed, Oct 23, 2024 at 09:23:55AM -0500, Rob Herring wrote:
+> > > > On Wed, Oct 23, 2024 at 08:44:42AM +0200, Danilo Krummrich wrote:
+> > > > > On Tue, Oct 22, 2024 at 06:47:12PM -0500, Rob Herring wrote:
+> > > > > > On Tue, Oct 22, 2024 at 11:31:52PM +0200, Danilo Krummrich wrot=
+e:
+> > > > > > > +///     ]
+> > > > > > > +/// );
+> > > > > > > +///
+> > > > > > > +/// impl platform::Driver for MyDriver {
+> > > > > > > +///     type IdInfo =3D ();
+> > > > > > > +///     const ID_TABLE: platform::IdTable<Self::IdInfo> =3D =
+&OF_TABLE;
+> > > > > > > +///
+> > > > > > > +///     fn probe(
+> > > > > > > +///         _pdev: &mut platform::Device,
+> > > > > > > +///         _id_info: Option<&Self::IdInfo>,
+> > > > > > > +///     ) -> Result<Pin<KBox<Self>>> {
+> > > > > > > +///         Err(ENODEV)
+> > > > > > > +///     }
+> > > > > > > +/// }
+> > > > > > > +///```
+> > > > > > > +/// Drivers must implement this trait in order to get a plat=
+form driver registered. Please refer to
+> > > > > > > +/// the `Adapter` documentation for an example.
+> > > > > > > +pub trait Driver {
+> > > > > > > +    /// The type holding information about each device id su=
+pported by the driver.
+> > > > > > > +    ///
+> > > > > > > +    /// TODO: Use associated_type_defaults once stabilized:
+> > > > > > > +    ///
+> > > > > > > +    /// type IdInfo: 'static =3D ();
+> > > > > > > +    type IdInfo: 'static;
+> > > > > > > +
+> > > > > > > +    /// The table of device ids supported by the driver.
+> > > > > > > +    const ID_TABLE: IdTable<Self::IdInfo>;
+> > > >
+> > > > Another thing. I don't think this is quite right. Well, this part i=
+s
+> > > > fine, but assigning the DT table to it is not. The underlying C cod=
+e has
+> > > > 2 id tables in struct device_driver (DT and ACPI) and then the bus
+> > > > specific one in the struct ${bus}_driver.
+> > >
+> > > The assignment of this table in `Adapter::register` looks like this:
+> > >
+> > > `pdrv.driver.of_match_table =3D T::ID_TABLE.as_ptr();`
+> > >
+> > > What do you think is wrong with this assignment?
+> >
+> > Every bus implementation will need the DT and ACPI tables, so they
+> > should not be declared and assigned in platform driver code, but in
+> > the generic device/driver abstractions just like the underlying C
+> > code. The one here should be for platform_device_id. You could put all
+> > 3 tables here, but that's going to be a lot of duplication I think.
+>
+> That's indeed true. But I'm not sure that at this point we need a general=
+ized
+> `Driver` abstraction just for assigning the DT and ACPI tables.
 
-You should not be depending on the symbol that can not be selected by
-the user.
+Why not? Practically *every* non-discoverable bus type needs that.
+That's essentially everything except USB and PCI.
 
-> +	select GENERIC_PHY
-> +	help
-> +	  Enable this to support the Cadence HDPTX DP/HDMI PHY driver
-> +	  on i.MX8MQ SOC.
-> +
->  config PHY_FSL_IMX8QM_HSIO
->  	tristate "Freescale i.MX8QM HSIO PHY"
->  	depends on OF && HAS_IOMEM
-> diff --git a/drivers/phy/freescale/Makefile b/drivers/phy/freescale/Makefile
-> index 658eac7d0a622..a946b87905498 100644
-> --- a/drivers/phy/freescale/Makefile
-> +++ b/drivers/phy/freescale/Makefile
-> @@ -1,4 +1,5 @@
->  # SPDX-License-Identifier: GPL-2.0-only
-> +obj-$(CONFIG_PHY_FSL_IMX8MQ_HDPTX)	+= phy-fsl-imx8mq-hdptx.o
->  obj-$(CONFIG_PHY_FSL_IMX8MQ_USB)	+= phy-fsl-imx8mq-usb.o
->  obj-$(CONFIG_PHY_MIXEL_LVDS_PHY)	+= phy-fsl-imx8qm-lvds-phy.o
->  obj-$(CONFIG_PHY_MIXEL_MIPI_DPHY)	+= phy-fsl-imx8-mipi-dphy.o
-> diff --git a/drivers/phy/freescale/phy-fsl-imx8mq-hdptx.c b/drivers/phy/freescale/phy-fsl-imx8mq-hdptx.c
-> new file mode 100644
-> index 0000000000000..e99487622d43c
-> --- /dev/null
-> +++ b/drivers/phy/freescale/phy-fsl-imx8mq-hdptx.c
-> @@ -0,0 +1,1237 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Cadence DP/HDMI PHY driver
-> + *
-> + * Copyright (C) 2022-2024 NXP Semiconductor, Inc.
-> + */
-> +#include <drm/bridge/cdns-mhdp-helper.h>
+> Maybe it's better to do this in a subsequent series?
 
-Still, I'd ask for drivers/soc instead.
+Sure, but only because there will be a limited number of users to fix.
+It looks to me like things are designed for exactly 1 IdInfo
+type/table per driver and that's not a correct assumption.
 
-> +#include <linux/clk.h>
-> +#include <linux/kernel.h>
-> +#include <linux/phy/phy.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/io.h>
-> +#include <linux/unaligned.h>
-> +
-> +#define ADDR_PHY_AFE	0x80000
-> +
-> +/* PHY registers */
-> +#define CMN_SSM_BIAS_TMR			0x0022
-> +#define CMN_PLLSM0_PLLEN_TMR			0x0029
-> +#define CMN_PLLSM0_PLLPRE_TMR			0x002a
-> +#define CMN_PLLSM0_PLLVREF_TMR			0x002b
-> +#define CMN_PLLSM0_PLLLOCK_TMR			0x002c
-> +#define CMN_PLLSM0_USER_DEF_CTRL		0x002f
-> +#define CMN_PSM_CLK_CTRL			0x0061
-> +#define CMN_CDIAG_REFCLK_CTRL			0x0062
-> +#define CMN_PLL0_VCOCAL_START			0x0081
-> +#define CMN_PLL0_VCOCAL_INIT_TMR		0x0084
-> +#define CMN_PLL0_VCOCAL_ITER_TMR		0x0085
-> +#define CMN_PLL0_INTDIV				0x0094
-> +#define CMN_PLL0_FRACDIV			0x0095
-> +#define CMN_PLL0_HIGH_THR			0x0096
-> +#define CMN_PLL0_DSM_DIAG			0x0097
-> +#define CMN_PLL0_SS_CTRL2			0x0099
-> +#define CMN_ICAL_INIT_TMR			0x00c4
-> +#define CMN_ICAL_ITER_TMR			0x00c5
-> +#define CMN_RXCAL_INIT_TMR			0x00d4
-> +#define CMN_RXCAL_ITER_TMR			0x00d5
-> +#define CMN_TXPUCAL_CTRL			0x00e0
-> +#define CMN_TXPUCAL_INIT_TMR			0x00e4
-> +#define CMN_TXPUCAL_ITER_TMR			0x00e5
-> +#define CMN_TXPDCAL_CTRL			0x00f0
-> +#define CMN_TXPDCAL_INIT_TMR			0x00f4
-> +#define CMN_TXPDCAL_ITER_TMR			0x00f5
-> +#define CMN_ICAL_ADJ_INIT_TMR			0x0102
-> +#define CMN_ICAL_ADJ_ITER_TMR			0x0103
-> +#define CMN_RX_ADJ_INIT_TMR			0x0106
-> +#define CMN_RX_ADJ_ITER_TMR			0x0107
-> +#define CMN_TXPU_ADJ_CTRL			0x0108
-> +#define CMN_TXPU_ADJ_INIT_TMR			0x010a
-> +#define CMN_TXPU_ADJ_ITER_TMR			0x010b
-> +#define CMN_TXPD_ADJ_CTRL			0x010c
-> +#define CMN_TXPD_ADJ_INIT_TMR			0x010e
-> +#define CMN_TXPD_ADJ_ITER_TMR			0x010f
-> +#define CMN_DIAG_PLL0_FBH_OVRD			0x01c0
-> +#define CMN_DIAG_PLL0_FBL_OVRD			0x01c1
-> +#define CMN_DIAG_PLL0_OVRD			0x01c2
-> +#define CMN_DIAG_PLL0_TEST_MODE			0x01c4
-> +#define CMN_DIAG_PLL0_V2I_TUNE			0x01c5
-> +#define CMN_DIAG_PLL0_CP_TUNE			0x01c6
-> +#define CMN_DIAG_PLL0_LF_PROG			0x01c7
-> +#define CMN_DIAG_PLL0_PTATIS_TUNE1		0x01c8
-> +#define CMN_DIAG_PLL0_PTATIS_TUNE2		0x01c9
-> +#define CMN_DIAG_PLL0_INCLK_CTRL		0x01ca
-> +#define CMN_DIAG_PLL0_PXL_DIVH			0x01cb
-> +#define CMN_DIAG_PLL0_PXL_DIVL			0x01cc
-> +#define CMN_DIAG_HSCLK_SEL			0x01e0
-> +#define CMN_DIAG_PER_CAL_ADJ			0x01ec
-> +#define CMN_DIAG_CAL_CTRL			0x01ed
-> +#define CMN_DIAG_ACYA				0x01ff
-> +#define XCVR_PSM_RCTRL				0x4001
-> +#define XCVR_PSM_CAL_TMR			0x4002
-> +#define XCVR_PSM_A0IN_TMR			0x4003
-> +#define TX_TXCC_CAL_SCLR_MULT_0			0x4047
-> +#define TX_TXCC_CPOST_MULT_00_0			0x404c
-> +#define XCVR_DIAG_PLLDRC_CTRL			0x40e0
-> +#define XCVR_DIAG_HSCLK_SEL			0x40e1
-> +#define XCVR_DIAG_BIDI_CTRL			0x40e8
-> +#define XCVR_DIAG_LANE_FCM_EN_MGN_TMR		0x40f2
-> +#define TX_PSC_A0				0x4100
-> +#define TX_PSC_A1				0x4101
-> +#define TX_PSC_A2				0x4102
-> +#define TX_PSC_A3				0x4103
-> +#define TX_RCVDET_EN_TMR			0x4122
-> +#define TX_RCVDET_ST_TMR			0x4123
-> +#define TX_DIAG_TX_CTRL				0x41e0
-> +#define TX_DIAG_TX_DRV				0x41e1
-> +#define TX_DIAG_BGREF_PREDRV_DELAY		0x41e7
-> +#define TX_DIAG_ACYA_0				0x41ff
-> +#define TX_DIAG_ACYA_1				0x43ff
-> +#define TX_DIAG_ACYA_2				0x45ff
-> +#define TX_DIAG_ACYA_3				0x47ff
-> +#define TX_ANA_CTRL_REG_1			0x5020
-> +#define TX_ANA_CTRL_REG_2			0x5021
-> +#define TX_DIG_CTRL_REG_1			0x5023
-> +#define TX_DIG_CTRL_REG_2			0x5024
-> +#define TXDA_CYA_AUXDA_CYA			0x5025
-> +#define TX_ANA_CTRL_REG_3			0x5026
-> +#define TX_ANA_CTRL_REG_4			0x5027
-> +#define TX_ANA_CTRL_REG_5			0x5029
-> +#define RX_PSC_A0				0x8000
-> +#define RX_PSC_CAL				0x8006
-> +#define PHY_HDP_MODE_CTRL			0xc008
-> +#define PHY_HDP_CLK_CTL				0xc009
-> +#define PHY_ISO_CMN_CTRL			0xc010
-> +#define PHY_PMA_CMN_CTRL1			0xc800
-> +#define PHY_PMA_ISO_CMN_CTRL			0xc810
-> +#define PHY_PMA_ISO_PLL_CTRL1			0xc812
-> +#define PHY_PMA_ISOLATION_CTRL			0xc81f
-> +
-> +/* PHY_HDP_CLK_CTL */
-> +#define PLL_DATA_RATE_CLK_DIV_MASK		GENMASK(15, 8)
-> +#define PLL_DATA_RATE_CLK_DIV_HBR		0x24
-> +#define PLL_DATA_RATE_CLK_DIV_HBR2		0x12
-> +#define PLL_CLK_EN_ACK				BIT(3)
-> +#define PLL_CLK_EN				BIT(2)
-> +#define PLL_READY				BIT(1)
-> +#define PLL_EN					BIT(0)
-> +
-> +/* PHY_PMA_CMN_CTRL1 */
-> +#define CMA_REF_CLK_DIG_DIV_MASK		GENMASK(13, 12)
-> +#define CMA_REF_CLK_SEL_MASK			GENMASK(6, 4)
-> +#define CMA_REF_CLK_RCV_EN_MASK			BIT(3)
-> +#define CMA_REF_CLK_RCV_EN			1
-> +#define CMN_READY				BIT(0)
-> +
-> +/* PHY_PMA_ISO_PLL_CTRL1 */
-> +#define CMN_PLL0_CLK_DATART_DIV_MASK		GENMASK(7, 0)
-> +
-> +/* TX_DIAG_TX_DRV */
-> +#define TX_DRIVER_PROG_BOOST_ENABLE		BIT(10)
-> +#define TX_DRIVER_PROG_BOOST_LEVEL_MASK		GENMASK(9, 8)
-> +#define TX_DRIVER_LDO_BG_DEPENDENT_REF_ENABLE	BIT(7)
-> +#define TX_DRIVER_LDO_BANDGAP_REF_ENABLE	BIT(6)
-> +
-> +/* TX_TXCC_CAL_SCLR_MULT_0 */
-> +#define SCALED_RESISTOR_CALIBRATION_CODE_ADD	BIT(8)
-> +#define RESISTOR_CAL_MULT_VAL_32_128		BIT(5)
-> +
-> +/* CMN_CDIAG_REFCLK_CTRL */
-> +#define DIG_REF_CLK_DIV_SCALER_MASK		GENMASK(14, 12)
-> +#define REFCLK_TERMINATION_EN_OVERRIDE_EN	BIT(7)
-> +#define REFCLK_TERMINATION_EN_OVERRIDE		BIT(6)
-> +
-> +/* CMN_DIAG_HSCLK_SEL */
-> +#define HSCLK1_SEL_MASK				GENMASK(5, 4)
-> +#define HSCLK0_SEL_MASK				GENMASK(1, 0)
-> +#define HSCLK_PLL0_DIV2				1
-> +
-> +/* XCVR_DIAG_HSCLK_SEL */
-> +#define HSCLK_SEL_MODE3_MASK			GENMASK(13, 12)
-> +#define HSCLK_SEL_MODE3_HSCLK1			1
-> +
-> +/* CMN_PLL0_VCOCAL_START */
-> +#define VCO_CALIB_CODE_START_POINT_VAL_MASK	GENMASK(8, 0)
-> +
-> +/* CMN_DIAG_PLL0_FBH_OVRD */
-> +#define PLL_FEEDBACK_DIV_HI_OVERRIDE_EN		BIT(15)
-> +
-> +/* CMN_DIAG_PLL0_FBL_OVRD */
-> +#define PLL_FEEDBACK_DIV_LO_OVERRIDE_EN		BIT(15)
-> +
-> +/* CMN_DIAG_PLL0_PXL_DIVH */
-> +#define PLL_PCLK_DIV_EN				BIT(15)
-> +
-> +/* XCVR_DIAG_PLLDRC_CTRL */
-> +#define DPLL_CLK_SEL_MODE3			BIT(14)
-> +#define DPLL_DATA_RATE_DIV_MODE3_MASK		GENMASK(13, 12)
-> +
-> +/* TX_DIAG_TX_CTRL */
-> +#define TX_IF_SUBRATE_MODE3_MASK		GENMASK(7, 6)
-> +
-> +/* PHY_HDP_MODE_CTRL */
-> +#define POWER_STATE_A3_ACK			BIT(7)
-> +#define POWER_STATE_A2_ACK			BIT(6)
-> +#define POWER_STATE_A1_ACK			BIT(5)
-> +#define POWER_STATE_A0_ACK			BIT(4)
-> +#define POWER_STATE_A3				BIT(3)
-> +#define POWER_STATE_A2				BIT(2)
-> +#define POWER_STATE_A1				BIT(1)
-> +#define POWER_STATE_A0				BIT(0)
-> +
-> +/* PHY_PMA_ISO_CMN_CTRL */
-> +#define CMN_MACRO_PWR_EN_ACK			BIT(5)
-> +
-> +#define KEEP_ALIVE		0x18
-> +
-> +/* FW check alive timeout */
-> +#define CDNS_KEEP_ALIVE_TIMEOUT		2000
-> +#define CDNS_KEEP_ALIVE_MASK		GENMASK(7, 0)
-> +
-> +#define REF_CLK_27MHZ		27000000
-> +
-> +#define LINK_RATE_2_7	270000
-> +#define MAX_LINK_RATE	540000
-> +
-> +#define CMN_REF_CLK_DIG_DIV	1
-> +#define REF_CLK_DIVIDER_SCALER	1
-> +
-> +/* HDMI TX clock control settings */
-> +struct hdptx_hdmi_ctrl {
-> +	u32 pixel_clk_freq;
-> +	u32 feedback_factor;
-> +	u32 cmnda_pll0_ip_div;
-> +	u32 pll_fb_div_total;
-> +	u32 cmnda_pll0_fb_div_low;
-> +	u32 cmnda_pll0_fb_div_high;
-> +	u32 cmnda_pll0_pxdiv_low;
-> +	u32 cmnda_pll0_pxdiv_high;
-> +	u32 vco_ring_select;
-> +	u32 cmnda_hs_clk_0_sel;
-> +	u32 cmnda_hs_clk_1_sel;
-> +	u32 hsclk_div_tx_sub_rate;
-> +	u32 cmnda_pll0_hs_sym_div_sel;
-> +};
-> +
-> +struct cdns_hdptx_phy {
-> +	struct cdns_mhdp_base base;
-> +
-> +	void __iomem *regs;	/* DPTX registers base */
-> +	struct device *dev;
-> +	struct phy *phy;
-> +	struct clk *ref_clk, *apb_clk;
-> +	u32 ref_clk_rate;
-> +	union {
-> +		struct phy_configure_opts_hdmi hdmi;
-> +		struct phy_configure_opts_dp dp;
-> +	};
-> +};
-> +
-> +/* HDMI TX clock control settings, pixel clock is output */
-> +static const struct hdptx_hdmi_ctrl pixel_clk_output_ctrl_table[] = {
-> +	/*  clk   fbak ipd totl div_l  div_h pd_l  pd_h  v h1 h2 sub sym*/
-> +	{  27000, 1000, 3, 240, 0x0bc, 0x30, 0x26, 0x26, 0, 2, 2, 4, 3 },
-> +	{  27000, 1250, 3, 300, 0x0ec, 0x3c, 0x30, 0x30, 0, 2, 2, 4, 3 },
-> +	{  27000, 1500, 3, 360, 0x11c, 0x48, 0x3a, 0x3a, 0, 2, 2, 4, 3 },
-> +	{  27000, 2000, 3, 240, 0x0bc, 0x30, 0x26, 0x26, 0, 2, 2, 4, 2 },
-> +	{  54000, 1000, 3, 480, 0x17c, 0x60, 0x26, 0x26, 1, 2, 2, 4, 3 },
-> +	{  54000, 1250, 4, 400, 0x13c, 0x50, 0x17, 0x17, 0, 1, 1, 4, 2 },
-> +	{  54000, 1500, 4, 480, 0x17c, 0x60, 0x1c, 0x1c, 0, 2, 2, 2, 2 },
-> +	{  54000, 2000, 3, 240, 0x0bc, 0x30, 0x12, 0x12, 0, 2, 2, 1, 1 },
-> +	{  74250, 1000, 3, 660, 0x20c, 0x84, 0x26, 0x26, 1, 2, 2, 4, 3 },
-> +	{  74250, 1250, 4, 550, 0x1b4, 0x6e, 0x17, 0x17, 1, 1, 1, 4, 2 },
-> +	{  74250, 1500, 4, 660, 0x20c, 0x84, 0x1c, 0x1c, 1, 2, 2, 2, 2 },
-> +	{  74250, 2000, 3, 330, 0x104, 0x42, 0x12, 0x12, 0, 2, 2, 1, 1 },
-> +	{  99000, 1000, 3, 440, 0x15c, 0x58, 0x12, 0x12, 1, 2, 2, 2, 2 },
-> +	{  99000, 1250, 3, 275, 0x0d8, 0x37, 0x0b, 0x0a, 0, 1, 1, 2, 1 },
-> +	{  99000, 1500, 3, 330, 0x104, 0x42, 0x0d, 0x0d, 0, 2, 2, 1, 1 },
-> +	{  99000, 2000, 3, 440, 0x15c, 0x58, 0x12, 0x12, 1, 2, 2, 1, 1 },
-> +	{ 148500, 1000, 3, 660, 0x20c, 0x84, 0x12, 0x12, 1, 2, 2, 2, 2 },
-> +	{ 148500, 1250, 4, 550, 0x1b4, 0x6e, 0x0b, 0x0a, 1, 1, 1, 2, 1 },
-> +	{ 148500, 1500, 3, 495, 0x188, 0x63, 0x0d, 0x0d, 1, 1, 1, 2, 1 },
-> +	{ 148500, 2000, 3, 660, 0x20c, 0x84, 0x12, 0x12, 1, 2, 2, 1, 1 },
-> +	{ 198000, 1000, 3, 220, 0x0ac, 0x2c, 0x03, 0x03, 0, 1, 1, 1, 0 },
-> +	{ 198000, 1250, 3, 550, 0x1b4, 0x6e, 0x0b, 0x0a, 1, 1, 1, 2, 1 },
-> +	{ 198000, 1500, 3, 330, 0x104, 0x42, 0x06, 0x05, 0, 1, 1, 1, 0 },
-> +	{ 198000, 2000, 3, 440, 0x15c, 0x58, 0x08, 0x08, 1, 1, 1, 1, 0 },
-> +	{ 297000, 1000, 3, 330, 0x104, 0x42, 0x03, 0x03, 0, 1, 1, 1, 0 },
-> +	{ 297000, 1500, 3, 495, 0x188, 0x63, 0x06, 0x05, 1, 1, 1, 1, 0 },
-> +	{ 297000, 2000, 3, 660, 0x20c, 0x84, 0x08, 0x08, 1, 1, 1, 1, 0 },
-> +	{ 594000, 1000, 3, 660, 0x20c, 0x84, 0x03, 0x03, 1, 1, 1, 1, 0 },
-> +	{ 594000,  750, 3, 495, 0x188, 0x63, 0x03, 0x03, 1, 1, 1, 1, 0 },
-> +	{ 594000,  625, 4, 550, 0x1b4, 0x6e, 0x03, 0x03, 1, 1, 1, 1, 0 },
-> +	{ 594000,  500, 3, 660, 0x20c, 0x84, 0x03, 0x03, 1, 1, 1, 2, 1 },
-> +};
-> +
-> +/* HDMI TX PLL tuning settings */
-> +struct hdptx_hdmi_pll_tuning {
-> +	u32 vco_freq;
-> +	u32 volt_to_current_coarse;
-> +	u32 volt_to_current;
-> +	u32 ndac_ctrl;
-> +	u32 pmos_ctrl;
-> +	u32 ptat_ndac_ctrl;
-> +	u32 feedback_div_total;
-> +	u32 charge_pump_gain;
-> +	u32 vco_cal_code;
-> +};
-> +
-> +/* HDMI TX PLL tuning settings, pixel clock is output */
-> +static const struct hdptx_hdmi_pll_tuning pixel_clk_output_pll_table[] = {
-> +	/*VCO_f  coar cu nd pm ptat fd_d gain  cal */
-> +	{ 1980000, 4, 3, 0, 9, 0x9, 220, 0x42, 183 },
-> +	{ 2160000, 4, 3, 0, 9, 0x9, 240, 0x42, 208 },
-> +	{ 2475000, 5, 3, 1, 0, 0x7, 275, 0x42, 209 },
-> +	{ 2700000, 5, 3, 1, 0, 0x7, 300, 0x42, 230 },
-> +	{ 2700000, 5, 3, 1, 0, 0x7, 400, 0x4c, 230 },
-> +	{ 2970000, 6, 3, 1, 0, 0x7, 330, 0x42, 225 },
-> +	{ 3240000, 6, 3, 1, 0, 0x7, 360, 0x42, 256 },
-> +	{ 3240000, 6, 3, 1, 0, 0x7, 480, 0x4c, 256 },
-> +	{ 3712500, 4, 3, 0, 7, 0xF, 550, 0x4c, 257 },
-> +	{ 3960000, 5, 3, 0, 7, 0xF, 440, 0x42, 226 },
-> +	{ 4320000, 5, 3, 1, 7, 0xF, 480, 0x42, 258 },
-> +	{ 4455000, 5, 3, 0, 7, 0xF, 495, 0x42, 272 },
-> +	{ 4455000, 5, 3, 0, 7, 0xF, 660, 0x4c, 272 },
-> +	{ 4950000, 6, 3, 1, 0, 0x7, 550, 0x42, 258 },
-> +	{ 5940000, 7, 3, 1, 0, 0x7, 660, 0x42, 292 },
-> +};
-> +
-> +struct phy_pll_reg {
-> +	u16 val[7];
-> +	u32 addr;
-> +};
-> +
-> +static const struct phy_pll_reg phy_pll_27m_cfg[] = {
-> +	/*  1.62    2.16    2.43    2.7     3.24    4.32    5.4      register address */
-> +	{{ 0x010e, 0x010e, 0x010e, 0x010e, 0x010e, 0x010e, 0x010e }, CMN_PLL0_VCOCAL_INIT_TMR },
-> +	{{ 0x001b, 0x001b, 0x001b, 0x001b, 0x001b, 0x001b, 0x001b }, CMN_PLL0_VCOCAL_ITER_TMR },
-> +	{{ 0x30b9, 0x3087, 0x3096, 0x30b4, 0x30b9, 0x3087, 0x30b4 }, CMN_PLL0_VCOCAL_START },
-> +	{{ 0x0077, 0x009f, 0x00b3, 0x00c7, 0x0077, 0x009f, 0x00c7 }, CMN_PLL0_INTDIV },
-> +	{{ 0xf9da, 0xf7cd, 0xf6c7, 0xf5c1, 0xf9da, 0xf7cd, 0xf5c1 }, CMN_PLL0_FRACDIV },
-> +	{{ 0x001e, 0x0028, 0x002d, 0x0032, 0x001e, 0x0028, 0x0032 }, CMN_PLL0_HIGH_THR },
-> +	{{ 0x0020, 0x0020, 0x0020, 0x0020, 0x0020, 0x0020, 0x0020 }, CMN_PLL0_DSM_DIAG },
-> +	{{ 0x0000, 0x1000, 0x1000, 0x1000, 0x0000, 0x1000, 0x1000 }, CMN_PLLSM0_USER_DEF_CTRL },
-> +	{{ 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000 }, CMN_DIAG_PLL0_OVRD },
-> +	{{ 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000 }, CMN_DIAG_PLL0_FBH_OVRD },
-> +	{{ 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000 }, CMN_DIAG_PLL0_FBL_OVRD },
-> +	{{ 0x0006, 0x0007, 0x0007, 0x0007, 0x0006, 0x0007, 0x0007 }, CMN_DIAG_PLL0_V2I_TUNE },
-> +	{{ 0x0043, 0x0043, 0x0043, 0x0042, 0x0043, 0x0043, 0x0042 }, CMN_DIAG_PLL0_CP_TUNE },
-> +	{{ 0x0008, 0x0008, 0x0008, 0x0008, 0x0008, 0x0008, 0x0008 }, CMN_DIAG_PLL0_LF_PROG },
-> +	{{ 0x0100, 0x0001, 0x0001, 0x0001, 0x0100, 0x0001, 0x0001 }, CMN_DIAG_PLL0_PTATIS_TUNE1 },
-> +	{{ 0x0007, 0x0001, 0x0001, 0x0001, 0x0007, 0x0001, 0x0001 }, CMN_DIAG_PLL0_PTATIS_TUNE2 },
-> +	{{ 0x0020, 0x0020, 0x0020, 0x0020, 0x0020, 0x0020, 0x0020 }, CMN_DIAG_PLL0_TEST_MODE},
-> +	{{ 0x0016, 0x0016, 0x0016, 0x0016, 0x0016, 0x0016, 0x0016 }, CMN_PSM_CLK_CTRL }
-> +};
-> +
-> +static int dp_link_rate_index(u32 rate)
-> +{
-> +	switch (rate) {
-> +	case 162000:
-> +		return 0;
-> +	case 216000:
-> +		return 1;
-> +	case 243000:
-> +		return 2;
-> +	case 270000:
-> +		return 3;
-> +	case 324000:
-> +		return 4;
-> +	case 432000:
-> +		return 5;
-> +	case 540000:
-> +		return 6;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int cdns_phy_reg_write(struct cdns_hdptx_phy *cdns_phy, u32 addr, u32 val)
-> +{
-> +	return cdns_mhdp_reg_write(&cdns_phy->base, ADDR_PHY_AFE + (addr << 2), val);
-> +}
-> +
-> +static u32 cdns_phy_reg_read(struct cdns_hdptx_phy *cdns_phy, u32 addr)
-> +{
-> +	u32 reg32;
-> +
-> +	cdns_mhdp_reg_read(&cdns_phy->base, ADDR_PHY_AFE + (addr << 2), &reg32);
-> +
-> +	return reg32;
-> +}
-> +
-> +static void hdptx_dp_aux_cfg(struct cdns_hdptx_phy *cdns_phy)
-> +{
-> +	/* Power up Aux */
-> +	cdns_phy_reg_write(cdns_phy, TXDA_CYA_AUXDA_CYA, 1);
-> +
-> +	cdns_phy_reg_write(cdns_phy, TX_DIG_CTRL_REG_1, 0x3);
-> +	ndelay(150);
-> +	cdns_phy_reg_write(cdns_phy, TX_DIG_CTRL_REG_2, 36);
-> +	ndelay(150);
-> +	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_2, 0x0100);
-> +	ndelay(150);
-> +	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_2, 0x0300);
-> +	ndelay(150);
-> +	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_3, 0x0000);
-> +	ndelay(150);
-> +	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_1, 0x2008);
-> +	ndelay(150);
-> +	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_1, 0x2018);
-> +	ndelay(150);
-> +	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_1, 0xa018);
-> +	ndelay(150);
-> +	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_2, 0x030c);
-> +	ndelay(150);
-> +	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_5, 0x0000);
-> +	ndelay(150);
-> +	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_4, 0x1001);
-> +	ndelay(150);
-> +	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_1, 0xa098);
-> +	ndelay(150);
-> +	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_1, 0xa198);
-> +	ndelay(150);
-> +	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_2, 0x030d);
-> +	ndelay(150);
-> +	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_2, 0x030f);
+> > > > > > > +
+> > > > > > > +    /// Platform driver probe.
+> > > > > > > +    ///
+> > > > > > > +    /// Called when a new platform device is added or discov=
+ered.
+> > > > > > > +    /// Implementers should attempt to initialize the device=
+ here.
+> > > > > > > +    fn probe(dev: &mut Device, id_info: Option<&Self::IdInfo=
+>) -> Result<Pin<KBox<Self>>>;
+> > > > > > > +
+> > > > > > > +    /// Find the [`of::DeviceId`] within [`Driver::ID_TABLE`=
+] matching the given [`Device`], if any.
+> > > > > > > +    fn of_match_device(pdev: &Device) -> Option<&of::DeviceI=
+d> {
+> > > > > >
+> > > > > > Is this visible to drivers? It shouldn't be.
+> > > > >
+> > > > > Yeah, I think we should just remove it. Looking at struct of_devi=
+ce_id, it
+> > > > > doesn't contain any useful information for a driver. I think when=
+ I added this I
+> > > > > was a bit in "autopilot" mode from the PCI stuff, where struct pc=
+i_device_id is
+> > > > > useful to drivers.
+> > > >
+> > > > TBC, you mean other than *data, right? If so, I agree.
+> > >
+> > > Yes.
+> > >
+> > > >
+> > > > The DT type and name fields are pretty much legacy, so I don't thin=
+k the
+> > > > rust bindings need to worry about them until someone converts Sparc=
+ and
+> > > > PowerMac drivers to rust (i.e. never).
+> > > >
+> > > > I would guess the PCI cases might be questionable, too. Like DT, dr=
+ivers
+> > > > may be accessing the table fields, but that's not best practice. Al=
+l the
+> > > > match fields are stored in pci_dev, so why get them from the match
+> > > > table?
+> > >
+> > > Fair question, I'd like to forward it to Greg. IIRC, he explicitly re=
+quested to
+> > > make the corresponding struct pci_device_id available in probe() at K=
+angrejos.
 
-No ndelay after the last write?
+Making it available is not necessarily the same thing as passing it in
+via probe. I agree it may need to be available in probe(), but that
+can be an explicit call to get it.
 
-> +}
-> +
-> +/* PMA common configuration for 27MHz */
-> +static void hdptx_dp_phy_pma_cmn_cfg_27mhz(struct cdns_hdptx_phy *cdns_phy)
-> +{
-> +	u32 num_lanes = cdns_phy->dp.lanes;
-> +	u16 val;
-> +	int k;
-> +
-> +	/* Enable PMA input ref clk(CMN_REF_CLK_RCV_EN) */
-> +	val = cdns_phy_reg_read(cdns_phy, PHY_PMA_CMN_CTRL1);
-> +	val &= ~CMA_REF_CLK_RCV_EN_MASK;
-> +	val |= FIELD_PREP(CMA_REF_CLK_RCV_EN_MASK, CMA_REF_CLK_RCV_EN);
-> +	cdns_phy_reg_write(cdns_phy, PHY_PMA_CMN_CTRL1, val);
-> +
-> +	/* Startup state machine registers */
-> +	cdns_phy_reg_write(cdns_phy, CMN_SSM_BIAS_TMR, 0x0087);
-> +	cdns_phy_reg_write(cdns_phy, CMN_PLLSM0_PLLEN_TMR, 0x001b);
-> +	cdns_phy_reg_write(cdns_phy, CMN_PLLSM0_PLLPRE_TMR, 0x0036);
-> +	cdns_phy_reg_write(cdns_phy, CMN_PLLSM0_PLLVREF_TMR, 0x001b);
-> +	cdns_phy_reg_write(cdns_phy, CMN_PLLSM0_PLLLOCK_TMR, 0x006c);
-> +
-> +	/* Current calibration registers */
-> +	cdns_phy_reg_write(cdns_phy, CMN_ICAL_INIT_TMR, 0x0044);
-> +	cdns_phy_reg_write(cdns_phy, CMN_ICAL_ITER_TMR, 0x0006);
-> +	cdns_phy_reg_write(cdns_phy, CMN_ICAL_ADJ_INIT_TMR, 0x0022);
-> +	cdns_phy_reg_write(cdns_phy, CMN_ICAL_ADJ_ITER_TMR, 0x0006);
-> +
-> +	/* Resistor calibration registers */
-> +	cdns_phy_reg_write(cdns_phy, CMN_TXPUCAL_INIT_TMR, 0x0022);
-> +	cdns_phy_reg_write(cdns_phy, CMN_TXPUCAL_ITER_TMR, 0x0006);
-> +	cdns_phy_reg_write(cdns_phy, CMN_TXPU_ADJ_INIT_TMR, 0x0022);
-> +	cdns_phy_reg_write(cdns_phy, CMN_TXPU_ADJ_ITER_TMR, 0x0006);
-> +	cdns_phy_reg_write(cdns_phy, CMN_TXPDCAL_INIT_TMR, 0x0022);
-> +	cdns_phy_reg_write(cdns_phy, CMN_TXPDCAL_ITER_TMR, 0x0006);
-> +	cdns_phy_reg_write(cdns_phy, CMN_TXPD_ADJ_INIT_TMR, 0x0022);
-> +	cdns_phy_reg_write(cdns_phy, CMN_TXPD_ADJ_ITER_TMR, 0x0006);
-> +	cdns_phy_reg_write(cdns_phy, CMN_RXCAL_INIT_TMR, 0x0022);
-> +	cdns_phy_reg_write(cdns_phy, CMN_RXCAL_ITER_TMR, 0x0006);
-> +	cdns_phy_reg_write(cdns_phy, CMN_RX_ADJ_INIT_TMR, 0x0022);
-> +	cdns_phy_reg_write(cdns_phy, CMN_RX_ADJ_ITER_TMR, 0x0006);
-> +
-> +	for (k = 0; k < num_lanes; k = k + 1) {
-> +		/* Power state machine registers */
-> +		cdns_phy_reg_write(cdns_phy, XCVR_PSM_CAL_TMR  | (k << 9), 0x016d);
-> +		cdns_phy_reg_write(cdns_phy, XCVR_PSM_A0IN_TMR | (k << 9), 0x016d);
-> +		/* Transceiver control and diagnostic registers */
-> +		cdns_phy_reg_write(cdns_phy, XCVR_DIAG_LANE_FCM_EN_MGN_TMR | (k << 9), 0x00a2);
-> +		cdns_phy_reg_write(cdns_phy, TX_DIAG_BGREF_PREDRV_DELAY | (k << 9), 0x0097);
-> +		/* Transmitter receiver detect registers */
-> +		cdns_phy_reg_write(cdns_phy, TX_RCVDET_EN_TMR | (k << 9), 0x0a8c);
-> +		cdns_phy_reg_write(cdns_phy, TX_RCVDET_ST_TMR | (k << 9), 0x0036);
-> +	}
-> +
-> +	cdns_phy_reg_write(cdns_phy, TX_DIAG_ACYA_0, 1);
-> +	cdns_phy_reg_write(cdns_phy, TX_DIAG_ACYA_1, 1);
-> +	cdns_phy_reg_write(cdns_phy, TX_DIAG_ACYA_2, 1);
-> +	cdns_phy_reg_write(cdns_phy, TX_DIAG_ACYA_3, 1);
-> +}
-> +
-> +static void hdptx_dp_phy_pma_cmn_pll0_27mhz(struct cdns_hdptx_phy *cdns_phy)
-> +{
-> +	u32 num_lanes = cdns_phy->dp.lanes;
-> +	u32 link_rate = cdns_phy->dp.link_rate;
-> +	u16 val;
-> +	int index, i, k;
-> +
-> +	/* DP PLL data rate 0/1 clock divider value */
-> +	val = cdns_phy_reg_read(cdns_phy, PHY_HDP_CLK_CTL);
-> +	val &= ~PLL_DATA_RATE_CLK_DIV_MASK;
-> +	if (link_rate <= LINK_RATE_2_7)
-> +		val |= FIELD_PREP(PLL_DATA_RATE_CLK_DIV_MASK,
-> +				  PLL_DATA_RATE_CLK_DIV_HBR);
-> +	else
-> +		val |= FIELD_PREP(PLL_DATA_RATE_CLK_DIV_MASK,
-> +				  PLL_DATA_RATE_CLK_DIV_HBR2);
-> +	cdns_phy_reg_write(cdns_phy, PHY_HDP_CLK_CTL, val);
-> +
-> +	/* High speed clock 0/1 div */
-> +	val = cdns_phy_reg_read(cdns_phy, CMN_DIAG_HSCLK_SEL);
-> +	val &= ~(HSCLK1_SEL_MASK | HSCLK0_SEL_MASK);
-> +	if (link_rate <= LINK_RATE_2_7) {
-> +		val |= FIELD_PREP(HSCLK1_SEL_MASK, HSCLK_PLL0_DIV2);
-> +		val |= FIELD_PREP(HSCLK0_SEL_MASK, HSCLK_PLL0_DIV2);
-> +	}
-> +	cdns_phy_reg_write(cdns_phy, CMN_DIAG_HSCLK_SEL, val);
-> +
-> +	for (k = 0; k < num_lanes; k++) {
-> +		val = cdns_phy_reg_read(cdns_phy, (XCVR_DIAG_HSCLK_SEL | (k << 9)));
-> +		val &= ~HSCLK_SEL_MODE3_MASK;
-> +		if (link_rate <= LINK_RATE_2_7)
-> +			val |= FIELD_PREP(HSCLK_SEL_MODE3_MASK, HSCLK_SEL_MODE3_HSCLK1);
-> +		cdns_phy_reg_write(cdns_phy, (XCVR_DIAG_HSCLK_SEL | (k << 9)), val);
-> +	}
-> +
-> +	/* DP PHY PLL 27MHz configuration */
-> +	index = dp_link_rate_index(link_rate);
-> +	if (index < 0) {
-> +		dev_err(cdns_phy->dev, "Not support link rate %d\n", link_rate);
-> +		return;
-> +	}
-> +
-> +	for (i = 0; i < ARRAY_SIZE(phy_pll_27m_cfg); i++)
-> +		cdns_phy_reg_write(cdns_phy, phy_pll_27m_cfg[i].addr,
-> +				   phy_pll_27m_cfg[i].val[index]);
-> +
-> +	/* Transceiver control and diagnostic registers */
-> +	for (k = 0; k < num_lanes; k++) {
-> +		val = cdns_phy_reg_read(cdns_phy, (XCVR_DIAG_PLLDRC_CTRL | (k << 9)));
-> +		val &= ~(DPLL_DATA_RATE_DIV_MODE3_MASK | DPLL_CLK_SEL_MODE3);
-> +		if (link_rate <= LINK_RATE_2_7)
-> +			val |= FIELD_PREP(DPLL_DATA_RATE_DIV_MODE3_MASK, 2);
-> +		else
-> +			val |= FIELD_PREP(DPLL_DATA_RATE_DIV_MODE3_MASK, 1);
-> +		cdns_phy_reg_write(cdns_phy, (XCVR_DIAG_PLLDRC_CTRL | (k << 9)), val);
-> +	}
-> +
-> +	for (k = 0; k < num_lanes; k = k + 1) {
-> +		/* Power state machine registers */
-> +		cdns_phy_reg_write(cdns_phy, (XCVR_PSM_RCTRL | (k << 9)), 0xbefc);
-> +		cdns_phy_reg_write(cdns_phy, (TX_PSC_A0 | (k << 9)), 0x6799);
-> +		cdns_phy_reg_write(cdns_phy, (TX_PSC_A1 | (k << 9)), 0x6798);
-> +		cdns_phy_reg_write(cdns_phy, (TX_PSC_A2 | (k << 9)), 0x0098);
-> +		cdns_phy_reg_write(cdns_phy, (TX_PSC_A3 | (k << 9)), 0x0098);
-> +		/* Receiver calibration power state definition register */
-> +		val = cdns_phy_reg_read(cdns_phy, RX_PSC_CAL | (k << 9));
-> +		val &= 0xffbb;
-> +		cdns_phy_reg_write(cdns_phy, (RX_PSC_CAL | (k << 9)), val);
-> +		val = cdns_phy_reg_read(cdns_phy, RX_PSC_A0 | (k << 9));
-> +		val &= 0xffbb;
-> +		cdns_phy_reg_write(cdns_phy, (RX_PSC_A0 | (k << 9)), val);
-> +	}
-> +}
-> +
-> +static void hdptx_dp_phy_ref_clock_type(struct cdns_hdptx_phy *cdns_phy)
-> +{
-> +	u32 val;
-> +
-> +	val = cdns_phy_reg_read(cdns_phy, PHY_PMA_CMN_CTRL1);
-> +	val &= ~CMA_REF_CLK_SEL_MASK;
-> +	/*
-> +	 * single ended reference clock (val |= 0x0030);
-> +	 * differential clock  (val |= 0x0000);
-> +	 *
-> +	 * for differential clock on the refclk_p and
-> +	 * refclk_m off chip pins: CMN_DIAG_ACYA[8]=1'b1
-> +	 * cdns_phy_reg_write(cdns_phy, CMN_DIAG_ACYA, 0x0100);
-> +	 */
-> +	val |= FIELD_PREP(CMA_REF_CLK_SEL_MASK, 3);
-> +	cdns_phy_reg_write(cdns_phy, PHY_PMA_CMN_CTRL1, val);
-> +}
-> +
-> +static int wait_for_ack(struct cdns_hdptx_phy *cdns_phy,
-> +			u32 reg, u32 mask,
-> +			const char *err_msg)
-> +{
-> +	int ret;
-> +	u32 val;
-> +
-> +	ret = read_poll_timeout(cdns_phy_reg_read,
-> +				val, val & mask, 20, 1000,
-> +				false, cdns_phy, reg);
-> +	if (ret < 0)
-> +		dev_err(cdns_phy->dev, "%s\n", err_msg);
-> +
-> +	return ret;
-> +}
-> +
-> +static int wait_for_ack_clear(struct cdns_hdptx_phy *cdns_phy,
-> +			      u32 reg, u32 mask,
-> +			      const char *err_msg)
-> +{
-> +	int ret;
-> +	u32 val;
-> +
-> +	ret = read_poll_timeout(cdns_phy_reg_read,
-> +				val, !(val & mask), 20, 1000,
-> +				false, cdns_phy, reg);
-> +	if (ret < 0)
-> +		dev_err(cdns_phy->dev, "%s\n", err_msg);
-> +
-> +	return ret;
-> +}
-> +
-> +static int hdptx_dp_phy_power_up(struct cdns_hdptx_phy *cdns_phy)
-> +{
-> +	u32 val;
-> +	int ret;
-> +
-> +	/* Enable HDP PLL's for high speed clocks */
-> +	val = cdns_phy_reg_read(cdns_phy, PHY_HDP_CLK_CTL);
-> +	val |= PLL_EN;
-> +	cdns_phy_reg_write(cdns_phy, PHY_HDP_CLK_CTL, val);
-> +	ret = wait_for_ack(cdns_phy, PHY_HDP_CLK_CTL, PLL_READY,
-> +			   "Wait PLL Ack failed");
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* Enable HDP PLL's data rate and full rate clocks out of PMA. */
-> +	val = cdns_phy_reg_read(cdns_phy, PHY_HDP_CLK_CTL);
-> +	val |= PLL_CLK_EN;
-> +	cdns_phy_reg_write(cdns_phy, PHY_HDP_CLK_CTL, val);
-> +	ret = wait_for_ack(cdns_phy, PHY_HDP_CLK_CTL, PLL_CLK_EN_ACK,
-> +			   "Wait PLL clock enable ACK failed");
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* Configure PHY in A2 Mode */
-> +	cdns_phy_reg_write(cdns_phy, PHY_HDP_MODE_CTRL, POWER_STATE_A2);
-> +	ret = wait_for_ack(cdns_phy, PHY_HDP_MODE_CTRL, POWER_STATE_A2_ACK,
-> +			   "Wait A2 Ack failed");
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* Configure PHY in A0 mode (PHY must be in the A0 power
-> +	 * state in order to transmit data)
-> +	 */
-> +	cdns_phy_reg_write(cdns_phy, PHY_HDP_MODE_CTRL, POWER_STATE_A0);
-> +
-> +	return wait_for_ack(cdns_phy, PHY_HDP_MODE_CTRL, POWER_STATE_A0_ACK,
-> +			   "Wait A0 Ack failed");
-> +}
-> +
-> +static int hdptx_dp_phy_power_down(struct cdns_hdptx_phy *cdns_phy)
-> +{
-> +	u16 val;
-> +	int ret;
-> +
-> +	/* Place the PHY lanes in the A3 power state. */
-> +	cdns_phy_reg_write(cdns_phy, PHY_HDP_MODE_CTRL, POWER_STATE_A3);
-> +	ret = wait_for_ack(cdns_phy, PHY_HDP_MODE_CTRL, POWER_STATE_A3_ACK,
-> +			   "Wait A3 Ack failed");
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Disable HDP PLL's data rate and full rate clocks out of PMA. */
-> +	val = cdns_phy_reg_read(cdns_phy, PHY_HDP_CLK_CTL);
-> +	val &= ~PLL_CLK_EN;
-> +	cdns_phy_reg_write(cdns_phy, PHY_HDP_CLK_CTL, val);
-> +	ret = wait_for_ack_clear(cdns_phy, PHY_HDP_CLK_CTL, PLL_CLK_EN_ACK,
-> +				 "Wait PLL clock Ack clear failed");
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Disable HDP PLL's for high speed clocks */
-> +	val = cdns_phy_reg_read(cdns_phy, PHY_HDP_CLK_CTL);
-> +	val &= ~PLL_EN;
-> +	cdns_phy_reg_write(cdns_phy, PHY_HDP_CLK_CTL, val);
-> +
-> +	return  wait_for_ack_clear(cdns_phy, PHY_HDP_CLK_CTL, PLL_READY,
-> +				 "Wait PLL Ack clear failed");
-> +}
-> +
-> +static int hdptx_dp_configure(struct phy *phy,
-> +			      union phy_configure_opts *opts)
-> +{
-> +	struct cdns_hdptx_phy *cdns_phy = phy_get_drvdata(phy);
-> +
-> +	cdns_phy->dp.link_rate = opts->dp.link_rate;
-> +	cdns_phy->dp.lanes = opts->dp.lanes;
-> +
-> +	if (cdns_phy->dp.link_rate > MAX_LINK_RATE) {
-> +		dev_err(cdns_phy->dev, "Link Rate(%d) Not supported\n", cdns_phy->dp.link_rate);
-> +		return false;
-> +	}
-> +
-> +	if (cdns_phy->ref_clk_rate == REF_CLK_27MHZ) {
+> > Which table gets passed in though? Is the IdInfo parameter generic and
+> > can be platform_device_id, of_device_id or acpi_device_id? Not sure if
+> > that's possible in rust or not.
+>
+> Not sure I can follow you here.
+>
+> The `IdInfo` parameter is of a type given by the driver for driver specif=
+ic data
+> for a certain ID table entry.
+>
+> It's analogue to resolving `pci_device_id::driver_data` in C.
 
-Should not be necessary, you've already checked that ref_clk_rate is
-27 MHz during the probe.
+As I said below, the PCI case is simpler than for platform devices.
+Platform devices have 3 possible match tables. The *_device_id type we
+end up with is determined at runtime (because matching is done at
+runtime), so IdInfo could be any of those 3 types. Is the exact type
+opaque to probe() and will that magically work in rust? Or do we need
+to pass in the 'driver_data' ptr (or reference) itself? The matched
+driver data is generally all the driver needs or cares about. We can
+probably assume that it is the same type no matter which match table
+is used whether it is platform_device_id::driver_data,
+of_device_id::data, or acpi_device_id::driver_data. Nothing in the C
+API guarantees that, but that's just best practice. Best practice in C
+looks like this:
 
-> +		hdptx_dp_phy_pma_cmn_cfg_27mhz(cdns_phy);
-> +		hdptx_dp_phy_pma_cmn_pll0_27mhz(cdns_phy);
-> +	} else {
-> +		dev_err(cdns_phy->dev, "Not support ref clock rate\n");
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int hdptx_clk_enable(struct cdns_hdptx_phy *cdns_phy)
-> +{
-> +	struct device *dev = cdns_phy->dev;
-> +	u32 ref_clk_rate;
-> +
-> +	cdns_phy->ref_clk =  devm_clk_get_enabled(dev, "ref");
-> +	if (IS_ERR(cdns_phy->ref_clk)) {
-> +		dev_err(dev, "phy ref clock not found\n");
-> +		return PTR_ERR(cdns_phy->ref_clk);
-> +	}
-> +
-> +	ref_clk_rate = clk_get_rate(cdns_phy->ref_clk);
-> +	if (!ref_clk_rate) {
-> +		dev_err(cdns_phy->dev, "Failed to get ref clock rate\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (ref_clk_rate == REF_CLK_27MHZ) {
-> +		cdns_phy->ref_clk_rate = ref_clk_rate;
-> +	} else {
-> +		dev_err(cdns_phy->dev, "Not support Ref Clock Rate(%dHz)\n", ref_clk_rate);
-> +		return -EINVAL;
-> +	}
-> +
-> +	cdns_phy->apb_clk =  devm_clk_get_enabled(dev, "apb");
-> +	if (IS_ERR(cdns_phy->apb_clk)) {
-> +		dev_err(dev, "phy apb clock not found\n");
-> +		return PTR_ERR(cdns_phy->apb_clk);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void hdptx_hdmi_arc_config(struct cdns_hdptx_phy *cdns_phy)
-> +{
-> +	u16 txpu_calib_code;
-> +	u16 txpd_calib_code;
-> +	u16 txpu_adj_calib_code;
-> +	u16 txpd_adj_calib_code;
-> +	u16 prev_calib_code;
-> +	u16 new_calib_code;
-> +	u16 rdata;
-> +
-> +	/* Power ARC */
-> +	cdns_phy_reg_write(cdns_phy, TXDA_CYA_AUXDA_CYA, 0x0001);
-> +
-> +	prev_calib_code = cdns_phy_reg_read(cdns_phy, TX_DIG_CTRL_REG_2);
-> +	txpu_calib_code = cdns_phy_reg_read(cdns_phy, CMN_TXPUCAL_CTRL);
-> +	txpd_calib_code = cdns_phy_reg_read(cdns_phy, CMN_TXPDCAL_CTRL);
-> +	txpu_adj_calib_code = cdns_phy_reg_read(cdns_phy, CMN_TXPU_ADJ_CTRL);
-> +	txpd_adj_calib_code = cdns_phy_reg_read(cdns_phy, CMN_TXPD_ADJ_CTRL);
-> +
-> +	new_calib_code = ((txpu_calib_code + txpd_calib_code) / 2)
-> +		+ txpu_adj_calib_code + txpd_adj_calib_code;
-> +
-> +	if (new_calib_code != prev_calib_code) {
-> +		rdata = cdns_phy_reg_read(cdns_phy, TX_ANA_CTRL_REG_1);
-> +		rdata &= 0xdfff;
-> +		cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_1, rdata);
-> +		cdns_phy_reg_write(cdns_phy, TX_DIG_CTRL_REG_2, new_calib_code);
-> +		mdelay(10);
-> +		rdata |= 0x2000;
-> +		cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_1, rdata);
-> +		usleep_range(150, 250);
-> +	}
-> +
-> +	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_2, 0x0100);
-> +	usleep_range(100, 200);
-> +	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_2, 0x0300);
-> +	usleep_range(100, 200);
-> +	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_3, 0x0000);
-> +	usleep_range(100, 200);
-> +	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_1, 0x2008);
-> +	usleep_range(100, 200);
-> +	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_1, 0x2018);
-> +	usleep_range(100, 200);
-> +	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_1, 0x2098);
-> +	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_2, 0x030c);
-> +	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_5, 0x0010);
-> +	usleep_range(100, 200);
-> +	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_4, 0x4001);
-> +	mdelay(5);
-> +	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_1, 0x2198);
-> +	mdelay(5);
-> +	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_2, 0x030d);
-> +	usleep_range(100, 200);
-> +	cdns_phy_reg_write(cdns_phy, TX_ANA_CTRL_REG_2, 0x030f);
-> +}
-> +
-> +static void hdptx_hdmi_phy_set_vswing(struct cdns_hdptx_phy *cdns_phy)
-> +{
-> +	u32 k;
-> +	const u32 num_lanes = 4;
-> +
-> +	for (k = 0; k < num_lanes; k++) {
-> +		cdns_phy_reg_write(cdns_phy, (TX_DIAG_TX_DRV | (k << 9)),
-> +				   TX_DRIVER_PROG_BOOST_ENABLE |
-> +				   FIELD_PREP(TX_DRIVER_PROG_BOOST_LEVEL_MASK, 3) |
-> +				   TX_DRIVER_LDO_BG_DEPENDENT_REF_ENABLE |
-> +				   TX_DRIVER_LDO_BANDGAP_REF_ENABLE);
-> +		cdns_phy_reg_write(cdns_phy, (TX_TXCC_CPOST_MULT_00_0 | (k << 9)), 0x0);
-> +		cdns_phy_reg_write(cdns_phy, (TX_TXCC_CAL_SCLR_MULT_0 | (k << 9)),
-> +				   SCALED_RESISTOR_CALIBRATION_CODE_ADD |
-> +				   RESISTOR_CAL_MULT_VAL_32_128);
-> +	}
-> +}
-> +
-> +static int hdptx_hdmi_phy_config(struct cdns_hdptx_phy *cdns_phy,
-> +				 const struct hdptx_hdmi_ctrl *p_ctrl_table,
-> +				 const struct hdptx_hdmi_pll_tuning *p_pll_table,
-> +				 bool pclk_in)
-> +{
-> +	const u32 num_lanes = 4;
-> +	u32 val, k;
-> +	int ret;
-> +
-> +	/* enable PHY isolation mode only for CMN */
-> +	cdns_phy_reg_write(cdns_phy, PHY_PMA_ISOLATION_CTRL, 0xd000);
-> +
-> +	/* set cmn_pll0_clk_datart1_div/cmn_pll0_clk_datart0_div dividers */
-> +	val = cdns_phy_reg_read(cdns_phy, PHY_PMA_ISO_PLL_CTRL1);
-> +	val &= ~CMN_PLL0_CLK_DATART_DIV_MASK;
-> +	val |= FIELD_PREP(CMN_PLL0_CLK_DATART_DIV_MASK, 0x12);
-> +	cdns_phy_reg_write(cdns_phy, PHY_PMA_ISO_PLL_CTRL1, val);
-> +
-> +	/* assert PHY reset from isolation register */
-> +	cdns_phy_reg_write(cdns_phy, PHY_ISO_CMN_CTRL, 0x0000);
-> +	/* assert PMA CMN reset */
-> +	cdns_phy_reg_write(cdns_phy, PHY_PMA_ISO_CMN_CTRL, 0x0000);
-> +
-> +	/* register XCVR_DIAG_BIDI_CTRL */
-> +	for (k = 0; k < num_lanes; k++)
-> +		cdns_phy_reg_write(cdns_phy, XCVR_DIAG_BIDI_CTRL | (k << 9), 0x00ff);
-> +
-> +	/* Describing Task phy_cfg_hdp */
-> +	val = cdns_phy_reg_read(cdns_phy, PHY_PMA_CMN_CTRL1);
-> +	val &= ~CMA_REF_CLK_RCV_EN_MASK;
-> +	val |= FIELD_PREP(CMA_REF_CLK_RCV_EN_MASK, CMA_REF_CLK_RCV_EN);
-> +	cdns_phy_reg_write(cdns_phy, PHY_PMA_CMN_CTRL1, val);
-> +
-> +	/* PHY Registers */
-> +	val = cdns_phy_reg_read(cdns_phy, PHY_PMA_CMN_CTRL1);
-> +	val &= ~CMA_REF_CLK_DIG_DIV_MASK;
-> +	val |= FIELD_PREP(CMA_REF_CLK_DIG_DIV_MASK, CMN_REF_CLK_DIG_DIV);
-> +	cdns_phy_reg_write(cdns_phy, PHY_PMA_CMN_CTRL1, val);
-> +
-> +	val = cdns_phy_reg_read(cdns_phy, PHY_HDP_CLK_CTL);
-> +	val &= ~PLL_DATA_RATE_CLK_DIV_MASK;
-> +	val |= FIELD_PREP(PLL_DATA_RATE_CLK_DIV_MASK,
-> +			  PLL_DATA_RATE_CLK_DIV_HBR2);
-> +	cdns_phy_reg_write(cdns_phy, PHY_HDP_CLK_CTL, val);
-> +
-> +	/* Common control module control and diagnostic registers */
-> +	val = cdns_phy_reg_read(cdns_phy, CMN_CDIAG_REFCLK_CTRL);
-> +	val &= ~DIG_REF_CLK_DIV_SCALER_MASK;
-> +	val |= FIELD_PREP(DIG_REF_CLK_DIV_SCALER_MASK, REF_CLK_DIVIDER_SCALER);
-> +	val |= REFCLK_TERMINATION_EN_OVERRIDE_EN | REFCLK_TERMINATION_EN_OVERRIDE;
-> +	cdns_phy_reg_write(cdns_phy, CMN_CDIAG_REFCLK_CTRL, val);
-> +
-> +	/* High speed clock used */
-> +	val = cdns_phy_reg_read(cdns_phy, CMN_DIAG_HSCLK_SEL);
-> +	val &= ~(HSCLK1_SEL_MASK | HSCLK0_SEL_MASK);
-> +	val |= FIELD_PREP(HSCLK1_SEL_MASK, (p_ctrl_table->cmnda_hs_clk_1_sel >> 1));
-> +	val |= FIELD_PREP(HSCLK0_SEL_MASK, (p_ctrl_table->cmnda_hs_clk_0_sel >> 1));
-> +	cdns_phy_reg_write(cdns_phy, CMN_DIAG_HSCLK_SEL, val);
-> +
-> +	for (k = 0; k < num_lanes; k++) {
-> +		val = cdns_phy_reg_read(cdns_phy, (XCVR_DIAG_HSCLK_SEL | (k << 9)));
-> +		val &= ~HSCLK_SEL_MODE3_MASK;
-> +		val |= FIELD_PREP(HSCLK_SEL_MODE3_MASK,
-> +				  (p_ctrl_table->cmnda_hs_clk_0_sel >> 1));
-> +		cdns_phy_reg_write(cdns_phy, (XCVR_DIAG_HSCLK_SEL | (k << 9)), val);
-> +	}
-> +
-> +	/* PLL 0 control state machine registers */
-> +	val = p_ctrl_table->vco_ring_select << 12;
-> +	cdns_phy_reg_write(cdns_phy, CMN_PLLSM0_USER_DEF_CTRL, val);
-> +
-> +	if (pclk_in) {
-> +		val = 0x30a0;
-> +	} else {
-> +		val = cdns_phy_reg_read(cdns_phy, CMN_PLL0_VCOCAL_START);
-> +		val &= ~VCO_CALIB_CODE_START_POINT_VAL_MASK;
-> +		val |= FIELD_PREP(VCO_CALIB_CODE_START_POINT_VAL_MASK,
-> +				  p_pll_table->vco_cal_code);
-> +	}
-> +	cdns_phy_reg_write(cdns_phy, CMN_PLL0_VCOCAL_START, val);
-> +
-> +	cdns_phy_reg_write(cdns_phy, CMN_PLL0_VCOCAL_INIT_TMR, 0x0064);
-> +	cdns_phy_reg_write(cdns_phy, CMN_PLL0_VCOCAL_ITER_TMR, 0x000a);
-> +
-> +	/* Common functions control and diagnostics registers */
-> +	val = p_ctrl_table->cmnda_pll0_hs_sym_div_sel << 8;
-> +	val |= p_ctrl_table->cmnda_pll0_ip_div;
-> +	cdns_phy_reg_write(cdns_phy, CMN_DIAG_PLL0_INCLK_CTRL, val);
-> +
-> +	cdns_phy_reg_write(cdns_phy, CMN_DIAG_PLL0_OVRD, 0x0000);
-> +
-> +	val = p_ctrl_table->cmnda_pll0_fb_div_high;
-> +	val |= PLL_FEEDBACK_DIV_HI_OVERRIDE_EN;
-> +	cdns_phy_reg_write(cdns_phy, CMN_DIAG_PLL0_FBH_OVRD, val);
-> +
-> +	val = p_ctrl_table->cmnda_pll0_fb_div_low;
-> +	val |= PLL_FEEDBACK_DIV_LO_OVERRIDE_EN;
-> +	cdns_phy_reg_write(cdns_phy, CMN_DIAG_PLL0_FBL_OVRD, val);
-> +
-> +	if (!pclk_in) {
-> +		val = p_ctrl_table->cmnda_pll0_pxdiv_low;
-> +		cdns_phy_reg_write(cdns_phy, CMN_DIAG_PLL0_PXL_DIVL, val);
-> +
-> +		val = p_ctrl_table->cmnda_pll0_pxdiv_high;
-> +		val |= PLL_PCLK_DIV_EN;
-> +		cdns_phy_reg_write(cdns_phy, CMN_DIAG_PLL0_PXL_DIVH, val);
-> +	}
-> +
-> +	val = p_pll_table->volt_to_current_coarse;
-> +	val |= (p_pll_table->volt_to_current) << 4;
-> +	cdns_phy_reg_write(cdns_phy, CMN_DIAG_PLL0_V2I_TUNE, val);
-> +
-> +	val = p_pll_table->charge_pump_gain;
-> +	cdns_phy_reg_write(cdns_phy, CMN_DIAG_PLL0_CP_TUNE, val);
-> +
-> +	cdns_phy_reg_write(cdns_phy, CMN_DIAG_PLL0_LF_PROG, 0x0008);
-> +
-> +	val = p_pll_table->pmos_ctrl;
-> +	val |= (p_pll_table->ndac_ctrl) << 8;
-> +	cdns_phy_reg_write(cdns_phy, CMN_DIAG_PLL0_PTATIS_TUNE1, val);
-> +
-> +	val = p_pll_table->ptat_ndac_ctrl;
-> +	cdns_phy_reg_write(cdns_phy, CMN_DIAG_PLL0_PTATIS_TUNE2, val);
-> +
-> +	if (pclk_in)
-> +		cdns_phy_reg_write(cdns_phy, CMN_DIAG_PLL0_TEST_MODE, 0x0022);
-> +	else
-> +		cdns_phy_reg_write(cdns_phy, CMN_DIAG_PLL0_TEST_MODE, 0x0020);
-> +
-> +	cdns_phy_reg_write(cdns_phy, CMN_PSM_CLK_CTRL, 0x0016);
-> +
-> +	/* Transceiver control and diagnostic registers */
-> +	for (k = 0; k < num_lanes; k++) {
-> +		val = cdns_phy_reg_read(cdns_phy, (XCVR_DIAG_PLLDRC_CTRL | (k << 9)));
-> +		val &= ~DPLL_CLK_SEL_MODE3;
-> +		cdns_phy_reg_write(cdns_phy, (XCVR_DIAG_PLLDRC_CTRL | (k << 9)), val);
-> +	}
-> +
-> +	for (k = 0; k < num_lanes; k++) {
-> +		val = cdns_phy_reg_read(cdns_phy, (TX_DIAG_TX_CTRL | (k << 9)));
-> +		val &= ~TX_IF_SUBRATE_MODE3_MASK;
-> +		val |= FIELD_PREP(TX_IF_SUBRATE_MODE3_MASK,
-> +				  (p_ctrl_table->hsclk_div_tx_sub_rate >> 1));
-> +		cdns_phy_reg_write(cdns_phy, (TX_DIAG_TX_CTRL | (k << 9)), val);
-> +	}
-> +
-> +	val = cdns_phy_reg_read(cdns_phy, PHY_PMA_CMN_CTRL1);
-> +	val &= ~CMA_REF_CLK_SEL_MASK;
-> +	/*
-> +	 * single ended reference clock (val |= 0x0030);
-> +	 * differential clock  (val |= 0x0000);
-> +	 * for differential clock on the refclk_p and
-> +	 * refclk_m off chip pins: CMN_DIAG_ACYA[8]=1'b1
-> +	 * cdns_phy_reg_write(cdns_phy, CMN_DIAG_ACYA, 0x0100);
-> +	 */
-> +	val |= FIELD_PREP(CMA_REF_CLK_SEL_MASK, 3);
-> +	cdns_phy_reg_write(cdns_phy, PHY_PMA_CMN_CTRL1, val);
-> +
-> +	/* Deassert PHY reset */
-> +	cdns_phy_reg_write(cdns_phy, PHY_ISO_CMN_CTRL, 0x0001);
-> +	cdns_phy_reg_write(cdns_phy, PHY_PMA_ISO_CMN_CTRL, 0x0003);
-> +
-> +	/* Power state machine registers */
-> +	for (k = 0; k < num_lanes; k++)
-> +		cdns_phy_reg_write(cdns_phy, XCVR_PSM_RCTRL | (k << 9), 0xfefc);
-> +
-> +	/* Assert cmn_macro_pwr_en */
-> +	cdns_phy_reg_write(cdns_phy, PHY_PMA_ISO_CMN_CTRL, 0x0013);
-> +
-> +	/* wait for cmn_macro_pwr_en_ack */
-> +	ret = wait_for_ack(cdns_phy, PHY_PMA_ISO_CMN_CTRL, CMN_MACRO_PWR_EN_ACK,
-> +			   "MA output macro power up failed");
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* wait for cmn_ready */
-> +	ret = wait_for_ack(cdns_phy, PHY_PMA_CMN_CTRL1, CMN_READY,
-> +			   "PMA output ready failed");
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	for (k = 0; k < num_lanes; k++) {
-> +		cdns_phy_reg_write(cdns_phy, TX_PSC_A0 | (k << 9), 0x6791);
-> +		cdns_phy_reg_write(cdns_phy, TX_PSC_A1 | (k << 9), 0x6790);
-> +		cdns_phy_reg_write(cdns_phy, TX_PSC_A2 | (k << 9), 0x0090);
-> +		cdns_phy_reg_write(cdns_phy, TX_PSC_A3 | (k << 9), 0x0090);
-> +
-> +		val = cdns_phy_reg_read(cdns_phy, RX_PSC_CAL | (k << 9));
-> +		val &= 0xffbb;
-> +		cdns_phy_reg_write(cdns_phy, RX_PSC_CAL | (k << 9), val);
-> +
-> +		val = cdns_phy_reg_read(cdns_phy, RX_PSC_A0 | (k << 9));
-> +		val &= 0xffbb;
-> +		cdns_phy_reg_write(cdns_phy, RX_PSC_A0 | (k << 9), val);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int hdptx_hdmi_phy_cfg(struct cdns_hdptx_phy *cdns_phy, unsigned long long char_rate)
-> +{
-> +	const struct hdptx_hdmi_ctrl *p_ctrl_table;
-> +	const struct hdptx_hdmi_pll_tuning *p_pll_table;
-> +	const u32 refclk_freq_khz = cdns_phy->ref_clk_rate / 1000;
-> +	const bool pclk_in = false;
-> +	u32 char_rate_khz = char_rate / 1000;
-> +	u32 vco_freq, rate;
-> +	u32 div_total, i;
-> +
-> +	dev_dbg(cdns_phy->dev, "character clock: %d KHz\n ", char_rate_khz);
-> +
-> +	/* Get right row from the ctrl_table table.
-> +	 * check the character rate.
-> +	 */
-> +	for (i = 0; i < ARRAY_SIZE(pixel_clk_output_ctrl_table); i++) {
-> +		rate = pixel_clk_output_ctrl_table[i].feedback_factor *
-> +		       pixel_clk_output_ctrl_table[i].pixel_clk_freq / 1000;
-> +		if (char_rate_khz == rate) {
-> +			p_ctrl_table = &pixel_clk_output_ctrl_table[i];
-> +			break;
-> +		}
-> +	}
-> +	if (i == ARRAY_SIZE(pixel_clk_output_ctrl_table)) {
-> +		dev_warn(cdns_phy->dev,
-> +			 "char clk (%d KHz) not supported\n", char_rate_khz);
-> +		return -EINVAL;
-> +	}
-> +
-> +	div_total = p_ctrl_table->pll_fb_div_total;
-> +	vco_freq = refclk_freq_khz * div_total / p_ctrl_table->cmnda_pll0_ip_div;
-> +
-> +	/* Get right row from the pixel_clk_output_pll_table table.
-> +	 * Check if vco_freq_khz and feedback_div_total
-> +	 * column matching with pixel_clk_output_pll_table.
-> +	 */
-> +	for (i = 0; i < ARRAY_SIZE(pixel_clk_output_pll_table); i++) {
-> +		if (vco_freq == pixel_clk_output_pll_table[i].vco_freq &&
-> +		    div_total == pixel_clk_output_pll_table[i].feedback_div_total) {
-> +			p_pll_table = &pixel_clk_output_pll_table[i];
-> +			break;
-> +		}
-> +	}
-> +	if (i == ARRAY_SIZE(pixel_clk_output_pll_table)) {
-> +		dev_warn(cdns_phy->dev, "VCO (%d KHz) not supported\n", vco_freq);
-> +		return -EINVAL;
-> +	}
-> +	dev_dbg(cdns_phy->dev, "VCO frequency is (%d KHz)\n", vco_freq);
-> +
-> +	return hdptx_hdmi_phy_config(cdns_phy, p_ctrl_table, p_pll_table, pclk_in);
-> +}
-> +
-> +static int hdptx_hdmi_phy_power_up(struct cdns_hdptx_phy *cdns_phy)
-> +{
-> +	int ret;
-> +
-> +	/* set Power State to A2 */
-> +	cdns_phy_reg_write(cdns_phy, PHY_HDP_MODE_CTRL, POWER_STATE_A2);
-> +
-> +	cdns_phy_reg_write(cdns_phy, TX_DIAG_ACYA_0, 1);
-> +	cdns_phy_reg_write(cdns_phy, TX_DIAG_ACYA_1, 1);
-> +	cdns_phy_reg_write(cdns_phy, TX_DIAG_ACYA_2, 1);
-> +	cdns_phy_reg_write(cdns_phy, TX_DIAG_ACYA_3, 1);
-> +
-> +	ret = wait_for_ack(cdns_phy, PHY_HDP_MODE_CTRL, POWER_STATE_A2_ACK,
-> +			   "Wait A2 Ack failed");
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* Power up ARC */
-> +	hdptx_hdmi_arc_config(cdns_phy);
-> +
-> +	/* Configure PHY in A0 mode (PHY must be in the A0 power
-> +	 * state in order to transmit data)
-> +	 */
-> +	cdns_phy_reg_write(cdns_phy, PHY_HDP_MODE_CTRL, POWER_STATE_A0);
-> +
-> +	return wait_for_ack(cdns_phy, PHY_HDP_MODE_CTRL, POWER_STATE_A0_ACK,
-> +			    "Wait A0 Ack failed");
-> +}
-> +
-> +static int hdptx_hdmi_phy_power_down(struct cdns_hdptx_phy *cdns_phy)
-> +{
-> +	u32 val;
-> +
-> +	val = cdns_phy_reg_read(cdns_phy, PHY_HDP_MODE_CTRL);
-> +	val &= ~(POWER_STATE_A0 | POWER_STATE_A1 | POWER_STATE_A2 | POWER_STATE_A3);
-> +	/* PHY_DP_MODE_CTL set to A3 power state */
-> +	cdns_phy_reg_write(cdns_phy, PHY_HDP_MODE_CTRL, val | POWER_STATE_A3);
-> +
-> +	return wait_for_ack(cdns_phy, PHY_HDP_MODE_CTRL, POWER_STATE_A3_ACK,
-> +			    "Wait A3 Ack failed");
-> +}
-> +
-> +static int hdptx_hdmi_configure(struct phy *phy,
-> +				union phy_configure_opts *opts)
-> +{
-> +	struct cdns_hdptx_phy *cdns_phy = phy_get_drvdata(phy);
-> +	u32 reg;
-> +	int ret;
-> +
-> +	cdns_phy->hdmi.tmds_char_rate = opts->hdmi.tmds_char_rate;
-> +
-> +	/* Check HDMI FW alive before HDMI PHY init */
-> +	ret = readl_poll_timeout(cdns_phy->regs + KEEP_ALIVE, reg,
-> +				 reg & CDNS_KEEP_ALIVE_MASK, 500,
-> +				 CDNS_KEEP_ALIVE_TIMEOUT);
-> +	if (ret < 0) {
-> +		dev_err(cdns_phy->dev, "NO HDMI FW running\n");
-> +		return -ENXIO;
-> +	}
-> +
-> +	/* Configure PHY */
-> +	if (hdptx_hdmi_phy_cfg(cdns_phy, cdns_phy->hdmi.tmds_char_rate) < 0) {
-> +		dev_err(cdns_phy->dev, "failed to set phy pclock\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	hdptx_hdmi_phy_set_vswing(cdns_phy);
-> +
-> +	return 0;
-> +}
-> +
-> +static int cdns_hdptx_phy_on(struct phy *phy)
-> +{
-> +	struct cdns_hdptx_phy *cdns_phy = phy_get_drvdata(phy);
-> +
-> +	if (phy->attrs.mode == PHY_MODE_DP)
-> +		return hdptx_dp_phy_power_up(cdns_phy);
-> +	else
-> +		return hdptx_hdmi_phy_power_up(cdns_phy);
-> +}
-> +
-> +static int cdns_hdptx_phy_off(struct phy *phy)
-> +{
-> +	struct cdns_hdptx_phy *cdns_phy = phy_get_drvdata(phy);
-> +
-> +	if (phy->attrs.mode == PHY_MODE_DP)
-> +		return hdptx_dp_phy_power_down(cdns_phy);
-> +	else
-> +		return hdptx_hdmi_phy_power_down(cdns_phy);
-> +}
-> +
-> +static int
-> +cdns_hdptx_phy_valid(struct phy *phy, enum phy_mode mode,
-> +		     int submode, union phy_configure_opts *opts)
-> +{
-> +	u32 rate = opts->hdmi.tmds_char_rate / 1000;
-> +	int i;
-> +
-> +	if (mode == PHY_MODE_DP)
-> +		return 0;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(pixel_clk_output_ctrl_table); i++)
-> +		if (rate == pixel_clk_output_ctrl_table[i].pixel_clk_freq)
-> +			return 0;
-> +
-> +	return -EINVAL;
-> +}
-> +
-> +static int cdns_hdptx_phy_set_mode(struct phy *phy, enum phy_mode mode, int submode)
-> +{
-> +	struct cdns_hdptx_phy *cdns_phy = phy_get_drvdata(phy);
-> +	int ret = 0;
-> +
-> +	if (mode == PHY_MODE_DP) {
-> +		hdptx_dp_phy_ref_clock_type(cdns_phy);
-> +		hdptx_dp_aux_cfg(cdns_phy);
-> +	} else if (mode != PHY_MODE_HDMI) {
-> +		dev_err(&phy->dev, "Invalid PHY mode: %u\n", mode);
-> +		return -EINVAL;
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int cdns_hdptx_configure(struct phy *phy,
-> +				union phy_configure_opts *opts)
-> +{
-> +	if (phy->attrs.mode == PHY_MODE_DP)
-> +		return hdptx_dp_configure(phy, opts);
-> +	else
-> +		return hdptx_hdmi_configure(phy, opts);
-> +}
-> +
-> +static const struct phy_ops cdns_hdptx_phy_ops = {
-> +	.set_mode = cdns_hdptx_phy_set_mode,
-> +	.configure = cdns_hdptx_configure,
-> +	.power_on = cdns_hdptx_phy_on,
-> +	.power_off = cdns_hdptx_phy_off,
-> +	.validate = cdns_hdptx_phy_valid,
-> +	.owner = THIS_MODULE,
-> +};
-> +
-> +static int cdns_hdptx_phy_probe(struct platform_device *pdev)
-> +{
-> +	struct cdns_hdptx_phy *cdns_phy;
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *node = dev->of_node;
-> +	struct phy_provider *phy_provider;
-> +	struct resource *res;
-> +	struct phy *phy;
-> +	int ret;
-> +
-> +	cdns_phy = devm_kzalloc(dev, sizeof(*cdns_phy), GFP_KERNEL);
-> +	if (!cdns_phy)
-> +		return -ENOMEM;
-> +
-> +	dev_set_drvdata(dev, cdns_phy);
-> +	cdns_phy->dev = dev;
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	if (!res)
-> +		return -ENODEV;
-> +	cdns_phy->regs = devm_ioremap(dev, res->start, resource_size(res));
-> +	if (IS_ERR(cdns_phy->regs))
-> +		return PTR_ERR(cdns_phy->regs);
+my_probe()
+{
+  struct my_driver_data *data =3D device_get_match_data();
+  ...
+}
 
-devm_platform_ioremap_resource()
+device_get_match_data() is just a wrapper to handle the 3 possible match ta=
+bles.
 
-> +
-> +	phy = devm_phy_create(dev, node, &cdns_hdptx_phy_ops);
-> +	if (IS_ERR(phy))
-> +		return PTR_ERR(phy);
-> +
-> +	cdns_phy->phy = phy;
-> +	phy_set_drvdata(phy, cdns_phy);
-> +
-> +	/* init base struct for access mhdp mailbox */
-> +	cdns_phy->base.dev = cdns_phy->dev;
-> +	cdns_phy->base.regs = cdns_phy->regs;
-> +
-> +	ret = hdptx_clk_enable(cdns_phy);
-> +	if (ret) {
-> +		dev_err(dev, "Init clk fail\n");
+The decision for rust is whether we pass in "data" to probe or have an
+explicit call. There is a need to get to the *_device_id entry, but
+that's the exception. I would go as far as saying we may never need
+that in rust drivers.
 
-You already have a dev_err inside hdptx_clk_enable(). You don't need
-another one here.
+Rob
 
-> +		return -EINVAL;
-> +	}
-> +
-> +	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-> +	if (IS_ERR(phy_provider))
-> +		return PTR_ERR(phy_provider);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id cdns_hdptx_phy_of_match[] = {
-> +	{.compatible = "fsl,imx8mq-hdptx-phy" },
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, cdns_hdptx_phy_of_match);
-> +
-> +static struct platform_driver cdns_hdptx_phy_driver = {
-> +	.probe = cdns_hdptx_phy_probe,
-> +	.driver = {
-> +		.name	= "cdns-hdptx-phy",
-> +		.of_match_table	= cdns_hdptx_phy_of_match,
-> +	}
-> +};
-> +module_platform_driver(cdns_hdptx_phy_driver);
-> +
-> +MODULE_AUTHOR("Sandor Yu <sandor.yu@nxp.com>");
-> +MODULE_DESCRIPTION("Cadence HDP-TX DP/HDMI PHY driver");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.34.1
-> 
-
--- 
-With best wishes
-Dmitry
+> > PCI is the exception, not the rule here, in that it only matches with
+> > pci_device_id. At least I think that is the case currently, but it is
+> > entirely possible we may want to do ACPI/DT matching like every other
+> > bus. There are cases where PCI devices are described in DT.
+> >
+> > Rob
+> >
 
