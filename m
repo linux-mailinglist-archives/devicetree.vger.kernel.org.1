@@ -1,231 +1,186 @@
-Return-Path: <devicetree+bounces-124551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124554-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDA6F9D93DB
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 10:12:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A66FF9D9411
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 10:21:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 606C8B26A9E
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 09:12:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66543282748
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 09:21:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2D5D1B0F30;
-	Tue, 26 Nov 2024 09:12:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82B861B532F;
+	Tue, 26 Nov 2024 09:21:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="aolo43+F"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="nIKltDyD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47C7318F2DA;
-	Tue, 26 Nov 2024 09:12:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F56F18E362
+	for <devicetree@vger.kernel.org>; Tue, 26 Nov 2024 09:21:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732612335; cv=none; b=pEheGsTjXQGhZkPGQhY1gMiKvUWVSpDjHMKr1LFvq02pXf0viyWLbLDAUOwp8A3DJdwYqoroaq39lPrkZN0qiscggoqB4aDkwU08LQwLatE02bXMMnpaQvChzx50uNDzfxh/cwl3zZ5bK/4Ws+2q2RcyqS0yKb7xCD5UPfUNdC0=
+	t=1732612870; cv=none; b=idipUchOO05A/koTHVApguUzNJY9GI5QnDNwW/NSCXNt43RXd3Mttq7sl4JkIaoTLMiU1PyMiSHhkuHYtG9R++JvT88PROAO0q4hzDe/0uCR21UwwNgw4447HHgZWEu5LixpkZbVXBuGSCyeVZmgRWYRMZy63my4W//NIczuD9w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732612335; c=relaxed/simple;
-	bh=pgxmLvW9WLvgyz7HGd8H/GF8TfGm0yXATnuchUZHPAA=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RRobWSiOXQIJ1SEZuL3uj1yXIy11kSJOMXFjz+cSx2kyFoP5apBW7jOONAqIRJIddcijG7ULOS0Kqze77ysrSBjRM/p9076Il6UQd9MIU8TTvBiRHHO8MNWDJghaaysQXDzWrue/XRWBRvuD+EqpFv52SYWPH1d55Hkf9AbPan4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=aolo43+F; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4APKotq9007724;
-	Tue, 26 Nov 2024 09:12:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=MkD+Z6LHmgclGH3CFg9mcX2y
-	iQceJOzzPcOnUTDDwyQ=; b=aolo43+F9zkZn4MPfV809nhF7KxSzqIsrIm3Y2zn
-	s38VAjwt5B7bEsXIZ70yLYhiP5Cll0ORBEZZqylsL3zc357DEJhg6SnwlJp2fYnY
-	D6/Ejzw9RvzzNIbxsvwWm9ZNki75dFX3J+Uk+hdfgdY9g/zxxkaGmFVbwlg78bOJ
-	7iaIwpJJEire1yOxICN1UjENvSNGkOGepYdw1mbtQ60Pc0+fgeOb51rw+/nB9UH+
-	jlWTsmfKZxVFi2cW3YG5oK43WB6/f5IFnH0izQmlOy7EygEgTT9eBlMuF1O0qMHJ
-	4t0sBMpq+Q/o2LlSsAkiaXpUCLdU0ASxvcelVszoO5nAvg==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 433626fj12-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 26 Nov 2024 09:12:05 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AQ9C1i1007065
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 26 Nov 2024 09:12:02 GMT
-Received: from cse-cd02-lnx.ap.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 26 Nov 2024 01:11:57 -0800
-Date: Tue, 26 Nov 2024 17:11:53 +0800
-From: Yuanjie Yang <quic_yuanjiey@quicinc.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, <ulf.hansson@linaro.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <bhupesh.sharma@linaro.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>
-CC: <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <quic_tingweiz@quicinc.com>, <quic_yuanjiey@quicinc.com>
-Subject: Re: [PATCH v3 1/2] arm64: dts: qcom: qcs615: add SDHC1 and SDHC2
-Message-ID: <Z0WQ2evD5AmhF4nr@cse-cd02-lnx.ap.qualcomm.com>
-References: <20241122065101.1918470-1-quic_yuanjiey@quicinc.com>
- <20241122065101.1918470-2-quic_yuanjiey@quicinc.com>
- <7c0c1120-c2b2-40dd-8032-339cc4d4cda4@oss.qualcomm.com>
- <Z0WPv3ygWQa/G+mD@cse-cd02-lnx.ap.qualcomm.com>
+	s=arc-20240116; t=1732612870; c=relaxed/simple;
+	bh=LYe44PsuEmobn9w8ghDArMmAgI05ogldtdwcneR3FdE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=h1Gjw0jytB7bxaInrhtTbN2K63aKM1lKRbdSehy2A0r6l5Vt5VjeLpLQMMpvFfgrW1XRJ/fonPLUGiTe36Q691pxr1vEpQCbTjsMb8hNp7JFOLvhb8i+cnUrxYw9PKSEuU46A72G1UHrWqGaxLzfbG+lcEl780asBUHUqHjQrNg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=nIKltDyD; arc=none smtp.client-ip=209.85.221.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-382423e1f7aso3782706f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 26 Nov 2024 01:21:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1732612865; x=1733217665; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=oAr4THz/iUZpjgn32cU1UjSoRJJwQ4eV9JJMqnie3fo=;
+        b=nIKltDyDuhH3GnzM87qkTU2RSHWNho6N+hdbrF3eaOSuS2jzmQ+c23Rgo7M9Z7br+c
+         JvPJmb+qINjz6e5j1bsAeFWGTYtYQWFK2xKkPdHfoqndKmlREqndLom+GvxEdnPduumV
+         cYPnF5x8D2vKGE85klzIuZw0BXJ5tr169BSSBQMt/Cxg0BP1nHstofHDNbn+7OX3LvkD
+         aNt8Lp3z9pnGWH8l5yvBUnlm11b91HX+M0P/y5KTcRiMK1WzNUo/LWbKIFJddnML460J
+         L84kXwDiQaDu/kH6ZymnW9OFQsC1N5hpHUV4OZX/Q1bZqpm73iYDl67WXwE4ur0obEx/
+         4hGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732612866; x=1733217666;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oAr4THz/iUZpjgn32cU1UjSoRJJwQ4eV9JJMqnie3fo=;
+        b=FxT/2pfZyIDaNoDjsvWQ8qSDw3W4XG3YPkUejGfC9RCJPAOQo3hGXUXve+g9bz6Kd2
+         m0IkbkFtV37L0dHQqROsoUx8lFuzP67ZnqbJ+xYScZekv5YsjfRHwr3zFud1UD/TeUMk
+         lPt9cSw54ypFI9Yrhj+buvc3rO6SBhV2Tz9gVHBeqV+0fihLzcwXn6n4Qnc+6PSXDDVp
+         bNKpmss9Re23IlOqUK0RqvPNHek8qxzYmXZz8qp4/i8FRpPdAQLq5Ztfz5t6tz2SuJYe
+         xix6IWPRwMVktUK8hWXgypTLrHNrD29KgTNV30Gclh4t7XHxk1mVYXZ7pSeO9OiD++Ts
+         37IQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXw1SqEgopPvqOSQi+y/301cUFbqY5F5ocSSIA2kpVpjDQtCzAtV5hjQSkQNNZIEqQ29/MS7jt0zlYv@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz4tdpS2JvV0ks7uGEDD4kP38RwJhqx5y6WHLJ939i11+79vkdT
+	o0aAWZnzCtQsM8em1Y+AUXrJtK02rVDnMiCy/M31/ueODuczo7kjUEN6tjqGRuE=
+X-Gm-Gg: ASbGnctIRBXnEqMvhSmI8vE0+uB8apHSlZcf57fW+NIorhtNAADbYYTMlojKClGJWxR
+	a2vHpwv0l6Eg9TcgnMU2EbtncvpcJlK4lqYCdK4dgK7CVlFahrkas9UHUzrqf5yZkVk0DiIAIv/
+	i9uSug6hooW4jpZONMD2N091nZ/loVpCYwsk1c3vzoaiohvMUNYPw70WIPv2Qv5K0FBhVWXMNTB
+	NkeWwSsPK2+vB7Z9vCzOLJUMfBHOi0jZVXZdG205ggzyAohY+y3yJM0Yi11hKliIMZeyifQqISz
+	K/s=
+X-Google-Smtp-Source: AGHT+IFYYXObOhQgBxHQSwsO08mkH4nUnksbd2zyW86LbEQQVgUNpvZSz9E0wpJV3PjUdbW9GlwA3Q==
+X-Received: by 2002:a5d:5f8f:0:b0:37d:5173:7a54 with SMTP id ffacd0b85a97d-38260bdfa48mr15515396f8f.52.1732612865602;
+        Tue, 26 Nov 2024 01:21:05 -0800 (PST)
+Received: from claudiu-X670E-Pro-RS.. ([82.78.167.28])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3825fbc3a47sm13027694f8f.73.2024.11.26.01.21.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Nov 2024 01:21:05 -0800 (PST)
+From: Claudiu <claudiu.beznea@tuxon.dev>
+X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
+To: vkoul@kernel.org,
+	kishon@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	p.zabel@pengutronix.de,
+	geert+renesas@glider.be,
+	magnus.damm@gmail.com,
+	gregkh@linuxfoundation.org,
+	yoshihiro.shimoda.uh@renesas.com,
+	christophe.jaillet@wanadoo.fr
+Cc: linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-usb@vger.kernel.org,
+	claudiu.beznea@tuxon.dev,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: [PATCH v2 00/15] Add initial USB support for the Renesas RZ/G3S SoC
+Date: Tue, 26 Nov 2024 11:20:35 +0200
+Message-Id: <20241126092050.1825607-1-claudiu.beznea.uj@bp.renesas.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <Z0WPv3ygWQa/G+mD@cse-cd02-lnx.ap.qualcomm.com>
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: uZbjmKjYUsmvQQXFba7ESStf18Yq8LOp
-X-Proofpoint-ORIG-GUID: uZbjmKjYUsmvQQXFba7ESStf18Yq8LOp
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
- priorityscore=1501 clxscore=1015 phishscore=0 spamscore=0 adultscore=0
- impostorscore=0 mlxscore=0 malwarescore=0 suspectscore=0 mlxlogscore=999
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411260072
+Content-Transfer-Encoding: 8bit
 
-On Tue, Nov 26, 2024 at 05:07:11PM +0800, Yuanjie Yang wrote:
-> On Mon, Nov 25, 2024 at 02:13:22PM +0100, Konrad Dybcio wrote:
-> > On 22.11.2024 7:51 AM, Yuanjie Yang wrote:
-> > > Add SDHC1 and SDHC2 support to the QCS615 Ride platform.
-> > > 
-> > > Signed-off-by: Yuanjie Yang <quic_yuanjiey@quicinc.com>
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/qcs615.dtsi | 198 +++++++++++++++++++++++++++
-> > >  1 file changed, 198 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
-> > > index 590beb37f441..37c6ab217c96 100644
-> > > --- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
-> > > @@ -399,6 +399,65 @@ qfprom: efuse@780000 {
-> > >  			#size-cells = <1>;
-> > >  		};
-> > >  
-> > > +		sdhc_1: mmc@7c4000 {
-> > > +			compatible = "qcom,qcs615-sdhci", "qcom,sdhci-msm-v5";
-> > > +			reg = <0x0 0x007c4000 0x0 0x1000>,
-> > > +			      <0x0 0x007c5000 0x0 0x1000>;
-> > > +			reg-names = "hc",
-> > > +				    "cqhci";
-> > 
-> > There's an "ice" region at 0x007c8000
-> Thanks, I check doc again, I miss "ice" region at 0x007c8000.
-> 
-> > > +
-> > > +			interrupts = <GIC_SPI 641 IRQ_TYPE_LEVEL_HIGH>,
-> > > +				     <GIC_SPI 644 IRQ_TYPE_LEVEL_HIGH>;
-> > > +			interrupt-names = "hc_irq",
-> > > +					  "pwr_irq";
-> > > +
-> > > +			clocks = <&gcc GCC_SDCC1_AHB_CLK>,
-> > > +				 <&gcc GCC_SDCC1_APPS_CLK>,
-> > > +				 <&rpmhcc RPMH_CXO_CLK>,
-> > > +				 <&gcc GCC_SDCC1_ICE_CORE_CLK>;
-> > > +			clock-names = "iface",
-> > > +				      "core",
-> > > +				      "xo",
-> > > +				      "ice";
-> > > +
-> > > +			resets = <&gcc GCC_SDCC1_BCR>;
-> > > +
-> > > +			power-domains = <&rpmhpd RPMHPD_CX>;
-> > > +			operating-points-v2 = <&sdhc1_opp_table>;
-> > > +			iommus = <&apps_smmu 0x02c0 0x0>;
-> > > +			interconnects = <&aggre1_noc MASTER_SDCC_1 QCOM_ICC_TAG_ALWAYS
-> > > +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
-> > > +					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-> > > +					 &config_noc SLAVE_SDCC_1 QCOM_ICC_TAG_ALWAYS>;
-> > > +			interconnect-names = "sdhc-ddr",
-> > > +					     "cpu-sdhc";
-> > > +
-> > > +			bus-width = <8>;
-> > > +			qcom,dll-config = <0x000f642c>;
-> > > +			qcom,ddr-config = <0x80040868>;
-> > > +			supports-cqe;
-> > > +			dma-coherent;
-> > > +			mmc-ddr-1_8v;
-> > > +			mmc-hs200-1_8v;
-> > > +			mmc-hs400-1_8v;
-> > > +			mmc-hs400-enhanced-strobe;
-> > > +			status = "disabled";
-> > > +
-> > > +			sdhc1_opp_table: opp-table {
-> > > +				compatible = "operating-points-v2";
-> > > +
-> > > +				opp-100000000 {
-> > > +					opp-hz = /bits/ 64 <100000000>;
-> > > +					required-opps = <&rpmhpd_opp_svs>;
-> > > +				};
-> > 
-> > I'm seeing 25/50 MHz OPPs in the docs as well
-> Thanks, I check doc again, I miss 50MHz OPPs, but I don't find 25MHz.
-> 
-> > [...]
-> > 
-> > > +
-> > > +		sdhc_2: mmc@8804000 {
-> > > +			compatible = "qcom,qcs615-sdhci","qcom,sdhci-msm-v5";
-> > 
-> > Missing space 
-Thanks, I will add space in next version.
+From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-> > > +			reg = <0x0 0x08804000 0x0 0x1000>;
-> > > +			reg-names = "hc";
-> > > +
-> > > +			interrupts = <GIC_SPI 204 IRQ_TYPE_LEVEL_HIGH>,
-> > > +				     <GIC_SPI 222 IRQ_TYPE_LEVEL_HIGH>;
-> > > +			interrupt-names = "hc_irq",
-> > > +					  "pwr_irq";
-> > > +
-> > > +			clocks = <&gcc GCC_SDCC2_AHB_CLK>,
-> > > +				 <&gcc GCC_SDCC2_APPS_CLK>,
-> > > +				 <&rpmhcc RPMH_CXO_CLK>;
-> > > +			clock-names = "iface",
-> > > +				      "core",
-> > > +				      "xo";
-> > > +
-> > > +			power-domains = <&rpmhpd RPMHPD_CX>;
-> > > +			operating-points-v2 = <&sdhc2_opp_table>;
-> > > +			iommus = <&apps_smmu 0x02a0 0x0>;
-> > > +			resets = <&gcc GCC_SDCC2_BCR>;
-> > > +			interconnects = <&aggre1_noc MASTER_SDCC_2 QCOM_ICC_TAG_ALWAYS
-> > > +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
-> > > +					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-> > > +					 &config_noc SLAVE_SDCC_2 QCOM_ICC_TAG_ALWAYS>;
-> > > +			interconnect-names = "sdhc-ddr",
-> > > +					     "cpu-sdhc";
-> > > +
-> > > +			bus-width = <4>;
-> > > +			qcom,dll-config = <0x0007642c>;
-> > > +			qcom,ddr-config = <0x80040868>;
-> > > +			dma-coherent;
-> > > +			status = "disabled";
-> > > +
-> > > +			sdhc2_opp_table: opp-table {
-> > > +				compatible = "operating-points-v2";
-> > > +
-> > 
-> > Similarly, it can operate at 25/50 MHz too
-> Thanks, I check doc again, I miss 50MHz OPPs, but I don't find 25MHz.
-> 
-> > 
-> > Konrad
-> 
-> Thanks,
-> Yuanjie
-> 
-Thanks,
-Yuanjie
+Hi,
+
+Series adds initial USB support for the Renesas RZ/G3S SoC.
+
+Series is split as follows:
+- patches 01-05/15	- add SYSC driver support; this is necessary for USB
+			  PHY as the USB PHY driver need to touch a register in
+			  the SYSC address space, in the initialization phase
+- patch 06/15		- updates the USBHS documentation for RZ/G3S
+- patches 07-10/15	- updates the USB PHY support to handle the SYSC
+			  USB PWRRDY signal. Along with it a fix for the
+			  DT bindings and one for the PHY driver were
+			  added; fixes are RZ/G3S USB related
+- patch 11/15		- document the USB PHY Ctrl support
+- patches 12-15/15	- add device tree support
+
+Merge strategy, if any:
+- patches 01-05/15,12-14/15 can go through Renesas tree
+- patch 06/14 can go though USB tree
+- patches 07-10/14 can go through PHY tree
+- patch 11/15 can go though reset controller tree
+
+Thank you,
+Claudiu Beznea
+
+Changes in v2:
+- dropped v1 patches already applied
+- added fixes patches (07/14 and 09/14)
+- dropped the approach of handling the USB PWRRDY though a reset controller
+  driver and introduced the signal concept for the SYSC driver; because
+  of this, most of the work done in v1 was dropped
+- per patch changes are listed in individual patches, if any
+
+Christophe JAILLET (1):
+  phy: renesas: rcar-gen3-usb2: Fix an error handling path in
+    rcar_gen3_phy_usb2_probe()
+
+Claudiu Beznea (14):
+  dt-bindings: soc: renesas: renesas,rzg2l-sysc: Add
+    #renesas,sysc-signal-cells
+  soc: renesas: Add SYSC driver for Renesas RZ family
+  soc: renesas: rz-sysc: Enable SYSC driver for RZ/G3S
+  soc: renesas: rz-sysc: Add SoC detection support
+  soc: renesas: rz-sysc: Move RZ/G3S SoC detection to the SYSC driver
+  dt-bindings: usb: renesas,usbhs: Document RZ/G3S SoC
+  dt-bindings: phy: renesas,usb2-phy: Mark resets as required for RZ/G3S
+  dt-bindings: phy: renesas,usb2-phy: Add renesas,sysc-signal
+  phy: renesas: rcar-gen3-usb2: Add support for PWRRDY
+  dt-bindings: reset: renesas,rzg2l-usbphy-ctrl: Document RZ/G3S support
+  arm64: dts: renesas: Add #renesas,sysc-signal-cells to system
+    controller node
+  arm64: dts: renesas: r9a08g045: Enable the system controller
+  arm64: dts: renesas: r9a08g045: Add USB support
+  arm64: dts: renesas: rzg3s-smarc: Enable USB support
+
+ .../bindings/phy/renesas,usb2-phy.yaml        |  26 +-
+ .../reset/renesas,rzg2l-usbphy-ctrl.yaml      |   1 +
+ .../soc/renesas/renesas,rzg2l-sysc.yaml       |  23 +-
+ .../bindings/usb/renesas,usbhs.yaml           |   2 +
+ arch/arm64/boot/dts/renesas/r9a07g043.dtsi    |   3 +-
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi    |   3 +-
+ arch/arm64/boot/dts/renesas/r9a07g054.dtsi    |   3 +-
+ arch/arm64/boot/dts/renesas/r9a08g045.dtsi    | 123 +++++-
+ arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi  |  57 +++
+ drivers/phy/renesas/phy-rcar-gen3-usb2.c      |  77 +++-
+ drivers/soc/renesas/Kconfig                   |   8 +
+ drivers/soc/renesas/Makefile                  |   2 +
+ drivers/soc/renesas/r9a08g045-sysc.c          |  43 +++
+ drivers/soc/renesas/renesas-soc.c             |  12 -
+ drivers/soc/renesas/rz-sysc.c                 | 350 ++++++++++++++++++
+ drivers/soc/renesas/rz-sysc.h                 |  70 ++++
+ 16 files changed, 778 insertions(+), 25 deletions(-)
+ create mode 100644 drivers/soc/renesas/r9a08g045-sysc.c
+ create mode 100644 drivers/soc/renesas/rz-sysc.c
+ create mode 100644 drivers/soc/renesas/rz-sysc.h
+
+-- 
+2.39.2
 
 
