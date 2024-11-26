@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-124557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71D909D9420
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 10:21:56 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2362D9D9423
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 10:22:10 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4221B168E0B
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 09:21:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8A7128241E
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 09:22:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E97A1C4A2C;
-	Tue, 26 Nov 2024 09:21:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09ED51CDFB9;
+	Tue, 26 Nov 2024 09:21:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="FxVeUVkd"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="bNOjl/S5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75C771BD00C
-	for <devicetree@vger.kernel.org>; Tue, 26 Nov 2024 09:21:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0423A1CB518
+	for <devicetree@vger.kernel.org>; Tue, 26 Nov 2024 09:21:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732612874; cv=none; b=Il8rVk31bxs2bl8T38TQrAHhuzRadzpzIBi3yy+CzRg7kaWzuKA+u813VPQpCcxCzuH3P24Jat2K1MeSO1ec9OtaXGKE14KHiNzrpmcIuTmqrS/hM7X04ouheLye+7vw0Yejm4ipyqrymp7B45TR2UpGWlSvLmDPIte6tH1PT1k=
+	t=1732612876; cv=none; b=JCSGJzlxnjmrE5OihyTLFkWoZs725lm3aewrYAP/2rs6MOcXgdBGRkCRdvr6X5ryg8BjQFx08qKOpOWfskFWL+8/3Djf+udmVoO5hTv01YkokDPC9dgYvgWkjJc6w495slKHNHTbORKQ2ntYry8jfgTDwRIAM3KonLOhHalvr0o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732612874; c=relaxed/simple;
-	bh=L3W0t3Ndk3P8WFZClVN2UXeegBaVgcbm+UbE0rvxIiE=;
+	s=arc-20240116; t=1732612876; c=relaxed/simple;
+	bh=okZZML2tc4SYJzj0YGY5NcNIBGhTp8dqg/vTqnmY3SY=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=nPKAD8imq11xigyN2fHYUh09LqDhQxWG9YTiD3aUVX1SX/OFOdipyrrp8Lnpe5k777e59WzB7bhes7JPVViMcXk6pTZWLPBAPakiz5xoFBHBI6zSmr8x00lk9PXbmf9LpiSdBS4m+pPFAEhW4+5TID8VKo0UxZN3KP5wHo/eDAk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=FxVeUVkd; arc=none smtp.client-ip=209.85.128.46
+	 MIME-Version; b=TIDktKKV0vs3x+fILxOECjUcPX9ZsUmsFSSvWn6ssyR4EnVCl0aEzbPyO+lVB617kvPYGA4KIsQ5b8laYKfTFrSUDUX0mw5tZar3/kpup8CtzTcE5moptz1+vMWCTIwRCH+dGBkLCgibA6eF6I/YIS+HGqaUgi5jiDtkDcAkajY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=bNOjl/S5; arc=none smtp.client-ip=209.85.128.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4315abed18aso47741635e9.2
-        for <devicetree@vger.kernel.org>; Tue, 26 Nov 2024 01:21:12 -0800 (PST)
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-43155abaf0bso49707885e9.0
+        for <devicetree@vger.kernel.org>; Tue, 26 Nov 2024 01:21:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1732612871; x=1733217671; darn=vger.kernel.org;
+        d=tuxon.dev; s=google; t=1732612872; x=1733217672; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=rHg/UpXu0kAmh5cmR42CQBOhisgGmi+P1vH8bY184Vc=;
-        b=FxVeUVkdWtHtY+sPUI6sqE21pehNBnfcBSO5Fe1XNeyDBtjrbLY3RCNlA9/TolWQID
-         Li6rQ/qS3Qh6mPiK7z9ApvT8z9JjymMMtd+NjW2aisnUHkJu/OsDe2JbsoL+qrGxcDyk
-         CucYUv9Ww06tLU/VIw/gNdOyMI5aYZoAGSBuhu8/SF4RZynySUvU4YTf7CrqB/iyiGdt
-         m2DnCMY/tP4KoUn3LROhr7lKQerMxxcN/EVyGCfBSGZUa1bGP329cqKM9Ijwy9eIK3Fy
-         eP2rPHYrwecpEiSyGDpz6s7hEvgSOjXqhNKs51pqZBZSG+PIxckU5X50yuAjDBkpJuVm
-         ue2w==
+        bh=VDINqiI7eZIxSdpV6EMx/C3NNutYl7b6+j2YZ5M4Qvg=;
+        b=bNOjl/S5uwPrg6QR9r4uvpJWWI/onLN+H2g5+ab6xGa7jvGAwqhfeW4LzMiewJbo15
+         boAuzeEnL353Hth/rk2rk3Hu7A5Jaz3I9yPDzy0d+Gj8wZSpNQ+1qo+++ZnJMPQ6R/J+
+         j3FcQnBaPbyd4/OD1QzY7DzDaWM5wa47YZUOtc+mnqYxAZhPdLrTm05A56/Wu6gG9Lxu
+         HPGHABZJmxVeB96ztwfaPEfVKqkXedrvb77nFrAt+bcaZYzOUsx1SoW8rsxRwSwFNUrJ
+         jx1+La3RJ3+eIzKd6dCEZCvX2aXPCT7a7So76dgSyVn9K8kwmCrf92IXtk8LcaQKr/Zk
+         X2nQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732612871; x=1733217671;
+        d=1e100.net; s=20230601; t=1732612872; x=1733217672;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=rHg/UpXu0kAmh5cmR42CQBOhisgGmi+P1vH8bY184Vc=;
-        b=P+wU1+mYjsLlNj9uwUQh4IAiJvAhgzbBk4aOZAPj+oF6KGt24W23zceH/pQV85LFt5
-         kKkjETmo355EaWcVw8BOOg9hw8+G8vuc2iC+NDhnzR0dGV3QsoaWTqTBz+JkvmZ8wMr7
-         gVXSdPzQFjoCFvl0zfssJPp0MrCbRV7VUxWDKKl1O0f17xJ2djHv/o9bjnODZ6fAI81X
-         U62QP4OeRY1AlM8vqHufTUdLhCgf/r7LFacTi30B060SukHqso1C/c5yZ8UYbtbUhh32
-         4ekNKKICPJz+8VxkpIcOmD1dQh3lcXrqERF252B5bGv+nicSrbMdukeIWsqnfB06et4d
-         +hEw==
-X-Forwarded-Encrypted: i=1; AJvYcCXFqnZdlGgmWL982xHYL8O7TUAYSh8qPX3XZ5jCCZ/PCXzKWEXrsCme9+A1hXPM5LdooAndp3h/Tegm@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy/cUgXtQCBV1cc/VMF/GoMQjjSdsH0FDOf6JQGx9mIXeJ6behG
-	vq2KM4RpJad+8t7oGR3Zs5F5C5CcbTKqY/2au5hIkdYGUYo8L35szwoO1Mns+8I=
-X-Gm-Gg: ASbGncvolWsTo9IRZnkbkQ+P8kxBpLaKh55QVlFpifSOyohWHVsEXDnWYeByaxzGnUQ
-	f/vFYOsb+mZjWtsIl97hkTcwL9bs5WiGLA4oa4wx/8k8KyiPIlCLIBHNobRkETO1LuSNPifOeCK
-	BBwnO3eqgH/Ws/Spua+uTeZQwQn7wno/UMz6pq+BRZGBVpnZqQJEq785vJXfR2melJidSqYM+CK
-	iJCvV9Soc9Mz80wmuhvFf8Mktj/QODbnKpFV9NbgESVXrRW5j3nlWWG40fWMWMPbn9OJohf2pM/
-	D0M=
-X-Google-Smtp-Source: AGHT+IHWio7klIaUm9lWwgg66sT0uRqFvChifk0YrFUVIwja8OlGoGemJIscbif1ZB71H5mZ9kHl7w==
-X-Received: by 2002:a5d:5849:0:b0:382:4ce5:f8a4 with SMTP id ffacd0b85a97d-38260be54f9mr11141729f8f.53.1732612870798;
-        Tue, 26 Nov 2024 01:21:10 -0800 (PST)
+        bh=VDINqiI7eZIxSdpV6EMx/C3NNutYl7b6+j2YZ5M4Qvg=;
+        b=QfbxgLenIaMR72BWUGjh7ySQmV7fQe7vHLEnJu+JkoVelyV5C85SqHLhFnt2y8yetj
+         gm3IlRckJm2enUCeUfqqegXqGsvnuzYFYnsaBzeBHbOSi2hDzIreTDbptiUQhoUR/boF
+         TzrNNd/n0sI6tTArl5X0P4slRaLiHxrJSLweA3fdmVHS34sP71PFVtWpQfT/W3tHQYUs
+         itBIr7d0DEbXbEMwYl9+l5191vzv28ctKPw9KIflCOv2pZgRDYuD7sqfdxVS5Rv2WVZz
+         7KU/SRhfCFSvT96lZZmBQjRWXpc7vrZ8bDXgFFsziTv7n35RDrjG1eww9FDT4Alm5oXi
+         3Pnw==
+X-Forwarded-Encrypted: i=1; AJvYcCXzzvyval1JGMM44o0tKOlW5Qkopd5/i0iXFaAkvz6UslRerX+Y8XP/3TDMV2v8i4Ks/UYLen0ptWkh@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx/aydRVUe60N1KKarWSIqNGOFJlWvLI7ucRw3dukQzEoPmeKUh
+	NbDrwqodrtlzJ9wgZxvxCLxTrYMKmngk83Zhu+OjbloJyGskKaYhvrizKIQzrZM=
+X-Gm-Gg: ASbGncseyqF02IFJMFmUr+KKwVpB1CBO2S3eVRqwXKw/MJrCv1gl2lJ0yo3SZ43Mmr6
+	N47on2d4YeBp9wvvjYRIRwjj33gm3jYH03MRqeK2y7N3zBLZlHe6nMW6YFxfS7/g49MlDhltvXz
+	fTksUVsMU2QjUMxofYCqbQd1XQEbCVqF+QjMIqdw2aIQJvt1kOXuC3Bj9bXGBqI3wf2/nPyp05e
+	SUkEDj7aOttGcfc9ZQZGf8RacIHxWjm1TqZ68RlBpiNbPIFVth6aUzFnoY376ZYV0MDSP3cHXdy
+	uIw=
+X-Google-Smtp-Source: AGHT+IFiAn9ufP/2lxYbOVs5nw6bxrcqi6yQ6uQejelWxHdSz9crLVthGd227EDJ3fiqmZHYRLomqQ==
+X-Received: by 2002:a05:600c:1c23:b0:434:9e63:faff with SMTP id 5b1f17b1804b1-4349e63fe62mr73118195e9.2.1732612872339;
+        Tue, 26 Nov 2024 01:21:12 -0800 (PST)
 Received: from claudiu-X670E-Pro-RS.. ([82.78.167.28])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3825fbc3a47sm13027694f8f.73.2024.11.26.01.21.09
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3825fbc3a47sm13027694f8f.73.2024.11.26.01.21.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Nov 2024 01:21:10 -0800 (PST)
+        Tue, 26 Nov 2024 01:21:11 -0800 (PST)
 From: Claudiu <claudiu.beznea@tuxon.dev>
 X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
 To: vkoul@kernel.org,
@@ -92,9 +92,9 @@ Cc: linux-phy@lists.infradead.org,
 	linux-usb@vger.kernel.org,
 	claudiu.beznea@tuxon.dev,
 	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: [PATCH v2 03/15] soc: renesas: rz-sysc: Enable SYSC driver for RZ/G3S
-Date: Tue, 26 Nov 2024 11:20:38 +0200
-Message-Id: <20241126092050.1825607-4-claudiu.beznea.uj@bp.renesas.com>
+Subject: [PATCH v2 04/15] soc: renesas: rz-sysc: Add SoC detection support
+Date: Tue, 26 Nov 2024 11:20:39 +0200
+Message-Id: <20241126092050.1825607-5-claudiu.beznea.uj@bp.renesas.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20241126092050.1825607-1-claudiu.beznea.uj@bp.renesas.com>
 References: <20241126092050.1825607-1-claudiu.beznea.uj@bp.renesas.com>
@@ -108,29 +108,173 @@ Content-Transfer-Encoding: 8bit
 
 From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Enable SYSC driver for RZ/G3S. This is necessary for USB support.
+The RZ SYSC controller has registers that keep the SoC ID data. Add
+driver support to retrieve the SoC ID and register a SoC driver.
 
 Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 ---
 
 Changes in v2:
-- none; this patch is new
+- this was patch 05/16 in v1
+- changed patch title and description
+- added SoC initialization code in its own function
+- addressed the review comments
+- introduced struct rz_sysc_soc_id_init_data and adjusted the code
+  accordingly
+- dropped the RZ/G3S SoC detection code (it will be introduced in
+  a separate patch)
 
- drivers/soc/renesas/Kconfig | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/soc/renesas/rz-sysc.c | 72 +++++++++++++++++++++++++++++++++--
+ drivers/soc/renesas/rz-sysc.h | 18 +++++++++
+ 2 files changed, 86 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/soc/renesas/Kconfig b/drivers/soc/renesas/Kconfig
-index 0686c3ad9e27..c8065f25ee53 100644
---- a/drivers/soc/renesas/Kconfig
-+++ b/drivers/soc/renesas/Kconfig
-@@ -334,6 +334,7 @@ config ARCH_R9A07G054
- config ARCH_R9A08G045
- 	bool "ARM64 Platform support for RZ/G3S"
- 	select ARCH_RZG2L
-+	select SYSC_R9A08G045
- 	help
- 	  This enables support for the Renesas RZ/G3S SoC variants.
+diff --git a/drivers/soc/renesas/rz-sysc.c b/drivers/soc/renesas/rz-sysc.c
+index dc0edacd7170..d34d295831b8 100644
+--- a/drivers/soc/renesas/rz-sysc.c
++++ b/drivers/soc/renesas/rz-sysc.c
+@@ -14,9 +14,12 @@
+ #include <linux/refcount.h>
+ #include <linux/regmap.h>
+ #include <linux/seq_file.h>
++#include <linux/sys_soc.h>
  
+ #include "rz-sysc.h"
+ 
++#define field_get(_mask, _reg) (((_reg) & (_mask)) >> (ffs(_mask) - 1))
++
+ /**
+  * struct rz_sysc - RZ SYSC private data structure
+  * @base: SYSC base address
+@@ -211,6 +214,59 @@ static int rz_sysc_signals_init(struct rz_sysc *sysc,
+ 	return 0;
+ }
+ 
++static int rz_sysc_soc_init(struct rz_sysc *sysc, const struct of_device_id *match)
++{
++	const struct rz_sysc_init_data *sysc_data = match->data;
++	const struct rz_sysc_soc_id_init_data *soc_data = sysc_data->soc_id_init_data;
++	struct soc_device_attribute *soc_dev_attr;
++	const char *soc_id_start, *soc_id_end;
++	u32 val, revision, specific_id;
++	struct soc_device *soc_dev;
++	char soc_id[32] = {0};
++	u8 size;
++
++	if (!soc_data || !soc_data->family || !soc_data->offset ||
++	    !soc_data->revision_mask)
++		return -EINVAL;
++
++	soc_id_start = strchr(match->compatible, ',') + 1;
++	soc_id_end = strchr(match->compatible, '-');
++	size = soc_id_end - soc_id_start;
++	if (size > 32)
++		size = 32;
++	strscpy(soc_id, soc_id_start, size);
++
++	soc_dev_attr = devm_kzalloc(sysc->dev, sizeof(*soc_dev_attr), GFP_KERNEL);
++	if (!soc_dev_attr)
++		return -ENOMEM;
++
++	soc_dev_attr->family = soc_data->family;
++	soc_dev_attr->soc_id = devm_kstrdup(sysc->dev, soc_id, GFP_KERNEL);
++	if (!soc_dev_attr->soc_id)
++		return -ENOMEM;
++
++	val = readl(sysc->base + soc_data->offset);
++	revision = field_get(soc_data->revision_mask, val);
++	specific_id = field_get(soc_data->specific_id_mask, val);
++	soc_dev_attr->revision = devm_kasprintf(sysc->dev, GFP_KERNEL, "%u", revision);
++	if (!soc_dev_attr->revision)
++		return -ENOMEM;
++
++	if (soc_data->id && specific_id != soc_data->id) {
++		dev_warn(sysc->dev, "SoC mismatch (product = 0x%x)\n", specific_id);
++		return -ENODEV;
++	}
++
++	dev_info(sysc->dev, "Detected Renesas %s %s Rev %s\n", soc_dev_attr->family,
++		 soc_dev_attr->soc_id, soc_dev_attr->revision);
++
++	soc_dev = soc_device_register(soc_dev_attr);
++	if (IS_ERR(soc_dev))
++		return PTR_ERR(soc_dev);
++
++	return 0;
++}
++
+ static struct regmap_config rz_sysc_regmap = {
+ 	.name = "rz_sysc_regs",
+ 	.reg_bits = 32,
+@@ -235,14 +291,15 @@ MODULE_DEVICE_TABLE(of, rz_sysc_match);
+ static int rz_sysc_probe(struct platform_device *pdev)
+ {
+ 	const struct rz_sysc_init_data *data;
++	const struct of_device_id *match;
+ 	struct device *dev = &pdev->dev;
+-	struct rz_sysc *sysc;
+ 	struct regmap *regmap;
++	struct rz_sysc *sysc;
+ 	int ret;
+ 
+-	data = device_get_match_data(dev);
+-	if (!data || !data->max_register_offset)
+-		return -EINVAL;
++	match = of_match_node(rz_sysc_match, dev->of_node);
++	if (!match || !match->data)
++		return -ENODEV;
+ 
+ 	sysc = devm_kzalloc(dev, sizeof(*sysc), GFP_KERNEL);
+ 	if (!sysc)
+@@ -253,6 +310,13 @@ static int rz_sysc_probe(struct platform_device *pdev)
+ 		return PTR_ERR(sysc->base);
+ 
+ 	sysc->dev = dev;
++	ret = rz_sysc_soc_init(sysc, match);
++	if (ret)
++		return ret;
++
++	data = match->data;
++	if (!data->max_register_offset)
++		return -EINVAL;
+ 
+ 	ret = rz_sysc_signals_init(sysc, data->signals_init_data, data->num_signals);
+ 	if (ret)
+diff --git a/drivers/soc/renesas/rz-sysc.h b/drivers/soc/renesas/rz-sysc.h
+index bb850310c931..babca9c743c7 100644
+--- a/drivers/soc/renesas/rz-sysc.h
++++ b/drivers/soc/renesas/rz-sysc.h
+@@ -35,13 +35,31 @@ struct rz_sysc_signal {
+ 	refcount_t refcnt;
+ };
+ 
++/**
++ * struct rz_syc_soc_id_init_data - RZ SYSC SoC identification initialization data
++ * @family: RZ SoC family
++ * @id: RZ SoC expected ID
++ * @offset: SYSC SoC ID register offset
++ * @revision_mask: SYSC SoC ID revision mask
++ * @specific_id_mask: SYSC SoC ID specific ID mask
++ */
++struct rz_sysc_soc_id_init_data {
++	const char * const family;
++	u32 id;
++	u32 offset;
++	u32 revision_mask;
++	u32 specific_id_mask;
++};
++
+ /**
+  * struct rz_sysc_init_data - RZ SYSC initialization data
++ * @soc_id_init_data: RZ SYSC SoC ID initialization data
+  * @signals_init_data: RZ SYSC signals initialization data
+  * @num_signals: number of SYSC signals
+  * @max_register_offset: Maximum SYSC register offset to be used by the regmap config
+  */
+ struct rz_sysc_init_data {
++	const struct rz_sysc_soc_id_init_data *soc_id_init_data;
+ 	const struct rz_sysc_signal_init_data *signals_init_data;
+ 	u32 num_signals;
+ 	u32 max_register_offset;
 -- 
 2.39.2
 
