@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-124579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124580-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD50F9D94D0
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 10:46:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CFB69D94D6
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 10:47:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EC1F0B21536
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 09:32:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 86E4CB27A9F
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 09:32:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A91131B85C2;
-	Tue, 26 Nov 2024 09:32:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6349A1BBBF4;
+	Tue, 26 Nov 2024 09:32:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MphZvRwC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MkXeTszj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70BA31B4122;
-	Tue, 26 Nov 2024 09:32:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39B8E194C61;
+	Tue, 26 Nov 2024 09:32:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732613535; cv=none; b=TI4SGDvXHpW0hA1p28H1W56786U9aKpsZqG6cJUcbKs46Kk2AeuTyZ0zZrURc2TWKmKv49ZFxp976NiZyX+oGTRQsq8vZmhKYeQAosrybp0Y8eZZAMMNidSw9qMDi3IFegd4i57+fXkQOHHuPC7LDlYScj6AXAcwobRq9B5645M=
+	t=1732613571; cv=none; b=XbnM5q2fkpNwAn1S96siGzHA7YxDtsujCqNUNRbDNbTAkADlwaJAzgcr/lHqqX+pLfBe2Az/hKdNAvj2gGkYJt5QA97s8Hq5S8dICIlmhdfLWnAOPq9InO0VGeasKn4p+QttVib2WIDzdLA8vORHLmRk34bGcMqujKolCGrkw0w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732613535; c=relaxed/simple;
-	bh=GJbUOnZ9vJQmrHXrzUK2kKFN8BzLbL5Rqn3Xc8P48eY=;
+	s=arc-20240116; t=1732613571; c=relaxed/simple;
+	bh=ShVU0G5DfymgPVyV2Iz7gTpXF10ABLXVYroQX3OlmaM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VmOWBf9e47a37BGTDe+/wJ6rEyZeWE/yMXFylU03GVVrmXojjbSmQht7wYPw2IFNiaN2Rp1rt4zDlNI8ntJC7C4Et61E4jn7tYNbrDj87NVm6wWae7xxE5SVvYn3uMotpaAf2ZRAsQr4syf1BonErHVpaN+XbWyqmpP58aEk03A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MphZvRwC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6667C4CECF;
-	Tue, 26 Nov 2024 09:32:10 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=hjr8ojhiNf/pCT+9DaPQczkuEfnkSG72Kxnwr4WZINfaAh6IAQJ4zcmBfnSrHvW6+XGZv0mEMACJ+mY00R696a7wJF9jBjhKrrYgKHo/IPxIYmeRrn+Vy29M+VCoHCl9GsJdwnDFRJN4KzUGdtrWfClqhZYGFhbpJS5FBTs4Jyo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MkXeTszj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9E23C4CED0;
+	Tue, 26 Nov 2024 09:32:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732613534;
-	bh=GJbUOnZ9vJQmrHXrzUK2kKFN8BzLbL5Rqn3Xc8P48eY=;
+	s=k20201202; t=1732613570;
+	bh=ShVU0G5DfymgPVyV2Iz7gTpXF10ABLXVYroQX3OlmaM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MphZvRwCJwGNJ9raOs4du0fpQ/D7QmBL4CyVpafe+375hS0WHleuGJfEmIwQ7Z7rv
-	 wvFm5rLIK7E1o0/xICeGBHFznn2T5p/nHMdXVEMHOLzGbSXplQvne2aWb2aCZekjrB
-	 cRwVsKiWCf3CLe4SEAc3h4/ncaVQ2MGqW13OP9aakqv9YNFkjrq205sDDDXt/jtC8l
-	 WCkbPZLdXntiDQmMtUbL45xrsoO0JN1X0W+4O9IQgp7rn5hy/hhtkipfj8U4IvPJNP
-	 oWdKXPLGtQEgHYv3revnGjJNljG0TjJ4DPMaPtAVhkuZi3KfyDQmihv4oE2XlRaTCH
-	 uNhHPpmZ2TuDA==
-Message-ID: <42a9cd04-135b-40e9-ab42-a4a4a4f3ae27@kernel.org>
-Date: Tue, 26 Nov 2024 10:32:08 +0100
+	b=MkXeTszjj7SEOOZjeULG0o/c3KJ79l2pJpTOQTNJ+2/LTWnMjc88a5jo47UrtvGBP
+	 suuo2Z6komsUbUTHgqlJyg/iPiXt6b3IsLNW8gop6PKDhzJYok2IUpzyPR3X53XtSx
+	 OAQ2FZEcpI4OLB6IIWnUt5VPQHBOZTb55YtFEYeEtqdI/ZELT/gq2tTKONt65ty3fe
+	 an6f3mCyLF/8zEW6SCgTCOvDIf+uAmlB9mN01euy68kVW5Lfw3StPyd9N6P9vLVM7d
+	 bXltKqG3PKOG5BrT+1HlodXJ0uEetS1VSGdQMEh1QRzIdltrT+OFUDGqs1jj8VwZX9
+	 Nl6Dmna/dfn3A==
+Message-ID: <05a4fd39-d53a-49c3-b236-01ba16fb193e@kernel.org>
+Date: Tue, 26 Nov 2024 10:32:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,20 +51,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 1/2] dt-bindings: gpu: add reset control property
-To: Parthiban <parthiban@linumiz.com>, Conor Dooley <conor@kernel.org>
-Cc: Frank Binns <frank.binns@imgtec.com>, Matt Coster
- <matt.coster@imgtec.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
+To: Parthiban Nallathambi <parthiban@linumiz.com>,
+ Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
 References: <20241125-pvr-reset-v1-0-b437b8052948@linumiz.com>
  <20241125-pvr-reset-v1-1-b437b8052948@linumiz.com>
- <20241125-dress-disliking-2bf22dd4450e@spud>
- <ec0c0a4f-9555-42bb-adac-3ba574fe82cc@linumiz.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,25 +107,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <ec0c0a4f-9555-42bb-adac-3ba574fe82cc@linumiz.com>
+In-Reply-To: <20241125-pvr-reset-v1-1-b437b8052948@linumiz.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26/11/2024 04:46, Parthiban wrote:
-> On 11/25/24 11:37 PM, Conor Dooley wrote:
->> On Mon, Nov 25, 2024 at 10:07:03PM +0530, Parthiban Nallathambi wrote:
->>> GE8300 in Allwinner A133 have reset control from the ccu.
->>> Add the resets property as optional one to control it.
->>
->> There's no specific compatible here for an a133, but the binding
->> requires one. Where is your dts patch?
-> A133 GPU is still work in progress in both Kernel and Mesa3D. Also power
-> domain support needs an additional driver.
+On 25/11/2024 17:37, Parthiban Nallathambi wrote:
+> GE8300 in Allwinner A133 have reset control from the ccu.
+> Add the resets property as optional one to control it.
 > 
-> But reset control is independent of those changes. Should reset control
-> needs to be clubbed GPU dts changes?
-How is it independent? Are you adding it for the new platforms? If yes,
-then it is part of new platforms. Don't add properties which are not used.
+> Signed-off-by: Parthiban Nallathambi <parthiban@linumiz.com>
+> ---
+
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+
+Missing prefix for the device. You are not adding reset to all GPU devices.
 
 Best regards,
 Krzysztof
