@@ -1,197 +1,194 @@
-Return-Path: <devicetree+bounces-124782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6FD39D9DE7
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 20:14:15 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0B229D9DEA
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 20:16:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C5851B24DA1
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 19:13:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 47792B21667
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 19:16:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A11A01DE3D9;
-	Tue, 26 Nov 2024 19:13:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 543081DD9D1;
+	Tue, 26 Nov 2024 19:16:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="FLM5/8Cf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hoEjGWG5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67F301DE2AA
-	for <devicetree@vger.kernel.org>; Tue, 26 Nov 2024 19:13:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 251A318858E;
+	Tue, 26 Nov 2024 19:16:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732648387; cv=none; b=X83ze3Oeaa9s+Aq55nm3FMttVm91XWa6PEbPPgr7xvtEtE3bkWUXmElWbND8gX3VOGHAFzwbMWFeAXLOsm8cWivel4lVrZqr8CaLyYJvgNzufcch5ifkKMmc6dnE/doHF5OWoPnrZI+UUgv/Fuo0STrSUt+k+WsL+SNKlARw5iU=
+	t=1732648572; cv=none; b=SBlaERuG1xpHxS80i3PmIq5Nx9dG2Hsj7r2XaMh5/CJsOptH28YfZk6VzYpwjkwuuRafQns8barB9/PGhhmm5lpu0WZKjUfEZzdeACXquxh8M8a4gCz3Hh4ylN1bcdxZh9RQnWwBrZrk1qVkADShl/68KgtYWgE/fVSdIFNstpU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732648387; c=relaxed/simple;
-	bh=93BTRZse9FM9AQxxaE3QHX9HlG/LTHWLtygtkJIjM+Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HSlS9kitQJCkH6KVmlv58hEOY64Iz8EcZ9SAg1rridt+pTokECaO80VylgVd2fhQVRlmf66E+zN5rrErTg6Y6yaKMVAYpVE2xlph1WqYdhwjm8PvBjftcICh9ofgLkgMmt/QgMhPajDJqTOY39Cogu7gR8XQoLe9+7AkLjl3Gxc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=FLM5/8Cf; arc=none smtp.client-ip=209.85.160.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-29692ad4b42so3449225fac.3
-        for <devicetree@vger.kernel.org>; Tue, 26 Nov 2024 11:13:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1732648383; x=1733253183; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hxuYSh97+uoLGUQ/ZGA65IHk5iK3MvMU7/ozJSLtfAA=;
-        b=FLM5/8CfTrtCc61W6llOpXPPYhr4WpKMxUh1OzdcPB2uUbVswKz6320gdDvwFhUChR
-         X6RRLTDNB/SXJRO4f5Z4JdTNs05eW3KvIEfQLk8Pvdi/yYM1PdEAAsHfA6BXTbpUTt+f
-         IXBSa0yYzALPtlYVyOTdJR6izuxzwmwCtikZz7BiXcQZ/YMsdBO8aYYOT+EUHYizJvRY
-         8+Kf6EbnKJuAPcbbVzGu0RMKubtGvnsPoI4ojyWYFISrsj6UDwGxn1q5YN4Odbkw4BNN
-         WBCPo2mNs2OwXpclE7D7TiXBnCQuw9dY8WZMRTLjvzri1Hs0mf09kd1nv6NyTbVqzbLT
-         HLtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732648383; x=1733253183;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hxuYSh97+uoLGUQ/ZGA65IHk5iK3MvMU7/ozJSLtfAA=;
-        b=O/+a7Jf4Qjs9Kg80AFVliZBdzqR8EVwPdOsdqU5UCduyD5fqJracVNZjJi+zyE5Vrh
-         9iDN3BctEo/+E1oBWAOdK0Hbe6dhLn8LgUn7EVgyvorvYgqF53xAIRL40Yf5+ue3VNGO
-         RPuPQ751G2JHYW2szvrP09oBj2+GB9zoWyBBT48nuwxHUmAfgWKrkTFVJL4m7qdBNcQC
-         uFA+BDVptwCCr1BOqhsf/n/1TTUvVx6UR9w3N0ztmRExgrIQCh8yYW1GdjSUIjXdaszc
-         2DLdsJCk98bPzH7utmlhrZ7ccMEnjLKi+U1mf7ia5F5gTJRWaTyB9ZQ45nVxev+CWBYj
-         sjEw==
-X-Forwarded-Encrypted: i=1; AJvYcCV93oXKqo9+NrQ/SQINweP+8Re4P2V4i3pTEGVTYZjTFJ8vuVMOBaI+Z2MEWOQAKDoqByEzKU8kkkAj@vger.kernel.org
-X-Gm-Message-State: AOJu0YzYJJ2KhT796npvsQJ3uDjBP0WmWBFUjUjpqppXKcdYzaqTFZyX
-	wBsK/SyPZpRu5DTmEw9+nedEnhIybn/IGuQpeG8jVhhZfoGoYpSFCvCv2ssXonU=
-X-Gm-Gg: ASbGncvLjGGdMtYvJlCjuDD8EhP/X09CY25jxmcqnUMYFH/eB/g1kS4jevxwRIUnw1R
-	COYrM9sRBZts7MZD69+taN0myAznmzuOcxGRuIBParxXEEbO4s2AxE/Nd7qpnGGSLwSZ9yPdhlO
-	7NbOV/efDJjlc0qkGqWh3VlgDKMXGoeeVp0ImMkal0j2HIN6M7r+lg401zjovL5NLqCdt71IToU
-	FK07vLNsyHjlnQSpXm2VvCaJHfHy0/gM/DwC4euncEPE+5IlIqlHpLVyceYglLa9AfM9uagzHqF
-	/G8z9e343sM=
-X-Google-Smtp-Source: AGHT+IGvvs/3m9Kc79fYwVlDePn9MhTkwzH3DrsnbvsG44IRsBGPsXgVJ52HGlQjA8LWs57NwhZ5HQ==
-X-Received: by 2002:a05:6870:1691:b0:296:de84:3ea with SMTP id 586e51a60fabf-29dc4308234mr121728fac.34.1732648383542;
-        Tue, 26 Nov 2024 11:13:03 -0800 (PST)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2972288053bsm4061320fac.3.2024.11.26.11.13.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 26 Nov 2024 11:13:02 -0800 (PST)
-Message-ID: <69352c32-56fb-4bfe-aead-4126e144a1e6@baylibre.com>
-Date: Tue, 26 Nov 2024 13:13:00 -0600
+	s=arc-20240116; t=1732648572; c=relaxed/simple;
+	bh=1TUlJKf5nQjkOH60EGQT6g00V3SndGrR+iyif5lajog=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gAslMTgZJAwl/0tbv2UqUpJReQpKgr6cxmtVU2AK9gVlqKtG3li86wgdcHBRKd+830S1AvXsdl5/1CguSD/gF2n7BaJFHVg4QsXa6zLSg7Bkw3dV5Ib3fJV6Q/c+4QgnXrA29CItctCQizGJMpGi9JP7QUE1HGQ9orP5ch5DWGc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hoEjGWG5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A334CC4CEDE;
+	Tue, 26 Nov 2024 19:16:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732648571;
+	bh=1TUlJKf5nQjkOH60EGQT6g00V3SndGrR+iyif5lajog=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=hoEjGWG5m4OidOkXh3CuRiD5M+R1koohQf3ZG7SeTyPQjWJQByP8NK0jLdOGEDpIH
+	 l9XklPzFRqQ1FH9DBeN5hoHlVHQH7VuLyZBRyDSOyTotnx94GMwBDKTKpbqyKwxm0p
+	 91H7NITpW7H8XGKXBS8j3L7kgfK7wlMP2cYMbRjHBHNR1BlcKYrpwlzYD3/hFep7Op
+	 ESEuTJikK6Ysc625JG4R97ykuKZ0qgbl5wNSctVKRdXJLoX4lRBotUhL3K6Qn5syYW
+	 Z/MqWtXjmsjkY4z6RNQ/x88vldOIxps1XiFH1qoXzMVaO2GsBLMWrCwzT4bkoFWd7w
+	 rfMlBgUqRVA9w==
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-6ee7a48377cso56273417b3.3;
+        Tue, 26 Nov 2024 11:16:11 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUG/UJJDByr1W83Lxv8K9yfz31lzyuMK5jajCHdfie0nb+95gZCG+JlLlig66rjvkOSvLvVLsyNwWdZ+v40@vger.kernel.org, AJvYcCVg436dEOk3Z4HHyHBbqBSMO39WMUdotg2/M6L5HsVRlZM6ZTt54TMvizj2cZd3gZF8LC+JzOi7LD+G@vger.kernel.org, AJvYcCWzJgZYl8NY8XoGDtCaQFJjJ4IOgHt9yM+38eyixCX6fbd1vfekRT7GugPBK+otsXm9K7/v1AHikWLi@vger.kernel.org, AJvYcCXArw7azpaSDY7+539yMbsKJ9Cufp4Z3skdl2Nc0Bill+VlhQZxkhV+YGNEXGygmt0hCJcoICl2edCqpljqBK0=@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywra98NW4T8nONqP2nFlrMDAT8ZKA8FVmRckCmjqm7YuuPUeYNX
+	wZhTlmyXQtkZhoG8fmKKnzf8EwJrkkiANcJfB+8C+EN6n5B4ZZwukfXYQOa+y1NzquFVPL5Q+4e
+	ofwLQy3yCBv5TsGwZqqDDODgEJA==
+X-Google-Smtp-Source: AGHT+IETEyEPXVtA8SN5jspf5+8jw4sIaeRGhfLum4QaxlBpG1gledPn1oBWZED7v15tAMHRuQ9YyLA2/RSuZ+ZVqsY=
+X-Received: by 2002:a05:690c:7009:b0:6e2:313a:a01e with SMTP id
+ 00721157ae682-6ef3727a856mr4520407b3.32.1732648570631; Tue, 26 Nov 2024
+ 11:16:10 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 9/9] iio: adc: ad7606: Add support for writing registers
- when using backend
-To: Jonathan Cameron <jic23@kernel.org>, Guillaume Stols <gstols@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Nuno Sa <nuno.sa@analog.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, jstephan@baylibre.com, aardelean@baylibre.com,
- adureghello@baylibre.com
-References: <20241121-ad7606_add_iio_backend_software_mode-v1-0-8a693a5e3fa9@baylibre.com>
- <20241121-ad7606_add_iio_backend_software_mode-v1-9-8a693a5e3fa9@baylibre.com>
- <20241126184851.5d28793e@jic23-huawei>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20241126184851.5d28793e@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20241022213221.2383-1-dakr@kernel.org> <20241022213221.2383-16-dakr@kernel.org>
+ <20241022234712.GB1848992-robh@kernel.org> <ZxibWpcswZxz5A07@pollux>
+ <20241023142355.GA623906-robh@kernel.org> <Zx9kR4OhT1pErzEk@pollux>
+ <CAL_JsqLVdoQNSSDCfGcf0wCZE9VQphRhHKANxhpei_UoFzkN9g@mail.gmail.com>
+ <Z0XBbLb8NRQg_dek@cassiopeiae> <CAL_Jsq+TV486zw=hAWkFnNbPeA08mJh_4kVVJLSXiYkzWcOVDg@mail.gmail.com>
+ <Z0XmgXwwNikW6oJw@cassiopeiae>
+In-Reply-To: <Z0XmgXwwNikW6oJw@cassiopeiae>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 26 Nov 2024 13:15:59 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLohzzxDrJPFiQ6v8X=2i7pPUJdwzVLxShbcX-SCz_3Jg@mail.gmail.com>
+Message-ID: <CAL_JsqLohzzxDrJPFiQ6v8X=2i7pPUJdwzVLxShbcX-SCz_3Jg@mail.gmail.com>
+Subject: Re: [PATCH v3 15/16] rust: platform: add basic platform device /
+ driver abstractions
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com, 
+	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com, 
+	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me, 
+	tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com, 
+	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net, 
+	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com, 
+	daniel.almeida@collabora.com, saravanak@google.com, 
+	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 11/26/24 12:48 PM, Jonathan Cameron wrote:
-> On Thu, 21 Nov 2024 10:18:31 +0000
-> Guillaume Stols <gstols@baylibre.com> wrote:
-> 
->> Adds the logic for effectively enabling the software mode for the
->> iio-backend, i.e enabling the software mode channel configuration and
->> implementing the register writing functions.
->>
->> Signed-off-by: Guillaume Stols <gstols@baylibre.com>
-> 
-> A few comments inline, but basically looks fine to me.
-> 
-> Thanks,
-> 
-> Jonathan
-> 
->> diff --git a/drivers/iio/adc/ad7606_par.c b/drivers/iio/adc/ad7606_par.c
->> index a25182a3daa7..0c1177f436f3 100644
->> --- a/drivers/iio/adc/ad7606_par.c
->> +++ b/drivers/iio/adc/ad7606_par.c
-> 
->>  static int ad7606_bi_update_scan_mode(struct iio_dev *indio_dev, const unsigned long *scan_mask)
->>  {
->>  	struct ad7606_state *st = iio_priv(indio_dev);
->> @@ -70,7 +83,7 @@ static int ad7606_bi_setup_iio_backend(struct device *dev, struct iio_dev *indio
->>  	if (ret)
->>  		return ret;
->>  
->> -	ret = devm_iio_backend_enable(dev, st->back);
->> +	ret = devm_iio_backend_enable(st->dev, st->back);
-> 
-> Is that a different dev? That's not obvious...
-> 
->>  	if (ret)
->>  		return ret;
->>  
->> @@ -86,9 +99,52 @@ static int ad7606_bi_setup_iio_backend(struct device *dev, struct iio_dev *indio
->>  	return 0;
->>  }
->>  
->> +static int ad7606_bi_reg_read(struct iio_dev *indio_dev, unsigned int addr)
->> +{
->> +	struct ad7606_state *st = iio_priv(indio_dev);
->> +	int val, ret;
->> +	struct ad7606_platform_data *pdata =  st->dev->platform_data;
->> +
->> +	iio_device_claim_direct_scoped(return -EBUSY, indio_dev) {
->> +		ret = pdata->bus_reg_read(st->back,
->> +					addr,
->> +					&val);
-> 
-> As below.
-> 
->> +	}
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	return val;
->> +}
->> +
->> +static int ad7606_bi_reg_write(struct iio_dev *indio_dev,
->> +			       unsigned int addr,
->> +			       unsigned int val)
->> +{
->> +	struct ad7606_state *st = iio_priv(indio_dev);
->> +	struct ad7606_platform_data *pdata =  st->dev->platform_data;
->> +	int ret;
->> +
->> +	iio_device_claim_direct_scoped(return -EBUSY, indio_dev) {
-> 
-> Given David's if_not_cond_guard() should land shortly I'd prefer
-> to use that going forwards for cases like this.
+On Tue, Nov 26, 2024 at 9:17=E2=80=AFAM Danilo Krummrich <dakr@kernel.org> =
+wrote:
+>
+> On Tue, Nov 26, 2024 at 08:44:19AM -0600, Rob Herring wrote:
+> > > > > > The DT type and name fields are pretty much legacy, so I don't =
+think the
+> > > > > > rust bindings need to worry about them until someone converts S=
+parc and
+> > > > > > PowerMac drivers to rust (i.e. never).
+> > > > > >
+> > > > > > I would guess the PCI cases might be questionable, too. Like DT=
+, drivers
+> > > > > > may be accessing the table fields, but that's not best practice=
+. All the
+> > > > > > match fields are stored in pci_dev, so why get them from the ma=
+tch
+> > > > > > table?
+> > > > >
+> > > > > Fair question, I'd like to forward it to Greg. IIRC, he explicitl=
+y requested to
+> > > > > make the corresponding struct pci_device_id available in probe() =
+at Kangrejos.
+> >
+> > Making it available is not necessarily the same thing as passing it in
+> > via probe.
+>
+> IIRC, that was exactly the request.
+>
+> > I agree it may need to be available in probe(), but that
+> > can be an explicit call to get it.
+>
+> Sure, I did exactly that for the platform abstraction, because there we m=
+ay
+> probe through different ID tables.
 
-Well, Torvalds wasn't happy with the patch and suggested we should
-give up on trying to do conditional guards altogether in cleanup.h.
+TBC, I think of_match_device() (both calling the C API and the method)
+should not be part of this series. I think we agreed on that already.
+Only if there is a need at some point later should we add it.
 
-[1]: https://lore.kernel.org/all/CAHk-=whn07tnDosPfn+UcAtWHBcLg=KqA16SHVv0GV4t8P1fHw@mail.gmail.com/
+> A `struct pci_driver`'s probe function has the following signature [1] th=
+ough:
+>
+> `int (*probe)(struct pci_dev *dev, const struct pci_device_id *id)`
+>
+> [1] https://elixir.bootlin.com/linux/v6.12/source/include/linux/pci.h#L95=
+0
 
-So I'm tempted to just revert the if_not_cond_guard() patch rather
-than trying to fix it.
+We have a mixture of probe with and without the _device_id parameter.
+I'd question if we really want to keep that for PCI when we have a
+chance to align things with Rust. We can't really with C as it would
+be too many drivers to change. Passing the _device_id only works if
+firmware matching is never used which can change over time. But if
+aligning things is not something we want to do, then I'll shut up.
 
-> 
->> +	ret = pdata->bus_reg_write(st->back,
->> +					addr,
->> +					val);
-> Put parameters all on one line.
-> + return here (which needs the new if_not_cond_guard() to avoid
-> confusing the compiler).
-> 
->> +	}
->> +	return ret;
->> +}
+> > > > Which table gets passed in though? Is the IdInfo parameter generic =
+and
+> > > > can be platform_device_id, of_device_id or acpi_device_id? Not sure=
+ if
+> > > > that's possible in rust or not.
+> > >
+> > > Not sure I can follow you here.
+> > >
+> > > The `IdInfo` parameter is of a type given by the driver for driver sp=
+ecific data
+> > > for a certain ID table entry.
+> > >
+> > > It's analogue to resolving `pci_device_id::driver_data` in C.
+> >
+> > As I said below, the PCI case is simpler than for platform devices.
+> > Platform devices have 3 possible match tables. The *_device_id type we
+> > end up with is determined at runtime (because matching is done at
+> > runtime), so IdInfo could be any of those 3 types.
+>
+> `IdInfo` is *not* any of the three *_device_id types. It's the type of th=
+e
+> drivers private data associated with an entry of any of the three ID tabl=
+es.
 
+Ah yes, indeed. So no issue with the probe method.
+
+> It is true that a driver, which registers multiple out of those three tab=
+les is
+> currently forced to have the same private data type for all of them.
+
+I think that's a feature actually as it enforces best practices.
+
+> I don't think this is a concern, is it? If so, it's easily resolvable by =
+just
+> adding two more associated types, e.g. `PlatformIdInfo`, `DtIdInfo` and
+> `AcpiIdInfo`.
+>
+> In this case we would indeed need accessor functions like `dt_match_data`=
+,
+> `platform_match_data`, `acpi_match_data`, since we don't know the type at
+> compile time anymore.
+
+Do we need to split those out in rust or can we just call
+device_get_match_data()?
+
+>
+> I don't think that's necessary though.
+
+Even if you don't support all 3 tables now, at a minimum I think you
+need to rename things to be clear what table type is supported and
+allow for adding the other types. For example, T::ID_TABLE needs to be
+renamed to be clear it's the of_device_id table.
+
+Rob
 
