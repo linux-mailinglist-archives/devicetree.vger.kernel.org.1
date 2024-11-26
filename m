@@ -1,60 +1,66 @@
-Return-Path: <devicetree+bounces-124752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A8109D9CC9
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 18:44:24 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C50FA9D9CF1
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 18:54:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB538283228
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 17:44:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 23D9CB292B3
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 17:51:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A6951DACB4;
-	Tue, 26 Nov 2024 17:44:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F1041DB94F;
+	Tue, 26 Nov 2024 17:50:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KpKV1Hhq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZqZyTvwh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E55181CEE9B;
-	Tue, 26 Nov 2024 17:44:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65FCE182BC;
+	Tue, 26 Nov 2024 17:50:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732643060; cv=none; b=J/NVmIh5AHoqPpuP3Yn0bq1aqD4oLJ8OrgCQEQpwnMmjDbVGl5G3HzHusTOK/xwcMZNbHsW/tmACJRvYqkNlVpvUwzJxvvhzUwNGmr8PIcN22/ietBzMuCWP+l777wOI9UIVY0MRXD5PoZIjqqgpHQ0TFyckUMJg1UbuEmmPuVs=
+	t=1732643456; cv=none; b=hqZ4luFU5ceyydpri9wIIorXe7sB6WCOmA1LxWDlXLI4AGCCo+HrDtJO0ZDM/QtLH7EE37oA/OJemkFDse03vaUlaesulpGIs8ot5lppWJN0No9Vr2Klt759cG3Vyl2YQnwO2zFtvEP/UtpQmqMFNnTeU+pClmTSOAVV1xaSsDo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732643060; c=relaxed/simple;
-	bh=H+B1pmwxkp1dv88qtjfJSxvPjDOd7r063O1/Yfy0BFU=;
+	s=arc-20240116; t=1732643456; c=relaxed/simple;
+	bh=1DHm33+nWlMW/ddeJDObXBwfsVPCV4BRLDeq6xv2wko=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d67HZe9uo9w4tIYrQ+VWU9U/YYZmgul5ptB4k8hsPXOEf7fL4F9aBtHyJaIrN22BXc+tZTMZ0ox6/BCfmPAZCwtLw+K+zP+iUWkFraWGslLMCwvrWPP419+TI4GGo8NWjj6r+OqsbLjnQSG4Qt70/GFyRD0+1MQ2ugBl5rYPFQU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KpKV1Hhq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B27BAC4CECF;
-	Tue, 26 Nov 2024 17:44:16 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ieHkdmxs4zzWSb85wV4NoxjDxVDW1NpMxALTlj8NsOk6Xa29tbHLR0CAwSpisV2Gz/B0fJX7AloFOLUUdOfpZXOde5/i+n+5CXbo8Qt2K7/TMCHVpLECZau9NYqfgdQNK8BtY/pNxajPRrUt8OhWNr0DPNmGBS+xAEfXUdJJaEA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZqZyTvwh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D032C4CED0;
+	Tue, 26 Nov 2024 17:50:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732643059;
-	bh=H+B1pmwxkp1dv88qtjfJSxvPjDOd7r063O1/Yfy0BFU=;
+	s=k20201202; t=1732643455;
+	bh=1DHm33+nWlMW/ddeJDObXBwfsVPCV4BRLDeq6xv2wko=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KpKV1Hhq7cwiwPfR81pTvR4jA9M2AofYd8uf7eG5wecW99jo0uQaBEdqORgLa3oAH
-	 tGnAJxDhuxiPdPOzioql4BcjDMVVJf1nKlAdSX96ZXo2eVUBzFjq12DmeyQ3XCU5Vt
-	 Zl0J40NLZvc8b9SftfW79MnyGihjfn6LoJyha71k90VWumhTEghsyIsyQOH8AEmwtX
-	 WBryR76k5fhob/QWDKTrPuvMi56i46c18MI5Ttchh0ShuurAEN7o9JN6TL9ogPelZc
-	 0ybUgKvLxPmHG70OcuhGCw8EAmhpTUJCIbatDuiVPdpiHpjS7JLeGV7ErKPfxqIAa2
-	 Lyd2nq4sVde5g==
-Date: Tue, 26 Nov 2024 17:44:14 +0000
+	b=ZqZyTvwhXugY0c+2UWdmDVxUgh7efgeOon4J4wUR5uRQQm2ZEqtDgEhkFBQFGECct
+	 MkLhICN7p0cfzrPw1ctoTKxvtHXqfY2im98LWnrF9iA+IMy6p4e/b0HAK7533EPxVq
+	 IJMUh0a3EJmAAzqdHeA/Xhy1cOJq2Lue6UR7WDZaudS8c3QdBO7jgBIM80G2fvhJKu
+	 k70cw/W4kWIAdR0QgCGyKkYSUWafRF9JfYdwQYqcuw97EoLl5PE7FooZQVF90P6d1S
+	 +XK4eF9d17hvPqgtYTQu5PpZWsK0RIXspm/jkjwBpmsvoLZjn/nqPyURKLMuJaeIOQ
+	 Jb1LJjV/eyyJA==
+Date: Tue, 26 Nov 2024 17:50:50 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, quentin.schulz@cherry.de,
-	sebastian.reichel@collabora.com, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	dse@thaumatec.com, Heiko Stuebner <heiko.stuebner@cherry.de>
-Subject: Re: [PATCH v4 1/2] dt-bindings: phy: Add Rockchip MIPI C-/D-PHY
- schema
-Message-ID: <20241126-pastrami-gusty-8b9df32ae00c@spud>
-References: <20241126131736.465111-1-heiko@sntech.de>
- <20241126131736.465111-2-heiko@sntech.de>
+To: Chen-Yu Tsai <wens@kernel.org>
+Cc: Wojciech Macek <wmacek@chromium.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Chen-Yu Tsai <wenst@chromium.org>, Rafal Milecki <rafal@milecki.pl>,
+	Hsin-Yi Wang <hsinyi@chromium.org>,
+	Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: mediatek: Add MT8186 Starmie
+ Chromebooks
+Message-ID: <20241126-angles-unequal-3578ea6bb01b@spud>
+References: <20241125082130.2390310-1-wmacek@chromium.org>
+ <20241125082130.2390310-2-wmacek@chromium.org>
+ <20241125-snowcap-sulphate-34944bd70cf3@spud>
+ <CAGb2v655Bfx44XBPH24FKuEFTJ3ngjbAPEpNBn5vyLZfNGKt+Q@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,70 +68,78 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="g+V6TT2oeeGyoz7X"
+	protocol="application/pgp-signature"; boundary="a8AIRgZYs3rO0/Bl"
 Content-Disposition: inline
-In-Reply-To: <20241126131736.465111-2-heiko@sntech.de>
+In-Reply-To: <CAGb2v655Bfx44XBPH24FKuEFTJ3ngjbAPEpNBn5vyLZfNGKt+Q@mail.gmail.com>
 
 
---g+V6TT2oeeGyoz7X
-Content-Type: text/plain; charset=us-ascii
+--a8AIRgZYs3rO0/Bl
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Nov 26, 2024 at 02:17:34PM +0100, Heiko Stuebner wrote:
-> From: Heiko Stuebner <heiko.stuebner@cherry.de>
+On Tue, Nov 26, 2024 at 12:36:08PM +0800, Chen-Yu Tsai wrote:
+> On Tue, Nov 26, 2024 at 2:34=E2=80=AFAM Conor Dooley <conor@kernel.org> w=
+rote:
+> >
+> > On Mon, Nov 25, 2024 at 08:21:28AM +0000, Wojciech Macek wrote:
+> > > Add an entry for the MT8186 based Starmie Chromebooks, also known as =
+the
+> > > ASUS Chromebook Enterprise CM30 Detachable (CM3001). The device is
+> > > a tablet style chromebook.
+> > >
+> > > Signed-off-by: Wojciech Macek <wmacek@chromium.org>
+> > > ---
+> > >
+> > > Changelog v2-v1:
+> > >  - Fixed items/const bidings description in mediatek.yaml
+> > >
+> > >  Documentation/devicetree/bindings/arm/mediatek.yaml | 13 +++++++++++=
+++
+> > >  1 file changed, 13 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Do=
+cumentation/devicetree/bindings/arm/mediatek.yaml
+> > > index 1d4bb50fcd8d9..6191a5320c148 100644
+> > > --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
+> > > +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> > > @@ -263,6 +263,19 @@ properties:
+> > >            - const: google,steelix-sku196608
+> > >            - const: google,steelix
+> > >            - const: mediatek,mt8186
+> > > +      - description: Google Starmie (ASUS Chromebook Enterprise CM30=
+ (CM3001))
+> > > +        items:
+> > > +          - const: google,starmie-sku0
+> > > +          - const: google,starmie-sku2
+> > > +          - const: google,starmie-sku3
+> >
+> > Compatible order here is back to making little sense. Why is the oldest
+> > SKU, in both cases, appearing first?
 >=20
-> Add dt-binding schema for the MIPI C-/D-PHY found on
-> Rockchip RK3588 SoCs.
->=20
-> Tested-by: Daniel Semkowicz <dse@thaumatec.com>
-> Tested-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
-> ---
->  .../phy/rockchip,rk3588-mipi-dcphy.yaml       | 87 +++++++++++++++++++
->  1 file changed, 87 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/rockchip,rk3588=
--mipi-dcphy.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/phy/rockchip,rk3588-mipi-d=
-cphy.yaml b/Documentation/devicetree/bindings/phy/rockchip,rk3588-mipi-dcph=
-y.yaml
-> new file mode 100644
-> index 000000000000..c8ff5ba22a86
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/rockchip,rk3588-mipi-dcphy.ya=
-ml
-> @@ -0,0 +1,87 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/rockchip,rk3588-mipi-dcphy.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Rockchip MIPI D-/C-PHY with Samsung IP block
-> +
-> +maintainers:
-> +  - Guochun Huang <hero.huang@rock-chips.com>
-> +  - Heiko Stuebner <heiko@sntech.de>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - rockchip,rk3576-mipi-dcphy
-> +      - rockchip,rk3588-mipi-dcphy
+> FWIW the SKU number has no particular ordering. They were released togeth=
+er.
+> SKU denotes different configurations (memory, storage, touchscreen and ot=
+her
+> component options). OOTH revisions would actually have chronological mean=
+ing.
 
-How many phys do each of these SoCs have?
+I see, that's fine then I suppose.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---g+V6TT2oeeGyoz7X
+Cheers,
+Conor.
+
+--a8AIRgZYs3rO0/Bl
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ0YI7gAKCRB4tDGHoIJi
-0uLsAQCgiUeTJIfJn0aeODBRIBm/tzLSKrztICS5Y7I3++Ae1QEAljjpGbDuyu90
-nr0OwQId+7pypocuTFIbd8uRgymesAU=
-=OpzG
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ0YKegAKCRB4tDGHoIJi
+0v3ZAP9s6/k+4zLgrMT7vndOHggRKcA/mY2xxhRmyiJtJNDvgwEAhWO7UfTEpvj4
+HibsduIJN6ZIFYDBYKi7+ZDbhZUKqQI=
+=cu+D
 -----END PGP SIGNATURE-----
 
---g+V6TT2oeeGyoz7X--
+--a8AIRgZYs3rO0/Bl--
 
