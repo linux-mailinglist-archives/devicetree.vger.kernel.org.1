@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-124580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124581-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CFB69D94D6
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 10:47:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 53BB49D94BA
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 10:41:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 86E4CB27A9F
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 09:32:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3214AB2CCC1
+	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 09:35:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6349A1BBBF4;
-	Tue, 26 Nov 2024 09:32:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E07C41BBBF4;
+	Tue, 26 Nov 2024 09:34:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MkXeTszj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KMFwvQec"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39B8E194C61;
-	Tue, 26 Nov 2024 09:32:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE70A194C61;
+	Tue, 26 Nov 2024 09:34:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732613571; cv=none; b=XbnM5q2fkpNwAn1S96siGzHA7YxDtsujCqNUNRbDNbTAkADlwaJAzgcr/lHqqX+pLfBe2Az/hKdNAvj2gGkYJt5QA97s8Hq5S8dICIlmhdfLWnAOPq9InO0VGeasKn4p+QttVib2WIDzdLA8vORHLmRk34bGcMqujKolCGrkw0w=
+	t=1732613695; cv=none; b=WsImiBbaHktPp4NpG4PSxNQfzpyFE8OmHD3NT9esJB5TjYqKN0DTTiASk8fwUHhBMr0j+qbnnU9VVWdWShnQxboJsKF0yikqaCDzDzrfcY0b3UjUmY+nsvyuvMFIRn/gsAFuJywiwwzJgq6zaPqQiUCCCnPZBNOfcVFDIiCQuSg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732613571; c=relaxed/simple;
-	bh=ShVU0G5DfymgPVyV2Iz7gTpXF10ABLXVYroQX3OlmaM=;
+	s=arc-20240116; t=1732613695; c=relaxed/simple;
+	bh=kIj2Ac10MKMFrbH1aw/CqZ76OuJOtgj28gsqFBF60rQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hjr8ojhiNf/pCT+9DaPQczkuEfnkSG72Kxnwr4WZINfaAh6IAQJ4zcmBfnSrHvW6+XGZv0mEMACJ+mY00R696a7wJF9jBjhKrrYgKHo/IPxIYmeRrn+Vy29M+VCoHCl9GsJdwnDFRJN4KzUGdtrWfClqhZYGFhbpJS5FBTs4Jyo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MkXeTszj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9E23C4CED0;
-	Tue, 26 Nov 2024 09:32:47 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=CJo5ZqQIithM4OJZLNDr1f7nM1KgtCQa93z1P1xg55AZ33gIb8MWipsWNJwLndfCh4HjfJeAWiG5C5FuEsYPsRwnF+K8s3KIsFIi2Y3uCBMm4iGRpgdFaDMOrp3Ya6pYSdpc4d9HnBU7lLdYAKY5k3EY1uAS8LWwWq6nH7CMC48=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KMFwvQec; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0AECCC4CECF;
+	Tue, 26 Nov 2024 09:34:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732613570;
-	bh=ShVU0G5DfymgPVyV2Iz7gTpXF10ABLXVYroQX3OlmaM=;
+	s=k20201202; t=1732613695;
+	bh=kIj2Ac10MKMFrbH1aw/CqZ76OuJOtgj28gsqFBF60rQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MkXeTszjj7SEOOZjeULG0o/c3KJ79l2pJpTOQTNJ+2/LTWnMjc88a5jo47UrtvGBP
-	 suuo2Z6komsUbUTHgqlJyg/iPiXt6b3IsLNW8gop6PKDhzJYok2IUpzyPR3X53XtSx
-	 OAQ2FZEcpI4OLB6IIWnUt5VPQHBOZTb55YtFEYeEtqdI/ZELT/gq2tTKONt65ty3fe
-	 an6f3mCyLF/8zEW6SCgTCOvDIf+uAmlB9mN01euy68kVW5Lfw3StPyd9N6P9vLVM7d
-	 bXltKqG3PKOG5BrT+1HlodXJ0uEetS1VSGdQMEh1QRzIdltrT+OFUDGqs1jj8VwZX9
-	 Nl6Dmna/dfn3A==
-Message-ID: <05a4fd39-d53a-49c3-b236-01ba16fb193e@kernel.org>
-Date: Tue, 26 Nov 2024 10:32:46 +0100
+	b=KMFwvQecmOcsYWbuKhw3h/9BMR10HBx8ztjPKHAN9PIAL5JeJI3Hb3gXt7gNhxm26
+	 DrdrWeueVuhMx6+WhliXNQqvud+yi0h8z5aQE4K+3NQbVRH1/6+fDsJ3uz9/RkngEA
+	 9VhP5Ur/+/Mn8PmSG6g8gPiNwLbX8fXhpe7d/KoJ5QE0R+wNpUHTir9CUTTEbD6X4W
+	 tbHHkLLuxoXA9qpPgo/lmR9d0Qdm3Tw0ZXABAHeaYYpkG3Q8obPMvXXsTTsifq42wB
+	 2cw5if5fEXmgNW2u3AWBRN6d9QZ+FXnqVnE1OwCtJFsN8FFUhHiRd8Xsp5HzJ5Z30q
+	 IxGFBiw/xWxRQ==
+Message-ID: <d11866a7-0d43-4da6-8bee-d72b3e0649aa@kernel.org>
+Date: Tue, 26 Nov 2024 10:34:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: gpu: add reset control property
-To: Parthiban Nallathambi <parthiban@linumiz.com>,
- Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+Subject: Re: [PATCH v3 1/4] dt-bindings: qcom,qcs615-venus: add support for
+ video hardware
+To: Renjiang Han <quic_renjiang@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20241125-pvr-reset-v1-0-b437b8052948@linumiz.com>
- <20241125-pvr-reset-v1-1-b437b8052948@linumiz.com>
+References: <20241125-add-venus-for-qcs615-v3-0-5a376b97a68e@quicinc.com>
+ <20241125-add-venus-for-qcs615-v3-1-5a376b97a68e@quicinc.com>
+ <kdyhkb3tt2lgfuopz7twxjwpfur6vuezaqlc7s7aozkz6ek2as@m2nvqcb5ww4u>
+ <7df4fded-8c20-4562-9a18-2a122733dfae@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,25 +112,32 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241125-pvr-reset-v1-1-b437b8052948@linumiz.com>
+In-Reply-To: <7df4fded-8c20-4562-9a18-2a122733dfae@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/11/2024 17:37, Parthiban Nallathambi wrote:
-> GE8300 in Allwinner A133 have reset control from the ccu.
-> Add the resets property as optional one to control it.
+On 26/11/2024 09:57, Renjiang Han wrote:
+>>> +description:
+>>> +  The Venus IP is a video encode and decode accelerator present
+>>> +  on Qualcomm platforms
+>>> +
+>>> +allOf:
+>>> +  - $ref: qcom,venus-common.yaml#
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: qcom,qcs615-venus
+>> Please extend sc7180-venus.yaml instead. No need to duplicate
+>> unnecessary things.
 > 
-> Signed-off-by: Parthiban Nallathambi <parthiban@linumiz.com>
-> ---
+> Thanks for your review. But I'm sorry I can't get it. The devicetree for
+> 
+> qcs615-venus is in qcs615.dtsi. I'm not sure how to use sc7180-venus.yaml
+> 
+> instead.
 
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
-
-Missing prefix for the device. You are not adding reset to all GPU devices.
-
+DTSI is not relevant here to the bindings. I don't understand the
+problem, so not sure what you are asking here about.
 Best regards,
 Krzysztof
 
