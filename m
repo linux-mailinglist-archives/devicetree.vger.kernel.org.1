@@ -1,166 +1,90 @@
-Return-Path: <devicetree+bounces-124884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D28C89DA414
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 09:42:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A093C9DA417
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 09:43:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D00DB2446D
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 08:42:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66DE3284D1E
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 08:43:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 745F8186E2F;
-	Wed, 27 Nov 2024 08:42:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46DEB188CDC;
+	Wed, 27 Nov 2024 08:42:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="XerAHcE/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WVCw9g5h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 931D71114;
-	Wed, 27 Nov 2024 08:42:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12E5D15E5CA;
+	Wed, 27 Nov 2024 08:42:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732696945; cv=none; b=FIqHCd6yY9eZXfqX9LupDnybZ910ILGYvFdLbl/e4P1qJO2MAFFwPWfMgEuwCV19jBTV8a5yLAMWwOCZHwEZNcNF2Zdr6340hrgROTfH1RzF3/ZrzQo+7IXu/fJtwRs2EaNEQopFIDE7ndbnBHkfkHPyafs1aiMI0vxh62iIaGo=
+	t=1732696977; cv=none; b=rZFCNi+ocBZ2fR4qa0VMYMFR8cdZsIMAQgCKryqyOnIrlld0vVk85DdSj2aASnMGq7Q5kbruY8gbWf4u8vG4JkKFoczR0YkcMDQgRKzxnxsa/SGmnZ9xIdGzxTK5sN2QEEvxz5QkogV0mLxIsxTsRQnLkjUwkgr+cb0j87h5qMo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732696945; c=relaxed/simple;
-	bh=1SruQ6equFJEJ3DDQvtA5uhMPF4SVyogTYV0u07VntU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bcyl6amtEsxnn3hIt/FamAd2DfANdmRsQ1bJcDGW9ECsZt076MvPTzsoQUMQmvdRp2qwKfOiTvSKJ60PwejeQJ0Til7/xJsYQSq8CoDkOHZdODwt10DjcQvjyqw8R84SSckCYRcPQDqbpOklb3cVhbh5Tg7J+cm+EpS+SiSS9Q0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=XerAHcE/; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1732696941;
-	bh=1SruQ6equFJEJ3DDQvtA5uhMPF4SVyogTYV0u07VntU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=XerAHcE/bSIaVT+gDx5+/EXDHU4d77hSNKsYcHdGjAyUawEmdllA2suX/9cM4ePtZ
-	 +cMuz99nwjOx2nUQl5hhrazHxLAPvVZZ0yhfYtDxWLe4RVqVglSgh2DyWYp2d5D71i
-	 NNhbWNfuUWtOz+xhx2B5W+zwblnPOee4AdFrzTTwZ75SAb3e2jKuCMn0I+YGOra6vm
-	 O11LKMWWkJ/6qMAo3cgUTP64fUemDdu/UGxStaO+Jgc/ZYZ4mkG8sr2Udll4NZqQ3e
-	 vOoSXnkwUPO51ZeUCkC9/B+PttGmc9e0tv2hkM7uBhrZb1v85/U/7gNyKvYmIMp4Ma
-	 0g9Gn6jLlVYeQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 08DD017E1330;
-	Wed, 27 Nov 2024 09:42:21 +0100 (CET)
-Message-ID: <8fec2c21-9d72-4a6b-9f00-01f2e6375831@collabora.com>
-Date: Wed, 27 Nov 2024 09:42:20 +0100
+	s=arc-20240116; t=1732696977; c=relaxed/simple;
+	bh=e0r9bfon/eutIEC1aFHA8PXjFMiaw6h1Je5WMzlW0k0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Fff11Q6YMKQOkmefWLlmvIjMe95IOuMVkWz+gOVtpMS2mUfKFr9dy9tFBjlF/fRsMY8qtS4mGYdPvGQgt6IhthnYQwdYAOFc8n41Vn3lbO83C3hcOk44/6IqE26v3EKCwWTEmE9HcWVXSAsX3ZJbzC/cE4vVgXreE8qBj38dgj4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WVCw9g5h; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0682EC4CECC;
+	Wed, 27 Nov 2024 08:42:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732696976;
+	bh=e0r9bfon/eutIEC1aFHA8PXjFMiaw6h1Je5WMzlW0k0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WVCw9g5hsYU55lb7GCKgIR2M7p0t7fo98Zssh//uYOoQ+CJP4r+MQ5VMSq0GIBZwB
+	 ONCwD2C8RIKA8IuyjdMP+9UU94bMh58FxnZcMgxtOCE4F/2l+QhDH3lU/8oazeHBbf
+	 OzA/qNsXTC+9tlV6EtkUITPe251EOpPLTgA1NcPtXFdbisiey5trtJgGxAZObMHmnU
+	 EplXeymmRyAS0LuOc44A0n06c4+Q501vvTAMmHnuUOQ45l+zDVUtCJVWaQSZaq7fBW
+	 orBatstQUeDI1C7gaF7Ff4OF24FwDD6a8wCHrcsPjd1nbi7LE+tTMesMyR+cGMnwY/
+	 Znn8Sxo8yaHYw==
+Date: Wed, 27 Nov 2024 09:42:53 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Bjorn Helgaas <bhelgaas@google.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: PCI: qcom,pcie-sm8550: document
+ 'global' interrupt
+Message-ID: <nd4codxqdjzoqf6m2ivaofmuzrial7daby2pv62apjsmp6amkp@jxg6fcfh27vu>
+References: <20241126-topic-sm8x50-pcie-global-irq-v1-0-4049cfccd073@linaro.org>
+ <20241126-topic-sm8x50-pcie-global-irq-v1-1-4049cfccd073@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 7/7] drm/mediatek: Introduce HDMI/DDC v2 for
- MT8195/MT8188
-To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
- "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "simona@ffwll.ch" <simona@ffwll.ch>,
- "kernel@collabora.com" <kernel@collabora.com>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>,
- "mripard@kernel.org" <mripard@kernel.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "robh@kernel.org" <robh@kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "airlied@gmail.com" <airlied@gmail.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>
-References: <20241120124512.134278-1-angelogioacchino.delregno@collabora.com>
- <20241120124512.134278-8-angelogioacchino.delregno@collabora.com>
- <133167aa2a3fab40547f5dc6602adf2c3d9e01e5.camel@mediatek.com>
- <4143b793-c5b1-4b6d-8547-26a9dc526957@collabora.com>
- <0711c097f724409941239696f5ab790b302d194a.camel@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <0711c097f724409941239696f5ab790b302d194a.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241126-topic-sm8x50-pcie-global-irq-v1-1-4049cfccd073@linaro.org>
 
-Il 27/11/24 04:08, CK Hu (胡俊光) ha scritto:
-> On Tue, 2024-11-26 at 09:57 +0100, AngeloGioacchino Del Regno wrote:
->> External email : Please do not click links or open attachments until you have verified the sender or the content.
->>
->>
->> Il 26/11/24 08:42, CK Hu (胡俊光) ha scritto:
->>> Hi, Angelo:
->>>
->>> On Wed, 2024-11-20 at 13:45 +0100, AngeloGioacchino Del Regno wrote:
->>>> External email : Please do not click links or open attachments until you have verified the sender or the content.
->>>>
->>>>
->>>> Add support for the newer HDMI-TX (Encoder) v2 and DDC v2 IPs
->>>> found in MediaTek's MT8195, MT8188 SoC and their variants, and
->>>> including support for display modes up to 4k60 and for HDMI
->>>> Audio, as per the HDMI 2.0 spec.
->>>>
->>>> HDCP and CEC functionalities are also supported by this hardware,
->>>> but are not included in this commit.
->>>
->>> Both MT8173 HDMI and MT8173 CEC has hot plug detection interrupt.
->>> I don't know why but MT8173 choose CEC to detect hot plug.
->>>
->>> Does MT8195 CEC has hot plug detection interrupt?
->>> If it has, may we align the hot plug detection flow with MT8173?
->>>
->>
->> The CEC on MT8195 does have an hotplug detection interrupt, but that *must* be
->> used exclusively for CEC for one important reason.
->>
->> While on MT8188 we only have the HDMI (TX) Encoder, MT8195 features both HDMI TX
->> and HDMI RX and in the specific case of this SoCs, the CEC block is shared between
->> the two controllers.
->>
->> If we use the CEC hotplug detection for HDMI-TX, we wouldn't be able to share the
->> block with the HDMI-RX without hacks.
->>
->> This is why we need to use the HTPLG/PORD provided by the HDMI-TX block instead of
->> the CEC one.
+On Tue, Nov 26, 2024 at 11:22:49AM +0100, Neil Armstrong wrote:
+> Qcom PCIe RC controllers are capable of generating 'global' SPI interrupt
+> to the host CPU. This interrupt can be used by the device driver to handle
+> PCIe link specific events such as Link up and Link down, which give the
+> driver a chance to start bus enumeration on its own when link is up and
+> initiate link training if link goes to a bad state. The PCIe driver can
+> still work without this interrupt but it will provide a nice user
+> experience when device gets plugged and removed.
 > 
-> OK, please add this information to commit message so that we know why not use CEC to detect hot plug.
+> Document the interrupt as optional for SM8550 and SM8650 platforms.
 > 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/pci/qcom,pcie-sm8550.yaml | 9 ++++++---
+>  1 file changed, 6 insertions(+), 3 deletions(-)
 
-Sure, I'll do that for v2.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Cheers,
-Angelo
-
-> Regards,
-> CK
-> 
->>
->>> This is not a strong suggestion because I don't know why MT8173 choose CEC to detect.
->>> I just want more function to be common.
->>
->> Yeah, I got the point and I would've asked the same question, but for the reasons
->> that I explained, that's unfortunately not possible :-)
->>
->> Cheers,
->> Angelo
->>
->>>
->>> Regards,
->>> CK
->>>
->>>>
->>>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>>> ---
->>>>
->>
->>
->>
-
+Best regards,
+Krzysztof
 
 
