@@ -1,148 +1,220 @@
-Return-Path: <devicetree+bounces-125040-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 312439DA983
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 15:00:50 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DEEE9DA9A2
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 15:05:45 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8284F1634E1
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 14:00:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C190F281DDB
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 14:05:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F4061FCF41;
-	Wed, 27 Nov 2024 14:00:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F09D1FBE84;
+	Wed, 27 Nov 2024 14:05:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="N/ZUJEYi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q9BpCB60"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A70103232;
-	Wed, 27 Nov 2024 14:00:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 276C11FCFD3
+	for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 14:05:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732716042; cv=none; b=M5MrTgOHpP8vvJ9r/2mMunwQ3fKQ2Q/oUF4fV2bB8R1NfkoL2yE9ZhUTfgYwjz+duxXwjHQhBjt3UrjI/F7Ksh44k4AJiQo5Msf1GCQ+3lXgq58HltnLcdJgnRUWkCp+jiXiSRn2bNCF27msEi9TUU+d3ObffWAkY0hnIO7ZqMc=
+	t=1732716319; cv=none; b=VYU6DG/nMLk7n/21QHg+dmuB+JcGMIFI+QClSd+ZT+LLKa3J6l3CZhsIQ6QjcPnTiGNxTGz7qc5aCE47vVPTRZ9y9AuYWg9Udk/ufkjBzJxqBSlH7xtaoJamXtS8Y4yrtFRYVmRgRO752IhcSACvj7mTrKkaPL0VUfoXSzhUVXE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732716042; c=relaxed/simple;
-	bh=JgCw2ZB4UkDIjh7bN82YDZQzcE3edM9pnmLtA95/n1w=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=hy3gHr16dFqXSukN93ZI7Qd7JkdUuDWqY5LOS8VPHdMcT+1wPfRzdPWGs3NXidcsSitevhDq/QVX6eWhLeICdJN2mdOZvs2kwDwX2KF78+rpw+fPq/jx8O7RSXPGNbvCEYTM9lYTaWtc35IejMedo494BMO2NqQ9EjsLwJv8Afc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=N/ZUJEYi; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-434a14d6bf4so26169325e9.1;
-        Wed, 27 Nov 2024 06:00:40 -0800 (PST)
+	s=arc-20240116; t=1732716319; c=relaxed/simple;
+	bh=8l1b9ahQ6r0Ez7EY2VrUezUFUgLek9a6Gxqe3YD3Djw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=QgoSwK2NBFn6YpI2+Va+AmZ6YjrUb+ztMceAPNw6aGU2A9jJ+oN/eYqeht6o87AdY68hmv2EuYENq+TcVhdj9vZ/O8aFwDDAJvv0U+k3QCwUWxqxVX9rXSGawR6Y2+yg+1eHxfQKIBQPWVMsxK2nwXrHxJHMfXYIubSjmojJA24=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=q9BpCB60; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-434a95095efso5206715e9.0
+        for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 06:05:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1732716039; x=1733320839; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=JgCw2ZB4UkDIjh7bN82YDZQzcE3edM9pnmLtA95/n1w=;
-        b=N/ZUJEYizD5nYF3ggu3AAlnk/AKTYeh7K4VYeMUaXbL8PwF80ZF5oMiTHzrFEeAwYX
-         +w3TJExC91Y7eYxuRAJpXSE3VSP3Y5SGVr5fpjG6oNdI7tT5Z4/8layTnWBjXLzTVW+e
-         6LEkEiQVBTJRoNI0aTxwySO/cWzmqENDlTCZRf4qAketsJumIN3GOx3g0/aGOZ2xi64y
-         pd1/jiM9G9sUKMfdrvRrSm934Dh1uksSgUxwThGZIECAsOaKogljUGzVPX+rzQw3xi/r
-         qoVjB1+LNIDuBC19kpGjtJfgLmWgAdMofO21EkEtgyBCjXojiTMqGy4kIRHacjaSWmje
-         tz+w==
+        d=linaro.org; s=google; t=1732716314; x=1733321114; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3f9O9vZL3tbjRNBgBrukDHv6NIz58hUA90xmXqcfyB8=;
+        b=q9BpCB603SyJlWVu2BQ7Tanvy3nCHMUJWREzqGDmwcwGvWxuQdjcAzGEEpf5E0iFJV
+         heq63OQgIPVIayXkc9mGVvJKWeORVj1ffM009Am204hs4M8arIJKm5YEeedF4fS3P6vH
+         Zs2XLIRS1JwaNCQdObnE0+rhgCTGanporXxV0CWwix0OQwIE8Z+p1UJ0a7dIudEg7qSQ
+         LkCUFFBlsTTO0pXyKzFgc4AzfpJtgk2hCDQmCAad44/x25TIJICjl8DYAj4n89U0clMX
+         Hk9gqBt+xHiPku3BHW8rLnWg0zpe/2lNiZ7KVDQRPSbtBEA6ZB7GdSQ5IuZexqVHPVVJ
+         SkYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732716039; x=1733320839;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JgCw2ZB4UkDIjh7bN82YDZQzcE3edM9pnmLtA95/n1w=;
-        b=ZvqRoTyCGNiwbAw3lThVv8O07q1yVnPYUJwp1ac6heB4UkQ9Up0KuDgCvSdOkL31AU
-         Qn438hx5CPr+ogwpGTK3W+PjcL5Kf/Uf4tXQEWVYqskIpN4+abV+7o5UFTzH5wHf7s5e
-         E9u5kp3g+ZSnnGpiKndGRykNZ4dbRbkIfwa/J3EhnlW3S/lZW42BFXmBIVxMNqYkS5zD
-         erUpMZFJZ1mxvRMw/MZzceZq46Wm75Zz0j/IACWDTdohoTZOpB+tBcaVjsgRE0UBdzn1
-         VoFCxMTNqk+orsOQhtaOO/7vjFdRQxioQCIB5tNzc42yXMP2jGQHUu2Z38C+O8gGVrAR
-         7IVQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU6Xiwv/HsyMBfD0CbLzpuqCffdM3MNPEZoIChoiFAHuwbMKCxwCSwaXCF5S172BwbyTzfOqNEHxy/j@vger.kernel.org, AJvYcCVHyh7GBgfHa+kfZlbdvMQLRSoTchJW9MhjwFlxc4awWus2iLZmfFh/zIZZU1cXvkwLBPtqFrS0F+kY@vger.kernel.org
-X-Gm-Message-State: AOJu0YySDdzxPiTs6sfKFkyfi230ll7MEBAbYnvc/jqM7LTFfi3+BvsK
-	D/Gk/3rinN7z6GjtDHmP4oSyMZzrJAL6gvkTUUaxU+pGIP6dRNVW
-X-Gm-Gg: ASbGncsbGlofPK7XCYaZhBB76BATvNlaXHJT97Uzj+HmaxsVcXG6z1+jJcO8pHlC/TV
-	ZxBEUEf2bEvXF2IwSSTL/ek6RQcp1fUbsFPFYnOkCti84R9Sua+P2W4JJesHoBx9B6FelygH23M
-	NGmwQLMlTeCctVKdyh8eK0EWjoZNE+TvgDGKvricjvaRZ+LxDE04JcsyXGKISdbjg3cAMUOS8fl
-	s5XLpipxYY6FBxTENTy/uUmirdMtukcstm6iU2K5xhD9flwdDvQ1Lcx5ec6kLb/Crti5YLo1N8Q
-	oKUmQ7DGlMi+HB91GfJhNV39eS+2p2Tsog7K9oXL520k+p09C4wliJBhrUnhiFtX+ADCGDeaP8h
-	Tdy4nylE=
-X-Google-Smtp-Source: AGHT+IHBgojp1MwCEvySa9guIxfKIiAEs5qaMPVvWyzd7GgmuFwPZw8S8Nr5lLgmsUERuRYl0or4Tw==
-X-Received: by 2002:a05:600c:4e4d:b0:434:8827:f713 with SMTP id 5b1f17b1804b1-434a9dc13e2mr29617495e9.12.1732716038245;
-        Wed, 27 Nov 2024 06:00:38 -0800 (PST)
-Received: from ?IPv6:2003:f6:ef02:f400:a23c:697f:16fb:11c5? (p200300f6ef02f400a23c697f16fb11c5.dip0.t-ipconnect.de. [2003:f6:ef02:f400:a23c:697f:16fb:11c5])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434aa7fa3b2sm21922085e9.41.2024.11.27.06.00.37
+        d=1e100.net; s=20230601; t=1732716314; x=1733321114;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3f9O9vZL3tbjRNBgBrukDHv6NIz58hUA90xmXqcfyB8=;
+        b=s/I6f04tXJSJxUhZRkpZi0pmbfBpv6F6jHklhSf4yf/9sFdxzxYZJyUi21PkatwWsf
+         IE1fIejh1wK0bGAm1wTbefFXTQexPglvR4SUMLr7sDgiPZJ89cWxmSKQzMKSc5dP/Z64
+         khVXtwGIDPxCnv2J68MBrlXx9JCGLIpLG1Qksyaa+e+t62zv7OfRqn3v4L0k268iJZxG
+         VsM8zDNfnmP0YvdNHE1/v5063VVHe7H0OF40+7ZV2AjPOpjQewT2ekl+28vj2W/qfJod
+         K4Xqyd2q67fZy5ZVDSPFicw/T69qljtPZIQSBTcHm0cxmv9fRLhXiSeK65nAVqi8gvIg
+         6Uew==
+X-Forwarded-Encrypted: i=1; AJvYcCWw+6OuPimA2GEBp1ZXeeVeC9HA9/2NV4wYgCvy0fBeejYuNuZKV9ZVwP+pm+F2n1Z6ziy7bBIWXS3y@vger.kernel.org
+X-Gm-Message-State: AOJu0YwQjEgRRgnTQf82Ade7rsgRi2lyBiW01bYShVarmS5MwPJIR7lJ
+	OLbQKKYbJiuPBkf6hFZBlm4x79RvsXz1pLXqdkFcBtTvoxnu4MMizovwwVRV09Y=
+X-Gm-Gg: ASbGncsW/1lZpEDIRG1oZkNFAI8rzxvIHQ53/ZNCZD1IXAOnbXB/iJt/67H3jMei8fD
+	xgtbkTnsJQR0dZGMzmtdCfU7ywU31NBz44d+18Z/8AiSZXAc5tgECqdsX5epEmv769CQc+vDxiA
+	iXLRWTZe81eu/DoabqMw+gC+Lg5RwSOr0JY+upb++wwRlC7nF4F/K9KdeJXIESmuuxlru8PHxUF
+	zNx2woWpbI7r4ChdY/OuQ8T75oV5eNvxlGY8BUAttheq0LvTEuPDtuuBt4=
+X-Google-Smtp-Source: AGHT+IH9E1I6SJcGbvjq3llM4aBEjZ828MeieBzcCnebm3n1hBJ8N1EB+u0P1asbpWf8ObnMf3oIlA==
+X-Received: by 2002:a05:6000:1ac8:b0:37d:3b31:7a9d with SMTP id ffacd0b85a97d-385bfb14bbemr7186256f8f.23.1732716314287;
+        Wed, 27 Nov 2024 06:05:14 -0800 (PST)
+Received: from [127.0.0.1] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3825fad6436sm16442335f8f.13.2024.11.27.06.05.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Nov 2024 06:00:37 -0800 (PST)
-Message-ID: <848b5160b1170a9725df48d8dba563db2a0ce998.camel@gmail.com>
-Subject: Re: [PATCH v3 10/10] iio: adc: ad7124: Implement temperature
- measurement
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>, Uwe
- =?ISO-8859-1?Q?Kleine-K=F6nig?=
-	 <u.kleine-koenig@baylibre.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
- <lars@metafoo.de>,  Michael Hennerich <Michael.Hennerich@analog.com>,
- Alexandru Ardelean <aardelean@baylibre.com>, Alisa-Dariana Roman	
- <alisa.roman@analog.com>, Conor Dooley <conor+dt@kernel.org>, David Lechner
-	 <dlechner@baylibre.com>, Dumitru Ceclan <dumitru.ceclan@analog.com>, 
- Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
- Rob Herring <robh@kernel.org>, 	devicetree@vger.kernel.org,
- linux-iio@vger.kernel.org
-Date: Wed, 27 Nov 2024 15:05:04 +0100
-In-Reply-To: <CAHp75VcMHyqjsAVveRf58PhoiKyPJRsjBQiLkz+XVu+NDc+Wog@mail.gmail.com>
-References: <20241122113322.242875-12-u.kleine-koenig@baylibre.com>
-	 <20241122113322.242875-22-u.kleine-koenig@baylibre.com>
-	 <CAHp75Ve_sD-a-m4pYmKrT=LhajO=F7TG7KM7AsM47J0=ksVgNw@mail.gmail.com>
-	 <eghe47rkwxmcfkamayemvwfksonrwbysaadakbdm4lvzcsy4ee@7gftiif7ka6i>
-	 <CAHp75Ve3hBhCMFkjA4-hiLfGQLeeGt_74e=PwTH_nF1NCYiyOA@mail.gmail.com>
-	 <2tsxyxmfh3ozolsziu3bps7liagzl4gmvy4oykvyeapziagvy4@tfa2lcxmdsmf>
-	 <CAHp75VcMHyqjsAVveRf58PhoiKyPJRsjBQiLkz+XVu+NDc+Wog@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.1 
+        Wed, 27 Nov 2024 06:05:13 -0800 (PST)
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Subject: [PATCH v3 0/3] media: venus: Provide support for selecting
+ encoder/decoder from in-driver
+Date: Wed, 27 Nov 2024 14:05:11 +0000
+Message-Id: <20241127-media-staging-24-11-25-rb3-hw-compat-string-v3-0-ef6bd25e98db@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABcnR2cC/6WNyw6CMBBFf4V07ZjO8LKu/A/jopQWJlFKWoIaw
+ r9b2LnV5bk3OWcR0Qa2UZyzRQQ7c2Q/JMgPmTC9HjoL3CYWJKlApBoetmUNcdIdDx1QAYhAJYQ
+ mh/4Jxj9GPaU7bK/VuVFK5SdJKJJxDNbxa69db4l7jpMP7z0+47b+1pkRJChlsHJUVU1RXe486
+ OCPPnRiC830h5yS3EiUri1KVzv3JV/X9QN21sqnRAEAAA==
+X-Change-ID: 20241127-media-staging-24-11-25-rb3-hw-compat-string-ea3c99938021
+To: Stanimir Varbanov <stanimir.k.varbanov@gmail.com>, 
+ Vikash Garodia <quic_vgarodia@quicinc.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: quic_renjiang@quicinc.com, quic_vnagar@quicinc.com, 
+ quic_dikshita@quicinc.com, konradybcio@kernel.org, 
+ linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Stanimir Varbanov <stanimir.varbanov@linaro.org>, 
+ devicetree@vger.kernel.org, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.15-dev-dedf8
 
-On Mon, 2024-11-25 at 21:33 +0200, Andy Shevchenko wrote:
-> On Mon, Nov 25, 2024 at 4:52=E2=80=AFPM Uwe Kleine-K=C3=B6nig
-> <u.kleine-koenig@baylibre.com> wrote:
-> > On Mon, Nov 25, 2024 at 03:47:25PM +0200, Andy Shevchenko wrote:
-> > > On Mon, Nov 25, 2024 at 1:27=E2=80=AFPM Uwe Kleine-K=C3=B6nig
-> > > <u.kleine-koenig@baylibre.com> wrote:
-> > > > On Fri, Nov 22, 2024 at 10:31:07PM +0200, Andy Shevchenko wrote:
-> > > > > On Fri, Nov 22, 2024 at 1:34=E2=80=AFPM Uwe Kleine-K=C3=B6nig
-> > > > > <u.kleine-koenig@baylibre.com> wrote:
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* Add one for temperatur=
-e */
-> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 st->num_channels =3D min(=
-num_channels + 1,
-> > > > > > AD7124_MAX_CHANNELS);
-> > > > >=20
-> > > > > Is the type of both arguments the same?
-> > > >=20
-> > > > Hmm, my compiler is happy with it at least. I don't understand why
-> > > > though. I'll do a few more tests ...
-> > >=20
-> > > If num_channels is signed int or shorter than (independently on the
-> > > sign) int, then it's obvious why. + 1 makes it int.
-> >=20
-> > Ah indeed, I should have understood that without that explanation.
->=20
-> Yeah, but a closer look shows to me that num_channels is unsigned int
-> or did I look in the wrong place? If that's true, that should make a
-> warning appear since AD7124_MAX_CHANNELS is signed int...
->=20
->=20
+v3:
+- Adds select OF_DYNAMIC to venus/Kconfig to ensure of_changeset_*() is
+  available. Instead of ifdefing and have the fix not work without
+  OF_DYNAMIC, select OF_DYANMIC with venus - linux-media-ci
+- Link to v2: https://lore.kernel.org/r/20241127-media-staging-24-11-25-rb3-hw-compat-string-v2-0-c010fd45f7ff@linaro.org
 
-Hmm,
+v2:
+- Removes useless dev_info() leftover from debugging - Bryan
+  Link: https://lore.kernel.org/r/ce9ac473-2f73-4c7a-97b1-08be39f3adb4@linaro.org
+- Trivial newline change @ np = of_changeset_create_node(ocs, dev->of_node, node_name); - Bryan
+- Fixes a missing goto identified by smatch - Smatch/Bryan
+- Adds Krzysztof's RB to deprecated - Krzysztof
+- Link to v1: https://lore.kernel.org/r/20241127-media-staging-24-11-25-rb3-hw-compat-string-v1-0-99c16f266b46@linaro.org
 
-Weren't the min()/max() macros improved for things like this?
+v1:
+Various venus patches have been held up due to the misuse of DT to provide
+a configuration input to venus as to which mode a given transcoder should
+be in.
 
-https://elixir.bootlin.com/linux/v6.12.1/source/include/linux/minmax.h#L22
+Link: https://lore.kernel.org/linux-arm-msm/436145fd-d65f-44ec-b950-c434775187ca@kernel.org
+Link: https://lore.kernel.org/linux-media/ba40de82-b308-67b1-5751-bb2d95f2b8a5@linaro.org/
 
-- Nuno S=C3=A1
+This series provides support for static configuration of venus from the resource
+structure via:
+
+1. Adding two strings to the resource structure.
+   One string for the decoder one for the encoder.
+2. The string for each SoC has been matched to the existing in the
+   DT which currently specifies the mode as decoder or encoder.
+3. New logic in the driver parses the DTB looking for the node name
+   specified for the decoder and encoder .
+4. If the DTB contains the node name, then no new node is added as
+   we assume to be working with an "old" DTB.
+5. If the DTB does not contain the specified decoder/encoder string
+   then a new in-memory node is added which contains a compat string
+   consistent with upstream compat strings used to currently select
+   between the decoder and encoder respectively.
+6. In this way new venus driver entries may be added which respect
+   the requirement to move mode selection out of DTB and into driver.
+7. Simple instances of decoder/encoder nodes in the yaml schema have been
+   marked as deprecated.
+8. Since the proposed scheme here always defers to what the DTB says that
+   means it would be possible to remove decoder/encoder entries for the
+   deprecated schema should we choose to do so at a later date but,
+   that step is not taken in this series.
+9. Some of the upstream encoder/decoder nodes for example sdm630/sdm660
+   also contain clock and power-domain information and have not been
+   updated with the static configuration data or had the schema amended to
+   deprecate values. Because these nodes impart hardware specific
+   information and are already upstream this series proposes to leave
+   those as-is.
+
+However if this scheme is adopted it should allow for addition of venus for
+both qcs615[1] and sc8280xp[2].
+
+Other SoCs such as sm8550, sm8650 and beyond are expected to be supported
+by Iris.
+
+The sm8350 and sm8280xp in the second series would then be able to excise
+the offending compat = "video-encoder" | "video-decoder" in the schema and
+DT.
+
+I considered making this series an all singing all dancing method to select
+between encoder and decoder for all SoCs but, the objective here is not to
+add functionality but to provide support for configuration in-driver
+consistent with current usage and to do so with a minimal code
+intervention.
+
+So far I've tested on RB3 by removing:
+
+video-core0 {
+	compatible = "venus-decoder";
+};
+
+video-core1 {
+	compatible = "venus-encoder";
+};
+
+This works - the code adds the nodes into memory and the video
+encoder/decoder logic in the plaform code runs.
+
+Similarly if the nodes are left in-place then no new nodes are added by the
+code in this series and still both encoder and decoder probe.
+
+Thus proving the code works and will provide support for new platforms
+while also leaving open the option of dropping nodes from upstream.
+
+I've left the dropping step out for now, it can be implemented later.
+
+[1] https://lore.kernel.org/linux-arm-msm/20241125-add-venus-for-qcs615-v3-0-5a376b97a68e@quicinc.com
+[2] https://lore.kernel.org/linux-media/20230731-topic-8280_venus-v1-0-8c8bbe1983a5@linaro.org/
+
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+---
+Bryan O'Donoghue (3):
+      media: venus: Add support for static video encoder/decoder declarations
+      media: venus: Populate video encoder/decoder nodename entries
+      media: dt-bindings: qcom-venus: Deprecate video-decoder and video-encoder where applicable
+
+ .../bindings/media/qcom,msm8916-venus.yaml         | 12 +---
+ .../bindings/media/qcom,sc7180-venus.yaml          | 12 +---
+ .../bindings/media/qcom,sc7280-venus.yaml          | 12 +---
+ .../bindings/media/qcom,sdm845-venus-v2.yaml       | 12 +---
+ .../bindings/media/qcom,sm8250-venus.yaml          | 12 +---
+ drivers/media/platform/qcom/venus/Kconfig          |  1 +
+ drivers/media/platform/qcom/venus/core.c           | 66 ++++++++++++++++++++++
+ drivers/media/platform/qcom/venus/core.h           |  2 +
+ 8 files changed, 79 insertions(+), 50 deletions(-)
+---
+base-commit: 72ad4ff638047bbbdf3232178fea4bec1f429319
+change-id: 20241127-media-staging-24-11-25-rb3-hw-compat-string-ea3c99938021
+
+Best regards,
+-- 
+Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+
 
