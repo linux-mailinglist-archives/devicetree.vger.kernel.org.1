@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-124969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8433C9DA672
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 12:03:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB1449DA678
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 12:03:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 24E1D16044A
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 11:02:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B571162653
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 11:03:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9F1C1F426E;
-	Wed, 27 Nov 2024 11:01:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74A3E1F4707;
+	Wed, 27 Nov 2024 11:01:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q9rQRz9L"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ek/iInXD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 987871EE031
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD4711E5707
 	for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 11:01:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732705308; cv=none; b=tuod7vBrEcaJgMcVwpANvTS1+4z+kzN0rm4RHhXq0/V4Civ8s5m/A0yTscTX7y5XklxWkramuRz8AiwDZZUOdihjIBeFPmKI51K3T+T/TLS2kLur+SO+170kZJFksMLwba4dA06qs3945HL5VL9V/bRorcvlz1MMypDJTQCFvQM=
+	t=1732705309; cv=none; b=j/fJr4uDpodMeryYrg6nBmOl1RQpLvcwAtrhIAji4nz1Pt1VJopkMrNNtaTLyxQuLGxhoirF/SJGUJssKG6lo1Mkl8dDVcq3/fJMP8LXVzYqNMGUjR+znnLs3R77TujMGiuJmKepQf1WOw0wA7nySdFhbab35GCus/BedKRU5ao=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732705308; c=relaxed/simple;
-	bh=kck+d2QOFZ1QTUsEEtVgD4V3qv1m6CMUYhFTMP5YqAc=;
+	s=arc-20240116; t=1732705309; c=relaxed/simple;
+	bh=bBXu9c7nBHpZKJ9tgZ+XFFWkeWIErIUAUyFvGXzCs78=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=GuG7mS5bcAqnEJBDFlIk9wZf09EJ6o501VF20jbyf3QUYwwYpzphAIXQQYfUxmANyqD+trb0tW/jymV+JgC9qT7SaINmXeQmRe4+Qh+p6jxfv4+MOYNAb/DZSuBiUyy6I8j2Anvgov8+nWJzURATQyL3arW8NW6vgNIS+jyqMgM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=q9rQRz9L; arc=none smtp.client-ip=209.85.218.44
+	 In-Reply-To:To:Cc; b=bc8sTHsTvpvBSlZG4LFxK4ePkGH0CrT4AVAS/W0wCcqbldHzxqL3Ou/Kmx5n60yufFBMBY3IJzH7E2ZPN8T0j5aCqRB3MWtNF60KAWKz3v/Plpe0liYZC3MC4WZXdoLCysu7pagqfeM4X5/YFIT1tpwBRaaxMiqVZfQTIGnigIA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ek/iInXD; arc=none smtp.client-ip=209.85.208.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-aa54adcb894so418988066b.0
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5cec9609303so7919303a12.1
         for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 03:01:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google; t=1732705304; x=1733310104; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=lE4wmixBBgayLXBCtLCcMeypgTnpcFbWaBYeAtvt70Q=;
-        b=q9rQRz9LMmRiOkxpsDiUxa6F76ChZFOH+HPoGkGkGMCPSrAxQANlE6hLz/oRH0vEVn
-         wyt8hCNUmyklQpNRqkjlVgktGCWbtbalfyAQnbn4auXWAxzTrpukRyD0fvEiH4iGyndw
-         gpKZxhgT1C54Wfrd0LR38xkNIHA+4IAtR64OK5y4xE6MDoSW2584lvSp3r9yEXN3H+3A
-         t7/ATUoMToFvw801jVIVPhS8AkVkKrLIvJTdLq5dv+jMZIB77ygKAI4qbGvI328R0bOT
-         hYmkiOqisgemTYUwO66KxfqbD1H58SW9n53HDyVUEUQS1XNC58SHMeU5+Vv32/rpE5gn
-         ioyg==
+        bh=J4erez+OR7MplArQbIopexB2PZBOe/GVnXjpG92loz8=;
+        b=Ek/iInXDPa10EYC1+Qwd3jtui+ru3GP9vYb8vVBcViImFE4VyJYb8MKXaFZppA8yJ1
+         8eiExOfBdu5rGv7QyTEIarZNhXrPbIJ7o8jPWGxpCojessVj7wyZABVEjYLqVlEENfj1
+         8LhINXCnnb4lh6wzp8Wa4MjYCae9Yp7Ll9UwP44P4qAa4BO4+xldb/vkotwtWtpPgPye
+         2Oh65X+IKpHQ6cUnk7G4mjMKBof4PaMwrCA7VL0IuoeTJVt9iXYextPiAv6ZKTjAhSo7
+         hinCcVd2qr1V5CkAOR1UYRgZb4CW4PzCNKgqBCk0vWhi5tEJkrsa9hgG2xoEQMM3FAcK
+         SxJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1732705304; x=1733310104;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=lE4wmixBBgayLXBCtLCcMeypgTnpcFbWaBYeAtvt70Q=;
-        b=jpAMb9tJd7yfJQ6gMCtwghufbqpj0Gqbr/i6dT/q10I23xB+856R9+jdHswFFPvbbv
-         d+GIUTIb1jcnPzc+FWOa1nLluNd1zNyHoBzpkfDnFGjXsSL0K72zvL0hmLA9ThkoUAdG
-         irvSNBXd4i4FQmY99sJdAJ8bYlP1jky4SBTwkbhjfX5Ij7aecSN8EOq5Ha3F/Z0v0vAx
-         eIswlTXVSK2AxOlD8L1Rmfk2d+CHeIXjz50vezmALrmGkLJR0r3hbZGxe/efEeCpIZkP
-         fV0HVrUUGtSqdaEHMYrqWgG15ctYwFMGwBKpXnq6Cicvx3IvFKSJoZ4HJolv/3Ua0sHw
-         N+KA==
-X-Forwarded-Encrypted: i=1; AJvYcCUHcf14Rf5Bnx587CxciGZUNo6UAlfUC+S9jhizWWAzaoS9NMAWjLwH3WJ56ItS5IUkGjaM0WMoBKYy@vger.kernel.org
-X-Gm-Message-State: AOJu0YyAHRr+NU75VCG/XnszJeIWtNLS21MDOOnnAS3uATjxOneWy4pw
-	9QA/8ojB1B/J3OcvDs9Bzt2bwfQQZZIVNGVALoWj/tGwe5MtiED284tQr1Agja0=
-X-Gm-Gg: ASbGnctXC7GVvyeWxa8OUHUd5wIipFTRIDfdeCHu50UJCp/PDX1pCHg3hrItA8NFJyw
-	ovXze5yWdOb42m3RdmD8IVGs8mnsK8c+stK3e5g/on9O1HYUtCJR87h89QdgmVDaDLFCmJjwK2D
-	hNhXsjedoAUfo2+9jrenO6GaPPIjvCnH4JhWooy57WGuux90KoMiE/UXKIOXY9Ff963eiI1V73v
-	rPi87jeWiKYu1++2m2pGi/FDwvEHiAb3QgJ0FrfD+Hc3ZsRskC0KTS6OrRg8Vvr+QqnEiRqyK6T
-	ssZhrGBWIIQYqHlLvdi1fLABtbunDaoDZA==
-X-Google-Smtp-Source: AGHT+IEjfWpzgWvuf2PuWauL4irDzBBYokZtNaKPDwP8hTNSrJiLJvviKNCQ2xOU0CW7rCVG+Drreg==
-X-Received: by 2002:a17:906:2192:b0:aa5:e01:1471 with SMTP id a640c23a62f3a-aa5810330a4mr150052566b.37.1732705303655;
-        Wed, 27 Nov 2024 03:01:43 -0800 (PST)
+        bh=J4erez+OR7MplArQbIopexB2PZBOe/GVnXjpG92loz8=;
+        b=kvobgA4admxTa4v+IH1RYMObdyTubSfI3VwNOlzNuvc+blFD3sKzxRROFRAhOFXpuK
+         xOKwm3yZ6/P1nrCh+ZFJb/LE+suZxazrzR/oYujbYsybQ2GUOCCd1vzk6SNVr4XO/QQw
+         ICRVUeyU+CwswlRlXxOdlr28uG8GvMZ7qxUGxY6/chLGJQ5qrsExWWSXJK/6iId642fe
+         pfBuN0q30dIT5t+qZke986npuIlPJXSzk2VG57MTolLFremcPPZQNIRe4blsVInyWV6S
+         yUHtI44Jkjg0S6ZrfOF3j6bT3RQmomTVjO4W2p/U2GZHxizTQktPHgEBiexjNcZPoMRB
+         xitQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXCGYNEoriab8LWEtPQk+4NBn6XsfutYtT+5yX/zIdyw3BqiR4K0YixTlsDt5iOsnyfAFo41gDyCSoj@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy52upxVAGsHqdo6Rjch06k8c31k6MhEWYTb1XLUqXxpZIcU7qS
+	lOO0ufc/yhNfOG4ChWRXyybDL5VhTwfxkOmNCsURb19vVaR2ey8fU29KomJ5U1k=
+X-Gm-Gg: ASbGncsuTYj4/cCkoXahhBKTv4SZzxm58Pcsyz4JcGV95n/p6TOdshWL0yDLOAlegSB
+	NNpnEeEjkVldcUY5T6Rjc4X5OxvfzLFbc+ZYfv7VHFT+mLsuDuFpXfZpX74vy4z4mNyWOnwUxrR
+	eIZVENQ1XZVwJ708Swju3SLAjjhyX8EEPe1fb4BYtTIRlbR91OWGK+MFtB0SmSGObkGbfgJaXlD
+	dAvgckZ7fuJ5kCKelIb4zwpkLGFqtn1OPP51xqSj6b21dyNpBkScUzKxSC6YQMe5AzQzPz8ZrQJ
+	cerIqZSw/0aPGaumQ59zHzW9WgTJ+eRipQ==
+X-Google-Smtp-Source: AGHT+IGqpdrPnW3Rg6CugXIox+EqlkbBd+gvIfh6uKjWCcF5TRZPn4bamon8RUhLocSTA4S61CGyGQ==
+X-Received: by 2002:a17:906:18a1:b0:aa5:3663:64be with SMTP id a640c23a62f3a-aa581028c94mr151558766b.43.1732705304136;
+        Wed, 27 Nov 2024 03:01:44 -0800 (PST)
 Received: from puffmais.c.googlers.com (64.227.90.34.bc.googleusercontent.com. [34.90.227.64])
         by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa50b339612sm693762966b.84.2024.11.27.03.01.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Wed, 27 Nov 2024 03:01:43 -0800 (PST)
 From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Wed, 27 Nov 2024 11:01:43 +0000
-Subject: [PATCH 5/6] arm64: dts: exynos: gs101-oriole: enable Maxim
- max77759 TCPCi
+Date: Wed, 27 Nov 2024 11:01:44 +0000
+Subject: [PATCH 6/6] arm64: dts: exynos: gs101-oriole: add pd-disable and
+ typec-power-opmode
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20241127-gs101-phy-lanes-orientation-dts-v1-5-5222d8508b71@linaro.org>
+Message-Id: <20241127-gs101-phy-lanes-orientation-dts-v1-6-5222d8508b71@linaro.org>
 References: <20241127-gs101-phy-lanes-orientation-dts-v1-0-5222d8508b71@linaro.org>
 In-Reply-To: <20241127-gs101-phy-lanes-orientation-dts-v1-0-5222d8508b71@linaro.org>
 To: Catalin Marinas <catalin.marinas@arm.com>, 
@@ -103,165 +103,51 @@ Cc: Peter Griffin <peter.griffin@linaro.org>,
  =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
 X-Mailer: b4 0.13.0
 
-On Pixel 6 (and Pro), a max77759 companion PMIC for USB Type-C
-applications is used, which contains five functional blocks (at
-distinct I2C addresses):
-  * top
-  * charger
-  * fuel gauge
-  * TCPCi
-  * GPIO
+When the serial console is enabled, we need to disable power delivery
+since serial uses the SBU1/2 pins and appears to confuse the TCPCI,
+resulting in endless interrupts.
 
-The TCPCi is required to detect and handle connector orientation in
-Pixel's USB PHY driver, and to configure the USB controller's role
-(host vs device).
+For now, change the DT such that the serial console continues working.
+
+Note1: We can not have both typec-power-opmode and
+new-source-frs-typec-current active at the same time, as otherwise DT
+binding checks complain.
+
+Note2: When using a downstream DT, the Pixel boot-loader will modify
+the DT accordingly before boot, but for this upstream DT it doesn't
+know where to find the TCPCI node. The intention is for this commit to
+be reverted once an updated Pixel boot-loader becomes available.
 
 Signed-off-by: André Draszik <andre.draszik@linaro.org>
 ---
- arch/arm64/boot/dts/exynos/google/gs101-oriole.dts | 99 ++++++++++++++++++++++
- 1 file changed, 99 insertions(+)
+ arch/arm64/boot/dts/exynos/google/gs101-oriole.dts | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
-index 387fb779bd29..5f7be0cb7418 100644
+index 5f7be0cb7418..ef9ccd149b6f 100644
 --- a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
 +++ b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
-@@ -10,6 +10,7 @@
- 
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/usb/pd.h>
- #include "gs101-pinctrl.h"
- #include "gs101.dtsi"
- 
-@@ -90,6 +91,84 @@ eeprom: eeprom@50 {
- &hsi2c_12 {
- 	status = "okay";
- 	/* TODO: add the devices once drivers exist */
-+
-+	usb-typec@25 {
-+		compatible = "maxim,max77759", "maxim,max33359";
-+		reg = <0x25>;
-+		interrupts-extended = <&gpa8 2 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-0 = <&typec_int>;
-+		pinctrl-names = "default";
-+
-+		connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			data-role = "dual";
-+			power-role = "dual";
-+			self-powered;
-+			try-power-role = "sink";
-+			op-sink-microwatt = <2600000>;
-+			new-source-frs-typec-current = <FRS_5V_1P5A>;
-+			slow-charger-loop;
+@@ -107,7 +107,6 @@ connector {
+ 			self-powered;
+ 			try-power-role = "sink";
+ 			op-sink-microwatt = <2600000>;
+-			new-source-frs-typec-current = <FRS_5V_1P5A>;
+ 			slow-charger-loop;
+ 			/*
+ 			 * max77759 operating in reverse boost mode (0xA) can
+@@ -146,6 +145,12 @@ VDO_DFP(DFP_VDO_VER1_1,
+ 						0, 0, 0x18d1)
+ 					VDO_CERT(0x0)
+ 					VDO_PRODUCT(0x4ee1, 0x0)>;
 +			/*
-+			 * max77759 operating in reverse boost mode (0xA) can
-+			 * source up to 1.5A while extboost can only do ~1A.
-+			 * Since extboost is the primary path, advertise 900mA.
++			 * Until bootloader is updated to set those two when
++			 * console is enabled, we disable PD here.
 +			 */
-+			source-pdos = <PDO_FIXED(5000, 900,
-+						 (PDO_FIXED_SUSPEND
-+						  | PDO_FIXED_USB_COMM
-+						  | PDO_FIXED_DATA_SWAP
-+						  | PDO_FIXED_DUAL_ROLE))>;
-+			sink-pdos = <PDO_FIXED(5000, 3000,
-+					       (PDO_FIXED_DATA_SWAP
-+						| PDO_FIXED_USB_COMM
-+						| PDO_FIXED_HIGHER_CAP
-+						| PDO_FIXED_DUAL_ROLE))
-+				     PDO_FIXED(9000, 2200, 0)
-+				     PDO_PPS_APDO(5000, 11000, 3000)>;
-+			sink-vdos = <VDO_IDH(1, 1, IDH_PTYPE_PERIPH, 0,
-+					     IDH_PTYPE_DFP_HOST, 2, 0x18d1)
-+				     VDO_CERT(0x0)
-+				     VDO_PRODUCT(0x4ee1, 0x0)
-+				     VDO_UFP(UFP_VDO_VER1_2,
-+					     (DEV_USB2_CAPABLE
-+					      | DEV_USB3_CAPABLE),
-+					     UFP_RECEPTACLE, 0,
-+					     AMA_VCONN_NOT_REQ, 0,
-+					     UFP_ALTMODE_NOT_SUPP,
-+					     UFP_USB32_GEN1)
-+				     /* padding */ 0
-+				     VDO_DFP(DFP_VDO_VER1_1,
-+					     (HOST_USB2_CAPABLE
-+					      | HOST_USB3_CAPABLE),
-+					     DFP_RECEPTACLE, 0)>;
-+			sink-vdos-v1 = <VDO_IDH(1, 1, IDH_PTYPE_PERIPH, 0,
-+						0, 0, 0x18d1)
-+					VDO_CERT(0x0)
-+					VDO_PRODUCT(0x4ee1, 0x0)>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					usbc0_orien_sw: endpoint {
-+						remote-endpoint = <&usbdrd31_phy_orien_switch>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					usbc0_role_sw: endpoint {
-+						remote-endpoint = <&usbdrd31_dwc3_role_switch>;
-+					};
-+				};
-+			};
-+		};
-+	};
- };
++			pd-disable;
++			typec-power-opmode = "default";
  
- &pinctrl_far_alive {
-@@ -106,6 +185,13 @@ key_volup: key-volup-pins {
- 		samsung,pin-pud = <GS101_PIN_PULL_NONE>;
- 		samsung,pin-drv = <GS101_PIN_DRV_2_5_MA>;
- 	};
-+
-+	typec_int: typec-int-pins {
-+		samsung,pins = "gpa8-2";
-+		samsung,pin-function = <GS101_PIN_FUNC_EINT>;
-+		samsung,pin-pud = <GS101_PIN_PULL_UP>;
-+		samsung,pin-drv = <GS101_PIN_DRV_2_5_MA>;
-+	};
- };
- 
- &pinctrl_gpio_alive {
-@@ -142,9 +228,16 @@ &usbdrd31_dwc3 {
- 	role-switch-default-mode = "peripheral";
- 	maximum-speed = "super-speed-plus";
- 	status = "okay";
-+
-+	port {
-+		usbdrd31_dwc3_role_switch: endpoint {
-+			remote-endpoint = <&usbc0_role_sw>;
-+		};
-+	};
- };
- 
- &usbdrd31_phy {
-+	orientation-switch;
- 	/* TODO: Update these once PMIC is implemented */
- 	pll-supply = <&reg_placeholder>;
- 	dvdd-usb20-supply = <&reg_placeholder>;
-@@ -153,6 +246,12 @@ &usbdrd31_phy {
- 	vdda-usbdp-supply = <&reg_placeholder>;
- 	vddh-usbdp-supply = <&reg_placeholder>;
- 	status = "okay";
-+
-+	port {
-+		usbdrd31_phy_orien_switch: endpoint {
-+			remote-endpoint = <&usbc0_orien_sw>;
-+		};
-+	};
- };
- 
- &usi_uart {
+ 			ports {
+ 				#address-cells = <1>;
 
 -- 
 2.47.0.338.g60cca15819-goog
