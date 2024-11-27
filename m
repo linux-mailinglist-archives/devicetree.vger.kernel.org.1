@@ -1,133 +1,181 @@
-Return-Path: <devicetree+bounces-125118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EDF99DABDE
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 17:34:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 832A69DAC0E
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 17:52:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0F783B210D0
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 16:34:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48218282F1D
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 16:52:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6933D200B9D;
-	Wed, 27 Nov 2024 16:34:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58DF0201011;
+	Wed, 27 Nov 2024 16:52:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d9leOM0c"
+	dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b="CjlxwcOY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.fris.de (mail.fris.de [116.203.77.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B201200B89;
-	Wed, 27 Nov 2024 16:34:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C24F017C96;
+	Wed, 27 Nov 2024 16:52:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.77.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732725276; cv=none; b=tfeJqXnP2sGnJ4RzwG6Wq5Aa7gk5BGWvNNGZIHHSIenC/sr2NU4vSZ/EmqLw5c7AaF3VP4I4K9pqTxBuL27vJwqbya6YO3qJglBe0a/+2vE5GByb9fyLCQIsTcXBuAvT6IFpIMpgcu6W+Ki/q03RxzbGytbQYaywxjVy3qjELnI=
+	t=1732726325; cv=none; b=aQ4+0YIOnVtWw7T6R9OXMuWJsoGnAwGKhno8DOOkgfECpJuJ0q2DPks2bq1UAya7B917q9hUMYVyuOGc5d1KK79BVfHwBqtaic8Q+GT0nzjsO8gP/UteLn1Tn8+LrJidwmBC9OxjMoU5hXhF/pdSAJ6vGT5JlHWrYDRQwv0R/dw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732725276; c=relaxed/simple;
-	bh=hB9Xh72VW9EY+zK59eMd1FIwzbZov0foAMkTJrept4A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oC9gK/1i/w70LhtwJjvvYIcElUqWEmwV/YKb22R7AQ0opIt0zRJKKEzaGEu8DgUn1IGLremjVtC0rHCuEVQWhgF0omUj+DIQbo/iBhu86d2xaOXY5Tll+u0F4Nv+X1PMmqzrmLFjgFrs82OCEXXvWzCrgeOnL6Z0uu0UVNk3vqk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d9leOM0c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26921C4CECC;
-	Wed, 27 Nov 2024 16:34:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732725275;
-	bh=hB9Xh72VW9EY+zK59eMd1FIwzbZov0foAMkTJrept4A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=d9leOM0c59TbObqiL7+ozbJjH+pRogDcMZald3bYtsytIBPo/9hxKdBD8ixnrtz+l
-	 p4SrWcQRxuIlMdi3vL37Wfy2OEwgIREgB8vFAe5s6ty24kjdqG/VS9yMzJJgtxXZzK
-	 EkwwUfvcy1RLoZ1dFraUB5XG1INf0TMlRCexal6JacrXTH5h+ejGET89D3FG27i3Rx
-	 kW1zIYLGgP6vc9M6knzHeVOwt6TK7v4VyvO4JjERv7oezhYt3kKZlWp+i3TsWAqQQV
-	 vC8OWd+rTirsFnxqPUeCE9qfylWQzRt0XLx/L+9yHVpt72YNX1FE4/cHjPHGtmZEgz
-	 CJl/sjUuhQJqw==
-Date: Wed, 27 Nov 2024 16:34:29 +0000
-From: Conor Dooley <conor@kernel.org>
-To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-Cc: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1732726325; c=relaxed/simple;
+	bh=s7KBG8DmIQU8LbwcUDScsWRdDr/Bq7Ew+hOww8HVFx0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=q4T2gV5DWJGoKVwncPBlq+jOLBdvjKIGMSmy3ArYUrDN0pykZVTWGQcNGU6MSUU0EOmx6YDQLYpe6jc3nKBxO/XJa5yki9AgYiBUgmAMu0h1mIKnSucwhkfgeO+52IPMgb/1qSFs7NXFk02O7Z+JatIZNG40iZK/3aNTrIkX6VY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=pass smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=CjlxwcOY; arc=none smtp.client-ip=116.203.77.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fris.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E1C53BFB2F;
+	Wed, 27 Nov 2024 17:44:17 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=dkim;
+	t=1732725869; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=GJsG2K/qyWxkx8maHy/IhNjKC6mBJMwLIPF3uPuwRJo=;
+	b=CjlxwcOYmL1v1mau6RhjuYSMW/BXNA+PJ2FSZ8CSUzXYphR82MTOLS8V1n+WwTeoevCH39
+	5YmWAuruAuOeqHcmLdGR9vIUjKBbyrAvQEd4gWwgdr8aFcLMeTSmeX7bkcZp78qZ2dthl+
+	RND3vkVqcCEprE+n28ohd6EEBlAOikoHSusRYNyOk7Me2KE4rwSCyJ8q739+WhYJRCY/DC
+	VNqGB+ERiNspRHXa69DpcUWnEg4tjXWxfNTvT/UWuw3txkN2q+e9Qj3z8fZ5K+UBr8VUvN
+	S5OtBZJjYmw2YVOaxM/xVniN9BLz1WynHhHveyS2zlFZqIDM133pkJUjIOAwug==
+From: Frieder Schrempf <frieder@fris.de>
+To: linux-arm-kernel@lists.infradead.org,
+	Marek Vasut <marex@denx.de>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Sylwester Nawrocki <s.nawrocki@samsung.com>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Sam Protsenko <semen.protsenko@linaro.org>,
-	Will McVicker <willmcvicker@google.com>,
-	Roy Luo <royluo@google.com>, kernel-team@android.com,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH 2/9] dt-bindings: phy: samsung,usb3-drd-phy: add optional
- orientation-switch
-Message-ID: <20241127-expedited-worried-89e3603eb0e3@spud>
-References: <20241127-gs101-phy-lanes-orientation-phy-v1-0-1b7fce24960b@linaro.org>
- <20241127-gs101-phy-lanes-orientation-phy-v1-2-1b7fce24960b@linaro.org>
- <20241127-unturned-powdered-d9d1b695732d@spud>
- <20241127-pushing-baboon-4afafcf8322f@spud>
- <fba9c9df33dc2e060238a9bb3466a2fea020efde.camel@linaro.org>
+	devicetree@vger.kernel.org,
+	Frieder Schrempf <frieder.schrempf@kontron.de>,
+	imx@lists.linux.dev,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	linux-kernel@vger.kernel.org,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Robin Gong <yibin.gong@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>
+Cc: Bo Liu <liubo03@inspur.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Joy Zou <joy.zou@nxp.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: [PATCH v2 00/11] Use correct LDO5 control registers for PCA9450
+Date: Wed, 27 Nov 2024 17:42:16 +0100
+Message-ID: <20241127164337.613915-1-frieder@fris.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="ZR1J5D9xohh12xiE"
-Content-Disposition: inline
-In-Reply-To: <fba9c9df33dc2e060238a9bb3466a2fea020efde.camel@linaro.org>
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
+From: Frieder Schrempf <frieder.schrempf@kontron.de>
 
---ZR1J5D9xohh12xiE
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This is a follow-up of [1].
 
-On Wed, Nov 27, 2024 at 04:27:09PM +0000, Andr=E9 Draszik wrote:
-> Hi Conor,
->=20
-> Thanks for your review.
->=20
-> On Wed, 2024-11-27 at 16:02 +0000, Conor Dooley wrote:
-> > On Wed, Nov 27, 2024 at 04:00:59PM +0000, Conor Dooley wrote:
-> > > On Wed, Nov 27, 2024 at 10:58:12AM +0000, Andr=E9 Draszik wrote:
-> > > > orientation-switch is the standard declaration to inform the Type-C
-> > > > mux
-> > > > layer that a remote-endpoint is capable of processing orientation
-> > > > change messages.
-> > > >=20
-> > > > Add as an optional since not all versions of this phy currently
-> > > > support
-> > > > or even need the orientation-switch.
-> > > >=20
-> > > > Signed-off-by: Andr=E9 Draszik <andre.draszik@linaro.org>
-> > >=20
-> > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> >=20
-> > Actually, this patch unconditionally adds the property to the binding.
-> > Is it valid for !gs101?
->=20
-> Good point. I've only made it required for gs101 in the next patch, but a=
-s-
-> is, somebody could still add it (in error) in !gs101 cases.
+The main objective of this is to fix the PCA9450 driver to
+use the correct control register for the LDO5 regulator.
 
-> I guess it's best to squash patches 3 and 4 in that case, and update it to
-> disallow for !gs101.
+Currently the control register to use for LDO5 is hardcoded to
+LDO5CTRL_H. This is wrong for two reasons:
 
-SGTM, go ahead.
+1. LDO5CTRL_H doesn't contain the bits for enabling/disabling
+   the regulator. Only LDO5CTRL_L does.
 
---ZR1J5D9xohh12xiE
-Content-Type: application/pgp-signature; name="signature.asc"
+2. The actual output voltage of the regulator is determined by
+   the LDO5CTRL_H only if the SD_VSEL input is HIGH. If it is
+   low, then LDO5CTRL_L is used. The driver does not take this
+   into account.
 
------BEGIN PGP SIGNATURE-----
+This can cause several problems:
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ0dKFQAKCRB4tDGHoIJi
-0tYOAP9rTl2TqNpo8uGk6OWIn9r76xINLkrcaIkMySG1Pa/oQAEArFBtipMlzKaR
-UVQkQlpV6fOug4+hBcQK5BIJfyo3YwU=
-=Vv35
------END PGP SIGNATURE-----
+1. LDO5 can not be turned on/off and we rely on the bootloader
+   to leave it turned on. On the other hand we can't save
+   power if LDO5 is unused.
 
---ZR1J5D9xohh12xiE--
+2. There is a potential for corner-cases where switching
+   SD_VSEL via USDHC_VSELECT and writing to the (wrong)
+   control register can cause wrong output voltage and therfore
+   SD card failures (not observed yet).
+
+3. Reading the current voltage of the LDO5 regulator (e. g. via
+   sysfs can yield the wrong value as the voltage is read from
+   the wrong control register.
+
+At the same time there is now hardware that hardwires SD_VSEL
+to a fixed LOW level and therefore relies on switching the
+voltage only via a single control register. We add support for
+this through an additional property "nxp,sd-vsel-fixed-low" in
+the LDO5 node.
+
+Summary of binding changes (patch 1-3):
+
+1. Adjust the bindings to remove the old and abandoned use of
+   sd-vsel-gpios property.
+
+2. Adjust the bindings to use sd-vsel-gpios in the LDO5 node to
+   retrieve an input that can be used to sample the SD_VSEL
+   status.
+
+3. Adjust bindings to allow "nxp,sd-vsel-fixed-low" to be used
+   for boards that have SD_VSEL hardwired to low level.
+
+Summary of driver changes (patch 4-7):
+
+1. Remove the old sd-vsel-gpios handling.
+
+2. Use the new sd-vsel-gpios property to determine the correct
+   control register for LDO5.
+
+3. Fix the enable register for LDO5.
+
+4. Support hardware with fixed low level of SD_VSEL.
+
+Summary of devicetree changes (patch 8-10):
+
+Implement the changes in the devicetrees for Kontron hardware
+(i.MX8MM, i.MX8MP and i.MX93).
+
+Changelog:
+
+v1 -> v2:
+
+* Split binding patch
+* Add solution for hardwired SD_VSEL
+* Leave regulator core untouched as requested by Mark
+* Add devicetree changes for i.MX8MP and i.MX93
+
+[1] https://lore.kernel.org/lkml/20230213155833.1644366-1-frieder@fris.de/
+
+Frieder Schrempf (11):
+  Revert "regulator: pca9450: Add sd-vsel GPIO"
+  dt-bindings: regulator: pca9450: Add sd-vsel-gpios to read back LDO5
+    status
+  dt-bindings: regulator: pca9450: Document nxp,sd-vsel-fixed-low
+    property for LDO5
+  arm64: dts: imx8mp-skov-reva: Use hardware signal for SD card VSELECT
+  Revert "regulator: pca9450: Add SD_VSEL GPIO for LDO5"
+  regulator: pca9450: Fix control register for LDO5
+  regulator: pca9450: Fix enable register for LDO5
+  regulator: pca9450: Handle hardware with fixed SD_VSEL for LDO5
+  arm64: dts: imx8mm-kontron: Add support for reading SD_VSEL signal
+  arm64: dts: imx93-kontron: Fix SD card IO voltage control
+  arm64: dts: imx8mp-kontron: Add support for reading SD_VSEL signal
+
+ .../regulator/nxp,pca9450-regulator.yaml      | 29 ++++--
+ .../boot/dts/freescale/imx8mm-kontron-bl.dts  | 10 ++-
+ .../dts/freescale/imx8mm-kontron-osm-s.dtsi   |  7 +-
+ .../dts/freescale/imx8mp-kontron-osm-s.dtsi   |  7 +-
+ .../boot/dts/freescale/imx8mp-skov-reva.dtsi  |  5 +-
+ .../dts/freescale/imx93-kontron-osm-s.dtsi    |  5 +-
+ drivers/regulator/pca9450-regulator.c         | 88 ++++++++++++++++---
+ 7 files changed, 119 insertions(+), 32 deletions(-)
+
+-- 
+2.46.1
+
 
