@@ -1,174 +1,267 @@
-Return-Path: <devicetree+bounces-124882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E41809DA3F8
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 09:32:05 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48BA39DA410
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 09:41:49 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5AE08B25AF8
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 08:32:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 49E2B16528D
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 08:41:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D2E4185B73;
-	Wed, 27 Nov 2024 08:31:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4480C1898F2;
+	Wed, 27 Nov 2024 08:41:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lHSrWOwd"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="KlA8V3df"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D12DC133;
-	Wed, 27 Nov 2024 08:31:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEBA11114;
+	Wed, 27 Nov 2024 08:41:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732696317; cv=none; b=R+zTP+hyq3kpo+05u8I0ueVO/vGfNJUtlLYnpw37H98bfogZdlcPY6RzAR39UDzYt0SKn/yIwblYYSFQv3S9ujjz8FTSfVzku3SHPnTnU3zYBCvUxBfj6ymCeClx2uIix/tGybkevupUGu8PpqEjOq/msb0VbyZF7SuuZJIyMCE=
+	t=1732696907; cv=none; b=uP+YUWpZk9E0IRwNTb9bUKDV15+RGumglxnmJslol/lBkdxcgmZoY43Jrye8hoJDlhHoVC4aX9IfsPoa6CcpclmHPYRAjPUiogXsmEU5A1VSiWgDacR/RHLrah6FRKL/CJsBWDxbiB1rY+xGFbTPjwRQX9lwYGdM3bocrl9IGQM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732696317; c=relaxed/simple;
-	bh=zQqXeiGh/GI1HhfGcPBEm+TPwHWnClOwK1Q+tF6nli4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EdhaicEvvL2Vw2efAofLP0G/pg2A1pnUQu6BMbPkiYzz0thCGkG6UQIplxLYqRnoltKlPvRCyjl2eQgDgYymm7FcxfE9z1k6KuXRA0Tk1tZCxw838Tjp94l9zU418X4hB+giweSHkUph5eL8SmmNjCCRg+BTk6oPX1LAarPoyOk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lHSrWOwd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4634EC4CECC;
-	Wed, 27 Nov 2024 08:31:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732696316;
-	bh=zQqXeiGh/GI1HhfGcPBEm+TPwHWnClOwK1Q+tF6nli4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lHSrWOwdKV8m+2HYch+WjdXi8HmkCUH/x7xKqPxwn4TeG25QumOQLf2P69okIOETJ
-	 HM3zJYYAdVsEL82uQHAkQtIdftd0gjTDSTG/zjuEitq58nGsLHuK46L9C00rGiN2YO
-	 22//QLjcYYlLsRBhSVmX9MJMOJkdZ1laZSJIvM1xZT83Swq+yfYwwx0xRd2I3TWHJS
-	 rmgY/+BdwACSN/wJd8OSGJZ7pwVWVbHr+VTrnkugj6ONtOl3iNt2GSoUy+PIxaES6A
-	 pWqDaMddme+GGxzHOFLUQEl6Z+7Ehw6rbqejGfELbYmlB5KKrBbPmrjShjJjJTbCjB
-	 jg78029B7pBog==
-Date: Wed, 27 Nov 2024 09:31:53 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Mirela Rabulea <mirela.rabulea@nxp.com>
-Cc: mchehab@kernel.org, sakari.ailus@linux.intel.com, 
-	hverkuil-cisco@xs4all.nl, laurent.pinchart+renesas@ideasonboard.com, robh@kernel.org, 
-	krzk+dt@kernel.org, bryan.odonoghue@linaro.org, laurentiu.palcu@nxp.com, 
-	robert.chiras@nxp.com, linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	LnxRevLi@nxp.com, kieran.bingham@ideasonboard.com, hdegoede@redhat.com, 
-	dave.stevenson@raspberrypi.com, mike.rudenko@gmail.com, alain.volmat@foss.st.com, 
-	devicetree@vger.kernel.org, conor+dt@kernel.org, alexander.stein@ew.tq-group.com, 
-	umang.jain@ideasonboard.com, zhi.mao@mediatek.com, festevam@denx.de, 
-	julien.vuillaumier@nxp.com, alice.yuan@nxp.com
-Subject: Re: [PATCH v2 2/4] media: ox05b1s: Add omnivision OX05B1S raw sensor
- driver
-Message-ID: <3g7utet7n4gkhuc4wmq23n45u35n2nmuoyizled5lb3ra23ar4@nuf2ekb7houm>
-References: <20241126155100.1263946-1-mirela.rabulea@nxp.com>
- <20241126155100.1263946-3-mirela.rabulea@nxp.com>
+	s=arc-20240116; t=1732696907; c=relaxed/simple;
+	bh=QY0zX5UAJoB0SwbYtPt49iXXD7dMFKMNb+Syf6LpEEM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=l894LEPMBCDemh5WC2tCoWV6fzfZVRM55BMGPKR/3RipPfaxi0oqAY8vSihEanAWGNBQdsWU2IMRpTgUqn8csF+CwOIG23UV/6MHuALEIx+JVjH8mFZGfhn9OkhlWUA2qZmN7QP+LblqJP4cerbAZBQtKULbKjq7TJJkWQDoR0g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=KlA8V3df; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1732696902;
+	bh=QY0zX5UAJoB0SwbYtPt49iXXD7dMFKMNb+Syf6LpEEM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=KlA8V3dfz8u7wjY6YTcZcifvqwJWZCcvfNzWEUWsTxWpBZ6ojidGINQY5JslvLJtB
+	 s79i7FlLsnSXfCuPSxYB2FPsnextL/5MJymBbNcN/uUiJnICGvxj0bs2Sw4ivsDf8M
+	 XwnefSv99MssdHOoT0ztvtxYiJCuS3A/Cfmy701eggpR3QOi/uh7n6t66KVaAnkAad
+	 KBu4mwwNA8UTx84qSUKKEO7nielBWmcRDNbiioOou+UVoXCa7Us2Co4m6VMeLKi4gu
+	 2ih54sFUJnrNd9IP3P2IWniclVpXKAKPFt38BRqQhqSyRmjFM1Azp4HFnZ0NQIapWK
+	 kCf+MVOhOdV3A==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 070AF17E1330;
+	Wed, 27 Nov 2024 09:41:41 +0100 (CET)
+Message-ID: <8e70d921-1420-4a57-a994-dc28abda25b7@collabora.com>
+Date: Wed, 27 Nov 2024 09:41:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241126155100.1263946-3-mirela.rabulea@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 6/6] drm/mediatek: Add support for MT8195 Digital
+ Parallel Interface
+To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
+ "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "simona@ffwll.ch" <simona@ffwll.ch>,
+ "kernel@collabora.com" <kernel@collabora.com>,
+ "mripard@kernel.org" <mripard@kernel.org>,
+ =?UTF-8?B?Sml0YW8gU2hpICjnn7PorrDmtpsp?= <jitao.shi@mediatek.com>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "robh@kernel.org" <robh@kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "airlied@gmail.com" <airlied@gmail.com>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>
+References: <20241120124420.133914-1-angelogioacchino.delregno@collabora.com>
+ <20241120124420.133914-7-angelogioacchino.delregno@collabora.com>
+ <1b966a136f02b5586749a9c3d0bcec6c75224e49.camel@mediatek.com>
+ <33acccd3-e543-493e-a61c-282d894ef2b1@collabora.com>
+ <fd48c582e99d6c07be4b66919fb6c309379ad752.camel@mediatek.com>
+ <f1d16db0-a7e1-4cfd-85c6-8beef4385701@collabora.com>
+ <a8ca9d1314f12dbb95ac4e4b9e8929adab35eaba.camel@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <a8ca9d1314f12dbb95ac4e4b9e8929adab35eaba.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Tue, Nov 26, 2024 at 05:50:58PM +0200, Mirela Rabulea wrote:
-> +struct ox05b1s {
-> +	struct i2c_client *i2c_client;
-> +	struct regmap *regmap;
-> +	struct gpio_desc *rst_gpio;
-> +	struct regulator_bulk_data supplies[OX05B1S_NUM_SUPPLIES];
-> +	struct clk *sensor_clk;
-> +	const struct ox05b1s_plat_data *model;
-> +	struct v4l2_subdev subdev;
-> +	struct media_pad pads[OX05B1S_SENS_PADS_NUM];
-> +	const struct ox05b1s_mode *mode;
-> +	struct mutex lock; /* sensor lock */
-> +	u32 stream_status;
-> +	struct ox05b1s_ctrls ctrls;
-> +};
-> +
-> +static struct ox05b1s_mode ox05b1s_supported_modes[] = {
+Il 27/11/24 08:02, CK Hu (胡俊光) ha scritto:
+> On Tue, 2024-11-26 at 10:25 +0100, AngeloGioacchino Del Regno wrote:
+>> External email : Please do not click links or open attachments until you have verified the sender or the content.
+>>
+>>
+>> Il 26/11/24 04:07, CK Hu (胡俊光) ha scritto:
+>>> On Mon, 2024-11-25 at 17:55 +0100, AngeloGioacchino Del Regno wrote:
+>>>> External email : Please do not click links or open attachments until you have verified the sender or the content.
+>>>>
+>>>>
+>>>> Il 22/11/24 08:23, CK Hu (胡俊光) ha scritto:
+>>>>> Hi, Angelo:
+>>>>>
+>>>>> On Wed, 2024-11-20 at 13:44 +0100, AngeloGioacchino Del Regno wrote:
+>>>>>> External email : Please do not click links or open attachments until you have verified the sender or the content.
+>>>>>>
+>>>>>>
+>>>>>> Add support for the DPI block found in the MT8195 and MT8188 SoCs.
+>>>>>> Inside of the SoC, this block is directly connected to the HDMI IP.
+>>>>>
+>>>>> In MT8173, DPI0 is directly connected to HDMI.
+>>>>> The first version of this driver is just for MT8173 DPI0.
+>>>>> Does MT8173 DPI0 need this modification?
+>>>>> Or this modification is just for MT8188 and MT8195, then the description should be more than 'directly connected'.
+>>>>>
+>>>>
+>>>> This is only for MT8188 and MT8195, and MT8173 does *not* need any modification.
+>>>>
+>>>> Please, what would you like to see in the description of this commit?
+>>>
+>>> This patch does four jobs.
+>>>
+>>> 1. Enable/disable tvd_clk for MT8195/MT8188 DPI.
+>>> 2. Do not set pixel clock for MT8195/MT8188 DPI.
+>>> 3. New DPI_INPUT_XXX and DPI_OUTPUT_XXX control for MT8195/MT8188 DPI.
+>>> 4. Do not power on/off for MT8195/MT8188 DPI.
+>>>
+>>> Maybe you should break into 4 patches and each one has different reason.
+>>
+>> Yeah I thought about that as well, but there's a fundamental issue with splitting
+>> the thing in multiple patches...
+>>
+>> For enabling the tvd_clk in a separate patch, there's no problem - however, for the
+>> others....
+>>
+>> 1. We need to introduce support for MT8195/88 DPI-HDMI, or the other patches would
+>>      not make sense (nor apply, anyway); then
+>> 2. We stop setting pixel clock with another patch; then
+>> 3. we don't power on/off, etc etc
+>>
+>> The problem with doing it like so is that the patch #1 that I described would be
+>> introducing *faulty code*, because the support for that really depends on all of
+>> the others being present (otherwise the block won't work correctly).
+>>
+>> So... if you want, I can easily split out the tvd_clk enable/disable, but splitting
+>> the rest wouldn't be clean.
+>>
+>> Besides, keep in mind that... actually... for anything else that is not MT8195/88
+>> DPI0 (so, for other SoCs' DPI and for 95/88 DPINTF) the tvd_clk is already getting
+>> enabled by its child.. so, for those ones, a call to enable tvd_clk does exactly
+>> nothing apart from incrementing (enable) or decrementing (disable) the refcount for
+>> this clock by 1.
+>>
+>> This means that the enablement/disablement of tvd_clk is actually important only
+>> for the MT8195/88 DPI and has literally no effect on anything else that is
+>> currently supported by the mtk_dpi driver anyway.
+>>
+>> Still - if you want me to split out the tvd_clk en/dis patch, just confirm and I
+>> will split that one out...
+>>
+>>>
+>>> For #1 and #2, I've not reviewed the HDMI driver. Is the clock control influenced by new HDMI driver.
+>>
+>> It kinda is - the HDMI-TX block gets its clock from the HDMI PHY's clock gen,
+>> but eventually it is the HDMI driver that tells to the PHY driver what clock it
+>> actually wants.
+>>
+>> For #1, clk_prepare_enable() is ungating the clock that would otherwise gate the
+>> PHY's PLL output to the HDMI block.
+>>
+>>> If it is software reason, maybe we can modify the new HDMI driver and make DPI driver consistent with MT8173.
+>>> If it is hardware reason. just describe the hardware reason.
+>>
+>> Alright - the hardware reason is that the HDMIPHY generates the clock for the HDMI
+>> TX block, and that enabling the clock assigned to tvd_clk is necessary to ungate
+>> the PHY's ckgen output to the HDMI-TX (and I think - but not sure as I haven't
+>> analyzed that yet - that HDMI-RX should have the same gating technique, but that's
+>> definitely out of scope for this submission).
+> 
+> I think tvd_clk is the clock source of DPI, HDMI, and HDMI-PHY, so these hardware could work in the same frequency.
+> That means drivers of DPI, HDMI, and HDMI-PHY are equal to control tvd_clk.
+> In MT8173. software choose DPI driver to control tvd_clk.
+> In MT8195, software choose HDMI-PHY driver to control tvd_clk.
 
-This is const, I think.
+Yes, but in MT8195 the tvd is gated by a clock that is controller by the HDMI
+driver only, and not by the PHY - so, PHY sets the frequency, mtk_hdmi_v2 ungates
+that to the HDMITX block (with clk_prepare_enable(tvd_clk)).
 
-> +	{
-> +		.index		= 0,
-> +		.width		= 2592,
-> +		.height		= 1944,
-> +		.code		= MEDIA_BUS_FMT_SGRBG10_1X10,
-> +		.bpp		= 10,
-> +		.vts		= 0x850,
-> +		.hts		= 0x2f0,
-> +		.exp		= 0x850 - 8,
-> +		.h_bin		= false,
-> +		.fps		= 30,
-> +		.reg_data	= ox05b1s_reglist_2592x1944,
-> +	}, {
-> +		/* sentinel */
-> +	}
-> +};
+> 
+> I would like to have the same control flow.
+> If "HDMI-PHY driver to control tvd_clk" is better, we could temporarily let MT8195 has different flow with MT8173.
+> So, is "HDMI-PHY driver to control tvd_clk" better?
+> 
 
-...
+I'm not sure I understand this last part, can you please rephrase?
 
-> +	ret = ox05b1s_read_reg(sensor, OX05B1S_REG_CHIP_ID_23_16, &reg_val);
-> +	chip_id |= reg_val << 16;
-> +	ret |= ox05b1s_read_reg(sensor, OX05B1S_REG_CHIP_ID_15_8, &reg_val);
-> +	chip_id |= reg_val << 8;
-> +	ret |= ox05b1s_read_reg(sensor, OX05B1S_REG_CHIP_ID_7_0, &reg_val);
-> +	chip_id |= reg_val;
-> +	if (ret) {
-> +		dev_err(dev, "Camera chip_id read error\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	switch (chip_id) {
-> +	case 0x580542:
-> +		camera_name = "ox05b1s";
-> +		break;
-> +	default:
-> +		camera_name = "unknown";
-> +		break;
-> +	}
-> +
-> +	if (chip_id == sensor->model->chip_id) {
-> +		dev_info(dev, "Camera %s detected, chip_id=%x\n", camera_name, chip_id);
+>>
+>>>
+>>> For #4, I don't know why DPI do not control power by its self?
+>>> Even though other driver may control the same power, power manager has reference count,
+>>> so each driver could control the same power by its self.
+>>
+>> #4 is there both for a SW and for a HW reason.
+>>
+>> The HW reason is that the DPI shall be powered on in a specific sequence in regard
+>> to HDMI-TX, due to the setup that is required by both (and ungating clocks before
+>> full configuration happens would lock up the hw block).
+>>
+>> The SW reason is that mtk_crtc.c calls mtk_crtc_ddp_hw_init()->mtk_ddp_comp_start()
+>> in its .atomic_enable() callback, which happens in the wrong sequence in regard to
+>> HDMI because of the "natural" components order in the DRM framework (for MT8195/88!
+>> because for the others it either is the inverse or it does not matter - so for
+>> performance it's okay for it to be like that both on older SoCs and on DPINTF for
+>> 95/88) and this means that we *must not* call dpi_power_on() at that time but
+>> we must rather follow the atomic_enable()/bridge_enable() order imposed by DRM
+>> *also* for the clock en/dis calls in DPI.
+> 
+> It looks like the #4 could be a separate patch.
+> The commit message is what you describe here.
+> And
+> 
+> if (!dpi->conf->support_hdmi_power_sequence)
+> 	mtk_dpi_power_on();
+> 
 
-Device should be silent on success. This can be dev_dbg.
+This means that I'd have to introduce the "hdmi power sequence" before actually
+introducing the real support for MT8195 HDMI....
+I honestly don't like that "too much", but it's fine, I don't have *too strong*
+opinions about that, so I will separate #4 as you suggested for v2.
 
-> +	} else {
-> +		dev_err(dev, "Detected %s camera (chip_id=%x), but expected %s (chip_id=%x)\n",
-> +			camera_name, chip_id, sensor->model->name, sensor->model->chip_id);
-> +		ret = -ENODEV;
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int ox05b1s_probe(struct i2c_client *client)
-> +{
-> +	int retval;
-> +	struct device *dev = &client->dev;
-> +	struct v4l2_subdev *sd;
-> +	struct ox05b1s *sensor;
-> +
-> +	sensor = devm_kzalloc(dev, sizeof(*sensor), GFP_KERNEL);
-> +	if (!sensor)
-> +		return -ENOMEM;
-> +
-> +	sensor->regmap = devm_regmap_init_i2c(client, &ox05b1s_regmap_config);
-> +	if (IS_ERR(sensor->regmap))
-> +		return PTR_ERR(sensor->regmap);
-> +
-> +	sensor->i2c_client = client;
-> +
-> +	sensor->model = of_device_get_match_data(dev);
-> +
-> +	ox05b1s_get_gpios(sensor);
-> +
-> +	/* Get system clock, xvclk */
-> +	sensor->sensor_clk = devm_clk_get(dev, NULL);
-> +	if (IS_ERR(sensor->sensor_clk)) {
+Cheers,
+Angelo
 
-No need for {}, some left-over from old version.
+> Regards,
+> CK
+> 
+>>
+>> Cheers,
+>> Angelo
+>>
+>>>
+>>> Regards,
+>>> CK
+>>>
+>>>
+>>>>
+>>>> Cheers,
+>>>> Angelo
+>>>>
+>>>>> Regards,
+>>>>> CK
+>>>>>
+>>>>>>
+>>>>>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>>>>>> ---
+>>>>
+>>>>
+>>
+>>
+>>
 
-Best regards,
-Krzysztof
 
 
