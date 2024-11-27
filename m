@@ -1,101 +1,111 @@
-Return-Path: <devicetree+bounces-125101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 799779DAB2C
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 16:56:37 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0FAAC16538A
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 15:56:30 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3E66200B82;
-	Wed, 27 Nov 2024 15:56:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="mm+OsnDa"
-X-Original-To: devicetree@vger.kernel.org
-Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A5639DAB32
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 16:57:38 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F3E1200123;
-	Wed, 27 Nov 2024 15:56:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.30.78
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C3A1A281EE8
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 15:57:36 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CA50200B8B;
+	Wed, 27 Nov 2024 15:57:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XekDxYIg"
+X-Original-To: devicetree@vger.kernel.org
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AD5F200B83;
+	Wed, 27 Nov 2024 15:57:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732722983; cv=none; b=BxqqKLwYHfJRFafULzZPT9oSQTV32OIe1cjz+WJ+2UM3uCGyh8HLuuLftuZU+rr/NMN8WwRCUNJzEmlxE0Y/1A9rALG3kGD7bfkT/RIEwWYleCzsgUujldbGD6JGotE/Fxl6fYDhMnEvg/qhxC9gzA42XQ3xgxGYKYERdDVMaAI=
+	t=1732723045; cv=none; b=SRs/nKFpn0biVCHjwoaH5IrfFAut/4sayjZ3hIGGV2cgmSYFlDusIPlYJIn1jDk+IsDt/lw1Kvv8tW7bM0qelfhRtO6CuJAHMkCaPlw9U9mSNFStGwR7j1xzNN3mrL5EKzSUZRNqEaUGiTyC/2uYz5f+GTI1E32zgZwe7GN7w0Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732722983; c=relaxed/simple;
-	bh=KiI9tNUaujgguyPi9FWL1nVPIFIqCpWymO8Fl2keqfI=;
+	s=arc-20240116; t=1732723045; c=relaxed/simple;
+	bh=WSGkgXaL4N5p2uwRcTTHYvq/3QczX507d7c/2vEeemg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=azKKfKFxXgcFhM771UpQf0TvQXd90hjCaGONUy9UbWT0yu8I5UL13LqSTfuHhmSNdeLsRH5Yt6zqulPlMsO2m3LqDcYkuQoKGWU3mgiIM7PCkWl3QytYsd4ivBL7acNzaqTI0UC/CDSVLjDr/bJAiyFrfgfOC9hb6mxMLqUULBc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=mm+OsnDa; arc=none smtp.client-ip=188.40.30.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
-	s=default2211; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID; bh=IAu5YOnV4NgimDh0XxsNPeTfaJsVkEY03YRoCEUUWAA=; b=mm+Osn
-	DaksVa0ZWYox5yp4clieuy/ucbUGfGodG4uopWIs1YxRo1rHYPMh+GvOCzp5GzWumlJhjJ0N9Lk/f
-	4l+aO31oIW8NFeMWcAqxL3YzWjDH6WFAQ2JyYgfSprc1JJewZttCiMkOAAtJeVI86tjMW1+sg52Kr
-	xTb8QbTMD7arp8CTmFITDW2xwu1OOkKq9bushpaobLMCosPrXoUqpHC9swoOqw12RZ8rvC7VtV5UH
-	GNSEjwlza6SOzgd9Mksvp1MkiJ7Oamh9/bVBOMmxqck16XrlhN5Yyu9sjYP1jsVCDBmkmdW1bBmPL
-	B0LQYVdpVnPsY+v/FsBfGuo9b7sw==;
-Received: from sslproxy07.your-server.de ([78.47.199.104])
-	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <sean@geanix.com>)
-	id 1tGKOk-000Jie-9X; Wed, 27 Nov 2024 16:56:14 +0100
-Received: from [2a06:4004:10df:0:a116:6f2b:4c0f:adc0] (helo=Seans-MBP.snzone.dk)
-	by sslproxy07.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <sean@geanix.com>)
-	id 1tGKOj-000IWi-1n;
-	Wed, 27 Nov 2024 16:56:13 +0100
-Date: Wed, 27 Nov 2024 16:56:12 +0100
-From: Sean Nyekjaer <sean@geanix.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>, 
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>, Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH can-next] dt-bindings: can: tcan4x5x: add missing
- required clock-names
-Message-ID: <pl22u3ybv3ibnpzmgiskppz56vlvqhlz25h7s5ewunkks6ywtn@v6lgln7s536w>
-References: <20241127-tcancclk-v1-1-5493d3f03db1@geanix.com>
- <20241127-siberian-singular-c2b99a7fd370@spud>
+	 Content-Type:Content-Disposition:In-Reply-To; b=hXU/WyGo2CwIrpvDkJUJ9Np+u+6lEMW2CGcU/9J4607krTP8X11yNSRm8R88jbVHvOxyN4WTNrMisZC9bwPT5EGECp3IC6QmDjUTfiMQaxReeyLFfPP+B3XupT7iEjE04Cm64LEn5pjNb6JKx7w5UYunKRaK3iLYPM2YKJiPCM0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XekDxYIg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3BC0EC4CECC;
+	Wed, 27 Nov 2024 15:57:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732723044;
+	bh=WSGkgXaL4N5p2uwRcTTHYvq/3QczX507d7c/2vEeemg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XekDxYIgmckQWV1NFhqDy2VJTp7NPCiygIgd3uwhCCLqARbnjTzUNlHeLRJmFVXuu
+	 G8BrMiepbHsftZ1ahwYMYEkJda+0ttpBUdNqmA13Fvdb1QQbKp8ir+IjNKtJ7mRzcc
+	 H/SP2D8S/UI/yMS52eOF3oH8YkaNFg6rZ5LFYKbMGwnnsviRvcb9LwPb9sGWvOAHQX
+	 ceO1zo7F7MyUaVpqYZEza0FGCJLuLJRGhKPujjZDFlAqPCb8akifWpNY6tfdgN4VgH
+	 gkMt2mSKVc8zGV2U0lkuIF8m3X20L/9yb4Ssrb7RqHM8q+pwe00W1hih/3nxkNvxIn
+	 7jO4tsg9dNP2w==
+Date: Wed, 27 Nov 2024 15:57:19 +0000
+From: Conor Dooley <conor@kernel.org>
+To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+Cc: Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jagan Sridharan <badhri@google.com>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Sam Protsenko <semen.protsenko@linaro.org>,
+	Will McVicker <willmcvicker@google.com>,
+	Roy Luo <royluo@google.com>, kernel-team@android.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH 2/6] dt-bindings: usb: max33359: add max77759 flavor
+Message-ID: <20241127-chloride-pantyhose-74f3d81e91f8@spud>
+References: <20241127-gs101-phy-lanes-orientation-dts-v1-0-5222d8508b71@linaro.org>
+ <20241127-gs101-phy-lanes-orientation-dts-v1-2-5222d8508b71@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="YAvHQQ/l8A2Bxt50"
 Content-Disposition: inline
-In-Reply-To: <20241127-siberian-singular-c2b99a7fd370@spud>
-X-Authenticated-Sender: sean@geanix.com
-X-Virus-Scanned: Clear (ClamAV 0.103.10/27470/Wed Nov 27 10:59:44 2024)
+In-Reply-To: <20241127-gs101-phy-lanes-orientation-dts-v1-2-5222d8508b71@linaro.org>
 
-Hi Conor,
 
-On Wed, Nov 27, 2024 at 03:50:30PM +0100, Conor Dooley wrote:
-> On Wed, Nov 27, 2024 at 02:40:47PM +0100, Sean Nyekjaer wrote:
-> > tcan4x5x requires an external clock called cclk, add it here.
-> 
-> That's not what this patch is doing, the clock input is already there,
-> so I don't know what this patch actually accomplishes? clock-names isn't
-> a required property, so you can't even use it in a driver.
-> 
+--YAvHQQ/l8A2Bxt50
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks for asking the right questions :)
+On Wed, Nov 27, 2024 at 11:01:40AM +0000, Andr=E9 Draszik wrote:
+> On the surface, Maxim's max77759 appears identical to max33359. It
+> should still have a dedicated compatible, though, as it is a different
+> IC. This will allow for handling differences in case they are
+> discovered in the future.
+>=20
+> max77759 is used on Google Pixel 6 and Pixel 6 Pro.
+>=20
+> Add a dedicated compatible to allow for potential differences in the
+> future.
+>=20
+> Signed-off-by: Andr=E9 Draszik <andre.draszik@linaro.org>
 
-I know the clock input is there, but it looks (to me) like the driver looks for the
-specific clock called cclk:
-https://elixir.bootlin.com/linux/v6.12/source/drivers/net/can/m_can/m_can.c#L2299
-https://elixir.bootlin.com/linux/v6.12/source/drivers/net/can/m_can/tcan4x5x-core.c#L396
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Br,
-/Sean
+--YAvHQQ/l8A2Bxt50
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ0dBXgAKCRB4tDGHoIJi
+0mj5AQCDzK12u7YaMkhu+D9SK/V2jSyYP8eYKIAjoZDcb9CwkQD/YdlfFSRpxyel
+DUeDcV6Z54WafX5zftL10U6v86kzHgQ=
+=vXaV
+-----END PGP SIGNATURE-----
+
+--YAvHQQ/l8A2Bxt50--
 
