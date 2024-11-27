@@ -1,105 +1,151 @@
-Return-Path: <devicetree+bounces-124880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2867D9DA3E9
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 09:29:38 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FB679DA3F6
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 09:31:54 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C84151644C1
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 08:29:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AE27DB25315
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 08:31:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62BCC186E46;
-	Wed, 27 Nov 2024 08:29:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91898167DB7;
+	Wed, 27 Nov 2024 08:31:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CSnPyxVr"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="oB91C0S/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D649C1865E2;
-	Wed, 27 Nov 2024 08:29:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FD24C133;
+	Wed, 27 Nov 2024 08:31:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732696173; cv=none; b=gpCBTN+BI7PLIlvr38KlMhsrRxZfNlnQsYhVtyomLNsEffVbjiDZwYKuJeqX9xnupzyJ6apljZ0/AzLLKstUDpakU+96/U6B7Om/chNLNtOCT3H9uo4hGisyn9fIdpANj3Vc6cwWIuPU+a9xHbhu9rW6/OPLolDyp7zWiWSl0ag=
+	t=1732696306; cv=none; b=mCdyNtEM0aaKo7lQ5GZnIay0JcVRtRlQQEu6iBoj0bpQDs1LU1bPq62CMO/5AYwdfNgh3C9AR06ewy/4aam2TftNjetLM9qxmJQ4dq7ExzhN3fcivLSjmc8cAuNys9TjnGSwUXJszk5BIoitn07+T7r+TOAY0xQyQYCXFfq7U0c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732696173; c=relaxed/simple;
-	bh=njd05bArOgKjbgLgjHcusDaTScXAtClI9n8o3C7sop4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rmBhRFX9Y/juQWwxY+0qXpTAygBxbZ/+UdLagxexfjyqRlyW21RZycri5xx5pI3fwL00anr5A0rJyn2/13SRphDwhS252a4PG2OZgFLDaLnXFumGDtdgHYkh0oWRU8dUGlZPbG+X59t9SmN8LeSi7c5ax+pwSML3+b6XAi+YM+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CSnPyxVr; arc=none smtp.client-ip=209.85.219.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-e382e549918so5565001276.2;
-        Wed, 27 Nov 2024 00:29:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1732696171; x=1733300971; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=njd05bArOgKjbgLgjHcusDaTScXAtClI9n8o3C7sop4=;
-        b=CSnPyxVrSYCj62DiJclJrKD4fvJA1+8+jzcrLSaUOVdF64mhDi/ch46KXeGGXFIGRS
-         cOMfAZL+C5yrPYHh+WYgLqil6osJPqWhqSUul1KOve/Hix0MOiyJZIG4ay8cn33p0ELP
-         phSPrLhWCbzrOJ9YCFVLlaWPrAbpYd855cDgDvfwe2BzLuBzn9a6fLphasTOnZIjYY3b
-         fo0P3i8MMlxFEEy8p2JvIQMe7fUME+UWIFzLr2iGstfTUe7cWocymah0yCtSsYJCZoj2
-         sIX3ZGCB3yu7AS3dvs4+xJXYFrDqKi43t0t+NuFN769HEjboMyL5hex0Dkfkf9wpwthA
-         v+kQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732696171; x=1733300971;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=njd05bArOgKjbgLgjHcusDaTScXAtClI9n8o3C7sop4=;
-        b=cjR4p6xF3S8Ne//ErfX1YNhRI+LnzHkdYjoaQGYQDTlxddAa/kojyJAaW88odU38FK
-         CcdSmvvwwFB+1+YLTD2zy9fSmSPlsVOebMv/YBMCXewBVOa0eSfc79rBp7f+YHWoPc4V
-         IHp1K+0pPTvbhMtKR7518HqlSOzTQkh7T53v59jbmmoT1t1PQ+td+FypOwh1Mj0GKpNC
-         cwWa9sAv/oE6G3P47SgKtAZQLJeu6YjgfJH4P+9qncJuKYYYAs3fb/BwvbBWaBUhziRl
-         MoU+WFx2JObC9E+2yQyQZBySawoGX6dThBUbPesTG6nAQYhFaPMa1nFZT6/CGN6gNaEM
-         mceQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUeaqyNjF/A2oS2QOwoTaxVD+4ZP+VtEigVXga4cirlA4OndiA/4CnhMUvc1SREXDoWKZ//PRlL1A/KHhk=@vger.kernel.org, AJvYcCWVZ0G1KeVuG/HHurqzk3IoLL4XD/kyO+a1+Hu8IyLvsxH4RPCHFZbKDGwlo+FWI1VXdMmjotWr32MG@vger.kernel.org, AJvYcCXHDLQ+GMiQANQ22cti54bPrGA+T5B+k0q1JH5VtnfBp/G3vPFx9+mwvekgof2DXEQa3TahcyPzvhk56NPv@vger.kernel.org
-X-Gm-Message-State: AOJu0YxBT93MPnOsp6QfbQzAOm97LBH8MKeYeAvZFQhogQ9EOwu7O7GQ
-	zav2Wkde+z8vP6vIrQZvtos9zhMJP+wRLXlPZJzTSazG9zPD0twtW4zHF9m2+Ftk4oHYGXx3Hci
-	13PzRMArvMcsaK5jW+3UqKthfvg0=
-X-Gm-Gg: ASbGnctujgsA93+QM5ekH6I9J+vulsXvY6Q3BzkMT2Y6xLii7c2pRLt3YbKJ0jo21yS
-	h6Gbck8uIgmPMaJKqYI9l5zhJvTZ5jdMN
-X-Google-Smtp-Source: AGHT+IG4T6iCfTuQRbFcDR8g+9gj9vnb1SF11d4ey59iqSnin7GgRZc6RSmnNx6SkL9tm182e4/IfH05c5ENgkbSLA0=
-X-Received: by 2002:a05:6902:a07:b0:e2b:df40:2588 with SMTP id
- 3f1490d57ef6-e395b8a1b09mr2315229276.21.1732696170745; Wed, 27 Nov 2024
- 00:29:30 -0800 (PST)
+	s=arc-20240116; t=1732696306; c=relaxed/simple;
+	bh=ajpsbfzjEK/tc5dS0pljHlmhCXF2KW2ug2gy+Xc9aLI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=lfiY+TtrFooWvnwMlbKSDJCWhFM8G/z9H3b7z2tQbY2kRABZFiiJs6+K6W15lTYabS2KQwEgzGRd1gKIazayQmQt7jKtCW2k59/hnph6s0oAQkNf+jhIr4yYcZDKncOt7LIkH7aCbyhGOhjKVzakA/YlnsNi6wQf+xQBZ1gnv9Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=oB91C0S/; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AQKLX80007146;
+	Wed, 27 Nov 2024 08:31:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Iev3WZdFrLdARm1wihK+wRwRDy+pVq1zEka0DtX4iB4=; b=oB91C0S/flf+a/oD
+	/V/4csssAIOekJl3T2AM5RenLKWlc4FctOrjZKbqh/t2yRV+r5ozcA/h6nDgjvHS
+	ApwqAcxHGwUnCRdor2C8//sIYYz9+/pkrJwa0YR+n7+AP2ztnAuVCHMY+Avg0jgI
+	zM8O76wHVoiaK2/cTKt+1b7V+7v5OVX+ZHc4XMyBNXIhOnxoynGQ6hHRgFfuhsN9
+	E270nwjhjkZCclKeAOdLKZloFgKWPKriDcNVm1oQyGQ49GAY8nON0YpYr0KlMZHL
+	h6lCc/QpUx4dQvmK8VE6sA/N9SZ9mAuln+1gEJUUjBdePrXaHj/eX2J7ZC4++nQ0
+	JRSEqA==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 434sw9e1cf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 27 Nov 2024 08:31:40 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AR8VdUb023552
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 27 Nov 2024 08:31:40 GMT
+Received: from [10.233.17.145] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 27 Nov
+ 2024 00:31:37 -0800
+Message-ID: <2f7adf9c-d816-4281-a690-be2067587475@quicinc.com>
+Date: Wed, 27 Nov 2024 16:31:34 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241126-z2-v1-0-c43c4cc6200d@gmail.com> <Z0Z7Lrv3rBfzac_e@google.com>
-In-Reply-To: <Z0Z7Lrv3rBfzac_e@google.com>
-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
-Date: Wed, 27 Nov 2024 09:29:19 +0100
-Message-ID: <CAMT+MTThJoYLYhtYAHwh6F3LTApid9Em+eP2AZYc3JChC2b9ig@mail.gmail.com>
-Subject: Re: [PATCH 0/4] Driver for Apple Z2 touchscreens.
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Henrik Rydberg <rydberg@bitmath.org>, asahi@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Janne Grunau <j@jannau.net>, Mark Brown <broonie@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 1/2] arm64: dts: qcom: sm8450: move board clocks to
+ DTS files
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20241115-fix-board-clocks-v1-0-8cb00a4f57c2@linaro.org>
+ <20241115-fix-board-clocks-v1-1-8cb00a4f57c2@linaro.org>
+From: Tingwei Zhang <quic_tingweiz@quicinc.com>
+In-Reply-To: <20241115-fix-board-clocks-v1-1-8cb00a4f57c2@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: v0AEjUCT5QjzkXmDFj_yrGU4vy5QGp-2
+X-Proofpoint-ORIG-GUID: v0AEjUCT5QjzkXmDFj_yrGU4vy5QGp-2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ mlxlogscore=999 adultscore=0 spamscore=0 impostorscore=0
+ priorityscore=1501 phishscore=0 clxscore=1015 mlxscore=0
+ lowpriorityscore=0 bulkscore=0 malwarescore=0 classifier=spam adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2411270070
 
-On Wed, 27 Nov 2024 at 02:51, Dmitry Torokhov <dmitry.torokhov@gmail.com> wrote:
-> I believe this needs to be done at the SPI controller level. See
-> "cs-gpiods" property in
-> Documentation/devicetree/bindings/spi/spi-controller.yaml that, as far
-> as I understand, allows overriding controller's native CS handling with
-> a GPIO when needed.
+On 11/15/2024 2:59 PM, Dmitry Baryshkov wrote:
+> SM8450 is one of the platforms where board-level clocks (XO, sleep) are
+> fully defined in the SoC dtsi file. This is not correct and doesn't
+> fully follow the DT guidelines. Move these two clocks to the board files
+> completely.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>   arch/arm64/boot/dts/qcom/sm8450-hdk.dts                 | 14 ++++++++++++++
+>   arch/arm64/boot/dts/qcom/sm8450-qrd.dts                 | 14 ++++++++++++++
+>   arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi | 14 ++++++++++++++
+>   arch/arm64/boot/dts/qcom/sm8450.dtsi                    | 14 --------------
+>   4 files changed, 42 insertions(+), 14 deletions(-)
+> 
+<...>
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> index 53147aa6f7e4acb102dd5dee51f0aec164b971c7..7dc183cc5c29374a19aabb36086e27edfffeaf37 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> @@ -33,20 +33,6 @@ / {
+>   
+>   	chosen { };
+>   
+> -	clocks {
+> -		xo_board: xo-board {
+> -			compatible = "fixed-clock";
+> -			#clock-cells = <0>;
+> -			clock-frequency = <76800000>;
+> -		};
+> -
+> -		sleep_clk: sleep-clk {
+> -			compatible = "fixed-clock";
+> -			#clock-cells = <0>;
+> -			clock-frequency = <32000>;
+> -		};
+> -	};
+> -
+Sleep clock is moved to board device tree while reference of this clock 
+is still in soc device tree like gcc node. Is this preferrable way to 
+reference the node defined in board device in soc device tree?
+>   	cpus {
+>   		#address-cells = <2>;
+>   		#size-cells = <0>;
+> 
 
-I have already tried doing that (adding the relevant gpio as cs-gpios
-on the controller)
-and for some reason none of my attempts worked. Since there is no hardware
-documentation, I can't really tell why, could be possible that we need both
-native CS and that gpio, could be memory barrier issues somewhere in
-the driver core,
-but the method above is the only one i could get to work.
+
+-- 
+Thanks,
+Tingwei
 
