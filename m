@@ -1,129 +1,149 @@
-Return-Path: <devicetree+bounces-124944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124945-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B03F29DA5FE
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 11:40:12 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC7CE9DA60E
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 11:45:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CF792B27581
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 10:35:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E85F1B2BD80
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 10:37:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6B1C198E6F;
-	Wed, 27 Nov 2024 10:35:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 745F5197A8F;
+	Wed, 27 Nov 2024 10:37:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NdXop1I9"
+	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="islEAvqI";
+	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="Dp4UrgW7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bayard.4d2.org (bayard.4d2.org [5.78.89.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96891198A22;
-	Wed, 27 Nov 2024 10:35:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74E2C155389;
+	Wed, 27 Nov 2024 10:37:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.78.89.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732703705; cv=none; b=WzuZTlayEa5hxrV2JwFnRO02Xju1v40UmIy0znjOlXq/TlJNqtbfm7n+pEpv8faA1DxWkamA+Ih3BZXGr66ypyAkmdhTyCuSPuMZI98zYupWNlGSmX2pS+WSDSIX+UohTiGwzMAgphMrjOX3bYO9yJoYwKIIvacsIjNreTDbDYU=
+	t=1732703860; cv=none; b=fJnQSiL1b9/pEGAWLe0auFSargW/i347nfQI9gvyx5yK0h2uhPpdW5ZIxzpcostoSvRRR+lK9in6XNI7CdxCyw2FeDrJPzrk3VoUdYyF0m0Pk0eH9sjyeQ2QUVMWgNtgJteM+Lc3+QsXBhF+AADC5f58wQSrVo8pZ1utRpr2Us4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732703705; c=relaxed/simple;
-	bh=/s2LZpLOu+S6h2zq7G1Z43D3h77bc9pMWg25qGA4jpU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=o+2VkmwPaCGEFrFPW/XITzeGdbuKVDeE/F/wiBN6Hbj6yBd2L5Ye7/uML4gU2hDvkgMIDRYOV2rnrFnJPvttiBNcPw6VL2ANWY77CqoUAVvSgvUxeJMSR6KihtHpW02TeQH5QFNaJTBdg4BMlidXYa0JneVF2Ebz2t9FxUsFhwI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NdXop1I9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2821C4CECC;
-	Wed, 27 Nov 2024 10:35:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732703705;
-	bh=/s2LZpLOu+S6h2zq7G1Z43D3h77bc9pMWg25qGA4jpU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=NdXop1I93OHCgznbhWdsE3SPfifB4txlzBwz/8hHNkkTXGusagwxERVT2THDi1zOd
-	 qkQvi5rt6XwAy1DzHXKctn77xLXoT9NEbwOG+Spu2RASuMA0vYXPYevoZdTWpmuCWO
-	 ivJ/bsQsl8NPkYUF1BCSbLTllnABALh/T1Aq5eQXKho32VQuYGI79F3ttJzTv54nOb
-	 upi+YnkZQesGN0EntsjW3v36ZZL1xgDjP3d5ofPccah0TGr8/rxLHDXg9G2mGmKxIQ
-	 EP1obgY95gpzN9x0IANisCwxCGgIXNDJnClr2abhkQ/EaUDcDzEUi1bDYq0HHrixVH
-	 Ehu/EhesQmvqA==
-Message-ID: <9b39b9c6-3f30-4f5d-87fd-fabe06a70543@kernel.org>
-Date: Wed, 27 Nov 2024 11:34:58 +0100
+	s=arc-20240116; t=1732703860; c=relaxed/simple;
+	bh=EwkTX+MIFpLy9bn5raEc+I7FYh+YTAy5cL29F6FwZ48=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fIsm2RIIdxQpTi5akGYyn0Ae2pVeLsuhmViy98Jth9yTu7f+oq3d0+PBbVamp5A1VHtcXKjDjEAYuaCqPk04WDPctplGvZi++8rfZbsXCbrdVA/3/lMELkQ4/9OKrrbnPkrmew/O957bzCoInpKOXmgqF40AmhmqczLeXxSPro0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=islEAvqI; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=Dp4UrgW7; arc=none smtp.client-ip=5.78.89.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
+Received: from bayard.4d2.org (bayard.4d2.org [127.0.0.1])
+	by bayard.4d2.org (Postfix) with ESMTP id 1581E122FE1E;
+	Wed, 27 Nov 2024 02:37:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
+	t=1732703855; bh=EwkTX+MIFpLy9bn5raEc+I7FYh+YTAy5cL29F6FwZ48=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=islEAvqIu14umc0Nh0BNtaP0O54EhJiE/KsA+8hCjHouDnLAMzIa0hA/1GJIQK2Ma
+	 8u9eFi0mi7Z6PHzaRGyiTZBBFjQZAjeEu7D45U4AHmoxpcYTpQs4r7nSyOSiKO77Eb
+	 kIZ6/J02wk+ftsCE+1enjvEiZ/tjre4O71Zgrrm26h9Mi1Zhjt5jKfvKntsyVE6LIN
+	 aQ0uiqTK2eL8dSnZrCEmZ9ozq/I99rssBjDLGqxqjJXwvGvG4MUURW7BzSUB95ZH5V
+	 q0VZDrAo9VVt0LYZjg9xI4qsFwAvBhSo9HnKKEBxRXoKiKMa3Ic4qH70L5IKcYxRkh
+	 Vi4kgWYfOu//Q==
+X-Virus-Scanned: amavisd-new at 4d2.org
+Received: from bayard.4d2.org ([127.0.0.1])
+ by bayard.4d2.org (bayard.4d2.org [127.0.0.1]) (amavisd-new, port 10024)
+ with ESMTP id gT4AeVqNt7z5; Wed, 27 Nov 2024 02:37:33 -0800 (PST)
+Received: from ketchup (unknown [119.39.112.187])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: heylenay@4d2.org)
+	by bayard.4d2.org (Postfix) with ESMTPSA id 0E94A122FE1A;
+	Wed, 27 Nov 2024 02:37:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
+	t=1732703853; bh=EwkTX+MIFpLy9bn5raEc+I7FYh+YTAy5cL29F6FwZ48=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Dp4UrgW77o9Ymd6bTjpRfztdQI5YoI8Jx6G+IprE8QppyWLBTchlw/HqDcCAFrY3c
+	 ZULd2sM/4mo0pFNtm3Fw5vaHW8akqi0gF2hIUGXAmoL5g0LdqHP2vS0NH0oypcswZa
+	 eLMteRDH7RCZA/1zTjKf4MHS9hi5kjjXZ4qZndXUvFRCkTyHxZvByw4ji8yACxopJo
+	 fQJYSiUZJtdrRogf6ch9w7eyyJFOoqd0Bo3nWn5BtxhB75MqagIKYFMmSvBLPQclI/
+	 UWNGvwbQXo+lXFGlwjVhdnfBLF1zRWmrq510Y8qelZp7Ofn/H+h8dB8SxRUeWrnd0J
+	 dFqueXyjg70eg==
+Date: Wed, 27 Nov 2024 10:37:20 +0000
+From: Haylen Chu <heylenay@4d2.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Haylen Chu <heylenay@outlook.com>
+Cc: linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Chen Wang <unicornxdotw@foxmail.com>,
+	Jisheng Zhang <jszhang@kernel.org>
+Subject: Re: [PATCH v3 1/3] dt-bindings: clock: spacemit: Add clock
+ controllers of Spacemit K1 SoC
+Message-ID: <Z0b2YOdIWfuJINDW@ketchup>
+References: <20241126143125.9980-2-heylenay@4d2.org>
+ <20241126143125.9980-3-heylenay@4d2.org>
+ <64bf96a3-e28c-4c47-b7b3-e227bbaa7aee@kernel.org>
+ <hgtrinu32q2jtxb4z5nvjskjlkwwzxhymtf3alvaxlbqxrbzd3@2rw3uy2tqgnf>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] arm64: dts: apple: Add touchbar digitizer nodes
-To: Sasha Finkelstein <fnkl.kernel@gmail.com>
-Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
- Alyssa Rosenzweig <alyssa@rosenzweig.io>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Henrik Rydberg <rydberg@bitmath.org>,
- asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Janne Grunau <j@jannau.net>
-References: <20241126-z2-v1-0-c43c4cc6200d@gmail.com>
- <20241126-z2-v1-3-c43c4cc6200d@gmail.com>
- <y5xdrrb6ome4vggfadmnbtegigxlvwrxpqmwh7qhl2c7faesti@57odqxajdiwv>
- <CAMT+MTQ40y0GoOHXp=UUR=79JBPUCt9DSihojZyBwcwgR5_O1Q@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <CAMT+MTQ40y0GoOHXp=UUR=79JBPUCt9DSihojZyBwcwgR5_O1Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <hgtrinu32q2jtxb4z5nvjskjlkwwzxhymtf3alvaxlbqxrbzd3@2rw3uy2tqgnf>
 
-On 27/11/2024 11:31, Sasha Finkelstein wrote:
-> On Wed, 27 Nov 2024 at 09:55, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>> +             touchbar0 = &touchbar0;
->>
->> Not used, drop.
+On Wed, Nov 27, 2024 at 09:03:11AM +0100, Krzysztof Kozlowski wrote:
+> On Tue, Nov 26, 2024 at 03:48:33PM +0100, Krzysztof Kozlowski wrote:
+> > On 26/11/2024 15:31, Haylen Chu wrote:
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - spacemit,k1-ccu-apbs
+> > > +      - spacemit,k1-ccu-mpmu
+> > > +      - spacemit,k1-ccu-apbc
+> > > +      - spacemit,k1-ccu-apmu
+> > > +
+> > > +  clocks:
+> > > +    maxItems: 4
+> > > +
+> > > +  clock-names:
+> > > +    items:
+> > > +      - const: osc_32k
+> > 
+> > osc
+> > 
+> > > +      - const: vctcxo_1m
+> > > +      - const: vctcxo_3m
+> > > +      - const: vctcxo_24m
+> > > +
+> > > +  spacemit,mpmu:
+> > > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > > +    description:
+> > > +      Phandle to the syscon managing "Main PMU (MPMU)" registers. It is used to
+> > > +      check PLL lock status.
+> > 
+> > Why your example does not have it? Example code is supposed to be complete.
 > 
-> Used by the bootloader to forward calibration data to the correct node.
+> I think I understand why - this is for only one variant?
 
-I suggest document it with a comment, otherwise each undocumented alias
-without in-kernel user is a subject of removal later during cleanup.
+Yes, currently all implemented PLLs are located at APBS region, thus
+this property is only meaningful in spacemit,k1-ccu-apbs.
 
-Best regards,
-Krzysztof
+> But then this
+> should be disallowed in your binding for others. Currently your binding
+> says that it is required for one and allowed for others.
+
+Thanks for the correction. I'm considering moving the definition of
+spacemit,mpmu to the if block as well. Is it the correct way to disallow
+its usage in other variants?
+
+> 
+> Best regards,
+> Krzysztof
+
+Thanks,
+Haylen Chu
 
