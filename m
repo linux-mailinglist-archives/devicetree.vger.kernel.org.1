@@ -1,187 +1,112 @@
-Return-Path: <devicetree+bounces-124948-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124949-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4903D9DA615
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 11:48:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98C4A9DA624
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 11:49:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0CF35283C9E
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 10:48:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5AC7C2865A4
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 10:49:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF9E3199254;
-	Wed, 27 Nov 2024 10:47:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29CA8198E74;
+	Wed, 27 Nov 2024 10:49:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="B8eyyl7/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h2nqCOBJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71E261991AE;
-	Wed, 27 Nov 2024 10:47:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BE7F1991A5;
+	Wed, 27 Nov 2024 10:49:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732704479; cv=none; b=p8wBUoPNpHkFFFyqNKLUlweUqdzDsyME9LKYJ68Tp8H0eYLMfptADcOfEJSImeT8XGDxmHEOvE5nSPfpd9lnYraCAu8in39a7t9gqeKGvVmP8vTdwVuO2eZvbjnHrIMqM99xPNKunipDnAazXFkDD0JWxJOcAGlM/I7l/CiZ/bY=
+	t=1732704561; cv=none; b=KhXwBsn/GWemcVAdD14nBkG4rLzIRgrqyNwwLTH84PCkidPicdKPO3SkdUfaJaMb3aEfbpLYs98nY5UrZ4hO+pX7m4gxNv6lutHZrXwRfs/eLA7vavVmotDE6IU8DRqipvxrLXbpLrxF1U+wZaCKJys8UAyRvSZzwQAOM1onnXM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732704479; c=relaxed/simple;
-	bh=OrqqrFMlcGD/ss+m8ZxbVOLkm6Y9njMMUeLCyz8NHDk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=ABLtZ1JvusXSWehLNtYl2rm2Y6eNn8KrlVnHe+qS6QNEqssfWC2QWCZLZ+nWTsrgkPhthGSwxdwtjrvVydxa3vPhKcO8kv0gmhU5+crMUt7H6nYZ2fTRyzP0Tv7ydwAhwTXB3QKMPwMxjgfCVC5vhoo1xMIefaxAin1n/pFeVho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=B8eyyl7/; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AR8BhMt013811;
-	Wed, 27 Nov 2024 10:47:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	1BoYilusV9HXbNzno8pgOWdbU4iV0kSvweqMqkkLPGk=; b=B8eyyl7/2FxqGrjE
-	fXH2r7bQSstmMegYh8hqLxIaaTN0ftwMNNH31PcKgYTF8JqGnaoOMeB06QqaO6lt
-	543j+U8L28CPT6ImzlHh/uPMtXG6SiU4WsqPzPeZiuWXEBHyzZ5Cum8XDOz1sgD9
-	7QOg6iVyjFJ9LsW4bBbbPa2hvBP1uYjCPwuanrgOLhRikx9AGw/wTyKa1LW3LjNR
-	ZQqPkwGHfrlWN30rgzwjHHMGBdyX4EothQTMkVwvURzkL+FiToDpVmewOV7NGAyq
-	4Jv4k08+apg8hvptS7AOp2fJTxbZ7fv9kN7/8cU8DEdPdoomkRl9hGU3dCKleyLq
-	79xZyg==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 435epqb7dt-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 27 Nov 2024 10:47:55 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4ARAltwC028127
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 27 Nov 2024 10:47:55 GMT
-Received: from cse-cd01-lnx.ap.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 27 Nov 2024 02:47:51 -0800
-From: Yongxing Mou <quic_yongmou@quicinc.com>
-Date: Wed, 27 Nov 2024 18:45:14 +0800
-Subject: [PATCH 2/2] arm64: dts: qcom: qcs8300-ride: Enable Display Port
+	s=arc-20240116; t=1732704561; c=relaxed/simple;
+	bh=zj3U1IZYGABL9V0QZyz6/EdJvXQoY7bKYdXQeHobgQE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YnnojeiW8zPojrrxjlLpnWo9tW26+HicGwnpergDkAS4QvUJUi0oS3NSfkegdalf1SV/eb2wpl8FKC/hgGsb57WPsgBa4E5GgpERNubMkAxHp4P1r2PCi5+Rq6QFITZUenT3HyA7UhS68yR7Au/BM1fFAlzgYN3S1bhpG2/IziM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h2nqCOBJ; arc=none smtp.client-ip=209.85.219.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-e2bd7d8aaf8so6286123276.3;
+        Wed, 27 Nov 2024 02:49:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1732704557; x=1733309357; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=iYyR3yXYjz0YbNKKTg5cy3mGbrW5Do8TFUwFkEGO9kc=;
+        b=h2nqCOBJpaMkvI7OFV1ytJoEsA8rEiC5bg3xTa7vZaDom+zBshx0AuUR9Z+yPPAjj2
+         wHVl3nFBRUUi5I4GiBmYbH0yvze6tqGHuER0NQkEkKxJ3RMd1JFl/ocRtBLB3kQIKvVl
+         1bfm82I23yNxmFWVeb00RF+U5mQaHNOIWupuCZ+p8nqHYLq0RriQ+0qzTV3Edq3f+nl+
+         aUEvB6PlWMu05NgwT7MtvtHqT2EctFsd/N0h+gFRWLlj8sOwLeXR9G3Obdn/NQzetNEZ
+         JoOFVtzy8I+Yhtp5noEqjh4pnAbRicooTQovvHE9ni4Usjtlg7L5pPkVyiuEQzb+Ao0S
+         CKSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732704557; x=1733309357;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iYyR3yXYjz0YbNKKTg5cy3mGbrW5Do8TFUwFkEGO9kc=;
+        b=ByXRWvNLa2r/4JQXHVfOiyiwv6xybpUqPOzSav4cJMbFx5JHHg1Ondb6dPEOUPLIom
+         1CYMbwELzb8xniB69RqjT0X4fmJQletxo42dGUfME3Bbhibp+L/wtOFVNv8Gem1BKn0s
+         ayhwiSyzIMRLyrC+Q0qvOoCMV7681yoK0Kl7lVxdqMRqhjDajZrjwRz3+sA2Ke0NhlEZ
+         Enlnja+U7u4kn6gwI2FWXvZ3dMfJuoZy1SvnrvUxOIEEVuWWWbA/o/fGr4xZAPX2avFn
+         pgDxTbcecC9lAwzBH46Dp7iGWiJS3OYpBjnBuDb9RN7oj5lXWDzHfQcPfI6mbgBzMd8q
+         zamg==
+X-Forwarded-Encrypted: i=1; AJvYcCUv6/gDkesqome8snR1+lKs9Srl2umgvTk3DVGoxrZw0a454tK3rlRAgMamCOFNVVzGoWfmXdU4ty3NtoA=@vger.kernel.org, AJvYcCVOYuEpPzMqfWaLbVtpbNqFcZ+O0cnBmjR3vIah2AGAaQzk1Ipl/3xv02IiK2Mx9OVB1hxEjbwC1ZTC@vger.kernel.org, AJvYcCW1DCa+UPK7ij81jA1MfW/gDKmZRXOlKgLEEtCCtsI0lErZshZljOuO8EpiZEwtGXwu/WwPrqudR2+Siqh6@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy0DZM+TrxYGNwEs2wr57YSrFAISRRs4ip5iCOxvmcgyeN8rWvy
+	2RMgCN3O6QjUbnxPMJ1TGdpb0GHXkxfOHH5xGZCXgmu1WM3IAKkkJkuFjGKgE4BDkYGkkQfWT6Z
+	69cIvGRTdbgEqxhSUNxdIleYCfyE=
+X-Gm-Gg: ASbGncstUpqq/nQgB+S+19z6Z5fFzmIX1J+eGWzBKcc3iIUhaMYtIZDfDDE82H0/5MV
+	yckzzDQ9EvjhPYsuc7PDM6dXoQl+fy4bV
+X-Google-Smtp-Source: AGHT+IHuUBgbeWipGcuuSeVvP/LgXH+YzaHYRbIiLarVanu1jwlInw1N972fZqN73ZU9w+/mGXihRtV+AM8sbsNIxlo=
+X-Received: by 2002:a05:6902:1588:b0:e38:b889:7efb with SMTP id
+ 3f1490d57ef6-e395b897916mr2246859276.21.1732704557583; Wed, 27 Nov 2024
+ 02:49:17 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20241127-dp_dts_qcs8300-v1-2-e3d13dec4233@quicinc.com>
-References: <20241127-dp_dts_qcs8300-v1-0-e3d13dec4233@quicinc.com>
-In-Reply-To: <20241127-dp_dts_qcs8300-v1-0-e3d13dec4233@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Ritesh Kumar <quic_riteshk@quicinc.com>,
-        Yongxing Mou <quic_yongmou@quicinc.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1732704466; l=1647;
- i=quic_yongmou@quicinc.com; s=20241121; h=from:subject:message-id;
- bh=OrqqrFMlcGD/ss+m8ZxbVOLkm6Y9njMMUeLCyz8NHDk=;
- b=YRSpDDkUm9BnobcOCw4g8kvNVqjILUmTm9HUC7rZ/o1OlIKld95KfYDiaVXKkwUwotjRZcLFu
- BYx6r4eymt2Al0gxKwoWniea2Am4c71siOdGl7WYXk2jmlWyjEk1DeG
-X-Developer-Key: i=quic_yongmou@quicinc.com; a=ed25519;
- pk=zeCnFRUqtOQMeFvdwex2M5o0Yf67UHYfwCyBRQ3kFbU=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: b3kOfshToO_88apG06EsGu-JWA10QIj5
-X-Proofpoint-ORIG-GUID: b3kOfshToO_88apG06EsGu-JWA10QIj5
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- priorityscore=1501 malwarescore=0 phishscore=0 mlxlogscore=999 spamscore=0
- suspectscore=0 lowpriorityscore=0 impostorscore=0 bulkscore=0 mlxscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411270089
+References: <20241126-z2-v1-0-c43c4cc6200d@gmail.com> <20241126-z2-v1-1-c43c4cc6200d@gmail.com>
+ <zwdpx6c6qxm5674u2sea5sgwdd2fwim4waijb2qvixf62wrshb@yqs6zurtf7ic>
+In-Reply-To: <zwdpx6c6qxm5674u2sea5sgwdd2fwim4waijb2qvixf62wrshb@yqs6zurtf7ic>
+From: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Date: Wed, 27 Nov 2024 11:49:06 +0100
+Message-ID: <CAMT+MTR46HbUJWQOwG+MY8OffquekynUs_BRCbuAosLrmc+smQ@mail.gmail.com>
+Subject: Re: [PATCH 1/4] dt-bindings: input: touchscreen: Add Z2 controller
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Henrik Rydberg <rydberg@bitmath.org>, asahi@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Enable DPTX0 along with their corresponding PHYs for
-qcs8300-ride platform.
+On Wed, 27 Nov 2024 at 09:47, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> What is the meaning of these two last compatibles in the list? What are
+> these devices?
 
-Signed-off-by: Yongxing Mou <quic_yongmou@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 44 +++++++++++++++++++++++++++++++
- 1 file changed, 44 insertions(+)
+Those are generic compatibles for everything that speaks the Z2 protocol
+multitouch is used for everything, as this is currently enough for the driver,
+while touchbar is for userspace, as touchscreens and touchbars
+need different handling. This specific schema was suggested
+on the previous version.
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-index 7eed19a694c39dbe791afb6a991db65acb37e597..5dc855d6a22c38d97a3071d3a3d88ec551eebd1b 100644
---- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
-@@ -35,6 +35,18 @@ sleep_clk: sleep-clk {
- 			clock-frequency = <32000>;
- 		};
- 	};
-+
-+	dp0-connector {
-+		compatible = "dp-connector";
-+		label = "DP0";
-+		type = "full-size";
-+
-+		port {
-+			dp0_connector_in: endpoint {
-+				remote-endpoint = <&mdss_dp0_out>;
-+			};
-+		};
-+	};
- };
- 
- &apps_rsc {
-@@ -223,6 +235,30 @@ &gcc {
- 		 <0>;
- };
- 
-+&mdss {
-+	status = "okay";
-+};
-+
-+&mdss_dp0 {
-+	status = "okay";
-+
-+	pinctrl-0 = <&dp_hot_plug_det>;
-+	pinctrl-names = "default";
-+};
-+
-+&mdss_dp0_out {
-+	data-lanes = <0 1 2 3>;
-+	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
-+	remote-endpoint = <&dp0_connector_in>;
-+};
-+
-+&mdss_dp0_phy {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vreg_l5a>;
-+	vdda-pll-supply = <&vreg_l4a>;
-+};
-+
- &qupv3_id_0 {
- 	status = "okay";
- };
-@@ -247,6 +283,14 @@ &rpmhcc {
- 	clock-names = "xo";
- };
- 
-+&tlmm {
-+	dp_hot_plug_det: dp-hot-plug-det-state {
-+		pins = "gpio94";
-+		function = "edp0_hot";
-+		bias-disable;
-+	};
-+};
-+
- &uart7 {
- 	status = "okay";
- };
 
--- 
-2.34.1
+> > +  label:
+> > +    maxItems: 1
+>
+> Why is this needed? I think it is not part of common touchscreen schema.
+> Drop, devices do not need labels - node name and unit address identify
+> it. If this is needed for something else, then come with generic
+> property matching all touchscreens.
 
+I want some sort of a property to contain a human readable (ish)
+name of this device.
 
