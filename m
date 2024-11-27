@@ -1,128 +1,150 @@
-Return-Path: <devicetree+bounces-125014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 529439DA862
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 14:20:58 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52DB29DA867
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 14:24:02 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0187716296B
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 13:20:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D6EE9B21B97
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 13:23:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B74BB1FCF4B;
-	Wed, 27 Nov 2024 13:20:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E469C1FCF55;
+	Wed, 27 Nov 2024 13:23:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="ZBXA3cOB"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="knp5gxrE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E78F1F9F7B
-	for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 13:20:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F30B11FAC5F
+	for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 13:23:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732713653; cv=none; b=ZYmGNd/81AllLr5ZxTCFfyP6DehaTP3ZFWrV4IRTz7rwXI7ea0zF+ZOIysK7dHzbRQrEU/hshaiixsa6G7rI0MLYqHdLdxklaHI72E1ciRrPdtZDVuwYUo6Bb3nThXh1v2dDqvh62X4vW67J1qy38In/m2s6g9gLzPIaaWvUnTk=
+	t=1732713832; cv=none; b=fHkwrKdraca8qdUqoudiFWivEH2STMSIG6oDOJcoRMaNEDV3D9SQfTguvzdNLk0NMdju8R5vp1T1Tu858u8s1RA6gRjZ7xU49xuUCbwE0t2sgxH8kvV3bTkXtMXdnLr7wp2OUrv/1oDJwH7B+bBh6KHkbQmxwup1nhXTMstJUdI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732713653; c=relaxed/simple;
-	bh=WTt75bBcJkp5uZEdeVnXg+4b8wvHx7hFnzaZQb7uQHk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HRUZHnfWS0mx4c5FcZvZ/sNx5PRr6DrZ9wT0RFtmD7T1p9tvIR+HJqtsH5xDkWoIBV27FlkO/wEMhtL8FsL0HIhREdKxpHTVfedH0C2G22UXaHgEclzcLOArUfiQNpbCwyDM0gHItMDzxS4cTjAtiiOo29j05GaDm5ptvYR0qs0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=ZBXA3cOB; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-38231e9d518so4423148f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 05:20:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1732713650; x=1733318450; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HqRMluSX7bPKY9IoaSKl+6ql8Su2K5GfIIK1LXdOHlE=;
-        b=ZBXA3cOBEI5/Qe8ReYvO3hkSY90x55CeSTikUYNZ+2SLkoaOsLNLCPfD79SjZocmJz
-         40zR9+dniP1gZwe/pdfeOB7w6Gx29IqcDJiekO/zikrW6MkNpHeQjZ/cxVJQwwiwMlTN
-         d9t4JsWc4lQlJ7oV2etqBc328AJ48YgjkSdud9+zaa39EUyJjB6SelhwIZ8YQ0b0qnhr
-         jMceuX79rzufNjaGpLwnzeFSrwlI+D88SvGhuK8rY2DHWLi7aT/BmQTPGYxCU8PIC0wP
-         DYVZDN0J9FJe/ZQGnHe7vJcZvc/re1BM+evo8bHgMrwziHmQvdO0Ff93/sTAdmjZhtIu
-         +dMA==
+	s=arc-20240116; t=1732713832; c=relaxed/simple;
+	bh=qtxiBUJrSqg0i3oZn3/EBpNkSvaRXXxPaeCDhN9LRp4=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GcCJcs/4ZWz5xstAZh0FYI4t1JyQgE50rl5+6M7Aji83nS16nb3y1ZOgLwUh40iSDRO/HXZ7QwuMruv+40cl7OfXvkBIZi+9gKSQxOdktyaHrX5TZr6nK6HXTF2p1Sq8tiuJePRZPb2OvxP4koxqyLjIuO5hXBbmd2K10iY+3Lc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=knp5gxrE; arc=none smtp.client-ip=185.125.188.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-ot1-f69.google.com (mail-ot1-f69.google.com [209.85.210.69])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 1E5AB3F1C0
+	for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 13:23:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1732713829;
+	bh=cL5M32W3R5eUX/4zpFKVLV/R7h3YjIcs++U+D/L5AM8=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=knp5gxrEgQZ3p13zieBnRYFMh9F3iOKLvsTqRZWI75n83aiG8BtkWimm/F/xHwBCT
+	 WF/EuAH2hrLekrjwP/8iDhrmClDE8gpI2m4BesYWNOVrGgLfac9aNon1HauG+rT6Eb
+	 EhItWNHJWVGQxGclyP7s9sgvKRAEycUU5meyzHs/zBBv68tLq4K4uxArud0qbzfzLY
+	 +hWtsmO1vXsMOXI3H09ygRmBArdvq/dmXwuYMCwGNV/GN4wh+AKc+PxFvI9MLBLroK
+	 pB7QmMT+TI+xH2RFwZcGjjmGuH7hYmkkHmfx56XQDDEwgx1LlEzH66VOf/PCV/BZ+x
+	 s7WKZ8ae1cVdg==
+Received: by mail-ot1-f69.google.com with SMTP id 46e09a7af769-71d49784700so2692684a34.3
+        for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 05:23:49 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732713650; x=1733318450;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HqRMluSX7bPKY9IoaSKl+6ql8Su2K5GfIIK1LXdOHlE=;
-        b=YrJN4uzKAa18BGuoSSJK6t44wab1xy/snfjXDAmFIIZU4xqvW6j04noBzkPQyo6iDg
-         axkFRhh5JZnny2dkLwaBQdIiykupdEo8BPneNw0sAYBrGBTK96HuqoDrKaTI7sMz6TC2
-         eqzsaD2gmKWYFsucV8GPkU632BvQydeeryPxJiFPLFw/xFddsUz2/4RYybdsxkPda+BG
-         iUPDthBZZOPDVzF1+0JHXXBGYFMDvP5NmNzCGPYViQsoEC56eEIjSUIQ3Nf9MDnXVUpy
-         pE2S8tTpXLIUhBZbxPWIVPxbNE7mdf7b9UVeIbBW/hlGOBvX0J7rzl3kIt9O9CpkQyh6
-         7dHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCViLwhQhYwa6LJAGCPYxxP4bCWjs3tg5JlDK56Zaz5eo/L81yCsQv4Oj4ZQdbgwSYlnZ/rL9Qk1cH5n@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywc3VyLVb4FE+4gAr07/3QOgKT3PhhB2FmqyelWejKwNin4fcxH
-	NoK/xxUWN3BZ83Vl+NlY4THQV9SeEoyt01Vfno3dWor4Yzvgpq7ZgnNxcWIjhLfoSvaxIQH/O0m
-	JVRRCUKII9m1jUyIN+PY/+f50gDoSGL1mN4cO
-X-Gm-Gg: ASbGncvPZ0rAkNrd3xhA4zp03doyij2xxEkw2RpBhhy17/axEZCBMwEhmyfbNx6ij/G
-	JwaxJsjuY8XB8zP3WmrP0g/HxKUmTBmkU81cOPDxpS9cN5fchGuzyUVvA+Sz1og==
-X-Google-Smtp-Source: AGHT+IG4+Q9bIy7rext2rN+trmXuD+MQjvH5vE635+hgAaEldDWE5YGrYgmPhGJKwuHwh/U+sltj/EcCSBTAHe6mJJI=
-X-Received: by 2002:a05:6000:1562:b0:382:383e:84e2 with SMTP id
- ffacd0b85a97d-385c6edb2a4mr2585883f8f.46.1732713650357; Wed, 27 Nov 2024
- 05:20:50 -0800 (PST)
+        d=1e100.net; s=20230601; t=1732713828; x=1733318628;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cL5M32W3R5eUX/4zpFKVLV/R7h3YjIcs++U+D/L5AM8=;
+        b=My8LsyGWAu0/p45Fi89K2b1dg+G23QbDRa/uzII0D8lhsaQSIZB5qimcymbCc9spCb
+         k459uhwtlfaswpqkJvSAzrB2u+Q6BnXN86xXeJQscY75FnJ2KNwDbOH27660Qly6GTZg
+         tCMK8E9PBpwi5kQJ6kBMaG7iOvE/W3bYMciJU1BxTLYz9FoDL8++LxmPAO+DBzEyH6Wg
+         a+t8x4TTarPKX/7vBxgBrfRiK8Nmg/UiQI3Idg2Rq81nAtj/Yq5z8bkpLmuAwz0c5wtE
+         3yAeCltGKd1+wQp+hFxskO3tmf2tS3n+zGR4ngsHFI4wAv2Kl6Czy8E7wC05kWZDQUtZ
+         k4/A==
+X-Forwarded-Encrypted: i=1; AJvYcCUw8kNtV9M/dzNVK5fgqKRpVXOZL6gGPy5C4vMf9E01AMwM9Uap7l073rRoMpq2o8dj5UdfIN5OmGnT@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx84CP96ncOJImInvphyT696r2pRQmtX4W5cG+TK94Y+HV1m4uW
+	tsiggm+AHMa00QPPnhwd0Pxkef/DPcUQUaDH7JQGLRQIS5jgi6xHuihk8CJ2LMzkjyclASebm+V
+	LkAyc7k3tEnxLW2APOpx3Gum88OLblfiHsvCIREQP0CXrKHu8b4eL/N/516nCdEdlVlOehgX5fN
+	y/Jg7MwLZ8SxYJzgC3Z5Gb/PP2p6wjHbEEz58irvCXkWT+DNXsmw==
+X-Gm-Gg: ASbGncto4F737z9NcnrLa/tHTurRI9o4nObKhV6CiCkXJ4ccceaOoWgLER4MQdLMuTB
+	AQRnma3zo82eIUkPWZkLfu60hjbNlgnDZ0qYArjoQ++56ZpAD35kPDfGnRbXZ
+X-Received: by 2002:a05:6808:f0a:b0:3e0:4f6c:abcb with SMTP id 5614622812f47-3ea6dd47acbmr3886365b6e.28.1732713828044;
+        Wed, 27 Nov 2024 05:23:48 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGufrHOyrMhM1rehaDhI1q2R5G+xXwoSxzeI2W2FAdnLZZRRJ6/ihK0V7J0ERO8UeSUM8vMDAVAOcN6kRcdi7Q=
+X-Received: by 2002:a05:6808:f0a:b0:3e0:4f6c:abcb with SMTP id
+ 5614622812f47-3ea6dd47acbmr3886347b6e.28.1732713827792; Wed, 27 Nov 2024
+ 05:23:47 -0800 (PST)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 27 Nov 2024 05:23:47 -0800
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <20241126073836.17208-2-e@freeshell.de>
+References: <20241126073836.17208-1-e@freeshell.de> <20241126073836.17208-2-e@freeshell.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20241022213221.2383-1-dakr@kernel.org> <20241022213221.2383-11-dakr@kernel.org>
- <CAH5fLgjdKRCECmZbjC-+6SQffFtgimfxhDJ3grVw1_hbQec1-Q@mail.gmail.com> <38d708b5-7a73-4736-909c-eefd3c938769@kernel.org>
-In-Reply-To: <38d708b5-7a73-4736-909c-eefd3c938769@kernel.org>
-From: Alice Ryhl <aliceryhl@google.com>
-Date: Wed, 27 Nov 2024 14:20:38 +0100
-Message-ID: <CAH5fLgg9xkMeGZi_4aN60UMtpvOx2CY5JQc26swMtXTaJsE=-w@mail.gmail.com>
-Subject: Re: [PATCH v3 10/16] rust: add devres abstraction
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com, 
-	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com, 
-	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me, 
-	tmgross@umich.edu, a.hindborg@samsung.com, airlied@gmail.com, 
-	fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com, 
-	ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org, 
-	daniel.almeida@collabora.com, saravanak@google.com, 
-	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
+Mime-Version: 1.0
+Date: Wed, 27 Nov 2024 05:23:47 -0800
+Message-ID: <CAJM55Z8---o6_ZxeyUu_M74LA_zKfeksBmRGFkm2C66hRJbPug@mail.gmail.com>
+Subject: Re: [PATCH v3 1/1] riscv: dts: starfive: jh7110-pine64-star64: enable
+ usb0 host function
+To: E Shattow <e@freeshell.de>, Henry Bell <dmoo_dv@protonmail.com>
+Cc: Conor Dooley <conor@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 27, 2024 at 2:19=E2=80=AFPM Danilo Krummrich <dakr@kernel.org> =
-wrote:
->
-> On 11/27/24 1:21 PM, Alice Ryhl wrote:
-> > On Tue, Oct 22, 2024 at 11:33=E2=80=AFPM Danilo Krummrich <dakr@kernel.=
-org> wrote:
-> >> +impl<T> Drop for Devres<T> {
-> >> +    fn drop(&mut self) {
-> >> +        // Revoke the data, such that it gets dropped already and the=
- actual resource is freed.
-> >> +        // `DevresInner` has to stay alive until the devres callback =
-has been called. This is
-> >> +        // necessary since we don't know when `Devres` is dropped and=
- calling
-> >> +        // `devm_remove_action()` instead could race with `devres_rel=
-ease_all()`.
-> >> +        self.revoke();
-> >
-> > When the destructor runs, it's guaranteed that nobody is accessing the
-> > inner resource since the only way to do that is through the Devres
-> > handle, but its destructor is running. Therefore, you can skip the
-> > synchronize_rcu() call in this case.
->
-> Yeah, I think this optimization should be possible.
->
-> We'd require `Revocable` to have a `revoke_nosync` method for that I gues=
-s...
+E Shattow wrote:
+> Pine64 Star64 set JH7110 on-chip USB host mode and vbus pin assignment
 
-Agreed, you could have an unsafe method for revoking where you assert
-that nobody else is accessing the value.
+Here I'd like it explained that the Star64 board routes 1 of the 4 USB-A ports
+to USB0 on the SoC rather than to the USB 3.0 <-> PCIe chip.
 
-Alice
+(Confusing for users that 1 of the 4 similar ports only does USB 2.0, but
+that's too late to change and not relevant here)
+
+With that fixed:
+Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+
+>
+> Signed-off-by: E Shattow <e@freeshell.de>
+> ---
+>  .../boot/dts/starfive/jh7110-pine64-star64.dts | 18 +++++++++++++++++-
+>  1 file changed, 17 insertions(+), 1 deletion(-)
+>
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts b/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
+> index fe4a490ecc61..b764d4d92fd9 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
+> @@ -80,7 +80,23 @@ &spi0 {
+>  	status = "okay";
+>  };
+>
+> +&sysgpio {
+> +	usb0_pins: usb0-0 {
+> +		vbus-pins {
+> +			pinmux = <GPIOMUX(25,  GPOUT_SYS_USB_DRIVE_VBUS,
+> +					       GPOEN_ENABLE,
+> +					       GPI_NONE)>;
+> +			bias-disable;
+> +			input-disable;
+> +			input-schmitt-disable;
+> +			slew-rate = <0>;
+> +		};
+> +	};
+> +};
+> +
+>  &usb0 {
+> -	dr_mode = "peripheral";
+> +	dr_mode = "host";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&usb0_pins>;
+>  	status = "okay";
+>  };
+> --
+> 2.45.2
+>
 
