@@ -1,186 +1,157 @@
-Return-Path: <devicetree+bounces-124986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5BC89DA731
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 12:52:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 854B29DA734
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 12:53:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 659FA2811C3
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 11:52:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48EEC281339
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 11:53:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7624E1F9F5E;
-	Wed, 27 Nov 2024 11:51:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VReTf/mQ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16AFA1F9ECE;
+	Wed, 27 Nov 2024 11:52:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from freeshell.de (freeshell.de [116.202.128.144])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D83A01F9F55;
-	Wed, 27 Nov 2024 11:51:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 839131F9ECF;
+	Wed, 27 Nov 2024 11:52:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732708309; cv=none; b=C8vGpkmRiC9yRj32n2XuxxDyQF/6EgCAXHHj19fwn/Jy+mweDZ+a+ixDhCyx+mWXS+2geQGHMhYSK61piRFTRz1XBfuPuqxr6TYS7kScnsBsXtx8F1VjPShaw0ckuM4w9g7q9afnzvMW76Wz/plshGuvAbsT/w4RGjJ7cRZgaVw=
+	t=1732708347; cv=none; b=ljgIzKdbsrjblYLbiEbVMRehGvvfunTtIMdepxVDp/ZzlsmJM/+MokIS7l+e+rMqpQrgYCPtdI2WdWdKnxdkcrAMgN/X8G5rAk9eWEOo7dZN+GVy6vj28xfMeeu56jYkLB58lYkUikTzK/NIhg336qjSLjtt1Huttp+1P45ZYr4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732708309; c=relaxed/simple;
-	bh=ErPP9c4l3QF+6gCsJyaNXV9lUGfHlw8xtchr84nZNUc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=n+2up/oaY/EuMF1HpHRDM2MGogeGQyn2dgfxk+LQwBmjmlumS8hDwn3sLotXRJPc/uYO/AxadZEhB8U6Zkjx9bvp/dz7r51QQsXdT49d1YZq2r9JYKyZRGAVdGrFgvCwfE0VXt0PFUMfLoDBXdFAFSqphD+89YBK8r3hpWfI3TM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=VReTf/mQ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AR8BnrL009576;
-	Wed, 27 Nov 2024 11:51:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=1L6EbXGa4gjKewlKK1VepByH
-	J/Y1UHlLv72Bl04ORAU=; b=VReTf/mQlYe4hoPN57uXsB1rzLArhNZT6wVtqGY6
-	sBE3SAnYzslWSZoM9nw7kugRp6e+uPd3JGT5U+xPuA4rGqqOyMcBmAIkyMylF5JA
-	azVaRbHt+YJy4zU5vrmmVJJKnlxsQq7Ua9qlfV5ApmcuS+13AlWDmIhUkVqGnbkW
-	FWSZqeThyeV3eDuDrjmgvjEe1Ze0MbN6FLaimdEsYyrfYH+0id6tGpYWwOPtlZGm
-	w3Wfs/SflgQglf/50Y927/d7HrMxM201AFDef8lYnTeJRHgiJ0ryoiYeFUG/21vs
-	i2pbhsqfIg90XMu1ocPplJ0z5P0Wlt4r3zTpl16OeNorXA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 435ffyu9ba-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 27 Nov 2024 11:51:40 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4ARBpcuC025967
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 27 Nov 2024 11:51:38 GMT
-Received: from hu-janathot-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 27 Nov 2024 03:51:32 -0800
-From: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        "Rob
- Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad Dybcio" <konradybcio@kernel.org>,
-        Marcel Holtmann
-	<marcel@holtmann.org>,
-        "Luiz Augusto von Dentz" <luiz.dentz@gmail.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>
-CC: <quic_mohamull@quicinc.com>, <quic_hbandi@quicinc.com>,
-        <quic_anubhavg@quicinc.com>,
-        Bartosz Golaszewski
-	<bartosz.golaszewski@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-bluetooth@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>
-Subject: [PATCH v4 2/2] regulator: dt-bindings: qcom,qca6390-pmu: document WCN6750
-Date: Wed, 27 Nov 2024 17:21:07 +0530
-Message-ID: <20241127115107.11549-3-quic_janathot@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20241127115107.11549-1-quic_janathot@quicinc.com>
-References: <20241127115107.11549-1-quic_janathot@quicinc.com>
+	s=arc-20240116; t=1732708347; c=relaxed/simple;
+	bh=IA6S/2VA05D0vj0jFtDpwXuX+ITrR/ip+5whJsfmfpM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VZ/Nw03rP6/TOm9bA17iamEo2yNpZW+gNwEozzQSQZY3TBHTqT/PVWrc7lEk9BqgyMXApO4eCKd+QPYEGKMVvCZF/0PsY32ORzRMqLd3VgqZwXNCdWI98NQJROpNbhbVq9W2esh4RkV/E4hRH0MVTehbAn1Tpc6sqlOQjezF4Rc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+Received: from [IPV6:2605:59c8:31de:bf00:37c2:fe62:c21b:ab46] (unknown [IPv6:2605:59c8:31de:bf00:37c2:fe62:c21b:ab46])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id A923CB4B1BB1;
+	Wed, 27 Nov 2024 12:52:12 +0100 (CET)
+Message-ID: <eb06c8e0-ebda-47b9-94f6-6e6eca21097d@freeshell.de>
+Date: Wed, 27 Nov 2024 03:52:10 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: _pBDr6Aqp9p_24q6N-01cBBsS6A7Uc-h
-X-Proofpoint-ORIG-GUID: _pBDr6Aqp9p_24q6N-01cBBsS6A7Uc-h
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 mlxscore=0
- bulkscore=0 lowpriorityscore=0 spamscore=0 impostorscore=0 suspectscore=0
- priorityscore=1501 malwarescore=0 adultscore=0 phishscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411270097
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 0/1] riscv: dts: starfive: jh7110-milkv-mars: enable
+ usb0 host function
+To: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+ Jisheng Zhang <jszhang@kernel.org>
+Cc: Emil Renner Berthing <kernel@esmil.dk>, Conor Dooley <conor@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, minda.chen@starfivetech.com,
+ hal.feng@starfivetech.com
+References: <20241126075740.17419-1-e@freeshell.de>
+ <CAJM55Z9wWCaS+FxZ=Gg_RfXXafNEJZC1zHZoPWQ2Y9QYDf9OyA@mail.gmail.com>
+Content-Language: en-US
+From: E Shattow <e@freeshell.de>
+In-Reply-To: <CAJM55Z9wWCaS+FxZ=Gg_RfXXafNEJZC1zHZoPWQ2Y9QYDf9OyA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Add description of the PMU node for the WCN6750 module.
+Hi Emil, thanks for taking time to review!
 
-Signed-off-by: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
----
- .../bindings/regulator/qcom,qca6390-pmu.yaml  | 27 +++++++++++++++++++
- 1 file changed, 27 insertions(+)
+Added CC: Minda Chen, Hal Feng
 
-diff --git a/Documentation/devicetree/bindings/regulator/qcom,qca6390-pmu.yaml b/Documentation/devicetree/bindings/regulator/qcom,qca6390-pmu.yaml
-index ca401a209cca..47c425c9fff1 100644
---- a/Documentation/devicetree/bindings/regulator/qcom,qca6390-pmu.yaml
-+++ b/Documentation/devicetree/bindings/regulator/qcom,qca6390-pmu.yaml
-@@ -18,6 +18,7 @@ properties:
-   compatible:
-     enum:
-       - qcom,qca6390-pmu
-+      - qcom,wcn6750-pmu
-       - qcom,wcn6855-pmu
-       - qcom,wcn7850-pmu
- 
-@@ -27,6 +28,9 @@ properties:
-   vddaon-supply:
-     description: VDD_AON supply regulator handle
- 
-+  vddasd-supply:
-+    description: VDD_ASD supply regulator handle
-+
-   vdddig-supply:
-     description: VDD_DIG supply regulator handle
- 
-@@ -42,6 +46,9 @@ properties:
-   vddio1p2-supply:
-     description: VDD_IO_1P2 supply regulator handle
- 
-+  vddrfa0p8-supply:
-+    description: VDD_RFA_0P8 supply regulator handle
-+
-   vddrfa0p95-supply:
-     description: VDD_RFA_0P95 supply regulator handle
- 
-@@ -51,12 +58,18 @@ properties:
-   vddrfa1p3-supply:
-     description: VDD_RFA_1P3 supply regulator handle
- 
-+  vddrfa1p7-supply:
-+    description: VDD_RFA_1P7 supply regulator handle
-+
-   vddrfa1p8-supply:
-     description: VDD_RFA_1P8 supply regulator handle
- 
-   vddrfa1p9-supply:
-     description: VDD_RFA_1P9 supply regulator handle
- 
-+  vddrfa2p2-supply:
-+    description: VDD_RFA_2P2 supply regulator handle
-+
-   vddpcie1p3-supply:
-     description: VDD_PCIE_1P3 supply regulator handle
- 
-@@ -119,6 +132,20 @@ allOf:
-         - vddpcie1p3-supply
-         - vddpcie1p9-supply
-         - vddio-supply
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: qcom,wcn6750-pmu
-+    then:
-+      required:
-+        - vddaon-supply
-+        - vddasd-supply
-+        - vddpmu-supply
-+        - vddrfa0p8-supply
-+        - vddrfa1p2-supply
-+        - vddrfa1p7-supply
-+        - vddrfa2p2-supply
-   - if:
-       properties:
-         compatible:
--- 
+Please Minda and Hal can you follow-up on Emil's comments as well?
+
+On 11/27/24 03:00, Emil Renner Berthing wrote:
+> E Shattow wrote:
+>> Enable host mode JH7110 on-chip USB for Milk-V Mars by setting host mode
+>> and connect vbus pinctrl.
+>>
+>> This functionality depends on setting the USB over-current register to
+>> disable at bootloader phase, for example U-Boot:
+>> https://patchwork.ozlabs.org/project/uboot/patch/20241012031328.4268-6-minda.chen@starfivetech.com/
+> Hi E,
+>
+> Ideally the JH7110 pinctrl driver would be updated, so Linux can do this itself
+> and doesn't need to rely on u-boot doing it. I already asked for this here:
+>
+> https://lore.kernel.org/all/CAJM55Z-+Cxdebcn4MLXfQdOVhx4c2SQ+zMH8cjn-Yq35xO8g0A@mail.gmail.com/
+
+Yes, I agree, and Linux is not the only consumer of devicetree. I would 
+like USB function to work for users of Linux and U-Boot on these boards 
+by copying what the vendor Board Support Package does what is shipped 
+with the products. If it is more in-depth than this I will defer to Hal 
+or Minda.
+
+
+For some wider context, upstream U-Boot is about to adopt the 
+dt-rebasing via Hal's OF_UPSTREAM for JH7110 boards series and then also 
+there is a patch set from Minda Chen to add the on-chip JH7110 USB 
+support to U-Boot, and so then and there it will depend on these dts 
+changes. If you have Milk-V Mars then already there are three of four 
+USB-A receptacle ports which are functional on PCIe-connected VL805 USB 
+chipset.
+
+>
+>> If the over-current register is not prepared for us then the result is no
+>> change in functional outcome with this patch applied; there is an error
+>> visible to the user and this additional usb configuration fails (same as
+>> it is now). On Milk-V Mars with four USB-A ports this applies to one of the
+>> ports and the remaining three VL805-connected ports via PCIe are not changed.
+> Thanks for the patches. I don't quite understand when you write "no change in
+> functional outcome with this patch applied". The USB-C port is already
+> configured as a peripheral, and I just tried setting up an ethernet gadget on
+> my VF2 running 6.12 and that works quite well. Does it not work on the Milk-V
+> Mars board? If it does then these patches would break that functionality.
+>
+> Here is the script I used for that:
+> https://paste.c-net.org/BravoLonely
+>
+> At the very least you'll need to explain in the commit message itself why
+> changing the USB-C port from peripheral mode to host mode is OK. But ideally
+> maybe you could make it work in OTG mode, so userspace can choose how they want
+> to use the port. The same goes for the PINE64 board too.
+>
+> /Emil
+
+USB-C port on Mars is not wired for data here, that is only true for 
+VisionFive2. If the user wants to use their USB-A receptacle as OTG port 
+I will not object to a future improvement, but here we want the basic 
+expectations of users covered that they should have four working USB-A 
+receptacle ports in U-Boot (and possibly in Linux, depending on the 
+overcurrent register wherever it is set). This is what I am meaning, 
+there may be somebody using a male-male USB-A USB-A cable for OTG but 
+more likely is that people just want to plug in USB peripherals to host 
+ports and use their mouse / keyboard / flash memory, I think.
+
+
+There is no USB-C port on Star64.
+
+>
+>> Changes since v4:
+>>   - Rebase on latest master
+>>
+>> Changes since v3:
+>>   - Rebase on linux-next/master
+>>   - use tabs for code indent
+>>
+>> Changes since v2:
+>>   - Rebase on 6.12
+>>
+>> E Shattow (1):
+>>    riscv: dts: starfive: jh7110-milkv-mars: enable usb0 host function
+>>
+>>   .../boot/dts/starfive/jh7110-milkv-mars.dts    | 18 +++++++++++++++++-
+>>   1 file changed, 17 insertions(+), 1 deletion(-)
+>>
+>> --
+>> 2.45.2
+>>
+Thanks again Emil.  -E
+
 
