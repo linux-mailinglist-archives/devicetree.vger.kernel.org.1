@@ -1,158 +1,137 @@
-Return-Path: <devicetree+bounces-125146-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125147-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A822E9DAD3D
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 19:39:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ACB509DAD5A
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 19:49:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CB0CDB21139
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 18:39:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0D054B2125F
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 18:49:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A4692010F2;
-	Wed, 27 Nov 2024 18:39:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB738201030;
+	Wed, 27 Nov 2024 18:49:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WN0lsPsa"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oiKJsSbH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A8FC2010EC;
-	Wed, 27 Nov 2024 18:39:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C46C320309
+	for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 18:49:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732732748; cv=none; b=E38uuwq4sjEf9Pc0GNTvqZpGHAd02g7ihJULqMRRUbmTExaELvp/VZnSQ3wFEPkxsDSotnw1iVlquNHbXhRmk6cmpFOLVROK1nJeFpWXShIWQ8DXp8kQmHffZp1v3sYphPD0qFinMTCwXZKhFViEbGzNsvHQPJqDdA02Hak5LVY=
+	t=1732733364; cv=none; b=byk9Is5MNHZqxyEzuYRaLuwYBU+9pibik5nBlM/1vPeEuTZp4ETfrXLpXxGd9lHDGpn0O1/rjXMVBUlRyOk827gcc2meScH+qwEK62DgjFI30vJyPVJsN1SEPBdbYTm6rINmtRXsC56zc/L8NZRrXs8kjFjeD+oSPxc77172Ixg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732732748; c=relaxed/simple;
-	bh=prk4w3AFibrQXsEB3OHmUy1xQXvgSEU3wphtGpL+kqo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TUw9SbMCQrE9BzgFbKNVMocXdTOC255bvfA0rSUWW4u1OEZ10g8e8WRdwGxWbv6d0qA7C9v3VnmM1D3uYxWUQvcRxZEisG2K+WMQst7bnqCcCezf09iMZ7iavTYMU3PEpt1O73hdQ4wWDNRsNSU8CvfJvVxZVKB2qs108fpok44=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WN0lsPsa; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-211fd6a0a9cso32255ad.3;
-        Wed, 27 Nov 2024 10:39:06 -0800 (PST)
+	s=arc-20240116; t=1732733364; c=relaxed/simple;
+	bh=sjoyiG2Hp2mqoPO+fxRY3EiUOYbL8A159VrQnsMQDMc=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=e7sgcWyDn7DrWgjhZgHxjw8uc5X7EhAo968wHAU/nOSMIhB+61k8OK7AzrDCMRf+HQAqnDXXn/Q5x+RmWmkupiqYqh5kKdmJa+jNhLD5v5jrU9bl6TfEYGhYShfxRT+XE3g9rShD2unW65rzQziZIpaXg6W/BpOzbAoCnCoyFNc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oiKJsSbH; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-53df1d1b726so983432e87.0
+        for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 10:49:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1732732746; x=1733337546; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=UaSCewOAz1MC+uF5VfjhdECGUiSX1B4mUUKrmti1jEk=;
-        b=WN0lsPsanp/rGAgYyXfRre9iA0iSS3vt87IRmoSJYgk/42ofEPCqc+O7HlSwCI25dR
-         J8UMtKou+aQhODPIfxWshubCTn9rU4n0lIheiwTJ900VkkFqLLut/XLd0/s7sLXL2vfj
-         dq8p53lmuIPr4cTc4QofXwOqKB2hNBDfNeuowuWRfSSx8/blm4UsuaucRUsz8tp9bMAE
-         GwaKGrvIA0Lr7sVcAFXQuteKZdi2yCNbwCo51NZbt1a8uNBK8qk6zCfJANAyuIpijCuz
-         Uqb15WWjdbqeGuSO7I4mN9zhM5YG0TfuG2YTF1k2snHSMdYaZTGTvRvTJEIFC1k6YDS4
-         vRTw==
+        d=linaro.org; s=google; t=1732733361; x=1733338161; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=sjoyiG2Hp2mqoPO+fxRY3EiUOYbL8A159VrQnsMQDMc=;
+        b=oiKJsSbHk8orAOWZJnxuZrGBtiebLC9PpNlRs6R9lvwQC12I3y6LKCYDDJpIt3gk8c
+         pqVo++P4mYR4w5KUAi4FivHHRr4ZT6yqQ4sbcenrESSA5mEQamh/0kz7Xc2DOTQ8KKUv
+         bDEj6e1MZ/MGowLqpLb+3zCFywrW3V5XDSYEniEhX0yQdUDstKIyhOSaxkV3vVqGFQWJ
+         VuLbapmhmbGmZrSHw2Jzp3uXqUkjDfWjtiTxwAmDLKHqwA9io63X2GR9rtGuVAgqdQn7
+         Sqn1DxAHJdPxNorHEJT6peMPk8hAKasb/pu/jTKjwhWTxU4rd8VXBN9ey1uro/FIDh6l
+         9TAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732732746; x=1733337546;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UaSCewOAz1MC+uF5VfjhdECGUiSX1B4mUUKrmti1jEk=;
-        b=ayFCOiT/+VrI62hS6+vUt7M88cJ55JqZ2Bcs3bXdwXI5sbmVhQAnB0RglUql5WJ8fv
-         BwF0tTdVPklVOOt52HhN+goETP8IY1WQH+/ih9F7/h4zuLl3Xp1KdCMrzJo22TRbbJTA
-         G1fkFKjWDA7ht5A96LhOOAcYfv5+JhVthEsDPPmmNbAltl45fW1lKsOvgQmXnomzoEqr
-         p0Dx5EvU1l2HnuJN63a6l0afW5UH9l9MAXaJFzoLB8KRDPdG38HnQR21FGe05gCHbVb4
-         kDJvyn8NvwZnJVdjh5FQRS3mLVTReBeaTFkroD/N6KVXWoWXnXcjouPNxEQMejbSe4dz
-         WWAw==
-X-Forwarded-Encrypted: i=1; AJvYcCVshq6rAMbzTmMOK4SWjNBPBOZvdyo3XH+6WNAZFTn4f/ykAAuDz6toSfMVBA0hY1ryQhJX3ccPGNOcNnEf@vger.kernel.org, AJvYcCW4sQ32HmQUo540So4QjtX00/o5jNxqdARW930MpkBY+wG6Xd+xA5Xqx2+PSzQxSIUVKWNYlWG1zdzf@vger.kernel.org
-X-Gm-Message-State: AOJu0YyMvLZ8excWtIAoMbMlA4PdSZF1xbDvKP1aARo06cLuPJB4GqGD
-	71TNhT7TMDHihF+XRaF4Cy9grTh5HqXbDqNrC6/LKGmCInMEOMV1YhQOutI0f7M=
-X-Gm-Gg: ASbGncsMAixSAp04rCnwj5guZNmjvU014Eoq9qKwrJ94aiQ5uVWEEoZGfitMPfAQEBi
-	PklI0xYagXKpi7b6HnXplgpbDhdWXvR5yaINLD5ls9x/ejxHExOpVvflWyvz4nGjelqlOOFGwNf
-	JjGGpibM2F5mQEVk7OW1mSL/7oCZ0LMAAugkjN4iR+ZDxCTgehu7Zh3bx7uY/1MfJm6aMmZCMOA
-	Jj/if9EnuMHXP5kgBSH/xIu7NXneB9Y2ZIUrunCa9nRKIzz
-X-Google-Smtp-Source: AGHT+IGhx34DRsa8uxFgpl8ldbCeAEFgFfVZ5YwC6dpou4pfJOmsKdHkfpUchzoB3IylveFgpWYqRA==
-X-Received: by 2002:a17:902:ce08:b0:20c:da66:3875 with SMTP id d9443c01a7336-2150175eb06mr64426315ad.24.1732732746107;
-        Wed, 27 Nov 2024 10:39:06 -0800 (PST)
-Received: from Emma ([2401:4900:1c94:da7e:5054:ff:fe53:2787])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2129dc21b5csm106070115ad.227.2024.11.27.10.39.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Nov 2024 10:39:05 -0800 (PST)
-Date: Wed, 27 Nov 2024 18:38:59 +0000
-From: Karan Sanghavi <karansanghvi98@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Ray Jui <rjui@broadcom.com>, 
-	Scott Branden <sbranden@broadcom.com>, devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Shuah Khan <skhan@linuxfoundation.org>, Alexander Aring <alex.aring@gmail.com>, 
-	Eric Anholt <eric@anholt.net>
-Subject: Re: [PATCH v4] dt-bindings: power: Convert raspberrypi,bcm2835-power
- to Dt schema
-Message-ID: <5wzekgv7ccja7ucz2w3byprltalflx4am24scecxjokra4t44g@ll56dfqotyoq>
-References: <20241028-raspberrypi-bcm2835-power-v4-1-acf44abd45ff@gmail.com>
- <bdze3425qwrtlvlairw2b4xiycpkmhirzhqn2jt6jngc3bu4ta@uo4nc2lnj4sf>
- <qb5sdh55yj7est52netydaauazgluej6hvvtutmmiw2bhglnpw@lq2cyg3hjhlw>
- <b81cd6bd-4a7e-4032-aa56-843793a0e0c8@kernel.org>
+        d=1e100.net; s=20230601; t=1732733361; x=1733338161;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sjoyiG2Hp2mqoPO+fxRY3EiUOYbL8A159VrQnsMQDMc=;
+        b=u/TivlbCv6EQVSYUiNuQrtg91+ZNFuXYWAHM6bJrBGXupE+JgiZMrLvg7qNcOCikWJ
+         UsqqwofobmsqUdszT+eb+H+JkHPsbNRp35nH2RW4KwTZXiYUSrympIvdT4Ap1DupvT9P
+         OmIV1rEoxDDwfNUrOzMzkyCsvDOBpYBrj6u6hVYM9RMptK/ulTDgdmY0qlaRK64Fodd8
+         aBORn6ggilwvm+QpTm6aGDriZX8N2KFDgq5U/Nh+f3KjRDp2DU/8w7uYClaDLl0IADDW
+         ZiaFFrhPsMToxCJ9E+YPvPzm2DukGzGG4733dM8zrtKNEvc4KG3Mpz3zqAMe826OuwAW
+         OjQg==
+X-Forwarded-Encrypted: i=1; AJvYcCU/D1yMywEiWAyI3lNYSHnCeMmy80hRpqN61jqghnc3xKpMI2HjQvjGs9aKikSytiCCfiGd1a3idH9W@vger.kernel.org
+X-Gm-Message-State: AOJu0YyMDybhleHh+pXwWupiabhgC+VEMamnqZ1qdH+8txc7Lx3AL5Bh
+	fFSdcphHNxnvYlI2tpGaVTwWVsPjQpFtYLpMAQLGV6kTGboKH/SScVbDu5pb1PU=
+X-Gm-Gg: ASbGncvoMXzp62b0Y/ZTwqvVv0q0U3CEq8Ake34cJ1AhkxCBcSRLxEZkT1m/rcdgYYz
+	lzOw98Da014AKmNYyqyDQPCyowp+6dNOht3pzi9Sg5yE8roAN+cXNYm4lKWW4vnkE/mZjZ1Axz5
+	PycegnuK3ET8ZUoW4++n9UOU05w2BrsBnP1eYlNaQw6osoa7t0YxbKiXBiqcgP4tHJ7PfT9ZIEQ
+	8UzVgIZdB7lNM5do3/MgbiYKPEGGjct2CJDOxxokS7wdmpRs9vwentqT/PeVRZnZcN5Tl9lkRmR
+	bpJjbFEDe+Odvjs=
+X-Google-Smtp-Source: AGHT+IEmUi+ANH8PnjVcprPLiJ6h5cts7vEPzcxELANUAmqnDFEgXsap5gI2kW5PmEmhDomAWBibaw==
+X-Received: by 2002:a05:6512:3b25:b0:53d:ed0d:1d14 with SMTP id 2adb3069b0e04-53df00d1ae2mr3023434e87.16.1732733360922;
+        Wed, 27 Nov 2024 10:49:20 -0800 (PST)
+Received: from [127.0.0.1] (85-76-116-93-nat.elisa-mobile.fi. [85.76.116.93])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53dd24812besm2308319e87.121.2024.11.27.10.49.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Nov 2024 10:49:19 -0800 (PST)
+Date: Wed, 27 Nov 2024 20:49:16 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>
+CC: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>,
+ Georgi Djakov <djakov@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Odelu Kukatla <quic_okukatla@quicinc.com>,
+ Mike Tipton <quic_mdtipton@quicinc.com>,
+ Sibi Sankar <quic_sibis@quicinc.com>, linux-arm-msm@vger.kernel.org,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_V6_3/4=5D_dt-bindings=3A_interconnec?=
+ =?US-ASCII?Q?t=3A_Add_generic_compatible_qcom=2Cepss-l3-perf?=
+User-Agent: Thunderbird for Android
+In-Reply-To: <0ba0f4af-5075-4bb1-a7f6-815ef95bbda7@kernel.org>
+References: <20241125174511.45-1-quic_rlaggysh@quicinc.com> <20241125174511.45-4-quic_rlaggysh@quicinc.com> <20241127142304.GA3443205-robh@kernel.org> <zchtx32wtii2mzy2pp4lp4gdaim7w56kih7jcqes4tyhu24r3n@dagazlsdgdcv> <0ba0f4af-5075-4bb1-a7f6-815ef95bbda7@kernel.org>
+Message-ID: <538761B6-5C8D-4600-AB9E-687F91B855FF@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b81cd6bd-4a7e-4032-aa56-843793a0e0c8@kernel.org>
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On Sun, Nov 24, 2024 at 11:52:35AM +0100, Krzysztof Kozlowski wrote:
-> On 24/11/2024 09:49, Karan Sanghavi wrote:
-> > On Tue, Oct 29, 2024 at 08:10:23AM +0100, Krzysztof Kozlowski wrote:
-> >> On Mon, Oct 28, 2024 at 04:44:12PM +0000, Karan Sanghavi wrote:
-> >>> Convert the raspberrypi,bcm2835-power binding to Dt schema
-> >>>
-> >>> Signed-off-by: Karan Sanghavi <karansanghvi98@gmail.com>
-> >>> ---
-> >>> Changes in v4:
-> >>> - Corrected misindentations and random differences.
-> >>> - Link to v3: https://lore.kernel.org/r/20241026-raspberrypi-bcm2835-power-v3-1-6621e075d33f@gmail.com
-> >>
-> >> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >>
-> >> ---
-> >>
-> >> <form letter>
-> >> This is an automated instruction, just in case, because many review tags
-> >> are being ignored. If you know the process, you can skip it (please do
-> >> not feel offended by me posting it here - no bad intentions intended).
-> >> If you do not know the process, here is a short explanation:
-> >>
-> >> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-> >> versions, under or above your Signed-off-by tag. Tag is "received", when
-> >> provided in a message replied to you on the mailing list. Tools like b4
-> >> can help here. However, there's no need to repost patches *only* to add
-> >> the tags. The upstream maintainer will do that for tags received on the
-> >> version they apply.
-> >>
-> >> https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
-> >> </form letter>
-> >>
-> >> Best regards,
-> >> Krzysztof
-> >>
-> > 
-> > Dear Krzysztof,
-> > 
-> > I hope this email finds you well. 
-> > I'm following up on the patch I recently submitted linked below.
-> > https://lore.kernel.org/all/ZxEm-H-PjlQyXeOH@Emma/
-> I don't understand why do you reply to this patch about other patch.
-> Anyway, you got reply there.
+On 27 November 2024 20:27:27 EET, Krzysztof Kozlowski <krzk@kernel=2Eorg> w=
+rote:
+>On 27/11/2024 17:53, Dmitry Baryshkov wrote:
+>> On Wed, Nov 27, 2024 at 08:23:04AM -0600, Rob Herring wrote:
+>>> On Mon, Nov 25, 2024 at 05:45:10PM +0000, Raviteja Laggyshetty wrote:
+>>>> EPSS instance on sc7280, sm8250 SoCs, use PERF_STATE register instead=
+ of
+>>>> REG_L3_VOTE to scale L3 clocks, hence adding a new generic compatible
+>>>> "qcom,epss-l3-perf" for these targets=2E
+>>>
+>>> Is this a h/w difference from prior blocks or you just want to use B=
+=20
+>>> instead of A while the h/w has both A and B? The latter sounds like=20
+>>> driver policy=2E
+>>>
+>>> It is also an ABI break for s/w that didn't understand=20
+>>> qcom,epss-l3-perf=2E
+>>=20
+>> As the bindings keep old compatible strings in addition to the new
+>> qcom,epss-l3-perf, where is the ABI break? Old SW will use old entries,
+>> newer can use either of those=2E
+>No, this change drops qcom,epss-l3 and adds new fallback=2E How old
+>software can work in such case? It's broken=2E
+
+Oh, I see=2E We had a platform-specific overrides for those two=2E Then I =
+think we should completely drop the new qcom,epss-l3-perf idea and follow t=
+he sm8250 / sc7280 example=2E This means compatible =3D "qcom,sa8775p-perf"=
+, "qcom,epss-l3"=2E=20
+
+
 >
-Really sorry to attach the wrong link 
-Please find the corret link below
-https://lore.kernel.org/all/20241028-raspberrypi-bcm2835-power-v4-1-acf44abd45ff@gmail.com/
+>Best regards,
+>Krzysztof
 
-Is there anything more left form my side for this patch as you have given the
-reviewed by tag to it but still it hasn't been applied yet 
-
-
-> Best regards,
-> Krzysztof
-
-Regards,
-Karan.
 
