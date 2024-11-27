@@ -1,97 +1,179 @@
-Return-Path: <devicetree+bounces-125017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125018-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7040C9DA887
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 14:31:18 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80F8F9DA88E
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 14:34:55 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E9147B22A29
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 13:31:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1CE39162270
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 13:34:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE5AE1FCF62;
-	Wed, 27 Nov 2024 13:30:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B9D91FCCEE;
+	Wed, 27 Nov 2024 13:34:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WfO8liPi"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="g4z+tzqW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF16F1FCF4F;
-	Wed, 27 Nov 2024 13:30:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E81FC5B1FB;
+	Wed, 27 Nov 2024 13:34:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732714246; cv=none; b=PuQKrv8mSQUnGbioPodofZeBaB8NjyALas6uPYW6unGeu86uJXEpijY12tL0DGVsIvhP65B5lEF//g2Os9Fsv34BwQSLPmAs8GCuOXw9k8iyZ8Z/HVef8SDfUga0XRrafJYkr1TPgB3b+BbK/jE5RznMLcj2xyLTAgu848O2C30=
+	t=1732714490; cv=none; b=LPaCarnK0K/UUSHdcNZjrw1iG9SV8+4rrgLJJ80f9DY7SqiDpHVRJznx/uswa1ErJkPt8CboI29JILhJmTjP+uEhsHF7cLsOIfITdnS+EVgAYwp8dFRDUzV/l8yN1YZDa9WcIKpYsKLQ6w0ApZJ32HEqfe6ooHVYye6PMf9rNGY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732714246; c=relaxed/simple;
-	bh=tKxq0VITEqUZkJ3SHVjkCHF4Pz+DQP2bD/HDITqaVBc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KGqlkFVDK5btfWrtVngPPZ4cXHExOf8akdQDjqOLTsZ7CRivIKX3S4iMpjZzhZy9YhjpY555GLqj1hnIIwF41AOnshfDtGDC5ggbx2FoSRiR/iZPzf97DDSz2olv1p+RqU7NfuybLrlz6IdpEhfrRy34X/KWZq7vegrfhfeHLEc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WfO8liPi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E829C4CECC;
-	Wed, 27 Nov 2024 13:30:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732714246;
-	bh=tKxq0VITEqUZkJ3SHVjkCHF4Pz+DQP2bD/HDITqaVBc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WfO8liPivxDaeLacERamme8R3cz0ljs9O7E+wuK99QfZvv679a7PcW+yGgRuS0Xzp
-	 YiGYHafllGeYrbsf9L1/xw8zrx6LzS3HKdL5P+R5AZYAhkiiZdi7B26Oh4pt67zLei
-	 skYCSMN/16Ex8xu19GfG0NTlm3IKHndrlg8owMfVRm1UGkT1NoTxw12FtrquteqiqJ
-	 bEAXzH4ajgAWbiUAvt7WhUoVwJ/js4fb1EgtV/bHHo74jLiPMC4LX0Drq5FUCQPc/P
-	 Z1W/kIvR97tMispt3k6KOuI2SBNxwEsP1ayKnNgyoIvwp6MmpGGWEyveHohFEV8KmB
-	 fVCP9tLmbHSJw==
-Date: Wed, 27 Nov 2024 07:30:44 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-renesas-soc@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH v2 1/4] media: dt-bindings: Add property to describe
- CSI-2 C-PHY line orders
-Message-ID: <173271424244.3224145.1716079804054814469.robh@kernel.org>
-References: <20241121134108.2029925-1-niklas.soderlund+renesas@ragnatech.se>
- <20241121134108.2029925-2-niklas.soderlund+renesas@ragnatech.se>
+	s=arc-20240116; t=1732714490; c=relaxed/simple;
+	bh=O5oYtOeSE4rI0DjNjJKhJIfR3k7dbcgXA3hmMsI7WCM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uFgJvdxMo4Rp7nOJlMomHUQFR0dVWcbCVybaJlRP3Co3+C265Fv3QzMM7PeTVC1232XOICeiG1OjEa7oqQEoj7Kj1xgoeyC+lclzrhHFjsxgULfwLlVxX0FHtRh2o5J1kEoq7KlKUlBJuIcqbq5+op7BnybnWx8rATcJoTVsMXs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=g4z+tzqW; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1732714487;
+	bh=O5oYtOeSE4rI0DjNjJKhJIfR3k7dbcgXA3hmMsI7WCM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=g4z+tzqWqcWJhUP9AcGj0/fS1Om5bDHKaAIoWhb1WVhTla7N1+Dsxubp2x09mrslt
+	 /q8eTuAOnJMTozWOrZIPD1BVqUE3adTUg9R4DtrJ0beOjFvE8zNjBWlk1asvdGclJ8
+	 2U1xUDQBwX7NV4w6V6hivvtYbn9ZBRlFfUPX58l/HDWOzdMW5cZHHRVrL1R0D0D9zL
+	 oSV83Q3SWPEs2/YGhK+EqOaoKaf24prwNu74spAKjIQKIbdTPJF5aJUwl/QYvsTLd2
+	 f74+VtnsdZNQClWS/PxXwnPZ7WA10QzPKBkNiYFns4vlsxk5vWttJFhShQ6gBbefht
+	 4avz03QcKj46A==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8C3B517E3700;
+	Wed, 27 Nov 2024 14:34:46 +0100 (CET)
+Message-ID: <6660a681-c02a-443a-a1f2-14af5b4477eb@collabora.com>
+Date: Wed, 27 Nov 2024 14:34:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241121134108.2029925-2-niklas.soderlund+renesas@ragnatech.se>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC v1 14/14] arm64: dts: mediatek: mt7988: add operating-points
+To: Frank Wunderlich <linux@fw-web.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Frank Wunderlich <frank-w@public-files.de>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20241029103937.45852-1-linux@fw-web.de>
+ <20241029103937.45852-15-linux@fw-web.de>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20241029103937.45852-15-linux@fw-web.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-
-On Thu, 21 Nov 2024 14:41:05 +0100, Niklas Söderlund wrote:
-> Each data lane on a CSI-2 C-PHY bus uses three phase encoding and is
-> constructed from three physical wires. The wires are referred to as A, B
-> and C and their default order is ABC. However to ease hardware design
-> the specification allows for the wires to be switched in any order.
+Il 29/10/24 11:39, Frank Wunderlich ha scritto:
+> From: Frank Wunderlich <frank-w@public-files.de>
 > 
-> Add a vendor neutral property to describe the line order used. The
-> property name 'line-orders', the possible values it can be assigned and
-> there names are taken from the MIPI Discovery and Configuration (DisCo)
-> Specification for Imaging.
+> Add operating points defining frequency/voltages of cpu cores.
 > 
-> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 > ---
-> * Changes since v1
-> - Add missing 'items' node.
-> - Improve usage of should and must it the property description as
->   suggested by Sakari, thanks!
-> ---
->  .../bindings/media/video-interfaces.yaml      | 21 +++++++++++++++++++
->  include/dt-bindings/media/video-interfaces.h  |  7 +++++++
->  2 files changed, 28 insertions(+)
+>   arch/arm64/boot/dts/mediatek/mt7988a.dtsi | 45 +++++++++++++++++++++--
+>   1 file changed, 41 insertions(+), 4 deletions(-)
 > 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
+> index e037854666c1..25669d498617 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
+> @@ -16,32 +16,69 @@ cpus {
+>   		#address-cells = <1>;
+>   		#size-cells = <0>;
+>   
+> -		cpu@0 {
+> +		cpu0: cpu@0 {
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Where are those cpuX labels used? I don't see any usage.
+
+>   			compatible = "arm,cortex-a73";
+>   			reg = <0x0>;
+>   			device_type = "cpu";
+>   			enable-method = "psci";
+> +			clocks = <&mcusys CLK_MCU_ARM_DIV_SEL>,
+> +				 <&topckgen CLK_TOP_XTAL>;
+> +			clock-names = "cpu", "intermediate";
+> +			operating-points-v2 = <&cluster0_opp>;
+>   		};
+>   
+> -		cpu@1 {
+> +		cpu1: cpu@1 {
+>   			compatible = "arm,cortex-a73";
+>   			reg = <0x1>;
+>   			device_type = "cpu";
+>   			enable-method = "psci";
+> +			clocks = <&mcusys CLK_MCU_ARM_DIV_SEL>,
+> +				 <&topckgen CLK_TOP_XTAL>;
+> +			clock-names = "cpu", "intermediate";
+> +			operating-points-v2 = <&cluster0_opp>;
+>   		};
+>   
+> -		cpu@2 {
+> +		cpu2: cpu@2 {
+>   			compatible = "arm,cortex-a73";
+>   			reg = <0x2>;
+>   			device_type = "cpu";
+>   			enable-method = "psci";
+> +			clocks = <&mcusys CLK_MCU_ARM_DIV_SEL>,
+> +				 <&topckgen CLK_TOP_XTAL>;
+> +			clock-names = "cpu", "intermediate";
+> +			operating-points-v2 = <&cluster0_opp>;
+>   		};
+>   
+> -		cpu@3 {
+> +		cpu3: cpu@3 {
+>   			compatible = "arm,cortex-a73";
+>   			reg = <0x3>;
+>   			device_type = "cpu";
+>   			enable-method = "psci";
+> +			clocks = <&mcusys CLK_MCU_ARM_DIV_SEL>,
+> +				 <&topckgen CLK_TOP_XTAL>;
+> +			clock-names = "cpu", "intermediate";
+> +			operating-points-v2 = <&cluster0_opp>;
+> +		};
+> +
+> +		cluster0_opp: opp-table-0 {
+> +			compatible = "operating-points-v2";
+> +			opp-shared;
+> +			opp00 {
+
+...But you can also be consistent with other devicetrees and follow the pattern
+for the node names of the OPP entries.
+
+opp-800000000
+opp-1100000000
+...etc
+
+Cheers,
+Angelo
+
+> +				opp-hz = /bits/ 64 <800000000>;
+> +				opp-microvolt = <850000>;
+> +			};
+> +			opp01 {
+> +				opp-hz = /bits/ 64 <1100000000>;
+> +				opp-microvolt = <850000>;
+> +			};
+> +			opp02 {
+> +				opp-hz = /bits/ 64 <1500000000>;
+> +				opp-microvolt = <850000>;
+> +			};
+> +			opp03 {
+> +				opp-hz = /bits/ 64 <1800000000>;
+> +				opp-microvolt = <900000>;
+> +			};
+>   		};
+>   	};
+>   
+
 
 
