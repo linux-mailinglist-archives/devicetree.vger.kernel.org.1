@@ -1,55 +1,40 @@
-Return-Path: <devicetree+bounces-125023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A9E19DA898
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 14:35:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA4E39DA8A2
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 14:38:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 60F3A2846E4
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 13:35:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A78F285248
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 13:38:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FFE11FDE31;
-	Wed, 27 Nov 2024 13:34:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="InYNZXhi"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1E711FCF45;
+	Wed, 27 Nov 2024 13:38:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from freeshell.de (freeshell.de [116.202.128.144])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 523B51FCFF3;
-	Wed, 27 Nov 2024 13:34:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1EF75B1FB;
+	Wed, 27 Nov 2024 13:38:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732714495; cv=none; b=iHxgM1SoXdwvRcRkbL5uNNPkYVZCqra1IYPfe/ILHA8KaVr4zqJsS7YaNLOUf2K5hAfYcXdZxmWA72FkpQ1g9i6o/0q5Pq2gHs+7EafTQ0anuqCSulmv85Tc9h0Zls9XcvUfPe0bIVP2Z7CJz3Y8TIjtLtxh4wjY6CAsvoYXDxE=
+	t=1732714730; cv=none; b=azFnAGt2zHWTxOL+x/wObEAzzQDmloEQ1U7z5IwvYjZix4mlvmS8/BIWiMB4aqlBnNndV+T7k/NnKBAmGL2asBrn0bBvVKg7VcDarxsETnOxskwLlFggRPeuugVjPnBPt2byB6S8Ztm4Y4KuvThWo6cxIFiUTel3aMMArDOkwfs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732714495; c=relaxed/simple;
-	bh=sdoa3Ne+JZfyGrUUlsVEBdOsjkPTBJLSWaehMxJ0ACA=;
+	s=arc-20240116; t=1732714730; c=relaxed/simple;
+	bh=MrYihTpw+6Nw3uevt6KSEV8nm7+0I3/GUhbAKcAZz5U=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rlbUQ29pOBQaGVdCDZImmLeIkDlhjzlU0aMP9DDaL3XUwsk7eC81s3eY5m6KkIx7/hf4YGXgyFJGNrMzQWPATnyccmuOCKWqAbf3AVVFYWrwW64vgO/xPrHFZRz2p/rSnmWXLZKsKFotDjfdOM7KILdbc7tFgriIrXa7JX4SM0s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=InYNZXhi; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1732714491;
-	bh=sdoa3Ne+JZfyGrUUlsVEBdOsjkPTBJLSWaehMxJ0ACA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=InYNZXhiFkr6p53KM3FGah8zfTBO12oNo7UbkyufiWo6tUA/4c3cUHeYWbUGdcKcf
-	 HObY80/yOF2SKr2k6Yzt4cpyyypJPogjOtyeyZAvTxcxTVKlEagVmDtFd9ZzgM+Ms0
-	 E6CpSgPX+PNZxp+X2/PlkLFEpreTIxZxgaUTDpCNhHhq28FxSi068upZUAA4XD6+cW
-	 yPBPMXBVGS0TDkhRyryKcTA+e9FzON5wcaLqT2RL2qdvTzpWaSeHNKUk1RZMvwRwt6
-	 6j5Px9fqg/w3UzRPSjObcQYkXjtZOcBNwub/NVSy1KRQYPEk+7GspJBHwAOuxTyT/J
-	 SKNe/ayVGOz0A==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3BEB117E3700;
-	Wed, 27 Nov 2024 14:34:51 +0100 (CET)
-Message-ID: <28d06e3d-f589-4da8-a7d2-5c0bf263d2e5@collabora.com>
-Date: Wed, 27 Nov 2024 14:34:51 +0100
+	 In-Reply-To:Content-Type; b=sipKPQv7q1YTVDR/OZMdXTw9g3yZaIuWxTkkEPJaMy2LHCHZbtcW2mCo+HnptO0em//TcE7W+QsaH8deXgDKOvhBqYvUWveZeZN0ddqub9f1cvyoG7xOWZH5CA14mOVDfqyQGnGELNjHPD0o95b2vOc/7BIG62C4KbctH24tyyM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+Received: from [IPV6:2605:59c8:31de:bf00:37c2:fe62:c21b:ab46] (unknown [IPv6:2605:59c8:31de:bf00:37c2:fe62:c21b:ab46])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id F2247B4B1EF8;
+	Wed, 27 Nov 2024 14:38:41 +0100 (CET)
+Message-ID: <dd060a05-9428-4af8-85b1-b6baa756490f@freeshell.de>
+Date: Wed, 27 Nov 2024 05:38:39 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,67 +42,80 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC v1 08/14] arm64: dts: mediatek: mt7988: add fixed regulators
- for 1v8 and 3v3
-To: Frank Wunderlich <linux@fw-web.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
-Cc: Frank Wunderlich <frank-w@public-files.de>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-References: <20241029103937.45852-1-linux@fw-web.de>
- <20241029103937.45852-9-linux@fw-web.de>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v3 1/1] riscv: dts: starfive: jh7110-pine64-star64: enable
+ usb0 host function
+To: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+ Henry Bell <dmoo_dv@protonmail.com>
+Cc: Conor Dooley <conor@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241126073836.17208-1-e@freeshell.de>
+ <20241126073836.17208-2-e@freeshell.de>
+ <CAJM55Z8---o6_ZxeyUu_M74LA_zKfeksBmRGFkm2C66hRJbPug@mail.gmail.com>
 Content-Language: en-US
-In-Reply-To: <20241029103937.45852-9-linux@fw-web.de>
+From: E Shattow <e@freeshell.de>
+In-Reply-To: <CAJM55Z8---o6_ZxeyUu_M74LA_zKfeksBmRGFkm2C66hRJbPug@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Il 29/10/24 11:39, Frank Wunderlich ha scritto:
-> From: Frank Wunderlich <frank-w@public-files.de>
-> 
-> Add regulator nodes used for mmc.
-> 
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 
-That's a board specific thing, not a SoC one; please add it to your board dts
-instead.
+On 11/27/24 05:23, Emil Renner Berthing wrote:
+> E Shattow wrote:
+>> Pine64 Star64 set JH7110 on-chip USB host mode and vbus pin assignment
+> Here I'd like it explained that the Star64 board routes 1 of the 4 USB-A ports
+> to USB0 on the SoC rather than to the USB 3.0 <-> PCIe chip.
+>
+> (Confusing for users that 1 of the 4 similar ports only does USB 2.0, but
+> that's too late to change and not relevant here)
+>
+> With that fixed:
+> Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 
-Cheers,
-Angelo
 
-> ---
->   arch/arm64/boot/dts/mediatek/mt7988a.dtsi | 18 ++++++++++++++++++
->   1 file changed, 18 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
-> index 639c307b9984..7371cd80a4ff 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
-> @@ -62,6 +62,24 @@ psci {
->   		method = "smc";
->   	};
->   
-> +	reg_1p8v: regulator-1p8v {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "fixed-1.8V";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
-> +
-> +	reg_3p3v: regulator-3p3v {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "fixed-3.3V";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
-> +
->   	soc {
->   		compatible = "simple-bus";
->   		ranges;
+There is no (VL805) USB 3.0 <-> PCIe chip on Star64;  All 4 USB-A ports 
+route to USB0 of the SoC. What does not exist I did not write about in 
+the cover letter. I will expand the description in the commit message. 
+Thank you!  -E
 
+
+>> Signed-off-by: E Shattow <e@freeshell.de>
+>> ---
+>>   .../boot/dts/starfive/jh7110-pine64-star64.dts | 18 +++++++++++++++++-
+>>   1 file changed, 17 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts b/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
+>> index fe4a490ecc61..b764d4d92fd9 100644
+>> --- a/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
+>> +++ b/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
+>> @@ -80,7 +80,23 @@ &spi0 {
+>>   	status = "okay";
+>>   };
+>>
+>> +&sysgpio {
+>> +	usb0_pins: usb0-0 {
+>> +		vbus-pins {
+>> +			pinmux = <GPIOMUX(25,  GPOUT_SYS_USB_DRIVE_VBUS,
+>> +					       GPOEN_ENABLE,
+>> +					       GPI_NONE)>;
+>> +			bias-disable;
+>> +			input-disable;
+>> +			input-schmitt-disable;
+>> +			slew-rate = <0>;
+>> +		};
+>> +	};
+>> +};
+>> +
+>>   &usb0 {
+>> -	dr_mode = "peripheral";
+>> +	dr_mode = "host";
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&usb0_pins>;
+>>   	status = "okay";
+>>   };
+>> --
+>> 2.45.2
+>>
 
