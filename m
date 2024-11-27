@@ -1,151 +1,138 @@
-Return-Path: <devicetree+bounces-125112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125113-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DF609DABB6
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 17:24:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E90C99DABBC
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 17:24:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1DF58165340
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 16:24:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F2A81655CA
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 16:24:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 958A71FE45B;
-	Wed, 27 Nov 2024 16:24:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17281200BA7;
+	Wed, 27 Nov 2024 16:24:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iEdy+yMw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wkTsPrSE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62D962CCC0;
-	Wed, 27 Nov 2024 16:24:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41F8F200BAA
+	for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 16:24:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732724643; cv=none; b=iQp1xDT+pU3APkMRuxyzClGtHuKEGxemfR9Rbtz9TJmc/mSLImhPtv4+kx3AxEbebPeCZK1srI9mS+gQ/NpOmrwyn8GsX4efuBKPwt/2+uZQpMhyoXQ27U01tyecNX881aByfzLn/UtfotTxlIh18BYFoLjt8E+xAb24q7fP7Tw=
+	t=1732724654; cv=none; b=tt9IU7H4Gb1yh929rFSU0i+h+UBtwz94nwNm/1uiO6tZ2uHgl4yYeQP8Mo+9i6kWirtyY98Qcdt6tlCOQNolKawSXOygOkKE+ZrrwVX7kMMZ4Q5X0w36IouxqZkY/I8h34rLDBQIysPP4gZNrrpKtCsFZ0D1ZtNfBUK0RiJaGRM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732724643; c=relaxed/simple;
-	bh=udtlpz3tEcbApivtbF+WFTwB2TmLD0gnoCjWl9TRfMo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h3y6hKFJF1E9+IH1XwVvhry46+suZCiG0d/mCcrYQ4zWzRhHUD/5o9YkZFbS191cGDM8qorQd7cW4CS71R/ypzAKHkomkQrnUgDNzpv6hAO2LiTYxWgCG00pgjHn4as+hw9DUmc0KjP9LaFq+HUL294nsB6SXVy73H+43uilf28=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iEdy+yMw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36A38C4CECC;
-	Wed, 27 Nov 2024 16:24:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732724643;
-	bh=udtlpz3tEcbApivtbF+WFTwB2TmLD0gnoCjWl9TRfMo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iEdy+yMwJNPcRsJ3zI0ESXkzdU3UZahNeW8N6y+xU8hSJhMM9cJQ2SchBQoNyf9LH
-	 WopgHitWxqX131k+5F8HTJbHlkQ9Be/Hbs5lIyaeSRVWP7Lp81UKhts6L/Z1MirigU
-	 L0PhLJs6YvAdkZ3WI9/6R9R/0QvZ6/AMFxlgJnBXYVyNcpKlEY4IarmOhxj+7pGt2y
-	 yLdi+TnJS74VgH/cF1Kok2pjlhAWr4M0MN+ru/T2D1I47apsXjl0FvQGoBrDp2V4dJ
-	 b6SbC3kE+VB6+5XeIixYsbMnJItReDz+22UbvrhyYJjhPcHBM1jpNky/+Zo5WrWmB7
-	 EbLGbYUOvyzSA==
-Date: Wed, 27 Nov 2024 16:23:58 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, quentin.schulz@cherry.de,
-	sebastian.reichel@collabora.com, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	dse@thaumatec.com, Heiko Stuebner <heiko.stuebner@cherry.de>
-Subject: Re: [PATCH v4 1/2] dt-bindings: phy: Add Rockchip MIPI C-/D-PHY
- schema
-Message-ID: <20241127-impromptu-tiptoeing-6c1b9ed2c93f@spud>
-References: <20241126131736.465111-1-heiko@sntech.de>
- <20241126131736.465111-2-heiko@sntech.de>
- <20241126-pastrami-gusty-8b9df32ae00c@spud>
- <2213231.Mh6RI2rZIc@diego>
+	s=arc-20240116; t=1732724654; c=relaxed/simple;
+	bh=rKda9Awu4irodPKAZZW8j0P3UYNrlv+gac9bpLX6Xnk=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=XWo7OhHbw/N8SzzyYmRCiGOpsRp9TaesU6SS2tfupqlWzCuAxJ/UJZYB2s9rZsUke1VrKCgaiSj+Qn54G8udGULrQybMY7+nVUh+dakbf44t9YeoaGDLy4VuHj9uTQJClVVw9/Iq6B6Yp0mplriSNlLhFch8neAojI3k/qWqgOE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wkTsPrSE; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-434a766b475so16998785e9.1
+        for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 08:24:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1732724650; x=1733329450; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=W3ci6YCIiDufTlH6QWOH+RcWY/SBARvhjUkFISOP+Eg=;
+        b=wkTsPrSEQ20h6aP0HOoF/eQMNlrO/PBotYi55eoy0YzYFlPycEfeKlMiEhXrOiOw9H
+         kFksT3vqU0zpUGQJXUB++m7fPwbmwclZ4DNSxdGP5eBoOzRDCsE1Vf8nArcrslNwA++/
+         9NUXL0qtqmfYjlx6E8fbkbutqepwQfIyIsaWoQJSWdT+Nl1TxVeSbPfk4XBqlBgPJ/ep
+         R+W5yBkF8kdrG5K3+uRA4nmtmOaEde8Q136HkBsLfs8+jKVOr3bcB3kgCfGIw00CldcK
+         +XdxZUL/Ytk3WHNLPGVpz9wCGcP3ZLTFzDl07VmRtSADJI9Eok9agp5y08iEsSxEoxHk
+         wbsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732724650; x=1733329450;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=W3ci6YCIiDufTlH6QWOH+RcWY/SBARvhjUkFISOP+Eg=;
+        b=J4RxVgfLXxVZj8Gnba7laQrXXyiwYLtJjrAl6uzAobUPydUBjlcu7RqqMYaoknhJFd
+         sxJWV2NdpVHp4r1UNhdcQ9bGvOGd2l6QB/7Y2v5FkafioFBjLOglcyqUDlTpnNnkQsX3
+         4A7N1sSU2vNHV+eZnH52iTIQGZvYjQ/uAexrQ1yozubcEECqSw6l9LDjz5SZh5mpFdv+
+         WqmaCv9WTLP1gsYlsJ1MmDQ0BF7YbmJauLwd1f5faR89wRH66GQsQbnOLOnE4Am6P9Nu
+         bAxKN0lCrWHrxSqaOzSttkr6bsYVoUBXfWcXPLUut94cJlqYxWkj+N+LCFtetoSp8Y6d
+         GGGA==
+X-Forwarded-Encrypted: i=1; AJvYcCXmmX24hj0qOUJYyvDMNjprqnx66qyUbl74sHKnf8buaMZskLSZnIFyw6mOibyAasmtccOrg019z6hh@vger.kernel.org
+X-Gm-Message-State: AOJu0YyKieYUKTLAPf3PqrEOq5SzY//mxW9DK6XvI8M4J9xqVHKk7EM8
+	yKUq5Gjs/HJXO/spTso8fMApDoSVIFh6SBQWwKGzvm5Mb3UiCbv4ndNl68Fqzg0=
+X-Gm-Gg: ASbGnctCfliK+Edx2vtnjZ6sOWcHScPdHmlMgPjoBRQAjPXLOi3FaPSJG2I6a4Cip5y
+	jKfkrYysc0HbCudV3Tg8rKVoGTqUdnAjSsiSkmfe+X4oLESIKpI+6dXmVyT5HbISAllNzt1XWm4
+	Q4fQEe30XpDwMKyBuJt063M9oaNdFWBYslUMvpeloWFu6Ku+LrqY7A6jXidcXYFMzgbuJG88MOt
+	gOmOATBeLVMwwx5j7HLPZLi1nhHEQszrNPRekB+g5fw3zdCyd/GSA==
+X-Google-Smtp-Source: AGHT+IGDZztPo405KuhE/5HQpdEcc6G4U1hi5a0UqN/AZl+cMPyQNrZOeFD27R5rS38JBrkH0dwofA==
+X-Received: by 2002:a05:600c:354e:b0:434:a684:9b1 with SMTP id 5b1f17b1804b1-434a9dbbfc6mr34223735e9.4.1732724650556;
+        Wed, 27 Nov 2024 08:24:10 -0800 (PST)
+Received: from draszik.lan ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3825fbc3defsm17311830f8f.70.2024.11.27.08.24.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Nov 2024 08:24:10 -0800 (PST)
+Message-ID: <813713d8ac62be0782bcf36d1d23bec5f4a3c08e.camel@linaro.org>
+Subject: Re: [PATCH 3/9] dt-bindings: phy: samsung,usb3-drd-phy: gs101:
+ require Type-C properties
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+ <kishon@kernel.org>,  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,  Marek Szyprowski
+ <m.szyprowski@samsung.com>, Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Peter Griffin
+ <peter.griffin@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>, Sam
+ Protsenko <semen.protsenko@linaro.org>, Will McVicker
+ <willmcvicker@google.com>, Roy Luo <royluo@google.com>,
+ kernel-team@android.com,  linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,  linux-samsung-soc@vger.kernel.org
+Date: Wed, 27 Nov 2024 16:24:08 +0000
+In-Reply-To: <20241127-majorette-decorated-44dc1e7dd121@spud>
+References: 
+	<20241127-gs101-phy-lanes-orientation-phy-v1-0-1b7fce24960b@linaro.org>
+	 <20241127-gs101-phy-lanes-orientation-phy-v1-3-1b7fce24960b@linaro.org>
+	 <20241127-majorette-decorated-44dc1e7dd121@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.1-4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="/LUGouHf4SBUTfca"
-Content-Disposition: inline
-In-Reply-To: <2213231.Mh6RI2rZIc@diego>
 
+Hi Conor,
 
---/LUGouHf4SBUTfca
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Nov 26, 2024 at 07:38:35PM +0100, Heiko St=FCbner wrote:
-> Hey Conor,
->=20
-> Am Dienstag, 26. November 2024, 18:44:14 CET schrieb Conor Dooley:
-> > On Tue, Nov 26, 2024 at 02:17:34PM +0100, Heiko Stuebner wrote:
-> > > From: Heiko Stuebner <heiko.stuebner@cherry.de>
-> > >=20
-> > > Add dt-binding schema for the MIPI C-/D-PHY found on
-> > > Rockchip RK3588 SoCs.
-> > >=20
-> > > Tested-by: Daniel Semkowicz <dse@thaumatec.com>
-> > > Tested-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > > Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
-> > > ---
-> > >  .../phy/rockchip,rk3588-mipi-dcphy.yaml       | 87 +++++++++++++++++=
-++
-> > >  1 file changed, 87 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/phy/rockchip,rk=
-3588-mipi-dcphy.yaml
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/phy/rockchip,rk3588-mi=
-pi-dcphy.yaml b/Documentation/devicetree/bindings/phy/rockchip,rk3588-mipi-=
-dcphy.yaml
-> > > new file mode 100644
-> > > index 000000000000..c8ff5ba22a86
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/phy/rockchip,rk3588-mipi-dcph=
-y.yaml
-> > > @@ -0,0 +1,87 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/phy/rockchip,rk3588-mipi-dcphy.ya=
-ml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Rockchip MIPI D-/C-PHY with Samsung IP block
-> > > +
-> > > +maintainers:
-> > > +  - Guochun Huang <hero.huang@rock-chips.com>
-> > > +  - Heiko Stuebner <heiko@sntech.de>
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - rockchip,rk3576-mipi-dcphy
-> > > +      - rockchip,rk3588-mipi-dcphy
+On Wed, 2024-11-27 at 16:00 +0000, Conor Dooley wrote:
+> On Wed, Nov 27, 2024 at 10:58:13AM +0000, Andr=C3=A9 Draszik wrote:
+> > The USB PHY on gs101 needs to be configured based on the orientation of
+> > the connector. For that the DTS needs a link between the phy's port and
+> > a TCPCi, and we'll need to inform the phy driver that it should handle
+> > the orientation (register a handler).
 > >=20
-> > How many phys do each of these SoCs have?
+> > Update the schema to enforce that by requiring the orientation-switch
+> > and port properties (on gs101 only).
+> >=20
+> > Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
 >=20
-> - rk3588 has two - each with a separate GRF for additional settings [0]
-> - rk3576 has one
->=20
->=20
-> Heiko
->=20
-> [0] https://lore.kernel.org/lkml/D5F5C1RWVHG5.TSHPO29TXYEF@cknow.org/T/
-> The register layout in each GRF area is identical, but each DC-PHY gets
-> its own separate GRF io-mem block.
+> What is your driver doing if these are not provided? New required
+> properties are an ABI break after all and I don't see a mention of how
+> you're handling it here.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+This is hooked-in in patch 8 of this series in
+exynos5_usbdrd_setup_notifiers(). The new behaviour is gated off
 
---/LUGouHf4SBUTfca
-Content-Type: application/pgp-signature; name="signature.asc"
+    if (device_property_present(phy_drd->dev, "orientation-switch")) {
+        ...
 
------BEGIN PGP SIGNATURE-----
+Without that property (i.e. old DTS or !gs101), the driver will behave as
+before (meaning for gs101 it will work in SS mode in one orientation only).
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ0dHnQAKCRB4tDGHoIJi
-0sKHAQDyRrsdu04AIYeIKa/yoWGVW61Dgmc8zuF3PJhupjpSvwD/aP5gCI9OX1aZ
-S3VqhYXp9SVFwvFVnquSYL7+DHuA3gc=
-=nL8k
------END PGP SIGNATURE-----
+Does that address your concern?
 
---/LUGouHf4SBUTfca--
+Cheers,
+Andre'
+
 
