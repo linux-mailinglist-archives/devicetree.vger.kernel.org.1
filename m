@@ -1,170 +1,145 @@
-Return-Path: <devicetree+bounces-124873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD4DC9DA3CF
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 09:21:34 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FE9E9DA3D6
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 09:24:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 69537B2624F
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 08:21:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E4C38B21398
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 08:24:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE5E8185B73;
-	Wed, 27 Nov 2024 08:21:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B3571865E2;
+	Wed, 27 Nov 2024 08:24:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="np+L1VUS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GoutpDfo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FBEA17BB21;
-	Wed, 27 Nov 2024 08:21:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8478817BB21;
+	Wed, 27 Nov 2024 08:24:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732695689; cv=none; b=U2mIxm9dsLK1e3YCBNR8nGLnS1sSFwyDwbG1MHRnPLbiyYVXna/psm8eICXERB2C9tYofU2H5dFOol4bUoDcbFWLj1NKMd6vvTguLiBwzYMfj8I9pE9r/nTmiFf7O46C5IdpkbuNuIdSrv8N4z8SWXfxGZXjblj+23FeiLrE/p0=
+	t=1732695870; cv=none; b=OpskR1W/AT67rkZ7duoLGMmXNjlm1V0zdpuiuJ/iMsXE0lNhlI6jonhVbc/YtrMwG+Ef8BWbBIf9Z9Nhquv8UwZJrmq/Y+DM0FGWxht9LUoV/SQ8SeLn+N2HbGIJARiuzozsbpxJPsMV/twoGTSwgHaJLCWTIFa70rV4+j8Ct7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732695689; c=relaxed/simple;
-	bh=stSSnFTtoJHg8BqGvfNhevnOn2ndUoEebm8YWcO5spM=;
+	s=arc-20240116; t=1732695870; c=relaxed/simple;
+	bh=6PxgdC42a8ZvRFETs70k63iKhzy70aAH+Rwgk6+gxnw=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HutAv6IrS7jT/9mz7PlU74oo5L36J2Suo5nLYoD3tSz0KRvjE91GY5F7hEwXMnQyeSx5onXUw4NWFLc9XIy3eBxJjflsszXQoJ4swuHmfNBkIQGwxClN1qapZRgjnxBDrp4G/xiHZ+b+tRJmbgu/Rpxcw8/7ii7SLJZ5jG2cA5Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=np+L1VUS; arc=none smtp.client-ip=209.85.219.172
+	 To:Cc:Content-Type; b=bRxu5QOpxda+6XuYVBBJ2hg1ryqVSwiakI9d4v+RLeBCVbMwm37xds31WN+y8TulLduJC32q20dvDX4LL01PajurPGElWMMOINjs1g5JRyo3izTybd8gKPqId785uu13tgFowY/imvu7Og0VzLDm+TqGFtCYdWe/MnqWvOIYlbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GoutpDfo; arc=none smtp.client-ip=209.85.219.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-e38232fc4d8so5690763276.2;
-        Wed, 27 Nov 2024 00:21:27 -0800 (PST)
+Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-e3836b1ed44so448467276.1;
+        Wed, 27 Nov 2024 00:24:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1732695686; x=1733300486; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LXx+dVC/bMbMySJqkxvau2EzlELyuHvZH+PJDlKKiNk=;
-        b=np+L1VUSE9UJvfqeABBBElaJvQja+dmPswBsNsZhQhHZRXONRCR1oJD+N05NGiBHux
-         8VdWuIekERVtrJG2+Bw7llpoalgU7icyn2X0ZEBbaiRm0oHzf6bL6GYjzm5gIcAqsXQR
-         /U2MiW3qGoxxoRwP2ZP30dtjvPylRFKuh4EPi5RpYfXvy0bu6i6MOL3GmirHLBzzQbeQ
-         TR9XoiVyL32pnJABnSBnXc4/0r2TEGeQQLqc7fxU23gIhM5xYS1h1BVGddEIB+9f4Z46
-         2YyNPRo2GPRuv+SeVuo4eRUSGGFXYN1Rg8eDwjIIHw8tLpTw35r8KZUVhXaIdg1JmVf2
-         xNpA==
+        d=gmail.com; s=20230601; t=1732695867; x=1733300667; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=lOqsn9U9UwR9ECKJB886+Y24JEgcO/1OMJG6KFsH084=;
+        b=GoutpDfo19P/OXa0dT6jTbvKa4p26TQ943VCzQA2nX8ojFPpmP9xF36ikBoBczwwkT
+         /EmCQDVw/3t4k5Dqq0mlx1WrtAxRXgrxIEduQu7Lg4kXS2p2uzqBao2+eJ0hl+p+e7dO
+         Obp/L6/gidBWHis2xvsmjxGuZb6XPHPZAo6CuIvBIZK49f+7ue9GfGQazW89g+522DCo
+         chvx8hWECdbbYE7XCC+cJX5qbUxmDI/cR48crNN10NDNQ1Bc7fEeZXbaD464VfKrq2ql
+         Bro1HmG/+x/O1qvemjIgchtTJPP/j/Ul1ILLVpFiObmAxSLEq45Lm/0SeXhAdRgZqyhA
+         0LGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732695686; x=1733300486;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LXx+dVC/bMbMySJqkxvau2EzlELyuHvZH+PJDlKKiNk=;
-        b=U120C/uAuuMnZ5tvFX0ayz9bz3N4hmC85YkKX/AWwxXQhJr3sbzYapMKNY5jQt5ja4
-         YvRQWMjMvWWvN6g6z5ZZBARJzJzv3RLMOISYNabZHI1TkZN9gQclNLjm6iP2YBLcYDiZ
-         hC0M4H8uVsro9rsXhgLhkV8b82ZlmMEoGuoE4rELNCsumGZtHhBcGeE/kd8auljVJz0V
-         UtKrDaWIwBv5X7bTPeir7w9TCA2U6Iu6mSfZQ8yvu9lNZ008u2wQtGsVdxNi6Prp+rj7
-         BocBcZOrht/00Ywj2mnrklA8fy2rGD7+1JMI77jHuX6AkDr8WN1ctUE+MCk7D1OZdfMD
-         22mg==
-X-Forwarded-Encrypted: i=1; AJvYcCU0dqiXgXP16eYc+Scoc8EPEgpJOe3i39233Oqc7lSzad0lZsBhQ452YSmOu4yxA+kngpAocQ6oxRDE@vger.kernel.org, AJvYcCU2zoDzoxQBcKYYM9LSGyrDrRuuUyiuts41SjXFwNnuvNM63LhgkY7NUP8SuiBnio6hLSj4LtV4Og0C@vger.kernel.org, AJvYcCWKFE2eRA1Zqdl5vEeJsNYk/8iOL+xGF+G/0txjf9YyVyBQQObFC2eMBMjLvGk7FKKCgs3e1LO6BI5yJxFH@vger.kernel.org
-X-Gm-Message-State: AOJu0YxoqfsnraG4ZpUps0Cr8KKO60ycLfsXTHPXqoXbK/cBYPeee15o
-	vVQndHOPSN+42mdzrUzQnOV9kaV9BQlzKTsVMhOltDEYwHHHviLYWJHmAcybIkv8P5H21O4kPZy
-	fkscH/OowJ2zjXx2U7K/kK/H2gY4=
-X-Gm-Gg: ASbGnct75szYswTfn1Pf5M2M5g5ZRXR3BQnNy1pbXUqa9QEIl+l5A5PyTDHn7Fe8cSM
-	C4durrFYCFOopSmySdUB5MgvxbiWRcHupCmREjOklI8nuqD2+8SS8Tn6Y0MH6pIs=
-X-Google-Smtp-Source: AGHT+IEKPD8zeEXnQhDGjU08izfyjaPh9mW6eUsQmF+VL7kvEeC8+Cs3bH4LLV81hmpuN/ogXjymN3kPibAGVGCWNM8=
-X-Received: by 2002:a05:6902:210e:b0:e22:6a94:f22f with SMTP id
- 3f1490d57ef6-e395b8c1eb5mr2083679276.28.1732695686164; Wed, 27 Nov 2024
- 00:21:26 -0800 (PST)
+        d=1e100.net; s=20230601; t=1732695867; x=1733300667;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lOqsn9U9UwR9ECKJB886+Y24JEgcO/1OMJG6KFsH084=;
+        b=DrwIRoGa6IMGSApl/qPmguyZc7lCMxxt4F4oKGf2YJ47F2pwUj7sxRsAOGUmtTlXFC
+         08/GVbyrmJvF0ur9B9NaOEad4WaZNiMa+hvm23GiWpjNcljNNq5DJzImY0/iW26knLbV
+         gSneQiomVkjiSnhNyxcz7E8ZoDiJxKV4Zh+7IBBSqFGJRTnIaGou/7W46UPbw6qfY26F
+         Z/7/C5afYEHMz9qpRTDRTFAI6I+egxyf5rMDxEQDvJXpY4Kmrg49hxraKVSfGREtZImS
+         EVTv6M+xel5L4yfjoDkfNT68roKumYv2MQCgJvtfEj18MO6wOI5zYPepx61KrpssGqLe
+         2G4A==
+X-Forwarded-Encrypted: i=1; AJvYcCWJn10ztbmyIZj9aJh5LJGIw2Zp+x4AAdeiTqVgMwNA+GfY3u86z8GpbiRp1FfLe7Nx5mJ5GCz3vbWj@vger.kernel.org, AJvYcCWgUFp7D7uTIMjcQA0R872uaqhrQeMYKHOTn/+hK2s4S29APvb/lj+N+NitrBMGlZiPAl7K3/LvAx0+kxKC@vger.kernel.org, AJvYcCX72EUOU+O1+6cko05TBH+RRkCuE7m17du6o2AsElxgxKmI/oJAL3eYsxD/YlCE641hQW4/sNn9GwWberc=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyA23tPfn8v3Gfm8a6za5PfwUHWXP6Eh8/4KitdOpl/RGxI4AKe
+	NLLjwjn46kp+twrWtI/7cDsm2uDFAHdPIqUqOZtxn982zGBqCX/TQAwQj7AL+2/lFmG0bc0QCni
+	HaXH47f8Z8+e/ju6p6JFONBLJ34pMtw==
+X-Gm-Gg: ASbGncu1SAU8rm4Lt/UK/ufE0KwFogblaoO1cJsfXO7u8Uw7uHjE5ESzny2S3uwSIIb
+	UVWD+H7UzkUQJAAX3UYtRZFRKd9oBK0hW
+X-Google-Smtp-Source: AGHT+IE7WQ4zcWjkTsHj3YU6P5a3zfrxQl6S9zfO+CZjireFyD7ogJ24uCCbFBJtrFm5m1j/xcyE0rDoDRhRHJhalAM=
+X-Received: by 2002:a05:6902:91e:b0:e35:ddad:5ab0 with SMTP id
+ 3f1490d57ef6-e395af12b3dmr1823834276.18.1732695867370; Wed, 27 Nov 2024
+ 00:24:27 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241126074005.546447-1-tmyu0@nuvoton.com> <20241126074005.546447-2-tmyu0@nuvoton.com>
- <20241126-shimmer-such-35cf44076981@spud>
-In-Reply-To: <20241126-shimmer-such-35cf44076981@spud>
-From: Ming Yu <a0282524688@gmail.com>
-Date: Wed, 27 Nov 2024 16:21:14 +0800
-Message-ID: <CAOoeyxUXYU4rMxku62CnS6BPNZ4shm5t4R_it63JTVsT0-Nrnw@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] dt-bindings: iio: temperature: Add support for NCT7718W
-To: Conor Dooley <conor@kernel.org>
-Cc: tmyu0@nuvoton.com, jic23@kernel.org, lars@metafoo.de, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, cmo@melexis.com, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
+References: <20241126-z2-v1-0-c43c4cc6200d@gmail.com> <20241126-z2-v1-2-c43c4cc6200d@gmail.com>
+ <Z0aCSBNEAJlgNIAI@google.com>
+In-Reply-To: <Z0aCSBNEAJlgNIAI@google.com>
+From: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Date: Wed, 27 Nov 2024 09:24:16 +0100
+Message-ID: <CAMT+MTT0oiODONgEipLuAaZyzD-YyM8mbAcRsZKn8N4E326kMw@mail.gmail.com>
+Subject: Re: [PATCH 2/4] input: apple_z2: Add a driver for Apple Z2 touchscreens
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Henrik Rydberg <rydberg@bitmath.org>, asahi@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Janne Grunau <j@jannau.net>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Dear Conor,
+On Wed, 27 Nov 2024 at 03:22, Dmitry Torokhov <dmitry.torokhov@gmail.com> wrote:
+> > +     u16 checksum;
+>
+> Does this need endianness annotation? It is being sent to the device...
 
-Thank you for your comments,
-I will make the modifications in the next patch.
+Both host and device are always little endian, and this whole thing is
+using a bespoke Apple protocol, so is unlikely to ever be seen on a BE
+machine. But i am not opposed to adding endianness handling.
 
-Best regards,
-Ming.
+> > +             slot_valid = fingers[i].state == APPLE_Z2_TOUCH_STARTED ||
+> > +                          fingers[i].state == APPLE_Z2_TOUCH_MOVED;
+> > +             input_mt_slot(z2->input_dev, slot);
+> > +             input_mt_report_slot_state(z2->input_dev, MT_TOOL_FINGER, slot_valid);
+> > +             if (!slot_valid)
+> > +                     continue;
+>
+> Shorter form:
+>
+>                 if (!input_mt_report_slot_state(...))
+>                         continue;
 
-Conor Dooley <conor@kernel.org> =E6=96=BC 2024=E5=B9=B411=E6=9C=8827=E6=97=
-=A5 =E9=80=B1=E4=B8=89 =E4=B8=8A=E5=8D=881:58=E5=AF=AB=E9=81=93=EF=BC=9A
+Sorry, but i fail to see how that is shorter, i am setting the slot state to
+slot_valid, which is being computed above, so, why not just reuse
+that instead of fetching it from input's slot state?
+
+> > +     ack_xfer.tx_buf = int_ack;
+> > +     ack_xfer.rx_buf = ack_rsp;
 >
-> On Tue, Nov 26, 2024 at 03:40:04PM +0800, Ming Yu wrote:
-> > Add devicetree binding document for Nuvoton NCT7718W thermal sensor.
-> >
-> > Signed-off-by: Ming Yu <tmyu0@nuvoton.com>
-> > ---
-> >  .../iio/temperature/nuvoton,nct7718.yaml      | 44 +++++++++++++++++++
-> >  MAINTAINERS                                   |  6 +++
-> >  2 files changed, 50 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/iio/temperature/n=
-uvoton,nct7718.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/iio/temperature/nuvoton,=
-nct7718.yaml b/Documentation/devicetree/bindings/iio/temperature/nuvoton,nc=
-t7718.yaml
-> > new file mode 100644
-> > index 000000000000..a3573e3d454d
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/iio/temperature/nuvoton,nct7718=
-.yaml
-> > @@ -0,0 +1,44 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/iio/temperature/nuvoton,nct7718.yam=
-l#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Nuvoton NCT7718W Thermal Sensor IC
-> > +
-> > +maintainers:
-> > +  - Ming Yu <tmyu0@nuvoton.com>
-> > +
-> > +description:
-> > +  https://www.nuvoton.com/resource-files/Nuvoton_NCT7718W_Datasheet_V1=
-1.pdf
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: nuvoton,nct7718
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
+> I think these buffers need to be DMA-safe.
+
+Do they? Our spi controller is not capable of doing DMA (yet?)
+and instead copies everything into a fifo. But even if it was capable,
+wouldn't that be the controller driver's responsibility to dma-map them?
+
+> > +             if (fw->size - fw_idx < 8) {
+> > +                     dev_err(&z2->spidev->dev, "firmware malformed");
 >
-> Please add the vdd supply as a required property.
+> Maybe check this before uploading half of it?
+
+That would be an extra pass though the firmware file, and the device
+is okay with getting reset after a partial firmware upload, there is no
+onboard storage that can be corrupted, and we fully reset it on each
+boot (or even more often) anyway.
+
+> > +     error = apple_z2_boot(z2);
 >
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    i2c {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        temp-sensor@4c {
->
-> The generic node name is actually temperature-sensor.
->
-> Thanks,
-> Conor.
+> Why can't we wait for the boot in probe()? We can mark the driver as
+> preferring asynchronous probe to not delay the overall boot process.
+
+A comment on previous version of this submission asked not to load
+firmware in probe callback, since the fs may be unavailable at that point.
+
+Ack on all other comments, will be fixed for v2.
 
