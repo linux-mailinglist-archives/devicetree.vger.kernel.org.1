@@ -1,150 +1,122 @@
-Return-Path: <devicetree+bounces-125015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52DB29DA867
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 14:24:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E90CD9DA869
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 14:24:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D6EE9B21B97
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 13:23:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8CA9E282196
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 13:24:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E469C1FCF55;
-	Wed, 27 Nov 2024 13:23:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C11B1FCF7D;
+	Wed, 27 Nov 2024 13:23:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="knp5gxrE"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Z1by+KWf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F30B11FAC5F
-	for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 13:23:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 685DE1FAC5F;
+	Wed, 27 Nov 2024 13:23:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732713832; cv=none; b=fHkwrKdraca8qdUqoudiFWivEH2STMSIG6oDOJcoRMaNEDV3D9SQfTguvzdNLk0NMdju8R5vp1T1Tu858u8s1RA6gRjZ7xU49xuUCbwE0t2sgxH8kvV3bTkXtMXdnLr7wp2OUrv/1oDJwH7B+bBh6KHkbQmxwup1nhXTMstJUdI=
+	t=1732713836; cv=none; b=UZ2/kqKCxPrr5oRcwRb5iobV7/2suQR9KdR46JZMiUOC1CD2WSZQlArcUnMLjRuyiMQlTDxYVAIDC8bbEcNEnU5y5lXoBu7alcRilI4pRTrkElHVhb2i3fgpRnkecSo95/ty+REyra1bWa31Br6L1Xc6AqB3eu9KCxQlDi7AzqM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732713832; c=relaxed/simple;
-	bh=qtxiBUJrSqg0i3oZn3/EBpNkSvaRXXxPaeCDhN9LRp4=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GcCJcs/4ZWz5xstAZh0FYI4t1JyQgE50rl5+6M7Aji83nS16nb3y1ZOgLwUh40iSDRO/HXZ7QwuMruv+40cl7OfXvkBIZi+9gKSQxOdktyaHrX5TZr6nK6HXTF2p1Sq8tiuJePRZPb2OvxP4koxqyLjIuO5hXBbmd2K10iY+3Lc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=knp5gxrE; arc=none smtp.client-ip=185.125.188.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-ot1-f69.google.com (mail-ot1-f69.google.com [209.85.210.69])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	s=arc-20240116; t=1732713836; c=relaxed/simple;
+	bh=4PWf5BX25DlYJv4Gy2uPbPq/angyB6Ks1Q7dI2dA/K4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dLwYZpmhBDeiqvC5QyhJSNPKj/X1px/PX+CiTficvH10/csG+XLX1z/8dwmFSYaJ1Vh6b6B+PCSoQb2q/l4pQZ105us1lXZcvdQJNJvRFonxGmD1vgc1Gud/wI6XKmF9HzEOGBEYYYY0Is5OnXSLdgtXOpibsJjxtivTtWlVzkA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Z1by+KWf; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1732713832;
+	bh=4PWf5BX25DlYJv4Gy2uPbPq/angyB6Ks1Q7dI2dA/K4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Z1by+KWf8JcCPAhP3H2Sq4S/s4XGhgKFM0FoTy6rCKufkDu4xFkp4gNH7iY2tRqnl
+	 rGxKpvsDErMi83fPQYj0YZJ2KYrlryVyozyr6C5I2/N+nN0VOYTk5D+Mss9QRV7AZc
+	 t3eHO/34tehyxJcYmdhROz5QsBsXpUXHQQ+x4VC3EQjU2nx1ExHvciaDvy5R6wH66M
+	 r9bgwrij87X+C2cwFQ93LYegsDfI45LxR9F5C56QBLkolvgbjhYEAaIqd+efb8yxVn
+	 QPodYBcMVZgwmkRJOEW5QNwNptoA7UR5UqReLQWOmUV5v1P2ytL7rbrsPRQ9x81VBd
+	 X8OZ453k2sR6w==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
 	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 1E5AB3F1C0
-	for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 13:23:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1732713829;
-	bh=cL5M32W3R5eUX/4zpFKVLV/R7h3YjIcs++U+D/L5AM8=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=knp5gxrEgQZ3p13zieBnRYFMh9F3iOKLvsTqRZWI75n83aiG8BtkWimm/F/xHwBCT
-	 WF/EuAH2hrLekrjwP/8iDhrmClDE8gpI2m4BesYWNOVrGgLfac9aNon1HauG+rT6Eb
-	 EhItWNHJWVGQxGclyP7s9sgvKRAEycUU5meyzHs/zBBv68tLq4K4uxArud0qbzfzLY
-	 +hWtsmO1vXsMOXI3H09ygRmBArdvq/dmXwuYMCwGNV/GN4wh+AKc+PxFvI9MLBLroK
-	 pB7QmMT+TI+xH2RFwZcGjjmGuH7hYmkkHmfx56XQDDEwgx1LlEzH66VOf/PCV/BZ+x
-	 s7WKZ8ae1cVdg==
-Received: by mail-ot1-f69.google.com with SMTP id 46e09a7af769-71d49784700so2692684a34.3
-        for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 05:23:49 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732713828; x=1733318628;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cL5M32W3R5eUX/4zpFKVLV/R7h3YjIcs++U+D/L5AM8=;
-        b=My8LsyGWAu0/p45Fi89K2b1dg+G23QbDRa/uzII0D8lhsaQSIZB5qimcymbCc9spCb
-         k459uhwtlfaswpqkJvSAzrB2u+Q6BnXN86xXeJQscY75FnJ2KNwDbOH27660Qly6GTZg
-         tCMK8E9PBpwi5kQJ6kBMaG7iOvE/W3bYMciJU1BxTLYz9FoDL8++LxmPAO+DBzEyH6Wg
-         a+t8x4TTarPKX/7vBxgBrfRiK8Nmg/UiQI3Idg2Rq81nAtj/Yq5z8bkpLmuAwz0c5wtE
-         3yAeCltGKd1+wQp+hFxskO3tmf2tS3n+zGR4ngsHFI4wAv2Kl6Czy8E7wC05kWZDQUtZ
-         k4/A==
-X-Forwarded-Encrypted: i=1; AJvYcCUw8kNtV9M/dzNVK5fgqKRpVXOZL6gGPy5C4vMf9E01AMwM9Uap7l073rRoMpq2o8dj5UdfIN5OmGnT@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx84CP96ncOJImInvphyT696r2pRQmtX4W5cG+TK94Y+HV1m4uW
-	tsiggm+AHMa00QPPnhwd0Pxkef/DPcUQUaDH7JQGLRQIS5jgi6xHuihk8CJ2LMzkjyclASebm+V
-	LkAyc7k3tEnxLW2APOpx3Gum88OLblfiHsvCIREQP0CXrKHu8b4eL/N/516nCdEdlVlOehgX5fN
-	y/Jg7MwLZ8SxYJzgC3Z5Gb/PP2p6wjHbEEz58irvCXkWT+DNXsmw==
-X-Gm-Gg: ASbGncto4F737z9NcnrLa/tHTurRI9o4nObKhV6CiCkXJ4ccceaOoWgLER4MQdLMuTB
-	AQRnma3zo82eIUkPWZkLfu60hjbNlgnDZ0qYArjoQ++56ZpAD35kPDfGnRbXZ
-X-Received: by 2002:a05:6808:f0a:b0:3e0:4f6c:abcb with SMTP id 5614622812f47-3ea6dd47acbmr3886365b6e.28.1732713828044;
-        Wed, 27 Nov 2024 05:23:48 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGufrHOyrMhM1rehaDhI1q2R5G+xXwoSxzeI2W2FAdnLZZRRJ6/ihK0V7J0ERO8UeSUM8vMDAVAOcN6kRcdi7Q=
-X-Received: by 2002:a05:6808:f0a:b0:3e0:4f6c:abcb with SMTP id
- 5614622812f47-3ea6dd47acbmr3886347b6e.28.1732713827792; Wed, 27 Nov 2024
- 05:23:47 -0800 (PST)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 27 Nov 2024 05:23:47 -0800
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <20241126073836.17208-2-e@freeshell.de>
-References: <20241126073836.17208-1-e@freeshell.de> <20241126073836.17208-2-e@freeshell.de>
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 0551517E36FE;
+	Wed, 27 Nov 2024 14:23:51 +0100 (CET)
+Message-ID: <4549f33c-90d2-4b28-ab7a-1576c587c8cf@collabora.com>
+Date: Wed, 27 Nov 2024 14:23:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Wed, 27 Nov 2024 05:23:47 -0800
-Message-ID: <CAJM55Z8---o6_ZxeyUu_M74LA_zKfeksBmRGFkm2C66hRJbPug@mail.gmail.com>
-Subject: Re: [PATCH v3 1/1] riscv: dts: starfive: jh7110-pine64-star64: enable
- usb0 host function
-To: E Shattow <e@freeshell.de>, Henry Bell <dmoo_dv@protonmail.com>
-Cc: Conor Dooley <conor@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: Aw: Re: Aw: [PATCH v3 1/2] arm64: dts: mt7986: add dtbs with
+ applied overlays for bpi-r3
+To: frank-w@public-files.de, robh+dt@kernel.org, matthias.bgg@gmail.com
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ devicetree@vger.kernel.org, daniel@makrotopia.org, linux@fw-web.de,
+ leith@bade.nz
+References: <20240608080530.9436-1-linux@fw-web.de>
+ <20240608080530.9436-2-linux@fw-web.de>
+ <trinity-82c94d49-2a78-4470-83cd-3c6747e01849-1719434738199@3c-app-gmx-bs52>
+ <726f2ed3-675f-45e8-94f0-d392181e7f92@collabora.com>
+ <951E802C-1B53-45C4-B3E6-4A3400F47214@public-files.de>
+ <CAPDEroWUeR3iUFnjVr6WFLg3=dkML+5cbRPph9bj64F=zc1UWA@mail.gmail.com>
+ <trinity-ef654aa8-f10a-4195-82c8-65b3ea654c7b-1730918975868@trinity-msg-rest-gmx-gmx-live-c75c5fb4b-p29nc>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <trinity-ef654aa8-f10a-4195-82c8-65b3ea654c7b-1730918975868@trinity-msg-rest-gmx-gmx-live-c75c5fb4b-p29nc>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-E Shattow wrote:
-> Pine64 Star64 set JH7110 on-chip USB host mode and vbus pin assignment
+Il 06/11/24 19:49, frank-w@public-files.de ha scritto:
+> Hi
+> 
+> any new state on this??
+> 
+> https://patchwork.kernel.org/project/linux-mediatek/patch/20240608080530.9436-2-linux@fw-web.de/
+> 
+> regards Frank
 
-Here I'd like it explained that the Star64 board routes 1 of the 4 USB-A ports
-to USB0 on the SoC rather than to the USB 3.0 <-> PCIe chip.
+I had a look at this one - and this is the situation:
 
-(Confusing for users that 1 of the 4 similar ports only does USB 2.0, but
-that's too late to change and not relevant here)
+  1. Your bootloader supports loading DTBO, so you can indeed use DTBOs
+  2. Validation of the DTSO can still be done during kernel build without adding
+     all of those possible X+Y+Z pre-joined DTBs
+  3. What if your hardware had more than 20 possible configurations?
+     Would you write 20 different Makefile entries? "sd+nand+nor",
+     "sd+nand-withoutnor", "emmc+nand+nor", "emmc+nand-withoutnor",
+     "emmc+sd+nor", "emmc+sd-withoutnor", "ufs+emmc", "ufs+emmc+sd",
+     "ufs+sd+nor", "ufs+emmc-withoutnor", "ufs+sd-withoutnor", ......
 
-With that fixed:
-Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Looks messy and unfeasible.
 
->
-> Signed-off-by: E Shattow <e@freeshell.de>
-> ---
->  .../boot/dts/starfive/jh7110-pine64-star64.dts | 18 +++++++++++++++++-
->  1 file changed, 17 insertions(+), 1 deletion(-)
->
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts b/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
-> index fe4a490ecc61..b764d4d92fd9 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
-> @@ -80,7 +80,23 @@ &spi0 {
->  	status = "okay";
->  };
->
-> +&sysgpio {
-> +	usb0_pins: usb0-0 {
-> +		vbus-pins {
-> +			pinmux = <GPIOMUX(25,  GPOUT_SYS_USB_DRIVE_VBUS,
-> +					       GPOEN_ENABLE,
-> +					       GPI_NONE)>;
-> +			bias-disable;
-> +			input-disable;
-> +			input-schmitt-disable;
-> +			slew-rate = <0>;
-> +		};
-> +	};
-> +};
-> +
->  &usb0 {
-> -	dr_mode = "peripheral";
-> +	dr_mode = "host";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&usb0_pins>;
->  	status = "okay";
->  };
-> --
-> 2.45.2
->
+However, this is not a *global* no: I'm happy that your bootloader does support
+loading DTBOs and, as far as I remember, even uses straps to vary the DTB(o) to
+actually load - which is something proper and great... so it's a *no* for you,
+but more than just a no, this is "why are you treating your proper bootflow
+like it was a broken one?!?!" :-)
+
+If anyone finds themselves in a situation in which there's no way to update a
+bootloader (and that unfortunately happens more often than anyone would like
+to see...) and in which the only way to apply DTBOs is to pre-overlay them
+during the kernel build, then that's fine and I would (if nice and clean)
+accept that.
+
+But again, you're not in this kind of situation - and you're lucky that you're
+dealing with a fully open device with a proper bootloader and bootflow: don't
+ruin it like that!
+Instead, if necessary, update the userspace tools that you're using to deal with
+multiple DTBOs during system upgrades: that's the right thing to do at this point.
+
+Cheers,
+Angelo
 
