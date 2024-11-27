@@ -1,61 +1,59 @@
-Return-Path: <devicetree+bounces-124885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A093C9DA417
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 09:43:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A1D89DA423
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 09:47:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66DE3284D1E
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 08:43:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E5367B252B9
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 08:47:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46DEB188CDC;
-	Wed, 27 Nov 2024 08:42:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0E47188904;
+	Wed, 27 Nov 2024 08:47:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WVCw9g5h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LW/PkkEh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12E5D15E5CA;
-	Wed, 27 Nov 2024 08:42:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D460145FE4;
+	Wed, 27 Nov 2024 08:47:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732696977; cv=none; b=rZFCNi+ocBZ2fR4qa0VMYMFR8cdZsIMAQgCKryqyOnIrlld0vVk85DdSj2aASnMGq7Q5kbruY8gbWf4u8vG4JkKFoczR0YkcMDQgRKzxnxsa/SGmnZ9xIdGzxTK5sN2QEEvxz5QkogV0mLxIsxTsRQnLkjUwkgr+cb0j87h5qMo=
+	t=1732697221; cv=none; b=NaE5bhBhRK5Oi828ZtbR1xpzlR7nuYuVPPxhLsG057Ge1R9ODK4BJKsBQAwCVPvmi3MdyaMsziBkdrH4MKYDuXy1xlhRHhPvQaMmLei9chadctSer/McXHy8Rn1reX6dsT6rXrxtnTTcinlVrUA+OTBiCCgtV8LtIkrKhFjtkuA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732696977; c=relaxed/simple;
-	bh=e0r9bfon/eutIEC1aFHA8PXjFMiaw6h1Je5WMzlW0k0=;
+	s=arc-20240116; t=1732697221; c=relaxed/simple;
+	bh=GTmcK6810k0tMqXrtwzmbmpxoBbVpNLZAlHC/hMJFhw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Fff11Q6YMKQOkmefWLlmvIjMe95IOuMVkWz+gOVtpMS2mUfKFr9dy9tFBjlF/fRsMY8qtS4mGYdPvGQgt6IhthnYQwdYAOFc8n41Vn3lbO83C3hcOk44/6IqE26v3EKCwWTEmE9HcWVXSAsX3ZJbzC/cE4vVgXreE8qBj38dgj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WVCw9g5h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0682EC4CECC;
-	Wed, 27 Nov 2024 08:42:55 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=IIJNf6ZUsMvRuyFcp8x1iefoC+k34cEw8AI8Z54tDLzls/N+uiqcgPOQiC+HItSypXn9LgoC1RWG9/qr1lIAao+Grhbl8l/rAj0WBKR6AG9OqjumrYuJlY2opZHMsS0znDPMCZFjWUe/UG413Ovdl6Ra/qeDcwKun4Az9lBDRAM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LW/PkkEh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EFB8C4CECC;
+	Wed, 27 Nov 2024 08:47:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732696976;
-	bh=e0r9bfon/eutIEC1aFHA8PXjFMiaw6h1Je5WMzlW0k0=;
+	s=k20201202; t=1732697221;
+	bh=GTmcK6810k0tMqXrtwzmbmpxoBbVpNLZAlHC/hMJFhw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WVCw9g5hsYU55lb7GCKgIR2M7p0t7fo98Zssh//uYOoQ+CJP4r+MQ5VMSq0GIBZwB
-	 ONCwD2C8RIKA8IuyjdMP+9UU94bMh58FxnZcMgxtOCE4F/2l+QhDH3lU/8oazeHBbf
-	 OzA/qNsXTC+9tlV6EtkUITPe251EOpPLTgA1NcPtXFdbisiey5trtJgGxAZObMHmnU
-	 EplXeymmRyAS0LuOc44A0n06c4+Q501vvTAMmHnuUOQ45l+zDVUtCJVWaQSZaq7fBW
-	 orBatstQUeDI1C7gaF7Ff4OF24FwDD6a8wCHrcsPjd1nbi7LE+tTMesMyR+cGMnwY/
-	 Znn8Sxo8yaHYw==
-Date: Wed, 27 Nov 2024 09:42:53 +0100
+	b=LW/PkkEhxp5ZHRTGvjhuw/czVQewAiY6e02kmJqmxaJ3n47pujQfy/d1F4yHIeGOR
+	 kpk+bSMPob9Q+nwu8YFxutG8iWfoaR144RqCbK38xUJXKpWst1/crHlHsed6HJgEYE
+	 zNArY5xupPABAHzY9T8fWdCUDHmTfg4tI5He5PR22LP7eennCYgzGAMsPYyI8GWsq6
+	 UHfLdyWL4IpyljmyCer0rIYFuTUzV5WXlLCx+JXZG4u2px2j1TfKQqcluWwRZ4vpIg
+	 hApqiKmkN9eu5sQN9Lo5dx7gClbPch7av5WAZe9CImNbUdzevzyCIX0D3fudZxrHjK
+	 AendJd75mE/2Q==
+Date: Wed, 27 Nov 2024 09:46:57 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Bjorn Helgaas <bhelgaas@google.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+To: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Henrik Rydberg <rydberg@bitmath.org>, asahi@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: PCI: qcom,pcie-sm8550: document
- 'global' interrupt
-Message-ID: <nd4codxqdjzoqf6m2ivaofmuzrial7daby2pv62apjsmp6amkp@jxg6fcfh27vu>
-References: <20241126-topic-sm8x50-pcie-global-irq-v1-0-4049cfccd073@linaro.org>
- <20241126-topic-sm8x50-pcie-global-irq-v1-1-4049cfccd073@linaro.org>
+Subject: Re: [PATCH 1/4] dt-bindings: input: touchscreen: Add Z2 controller
+Message-ID: <zwdpx6c6qxm5674u2sea5sgwdd2fwim4waijb2qvixf62wrshb@yqs6zurtf7ic>
+References: <20241126-z2-v1-0-c43c4cc6200d@gmail.com>
+ <20241126-z2-v1-1-c43c4cc6200d@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,27 +62,97 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241126-topic-sm8x50-pcie-global-irq-v1-1-4049cfccd073@linaro.org>
+In-Reply-To: <20241126-z2-v1-1-c43c4cc6200d@gmail.com>
 
-On Tue, Nov 26, 2024 at 11:22:49AM +0100, Neil Armstrong wrote:
-> Qcom PCIe RC controllers are capable of generating 'global' SPI interrupt
-> to the host CPU. This interrupt can be used by the device driver to handle
-> PCIe link specific events such as Link up and Link down, which give the
-> driver a chance to start bus enumeration on its own when link is up and
-> initiate link training if link goes to a bad state. The PCIe driver can
-> still work without this interrupt but it will provide a nice user
-> experience when device gets plugged and removed.
+On Tue, Nov 26, 2024 at 09:47:59PM +0100, Sasha Finkelstein wrote:
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - apple,j293-touchbar
+> +          - apple,j493-touchbar
+> +      - const: apple,z2-touchbar
+> +      - const: apple,z2-multitouch
+
+What is the meaning of these two last compatibles in the list? What are
+these devices?
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +  cs-gpios:
+> +    maxItems: 1
+> +    description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+> +      J293 has a hardware quirk where the CS line is unusable and has
+> +      to the be driven by a GPIO pin instead
+> +
+> +  firmware-name:
+> +    maxItems: 1
+> +
+> +  label:
+> +    maxItems: 1
+
+Why is this needed? I think it is not part of common touchscreen schema.
+Drop, devices do not need labels - node name and unit address identify
+it. If this is needed for something else, then come with generic
+property matching all touchscreens.
+
+> +
+> +  touchscreen-size-x: true
+> +  touchscreen-size-y: true
+
+Drop these two
+
+> +
+> +required:
+> +  - compatible
+> +  - interrupts
+> +  - reset-gpios
+> +  - firmware-name
+> +  - label
+> +  - touchscreen-size-x
+> +  - touchscreen-size-y
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        touchscreen@0 {
+> +            compatible = "apple,j293-touchbar", "apple,z2-touchbar",
+> +                         "apple,z2-multitouch";
+> +            reg = <0>;
+> +            spi-max-frequency = <11500000>;
+> +            reset-gpios = <&pinctrl_ap 139 0>;
+> +            cs-gpios = <&pinctrl_ap 109 0>;
+
+Use proper GPIO bindings constants. You included header for this, I
+guess.
+
+> +            interrupts-extended = <&pinctrl_ap 194 IRQ_TYPE_EDGE_FALLING>;
+> +            firmware-name = "apple/dfrmtfw-j293.bin";
+> +            touchscreen-size-x = <23045>;
+> +            touchscreen-size-y = <640>;
+> +            label = "MacBookPro17,1 Touch Bar";
+> +        };
+> +    };
+> +
+> +...
 > 
-> Document the interrupt as optional for SM8550 and SM8650 platforms.
+> -- 
+> 2.47.1
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  Documentation/devicetree/bindings/pci/qcom,pcie-sm8550.yaml | 9 ++++++---
->  1 file changed, 6 insertions(+), 3 deletions(-)
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
 
