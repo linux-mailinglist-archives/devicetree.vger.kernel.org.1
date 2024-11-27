@@ -1,136 +1,165 @@
-Return-Path: <devicetree+bounces-124899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124901-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47A0D9DA4C4
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 10:29:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D43F59DA4D1
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 10:32:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CE83DB209FB
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 09:29:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3BEC8B236CE
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 09:32:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97DA4192B70;
-	Wed, 27 Nov 2024 09:29:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D893D192B71;
+	Wed, 27 Nov 2024 09:32:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="DNiHHf5i"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="P4y2TCd0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 378171925BF;
-	Wed, 27 Nov 2024 09:29:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39E53192B79;
+	Wed, 27 Nov 2024 09:32:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732699758; cv=none; b=DrSPXlsD1kRYVFKgICC3xqYwtxrAWHJe/IGuTaiIpdYuclKp2nXfqAEj5gvY8StpeoUYFsFzMk5rE0FjdTyV5CaG995vJBfwmTaVZM4dwgt3ewuCf+potx+w5vwoCGLUnhgehF7fblQ/IaNdrnnSGsByKeJY2lISvGPMI77ChGA=
+	t=1732699965; cv=none; b=NzjUO5TeW5XWlF3Fwdr2Dnj8MgCohpbQEMGzfMaaHOrdUdgJVveYutJzeOZngyxQBU428VsPvBIDkHTTrpMHH04uVznnBh0WFzoe15KLihprT4iUpZGJWfwtL/Jqz30h7/PjboZgRZJ6RnUkrPH4jPbIv4a0MUvs5ZaexbE5gJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732699758; c=relaxed/simple;
-	bh=xcLioAl/Dv+ef87c57/4ljJanV46MqNzwNDD0/mxs4Y=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=flXYloHJfET7cfhnmSrqgNVjbaFkY775ZANRpkAIBH1TEBFw5a9RftsKfVk4a+IV0GC+o1dyJcz4z55HUF6+KLczeVulIO1tdQDTeZJRtgd05qOaN9MzRPS3H2BedZQfu26KWW/zvNv8L8Vy5PM2iJvRJ2ukoJSmcBdCVjHAprk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=DNiHHf5i; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=US6YPwHGZjjY/0o2sbSCg5NuQ0NYboqqQtTlEz4XOBo=; b=DNiHHf5igtfm+55scaCjyZ70X7
-	iuSqoFzaV3fG6GsxmRNtB0hU+YItLw9Kt1xc9qvPlnKftzC5IUJL3cswmUB+durrrkwlkVff3QvL0
-	oW/WUQ4VENUS3go8z/eNA53dD5V82fV/Ub4F+EJb7EjER23M5HtZZG0OhCpgS52/ylbltk4fkF2df
-	IKXxYTRzp07YGOJjLfjr6Hgs0mNiwvA+cvN6OcfjyE2k0lqR5Mrcu042p6kmfnA3EF5Y5h7pqMKxu
-	e158u8PPCV38GUdV5KUReHvHOWNJANjHf7bWIGMXg98bcgU0FxyzxgG5tD9n5rlr1GxijAG/IVzpb
-	Ttb1A31A==;
-Received: from i5e86190f.versanet.de ([94.134.25.15] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tGEMA-0006nM-HZ; Wed, 27 Nov 2024 10:29:10 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Damon Ding <damon.ding@rock-chips.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- rfoss@kernel.org, vkoul@kernel.org, sebastian.reichel@collabora.com,
- cristian.ciocaltea@collabora.com, l.stach@pengutronix.de,
- andy.yan@rock-chips.com, hjc@rock-chips.com, algea.cao@rock-chips.com,
- kever.yang@rock-chips.com, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org, Damon Ding <damon.ding@rock-chips.com>,
- sebastian.reichel@collabora.com
-Subject:
- Re: [PATCH v1 04/10] phy: phy-rockchip-samsung-hdptx: Add support for eDP
- mode
-Date: Wed, 27 Nov 2024 10:29:09 +0100
-Message-ID: <4260470.1IzOArtZ34@diego>
-In-Reply-To: <20241127075157.856029-5-damon.ding@rock-chips.com>
-References:
- <20241127075157.856029-1-damon.ding@rock-chips.com>
- <20241127075157.856029-5-damon.ding@rock-chips.com>
+	s=arc-20240116; t=1732699965; c=relaxed/simple;
+	bh=FBw9HVozgfVKZtFYcBQA4Su42LkaqncDAcZ8xBi6Rpw=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=ljSQFdM+oxvc/71B1Z1uAe023sEyE23F8hFMOb97WRevDyO0MBfrsQTgayE2fL60VjyLsg8H/UsrGzCIWNVWqIxnLp4sbw1kcbEmQvhUgz0s9dmOlTOWCNXLwoaNR70tW8n2Fza3tCXsP2+CdWUeGMzEHsvEf8RMFwjAP3SEBT8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=P4y2TCd0; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AR96xFw023533;
+	Wed, 27 Nov 2024 09:32:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=lopIUVwDrKphG6QaSe4vO1
+	jusRE8iqpppJ0DQUcGOio=; b=P4y2TCd0lY3VFppO8bvdPi4d4SSpjYpiAzYyHt
+	YELOcSZvnYvf4TMhkQRxeHt8LCC5Jt6CXV4DjTFCoWG++gI92A7/tUT22WCskzWi
+	HtRN0aaJtGgPiXmRNv2cbxjePZBZ1mofShZpxmgNJfLuwDhv3voBBVKWr3GmUoG+
+	Jc1OUeNxD34RSBK+R1aDaAfGmEpwAsJQRiPtuSNlQzgp6PBDZ9X7hIYEyXfTRsJ2
+	JsyMBd8apLfOFWLxBMnN3IX4qMjotIPbHXiDbeO3dE012XuZ8ySPsiHMhhnlwmdw
+	5XHxRkVvPJasl8rjtSgkfBT971UkZB8MQOQK0TvEpvpokzww==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 435bf5kmd3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 27 Nov 2024 09:32:40 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AR9Wdjl003524
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 27 Nov 2024 09:32:39 GMT
+Received: from congzhan2-gv.ap.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 27 Nov 2024 01:32:33 -0800
+From: Cong Zhang <quic_congzhan@quicinc.com>
+Date: Wed, 27 Nov 2024 17:32:20 +0800
+Subject: [PATCH] arm64: dts: qcom: Correct IRQ number of EL2 non-secure
+ physical timer
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20241127-correct_timer_irq-v1-1-ce4309b655bd@quicinc.com>
+X-B4-Tracking: v=1; b=H4sIACTnRmcC/33PwWrDMAwG4FcJOk/DVtx0KWPsPUYJnqqsgiZZZ
+ C9slLz73PSy0y6CX6BP0hWSmEqCQ3UFk0WTTmMJ/qECPsfxQ1BPJQM5Ct5TgzyZCecu6yDWqc3
+ o61pcLGXfEpS5T5Nevzfz7XjPJvNXofO9CYOkFDf6UD3fZNfSDmdOT7VznY6aNV66U06KC6HD0
+ AYOro8UA70WiXXkR56GF7j5Z015sp/thcVvC/65dvHosfE7x3t67xuu/4JwXNf1FzrYG+YUAQA
+ A
+X-Change-ID: 20241126-correct_timer_irq-133e0a33e792
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <quic_pkondeti@quicinc.com>, <quic_aiquny@quicinc.com>,
+        <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Cong Zhang
+	<quic_congzhan@quicinc.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1732699953; l=2699;
+ i=quic_congzhan@quicinc.com; s=20241126; h=from:subject:message-id;
+ bh=FBw9HVozgfVKZtFYcBQA4Su42LkaqncDAcZ8xBi6Rpw=;
+ b=54RdeYrUbZufBarzWgQ/QTteprPVZ2ILSpmePxXtsh3hlJL9siovTfoImGnesdzgm+jLyfPN1
+ 1dGKROEcw4qAO6oc7TuR7vMgA/1IrRuoNjbC6vrTf/oNg8pUWY1DG8P
+X-Developer-Key: i=quic_congzhan@quicinc.com; a=ed25519;
+ pk=EAdxxOpkixn8jyG0MRQXsIFtZX7PytBUry7L44VBHIo=
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: ATfu0gELOnXjeCqOwE7sooaYV3EI4okO
+X-Proofpoint-GUID: ATfu0gELOnXjeCqOwE7sooaYV3EI4okO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 impostorscore=0
+ suspectscore=0 clxscore=1011 mlxlogscore=481 spamscore=0 malwarescore=0
+ adultscore=0 bulkscore=0 priorityscore=1501 lowpriorityscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411270079
 
-Hi Damon,
+The INTID of EL2 non-secure physical timer is 26. In linux, the IRQ
+number has a fixed 16 offset for PPIs. Therefore, the linux IRQ number
+of EL2 non-secure physical timer should be 10 (26 - 16).
 
-Am Mittwoch, 27. November 2024, 08:51:51 CET schrieb Damon Ding:
-> Add basic support for RBR/HBR/HBR2 link rates, and the voltage swing and
-> pre-emphasis configurations of each link rate have been verified according
-> to the eDP 1.3 requirements.
-> 
-> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
-> ---
+Signed-off-by: Cong Zhang <quic_congzhan@quicinc.com>
+---
+The EL2 non-secure physical timer is utilized during kernel bootup in
+EL2 mode with KVM enabled. This patch has been verified on the QCS8300
+platform with KVM enabled. Given that the dependency patch has already
+been reviewed, I am uncertain whether it is preferable to submit this
+fix as a new patch or to combine it with the dependency patch. I would
+appreciate your suggestions on this patch.
+---
+ arch/arm64/boot/dts/qcom/qcs8300.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/sdx75.dtsi   | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-[ ... huge block of DP phy support ...]
+diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+index 2c35f96c3f289d5e2e57e0e30ef5e17cd1286188..de6c368efb3a5efeaf628babdb7e91f8cbbf9d5f 100644
+--- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+@@ -1370,6 +1370,6 @@ arch_timer: timer {
+ 		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+ 			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+ 			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+-			     <GIC_PPI 12 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
++			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/qcom/sdx75.dtsi b/arch/arm64/boot/dts/qcom/sdx75.dtsi
+index 5f7e59ecf1ca6298cb252ee0654bc7eaeefbd303..b0775173278f3eed0f301b40dfba0f2680d7b0d0 100644
+--- a/arch/arm64/boot/dts/qcom/sdx75.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdx75.dtsi
+@@ -1548,6 +1548,6 @@ timer {
+ 		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+ 			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+ 			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+-			     <GIC_PPI 12 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
++			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
+ 	};
+ };
 
-yes that block was huge, but I also don't see a way to split that up in a
-useful way, so it should be fine.
+---
+base-commit: 6ad9d5070ae9de51803b16ffc384c23d62466c7d
+change-id: 20241126-correct_timer_irq-133e0a33e792
+prerequisite-message-id: <20240925-qcs8300_initial_dtsi-v2-0-494c40fa2a42@quicinc.com>
+prerequisite-patch-id: 73c78f31fa1d504124d4a82b578a6a14126cccd8
+prerequisite-patch-id: 5a01283c8654ae7c696d9c69cb21505b71c5ca27
+prerequisite-patch-id: dc633d5aaac790776a8a213ea2faa4890a3f665d
+prerequisite-patch-id: 9ecf4cb8b5842ac64e51d6baa0e6c1fbe449ee66
 
-
-> +static int rk_hdptx_phy_set_mode(struct phy *phy, enum phy_mode mode,
-> +				 int submode)
-> +{
-> +	return 0;
-> +}
-
-I think it might make sense to go the same way as the DCPHY and also
-naneng combophy, to use #phy-cells = 1 to select the phy-mode via DT .
-
-See [0] for Sebastians initial suggestion regarding the DC-PHY.
-The naneng combophy already uses that scheme of mode-selection too.
-
-There is of course the issue of backwards-compatibility, but that can be
-worked around in the binding with something like:
-
- '#phy-cells':
-    enum: [0, 1]
-    description: |
-      If #phy-cells is 0, PHY mode is set to PHY_TYPE_HDMI
-      If #phy-cells is 1 mode is set in the PHY cells. Supported modes are:
-        - PHY_TYPE_HDMI
-        - PHY_TYPE_DP
-      See include/dt-bindings/phy/phy.h for constants.
-
-PHY_TYPE_HDMI needs to be added to include/dt-bindings/phy/phy.h
-but PHY_TYPE_DP is already there.
-
-That way we would standardize on one form of accessing phy-types
-on rk3588 :-) .
-
-Also see the Mediatek CSI rx phy doing this too already [1]
-
-
-Heiko
-
-[0] https://lore.kernel.org/linux-rockchip/udad4qf3o7kt45nuz6gxsvsmprh4rnyfxfogopmih6ucznizih@7oj2jrnlfonz/
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/phy/mediatek,mt8365-csi-rx.yaml
-
-
+Best regards,
+-- 
+Cong Zhang <quic_congzhan@quicinc.com>
 
 
