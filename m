@@ -1,328 +1,224 @@
-Return-Path: <devicetree+bounces-125045-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125046-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AD3F9DA9AB
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 15:06:23 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FF649DA9BF
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 15:14:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1FF29281E25
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 14:06:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 796EAB20C61
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 14:14:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2183E1FCFFD;
-	Wed, 27 Nov 2024 14:05:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E07881FE45B;
+	Wed, 27 Nov 2024 14:14:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Aq+a2KGp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UIz+7dh3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49D6E1FCFE3
-	for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 14:05:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5FA91FE454;
+	Wed, 27 Nov 2024 14:14:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732716356; cv=none; b=XM12CVHy8YAE3JAXWRRzFap2+nNZtJHsm08vVGlXnkTXN2ySaVRFxqckJMwMKtXLpBFBMhpfn0eUclBebyIWezh3J3f9j7e0Ppn3DJWqkOQgEqkTp4mHnNWB6Pi0LMZ9IUoum3eX7IzZ5zFpKNuOyy1CSM2ggpOhW5lFuIFb7/U=
+	t=1732716887; cv=none; b=BmLuYnvUdlK1w5ciSJR4eKN1MKNT0Uv7T1BAzh7uXYK+dyBJpToC8LPRMaBzudAGqAff+Ft3giSWgSt3ay3q/ddPE3cL/4Rlt7zbmyJeZ57jUvs0/4kuchjRWk26HukuYw4yAkQ8PH28Fc41Q50u+IN1L6C/b2dgTmZff2U5Fjc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732716356; c=relaxed/simple;
-	bh=1/9/VRiAd3mFuJE0x6u0oROPGPE9qYr/1F5OkY7DYEU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=hB/t2xa9B+c+h1xgo/G+N4ELKhutrxNeM9jqU3VrHTYu54ky4QRumXWq9PEf6KDMooM9m5SNMCEP+tQdR2D8+m3aZ7n8s21GPFukiEqMoqTXse+PSRB4raEOgqzWfjjXMxXmkKClnkFHzR1cRcPPNaS3MKUm5zIMiFIRIVatgYA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Aq+a2KGp; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4349e4e252dso31036355e9.0
-        for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 06:05:54 -0800 (PST)
+	s=arc-20240116; t=1732716887; c=relaxed/simple;
+	bh=paxZs3Cdlf93Q1+n3h1fBFQZMnc13IPiJrr77HuCbiw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HhdaUc1yrB74rEoG2/e9mlE3VPR+gBqcMew6Yph9zJzB/xTte/tvZ203bboJWrpnqu9XS3EzBBTpwElFXUIGyUz8PViAqE7uk9phtzGuaZtsR+822HDV3BKxLWOva08HWC+achNbGEsX0tBA9gfPT363C7zndlzVJMUprdIvAWM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UIz+7dh3; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-53dd2fdcebcso6867718e87.0;
+        Wed, 27 Nov 2024 06:14:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732716353; x=1733321153; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LnTMbYbEVvxii8W+l8ai6UooboM0MmZTrUVAFR7MtHk=;
-        b=Aq+a2KGp0tU//R7kGaugvrrG9U1Kdu+Z6PXztprx5neXUn1B2qOhar0hDxMUXRGyPR
-         XhGdueaGYqEXEyTfQ8woGhp4hhv3qlFgDgNVn3k5HdDNn1VTVLBYWaJNVtQBWY3Z9m1S
-         F+hZNH+h6FXg3w/0K6Xf/m9NIsq+gfhcWmYR98qOp+p5ckGhJba3UByt/EQx7zVuasek
-         +GEy9tjEVvRnvCQBOUIAXI3tePv+NMqZAXFIZPj+veUgCkryShQqQDi04Yp3ft2Q68fD
-         1xnpVBY0GwlgbLZ9p2RtxdVFziGAjMT56xs5WbfSjI8lfK/OMl62AnMp44LkRqJCjXUv
-         Hbog==
+        d=gmail.com; s=20230601; t=1732716884; x=1733321684; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Um5TZq365fWOw0yCr9WfM9tBuVJrd4ZuD8M9A4DLXK0=;
+        b=UIz+7dh3vqw+bkETFF0lryBbhPebcZSFyuJEagxITuPXgQFeBDNl8bv1ORSQvihTiZ
+         sQxNnG7JQ2+50Z9jvkXiUsFuv/CbMbqgs8f+Nwuw3FqbMA2j+dEU0C4fos0aeMccMs9O
+         kjbqkNvDYf+dUx8B7KDYbpqsugOF71I8HFQKgVgoQCPYpg/ttMVTEZUOJqJfSeCcvYck
+         hKfGIN8CEEzAON4zEWTTYUt+VDJOs/Jt8Zg2XyWKt2/NGFEF71rknaB8vcSnMajHgn9P
+         mERxlqBIRXncyO2CSecSOLXjKbF5E0I7mvfh7XDr2eV7lew8AU/n1ffffp48WQfsrmzd
+         IqHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732716353; x=1733321153;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LnTMbYbEVvxii8W+l8ai6UooboM0MmZTrUVAFR7MtHk=;
-        b=d71LFCVxQjBe6jBTZNHA4SqBhut2BMhIE62sFiZl7pb6IIeti1Th9NbMGtLC3N9sG2
-         0J3sYQdJahM7diNWCf+mB05ldbXh+DS9VvjZmrL+0OJhF2ykrHMEtNBMJOaZZzB7xGPZ
-         TGeQxCkLvlh+rfzg+5vgdciNG0Ie0k8wyIDseMotW/tWRdeAbz/E1FKOI/Nh1kEzxCIk
-         qxIv2xIV1Wqa1Kl2+l/QH/fMe/qftRi033UHIVdN3vnbZYJzw9xuDVB4zxKyXc3oajzF
-         tX4X5HDtkdEryfi40S5M/loNZVaN+faqzUv2hwJEVIBRS8Ey6KG1PHuk1Gn9WKFPDBi4
-         mgMw==
-X-Forwarded-Encrypted: i=1; AJvYcCWGUWrePhx5supHpJz5duFLWeC0Yg0z3qkQFEhNjIHM1Uf7pZnd1rcU9tMRXh7i3yIxPTpLuwCTLNM4@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxaw+5H98aIsxf4S3CYvTaovl2p+nSsqwZgAemJOL1Guk0ikC4o
-	pUj6Hi2i6JivluCgIhT9OlhrB3K+qlYzEbgbtf6NZW3goAeF0/8OsnU4qhE4sWM=
-X-Gm-Gg: ASbGncv9izfxM4Dmd0fSwgS+RuXSHGUoJKPVND+TSAtJpvjXOn9vSpjwN+e3bRtzJ+x
-	4IfnEewlv0TdQ2/hW6GMf7FVBjyKYtpNIB+tjnwSVWI57Ej7Zq129YG4INL2ksC4jHEWVmJ+pp5
-	YIkaN3aMYcpErtTD+QAiNlG9YoGWDRj37gzsuaRizMjncegX9kI7FnoidYkHrIHgKLPwubp5Yc/
-	xWTxHs/w+zOZrg8TZdeGhL7i4CVIXov37ze4T3zSxgKfNj0iPRETPILpf0=
-X-Google-Smtp-Source: AGHT+IGg2acUZRXw34PIaD/kU+hGoPERoHWRpiVKwUZdCoAZRnahx4SyEEoF+vxW3u1N5y/+QSx2Tw==
-X-Received: by 2002:a05:6000:2707:b0:382:359f:534d with SMTP id ffacd0b85a97d-385c6ebcea5mr1955933f8f.23.1732716338889;
-        Wed, 27 Nov 2024 06:05:38 -0800 (PST)
-Received: from [127.0.0.1] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3825fad6436sm16442335f8f.13.2024.11.27.06.05.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Nov 2024 06:05:38 -0800 (PST)
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Date: Wed, 27 Nov 2024 14:05:14 +0000
-Subject: [PATCH v3 3/3] media: dt-bindings: qcom-venus: Deprecate
- video-decoder and video-encoder where applicable
+        d=1e100.net; s=20230601; t=1732716884; x=1733321684;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Um5TZq365fWOw0yCr9WfM9tBuVJrd4ZuD8M9A4DLXK0=;
+        b=vRD3LTwgO81wCWQqAcXnsGVigR8Qh5fBWiD6udj37eh/Zr7e4Fsap8XBlgR1GS1V22
+         7Y1Rn14wmsZ3kFbc5pQEuDuE/aGiVAAL65e9qoMYS+YCWkFlv5d47v8wfkUjf8LMm3zd
+         Gt+d3wRzOw0UF2388bTPezYW1aXr+IlOfnZuxIQx7VTIy773QYW5HFSL1TCentcO9eu7
+         I0TxsvJVD7u/OhFXlhlVCpbAKBCLWh557v0Jt8ZWyIOK/7UUpDeFHVCKD41AziWVRE2S
+         /5lICLWPgh9rKjBke0A92ArG9baIYa740/N6haOYb74pLfOS/Ot823cfG8GjENHUhgaO
+         bAGw==
+X-Forwarded-Encrypted: i=1; AJvYcCUx50IdrWyzGG3w0ZJMPA8Xq72h/OdEFDOVoj3yT5V5+BJ8V9oXskJ0o2o3TZ4rxblWgS6OsnWW/eD8VpLo@vger.kernel.org, AJvYcCV0jeb3rfjT4iTrLYZ7f5bRUKijySIhQRuaYwbT0RGoi0Zx1CB9L1pDzjJ6zQmZHp3APKo8ciUrXjcY@vger.kernel.org, AJvYcCX0W6dCuwNkEYb7pQTO1BZPYiD3TxPVX/7/kibnRFOuTHWxd7TTkigDKLb3L9SJrjHLCBhj5mYvAoSh@vger.kernel.org
+X-Gm-Message-State: AOJu0YyrkgvFTxLQWWq9wW/yISEkcT4ybB3eFuT0S9lZjVLZ9zOymmP/
+	0ToiAJ1Gixv8wF+b9y70/iTJCIbSt79lqsHUQpz3uAHeaIosyUEFNT1afw==
+X-Gm-Gg: ASbGncuMTjGWoD3IdUI7ys8cu73S27zzWwS2hfJdp4rJD7PZSBSeSQbP8bFQcY3Q+0G
+	/IZaNaxnG7pDDq9iSEFCifCBPUwsWzk47KJWor+IMY3qGWa8rbSeuMCLbgFmOZaK28b67SswkUF
+	l6taILkurXW5jzTEpaXTsyDnLalM0zK5/IhGhBLm7l6CVwjqfOdA8MntLjA2IMWXVbzxy+eeqvQ
+	pOkXpCBg29C2S4VbWWEqur+isAoV+XY5fQq06VdbkYangeCP7N7nSg1OBw2I4ehQBfm4T/1miAX
+	6f8y1XmMCLC7Pc55Aej8md/N4o0Fehk=
+X-Google-Smtp-Source: AGHT+IHmGIqaxMqackvlpmM5ajOcte2kcWyZ19LAd1LyiW8cxDqpxp6gMdyGjZJ5ScCnw/bZFnOq2Q==
+X-Received: by 2002:a05:6512:3da4:b0:53d:d0ed:9e06 with SMTP id 2adb3069b0e04-53df0117880mr2065080e87.56.1732716883660;
+        Wed, 27 Nov 2024 06:14:43 -0800 (PST)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53dd2499995sm2316610e87.261.2024.11.27.06.14.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Nov 2024 06:14:43 -0800 (PST)
+Message-ID: <2d16bf36-57d3-4c54-bbee-2e7d93399f29@gmail.com>
+Date: Wed, 27 Nov 2024 16:14:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/8] iio: gts: Simplify using __free
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <cover.1732105157.git.mazziesaccount@gmail.com>
+ <5efc30d832275778d1f48d7e2c75b1ecc63511d5.1732105157.git.mazziesaccount@gmail.com>
+ <20241123163713.2ec03a37@jic23-huawei>
+ <964035d9-cccd-4e12-af71-00ca39cc3596@gmail.com>
+ <20241126175214.76609ba9@jic23-huawei>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20241126175214.76609ba9@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241127-media-staging-24-11-25-rb3-hw-compat-string-v3-3-ef6bd25e98db@linaro.org>
-References: <20241127-media-staging-24-11-25-rb3-hw-compat-string-v3-0-ef6bd25e98db@linaro.org>
-In-Reply-To: <20241127-media-staging-24-11-25-rb3-hw-compat-string-v3-0-ef6bd25e98db@linaro.org>
-To: Stanimir Varbanov <stanimir.k.varbanov@gmail.com>, 
- Vikash Garodia <quic_vgarodia@quicinc.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: quic_renjiang@quicinc.com, quic_vnagar@quicinc.com, 
- quic_dikshita@quicinc.com, konradybcio@kernel.org, 
- linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Stanimir Varbanov <stanimir.varbanov@linaro.org>, 
- devicetree@vger.kernel.org, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.15-dev-dedf8
 
-For the list of yaml files here the video-decoder and video-encoder nodes
-provide nothing more than configuration input for the driver. These entries
-do not in fact impart hardware specific data and should be deprecated.
+Hi & Thanks Jonathan,
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- .../devicetree/bindings/media/qcom,msm8916-venus.yaml        | 12 ++----------
- .../devicetree/bindings/media/qcom,sc7180-venus.yaml         | 12 ++----------
- .../devicetree/bindings/media/qcom,sc7280-venus.yaml         | 12 ++----------
- .../devicetree/bindings/media/qcom,sdm845-venus-v2.yaml      | 12 ++----------
- .../devicetree/bindings/media/qcom,sm8250-venus.yaml         | 12 ++----------
- 5 files changed, 10 insertions(+), 50 deletions(-)
+On 26/11/2024 19:52, Jonathan Cameron wrote:
+> On Mon, 25 Nov 2024 11:16:22 +0200
+> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+> 
+>> Hi Jonathan,
+>>
+>> Thanks once again for the review :)
+>>
+>> On 23/11/2024 18:37, Jonathan Cameron wrote:
+>>> On Thu, 21 Nov 2024 10:20:07 +0200
+>>> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+>>>    
+>>>> The error path in the gain_to_scaletables() uses goto for unwinding an
+>>>> allocation on failure. This can be slightly simplified by using the
+>>>> automated free when exiting the scope.
+>>>>
+>>>> Use __free(kfree) and drop the goto based error handling.
+>>>>
+>>>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+>>>>
+>>>> ---
+>>>>
+>>>> Revision history:
+>>>>     v1 => v2:
+>>>>     - patch number changed because a change was added to the series.
+>>>>     - rebased on iio/testing to avoid conflicts with queued fixes
+>>>> ---
+>>>>    drivers/iio/industrialio-gts-helper.c | 19 ++++++++-----------
+>>>>    1 file changed, 8 insertions(+), 11 deletions(-)
+>>>>
+>>>> diff --git a/drivers/iio/industrialio-gts-helper.c b/drivers/iio/industrialio-gts-helper.c
+>>>> index 291c0fc332c9..602d3d338e66 100644
+>>>> --- a/drivers/iio/industrialio-gts-helper.c
+>>>> +++ b/drivers/iio/industrialio-gts-helper.c
+>>>> @@ -4,6 +4,7 @@
+>>>>     * Copyright (c) 2023 Matti Vaittinen <mazziesaccount@gmail.com>
+>>>>     */
+>>>>    
+>>>> +#include <linux/cleanup.h>
+>>>>    #include <linux/device.h>
+>>>>    #include <linux/errno.h>
+>>>>    #include <linux/export.h>
+>>>> @@ -167,8 +168,8 @@ static int iio_gts_gain_cmp(const void *a, const void *b)
+>>>>    
+>>>>    static int gain_to_scaletables(struct iio_gts *gts, int **gains, int **scales)
+>>>>    {
+>>>> -	int i, j, new_idx, time_idx, ret = 0;
+>>>> -	int *all_gains;
+>>>> +	int ret, i, j, new_idx, time_idx;
+>>>> +	int *all_gains __free(kfree) = NULL;
+>>> See the docs in cleanup.h (added recently).
+>>>
+>>> Constructor and destructor should go together.   Dan wrote good docs on this
+>>> (which are now in cleanup.h) so I'll not go into why!
+>>
+>> I went through the cleanup.h, and noticed the nice explanation for the
+>> pitfall where we have multiple "scoped operations" with specific
+>> ordering required. I didn't see other reasoning beyond that - I do hope
+>> I didn't miss anything.
+>>
+>> I find introducing variables mid-function very confusing. Only exception
+>> for this has been introducing temporary variables at the start of a
+>> block, to reduce the scope. I would still like to avoid this when it
+>> isn't absolutely necessary, as it bleeds my eyes :)
+>>
+>> I really don't see why we would have other cleanups which required
+>> specific ordering with the allocated "all_gains".
+>>
+>> Anyways, if you think we really have a problem here, would it then
+>> suffice if I moved the:
+>>
+>>           gain_bytes = array_size(gts->num_hwgain, sizeof(int));
+>>           all_gains = kcalloc(gts->num_itime, gain_bytes, GFP_KERNEL);
+>>           if (!all_gains)
+>>                   return -ENOMEM;
+>>
+>> to the beginning of the function, and the "int *all_gains __free(kfree)
+>> = NULL;" as last variable declaration?
+>>
+> 
+> No.  You need to follow the standard way. It is something we are
+> all getting used to, but all use of cleanup.h needs to follow same rules
+> so that reviewers find it easy to review once they are seeing lots of
+> instances of it.
+> 
+> Many indeed find this ugly but reality is it's happening all over the place
+> just usually hidden in a macro.  From cleanup.h look at how
+> guard() works for instance.
 
-diff --git a/Documentation/devicetree/bindings/media/qcom,msm8916-venus.yaml b/Documentation/devicetree/bindings/media/qcom,msm8916-venus.yaml
-index 9410f13ca97c181973c62fe62d0399fc9e82f05d..da140c2e3d3f3c3e886496e3e2303eda1df99bb4 100644
---- a/Documentation/devicetree/bindings/media/qcom,msm8916-venus.yaml
-+++ b/Documentation/devicetree/bindings/media/qcom,msm8916-venus.yaml
-@@ -45,6 +45,7 @@ properties:
-     required:
-       - compatible
- 
-+    deprecated: true
-     additionalProperties: false
- 
-   video-encoder:
-@@ -57,13 +58,12 @@ properties:
-     required:
-       - compatible
- 
-+    deprecated: true
-     additionalProperties: false
- 
- required:
-   - compatible
-   - iommus
--  - video-decoder
--  - video-encoder
- 
- unevaluatedProperties: false
- 
-@@ -83,12 +83,4 @@ examples:
-         power-domains = <&gcc VENUS_GDSC>;
-         iommus = <&apps_iommu 5>;
-         memory-region = <&venus_mem>;
--
--        video-decoder {
--            compatible = "venus-decoder";
--        };
--
--        video-encoder {
--            compatible = "venus-encoder";
--        };
-     };
-diff --git a/Documentation/devicetree/bindings/media/qcom,sc7180-venus.yaml b/Documentation/devicetree/bindings/media/qcom,sc7180-venus.yaml
-index 5cec1d077cda77817f6d876109defcb0abbfeb2c..83c4a5d95f020437bd160d6456850bc84a2cf5ff 100644
---- a/Documentation/devicetree/bindings/media/qcom,sc7180-venus.yaml
-+++ b/Documentation/devicetree/bindings/media/qcom,sc7180-venus.yaml
-@@ -70,6 +70,7 @@ properties:
-     required:
-       - compatible
- 
-+    deprecated: true
-     additionalProperties: false
- 
-   video-encoder:
-@@ -82,14 +83,13 @@ properties:
-     required:
-       - compatible
- 
-+    deprecated: true
-     additionalProperties: false
- 
- required:
-   - compatible
-   - power-domain-names
-   - iommus
--  - video-decoder
--  - video-encoder
- 
- unevaluatedProperties: false
- 
-@@ -114,12 +114,4 @@ examples:
-                       "vcodec0_core", "vcodec0_bus";
-         iommus = <&apps_smmu 0x0c00 0x60>;
-         memory-region = <&venus_mem>;
--
--        video-decoder {
--            compatible = "venus-decoder";
--        };
--
--        video-encoder {
--            compatible = "venus-encoder";
--        };
-     };
-diff --git a/Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml b/Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml
-index 10c334e6b3dcf25967fa438f8e6e5035448af1b9..413c5b4ee6504ba1d5fe9f74d5be04ad8c90c318 100644
---- a/Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml
-+++ b/Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml
-@@ -68,6 +68,7 @@ properties:
-     required:
-       - compatible
- 
-+    deprecated: true
-     additionalProperties: false
- 
-   video-encoder:
-@@ -80,14 +81,13 @@ properties:
-     required:
-       - compatible
- 
-+    deprecated: true
-     additionalProperties: false
- 
- required:
-   - compatible
-   - power-domain-names
-   - iommus
--  - video-decoder
--  - video-encoder
- 
- unevaluatedProperties: false
- 
-@@ -125,14 +125,6 @@ examples:
- 
-         memory-region = <&video_mem>;
- 
--        video-decoder {
--            compatible = "venus-decoder";
--        };
--
--        video-encoder {
--            compatible = "venus-encoder";
--        };
--
-         video-firmware {
-             iommus = <&apps_smmu 0x21a2 0x0>;
-         };
-diff --git a/Documentation/devicetree/bindings/media/qcom,sdm845-venus-v2.yaml b/Documentation/devicetree/bindings/media/qcom,sdm845-venus-v2.yaml
-index 6228fd2b324631f3138e128c918266da58f6b544..c839cb1ebc0999e10b865f4bb43ea76ffa2bf46d 100644
---- a/Documentation/devicetree/bindings/media/qcom,sdm845-venus-v2.yaml
-+++ b/Documentation/devicetree/bindings/media/qcom,sdm845-venus-v2.yaml
-@@ -70,6 +70,7 @@ properties:
-     required:
-       - compatible
- 
-+    deprecated: true
-     additionalProperties: false
- 
-   video-core1:
-@@ -82,14 +83,13 @@ properties:
-     required:
-       - compatible
- 
-+    deprecated: true
-     additionalProperties: false
- 
- required:
-   - compatible
-   - power-domain-names
-   - iommus
--  - video-core0
--  - video-core1
- 
- unevaluatedProperties: false
- 
-@@ -119,12 +119,4 @@ examples:
-         iommus = <&apps_smmu 0x10a0 0x8>,
-                  <&apps_smmu 0x10b0 0x0>;
-         memory-region = <&venus_mem>;
--
--        video-core0 {
--            compatible = "venus-decoder";
--        };
--
--        video-core1 {
--            compatible = "venus-encoder";
--        };
-     };
-diff --git a/Documentation/devicetree/bindings/media/qcom,sm8250-venus.yaml b/Documentation/devicetree/bindings/media/qcom,sm8250-venus.yaml
-index f66033ae8b590e7b6f1e344c368994744411aca2..da54493220c9dc90e7d9f5fcfce7590acb241c85 100644
---- a/Documentation/devicetree/bindings/media/qcom,sm8250-venus.yaml
-+++ b/Documentation/devicetree/bindings/media/qcom,sm8250-venus.yaml
-@@ -73,6 +73,7 @@ properties:
-     required:
-       - compatible
- 
-+    deprecated: true
-     additionalProperties: false
- 
-   video-encoder:
-@@ -85,6 +86,7 @@ properties:
-     required:
-       - compatible
- 
-+    deprecated: true
-     additionalProperties: false
- 
- required:
-@@ -95,8 +97,6 @@ required:
-   - iommus
-   - resets
-   - reset-names
--  - video-decoder
--  - video-encoder
- 
- unevaluatedProperties: false
- 
-@@ -132,12 +132,4 @@ examples:
-         resets = <&gcc GCC_VIDEO_AXI0_CLK_ARES>,
-                  <&videocc VIDEO_CC_MVS0C_CLK_ARES>;
-         reset-names = "bus", "core";
--
--        video-decoder {
--            compatible = "venus-decoder";
--        };
--
--        video-encoder {
--            compatible = "venus-encoder";
--        };
-     };
+Well, those macros are better in that the variables they internally 
+declare aren't visible in the outside code. The 'all_gains' pointer is 
+used throughout the function, and I really dislike having local 
+variables which aren't declared at the beginning of a function/block 
+emerge out of nowhere. Makes me think: "why this terribly named global?".
 
--- 
-2.47.0
+Well, maybe I really just need to try to adapt these things but I will 
+drop this one out of the series for now. TBH, I don't really like how 
+this table building function looks like. It's too long and confusing. I 
+will see if there is a sane way to split it, and maybe get the __free() 
+pointers to the beginning of a function as well ;)
 
+>> (This is not optimal as we will then do the allocation even if
+>> converting gains to scales failed - but I don't think this is a real
+>> problem as this should never happen after the driver is proven working
+>> for the first time).
+>>
+>>> Upshot is this goes where you do the kcalloc, not up here.
+>>
+>> *whining* "but, but, but ... it is ugly..." :)
+> 
+> :)  It won't look ugly after a few years!
+
+Could be. But now I am in the middle of "everything used to be better in 
+the good old day" -crisis. Playing 8-bit NES games and wondering if I 
+could fix my old C64 ^_^;
+
+In any case, thanks for the guidance (and optimism!) XD
+
+Yours,
+	-- Matti
 
