@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-125150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D84199DADC9
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 20:24:14 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA1B79DADD0
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 20:28:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9DF3A281983
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 19:24:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 16A71B247A2
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 19:28:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 080ED202F84;
-	Wed, 27 Nov 2024 19:22:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C977C201254;
+	Wed, 27 Nov 2024 19:28:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m6KthZDs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cNzNsL0r"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3FFF202F76;
-	Wed, 27 Nov 2024 19:22:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CA2313DBB6;
+	Wed, 27 Nov 2024 19:28:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732735328; cv=none; b=QDgNNuuD4ZM4rhICrZJoI20KSnE24PQNIa++BAjmjhCIZ0e2RTwMc8qcyzkepbHtjUKbJ3VPJ4z/rKEXLmvhAnxVqZv870rLPWmhhxoZd9WuQ6abd/LFlJqjfiPwzr7gveWYNZLQIm339BRO23MTg1+u1Y7D4MITEYYMCdis7tY=
+	t=1732735696; cv=none; b=bdpM+vbFAKJXI4PGBu4UUPrZvlBbhM2+owhDz58zP6t+T/Y+S9DjZgqfi2xo8MbSMrGXK/KdJKBmI+Yga7mDx0CrMLQieo0VJUzUcAZKBcANyhp7jevA/ZGTEBvwmX3ghYBqJew2x0rxZDDzKoJIS7/rkC/iFUD+wrKc6ojt4HQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732735328; c=relaxed/simple;
-	bh=HNuqL4UM5W4zFlhOaorNCk/cmLbR/s1ALfEtjeW9iEE=;
+	s=arc-20240116; t=1732735696; c=relaxed/simple;
+	bh=L/s3c4/RZA69fHGylBHRrju1a7fV+Zb4xiWFgej2aOg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=evZw49F3wypUa+bOUxi6NMxTpYNAuElYoyof++fobeYHoht5eruBns+H78ayHSaZyn3SytLsaJ2f9SO7D+HcL6uzx3zes78qnNxIODYQ+jUyC4dBSfu4c+quEcC32C5RX1Bbgv/2LWIBHecxc+9zaGd2/7ONBH4IJ7W9h1juJ/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m6KthZDs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78D3AC4CECC;
-	Wed, 27 Nov 2024 19:22:04 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=BXoS36qQw5nCkcjaMnJ0ofQju4lhZLL0XbXZVtJmo3yMJdqD7lKQk38+PnwOX2OVBq9XsDGaL6qVfpKmJXQIL5fbMUyU96ITRzeJAz46ulEQDuo9+jmilFDF4uGQKe/jjzIbXu/bVUeTDPLDOBaQ+t5OMAbsdHuyyl/iZBoRMyY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cNzNsL0r; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D86DC4CECC;
+	Wed, 27 Nov 2024 19:28:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732735328;
-	bh=HNuqL4UM5W4zFlhOaorNCk/cmLbR/s1ALfEtjeW9iEE=;
+	s=k20201202; t=1732735696;
+	bh=L/s3c4/RZA69fHGylBHRrju1a7fV+Zb4xiWFgej2aOg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=m6KthZDsa2sAlmfhmXjxn55Of6lZzK4PxkOe+t/SKxEGZh7mA1zeIjJvAdmqGd816
-	 cbupaRHdqQ1U1sYyXwNHHtaLED4/E5bkv3o3xesvUuYQcbjwndtww9X4CVGAQ8o9Uh
-	 ejN/B/kyY2+MWR0vxttoiiXp0HmtZiQXHx/+m10b12ps8LMWvDdhqmNKdgkPsY17FJ
-	 hncATngtfsDeLiGBYw7qDh9D6tAc3Gq4pK+DjYkQKQK17q+aPlUw7SsMkwhJRZUTeV
-	 JYYPSGfy7h4ekBQR4S8+K2yBhOguf9CE3UsoSvExa8LLBjE0h248JgUYqvf4arOria
-	 wX2w3MeErYIMQ==
-Message-ID: <fff1a05c-5e7c-451d-9b08-4e835d6ab131@kernel.org>
-Date: Wed, 27 Nov 2024 20:22:02 +0100
+	b=cNzNsL0rLiE+MtsxgjGHK9NSnDA4rTiFw6O8KjtLSpBPnT2/5tQpQsjrD+1j+kJGD
+	 9mIe7cpoVHj+90qDhpPdYKw4AdSPB0+xF2H/tysr2QsshKlqfGx2R3bKH/pG5ean5v
+	 PGJClW/KMtKl1Eehze4NNYbaUneRwjtugENSvl8btR2Tl9NaQNPDW6cRGb/spbvzMO
+	 PhSnTkEuR1x5M0nHw36Pb1OVu+Q/GMMuJzWkXiJHf7G4fpS82bJ6H+p1J7zPyedeK+
+	 ci5kBtKxIKePvm3LXihTRIKktsxkCgmAzUjJXZHubC38QCBxLgF7Ks0NtXDSIUdTc7
+	 BcT4LXqDxR8vQ==
+Message-ID: <2e81384a-7165-4f25-b84f-7a0045bad60a@kernel.org>
+Date: Wed, 27 Nov 2024 20:28:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V6 3/4] dt-bindings: interconnect: Add generic compatible
- qcom,epss-l3-perf
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Rob Herring <robh@kernel.org>
-Cc: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>,
- Georgi Djakov <djakov@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Odelu Kukatla <quic_okukatla@quicinc.com>,
- Mike Tipton <quic_mdtipton@quicinc.com>, Sibi Sankar
- <quic_sibis@quicinc.com>, linux-arm-msm@vger.kernel.org,
- linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20241125174511.45-1-quic_rlaggysh@quicinc.com>
- <20241125174511.45-4-quic_rlaggysh@quicinc.com>
- <20241127142304.GA3443205-robh@kernel.org>
- <zchtx32wtii2mzy2pp4lp4gdaim7w56kih7jcqes4tyhu24r3n@dagazlsdgdcv>
- <0ba0f4af-5075-4bb1-a7f6-815ef95bbda7@kernel.org>
- <538761B6-5C8D-4600-AB9E-687F91B855FF@linaro.org>
+Subject: Re: [PATCH v4] dt-bindings: power: Convert raspberrypi,bcm2835-power
+ to Dt schema
+To: Karan Sanghavi <karansanghvi98@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Ray Jui <rjui@broadcom.com>,
+ Scott Branden <sbranden@broadcom.com>, devicetree@vger.kernel.org,
+ linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Shuah Khan <skhan@linuxfoundation.org>,
+ Alexander Aring <alex.aring@gmail.com>, Eric Anholt <eric@anholt.net>
+References: <20241028-raspberrypi-bcm2835-power-v4-1-acf44abd45ff@gmail.com>
+ <bdze3425qwrtlvlairw2b4xiycpkmhirzhqn2jt6jngc3bu4ta@uo4nc2lnj4sf>
+ <qb5sdh55yj7est52netydaauazgluej6hvvtutmmiw2bhglnpw@lq2cyg3hjhlw>
+ <b81cd6bd-4a7e-4032-aa56-843793a0e0c8@kernel.org>
+ <5wzekgv7ccja7ucz2w3byprltalflx4am24scecxjokra4t44g@ll56dfqotyoq>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,37 +112,74 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <538761B6-5C8D-4600-AB9E-687F91B855FF@linaro.org>
+In-Reply-To: <5wzekgv7ccja7ucz2w3byprltalflx4am24scecxjokra4t44g@ll56dfqotyoq>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/11/2024 19:49, Dmitry Baryshkov wrote:
-> On 27 November 2024 20:27:27 EET, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->> On 27/11/2024 17:53, Dmitry Baryshkov wrote:
->>> On Wed, Nov 27, 2024 at 08:23:04AM -0600, Rob Herring wrote:
->>>> On Mon, Nov 25, 2024 at 05:45:10PM +0000, Raviteja Laggyshetty wrote:
->>>>> EPSS instance on sc7280, sm8250 SoCs, use PERF_STATE register instead of
->>>>> REG_L3_VOTE to scale L3 clocks, hence adding a new generic compatible
->>>>> "qcom,epss-l3-perf" for these targets.
+On 27/11/2024 19:38, Karan Sanghavi wrote:
+> On Sun, Nov 24, 2024 at 11:52:35AM +0100, Krzysztof Kozlowski wrote:
+>> On 24/11/2024 09:49, Karan Sanghavi wrote:
+>>> On Tue, Oct 29, 2024 at 08:10:23AM +0100, Krzysztof Kozlowski wrote:
+>>>> On Mon, Oct 28, 2024 at 04:44:12PM +0000, Karan Sanghavi wrote:
+>>>>> Convert the raspberrypi,bcm2835-power binding to Dt schema
+>>>>>
+>>>>> Signed-off-by: Karan Sanghavi <karansanghvi98@gmail.com>
+>>>>> ---
+>>>>> Changes in v4:
+>>>>> - Corrected misindentations and random differences.
+>>>>> - Link to v3: https://lore.kernel.org/r/20241026-raspberrypi-bcm2835-power-v3-1-6621e075d33f@gmail.com
 >>>>
->>>> Is this a h/w difference from prior blocks or you just want to use B 
->>>> instead of A while the h/w has both A and B? The latter sounds like 
->>>> driver policy.
+>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 >>>>
->>>> It is also an ABI break for s/w that didn't understand 
->>>> qcom,epss-l3-perf.
+>>>> ---
+>>>>
+>>>> <form letter>
+>>>> This is an automated instruction, just in case, because many review tags
+>>>> are being ignored. If you know the process, you can skip it (please do
+>>>> not feel offended by me posting it here - no bad intentions intended).
+>>>> If you do not know the process, here is a short explanation:
+>>>>
+>>>> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+>>>> versions, under or above your Signed-off-by tag. Tag is "received", when
+>>>> provided in a message replied to you on the mailing list. Tools like b4
+>>>> can help here. However, there's no need to repost patches *only* to add
+>>>> the tags. The upstream maintainer will do that for tags received on the
+>>>> version they apply.
+>>>>
+>>>> https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+>>>> </form letter>
+>>>>
+>>>> Best regards,
+>>>> Krzysztof
+>>>>
 >>>
->>> As the bindings keep old compatible strings in addition to the new
->>> qcom,epss-l3-perf, where is the ABI break? Old SW will use old entries,
->>> newer can use either of those.
->> No, this change drops qcom,epss-l3 and adds new fallback. How old
->> software can work in such case? It's broken.
+>>> Dear Krzysztof,
+>>>
+>>> I hope this email finds you well. 
+>>> I'm following up on the patch I recently submitted linked below.
+>>> https://lore.kernel.org/all/ZxEm-H-PjlQyXeOH@Emma/
+>> I don't understand why do you reply to this patch about other patch.
+>> Anyway, you got reply there.
+>>
+> Really sorry to attach the wrong link 
+> Please find the corret link below
+> https://lore.kernel.org/all/20241028-raspberrypi-bcm2835-power-v4-1-acf44abd45ff@gmail.com/
 > 
-> Oh, I see. We had a platform-specific overrides for those two. Then I think we should completely drop the new qcom,epss-l3-perf idea and follow the sm8250 / sc7280 example. This means compatible = "qcom,sa8775p-perf", "qcom,epss-l3". 
+> Is there anything more left form my side for this patch as you have given the
+> reviewed by tag to it but still it hasn't been applied yet 
 
-It depends for example whether epss-l3 is valid at all. ABI is not
-broken if nothing was working in the first place, assuming it is
-explained in commit msg (not the case here).
+Yeah... Two things here:
+1. It was not sent to PM domain maintainers, so subsystem maintainers
+won't pick it up.
+2. If you want to ping someone, then rather ping Broadcom maintainers,
+not me. Broadcom maintainers could have taken this patch almost month ago.
+
+
+For the (1) above, get_maintainers.pl is not accurate in this case. You
+will get *additional* addresses to Cc with get_maintainers.pl on
+drivers/pmdomain/bcm/raspberrypi-power.c. After merge window, I suggest
+to resend this wider audience with *the Rb tag applied*.
+
 
 Best regards,
 Krzysztof
