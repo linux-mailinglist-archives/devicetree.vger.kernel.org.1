@@ -1,192 +1,141 @@
-Return-Path: <devicetree+bounces-125158-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92FCD9DAE32
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 21:00:07 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D58539DAE39
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 21:01:01 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E515163644
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 20:00:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9AEAA282B53
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 20:01:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C716214AD29;
-	Wed, 27 Nov 2024 20:00:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E0A414B07E;
+	Wed, 27 Nov 2024 20:00:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Prbgf/7n"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="onG5im7E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A156202F87;
-	Wed, 27 Nov 2024 20:00:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E2C712E1E0;
+	Wed, 27 Nov 2024 20:00:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732737604; cv=none; b=JsfB/jb4zsm3clZi/HpvEj8dH2n4ao8ndbNgJ8sDyFr2I/5aetXCHUQyWDaODWodYHcoLMQ0UMTGHD4PIsI4aaoUOmj4zQENLsrhHgoJ1TiqiiyhqDz6AOHERgjX8qtO+sxp4qdu2E20XKDPSMwmUIQoFY/ZU/2pt95SB1Z7B6g=
+	t=1732737657; cv=none; b=AOwxl0cA7j67oMUI89OUKrsne+R1PhAzcwevM6arm/BQS2EEQmsBZ28lShuzfDVLAatjIZsaOT017eSyVLpQkLPhHLulPVyfwPZtwpC6TQG+ujlughLmwsmasZVsZ9w5cLANEdddN9VBYNr0XTDCXF1chluuh//cfv0lGUpJTjc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732737604; c=relaxed/simple;
-	bh=hmIxX4nmKJ/KpxkWr4aXnfd/U3L3DijeyqEGV56Cmsg=;
+	s=arc-20240116; t=1732737657; c=relaxed/simple;
+	bh=GSQuKY+CoM9g7BABvmcCq23+zynQ3pDRGpC2+PRywAM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NazC689IjNtIyhn81NQEMXFadPHA4DpMDgWV7kxJAH+4ihDVlpZ9Eh6npQwDZg/m7jEQV9owfEF3gagDdT9XN9pm0g2UDtyrVILTBODQQFyA80GanRn9GmWo1tCu7hDc/S6jy94gr489w9UKqSPsH+p8xqQV+p/gQ/6RiApe7yk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Prbgf/7n; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-21269c8df64so673065ad.2;
-        Wed, 27 Nov 2024 12:00:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1732737602; x=1733342402; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=7JnlDLsmM5qv+EK/8poCXPvkvDh4sjlL4kNug7GuHXU=;
-        b=Prbgf/7np5aLFEU8O90Xi4/XrHaV2llgv0QQF90ELA2Z4GJxxMvhvq+tOADtxcfEcP
-         wgNOl4IZ99xi/I2jlH7d+GQDuu4VkdWMsGUdOVlqaaoSvvNZYoCtRkYx9pV7abmFenSs
-         TMoD42NYgr6fpmyzeC9N793OArEcg35lfKPtw97Tzj1SWuortTiD0LZJiE+/WIh7Knh+
-         HZkm/N/o7sMVDkzH67iLjY7PpqwxEofxG0HRXFCCS92WEZeM2bz+2UFdZEqKCHRl73K6
-         yAfReqRKFLINAUWoH2eFGrg1CxnNKTdivoP85dX21ycTueFxTlLdyed8wdJ6FBuM2Q96
-         4VTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732737602; x=1733342402;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7JnlDLsmM5qv+EK/8poCXPvkvDh4sjlL4kNug7GuHXU=;
-        b=smjFNHpgte1OEZOrxS5ZxJdDzRBUG9QZDgx1miTaM9Kv34/T0uKYx6NfhzyQ427Fbw
-         FLlLLX4hmFYypl4eUjJuoyHrD65U437U4nWfn5YnYb+jXO3CaEEBMfh1GrNcMhqH8t2i
-         Wn+MphcnovsRP0TkDlTgABwcRpmGQXYh9BiVM8xTSvqp70UhaDyJeewIXMw8A8eFTx3v
-         0E4eHpKJ/lIEzC82H1FEmv998UmPgo38YwrcgjnZ6UpUljZUCs3dB3NTok4Pc8e/eDGI
-         4d9r8LY1GRQun75QxkHXZh+B32XxgxgSmWN4y8rOuroQOuUoe0qZ8Ml205SbLubvd4ZM
-         Hv0Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWQpwksiYR/wAA777SFXAD6QBxkN/FwP5KPI0DbN7OxRsCDNwxqbeV0FwIvfdYeH3KHBY3z0xwCanDH@vger.kernel.org, AJvYcCWSWjU19+l5iaPNhxxm3xNp3crzwpsC93y0WHwxlbWzkSbpV99Ea5/PK+xt1ZW3oD3gXdVi3Kzvqs9on6g=@vger.kernel.org, AJvYcCXpRNICt7IiBr2ZIessPCGxWbacKVjGPhIDJiGLc4sgJ+qSs6jy1s+CLWUqrKrKFGQVK0I9iUFlzKjOLqZ1@vger.kernel.org
-X-Gm-Message-State: AOJu0YwoIYqgBUBOupdNQx9R5JB+p3JhYRHYf9rnaPryB1Y3pDMKWDoz
-	zUdI5tzJ16uxbwKY8hmL2Zx+VnvRZys0CoBtBvrnPRDeC+9Db0A5
-X-Gm-Gg: ASbGncsmr+z8SJgB3b5futEFV4x9bnQJVgjyTdAsuMIECGZwOHPM915FG4GekmJsloy
-	RgGyeRnUpdqr7Vh9N/y1/4BVdMZvXH40gPd56rPzuo1bwuf/gFnrSMESRs+NEfN0rLofOSK/8f2
-	fpw2Keh0/+o5aw+VDkLiNopQuhWoELgOK8oUVjeDnPVr21F0Z5VLwWuOPGbXUSoDQZFKAwoPH73
-	AWl4b6ICRzvDktte7TQyYXhVOyFLoE2pEFWYNr+b3IlSljO49c=
-X-Google-Smtp-Source: AGHT+IEGL7M9GjZwTDz8gnOB4Fc/ReaRn8//tUsUDCeh7CYPkfHbRbhoJ/aTMpOuF0TfqhinENoEIA==
-X-Received: by 2002:a17:902:e752:b0:212:4739:27b2 with SMTP id d9443c01a7336-215010861afmr48871945ad.5.1732737602170;
-        Wed, 27 Nov 2024 12:00:02 -0800 (PST)
-Received: from google.com ([2620:15c:9d:2:d991:bacb:df39:9ecd])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2129dc23a35sm107317255ad.250.2024.11.27.12.00.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Nov 2024 12:00:01 -0800 (PST)
-Date: Wed, 27 Nov 2024 11:59:58 -0800
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Sasha Finkelstein <fnkl.kernel@gmail.com>
-Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=JX2o2+VUNfaUp7QVc1BeQttKDInijDoj0QwKpE2tb9AUTA1mpb9fcJaDkQ6do0/yxspaxgRww0f8AaiOAORyw2N8Pp88m0jTSCv/j6UEcyj98xULoDYgJdyNUWqbuo9kVA7RM8xqopNHp15JoWSZh1MVEdb9narfGung3ZVL3hg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=onG5im7E; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 192A2C4CECC;
+	Wed, 27 Nov 2024 20:00:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732737656;
+	bh=GSQuKY+CoM9g7BABvmcCq23+zynQ3pDRGpC2+PRywAM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=onG5im7ElUsb4nUSUbhcNhCPwnW4quLxP2/Xh2ZvFWOa4vSRDOvQNUx0z1ga00zad
+	 6ngJCYp9VryK0M5uuNjsj9c2VEcEpl1Ve14x4l9t4pClhn7AUp4/NJEOv7B7f8VDL8
+	 7SYbsLJeEBaQUgqGzRqeYcYQ3tOHZh0uFLwhlHaQKDcUPyJpYCBNzOfM5La4OLMBNR
+	 WQ91fB+18EFOCUiSYUIMOkDbEH2GMLnUwBFyjGHs7VzNOv2ETx1o401BIKqf0RUDYx
+	 OlW3fwrvxd/eVU1BtLkg1Y6Q3Ehd4Z0mf9+OWry8EqwDzKH7FJUuJy0K1d+0SqubAA
+	 xGVs2OXIVxJGg==
+Date: Wed, 27 Nov 2024 20:00:51 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Sean Nyekjaer <sean@geanix.com>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Henrik Rydberg <rydberg@bitmath.org>, asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Janne Grunau <j@jannau.net>
-Subject: Re: [PATCH 2/4] input: apple_z2: Add a driver for Apple Z2
- touchscreens
-Message-ID: <Z0d6Psrk5f8-hXe6@google.com>
-References: <20241126-z2-v1-0-c43c4cc6200d@gmail.com>
- <20241126-z2-v1-2-c43c4cc6200d@gmail.com>
- <Z0aCSBNEAJlgNIAI@google.com>
- <CAMT+MTT0oiODONgEipLuAaZyzD-YyM8mbAcRsZKn8N4E326kMw@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH can-next] dt-bindings: can: tcan4x5x: add missing
+ required clock-names
+Message-ID: <20241127-quaintly-splinter-fd8761a404ad@spud>
+References: <20241127-tcancclk-v1-1-5493d3f03db1@geanix.com>
+ <20241127-siberian-singular-c2b99a7fd370@spud>
+ <pl22u3ybv3ibnpzmgiskppz56vlvqhlz25h7s5ewunkks6ywtn@v6lgln7s536w>
+ <lmyugclgwb7txf3jxc3fsasp5fgu7fji5dxb2wjw4jji32omnt@rs27camphw7q>
+ <20241127-myth-lily-122b9839cc0b@spud>
+ <yndgosvrbdawcln2adxh6blypf4joejjd5vygogxq7ii5o3ifs@v25ai7joiutx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="paADetfVWSXra5Dy"
+Content-Disposition: inline
+In-Reply-To: <yndgosvrbdawcln2adxh6blypf4joejjd5vygogxq7ii5o3ifs@v25ai7joiutx>
+
+
+--paADetfVWSXra5Dy
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAMT+MTT0oiODONgEipLuAaZyzD-YyM8mbAcRsZKn8N4E326kMw@mail.gmail.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 27, 2024 at 09:24:16AM +0100, Sasha Finkelstein wrote:
-> On Wed, 27 Nov 2024 at 03:22, Dmitry Torokhov <dmitry.torokhov@gmail.com> wrote:
-> > > +     u16 checksum;
-> >
-> > Does this need endianness annotation? It is being sent to the device...
-> 
-> Both host and device are always little endian, and this whole thing is
-> using a bespoke Apple protocol, so is unlikely to ever be seen on a BE
-> machine. But i am not opposed to adding endianness handling.
+On Wed, Nov 27, 2024 at 07:13:27PM +0100, Sean Nyekjaer wrote:
+> On Wed, Nov 27, 2024 at 04:18:59PM +0100, Conor Dooley wrote:
+> > On Wed, Nov 27, 2024 at 05:10:31PM +0100, Sean Nyekjaer wrote:
+> > > On Wed, Nov 27, 2024 at 04:56:13PM +0100, Sean Nyekjaer wrote:
+> > > > Hi Conor,
+> > > >=20
+> > > > On Wed, Nov 27, 2024 at 03:50:30PM +0100, Conor Dooley wrote:
+> > > > > On Wed, Nov 27, 2024 at 02:40:47PM +0100, Sean Nyekjaer wrote:
+> > > > > > tcan4x5x requires an external clock called cclk, add it here.
+> > > > >=20
+> > > > > That's not what this patch is doing, the clock input is already t=
+here,
+> > > > > so I don't know what this patch actually accomplishes? clock-name=
+s isn't
+> > > > > a required property, so you can't even use it in a driver.
+> > > > >=20
+> > > >=20
+> > > > Thanks for asking the right questions :)
+> > > >=20
+> > > > I know the clock input is there, but it looks (to me) like the driv=
+er looks for the
+> > > > specific clock called cclk:
+> > > > https://elixir.bootlin.com/linux/v6.12/source/drivers/net/can/m_can=
+/m_can.c#L2299
+> > > > https://elixir.bootlin.com/linux/v6.12/source/drivers/net/can/m_can=
+/tcan4x5x-core.c#L396
+> > >=20
+> > > Oh I really need to get my head around the dt jargon :)
+> > > Yes I'll add the clock-names to the required list for v2!
+> >=20
+> > btw, where even is ti,tcan4x5x.yaml? I was gonna paste the fixes tag you
+> > should be using but I couldn't find the file in linux-next.
+>=20
+> It's here:
+> https://git.kernel.org/pub/scm/linux/kernel/git/mkl/linux-can-next.git/co=
+mmit/?h=3Dtesting&id=3D77400284f54b9a1f6b6127c08cb935fc05e5c3d2
+>=20
+> Do you think the fixes tag is needed?
+>=20
+> Fixes: 77400284f54b ("dt-bindings: can: convert tcan4x5x.txt to DT schema=
+")
 
-In this case the endianness handling will be "free", but will still show
-good code hygiene.
+Ideally it'd get squashed if it isn't even in next, but ye if you made
+the clock required on this platform in the conversion then you should've
+made clock-names required too since the driver uses it.
 
-> 
-> > > +             slot_valid = fingers[i].state == APPLE_Z2_TOUCH_STARTED ||
-> > > +                          fingers[i].state == APPLE_Z2_TOUCH_MOVED;
-> > > +             input_mt_slot(z2->input_dev, slot);
-> > > +             input_mt_report_slot_state(z2->input_dev, MT_TOOL_FINGER, slot_valid);
-> > > +             if (!slot_valid)
-> > > +                     continue;
-> >
-> > Shorter form:
-> >
-> >                 if (!input_mt_report_slot_state(...))
-> >                         continue;
-> 
-> Sorry, but i fail to see how that is shorter, i am setting the slot state to
-> slot_valid, which is being computed above, so, why not just reuse
-> that instead of fetching it from input's slot state?
+--paADetfVWSXra5Dy
+Content-Type: application/pgp-signature; name="signature.asc"
 
-You are not fetching anything, input_mt_report_slot_state() simply
-returns "true" for active slots. You are saving a line. You can also do
+-----BEGIN PGP SIGNATURE-----
 
-		if (!input_mt_report_slot_state(z2->input_dev, MT_TOOL_FINGER,
-					fingers[i].state == APPLE_Z2_TOUCH_STARTED ||
-					fingers[i].state == APPLE_Z2_TOUCH_MOVED))
-			continue;
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ0d6cwAKCRB4tDGHoIJi
+0gfKAP9MP+E5bIjCWFRdaGdZ0vA7MzGAPB+XmZuolZ+D9tkV4QEA17+RHvT0w4Jn
+QuYi5+MrBP9Zb5pSB4k7EhLDTEY+JAg=
+=2DXS
+-----END PGP SIGNATURE-----
 
-> 
-> > > +     ack_xfer.tx_buf = int_ack;
-> > > +     ack_xfer.rx_buf = ack_rsp;
-> >
-> > I think these buffers need to be DMA-safe.
-> 
-> Do they? Our spi controller is not capable of doing DMA (yet?)
-> and instead copies everything into a fifo. But even if it was capable,
-> wouldn't that be the controller driver's responsibility to dma-map them?
-
-Yes, they do. From include/linux/spi/spi.h:
-
-/**
- * struct spi_transfer - a read/write buffer pair
- * @tx_buf: data to be written (DMA-safe memory), or NULL
- * @rx_buf: data to be read (DMA-safe memory), or NULL
-
-> 
-> > > +             if (fw->size - fw_idx < 8) {
-> > > +                     dev_err(&z2->spidev->dev, "firmware malformed");
-> >
-> > Maybe check this before uploading half of it?
-> 
-> That would be an extra pass though the firmware file, and the device
-> is okay with getting reset after a partial firmware upload, there is no
-> onboard storage that can be corrupted, and we fully reset it on each
-> boot (or even more often) anyway.
-
-OK, please add a comment to that effect.
-
-> 
-> > > +     error = apple_z2_boot(z2);
-> >
-> > Why can't we wait for the boot in probe()? We can mark the driver as
-> > preferring asynchronous probe to not delay the overall boot process.
-> 
-> A comment on previous version of this submission asked not to load
-> firmware in probe callback, since the fs may be unavailable at that point.
-
-But why do you assume that the fs will be available at open time? There
-is a number of input handlers that serve internal kernel purposes and we
-could have more in the future. They will open the device as soon as it
-is registered with the input core.
-
-It is up to the system distributor to configure the kernel properly,
-including adding needed firmware to the kernel image if they want the
-driver to be built-in.
-
-Thanks.
-
--- 
-Dmitry
+--paADetfVWSXra5Dy--
 
