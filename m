@@ -1,216 +1,144 @@
-Return-Path: <devicetree+bounces-124831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 308069DA184
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 05:34:12 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 872A19DA199
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 06:02:46 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 29C5A168E42
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 05:02:43 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0FF179DC7;
+	Wed, 27 Nov 2024 05:02:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="G19/0yrH"
+X-Original-To: devicetree@vger.kernel.org
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CEA572849F3
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 04:34:10 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09EDA558A5;
-	Wed, 27 Nov 2024 04:34:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EBJ0XCim"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 250B214F90;
-	Wed, 27 Nov 2024 04:34:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC5FF8BE5;
+	Wed, 27 Nov 2024 05:02:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732682046; cv=none; b=NThtD+Gppt98nijlzhyCPTC/iNKY8kFUsfDwFl6KWb5X2uyR4F/4N6tPpWw+7Pps5VnXgH7+eu2jBYTKPkjtjlNJg12lLukIsYjpQL82lrXwS1E4wnG5iBXUK8co+221EQgctVNXieYVuo9W+AF1oetJFlOKgm2lApd+1Ob+ox0=
+	t=1732683761; cv=none; b=ZfISmwUIZbhtd1XfdAVDISAWBUGFZQwBz/E0uRvN/2OgshW0ID4HD4SH8gVkttOp/P9JUo0JSm6lPOE2SHfhhUldoReCVYpuQvdRudPdDd6J+YoAfUO7mOI8XmqKiDbaGMzEvPxhgzmlgllU+8X2S2QoC2dS2bQaojMUqfuxvuo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732682046; c=relaxed/simple;
-	bh=esaoqFsdsjq6dGqzkJX1+DvjhcClDspLFiMqk0Y1wgU=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=qjinoEvFYdHzfRePoua5XiYIyFNez4lZPm8zML3Cwnh0+D2gm93DktOVubqelli5jyt8ZfH3TUbCUvwL2AbgpNhI26Ip2iOAZW8fHx8vfhyIoVeFQnJGicV9/kVLV3nGO5+T9IU/4c0nGKGCIm2VPC0vW6a07rdESq6gufFZifU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EBJ0XCim; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-434a8b94fb5so2141005e9.0;
-        Tue, 26 Nov 2024 20:34:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1732682043; x=1733286843; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=nE9I1uPOR4sQF959XXKFUqSwci9J/1L0qLYIRegyl2k=;
-        b=EBJ0XCimwsH4wtw/3aeyzWQWosOlbbQd/OQi6YCvze0X5bMcU6CiLODz4iCXe7SOK2
-         /aCT2wuQhHilW19WOiKMancL+MAVCC6qSIo7QVvw77PYrZojXiDOHnhs2tn7I4HVD/xh
-         m02U9sur84DkQFLSbgzlWMsH2+uHov4co6Pi2+WWwci+hf6FhNUkIoZrRx03ZLZOBl55
-         +tkeZEYotdkXTENUCgT5HU1gp/cUlOs/QhoeFcRs0uTJg6eS0SEC7y9djNP+y+7+hIXW
-         yl0LXvl0bJaBEVpI60N9hUHsK5kOIdmbo15oYNsJeP51Keh1edHCxy1ppvu65/oXzmMs
-         8IMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732682043; x=1733286843;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=nE9I1uPOR4sQF959XXKFUqSwci9J/1L0qLYIRegyl2k=;
-        b=dd778PdbTKNaUASWGxuhuOwSwDJod851ATavxpfFKSs6OSfq1URWEq0z/iLylDY8Je
-         VNaqTjdSCdI4yHxek88x594edUjax+7OlNlsHPHIaYGRh8ScTBz+VbASWsrF/EoAeW8M
-         FcUZWn/Bq44rE+mLbzz3JEoGA4FtdywMsSpJ7w30mU9C+wfBAAbgZ6eJ9zKIOyCFelr5
-         d5G4VV1T+BuIMi1almyPn9mzCkXUd7wcyt0CVqNjL1SdUS/5dx5rE6ep8JRdUY9+M1Mc
-         crM5c0onBWRtwWZxhvCKPGT/O2JgniH71+whUF/Omh93re73723iCuJvweEXKKTFOe52
-         BX/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWGktxyCDeSimTCtc5GXDJBaK7bzquZqj5jzy4A5LAWin+6pacUAQrVUWlZMlNA5A4S6dAl5YP5AphIoC8H@vger.kernel.org, AJvYcCXQXwr+ObsONQ7Ve5kBo3FZIn4p2ulOe5ZwqcmNGJtJNC/Jf8D8MtpKLjijqqNVHRu6jQTqfq6ZJLxE@vger.kernel.org
-X-Gm-Message-State: AOJu0YwODsoMU2euvYaSYmZ+k9eVnV6dHzqRqK2Gw8ya8iOwpvjL6eHY
-	TUMH5jmh7yKmUf5PVK3V/0TFCJ0BEAOkdcJ0dFW/tr+Ajwqsp/Kz
-X-Gm-Gg: ASbGnctAYe9JwUb0P/EhBNggcs790p8jVgap933gUKYH96qk9tINWdSOKtgi9QjtGEp
-	JA+dMy1p/oO56KEyqHj7zLE93JmHmgbk5wYFslQ3NA5bWPxhnR5jiBOwe6iIFfXO+Ebv/Uq74lx
-	U1X63NNzLiCTWXJ/b7pGVqA3OIHdfnc5EjpUd16BVavyrpZgyymLvmI1wRU9oEHJCFPaMFg6Xqm
-	OTKvODrF6sabyvACjHaK/N9vKD/YOv9tRxS6YicrkbMi/3smNcrBCc=
-X-Google-Smtp-Source: AGHT+IHFTh4QPCHLqYQqSQVx7EWaLp6Y5TlpjfC3lTUuw+N9BykWXKF0iN1qJk77JxXDjEBKXKGF6A==
-X-Received: by 2002:a05:600c:214a:b0:434:9d3c:31ec with SMTP id 5b1f17b1804b1-434a4e988b5mr44514395e9.10.1732682043182;
-        Tue, 26 Nov 2024 20:34:03 -0800 (PST)
-Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434aa7e256esm7503415e9.32.2024.11.26.20.34.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 26 Nov 2024 20:34:02 -0800 (PST)
-From: Christian Hewitt <christianshewitt@gmail.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH v2] arm64: dts: meson: remove broadcom wifi compatible from GX reference boards
-Date: Wed, 27 Nov 2024 04:33:58 +0000
-Message-Id: <20241127043358.3799737-1-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1732683761; c=relaxed/simple;
+	bh=PCUba8hrz2AA9NubEQaRdf0jbCD7NotGaPijgKo1XJo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=K3pihCDg5dco4oSDcmT3bpHxGkse50sYuucOcfN0GPXqS4wJg2+MXkxUe57KCTDzZeK+FJtlUnNip+UQuqCQ7yRMYXWtvs6SsfWZdXBp52tIrcIE3aWdmtTOeWMSzT7SQz0MipXes+1MKMsoxl8ircsaammlpGrfXS8Y/J3uT8I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=G19/0yrH; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 4AR52Zlo936917
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 26 Nov 2024 23:02:35 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1732683755;
+	bh=Xj+yoYpiOew6cJrj/nwWhzTN0RRt9UoC9Hj9cY5VMZY=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=G19/0yrHzgdXzjLKbsaZl42RkxhuNsuHr+QaHGTyTQIhiohwtjER7Sz1JJEacla8Y
+	 3DcELM65PGL8HrzfsZXKe2D2Fv0EZjzwkt3MQ1tmIbCN9IFTFzt8ocTpNhnzi84S1u
+	 WUv2O8f9a80rPBRd+O6cfSwur6680jX33Runr6LE=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4AR52Zbr115521
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 26 Nov 2024 23:02:35 -0600
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 26
+ Nov 2024 23:02:34 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 26 Nov 2024 23:02:34 -0600
+Received: from [10.24.69.142] ([10.24.69.142])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4AR52UYk050049;
+	Tue, 26 Nov 2024 23:02:31 -0600
+Message-ID: <3df3d649-b921-49db-a050-ef935b7e9748@ti.com>
+Date: Wed, 27 Nov 2024 10:32:30 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: dma: ti: k3-bcdma: Add J722S CSI
+ BCDMA
+To: Krzysztof Kozlowski <krzk@kernel.org>, <peter.ujfalusi@gmail.com>,
+        <vkoul@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <dmaengine@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>, <j-choudhary@ti.com>,
+        <vigneshr@ti.com>
+References: <20241126125158.37744-1-vaishnav.a@ti.com>
+ <8399720e-2a91-4374-b049-ff1d7e66d83e@kernel.org>
+Content-Language: en-US
+From: Vaishnav Achath <vaishnav.a@ti.com>
+In-Reply-To: <8399720e-2a91-4374-b049-ff1d7e66d83e@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Amlogic GX reference boards shipped with Broadcom SDIO modules and
-this is described in device-tree files. These boards are rare, but
-their device-trees are commonly used to boot no-name Android STB's
-that closely follow the vendor reference design. For cost reasons
-these boxes often use non-Broadcom RTL8189ES/FS and QCA9377 SDIO
-modules, and for availability reasons the chipset/module used can
-change between batches of the same device.
+Hi Krzysztof,
 
-Testing shows the only requirement for WiFi driver probe and load
-is presence of the correct 'reg' value, and all Amlogic boards use
-the same <1> value. Removing the 'brcm,bcm4329-fmac' compatible
-allows a wider range of Android STB boards to boot from reference
-design device-trees and have working WiFi. Also convert the 'brcmf'
-node name to a more generic 'sdio' to reflect we are not always
-using the Broadcom brcmfmac driver now.
+On 26/11/24 19:49, Krzysztof Kozlowski wrote:
+> On 26/11/2024 13:51, Vaishnav Achath wrote:
+>> J722S CSI BCDMA is similar to J721S2 CSI BCDMA and
+>> supports both RX and TX channels. Add an entry for
+>> J722S CSIRX BCDMA.
+> 
+> Please wrap commit message according to Linux coding style / submission
+> process (neither too early nor over the limit):
+> https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+> 
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
-Changes since v1:
-- correct and reduce subject/description line length
-- provide a better explanation of the change
+I will fix this in next revision.
 
- arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi      | 3 +--
- arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts  | 3 +--
- arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dts  | 3 +--
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi | 3 +--
- arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts        | 3 +--
- arch/arm64/boot/dts/amlogic/meson-gxm-q201.dts        | 3 +--
- 6 files changed, 6 insertions(+), 12 deletions(-)
+>>
+>> Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
+>> ---
+>>
+>> V1->V2:
+>>    * Address review from Conor to add new J722S compatible
+>>    * J722S BCDMA is more similar to J721S2 in terms of RX/TX support,
+>>    add an entry alongside J721S2 instead of modifying AM62A.
+>>
+>> V1: https://lore.kernel.org/all/20241125083914.2934815-1-vaishnav.a@ti.com/
+>>
+>>   Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml | 4 +++-
+>>   1 file changed, 3 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml b/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
+>> index 27b8e1636560..37832c71bd8e 100644
+>> --- a/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
+>> +++ b/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
+>> @@ -196,7 +196,9 @@ allOf:
+>>         properties:
+>>           compatible:
+>>             contains:
+>> -            const: ti,j721s2-dmss-bcdma-csi
+>> +            enum:
+>> +              - ti,j721s2-dmss-bcdma-csi
+>> +              - ti,j722s-dmss-bcdma-csi
+> 
+> This compatible was never documented. There is no dependency here, no
+> cover letter explaining where is this compatible introduced.
+> 
+> 
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-index 52d57773a77f..1736bd2e96e2 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-@@ -178,9 +178,8 @@ &sd_emmc_a {
- 	vmmc-supply = <&vddao_3v3>;
- 	vqmmc-supply = <&vddio_boot>;
- 
--	brcmf: wifi@1 {
-+	sdio: wifi@1 {
- 		reg = <1>;
--		compatible = "brcm,bcm4329-fmac";
- 	};
- };
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts
-index c1470416faad..7dffeb5931c9 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts
-@@ -102,8 +102,7 @@ hdmi_tx_tmds_out: endpoint {
- };
- 
- &sd_emmc_a {
--	brcmf: wifi@1 {
-+	sdio: wifi@1 {
- 		reg = <1>;
--		compatible = "brcm,bcm4329-fmac";
- 	};
- };
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dts
-index 92c425d0259c..ff9145d49090 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dts
-@@ -21,8 +21,7 @@ &ethmac {
- };
- 
- &sd_emmc_a {
--	brcmf: wifi@1 {
-+	sdio: wifi@1 {
- 		reg = <1>;
--		compatible = "brcm,bcm4329-fmac";
- 	};
- };
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-index 7e7dc87ede2d..b52a830efcce 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
-@@ -134,9 +134,8 @@ &sd_emmc_a {
- 	vmmc-supply = <&vddao_3v3>;
- 	vqmmc-supply = <&vddio_boot>;
- 
--	brcmf: wifi@1 {
-+	sdio: wifi@1 {
- 		reg = <1>;
--		compatible = "brcm,bcm4329-fmac";
- 	};
- };
- 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts
-index d4858afa0e9c..feb31207773f 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts
-@@ -72,8 +72,7 @@ external_phy: ethernet-phy@0 {
- };
- 
- &sd_emmc_a {
--	brcmf: wifi@1 {
-+	sdio: wifi@1 {
- 		reg = <1>;
--		compatible = "brcm,bcm4329-fmac";
- 	};
- };
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-q201.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-q201.dts
-index d02b80d77378..6c8bec1853ac 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxm-q201.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-q201.dts
-@@ -21,8 +21,7 @@ &ethmac {
- };
- 
- &sd_emmc_a {
--	brcmf: wifi@1 {
-+	sdio: wifi@1 {
- 		reg = <1>;
--		compatible = "brcm,bcm4329-fmac";
- 	};
- };
--- 
-2.34.1
+This was a mistake from my end, sorry about that, it was supposed to be 
+introduced in this patch itself, will fix it in the next revision. Thank 
+you for the review.
 
+Thanks and Regards,
+Vaishnav
+
+> 
+> 
+> Best regards,
+> Krzysztof
 
