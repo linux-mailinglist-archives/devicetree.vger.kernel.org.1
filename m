@@ -1,121 +1,131 @@
-Return-Path: <devicetree+bounces-125026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA4E39DA8A2
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 14:38:54 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6633B9DA8CF
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 14:42:19 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A78F285248
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 13:38:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A9DC1624FB
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 13:42:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1E711FCF45;
-	Wed, 27 Nov 2024 13:38:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC61F1FE466;
+	Wed, 27 Nov 2024 13:41:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="jxHZVLsS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from freeshell.de (freeshell.de [116.202.128.144])
+Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1EF75B1FB;
-	Wed, 27 Nov 2024 13:38:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A72251FCF73;
+	Wed, 27 Nov 2024 13:41:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.30.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732714730; cv=none; b=azFnAGt2zHWTxOL+x/wObEAzzQDmloEQ1U7z5IwvYjZix4mlvmS8/BIWiMB4aqlBnNndV+T7k/NnKBAmGL2asBrn0bBvVKg7VcDarxsETnOxskwLlFggRPeuugVjPnBPt2byB6S8Ztm4Y4KuvThWo6cxIFiUTel3aMMArDOkwfs=
+	t=1732714872; cv=none; b=lXiMvMJ1PqO4ysGGZCgbR2jfhRVWOS570BCpo77OjmdLBWSh6sOvUO59TU18AH3FCPWcn8kyiUXovMK8pVtdPwuVz8sGwp/GoPEMo+aDZtcBEBfDyTnGaVuPHro+k1XN9E5d0FMIIMG44+W+iDvfzCKRuRRWsttBdZEYjheTdwQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732714730; c=relaxed/simple;
-	bh=MrYihTpw+6Nw3uevt6KSEV8nm7+0I3/GUhbAKcAZz5U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sipKPQv7q1YTVDR/OZMdXTw9g3yZaIuWxTkkEPJaMy2LHCHZbtcW2mCo+HnptO0em//TcE7W+QsaH8deXgDKOvhBqYvUWveZeZN0ddqub9f1cvyoG7xOWZH5CA14mOVDfqyQGnGELNjHPD0o95b2vOc/7BIG62C4KbctH24tyyM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
-Received: from [IPV6:2605:59c8:31de:bf00:37c2:fe62:c21b:ab46] (unknown [IPv6:2605:59c8:31de:bf00:37c2:fe62:c21b:ab46])
-	(Authenticated sender: e)
-	by freeshell.de (Postfix) with ESMTPSA id F2247B4B1EF8;
-	Wed, 27 Nov 2024 14:38:41 +0100 (CET)
-Message-ID: <dd060a05-9428-4af8-85b1-b6baa756490f@freeshell.de>
-Date: Wed, 27 Nov 2024 05:38:39 -0800
+	s=arc-20240116; t=1732714872; c=relaxed/simple;
+	bh=QQuctVgVhgz9hFgdqE9wQRd9rI6sn4l6Z0AQ7l65FHE=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Q7TQhfF9mDqp6EK0RLeSdsLl2qXFT6qRdk2P4HimDuJU5Hp7TSMADCV5ameHM0OebVBZSkZOmfrh/MpudjCGZv71zNjpRuLgzbX75P27TNv+50aN3lwphyNnsgsk46i8iBcsFAm65TogApHkwhvqi6XHiLD1oUFFZ1Wo/X5pYCA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=jxHZVLsS; arc=none smtp.client-ip=188.40.30.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
+	s=default2211; h=Cc:To:Message-Id:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Subject:Date:From:Sender:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References; bh=nzjt9R1rj2NgW88oWujFd2rga39hRVGQyf9XMSDHskU=; b=jx
+	HZVLsSJnkEUiwtMeGnnBucIwGNyl2CUx7msRo8F191hEpBHTH84zl239G4god54LETT0hXwF17giG
+	+GA68B1U4F0oufjHkTXyHV6Ugc+bMK71CoTkFRKfFVazR4WX5rsJrtLrvuhv2MYHD0PPbpmwo8q/9
+	wK1gLRSHQGREDBXCb6UCzwqlutjAghETH4WhHp/C/f0dIPNpQXsf8rCXOuXAkf7t8ferAw6kRv578
+	V8DGUQuIBmQ255XlTI0HELKBruony980xWppV6fQO9StXaxEzOev3JQze9FgiUrFaelMO9bm1wFXl
+	NXeYpMVTMbMZw/+PxReZ2EUsniHOxPlg==;
+Received: from sslproxy01.your-server.de ([78.46.139.224])
+	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <sean@geanix.com>)
+	id 1tGIHn-000KXq-3W; Wed, 27 Nov 2024 14:40:55 +0100
+Received: from [185.17.218.86] (helo=zen.localdomain)
+	by sslproxy01.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <sean@geanix.com>)
+	id 1tGIHm-000HQN-19;
+	Wed, 27 Nov 2024 14:40:54 +0100
+From: Sean Nyekjaer <sean@geanix.com>
+Date: Wed, 27 Nov 2024 14:40:47 +0100
+Subject: [PATCH can-next] dt-bindings: can: tcan4x5x: add missing required
+ clock-names
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/1] riscv: dts: starfive: jh7110-pine64-star64: enable
- usb0 host function
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
- Henry Bell <dmoo_dv@protonmail.com>
-Cc: Conor Dooley <conor@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20241126073836.17208-1-e@freeshell.de>
- <20241126073836.17208-2-e@freeshell.de>
- <CAJM55Z8---o6_ZxeyUu_M74LA_zKfeksBmRGFkm2C66hRJbPug@mail.gmail.com>
-Content-Language: en-US
-From: E Shattow <e@freeshell.de>
-In-Reply-To: <CAJM55Z8---o6_ZxeyUu_M74LA_zKfeksBmRGFkm2C66hRJbPug@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241127-tcancclk-v1-1-5493d3f03db1@geanix.com>
+X-B4-Tracking: v=1; b=H4sIAF4hR2cC/x3MQQqAIBBA0avErBtQK6KuEi10mmooLFQiiO6et
+ Pzw+A9EDsIR+uKBwJdEOXwOXRZAq/ULo0y5wShTa21aTGQ90b4h6boj5SqnGgWZn4Fnuf/VABm
+ h5zvB+L4f9nFXUWQAAAA=
+X-Change-ID: 20241127-tcancclk-c149c0b3b050
+To: Marc Kleine-Budde <mkl@pengutronix.de>, 
+ Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
+ Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Sean Nyekjaer <sean@geanix.com>
+X-Mailer: b4 0.14.2
+X-Authenticated-Sender: sean@geanix.com
+X-Virus-Scanned: Clear (ClamAV 0.103.10/27470/Wed Nov 27 10:59:44 2024)
 
+tcan4x5x requires an external clock called cclk, add it here.
 
-On 11/27/24 05:23, Emil Renner Berthing wrote:
-> E Shattow wrote:
->> Pine64 Star64 set JH7110 on-chip USB host mode and vbus pin assignment
-> Here I'd like it explained that the Star64 board routes 1 of the 4 USB-A ports
-> to USB0 on the SoC rather than to the USB 3.0 <-> PCIe chip.
->
-> (Confusing for users that 1 of the 4 similar ports only does USB 2.0, but
-> that's too late to change and not relevant here)
->
-> With that fixed:
-> Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+---
+ Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml b/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
+index ff18cf7393550d1b7107b1233d8302203026579d..f3f3cbc03aec13e517552d2e29ecea1585de8e36 100644
+--- a/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
++++ b/Documentation/devicetree/bindings/net/can/ti,tcan4x5x.yaml
+@@ -29,6 +29,10 @@ properties:
+   clocks:
+     maxItems: 1
+ 
++  clock-names:
++    items:
++      - const: cclk
++
+   reset-gpios:
+     description: Hardwired output GPIO. If not defined then software reset.
+     maxItems: 1
+@@ -154,6 +158,7 @@ examples:
+         can@0 {
+             compatible = "ti,tcan4x5x";
+             reg = <0>;
++            clock-names = "cclk";
+             clocks = <&can0_osc>;
+             pinctrl-names = "default";
+             pinctrl-0 = <&can0_pins>;
+@@ -179,6 +184,7 @@ examples:
+         can@0 {
+             compatible = "ti,tcan4552", "ti,tcan4x5x";
+             reg = <0>;
++            clock-names = "cclk";
+             clocks = <&can0_osc>;
+             pinctrl-names = "default";
+             pinctrl-0 = <&can0_pins>;
 
-There is no (VL805) USB 3.0 <-> PCIe chip on Star64;  All 4 USB-A ports 
-route to USB0 of the SoC. What does not exist I did not write about in 
-the cover letter. I will expand the description in the commit message. 
-Thank you!  -E
+---
+base-commit: e0b741bc53c94f9ae25d4140202557a0aa51b5a0
+change-id: 20241127-tcancclk-c149c0b3b050
 
+Best regards,
+-- 
+Sean Nyekjaer <sean@geanix.com>
 
->> Signed-off-by: E Shattow <e@freeshell.de>
->> ---
->>   .../boot/dts/starfive/jh7110-pine64-star64.dts | 18 +++++++++++++++++-
->>   1 file changed, 17 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts b/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
->> index fe4a490ecc61..b764d4d92fd9 100644
->> --- a/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
->> +++ b/arch/riscv/boot/dts/starfive/jh7110-pine64-star64.dts
->> @@ -80,7 +80,23 @@ &spi0 {
->>   	status = "okay";
->>   };
->>
->> +&sysgpio {
->> +	usb0_pins: usb0-0 {
->> +		vbus-pins {
->> +			pinmux = <GPIOMUX(25,  GPOUT_SYS_USB_DRIVE_VBUS,
->> +					       GPOEN_ENABLE,
->> +					       GPI_NONE)>;
->> +			bias-disable;
->> +			input-disable;
->> +			input-schmitt-disable;
->> +			slew-rate = <0>;
->> +		};
->> +	};
->> +};
->> +
->>   &usb0 {
->> -	dr_mode = "peripheral";
->> +	dr_mode = "host";
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&usb0_pins>;
->>   	status = "okay";
->>   };
->> --
->> 2.45.2
->>
 
