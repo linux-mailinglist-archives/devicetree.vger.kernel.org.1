@@ -1,260 +1,164 @@
-Return-Path: <devicetree+bounces-125059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFDDE9DA9F8
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 15:38:12 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 00AB21652FC
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 14:38:07 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B35D7200105;
-	Wed, 27 Nov 2024 14:37:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="pxykcM66"
-X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7CE29DA9FA
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 15:38:51 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B70E1FF7B0;
-	Wed, 27 Nov 2024 14:37:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 39275B22BCA
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 14:38:49 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 309A81FF7AF;
+	Wed, 27 Nov 2024 14:38:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="EDFz+eZL"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DFE11FF7A1
+	for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 14:38:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732718272; cv=none; b=TIQKywAhA2SK35PJ+g65YNfOwfepcEgq0YVDbJxCLWUaRXCtlUMIunykti8UEaXNjoS9bGU7YR/mYK1zDJRgbqqLR18Gw3ikzzzOlHh5x3qfgC7DDvAYD/SGE/Tm+Xf2lyRx69cZ42aLtUWoe3tI4GXhJLU/r/DEdAVr8ya+FPA=
+	t=1732718321; cv=none; b=IVA3TSeMT63wowePTAQZ6lGdgUfcoWy2Ik4/RdELQ0EyGhqOqsSMpqqIagIBn+O0OdwDIpzs09m24ATKCKzGDMYdXDF2ksUUqBcP/BQpb4kdDGBIWR6lYcdZiDf5hFzAkphrYot/YePCs3a+Rz9gLzIFkdr6TcBWP9lXf3gLRhE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732718272; c=relaxed/simple;
-	bh=Zc16Jjy96K03qte13/K/uHaHy6dlr5tPU0LN4UKZQP4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ZKB5gj2x1yjQhcqAXbecRn/wXnoz99XQ1KJbMzNqmpcEyQO5hECoK0Che9/5DXTwibAZbxSTx6fTLd1xJRz4vhE2i+bgoMOa55UEJD4F25wv2tCKMI1BCYOLIazYl5/tkL6jMivpApdm/xYFlISWFyHBcdrmwvCVPSE3FIal+VA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=pxykcM66; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:MIME-Version:References:
-	In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=Yi9ivZL7hE/+AzA0giTInnZeJXGkpovY54SIjT3aEK0=; b=pxykcM66aiKoDh/4VkTR3L4I/z
-	YCeJrljdqeu+hrNiYgKXEk/KgrW0IbRwcpLBsGDImydPRxLSjGJPUl781hBlJOr+mMd9cgFoqMzOE
-	7ZLFW37TIuto1KEHTXLXOP+i5rFu1nkEYUnJ6SKBkqHoDLz7PlWtADncByfXN39fGWM2OS1gnCdeW
-	ZOeDR2+xnzixNGzcjVLg06lndU3m3lxGBMPI/hbGG4P0k/dBhihEL6MNhWyGT0gHg7VF9XYzVZHEE
-	UMPs41LUipmm8ETKI4+cTTH6qJQ2a1NTuSxWB5I2L+/2GuRwtMfKvYDRl9EdRYaDlAnCjTFzi3cs9
-	BpX6FZiA==;
-Received: from i5e86190f.versanet.de ([94.134.25.15] helo=localhost.localdomain)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tGJAk-0002n6-Hw; Wed, 27 Nov 2024 15:37:42 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: heiko@sntech.de
-Cc: quentin.schulz@cherry.de,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	dse@thaumatec.com,
-	Heiko Stuebner <heiko.stuebner@cherry.de>
-Subject: [PATCH v2 3/3] arm64: dts: rockchip: add overlay for tiger-haikou video-demo adapter
-Date: Wed, 27 Nov 2024 15:37:19 +0100
-Message-ID: <20241127143719.660658-4-heiko@sntech.de>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241127143719.660658-1-heiko@sntech.de>
-References: <20241127143719.660658-1-heiko@sntech.de>
+	s=arc-20240116; t=1732718321; c=relaxed/simple;
+	bh=lnsn699LpgnPbF0lMZ+d2fnNy1n5cw6ru66r6iKjaoQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BnNE+V5tvU7uJfkVI6pUctZFoViqD7cehreByw2Dvo8keNfDQ9FLQJ/71/S3slHdc3FzjsMdF0KkgSsLxIx5/HdLIrKV7j0XG5dgmiunukB1V3XFRJvJltE442rXbJN4wbVrU+G/i9JafLkRx98FXwLTmHjDJ999Mjx0VFpxT0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=EDFz+eZL; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-38230ed9baeso4848079f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 06:38:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1732718317; x=1733323117; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=fjCD0qFxOqO5DReL54VpjPy3zOSRJFVTaycjBR40RnM=;
+        b=EDFz+eZL0XuPyRZ7u1u1anW4m01z0xRhbi6lEJZt+75GgOI7GLDD8xsIyJLIKzOi9s
+         qfRAilBKozz6e+7RN7YGmypW7+Ap9j8iUCao5cai6FZAxy9nb2QvkzJhNtvvk7BmCaqj
+         6hjrv59c4ZT+10J/Uv2GbY/p1uWmE1aVtbDev//in92KRgjxIUvUycBA0mUn+Ljywlos
+         qb96EBdfzVfYyg5o6bCOA7J6S4Q7gpBZCDz/jckU+2pFg2uLDMKlW9NyoKiJAjpNoFvc
+         7+VYs/rGwPDiVgkpvTmtMFI/hUY6c/+RLwJvnVCJzgm564zgYfVZecgVJ2Gi2gt0RTB8
+         Lmig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732718317; x=1733323117;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fjCD0qFxOqO5DReL54VpjPy3zOSRJFVTaycjBR40RnM=;
+        b=SW/z3GYSwRERbcreUpwhFbBnlgZYt9g1CUlSfj6EKMyyPf6FSvIIaRcS3s1r8eOmhd
+         5z1ibMsjxy4LjryfI1rAW+IGccir+7IToDFRMATCMwTj3XYfYZEO3q+ENsSTvKrWb+nL
+         bLi9n1ow66GxguSyEsZjVc+ge9tBAUaVi4I+Yf3Fy3pLcBUjVxhKKXw9RVU2xHKQ9CeQ
+         S/rwzSw9a/vXa3N0y+2OYKZZql89oyX9S7DI8KCGO/4xmlJFOR4l30Q/Dh3xztNquH8D
+         73Lq5JHq5CitncXPEt2vC+7PPQ0y24Wu6E0Zp5FkKfYCqppNeY9thEJcJjb4z8714vod
+         mGQQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWcr+LbL/DwFxFXtoLFncDA4fUrqJadybrHfM3ZWNTgLQbHxPdKBqHDj/x+6NpmjOPYtnW0ahojE9g1@vger.kernel.org
+X-Gm-Message-State: AOJu0YzfrrV9nqDSRW4CAVw1T+TdGdtKsT7/ThqmUu2xtxSh0Kkksh7T
+	aQ6ykJq7xYzQbe/RSRfv53x0U6XqLfJjIZc4dftmtgo7IpLJg9exmNtSFX7eyh8=
+X-Gm-Gg: ASbGncvogzU6aryecFPu7T67UBTpb5J4M3GlSX89QdPCTHvTTwhZ+M3TeSPUa623q8/
+	sAJmS51rb0Ft9BCpU6TTAWgEorVH2lUELAG2BTjzJYFFqww957EttdqdLUoSbfyiXug7tmISnCC
+	5NrDF0fnclwbS/rwPuKI+Jpt7mplH8NS9FvAoMxtmN7GafVI99DU3B33q4CGmN6WAXeQm26I4OW
+	MB8LzKPvfCXcE04Z3RB9a62H+Bzjmya2dwy0muUsgus0tSPfD7mXZST/mKPiKnxkZaCyqEH2h8+
+	Hybh
+X-Google-Smtp-Source: AGHT+IHMmEsMtbcC+5w4VmxGp70yBDULVWkU/ZbDtSTIP0A5u8I3KUEQg1ao763uGeZiDyE/hL1wcQ==
+X-Received: by 2002:a5d:6c6c:0:b0:382:30a5:c38e with SMTP id ffacd0b85a97d-385c6ec1158mr2425497f8f.31.1732718316694;
+        Wed, 27 Nov 2024 06:38:36 -0800 (PST)
+Received: from localhost (p5dc6838f.dip0.t-ipconnect.de. [93.198.131.143])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3825fb2609csm16714496f8f.44.2024.11.27.06.38.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Nov 2024 06:38:36 -0800 (PST)
+Date: Wed, 27 Nov 2024 15:38:34 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Alexandru Ardelean <aardelean@baylibre.com>, Alisa-Dariana Roman <alisa.roman@analog.com>, 
+	Conor Dooley <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	Dumitru Ceclan <dumitru.ceclan@analog.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Nuno Sa <nuno.sa@analog.com>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	linux-iio@vger.kernel.org
+Subject: Re: [PATCH v3 10/10] iio: adc: ad7124: Implement temperature
+ measurement
+Message-ID: <mg34sbu6agf7v4iupeaf47n5ubpq4igevhjacvurumf5sfpjs6@ioyyjm3zijdf>
+References: <20241122113322.242875-12-u.kleine-koenig@baylibre.com>
+ <20241122113322.242875-22-u.kleine-koenig@baylibre.com>
+ <CAHp75Ve_sD-a-m4pYmKrT=LhajO=F7TG7KM7AsM47J0=ksVgNw@mail.gmail.com>
+ <eghe47rkwxmcfkamayemvwfksonrwbysaadakbdm4lvzcsy4ee@7gftiif7ka6i>
+ <CAHp75Ve3hBhCMFkjA4-hiLfGQLeeGt_74e=PwTH_nF1NCYiyOA@mail.gmail.com>
+ <2tsxyxmfh3ozolsziu3bps7liagzl4gmvy4oykvyeapziagvy4@tfa2lcxmdsmf>
+ <CAHp75VcMHyqjsAVveRf58PhoiKyPJRsjBQiLkz+XVu+NDc+Wog@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="kbmnltnu74luhggm"
+Content-Disposition: inline
+In-Reply-To: <CAHp75VcMHyqjsAVveRf58PhoiKyPJRsjBQiLkz+XVu+NDc+Wog@mail.gmail.com>
 
-From: Heiko Stuebner <heiko.stuebner@cherry.de>
 
-This adds support for the video-demo-adapter DEVKIT ADDON CAM-TS-A01
-(https://embedded.cherry.de/product/development-kit/) for the Haikou
-devkit with Tiger RK3588 SoM.
+--kbmnltnu74luhggm
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 10/10] iio: adc: ad7124: Implement temperature
+ measurement
+MIME-Version: 1.0
 
-The Video Demo adapter is an adapter connected to the fake PCIe slot
-labeled "Video Connector" on the Haikou devkit.
+On Mon, Nov 25, 2024 at 09:33:12PM +0200, Andy Shevchenko wrote:
+> On Mon, Nov 25, 2024 at 4:52=E2=80=AFPM Uwe Kleine-K=C3=B6nig
+> <u.kleine-koenig@baylibre.com> wrote:
+> > On Mon, Nov 25, 2024 at 03:47:25PM +0200, Andy Shevchenko wrote:
+> > > On Mon, Nov 25, 2024 at 1:27=E2=80=AFPM Uwe Kleine-K=C3=B6nig
+> > > <u.kleine-koenig@baylibre.com> wrote:
+> > > > On Fri, Nov 22, 2024 at 10:31:07PM +0200, Andy Shevchenko wrote:
+> > > > > On Fri, Nov 22, 2024 at 1:34=E2=80=AFPM Uwe Kleine-K=C3=B6nig
+> > > > > <u.kleine-koenig@baylibre.com> wrote:
+> > > > > > +       /* Add one for temperature */
+> > > > > > +       st->num_channels =3D min(num_channels + 1, AD7124_MAX_C=
+HANNELS);
+> > > > >
+> > > > > Is the type of both arguments the same?
+> > > >
+> > > > Hmm, my compiler is happy with it at least. I don't understand why
+> > > > though. I'll do a few more tests ...
+> > >
+> > > If num_channels is signed int or shorter than (independently on the
+> > > sign) int, then it's obvious why. + 1 makes it int.
+> >
+> > Ah indeed, I should have understood that without that explanation.
+>=20
+> Yeah, but a closer look shows to me that num_channels is unsigned int
+> or did I look in the wrong place? If that's true, that should make a
+> warning appear since AD7124_MAX_CHANNELS is signed int...
 
-It's main feature is a Leadtek DSI-display with touchscreen and a camera
-(that is not supported yet). To drive these components a number of
-additional regulators are grouped on the adapter as well as a PCA9670
-gpio-expander to provide the needed additional gpio-lines.
+The ideas in the definition of min are a bit hard to follow, but IIUC it
+doesn't warn because AD7124_MAX_CHANNELS is non-negative and so there is
+no danger for misinterpretation.
 
-Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
----
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../rk3588-tiger-haikou-video-demo.dtso       | 144 ++++++++++++++++++
- 2 files changed, 145 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-tiger-haikou-video-demo.dtso
+Best regards
+Uwe
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 3f888451a13e..a2404fcdc6fd 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -144,6 +144,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-ep.dtbo
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-srns.dtbo
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-tiger-haikou.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-tiger-haikou-video-demo.dtbo
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-toybrick-x0.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-turing-rk1.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-coolpi-4b.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-tiger-haikou-video-demo.dtso b/arch/arm64/boot/dts/rockchip/rk3588-tiger-haikou-video-demo.dtso
-new file mode 100644
-index 000000000000..a7fe18b81170
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-tiger-haikou-video-demo.dtso
-@@ -0,0 +1,144 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2024 Cherry Embedded Solutions GmbH
-+ *
-+ * DEVKIT ADDON CAM-TS-A01
-+ * https://embedded.cherry.de/product/development-kit/
-+ *
-+ * DT-overlay for the camera / DSI demo appliance for Haikou boards.
-+ * In the flavour for use with a Tiger system-on-module.
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/pinctrl/rockchip.h>
-+#include <dt-bindings/soc/rockchip,vop2.h>
-+
-+&{/} {
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		power-supply = <&dc_12v>;
-+		pwms = <&pwm0 0 25000 0>;
-+	};
-+
-+	vcc1v8_video: regulator-vcc1v8-video {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc1v8-video";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc3v3_baseboard>;
-+	};
-+
-+	vcc2v8_video: regulator-vcc2v8-video {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc2v8-video";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <2800000>;
-+		regulator-max-microvolt = <2800000>;
-+		vin-supply = <&vcc3v3_baseboard>;
-+	};
-+
-+	video-adapter-leds {
-+		compatible = "gpio-leds";
-+
-+		video-adapter-led {
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&pca9670 7 GPIO_ACTIVE_HIGH>;
-+			label = "video-adapter-led";
-+			linux,default-trigger = "none";
-+		};
-+	};
-+};
-+
-+&dsi0 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	panel@0 {
-+		compatible = "leadtek,ltk050h3148w";
-+		reg = <0>;
-+		backlight = <&backlight>;
-+		iovcc-supply = <&vcc1v8_video>;
-+		reset-gpios = <&pca9670 0 GPIO_ACTIVE_LOW>;
-+		vci-supply = <&vcc2v8_video>;
-+
-+		port {
-+			mipi_panel_in: endpoint {
-+				remote-endpoint = <&dsi0_out_panel>;
-+			};
-+		};
-+	};
-+};
-+
-+&dsi0_in {
-+	dsi0_in_vp3: endpoint {
-+		remote-endpoint = <&vp3_out_dsi0>;
-+	};
-+};
-+
-+&dsi0_out {
-+	dsi0_out_panel: endpoint {
-+		remote-endpoint = <&mipi_panel_in>;
-+	};
-+};
-+
-+&i2c6 {
-+	/* OV5675, GT911, DW9714 are limited to 400KHz */
-+	clock-frequency = <400000>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	touchscreen@14 {
-+		compatible = "goodix,gt911";
-+		reg = <0x14>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <RK_PC3 IRQ_TYPE_LEVEL_LOW>;
-+		irq-gpios = <&gpio3 RK_PC3 GPIO_ACTIVE_HIGH>;
-+		pinctrl-0 = <&touch_int>;
-+		pinctrl-names = "default";
-+		reset-gpios = <&pca9670 1 GPIO_ACTIVE_HIGH>;
-+		AVDD28-supply = <&vcc2v8_video>;
-+		VDDIO-supply = <&vcc3v3_baseboard>;
-+	};
-+
-+	pca9670: gpio@27 {
-+		compatible = "nxp,pca9670";
-+		reg = <0x27>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+	};
-+};
-+
-+&mipidcphy0 {
-+	status = "okay";
-+};
-+
-+&pinctrl {
-+	touch {
-+		touch_int: touch-int {
-+			rockchip,pins = <3 RK_PC3 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
-+&pwm0 {
-+	status = "okay";
-+};
-+
-+&vp3 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	vp3_out_dsi0: endpoint@ROCKCHIP_VOP2_EP_MIPI0 {
-+		reg = <ROCKCHIP_VOP2_EP_MIPI0>;
-+		remote-endpoint = <&dsi0_in_vp3>;
-+	};
-+};
--- 
-2.45.2
+--kbmnltnu74luhggm
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmdHLucACgkQj4D7WH0S
+/k4/Lgf+I6KqOWJtmrxLTxrPIVrJqQgSbCiw6Z9kTouW4Od/YbS8hVskCFPkSTbl
+xo/Yh4jSUTLMpV5jE+erOQgrJxtqjSBUIDKP+V1tMCItEw+AEbDmrenRLRt6FYU9
+s7eTWma6O0O9tD/Lulh7n+1giTAg1Rcp/5NJCgwRllfWG88cFUOijwjf3N/BNNqf
+yS0SwO9WqLlNdpQifLBI2RmQWWWXbvIm5zidT1gizkd76zX93ENt2EiL15VGW1M3
+2IonL8Md+KAJVVSvhhui42mePHqx5qupFLRVTI4iLkAL0uYbWhKqcT6dwI3HYQsS
+mrL/aQBvmIIYPS2JrrCSO4Wtjxoe2w==
+=nfqX
+-----END PGP SIGNATURE-----
+
+--kbmnltnu74luhggm--
 
