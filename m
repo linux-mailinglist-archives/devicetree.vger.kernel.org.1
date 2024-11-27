@@ -1,139 +1,111 @@
-Return-Path: <devicetree+bounces-125122-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125123-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 275789DAC01
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 17:46:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C2AA9DAC05
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 17:47:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D90D164DF1
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 16:46:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0BBA816785D
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 16:47:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3598F202F7F;
-	Wed, 27 Nov 2024 16:45:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 856801F9F55;
+	Wed, 27 Nov 2024 16:47:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b="QQPuhk0h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jo0dS/iE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.fris.de (mail.fris.de [116.203.77.234])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76F2F20101E;
-	Wed, 27 Nov 2024 16:45:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.77.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5104C1428E3;
+	Wed, 27 Nov 2024 16:47:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732725904; cv=none; b=mhv6Topf82TX+a8LXPSq/pL4vMuZTsldw7dFfROyXXZkYzYEYYo2lzMfapQHius6863S1hwA8CjO9mW4vouEqSai1K443ia98ZkxkvKuTtUlyIA/1LFPYEpAiKDSJIGSk/rmmdcTVx9xsIHuwzBZIJyFzOt3oN/Mz8rgf2dGh60=
+	t=1732726063; cv=none; b=FZd30QxD34yjgdEd4W2qvQUyHUH9QMLaqly2q+oxoY/9WyYpVRAn+NpEKWG59OO5Dox6Xhmk5bUL7YUjDchdKG9bhTgWjUnzgogrjEs0Kx8cenUUQYKFKlOPAEFT+Gos16pdWZNEa17uLA/ahdw0VfYU9BTOFYYCaU2V6ucFqB4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732725904; c=relaxed/simple;
-	bh=aI5K8bUZW3h7PptuwM64HWWKYAllkjMLFVRPAJdSTMA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Ck4eMvRd8o0kEzuX3R7ipbXES8mbp62Ikmyse6QlqLqXoj8SMk454Op65L86Ba3YX9zce8EQyO+EtAPpjsVbNvk9Jh3X/2IgdH6+WgYNtkiwCNAk5UrGgBuT1SS7a5i8nlwB6gxBxvkinbE4gpNwZ6IQUn/FFOad9DJFeQPp59I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=pass smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=QQPuhk0h; arc=none smtp.client-ip=116.203.77.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fris.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6D471BFB68;
-	Wed, 27 Nov 2024 17:45:00 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=dkim;
-	t=1732725900; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=GhtswKrs5hWgUHWTjspzoBdgsbXdHPpxNxDCoXZGs+A=;
-	b=QQPuhk0hAAXOKMhdeO7MSjXUxOA6Ht9IjSizaQMw8s28RNbRzPYFR2M/ij2ojM/L/O1DHM
-	MhW3Lm9wuUCCZHwtW2gkquuufVlWMXKsHfAs/TVghYK9pjA6nSUyUaeKEQONuD8T2EtT/F
-	CVedpawlZs8qEtNcBoTIVNFEhjZuViiL1VXsexyT86bx1UN6AZqyIIigSV+/Ekl4+syM6/
-	qvV3doIz1YECSHiZmVkERYKt9ZBCG08sqeabwks+24EjPImgXiT0A17GbCJz1AN6+Hbudf
-	b7eIaCe/1CXr+lAJ0aURETN18ujwlXU7/Us8UURR5VYq92EGqfl8UCDhzac2rw==
-From: Frieder Schrempf <frieder@fris.de>
-To: linux-arm-kernel@lists.infradead.org,
-	Marek Vasut <marex@denx.de>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
+	s=arc-20240116; t=1732726063; c=relaxed/simple;
+	bh=mtfe2NOqbCfz3psjWYNHrEDGlK5BP7RRwd1d/jmG0i8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ppcyd6aRZSZGMBwbs2en5gomss4GdPmxRQpqVqduuQxJHoUYqDqV9TSecZf2oVlpA2ACeL+bDbTw/5xFEREqEc8LijaRLxZthLQkY9KflEgMetlMizUWBT3AwHfgqJFYEezxukyblRdO6qMciqvYnlGvhbO8se7IoI49GmhUPl4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jo0dS/iE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45BE1C4CECC;
+	Wed, 27 Nov 2024 16:47:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732726061;
+	bh=mtfe2NOqbCfz3psjWYNHrEDGlK5BP7RRwd1d/jmG0i8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Jo0dS/iE43Xopq61VTauW2oll8xOcEy4XbKNEIFKp0Ns08bD8aFAC/CmNodV9zHC4
+	 pqxYJXfPzR+0oS/duUzo1y4EX34bcP7wFr0/qX7q1f2H6XXrQRRKAmXolZJobiUc0Q
+	 RKMxKPzOoY1rgXdYKKHSEgHAs0Ee3kfktmr1UdZZ02X9V9w3R2Dl9/9JzoQZ8GXKa2
+	 q5p9yMvashONZg8Q6Kt36cjZhwmTbOYHsKuOdgs3ElMdInmOAkypl8Rq5aZybgr1NQ
+	 jT36ze5dALgUteYGLkG0BfwrIwia5AQ0u14fke701toKPWUqqIfhwUj1kSS77UZfXy
+	 /DGyFocdDFRXQ==
+Date: Wed, 27 Nov 2024 16:47:36 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Frieder Schrempf <frieder@fris.de>
+Cc: linux-arm-kernel@lists.infradead.org, Marek Vasut <marex@denx.de>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>
-Cc: Frieder Schrempf <frieder.schrempf@kontron.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: [PATCH v2 11/11] arm64: dts: imx8mp-kontron: Add support for reading SD_VSEL signal
-Date: Wed, 27 Nov 2024 17:42:27 +0100
-Message-ID: <20241127164337.613915-12-frieder@fris.de>
-In-Reply-To: <20241127164337.613915-1-frieder@fris.de>
+	Liam Girdwood <lgirdwood@gmail.com>, linux-kernel@vger.kernel.org,
+	Rob Herring <robh@kernel.org>, Robin Gong <yibin.gong@nxp.com>,
+	Frieder Schrempf <frieder.schrempf@kontron.de>,
+	Joy Zou <joy.zou@nxp.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2 01/11] Revert "regulator: pca9450: Add sd-vsel GPIO"
+Message-ID: <26ddcc86-7583-4402-b6b3-7c4cbe63ed94@sirena.org.uk>
 References: <20241127164337.613915-1-frieder@fris.de>
+ <20241127164337.613915-2-frieder@fris.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="3CfSZ6vXPVxUCjFn"
+Content-Disposition: inline
+In-Reply-To: <20241127164337.613915-2-frieder@fris.de>
+X-Cookie: Every path has its puddle.
 
-From: Frieder Schrempf <frieder.schrempf@kontron.de>
 
-This fixes the LDO5 regulator handling of the pca9450 driver by
-taking the status of the SD_VSEL into account to determine which
-configuration register is used for the voltage setting.
+--3CfSZ6vXPVxUCjFn
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Even without this change there is no functional issue, as the code
-for switching the voltage in sdhci.c currently switches both, the
-VSELECT/SD_VSEL signal and the regulator voltage at the same time
-and doesn't run into an invalid corner case.
+On Wed, Nov 27, 2024 at 05:42:17PM +0100, Frieder Schrempf wrote:
+> From: Frieder Schrempf <frieder.schrempf@kontron.de>
+>=20
+> This reverts commit 27866e3e8a7e93494f8374f48061aa73ee46ceb2.
 
-We should still make sure, that we always use the correct register
-when controlling the regulator. At least in U-Boot this fixes an
-actual bug where the wrong IO voltage is used and it makes sure
-that the correct voltage can be read from sysfs.
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
 
-Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
----
-Changes for v2:
-* new patch
----
- arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+Please include human readable descriptions of things like commits and
+issues being discussed in e-mail in your mails, this makes them much
+easier for humans to read especially when they have no internet access.
+I do frequently catch up on my mail on flights or while otherwise
+travelling so this is even more pressing for me than just being about
+making things a bit easier to read.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi
-index e0e9f6f7616d9..b97bfeb1c30f8 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi
-@@ -311,6 +311,7 @@ reg_nvcc_sd: LDO5 {
- 				regulator-name = "NVCC_SD (LDO5)";
- 				regulator-min-microvolt = <1800000>;
- 				regulator-max-microvolt = <3300000>;
-+				sd-vsel-gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
- 			};
- 		};
- 	};
-@@ -808,7 +809,7 @@ MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0		0x1d0 /* SDIO_A_D0 */
- 			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1		0x1d0 /* SDIO_A_D1 */
- 			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2		0x1d0 /* SDIO_A_D2 */
- 			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3		0x1d0 /* SDIO_A_D3 */
--			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT		0x1d0
-+			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT		0x400001d0
- 		>;
- 	};
- 
-@@ -820,7 +821,7 @@ MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0		0x1d4 /* SDIO_A_D0 */
- 			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1		0x1d4 /* SDIO_A_D1 */
- 			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2		0x1d4 /* SDIO_A_D2 */
- 			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3		0x1d4 /* SDIO_A_D3 */
--			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT		0x1d0
-+			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT		0x400001d0
- 		>;
- 	};
- 
-@@ -832,7 +833,7 @@ MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0		0x1d6 /* SDIO_A_D0 */
- 			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1		0x1d6 /* SDIO_A_D1 */
- 			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2		0x1d6 /* SDIO_A_D2 */
- 			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3		0x1d6 /* SDIO_A_D3 */
--			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT		0x1d0
-+			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT		0x400001d0
- 		>;
- 	};
- 
--- 
-2.46.1
+--3CfSZ6vXPVxUCjFn
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmdHTScACgkQJNaLcl1U
+h9C+fAf/fKV4GhE/U5x7gXRxMU7czUWQW1GbYGA8bZbpLHcgcVDGVEEUJiRKslTw
+hWxbJLpvXt/X0j7Rwque58R1TXNfOBGS9dPReC19VaAL26/rxDLnGHpBGVMefIaD
+B1v4QwukgYJXksR6Cr9hyVqBo1pFk37ehoOy/IYuxkJOcjFFeHLx1LHD2fVonrMP
+yye3VusjeAQqPIEf5c+g/PLRrpsnHrO76FeE18z7AxFqrmzuxbW0JWJsE88xnYQO
+COgKxP+jGKxhd6CvCdTpIRt9LnTh6AU2sWtZHQmgtbRy/7vPJ0BSJ+F4g3pbCrza
+zBLTQvZPwdsRRgOFHQUMm6SICETdZQ==
+=D4p/
+-----END PGP SIGNATURE-----
+
+--3CfSZ6vXPVxUCjFn--
 
