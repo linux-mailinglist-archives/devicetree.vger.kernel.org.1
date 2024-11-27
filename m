@@ -1,165 +1,132 @@
-Return-Path: <devicetree+bounces-124901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D43F59DA4D1
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 10:32:52 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2963B9DA4E7
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 10:38:02 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3BEC8B236CE
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 09:32:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC04C16256B
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 09:37:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D893D192B71;
-	Wed, 27 Nov 2024 09:32:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4398C19309B;
+	Wed, 27 Nov 2024 09:37:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="P4y2TCd0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MHbwB1ij"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39E53192B79;
-	Wed, 27 Nov 2024 09:32:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17D47193060;
+	Wed, 27 Nov 2024 09:37:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732699965; cv=none; b=NzjUO5TeW5XWlF3Fwdr2Dnj8MgCohpbQEMGzfMaaHOrdUdgJVveYutJzeOZngyxQBU428VsPvBIDkHTTrpMHH04uVznnBh0WFzoe15KLihprT4iUpZGJWfwtL/Jqz30h7/PjboZgRZJ6RnUkrPH4jPbIv4a0MUvs5ZaexbE5gJM=
+	t=1732700278; cv=none; b=E24f5M9dtj6YJAATGO7/VD0PQRlCiagyfOE46zgT8rk3OE8VItwAt9eHaB9PhhZIsC12eGKasOz2W9Awv3yvcmZGhvtGhKNqR1hArXB8lH6RBmlK2qdK6JwHUjYxw4AF9Ds0R6ghyLuHhhwo96luiVHhFbnghK1wtm8rMzK1MLs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732699965; c=relaxed/simple;
-	bh=FBw9HVozgfVKZtFYcBQA4Su42LkaqncDAcZ8xBi6Rpw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=ljSQFdM+oxvc/71B1Z1uAe023sEyE23F8hFMOb97WRevDyO0MBfrsQTgayE2fL60VjyLsg8H/UsrGzCIWNVWqIxnLp4sbw1kcbEmQvhUgz0s9dmOlTOWCNXLwoaNR70tW8n2Fza3tCXsP2+CdWUeGMzEHsvEf8RMFwjAP3SEBT8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=P4y2TCd0; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AR96xFw023533;
-	Wed, 27 Nov 2024 09:32:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=lopIUVwDrKphG6QaSe4vO1
-	jusRE8iqpppJ0DQUcGOio=; b=P4y2TCd0lY3VFppO8bvdPi4d4SSpjYpiAzYyHt
-	YELOcSZvnYvf4TMhkQRxeHt8LCC5Jt6CXV4DjTFCoWG++gI92A7/tUT22WCskzWi
-	HtRN0aaJtGgPiXmRNv2cbxjePZBZ1mofShZpxmgNJfLuwDhv3voBBVKWr3GmUoG+
-	Jc1OUeNxD34RSBK+R1aDaAfGmEpwAsJQRiPtuSNlQzgp6PBDZ9X7hIYEyXfTRsJ2
-	JsyMBd8apLfOFWLxBMnN3IX4qMjotIPbHXiDbeO3dE012XuZ8ySPsiHMhhnlwmdw
-	5XHxRkVvPJasl8rjtSgkfBT971UkZB8MQOQK0TvEpvpokzww==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 435bf5kmd3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 27 Nov 2024 09:32:40 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AR9Wdjl003524
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 27 Nov 2024 09:32:39 GMT
-Received: from congzhan2-gv.ap.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 27 Nov 2024 01:32:33 -0800
-From: Cong Zhang <quic_congzhan@quicinc.com>
-Date: Wed, 27 Nov 2024 17:32:20 +0800
-Subject: [PATCH] arm64: dts: qcom: Correct IRQ number of EL2 non-secure
- physical timer
+	s=arc-20240116; t=1732700278; c=relaxed/simple;
+	bh=2RQAx5yTC+mn8SEu4ZcvdX34ZqfK54eSl0sEaD2sZHA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=M1wrwsKV0rbZRXgdGyImFDQHD3oxFuBteGfIOBVeMeDMsUQDRzvfHBaah+Nd4Ls6Z0+0bmRXo90pKVmu39dVaFZwmA8Y7xAk0yzXM3RSnC9e8vggwu9KYtVf8R02U/IPpApVSU4VpYJ16qAQlqizkHs6b6Dgw0h31w3niBpwfoY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MHbwB1ij; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D33DC4CECC;
+	Wed, 27 Nov 2024 09:37:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732700277;
+	bh=2RQAx5yTC+mn8SEu4ZcvdX34ZqfK54eSl0sEaD2sZHA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=MHbwB1iji4J82b3vYeJlKafjSH73DEGTwOY9zNuIYAUEmlYCSreLVYzWicv/dPkob
+	 cfQD1CBQ6Ec/yNW3md8vgtMkHlI2LnUlhELQ7Vby/iM8DkbkkxTSa4+lbDEMsDxxb1
+	 kJ3GClNN8Mlp8m2DB2ffjE6xnaYB3UlOFhdo9sLpA5HIu3EqfTxFephnS3uo5ODDaP
+	 PPtsZ0G0M4fCsLxTY6dYzKW2LlV1yLX1yoFnY5VfeSiYmDOzKilSIeaSbW8ehtIQRa
+	 0/xt976nHT0U6+x6CbQ48285KpqMhKQJlujQHJ2+Ib6DuEX+IUAVqiCmry5ntypSNJ
+	 tnMR3+H0qRhtw==
+Message-ID: <42e3293d-a7dd-4b39-8e36-45b1f31f8b01@kernel.org>
+Date: Wed, 27 Nov 2024 10:37:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: Correct IRQ number of EL2 non-secure
+ physical timer
+To: Cong Zhang <quic_congzhan@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: quic_pkondeti@quicinc.com, quic_aiquny@quicinc.com, kernel@quicinc.com,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241127-correct_timer_irq-v1-1-ce4309b655bd@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241127-correct_timer_irq-v1-1-ce4309b655bd@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-ID: <20241127-correct_timer_irq-v1-1-ce4309b655bd@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIACTnRmcC/33PwWrDMAwG4FcJOk/DVtx0KWPsPUYJnqqsgiZZZ
- C9slLz73PSy0y6CX6BP0hWSmEqCQ3UFk0WTTmMJ/qECPsfxQ1BPJQM5Ct5TgzyZCecu6yDWqc3
- o61pcLGXfEpS5T5Nevzfz7XjPJvNXofO9CYOkFDf6UD3fZNfSDmdOT7VznY6aNV66U06KC6HD0
- AYOro8UA70WiXXkR56GF7j5Z015sp/thcVvC/65dvHosfE7x3t67xuu/4JwXNf1FzrYG+YUAQA
- A
-X-Change-ID: 20241126-correct_timer_irq-133e0a33e792
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <quic_pkondeti@quicinc.com>, <quic_aiquny@quicinc.com>,
-        <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Cong Zhang
-	<quic_congzhan@quicinc.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1732699953; l=2699;
- i=quic_congzhan@quicinc.com; s=20241126; h=from:subject:message-id;
- bh=FBw9HVozgfVKZtFYcBQA4Su42LkaqncDAcZ8xBi6Rpw=;
- b=54RdeYrUbZufBarzWgQ/QTteprPVZ2ILSpmePxXtsh3hlJL9siovTfoImGnesdzgm+jLyfPN1
- 1dGKROEcw4qAO6oc7TuR7vMgA/1IrRuoNjbC6vrTf/oNg8pUWY1DG8P
-X-Developer-Key: i=quic_congzhan@quicinc.com; a=ed25519;
- pk=EAdxxOpkixn8jyG0MRQXsIFtZX7PytBUry7L44VBHIo=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: ATfu0gELOnXjeCqOwE7sooaYV3EI4okO
-X-Proofpoint-GUID: ATfu0gELOnXjeCqOwE7sooaYV3EI4okO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 impostorscore=0
- suspectscore=0 clxscore=1011 mlxlogscore=481 spamscore=0 malwarescore=0
- adultscore=0 bulkscore=0 priorityscore=1501 lowpriorityscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411270079
 
-The INTID of EL2 non-secure physical timer is 26. In linux, the IRQ
-number has a fixed 16 offset for PPIs. Therefore, the linux IRQ number
-of EL2 non-secure physical timer should be 10 (26 - 16).
-
-Signed-off-by: Cong Zhang <quic_congzhan@quicinc.com>
----
-The EL2 non-secure physical timer is utilized during kernel bootup in
-EL2 mode with KVM enabled. This patch has been verified on the QCS8300
-platform with KVM enabled. Given that the dependency patch has already
-been reviewed, I am uncertain whether it is preferable to submit this
-fix as a new patch or to combine it with the dependency patch. I would
-appreciate your suggestions on this patch.
----
- arch/arm64/boot/dts/qcom/qcs8300.dtsi | 2 +-
- arch/arm64/boot/dts/qcom/sdx75.dtsi   | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-index 2c35f96c3f289d5e2e57e0e30ef5e17cd1286188..de6c368efb3a5efeaf628babdb7e91f8cbbf9d5f 100644
---- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-@@ -1370,6 +1370,6 @@ arch_timer: timer {
- 		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
- 			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
- 			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
--			     <GIC_PPI 12 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
-+			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
- 	};
- };
-diff --git a/arch/arm64/boot/dts/qcom/sdx75.dtsi b/arch/arm64/boot/dts/qcom/sdx75.dtsi
-index 5f7e59ecf1ca6298cb252ee0654bc7eaeefbd303..b0775173278f3eed0f301b40dfba0f2680d7b0d0 100644
---- a/arch/arm64/boot/dts/qcom/sdx75.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdx75.dtsi
-@@ -1548,6 +1548,6 @@ timer {
- 		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
- 			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
- 			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
--			     <GIC_PPI 12 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
-+			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
- 	};
- };
-
----
-base-commit: 6ad9d5070ae9de51803b16ffc384c23d62466c7d
-change-id: 20241126-correct_timer_irq-133e0a33e792
-prerequisite-message-id: <20240925-qcs8300_initial_dtsi-v2-0-494c40fa2a42@quicinc.com>
-prerequisite-patch-id: 73c78f31fa1d504124d4a82b578a6a14126cccd8
-prerequisite-patch-id: 5a01283c8654ae7c696d9c69cb21505b71c5ca27
-prerequisite-patch-id: dc633d5aaac790776a8a213ea2faa4890a3f665d
-prerequisite-patch-id: 9ecf4cb8b5842ac64e51d6baa0e6c1fbe449ee66
+On 27/11/2024 10:32, Cong Zhang wrote:
+> The INTID of EL2 non-secure physical timer is 26. In linux, the IRQ
+> number has a fixed 16 offset for PPIs. Therefore, the linux IRQ number
+> of EL2 non-secure physical timer should be 10 (26 - 16).
+> 
+> Signed-off-by: Cong Zhang <quic_congzhan@quicinc.com>
+> ---
+> The EL2 non-secure physical timer is utilized during kernel bootup in
+> EL2 mode with KVM enabled. This patch has been verified on the QCS8300
+> platform with KVM enabled. Given that the dependency patch has already
+> been reviewed, I am uncertain whether it is preferable to submit this
+> fix as a new patch or to combine it with the dependency patch. I would
+> appreciate your suggestions on this patch.
+> ---
+>  arch/arm64/boot/dts/qcom/qcs8300.dtsi | 2 +-
+This was not merged. Do not post fixes to things which are still patches
+on mailing list.
 
 Best regards,
--- 
-Cong Zhang <quic_congzhan@quicinc.com>
-
+Krzysztof
 
