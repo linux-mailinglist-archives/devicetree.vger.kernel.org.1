@@ -1,114 +1,111 @@
-Return-Path: <devicetree+bounces-125106-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125107-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B192C9DAB4D
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 17:02:43 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F6B69DAB73
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 17:09:30 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76C48281FD2
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 16:02:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F610164C40
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 16:09:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BDAF200139;
-	Wed, 27 Nov 2024 16:02:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC38620013B;
+	Wed, 27 Nov 2024 16:09:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QP/WO6fF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xmwbv1xL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EA11200130;
-	Wed, 27 Nov 2024 16:02:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B95D7200132;
+	Wed, 27 Nov 2024 16:09:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732723358; cv=none; b=Hxa9Ckr5vdFkxBGE3VwpD4aLuccn9cixgR6QPxTBE77imkFkdWTl5CqeZIBruxYAT3V3rVOM0AUdg6mMWiIWMLWhucPYmADUJCRM7eTwEqIRJvgw3lfnti7pFBIrh5LHo3y1Mdh0M1wBrmbCaCtL8Kae/bnZMa8axTlKaLFyYvo=
+	t=1732723766; cv=none; b=lYjNy6z7CCK6+MeLBM5DcSNDtYN/vLR66eZv32mtT/HxtOJi0KrwQcbvhP5ZMldl+/Mo1Lz1kYl+Wua+4Pmg79RMIraI7hoKXVgup1caywJGQ7fiA3s1zPNrhz0jbHFVUeXkVQj5+daxrK6e1xCqDJmv6mnDp2JCHTSmvbUIafE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732723358; c=relaxed/simple;
-	bh=TL+I7JUh7Aq1InjR6Z5JlWDmp5BdWL7K2gWShIAH5n4=;
+	s=arc-20240116; t=1732723766; c=relaxed/simple;
+	bh=DRKrGOw5BSxuk51x97WSzPhMhh1HNqqOLM3bU3XYKJw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pqSo06L5wikSZp6g8JEG6udpeESXEbEpU2vVDg1+hf9tug8a/V6WN6xrfbnqV1pWOxOh9VphqsbfSzD8OPTZVkPpplpsGtNI00dfZTftOVY6KYtP1VN+6hKMvwUdIY4unExoLmoxrQ8CyL/hTWiBj18oyP241aZWVipuPZe0TOI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QP/WO6fF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 687FBC4CECC;
-	Wed, 27 Nov 2024 16:02:34 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=eFzLjIU7PxMBCIeRi4M2CAFhFXALnT8FqeFhJD92ZN8ELLVOIrPUxBM5ikE3tVvakmCDWL/3dcyjGv9ug58z+FuyYsIR449pKz3ltpIFLDDD/9fyxSUX2ovFqSSOhu68eqZqMH0CZAar0Xx47wj5Q1Jxjrg2UN6zcG47/aDA2gc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xmwbv1xL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E8EEC4CECC;
+	Wed, 27 Nov 2024 16:09:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732723357;
-	bh=TL+I7JUh7Aq1InjR6Z5JlWDmp5BdWL7K2gWShIAH5n4=;
+	s=k20201202; t=1732723766;
+	bh=DRKrGOw5BSxuk51x97WSzPhMhh1HNqqOLM3bU3XYKJw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QP/WO6fF1/JucbsBoAFCrhfNdZNn/vJDCSkL5EJUDHbD4Q9W6J5PIX49asB5E3UC2
-	 sZUunSdX7ixSk1o5R9DiiFZDGfX6WAtLtUvkuE7hqdc87MSUvvEJRK9V9AiGgzsqXe
-	 LVA7woAMlL1n5vVE2go2T/tCQ7LSxkQzqujgAPQGZpBo0jpPvSAqh2Cja/LKDi8B1p
-	 4dbn8lQihck31K332LiyQ6CWqlD8QNFWFu3A7FLxfHh3JXC1lU60aamuoeCDgBwaCg
-	 sMDH6NT+qc466C8dtKzwYfxUzo4lNyLQtrBEW0ayK68UOrUNfh/uXEs7q2+izeiaPK
-	 fPQAVxr+7iFxA==
-Date: Wed, 27 Nov 2024 16:02:32 +0000
-From: Conor Dooley <conor@kernel.org>
-To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-Cc: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Sylwester Nawrocki <s.nawrocki@samsung.com>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Sam Protsenko <semen.protsenko@linaro.org>,
-	Will McVicker <willmcvicker@google.com>,
-	Roy Luo <royluo@google.com>, kernel-team@android.com,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH 2/9] dt-bindings: phy: samsung,usb3-drd-phy: add optional
- orientation-switch
-Message-ID: <20241127-pushing-baboon-4afafcf8322f@spud>
-References: <20241127-gs101-phy-lanes-orientation-phy-v1-0-1b7fce24960b@linaro.org>
- <20241127-gs101-phy-lanes-orientation-phy-v1-2-1b7fce24960b@linaro.org>
- <20241127-unturned-powdered-d9d1b695732d@spud>
+	b=Xmwbv1xL9QyVmxOqV4kpG6Ft0p31odkXazRfanqrWrtb+XXfzwzZ+TDyxUJOTY2PO
+	 UN5Eo9FV/YuSftcIWnNO+bM4T3R1J5gG6DczyHkNa+nP94mc/w4q/DrjC3ROpK1NQC
+	 a4cjvx0Eyme9z73LEViGjjecWCGhUk2pjRzDsTUPIN7mYYTdQL/k4n+eFn45ysd2q6
+	 aFbTYvg9yW99ypGMANun1vsyxM0dPM9BJnXy8vWUXVwhguzWvQMCoWstlaQmCzFEuO
+	 S3Y61cs3gZIUcu5h9df27IevhUu2K4WfzLa0dkIj5KXd+OnPwMP2K8n5TQkItwXKuQ
+	 IOE67Pe5vljZQ==
+Date: Wed, 27 Nov 2024 16:09:21 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Jon Hunter <jonathanh@nvidia.com>
+Cc: Vishwaroop A <va@nvidia.com>, krzk+dt@kernel.org, robh@kernel.org,
+	conor+dt@kernel.org, thierry.reding@gmail.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-tegra@vger.kernel.org, linux-spi@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: spi: Add DT schema for Tegra SPIDEV
+ controller
+Message-ID: <59ec100f-1915-447b-98fb-3cbe2ca53a1f@sirena.org.uk>
+References: <20241126134529.936451-1-va@nvidia.com>
+ <20241126134529.936451-3-va@nvidia.com>
+ <a1278046-038e-4825-b029-1b478f28cb7c@sirena.org.uk>
+ <e95f870f-1309-4ac3-a16f-ce58b02dc817@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="IhBg84JsEwDLC8Yb"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="xSJsZwQohazWReDV"
 Content-Disposition: inline
-In-Reply-To: <20241127-unturned-powdered-d9d1b695732d@spud>
+In-Reply-To: <e95f870f-1309-4ac3-a16f-ce58b02dc817@nvidia.com>
+X-Cookie: Every path has its puddle.
 
 
---IhBg84JsEwDLC8Yb
-Content-Type: text/plain; charset=iso-8859-1
+--xSJsZwQohazWReDV
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 27, 2024 at 04:00:59PM +0000, Conor Dooley wrote:
-> On Wed, Nov 27, 2024 at 10:58:12AM +0000, Andr=E9 Draszik wrote:
-> > orientation-switch is the standard declaration to inform the Type-C mux
-> > layer that a remote-endpoint is capable of processing orientation
-> > change messages.
-> >=20
-> > Add as an optional since not all versions of this phy currently support
-> > or even need the orientation-switch.
-> >=20
-> > Signed-off-by: Andr=E9 Draszik <andre.draszik@linaro.org>
->=20
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+On Wed, Nov 27, 2024 at 03:54:52PM +0000, Jon Hunter wrote:
 
-Actually, this patch unconditionally adds the property to the binding.
-Is it valid for !gs101?
+> On the Tegra Jetson boards we have a 40-pin expansion header similar to what
+> is found on boards like Raspberry Pi and allows users to connect various
+> cards to. By having a pseudo device we can interact with different SPI
+> devices.
 
---IhBg84JsEwDLC8Yb
+> Yes by default nothing is connected and so there is nothing to talk to.
+> However, this does enable us to do SPI loopback testing for example.
+
+> So I am wondering if it would be acceptable to having some generic dummy
+> device-tree compatible string for this? I guess it does not need to be Tegra
+> specific.
+
+I understand what he's trying to accomplish, it's the same thing as
+what everyone who wants to put a raw spidev compatible in their DT is
+trying to do.  The way to do this would be something like a DT overlay
+that describes whatever is actually connected, or just customise the DT
+locally.
+
+--xSJsZwQohazWReDV
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ0dCmAAKCRB4tDGHoIJi
-0tYAAQCWP68TjQ4VMdnkNOjU/mfYGe+iMPyKEG8O7I36Qm4hGwEA00p1NoQKRQ8X
-g2sEFghrV9k7tx8dNqsT6X7yI8Ehrgs=
-=PrlU
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmdHRDAACgkQJNaLcl1U
+h9Dbnwf/Ss0gT82LnRlTNAy5MVbrqZyYFdiagdjD3IF/qIlkw3chuhdUcQqJIxAV
+kzvmkYuaFQ5D1LoSu9taRJki1pSXEpBb1/PzIoz2mrvdbHGZDFVMjCRKHkLBX3VN
+mo5k/xoCIVcPI5GsOetPjvZ0HaCYbyANiYM4y8u8MVR3FKh6Vt1LzFMNzoJRF79a
+sB29VIkDOuML+XKRAERHtI+j8H1PNAXC3yQFraKpGTVbLKmxc+jvBTjo8+StpEws
+eM2RJ2MmOelEQ69IiviDC+neO5HqmPBWpW7rbwFLTBSkA/kLJWEpj712ksWFCX+u
+x/U5/X2xCMzKkH/zIoTYG4bBOyvCzg==
+=ubS+
 -----END PGP SIGNATURE-----
 
---IhBg84JsEwDLC8Yb--
+--xSJsZwQohazWReDV--
 
