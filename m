@@ -1,130 +1,118 @@
-Return-Path: <devicetree+bounces-125064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E3BA9DAA1B
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 15:48:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C461C9DAA1D
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 15:48:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DD36DB2259E
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 14:48:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8AF85282453
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 14:48:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E046F1FC106;
-	Wed, 27 Nov 2024 14:48:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="qJa2PpUB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB0971FCFD5;
+	Wed, 27 Nov 2024 14:48:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A84D31F8AF0;
-	Wed, 27 Nov 2024 14:48:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51FBF1DFD1;
+	Wed, 27 Nov 2024 14:48:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732718902; cv=none; b=uld3m0OY6mcF8C0vX5ihtNjDFUf1d7rhE8dNuPrwKM8y0Wf+jCp+jRagZr/ec+pnjDk4+05GiT0AkPcdbGx4cgcK9cAv7U9DOXEU/Jy0LkRGQ3EzNnBOd1Gqwi3tzUlPrya+5xnT6yvpS4NVHCamHG6cynj9Bsx+4Xn3CZyApxI=
+	t=1732718927; cv=none; b=gLxakX8tMpm5vJh0EaNMfdE0grIKcaGS0S1lmsCYRFKE4gCh9d2138CQvEVN1VRNpm25S88IJ0vOTtEkajXJxxh9s0IwC/1ZHh0jdoH60ieDo9bGcj2c26cBY4dQKbWXKa7GA3QPbAP1eHa553q/oFjCq8s36XnSdoaFFbnEQYM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732718902; c=relaxed/simple;
-	bh=DDKHOcZVEQqmT2tDYAg9UCohhtIYMR7MqQELcTZI6oU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hDOoILO4/MNADefodrJ5seaQW0AsrjhGLGS+iauB4X6pXDHoDO9sIFhU+JaVHv2Gw8kEWqJp8JvVWoEvW6HYB2ZBqOAK0rgTYWj77c6vFzq3qRE+bmFWXdmk43Rf22b8I6cDzL+yt91+IWTfg9ZAKFZBGtwM5flsGHz8fedsFow=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=qJa2PpUB; arc=none smtp.client-ip=212.227.17.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1732718873; x=1733323673; i=wahrenst@gmx.net;
-	bh=DDKHOcZVEQqmT2tDYAg9UCohhtIYMR7MqQELcTZI6oU=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=qJa2PpUB4eTGSulOxpThbCXW2fCNG84wXndDxKxLVgh6xxylDt8UthMens3gaPQD
-	 1yCeJuucThAXHJnMsmYB0jzLqT6KiANRrF6ya6+3Bg1ogH4INJrsp1XwpnMGgz3JY
-	 rd7u59Nbguxq0ZLSwAMyJw+X3MgzJY7im3qq0bnkd2J3U+JCjZ8Xc2KcK7iAQ/L/m
-	 EXeFL0fU5zskc+zn+SdjGu43MbRUHhKrhAZ1lifd+w8DDAsjYcv1Hf4RB7/AlQjZJ
-	 7g0Xxyn4WeC/9UDWG3v2pELqY6KD2DCbBEMwzM5CldMRd4fuacwq9vn0zDiGdTJrv
-	 36KIfL32yhIORRNsSg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.105] ([37.4.251.153]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1Mwwdf-1tdsqw2QhP-0158e7; Wed, 27
- Nov 2024 15:47:53 +0100
-Message-ID: <ef166c83-2fec-47dc-a3e8-215c211be0db@gmx.net>
-Date: Wed, 27 Nov 2024 15:47:52 +0100
+	s=arc-20240116; t=1732718927; c=relaxed/simple;
+	bh=uv9gi5K2udyOY+gnkMFC54S1hyXaWOdi0CE7kSr0vQ0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=hjZgMQP0UoSr6j/hS4QbjexwtcSskuv1PW18SuAP0RzwjS7kiht3edoB/G7y7l9Lix/FeGlGrna1WFEJCWg913fvRRvrZncIg8muuzKGilLHxT2vWzkSESCMrvPEo7Cs2ebIdNWHK7bx2IFS0Lw2njJ1tE6PUskmh13veOGBqjM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.210.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-71d4c462ab1so1523454a34.0;
+        Wed, 27 Nov 2024 06:48:46 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732718925; x=1733323725;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+GshtkU0YrM2h6xqH7al70LL9TIOM+spMMwxpgis0eA=;
+        b=AxYvX/Xp2LRAVNlOT33hJpB9Ve3a7lVyy5cBZmT6QqTCjG2WPsubGZBO/3wY73Ee/o
+         LABQQQvKeIM2kgcWSXGbyTaat8tFSa8PTMSYjphqu1I1AKbTCaPnAu5XCSuDmp+ewNAb
+         q+NK0YJUzlGojAAXKZuvuMCWAol5PiVsrO0nguz/TRtLZNvTYyuRRgEGOsTdRrwN99TH
+         rW4yVmuAQhAn9y4BKP3o7CzXsdFVvtzI/zxFv5A62/6Ud1wXF/tyTXcbe/BcJrtn0yX0
+         Xd2/4FruOK0T0sv9e8nVTbtBYmGVhlciB+pG+5IwEry9Qs//mCj1JJpsEPyJe70ANSXQ
+         4uhg==
+X-Forwarded-Encrypted: i=1; AJvYcCUETmOPhTKUvfju7+6MatHzoEDABgj7UOCpwRdpm4ajy7GT0bHoaJjw49kaE5qee5mJzyDQa5f1K8hHmWTR@vger.kernel.org, AJvYcCUGgNh5oUaxXjbC1HZNRgDYZBtD9aGflAPnqOLNFuYJe/jB8Se5Ohn1IQZrQ9kWvEdP7LGqHMIwGxCM+KL/@vger.kernel.org, AJvYcCVv5ylfw/A54zKZV31ctlUD353VjCSfK5bAAqCyMeZBHBb607b79dEMWIgQzZuG8mVhxekl13JF5O6L@vger.kernel.org, AJvYcCX1JgRpg9qTYSK/fq2fj6e3r3SSS0vMhYvwEjhIZNVkS0/dfzZ5Gy205XIgsd19uzcpvRFNSNZbpafV@vger.kernel.org, AJvYcCXb9j/7DaK1LogAMtWh3RQTmrgxh6AXV7U5kW0T891q58zHhlRuiKwTcXzs3eqFgFSwm0a+TZf/dRUe7RUFgbMpW+4=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz6xZ3hZNvf7ZjUbtKPugoDsJGHRYj9AvhEYSojbrxFKKRP2ims
+	hhwheswv8y/O8n6VKWHW56IzMLDyeUWmvwY6pSyKY91iezW79hXAf2JKstxDo3g=
+X-Gm-Gg: ASbGnctiOXe9jY8eH1h9eJLBgFniwgjKIy6PoHU3vfwd2YnlaX8/7b/YBoXJlsFJ+3p
+	j8CdxSbybPl89BP/NAi8nUj58QXI9dPDaCeBsVEZItNHO8MGTGeKfk3bt8rYoBSxYme4b7sdKeE
+	zXXgRniGsH1WuFP7GFGIGlFmPIPbo8q/e7GRnMDCACdqx+IQy5XQnf1Dx/99hJnWigNE5lsAbs7
+	5zF2XJOodQo1ij6pp7SqYWUUjribT/nAdgL/AiFPrGXURMPCUKOjWao7sTTkQflNY2PJYjAgwxt
+	ioYQneqs42Su
+X-Google-Smtp-Source: AGHT+IHl7GWJsOmKi9JTX5tfvoD84LU31MSquH3cM9Qn3lJUgqkekRNRF8KGoHcP5w8wFKwQrCGi1Q==
+X-Received: by 2002:a05:6830:730a:b0:71d:596d:7deb with SMTP id 46e09a7af769-71d65c740b7mr3681838a34.3.1732718924983;
+        Wed, 27 Nov 2024 06:48:44 -0800 (PST)
+Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com. [209.85.161.47])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-71d524e70d1sm1878647a34.22.2024.11.27.06.48.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Nov 2024 06:48:44 -0800 (PST)
+Received: by mail-oo1-f47.google.com with SMTP id 006d021491bc7-5f1d1fdb328so1711714eaf.3;
+        Wed, 27 Nov 2024 06:48:44 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU3+R7CVOYSQxcQlpNN4XnUAqcdIMtzJjGqEfs1FTX1RxWmd5h0gLpX8I26q3rw/dMjq2Xi5sJiwD+udvDd@vger.kernel.org, AJvYcCUJs0WV3w76pMiSFYFNN+ad3KR2o//h+NKM55t8iBprQIznZjliu+M81bYk4vN6e1oJeToHZp4oLopcr6WZ@vger.kernel.org, AJvYcCWBPD6XMIwagm0YPVUK0ddTsVAYWWHHgB88gxQifxaEnyynugnvFi7bCdWFcUG52lebOyM8/amEqHWK@vger.kernel.org, AJvYcCWv28Hv06ayGUAOGWAgqSl56Kwu6/dcRGp3IGZkGz/C6a9DZUyjk0djW7I7Nnxd8jDRLbm4x8v5WrFG+CGMo1hE0ak=@vger.kernel.org, AJvYcCXz7oEJKjXnEfaO4f+kJnGfUH/v3DIGRg2sLaSP65tc4Sif3f8eISeZxckiG0pwd8DFsyezMB1QpyBA@vger.kernel.org
+X-Received: by 2002:a05:6358:5295:b0:1ca:961d:ca10 with SMTP id
+ e5c5f4694b2df-1cab1688a38mr202812555d.21.1732718924133; Wed, 27 Nov 2024
+ 06:48:44 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] w1: ds2482: Add regulator support
-To: =?UTF-8?B?S3J5xaF0b2YgxIxlcm7DvQ==?= <cleverline1mc@gmail.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Stefan Wahren <stefan.wahren@chargebyte.com>
-Cc: Ben Gardner <bgardner@wabtec.com>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20241125-ds2482-add-reg-v4-0-475a7a08df96@gmail.com>
- <20241125-ds2482-add-reg-v4-2-475a7a08df96@gmail.com>
- <d83667b9-23a2-4f1c-9a9a-12ce1e3a3983@gmail.com>
-Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <d83667b9-23a2-4f1c-9a9a-12ce1e3a3983@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+References: <20241115134401.3893008-1-claudiu.beznea.uj@bp.renesas.com> <20241115134401.3893008-2-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20241115134401.3893008-2-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 27 Nov 2024 15:48:32 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUQd6AJe4b7hM_vqfW=NbVmv=zF9yr4bNBjJx05OXnEAA@mail.gmail.com>
+Message-ID: <CAMuHMdUQd6AJe4b7hM_vqfW=NbVmv=zF9yr4bNBjJx05OXnEAA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/8] clk: renesas: r9a08g045: Add clock, reset and
+ power domain for the remaining SCIFs
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: magnus.damm@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, 
+	gregkh@linuxfoundation.org, jirislaby@kernel.org, p.zabel@pengutronix.de, 
+	lethal@linux-sh.org, g.liakhovetski@gmx.de, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-serial@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:DD+OXLEbEfzJ4wF1shxmnpW3CCCIy9Yjqg6+ZvsDT6RgTvYbSFF
- kt84E5SObR61yjZkW2dpCdaH1EFDrtIzM97AVbilvx6v5bdup9YwDoyyMS7lbWj9wnKNp0W
- SSuMZgu4jAcWkGsybUYdHtELwcBVhNYDqO1JKRoEAeD/BQyHTZp3XT55ESM5Vs61ccy9sv3
- nt2BAlHp0jZw9iVnX8TrQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:N/dFw8CD9u4=;G/6yG3EC59rfSYyfNa7UUmylOr3
- 229y0E9rMRte05cKPq2ICnOfgwnI/MxNWC5pCg+wTqDg4SeB83Jy7Kq3gMFhw2XJJPI7Jcz8z
- 5SH/xs6it7ICnMPVOh8KNR70v9s+c0ZOA6YaddXeqQTJsccVyVmMppGWbUH1HQ21b5PFVtpPm
- 9iQrcqXJLoLqvvByNXk4rTlcfQ7/2/8TAR1dv76osvYD2fA6nWtwvKSyAP0BGWA0SZeVmX/zN
- BrtEuIDiRCm3wur8cG+HqR4foTyIKl0ggze9RNfr6PdL/NRGgx14CTU7lTHvWpZOz3/i7WWU7
- H9JBLE7gwiLsdNsPz9NpGLjCPCFFUQh59wTYhYWh75YqEHZBVDra4qU8W0vNKauZsyFGH3c8t
- bFfogY+XwK+qmr1U1i+6YIdruzHgBlJAF5JYs4bKUJ4lDUO4wxJKBOoBHlXfIgrQSQ39Hkmno
- TC7qh9uXiL3msUy72uWNwKAd4sV2EpUU8mEP+Y/NsiUtG49w2ylPE6lM3WGlqxTvoIEudcPj4
- li5qbfM73+KWgYhHS4OXFg/AbhlD1bNXasYi4p/lSNzigTFoQQoUP/OrkwkKGtCHskEgaNpco
- KMd9+sBtRFo6e1fBQYaWOMHTWkO0cTJBY1Fy+JI8Qg1tPW7F37yWc0TOLxaSXrvVYXkREIyD+
- 0rZYa+5tm6jozHicXDwqdmkZxjdfDHMth3o2kJs7mCTACGwgWuTbOXu6yVDrHAuH0UKX06Ou3
- 2cy3ykC/fTWVIT9nSdzJsMUus5Rxq5s3GnsQ47PZzCAWql9klXupjlzktRypmrYtkBJkFQ2tZ
- 3uidIqRZ9P4M+WhE2Jjw67QvRLr8KtUrOTsisXrvluWBZSiVe418tD5Gp0VJnktgFASW313Ho
- dCzRkxhin196/DzG/jVuSMhlAChd4F0hXj1IIS9jVHYH2bxvJQmIretuKdbsqOm0bwbNyFzuI
- 462G/KnW4L4MzmU64pBj6F7yRq4jxeod/UR/62bTcmAlACzL3Jhk9ALrwrcE54Bqn7EOku+vJ
- LwT+HexucTdZyR6K/dxe9Yz30uv0rcvVMhlZC9MmDBUHv9mF1C9HKO9L7IGAwGmn50Si1LlOg
- ffhieqrg8OOOf/lNH6gjrSstk5aS1E
 
-Hi Kry=C5=A1tof,
-
-Am 27.11.24 um 15:21 schrieb Kry=C5=A1tof =C4=8Cern=C3=BD:
-> I2C_FUNC_SMBUS_WRITE_BYTE_DATA |
->> @@ -457,6 +459,10 @@ static int ds2482_probe(struct i2c_client *client)
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 goto exit;
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
->> =C2=A0 +=C2=A0=C2=A0=C2=A0 ret =3D devm_regulator_get_enable(&client->d=
-ev, "vcc");
->> +=C2=A0=C2=A0=C2=A0 if (ret)
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return dev_err_probe(&clien=
-t->dev, ret, "Failed to enable
->> regulator\n");
+On Fri, Nov 15, 2024 at 2:56=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
+wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 >
-> This will cause a memory leak of `data`, I would refactor the driver a
-> bit in the next patch revision. Should I create a separate commit that
-> switches from kzalloc() to devm_kzalloc() or keep it in patch 2/3? The
-> separate commits way seems correct to me, so it is clearly
-> distinguished. Sorry that I missed it.
-I'm not the maintainer, but i suggests to send a V5 and add a separate
-commit to avoid this issue. The merge window is still open.
-
-Best regards
+> The Renesas RZ/G3S SoC has 6 SCIF interfaces. SCIF0 is used as debug
+> console and is already enabled. Add the clock, reset and power domain
+> support for the remaining ones.
 >
->> +
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 data->client =3D client;
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 i2c_set_clientdata(client, data);
->
-> Best regards,
-> Kry=C5=A1tof =C4=8Cern=C3=BD
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-clk for v6.14.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
