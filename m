@@ -1,89 +1,94 @@
-Return-Path: <devicetree+bounces-125157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125158-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCFE69DAE22
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 20:51:06 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92FCD9DAE32
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 21:00:07 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 919532833CB
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 19:51:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E515163644
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 20:00:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9C5B202F69;
-	Wed, 27 Nov 2024 19:51:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C716214AD29;
+	Wed, 27 Nov 2024 20:00:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="l5qUWd/B"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Prbgf/7n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 777491FF7AA;
-	Wed, 27 Nov 2024 19:51:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A156202F87;
+	Wed, 27 Nov 2024 20:00:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732737062; cv=none; b=JCP4pcSopE0oUjsWvBIqU6iLtd99TAQlLx23fSL7P1Ff51MOL9jd5We6AEmkQLlG1SPlqCW3F8RG5SX8WKchWrnrJzam2fjfIo7k/h0cm+Fr//Y760bx1iZVdYQP2Lu9Z1/pUeOOxX5gfGC/ftTcAxEdh/zgsyY/IYWz3Wk0QA4=
+	t=1732737604; cv=none; b=JsfB/jb4zsm3clZi/HpvEj8dH2n4ao8ndbNgJ8sDyFr2I/5aetXCHUQyWDaODWodYHcoLMQ0UMTGHD4PIsI4aaoUOmj4zQENLsrhHgoJ1TiqiiyhqDz6AOHERgjX8qtO+sxp4qdu2E20XKDPSMwmUIQoFY/ZU/2pt95SB1Z7B6g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732737062; c=relaxed/simple;
-	bh=vrJO1wkuzgJfCDUQLlADHpSFcf//iN63EqgubUkiMWs=;
+	s=arc-20240116; t=1732737604; c=relaxed/simple;
+	bh=hmIxX4nmKJ/KpxkWr4aXnfd/U3L3DijeyqEGV56Cmsg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gnm29zwnoX0ebM1IicUeLMBl07gQgkPM054qGQS6898TDmilx4RfXxkyURzm/WQZB/G+5u+R+JB6woUzp7U09NjIc4xlFMIQEvbRFGlfhKiD/rWxEXwDKZYmB2H05MCffzJO4Y+p6MqaAuPjhJQFmCzREv087tQstg/xMxW6Mf8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=l5qUWd/B; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1732737061; x=1764273061;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=vrJO1wkuzgJfCDUQLlADHpSFcf//iN63EqgubUkiMWs=;
-  b=l5qUWd/BfMVPspRCm/nKt9BF6m/vp3I9mYiQyUUmZiGPWnhn55+xVapL
-   uQzEt7oAK/GtqNZKps7L66PTBDX1zUNCpHwHvwoLu4Gl3Db+PPByCCMoN
-   VguUYC95lhSXGEQrIedOVddW1cgKdJIhIjbSJ8clFemTN9PuzKEGScp9X
-   sYlpjmC5Gfms4GLlKnkbrt5DphadCgsocDfl15G3Hn9deVYsABOUmrooW
-   Gk9NzXvR1hOntM+E4S31QKWliY3Tn9yLjc19rKS0TU6CQMw7ru9sV7tMb
-   evJG56e078PJ0Fn0HJo5thdCPpEJGLopON00Vm982i7PNo8QI3ks3YbJZ
-   w==;
-X-CSE-ConnectionGUID: i2A8aRwkTCi1o7BukI5wLw==
-X-CSE-MsgGUID: 9/kAZ/M7Qsa/dqXhyxhQ0g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11269"; a="32702973"
-X-IronPort-AV: E=Sophos;i="6.12,190,1728975600"; 
-   d="scan'208";a="32702973"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2024 11:51:00 -0800
-X-CSE-ConnectionGUID: cAEn0AVZSQK2zP8zuWj0eA==
-X-CSE-MsgGUID: GM4gzX/bQ3KnKhk2BY1dZg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,190,1728975600"; 
-   d="scan'208";a="122994830"
-Received: from lkp-server01.sh.intel.com (HELO 8122d2fc1967) ([10.239.97.150])
-  by fmviesa001.fm.intel.com with ESMTP; 27 Nov 2024 11:50:51 -0800
-Received: from kbuild by 8122d2fc1967 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tGO3l-0008Jj-1U;
-	Wed, 27 Nov 2024 19:50:49 +0000
-Date: Thu, 28 Nov 2024 03:50:01 +0800
-From: kernel test robot <lkp@intel.com>
-To: keith zhao <keith.zhao@starfivetech.com>, devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org
-Cc: Paul Gazzillo <paul@pgazz.com>,
-	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-	oe-kbuild-all@lists.linux.dev, andrzej.hajda@intel.com,
-	neil.armstrong@linaro.org, rfoss@kernel.org,
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-	jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
-	simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, hjc@rock-chips.com, heiko@sntech.de,
-	andy.yan@rock-chips.com, william.qiu@starfivetech.com,
-	xingyu.wu@starfivetech.com, kernel@esmil.dk,
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	p.zabel@pengutronix.de, changhuang.liang@starfivetech.com,
-	keith.zhao@starfivetech.com, jack.zhu@starfivetech.com,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 4/9] drm/vs: Add Hardware Functions for VS DC8200
-Message-ID: <202411280334.CDiErngI-lkp@intel.com>
-References: <20241120061848.196754-5-keith.zhao@starfivetech.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=NazC689IjNtIyhn81NQEMXFadPHA4DpMDgWV7kxJAH+4ihDVlpZ9Eh6npQwDZg/m7jEQV9owfEF3gagDdT9XN9pm0g2UDtyrVILTBODQQFyA80GanRn9GmWo1tCu7hDc/S6jy94gr489w9UKqSPsH+p8xqQV+p/gQ/6RiApe7yk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Prbgf/7n; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-21269c8df64so673065ad.2;
+        Wed, 27 Nov 2024 12:00:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1732737602; x=1733342402; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=7JnlDLsmM5qv+EK/8poCXPvkvDh4sjlL4kNug7GuHXU=;
+        b=Prbgf/7np5aLFEU8O90Xi4/XrHaV2llgv0QQF90ELA2Z4GJxxMvhvq+tOADtxcfEcP
+         wgNOl4IZ99xi/I2jlH7d+GQDuu4VkdWMsGUdOVlqaaoSvvNZYoCtRkYx9pV7abmFenSs
+         TMoD42NYgr6fpmyzeC9N793OArEcg35lfKPtw97Tzj1SWuortTiD0LZJiE+/WIh7Knh+
+         HZkm/N/o7sMVDkzH67iLjY7PpqwxEofxG0HRXFCCS92WEZeM2bz+2UFdZEqKCHRl73K6
+         yAfReqRKFLINAUWoH2eFGrg1CxnNKTdivoP85dX21ycTueFxTlLdyed8wdJ6FBuM2Q96
+         4VTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732737602; x=1733342402;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7JnlDLsmM5qv+EK/8poCXPvkvDh4sjlL4kNug7GuHXU=;
+        b=smjFNHpgte1OEZOrxS5ZxJdDzRBUG9QZDgx1miTaM9Kv34/T0uKYx6NfhzyQ427Fbw
+         FLlLLX4hmFYypl4eUjJuoyHrD65U437U4nWfn5YnYb+jXO3CaEEBMfh1GrNcMhqH8t2i
+         Wn+MphcnovsRP0TkDlTgABwcRpmGQXYh9BiVM8xTSvqp70UhaDyJeewIXMw8A8eFTx3v
+         0E4eHpKJ/lIEzC82H1FEmv998UmPgo38YwrcgjnZ6UpUljZUCs3dB3NTok4Pc8e/eDGI
+         4d9r8LY1GRQun75QxkHXZh+B32XxgxgSmWN4y8rOuroQOuUoe0qZ8Ml205SbLubvd4ZM
+         Hv0Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWQpwksiYR/wAA777SFXAD6QBxkN/FwP5KPI0DbN7OxRsCDNwxqbeV0FwIvfdYeH3KHBY3z0xwCanDH@vger.kernel.org, AJvYcCWSWjU19+l5iaPNhxxm3xNp3crzwpsC93y0WHwxlbWzkSbpV99Ea5/PK+xt1ZW3oD3gXdVi3Kzvqs9on6g=@vger.kernel.org, AJvYcCXpRNICt7IiBr2ZIessPCGxWbacKVjGPhIDJiGLc4sgJ+qSs6jy1s+CLWUqrKrKFGQVK0I9iUFlzKjOLqZ1@vger.kernel.org
+X-Gm-Message-State: AOJu0YwoIYqgBUBOupdNQx9R5JB+p3JhYRHYf9rnaPryB1Y3pDMKWDoz
+	zUdI5tzJ16uxbwKY8hmL2Zx+VnvRZys0CoBtBvrnPRDeC+9Db0A5
+X-Gm-Gg: ASbGncsmr+z8SJgB3b5futEFV4x9bnQJVgjyTdAsuMIECGZwOHPM915FG4GekmJsloy
+	RgGyeRnUpdqr7Vh9N/y1/4BVdMZvXH40gPd56rPzuo1bwuf/gFnrSMESRs+NEfN0rLofOSK/8f2
+	fpw2Keh0/+o5aw+VDkLiNopQuhWoELgOK8oUVjeDnPVr21F0Z5VLwWuOPGbXUSoDQZFKAwoPH73
+	AWl4b6ICRzvDktte7TQyYXhVOyFLoE2pEFWYNr+b3IlSljO49c=
+X-Google-Smtp-Source: AGHT+IEGL7M9GjZwTDz8gnOB4Fc/ReaRn8//tUsUDCeh7CYPkfHbRbhoJ/aTMpOuF0TfqhinENoEIA==
+X-Received: by 2002:a17:902:e752:b0:212:4739:27b2 with SMTP id d9443c01a7336-215010861afmr48871945ad.5.1732737602170;
+        Wed, 27 Nov 2024 12:00:02 -0800 (PST)
+Received: from google.com ([2620:15c:9d:2:d991:bacb:df39:9ecd])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2129dc23a35sm107317255ad.250.2024.11.27.12.00.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Nov 2024 12:00:01 -0800 (PST)
+Date: Wed, 27 Nov 2024 11:59:58 -0800
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Henrik Rydberg <rydberg@bitmath.org>, asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Janne Grunau <j@jannau.net>
+Subject: Re: [PATCH 2/4] input: apple_z2: Add a driver for Apple Z2
+ touchscreens
+Message-ID: <Z0d6Psrk5f8-hXe6@google.com>
+References: <20241126-z2-v1-0-c43c4cc6200d@gmail.com>
+ <20241126-z2-v1-2-c43c4cc6200d@gmail.com>
+ <Z0aCSBNEAJlgNIAI@google.com>
+ <CAMT+MTT0oiODONgEipLuAaZyzD-YyM8mbAcRsZKn8N4E326kMw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,39 +97,96 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241120061848.196754-5-keith.zhao@starfivetech.com>
+In-Reply-To: <CAMT+MTT0oiODONgEipLuAaZyzD-YyM8mbAcRsZKn8N4E326kMw@mail.gmail.com>
 
-Hi keith,
+On Wed, Nov 27, 2024 at 09:24:16AM +0100, Sasha Finkelstein wrote:
+> On Wed, 27 Nov 2024 at 03:22, Dmitry Torokhov <dmitry.torokhov@gmail.com> wrote:
+> > > +     u16 checksum;
+> >
+> > Does this need endianness annotation? It is being sent to the device...
+> 
+> Both host and device are always little endian, and this whole thing is
+> using a bespoke Apple protocol, so is unlikely to ever be seen on a BE
+> machine. But i am not opposed to adding endianness handling.
 
-kernel test robot noticed the following build warnings:
+In this case the endianness handling will be "free", but will still show
+good code hygiene.
 
-[auto build test WARNING on linus/master]
-[also build test WARNING on v6.12 next-20241127]
-[cannot apply to drm-misc/drm-misc-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> 
+> > > +             slot_valid = fingers[i].state == APPLE_Z2_TOUCH_STARTED ||
+> > > +                          fingers[i].state == APPLE_Z2_TOUCH_MOVED;
+> > > +             input_mt_slot(z2->input_dev, slot);
+> > > +             input_mt_report_slot_state(z2->input_dev, MT_TOOL_FINGER, slot_valid);
+> > > +             if (!slot_valid)
+> > > +                     continue;
+> >
+> > Shorter form:
+> >
+> >                 if (!input_mt_report_slot_state(...))
+> >                         continue;
+> 
+> Sorry, but i fail to see how that is shorter, i am setting the slot state to
+> slot_valid, which is being computed above, so, why not just reuse
+> that instead of fetching it from input's slot state?
 
-url:    https://github.com/intel-lab-lkp/linux/commits/keith-zhao/dt-bindings-display-bindings-for-starfive-JH7110-display-pipeline/20241121-145710
-base:   linus/master
-patch link:    https://lore.kernel.org/r/20241120061848.196754-5-keith.zhao%40starfivetech.com
-patch subject: [PATCH v5 4/9] drm/vs: Add Hardware Functions for VS DC8200
-config: xtensa-kismet-CONFIG_CMA-CONFIG_DRM_VERISILICON_DC8200-0-0 (https://download.01.org/0day-ci/archive/20241128/202411280334.CDiErngI-lkp@intel.com/config)
-reproduce: (https://download.01.org/0day-ci/archive/20241128/202411280334.CDiErngI-lkp@intel.com/reproduce)
+You are not fetching anything, input_mt_report_slot_state() simply
+returns "true" for active slots. You are saving a line. You can also do
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202411280334.CDiErngI-lkp@intel.com/
+		if (!input_mt_report_slot_state(z2->input_dev, MT_TOOL_FINGER,
+					fingers[i].state == APPLE_Z2_TOUCH_STARTED ||
+					fingers[i].state == APPLE_Z2_TOUCH_MOVED))
+			continue;
 
-kismet warnings: (new ones prefixed by >>)
->> kismet: WARNING: unmet direct dependencies detected for CMA when selected by DRM_VERISILICON_DC8200
-   WARNING: unmet direct dependencies detected for CMA
-     Depends on [n]: MMU [=n]
-     Selected by [y]:
-     - DRM_VERISILICON_DC8200 [=y] && HAS_IOMEM [=y] && DRM [=y] && HAVE_DMA_CONTIGUOUS [=y]
+> 
+> > > +     ack_xfer.tx_buf = int_ack;
+> > > +     ack_xfer.rx_buf = ack_rsp;
+> >
+> > I think these buffers need to be DMA-safe.
+> 
+> Do they? Our spi controller is not capable of doing DMA (yet?)
+> and instead copies everything into a fifo. But even if it was capable,
+> wouldn't that be the controller driver's responsibility to dma-map them?
+
+Yes, they do. From include/linux/spi/spi.h:
+
+/**
+ * struct spi_transfer - a read/write buffer pair
+ * @tx_buf: data to be written (DMA-safe memory), or NULL
+ * @rx_buf: data to be read (DMA-safe memory), or NULL
+
+> 
+> > > +             if (fw->size - fw_idx < 8) {
+> > > +                     dev_err(&z2->spidev->dev, "firmware malformed");
+> >
+> > Maybe check this before uploading half of it?
+> 
+> That would be an extra pass though the firmware file, and the device
+> is okay with getting reset after a partial firmware upload, there is no
+> onboard storage that can be corrupted, and we fully reset it on each
+> boot (or even more often) anyway.
+
+OK, please add a comment to that effect.
+
+> 
+> > > +     error = apple_z2_boot(z2);
+> >
+> > Why can't we wait for the boot in probe()? We can mark the driver as
+> > preferring asynchronous probe to not delay the overall boot process.
+> 
+> A comment on previous version of this submission asked not to load
+> firmware in probe callback, since the fs may be unavailable at that point.
+
+But why do you assume that the fs will be available at open time? There
+is a number of input handlers that serve internal kernel purposes and we
+could have more in the future. They will open the device as soon as it
+is registered with the input core.
+
+It is up to the system distributor to configure the kernel properly,
+including adding needed firmware to the kernel image if they want the
+driver to be built-in.
+
+Thanks.
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Dmitry
 
