@@ -1,111 +1,95 @@
-Return-Path: <devicetree+bounces-125047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BC289DA9C3
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 15:16:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 035049DA9C7
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 15:20:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 84FB0B21868
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 14:16:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 19BCFB20C81
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 14:20:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26F991FF5FD;
-	Wed, 27 Nov 2024 14:16:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E56581FF600;
+	Wed, 27 Nov 2024 14:20:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56FC81FECC8;
-	Wed, 27 Nov 2024 14:16:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F5E91FECC1;
+	Wed, 27 Nov 2024 14:20:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732716973; cv=none; b=IepsErJ/4tkECcUH1Keb2dkVGqGklQRsxVY4SvG5K3+IM9fXP7QIdQ9vlw4cV7pR95fxATnHQz/9eqDKeDJRok0W7KIxdIVX41N2irjFjs1CZc7od/xTl6fF3f6JS6wbn0BfJ6aR6p7SbUi1mjBAc/lUnUlWDiAjZUXa8kBaU9c=
+	t=1732717215; cv=none; b=Xd/qgn3FG0x8FZikV2Lx2RPJEtfzu86HDDecRaNRQWHYFgy2tqhpr25A/kDDls5PR2wklHUJOEkGOCqhusAPXdZFg8MllQByy2sMmPjL6O4WVzVAxb8RuNlMDkOHJh1xpDAgrpZJwSQCJ91PnaeZ5XRC9tlVxfHfBFyjDW/uDDo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732716973; c=relaxed/simple;
-	bh=pqIHHXZd4srGjsi8amMWkPGlughGUTLx9vrbVzfQBxg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=S0vf59aGVltPpBbT/GbN/xkGxbXOVi2UFUA6SYkj9owyPs/NuQFzepfcdKoTjenDuI5nq6ck/3I3xyLmfmt2XEnEl7Te5+5i3BiJHzswOUdK0dvYHlnC2d6aeyoOtZ7CmERwZ+wh1/ACwRLLedbdarpf+flRqIn+FOYkV64QbYk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.210.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f48.google.com with SMTP id 46e09a7af769-71d4ba17cd2so1749062a34.3;
-        Wed, 27 Nov 2024 06:16:11 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732716970; x=1733321770;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/dfIkgsTcA6mxfbjLoofIZRvwxtZ4s0zf1nK43EqhzA=;
-        b=QRieyFtt7agW9+tCxL1R5kOhSS6ARJOSJyrqQZOn4vMEGDDd3JmHYnfhjma6wrRHgT
-         7qURXwLMpjEUIr7NkXQrAswu+CSvTvid2+DA79tH7G5xMc7+yY+CxoWYgperxVH/M58b
-         mIT9Lv+BLei3YwFN6781zLTWbY/WAroyWAtuIam467nLXahx+yfLpOaJ2VFACVCF+PnA
-         kB1k1uL4x/wAVhdJwJLMSlEWURByAvz8j7j1TJcq1PWGO3m6vPOKFmqwyxdnf1Int0ll
-         2TBSVy2oIkYc3qpuNC0QXmeGNsDajarS3mNKFatul2d05+PMLZqDy+6Z4STdNlKnKOne
-         8q8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXYFHb0S6SguSeiObvhmNj1th1iQp48z5l8QaM1+KjHHwu2laMglpgO3timxEAMrZL9lY0kksznEaYg@vger.kernel.org
-X-Gm-Message-State: AOJu0YxXkqE/0fH1wDNvGPX0PrAq9WDrjNbrDgCXqGXMMII12Uq4RQF3
-	aWA6KatT/TTVyjs4qGIKNjlONWAtQ1yYUlerQccpcmPA0azL7xyKE62dNHlT3rc=
-X-Gm-Gg: ASbGncvZrS4mqyHULGkCz9zXxKPmUcXrz3zBE+C94unY+2nHFHYVHldBLz1mzO1cEwc
-	22jUoT3rdyU6iIUI0+bg/Wz0BqkQAVHpWFYFTYTvadXMrJcOo2KA1I4FngEW4a9qw65tYATeKZr
-	gne4TqWvex4bfmrYHyTaxVgAK7+ZaC25WDyVefgIynsFbu7FSQpMiMxVKtg4vaNECeao22kpSjq
-	QXknuNPuM+oA893H4TWYPtaBcxU9J41MPgso5qPiifJUGaoqB5cJRS2bMxb14tquhnryYvZM577
-	GTF4gcNqewCS
-X-Google-Smtp-Source: AGHT+IGYCslxhPCfJpElerLoU2pT7If5HDujU8PaWx6JdregbkS5OIITK6Gfm/MwZNWlgrjy6KR9cA==
-X-Received: by 2002:a05:6830:7107:b0:718:cc7:c6da with SMTP id 46e09a7af769-71d65cf67ccmr2678823a34.22.1732716970115;
-        Wed, 27 Nov 2024 06:16:10 -0800 (PST)
-Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com. [209.85.161.46])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-71d532bc530sm1715177a34.52.2024.11.27.06.16.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Nov 2024 06:16:09 -0800 (PST)
-Received: by mail-oo1-f46.google.com with SMTP id 006d021491bc7-5f1ecd0d9ecso1464470eaf.1;
-        Wed, 27 Nov 2024 06:16:09 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUgH3iG4W4L0+zgHVD38rpQSTDUYiRgUbyae70qRIzaDGUzEPs6NUapfIFTmNh6xiaEcJM4VVJneNjP@vger.kernel.org
-X-Received: by 2002:a05:6359:420a:b0:1ca:9793:ed68 with SMTP id
- e5c5f4694b2df-1cab169cfe2mr229843555d.23.1732716969188; Wed, 27 Nov 2024
- 06:16:09 -0800 (PST)
+	s=arc-20240116; t=1732717215; c=relaxed/simple;
+	bh=+Ck81q+LRJDOUdH9a4XDz5x2/B7DMOn0oBYq3df+nKY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=VggycW7on+yeTR345/n2JetCL5Tn5epNiXlaVr5wyYSsZRNWoskrCgcmvfEgdGF8q/DqE0BoGyjmZG8olr5+GgeOq1pI9jBSYcR/cW5w25lkZZytZd3t5Jf1vgg5CzURSIrP7XFRuV6ssar++4OwwhTgkrDPUrD3/hszP80qcHQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
+Received: from mail.andestech.com (ATCPCS34.andestech.com [10.0.1.134])
+	by Atcsqr.andestech.com with ESMTPS id 4AREJjpl082900
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
+	Wed, 27 Nov 2024 22:19:45 +0800 (+08)
+	(envelope-from cl634@andestech.com)
+Received: from swlinux02.andestech.com (10.0.15.183) by ATCPCS34.andestech.com
+ (10.0.1.134) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 27 Nov
+ 2024 22:19:45 +0800
+From: CL Wang <cl634@andestech.com>
+To: <cl634@andestech.com>, <alexandre.belloni@bootlin.com>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+CC: <linux-rtc@vger.kernel>, <linux-kernel@vger.kernel.org>,
+        <tim609@andestech.com>, <ycliang@andestech.com>
+Subject: [PATCH V4 RESEND 0/3] rtc: atcrtc100: Add Andes ATCRTC100 RTC driver
+Date: Wed, 27 Nov 2024 22:19:36 +0800
+Message-ID: <20241127141939.1570952-1-cl634@andestech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241120085345.24638-2-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20241120085345.24638-2-wsa+renesas@sang-engineering.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 27 Nov 2024 15:15:57 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdV08gKBpSswwa1prvohC_+AGceepty=X8=8Q4CChEJOSA@mail.gmail.com>
-Message-ID: <CAMuHMdV08gKBpSswwa1prvohC_+AGceepty=X8=8Q4CChEJOSA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: rzg3s-smarc: Enable I2C1 and
- connected power monitor
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: ATCPCS33.andestech.com (10.0.1.100) To
+ ATCPCS34.andestech.com (10.0.1.134)
+X-DNSRBL: 
+X-SPAM-SOURCE-CHECK: pass
+X-MAIL:Atcsqr.andestech.com 4AREJjpl082900
 
-On Wed, Nov 20, 2024 at 9:54=E2=80=AFAM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> Enable I2C1 for the carrier board and the connected power monitor
-> ISL28022. Limit the bus speed to the maximum the power monitor supports.
->
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+This patch series adds support for the Andes ATCRTC100 Real-Time Clock. 
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.14.
+The series is now based on the rtc-next branch from:
+git://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git.
 
-Gr{oetje,eeting}s,
+This V4 submission addresses the feedback received from Krzysztof:
+1. Ensured that the patch series is based on rtc-next.
+2. Verified recipients and mailing lists using scripts/get_maintainer.pl.
+3. Included all necessary To/Cc entries for proper review.
 
-                        Geert
+For details of the change log, please refer to the commit log of each patch.
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+Please kindly review.
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+CL Wang (3):
+  rtc: atcrtc100: Add ATCRTC100 RTC driver
+  dt-bindings: rtc: Add support for ATCRTC100 RTC
+  MAINTAINERS: Add entry for ATCRTC100 RTC driver
+
+ .../bindings/rtc/andestech,atcrtc100.yaml     |  43 ++
+ MAINTAINERS                                   |   6 +
+ drivers/rtc/Kconfig                           |  15 +
+ drivers/rtc/Makefile                          |   1 +
+ drivers/rtc/rtc-atcrtc100.c                   | 524 ++++++++++++++++++
+ 5 files changed, 589 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rtc/andestech,atcrtc100.yaml
+ create mode 100644 drivers/rtc/rtc-atcrtc100.c
+
+-- 
+2.34.1
+
 
