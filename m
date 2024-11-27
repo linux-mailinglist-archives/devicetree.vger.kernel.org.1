@@ -1,270 +1,175 @@
-Return-Path: <devicetree+bounces-124912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A1EA9DA538
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 10:57:16 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EBD861656E8
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 09:57:12 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A05C919415D;
-	Wed, 27 Nov 2024 09:57:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="gYnJ4UEt"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 098679DA53F
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 11:00:51 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11E0A6A8D2;
-	Wed, 27 Nov 2024 09:57:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 47C86B211E5
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 10:00:48 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9F9B1946A0;
+	Wed, 27 Nov 2024 10:00:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="cSVedzIU"
+X-Original-To: devicetree@vger.kernel.org
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0843C140360
+	for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 10:00:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732701432; cv=none; b=rzfO23B0u2jAUHVCH2sJEUxCrn+KNeiLCBQiYCNKEFP9+COw90oc0leDEub5e/xE0ps8MI5wehoSwGo2zdxDn1vzHZ2Cxl0wKgeKKPHFYhFT/Oiah7vW+YgqKxb+8dccekP3t51FVwwViI929v6V6TY15iDwkcjip53XyY2BZuU=
+	t=1732701644; cv=none; b=CMG9YyjoMKkx3fa83bfOdX236RmMMAPliIYVaKjfOO3LGOoR0FtF12rIG2UiqN5QspGtpn+V1/ydG6+BHCpLDMiQ0XH+HjGIFiq3x23vuOSxaNhYVlvWekV57g69YXa5z5daOhexMnquU5Ks0MYK5I/0CTu+vkGIOhz66UU13/8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732701432; c=relaxed/simple;
-	bh=piY6NVUpel+wRUEZs6EFQ1GXhVd8+X8WGGcAIQ5rvhI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=WCYtzftH+bp8W/rFre/kJxlfH/W1T2FZ8grOgrrkapSKfMZ00ccrQEgkjLhN1GOBODt0gpdYUBkJrOhimeTgiQ38Q+AHfjLfQO94b2l8tuBUHQ1n5bvhUR5UfDj51mlxknDAcN3rd7untH700EN97L/OITHdkCJ2/fG1PMEMyjM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=gYnJ4UEt; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AR9JE1J006025;
-	Wed, 27 Nov 2024 09:56:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	IE5v750NhfcBCh+HTstqz8SDcyR6ATb9vcpl8k+7QvQ=; b=gYnJ4UEtWpzjKNm4
-	k6o4zGbeBYs6LrJADAxNpAg7yL2mT7WaHFcOGJW61gpZm9Dvi+8bO2fw1H47zUyU
-	mpxSvo9aMvZYBVaciA0nMxhzK2ZjNkGKka6i5FLfaNDE8zUYTaQlGKoqSIicuV9j
-	hFcZTBAdVlZaBrXsK5P41uu68j4lm1Yu29TI4w7urJnvcvVstks1s+Fn4pfGmfQi
-	qwj4wdc6kBP+2ZHCHGiTFMOFSddS+kQ76mYYRfcq+0aaV67hoWdeKaNxqYAe9Lv2
-	7o7k03Z5uQI81ispFKU4iijf7mRmSS5jEkREf5iZyG7onv71+PqTMHCtK4tGEyAq
-	b3mXig==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 434ts1p2pf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 27 Nov 2024 09:56:58 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AR9uw5D001804
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 27 Nov 2024 09:56:58 GMT
-Received: from [10.64.68.102] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 27 Nov
- 2024 01:56:48 -0800
-Message-ID: <b3fa1fa6-3ed5-4f4c-a3bb-607b06774cdb@quicinc.com>
-Date: Wed, 27 Nov 2024 17:56:45 +0800
+	s=arc-20240116; t=1732701644; c=relaxed/simple;
+	bh=zRYsYbGf/cDqfHjKWgxhLuI5WTXoZE+rVWtmg6t0YJw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qI6W2sIPFC8eF5vbu3W/89qtZxY8LNNn9ltRvtAHl/gkNzPUG1VXDTQ0MzPo5x7asMK2HdCHfcoj03VZlN5qDRCfjmzJRc6F69/Sos41ZlJ33dEhrvgI5879ze8E8wc8307NjCFCHAp9m7HFfHskNMWFfxBbc9czhQ9f4melmDk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=cSVedzIU; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1732701642;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=s0wPBAaMjSnNTX8RqBZAQUWmuUVI0sWePXuVzRgZ7Qw=;
+	b=cSVedzIUwf/RTRIJDAotC2W5j7pQNetA0/yGVeDgUT3C2VEKnOcnJQkr7D/F2fUDuuEICS
+	f/JmJxSssF+gute1mSm9RQF7Q9axvnyf2VzP1qNhtlOAE9kqAcPhVIKQ4iS0W8vC/SvX+x
+	ARHbYDAMKXmis1PsiHLd2JyfJfd/Dww=
+Received: from mail-oo1-f70.google.com (mail-oo1-f70.google.com
+ [209.85.161.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-517-fg0xS5WhNW6H3k9x7AfAlA-1; Wed, 27 Nov 2024 05:00:39 -0500
+X-MC-Unique: fg0xS5WhNW6H3k9x7AfAlA-1
+X-Mimecast-MFC-AGG-ID: fg0xS5WhNW6H3k9x7AfAlA
+Received: by mail-oo1-f70.google.com with SMTP id 006d021491bc7-5f1f269bb5cso227395eaf.0
+        for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 02:00:39 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732701639; x=1733306439;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=s0wPBAaMjSnNTX8RqBZAQUWmuUVI0sWePXuVzRgZ7Qw=;
+        b=HXUId3SsLQNITzw6mRtsPGpjoLOYsgK6vf6u/IDL6H00Ae12XcLW0dgFNsaLiOjNlN
+         4lqXUf81/woT+PTTrWka12hKxoi+8CX9AvREi5eXUh/DE8ofUuCNYh4+32SjkIrrPPgA
+         wd2gLe+TDvgjiTQyRUpH4qYl38809tTfURrlyU9OvPklJkez50UUNZ/dKAFpIG06VaS7
+         9LgETSGhSYR5XxVGefsogt3YOyZCh6gZJtEUYRS2Uf84pxslIBAZw0Y/YyvkzP7mkuza
+         SdDQ5XYNFFUvn2zJ+ejMFexNDLpKK4XfpDclvqklyZ22yCVi2ZmK9tkTJ8EGXdX/EbN7
+         Mq2Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUvPg8yQzWV+DQWWUcLMChO3Kt5DKa34UXrrF53Jd8tp3ib1/FnIDOM+MDJ+I/6JP1BgS4ZEKXgDXyN@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyel1XZ4bYEq+y0Wm0l5wQr38Ckg1Z7xBV3z7azgKrEA9C7ysaY
+	4B8nqhgRpNM3onh2+vdZKY7Q3xgOPk6aHtGsrKtxBOPJ+k5SSwpD+Y1gxctLbHL7sWA/WjK6f/5
+	GzNr5rBR5341eAP/SpiKwfYTD5PMJD7bib12U72LO8dVtXlko3kiol6O7qVcWxDqmis27ayfZtL
+	tr1DiOFhH24uecauKSyxCaSykMAeKxbp7YWg==
+X-Gm-Gg: ASbGncs+8RRJg8De9AWGc4Euc8aJSzbI5u8EfgUHFtLdPVDq8tIbtJHBqROKoiP+oBG
+	xQL8i8Tsu0qKXRDvV1ZmxIpBvh4I5BA==
+X-Received: by 2002:a05:6870:c152:b0:27b:b2e0:6af with SMTP id 586e51a60fabf-29dc3fb9cd2mr485573fac.2.1732701638783;
+        Wed, 27 Nov 2024 02:00:38 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFxVRugfM1h6RP4poBOiNX8qRrDOehBisqylVM+eiLebPmXpS2cMHMjj58RYifbv8/vFUZK4bOyHhB27KGFiHc=
+X-Received: by 2002:a05:6870:c152:b0:27b:b2e0:6af with SMTP id
+ 586e51a60fabf-29dc3fb9cd2mr485554fac.2.1732701638432; Wed, 27 Nov 2024
+ 02:00:38 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/5] arm64: dts: qcom: qcs8300: enable pcie0 for QCS8300
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, <vkoul@kernel.org>,
-        <kishon@kernel.org>, <robh+dt@kernel.org>,
-        <manivannan.sadhasivam@linaro.org>, <bhelgaas@google.com>,
-        <kw@linux.com>, <lpieralisi@kernel.org>, <quic_qianyu@quicinc.com>,
-        <conor+dt@kernel.org>, <neil.armstrong@linaro.org>,
-        <andersson@kernel.org>, <konradybcio@kernel.org>
-CC: <quic_shashim@quicinc.com>, <quic_kaushalk@quicinc.com>,
-        <quic_tdas@quicinc.com>, <quic_tingweiz@quicinc.com>,
-        <quic_aiquny@quicinc.com>, <kernel@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>
-References: <20241114095409.2682558-1-quic_ziyuzhan@quicinc.com>
- <20241114095409.2682558-5-quic_ziyuzhan@quicinc.com>
- <a02925d7-2d09-4902-97e4-5e7f09d7ef21@oss.qualcomm.com>
-Content-Language: en-US
-From: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-In-Reply-To: <a02925d7-2d09-4902-97e4-5e7f09d7ef21@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: tTg52swv73q9BIT9C6iEByOmYqdiO0Sv
-X-Proofpoint-ORIG-GUID: tTg52swv73q9BIT9C6iEByOmYqdiO0Sv
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- lowpriorityscore=0 mlxlogscore=999 spamscore=0 adultscore=0 malwarescore=0
- impostorscore=0 phishscore=0 priorityscore=1501 mlxscore=0 suspectscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411270082
+References: <20241126-am69sk-dt-usb-v1-1-aa55aed7b89e@redhat.com> <2nuncc5rscu6h74ylaiu6yozg34aoigaj5d4uzvdtolt5q7bmv@6hacpxyb2532>
+In-Reply-To: <2nuncc5rscu6h74ylaiu6yozg34aoigaj5d4uzvdtolt5q7bmv@6hacpxyb2532>
+From: Enric Balletbo i Serra <eballetb@redhat.com>
+Date: Wed, 27 Nov 2024 11:00:27 +0100
+Message-ID: <CALE0LRtUN2N_Z05jH_BMSg7yvirSRob0pSErmQxTu8AatmODgw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am69-sk: Add USB SuperSpeed support
+To: s-vadapalli <s-vadapalli@ti.com>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Dasnavis Sabiya <sabiya.d@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi,
 
-On 11/14/2024 9:02 PM, Konrad Dybcio wrote:
-> On 14.11.2024 10:54 AM, Ziyue Zhang wrote:
->> Add configurations in devicetree for PCIe0, including registers, clocks,
->> interrupts and phy setting sequence.
->>
->> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/qcs8300-ride.dts |  44 +++++-
->>   arch/arm64/boot/dts/qcom/qcs8300.dtsi     | 176 ++++++++++++++++++++++
-> This implies this patch should be two separate ones
+On Wed, Nov 27, 2024 at 9:27=E2=80=AFAM s-vadapalli <s-vadapalli@ti.com> wr=
+ote:
 >
+> On Tue, Nov 26, 2024 at 11:08:19AM +0100, Enric Balletbo i Serra wrote:
+>
+> Hello Enric,
+>
+> > From: Dasnavis Sabiya <sabiya.d@ti.com>
+> >
+> > AM69 SK board has two stacked USB3 connectors:
+> >    1. USB3 (Stacked TypeA + TypeC)
+> >    2. USB3 TypeA Hub interfaced through TUSB8041.
+> >
+> > The board uses SERDES0 Lane 3 for USB3 IP. So update the
+> > SerDes lane info for PCIe and USB. Add the pin mux data
+> > and enable USB 3.0 support with its respective SERDES settings.
+> >
+> > Signed-off-by: Dasnavis Sabiya <sabiya.d@ti.com>
+> > Signed-off-by: Enric Balletbo i Serra <eballetb@redhat.com>
+> > ---
+> > I've been carrying this patch for quite long time in my builds to have
+> > support for USB on my AM69-SK board without problems. For some reason t=
+his
+> > patch was never send to upstream or I couldn't find it. So I took the
+> > opportunity, now that I rebased my build, to send upstream.
+> >
+> > I have maintained the original author of the downstream patch as is
+> > basically his work.
+> > ---
+> >  arch/arm64/boot/dts/ti/k3-am69-sk.dts | 33 +++++++++++++++++++++++++++=
+++++++
+> >  1 file changed, 33 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dt=
+s/ti/k3-am69-sk.dts
 >
 > [...]
 >
+> > +&usb0 {
+> > +     status =3D "okay";
+> > +     dr_mode =3D "host";
 >
->> +&tlmm {
->> +	pcie0_default_state: pcie0-default-state {
->> +		perst-pins {
->> +			pins = "gpio2";
->> +			function = "gpio";
->> +			drive-strength = <2>;
->> +			bias-pull-down;
->> +		};
->> +
->> +		clkreq-pins {
->> +			pins = "gpio1";
->> +			function = "pcie0_clkreq";
->> +			drive-strength = <2>;
->> +			bias-pull-up;
->> +		};
->> +
->> +		wake-pins {
->> +			pins = "gpio0";
-> Sorting these in an increasing order would be welcome
+> Since the Type-C interface is also connected to USB0, shouldn't "dr_mode"
+> be "otg"? Also, has the Type-C interface been tested with this patch?
+> Please let me know.
 >
->
->>   
->> +		pcie0: pci@1c00000 {
->> +			compatible = "qcom,pcie-qcs8300","qcom,pcie-sa8775p";
-> Missing ' ' after ','
->
->> +			reg = <0x0 0x01c00000 0x0 0x3000>,
->> +			      <0x0 0x40000000 0x0 0xf20>,
->> +			      <0x0 0x40000f20 0x0 0xa8>,
->> +			      <0x0 0x40001000 0x0 0x4000>,
->> +			      <0x0 0x40100000 0x0 0x100000>,
->> +			      <0x0 0x01c03000 0x0 0x1000>;
->> +
->> +			reg-names = "parf",
->> +				    "dbi",
->> +				    "elbi",
->> +				    "atu",
->> +				    "config",
->> +				    "mhi";
->> +
->> +			device_type = "pci";
-> Please try to match the style in x1e80100, it's mostly coherent but
-> things like newlines differ, which is tiny but mildly annoying
->
->> +
->> +			#address-cells = <3>;
->> +			#size-cells = <2>;
->> +			ranges = <0x01000000 0x0 0x00000000 0x0 0x40200000 0x0 0x100000>,
->> +				 <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x1fd00000>;
-> Looks like there's a bit more space in there
->> +			bus-range = <0x00 0xff>;
->> +
->> +			dma-coherent;
->> +
->> +			linux,pci-domain = <0>;
->> +			num-lanes = <2>;
->> +
->> +			interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 312 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 313 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 314 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 374 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 375 IRQ_TYPE_LEVEL_HIGH>;
->> +
->> +			interrupt-names = "msi0",
->> +					  "msi1",
->> +					  "msi2",
->> +					  "msi3",
->> +					  "msi4",
->> +					  "msi5",
->> +					  "msi6",
->> +					  "msi7";
-> Please also add a "global" interrupt.. looks like it's GIC_SPI 166, but
-> please confirm
-> okay
->> +
->> +			#interrupt-cells = <1>;
->> +			interrupt-map-mask = <0 0 0 0x7>;
->> +			interrupt-map = <0 0 0 1 &intc GIC_SPI 434 IRQ_TYPE_LEVEL_HIGH>,
->> +					<0 0 0 2 &intc GIC_SPI 435 IRQ_TYPE_LEVEL_HIGH>,
->> +					<0 0 0 3 &intc GIC_SPI 438 IRQ_TYPE_LEVEL_HIGH>,
->> +					<0 0 0 4 &intc GIC_SPI 439 IRQ_TYPE_LEVEL_HIGH>;
->> +
->> +			clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
->> +				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
->> +				 <&gcc GCC_PCIE_0_MSTR_AXI_CLK>,
->> +				 <&gcc GCC_PCIE_0_SLV_AXI_CLK>,
->> +				 <&gcc GCC_PCIE_0_SLV_Q2A_AXI_CLK>;
->> +
->> +			clock-names = "aux",
->> +				      "cfg",
->> +				      "bus_master",
->> +				      "bus_slave",
->> +				      "slave_q2a";
->> +
->> +			assigned-clocks = <&gcc GCC_PCIE_0_AUX_CLK>;
->> +			assigned-clock-rates = <19200000>;
->> +
->> +			interconnects = <&pcie_anoc MASTER_PCIE_0 0 &mc_virt SLAVE_EBI1 0>,
-> QCOM_ICC_TAG_ALWAYS
-> okay
->> +					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_PCIE_0 0>;
-> QCOM_ICC_TAG_ACTIVE_ONLY
->
+
+Yes, all usb from the board were tested. I'll try otg mode for the
+Type-C interface and resend the patch.
+
+$ lsusb -t
+/:  Bus 001.Port 001: Dev 001, Class=3Droot_hub, Driver=3Dxhci-hcd/1p, 480M
+    |__ Port 001: Dev 002, If 0, Class=3DHub, Driver=3Dhub/4p, 480M
+        |__ Port 001: Dev 003, If 0, Class=3DHub, Driver=3Dhub/4p, 480M
+            |__ Port 001: Dev 004, If 0, Class=3DHuman Interface Device,
+Driver=3Dusbhid, 1.5M
+            |__ Port 001: Dev 004, If 1, Class=3DHuman Interface Device,
+Driver=3Dusbhid, 1.5M
+        |__ Port 002: Dev 005, If 0, Class=3DMass Storage,
+Driver=3Dusb-storage, 480M
+/:  Bus 002.Port 001: Dev 001, Class=3Droot_hub, Driver=3Dxhci-hcd/1p, 5000=
+M
+    |__ Port 001: Dev 002, If 0, Class=3DHub, Driver=3Dhub/4p, 5000M
+        |__ Port 003: Dev 004, If 0, Class=3DMass Storage,
+Driver=3Dusb-storage, 5000M
+        |__ Port 004: Dev 003, If 0, Class=3DMass Storage,
+Driver=3Dusb-storage, 5000M
+
+Thanks,
+   Enric
 > [...]
-> okay
->> +
->> +			pcieport0: pcie@0 {
->> +				device_type = "pci";
->> +				reg = <0x0 0x0 0x0 0x0 0x0>;
->> +				#address-cells = <3>;
->> +				#size-cells = <2>;
->> +				ranges;
->> +				bus-range = <0x01 0xff>;
->> +			};
-> Are you going to use this? If not, please drop
-
-its required by wlan driver we need it
-
-BRs
-
-Ziyue
-
 >
->> +		};
->> +
->> +		pcie0_phy: phy@1c04000 {
->> +			compatible = "qcom,qcs8300-qmp-gen4x2-pcie-phy";
->> +			reg = <0x0 0x1c04000 0x0 0x2000>;
->> +
->> +			clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
-> This clock goes to the RC, it should be _PHY_AUX (which you put below
-> as phy_aux), please replace it.
-> will do it
->> +				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
->> +				 <&gcc GCC_PCIE_CLKREF_EN>,
->> +				 <&gcc GCC_PCIE_0_PHY_RCHNG_CLK>,
->> +				 <&gcc GCC_PCIE_0_PIPE_CLK>,
->> +				 <&gcc GCC_PCIE_0_PIPEDIV2_CLK>,
->> +				 <&gcc GCC_PCIE_0_PHY_AUX_CLK>;
->> +
->> +			clock-names = "aux",
->> +				      "cfg_ahb",
->> +				      "ref",
->> +				      "rchng",
->> +				      "pipe",
->> +				      "pipediv2",
->> +				      "phy_aux";
-> Konrad
+> Regards,
+> Siddharth.
+>
+
 
