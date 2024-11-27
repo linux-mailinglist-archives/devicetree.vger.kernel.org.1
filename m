@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-124929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B72599DA5A9
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 11:23:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A0D49DA5B1
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 11:26:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AD8DDB20E73
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 10:23:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF41A2826D5
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 10:25:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFE2F195F22;
-	Wed, 27 Nov 2024 10:23:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDA6C196C6C;
+	Wed, 27 Nov 2024 10:25:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VLo6ylqZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pzfr3Ta9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96009194125;
-	Wed, 27 Nov 2024 10:23:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5264139D0B;
+	Wed, 27 Nov 2024 10:25:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732703025; cv=none; b=SWQ8qnXYYOtsSWjCTwYYElavj2bDpZYijmIl1Yc0PcZa9RjzYLyFQBWBXMwzTT7aSCt5Ux4Kl1zO4dzmPJbihDZ7ICoNcD5llECQSNnPiAZpyi1mrckNeEcm2l89FImMvLp319d1WXMMtGc7KziPtsG5+aQiOaNX2T9HPsWaok8=
+	t=1732703155; cv=none; b=Htx+tMUr6s0r4VA24EDoA1Wn78+Pc2LByJOyEIftMr7RO9tAmAMpFSyQit2v1SukYqtZsyPkh8wtEki1plEDtcuQzHNBb/q+cbngtnIx9HCSdzcy1bzNr8qp62Ezyw+c9Fv4SHVtTSSEMuBKmNoKuvmZ+MROiIv5mPnRpUvUYAQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732703025; c=relaxed/simple;
-	bh=TXhSOJGZtP5v7+Zb2NXtMO1R4VhWQ6NVpNh/br0RBLk=;
+	s=arc-20240116; t=1732703155; c=relaxed/simple;
+	bh=PWpSdXhG4JWkJaUORNhZqpVB6OIqqs5JPgV0E6gJT2g=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pY5gpiZ8wjRhc2SRdaGB128l/5NQJ1xtar9ma4q8n7qie+skjZ/MkPc5y9C5cok6N3xrtoH/RZQBOLetxwDAivbAYomDM1HhIL4fWxy+yYZBYE/IVWIsbvIEoSVdYvQ75In84ZTdN16nK5WM9DimRh4BthhT2Jv9tSY0PLX+kew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VLo6ylqZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D2FDC4CEDC;
-	Wed, 27 Nov 2024 10:23:37 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=dH2CiAmsopgQAiOhaOcE1Mr71sf1QUuUCe7q2rG8iGc6lwH4TShAsh2QSrB8MuHJZiKwiBjx9Tqu/Bry0SIUGQdIE402q6+xzF7L9qrVbH3BKtG5wTtCVz5JqXAdolPXg6RO4HuTuzYLgGXWjYEsBzyjgDqzPv9w7Q+cFGLZnko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pzfr3Ta9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1B47C4CECC;
+	Wed, 27 Nov 2024 10:25:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732703025;
-	bh=TXhSOJGZtP5v7+Zb2NXtMO1R4VhWQ6NVpNh/br0RBLk=;
+	s=k20201202; t=1732703155;
+	bh=PWpSdXhG4JWkJaUORNhZqpVB6OIqqs5JPgV0E6gJT2g=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VLo6ylqZctbqqQbzk3ra4DW79mke2StG4CKUFZue5sysfFDuptSZCU35T+/UE++Dp
-	 l38yOc/Rf2A1XaB8CtsR9FURbiX70iEo4MWvafgfZ2g+TFfsnM+KkLoZ02ycA0tE+t
-	 ZFTXdfRXaWRCXcmFQJbTi1XYp0HfjCkaop1dZVt2bLTT/AnqMZ2w27aRfnSPIQQ8WE
-	 B7Df4erD8yMrBdY52W7xFn5de30rUE6BRXLa5cL51yJlX9RDD/WkWy5Q8bKe3wG+yZ
-	 FH/W8dBL9JU+nUXCa+9s5moqgoJLarbX8NnSnnju5HJNViefqJNkaA0rzUAzEeNmKy
-	 U2drTE9wKADKQ==
-Message-ID: <5d4bebf5-7954-4739-9cd4-93d78d337738@kernel.org>
-Date: Wed, 27 Nov 2024 11:23:35 +0100
+	b=pzfr3Ta92uyhcnHsBRpmiX71uA/MW32jz6jGyAhQ1CwPiOxRDIO/yRXX6mRAFmsji
+	 08UZGNi+SEaPJbgVQVuWlJO42AXFjKTOxN/BbG2Cn9diZIXPd3TsVGjgWbMRO/E53t
+	 VP6fzwIkqSl83/Di/FQDQa6RKCBv3Gm47BO721fPLpbf9YQrd91muYewSNhFuMjCIw
+	 MVHphu3MLN5b913IhNjhUdFWWq8h5MNwAXTDIScYuzKqzM95/HGWKz26iXEAWPbgGT
+	 LxVc/+ruvFgKNiR2THdfXc4oC40m3oinKcyuF4wbvGWGdflj+R0tRrruFxSTYLwciN
+	 XT5NQpvlvOYAw==
+Message-ID: <495be827-f876-435b-977f-c563e8d51730@kernel.org>
+Date: Wed, 27 Nov 2024 11:25:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 02/10] dt-bindings: display: rockchip: analogix-dp: Add
- support for RK3588
-To: Damon Ding <damon.ding@rock-chips.com>, heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- rfoss@kernel.org, vkoul@kernel.org, sebastian.reichel@collabora.com,
- cristian.ciocaltea@collabora.com, l.stach@pengutronix.de,
- andy.yan@rock-chips.com, hjc@rock-chips.com, algea.cao@rock-chips.com,
- kever.yang@rock-chips.com, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org
-References: <20241127075157.856029-1-damon.ding@rock-chips.com>
- <20241127075157.856029-3-damon.ding@rock-chips.com>
+Subject: Re: [PATCH 2/4] input: apple_z2: Add a driver for Apple Z2
+ touchscreens
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Sasha Finkelstein <fnkl.kernel@gmail.com>
+Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Henrik Rydberg <rydberg@bitmath.org>,
+ asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Janne Grunau <j@jannau.net>
+References: <20241126-z2-v1-0-c43c4cc6200d@gmail.com>
+ <20241126-z2-v1-2-c43c4cc6200d@gmail.com>
+ <27amnmlm52igidlv23h3d3bvaezbdumedfkqicbtreka3llhqs@fafepduxgv43>
+ <CAMT+MTRTzPwo7QveP5Zt_4Zycu1qohe5g8srC8O8Jo+O+-wLJw@mail.gmail.com>
+ <3FA9FD56-ECF4-4E2C-A300-7E552F60987D@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,19 +111,25 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241127075157.856029-3-damon.ding@rock-chips.com>
+In-Reply-To: <3FA9FD56-ECF4-4E2C-A300-7E552F60987D@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/11/2024 08:51, Damon Ding wrote:
-> Add the compatible "rockchip,rk3588-edp".
+On 27/11/2024 11:22, Dmitry Torokhov wrote:
+> On November 27, 2024 2:19:38 AM PST, Sasha Finkelstein <fnkl.kernel@gmail.com> wrote:
+>> On Wed, 27 Nov 2024 at 10:00, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>>> +             dev_err(dev, "unable to get reset");
+>>>
+>>> Syntax is: return dev_err_probe, almost everywhere here.
+>>
+>> Per discussion on previous version of this series, input asks
+>> dev_err_probe to not be used.
+> 
+> They twisted my arm. It's ok to use now. 
 
-This we see from the diff. Say something about hardware and why it is
-not compatible with existing variants.
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
+I am fine if that's the preference for input, although this particular
+case without dev_err_probe would be just wrong: possible dmesg flood on
+deferral.
 
 Best regards,
 Krzysztof
