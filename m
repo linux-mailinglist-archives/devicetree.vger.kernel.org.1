@@ -1,64 +1,72 @@
-Return-Path: <devicetree+bounces-125116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125117-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3648E9DABD8
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 17:33:15 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F0519DABDB
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 17:34:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDF2B280CF2
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 16:33:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 46831B20931
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 16:34:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C62D0200132;
-	Wed, 27 Nov 2024 16:33:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3146520013C;
+	Wed, 27 Nov 2024 16:34:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rk/EY0Ms"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VaoZ2EHA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C6AC20012C;
-	Wed, 27 Nov 2024 16:33:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3D8E1F9AB1;
+	Wed, 27 Nov 2024 16:34:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732725191; cv=none; b=cpppLdKhXUpTp+WdZ1C5rhQOuJDXiin3f1L0JL+z0xY2X28PiEDoLi73DEU/cAH/AvtJSypr42YGQmy36/izEBhWgF3Lu75OwIl8XZB+OZEDGBnQ2IeFK0q8oFCyjva3FzMBZLmDM9ie1bKlkfR5rOs+B3bD6AeEP9GqQ2O2xx0=
+	t=1732725253; cv=none; b=iINMnGptFysfxBS3SjQeDjIXRSbo/OGhQhSOmis112dgeNA+FY01B0BdkGQwfFkY5FjIMm8DILbgEeIB3OGBwihMNgztExiQMoFOQMCGXWyKixog4WXhDVM64BduFiMwkiTi5AmLcWk8Mxnq9+8GwC/wBHJTVJx5XhHrRk030XM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732725191; c=relaxed/simple;
-	bh=6s/n1/PmJoMYmBtsywl1+QbvSE5Me8uAzqbPZosEaIo=;
+	s=arc-20240116; t=1732725253; c=relaxed/simple;
+	bh=hDuzp2NmlbEoolqNz7tS5zWguegqWZEB4qmgDT93Sh0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bSNZKFY4xidmBVQx2dDhwfc6ltunLt39DH9VpTw9UuWGofUvomK9pOQGEkWTP8TrQRPZ5VnrE4rl0Q/d7T1Utakdhm6q+o+10gDvLfZzdZkHHGcinWy9C+4pDvfaot132zRP9jRacnfXdpUP3wLyfSx0Bb21C8dfjIRbQ78EYHw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rk/EY0Ms; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4513BC4CECC;
-	Wed, 27 Nov 2024 16:33:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=sHXFI2buNt+9iqlLqu4RHfyw8Q+3Bii2Xn7vyR9iknd216Wo+f3Uod2AlxPU5TB6iTqwYTRuVPkAx2G6RfRYEpyg4k9C/uMvv1gDQ5PU6Aji87VpvMtjyoph4v6QbDGy8UnP5MSyzfeNXsNL/75KAKivhyolha1KpNIEsaWPmXM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VaoZ2EHA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44F29C4CECC;
+	Wed, 27 Nov 2024 16:34:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732725191;
-	bh=6s/n1/PmJoMYmBtsywl1+QbvSE5Me8uAzqbPZosEaIo=;
+	s=k20201202; t=1732725252;
+	bh=hDuzp2NmlbEoolqNz7tS5zWguegqWZEB4qmgDT93Sh0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Rk/EY0MsWAs8tIzOLBv4FheAv1QCDeVhaBoUdl1QSJB5EZC85FYQdk4GP0iD8JjUF
-	 YGcXvomN2SGLoIsAzy9BGRMW5zC9vxOiwV8l+7UfaS6PeuG6NK3BkjeSBPRTl9iNb3
-	 F2WaXvsXnJjlE/phC3aZnHo4TktWUr/kt0UlFnFZOmgB9UV8QgV3WA2bsGZ8GaAlFN
-	 4g4Mg4L4p/h9lzfMhk4qB0yXkyP4VRBUY7zC7enc5Nph+0gjr8Dh54AztT9cg++pR6
-	 MSh165Az/Bv2fVTIgHdtMBrQ6rmQTYhDSwMSv6qCi7HIXkT3pm1Q6AyM2VVoCOQCMh
-	 O2pGWEAsPyh9A==
-Date: Wed, 27 Nov 2024 16:33:06 +0000
+	b=VaoZ2EHAt7Qfxz1Jd4yaT56/sHHn+ppPf00joDkMgjcCFy/VVPPWQFaaWf80Xrrph
+	 YfiT77Eojcg/c3bu6R6UvPzjx0DoF+4qzrrxKcWDBaZo+5pMpDyO4sGa2DR3RblziL
+	 Dfa6Q3d97VURedCKP079RJrBUfzOzqBDMQwRy6Uej2W5+LfPSJpesmMxgQKUNz7N74
+	 LzP0dYYP4Pb6SfsT6U9dykZHOonswPV546D+CoIoB2fFkrgKLmeOj23encHDacywML
+	 nVmI0iW0gfu3r01jeDQT+q+mobkGvfW0rKZtB+SJFF5IbmcjDezPd57+aG3mEXq6rJ
+	 itSiSD04kiSBA==
+Date: Wed, 27 Nov 2024 16:34:06 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	"biju.das.au" <biju.das.au@gmail.com>
-Subject: Re: [PATCH 03/12] dt-bindings: soc: renesas: Document RZ/G3E SMARC
- SoM and Carrier-II EVK
-Message-ID: <20241127-epidural-violin-651fd0ee2526@spud>
-References: <20241122124558.149827-1-biju.das.jz@bp.renesas.com>
- <20241122124558.149827-4-biju.das.jz@bp.renesas.com>
- <20241125-straw-oozy-f95e18e4704f@spud>
- <TY3PR01MB11346BC7FA5C81C108B4E7A7786282@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Sam Protsenko <semen.protsenko@linaro.org>,
+	Will McVicker <willmcvicker@google.com>,
+	Roy Luo <royluo@google.com>, kernel-team@android.com,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH 3/9] dt-bindings: phy: samsung,usb3-drd-phy: gs101:
+ require Type-C properties
+Message-ID: <20241127-hazily-shininess-263835b86a76@spud>
+References: <20241127-gs101-phy-lanes-orientation-phy-v1-0-1b7fce24960b@linaro.org>
+ <20241127-gs101-phy-lanes-orientation-phy-v1-3-1b7fce24960b@linaro.org>
+ <20241127-majorette-decorated-44dc1e7dd121@spud>
+ <813713d8ac62be0782bcf36d1d23bec5f4a3c08e.camel@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,99 +74,61 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="2J5vQnm8co+K8xFJ"
+	protocol="application/pgp-signature"; boundary="c8M+h+w9DKAEhDaA"
 Content-Disposition: inline
-In-Reply-To: <TY3PR01MB11346BC7FA5C81C108B4E7A7786282@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+In-Reply-To: <813713d8ac62be0782bcf36d1d23bec5f4a3c08e.camel@linaro.org>
 
 
---2J5vQnm8co+K8xFJ
-Content-Type: text/plain; charset=us-ascii
+--c8M+h+w9DKAEhDaA
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 27, 2024 at 12:34:42PM +0000, Biju Das wrote:
-> Hi Conor Dooley,
+On Wed, Nov 27, 2024 at 04:24:08PM +0000, Andr=E9 Draszik wrote:
+> Hi Conor,
 >=20
-> Thanks for the feedback.
->=20
-> > -----Original Message-----
-> > From: Conor Dooley <conor@kernel.org>
-> > Sent: 25 November 2024 18:52
-> > Subject: Re: [PATCH 03/12] dt-bindings: soc: renesas: Document RZ/G3E S=
-MARC SoM and Carrier-II EVK
+> On Wed, 2024-11-27 at 16:00 +0000, Conor Dooley wrote:
+> > On Wed, Nov 27, 2024 at 10:58:13AM +0000, Andr=E9 Draszik wrote:
+> > > The USB PHY on gs101 needs to be configured based on the orientation =
+of
+> > > the connector. For that the DTS needs a link between the phy's port a=
+nd
+> > > a TCPCi, and we'll need to inform the phy driver that it should handle
+> > > the orientation (register a handler).
+> > >=20
+> > > Update the schema to enforce that by requiring the orientation-switch
+> > > and port properties (on gs101 only).
+> > >=20
+> > > Signed-off-by: Andr=E9 Draszik <andre.draszik@linaro.org>
 > >=20
-> > On Fri, Nov 22, 2024 at 12:45:39PM +0000, Biju Das wrote:
-> > > Document the Renesas RZ/G3E SMARC Carrier-II EVK board which is based
-> > > on the Renesas RZ/G3E SMARC SoM. The RZ/G3E SMARC Carrier-II EVK
-> > > consists of an RZ/G3E SoM module and a SMARC Carrier-II carrier board.
-> > > The SoM module sits on top of the carrier board.
-> > >
-> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/soc/renesas/renesas.yaml | 4 ++++
-> > >  1 file changed, 4 insertions(+)
-> > >
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> > > b/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> > > index 7cc2bb97db13..1785142fc8da 100644
-> > > --- a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> > > +++ b/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> > > @@ -527,6 +527,10 @@ properties:
-> > >
-> > >        - description: RZ/G3E (R9A09G047)
-> > >          items:
-> > > +          - enum:
-> > > +              - renesas,smarc2-evk # RZ SMARC Carrier-II EVK
-> > > +          - enum:
-> > > +              - renesas,rzg3e-smarcm # RZ/G3E SMARC Module (SoM)
-> >=20
-> > Why are these enums, when you have a single item in each?
+> > What is your driver doing if these are not provided? New required
+> > properties are an ABI break after all and I don't see a mention of how
+> > you're handling it here.
 >=20
-> I just followed the style used in [1]
+> This is hooked-in in patch 8 of this series in
+> exynos5_usbdrd_setup_notifiers(). The new behaviour is gated off
 >=20
-> [1] https://elixir.bootlin.com/linux/v6.12.1/source/Documentation/devicet=
-ree/bindings/soc/renesas/renesas.yaml#L531
-
-It ain't the same though, since you additionally have the SoM.
-
-> Other than that,
+>     if (device_property_present(phy_drd->dev, "orientation-switch")) {
+>         ...
 >=20
-> In future some vendors can add their RZ/G3E SoM's here
-
-Only makes sense if their SoM is compatible with the smarc2-evk.
-
-> Or=20
+> Without that property (i.e. old DTS or !gs101), the driver will behave as
+> before (meaning for gs101 it will work in SS mode in one orientation only=
+).
 >=20
-> They can use Renesas RZ/G3E SMARC module and use their custom carrier boa=
-rds.
+> Does that address your concern?
 
-But allowing this part does make sense.
+Aye, but it'd be good to call that out in your commit message.
 
->=20
-> Cheers,
-> Biju
->=20
-> >=20
-> > >            - enum:
-> > >                - renesas,r9a09g047e58 # Quad Cortex-A55 + Cortex-M33 =
-+ Ethos-U55 (21mm BGA)
-> > >                - renesas,r9a09g047e57 # Quad Cortex-A55 + Cortex-M33 +
-> > > Ethos-U55 (15mm BGA)
-> > > --
-> > > 2.43.0
-> > >
-
---2J5vQnm8co+K8xFJ
+--c8M+h+w9DKAEhDaA
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ0dJwgAKCRB4tDGHoIJi
-0tiEAQCCKgvVl3T7Rv7WkcXTxwnETv99aieRTnoT28JNuZJbvwEAopq4E4GEQhCI
-3/llGDlvkO3/jrvQGLKdCSiCBg+DPAM=
-=QJWG
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ0dJ/gAKCRB4tDGHoIJi
+0uE8AP4xieE2w7MVLlioQY/EzB7WNxxZkSBijdbdgKHeVBmpCAEAvg0mUlHd9e5B
+HhD6UoGTOBy3QKdFgrcuKRKcPf5nAgg=
+=ZhMC
 -----END PGP SIGNATURE-----
 
---2J5vQnm8co+K8xFJ--
+--c8M+h+w9DKAEhDaA--
 
