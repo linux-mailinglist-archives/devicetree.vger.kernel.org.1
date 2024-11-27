@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-124963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72BF59DA68B
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 12:07:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC92A9DA669
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 12:02:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 89932B2AABF
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 11:01:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92883282E04
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 11:02:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF6351EC00D;
-	Wed, 27 Nov 2024 11:01:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 639621EF086;
+	Wed, 27 Nov 2024 11:01:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jlVqIjaI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sdv6TBs1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E2E81EBFF1
-	for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 11:01:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C29D71EBFF9
+	for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 11:01:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732705303; cv=none; b=pj/2dkah5iiqPj3JY+ZBSCl8OJVnnNkxaLiIOzE7IlxyqJhvMV/nnJgv96R1r9nkHZ+eIFo8VR116rsjffH8+h3KIMPBMRCYBS8ZVoNoJKXZXcAtgw4rwBnolsk2k7jqCXWsNGvXj4H+vZZX96bpE6oOCGiTBJhDvXyMZFQ10WA=
+	t=1732705305; cv=none; b=SbWNIkAGuYTKBV4wMb7/yg4I0ssRlqGyFq9++pR6DaX1leJF+K5oRItZarReI+op+p2T5vmGyKp0XimVeBQJioMHkwY5rSAeCpEWVmOc+ZcEIqE8n6W+5bdYJr6qExNQGBmYNRYd33crGvpH+i58jwADmFh8Y+EgjxAb/dOrfQ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732705303; c=relaxed/simple;
-	bh=lozZ7p/MhDuRt6nX+BtkrwBuJHf1C84dqV892qIj6RI=;
+	s=arc-20240116; t=1732705305; c=relaxed/simple;
+	bh=hOCe6cJ0obVm8UjxsiUQNLMPtCy8NJeg3v7RzQ3z6+k=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=aSCSvAQBjSQOuk/zIB7VNaoOEcH+r4I2CaCeM1E7E7LQZPKUmrnzTAsxDt7vFiINaOpqrOa441xBwJfgnfO00Ubb6uyIOzwIIeQ+Xutrn3CnhMBZKK8MWc+7FB6x6pwr91SpDDRsX8U/SROg+r3OtNd9VpLCy29W1u6MVjj9K4Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jlVqIjaI; arc=none smtp.client-ip=209.85.218.51
+	 In-Reply-To:To:Cc; b=cKb97LJM8DIIQO28d9utFDTi/3GhxFGU+CsTctQBOr/Fy55x3CKbpQA0mleQjev+LbdOqnRc09hc6BLE9ziElH22M77omTGOzFU6+R2GAVRoiR9szpvL7VLIw0p+767bsRr4xbgQ5bCaKqOOSqQUwx/Rv97oFt2DIRCdzpIaYKU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sdv6TBs1; arc=none smtp.client-ip=209.85.218.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-aa531a70416so274457566b.0
-        for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 03:01:42 -0800 (PST)
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-aa51d32fa69so703019266b.2
+        for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 03:01:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732705301; x=1733310101; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1732705302; x=1733310102; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=VB/ikfiNeJLME2Jkz2PKwShANoRD6KN3KhS7opfVViA=;
-        b=jlVqIjaIdGwz+w9ViTUCIOrQYfZcRdmM+eCcGyQsn/32+a4NfONrvtQvuxtm0b0RR1
-         pK2ezWO53I2ZBg1v31KUlH3PunVEFYyk9uqIjT6+mZ0mJRlKiGlsQ5G6AUJ267uU4N+f
-         6lrsEI+QEWEPpFLhPlkEiSA6R/vzVzqhSbSgl7iSlFkEYEmkwT6u9pguqVk9/LIN+yjj
-         jVrAd7XAppBxCBY1z2Ctfod9gX7bAXy9H+gYRhhc+YqZh4fRPx4ego6sYGwQRgRoAv6E
-         LH9Wwx5BeXti8rhJTdFYKAOO3MBU04ryyOtil320/PXelKyB2W4fdXb6oeWZscrsEJ1a
-         mQnQ==
+        bh=NwFISXzC5YdjT7nYyo3FK0ynEMcXmWD+620yv0Db3ss=;
+        b=sdv6TBs16Pd/lTeKDK70sztwFUL4rITyoibbam4TXLLcfXFHCshCJ/CWro7FgXqZBA
+         iTzDjP7XCJH72HWnVfmvethA5C0v944Z6VwqkqNw5u/iW62UJ2P6WitAReUsVItA59Y0
+         MnEzn8Ikz9ZA152qPXflnsqfhd1HC5MzrKR2fw6yxwrbHoBZGrRS7UEfOB1HcHUFnYEV
+         dZPpU4FUsXpqBu11tQOI2d+AuaOTWv7xb80/kQwEkOwoEICdm9IJldVV9dtMBZRyPzeQ
+         e4f3GlXxjjNsha5Bs57Rp/eDjK9EJPcpD6k/9ydAyYyC2r0zNCQniHWXOtuNwOGaXKm/
+         TzLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732705301; x=1733310101;
+        d=1e100.net; s=20230601; t=1732705302; x=1733310102;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=VB/ikfiNeJLME2Jkz2PKwShANoRD6KN3KhS7opfVViA=;
-        b=ijXkuhrpuClDyaZUhQwTcspBvoOOai+W6v5M6C8JR/QKz8HCnkw7SBAyxavPxhr/Of
-         yQTs3C4nPDYIb0OlqnptHGoxzydqCo9H1+2zX8Yg8JHxa3pgb3+yTO8e+9qW9bBh5oX7
-         acO7m8XlcJBZ1aWq4ZDGWz5LdI6ezurtt9VtwapDUqyS+jp8q/M0s7mYMl8jmkpVB8W6
-         QQEKCfqt898NmW0ZP7oMXY8gqZUeiyX5QSoSr6IWTG2QImBFsHk8nhliL0+XmLqLy9sb
-         qVZviVwdVz+8UhyeTpvLZhZvGh5AUWC3GEieScwvdS6g+NSywXrMETLC5FMlTb/E7/V4
-         4MsA==
-X-Forwarded-Encrypted: i=1; AJvYcCUUgqkQb2LWyOseVexIvRJJkL1ky5rUTIsRx3EjJcB5H2KXNW4bZZv+ymzHOycea6wkggPwm6fgE/+S@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxj/EJUITXuC6PCMw3JJ/pXhWkfWvR07yWdQLSVf8eYq8QcsId8
-	zzh54S3sVYOPzZ4ToSxQezgCM3B5TRf/N5iENmyR3natrBNe7XwCMMqsbCp4eOY=
-X-Gm-Gg: ASbGncsAKEB3nTI0BEN5mZjtHhabWsC6WxtvpqlPKPSh9Qt75jLpsOaD481AXO6jZXO
-	YWJjG3d98grkQaLqkh2CDJS+Jhxlvf2zjeFpCFW5qNwBTJxrqLf4HdLlxy11a8gns35zNtTvHpE
-	NlqFB2Bpz1juNR63JxywrJRpzDq/iJjhqho3g29goVZF0lN6+ItyIW+vSkWRh+1IPLEWHxayaVr
-	rMdWN3mWxi9zK+abFoyLf1I0Ar5zujtOZBTFvg8MWkASYdLxfi00gZRK/jaf+2DcOL53hBqfBUM
-	xgfOCaY/bIy07qvFKsCE8CYfEnAQLx5+9w==
-X-Google-Smtp-Source: AGHT+IFomp5IYrPwtodVx4NfkTQ1BU4IT3aD00OknD9fip4RuVHiqXSHZTCSxH7nkJmeEnB3wrFv4A==
-X-Received: by 2002:a05:6402:1d55:b0:5d0:88ea:6560 with SMTP id 4fb4d7f45d1cf-5d088ea65a4mr876701a12.31.1732705300646;
-        Wed, 27 Nov 2024 03:01:40 -0800 (PST)
+        bh=NwFISXzC5YdjT7nYyo3FK0ynEMcXmWD+620yv0Db3ss=;
+        b=kv0RcZlt6f5SpRRiBPstK2e4O8bwxTVxa3XLXgWxst1zUI93tREWysd7ljQtRJKo9E
+         Y3Ho71f1p8W0YdOYiVlXOG/pimUKyVMm0MhrfDMVQwnOr0GxFTgKd3Xu16s2t+FLnytB
+         BhFRGTaCZJBmHCKNV4pfa4y7aHT0lfT5fds6qGG5A6ZhkF0Dp7ff4m3ewO1FPvWXS9eo
+         /wOPrvbw3Z6+40bsMuLBfov/RwIckOFhwjBvYB7c6i3wFmRj73yU76/10ERmNk7eTjIh
+         J5YyXNfviNc5RDp/0Fme5xCldKLqTAkOxa1zCcrCVGYQnlhyfWfXqcxQQ1hhaCaLRTo3
+         yj7g==
+X-Forwarded-Encrypted: i=1; AJvYcCVxl+RbabUxQO5ubtA7lDXYb3JQdWMJhOWmv6SaaK3mQQB4WHWv2q/ArZgezEwZhMMAOFFKEIhvwSOg@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzcc6fyVDbTCd/8fpUdPvQvk74QIS4XdXnmAsUxNC8Oi5bvQfTk
+	DRoq4kWG1H8GwUv3S7WlsSpheThYPmKAWlAfkumhbI8Xu606h6P5Y1sgpqcDwYA=
+X-Gm-Gg: ASbGnctt2oi/tBr/Fgwx9uV+hemNDh7IaL86wLZM27mcSXi0b3k77XRhuScazfOE4we
+	K5ILwxcTNOIf3y7g9j1sXVGPLDCag3N3syTtxzpVvtmWvPDldMoZLRsVtSoqi5FKzLSQiqkTKeP
+	tJ4K9yXB7ALrPNZLEU4NkgrxrsPJljrTi6lKSkW0iH+sNwgpAmSw/klmeLl5kXhzmHEEdFHB77q
+	1c0bcjHefpjCOI71uWk+lmE361rVS2PY5OB+mXr6OGihkNx469WSOJApMDWWhBDyRiZ/La8/EG2
+	25corL2Pz7MEvjUxg5DBJbKnE/F/Vfs00w==
+X-Google-Smtp-Source: AGHT+IE4cyy/cDmo8WquVmKFdo7zSy462eB6By+Kdq+zP9Q+Ss+y6AajJ7PIBc5sONgo2uDxTZPy4A==
+X-Received: by 2002:a17:906:2922:b0:aa5:639d:7cdb with SMTP id a640c23a62f3a-aa580f0ddfcmr151648066b.22.1732705301452;
+        Wed, 27 Nov 2024 03:01:41 -0800 (PST)
 Received: from puffmais.c.googlers.com (64.227.90.34.bc.googleusercontent.com. [34.90.227.64])
         by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa50b339612sm693762966b.84.2024.11.27.03.01.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Wed, 27 Nov 2024 03:01:40 -0800 (PST)
 From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Wed, 27 Nov 2024 11:01:39 +0000
-Subject: [PATCH 1/6] arm64: defconfig: enable Maxim TCPCI driver
+Date: Wed, 27 Nov 2024 11:01:40 +0000
+Subject: [PATCH 2/6] dt-bindings: usb: max33359: add max77759 flavor
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,7 +83,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20241127-gs101-phy-lanes-orientation-dts-v1-1-5222d8508b71@linaro.org>
+Message-Id: <20241127-gs101-phy-lanes-orientation-dts-v1-2-5222d8508b71@linaro.org>
 References: <20241127-gs101-phy-lanes-orientation-dts-v1-0-5222d8508b71@linaro.org>
 In-Reply-To: <20241127-gs101-phy-lanes-orientation-dts-v1-0-5222d8508b71@linaro.org>
 To: Catalin Marinas <catalin.marinas@arm.com>, 
@@ -102,26 +102,40 @@ Cc: Peter Griffin <peter.griffin@linaro.org>,
  =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
 X-Mailer: b4 0.13.0
 
-Enable the Maxim max33359 as this is used by the gs101-oriole (Google
-Pixel 6) board.
+On the surface, Maxim's max77759 appears identical to max33359. It
+should still have a dedicated compatible, though, as it is a different
+IC. This will allow for handling differences in case they are
+discovered in the future.
+
+max77759 is used on Google Pixel 6 and Pixel 6 Pro.
+
+Add a dedicated compatible to allow for potential differences in the
+future.
 
 Signed-off-by: André Draszik <andre.draszik@linaro.org>
 ---
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+ Documentation/devicetree/bindings/usb/maxim,max33359.yaml | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index d13218d0c30f..5080fe2ce776 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1121,6 +1121,7 @@ CONFIG_USB_MASS_STORAGE=m
- CONFIG_TYPEC=m
- CONFIG_TYPEC_TCPM=m
- CONFIG_TYPEC_TCPCI=m
-+CONFIG_TYPEC_TCPCI_MAXIM=m
- CONFIG_TYPEC_FUSB302=m
- CONFIG_TYPEC_QCOM_PMIC=m
- CONFIG_TYPEC_UCSI=m
+diff --git a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml b/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
+index 20b62228371b..e11ede3684d4 100644
+--- a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
++++ b/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
+@@ -13,8 +13,12 @@ description: Maxim TCPCI Type-C PD controller
+ 
+ properties:
+   compatible:
+-    enum:
+-      - maxim,max33359
++    oneOf:
++      - enum:
++          - maxim,max33359
++      - items:
++          - const: maxim,max77759
++          - const: maxim,max33359
+ 
+   reg:
+     maxItems: 1
 
 -- 
 2.47.0.338.g60cca15819-goog
