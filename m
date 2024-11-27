@@ -1,146 +1,241 @@
-Return-Path: <devicetree+bounces-124856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8662B9DA364
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 08:57:06 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E1959DA36B
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 09:00:31 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B6E13B21D22
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 07:57:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A1656166723
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 08:00:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01FEE1547E7;
-	Wed, 27 Nov 2024 07:57:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DB5E1552F5;
+	Wed, 27 Nov 2024 08:00:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="bT4ZJj7N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KlAUM7Lm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot05.ext.ti.com (lelvem-ot05.ext.ti.com [198.47.23.236])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E135D18E0E;
-	Wed, 27 Nov 2024 07:56:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.236
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F404E12C499;
+	Wed, 27 Nov 2024 08:00:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732694219; cv=none; b=D3XVYOnTGbptxCZPoUF6V/MWOjizLUoA3dYPo5NFA23o5XuSEnhRyczMJkAeaB+OzMDxMNke5cM/KgxNcIIdMvFpVuXsD7q/Qd1KkaEDGAcg0fDqvpo0kYFVVBX6h/xWeiRW1FgrhSNYj6I3qFZe8uFenQpP0i4peDaMWe3dKYs=
+	t=1732694427; cv=none; b=jyrvoQruPyUQRJKrnNH+hvc5OWz4allhhmll96GglnIJ+iZf1kVRR/M6+YIIGjL8Mlw2IzlQZBWQGuY1AvsCRYPqCAtizFSezrW9KXqiY1TUFdLGGUUdqHDlVli/t9ui3hNpsTZTEdRtIF+L7ZPZ9KteyA634jw5W4IJiBC1aRk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732694219; c=relaxed/simple;
-	bh=w9ZUC24fqxg1qtXiqFIGcqXnTll6fq+dMcHtyfDw7r8=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=hjrBbpznjRgTtGFi3qm56Bqkt6OSqJUdKpPASZze7d1my636QG1VDAWoW/xEhxRT0S0MqMXLFLT7lEzRe8Y2M8y9FK7eVO8sjSoqmDVLQ2Md4/VnWSTjYS6FMrfkjnVIKx+Wx+HGxGrSks8U3EU+hOlmo8Z8a88xirRPuof+C9w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=bT4ZJj7N; arc=none smtp.client-ip=198.47.23.236
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelvem-ot05.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 4AR7unwZ757910
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-	Wed, 27 Nov 2024 01:56:49 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1732694209;
-	bh=tjTIKW9eo5borKok+xBtBjM7UMaGh7skviWUJzH4050=;
-	h=From:To:CC:Subject:Date;
-	b=bT4ZJj7NarbK8iwZtvoi31q9/+DVyFKMh4ed5q0v65ldsu40xVo+/gUS2NIn+JwDG
-	 1qwvH/9Z44BZPO2LBPINGCWJd4MdzlQ9eHIJ4Q5zH4l+wlrB6XDFOgPHQRR85n7Qj/
-	 a1NHIcmresNaptBW7D+E6fkmRfdg/jsvJbEi8lps=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4AR7ungO104187;
-	Wed, 27 Nov 2024 01:56:49 -0600
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 27
- Nov 2024 01:56:49 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 27 Nov 2024 01:56:48 -0600
-Received: from a-dutta.dhcp.ti.com (a-dutta.dhcp.ti.com [172.24.227.92])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4AR7ujN9052665;
-	Wed, 27 Nov 2024 01:56:46 -0600
-From: Anurag Dutta <a-dutta@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>, <vaishnav.a@ti.com>,
-        <a-dutta@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-j7200: Add node to disable loopback connection
-Date: Wed, 27 Nov 2024 13:26:44 +0530
-Message-ID: <20241127075644.210759-1-a-dutta@ti.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1732694427; c=relaxed/simple;
+	bh=GgFaD5G7nqFywtoKREjsYWNcLoJk08J62pho+WSpmF0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Aan6TenTzsR8OWwI9oZzyNpfOjECVEV6zsocLlSp9/glLPzREBSt4XsQTZyTM728834uGh8tNekLolHk2Vz1TpSH5JsrwLlDH63rN8phxTqJfTrjOmcTezPXSEiiTRE07ZIhP8YMkKXnbiQzSdwe3I1uEgZmlukP9uvtPyMSGvw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KlAUM7Lm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0EC6C4CECC;
+	Wed, 27 Nov 2024 08:00:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732694426;
+	bh=GgFaD5G7nqFywtoKREjsYWNcLoJk08J62pho+WSpmF0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KlAUM7Lm5DlNOg07lUAolBchsP3+72z39PWUOaa/A32011A8vAyg5TpfJZYRLPwfX
+	 ZwWEoftS985KFdJOZnf5OpZyVqCXB7JBb/Vp+UttePmCnuzMZl4ldRXK+5iTFvPNAc
+	 AznH0W8ekw2K/aXPmnlcKxjurM92EgWlJhmjWpTgJOaG+Tn70hCkoQSJjzV/rcsnkP
+	 SBQhsrWQKmusTooerr28t3CvCiH6oXDozuGX9ajBi95NJq+1Ji+3Sk2T680z2ep7WJ
+	 8P2Jwg7gHnBFhq4Gnf6M+4xog4kwwb1/MprvBXyMdeGyWT/+NbxK6WVukg6hzwr9SU
+	 bdr65ULZi8sFg==
+Date: Wed, 27 Nov 2024 09:00:22 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	marcelo.schmitt1@gmail.com
+Subject: Re: [PATCH v4 1/4] dt-bindings: iio: adc: adi,ad4000: Add PulSAR
+Message-ID: <yhah2mrild37ntk77u75oysjzf3mpegvqeg5es2vzq6tencwco@lytu235eymoa>
+References: <cover.1732660478.git.marcelo.schmitt@analog.com>
+ <227873de1e9aa249504639da2241915541d089d5.1732660478.git.marcelo.schmitt@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <227873de1e9aa249504639da2241915541d089d5.1732660478.git.marcelo.schmitt@analog.com>
 
-CTRLMMR_MCU_SPI1_CTRL register controls if MCU_SPI1 is directly
-connected to SPI3 in the MAIN Domain (default) or if MCU_SPI1
-and SPI3 are independently pinned out. By default, the field
-SPI1_LINKDIS (Bit 0) is set to 0h. In order to disable the direct
-connection, the SPI1_LINKDIS (Bit 0) needs to be set to 1h. Model
-this functionality as a "reg-mux" device and based on the idle-state
-property, enable/disable the connection bewtween MCU_SPI1 and MAIN_SPI3.
+On Tue, Nov 26, 2024 at 08:15:05PM -0300, Marcelo Schmitt wrote:
+> Extend the AD4000 series device tree documentation to also describe
+> PulSAR devices.
+> 
+> The single-channel series of PulSAR devices is similar to the AD4000 series
+> except PulSAR devices sample at slower rates and don't have a
+> configuration register. Because PulSAR devices don't have a configuration
+> register, they don't support all features of AD4000 devices and thus fewer
+> interfaces are provided to user space. Also, while AD4000 may have their
+> SDI pin connected to SPI host MOSI line, PulSAR SDI pin is never connected
+> to MOSI.
+> 
+> Some devices within the PulSAR series are just faster versions of others.
+> >From fastest to slowest, AD7980, AD7988-5, AD7686, AD7685, and AD7988-1 are
+> all 16-bit pseudo-differential pin-for-pin compatible ADCs. Devices that
+> only vary on the sample rate are documented with a common fallback
+> compatible.
+> 
+> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> ---
+> Change log v3 -> v4
+> - Sorted compatible strings in alphabetical order.
+> - Left only fallback compatibles in allOf check list for adi,sdi-pin property.
+> - Improved patch description with explanation about how the AD4000 and PulSAR
+>   devices are different.
+> 
+> Well, I didn't manage to get a dtbs_check message for all the cases I was
+> expecting to cover, yet. I trust the test done by maintainers while I don't
+> figure out what's wrong with my setup.
+> 
+> FWIW, here's what I tried:
+> 
+> Cloned dt-binding tree from git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git
+> Fetched and checked out dt/next branch.
+> Applied AD4000/PulSAR patches.
+> - <62dd96ac9cd> ("iio: adc: ad4000: fix reading unsigned data")
+> - <8ebfd0925521> ("iio: adc: ad4000: Check for error code from devm_mutex_init() call")
+> - the patches from this patch series
+> 
+> Cloned dtc from git://git.kernel.org/pub/scm/utils/dtc/dtc.git into a directory
+> at the same level of linux kernel source dir.
+> 
+> Cloned dt-schema from https://github.com/devicetree-org/dt-schema.git into a
+> directory at the same level of linux kernel source dir.
+> Within dt-schema, 
+> mkdir venv
+> python3 -m venv venv/
+> source venv/bin/activate
+> python3 -m ensurepip --default-pip
+> python3 -m pip install --upgrade pip setuptools wheel
+> pip install yamllint
+> pip install dtschema --upgrade
+> pip install -e .
+> 
+> export ARCH=arm; export CROSS_COMPILE=arm-linux-gnueabi-
+> Ran `./scripts/dtc/update-dtc-source.sh` from the top level of Linux source tree.
+> make defconfig
+> Added zynq-coraz7s-ad7685.dts to arch/arm/boot/dts/xilinx/.
+> Added zynq-coraz7s-ad7685.dtb to arch/arm/boot/dts/xilinx/Makefile.
+> make -j4 dtbs_check # but it didn't print anything about adi,sdi-pin value.
+> Changed the compatible from "adi,ad7685" to "adi,ad7687" and dtbs_check prints
+> arch/arm/boot/dts/xilinx/zynq-coraz7s-ad7685.dtb: adc@0: adi,sdi-pin:0: 'sdi' is not one of ['high', 'low', 'cs']
+> 
 
-The register field description has been referred from J7200 TRM [1]
-(Table 5-517. CTRLMMR_MCU_SPI1_CTRL Register Field Descriptions). 
+Your process is weird. None of these are needed, especially dtc, except
+pip install yamllint and dtschema. Installing dtc suggests you are
+working on some old kernel and that's a mistake on its own. Plaese work
+on latest mainline / maintainer / next tree.
 
-[1] https://www.ti.com/lit/pdf/spruiu1
 
-Signed-off-by: Anurag Dutta <a-dutta@ti.com>
----
+> -zynq-coraz7s-ad7685.dts file {
+> // SPDX-License-Identifier: GPL-2.0
+> 
+> /dts-v1/;
+> #include "zynq-7000.dtsi"
+> 
+> / {
+> 	adc_vref: regulator-vref {
+> 		compatible = "regulator-fixed";
+> 		regulator-name = "EVAL 5V Vref";
+> 		regulator-min-microvolt = <5000000>;
+> 		regulator-max-microvolt = <5000000>;
+> 		regulator-always-on;
+> 	};
+> 
+> 	adc_vdd: regulator-vdd {
+> 		compatible = "regulator-fixed";
+> 		regulator-name = "Eval VDD supply";
+> 		regulator-min-microvolt = <5000000>;
+> 		regulator-max-microvolt = <5000000>;
+> 		regulator-always-on;
+> 	};
+> 
+> 	adc_vio: regulator-vio {
+> 		compatible = "regulator-fixed";
+> 		regulator-name = "Eval VIO supply";
+> 		regulator-min-microvolt = <3300000>;
+> 		regulator-max-microvolt = <3300000>;
+> 		regulator-always-on;
+> 	};
+> };
+> 
+> &spi0 {
+> 	adc@0 {
+> 		compatible = "adi,ad7685";
+> 		reg = <0>;
+> 		spi-max-frequency = <40000000>;
+> 		vdd-supply = <&adc_vdd>;
+> 		vio-supply = <&adc_vio>;
+> 		ref-supply = <&adc_vref>;
+> 		adi,sdi-pin = "sdi";
+> 	};
+> };
+> -} zynq-coraz7s-ad7685.dts file
+> 
+>  .../bindings/iio/adc/adi,ad4000.yaml          | 56 +++++++++++++++++++
+>  1 file changed, 56 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4000.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad4000.yaml
+> index e413a9d8d2a2..3c1171c7f0e1 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad4000.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4000.yaml
+> @@ -19,6 +19,20 @@ description: |
+>      https://www.analog.com/media/en/technical-documentation/data-sheets/ad4020-4021-4022.pdf
+>      https://www.analog.com/media/en/technical-documentation/data-sheets/adaq4001.pdf
+>      https://www.analog.com/media/en/technical-documentation/data-sheets/adaq4003.pdf
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7685.pdf
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7686.pdf
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7687.pdf
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7688.pdf
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7690.pdf
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7691.pdf
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7693.pdf
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7942.pdf
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7946.pdf
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7980.pdf
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7982.pdf
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7983.pdf
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7984.pdf
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7988-1_7988-5.pdf
+>  
+>  $ref: /schemas/spi/spi-peripheral-props.yaml#
+>  
+> @@ -63,6 +77,32 @@ properties:
+>  
+>        - const: adi,adaq4003
+>  
+> +      - items:
+> +          - enum:
+> +              - adi,ad7685
+> +              - adi,ad7686
+> +              - adi,ad7980
+> +              - adi,ad7988-1
+> +              - adi,ad7988-5
+> +          - const: adi,ad7983
+> +
+> +      - items:
+> +          - enum:
+> +              - adi,ad7688
+> +              - adi,ad7693
+> +          - const: adi,ad7687
 
-Hi all,
-The above functionality can be achieved by changing the idle-state of
-the "spi1_linkdis" node. As observed, when the SPI1_LINKDIS (Bit 0)
-is 0h, the connection remains enabled and SPIDEV loopback test is
-succssful [1]. But, when the state changes to 1, the the SPI1_LINKDIS
-(Bit 0) becomes 1h and the SPIDEV loopback test fails [2] indicating
-that the connection between MCU_SPI1 and MAIN_SPI3 has been disabled.
+I don't see where you allow adi,ad7687 alone. Same problem with other
+cases.
 
-Test logs:
-[1] https://gist.github.com/anuragdutta731/9ac287f27f1dfb3a5ccee4cc86e02dbb
-[2] https://gist.github.com/anuragdutta731/3ed7b7b5a1a3dab494ba46858b972088
- 
- arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts | 4 ++++
- arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi       | 7 +++++++
- 2 files changed, 11 insertions(+)
+> +
+> +      - items:
+> +          - enum:
+> +              - adi,ad7690
+> +              - adi,ad7982
+> +              - adi,ad7984
+> +          - const: adi,ad7691
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-index db43e7e10b76..f684ce6ad9ad 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-@@ -409,6 +409,10 @@ &serdes_ln_ctrl {
- 		      <J7200_SERDES0_LANE2_QSGMII_LANE1>, <J7200_SERDES0_LANE3_IP4_UNUSED>;
- };
- 
-+&mcu_spi1 {
-+	mux-controls = <&spi1_linkdis 0>;
-+};
-+
- &usb_serdes_mux {
- 	idle-states = <1>; /* USB0 to SERDES lane 3 */
- 	bootph-all;
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-index 6a8453865874..56ab144fea07 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-@@ -184,6 +184,13 @@ phy_gmii_sel: phy@4040 {
- 			reg = <0x4040 0x4>;
- 			#phy-cells = <1>;
- 		};
-+
-+		spi1_linkdis: mux-controller@4060 {
-+			compatible = "reg-mux";
-+			reg = <0x4060 0x4>;
-+			#mux-control-cells = <1>;
-+			mux-reg-masks = <0x0 0x1>;
-+		};
- 	};
- 
- 	wkup_conf: bus@43000000 {
--- 
-2.34.1
+Best regards,
+Krzysztof
 
 
