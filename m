@@ -1,144 +1,210 @@
-Return-Path: <devicetree+bounces-124832-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124833-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 872A19DA199
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 06:02:46 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 29C5A168E42
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 05:02:43 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0FF179DC7;
-	Wed, 27 Nov 2024 05:02:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="G19/0yrH"
-X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 291CE9DA1F8
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 07:09:14 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC5FF8BE5;
-	Wed, 27 Nov 2024 05:02:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7CB8B284618
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 06:09:12 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6073145FE4;
+	Wed, 27 Nov 2024 06:09:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="A0x+544n"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CDF8DF51
+	for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 06:09:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732683761; cv=none; b=ZfISmwUIZbhtd1XfdAVDISAWBUGFZQwBz/E0uRvN/2OgshW0ID4HD4SH8gVkttOp/P9JUo0JSm6lPOE2SHfhhUldoReCVYpuQvdRudPdDd6J+YoAfUO7mOI8XmqKiDbaGMzEvPxhgzmlgllU+8X2S2QoC2dS2bQaojMUqfuxvuo=
+	t=1732687749; cv=none; b=rm1bo7EjJTtn9ankbnyz+hI3vgIkyMyxJHfmUAtymTKPMSYO+kOO0+cBJ3NJy6+Byt4eDKwOvSDZH1T6zZYaIj4QDQ7/wdjdyrtMUc+5ZpgipixyhAHa7HZHMQRo/WV4i2+ayLDVIf8gSpLv6gvKfqLPi61Y7kQc/axE7BWFifM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732683761; c=relaxed/simple;
-	bh=PCUba8hrz2AA9NubEQaRdf0jbCD7NotGaPijgKo1XJo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=K3pihCDg5dco4oSDcmT3bpHxGkse50sYuucOcfN0GPXqS4wJg2+MXkxUe57KCTDzZeK+FJtlUnNip+UQuqCQ7yRMYXWtvs6SsfWZdXBp52tIrcIE3aWdmtTOeWMSzT7SQz0MipXes+1MKMsoxl8ircsaammlpGrfXS8Y/J3uT8I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=G19/0yrH; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 4AR52Zlo936917
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 26 Nov 2024 23:02:35 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1732683755;
-	bh=Xj+yoYpiOew6cJrj/nwWhzTN0RRt9UoC9Hj9cY5VMZY=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=G19/0yrHzgdXzjLKbsaZl42RkxhuNsuHr+QaHGTyTQIhiohwtjER7Sz1JJEacla8Y
-	 3DcELM65PGL8HrzfsZXKe2D2Fv0EZjzwkt3MQ1tmIbCN9IFTFzt8ocTpNhnzi84S1u
-	 WUv2O8f9a80rPBRd+O6cfSwur6680jX33Runr6LE=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4AR52Zbr115521
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 26 Nov 2024 23:02:35 -0600
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 26
- Nov 2024 23:02:34 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 26 Nov 2024 23:02:34 -0600
-Received: from [10.24.69.142] ([10.24.69.142])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4AR52UYk050049;
-	Tue, 26 Nov 2024 23:02:31 -0600
-Message-ID: <3df3d649-b921-49db-a050-ef935b7e9748@ti.com>
-Date: Wed, 27 Nov 2024 10:32:30 +0530
+	s=arc-20240116; t=1732687749; c=relaxed/simple;
+	bh=bYkDd2FDNQhF6n7/ktLHR3Dlk+Dr0HT6E2QUUA+lxXw=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=F5tllkTJ9U9UrMFdBtiXKmc0bBi1qDjo42/CmV0PiRe/WJbATnRyv32duWbZTAOWCSaSMzjTcL5jF0sZ6fscNo1NscTpb80w2hEm761A4JHf5euCYFrsyM6tYaO3OYqrrElPB7Zld/Ypui+Vny/2vaQ3XDv60X6tJnGBx6611sI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=A0x+544n; arc=none smtp.client-ip=203.254.224.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20241127060905epoutp01f46c1bcd3ceb133d28aa0cad29a8b153~LvlL4EeVV0612206122epoutp01e
+	for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 06:09:05 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20241127060905epoutp01f46c1bcd3ceb133d28aa0cad29a8b153~LvlL4EeVV0612206122epoutp01e
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1732687745;
+	bh=ciGwo/b6Fo4IMrQIxYgYlTRHL77X9o02RKYiwTR6jxY=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=A0x+544ni1/hJDIV9U1+cMuguKvekjMO4Q92rNLJZo48eSqR4ge3rEA+j/MCcYRbb
+	 DkhWwaEbX/lDlx9xLpwt8MDQ9Lz5t6ruTq62/Sfv4a/4MxbqrpTUM0VmnBSSaKEtXq
+	 ZZ8StHJUepxR3Dk/UrahVfe20UtdDDzz5K0MfPnY=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+	epcas2p1.samsung.com (KnoxPortal) with ESMTP id
+	20241127060904epcas2p1e27d0114f8b112c19954c7680a0880e0~LvlLZPbMo1426114261epcas2p1-;
+	Wed, 27 Nov 2024 06:09:04 +0000 (GMT)
+Received: from epsmgec2p1.samsung.com (unknown [182.195.36.88]) by
+	epsnrtp3.localdomain (Postfix) with ESMTP id 4Xypt75xK5z4x9Q1; Wed, 27 Nov
+	2024 06:09:03 +0000 (GMT)
+Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
+	epsmgec2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
+	95.E9.22938.F77B6476; Wed, 27 Nov 2024 15:09:03 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
+	20241127060902epcas2p3477f29bef1164a4a48e6eee885aee505~LvlJToIYN2048020480epcas2p3-;
+	Wed, 27 Nov 2024 06:09:02 +0000 (GMT)
+Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20241127060902epsmtrp1a1d87017cf655b1e0411c550e217f242~LvlJSvI3h0303103031epsmtrp1z;
+	Wed, 27 Nov 2024 06:09:02 +0000 (GMT)
+X-AuditID: b6c32a43-0b1e27000000599a-fa-6746b77f51c2
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	88.29.18949.E77B6476; Wed, 27 Nov 2024 15:09:02 +0900 (KST)
+Received: from KORCO078619 (unknown [10.229.8.183]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20241127060902epsmtip141bd0d0f165d1fa9bc875fcfc1758418~LvlI_nc_40262902629epsmtip1P;
+	Wed, 27 Nov 2024 06:09:02 +0000 (GMT)
+From: =?UTF-8?B?64KY7IaM7JuQL1NPV09OIE5B?= <sowon.na@samsung.com>
+To: "'Alim Akhtar'" <alim.akhtar@samsung.com>, <robh@kernel.org>,
+	<krzk@kernel.org>, <conor+dt@kernel.org>, <vkoul@kernel.org>,
+	<kishon@kernel.org>
+Cc: <krzk+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-samsung-soc@vger.kernel.org>
+In-Reply-To: <000101db4076$ac6b18a0$054149e0$@samsung.com>
+Subject: RE: [PATCH v3 3/3] arm64: dts: exynosautov920: add ufs phy for
+ ExynosAutov920 SoC
+Date: Wed, 27 Nov 2024 15:09:01 +0900
+Message-ID: <005801db4092$db115270$9133f750$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: dma: ti: k3-bcdma: Add J722S CSI
- BCDMA
-To: Krzysztof Kozlowski <krzk@kernel.org>, <peter.ujfalusi@gmail.com>,
-        <vkoul@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <dmaengine@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>, <j-choudhary@ti.com>,
-        <vigneshr@ti.com>
-References: <20241126125158.37744-1-vaishnav.a@ti.com>
- <8399720e-2a91-4374-b049-ff1d7e66d83e@kernel.org>
-Content-Language: en-US
-From: Vaishnav Achath <vaishnav.a@ti.com>
-In-Reply-To: <8399720e-2a91-4374-b049-ff1d7e66d83e@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQKN54LK9wdlweRKh/1XLNX4aAwNFgK+n1kYAa5oYP4BvfZb/rEz/krQ
+Content-Language: ko
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprGJsWRmVeSWpSXmKPExsWy7bCmqW79drd0g42b9CwezNvGZrFm7zkm
+	i/lHzrFaHG39z2zxctY9Novz5zewW1zeNYfNYsb5fUwW//fsYLfYeecEswOXx6ZVnWwefVtW
+	MXp83iQXwByVbZORmpiSWqSQmpecn5KZl26r5B0c7xxvamZgqGtoaWGupJCXmJtqq+TiE6Dr
+	lpkDdIuSQlliTilQKCCxuFhJ386mKL+0JFUhI7+4xFYptSAlp8C8QK84Mbe4NC9dLy+1xMrQ
+	wMDIFKgwITtjW3d9wUXhiq/Pj7E3MDYKdDFyckgImEisnbGGGcQWEtjBKLF4JkcXIxeQ/YlR
+	YtGH6YwQzjdGiV8PtzB1MXKAdSw4yA8R38soMe33EqjuF4wSLY9iQWw2AUeJldP+MoHYIgLT
+	GSX2L7EC6WUWqJXY32kCEuYUsJLov/mQFcQWFoiRON7QxwhiswioSpxfep0RpJxXwFJi055S
+	kDCvgKDEyZlPWEBsZgF5ie1v5zBD3K8g8fPpMlaITW4SrY09zBA1IhKzO9uYQc6UENjBIbFp
+	wkt2iAYXiR93elggbGGJV8e3QMWlJF72t0HZ+RLrH95lg7ArJO4e+g9Vby+x6MxPdohXNCXW
+	79KHhIiyxJFbUKfxSXQc/ssOEeaV6GgTgmhUkug4P4cJwpaQWPViMtsERqVZSB6bheSxWUge
+	mIWwawEjyypGsdSC4tz01GSjAkN4NCfn525iBCdQLecdjFfm/9M7xMjEwXiIUYKDWUmEl0/c
+	OV2INyWxsiq1KD++qDQntfgQoykwpCcyS4km5wNTeF5JvKGJpYGJmZmhuZGpgbmSOO+91rkp
+	QgLpiSWp2ampBalFMH1MHJxSDUw7uA8nln80ZH5+RGqX7utZTxoe8r+buJfHTXVn1G2mB4eZ
+	Lm5csrj9/MriR4r+8/4tLQzrddj2L6CaZ/dFL4FNC/VEuDvWBqbPWnitfEawWVDwrn9X3PY1
+	uZY5mmhNt1m7wpOd/ca6TfHPZK9zyh8TDZs/T7dUMobpfvrDK/Hhgko31Y5acfQ1Gtt/T16/
+	YXqzWO2X1spfs96/Xx1xuduxZ4+YbwaH0etTm8ryfp1T/HW1rkfM4uo5ps0rq62fGhi+e9cu
+	rN3RraClsCOCX2eSn6pA+JO3NrVb9kaY7zA70vY0adLvxs8v05fN0eh88NTD6IcgW/euhfH/
+	Yh9HhJ+1cWLxLE//8vpzWmKaQYMSS3FGoqEWc1FxIgCcAFm6KQQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprPIsWRmVeSWpSXmKPExsWy7bCSnG7ddrd0g3MLxCwezNvGZrFm7zkm
+	i/lHzrFaHG39z2zxctY9Novz5zewW1zeNYfNYsb5fUwW//fsYLfYeecEswOXx6ZVnWwefVtW
+	MXp83iQXwBzFZZOSmpNZllqkb5fAlbGtu77gonDF1+fH2BsYGwW6GDk4JARMJBYc5O9i5OIQ
+	EtjNKLG2vZGti5ETKC4h8e3NHiYIW1jifssRVoiiZ4wSR3qvsYMk2AQcJVZO+8sEkhARmMso
+	MefWQWaQBLNAI6PExQ42iI7XjBKHmn6AJTgFrCT6bz5kBbGFBaIkuv/sBlvHIqAqcX7pdUaQ
+	k3gFLCU27SkFCfMKCEqcnPmEBWKmtkTvw1ZGCFteYvvbOcwQ1ylI/Hy6jBXm0lfHt7BD2KYS
+	b/93gsVFBNwkWht7oG4TkZjd2cY8gVF0FpIVs5CsmIVkxSwkLQsYWVYxSqYWFOem5xYbFhjl
+	pZbrFSfmFpfmpesl5+duYgTHoZbWDsY9qz7oHWJk4mA8xCjBwawkwssn7pwuxJuSWFmVWpQf
+	X1Sak1p8iFGag0VJnPfb694UIYH0xJLU7NTUgtQimCwTB6dUA9NWU7VnpXtiXx0OjFofG3rC
+	z3UDA1P2dqfc7jbRugm6pz84zZkgzfEx/OTxdIt5Fisqp2ssv2e+NfHV7GdM8T+vnzB52C0j
+	of7isuvze3+VTU4I2U9evHFeROdTuQ/On2SU/ijM8st4NOV99teHC7nN+F7497Vn/UpULskW
+	e/pYwOy+ziwz/j1RFeU7Xr/8qND91f5V7MeEt/mF1v9ntk3f5LCUz45Z7dOd5XZzz8xqrK7O
+	78pnleJbuW1D1hnx6X8lnN5vVODdfo5R4m6M8u5oZq9nZcsaiw59Z/7+/VayyeMZEsxRPqlS
+	x9fwvXvzwD9j6ZsXZxXqlfpmr3zz9TPbQUOV1cu+ln0x8py53KJPiaU4I9FQi7moOBEAJ76n
+	ADIDAAA=
+X-CMS-MailID: 20241127060902epcas2p3477f29bef1164a4a48e6eee885aee505
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20241118021011epcas2p3db133a3cffb13fba8ce3c973d8ffff65
+References: <20241118021009.2858849-1-sowon.na@samsung.com>
+	<CGME20241118021011epcas2p3db133a3cffb13fba8ce3c973d8ffff65@epcas2p3.samsung.com>
+	<20241118021009.2858849-4-sowon.na@samsung.com>
+	<000101db4076$ac6b18a0$054149e0$@samsung.com>
 
-Hi Krzysztof,
+Hi Alim,
 
-On 26/11/24 19:49, Krzysztof Kozlowski wrote:
-> On 26/11/2024 13:51, Vaishnav Achath wrote:
->> J722S CSI BCDMA is similar to J721S2 CSI BCDMA and
->> supports both RX and TX channels. Add an entry for
->> J722S CSIRX BCDMA.
-> 
-> Please wrap commit message according to Linux coding style / submission
-> process (neither too early nor over the limit):
-> https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
-> 
-
-I will fix this in next revision.
-
->>
->> Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
->> ---
->>
->> V1->V2:
->>    * Address review from Conor to add new J722S compatible
->>    * J722S BCDMA is more similar to J721S2 in terms of RX/TX support,
->>    add an entry alongside J721S2 instead of modifying AM62A.
->>
->> V1: https://lore.kernel.org/all/20241125083914.2934815-1-vaishnav.a@ti.com/
->>
->>   Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml | 4 +++-
->>   1 file changed, 3 insertions(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml b/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
->> index 27b8e1636560..37832c71bd8e 100644
->> --- a/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
->> +++ b/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
->> @@ -196,7 +196,9 @@ allOf:
->>         properties:
->>           compatible:
->>             contains:
->> -            const: ti,j721s2-dmss-bcdma-csi
->> +            enum:
->> +              - ti,j721s2-dmss-bcdma-csi
->> +              - ti,j722s-dmss-bcdma-csi
-> 
-> This compatible was never documented. There is no dependency here, no
-> cover letter explaining where is this compatible introduced.
+> -----Original Message-----
+> From: Alim Akhtar <alim.akhtar@samsung.com>
+> Sent: Wednesday, November 27, 2024 11:47 AM
+> To: 'Sowon Na' <sowon.na@samsung.com>; robh@kernel.org; krzk@kernel.org;
+> conor+dt@kernel.org; vkoul@kernel.org; kishon@kernel.org
+> Cc: krzk+dt@kernel.org; linux-kernel@vger.kernel.org;
+> devicetree@vger.kernel.org; linux-samsung-soc@vger.kernel.org
+> Subject: RE: [PATCH v3 3/3] arm64: dts: exynosautov920: add ufs phy for
+> ExynosAutov920 SoC
 > 
 > 
+> 
+> > -----Original Message-----
+> > From: Sowon Na <sowon.na@samsung.com>
+> > Sent: Monday, November 18, 2024 7:40 AM
+> > To: robh@kernel.org; krzk@kernel.org; conor+dt@kernel.org;
+> > vkoul@kernel.org; alim.akhtar@samsung.com; kishon@kernel.org
+> > Cc: krzk+dt@kernel.org; linux-kernel@vger.kernel.org;
+> > devicetree@vger.kernel.org; linux-samsung-soc@vger.kernel.org;
+> > sowon.na@samsung.com
+> > Subject: [PATCH v3 3/3] arm64: dts: exynosautov920: add ufs phy for
+> > ExynosAutov920 SoC
+> >
+> > Add UFS Phy for ExynosAutov920
+> >
+> > Like ExynosAutov9, this also uses fixed-rate clock nodes until clock
+> > driver has been supported. The clock nodes are initialized on
+> > bootloader stage thus we don't need to control them so far.
+> >
+> > Signed-off-by: Sowon Na <sowon.na@samsung.com>
+> > ---
+> Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
+> 
+> Are you planning to send UFS HCI patches as well?
 
-This was a mistake from my end, sorry about that, it was supposed to be 
-introduced in this patch itself, will fix it in the next revision. Thank 
-you for the review.
-
-Thanks and Regards,
-Vaishnav
+Yes, I will send UFS HCI patches for ExynosAutov920 after phy patches.
+Really thank you for your reviews.
 
 > 
+> >  arch/arm64/boot/dts/exynos/exynosautov920.dtsi | 11 +++++++++++
+> >  1 file changed, 11 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+> > b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+> > index c759134c909e..505ba04722de 100644
+> > --- a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+> > +++ b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
+> > @@ -361,6 +361,17 @@ pinctrl_aud: pinctrl@1a460000 {
+> >  			compatible = "samsung,exynosautov920-pinctrl";
+> >  			reg = <0x1a460000 0x10000>;
+> >  		};
+> > +
+> > +		ufs_0_phy: phy@16e04000 {
+> > +			compatible = "samsung,exynosautov920-ufs-phy";
+> > +			reg = <0x16e04000 0x4000>;
+> > +			reg-names = "phy-pma";
+> > +			clocks = <&xtcxo>;
+> > +			clock-names = "ref_clk";
+> > +			samsung,pmu-syscon = <&pmu_system_controller>;
+> > +			#phy-cells = <0>;
+> > +			status = "disabled";
+> > +		};
+> >  	};
+> >
+> >  	timer {
+> > --
+> > 2.45.2
 > 
-> Best regards,
-> Krzysztof
+
+
 
