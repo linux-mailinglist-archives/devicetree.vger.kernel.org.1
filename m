@@ -1,112 +1,142 @@
-Return-Path: <devicetree+bounces-124949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124950-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98C4A9DA624
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 11:49:39 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9007E9DA635
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 11:54:42 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3EE7E163C94
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 10:54:39 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9DF51D517A;
+	Wed, 27 Nov 2024 10:54:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jZZf7clD"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5AC7C2865A4
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 10:49:38 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29CA8198E74;
-	Wed, 27 Nov 2024 10:49:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h2nqCOBJ"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BE7F1991A5;
-	Wed, 27 Nov 2024 10:49:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35E391D4615;
+	Wed, 27 Nov 2024 10:54:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732704561; cv=none; b=KhXwBsn/GWemcVAdD14nBkG4rLzIRgrqyNwwLTH84PCkidPicdKPO3SkdUfaJaMb3aEfbpLYs98nY5UrZ4hO+pX7m4gxNv6lutHZrXwRfs/eLA7vavVmotDE6IU8DRqipvxrLXbpLrxF1U+wZaCKJys8UAyRvSZzwQAOM1onnXM=
+	t=1732704877; cv=none; b=gvlfEusIF+q8j5cQECmWMtVe0dibkmfZpXcbz8XQdK9pgRnJQynljJLRlW+BIcx8R2OJ7HDTJl1bkkMqqOn/V9kVgm1LiMUcMum9/YJGg935iS+E/9vR1gSM4tzZXyqptTM4T38Eqaj+A2DXUgBs9ER3nH8UPfuefkBbKQipUV4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732704561; c=relaxed/simple;
-	bh=zj3U1IZYGABL9V0QZyz6/EdJvXQoY7bKYdXQeHobgQE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YnnojeiW8zPojrrxjlLpnWo9tW26+HicGwnpergDkAS4QvUJUi0oS3NSfkegdalf1SV/eb2wpl8FKC/hgGsb57WPsgBa4E5GgpERNubMkAxHp4P1r2PCi5+Rq6QFITZUenT3HyA7UhS68yR7Au/BM1fFAlzgYN3S1bhpG2/IziM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h2nqCOBJ; arc=none smtp.client-ip=209.85.219.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-e2bd7d8aaf8so6286123276.3;
-        Wed, 27 Nov 2024 02:49:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1732704557; x=1733309357; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=iYyR3yXYjz0YbNKKTg5cy3mGbrW5Do8TFUwFkEGO9kc=;
-        b=h2nqCOBJpaMkvI7OFV1ytJoEsA8rEiC5bg3xTa7vZaDom+zBshx0AuUR9Z+yPPAjj2
-         wHVl3nFBRUUi5I4GiBmYbH0yvze6tqGHuER0NQkEkKxJ3RMd1JFl/ocRtBLB3kQIKvVl
-         1bfm82I23yNxmFWVeb00RF+U5mQaHNOIWupuCZ+p8nqHYLq0RriQ+0qzTV3Edq3f+nl+
-         aUEvB6PlWMu05NgwT7MtvtHqT2EctFsd/N0h+gFRWLlj8sOwLeXR9G3Obdn/NQzetNEZ
-         JoOFVtzy8I+Yhtp5noEqjh4pnAbRicooTQovvHE9ni4Usjtlg7L5pPkVyiuEQzb+Ao0S
-         CKSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732704557; x=1733309357;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=iYyR3yXYjz0YbNKKTg5cy3mGbrW5Do8TFUwFkEGO9kc=;
-        b=ByXRWvNLa2r/4JQXHVfOiyiwv6xybpUqPOzSav4cJMbFx5JHHg1Ondb6dPEOUPLIom
-         1CYMbwELzb8xniB69RqjT0X4fmJQletxo42dGUfME3Bbhibp+L/wtOFVNv8Gem1BKn0s
-         ayhwiSyzIMRLyrC+Q0qvOoCMV7681yoK0Kl7lVxdqMRqhjDajZrjwRz3+sA2Ke0NhlEZ
-         Enlnja+U7u4kn6gwI2FWXvZ3dMfJuoZy1SvnrvUxOIEEVuWWWbA/o/fGr4xZAPX2avFn
-         pgDxTbcecC9lAwzBH46Dp7iGWiJS3OYpBjnBuDb9RN7oj5lXWDzHfQcPfI6mbgBzMd8q
-         zamg==
-X-Forwarded-Encrypted: i=1; AJvYcCUv6/gDkesqome8snR1+lKs9Srl2umgvTk3DVGoxrZw0a454tK3rlRAgMamCOFNVVzGoWfmXdU4ty3NtoA=@vger.kernel.org, AJvYcCVOYuEpPzMqfWaLbVtpbNqFcZ+O0cnBmjR3vIah2AGAaQzk1Ipl/3xv02IiK2Mx9OVB1hxEjbwC1ZTC@vger.kernel.org, AJvYcCW1DCa+UPK7ij81jA1MfW/gDKmZRXOlKgLEEtCCtsI0lErZshZljOuO8EpiZEwtGXwu/WwPrqudR2+Siqh6@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy0DZM+TrxYGNwEs2wr57YSrFAISRRs4ip5iCOxvmcgyeN8rWvy
-	2RMgCN3O6QjUbnxPMJ1TGdpb0GHXkxfOHH5xGZCXgmu1WM3IAKkkJkuFjGKgE4BDkYGkkQfWT6Z
-	69cIvGRTdbgEqxhSUNxdIleYCfyE=
-X-Gm-Gg: ASbGncstUpqq/nQgB+S+19z6Z5fFzmIX1J+eGWzBKcc3iIUhaMYtIZDfDDE82H0/5MV
-	yckzzDQ9EvjhPYsuc7PDM6dXoQl+fy4bV
-X-Google-Smtp-Source: AGHT+IHuUBgbeWipGcuuSeVvP/LgXH+YzaHYRbIiLarVanu1jwlInw1N972fZqN73ZU9w+/mGXihRtV+AM8sbsNIxlo=
-X-Received: by 2002:a05:6902:1588:b0:e38:b889:7efb with SMTP id
- 3f1490d57ef6-e395b897916mr2246859276.21.1732704557583; Wed, 27 Nov 2024
- 02:49:17 -0800 (PST)
+	s=arc-20240116; t=1732704877; c=relaxed/simple;
+	bh=bw4R/xaVIhqazXmWYeRS//XfI0YzbW0vTTgSRGVI3SA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=WuLnE4M4mXAJ+IPH08o5DqR7PZs8Yd+pQ1h6aVqfMI1y40SH7Cr304Bw63IO0wQ8YrDHUL2XegOsN12XygF2Rcm4HdECz4Z0V+gGZslbxSE68A70CcJJhi1Ho8IJCDm7rLqepPUOvdcBmy4n9yo2A8G8YJc3b7X2l1+iBAMJzVU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=jZZf7clD; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AR93TN2004424;
+	Wed, 27 Nov 2024 10:54:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	rEMqPPtfJwiWelzz0hRF2xRvmtFgCOZyATXF6ddQuHA=; b=jZZf7clDnMgEw2sS
+	jJsrBWwIhVKcpZlVjPbd9lL2MA9PUX9CXvYp1wQMfjMLyRP0/AdESMrovJejtrms
+	z/+KlX+h2Cc2inmDf+2ByLN4CsD8reLkacqQaKWeWzoo9yH1lkjmWyZTndLnV2yZ
+	jZ1v0upIJV75dr1wmAzuLsKgmWq+H9XAvewCVuE0s/2LJy3Zuj0vI6lXdnOYvHAF
+	yp53gcgq1wQz9VP5ZtsiplLcmHXYY0+zedzDZR5CBp8CHLRsWoBfK+ZAcuHm96Si
+	tApyA7WV29VlU+jttSL2rtH/5LWAp1Cek1CcCoiL3RzEF333tFmEhBR/nK8pfVqI
+	EiKEsw==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 435839cdh6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 27 Nov 2024 10:54:21 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4ARAsKVL015882
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 27 Nov 2024 10:54:20 GMT
+Received: from [10.64.68.119] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 27 Nov
+ 2024 02:54:13 -0800
+Message-ID: <8982d065-9bc6-4036-8004-80b1681eaf3c@quicinc.com>
+Date: Wed, 27 Nov 2024 18:54:10 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241126-z2-v1-0-c43c4cc6200d@gmail.com> <20241126-z2-v1-1-c43c4cc6200d@gmail.com>
- <zwdpx6c6qxm5674u2sea5sgwdd2fwim4waijb2qvixf62wrshb@yqs6zurtf7ic>
-In-Reply-To: <zwdpx6c6qxm5674u2sea5sgwdd2fwim4waijb2qvixf62wrshb@yqs6zurtf7ic>
-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
-Date: Wed, 27 Nov 2024 11:49:06 +0100
-Message-ID: <CAMT+MTR46HbUJWQOwG+MY8OffquekynUs_BRCbuAosLrmc+smQ@mail.gmail.com>
-Subject: Re: [PATCH 1/4] dt-bindings: input: touchscreen: Add Z2 controller
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Henrik Rydberg <rydberg@bitmath.org>, asahi@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/5] Display enablement changes for Qualcomm QCS8300
+ platform
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Ritesh Kumar
+	<quic_riteshk@quicinc.com>,
+        Rob Clark <robdclark@gmail.com>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten
+	<marijn.suijten@somainline.org>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Neil
+ Armstrong" <neil.armstrong@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+CC: Abhinav Kumar <quic_abhinavk@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <freedreno@lists.freedesktop.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20241127-mdss_qcs8300-v1-0-29b2c3ee95b8@quicinc.com>
+ <675c41cb-afa8-4386-8dc9-026a36bc1152@kernel.org>
+Content-Language: en-US
+From: Yongxing Mou <quic_yongmou@quicinc.com>
+In-Reply-To: <675c41cb-afa8-4386-8dc9-026a36bc1152@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Gpp7Knmg-xPkJylILt6Rf0k6FYHYWrFs
+X-Proofpoint-ORIG-GUID: Gpp7Knmg-xPkJylILt6Rf0k6FYHYWrFs
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 bulkscore=0
+ phishscore=0 suspectscore=0 spamscore=0 malwarescore=0 mlxscore=0
+ priorityscore=1501 impostorscore=0 mlxlogscore=969 lowpriorityscore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411270090
 
-On Wed, 27 Nov 2024 at 09:47, Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> What is the meaning of these two last compatibles in the list? What are
-> these devices?
-
-Those are generic compatibles for everything that speaks the Z2 protocol
-multitouch is used for everything, as this is currently enough for the driver,
-while touchbar is for userspace, as touchscreens and touchbars
-need different handling. This specific schema was suggested
-on the previous version.
 
 
-> > +  label:
-> > +    maxItems: 1
->
-> Why is this needed? I think it is not part of common touchscreen schema.
-> Drop, devices do not need labels - node name and unit address identify
-> it. If this is needed for something else, then come with generic
-> property matching all touchscreens.
+On 2024/11/27 15:13, Krzysztof Kozlowski wrote:
+> On 27/11/2024 08:05, Yongxing Mou wrote:
+>> This series introduces support to enable the Mobile Display Subsystem (MDSS)
+>> and Display Processing Unit (DPU) for the Qualcomm QCS8300 target. It
+>> includes the addition of the hardware catalog, compatible string,
+>> relevant device tree changes, and their YAML bindings.
+>>
+>> Signed-off-by: Yongxing Mou <quic_yongmou@quicinc.com>
+>> ---
+>> This series depends on following series:
+>> https://lore.kernel.org/all/20241114-qcs8300-mm-cc-dt-patch-v1-1-7a974508c736@quicinc.com/
+>> https://lore.kernel.org/all/20240925-qcs8300_initial_dtsi-v2-0-494c40fa2a42@quicinc.com/
+> Above was not part of this merge window, so nothing from your patchset
+> can be merged for this v6.14.
+> 
+> If you want things to get merged, I suggest decoupling dependencies.
+> 
+Thanks for reviewing.Can we keep the dependency on above changes and 
+merge our changes after the dependent changes are merged?
+> Best regards,
+> Krzysztof
 
-I want some sort of a property to contain a human readable (ish)
-name of this device.
 
