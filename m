@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-124844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B44149DA2EA
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 08:15:22 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B297D9DA2F5
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 08:22:33 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 532DF1691CC
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 07:15:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 70EE2283AD3
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 07:22:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B2B31494D9;
-	Wed, 27 Nov 2024 07:15:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D38BC1494B2;
+	Wed, 27 Nov 2024 07:22:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FTT/hOEq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WLY/2lHP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28FA78F5C;
-	Wed, 27 Nov 2024 07:15:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6D8A1114;
+	Wed, 27 Nov 2024 07:22:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732691717; cv=none; b=Hgt0nZ0nzpHWkwMVueMynN+ONw2anCPZSuOk0yuRZlS05DymeP1Hew/HMeH6lVE0PosyOqCHwxxvuskHs4TCgCHS5pOsfQ3Tx2bN+HL8ZuS9KWX9ykOJOH6978YBT+D89Bg48DmSoBCiKA2Yz49XrB2NSE2SdPn4VOTXprqxI/Y=
+	t=1732692149; cv=none; b=n5mGt63T1+biJY0fq44VXawEwoai6+eHi5RAZ2vPbS1dRJ0ryCzFKX1T5phQ8l0JzVUHlsSV/woqlQyidan2gynHmF1qoSZHa2szjZm6H7QRzOsOd6jE2iYjdRn7LVDkVgKBNoGsqawTfzUpXb153NwhU6wSvGWjIfLdz/TvsYw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732691717; c=relaxed/simple;
-	bh=XZWQ9oZ2HZ5yV4Z16lWMIhYwZGdeiyPdxl0C9N9vkGA=;
+	s=arc-20240116; t=1732692149; c=relaxed/simple;
+	bh=BLswvqEQO+ElBgIY724m1H9JhSDqTyihU13SFxH8rpo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Y0a1JeyXPMzwTR+puXRxSIAXH7zahAf40EBL/ai/Pjuvys7gK5DMPWYkMWdGlYqeaWTPNe6ys20h/Blu0yAKfXzMRa5Z+14i2V5PiLLW8OqxfHI26JLJbJgwN269J5fYcDFX8CtNzGYgKEQ/z9dMRKfOQpjmvGzPtZADuNoH+v8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FTT/hOEq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E32B0C4CECC;
-	Wed, 27 Nov 2024 07:15:09 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=WrhZq6XijH6kWWXaWugabESppPlk66OXXXRueSYrGYgCmaDXWT0cFdtgEADdCe+36PYUBnElfMK/up0KjWYszcOlg7ir5fZOY69p+deFZFUBkiHVuDAnfyIfHHtqBm8hqHAN2fOXlATB3rTUSCUK8LnZpfgeD5s1jMY5BcL7RD4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WLY/2lHP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1719AC4CECC;
+	Wed, 27 Nov 2024 07:22:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732691716;
-	bh=XZWQ9oZ2HZ5yV4Z16lWMIhYwZGdeiyPdxl0C9N9vkGA=;
+	s=k20201202; t=1732692149;
+	bh=BLswvqEQO+ElBgIY724m1H9JhSDqTyihU13SFxH8rpo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FTT/hOEqOJTMxAF6cZD9+rwSEUxOsNmpBu+MGdcyLbHv1uLfGk6H63xWcXfgpyklP
-	 y9W7MSTcQjs7Re4LxJxkPz9lTtysN3p9m/lIzcfBRk4TaYhmwSO0F6n0Y/VefF01Qk
-	 g++onz1YITqdo6Fr9ysXmxS+LwtmAvcqShSlTkwf9aSqd4acNp8xBJZlvTkkOqLYE/
-	 yMtfSZelFVvcH6id4CMVjGw25OWqsLDuBgrphR1plyY6bMCEkyukRYnfFJX3LSvTqt
-	 phm2PJk6LAzOdycM0ofx7HfcNGygEreY3fAocDHWWp63BX5hjQx/snpKBiBL1TjKMY
-	 KVk5oNAEIa6+g==
-Message-ID: <70abadbf-b796-4434-b2d8-0675c18eee07@kernel.org>
-Date: Wed, 27 Nov 2024 08:15:08 +0100
+	b=WLY/2lHPgbo2CF2JmyjCMZBrv0UGXZDLrSbNTjcVZU948xhoDPHRsz8v8G4B+JZSD
+	 I8PmBGudz2sC8zVJ38hgqUepdxSQK24J181sjBYQdoN1CVuCbv9873/FqPVHnlejg1
+	 kgzhMVj6/7zChlkvolTBGbK1PHmw4R7mli/Sy6cb2su1pmF8/SNPQZ2c/B5L94RctL
+	 f0IDlxMDIPUnYVZsr/GgPz6F911lm8iCQhi5zg949902fu8HBh44B2ZrGPLJCh0z2w
+	 d11H+sTQ2bbfvnOylDKet3vrVU4ZjP+ymn4yb65Fd8YPEciFFFsAEVtqC2CJxcc3m5
+	 lLtNJXPYRduKQ==
+Message-ID: <8074519b-0086-4841-b344-abf40093e7b3@kernel.org>
+Date: Wed, 27 Nov 2024 08:22:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,26 +50,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] dt-bindings: display/msm: Document MDSS on QCS8300
-To: Yongxing Mou <quic_yongmou@quicinc.com>,
- Ritesh Kumar <quic_riteshk@quicinc.com>, Rob Clark <robdclark@gmail.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
+Subject: Re: [PATCH 1/6] dt-bindings: display: panel: Add another panel for
+ RG35XX Plus (Rev6)
+To: Hironori KIKUCHI <kikuchan98@gmail.com>
+Cc: linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>, linux-arm-msm@vger.kernel.org,
- dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20241127-mdss_qcs8300-v1-0-29b2c3ee95b8@quicinc.com>
- <20241127-mdss_qcs8300-v1-1-29b2c3ee95b8@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ Conor Dooley <conor+dt@kernel.org>, Paul Cercueil <paul@crapouillou.net>,
+ Christophe Branchereau <cbranchereau@gmail.com>,
+ Ryan Walklin <ryan@testtoast.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org
+References: <20241124080220.1657238-1-kikuchan98@gmail.com>
+ <20241124080220.1657238-2-kikuchan98@gmail.com>
+ <f0d983f7-5f60-4cb7-9522-ef4429359c52@kernel.org>
+ <945786cc-1d6d-4a45-b9df-26d9335fd271@kernel.org>
+ <CAG40kxH8bQHauBAd1B=UpC7LLAJoS=ETKczL=QWBKqvk=VKh_w@mail.gmail.com>
+ <d1e8b3e9-526d-4910-8b15-6cce2c8526db@kernel.org>
+ <CAG40kxGZ=BKU4H5D=XhzTkMYMNqEsJuHMpaTh2awVd60jCjrMQ@mail.gmail.com>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -113,212 +115,28 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241127-mdss_qcs8300-v1-1-29b2c3ee95b8@quicinc.com>
+In-Reply-To: <CAG40kxGZ=BKU4H5D=XhzTkMYMNqEsJuHMpaTh2awVd60jCjrMQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/11/2024 08:05, Yongxing Mou wrote:
-> Document the MDSS hardware found on the Qualcomm QCS8300 platform.
+On 27/11/2024 04:32, Hironori KIKUCHI wrote:
+> Hello Krzysztof,
 > 
-> Signed-off-by: Yongxing Mou <quic_yongmou@quicinc.com>
-
-
-Will fail testing, so only limited review.
-
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interconnect/qcom,icc.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/qcom,qcs8300-gcc.h>
-> +    #include <dt-bindings/clock/qcom,sa8775p-dispcc.h>
-> +    #include <dt-bindings/interconnect/qcom,qcs8300-rpmh.h>
-> +    #include <dt-bindings/power/qcom,rpmhpd.h>
-> +    #include <dt-bindings/power/qcom-rpmpd.h>
-> +
-> +    mdss: display-subsystem@ae00000 {
-> +        compatible = "qcom,qcs8300-mdss";
-> +        reg = <0 0x0ae00000 0 0x1000>;
-> +        reg-names = "mdss";
-> +
-> +        interconnects = <&mmss_noc MASTER_MDP0 QCOM_ICC_TAG_ACTIVE_ONLY
-> +                         &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ACTIVE_ONLY>,
-> +                        <&mmss_noc MASTER_MDP1 QCOM_ICC_TAG_ACTIVE_ONLY
-> +                         &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ACTIVE_ONLY>,
-> +                        <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-> +                         &config_noc SLAVE_DISPLAY_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
-> +        interconnect-names = "mdp0-mem",
-> +                             "mdp1-mem",
-> +                             "cpu-cfg";
-> +
-> +        power-domains = <&dispcc0 MDSS_DISP_CC_MDSS_CORE_GDSC>;
-> +
-> +        clocks = <&dispcc0 MDSS_DISP_CC_MDSS_AHB_CLK>,
-> +                 <&gcc GCC_DISP_HF_AXI_CLK>,
-> +                 <&dispcc0 MDSS_DISP_CC_MDSS_MDP_CLK>;
-> +
-> +        interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>;
-> +        interrupt-controller;
-> +        #interrupt-cells = <1>;
-> +
-> +        iommus = <&apps_smmu 0x1000 0x402>;
-> +
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +        ranges;
-> +
-> +        status = "disabled";
-
-No, your code cannot be disabled.
-
-> +
-> +        mdss_mdp: display-controller@ae01000 {
-> +            compatible = "qcom,qcs8300-dpu";
-> +            reg = <0 0x0ae01000 0 0x8f000>,
-> +                  <0 0x0aeb0000 0 0x2008>;
-> +            reg-names = "mdp", "vbif";
-> +
-> +            clocks = <&gcc GCC_DISP_HF_AXI_CLK>,
-> +                     <&dispcc0 MDSS_DISP_CC_MDSS_AHB_CLK>,
-> +                     <&dispcc0 MDSS_DISP_CC_MDSS_MDP_LUT_CLK>,
-> +                     <&dispcc0 MDSS_DISP_CC_MDSS_MDP_CLK>,
-> +                     <&dispcc0 MDSS_DISP_CC_MDSS_VSYNC_CLK>;
-> +            clock-names = "bus",
-> +                          "iface",
-> +                          "lut",
-> +                          "core",
-> +                          "vsync";
-> +
-> +            assigned-clocks = <&dispcc0 MDSS_DISP_CC_MDSS_VSYNC_CLK>;
-> +            assigned-clock-rates = <19200000>;
-> +            operating-points-v2 = <&mdp_opp_table>;
-> +            power-domains = <&rpmhpd RPMHPD_MMCX>;
-> +
-> +            interrupt-parent = <&mdss>;
-> +            interrupts = <0>;
-> +            ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +                port@0 {
-> +                    reg = <0>;
-> +                    dpu_intf0_out: endpoint {
-> +                         remote-endpoint = <&mdss_dp0_in>;
-> +                    };
-> +                };
-> +            };
-> +
-> +            mdp_opp_table: opp-table {
-> +                compatible = "operating-points-v2";
-> +
-> +                opp-375000000 {
-> +                    opp-hz = /bits/ 64 <375000000>;
-> +                    required-opps = <&rpmhpd_opp_svs_l1>;
-> +                };
-> +
-> +                opp-500000000 {
-> +                    opp-hz = /bits/ 64 <500000000>;
-> +                    required-opps = <&rpmhpd_opp_nom>;
-> +                };
-> +
-> +                opp-575000000 {
-> +                    opp-hz = /bits/ 64 <575000000>;
-> +                    required-opps = <&rpmhpd_opp_turbo>;
-> +                };
-> +
-> +                opp-650000000 {
-> +                    opp-hz = /bits/ 64 <650000000>;
-> +                    required-opps = <&rpmhpd_opp_turbo_l1>;
-> +                };
-> +            };
-> +        };
-> +
-> +        mdss_dp0: displayport-controller@af54000 {
-> +            compatible = "qcom,qcs8300-dp";
-> +
-> +            pinctrl-0 = <&dp_hot_plug_det>;
-> +            pinctrl-names = "default";
-> +
-> +            reg = <0 0xaf54000 0 0x104>,
-> +                <0 0xaf54200 0 0x0c0>,
-> +                <0 0xaf55000 0 0x770>,
-> +                <0 0xaf56000 0 0x09c>;
-> +
-> +            interrupt-parent = <&mdss>;
-> +            interrupts = <12>;
-> +            clocks = <&dispcc0 MDSS_DISP_CC_MDSS_AHB_CLK>,
-> +                <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_AUX_CLK>,
-
-Messed alignment in multiple places.
-
-> +                <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_LINK_CLK>,
-> +                <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_LINK_INTF_CLK>,
-> +                <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_PIXEL0_CLK>;
-> +            clock-names = "core_iface",
-> +                "core_aux",
-> +                "ctrl_link",
-> +                "ctrl_link_iface",
-> +                "stream_pixel";
-> +            assigned-clocks = <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_LINK_CLK_SRC>,
-> +                 <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_PIXEL0_CLK_SRC>;
-> +            assigned-clock-parents = <&mdss_edp_phy 0>, <&mdss_edp_phy 1>;
-> +            phys = <&mdss_edp_phy>;
-> +            phy-names = "dp";
-> +            operating-points-v2 = <&dp_opp_table>;
-> +            power-domains = <&rpmhpd RPMHPD_MMCX>;
-> +
-> +            #sound-dai-cells = <0>;
-> +            status = "disabled";
-
-No, your code cannot be disabled.
-
-> +
-> +            ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                port@0 {
-> +                    reg = <0>;
-> +                    mdss_dp0_in: endpoint {
-> +                        remote-endpoint = <&dpu_intf0_out>;
-> +                    };
-> +                };
-> +
-> +                port@1 {
-> +                   reg = <1>;
-> +                   mdss_dp_out: endpoint { };
-> +                };
-> +            };
-> +
-> +            dp_opp_table: opp-table {
-> +                compatible = "operating-points-v2";
-> +
-> +                opp-160000000 {
-> +                    opp-hz = /bits/ 64 <160000000>;
-> +                    required-opps = <&rpmhpd_opp_low_svs>;
-> +                };
-> +
-> +                opp-270000000 {
-> +                    opp-hz = /bits/ 64 <270000000>;
-> +                    required-opps = <&rpmhpd_opp_svs>;
-> +                };
-> +
-> +                opp-540000000 {
-> +                    opp-hz = /bits/ 64 <540000000>;
-> +                    required-opps = <&rpmhpd_opp_svs_l1>;
-> +                };
-> +
-> +                opp-810000000 {
-> +                    opp-hz = /bits/ 64 <810000000>;
-> +                    required-opps = <&rpmhpd_opp_nom>;
-> +                };
-> +            };
-> +
-
-Drop stray blank lines.
-
-> +    };
-> +...
+> Thank you for your reply.
 > 
-
+>>> The old schemas "leadtek,ltk035c5444t", "fascontek,fs035vg158", and
+>>> "anbernic,rg35xx-plus-panel" exist independently.
+>> So you duplicate them. I wrote: Don't duplicate.
+> 
+> Ok, thanks. I won't duplicate.
+> 
+> They are already duplicated in the tree with their own file names.
+> The panels I want to add are not directly relevant to them, so there
+> is no single file suitable for the panels.
+> 
+> Should I merge these files into a single file with a file name such as
+> `newvision,nv3052c.yaml`, taken from the driver name?
+Add it to the existing anbernic.
 
 Best regards,
 Krzysztof
