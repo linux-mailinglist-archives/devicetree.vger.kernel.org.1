@@ -1,224 +1,111 @@
-Return-Path: <devicetree+bounces-125046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125047-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FF649DA9BF
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 15:14:54 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BC289DA9C3
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 15:16:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 796EAB20C61
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 14:14:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 84FB0B21868
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 14:16:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E07881FE45B;
-	Wed, 27 Nov 2024 14:14:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UIz+7dh3"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26F991FF5FD;
+	Wed, 27 Nov 2024 14:16:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5FA91FE454;
-	Wed, 27 Nov 2024 14:14:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56FC81FECC8;
+	Wed, 27 Nov 2024 14:16:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732716887; cv=none; b=BmLuYnvUdlK1w5ciSJR4eKN1MKNT0Uv7T1BAzh7uXYK+dyBJpToC8LPRMaBzudAGqAff+Ft3giSWgSt3ay3q/ddPE3cL/4Rlt7zbmyJeZ57jUvs0/4kuchjRWk26HukuYw4yAkQ8PH28Fc41Q50u+IN1L6C/b2dgTmZff2U5Fjc=
+	t=1732716973; cv=none; b=IepsErJ/4tkECcUH1Keb2dkVGqGklQRsxVY4SvG5K3+IM9fXP7QIdQ9vlw4cV7pR95fxATnHQz/9eqDKeDJRok0W7KIxdIVX41N2irjFjs1CZc7od/xTl6fF3f6JS6wbn0BfJ6aR6p7SbUi1mjBAc/lUnUlWDiAjZUXa8kBaU9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732716887; c=relaxed/simple;
-	bh=paxZs3Cdlf93Q1+n3h1fBFQZMnc13IPiJrr77HuCbiw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HhdaUc1yrB74rEoG2/e9mlE3VPR+gBqcMew6Yph9zJzB/xTte/tvZ203bboJWrpnqu9XS3EzBBTpwElFXUIGyUz8PViAqE7uk9phtzGuaZtsR+822HDV3BKxLWOva08HWC+achNbGEsX0tBA9gfPT363C7zndlzVJMUprdIvAWM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UIz+7dh3; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1732716973; c=relaxed/simple;
+	bh=pqIHHXZd4srGjsi8amMWkPGlughGUTLx9vrbVzfQBxg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=S0vf59aGVltPpBbT/GbN/xkGxbXOVi2UFUA6SYkj9owyPs/NuQFzepfcdKoTjenDuI5nq6ck/3I3xyLmfmt2XEnEl7Te5+5i3BiJHzswOUdK0dvYHlnC2d6aeyoOtZ7CmERwZ+wh1/ACwRLLedbdarpf+flRqIn+FOYkV64QbYk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.210.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-53dd2fdcebcso6867718e87.0;
-        Wed, 27 Nov 2024 06:14:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1732716884; x=1733321684; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Um5TZq365fWOw0yCr9WfM9tBuVJrd4ZuD8M9A4DLXK0=;
-        b=UIz+7dh3vqw+bkETFF0lryBbhPebcZSFyuJEagxITuPXgQFeBDNl8bv1ORSQvihTiZ
-         sQxNnG7JQ2+50Z9jvkXiUsFuv/CbMbqgs8f+Nwuw3FqbMA2j+dEU0C4fos0aeMccMs9O
-         kjbqkNvDYf+dUx8B7KDYbpqsugOF71I8HFQKgVgoQCPYpg/ttMVTEZUOJqJfSeCcvYck
-         hKfGIN8CEEzAON4zEWTTYUt+VDJOs/Jt8Zg2XyWKt2/NGFEF71rknaB8vcSnMajHgn9P
-         mERxlqBIRXncyO2CSecSOLXjKbF5E0I7mvfh7XDr2eV7lew8AU/n1ffffp48WQfsrmzd
-         IqHw==
+Received: by mail-ot1-f48.google.com with SMTP id 46e09a7af769-71d4ba17cd2so1749062a34.3;
+        Wed, 27 Nov 2024 06:16:11 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732716884; x=1733321684;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Um5TZq365fWOw0yCr9WfM9tBuVJrd4ZuD8M9A4DLXK0=;
-        b=vRD3LTwgO81wCWQqAcXnsGVigR8Qh5fBWiD6udj37eh/Zr7e4Fsap8XBlgR1GS1V22
-         7Y1Rn14wmsZ3kFbc5pQEuDuE/aGiVAAL65e9qoMYS+YCWkFlv5d47v8wfkUjf8LMm3zd
-         Gt+d3wRzOw0UF2388bTPezYW1aXr+IlOfnZuxIQx7VTIy773QYW5HFSL1TCentcO9eu7
-         I0TxsvJVD7u/OhFXlhlVCpbAKBCLWh557v0Jt8ZWyIOK/7UUpDeFHVCKD41AziWVRE2S
-         /5lICLWPgh9rKjBke0A92ArG9baIYa740/N6haOYb74pLfOS/Ot823cfG8GjENHUhgaO
-         bAGw==
-X-Forwarded-Encrypted: i=1; AJvYcCUx50IdrWyzGG3w0ZJMPA8Xq72h/OdEFDOVoj3yT5V5+BJ8V9oXskJ0o2o3TZ4rxblWgS6OsnWW/eD8VpLo@vger.kernel.org, AJvYcCV0jeb3rfjT4iTrLYZ7f5bRUKijySIhQRuaYwbT0RGoi0Zx1CB9L1pDzjJ6zQmZHp3APKo8ciUrXjcY@vger.kernel.org, AJvYcCX0W6dCuwNkEYb7pQTO1BZPYiD3TxPVX/7/kibnRFOuTHWxd7TTkigDKLb3L9SJrjHLCBhj5mYvAoSh@vger.kernel.org
-X-Gm-Message-State: AOJu0YyrkgvFTxLQWWq9wW/yISEkcT4ybB3eFuT0S9lZjVLZ9zOymmP/
-	0ToiAJ1Gixv8wF+b9y70/iTJCIbSt79lqsHUQpz3uAHeaIosyUEFNT1afw==
-X-Gm-Gg: ASbGncuMTjGWoD3IdUI7ys8cu73S27zzWwS2hfJdp4rJD7PZSBSeSQbP8bFQcY3Q+0G
-	/IZaNaxnG7pDDq9iSEFCifCBPUwsWzk47KJWor+IMY3qGWa8rbSeuMCLbgFmOZaK28b67SswkUF
-	l6taILkurXW5jzTEpaXTsyDnLalM0zK5/IhGhBLm7l6CVwjqfOdA8MntLjA2IMWXVbzxy+eeqvQ
-	pOkXpCBg29C2S4VbWWEqur+isAoV+XY5fQq06VdbkYangeCP7N7nSg1OBw2I4ehQBfm4T/1miAX
-	6f8y1XmMCLC7Pc55Aej8md/N4o0Fehk=
-X-Google-Smtp-Source: AGHT+IHmGIqaxMqackvlpmM5ajOcte2kcWyZ19LAd1LyiW8cxDqpxp6gMdyGjZJ5ScCnw/bZFnOq2Q==
-X-Received: by 2002:a05:6512:3da4:b0:53d:d0ed:9e06 with SMTP id 2adb3069b0e04-53df0117880mr2065080e87.56.1732716883660;
-        Wed, 27 Nov 2024 06:14:43 -0800 (PST)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53dd2499995sm2316610e87.261.2024.11.27.06.14.42
+        d=1e100.net; s=20230601; t=1732716970; x=1733321770;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/dfIkgsTcA6mxfbjLoofIZRvwxtZ4s0zf1nK43EqhzA=;
+        b=QRieyFtt7agW9+tCxL1R5kOhSS6ARJOSJyrqQZOn4vMEGDDd3JmHYnfhjma6wrRHgT
+         7qURXwLMpjEUIr7NkXQrAswu+CSvTvid2+DA79tH7G5xMc7+yY+CxoWYgperxVH/M58b
+         mIT9Lv+BLei3YwFN6781zLTWbY/WAroyWAtuIam467nLXahx+yfLpOaJ2VFACVCF+PnA
+         kB1k1uL4x/wAVhdJwJLMSlEWURByAvz8j7j1TJcq1PWGO3m6vPOKFmqwyxdnf1Int0ll
+         2TBSVy2oIkYc3qpuNC0QXmeGNsDajarS3mNKFatul2d05+PMLZqDy+6Z4STdNlKnKOne
+         8q8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXYFHb0S6SguSeiObvhmNj1th1iQp48z5l8QaM1+KjHHwu2laMglpgO3timxEAMrZL9lY0kksznEaYg@vger.kernel.org
+X-Gm-Message-State: AOJu0YxXkqE/0fH1wDNvGPX0PrAq9WDrjNbrDgCXqGXMMII12Uq4RQF3
+	aWA6KatT/TTVyjs4qGIKNjlONWAtQ1yYUlerQccpcmPA0azL7xyKE62dNHlT3rc=
+X-Gm-Gg: ASbGncvZrS4mqyHULGkCz9zXxKPmUcXrz3zBE+C94unY+2nHFHYVHldBLz1mzO1cEwc
+	22jUoT3rdyU6iIUI0+bg/Wz0BqkQAVHpWFYFTYTvadXMrJcOo2KA1I4FngEW4a9qw65tYATeKZr
+	gne4TqWvex4bfmrYHyTaxVgAK7+ZaC25WDyVefgIynsFbu7FSQpMiMxVKtg4vaNECeao22kpSjq
+	QXknuNPuM+oA893H4TWYPtaBcxU9J41MPgso5qPiifJUGaoqB5cJRS2bMxb14tquhnryYvZM577
+	GTF4gcNqewCS
+X-Google-Smtp-Source: AGHT+IGYCslxhPCfJpElerLoU2pT7If5HDujU8PaWx6JdregbkS5OIITK6Gfm/MwZNWlgrjy6KR9cA==
+X-Received: by 2002:a05:6830:7107:b0:718:cc7:c6da with SMTP id 46e09a7af769-71d65cf67ccmr2678823a34.22.1732716970115;
+        Wed, 27 Nov 2024 06:16:10 -0800 (PST)
+Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com. [209.85.161.46])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-71d532bc530sm1715177a34.52.2024.11.27.06.16.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Nov 2024 06:14:43 -0800 (PST)
-Message-ID: <2d16bf36-57d3-4c54-bbee-2e7d93399f29@gmail.com>
-Date: Wed, 27 Nov 2024 16:14:41 +0200
+        Wed, 27 Nov 2024 06:16:09 -0800 (PST)
+Received: by mail-oo1-f46.google.com with SMTP id 006d021491bc7-5f1ecd0d9ecso1464470eaf.1;
+        Wed, 27 Nov 2024 06:16:09 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUgH3iG4W4L0+zgHVD38rpQSTDUYiRgUbyae70qRIzaDGUzEPs6NUapfIFTmNh6xiaEcJM4VVJneNjP@vger.kernel.org
+X-Received: by 2002:a05:6359:420a:b0:1ca:9793:ed68 with SMTP id
+ e5c5f4694b2df-1cab169cfe2mr229843555d.23.1732716969188; Wed, 27 Nov 2024
+ 06:16:09 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/8] iio: gts: Simplify using __free
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <cover.1732105157.git.mazziesaccount@gmail.com>
- <5efc30d832275778d1f48d7e2c75b1ecc63511d5.1732105157.git.mazziesaccount@gmail.com>
- <20241123163713.2ec03a37@jic23-huawei>
- <964035d9-cccd-4e12-af71-00ca39cc3596@gmail.com>
- <20241126175214.76609ba9@jic23-huawei>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20241126175214.76609ba9@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20241120085345.24638-2-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20241120085345.24638-2-wsa+renesas@sang-engineering.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 27 Nov 2024 15:15:57 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdV08gKBpSswwa1prvohC_+AGceepty=X8=8Q4CChEJOSA@mail.gmail.com>
+Message-ID: <CAMuHMdV08gKBpSswwa1prvohC_+AGceepty=X8=8Q4CChEJOSA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: rzg3s-smarc: Enable I2C1 and
+ connected power monitor
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi & Thanks Jonathan,
+On Wed, Nov 20, 2024 at 9:54=E2=80=AFAM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> Enable I2C1 for the carrier board and the connected power monitor
+> ISL28022. Limit the bus speed to the maximum the power monitor supports.
+>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-On 26/11/2024 19:52, Jonathan Cameron wrote:
-> On Mon, 25 Nov 2024 11:16:22 +0200
-> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
-> 
->> Hi Jonathan,
->>
->> Thanks once again for the review :)
->>
->> On 23/11/2024 18:37, Jonathan Cameron wrote:
->>> On Thu, 21 Nov 2024 10:20:07 +0200
->>> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
->>>    
->>>> The error path in the gain_to_scaletables() uses goto for unwinding an
->>>> allocation on failure. This can be slightly simplified by using the
->>>> automated free when exiting the scope.
->>>>
->>>> Use __free(kfree) and drop the goto based error handling.
->>>>
->>>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
->>>>
->>>> ---
->>>>
->>>> Revision history:
->>>>     v1 => v2:
->>>>     - patch number changed because a change was added to the series.
->>>>     - rebased on iio/testing to avoid conflicts with queued fixes
->>>> ---
->>>>    drivers/iio/industrialio-gts-helper.c | 19 ++++++++-----------
->>>>    1 file changed, 8 insertions(+), 11 deletions(-)
->>>>
->>>> diff --git a/drivers/iio/industrialio-gts-helper.c b/drivers/iio/industrialio-gts-helper.c
->>>> index 291c0fc332c9..602d3d338e66 100644
->>>> --- a/drivers/iio/industrialio-gts-helper.c
->>>> +++ b/drivers/iio/industrialio-gts-helper.c
->>>> @@ -4,6 +4,7 @@
->>>>     * Copyright (c) 2023 Matti Vaittinen <mazziesaccount@gmail.com>
->>>>     */
->>>>    
->>>> +#include <linux/cleanup.h>
->>>>    #include <linux/device.h>
->>>>    #include <linux/errno.h>
->>>>    #include <linux/export.h>
->>>> @@ -167,8 +168,8 @@ static int iio_gts_gain_cmp(const void *a, const void *b)
->>>>    
->>>>    static int gain_to_scaletables(struct iio_gts *gts, int **gains, int **scales)
->>>>    {
->>>> -	int i, j, new_idx, time_idx, ret = 0;
->>>> -	int *all_gains;
->>>> +	int ret, i, j, new_idx, time_idx;
->>>> +	int *all_gains __free(kfree) = NULL;
->>> See the docs in cleanup.h (added recently).
->>>
->>> Constructor and destructor should go together.   Dan wrote good docs on this
->>> (which are now in cleanup.h) so I'll not go into why!
->>
->> I went through the cleanup.h, and noticed the nice explanation for the
->> pitfall where we have multiple "scoped operations" with specific
->> ordering required. I didn't see other reasoning beyond that - I do hope
->> I didn't miss anything.
->>
->> I find introducing variables mid-function very confusing. Only exception
->> for this has been introducing temporary variables at the start of a
->> block, to reduce the scope. I would still like to avoid this when it
->> isn't absolutely necessary, as it bleeds my eyes :)
->>
->> I really don't see why we would have other cleanups which required
->> specific ordering with the allocated "all_gains".
->>
->> Anyways, if you think we really have a problem here, would it then
->> suffice if I moved the:
->>
->>           gain_bytes = array_size(gts->num_hwgain, sizeof(int));
->>           all_gains = kcalloc(gts->num_itime, gain_bytes, GFP_KERNEL);
->>           if (!all_gains)
->>                   return -ENOMEM;
->>
->> to the beginning of the function, and the "int *all_gains __free(kfree)
->> = NULL;" as last variable declaration?
->>
-> 
-> No.  You need to follow the standard way. It is something we are
-> all getting used to, but all use of cleanup.h needs to follow same rules
-> so that reviewers find it easy to review once they are seeing lots of
-> instances of it.
-> 
-> Many indeed find this ugly but reality is it's happening all over the place
-> just usually hidden in a macro.  From cleanup.h look at how
-> guard() works for instance.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.14.
 
-Well, those macros are better in that the variables they internally 
-declare aren't visible in the outside code. The 'all_gains' pointer is 
-used throughout the function, and I really dislike having local 
-variables which aren't declared at the beginning of a function/block 
-emerge out of nowhere. Makes me think: "why this terribly named global?".
+Gr{oetje,eeting}s,
 
-Well, maybe I really just need to try to adapt these things but I will 
-drop this one out of the series for now. TBH, I don't really like how 
-this table building function looks like. It's too long and confusing. I 
-will see if there is a sane way to split it, and maybe get the __free() 
-pointers to the beginning of a function as well ;)
+                        Geert
 
->> (This is not optimal as we will then do the allocation even if
->> converting gains to scales failed - but I don't think this is a real
->> problem as this should never happen after the driver is proven working
->> for the first time).
->>
->>> Upshot is this goes where you do the kcalloc, not up here.
->>
->> *whining* "but, but, but ... it is ugly..." :)
-> 
-> :)  It won't look ugly after a few years!
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-Could be. But now I am in the middle of "everything used to be better in 
-the good old day" -crisis. Playing 8-bit NES games and wondering if I 
-could fix my old C64 ^_^;
-
-In any case, thanks for the guidance (and optimism!) XD
-
-Yours,
-	-- Matti
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
