@@ -1,56 +1,63 @@
-Return-Path: <devicetree+bounces-124971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 545559DA67B
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 12:04:04 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D5B39DA6B3
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 12:17:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 14C14281C1F
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 11:04:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CFBAAB2D5D2
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 11:04:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFF601EBFF1;
-	Wed, 27 Nov 2024 11:02:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E1991EC009;
+	Wed, 27 Nov 2024 11:03:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="DLXWtXFk"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LwvgfM4Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66A611EBFED;
-	Wed, 27 Nov 2024 11:01:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD5B01EBA0D;
+	Wed, 27 Nov 2024 11:03:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732705320; cv=none; b=QSx2d+rEFKMiQBQNauwoAf51BQNJdevMAe3h6zZ8ksWVgbgQslxuD1b2JL7NZPJ2zNss8WaObJf3jF4M605wNSpe2M+WN17vJPGoam8oQSJRgJVWPTT+a2DfOk2Qs1fAgZdHbtjrA/kKqIYA63I806mkf6S9LMM6F5IBpzIiFC8=
+	t=1732705389; cv=none; b=HfBB2gHeUGXMveY/XeEfQVAXcagMwyQlEl9ktEAUvobpF7cIY7jB5hIT67c0EWo2H1uAqRu5+xwW7n9aKpUp5m77Gnbg81kryCniV5auRPw8YpxAuKzP3r8m7MVMkBpccAzfLGHBExkF8j9c4qjtO/OPUWshMUESQi26ULAZiUM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732705320; c=relaxed/simple;
-	bh=T6DgXkgqz6HZ36ZmsXSqt2fUlETXH1SYEt5e2pB4Jt0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SyvrqEcGpYLgVevZXscC95rPpFoP7NB93d9oyA9+HcqmPWSjLcvXeq6b+wQpY8EvLqiLYDRmNbUXBXQ6X7OqdMPqExbhEBZ9NcTRBlbgX5ZnWIUNv6pxRAkoLfNp5PQDiwON5tToWwUh7wce7b/tlFWQ2xu09JZYHGtUEON3AXw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=DLXWtXFk; arc=none smtp.client-ip=46.19.9.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-	s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=WPNnkNusSbpQG7FakN9Ye2q95yHSoDQUaIuZWXayp+I=; b=DLXWtXFkj6e4fvq/C3RHTNR89S
-	TsFawNMwRcQWuVLolTfJG5osTMUgN4XuWfL/YQYQCy9tYfpwjFnrCK0cp4sBMEdrR8J8uh5DSP5r+
-	Gx58Qgbuk/3xwDwGiHWuIFHzqdGuUwWvz33ojwUMhGaFuO4y8z90TZZnVWhtjWdl5yXr8SR+x2o/g
-	ctvef4iRcobweEyOF/BztOnJDTB2r2ejM1ZOTp+R+dckV/ZMN6lETuzOS/mUmxp/jpQvMT++rLMK+
-	ADtwO+YGpzaivNQzhM0jM6AzEpQbpFm202dAXv07W8sNS+iQcGioUGvv4ExirYWV2F/EKri1BDwCM
-	s0M4jHgA==;
-Received: from [89.212.21.243] (port=49272 helo=[192.168.69.52])
-	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-	(Exim 4.96.2)
-	(envelope-from <andrej.picej@norik.com>)
-	id 1tGFnw-007bvX-1g;
-	Wed, 27 Nov 2024 12:01:56 +0100
-Message-ID: <c2af397e-b1a0-4ec7-8ff0-60b9e36cd939@norik.com>
-Date: Wed, 27 Nov 2024 12:01:55 +0100
+	s=arc-20240116; t=1732705389; c=relaxed/simple;
+	bh=zfB/B7j33O0/ulmzReco0gyH/xx2bX4xd7XmtrWGZoo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=iHLUtbuKUSkv5tWw3GPPqh9R3OBG/8YWvvlxXelL8huJ5KLMtifKE3g2GiKiznDg75TvGrB/qxMAUgY6dxa09ILDbFW3mK85eLn6BSX3sExo/eef4q35Zt5HTw9XEwuhx9wF5FTbIWi5f8/20FmXe0zFoSIySDkW+aDu7pWa9ks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LwvgfM4Q; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AR8VR3L014036;
+	Wed, 27 Nov 2024 11:02:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	xxTVMs7EiXRpQddOUj2sdWVYYc7JjTdN36bHFOB8yKs=; b=LwvgfM4Q3GBPUUVx
+	VmLI7+nb/xywNu4cBojhxosuivySKcfG7uEMuEef71TbaRu9csFd6mG9M9cedqzO
+	1LoXLTfc6IYes9G4OvW+zwU5RNrfOXmYq8W1orzauNmLvjVpvLtKTQOEyN4Qjn2l
+	gUAEMu2OsQ9FJxUe0uduB4ilGk0ssKcyPPSqVEa459eNYxE7E0zCB+/Q/oqkowJA
+	whbTXvFPPh1+xhgvL+I4lD+FMmZBiTfU2xpJiIp7MJDYWRn7/yrzssJPQE33hkfL
+	tM08M0UeCLuNTBzRIQ5/ZCwrzwSHgiJRqOVzY4wBpEK6yX5pbuL+LUzt8DnRAlC0
+	WUHeSw==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 435epqb8tq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 27 Nov 2024 11:02:55 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4ARB2s8Z030733
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 27 Nov 2024 11:02:54 GMT
+Received: from [10.64.68.119] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 27 Nov
+ 2024 03:02:48 -0800
+Message-ID: <f433283d-e203-41f7-acc6-59fe606722a5@quicinc.com>
+Date: Wed, 27 Nov 2024 19:02:45 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,155 +65,100 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [Upstream] [PATCH 09/15] arm64: dts: imx8mm: move bulk of rtc
- properties to carrierboards
-To: Teresa Remmet <T.Remmet@phytec.de>,
- "kernel@pengutronix.de" <kernel@pengutronix.de>,
- "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
- "robh@kernel.org" <robh@kernel.org>,
- "shawnguo@kernel.org" <shawnguo@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "festevam@gmail.com" <festevam@gmail.com>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>
-Cc: "imx@lists.linux.dev" <imx@lists.linux.dev>,
- PHYTEC Upstream <upstream@lists.phytec.de>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20241125081814.397352-1-andrej.picej@norik.com>
- <20241125081814.397352-10-andrej.picej@norik.com>
- <67e55b1f18f2a676b890c9a4133575e8b90f6019.camel@phytec.de>
+Subject: Re: [PATCH 1/5] dt-bindings: display/msm: Document MDSS on QCS8300
+To: "Rob Herring (Arm)" <robh@kernel.org>
+CC: Maxime Ripard <mripard@kernel.org>, <dri-devel@lists.freedesktop.org>,
+        Ritesh Kumar <quic_riteshk@quicinc.com>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@linaro.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        "Rob
+ Clark" <robdclark@gmail.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar
+	<quic_abhinavk@quicinc.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, <freedreno@lists.freedesktop.org>,
+        "Simona
+ Vetter" <simona@ffwll.ch>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, <devicetree@vger.kernel.org>
+References: <20241127-mdss_qcs8300-v1-0-29b2c3ee95b8@quicinc.com>
+ <20241127-mdss_qcs8300-v1-1-29b2c3ee95b8@quicinc.com>
+ <173269567235.2233485.7286772244329561840.robh@kernel.org>
 Content-Language: en-US
-From: Andrej Picej <andrej.picej@norik.com>
-Autocrypt: addr=andrej.picej@norik.com; keydata=
- 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
- xtT/8OxBOVSHvA==
-In-Reply-To: <67e55b1f18f2a676b890c9a4133575e8b90f6019.camel@phytec.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
-X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+From: Yongxing Mou <quic_yongmou@quicinc.com>
+In-Reply-To: <173269567235.2233485.7286772244329561840.robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: asWNzpC9PAqHrSdI-5PoY-sJBBxeMZ-4
+X-Proofpoint-ORIG-GUID: asWNzpC9PAqHrSdI-5PoY-sJBBxeMZ-4
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ priorityscore=1501 malwarescore=0 phishscore=0 mlxlogscore=999 spamscore=0
+ suspectscore=0 lowpriorityscore=0 impostorscore=0 bulkscore=0 mlxscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2411270089
 
-Hi Teresa,
 
-On 27. 11. 24 11:34, Teresa Remmet wrote:
-> Hello Andrej,
+
+On 2024/11/27 16:21, Rob Herring (Arm) wrote:
 > 
-> Am Montag, dem 25.11.2024 um 09:18 +0100 schrieb Andrej Picej:
->> From: Yannic Moog <y.moog@phytec.de>
+> On Wed, 27 Nov 2024 15:05:01 +0800, Yongxing Mou wrote:
+>> Document the MDSS hardware found on the Qualcomm QCS8300 platform.
 >>
->> Move properties from SoM's dtsi to carrierboard's dts as they are
->> actually defined by the carrier board design.
->>
->> Signed-off-by: Yannic Moog <y.moog@phytec.de>
->> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+>> Signed-off-by: Yongxing Mou <quic_yongmou@quicinc.com>
 >> ---
->>   arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-rdk.dts | 4 ++++
->>   arch/arm64/boot/dts/freescale/imx8mm-phycore-som.dtsi       | 4 ----
->>   arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l.dts    | 4 ++++
->>   3 files changed, 8 insertions(+), 4 deletions(-)
+>>   .../bindings/display/msm/qcom,qcs8300-mdss.yaml    | 239 +++++++++++++++++++++
+>>   1 file changed, 239 insertions(+)
 >>
->> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-
->> rdk.dts b/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-rdk.dts
->> index 7aaf705c7e47..f5f503c3c6b9 100644
->> --- a/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-rdk.dts
->> +++ b/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-rdk.dts
->> @@ -221,6 +221,10 @@ &pcie_phy {
->>   
->>   /* RTC */
->>   &rv3028 {
->> +       interrupt-parent = <&gpio1>;
->> +       interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
->> +       pinctrl-0 = <&pinctrl_rtc>;
 > 
-> You should also move the pinctrl settings to the carrier boards.
-> As the pin can be used differently and should not be defined by the
-> SoM.
+> My bot found errors running 'make dt_binding_check' on your patch:
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> Documentation/devicetree/bindings/display/msm/qcom,qcs8300-mdss.example.dts:26:18: fatal error: dt-bindings/clock/qcom,qcs8300-gcc.h: No such file or directory
+>     26 |         #include <dt-bindings/clock/qcom,qcs8300-gcc.h>
+>        |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> compilation terminated.
+> make[2]: *** [scripts/Makefile.dtbs:129: Documentation/devicetree/bindings/display/msm/qcom,qcs8300-mdss.example.dtb] Error 1
+> make[2]: *** Waiting for unfinished jobs....
+> make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1442: dt_binding_check] Error 2
+> make: *** [Makefile:224: __sub-make] Error 2
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241127-mdss_qcs8300-v1-1-29b2c3ee95b8@quicinc.com
+> 
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
+> 
+Thank you for your checking. I rechecked this file and indeed found some 
+issues. I will fix them in the next patchset. But i did not see issues 
+related to this header file in local. Maybe it is dependency or tool 
+issues. I will and update tool and recheck this issue and fix it in the 
+next patchset.
 
-Ok will fix this in v2. Thanks.
-
-BR,
-Andrej.
-
-> 
-> Thanks,
-> Teresa
-> 
->> +       pinctrl-names = "default";
->>          aux-voltage-chargeable = <1>;
->>          trickle-resistor-ohms = <3000>;
->>          wakeup-source;
->> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-phycore-som.dtsi
->> b/arch/arm64/boot/dts/freescale/imx8mm-phycore-som.dtsi
->> index cced82226c6d..fdfe28780d6f 100644
->> --- a/arch/arm64/boot/dts/freescale/imx8mm-phycore-som.dtsi
->> +++ b/arch/arm64/boot/dts/freescale/imx8mm-phycore-som.dtsi
->> @@ -301,10 +301,6 @@ eeprom@51 {
->>          /* RTC */
->>          rv3028: rtc@52 {
->>                  compatible = "microcrystal,rv3028";
->> -               interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
->> -               interrupt-parent = <&gpio1>;
->> -               pinctrl-names = "default";
->> -               pinctrl-0 = <&pinctrl_rtc>;
->>                  reg = <0x52>;
->>          };
->>   };
->> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l.dts
->> b/arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l.dts
->> index c9bf4ac254bb..b7b18d5a4f68 100644
->> --- a/arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l.dts
->> +++ b/arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l.dts
->> @@ -215,6 +215,10 @@ &pwm4 {
->>   
->>   /* RTC */
->>   &rv3028 {
->> +       interrupt-parent = <&gpio1>;
->> +       interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
->> +       pinctrl-0 = <&pinctrl_rtc>;
->> +       pinctrl-names = "default";
->>          aux-voltage-chargeable = <1>;
->>          trickle-resistor-ohms = <3000>;
->>          wakeup-source;
-> 
 
