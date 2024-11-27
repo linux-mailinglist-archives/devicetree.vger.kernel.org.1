@@ -1,175 +1,193 @@
-Return-Path: <devicetree+bounces-124913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 098679DA53F
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 11:00:51 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9FB69DA552
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 11:05:05 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 47C86B211E5
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 10:00:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7AE90165754
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 10:05:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9F9B1946A0;
-	Wed, 27 Nov 2024 10:00:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EC4B194A63;
+	Wed, 27 Nov 2024 10:05:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="cSVedzIU"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IqCgg7JF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0843C140360
-	for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 10:00:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9188718DF62;
+	Wed, 27 Nov 2024 10:05:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732701644; cv=none; b=CMG9YyjoMKkx3fa83bfOdX236RmMMAPliIYVaKjfOO3LGOoR0FtF12rIG2UiqN5QspGtpn+V1/ydG6+BHCpLDMiQ0XH+HjGIFiq3x23vuOSxaNhYVlvWekV57g69YXa5z5daOhexMnquU5Ks0MYK5I/0CTu+vkGIOhz66UU13/8=
+	t=1732701902; cv=none; b=tnE/0vUYgNzO2c7M56pDybNtGNXMHxUMYCJoEuWPHet8KLkoBB+SnIzq2/s/SjiyhMhclr2aeAWSI4p8K9qSc8mb6C4r61u4JwUAXf5bwB8kzJwnT05701DzOpHIx1wek6FlxjUdCPExA8UXgHKx3jREmGGfcfQ+NqarxTaBwaw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732701644; c=relaxed/simple;
-	bh=zRYsYbGf/cDqfHjKWgxhLuI5WTXoZE+rVWtmg6t0YJw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qI6W2sIPFC8eF5vbu3W/89qtZxY8LNNn9ltRvtAHl/gkNzPUG1VXDTQ0MzPo5x7asMK2HdCHfcoj03VZlN5qDRCfjmzJRc6F69/Sos41ZlJ33dEhrvgI5879ze8E8wc8307NjCFCHAp9m7HFfHskNMWFfxBbc9czhQ9f4melmDk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=cSVedzIU; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1732701642;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=s0wPBAaMjSnNTX8RqBZAQUWmuUVI0sWePXuVzRgZ7Qw=;
-	b=cSVedzIUwf/RTRIJDAotC2W5j7pQNetA0/yGVeDgUT3C2VEKnOcnJQkr7D/F2fUDuuEICS
-	f/JmJxSssF+gute1mSm9RQF7Q9axvnyf2VzP1qNhtlOAE9kqAcPhVIKQ4iS0W8vC/SvX+x
-	ARHbYDAMKXmis1PsiHLd2JyfJfd/Dww=
-Received: from mail-oo1-f70.google.com (mail-oo1-f70.google.com
- [209.85.161.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-517-fg0xS5WhNW6H3k9x7AfAlA-1; Wed, 27 Nov 2024 05:00:39 -0500
-X-MC-Unique: fg0xS5WhNW6H3k9x7AfAlA-1
-X-Mimecast-MFC-AGG-ID: fg0xS5WhNW6H3k9x7AfAlA
-Received: by mail-oo1-f70.google.com with SMTP id 006d021491bc7-5f1f269bb5cso227395eaf.0
-        for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 02:00:39 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732701639; x=1733306439;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=s0wPBAaMjSnNTX8RqBZAQUWmuUVI0sWePXuVzRgZ7Qw=;
-        b=HXUId3SsLQNITzw6mRtsPGpjoLOYsgK6vf6u/IDL6H00Ae12XcLW0dgFNsaLiOjNlN
-         4lqXUf81/woT+PTTrWka12hKxoi+8CX9AvREi5eXUh/DE8ofUuCNYh4+32SjkIrrPPgA
-         wd2gLe+TDvgjiTQyRUpH4qYl38809tTfURrlyU9OvPklJkez50UUNZ/dKAFpIG06VaS7
-         9LgETSGhSYR5XxVGefsogt3YOyZCh6gZJtEUYRS2Uf84pxslIBAZw0Y/YyvkzP7mkuza
-         SdDQ5XYNFFUvn2zJ+ejMFexNDLpKK4XfpDclvqklyZ22yCVi2ZmK9tkTJ8EGXdX/EbN7
-         Mq2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUvPg8yQzWV+DQWWUcLMChO3Kt5DKa34UXrrF53Jd8tp3ib1/FnIDOM+MDJ+I/6JP1BgS4ZEKXgDXyN@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyel1XZ4bYEq+y0Wm0l5wQr38Ckg1Z7xBV3z7azgKrEA9C7ysaY
-	4B8nqhgRpNM3onh2+vdZKY7Q3xgOPk6aHtGsrKtxBOPJ+k5SSwpD+Y1gxctLbHL7sWA/WjK6f/5
-	GzNr5rBR5341eAP/SpiKwfYTD5PMJD7bib12U72LO8dVtXlko3kiol6O7qVcWxDqmis27ayfZtL
-	tr1DiOFhH24uecauKSyxCaSykMAeKxbp7YWg==
-X-Gm-Gg: ASbGncs+8RRJg8De9AWGc4Euc8aJSzbI5u8EfgUHFtLdPVDq8tIbtJHBqROKoiP+oBG
-	xQL8i8Tsu0qKXRDvV1ZmxIpBvh4I5BA==
-X-Received: by 2002:a05:6870:c152:b0:27b:b2e0:6af with SMTP id 586e51a60fabf-29dc3fb9cd2mr485573fac.2.1732701638783;
-        Wed, 27 Nov 2024 02:00:38 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFxVRugfM1h6RP4poBOiNX8qRrDOehBisqylVM+eiLebPmXpS2cMHMjj58RYifbv8/vFUZK4bOyHhB27KGFiHc=
-X-Received: by 2002:a05:6870:c152:b0:27b:b2e0:6af with SMTP id
- 586e51a60fabf-29dc3fb9cd2mr485554fac.2.1732701638432; Wed, 27 Nov 2024
- 02:00:38 -0800 (PST)
+	s=arc-20240116; t=1732701902; c=relaxed/simple;
+	bh=0Ki6tVt0RJ0U5hQr1uvr6VP5YpEzwyn9afGPu3OLswI=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=mnUgT76cvNahfpImyXQgys4D6j0nOg6OltkoF+M14k6ld80x+kLoNi1Da2XiIEfGzX6P/DQLIORzcYAGpqcrMe3VPpoz//jIZjzdQJEiZYApXuUdj4RoJmxl4C9ofPL5hyimKrNNeq9VVVqFbW8d+EY9bryrH961b1FW5QQ523U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IqCgg7JF; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AR8wUaE007616;
+	Wed, 27 Nov 2024 10:04:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=aDcFq2xHemwqMmFNzCFpJ0
+	DM/Q/OAc9cLm6Ahj8sQHU=; b=IqCgg7JFnRxjkL+w59OPkK/qPss+GkcU4UgGWe
+	A3Th1ALCzuZ7ErQBX7yRrqyxpQ2FcSX8dbvyGEtSGs17g/5YFeanxFQc4Cv+rvQy
+	xEoP2uyCiC8HQi0DOL2TBSKdAnpd2onmv7CAaZJDufj1WMErhZmIMOMqsCsCR3op
+	xarOAGWrHCbcZ9AoPLFx26uXVEazJvEZJ8o1HXcgQavx2J8rlbHXndBhvzuda5gi
+	FoThtigRzMSI9GzSYh+zDskBRdxlEgKWostLvjokexxrGT2XDmP8msTdIS0HsZxq
+	E4odWWPuTS5q800GumNEDg/UUWy4K2O16kWDlHEH0alfYkkw==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 435cmquda4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 27 Nov 2024 10:04:48 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4ARA4ldm023204
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 27 Nov 2024 10:04:47 GMT
+Received: from hu-vikramsa-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 27 Nov 2024 02:04:37 -0800
+From: Vikram Sharma <quic_vikramsa@quicinc.com>
+To: <rfoss@kernel.org>, <todor.too@gmail.com>, <bryan.odonoghue@linaro.org>,
+        <mchehab@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <akapatra@quicinc.com>, <hariramp@quicinc.com>,
+        <andersson@kernel.org>, <konradybcio@kernel.org>,
+        <hverkuil-cisco@xs4all.nl>, <cros-qcom-dts-watchers@chromium.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <quic_vikramsa@quicinc.com>,
+        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@quicinc.com>
+Subject: [PATCH v6 0/5] media: qcom: camss: Add sc7280 support
+Date: Wed, 27 Nov 2024 15:34:16 +0530
+Message-ID: <20241127100421.3447601-1-quic_vikramsa@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241126-am69sk-dt-usb-v1-1-aa55aed7b89e@redhat.com> <2nuncc5rscu6h74ylaiu6yozg34aoigaj5d4uzvdtolt5q7bmv@6hacpxyb2532>
-In-Reply-To: <2nuncc5rscu6h74ylaiu6yozg34aoigaj5d4uzvdtolt5q7bmv@6hacpxyb2532>
-From: Enric Balletbo i Serra <eballetb@redhat.com>
-Date: Wed, 27 Nov 2024 11:00:27 +0100
-Message-ID: <CALE0LRtUN2N_Z05jH_BMSg7yvirSRob0pSErmQxTu8AatmODgw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am69-sk: Add USB SuperSpeed support
-To: s-vadapalli <s-vadapalli@ti.com>
-Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Dasnavis Sabiya <sabiya.d@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: luVkiwfCrBum8_F7rItD5nCBcMRjacBS
+X-Proofpoint-ORIG-GUID: luVkiwfCrBum8_F7rItD5nCBcMRjacBS
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 spamscore=0
+ lowpriorityscore=0 mlxscore=0 phishscore=0 malwarescore=0 mlxlogscore=999
+ impostorscore=0 bulkscore=0 adultscore=0 suspectscore=0 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2411270082
 
-Hi,
+SC7280 is a Qualcomm SoC. This series adds support to bring up the CSIPHY,
+CSID, VFE/RDI interfaces in SC7280.
 
-On Wed, Nov 27, 2024 at 9:27=E2=80=AFAM s-vadapalli <s-vadapalli@ti.com> wr=
-ote:
->
-> On Tue, Nov 26, 2024 at 11:08:19AM +0100, Enric Balletbo i Serra wrote:
->
-> Hello Enric,
->
-> > From: Dasnavis Sabiya <sabiya.d@ti.com>
-> >
-> > AM69 SK board has two stacked USB3 connectors:
-> >    1. USB3 (Stacked TypeA + TypeC)
-> >    2. USB3 TypeA Hub interfaced through TUSB8041.
-> >
-> > The board uses SERDES0 Lane 3 for USB3 IP. So update the
-> > SerDes lane info for PCIe and USB. Add the pin mux data
-> > and enable USB 3.0 support with its respective SERDES settings.
-> >
-> > Signed-off-by: Dasnavis Sabiya <sabiya.d@ti.com>
-> > Signed-off-by: Enric Balletbo i Serra <eballetb@redhat.com>
-> > ---
-> > I've been carrying this patch for quite long time in my builds to have
-> > support for USB on my AM69-SK board without problems. For some reason t=
-his
-> > patch was never send to upstream or I couldn't find it. So I took the
-> > opportunity, now that I rebased my build, to send upstream.
-> >
-> > I have maintained the original author of the downstream patch as is
-> > basically his work.
-> > ---
-> >  arch/arm64/boot/dts/ti/k3-am69-sk.dts | 33 +++++++++++++++++++++++++++=
-++++++
-> >  1 file changed, 33 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/ti/k3-am69-sk.dts b/arch/arm64/boot/dt=
-s/ti/k3-am69-sk.dts
->
-> [...]
->
-> > +&usb0 {
-> > +     status =3D "okay";
-> > +     dr_mode =3D "host";
->
-> Since the Type-C interface is also connected to USB0, shouldn't "dr_mode"
-> be "otg"? Also, has the Type-C interface been tested with this patch?
-> Please let me know.
->
+SC7280 provides
 
-Yes, all usb from the board were tested. I'll try otg mode for the
-Type-C interface and resend the patch.
+- 3 x VFE, 3 RDI per VFE
+- 2 x VFE Lite, 4 RDI per VFE
+- 3 x CSID
+- 2 x CSID Lite
+- 5 x CSI PHY
 
-$ lsusb -t
-/:  Bus 001.Port 001: Dev 001, Class=3Droot_hub, Driver=3Dxhci-hcd/1p, 480M
-    |__ Port 001: Dev 002, If 0, Class=3DHub, Driver=3Dhub/4p, 480M
-        |__ Port 001: Dev 003, If 0, Class=3DHub, Driver=3Dhub/4p, 480M
-            |__ Port 001: Dev 004, If 0, Class=3DHuman Interface Device,
-Driver=3Dusbhid, 1.5M
-            |__ Port 001: Dev 004, If 1, Class=3DHuman Interface Device,
-Driver=3Dusbhid, 1.5M
-        |__ Port 002: Dev 005, If 0, Class=3DMass Storage,
-Driver=3Dusb-storage, 480M
-/:  Bus 002.Port 001: Dev 001, Class=3Droot_hub, Driver=3Dxhci-hcd/1p, 5000=
-M
-    |__ Port 001: Dev 002, If 0, Class=3DHub, Driver=3Dhub/4p, 5000M
-        |__ Port 003: Dev 004, If 0, Class=3DMass Storage,
-Driver=3Dusb-storage, 5000M
-        |__ Port 004: Dev 003, If 0, Class=3DMass Storage,
-Driver=3Dusb-storage, 5000M
+The changes are verified on SC7280 qcs6490-rb3gen2 board, with attached vision mezzanine
+the base dts for qcs6490-rb3gen2 is:
+https://lore.kernel.org/all/20231103184655.23555-1-quic_kbajaj@quicinc.com/
 
-Thanks,
-   Enric
-> [...]
->
-> Regards,
-> Siddharth.
->
+This change is dependent on below series. As it is raised on top of
+this. Please take both to validate.
+https://lore.kernel.org/lkml/20241126100126.2743795-1-quic_vikramsa@quicinc.com/
+
+Changes in V6:
+- Changed order of properties in Documentation [PATCH 1/5].
+- Updated description for ports in Documentaion [PATCH 1/5].
+- Moved regulators from csid to csiphy [PATCH 3/5].
+- Link to v5: https://lore.kernel.org/linux-arm-msm/20241112173032.2740119-1-quic_vikramsa@quicinc.com/ 
+
+Changes in V5:
+- Updated Commit text for [PATCH v5 1/6].
+- Moved reg after compatible string.
+- Renamed csi'x' clocks to vfe'x'_csid
+- Removed [PATCH v4 4/6] and raised a seprate series for this one.
+- Moved gpio states to mezzanine dtso.
+- Added more clock levels to address TPG related issues.
+- Renamed power-domains-names -> power-domain-names. 
+- Link to v4: https://lore.kernel.org/linux-arm-msm/20241030105347.2117034-1-quic_vikramsa@quicinc.com/ 
+
+Changes in V4:
+- V3 had 8 patches and V4 is reduced to 6.
+- Removed [Patch v3 2/8] as binding change is not required for dtso.
+- Removed [Patch v3 3/8] as the fix is already taken care in latest
+  kernel tip. 
+- Updated alignment for dtsi and dt-bindings.
+- Adding qcs6490-rb3gen2-vision-mezzanine as overlay. 
+- Link to v3: https://lore.kernel.org/linux-arm-msm/20241011140932.1744124-1-quic_vikramsa@quicinc.com/
+
+Changes in V3:
+- Added missed subject line for cover letter of V2.
+- Updated Alignment, indentation and properties order.
+- edit commit text for [PATCH 02/10] and [PATCH 03/10].
+- Refactor camss_link_entities.
+- Removed camcc enablement changes as it already done.
+- Link to v2: https://lore.kernel.org/linux-arm-msm/20240904-camss_on_sc7280_rb3gen2_vision_v2_patches-v1-0-b18ddcd7d9df@quicinc.com/
+
+Changes in V2:
+- Improved indentation/formatting.
+- Removed _src clocks and misleading code comments.
+- Added name fields for power domains and csid register offset in DTSI.
+- Dropped minItems field from YAML file.
+- Listed changes in alphabetical order.
+- Updated description and commit text to reflect changes
+- Changed the compatible string from imx412 to imx577.
+- Added board-specific enablement changes in the newly created vision
+  board DTSI file.
+- Fixed bug encountered during testing.
+- Moved logically independent changes to a new/seprate patch.
+- Removed cci0 as no sensor is on this port and MCLK2, which was a
+  copy-paste error from the RB5 board reference.
+- Added power rails, referencing the RB5 board.
+- Discarded Patch 5/6 completely (not required).
+- Removed unused enums.
+- Link to v1: https://lore.kernel.org/linux-arm-msm/20240629-camss_first_post_linux_next-v1-0-bc798edabc3a@quicinc.com/
+
+Suresh Vankadara (1):
+  media: qcom: camss: Add support for camss driver on sc7280
+
+Vikram Sharma (4):
+  media: dt-bindings: Add qcom,sc7280-camss
+  media: qcom: camss: Sort camss version enums and compatible strings
+  arm64: dts: qcom: sc7280: Add support for camss
+  arm64: dts: qcom: qcs6490-rb3gen2-vision-mezzanine: Add vision
+    mezzanine
+
+ .../bindings/media/qcom,sc7280-camss.yaml     | 415 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/Makefile             |   4 +
+ .../qcs6490-rb3gen2-vision-mezzanine.dtso     | 108 +++++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi          | 170 +++++++
+ .../qcom/camss/camss-csiphy-3ph-1-0.c         |  13 +-
+ .../media/platform/qcom/camss/camss-csiphy.c  |   5 +
+ .../media/platform/qcom/camss/camss-csiphy.h  |   1 +
+ drivers/media/platform/qcom/camss/camss-vfe.c |   8 +-
+ drivers/media/platform/qcom/camss/camss.c     | 316 ++++++++++++-
+ drivers/media/platform/qcom/camss/camss.h     |   5 +-
+ 10 files changed, 1035 insertions(+), 10 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/qcom,sc7280-camss.yaml
+ create mode 100644 arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-vision-mezzanine.dtso
+
+-- 
+2.25.1
 
 
