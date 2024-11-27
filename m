@@ -1,233 +1,319 @@
-Return-Path: <devicetree+bounces-125003-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125004-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DEE19DA7E7
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 13:34:53 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF93A164293
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 12:34:49 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB83C1FA252;
-	Wed, 27 Nov 2024 12:34:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="KBkLVgjj"
-X-Original-To: devicetree@vger.kernel.org
-Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010038.outbound.protection.outlook.com [52.101.228.38])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C6199DA80A
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 13:44:53 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE8111FC0F1;
-	Wed, 27 Nov 2024 12:34:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.38
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732710889; cv=fail; b=N1z4ZDWMN4JAFEPtmKp8PHYWSHtYvq/OvSfrP125iPl5H2TmkEjBYsSfqN8qDIoWWD7b4/znp5Rj8kNbKhXvV2mKxsZS/7Yqid+t/q0JPaNlnz4cHufYVw2o+NbM3uXDZs7V1Tia/bNS4tYhkUkC8XidKzdPS8F90XtHJS/vq0s=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732710889; c=relaxed/simple;
-	bh=QsK868JE7FT6tKEgL+buKYtMn/fmXmKCR3WWQsYw8o0=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=Sa6oH7xkdBynLj//o1tQHGhctPp1ZbHhXunJ9Tx+a5cLelg+Buq9hUZmmTNwIyhTsE8HcVlwt9Q8tj7bjr/i9JUOeISyaxC/zTxVQ4XHHqcgn/5auRy0vDJ/fF3c7q+/D2Kx+e7vxT2EQrGfcs6b0t5tN4+t4G8unJ5lN1q86aI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=KBkLVgjj; arc=fail smtp.client-ip=52.101.228.38
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LcOBNImOtzAi35mJ9rSwYaO+Py1GbSdGG2UF3J7t2oag6U0/6JH57+l2sZ+Ijs/3+oc9Gzi6FMRWLzLtRtz5QuNYj+Wln8hGYujgpcB590wYAMBmHb6Elqo3MySAR2AYUClB+Pd3NEEg4FP6HlMfOuCWLhM9dCMz7vMFv2JTC07VaYzaei8BQp/5weuzasbaNP9KYaXHKi7+Gmh1q4mbTiWhX9BgKOlAAxAo377vRv4gL8MhuJYyuKhUpXYT3KkFMQ/Twkzn5uwgX9uajsVA+Y5XOiQfDNmA4oVroPW3rSaStyMNXDFhTY9/sPmjDqyOi3g3pW5iTVtK17UGKNfo+w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LR5MM3+bSCp10FaoOmox+CtLzVJ743mxyE04t93z8HI=;
- b=D1gZaNJeyjrnTwMoyev+5xtePw9sTphksCFKKBQwXSE23MQKxW0AJWifC2UMlWn61sAB3Qrkpwjv1Rs7mdrSFp6iIzD+VpcZUpmP5IxB+9bVFxRfePusP+cuOa9NW+hA4LHC8PtLZaF0V9ISEBfVzDJBvVFpaqGma5+LaDXC5q70p3PMqTHS6ZcNyxDt5lJpdQKcrkEg5PveVNCcfWiHH1dRuVBI3p/qia87E6PO1HxePzhtYcNBo6dLAeT9saiqrKrm5oAs6OzSPyuXQIgflJhXkmFJn2KbY+8hphm1aHTITirtwuVa7qbEyi1F2rqH9CJF+dQJIH8CDlMfl8IY+w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LR5MM3+bSCp10FaoOmox+CtLzVJ743mxyE04t93z8HI=;
- b=KBkLVgjjX5oIIk0BJ01peqvQ+GbCMJsL1KECo7FIgASy9WpMz1bSQaq8y/LFJQv/uy0sjzrmMzqFjrHahuwyGGTgP3MaFUDxMO8SbKpVj+TECdim8Fe7MDUnLVDiJ6CxWF2D1f/uva6TbDUD1Cfdzr3J/ccRSneTbn2h08qQwh8=
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
- by TYCPR01MB9940.jpnprd01.prod.outlook.com (2603:1096:400:1d6::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.27; Wed, 27 Nov
- 2024 12:34:42 +0000
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1%5]) with mapi id 15.20.8182.019; Wed, 27 Nov 2024
- 12:34:42 +0000
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Conor Dooley <conor@kernel.org>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven
-	<geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Prabhakar Mahadev
- Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, biju.das.au
-	<biju.das.au@gmail.com>
-Subject: RE: [PATCH 03/12] dt-bindings: soc: renesas: Document RZ/G3E SMARC
- SoM and Carrier-II EVK
-Thread-Topic: [PATCH 03/12] dt-bindings: soc: renesas: Document RZ/G3E SMARC
- SoM and Carrier-II EVK
-Thread-Index: AQHbPNyO/NJTh1WC/0KM88VRnUTf9bLIXIKAgAK487A=
-Date: Wed, 27 Nov 2024 12:34:42 +0000
-Message-ID:
- <TY3PR01MB11346BC7FA5C81C108B4E7A7786282@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-References: <20241122124558.149827-1-biju.das.jz@bp.renesas.com>
- <20241122124558.149827-4-biju.das.jz@bp.renesas.com>
- <20241125-straw-oozy-f95e18e4704f@spud>
-In-Reply-To: <20241125-straw-oozy-f95e18e4704f@spud>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|TYCPR01MB9940:EE_
-x-ms-office365-filtering-correlation-id: 1dac6d22-612c-49a6-9a33-08dd0edfde02
-x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|366016|376014|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?w0vimkhlxucRdAR5Bn/0J+utFpiy+ZNhXNXdwQ6vuEbjre+NJJ3h+fUZq2ZZ?=
- =?us-ascii?Q?0VHi4J4VmUfa/m5ylJYBja5Up5f1x6My1CEoKF7zo7uMPv7GJIpd1XpW7Ufj?=
- =?us-ascii?Q?qYUphxHpetFEubwBdpzK6NrzVwDyNXq/HrpHIGYcraKLmjnCPafqU5nG1/tJ?=
- =?us-ascii?Q?YSDktRut1KB87nlPJ1OP7bSCpzX31gAKsGSf8ntUBUOPRP/HZD14JPcK1pU6?=
- =?us-ascii?Q?glkq7AST3E6ynoPaBO7faThZXTlCSrRDJ9M0q3VJIUfse/frkvq2yoq7GNT8?=
- =?us-ascii?Q?1/FmxKrDpDEmvzAynWJHBidkT5pO94TyXFsudWa0Dz4BSCD2gf0/EG/EHkSI?=
- =?us-ascii?Q?4XQF1tntoGQfRw9e/8g+S4xfxoe2bJuy+iMpqsJYFl5mhIoLOaBWVDzggQEW?=
- =?us-ascii?Q?nO2n/BOkl7rOxVin3JvqorFM8sN/3sJeLANrBiOXJNupypO1aVmSRIDuAf+y?=
- =?us-ascii?Q?+1vt80iHrnmpalRFgcNnWrnQsMkTmSOa0XDR/RQiYsO4KWxznQyuI7I/N4TJ?=
- =?us-ascii?Q?3Wf0kDnGLLs//LusZ1j5svoU88/bLtZkyziBmK0I7NR31HYKn541anmJEPks?=
- =?us-ascii?Q?4dZInHhDRGPcrD/erBk+ccG54YOEZjyDpgoIlJnD+m99rMkOgriybiTsrjmP?=
- =?us-ascii?Q?tZRuXGK3ttMdsFsK0ndO1M2kk/CEjhre9MBPcqGBRLuXGA0mGNVViHquXZl/?=
- =?us-ascii?Q?94U9uVU/RUT6gjJ55l2Q9lNJ1CF3800NuLiY7wucKYPQF75fIsXCEFFuOmE5?=
- =?us-ascii?Q?xVatchnacQJbfQm/nMT3GDLP07RFk8hcJ9jTqKz/NtZ0ftcfNJYa9GDaPUQF?=
- =?us-ascii?Q?WIRL/9M2ANjiuZ9ALZ8bDkSiFWy8bA/R0YvCZUrz0APG5iVJv1oU6VNSsaxR?=
- =?us-ascii?Q?iAe4R+a/9DUzJo0iROu0zzUTDG5XK/Li7Yx94n8B7QPEnozZr+4Bjet/iXio?=
- =?us-ascii?Q?iUSQZml8k/1rt4LMO337qS8DC2yF2MS7v7Qr3OHqoNVtmIBCZVBPMwDixjaJ?=
- =?us-ascii?Q?IV0L2Q4AKBQUAqKugErb+mTcaBgzPaoPWhcXKl3T/Ur/TEKENYYJcxgbzkjb?=
- =?us-ascii?Q?d2jVspdiVR8Q3wObA2COy8ArbDuq5REEdJZ8Rmvm9Ji9ELI8LwGpR5XIgvmQ?=
- =?us-ascii?Q?58oIsd+K14tw31pMY2ZPRRcKjcWhw9QBJ3pPv4mEiO8GRlnpUJASo/ieRyHo?=
- =?us-ascii?Q?q7piqnsOi1T3b6EcgeXsTIYB2bV8A0rvocjttfg/3NNP5nAYEVmdhTs0DuGB?=
- =?us-ascii?Q?ClWBg+7IRNapzxJpFhUMvEvqifhv9ZwAUQI+mEd5+qDLgqRrFJhRe+AKYEH2?=
- =?us-ascii?Q?Z0vJiVaZj0g8Yy3cxMwlRyRlHR8XOnL73ZsZTLEs1d22LvqpOkUxzgdTITKD?=
- =?us-ascii?Q?ljkPjFk=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?vxp2I2zMllsxlBk2pOb3ekW/0DZkVDklCpyFxKO88RJ8bi9WvJHPCZzj86C5?=
- =?us-ascii?Q?Vh2LphKucfGgKPz2cqLs/EDbvH8oyQJLBh6CHe3LIxDdluLTluRYkvtBlB7y?=
- =?us-ascii?Q?ZfpxYvu+vY/9VTyZP9wRwUD6C92/z6giQWZVKCiOwldf1bowFoYBSBB2cTyt?=
- =?us-ascii?Q?Nf2an8W4daxL9sxwZR5O1RV15+dOWSZ5mvk+7HlvVnTnwruuKZvx3q2s3NKc?=
- =?us-ascii?Q?6u6st113WOft2QxNmYoUFBvkZ/u07y9KLnS+iNZy330kRgiIuCtJTn5zMGvp?=
- =?us-ascii?Q?dyeKtZBlHwMpXBUK5cNZTxwBNZTjCIMI0FNi6uveaM/99DvisOjxTed763It?=
- =?us-ascii?Q?5FXZVxavxPrsl/GM6f59SlAt20YA3SHdzB9tR50NSG/PXsYTBwA+WwB94sTF?=
- =?us-ascii?Q?FIxVAazTUrFuwMbLUht2dI0zGLc/7bVKq0D7Up/DpG/XuPBJHtZCTl3SydRI?=
- =?us-ascii?Q?BK7RSVIwZLHZPcqpvJMyH7GP1FEJ7C2hkLXaiKEBvuCdyZ7+rgvgD+vr/GoS?=
- =?us-ascii?Q?29VKaU0R/TP2x+m0sYX/6DCStgYhJ1nAYUmAyHkUhDgoQ5k4da3+M4ziYUdU?=
- =?us-ascii?Q?ovKjg4R08RrMISgm33URTieddlwGqPyBM5Wn58ZNE8YbE1NArfrC31lTa7Z1?=
- =?us-ascii?Q?ni2iTAklYbGEFH9+ZTLbgdHwzNHE6YAD+8jjJDdjLakL4UifInYAC0xlJ6LH?=
- =?us-ascii?Q?/naoADRtdIYhXbHOHcszlPt+8rwa2vedc6cKSfZonRVdRPFQ0HLZxGMYjSAo?=
- =?us-ascii?Q?QqbPFAg4bPTKU5haK5ZtYUbba0wyyCIob5A3EwTPuwztc0NLFJLOZXiPyoDP?=
- =?us-ascii?Q?lx/InJsr7rbP7QH9yeNb32JLCfsuXbL55uDQQYhUzmjLrgS8rBNZaGRNSle/?=
- =?us-ascii?Q?XNaBdUnWHYMXz6+Y1J1kJi6qWTMjJmHLExQVzWIK97wCbdREwEkK7Rwj0RTy?=
- =?us-ascii?Q?gL71vrQRMThlLviviDYJHknMU9Ha0eSGUO7+Yt9m3SEZk6/089qrkjB39mwW?=
- =?us-ascii?Q?ro9Ra+jcYmA1VhdXVEmz0d0LaH3Vs4UAKZGiN6UIlnwNcD+AV0ai2W3fYCe3?=
- =?us-ascii?Q?stLDP5aqHam67ymmqNrmqEBIMI01GtrR51FUwCwRpQvSQNxzl4VLetCpgXAb?=
- =?us-ascii?Q?TrIbNsfQI4PHAhJdQZ9j5proc4R5FEMVlTKReBeC9JBqQY7WIl//68brwT6Z?=
- =?us-ascii?Q?eq9vLQjmFWMpD0UJW6T2nQfUCL6QOYfk5k9TQUFnoXQwfQ/irYDelMC9k2LC?=
- =?us-ascii?Q?4xiLX4yGgWZcMG33pKTrOGUR7Rs9SaudioWbehLqLhpM6Ndf/2SMqn9Odg+7?=
- =?us-ascii?Q?EqFgKOejZim9j9wMNKE3S+rW5B60aEY+y7ynU39FXIHIH3j0v1br/OCVUlkZ?=
- =?us-ascii?Q?p8UFK1V0TBR/zTcXz4PwnY6d0QC2GCLGDM1d8Kae2fE7ibUzHufuR879HvMu?=
- =?us-ascii?Q?qvIvk0PU2n3P1XfO4zpnyX2FnKDDP2SlkkxfHaQT+M7dA5g/aTb5QZksWZB7?=
- =?us-ascii?Q?ybFSv6jCF8RUezRP4DPpYFBBIDoFH4CCG5TLyca7uMIOs9LS5B77z3a29s7S?=
- =?us-ascii?Q?qIixMGmlhmWpTf9DkKHruiJcUxLv62776teUCoFpHQcUBXVa9FH05fMkiFBR?=
- =?us-ascii?Q?cw=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 335F9281C7C
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 12:44:52 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5C661FC7F7;
+	Wed, 27 Nov 2024 12:44:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="BGTnXXIg"
+X-Original-To: devicetree@vger.kernel.org
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91A2E14431B;
+	Wed, 27 Nov 2024 12:44:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1732711488; cv=none; b=KdJjYtxk6w4mCW30iNgAog5mOujfvcEPecnmw+EoWV8wIv7yVRRY1e7FsZyIqeynnLqafXkxT8fMREETY4hhYpn263bMtN3ZroCp1lrlCZFg49NKX7pBKDKttVPTMi4BMUF8q43BYkfbd6EDcOc7S80tAp2WrYNr4SeLeeyq5jI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1732711488; c=relaxed/simple;
+	bh=lGU7DcMQCjga6H0GbOQCIfS/9Pi+aSsPS1bLG6r879w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RmCyvOYw6EyAsSG4zOHQtY1FEoAxw0nkHAm8BmtFZXyOP2tIgiEwJdNq1UobNqKh9DrmZtomllJ/6z/8b8Ea49CchB7iL9ZQZGM6qPIhYmJ+x1l5WCiuShgH3p+X/rZyrvOMOs5XMfNsqfpYABpa6/wjXFbwqcu3os7kzP+O5EA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=BGTnXXIg; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1732711484;
+	bh=lGU7DcMQCjga6H0GbOQCIfS/9Pi+aSsPS1bLG6r879w=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=BGTnXXIgG8lb1Whdt7Cyv9yHV5cpbZHHoEBNyvaTOm9IQTNxdWmgoK/eQK5w3W8tb
+	 smEt1q/d9PMu39E5Zzysf02M+tnq1Rk8D7f59PJvlnfnR4g4HLa9QQ4DkMFnqiym8o
+	 hO3YJ70P3uqYo0AUvhzmb6wLhUE6WHAcgAhlHuxc60nZKQCW5pogpctw4FmdLEd+O8
+	 7Lp7re8L0ipNTz3UtWZP8Tlrr9I6eBzBOpGBHT8gWjH0FmhtIKwsvitUcDX6nSpO64
+	 YPvCHrWMEOAa93HpeXqar+hwjP/E6u8SwbDA1yZDoPfUh+qifYTzmXLstIXf/A0r+y
+	 1ql3o+MBL37WA==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id E5D1217E3637;
+	Wed, 27 Nov 2024 13:44:43 +0100 (CET)
+Message-ID: <23563d73-7de1-4316-9dd8-25ae6d66a8de@collabora.com>
+Date: Wed, 27 Nov 2024 13:44:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1dac6d22-612c-49a6-9a33-08dd0edfde02
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Nov 2024 12:34:42.1313
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: FvxMX83JZFnfmd61Ms+rvUnRY5I7lAP8SqmNqlJHLdLz2vY7HUpRYvSuqhysRK3hiL6Gm5kvwx3s5ohW7jfxcv+PYu3F331FbNOGSjvF/OQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB9940
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 6/6] drm/mediatek: Add support for MT8195 Digital
+ Parallel Interface
+To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
+ "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>,
+ "kernel@collabora.com" <kernel@collabora.com>,
+ =?UTF-8?B?Sml0YW8gU2hpICjnn7PorrDmtpsp?= <jitao.shi@mediatek.com>,
+ "mripard@kernel.org" <mripard@kernel.org>, "simona@ffwll.ch"
+ <simona@ffwll.ch>, "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "robh@kernel.org" <robh@kernel.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "airlied@gmail.com" <airlied@gmail.com>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>
+References: <20241120124420.133914-1-angelogioacchino.delregno@collabora.com>
+ <20241120124420.133914-7-angelogioacchino.delregno@collabora.com>
+ <1b966a136f02b5586749a9c3d0bcec6c75224e49.camel@mediatek.com>
+ <33acccd3-e543-493e-a61c-282d894ef2b1@collabora.com>
+ <fd48c582e99d6c07be4b66919fb6c309379ad752.camel@mediatek.com>
+ <f1d16db0-a7e1-4cfd-85c6-8beef4385701@collabora.com>
+ <a8ca9d1314f12dbb95ac4e4b9e8929adab35eaba.camel@mediatek.com>
+ <8e70d921-1420-4a57-a994-dc28abda25b7@collabora.com>
+ <c46751894d01194d89da6c164b47a59cd1e86bb6.camel@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <c46751894d01194d89da6c164b47a59cd1e86bb6.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Conor Dooley,
+Il 27/11/24 10:04, CK Hu (胡俊光) ha scritto:
+> On Wed, 2024-11-27 at 09:41 +0100, AngeloGioacchino Del Regno wrote:
+>> External email : Please do not click links or open attachments until you have verified the sender or the content.
+>>
+>>
+>> Il 27/11/24 08:02, CK Hu (胡俊光) ha scritto:
+>>> On Tue, 2024-11-26 at 10:25 +0100, AngeloGioacchino Del Regno wrote:
+>>>> External email : Please do not click links or open attachments until you have verified the sender or the content.
+>>>>
+>>>>
+>>>> Il 26/11/24 04:07, CK Hu (胡俊光) ha scritto:
+>>>>> On Mon, 2024-11-25 at 17:55 +0100, AngeloGioacchino Del Regno wrote:
+>>>>>> External email : Please do not click links or open attachments until you have verified the sender or the content.
+>>>>>>
+>>>>>>
+>>>>>> Il 22/11/24 08:23, CK Hu (胡俊光) ha scritto:
+>>>>>>> Hi, Angelo:
+>>>>>>>
+>>>>>>> On Wed, 2024-11-20 at 13:44 +0100, AngeloGioacchino Del Regno wrote:
+>>>>>>>> External email : Please do not click links or open attachments until you have verified the sender or the content.
+>>>>>>>>
+>>>>>>>>
+>>>>>>>> Add support for the DPI block found in the MT8195 and MT8188 SoCs.
+>>>>>>>> Inside of the SoC, this block is directly connected to the HDMI IP.
+>>>>>>>
+>>>>>>> In MT8173, DPI0 is directly connected to HDMI.
+>>>>>>> The first version of this driver is just for MT8173 DPI0.
+>>>>>>> Does MT8173 DPI0 need this modification?
+>>>>>>> Or this modification is just for MT8188 and MT8195, then the description should be more than 'directly connected'.
+>>>>>>>
+>>>>>>
+>>>>>> This is only for MT8188 and MT8195, and MT8173 does *not* need any modification.
+>>>>>>
+>>>>>> Please, what would you like to see in the description of this commit?
+>>>>>
+>>>>> This patch does four jobs.
+>>>>>
+>>>>> 1. Enable/disable tvd_clk for MT8195/MT8188 DPI.
+>>>>> 2. Do not set pixel clock for MT8195/MT8188 DPI.
+>>>>> 3. New DPI_INPUT_XXX and DPI_OUTPUT_XXX control for MT8195/MT8188 DPI.
+>>>>> 4. Do not power on/off for MT8195/MT8188 DPI.
+>>>>>
+>>>>> Maybe you should break into 4 patches and each one has different reason.
+>>>>
+>>>> Yeah I thought about that as well, but there's a fundamental issue with splitting
+>>>> the thing in multiple patches...
+>>>>
+>>>> For enabling the tvd_clk in a separate patch, there's no problem - however, for the
+>>>> others....
+>>>>
+>>>> 1. We need to introduce support for MT8195/88 DPI-HDMI, or the other patches would
+>>>>       not make sense (nor apply, anyway); then
+>>>> 2. We stop setting pixel clock with another patch; then
+>>>> 3. we don't power on/off, etc etc
+>>>>
+>>>> The problem with doing it like so is that the patch #1 that I described would be
+>>>> introducing *faulty code*, because the support for that really depends on all of
+>>>> the others being present (otherwise the block won't work correctly).
+>>>>
+>>>> So... if you want, I can easily split out the tvd_clk enable/disable, but splitting
+>>>> the rest wouldn't be clean.
+>>>>
+>>>> Besides, keep in mind that... actually... for anything else that is not MT8195/88
+>>>> DPI0 (so, for other SoCs' DPI and for 95/88 DPINTF) the tvd_clk is already getting
+>>>> enabled by its child.. so, for those ones, a call to enable tvd_clk does exactly
+>>>> nothing apart from incrementing (enable) or decrementing (disable) the refcount for
+>>>> this clock by 1.
+>>>>
+>>>> This means that the enablement/disablement of tvd_clk is actually important only
+>>>> for the MT8195/88 DPI and has literally no effect on anything else that is
+>>>> currently supported by the mtk_dpi driver anyway.
+>>>>
+>>>> Still - if you want me to split out the tvd_clk en/dis patch, just confirm and I
+>>>> will split that one out...
+>>>>
+>>>>>
+>>>>> For #1 and #2, I've not reviewed the HDMI driver. Is the clock control influenced by new HDMI driver.
+>>>>
+>>>> It kinda is - the HDMI-TX block gets its clock from the HDMI PHY's clock gen,
+>>>> but eventually it is the HDMI driver that tells to the PHY driver what clock it
+>>>> actually wants.
+>>>>
+>>>> For #1, clk_prepare_enable() is ungating the clock that would otherwise gate the
+>>>> PHY's PLL output to the HDMI block.
+>>>>
+>>>>> If it is software reason, maybe we can modify the new HDMI driver and make DPI driver consistent with MT8173.
+>>>>> If it is hardware reason. just describe the hardware reason.
+>>>>
+>>>> Alright - the hardware reason is that the HDMIPHY generates the clock for the HDMI
+>>>> TX block, and that enabling the clock assigned to tvd_clk is necessary to ungate
+>>>> the PHY's ckgen output to the HDMI-TX (and I think - but not sure as I haven't
+>>>> analyzed that yet - that HDMI-RX should have the same gating technique, but that's
+>>>> definitely out of scope for this submission).
+>>>
+>>> I think tvd_clk is the clock source of DPI, HDMI, and HDMI-PHY, so these hardware could work in the same frequency.
+>>> That means drivers of DPI, HDMI, and HDMI-PHY are equal to control tvd_clk.
+>>> In MT8173. software choose DPI driver to control tvd_clk.
+>>> In MT8195, software choose HDMI-PHY driver to control tvd_clk.
+>>
+>> Yes, but in MT8195 the tvd is gated by a clock that is controller by the HDMI
+>> driver only, and not by the PHY - so, PHY sets the frequency, mtk_hdmi_v2 ungates
+>> that to the HDMITX block (with clk_prepare_enable(tvd_clk)).
+>>
+>>>
+>>> I would like to have the same control flow.
+>>> If "HDMI-PHY driver to control tvd_clk" is better, we could temporarily let MT8195 has different flow with MT8173.
+>>> So, is "HDMI-PHY driver to control tvd_clk" better?
+>>>
+>>
+>> I'm not sure I understand this last part, can you please rephrase?
+> 
+> I would like MT8173 and MT8195 has the same control flow, so keep DPI driver to control tvd_clk in MT8195.
+> If it's better to control tvd_clk by HDMI-PHY driver, both MT8173 and MT8195 control tvd_clk by HDMI-PHY driver.
+> But we are not able to test MT8173. So MT8173 keep control tvd_clk by DPI driver.
+> So control tvd_clk by HDMI-PHY driver is better?
+> 
 
-Thanks for the feedback.
+Oh. Okay now I understand what you mean.
 
-> -----Original Message-----
-> From: Conor Dooley <conor@kernel.org>
-> Sent: 25 November 2024 18:52
-> Subject: Re: [PATCH 03/12] dt-bindings: soc: renesas: Document RZ/G3E SMA=
-RC SoM and Carrier-II EVK
->=20
-> On Fri, Nov 22, 2024 at 12:45:39PM +0000, Biju Das wrote:
-> > Document the Renesas RZ/G3E SMARC Carrier-II EVK board which is based
-> > on the Renesas RZ/G3E SMARC SoM. The RZ/G3E SMARC Carrier-II EVK
-> > consists of an RZ/G3E SoM module and a SMARC Carrier-II carrier board.
-> > The SoM module sits on top of the carrier board.
-> >
-> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > ---
-> >  Documentation/devicetree/bindings/soc/renesas/renesas.yaml | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> >
-> > diff --git
-> > a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> > b/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> > index 7cc2bb97db13..1785142fc8da 100644
-> > --- a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> > +++ b/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> > @@ -527,6 +527,10 @@ properties:
-> >
-> >        - description: RZ/G3E (R9A09G047)
-> >          items:
-> > +          - enum:
-> > +              - renesas,smarc2-evk # RZ SMARC Carrier-II EVK
-> > +          - enum:
-> > +              - renesas,rzg3e-smarcm # RZ/G3E SMARC Module (SoM)
->=20
-> Why are these enums, when you have a single item in each?
+Unfortunately, we cannot control the tvd->hdmi gate from the PHY driver... this is
+because we do really rely on a specific ungate sequence, and the DPI driver really
+does need to control the gating of that CG on its own: when we want to bring up the
+DPI+HDMI, we need to:
+  - Start with *gated* clocks, so HW is OFF;
+  - Call mtk_dpi_bridge_enable() (done by drm framework);
+    - There, we now *ungate* the clocks
+    - DPI HW is ON -> we reset and write config to DPI registers
+      with function mtk_dpi_set_display_mode()
+    - We enable the DPI output (set EN in DPI_EN register)
 
-I just followed the style used in [1]
+If we move the CG to HDMI PHY, then we have to phy_configure() and phy_enable()
+inside of the DPI driver, which is also not really possible and can only be done
+in the HDMI driver - and that's because the HDMI driver reads EDID from DDC,
+which gives us the wanted pixel clock, and feeds it to the PHY.
 
-[1] https://elixir.bootlin.com/linux/v6.12.1/source/Documentation/devicetre=
-e/bindings/soc/renesas/renesas.yaml#L531
+In short, there's no way around that, the gating cannot be moved out of DPI driver.
 
-Other than that,
+>>
+>>>>
+>>>>>
+>>>>> For #4, I don't know why DPI do not control power by its self?
+>>>>> Even though other driver may control the same power, power manager has reference count,
+>>>>> so each driver could control the same power by its self.
+>>>>
+>>>> #4 is there both for a SW and for a HW reason.
+>>>>
+>>>> The HW reason is that the DPI shall be powered on in a specific sequence in regard
+>>>> to HDMI-TX, due to the setup that is required by both (and ungating clocks before
+>>>> full configuration happens would lock up the hw block).
+>>>>
+>>>> The SW reason is that mtk_crtc.c calls mtk_crtc_ddp_hw_init()->mtk_ddp_comp_start()
+>>>> in its .atomic_enable() callback, which happens in the wrong sequence in regard to
+>>>> HDMI because of the "natural" components order in the DRM framework (for MT8195/88!
+>>>> because for the others it either is the inverse or it does not matter - so for
+>>>> performance it's okay for it to be like that both on older SoCs and on DPINTF for
+>>>> 95/88) and this means that we *must not* call dpi_power_on() at that time but
+>>>> we must rather follow the atomic_enable()/bridge_enable() order imposed by DRM
+>>>> *also* for the clock en/dis calls in DPI.
+>>>
+>>> It looks like the #4 could be a separate patch.
+>>> The commit message is what you describe here.
+>>> And
+>>>
+>>> if (!dpi->conf->support_hdmi_power_sequence)
+>>>        mtk_dpi_power_on();
+>>>
+>>
+>> This means that I'd have to introduce the "hdmi power sequence" before actually
+>> introducing the real support for MT8195 HDMI....
+>> I honestly don't like that "too much", but it's fine, I don't have *too strong*
+>> opinions about that, so I will separate #4 as you suggested for v2.
+> 
+> This DPI series modification is all about HDMI.
+> Maybe merge this series with HDMI series and let the HDMI part in front of DPI part and it's more reasonable.
+> 
 
-In future some vendors can add their RZ/G3E SoM's here
+I have sent the two separately only because I thought it'd be easier for you to
+review them .. well, separately.
+But .. yes, this series is 99% about HDMI - the only thing that's not related to
+HDMI is patch [3/6] which is just a cleanup...
 
-Or=20
+So if you want I can merge the two series into one, that's not a problem at all;
+in that case, do you want me to keep the patches as they are, or do you want me
+to still split #4 away from this patch?
 
-They can use Renesas RZ/G3E SMARC module and use their custom carrier board=
-s.
+> Regards,
+> CK
+> 
+>>
+>> Cheers,
+>> Angelo
+>>
+>>> Regards,
+>>> CK
+>>>
+>>>>
+>>>> Cheers,
+>>>> Angelo
+>>>>
+>>>>>
+>>>>> Regards,
+>>>>> CK
+>>>>>
+>>>>>
+>>>>>>
+>>>>>> Cheers,
+>>>>>> Angelo
+>>>>>>
+>>>>>>> Regards,
+>>>>>>> CK
+>>>>>>>
+>>>>>>>>
+>>>>>>>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>>>>>>>> ---
+>>>>>>
+>>>>>>
+>>>>
+>>>>
+>>>>
+>>
+>>
+>>
 
-Cheers,
-Biju
-
->=20
-> >            - enum:
-> >                - renesas,r9a09g047e58 # Quad Cortex-A55 + Cortex-M33 + =
-Ethos-U55 (21mm BGA)
-> >                - renesas,r9a09g047e57 # Quad Cortex-A55 + Cortex-M33 +
-> > Ethos-U55 (15mm BGA)
-> > --
-> > 2.43.0
-> >
 
