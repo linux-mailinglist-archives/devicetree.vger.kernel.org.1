@@ -1,257 +1,142 @@
-Return-Path: <devicetree+bounces-124805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AA539D9F8A
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 00:20:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB1DE9DA027
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 01:56:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6DF05B21059
-	for <lists+devicetree@lfdr.de>; Tue, 26 Nov 2024 23:20:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1686DB24C53
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 00:56:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DCE61DEFC0;
-	Tue, 26 Nov 2024 23:20:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 146864A18;
+	Wed, 27 Nov 2024 00:56:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NwKd34f+"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="IpMmrRsn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5D2A1DA23;
-	Tue, 26 Nov 2024 23:20:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3564C7464;
+	Wed, 27 Nov 2024 00:56:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732663217; cv=none; b=PgHudHFcFLR6zxr4PiOlAUwXsEUjqh39482POcsuRdUpgOUW6wft1b5W8zOTqmQGljqebUbFOeoTTwuvT/O843jxD71a+DHnK7HvbBpM8KltE/WWzPFIikyJzU0o44bRwpRYg2JBsmjMIj3SlRcY8TWfFkjOFRejNQR5AYcCTH8=
+	t=1732669009; cv=none; b=XJbpRGxX4wkDDP8Bh2T43VLbqi/CCuDa29g6MaG105KKG0hT7NY33DU+q9cCZAQK8PdMyyTi0fWJVly4J/Bn6i1Hm0q9rb4wCdlEHpgXYfCTWgsAz3WldSOu7b5kTJ1fOJBpqu1GFv9SLijZNkevFCty9wI/h1X5RqNH8I6KfS8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732663217; c=relaxed/simple;
-	bh=uYz1fIPEEUSYGIPG3S07I/kURabcIlSMz61S+iMi4fg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Fji7JU1DOCzfdoGT3luHzLCGe55iEbQaGtZOqfknFYGZ6YhdGMqNU/JiS0ZQAX+uUXDUMzDPVzt3eUS3qPlO+o238A57LiMkQsbVFYqrTDontrUdiB+TctoFxefMeyYaiTcWiDrqiofOSRuP7Xp02IHq0GRdvg/MtabDxgORjhE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NwKd34f+; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AQKLKLp003917;
-	Tue, 26 Nov 2024 23:19:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	JXOj1uo6qRGb0YQzjEwm+4KOBZcNIhIGsYVmiWDab6k=; b=NwKd34f+BNxW/8TT
-	6k+dBzD5ef11xfSeFzze0MoMvTTxXmyzIemzgsjfB85VroZ6inezQqOqp5gvVANn
-	7/kRbk2NmBm443erBdfdz4tTgeBdl9l1sPcd68mJRG/ck6FhZVVl47izLSLjnM4G
-	ksTILhNF77c4TgCTas8j2JK2h3bRBBVMXPgKq57hr/qkcFPB3cskrrhNHmkaDXar
-	VtERgnFMTnlOExjBkowSltYS0N8ZhhQRBRHgLj1b5k8PY8JTOe1lTraAYo1L5H3d
-	txi4+ZtE12zBPmF28EH9Wkqj0KoqnJS7LdpfSd15afuF6uG0MTtCwOX5juMKQq5E
-	5I2S3g==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 435839aqrr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 26 Nov 2024 23:19:57 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AQNJtaX020705
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 26 Nov 2024 23:19:56 GMT
-Received: from [10.110.73.239] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 26 Nov
- 2024 15:19:55 -0800
-Message-ID: <d4d94c91-5b40-4ed3-9895-8f8c85fd0a29@quicinc.com>
-Date: Tue, 26 Nov 2024 15:19:54 -0800
+	s=arc-20240116; t=1732669009; c=relaxed/simple;
+	bh=SU7sjnuvXx89piKsXBDVHVCBxQmJmobOXJg9m0XREXo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RN2bcPxo5F69pIkn4IXCeGm2qZJEZnJF4FFRYCBIghQVzLfuzFiu7CELgOpnLXiZoiUr8VDiaoQAduaW7vGnbDuQ3xtarL10Mja5Nnh/sGl/lAAXAKUxQH1OvFpxdqhNZdHzuiR6M3UsV1lrZlFtUyjM6Ei35Uqth8yG4y1A2fI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=IpMmrRsn; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1732669006; x=1764205006;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=SU7sjnuvXx89piKsXBDVHVCBxQmJmobOXJg9m0XREXo=;
+  b=IpMmrRsn+mzgR864jTGitPlax3Z0h2wGsa35L+ON3WtBKFg/Wy4rZ3Qs
+   EhbIyWiNaBbak7b6iF2mttuK80Sba2hR/CpEiWoI+wt66986zrR4UKro5
+   XP4K2cED9GcYrJbf7Cbg/U2uD9xkpydMdF9pxz0NVZYexDro9IGaMcba5
+   Tr4pMJHvKjPOKhX2cqlIsSQAN3M4YZCrnnyxPSSN3RQrwi+6NZKLDHdqE
+   tC4WNga4G07yLRfbTOLxyf6Pwfji+ZMjjoMojHZhy+mOru9M5TWnWoHbc
+   m2ip4e//EaG3OHwXH/fX19Ho1CfrGk1zpAFSOJugBCzHuQjuwnednS9tA
+   Q==;
+X-CSE-ConnectionGUID: qBiTgFgLR66u8ylN1l0WBg==
+X-CSE-MsgGUID: 80rHt7kRSdWLbmrVTc3B6Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11268"; a="50383949"
+X-IronPort-AV: E=Sophos;i="6.12,188,1728975600"; 
+   d="scan'208";a="50383949"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Nov 2024 16:56:44 -0800
+X-CSE-ConnectionGUID: S/NdkWs9QH+kObQfEiNOkg==
+X-CSE-MsgGUID: uxUYF5O7SsGkXuI6gQ9V/Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,188,1728975600"; 
+   d="scan'208";a="115055182"
+Received: from lkp-server01.sh.intel.com (HELO 8122d2fc1967) ([10.239.97.150])
+  by fmviesa002.fm.intel.com with ESMTP; 26 Nov 2024 16:56:41 -0800
+Received: from kbuild by 8122d2fc1967 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tG6MA-0007dH-2Y;
+	Wed, 27 Nov 2024 00:56:38 +0000
+Date: Wed, 27 Nov 2024 08:56:16 +0800
+From: kernel test robot <lkp@intel.com>
+To: Cedric Encarnacion <cedricjustine.encarnacion@analog.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-i2c@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-hwmon@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, Guenter Roeck <linux@roeck-us.net>,
+	Jean Delvare <jdelvare@suse.com>, Jonathan Corbet <corbet@lwn.net>,
+	Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Radu Sabau <radu.sabau@analog.com>,
+	Uwe =?unknown-8bit?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+	Alexis Czezar Torreno <alexisczezar.torreno@analog.com>,
+	Cedric Encarnacion <cedricjustine.encarnacion@analog.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH 2/2] hwmon: (pmbus/adp1050): add support for adp1051,
+ adp1055 and ltp8800
+Message-ID: <202411270817.VqF8OwAB-lkp@intel.com>
+References: <20241120035826.3920-3-cedricjustine.encarnacion@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v30 28/30] ALSA: usb-audio: Add USB offload route kcontrol
-To: Takashi Iwai <tiwai@suse.de>
-CC: <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <conor+dt@kernel.org>, <dmitry.torokhov@gmail.com>,
-        <corbet@lwn.net>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
-        <krzk+dt@kernel.org>, <pierre-louis.bossart@linux.intel.dev>,
-        <Thinh.Nguyen@synopsys.com>, <tiwai@suse.com>, <robh@kernel.org>,
-        <gregkh@linuxfoundation.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-sound@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-input@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>
-References: <20241106193413.1730413-1-quic_wcheng@quicinc.com>
- <20241106193413.1730413-29-quic_wcheng@quicinc.com>
- <87bjya3xzw.wl-tiwai@suse.de>
- <02c20b06-34ef-459b-9cd1-2d2735eb1352@quicinc.com>
- <87zfls1t7x.wl-tiwai@suse.de>
- <8fc53dd9-0c26-410c-b1b1-3d6df7894a44@quicinc.com>
- <87cyiiaxpc.wl-tiwai@suse.de>
-Content-Language: en-US
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <87cyiiaxpc.wl-tiwai@suse.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: pZrM1Xsvu6nZrHsg37EGUg7jbpgwR8Gp
-X-Proofpoint-ORIG-GUID: pZrM1Xsvu6nZrHsg37EGUg7jbpgwR8Gp
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 bulkscore=0
- phishscore=0 suspectscore=0 spamscore=0 malwarescore=0 mlxscore=0
- priorityscore=1501 impostorscore=0 mlxlogscore=999 lowpriorityscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2411260187
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241120035826.3920-3-cedricjustine.encarnacion@analog.com>
 
-Hi Takashi,
+Hi Cedric,
 
-On 11/26/2024 6:14 AM, Takashi Iwai wrote:
-> On Mon, 25 Nov 2024 21:33:03 +0100,
-> Wesley Cheng wrote:
->> Hi Takashi,
->>
->> On 11/21/2024 7:50 AM, Takashi Iwai wrote:
->>> On Wed, 20 Nov 2024 20:13:34 +0100,
->>> Wesley Cheng wrote:
->>>> Hi Takashi,
->>>>
->>>> On 11/20/2024 4:12 AM, Takashi Iwai wrote:
->>>>> On Wed, 06 Nov 2024 20:34:11 +0100,
->>>>> Wesley Cheng wrote:
->>>>>> In order to allow userspace/applications know about USB offloading status,
->>>>>> expose a sound kcontrol that fetches information about which sound card
->>>>>> and PCM index the USB device is mapped to for supporting offloading.  In
->>>>>> the USB audio offloading framework, the ASoC BE DAI link is the entity
->>>>>> responsible for registering to the SOC USB layer.
->>>>>>
->>>>>> It is expected for the USB SND offloading driver to add the kcontrol to the
->>>>>> sound card associated with the USB audio device.  An example output would
->>>>>> look like:
->>>>>>
->>>>>> tinymix -D 1 get 'USB Offload Playback Route PCM#0'
->>>>>> -1, -1 (range -1->255)
->>>>>>
->>>>>> This example signifies that there is no mapped ASoC path available for the
->>>>>> USB SND device.
->>>>>>
->>>>>> tinymix -D 1 get 'USB Offload Playback Route PCM#0'
->>>>>> 0, 0 (range -1->255)
->>>>>>
->>>>>> This example signifies that the offload path is available over ASoC sound
->>>>>> card index#0 and PCM device#0.
->>>>>>
->>>>>> The USB offload kcontrol will be added in addition to the existing
->>>>>> kcontrols identified by the USB SND mixer.  The kcontrols used to modify
->>>>>> the USB audio device specific parameters are still valid and expected to be
->>>>>> used.  These parameters are not mirrored to the ASoC subsystem.
->>>>>>
->>>>>> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
->>>>> IIRC, this representation of kcontrol was one argued issue; Pierre
->>>>> expressed the concern about the complexity of the kcontrol.
->>>>> I didn't follow exactly, but did we get consensus?
->>>> So the part that Pierre had concerns on was that previously, the
->>>>> implementation was placing offload kcontrols to the ASoC platform
->>>>> card, and had some additional controls that complicated the
->>>>> offload implementation about the offload status for each USB audio
->>>>> device.  This was discussed here:
->>>> https://lore.kernel.org/linux-usb/957b3c13-e4ba-45e3-b880-7a313e48c33f@quicinc.com/
->>>>
->>>> To summarize, I made the decision to move the offload status
->>>> kcontrols from ASoC --> USB SND and limited it to only one kcontrol
->>>> (mapped offload device).  So now, there exists a kcontrol for every
->>>> USB SND device (if the offload mixer is enabled), where it tells
->>>> userspace the mapped ASoC platform card and pcm device that handles
->>>> USB offloading, else you'll see the "-1, -1" pair, which means
->>>> offload is not possible for that USB audio device.
->>> OK, the simplification is good.  But I wonder whether the current
->>> representation is the best.  Why not just providing two controls per
->>> PCM, one for card and one for device, instead of two integer array?
->>> It would look more intuitive to me.
->>>
->> I could separate it, but we would have to have a pair of controls
->> for each available USB PCM playback stream supported by the device.
->> However, before I get into making that change, I think the decision
->> for either two or one FE needs to be decided. Again, I think the 2
->> FE approach is much less invasive to the USB SND/ASoC core files,
->> and ensures the legacy USB SND path still works through the
->> non-offloaded data path.
-> Sure, the decision about the 2 FEs is the most significant one, and
-> those controls depend on that.
+kernel test robot noticed the following build warnings:
 
+[auto build test WARNING on groeck-staging/hwmon-next]
+[also build test WARNING on linus/master v6.12 next-20241126]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Would like to get closure on that here... (1 vs 2 FEs)  My stance is that the 2 FE approach can be the initial one we can take as it still incorporates the significant blocks that would apply to both situations.  From the userspace perspective, since audio offloading doesn't exist yet, applications should be working off the USB SND device and the SW path.  For those, without changes to look for the offload kcontrol, they can continue to operate off the USB SND PCM devices directly.  If enhancements are made to look for the offload kcontrol, then applications would first refer to the kcontrol of the USB SND device and look for existence of the offload controls.  If present they can then open the ASoC PCM devices.
+url:    https://github.com/intel-lab-lkp/linux/commits/Cedric-Encarnacion/dt-bindings-hwmon-pmbus-adp1050-Add-bindings-for-adp1051-adp1055-and-ltp8800/20241121-144856
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
+patch link:    https://lore.kernel.org/r/20241120035826.3920-3-cedricjustine.encarnacion%40analog.com
+patch subject: [PATCH 2/2] hwmon: (pmbus/adp1050): add support for adp1051, adp1055 and ltp8800
+config: loongarch-randconfig-r111-20241122 (https://download.01.org/0day-ci/archive/20241127/202411270817.VqF8OwAB-lkp@intel.com/config)
+compiler: loongarch64-linux-gcc (GCC) 14.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20241127/202411270817.VqF8OwAB-lkp@intel.com/reproduce)
 
-If we then decided to move to the 1 FE approach in the future, this doesn't affect the userspace entities that added support during the 2 FE stages, because we are always first referring to the USB SND device to query for offload support.  The idea for the 1 FE design is that the userspace doesn't need to check for offload support, it just behaves as if it was opening the USB SND devices. (which should be the base of all applications working with USB SND)
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202411270817.VqF8OwAB-lkp@intel.com/
 
+sparse warnings: (new ones prefixed by >>)
+>> drivers/hwmon/pmbus/adp1050.c:88:39: sparse: sparse: incorrect type in argument 2 (different modifiers) @@     expected struct pmbus_driver_info *info @@     got struct pmbus_driver_info const *[assigned] info @@
+   drivers/hwmon/pmbus/adp1050.c:88:39: sparse:     expected struct pmbus_driver_info *info
+   drivers/hwmon/pmbus/adp1050.c:88:39: sparse:     got struct pmbus_driver_info const *[assigned] info
 
-> So my comment assumes that, and if that applied, we need to consider
-> which kcontrol representation is better for users.  I don't mind too
-> much about that, but generally speaking, simpler representation is
-> better in the end, even if it leads to more elements.  e.g. sysfs
-> allows basically only one value per file principle, too.
->
->
->>>>> Apart from that: the Kconfig defition below ...
->>>>>
->>>>>> +config SND_USB_OFFLOAD_MIXER
->>>>>> +	tristate "USB Audio Offload mixer control"
->>>>>> +	help
->>>>>> +	 Say Y to enable the USB audio offloading mixer controls.  This
->>>>>> +	 exposes an USB offload capable kcontrol to signal to applications
->>>>>> +	 about which platform sound card can support USB audio offload.
->>>>>> +	 The returning values specify the mapped ASoC card and PCM device
->>>>>> +	 the USB audio device is associated to.
->>>>> ... and Makefile addition below ...
->>>>>
->>>>>> --- a/sound/usb/Makefile
->>>>>> +++ b/sound/usb/Makefile
->>>>>> @@ -36,3 +36,5 @@ obj-$(CONFIG_SND_USB_US122L) += snd-usbmidi-lib.o
->>>>>>  
->>>>>>  obj-$(CONFIG_SND) += misc/ usx2y/ caiaq/ 6fire/ hiface/ bcd2000/ qcom/
->>>>>>  obj-$(CONFIG_SND_USB_LINE6)	+= line6/
->>>>>> +
->>>>>> +obj-$(CONFIG_SND_USB_OFFLOAD_MIXER) += mixer_usb_offload.o
->>>>> ... indicates that this code will be an individual module, although
->>>>> it's solely used from snd-usb-audio-qmi driver.  This should be rather
->>>>> a boolean and moved to sound/usb/qcom/, and linked to
->>>>> snd-usb-audio-qmi driver itself, e.g.
->>>>>
->>>>> --- a/sound/usb/qcom/Makefile
->>>>> +++ b/sound/usb/qcom/Makefile
->>>>> @@ -1,2 +1,3 @@
->>>>>  snd-usb-audio-qmi-objs := usb_audio_qmi_v01.o qc_audio_offload.o
->>>>> +snd-usb-audio-qmi-$(CONFIG_SND_USB_OFFLOAD_MIXER) += mixer_usb_offload.o
->>>>>  obj-$(CONFIG_SND_USB_AUDIO_QMI) += snd-usb-audio-qmi.o
->>>>>
->>>>> Then you can drop EXPORT_SYMBOL_GPL(), too.
->>>> Had a discussion with Pierre on this too below.
->>>>
->>>> https://lore.kernel.org/linux-usb/f507a228-4865-4df5-9215-bc59e330a82f@linux.intel.com/
->>>>
->>>> I remember you commenting to place it in this vendor offload module,
->>>> which is what I did on v24.
->>> I assume that my early comment was based on your old implementations,
->>> and I guess it was because the mixer part didn't belong to the qcom
->>> stuff.  Now it belongs solely to qcom, the situation changed; it makes
->>> no sense to make it an individual module at all.
->>>
->>>
->> I guess Pierre's feedback was that he believed this should be vendor
->> agnostic, because any vendor that could potentially support USB
->> audio offload should have the same kcontrol within the USB SND
->> device.  Hence the reason for keeping it within generic code.  Since
->> QC is the only user of this now.  Do you prefer to make this part of
->> the vendor module for now, until another user comes along and
->> introduces offload support?
-> Yes, less module is preferred for now.  If the stuff is agnostic and
-> really used by multiple instances, we can factor out to an individual
-> module again.
->
+vim +88 drivers/hwmon/pmbus/adp1050.c
 
-OK, sounds good.  I will make it as part of our package then.
+    79	
+    80	static int adp1050_probe(struct i2c_client *client)
+    81	{
+    82		const struct pmbus_driver_info *info;
+    83	
+    84		info = device_get_match_data(&client->dev);
+    85		if (!info)
+    86			return -ENODEV;
+    87	
+  > 88		return pmbus_do_probe(client, info);
+    89	}
+    90	
 
-Thanks
-
-Wesley Cheng
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
