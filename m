@@ -1,137 +1,151 @@
-Return-Path: <devicetree+bounces-125155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125156-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCC969DADFD
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 20:42:36 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AF30165BA4
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 19:42:33 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09FC7201276;
-	Wed, 27 Nov 2024 19:42:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RWD9A5qT"
-X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 868779DAE19
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 20:45:43 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF6BB140E38;
-	Wed, 27 Nov 2024 19:42:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4654A282020
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 19:45:42 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FB82202F73;
+	Wed, 27 Nov 2024 19:45:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SdsqqWMv"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7412B200BA1
+	for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 19:45:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732736552; cv=none; b=IHNqXEOUR069tk7bNvLUP4bPaA3O8ZwYsAkLCWSow93trhGJEchFZNCFkOJLNArUMmcAuzuYS+xBmwE6c6heScjq6P+GZOu8jzBk9D5UnP424qjUZh/jmtwLOO9hb2YGe2yu0xj+3lNe8bsIH8DBhTxOvCgivZNe0yqT9m1gxcw=
+	t=1732736739; cv=none; b=NTDserOanD2F+ssMPCZitxw/n/lS3sl8p/wAlV7oHYoYdMm0B39mfkixiF016JJwVol9jwqc6zhaPPx+oFp2pBySRMXM4kXmyxpwY5jK7O5xcEhggcTYxC5IkYtI4BJqMe4TkKwn966N8sV4C2Rh359w/gpGZFDEwOsVcEzR+T8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732736552; c=relaxed/simple;
-	bh=dswcy1ZZJ4Jdg/t0i6eEfZvvYxKdYNlOtCDcuvoqhig=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QJBMf3uSqUZ3cx63ITS7dcPWBY6rnmu/FsH3/gMEEIUdWdt1Ns+m28j7J63u/E6WGSNrrYmkXDrR5YZPkk5/abR/NLa3wqLLfK6ge/LejzLIuTGJgZZ/7B9GRGXCd+SC8h9T8S0gMIx24r2YQ6suyJjQhjg45EgAlFAhgE2bm2s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RWD9A5qT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7DBCC4CED3;
-	Wed, 27 Nov 2024 19:42:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732736552;
-	bh=dswcy1ZZJ4Jdg/t0i6eEfZvvYxKdYNlOtCDcuvoqhig=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RWD9A5qTH5U9yHYo9C/1u/ByaoL5OYT+pnbc/x705vfYU6v2oSCStp+oUsHXpa9Xd
-	 xDTX2HTI+hShw/wmSffVXHCFhBrGPHOv3X79q9kGkepDL/FEMcbuKp9f8UpxU4a/Ad
-	 CdwGRtEwZAq0I7Gsvq4N82mM8Po7saBr6u44p8WuRXMR/2xwTqngReDCa0UUHzQ/vI
-	 CqlNqDhT5sWJOoVNVrjqTp/rc68Y9mdrSHAu9C+AwbDyH2SK7FTeHJvVRbMgQ7nD+H
-	 1hsYQ3FNTm9IsDFGIoe+kGlB/gyKswjMltykEn94dY9MPgJwyzM1S4hTBshIn1pMYB
-	 fbQ7ZISBoJJlw==
-Message-ID: <82f94ea4-2533-4ebd-a9e5-96ed64bfbc05@kernel.org>
-Date: Wed, 27 Nov 2024 20:42:23 +0100
+	s=arc-20240116; t=1732736739; c=relaxed/simple;
+	bh=NylLDBV4iWNpobwH6iSMROiM5e+3FgmCpG1sYJRENiU=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=MLl+lWuPqCFw0WuOA/mxXtL+XH5JLmKE/gdBW17kIOh1Q2PGlbkur68l8AbFDFTMtsP0+Si8YfA5BsRZABRsHCuuMLTCP2NB+MXTmx70ZWRqNLipU+09IGFcCzvOZKJLZjUtJpjHNizPGd3fcRck3jTLvf0HVpdp8t9pkzc3sXk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SdsqqWMv; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-53de852a287so32092e87.2
+        for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 11:45:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1732736736; x=1733341536; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=NylLDBV4iWNpobwH6iSMROiM5e+3FgmCpG1sYJRENiU=;
+        b=SdsqqWMvn5S2SYfmYLBXcDXi5Svbf+0hfOWzzLfC+vPAd8iDM9vf0YUzFt8AJUGqwu
+         2fLfEXfX84bZ6vPUmfqz3i5ZrxjDCShk7ipmbI+q00aTBkbz7giqTCTn13nJpqcnNcJd
+         0980vUOxC+lLWggqlSe7mx7f4C3zFSni48E+9NerhGfsDyEJdiOEX2aD4OS2cqUSjNrf
+         JvXfBsM2Cue+QJBdr5mFkCx/qwo6JuLFHNl/7rwI6MRHRR4KBlQV7gffUBsHLBRBwq/c
+         SAYlaEUr8aqZNezQ1XXaSnhSvURE+IpzKv6JaeQHg+fdyOHWEhK1QAK6BnuccKEwAjYs
+         QKUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732736736; x=1733341536;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NylLDBV4iWNpobwH6iSMROiM5e+3FgmCpG1sYJRENiU=;
+        b=Ez4xD+bOGtciNnipiH2s69c1Kpm3CC8Ipthl7JyifZyQPXdohedhNMpdgO+JaVOxjo
+         EYLvZbr3XvPpUrXY9fRGmbZqHmjUNmJCCcmWqdnWtqPHB8y5hZ/ZKOnN7rNyU4DuDdPl
+         1bnqgDijSJ8axvH32QzHWT56H/4EPQLeYXgxBjiF87CatxrdcYMVW+v5jf/kggQtq3Vx
+         dEk7+BLkBq9UKM/c3mdH/Tj2VZhkqx4G5K5pCtikUSHy+2pxX2n0RNJWDA/TI7W3Qirs
+         6FvzszyItdeXlYXhmy1pJom8NM6F7XkWi89dULAOGbpXgnqJ0aIIRSSmX1Fcii+QcvfC
+         KnrA==
+X-Forwarded-Encrypted: i=1; AJvYcCWQSPbVOHEJ1D7AY+fArO7RGInR//wIoycXZ9qZ2aMAweEAKWdwi8sJofagM1jR5LvpO7e3zSDaUKFl@vger.kernel.org
+X-Gm-Message-State: AOJu0YwTBfXR6WM6J0MSrvgP3wtR3CWcqOCb+9zT5mxz9U+g1MHXa9vq
+	SSdWDmJBlTeB0gFq740un7MXc4Uddm/F7LSnZ6r8FOskqRiOb5YuOG3Ht2IW4mE=
+X-Gm-Gg: ASbGncu6MYxfaL25PHMPysdCL/IDV+Nlt6jSIGywRrKOGYJWzArc9zAjPOaMPvFFvhJ
+	1zBtyVwZtK0ejl0SeD9dd0Ol6W/Afnm8QX+XrVD+6TAE/hd5/aHCHUVQGzK6NYfgsIFj80n0mGN
+	7iHGrTr6ABA8RhZOpFcTjM8lAncTlsV1lBWhULQQN/J6MTTELXKtTdSNecRmpdD3SOf3ekKLPhE
+	sw8unJu9ofjWQJ46cv3WlW5yWJY/LVT/n9f7J415exzIkJ9sDKbH00dsPCbMMnwovjcgEQO+U5l
+	YLpBt3derEAxc9Q=
+X-Google-Smtp-Source: AGHT+IH40kESQ0kSX97wL3PUiuSrJ02aqjttnHdyPp1N1UTnVIo1USB4X398z4n7wKGyArZKFCjzuw==
+X-Received: by 2002:a05:6512:b03:b0:53d:ed68:3cfa with SMTP id 2adb3069b0e04-53df0112264mr1385460e87.55.1732736735626;
+        Wed, 27 Nov 2024 11:45:35 -0800 (PST)
+Received: from [127.0.0.1] (85-76-116-93-nat.elisa-mobile.fi. [85.76.116.93])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53dd24812besm2319077e87.121.2024.11.27.11.45.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 27 Nov 2024 11:45:34 -0800 (PST)
+Date: Wed, 27 Nov 2024 21:45:32 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>
+CC: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>,
+ Georgi Djakov <djakov@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Odelu Kukatla <quic_okukatla@quicinc.com>,
+ Mike Tipton <quic_mdtipton@quicinc.com>,
+ Sibi Sankar <quic_sibis@quicinc.com>, linux-arm-msm@vger.kernel.org,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_V6_3/4=5D_dt-bindings=3A_interconnec?=
+ =?US-ASCII?Q?t=3A_Add_generic_compatible_qcom=2Cepss-l3-perf?=
+User-Agent: Thunderbird for Android
+In-Reply-To: <fff1a05c-5e7c-451d-9b08-4e835d6ab131@kernel.org>
+References: <20241125174511.45-1-quic_rlaggysh@quicinc.com> <20241125174511.45-4-quic_rlaggysh@quicinc.com> <20241127142304.GA3443205-robh@kernel.org> <zchtx32wtii2mzy2pp4lp4gdaim7w56kih7jcqes4tyhu24r3n@dagazlsdgdcv> <0ba0f4af-5075-4bb1-a7f6-815ef95bbda7@kernel.org> <538761B6-5C8D-4600-AB9E-687F91B855FF@linaro.org> <fff1a05c-5e7c-451d-9b08-4e835d6ab131@kernel.org>
+Message-ID: <CD9BA30C-C38F-4F3B-9823-B8F5B4160BC6@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/9] phy: exynos5-usbdrd: gs101: ensure power is gated to
- SS phy in phy_exit()
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Peter Griffin <peter.griffin@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- Sam Protsenko <semen.protsenko@linaro.org>,
- Will McVicker <willmcvicker@google.com>, Roy Luo <royluo@google.com>,
- kernel-team@android.com, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
-References: <20241127-gs101-phy-lanes-orientation-phy-v1-0-1b7fce24960b@linaro.org>
- <20241127-gs101-phy-lanes-orientation-phy-v1-6-1b7fce24960b@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241127-gs101-phy-lanes-orientation-phy-v1-6-1b7fce24960b@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On 27/11/2024 11:58, André Draszik wrote:
-> We currently don't gate the power to the SS phy in phy_exit().
-> 
-> Shuffle the code slightly to ensure the power is gated to the SS phy as
-> well.
-> 
-> Signed-off-by: André Draszik <andre.draszik@linaro.org>
-> ---
+On 27 November 2024 21:22:02 EET, Krzysztof Kozlowski <krzk@kernel=2Eorg> w=
+rote:
+>On 27/11/2024 19:49, Dmitry Baryshkov wrote:
+>> On 27 November 2024 20:27:27 EET, Krzysztof Kozlowski <krzk@kernel=2Eor=
+g> wrote:
+>>> On 27/11/2024 17:53, Dmitry Baryshkov wrote:
+>>>> On Wed, Nov 27, 2024 at 08:23:04AM -0600, Rob Herring wrote:
+>>>>> On Mon, Nov 25, 2024 at 05:45:10PM +0000, Raviteja Laggyshetty wrote=
+:
+>>>>>> EPSS instance on sc7280, sm8250 SoCs, use PERF_STATE register inste=
+ad of
+>>>>>> REG_L3_VOTE to scale L3 clocks, hence adding a new generic compatib=
+le
+>>>>>> "qcom,epss-l3-perf" for these targets=2E
+>>>>>
+>>>>> Is this a h/w difference from prior blocks or you just want to use B=
+=20
+>>>>> instead of A while the h/w has both A and B? The latter sounds like=
+=20
+>>>>> driver policy=2E
+>>>>>
+>>>>> It is also an ABI break for s/w that didn't understand=20
+>>>>> qcom,epss-l3-perf=2E
+>>>>
+>>>> As the bindings keep old compatible strings in addition to the new
+>>>> qcom,epss-l3-perf, where is the ABI break? Old SW will use old entrie=
+s,
+>>>> newer can use either of those=2E
+>>> No, this change drops qcom,epss-l3 and adds new fallback=2E How old
+>>> software can work in such case? It's broken=2E
+>>=20
+>> Oh, I see=2E We had a platform-specific overrides for those two=2E Then=
+ I think we should completely drop the new qcom,epss-l3-perf idea and follo=
+w the sm8250 / sc7280 example=2E This means compatible =3D "qcom,sa8775p-pe=
+rf", "qcom,epss-l3"=2E=20
+>
+>It depends for example whether epss-l3 is valid at all=2E ABI is not
+>broken if nothing was working in the first place, assuming it is
+>explained in commit msg (not the case here)=2E
+
+Judging by the current schema, epss-l3 is defined as new HW block of aka n=
+ot OSM L3, no matter which register is used for programming=2E
 
 
-I think this should be actually a fix with cc-stable.
+>
+>Best regards,
+>Krzysztof
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
 
