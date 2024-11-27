@@ -1,162 +1,148 @@
-Return-Path: <devicetree+bounces-125041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125040-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9324E9DA98B
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 15:03:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 312439DA983
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 15:00:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E5F07165808
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 14:03:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8284F1634E1
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 14:00:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 147431FCFFD;
-	Wed, 27 Nov 2024 14:02:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F4061FCF41;
+	Wed, 27 Nov 2024 14:00:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Kdp0xkxj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="N/ZUJEYi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE8E61FBE84
-	for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 14:02:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A70103232;
+	Wed, 27 Nov 2024 14:00:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732716179; cv=none; b=EQuTjGDh7iX+dc+p4VxVHDnW9LHN08ppcNQriw1woENONc2A7RWPEbCCzB4lTqeOygd8TsmvwOaEIOOOWTgM/D8RUIQ7ixg1euSUDu0Fz2zW9/frkHu0f4WY15OlD/4x+PKHtKpmsMC30gONHgPSAALUtWwZ62Uv8KGOleful7A=
+	t=1732716042; cv=none; b=M5MrTgOHpP8vvJ9r/2mMunwQ3fKQ2Q/oUF4fV2bB8R1NfkoL2yE9ZhUTfgYwjz+duxXwjHQhBjt3UrjI/F7Ksh44k4AJiQo5Msf1GCQ+3lXgq58HltnLcdJgnRUWkCp+jiXiSRn2bNCF27msEi9TUU+d3ObffWAkY0hnIO7ZqMc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732716179; c=relaxed/simple;
-	bh=TUPT2Vj93/kyEbrXqfOFEH096hxvwGyIPajMGlJp8xA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QGgykQiH0NaMMjglP4m5gYVeF9qkg9ec/vDpq3EbprEC2G/CbxSPPnh+kB6Sc/vUyFzdraa/Iclb0Fy3YT5HJ2XWFTh82EBx/IPqyyUwyjwNhFebNp+2KsKh2Pr807haHi6otX3Ruh8d2RFxFY1SGtzwbv78fx1vnqY6LCbBlaA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Kdp0xkxj; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-53de8ecb39bso2231129e87.2
-        for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 06:02:55 -0800 (PST)
+	s=arc-20240116; t=1732716042; c=relaxed/simple;
+	bh=JgCw2ZB4UkDIjh7bN82YDZQzcE3edM9pnmLtA95/n1w=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=hy3gHr16dFqXSukN93ZI7Qd7JkdUuDWqY5LOS8VPHdMcT+1wPfRzdPWGs3NXidcsSitevhDq/QVX6eWhLeICdJN2mdOZvs2kwDwX2KF78+rpw+fPq/jx8O7RSXPGNbvCEYTM9lYTaWtc35IejMedo494BMO2NqQ9EjsLwJv8Afc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=N/ZUJEYi; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-434a14d6bf4so26169325e9.1;
+        Wed, 27 Nov 2024 06:00:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732716174; x=1733320974; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=T01FX8+ifMzh7FdT/3RYrXgZQjd2w/xyGf35CNWYzZw=;
-        b=Kdp0xkxjdipnSnpoAfJH/ID8ZhUz7QlJIUqtiA1lA7sRn3lZE2FRl8Wrie5RLWOZOu
-         +nS/edCDmeyaq6snRRuK47idAH0i4+ndakXWNoY5h7O1iIkknPi3mZOa/KrVFhlBHC40
-         L8KYFJB80qc1pNrOdOQpW1/bIq6mvXztylLU6LUwAQD84JnjiFV7RYjrnYxqanNvBF06
-         zj7W44eIHmVCQUUCj3aJMGE6LfDJbwthLCobJBjdakXOzwHOiYOHMeEoI4f1tiWila8D
-         W+xYIJAOjnYjlswYnL8K32uyFyJZ93JGD8Wu9DVlmjo2tMqsiQ9pTChj1oFDK8ncTB2N
-         HsGw==
+        d=gmail.com; s=20230601; t=1732716039; x=1733320839; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=JgCw2ZB4UkDIjh7bN82YDZQzcE3edM9pnmLtA95/n1w=;
+        b=N/ZUJEYizD5nYF3ggu3AAlnk/AKTYeh7K4VYeMUaXbL8PwF80ZF5oMiTHzrFEeAwYX
+         +w3TJExC91Y7eYxuRAJpXSE3VSP3Y5SGVr5fpjG6oNdI7tT5Z4/8layTnWBjXLzTVW+e
+         6LEkEiQVBTJRoNI0aTxwySO/cWzmqENDlTCZRf4qAketsJumIN3GOx3g0/aGOZ2xi64y
+         pd1/jiM9G9sUKMfdrvRrSm934Dh1uksSgUxwThGZIECAsOaKogljUGzVPX+rzQw3xi/r
+         qoVjB1+LNIDuBC19kpGjtJfgLmWgAdMofO21EkEtgyBCjXojiTMqGy4kIRHacjaSWmje
+         tz+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732716174; x=1733320974;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=T01FX8+ifMzh7FdT/3RYrXgZQjd2w/xyGf35CNWYzZw=;
-        b=p3Agkd/9Iphivlz2sRNnZhpLTmK0p3nCH5uMmITKlvY1gPQN/VX2aGsL4DO0yX13u4
-         eZFMFECmmUvPeLtQjb88fBExqNeRZADVP0InXV3bOaSD1GIEglmccLHX6ePIZZwLRkTE
-         SEnVIpyJ+/Nlzctlvr2lNoiNtI7Y+oEcDBZ3tMxeMCc5uBiUoFkH6oh0wEvBg2JF7oOf
-         pDnB3EM9z4JV1xFe/Fl73+WuOn4NwBe1ZWQCDaaYR4+A/3AD5hnY3lHs69BwToSjkBkA
-         UQPO+HAxS8c/0/wKCKGLBXstNXA5pFXDzx6Zf99LS0Pi/JBbK0Y06p79KCSe4o7UD/f9
-         QK8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUh6j3tvW076m4StLGZpvrcEPTYtEATAvoJUZgMimlaWgvXzA6keH1HnkEDCto0cVZW7TFT2aGVpnIx@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxm9/N2TL3xLO6h9iE5CKvsYkNgxhMRUMsmbsdR9OR/P7/L9iet
-	BwU/6I4UTQU9qIzongDSvWzU5qyAJhdiZFMaiXEb/RlIofCjPYnSpOVGjtyZHvk=
-X-Gm-Gg: ASbGncv0QP9SZLxMqpWOx9X4hn+M3qAfIPrhBX2PK7mXKJnWziFeZmXOyCS+7essIgp
-	5kPHp+FxcQ8RTSWu6LrxOe0JyPiHgjZ0E5ckt+GZ3l3exqrxhaofjaJ6zZ7r0jVYB/ZsZdkTfoB
-	6oKt+H4LTDDLPe168yLWkOqhyged1y2AS3Q1WOJ9F+Ox1WibO3tpd5iXw+NcjtmWcYueK6mwN07
-	xKEgBIksVJmvjrjA2PJk0smb/+g7KCjMkWQ+ejMPuhwYypqpgIP4olRLYi1GFwvMeMiZAHDei1s
-	OwsxxL0DS+tvO686wvdzepteFKTOTQ==
-X-Google-Smtp-Source: AGHT+IE4PFY/jEkiwyrm8o+Db9OLNXgxUMj7QvjWWz6uR+5Fh5KVZpx+UZJ77BHMmy7vJiZ7cMIV8g==
-X-Received: by 2002:a05:6512:398c:b0:53d:ea3c:2ba0 with SMTP id 2adb3069b0e04-53df00d12afmr2027772e87.16.1732716173570;
-        Wed, 27 Nov 2024 06:02:53 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53dd3c852ccsm2274613e87.253.2024.11.27.06.02.51
+        d=1e100.net; s=20230601; t=1732716039; x=1733320839;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JgCw2ZB4UkDIjh7bN82YDZQzcE3edM9pnmLtA95/n1w=;
+        b=ZvqRoTyCGNiwbAw3lThVv8O07q1yVnPYUJwp1ac6heB4UkQ9Up0KuDgCvSdOkL31AU
+         Qn438hx5CPr+ogwpGTK3W+PjcL5Kf/Uf4tXQEWVYqskIpN4+abV+7o5UFTzH5wHf7s5e
+         E9u5kp3g+ZSnnGpiKndGRykNZ4dbRbkIfwa/J3EhnlW3S/lZW42BFXmBIVxMNqYkS5zD
+         erUpMZFJZ1mxvRMw/MZzceZq46Wm75Zz0j/IACWDTdohoTZOpB+tBcaVjsgRE0UBdzn1
+         VoFCxMTNqk+orsOQhtaOO/7vjFdRQxioQCIB5tNzc42yXMP2jGQHUu2Z38C+O8gGVrAR
+         7IVQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU6Xiwv/HsyMBfD0CbLzpuqCffdM3MNPEZoIChoiFAHuwbMKCxwCSwaXCF5S172BwbyTzfOqNEHxy/j@vger.kernel.org, AJvYcCVHyh7GBgfHa+kfZlbdvMQLRSoTchJW9MhjwFlxc4awWus2iLZmfFh/zIZZU1cXvkwLBPtqFrS0F+kY@vger.kernel.org
+X-Gm-Message-State: AOJu0YySDdzxPiTs6sfKFkyfi230ll7MEBAbYnvc/jqM7LTFfi3+BvsK
+	D/Gk/3rinN7z6GjtDHmP4oSyMZzrJAL6gvkTUUaxU+pGIP6dRNVW
+X-Gm-Gg: ASbGncsbGlofPK7XCYaZhBB76BATvNlaXHJT97Uzj+HmaxsVcXG6z1+jJcO8pHlC/TV
+	ZxBEUEf2bEvXF2IwSSTL/ek6RQcp1fUbsFPFYnOkCti84R9Sua+P2W4JJesHoBx9B6FelygH23M
+	NGmwQLMlTeCctVKdyh8eK0EWjoZNE+TvgDGKvricjvaRZ+LxDE04JcsyXGKISdbjg3cAMUOS8fl
+	s5XLpipxYY6FBxTENTy/uUmirdMtukcstm6iU2K5xhD9flwdDvQ1Lcx5ec6kLb/Crti5YLo1N8Q
+	oKUmQ7DGlMi+HB91GfJhNV39eS+2p2Tsog7K9oXL520k+p09C4wliJBhrUnhiFtX+ADCGDeaP8h
+	Tdy4nylE=
+X-Google-Smtp-Source: AGHT+IHBgojp1MwCEvySa9guIxfKIiAEs5qaMPVvWyzd7GgmuFwPZw8S8Nr5lLgmsUERuRYl0or4Tw==
+X-Received: by 2002:a05:600c:4e4d:b0:434:8827:f713 with SMTP id 5b1f17b1804b1-434a9dc13e2mr29617495e9.12.1732716038245;
+        Wed, 27 Nov 2024 06:00:38 -0800 (PST)
+Received: from ?IPv6:2003:f6:ef02:f400:a23c:697f:16fb:11c5? (p200300f6ef02f400a23c697f16fb11c5.dip0.t-ipconnect.de. [2003:f6:ef02:f400:a23c:697f:16fb:11c5])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434aa7fa3b2sm21922085e9.41.2024.11.27.06.00.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Nov 2024 06:02:52 -0800 (PST)
-Date: Wed, 27 Nov 2024 16:02:50 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Krishna Kurapati <quic_kriskura@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>
-Subject: Re: [PATCH v4 2/3] arm64: dts: qcom: sar2130p: add support for
- SAR2130P
-Message-ID: <2hka5j3iyml32czhv6k2gr6ss2jthsgaljva5izhzzcoc3l4eq@slsmyp7s6ars>
-References: <20241102-sar2130p-dt-v4-0-60b7220fd0dd@linaro.org>
- <20241102-sar2130p-dt-v4-2-60b7220fd0dd@linaro.org>
- <ff7c9b83-0ac7-43a0-a86a-2fed66728a32@quicinc.com>
+        Wed, 27 Nov 2024 06:00:37 -0800 (PST)
+Message-ID: <848b5160b1170a9725df48d8dba563db2a0ce998.camel@gmail.com>
+Subject: Re: [PATCH v3 10/10] iio: adc: ad7124: Implement temperature
+ measurement
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>, Uwe
+ =?ISO-8859-1?Q?Kleine-K=F6nig?=
+	 <u.kleine-koenig@baylibre.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>,  Michael Hennerich <Michael.Hennerich@analog.com>,
+ Alexandru Ardelean <aardelean@baylibre.com>, Alisa-Dariana Roman	
+ <alisa.roman@analog.com>, Conor Dooley <conor+dt@kernel.org>, David Lechner
+	 <dlechner@baylibre.com>, Dumitru Ceclan <dumitru.ceclan@analog.com>, 
+ Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
+ Rob Herring <robh@kernel.org>, 	devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org
+Date: Wed, 27 Nov 2024 15:05:04 +0100
+In-Reply-To: <CAHp75VcMHyqjsAVveRf58PhoiKyPJRsjBQiLkz+XVu+NDc+Wog@mail.gmail.com>
+References: <20241122113322.242875-12-u.kleine-koenig@baylibre.com>
+	 <20241122113322.242875-22-u.kleine-koenig@baylibre.com>
+	 <CAHp75Ve_sD-a-m4pYmKrT=LhajO=F7TG7KM7AsM47J0=ksVgNw@mail.gmail.com>
+	 <eghe47rkwxmcfkamayemvwfksonrwbysaadakbdm4lvzcsy4ee@7gftiif7ka6i>
+	 <CAHp75Ve3hBhCMFkjA4-hiLfGQLeeGt_74e=PwTH_nF1NCYiyOA@mail.gmail.com>
+	 <2tsxyxmfh3ozolsziu3bps7liagzl4gmvy4oykvyeapziagvy4@tfa2lcxmdsmf>
+	 <CAHp75VcMHyqjsAVveRf58PhoiKyPJRsjBQiLkz+XVu+NDc+Wog@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ff7c9b83-0ac7-43a0-a86a-2fed66728a32@quicinc.com>
 
-On Tue, Nov 26, 2024 at 11:32:59PM +0530, Krishna Kurapati wrote:
-> 
-> 
-> On 11/2/2024 8:33 AM, Dmitry Baryshkov wrote:
-> > Add DT file for the Qualcomm SAR2130P platform.
-> > 
-> > Co-developed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> > Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >   arch/arm64/boot/dts/qcom/sar2130p.dtsi | 3123 ++++++++++++++++++++++++++++++++
-> >   1 file changed, 3123 insertions(+)
-> > 
-> 
-> [...]
-> 
-> > +		usb_dp_qmpphy: phy@88e8000 {
-> > +			compatible = "qcom,sar2130p-qmp-usb3-dp-phy";
-> > +			reg = <0x0 0x088e8000 0x0 0x3000>;
-> > +
-> > +			clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
-> > +				 <&rpmhcc RPMH_CXO_CLK>,
-> > +				 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>,
-> > +				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
-> > +			clock-names = "aux", "ref", "com_aux", "usb3_pipe";
-> > +
-> > +			power-domains = <&gcc USB3_PHY_GDSC>;
-> > +
-> > +			resets = <&gcc GCC_USB3_PHY_PRIM_BCR>,
-> > +				 <&gcc GCC_USB3_DP_PHY_PRIM_BCR>;
-> > +			reset-names = "phy", "common";
-> > +
-> > +			#clock-cells = <1>;
-> > +			#phy-cells = <1>;
-> > +
-> > +			orientation-switch;
-> > +
-> > +			status = "disabled";
-> > +
-> 
-> Hi Dmitry,
-> 
->  Sorry for asking this question after code got merged. I forgot about asking
-> this last time when I commented on your patch and provided the HS Phy IRQ
-> value.
-> 
->  In SAR2130P, I remember that the lane orientation is reversed. As in on
-> normal targets, if the orientatin GPIO reads "0" it means LANE_A but on
-> SAR2130 it means LANE_B. Can you confirm if superspeed was tested only in
-> one orientation only.
+On Mon, 2024-11-25 at 21:33 +0200, Andy Shevchenko wrote:
+> On Mon, Nov 25, 2024 at 4:52=E2=80=AFPM Uwe Kleine-K=C3=B6nig
+> <u.kleine-koenig@baylibre.com> wrote:
+> > On Mon, Nov 25, 2024 at 03:47:25PM +0200, Andy Shevchenko wrote:
+> > > On Mon, Nov 25, 2024 at 1:27=E2=80=AFPM Uwe Kleine-K=C3=B6nig
+> > > <u.kleine-koenig@baylibre.com> wrote:
+> > > > On Fri, Nov 22, 2024 at 10:31:07PM +0200, Andy Shevchenko wrote:
+> > > > > On Fri, Nov 22, 2024 at 1:34=E2=80=AFPM Uwe Kleine-K=C3=B6nig
+> > > > > <u.kleine-koenig@baylibre.com> wrote:
+> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* Add one for temperatur=
+e */
+> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 st->num_channels =3D min(=
+num_channels + 1,
+> > > > > > AD7124_MAX_CHANNELS);
+> > > > >=20
+> > > > > Is the type of both arguments the same?
+> > > >=20
+> > > > Hmm, my compiler is happy with it at least. I don't understand why
+> > > > though. I'll do a few more tests ...
+> > >=20
+> > > If num_channels is signed int or shorter than (independently on the
+> > > sign) int, then it's obvious why. + 1 makes it int.
+> >=20
+> > Ah indeed, I should have understood that without that explanation.
+>=20
+> Yeah, but a closer look shows to me that num_channels is unsigned int
+> or did I look in the wrong place? If that's true, that should make a
+> warning appear since AD7124_MAX_CHANNELS is signed int...
+>=20
+>=20
 
-Thanks for the notice. I don't remember if I had USB3 or just USB2
-connected to the USB-C connector. I will take a look and report
-afterwards, but it might take some time.
+Hmm,
 
-> 
->  I can push code for setting orienation properly for this target if you can
-> confirm that orienation is read reverse on SAR2130P.
-> 
-> Regards,
-> Krishna,
+Weren't the min()/max() macros improved for things like this?
 
--- 
-With best wishes
-Dmitry
+https://elixir.bootlin.com/linux/v6.12.1/source/include/linux/minmax.h#L22
+
+- Nuno S=C3=A1
 
