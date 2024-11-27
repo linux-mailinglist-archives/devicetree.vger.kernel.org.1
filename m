@@ -1,141 +1,216 @@
-Return-Path: <devicetree+bounces-124830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E09829DA14E
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 05:05:59 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 308069DA184
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 05:34:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9A2E2B22E5D
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 04:05:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CEA572849F3
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 04:34:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82EBA374F1;
-	Wed, 27 Nov 2024 04:05:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09EDA558A5;
+	Wed, 27 Nov 2024 04:34:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DWSDBNHP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EBJ0XCim"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBAF128EB;
-	Wed, 27 Nov 2024 04:05:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 250B214F90;
+	Wed, 27 Nov 2024 04:34:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732680350; cv=none; b=VlddcrBqT8XKco7X8T1vUerUsUU4/GoMx0yAcFy9VZdlHlRp0vpXYaiAgwFbaL4X3qzUdUpVe/vLR7YQuRvMvOca10t2Efu1J6Re3/jPf1xwsIaNLPBmYmsXKYvNu13kgbI8qPVdMD2PLQSInY+r6WpxJnhZyEdq5Di1QBn46Jc=
+	t=1732682046; cv=none; b=NThtD+Gppt98nijlzhyCPTC/iNKY8kFUsfDwFl6KWb5X2uyR4F/4N6tPpWw+7Pps5VnXgH7+eu2jBYTKPkjtjlNJg12lLukIsYjpQL82lrXwS1E4wnG5iBXUK8co+221EQgctVNXieYVuo9W+AF1oetJFlOKgm2lApd+1Ob+ox0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732680350; c=relaxed/simple;
-	bh=eGMgbMDKyJQFsX2FhhmL+N7rAH4Be2hXmFG8guEZ4I4=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=BgdPi4gveb3yXvEzs9X5mA1sD0JYrZfkVUsRih+pA2kUviPKy9Ast/3Kul0rETmKkvp3pRvtKDGFpxDolR0uCL7APGzIEhyGDMcmzTvIbtpPh4pwQdFwZ3rJMuJCKJZK7PG1M9qXQwopB2M7zsh6cHv1XOABZxUuJY3YqRmY4Nw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DWSDBNHP; arc=none smtp.client-ip=209.85.221.46
+	s=arc-20240116; t=1732682046; c=relaxed/simple;
+	bh=esaoqFsdsjq6dGqzkJX1+DvjhcClDspLFiMqk0Y1wgU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=qjinoEvFYdHzfRePoua5XiYIyFNez4lZPm8zML3Cwnh0+D2gm93DktOVubqelli5jyt8ZfH3TUbCUvwL2AbgpNhI26Ip2iOAZW8fHx8vfhyIoVeFQnJGicV9/kVLV3nGO5+T9IU/4c0nGKGCIm2VPC0vW6a07rdESq6gufFZifU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EBJ0XCim; arc=none smtp.client-ip=209.85.128.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3822ba3cdbcso3931556f8f.0;
-        Tue, 26 Nov 2024 20:05:48 -0800 (PST)
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-434a8b94fb5so2141005e9.0;
+        Tue, 26 Nov 2024 20:34:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1732680347; x=1733285147; darn=vger.kernel.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eGMgbMDKyJQFsX2FhhmL+N7rAH4Be2hXmFG8guEZ4I4=;
-        b=DWSDBNHPZk9lVUMnWDMJQQ2stuGjqio+OTlF6yvE2Z012k0rOYuKaHhfHUe9be2kkC
-         42hgVl7RGDuAZzAh6/5mXJOmAcB/uz/evWP4IBexY7rdXqyRMZ0BLqiB9wZY0FYoA/Pa
-         yzBf46zxjGxsgxFCoXBGZxOvijlhs+aJRQbVX9gAwMoEp0QwgftYxYPmkK1UWzcK1YD6
-         7EoxPKQC3BblJ+th+tEy7KjUID2dvOvHGbUrk59tA0fbwHPOhMxy+4L/z7JywJYCC+15
-         RO+bRBib/ucdHK8Cm5kbghEkB/WLdiYmeg07/HAIaRSZmpEtEwiD6Zn1JkRU5WDe0YKJ
-         JMGA==
+        d=gmail.com; s=20230601; t=1732682043; x=1733286843; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=nE9I1uPOR4sQF959XXKFUqSwci9J/1L0qLYIRegyl2k=;
+        b=EBJ0XCimwsH4wtw/3aeyzWQWosOlbbQd/OQi6YCvze0X5bMcU6CiLODz4iCXe7SOK2
+         /aCT2wuQhHilW19WOiKMancL+MAVCC6qSIo7QVvw77PYrZojXiDOHnhs2tn7I4HVD/xh
+         m02U9sur84DkQFLSbgzlWMsH2+uHov4co6Pi2+WWwci+hf6FhNUkIoZrRx03ZLZOBl55
+         +tkeZEYotdkXTENUCgT5HU1gp/cUlOs/QhoeFcRs0uTJg6eS0SEC7y9djNP+y+7+hIXW
+         yl0LXvl0bJaBEVpI60N9hUHsK5kOIdmbo15oYNsJeP51Keh1edHCxy1ppvu65/oXzmMs
+         8IMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732680347; x=1733285147;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=eGMgbMDKyJQFsX2FhhmL+N7rAH4Be2hXmFG8guEZ4I4=;
-        b=mr/szQyVA6M6WXRyx9WBwYD8w6M5ZM5P2IC6eHppqutSYWh1S12Pj7nirlJTKZHDI3
-         18KJSjFdJXtsPjr76I/RJrx+gkvOCt9zrLgLcx+sqBwHzOGcJZhoO+mVVF17H7fd96zz
-         2UZjTjW8nS7grNmz5guF0e4+Rg1jT5JsjKeu3b2fxQSdfzEDlhSKhba7xiIGTMyc9fUj
-         4Adlk8ivVocR4oq/dohO8kP/GbKeTCGFHbRpmdj9friQhr+R5QUezPSEXH2cWUwCv93P
-         qD3FOUm7s62Py343R0mz/VUpkaSAG/NUXOaNf3w50fUm4wHFYTcki6wF/lPY/nwjrzUh
-         +B1g==
-X-Forwarded-Encrypted: i=1; AJvYcCVdoIqQfl+o0cY7U/y4kM9kg23KlV47PRnIIT6MJ5jbsQnSBJ+U0bUnCV6+t8U6y6pu7GqcPdH+ei25@vger.kernel.org, AJvYcCXLmjl03fBJoxZPdGiS66K8JZLAdlHXQnNHr3QS5VRSkQaIGJJEEpG1NRqG/EWiaoJrOSfvR09IkFp+DaME@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyz8HhJRVK58l1K5wwW7zSisbpHID7zSDjHHoLcA8HoTthEcMsD
-	CCl6QppqsaeSeSbcwoplQmAMA4uGEUAGBFv0HtEa54pEiApbFHs/
-X-Gm-Gg: ASbGnctQsFfc+ccfYex+RkSzzY4ly7CKUhDKErJIf/b1Al9VbDQFjMKldG9wnfji+O9
-	7q6AcPupa72b1zD5heEsn1ANQQseUEE7raxtvenhV6EGj9zR/QWxuORNduszyDYzNcVGkErrqMq
-	EcTJ382b2e+frfOEf73WJq6xrx3pzrHi3heuiJU7XBruL+oOVGfkChtzIuK2/13twT3D1YKpgn5
-	OGfe8KiE4fbKhGab9Fgzs/nQXqipf4t0LtZRHdwaqaCJ4A2M67dBF352KDk6bkIMlbfe+wy
-X-Google-Smtp-Source: AGHT+IHc99eGtijXfEAq6+Nq0ctt6V5ES855jF/j39G6AUo9KVVVWLSlAJEn/iJyJYwFhVzX13IpTQ==
-X-Received: by 2002:a5d:59a3:0:b0:37c:cc67:8b1f with SMTP id ffacd0b85a97d-385c6ef477amr1008941f8f.48.1732680346883;
-        Tue, 26 Nov 2024 20:05:46 -0800 (PST)
-Received: from smtpclient.apple ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3825fafe504sm14932923f8f.25.2024.11.26.20.05.44
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 26 Nov 2024 20:05:46 -0800 (PST)
-Content-Type: text/plain;
-	charset=utf-8
+        d=1e100.net; s=20230601; t=1732682043; x=1733286843;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nE9I1uPOR4sQF959XXKFUqSwci9J/1L0qLYIRegyl2k=;
+        b=dd778PdbTKNaUASWGxuhuOwSwDJod851ATavxpfFKSs6OSfq1URWEq0z/iLylDY8Je
+         VNaqTjdSCdI4yHxek88x594edUjax+7OlNlsHPHIaYGRh8ScTBz+VbASWsrF/EoAeW8M
+         FcUZWn/Bq44rE+mLbzz3JEoGA4FtdywMsSpJ7w30mU9C+wfBAAbgZ6eJ9zKIOyCFelr5
+         d5G4VV1T+BuIMi1almyPn9mzCkXUd7wcyt0CVqNjL1SdUS/5dx5rE6ep8JRdUY9+M1Mc
+         crM5c0onBWRtwWZxhvCKPGT/O2JgniH71+whUF/Omh93re73723iCuJvweEXKKTFOe52
+         BX/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWGktxyCDeSimTCtc5GXDJBaK7bzquZqj5jzy4A5LAWin+6pacUAQrVUWlZMlNA5A4S6dAl5YP5AphIoC8H@vger.kernel.org, AJvYcCXQXwr+ObsONQ7Ve5kBo3FZIn4p2ulOe5ZwqcmNGJtJNC/Jf8D8MtpKLjijqqNVHRu6jQTqfq6ZJLxE@vger.kernel.org
+X-Gm-Message-State: AOJu0YwODsoMU2euvYaSYmZ+k9eVnV6dHzqRqK2Gw8ya8iOwpvjL6eHY
+	TUMH5jmh7yKmUf5PVK3V/0TFCJ0BEAOkdcJ0dFW/tr+Ajwqsp/Kz
+X-Gm-Gg: ASbGnctAYe9JwUb0P/EhBNggcs790p8jVgap933gUKYH96qk9tINWdSOKtgi9QjtGEp
+	JA+dMy1p/oO56KEyqHj7zLE93JmHmgbk5wYFslQ3NA5bWPxhnR5jiBOwe6iIFfXO+Ebv/Uq74lx
+	U1X63NNzLiCTWXJ/b7pGVqA3OIHdfnc5EjpUd16BVavyrpZgyymLvmI1wRU9oEHJCFPaMFg6Xqm
+	OTKvODrF6sabyvACjHaK/N9vKD/YOv9tRxS6YicrkbMi/3smNcrBCc=
+X-Google-Smtp-Source: AGHT+IHFTh4QPCHLqYQqSQVx7EWaLp6Y5TlpjfC3lTUuw+N9BykWXKF0iN1qJk77JxXDjEBKXKGF6A==
+X-Received: by 2002:a05:600c:214a:b0:434:9d3c:31ec with SMTP id 5b1f17b1804b1-434a4e988b5mr44514395e9.10.1732682043182;
+        Tue, 26 Nov 2024 20:34:03 -0800 (PST)
+Received: from toolbox.. ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434aa7e256esm7503415e9.32.2024.11.26.20.34.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Nov 2024 20:34:02 -0800 (PST)
+From: Christian Hewitt <christianshewitt@gmail.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-amlogic@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH v2] arm64: dts: meson: remove broadcom wifi compatible from GX reference boards
+Date: Wed, 27 Nov 2024 04:33:58 +0000
+Message-Id: <20241127043358.3799737-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.200.121\))
-Subject: Re: [PATCH] WIP: arm64: dts: meson: drop broadcom compatible from
- reference board SDIO nodes
-From: Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <027767d4-89e7-4665-b840-294a84a89869@linaro.org>
-Date: Wed, 27 Nov 2024 08:05:33 +0400
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <2B479B54-2784-4D75-BEE8-23A52EEFBF17@gmail.com>
-References: <20241124083453.900368-1-christianshewitt@gmail.com>
- <027767d4-89e7-4665-b840-294a84a89869@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-X-Mailer: Apple Mail (2.3826.200.121)
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-> On 24 Nov 2024, at 8:11=E2=80=AFpm, Krzysztof Kozlowski =
-<krzysztof.kozlowski@linaro.org> wrote:
->=20
-> On 24/11/2024 09:34, Christian Hewitt wrote:
->> Drop the Broadcom compatible and use a generic sdio identifier with =
-the Amlogic
->=20
-> 1. Heh, what? Why? This is not really explained and does not look
-> sensible at all.
-> 2. What is "generioc sdio identifier"?
->=20
->> reference boards. This allows a wider range of Android STB devices =
-with QCA9377
->> and RTL8189ES/FS chips to have working WiFi when booting from the =
-reference dtb
->=20
-> Please wrap commit message according to Linux coding style / =
-submission
-> process (neither too early nor over the limit):
-> =
-https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/sub=
-mitting-patches.rst#L597
->=20
->=20
->> files. There is no observed impact on Broadcom devices.
->=20
-> So how does it allow wider range of devices to have working wifi?
+Amlogic GX reference boards shipped with Broadcom SDIO modules and
+this is described in device-tree files. These boards are rare, but
+their device-trees are commonly used to boot no-name Android STB's
+that closely follow the vendor reference design. For cost reasons
+these boxes often use non-Broadcom RTL8189ES/FS and QCA9377 SDIO
+modules, and for availability reasons the chipset/module used can
+change between batches of the same device.
 
-Sending patches while recovering from a 100km Triathlon last weekend
-resulted in some formatting and submission mistakes - sorry for that :(
+Testing shows the only requirement for WiFi driver probe and load
+is presence of the correct 'reg' value, and all Amlogic boards use
+the same <1> value. Removing the 'brcm,bcm4329-fmac' compatible
+allows a wider range of Android STB boards to boot from reference
+design device-trees and have working WiFi. Also convert the 'brcmf'
+node name to a more generic 'sdio' to reflect we are not always
+using the Broadcom brcmfmac driver now.
 
-I=E2=80=99ll send a v2 shortly with reduced subject/line length and a =
-better
-description of the change and reasoning.
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+Changes since v1:
+- correct and reduce subject/description line length
+- provide a better explanation of the change
 
-Christian=
+ arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi      | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts  | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dts  | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts        | 3 +--
+ arch/arm64/boot/dts/amlogic/meson-gxm-q201.dts        | 3 +--
+ 6 files changed, 6 insertions(+), 12 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
+index 52d57773a77f..1736bd2e96e2 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
+@@ -178,9 +178,8 @@ &sd_emmc_a {
+ 	vmmc-supply = <&vddao_3v3>;
+ 	vqmmc-supply = <&vddio_boot>;
+ 
+-	brcmf: wifi@1 {
++	sdio: wifi@1 {
+ 		reg = <1>;
+-		compatible = "brcm,bcm4329-fmac";
+ 	};
+ };
+ 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts
+index c1470416faad..7dffeb5931c9 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p230.dts
+@@ -102,8 +102,7 @@ hdmi_tx_tmds_out: endpoint {
+ };
+ 
+ &sd_emmc_a {
+-	brcmf: wifi@1 {
++	sdio: wifi@1 {
+ 		reg = <1>;
+-		compatible = "brcm,bcm4329-fmac";
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dts
+index 92c425d0259c..ff9145d49090 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-p231.dts
+@@ -21,8 +21,7 @@ &ethmac {
+ };
+ 
+ &sd_emmc_a {
+-	brcmf: wifi@1 {
++	sdio: wifi@1 {
+ 		reg = <1>;
+-		compatible = "brcm,bcm4329-fmac";
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
+index 7e7dc87ede2d..b52a830efcce 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-p212.dtsi
+@@ -134,9 +134,8 @@ &sd_emmc_a {
+ 	vmmc-supply = <&vddao_3v3>;
+ 	vqmmc-supply = <&vddio_boot>;
+ 
+-	brcmf: wifi@1 {
++	sdio: wifi@1 {
+ 		reg = <1>;
+-		compatible = "brcm,bcm4329-fmac";
+ 	};
+ };
+ 
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts
+index d4858afa0e9c..feb31207773f 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-q200.dts
+@@ -72,8 +72,7 @@ external_phy: ethernet-phy@0 {
+ };
+ 
+ &sd_emmc_a {
+-	brcmf: wifi@1 {
++	sdio: wifi@1 {
+ 		reg = <1>;
+-		compatible = "brcm,bcm4329-fmac";
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-q201.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-q201.dts
+index d02b80d77378..6c8bec1853ac 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-q201.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-q201.dts
+@@ -21,8 +21,7 @@ &ethmac {
+ };
+ 
+ &sd_emmc_a {
+-	brcmf: wifi@1 {
++	sdio: wifi@1 {
+ 		reg = <1>;
+-		compatible = "brcm,bcm4329-fmac";
+ 	};
+ };
+-- 
+2.34.1
+
 
