@@ -1,179 +1,141 @@
-Return-Path: <devicetree+bounces-124848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-124851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA7529DA307
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 08:26:01 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F5EE9DA32F
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 08:36:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 547E8B24E72
-	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 07:25:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3D4F4B22EB3
+	for <lists+devicetree@lfdr.de>; Wed, 27 Nov 2024 07:36:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E338B149E0E;
-	Wed, 27 Nov 2024 07:25:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF2431714B7;
+	Wed, 27 Nov 2024 07:36:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dkPR3K+q"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VmN1+zrR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B92F51114;
-	Wed, 27 Nov 2024 07:25:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 692521547C0;
+	Wed, 27 Nov 2024 07:36:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732692354; cv=none; b=KfC8MEamWC0hyt96ECPK2uWzCoHACGzQbpkr1sCviyRKcTeqIK7IPdDTass2PARQWHbkgr1eFtYSba7p2R3iAY7UO6vV8i1anqKbfcYlNkvJ2mZ1E9ktpEyu1XYNirDbfFzFJ1lwMQuq6ivc4o2hH/cNo0z+jfDlRypa1s8oa78=
+	t=1732692984; cv=none; b=d7QX3JVnZhQzuygNngz5UVrFu6juZ7PeLdYskvYAlowtmVCAC/lHpkO0XfgOxZ551LiEfD4bJ6g7FvJdmNYZzyaiYO7CNaC7iK1B0X708VXqmItKQP7+dJNrTOqQBD8wm+Ksia8djNDyBrZhEuir3wzKiBDDdALrUFhWye5n3SM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732692354; c=relaxed/simple;
-	bh=pGn4kfUpOcmSqIS3vciAoVzfQoYoykNksqMjg/m4A7A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZV1h1UPSFkzrrXo/TmHGMBYHuL4bvkEvKDwZOIFOIFl2QRvlrh1ajIDkPF/MKxRuIOb3cKBHIO2xqh7BXqU4ePdtf0df0fYs5BfNwGL0aBCgD7arKCBjS7/9hsNY5etPHMAdoQ+XIKZk4t5L+cVVayj4YL+mh1mfuIiOXQAA1g4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dkPR3K+q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 908BFC4CECC;
-	Wed, 27 Nov 2024 07:25:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732692354;
-	bh=pGn4kfUpOcmSqIS3vciAoVzfQoYoykNksqMjg/m4A7A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dkPR3K+q9/8URcH8C1V9tbKnvOkEYNvce4wjGS+JjcSOtIg5zBrEcLGV/FjQpBoiI
-	 ipMIk0Tc4GMhmo6IlkpOsvurupAzoNNZHQEq+E7eCOQfXaC6JFVUstjXQkXMK4tukD
-	 sGMvEigQ0Ibn2NNbdGs+L3Q2e2/rJci+OmZXZjvLUYPBOE+I1Bp+4RXrhd1yBtCPdr
-	 YSXXYfuzl8PblXfiBkBASVJgPZHNHeJItzyM6T4Vxv+/ePAzlaPIhmJtK4GgqD/vqW
-	 edPmHNHnOp1pAjmOYklohnnAMTkXUVLMa+XSIFzxtaSpP4RBlyV0DUOTJkx65xXVwN
-	 Skzfg2Zxdd5Zg==
-Date: Wed, 27 Nov 2024 08:25:50 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Sandor Yu <Sandor.yu@nxp.com>
-Cc: dmitry.baryshkov@linaro.org, andrzej.hajda@intel.com, 
-	neil.armstrong@linaro.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, 
-	jernej.skrabec@gmail.com, airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com, 
-	vkoul@kernel.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
-	mripard@kernel.org, kernel@pengutronix.de, linux-imx@nxp.com, oliver.brown@nxp.com, 
-	alexander.stein@ew.tq-group.com, sam@ravnborg.org
-Subject: Re: [PATCH v19 3/8] dt-bindings: display: bridge: Add Cadence
- MHDP8501
-Message-ID: <b6m4c5qbjbwdwuycunhoe6hj3akmqb257havourydry4wlrmkn@hmzkyodyqz4n>
-References: <cover.1732627815.git.Sandor.yu@nxp.com>
- <e495a40a0add052d4f8cdeb4a81ea7408cdccaf6.1732627815.git.Sandor.yu@nxp.com>
+	s=arc-20240116; t=1732692984; c=relaxed/simple;
+	bh=BZelmbIiuRBBJk0vXPrcjah2RN4zEn1GPubWkHVurvk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=oey8OMcdfQxm+TLH21p+uCpExsNfkISkp9DSagMN5QRSDT1yhPD2AZ/IpGz/U4muT6yhU4evtzGF0JHrAR20z28U987KadAE6oAikqbzXr6vf3l7t1ngmatFC7XGshIi6LoXqWanxDZpcdwjnezejHsooRvmAgIPpmiRRIObULg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VmN1+zrR; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-2124a86f4cbso58136725ad.3;
+        Tue, 26 Nov 2024 23:36:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1732692983; x=1733297783; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Fy8cPLCOovByR7duSkHnLMlAAw1x2JYUBLYA70d2EL8=;
+        b=VmN1+zrRpnXRPxYM4O35A3GJRjYJLdyQc3Mbge+x5xQUcLMDsoT4aL7O0BXj/K5IDr
+         Lj3WNUq+tSl1cck84IOdTeR0H+Tsl5GfKBpb98fIY+uhBYMoSC9iRKkg5vXjEKHr1/I4
+         wAo1zx6dlDMt6dYoXFFMu/jQhBp9WdX5AX0TUZaFSNqcG6YYriqcCXu0+1UozT47oyoA
+         KfOnAwsNY9uKKC8jz4NIv9kiYGa8lRsSJ1Jw18IaJKTVbL4dOyw1Nbr0RCtyv6FyE8G5
+         tETi7rXsU4Ft+JELNov+hNBL59PicrYn5Oegaea7BAsvehcBVediKW84t2AzVoblFRmf
+         dlmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732692983; x=1733297783;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Fy8cPLCOovByR7duSkHnLMlAAw1x2JYUBLYA70d2EL8=;
+        b=M4g3j6/7XzmbpgKIHkMMwUPUXeisVZTFQtZHpScrcblnFkALVep/bRYJhVAvvaRsS3
+         +z5+2/roBtBWkfQohSghCfEynlq4ABNSdUuUN18VDnA09qhdZwUfU+bKhvS5Fpsa/iy1
+         mlDEqurQDFC98UADBy1p11nZXC+GXWPrJTD6JDatABMXJRFl2+OtA5UqKSDsvnTm8XUT
+         02hRAqUBUUSFxHz+kEm31IIYfkX1CGNryfvUpthXQhs/kUDX8HwMKeC1S8NAKElt8jaZ
+         fr6TlHXHdUrvrGG7TK5pCksAwreVaq8uMpFEvKxl3Y44wQ+nejvBDBKatsMTMRn32Yub
+         QoGA==
+X-Forwarded-Encrypted: i=1; AJvYcCUgowxMV4dKzZcPYbBDptKznaJu70tadqfd88DsCcl/L1ZXn4z2AZDwTFm8/LgKHG3mUQ3AjHXE+yu4Qdmj@vger.kernel.org, AJvYcCXoCrde0WFM8tS2UCRdRnN4/ojyE8SQlVQvGohZ16+CXLjzFOxxmsTdrxOM0HG2aGvEwvPmGuwX6IT9@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyd1HIBd5c96DLQW38io72/+X2SZcJtj82049umRUhxw2TBd9vh
+	kpxkxnZH9UOpv2LcIJi4R9Dz0oasiVuByuItUrkklHsi2htHp0s5
+X-Gm-Gg: ASbGncvSuoNU4yO9+wSIesD0ipNTNP98rv+iE+oAHTyhYfdlsXm6Dtfeu6vFFCDGfhH
+	sFeKd/3kmkFx4Wk6mJ9TztNFRddVFmkjP0eO/Qd2gwNtw8miF4G0vijocMNSPvBh1jXkcP0dXBx
+	sa1aGsf/WcnMyKFZ9g6kwslcLi/OhF5JR0Q1fem0J9bcidwDmMv0uSV2vd7rqb3nO5IQWKpVQx/
+	ioyIU7oWx7Av5wiS6tC34v4SgIN3O0ukeFJgXe0x7EBc8kXvMWcT5GFben6o0RUhN755X+yLhCl
+	MkkuvmNC4PF2nKhHIUP3oHd0lUCtiHlLs+7+eOA/audUE8PZxywK1e5BfoX049y9
+X-Google-Smtp-Source: AGHT+IHNTUQ81YL/jM93lEIywiHdpzGHp07oN4iZZhDd/1Fq5BjO2kzmAdEFYgPuCUXoBa1FrIKwmg==
+X-Received: by 2002:a17:903:98e:b0:212:3f36:d985 with SMTP id d9443c01a7336-21501e5c1e9mr30168905ad.53.1732692982407;
+        Tue, 26 Nov 2024 23:36:22 -0800 (PST)
+Received: from jason-System-Product-Name.dhcpserver.bu9bmc.local (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2129db8c645sm96597095ad.16.2024.11.26.23.36.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Nov 2024 23:36:21 -0800 (PST)
+From: Jason Hsu <jasonhell19@gmail.com>
+X-Google-Original-From: Jason Hsu <jason-hsu@quantatw.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	joel@jms.id.au,
+	andrew@codeconstruct.com.au,
+	patrick@stwcx.xyz,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Cc: yang.chen@quantatw.com,
+	jerry.lin@quantatw.com,
+	Jason Hsu <jason-hsu@quantatw.com>,
+	Jason-Hsu <jasonhell19@gmail.com>
+Subject: [PATCH v5 0/2] Add Meta(Facebook) Ventura BMC(AST2600)
+Date: Wed, 27 Nov 2024 15:34:07 +0800
+Message-Id: <20241127073409.147714-1-jason-hsu@quantatw.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <e495a40a0add052d4f8cdeb4a81ea7408cdccaf6.1732627815.git.Sandor.yu@nxp.com>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Nov 26, 2024 at 10:11:48PM +0800, Sandor Yu wrote:
-> Add bindings for Cadence MHDP8501 DisplayPort/HDMI bridge.
-> 
-> Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
-> ---
-> v18->v19:
-> - move data-lanes property to endpoint of port@1
-> 
-> v17->v18:
-> - remove lane-mapping and replace it with data-lanes
-> - remove r-b tag as property changed.
-> 
-> v16->v17:
-> - Add lane-mapping property
-> 
-> v9->v16:
->  *No change
-> 
->  .../display/bridge/cdns,mhdp8501.yaml         | 120 ++++++++++++++++++
->  1 file changed, 120 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/cdns,mhdp8501.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8501.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8501.yaml
-> new file mode 100644
-> index 0000000000000..24abd8447a28c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8501.yaml
-> @@ -0,0 +1,120 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/bridge/cdns,mhdp8501.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Cadence MHDP8501 DP/HDMI bridge
-> +
-> +maintainers:
-> +  - Sandor Yu <Sandor.yu@nxp.com>
-> +
-> +description:
-> +  Cadence MHDP8501 DisplayPort/HDMI interface.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - fsl,imx8mq-mhdp8501
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +    description: MHDP8501 DP/HDMI APB clock.
-> +
-> +  phys:
-> +    maxItems: 1
-> +    description:
-> +      phandle to the DP/HDMI PHY
-> +
-> +  interrupts:
-> +    items:
-> +      - description: Hotplug cable plugin.
-> +      - description: Hotplug cable plugout.
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: plug_in
-> +      - const: plug_out
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description:
-> +          Input port from display controller output.
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description:
-> +          Output port to DisplayPort or HDMI connector.
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: /schemas/media/video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              data-lanes:
-> +                $ref: /schemas/media/video-interfaces.yaml#/properties/data-lanes
+Add Linux device tree entry related to Meta(Facebook) Ventura specific
+devices connected to BMC(AST2600) SoC.
 
-Drop, not needed.
+---
+v1:
+    1. Create ventura dts file.
+    2. Add commit msg.
+    3. Use format-patch to generate patch.
+    4. Add subject prefixes matching the subsystem.
+---
+v2:
+---
+    1. Modify email content.
+v3:
+---
+    1. Add mail list.
+v4:
+    1. Apply git send-email --thread option.
+    2. Sort nodes in the dts alphanumerically.
+v5:
+    1. Run scripts/checkpatch.pl and fix reported warnings.
+    2. Remove unnecessary 88E6393X CONFIG FRU.
+---
+Signed-off-by: Jason-Hsu <jasonhell19@gmail.com>
 
-> +                minItems: 4
-> +                maxItems: 4
-> +                description: Lane reordering for HDMI or DisplayPort interface.
+Jason Hsu (1):
+  ARM: dts: aspeed: ventura: add Meta Ventura BMC
 
-Blank line
+Jason-Hsu (1):
+  dt-bindings: arm: aspeed: add Meta Ventura board
 
-> +            required:
-> +              - data-lanes
+ .../bindings/arm/aspeed/aspeed.yaml           |   1 +
+ arch/arm/boot/dts/aspeed/Makefile             |   1 +
+ .../aspeed/aspeed-bmc-facebook-ventura.dts    | 877 ++++++++++++++++++
+ 3 files changed, 879 insertions(+)
+ create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-ventura.dts
 
-Blank line
-
-Best regards,
-Krzysztof
+-- 
+2.34.1
 
 
