@@ -1,116 +1,134 @@
-Return-Path: <devicetree+bounces-125254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125255-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A49349DB525
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 10:58:30 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD2B19DB55C
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 11:09:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69BD428237A
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 09:58:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 205FDB21F94
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 10:09:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC04315746F;
-	Thu, 28 Nov 2024 09:58:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EB6F19885F;
+	Thu, 28 Nov 2024 10:08:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="subYZv/q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ILR4SOSJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C648152E0C;
-	Thu, 28 Nov 2024 09:58:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1923C192D66;
+	Thu, 28 Nov 2024 10:08:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732787906; cv=none; b=qeqfbgJJNeIVVAbSrnr9tqiruBcSMHgU5piOFHFYV6Nw7/mchhfWPnFs540tegNPFHG8VNEeAu1itotZDoiLoQl49G19r2cQK2WvdWDVgKekv4w6B1qvLJ7lQmLEuAkYmoNKgLb3ngo807iZWobxi/Ftexmn9N/jHX8chy88tJ8=
+	t=1732788487; cv=none; b=dbvjtm8p/Rc1xvkbLWIRV7asCBS4G5gR7O9K7e2yajogCW2CQVGUW/aiT8DrHH5Phb7lPxzrU7Yoinv6OHypGL+TszCNlowJrMhXwweXx++Kit9DS6ow1aGvNuLn3Hy/cKAwvUPjSqQ4ANM09v9FbL/6yf8+8R5wDiDe8YlndfE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732787906; c=relaxed/simple;
-	bh=0UnuoR0sx0jhOSSR0WO8rJAQUivimvP18NgQ33LMlb8=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ak+5i11fGfGwK6hHZn2kB/q8Q3r4PSDtDYQfYtXWlblUlam2cOE3gKEjoJMhkTALdIlrUM1bVuYDZypblHyTvFcIJ1aPh6Fx7rzprDRuGnDS3TxJvk3jmg3FEJIRu6nu/MRmZ38+WtD/+F6do9x6QXzSNtAUrhLmQgU66zGpx3E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=subYZv/q; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 4AS9wFd1733194
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-	Thu, 28 Nov 2024 03:58:15 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1732787895;
-	bh=lzEelM7jIbS2O9RdoknMU1gIWK7OayEz8i4ohIB16uQ=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=subYZv/qrk2LUGil3IpxfTnfzEpgw5bG3kX+ZLh8QbiA9EsKKfSdnhYZ66yXkdHqL
-	 4A9j0ukm0FN82koccm6XExL2PUyg+8DbR2yXp2eI92sy1lUUqNfIfE30Qz8yDMlMhl
-	 mAildoxYj/KpL4hajhTajmYrdXF+2T4Sl3+5hJ7Y=
-Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4AS9wFFW030473;
-	Thu, 28 Nov 2024 03:58:15 -0600
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 28
- Nov 2024 03:58:15 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 28 Nov 2024 03:58:14 -0600
-Received: from localhost (uda0492258.dhcp.ti.com [10.24.72.81])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4AS9wDAi126610;
-	Thu, 28 Nov 2024 03:58:14 -0600
-Date: Thu, 28 Nov 2024 15:28:13 +0530
-From: s-vadapalli <s-vadapalli@ti.com>
-To: Enric Balletbo i Serra <eballetb@redhat.com>
-CC: s-vadapalli <s-vadapalli@ti.com>, Nishanth Menon <nm@ti.com>,
-        "Vignesh
- Raghavendra" <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Dasnavis Sabiya
-	<sabiya.d@ti.com>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am69-sk: Add USB SuperSpeed support
-Message-ID: <wbsg3fmco6rwjj7vtiqtqv7trfjor73j7rjx7efnlafo4pz4bc@awixm2iygd55>
-References: <20241126-am69sk-dt-usb-v1-1-aa55aed7b89e@redhat.com>
- <2nuncc5rscu6h74ylaiu6yozg34aoigaj5d4uzvdtolt5q7bmv@6hacpxyb2532>
- <CALE0LRtUN2N_Z05jH_BMSg7yvirSRob0pSErmQxTu8AatmODgw@mail.gmail.com>
- <CALE0LRu-Sx5oTVNY3hm+Msu-zb04a7_ZD+r3xF1eRfR_WtK0VA@mail.gmail.com>
+	s=arc-20240116; t=1732788487; c=relaxed/simple;
+	bh=PWqBaAYspOm6oK1V36m2X/LXOKqrijcGRfviMI8GXB8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=q9DSB4csob25s6sbAmTkNG0c2xp4NKOyfmWILyQxDDuhH9UZmQuuDZ8Fj6Vn+CQWC6q3zBLZlSeJmfRPBVgM5mA7FgZIak2GmVQUTcNXJGll3nZP/qUw/ZbpHp4rF8HCtEQFey4HkNHun6lUI7v/xpv/It2YWAG0SX6WzINoRTk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ILR4SOSJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9DECC4CED3;
+	Thu, 28 Nov 2024 10:08:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732788486;
+	bh=PWqBaAYspOm6oK1V36m2X/LXOKqrijcGRfviMI8GXB8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ILR4SOSJcIc74jRoVWUfA/DriYnxa8mfUFX3mewVJcDtvd8k9WXvM71vnQD/XjH5G
+	 wsYeQF3UWlxcJfudkIWVL6TMlRalEh4CsSYYq1WxaZ4PWZhnY1hdWHBzf1MrrL9Cgp
+	 byO/aNCO2Tqk8UYSo77R/D+U81yLI0Mc6fPNKgos8Jp4ZdQ7umdf6Ec2JJw50/Q827
+	 9KTgxWTQAFLvtCVl+/XTV+CD3to0CBq6qLSRTgjDBBCZFYpRLghtIw4Dpdwin77UC8
+	 UErz0IqdT8EbU9rYW2DMx0CDI5jAAhVhC5MBpaOva8AOKM1aSSffqixnlKz9ulh5kb
+	 mMaLpoMScxUyg==
+Message-ID: <3b0bafb5-602b-4d3e-a944-b290f9d011c7@kernel.org>
+Date: Thu, 28 Nov 2024 11:08:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <CALE0LRu-Sx5oTVNY3hm+Msu-zb04a7_ZD+r3xF1eRfR_WtK0VA@mail.gmail.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/2] dt-bindings: power: supply: Add STC3117 Fuel Gauge
+To: Bhavin Sharma <bhavin.sharma@siliconsignals.io>,
+ "sre@kernel.org" <sre@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>
+Cc: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
+ "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20241127151953.29550-1-bhavin.sharma@siliconsignals.io>
+ <20241127151953.29550-2-bhavin.sharma@siliconsignals.io>
+ <3eb06a70-cafb-4d89-aa68-524ec91e3850@kernel.org>
+ <68e7f5cf-ff62-4184-8bf1-6338dc44fd2d@kernel.org>
+ <MA0P287MB11788D277E79E03B6C7E4126F2292@MA0P287MB1178.INDP287.PROD.OUTLOOK.COM>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <MA0P287MB11788D277E79E03B6C7E4126F2292@MA0P287MB1178.INDP287.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Thu, Nov 28, 2024 at 10:47:42AM +0100, Enric Balletbo i Serra wrote:
-> Hi,
-
-[...]
-
-> So I changed the dr_mode to otg instead of host and tried to configure
-> a usb mass storage gadget but unfortunately didn't work, but this
-> could be a driver problem, I got the following error
+On 28/11/2024 10:22, Bhavin Sharma wrote:
 > 
->   UDC core: g1: couldn't find an available UDC
+>> Explaining what you asked:
+>>
+>> Some of these are from monitored-battery. Sense resistor should be
+>> separate property. But different question is about missing resources,
+>> like supplies (VCC) and interrupts. Just look at datasheet.
 > 
-> As the devicetree should describe the hardware, and as far as I can
-> see it should support the type-c port act as a gadget, I'm fine with
-> changing the dr_mode, unless anyone have more information about this,
-> the thing that makes me think a bit more is that, in the TI kernel
-> this is set to host, so I'm wondering if I'm missing something or is
-> just that was never tested.
+> since battery itself serves as the power supply for fuel gauge no additional supplies are required. 
+> 
+> Regarding interrupts yes, datasheet specifies an alarm pin that signals low State of Charge or
+> Voltage conditions. However, I haven’t incorporated interrupts in the driver to handle this. Should I
+> list the alarm pin as a resource in the device tree (or relevant configuration) even if it’s not 
+> implemented in the driver yet?
 
-Are all interfaces (Type-A and Type-C) functional as Host when the
-dr_mode is set to "otg"? (Do USB devices connected to the interfaces
-enumerate on AM69-SK?) If yes, then it could be a DIP Switch setting
-that is related to OTG mode of operation or a USB-C Mux that needs to be
-configured.
-
-Regards,
-Siddharth.
+Yes, bindings should be complete.
+Best regards,
+Krzysztof
 
