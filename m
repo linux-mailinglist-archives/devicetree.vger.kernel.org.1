@@ -1,225 +1,168 @@
-Return-Path: <devicetree+bounces-125233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EAF59DB45B
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 09:56:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08FD69DB46C
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 10:01:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 459031620D6
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 08:56:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A3FA8163657
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 09:01:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87AAE14F9FA;
-	Thu, 28 Nov 2024 08:56:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A35DE14E2DA;
+	Thu, 28 Nov 2024 09:01:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sQF/OHvS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lmcgnCHu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5870213FD86;
-	Thu, 28 Nov 2024 08:56:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D814752F88;
+	Thu, 28 Nov 2024 09:01:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732784162; cv=none; b=dP7uUoJ0U/+g8nvR2up43u1C+tGu1nYjK8lgZUZqmIz3MFk9c28mkcPYfv7qEwsHShjvNzemudf0yRWm/toE1d0mAMPsQMCnhGznag60jpwPfsXV9sslVzwE/jeff/Y3acjlPCNKmbe+mEtsuApx9kFQDutLrS/m8DVueRhjWEI=
+	t=1732784494; cv=none; b=RR6mA8aJN2Ua8N0+ngagMV94mm5f+DN95rNvohhHZkWOxdmY+kNKB24rBtmis1/NU2aCdeAAf+QKy99vdNwUXbEUndv3p+0OKIAEVqFoTTgmhcqD+GEfGPWxo5maa6H1NTdNbDh9n6NWXV6HKd7w1Ix9KmPvEf5DJgy+OO7P3d0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732784162; c=relaxed/simple;
-	bh=YWa86xpU5GVMy0wLVUVGSqUpxiLDbWoXZJ2EvOhxffY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DPYqdLMHZOZkS5G6A8fNDgEy9NJpRtPigRtay0xIBkUpf+oKir6CDUX2QkP5m1Ne4tsBATh2uIgObcg9LKuUt62Km44XvPM5Gm0TVZgD4S9qMp1HO7hKuW7oeUaCoCf/jfwISjUShtIP9Du6L6bFWKH989pAUjad29+rsVOVN1I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sQF/OHvS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07701C4CECE;
-	Thu, 28 Nov 2024 08:55:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732784161;
-	bh=YWa86xpU5GVMy0wLVUVGSqUpxiLDbWoXZJ2EvOhxffY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=sQF/OHvSHCEEOQaM3QM2NWPCDZjo1tZesMOhNWaXpBqv5mW3bd+BqKbS65R3TYa3k
-	 1tuUWq9aYhXntmlzTLWRXQYPIdiLM0kNqMWVZPkRmikA4CSGpBnhTAy5fbGZ3PGuho
-	 YjZiPA5k4l2Zth+vDmTsmWlePh1HJ9rGHhLH+bW55CwP7M718vGjXn8+WbGDglmZkW
-	 QczYopAbYD42DObDvoxUtz5dz60enHjLiD/jrYb5+EZkvmiXftPNSAezvveSSG3EqA
-	 Y2VvezGGNMzcHFE9kgo9SUrkTFHh39zJopMjxmI2E8UI4oshJNNg3QiAX8OsEuuymN
-	 4c6Ca4x2hGDQw==
-Message-ID: <057577e0-a0e6-453c-8e14-13fc078d99a6@kernel.org>
-Date: Thu, 28 Nov 2024 09:55:57 +0100
+	s=arc-20240116; t=1732784494; c=relaxed/simple;
+	bh=tCgJB+cRsC3uIKktRkpoCoPQuGPMLOY2ZbaYLoeh15E=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=Dd66t24QmRqk3KCtIv/PBsOaNixAPKlBG+uGb+QaaZ3REFPzmpNQO4g6MMUoLTtD42kEqjc6vnCK+BZrrrc7X/f6ZZ+aJQy6pY8Qilqmp9Y5YBpzRtZgIkij4uQN+9N1HdzpSTBUUQmIZzckgB7VdJZgJSudi4Z9csOWF9YNqzc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lmcgnCHu; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-53df1e063d8so610781e87.3;
+        Thu, 28 Nov 2024 01:01:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1732784491; x=1733389291; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kjTtkWu0bnm1QLBvUjT3NH9Dn5DWpbeoLUOPvhQvgAU=;
+        b=lmcgnCHu6LqIxBFQv68QU4iHV+99j2Ym/ukJKrFREsOAQ1n/SoycqjXrE5AUC2wXYb
+         Ob82cJZxjYwwenHQzy1Qcf6nGEwZmTFh0XpJzyju46MX7fx1blqfpttLCnjfGLxagMcU
+         Zjj3WIPeH/lDRe7raBCi7Qv49MircUYtZhcF/PsEnGYHhyrf0PR2htRZimelj7xslHHS
+         DkzGgkTJJyKQrDSlU1WUv5fPxNAC4uItn/0j3UNKduJaV31nojmDmDRexcGM5ONpHC8C
+         UH5g9rrbYImK/pNzkERMX1iYwBPVYRccTDRwCYYeuGT/WlIiH7OYw2nOP1cCj14qIB60
+         QiHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732784491; x=1733389291;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kjTtkWu0bnm1QLBvUjT3NH9Dn5DWpbeoLUOPvhQvgAU=;
+        b=If5HLN/sAC7Xgvko+MFBhuVbQj3efeCe8osXtzFp/80KbNDR/bhd7sZBPR6+YOjjcp
+         TMax0+2huf3p3yBl308biywuGnFYpha1MQU3iNstfeazB69D+S1B7Kt2jLvBEbfqHNGH
+         U00pBw+8ansU1qc60ss1c4emFocQ6x7Rn9X6IXSEjSNbSQ/bPBFpo5id45vGuNyBB3k7
+         xdoXCZV+sQC0v6HJtIwPgYf86UtNIwtbAuygAg0Owj7BllYd29vVN8SHwNPAZDkJPdYA
+         RkBE6npzOzT9c+uvmbG86L3ktCmwJbzgVlW6jqMMfRXVyrqjQi/xb0CFnNXbZMu7f7Rr
+         9vWw==
+X-Forwarded-Encrypted: i=1; AJvYcCUytQQBxlCnp0CyT5t09vqAa9TAvKRbCHeVX5itgo7BAqx1bBheNVJln4yBivIZI+N8JBT0I+bi8noZ@vger.kernel.org, AJvYcCWCEMSAFR0uH5FNVAkU69lHyDpAS1M4dC6ue9cHRx7dmxD3J4JCQYc1bVlT82hpiqPSi66RmESC6vvb@vger.kernel.org, AJvYcCWcijPuSSg7Yo9aY5gZGZyuw+ZDjKG0mgq55x0ayJkCRJUkY6RfICaMRkyvaRp9I6B9I5WTu9lPDICANccN@vger.kernel.org
+X-Gm-Message-State: AOJu0YybLQ5rDEci7ogIAxuK3o+cVcBRyr22Q8AjE+Ij9vLZ4Jk6nwVq
+	MTAhz9yF3fwMcjTgPnxvtdEMdMV3o7knRfEpgjUP7j/mKBUUdpHT
+X-Gm-Gg: ASbGncv3tOc8C7iaZyQ4tyv79VOna7F8oDfYGd7CvSGrZe1OuhGelnx9vD/zKekTBOi
+	3cBHLEjfEj7KKmRQQGkAlchCmrLjD6RJODTayBhNCV03WADAq/Gg0Pzj3ssiT5mr0ZSLAOsa+UT
+	yeknoNvhEjVrsJma8MRZsBLW7TwH8fyWXQO4xlyLcHdeX4RK5HjXVa1N3wW/3ZosdXfEuCuPQXe
+	tFHRahp8VQq8dAdeENktSG5i1yZwO7/jx1hsaW0zBN42277F6mV
+X-Google-Smtp-Source: AGHT+IHngURtjvb5FulsYPcB24f20uEabO31eosgAlr/GoFtLwVBk1igg+xWXPDB1RSU9Td3ZXWofg==
+X-Received: by 2002:a05:6512:3c9c:b0:53d:e5dc:eac7 with SMTP id 2adb3069b0e04-53df011267cmr4039824e87.55.1732784490621;
+        Thu, 28 Nov 2024 01:01:30 -0800 (PST)
+Received: from mva-rohm ([213.255.186.46])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53df64964efsm113193e87.194.2024.11.28.01.01.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Nov 2024 01:01:28 -0800 (PST)
+Date: Thu, 28 Nov 2024 11:01:22 +0200
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/7] Support ROHM KX134ACR-LBZ
+Message-ID: <cover.1732783834.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] power: supply: Add STC3117 fuel gauge unit driver
-To: Bhavin Sharma <bhavin.sharma@siliconsignals.io>,
- "sre@kernel.org" <sre@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>
-Cc: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
- "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20241127151953.29550-1-bhavin.sharma@siliconsignals.io>
- <20241127151953.29550-3-bhavin.sharma@siliconsignals.io>
- <be00dec6-d598-4dea-b608-51ea67b37084@kernel.org>
- <MA0P287MB1178B165FAFE680FDBD14301F2292@MA0P287MB1178.INDP287.PROD.OUTLOOK.COM>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <MA0P287MB1178B165FAFE680FDBD14301F2292@MA0P287MB1178.INDP287.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-On 28/11/2024 09:44, Bhavin Sharma wrote:
-> Hi Krzysztof,
->  
-> Thank you for your review and feedback.
->  
->>> +struct stc3117_data {
->>> +     struct i2c_client       *client;
->>> +     struct regmap           *regmap;
->>> +     struct delayed_work update_work;
->>> +     struct power_supply     *battery;
->>> +
->>> +     u8 SOCValue[16];
->>> +     int CC_cnf;
->>> +     int VM_cnf;
->>> +     int CC_adj;
->>> +     int VM_adj;
->>> +     int AvgCurrent;
->>> +     int AvgVoltage;
->>> +     int Current;
->>> +     int Voltage;
->>> +     int Temp;
->>> +     int SOC;
->>> +     int OCV;
->>> +     int HRSOC;
->>> +     int Presence;
->>> +     int Battery_state;
->>
->> That's some Windows coding style... You need to clean up everything here
->> to match Linux Coding style.
->  
-> Could you clarify what specific changes are required here to align with the Linux
-> coding style?
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="TzEIvRldgEISf33v"
+Content-Disposition: inline
 
 
-Entire. Go one by one: "Breaking long lines and strings" - not
-implemented. "Naming" - not implemented. Then go with every point. You
-are making here some sort of shortcut - ignoring coding style, not
-reading it and insisting on me to provide you exact things to change.
-No, that's way too many things. You are supposed to read the coding style.
+--TzEIvRldgEISf33v
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->  
-> I am not sure what exactly needs to be changed here.
->  
->>> +     data->battery = devm_power_supply_register(&client->dev,
->>> +                                                &stc3117_battery_desc, &psy_cfg);
->>> +     if (IS_ERR(data->battery))
->>> +             dev_err_probe(&client->dev, PTR_ERR(data->battery), "failed to register battery\n");
->>> +
->> You ignored (again!) received comments. In multiple places. Go back to
->> previous email and carefully read commetns.
->  
-> Sebastian suggested using dev_err_probe, while you mentioned using dev_err.
-> so what should i follow ?
+This patch series introduces support for ROHM KX134ACR-LBZ and
+KX134-1211 accelerometers.
 
+The KX134ACR-LBZ is almost identical to the KX132ACR-LBZ. Similarly the
+KX134-1211 is almost identical to the KX132-1211. The differencies
+visible to the driver are different g-ranges and the "Who am I"
+-identification register's values.
 
-No. That's not true. Read comments again. I am not happy that after
-pointing out you still insist and force me to re-iterate the same.
-That's my last reply in this matter:
+This series also converts the kx022a driver to use __cleanup - based
+scoped unlock operations.
 
-comment was:
-"return dev_err_probe(dev, PTR_ERR(stc_sply), "failed to register
-battery\n");"
+The last patch depends on the if_not_cond_guard() - which is not yet in
+iio/testing. All other patches should be working as they are.
 
-Where do you have "return" statement?
+Revision history:
+v2 =3D> v3:
+ - Drop applied reset delay time fix
+ - Drop the part converting the gts-helpers to use cleanup
+ - Add patch which gets rid of the lock+disable and unlock+enable
+   functions. This depends on not yet in IIO-tree if_not_cond_guard().
+v1 =3D> v2:
+ - Rebased on iio-fixes to avoid conflicts with queued fixes.
+ - Added the reset delay change to the series to avoid conflicts. Was
+   previously sent as an individual patch:
+   https://lore.kernel.org/all/ZzWfXbjaDkFnu_Jg@mva-rohm/
+ - Added support for kx134-1211
 
-What about all my other comments? You are supposed to reply inline and
-acknowledge each of such comment. That's the only way I believe you will
-really do what we ask you to do.
+---
 
-> 
->> One more thing:
->>  
->> Please wrap code according to coding style (checkpatch is not a coding
->> style description, but only a tool).
->  
-> Could you recommend an example driver from the kernel source tree that 
-> follows the expected coding style? This would help me ensure compliance.
+Matti Vaittinen (7):
+  iio: accel: kx022a: Use cleanup.h helpers
+  iio: accel: kx022a: Support ICs with different G-ranges
+  dt-bindings: ROHM KX134ACR-LBZ
+  iio: kx022a: Support ROHM KX134ACR-LBZ
+  dt-bindings: iio: kx022a: Support KX134-1211
+  iio: accel: kx022a: Support KX134-1211
+  iio: accel: kx022a: align with subsystem way
 
-
-`git log -- path` will tell give you the latest drivers..
-
-
->  
-> Best Regards,
-> Bhavin
->  
+ .../bindings/iio/accel/kionix,kx022a.yaml     |  11 +-
+ drivers/iio/accel/kionix-kx022a-i2c.c         |   4 +
+ drivers/iio/accel/kionix-kx022a-spi.c         |   4 +
+ drivers/iio/accel/kionix-kx022a.c             | 262 ++++++++++--------
+ drivers/iio/accel/kionix-kx022a.h             |   6 +
+ 5 files changed, 170 insertions(+), 117 deletions(-)
 
 
-Trim your replies and do not top-post. All this copied stuff below is
-making things just difficult to read.
-
-> 
-> 
-> 
-> 
-> 
-> 
-> 
-> ________________________________________
-> From: Krzysztof Kozlowski <krzk@kernel.org>
-> Sent: Wednesday, November 27, 2024 11:54 PM
-> To: Bhavin Sharma <bhavin.sharma@siliconsignals.io>; sre@kernel.org <sre@kernel.org>; krzk+dt@kernel.org <krzk+dt@kernel.org>; robh@kernel.org <robh@kernel.org>; conor+dt@kernel.org <conor+dt@kernel.org>
-> Cc: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>; linux-pm@vger.kernel.org <linux-pm@vger.kernel.org>; devicetree@vger.kernel.org <devicetree@vger.kernel.org>; linux-
+base-commit: a61ff7eac77e86de828fe28c4e42b8ae9ec2b195
+--=20
+2.47.0
 
 
-All this must be removed.
+--TzEIvRldgEISf33v
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
-Best regards,
-Krzysztof
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmdIMVQACgkQeFA3/03a
+ocVQ4QgAhHp0bdPb0TYtBVxsLolpz67ProoFs3RBK87sunp6sYCXvQqEmSyEcQMG
+abKu4A90rlU/s4RR+dJSKMzcbgifGve6eQKjPVVsFQX/FKVmJXO8qHiYXbJhhvFv
+ZwqMTFuFkhm8jC980UsM/DCkF0xU6Qe8jpZXK4XCg7tgonEio6KgadOq54dxGk6+
+CSg5Osj5P3Wplg30h6YjyaIfLq1acw3Ro5xog+qEakc5M8uZFzeX8I2TMw+cJ7xk
+QAF46AUyxywHCY04wXURPTWvHdPCB93JoMFoQ4EPtW8kkMb/ssQ77aAcE+LCnAvg
+VHrMZFObIxyI3/tdd4CxHXsdQEY88Q==
+=HMc5
+-----END PGP SIGNATURE-----
+
+--TzEIvRldgEISf33v--
 
