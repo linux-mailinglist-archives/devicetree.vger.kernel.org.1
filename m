@@ -1,293 +1,288 @@
-Return-Path: <devicetree+bounces-125184-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125185-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D2D49DB2EC
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 07:52:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84AF89DB2FB
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 08:04:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BE59CB20BE2
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 06:52:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C9E25B213D5
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 07:04:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FCAC145A09;
-	Thu, 28 Nov 2024 06:52:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1574813BC18;
+	Thu, 28 Nov 2024 07:04:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="In9BkK2P"
+	dkim=pass (2048-bit key) header.d=de.bosch.com header.i=@de.bosch.com header.b="YtEyQPm5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS0P286CU010.outbound.protection.outlook.com (mail-japanwestazon11011064.outbound.protection.outlook.com [40.107.74.64])
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2044.outbound.protection.outlook.com [40.107.20.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39696136349;
-	Thu, 28 Nov 2024 06:51:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.74.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F6C817C7C
+	for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 07:04:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.44
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732776720; cv=fail; b=qDFTNFnsDDjGbxqJFw7rcv9ycArwTbs5fdllURldK374gMffAFgStJQ+uZPc7GLCeurpFubPta1d558pnDt31VlxQkPHyc5IalmWqcZK7zHFbSTIQTZjF3K2Xb5hDgT9fwPE6bIf7Umy2A2F9f4fi+hZ0D51dfmtNfv0i7lBoH8=
+	t=1732777480; cv=fail; b=kUzWruzFUZDM/skmuc20MJF+XP6RSPj68kvWY1MY/CfCUv+Z+GkNO3YYdpf4MrdO87lnaSrI+4CxtdJx6yJCFt+jNT6BwsTye6m+bKn9Lwuo4kZw/Soqb6xggNvmzfnSZ/VsxYgqBN/1TgC9m0Q8l+LpeARaibOGA1Xu2vKM8cw=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732776720; c=relaxed/simple;
-	bh=eDbvdwBKrCsP3LamsSRO12Au1/kaKWjb7WAVabXu2iw=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=YV0ddO8TThXdzbaoKm502iYOv/hG8uIdfPKmAgvKE+I6r0dFdCA5iuI/7z+b0cdrrQ8J9Toa9HEXZ0ibDxzW54/E9QjWxgwHcgpXbVKwc2GKPs0n6TMR8EVTx1ZPX64Ak63/NkFACRzhQ/kcmyUoYyS49eg8fvJFX5YcaXDqSS0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=In9BkK2P; arc=fail smtp.client-ip=40.107.74.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+	s=arc-20240116; t=1732777480; c=relaxed/simple;
+	bh=sLkuAcAvDU5kFUzR/948MLegvW6mkK6N+/kC5Q0NOsY=;
+	h=Message-ID:Date:MIME-Version:To:From:Subject:Content-Type; b=Fia4WYlAePJgMsrGXTkYMYLspGh6uLILLGxqSK3wD4w/skFWhdEYDEdadugWoUw9cBHBY5IZD1pPzgTmdRYSA3AeHUc1c0Z9cLDvUT33tvUWiGTxwOSY7vP6UdlZr2KbCSMJCIEpQC6YJvreqnvzNCg7XC+hdoknanh6vCYHbxw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=de.bosch.com; spf=pass smtp.mailfrom=de.bosch.com; dkim=pass (2048-bit key) header.d=de.bosch.com header.i=@de.bosch.com header.b=YtEyQPm5; arc=fail smtp.client-ip=40.107.20.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=de.bosch.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=de.bosch.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=q3oYRE74NlongG1FR25WqgJ9Y9OlZozmTqrq+LSk+lZ6ueDTmiPitm2NW4JTc7NHyxSYUxTMsQdf8DGbZFohyEoFXfnrVQVX/nBsybLy1oYc93bZpIC5Obyu96gNgBVXWJ/c9i6GTJDjwK8pFRGjg1T/dsgg+2iPpqY2QlVg4vdydQex+rsqkztB5UBpzDgCXXgcD5ebK1Wxbnz3bGBuS1BJjvlKXAVdhCLNxETW95cm3VE4nE7mfmPmNQ1jmaBDRgiNt+YkO1C5ZlywEJGW4yohHfkC4nmD1/q6FhANjJml3E7iD0JycIHQoAAl9I4uEcLPDK+e4p7MoCY/06Hfeg==
+ b=KnhYqZ4p6AiyDSNLtOODPmxYL3walTZD4D+A0B7mytcqXGWwOYOfXwDTlWyMOktriaf07meFpzZqyEA5OpJTMN4S0Z8KCJnF6Za1xDEBOcWud0FGayl7uysZFm44Ys/TuN3u16kyLuQJH8fL+2PjCZbXR7XY5kqhfgx9dQ7CczAfPt6pvNZi+Np3aj3yLeU8dgY1dqvI1ssZN80faFeUsZh633jog1ZaZAuXCWORX3VbxStHuQix7L9hLoGkohiKn8RMfGJiC5an6kKKQRtVwH17TuOantmNksGORr4nLwxoHiba7OVWAsYPdUNOy0lUMAEcma9PBDHvUV7DgRIUcA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZmKW1O00EaTwx6W9Y1a3PRjvUso8v8BMB9Xa6o58Ftk=;
- b=UbGvYMN1ZCL0dxfQ+BD6P9O98yx+/s8/NOyGeAJy/YM0u4WZlYNjR313m+yswuWEN+szMs7K/UG/viF3rUAFs5bv/gv9znJNLwf33g/DQYAjI2CQOCb+ohSRVpk0ufpyhkkSlpjL9ZF69331ZMuRnvV3MAo/mcG0bWFkTAE+UsFnxd6XYQQ+bG4AitjPjKzJDTYuSlw43UOUHwlP3ox6YSmI64OJ4l5M7LlUIqBu0lSP19lwRVAWd2HcGa8QEX0x/4AaDT79P7LxmVx9IstqsOHjscugdkYoUL1Tpq2ngch0abUaTyH2TidBRSkV2DhA7fVn7ji0CmCDrAGHyjQGXw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
+ bh=zxAyDpSesdHJlQ5Y7iDMeh6gSTFzCJg5D2cTUUbCmRU=;
+ b=CcydFJf6QN77bZOan0rsvpkY+mTA80wPUUu9tPovojNtHGWi1kI8eokOKUM6JloQeDOEusxnK1QDrBV9vdm9tESbT6ihGsvQ2stknv8F1RqwemdjaUlsn/oIZiVb3JI6PFvoH2NIXOSfIytXUbKsJmECkZMGZ5eCB0mkA5XcN3Mte9HHqTTEXCYm0oUL1n5vvPnyTin3ykhOfoqL8+cZ3fzQFqUtNPn4CDlabmr9q3uRwHGbVRshv0IDOatFGDghSKgMdyHIviBGRh7TOrpXnv+nEcEqTARWwnXfgSxyZ/aMXmg5pYBHVEs0A29mndacVYlIrvrXB1BUYa7UBDizrg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 139.15.153.205) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=de.bosch.com;
+ dmarc=pass (p=reject sp=none pct=100) action=none header.from=de.bosch.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=de.bosch.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZmKW1O00EaTwx6W9Y1a3PRjvUso8v8BMB9Xa6o58Ftk=;
- b=In9BkK2Pee8qAXsr+lvUIfpMrJlC5iivr6Ypp8KyNHVR2V44Eziocv3HVWSZcclmltlNcyxKS1yiEM5xCAdCxK+wjlrQArdCNISJJz0ofHmxqwlKPKbG5ouPrgU9BSN+eTyW2y4IBYIwCJsv/b6yZUCXYyahC5u4F+fUPgfaOm8=
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
- by TY3PR01MB11574.jpnprd01.prod.outlook.com (2603:1096:400:374::11) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=zxAyDpSesdHJlQ5Y7iDMeh6gSTFzCJg5D2cTUUbCmRU=;
+ b=YtEyQPm5M0G5BPI2f871guhQNtn5YgYRoZh36edJhsvSV3msrLjXNA8hNoy7ae3tQoWXqjm/BGEotCKC6GMVVLZTGNnHwSEUMyctdiPKXv6d1PREhz4LIOTQcDGTa5kiPzfA3UgSVzMP1SuU54K+UjIMXSlqeKVCcuZPqjF9u76FazIYrAN0OnruSQDw3P30QlMrIIJj2GpUYCh4sqmUfHY05rXvwMrpteyVlhPp2xeg4Kb1g4KyKG9zGSj8gIwuCAsDeo2fUy7VQuWIaDSAO8nqYWcfSEV0j/Si3HwMfm3WtoIyekAAjnFttNQ6mLDw6IWp+tSRRql5BXUZTl4PsQ==
+Received: from DUZPR01CA0221.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:4b4::28) by AS2PR10MB7903.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:20b:647::7) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8207.13; Thu, 28 Nov
- 2024 06:51:52 +0000
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1%5]) with mapi id 15.20.8207.010; Thu, 28 Nov 2024
- 06:51:52 +0000
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Conor Dooley <conor@kernel.org>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven
-	<geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Prabhakar Mahadev
- Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, biju.das.au
-	<biju.das.au@gmail.com>
-Subject: RE: [PATCH 03/12] dt-bindings: soc: renesas: Document RZ/G3E SMARC
- SoM and Carrier-II EVK
-Thread-Topic: [PATCH 03/12] dt-bindings: soc: renesas: Document RZ/G3E SMARC
- SoM and Carrier-II EVK
-Thread-Index:
- AQHbPNyO/NJTh1WC/0KM88VRnUTf9bLIXIKAgAK487CAAETkAIAABnnQgAAz8oCAALPncA==
-Date: Thu, 28 Nov 2024 06:51:52 +0000
-Message-ID:
- <TY3PR01MB1134609A5A6381F1F2711794286292@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-References: <20241122124558.149827-1-biju.das.jz@bp.renesas.com>
- <20241122124558.149827-4-biju.das.jz@bp.renesas.com>
- <20241125-straw-oozy-f95e18e4704f@spud>
- <TY3PR01MB11346BC7FA5C81C108B4E7A7786282@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <20241127-epidural-violin-651fd0ee2526@spud>
- <TY3PR01MB11346A0C7A4DAD6A250A6B55386282@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <20241127-cargo-impish-9117a49fa425@spud>
-In-Reply-To: <20241127-cargo-impish-9117a49fa425@spud>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|TY3PR01MB11574:EE_
-x-ms-office365-filtering-correlation-id: 4f57ef2a-c21f-4fd8-85d4-08dd0f7923c4
-x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|376014|1800799024|366016|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?UjGt7ksYV0bGENo6TViHhDnBH00GaUKQkBTkJdswxW40C+F9XVU2hrk98o/l?=
- =?us-ascii?Q?dywQvHlBaVlaIdIXnfRDhW1tLAsGtMPyWgj3T6P7L7UmnBu3vzNbhFitn2iv?=
- =?us-ascii?Q?mS8rAU7IgSapwQsQEgqBKvt39p99zx+j5lez0y/GNYuw8SqPMz6JHsdfDAEa?=
- =?us-ascii?Q?GNwydwj6mayU5iQ8Hhbg56irJA3WEkI2IE2OQF/NP/a2TDEJbNg/ZsojpZT0?=
- =?us-ascii?Q?AObSxY8vhsFTcIBJrBAO8otNR0Ls6brtnebESUSnWYUqasQepzffd9e/C34U?=
- =?us-ascii?Q?lXrH0hQxJNsGM+MjEkqdmNjPa4/2tgsJ3QH6iXpkqNbrAkQndzeTG2aWMynZ?=
- =?us-ascii?Q?WOizx94QsDmOuqZnI8l4qggTnufLG2fIfSxFd23Py52uCyEfuHmJ/CyxjeVK?=
- =?us-ascii?Q?WsOmK6t9PAp9iS4VWdqPSXZ9UIzZAnyjJ0CskaCLNlA5uwR/rRxEJ/zu7KKh?=
- =?us-ascii?Q?pDHWr/xnOT0rO8vu8cbwjcdQXYuSPotgAIKZp7lCcQ39lmgjGZx6/GkaPuPn?=
- =?us-ascii?Q?ZE5iK7a8ovCN5rAwWhyCbKm1odVuZuZ6jS9GoNaOrs9wHi/VH/S4fiNV/BGC?=
- =?us-ascii?Q?oRGX7mvlQ/dLIf7wGoszuqlag1Xl7Fu7AULhTYQjyWDGACk6q183WFXAGF/e?=
- =?us-ascii?Q?y8mXRf5AfMuuFF0iCjoHzdQCW9NFp29YD6f3UkBjCwzX7RQb9QVvH/+hzseA?=
- =?us-ascii?Q?QQZphr1TrWE6UjdkhSEmNjhs5NL0EjJsEyGmA6O7TCBALYvOnZKDuiSiqirO?=
- =?us-ascii?Q?fFYC655lMHUtXm1N45JDdIsmVWvW1fJZ5YX3rIRNM6icWVRCwZBspOH6HgCF?=
- =?us-ascii?Q?IwGYJVWDtoJVkz4RB6j8AEZT7b+GKD9EGl7QUaVSrSN6/1A3D9nyzRi25klJ?=
- =?us-ascii?Q?U0HYyIB2rVM1sTKa0qVHq3yxNBitltSY+DRES0r+J9YXF4z43WyHvTq8kGVZ?=
- =?us-ascii?Q?HnK29Klnl8qE38iwT9EOC+S9l2ScXdIORGFyHgKM4fV1mU7kQGp3fcmUUDUO?=
- =?us-ascii?Q?qr1N6VjzOzmVxwk6n4G+Gb2vgboINZ+7J3n+bMGLKMcqblfXSLpBODqlJXZF?=
- =?us-ascii?Q?pbSP+FuqnA1m8RnAomnyL4yGv7CHwh63MQhc5gOy4pWJEWsOeayY5XRPHryF?=
- =?us-ascii?Q?by+uqfgK4MZaBkP0ioal8VQE7rnISir+T/+rSqakFk1AXUdKZ9ykvdbliqu8?=
- =?us-ascii?Q?lXoZvAElmkQ7n8BQnjQGaviuPI2vSvW8b2Cepg0mrZbObt/aMqYvgNrW1LSb?=
- =?us-ascii?Q?hANe1P+9hIAi7maHR8abR5AaYqQ8y8YAuGDbjJpFFgtktfmO7RL4TVAweNmN?=
- =?us-ascii?Q?7RnoFP0IMEEOoJpGBi4tfys8WZf8Dv7UcmqObi2tVrB5D9M8KEhS1i/oUjDJ?=
- =?us-ascii?Q?Y4/f77A=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?GdVm2Sa+vM1kIfvUiRMvvNZND9GEfW5/ch46VUacwzemuy15FxFkyof1Um3j?=
- =?us-ascii?Q?Kp+2Q8zSQe9/Xt44RhB8LHZEFsrRZTf6GvO5/skJCf9kwK4dkzncd8E+sMna?=
- =?us-ascii?Q?Q1oxhksIhlu0QVQZpFa/53b6u5upr95v10OaVTokppjA9VyqdNq4IZcAOxLk?=
- =?us-ascii?Q?a3USv72SVc3+S/UTDicCQ/loIZbPBSSeIHg14nHVnvJwqzjSIqrYatkJE50h?=
- =?us-ascii?Q?4iLBcNOu33+6NKSxtiU8hupy9b02GFMoV5oAExaMmMHpOSp8DQfAzCODvEMx?=
- =?us-ascii?Q?JOf6teO02BfoXQqL+AOUbeKFtmQRQbblWYcXGQCaaGVHoj1KV5QyclfWlopC?=
- =?us-ascii?Q?1OR/pB7+b5ZH0lm9Y/0gv30tqrSblSGy/1UcFoqQFgjt/KFBsELuU4ZARXjk?=
- =?us-ascii?Q?TbyXpbQFi5aKj7XINSCwCPvEQKx8AK822DS0CUMati/4Kx9mfP5wMvP4rKmo?=
- =?us-ascii?Q?cHYHnauUuDdV3BOWoCXS4MI34VUYILnhZYzP8cE35u7tKldp8JyTGUjDoFqm?=
- =?us-ascii?Q?p0YX2iuyF6ZWKQYHTSPFgvhQ1YHMf45hYmc5tiw+JFuOKFYR+itlPM5yNZe8?=
- =?us-ascii?Q?UKp/B2OgCOOwCAshLJy4V9nEjpgCmVpFSzYjf6XnPsTeptSc7NRsYIzUGuc4?=
- =?us-ascii?Q?mpl21POrAsFRsnXJF4pwHDPo7O2Q2joAPRlRX+1tekOmIfEIiNPSctLhIuuc?=
- =?us-ascii?Q?FgnxBoMgsoG7QpxboSKKme2/EZU4bD930hhv0x6lZahusvXqeF0/+KWE2Y9G?=
- =?us-ascii?Q?IQ5cFCS3aijhZHFJJ6d9v3PsEC4wsf8+n+EER217OPwLjnkVtMA9F53uCh20?=
- =?us-ascii?Q?pGJU3+P6ctR05Eg1dLOJVODWigUBFU9+qukB78ta9cW2kE4CdRcVgguXKuh6?=
- =?us-ascii?Q?BwfFgFyQzI1A3c9n/01gzxbQHGVVQDnIWpgaMowVEXGrWskW2l20R1kZjJFt?=
- =?us-ascii?Q?g2HVTOcuclVnUBI9tJisFF8TiI+u9OxLhT5cpTpqfFw77e+ywd1dDCdhhCN/?=
- =?us-ascii?Q?rYud0At7YzgJvIdegC+gUAjuxzImXdu0PuK/FpJnoznNE57s611A29d4t+US?=
- =?us-ascii?Q?oaixhZLxF24tkzXSoWoodtHaS9i0qhg9Cjcm6ns2zyRvxuUWtdAC8gea3JDr?=
- =?us-ascii?Q?izdz8Jl+l5Pa/nV9PCm1nUisIwvASnzG4aybzEKgYz+KLjNke0D2tAKDl2za?=
- =?us-ascii?Q?1JQaEaUuzB5uB6k73nUfVjNDX6H4kAhT0tUoIf1l3MHYROkzcMGa7L2QLye8?=
- =?us-ascii?Q?bAXqv4XxIX2WSB3tIqdHf7QJSl6B2zrwVtk1XU7CE4VVEA01+PbtMvtuddyh?=
- =?us-ascii?Q?Yzbrr+a9j0uOjqV8/tdkRqefKCOCLstNgdeZOSJgbB5iN6XV2oRGyVtEpzK1?=
- =?us-ascii?Q?1RZLLiPZMdIqCGzUcq7BuPhxwe3YuFGsmTWX8mqGYHZ2zj48mlNNFMBlCRU8?=
- =?us-ascii?Q?R8FKHKj8FxVGSZysTYnH95Q9phNl0ykCdVs6roImDRffRBKS0wDNr7LkIDgq?=
- =?us-ascii?Q?oBgv4y1SxlRp6izurTIDZ8xsRxFZC7j6kAf98WifpIQcSV7kigH4K48INKkA?=
- =?us-ascii?Q?nTY8e6pe4U0RH9ZgJ0h35bw/tt5Wga7XEdtD6cjlkfjQXcu1jSCrR6PRP9yY?=
- =?us-ascii?Q?Tw=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ 2024 07:04:26 +0000
+Received: from DB1PEPF0003922D.eurprd03.prod.outlook.com
+ (2603:10a6:10:4b4:cafe::dc) by DUZPR01CA0221.outlook.office365.com
+ (2603:10a6:10:4b4::28) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8207.12 via Frontend Transport; Thu,
+ 28 Nov 2024 07:04:26 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 139.15.153.205)
+ smtp.mailfrom=de.bosch.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=de.bosch.com;
+Received-SPF: Pass (protection.outlook.com: domain of de.bosch.com designates
+ 139.15.153.205 as permitted sender) receiver=protection.outlook.com;
+ client-ip=139.15.153.205; helo=eop.bosch-org.com; pr=C
+Received: from eop.bosch-org.com (139.15.153.205) by
+ DB1PEPF0003922D.mail.protection.outlook.com (10.167.8.100) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8207.12 via Frontend Transport; Thu, 28 Nov 2024 07:04:26 +0000
+Received: from FE-EXCAS2001.de.bosch.com (10.139.217.200) by eop.bosch-org.com
+ (139.15.153.205) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.13; Thu, 28 Nov
+ 2024 08:04:10 +0100
+Received: from [10.34.219.93] (10.139.217.196) by FE-EXCAS2001.de.bosch.com
+ (10.139.217.200) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.43; Thu, 28 Nov
+ 2024 08:04:10 +0100
+Message-ID: <f97dc442-b306-487a-9699-f38544bd7219@de.bosch.com>
+Date: Thu, 28 Nov 2024 08:03:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4f57ef2a-c21f-4fd8-85d4-08dd0f7923c4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Nov 2024 06:51:52.1763
+User-Agent: Mozilla Thunderbird
+Content-Language: en-GB
+To: <devicetree@vger.kernel.org>
+From: Dirk Behme <dirk.behme@de.bosch.com>
+Subject: of_unittest: Missing #address & #size-cells warning
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB1PEPF0003922D:EE_|AS2PR10MB7903:EE_
+X-MS-Office365-Filtering-Correlation-Id: b9a08204-da30-4cc8-2a5b-08dd0f7ae59a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|1800799024|36860700013|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?ejRTUi9CZ0ZLODg0OWhhTGc4YnlYMHRHdTdpTEZVVXlBK2IrYm9reXdlNnc3?=
+ =?utf-8?B?Y2pIaTkwQnZidVhqZjBIanJxUGhGeldLWG11aU1JU1ZCMjdQOGtGYTkwd2FP?=
+ =?utf-8?B?ekgvQXd4MWJLc2VGcXJSUG53amNxTjRUbWJobE9ac1V4L1BMcXlIK1BMM2pX?=
+ =?utf-8?B?OE00N3dQT1AramgwTk52UlVpc0poeUVYQWYraTFVVnU4a1Qyb1lPZWcreHJN?=
+ =?utf-8?B?U1NzV09ycWVPWmtMTytCdURaeUZjdTQ1dG9RL3ZZOHZraTQwTmNDQng1aXBh?=
+ =?utf-8?B?Qm40ODN3d3JrbWhHQ1NoUit4WnM0UzNZR291VmNvRDNKS0tpOFhidE5HMjFC?=
+ =?utf-8?B?VjZFZEFSTnAvWEpOY0h5cnRtT0h0VVRuUThhc1RFU21rN2hyQ3BjV2hNL1ZU?=
+ =?utf-8?B?YldFZEM5aE9GQlNEcHNWcWtKc0ovczBTaCtWWXJ4YTNJUitZV1BOcGY1ZS9z?=
+ =?utf-8?B?amx6L2U2L21KdlN3SjZBejI4SUxuYlFXSHJ6Qnh5c2x6Z1pBeFhPSFZZQWxW?=
+ =?utf-8?B?WERDRmxBY201alVJa040aUxZUmJja3VKZzFDMllHcXRKWVNQek9EcFp1MFVV?=
+ =?utf-8?B?cmJHNXNRRVpjUlFDR1l6K2lPaVRNZjI4VnQ3SitxVm9kYTNaaGFlVHJ2WTNs?=
+ =?utf-8?B?OEtXVzhLRDdkL01kSWxELy9kSERDSlBVdkV0MXdjMlQ3WTd1NmYxN1BkVzNM?=
+ =?utf-8?B?T3BZWmY0NC9SWGVnQlFTdWw4dU9MWXNmMDhNeUlWREdYdGp1d2VjTXZqUVpC?=
+ =?utf-8?B?ZFF2TkpkcFQrdVdvVkhoZHZxMGx6RUFsNHZvaFA2YUtaNnIySWxqODMzODVJ?=
+ =?utf-8?B?bnhjV3Q3SW1NeEU4bjBpbGs0NHozQ0toNnpyL0RnNm9YS2RIY0FHTUg5RkZj?=
+ =?utf-8?B?aWw2NmVRSUZHejhRdTRkTTA1K0tiZXNLTmgrZ250K3BDbldzQSs4cEFmTkN3?=
+ =?utf-8?B?bUQzZ3Y2N2dCWmwzWkI2NmVxbzc0SnpyN2JPWG5xOUp2OC9aZjZtM3ZOZHh2?=
+ =?utf-8?B?bG14YVh6d1k0VUtUWGFMa1NVNVY3R2dPMkxWZHN4Q0lxYXIwVTdJdnhUNmJa?=
+ =?utf-8?B?ZUFFNzF0dzlhbE5NY2tIR2pxd1ZJRkFKYVJoNE9SbmpKNjRxY3hWd3ZVT0h4?=
+ =?utf-8?B?ZEl4VVpMaVUrdEhsekhmdkVWV0p0TE9jcmVHMkttT1RhMWp1ak50dFZYMlRD?=
+ =?utf-8?B?S1B2Tit4YTQ3Mm1WMVpMODVUbEtQamtnNGQySHBWYXhlMk1BTUZDR1hyWU9n?=
+ =?utf-8?B?VjJ0Z2JrRHhvWFQ1YTI4VHlzQjFNL1ArbDFHWko4TU9xaHdKUGVCM3RXSHZQ?=
+ =?utf-8?B?ZjN4SGx5OFpEYU1qMk9LdDkzQS9GK01FZmJ0N0ZWMFR4Wi8xb0JnTUpieVUr?=
+ =?utf-8?B?VDYycUpNWVBjdktWQXJDK0FjYkhFR2VxQUlkQnlWY3dhR0N6a2ZqT3U2RjdG?=
+ =?utf-8?B?VFRxbGx1dUc1T2pwV0M2K2pBNkk1ZEk2aDc2ZXZqUWlFZm43MVNOTHpkaWtQ?=
+ =?utf-8?B?TFd0cUMzMUhPeTNQajJTRFhFc0syZXpiaXByc2NKa2tVRm1UNEtoQ3hBZngz?=
+ =?utf-8?B?cFpEckR6Uy8xSWo3RVovaWhnTlhGR2pXQ1M0Q1dzZjNsZHVMWVBGZ2tSdm5N?=
+ =?utf-8?B?RWEzdjNPTG1XVkplTkdGaldkS2tVVTB2a1FCSDJSeStNcFhsUVNkT0ZobFJ1?=
+ =?utf-8?B?cjBHaHc3ODZMVytyZlpJdDBNRGx5OW4xMUFZeVZCSFFQb213bjBYSDNnSFFZ?=
+ =?utf-8?B?N2FmN3dsMmxnSGxXN1Z0RzR5eUpoT1N1a0VqWEV1dE81VGNic0RTZi9lVUhj?=
+ =?utf-8?B?NU10aUNPWU5QUnVoM3BvL25NU1VSeU8rclZhOVdXRGZMcUJxbXJocHFmT2oz?=
+ =?utf-8?B?NHFicVgzaGRpUXVCRHMwNzVEZFhoL2M2MGY5K1lTTWJieHFMV0tqRjVob3la?=
+ =?utf-8?Q?bYvonwuIecWBQdheKNdEddy9odKkx5hK?=
+X-Forefront-Antispam-Report:
+	CIP:139.15.153.205;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:eop.bosch-org.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026);DIR:OUT;SFP:1101;
+X-OriginatorOrg: de.bosch.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Nov 2024 07:04:26.8053
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 7UpKPuknxFWWuU1WON324bEmP5+q0xEpnXpVFHUW2IMj4TuU9qsiE6/+hwV1w+CDxn9yzEDN1mNLKP1FbD9xDLy7L0CdAMvuREorWzq28EQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY3PR01MB11574
+X-MS-Exchange-CrossTenant-Network-Message-Id: b9a08204-da30-4cc8-2a5b-08dd0f7ae59a
+X-MS-Exchange-CrossTenant-Id: 0ae51e19-07c8-4e4b-bb6d-648ee58410f4
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0ae51e19-07c8-4e4b-bb6d-648ee58410f4;Ip=[139.15.153.205];Helo=[eop.bosch-org.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DB1PEPF0003922D.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS2PR10MB7903
 
-Hi Conor Dooley,
+Hi,
 
-> -----Original Message-----
-> From: Conor Dooley <conor@kernel.org>
-> Sent: 27 November 2024 20:02
-> Subject: Re: [PATCH 03/12] dt-bindings: soc: renesas: Document RZ/G3E SMA=
-RC SoM and Carrier-II EVK
->=20
-> On Wed, Nov 27, 2024 at 05:18:56PM +0000, Biju Das wrote:
-> > Hi Conor Dooley,
-> >
-> > Thanks for the feedback.
-> >
-> > > -----Original Message-----
-> > > From: Conor Dooley <conor@kernel.org>
-> > > Sent: 27 November 2024 16:33
-> > > Subject: Re: [PATCH 03/12] dt-bindings: soc: renesas: Document
-> > > RZ/G3E SMARC SoM and Carrier-II EVK
-> > >
-> > > On Wed, Nov 27, 2024 at 12:34:42PM +0000, Biju Das wrote:
-> > > > Hi Conor Dooley,
-> > > >
-> > > > Thanks for the feedback.
-> > > >
-> > > > > -----Original Message-----
-> > > > > From: Conor Dooley <conor@kernel.org>
-> > > > > Sent: 25 November 2024 18:52
-> > > > > Subject: Re: [PATCH 03/12] dt-bindings: soc: renesas: Document
-> > > > > RZ/G3E SMARC SoM and Carrier-II EVK
-> > > > >
-> > > > > On Fri, Nov 22, 2024 at 12:45:39PM +0000, Biju Das wrote:
-> > > > > > Document the Renesas RZ/G3E SMARC Carrier-II EVK board which
-> > > > > > is based on the Renesas RZ/G3E SMARC SoM. The RZ/G3E SMARC
-> > > > > > Carrier-II EVK consists of an RZ/G3E SoM module and a SMARC Car=
-rier-II carrier board.
-> > > > > > The SoM module sits on top of the carrier board.
-> > > > > >
-> > > > > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > > > > > ---
-> > > > > >  Documentation/devicetree/bindings/soc/renesas/renesas.yaml |
-> > > > > > 4
-> > > > > > ++++
-> > > > > >  1 file changed, 4 insertions(+)
-> > > > > >
-> > > > > > diff --git
-> > > > > > a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> > > > > > b/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> > > > > > index 7cc2bb97db13..1785142fc8da 100644
-> > > > > > ---
-> > > > > > a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> > > > > > +++ b/Documentation/devicetree/bindings/soc/renesas/renesas.ya
-> > > > > > +++ ml
-> > > > > > @@ -527,6 +527,10 @@ properties:
-> > > > > >
-> > > > > >        - description: RZ/G3E (R9A09G047)
-> > > > > >          items:
-> > > > > > +          - enum:
-> > > > > > +              - renesas,smarc2-evk # RZ SMARC Carrier-II EVK
-> > > > > > +          - enum:
-> > > > > > +              - renesas,rzg3e-smarcm # RZ/G3E SMARC Module
-> > > > > > + (SoM)
-> > > > >
-> > > > > Why are these enums, when you have a single item in each?
-> > > >
-> > > > I just followed the style used in [1]
-> > > >
-> > > > [1]
-> > > > https://elixir.bootlin.com/linux/v6.12.1/source/Documentation/devi
-> > > > cetr
-> > > > ee/bindings/soc/renesas/renesas.yaml#L531
-> > >
-> > > It ain't the same though, since you additionally have the SoM.
-> > >
-> > > > Other than that,
-> > > >
-> > > > In future some vendors can add their RZ/G3E SoM's here
-> > >
-> > > Only makes sense if their SoM is compatible with the smarc2-evk.
-> >
-> > All our SMARC Modules and SMARC Carrier boards are SMARC compliant.
->=20
-> All of yours might be, but what you said was "some vendors".
+on recent Linus' master from today [1] I'm getting [2] running the
+of_unittests.
 
-FYI, In the past, we have a requirement to validate smarc-evk before RZ/G2L=
- SMARC
-SoM available.
+Is this known and/or is there somewhere a fix?
 
-So, we just used a SMARC SoM based on RZ/G2N and tested smarc-evk ethernet =
-interface(of course with small hw mods)
+Many thanks
 
->=20
-> >
-> > So, if anyone have a RZ/G3E SMARC SoM, that should work with SMARC2-EVK=
-.
-> >
-> > >
-> > > > Or
-> > > >
-> > > > They can use Renesas RZ/G3E SMARC module and use their custom carri=
-er boards.
-> > >
-> > > But allowing this part does make sense.
-> >
-> > We already have a use case for this example.
-> >
-> > Renesas RZ/G3E SoM can work on both Renesas smarc-evk and smarc2-evk.
-> >
-> > But we only officially support RZ/G3E SoM with SMARC2-EVK as it has mul=
-tiple display support.
-> >
-> > So, can I use const for both SoM and Carrier EVK as at the moment
-> > there is only one?
->=20
-> That is what I would do.
+Dirk
 
-Geert, Please share your thoughts.
+[1]
 
-Cheers,
-Biju
+x86_64_defconfig + CONFIG_OF=y + CONFIG_OF_UNITTEST=y
+
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/log/
+
+HEAD: b86545e02e8c2 (master) Merge tag 'acpi-6.13-rc1-2' of
+git://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm
+
+[2]
+
+...
+[    1.934623] ### dt-test ### pass
+of_unittest_parse_interrupts_extended():1590
+[    1.934865] ### dt-test ### pass
+of_unittest_parse_interrupts_extended():1590
+[    1.935562] ------------[ cut here ]------------
+[    1.935683] Missing '#address-cells' in
+[    1.936089] WARNING: CPU: 0 PID: 1 at drivers/of/base.c:106
+of_bus_n_addr_cells+0x6d/0xb0
+[    1.936653] Modules linked in:
+[    1.937326] CPU: 0 UID: 0 PID: 1 Comm: swapper/0 Tainted: G
+      N 6.12.0-10553-gb86545e02e8c #1
+[    1.937706] Tainted: [N]=TEST
+[    1.937787] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996),
+BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[    1.938196] RIP: 0010:of_bus_n_addr_cells+0x6d/0xb0
+[    1.938458] Code: e8 48 30 00 00 85 c0 79 4d 80 3d c5 c7 14 01 00 75
+ce c6 05 bc c7 14 01 01 90 48 c7 c7 e8 60 fd b3 48 89 de e8 64 d1 53 ff 90 4
+[    1.939060] RSP: 0018:ffffbb4740013be0 EFLAGS: 00000286
+[    1.939212] RAX: 0000000000000000 RBX: ffffa43ac7dc3e38 RCX:
+0000000000000000
+[    1.939392] RDX: 0000000000000000 RSI: 00000000ffffdfff RDI:
+0000000000000001
+[    1.939650] RBP: ffffbb4740013c5c R08: 0000000000000000 R09:
+ffffbb4740013a18
+[    1.939885] R10: 0000000000000001 R11: 0000000000000001 R12:
+ffffa43ac1ba0218
+[    1.940083] R13: ffffffffb3b3a160 R14: ffffbb4740013ce8 R15:
+ffffbb4740013ce8
+[    1.940287] FS:  0000000000000000(0000) GS:ffffa43ac7800000(0000)
+knlGS:0000000000000000
+[    1.940501] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[    1.940650] CR2: ffffa43ac7601000 CR3: 0000000006a2e000 CR4:
+00000000000006f0
+[    1.940926] Call Trace:
+[    1.941455]  <TASK>
+[    1.941684]  ? __warn+0x83/0x130
+[    1.941833]  ? of_bus_n_addr_cells+0x6d/0xb0
+[    1.941939]  ? report_bug+0x1b7/0x1d0
+[    1.942036]  ? handle_bug+0x54/0x90
+[    1.942125]  ? exc_invalid_op+0x18/0x70
+[    1.942234]  ? asm_exc_invalid_op+0x1a/0x20
+[    1.942375]  ? of_bus_n_addr_cells+0x6d/0xb0
+[    1.942490]  of_bus_default_count_cells+0x1b/0x40
+[    1.942644]  __of_translate_address+0xfa/0x480
+[    1.942768]  ? __pfx___of_get_dma_parent+0x10/0x10
+[    1.942931]  of_pci_range_parser_one+0x10e/0x360
+[    1.943073]  of_dma_get_max_cpu_address+0xe3/0x100
+[    1.943236]  of_unittest+0x1572/0x2890
+[    1.943354]  ? __pfx_of_unittest+0x10/0x10
+[    1.943469]  do_one_initcall+0x43/0x210
+[    1.943579]  kernel_init_freeable+0x19a/0x2d0
+[    1.943699]  ? __pfx_kernel_init+0x10/0x10
+[    1.943813]  kernel_init+0x15/0x130
+[    1.943944]  ret_from_fork+0x2f/0x50
+[    1.944127]  ? __pfx_kernel_init+0x10/0x10
+[    1.944347]  ret_from_fork_asm+0x1a/0x30
+[    1.944493]  </TASK>
+[    1.944602] ---[ end trace 0000000000000000 ]---
+[    1.944810] ------------[ cut here ]------------
+[    1.944968] Missing '#size-cells' in
+[    1.945139] WARNING: CPU: 0 PID: 1 at drivers/of/base.c:133
+of_bus_n_size_cells+0x6d/0xb0
+[    1.945340] Modules linked in:
+[    1.945427] CPU: 0 UID: 0 PID: 1 Comm: swapper/0 Tainted: G        W
+      N 6.12.0-10553-gb86545e02e8c #1
+[    1.945796] Tainted: [W]=WARN, [N]=TEST
+[    1.945919] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996),
+BIOS 1.13.0-1ubuntu1.1 04/01/2014
+[    1.946149] RIP: 0010:of_bus_n_size_cells+0x6d/0xb0
+[    1.946282] Code: e8 58 2f 00 00 85 c0 79 4d 80 3d d4 c6 14 01 00 75
+ce c6 05 cb c6 14 01 01 90 48 c7 c7 10 61 fd b3 48 89 de e8 74 d0 53 ff 90 4
+[    1.946705] RSP: 0018:ffffbb4740013be0 EFLAGS: 00000286
+[    1.946866] RAX: 0000000000000000 RBX: ffffa43ac7dc3e38 RCX:
+0000000000000000
+[    1.947129] RDX: 0000000000000000 RSI: 00000000ffffdfff RDI:
+0000000000000001
+[    1.947303] RBP: ffffbb4740013c5c R08: 0000000000000000 R09:
+ffffbb4740013a18
+[    1.947470] R10: 0000000000000001 R11: 0000000000000001 R12:
+ffffa43ac1ba0218
+[    1.947638] R13: ffffffffb3b3a160 R14: ffffbb4740013ce8 R15:
+ffffbb4740013ce8
+[    1.947806] FS:  0000000000000000(0000) GS:ffffa43ac7800000(0000)
+knlGS:0000000000000000
+[    1.948027] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[    1.948186] CR2: ffffa43ac7601000 CR3: 0000000006a2e000 CR4:
+00000000000006f0
+[    1.948359] Call Trace:
+[    1.948425]  <TASK>
+[    1.948485]  ? __warn+0x83/0x130
+[    1.948579]  ? of_bus_n_size_cells+0x6d/0xb0
+[    1.948691]  ? report_bug+0x1b7/0x1d0
+[    1.948796]  ? handle_bug+0x54/0x90
+[    1.948922]  ? exc_invalid_op+0x18/0x70
+[    1.949088]  ? asm_exc_invalid_op+0x1a/0x20
+[    1.949210]  ? of_bus_n_size_cells+0x6d/0xb0
+[    1.949323]  of_bus_default_count_cells+0x2b/0x40
+[    1.949448]  __of_translate_address+0xfa/0x480
+[    1.949565]  ? __pfx___of_get_dma_parent+0x10/0x10
+[    1.949691]  of_pci_range_parser_one+0x10e/0x360
+[    1.949815]  of_dma_get_max_cpu_address+0xe3/0x100
+[    1.949985]  of_unittest+0x1572/0x2890
+[    1.950209]  ? __pfx_of_unittest+0x10/0x10
+[    1.950416]  do_one_initcall+0x43/0x210
+[    1.950526]  kernel_init_freeable+0x19a/0x2d0
+[    1.950642]  ? __pfx_kernel_init+0x10/0x10
+[    1.950757]  kernel_init+0x15/0x130
+[    1.950891]  ret_from_fork+0x2f/0x50
+[    1.951041]  ? __pfx_kernel_init+0x10/0x10
+[    1.951156]  ret_from_fork_asm+0x1a/0x30
+[    1.951268]  </TASK>
+[    1.951329] ---[ end trace 0000000000000000 ]---
+[    1.952208] ### dt-test ### pass
+of_unittest_dma_get_max_cpu_address():1100
+[    1.952544] ### dt-test ### pass of_unittest_dma_ranges_one():1121
+[    1.952747] ### dt-test ### pass of_unittest_dma_ranges_one():1139
+...
 
