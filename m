@@ -1,130 +1,197 @@
-Return-Path: <devicetree+bounces-125182-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125183-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 133739DB2C2
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 07:25:42 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 350139DB2E9
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 07:51:28 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B6384167105
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 06:25:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE02D281A27
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 06:51:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D301B145348;
-	Thu, 28 Nov 2024 06:25:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EE541487FE;
+	Thu, 28 Nov 2024 06:51:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="j5M0wFn8"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="DWM4laoq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C2D484E1C
-	for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 06:25:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70151146D45;
+	Thu, 28 Nov 2024 06:51:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732775138; cv=none; b=NjGZwQu/ej5VhFTNwPXu1ZMAHwxvLYwf4DycaA+yIDAFObMd5Z0vSXkeMNXwUB3kYmncvud+d62ZW/Uyy1fLxRRWa9KkVhkg6Jf1t/cWCEq6esogSSLd5knMP6NsMSZ2UNnaELwv99jrkMw5xB0QXgtTnTrkrr89R8bwmtGquTY=
+	t=1732776672; cv=none; b=cug4r8GDEGnP7FZmRpGRNIcGYb/7W04CLscVmwR8qRH4bNftl8zd0EorZGfOQIABAlDDtp9hnmdqv5ngpxwIoFIfx6Nk7x1WztlmzN2MIdqm2WF8uVq1nx17KGa2mtdYA1xnMNVv2pFqvLsuO+amgzu5D+cKJmZiHm7laOvSTb0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732775138; c=relaxed/simple;
-	bh=dYPE4ZNCJFy6FX0sE9ClVhGv4Cf/dafDkKNJVsMswuI=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=AggDoWbMAhiu7hcaVkh3oXBI949wHgIEstgTLgWHLa9CUc+qlQuW7s+ocAll6LV3Nz4loBUMv08sGzX4L2ZMQnkhNrq42CPwGTGjwGAoAFsXCpdxyG2SxhgoYCCJzH0IkaGRGcregSIoHKNGldbghfwZr+7iVLUv+EZhSA2FK4o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=j5M0wFn8; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-434a8b94fb5so2714525e9.0
-        for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 22:25:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732775135; x=1733379935; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=dYPE4ZNCJFy6FX0sE9ClVhGv4Cf/dafDkKNJVsMswuI=;
-        b=j5M0wFn8FQX5MLBPE849ILdmuPXyPoVemuRHMOZ3n4QEfPzN5ez6eOcfptytx16cmX
-         DxDMnWsrqPNqPX7iiwCxCdjmjb6TggNrGt7fyzKuGcvCaJzmyFGmb0q27xJeF4fzD4/9
-         N1hvfSa8SMAj19GPx6jDfznXDsfKnqX9sNgJQAvelawOmacTywHT9m9u0NMQ5g3hpJaM
-         b800NrCOy11VTC+B/kN8ODMwpkF9ZzugVfgPJsv12poEqoQ+AXU4UiRVMQOtVUXw2JK1
-         9k7w/IqQM6FPtRTl3qU4EzeoYo4FbBG8OHaw0dKXp3t5TalEt43/YBAZWsLPoaZme5pn
-         98jQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732775135; x=1733379935;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=dYPE4ZNCJFy6FX0sE9ClVhGv4Cf/dafDkKNJVsMswuI=;
-        b=j9VtN5oF8yqOcrkSQo4iq95HomwdmiyO7B2/OXzUf7NZAm32Ay7RM0z5MGDQfmw297
-         4ELtE9kWVD3RALF2GRPAhr6qf0KzdgqI4hngHqbP87CcjbkCcwsbslC3vIDBVpISGKHy
-         CLA26Gk138kbhDcska8vH7r8gQc3slOg66PG1nTa7KpN4xgBnhRdXWZBRNyiWGCogaLO
-         UIZ+0aPlmRpReMQJV0eDcBXFqgVkC2SoesveaTVUTPrjDr6C1+1DNyd3bg1XHyfLDC1y
-         DJXC6LgWV4ZM3rppZUO9tvrYJ5WtAlfXw/fBYFtPyyD/06e2y+Tw6Vje035343EmhLeo
-         wFdA==
-X-Forwarded-Encrypted: i=1; AJvYcCWvoqBeras3jIH5CVYnvydPoFOocKZERrI6Kjd2+omHzvMDt1C+Jbc2drTcweiF/dTYfHw3Bf7BWErv@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywuxr45FQiEqEv1CqiNCc0LtiAs9GMeJ0uLltSqmFfGr8+i1axf
-	Evay/fOCI3rmZ/vuz+NqkAMXjBH96LQDh2a4m0SazIhd6l7rt1beJCevMtV0UNs=
-X-Gm-Gg: ASbGncswkBsqf2ZQ0ZCewbfEp7iE/61FBQYrhFAPCTCh0NXLG+H/j2YcbFN/jUN+V9p
-	SaOc2poS7OpAwn4j+jLY34ABSy3zO0mx5Mq/QqHFNe/RUO4Dbby0D8flMV+UlYhJHp8WOcPE9co
-	BZb33VxVl8BELPxHmJlvkC8gQWfhxKK87q7jsG/dJSOlqZSdgrVitjy0G6Pw7YzS8wDm25UYaeY
-	n/Sj5c8BFs/Ttyo5IQC7mPzmVtGZ2o4HSdaMuI8nvv5UY7Md+fM6uo=
-X-Google-Smtp-Source: AGHT+IH6Ml7J+veNZgcHRluAVpujI8NQLzYAgYOdmWcaTC51mp1SAFlDYpCulVDkM5fF9/EPeYf0EA==
-X-Received: by 2002:a05:600c:1c0a:b0:434:9fca:d6c3 with SMTP id 5b1f17b1804b1-434afb9efa7mr14137785e9.9.1732775135356;
-        Wed, 27 Nov 2024 22:25:35 -0800 (PST)
-Received: from [10.1.1.109] ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-385ccd2db0bsm775126f8f.2.2024.11.27.22.25.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Nov 2024 22:25:34 -0800 (PST)
-Message-ID: <8e11e1c92d81fa39a2881086dc58f6262dd719e0.camel@linaro.org>
-Subject: Re: [PATCH 6/9] phy: exynos5-usbdrd: gs101: ensure power is gated
- to SS phy in phy_exit()
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I
-	 <kishon@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Marek Szyprowski
-	 <m.szyprowski@samsung.com>, Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus
- <tudor.ambarus@linaro.org>, Sam Protsenko <semen.protsenko@linaro.org>,
- Will McVicker <willmcvicker@google.com>, Roy Luo <royluo@google.com>,
- kernel-team@android.com,  linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,  linux-samsung-soc@vger.kernel.org
-Date: Thu, 28 Nov 2024 06:25:33 +0000
-In-Reply-To: <82f94ea4-2533-4ebd-a9e5-96ed64bfbc05@kernel.org>
-References: 
-	<20241127-gs101-phy-lanes-orientation-phy-v1-0-1b7fce24960b@linaro.org>
-	 <20241127-gs101-phy-lanes-orientation-phy-v1-6-1b7fce24960b@linaro.org>
-	 <82f94ea4-2533-4ebd-a9e5-96ed64bfbc05@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.1-4 
+	s=arc-20240116; t=1732776672; c=relaxed/simple;
+	bh=r79SPOuhZdVFBIeBPeECtG57hYszo3FLyqaYO+yACxk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gTTPZAG4PQXoBxMhyja82o8eIp1LEgzPwIHlIoRzr4QoA75zTVwy5zL6i75Ztv1px/OK6Xe6O7qV9Yqh7yAzrL21+LkHhSw9HIktW4e4360wc4CGGa783EyEb10nW8M3kpA7stIGGNCslCcNpYSweKChntadx0ExkSwgzVVCNCQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=DWM4laoq; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1732776671; x=1764312671;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=r79SPOuhZdVFBIeBPeECtG57hYszo3FLyqaYO+yACxk=;
+  b=DWM4laoq9PQpAgU1kOZjl+aikDx0wYbLoVyHeCXJlvbUPGw9Q4vGH4ye
+   qQ9Fkyu4ttjdD7st9kI3+gWn4kLpcEH+s3NDtcowViUrsaesF1Pgkb/+f
+   Gl8lTg9Q8Mhm29snBPpl5uGEh9CnESp4/9sctQC0JGfNRH8CtPXl0QHjl
+   rW6OkcbmqfrgSoBsb+SvaVhDlTUuwbE9vU3EiyDNwS+hDQvHFWEVBO/w4
+   LovtN7Eh20yfFvCPQVIOWY5AG23lUKZckxPAULIGoPRpgVQnqFJUG380n
+   C58tWOWo3Qxw9yilbK2T5H2feSFXWTYu8wU17VKx3wxpO+gHJm92+PDI2
+   g==;
+X-CSE-ConnectionGUID: pkKc/P/SQymkm5LKhgAS+A==
+X-CSE-MsgGUID: mkv2MBWsSbakXcSAmf1R9g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11269"; a="20590440"
+X-IronPort-AV: E=Sophos;i="6.12,191,1728975600"; 
+   d="scan'208";a="20590440"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2024 22:51:07 -0800
+X-CSE-ConnectionGUID: JPKvsDA2RHC8HzUqgFeW6w==
+X-CSE-MsgGUID: 4lhVcWE2Tkie8QKkASZ24Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,191,1728975600"; 
+   d="scan'208";a="97111216"
+Received: from lkp-server01.sh.intel.com (HELO 8122d2fc1967) ([10.239.97.150])
+  by orviesa005.jf.intel.com with ESMTP; 27 Nov 2024 22:51:03 -0800
+Received: from kbuild by 8122d2fc1967 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tGYMe-0009Cd-1Q;
+	Thu, 28 Nov 2024 06:51:00 +0000
+Date: Thu, 28 Nov 2024 14:50:05 +0800
+From: kernel test robot <lkp@intel.com>
+To: Haylen Chu <heylenay@4d2.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Haylen Chu <heylenay@outlook.com>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Chen Wang <unicornxdotw@foxmail.com>,
+	Jisheng Zhang <jszhang@kernel.org>
+Subject: Re: [PATCH v3 3/3] clk: spacemit: Add clock support for Spacemit K1
+ SoC
+Message-ID: <202411281451.lC2FKL6C-lkp@intel.com>
+References: <20241126143125.9980-7-heylenay@4d2.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241126143125.9980-7-heylenay@4d2.org>
 
-Hi Krzysztof,
+Hi Haylen,
 
-On Wed, 2024-11-27 at 20:42 +0100, Krzysztof Kozlowski wrote:
-> On 27/11/2024 11:58, Andr=C3=A9 Draszik wrote:
-> > We currently don't gate the power to the SS phy in phy_exit().
-> >=20
-> > Shuffle the code slightly to ensure the power is gated to the SS phy as
-> > well.
-> >=20
-> > Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
-> > ---
->=20
->=20
-> I think this should be actually a fix with cc-stable.
+kernel test robot noticed the following build warnings:
 
-Will do in v2.
+[auto build test WARNING on 2d5404caa8c7bb5c4e0435f94b28834ae5456623]
 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+url:    https://github.com/intel-lab-lkp/linux/commits/Haylen-Chu/dt-bindings-clock-spacemit-Add-clock-controllers-of-Spacemit-K1-SoC/20241128-101248
+base:   2d5404caa8c7bb5c4e0435f94b28834ae5456623
+patch link:    https://lore.kernel.org/r/20241126143125.9980-7-heylenay%404d2.org
+patch subject: [PATCH v3 3/3] clk: spacemit: Add clock support for Spacemit K1 SoC
+config: arm-randconfig-001-20241128 (https://download.01.org/0day-ci/archive/20241128/202411281451.lC2FKL6C-lkp@intel.com/config)
+compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project 592c0fe55f6d9a811028b5f3507be91458ab2713)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241128/202411281451.lC2FKL6C-lkp@intel.com/reproduce)
 
-Thanks for the review!
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202411281451.lC2FKL6C-lkp@intel.com/
 
-Cheers,
-Andre'
+All warnings (new ones prefixed by >>):
 
+   drivers/clk/spacemit/ccu_pll.c:128:16: warning: variable 'old_rate' set but not used [-Wunused-but-set-variable]
+     128 |         unsigned long old_rate;
+         |                       ^
+>> drivers/clk/spacemit/ccu_pll.c:152:2: warning: variable 'val' is uninitialized when used here [-Wuninitialized]
+     152 |         val |= entry->reg5 << PLL_SWCR1_REG5_OFF;
+         |         ^~~
+   drivers/clk/spacemit/ccu_pll.c:130:15: note: initialize the variable 'val' to silence this warning
+     130 |         u32 mask, val;
+         |                      ^
+         |                       = 0
+>> drivers/clk/spacemit/ccu_pll.c:141:14: warning: variable 'entry' is used uninitialized whenever 'for' loop exits because its condition is false [-Wsometimes-uninitialized]
+     141 |         for (i = 0; i < params->tbl_size; i++) {
+         |                     ^~~~~~~~~~~~~~~~~~~~
+   drivers/clk/spacemit/ccu_pll.c:152:9: note: uninitialized use occurs here
+     152 |         val |= entry->reg5 << PLL_SWCR1_REG5_OFF;
+         |                ^~~~~
+   drivers/clk/spacemit/ccu_pll.c:141:14: note: remove the condition if it is always true
+     141 |         for (i = 0; i < params->tbl_size; i++) {
+         |                     ^~~~~~~~~~~~~~~~~~~~
+   drivers/clk/spacemit/ccu_pll.c:127:32: note: initialize the variable 'entry' to silence this warning
+     127 |         struct ccu_pll_rate_tbl *entry;
+         |                                       ^
+         |                                        = NULL
+   3 warnings generated.
+
+
+vim +/val +152 drivers/clk/spacemit/ccu_pll.c
+
+   115	
+   116	/*
+   117	 * pll rate change requires sequence:
+   118	 * clock off -> change rate setting -> clock on
+   119	 * This function doesn't really change rate, but cache the config
+   120	 */
+   121	static int ccu_pll_set_rate(struct clk_hw *hw, unsigned long rate,
+   122				       unsigned long parent_rate)
+   123	{
+   124		struct ccu_pll *p = hw_to_ccu_pll(hw);
+   125		struct ccu_common *common = &p->common;
+   126		struct ccu_pll_config *params = &p->pll;
+   127		struct ccu_pll_rate_tbl *entry;
+ > 128		unsigned long old_rate;
+   129		bool found = false;
+   130		u32 mask, val;
+   131		int i;
+   132	
+   133		if (ccu_pll_is_enabled(hw)) {
+   134			pr_err("%s %s is enabled, ignore the setrate!\n",
+   135			       __func__, __clk_get_name(hw->clk));
+   136			return 0;
+   137		}
+   138	
+   139		old_rate = __get_vco_freq(hw);
+   140	
+ > 141		for (i = 0; i < params->tbl_size; i++) {
+   142			if (rate == params->rate_tbl[i].rate) {
+   143				found = true;
+   144				entry = &params->rate_tbl[i];
+   145				break;
+   146			}
+   147		}
+   148		WARN_ON_ONCE(!found);
+   149	
+   150		mask = PLL_SWCR1_REG5_MASK | PLL_SWCR1_REG6_MASK;
+   151		mask |= PLL_SWCR1_REG7_MASK | PLL_SWCR1_REG8_MASK;
+ > 152		val |= entry->reg5 << PLL_SWCR1_REG5_OFF;
+   153		val |= entry->reg6 << PLL_SWCR1_REG6_OFF;
+   154		val |= entry->reg7 << PLL_SWCR1_REG7_OFF;
+   155		val |= entry->reg8 << PLL_SWCR1_REG8_OFF;
+   156		ccu_update(swcr1, common, mask, val);
+   157	
+   158		mask = PLL_SWCR3_DIV_INT_MASK | PLL_SWCR3_DIV_FRC_MASK;
+   159		val = entry->div_int << PLL_SWCR3_DIV_INT_OFF;
+   160		val |= entry->div_frac << PLL_SWCR3_DIV_FRC_OFF;
+   161		ccu_update(swcr3, common, mask, val);
+   162	
+   163		return 0;
+   164	}
+   165	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
