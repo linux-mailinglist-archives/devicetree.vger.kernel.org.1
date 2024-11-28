@@ -1,166 +1,141 @@
-Return-Path: <devicetree+bounces-125210-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125211-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D04DA9DB3B9
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 09:27:15 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A16CA9DB3BE
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 09:28:48 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 962E4281A43
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 08:27:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5ACC51625E1
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 08:28:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3726014A4EB;
-	Thu, 28 Nov 2024 08:27:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5402B14D2AC;
+	Thu, 28 Nov 2024 08:28:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ReHHuzBi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="u0Hlmanu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 973AE1482ED;
-	Thu, 28 Nov 2024 08:27:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6844A14A629
+	for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 08:28:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732782432; cv=none; b=q4nw7rtRc3bIr6bvrAOp1FgRLiwh+EFLK+fluhyJYoYC759LwR1wNpm2nUInlHATuiYBraw/59UOyG6pd/bewfWWQ7MEgOL+l1mQOXHsRbGmtCfHWQBj7gOxgpG6JNt/czr4s+SRNkACvoSUTr6s7JztsBNau7HzoYIV8OBe9W4=
+	t=1732782521; cv=none; b=OpXjmYB1abHVdkkPAhfxZV5ofFbfAtcT01K/OhsT8OypL4Z6lOtA5os2+zkCXBi0IqgZ/Pa1KYo83I1n7yZhGUhYmsUm+pThZOvBNQ5sk/yeishvCjiDvG8fCoAraWWgtLX47Rk8/hN+Sd+aVvsbBWLOtxU12NDGytCP5Qu060E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732782432; c=relaxed/simple;
-	bh=z60GP//s2n3zdGQZS67JacUbXYhH68n2H4fz4fiRzws=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=FtiqYrrQZhyoSNjq34wUdGK/QhyNLeWT+8n6umSwgZaq7N+lFe98Dulo7rRGXJTxndNnXj9qQnI8j4DAWj0RrkD2XgwpqIcihZaDimAXgHbTtaSfFz0IQ5NwRwMcqWSYDhpCqT9SHmKq/ThPGupusW70XQfeHE3HGX+n7MC/rNs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ReHHuzBi; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4ARGQaCw028888;
-	Thu, 28 Nov 2024 08:27:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	lFSpMM/1LZHGjcfYNl5o7E5Lgs4vzBhEEiU4tRaP+Yw=; b=ReHHuzBioMEX3OBI
-	OeFmjRGSQLFlMUt3EBxpuOs4BLcabEuC1YJHnT9NVHt1yQnndP0ikWDeQde1YBza
-	a8kZ5vhQPBg6op63YBb8AuEmnZwnnKP4B4Lg7Lakv6PAxGzUJCbdE3SZsItDKzuY
-	BHXyuvGRzU89DJGxQDSJ0yr3IrpbOJbPV33Wnn/Y6PxbcEU9WV8Rl0gDRUKRtO3+
-	Sz/Aih4cYOQkQFc7GHwtyizxgezYdX04JRVYqyiBXBoAKmlpnWoAZsnbl4XRNi09
-	oQXKaeHIzlUe28+sQ9zsDjYTpE8AAXAt3WJUlLvyoQp8G95RNoL/KfA7dfUjXWrw
-	x4neMw==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4366xxhvf8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 28 Nov 2024 08:26:59 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AS8Qw5b012341
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 28 Nov 2024 08:26:58 GMT
-Received: from [10.233.21.53] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 28 Nov
- 2024 00:26:54 -0800
-Message-ID: <c73dfff4-2945-401c-a292-9225a6bd415b@quicinc.com>
-Date: Thu, 28 Nov 2024 16:26:51 +0800
+	s=arc-20240116; t=1732782521; c=relaxed/simple;
+	bh=iBgmMatgfTncbI6Xxv9fv7699qHKcsEyga04yyzHrVw=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ASRY+F2/w4H4Pf3qlSRibYT+VJ1wG83m2w8DK01yaAQfE61XctTvBXPbCvhtjKnEQZAEN/Cd0EGfuqja0jY7wyXLP0uu3Ayahvdg0psUCpKBW7dE+8c6TRZco41f0xTkDckVAIZTJN0F9Njy2A2/duX+Xd3Jnx1CESrM8yiIVnE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=u0Hlmanu; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-38245e072e8so476447f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 00:28:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1732782518; x=1733387318; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=8ce1Yw0qnP/hYgtuVuhHQzLquqkZiusD0COEs+h5WKU=;
+        b=u0HlmanuNzHOesnJQlDV/gVXgrXAn5OQZ7OcYvIFLKkmRVEd2tmn/zBUruPeKBPkNz
+         iJn4FWWx+N9uxFICCdS9azuW5uF8WBv6Kit9dclVvt0IoduESaPh7OJ16LPhvK8UeM8z
+         9Mq86MX+emhI4d+HbcoT/MpNw2Q/U+hTJ75SGZf3RB58aGWetDvrAS5wGhu9iF4Rfu4Y
+         Jm0Z7sApaUoJjdwhE4LUr2l8y6+fhdHwpldMgEhUqYQfrTpi8QNAwRHSCsDcZD2TeWCL
+         MKZhmnov7M1xFh1G0x2dOofK1Kbtd68SUXTPZJy2OAslDFs7xNFP14503MfwsR4jWf7G
+         Ch6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732782518; x=1733387318;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8ce1Yw0qnP/hYgtuVuhHQzLquqkZiusD0COEs+h5WKU=;
+        b=BXwTSFlTM1iIApnHV5ltGzWE+ZWGCG9AiD0hIL3Vjdzz8lb20Uxzql/AVEggDxUFN2
+         mYpag0ryUha6L5+v14cba2ahKoGa/FtGgHVbwTSVTw7DAScRTGB8USrzPE5zsaHH6QSC
+         fzc5CNQnHN0QWGwJZOu6wCyrtbP7MZNOkeiVk47e59Utxb9Ehpw8CfcknsieEo06Y/gm
+         PGukTS5/zMMg3BH0ydkVy6cHZy+vsc926PZ479F2FLrOKj+EfXvyim4wuTSUy29bPcqk
+         F3TCA84xPkxOskuSL9qt9cBfvyNjYoUmG1KskZp4BMkAUnlPMR/jmNlkOVm+8Pdg1fWH
+         VI8A==
+X-Forwarded-Encrypted: i=1; AJvYcCUIwFkQIgHP0TDh6e2N5zo9Y/XBaPX9jYfCWOoBbt8oNYGdTE80CjAaDCWeIbA+HYcpU4b5PT1FgYkB@vger.kernel.org
+X-Gm-Message-State: AOJu0YwC4Yr0M7T6fUGYrJUQai0/SmhT0F4XpTYoz57UBRZ+1oIzqra6
+	pjSqBjVM2tvqLMNPIQd5I76txLtvdnVx0cPeYM2YEEzDoep7PTVF/atIE0ud6Tc=
+X-Gm-Gg: ASbGncssOBshqYyefXLiljt1/nZ6hY+JOd42le1JfstyGaa3iLg700Yu5R8SK7xds5L
+	pzazC8bwBbopBTec4Btk9YUzANSihT9gzstBqlSxtZowxC8hloVVMuVvXDGcElKyLB/2UuACrWJ
+	pH8CFGM/VxlqUdK4FuhTBrKkk4z92QJnhDSoS/gpsitjzQL9yZ9sWubhCKam36WOmj9v6+l4n5R
+	ud11fZxX5OTfqH+PyDHD4vSBVZhuqh6y9gG/wDsxUZ7ChKi3CWnn9U=
+X-Google-Smtp-Source: AGHT+IGTu0qgLLjoHLlWHxSoBIFSoj8XfsMG9AhcjE3+CF/PWBajZkgTxHHhlbUBKXo2AHNhIEwVew==
+X-Received: by 2002:a5d:6dad:0:b0:382:3959:f429 with SMTP id ffacd0b85a97d-385c6ccaeafmr6070314f8f.5.1732782517632;
+        Thu, 28 Nov 2024 00:28:37 -0800 (PST)
+Received: from [10.1.1.109] ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-385ccd3a54asm996072f8f.50.2024.11.28.00.28.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Nov 2024 00:28:37 -0800 (PST)
+Message-ID: <663f534cd88332ecf64e575ea0cfa1f40e303373.camel@linaro.org>
+Subject: Re: [PATCH 5/6] arm64: dts: exynos: gs101-oriole: enable Maxim
+ max77759 TCPCi
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Catalin Marinas
+ <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jagan Sridharan <badhri@google.com>,  Alim Akhtar
+ <alim.akhtar@samsung.com>
+Cc: Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus
+ <tudor.ambarus@linaro.org>, Sam Protsenko <semen.protsenko@linaro.org>,
+ Will McVicker <willmcvicker@google.com>, Roy Luo <royluo@google.com>,
+ kernel-team@android.com,  linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org,  linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org,  linux-samsung-soc@vger.kernel.org
+Date: Thu, 28 Nov 2024 08:28:35 +0000
+In-Reply-To: <b0c5e443-79e2-4e53-8813-57044a627dea@kernel.org>
+References: 
+	<20241127-gs101-phy-lanes-orientation-dts-v1-0-5222d8508b71@linaro.org>
+	 <20241127-gs101-phy-lanes-orientation-dts-v1-5-5222d8508b71@linaro.org>
+	 <b0c5e443-79e2-4e53-8813-57044a627dea@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.1-4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/4] Add initial support for QCS8300 SoC and QCS8300
- RIDE board
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon
-	<will@kernel.org>
-CC: <quic_tengfan@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <quic_tingweiz@quicinc.com>,
-        <quic_aiquny@quicinc.com>, Zhenhua Huang <quic_zhenhuah@quicinc.com>,
-        Xin Liu
-	<quic_liuxin@quicinc.com>,
-        Kyle Deng <quic_chunkaid@quicinc.com>,
-        "Tingguo
- Cheng" <quic_tingguoc@quicinc.com>,
-        Raviteja Laggyshetty
-	<quic_rlaggysh@quicinc.com>
-References: <20240925-qcs8300_initial_dtsi-v2-0-494c40fa2a42@quicinc.com>
- <5a4a80e7-b6dc-4c01-a16d-ed8ea1aefe44@kernel.org>
- <766219f6-a535-4eaa-b1cc-768e0522d71c@kernel.org>
-Content-Language: en-US
-From: Jingyi Wang <quic_jingyw@quicinc.com>
-In-Reply-To: <766219f6-a535-4eaa-b1cc-768e0522d71c@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: iA9UYIi4wpziYCCT4S4fx7PYBmaNVJti
-X-Proofpoint-ORIG-GUID: iA9UYIi4wpziYCCT4S4fx7PYBmaNVJti
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 adultscore=0
- lowpriorityscore=0 impostorscore=0 bulkscore=0 mlxscore=0 malwarescore=0
- priorityscore=1501 spamscore=0 mlxlogscore=999 phishscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2411280066
 
+Hi Krzysztof,
 
+On Thu, 2024-11-28 at 09:19 +0100, Krzysztof Kozlowski wrote:
+> On 27/11/2024 12:01, Andr=C3=A9 Draszik wrote:
+> > ---
+> > =C2=A0arch/arm64/boot/dts/exynos/google/gs101-oriole.dts | 99
+> > ++++++++++++++++++++++
+> > =C2=A01 file changed, 99 insertions(+)
+> >=20
+> > diff --git a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
+> > b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
+> > index 387fb779bd29..5f7be0cb7418 100644
+> > --- a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
+> > +++ b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
+> > @@ -10,6 +10,7 @@
+> > =C2=A0
+> > =C2=A0#include <dt-bindings/gpio/gpio.h>
+> > =C2=A0#include <dt-bindings/input/input.h>
+> > +#include <dt-bindings/usb/pd.h>
+> > =C2=A0#include "gs101-pinctrl.h"
+> > =C2=A0#include "gs101.dtsi"
+> > =C2=A0
+> > @@ -90,6 +91,84 @@ eeprom: eeprom@50 {
+> > =C2=A0&hsi2c_12 {
+> > =C2=A0	status =3D "okay";
+> > =C2=A0	/* TODO: add the devices once drivers exist */
+>=20
+>=20
+> Is the TODO still valid?
 
-On 11/27/2024 5:40 PM, Krzysztof Kozlowski wrote:
-> On 25/09/2024 16:01, Krzysztof Kozlowski wrote:
->> On 25/09/2024 12:43, Jingyi Wang wrote:
->>> Introduce the Device Tree for the QCS8300 platform.
->>>
->>> Features added and enabled:
->>> - CPUs with PSCI idle states
->>> - Interrupt-controller with PDC wakeup support
->>> - Timers, TCSR Clock Controllers
->>> - Reserved Shared memory
->>> - GCC and RPMHCC
->>> - TLMM
->>> - Interconnect
->>> - QuP with uart
->>> - SMMU
->>> - QFPROM
->>> - Rpmhpd power controller
->>> - UFS
->>> - Inter-Processor Communication Controller
->>> - SRAM
->>> - Remoteprocs including ADSP,CDSP and GPDSP
->>> - BWMONs
->>>
->>> binding dependencies:
->>> - remoteproc: https://lore.kernel.org/linux-arm-msm/20240925-qcs8300_remoteproc_binding-v3-1-21b0c52b142b@quicinc.com/
->>> - ufs-phy: https://lore.kernel.org/linux-arm-msm/20240925-qcs8300_ufs_phy_binding-v3-1-c1eb5c393b09@quicinc.com/
->>> - ufs-controller: https://lore.kernel.org/all/20240911-qcs8300_ufs_binding-v2-1-68bb66d48730@quicinc.com/ - Reviewed
->>> - smmu: https://lore.kernel.org/all/20240911-qcs8300_smmu_binding-v2-1-f53dd9c047ba@quicinc.com/ - Applied
->>> - ipcc: https://lore.kernel.org/all/20240911-qcs8300_ipcc_binding-v2-1-ca15326c5d0f@quicinc.com/ - Applied
->>> - qfprom: https://lore.kernel.org/all/20240911-qcs8300_qfprom_binding-v2-1-d39226887493@quicinc.com/ - Reviewed
->>> - tcsr: https://lore.kernel.org/all/20240911-qcs8300_tcsr_binding-v2-1-66eb5336b8d1@quicinc.com/ - Reviewed
->>> - rmphpd: https://lore.kernel.org/all/20240920-add_qcs8300_powerdomains_driver_support-v1-1-96a2a08841da@quicinc.com/ - Reviewed
->>> - bwmon: https://lore.kernel.org/all/20240925-qcs8300_bwmon_binding-v1-1-a7bfd94b2854@quicinc.com/ - Reviewed
->>> - others: https://lore.kernel.org/all/20240911-qcs8300_binding-v2-0-de8641b3eaa1@quicinc.com/ - Reviewed
->>
-> This submission has bugs and instead of fixing it, some other people are
-> sending already patches on top.
-> 
-> No, fix this patchset instead.
-> 
-> Best regards,
-> Krzysztof
-> 
-Had an internal discussion with Cong Zhang, will combine the fixup in the
-following up series.
+Yes, there are more devices on that bus.
 
-Thanks,
-Jingyi
+Cheers,
+Andre'
 
 
