@@ -1,181 +1,112 @@
-Return-Path: <devicetree+bounces-125269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125270-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA3BA9DB5D0
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 11:37:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BDB1C9DB600
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 11:50:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F9E8164C12
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 10:37:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 17C5916137E
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 10:50:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6D8515D5B7;
-	Thu, 28 Nov 2024 10:37:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4795A194A74;
+	Thu, 28 Nov 2024 10:49:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="KY3bXFRN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EMkBem3L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f54.google.com (mail-oa1-f54.google.com [209.85.160.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB2901428E7;
-	Thu, 28 Nov 2024 10:37:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60F2A15B984
+	for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 10:49:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732790238; cv=none; b=qcrnpGyLXvIBD6SuKTUUG87w1saDOGnIXQSn0XmK1yNWHQo/Rs2wkGF3Sy2T73dZj6+gVyX2nxeP/8cBlfWGlGF7i8fO9pM1HELbhDt2imflNWe/fbMytDPRnFnJvfS+0dYUF5w2L9NUfBaMIIC+IYHT70wDAdlQj8gmtChnwgA=
+	t=1732790995; cv=none; b=UyaipNTMpglC28nyCdb700v0xMp5xGnhhMU9jrpb1kUv33+dMTdnhLfHG+4m3KlkMP9wakQO3mvg5+BToTdubapgKolJsMSQYxU4rEuTp3BGW6/Z3hgPhzvBD2H7JxaNisW5g6U9Q1NzT9ENvirCpR6EHXOXlERS8RHJJFN7Z9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732790238; c=relaxed/simple;
-	bh=X//+aLlv/ZUgHtxgxEk8ipshJKC/R6yilpLawZd/s4Q=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rVIGu+Mxpukb/MidKJ5k1IsCIDC0iPRiyRtKPcjPuIcjSKcGLlbBeNspl3PqvUfKyIbJitYetjc9H6zjsW60KnNviDkeXYGlNXzn7G3ejZ/3BrRHCd/mCODudIoXW2Bkcb7/F2U5WVTaB73+i6uQKOl3eLWTkVDqrbf3jbKrcrA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=KY3bXFRN; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1732790237; x=1764326237;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=X//+aLlv/ZUgHtxgxEk8ipshJKC/R6yilpLawZd/s4Q=;
-  b=KY3bXFRN1WtxX1Bmg45pfac1UjWhLRI/RhKqkGGcSZ4F144H+4bxOJIS
-   YYD2sneJHMBaE9cFN/iPNk2Zx0UxFWjMKVaeVIWLqqBxeyJwuKEuyGbRG
-   mJ/yoQndt64WJkmFPbo4pVfIfo4MYUfHrv39HT8X2gIz0+Q3ijH5OwS2M
-   578FCgBG/afcr6Eqf2ouE5qzybbwQCum8Hdb+XVsQf0oMUSZ0ymmNg4b9
-   niiDD4nKTRNuG9ueM+iS/874sIvdowP91ccDJ0lpstdntj6sFsD9pi4T5
-   3xl414u6OO8x0QOQkp7jMNDZPVkECTnVuRuaxL3Uj0hzKdDeRN/DCn/+9
-   w==;
-X-CSE-ConnectionGUID: wSflfb+LS36CStD+2SM6ZQ==
-X-CSE-MsgGUID: PIuDtMU8RDao3fADMTrbCA==
-X-IronPort-AV: E=Sophos;i="6.12,192,1728975600"; 
-   d="asc'?scan'208";a="35386534"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 28 Nov 2024 03:37:10 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 28 Nov 2024 03:36:47 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Thu, 28 Nov 2024 03:36:43 -0700
-Date: Thu, 28 Nov 2024 10:36:16 +0000
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Stephen Boyd <sboyd@kernel.org>
-CC: Conor Dooley <conor@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>, <linux-kernel@vger.kernel.org>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	<pierre-henry.moussay@microchip.com>,
-	<valentina.fernandezalanis@microchip.com>, Michael Turquette
-	<mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>, Lee Jones
-	<lee@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
-	<palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Kevin Hilman
-	<khilman@baylibre.com>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-	<linux-riscv@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-amlogic@lists.infradead.org>,
-	<linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v1 08/11] clk: move meson clk-regmap implementation to
- common code
-Message-ID: <20241128-monstrous-embargo-a665d921410d@wendy>
-References: <20241002-private-unequal-33cfa6101338@spud>
- <20241002-hula-unwashed-1c4ddbadbec2@spud>
- <2b49c4df-a34a-42c5-8d44-9e47da630fe8@linaro.org>
- <1jwmiqsks3.fsf@starbuckisacylon.baylibre.com>
- <20241003-tacking-ladylike-dfe2b633e647@spud>
- <20241106-freefall-slider-db379b05821e@spud>
- <430bde3b35382e640843e32a9f351326.sboyd@kernel.org>
+	s=arc-20240116; t=1732790995; c=relaxed/simple;
+	bh=S+6oOaM0s6Tu6ZxZFSf1VxM7YfIeZpwsBu0bRCHSjm4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QYU/WifkF5hasy5auKPfgV6TEs9vTwaqLjc5rVAZHiPtWiNZ3S8Mn2KuuEIQAImlUpsa6zzz/p5ldX2TkvotMpJUAmic/PHkgECwj1scH4ymy9VOGuPer37dObhqWPoOD4qsg58Dy9Kh9M1yQYrnK30rhpVV4KQz/Zj6fPwZVPQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EMkBem3L; arc=none smtp.client-ip=209.85.160.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-oa1-f54.google.com with SMTP id 586e51a60fabf-296c184ed6bso459186fac.0
+        for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 02:49:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1732790991; x=1733395791; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=S+6oOaM0s6Tu6ZxZFSf1VxM7YfIeZpwsBu0bRCHSjm4=;
+        b=EMkBem3L6R0fo+5kuXSurd2vWNU1w+wY/pQ3KTyRC0sZFTY76LPLkMOsNvpw+aUPXx
+         4fwNg0Zg6vHfjXXluu9ChGYJKlt3nc7P/m+GaKthL3Qw25SyzQC26MHqYJZYq/6lFTs+
+         rpYzqo6Yt25Yg6xYJ02qcxCO6ypxE78Ff34efkqpTwFZ+ildJcDMGh0HUp2S/aOdr5gb
+         k10l+KhNiPjWTACWY14TpIvejNNZj1pxugwVxlIezhH8uwYA6XlmV64cSm9L2gz09WJ+
+         B1ijILoIOPg3OKLrdvoGXpSKmsqlf0PFxkBT9J3RAiFwJ2teAcV37S/erZVp+AAzCzYv
+         UOeg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732790991; x=1733395791;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=S+6oOaM0s6Tu6ZxZFSf1VxM7YfIeZpwsBu0bRCHSjm4=;
+        b=V34b3HbVH6787KZVU1zjFim+KuR+o9jA2kG+17o3LODY0lcYxTWRhmyi1o2K3+BJZm
+         zEqXGbzdRZdRnxdi6BoX7W3GZerYLybvogQRzb+fHfLU10QfZxiH//W6fFE3859yKhEQ
+         drYD4m+pksq80/GHI8a9irLj7WFRDlmDT5o1+agyJZsbrpjhYdft+NJN68Ih3zqB43lb
+         ZYSbZBqgTYIDgxgHWHv1X303T+krfQm8RROpt/SK+7Q9gkMl5YNzF/Q81QZFPJWpL4wU
+         2hGI1LRNlyHGRFWmPN6izmxQisYvayUKssNyldmSW9eW+Hvt+ahZ5/lVei381XIPZxxm
+         HGeg==
+X-Forwarded-Encrypted: i=1; AJvYcCXKa4iAtWx1RZMOjB5wkQdIZ2C+TCQYcdi5oq5Qs0k1vvO61cX7KPb2buqjVFh8/jdZF4bhdbOXihsj@vger.kernel.org
+X-Gm-Message-State: AOJu0YzKmPRuggTu/zRSl5zBj/TaOVfNiti7aNQiJg1qboFTmxJwk8kR
+	kSYxGRqIiV3GYWGVMYhZBQvR31flB7b+sg0KEhzouC6k0ADmAvqZ4jeybNwVWEBwk660BKZNovn
+	rRCyq/xxr5oU9IiddvNRDD1Sx36DQWmgK4BcqVw==
+X-Gm-Gg: ASbGncuFGbMiZ3RQlj8W8KPkIloEYUutfMecQDhQaDVB1ZavyR5emaZzLXmoeJNXKC1
+	0A8TRMNaKxXmKeK8rUjl6+MVjofDksySV
+X-Google-Smtp-Source: AGHT+IHSW4AauQXzPQcYvXTGYQGOqaCzi/aJx5YRC8Z2JJs3/8I5KClVLNxBsZmq2QaZI74lTF4hFwtZQD27MqcFr60=
+X-Received: by 2002:a05:6871:e7c4:b0:29d:c8fd:cccd with SMTP id
+ 586e51a60fabf-29dc8fdf378mr5912643fac.2.1732790990078; Thu, 28 Nov 2024
+ 02:49:50 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="jOw7oZ/dHujpxqRG"
-Content-Disposition: inline
-In-Reply-To: <430bde3b35382e640843e32a9f351326.sboyd@kernel.org>
-
---jOw7oZ/dHujpxqRG
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20241127-gs101-phy-lanes-orientation-dts-v1-0-5222d8508b71@linaro.org>
+ <20241127-gs101-phy-lanes-orientation-dts-v1-1-5222d8508b71@linaro.org>
+In-Reply-To: <20241127-gs101-phy-lanes-orientation-dts-v1-1-5222d8508b71@linaro.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Thu, 28 Nov 2024 10:49:38 +0000
+Message-ID: <CADrjBPq3vJmHh9bnS0u=d_aTeaRH8Z00JqgBfkqjQQ_Fv14xxw@mail.gmail.com>
+Subject: Re: [PATCH 1/6] arm64: defconfig: enable Maxim TCPCI driver
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jagan Sridharan <badhri@google.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Sam Protsenko <semen.protsenko@linaro.org>, 
+	Will McVicker <willmcvicker@google.com>, Roy Luo <royluo@google.com>, kernel-team@android.com, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 14, 2024 at 05:29:54PM -0800, Stephen Boyd wrote:
-> Quoting Conor Dooley (2024-11-06 04:56:25)
-> > My use case doesn't
-> > actually need the registration code changes either as, currently, only =
-reg
-> > gets set at runtime, but leaving that out is a level of incomplete I'd =
-not
-> > let myself away with.
-> > Obviously shoving the extra members into the clk structs has the downsi=
-de
-> > of taking up a pointer and a offset worth of memory for each clock of
-> > that type registered, but it is substantially easier to support devices
-> > with multiple regmaps that way. Probably moot though since the approach=
- you
-> > suggested in the thread linked above that implements a clk_hw_get_regma=
-p()
-> > has to store a pointer to the regmap's identifier which would take up an
-> > identical amount of memory.
->=20
-> We don't need to store the regmap identifier in the struct clk. We can
-> store it in the 'struct clk_init_data' with some new field, and only do
-> that when/if we actually need to. We would need to pass the init data to
-> the clk_ops::init() callback though. We currently knock that out during
-> registration so that clk_hw->init is NULL. Probably we can just set that
-> to NULL after the init routine runs in __clk_core_init().
->=20
-> Long story short, don't add something to 'struct clk_core', 'struct
-> clk', or 'struct clk_hw' for these details. We can have a 'struct
-> clk_regmap_hw' that everyone else can build upon:
->=20
->   struct clk_regmap_hw {
->         struct regmap *regmap;
->         struct clk_hw hw;
->   };
+Hi Andr=C3=A9,
 
-What's the point of this? I don't understand why you want to do this over
-what clk_divider et al already do, where clk_hw and the iomem pointer
-are in the struct itself.
+On Wed, 27 Nov 2024 at 11:01, Andr=C3=A9 Draszik <andre.draszik@linaro.org>=
+ wrote:
+>
+> Enable the Maxim max33359 as this is used by the gs101-oriole (Google
+> Pixel 6) board.
+>
+> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+> ---
 
->=20
-> and then set the regmap pointer during registration in
-> clk_hw_init_regmap().
->=20
-> int clk_hw_init_regmap(struct clk_hw *hw)
-> {
-> 	struct device *dev;
-> 	struct regmap *regmap;
-> 	struct clk_regmap_hw *rhw;
->=20
-> 	rhw =3D clk_hw_to_clk_regmap_hw(hw);
->=20
-> 	dev =3D clk_hw_get_dev(hw);
-> 	if (!dev)
-> 		return -EINVAL;
->=20
-> 	regmap =3D dev_get_regmap(dev, hw->init->regmap_name);
-> 	if (!regmap)
-> 		return -EINVAL; // Print helpful message
-> 	rhw->regmap =3D regmap;
->=20
-> 	return 0;
-> }
+Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
 
---jOw7oZ/dHujpxqRG
-Content-Type: application/pgp-signature; name="signature.asc"
+regards,
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ0hHlQAKCRB4tDGHoIJi
-0r+YAQDAe67NaDMRenGcDGtot2a/AgJVl48Api+arsoWqWN6QAD9GCn98CCFJZBY
-gZMaI09bAeDcbhzSqAEHQ9GpSbRtMAg=
-=CQKc
------END PGP SIGNATURE-----
-
---jOw7oZ/dHujpxqRG--
+Peter
 
