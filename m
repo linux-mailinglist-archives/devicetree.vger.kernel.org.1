@@ -1,172 +1,116 @@
-Return-Path: <devicetree+bounces-125391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125392-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 049C49DBE0F
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 00:23:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A989E9DBE13
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 00:25:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A3880B21F55
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 23:23:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2494DB2222E
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 23:25:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C01BD1C7608;
-	Thu, 28 Nov 2024 23:23:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DE9B1C7608;
+	Thu, 28 Nov 2024 23:25:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Uk8mPs3B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C6991DA23;
-	Thu, 28 Nov 2024 23:23:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAE701DA23;
+	Thu, 28 Nov 2024 23:25:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732836219; cv=none; b=hvFMyf7lIny6XWBNRyC1dNfpmVjsS8wQNGxYCQz9tCx0j2dPpwkRVNTnDz7Ke0JIaVyHWNCEQVDNULe/xi2jiCzwRx+fU2SAVyl+6S9DkG8oX6LIQ1G/361zIBd6xZgFLCcTTSpNbO53i/2DRhOBbDo2yNqDfUqnTnoIpOPkvQw=
+	t=1732836306; cv=none; b=uioAHqMS9aaCJP+vkFJOexkJbtILLoQ7cuBQL5kQA5fjblG2AekHNUTCHzAMyIbKCnDx5O5Y0vmHqfB90jmiN29mD8m2aVU+FjISJF/P0tIeq5NXd3wHAVmU9gkVftAnEAf1HMVx4xenS7mG6pNTm91YfdTj1up7eG8UJ+tPk+o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732836219; c=relaxed/simple;
-	bh=hHEcNzlmyMw9yeKuOWi7MOZ7zdWVNHImmRV0gxQkmms=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:Cc:
-	 In-Reply-To:Content-Type; b=Nu053CFI4v8T1GpVrxryDQnbK3HCRiFYxYce0vwcEX2ywIKgeVPGkzvHGK5t+qEMDksWiUvdJ3f4M+kronYPT8CphTt9LaRF8WEXQg4zQoGzza6kuQomTkRGtPTubfqRo8e9MMmExD9Yb1ryiBkmkW1U3AJb9qE8y9Q8ZWBwAHk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0C5391474;
-	Thu, 28 Nov 2024 15:24:06 -0800 (PST)
-Received: from [192.168.178.92] (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7B5F83F66E;
-	Thu, 28 Nov 2024 15:23:33 -0800 (PST)
-Message-ID: <5b07cd47-868d-46a3-b365-ccac2a68b792@arm.com>
-Date: Thu, 28 Nov 2024 23:23:31 +0000
+	s=arc-20240116; t=1732836306; c=relaxed/simple;
+	bh=JGWGnk6x0wZk6Fqh1A6YU6MXAj0RVNcpLxQlSHGJDXg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=M1qk7sfULVDlK7oAUIFBUq/5y7HqJVus7hDc5Yc+ZlKMVkw5J2JlZ3X1RXLhW6uLRPycCxwkhqa+lujYCiiQz6CP9YYXtQuswOyPZouJynRbN+aKh1byzhL5CnF0qJvfTqPKhQ4zbra0J5j+tAR+ZMblMnnxV/L/e5HO+hmo5q8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Uk8mPs3B; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-434a0fd9778so11905915e9.0;
+        Thu, 28 Nov 2024 15:25:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1732836303; x=1733441103; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=KoCBSIhYiSk8RIZv58Ren7hKSHx4Dd2qTRXDu2vNNf4=;
+        b=Uk8mPs3BjwkTDOj3+V/jFuAbxItLKFQkbsFH3CINr43doUDM3B1RnBjzXVlnw1lY9N
+         RxmqKXK7KgVptwYIVfdmPw9X7B1vOO6x2S4yL7hpwK5lYEOXjbPzP6ATV+J0vHaJ2rkS
+         EGRh1tPdefHdd7h3HYcqhl11puJfmTv9yrRixykDL5D08Q7M7DrtY45O6C7Veb/0Jn/a
+         YmzSd9fyxastBuPH0zWnC4TxtgqeaeaGNH9rhmWW9ENssK5VphneXOPq5CdoCpsLMATW
+         bxp6Py+6x9hj6GLWsW1kGacoN7ChB8TPoFH6R+451Yi/nLtKDE4rAc4iiu8DpJXevaVj
+         SFWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732836303; x=1733441103;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KoCBSIhYiSk8RIZv58Ren7hKSHx4Dd2qTRXDu2vNNf4=;
+        b=O0vZ5s5/OJrHdwMU98EBVIaLbRrPvuVWoemwMaNBBN6QsLaIHu/SNCsobyI4mOq4lE
+         dcafSQxH2vESelTz85emWz9KFeSmdiZ6as+ZvKzcOq7I/+wC7Qgki93Ibm8Dy6baT6PU
+         jGN600r+E7VBLUe031pnGxRxiWy8mGgXxJ75cNJeFE8YPXU9+fLUZCWBViIhSKHGYpqF
+         1afkVTkC/xcky4bE7jRsEgkS6zAIElGA62ZojYLgqIywQ0VvpOzgxL+6+fVRNCvN96oJ
+         LrqHnz7nvLzQoznOamWnYaeCsyfz99mSMDhF1C4xYOkG6frVbdLmqWO5zMxCixGdJq++
+         sKNw==
+X-Forwarded-Encrypted: i=1; AJvYcCVymvG4BL4/tqD04suxbPGBfHOLeT/gVFrrRnmFbn0Un6PRv2RUDo4POJZ6oDuYiak/hKSO5iP3o9Rc3uya@vger.kernel.org, AJvYcCWyAQ6G/FIn4IHuTiRgXRzukbwGjQv6hLls+wLvI7JR2S89NR3ScHyFgHGJjL4HJjKzp7eRFgaEKsSJ@vger.kernel.org, AJvYcCXRNgmh1IgJYq5xPEVJY2dMuN6W5f8FbOGm5HkCarXncfIhNCotKdDjxhUrPxecRVaoV01UIqNZbmXY@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz/wsTitSJr8gkch/Cv5q6E+b9yB31V1lc6QjRu9Sitz+AuAr1+
+	ku8q/vI65CJjpirDos7fIECEKsP76bAIHb1apM31J5yf/GHkl4tp
+X-Gm-Gg: ASbGnct8RDKsRkl05iYULoTJtCiTxecCZ4h+5Lxch3WX0XKG0qytHzgIY3H0l/yQeZx
+	9ozPJ2HM38zHhvwXTednm5uaazfLjW+O9H/3vXJD7WW3xJjCKCUh6+L9cNTugPo9Rx0HfSFvlfm
+	u3n4yhUQrEuQuqlxie+6jymo84shYY7nhdFh8YKIWnuNMv7+UmokW/sz06zztkgRK7A6wmNODSG
+	/CcV0jzKLDS+HUHDKfsEr2DquOGCmBgbxLn6ZZhfKLGz2QT+Y0URF8OEOdvsag=
+X-Google-Smtp-Source: AGHT+IHJ3WmTkSlsEbk8YMcx2+z7xur8PJDnyiYsRFgx0CDrhYmi2YbBxojnzsu9TG9UyARFUPmnXQ==
+X-Received: by 2002:a05:600c:3b1a:b0:434:a160:3647 with SMTP id 5b1f17b1804b1-434a9dc3eb6mr81513905e9.12.1732836303193;
+        Thu, 28 Nov 2024 15:25:03 -0800 (PST)
+Received: from vamoirid-laptop.. ([2a04:ee41:82:7577:a8c6:c7bb:87d7:66dd])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-385ccd3690dsm2765594f8f.35.2024.11.28.15.25.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Nov 2024 15:25:02 -0800 (PST)
+From: Vasileios Amoiridis <vassilisamir@gmail.com>
+To: jic23@kernel.org,
+	lars@metafoo.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andriy.shevchenko@linux.intel.com
+Cc: ajarizzo@gmail.com,
+	ak@it-klinger.de,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	vassilisamir@gmail.com
+Subject: [PATCH v1 0/3] iio: pressure: bmp280: Minor cleanup
+Date: Fri, 29 Nov 2024 00:24:47 +0100
+Message-ID: <20241128232450.313862-1-vassilisamir@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] Update H700 opp values
-To: Philippe Simons <simons.philippe@gmail.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "moderated list:ARM/Allwinner sunXi SoC support"
- <linux-arm-kernel@lists.infradead.org>,
- "open list:ARM/Allwinner sunXi SoC support" <linux-sunxi@lists.linux.dev>,
- open list <linux-kernel@vger.kernel.org>
-References: <20241128154556.2743839-1-simons.philippe@gmail.com>
-Content-Language: en-US
-From: Andre Przywara <andre.przywara@arm.com>
-Cc: Chris Morgan <macromorgan@hotmail.com>, Ryan Walklin <ryan@testtoast.com>
-In-Reply-To: <20241128154556.2743839-1-simons.philippe@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Hi Philippe,
+This series adds the SPI interface description on the device-tree file
+of the sensor, adds proper self-described sized variables and performs
+a minor optimization in time variable names.
 
-thanks for taking care of sending a patch!
-You would need prefixes on the subject line to point to the right 
-subsystem. A "git log path/to/changed_file" would give you the prefix of 
-previous patches, for you to copy from. In this case it would be:
-arm64: dts: allwinner: h616: update H700 OPP values
+Vasileios Amoiridis (3):
+  dt-bindings: iio: pressure: bmp085: Add SPI interface
+  iio: pressure: bmp280: Use sizeof() for denominator
+  iio: pressure: bmp280: Make time vars intuitive and move to fsleep
 
-On 28/11/2024 15:45, Philippe Simons wrote:
-> My H700 (RG35XX-H, RG40XX-V and RG CubeXX) devices are very unstable,
-> especially with some OPPs.
-> Crashes were fairly easy to reproduce with any dynamic cpufreq governor
-> and some load on CPU, usually in matter of minutes.
-> Crashes manifested randomly as simply hanging or various kernel oops
-> 
-> Manufacturer (Anbernic) is using more conservative mircrovolt values,
-> so let's use these.
-> While using performance gov seems stables at 1.5Ghz, it still crashes
-> using a dynamic gov (even with Andre reparenting patch), so let's drop
-> it for now, like manufacturer does.
-> 
-> Signed-off-by: Philippe Simons <simons.philippe@gmail.com
+ .../bindings/iio/pressure/bmp085.yaml         | 35 +++++++++++++++++
+ drivers/iio/pressure/bmp280-core.c            | 39 ++++++++++---------
+ drivers/iio/pressure/bmp280.h                 |  8 ++--
+ 3 files changed, 59 insertions(+), 23 deletions(-)
 
-The change itself looks alright, bumping the OPP voltages by 50mV looks 
-reasonable, and is a no-brainer if it stops the issues you have seen.
 
-The loss of the 1.5GHz top OPP is a bummer, but stability comes 
-definitely first, otherwise we will just fail faster ;-)
+base-commit: a61ff7eac77e86de828fe28c4e42b8ae9ec2b195
+-- 
+2.43.0
 
-I would like to hear opinions from Ryan and Chris (both CC:ed). Did you 
-see similar issues with say the ondemand governor?
-
-The patch itself looks correct, so for that:
-
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-
-Cheers,
-Andre
-
-> ---
->   .../dts/allwinner/sun50i-h616-cpu-opp.dtsi    | 19 +++++++++----------
->   1 file changed, 9 insertions(+), 10 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616-cpu-opp.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616-cpu-opp.dtsi
-> index dd10aaf47..ac13fe169 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h616-cpu-opp.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616-cpu-opp.dtsi
-> @@ -50,24 +50,21 @@ opp-1008000000 {
->   			opp-microvolt-speed2 = <950000>;
->   			opp-microvolt-speed3 = <950000>;
->   			opp-microvolt-speed4 = <1020000>;
-> -			opp-microvolt-speed5 = <900000>;
-> +			opp-microvolt-speed5 = <950000>;
->   			clock-latency-ns = <244144>; /* 8 32k periods */
->   			opp-supported-hw = <0x3f>;
->   		};
->   
->   		opp-1032000000 {
->   			opp-hz = /bits/ 64 <1032000000>;
-> -			opp-microvolt = <900000>;
-> +			opp-microvolt = <950000>;
->   			clock-latency-ns = <244144>; /* 8 32k periods */
->   			opp-supported-hw = <0x20>;
->   		};
->   
->   		opp-1104000000 {
->   			opp-hz = /bits/ 64 <1104000000>;
-> -			opp-microvolt-speed0 = <1000000>;
-> -			opp-microvolt-speed2 = <1000000>;
-> -			opp-microvolt-speed3 = <1000000>;
-> -			opp-microvolt-speed5 = <950000>;
-> +			opp-microvolt = <1000000>;			
->   			clock-latency-ns = <244144>; /* 8 32k periods */
->   			opp-supported-hw = <0x2d>;
->   		};
-> @@ -79,7 +76,7 @@ opp-1200000000 {
->   			opp-microvolt-speed2 = <1050000>;
->   			opp-microvolt-speed3 = <1050000>;
->   			opp-microvolt-speed4 = <1100000>;
-> -			opp-microvolt-speed5 = <1020000>;
-> +			opp-microvolt-speed5 = <1050000>;
->   			clock-latency-ns = <244144>; /* 8 32k periods */
->   			opp-supported-hw = <0x3f>;
->   		};
-> @@ -93,7 +90,10 @@ opp-1320000000 {
->   
->   		opp-1416000000 {
->   			opp-hz = /bits/ 64 <1416000000>;
-> -			opp-microvolt = <1100000>;
-> +			opp-microvolt-speed0 = <1100000>;
-> +			opp-microvolt-speed2 = <1100000>;
-> +			opp-microvolt-speed3 = <1100000>;
-> +			opp-microvolt-speed5 = <1160000>;
->   			clock-latency-ns = <244144>; /* 8 32k periods */
->   			opp-supported-hw = <0x2d>;
->   		};
-> @@ -102,9 +102,8 @@ opp-1512000000 {
->   			opp-hz = /bits/ 64 <1512000000>;
->   			opp-microvolt-speed1 = <1100000>;
->   			opp-microvolt-speed3 = <1100000>;
-> -			opp-microvolt-speed5 = <1160000>;
->   			clock-latency-ns = <244144>; /* 8 32k periods */
-> -			opp-supported-hw = <0x2a>;
-> +			opp-supported-hw = <0x0a>;
->   		};
->   	};
->   };
 
