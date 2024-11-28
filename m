@@ -1,79 +1,42 @@
-Return-Path: <devicetree+bounces-125276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECEBC9DB638
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 12:06:39 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 353069DB645
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 12:09:40 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 93BEA164572
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 11:06:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EEFB2281599
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 11:09:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D62741940A2;
-	Thu, 28 Nov 2024 11:06:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BmObTLCw"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 020251946C8;
+	Thu, 28 Nov 2024 11:09:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A84F1925B3;
-	Thu, 28 Nov 2024 11:06:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 345F7192D82;
+	Thu, 28 Nov 2024 11:09:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732791996; cv=none; b=IL3kkDrD49HnF3EC4tWDbBiSpJtKc78b8eScQbeMxva9AhynefrqDNRvwx+aC9q1GfWmy4yL3QdDkB9UwYs+HPRk99+Nk9HoJl/sZmLzYYEam05TwCPE46VyB04TV9+u49be8eBxtUa5t9wO9wi57o/uBzyHc5wg0aG7lZsLmw0=
+	t=1732792175; cv=none; b=r07RCkxG3zbcedg4exnc8TyMW34xdss8PWG0zf2PPVCvcrEl8OTFDYkpEd0nEKA5fyOCGVHG/GK69elC0mHvUA8SXgRU4tSHC3q5vXAqObgSKH+lno7A3LBouvxfz2lXBolbV8BEUdtCjay4YXJSAITsKLT4p3/2tETLUTOb2Ks=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732791996; c=relaxed/simple;
-	bh=6V422H3dv9Du3URUJSLpBRw4S2JgulSIk6Z4elejc8s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MEz/PuD8HQVQxJB5KmM07PiPTf7xnR3L+scyHTCRXTmKkpizmp0ntQGyPFDbm5GBVRWTeDqcWz3zkTkZ+41NAS8kpJ4xlV2mr4KgFOOTXaz7DJELkJyIc+XtplxmvtZOeAZXAxXRynrSqDh6q+xsuLRcfYeJS063eRVVE5fcJ4Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BmObTLCw; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-5cfe5da1251so827343a12.1;
-        Thu, 28 Nov 2024 03:06:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1732791992; x=1733396792; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9kV/k8UgkB5xu8Vp6e9vyAiETa22BHIqam0AP21cVfk=;
-        b=BmObTLCwgUCBKjsgevZpZCO+dq4aE+8t/quClI+fI+JAdR6LW0x5QWbO9Rn4kXoBz0
-         UQvWDFVN4viOxaBNduu7oyz1LsOqMSMz8Nt3cpINUJnrhAScEg/8+TF5JCD4WcdYDcm7
-         BYF0+26goR2Nt/RHeaks4FXYszGSLJZaN5p7Tow1d4yUk6uzrX16PEphphLZz/ic2XwU
-         OjCV5NCpFAOox1402sz7YniwAORrsYSP1LwhMzVRQL1Hfta7q71pjK3WyYLWWCHIC9Py
-         FmrTfg1CId24vgRDQVr13BC++N18iJZxDQDLUUVD7yAjbbAFf6g+ktXTSKZfi+54IkOH
-         +hFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732791992; x=1733396792;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9kV/k8UgkB5xu8Vp6e9vyAiETa22BHIqam0AP21cVfk=;
-        b=V0Omrz47qTZoxVHe6iUycHBPID8aJX/hq/OjtgFHNKWW3GciX+9Z8PfnMBuPyFbeqp
-         IkVHpXJEnVUC02IGsw6hdrUBcuXocgyBnT5CMrzXzAR9NL0fEN4O++Ru3OYzBGyZE/FF
-         vULws5dea/IZsvwCzueojNNdY9OLr6LkC9RvQ1GOn0ltApQFuu3mlkvKre0IPA0qhAr2
-         KkEmW9L8KH38nqr41EyUVcRMnNUOTU02DSPwOZiJZAMXnmeHK93xFM27RVieEcrc1kY/
-         OBNTM5dLyHIg4BadtMpH94QP0xMaXDROeg6nki18pMZvRFbZxRbLxtzxtRqleK75a45J
-         LXEg==
-X-Forwarded-Encrypted: i=1; AJvYcCUdDEwSByIOEkTsSLId9qdnXXkyARrj+RWgbZK23hbSnRUSeADDCPFcuZXVWvrhW6hHD4oiFeNMY8HZ@vger.kernel.org, AJvYcCUprJexEf8kikfPhrHNawYEOjqJVeOrcWT237q+mssDfVgf0yleO3SyEaNRC76c/0S1yJLgidkPAzr+@vger.kernel.org, AJvYcCWUpf/bye3VdvFOoDQ5IiOm6zSRzSs7bRYuk9iSUJ8E8J3MPQxgyRgzKoMXUJSgIiJTBvbrcZ2zTY3DTMtY@vger.kernel.org
-X-Gm-Message-State: AOJu0YziNJVr+NuiQ1omIHoEn0GDjNVFX8lywjf4QUCwg7EsIjOYkcGz
-	A9yD6rZlCvi91kuPFNPoBS43LXF0mJdIzOIla87nbrrWY/c85Hc1
-X-Gm-Gg: ASbGncsE7lsVds/wbqDRwzsgwAWW5sO+k6qGCORYq1v6ZgH0a4n2OOkKOIO7zdnZe0I
-	IBzBHu2IY6c0dkODFamPa9wM72p4EqQOOqpBmW2I7Gjuq2fQ8H7MgytzIhcsnA3zjJuB5RFxOhd
-	sV1jdgyrvw3rx8O6z7f00fYTG/wX325kDPWt09WvDn8PZgunNNkWHgFvK5egeeLvvB7RAgURkIC
-	cKN8Q6qV3B8dSIr5++rvuMeQU4jtVRU1r0CFSHtfRd5B1hSg1wgT5P3ezXx+bdHp28ZFuRiiLXU
-	DuCO9XRgowtfrMlhgWYmsBv6Y+ZN
-X-Google-Smtp-Source: AGHT+IEt+yji9PcxnQ+E0O8I0V88q//kI+oMuOkt2imlBetGr6zJPVZjJVQM8OabiGmvpeJjBAnoLQ==
-X-Received: by 2002:a05:6402:2353:b0:5cf:f1fd:c687 with SMTP id 4fb4d7f45d1cf-5d080c97f34mr5911678a12.24.1732791991802;
-        Thu, 28 Nov 2024 03:06:31 -0800 (PST)
-Received: from [10.10.40.97] (91-118-163-37.static.upcbusiness.at. [91.118.163.37])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d098330dd2sm604660a12.14.2024.11.28.03.06.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Nov 2024 03:06:30 -0800 (PST)
-Message-ID: <c07b7375-327e-44bd-907a-73771e9f938e@gmail.com>
-Date: Thu, 28 Nov 2024 12:06:28 +0100
+	s=arc-20240116; t=1732792175; c=relaxed/simple;
+	bh=cTQC+IqQiqWKdsiQhmE8xsGi/6gPJFCi9Oc5kU8wIbQ=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=MB/hm6dVjdMHjK+aZVBO0f/ShhNVTQTenKRTJpV2hQIMM2FIiR85BkWgnDR08+wsqt7xgfgH2cjwRKt4kjPKXGQeI8bEnXfUQKrUzRLm5QRP540lt33CI+bqLJb6NebvKIFhq2O+t31W2T1UeLY16QwbKRivqVxgAJw8hox8v3c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; arc=none smtp.client-ip=46.19.9.99
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
+Received: from [89.212.21.243] (port=60100 helo=[192.168.69.52])
+	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	(Exim 4.96.2)
+	(envelope-from <andrej.picej@norik.com>)
+	id 1tGcOq-00CLXV-1R;
+	Thu, 28 Nov 2024 12:09:32 +0100
+Message-ID: <9b3e439b-269d-488a-a0aa-13a22d21619c@norik.com>
+Date: Thu, 28 Nov 2024 12:09:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,99 +44,94 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] iio: light: add support for veml6031x00 ALS series
-To: kernel test robot <lkp@intel.com>, Jonathan Cameron <jic23@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Rishi Gupta <gupt21@gmail.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20241126-veml6031x00-v1-2-4affa62bfefd@gmail.com>
- <202411281741.xz7mD4E2-lkp@intel.com>
-Content-Language: en-US, de-AT
-From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-In-Reply-To: <202411281741.xz7mD4E2-lkp@intel.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH 0/3] sn65dsi83: Add LVDS_VCOM option in device-tree
+From: Andrej Picej <andrej.picej@norik.com>
+To: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
+ Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, airlied@gmail.com, simona@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+ festevam@gmail.com, marex@denx.de
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org,
+ PHYTEC Upstream <upstream@lists.phytec.de>
+References: <20241127103031.1007893-1-andrej.picej@norik.com>
+Content-Language: en-US
+Autocrypt: addr=andrej.picej@norik.com; keydata=
+ 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
+ xtT/8OxBOVSHvA==
+In-Reply-To: <20241127103031.1007893-1-andrej.picej@norik.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
+X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-On 28/11/2024 10:55, kernel test robot wrote:
-> Hi Javier,
-> 
-> kernel test robot noticed the following build warnings:
-> 
-> [auto build test WARNING on a61ff7eac77e86de828fe28c4e42b8ae9ec2b195]
-> 
-> url:    https://github.com/intel-lab-lkp/linux/commits/Javier-Carrasco/dt-bindings-iio-light-veml6030-add-veml6031x00-ALS-series/20241128-104104
-> base:   a61ff7eac77e86de828fe28c4e42b8ae9ec2b195
-> patch link:    https://lore.kernel.org/r/20241126-veml6031x00-v1-2-4affa62bfefd%40gmail.com
-> patch subject: [PATCH 2/2] iio: light: add support for veml6031x00 ALS series
-> config: loongarch-allyesconfig (https://download.01.org/0day-ci/archive/20241128/202411281741.xz7mD4E2-lkp@intel.com/config)
-> compiler: loongarch64-linux-gcc (GCC) 14.2.0
-> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241128/202411281741.xz7mD4E2-lkp@intel.com/reproduce)
-> 
-> If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202411281741.xz7mD4E2-lkp@intel.com/
-> 
-> All warnings (new ones prefixed by >>):
-> 
->    drivers/iio/light/veml6031x00.c: In function 'veml6031x00_set_scale':
->>> drivers/iio/light/veml6031x00.c:422:24: warning: variable 'gain_idx' set but not used [-Wunused-but-set-variable]
->      422 |         int new_scale, gain_idx;
->          |                        ^~~~~~~~
-> 
-> 
-> vim +/gain_idx +422 drivers/iio/light/veml6031x00.c
-> 
->    418	
->    419	static int veml6031x00_set_scale(struct iio_dev *iio, int val, int val2)
->    420	{
->    421		struct veml6031x00_data *data = iio_priv(iio);
->  > 422		int new_scale, gain_idx;
->    423	
->    424		if (val == 0 && val2 == 125000) {
->    425			new_scale = FIELD_PREP(VEML6031X00_CONF1_GAIN, 0x03) |
->    426				VEML6031X00_CONF1_PD_D4;
->    427			gain_idx = 0;
->    428		} else if (val == 0 && val2 == 165000) {
->    429			new_scale = FIELD_PREP(VEML6031X00_CONF1_GAIN, 0x02) |
->    430				VEML6031X00_CONF1_PD_D4;
->    431			gain_idx = 1;
->    432		} else if (val == 0 && val2 == 250000) {
->    433			new_scale = FIELD_PREP(VEML6031X00_CONF1_GAIN, 0x00) |
->    434				VEML6031X00_CONF1_PD_D4;
->    435			gain_idx = 2;
->    436		} else if (val == 0 && val2 == 500000) {
->    437			new_scale = FIELD_PREP(VEML6031X00_CONF1_GAIN, 0x03);
->    438			gain_idx = 3;
->    439		} else if (val == 0 && val2 == 660000) {
->    440			new_scale = FIELD_PREP(VEML6031X00_CONF1_GAIN, 0x02);
->    441			gain_idx = 4;
->    442		} else if (val == 1 && val2 == 0) {
->    443			new_scale = FIELD_PREP(VEML6031X00_CONF1_GAIN, 0x00);
->    444			gain_idx = 5;
->    445		} else if (val == 2 && val2 == 0) {
->    446			new_scale = FIELD_PREP(VEML6031X00_CONF1_GAIN, 0x01);
->    447			gain_idx = 6;
->    448		} else {
->    449			return -EINVAL;
->    450		}
->    451	
->    452		return regmap_update_bits(data->regmap, VEML6031X00_REG_CONF1,
->    453					 VEML6031X00_CONF1_GAIN |
->    454					 VEML6031X00_CONF1_PD_D4,
->    455					 new_scale);
->    456	}
->    457	
-> 
+Forgot to CC PHYTEC upstream mailing list. Doing this now.
 
-The gain_idx variable is a leftover of a previous approach where
-processed values were also provided. But given that the conversion is
-linear (raw * scale), processed values were dropped. I will also drop
-this variable for v2 with the rest of the feedback I could get from this v1.
-
-Best regards,
-Javier Carrasco
-
+On 27. 11. 24 11:30, Andrej Picej wrote:
+> Hi all,
+>
+> This patch series depends on the patch
+> "[PATCH 11/15] arm64: dts: imx8mm-phyboard-polis: Add support for PEB-AV-10"
+> (https://lore.kernel.org/linux-arm-kernel/20241125081814.397352-12-andrej.picej@norik.com/)
+> which is currently under review. Please apply the dependent series first before
+> applying this one.
+>
+> Best regards,
+> Andrej
+>
+> Andrej Picej (1):
+>    arm64: dts: imx8mm-phyboard-polis-peb-av-10: Set custom lvds_vcom
+>
+> Janine Hagemann (2):
+>    dt-bindings: drm/bridge: ti-sn65dsi83: Add optional property
+>      ti,lvds-vcom
+>    drm/bridge: ti-sn65dsi83: Add ti,lvds-vcom as optional property
+>
+>   .../bindings/display/bridge/ti,sn65dsi83.yaml      | 14 +++++++++++++-
+>   .../freescale/imx8mm-phyboard-polis-peb-av-10.dtso |  1 +
+>   drivers/gpu/drm/bridge/ti-sn65dsi83.c              | 10 +++++++++-
+>   3 files changed, 23 insertions(+), 2 deletions(-)
+>
 
