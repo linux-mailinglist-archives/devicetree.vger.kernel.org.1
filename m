@@ -1,121 +1,149 @@
-Return-Path: <devicetree+bounces-125176-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125177-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A9CD9DB20C
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 05:09:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A46649DB214
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 05:15:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA79A2826CB
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 04:09:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6AE812816D3
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 04:15:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E507E86252;
-	Thu, 28 Nov 2024 04:09:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9E5D135A63;
+	Thu, 28 Nov 2024 04:15:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=ellerman.id.au header.i=@ellerman.id.au header.b="g+JpXJrX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbguseast1.qq.com (smtpbguseast1.qq.com [54.204.34.129])
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53939134BD
-	for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 04:09:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.204.34.129
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 100551384BF;
+	Thu, 28 Nov 2024 04:15:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732766954; cv=none; b=bvicGCwrp3/ckroVSGK15fWwwsMJxd0DxP19rEfW661Y0UmnE6Xtc0ajy8+hUTg35cDbUfQRFGPCC5dMTOAXiS+iPtXvrTnNzF01yBu4ZkLgkoRxhzv6ALJVodyCRASO7BOO/e/Vm3io9Y0ve2b8VasLTI9PzWo/Bz9Vtl0KIHs=
+	t=1732767321; cv=none; b=mA54gY/ZVCHUf4jz36Rh328OHzq7qq10O17qzEtJeWrz6MAGB9YjZ4mWgHUphQ4JAuqRfHTjZ6LDndwCcozm8KlRZupMXJLliLOcti4mtOUtteb+swJEvI5vQBeUhzQ+csWqGzcwycknn8dJaI1dY+XhW8T6sQwhMYXSa0sGIOc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732766954; c=relaxed/simple;
-	bh=FR59HmHLZGfL3e1PSVa/vnNyh3Po/o3151UAYw7cnF0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mnurXkusgQ7gldQa+auS22FpuampEv6n33NYpPwxL9fYOJjNc+8mQHAsFvw5fY6nP6AxHaMluzffn5OwudqTooQyuTK+PNYWSKUJG4KYZZ0VhZNlZlpWF5ASMDNm/dnGu/sVD617z+tm2wjFfbrgMOc3JK82ApD4kYXnmjyhaWw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.204.34.129
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: bizesmtpip3t1732766925ted63rw
-X-QQ-Originating-IP: xe53a//2xl3JpmBtauqS21l8bhVkOwbZKHqLYmQWGOk=
-Received: from [IPV6:240f:10b:7440:1:d502:63f8 ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Thu, 28 Nov 2024 12:08:40 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 474718591288794163
-Message-ID: <002469435A2D5C9E+b9a05cda-1ccf-46c9-8f4e-7a8534b1a875@radxa.com>
-Date: Thu, 28 Nov 2024 13:08:39 +0900
+	s=arc-20240116; t=1732767321; c=relaxed/simple;
+	bh=mNaSoyg8rQjFcmzgjnICJX12PuJHAOpIWl8+zrkralg=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=l2O8oAcaveSys4mLwum/EjD4MHyPD7Lz8tjmV+3vYZVH10lkKq8QAlkh+phROoAWOGdliHKyX/Qfg+MGv5ARoNgxshQXa5uF8/+3rJvsnGLMFTE4N7uYS9dJMlyj7ny9z5bBch6FEc50DKOpDDhgYf3S65JlNXaBpnhp4k7MIuY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ellerman.id.au; spf=pass smtp.mailfrom=ellerman.id.au; dkim=pass (2048-bit key) header.d=ellerman.id.au header.i=@ellerman.id.au header.b=g+JpXJrX; arc=none smtp.client-ip=150.107.74.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ellerman.id.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ellerman.id.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
+	s=201909; t=1732767306;
+	bh=7b6Glp5SLr2N7UsM03np/8ULjbfU4Ri7NW0RKWdI/Z4=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=g+JpXJrXNqlmjqYVNDJ3R/P2uxDj59PhRmtxqpO6WVujyJefvb8wwxsiscR3svFjw
+	 6eecPF9jaF3p+fizPt4Fde/26O+i/2GoaKtRXx6jscMT0CMD1i8jMqGOPoXk/otTJE
+	 Qga4yWfmpjhNrN9x3FmkaUuapVhcgNcbQEI7qNJW1RlV1dk8GX3MkrBwfLvEAQR6At
+	 eUNm3mPuvVy+lXdDVSn6VqtkLfCq/XYurVFKJ/9gJqOAIE4y2x7aOh/0dhiezwuOds
+	 QYSBwdb4Hxy3UeAnw3hTa4wqiYIl2FteruSDYAxRxIAQ6SUkFWNFnrPo44p0mq5mTh
+	 f5Vxo9KaedIPg==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by mail.ozlabs.org (Postfix) with ESMTPSA id 4XzNJB2BHcz4x0G;
+	Thu, 28 Nov 2024 15:15:06 +1100 (AEDT)
+From: Michael Ellerman <mpe@ellerman.id.au>
+To: Rob Herring <robh@kernel.org>
+Cc: linuxppc-dev@lists.ozlabs.org, saravanak@google.com,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] powerpc/prom_init: Fixup missing powermac #size-cells
+In-Reply-To: <CAL_JsqKJzAoxFQ30rJbH7D7zmGtZ+jNpw2BL45dqjOUe2fFbwA@mail.gmail.com>
+References: <20241126025710.591683-1-mpe@ellerman.id.au>
+ <CAL_JsqKJzAoxFQ30rJbH7D7zmGtZ+jNpw2BL45dqjOUe2fFbwA@mail.gmail.com>
+Date: Thu, 28 Nov 2024 15:15:06 +1100
+Message-ID: <87iks86lkl.fsf@mpe.ellerman.id.au>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: rockchip: rename rfkill label for Radxa ROCK
- 5B
-To: heiko@sntech.de
-Cc: robh@kernel.org, conor+dt@kernel.org, inindev@gmail.com,
- geert+renesas@glider.be, devicetree@vger.kernel.org,
- sebastian.reichel@collabora.com, linux-rockchip@lists.infradead.org,
- alchark@gmail.com, jbx6244@gmail.com, krzk+dt@kernel.org, dsimic@manjaro.org
-References: <20241127015224.2361-1-naoki@radxa.com>
-Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <20241127015224.2361-1-naoki@radxa.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
-X-QQ-XMAILINFO: OTaQrRjuGKLth4kdlceDwVvZZ5FBQiScaVzLPsFpEaAxQ0t+uCsojhF/
-	4F0e37w50WJ3Kw7UCHayMvnLf1RXCeSk2FXUpMnr+W8NEET9OuRlJh8A+efWrhVXCqKG2AB
-	MBpJBUd19AI/lRBr5jH264c5iiTEj9EVkVqPTXRxA7VkUvUhAd7r3k5EDW0ZU3au3dzeZ80
-	CnkL6Ibb45FPNx6hP8xTDDFnvi0XJK1BFKohKe/kYFkReYJ3/gGbd2FqzUpJVMXeWRwXqPF
-	xUqHx1D1j7it9peleKf2f6hrmseChyA2ju/ULBGNOqDK5F0zM67XsdOabIKrCDNzkRd7fZS
-	bICEIfct4/QODt+ZI0na1hs47x3AZs6k22vvH+XjWN+fkTS2R2JBuHWwSZ0r3q2sXHv0Jea
-	bgbKhopR6g8GBt6KBBkYEs8/L6QJYKhDbktfLXOKc40ReWVCZ8LgVqNrfqGJg8fs3qawVIO
-	15Fi249EaqM7VTx/swPuM4AtivVbYCrBhdlnkkrFCSNMwyLYMk9FZD3P+Iu9ZkKDdOWv4+a
-	S5iBMgokourAxr077lcN76XHwLT0Erq9CSGZIr9LlZkOMSCsRlDFE0Hy2cfAtOXkhtKEeE9
-	8k4b6umoAWttstMTHmaH7Idz3X1zim/K0CN3hDfG2G7g3bYUa1P8rfNzARdo44Rl8OgR4Gw
-	S4LZDit+sx1fpqj1mwH+6khFDdosQMJjS5oYys6DeY+ILXi6+t+JIPlcRw4BaMh9HU6Dq5U
-	DNQpzM65jU8S2q0fmMm19uErotrF4tEh2bmryOZS+d0XUvrZJrmgnxT4DFK12kWW3u+QyWn
-	ff5BfoNSuNHqwyFNKfPslJca6omH27qQZWFKoNKmX6RN622mgdzyNY4WFJsDlPAXwAP4kb+
-	i3SPw+GPcVAUSFFFzGYgj5eMdNSbbP3Oud1le7RBMk0=
-X-QQ-XMRINFO: NyFYKkN4Ny6FSmKK/uo/jdU=
-X-QQ-RECHKSPAM: 0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Rob Herring <robh@kernel.org> writes:
+> On Mon, Nov 25, 2024 at 8:57=E2=80=AFPM Michael Ellerman <mpe@ellerman.id=
+.au> wrote:
+>>
+>> On some powermacs `escc` nodes are missing `#size-cells` properties,
+>> which is deprecated and now triggers a warning at boot since commit
+>> 045b14ca5c36 ("of: WARN on deprecated #address-cells/#size-cells
+>> handling").
+>>
+>> For example:
+>>
+>>   Missing '#size-cells' in /pci@f2000000/mac-io@c/escc@13000
+>>   WARNING: CPU: 0 PID: 0 at drivers/of/base.c:133 of_bus_n_size_cells+0x=
+98/0x108
+>>   Hardware name: PowerMac3,1 7400 0xc0209 PowerMac
+>>   ...
+>>   Call Trace:
+>>     of_bus_n_size_cells+0x98/0x108 (unreliable)
+>>     of_bus_default_count_cells+0x40/0x60
+>>     __of_get_address+0xc8/0x21c
+>>     __of_address_to_resource+0x5c/0x228
+>>     pmz_init_port+0x5c/0x2ec
+>>     pmz_probe.isra.0+0x144/0x1e4
+>>     pmz_console_init+0x10/0x48
+>>     console_init+0xcc/0x138
+>>     start_kernel+0x5c4/0x694
+>>
+>> As powermacs boot via prom_init it's possible to add the missing
+>> properties to the device tree during boot, avoiding the warning. Note
+>> that `escc-legacy` nodes are also missing `#size-cells` properties, but
+>> they are skipped by the macio driver, so leave them alone.
+>>
+>> Depends-on: 045b14ca5c36 ("of: WARN on deprecated #address-cells/#size-c=
+ells handling")
+>> Signed-off-by: Michael Ellerman <mpe@ellerman.id.au>
+>> ---
+>>  arch/powerpc/kernel/prom_init.c | 29 +++++++++++++++++++++++++++--
+>>  1 file changed, 27 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/arch/powerpc/kernel/prom_init.c b/arch/powerpc/kernel/prom_=
+init.c
+>> index 73210e5bcfa7..8e776ba39497 100644
+>> --- a/arch/powerpc/kernel/prom_init.c
+>> +++ b/arch/powerpc/kernel/prom_init.c
+>> @@ -2848,7 +2848,7 @@ static void __init fixup_device_tree_chrp(void)
+>>  #endif
+>>
+>>  #if defined(CONFIG_PPC64) && defined(CONFIG_PPC_PMAC)
+>> -static void __init fixup_device_tree_pmac(void)
+>> +static void __init fixup_device_tree_pmac64(void)
+>>  {
+>>         phandle u3, i2c, mpic;
+>>         u32 u3_rev;
+>> @@ -2888,7 +2888,31 @@ static void __init fixup_device_tree_pmac(void)
+>>                      &parent, sizeof(parent));
+>>  }
+>>  #else
+>> -#define fixup_device_tree_pmac()
+>> +#define fixup_device_tree_pmac64()
+>> +#endif
+>> +
+>> +#ifdef CONFIG_PPC_PMAC
+>> +static void __init fixup_device_tree_pmac(void)
+>> +{
+>> +       __be32 val =3D 1;
+>> +       char type[8];
+>> +       phandle node;
+>
+> I suppose you are keeping the existing style, but you could use
+> IS_ENABLED() here instead of #ifdef.
 
-I forgot one thing...
+Yeah true. I'll do that as a follow-up and convert them all.
 
-On 11/27/24 10:52, FUKAUMI Naoki wrote:
-> on ROCK 5B, there is no PCIe slot, instead there is a M.2 slot.
-> rfkill pin is not exclusive to PCIe devices, there is SDIO Wi-Fi
-> devices.
-> 
-> rename rfkill label from "rfkill-pcie-wlan" to "rfkill-m2-wlan", it
-> matches with rfkill-bt.
-> 
+> Either way,
+>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Fixes: 82d40b141a4c ("arm64: dts: rockchip: add rfkill node for M.2 Key 
-E WiFi on rock-5b")
+Thanks.
 
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
-
-> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
-> Reviewed-by: Dragan Simic <dsimic@manjaro.org>
-> ---
->   arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> index c44d001da169..d597112f1d5b 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> @@ -72,7 +72,7 @@ fan: pwm-fan {
->   
->   	rfkill {
->   		compatible = "rfkill-gpio";
-> -		label = "rfkill-pcie-wlan";
-> +		label = "rfkill-m2-wlan";
->   		radio-type = "wlan";
->   		shutdown-gpios = <&gpio4 RK_PA2 GPIO_ACTIVE_HIGH>;
->   	};
-
+cheers
 
