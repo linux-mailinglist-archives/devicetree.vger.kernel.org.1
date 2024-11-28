@@ -1,180 +1,144 @@
-Return-Path: <devicetree+bounces-125328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8C619DB99A
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 15:29:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40C3B9DB9C6
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 15:39:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA30D281D04
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 14:29:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE3002821ED
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 14:39:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 077381AED3F;
-	Thu, 28 Nov 2024 14:29:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 927281B0F3C;
+	Thu, 28 Nov 2024 14:39:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dLoyObGT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HYlrrvSe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1209F1ADFF5
-	for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 14:29:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E4391B0F0B;
+	Thu, 28 Nov 2024 14:39:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732804165; cv=none; b=XqXr2qqdwkN45f1Sn5KYdwkh8/7xniSqi3DT+2OhkhV05KWwuYATo3pTeij+HbNWnM7nG4jCxH0he/q0fouScWJGiKDtJlQU+eOo8EDUrGX1bEfJLywn4b3W4AlwNWyYm3+3anz9cDurIuFNftvsVj6heIM42Aup7ZK58uJCvVw=
+	t=1732804767; cv=none; b=SNg8S6LC2wrbR9oifSUi0Yijat90SYPxl8sHrHWCacpNroyN7GarlyZkcBxeboSv+C92G76/MZXogNJOxZH7Pg+Oz1ZQfHGGp6zIiWazkSd4J/dBXXHJuCSl8/LqY5foDGkA52pLkX1L3zK6T/BwpsMg5hR313kKa1P1OsbZnUE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732804165; c=relaxed/simple;
-	bh=8C+LvW+PEHBuKL7Wp5/gkI3vy4HHAgxioycokK9zAWM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XVAwelrb9hMLRpr2uIpApWdMnmK//RfBe373dllYYy1EWmJNZC1RVDMvjBFT9v5Ns+29/2H0MkdjBR9ITr7SQ6FsC7QqkkZ84C11QtaSqUTwdo0sMxbFe31n4WiFu1Wdba+A/t/aK0Hp3PWIJJX9VlzQn3HFgsgOrD+k4k3+7lk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dLoyObGT; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2ffbfee94d7so7848021fa.3
-        for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 06:29:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732804162; x=1733408962; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=gVTU1Tn1ipuhM+cKq2hwkSW2xDfrygz6twBX9l1uqsw=;
-        b=dLoyObGTkc3FUqj7j2qXmZdkMB9g9EF00XfAkdeF/oZYlFoW1YaPybPb+pzkf0NwWY
-         fXXgcaqmIUBbkfu0WJuxcpBXiSXt8bD55bFVdwZVLyCpBaaiWMRkGdmxAtjXCe5N/xbW
-         xTTXHDJRDdKblAqBT1nWyKGXfNvSrwFqH0BAvCX1UAFt3nZA7eMXojBGpBxTjmNYaKc/
-         FRIqr7VGODCPsTw01z1V1dRob3lMqr2joJC2gntuB5pkIAR4W9uOdYvMeNenZSUTUiM2
-         JAxqyg7up3oKBmLOUb2lrH8UhIpIFPAtK5r7eOQnQpJrNB6u6VIyud0lTGlIXPcS/pjB
-         fsQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732804162; x=1733408962;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gVTU1Tn1ipuhM+cKq2hwkSW2xDfrygz6twBX9l1uqsw=;
-        b=YxPc7FDn0aFEaoOeo1P1+or/waO8P4SYz0ZSDK3lNS84bx5dFs0GJQBCdhSw2IfVaS
-         4EUcuuGJEj1EsPK3wEY5+rsmPN799OoEx/DQah5ZGgYIHdgWo9l/7Xe8yeQw+JUxHb7L
-         4Q9/oLOVNgY+ke+x0Ni5NRMQgjp0Fpe6utjWwdv0o4PFs7GL9NQ7oKotZvhlvYBkAehu
-         K+4gJ9PWI+RqE2+DQMOeTLfTh0y5+7B7bmMROlDxEAPfOIk1NnoYhdfqCvS87PTJiOFc
-         ivSOfWVgXM9BCzgl/SfF+j6btxn30UyFFHnAtFqCFHSk3f948EPNOMuHoesTNYW2x3Jy
-         JHrA==
-X-Forwarded-Encrypted: i=1; AJvYcCUm8YVOtho7SpV4bCHab3JuEf+BQPZ3rzKcHzZhYo1Zm6+oiwgS2OXcKvYwXJpxAdcH+jD+a56o8fFw@vger.kernel.org
-X-Gm-Message-State: AOJu0YxZphFEi3lAu2spayrmDkPbXKwLhTET7RjdCeQun7UKX9pGyEEZ
-	hjx6tCeVuzdEoxmhILTz3B+dvArsJBSpFZY6w0bUvm46MuRP+q67vtsZGNeijsc=
-X-Gm-Gg: ASbGncuShuT6PkVWzxkjCIj00Qwlq3007mWSsKrI2P0FiMbdCqh2BVrfCKTuKJaQtjP
-	RuMm8aWUbzId5uuJCojo0ryGV95L/nYEL4CCoZNRIGo6zSS0VM9cVE/oianvJd1pm/vKqJ/ekMg
-	Eclke/xxXICByWRwTW4FooOOF15jTyYhpeFbrjhJ+8jZbc40wh/CZlaDP0YrNHm5+EdrqqnZH0L
-	HkpTCWH1E52stgRowzTd5D05e3u0lCYe5fLWkwKvP0aeqbL/pibXTL8sFlSp/eNckYN5wL+CTeE
-	2eXAyvAJUyF9xqL5Vk/HTBhD9gD7oA==
-X-Google-Smtp-Source: AGHT+IHyweCAzP9pLJO4NLISzRUT/iPlUo6AXMrkwOg8DkwU8W+NduHNwNsOOPQzb40Ox1rkWfW9sg==
-X-Received: by 2002:a05:651c:1607:b0:2ff:d49f:dd4a with SMTP id 38308e7fff4ca-2ffd60293b7mr29667881fa.21.1732804162195;
-        Thu, 28 Nov 2024 06:29:22 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ffdfbeb8f0sm2073581fa.35.2024.11.28.06.29.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Nov 2024 06:29:20 -0800 (PST)
-Date: Thu, 28 Nov 2024 16:29:18 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Andrej Picej <andrej.picej@norik.com>
-Cc: Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>, 
-	andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com, 
-	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, tzimmermann@suse.de, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de, 
-	kernel@pengutronix.de, festevam@gmail.com, marex@denx.de, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/3] dt-bindings: drm/bridge: ti-sn65dsi83: Add optional
- property ti,lvds-vcom
-Message-ID: <3jojqg2auvktifilp5qt7tcppsfagk3zrlrmjxlnwxnehd6fwg@y7nxhhtp5t6y>
-References: <20241127103031.1007893-1-andrej.picej@norik.com>
- <20241127103031.1007893-2-andrej.picej@norik.com>
- <20241127151630.GA3515396-robh@kernel.org>
- <3b5768e5-dcb6-436d-837c-418676e13b2e@norik.com>
- <20241128-mottled-nostalgic-oriole-be31ce@houat>
- <56f9bee2-74bd-4150-abab-fbc1459d7e36@norik.com>
+	s=arc-20240116; t=1732804767; c=relaxed/simple;
+	bh=Hu5gM7cflrERdLiUJj+sDvixPCRJWH9MxPu0yUhD6Ds=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hTZy+ekQxvAH4LLiESta7F2nVqWPnOsI45XZXvfUOcG6C6msQNrICqEwumT+14lb/oln/yp6XGaor72pOxm3JV/ijuJxPpnahVdnu6sP3oUNOX4AgEljjP0s96xGp+qfloA8S4YCTGSe0nC90dSh6tm0a0FkO8VVQ9brsLhCv48=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HYlrrvSe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC829C4CECE;
+	Thu, 28 Nov 2024 14:39:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732804766;
+	bh=Hu5gM7cflrERdLiUJj+sDvixPCRJWH9MxPu0yUhD6Ds=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=HYlrrvSeYJSTjrypuqfOvm2+W1YXQJpoXU/Ve0lXiWUY96hMbaiG71B0Vn0LqSCcC
+	 CxsY4hdyxcS1fKo5uS/H+t/bWBgs+z5zWHKh3dm9qqlg/0a6T6ySEwaGOjI8BrjNQY
+	 rv4eXLWM+7KT0MN7EzdLKrppzt9UpgpgXrr4D5fvLPkchLU+Q4pT7D4bA1d4ng7qWd
+	 jhqHGfthcHypwEpKQMzTebP4MxPUBL592tIaCIYdxytUhZxRxjSsSvr2c6jjY7Aurh
+	 Rq/+BehycPaLT1wSGNoEHv/F/IKlcTMUd1GwLR8pvWHldUWbqqdX7ehbwteLttKvDI
+	 dFqWKfR7vd0Lw==
+Message-ID: <08c19ae1-b781-475a-8059-18bf9b708dfd@kernel.org>
+Date: Thu, 28 Nov 2024 15:39:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <56f9bee2-74bd-4150-abab-fbc1459d7e36@norik.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/3] arm64: dts: qcom: sa8775p-ride: Change the BT node
+To: Cheng Jiang <quic_chejiang@quicinc.com>,
+ Marcel Holtmann <marcel@holtmann.org>,
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
+ Rocky Liao <quic_rjliao@quicinc.com>
+Cc: linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ quic_bt@quicinc.com
+References: <20241128120922.3518582-1-quic_chejiang@quicinc.com>
+ <20241128120922.3518582-2-quic_chejiang@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241128120922.3518582-2-quic_chejiang@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Nov 28, 2024 at 11:57:16AM +0100, Andrej Picej wrote:
-> Hi Maxime,
+On 28/11/2024 13:09, Cheng Jiang wrote:
+> The SA8775P-Ride uses the QCA6698 chipset, which shares the same IP core
+> as the WCN6855. However, it has different RF components and RAM sizes,
+> so new firmware is needed.  This change allows driver to distinguish it
+> from the WCN6855 and load the specific firmware.
 > 
-> On 28. 11. 24 11:29, Maxime Ripard wrote:
-> > On Thu, Nov 28, 2024 at 09:46:33AM +0100, Andrej Picej wrote:
-> > > On 27. 11. 24 16:16, Rob Herring wrote:
-> > > > On Wed, Nov 27, 2024 at 11:30:29AM +0100, Andrej Picej wrote:
-> > > > > From: Janine Hagemann <j.hagemann@phytec.de>
-> > > > > 
-> > > > > Add an optional property to change LVDS output voltage. This depends on
-> > > > > the connected display specifications. With this property we directly set
-> > > > > the LVDS_VCOM (0x19) register.
-> > > > > Better register property mapping would be quite tricky. Please check
-> > > > > bridge's datasheet for details on how register values set the LVDS
-> > > > > data lines and LVDS clock output voltage.
-> > > > > 
-> > > > > Signed-off-by: Janine Hagemann <j.hagemann@phytec.de>
-> > > > > Signed-off-by: Andrej Picej <andrej.picej@norik.com>
-> > > > > ---
-> > > > >    .../bindings/display/bridge/ti,sn65dsi83.yaml      | 14 +++++++++++++-
-> > > > >    1 file changed, 13 insertions(+), 1 deletion(-)
-> > > > > 
-> > > > > diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> > > > > index 48a97bb3e2e0..5b2c0c281824 100644
-> > > > > --- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-> > > > > @@ -58,6 +58,12 @@ properties:
-> > > > >                      - const: 2
-> > > > >                      - const: 3
-> > > > >                      - const: 4
-> > > > > +              ti,lvds-vcom:
-> > > > > +                $ref: /schemas/types.yaml#/definitions/uint32
-> > > > > +                description: LVDS output voltage configuration. This defines
-> > > > > +                  LVDS_VCOM (0x19) register value. Check bridge's datasheet for
-> > > > > +                  details on how register values set the LVDS data lines and
-> > > > > +                  LVDS clock output voltage.
-> > > > 
-> > > > Constraints? 0 - 2^32 are all valid values?
-> > > 
-> > > Not really, only first 6 bits, which also means that this can be uint8 then.
-> > > Will fix with other issues.
-> > 
-> > Also, generally speaking directly using register values is really
-> > frowned upon, even more so when they match a value expressed in a
-> > standard unit.
+> Signed-off-by: Cheng Jiang <quic_chejiang@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> Yes, I am aware that this is not how devide-tree/device drivers should work.
-> But setting this values based on wanted LVDS voltage will be quite tricky.
-> Matching a value expressed in mV would be quite hard, take a look in the
-> bridge datasheet [1], Chapter 6.5 Electrical Characteristics (|VOD|).
-> Basically both:
-> - LVDS data line output and
-> - LVDS clock voltage
-> is determined by the CSR 0x19.3:2. So when checking which Reg setting CSR
-> 0x19 should be set to both conditions should meet specifications of the
-> connected display. Output voltage for the same CSR 0x19 setting differs
-> between LVDS data lines and LVDS clock.
-> 
-> Anyway, I'll prepare a v2 which only sets a part of this register, a
-> bitfield (2 bits) that is responsible for LVDS differential output voltage.
+> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+> index 3fc62e123..f95e709bd 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+> @@ -856,7 +856,7 @@ &uart17 {
+>  	status = "okay";
+>  
+>  	bluetooth {
+> -		compatible = "qcom,wcn6855-bt";
+> +		compatible = "qcom,qca6698-bt";
 
-Please use mV to specify the value in device tree. Yes, it's not easy.
-Yes, it is still recommended for multiple reasons.
+This breaks users without mentioning it, without really justifying the
+impact. Also it is not clear for me whether devices are or are not
+compatible.
 
-> 
-> [1] https://www.ti.com/lit/ds/symlink/sn65dsi83.pdf?ts=1732738773429&ref_url=https%253A%252F%252Fwww.mouser.co.uk%252F
-> 
-> Best regards,
-> Andrej
-> 
-> > 
-> > Maxime
-
--- 
-With best wishes
-Dmitry
+Best regards,
+Krzysztof
 
