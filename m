@@ -1,159 +1,131 @@
-Return-Path: <devicetree+bounces-125382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125383-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDA6F9DBD4A
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 22:18:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3161F9DBD6B
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 22:58:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3CFF281E4F
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 21:18:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8684E2822C3
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 21:58:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B916B1C462D;
-	Thu, 28 Nov 2024 21:18:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 222161C4612;
+	Thu, 28 Nov 2024 21:58:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lgxVwZu0"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="O5i/wUbg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE3E41494A5;
-	Thu, 28 Nov 2024 21:18:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 988101C3F39
+	for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 21:58:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732828713; cv=none; b=WyQV56es7dxYCifL8Fts0oODbk0dP3voI0/it6LmyRvzdTQahrSIWdpYeqkOztd4AzQELbH0aIRFfswbxn+crCcHehlj0cJPEnd54lvI+1V8Tg5j+RcWP7TJ1xiH3CEIdTh4KU/K6N0Mcj3F9UpydcxezY2Lq7hEgsO2MCdsCY0=
+	t=1732831092; cv=none; b=nC7kBMPbzXx2oZkL06LGEnbFP19wGjWIMLuuVS7zN61SebhKhULCkY+KQCi8GiAU27U1ZveD4KnQJW3YifIsqzKu+FSd+UE8FffHKMW6aSmli/w3ijSz/F73q5hbmOYY1jJBN8OPsp/VXKvwlhWqkh6QB8zx/bvWOxGNagfAd9g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732828713; c=relaxed/simple;
-	bh=GO+N933rH1qIyupawKjaT9KoZU7mSDCkyHjVeWZvROM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ANklCECXi+IO/9YYzjSBr7Q6cgmhmyvGMJGNQ6oKRHyRemCAUCvwaPxvwCXNhPR80mo1gnxNJuu6KAEoDV2zUg7bebW/qI/xmPdTb2zFxV53wZ/DlClo/UHZIyWW965s8rFDnqj1xqam/v4aEOdNXCb9e+i2qsu8p6GcGsmJR8E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lgxVwZu0; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1732828712; x=1764364712;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=GO+N933rH1qIyupawKjaT9KoZU7mSDCkyHjVeWZvROM=;
-  b=lgxVwZu0BUL1e/nBmweLLqxteAD6eo4uwuynWtQLDtq9L5UvpxkR8qIC
-   kikYcSD707QSu70pXKp5XWrqulAeC4HmJ87kSNRZ//LvE7Heh8428cmCa
-   YbHmsV3OL0xbyOfzkAnl1J4XwrwzYaX68NoW00EbElUH7sKalFHS5uUnG
-   Q4+pP83xTyfMZDUsf/eDwFECnn81x7sJFe+J8mI4KTZE4Z97T595J2d4m
-   0Yk1OUFgGown8AGDAPxaD1dYEk7EZ3PqH6kAjHjx2IkFKmRL9QZgpySla
-   k3G3DjY6wPCVoytpUqqvtCJfsBEa6VveAeIhfOgALnAGThWaTqn0+cg3P
-   g==;
-X-CSE-ConnectionGUID: QiHZTL4PRLqfpooooUKsZQ==
-X-CSE-MsgGUID: UkaLzTQQRr2gVUgodU8A+g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11270"; a="36999186"
-X-IronPort-AV: E=Sophos;i="6.12,193,1728975600"; 
-   d="scan'208";a="36999186"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Nov 2024 13:18:30 -0800
-X-CSE-ConnectionGUID: yuXQn1uPTdemmEhda96acg==
-X-CSE-MsgGUID: 9FrGQozmT5m6JkP2rMIpxg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,193,1728975600"; 
-   d="scan'208";a="129819816"
-Received: from lkp-server01.sh.intel.com (HELO 8122d2fc1967) ([10.239.97.150])
-  by orviesa001.jf.intel.com with ESMTP; 28 Nov 2024 13:18:26 -0800
-Received: from kbuild by 8122d2fc1967 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tGlu3-000A3b-1H;
-	Thu, 28 Nov 2024 21:18:23 +0000
-Date: Fri, 29 Nov 2024 05:18:02 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
-	NXP S32 Linux <s32@nxp.com>, Christophe Lizzi <clizzi@redhat.com>,
-	Alberto Ruiz <aruizrui@redhat.com>,
-	Enric Balletbo <eballetb@redhat.com>,
-	Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>,
-	Bogdan Hamciuc <bogdan.hamciuc@nxp.com>,
-	Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
-Subject: Re: [PATCH v5 2/4] rtc: s32g: add NXP S32G2/S32G3 SoC support
-Message-ID: <202411290700.vbqI1pTY-lkp@intel.com>
-References: <20241126114940.421143-3-ciprianmarian.costea@oss.nxp.com>
+	s=arc-20240116; t=1732831092; c=relaxed/simple;
+	bh=2vwxfsmn74MF7w+ksTz1WddkUGDmHHSJaLJtZOCA/J8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=T2/QElChmBVMst7/PnmWJqVC21kGZF5hC1lml8qwPISvculdJ+1xJVxqfN2IaNTLFVITTpZLapMwyvT8pZXoFUXouVjIOCGtfSmncXZpCzaFnI8G4oKULElNRYaD9LW9WEl1qootYGV9i/+l3o/I+TPIPr29xn7HYnjH0J6v3iU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=O5i/wUbg; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4ASLZ2vd023274
+	for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 21:58:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	r/7+OpqThhWjJD5m7lFQiVxIVoy609XKF5K8pjfWPBY=; b=O5i/wUbgmyy0b3sE
+	Y+7KaOPiVru8GemKHGb0j68BbPIG3HkW1tOg5GTGHPhTa3N0W8xtpbB0fU2ffqXi
+	fPDRJJHJLWMr/EkJMSpsVnco7lnDdMrdFAKj+wkxbJFM3ofDoCWdhpL2tHe3tx6O
+	65+by0VOtnFVlqQ4URyM0LHtWR843WSi+ad7H8c3CFAvSa5ZExXH4OItkqaWdXUP
+	Ubbl4u9ylJM8yBklVCy20qfBbyQKz27lVPN70TB55kE8lh8ti6Y/WQ56To0QfHrQ
+	eb0Zhn6GHIjTHpPRd2kfs3exS/2XVdtGS8uYfIGSKSQL+APKaI+YXFgmegiWIOr+
+	qkzMEw==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4366xvurth-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 21:58:09 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6d41c6c7bc1so3276736d6.0
+        for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 13:58:09 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732831088; x=1733435888;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=r/7+OpqThhWjJD5m7lFQiVxIVoy609XKF5K8pjfWPBY=;
+        b=gi8fVs02qCTNG3EUiQtYN/Sa3psyHB3VS3yT1vWXvkaiCLLo3cGeaLbonmlx7Dsokn
+         m6LNALf+zos/St7iViA1itTzitYHUCgbmbojlWgajoGgS1EE49zs5vVIoGnppAi38QYJ
+         VTxTqh/UeV1wy7iegmx044vfhyFqoHV8xFbzt5RFvWXFA6sDiFYZYG1vQJte68HXReWd
+         6N/bHrru167fFJ1ZmgAuh/9JAe5WJWyQtRE4zzz2ydTXc3lC3bxAH4/FFAzedvR5uA5z
+         WixmJzX+97bk6rmJjF3RPuJA4HcuvbI+ssLcw/a25MWmivPn/LYGQb0qAZ19a8ZdSqf9
+         wyjg==
+X-Forwarded-Encrypted: i=1; AJvYcCVnASa+976i4cgTaXInmwRILnrISZgFW9r48+neL3nn64HIuC6ohk0B4610e03WYx5AooMVyKDFaUMv@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw4R+vvbo5J1+4aA8HEOr8O7/YL9WhjnFEckqD2FuyOfUo/qoVi
+	2LVoJPHIuGcG5GlasTKaxA/r03qW0YAOiAExqtkeBoTHB5WM5Dj1IwtwYzbE+SH3Bs44hCz24b5
+	8f9ViUsXDj0AubdJDja4FVsm5DNyvu5EHN8GIamsSEJueb3ROKL0H7rqPim5nBbWyLFON
+X-Gm-Gg: ASbGncvdS3FhYuqDQFTvvC3FkDpNWqEsuCjmvitHmT/zw6Lf7AZFoOPqS/YjnZQUN1g
+	EBr8HahN/4U7UF03TSHGlHJdyLIbSzP1h+7Z+lYbgD7cI0qc7i532XmQzIH23ydeu21YBxYVmOY
+	ovzwk55LikKfGc1yooTjaBQXrsXPQHr81r8jkji1Gi3Cr5Z7hwxKiMn2tbZaqm+IFRbTLdGgS/p
+	dW/AyAayiVDoWA6lbdW3jFohPWuo5yh3U8RQsY9IJkGggq5G3CRoB/ereggkk7QLnDAq2vlSMU/
+	gHCLxQuB4OxuSFhMQDODA9oC5gFXDIg=
+X-Received: by 2002:ac8:594e:0:b0:461:4467:14bb with SMTP id d75a77b69052e-466b34cba38mr55288451cf.2.1732831088012;
+        Thu, 28 Nov 2024 13:58:08 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IF2UX9AyLIHl8dl8K8esTyxImHPB3s6JDHd8I9cH0u6SvNGtg9eq6fo13XWcc1+veZ/mvMEtw==
+X-Received: by 2002:ac8:594e:0:b0:461:4467:14bb with SMTP id d75a77b69052e-466b34cba38mr55288321cf.2.1732831087705;
+        Thu, 28 Nov 2024 13:58:07 -0800 (PST)
+Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa5996c19e4sm105463066b.6.2024.11.28.13.58.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Nov 2024 13:58:07 -0800 (PST)
+Message-ID: <f29d09e9-8739-4e25-ad52-531af1cdb283@oss.qualcomm.com>
+Date: Thu, 28 Nov 2024 22:58:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241126114940.421143-3-ciprianmarian.costea@oss.nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: sa8775p: Fix the size of 'addr_space'
+ regions
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, stable@vger.kernel.org
+References: <20241128145147.145618-1-manivannan.sadhasivam@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20241128145147.145618-1-manivannan.sadhasivam@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: drJvitJPOUNk1KR_uVx1XcQ1vKNIFLbG
+X-Proofpoint-ORIG-GUID: drJvitJPOUNk1KR_uVx1XcQ1vKNIFLbG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ malwarescore=0 mlxscore=0 lowpriorityscore=0 bulkscore=0 spamscore=0
+ phishscore=0 suspectscore=0 clxscore=1015 impostorscore=0 mlxlogscore=637
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2411280176
 
-Hi Ciprian,
+On 28.11.2024 3:51 PM, Manivannan Sadhasivam wrote:
+> For both the controller instances, size of the 'addr_space' region should
+> be 0x1fe00000 as per the hardware memory layout.
+> 
+> Otherwise, endpoint drivers cannot request even reasonable BAR size of 1MB.
+> 
+> Cc: stable@vger.kernel.org # 6.11
+> Fixes: c5f5de8434ec ("arm64: dts: qcom: sa8775p: Add ep pcie1 controller node")
+> Fixes: 1924f5518224 ("arm64: dts: qcom: sa8775p: Add ep pcie0 controller node")
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
 
-kernel test robot noticed the following build warnings:
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on arm64/for-next/core linus/master v6.12]
-[cannot apply to abelloni/rtc-next next-20241128]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Ciprian-Costea/dt-bindings-rtc-add-schema-for-NXP-S32G2-S32G3-SoCs/20241128-100010
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20241126114940.421143-3-ciprianmarian.costea%40oss.nxp.com
-patch subject: [PATCH v5 2/4] rtc: s32g: add NXP S32G2/S32G3 SoC support
-config: loongarch-allyesconfig (https://download.01.org/0day-ci/archive/20241129/202411290700.vbqI1pTY-lkp@intel.com/config)
-compiler: loongarch64-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241129/202411290700.vbqI1pTY-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202411290700.vbqI1pTY-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/rtc/rtc-s32g.c:109: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
-    * Convert a number of seconds to a value suitable for RTCVAL in our clock's
-
-
-vim +109 drivers/rtc/rtc-s32g.c
-
-   107	
-   108	/**
- > 109	 * Convert a number of seconds to a value suitable for RTCVAL in our clock's
-   110	 * current configuration.
-   111	 * @rtcval: The value to go into RTCVAL[RTCVAL]
-   112	 * Returns: 0 for success, -EINVAL if @seconds push the counter past the
-   113	 *          32bit register range
-   114	 */
-   115	static int sec_to_rtcval(const struct rtc_priv *priv,
-   116				 unsigned long seconds, u32 *rtcval)
-   117	{
-   118		u32 delta_cnt;
-   119	
-   120		if (!seconds || seconds > cycles_to_sec(priv->rtc_hz, RTCCNT_MAX_VAL))
-   121			return -EINVAL;
-   122	
-   123		/*
-   124		 * RTCCNT is read-only; we must return a value relative to the
-   125		 * current value of the counter (and hope we don't linger around
-   126		 * too much before we get to enable the interrupt)
-   127		 */
-   128		delta_cnt = seconds * priv->rtc_hz;
-   129		*rtcval = delta_cnt + ioread32(priv->rtc_base + RTCCNT_OFFSET);
-   130	
-   131		return 0;
-   132	}
-   133	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Konrad
 
