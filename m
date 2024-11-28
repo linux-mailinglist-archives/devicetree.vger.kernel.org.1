@@ -1,223 +1,149 @@
-Return-Path: <devicetree+bounces-125229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125231-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FAE19DB437
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 09:50:48 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A99329DB445
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 09:52:02 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 287A4280DFB
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 08:50:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 17244167069
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 08:51:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDC43153598;
-	Thu, 28 Nov 2024 08:50:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F23B7153BC1;
+	Thu, 28 Nov 2024 08:51:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EjU+7hgc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CD9814BF92;
-	Thu, 28 Nov 2024 08:50:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95CD214D2B7
+	for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 08:51:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732783812; cv=none; b=QlRU76wwV270D+PC/UGD9jXKwfZyCNl6SK/lOtEq2dMxoqw/usmDOFUkQOTqId2MSC82Y9TzHlKJLxl7uFgl2au5t0QqXSI2oIhAOTpZ5SiN7XHYwaLgyop2HS4EBu1TW7q7P0tg8o86730L6G4fJp39vPE7kJE2zxWvnmkwkTE=
+	t=1732783892; cv=none; b=ikC22+aHvwjGYrt+cutQBpE0Pguhj+pECShJ8QQdifBi5k0yvt3k/vRZ92aXpL22uzBxj8VcNt1HptuQXVRHU/9uny6+gI3iYZ0oEPoNpHzV98YOvvit26AHqex/7CmJK1MjhBZUdTIUkJFMiCc/GuV7VqOTD9AtJv+Vyxs9Ow4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732783812; c=relaxed/simple;
-	bh=JVISvdmh8OFLuNyVXWQFLP6jU87WdwArk6CTgskkZME=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bv4SyUDRedtUwi0uWYMCf/0Xp/3ZRtYIAxdsH8hyPvf5vt0wf7zCbbECbc3mndN2NLrdIO1pUYEnkKJDyA+0/S5E14SsnoaQjrKvLLpb7mCmxyn68SqKMICoNHmoLdHqilSTM1Nh7TskvXjffzGJxX8ohAcfIAoxtdzJiSE8EoE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-aa5500f7a75so77639666b.0;
-        Thu, 28 Nov 2024 00:50:10 -0800 (PST)
+	s=arc-20240116; t=1732783892; c=relaxed/simple;
+	bh=pekj7ECgVOlQRe4vr1N9uGVIr7LGMONNx11ziceMBM8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=iQ068oSKvjQGigQ7Z6Da7rFK2Qc+UsLOi62RsapYHTjWecmLEAyA6C/TupqQu0k6JUbF8eUvRJNPdtlt2WW82uuZ/Iyy8/HcPkY8xxIRxmuhQs+fYJS4trJUwdLnfXQX9JO0ytE1ePrtu5ou1fsM6g0Ch9z/rsybZDe/x32scAY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EjU+7hgc; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-aa543c4db92so77487466b.0
+        for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 00:51:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1732783889; x=1733388689; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=svMXb3youuDFGL6heC/yYUXnD+Ef4KL/6L2Ux/La5Xs=;
+        b=EjU+7hgcUKik0obu3+xJUnTxKZlHidGDoxF2c3OeaxuJ5/aUtAUgxuDecfMizRQNzA
+         MNyKyn1hn3N1NGMWC+9O0jHnBudKtc16i8fC11rPfehPmwnqys9qt5UTANMjZH8wir4X
+         PAX41xujNd0HG1gNnkfjBCsjzENUooP/wZBelnuF1kqgaLEEwNVeh/TCLfhuztNL9oEk
+         2apWfD0GlNBs+XUajemNq655a2cNBYEFKojzx1p6rltQcnbUceED7R9nwOYPQETc+Cdw
+         Na4WTjbLFfeLJzkbq3UmyHIbA6U3jNGQalmXpm6p62uvtnS9g7f3rMQt5lFYHrO/wO+n
+         6UxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732783807; x=1733388607;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nBv6q4uFNmqZlrSJJbBpkAKDp7TQEhvVCutGwJPSYV8=;
-        b=MVZt32KZjuDye/DJMZUsrblEqTrRjc8bgjmIWHOosd9dIaTua/WoUO4WDcnPqw+SB6
-         zcbfAWwnuBVET/g2gnz62WGh10/f73ucH++UxecLJYe9MeAHNe/RkaJuaNplCqB2HvCe
-         n1X6O9JVwj3UOmbNgjrgn866pyQSSqZscPgC4sUsN/QopxTEHQiat1pZXrgZoJhOf7l/
-         /RbMh6icIGD+Q3iy62RUCxxpeXkpf7oQXkjKte2DayB5h3RehFyxNRe/SfL7NFZ9LD0T
-         v68DwbZmC0t4eCIAymmIEzLkt5xAhd6H6P6m01lspc6Fhzpx01vWhPUeTRubLD75POZ2
-         pJfQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV4iG8kkqmKB+GJHfu5TuOHHlLqK2mnFA2DSWHbRDJ/YYBWbMMtiUhYz2/qqJV+NthYoKpm4sWtjKAo@vger.kernel.org, AJvYcCVAKunAA+Vkbhpd85PEPTGhEbYr5hcNBVW0PwF1Ll7tHNBEs5bXtqUUh76jcEdbN9bzOZRL0/hN+wFd5EDn986JBsE=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwdyE2G60a6+HPIxSB/4vWGK5xZknsLfr/6SViuU/RaAYLoFu7/
-	nsssYdUhGE8yLE1FF6YTACXQ3qpl4tyrX8G0ab5yvhyPgaMQilp4u3n+lewijHI=
-X-Gm-Gg: ASbGncvHGKsvyY+aukFopzXVaFOB63aClvVUftPZVl2nt2fzzmg6QRBmCI8W6sCzWF5
-	wXu08Qb8amjfGfA08L31YDHU/TYGXBabS0O6l3+3dfH/w9ekvO0vXLvz4UWF1ZC5AxplnJDQiWZ
-	DOCcn/VcQU/w1sjcDYeBKzWBfRrOovQo2+GuZvH4TBKaONcF93AcN/qeutQbovLqf7ly71rloch
-	HOKgjukYyZVxplTmvse3OACBkJ2BsYJCm88m5cQAzjNmWwoCUIrpnfJoky0ArHmgF3ldA0AO5SN
-	UeT43zq5qzG1
-X-Google-Smtp-Source: AGHT+IEYoPtPx2HoZVC9c2TcMqHLTRNfgAlTi31SZsKmeqBFNHuGgQBYJXI05CRHtRDD/ujCBcmM9w==
-X-Received: by 2002:a17:907:cc01:b0:a9a:a891:b43e with SMTP id a640c23a62f3a-aa581081adfmr385369666b.50.1732783807221;
-        Thu, 28 Nov 2024 00:50:07 -0800 (PST)
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com. [209.85.218.45])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa5997d4101sm42332666b.73.2024.11.28.00.50.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Nov 2024 00:50:06 -0800 (PST)
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-aa549d9dffdso70947066b.2;
-        Thu, 28 Nov 2024 00:50:06 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVlEblBJeUegiP9lxkFF78v/+JXG58NBpHjrIoB9YHbypbTWkj/+F0wJdsWt182A/+22eDvhXc4VhY3HWz+0cbypx0=@vger.kernel.org, AJvYcCWVr8Fvc+Q/sKlmeL0izvW7K3ucX3cK1TdI4Lk+X9V+WjcU8eMrTXshcFBGljbA6XdLTG7vb83xFE3T@vger.kernel.org
-X-Received: by 2002:a17:907:2890:b0:a9a:161:8da4 with SMTP id
- a640c23a62f3a-aa58108aa6amr486853366b.55.1732783806305; Thu, 28 Nov 2024
- 00:50:06 -0800 (PST)
+        d=1e100.net; s=20230601; t=1732783889; x=1733388689;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=svMXb3youuDFGL6heC/yYUXnD+Ef4KL/6L2Ux/La5Xs=;
+        b=eNySm+xhlJW5WBVAKJm4oIVBrFZUs4ITTtb371MM4pL4eg4Hd/M69SCyq5aCvoHHny
+         gu/pHXzg49uyFjFO8mrxRhmNYnT4olA+ujr04dXx60DhnCLDF7lLkZP/uiDPyBaBRpRe
+         sCdADjFfVv3YxpU3/OG7zb2s3qeN6ZwdYdizkOYWnFVaeFJGtov7gy3ij2ZqGZ2J6aMt
+         sIq3Fr3erZT/21vC3DLEiE2+84tkVsN/UqoD3EfG/H+50XLDhfuFjOy8kx8Qmu0ppcys
+         NWyMfg2wdY8RQDjKsmKvWpRB3+TPCik9ndh5Z/7dD24a/sYRoG6V7Z2J901eBLqvMlPq
+         esjg==
+X-Forwarded-Encrypted: i=1; AJvYcCXTt/3XFDA/XY2I3D24v02NrRwgoeEM7RFaKKgBoR8i9h9Zcq987tGFyZP6bzZt8Mn26p9Mc1bqL9dc@vger.kernel.org
+X-Gm-Message-State: AOJu0YzBF/kLv0CJqya9tz7/asMTsielAiQWpzhhrn+Ul/z5w3ul2Wje
+	YeY18BkGcyxIp9W0l1XEsTb5YnjSfM0WJWWI9pCtlFCYtqJaSiqy7otuTTQdJRg=
+X-Gm-Gg: ASbGncv6GsqhVgqIgtqeHBmIc++Iv5aCGLlxuvbGIcQx40xPbdb50UFJXyDN5BjJ8pk
+	Q4CZPxWXKRVFkNod/s2Tsnd9Up4sBLXQK9BsQkNJL/SOyo6zFtDYCXCf7gThCMaBzaQDYZvxn2e
+	5k4pub0tke+Cw4Ld/ClK1iFkd3UI72ewamEL8j6gMMR0+i4XFW+fCLi4aW0QxGoIU9dWwWl9Xcz
+	DbMAivgqfGc1KgTW7sxO2Gun7onvlKW09HvHxTeKt1SFck6Dqq24eFjd9pYtyjdAAwFXDMetV6p
+	3rxskBdpKJDT/lcih3Dcnh4frjSey+6fAA==
+X-Google-Smtp-Source: AGHT+IHx8LJTIGLe7CuREVHaEYs+SJeA2ZjAsRSIj3tP9WdyNMZcBvOS/lqhSV9U2pCag7lZx5Y7xQ==
+X-Received: by 2002:a17:907:775a:b0:a9e:b150:a99d with SMTP id a640c23a62f3a-aa580ecbf60mr506696766b.5.1732783888949;
+        Thu, 28 Nov 2024 00:51:28 -0800 (PST)
+Received: from puffmais.c.googlers.com (64.227.90.34.bc.googleusercontent.com. [34.90.227.64])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa59990a7cesm42131566b.162.2024.11.28.00.51.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Nov 2024 00:51:28 -0800 (PST)
+From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Date: Thu, 28 Nov 2024 08:51:04 +0000
+Subject: [PATCH] dt-bindings: usb: max33359: add max77759 flavor
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241122124558.149827-1-biju.das.jz@bp.renesas.com>
- <20241122124558.149827-4-biju.das.jz@bp.renesas.com> <20241125-straw-oozy-f95e18e4704f@spud>
- <TY3PR01MB11346BC7FA5C81C108B4E7A7786282@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <20241127-epidural-violin-651fd0ee2526@spud> <TY3PR01MB11346A0C7A4DAD6A250A6B55386282@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <20241127-cargo-impish-9117a49fa425@spud> <TY3PR01MB1134609A5A6381F1F2711794286292@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-In-Reply-To: <TY3PR01MB1134609A5A6381F1F2711794286292@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 28 Nov 2024 09:49:50 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVk7xeG-LzpvnyaPp2iP-MB6bp5ce7BZOZv4_4T2nDZrg@mail.gmail.com>
-Message-ID: <CAMuHMdVk7xeG-LzpvnyaPp2iP-MB6bp5ce7BZOZv4_4T2nDZrg@mail.gmail.com>
-Subject: Re: [PATCH 03/12] dt-bindings: soc: renesas: Document RZ/G3E SMARC
- SoM and Carrier-II EVK
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	"biju.das.au" <biju.das.au@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20241128-dtbinding-max77759-v1-1-733ce24c0802@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAPcuSGcC/x3MQQ5AMBBA0avIrDXRKsVVxKI1g1koaUUk0rtrL
+ N/i/xciBaYIQ/FCoJsjHz5DlgXMm/UrCcZsUJXSUqpO4OXYI/tV7PYxxjS9cDWiQ9XqRmvI4Rl
+ o4eefjlNKH2C8F75kAAAA
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jagan Sridharan <badhri@google.com>
+Cc: Peter Griffin <peter.griffin@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+X-Mailer: b4 0.13.0
 
-Hi Biju,
+On the surface, Maxim's max77759 appears identical to max33359. It
+should still have a dedicated compatible, though, as it is a different
+IC. This will allow for handling differences in case they are
+discovered in the future.
 
-On Thu, Nov 28, 2024 at 7:52=E2=80=AFAM Biju Das <biju.das.jz@bp.renesas.co=
-m> wrote:
-> > From: Conor Dooley <conor@kernel.org>
-> > On Wed, Nov 27, 2024 at 05:18:56PM +0000, Biju Das wrote:
-> > > > -----Original Message-----
-> > > > From: Conor Dooley <conor@kernel.org>
-> > > > Sent: 27 November 2024 16:33
-> > > > Subject: Re: [PATCH 03/12] dt-bindings: soc: renesas: Document
-> > > > RZ/G3E SMARC SoM and Carrier-II EVK
-> > > >
-> > > > On Wed, Nov 27, 2024 at 12:34:42PM +0000, Biju Das wrote:
-> > > > > Hi Conor Dooley,
-> > > > >
-> > > > > Thanks for the feedback.
-> > > > >
-> > > > > > -----Original Message-----
-> > > > > > From: Conor Dooley <conor@kernel.org>
-> > > > > > Sent: 25 November 2024 18:52
-> > > > > > Subject: Re: [PATCH 03/12] dt-bindings: soc: renesas: Document
-> > > > > > RZ/G3E SMARC SoM and Carrier-II EVK
-> > > > > >
-> > > > > > On Fri, Nov 22, 2024 at 12:45:39PM +0000, Biju Das wrote:
-> > > > > > > Document the Renesas RZ/G3E SMARC Carrier-II EVK board which
-> > > > > > > is based on the Renesas RZ/G3E SMARC SoM. The RZ/G3E SMARC
-> > > > > > > Carrier-II EVK consists of an RZ/G3E SoM module and a SMARC C=
-arrier-II carrier board.
-> > > > > > > The SoM module sits on top of the carrier board.
-> > > > > > >
-> > > > > > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > > > > > > ---
-> > > > > > >  Documentation/devicetree/bindings/soc/renesas/renesas.yaml |
-> > > > > > > 4
-> > > > > > > ++++
-> > > > > > >  1 file changed, 4 insertions(+)
-> > > > > > >
-> > > > > > > diff --git
-> > > > > > > a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> > > > > > > b/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> > > > > > > index 7cc2bb97db13..1785142fc8da 100644
-> > > > > > > ---
-> > > > > > > a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
-> > > > > > > +++ b/Documentation/devicetree/bindings/soc/renesas/renesas.y=
-a
-> > > > > > > +++ ml
-> > > > > > > @@ -527,6 +527,10 @@ properties:
-> > > > > > >
-> > > > > > >        - description: RZ/G3E (R9A09G047)
-> > > > > > >          items:
-> > > > > > > +          - enum:
-> > > > > > > +              - renesas,smarc2-evk # RZ SMARC Carrier-II EVK
-> > > > > > > +          - enum:
-> > > > > > > +              - renesas,rzg3e-smarcm # RZ/G3E SMARC Module
-> > > > > > > + (SoM)
-> > > > > >
-> > > > > > Why are these enums, when you have a single item in each?
-> > > > >
-> > > > > I just followed the style used in [1]
-> > > > >
-> > > > > [1]
-> > > > > https://elixir.bootlin.com/linux/v6.12.1/source/Documentation/dev=
-i
-> > > > > cetr
-> > > > > ee/bindings/soc/renesas/renesas.yaml#L531
-> > > >
-> > > > It ain't the same though, since you additionally have the SoM.
-> > > >
-> > > > > Other than that,
-> > > > >
-> > > > > In future some vendors can add their RZ/G3E SoM's here
-> > > >
-> > > > Only makes sense if their SoM is compatible with the smarc2-evk.
-> > >
-> > > All our SMARC Modules and SMARC Carrier boards are SMARC compliant.
-> >
-> > All of yours might be, but what you said was "some vendors".
->
-> FYI, In the past, we have a requirement to validate smarc-evk before RZ/G=
-2L SMARC
-> SoM available.
->
-> So, we just used a SMARC SoM based on RZ/G2N and tested smarc-evk etherne=
-t interface(of course with small hw mods)
+max77759 is used on Google Pixel 6 and Pixel 6 Pro.
 
-Cool!
+Add a dedicated compatible to allow for potential differences in the
+future.
 
-> > > So, if anyone have a RZ/G3E SMARC SoM, that should work with SMARC2-E=
-VK.
-> > >
-> > > > >
-> > > > > They can use Renesas RZ/G3E SMARC module and use their custom car=
-rier boards.
-> > > >
-> > > > But allowing this part does make sense.
-> > >
-> > > We already have a use case for this example.
-> > >
-> > > Renesas RZ/G3E SoM can work on both Renesas smarc-evk and smarc2-evk.
-> > >
-> > > But we only officially support RZ/G3E SoM with SMARC2-EVK as it has m=
-ultiple display support.
-> > >
-> > > So, can I use const for both SoM and Carrier EVK as at the moment
-> > > there is only one?
-> >
-> > That is what I would do.
->
-> Geert, Please share your thoughts.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: André Draszik <andre.draszik@linaro.org>
+---
+v2:
+* collect tags
+* split out from original series (Krzysztof)
+* link to original series
+  https://lore.kernel.org/all/20241127-gs101-phy-lanes-orientation-dts-v1-2-5222d8508b71@linaro.org/
+---
+ Documentation/devicetree/bindings/usb/maxim,max33359.yaml | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-I prefer the enum, as it causes less churn when adding more entries
-later.  Cfr. using a comma after the last entry in a C array, so new
-entries can be appended later, without touching existing lines.
+diff --git a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml b/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
+index 20b62228371b..e11ede3684d4 100644
+--- a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
++++ b/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
+@@ -13,8 +13,12 @@ description: Maxim TCPCI Type-C PD controller
+ 
+ properties:
+   compatible:
+-    enum:
+-      - maxim,max33359
++    oneOf:
++      - enum:
++          - maxim,max33359
++      - items:
++          - const: maxim,max77759
++          - const: maxim,max33359
+ 
+   reg:
+     maxItems: 1
 
-Gr{oetje,eeting}s,
+---
+base-commit: ed9a4ad6e5bd3a443e81446476718abebee47e82
+change-id: 20241128-dtbinding-max77759-b3ddbd264544
 
-                        Geert
+Best regards,
+-- 
+André Draszik <andre.draszik@linaro.org>
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
