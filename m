@@ -1,73 +1,98 @@
-Return-Path: <devicetree+bounces-125320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E0779DB90C
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 14:44:08 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 345D5162324
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 13:44:05 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 032341A9B2B;
-	Thu, 28 Nov 2024 13:44:05 +0000 (UTC)
-X-Original-To: devicetree@vger.kernel.org
-Received: from inbox0.redstarhavacilik.info (unknown [79.141.163.189])
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BC0B9DB93B
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 15:08:47 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41F051A29A
-	for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 13:43:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.141.163.189
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D4F7FB20AA1
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 14:08:44 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B285E1A38F9;
+	Thu, 28 Nov 2024 14:08:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="dcWV03/i"
+X-Original-To: devicetree@vger.kernel.org
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC283145A0F;
+	Thu, 28 Nov 2024 14:08:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732801444; cv=none; b=HHQmAnxcZG6yYdBMdhujCGahN3ZlYXKv11C7VZ++ULs9Ud0shyz65eXWfaP8+gxzqH+V60HpE2IFERsvfw0pfeeq7ZIEGiCA4jPX1pI2qq7H+L4NonkkuS+2xLrjivB8qj4CFIcaIyI2HEZ8AqBBvEWDQVxMh0ZMRlvtOHGz1ak=
+	t=1732802920; cv=none; b=N4PD4a4dEWBp6yRqI0gck86FVvqFJRJYlpxneiGZda09PIlBHosMXgV56YhLh0t2yjZZ9c5qvipBTkFWlw5d2rB4NYw+CfBjB94IRBTWNS3SzGK2RlmITorc1VCMevbu6+g+79fnT/2ciFskXhyZLBnuYfzp9i1VP6ORbyjbgVs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732801444; c=relaxed/simple;
-	bh=EOnrZLyXZHj4HOKgjKekgWX31znFRWBOurAKtPC8dGk=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=EUi46zMc5dR5r3i/U1fYm27TLkBoOE5949J52POY0GMPUxvNs03aqV2Erl1lfZWrUcA7YqFAbQCR2tvLDtySm8xxLGK5rSwM76pNHkW+NUNYQ55c81VAM8b979q5VNHx+GRpX5mQs/OG8X7NwziG3wC/gWPylEhMeekGGJwVpIs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rohanenterprises.info; spf=pass smtp.mailfrom=redstarhavacilik.info; arc=none smtp.client-ip=79.141.163.189
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rohanenterprises.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redstarhavacilik.info
-Reply-To: ethanallen094@zohomail.eu
-From: Ethan Allen <admln@rohanenterprises.info>
-To: devicetree@vger.kernel.org
-Subject: M&E- Consult-RQ387690
-Date: 28 Nov 2024 05:43:07 -0800
-Message-ID: <20241128054307.24DFCC43A7D42094@rohanenterprises.info>
+	s=arc-20240116; t=1732802920; c=relaxed/simple;
+	bh=0ulj7edbSk0O1IV/CRCpQmp0lsdiWE4+qWFQa0Lynbw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jc3n6V22aghXBEMd2cSGh3KXnWnI1DPNLphgVCAerDdp1axGZ7Nn2sP/NHrA753OvXJ6WAAa3c+KMKGUQ2DTd0qpLG+w8SmiwsraVTRTtFBXnarXJbJM6mOXTNT086wp8/Prbk/rYZYH27rLUPuOD1ZRgHVOIkBd/QXf/Y5Eqdc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=dcWV03/i; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 4ASE8UdD1171256
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 28 Nov 2024 08:08:30 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1732802910;
+	bh=pKkjyiFM8kQqUBx2zf57P1oCYH46iFzIJ7Um2K6g6p0=;
+	h=From:To:CC:Subject:Date;
+	b=dcWV03/ilYOQqteGmDYMbQm4y2WXmQc+Pn18DYKqugc3le+jrZ9jZeDqjDgT/Vewk
+	 EcltJWqGDfAjh6fDSOVoVEKpMFpmS1uRBcEnrXs6JfBMRUWVX4BJOFILSsop1Ot5EX
+	 NagJQFO8gZPROnCzXQ4iG/3coY/EINc/WKfoevZo=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4ASE8Ua4013188
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 28 Nov 2024 08:08:30 -0600
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 28
+ Nov 2024 08:08:30 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 28 Nov 2024 08:08:30 -0600
+Received: from a0497641-HP-Z2-Tower-G9-Workstation-Desktop-PC.dhcp.ti.com (a0497641-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [10.24.69.37])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4ASE8Qcd019782;
+	Thu, 28 Nov 2024 08:08:27 -0600
+From: Neha Malcom Francis <n-francis@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>, <n-francis@ti.com>
+Subject: [PATCH 0/2] Add support for K3 BIST
+Date: Thu, 28 Nov 2024 19:38:23 +0530
+Message-ID: <20241128140825.263216-1-n-francis@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
-	charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Good day Sir/Madam,
+BIST (Built-In Self Test) is an IP responsible for triggering hardware
+circuitry tests on both logic as well as memory blocks. This driver is
+currently being upstreamed in U-Boot [1] and triggers these tests on
+cores. This patch series adds the dt-binding as well as a node for BIST
+on J784S4.
 
-I am Ethan Allen, Procurement Managerr at MACHINARY&EQUIPMENT Co.=20
-Inc. We have
-bulk order requirement for export to our customers in Spain and=20
-India.
+[1] https://lore.kernel.org/all/613efa0b-f785-444c-8769-ea40ac94d6f9@ti.com/T/
 
-kindly confirm if you can supply to Spain and India.
+Neha Malcom Francis (2):
+  dt-bindings: misc: bist: Add BIST dt-binding for TI K3 devices
+  arm64: dts: ti: k3-j784s4-main: Add PBIST_14 node
 
-We would greatly appreciate any additional information you can
-provide, as well as digital copy of your products catalog (PDF or=20
-Online link),
-information on new or featured products, pricing and packaging=20
-details.
+ .../bindings/misc/ti,j784s4-bist.yaml         | 66 +++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi    | 11 ++++
+ 2 files changed, 77 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/misc/ti,j784s4-bist.yaml
 
-I look forward to reviewing your catalog.
-
-Regards, 
-
-Ethan Allen
-Procurement Manager
-Northern California 3401 Bayshore Blvd, Brisbane, CA 94005
-+1 415 467-3400
-+1 909 599-3916
-www.machineryandequipment.com
+-- 
+2.34.1
 
 
