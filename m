@@ -1,135 +1,135 @@
-Return-Path: <devicetree+bounces-125299-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125298-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 607409DB814
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 13:58:13 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D07F09DB80D
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 13:57:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D9CEBB21C0D
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 12:58:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 70B86B20ACB
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 12:57:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40B3419F135;
-	Thu, 28 Nov 2024 12:58:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 799EF19E810;
+	Thu, 28 Nov 2024 12:57:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="g7Llz4Vb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="k7+e5P8A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BC0B154BEC;
-	Thu, 28 Nov 2024 12:58:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0EBC154BEC
+	for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 12:57:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732798685; cv=none; b=JP4Z1RkoabjfPsOn1mJF+VerKeRMbCm0XISU4OPOVndAwMBqB0ehLdUiG8frdZjx1c0woc4praKWYPTr3TyY7S2HDVKy+l2XAS1WBDHwYb3Ouu1Xc/sLTlhGYVtg5yNsC3qHAC/knFzBjfqUzbJNvAHd880l0WGkHGrAuCmj3Uk=
+	t=1732798660; cv=none; b=ZNlq5JbwSIB8uXTY5QnA22Lv+FgwR4W8QKVYjbN5fhvzm+u2BgmoDi+PtmUz6F4QojfdyME+JvNuAc65Fgr2X97oJHhFgqqQrGBGoaLk9W9DRgloD0mVG7obaKKHTIWEd4GxNHaugnkLYpp+OdE7iOmUsKtBZ+ZPCDoOsjA9cfU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732798685; c=relaxed/simple;
-	bh=QMSrXLPmS8/rI15I1H6zoqnyGh2Mcn9fOeS/kWycmGc=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FSaw/Qvx2yu3bkZDuGQ7pbEW2VWezFPYH/A6NGV1fbQOfJm6H/oUe9yfiqZPTSL6reOrSn5svIWaZ4LR00Nphb5dOdtLCMsjjD7YbYes7yCFrbtyHFZJigN3sppHSmPfzAaOqOoDgUjRE4JGFxy0naq9UdECysH1j//VwFxvpMI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=g7Llz4Vb; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1732798684; x=1764334684;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=QMSrXLPmS8/rI15I1H6zoqnyGh2Mcn9fOeS/kWycmGc=;
-  b=g7Llz4VbRm2ddrqnK7sSGp/RnkrIkxmraeRXskcQQ89ZjziS1AfTSXez
-   +0FXi1hfelzshLvweRIeA4LjlQwoOeq5Zo5gV0RGSdbqfWdyerkIJuegJ
-   Rf2XTJVOFakBbU2xVgVlX3b5DN/6EqwsOrpWXI7LCSRB1fuFD2Ous7fWH
-   A+Avu4mO6igxNzT6Ut2JFAzFsPOI2uGc0CJNTaOnhwSShFE+dd838OEJF
-   erqcZSUj70n0yEcK7rOwJ1E96EXDpJSm+7gb8s4/UPRzArrY687smdUuO
-   dgVGTBz7MDnc3H1PffNz//Atf81Cr9fNTyHKejeAJiT/+wA/vdaata0nJ
-   Q==;
-X-CSE-ConnectionGUID: /UvZogjDQyWxjx7e3ftesA==
-X-CSE-MsgGUID: Z3VVt8QuQ6eGvsYfIj+DcA==
-X-IronPort-AV: E=Sophos;i="6.12,192,1728975600"; 
-   d="asc'?scan'208";a="266085200"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 28 Nov 2024 05:57:57 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 28 Nov 2024 05:57:26 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex03.mchp-main.com (10.10.85.151)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Thu, 28 Nov 2024 05:57:22 -0700
-Date: Thu, 28 Nov 2024 12:56:55 +0000
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Alexandre Ghiti <alexghiti@rivosinc.com>
-CC: Jonathan Corbet <corbet@lwn.net>, Paul Walmsley
-	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
-	<aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Andrea Parri
-	<parri.andrea@gmail.com>, Nathan Chancellor <nathan@kernel.org>, Peter
- Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, Will Deacon
-	<will@kernel.org>, Waiman Long <longman@redhat.com>, Boqun Feng
-	<boqun.feng@gmail.com>, Arnd Bergmann <arnd@arndb.de>, Leonardo Bras
-	<leobras@redhat.com>, Guo Ren <guoren@kernel.org>,
-	<linux-doc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-	<linux-arch@vger.kernel.org>
-Subject: Re: [PATCH v6 13/13] riscv: Add qspinlock support
-Message-ID: <20241128-whoever-wildfire-2a3110c5fd46@wendy>
-References: <20241103145153.105097-1-alexghiti@rivosinc.com>
- <20241103145153.105097-14-alexghiti@rivosinc.com>
+	s=arc-20240116; t=1732798660; c=relaxed/simple;
+	bh=TES8Wi12UE3TlsFyqRY9CW1oUL36H+zyEy+z8lBJnAg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ufE40AuwHaAYM/MsQi2YgkBhEXFtSc/J+StMpLes/iKeWPrJZSXeoLumMr/RFWqMzInQwI05MmdfBVIzT6mJwbHGzWkxFymK6s9dc7pdhV28mcnT9yErAVGbSJhUWXzsWtqFP/ChL72BUtpynF8cjysqNiV0aCmVDIIptxbwXBk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=k7+e5P8A; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-53de556ecdaso742684e87.1
+        for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 04:57:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1732798657; x=1733403457; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=qki2u+kwWDyi8TzZ2JdL7JQpuZVyny19681QMuSukyk=;
+        b=k7+e5P8AKm4JDSXdjb3PhsT5UWVR6wrTgsL6Wh7qMip/mlgbv5+2OWNVhcMD7+CbUG
+         qpoTi3snJQjBmKW0/PRgvRdK/V2sf38IaWFqdU+S+HfUIKq9MiXmISiNUGKNrgkY3Fuk
+         K8qOVR88EywD/WikaMO2nHeWFGHPhZvuhJBHfyxX1f625lqcM4NLbCDw5sUmngtQeLFr
+         i5/n6Q6dXZTXth9hrv7c4ALZAb/No0D+2vfJwqxu9/X6cCPW3KmXiZfPeg4wRsbeJwdN
+         FGo61IsYtxQMtiM2tMhn6gVyEefqSvsnM81X7wAH1vnk4d6AFkFzjsyicHuM2MlTCqWZ
+         xQYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732798657; x=1733403457;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qki2u+kwWDyi8TzZ2JdL7JQpuZVyny19681QMuSukyk=;
+        b=bYZBvoKxz98QWGkKvq794P3SG7pCNSM705G1i47kAmXBKov3yrTeX5lmsTQvGeZ7/s
+         pX3lUUzcmqNkmhepCOjFu/Kf+PFXqWm49HQ4SuBB2wLL4YIJ6yfSnZ9NXIa3F/3tUkVj
+         hEYPLcdMpqpL6eQcPFgQA+mNAGwORRF1PN6XkNrvgUc1QrD68aXoDu7e9AH6HWLwg5BB
+         FhDIupxSpA6+EDNjeaYhfaR8NsEQXb8DBsBmrTO8TjSCzPa8f7uhO7xlNsR80XERL8st
+         c8cN+UIHWry/h8oep17m+AIVB4bj8KZPMlBSgO2iRXpBHk73bLw0pDKFLPHXv0ez1MJa
+         Tw/w==
+X-Forwarded-Encrypted: i=1; AJvYcCW+dcli5KYT77/Co0HdPU6QypMLOt126/Lp981KZeiol4nZbfn7w17zHaIqmISM28JC44jiCoFzCpm8@vger.kernel.org
+X-Gm-Message-State: AOJu0YwaFje3mt4Sd3e3Srg/hZeq5nRfHR9bypDB4ZqHZyh2sEAb1F8S
+	HU71Q7j7zlOsh4pA49ahOglEdROaMuodQYAag//ejtUFIrIo12pBsjc6uNsGYvGn8SNqAhY5w12
+	H
+X-Gm-Gg: ASbGncskUIT6X9+DhaPiPKI5zCPIJY61brRmEv6SqbBbjAW7xD5oNZMidDNl974M0BZ
+	AwGdjqjl7cP/6/l9aXLyS5IS1f+SgpEusCruTyXzCn0SW0R8pNL6s8+utcwPC4o332T1WSH4xvs
+	M0MjFsKE6yQAvhWxj2BfS0VMQI6EX0njufP0tb7bAjTE68SeY4B169nYYy3xlKV5NT+KYdMuiE0
+	tMZUWYXHLFXaWzviO9+P/ZtE4OpDmmznQ5xuzO8gDqsWDsVY7x13cZXHoIu4j7dWPvX2SqK/beL
+	B3Q3CarPEHBOWYvEf7MjEvD8vVgrMw==
+X-Google-Smtp-Source: AGHT+IECIQcECexv3ZWrGXtrg2eYyzQpDGCf9tAuxX5po1WqGjNDN92Z3qKgjKOHRVwveciwYoFhsQ==
+X-Received: by 2002:a05:6512:3d1f:b0:53d:e52e:9176 with SMTP id 2adb3069b0e04-53df01122f0mr4059032e87.57.1732798657052;
+        Thu, 28 Nov 2024 04:57:37 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53df643149asm175922e87.37.2024.11.28.04.57.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Nov 2024 04:57:35 -0800 (PST)
+Date: Thu, 28 Nov 2024 14:57:33 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Cheng Jiang <quic_chejiang@quicinc.com>
+Cc: Marcel Holtmann <marcel@holtmann.org>, 
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Balakrishna Godavarthi <quic_bgodavar@quicinc.com>, Rocky Liao <quic_rjliao@quicinc.com>, 
+	linux-bluetooth@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, quic_bt@quicinc.com
+Subject: Re: [PATCH v1 0/3] bluetooth: qca: Add QCA6698 Bluetooth chip
+Message-ID: <2qhdqirb6yin3fro6kckqwrbexmi6j5gwl4qfntgo6ctcfc3jj@727464znj2r6>
+References: <20241128120922.3518582-1-quic_chejiang@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="qajfT6S+474YA1dH"
-Content-Disposition: inline
-In-Reply-To: <20241103145153.105097-14-alexghiti@rivosinc.com>
-
---qajfT6S+474YA1dH
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20241128120922.3518582-1-quic_chejiang@quicinc.com>
 
-On Sun, Nov 03, 2024 at 03:51:53PM +0100, Alexandre Ghiti wrote:
-> In order to produce a generic kernel, a user can select
-> CONFIG_COMBO_SPINLOCKS which will fallback at runtime to the ticket
-> spinlock implementation if Zabha or Ziccrse are not present.
->=20
-> Note that we can't use alternatives here because the discovery of
-> extensions is done too late and we need to start with the qspinlock
-> implementation because the ticket spinlock implementation would pollute
-> the spinlock value, so let's use static keys.
->=20
-> This is largely based on Guo's work and Leonardo reviews at [1].
->=20
-> Link: https://lore.kernel.org/linux-riscv/20231225125847.2778638-1-guoren=
-@kernel.org/ [1]
-> Signed-off-by: Guo Ren <guoren@kernel.org>
-> Signed-off-by: Alexandre Ghiti <alexghiti@rivosinc.com>
+On Thu, Nov 28, 2024 at 08:09:19PM +0800, Cheng Jiang wrote:
+> QCA6698 chipset shares the same IP core as the WCN6855. However,
+> it has different RF components and RAM sizes, so new firmware
+> is needed.
+> 
+> This change allows driver to distinguish it from the WCN6855
+> and load the specific firmware. As the RF performance of
+> QCA6698 chip from different foundries may vary. Therefore use
+> different NVM to configure them based on board ID.
+> 
+> Cheng Jiang (3):
+>   arm64: dts: qcom: sa8775p-ride: Change the BT node
+>   dt-bindings: net: Add QCA6698 Bluetooth
+>   Bluetooth: btqca: Add QCA6698 support
 
-This patch (now commit ab83647fadae2 ("riscv: Add qspinlock support"))
-breaks boot on polarfire soc. It dies before outputting anything to the
-console. My .config has:
+Order is totally incorrect:
+- dt bindings
+- driver changes
+- DTS
 
-# CONFIG_RISCV_TICKET_SPINLOCKS is not set
-# CONFIG_RISCV_QUEUED_SPINLOCKS is not set
-CONFIG_RISCV_COMBO_SPINLOCKS=3Dy
+> 
+>  .../net/bluetooth/qualcomm-bluetooth.yaml     |  2 +
+>  arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi    |  2 +-
+>  drivers/bluetooth/btqca.c                     | 47 ++++++++++++++++++-
+>  drivers/bluetooth/btqca.h                     |  1 +
+>  drivers/bluetooth/hci_qca.c                   | 36 +++++++++++++-
+>  5 files changed, 84 insertions(+), 4 deletions(-)
+> 
+> 
+> base-commit: f486c8aa16b8172f63bddc70116a0c897a7f3f02
+> --
+> 2.25.1
+> 
 
---qajfT6S+474YA1dH
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ0holwAKCRB4tDGHoIJi
-0oxHAQDvlh0ZpqCtx7NHMgqYni9qnQMfa+yBnfL0GReiPZOY6gEAuG43y1PeVjrz
-9u1w7lL364g1nfGmc7VfESDSWYuheQA=
-=ZDec
------END PGP SIGNATURE-----
-
---qajfT6S+474YA1dH--
+-- 
+With best wishes
+Dmitry
 
