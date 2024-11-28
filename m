@@ -1,118 +1,134 @@
-Return-Path: <devicetree+bounces-125332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125333-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C7769DB9DE
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 15:50:34 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2EA2D1642FF
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 14:50:31 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E15B05C603;
-	Thu, 28 Nov 2024 14:50:29 +0000 (UTC)
-X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06BAF9DB9F4
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 15:53:01 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9D7E2233A;
-	Thu, 28 Nov 2024 14:50:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 95460B2182B
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 14:52:58 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C5371BC09F;
+	Thu, 28 Nov 2024 14:51:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aH1k8Vg3"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C8051BFE00
+	for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 14:51:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732805429; cv=none; b=GD8fnON80mJFS0TYCpkkj92r/5MfVlqYVhwfrBD3VhShbWqYJUM06tosaLntHpXC44bsbBwTUXxcdFFjhpiw4GcYEXGNaOojkwVaKzInm2i9GDShD0BXeGhKW+kAiFlMX5riynKu9Xf/z+8fHC4ONeol9K/7+8iH7VJW00sJc3U=
+	t=1732805518; cv=none; b=oEfX2N97lqvXBuWIt64K1GuUjK7ZVma/QVPyESWagdB98o/9aIqn14lVHthPCkxDvT9z/IeViaCsTR6TQJ8N0fTLnGUXHjOlYR5MfYTHQXtp3/n4/ZFPTDOj0K23x/j/x2ByR7oTyEDR2P65zrWC3oS1cyt+iSMq5dBh4N6ZzKU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732805429; c=relaxed/simple;
-	bh=QlkrmAfWSgg9jN8h+ddj5jlrPRNfI9eofCH/kWoC9Vo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fM6YZq66ufNZy8mW1ghZoR24haIFuT7HnfOgIRaYbp8q/Cd0cxCS4lFf2q4fvIzlE1TPIWaC8C598TIsPJPUzHi4N8dOT+NdukFHCwkYpYirE4jqEN4V5emN+68GbWuniLjgzITU4M/jol8MI4Neb2T7fepdeeB1wrzqH69dxJU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr; spf=pass smtp.mailfrom=ghiti.fr; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ghiti.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ghiti.fr
-Received: by mail.gandi.net (Postfix) with ESMTPSA id A1F062000F;
-	Thu, 28 Nov 2024 14:50:10 +0000 (UTC)
-Message-ID: <90533aa9-186a-4f75-b3c5-d93d6682056b@ghiti.fr>
-Date: Thu, 28 Nov 2024 15:50:09 +0100
+	s=arc-20240116; t=1732805518; c=relaxed/simple;
+	bh=iONE0HKU0IqL9O9ShumEXpebGnA8RIwvd+IgFAfUlXs=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=kaf5bttR1sXeIq0S3BRmvGM6kyY7qssDV8pNL9YJ36BjRIhvbnP+Oyy0Cs8kgbiBBOE7M6AqZO89JB3afAXgB/t06s2MOt1hsqtxvwkPN3Pw4JJH881W9gk2plDwBkmRIsq46T12UC8VLncInGlNERvDrBC5zb6+KYXmk6tI8oY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aH1k8Vg3; arc=none smtp.client-ip=209.85.210.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-724e6c53fe2so719441b3a.3
+        for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 06:51:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1732805516; x=1733410316; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=d/MXPQzhJ+NbcczEaxmCbcj8MjpwS3qOOhKqFULBuO8=;
+        b=aH1k8Vg3LzRPvjv+t4OKpUkxmLT3zHCy3vtqri31hXcXWxvwuJf/n5tFhXkpO1YIJI
+         dt0JtRorKg3ESrqVKNtm9RqY6zMG2ng/dcQoBP0Wr2YR4tydOdW5uPusd1O5Q8TZIAKB
+         8TwY2a+nVzR3Oovo1ugFcEL6cYcnKqLUC7BwAZwgdpLPmtC+fv8AyxeuiuzaUXj1Ots/
+         rNl1XMTyUL6H105H3hWu4NuKf6TK10wwhlAfz4kLLoKGJM5+UyLqHlRgfFp5OKrzjfoa
+         Y33lfUMpYsSElcJskMaejwReI+tMSAm7kFARrZK/HjiQhPoJ+r6QXzo3OlvZpFXX5mvh
+         gVYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732805516; x=1733410316;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=d/MXPQzhJ+NbcczEaxmCbcj8MjpwS3qOOhKqFULBuO8=;
+        b=sEhLhYPVTal8m8Q/EloDLob8z0x1SyFpslqs+GYACtrQLJM1rBMkO3IS9X1LRWXzfg
+         msVU0SXgE4OMIxmG2+1zHTHfJ/kHSfOmuSbSY5S/EvgWxssltn+RTwt6QnW5hIPz5Svj
+         v/TGr0lJm65hq5U+NDUGyvFkra5sbqrUakgVi/EIQ7syCyZW+5uT8SSfJQpoNnjCpn7E
+         jtAlR0+D/TqiOFzgA7ECff/3mVD9cewi7lzPuwg/J7N/wU12W1BOJKr4Wgl+2oLdM3Sp
+         FGaqhdABHXJwN1vAYmZdwSSsiCacEe7yqMTjMc5PPPXgvcOp2MLBkeKm2+n3OAyeJvbt
+         1djQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV8kpf+NLkpzEBYKdv4grCLrxiGlNMwuMVy4PIAdRmzmjL0l2vRKkI6w2v2umT9s/K4+0icUN8S78FZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzYan/9MdEo9NidLhDEUodZBtnpR8gYImxrYxeXoQgo58ex81jW
+	cjk8aQjcYmYZMZd1Hb/4XQ0AnIR7kGZIh8caFJwvuym/+17/pA2LdLU5EkQc2w==
+X-Gm-Gg: ASbGncv0KlTOg3qvA1TGUjOWXy70tH/z9F3h/OpBfSiGXSW+8WSgn8jACqfY8psp5vF
+	7KI5mcpJBGAyRbYU4ijByzTO9WfgNgyrW7BpRMoZ2ilay06rjcUr5eaGgpji8P3h73i/E8ySrZ4
+	ujcRXsrmh0wrOBj0B9cVu1QUPjyWsSY5G718HdbsWrRzOHJA0pkjc6uWU0N+cB5ckscPXGxAU0S
+	W9DA+EKDuZG+xwuCNH+89I4q/WK0fJ/oYZFr6p1geecv1sQmmbLTt4TfqZ6H79sdH67zIZjTfDv
+	Kw==
+X-Google-Smtp-Source: AGHT+IE94xRezL0R5MUb1CgWVQ85Hdjg7x8RVESl+SHCpYNTjmiYjyLuD+1yP71Qqn42MFKmXZk5NQ==
+X-Received: by 2002:a05:6a00:1c8d:b0:725:3bd4:9b54 with SMTP id d2e1a72fcca58-7253bd49c20mr7408782b3a.2.1732805515839;
+        Thu, 28 Nov 2024 06:51:55 -0800 (PST)
+Received: from localhost.localdomain ([117.213.97.61])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7254176f76dsm1660418b3a.68.2024.11.28.06.51.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Nov 2024 06:51:55 -0800 (PST)
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: andersson@kernel.org,
+	konradybcio@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	stable@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: sa8775p: Fix the size of 'addr_space' regions
+Date: Thu, 28 Nov 2024 20:21:47 +0530
+Message-Id: <20241128145147.145618-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 13/13] riscv: Add qspinlock support
-Content-Language: en-US
-To: Conor Dooley <conor.dooley@microchip.com>, Will Deacon <will@kernel.org>
-Cc: Alexandre Ghiti <alexghiti@rivosinc.com>, Jonathan Corbet
- <corbet@lwn.net>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Andrea Parri <parri.andrea@gmail.com>, Nathan Chancellor
- <nathan@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
- Ingo Molnar <mingo@redhat.com>, Waiman Long <longman@redhat.com>,
- Boqun Feng <boqun.feng@gmail.com>, Arnd Bergmann <arnd@arndb.de>,
- Leonardo Bras <leobras@redhat.com>, Guo Ren <guoren@kernel.org>,
- linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-arch@vger.kernel.org
-References: <20241103145153.105097-1-alexghiti@rivosinc.com>
- <20241103145153.105097-14-alexghiti@rivosinc.com>
- <20241128-whoever-wildfire-2a3110c5fd46@wendy>
- <20241128134135.GA3460@willie-the-truck>
- <20241128-uncivil-removed-4e105d1397c9@wendy>
-From: Alexandre Ghiti <alex@ghiti.fr>
-In-Reply-To: <20241128-uncivil-removed-4e105d1397c9@wendy>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: alex@ghiti.fr
+Content-Transfer-Encoding: 8bit
 
-On 28/11/2024 15:14, Conor Dooley wrote:
-> On Thu, Nov 28, 2024 at 01:41:36PM +0000, Will Deacon wrote:
->> On Thu, Nov 28, 2024 at 12:56:55PM +0000, Conor Dooley wrote:
->>> On Sun, Nov 03, 2024 at 03:51:53PM +0100, Alexandre Ghiti wrote:
->>>> In order to produce a generic kernel, a user can select
->>>> CONFIG_COMBO_SPINLOCKS which will fallback at runtime to the ticket
->>>> spinlock implementation if Zabha or Ziccrse are not present.
->>>>
->>>> Note that we can't use alternatives here because the discovery of
->>>> extensions is done too late and we need to start with the qspinlock
->>>> implementation because the ticket spinlock implementation would pollute
->>>> the spinlock value, so let's use static keys.
->>>>
->>>> This is largely based on Guo's work and Leonardo reviews at [1].
->>>>
->>>> Link: https://lore.kernel.org/linux-riscv/20231225125847.2778638-1-guoren@kernel.org/ [1]
->>>> Signed-off-by: Guo Ren <guoren@kernel.org>
->>>> Signed-off-by: Alexandre Ghiti <alexghiti@rivosinc.com>
->>> This patch (now commit ab83647fadae2 ("riscv: Add qspinlock support"))
->>> breaks boot on polarfire soc. It dies before outputting anything to the
->>> console. My .config has:
->>>
->>> # CONFIG_RISCV_TICKET_SPINLOCKS is not set
->>> # CONFIG_RISCV_QUEUED_SPINLOCKS is not set
->>> CONFIG_RISCV_COMBO_SPINLOCKS=y
->> I pointed out some of the fragility during review:
->>
->> https://lore.kernel.org/all/20241111164259.GA20042@willie-the-truck/
->>
->> so I'm kinda surprised it got merged tbh :/
-> Maybe it could be reverted rather than having a broken boot with the
-> default settings in -rc1.
+For both the controller instances, size of the 'addr_space' region should
+be 0x1fe00000 as per the hardware memory layout.
 
+Otherwise, endpoint drivers cannot request even reasonable BAR size of 1MB.
 
-No need to rush before we know what's happening,I guess you bisected to 
-this commit right?
+Cc: stable@vger.kernel.org # 6.11
+Fixes: c5f5de8434ec ("arm64: dts: qcom: sa8775p: Add ep pcie1 controller node")
+Fixes: 1924f5518224 ("arm64: dts: qcom: sa8775p: Add ep pcie0 controller node")
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-I don't have this soc, so can you provide $stval/$sepc/$scause, a 
-config, a kernel, anything?
+diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+index e8dbc8d820a6..320a94dcac5c 100644
+--- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
++++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+@@ -5587,7 +5587,7 @@ pcie0_ep: pcie-ep@1c00000 {
+ 		      <0x0 0x40000000 0x0 0xf20>,
+ 		      <0x0 0x40000f20 0x0 0xa8>,
+ 		      <0x0 0x40001000 0x0 0x4000>,
+-		      <0x0 0x40200000 0x0 0x100000>,
++		      <0x0 0x40200000 0x0 0x1fe00000>,
+ 		      <0x0 0x01c03000 0x0 0x1000>,
+ 		      <0x0 0x40005000 0x0 0x2000>;
+ 		reg-names = "parf", "dbi", "elbi", "atu", "addr_space",
+@@ -5744,7 +5744,7 @@ pcie1_ep: pcie-ep@1c10000 {
+ 		      <0x0 0x60000000 0x0 0xf20>,
+ 		      <0x0 0x60000f20 0x0 0xa8>,
+ 		      <0x0 0x60001000 0x0 0x4000>,
+-		      <0x0 0x60200000 0x0 0x100000>,
++		      <0x0 0x60200000 0x0 0x1fe00000>,
+ 		      <0x0 0x01c13000 0x0 0x1000>,
+ 		      <0x0 0x60005000 0x0 0x2000>;
+ 		reg-names = "parf", "dbi", "elbi", "atu", "addr_space",
+-- 
+2.25.1
 
-Does the polarfire soc provide Ziccrse?
-
-
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
