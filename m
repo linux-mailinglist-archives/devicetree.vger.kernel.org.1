@@ -1,491 +1,341 @@
-Return-Path: <devicetree+bounces-125173-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125174-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 426829DB13A
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 02:50:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A12CF9DB167
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 03:14:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02476281181
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 01:50:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E3C7281F5B
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 02:14:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58A8F4F20C;
-	Thu, 28 Nov 2024 01:37:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25EAF43AA9;
+	Thu, 28 Nov 2024 02:14:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jgv0IYzj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UVViUJ5v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D7B318E25;
-	Thu, 28 Nov 2024 01:37:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A5E138DFC;
+	Thu, 28 Nov 2024 02:14:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732757830; cv=none; b=h5p3V2P6TYvIYYcH1lwHFL2RS/ItyjEvD4sLWjLkK8L9/40ROMS9pP9Xkq4O4Xn8KHACdHo1GGXLGo7Ri4pSQxSVW7ek5Y8v1l7p3IkbvvioeHi9LWSP7c3YC9VkopL3x5cSfxSnAjXosK49YCxiQKPFEJUxHThjcbWqPbMHlwU=
+	t=1732760091; cv=none; b=DOqZ/Z7YxP9+vA6aZiEE65bluq429ypMnxujdbTO8EyNgcb/qJX5QngHWS67aN5hnqFWxQkfjgjPlLWg9UKuvPmuyPnjKx5grMBfI+Z9DyMGWnyPCr8FbMKv8tS9+Rf2BzEfJe3uyAHAY0AVQwoSm75844Zx8lVIXeJ/EtOdcn8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732757830; c=relaxed/simple;
-	bh=mWkHJbsiB7zc6h0ynyDWVYge8WRiUEI5BeNbMbKTClY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Gpgd69ddkYjImuUA4uBLVK9TYa/DhrYHawPWUr0xdAzvHAYqoeijcS9TAJhhIB26VljFIncWg989SDFZPZXfFnn7vopF8iSta9MtcRxbUps2cewHUKo6yi8NAOMe5MAIW4sSVqEGacQRkCCY7DOcWH6RSrl7ablJZm2l16D65Xg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jgv0IYzj; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1732757828; x=1764293828;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=mWkHJbsiB7zc6h0ynyDWVYge8WRiUEI5BeNbMbKTClY=;
-  b=jgv0IYzjiVML+jTFXoq8qm3LE8+Tsj2W4K4MAh+ClkmElmg8WMTzpCur
-   fLCm7ANtkB06fYyHq+m3ucj9x8yftyIau6WQGfoZZP2ydLZUJ+TIsfGHo
-   ISaAjCh4Dd2BqYXw04fq9B0REe5Xi4xBhpo6XoMGQS48OzKrMZeRA7McC
-   1DCB4C431T4i2jhoLbQK+z+Ab8DRJU2h+MprZBkLnu+Vw23KJ18GAtDmV
-   z7yoSTTY69/wV/DcfYW9lczcWzXkH7LmUDjTNPwu9KCZmdak7sIjZIcpR
-   /mmRt3IO2RdPsX6ENz69tSKXiJWUV5A055qHzigQQ+hRQWbfb1hqbqE1O
-   w==;
-X-CSE-ConnectionGUID: qnvWYh92Rq6rmxsPH4zFTQ==
-X-CSE-MsgGUID: XLuot18LS7SPGBh2ODcKhA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11269"; a="32351183"
-X-IronPort-AV: E=Sophos;i="6.12,191,1728975600"; 
-   d="scan'208";a="32351183"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2024 17:37:07 -0800
-X-CSE-ConnectionGUID: F1P5kZJSS46wpvGYDarUSw==
-X-CSE-MsgGUID: 3yJczX+lT1Ge2S/NpoPUFg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,191,1728975600"; 
-   d="scan'208";a="122921274"
-Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
-  by orviesa002.jf.intel.com with ESMTP; 27 Nov 2024 17:37:04 -0800
-Date: Thu, 28 Nov 2024 09:34:01 +0800
-From: Xu Yilun <yilun.xu@linux.intel.com>
-To: Marco Pagani <marpagan@redhat.com>
-Cc: Nava kishore Manne <nava.kishore.manne@amd.com>, git@amd.com,
-	mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com,
-	trix@redhat.com, robh@kernel.org, saravanak@google.com,
-	linux-kernel@vger.kernel.org, linux-fpga@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [RFC v2 1/1] fpga-region: Add generic IOCTL interface for
- runtime FPGA programming
-Message-ID: <Z0fIiQPCS69O2d/n@yilunxu-OptiPlex-7050>
-References: <20241029091734.3288005-1-nava.kishore.manne@amd.com>
- <20241029091734.3288005-2-nava.kishore.manne@amd.com>
- <ZzwQrYeWVF6cRtgA@yilunxu-OptiPlex-7050>
- <9bfaf1cf-3313-4cb3-9963-2b4bad2d3165@redhat.com>
+	s=arc-20240116; t=1732760091; c=relaxed/simple;
+	bh=iTXRTO5/t9b+SiHLQegmxfbBLD+ZJOd1KUvlydOJn1E=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lTIVwXK+4QP+ZmtHxEiHb2gkF3r4gyMmE+AmvGREdT6SG8eILBg5WrqymY1gT3xAl2B6q2fNujb01szpW6us1KJc9WDN7BM08JOIu4eIWlPVS5I7VzIZ+cu0QYCxWz62eIZr3Frl/ovnPHVCLhxm5dIuY5tAvSwsAte+kp4UHxg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UVViUJ5v; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-aa53ebdf3caso53854966b.2;
+        Wed, 27 Nov 2024 18:14:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1732760087; x=1733364887; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RwS2jBVSzXTYuNe3+UBBZ+0Uj62YFOtE1/FiTJBmwPY=;
+        b=UVViUJ5vaiPixXRlnF0DrRZn4j49nlr3USpCGQF6vDR5aRDS9Jhk8u0ZCho3TmFnYQ
+         o32qo5VUWDkrv2oaof2fRYsDCFfrVovZByTlATMV7dVe6T0U3sRJs8Bj/ooVFL5qM9W9
+         I4LxO3zKGnHg4c3D9wJsKSfNYqWzr0im5j3c8zslpWV6HjC6CnYA3EJPQKB5g3sHc9kW
+         CcrmM0UBqnUxg3pAFCHq8cfZaUbYCsXqPHQlGq/+/gwHehO89vSrl3+uiOEA8ymRQRav
+         hZGmab1YY3IFf5WE2ullForrBJ7Qxu1VcLrvfvbPiy/0nnxFLBL44hPfP9uryPLoX7z4
+         YiPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732760087; x=1733364887;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=RwS2jBVSzXTYuNe3+UBBZ+0Uj62YFOtE1/FiTJBmwPY=;
+        b=lukNzxlKvwJGetAucsqJcLsprk1Tgl0rvXSPfAG65ZwLFAIzACkdu9jnByq3rdi0AL
+         4ZfYVGgefrsHIKCnvM3DPxDC5oaaJA2thjMmplB4NVK7P8PK+jc6TEFQTdj7ct0MHpYV
+         sSDItdj0LYeNsbOQlRNUn6O/mWqKLUvuHtsNs8uhhdttUB8vmIie2M/Wkeo1Ip6Ndgaj
+         c3d7nkVDBnPb+iQBe1xCWXHbFfJUdR9TJcRKyPTAvfm9WHbUfkOA2kX3u+Eh3xZchTAA
+         m+qVET/SglfhFmz1KC5mmvKiCT9dxxX4gwXLVVsRA2S/yZReWUpYNZY3YG53VQDiJHtk
+         P9gA==
+X-Forwarded-Encrypted: i=1; AJvYcCUcktHfvR/GXO2pz5dRdQqHuM2oQ7IzLsHylehPqej3dkEZ/N7ynIxqyBTbV33e6zVg0Yt7o6SI0lI4JKro@vger.kernel.org, AJvYcCWck5/9zFsX2C2JwII9zgVSnto/abA5LzGDkggp+ufLbpDyoKRGxHC5QRQH9Re+LgcaPapG7F8aWHfX@vger.kernel.org, AJvYcCWyLrwUAZ4ynLOyextGOCuaJp89AeoWgyAmqupyAF1ozwxvIVyMGDjPcEVQUBdTpFHNzDJaryEpY84l@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw6faL+14u0U0rlkZIKqIPZ5z/6KBUMZh84+nfCmKybeDgGd9Q2
+	kiryz8MvWUrSrpU/ANOLR/7qSKRbpYez+e1EaGcscTVxMCtmXPGOrrNmu6t6LKzMRzuDlF7Yf02
+	YcF+tLgC34VeHRZwFG+vqfrX9Bxg=
+X-Gm-Gg: ASbGnctU7EPvp8ebl/GxIiYquD9exBDw1iPzNRYg2CET9y4/dmsCUalVStj0j6C44u7
+	5LUZyDsvq0SNKByJczXJAzF8mzYdEZO0=
+X-Google-Smtp-Source: AGHT+IECqtEuypmzVzh5m3cSewtJm2cpzImTdgNCpfYYp6unJMDltC+JYpo5NvQqw++o54ZmQD/SObo2UGlhbvs4t3M=
+X-Received: by 2002:a17:906:18b1:b0:a99:89e9:a43d with SMTP id
+ a640c23a62f3a-aa58103ddcbmr462588866b.39.1732760087280; Wed, 27 Nov 2024
+ 18:14:47 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9bfaf1cf-3313-4cb3-9963-2b4bad2d3165@redhat.com>
+References: <20241106023916.440767-1-j2anfernee@gmail.com> <20241106023916.440767-2-j2anfernee@gmail.com>
+ <6c20875c-4145-4c91-b3b5-8f70ecb126f0@amperemail.onmicrosoft.com>
+ <CA+4VgcJD74ar9zQCj38M2w8FzGWpq+u5Z7ip9M7a1Lu7u8rojw@mail.gmail.com>
+ <20241109134228.4359d803@jic23-huawei> <20241109142943.3d960742@jic23-huawei>
+ <CA+4VgcJ=8wDWWnmgEt-UkEUfnfD8kGtHe44G5+dcRYt=KdwNfw@mail.gmail.com> <20241123144750.43eaa1c5@jic23-huawei>
+In-Reply-To: <20241123144750.43eaa1c5@jic23-huawei>
+From: Yu-Hsian Yang <j2anfernee@gmail.com>
+Date: Thu, 28 Nov 2024 10:14:10 +0800
+Message-ID: <CA+4Vgc+rqnxne6saUgUO_kR6chX9+HZcb40_9dpO6p6KuskSAg@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: iio: adc: Add binding for Nuvoton
+ NCT720x ADCs
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Chanh Nguyen <chanh@amperemail.onmicrosoft.com>, avifishman70@gmail.com, 
+	tmaimon77@gmail.com, tali.perry1@gmail.com, venture@google.com, 
+	yuenn@google.com, benjaminfair@google.com, lars@metafoo.de, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, nuno.sa@analog.com, 
+	dlechner@baylibre.com, javier.carrasco.cruz@gmail.com, andy@kernel.org, 
+	marcelo.schmitt@analog.com, olivier.moysan@foss.st.com, 
+	mitrutzceclan@gmail.com, matteomartelli3@gmail.com, alisadariana@gmail.com, 
+	joao.goncalves@toradex.com, marius.cristea@microchip.com, 
+	mike.looijmans@topic.nl, chanh@os.amperecomputing.com, KWLIU@nuvoton.com, 
+	yhyang2@nuvoton.com, openbmc@lists.ozlabs.org, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Nov 25, 2024 at 12:26:06PM +0100, Marco Pagani wrote:
-> 
-> 
-> On 2024-11-19 05:14, Xu Yilun wrote:
-> > On Tue, Oct 29, 2024 at 02:47:34PM +0530, Nava kishore Manne wrote:
-> >> Introduces an IOCTL interface within the fpga-region subsystem,
-> >> providing a generic and standardized mechanism for configuring (or)
-> >> reprogramming FPGAs during runtime. The newly added interface supports
-> >> both OF (Open Firmware) and non-OF devices, leveraging vendor-specific
-> >> callbacks (e.g., configuration + enumeration, removal, and status) to
-> >> accommodate a wide range of device specific configurations.
-> >>
-> >> The IOCTL interface ensures compatibility with both OF and non-OF
-> >> devices, allowing for seamless FPGA reprogramming across diverse
-> >> platforms.
-> >>
-> >> Vendor-specific callbacks are integrated into the interface, enabling
-> >> custom FPGA configuration + enumeration, removal, and status reporting
-> >> mechanisms, ensuring flexibility for vendor implementations.
-> >>
-> >> This solution enhances FPGA runtime management, supporting various device
-> >> types and vendors, while ensuring compatibility with the current FPGA
-> >> configuration flow.
-> >>
-> >> Signed-off-by: Nava kishore Manne <nava.kishore.manne@amd.com>
-> >> ---
-> >> Changes for v2:
-> >>  - As discussed with Yilun, the implementation has been modified to utilize a
-> >>  callback approach, enabling seamless handling of both OF and non-OF devices.
-> >>
-> >>  - As suggested by Yilun in the POC code, we have moved away from using  void *args
-> >>  as a parameter for ICOTL inputs to obtain the required user inputs. Instead, we are
-> >>  utilizing the fpga_region_config_info structure to gather user inputs. Currently,
-> >>  this structure is implemented to support only OF devices, but we intend to extend
-> >>  it by incorporating new members to accommodate non-OF devices in the future.
-> >>
-> >>  drivers/fpga/fpga-region.c       | 110 +++++++++++++++++++++++++++++++
-> >>  drivers/fpga/of-fpga-region.c    |  91 ++++++++++++++++++++++++-
-> >>  include/linux/fpga/fpga-region.h |  32 +++++++++
-> >>  include/uapi/linux/fpga-region.h |  51 ++++++++++++++
-> >>  4 files changed, 283 insertions(+), 1 deletion(-)
-> >>  create mode 100644 include/uapi/linux/fpga-region.h
-> >>
-> >> diff --git a/drivers/fpga/fpga-region.c b/drivers/fpga/fpga-region.c
-> >> index 753cd142503e..c6bea3c99a69 100644
-> >> --- a/drivers/fpga/fpga-region.c
-> >> +++ b/drivers/fpga/fpga-region.c
-> >> @@ -8,6 +8,7 @@
-> >>  #include <linux/fpga/fpga-bridge.h>
-> >>  #include <linux/fpga/fpga-mgr.h>
-> >>  #include <linux/fpga/fpga-region.h>
-> >> +#include <linux/fpga-region.h>
-> >>  #include <linux/idr.h>
-> >>  #include <linux/kernel.h>
-> >>  #include <linux/list.h>
-> >> @@ -180,6 +181,67 @@ static struct attribute *fpga_region_attrs[] = {
-> >>  };
-> >>  ATTRIBUTE_GROUPS(fpga_region);
-> >>  
-> >> +static int fpga_region_device_open(struct inode *inode, struct file *file)
-> >> +{
-> >> +	struct miscdevice *miscdev = file->private_data;
-> >> +	struct fpga_region *region = container_of(miscdev, struct fpga_region, miscdev);
-> >> +
-> >> +	file->private_data = region;
-> >> +
-> >> +	return 0;
-> >> +}
-> >> +
-> >> +static int fpga_region_device_release(struct inode *inode, struct file *file)
-> >> +{
-> >> +	return 0;
-> >> +}
-> >> +
-> >> +static long fpga_region_device_ioctl(struct file *file, unsigned int cmd,
-> >> +				     unsigned long arg)
-> >> +{
-> >> +	int err;
-> >> +	void __user *argp = (void __user *)arg;
-> >> +	struct fpga_region_config_info config_info;
-> >> +	struct fpga_region *region =  (struct fpga_region *)(file->private_data);
-> >> +
-> >> +	switch (cmd) {
-> >> +	case FPGA_REGION_IOCTL_LOAD:
-> >> +		if (copy_from_user(&config_info, argp, sizeof(struct fpga_region_config_info)))
-> >> +			return -EFAULT;
-> >> +
-> >> +		err = region->region_ops->region_config_enumeration(region, &config_info);
-> >> +
-> >> +		break;
-> >> +	case FPGA_REGION_IOCTL_REMOVE:
-> >> +		if (copy_from_user(&config_info, argp, sizeof(struct fpga_region_config_info)))
-> >> +			return -EFAULT;
-> >> +
-> >> +		err = region->region_ops->region_remove(region, &config_info);
-> >> +
-> >> +		break;
-> >> +	case FPGA_REGION_IOCTL_STATUS:
-> >> +		unsigned int status;
-> >> +
-> >> +		status = region->region_ops->region_status(region);
-> >> +
-> >> +		if (copy_to_user((void __user *)arg, &status, sizeof(status)))
-> >> +			err = -EFAULT;
-> >> +		break;
-> >> +	default:
-> >> +		err = -ENOTTY;
-> >> +	}
-> >> +
-> >> +	return err;
-> >> +}
-> >> +
-> >> +static const struct file_operations fpga_region_fops = {
-> >> +	.owner		= THIS_MODULE,
-> >> +	.open		= fpga_region_device_open,
-> >> +	.release	= fpga_region_device_release,
-> >> +	.unlocked_ioctl	= fpga_region_device_ioctl,
-> >> +	.compat_ioctl	= fpga_region_device_ioctl,
-> >> +};
-> >> +
-> >>  /**
-> >>   * __fpga_region_register_full - create and register an FPGA Region device
-> >>   * @parent: device parent
-> >> @@ -229,8 +291,21 @@ __fpga_region_register_full(struct device *parent, const struct fpga_region_info
-> >>  	if (ret)
-> >>  		goto err_remove;
-> >>  
-> >> +	if (info->region_ops) {
-> >> +		region->region_ops = info->region_ops;
-> >> +		region->miscdev.minor = MISC_DYNAMIC_MINOR;
-> >> +		region->miscdev.name = kobject_name(&region->dev.kobj);
-> >> +		region->miscdev.fops = &fpga_region_fops;
-> >> +		ret = misc_register(&region->miscdev);
-> >> +		if (ret) {
-> >> +			pr_err("fpga-region: failed to register misc device.\n");
-> >> +			goto err_remove;
-> >> +		}
-> >> +	}
-> >> +
-> >>  	ret = device_register(&region->dev);
-> >>  	if (ret) {
-> >> +		misc_deregister(&region->miscdev);
-> >>  		put_device(&region->dev);
-> >>  		return ERR_PTR(ret);
-> >>  	}
-> >> @@ -272,6 +347,40 @@ __fpga_region_register(struct device *parent, struct fpga_manager *mgr,
-> >>  }
-> >>  EXPORT_SYMBOL_GPL(__fpga_region_register);
-> >>  
-> >> +/**
-> >> + * __fpga_region_register_with_ops - create and register an FPGA Region device
-> >> + * with user interface call-backs.
-> >> + * @parent: device parent
-> >> + * @mgr: manager that programs this region
-> >> + * @region_ops: ops for low level FPGA region for device enumeration/removal
-> >> + * @priv: of-fpga-region private data
-> >> + * @get_bridges: optional function to get bridges to a list
-> >> + * @owner: module containing the get_bridges function
-> >> + *
-> >> + * This simple version of the register function should be sufficient for most users.
-> >> + * The fpga_region_register_full() function is available for users that need to
-> >> + * pass additional, optional parameters.
-> >> + *
-> >> + * Return: struct fpga_region or ERR_PTR()
-> >> + */
-> >> +struct fpga_region *
-> >> +__fpga_region_register_with_ops(struct device *parent, struct fpga_manager *mgr,
-> >> +				const struct fpga_region_ops *region_ops,
-> >> +				void *priv,
-> >> +				int (*get_bridges)(struct fpga_region *),
-> >> +				struct module *owner)
-> >> +{
-> >> +	struct fpga_region_info info = { 0 };
-> >> +
-> >> +	info.mgr = mgr;
-> >> +	info.priv = priv;
-> >> +	info.get_bridges = get_bridges;
-> >> +	info.region_ops = region_ops;
-> >> +
-> >> +	return __fpga_region_register_full(parent, &info, owner);
-> >> +}
-> >> +EXPORT_SYMBOL_GPL(__fpga_region_register_with_ops);
-> >> +
-> >>  /**
-> >>   * fpga_region_unregister - unregister an FPGA region
-> >>   * @region: FPGA region
-> >> @@ -280,6 +389,7 @@ EXPORT_SYMBOL_GPL(__fpga_region_register);
-> >>   */
-> >>  void fpga_region_unregister(struct fpga_region *region)
-> >>  {
-> >> +	misc_deregister(&region->miscdev);
-> >>  	device_unregister(&region->dev);
-> >>  }
-> >>  EXPORT_SYMBOL_GPL(fpga_region_unregister);
-> >> diff --git a/drivers/fpga/of-fpga-region.c b/drivers/fpga/of-fpga-region.c
-> >> index 8526a5a86f0c..63fe56e0466f 100644
-> >> --- a/drivers/fpga/of-fpga-region.c
-> >> +++ b/drivers/fpga/of-fpga-region.c
-> >> @@ -8,6 +8,8 @@
-> >>  #include <linux/fpga/fpga-bridge.h>
-> >>  #include <linux/fpga/fpga-mgr.h>
-> >>  #include <linux/fpga/fpga-region.h>
-> >> +#include <linux/firmware.h>
-> >> +#include <linux/fpga-region.h>
-> >>  #include <linux/idr.h>
-> >>  #include <linux/kernel.h>
-> >>  #include <linux/list.h>
-> >> @@ -18,6 +20,20 @@
-> >>  #include <linux/slab.h>
-> >>  #include <linux/spinlock.h>
-> >>  
-> >> +/**
-> >> + * struct of_fpga_region_priv - Private data structure
-> >> + * image.
-> >> + * @dev:	Device data structure
-> >> + * @fw:		firmware of coeff table.
-> >> + * @path:	path of FPGA overlay image firmware file.
-> >> + * @ovcs_id:	overlay changeset id.
-> >> + */
-> >> +struct of_fpga_region_priv {
-> >> +	struct device *dev;
-> >> +	const struct firmware *fw;
-> >> +	int ovcs_id;
-> >> +};
-> >> +
-> >>  static const struct of_device_id fpga_region_of_match[] = {
-> >>  	{ .compatible = "fpga-region", },
-> >>  	{},
-> >> @@ -394,20 +410,93 @@ static struct notifier_block fpga_region_of_nb = {
-> >>  	.notifier_call = of_fpga_region_notify,
-> >>  };
-> >>  
-> >> +static int of_fpga_region_status(struct fpga_region *region)
-> >> +{
-> >> +	struct of_fpga_region_priv *ovcs = region->priv;
-> >> +
-> >> +	if (ovcs->ovcs_id)
-> >> +		return FPGA_REGION_HAS_PL;
-> > 
-> > Could you help specify what is PL?
-> > 
-> >> +
-> >> +	return FPGA_REGION_EMPTY;
-> >> +}
-> >> +
-> >> +static int of_fpga_region_config_enumeration(struct fpga_region *region,
-> >> +					     struct fpga_region_config_info *config_info)
-> >> +{
-> >> +	struct of_fpga_region_priv *ovcs = region->priv;
-> >> +	int err;
-> >> +
-> >> +	/* if it's set do not allow changes */
-> >> +	if (ovcs->ovcs_id)
-> >> +		return -EPERM;
-> >> +
-> >> +	err = request_firmware(&ovcs->fw, config_info->firmware_name, NULL);
-> >> +	if (err != 0)
-> >> +		goto out_err;
-> >> +
-> >> +	err = of_overlay_fdt_apply((void *)ovcs->fw->data, ovcs->fw->size,
-> >> +				   &ovcs->ovcs_id, NULL);
-> >> +	if (err < 0) {
-> >> +		pr_err("%s: Failed to create overlay (err=%d)\n",
-> >> +		       __func__, err);
-> >> +		release_firmware(ovcs->fw);
-> >> +		goto out_err;
-> >> +	}
-> >> +
-> >> +	return 0;
-> >> +
-> >> +out_err:
-> >> +	ovcs->ovcs_id = 0;
-> >> +	ovcs->fw = NULL;
-> >> +
-> >> +	return err;
-> >> +}
-> >> +
-> >> +static int of_fpga_region_config_remove(struct fpga_region *region,
-> >> +					struct fpga_region_config_info *config_info)
-> >> +{
-> >> +	struct of_fpga_region_priv *ovcs = region->priv;
-> >> +
-> >> +	if (!ovcs->ovcs_id)
-> >> +		return -EPERM;
-> >> +
-> >> +	of_overlay_remove(&ovcs->ovcs_id);
-> >> +	release_firmware(ovcs->fw);
-> >> +
-> >> +	ovcs->ovcs_id = 0;
-> >> +	ovcs->fw = NULL;
-> >> +
-> >> +	return 0;
-> >> +}
-> >> +
-> >> +static const struct fpga_region_ops region_ops = {
-> >> +	.region_status = of_fpga_region_status,
-> >> +	.region_config_enumeration = of_fpga_region_config_enumeration,
-> >> +	.region_remove = of_fpga_region_config_remove,
-> >> +};
-> >> +
-> >>  static int of_fpga_region_probe(struct platform_device *pdev)
-> >>  {
-> >>  	struct device *dev = &pdev->dev;
-> >>  	struct device_node *np = dev->of_node;
-> >> +	struct of_fpga_region_priv *priv;
-> >>  	struct fpga_region *region;
-> >>  	struct fpga_manager *mgr;
-> >>  	int ret;
-> >>  
-> >> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> >> +	if (!priv)
-> >> +		return -ENOMEM;
-> >> +
-> >> +	priv->dev = dev;
-> >> +
-> >>  	/* Find the FPGA mgr specified by region or parent region. */
-> >>  	mgr = of_fpga_region_get_mgr(np);
-> >>  	if (IS_ERR(mgr))
-> >>  		return -EPROBE_DEFER;
-> >>  
-> >> -	region = fpga_region_register(dev, mgr, of_fpga_region_get_bridges);
-> >> +	region = fpga_region_register_with_ops(dev, mgr, &region_ops, priv,
-> >> +					       of_fpga_region_get_bridges);
-> >>  	if (IS_ERR(region)) {
-> >>  		ret = PTR_ERR(region);
-> >>  		goto eprobe_mgr_put;
-> >> diff --git a/include/linux/fpga/fpga-region.h b/include/linux/fpga/fpga-region.h
-> >> index 5fbc05fe70a6..3a3ba6dbb5e1 100644
-> >> --- a/include/linux/fpga/fpga-region.h
-> >> +++ b/include/linux/fpga/fpga-region.h
-> >> @@ -6,15 +6,35 @@
-> >>  #include <linux/device.h>
-> >>  #include <linux/fpga/fpga-mgr.h>
-> >>  #include <linux/fpga/fpga-bridge.h>
-> >> +#include <linux/fpga-region.h>
-> >> +#include <linux/miscdevice.h>
-> >>  
-> >>  struct fpga_region;
-> >>  
-> >> +/**
-> >> + * struct fpga_region_ops - ops for low level FPGA region ops for device
-> >> + * enumeration/removal
-> >> + * @region_status: returns the FPGA region status
-> >> + * @region_config_enumeration: Configure and enumerate the FPGA region.
-> >> + * @region_remove: Remove all devices within the FPGA region
-> >> + * (which are added as part of the enumeration).
-> >> + */
-> >> +struct fpga_region_ops {
-> >> +	int (*region_status)(struct fpga_region *region);
-> >> +	int (*region_config_enumeration)(struct fpga_region *region,
-> >> +					 struct fpga_region_config_info *config_info);
-> > 
-> > My current concern is still about this combined API, it just offloads
-> > all work to low level, but we have some common flows. That's why we
-> > introduce a common FPGA reprograming API.
-> > 
-> > I didn't see issue about the vendor specific pre configuration. They
-> > are generally needed to initialize the struct fpga_image_info, which
-> > is a common structure for fpga_region_program_fpga().
-> > 
-> > For port IDs(AFU) inputs for DFL, I think it could also be changed
-> > (Don't have to be implemented in this patchset). Previously DFL
-> > provides an uAPI for the whole device, so it needs a port_id input to
-> > position which fpga_region within the device for programming. But now,
-> > we are introducing a per fpga_region programming interface, IIUC port_id
-> > should not be needed anymore.
-> > 
-> > The combined API is truly simple for leveraging the existing
-> > of-fpga-region overlay apply mechanism. But IMHO that flow doesn't fit
-> > our new uAPI well. That flow is to adapt the generic configfs overlay
-> > interface, which comes to a dead end as you mentioned.
-> > 
-> > My gut feeling for the generic programing flow should be:
-> > 
-> >  1. Program the image to HW.
-> >  2. Enumerate the programmed image (apply the DT overlay)
-> > 
-> > Why we have to:
-> > 
-> >  1. Start enumeration.
-> >  2. On pre enumeration, programe the image.
-> >  3. Real enumeration.
-> 
-> I'm currently working on an RFC to propose a rework of the fpga
-> subsystem in order to make it more aligned with the device model. One of
-> the ideas I'm experimenting with is having a bus (struct bus_type) for
-> fpga regions (devices) so that we can have region drivers that could
-> handle internal device enumeration/management whenever a new region is
-> configured on the fabric. Does this make sense in your opinions?
+Dear Jonathan Cameron,
 
-mm.. I didn't fully understand the need to have a region driver, what's
-the issue to solve?
+Thank you for your advice.
 
-Thanks,
-Yilun
+I would remove the "nvuoton,read-vin-data-size" property.
 
-> 
-> Concerning the reconfiguration, wouldn't it be cleaner to use a
-> per-region sysfs interface at fpga-region level? It would still work
-> for both OF & non-OF cases.
-> 
-> Thanks,
-> Marco
-> 
-> 
+Read VIN info can use word read or byte read, and other registers
+should use byte read.
+If I use word read for VIN info and byte read for other registers,
+I encounter an issue when I use regmap instead of i2c smbus API.
+
+I need two regmap configs with val_bits 8/16.
+After I call devm_regmap_init_i2c these two configs,
+the error message:
+"debugfs: Directory '5-001d' with parent 'regmap' already present!"
+
+Do you have any suggestions?
+
+Jonathan Cameron <jic23@kernel.org> =E6=96=BC 2024=E5=B9=B411=E6=9C=8823=E6=
+=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8B=E5=8D=8810:48=E5=AF=AB=E9=81=93=EF=BC=
+=9A
+>
+> On Mon, 11 Nov 2024 15:45:03 +0800
+> Yu-Hsian Yang <j2anfernee@gmail.com> wrote:
+>
+> > Dear Jonathan Cameron,
+> >
+> > For property read-vin-data-size, we have a internal discussion.
+> >
+> > For Nuvoton NCT7201/NCT7202 chip,
+> > Take an example as to Vin1:
+> > The VIN reading supports Byte read (One Byte) and Word read (Two Byte)
+> >
+> > For Byte read:
+> > First read Index 00h to get VIN1 MSB, then read Index 0Fh Bit 3~7 to
+> > get VIN1 LSB.
+> > Index 0Fh is a shared LSB for all VINs.
+> >
+> > For Word read:
+> > Read Index 00h and get 2 Byte (VIN1 MSB and VIN1 LSB).
+> >
+> > We would refer your suggestion,
+> > we  declare a property named "nvuoton,read-vin-data-size" with default =
+value 16
+> > for user to use.
+>
+> Thanks for the info.  If the i2c controller allows word read
+> then the right thing is to always use it.
+>
+> Just check for I2C_FUNC_SMBUS_READ_WORD_DATA with
+> i2c_check_functionality()
+>
+> If it's supported use i2c_smbus_read_word_swapped()
+> if not, do the i2c_smbus_read_byte() approach.
+>
+> We don't need to want this in DT as it is a property of the smbus
+> controller, not this device.
+>
+> Jonathan
+>
+>
+>
+>
+> >
+> > Jonathan Cameron <jic23@kernel.org> =E6=96=BC 2024=E5=B9=B411=E6=9C=889=
+=E6=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8B=E5=8D=8810:29=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+> > >
+> > > On Sat, 9 Nov 2024 13:42:28 +0000
+> > > Jonathan Cameron <jic23@kernel.org> wrote:
+> > >
+> > > > On Wed, 6 Nov 2024 17:22:35 +0800
+> > > > Yu-Hsian Yang <j2anfernee@gmail.com> wrote:
+> > > >
+> > > > > Dear Chanh Nguyen,
+> > > > >
+> > > > > Thank you for your response.
+> > > > >
+> > > > > Chanh Nguyen <chanh@amperemail.onmicrosoft.com> =E6=96=BC 2024=E5=
+=B9=B411=E6=9C=886=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=8812:58=E5=
+=AF=AB=E9=81=93=EF=BC=9A
+> > > > > >
+> > > > > >
+> > > > > >
+> > > > > > On 06/11/2024 09:39, Eason Yang wrote:
+> > > > > > > This adds a binding specification for the Nuvoton NCT7201/NCT=
+7202
+> > > > > > > family of ADCs.
+> > > > > > >
+> > > > > > > Signed-off-by: Eason Yang <j2anfernee@gmail.com>
+> > > > > > > ---
+> > > > > > >   .../bindings/iio/adc/nuvoton,nct720x.yaml     | 47 ++++++++=
++++++++++++
+> > > > > > >   MAINTAINERS                                   |  1 +
+> > > > > > >   2 files changed, 48 insertions(+)
+> > > > > > >   create mode 100644 Documentation/devicetree/bindings/iio/ad=
+c/nuvoton,nct720x.yaml
+> > > > > > >
+> > > > > > > diff --git a/Documentation/devicetree/bindings/iio/adc/nuvoto=
+n,nct720x.yaml b/Documentation/devicetree/bindings/iio/adc/nuvoton,nct720x.=
+yaml
+> > > > > > > new file mode 100644
+> > > > > > > index 000000000000..3052039af10e
+> > > > > > > --- /dev/null
+> > > > > > > +++ b/Documentation/devicetree/bindings/iio/adc/nuvoton,nct72=
+0x.yaml
+> > > > > > > @@ -0,0 +1,47 @@
+> > > > > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > > > > > +%YAML 1.2
+> > > > > > > +---
+> > > > > > > +$id: http://devicetree.org/schemas/iio/adc/nuvoton,nct720x.y=
+aml#
+> > > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > > > +
+> > > > > > > +title: Nuvoton nct7202 and similar ADCs
+> > > > > > > +
+> > > > > > > +maintainers:
+> > > > > > > +  - Eason Yang <yhyang2@nuvoton.com>
+> > > > > > > +
+> > > > > > > +description: |
+> > > > > > > +   Family of ADCs with i2c interface.
+> > > > > > > +
+> > > > > > > +properties:
+> > > > > > > +  compatible:
+> > > > > > > +    enum:
+> > > > > > > +      - nuvoton,nct7201
+> > > > > > > +      - nuvoton,nct7202
+> > > > > > > +
+> > > > > > > +  reg:
+> > > > > > > +    maxItems: 1
+> > > > > > > +
+> > > > > > > +  read-vin-data-size:
+> > > > > >
+> > > > > > Is it generic property or vendor property? I tried to find in t=
+he
+> > > > > > https://github.com/torvalds/linux/tree/master/Documentation/dev=
+icetree/bindings
+> > > > > > , but it seems this property hasn't been used on other devices.
+> > > > > >
+> > > > > > If it is vendor property, then I think it should include a vend=
+or
+> > > > > > prefix. For examples:
+> > > > > >
+> > > > > > https://github.com/torvalds/linux/blob/master/Documentation/dev=
+icetree/bindings/iio/adc/adi%2Cad7780.yaml#L50
+> > > > > > https://github.com/torvalds/linux/blob/master/Documentation/dev=
+icetree/bindings/iio/adc/fsl%2Cvf610-adc.yaml#L42
+> > > > > > https://github.com/torvalds/linux/blob/master/Documentation/dev=
+icetree/bindings/iio/adc/st%2Cstmpe-adc.yaml#L22
+> > > > > >
+> > > > > >
+> > > > >
+> > > > > I would add a vendor prefix for it.
+> > > >
+> > > > Why do we want this at all?  Is this device sufficiently high
+> > > > performance that Linux will ever want to trade of resolution agains=
+t
+> > > > sampling speed?
+> > > >
+> > > > If so that seems like a policy control that belongs in userspace. N=
+ote
+> > > > that to support that in IIO I would want a strong justification for=
+ why we dno't
+> > > > just set it to 16 always. We just go for maximum resolution in the =
+vast majority
+> > > > of drivers that support control of this.
+> > > I'd misunderstood what this is. It's a control no what the i2c word s=
+ize is.
+> > > Do we actually care about supporting rubbish i2c controllers?  How ma=
+ny
+> > > can't do a word access?
+> > >
+> > > If you do it should be detected from the controller rather than in DT=
+.
+> > >
+> > > >
+> > > >
+> > > > >
+> > > > > > > +    description: number of data bits per read vin
+> > > > > > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > > > > > +    enum: [8, 16]
+> > > > > > > +
+> > > > > > > +required:
+> > > > > > > +  - compatible
+> > > > > > > +  - reg
+> > > > > > > +  - read-vin-data-size
+> > > > > > > +
+> > > > > > > +additionalProperties: false
+> > > > > > > +
+> > > > > > > +examples:
+> > > > > > > +  - |
+> > > > > > > +    i2c {
+> > > > > > > +        #address-cells =3D <1>;
+> > > > > > > +        #size-cells =3D <0>;
+> > > > > > > +
+> > > > > > > +        nct7202@1d {
+> > > > > >
+> > > > > > I think the Node name should follow
+> > > > > > https://devicetree-specification.readthedocs.io/en/latest/chapt=
+er2-devicetree-basics.html#generic-names-recommendation
+> > > > > >
+> > > > > >
+> > > > > > For some examples that were merged before
+> > > > > >
+> > > > > > https://github.com/torvalds/linux/blob/master/Documentation/dev=
+icetree/bindings/iio/adc/adi%2Cad7091r5.yaml#L102
+> > > > > > https://github.com/torvalds/linux/blob/master/Documentation/dev=
+icetree/bindings/iio/adc/maxim%2Cmax1238.yaml#L73
+> > > > > > https://github.com/torvalds/linux/blob/master/Documentation/dev=
+icetree/bindings/iio/adc/ti%2Cadc081c.yaml#L49
+> > > > > >
+> > > > >
+> > > > > I would change it for the node naming.
+> > > > >
+> > > > > > > +            compatible =3D "nuvoton,nct7202";
+> > > > > > > +            reg =3D <0x1d>;
+> > > > > > > +            read-vin-data-size =3D <8>;
+> > > > > > > +        };
+> > > > > > > +    };
+> > > > > > > diff --git a/MAINTAINERS b/MAINTAINERS
+> > > > > > > index 91d0609db61b..68570c58e7aa 100644
+> > > > > > > --- a/MAINTAINERS
+> > > > > > > +++ b/MAINTAINERS
+> > > > > > > @@ -2746,6 +2746,7 @@ L:      openbmc@lists.ozlabs.org (moder=
+ated for non-subscribers)
+> > > > > > >   S:  Supported
+> > > > > > >   F:  Documentation/devicetree/bindings/*/*/*npcm*
+> > > > > > >   F:  Documentation/devicetree/bindings/*/*npcm*
+> > > > > > > +F:   Documentation/devicetree/bindings/iio/adc/nuvoton,nct72=
+0x.yaml
+> > > > > > >   F:  Documentation/devicetree/bindings/rtc/nuvoton,nct3018y.=
+yaml
+> > > > > > >   F:  arch/arm/boot/dts/nuvoton/nuvoton-npcm*
+> > > > > > >   F:  arch/arm/mach-npcm/
+> > > > > >
+> > > >
+> > > >
+> > >
+>
 
