@@ -1,148 +1,214 @@
-Return-Path: <devicetree+bounces-125369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125370-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EBD89DBBDD
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 18:40:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 447709DBBFA
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 18:53:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B18F5B210F3
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 17:40:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B05E6B21066
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 17:53:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A5E31C07FC;
-	Thu, 28 Nov 2024 17:40:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC5291C173F;
+	Thu, 28 Nov 2024 17:53:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TAvA1JFe"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FIYDLruT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CCB1537F8;
-	Thu, 28 Nov 2024 17:40:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D58351BD9D3;
+	Thu, 28 Nov 2024 17:53:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732815622; cv=none; b=Yq6tB+seZTixOtCcBgVpePlRdQdcHK6fH9Bu1xtdG0nFIsfxXKm0wsJWdA86PE0avWkoteFuuuEne3i4Ss/ZZA5+vqda6SEYaJcVPTf2W0auTRS/oLzkEbwGcyb32i4dOnlnANjUzc7z7L3gb/EA3jTsNSnv3AkgGX4vqVpuJ6M=
+	t=1732816387; cv=none; b=q5SHKLv00tF6xMEW6zT2M7O3h/mdbz8M5gL0HcMBcICXU//hZ3J3OE6gn/gm+xRUD0j+5hnHThvyKvmIaEv3BAC4ofFkldrdRKhrspUzUtnb5xLh8niPHzcVewfzlqNE8gDYSRRqiIgpC+zh9R9Odc7cB7ZXCpmjOzIVvhMdzXI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732815622; c=relaxed/simple;
-	bh=KFL4/KdPWYKy7tPfDipXJxPv3vNWFuho/jtQSeo1XfE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pDif20JLKkhnvuQUiiKfxOnyUApn0NnRyN1O0jNmyFEvWOl35liEJmx/EVAAnWp3EXZ1+upyeRR32ZsXz9J1gM9m2C+tudcAG6pXKuSw8d7UGvzlHtmqxOYzKtTho1gFh0mSet6khm7wTHnNxHRjxSL6/B8hCVDvjBWw+kTfwgI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TAvA1JFe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BE3AC4CECE;
-	Thu, 28 Nov 2024 17:40:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732815619;
-	bh=KFL4/KdPWYKy7tPfDipXJxPv3vNWFuho/jtQSeo1XfE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TAvA1JFet7rwjww4XTHqSJmT9U9gYyEGeTYCbJDej60B/X76fwcYtlBPGRvATfNw4
-	 i2kChXH6pxtx7FwqMP9UKV9oqAaysHCWRQID0ef+X9p0veIqZaxf1zbmzurWBKQGFq
-	 1K9fZD5mMh/+r8qnA+mhNMEYhj+AX7PdE73e1TVJQhH4Kh6vRZY47eTJsZkyACaLeK
-	 JP7InV0RlxBMYz142e7KYSEL24yWqt+rzSKZnnlBcIF/aZvS6KjYojduUjSmIrlI4U
-	 pF6yeFWzhcC2GQTz/l/7yCYkTD46plfYVB6a2VMtGDJAILuijEKnUuLfXyYy9LFn6d
-	 mDcAgxjHM+njQ==
-Message-ID: <e330ef8b-8cf9-4c7e-bea9-c9c240aa38f2@kernel.org>
-Date: Thu, 28 Nov 2024 18:40:13 +0100
+	s=arc-20240116; t=1732816387; c=relaxed/simple;
+	bh=vxW7Z5afkbZb5LSyPQi39qpihdzP1HhdzvIhYuY98eQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=o0MPZrXtSIuL8npUHrxh4lRaX3Oi2UUewbeCVTQp1DtfAlahPiqifBUH6Fc/v/FMsTKzQvkmwAWo15J3QflS7a3s69uHnrtboBg7DJ4967ZPRBRdokaDuQzjeD9l1e9ZxD9Rk0KYAM8uu5UZw6Dn0N+7xugPripaXiSAtVYvQQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FIYDLruT; arc=none smtp.client-ip=192.198.163.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1732816385; x=1764352385;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=vxW7Z5afkbZb5LSyPQi39qpihdzP1HhdzvIhYuY98eQ=;
+  b=FIYDLruT76QSCNt8C3+1vRcUJQMxbyQepjP9+7r0Z3Hxhjq35vBealeG
+   TIlL9aEY3BZeRdctVsk/OFkGIABPf+XZd0TBjgo/R802VIjujcjZjVTB1
+   9Uv09Mk8+lzDffXMMTWb8kcJXQ74UiztOqN0IdHik/fcY0XMSlByZ46JX
+   JA2tkw+lIUov4AkPj6yU7VjAwjmRXp+a14SNj9iFv9jMHbYKyFYBKQWnd
+   esTujoqaaPK4rLiNqEfm1bwPUckbQgVswQ+cZVO57ki6SkQU+4u+iN1NV
+   rGcziGegqwbDRIwJoPsQbXLGo8g/7FvrnaBmN9NXl6NTJL2zu0pAhAYr9
+   A==;
+X-CSE-ConnectionGUID: Sa/ksreVRi+zna0ce852kw==
+X-CSE-MsgGUID: darzEyw8T3e9A8myh/gLSg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11270"; a="33000481"
+X-IronPort-AV: E=Sophos;i="6.12,193,1728975600"; 
+   d="scan'208";a="33000481"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Nov 2024 09:53:04 -0800
+X-CSE-ConnectionGUID: nySdZo6WRg6VTu+9N5FJFg==
+X-CSE-MsgGUID: I4NFisygTFa8SyiNpH1d0w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,193,1728975600"; 
+   d="scan'208";a="92474790"
+Received: from lkp-server01.sh.intel.com (HELO 8122d2fc1967) ([10.239.97.150])
+  by fmviesa008.fm.intel.com with ESMTP; 28 Nov 2024 09:53:02 -0800
+Received: from kbuild by 8122d2fc1967 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tGihH-0009t5-1H;
+	Thu, 28 Nov 2024 17:52:59 +0000
+Date: Fri, 29 Nov 2024 01:52:02 +0800
+From: kernel test robot <lkp@intel.com>
+To: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: oe-kbuild-all@lists.linux.dev, Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 7/7] iio: accel: kx022a: align with subsystem way
+Message-ID: <202411290148.Jdoj8IqZ-lkp@intel.com>
+References: <9b63813ecf10b1cd0126cb950bc09514c4287b9a.1732783834.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/4] arm64: dts: qcom: add base QCS8300 RIDE board
-To: Andrew Lunn <andrew@lunn.ch>, Jingyi Wang <quic_jingyw@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
- Will Deacon <will@kernel.org>, quic_tengfan@quicinc.com,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20241128-qcs8300_initial_dtsi-v3-0-26aa8a164914@quicinc.com>
- <20241128-qcs8300_initial_dtsi-v3-4-26aa8a164914@quicinc.com>
- <fe332b12-d62e-442d-906b-7f3a72165b85@lunn.ch>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <fe332b12-d62e-442d-906b-7f3a72165b85@lunn.ch>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9b63813ecf10b1cd0126cb950bc09514c4287b9a.1732783834.git.mazziesaccount@gmail.com>
 
-On 28/11/2024 17:49, Andrew Lunn wrote:
-> On Thu, Nov 28, 2024 at 04:44:46PM +0800, Jingyi Wang wrote:
->> Add initial support for Qualcomm QCS8300 RIDE board which enables DSPs,
->> UFS and booting to shell with uart console.
->>
->> Written with help from Tingguo Cheng (added rpmhpd nodes) and Xin Liu
->> (added ufs, adsp and gpdsp nodes).
->>
->> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
->> Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
->> ---
->>  arch/arm64/boot/dts/qcom/Makefile         |   2 +-
->>  arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 267 ++++++++++++++++++++++++++++++
->>  2 files changed, 268 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
->> index 9bb8b191aeb5..d9545743606a 100644
->> --- a/arch/arm64/boot/dts/qcom/Makefile
->> +++ b/arch/arm64/boot/dts/qcom/Makefile
->> @@ -114,7 +114,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-shift-otter.dtb
->>  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
->>  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
->>  dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2.dtb
->> -dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
->> +dtb-$(CONFIG_ARCH_QCOM)	+= qcs8300-ride.dtb
-> 
-> It would be good to add a comment to the commit message about why you
-> are removing qcs8550-aim300-aiot.dtb from the Makefile.
+Hi Matti,
 
-Especially that it was not in v2 (which I reviewed) and nothing in the
-changelog explains this removal.
+kernel test robot noticed the following build errors:
 
-Best regards,
-Krzysztof
+[auto build test ERROR on a61ff7eac77e86de828fe28c4e42b8ae9ec2b195]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Matti-Vaittinen/iio-accel-kx022a-Use-cleanup-h-helpers/20241128-170626
+base:   a61ff7eac77e86de828fe28c4e42b8ae9ec2b195
+patch link:    https://lore.kernel.org/r/9b63813ecf10b1cd0126cb950bc09514c4287b9a.1732783834.git.mazziesaccount%40gmail.com
+patch subject: [PATCH v3 7/7] iio: accel: kx022a: align with subsystem way
+config: x86_64-buildonly-randconfig-004-20241128 (https://download.01.org/0day-ci/archive/20241129/202411290148.Jdoj8IqZ-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241129/202411290148.Jdoj8IqZ-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202411290148.Jdoj8IqZ-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/iio/accel/kionix-kx022a.c: In function 'kx022a_write_raw':
+>> drivers/iio/accel/kionix-kx022a.c:507:9: error: implicit declaration of function 'if_not_cond_guard' [-Werror=implicit-function-declaration]
+     507 |         if_not_cond_guard(iio_claim_direct_try, idev)
+         |         ^~~~~~~~~~~~~~~~~
+>> drivers/iio/accel/kionix-kx022a.c:507:27: error: 'iio_claim_direct_try' undeclared (first use in this function); did you mean 'class_iio_claim_direct_try_t'?
+     507 |         if_not_cond_guard(iio_claim_direct_try, idev)
+         |                           ^~~~~~~~~~~~~~~~~~~~
+         |                           class_iio_claim_direct_try_t
+   drivers/iio/accel/kionix-kx022a.c:507:27: note: each undeclared identifier is reported only once for each function it appears in
+>> drivers/iio/accel/kionix-kx022a.c:507:54: error: expected ';' before 'return'
+     507 |         if_not_cond_guard(iio_claim_direct_try, idev)
+         |                                                      ^
+         |                                                      ;
+     508 |                 return -EBUSY;
+         |                 ~~~~~~                                
+   In file included from drivers/iio/accel/kionix-kx022a.c:8:
+   include/linux/cleanup.h:308:9: warning: this statement may fall through [-Wimplicit-fallthrough=]
+     308 |         for (CLASS(_name, scope)(args),                                 \
+         |         ^~~
+   drivers/iio/accel/kionix-kx022a.c:521:17: note: in expansion of macro 'scoped_guard'
+     521 |                 scoped_guard(mutex, &data->mutex) {
+         |                 ^~~~~~~~~~~~
+   drivers/iio/accel/kionix-kx022a.c:532:9: note: here
+     532 |         case IIO_CHAN_INFO_SCALE:
+         |         ^~~~
+   cc1: some warnings being treated as errors
+
+
+vim +/if_not_cond_guard +507 drivers/iio/accel/kionix-kx022a.c
+
+   490	
+   491	static int kx022a_write_raw(struct iio_dev *idev,
+   492				    struct iio_chan_spec const *chan,
+   493				    int val, int val2, long mask)
+   494	{
+   495		struct kx022a_data *data = iio_priv(idev);
+   496		int ret, n;
+   497	
+   498		/*
+   499		 * We should not allow changing scale or frequency when FIFO is running
+   500		 * as it will mess the timestamp/scale for samples existing in the
+   501		 * buffer. If this turns out to be an issue we can later change logic
+   502		 * to internally flush the fifo before reconfiguring so the samples in
+   503		 * fifo keep matching the freq/scale settings. (Such setup could cause
+   504		 * issues if users trust the watermark to be reached within known
+   505		 * time-limit).
+   506		 */
+ > 507		if_not_cond_guard(iio_claim_direct_try, idev)
+   508			return -EBUSY;
+   509	
+   510		switch (mask) {
+   511		case IIO_CHAN_INFO_SAMP_FREQ:
+   512			n = ARRAY_SIZE(kx022a_accel_samp_freq_table);
+   513	
+   514			while (n--)
+   515				if (val == kx022a_accel_samp_freq_table[n][0] &&
+   516				    val2 == kx022a_accel_samp_freq_table[n][1])
+   517					break;
+   518			if (n < 0)
+   519				return -EINVAL;
+   520	
+   521			scoped_guard(mutex, &data->mutex) {
+   522				ret = kx022a_turn_on_off(data, false);
+   523				if (ret)
+   524					return ret;
+   525	
+   526				ret = regmap_update_bits(data->regmap,
+   527							 data->chip_info->odcntl,
+   528							 KX022A_MASK_ODR, n);
+   529				data->odr_ns = kx022a_odrs[n];
+   530				return kx022a_turn_on_off(data, true);
+   531			}
+   532		case IIO_CHAN_INFO_SCALE:
+   533			n = data->chip_info->scale_table_size / 2;
+   534	
+   535			while (n-- > 0)
+   536				if (val == data->chip_info->scale_table[n][0] &&
+   537				    val2 == data->chip_info->scale_table[n][1])
+   538					break;
+   539			if (n < 0)
+   540				return -EINVAL;
+   541	
+   542			scoped_guard(mutex, &data->mutex) {
+   543				ret = kx022a_turn_on_off(data, false);
+   544				if (ret)
+   545					return ret;
+   546	
+   547				ret = regmap_update_bits(data->regmap,
+   548							 data->chip_info->cntl,
+   549							 KX022A_MASK_GSEL,
+   550							 n << KX022A_GSEL_SHIFT);
+   551				kx022a_turn_on_off(data, true);
+   552	
+   553				return ret;
+   554			}
+   555		default:
+   556			break;
+   557		}
+   558	
+   559		return -EINVAL;
+   560	}
+   561	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
