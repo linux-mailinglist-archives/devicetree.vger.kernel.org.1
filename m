@@ -1,89 +1,88 @@
-Return-Path: <devicetree+bounces-125306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9015E9DB84B
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 14:09:37 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECD449DB84E
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 14:10:21 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DB92CB20A19
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 13:09:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F8CD163012
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 13:10:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A8441A08BC;
-	Thu, 28 Nov 2024 13:09:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2486E1A08BC;
+	Thu, 28 Nov 2024 13:10:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fqKwMc/4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NPEVjmTS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05C901A08B1
-	for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 13:09:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5648219EEB4
+	for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 13:10:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732799371; cv=none; b=ddTcGAes1QQ0VJUNuRG97ORRnUCN5TMPIM0dHFKToK7xb2AjaEgNSHwc8GRFVc3Nnrr0bAf5hi9B9akpcphypaNpu1Q8Qlk0i2xg9UvxzeT7EG6wCfBKspVfYYvx5cyO8od0r0ygPKN+UZKg7mQ6UkZ+dQC96YJ2ZR9dgQDfPlg=
+	t=1732799419; cv=none; b=smQ5te6Z3ouasG6BMx/IKTPFOUeMT+nQigllF6SijJFsNbIWcOoa1U08rwO1UMSQQje2/jkzB8PcpAAZQ1ySkFsXfU2OvTkTyrS9puem5mieQ5WWNV5xP1cas5kJNqkiMwRUjSfRoC56QTM9fu+9Vlby4EmOoXApoBgafthyWbc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732799371; c=relaxed/simple;
-	bh=ApOFSGhe55GZ4QVWZoUZP1i/pea19qWRSGaCsmAqK8s=;
+	s=arc-20240116; t=1732799419; c=relaxed/simple;
+	bh=zBLn2JOZfSzHc56+BeQX/NmVHS7xKilS78jdBA6NbSw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=neYYhir1WCT9RcIWj6p9xMVXiT1vxDtsuYCRBYHwQ7YAZDLSVmNV7bz0Knayo/vSsJY8yl05JwOre80yzSQxV+nIkTkRt9KjVU4ATwIlIDulQeVRS2B3vqdeMinlqSG11dmojYyzzXhkiTU2S+IGlc6QYUYdxWUw6cyCelGDZsc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fqKwMc/4; arc=none smtp.client-ip=209.85.167.42
+	 Content-Type:Content-Disposition:In-Reply-To; b=FXpJ2zNKU8jn0HTwp6JaY63y5tICdOmClgULAMs5HLXBS1dmsZxwK2tk8gijq4ABwgjBrZKxfZIxN9j/R2TvjbM84kKIOPbcRlab6u35xy3MhOAHziBWnzBbLTwtZoSqNB7yAa5SQYUWNEZ9NFui8zSfpDuE+6EFSD4VncNQKcI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NPEVjmTS; arc=none smtp.client-ip=209.85.167.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-53df119675dso924283e87.0
-        for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 05:09:28 -0800 (PST)
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-53de8ecafeeso886217e87.1
+        for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 05:10:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732799367; x=1733404167; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1732799415; x=1733404215; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=3pnBfiN/XYPpvgzOixVlWSYVVdbmqQBAJ8570i6TyiI=;
-        b=fqKwMc/4s+4aLGXpsbhkuT9wLbXo2BN3lX+MlaSk5BnvUi6SpLFRNf6ogCesVsHYPP
-         suQttkUxCpLnK3PLuTfl24vnCeSsV0AHTRn482601qIFNQChyLCT8uqbJrwBww0RzhPN
-         j9TR7wd1WVWP+7kfPNgaFf32fBFwy4BECFrCgKCOBn2LezWjU5MhqPcv7HAWAYj9BXMk
-         xG1IhW8pDVNoNv/qfnIxDw91/Jy4JyZVKqjvPkdiLohr7xYCTK5INZPKTGDvhOSfBeKy
-         MssG8WrsXl1P+JdNkyGb2ozUsXmYNE76zpe4VM2kMIifg7wmDZqCyZcsLUNhLvwNJZGB
-         KBJA==
+        bh=kvNTzzEU4BAq35zkQFeqCy12uHiqzI5kAmvUt7YoTww=;
+        b=NPEVjmTSxBL2zQIRXcJ5dmiDTggmF3xsg/lHnptCjNUU9FhOmKD8qFI817S7W4al9H
+         pGBfp8UOzrRaES+pDlWnQRgDzi43+tiV2bcGrxSLtlQCOMD7Nq97ShgNA01pWau894Do
+         vGY4xKFoF+7q/YeP0pgfjVT5CeKUMxYwssFQQaOy2wHkusP+YPC2PxCjX8iWu5+CDWd3
+         OEoQqilO27wwrhXtZTWfl6QHaPGP3NZICKBIEYXxUlD0ZaYkF5zoQvQQ/OAKE9/GKU34
+         ALolMvNcQ5srzLO4aAg7wF8oGwjAn1PH0yYX4IoTIO1YVX+ABN0+Ihra6/auQrVMGicI
+         qoTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732799367; x=1733404167;
+        d=1e100.net; s=20230601; t=1732799415; x=1733404215;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=3pnBfiN/XYPpvgzOixVlWSYVVdbmqQBAJ8570i6TyiI=;
-        b=UbiUHm1U+beTSQup2Y5aessm+mdrMpqtf+8hZV1oatnKSM1Ud1mO9EIE26hjpciXIk
-         IG58afrqOR/bam1v+DK1Uw39SImqcIQYl/4UJwt7N8f1T9dy7+pBeW/lW+pFgvaf4phD
-         l8mRAJfFHmiH1fLIzOn4goPr5Y71gyFQysyAsGcmDxlV9OFR2g/etcTp7lKI9aL8GiEy
-         JIToAcNkpUKDkgY53TEFp+pZiYAvXdF9ds+bzWOHmT1X5Eu2l7eA/kYE6LephUZ0fjs3
-         BSE55Evu5zvNcZMG2vWLUYYRy1iIa55JTym0GbYMH8QfbE4w3GMaBT0VLGbEPFqDW+9t
-         9PLQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVM2S+85d3cVYSueb7UzYLz1gMRUawDZi4e42zxNLgjXHJIdS2BF0GHYaTzNg/nZjCuzsFqLpobYUXt@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzra9/IE8Tvh/FDuhd8oqvBq6irSVZlVzYoZV+In+lf3H6aAwPn
-	ANMDFLgutk7+oBiUNA6zkOLB4nNw3U1XIu0FMkrJPWIb4qS5ydfRPlqG5kt6w88=
-X-Gm-Gg: ASbGncuNABmBTls0P4gPEkA0NPoKB3QEjEE0OwO7lNtBVlnKpq8SRzI44lSNDNu5Vbp
-	Ch8lDMsHKfo+NUwNiv/o36ABrxo4tbJhb8G4bvpXeBusEvWCGYdp8Vja58QvN4eLBk30wt0VKF/
-	xM2I2WXx9hgDDg23iQoGITaH2yjZpzArp+VskQe7ObMY37heOXJ0WfcVyMwIufGRLJz5qFotHWa
-	j+6rAMVAUy5FDi2Uc66Sdwu9zZYW8gkKHOmTThh7zZO8OyLqclMMBUlGjNzyVlfb79Oh00YD754
-	Hr5DowmHvR5pTwUcpXmUI2jW6KdeAQ==
-X-Google-Smtp-Source: AGHT+IEiT8tbWGw0qja41b5xkk9iyirW1j/0Ief7lF46UoZHYslLEZ4Yj8zzr1ziZ4ihxMBHaTRbEA==
-X-Received: by 2002:a05:6512:2822:b0:53d:d0a5:aaa9 with SMTP id 2adb3069b0e04-53df00d1b43mr4100198e87.20.1732799367024;
-        Thu, 28 Nov 2024 05:09:27 -0800 (PST)
+        bh=kvNTzzEU4BAq35zkQFeqCy12uHiqzI5kAmvUt7YoTww=;
+        b=c6S4fulQvklVOjCTHKjFIiZv6NL8zrOvpEP/0zwNCp1fHjORF3nOP1bhPoz2HFAZs4
+         rs/8q9F8uZGx1imLUcnWAkohRU84hvVphnzfrxptyMBSkGx9u0OYCm5qN0s6EPseXBZu
+         ugVSe9oblGY8xsIi9MIuUaVXU+x4H+NUkm/2e/FHrKJRGu7aKTq0bjrGIYIsYpZSer2n
+         8LAKR7K5kyOeR0pQ0fufFlZy34DBQHedOvYJ0Gfx+rdZNE2hHpUMHoxFlC+bK+uMunMX
+         gR0XUiOV6LzYVbxOkZxfBq3WhVM4Ub+FnFv/9zQ09KLgLi0cl+Cvw8uecgY5LSvvkjbC
+         E5wA==
+X-Forwarded-Encrypted: i=1; AJvYcCVNtR8f0VvuzSUHO5h6wFd4rJDGidD0A0I37Gp4H6Dsu18l0kAWW40CCOMMlHx1+a3cN0eIFYlViFAq@vger.kernel.org
+X-Gm-Message-State: AOJu0YyOmxzQ9U5r35EtyGBbQ4OM61HSIWq+ltxzP0oIe7FiqlZIygLh
+	vzOwKpTBBX/z1lXVz+xLI5wz14RlPLtFw/2TVUilEPIYav8JWoDkajGJH8pyqgE=
+X-Gm-Gg: ASbGncu2BT/uwi09IsI20ihqSjfV9bgi5jqbcb4Ony9AR1wjknb2h7zIzkorVTvpzVr
+	ECMw9ine3yNuUm6tD2sDcYGEy/jgFdSgsO7VE4q4/5mlIscRkMorP7RdiOucHD1QN78FWsIy236
+	hFOSJvmYbt03+32jpilvoLltGRi4Ymq3pGELhrrfeb18U/htcL9a9Ihx27sgkBtKL9DU4FlU6dG
+	BGTCwaPcsAhv7i0G6TMLfmHLUooGahYzSRpnULm3dvrk4uRACyzg8SwDYKvQluOtSFnVpp7I+aH
+	7nDaHezqGiUVzviv365Mc5cXB/AL8g==
+X-Google-Smtp-Source: AGHT+IGOYh91Xj2WHbsqMNmtrL4jcUstcbUPpfSyD4+4zap0RPFXLe4HzprRrtHMAghWKtNFtt8YIA==
+X-Received: by 2002:a05:6512:3502:b0:53d:eef4:8acf with SMTP id 2adb3069b0e04-53df00ff76fmr3871217e87.45.1732799415479;
+        Thu, 28 Nov 2024 05:10:15 -0800 (PST)
 Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53df6496e1fsm170952e87.218.2024.11.28.05.09.25
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53df646f15asm170927e87.138.2024.11.28.05.10.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Nov 2024 05:09:26 -0800 (PST)
-Date: Thu, 28 Nov 2024 15:09:24 +0200
+        Thu, 28 Nov 2024 05:10:14 -0800 (PST)
+Date: Thu, 28 Nov 2024 15:10:11 +0200
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To: Tingguo Cheng <quic_tingguoc@quicinc.com>
 Cc: quic_fenglinw@quicinc.com, quic_tingweiz@quicinc.com, 
-	kernel@quicinc.com, quic_eberman@quicinc.com, Bjorn Andersson <andersson@kernel.org>, 
+	kernel@quicinc.com, Bjorn Andersson <andersson@kernel.org>, 
 	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
 	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 3/3] arm64: dts: qcom: move pon reboot-modes from
- pm8150.dtsi to board files
-Message-ID: <n3bqppo2upt64emlfljoin73a5ubgouztmdtitjbds522swgvi@s7re3z55eutw>
-References: <20241128-adds-spmi-pmic-peripherals-for-qcs615-v5-0-ae673596b71c@quicinc.com>
- <20241128-adds-spmi-pmic-peripherals-for-qcs615-v5-3-ae673596b71c@quicinc.com>
+Subject: Re: [PATCH v2 0/2] Adds SPMI bus, PMIC and peripherals for
+ qcs8300-ride
+Message-ID: <sxbjxywwjbep5rlndxoi5k62hqs24biryslkwbcxtvz3ilypvl@qi4omifueyqu>
+References: <20241128-adds-spmi-pmic-peripherals-for-qcs8300-v2-0-001c0bed7c67@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,245 +91,46 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241128-adds-spmi-pmic-peripherals-for-qcs615-v5-3-ae673596b71c@quicinc.com>
+In-Reply-To: <20241128-adds-spmi-pmic-peripherals-for-qcs8300-v2-0-001c0bed7c67@quicinc.com>
 
-On Thu, Nov 28, 2024 at 07:55:27PM +0800, Tingguo Cheng wrote:
-> Reboot modes were originally managed by PMIC pon driver on mobile and
-> IoT platforms. But recently, some new platforms are going to adopt PSCI
-> to manage linux reboot modes, which involves firmwares to co-work with.
-
-Which platforms? Please be more exact. Also this patch needs to come
-before patch 2, enabling this PMIC on QCS615 board.
-
-> In this case, reboot-modes should be removed from pon dts node to avoid
-> conflicting. This implies that reboot modes go with devices rather than
-> PMICs as well.
+On Thu, Nov 28, 2024 at 05:40:15PM +0800, Tingguo Cheng wrote:
+> Enable SPMI bus, PMIC and PMIC peripherals for qcs8300-ride board. The 
+> qcs8300-ride use 2 pmics(pmm8620au:0,pmm8650au:1) on the board, which
+> are variants of pmm8654au used on sa8775p/qcs9100 -ride(4x pmics).
+> 
+> This patch series depends on the patch series:
+> https://lore.kernel.org/all/20240925-qcs8300_initial_dtsi-v2-0-494c40fa2a42@quicinc.com/
 > 
 > Signed-off-by: Tingguo Cheng <quic_tingguoc@quicinc.com>
 > ---
->  arch/arm64/boot/dts/qcom/pm8150.dtsi                      | 2 --
->  arch/arm64/boot/dts/qcom/qdu1000-idp.dts                  | 5 +++++
->  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts                  | 5 +++++
->  arch/arm64/boot/dts/qcom/qru1000-idp.dts                  | 5 +++++
->  arch/arm64/boot/dts/qcom/sm8150-hdk.dts                   | 5 +++++
->  arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts | 5 +++++
->  arch/arm64/boot/dts/qcom/sm8150-mtp.dts                   | 5 +++++
->  arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi   | 5 +++++
->  arch/arm64/boot/dts/qcom/sm8250-hdk.dts                   | 5 +++++
->  arch/arm64/boot/dts/qcom/sm8250-mtp.dts                   | 5 +++++
->  arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi      | 5 +++++
->  arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi  | 5 +++++
->  arch/arm64/boot/dts/qcom/sm8250-xiaomi-pipa.dts           | 5 +++++
->  13 files changed, 60 insertions(+), 2 deletions(-)
+> Changes in v2:
+> - Fixed comments in community.
+
+comments in community? What does that mean?
+
+> - Added arbiter version(5.2.0) in commit message.
+> - Link to v1: https://lore.kernel.org/r/20241126-adds-spmi-pmic-peripherals-for-qcs8300-v1-0-28af84cb86f8@quicinc.com
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/pm8150.dtsi b/arch/arm64/boot/dts/qcom/pm8150.dtsi
-> index a74a7ff660d2b1be0df0dc26d79e1921a3935f14..d2568686a098cb4d78573000b34840d8f5f674aa 100644
-> --- a/arch/arm64/boot/dts/qcom/pm8150.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/pm8150.dtsi
-> @@ -49,8 +49,6 @@ pm8150_0: pmic@0 {
->  		pon: pon@800 {
->  			compatible = "qcom,pm8998-pon";
->  			reg = <0x0800>;
-> -			mode-bootloader = <0x2>;
-> -			mode-recovery = <0x1>;
->  
->  			pon_pwrkey: pwrkey {
->  				compatible = "qcom,pm8941-pwrkey";
-> diff --git a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
-> index e65305f8136c886c076bd9603b48aadedf59730a..82f6b4a3e24aa2caba90715e12bca25b693a0d65 100644
-> --- a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
-> +++ b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
-> @@ -239,6 +239,11 @@ vreg_l18a_1p2: ldo18 {
->  	};
->  };
->  
-> +&pon {
-> +	mode-bootloader = <0x2>;
-> +	mode-recovery = <0x1>;
-> +};
-> +
->  &qup_i2c1_data_clk {
->  	drive-strength = <2>;
->  	bias-pull-up;
-> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> index 52eef88e882c356a62bf563fcd7ce3d54b5ea824..7afa5acac3fcf7cb6f8c5274acdc2e55192c1280 100644
-> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> @@ -964,6 +964,11 @@ led@3 {
->  	};
->  };
->  
-> +&pon {
-> +	mode-bootloader = <0x2>;
-> +	mode-recovery = <0x1>;
-> +};
-> +
->  &pon_pwrkey {
->  	status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/qcom/qru1000-idp.dts b/arch/arm64/boot/dts/qcom/qru1000-idp.dts
-> index 1c781d9e24cf4d4f45380860c6d89c21e8df9925..fe0b782aa3ff5f4b73e921880fc3cd9908398705 100644
-> --- a/arch/arm64/boot/dts/qcom/qru1000-idp.dts
-> +++ b/arch/arm64/boot/dts/qcom/qru1000-idp.dts
-> @@ -239,6 +239,11 @@ vreg_l18a_1p2: ldo18 {
->  	};
->  };
->  
-> +&pon {
-> +	mode-bootloader = <0x2>;
-> +	mode-recovery = <0x1>;
-> +};
-> +
->  &qup_i2c1_data_clk {
->  	drive-strength = <2>;
->  	bias-pull-up;
-> diff --git a/arch/arm64/boot/dts/qcom/sm8150-hdk.dts b/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
-> index bac08f00b303ff6e6d47697f1cd9bff53efaf27b..6ea883b1edfa6c511730550f4db0cb9c25fc633d 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
-> @@ -578,6 +578,11 @@ pm8150b_typec_sbu_out: endpoint {
->  	};
->  };
->  
-> +&pon {
-> +	mode-bootloader = <0x2>;
-> +	mode-recovery = <0x1>;
-> +};
-> +
->  &pon_pwrkey {
->  	status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts b/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
-> index b039773c44653ae8cd5c2b9fdeccbd304ad2c9e5..fc11ef0373c6920e970886ce2eb2c4f20c75154a 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
-> @@ -430,6 +430,11 @@ &i2c19 {
->  	/* MAX34417 @ 0x1e */
->  };
->  
-> +&pon {
-> +	mode-bootloader = <0x2>;
-> +	mode-recovery = <0x1>;
-> +};
-> +
->  &pon_pwrkey {
->  	status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-> index 256a1ba9494560b93dc324751ee8327f763aad90..2e1c7afe0aa7d4ad560dd8e5aab2ce835991cc9d 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-> @@ -358,6 +358,11 @@ &gpu {
->  	status = "okay";
->  };
->  
-> +&pon {
-> +	mode-bootloader = <0x2>;
-> +	mode-recovery = <0x1>;
-> +};
-> +
->  &pon_pwrkey {
->  	status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi b/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
-> index ae0ca48b89a59f669e0f359e48632b335050a2eb..70fd6455518b9101ba25dda6e1fb5f87c1053a71 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano.dtsi
-> @@ -601,6 +601,11 @@ main_cam_pwr_vmdr_en: main-cam-pwr-vmdr-en-state {
->  	};
->  };
->  
-> +&pon {
-> +	mode-bootloader = <0x2>;
-> +	mode-recovery = <0x1>;
-> +};
-> +
->  &pon_pwrkey {
->  	status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250-hdk.dts b/arch/arm64/boot/dts/qcom/sm8250-hdk.dts
-> index 1bbb71e1a4fc0f1289663165e0a8f7ef88d9b429..f5c193c6c5f9b4bf007a17926bcce319f2608706 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250-hdk.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8250-hdk.dts
-> @@ -373,6 +373,11 @@ &gpu {
->  	status = "okay";
->  };
->  
-> +&pon {
-> +	mode-bootloader = <0x2>;
-> +	mode-recovery = <0x1>;
-> +};
-> +
->  &pon_pwrkey {
->  	status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
-> index 21b2ca1def8363cbaf7857215f42ff8492a8f7fa..7f592bd3024868c6ab4c9c61051d3f2cf5707a1a 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
-> @@ -627,6 +627,11 @@ channel@4f {
->  	};
->  };
->  
-> +&pon {
-> +	mode-bootloader = <0x2>;
-> +	mode-recovery = <0x1>;
-> +};
-> +
->  &qupv3_id_0 {
->  	status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
-> index f6870d3f2886fc68aaf914caecdd3a22ba249c5a..d8289b2698f37bce0501ac20c356bd5ae017e1ab 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
-> @@ -591,6 +591,11 @@ focus_n: focus-n-state {
->  	};
->  };
->  
-> +&pon {
-> +	mode-bootloader = <0x2>;
-> +	mode-recovery = <0x1>;
-> +};
-> +
->  &pon_pwrkey {
->  	status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
-> index 3596dd328c31d6f0430fed343c7e2307147d21f3..0bf3d6a826fcbad9c84303e6016c4657c5f89ef1 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
-> @@ -673,6 +673,11 @@ &pm8150b_vbus {
->  	status = "okay";
->  };
->  
-> +&pon {
-> +	mode-bootloader = <0x2>;
-> +	mode-recovery = <0x1>;
-> +};
-> +
->  &pon_pwrkey {
->  	status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-pipa.dts b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-pipa.dts
-> index 86e1f7fd1c2058202c9506d7e737fadabf476d5d..668078ea4f04a7ead052d28bf111be6daf25805f 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-pipa.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-pipa.dts
-> @@ -554,6 +554,11 @@ vol_up_n: vol-up-n-state {
->  	};
->  };
->  
-> +&pon {
-> +	mode-bootloader = <0x2>;
-> +	mode-recovery = <0x1>;
-> +};
-> +
->  &pon_pwrkey {
->  	status = "okay";
->  };
+> ---
+> Tingguo Cheng (2):
+>       arm64: dts: qcom: qcs8300: Adds SPMI support
+>       arm64: dts: qcom: qcs8300-ride: Enable PMIC peripherals
 > 
+>  arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 23 +++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/qcs8300.dtsi     | 22 ++++++++++++++++++++++
+>  2 files changed, 45 insertions(+)
+> ---
+> base-commit: decc701f41d07481893fdea942c0ac6b226e84cd
+> change-id: 20241122-adds-spmi-pmic-peripherals-for-qcs8300-0a3c4458cf7e
+> prerequisite-change-id: 20240925-qcs8300_initial_dtsi-ea614fe45341:v2
+> prerequisite-patch-id: 73c78f31fa1d504124d4a82b578a6a14126cccd8
+> prerequisite-patch-id: 5a01283c8654ae7c696d9c69cb21505b71c5ca27
+> prerequisite-patch-id: dc633d5aaac790776a8a213ea2faa4890a3f665d
+> prerequisite-patch-id: 9ecf4cb8b5842ac64e51d6baa0e6c1fbe449ee66
+> 
+> Best regards,
 > -- 
-> 2.34.1
+> Tingguo Cheng <quic_tingguoc@quicinc.com>
 > 
 
 -- 
