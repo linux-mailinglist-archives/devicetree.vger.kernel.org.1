@@ -1,151 +1,261 @@
-Return-Path: <devicetree+bounces-125243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83F399DB48C
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 10:04:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C00C9DB4A3
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 10:14:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46CA1281123
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 09:04:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C7BF281F2A
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 09:14:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C68511547C5;
-	Thu, 28 Nov 2024 09:04:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EB591547E4;
+	Thu, 28 Nov 2024 09:14:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="KCct7+al"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UKFi0FUf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B191E143C5D
-	for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 09:04:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 652D652F88;
+	Thu, 28 Nov 2024 09:14:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732784697; cv=none; b=OSPHjNIf4jQdUYkmlRpGWbWjniWozJom89rgUpX9w36VE+jJijg5i6BIbbrw28/JIg10Z463MdKXlATgb8WgYD7ALXMSkcv/DtUwD8l8unjOr3H89hPqK6MCtWhlPCnUmJe9b2u89vChDxHcZsvbhASZiPvPdbWkqhaa0zkCKSM=
+	t=1732785252; cv=none; b=n/bV7b1jYYa6BeG3aRtxV4mT5y5FSSmOE1fa9PGYr6WDVCMj1AB322tS34Sgn1HmqW1E/p+Cegc63em+m+En1SZbGFsjxKR1iKcKYGfhxcT8GtJWV0r+3ppMdZ6hPy56Tu2Ulq7wxA8qzwku0JCiAivKNGufWGggLXtE3yLn9RE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732784697; c=relaxed/simple;
-	bh=Kq8xhiIwwM6vl9uZc/IOuL6NeTSpQB4hzTj2U8Kr7nY=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=YaQZeMmpnB0cHuiFRw++aY3H5gvWMEsb7t1ILFZfca/HYAqGvERjO9Dh9o8cUiF4TD7uh0aLIHXzXeNo+LJsm5ySHlsQi2taMZxBmQvcLvztK8W8nNdj6aZ3zqpGB7wqEP6LmcXm9Q/mg7WgxTs4Wl/Vnzl6Xi7elh4PP2HyvEo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=KCct7+al; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1732785252; c=relaxed/simple;
+	bh=xw2wO2fUU8KQ8iSrqcL95ODU94SFi+VqIXlFh7Mb7T0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=luxYn3s4HvLBdEIBFRxCY3/ernUYsnaC0wSViM3lM/e6nFK1dcBB10MRGerUcFPpM+wMgt07Bi7wwV8xgn2JC61XZO2vEf9uj4LIM0uoSWw6cco71wazMbd8pLuhFPzKodO/anLecciPmCcNCZNuG8VJnpkXgGbBzeLrqvILp5w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=UKFi0FUf; arc=none smtp.client-ip=198.175.65.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1732785250; x=1764321250;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=xw2wO2fUU8KQ8iSrqcL95ODU94SFi+VqIXlFh7Mb7T0=;
+  b=UKFi0FUfTDx7s57mp537/9lJeVxZdVsuRNpYeUpzDIevRmgNeRVPQPDO
+   tleYI9odU6GT3W6fNS4j2sB3kcCpuw2tfRpnG2oCKJy6Z4q5yn3FEZVr2
+   XkrkDQMDkugLxl2wej7zSCFSTfI80wASagwP3h24fM/u98c9ka+Fwj33i
+   hZh3Ysii8vQ6k0D686YdHuBNR97FjqZDkqFtAaXMVP2FEb7OkQrIgs3j5
+   SLDgGDDJyBEjJi/YejLFFFqAyFVQ8AL3yC4NtZc5WArf5ww7AXauC32+u
+   0j50suW+LGPXMABu3BFxgt7FyXAqli38UB+afknJOBU1c8lqyBzHpFwUY
+   A==;
+X-CSE-ConnectionGUID: vCdBlUkxRCyKwVHAPNkYVA==
+X-CSE-MsgGUID: OtIpyU89Rcu+FVojJNhrqA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11269"; a="32946942"
+X-IronPort-AV: E=Sophos;i="6.12,192,1728975600"; 
+   d="scan'208";a="32946942"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Nov 2024 01:14:09 -0800
+X-CSE-ConnectionGUID: uqOmvXfmQWGhfoFoRafCKg==
+X-CSE-MsgGUID: qGqrPxt/RbKGmMsdYDmvEQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,192,1728975600"; 
+   d="scan'208";a="96942880"
+Received: from lkp-server01.sh.intel.com (HELO 8122d2fc1967) ([10.239.97.150])
+  by fmviesa004.fm.intel.com with ESMTP; 28 Nov 2024 01:14:03 -0800
+Received: from kbuild by 8122d2fc1967 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tGab3-0009Nx-07;
+	Thu, 28 Nov 2024 09:14:01 +0000
+Date: Thu, 28 Nov 2024 17:13:47 +0800
+From: kernel test robot <lkp@intel.com>
+To: Heiko Stuebner <heiko@sntech.de>, vkoul@kernel.org, kishon@kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, quentin.schulz@cherry.de,
+	sebastian.reichel@collabora.com, heiko@sntech.de,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	dse@thaumatec.com, Heiko Stuebner <heiko.stuebner@cherry.de>
+Subject: Re: [PATCH v4 2/2] phy: rockchip: Add Samsung MIPI D-/C-PHY driver
+Message-ID: <202411281638.UyY41bPE-lkp@intel.com>
+References: <20241126131736.465111-3-heiko@sntech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1732784693;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ldR/uHYWReTVbi7ij2TG+qwpyW4jFa6oh0arwlI8e1Y=;
-	b=KCct7+alPLJOKOYK86z7p0Z6ppoEnE709quiqHgNpAkw7bAQ47Z+SoGGRqc/7kNxxvu8SI
-	6fW740CYDnlN6B/isO5hjWWcBEftMIaxl4g0G5I7tQtdV0Ape8xkMxpNyEJOuBnic3WDRK
-	XWg4+53KEOm9saeeWpXiqIfmygKceovZvXFbt6o96IKZYsgqAQleYJbcdAxk6sO6gqUUbD
-	OvkfIoTkAZZi0TYUneLRdlWywJ1PrLj9YKYJ9spv240f7BLsXJ/Ewjh+wHHVSL8rxyFZys
-	1Ka48k8eaDIG76Xirs2av/02vv1CJYjB+jNDC6yfjnqiqugch+/vjrFW6630EQ==
-Date: Thu, 28 Nov 2024 10:04:52 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: FUKAUMI Naoki <naoki@radxa.com>
-Cc: heiko@sntech.de, robh@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, cfsworks@gmail.com, kever.yang@rock-chips.com,
- sebastian.reichel@collabora.com, linux-rockchip@lists.infradead.org,
- krzk+dt@kernel.org
-Subject: Re: [PATCH v2 1/3] arm64: dts: rockchip: add "dcin" regulator for
- Radxa ROCK 5C
-In-Reply-To: <F596759069124768+5da60c49-3b1f-423c-b96e-8435e0cef88a@radxa.com>
-References: <20241119100813.78820-1-naoki@radxa.com>
- <f1255d6a5c18fb43c47fab756f622891@manjaro.org>
- <F596759069124768+5da60c49-3b1f-423c-b96e-8435e0cef88a@radxa.com>
-Message-ID: <86803e3c7797d9d661826fb56a0622b2@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241126131736.465111-3-heiko@sntech.de>
 
-Hello Fukaumi,
+Hi Heiko,
 
-On 2024-11-28 02:03, FUKAUMI Naoki wrote:
-> On 11/28/24 09:39, Dragan Simic wrote:
->> On 2024-11-19 11:08, FUKAUMI Naoki wrote:
->>> add "dcin" label to vcc5v_dcin regulator and use it in vcc_sysin
->>> regulator.
->>> 
->>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
->>> ---
->>> Changes in v2:
->>> - none
->>> ---
->>>  arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts | 4 ++--
->>>  1 file changed, 2 insertions(+), 2 deletions(-)
->>> 
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
->>> b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
->>> index 6da13b6b9a7b..b5460c179ef7 100644
->>> --- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
->>> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
->>> @@ -88,7 +88,7 @@ vcc3v3_pcie2x1l2: regulator-vcc3v3_pcie2x1l2 {
->>>          vin-supply = <&vcc_sysin>;
->>>      };
->>> 
->>> -    vcc5v_dcin: regulator-vcc5v-dcin {
->>> +    vcc5v_dcin: dcin: regulator-vcc5v-dcin {
->> 
->> I just went through the associated part of the ROCK 5C schematic,
->> and I was unable to see any reasons why should we introduce "dcin"
->> as another alias here?
->> 
->> The root of the ROCK 5C's power tree is labeled "5v_dcin" in the
->> schematic, so renaming "vcc5v_dcin" to "5v_dcin" would make sense,
->> but I don't see why should we add another alias.
-> 
-> ROCK 5A has vcc12_dcin which supply power to vcc_sysin. both
-> vcc5v_dcin on ROCK5C and vcc12v_dcin on ROCK 5C have additional "dcin"
-> label for sharing .dtsi. (please check PATCH 3/3)
+kernel test robot noticed the following build errors:
 
-Hmm, I don't think that's the best way to achieve the shared nature
-of the .dtsi file.  I think that an acceptable way to achieve that
-would be to just rename "vcc5v_dcin" to "vbus_typec" (and rename
-"regulator-vcc5v-dcin" to "regulator-vbus-typec" as well), because
-"vbus_typec" is actually used in the ROCK 5A schematic.  Though, it
-isn't used in the ROCK 5C schematic, but should still be obvious to
-anyone wanting to correlate the DT and the schematic.
+[auto build test ERROR on rockchip/for-next]
+[also build test ERROR on robh/for-next linus/master v6.12 next-20241128]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-It should also be described better in the patch description, which
-is simply too terse in its current form.  Also, this patch series
-should have a cover letter that describes its purpose.
+url:    https://github.com/intel-lab-lkp/linux/commits/Heiko-Stuebner/dt-bindings-phy-Add-Rockchip-MIPI-C-D-PHY-schema/20241128-100435
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
+patch link:    https://lore.kernel.org/r/20241126131736.465111-3-heiko%40sntech.de
+patch subject: [PATCH v4 2/2] phy: rockchip: Add Samsung MIPI D-/C-PHY driver
+config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20241128/202411281638.UyY41bPE-lkp@intel.com/config)
+compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project 592c0fe55f6d9a811028b5f3507be91458ab2713)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241128/202411281638.UyY41bPE-lkp@intel.com/reproduce)
 
->>>          compatible = "regulator-fixed";
->>>          regulator-name = "vcc5v_dcin";
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202411281638.UyY41bPE-lkp@intel.com/
 
-Here, "vcc5v_dcin" should also be renamed to "vbus_typec" in the
-shared .dtsi file, which is rather obvious.
+All errors (new ones prefixed by >>):
 
-Also, the associated regulator-min-microvolt and regulator-max-
-microvolt properties should be dropped in the shared .dtsi file
-and moved to the ROCK 5A and 5C board .dts files, because the
-ROCK 5A and 5C schematics indicate that different VBUS voltages
-(12 V and 5 V, respectively) are used.
+   In file included from drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c:15:
+   In file included from include/linux/phy/phy.h:17:
+   In file included from include/linux/regulator/consumer.h:35:
+   In file included from include/linux/suspend.h:5:
+   In file included from include/linux/swap.h:9:
+   In file included from include/linux/memcontrol.h:13:
+   In file included from include/linux/cgroup.h:26:
+   In file included from include/linux/kernel_stat.h:8:
+   In file included from include/linux/interrupt.h:11:
+   In file included from include/linux/hardirq.h:11:
+   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
+   In file included from include/asm-generic/hardirq.h:17:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:14:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:548:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     548 |         val = __raw_readb(PCI_IOBASE + addr);
+         |                           ~~~~~~~~~~ ^
+   include/asm-generic/io.h:561:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     561 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
+      37 | #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
+         |                                                   ^
+   In file included from drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c:15:
+   In file included from include/linux/phy/phy.h:17:
+   In file included from include/linux/regulator/consumer.h:35:
+   In file included from include/linux/suspend.h:5:
+   In file included from include/linux/swap.h:9:
+   In file included from include/linux/memcontrol.h:13:
+   In file included from include/linux/cgroup.h:26:
+   In file included from include/linux/kernel_stat.h:8:
+   In file included from include/linux/interrupt.h:11:
+   In file included from include/linux/hardirq.h:11:
+   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
+   In file included from include/asm-generic/hardirq.h:17:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:14:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:574:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     574 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
+      35 | #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
+         |                                                   ^
+   In file included from drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c:15:
+   In file included from include/linux/phy/phy.h:17:
+   In file included from include/linux/regulator/consumer.h:35:
+   In file included from include/linux/suspend.h:5:
+   In file included from include/linux/swap.h:9:
+   In file included from include/linux/memcontrol.h:13:
+   In file included from include/linux/cgroup.h:26:
+   In file included from include/linux/kernel_stat.h:8:
+   In file included from include/linux/interrupt.h:11:
+   In file included from include/linux/hardirq.h:11:
+   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
+   In file included from include/asm-generic/hardirq.h:17:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:14:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:585:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     585 |         __raw_writeb(value, PCI_IOBASE + addr);
+         |                             ~~~~~~~~~~ ^
+   include/asm-generic/io.h:595:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     595 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   include/asm-generic/io.h:605:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     605 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   In file included from drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c:15:
+   In file included from include/linux/phy/phy.h:17:
+   In file included from include/linux/regulator/consumer.h:35:
+   In file included from include/linux/suspend.h:5:
+   In file included from include/linux/swap.h:9:
+   In file included from include/linux/memcontrol.h:21:
+   In file included from include/linux/mm.h:2213:
+   include/linux/vmstat.h:518:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
+     518 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
+         |                               ~~~~~~~~~~~ ^ ~~~
+>> drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c:895:23: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     895 |                            I_MUX_SEL_MASK, I_MUX_SEL_400MV);
+         |                                            ^
+   drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c:33:26: note: expanded from macro 'I_MUX_SEL_400MV'
+      33 | #define I_MUX_SEL_400MV         I_MUX_SEL(0)
+         |                                 ^
+   drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c:32:23: note: expanded from macro 'I_MUX_SEL'
+      32 | #define I_MUX_SEL(x)            FIELD_PREP(I_MUX_SEL_MASK, x)
+         |                                 ^
+   drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c:900:50: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     900 |         regmap_write(samsung->regmap, DPHY_MC_GNR_CON1, T_PHY_READY(0x2000));
+         |                                                         ^
+   drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c:69:25: note: expanded from macro 'T_PHY_READY'
+      69 | #define T_PHY_READY(x)          FIELD_PREP(GENMASK(15, 0), x)
+         |                                 ^
+   drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c:945:7: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     945 |                            S(samsung->pll.scaler) | P(samsung->pll.prediv));
+         |                            ^
+   drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c:40:16: note: expanded from macro 'S'
+      40 | #define S(x)                    FIELD_PREP(S_MASK, x)
+         |                                 ^
+   drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c:1116:8: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+    1116 |         val = EDGE_CON(7) | EDGE_CON_DIR(0) | EDGE_CON_EN |
+         |               ^
+   drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c:71:22: note: expanded from macro 'EDGE_CON'
+      71 | #define EDGE_CON(x)             FIELD_PREP(GENMASK(14, 12), x)
+         |                                 ^
+   drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c:1170:8: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+    1170 |         val = EDGE_CON(7) | EDGE_CON_DIR(0) | EDGE_CON_EN |
+         |               ^
+   drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c:71:22: note: expanded from macro 'EDGE_CON'
+      71 | #define EDGE_CON(x)             FIELD_PREP(GENMASK(14, 12), x)
+         |                                 ^
+   7 warnings and 5 errors generated.
 
-Finally, all these DT changes should belong to the patch in this
-series that actually creates the shared .dtsi file.  I see no point
-or value in having it performed in a separate patch.
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for MODVERSIONS
+   Depends on [n]: MODULES [=y] && !COMPILE_TEST [=y]
+   Selected by [y]:
+   - RANDSTRUCT_FULL [=y] && (CC_HAS_RANDSTRUCT [=y] || GCC_PLUGINS [=n]) && MODULES [=y]
+   WARNING: unmet direct dependencies detected for GET_FREE_REGION
+   Depends on [n]: SPARSEMEM [=n]
+   Selected by [m]:
+   - RESOURCE_KUNIT_TEST [=m] && RUNTIME_TESTING_MENU [=y] && KUNIT [=m]
 
->>>          regulator-always-on;
->>> @@ -170,7 +170,7 @@ vcc_sysin: regulator-vcc-sysin {
->>>          regulator-boot-on;
->>>          regulator-min-microvolt = <5000000>;
->>>          regulator-max-microvolt = <5000000>;
->>> -        vin-supply = <&vcc5v_dcin>;
->>> +        vin-supply = <&dcin>;
->>>      };
->>> 
->>>      vcca: regulator-vcca {
+
+vim +/FIELD_PREP +895 drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c
+
+   881	
+   882	static void samsung_mipi_dcphy_bias_block_enable(struct samsung_mipi_dcphy *samsung)
+   883	{
+   884		u32 bias_con2 = 0x3223;
+   885	
+   886		regmap_write(samsung->regmap, BIAS_CON0, 0x0010);
+   887		regmap_write(samsung->regmap, BIAS_CON1, 0x0110);
+   888		regmap_write(samsung->regmap, BIAS_CON2, bias_con2);
+   889	
+   890		/* default output voltage select:
+   891		 * dphy: 400mv
+   892		 * cphy: 530mv
+   893		 */
+   894		regmap_update_bits(samsung->regmap, BIAS_CON4,
+ > 895				   I_MUX_SEL_MASK, I_MUX_SEL_400MV);
+   896	}
+   897	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
