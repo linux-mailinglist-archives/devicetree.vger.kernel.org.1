@@ -1,191 +1,110 @@
-Return-Path: <devicetree+bounces-125179-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125180-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6FB69DB242
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 05:46:00 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B2E29DB24D
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 05:57:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E65C28289A
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 04:45:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D6CABB232ED
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 04:57:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0357D13AD26;
-	Thu, 28 Nov 2024 04:45:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA33813C690;
+	Thu, 28 Nov 2024 04:57:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Up6jx4PR"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="MnRha1rq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CF6E360;
-	Thu, 28 Nov 2024 04:45:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 142B113B58E
+	for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 04:57:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732769156; cv=none; b=laQL4S/hZy9PTWpGJX8oU3CC19FCVB5x3nkLZgf9F9HXrZg1oPQFqJAf02vFYa/4qRdFs7gTsFyk2BqlNyb8jwnkn5YPhHK4ujaoX5DDGybnEl6gu22zeDqbm42PliK+pZZtZTXq0BjHBC2eUH0N5GmZVegGvYE0CrW0EzC1RwE=
+	t=1732769844; cv=none; b=IViCcqQQr//w4r/KwJ1DczPUF854FgFQHqw5xzTb4WLuXxc3WbiX5PT/njfO15fjoR0raZsRi8xry004pGbLn8ay3krwStr/TGKOkS2GfrXcHRWJlwZFJr+w98by5mGPi+j5Sorb6HrWL2M+OKUzlwZMG8yUpOjMqSa8ne6xcZ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732769156; c=relaxed/simple;
-	bh=Nh/umBmDogP6K+8vOrQntqBkOwYJR9zftfW9Lv/r33A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=USG3XuDZvRalhzlTf8gY38TIi0E/49kCtH7xJxz6cBbbK5y3qFkcenCh5VHHE9W0dVKbo7mZS/XYpVfRQ7gU25EeKWg2ZxOK1yhETBUCKSx0kIfiIThe4tIbK6+nhbR8xX/5AED6cJ2HMQVqzaXV0LGRnKc4/+P18Tyk6sXlMVg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Up6jx4PR; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4ARGRUNO018966;
-	Thu, 28 Nov 2024 04:45:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	uJA0hZahYt3ouFeJrPPN50GKqvOKT7odLnSpABDr55o=; b=Up6jx4PRNz1yFAhm
-	dfccQ2dvTepXsmUdV97mH7ktaZWxatxL0XVO6daOLv07uWQ09Z3/p72bkZHGj872
-	gShTaHY4Tdk3XsmF3o0aKhELHcAmGHradCqeUF3lZMUQO5N8LNQH+ufh95ecP7OB
-	EOKh57ZPjAq/wTbbkjSbqrYw/0LJjE0Ufg0LEnhZFXRDiNhXTl/Z/o6NsSdVOA2G
-	wFzdDsw++gcl2Yt6ShF5+3pJpNt+cjPFgYCyWGvu6pkScfwo06nstgge0QU8LfaU
-	JV85yy6a31WlqDJ1/4lUw80rcwQduERdi0PRmjqY0Ebo4cqU59wXtOD5m1RtvxkK
-	2H1UqA==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4366y01b1v-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 28 Nov 2024 04:45:50 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AS4jn72010111
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 28 Nov 2024 04:45:49 GMT
-Received: from [10.152.201.37] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 27 Nov
- 2024 20:45:46 -0800
-Message-ID: <73506419-e53d-4f45-8056-811dad1c163f@quicinc.com>
-Date: Thu, 28 Nov 2024 10:15:43 +0530
+	s=arc-20240116; t=1732769844; c=relaxed/simple;
+	bh=9gNdiwWZ1MbH1bVKN1QAiVS5Fv7sTB11zjZfTxLD7cA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Content-Type; b=qnngsqDvrzFaN1y26k1ACg5wBQQgCeSlz4pexpADY/u2XmPjA60lsuiDWFMkQMh2+1nigiHpvKeO5twkWYjTdx/d2sTgfNDICZPAbzqGl/BFArPTlMQsAOCYDynYlAI2IMxMs8rs1SD/cKQaSHOy2KZbzpBppBMAYkNNl9kVQFY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=MnRha1rq; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-53dd2fdcebcso387390e87.0
+        for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 20:57:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1732769841; x=1733374641; darn=vger.kernel.org;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9gNdiwWZ1MbH1bVKN1QAiVS5Fv7sTB11zjZfTxLD7cA=;
+        b=MnRha1rqwe9Qo12ksrkSlyOH208sj7TIddzIN0Fm3PrYrsvbBpikOlhD/L66VqvJiU
+         ilhUzMDYCX6Fyx19HKelSA5UOWzwRgsehnM49nbd9kshNr6BPGrJMvEaXf9x2GWKXmFT
+         5FZtphIJJ64izl0iePBVagXfVvHBn4A/LSIEY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732769841; x=1733374641;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9gNdiwWZ1MbH1bVKN1QAiVS5Fv7sTB11zjZfTxLD7cA=;
+        b=p95npeTrqYddBhI9pMjShaSbd7YjsnLztkjaFuZohlUEf/Peq9dxEz3sDekbgHb74s
+         vbvqiEEewBN4cRtruz0H8rESWoAVf9u12Xo5ZNKT5miDXpgHidzM5fpGzfhjuHmy06e+
+         zrDbWmZKB7lbX6Y/wapTMb2Gdd9f3dvGtrvtAeA0GMYPRuLgmN2heZeord6TtOcB54S4
+         bCl1z+Yfnp12FT6unp2Kr9qycehqMxXIrjtlNEikgCyln4FNLDy/89qpu5PV/cLGBLTy
+         MOYVGbxmL8CP2iivLV1iovXZ8CYQQJ6T9ZY0SU3qCRI3mdJaUh2i9Bq+oHoZA7QKA6h6
+         YyBw==
+X-Forwarded-Encrypted: i=1; AJvYcCXK3H+hXZBso2IvbA0dDGlSgmQBVJwp5cJtbk2DQM1uq0oq5dmEroysdowRtZsoLPjZ3YQX73Pr0n40@vger.kernel.org
+X-Gm-Message-State: AOJu0YyEGx8xFppURq8zLX/vhJ3p6uCEOxoTuaeumbF4nV2cUZltvk31
+	ColLYPLsei2e0j96lg8oLeKqTBMV6QvAPDqgQFYP4q8COHMOwOv7dXHoCTcVPHZevKDeRIMdHS3
+	EbmiG+tLHvvI6fyI5vlkUh4YCjDI0nXvnbtMF
+X-Gm-Gg: ASbGnct0AdLzH+RQmIkW5R+za/5YsltHqvxEtVr0jEiv7PIOETdt33M2qaSDV0CFsnm
+	JgzstLXRUBmNOSnkGu+wlF+aR1Ucc7UGIyw4wuPLgSmlpWZfEGNy0lzDLoeY=
+X-Google-Smtp-Source: AGHT+IG7n8N4nAMz6o9K2XahUaKaMVFWZxqJsiGFCbLs2B2ko1EorvcGfAfKGctbegSVwAcOe4uRUizxkULBFWIPM2Q=
+X-Received: by 2002:a05:6512:23aa:b0:539:ea7a:7688 with SMTP id
+ 2adb3069b0e04-53df00a9f35mr3140014e87.1.1732769841115; Wed, 27 Nov 2024
+ 20:57:21 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V7 5/5] firmware: qcom_scm: ipq5332: add support to pass
- metadata size
-To: Bjorn Andersson <andersson@kernel.org>
-CC: <sboyd@kernel.org>, <konradybcio@kernel.org>, <krzk+dt@kernel.org>,
-        <linux-clk@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_varada@quicinc.com>,
-        <quic_srichara@quicinc.com>
-References: <20240820055618.267554-1-quic_gokulsri@quicinc.com>
- <20240820055618.267554-6-quic_gokulsri@quicinc.com>
- <pdyy4zflklvi5syhwt3oklidq3mwizthds2td4qzglhhdulel5@337xsbehgdp3>
-Content-Language: en-US
-From: Gokul Sriram P <quic_gokulsri@quicinc.com>
-In-Reply-To: <pdyy4zflklvi5syhwt3oklidq3mwizthds2td4qzglhhdulel5@337xsbehgdp3>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: AQctSQfs-8J72bleLrV-MpC80p3cbkxM
-X-Proofpoint-GUID: AQctSQfs-8J72bleLrV-MpC80p3cbkxM
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 phishscore=0
- priorityscore=1501 bulkscore=0 malwarescore=0 adultscore=0 suspectscore=0
- mlxlogscore=999 spamscore=0 mlxscore=0 lowpriorityscore=0 impostorscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2411280036
+References: <20241106093335.1582205-1-wenst@chromium.org> <CAGXv+5Fzrz9sBvE=FpV6URpcZtxvchxfY9WE4k4s+S3BzMWw2g@mail.gmail.com>
+ <Z0b_f0gg9KgSozPH@shikoro>
+In-Reply-To: <Z0b_f0gg9KgSozPH@shikoro>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Thu, 28 Nov 2024 12:57:09 +0800
+Message-ID: <CAGXv+5GUGwqEGpyJptAUc7aqdGAeFP=-um4=EfUNzxkahiXB9A@mail.gmail.com>
+Subject: Re: [PATCH v11 0/7] platform/chrome: Introduce DT hardware prober
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>, Chen-Yu Tsai <wenst@chromium.org>, 
+	Wolfram Sang <wsa@kernel.org>, chrome-platform@lists.linux.dev, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-i2c@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Nov 27, 2024 at 7:16=E2=80=AFPM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+>
+>
+> > Just checking in. I just wanted to make sure that this is still on
+> > track for v6.13-rc1.
+>
+> Eeeks, not only Andi was so busy that he lost track of patches. Please
+> accept my apologies, I was under the impression that this series was
+> still under discussion. I sadly missed that it was ready for prime time.
+>
+> That being said, I applied it now and will send it to Linus by the end
+> of the week. Sadly, this series was not exposed to -next before, so I
+> hope a few days of -next will work for him.
+>
+> But I will surely try. Sorry again!
+
+Thanks! Fingers crossed! Hopefully Linus sees that all the stuff is
+just new symbols and pretty isolated.
 
 
-On 10/23/2024 9:22 PM, Bjorn Andersson wrote:
-> On Tue, Aug 20, 2024 at 11:26:18AM GMT, Gokul Sriram Palanisamy wrote:
->> From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
->>
->> IPQ5332 security software running under trustzone
->> requires metadata size. With V2 cmd, pass metadata
->> size as well.
-> Documentation says commit messages should be wrapped at 75 characters,
-> not 50...
->
-> Please improve the second sentence here, "v2 cmd" is coming out of
-> nowhere. Say that there is a new command with a size parameter added.
->
-> Is this operation available on all targets, or is it IPQ-specific?
->
->
-> I don't see the relationship between this patch and the cover letter
-> subject "remove unnecessary q6 clocks". Should this have been send on
-> its own?
->
->> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
->> Signed-off-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
->> ---
->> Changes in v7:
->> 	- No changes.
->> 	- Rebased on top of linux-next.
->>
->> Changes in v6:
->> 	- Rebased on linux-next
->>
->> Changes in v5:
->> 	- Rebased on linux-next
->>
->> Changes in v4:
->> 	- Rebased on linux-next
->>
->>   drivers/firmware/qcom/qcom_scm.c | 8 ++++++++
->>   drivers/firmware/qcom/qcom_scm.h | 1 +
->>   2 files changed, 9 insertions(+)
->>
->> diff --git a/drivers/firmware/qcom/qcom_scm.c b/drivers/firmware/qcom/qcom_scm.c
->> index e60bef68401c..aa559fd01932 100644
->> --- a/drivers/firmware/qcom/qcom_scm.c
->> +++ b/drivers/firmware/qcom/qcom_scm.c
->> @@ -607,6 +607,14 @@ int qcom_scm_pas_init_image(u32 peripheral, const void *metadata, size_t size,
->>   
->>   	desc.args[1] = mdata_phys;
->>   
->> +	if (__qcom_scm_is_call_available(__scm->dev, QCOM_SCM_SVC_PIL,
->> +					 QCOM_SCM_PAS_INIT_IMAGE_V2)) {
->> +		desc.cmd = QCOM_SCM_PAS_INIT_IMAGE_V2;
->> +		desc.arginfo =
->> +			QCOM_SCM_ARGS(3, QCOM_SCM_VAL, QCOM_SCM_RW, QCOM_SCM_VAL);
->> +		desc.args[2] = size;
->> +	}
->> +
-> Please avoid default initialization and then conditionally overwrite
-> parts of the values. Make a clear:
->
-> if (v2 availble) {
-> 	prepare v2 request;
-> } else {
-> 	prepare v1 request;
-> }
->
-> Regards,
-> Bjorn
-
-  sure, will address. Thank you.
-
-Regards,
-
-Gokul
-
->>   	ret = qcom_scm_call(__scm->dev, &desc, &res);
->>   	qcom_scm_bw_disable();
->>   
->> diff --git a/drivers/firmware/qcom/qcom_scm.h b/drivers/firmware/qcom/qcom_scm.h
->> index 685b8f59e7a6..008b59cbad36 100644
->> --- a/drivers/firmware/qcom/qcom_scm.h
->> +++ b/drivers/firmware/qcom/qcom_scm.h
->> @@ -96,6 +96,7 @@ struct qcom_tzmem_pool *qcom_scm_get_tzmem_pool(void);
->>   
->>   #define QCOM_SCM_SVC_PIL		0x02
->>   #define QCOM_SCM_PIL_PAS_INIT_IMAGE	0x01
->> +#define QCOM_SCM_PAS_INIT_IMAGE_V2	0x1a
->>   #define QCOM_SCM_PIL_PAS_MEM_SETUP	0x02
->>   #define QCOM_SCM_PIL_PAS_AUTH_AND_RESET	0x05
->>   #define QCOM_SCM_PIL_PAS_SHUTDOWN	0x06
->> -- 
->> 2.34.1
->>
+ChenYu
 
