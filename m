@@ -1,222 +1,204 @@
-Return-Path: <devicetree+bounces-125278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 849299DB683
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 12:29:08 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 758B89DB68A
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 12:35:38 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F3BD3B20B97
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 11:29:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1861216451F
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 11:35:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3FB719882B;
-	Thu, 28 Nov 2024 11:29:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E8B3198A17;
+	Thu, 28 Nov 2024 11:35:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VGvu18Ft"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="wVfK9c3O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9222197A7A;
-	Thu, 28 Nov 2024 11:29:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18B29192B83
+	for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 11:35:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732793342; cv=none; b=ck9P2agSiJYokSQRRALsiIWdi6Mcbbia7Omup+AaRXzDCy77G/OEl50a1SR7EGM5HJ8EAWa42FYox0glnurj7Y1V4YRuW22mgp2/T/iNCNmI2y36a7Quyn0PUl53cj9phWpwHiFFXB7rknbhCQ6gH+ebQ0MXW5rBLyGwhK1jFsU=
+	t=1732793734; cv=none; b=HMbJcuzrFdTUplfNPnIKZbpLxXImLGtOKAP2jQLz49D+63ZfvMu2ccLrEY+vnoRPnZ4ZJVg0egZC3Nm0NRWyPIb0F0D6sFYVKHhtQolPlW6gkyM693G1X7p/D00sX6nhmFm5ESmbed2GvqvWZ+LLa5KOviZO223Ke1t4FFw/C9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732793342; c=relaxed/simple;
-	bh=GOGSdHxhNEpjsOwO7lywxaLS0up1lx0fM8IsWbTEf+E=;
+	s=arc-20240116; t=1732793734; c=relaxed/simple;
+	bh=2Pj1fUblSP8PaDl+D0795TxgYS0kzCMPuBdo/FeKJng=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PQ5ln/0oS7uZTSoMG3l7VGgOtVK+EUR094iY3YoaGjOBWYZ0N0gvrRvYEmZoSMSqeqFRlU6a5Zw/pkOvE5rnnbMJibTZgt5cLiHLq5X2k9KMgI2YjFSfS5/mi+LLrNZxREAMfW+qsquQEm6EZjXzQ+qn1q1OZ56ldN10tXKHQbo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VGvu18Ft; arc=none smtp.client-ip=198.175.65.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1732793341; x=1764329341;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=GOGSdHxhNEpjsOwO7lywxaLS0up1lx0fM8IsWbTEf+E=;
-  b=VGvu18FtcZaf3wXaanWWZcAf1HPLRBbEBVyNZjoa1GZSXuIAm2vmT6nC
-   s51RRwMEH1jn+fyxqkDu/PEFa7jyoVHAMAJWTUItaAeXm/l+zcqY/fppG
-   l3rMz3yho5FktsfITxrUhZBiWhmVmfV4N2uUatwPDlw/50ipkwRmK9y/Y
-   gH09IOOwkd+YR/k4gx8SuNrK7VjT+sfDKZRv8JkcwQ/iFmFYSvWdrAgbV
-   RRZKpGPhyuq8IN4yi0sjJP+K4iHWXUnOhQWZx1RMYgg9RPxj3jPGOY67T
-   2Yxz/fkluttygL6znedsYQH2wmIwJUOsCYSEluwCFqGDMQpKXxRK38gB1
-   w==;
-X-CSE-ConnectionGUID: J3C298eeScu8NXT0hMbQKQ==
-X-CSE-MsgGUID: 6xlpNwGlS1WoTQVk/4mzHw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11269"; a="33076889"
-X-IronPort-AV: E=Sophos;i="6.12,192,1728975600"; 
-   d="scan'208";a="33076889"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Nov 2024 03:29:00 -0800
-X-CSE-ConnectionGUID: Fa0PQXDvT92Zg4JrkfRbxA==
-X-CSE-MsgGUID: TnVO9SYjSDuUlM2KNDH2dA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,192,1728975600"; 
-   d="scan'208";a="92020639"
-Received: from lkp-server01.sh.intel.com (HELO 8122d2fc1967) ([10.239.97.150])
-  by fmviesa007.fm.intel.com with ESMTP; 28 Nov 2024 03:28:54 -0800
-Received: from kbuild by 8122d2fc1967 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tGchX-0009WL-33;
-	Thu, 28 Nov 2024 11:28:51 +0000
-Date: Thu, 28 Nov 2024 19:28:15 +0800
-From: kernel test robot <lkp@intel.com>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	andy.yan@rock-chips.com, maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, andrzej.hajda@intel.com,
-	neil.armstrong@linaro.org, rfoss@kernel.org,
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-	jernej.skrabec@gmail.com, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	quentin.schulz@cherry.de, Heiko Stuebner <heiko.stuebner@cherry.de>,
-	Daniel Semkowicz <dse@thaumatec.com>
-Subject: Re: [PATCH v2 3/3] drm/rockchip: Add MIPI DSI2 glue driver for RK3588
-Message-ID: <202411281937.QyowC5lv-lkp@intel.com>
-References: <20241126201213.522753-4-heiko@sntech.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=DXGHoN/kSEhA5cJysS42xedSYSadIt9mM4jTcSGDmYJzTGJY/6wuJZcL7s99jSbdr8uXe8+IsErnIoyd2JNp8iPJD0ArG/H9xMeINe9X3BlMYm+E/hqqEGDERUBKXmJgt++FNEGV3vR3YK8WYQHux0QBzIBNCuWLkzmOUHChjFI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=wVfK9c3O; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-43494a20379so6462675e9.0
+        for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 03:35:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1732793730; x=1733398530; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=kCOIQgnUZkO/jqB9Ex+fr3L9VJum5V2GDNk+XPGMgrg=;
+        b=wVfK9c3OwCC/Lec5h51tYXpq+yOjSQyXqpS/qm9TbOJEOR1AchhRAJUfI12/Mi+Lyt
+         7HdToVIUGfSqpSQvjJf0HI/EKi6pD/w8JYLfxGTBnmnToBwDv7UmBnPF8BqRRyybkE4n
+         QOvAsBMU9aTTRr6esWVVe+K7JKW0SgjOgHpyPuDP9OuydWFJw+tmmHEo9FWvKczpEcVy
+         zYhFVr+Ym9l4412a364kUbHVjuqHwpJHIUSKDLl0NUXWRBxAqRTfPbUtDz5ODfGY3Hlw
+         5yzXJGUkEcrWILuqdrsMBNp8e/CBLwC02cYHiJrlKA0Vcs53SyXRyZVDNBXHyvBr/seE
+         74vg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732793730; x=1733398530;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kCOIQgnUZkO/jqB9Ex+fr3L9VJum5V2GDNk+XPGMgrg=;
+        b=PGmBbXFcopwDbJ4aDO9LZ0K5uQ3woMvk4hlUMGBTvj0+B0x5jPEh/usUsQSmidqjWQ
+         Cd/rAAMLgL1Xt4ZiMMX6IF/Zr+gh7iIU2xKVre7A51dVP277HmvwJWcHGle4GB2pJeGk
+         Tw1FW6EAnp1FoT741EVgvaga6cOFSkJNg8p2KRjtJW4I68dLrPVWlsUqFeaepx6mlzZS
+         XekU5PAG25nL8mGCMofpfAWZ4KgHfck16Vamu8QauGz+Mf88Fi7tgfJlB9kTnQjoIYW3
+         0ihRXNgCviF+jh+3RXBMtrLFXw+j2OFh6HyLWmVUknINrVkTwTj2OzALzu/bMkhN6qdD
+         GOjQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUl9AioW/cPvEHGPcmmLC8wXCcrmvO3O7l4abWOoaVGLLOsuvmXhubofBnB0WvpoIQqwrc9tLO2+U5w@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw9XzX4nSAOLpl2VFgMoOhnXNAL7ustXQxww7G1tBAg+is0kh82
+	k0g8G2Oz7TWtUKCWXg9LLL4E/2wFIJNfTPWcR/9WZscjw6LDt/tnv635LOdk86Q=
+X-Gm-Gg: ASbGncsGBrj00LOUiEMj0ERhuGKCyg1nXyiAhICTV85uocN7IfLwQsvtBdUadxDOuYh
+	MphqoxCVWdeGV/TBp51WvkrFGkLa5SKHZ6UHuHVLdC+Dr9rOxR8H/1lFIxGKVF2j2a0pOb1RRqj
+	xrA2yHw+gvPHBfTpH1sXxZgscUUn9ixi8rXuy7T8fy1Dy0tjITwaTPAtTNVHyPe9oL+MtbmNQ6e
+	GSyYKF537dpXJNgTu3u/5nIjgzZ0JmNg1O3uVKc+zLvi/zJ7JhFgCo=
+X-Google-Smtp-Source: AGHT+IG/QGzHxGJz0klm9sFCiR3LVKh0jcQoJ6xPyeZV35wmMo8bYcQe6yA7O0WiSbRm+oZHxykDMw==
+X-Received: by 2002:a05:600c:1c81:b0:434:9936:c828 with SMTP id 5b1f17b1804b1-434a9dc3db3mr63654675e9.12.1732793730439;
+        Thu, 28 Nov 2024 03:35:30 -0800 (PST)
+Received: from localhost ([2a02:8071:b783:6940:36f3:9aff:fec2:7e46])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434aa7e5b9csm50520155e9.43.2024.11.28.03.35.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Nov 2024 03:35:29 -0800 (PST)
+Date: Thu, 28 Nov 2024 12:35:27 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Florian Fainelli <f.fainelli@gmail.com>, Rob Herring <robh@kernel.org>, 
+	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Thierry Reding <thierry.reding@gmail.com>, 
+	"open list:PWM SUBSYSTEM" <linux-pwm@vger.kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	"moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, justin.chen@broadcom.com, 
+	Linus Walleij <linus.walleij@linaro.org>, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: pwm: brcm,bcm7038: Document the
+ 'open-drain' property
+Message-ID: <7hdopmy4owoletyq274c2hzxtm7xuxaejakwlas477ax2tfzcu@yrbcxxup5krz>
+References: <20241012025603.1644451-1-florian.fainelli@broadcom.com>
+ <20241012025603.1644451-2-florian.fainelli@broadcom.com>
+ <20241015163200.GA1220909-robh@kernel.org>
+ <252b6f39-3b06-43b7-b227-1c29c1c12bd5@gmail.com>
+ <7aok7zs7whxfg3bhv7koxfxq6qhgv34b7kg3mh526z2cf7e23l@ffbsxqdqjis3>
+ <c623075c-fd80-4312-90ba-4f8a3c3f56f9@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="pdxu4r3m4vrnf4px"
 Content-Disposition: inline
-In-Reply-To: <20241126201213.522753-4-heiko@sntech.de>
-
-Hi Heiko,
-
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on linus/master]
-[also build test ERROR on v6.12 next-20241128]
-[cannot apply to rockchip/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Heiko-Stuebner/drm-bridge-synopsys-Add-MIPI-DSI2-host-controller-bridge/20241128-103709
-base:   linus/master
-patch link:    https://lore.kernel.org/r/20241126201213.522753-4-heiko%40sntech.de
-patch subject: [PATCH v2 3/3] drm/rockchip: Add MIPI DSI2 glue driver for RK3588
-config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20241128/202411281937.QyowC5lv-lkp@intel.com/config)
-compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project 592c0fe55f6d9a811028b5f3507be91458ab2713)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241128/202411281937.QyowC5lv-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202411281937.QyowC5lv-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi2.c:20:
-   In file included from include/drm/bridge/dw_mipi_dsi2.h:15:
-   In file included from include/drm/drm_atomic.h:31:
-   In file included from include/drm/drm_crtc.h:32:
-   In file included from include/drm/drm_modes.h:33:
-   In file included from include/drm/drm_connector.h:32:
-   In file included from include/drm/drm_util.h:36:
-   In file included from include/linux/kgdb.h:19:
-   In file included from include/linux/kprobes.h:28:
-   In file included from include/linux/ftrace.h:13:
-   In file included from include/linux/kallsyms.h:13:
-   In file included from include/linux/mm.h:2223:
-   include/linux/vmstat.h:518:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
-     518 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
-         |                               ~~~~~~~~~~~ ^ ~~~
->> drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi2.c:315:9: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     315 |         val |= PHY_LPTX_CLK_DIV(esc_clk_div);
-         |                ^
-   drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi2.c:72:30: note: expanded from macro 'PHY_LPTX_CLK_DIV'
-      72 | #define PHY_LPTX_CLK_DIV(x)             FIELD_PREP(GENMASK(12, 8), x)
-         |                                         ^
-   drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi2.c:340:6: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     340 |                    PHY_IPI_RATIO(tmp));
-         |                    ^
-   drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi2.c:88:27: note: expanded from macro 'PHY_IPI_RATIO'
-      88 | #define PHY_IPI_RATIO(x)                FIELD_PREP(GENMASK(21, 0), x)
-         |                                         ^
-   drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi2.c:361:53: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     361 |         regmap_write(dsi2->regmap, DSI2_PHY_LP2HS_MAN_CFG, PHY_LP2HS_TIME(timing.data_lp2hs));
-         |                                                            ^
-   drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi2.c:77:28: note: expanded from macro 'PHY_LP2HS_TIME'
-      77 | #define PHY_LP2HS_TIME(x)               FIELD_PREP(GENMASK(28, 0), x)
-         |                                         ^
-   drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi2.c:375:10: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     375 |                 val |= PPI_WIDTH(PPI_WIDTH_8_BITS);
-         |                        ^
-   drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi2.c:68:24: note: expanded from macro 'PPI_WIDTH'
-      68 | #define PPI_WIDTH(x)                    FIELD_PREP(GENMASK(9, 8), x)
-         |                                         ^
-   drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi2.c:388:9: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     388 |         val |= PHY_LANES(dsi2->lanes);
-         |                ^
-   drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi2.c:69:24: note: expanded from macro 'PHY_LANES'
-      69 | #define PHY_LANES(x)                    FIELD_PREP(GENMASK(5, 4), (x) - 1)
-         |                                         ^
-   drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi2.c:409:48: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     409 |         regmap_write(dsi2->regmap, DSI2_DSI_VCID_CFG, TX_VCID(dsi2->channel));
-         |                                                       ^
-   drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi2.c:96:22: note: expanded from macro 'TX_VCID'
-      96 | #define TX_VCID(x)                      FIELD_PREP(GENMASK(1, 0), x)
-         |                                         ^
-   drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi2.c:430:8: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     430 |         val = IPI_DEPTH(color_depth) |
-         |               ^
-   drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi2.c:116:24: note: expanded from macro 'IPI_DEPTH'
-     116 | #define IPI_DEPTH(x)                    FIELD_PREP(GENMASK(7, 4), x)
-         |                                         ^
-   drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi2.c:445:55: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     445 |         regmap_write(dsi2->regmap, DSI2_IPI_VID_VSA_MAN_CFG, VID_VSA_LINES(vsa));
-         |                                                              ^
-   drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi2.c:133:27: note: expanded from macro 'VID_VSA_LINES'
-     133 | #define VID_VSA_LINES(x)                FIELD_PREP(GENMASK(9, 0), x)
-         |                                         ^
-   drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi2.c:461:51: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     461 |         regmap_write(dsi2->regmap, DSI2_IPI_PIX_PKT_CFG, MAX_PIX_PKT(val));
-         |                                                          ^
-   drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi2.c:141:26: note: expanded from macro 'MAX_PIX_PKT'
-     141 | #define MAX_PIX_PKT(x)                  FIELD_PREP(GENMASK(15, 0), x)
-         |                                         ^
-   drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi2.c:573:56: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     573 |         regmap_write(dsi2->regmap, DSI2_CRI_TX_HDR, hdr_val | CMD_TX_MODE(lpm));
-         |                                                               ^
-   drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi2.c:110:26: note: expanded from macro 'CMD_TX_MODE'
-     110 | #define CMD_TX_MODE(x)                  FIELD_PREP(BIT(24), x)
-         |                                         ^
-   1 warning and 10 errors generated.
+In-Reply-To: <c623075c-fd80-4312-90ba-4f8a3c3f56f9@broadcom.com>
 
 
-vim +/FIELD_PREP +315 drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi2.c
+--pdxu4r3m4vrnf4px
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 1/2] dt-bindings: pwm: brcm,bcm7038: Document the
+ 'open-drain' property
+MIME-Version: 1.0
 
-c55ecdf5f795ca Heiko Stuebner 2024-11-26  300  
-c55ecdf5f795ca Heiko Stuebner 2024-11-26  301  static void dw_mipi_dsi2_phy_clk_mode_cfg(struct dw_mipi_dsi2 *dsi2)
-c55ecdf5f795ca Heiko Stuebner 2024-11-26  302  {
-c55ecdf5f795ca Heiko Stuebner 2024-11-26  303  	u32 sys_clk, esc_clk_div;
-c55ecdf5f795ca Heiko Stuebner 2024-11-26  304  	u32 val = 0;
-c55ecdf5f795ca Heiko Stuebner 2024-11-26  305  
-c55ecdf5f795ca Heiko Stuebner 2024-11-26  306  	/*
-c55ecdf5f795ca Heiko Stuebner 2024-11-26  307  	 * clk_type should be NON_CONTINUOUS_CLK before
-c55ecdf5f795ca Heiko Stuebner 2024-11-26  308  	 * initial deskew calibration be sent.
-c55ecdf5f795ca Heiko Stuebner 2024-11-26  309  	 */
-c55ecdf5f795ca Heiko Stuebner 2024-11-26  310  	val |= NON_CONTINUOUS_CLK;
-c55ecdf5f795ca Heiko Stuebner 2024-11-26  311  
-c55ecdf5f795ca Heiko Stuebner 2024-11-26  312  	/* The maximum value of the escape clock frequency is 20MHz */
-c55ecdf5f795ca Heiko Stuebner 2024-11-26  313  	sys_clk = clk_get_rate(dsi2->sys_clk) / USEC_PER_SEC;
-c55ecdf5f795ca Heiko Stuebner 2024-11-26  314  	esc_clk_div = DIV_ROUND_UP(sys_clk, 20 * 2);
-c55ecdf5f795ca Heiko Stuebner 2024-11-26 @315  	val |= PHY_LPTX_CLK_DIV(esc_clk_div);
-c55ecdf5f795ca Heiko Stuebner 2024-11-26  316  
-c55ecdf5f795ca Heiko Stuebner 2024-11-26  317  	regmap_write(dsi2->regmap, DSI2_PHY_CLK_CFG, val);
-c55ecdf5f795ca Heiko Stuebner 2024-11-26  318  }
-c55ecdf5f795ca Heiko Stuebner 2024-11-26  319  
+Hello Florian,
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+[adding Linus and linux-gpio to Cc:]
+
+On Tue, Oct 29, 2024 at 09:03:57AM -0700, Florian Fainelli wrote:
+> On 10/29/24 03:44, Uwe Kleine-K=F6nig wrote:
+> > On Tue, Oct 15, 2024 at 10:07:10AM -0700, Florian Fainelli wrote:
+> > > On 10/15/24 09:32, Rob Herring wrote:
+> > > > Another thing to consider is for any PWM controller with more than
+> > > > 1 output, you might want this to be per output and therefore should=
+ be
+> > > > a flag in the cells.
+> > >=20
+> > > Yes, that is a good point, this controller has two channels, so it se=
+ems
+> > > like increasing the #pwm-cells might be the way to go.
+> >=20
+> > So the idea is something like:
+> >=20
+> > diff --git a/include/dt-bindings/pwm/pwm.h b/include/dt-bindings/pwm/pw=
+m.h
+> > index ab9a077e3c7d..d18b006a7399 100644
+> > --- a/include/dt-bindings/pwm/pwm.h
+> > +++ b/include/dt-bindings/pwm/pwm.h
+> > @@ -11,5 +11,6 @@
+> >   #define _DT_BINDINGS_PWM_PWM_H
+> >   #define PWM_POLARITY_INVERTED			(1 << 0)
+> > +#define PWM_OUTPUT_OPEN_DRAIN			(1 << 1)
+> >   #endif
+> >=20
+> > and then add support for that to the core and drivers? There is some
+> > intersection with pinctrl (depending on hardware). I wonder if
+> > abstracting this somehow using the typical pinctrl properties would be a
+> > saner option??
+>=20
+> But what if the pin is not managed by a pinctrl provider?
+
+Then create one? If that's the PWM itself that is the pinctrl device it
+would look as follows:
+
+	pwm@f0408000 {
+		compatible =3D "brcm,bcm7038-pwm";
+		pinctrl-0 =3D <&pwm_pins>;
+		reg =3D <0xf0408000 0x28>;
+		#pwm-cells =3D <2>;
+		#pinctrl-cells =3D <0>;
+		clocks =3D <&upg_fixed>;
+	=09
+		pinctrl {
+			pwm_pins: pwm-pins {
+				pins =3D "A", "B";
+				drive-open-drain;
+			};
+		};
+	};
+
+Maybe this is difficult if there is a pinctrl that configures the output
+as "PWM" and then there is that additional register in the PWM IP to
+make this pin open drain? One could just use
+
+	pinctrl-0 =3D <&pwm_pins>, <&system_pinctrl_pwm>;
+
+then. Not entirely sure this is overengineered, but the dt
+representation would be nice (IMHO). Thoughts?
+
+> I have started
+> going the route of implementing the PWM_OUTPUT_OPEN_DRAIN bit as an
+> additional specifier in the #pwm-cells, but I am not sure to what extent
+> this should be allowed to be changed at runtime.
+
+I would not expect that the open-drainness needs to change at runtime.
+
+Best regards
+Uwe
+
+--pdxu4r3m4vrnf4px
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmdIVXwACgkQj4D7WH0S
+/k6l6wgAgyzQfpcTmTaXfhmcQgO0kIruIbqxl2BdNvTxhqNU/I5oBRJJuMYj1SUe
+9pnH4y0xPYoJvxdl4eWLPeciRP7AUPs/Q1zNpNiPUl74qBx3AvtNZC/7qnpZyxCQ
+oRfEvy2HXuKjl55nzB6Luj/iKD6hMjoK2jB0w/zz61YAELUzm2j3i3HItQbFZ06W
+2DIrXEybGNkNmru7ii2Wy3Yg0EsOxZucprF1DwUHAoCNMW8hOX3uWm2y6gEugeoe
+vPE9Wfh2WspzKNDeNHqi/P02u+YBqzEmEd5gJCqHvgCFxr0DTJnpItxTJ0FP6kot
+LkRkktFKEOszoHombSsUnCUz8Gj99Q==
+=hSKz
+-----END PGP SIGNATURE-----
+
+--pdxu4r3m4vrnf4px--
 
