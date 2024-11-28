@@ -1,116 +1,125 @@
-Return-Path: <devicetree+bounces-125311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A2279DB878
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 14:22:56 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D34129DB87B
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 14:24:30 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 237A3162C87
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 13:22:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 990E328200C
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 13:24:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 967C91A9B25;
-	Thu, 28 Nov 2024 13:22:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CC751A9B21;
+	Thu, 28 Nov 2024 13:24:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Z8R+pAdW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D22owIct"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE35A1A9B21
-	for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 13:22:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D16E819884B
+	for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 13:24:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732800167; cv=none; b=XS2B8xMoLcBf//pGWTAedrZDPJhSGvB7bQ3BDmZj5ww51vpCfBZGpIk83SQgGzDxe0/XAK2EpSauFR+JkUpJcorsKGfF8sMK/2wfrTES8GYmmxjQ5GwP6Ono/AJQ3EErkj4OozbQwnWvYgLxnfpjd+4wXtz6ELfw3ukuNRdL+KY=
+	t=1732800265; cv=none; b=LD0wNGfVIh+3RRHm8ZM3KWRDLy2rB6e4iDAh6BajffBC4T3aZlhG9qPCMYmqmpgFKctgHMucYF57bKznSByPsUwEqBVkkjh2dbMScE/stuZN8cicgvY0KIpcnFo7ysaLCHcgsY/Ypv2LZVfj0SigUV5jlmIU+e/1bR2lUMpW8hg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732800167; c=relaxed/simple;
-	bh=ZRTyKOcF+BOsP+CxhKgOS1bm2CPzFXS7M1kc1Sukgn4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e8UoK2ac5jKia6WMvNwjB69ePElIpQBvSnig6ykmcDP7ZSaux8CJYXnC8YwFWsPDgaMD2IQGsjGaEvGUzrZ3ou/S1QifsJpbuOzhVx3WBfdUyYD65IIH2OxRHOa6nZrphjkSy8qPRPwEcFhca+0EHGo6MLlkOcgfcn29TmczPBA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Z8R+pAdW; arc=none smtp.client-ip=209.85.208.176
+	s=arc-20240116; t=1732800265; c=relaxed/simple;
+	bh=6N0bgmGW6ZFE1RBJSAYibt4wD8JBkZs1/eYZgRBGMOI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bWdAieMbxl4srFFfArL+26YgRe0JkpDMdVaEFCF8BxKgUWYXVuBj7GleqlymsZGj34foulv9XMhD/pbLBo7oJnvxMmv+ffkigggWsGBOppKiIwZiODvVezL1CF7I2IylNmZjEOTFYbXATzU/PFGjJHtTrE9W5iK/mzG0OIOdulk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D22owIct; arc=none smtp.client-ip=209.85.167.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2ffb5b131d0so7325641fa.2
-        for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 05:22:45 -0800 (PST)
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-53dd41cf2b2so92438e87.3
+        for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 05:24:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732800164; x=1733404964; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=0trBlkAARfcalt0wvM3utILQ/svffGiHUkuNkTIjo9g=;
-        b=Z8R+pAdWxh8Ft2ueY1WbCJXpEc5aKDWRpXKwbRPVW8qkatDyoqEyOWO6/rxW7JbFcw
-         O7a/PdF1BY+3gB2H6+3zaYQjwvp9xOZJR+aCcNllJJ4XWfNmLwQX+uDEASojOvpgbZDw
-         FwSh4Bl6VwvsaGN3jZJL/WAw5JEOgAO/ATN6MhqAa54o7tKBsuQrk2259V9qQc/fOh7z
-         fPVnjn3BVByHyVOxNIXYOnFnOEIO83oYa8iaAbb+RtMPfhSZ0RzxLNTZPgVapzpbKkoF
-         K2qtXPJYF4hLDel99cLaGSg88dAl0FgyS/U00GIZW1kPIx8b2TnxJAzxxPJsglYq8Tpi
-         WQzw==
+        d=linaro.org; s=google; t=1732800262; x=1733405062; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gXmwGgua6b6IFHk+sz5oYErhryQ6lSwss7yAIxQHIIc=;
+        b=D22owIctVKxBDkaxGYzFMy0rfpp6kKM1JoEakN4yj1q+xxIzhOeCA24rgu/0Jtf2fD
+         YdZCFfXRCAJGK/1h+XMYphJOvJSNeZWdajY5PfBig/rg6avopRRxOwy2ccc8tYBbg77e
+         XyQrIddjeRH4ASCI+sWepk0ZT93onZnrKIo14FJ5XLrd/IH2kfEiyQFoAkldqcBUQOuG
+         /fId78i4zP2kP6s/AofO8owlxCfXn4fZ21OjvPFnYzmuN/UXR3O66e0falhSxEnAKjnx
+         XD2ffpaODjOtiszMWyihs7g+NtWAi6yJV4X+jkQ1sYn6uf8Xqol4l0oB0gLtZ9fp5Ce3
+         lyIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732800164; x=1733404964;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0trBlkAARfcalt0wvM3utILQ/svffGiHUkuNkTIjo9g=;
-        b=lFd4jUcC9H3zt4NTdha01pmWglgdorBe0Youwl29HVP/2jYkvzTrZAL6aBPJv3BVg/
-         w1hyoE3bJ/Frd7DhQcA9sTROunY3SDmiRJMHYT4lWni9woOQOGD5XqB542/2zwd4JnWg
-         RsBwcD8ouc8MG1lSq3jFeIo7MyGwedrxvJErd4kUMq1Y5EWhbFxARPn1PAIYZT4zucmA
-         Ii2c3IMusD9rMOPtn+l0oPt5vZ/WFTfykIB49JYRVdNtbQsaxS4fBdRVdWepI0ppMm4U
-         htfpsPYSQMdZ51LROlkwE8lBqVs9Vcl7PsgybEU2xqWzb+OcnnIKmNacV68zD555A/Sa
-         TgdQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW7bxfdyiTDnP4PSr9hGy6BGlxsQRE6ozUb8C7GrKTossxYnEJHM1MNQ3vpzpuTf1VYhiOy3pDwMBjd@vger.kernel.org
-X-Gm-Message-State: AOJu0YzSgBKcC/rmCk9D2dopZryt/2992Vej4ARMvSdTCBCM44rf/QRh
-	dnAgWhaC0Xnh15Y8OS5E7HnbGqHG8l1+1rtitLrdkRcVpKX5YLxDwYcQoq87th0=
-X-Gm-Gg: ASbGnctkmVEtZDW77rRu5lUNuxzIacYyZqa43DigePQWZYiX+3eG8s+J5V2NdTJHXLR
-	wbF7bdx34BrulsYNx1BDuRwCON4Y6ttxIWEaHIpsuz83gECto79zrXyblH7FunnrgfkERZ6OqJO
-	6dv8kri12WnvhmP74BKxgRLdByz506tAQ3yck6goX2Ayusv5h0RtKPrUz4pSy0DVszb/yr8GiLa
-	d6ZEa8puH6Gt4XWEhOMGYr/9B1Et3JcwZoas3vdgQaUoXV2Tqn97/zvAaEIw520hqCYg0mbyIi4
-	P04NGE2la0vMpIctDU6MkaHXUCj+4A==
-X-Google-Smtp-Source: AGHT+IHEvVWrBgLarPrP+szMgf0Kt+2464HFdoUTduj2gmCoJGkPBz1dSTuSfhoY5FnSXf3ADQPMpA==
-X-Received: by 2002:a05:651c:150e:b0:2ff:d41e:d1eb with SMTP id 38308e7fff4ca-2ffd60dc0b8mr25239271fa.37.1732800163793;
-        Thu, 28 Nov 2024 05:22:43 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ffdfc7503dsm1894131fa.75.2024.11.28.05.22.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 28 Nov 2024 05:22:42 -0800 (PST)
-Date: Thu, 28 Nov 2024 15:22:40 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org, 
-	manivannan.sadhasivam@linaro.org, bhelgaas@google.com, kw@linux.com, lpieralisi@kernel.org, 
-	quic_qianyu@quicinc.com, conor+dt@kernel.org, neil.armstrong@linaro.org, 
-	andersson@kernel.org, konradybcio@kernel.org, quic_tsoni@quicinc.com, 
-	quic_shashim@quicinc.com, quic_kaushalk@quicinc.com, quic_tdas@quicinc.com, 
-	quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com, kernel@quicinc.com, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-phy@lists.infradead.org
-Subject: Re: [PATCH v2 2/8] phy: qcom-qmp-pcie: add dual lane PHY support for
- QCS8300
-Message-ID: <3azkbn5grdficfn3ojuckfawug65piodgs4jvcaukxkvgrhtkf@2vfm3qwv23vl>
-References: <20241128081056.1361739-1-quic_ziyuzhan@quicinc.com>
- <20241128081056.1361739-3-quic_ziyuzhan@quicinc.com>
+        d=1e100.net; s=20230601; t=1732800262; x=1733405062;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gXmwGgua6b6IFHk+sz5oYErhryQ6lSwss7yAIxQHIIc=;
+        b=oiY29wmN+B/jfgPrY4hQPlrCqzkyfDwATI7DJftXlUOnnQTIIqu0noyknXboBfAWpT
+         YnO895FaOPBbEa+1Ts09MaewaOW9A5XQd7vEj5sCDMqqBTxL87zfgb+zxejOzxOPqc9H
+         dyhIBqUXVJxsQ9CAS7WUM2ptA8f+Gl/hjCGYVdNtYUsSWUFJKbUsTE33RNcFr/jwnIiM
+         zXrHr2eprlP4maumrCoZREqLZk90MlT+m+HXmRgKCMBXEtNpoXtCqXIgLNf6tmpe0X+X
+         2WdlXkwwsyeXRsgcYtM3hCehsmj1bxHg13z0Ir7Ne+2TlGn/VzIr3WJH2DQCdp0qDPmw
+         OYCg==
+X-Forwarded-Encrypted: i=1; AJvYcCW86EhIJwk6CVOK15uhHKR6wBT/SOIGf9gw326G5PIvnkanGCPsJJbgLfYz21LRQqyuVJCeKiPmoCV+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz+B9eaPR+01MtC/UiKJiAeiyJgGguV3CkE/1XpcbTQ41H5+ezn
+	VY2M+raHFTe+dqqR83sN6nTrYpO5Q3u7xntULgA9agaey4plQ/WPe4SJ8/AYiGg=
+X-Gm-Gg: ASbGncsakzhKwDJ0MvH0wmD64rEYDx7V0ENSYrrY24OmAtRnsOT9uvuXlVtaZsRheYK
+	NYLlHxZkM0O2sHjw+1dPPBT6eF2hL+yTtb2NfIOJOnbB5SjnMg4i3aFgMmmt72qL1oQGK0GZHsR
+	7eRoPbxlHoqMz/hqdHq+l8Ypz3K39//w4JQFT7lSx5XvE0urs85cDFpBidZON0VRInURdSoxWul
+	jvsRiMvv88ymW+DnShjmmecjph+latx8TFCRFXBpbuRe2h3vfP4Fzo0g7B+QMOfgsRi9r2Xi1RD
+	QLIvqomi/GN6z0zCxt0dvawzpLL9
+X-Google-Smtp-Source: AGHT+IGFUJAxjvhsByyBdZMcAk0gikSSjkNb3tPTHIn7AP9ungve1WLXE07mxdF/zOolQIu33Qx1Vw==
+X-Received: by 2002:a05:6512:3b23:b0:53d:abc3:82a6 with SMTP id 2adb3069b0e04-53df00d3e59mr947638e87.4.1732800262033;
+        Thu, 28 Nov 2024 05:24:22 -0800 (PST)
+Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53df646f27fsm176060e87.157.2024.11.28.05.24.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Nov 2024 05:24:20 -0800 (PST)
+Message-ID: <b97adbf2-f19f-4cd7-9266-526957c4c3d1@linaro.org>
+Date: Thu, 28 Nov 2024 15:24:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241128081056.1361739-3-quic_ziyuzhan@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] media: venus: Add support for static video
+ encoder/decoder declarations
+Content-Language: en-US
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: quic_renjiang@quicinc.com, quic_vnagar@quicinc.com,
+ quic_dikshita@quicinc.com, konradybcio@kernel.org,
+ linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Stanimir Varbanov <stanimir.varbanov@linaro.org>, devicetree@vger.kernel.org
+References: <20241127-media-staging-24-11-25-rb3-hw-compat-string-v2-0-c010fd45f7ff@linaro.org>
+ <20241127-media-staging-24-11-25-rb3-hw-compat-string-v2-1-c010fd45f7ff@linaro.org>
+ <ad906baa-a93f-42c4-bbe5-968fa939c653@linaro.org>
+ <71dd9aec-e2b4-4323-aeb6-53f2491005b3@linaro.org>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <71dd9aec-e2b4-4323-aeb6-53f2491005b3@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Thu, Nov 28, 2024 at 04:10:50PM +0800, Ziyue Zhang wrote:
-> The PCIe Gen4x2 PHY for qcs8300 has a lot of difference with sa8775p.
-> So the qcs8300_qmp_gen4x2_pcie_rx_alt_tbl for qcs8300 is added.
+On 11/28/24 14:54, Bryan O'Donoghue wrote:
+> On 28/11/2024 09:02, Vladimir Zapolskiy wrote:
+>>> +    np = of_changeset_create_node(ocs, dev->of_node, node_name);
+>>> +    if (!np) {
+>>> +        dev_err(dev, "Unable to create new node\n");
+>>> +        return -ENODEV;
+>>
+>> Leaked reference to np.
 > 
-> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
-> ---
->  drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 89 ++++++++++++++++++++++++
->  1 file changed, 89 insertions(+)
+> I don't believe that's a leak, because you only release np when it is
+> non-NULL.
+> 
 
-v1 was already reviewed and got a tag which you've ignored. Please fix
-your process to use b4 tool. While doing so, please collect all the tags
-from v1.
+Clearly it's my fault here, I'm very sorry for it.
 
--- 
-With best wishes
-Dmitry
+--
+Best wishes,
+Vladimir
 
