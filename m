@@ -1,136 +1,191 @@
-Return-Path: <devicetree+bounces-125178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125179-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CA699DB22A
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 05:26:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6FB69DB242
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 05:46:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D3DB82827E6
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 04:26:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E65C28289A
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 04:45:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8413F13C9A4;
-	Thu, 28 Nov 2024 04:26:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0357D13AD26;
+	Thu, 28 Nov 2024 04:45:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="CKJNNjGo"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Up6jx4PR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCAD0136349
-	for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 04:26:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CF6E360;
+	Thu, 28 Nov 2024 04:45:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732768001; cv=none; b=s6akU9+YQm1r2UROyP/wUe3F9VmH2lYfRPi8c6TVPYAJsvZJBLvCSPaTbmmTXDi/8ouW6svAS/DmJyJxatnMJmO/J0DRZR0KEtdNFLZ7sdk0gbLAJp/kLxECdA2OskXfAFeoJtO/0lFT9nq7oWppQlDxY8HqiRLeNEJSzHZbq+U=
+	t=1732769156; cv=none; b=laQL4S/hZy9PTWpGJX8oU3CC19FCVB5x3nkLZgf9F9HXrZg1oPQFqJAf02vFYa/4qRdFs7gTsFyk2BqlNyb8jwnkn5YPhHK4ujaoX5DDGybnEl6gu22zeDqbm42PliK+pZZtZTXq0BjHBC2eUH0N5GmZVegGvYE0CrW0EzC1RwE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732768001; c=relaxed/simple;
-	bh=SQ5HTme1SLECGbVCaGoPHfecPrbsN1EOEWv6CHUAVP0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=WDsr2pJiStS/JIQ+iF2GCWwnQm4zWR1pK1t95LAYsDBdDHOM76AHcKv7Fjo2AUQQV4xsvmFZa7eaLly59xxpozOyG/hMmbPmAvSIBhbxtTf34lbA80XOfUsHs6ZQpw2wOfWvrHZKSaP2Y/srLwBFoo7u6RVULMh4Guoy79ozqPw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=CKJNNjGo; arc=none smtp.client-ip=209.85.210.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-724d23df764so459651b3a.1
-        for <devicetree@vger.kernel.org>; Wed, 27 Nov 2024 20:26:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1732767998; x=1733372798; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=yyk7Iou25uRg3TCJZa+tSFUnZozoGmQKQzSvVwcJ1m4=;
-        b=CKJNNjGoB9nwkV51z6xz+dTyhdEk8nnBvfC4B0VL+W608Iqw9i0VUSAj9R1JYjCwBm
-         BWyhJK189hq3Sg+DDo46Q/IkkxmhhUOLHGK/W+IfUNCjUDKqGSiFuo4riaROENZRoKo4
-         EGmNhP1t1xLCk/OAp5JHt8kILqThOL5Ee1noQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732767998; x=1733372798;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yyk7Iou25uRg3TCJZa+tSFUnZozoGmQKQzSvVwcJ1m4=;
-        b=wTHLOT8a58ubxGfnFRr/Gi1G6ge13LqAw+9HW/YAxOAINechqQlXPJaj6QF6I42zjx
-         6ci1ywxXV6gns2wJSH782K5/TOhqmMtWJGyJXq9ZMB+CvrPk335S1Ioe5Hmc1aCxuMXz
-         lDwCkzRugFgFUywmhCc6GfkyjupQ8T2M1vMk2lPKLes4mSnmDW66preQP7wl3QXy8BDw
-         oaNfEQdVes3CdQzP7cnenk2bFkAzrK+M2UODiEpNuINcGatL77ac28FHBe+rQ6CgqIyh
-         BeApKf92IPpUqZ5lAoBMA0f5HAieIpDJH0j8FRlrgHXuTFsPfW+KH5WgKTGctrBJ7ufh
-         F4oQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX6lD8a43kOhHw+RbGunjc7CyG/fkuw+izLFclb5IEqu+HP8jg9oFczJHIvR/AkQpwO99F/JtNQqFJi@vger.kernel.org
-X-Gm-Message-State: AOJu0YzJuAVxw+MslJYhmmIT6iDI22WUWWVhXToWUKNrLlAO3WH0T8jW
-	m2F7VNYBUuagBZCjLEM/yt/417OI831di+XDfQbibQ/if/T//zOc8ogux3Pljg==
-X-Gm-Gg: ASbGnctZrmS8r1f73xUBzVMrgj8yHC08wabOgriXDWwWPhqj5pHTczNX/q+idkvhplr
-	7uUHx1g8qjKpw7mQQlgb14kuLj96xWoptQnh2D+TY2S+a00mt3LcmZnlO9SYMGGnLMdDxVCLx7D
-	OX7cVbURRA0OJGboc58ag9nizaqna08wqYaNsfGfHYwOveg6dRI9YmGCf2j203fAACzD1z0LeHg
-	QiA4acUHajtqZqh6IENFWOfjpszDiV5CP4y1tG844rGFi9VdhjnfajQPrEgUiXhmhiQ
-X-Google-Smtp-Source: AGHT+IHeZNuSWgVtWvTDokMDlIw4ArRKKjwJZ33jbZfsR02Ur3asny/Ji3uLw2rlY2Y0R8BhHPJDpA==
-X-Received: by 2002:a05:6a00:3d0e:b0:725:14fd:f62c with SMTP id d2e1a72fcca58-72530078935mr6645836b3a.15.1732767997932;
-        Wed, 27 Nov 2024 20:26:37 -0800 (PST)
-Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:2db5:507b:eafb:b616])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72541849509sm439133b3a.197.2024.11.27.20.26.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 27 Nov 2024 20:26:37 -0800 (PST)
-From: Chen-Yu Tsai <wenst@chromium.org>
-To: Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Wolfram Sang <wsa@kernel.org>
-Cc: Chen-Yu Tsai <wenst@chromium.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	linux-i2c@vger.kernel.org,
-	kernel test robot <lkp@intel.com>
-Subject: [PATCH] of: base: Document prefix argument for of_get_next_child_with_prefix()
-Date: Thu, 28 Nov 2024 12:26:30 +0800
-Message-ID: <20241128042632.231308-1-wenst@chromium.org>
-X-Mailer: git-send-email 2.47.0.338.g60cca15819-goog
+	s=arc-20240116; t=1732769156; c=relaxed/simple;
+	bh=Nh/umBmDogP6K+8vOrQntqBkOwYJR9zftfW9Lv/r33A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=USG3XuDZvRalhzlTf8gY38TIi0E/49kCtH7xJxz6cBbbK5y3qFkcenCh5VHHE9W0dVKbo7mZS/XYpVfRQ7gU25EeKWg2ZxOK1yhETBUCKSx0kIfiIThe4tIbK6+nhbR8xX/5AED6cJ2HMQVqzaXV0LGRnKc4/+P18Tyk6sXlMVg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Up6jx4PR; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4ARGRUNO018966;
+	Thu, 28 Nov 2024 04:45:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	uJA0hZahYt3ouFeJrPPN50GKqvOKT7odLnSpABDr55o=; b=Up6jx4PRNz1yFAhm
+	dfccQ2dvTepXsmUdV97mH7ktaZWxatxL0XVO6daOLv07uWQ09Z3/p72bkZHGj872
+	gShTaHY4Tdk3XsmF3o0aKhELHcAmGHradCqeUF3lZMUQO5N8LNQH+ufh95ecP7OB
+	EOKh57ZPjAq/wTbbkjSbqrYw/0LJjE0Ufg0LEnhZFXRDiNhXTl/Z/o6NsSdVOA2G
+	wFzdDsw++gcl2Yt6ShF5+3pJpNt+cjPFgYCyWGvu6pkScfwo06nstgge0QU8LfaU
+	JV85yy6a31WlqDJ1/4lUw80rcwQduERdi0PRmjqY0Ebo4cqU59wXtOD5m1RtvxkK
+	2H1UqA==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4366y01b1v-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 28 Nov 2024 04:45:50 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AS4jn72010111
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 28 Nov 2024 04:45:49 GMT
+Received: from [10.152.201.37] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 27 Nov
+ 2024 20:45:46 -0800
+Message-ID: <73506419-e53d-4f45-8056-811dad1c163f@quicinc.com>
+Date: Thu, 28 Nov 2024 10:15:43 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V7 5/5] firmware: qcom_scm: ipq5332: add support to pass
+ metadata size
+To: Bjorn Andersson <andersson@kernel.org>
+CC: <sboyd@kernel.org>, <konradybcio@kernel.org>, <krzk+dt@kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <quic_varada@quicinc.com>,
+        <quic_srichara@quicinc.com>
+References: <20240820055618.267554-1-quic_gokulsri@quicinc.com>
+ <20240820055618.267554-6-quic_gokulsri@quicinc.com>
+ <pdyy4zflklvi5syhwt3oklidq3mwizthds2td4qzglhhdulel5@337xsbehgdp3>
+Content-Language: en-US
+From: Gokul Sriram P <quic_gokulsri@quicinc.com>
+In-Reply-To: <pdyy4zflklvi5syhwt3oklidq3mwizthds2td4qzglhhdulel5@337xsbehgdp3>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: AQctSQfs-8J72bleLrV-MpC80p3cbkxM
+X-Proofpoint-GUID: AQctSQfs-8J72bleLrV-MpC80p3cbkxM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 phishscore=0
+ priorityscore=1501 bulkscore=0 malwarescore=0 adultscore=0 suspectscore=0
+ mlxlogscore=999 spamscore=0 mlxscore=0 lowpriorityscore=0 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2411280036
 
-When of_get_next_child_with_prefix() was added, the prefix argument was
-left undocumented. This caused a new warning to be generated during the
-kerneldoc build process:
 
- drivers/of/base.c:661: warning: Function parameter or struct member 'prefix'
- 	not described in 'of_get_next_child_with_prefix'
+On 10/23/2024 9:22 PM, Bjorn Andersson wrote:
+> On Tue, Aug 20, 2024 at 11:26:18AM GMT, Gokul Sriram Palanisamy wrote:
+>> From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+>>
+>> IPQ5332 security software running under trustzone
+>> requires metadata size. With V2 cmd, pass metadata
+>> size as well.
+> Documentation says commit messages should be wrapped at 75 characters,
+> not 50...
+>
+> Please improve the second sentence here, "v2 cmd" is coming out of
+> nowhere. Say that there is a new command with a size parameter added.
+>
+> Is this operation available on all targets, or is it IPQ-specific?
+>
+>
+> I don't see the relationship between this patch and the cover letter
+> subject "remove unnecessary q6 clocks". Should this have been send on
+> its own?
+>
+>> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+>> Signed-off-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
+>> ---
+>> Changes in v7:
+>> 	- No changes.
+>> 	- Rebased on top of linux-next.
+>>
+>> Changes in v6:
+>> 	- Rebased on linux-next
+>>
+>> Changes in v5:
+>> 	- Rebased on linux-next
+>>
+>> Changes in v4:
+>> 	- Rebased on linux-next
+>>
+>>   drivers/firmware/qcom/qcom_scm.c | 8 ++++++++
+>>   drivers/firmware/qcom/qcom_scm.h | 1 +
+>>   2 files changed, 9 insertions(+)
+>>
+>> diff --git a/drivers/firmware/qcom/qcom_scm.c b/drivers/firmware/qcom/qcom_scm.c
+>> index e60bef68401c..aa559fd01932 100644
+>> --- a/drivers/firmware/qcom/qcom_scm.c
+>> +++ b/drivers/firmware/qcom/qcom_scm.c
+>> @@ -607,6 +607,14 @@ int qcom_scm_pas_init_image(u32 peripheral, const void *metadata, size_t size,
+>>   
+>>   	desc.args[1] = mdata_phys;
+>>   
+>> +	if (__qcom_scm_is_call_available(__scm->dev, QCOM_SCM_SVC_PIL,
+>> +					 QCOM_SCM_PAS_INIT_IMAGE_V2)) {
+>> +		desc.cmd = QCOM_SCM_PAS_INIT_IMAGE_V2;
+>> +		desc.arginfo =
+>> +			QCOM_SCM_ARGS(3, QCOM_SCM_VAL, QCOM_SCM_RW, QCOM_SCM_VAL);
+>> +		desc.args[2] = size;
+>> +	}
+>> +
+> Please avoid default initialization and then conditionally overwrite
+> parts of the values. Make a clear:
+>
+> if (v2 availble) {
+> 	prepare v2 request;
+> } else {
+> 	prepare v1 request;
+> }
+>
+> Regards,
+> Bjorn
 
-Properly document the argument to fix this.
+  sure, will address. Thank you.
 
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202411280010.KGSDBOUE-lkp@intel.com/
-Fixes: 1fcc67e3a354 ("of: base: Add for_each_child_of_node_with_prefix()")
-Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
----
-As requested. I assume Rob would give an ack for this to go through the
-I2C tree since the offending commit is there as well.
+Regards,
 
-I also put this patch on git.kernel.org hoping that it gets some bot
-coverage soon:
+Gokul
 
-    http://git.kernel.org/wens/h/of_get_next_child_with_prefix-kdoc-fix
-
-I guess I should have put the original patches on a separate branch on
-git.kernel.org for bots to run earlier. I'm sorry for not catching this
-sooner.
-
- drivers/of/base.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/of/base.c b/drivers/of/base.c
-index 4cba021c89d3..7dc394255a0a 100644
---- a/drivers/of/base.c
-+++ b/drivers/of/base.c
-@@ -648,6 +648,7 @@ EXPORT_SYMBOL(of_get_next_child);
-  * of_get_next_child_with_prefix - Find the next child node with prefix
-  * @node:	parent node
-  * @prev:	previous child of the parent node, or NULL to get first
-+ * @prefix:	prefix that the node name should have
-  *
-  * This function is like of_get_next_child(), except that it automatically
-  * skips any nodes whose name doesn't have the given prefix.
--- 
-2.47.0.338.g60cca15819-goog
-
+>>   	ret = qcom_scm_call(__scm->dev, &desc, &res);
+>>   	qcom_scm_bw_disable();
+>>   
+>> diff --git a/drivers/firmware/qcom/qcom_scm.h b/drivers/firmware/qcom/qcom_scm.h
+>> index 685b8f59e7a6..008b59cbad36 100644
+>> --- a/drivers/firmware/qcom/qcom_scm.h
+>> +++ b/drivers/firmware/qcom/qcom_scm.h
+>> @@ -96,6 +96,7 @@ struct qcom_tzmem_pool *qcom_scm_get_tzmem_pool(void);
+>>   
+>>   #define QCOM_SCM_SVC_PIL		0x02
+>>   #define QCOM_SCM_PIL_PAS_INIT_IMAGE	0x01
+>> +#define QCOM_SCM_PAS_INIT_IMAGE_V2	0x1a
+>>   #define QCOM_SCM_PIL_PAS_MEM_SETUP	0x02
+>>   #define QCOM_SCM_PIL_PAS_AUTH_AND_RESET	0x05
+>>   #define QCOM_SCM_PIL_PAS_SHUTDOWN	0x06
+>> -- 
+>> 2.34.1
+>>
 
