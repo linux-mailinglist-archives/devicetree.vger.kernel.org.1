@@ -1,261 +1,226 @@
-Return-Path: <devicetree+bounces-125244-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125245-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C00C9DB4A3
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 10:14:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD74D9DB4B5
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 10:22:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C7BF281F2A
-	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 09:14:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E4B92827A1
+	for <lists+devicetree@lfdr.de>; Thu, 28 Nov 2024 09:22:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EB591547E4;
-	Thu, 28 Nov 2024 09:14:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95282156238;
+	Thu, 28 Nov 2024 09:21:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UKFi0FUf"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="nE87CEye"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 652D652F88;
-	Thu, 28 Nov 2024 09:14:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC811154C0F
+	for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 09:21:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732785252; cv=none; b=n/bV7b1jYYa6BeG3aRtxV4mT5y5FSSmOE1fa9PGYr6WDVCMj1AB322tS34Sgn1HmqW1E/p+Cegc63em+m+En1SZbGFsjxKR1iKcKYGfhxcT8GtJWV0r+3ppMdZ6hPy56Tu2Ulq7wxA8qzwku0JCiAivKNGufWGggLXtE3yLn9RE=
+	t=1732785717; cv=none; b=ugqXeLq0PBLBunKBOr6RwMNBViBqXLZlYTxGUNxVM4UTB1kkRvnyEOZHfAh0+bMoB4Hi+JU1rRFhYWko4jm7VQzCkEG6fjlIM43eVbTDcyF3cwhLY66hSqaWMeHGI1sMi39G+ijcKq4LwRQH6S0U0cwKsxptD/VoDxHYYHWs4FY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732785252; c=relaxed/simple;
-	bh=xw2wO2fUU8KQ8iSrqcL95ODU94SFi+VqIXlFh7Mb7T0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=luxYn3s4HvLBdEIBFRxCY3/ernUYsnaC0wSViM3lM/e6nFK1dcBB10MRGerUcFPpM+wMgt07Bi7wwV8xgn2JC61XZO2vEf9uj4LIM0uoSWw6cco71wazMbd8pLuhFPzKodO/anLecciPmCcNCZNuG8VJnpkXgGbBzeLrqvILp5w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=UKFi0FUf; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1732785250; x=1764321250;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=xw2wO2fUU8KQ8iSrqcL95ODU94SFi+VqIXlFh7Mb7T0=;
-  b=UKFi0FUfTDx7s57mp537/9lJeVxZdVsuRNpYeUpzDIevRmgNeRVPQPDO
-   tleYI9odU6GT3W6fNS4j2sB3kcCpuw2tfRpnG2oCKJy6Z4q5yn3FEZVr2
-   XkrkDQMDkugLxl2wej7zSCFSTfI80wASagwP3h24fM/u98c9ka+Fwj33i
-   hZh3Ysii8vQ6k0D686YdHuBNR97FjqZDkqFtAaXMVP2FEb7OkQrIgs3j5
-   SLDgGDDJyBEjJi/YejLFFFqAyFVQ8AL3yC4NtZc5WArf5ww7AXauC32+u
-   0j50suW+LGPXMABu3BFxgt7FyXAqli38UB+afknJOBU1c8lqyBzHpFwUY
-   A==;
-X-CSE-ConnectionGUID: vCdBlUkxRCyKwVHAPNkYVA==
-X-CSE-MsgGUID: OtIpyU89Rcu+FVojJNhrqA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11269"; a="32946942"
-X-IronPort-AV: E=Sophos;i="6.12,192,1728975600"; 
-   d="scan'208";a="32946942"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Nov 2024 01:14:09 -0800
-X-CSE-ConnectionGUID: uqOmvXfmQWGhfoFoRafCKg==
-X-CSE-MsgGUID: qGqrPxt/RbKGmMsdYDmvEQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,192,1728975600"; 
-   d="scan'208";a="96942880"
-Received: from lkp-server01.sh.intel.com (HELO 8122d2fc1967) ([10.239.97.150])
-  by fmviesa004.fm.intel.com with ESMTP; 28 Nov 2024 01:14:03 -0800
-Received: from kbuild by 8122d2fc1967 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tGab3-0009Nx-07;
-	Thu, 28 Nov 2024 09:14:01 +0000
-Date: Thu, 28 Nov 2024 17:13:47 +0800
-From: kernel test robot <lkp@intel.com>
-To: Heiko Stuebner <heiko@sntech.de>, vkoul@kernel.org, kishon@kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, quentin.schulz@cherry.de,
-	sebastian.reichel@collabora.com, heiko@sntech.de,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	dse@thaumatec.com, Heiko Stuebner <heiko.stuebner@cherry.de>
-Subject: Re: [PATCH v4 2/2] phy: rockchip: Add Samsung MIPI D-/C-PHY driver
-Message-ID: <202411281638.UyY41bPE-lkp@intel.com>
-References: <20241126131736.465111-3-heiko@sntech.de>
+	s=arc-20240116; t=1732785717; c=relaxed/simple;
+	bh=jVZtcysbs8kE04CQUPOu97ung0XQ8T6kq9OrRJg8ocs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QclFk2EKFwOR4svH8Rn1KnJ57dIZpan2sh1NvymreGVWrncQgKl4DrYJHgCnRfIs32Horols//89lC2LVa0W39uF7cQedi7NRo7GuttjoKCDvdv2Yn+AebASem2DXcfti1PBHoevPH8iFsQy+crK90aqymyEFy87luCpJI5YzIg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=nE87CEye; arc=none smtp.client-ip=209.85.208.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2ffe2700e91so1844731fa.2
+        for <devicetree@vger.kernel.org>; Thu, 28 Nov 2024 01:21:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1732785713; x=1733390513; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qKBe2f1d/nSE8/83S7fMxQ2H1MkATAfBQssY2mDkHqw=;
+        b=nE87CEyeuuxB100MzyNhvB1N3dpCT6VFzsKoqBLSCnvDBEwgF/q2x5JBtv5rnz5nbq
+         mEHU16JewWAoHchbXovkPiKUoLCk4U4DEpL/pR+KHWPXb1G/5bJTZq+pCfSrNexCJwgW
+         Of/3cqwHoDZYpI9U8/x3H+9UkTNiv2HkTu0tc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732785713; x=1733390513;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qKBe2f1d/nSE8/83S7fMxQ2H1MkATAfBQssY2mDkHqw=;
+        b=KiGTTU9OyXOc/dfukn3AZTi3pwVlMcE5yfWqR1QKb/lT8VnssNsfBLKDhHUhQTSE+o
+         lVwCzC80p+i5o98obMaQHeSDrbkqSz2g00U7qSn9kBK5SlLaEjXs97/CmR8nSaiugDDB
+         SFiMvXyti25yqlMlAN1zmozokrT4y8QFxjC2hi+fIShTzjKariVF9mpBu/DlYDroAsjc
+         yABZKI+ZfotEgnungHT5k+3QhtNQWAE5E+Uc4Gyxvplw295X1CR1FVnh6c+XtP8v+8Kd
+         0KvcSjbogLA7sq1Hc5Ryq4R1hEgb1CGg+Kf2paZ9u8wkfcMtI969i5Fx4x+vP5UrJp6Q
+         bEbA==
+X-Forwarded-Encrypted: i=1; AJvYcCXx4l6wHFDgXPL47L2CfFuY9pmW77fpdOvsKNUbFkFfw7bllg8m60SENkeP2LsRIPMMpYFgsS7MoZcf@vger.kernel.org
+X-Gm-Message-State: AOJu0YzoqLe5DP7QrMHjIozhzxh35DTUbxycaMRjYQ0lblmOb5jsyDLZ
+	dHY0VqAyil2lnCPIZjzrgp315aSUy9+sdW8o35CTAY3wRzOjxNmFB0U7sbKaDwViPLs4N1r/Hsc
+	75nOOTX2bC3ePMiIYVGy+hWxM23bKKl8U/+yk
+X-Gm-Gg: ASbGnctPJsOYcQ+ULV9xg5GT5shWBd6n+biClB1Ftx0kFm1d61ohfLl3YKNH74GOyPK
+	7ARrUiwhboNgksMtclIvjrcDz+CoB1aPE1kCRXguokTQEtcXTYE7MyVMkmUg=
+X-Google-Smtp-Source: AGHT+IGdj/tSc+Vg1n1HINo9pBj3OGBWaUozOoIytbHjWn8FVwKTt7H+aqMvtclp1yALw92qHHQSj6W/RYGN7E3g/EI=
+X-Received: by 2002:a05:6512:3e08:b0:53d:dbec:9fca with SMTP id
+ 2adb3069b0e04-53df001abb1mr3751297e87.0.1732785712733; Thu, 28 Nov 2024
+ 01:21:52 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241126131736.465111-3-heiko@sntech.de>
+References: <20241124085739.290556-1-fshao@chromium.org> <20241124085739.290556-3-fshao@chromium.org>
+In-Reply-To: <20241124085739.290556-3-fshao@chromium.org>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Thu, 28 Nov 2024 17:21:41 +0800
+Message-ID: <CAGXv+5GeoDK92Zj1vdjwbj-kaTdtmOof9AJySxNYW3EA0960VQ@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] arm64: dts: mediatek: Introduce MT8188 Geralt
+ platform based Ciri
+To: Fei Shao <fshao@chromium.org>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, devicetree@vger.kernel.org, 
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Heiko,
+On Sun, Nov 24, 2024 at 5:01=E2=80=AFPM Fei Shao <fshao@chromium.org> wrote=
+:
+>
+> Introduce MT8188-based Chromebook Ciri, also known commercially as
+> Lenovo Chromebook Duet (11", 9).
+>
+> Ciri is a detachable device based on the Geralt design, where Geralt is
+> the codename for the MT8188 platform. Ciri offers 8 SKUs to accommodate
+> different combinations of second-source components, including:
+> - audio codecs (RT5682S and ES8326)
+> - speaker amps (TAS2563 and MAX98390)
+> - MIPI-DSI panels (BOE nv110wum-l60 and IVO t109nw41)
 
-kernel test robot noticed the following build errors:
+Of note, a couple things are not working:
 
-[auto build test ERROR on rockchip/for-next]
-[also build test ERROR on robh/for-next linus/master v6.12 next-20241128]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+- Touchscreen: missing driver for HiMax SPI HID
+- Trackpad on detachable base: missing driver support in CBAS and
+    associated device tree node
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Heiko-Stuebner/dt-bindings-phy-Add-Rockchip-MIPI-C-D-PHY-schema/20241128-100435
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git for-next
-patch link:    https://lore.kernel.org/r/20241126131736.465111-3-heiko%40sntech.de
-patch subject: [PATCH v4 2/2] phy: rockchip: Add Samsung MIPI D-/C-PHY driver
-config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20241128/202411281638.UyY41bPE-lkp@intel.com/config)
-compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project 592c0fe55f6d9a811028b5f3507be91458ab2713)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241128/202411281638.UyY41bPE-lkp@intel.com/reproduce)
+A couple things below.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202411281638.UyY41bPE-lkp@intel.com/
+> Signed-off-by: Fei Shao <fshao@chromium.org>
+> ---
+>
+> Changes in v3:
+> - drop scp_mem, scp_pins and SCP declaration per discussion in v2
+> - drop unused (for now) dual-SCP reserved memory range
+> - drop unused touchscreen pinctrl
+> - drop unused HID-I2C touchscreen node in I2C-2
+> - drop unused AP-SAR sensor node in I2C-3
+> - drop trackpad node in I2C-4 (only work with downstream CBAS)
+> - drop mmc1 (unused in public product)
+> - drop eDP panel path (unused in public product)
+> - declare DSI panel compatibles in individual board .dts files
+> - declare CPU TDP target in -geralt.dtsi instead
+> - move spi1 default and sleep pinctrl to -geralt.dtsi
+> - leave memory@40000000 size empty (filled by bootloader)
+> - consolidate audio codec/amplifier, DAI link declaration and
+>   audio-routing property
+> - stop sourcing `arm/cros-ec-sbs.dtsi` in -geralt.dtsi, because all that
+>   does is to declare sbs-battery at address 0xb, which doesn't align
+>   with the final design at 0xf. This saves us a /delete-node/.
+> - minor format fix
+>
+> Changes in v2:
+> - remove invalid or undocumented properties
+>     e.g. mediatek,dai-link, maxim,dsm_param_name etc.
+> - remove touchscreen as the driver is not yet accepted in upstream
+> - update sound DAI link node name to match the binding
+> - add missing pinctrls in audio codec nodes
+>
+>  arch/arm64/boot/dts/mediatek/Makefile         |    8 +
+>  .../dts/mediatek/mt8188-geralt-ciri-sku0.dts  |   32 +
+>  .../dts/mediatek/mt8188-geralt-ciri-sku1.dts  |   59 +
+>  .../dts/mediatek/mt8188-geralt-ciri-sku2.dts  |   59 +
+>  .../dts/mediatek/mt8188-geralt-ciri-sku3.dts  |   32 +
+>  .../dts/mediatek/mt8188-geralt-ciri-sku4.dts  |   48 +
+>  .../dts/mediatek/mt8188-geralt-ciri-sku5.dts  |   72 +
+>  .../dts/mediatek/mt8188-geralt-ciri-sku6.dts  |   72 +
+>  .../dts/mediatek/mt8188-geralt-ciri-sku7.dts  |   48 +
+>  .../boot/dts/mediatek/mt8188-geralt-ciri.dtsi |  316 +++++
+>  .../boot/dts/mediatek/mt8188-geralt.dtsi      | 1156 +++++++++++++++++
+>  11 files changed, 1902 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku0.=
+dts
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku1.=
+dts
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku2.=
+dts
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku3.=
+dts
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku4.=
+dts
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku5.=
+dts
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku6.=
+dts
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku7.=
+dts
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri.dtsi
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
 
-All errors (new ones prefixed by >>):
+[...]
 
-   In file included from drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c:15:
-   In file included from include/linux/phy/phy.h:17:
-   In file included from include/linux/regulator/consumer.h:35:
-   In file included from include/linux/suspend.h:5:
-   In file included from include/linux/swap.h:9:
-   In file included from include/linux/memcontrol.h:13:
-   In file included from include/linux/cgroup.h:26:
-   In file included from include/linux/kernel_stat.h:8:
-   In file included from include/linux/interrupt.h:11:
-   In file included from include/linux/hardirq.h:11:
-   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
-   In file included from include/asm-generic/hardirq.h:17:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:14:
-   In file included from arch/hexagon/include/asm/io.h:328:
-   include/asm-generic/io.h:548:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     548 |         val = __raw_readb(PCI_IOBASE + addr);
-         |                           ~~~~~~~~~~ ^
-   include/asm-generic/io.h:561:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     561 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
-         |                                                         ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
-      37 | #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
-         |                                                   ^
-   In file included from drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c:15:
-   In file included from include/linux/phy/phy.h:17:
-   In file included from include/linux/regulator/consumer.h:35:
-   In file included from include/linux/suspend.h:5:
-   In file included from include/linux/swap.h:9:
-   In file included from include/linux/memcontrol.h:13:
-   In file included from include/linux/cgroup.h:26:
-   In file included from include/linux/kernel_stat.h:8:
-   In file included from include/linux/interrupt.h:11:
-   In file included from include/linux/hardirq.h:11:
-   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
-   In file included from include/asm-generic/hardirq.h:17:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:14:
-   In file included from arch/hexagon/include/asm/io.h:328:
-   include/asm-generic/io.h:574:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     574 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
-         |                                                         ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
-      35 | #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
-         |                                                   ^
-   In file included from drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c:15:
-   In file included from include/linux/phy/phy.h:17:
-   In file included from include/linux/regulator/consumer.h:35:
-   In file included from include/linux/suspend.h:5:
-   In file included from include/linux/swap.h:9:
-   In file included from include/linux/memcontrol.h:13:
-   In file included from include/linux/cgroup.h:26:
-   In file included from include/linux/kernel_stat.h:8:
-   In file included from include/linux/interrupt.h:11:
-   In file included from include/linux/hardirq.h:11:
-   In file included from ./arch/hexagon/include/generated/asm/hardirq.h:1:
-   In file included from include/asm-generic/hardirq.h:17:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:14:
-   In file included from arch/hexagon/include/asm/io.h:328:
-   include/asm-generic/io.h:585:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     585 |         __raw_writeb(value, PCI_IOBASE + addr);
-         |                             ~~~~~~~~~~ ^
-   include/asm-generic/io.h:595:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     595 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
-         |                                                       ~~~~~~~~~~ ^
-   include/asm-generic/io.h:605:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     605 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
-         |                                                       ~~~~~~~~~~ ^
-   In file included from drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c:15:
-   In file included from include/linux/phy/phy.h:17:
-   In file included from include/linux/regulator/consumer.h:35:
-   In file included from include/linux/suspend.h:5:
-   In file included from include/linux/swap.h:9:
-   In file included from include/linux/memcontrol.h:21:
-   In file included from include/linux/mm.h:2213:
-   include/linux/vmstat.h:518:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
-     518 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
-         |                               ~~~~~~~~~~~ ^ ~~~
->> drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c:895:23: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     895 |                            I_MUX_SEL_MASK, I_MUX_SEL_400MV);
-         |                                            ^
-   drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c:33:26: note: expanded from macro 'I_MUX_SEL_400MV'
-      33 | #define I_MUX_SEL_400MV         I_MUX_SEL(0)
-         |                                 ^
-   drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c:32:23: note: expanded from macro 'I_MUX_SEL'
-      32 | #define I_MUX_SEL(x)            FIELD_PREP(I_MUX_SEL_MASK, x)
-         |                                 ^
-   drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c:900:50: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     900 |         regmap_write(samsung->regmap, DPHY_MC_GNR_CON1, T_PHY_READY(0x2000));
-         |                                                         ^
-   drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c:69:25: note: expanded from macro 'T_PHY_READY'
-      69 | #define T_PHY_READY(x)          FIELD_PREP(GENMASK(15, 0), x)
-         |                                 ^
-   drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c:945:7: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     945 |                            S(samsung->pll.scaler) | P(samsung->pll.prediv));
-         |                            ^
-   drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c:40:16: note: expanded from macro 'S'
-      40 | #define S(x)                    FIELD_PREP(S_MASK, x)
-         |                                 ^
-   drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c:1116:8: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-    1116 |         val = EDGE_CON(7) | EDGE_CON_DIR(0) | EDGE_CON_EN |
-         |               ^
-   drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c:71:22: note: expanded from macro 'EDGE_CON'
-      71 | #define EDGE_CON(x)             FIELD_PREP(GENMASK(14, 12), x)
-         |                                 ^
-   drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c:1170:8: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-    1170 |         val = EDGE_CON(7) | EDGE_CON_DIR(0) | EDGE_CON_EN |
-         |               ^
-   drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c:71:22: note: expanded from macro 'EDGE_CON'
-      71 | #define EDGE_CON(x)             FIELD_PREP(GENMASK(14, 12), x)
-         |                                 ^
-   7 warnings and 5 errors generated.
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi b/arch/arm64=
+/boot/dts/mediatek/mt8188-geralt.dtsi
+> new file mode 100644
+> index 000000000000..b6abecbcfa81
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt8188-geralt.dtsi
+> @@ -0,0 +1,1156 @@
 
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for MODVERSIONS
-   Depends on [n]: MODULES [=y] && !COMPILE_TEST [=y]
-   Selected by [y]:
-   - RANDSTRUCT_FULL [=y] && (CC_HAS_RANDSTRUCT [=y] || GCC_PLUGINS [=n]) && MODULES [=y]
-   WARNING: unmet direct dependencies detected for GET_FREE_REGION
-   Depends on [n]: SPARSEMEM [=n]
-   Selected by [m]:
-   - RESOURCE_KUNIT_TEST [=m] && RUNTIME_TESTING_MENU [=y] && KUNIT [=m]
+[...]
+
+Looking at the schematic, the following two are actually a TPS65132S
+on i2c3. It should be modeled as such. <&pio 3> is the enable GPIO
+for both positive and negative regulators, while <&pio 4> goes to
+the SYNC pin, which enables higher load on the negative side when
+driven high. The latter is not supported by the driver or binding.
+
+The TPS65132S has a different power sequence requirement compared
+to the other TPS65132 variants.
+
+> +       ppvar_mipi_disp_avdd: regulator-ppvar-mipi-disp-avdd {
+> +               compatible =3D "regulator-fixed";
+> +               regulator-name =3D "ppvar_mipi_disp_avdd";
+> +               enable-active-high;
+> +               gpio =3D <&pio 3 GPIO_ACTIVE_HIGH>;
+> +               pinctrl-names =3D "default";
+> +               pinctrl-0 =3D <&mipi_disp_avdd_en>;
+> +               vin-supply =3D <&pp5000_z1>;
+> +       };
+> +
+> +       ppvar_mipi_disp_avee: regulator-ppvar-mipi-disp-avee {
+> +               compatible =3D "regulator-fixed";
+> +               regulator-name =3D "ppvar_mipi_disp_avee";
+> +               regulator-enable-ramp-delay =3D <10000>;
+> +               enable-active-high;
+> +               gpio =3D <&pio 4 GPIO_ACTIVE_HIGH>;
+> +               pinctrl-names =3D "default";
+> +               pinctrl-0 =3D <&mipi_disp_avee_en>;
+> +               vin-supply =3D <&pp5000_z1>;
+> +       };
+> +
+
+[...]
+
+> +&i2c2 {
+> +       pinctrl-names =3D "default";
+> +       pinctrl-0 =3D <&i2c2_pins>;
+> +       clock-frequency =3D <400000>;
+> +       status =3D "okay";
+> +};
+
+&i2c2 on Ciri is completely unused. Please re-disable it there.
 
 
-vim +/FIELD_PREP +895 drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c
-
-   881	
-   882	static void samsung_mipi_dcphy_bias_block_enable(struct samsung_mipi_dcphy *samsung)
-   883	{
-   884		u32 bias_con2 = 0x3223;
-   885	
-   886		regmap_write(samsung->regmap, BIAS_CON0, 0x0010);
-   887		regmap_write(samsung->regmap, BIAS_CON1, 0x0110);
-   888		regmap_write(samsung->regmap, BIAS_CON2, bias_con2);
-   889	
-   890		/* default output voltage select:
-   891		 * dphy: 400mv
-   892		 * cphy: 530mv
-   893		 */
-   894		regmap_update_bits(samsung->regmap, BIAS_CON4,
- > 895				   I_MUX_SEL_MASK, I_MUX_SEL_400MV);
-   896	}
-   897	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+ChenYu
 
