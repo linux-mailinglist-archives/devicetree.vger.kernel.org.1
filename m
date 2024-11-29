@@ -1,139 +1,163 @@
-Return-Path: <devicetree+bounces-125529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CDA89DE69E
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 13:43:59 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA5FF9DE6AB
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 13:46:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01188280628
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 12:43:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3D08AB2094B
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 12:46:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E587E19C551;
-	Fri, 29 Nov 2024 12:43:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19460198842;
+	Fri, 29 Nov 2024 12:46:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from out-176.mta1.migadu.com (out-176.mta1.migadu.com [95.215.58.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F75F155352
-	for <devicetree@vger.kernel.org>; Fri, 29 Nov 2024 12:43:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6058B158520
+	for <devicetree@vger.kernel.org>; Fri, 29 Nov 2024 12:46:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732884235; cv=none; b=BGVtmw/V6PvGjk11UArHgA0QwXqajqY/5Fk/mL2INQTIudVDmPdJ9GZRMuzqjAtTk8LFYXI03VDTjXUSe4oiv4F3MojapShnZHFMinecie13o6InSt/bkr5sDojfya8YwywQxkhOtady8m1NIKP7sSY46zvirch5UfZoEYEGvTk=
+	t=1732884394; cv=none; b=q5NGGAFmN/ct8i+K89kDgCK1lGJH5SkZAUIjil70/jXShU0Jjofe6BAPUyKjAfxc6scwSMbW20r4+OBP1zKaquDfrBwc/IpKZigD1En6rb8BZvILWrwfYiHj4BV+9nJmrFrzheUviKti+RDPCuOrwOsZTJwAgJs5S35qOjM3J0o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732884235; c=relaxed/simple;
-	bh=NTSz5gwA4107nePYwmw10itH9A9C/xXBIcQiN0xMn6M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ao2qZgAq2BIzo7rpDwTs3kgJ7ehLUn5aVphedtp8KMCDxXd0Ac1Q0mxssjvBysg+vEMkH2EUsd/eqdjP7MlUgeJ5NzJ/d+5FzzkyL5L0lLTzExsTRHC7ICcLaliSZAuO62Jt8pLrQpBeDs/WFd6aqB48wx76noSPV0KJF95s/T0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tH0LT-00045D-0h; Fri, 29 Nov 2024 13:43:39 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tH0LR-000n1t-0v;
-	Fri, 29 Nov 2024 13:43:38 +0100
-Received: from pengutronix.de (pd9e59fec.dip0.t-ipconnect.de [217.229.159.236])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id B67CF381226;
-	Fri, 29 Nov 2024 12:43:37 +0000 (UTC)
-Date: Fri, 29 Nov 2024 13:43:37 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Charan Pedumuru <charan.pedumuru@microchip.com>
-Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Nicolas Ferre <nicolas.ferre@microchip.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>, Andrew Lunn <andrew+netdev@lunn.ch>, linux-can@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: net: can: atmel: Convert to json schema
-Message-ID: <20241129-excellent-optimal-rattlesnake-b352fa-mkl@pengutronix.de>
-References: <20241120-can-v3-1-da5bb4f6128d@microchip.com>
+	s=arc-20240116; t=1732884394; c=relaxed/simple;
+	bh=X7HTknE1ZNCQtR2PQJVYwNbPS4cm2O/nHZN/s+4oBdM=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=eGqcUinczPivD/uv33gb1/DViN3bMFoP+VotPxYNEXN80dVX8nZFuMWp1TG4NbhJacP8Pl9FzOM/V8cXrxlcbKblt7GRGmUtCu+srXm+vJJkcJEwdq7/4dsT5x2m85VcUAXv5SmNlpPoj3m4U9a1xUB1c0tSkUDMiVhDLu0PY14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; arc=none smtp.client-ip=95.215.58.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="dfxtl2sovlzdezlx"
-Content-Disposition: inline
-In-Reply-To: <20241120-can-v3-1-da5bb4f6128d@microchip.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Mime-Version: 1.0
+Content-Type: multipart/signed;
+ boundary=b3737e8e694637f47ed46da814853505c287bb3020cc139beb4cb6d520d9;
+ micalg=pgp-sha256; protocol="application/pgp-signature"
+Date: Fri, 29 Nov 2024 13:46:12 +0100
+Message-Id: <D5YO8QULYWDR.I3T73UCTD0WF@cknow.org>
+Cc: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+ <macromorgan@hotmail.com>, <jonas@kwiboo.se>, <andyshrk@163.com>,
+ <devicetree@vger.kernel.org>, <linux-rockchip@lists.infradead.org>,
+ <dsimic@manjaro.org>
+Subject: Re: [PATCH] arm64: dts: rockchip: add support for device tree
+ overlays for Radxa devices
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <didi.debian@cknow.org>
+To: =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, "FUKAUMI Naoki"
+ <naoki@radxa.com>
+References: <20241129002419.60404-1-naoki@radxa.com>
+ <1952472.6tgchFWduM@diego>
+In-Reply-To: <1952472.6tgchFWduM@diego>
+X-Migadu-Flow: FLOW_OUT
 
-
---dfxtl2sovlzdezlx
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
+--b3737e8e694637f47ed46da814853505c287bb3020cc139beb4cb6d520d9
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3] dt-bindings: net: can: atmel: Convert to json schema
-MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 
-On 20.11.2024 13:58:08, Charan Pedumuru wrote:
-> Convert old text based binding to json schema.
-> Changes during conversion:
-> - Add a fallback for `microchip,sam9x60-can` as it is compatible with the
->   CAN IP core on `atmel,at91sam9x5-can`.
-> - Add the required properties `clock` and `clock-names`, which were
->   missing in the original binding.
-> - Update examples and include appropriate file directives to resolve
->   errors identified by `dt_binding_check` and `dtbs_check`.
->=20
-> Signed-off-by: Charan Pedumuru <charan.pedumuru@microchip.com>
-> ---
-> Changes in v3:
-> - Modified the commit message with reasons for each change
-> - Link to v2: https://lore.kernel.org/r/20241003-can-v2-1-85701d3296dd@mi=
-crochip.com
->=20
-> Changes in v2:
-> - Renamed the title to "Microchip AT91 CAN controller"
-> - Removed the unnecessary labels and add clock properties to examples
-> - Removed if condition statements and made clock properties as default re=
-quired properties
-> - Link to v1: https://lore.kernel.org/r/20240912-can-v1-1-c5651b1809bb@mi=
-crochip.com
+Hi,
 
-Applied with fixing indention in example.
+On Fri Nov 29, 2024 at 1:20 PM CET, Heiko St=C3=BCbner wrote:
+> Am Freitag, 29. November 2024, 01:24:19 CET schrieb FUKAUMI Naoki:
+> > since Radxa devices use device tree overlays[1][2][3], make base .dts
+> > support them.
+>
+> this essentially doubles the sizes of generated DTBs.
+>
+> In previous iterations there were concerns that this might overload
+> allocated memory in legacy firmware that might still run on people's
+> devices.
+>
+> I'm not sure if someone did look deeper into that meanwhile and you
+> can't of course not require people to update u-boot just for a kernel
+> upgrade. Hence previous overlays do not enable those options but instead
+> depend on "distributions" to handle that.
+>
+> So I'm definitly not sure how to proceed with this.
 
-regards,
-Marc
+In my recollection this was brought up when the restructuring of the arm
+(not arm64) dts 'tree' was discussed.
+So hopefully Rob can recall the details?
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+But IIRC, the objection was about enabling it *globally* and instead it
+should be done more granually, be it on the SoC manufacturer level
+('rockchip') or on the SoC ('rk3588') or on the board level as is
+proposed in this patch.
 
---dfxtl2sovlzdezlx
+e925743edc0d ("arm: dts: bcm: Enable device-tree overlay support for RPi de=
+vices")
+is where it got enabled for RPi devices
+
+I can't speak for the Debian kernel team, but the general approach is:
+get it fixed (or in this case enabled) *upstream*.
+That's why Aurelien Jarno (who's a DD) send it upstream.
+
+HTH,
+  Diederik
+
+> > [1] arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-ep.dtso
+> > [2] arch/arm64/boot/dts/rockchip/rk3588-rock-5b-pcie-srns.dtso
+> > [3] https://github.com/radxa-pkg/radxa-overlays
+> >=20
+> > Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+> > ---
+> >  arch/arm64/boot/dts/rockchip/Makefile | 28 +++++++++++++++++++++++++++
+> >  1 file changed, 28 insertions(+)
+> >=20
+> > diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dt=
+s/rockchip/Makefile
+> > index 86cc418a2255..cac3f39af82a 100644
+> > --- a/arch/arm64/boot/dts/rockchip/Makefile
+> > +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> > @@ -1,4 +1,32 @@
+> >  # SPDX-License-Identifier: GPL-2.0
+> > +
+> > +# Enables support for device tree overlays for Radxa devices
+> > +DTC_FLAGS_rk3308-rock-pi-s :=3D -@
+> > +DTC_FLAGS_rk3308-rock-s0 :=3D -@
+> > +DTC_FLAGS_rk3328-rock-pi-e :=3D -@
+> > +DTC_FLAGS_rk3399-rock-4c-plus :=3D -@
+> > +DTC_FLAGS_rk3399-rock-4se :=3D -@
+> > +DTC_FLAGS_rk3399-rock-pi-4a-plus :=3D -@
+> > +DTC_FLAGS_rk3399-rock-pi-4a :=3D -@
+> > +DTC_FLAGS_rk3399-rock-pi-4b-plus :=3D -@
+> > +DTC_FLAGS_rk3399-rock-pi-4b :=3D -@
+> > +DTC_FLAGS_rk3399-rock-pi-4c :=3D -@
+> > +DTC_FLAGS_rk3399pro-rock-pi-n10 :=3D -@
+> > +DTC_FLAGS_rk3528-radxa-e20c :=3D -@
+> > +DTC_FLAGS_rk3566-radxa-cm3-io :=3D -@
+> > +DTC_FLAGS_rk3566-radxa-cm3.dtsi :=3D -@
+> > +DTC_FLAGS_rk3566-radxa-zero-3e :=3D -@
+> > +DTC_FLAGS_rk3566-radxa-zero-3w :=3D -@
+> > +DTC_FLAGS_rk3566-rock-3c :=3D -@
+> > +DTC_FLAGS_rk3568-radxa-cm3i.dtsi :=3D -@
+> > +DTC_FLAGS_rk3568-radxa-e25 :=3D -@
+> > +DTC_FLAGS_rk3568-rock-3a :=3D -@
+> > +DTC_FLAGS_rk3568-rock-3b :=3D -@
+> > +DTC_FLAGS_rk3588-rock-5-itx :=3D -@
+> > +DTC_FLAGS_rk3588-rock-5b :=3D -@
+> > +DTC_FLAGS_rk3588s-rock-5a :=3D -@
+> > +DTC_FLAGS_rk3588s-rock-5c :=3D -@
+> > +
+> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D px30-evb.dtb
+> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D px30-engicam-px30-core-ctouch2.dtb
+> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D px30-engicam-px30-core-ctouch2-of10.d=
+tb
+
+--b3737e8e694637f47ed46da814853505c287bb3020cc139beb4cb6d520d9
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmdJtvYACgkQKDiiPnot
-vG8hDAf/RR6qkSZh/4/lRzmSO1k04OMiEoWCXmhlM3ceBWDO7RKSUFaV5SO+bJ28
-oFpMj2ly5MimZpjnm8oaeFGPCBl5l4dY0YJn/Ghw7wZeS/Kvsg1MLQmaZ6GeP0EX
-6YizPxq9+0ZqAO4YwA2RZtA4CxLdB28XWDj9pIuFTxrSaWq1s9LZ1rcYHXX7tZry
-TM6ZxAKA5IcWrMLS3/uN/unIPAOID7av9vTyM98YeGe1kgQ7KSOZJ7m7oraOPnvr
-/+ZrGQveyEHDwNfbKQ9o4khWkp77w+pVttx86+SZtxMBgFeqcIQpGHc8qZo9Szik
-jBXrO5qN25gTCXiz2LUXeW2MNtjNnA==
-=Yz1e
+iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZ0m3lwAKCRDXblvOeH7b
+bqfCAQDRKJuB0M35DzSoeDImZ2gW4ojJSeHiYBG+Q8bw/n856QD/ZtSZbyu4WEzY
+gQgaaYd78PTfM8jaqBNH//CHdbrfLA0=
+=cbFW
 -----END PGP SIGNATURE-----
 
---dfxtl2sovlzdezlx--
+--b3737e8e694637f47ed46da814853505c287bb3020cc139beb4cb6d520d9--
 
