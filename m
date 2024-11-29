@@ -1,210 +1,273 @@
-Return-Path: <devicetree+bounces-125568-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125569-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 105F39DE8D3
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 15:45:17 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A91CA9DE8DA
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 15:45:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73101282B11
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 14:45:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 23B35B236D9
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 14:45:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1FB9156991;
-	Fri, 29 Nov 2024 14:44:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2FE713B280;
+	Fri, 29 Nov 2024 14:44:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ntMZeMVI"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="EOEchVkh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010005.outbound.protection.outlook.com [52.101.228.5])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 086BB14AD2B;
-	Fri, 29 Nov 2024 14:44:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732891471; cv=none; b=j4HyC1Ula0VSGrgjxy/zugZ/aGnflb6csQYxGdPvxYLnR0st6ACL8FOL22+lzvNbsEHnbRuEI+SvkpmxgkP9/AtJicYTSiW16TTGUMTw4Huo0aI4SM25Eyy+mB2VLXqz0StbRGRje7q135vGe55A3l5J8t9oGaO/HtbpWbkeqwc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732891471; c=relaxed/simple;
-	bh=m2lGAd8xK+lQG1rO7Xg3F66oNsglHKIHJM69OFj9ruA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Ur2mL3bStUm3dZL/lGKFhqQwptKK1qy6ct6XfPI7MHd6bqSt0ux8y913fnyr5mQVw1fzbk0J+hRjolt7apQwAGeVaQZxsUZvXM97aMgmF+EefPqkIUaUc9vCEV3AVHhUchJ1Z/byUNZjQwBih97q5XKJ1qGU5CxiNW+IqsZmFpQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ntMZeMVI; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4ATCU8O6005340;
-	Fri, 29 Nov 2024 14:44:23 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=tsGDbxhBe2l
-	nu+J0hISXvulesaihHAizrF6lf56LC7k=; b=ntMZeMVIrJluIxLG/MImdWQ4zrA
-	AYLtdqHphXqTADarX05JAGFXEmsxv0X3/0TU+0P3TdvbfnCXVx5CEpBs6y/JpmWm
-	4Vp11nVtkNG7/nrQV1Zvoiw1u6L0rf+uneJAsmSinj93vGjX7NqbAftbZDSdXp4u
-	IbuzRCLyAtZ2kd04i+JKvsKbdSB1sv+5SiVHKaBNno/XszRA3Aq8R7HKfaYF2z4e
-	7wMLFtAcPtXeKDcKpqlQ6ujIcgjd06fAJkPm254tiE8WAf/To90tQHkXYZRLxi11
-	hJlR3wkNXshdJNWglPQKSO4EhjVirC0o+WvW3AWtpD9b6+ewQgl4SMMYicQ==
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 436h2mmhd8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 29 Nov 2024 14:44:22 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 4ATEiEXR028785;
-	Fri, 29 Nov 2024 14:44:19 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 43384m8ha5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 29 Nov 2024 14:44:19 +0000
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 4ATEi3GX028668;
-	Fri, 29 Nov 2024 14:44:19 GMT
-Received: from hu-maiyas-hyd.qualcomm.com (hu-msavaliy-hyd.qualcomm.com [10.213.110.207])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 4ATEiIXB028817
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 29 Nov 2024 14:44:19 +0000
-Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 429934)
-	id 3906B240E9; Fri, 29 Nov 2024 20:14:18 +0530 (+0530)
-From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-To: konrad.dybcio@linaro.org, andersson@kernel.org, andi.shyti@kernel.org,
-        linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        conor+dt@kernel.org, agross@kernel.org, devicetree@vger.kernel.org,
-        vkoul@kernel.org, linux@treblig.org, dan.carpenter@linaro.org,
-        Frank.Li@nxp.com, konradybcio@kernel.org, bryan.odonoghue@linaro.org,
-        krzk+dt@kernel.org, robh@kernel.org
-Cc: quic_vdadhani@quicinc.com,
-        Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-Subject: [PATCH v5 4/4] i2c: i2c-qcom-geni: Enable i2c controller sharing between two subsystems
-Date: Fri, 29 Nov 2024 20:13:57 +0530
-Message-Id: <20241129144357.2008465-5-quic_msavaliy@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241129144357.2008465-1-quic_msavaliy@quicinc.com>
-References: <20241129144357.2008465-1-quic_msavaliy@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0874813AA35;
+	Fri, 29 Nov 2024 14:44:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.5
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1732891481; cv=fail; b=YihcVGbloD7KK9bizEZdtQY2UeX0XYpTCk/WLfQKaJk2Vw5PWpeoPkmtXNe7O097aXH+iKPS1IifYzc2wc7yruUA0POSPFOTATs+qQel/cviTIaKOZiSUTW5p5BIZz92atIy5nbIT1iL4/BzbLI9hAgSDKFwPpoTcE5U2T1LqgQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1732891481; c=relaxed/simple;
+	bh=7d3o3pvrD/ossUolwfhECyVLAwZdtV6DiN5K8z1O9OI=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=he+CwKDpp4HZijmkElyazM2iL/8VUg6jsv4MyGF2AyJN3Osf7BtekKtwIl9QczEk/9aGQEkNgdKnmDLxOynaeij39tAnIlcopdmVPKuugSZEU1P/HGd8erq/cnsU8OVIZLae7nY1ADnk6g+kCpKN7TidFL3I+gN1vq9rwib/ysI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=EOEchVkh; arc=fail smtp.client-ip=52.101.228.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=NTa36q3x5jnRbH++Oo8DJUcd2E//lL/txfjY4MQnRzESoh311SiCalFm8zxkfXh7Ife6Wljug0Q1MYt5FUG7A87HSu5oxvNTOJgJE4xLBUQC5ud1xUUgX2Lz8v7qa5dGL0IYm/nXUFbbOEcV+3pWuClrxFSWIDg+9aLSmBl7O6iJ3YfiTDJboNenRvhycFlE2nYjHE6aaxgjKd2tThla/oMv+vOkSavf27FRI3rBAH1/Z2QOyzieesL5/jfMS4V9CDaPH+r0felRd2sWDPe6p/uEldrVOSbowwtcktbhjXntsDPLkIfgJcMp1iNfDGHtVIFbUiQ+jgR90u8aB7LOTQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RXICS5ovCVbjDDr1ulhlqZ0S6H+X2yKCjWRuHT9Has4=;
+ b=hu4JqS7ikKdBtJZXns1G0haZEpUc9cVRNHrR3KEm1X+TjU/TbLjitxYtWaTKegLaehAz8cCU8vbqk0C9T7fFOhyfUock7oekRYONBtjNXJ5xcNj7PMs9r1mXsA/LnEURCz7F7Qtpi+7orCyE2iZjAR5Mpfq66bMKRbHwiNI0QHIbVD40XpOiFJ6Sl3s943XYFQ+L5jkMWwwczL/8Fl8eGTGMVieMTe6djv3haISmB8YYCGi/X/vtAYeJKDywiRvdrEddkoyBljl7FFy57cFEmbWrNnCsyw+434boZQKbPOsrqUwVpIuesbuRrt1o31+TjyvFrGZKicui2KdCZQyaHg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RXICS5ovCVbjDDr1ulhlqZ0S6H+X2yKCjWRuHT9Has4=;
+ b=EOEchVkhZd7cbVn/PIQHJYmC1bNkeC4bxmHIbJHQCxaFmcO18uNufzeLCa/hHPWn4tUoeIf/9pyOdCG53R+FF+S6gP37JZuSlwy3z8xAzj/m2BtNNo2glsaQ1bdRG77ss3IPTaD9wiRZQKvqga4IxpPZzep71EPbckVBQbeThog=
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
+ by TYWPR01MB10330.jpnprd01.prod.outlook.com (2603:1096:400:24a::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8207.13; Fri, 29 Nov
+ 2024 14:44:34 +0000
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1%5]) with mapi id 15.20.8207.010; Fri, 29 Nov 2024
+ 14:44:31 +0000
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Biju Das <biju.das.jz@bp.renesas.com>, Michael Turquette
+	<mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>
+CC: Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm
+	<magnus.damm@gmail.com>, Prabhakar Mahadev Lad
+	<prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, biju.das.au
+	<biju.das.au@gmail.com>
+Subject: RE: [PATCH 04/12] dt-bindings: clock: renesas: Document RZ/G3E SoC
+ CPG
+Thread-Topic: [PATCH 04/12] dt-bindings: clock: renesas: Document RZ/G3E SoC
+ CPG
+Thread-Index: AQHbPNyPwnvP0dd5WEmP41dvvEol37LOX7kQ
+Date: Fri, 29 Nov 2024 14:44:31 +0000
+Message-ID:
+ <TY3PR01MB113461CD9DE5FC325F34462B0862A2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+References: <20241122124558.149827-1-biju.das.jz@bp.renesas.com>
+ <20241122124558.149827-5-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20241122124558.149827-5-biju.das.jz@bp.renesas.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|TYWPR01MB10330:EE_
+x-ms-office365-filtering-correlation-id: 136404af-cb19-480e-fef6-08dd108455c4
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|376014|7416014|1800799024|38070700018;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?mHkkFp0tM4S2BD80zjta3BxnDTXQ8fkPuI1stC3dsHXvz7d8KxJnXCAORNgI?=
+ =?us-ascii?Q?LRF2tNjj89Z8ctlBN1A5PUxN8/ChcrVEOz2gYvE8he/3Gacdq9tFTaHm5EVV?=
+ =?us-ascii?Q?d1MbTprd72qM582jnoejpUUPCyyudYigTVLoe/B2/nyZWtnA2SQErIcppzI6?=
+ =?us-ascii?Q?cIkr7li4/U2fB+2jkqkC8LfRVPgPY7TOLiWT66ASyjNDoP5MENxNspQtXTZx?=
+ =?us-ascii?Q?NAo/SQ7CUk1BrXC8k626yLEim9iwGUV9n60CeaiZTsDW3Y/ACemR+ZN7pHdt?=
+ =?us-ascii?Q?CPg4PsAYL7s1STLPmKnFakxOWFPIBCM8W6Cj02gcV977g4wq+T79XsebDTGS?=
+ =?us-ascii?Q?4HKWB8F9ZUvhULprM4CJkxDhtmXOBeCdZusJTeeEtiBBcxOuB5t/qU2BpbFO?=
+ =?us-ascii?Q?BhZD4FTaso+KoJuDxR8rHjEqXqzwfp3zBqsucZd8b5cjFMDn3fnkbzTYUnlU?=
+ =?us-ascii?Q?hxnsRfYX1SBE5ZIpg8UIv5Kmd4yjlCP8ZKvERz4eUd3hinzAxfH0vCj94Wem?=
+ =?us-ascii?Q?KyKfUQDjRJZeWhi8noU9tKQt7mAtxO2r5x85dnrud7KzglugdpVQH87hYajf?=
+ =?us-ascii?Q?a52soT4mM58nWvhQ1gnZiGSQMyFHofBp0G8wnl6fj835Vlb8qbr+m2eCYW55?=
+ =?us-ascii?Q?pYXkBOKS3OKX7bOmuTKVJm+u8VtJgoDWLdrNOHbjL+WqIiz3KP8m37zM58EH?=
+ =?us-ascii?Q?/VMatFu7UCV8TddbLjkaW7ZGPYfK7paN0g6zJCKzaeIMHiZkGYa8FJmKOxXW?=
+ =?us-ascii?Q?oZijQuBNY8L7ITlFQ5sj0Oh7b11VnC6f/pmuDBs6IYupoBr+ThfUkX/qz4+0?=
+ =?us-ascii?Q?XJlwiYE6VyjjoaVHuR1V+5nLuXlSbkbsUKSkingh7MSn6iVWuC3s08zJHLYh?=
+ =?us-ascii?Q?NbV8Q4jysUKZlx3+Qp+snF/4XxEyb0hV4paXWC9R2M2i+zPmRsreg2nMYQCN?=
+ =?us-ascii?Q?SqcA3MqtpakA/xa9GAWavjIg49qahZ16RyIpXE8K/2f+NvpeYx9i+FjItuQE?=
+ =?us-ascii?Q?M/nt4XH0ZEsetW2/FTAn21lPpCdqWu99zP6F860n+iYu5CXP6j0udFWT+sap?=
+ =?us-ascii?Q?9dt8ewxT7GoCnShAkZoR3n+JvUic2DQLOj1X7z2SyzilrvuqIpzkzPHPAp1t?=
+ =?us-ascii?Q?J6Ik4HXvNZlKhtnZCGfmYy6/yz3QYkuxKgU9eCevjOu7jGayb7E/Dl7pjMbe?=
+ =?us-ascii?Q?ZzuZkrby8DRtthNvumWNhRi+LZxL+1cMay32LBuOKQk7oHWAnhILVtqcouIE?=
+ =?us-ascii?Q?gAgyeu4dvHwVuQYeKci2OxTlDwMmHdILhtTdC2WkG1ego6p2ySxu5QYlCkMl?=
+ =?us-ascii?Q?1/WQXe/z0hO2gPAlaagNrZy+R4noyctiBPrHzrIGCnl3GcO9Ny9nD3K1QBla?=
+ =?us-ascii?Q?sdtYRKo=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?OWJ/vFqQjHbCc1fSA17GNFX4TJb25jLUvU1CY8vsEHEEpCunvoF9NyUsLcuR?=
+ =?us-ascii?Q?Vd+ZZqLKkvAgwYxE81oALY5nMiYNWto+I3EsMEB8F2I5u65aCHCaexj4TLb+?=
+ =?us-ascii?Q?5TZMRzBvPE+gFdWZggh7dhpqFqkLuyJwfEF/ddaOLfGOCep7cf47icM0JrMT?=
+ =?us-ascii?Q?tZpuGDzJdWRdlxt8CONROYeN1Wa58qeEIIRrjkO5s/FCbog5jm6xFYEiMFj+?=
+ =?us-ascii?Q?zBjz/Mj8UgDq+BAb9Q/WPd4p8cZhrf/n3cqQCdZUShalIqi0O+tyN4on61kB?=
+ =?us-ascii?Q?bI1762LZO/vneohcEnfXWrnS6WgNcg40ngXCYIuFXO6qS3nSXD+qM4buLhTm?=
+ =?us-ascii?Q?QFAm7+5a8rzNeheHsuHmskcSeMEQiGgTy4aAQKUuPd5J4izZXRfkDWTVbI2Q?=
+ =?us-ascii?Q?I1tW+2fQ8awiD7wM2TE6BTVGDupIjpT2SDPzeXwpqmVngabZcN6SqrBAIVMs?=
+ =?us-ascii?Q?6T1x5YkkJ4yP/PP6+/Wcw8y3fiQxBx24jWQZNdyZAeTa39SLb/j+cygtdvcR?=
+ =?us-ascii?Q?bR8EwcUL9LeCEPYKZ5dAFURxanpvjWWKJC5zGywwpllnY1NGzpqg6urZQW3D?=
+ =?us-ascii?Q?ODNgtvwJYMHmMpcsi0I6DQmOVcd30hQddxwIIqvqS/w7MQkJy6cnr4IJKDyk?=
+ =?us-ascii?Q?fgahrW3bYYCydnGY7q4aKsW3WwJZSVchniSfYWYd77seX5B5hC/VOtnNxFao?=
+ =?us-ascii?Q?RB5Zggsm6rBgLUu5eQ04faYNDvRNEyEFWI0TOyFD2zsCdPFKwAczV2l0UO6G?=
+ =?us-ascii?Q?UdTYqdYRqMHOKUuDIBYZY3mjIUZN/AqPCVIWyZd13dHEvT5umlH17XNPS1GE?=
+ =?us-ascii?Q?ytdxKowm49gT6X2wYqQ+xB/p+jQdwNaktnAbSO/6FTPOHzMRgdz8XwJedC9l?=
+ =?us-ascii?Q?YyQEVqBw9rMdXz2cSURsIWVH9xMrnZBYVz1sHWGKwOPUeqJCodaBToil8QKf?=
+ =?us-ascii?Q?O+sOFnFL8K7GuOCXv2kwOrkm4BtIp9+RsaUwqwM68jKcBlRU2cI8DFB6w9JH?=
+ =?us-ascii?Q?JaX1i3kJNuJAoQ4W/2BwzmTANwQvubX4BLePU781Xqiq4QKNMkZLoTpBaB4E?=
+ =?us-ascii?Q?WLEw8Q+TRFBZvVkkz4MIQPffC5zlfFO+Wzhr7J1Sgi6uJzkwkr6HtcrieBEr?=
+ =?us-ascii?Q?q8gA5RZuza8VJCQu3mQ3qKpgpV7HQgjWZxjJAUMk4Xbf3u5RD88D4p3fs4Ux?=
+ =?us-ascii?Q?IjMWfbxUtuGGTyAM2ZpFkeFVOVUZKCgFyprMM7/tZIXJERx3lQHAMdkZeU+T?=
+ =?us-ascii?Q?UmjNKxrTv5czp493u4Ho+i+dGXSHvsVDieN6fZppLEw4+jzPHu0WfZeA0kzh?=
+ =?us-ascii?Q?2915XSx/2mp1sWUXTHwYkE14JuqlxfQfUmYZN1CsYzMyhm0pPzL1uhmj5Yxr?=
+ =?us-ascii?Q?Dl9V2ycqYON2rR4X0m5nmqm30wx6KEwHcGKkw+VQ4lzeTJDDcLAAy0PMQdc/?=
+ =?us-ascii?Q?tRzqIXXJFMSvz+SiwvMJ4cQ7anQHCmeLnD6Ra3O/muEbRq3PpG3LMu9ftW3W?=
+ =?us-ascii?Q?0Wf55OnKP3OvjeoEk6rloe0mBZNg4VVUge3CrsyKWSGcvsn5YLUChLLuK6lf?=
+ =?us-ascii?Q?DvnkdPFV82Y7Y8942wvzrTPKx6pVd6+WFEM1hDZXs4nPcki0pvl6/fbjnukl?=
+ =?us-ascii?Q?uA=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 00WwSYgGU8BoyPRopmlXDa3RI6qakwuQ
-X-Proofpoint-ORIG-GUID: 00WwSYgGU8BoyPRopmlXDa3RI6qakwuQ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- bulkscore=0 malwarescore=0 phishscore=0 suspectscore=0 adultscore=0
- spamscore=0 lowpriorityscore=0 mlxscore=0 impostorscore=0 clxscore=1015
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2411290120
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 136404af-cb19-480e-fef6-08dd108455c4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Nov 2024 14:44:31.6898
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: EjQvlvzQbVyYIXwqAoT9HxE/gtBiUy8q69lYpRozMBhcEWR4Q/G4KI4YbvB11Un9GYQYpFwShGHzoDXmOrIT6NyV98LUTgW7utDzz7dBeec=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB10330
 
-Add support to share I2C controller in multiprocessor system in a mutually
-exclusive way. Use "qcom,shared-se" flag in a particular i2c instance node
-if the usecase requires i2c controller to be shared.
+Hi Conor and Geert,
 
-Sharing of I2C SE(Serial engine) is possible only for GSI mode as client
-from each processor can queue transfers over its own GPII Channel. For
-non GSI mode, we should force disable this feature even if set by user
-from DT by mistake.
+> -----Original Message-----
+> From: Biju Das <biju.das.jz@bp.renesas.com>
+> Sent: 22 November 2024 12:46
+> Subject: [PATCH 04/12] dt-bindings: clock: renesas: Document RZ/G3E SoC C=
+PG
+>=20
+> Document the device tree bindings for the Renesas RZ/G3E SoC Clock Pulse =
+Generator (CPG).
+>=20
+> Also define constants for the core clocks of the RZ/G3E SoC.
+>=20
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+>  .../bindings/clock/renesas,rzv2h-cpg.yaml     | 15 +++++++------
+>  .../dt-bindings/clock/renesas,r9a09g047-cpg.h | 21 +++++++++++++++++++
+>  2 files changed, 30 insertions(+), 6 deletions(-)  create mode 100644 in=
+clude/dt-
+> bindings/clock/renesas,r9a09g047-cpg.h
+>=20
+> diff --git a/Documentation/devicetree/bindings/clock/renesas,rzv2h-cpg.ya=
+ml
+> b/Documentation/devicetree/bindings/clock/renesas,rzv2h-cpg.yaml
+> index 926c503bed1f..c3fe76abd549 100644
+> --- a/Documentation/devicetree/bindings/clock/renesas,rzv2h-cpg.yaml
+> +++ b/Documentation/devicetree/bindings/clock/renesas,rzv2h-cpg.yaml
+> @@ -4,19 +4,22 @@
+>  $id: http://devicetree.org/schemas/clock/renesas,rzv2h-cpg.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>=20
+> -title: Renesas RZ/V2H(P) Clock Pulse Generator (CPG)
+> +title: Renesas RZ/{G3E,V2H(P)} Clock Pulse Generator (CPG)
+>=20
+>  maintainers:
+>    - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>=20
+>  description:
+> -  On Renesas RZ/V2H(P) SoCs, the CPG (Clock Pulse Generator) handles gen=
+eration
+> -  and control of clock signals for the IP modules, generation and contro=
+l of resets,
+> -  and control over booting, low power consumption and power supply domai=
+ns.
+> +  On Renesas RZ/{G3E,V2H(P)} SoCs, the CPG (Clock Pulse Generator)
+> + handles  generation and control of clock signals for the IP modules,
+> + generation and  control of resets, and control over booting, low power
+> + consumption and power  supply domains.
+>=20
+>  properties:
+>    compatible:
+> -    const: renesas,r9a09g057-cpg
+> +    enum:
+> +      - renesas,r9a09g047-cpg # RZ/G3E
+> +      - renesas,r9a09g057-cpg # RZ/V2H
+>=20
+>    reg:
+>      maxItems: 1
+> @@ -37,7 +40,7 @@ properties:
+>      description: |
+>        - For CPG core clocks, the two clock specifier cells must be "CPG_=
+CORE"
+>          and a core clock reference, as defined in
+> -        <dt-bindings/clock/renesas,r9a09g057-cpg.h>,
+> +        <dt-bindings/clock/renesas,r9a09g0*-cpg.h>,
+>        - For module clocks, the two clock specifier cells must be "CPG_MO=
+D" and
+>          a module number.  The module number is calculated as the CLKON r=
+egister
+>          offset index multiplied by 16, plus the actual bit in the regist=
+er diff --git a/include/dt-
+> bindings/clock/renesas,r9a09g047-cpg.h b/include/dt-bindings/clock/renesa=
+s,r9a09g047-cpg.h
+> new file mode 100644
+> index 000000000000..5bcab7ca2bfc
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/renesas,r9a09g047-cpg.h
+> @@ -0,0 +1,21 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> + *
+> + * Copyright (C) 2024 Renesas Electronics Corp.
+> + */
+> +#ifndef __DT_BINDINGS_CLOCK_RENESAS_R9A09G047_CPG_H__
+> +#define __DT_BINDINGS_CLOCK_RENESAS_R9A09G047_CPG_H__
+> +
+> +#include <dt-bindings/clock/renesas-cpg-mssr.h>
+> +
+> +/* Core Clock list */
+> +#define R9A09G047_SYS_0_PCLK			0
+> +#define R9A09G047_CA55_0_CORE_CLK0		1
+> +#define R9A09G047_CA55_0_CORE_CLK1		2
+> +#define R9A09G047_CA55_0_CORE_CLK2		3
+> +#define R9A09G047_CA55_0_CORE_CLK3		4
 
-I2C driver just need to mark first_msg and last_msg flag to help indicate
-GPI driver to take lock and unlock TRE there by protecting from concurrent
-access from other EE or Subsystem.
+Typo here based on the based on "RZG3E_ClockList_rev1.0_na.xlsx"
+CORE_CLK*-> CORECLK*
 
-gpi_create_i2c_tre() function at gpi.c will take care of adding Lock and
-Unlock TRE for the respective transfer operations.
+I will fix this while sending v2.
 
-Since the GPIOs are also shared between two SS, do not unconfigure them
-during runtime suspend. This will allow other SS to continue to transfer
-the data without any disturbance over the IO lines.
-
-For example, Assume an I2C EEPROM device connected with an I2C controller.
-Each client from ADSP and APPS processor can perform i2c transactions
-without any disturbance from each other.
-
-Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
----
- drivers/i2c/busses/i2c-qcom-geni.c | 22 +++++++++++++++++++---
- 1 file changed, 19 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/i2c/busses/i2c-qcom-geni.c b/drivers/i2c/busses/i2c-qcom-geni.c
-index 7a22e1f46e60..ccf9933e2dad 100644
---- a/drivers/i2c/busses/i2c-qcom-geni.c
-+++ b/drivers/i2c/busses/i2c-qcom-geni.c
-@@ -1,5 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0
- // Copyright (c) 2017-2018, The Linux Foundation. All rights reserved.
-+// Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
- 
- #include <linux/acpi.h>
- #include <linux/clk.h>
-@@ -617,6 +618,7 @@ static int geni_i2c_gpi_xfer(struct geni_i2c_dev *gi2c, struct i2c_msg msgs[], i
- 	peripheral.clk_div = itr->clk_div;
- 	peripheral.set_config = 1;
- 	peripheral.multi_msg = false;
-+	peripheral.shared_se = gi2c->se.shared_geni_se;
- 
- 	for (i = 0; i < num; i++) {
- 		gi2c->cur = &msgs[i];
-@@ -627,6 +629,8 @@ static int geni_i2c_gpi_xfer(struct geni_i2c_dev *gi2c, struct i2c_msg msgs[], i
- 		if (i < num - 1)
- 			peripheral.stretch = 1;
- 
-+		peripheral.first_msg = (i == 0);
-+		peripheral.last_msg = (i == num - 1);
- 		peripheral.addr = msgs[i].addr;
- 
- 		ret =  geni_i2c_gpi(gi2c, &msgs[i], &config,
-@@ -815,6 +819,11 @@ static int geni_i2c_probe(struct platform_device *pdev)
- 		gi2c->clk_freq_out = KHZ(100);
- 	}
- 
-+	if (of_property_read_bool(pdev->dev.of_node, "qcom,shared-se")) {
-+		gi2c->se.shared_geni_se = true;
-+		dev_dbg(&pdev->dev, "I2C is shared between subsystems\n");
-+	}
-+
- 	if (has_acpi_companion(dev))
- 		ACPI_COMPANION_SET(&gi2c->adap.dev, ACPI_COMPANION(dev));
- 
-@@ -887,8 +896,10 @@ static int geni_i2c_probe(struct platform_device *pdev)
- 	else
- 		fifo_disable = readl_relaxed(gi2c->se.base + GENI_IF_DISABLE_RO) & FIFO_IF_DISABLE;
- 
--	if (fifo_disable) {
--		/* FIFO is disabled, so we can only use GPI DMA */
-+	if (fifo_disable || gi2c->se.shared_geni_se) {
-+		/* FIFO is disabled, so we can only use GPI DMA.
-+		 * SE can be shared in GSI mode between subsystems, each SS owns a GPII.
-+		 **/
- 		gi2c->gpi_mode = true;
- 		ret = setup_gpi_dma(gi2c);
- 		if (ret) {
-@@ -900,6 +911,12 @@ static int geni_i2c_probe(struct platform_device *pdev)
- 		dev_dbg(dev, "Using GPI DMA mode for I2C\n");
- 	} else {
- 		gi2c->gpi_mode = false;
-+
-+		if (gi2c->se.shared_geni_se) {
-+			dev_err(dev, "I2C sharing is not supported in non GSI mode\n");
-+			return -EINVAL;
-+		}
-+
- 		tx_depth = geni_se_get_tx_fifo_depth(&gi2c->se);
- 
- 		/* I2C Master Hub Serial Elements doesn't have the HW_PARAM_0 register */
-@@ -981,7 +998,6 @@ static int __maybe_unused geni_i2c_runtime_suspend(struct device *dev)
- 	if (ret) {
- 		enable_irq(gi2c->irq);
- 		return ret;
--
- 	} else {
- 		gi2c->suspended = 1;
- 	}
--- 
-2.25.1
-
+Cheers,
+Biju
 
