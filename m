@@ -1,140 +1,125 @@
-Return-Path: <devicetree+bounces-125483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02A219DC14A
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 10:15:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 121AB9DC15C
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 10:22:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3744163220
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 09:15:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C3863164352
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 09:22:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E77B615852E;
-	Fri, 29 Nov 2024 09:15:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B95F175D5A;
+	Fri, 29 Nov 2024 09:22:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Oa8u1sOQ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ifAlznO0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE0B0156C52;
-	Fri, 29 Nov 2024 09:15:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2884B14F135
+	for <devicetree@vger.kernel.org>; Fri, 29 Nov 2024 09:22:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732871711; cv=none; b=s6aNG4Wg/+gOQ8UR7bfMaPl6XQxwTk8ksnJvOzEOFFyKw7vKhwGutVXWPJgE/vGdWqbZsrEff9Poqq1tkWQTiI7ZYxgKREVzXx5caLKXB466mjcnKS86S1ac2u0dDWbg1vfpUpyFxGy+kfaf+wZLstg2Mg0ECG+gVlTUnycgjaM=
+	t=1732872154; cv=none; b=cQ5BuvKiJkHYyZR3Bu1vHBcjCuRE5JaVC3g0DgfktS+zNgUGB5Kpxbh7WcBm56VYf7ia3hWPqUO5s+oG5RHh/ZopOtURiTKcqm8xi/DGUbGk6/6w+aapST+8/nxTqYz+7nQOAeunKhKTalCo3bplOD0BvG24NtEihSos/d29Dac=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732871711; c=relaxed/simple;
-	bh=NzNftm1ZnlpiAKgrKxuf0+RxODtl1oUuTFr/aTkSf5A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WotN1VLUNGDFNFkP8omVEeWtBUgGz12LMtO6TX2046t1z2LQ9xCtV2WFnPi1hUPhPTOHndfaXXM0KviW5KoWgZ8j0NvY2gqAPcs6WPJQd0kOSjoeH78ca3i/kk9aJI5+RTJTORqkQvP94JDxMrjhO4ayh3CRMTcEOthOjMFlTFM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Oa8u1sOQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9954C4CED3;
-	Fri, 29 Nov 2024 09:15:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732871711;
-	bh=NzNftm1ZnlpiAKgrKxuf0+RxODtl1oUuTFr/aTkSf5A=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Oa8u1sOQYbeO8k8CMZgNNVlek23VaiDJzKhysnmNdYkHe8bgjIKba7XZtJGOPkbIh
-	 0LU2PbPvTRiDLnVVxbicVssRxTGQXSN9SrfNFsq/NeZY0OQCR0Pay7vqaayCrg4CFX
-	 JhJpqZCWctYGE6ygZX6c09XUTBajnEYcEITfKybpQRERQZ9xflk9vorNFXIxjeqXWs
-	 W9JkoWP2dT1loQrS4DG1FdS9XpjG6H20Ees/FQR0Cc5MBVbsDb5dMDdTIlXgCSsoVS
-	 Gr5klivMjpgm/6X29FsDo+miFzCKrnUkG+4nF8hSgAaoG6GwaqifSfawD5xEejrsTS
-	 LASleBtpwSs1Q==
-Message-ID: <e57dfc3e-b702-4803-b776-20c6dbd98fef@kernel.org>
-Date: Fri, 29 Nov 2024 10:15:05 +0100
+	s=arc-20240116; t=1732872154; c=relaxed/simple;
+	bh=JiIfkNNTfG2wLwCrL8SHt4I5iayU11reYKOyFG1OMt8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YnY9mDQW9w6EaLEeji/RJxtHqFiRFnXpZqc1klT11wchJOEf0ts3HMPewoktXW2RwPP3CL3UAVgyedHu3RGppmPgAKvCvlnVhtBjzYgF0NvidZYE5qvIrPfLWl2GNhasLlVqHbvPfWrpuyLkiHUk7U0dKgvp8vQoUr7Rrm1JoLk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ifAlznO0; arc=none smtp.client-ip=209.85.160.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-2967af48248so935205fac.2
+        for <devicetree@vger.kernel.org>; Fri, 29 Nov 2024 01:22:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1732872151; x=1733476951; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JiIfkNNTfG2wLwCrL8SHt4I5iayU11reYKOyFG1OMt8=;
+        b=ifAlznO0BahjWOJe/7uZG4FdNjrvuq4ZUvuQKDhjAceh+MDt1cI3hkMNzlApRTkfot
+         I2wtTjzvla0yf0oLpr5exaSFBbBjuL6ZVEc1QthglX1/JqJQ7cZ18CWK7a0swuO9DKDd
+         Dd4yOcSA469hD+PPUzZit8NgDwjQnnBKonpYQMTRF/kAc3Gu3ykpSVAStfbUwtcDh3GL
+         tnLPrNm4y+I0tK7oHKP/WsID3u9lbqYIHv1R4MoU2UEDl8iAdtNc36iliiMKDqvSXcuA
+         Cw7ydtWGR1W886MYoYJQVv2ukIYEcxE6bMYxD9GdEjCaXhyQueE89r9BKp1ui4R4bnXM
+         1kKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732872151; x=1733476951;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JiIfkNNTfG2wLwCrL8SHt4I5iayU11reYKOyFG1OMt8=;
+        b=Elt7QgY5yvALKeGt++8Zv7Xrb4EiNjS8F5rr/ik3MLsfd1XuHibUiOejACR81VfCPJ
+         F3LyL6DmnhSYIEk7Kj1lMk5RGiREtbY4HvP4LO8TQqo9K1vDiLbFRbmwBJHo8qlEZYBF
+         /GH/kgRQls07PbL3iTmkCv6FYfAo9gK9GC/nY9WxE5ZSycUA8AlE0N3hAN8ZrC53LJt5
+         b0MvzkXus8N9kr3zc3fOyTvZCKjziaNkz49MZNrV8eKN7kPTqn79YAPOWB8Bk3RvjVrH
+         +cRSqvKT+DfsZTAkXFQn4sEZvH9h7/MiYSSoNXSKbdNQQ3VW7NwPJc2rtyHsZSiA628D
+         jVKg==
+X-Forwarded-Encrypted: i=1; AJvYcCUdBZIs6s7bCe40lfnOBpUjBh+YbdeQUE4M+KImxd0JVTkMpIxJp5ia3vI64khNmbn0y/YIcP6JzdbU@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw6m9WnFB3HGRgHCZf3cpFecAxpjFCqGrsVyfLG7aAKkhOBH5up
+	KdLscxlgfxjO8aS4Pr4S5PyCDxSBt6UtbsN2logoc+2TC04710+7ZRws6ELC723W/AKPLO8LWR7
+	mX5mHA2mV06902PQfcCKZK2L35M9OkS/Ugx23Rg==
+X-Gm-Gg: ASbGncvsYU1E5eaMpJcFZ4c0qxPcvCjDn6bn85LurGh3JZfMbdg6NCQYZucEzku3K85
+	C6l6YlkyKLlkYOYcPrrD4eyYeeRwZFv8k
+X-Google-Smtp-Source: AGHT+IFjSIqaNaKVZ3/NuPe/UxWWplbF+FKubgmNFJXh3rXD7HgOiYLcq/AbS7MVH0EyqYNXM/cmA1yMxrA0FbnycFY=
+X-Received: by 2002:a05:6870:7d13:b0:278:2c82:e056 with SMTP id
+ 586e51a60fabf-29dc4199014mr6752255fac.23.1732872151330; Fri, 29 Nov 2024
+ 01:22:31 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: misc: bist: Add BIST dt-binding for TI
- K3 devices
-To: Neha Malcom Francis <n-francis@ti.com>
-Cc: nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, u-kumar1@ti.com
-References: <20241128140825.263216-1-n-francis@ti.com>
- <20241128140825.263216-2-n-francis@ti.com>
- <ho7ktcnbtl7mvamfthqho23co2fc4z7bgjha7pu4wivxm6ndhu@tfbpveonhckz>
- <837d329b-bcdd-4c3b-b508-e916b110ce25@ti.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <837d329b-bcdd-4c3b-b508-e916b110ce25@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20241127-gs101-phy-lanes-orientation-phy-v1-0-1b7fce24960b@linaro.org>
+ <20241127-gs101-phy-lanes-orientation-phy-v1-5-1b7fce24960b@linaro.org>
+In-Reply-To: <20241127-gs101-phy-lanes-orientation-phy-v1-5-1b7fce24960b@linaro.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Fri, 29 Nov 2024 09:22:20 +0000
+Message-ID: <CADrjBPqUUXxjKapaSdWQz2PL8MsYVr74HCP_OqZZSG4w58_U1Q@mail.gmail.com>
+Subject: Re: [PATCH 5/9] phy: exynos5-usbdrd: fix EDS distribution tuning (gs101)
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marek Szyprowski <m.szyprowski@samsung.com>, Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
+	Sam Protsenko <semen.protsenko@linaro.org>, Will McVicker <willmcvicker@google.com>, 
+	Roy Luo <royluo@google.com>, kernel-team@android.com, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 29/11/2024 08:43, Neha Malcom Francis wrote:
->>> +
->>> +  power-domains:
->>> +    maxItems: 1
->>> +
->>> +  ti,bist-instance:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    description:
->>> +      the BIST instance in the SoC represented as an integer
->>
->> No instance indices are allowed. Drop.
->>
-> 
-> Question on this, this is not a property that is driven by software but rather 
-> indicates which register sequences have to be picked up for triggering this test 
-> from this instance. So I don't see how I can workaround this without getting 
-> this number. Or maybe call it ID rather than instance?
+Hi Andr=C3=A9,
 
-I don't understand how the device operates, so what is exactly behind
-some sequences of registers for triggering this test. You described
-property as index or ID of one instance of the block. That's not what we
-want in the binding. That's said maybe other, different hardware
-characteristic is behind, who knows. Or maybe it's about callers... or
-maybe that's not hardware property at all, but runtime OS, who knows.
+On Wed, 27 Nov 2024 at 10:58, Andr=C3=A9 Draszik <andre.draszik@linaro.org>=
+ wrote:
+>
+> This code's intention is to configure lane0 and lane2 tunings, but for
+> lane2 there is a typo and it ends up tuning something else.
+>
+> Fix the typo, as it doesn't appear to make sense to apply different
+> tunings for lane0 vs lane2.
+>
+> The same typo appears to exist in the bootloader, hence we restore the
+> original value in the typo'd registers as well. This can be removed
+> once / if the bootloader is updated.
+>
+> Note that this is incorrect in the downstream driver as well - the
+> values had been copied from there.
+>
+> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+> ---
 
-Best regards,
-Krzysztof
+Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
+Tested-by: Peter Griffin <peter.griffin@linaro.org>
+
+Validated that a super-speed USB link is established between Pixel 6
+phone and my laptop with this patch applied and that adb works.
+
+regards,
+
+Peter
 
