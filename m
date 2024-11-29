@@ -1,238 +1,568 @@
-Return-Path: <devicetree+bounces-125430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBB8F9DBFC2
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 08:28:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 333889DBFCB
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 08:41:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 686A1B21A51
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 07:28:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E8798281730
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 07:41:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6B04157E88;
-	Fri, 29 Nov 2024 07:28:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="i+WN5eQB";
-	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="uClH7d38"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1257F156646;
+	Fri, 29 Nov 2024 07:41:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4781845C14;
-	Fri, 29 Nov 2024 07:28:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=210.61.82.184
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732865320; cv=fail; b=T7B7Llyc/03UG9Nb/v4bReBn+lkbMWinXu7EPPGpbJcuDHkg8yMuD4FNKR0qKRGLCXUqIJ97g5vNW0zrYM95KQ/Tx29AWQP3T1I7B7rpYgq90tEIYYiUJrT4dVnp55AN1vKgy6JvWgTjXJbKx9fLxHOW9q0RC68h6I41DSm1ils=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732865320; c=relaxed/simple;
-	bh=MyRUuMhvJZ3z8X5HFUnHNWgDCqCPYkZ5sE5KtHWM83E=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=MMbs5lgT2AhlXrpbvo3CXC7W4RKBMm1AZT+/fjHpPyHxItTSP7IiFOcpvJmHP4h3UGWGRtbWkpi3hC/5lO06Tai/c4+Gz9wi22e14a1VtCODvqTWLdNo2NGRPqMGFcPNLT/3siaOlzrlIJuacvEoUB5zvw23FYRrzRuVhVlQdB8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=i+WN5eQB; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=uClH7d38; arc=fail smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 89196daaae2311efbd192953cf12861f-20241129
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=MyRUuMhvJZ3z8X5HFUnHNWgDCqCPYkZ5sE5KtHWM83E=;
-	b=i+WN5eQBDmYIHl5122nkPwpTpmu++LhPBy01VPDoJoYMQkzZSvC8MBsSooDJ1IiiQOwUz4qn3h0nOhH8tYGy0LzoGnqrGVcs6xWnCPFguHgLQN65RbvBmU5gLdkDwwj3DrPeQAOV+h3s6dPUGnsf59yc+dLsA1oplW5QAuOzBEI=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.44,REQID:49fc84b6-37d9-4c07-b027-13448fbd5a21,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:464815b,CLOUDID:af2c78e0-1fe5-4c4a-bdf3-d07f9790da32,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102,TC:nil,Content:0,EDM
-	:-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0
-	,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 89196daaae2311efbd192953cf12861f-20241129
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
-	(envelope-from <ck.hu@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1907571805; Fri, 29 Nov 2024 15:28:31 +0800
-Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Fri, 29 Nov 2024 15:28:30 +0800
-Received: from HK2PR02CU002.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Fri, 29 Nov 2024 15:28:30 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dHaI/dqo0PBlurA81AkF4dyIRJ2RHunVHHTcFyH+PIJIjbSWB9PQchhWHkVpnDJtokOmOtMmX7aUyH3H2jiJ7bodvnJRKb4SKmGHSjEAQVo+V5N6rGNf9/FcmSE2BE+ej0kbIa6toCacp8fqhbnNW7+Ne96vT1GcZ5hLCCeryup1Xm/214jtXcC/gwSc6MeW+oFMHjvVYc2QXothFetBsxp0CCAsrmUnws0S8fyiFFyyDwSlQETc7Hrul7wkEO4x9rflUEEZ2NlnoDujD1TkiUTc6DUzNIXR3ZXz5qtgQXWAco47ht5iCY7hwoJewVv1NfRG5D3HDaIr+oh0ehdEGg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MyRUuMhvJZ3z8X5HFUnHNWgDCqCPYkZ5sE5KtHWM83E=;
- b=QPAwJR62ZyQ3/1YE/wnXku/xgC+ew8nJAYH18uKrS24WeFg9wLffxvhQYbI608i7U4iLuFk43rBRIa8WVOwTy33OY9jkOaPN7sNiHkVSG2FYwL50YPVzMXlGA3RneavyZstRnAEehNjILf/kcKq9q4m7AMoG8bhclyPqUihefIdH46TztRYZEpVz4TGdUPMFwitNn8vdaREq/NoeuVA0L7ziclMN8JTyJyd7JU4O7xY+Bfmb+A9vhTNQL5oj+2HMj4n4kZ+p7pLtYvrpu9ENph/xjytD+EBh4xU8Uj1rK9wnhTYEQfX2H02SPBF0XhSZWJUoBWlcHFz2t/sMhFoU5g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MyRUuMhvJZ3z8X5HFUnHNWgDCqCPYkZ5sE5KtHWM83E=;
- b=uClH7d38/PU8tyjtX96zYQZDye3naXnzcuL5V+anRL/kULSSwNQDdefw5+SrC4QialgRre1GeWGT59kf7SNkaTAHV8L9WGo8yjvSO/OHsg1p+/9ACEtSgpRYup7AaZwSz1RlhIvGyVKtqWCfTYytFPsNtevDg3F0i6YexTRVxuk=
-Received: from TYZPR03MB6624.apcprd03.prod.outlook.com (2603:1096:400:1f4::13)
- by SEZPR03MB7300.apcprd03.prod.outlook.com (2603:1096:101:127::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8182.19; Fri, 29 Nov
- 2024 07:28:28 +0000
-Received: from TYZPR03MB6624.apcprd03.prod.outlook.com
- ([fe80::9ce6:1e85:c4a7:2a54]) by TYZPR03MB6624.apcprd03.prod.outlook.com
- ([fe80::9ce6:1e85:c4a7:2a54%3]) with mapi id 15.20.8182.018; Fri, 29 Nov 2024
- 07:28:27 +0000
-From: =?utf-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	"chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
-CC: "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"tzimmermann@suse.de" <tzimmermann@suse.de>, "simona@ffwll.ch"
-	<simona@ffwll.ch>, "mripard@kernel.org" <mripard@kernel.org>,
-	"kernel@collabora.com" <kernel@collabora.com>, "p.zabel@pengutronix.de"
-	<p.zabel@pengutronix.de>, "maarten.lankhorst@linux.intel.com"
-	<maarten.lankhorst@linux.intel.com>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-	"airlied@gmail.com" <airlied@gmail.com>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "matthias.bgg@gmail.com"
-	<matthias.bgg@gmail.com>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>
-Subject: Re: [PATCH v1 6/7] drm/mediatek: mtk_hdmi: Split driver and add
- common probe function
-Thread-Topic: [PATCH v1 6/7] drm/mediatek: mtk_hdmi: Split driver and add
- common probe function
-Thread-Index: AQHbO0pOdhPnCCfvPUeRqumGFBNh8LLN6fcA
-Date: Fri, 29 Nov 2024 07:28:26 +0000
-Message-ID: <4e9794a8151422de251b38df0d0ec714dc6651a4.camel@mediatek.com>
-References: <20241120124512.134278-1-angelogioacchino.delregno@collabora.com>
-	 <20241120124512.134278-7-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20241120124512.134278-7-angelogioacchino.delregno@collabora.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYZPR03MB6624:EE_|SEZPR03MB7300:EE_
-x-ms-office365-filtering-correlation-id: ae9d467f-61c2-4a09-880f-08dd10476a64
-x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|366016|38070700018;
-x-microsoft-antispam-message-info: =?utf-8?B?UXczS3BKSzhHVkdxcWFTZWkrOTRuRGFQZjdNZDFMdlNTZzdRelFTYUZZYXZN?=
- =?utf-8?B?TWFiTHZjNCtkcWNzS2RKUnNYTW56RWNlVzJBVm55ZUxZZ29HOXdpRjdIUWJk?=
- =?utf-8?B?NUZxSHVKL0VEZGcvbURNa0xYeEwydHZROEZVMzFLQVM3NEQwS3lQeU5ieVN2?=
- =?utf-8?B?dWFSazBQYWVKNDIrRnp4TldPSW8zL2dsdVJTMUQxZWN2QTlpSVQvU1ZzTG1u?=
- =?utf-8?B?eXpHaFBkYTRzazZMOHdWZUpyMjNGUjN4ZkIzekxHcG9mV0dDRFBiNUpHNDAy?=
- =?utf-8?B?ekRlSW16cG5rbzRoN2lyR3ZVbnB1aHkxWVBpRWpnRzNza2xISXU5V2hEa1dE?=
- =?utf-8?B?MjMyL29FK3RiVTAyeTJpekxvczI1WVExWHdrb3RMcjdGeDBVT3RxVkhBZFdC?=
- =?utf-8?B?WW01NEJnWEZQN1o5U1lac2lnM1JuZnNaK3Z5U3kza1RENDF1Y1lhOTExUmtX?=
- =?utf-8?B?WlUrSEtoWVhIU0MwWmd6dzRHZlBJS0prMkYrMHZVU1B3cHYzZTQ2ZHh4RXBj?=
- =?utf-8?B?bEZoM3VoVnVZV0lkeHI1VE9yRklaelJKQ2NBWWFEZTlwR3VEOVZoUXFOT0xi?=
- =?utf-8?B?N0w0ZUlGcGlCTXFtc1c2VlJpdG1XVEMzSU9zRXk1K3VFay9iRzZPWVMxeUs0?=
- =?utf-8?B?dW5sdUF5R1o5WWh1RVJpZ0pPWUlYeHBUZXh4dTV0RE1ST3VBT250VGFRSlRF?=
- =?utf-8?B?cnZmOWV6SFFKQ1VueE4rVDUvRkRqbDBwWDFDb0NIdGR6b0FNZExzYjdTTEZt?=
- =?utf-8?B?SUxMNE5iSFRLNU1SZGJUY0dtYlNvQUFBbDYvYWQ4ZlJONVZ3V05xYlNnVFJj?=
- =?utf-8?B?NmQ1MzlseVBQem9naTJ2bVROanErN1JYU216NGZQTGlTczZXYmNWVGh1aEZ3?=
- =?utf-8?B?aWtYS3ZnSmZ2UGpGVUdId2pRY0RTQTNadUZmcngxU2QrN1Zvc3BuNm5CZE51?=
- =?utf-8?B?RTJjZmwydG11WmRTbVpFSmwvRzcrTXl1dm9VSEYyRkNsejdFL3UxNzNoK3g0?=
- =?utf-8?B?M0Z1cmpQa1NxZ3dSb0JHOEhML2d1YStpNElNUXJZTC9QcS9pYWFST1ArV3Ex?=
- =?utf-8?B?Sm8xMldiNzNCamRrQTFWZno3VStnWDdDczVuK1pwdytoL1NoMmRCVXE4NE1W?=
- =?utf-8?B?MnlScWJ1QUgzbVBPRlBLR04wNFpQcWRTUlJaYzdZQUNZSVBoc1B2M0h3RnF2?=
- =?utf-8?B?QmRkejRwQVBsK3ZWUy91TXdsNmNKVTBBOUxRSXNrVUo1RVpEeFR1dnNmT1Zw?=
- =?utf-8?B?aXcwMzZTRTBTcEpPMUs0NXAvc3BFMjVUakJiUEdkL2d0RHFqMmREaDk5RllC?=
- =?utf-8?B?TUdaNHlGRHFqUitoS2NlNjFEckdzWTlPV3d5NndzZHZwWVhKWGNYV0hleEJl?=
- =?utf-8?B?dlJ6VURHbXcrWG9uZ1JFZloxaXdxL0VkOFE1WEhpb2R0cGlYaGo5UmQwbEM2?=
- =?utf-8?B?TnhuUy9sSG1ZN3NGdVBXU1ZzdUFXZHF2SEV6VGF3SXZpTDd1UmlWbllLcEI4?=
- =?utf-8?B?dWJLdjlLVnQ3bnYxK2RIOFJDRUJ5SEhBR1FxNXFSTFFDWFRxS1FJR1J0bzZT?=
- =?utf-8?B?R0lWdmsyMTV3NlZ2bnU0V2lMWmVIaDNpSFRPcHphdWY5L1ptbVRmVWxRakdz?=
- =?utf-8?B?WXNtVFlGZFNIcjBvZ0RNZWlaNzJqdzVKTTVVRGtUZWI2VmlGNDl5d1oyZDda?=
- =?utf-8?B?ZGFEUGh0U1BkL0NGVHdIYTNqb2NTUFlzeXJhTThMT3Y4dHRWUnRrNXVsRk1E?=
- =?utf-8?B?Ulh0MGRKYnBvZGhjRklPeXphNDU0WittNHFiNVJ6NkgzL0grREEzV2s5YUZ4?=
- =?utf-8?B?dWFnL2h5Q2IrYUw1bHovdVg5UEJTUVg2eWdFN0xOdGFTdnlhVFhPZ3RMZnJM?=
- =?utf-8?B?cm5ZcmRSM1E4bWJMdHBjRm81MUhuMnFuM0ZIUmRjYXZNUlE9PQ==?=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6624.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?OGJPcnJETFkrZzJhZzBKdkdIRkNkOWplY2xKVFF5OHdKMTBJb2RPTmtoYk5R?=
- =?utf-8?B?dU4rOHlkNXlXOUMyMG5NbVQvT2lrMkpYa1BRV2dEN05xY3BkYU9ETU9Zenh1?=
- =?utf-8?B?UHluQWhCWThDV3hyNjVWZlFFTC9mTHJZMitLdjU2VnlrL0FhNFZ2TEhybWxJ?=
- =?utf-8?B?T1Yra1NRb3YvMHVOT1JvbE9YbDUzK0ZDMU9XTGUvaStORmYyRnllNVJ5d042?=
- =?utf-8?B?S2xEYjRXdkdPN0FXYVkzZnByNEFuYVEzZVFNZktOZlNMc1gyQTN3QjFaYnox?=
- =?utf-8?B?R2twZ3lJb1JUTXlISlpSYWRYMzFhZDJicEp1SnJreXJVcko0MTlLby92OXc5?=
- =?utf-8?B?eTZZZk9yVzBpc2ZyamhLN2RLMkdwNTQxd3UyYXhiWHlRcXlaQkdMbnNFdWtM?=
- =?utf-8?B?NkhMR2VsMnBDR1RhdS9WN05palJod3ArRGYrdWh3cjBWbjFKT3ViSWNtaHZv?=
- =?utf-8?B?bWp4QkczREt5ZExnUEFUWUhrc2wvL2hEb2lzczhuR1RLa3JqY1dZYmxrRmRV?=
- =?utf-8?B?dDAwYmR5VTFIVjR1VGpoKzRZaFpiR0IwM1dHMjdTK2lHOFdnWmpMUVhUVkI4?=
- =?utf-8?B?K1dvNEJiNVJ4Q05GcmxiV2RuWEoxMWhxeW1PMkJ6cW4ycnZQUmlHeFBNdHZQ?=
- =?utf-8?B?aENzaWMvU0MvNHVYU0J6SkVWVVNYVW9iRGNuZ0E0bXRRcTBTUURzN2JwMzRC?=
- =?utf-8?B?VlowakE4QXRIYUxsWkMrbGx0eUVHOE1MdEJXYlRUOXRNYkNoRElSYW8xNXhk?=
- =?utf-8?B?dW5OcU1idjBKZjBLU0U2WXowSTREdE05bE5lWEozcGU5VHJUSEZ5WWRXMk5z?=
- =?utf-8?B?SFI2QXFUNml0bFVCN2FicWNZYXBycjNKb2tzSkIxeGhqTHloaTlUdW95Skpy?=
- =?utf-8?B?KzV0RDA2TEtibjV2MzY5VGtQYzQrQjJSdVAvYmNBeS9helJ5ejdTdExHQndk?=
- =?utf-8?B?ekRqNmVkaTc1Z0tYR2FUakJTY2NDanN4UWdDa3JjS2oxbGhiZEh5eWdpTnc2?=
- =?utf-8?B?SkQvMUhlRmZOdXNwL1lRSWhqTlJhOHBSMnRCZ3pqTUxFbFF6WlFaQ09JZ0lv?=
- =?utf-8?B?bFFsVDk0Z1lON3h0RDJGYWhGS0Vuc3hDbC9HaEN1c2c3cmhtd29Ya1BtanBX?=
- =?utf-8?B?OEozTW0rTVZmRGY0ampDL3ZIdzVZRUEwbE1DOXN5azVRZ1JhTkpKV2NGWC8r?=
- =?utf-8?B?Q0NGSGhRd3RteHZZWHdKWUY3aHhPVlByYnltK3J0eUhLclNZZDFuK0orMU5o?=
- =?utf-8?B?WCtZRDB2VnJ6YnFpSVJmd0pLVUZOT1FZL3ArZ0lJUGZoYjROVTl1aHhpbEls?=
- =?utf-8?B?a3RaYWhESVMvdW90QkJCNXRocFkyRzZaZUFzL1J1RVNZUTYyZ3QvMDdnZEt3?=
- =?utf-8?B?U0tYdXVYcG1MSUQ1TFlhRTdjdFVVL21MVmNyQm1VV3BwelUyV3Rod1JwTGZ1?=
- =?utf-8?B?SG1aQ0pLTXErQVJnQkh4TUVWSnNMNERxMkpLRjFTVXNkaHlZN0o0ZmZYekIw?=
- =?utf-8?B?QTNseVdFdHF5YXo2eEV2eFlyWExuV0U4WTc1RUhaOEk4TkNQZDFBaUoyYTA5?=
- =?utf-8?B?YXc1ZlFIR1FrTkF2TC9abFJrYldwZVFiSDlzY3Y2WDVTY3l4aXo2SWU2T01r?=
- =?utf-8?B?L0s1L3JqZlVHVkpVbDVPejZRWHZvcTVwdGRXWWE1MHUzUlgrSnpwT01DR3NR?=
- =?utf-8?B?WVQ2aXY5MXZFN2owb2dVQjRjeFUrRzhKR0hxQlpqR1g1S0NWbm40OVA3VjNK?=
- =?utf-8?B?UGdraUZRMzFrV1NaRXNxK0k1RGRueXpaV3ZGZ1JqZXBnU3JpNTE5SmhwMEZu?=
- =?utf-8?B?Tm0wWjlFYTZQNTgwdk1rRjBYTlN2aGlrSWlTTTJndmVBR3oyUlVyOEthTmtT?=
- =?utf-8?B?dUliaWNIZE9YUzJRZVIvL2ZOZ2tiY1hOamZWbXpqZ1hSWDNpc01UV0VDTkth?=
- =?utf-8?B?Q0pHSzBlb3g3UGVTTitUL0V5Ti9odFRpUk5ha2phTmNEVWtkRFZVY3hjN0tM?=
- =?utf-8?B?VjAvM0ZyVUt2WDY5TnR0R2NFOUIzZ05XYllFalUySk00TEZ6b2tLUjdXcE5C?=
- =?utf-8?B?cDYzamZ6a3haZC9IUzZlODlhN3RVdWk2RnAwRUQ5NVZYc1M0YWM2UzY2VlJJ?=
- =?utf-8?Q?f5i1zvos176An+vaYcWPeueSV?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <C7F726B20FB80D4ABB4FEB283533B101@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C67BD184F;
+	Fri, 29 Nov 2024 07:41:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1732866110; cv=none; b=euXqi0kyYyH3Z0/7/qtcnw0VaMXlsgvrLF1gepJcVvsbtpOP+AsTju89CBJIXtHwOKekLXmBo57Yru/JPCcr6OJg5ErU53fSacSKkEU82DkucdZ5krSDwO9/mAl6W2V+taSdsmyjGffy3GtBxYM47kMuEpCn46EOocmCccEPfUQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1732866110; c=relaxed/simple;
+	bh=FWVpsEO1O2tA8w+mNTqG1x5Mh8ngd6b9vQM5sPRnDKM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bki1rUN7mqIoQMyBGdx2HNs+2CeYzLzWGGn/ZaR7jm/njF7fR/Wyx7OrL+opql0TCTPC8F+fpgrXMRNh1DK7jFMfsh2dV2aTfyXtodCgwLrPSG+i7gpdfYNRq2B0XmMP9KbGDIvaaglH53vpmWvqF5cqy6LpVA6CezqHynMlUlU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02E84C4CECF;
+	Fri, 29 Nov 2024 07:41:45 +0000 (UTC)
+Message-ID: <4b33d8ba-d523-40d0-8fe8-4b5cb35c9372@xs4all.nl>
+Date: Fri, 29 Nov 2024 08:41:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6624.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ae9d467f-61c2-4a09-880f-08dd10476a64
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Nov 2024 07:28:26.9652
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: M0Fon1DyaQHdcC678RG9cwz0EUmPhT1SgQlLE+VQqu3yScYZ4fHA8ZfPhP8ibjh3EuNPKfHfDsOdV8CNMehBKA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB7300
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 02/28] media: iris: add platform driver for iris video
+ device
+To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Sebastian Fricke <sebastian.fricke@collabora.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Nicolas Dufresne <nicolas@ndufresne.ca>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+ Jianhua Lu <lujianhua000@gmail.com>, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241120-qcom-video-iris-v6-0-a8cf6704e992@quicinc.com>
+ <20241120-qcom-video-iris-v6-2-a8cf6704e992@quicinc.com>
+Content-Language: en-US, nl
+From: Hans Verkuil <hverkuil@xs4all.nl>
+Autocrypt: addr=hverkuil@xs4all.nl; keydata=
+ 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
+In-Reply-To: <20241120-qcom-video-iris-v6-2-a8cf6704e992@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-SGksIEFuZ2VsbzoNCg0KT24gV2VkLCAyMDI0LTExLTIwIGF0IDEzOjQ1ICswMTAwLCBBbmdlbG9H
-aW9hY2NoaW5vIERlbCBSZWdubyB3cm90ZToNCj4gRXh0ZXJuYWwgZW1haWwgOiBQbGVhc2UgZG8g
-bm90IGNsaWNrIGxpbmtzIG9yIG9wZW4gYXR0YWNobWVudHMgdW50aWwgeW91IGhhdmUgdmVyaWZp
-ZWQgdGhlIHNlbmRlciBvciB0aGUgY29udGVudC4NCj4gDQo+IA0KPiBJbiBwcmVwYXJhdGlvbiBm
-b3IgYWRkaW5nIGEgbmV3IGRyaXZlciBmb3IgdGhlIEhETUkgVFggdjIgSVAsDQo+IHNwbGl0IG91
-dCB0aGUgZnVuY3Rpb25zIHRoYXQgd2lsbCBiZSBjb21tb24gYmV0d2VlbiB0aGUgYWxyZWFkeQ0K
-PiBwcmVzZW50IG10a19oZG1pICh2MSkgZHJpdmVyIGFuZCB0aGUgbmV3IG9uZS4NCj4gDQo+IFNp
-bmNlIHRoZSBwcm9iZSBmbG93IGZvciBib3RoIGRyaXZlcnMgaXMgOTAlIHNpbWlsYXIsIGFkZCBh
-IGNvbW1vbg0KPiBwcm9iZSBmdW5jdGlvbiB0aGF0IHdpbGwgYmUgY2FsbGVkIGZyb20gZWFjaCBk
-cml2ZXIncyAucHJvYmUoKQ0KPiBjYWxsYmFjaywgYXZvaWRpbmcgbG90cyBvZiBjb2RlIGR1cGxp
-Y2F0aW9uLg0KPiANCj4gU2lnbmVkLW9mZi1ieTogQW5nZWxvR2lvYWNjaGlubyBEZWwgUmVnbm8g
-PGFuZ2Vsb2dpb2FjY2hpbm8uZGVscmVnbm9AY29sbGFib3JhLmNvbT4NCj4gLS0tDQoNCltzbmlw
-XQ0KDQo+ICtzdHJ1Y3QgbXRrX2hkbWlfdmVyX2NvbmYgew0KPiArICAgICAgIHZvaWQgKCptdGtf
-aGRtaV9hdWRpb19pbml0KShzdHJ1Y3QgbXRrX2hkbWkgKmhkbWksIHN0cnVjdCBoZG1pX2NvZGVj
-X3BkYXRhICpjb2RlY19kYXRhKTsNCj4gKyAgICAgICBjb25zdCBzdHJ1Y3QgZHJtX2JyaWRnZV9m
-dW5jcyAqYnJpZGdlX2Z1bmNzOw0KPiArICAgICAgIGNvbnN0IGNoYXIgKiBjb25zdCAqbXRrX2hk
-bWlfY2xvY2tfbmFtZXM7DQo+ICsgICAgICAgaW50IG51bV9jbG9ja3M7DQo+ICt9Ow0KDQpCZWNh
-dXNlIHRoaXMgcGF0Y2ggaXMgYSBsaXR0bGUgYmlnLiBTbyBJIHdvdWxkIGxpa2UgdG8gc2VwYXJh
-dGUgc3RydWN0IG10a19oZG1pX3Zlcl9jb25mIHJlbGF0ZWQgcGFydCB0byBhbiBpbmRlcGVuZGVu
-dCBwYXRjaC4NClRoZSBtb2RpZmljYXRpb24gaXMgc3RpbGwgaW4gbXRrX2hkbWkuYw0KQW5kIHRo
-ZSByZXN0IHBhcnQgaXMgbW92aW5nIGNvbW1vbiBwYXJ0IHRvIG10a19oZG1pX2NvbW1vbi5jDQoN
-ClJlZ2FyZHMsDQpDSw0K
+On 20/11/2024 15:45, Dikshita Agarwal wrote:
+> In preparation of adding H264 decode functionality, add probe and remove
+> functions and platform data to initialize iris resources, which are
+> clocks, interconnects, power domains, reset clocks, and clock
+> frequencies used for iris hardware.
+> 
+> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+
+Reviewed-by: Hans Verkuil <hverkuil@xs4all.nl>
+
+Regards,
+
+	Hans
+
+> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
+> ---
+>  drivers/media/platform/qcom/Kconfig                |   1 +
+>  drivers/media/platform/qcom/Makefile               |   1 +
+>  drivers/media/platform/qcom/iris/Kconfig           |   9 +
+>  drivers/media/platform/qcom/iris/Makefile          |   4 +
+>  drivers/media/platform/qcom/iris/iris_core.h       |  54 +++++
+>  .../platform/qcom/iris/iris_platform_common.h      |  35 +++
+>  .../platform/qcom/iris/iris_platform_sm8550.c      |  37 ++++
+>  drivers/media/platform/qcom/iris/iris_probe.c      | 237 +++++++++++++++++++++
+>  8 files changed, 378 insertions(+)
+> 
+> diff --git a/drivers/media/platform/qcom/Kconfig b/drivers/media/platform/qcom/Kconfig
+> index cc5799b9ea00..4f4d3a68e6e5 100644
+> --- a/drivers/media/platform/qcom/Kconfig
+> +++ b/drivers/media/platform/qcom/Kconfig
+> @@ -3,4 +3,5 @@
+>  comment "Qualcomm media platform drivers"
+>  
+>  source "drivers/media/platform/qcom/camss/Kconfig"
+> +source "drivers/media/platform/qcom/iris/Kconfig"
+>  source "drivers/media/platform/qcom/venus/Kconfig"
+> diff --git a/drivers/media/platform/qcom/Makefile b/drivers/media/platform/qcom/Makefile
+> index 4f055c396e04..ea2221a202c0 100644
+> --- a/drivers/media/platform/qcom/Makefile
+> +++ b/drivers/media/platform/qcom/Makefile
+> @@ -1,3 +1,4 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+>  obj-y += camss/
+> +obj-y += iris/
+>  obj-y += venus/
+> diff --git a/drivers/media/platform/qcom/iris/Kconfig b/drivers/media/platform/qcom/iris/Kconfig
+> new file mode 100644
+> index 000000000000..34a2f81c5db3
+> --- /dev/null
+> +++ b/drivers/media/platform/qcom/iris/Kconfig
+> @@ -0,0 +1,9 @@
+> +config VIDEO_QCOM_IRIS
+> +        tristate "Qualcomm iris V4L2 decoder driver"
+> +        depends on VIDEO_DEV
+> +        depends on ARCH_QCOM || COMPILE_TEST
+> +        help
+> +          This is a V4L2 driver for Qualcomm iris video accelerator
+> +          hardware. It accelerates decoding operations on various
+> +          Qualcomm SoCs.
+> +          To compile this driver as a module choose m here.
+> diff --git a/drivers/media/platform/qcom/iris/Makefile b/drivers/media/platform/qcom/iris/Makefile
+> new file mode 100644
+> index 000000000000..7e701361492e
+> --- /dev/null
+> +++ b/drivers/media/platform/qcom/iris/Makefile
+> @@ -0,0 +1,4 @@
+> +iris-objs += iris_platform_sm8550.o \
+> +             iris_probe.o \
+> +
+> +obj-$(CONFIG_VIDEO_QCOM_IRIS) += iris.o
+> diff --git a/drivers/media/platform/qcom/iris/iris_core.h b/drivers/media/platform/qcom/iris/iris_core.h
+> new file mode 100644
+> index 000000000000..27bc2ca71e1b
+> --- /dev/null
+> +++ b/drivers/media/platform/qcom/iris/iris_core.h
+> @@ -0,0 +1,54 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#ifndef __IRIS_CORE_H__
+> +#define __IRIS_CORE_H__
+> +
+> +#include <linux/types.h>
+> +#include <media/v4l2-device.h>
+> +
+> +#include "iris_platform_common.h"
+> +
+> +struct icc_info {
+> +	const char		*name;
+> +	u32			bw_min_kbps;
+> +	u32			bw_max_kbps;
+> +};
+> +
+> +/**
+> + * struct iris_core - holds core parameters valid for all instances
+> + *
+> + * @dev: reference to device structure
+> + * @reg_base: IO memory base address
+> + * @irq: iris irq
+> + * @v4l2_dev: a holder for v4l2 device structure
+> + * @vdev_dec: iris video device structure for decoder
+> + * @icc_tbl: table of iris interconnects
+> + * @icc_count: count of iris interconnects
+> + * @pmdomain_tbl: table of iris power domains
+> + * @opp_pmdomain_tbl: table of opp power domains
+> + * @clock_tbl: table of iris clocks
+> + * @clk_count: count of iris clocks
+> + * @resets: table of iris reset clocks
+> + * @iris_platform_data: a structure for platform data
+> + */
+> +
+> +struct iris_core {
+> +	struct device				*dev;
+> +	void __iomem				*reg_base;
+> +	int					irq;
+> +	struct v4l2_device			v4l2_dev;
+> +	struct video_device			*vdev_dec;
+> +	struct icc_bulk_data			*icc_tbl;
+> +	u32					icc_count;
+> +	struct dev_pm_domain_list		*pmdomain_tbl;
+> +	struct dev_pm_domain_list		*opp_pmdomain_tbl;
+> +	struct clk_bulk_data			*clock_tbl;
+> +	u32					clk_count;
+> +	struct reset_control_bulk_data		*resets;
+> +	const struct iris_platform_data		*iris_platform_data;
+> +};
+> +
+> +#endif
+> diff --git a/drivers/media/platform/qcom/iris/iris_platform_common.h b/drivers/media/platform/qcom/iris/iris_platform_common.h
+> new file mode 100644
+> index 000000000000..31c53dad8136
+> --- /dev/null
+> +++ b/drivers/media/platform/qcom/iris/iris_platform_common.h
+> @@ -0,0 +1,35 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#ifndef __IRIS_PLATFORM_COMMON_H__
+> +#define __IRIS_PLATFORM_COMMON_H__
+> +
+> +extern struct iris_platform_data sm8550_data;
+> +
+> +enum platform_clk_type {
+> +	IRIS_AXI_CLK,
+> +	IRIS_CTRL_CLK,
+> +	IRIS_HW_CLK,
+> +};
+> +
+> +struct platform_clk_data {
+> +	enum platform_clk_type clk_type;
+> +	const char *clk_name;
+> +};
+> +
+> +struct iris_platform_data {
+> +	const struct icc_info *icc_tbl;
+> +	unsigned int icc_tbl_size;
+> +	const char * const *pmdomain_tbl;
+> +	unsigned int pmdomain_tbl_size;
+> +	const char * const *opp_pd_tbl;
+> +	unsigned int opp_pd_tbl_size;
+> +	const struct platform_clk_data *clk_tbl;
+> +	unsigned int clk_tbl_size;
+> +	const char * const *clk_rst_tbl;
+> +	unsigned int clk_rst_tbl_size;
+> +};
+> +
+> +#endif
+> diff --git a/drivers/media/platform/qcom/iris/iris_platform_sm8550.c b/drivers/media/platform/qcom/iris/iris_platform_sm8550.c
+> new file mode 100644
+> index 000000000000..3dd91523d783
+> --- /dev/null
+> +++ b/drivers/media/platform/qcom/iris/iris_platform_sm8550.c
+> @@ -0,0 +1,37 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#include "iris_core.h"
+> +#include "iris_platform_common.h"
+> +
+> +static const struct icc_info sm8550_icc_table[] = {
+> +	{ "cpu-cfg",    1000, 1000     },
+> +	{ "video-mem",  1000, 15000000 },
+> +};
+> +
+> +static const char * const sm8550_clk_reset_table[] = { "bus" };
+> +
+> +static const char * const sm8550_pmdomain_table[] = { "venus", "vcodec0" };
+> +
+> +static const char * const sm8550_opp_pd_table[] = { "mxc", "mmcx" };
+> +
+> +static const struct platform_clk_data sm8550_clk_table[] = {
+> +	{IRIS_AXI_CLK,  "iface"        },
+> +	{IRIS_CTRL_CLK, "core"         },
+> +	{IRIS_HW_CLK,   "vcodec0_core" },
+> +};
+> +
+> +struct iris_platform_data sm8550_data = {
+> +	.icc_tbl = sm8550_icc_table,
+> +	.icc_tbl_size = ARRAY_SIZE(sm8550_icc_table),
+> +	.clk_rst_tbl = sm8550_clk_reset_table,
+> +	.clk_rst_tbl_size = ARRAY_SIZE(sm8550_clk_reset_table),
+> +	.pmdomain_tbl = sm8550_pmdomain_table,
+> +	.pmdomain_tbl_size = ARRAY_SIZE(sm8550_pmdomain_table),
+> +	.opp_pd_tbl = sm8550_opp_pd_table,
+> +	.opp_pd_tbl_size = ARRAY_SIZE(sm8550_opp_pd_table),
+> +	.clk_tbl = sm8550_clk_table,
+> +	.clk_tbl_size = ARRAY_SIZE(sm8550_clk_table),
+> +};
+> diff --git a/drivers/media/platform/qcom/iris/iris_probe.c b/drivers/media/platform/qcom/iris/iris_probe.c
+> new file mode 100644
+> index 000000000000..911e3bc1b434
+> --- /dev/null
+> +++ b/drivers/media/platform/qcom/iris/iris_probe.c
+> @@ -0,0 +1,237 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/interconnect.h>
+> +#include <linux/module.h>
+> +#include <linux/pm_domain.h>
+> +#include <linux/pm_opp.h>
+> +#include <linux/reset.h>
+> +
+> +#include "iris_core.h"
+> +
+> +static int iris_init_icc(struct iris_core *core)
+> +{
+> +	const struct icc_info *icc_tbl;
+> +	u32 i = 0;
+> +
+> +	icc_tbl = core->iris_platform_data->icc_tbl;
+> +
+> +	core->icc_count = core->iris_platform_data->icc_tbl_size;
+> +	core->icc_tbl = devm_kzalloc(core->dev,
+> +				     sizeof(struct icc_bulk_data) * core->icc_count,
+> +				     GFP_KERNEL);
+> +	if (!core->icc_tbl)
+> +		return -ENOMEM;
+> +
+> +	for (i = 0; i < core->icc_count; i++) {
+> +		core->icc_tbl[i].name = icc_tbl[i].name;
+> +		core->icc_tbl[i].avg_bw = icc_tbl[i].bw_min_kbps;
+> +		core->icc_tbl[i].peak_bw = 0;
+> +	}
+> +
+> +	return devm_of_icc_bulk_get(core->dev, core->icc_count, core->icc_tbl);
+> +}
+> +
+> +static int iris_init_power_domains(struct iris_core *core)
+> +{
+> +	const struct platform_clk_data *clk_tbl;
+> +	u32 clk_cnt, i;
+> +	int ret;
+> +
+> +	struct dev_pm_domain_attach_data iris_pd_data = {
+> +		.pd_names = core->iris_platform_data->pmdomain_tbl,
+> +		.num_pd_names = core->iris_platform_data->pmdomain_tbl_size,
+> +		.pd_flags = PD_FLAG_NO_DEV_LINK,
+> +	};
+> +
+> +	struct dev_pm_domain_attach_data iris_opp_pd_data = {
+> +		.pd_names = core->iris_platform_data->opp_pd_tbl,
+> +		.num_pd_names = core->iris_platform_data->opp_pd_tbl_size,
+> +		.pd_flags = PD_FLAG_DEV_LINK_ON,
+> +	};
+> +
+> +	ret = devm_pm_domain_attach_list(core->dev, &iris_pd_data, &core->pmdomain_tbl);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret =  devm_pm_domain_attach_list(core->dev, &iris_opp_pd_data, &core->opp_pmdomain_tbl);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	clk_tbl = core->iris_platform_data->clk_tbl;
+> +	clk_cnt = core->iris_platform_data->clk_tbl_size;
+> +
+> +	for (i = 0; i < clk_cnt; i++) {
+> +		if (clk_tbl[i].clk_type == IRIS_HW_CLK) {
+> +			ret = devm_pm_opp_set_clkname(core->dev, clk_tbl[i].clk_name);
+> +			if (ret)
+> +				return ret;
+> +		}
+> +	}
+> +
+> +	return devm_pm_opp_of_add_table(core->dev);
+> +}
+> +
+> +static int iris_init_clocks(struct iris_core *core)
+> +{
+> +	int ret;
+> +
+> +	ret = devm_clk_bulk_get_all(core->dev, &core->clock_tbl);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	core->clk_count = ret;
+> +
+> +	return 0;
+> +}
+> +
+> +static int iris_init_resets(struct iris_core *core)
+> +{
+> +	const char * const *rst_tbl;
+> +	u32 rst_tbl_size;
+> +	u32 i = 0;
+> +
+> +	rst_tbl = core->iris_platform_data->clk_rst_tbl;
+> +	rst_tbl_size = core->iris_platform_data->clk_rst_tbl_size;
+> +
+> +	core->resets = devm_kzalloc(core->dev,
+> +				    sizeof(*core->resets) * rst_tbl_size,
+> +				    GFP_KERNEL);
+> +	if (!core->resets)
+> +		return -ENOMEM;
+> +
+> +	for (i = 0; i < rst_tbl_size; i++)
+> +		core->resets[i].id = rst_tbl[i];
+> +
+> +	return devm_reset_control_bulk_get_exclusive(core->dev, rst_tbl_size, core->resets);
+> +}
+> +
+> +static int iris_init_resources(struct iris_core *core)
+> +{
+> +	int ret;
+> +
+> +	ret = iris_init_icc(core);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = iris_init_power_domains(core);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = iris_init_clocks(core);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return iris_init_resets(core);
+> +}
+> +
+> +static int iris_register_video_device(struct iris_core *core)
+> +{
+> +	struct video_device *vdev;
+> +	int ret;
+> +
+> +	vdev = video_device_alloc();
+> +	if (!vdev)
+> +		return -ENOMEM;
+> +
+> +	strscpy(vdev->name, "qcom-iris-decoder", sizeof(vdev->name));
+> +	vdev->release = video_device_release;
+> +	vdev->vfl_dir = VFL_DIR_M2M;
+> +	vdev->v4l2_dev = &core->v4l2_dev;
+> +	vdev->device_caps = V4L2_CAP_VIDEO_M2M_MPLANE | V4L2_CAP_STREAMING;
+> +
+> +	ret = video_register_device(vdev, VFL_TYPE_VIDEO, -1);
+> +	if (ret)
+> +		goto err_vdev_release;
+> +
+> +	core->vdev_dec = vdev;
+> +	video_set_drvdata(vdev, core);
+> +
+> +	return 0;
+> +
+> +err_vdev_release:
+> +	video_device_release(vdev);
+> +
+> +	return ret;
+> +}
+> +
+> +static void iris_remove(struct platform_device *pdev)
+> +{
+> +	struct iris_core *core;
+> +
+> +	core = platform_get_drvdata(pdev);
+> +	if (!core)
+> +		return;
+> +
+> +	video_unregister_device(core->vdev_dec);
+> +
+> +	v4l2_device_unregister(&core->v4l2_dev);
+> +}
+> +
+> +static int iris_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct iris_core *core;
+> +	int ret;
+> +
+> +	core = devm_kzalloc(&pdev->dev, sizeof(*core), GFP_KERNEL);
+> +	if (!core)
+> +		return -ENOMEM;
+> +	core->dev = dev;
+> +
+> +	core->reg_base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(core->reg_base))
+> +		return PTR_ERR(core->reg_base);
+> +
+> +	core->irq = platform_get_irq(pdev, 0);
+> +	if (core->irq < 0)
+> +		return core->irq;
+> +
+> +	core->iris_platform_data = of_device_get_match_data(core->dev);
+> +
+> +	ret = iris_init_resources(core);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = v4l2_device_register(dev, &core->v4l2_dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = iris_register_video_device(core);
+> +	if (ret)
+> +		goto err_v4l2_unreg;
+> +
+> +	platform_set_drvdata(pdev, core);
+> +
+> +	return 0;
+> +
+> +err_v4l2_unreg:
+> +	v4l2_device_unregister(&core->v4l2_dev);
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct of_device_id iris_dt_match[] = {
+> +	{
+> +		.compatible = "qcom,sm8550-iris",
+> +		.data = &sm8550_data,
+> +	},
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(of, iris_dt_match);
+> +
+> +static struct platform_driver qcom_iris_driver = {
+> +	.probe = iris_probe,
+> +	.remove = iris_remove,
+> +	.driver = {
+> +		.name = "qcom-iris",
+> +		.of_match_table = iris_dt_match,
+> +	},
+> +};
+> +
+> +module_platform_driver(qcom_iris_driver);
+> +MODULE_DESCRIPTION("Qualcomm iris video driver");
+> +MODULE_LICENSE("GPL");
+> 
+
 
