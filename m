@@ -1,235 +1,183 @@
-Return-Path: <devicetree+bounces-125562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26BFB9DE8A3
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 15:37:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 755A99DE8B9
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 15:43:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D796E282955
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 14:37:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36AC5282A82
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 14:43:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17EA583CD2;
-	Fri, 29 Nov 2024 14:37:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D93CA13AA31;
+	Fri, 29 Nov 2024 14:43:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mw9RyfnC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00F7542AAB
-	for <devicetree@vger.kernel.org>; Fri, 29 Nov 2024 14:37:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C65E34EB45;
+	Fri, 29 Nov 2024 14:43:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732891060; cv=none; b=OLTjUrR2JtpBlZej0TtCUPflKTaOLJlYO9eq+aUcgeVCn9tJ9esB8+Z2Mr+ZCDa+LOza+a0uolMeNMadPq1NA0R3g9NLmi4Mlzd2xrCXbI9CLH5Cp/vz35W7hftMERUeemfb6W0wblx1m7KjOqFFK4iGCe5CyGwedE+Iyrlgdek=
+	t=1732891421; cv=none; b=JDsfqKky0QeQ/qcEiiSnsqDQZ79Cmu7rAXUINmksfriDds82n0Jbe1EE4fYPWDZnIFaF1C/j3apNThLz1Fsc85Qlb8lWfRQ3IQynKn7uxkpopgNSlU2vCpyNRcO9x6kSWP+EPO6o9lKpXQS7sWVLIwbPcv41YJBm1pSrFQ/IAXo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732891060; c=relaxed/simple;
-	bh=XtJxsP6Q5iK8IFbFbWf41hPjnWxcYV2ue5hmBYZx4PI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Pm7tz9K4n3NJtk09V+1MDBL6pFWczduNF4qpbZRCTtUkO6V+fHt/5dtuZMZlO0GHB99aHVK4Ya+EzXhvThR2McldY1CrS+XxIZi+uJeePGgrJEC9PjQ6cDOX8xhhnMEWtHP2opyL9LjmKj3WLHLJ2LAaS0pjmI06cfUUKOhvJJo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tH27W-00081B-S1; Fri, 29 Nov 2024 15:37:22 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tH27V-000nvK-0o;
-	Fri, 29 Nov 2024 15:37:22 +0100
-Received: from pengutronix.de (pd9e59fec.dip0.t-ipconnect.de [217.229.159.236])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id A9E7E38135D;
-	Fri, 29 Nov 2024 14:37:21 +0000 (UTC)
-Date: Fri, 29 Nov 2024 15:37:21 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
-Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, NXP S32 Linux <s32@nxp.com>, imx@lists.linux.dev, 
-	Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>, 
-	Enric Balletbo <eballetb@redhat.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: can: fsl,flexcan: add S32G2/S32G3
- SoC support
-Message-ID: <20241129-ancient-sloth-of-bloom-077ab2-mkl@pengutronix.de>
-References: <20241129142535.1171249-1-ciprianmarian.costea@oss.nxp.com>
- <20241129142535.1171249-2-ciprianmarian.costea@oss.nxp.com>
+	s=arc-20240116; t=1732891421; c=relaxed/simple;
+	bh=6wyNEXgehoRdoIVNSbCoKQZKWPZZDgQwJiahCw9sG40=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=SkqzU9J9kw458k683bgVXYM/DT2kVXKfA+S/6u2pv1djVmBBj5Jr+p16Jp638TMdQ/JUdLLpdTX+wtGnifyhDhUfJPwikCCqWpxyWYk5mTixlBCXCd5pvvKjj74D7Lwj6fDEfu/vp/E/qW4LuCOuT9qYS9VX8eCQxkU3ZTfxt8M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=mw9RyfnC; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4ATCrMq9029780;
+	Fri, 29 Nov 2024 14:43:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	3Pd4Qu7450RBGeZ+NWhXwa/7WL+hy4kgb5vA0RR8OgY=; b=mw9RyfnClGHlLl4j
+	swTUfqU2MQk5aba1FgZ2MruFCqxcVX/TNnAeE9PavNXGZXNvUV3PY+EqxWZfEgwD
+	HM2ZGlN7lBnzvYlbRWw0Jq2E/tvMgIxzKfRGiYcRwa5z45xPfUXfS/Zb5kLTHkCX
+	T4O2Q01B8Dm3VwZYycB0+jYxOT9n75DFzNsliS66nuBmTEitM5i9oDLgbNk40+4W
+	emvxYqYBdFWY3ML8toKLBWL9CoyB3PQSeHOhNzK8Z9sPZlAxH1VP/nwFih8bTXoU
+	6NFrUyrgANspl7lIP8LTBMo1ZWQIQRjlXxm/64qFdl7r8otFk1px+JyCAJdTK8q8
+	Xf0q7Q==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4366y05r86-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 29 Nov 2024 14:43:30 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4ATEhT9S009109
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 29 Nov 2024 14:43:29 GMT
+Received: from [10.217.219.207] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 29 Nov
+ 2024 06:43:24 -0800
+Message-ID: <8ea18a1d-1ba5-47b4-9fb6-343be3b2b26a@quicinc.com>
+Date: Fri, 29 Nov 2024 20:13:21 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="wuotrmvbblrkdbk6"
-Content-Disposition: inline
-In-Reply-To: <20241129142535.1171249-2-ciprianmarian.costea@oss.nxp.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/4] dt-bindindgs: i2c: qcom,i2c-geni: Document shared
+ flag
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>
+CC: <konrad.dybcio@linaro.org>, <andersson@kernel.org>,
+        <andi.shyti@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <dmaengine@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-i2c@vger.kernel.org>, <conor+dt@kernel.org>,
+        <agross@kernel.org>, <devicetree@vger.kernel.org>, <vkoul@kernel.org>,
+        <linux@treblig.org>, <dan.carpenter@linaro.org>, <Frank.Li@nxp.com>,
+        <konradybcio@kernel.org>, <bryan.odonoghue@linaro.org>,
+        <krzk+dt@kernel.org>, <quic_vdadhani@quicinc.com>
+References: <20241113161413.3821858-1-quic_msavaliy@quicinc.com>
+ <20241113161413.3821858-2-quic_msavaliy@quicinc.com>
+ <20241115173156.GA3432253-robh@kernel.org>
+ <ff20d185-4db4-482b-b6dd-06e46124b8ab@quicinc.com>
+ <e1a7d9d6-c382-48f6-bf7f-145290d214d1@kernel.org>
+Content-Language: en-US
+From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+In-Reply-To: <e1a7d9d6-c382-48f6-bf7f-145290d214d1@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: LpP6Od-tlQMgtg-AW1La_MmJxIMSzmju
+X-Proofpoint-GUID: LpP6Od-tlQMgtg-AW1La_MmJxIMSzmju
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 phishscore=0
+ priorityscore=1501 bulkscore=0 malwarescore=0 adultscore=0 suspectscore=0
+ mlxlogscore=999 spamscore=0 mlxscore=0 lowpriorityscore=0 impostorscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2411290120
 
+Thanks Rob,  Krzysztof !
 
---wuotrmvbblrkdbk6
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 1/3] dt-bindings: can: fsl,flexcan: add S32G2/S32G3
- SoC support
-MIME-Version: 1.0
+On 11/25/2024 1:41 PM, Krzysztof Kozlowski wrote:
+> On 17/11/2024 18:45, Mukesh Kumar Savaliya wrote:
+>> Thanks Rob for your review and comments !
+>>
+>> On 11/15/2024 11:01 PM, Rob Herring wrote:
+>>> On Wed, Nov 13, 2024 at 09:44:10PM +0530, Mukesh Kumar Savaliya wrote:
+>>>> Adds qcom,is-shared flag usage. Use this flag when I2C serial controller
+>>>
+>>> Doesn't match the property name.
+>> Sure, i need to change the name here as qcom,shared-se, will upload a
+>> new patch.
+>>>
+>>>> needs to be shared in multiprocessor system(APPS,Modem,ADSP) environment.
+>>>>
+>>>> Two clients from different processors can share an I2C controller for same
+>>>> slave device OR their owned slave devices. Assume I2C Slave EEPROM device
+>>>> connected with I2C controller. Each client from ADSP SS and APPS Linux SS
+>>>> can perform i2c transactions.
+>>>>
+>>>> Transfer gets serialized by Lock TRE + DMA xfer + Unlock TRE at HW level.
+>>>>
+>>>> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+>>>> ---
+>>>>    Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml | 4 ++++
+>>>>    1 file changed, 4 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
+>>>> index 9f66a3bb1f80..fe36938712f7 100644
+>>>> --- a/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
+>>>> +++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
+>>>> @@ -60,6 +60,10 @@ properties:
+>>>>      power-domains:
+>>>>        maxItems: 1
+>>>>    
+>>>> +  qcom,shared-se:
+>>>
+>>> What is 'se'? Is that defined somewhere?
+>>>
+>> SE is Serial Engine acting as I2C controller. Let me add second line for
+>> SE here also.
+>>
+>> It's mentioned in source code in Patch 3 where it's used.
+>>   >>> True if serial engine is shared between multiprocessors OR
+>> Execution Environment.
+> You already got this comment:
+> https://lore.kernel.org/lkml/20240927063108.2773304-4-quic_msavaliy@quicinc.com/T/#m79efdd1172631aca99a838b4bfe57943755701e3
+> 
+> ""se" is also not explained in the binding - please open it and look for
+> such explanation."
+> 
+> Further comments asked you to rephrase it. Did anything improve? No,
+> nothing.
+> 
+> You got comments, you ignore them and send the same.
+It's actually changed to is-shared flag and again renamed to shared-se 
+based on the review comments. This went for correction for flag naming. 
+Sorry for missing SE description into dt-bindings in the latest patch.
+I am adding it with more description.
+> 
+> But most important: I keep repeating this over and over - NAK for some
+> specific "shared-se" flag, different for each of your IP blocks. Come
+> with something generic for entire qualcomm. There are few of such flags
+> already and there are some patches adding it in different flavors.
+> 
+we do have SE (serial engine) which works for i2c, spi, uart, i3c. And 
+SE is single HW entity as you are aware of. But I feel it makes sense to 
+keep this flag name per SE and even for SPI OR I3C we should be using 
+same flag name in DTSI.
+> Get this consistent.
+> 
+> NAK for this and v5 doing exactly theh same.
+> 
+Hope i meet expectations considering all your suggestions and past 
+learning and not missing anything out of my mind.
 
-On 29.11.2024 16:25:33, Ciprian Costea wrote:
-> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
->=20
-> Add S32G2/S32G3 SoCs compatible strings.
->=20
-> A particularity for these SoCs is the presence of separate interrupts for
-> state change, bus errors, MBs 0-7 and MBs 8-127 respectively.
->=20
-> Increase maxItems of 'interrupts' to 4 for S32G based SoCs and keep the
-> same restriction for other SoCs.
->=20
-> Also, as part of this commit, move the 'allOf' after the required
-> properties to make the documentation easier to read.
->=20
-> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-> ---
->  .../bindings/net/can/fsl,flexcan.yaml         | 46 +++++++++++++++++--
->  1 file changed, 42 insertions(+), 4 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml b=
-/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
-> index 97dd1a7c5ed2..10b658e85ef2 100644
-> --- a/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
-> +++ b/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
-> @@ -10,9 +10,6 @@ title:
->  maintainers:
->    - Marc Kleine-Budde <mkl@pengutronix.de>
-> =20
-> -allOf:
-> -  - $ref: can-controller.yaml#
-> -
->  properties:
->    compatible:
->      oneOf:
-> @@ -28,6 +25,7 @@ properties:
->            - fsl,vf610-flexcan
->            - fsl,ls1021ar2-flexcan
->            - fsl,lx2160ar1-flexcan
-> +          - nxp,s32g2-flexcan
->        - items:
->            - enum:
->                - fsl,imx53-flexcan
-> @@ -43,12 +41,21 @@ properties:
->            - enum:
->                - fsl,ls1028ar1-flexcan
->            - const: fsl,lx2160ar1-flexcan
-> +      - items:
-> +          - enum:
-> +              - nxp,s32g3-flexcan
-> +          - const: nxp,s32g2-flexcan
-> =20
->    reg:
->      maxItems: 1
-> =20
->    interrupts:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 4
-> +
-> +  interrupt-names:
-> +    minItems: 1
-> +    maxItems: 4
-> =20
->    clocks:
->      maxItems: 2
-> @@ -136,6 +143,37 @@ required:
->    - reg
->    - interrupts
-> =20
-> +allOf:
-> +  - $ref: can-controller.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: nxp,s32g2-flexcan
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          items:
-> +            - description: Message Buffer interrupt for mailboxes 0-7 an=
-d Enhanced RX FIFO
-> +            - description: Device state change
-> +            - description: Error detection
-> +            - description: Message Buffer interrupt for mailboxes 8-127
-> +        interrupt-names:
-> +          items:
-> +            - const: mb-0
-> +            - const: state
-> +            - const: berr
-
-Nitpick:
-
-- description: Error detection
-and
-- const: err
-
-or
-
-- description: Bus Error detection
-and
-- const: berr
-
-regards,
-Marc
-
-> +            - const: mb-1
-> +      required:
-> +        - compatible
-> +        - reg
-> +        - interrupts
-> +        - interrupt-names
-> +    else:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 1
-> +
->  additionalProperties: false
-> =20
->  examples:
-> --=20
-> 2.45.2
->=20
->=20
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---wuotrmvbblrkdbk6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmdJ0Z4ACgkQKDiiPnot
-vG99zgf/e0bR3pFlC1iXoVoAbLuPS/XgUVnlr8Ip8XqDQ3ETCN/gHY0jBMqrAkpG
-HpyX2GXpYGmS2HjWwjasJqtyW2KTw+oFI7iCxkmHDp6SIp7MZmBfFBOADOKtZh0C
-HFicEIKxiPZt2zzM+aJSSnXqL+I/dx0EdY5ONAFhaKkRfu1zzvKeBRxoJQ8pIAf/
-QSbaowMGmHDryoJW3N02/T59Wk1yacAVq7E0AQ1W2EAr3p3bd9fzOsHxDpU0x/L8
-0X20hFp38G9F6RWzECP74gFps6d26fIAv3DHPFW0t/OE9Y4u+nhv9yf0FeDeFLBC
-QKRM5/eo8fMoTJ0c7Pga4CJ8ixZpiw==
-=gPO1
------END PGP SIGNATURE-----
-
---wuotrmvbblrkdbk6--
+> Best regards,
+> Krzysztof
 
