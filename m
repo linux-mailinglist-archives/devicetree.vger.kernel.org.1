@@ -1,357 +1,208 @@
-Return-Path: <devicetree+bounces-125476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75EC59DC122
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 10:10:48 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF5A99DC115
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 10:10:19 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC4AB162ADA
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 09:10:15 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A045175D34;
+	Fri, 29 Nov 2024 09:10:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="oMyv2Uzl"
+X-Original-To: devicetree@vger.kernel.org
+Received: from TY3P286CU002.outbound.protection.outlook.com (mail-japaneastazon11010054.outbound.protection.outlook.com [52.101.229.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35C64282297
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 09:10:47 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 312B8189F42;
-	Fri, 29 Nov 2024 09:10:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kMKZLjJ/"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F62D184542;
-	Fri, 29 Nov 2024 09:10:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732871415; cv=none; b=OCfdDre5S/l6kfMA1di3vyaCRWcHXSuv98jDuIssW1gc1FKabvTrxvZ8ENMl8XlOukv86f+fcX7NPHNQ1XCVQV+PpAmG2ItXAhNo4RkSrOM++ivYLkqgJUKmU/g9+hi9QlpoPcdT51At8K3YuxlxKXRnaQp3HwmTQ0SEZhpOCCI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732871415; c=relaxed/simple;
-	bh=Xoh0dNQvawf15vqypI6tnCITiCXreyWsfUHe7gs4T+I=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ackqSbELSSLnScMFcllv2VFw8C9nMm37QtApR+gu5fEcvsWCIssPfzkSLp4UI89SMMkSUR8lVVJk8MGVNRTMyc2TM3iXzHWdYcUbz8UA8f5RBSDcRMlJ+Vj8Bva9aYlMimu1xnnEypeH1hTmoR0/1n0/8OnCzKW6GvrrugOQIMc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kMKZLjJ/; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-aa51b8c5f4dso214379266b.2;
-        Fri, 29 Nov 2024 01:10:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1732871411; x=1733476211; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7qffHUQjyaEfcz46tUr2RiKjchrW1y0UWEygxoizXJc=;
-        b=kMKZLjJ/YUaZMYv/YZMFszXwnCEk8kz2xQ1QC17tbeCnN23zveHBD5Smlj3tk9o3hI
-         XkGewzQwDalAxVjDTH2gI7uNoMW3c+5DINhah7UuL8iH2Hk4dLCywoiMzOA2gGbT9Kvj
-         0sn7vI96KEirhsykyoQpfPk6IoUGz4YrlvFQ+v6AEWTxEkwuUDf3DmDJY28IrrDhHrZQ
-         NMO6JZg3q8IK9ka01DflNdkZ980H5aPs+vI6VnniFR2A7EPWD9GABlnb/ItZeclvwk8X
-         LVei5N670OjVO9RPCl6PQpKa5CkFHoxGMe+Hwz9ORQ3Wlod6cKrQZL3xX+zYNctlqO7n
-         0njQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732871411; x=1733476211;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7qffHUQjyaEfcz46tUr2RiKjchrW1y0UWEygxoizXJc=;
-        b=QlQvq3SQVwx6vbsCF5/Fn/wHbm4Azrv838yOTRtDongUiH6zESSlJlT9SC0BwPwx+c
-         AQW/3GQukaBiBIR6Gn0qyfoHsivrzKlAe1eskjULCw9L57NJueRhdtlnTrRvL74gTYTY
-         Qc6F4smV1+eh4j2e4b9Kr7yjZTTBhXLVyUJmCOgPtmSNUTzO/MJQQMs/P/4HLRqiHEme
-         IKxopXYFsOWqXbVH9dLScG80aogZ+gS7EHtcCRMZ5TRZfjhTJBDuVTAH20z4TMGlv5qz
-         zC9XPUELS1X/ooY2qhT3mfmPFRmmICWh6GOKc9dOI16VZzZvW2kj3+dJbGYHTzPbNgJi
-         OrGg==
-X-Forwarded-Encrypted: i=1; AJvYcCUbQyC08tp9JiQO0+GfJHFW6UTw5eMCpumlui+kC5Rs0AnrSc3XsxMW7VJ3Y8/XQ0TcqEhzldDhgYiW3ncsgg==@vger.kernel.org, AJvYcCW7Y5/zG9DqxDDnKPVb8PDfN1nHKvbr6JzxjdqdpmQCtMEv1sDF955QecdCNT1l9euRgVGQUdZDXAWbOw7X@vger.kernel.org, AJvYcCXAL68yu2DZ8MzjuXaZC2qqPe35+G7s36ivCVkSa0rn68SFhongv9bYpbV6ZMlFeLmdmKsV7zBM7lvf@vger.kernel.org, AJvYcCXusXRRfwbKe6igWPziFAkCdAkMRAR1gJG9Fko/XmvPD9VQ5DE9rV/O/eWtXd/4vD5rSuRWbC2D/8dQN8fxqwHZ55I=@vger.kernel.org
-X-Gm-Message-State: AOJu0YybEzhG9SLXkkezbXzlz740A12WRTIj4KvBhrqBAqfTcJfUM3jT
-	rJi+elgcBExjUlaZMxb2KRkIV5eBzJv2ATbJkKRHAcBVIdGMwPhI
-X-Gm-Gg: ASbGncvtYa9buG6PttrSBoLFt17Yz1hsfCyMIUfBtVqXRRqcZw+Fnjgts2PrJ7y6Wii
-	p/TK4uUnArbi48rmCNS9o4v53iSNFB9UFKz2j+0Sy7Zvnu+aMNBRPl1wS+FryDjqRjQpSZarkTn
-	ixS2h+DhNhQvGv8HX6VNQ6F6QkV9OHV2lrLcoQWG+pQY4T4d0yzYOWYo3NnF2TmzZTWbso1BdJf
-	dNhKWKDs7LhB1iYFYtN2598xvQHWZXMf+ZRDFgyoYXO1X43
-X-Google-Smtp-Source: AGHT+IF+8+7FD9JQHKcuuWDIftygodt95fHqaAV5VkuYytwoGIvRmqVc52WAavSmAZ/di3Xb4CIspA==
-X-Received: by 2002:a17:906:2189:b0:a99:4e35:9a25 with SMTP id a640c23a62f3a-aa5810295damr813757766b.44.1732871410553;
-        Fri, 29 Nov 2024 01:10:10 -0800 (PST)
-Received: from [127.0.1.1] ([46.53.242.72])
-        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-aa5999032c1sm152775766b.133.2024.11.29.01.10.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Nov 2024 01:10:10 -0800 (PST)
-From: Dzmitry Sankouski <dsankouski@gmail.com>
-Date: Fri, 29 Nov 2024 12:09:54 +0300
-Subject: [PATCH v4 2/2] power: supply: max17042: add platform driver
- variant
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A47C1598EE;
+	Fri, 29 Nov 2024 09:10:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.229.54
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1732871409; cv=fail; b=ryyU3lYzddbJTB5mLtw6Xs7HdnMLAKyD1knJJ7+96yS9JlMi2fmW0IgMTgB29xff1V0hVYlnKDarsbU/SHRnam2aVNlLP6hur/uRKj0lUMbs6deGVzXSqAkvA806MrR/J/dEmrNJql9Z/mPNo7aYX87wT8F9Vrmxy91Lm0BghOo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1732871409; c=relaxed/simple;
+	bh=I3PzPIaN713WwNKBfCzHNtP1T3XJUcmSJ/S5EhpjYTA=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=Or9Lt2+iew8XgQaA8Re2UlUh4zx2SPhlBhOdvInyEfS5Qtx24WpzNH/OxW+djNUfFfzetWEGV4rwtucX4AvkwSX1YJGhKG6ETx863C6dFK5B1gupyKTDt0/M/Wp3g0hSNpYbgYGJk8qCBtV+zpjWZSBuK5/86bXv6+ai1D/PSek=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=oMyv2Uzl; arc=fail smtp.client-ip=52.101.229.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=THjW3nyAOoOL1g2YMBPKa0OK0XhetaQWIcGU3ysR42jH2gF23wd9zE7HhC35UHq2ug2xHoS1iDYzsPx+gNZflzRz3y1vyeIWJdXAXsFbthwg9xAKGVsD5aCEUzdD320ZhiGS9mhrO0OO4w2NQAhNWdUPLkvyKVWKydd5+8EgMc+GXP5bRWZYbmp7FhOZh982+e0M1vKs9iUxcRdE5d77PL7i0GsDdh3nSHHbaDePas0/POfLnhHBVrKVpX5YzQpvzLxADdfXeSUr1sbOZEuJF+xMWSqH5YJPFuHi+mDQdg2HjpZXth1aMHdYXGlQ4CtAVW/W22L3XQ02Y8OyltO4Xw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=wt6Ma4Dh0E1Jw1GOkxtW6COllW6mzyAT39JTFyI5hGs=;
+ b=DDql/LB6ucu1m1dkm/NJHcZI5K2mPq4nnZqDZqMx8l4o2P+dgynzg4KuyMGwj2nIK4N+txEtFTU9NXFVaHaQCrzytuniQXErLZvOjm495Z66tVDEEtjZtOwhIgA2ztu4+eT0Vyiz3vZHfAgxrdvkMFJ7ha9IlKMbdAcc7PMRBn7oCor0qnIridUuiPhHroi4P0P6BdXKjvh1Fkqxyqk3zzvfnt/BwpLbHQ8zjQTdR0Z08cR5tWiAEj/h95AwO93QQuMSNtLryrUDnmhQZPjN7qazLNZl4YtJMtyPNmYRH0ECzquo91p7Ax0aV6F9h7bgdWI6LcxEWSAnQM9GXTRkCg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wt6Ma4Dh0E1Jw1GOkxtW6COllW6mzyAT39JTFyI5hGs=;
+ b=oMyv2UzlxVqMnWU0q8GIMphkS6zkp/swDyKiUd/Xzotz4wtfI7Ih27Sk1AURKLb6tadiDz14uSdqhpYlhQb2uCkdANPkNe45aLO1y8FvFpFba39QWx/Xf38qghSKBAvZVvW14Z1Jn7j12fRJp7JaoDPDGSsSyS3kdzUiiBnufV4=
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
+ by TYRPR01MB12286.jpnprd01.prod.outlook.com (2603:1096:405:102::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8207.15; Fri, 29 Nov
+ 2024 09:10:02 +0000
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1%5]) with mapi id 15.20.8207.010; Fri, 29 Nov 2024
+ 09:10:02 +0000
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: =?iso-8859-1?Q?Uwe_Kleine-K=F6nig?= <ukleinek@kernel.org>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven
+	<geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>,
+	"linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, biju.das.au
+	<biju.das.au@gmail.com>
+Subject: RE: [PATCH v22 1/4] dt-bindings: pwm: Add RZ/G2L GPT binding
+Thread-Topic: [PATCH v22 1/4] dt-bindings: pwm: Add RZ/G2L GPT binding
+Thread-Index: AQHbIV3Lpg5iNtSVhUWmW/xtiT9B0bLONOWAgAAD4QA=
+Date: Fri, 29 Nov 2024 09:10:02 +0000
+Message-ID:
+ <TY3PR01MB113469F250419F13DCBB9A95D862A2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+References: <20241018130049.138775-1-biju.das.jz@bp.renesas.com>
+ <20241018130049.138775-2-biju.das.jz@bp.renesas.com>
+ <7r7euw7h5fln3y5hy3zkrm4n4fafh5ww3ydxnwcpcjhbpb5vza@fleninlwsaqb>
+In-Reply-To: <7r7euw7h5fln3y5hy3zkrm4n4fafh5ww3ydxnwcpcjhbpb5vza@fleninlwsaqb>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|TYRPR01MB12286:EE_
+x-ms-office365-filtering-correlation-id: e3501473-def9-427f-eeb1-08dd10559b6a
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|7416014|366016|376014|38070700018;
+x-microsoft-antispam-message-info:
+ =?iso-8859-1?Q?acTPj6rQjRErf7d8lqXZZ21ZT+uyb692H6RI1UREYPv+aPB73LbFrsfwBH?=
+ =?iso-8859-1?Q?HF5xnIWTZ4AK56AhBbEZ+61LmY7TLM4ncaqp8ogquLTRbGZx5L4fiEleJz?=
+ =?iso-8859-1?Q?tDXko+xttFoGlL4dALKOSx8Ot1GB3SGd6JHUd/FkeuBYK7d1pDFfGS4IVU?=
+ =?iso-8859-1?Q?n6fkq8xwr4a+Z2h3dd1DYXc+Dgn0fhAseq5MA8tD9vLrIXuE/YvC0jZrCV?=
+ =?iso-8859-1?Q?u614e8yKiyJu8wYbXfF0+rhlkIa0gD9+mxiKQCO9qW7ZwsEne2peMCkpEs?=
+ =?iso-8859-1?Q?Js0VxRFWTqSY+zfXV7nhKUyAnSKaTRoF/wOistKmdhnzWz96iKoAsNLhYu?=
+ =?iso-8859-1?Q?QpRundrbdCcJOkMXDCPcR6dKXei/uB5OnwLtjDCnyDjh1bPEw7zJPo/pCt?=
+ =?iso-8859-1?Q?/O2Qe/EmMzZL3k0ZxnQCpDdnxmvqkzFwOF3yXwB/lyXETXO2LwDrSfSRa+?=
+ =?iso-8859-1?Q?99+EfyiLAFkHgwUVPIsgs6tsKihbdGqq3YJ7y4SKqxTL6G8QCncI1r7bDt?=
+ =?iso-8859-1?Q?DZ4BwQzZ/3vl7d+UyK0IlnnJCa2hIZ7NGcZy0My0C1eC3KgoaaEq/Ilmle?=
+ =?iso-8859-1?Q?cI+OAlyuM2umykKKB3WBavSmlQNiMhK8whwWNqnxw4DoAFRdEChONyucP/?=
+ =?iso-8859-1?Q?UJMPLqgTTzW01nTBafxzv/iIn88jfxGXeooZMJ5B6a11AtIwAhPjLd56kT?=
+ =?iso-8859-1?Q?JoDHQhXyolS03K4tccphQN7ZAibcOzXbHKWW3g6kJkyam1kCnZrEcB2eKP?=
+ =?iso-8859-1?Q?KB5lIXLZhnv0PGHUs33gU+iJJSHnBc0016GI0IDALA3RjEqvVAympJ62On?=
+ =?iso-8859-1?Q?O576CUtGrdIwGdfPHPNd7oKIEbOuC2fAqbvw7NtLmm8VPVJFp+eaBvkWEA?=
+ =?iso-8859-1?Q?YN2rhQf+OB7vUzIp4IbF8bjEbyFHLHErCR8EKKLDktPWgpj+eZ9ssljo2i?=
+ =?iso-8859-1?Q?QQ54wZQ/BnrzfGGR1iXVfJ7Mt5mH2HstbszylAIl7VsgwReeWF0e+EE39D?=
+ =?iso-8859-1?Q?9Z9wlygrEH7caTFXndLIQl6GXXu+rim41uSPTIK7xgxunrcQkh+DSQpvng?=
+ =?iso-8859-1?Q?F3snfL7NhnUlZlGzB8LaZlUhTjjB2ZPvfOh/TiiWZZnUZRgkQd6U70Az9E?=
+ =?iso-8859-1?Q?xNdp325UXxfBj7utQK8Ebzh6d2rUqy/t7pkAo3Faao6MVmYn8KSa3wvJXv?=
+ =?iso-8859-1?Q?aq4Nf17TWyEjRA6qV35edJ0W0Dx4W+j0gS7mHu70b2dZV8UNSSbYoQsl/I?=
+ =?iso-8859-1?Q?s338J4RSx+ozsuXE7jIf6e8tcpLs6J+o2D6Dco3BdJm+ERRAdbRy1NsIwY?=
+ =?iso-8859-1?Q?59b1H6NTNW94rD58ZXU98vBd5Hc+xYovNqviFEzb+vzG9Cqbyin2GTr90q?=
+ =?iso-8859-1?Q?unP0S7shqWmB0/siepfml5JeLxtnPmg8qNgBMdFQa+F1KEHvbUE8n3v+FC?=
+ =?iso-8859-1?Q?Hqb4TCTfpd/0tk2UC60lgFzInOgrYdQydUS95w=3D=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(366016)(376014)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-1?Q?D95BHq+h1fljY7s9IQDd33pw5rNPOOLqC44/B7F6p4bGhwxnPKYS6hvhOR?=
+ =?iso-8859-1?Q?ZoT3QbX4UK7Y1l/zAX2IyzWkM6IJ3PsBBbnwjlzZDj6rVgrMzUY1wSD+V/?=
+ =?iso-8859-1?Q?TNscpVDNNYhwm3TL14XPCd+vE4oj/kqS/aDDT+8SetQBByPlLAepCUtfcR?=
+ =?iso-8859-1?Q?KssqZjKO1DHZcSxlJc5QmagnJxpKg41y+t4b9FEa4m9CVFou0qkeuqUJMY?=
+ =?iso-8859-1?Q?iaQoVmiL8CUlJaVeGBNq9Re5dy179v/h0KNPbEzxEfnMtNj+aHBr9R8+yO?=
+ =?iso-8859-1?Q?LcELqav/yL1G7esAVXgXghV46Q/wLWI8mOARGd6WpvIznaolsTCAo5l872?=
+ =?iso-8859-1?Q?7mnUMZ9ZrUTPMlOAnOoWS/lyJ8F7dHMk4ytZZpLMs9UUEXtQ/gzDbYc3x9?=
+ =?iso-8859-1?Q?xdOUbhVYMmwXk3odvQ7SVwYFQPUO+SIQwqAiCxPisw6vxcnIX09Bmgw7zi?=
+ =?iso-8859-1?Q?HGQCggU6JV3hiYmGSghqmk+H9X8aovg4QU03b3MtTxiBk6e3YqBn3HJCY5?=
+ =?iso-8859-1?Q?9JYl7yMQIi+y7Z6Hjo34HgB8P0Dh3kaUVSgQjCaVIjgeyo+oc1X1pC+5dL?=
+ =?iso-8859-1?Q?FKJwQA4A0wbQkndmZSVJGTZFcqgffNO9jPKNpJ12InMqUoO9J2YQOcESBq?=
+ =?iso-8859-1?Q?XVUMKzPqR7y2u+nLcz1oPvPr40gDI2sl+lA12SYD02OF2yw3jdPQyFrbbG?=
+ =?iso-8859-1?Q?1hR6S1lkrSeYTqnIX/na4CJltVaSYdPpsVsbXNvdZeCX6wDSXTffsKc1eK?=
+ =?iso-8859-1?Q?kH9RqI6HzRtGh63yamwa/FFD1rO7uYeV6ekMUvkr4lh5JIYLK8/r7H6LOj?=
+ =?iso-8859-1?Q?HX/xckRl3iCW9CX9/mBPqRFdpzZSb6+QD9b5UnneLV8W8EGmc78hx+CWS2?=
+ =?iso-8859-1?Q?rNeRWp1QESQGtt39xGBQIXtQxc258pokCxRuco60M5SGZyTsIuSZmvO84e?=
+ =?iso-8859-1?Q?T/P0bYexZztfUgnOJdm3PEq1IYmU23oaRX3yu1W7McuXiB/m+ofvRphFTL?=
+ =?iso-8859-1?Q?wNUoZEDtIQqTBM8XY/Hnaa9yiVD1kAg3tzsHe4cREgqEeaUfyxWocrE7na?=
+ =?iso-8859-1?Q?gJrf+nEoTB3wB/XH0InuWX4fxy95JFNOLgCgJBAi8iH1eOeytJPm1euJ6A?=
+ =?iso-8859-1?Q?eJzyb55sOkqahOHidjDpmRsHsTJGJLRxn8SNcgqobg3Ri85untyKKNE4nn?=
+ =?iso-8859-1?Q?cRuhpT5t1lPgrCqT9kOnbZKhag5mROoKofcmf+BZgRMZ1zlOx+mJwObUYU?=
+ =?iso-8859-1?Q?oucrkmmZE3eJnoHx9i/tAjliRoFZdzFLLb1rFI4Zvvy3VdjJZcwaY328uM?=
+ =?iso-8859-1?Q?YR91APa6YuOnLTJTRESVyHAc0PazsWY5I552D2XjdXqMMPMObdnlRASYLj?=
+ =?iso-8859-1?Q?4yIYWqcMA+Errf6cRqKJsQ64keQmYPE3Eyx4sAoQ+j9b8XK2acBWhSGDRs?=
+ =?iso-8859-1?Q?dmGxdD+0TM1A/kKiVmp2Slu3LIqp0TN3oHpSZFtPQ6ik6gTQlIjVRfxa40?=
+ =?iso-8859-1?Q?64sy3lMRO6atVBdBxJoRllTPz6ZENbVqqnRxZ9RpeZNrb2pDbfzYmwYR3l?=
+ =?iso-8859-1?Q?lKYQ1gqtmfquRiBAUdKpDagROGxyR9GAgkG7DSixMKjS+AeQRr2lYbVGSJ?=
+ =?iso-8859-1?Q?6XBNkJAwGqIcXmUfRQnCWjjfpHeyb7pp2K+QCxcHq9Tj9bIyONgUCyJg?=
+ =?iso-8859-1?Q?=3D=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241108-b4-max17042-v4-2-87c6d99b3d3d@gmail.com>
-References: <20241108-b4-max17042-v4-0-87c6d99b3d3d@gmail.com>
-In-Reply-To: <20241108-b4-max17042-v4-0-87c6d99b3d3d@gmail.com>
-To: Hans de Goede <hdegoede@redhat.com>, 
- Krzysztof Kozlowski <krzk@kernel.org>, 
- Marek Szyprowski <m.szyprowski@samsung.com>, 
- Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>, 
- Purism Kernel Team <kernel@puri.sm>, Sebastian Reichel <sre@kernel.org>, 
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-msm@vger.kernel.org, Dzmitry Sankouski <dsankouski@gmail.com>
-X-Mailer: b4 0.12.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1732871405; l=7965;
- i=dsankouski@gmail.com; s=20240619; h=from:subject:message-id;
- bh=Xoh0dNQvawf15vqypI6tnCITiCXreyWsfUHe7gs4T+I=;
- b=2kmNGWiDEP+cyNDTfytwY6c+N/rqi8tH2ZqGbskBd8Cx+UwTEPNv4T8pD/mWaNOpfxQBMEwPG
- Y84fW5qRo/qBq1P7HqBlnLmNaIdph/ff0iEFrgAxVxh0aEiUT+EK0dX
-X-Developer-Key: i=dsankouski@gmail.com; a=ed25519;
- pk=YJcXFcN1EWrzBYuiE2yi5Mn6WLn6L1H71J+f7X8fMag=
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e3501473-def9-427f-eeb1-08dd10559b6a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Nov 2024 09:10:02.1779
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: CZCQ+WWLtJ7tynMW4dJQaGAchpoffD3KO2i89rPf6SgV6zHOwIgmMyEJk9J6sZFs+MAWtDJazewiCrYHh7IjsSHJbqwpV8JFaz73KayoAwQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYRPR01MB12286
 
-Maxim PMICs may include fuel gauge with additional features, which is
-out of single Linux power supply driver scope.
+Hi Uwe,
 
-For example, in max77705 PMIC fuelgauge has additional registers,
-like IIN_REG, VSYS_REG, ISYS_REG. Those needed to measure PMIC input
-current, system voltage and current respectively. Those measurements
-cannot be bound to any of fuelgauge properties.
+Thanks for the feedback.
 
-The solution here add and option to use max17042 driver as a MFD
-sub device, thus allowing any additional functionality be implemented as
-another sub device. This will help to reduce code duplication in MFD
-fuel gauge drivers.
+> -----Original Message-----
+> From: Uwe Kleine-K=F6nig <ukleinek@kernel.org>
+> Sent: 29 November 2024 08:51
+> To: Biju Das <biju.das.jz@bp.renesas.com>
+> Subject: Re: [PATCH v22 1/4] dt-bindings: pwm: Add RZ/G2L GPT binding
+>=20
+> On Fri, Oct 18, 2024 at 02:00:42PM +0100, Biju Das wrote:
+> >  .../bindings/pwm/renesas,rzg2l-gpt.yaml       | 378 ++++++++++++++++++
+> >  1 file changed, 378 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/pwm/renesas,rzg2l=
+-gpt.yaml
+>=20
+> Wow, quite a big binding. An astonishing amount of irqs.
+>=20
+> > [...]
+> > +  '#pwm-cells':
+> > +    const: 2
+>=20
+> Please make this 3. Otherwise no objections.
 
-Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
----
-Changes in v4:
-- rename module_init and module_exit fuctions
-- rework max17042_init
-- assign chip_type in probe function
-- pass i2c_client as pointer on pointer, to use same pointer created in
-  MFD. This allows devm_regmap_init_i2c to cleanup gracefully.
+The hardware supports both polarities. Currently I have added support for n=
+ormal polarity.
+Subsequent patch will enable inverse polarity.=20
 
-Changes in v3:
-- pass dev pointer in max17042_probe
-- remove prints
----
- drivers/power/supply/max17042_battery.c | 116 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++------------------------
- 1 file changed, 92 insertions(+), 24 deletions(-)
+Am I missing something here? Please let me know.
 
-diff --git a/drivers/power/supply/max17042_battery.c b/drivers/power/supply/max17042_battery.c
-index 99bf6915aa23..6a1bfc4a7b13 100644
---- a/drivers/power/supply/max17042_battery.c
-+++ b/drivers/power/supply/max17042_battery.c
-@@ -16,6 +16,7 @@
- #include <linux/i2c.h>
- #include <linux/delay.h>
- #include <linux/interrupt.h>
-+#include <linux/platform_device.h>
- #include <linux/pm.h>
- #include <linux/mod_devicetable.h>
- #include <linux/power_supply.h>
-@@ -1029,14 +1030,12 @@ static const struct power_supply_desc max17042_no_current_sense_psy_desc = {
- 	.num_properties	= ARRAY_SIZE(max17042_battery_props) - 2,
- };
- 
--static int max17042_probe(struct i2c_client *client)
-+static int max17042_probe(struct i2c_client *client, struct device *dev,
-+			  enum max170xx_chip_type chip_type)
- {
--	const struct i2c_device_id *id = i2c_client_get_device_id(client);
- 	struct i2c_adapter *adapter = client->adapter;
- 	const struct power_supply_desc *max17042_desc = &max17042_psy_desc;
- 	struct power_supply_config psy_cfg = {};
--	const struct acpi_device_id *acpi_id = NULL;
--	struct device *dev = &client->dev;
- 	struct max17042_chip *chip;
- 	int ret;
- 	int i;
-@@ -1045,33 +1044,25 @@ static int max17042_probe(struct i2c_client *client)
- 	if (!i2c_check_functionality(adapter, I2C_FUNC_SMBUS_WORD_DATA))
- 		return -EIO;
- 
--	chip = devm_kzalloc(&client->dev, sizeof(*chip), GFP_KERNEL);
-+	chip = devm_kzalloc(dev, sizeof(*chip), GFP_KERNEL);
- 	if (!chip)
- 		return -ENOMEM;
- 
- 	chip->client = client;
--	if (id) {
--		chip->chip_type = id->driver_data;
--	} else {
--		acpi_id = acpi_match_device(dev->driver->acpi_match_table, dev);
--		if (!acpi_id)
--			return -ENODEV;
--
--		chip->chip_type = acpi_id->driver_data;
--	}
-+	chip->chip_type = chip_type;
- 	chip->regmap = devm_regmap_init_i2c(client, &max17042_regmap_config);
- 	if (IS_ERR(chip->regmap)) {
--		dev_err(&client->dev, "Failed to initialize regmap\n");
-+		dev_err(dev, "Failed to initialize regmap\n");
- 		return -EINVAL;
- 	}
- 
- 	chip->pdata = max17042_get_pdata(chip);
- 	if (!chip->pdata) {
--		dev_err(&client->dev, "no platform data provided\n");
-+		dev_err(dev, "no platform data provided\n");
- 		return -EINVAL;
- 	}
- 
--	i2c_set_clientdata(client, chip);
-+	dev_set_drvdata(dev, chip);
- 	psy_cfg.drv_data = chip;
- 	psy_cfg.of_node = dev->of_node;
- 
-@@ -1095,17 +1086,17 @@ static int max17042_probe(struct i2c_client *client)
- 		regmap_write(chip->regmap, MAX17042_LearnCFG, 0x0007);
- 	}
- 
--	chip->battery = devm_power_supply_register(&client->dev, max17042_desc,
-+	chip->battery = devm_power_supply_register(dev, max17042_desc,
- 						   &psy_cfg);
- 	if (IS_ERR(chip->battery)) {
--		dev_err(&client->dev, "failed: power supply register\n");
-+		dev_err(dev, "failed: power supply register\n");
- 		return PTR_ERR(chip->battery);
- 	}
- 
- 	if (client->irq) {
- 		unsigned int flags = IRQF_ONESHOT | IRQF_SHARED | IRQF_PROBE_SHARED;
- 
--		ret = devm_request_threaded_irq(&client->dev, client->irq,
-+		ret = devm_request_threaded_irq(dev, client->irq,
- 						NULL,
- 						max17042_thread_handler, flags,
- 						chip->battery->desc->name,
-@@ -1118,7 +1109,7 @@ static int max17042_probe(struct i2c_client *client)
- 		} else {
- 			client->irq = 0;
- 			if (ret != -EBUSY)
--				dev_err(&client->dev, "Failed to get IRQ\n");
-+				dev_err(dev, "Failed to get IRQ\n");
- 		}
- 	}
- 	/* Not able to update the charge threshold when exceeded? -> disable */
-@@ -1127,7 +1118,7 @@ static int max17042_probe(struct i2c_client *client)
- 
- 	regmap_read(chip->regmap, MAX17042_STATUS, &val);
- 	if (val & STATUS_POR_BIT) {
--		ret = devm_work_autocancel(&client->dev, &chip->work,
-+		ret = devm_work_autocancel(dev, &chip->work,
- 					   max17042_init_worker);
- 		if (ret)
- 			return ret;
-@@ -1139,6 +1130,38 @@ static int max17042_probe(struct i2c_client *client)
- 	return 0;
- }
- 
-+static int max17042_i2c_probe(struct i2c_client *client)
-+{
-+	const struct i2c_device_id *id = i2c_client_get_device_id(client);
-+	const struct acpi_device_id *acpi_id = NULL;
-+	struct device *dev = &client->dev;
-+	enum max170xx_chip_type chip_type;
-+
-+	if (id) {
-+		chip_type = id->driver_data;
-+	} else {
-+		acpi_id = acpi_match_device(dev->driver->acpi_match_table, dev);
-+		if (!acpi_id)
-+			return -ENODEV;
-+
-+		chip_type = acpi_id->driver_data;
-+	}
-+
-+	return max17042_probe(client, dev, chip_type);
-+}
-+
-+static int max17042_platform_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct i2c_client **i2c = dev_get_platdata(dev);
-+	const struct platform_device_id *id = platform_get_device_id(pdev);
-+
-+	if (!i2c)
-+		return -EINVAL;
-+
-+	return max17042_probe(*i2c, dev, id->driver_data);
-+}
-+
- #ifdef CONFIG_PM_SLEEP
- static int max17042_suspend(struct device *dev)
- {
-@@ -1204,6 +1227,16 @@ static const struct i2c_device_id max17042_id[] = {
- };
- MODULE_DEVICE_TABLE(i2c, max17042_id);
- 
-+static const struct platform_device_id max17042_platform_id[] = {
-+	{ "max17042", MAXIM_DEVICE_TYPE_MAX17042 },
-+	{ "max17047", MAXIM_DEVICE_TYPE_MAX17047 },
-+	{ "max17050", MAXIM_DEVICE_TYPE_MAX17050 },
-+	{ "max17055", MAXIM_DEVICE_TYPE_MAX17055 },
-+	{ "max77849-battery", MAXIM_DEVICE_TYPE_MAX17047 },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(platform, max17042_platform_id);
-+
- static struct i2c_driver max17042_i2c_driver = {
- 	.driver	= {
- 		.name	= "max17042",
-@@ -1211,10 +1244,45 @@ static struct i2c_driver max17042_i2c_driver = {
- 		.of_match_table = of_match_ptr(max17042_dt_match),
- 		.pm	= &max17042_pm_ops,
- 	},
--	.probe		= max17042_probe,
-+	.probe		= max17042_i2c_probe,
- 	.id_table	= max17042_id,
- };
--module_i2c_driver(max17042_i2c_driver);
-+
-+static struct platform_driver max17042_platform_driver = {
-+	.driver	= {
-+		.name	= "max17042",
-+		.acpi_match_table = ACPI_PTR(max17042_acpi_match),
-+		.of_match_table = of_match_ptr(max17042_dt_match),
-+		.pm	= &max17042_pm_ops,
-+	},
-+	.probe		= max17042_platform_probe,
-+	.id_table	= max17042_platform_id,
-+};
-+
-+static int __init max17042_init(void)
-+{
-+	int ret;
-+
-+	ret = platform_driver_register(&max17042_platform_driver);
-+	if (ret)
-+		return ret;
-+
-+	ret = i2c_add_driver(&max17042_i2c_driver);
-+	if (ret) {
-+		platform_driver_unregister(&max17042_platform_driver);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+module_init(max17042_init);
-+
-+static void __exit max17042_exit(void)
-+{
-+	i2c_del_driver(&max17042_i2c_driver);
-+	platform_driver_unregister(&max17042_platform_driver);
-+}
-+module_exit(max17042_exit);
- 
- MODULE_AUTHOR("MyungJoo Ham <myungjoo.ham@samsung.com>");
- MODULE_DESCRIPTION("MAX17042 Fuel Gauge");
+Or
 
--- 
-2.39.5
+since it is optional, there is no harm in making it to 3 to take care
+of any future additions in pwm.h flags.
 
+Cheers,
+Biju
 
