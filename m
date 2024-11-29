@@ -1,179 +1,205 @@
-Return-Path: <devicetree+bounces-125515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125517-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 941ED9DC2DF
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 12:31:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DE109DC2FF
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 12:43:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3CB55163FE2
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 11:31:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D9C41636DD
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 11:43:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BEA219C543;
-	Fri, 29 Nov 2024 11:31:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MasX5LPy"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0483B199EB0;
+	Fri, 29 Nov 2024 11:43:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from PNYPR01CU001.outbound.protection.outlook.com (mail-centralindiaazon11020077.outbound.protection.outlook.com [52.101.225.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 027AA19A28D
-	for <devicetree@vger.kernel.org>; Fri, 29 Nov 2024 11:31:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732879865; cv=none; b=Jap9OW1imUOOEkork+VirG/vt5rM4NoenZxVYU1gTOPd3fGmvocuCEUY/txsfNCByUiSElSYScmyyT4oy2prdgcn+eqt7nszX53PfpV+E3heu9gHQdAnas24ZHjG/awRZ++30u8iosz/hKs4nRgiWJLRYWBvi8CR21e6BMs3SX0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732879865; c=relaxed/simple;
-	bh=E/nct3Z0AyiW7so5qEv2TjxTURueIYFuWIEzfrDHS+c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UtaciZiafs74mJU1yWYbWvJJi5vCCuOSIB/4k6NaLa9I67PAKBjpWFJnms039ORLc8z8Jz/WDsWl5DME6exWMHKHzwgEJcdn5SCT7Mv1VD0MAo6diDP055fEQRGWaVxVcChhh4ZwVQFcrIUcLSs+nw8WDo5VjtAvtr9cYhlzK48=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MasX5LPy; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4ASNhiZF011402
-	for <devicetree@vger.kernel.org>; Fri, 29 Nov 2024 11:31:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	2J73uNjPZGAVHNhLAoMksXEtawK/JNV411b/AtLbyMI=; b=MasX5LPyTHJqo+X7
-	zqhVTnDR/lxymLKcgXXcX9K/fv4eIYvlKv7EsL1/a05k/xVQaTnhZH6Z0Pn4MH5q
-	8uoBw0+cxow7q9reaYMsuKGWqMeB3Gt4ZljLGJloXmyxh4/NsznqbDixKqK52FwI
-	YeABf0Ou7vavA8lNfpnouQjAmHd5Va9y2mIbK+i/Z3gVjjoCtv8m37iwyACGvQ6F
-	p8FhDyY+MJ2p9UfIQC1VUZj2x6I5n5yiX9XM72nhhJyKyEAANSF9fqjz4PYppfc7
-	YOVciVcwr/26mNC1/HMZMj/tr0I3sKYF9CwCygYtUbNzegGVDCgwnonSFmJIrc05
-	APoRtg==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4366xwnb30-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 29 Nov 2024 11:31:00 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6d3b1d1d8c1so4005156d6.2
-        for <devicetree@vger.kernel.org>; Fri, 29 Nov 2024 03:31:00 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732879860; x=1733484660;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2J73uNjPZGAVHNhLAoMksXEtawK/JNV411b/AtLbyMI=;
-        b=wlaPmyVRcLv64Ho2p6SPNbmyXIdVsrP9d8MQJA8wYV3wtj4B3LTAMjCAgySJKQ1BaA
-         aVtNXV89ucmeLpYsoW/azN/IgffQNyT0fcHGGKQ0X5cqFZsrvqMU+gBVXFrfGRl/Oof/
-         giD/a8I/V/4M0vbjn2lRaVW0miRVR75gHNwGuw+zawdY9GOoQqKZuapsDl2DZ9VdF8Ff
-         SkUN1DAORDiAq6M/G0dKQaPyjLV+bJtjyCik0myihKQytIZ55vHEQVBxV2dfcmAQNkZ6
-         4XP3viO4pJk8XCd6HqCeKmYdQJYOctnVFaPt0U43ZHKKvD4gDTGBwR6TXQ6+cKbtOrVg
-         PLJg==
-X-Forwarded-Encrypted: i=1; AJvYcCWFrNsfN+CsA+9iud0e+YvJlBE0nB8sUroFBJVR0X4fPVCr4gEHQ+eJCQXWN7gBw0cFh8NFG/rujj65@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxh4JuhMFk56bMfhWeu06gnqtt6UcWySVjFMX4hWI2kRY4DwiT1
-	2WSbnfXhXc39hXnLowX2sscfpArkg4kzRy5JyxtGOQhdwxZsjwolwhREwpCjCI8+wzMfePIxVn0
-	HEEQ5YP4pyikYzcYzFUA8ARQwhArkc7OSHo7V9PoGcgx35qilJLkpAC9FeXJC
-X-Gm-Gg: ASbGncvYLM1MZVK+OSAmAlRwe491e5tTjW6Y7C9X0/N0ZToujpsIcZllJvTPF6Sqfgj
-	vmbkhpWxH58wy2OuaBvTyzN+CWEKzELpiWDGbwv6JSQQzJoPAfLjjgPuXKBp7SF00LwOVUH+bdH
-	lhrCTJ0lIlkVvunUt5iWNdmMVJCN6zd2bvdfCKZLfLbo0B8bp0Y91yz7TqSjxOIZmkd+/1R0y33
-	eqZFHlZQ71E14643KDrzcUf5QhlW58rCciw0eTqjXYFpv3OO3bPd+rAPeb8DCetLreiBYrckWED
-	5yaGLFQv8kvXlydE85u8pBjG+DwloNk=
-X-Received: by 2002:a05:620a:468f:b0:7af:cac7:5017 with SMTP id af79cd13be357-7b67c294e6amr664115385a.4.1732879859922;
-        Fri, 29 Nov 2024 03:30:59 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IH+ZvQGdRMQzPEEaLaG2syP1M2cbvOxApntRS5gUHerceJ8hR18oZcXNURE5/8QI1Nm+rL0BQ==
-X-Received: by 2002:a05:620a:468f:b0:7af:cac7:5017 with SMTP id af79cd13be357-7b67c294e6amr664113385a.4.1732879859513;
-        Fri, 29 Nov 2024 03:30:59 -0800 (PST)
-Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa5997d40f4sm167622766b.65.2024.11.29.03.30.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Nov 2024 03:30:59 -0800 (PST)
-Message-ID: <4f3921b1-412e-4982-b360-d0e6cec69673@oss.qualcomm.com>
-Date: Fri, 29 Nov 2024 12:30:56 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0395D17ADF7;
+	Fri, 29 Nov 2024 11:42:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.225.77
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1732880580; cv=fail; b=ZC+HkSoy+JFW7c1UDvnnm03qdLm1d8HAa656mywYQIqlETDmR0qm5b892sIOCAEmFqO8ZfHyWkfZTgIk8ArJZMlTVnAY+Kc9O970ErC/pCbcykrboFhyj3CRKyzH27ffbYZAo60caPEwh6Dwj7JPA9FTBUNkS1UpPzXbNhLYHNc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1732880580; c=relaxed/simple;
+	bh=OPFfpqmoD7RTj+WQcjlqeDxFOGDGo04NRWe/wLqMNj8=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=WTqrpNjnwNedkKAV6EQ3irDuor0q3zlVFGA16Ka6q6E1tffiOxbrrAd5OxBwUNy3KoQki3u+1YesmkICaMUW8+C4Bk9U/yv+oUVegbUbUq1bQ5m8fMydIHqpgiCEDww5sTwvAxBkFvFlS/eFix/UuDpD9RWaMvkdEWTAS9Qt95Y=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io; spf=pass smtp.mailfrom=siliconsignals.io; arc=fail smtp.client-ip=52.101.225.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siliconsignals.io
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=OZAGVXzMj7dQJv+3/cFJvcsKFVDKidR4/YzwJ9C/LcXH/+4peaRjPLAhDq5XqCAiKgd62omqU0im1YvvrdTbmIlRqXU4C0A1jTQf0D5xX6rw/ucHoW4/U5D2C250eudmlGRZr5s5nSfeWh4rsk5+wbiHDNM8LVhJhopSLIHP+Hy0m+yEomy4Y2Bfq0QOe5Y71WGb15OqlxWOnHIqmuGGdoQKt1M2NsMXto4h8O7gS85F4tMceai/zNUJXo1rMzWNPMsq3hlgdQNpEloqL4N2HX1AXr+XYavT4rMefY7NbnFa9Bkyp8do2ag901wFVRJGgPR4j1MBLfZfaRBx2PPK8A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=rCxM7qnuDpOC+v7MolssopxtPN0HdLuXcRiL+rbePfM=;
+ b=YrYzuwslP519Y2OM9XiRcDIEOfeZezoUUrM/BUTth/1eYBN+k3jzFbYcHs+3IPmT6UupVQPBf0RCmyO9LK4C6/T5TwAmNyEtqjgfC/2B+mih1UNYeOeSiW5Bn8Z9WX2Qr0HewoABAkZY7Lng8C4LtTIHJ8dCIus5zVV53IMPDO5gtnImDqSNqw2kQ/lH7xzt5873J55iF9/KJY01fiXHCAqZK1e/l9Qtj/kezJ6cp5s5OcFk7d59chYl1qTGPIAO5xNQ2RUcjsj4RlsdWTFJvrUpnkABpX83e2FuYx9JzDMxtZ9yIo/X6CIcdMMAKV6e3N2ZvVDxSEAmclVcTk3VSQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=siliconsignals.io; dmarc=pass action=none
+ header.from=siliconsignals.io; dkim=pass header.d=siliconsignals.io; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siliconsignals.io;
+Received: from MA0P287MB1178.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:fc::7) by
+ PN2P287MB0599.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:15e::6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8207.15; Fri, 29 Nov 2024 11:42:54 +0000
+Received: from MA0P287MB1178.INDP287.PROD.OUTLOOK.COM
+ ([fe80::56b4:3b88:bcc8:b1c2]) by MA0P287MB1178.INDP287.PROD.OUTLOOK.COM
+ ([fe80::56b4:3b88:bcc8:b1c2%7]) with mapi id 15.20.8207.010; Fri, 29 Nov 2024
+ 11:42:54 +0000
+From: Bhavin Sharma <bhavin.sharma@siliconsignals.io>
+To: sre@kernel.org,
+	krzk+dt@kernel.org
+Cc: Bhavin Sharma <bhavin.sharma@siliconsignals.io>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
+	linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v5 0/2] power: supply: Add STC3117 Fuel Gauge 
+Date: Fri, 29 Nov 2024 17:10:44 +0530
+Message-ID: <20241129114200.13351-1-bhavin.sharma@siliconsignals.io>
+X-Mailer: git-send-email 2.43.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: PN2PR01CA0086.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:23::31) To MA0P287MB1178.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:fc::7)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: qcs8300-ride: Enable PMIC
- peripherals
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Tingguo Cheng <quic_tingguoc@quicinc.com>, quic_fenglinw@quicinc.com,
-        quic_tingweiz@quicinc.com, kernel@quicinc.com,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20241126-adds-spmi-pmic-peripherals-for-qcs8300-v1-0-28af84cb86f8@quicinc.com>
- <20241126-adds-spmi-pmic-peripherals-for-qcs8300-v1-2-28af84cb86f8@quicinc.com>
- <5ae55ca2-d9ef-49c0-8868-2c5bb665ddb1@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <5ae55ca2-d9ef-49c0-8868-2c5bb665ddb1@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: _5GsZvQny466py97XSSynexhwb97ddIc
-X-Proofpoint-GUID: _5GsZvQny466py97XSSynexhwb97ddIc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 phishscore=0
- adultscore=0 lowpriorityscore=0 spamscore=0 malwarescore=0 mlxlogscore=999
- mlxscore=0 impostorscore=0 suspectscore=0 priorityscore=1501 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2411290094
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MA0P287MB1178:EE_|PN2P287MB0599:EE_
+X-MS-Office365-Filtering-Correlation-Id: c7956dab-905e-4e12-25b9-08dd106af629
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|52116014|1800799024|376014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?5rv2aybUGhZXK5EUbjNbPFxUgdGaSQliN1yBRARHZRwalsqVyF1p3cCGKL1d?=
+ =?us-ascii?Q?1vpnj5TV5Fs4QeYrm/0kclmgQ1VAXvz2p9ZQ1qFACj83sqsHF6GgJTM9a/jM?=
+ =?us-ascii?Q?6YXZUb1i+Pi/5ap5O5AAx3oCIQojGw1cv/QuHZkVIWb4oU15ej0rXFwUNEZc?=
+ =?us-ascii?Q?AXi/+r4JA2YHnfDY3nvBMhBqKV41AL4lXHP7SKcBUNKm2L791NnnCrtkFaRj?=
+ =?us-ascii?Q?1R0xzoC9+JdF9ZeapHq0Usuo+V/ZeVtsxOkYv1bnRmxqVM5QTqLhNWOGsyTZ?=
+ =?us-ascii?Q?m5pOzGuaFrCBU8GFMRGgwKJvdE7MCnpVUl4aQ03HETBbRhARqosq/ylcMJz9?=
+ =?us-ascii?Q?5vbzUlNU8SI9NNwwG4ULetb7PW9QFnM2BeTfOAQe/TiriGmuvtpAzeTmoJbL?=
+ =?us-ascii?Q?pTmgCdp0I20DBPy7xWuLHQE+W60bglk64RVxBeKpWtJsXbhJt4TZ12+Ejw/o?=
+ =?us-ascii?Q?h960edb6emavP0TV9JkUwYvgMClBWYQpyzm4d6z79wLmcUASipKf3Bs5OtC2?=
+ =?us-ascii?Q?L3QNbJFXJEh+WvKSKUAlQNWOGl83sAVTBNB2NpVyi1v8SeciWPtfjqTy0yBm?=
+ =?us-ascii?Q?U0e+/XQu3CCmgBed0ZxHPYK9dpR3y37W702TqJ5wkz8nLTXR5GXgDawNstrw?=
+ =?us-ascii?Q?i4/D18r/tivDzqf0JQ4MyHmH2/XRZZ9I2DE4HPf9DOKwDHeYs96igG87Uzo3?=
+ =?us-ascii?Q?XJbCuoy4cdKlIXXdxvYi1cz9RnC9VhZKrj/O+sv9JNNYiS1MAnYv81uojXup?=
+ =?us-ascii?Q?7U6FeNxscfn5feg3f8Pwf9cR8s4jRzrXuXD0HK3cks+j4zgvpAioS3jSdIEl?=
+ =?us-ascii?Q?uZc+1vhHQDzLSHpvbSTQyoHblfEMQN7Am56huct/21fxwhz3EjFiCsYIOwb/?=
+ =?us-ascii?Q?wsm+mjVxI4OXMp1MijebImG/XDkP7wJcAiPnBz9SpEKFq8zyYnVTUGSjdRf2?=
+ =?us-ascii?Q?lbqoDcBbS8icEbsI5Ip24GiRbJsOPuq15kDVwG2V3Wmbl112hzjEkgio92eu?=
+ =?us-ascii?Q?6hx//pMCGQsdG2nhVsl/kzLuFIK93Ix0m6oUXGzFlbWPLB7keEqptWXdxFkQ?=
+ =?us-ascii?Q?ILYfFm57XlRn4GlWb2U5NdbrrO2ZTLCZ8gpJbr1mkoyEUxW0zattXu1NcIL7?=
+ =?us-ascii?Q?esqZ+b8/ep8yWEZ8FiGr6UROjW7eabHDgr62txbsaF8IEYjkFjdK2Wf3IVdf?=
+ =?us-ascii?Q?FsJOHo5Kh8wCDCUkurr/Cn9onqRPV/YjsgETm8CkmJEiU2mxmxW8X9c/vP1t?=
+ =?us-ascii?Q?o/afvZxGh/o9tlLEpeBx2lAWT7klXGgcqOCyn1j6zC0KB4aA7n2/Zk1+WSxA?=
+ =?us-ascii?Q?OTAqZmCJMhj5dKuEi+xfOsAi+6S8CP/ZxlFDRSwCwznb728wCX9iXAAo1VMe?=
+ =?us-ascii?Q?/KagYO4=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MA0P287MB1178.INDP287.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(1800799024)(376014)(38350700014);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?amHzogDsAAZzz0PoVPq04VqLTe6Y+fyvkPur/FpTSPKQM3crH7edMHFFCZC3?=
+ =?us-ascii?Q?cVgIjxCoXOis8HjB944/7uYeaLlsN6snWpTknaO2g41HUyVndJCJuzGJDd3C?=
+ =?us-ascii?Q?XuY3n0O/bEWbNjCAnwj5X2ItdtayCDk8NwQjGqFFyJnOwKdIbV6d7Hf41gHp?=
+ =?us-ascii?Q?qdqpbxU0wV2cBgnTk66WGiN0DtXK5mHXHlDN5Yz6Lo+pvl3tKqXeGzk7phtA?=
+ =?us-ascii?Q?Ljdoj4NA9qP+F7BXesKn45ENril0W0q9/xYPx4PKsnS2uG5I2fTMBAZPAdIo?=
+ =?us-ascii?Q?quYQUxpywrOREKQUHXxXMztVC+RTxWTOZHxGvTNVXUb16VJJZ4YzANAoGEOD?=
+ =?us-ascii?Q?rlkOs/gH4Dt1CqHK7+UdNHHdew1UHMwNCNWDJghJo39a12TyTJIf1Wtg9cQ2?=
+ =?us-ascii?Q?niL4QKCKRmp/FYp9JVjX+O8WdvVPvrL6gIyyepi/eoSojcVoFqItBNJoteg2?=
+ =?us-ascii?Q?NvRnG3Kg7R1Rg1zcUL5MpCRR9JNNEAUHTO4caGPn4jvXnmGRDLcPPKBBPgbn?=
+ =?us-ascii?Q?XMNQnBqgJU2N/X29f8OhJN802k3YNWy3oCi5vCXLOHR8b9s+Bs3rj7nd7R7H?=
+ =?us-ascii?Q?QjIYH+LMOkCpAXrj+7oPK4gRIDEmoaKqb14fBM2AKXcZKcUmJFD2yxLnMx6C?=
+ =?us-ascii?Q?3XoiD9I/i9Tv7aQXchzS+xYBDmbkvL8oy4vEfgpWIDrCATkOiRtftniw5esF?=
+ =?us-ascii?Q?u/KfgR0XGx9QSpo+g/KxuVBU5lP2+MYAHIFlS1t8J7boVlN9AaR2NFbdNydA?=
+ =?us-ascii?Q?tskkci8Y3YtVL4LUkGJyJOTBjPn+UPxvADxRJ9JkDkB7Hq8KItQDd3wNS10I?=
+ =?us-ascii?Q?UVEa2KXbnT8HGuJR3m4gUqSKHMf7Ys2U5y4d2pbYeWG7X2ljnkUlyjuEDy8e?=
+ =?us-ascii?Q?5qKP7ikZkuDleMCwfm0EXBSkCCDI8FMcnqy8t152Dx2+rIMdM2dmWXPM+KVX?=
+ =?us-ascii?Q?HydwrnhAkfIQQ6wW6DcrvtO2POBHA0A1nMj7hg3L+BK8HytdzHHbHHMbi/lf?=
+ =?us-ascii?Q?NdGU63A3U4tamCL0EOHTWEpQf3pFl1hf8W7tZdynfjEbdkVmTPkDB/SMXcGg?=
+ =?us-ascii?Q?IRr1e5kvcqKkyYFutJeWMfrJ3yiu5g7MBksAT7UqXDqhQsU1EnPps3QVYH/s?=
+ =?us-ascii?Q?iUDFHMUYcT9zX+IeRuqSTBkuNsJpAKRygfYwRZ/yS1Dr/vF1U6kuTGnlAFTe?=
+ =?us-ascii?Q?cRRqta8za05RAygGDppf9tXiRrIAlTMsO8zACJ1TnXd3pT2zd+x4gi+OgVTp?=
+ =?us-ascii?Q?BrylZInDmTRplM/PaNYimCH7tH9jmHzCX6SNsztd9bnB5oEwJR45EXeOKb3o?=
+ =?us-ascii?Q?u2VvJeIHV4u96bn4ux2ZPTFEtZOJ/e7JLZSRldYkragFanvMRRHa9W0xh++s?=
+ =?us-ascii?Q?33rQ9VE6g5Ka+VYwPvDzx8IQ/Y6ZtG9PL7XZBcVHKgokmadJhR9epZXOdidl?=
+ =?us-ascii?Q?rxZSPIKRQJrCquxalJDSO0Yg1I7NDma8zaOTIC40KEZQkBSFVbE9a/C4r19r?=
+ =?us-ascii?Q?H80kPeLzjVSZHkeOH/OybO2GhCyLnTdBQnpX5ipceC+JFkja3ECmaQHVTzDA?=
+ =?us-ascii?Q?hqvQ9/5WSMP8l5Q4AfxGVxy8uw1yudTQVFkawaGIH/TECqmVkweDUQ0utuW2?=
+ =?us-ascii?Q?30+5DlzHGHVd+E2uOdO5yBA=3D?=
+X-OriginatorOrg: siliconsignals.io
+X-MS-Exchange-CrossTenant-Network-Message-Id: c7956dab-905e-4e12-25b9-08dd106af629
+X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB1178.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Nov 2024 11:42:54.4292
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 7ec5089e-a433-4bd1-a638-82ee62e21d37
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: s0pAYBAA7EnZRPilprxs0RTCgqvBQv0Wnmqsf7UaXBYvqjv2ohqTQ1vTrhEvKehDkgJyEcN4QBINj6vfP+/rwXPC6CKc85TxfAKW7XmUedk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN2P287MB0599
 
-On 29.11.2024 12:14 PM, Konrad Dybcio wrote:
-> On 26.11.2024 10:35 AM, Tingguo Cheng wrote:
->> Enable PMIC and PMIC peripherals for qcs8300-ride board. The qcs8
->> 300-ride uses 2 pmics(pmm8620au:0,pmm8650au:1) on the board, which
->> are variants of pmm8654au used on sa8775p/qcs9100 -ride(4x pmics).
->>
->> Signed-off-by: Tingguo Cheng <quic_tingguoc@quicinc.com>
->> ---
->>  arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 23 +++++++++++++++++++++++
->>  1 file changed, 23 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
->> index 7eed19a694c39dbe791afb6a991db65acb37e597..9447efb9cd01654b74ec4c18dec58b1956ffe710 100644
->> --- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
->> +++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
->> @@ -9,6 +9,7 @@
->>  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
->>  
->>  #include "qcs8300.dtsi"
->> +#include "sa8775p-pmics.dtsi"
->>  / {
->>  	model = "Qualcomm Technologies, Inc. QCS8300 Ride";
->>  	compatible = "qcom,qcs8300-ride", "qcom,qcs8300";
->> @@ -223,6 +224,28 @@ &gcc {
->>  		 <0>;
->>  };
->>  
->> +&pmm8654au_0_pon_resin{
->> +	linux,code = <KEY_VOLUMEDOWN>;
->> +
->> +	status = "okay";
->> +};
->> +
->> +&pmm8654au_2{
->> +	status = "disabled";
->> +};
->> +
->> +&pmm8654au_2_thermal{
->> +	status = "disabled";
->> +};
->> +
->> +&pmm8654au_3{
->> +	status = "disabled";
->> +};
->> +
->> +&pmm8654au_3_thermal{
->> +	status = "disabled";
->> +};
-> 
-> Are all these PMICs absent?
+Adds initial support for the STC3117 fuel gauge.                                
+                                                                                
+v4 -> v5
 
-OK I re-read the commit message..
+- Fix variable names
+- Limit code line length to 80 columns
+- Add interrupt and monitor-battery properties to bindings
+- Correct error handling with return dev_err_probe()
 
-Disabling a lot of things usually points to a backwards approach,
-are there any other PMICs on board?
+Link for v4: https://lore.kernel.org/linux-pm/21c08a45-34f1-443c-97d4-6baf9fa01b67@kernel.org/T/#t
 
-Konrad
+v3 -> v4                                                                        
+                                                                                
+- Added support for current, soc, temp, and status properties.                  
+- Addressed comments and feedback provided by Krzysztof and Sebastian.          
+                                                                                
+Link for v3: https://lore.kernel.org/linux-pm/20240205051321.4079933-1-bhavin.sharma@siliconsignals.io/T/#t
+                                                                                
+v2 -> v3                                                                        
+                                                                                
+- Resolved DTC warnings and errors                                              
+- Formatted the changelogs                                                      
+- Added monitored battery properties                                            
+- Replaced 'additionalProperties' with 'unevaluatedProperties'                  
+- Replaced '&i2c6' with 'i2c'                                                   
+                                                                                
+Link for v2: https://lore.kernel.org/linux-pm/202401080530.0hMWnrIg-lkp@intel.com/T/#t
+                                                                                
+v1 -> v2                                                                        
+                                                                                
+- String value is redundantly quoted with any quotes (quoted-strings)           
+- Found character '\t' that cannot start any token                              
+                                                                                
+Link for v1: https://lore.kernel.org/linux-pm/46bba29c-330d-417d-ad84-ceb5207fdb55@wanadoo.fr/T/#t
+
+Hardevsinh Palaniya(1):                                                         
+  dt-bindings: power: supply: Add STC3117 Fuel Gauge
+
+Bhavin Sharma (2):
+  power: supply: Add STC3117 fuel gauge unit driver
+
+ .../bindings/power/supply/st,stc3117.yaml     |  81 +++
+ MAINTAINERS                                   |   8 +
+ drivers/power/supply/Kconfig                  |   7 +
+ drivers/power/supply/Makefile                 |   1 +
+ drivers/power/supply/stc3117_fuel_gauge.c     | 665 ++++++++++++++++++
+ 5 files changed, 762 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/supply/st,stc3117.yaml
+ create mode 100644 drivers/power/supply/stc3117_fuel_gauge.c
+
+-- 
+2.43.0
+
 
