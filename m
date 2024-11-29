@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-125449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C96699DC06D
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 09:22:56 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA4479DC075
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 09:25:22 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B074164A1F
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 08:22:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AADD1280ECC
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 08:25:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5FB615D5B6;
-	Fri, 29 Nov 2024 08:22:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AD3E15D5B8;
+	Fri, 29 Nov 2024 08:25:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PZgPJijN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oxNFZGt2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 944814204E;
-	Fri, 29 Nov 2024 08:22:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D01B4158862;
+	Fri, 29 Nov 2024 08:25:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732868568; cv=none; b=pSvgkgz7efVnAvcgN3MM30PEwVT8Rn6ZK3x3HXESKT6sOd/thDcM6pSe4uZMzJZMNuQ66Eriqeti19O0v5nJl+QCful2LIW+OvnpSU/6U03fjCp+RDX3XUA3qAFXIx1/lXkSFGL0imbhVIU8is9kPetTi8AiKQ+y+mbwGIIMCUs=
+	t=1732868717; cv=none; b=TVStLq6IC2z7ljBX7ec/vQizajVzRq3gae3yKem+s4hlOU4nwhZmWBzpYCQ0aJVynrl7FN3gQZZtvzcM/4ZUwErF4b4/tuLcjPFFL2Izc9NxzntPsMC7Gzj4+5TU2JszWlEiZ4DY9YZS5Zl5EkPu0RW2+ttJoFlY4NlqpPUc0ck=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732868568; c=relaxed/simple;
-	bh=vczarr0veD/or+eHrQIZd+87uwMUJz67vQoJatMVAWA=;
+	s=arc-20240116; t=1732868717; c=relaxed/simple;
+	bh=hP0GF9MUnZQbPlM4RQjntboPC2L++7V3WytnHIAkRGA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FQYGEp8gJbystdhFti0zGoJdp9APDEY+78Q4Hv/7YEErAg2ULNeMRmr1fHrkP+mFCkqgv+jYv392mjA+q2mxOWucTdVS5BpYgl//itkdJ01uWlG6fDtmIU++Tncnj/smzJwpiu+nGwpIOmbF1wvpZPDT9q7EUbE9XDKddGCkX+k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PZgPJijN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0AE22C4CED3;
-	Fri, 29 Nov 2024 08:22:37 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=plJYESSKfpdt5WGJO5TianMOSfLMGjNGv3/J7F89R/R4YYHnwZEiGxt/8UdkPypp5/QkvdWWb6SKGKLLG0DUNgUDwgABKbE0afzhin5zKVD8BtKcaK8eiq1xY7LkCnHrmFIe+JwagZlv1VQ1wLvUfda/Acd1TFXubIYyLZo++9o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oxNFZGt2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A145C4CECF;
+	Fri, 29 Nov 2024 08:25:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732868568;
-	bh=vczarr0veD/or+eHrQIZd+87uwMUJz67vQoJatMVAWA=;
+	s=k20201202; t=1732868717;
+	bh=hP0GF9MUnZQbPlM4RQjntboPC2L++7V3WytnHIAkRGA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PZgPJijNruVqPqCLwZfz1uqLA9imFMzhCKQ/tyEeeJgcEatjnsQNx7kdJh0RCRR44
-	 iJtZD+Qf3gE/up4sJv86kSFewUMzlvTKXXMQBYBkV1beAVDHYWARnkFCjmWfGsP9/4
-	 9+pgzE5MHVKsBccHRs1JyK6zTq+igOpK/2/c3rutHL7No4nR06FbEaAirXAWb/+DrO
-	 2r5nsjuYtGetiGKrLk2IoB3mPxLTzS743EyNPFkpu/OtENfPF6sSnbIPzY5e/qchlb
-	 2Es0LjHhtH1qf5BHvV/ld3bd3Qjozb+Uf8zYQYfVPGg7IikLa9AQ4mFxjKktbkmmVM
-	 JHBViyCITnY+A==
-Message-ID: <d1eec09a-23ca-44de-a4e5-5f625a1ec73b@kernel.org>
-Date: Fri, 29 Nov 2024 09:22:35 +0100
+	b=oxNFZGt2bUd0IQJKX1/RCOVVXQwX0lCctFqB67KDt1Rgk1/iiJyFMdndnI8D0O9Nk
+	 Jul9bcZ9//7tVrOkh38FNtAl/0C4h5nQp/7xyeLUEqzvZssb3KPpNJqaLDwCRFfqEs
+	 ogQPvB0/88OXTSZNcLPC+OcXLl0dLCnoKU40OVTKg1oW5glOeX+frMy89VPtDbOl5k
+	 8+yVOJgyJ92ei2ccAF5IRXdd1iGJlaXIcfFjVY059+F9xiO0BjaXEmLYx98Sg/KNOl
+	 TrqXgjvWAokHzlHS6lD+7nl59Lvz5o9U3Czy+RdjlRjikriJeY1loBoKCFF2XUtBUN
+	 sXrcshv09ECUA==
+Message-ID: <249b5bc2-4704-4be3-8fb0-bbe06a93dad1@kernel.org>
+Date: Fri, 29 Nov 2024 09:25:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,33 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 1/6] misc: Add support for LAN966x PCI device
-To: Herve Codina <herve.codina@bootlin.com>, Michal Kubecek <mkubecek@suse.cz>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
- Andy Shevchenko <andy.shevchenko@gmail.com>, Simon Horman
- <horms@kernel.org>, Lee Jones <lee@kernel.org>, Arnd Bergmann
- <arnd@arndb.de>, Derek Kiernan <derek.kiernan@amd.com>,
- Dragan Cvetic <dragan.cvetic@amd.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- Lars Povlsen <lars.povlsen@microchip.com>,
- Steen Hegelund <Steen.Hegelund@microchip.com>,
- Daniel Machon <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Saravana Kannan <saravanak@google.com>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Horatiu Vultur <horatiu.vultur@microchip.com>, Andrew Lunn <andrew@lunn.ch>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- Allan Nielsen <allan.nielsen@microchip.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20241010063611.788527-1-herve.codina@bootlin.com>
- <20241010063611.788527-2-herve.codina@bootlin.com>
- <dywwnh7ns47ffndsttstpcsw44avxjvzcddmceha7xavqjdi77@cqdgmpdtywol>
- <20241129091013.029fced3@bootlin.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: input: touchscreen: Add Z2 controller
+To: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Henrik Rydberg <rydberg@bitmath.org>,
+ asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241128-z2-v2-0-76cc59bbf117@gmail.com>
+ <20241128-z2-v2-1-76cc59bbf117@gmail.com>
+ <abmpkfnfrbcarqhp7pspxmy4veuiavpy2p5zqe5ljkstveuuzz@ur7grz3zd7xx>
+ <CAMT+MTTRT+z2i6qrqVo-KVNuPF2o2OV5HpfhbXiAaWU0TBr-WA@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -122,36 +109,37 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241129091013.029fced3@bootlin.com>
+In-Reply-To: <CAMT+MTTRT+z2i6qrqVo-KVNuPF2o2OV5HpfhbXiAaWU0TBr-WA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/11/2024 09:10, Herve Codina wrote:
->>> +config MCHP_LAN966X_PCI
->>> +	tristate "Microchip LAN966x PCIe Support"
->>> +	depends on PCI
->>> +	select OF
->>> +	select OF_OVERLAY  
+On 29/11/2024 08:53, Sasha Finkelstein wrote:
+> On Fri, 29 Nov 2024 at 08:16, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>> +    description:
+>>> +      Calibration blob supplied by the bootloader
 >>
->> Are these "select" statements what we want? When configuring current
->> mainline snapshot, I accidentally enabled this driver and ended up
->> flooded with an enormous amount of new config options, most of which
->> didn't make much sense on x86_64. It took quite long to investigate why.
->>
->> Couldn't we rather use
->>
->> 	depends on PCI && OF && OF_OVERLAY
->>
->> like other drivers?
->>
+>> What is the expected size? Fixed size or maximum?
 > 
-> I don't have a strong opinion on this 'select' vs 'depends on' for those
-> symbols.
+> Unspecified, 1688 bytes on my machine, but the firmware
+> has a size field. Most likely less than 4k.
 
 
-You should not select user-visible symbols, with exception of arch
-stuff. This is not arch, so you should use dependencies.
+I suggest putting upper limit. You can still later grow it if different
+bootloader uses bigger size.
 
+> 
+>> Add it to the example.
+> 
+> That seems counterproductive - it is a ~1.5kb blob,
+> and it is supposed to be set by the bootloader, not
+> by person writing the dts.
+
+
+Indeed, let's skip it.
+
+Anyway:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
