@@ -1,108 +1,127 @@
-Return-Path: <devicetree+bounces-125542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1EAE9DE785
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 14:28:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1BAB9DE79E
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 14:32:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D4AB2815DC
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 13:28:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B2F502815C0
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 13:32:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D30EC19F40B;
-	Fri, 29 Nov 2024 13:28:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8637B19EEC7;
+	Fri, 29 Nov 2024 13:32:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r8vyQpNL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kB0Uur8M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A98E419F104;
-	Fri, 29 Nov 2024 13:28:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3C0819D091
+	for <devicetree@vger.kernel.org>; Fri, 29 Nov 2024 13:32:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732886923; cv=none; b=otQC+HOrq00pczw0e38NpnTfOAibAsBwl2pWNm8ZJXfnEp5afbaRXytzk4zlNjmQQK9AbErNTxJHDL/dCMUCOFuxWcK41XpmXkEMbvbdfd50V+qIzCLGc/KOOJGZjqrRwlpVPkt38DQpySHGU3ezDN+iqDPnKw+lAs4l0Q7ir0I=
+	t=1732887169; cv=none; b=eRoWPYPDi98RXP/xKBAE5xUmCV7jwOsrQ1COVuKXLxhXp9fRqJAczO+zRYkQoOztOfo9oiLx26PTOccUwo/zmhcCekL1VXV/jlzWOzkio0gvNaiaaYmYYHn4ZHk01izO3ebB3TqnmZ8naZTa3+jIJoVIWxZLVzPZitZvUylgIVQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732886923; c=relaxed/simple;
-	bh=0GT0S6B59Sh7YHKRKqs1R3em47LYzIxB5c5OcdUOSBs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=J74lTn1aTBTR3RMTjou6wl9H0z4UpVz3CXFGtaUvkycbz3uXcSvRYq+HprpcYdZxE16Ho53/kW/uNsrRaiSEl4hMNkIjz5xse/saRPfcLlyhFVdAkVZ6FAkxjQpJFPO7/hWhpKQInhAfnInFByea8OyE4et+AbP/OgjoLD/VmiI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r8vyQpNL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 346A7C4CEDD;
-	Fri, 29 Nov 2024 13:28:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732886923;
-	bh=0GT0S6B59Sh7YHKRKqs1R3em47LYzIxB5c5OcdUOSBs=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=r8vyQpNLf3UbhLCNc5OwSjUhm12oUs4ByFMJtKzYUpfzHgme3JMmS8nT6m/M/befM
-	 UtQ4KOETEyQh9RaUPNFu89NjXzv1hYtb6EcRtBZQL6lbScsBXRCaKjGlch3PrhRqgG
-	 zQ75mBxufmh4cNp7uiHYywNFsKNXVTVYUFGozK3CSCvNPB/QRPr2tNFapEUWIqmsoB
-	 lbOlopA5OxmoMdmqZBb31Qcr5uAwr7Pfi6n4Uw18dc69DmwcMp6oGv8XAymaWs3gQ8
-	 I4RFMmav2Hc53nyXgBY0W5W7krIlaSh6Jm1IYItGfLTmGBDqZhcTS1djBJzjhEtjtk
-	 4k5Ydttts8lRQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 28B14D6EC0E;
-	Fri, 29 Nov 2024 13:28:43 +0000 (UTC)
-From: =?utf-8?q?Kry=C5=A1tof_=C4=8Cern=C3=BD_via_B4_Relay?= <devnull+cleverline1mc.gmail.com@kernel.org>
-Date: Fri, 29 Nov 2024 14:25:56 +0100
-Subject: [PATCH v6 4/4] w1: ds2482: Fix datasheet URL
+	s=arc-20240116; t=1732887169; c=relaxed/simple;
+	bh=ZKWLxg/koyEuJu/rxUtcz+091wbreZD9MH/W6cC6ZRc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EzrxjVBqauNmXOiu+B0HuUtvd42VrCG8Aso/xSslftjBqTRYF5d8tNJDCOkyj+7fOBUprOEyR6d+0DDlsaMd2kAB7WJUtigxXXuL0se8ObRnxatjlNqL1Frt6zx17t1NEvVGRndYpOmD/VYaQQdjwCAiz/UoI63Tbo7JcwmTmPc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kB0Uur8M; arc=none smtp.client-ip=209.85.219.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-e3988fdb580so551371276.2
+        for <devicetree@vger.kernel.org>; Fri, 29 Nov 2024 05:32:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1732887167; x=1733491967; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=4rk8EqcQBJedHgZVFcqE3LAsuROmL1X9WJEUhmB7OiE=;
+        b=kB0Uur8Mevt3DUvNM1B9gBTjrMGPY/wTU+eu1+1dhytYuYWQ6njAIlpDqbtsnjzT2r
+         +kw6DJ+x2pgQ5Zqi/nzGX/jL9Z8FxTE6qgqbhJxF4uZ5SuWUFUw/ZxI1fjkfy5ZF+rCt
+         7CzCgGbpqBwC2YhmbVjHsO2OnHI0lZIXrTorqM1a8/h9zgKc2wL6sUdjnKOAe7vOf1cC
+         XFDYMu7lV40gJvdzJ8yhFkb6NyyRl08Ag0OhnyCtUnIwTTL/BFH+qhMknxUHn0KamEmO
+         3KU9UGJQGXD53t4vYPqIkgK5bchzXvJS4UZcfEESdInKRAc3IAApYw0mcKsbej9FxZec
+         bAcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732887167; x=1733491967;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4rk8EqcQBJedHgZVFcqE3LAsuROmL1X9WJEUhmB7OiE=;
+        b=s0L2lkzANrtRpV9W1NnPBkCXVWqlIkqSyHZTu2Oqdfbz543yyOGmcl6xyro3/EbgA3
+         XbUnicz6sHWryD85oEDwG5vvGcmEVY2k/mpNj5A1nhWaJZC/r90ITIYrLelHaiKRFKOR
+         YoTGJzsfdQsbuvAtbnoaFjGAlyTccVW/seBFvZlRUTa4gEMfXyf+vSKy1vJBe30DlGaN
+         JWYVtXABUdSqsoCEB6cctdD2gUbDJWFshYI3wj9SpEng/MXkY9CLmyAUIPiQAyX5k79r
+         NQ0HF4/kZlrxM/osc4f0FRX8hb1cIhY7lCRVunHTyxUzTEYzMvmkXgfZD9fR7C7mCwiL
+         4G4g==
+X-Forwarded-Encrypted: i=1; AJvYcCVNMLuv5Wclh2LQVWvIvN6rsNJk+godvLWSWivrPsAkszjGqAeETb2fKK00DcEkHiuLuACEsIiGTKbE@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyef35z9dKuN3XgwSasGM8fB7FUnuGVW3FLqU4UJD9XVeJ2VIsH
+	7sIRS3yFJYz2+SMg+76eQDCxZc8NEgwIwsvAqMAX2Qs048OcxNZk61COe5lYX7uiQi4pz9X3I2H
+	YZAjSLufs8aCqlk7OA16AIy1Lz5DrCAbLjlO4yQ==
+X-Gm-Gg: ASbGncsr5lqfEcn+uicsd//2crrN1dLTFmGjGntOa7Tp8/XJLBLpjK0CPaceFnej15i
+	7KyKfnr8rB4MlyYHqH1d0a5cd3l4V2yQ=
+X-Google-Smtp-Source: AGHT+IHfjxXnTdn0iSp1AqYYDcm5/K9nEAphNu1TQKr2ozphQmTsKuv3nB1lPh4zZEbpx4kmGb4PSCSBKcPFfDN6tJ4=
+X-Received: by 2002:a05:6902:1504:b0:e28:e407:610 with SMTP id
+ 3f1490d57ef6-e395b957479mr11164613276.47.1732887166767; Fri, 29 Nov 2024
+ 05:32:46 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20241129-ds2482-add-reg-v6-4-bd95ad171e19@gmail.com>
-References: <20241129-ds2482-add-reg-v6-0-bd95ad171e19@gmail.com>
-In-Reply-To: <20241129-ds2482-add-reg-v6-0-bd95ad171e19@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Stefan Wahren <stefan.wahren@chargebyte.com>, 
- Stefan Wahren <wahrenst@gmx.net>
-Cc: Ben Gardner <bgardner@wabtec.com>, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, 
- =?utf-8?q?Kry=C5=A1tof_=C4=8Cern=C3=BD?= <cleverline1mc@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1732886921; l=803;
- i=cleverline1mc@gmail.com; s=20241112; h=from:subject:message-id;
- bh=EVaEWv3bg2CKdeK1wOkMyq+7EzE+bpOJT7BBQM8wUdo=;
- b=eZ/N+WH/9ZigC7/s5Y4inebd6DqLKx8Fe7UGOTMXLfMjXvejiYi2/LSpdNdCXIVGBeck8jetz
- w3j9fKxILxsAyqfuLVdtTWgw3pUGogy+/BB8g/c5w3RLcp2I/Mts8RJ
-X-Developer-Key: i=cleverline1mc@gmail.com; a=ed25519;
- pk=EJoEbw03UiRORQuCiEyNA8gH1Q6fIpEWnn/MyaWOWX0=
-X-Endpoint-Received: by B4 Relay for cleverline1mc@gmail.com/20241112 with
- auth_id=275
-X-Original-From: =?utf-8?q?Kry=C5=A1tof_=C4=8Cern=C3=BD?= <cleverline1mc@gmail.com>
-Reply-To: cleverline1mc@gmail.com
+References: <20241127-mdss_qcs8300-v1-0-29b2c3ee95b8@quicinc.com>
+ <20241127-mdss_qcs8300-v1-4-29b2c3ee95b8@quicinc.com> <f5kqdxkhniwwxu6wm2q323vvlsfn3yyig7mfg3h5ctqo7jjxc7@7g32tirseuqs>
+ <9821c4d5-8d1d-4bed-b3e0-879d0aeba017@quicinc.com>
+In-Reply-To: <9821c4d5-8d1d-4bed-b3e0-879d0aeba017@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Fri, 29 Nov 2024 15:32:41 +0200
+Message-ID: <CAA8EJppDomrYvtJ46pi1_hDsf3zFeeTfrkQfVwE8UTN01KfKpw@mail.gmail.com>
+Subject: Re: [PATCH 4/5] drm/msm/dpu: Add QCS8300 support
+To: Yongxing Mou <quic_yongmou@quicinc.com>
+Cc: Ritesh Kumar <quic_riteshk@quicinc.com>, Rob Clark <robdclark@gmail.com>, 
+	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-From: Kryštof Černý <cleverline1mc@gmail.com>
+On Fri, 29 Nov 2024 at 12:01, Yongxing Mou <quic_yongmou@quicinc.com> wrote:
+>
+>
+>
+> On 2024/11/27 21:49, Dmitry Baryshkov wrote:
+> > On Wed, Nov 27, 2024 at 03:05:04PM +0800, Yongxing Mou wrote:
+> >> Add definitions for the display hardware used on the
+> >> Qualcomm QCS8300 platform.
+> >>
+> >> Signed-off-by: Yongxing Mou <quic_yongmou@quicinc.com>
+> >> ---
+> >>   .../drm/msm/disp/dpu1/catalog/dpu_8_4_qcs8300.h    | 485 +++++++++++++++++++++
+> >>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c     |   1 +
+> >>   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h     |   1 +
+> >>   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c            |   1 +
+> >>   4 files changed, 488 insertions(+)
+> >>
+> >>
+> >
+> > NAK, there is no need for this.
+> Got it,thanks. will modify it in next patchset.Compared to sa8775p, they
+> use same dpu but qcs8300 has one less intf and two fewer dp intfs. Other
+> configurations are the same.can we reuse it or a new catalog file to
+> show it.
 
-Current link does redirect to wrong place.
-
-Signed-off-by: Kryštof Černý <cleverline1mc@gmail.com>
----
- drivers/w1/masters/ds2482.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/w1/masters/ds2482.c b/drivers/w1/masters/ds2482.c
-index f8095264d82f0e0135492ed65e71df74c71bcd65..e2a568c9a43aac548056c490ce72c464adca7cb3 100644
---- a/drivers/w1/masters/ds2482.c
-+++ b/drivers/w1/masters/ds2482.c
-@@ -7,7 +7,7 @@
-  * It is a I2C to 1-wire bridge.
-  * There are two variations: -100 and -800, which have 1 or 8 1-wire ports.
-  * The complete datasheet can be obtained from MAXIM's website at:
-- *   http://www.maxim-ic.com/quick_view2.cfm/qv_pk/4382
-+ *   https://www.analog.com/en/products/ds2482-100.html
-  */
- 
- #include <linux/module.h>
+Is it actually not populated in the silicon? What happens if one
+access those INTF_n registers?
 
 -- 
-2.39.5
-
-
+With best wishes
+Dmitry
 
