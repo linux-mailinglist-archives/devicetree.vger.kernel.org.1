@@ -1,190 +1,214 @@
-Return-Path: <devicetree+bounces-125451-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125452-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCEA69DC07A
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 09:25:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C21EC9DC099
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 09:38:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 44583B21CC6
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 08:25:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 18B2EB20E50
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 08:38:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39CA115D5B6;
-	Fri, 29 Nov 2024 08:25:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="KOJA5EBN";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="KvA6CDJr"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 966C2161935;
+	Fri, 29 Nov 2024 08:38:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-b7-smtp.messagingengine.com (fhigh-b7-smtp.messagingengine.com [202.12.124.158])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com [209.85.217.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A0B215D5B8;
-	Fri, 29 Nov 2024 08:25:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81AF914B088;
+	Fri, 29 Nov 2024 08:38:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732868742; cv=none; b=jPUO9to5wYOm6kyLSrYcR16PB+q3GZFmiiH7KswKmMDcBV1XfpwjSqh6I8vEe9/SeO+uK0+VDnsMmBwWxIsN+Udr4HmDNo/1ZgC7D+gWPxfCtrYM0VTX3qrqCyvnCz0GAElX/2LdgP5U/5soyz2NGM2DCN4Eq6qL8iUAPE5BTDw=
+	t=1732869519; cv=none; b=eV1ZiVOiXx6F/7l/HHV0PdspSBWn/iGDTLzPmNwB0q16+8Eeb7JzuVaNzldKN9veCcRLVgBcL2JeFWrH6Nr89bHwlV+nk6dv8T21nDuVkR/ehzYkHEieXS5Bp3yuKrCKDCtgGqcG3TW3lrOXal3pWO3tepS5+EDwIXw8q0WcPSc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732868742; c=relaxed/simple;
-	bh=ZoxfgOCiNBGvc38i9qoSOF38QGUQoZ7MMsUNaUmc7QI=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=RIqc69bC1S7HhUoLLSF3aip/weMrijfs3wqnCvX93/DgqvZ0uLzeTMdu5gR7sOFUka3iY76ekVe5BZEueBKvw+73BYRQN0TgtBw6KGZRFLqxAsWG+G/orwEUq8Nod84SEYDOZycQkDen9cvj1VcpD+6hfaTwkxhHCL4IE8hSpPU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=KOJA5EBN; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=KvA6CDJr; arc=none smtp.client-ip=202.12.124.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
-Received: from phl-compute-10.internal (phl-compute-10.phl.internal [10.202.2.50])
-	by mailfhigh.stl.internal (Postfix) with ESMTP id 207332540185;
-	Fri, 29 Nov 2024 03:25:37 -0500 (EST)
-Received: from phl-imap-11 ([10.202.2.101])
-  by phl-compute-10.internal (MEProxy); Fri, 29 Nov 2024 03:25:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm3; t=1732868736;
-	 x=1732955136; bh=UkrIkZIR81K+8lZR1jV0EYOCaPxA1tf+i52k5/yQXYE=; b=
-	KOJA5EBNlyb8AYL5jSXpuBelBvb73YiE90Wu9UpAMctnOf83Wr1OAy1Ren4m/BV+
-	NvXNTcvq4i1mSgTiixSfE1eI5cupRXteGM85a+ULO8rMY2UtiInKXnYmXb2kAGHG
-	9H9SKLcsNSeqcfEnhqCPb4ypxAkhk8CPxd2UIN1mAdcQUSjofBfVmgSQZuEMOto5
-	+hQIMXRwoV09NYF0hRiqDZQBz8eWRqUIOcpdhaWAZf7LOEeHG9hdxLyaCyKnNh6h
-	KNlC4CVkTgsbPI0tkBo7FtLSXZJi1qFfY3W4ssHMR5WySwW5jzWTnGwtrkUeo+6Y
-	3GQ2cXRER5DyBj7XC3yDhQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1732868736; x=
-	1732955136; bh=UkrIkZIR81K+8lZR1jV0EYOCaPxA1tf+i52k5/yQXYE=; b=K
-	vA6CDJrEiE6pUy3ii7u2JCcRFNVL0TYiIQJsQ7U2DC48SjUIbUlyVWO7bINl3yK3
-	S5kRjCvtDyNJi9Xb402bdO2lQSraWPiOF6mmFzAJdzigD+/UgOah81r6XbL3K2O6
-	MbPhMzXYuIJ0nbZeZERSj8c0+ooB2KdpwxJ1aCEJ/pcRdqgTkKUeE7IvyLLYGTJi
-	Tb70HuKLscGgw200rYY7vsWMlJLfB01LoKSe9un7dLiFD7fFTCR2uSSex6DOP537
-	7i0rLd1+xsh9i0pW1o8Oso2MN7gDN3xSj7UHUKOfIfz9jKS6O5GblcYivoITDRox
-	b3u9Pg7mGZ3bu3HskIkQw==
-X-ME-Sender: <xms:gHpJZ6w2fGfxXS9vV9zMcGq697f78hkVipzcWNWFgb5THIiGOoauCw>
-    <xme:gHpJZ2Trh3-Hm_QKXfhvaQSIZuZSqFZDutp_lV3EUN7YmRRYGI3bkufTEfR0wZwUW
-    -QgDdRvd-UVyL1E1vs>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrhedvgdduudeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
-    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
-    htshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtjeertdertddt
-    necuhfhrohhmpedftehrnhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrd
-    guvgeqnecuggftrfgrthhtvghrnhephfdthfdvtdefhedukeetgefggffhjeeggeetfefg
-    gfevudegudevledvkefhvdeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpe
-    hmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvgdpnhgspghrtghpthhtohepfeef
-    pdhmohguvgepshhmthhpohhuthdprhgtphhtthhopeguvghrvghkrdhkihgvrhhnrghnse
-    grmhgurdgtohhmpdhrtghpthhtohepughrrghgrghnrdgtvhgvthhitgesrghmugdrtgho
-    mhdprhgtphhtthhopehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomhdprh
-    gtphhtthhopehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmpdhrtghp
-    thhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhmpdhrtg
-    hpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopegrnhgu
-    hidrshhhvghvtghhvghnkhhosehgmhgrihhlrdgtohhmpdhrtghpthhtohepsghhvghlgh
-    grrghssehgohhoghhlvgdrtghomhdprhgtphhtthhopegvughumhgriigvthesghhoohhg
-    lhgvrdgtohhm
-X-ME-Proxy: <xmx:gHpJZ8Vp6xl2hBMEgs2JSWypxmN9xxYmWwNzFSblFLDZFN8EUfh2dQ>
-    <xmx:gHpJZwhzwiakrGGJbbDZG8Imk_TNKMahRje9dVx4IHugJXrAOPy2JA>
-    <xmx:gHpJZ8Dux2uk2NHsdgnCz72FSpxTT8sKEDntUWZQhKhF583xg70uoQ>
-    <xmx:gHpJZxLEh56i6QWMewaXnEKyWFaDZW1L95TcX5p_WawB0jy13PKZdw>
-    <xmx:gHpJZ0bFHq3GtzEGICp5Hv6ON-0xSNRqOAEy56UGsSJCvhRVmkh2DDD8>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id 09DC32220071; Fri, 29 Nov 2024 03:25:35 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1732869519; c=relaxed/simple;
+	bh=Ju86IOAXsUBoLviRwHi0UcSGqBezGuFn7iz5s3yOGmM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VAO1VAAhd+HNTcPt/iwMQ9j64DvBs7Ma5DY3KPUZFbgSlTtDfsql/dfV0CvKCfJGVORzSE572QWSdbsF016A/yLaWtfsc3Sp1wYJ4AuDe6IKipDZCBPp9MMiWlGP5nISUC8BYfmql7igQnPeTgPGVUvkBepyDSoJRlarzLL9sfo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-4af122fb98aso372792137.1;
+        Fri, 29 Nov 2024 00:38:37 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732869515; x=1733474315;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=31rYWVv+vSkqxkg8+7wc0ozORia4OPKenJ62C4GZjFc=;
+        b=n8sW31/0x0CzH4kNZ0jEEPv7CjG9LMFDqIZmhoeqa9fRtALpIECJP/umbmQTVt6DHY
+         E5JaTu5EXvgIULeQ8er7m3RebHMdC1rX1ap5oBHLZCEnESXphxI1ji4tWXV0KO2mM9Cn
+         hy+qMB0rhX9HtwHZD3mb6UZwu2T+//DZsZEKB2RSlUhkNDk0q5xkDJ6YcARzJsSAEmIl
+         DkXwdstbfaT56Zv3CzBC+lEdWj6VTldO+V1L3cFxsHwBBr5D/0UjFoFBGk/wfNxe50Tk
+         EIzyUaG5cUhncR9K0CusKS5AM256JZ9yF3tfvzuEQinzpzK7hMBhZWJ+b1lfiDJKHrJV
+         vXXA==
+X-Forwarded-Encrypted: i=1; AJvYcCUCwJ2koxExmC+n644pkCyQBj3KwmClH/2Q178sh0XSzbEOSEmq/8h7GUE36jRYBIaRci9y5v+mMITn2YsFS9yBjpQ=@vger.kernel.org, AJvYcCVCn+WLbqC8U39kQrNng5zDZsyYIl07J91QHWJ4rLl9RQ8S0a5e7amiPnwF/b4rmQ1hw7TG2zy1htvC@vger.kernel.org, AJvYcCWWzD2zdlrU6wHJt4JKZc7LxWAghRuBtqSIsg53IyS6W92LHwt0DHJJUJa86EjAMu8h5MpYWKdReCL5Ooin@vger.kernel.org, AJvYcCXQvvLbf8jdu5DafdlISWNFCyZ0QRs1Je8vFnvrFHpTF1WsQmEgTQ1/Iu32l69A0xRitrHp/dBaCzR/@vger.kernel.org
+X-Gm-Message-State: AOJu0YzATR/e87hAJ8Avp8mSAOKilnrYnbouG2poHRxdWqeQVjWq8DZ+
+	yvI1b79F9zUgKs47Hugxc9UyGmAV5xeO5OQYJPX1mv7DdlGrGxdNLIO5rQXpiUI=
+X-Gm-Gg: ASbGnctIAAP4n0X4uIIA9MwSPm8GcxM8Ri5xGZyofGssUQ9fyLhlmiDaLMgK41G1ZNR
+	5AklsSaO7HBDtSPhPHsIQlkV3z0vHfY6Cyu2gQOy9RUpYATRyQZyQowzyA69WYkJhlmGCWWakNh
+	hVfj/g5brIGbmrzEd+Mjh01LriU///1FrmJFmi/UgMwXs+GbmUTUPoV516tvm445SnPY4X32ek+
+	wfx3kiIUWaQSwH1IZVZ991S1soVXwvb5Fb7TQpHvJ4m6oYKUoKAw/qw0BClS323W21l+oSOc2Xs
+	DAbozm3Tfy5N
+X-Google-Smtp-Source: AGHT+IGwg82BtrnCw+DWoavxniD1BK6ZLY6KenYHzYDKRP528ya21H+y1k72oLnWAX7NTzVR/Qfkjg==
+X-Received: by 2002:a05:6102:32c3:b0:4ae:3a0e:e11d with SMTP id ada2fe7eead31-4af448c57abmr13691382137.13.1732869514888;
+        Fri, 29 Nov 2024 00:38:34 -0800 (PST)
+Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com. [209.85.222.45])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-85b82a0e475sm666151241.7.2024.11.29.00.38.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Nov 2024 00:38:34 -0800 (PST)
+Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-85b92397fe2so159626241.3;
+        Fri, 29 Nov 2024 00:38:34 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU/EuqyZDSaZhztLT2azI1HPuaxoWZVUSzESBhfT1KSg7LbZkJBRn58w0ZwSYn0WRXQxtodbwYwZ8RQ@vger.kernel.org, AJvYcCVb+G+E06TRnahkt47kmwgYmVcbqr4V2wNzKOTeJoV0Pfs3bQSFG1kfWWkY/dZkmHCCl9URhM8gtagw@vger.kernel.org, AJvYcCX+UxnMFSJK0fGyJN2cj3nRt1r4fobDQF4chnSoUiBK3Rfg/uRLHC2DhS4GxEmCIhiwfMgiobSVcS2zYTbTFJGcZCE=@vger.kernel.org, AJvYcCXe10vUqrEoFgdxESz1NfQt58OhoFd5/sWmlbqbs6Dv4CW10JlozkDjMGG+GCzlzUvhDbNH2sP0am9OfCK7@vger.kernel.org
+X-Received: by 2002:a05:6102:c47:b0:4af:3de9:b91a with SMTP id
+ ada2fe7eead31-4af448f4939mr12764535137.16.1732869514228; Fri, 29 Nov 2024
+ 00:38:34 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Fri, 29 Nov 2024 09:25:15 +0100
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Herve Codina" <herve.codina@bootlin.com>,
- "Michal Kubecek" <mkubecek@suse.cz>
-Cc: "Geert Uytterhoeven" <geert@linux-m68k.org>,
- "Andy Shevchenko" <andy.shevchenko@gmail.com>,
- "Simon Horman" <horms@kernel.org>, "Lee Jones" <lee@kernel.org>,
- "derek.kiernan@amd.com" <derek.kiernan@amd.com>,
- "dragan.cvetic@amd.com" <dragan.cvetic@amd.com>,
- "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
- "Bjorn Helgaas" <bhelgaas@google.com>,
- "Philipp Zabel" <p.zabel@pengutronix.de>,
- "Lars Povlsen" <lars.povlsen@microchip.com>,
- "Steen Hegelund" <Steen.Hegelund@microchip.com>,
- "Daniel Machon" <daniel.machon@microchip.com>,
- UNGLinuxDriver@microchip.com, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "Saravana Kannan" <saravanak@google.com>,
- "David S . Miller" <davem@davemloft.net>,
- "Eric Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>,
- "Paolo Abeni" <pabeni@redhat.com>,
- "Horatiu Vultur" <horatiu.vultur@microchip.com>,
- "Andrew Lunn" <andrew@lunn.ch>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Netdev <netdev@vger.kernel.org>,
- linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- "Allan Nielsen" <allan.nielsen@microchip.com>,
- "Luca Ceresoli" <luca.ceresoli@bootlin.com>,
- "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>
-Message-Id: <1a895f7c-bbfc-483d-b36b-921788b07b36@app.fastmail.com>
-In-Reply-To: <20241129091013.029fced3@bootlin.com>
-References: <20241010063611.788527-1-herve.codina@bootlin.com>
- <20241010063611.788527-2-herve.codina@bootlin.com>
- <dywwnh7ns47ffndsttstpcsw44avxjvzcddmceha7xavqjdi77@cqdgmpdtywol>
- <20241129091013.029fced3@bootlin.com>
-Subject: Re: [PATCH v9 1/6] misc: Add support for LAN966x PCI device
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+References: <20241126092050.1825607-1-claudiu.beznea.uj@bp.renesas.com>
+ <20241126092050.1825607-2-claudiu.beznea.uj@bp.renesas.com>
+ <CAMuHMdWjzR6vgbr_CfR7r-h1FqWxs1nY0hm274kxFmoHjCtRAA@mail.gmail.com> <0bb9f461-c7a2-4db0-9492-c04cc298504d@tuxon.dev>
+In-Reply-To: <0bb9f461-c7a2-4db0-9492-c04cc298504d@tuxon.dev>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 29 Nov 2024 09:38:21 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUuRSJu1c2zJvOc8EGrZy1uYcN0aiUG6T7WShawPmCNJg@mail.gmail.com>
+Message-ID: <CAMuHMdUuRSJu1c2zJvOc8EGrZy1uYcN0aiUG6T7WShawPmCNJg@mail.gmail.com>
+Subject: Re: [PATCH v2 01/15] dt-bindings: soc: renesas: renesas,rzg2l-sysc:
+ Add #renesas,sysc-signal-cells
+To: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, p.zabel@pengutronix.de, magnus.damm@gmail.com, 
+	gregkh@linuxfoundation.org, yoshihiro.shimoda.uh@renesas.com, 
+	christophe.jaillet@wanadoo.fr, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-usb@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, Ulf Hansson <ulf.hansson@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 29, 2024, at 09:10, Herve Codina wrote:
-> Hi Michal,
-> On Thu, 28 Nov 2024 20:42:53 +0100
-> Michal Kubecek <mkubecek@suse.cz> wrote:
->> > --- a/drivers/misc/Kconfig
->> > +++ b/drivers/misc/Kconfig
->> > @@ -610,6 +610,30 @@ config MARVELL_CN10K_DPI
->> >  	  To compile this driver as a module, choose M here: the module
->> >  	  will be called mrvl_cn10k_dpi.
->> >  
->> > +config MCHP_LAN966X_PCI
->> > +	tristate "Microchip LAN966x PCIe Support"
->> > +	depends on PCI
->> > +	select OF
->> > +	select OF_OVERLAY  
->> 
->> Are these "select" statements what we want? When configuring current
->> mainline snapshot, I accidentally enabled this driver and ended up
->> flooded with an enormous amount of new config options, most of which
->> didn't make much sense on x86_64. It took quite long to investigate why.
->> 
->> Couldn't we rather use
->> 
->> 	depends on PCI && OF && OF_OVERLAY
->> 
->> like other drivers?
+Hi Claudiu,
 
-Agreed.
-
-I would write in two lines as
-
-        depends on PCI
-        depends on OF_OVERLAY
-
-since OF_OVERLAY already depends on OF, that can be left out.
-The effect is the same as your variant though.
- 
+On Fri, Nov 29, 2024 at 9:21=E2=80=AFAM Claudiu Beznea <claudiu.beznea@tuxo=
+n.dev> wrote:
+> On 28.11.2024 17:46, Geert Uytterhoeven wrote:
+> > On Tue, Nov 26, 2024 at 10:21=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.=
+dev> wrote:
+> >> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >>
+> >> The RZ/G3S system controller (SYSC) has registers to control signals t=
+hat
+> >> are routed to various IPs. These signals must be controlled during
+> >> configuration of the respective IPs. One such signal is the USB PWRRDY=
+,
+> >> which connects the SYSC and the USB PHY. This signal must to be contro=
+lled
+> >> before and after the power to the USB PHY is turned off/on.
+> >>
+> >> Other similar signals include the following (according to the RZ/G3S
+> >> hardware manual):
+> >>
+> >> * PCIe:
+> >> - ALLOW_ENTER_L1 signal controlled through the SYS_PCIE_CFG register
+> >> - PCIE_RST_RSM_B signal controlled through the SYS_PCIE_RST_RSM_B
+> >>   register
+> >> - MODE_RXTERMINATION signal controlled through SYS_PCIE_PHY register
+> >>
+> >> * SPI:
+> >> - SEL_SPI_OCTA signal controlled through SYS_IPCONT_SEL_SPI_OCTA
+> >>   register
+> >>
+> >> * I2C/I3C:
+> >> - af_bypass I2C signals controlled through SYS_I2Cx_CFG registers
+> >>   (x=3D0..3)
+> >> - af_bypass I3C signal controlled through SYS_I3C_CFG register
+> >>
+> >> * Ethernet:
+> >> - FEC_GIGA_ENABLE Ethernet signals controlled through SYS_GETHx_CFG
+> >>   registers (x=3D0..1)
+> >>
+> >> Add #renesas,sysc-signal-cells DT property to allow different SYSC sig=
+nals
+> >> consumers to manage these signals.
+> >>
+> >> The goal is to enable consumers to specify the required access data fo=
+r
+> >> these signals (through device tree) and let their respective drivers
+> >> control these signals via the syscon regmap provided by the system
+> >> controller driver. For example, the USB PHY will describe this relatio=
+n
+> >> using the following DT property:
+> >>
+> >> usb2_phy1: usb-phy@11e30200 {
+> >>         // ...
+> >>         renesas,sysc-signal =3D <&sysc 0xd70 0x1>;
+> >>         // ...
+> >> };
+> >
+> > IIUIC, the consumer driver will  appear to control the SYSC bits
+> > directly, but due to the use of custom validating regmap accessors
+> > and reference counting in the SYSC driver, this is safe?
 >
-> I don't have a strong opinion on this 'select' vs 'depends on' for those
-> symbols.
+> I'm not sure I fully understand the safety concern.
+
+Sorry for my bad expression, this was more like a rhetorical question.
+I meant that it is safe because:
+  1. Consumers cannot perform arbitrary register accesses,
+  2. The reference counting guarantees correct operation, despite
+      both usb-phy nodes using the same renesas,sysc-signal.
+
+So everything is fine.
+
+> > The extra safety requires duplicating the register bits in both DT
+> > and the SYSC driver.
 >
-> I used select because the dependency is not obvious for a user that just
-> want the driver for the LAN966x PCI device.
+> One other option I saw was to have common defines for registers that coul=
+d
+> have been shared b/w driver and DTSes. But it looked better to me the way
+> it has been presented in this series.
+>
+> > Both usb-phy nodes on RZG3S use the same renesas,sysc-signal, so the
+> > reference counting is indeed needed.  They are in different power
+> > domains, could that be an issue w.r.t. ordering?
+>
+> In chapter "32.4.2.1 USB/PHY related pins", section "When either Port1 or
+> Port2 is unused" of the RZ/G3S HW manual it is mentioned "Since USB_VDD18=
+ /
+> USB_VDD33 are common to 2 Port PHY, it is necessary to supply power even
+> when one of the
+>  ports is not in use".
 
-The general rules for picking one over the other are:
+Does that mean you have to power the other PHY on through the
+CPG_BUS_PERI_COM_MSTOP register, too?
+(I know you haven't added R9A08G045_PD_USBx to the USB nodes yet,
+ as #power-domain-cells is still 0).
 
-- use 'select' for symbols that can not be enabled manually
-- prefer 'depends on' for user-visible options
-- do whatever other driver do for the same symbol, to avoid
-  dependency loops.
+> (From the discussions w/ the internal HW team) The PWRRDY is an (software
+> controlled) indicator to the USB PHY that power supply is ready.
+>
+> From that and [1] I get that both PHYs are powered by the same regulators
+> (USB_VDD18/USB_VDD33) and the USB PWRRDY signal need to be set before/aft=
+er
+> the USB PHY power off/on. Because of this I consider the order doesn't ma=
+tter.
+>
+> [1] https://gcdnb.pbrd.co/images/0a1zYBFZXZVb.png
 
-     Arnd
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
