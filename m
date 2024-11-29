@@ -1,112 +1,86 @@
-Return-Path: <devicetree+bounces-125577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 197999DE928
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 16:15:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9D399DE936
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 16:19:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6827AB228D6
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 15:15:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 32BB5B20BF8
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 15:19:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 908DC13A865;
-	Fri, 29 Nov 2024 15:15:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="IhQoyofM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB84213C9C7;
+	Fri, 29 Nov 2024 15:19:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from out-171.mta0.migadu.com (out-171.mta0.migadu.com [91.218.175.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A59DC208D7;
-	Fri, 29 Nov 2024 15:15:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEA545A4D5
+	for <devicetree@vger.kernel.org>; Fri, 29 Nov 2024 15:19:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732893344; cv=none; b=BqUtxykCcFKrqod/EZACYcoz2z63xvd+vW6t6ayzLIs+3JR+iU6m532qj4RZUw49GrMEPPwEI3Z2Je03Q5mH89ikJaYIslq+7cqfWh5zvHS1t6AKdtmYazlfJBA95Z6acbAB9JsQhY6FZJFQB8C7AkrcQlrju/yj2N8mxpbisXE=
+	t=1732893548; cv=none; b=dEuhCmEEtlbkRwQQV4oCY1z7deDeVxsUzhvLN2TYezOwdiPT2JGC4E6VUtbWoHlieUYKYiTuRelF5wwr7lwuzfGcw/wVNcEs7z5VyZ+lmMYyE3qRkLx2AI66Zn6hOTu3wMJ6agHQQXEVnJDM9+j35M1BuAKJH+masRM8vv9Djg8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732893344; c=relaxed/simple;
-	bh=rUZ5NIdEIYlCn8HyzSe6zl5HHKhzIBZ4/pYs2KTpGfU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LWhBnZbM91t20WPiTmjaj75PgKCBemHzVP1BXdO7Jmyqq+sbaiYE3zYA+Hsr81rMFbZ7E/O6+RNexKmhi4fNZiqr2TaYs/RfAPJkaPH7Wbipym5qS9honJWZAS4zqYBX+iUbuHedHfK3qWMjEY2TwdBA+HrN+NU+x6gW551IwS8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=IhQoyofM; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=0NBukuuVJgfoFTSUK27Phbsx0LrIXsMWovFBCA0Cxj4=; b=IhQoyofMOjBrm7kgThO9Ko8q2w
-	wvHLp4TacAhK4nI7DHjDhadds602NfZDUog1x0bR/pFqj4iNaEA7UcWIou4uFi/XdpmpDob74cWWL
-	KMSm4lmWHiXH1fHjxZEXBswh1khB3znp/ccOCKERKOLLIMuEHDiP8ZR7G8QtB713DmhY=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tH2iW-00EmLR-JA; Fri, 29 Nov 2024 16:15:36 +0100
-Date: Fri, 29 Nov 2024 16:15:36 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Yijie Yang <quic_yijiyang@quicinc.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: qcs615-ride: Enable ethernet
- node
-Message-ID: <e1c192ff-4fe9-4473-92ba-4c3a40ab99da@lunn.ch>
-References: <20241118-dts_qcs615-v2-0-e62b924a3cbd@quicinc.com>
- <20241118-dts_qcs615-v2-2-e62b924a3cbd@quicinc.com>
- <ececbbe1-07b3-4050-b3a4-3de9451ac7d7@lunn.ch>
- <89a4f120-6cfd-416d-ab55-f0bdf069d9ce@quicinc.com>
- <c2800557-225d-4fbd-83ee-d4b72eb587ce@oss.qualcomm.com>
- <3c69423e-ba80-487f-b585-1e4ffb4137b6@lunn.ch>
- <2556b02c-f884-40c2-a0d4-0c87da6e5332@quicinc.com>
+	s=arc-20240116; t=1732893548; c=relaxed/simple;
+	bh=uDHBLfbpRiVwcl9aEKjeDZaraPbmRFFy1TAUaYIaN1k=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=N+YKsp/xXhunZv2VKiktvLDFUZy2qPHMspjtC1Oj1QkBtLIaefWfdaZNJ46UqIVQfnERt7eSq00QJHr/oroZxosqmxhMCQQwJwxdksCJ1d3J8HDE7k1p165/L6yF/RfrJk9TH8SBZueHgNYZB8KHjBvs/tet2Z2wXoa4U+W7ktQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; arc=none smtp.client-ip=91.218.175.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2556b02c-f884-40c2-a0d4-0c87da6e5332@quicinc.com>
+Mime-Version: 1.0
+Content-Type: multipart/signed;
+ boundary=a966ec00918dbbff9dfc1f6159593de5631b95b42429bdb04fa4b2619c26;
+ micalg=pgp-sha256; protocol="application/pgp-signature"
+Date: Fri, 29 Nov 2024 16:18:48 +0100
+Message-Id: <D5YRHL3A1KCB.17A2YM4TVM6M3@cknow.org>
+Cc: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+ <macromorgan@hotmail.com>, <jonas@kwiboo.se>, <andyshrk@163.com>,
+ <devicetree@vger.kernel.org>, <linux-rockchip@lists.infradead.org>,
+ <dsimic@manjaro.org>
+Subject: Re: [PATCH] arm64: dts: rockchip: add support for device tree
+ overlays for Radxa devices
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <didi.debian@cknow.org>
+To: =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, "FUKAUMI Naoki"
+ <naoki@radxa.com>
+References: <20241129002419.60404-1-naoki@radxa.com>
+ <1952472.6tgchFWduM@diego> <D5YO8QULYWDR.I3T73UCTD0WF@cknow.org>
+ <3674598.hdfAi7Kttb@diego>
+In-Reply-To: <3674598.hdfAi7Kttb@diego>
+X-Migadu-Flow: FLOW_OUT
 
-> > The usual setting here is 'rgmmii-id', which means something needs to
-> > insert a 2ns delay on the clock lines. This is not always true, a very
-> > small number of boards use extra long clock likes on the PCB to add
-> > the needed 2ns delay.
-> > 
-> > Now, if 'rgmii' does work, it means something else is broken
-> > somewhere. I will let you find out what.
-> 
-> The 'rgmii' does function correctly, but it does not necessarily mean that a
-> time delay is required at the board level. The EPHY can also compensate for
-> the time skew.
+--a966ec00918dbbff9dfc1f6159593de5631b95b42429bdb04fa4b2619c26
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-Basic definitions for phy-mode:
+On Fri Nov 29, 2024 at 3:07 PM CET, Heiko St=C3=BCbner wrote:
+> Am Freitag, 29. November 2024, 13:46:12 CET schrieb Diederik de Haas:
+> > But IIRC, the objection was about enabling it *globally* and instead it
+> > should be done more granually, be it on the SoC manufacturer level
+> > ('rockchip') or on the SoC ('rk3588') or on the board level as is
+> > proposed in this patch.
+>
+> I actually meant that less broadly and way more Rockchip-specific ;-)
 
-rgmii: Indicates the board provides the delays, normally via extra
-long clock lines.
+Ah, sorry, then I misunderstood.
 
-rgmii-id: The board does not provide the delay, the software need to
-arrange that either the MAC or the PHY adds the delays.
+--a966ec00918dbbff9dfc1f6159593de5631b95b42429bdb04fa4b2619c26
+Content-Type: application/pgp-signature; name="signature.asc"
 
-We then have the values passed between the MAC and the PHY driver:
-PHY_INTERFACE_MODE_RGMII: The PHY should not add delays
-PHY_INTERFACE_MODE_RGMII_ID: The PHY should add delays.
+-----BEGIN PGP SIGNATURE-----
 
-A typical MAC/PHY combination, phy-mode is passed to the PHY, and the
-PHY adds the delays, if needed.
+iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZ0nbXgAKCRDXblvOeH7b
+bhWWAP4t21+r7gbPCqmVqBRaZiYf36PBCatL1i7bxSFjiwxxLQEAhctHUoGHGusp
+WDd5Rs7omMuwRf6FH3zmrDiF8KDR1AI=
+=+sPn
+-----END PGP SIGNATURE-----
 
-This is why i said there are probably two bugs:
-
-1) phy-mode rgmii should probably be rgmii-id
-
-2) The PHY is adding delays when it should not be, because it is being
-   passed PHY_INTERFACE_MODE_RGMII not PHY_INTERFACE_MODE_RGMII_ID.
-
-	Andrew
+--a966ec00918dbbff9dfc1f6159593de5631b95b42429bdb04fa4b2619c26--
 
