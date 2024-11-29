@@ -1,86 +1,99 @@
-Return-Path: <devicetree+bounces-125578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9D399DE936
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 16:19:14 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7F289DE93A
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 16:20:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 32BB5B20BF8
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 15:19:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 77567B20EBA
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 15:20:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB84213C9C7;
-	Fri, 29 Nov 2024 15:19:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 302E81422C7;
+	Fri, 29 Nov 2024 15:20:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="CWMWmtWM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-171.mta0.migadu.com (out-171.mta0.migadu.com [91.218.175.171])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEA545A4D5
-	for <devicetree@vger.kernel.org>; Fri, 29 Nov 2024 15:19:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A29013D8B4;
+	Fri, 29 Nov 2024 15:20:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732893548; cv=none; b=dEuhCmEEtlbkRwQQV4oCY1z7deDeVxsUzhvLN2TYezOwdiPT2JGC4E6VUtbWoHlieUYKYiTuRelF5wwr7lwuzfGcw/wVNcEs7z5VyZ+lmMYyE3qRkLx2AI66Zn6hOTu3wMJ6agHQQXEVnJDM9+j35M1BuAKJH+masRM8vv9Djg8=
+	t=1732893630; cv=none; b=IMIiJIQMoge6cvtt4IvQxwGvPuHdHcDQNkuo3zqHpFXIRT0h9IFH8O8wjnHFbVP5asJfFFdPiojjyjESkoukXS5RI4hsIGM7cpdqMY6UzN6vCCeEZPuFJWPuEktQyLFwhRRXgjS++NTmgpVuni4yvKETlYPIYS2pwwUQlbh053M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732893548; c=relaxed/simple;
-	bh=uDHBLfbpRiVwcl9aEKjeDZaraPbmRFFy1TAUaYIaN1k=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=N+YKsp/xXhunZv2VKiktvLDFUZy2qPHMspjtC1Oj1QkBtLIaefWfdaZNJ46UqIVQfnERt7eSq00QJHr/oroZxosqmxhMCQQwJwxdksCJ1d3J8HDE7k1p165/L6yF/RfrJk9TH8SBZueHgNYZB8KHjBvs/tet2Z2wXoa4U+W7ktQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; arc=none smtp.client-ip=91.218.175.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+	s=arc-20240116; t=1732893630; c=relaxed/simple;
+	bh=qXahpijGJKBH0HbN3Bqo3N9btobuZwZdWHQjVzlv1Ic=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QR8qo0cg9ZFi5du5IEIi9lC0AcTPfSZbzCYiRtk1ICarK5x2lYaqYYA4O0/DTvVBCw0vL2MDZtKz6wpOMj18CTmVZqLl0xe26zOuHnY+jsL5+fQYaVeDSueFRwbiC8BE16/K5fxnfYWuHeHfmn8S5AyvrJFoD0HfG7aGQJzTGks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=CWMWmtWM; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1732893628; x=1764429628;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=qXahpijGJKBH0HbN3Bqo3N9btobuZwZdWHQjVzlv1Ic=;
+  b=CWMWmtWMT4U9IKkUO+LnftE52Kb93QwerbOzSc5GS+UygJeyWAO2Y0LD
+   oQH9H84nSc1wnBQ6Kentg9+yrygpWtceiQ1tYrsFxss9uhUOK5ujeF7Dz
+   k8wrt1FprgE7pFk3zzv9N+KP36TMTVVlpWtOQGKOxc/4AtlVLJ4zX5K77
+   rSEaAEnV3eRvjSxF3ALaHdiVEwpPfseozlx4IkjLVLB6ks4HQyl6FuZ4V
+   2er+NK2LOoOGqbWHfm5XbV8NppEaw0xykypL1eF3eOKvdDD50NNKgiqG3
+   g8gCUyzNCM7Yux2/xWimkALAk4S/jiNYHLPiS14c/mzH5fi8HnjTexBSt
+   w==;
+X-CSE-ConnectionGUID: ZptXjBAZQAmpCdcTJdLB6g==
+X-CSE-MsgGUID: Wk+AEuLDT2eAisEjhmqD1A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11271"; a="35994222"
+X-IronPort-AV: E=Sophos;i="6.12,195,1728975600"; 
+   d="scan'208";a="35994222"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Nov 2024 07:20:27 -0800
+X-CSE-ConnectionGUID: CdVdRtR8Stix2buKHgq6Tw==
+X-CSE-MsgGUID: QC37+fmkT4md8164xOhxDQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,195,1728975600"; 
+   d="scan'208";a="97616809"
+Received: from smile.fi.intel.com ([10.237.72.154])
+  by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Nov 2024 07:20:26 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1tH2n8-00000002HDH-1Q4s;
+	Fri, 29 Nov 2024 17:20:22 +0200
+Date: Fri, 29 Nov 2024 17:20:22 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Vasileios Amoiridis <vassilisamir@gmail.com>
+Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, ajarizzo@gmail.com, ak@it-klinger.de,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/3] iio: pressure: bmp280: Use sizeof() for
+ denominator
+Message-ID: <Z0nbtiVeKuTV5Amc@smile.fi.intel.com>
+References: <20241128232450.313862-1-vassilisamir@gmail.com>
+ <20241128232450.313862-3-vassilisamir@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: multipart/signed;
- boundary=a966ec00918dbbff9dfc1f6159593de5631b95b42429bdb04fa4b2619c26;
- micalg=pgp-sha256; protocol="application/pgp-signature"
-Date: Fri, 29 Nov 2024 16:18:48 +0100
-Message-Id: <D5YRHL3A1KCB.17A2YM4TVM6M3@cknow.org>
-Cc: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
- <macromorgan@hotmail.com>, <jonas@kwiboo.se>, <andyshrk@163.com>,
- <devicetree@vger.kernel.org>, <linux-rockchip@lists.infradead.org>,
- <dsimic@manjaro.org>
-Subject: Re: [PATCH] arm64: dts: rockchip: add support for device tree
- overlays for Radxa devices
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <didi.debian@cknow.org>
-To: =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, "FUKAUMI Naoki"
- <naoki@radxa.com>
-References: <20241129002419.60404-1-naoki@radxa.com>
- <1952472.6tgchFWduM@diego> <D5YO8QULYWDR.I3T73UCTD0WF@cknow.org>
- <3674598.hdfAi7Kttb@diego>
-In-Reply-To: <3674598.hdfAi7Kttb@diego>
-X-Migadu-Flow: FLOW_OUT
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241128232450.313862-3-vassilisamir@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
---a966ec00918dbbff9dfc1f6159593de5631b95b42429bdb04fa4b2619c26
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+On Fri, Nov 29, 2024 at 12:24:49AM +0100, Vasileios Amoiridis wrote:
+> Instead of using magic number 2 as a denominator, make it intuitive by
+> using sizeof().
 
-On Fri Nov 29, 2024 at 3:07 PM CET, Heiko St=C3=BCbner wrote:
-> Am Freitag, 29. November 2024, 13:46:12 CET schrieb Diederik de Haas:
-> > But IIRC, the objection was about enabling it *globally* and instead it
-> > should be done more granually, be it on the SoC manufacturer level
-> > ('rockchip') or on the SoC ('rk3588') or on the board level as is
-> > proposed in this patch.
->
-> I actually meant that less broadly and way more Rockchip-specific ;-)
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-Ah, sorry, then I misunderstood.
+-- 
+With Best Regards,
+Andy Shevchenko
 
---a966ec00918dbbff9dfc1f6159593de5631b95b42429bdb04fa4b2619c26
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZ0nbXgAKCRDXblvOeH7b
-bhWWAP4t21+r7gbPCqmVqBRaZiYf36PBCatL1i7bxSFjiwxxLQEAhctHUoGHGusp
-WDd5Rs7omMuwRf6FH3zmrDiF8KDR1AI=
-=+sPn
------END PGP SIGNATURE-----
-
---a966ec00918dbbff9dfc1f6159593de5631b95b42429bdb04fa4b2619c26--
 
