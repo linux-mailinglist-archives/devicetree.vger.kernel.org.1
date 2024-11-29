@@ -1,97 +1,235 @@
-Return-Path: <devicetree+bounces-125560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125562-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E13E99DE88D
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 15:33:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26BFB9DE8A3
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 15:37:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 722C7B219F6
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 14:33:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D796E282955
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 14:37:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 480D170827;
-	Fri, 29 Nov 2024 14:33:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JsJnw3O8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17EA583CD2;
+	Fri, 29 Nov 2024 14:37:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5D5528EC;
-	Fri, 29 Nov 2024 14:33:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00F7542AAB
+	for <devicetree@vger.kernel.org>; Fri, 29 Nov 2024 14:37:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732890812; cv=none; b=fnkCJIkCtYzh1Ig2zi607rt0djSeEEsxvdCjmP02R9a7jUXMa+fLaNKQZxRfd1kq1NRrRD0hVt07OjH+W1ISU1BTUE9Rqg2QooCpW2j77H9wvafFZNGTGRLXP47HwMAZf8Mqm5GUuXujZSV/Xj14OWWNP2bVyNfbJxtzpXF3LHI=
+	t=1732891060; cv=none; b=OLTjUrR2JtpBlZej0TtCUPflKTaOLJlYO9eq+aUcgeVCn9tJ9esB8+Z2Mr+ZCDa+LOza+a0uolMeNMadPq1NA0R3g9NLmi4Mlzd2xrCXbI9CLH5Cp/vz35W7hftMERUeemfb6W0wblx1m7KjOqFFK4iGCe5CyGwedE+Iyrlgdek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732890812; c=relaxed/simple;
-	bh=ggcFP2TpUDuJc85F0rS6rmNVHScKViGvL5eID60yB8U=;
+	s=arc-20240116; t=1732891060; c=relaxed/simple;
+	bh=XtJxsP6Q5iK8IFbFbWf41hPjnWxcYV2ue5hmBYZx4PI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J6iuNTwfKuyikWmugbjDBOqb5tfwhjumVqLYMzhA0ROI8R06GDLn0FxsAJ+wgJmeh2qhqcPsXQrmw6pJf0xZQ7QLUilvbj4nmaNsxRj6kmJMkNyUDAGO2mQir/WGgRb4SOG55PUCYJTxxOC/3IZkEDVpxikqIVmh8JTMRHC4PYg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JsJnw3O8; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1732890811; x=1764426811;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ggcFP2TpUDuJc85F0rS6rmNVHScKViGvL5eID60yB8U=;
-  b=JsJnw3O8JGFX7gkDnIF5LdvDQSl5vMX4pyqNU+IGBfVejtlahCzkniGd
-   WMdh8jsV7j90C/Ipd3q0vvPJPlD8SdhDG8dRpJPvhRZEkJDcz2rnZIoYU
-   hkYm2UumbuMFL199Vy1pM2FT4W5h1S2QY2W4s+tD60GQF3g42y7R+Dosi
-   DeOXYOIjk/W40aPeBIcT+Iz8iBviCxvN6uWzaAkPJByL9/iyvTJxU++2X
-   4plUUImeilmxHM3kD2SzRycvXZcKZuu8xfPpfZojbsZUlKRhazqlJt1bv
-   q6/g9YH3VrbYMuKxdr0ttYGYDxW51kGTB5s7UEDREaFntFXhCZkuHXu8/
-   Q==;
-X-CSE-ConnectionGUID: klrqiUcLStSywiqAAwHG/g==
-X-CSE-MsgGUID: kOJKjDO7Q9iW7mV4z0P/QA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11271"; a="43798409"
-X-IronPort-AV: E=Sophos;i="6.12,195,1728975600"; 
-   d="scan'208";a="43798409"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Nov 2024 06:33:30 -0800
-X-CSE-ConnectionGUID: vVsuKraCRxqWXr46l3A5gQ==
-X-CSE-MsgGUID: OOjSRwHmTe2M7TRTpTY39Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,195,1728975600"; 
-   d="scan'208";a="92385422"
-Received: from smile.fi.intel.com ([10.237.72.154])
-  by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Nov 2024 06:33:28 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1tH23g-00000002GLo-44Eb;
-	Fri, 29 Nov 2024 16:33:24 +0200
-Date: Fri, 29 Nov 2024 16:33:24 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Vasileios Amoiridis <vassilisamir@gmail.com>
-Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/3] iio: chemical: bme680: add regulators
-Message-ID: <Z0nQtMfGbEzxq8q0@smile.fi.intel.com>
-References: <20241128193246.24572-1-vassilisamir@gmail.com>
- <20241128193246.24572-3-vassilisamir@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Pm7tz9K4n3NJtk09V+1MDBL6pFWczduNF4qpbZRCTtUkO6V+fHt/5dtuZMZlO0GHB99aHVK4Ya+EzXhvThR2McldY1CrS+XxIZi+uJeePGgrJEC9PjQ6cDOX8xhhnMEWtHP2opyL9LjmKj3WLHLJ2LAaS0pjmI06cfUUKOhvJJo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tH27W-00081B-S1; Fri, 29 Nov 2024 15:37:22 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tH27V-000nvK-0o;
+	Fri, 29 Nov 2024 15:37:22 +0100
+Received: from pengutronix.de (pd9e59fec.dip0.t-ipconnect.de [217.229.159.236])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id A9E7E38135D;
+	Fri, 29 Nov 2024 14:37:21 +0000 (UTC)
+Date: Fri, 29 Nov 2024 15:37:21 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
+Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, NXP S32 Linux <s32@nxp.com>, imx@lists.linux.dev, 
+	Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>, 
+	Enric Balletbo <eballetb@redhat.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: can: fsl,flexcan: add S32G2/S32G3
+ SoC support
+Message-ID: <20241129-ancient-sloth-of-bloom-077ab2-mkl@pengutronix.de>
+References: <20241129142535.1171249-1-ciprianmarian.costea@oss.nxp.com>
+ <20241129142535.1171249-2-ciprianmarian.costea@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="wuotrmvbblrkdbk6"
 Content-Disposition: inline
-In-Reply-To: <20241128193246.24572-3-vassilisamir@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-
-On Thu, Nov 28, 2024 at 08:32:45PM +0100, Vasileios Amoiridis wrote:
-> Add support for the regulators described in the dt-binding.
-
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+In-Reply-To: <20241129142535.1171249-2-ciprianmarian.costea@oss.nxp.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 
--- 
-With Best Regards,
-Andy Shevchenko
+--wuotrmvbblrkdbk6
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 1/3] dt-bindings: can: fsl,flexcan: add S32G2/S32G3
+ SoC support
+MIME-Version: 1.0
 
+On 29.11.2024 16:25:33, Ciprian Costea wrote:
+> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+>=20
+> Add S32G2/S32G3 SoCs compatible strings.
+>=20
+> A particularity for these SoCs is the presence of separate interrupts for
+> state change, bus errors, MBs 0-7 and MBs 8-127 respectively.
+>=20
+> Increase maxItems of 'interrupts' to 4 for S32G based SoCs and keep the
+> same restriction for other SoCs.
+>=20
+> Also, as part of this commit, move the 'allOf' after the required
+> properties to make the documentation easier to read.
+>=20
+> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+> ---
+>  .../bindings/net/can/fsl,flexcan.yaml         | 46 +++++++++++++++++--
+>  1 file changed, 42 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml b=
+/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
+> index 97dd1a7c5ed2..10b658e85ef2 100644
+> --- a/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
+> +++ b/Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
+> @@ -10,9 +10,6 @@ title:
+>  maintainers:
+>    - Marc Kleine-Budde <mkl@pengutronix.de>
+> =20
+> -allOf:
+> -  - $ref: can-controller.yaml#
+> -
+>  properties:
+>    compatible:
+>      oneOf:
+> @@ -28,6 +25,7 @@ properties:
+>            - fsl,vf610-flexcan
+>            - fsl,ls1021ar2-flexcan
+>            - fsl,lx2160ar1-flexcan
+> +          - nxp,s32g2-flexcan
+>        - items:
+>            - enum:
+>                - fsl,imx53-flexcan
+> @@ -43,12 +41,21 @@ properties:
+>            - enum:
+>                - fsl,ls1028ar1-flexcan
+>            - const: fsl,lx2160ar1-flexcan
+> +      - items:
+> +          - enum:
+> +              - nxp,s32g3-flexcan
+> +          - const: nxp,s32g2-flexcan
+> =20
+>    reg:
+>      maxItems: 1
+> =20
+>    interrupts:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 4
+> +
+> +  interrupt-names:
+> +    minItems: 1
+> +    maxItems: 4
+> =20
+>    clocks:
+>      maxItems: 2
+> @@ -136,6 +143,37 @@ required:
+>    - reg
+>    - interrupts
+> =20
+> +allOf:
+> +  - $ref: can-controller.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: nxp,s32g2-flexcan
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          items:
+> +            - description: Message Buffer interrupt for mailboxes 0-7 an=
+d Enhanced RX FIFO
+> +            - description: Device state change
+> +            - description: Error detection
+> +            - description: Message Buffer interrupt for mailboxes 8-127
+> +        interrupt-names:
+> +          items:
+> +            - const: mb-0
+> +            - const: state
+> +            - const: berr
 
+Nitpick:
+
+- description: Error detection
+and
+- const: err
+
+or
+
+- description: Bus Error detection
+and
+- const: berr
+
+regards,
+Marc
+
+> +            - const: mb-1
+> +      required:
+> +        - compatible
+> +        - reg
+> +        - interrupts
+> +        - interrupt-names
+> +    else:
+> +      properties:
+> +        interrupts:
+> +          maxItems: 1
+> +
+>  additionalProperties: false
+> =20
+>  examples:
+> --=20
+> 2.45.2
+>=20
+>=20
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--wuotrmvbblrkdbk6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmdJ0Z4ACgkQKDiiPnot
+vG99zgf/e0bR3pFlC1iXoVoAbLuPS/XgUVnlr8Ip8XqDQ3ETCN/gHY0jBMqrAkpG
+HpyX2GXpYGmS2HjWwjasJqtyW2KTw+oFI7iCxkmHDp6SIp7MZmBfFBOADOKtZh0C
+HFicEIKxiPZt2zzM+aJSSnXqL+I/dx0EdY5ONAFhaKkRfu1zzvKeBRxoJQ8pIAf/
+QSbaowMGmHDryoJW3N02/T59Wk1yacAVq7E0AQ1W2EAr3p3bd9fzOsHxDpU0x/L8
+0X20hFp38G9F6RWzECP74gFps6d26fIAv3DHPFW0t/OE9Y4u+nhv9yf0FeDeFLBC
+QKRM5/eo8fMoTJ0c7Pga4CJ8ixZpiw==
+=gPO1
+-----END PGP SIGNATURE-----
+
+--wuotrmvbblrkdbk6--
 
