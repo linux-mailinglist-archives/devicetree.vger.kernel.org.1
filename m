@@ -1,71 +1,71 @@
-Return-Path: <devicetree+bounces-125549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E1AE9DE817
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 14:53:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8E569DE81E
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 14:54:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B33E3161283
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 13:53:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC3991637DA
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 13:54:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE8D519F430;
-	Fri, 29 Nov 2024 13:53:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F19E19F48D;
+	Fri, 29 Nov 2024 13:54:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sB6OaG1q"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nzgesgoF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDB2819E804
-	for <devicetree@vger.kernel.org>; Fri, 29 Nov 2024 13:53:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28B5519E7F8
+	for <devicetree@vger.kernel.org>; Fri, 29 Nov 2024 13:54:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732888428; cv=none; b=T8ir72hxEkXDK8NLA99zixn8VTMwRsjbWPzaqkUbbGY1P9CJVYz2/PO2gv3bzUkoQ2EIYH1litOiTcwFyRPWZtMj/xSlxEODXjv4od2D0vRNY5IlYYJ6Dz7fYPkQOtWz5cfU1nGGoHRyQMeiRGy0RcTbNrCrrE4CFm9KbMX0ojQ=
+	t=1732888454; cv=none; b=ZVegWQopb3UbwMk8I96T5ZiR7cwvXVzELnog7vv9NcjyZLgriJu5LJeyB8mFmKwZ50oDhq4JEUKqJNCzLQWA9nDTSfRdGReF5xkj2QCP15ALh2E4ue5ZLN934eAVnYLP2Ly/EnuB87dHbth1LLDdfeFzkOW5bl2bfVzmzqeoBP8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732888428; c=relaxed/simple;
-	bh=+dRJ7NHpUJ00cNs7INzOtHylGUJyGub0iEwQeE6ZSZI=;
+	s=arc-20240116; t=1732888454; c=relaxed/simple;
+	bh=qP7lwKEdHMld7lFkjHFyab/jSeBsx5t8xely6eOKcGE=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Uz0W7FyzoWd0us4kklF11hLVwc7vU+QYJuVchHqRPpqjfK2/faA4I+kIjNtM/ht1TItNjPWLSwzLyHI3E3Dh4Ohcid7RkPUQKgNmfwaMHN97Txs46vBOmA7fVqVXIL9RXVl1AXOLe0busR0zExaeIVnJAgV4dV/j2lP5/XzYlrY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sB6OaG1q; arc=none smtp.client-ip=209.85.208.49
+	 To:Cc:Content-Type; b=cNegKoAe9E3zAp4n+elX9WBeeEzSp8V6xECbzeTVv89lAuxVIISzuXZSQIkATqoAPY7mI3D6pm16aBooQdQInMYBA/T5xDr7g6gsEcf9ebtlILnAS1HohHnq7c2TxHfIeLya/ciwGj5/Lvbsq3Cd/rCqgNiAILHyBQRQ66va95U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nzgesgoF; arc=none smtp.client-ip=209.85.208.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5d0bdeb0374so371378a12.0
-        for <devicetree@vger.kernel.org>; Fri, 29 Nov 2024 05:53:46 -0800 (PST)
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5cfddb70965so2204149a12.0
+        for <devicetree@vger.kernel.org>; Fri, 29 Nov 2024 05:54:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732888425; x=1733493225; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1732888451; x=1733493251; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=n/Ur8aJlkZb2O0WBY+Ja+CLRvhD2wQCX6NK6ury26eQ=;
-        b=sB6OaG1qp3BfWCImDLDbED5L9XHS3l9crclnjuRQGho++U9PYISrS9y355mlt5auEG
-         MlvJX3Xs07Po564y+EAdBltgBl1fLcsBtT0hRmu7Jn15s29AdQtpKJBskkiliNuU4siJ
-         itCGcUUyWLciFXKclpgZq7GBgTSFNlz/eprscdCKb5YbY18aLtlZ+NtbKAqY472cZZYT
-         DZXu5fG20L6dI+Tvw34axbuJ6wdtaJElORbIqvFWgTfOj6ZEgd3x/plDwGp70F/RI06P
-         hn5Ejk6mO6h2N6mwbS2W5LWtjrOn3nIuY47MSES9RvnAba66feozK12LBcBZz09XMMvD
-         ljqQ==
+        bh=jzfj59habuKMWPss+IaBeegA7WifSrplhAuuUyjLmTI=;
+        b=nzgesgoFc0wr0GqpK1HR64GD5xTT5QjGbVr0772vJzQ14cd7vWVW0HTLhp1QeBqIYq
+         I9DEJ6Z7NezqdXCHizwoCOdCTU0LdTr9YEqil3Q/0MIOF8Q7ImG6VUPcRglJ2t3OZuvG
+         ZrYP3izda+dwL1qID3Qsg6s7utogeiztocTfn5R8sDqdozSk5oimkEFEwNBcvANmZ2Wo
+         iPZ0jsl94KRJZ8F6gED3D2XmPGlRNpN3QH7nlW5iG45dGHab2NKsmSgZpP6Tz+NpP0Q5
+         zFURxtAx96J6oh7G06+OUfouIzTKyVq74K86uKcDwZlzf9KOqfMaxsUEKNgWvU17/qXa
+         j2lQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732888425; x=1733493225;
+        d=1e100.net; s=20230601; t=1732888451; x=1733493251;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=n/Ur8aJlkZb2O0WBY+Ja+CLRvhD2wQCX6NK6ury26eQ=;
-        b=IlEujpi0nAXyCx79LK3YdDF+d+6U1lrekl1eKYmqWEJc/DckjqToXTi5rNw67+9xTl
-         dogaVcQFds28ybGXeg1c122dAnjCuMWyyoTptPp9mCDZoFQ89Uk9xNsc7XyZ7EAsaj4c
-         QICjIH/hxWm5E6XhPacNwCq7LkSDVGY4/0UbEpsHJr91RCarvvgucAt0ji9amTFjx3w3
-         xtqEkeXEWapS3A5lVRitSUQPW3cXT1GuT2mR7qjy4M8eEbDmek5U4AtYOEpxWCUNIdD+
-         +vZC14p2rcZZyhed4TR+4dwIjYZVrudV/U7c2lGcV+L00UtCn+Kh9+VpaYGV3sNURHPj
-         WWGQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUXQ7ERtqn47CMpbZ91xZXT9mI95CCH8B3pssKkOlhrYepbHFVnm3GV9LKkZx4cx848bYSj4XIvO2nC@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzvy1ek1SSW+oL2QQH9hKv4VW6VnOkCiVP3gEediJwc7R111Vfp
-	gpT7eq1UPsOd9vmnYbfN6MwKdK8KYA1dW6lauqMAHQb4Qra0c2/iQrzWhBHshCWixcMbTcLF8Ep
-	SdIbMjMZPw0NYTT0lDlLQ5nn7J6NZxqUHj/J7hQ==
-X-Gm-Gg: ASbGncsMlyhyvViRkkDQWhBwC2TpAxbHRyH074z2lrj9bddu+H637Vs5VbTuw+DUy+A
-	g0gQwFFaQQAbyZqu+DN4ITA1NYhMIYug=
-X-Google-Smtp-Source: AGHT+IGCwqeDEnJNo83WNtmzKMJUwft+OKQaPAZ33baZKMDUQiMMr0XiZGEiUd02VQ36AikNgL9bZwlAshMXxuPC8CM=
-X-Received: by 2002:a05:6402:5194:b0:5cf:f319:4525 with SMTP id
- 4fb4d7f45d1cf-5d080c4d37fmr10845661a12.22.1732888425147; Fri, 29 Nov 2024
- 05:53:45 -0800 (PST)
+        bh=jzfj59habuKMWPss+IaBeegA7WifSrplhAuuUyjLmTI=;
+        b=ZC1Dz5VIS1dEqlBHuNBz3Ub1AXGALNg4o0Hv2i7gv7agrMucnQtQDc7W6Xiv63cgBm
+         K749WJPB+OJmKyNo85fwcwtsdHJ/V0iDclg8ad+3zP5liCq8GI685pTtLXQQodOcuI8g
+         i47A0o6Bx6UhSuTjZsEq6M2GPR0uCC4J6AwT320qBhtyvLCOedJRw7u8HTCeokNCFcTl
+         BmI/rSyk8iTq91o9w8wFFFZ00S+UTc0e1G8/T+A1Rvgm2ZAZ+tqqgjg/paaKcq+lhpmN
+         yXYwYm3RqejxJcfkvFV5rB/HvCwbOxfPiCkwSF61xHMjnTJ4aLm0xOkeRQ2t7BJt3XeP
+         8oQA==
+X-Forwarded-Encrypted: i=1; AJvYcCUjPVAIAUBLQyAkXPlTtJc64/IBdA4x9TVnaVJJGjWSPbBLruJs2y1Fkc8OWtnN0IYMGefswVp47heG@vger.kernel.org
+X-Gm-Message-State: AOJu0YywOpzyPlQsJOgp2SzlXT+UHOA+POPfHqP0NvHJzl7OHxkQIjdG
+	kax3hqhXyTiSjp8/vU5RCiDWiKJHJu1+aLoiwl5cAyTqfcpZp2Yzs26B8Ieh0bjHRHmFD9lHkMD
+	nwEJUWG4bZ+mdcfmKdS3POfSNBg3cr6p07Sh4sQ==
+X-Gm-Gg: ASbGncuK+xAmZabGfQhCCk9MYxHZOZ6hNAj95I+mQiru/nMscYiIDGX2QRjxS8nM4G5
+	sBQ6wrBIEkRX1gtMGbePNF29jnBDwsyU=
+X-Google-Smtp-Source: AGHT+IGaA6t4/2a/mNA1h9b1zR06PmCO6tMyJ5TuOWa0jZCc/O10Qzu+rMnQb6Tj6pv0TWbP4VGQEBjG3I0WDrceI+I=
+X-Received: by 2002:aa7:d68d:0:b0:5d0:8676:3ed9 with SMTP id
+ 4fb4d7f45d1cf-5d08676410cmr7819763a12.8.1732888451493; Fri, 29 Nov 2024
+ 05:54:11 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,12 +73,12 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 References: <20241129-add-displayport-support-for-qcs615-platform-v1-0-09a4338d93ef@quicinc.com>
- <20241129-add-displayport-support-for-qcs615-platform-v1-7-09a4338d93ef@quicinc.com>
-In-Reply-To: <20241129-add-displayport-support-for-qcs615-platform-v1-7-09a4338d93ef@quicinc.com>
+ <20241129-add-displayport-support-for-qcs615-platform-v1-4-09a4338d93ef@quicinc.com>
+In-Reply-To: <20241129-add-displayport-support-for-qcs615-platform-v1-4-09a4338d93ef@quicinc.com>
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Fri, 29 Nov 2024 15:53:37 +0200
-Message-ID: <CAA8EJpoN1qBHyZrQJT_=e_26+tcaKRnSrhtxrK6zBP4BwpL=Hg@mail.gmail.com>
-Subject: Re: [PATCH 7/8] drm/msm/dp: Retry Link Training 2 with lower pattern
+Date: Fri, 29 Nov 2024 15:54:04 +0200
+Message-ID: <CAA8EJpqDJm6xh2oCkED4FF+1j8qt=u7B=7XADtR9JOkZZxsDkg@mail.gmail.com>
+Subject: Re: [PATCH 4/8] drm/msm/dp: Add DisplayPort support for QCS615
 To: Xiangxu Yin <quic_xiangxuy@quicinc.com>
 Cc: Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
 	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
@@ -96,84 +96,15 @@ Content-Type: text/plain; charset="UTF-8"
 
 On Fri, 29 Nov 2024 at 09:59, Xiangxu Yin <quic_xiangxuy@quicinc.com> wrote:
 >
-> Add a mechanism to retry Link Training 2 by lowering the pattern level
-> when the link training #2 first attempt fails. This approach enhances
-> compatibility, particularly addressing issues caused by certain hub
-> configurations.
-
-Please reference corresponding part of the standard, describing this lowering.
-
+> The Qualcomm QCS615 platform comes with a DisplayPort controller use the
+> same base offset as sc7180. add support for this in DP driver.
 >
 > Signed-off-by: Xiangxu Yin <quic_xiangxuy@quicinc.com>
 > ---
->  drivers/gpu/drm/msm/dp/dp_ctrl.c | 34 ++++++++++++++++++++++++++++++----
->  1 file changed, 30 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/msm/dp/dp_ctrl.c b/drivers/gpu/drm/msm/dp/dp_ctrl.c
-> index 49c8ce9b2d0e57a613e50865be3fe98e814d425a..b1862294cb98c9f756b0108b7670cb42de37bae4 100644
-> --- a/drivers/gpu/drm/msm/dp/dp_ctrl.c
-> +++ b/drivers/gpu/drm/msm/dp/dp_ctrl.c
-> @@ -1220,7 +1220,7 @@ static void msm_dp_ctrl_clear_training_pattern(struct msm_dp_ctrl_private *ctrl)
->  }
->
->  static int msm_dp_ctrl_link_train_2(struct msm_dp_ctrl_private *ctrl,
-> -                       int *training_step)
-> +                       int *training_step, bool downgrade)
->  {
->         int tries = 0, ret = 0;
->         u8 pattern;
-> @@ -1243,6 +1243,28 @@ static int msm_dp_ctrl_link_train_2(struct msm_dp_ctrl_private *ctrl,
->                 state_ctrl_bit = 2;
->         }
->
-> +       /*
-> +        * DP link training uses the highest allowed pattern by default.
-> +        * If it fails, the pattern is downgraded to improve cable and monitor compatibility.
-> +        */
-> +       if (downgrade) {
-> +               switch (pattern) {
-> +               case DP_TRAINING_PATTERN_4:
-> +                       pattern = DP_TRAINING_PATTERN_3;
-> +                       state_ctrl_bit = 3;
-> +                       break;
-> +               case DP_TRAINING_PATTERN_3:
-> +                       pattern = DP_TRAINING_PATTERN_2;
-> +                       state_ctrl_bit = 2;
-> +                       break;
-> +               default:
-> +                       break;
-> +               }
-> +       }
-> +
-> +       drm_dbg_dp(ctrl->drm_dev, "pattern(%d) state_ctrl_bit(%d) downgrade(%d)\n",
-> +               pattern, state_ctrl_bit, downgrade);
-> +
->         ret = msm_dp_catalog_ctrl_set_pattern_state_bit(ctrl->catalog, state_ctrl_bit);
->         if (ret)
->                 return ret;
-> @@ -1311,10 +1333,14 @@ static int msm_dp_ctrl_link_train(struct msm_dp_ctrl_private *ctrl,
->         /* print success info as this is a result of user initiated action */
->         drm_dbg_dp(ctrl->drm_dev, "link training #1 successful\n");
->
-> -       ret = msm_dp_ctrl_link_train_2(ctrl, training_step);
-> +       ret = msm_dp_ctrl_link_train_2(ctrl, training_step, false);
->         if (ret) {
-> -               DRM_ERROR("link training #2 failed. ret=%d\n", ret);
-> -               goto end;
-> +               drm_dbg_dp(ctrl->drm_dev, "link training #2 failed, retry downgrade.\n");
-> +               ret = msm_dp_ctrl_link_train_2(ctrl, training_step, true);
-> +               if (ret) {
-> +                       DRM_ERROR("link training #2 failed. ret=%d\n", ret);
-> +                       goto end;
-> +               }
->         }
->
->         /* print success info as this is a result of user initiated action */
->
-> --
-> 2.25.1
->
+>  drivers/gpu/drm/msm/dp/dp_display.c | 1 +
+>  1 file changed, 1 insertion(+)
 
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 -- 
 With best wishes
