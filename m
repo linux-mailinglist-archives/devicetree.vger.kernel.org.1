@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-125508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAA8F9DC255
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 11:43:40 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71B1F9DC27A
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 12:04:13 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7009A28497A
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 10:43:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F4D5164017
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 11:04:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05B0419067A;
-	Fri, 29 Nov 2024 10:43:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5420C1586CF;
+	Fri, 29 Nov 2024 11:04:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K51a38qm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qzYLNZph"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAC16155345;
-	Fri, 29 Nov 2024 10:43:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28739155726;
+	Fri, 29 Nov 2024 11:04:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732877016; cv=none; b=ZDdwLBO4dH5NMJndFpgXwUFaQAOnc27PJsKGx+fCe/bGK15Vs1nZns98wO91FWP/W2qHm4dk7vLvIf4T7yR046PJeVoE8WvJnc8HrZrmLH5rMsF/pkiJmShfdeml3FWtLkIPY4iVfypuvN/vvoh6SbR+BTzrzb2DO3FHHJW7mCU=
+	t=1732878250; cv=none; b=Y/hbXprD8VXk+SFMXHmSDKzsGe29BQzmsWXE1s1p/ksH/Zp/TCt3uMEL9IldHOFB98+jYIr0xYmbZzdqb+/xltH2vaFJcRZ8hka+5j0e7N3BWQ6y1X7RDGoLFE6Pnx4VVJ824Pgjo6n6X1Sr35lWNQRF2dOPt78izQ4bgthUOEU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732877016; c=relaxed/simple;
-	bh=HiysAwR1vBFjGdYnJZFzoJcljRzrm2vPT3oVuBxYu9A=;
+	s=arc-20240116; t=1732878250; c=relaxed/simple;
+	bh=pCaLsj2oXo5FvjR958xZgaPENr25Q1/sqdTinPPJPR4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gmnUb4NN9sCDQhS6T0njXhR8xXumWeXy+OCuHeVc9P5fAxfBxbqFFdohiLBV+o7KUpNTXdq63w9aorUE8ctzy/psjfXW2G0eu3OM67WKjrgwhww9QiezIhy1o11azcjNxqTgteYy6wfa4QuJl1gyUEyFK75rdQEYRWgI1/yiYXU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K51a38qm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B50C6C4CECF;
-	Fri, 29 Nov 2024 10:43:32 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=hitLzgxLb7WiZYmioxc8RwWTgS28/Jn2JcnwWg1AULPiS1XntDEqjedexoHJzm1BdWNkLBytb+SR32J3aiEBFwKJK3suADjzypWsOlONVBd2oW5fUHQIBsf3RXfd/R752O5LRPHsy9HKTEcDRPAhpagtKU2WtPDnNmwASHa3NjI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qzYLNZph; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50FB8C4CECF;
+	Fri, 29 Nov 2024 11:04:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732877016;
-	bh=HiysAwR1vBFjGdYnJZFzoJcljRzrm2vPT3oVuBxYu9A=;
+	s=k20201202; t=1732878249;
+	bh=pCaLsj2oXo5FvjR958xZgaPENr25Q1/sqdTinPPJPR4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=K51a38qmYoTLeO4YbOGeKRRFXRFZhiIaZBmRXyqll6DkIBDch0HDjH7J+6DwpQ/OA
-	 kbkpYhMdkAjY7WxM8m3ILXUKdHR1QynbBpCyV00+BtRs8O5DivUFFNDksJtuqFxhhz
-	 Kz+ssnC1CN9fFra3bUxM46+a09qHclb9y5zayuMvFKz4e2jFjPAhjLNHOfkNVJz7ep
-	 M351+IhULxukvWL7Q92MB4jCRh2m1DJ/4h9Lx0B/2yP7udIqsEWGzmZbaCx7I4JHql
-	 q3viCksAFHR0HyD1LTIrui6efA6wADmRGD4ddswTvSIlyyoYYfy1rgCk3ATrRPe1y4
-	 JqX4dBHiPQRYg==
-Message-ID: <3b0c410b-7dab-4864-a9bb-5201108a9d5a@kernel.org>
-Date: Fri, 29 Nov 2024 11:43:30 +0100
+	b=qzYLNZph8Cco4/sUR1hiSoG2GPSQLly8iQQ293idj3vMj8JPRIrbwYd2FQV4DQM5o
+	 opBXRzGgn/VDiQaw1SA6q5h6kGL+jsfqo3rWkRcZO0l+zfWloBhmzkuLF/tvoc8TMU
+	 L7uycVhAB592m/UwqPmJ1Ww4B8oSwYOYAiQRKxLAYorLb+E2jKxV1mS3JORtgCKsia
+	 rjqdwCBbDres2Gw61My+NhzLmr64SJ0FXyf8ReT3Cl7FcO4zulJxD2AuvEEzLag5og
+	 3tcCP8xA4YCkY2yMT2SYIKdDeEjT13raW6gX0SpChsVu7Jd7h4rr9cVco+LxCFh3U1
+	 UAcbE2yTj+4jA==
+Message-ID: <c0992fb1-20cd-4aab-847a-66542e9af7d2@kernel.org>
+Date: Fri, 29 Nov 2024 12:04:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] power: supply: gpio-charger: Support to disable
- charger
-To: Stefan Raufhake <raufhakestefan@gmail.com>,
- Sebastian Reichel <sre@kernel.org>, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: s.raufhake@beckhoff.com, s.dirkwinkel@beckhoff.com,
- Stefan Raufhake <s.raufhake@beckhoff.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-References: <20241129103848.39963-1-raufhakestefan@gmail.com>
- <20241129103848.39963-2-raufhakestefan@gmail.com>
+Subject: Re: [PATCH v5 2/4] w1: ds2482: switch to devm_kzalloc() from
+ kzalloc()
+To: cleverline1mc@gmail.com, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Stefan Wahren <stefan.wahren@chargebyte.com>,
+ Stefan Wahren <wahrenst@gmx.net>
+Cc: Ben Gardner <bgardner@wabtec.com>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20241129-ds2482-add-reg-v5-0-af8e83d41344@gmail.com>
+ <20241129-ds2482-add-reg-v5-2-af8e83d41344@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,60 +105,41 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241129103848.39963-2-raufhakestefan@gmail.com>
+In-Reply-To: <20241129-ds2482-add-reg-v5-2-af8e83d41344@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 29/11/2024 11:38, Stefan Raufhake wrote:
-> From: Stefan Raufhake <s.raufhake@beckhoff.de>
-> 
-> We want to disable the built-in UPS in our device
-
-Thank you for your patch. There is something to discuss/improve.
-
-
-> so that we can switch off the supply power of the
-> device with and without the support of the UPS.
-
-Please wrap commit message according to Linux coding style / submission
-process (neither too early nor over the limit):
-https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
-
-> This commit will allow us to disable the ups by
-> using the command echo 1 > /sys/class/power_supply/xxx/charge_type
-> (1 = POWER_SUPPLY_CHARGE_TYPE_NONE) and enable the
-> charger by setting it to 4 (POWER_SUPPLY_CHARGE_TYPE_STANDARD).
-
-Please describe the hardware, not OS.
-
-> 
-> Signed-off-by: Stefan Raufhake <s.raufhake@beckhoff.de>
-> ---
->  .../bindings/power/supply/gpio-charger.yaml   |  6 +++
->  drivers/power/supply/gpio-charger.c           | 43 +++++++++++++++++++
-
-Please run scripts/checkpatch.pl and fix reported warnings. Then please
-run `scripts/checkpatch.pl --strict` and (probably) fix more warnings.
-Some warnings can be ignored, especially from --strict run, but the code
-here looks like it needs a fix. Feel free to get in touch if the warning
-is not clear.
-
->  2 files changed, 49 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/power/supply/gpio-charger.yaml b/Documentation/devicetree/bindings/power/supply/gpio-charger.yaml
-> index 89f8e2bcb2d7..b2658b0b20e4 100644
-> --- a/Documentation/devicetree/bindings/power/supply/gpio-charger.yaml
-> +++ b/Documentation/devicetree/bindings/power/supply/gpio-charger.yaml
-> @@ -44,6 +44,10 @@ properties:
->      maxItems: 32
->      description: GPIOs used for current limiting
+On 29/11/2024 10:53, Kryštof Černý via B4 Relay wrote:
+>  	/* Detect the 8-port version */
+> @@ -505,21 +503,15 @@ static int ds2482_probe(struct i2c_client *client)
+>  		err = w1_add_master_device(&data->w1_ch[idx].w1_bm);
+>  		if (err) {
+>  			data->w1_ch[idx].pdev = NULL;
+> -			goto exit_w1_remove;
+> +			for (idx = 0; idx < data->w1_count; idx++) {
+> +				if (data->w1_ch[idx].pdev != NULL)
+> +					w1_remove_master_device(&data->w1_ch[idx].w1_bm);
+> +			}
+> +			return err;
+>  		}
+>  	}
 >  
-> +  charge-disable-gpios:
-> +    maxItems: 1
-> +    description: GPIO to disable the charger
+>  	return 0;
+> -
+> -exit_w1_remove:
+> -	for (idx = 0; idx < data->w1_count; idx++) {
+> -		if (data->w1_ch[idx].pdev != NULL)
+> -			w1_remove_master_device(&data->w1_ch[idx].w1_bm);
 
-You just inverted existing "gpios" property, so no.
+This exit path should stay.
 
+> -	}
+> -exit_free:
+> -	kfree(data);
+> -exit:
+> -	return err;
+>  }
+>  
 Best regards,
 Krzysztof
 
