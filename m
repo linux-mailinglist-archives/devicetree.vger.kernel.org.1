@@ -1,291 +1,376 @@
-Return-Path: <devicetree+bounces-125467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125468-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C6A29DC0E3
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 09:54:36 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8911B9DC0F8
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 10:01:32 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 65142163E46
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 09:01:22 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8888A170826;
+	Fri, 29 Nov 2024 09:01:18 +0000 (UTC)
+X-Original-To: devicetree@vger.kernel.org
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D5EA282593
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 08:54:35 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6F9016DC3C;
-	Fri, 29 Nov 2024 08:54:31 +0000 (UTC)
-X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com [209.85.222.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11216AD27;
-	Fri, 29 Nov 2024 08:54:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 650CD16DEDF;
+	Fri, 29 Nov 2024 09:01:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732870471; cv=none; b=YojcuwLb0bfeAJVATEgLu19Df3WdoA621GxSU7sybNlopARpR9wvQxuu6w14aHNDlwqnqFVpufkuT/yyyXquuCRUH9dERe6j+988MVgTO0PMEYVothIdxSAkP0itTd/hr6kTVxVtTGKYX+VWVW/RrsFUuTNGT1+waNQjVCx9E+I=
+	t=1732870878; cv=none; b=g+v0i4oiEGfKr1Ahu8IrCfEKYQodchK2/mHNB0GHOuMvB63aLr7D0laycpTjUH7VjkP06NyezxwOjL+72ScIxc0VHI4Se1k3bIf+iBfO/kpkhIaZ/Xn8r37KnJLhujRrzOFubBJ8aYwRwcSP/26XlXXoCrwg+mFgta/YKJmYEyY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732870471; c=relaxed/simple;
-	bh=1jW2sJC2gA+iZNbMYV3OC/SGiypWcHHfISK0qT339h4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WkZgq4SvTd0wfAAWMsZEfrUrmvtDN//yCb+6Ipu+Nabn/mnplH2aoW0k0HFpcsv6RqZysqO8jVG3eD/9vAm79a1iuq70j5jgd6vQCwXM8CqDngnzYm2Wz/srJ/8dsMv8W5NsNzobMThNGf5kFEVZEdBbHHD0JmPj0nU9MvYU6pM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-85b9c456f46so123908241.3;
-        Fri, 29 Nov 2024 00:54:29 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732870468; x=1733475268;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Euk3VJ7BmU7RfhdWEIOUgVSr2IUFcOE2zUwRiXafaDc=;
-        b=c6xFA8lvBKBaUN1gfyRED6Xg6+Q156QKz+SPCI0hPJtQ2ssdP2/FiISXn6FYf4Ihu0
-         D3U0p+53nR5hex1zi3SxjIsXw1+ZIDO0oykJbOWj1Z4L8nByoI/YRf4FN8/Iq0ubfY2c
-         KlK5t43+vXc5rnOKEM+2UT65iuW0oXwyILTE0zmhuihdDjHziNz0kVjXuMPwBNhRTdcs
-         Zw03n6XaULMyUwVAuuXWNq66e7WghNDsmAKUfdgy/FrUzHJqHhymhYvuKP+upy7TUKvc
-         dGe3HMMCTySyZmKegfCXtCOLkpGqp68nFZKrj90ez26E9IQ39Ig74OxM6rTfuLl0ltH/
-         S/CA==
-X-Forwarded-Encrypted: i=1; AJvYcCW3oCqF1YafP7NgnOuuVDbd950YqjoDHUR+hSmDVblS2xiDf61o+TN1spU6xeL3/48emWGNew8RKCEy8FG0A46FlJc=@vger.kernel.org, AJvYcCWTuee2TG71sdnhBExLIN7ZYG6RJYjtLXpMkNnC78onCESZD2Y+bfKtr44n4kAYLy+hyVzzZ8LXCelV@vger.kernel.org, AJvYcCWgibzlj7mLhwHsMR9GIy1cdp7UxTBVbXfIsCv1EaLAg0rgaSM4BHl1gG7BwIV3n6k77jhc01fgFKuf@vger.kernel.org, AJvYcCXe6TNVr4uebcWT0NOwyHDVQGN1CKE/Zwk5sA8ewE3Y+VpULvVn8giv9UjztorDi0jEPYoH+NGp6xcjBUsp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy0lu5UYwCotA8jDqoVtNTHxCO1uyyXzWAQOVrA5R4NmVg7csVr
-	rZE3ThYGB9IzcnG9R5B6yVuDe5Gvev3MQvhJg/aqSGcb2OvQsPxH0V3pes2Uce8=
-X-Gm-Gg: ASbGncuW5egdtExfKF5zYMdgJ8LnSthoKQPKCEGF/nIbBFHm5TFa9W9FhizXSfNWxoU
-	cxudHlpxx9C3FIPUXFhok4QBVqdh8i9ZStQu+OHvrwoAGuu7fPWTBIuZixVBYwD0N1BwW6Suuv+
-	Z0j3w5sKCq7ymaDXjNqNWYTg3EqqcPPEqi/hlc8WPllIJ0ySDLLfi6zMPiCLE41Dw0A8j3Ytl/c
-	7ShEGYt15WKAP4Oc5h7pAyYhUQiM9GWmAFahH35x3fQfGOcnBL850YUByY2v7XmHyJjd217df5q
-	Rdu5aX6P5O5O
-X-Google-Smtp-Source: AGHT+IH3t5pNJc5GG6TQrCXVETTdhlzO3niUq+pU984b171bieTs1ybTz9aZWhlKHo/kFEz99CWt8Q==
-X-Received: by 2002:a05:6102:e07:b0:4af:5682:bc30 with SMTP id ada2fe7eead31-4af5682bf83mr7538296137.12.1732870467897;
-        Fri, 29 Nov 2024 00:54:27 -0800 (PST)
-Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com. [209.85.217.48])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4af59213219sm694565137.20.2024.11.29.00.54.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Nov 2024 00:54:26 -0800 (PST)
-Received: by mail-vs1-f48.google.com with SMTP id ada2fe7eead31-4addd900de1so472185137.3;
-        Fri, 29 Nov 2024 00:54:26 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUClNxUAnlay+Rc7ouiFWIL1KRuEydr2RKBRta5U9bklIFHpUbbVXYuOWY0jcmgOh2o0BfHDes3A52TMH/u@vger.kernel.org, AJvYcCUR3wwGKqyu9+rRaZBqhUyaSygIx0HTvDM2mTTp6276i3yrjz5njGPbKkTC+3qHn9+gRUXrlfUug1FJ@vger.kernel.org, AJvYcCVlHyMIpuf8M1DbUoGIrDYSc2MSDqAwmKoBHsmjrmJdL1kdmwIduzpphOvO+UYHxa8xULyeIlPKuzI3tpKAWNMQo4s=@vger.kernel.org, AJvYcCXHZHXhjDoqnZzGrWs8fpBkmOA5NNaXozbIXReZzPzxA44FMkHOxP8+K9iOxf8H817+5lkLGD3hTrDf@vger.kernel.org
-X-Received: by 2002:a05:6102:4421:b0:4af:4a89:7a1f with SMTP id
- ada2fe7eead31-4af4a8981d0mr10889457137.19.1732870466034; Fri, 29 Nov 2024
- 00:54:26 -0800 (PST)
+	s=arc-20240116; t=1732870878; c=relaxed/simple;
+	bh=ZmAVSzcdfNqQ2AmOAcMLQqf53TAg05WAO3ERdUd468Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=AuswElpj5ZqpoqsMgePhnZUVXMCQs24Lk7Ly6RvbH6U4WE3UtNe4wrgOMWYxXWKpK9Y3c43CAxZbs3BYiMT5G6rsmpFDmnz4KJvp/l+kBUqOLv2Y+r6+s/9lVfrsDW60Tx4S61wl8KEh7ubj6X43cJF2b2hTPzHetQFOOa/UwGE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75F2EC4CECF;
+	Fri, 29 Nov 2024 09:01:13 +0000 (UTC)
+Message-ID: <92f9c7ba-90a5-4f02-b547-62a00af128e1@xs4all.nl>
+Date: Fri, 29 Nov 2024 10:01:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241126092050.1825607-1-claudiu.beznea.uj@bp.renesas.com>
- <20241126092050.1825607-3-claudiu.beznea.uj@bp.renesas.com>
- <CAMuHMdUvmTQeQXxhsXtj23-OS=aL3UgsyOtnawdmnusrEJ2JQw@mail.gmail.com> <32fa7eb8-2139-454c-8866-cb264d060616@tuxon.dev>
-In-Reply-To: <32fa7eb8-2139-454c-8866-cb264d060616@tuxon.dev>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 29 Nov 2024 09:54:14 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXPQnCPjKRxoSceYabWPHF9Z_A7qVN85yaUZjPG7-o7tg@mail.gmail.com>
-Message-ID: <CAMuHMdXPQnCPjKRxoSceYabWPHF9Z_A7qVN85yaUZjPG7-o7tg@mail.gmail.com>
-Subject: Re: [PATCH v2 02/15] soc: renesas: Add SYSC driver for Renesas RZ family
-To: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, p.zabel@pengutronix.de, magnus.damm@gmail.com, 
-	gregkh@linuxfoundation.org, yoshihiro.shimoda.uh@renesas.com, 
-	christophe.jaillet@wanadoo.fr, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-usb@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 10/28] media: iris: implement s_fmt, g_fmt and try_fmt
+ ioctls
+To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Sebastian Fricke <sebastian.fricke@collabora.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Nicolas Dufresne <nicolas@ndufresne.ca>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+ Jianhua Lu <lujianhua000@gmail.com>, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Vedang Nagar <quic_vnagar@quicinc.com>
+References: <20241120-qcom-video-iris-v6-0-a8cf6704e992@quicinc.com>
+ <20241120-qcom-video-iris-v6-10-a8cf6704e992@quicinc.com>
+Content-Language: en-US, nl
+From: Hans Verkuil <hverkuil@xs4all.nl>
+Autocrypt: addr=hverkuil@xs4all.nl; keydata=
+ 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
+In-Reply-To: <20241120-qcom-video-iris-v6-10-a8cf6704e992@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Claudiu,
+Hi Dikshita,
 
-On Fri, Nov 29, 2024 at 9:48=E2=80=AFAM Claudiu Beznea <claudiu.beznea@tuxo=
-n.dev> wrote:
-> On 28.11.2024 17:24, Geert Uytterhoeven wrote:
-> > On Tue, Nov 26, 2024 at 10:21=E2=80=AFAM Claudiu <claudiu.beznea@tuxon.=
-dev> wrote:
-> >> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> >>
-> >> The RZ/G3S system controller (SYSC) has various registers that control
-> >> signals specific to individual IPs. IP drivers must control these sign=
-als
-> >> at different configuration phases.
-> >>
-> >> Add SYSC driver that allows individual SYSC consumers to control these
-> >> signals. The SYSC driver exports a syscon regmap enabling IP drivers t=
-o
-> >> use a specific SYSC offset and mask from the device tree, which can th=
-en be
-> >> accessed through regmap_update_bits().
-> >>
-> >> Currently, the SYSC driver provides control to the USB PWRRDY signal, =
-which
-> >> is routed to the USB PHY. This signal needs to be managed before or af=
-ter
-> >> powering the USB PHY off or on.
-> >>
-> >> Other SYSC signals candidates (as exposed in the the hardware manual o=
-f the
-> >>
-> >> * PCIe:
-> >> - ALLOW_ENTER_L1 signal controlled through the SYS_PCIE_CFG register
-> >> - PCIE_RST_RSM_B signal controlled through the SYS_PCIE_RST_RSM_B
-> >>   register
-> >> - MODE_RXTERMINATION signal controlled through SYS_PCIE_PHY register
-> >>
-> >> * SPI:
-> >> - SEL_SPI_OCTA signal controlled through SYS_IPCONT_SEL_SPI_OCTA
-> >>   register
-> >>
-> >> * I2C/I3C:
-> >> - af_bypass I2C signals controlled through SYS_I2Cx_CFG registers
-> >>   (x=3D0..3)
-> >> - af_bypass I3C signal controlled through SYS_I3C_CFG register
-> >>
-> >> * Ethernet:
-> >> - FEC_GIGA_ENABLE Ethernet signals controlled through SYS_GETHx_CFG
-> >>   registers (x=3D0..1)
-> >>
-> >> As different Renesas RZ SoC shares most of the SYSC functionalities
-> >> available on the RZ/G3S SoC, the driver if formed of a SYSC core
-> >> part and a SoC specific part allowing individual SYSC SoC to provide
-> >> functionalities to the SYSC core.
-> >>
-> >> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> >
-> >> --- /dev/null
-> >> +++ b/drivers/soc/renesas/r9a08g045-sysc.c
-> >> @@ -0,0 +1,31 @@
-> >> +// SPDX-License-Identifier: GPL-2.0
-> >> +/*
-> >> + * RZ/G3S System controller driver
-> >> + *
-> >> + * Copyright (C) 2024 Renesas Electronics Corp.
-> >> + */
-> >> +
-> >> +#include <linux/array_size.h>
-> >> +#include <linux/bits.h>
-> >> +#include <linux/init.h>
-> >> +
-> >> +#include "rz-sysc.h"
-> >> +
-> >> +#define SYS_USB_PWRRDY         0xd70
-> >> +#define SYS_USB_PWRRDY_PWRRDY_N        BIT(0)
-> >> +#define SYS_MAX_REG            0xe20
-> >> +
-> >> +static const struct rz_sysc_signal_init_data rzg3s_sysc_signals_init_=
-data[] __initconst =3D {
-> >
-> > This is marked __initconst...
-> >
-> >> +       {
-> >> +               .name =3D "usb-pwrrdy",
-> >> +               .offset =3D SYS_USB_PWRRDY,
-> >> +               .mask =3D SYS_USB_PWRRDY_PWRRDY_N,
-> >> +               .refcnt_incr_val =3D 0
-> >> +       }
-> >> +};
-> >> +
-> >> +const struct rz_sysc_init_data rzg3s_sysc_init_data =3D {
-> >
-> > ... but this is not __init, causing a section mismatch.
->
-> Do you know if there is a way to detect this?
+Some comments below...
 
-The kernel should tell you during the build...
+On 20/11/2024 15:46, Dikshita Agarwal wrote:
+> From: Vedang Nagar <quic_vnagar@quicinc.com>
+> 
+> Implement s_fmt, g_fmt and try_fmt ioctl ops with necessary hooks.
+> 
+> Signed-off-by: Vedang Nagar <quic_vnagar@quicinc.com>
+> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
+> ---
+>  drivers/media/platform/qcom/iris/iris_vdec.c | 122 +++++++++++++++++++++++++++
+>  drivers/media/platform/qcom/iris/iris_vdec.h |   2 +
+>  drivers/media/platform/qcom/iris/iris_vidc.c |  48 +++++++++++
+>  3 files changed, 172 insertions(+)
+> 
+> diff --git a/drivers/media/platform/qcom/iris/iris_vdec.c b/drivers/media/platform/qcom/iris/iris_vdec.c
+> index 2ed50ad5d58b..11a2507fc35f 100644
+> --- a/drivers/media/platform/qcom/iris/iris_vdec.c
+> +++ b/drivers/media/platform/qcom/iris/iris_vdec.c
+> @@ -3,6 +3,8 @@
+>   * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+>   */
+>  
+> +#include <media/v4l2-mem2mem.h>
+> +
+>  #include "iris_buffer.h"
+>  #include "iris_instance.h"
+>  #include "iris_vdec.h"
+> @@ -10,6 +12,7 @@
+>  
+>  #define DEFAULT_WIDTH 320
+>  #define DEFAULT_HEIGHT 240
+> +#define DEFAULT_CODEC_ALIGNMENT 16
+>  
+>  void iris_vdec_inst_init(struct iris_inst *inst)
+>  {
+> @@ -54,3 +57,122 @@ void iris_vdec_inst_deinit(struct iris_inst *inst)
+>  	kfree(inst->fmt_dst);
+>  	kfree(inst->fmt_src);
+>  }
+> +
+> +int iris_vdec_try_fmt(struct iris_inst *inst, struct v4l2_format *f)
+> +{
+> +	struct v4l2_pix_format_mplane *pixmp = &f->fmt.pix_mp;
+> +	struct v4l2_m2m_ctx *m2m_ctx = inst->m2m_ctx;
+> +	struct v4l2_format *f_inst;
+> +	struct vb2_queue *src_q;
+> +
+> +	memset(pixmp->reserved, 0, sizeof(pixmp->reserved));
+> +	switch (f->type) {
+> +	case V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE:
+> +		if (f->fmt.pix_mp.pixelformat != V4L2_PIX_FMT_H264) {
+> +			f_inst = inst->fmt_src;
+> +			f->fmt.pix_mp.width = f_inst->fmt.pix_mp.width;
+> +			f->fmt.pix_mp.height = f_inst->fmt.pix_mp.height;
+> +			f->fmt.pix_mp.pixelformat = f_inst->fmt.pix_mp.pixelformat;
+> +		}
+> +		break;
+> +	case V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE:
+> +		if (f->fmt.pix_mp.pixelformat != V4L2_PIX_FMT_NV12) {
+> +			f_inst = inst->fmt_dst;
+> +			f->fmt.pix_mp.pixelformat = f_inst->fmt.pix_mp.pixelformat;
+> +			f->fmt.pix_mp.width = f_inst->fmt.pix_mp.width;
+> +			f->fmt.pix_mp.height = f_inst->fmt.pix_mp.height;
+> +		}
+> +
+> +		src_q = v4l2_m2m_get_src_vq(m2m_ctx);
+> +		if (vb2_is_streaming(src_q)) {
+> +			f_inst = inst->fmt_src;
+> +			f->fmt.pix_mp.height = f_inst->fmt.pix_mp.height;
+> +			f->fmt.pix_mp.width = f_inst->fmt.pix_mp.width;
+> +		}
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (pixmp->field == V4L2_FIELD_ANY)
+> +		pixmp->field = V4L2_FIELD_NONE;
+> +
+> +	pixmp->num_planes = 1;
+> +
+> +	return 0;
+> +}
+> +
+> +int iris_vdec_s_fmt(struct iris_inst *inst, struct v4l2_format *f)
+> +{
+> +	struct v4l2_format *fmt, *output_fmt;
+> +	struct vb2_queue *q;
+> +	u32 codec_align;
+> +
+> +	iris_vdec_try_fmt(inst, f);
 
->
-> >
-> >> +       .signals_init_data =3D rzg3s_sysc_signals_init_data,
-> >> +       .num_signals =3D ARRAY_SIZE(rzg3s_sysc_signals_init_data),
-> >> +       .max_register_offset =3D SYS_MAX_REG,
-> >> +};
-> >
-> >> --- /dev/null
-> >> +++ b/drivers/soc/renesas/rz-sysc.c
-> >
-> >> +/**
-> >> + * struct rz_sysc - RZ SYSC private data structure
-> >> + * @base: SYSC base address
-> >> + * @dev: SYSC device pointer
-> >> + * @signals: SYSC signals
-> >> + * @num_signals: number of SYSC signals
-> >> + */
-> >> +struct rz_sysc {
-> >> +       void __iomem *base;
-> >> +       struct device *dev;
-> >> +       struct rz_sysc_signal *signals;
-> >> +       u8 num_signals;
-> >
-> > You could change signals to a flexible array at the end, tag it with
-> > __counted_by(num_signals), and allocate space for both struct rz_sysc
-> > and the signals array using struct_size(), reducing the number of
-> > allocations.
->
-> I'll look into this.
+I'm missing a vb2_is_busy() check here (and a return -EBUSY).
 
-> >> --- /dev/null
-> >> +++ b/drivers/soc/renesas/rz-sysc.h
-> >> @@ -0,0 +1,52 @@
-> >> +/* SPDX-License-Identifier: GPL-2.0 */
-> >> +/*
-> >> + * Renesas RZ System Controller
-> >> + *
-> >> + * Copyright (C) 2024 Renesas Electronics Corp.
-> >> + */
-> >> +
-> >> +#ifndef __SOC_RENESAS_RZ_SYSC_H__
-> >> +#define __SOC_RENESAS_RZ_SYSC_H__
-> >> +
-> >> +#include <linux/refcount.h>
-> >> +#include <linux/types.h>
-> >> +
-> >> +/**
-> >> + * struct rz_sysc_signal_init_data - RZ SYSC signals init data
-> >> + * @name: signal name
-> >> + * @offset: register offset controling this signal
-> >> + * @mask: bitmask in register specific to this signal
-> >> + * @refcnt_incr_val: increment refcnt when setting this value
-> >> + */
-> >> +struct rz_sysc_signal_init_data {
-> >> +       const char *name;
-> >> +       u32 offset;
-> >> +       u32 mask;
-> >> +       u32 refcnt_incr_val;
-> >> +};
-> >> +
-> >> +/**
-> >> + * struct rz_sysc_signal - RZ SYSC signals
-> >> + * @init_data: signals initialization data
-> >> + * @refcnt: reference counter
-> >> + */
-> >> +struct rz_sysc_signal {
-> >> +       const struct rz_sysc_signal_init_data *init_data;
-> >
-> > Can't you just embed struct rz_sysc_signal_init_data?
->
-> Meaning to have directly the members of struct rz_sysc_signal_init_data
-> here or to drop the const qualifier along with __initconst on
-> rzg3s_sysc_signals_init_data[]  and re-use the platfom data w/o allocate
-> new memory?
+Changing the format while busy (i.e. while buffers are allocated)
+is generally a no-go since the format and the buffer sizes are linked.
 
-I mean
+> +
+> +	switch (f->type) {
+> +	case V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE:
+> +		if (f->fmt.pix_mp.pixelformat != V4L2_PIX_FMT_H264)
+> +			return -EINVAL;
+> +
+> +		fmt = inst->fmt_src;
+> +		fmt->type = V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE;
+> +
+> +		codec_align = DEFAULT_CODEC_ALIGNMENT;
+> +		fmt->fmt.pix_mp.width = ALIGN(f->fmt.pix_mp.width, codec_align);
+> +		fmt->fmt.pix_mp.height = ALIGN(f->fmt.pix_mp.height, codec_align);
+> +		fmt->fmt.pix_mp.num_planes = 1;
+> +		fmt->fmt.pix_mp.plane_fmt[0].bytesperline = 0;
+> +		fmt->fmt.pix_mp.plane_fmt[0].sizeimage = iris_get_buffer_size(inst, BUF_INPUT);
+> +		inst->buffers[BUF_INPUT].min_count = iris_vpu_buf_count(inst, BUF_INPUT);
+> +		inst->buffers[BUF_INPUT].size = fmt->fmt.pix_mp.plane_fmt[0].sizeimage;
+> +
+> +		fmt->fmt.pix_mp.colorspace = f->fmt.pix_mp.colorspace;
+> +		fmt->fmt.pix_mp.xfer_func = f->fmt.pix_mp.xfer_func;
+> +		fmt->fmt.pix_mp.ycbcr_enc = f->fmt.pix_mp.ycbcr_enc;
+> +		fmt->fmt.pix_mp.quantization = f->fmt.pix_mp.quantization;
+> +
+> +		output_fmt = inst->fmt_dst;
+> +		output_fmt->fmt.pix_mp.colorspace = f->fmt.pix_mp.colorspace;
+> +		output_fmt->fmt.pix_mp.xfer_func = f->fmt.pix_mp.xfer_func;
+> +		output_fmt->fmt.pix_mp.ycbcr_enc = f->fmt.pix_mp.ycbcr_enc;
+> +		output_fmt->fmt.pix_mp.quantization = f->fmt.pix_mp.quantization;
+> +
+> +		inst->crop.left = 0;
+> +		inst->crop.top = 0;
+> +		inst->crop.width = f->fmt.pix_mp.width;
+> +		inst->crop.height = f->fmt.pix_mp.height;
+> +		break;
+> +	case V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE:
+> +		fmt = inst->fmt_dst;
+> +		fmt->type = V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE;
+> +		q = v4l2_m2m_get_vq(inst->m2m_ctx, f->type);
+> +		if (q->streaming) {
+> +			f->fmt.pix_mp.height = inst->fmt_src->fmt.pix_mp.height;
+> +			f->fmt.pix_mp.width = inst->fmt_src->fmt.pix_mp.width;
+> +		}
+> +		if (fmt->fmt.pix_mp.pixelformat != V4L2_PIX_FMT_NV12)
+> +			return -EINVAL;
+> +		fmt->fmt.pix_mp.pixelformat = f->fmt.pix_mp.pixelformat;
+> +		fmt->fmt.pix_mp.width = ALIGN(f->fmt.pix_mp.width, 128);
+> +		fmt->fmt.pix_mp.height = ALIGN(f->fmt.pix_mp.height, 32);
+> +		fmt->fmt.pix_mp.num_planes = 1;
+> +		fmt->fmt.pix_mp.plane_fmt[0].bytesperline = ALIGN(f->fmt.pix_mp.width, 128);
+> +		fmt->fmt.pix_mp.plane_fmt[0].sizeimage = iris_get_buffer_size(inst, BUF_OUTPUT);
+> +		inst->buffers[BUF_OUTPUT].min_count = iris_vpu_buf_count(inst, BUF_OUTPUT);
+> +		inst->buffers[BUF_OUTPUT].size = fmt->fmt.pix_mp.plane_fmt[0].sizeimage;
+> +
+> +		if (!q->streaming) {
 
-    struct rz_sysc_signal {
-          struct rz_sysc_signal_init_data init_data;
-          ...
-    };
+Use vb2_is_streaming(), don't refer to q->streaming directly.
 
-Currently you allocate rz_sysc_signal_init_data separately.
-When embedded, it will be part of rz_sysc, cfr. above.
+Please check if this is done anywhere else as well in the driver and
+use the helper function instead.
 
-> > That way you could allocate the rz_sysc_signal and
-> > rz_sysc_signal_init_data structures in a single allocation.
+> +			inst->crop.top = 0;
+> +			inst->crop.left = 0;
+> +			inst->crop.width = f->fmt.pix_mp.width;
+> +			inst->crop.height = f->fmt.pix_mp.height;
 
-Gr{oetje,eeting}s,
+A bigger question is why you do this? See the question about vb2_is_busy above:
+you shouldn't be able to get here at all if you are streaming since the vb2_is_busy
+check will catch that.
 
-                        Geert
+> +		}
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +	memcpy(f, fmt, sizeof(*fmt));
+> +
+> +	return 0;
+> +}
+> diff --git a/drivers/media/platform/qcom/iris/iris_vdec.h b/drivers/media/platform/qcom/iris/iris_vdec.h
+> index 353b73b76230..85e93f33e9e7 100644
+> --- a/drivers/media/platform/qcom/iris/iris_vdec.h
+> +++ b/drivers/media/platform/qcom/iris/iris_vdec.h
+> @@ -10,5 +10,7 @@ struct iris_inst;
+>  
+>  void iris_vdec_inst_init(struct iris_inst *inst);
+>  void iris_vdec_inst_deinit(struct iris_inst *inst);
+> +int iris_vdec_try_fmt(struct iris_inst *inst, struct v4l2_format *f);
+> +int iris_vdec_s_fmt(struct iris_inst *inst, struct v4l2_format *f);
+>  
+>  #endif
+> diff --git a/drivers/media/platform/qcom/iris/iris_vidc.c b/drivers/media/platform/qcom/iris/iris_vidc.c
+> index ab3b63171c1d..6707eb9917fe 100644
+> --- a/drivers/media/platform/qcom/iris/iris_vidc.c
+> +++ b/drivers/media/platform/qcom/iris/iris_vidc.c
+> @@ -217,6 +217,48 @@ int iris_close(struct file *filp)
+>  	return 0;
+>  }
+>  
+> +static int iris_try_fmt_vid_mplane(struct file *filp, void *fh, struct v4l2_format *f)
+> +{
+> +	struct iris_inst *inst = iris_get_inst(filp, NULL);
+> +	int ret;
+> +
+> +	mutex_lock(&inst->lock);
+> +	ret = iris_vdec_try_fmt(inst, f);
+> +	mutex_unlock(&inst->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static int iris_s_fmt_vid_mplane(struct file *filp, void *fh, struct v4l2_format *f)
+> +{
+> +	struct iris_inst *inst = iris_get_inst(filp, NULL);
+> +	int ret;
+> +
+> +	mutex_lock(&inst->lock);
+> +	ret = iris_vdec_s_fmt(inst, f);
+> +	mutex_unlock(&inst->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static int iris_g_fmt_vid_mplane(struct file *filp, void *fh, struct v4l2_format *f)
+> +{
+> +	struct iris_inst *inst = iris_get_inst(filp, NULL);
+> +	int ret = 0;
+> +
+> +	mutex_lock(&inst->lock);
+> +	if (V4L2_TYPE_IS_OUTPUT(f->type))
+> +		memcpy(f, inst->fmt_src, sizeof(*f));
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+Use: *f = *inst->fmt_src
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> +	else if (V4L2_TYPE_IS_CAPTURE(f->type))
+> +		memcpy(f, inst->fmt_dst, sizeof(*f));
+
+Ditto for fmt_dst
+
+> +	else
+> +		ret = -EINVAL;
+> +
+> +	mutex_unlock(&inst->lock);
+> +
+> +	return ret;
+> +}
+> +
+>  static struct v4l2_file_operations iris_v4l2_file_ops = {
+>  	.owner                          = THIS_MODULE,
+>  	.open                           = iris_open,
+> @@ -231,6 +273,12 @@ static const struct vb2_ops iris_vb2_ops = {
+>  };
+>  
+>  static const struct v4l2_ioctl_ops iris_v4l2_ioctl_ops = {
+> +	.vidioc_try_fmt_vid_cap_mplane  = iris_try_fmt_vid_mplane,
+> +	.vidioc_try_fmt_vid_out_mplane  = iris_try_fmt_vid_mplane,
+> +	.vidioc_s_fmt_vid_cap_mplane    = iris_s_fmt_vid_mplane,
+> +	.vidioc_s_fmt_vid_out_mplane    = iris_s_fmt_vid_mplane,
+> +	.vidioc_g_fmt_vid_cap_mplane    = iris_g_fmt_vid_mplane,
+> +	.vidioc_g_fmt_vid_out_mplane    = iris_g_fmt_vid_mplane,
+>  	.vidioc_reqbufs                 = v4l2_m2m_ioctl_reqbufs,
+>  };
+>  
+> 
+
+Regards,
+
+	Hans
 
