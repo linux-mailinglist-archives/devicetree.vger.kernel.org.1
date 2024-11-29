@@ -1,128 +1,152 @@
-Return-Path: <devicetree+bounces-125532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125533-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DF5F9DE6D6
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 14:00:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE8AE9DE70C
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 14:14:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 255C52824C0
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 13:00:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B324C283269
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 13:14:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E553019E833;
-	Fri, 29 Nov 2024 12:59:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4252A19E7F8;
+	Fri, 29 Nov 2024 13:14:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="MXbyhe5A"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="UiOLbgIr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07EAD19E826;
-	Fri, 29 Nov 2024 12:59:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D91F19E7D0;
+	Fri, 29 Nov 2024 13:14:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732885166; cv=none; b=QzHmCkpo1dLpZHu0ZJPtMK+IIBB+CymzDkrDV8mrlo//4yaaI/co2BlUrc91g5k/QVnyPlm+Z1Vmv0Y53FP5cK0hciEw+fmqWx7O964y1VhuGZWPnx1fanIb9hslcTJhv6uCuOkZVRTB7kTIMeSTgRD4WetlTwyilj0sDGg/K7A=
+	t=1732886042; cv=none; b=mEeC2nl5G9r32xHK+cVGK2A/NY4mITwd1Ecr2yFH56kWjsqr1HxZidWMcSajnjbUiuJzjoMVyZtWddv3r5Ic0WIGYEAr5o+G+Yh/sqSEdW7E7sg0Gqv3JbuJDEoErSisUm6z4JT2HPej/tSloJteAgmecrx78ty0TLbsAssgYF8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732885166; c=relaxed/simple;
-	bh=S8gYZA1lf0QfDrBwvaQjuVwwNCyxR9f+zhHMjMaL+KQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YMBeEqOWLPyduB+EsS+xfe16PpboPPPk+ZpVuQWwglNBdY+506ETc3p8LbA3Am7b9xl6rrA3kCmHwK+cAhm0tcC8McZwhklK0nbRYWhNRCEf28C9iTmD4Pg9f9lol3UVhQ3wAQxPYwKhiQ98jndIzQ0SaQ/9VXI9j6GC7dnh8ys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=MXbyhe5A; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id CD261240008;
-	Fri, 29 Nov 2024 12:59:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1732885161;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=B6/gF1M4D5vI9QsQxw31ksKS61JRuGAPL5A9hcfPi0E=;
-	b=MXbyhe5AePWsOTmc5MMa1I89c1AYBxclenJekWOkeahAg88uSpkU3kWaFkbEZsaten0dzD
-	t6XPa2WWS5l6QtKA6ntIhGVFQGlQNuGTXG6EDJzEhFOFJUebVIqCDdVMJg9RnmB/r/NPxD
-	lVJtkLMFK0J4upS/TH9kouky0TcmssP6mKYmFjauDh9fn8cgtQLY+gP0NCbng30k4Ei0WJ
-	L5+fKyvfdv/lp0aG/pjEEM0Xcq4GoEc2II370J1CTfzJl6Bfm4+sXTJpHF5LJuWVgXyWzN
-	f/hv1bjQrhem+97QSQMfS6ff3S16xTFjGeCz03TN+w/yJbroOFFUBl2fV8ZegQ==
-Date: Fri, 29 Nov 2024 13:59:19 +0100
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-To: <Tristram.Ha@microchip.com>
-Cc: Woojung Huh <woojung.huh@microchip.com>, Andrew Lunn <andrew@lunn.ch>,
- Vladimir Oltean <olteanv@gmail.com>, Rob Herring <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>, Eric
- Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
- Abeni <pabeni@redhat.com>, Marek Vasut <marex@denx.de>,
- <UNGLinuxDriver@microchip.com>, <devicetree@vger.kernel.org>,
- <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH net-next 2/2] net: dsa: microchip: Add SGMII port
- support to KSZ9477 switch
-Message-ID: <20241129135919.57d59c90@fedora.home>
-In-Reply-To: <20241109015633.82638-3-Tristram.Ha@microchip.com>
-References: <20241109015633.82638-1-Tristram.Ha@microchip.com>
-	<20241109015633.82638-3-Tristram.Ha@microchip.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1732886042; c=relaxed/simple;
+	bh=MhDXriinalpNr+V/p3gCLOYLmh5yVPXLt+uAcLHPNiE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=m8nWAFj40z+TkDo5IbGt9Zt58XZbXsTI8dbuLM93VeD8A0SEdaMsODzIrdraoldtez1vFJ82u3645bKOYJ24NaHXSWA10iatMLgJRvGiir9bjkOjLfsQjULRbzoONyG3d9yU6g0IerDJZ99rQBvhJ1PP/e4bcinoR33wVx0NK8w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=UiOLbgIr; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4ATBku2A018125;
+	Fri, 29 Nov 2024 08:13:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=gOwni8TXokS15RCv6YxyJiH8bwP
+	XyoCaPMYem5f0jek=; b=UiOLbgIrWl6Oq9yTGwNGSY4ph2UKNeAkm/HSvQCdHwD
+	6iPJTsf2ER/7jIFa+45ld4aay4Rko1PjV1hEhkpNffMqMLSAvlIPpnGzNv3ggAMu
+	hZz+OlLEJcw1eQqGZf3p5pCIy1FaExMSeebqp5dnEzNpT83kRWvb8rchjijNELO3
+	aAbD0YA3YHr379qHc96bzkR1k6e2dtaR/W2Bf6LMG99Wu2G6e9oQzsMhrfg44Oly
+	VzEnG781ySxjM9/kis40av5NgpkXjqPYubd3T138odlt0/P+Lp7RTZSeCN/7w5mm
+	lJ3lRmrZdSSueCXNZs4ZE0l4nYlLxmi0CH4hyLeKfUA==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 436715t0b5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 29 Nov 2024 08:13:34 -0500 (EST)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 4ATDDXUh047457
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 29 Nov 2024 08:13:33 -0500
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 29 Nov 2024 08:13:33 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 29 Nov 2024 08:13:33 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Fri, 29 Nov 2024 08:13:33 -0500
+Received: from work.ad.analog.com (HYB-hERzalRezfV.ad.analog.com [10.65.205.9])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 4ATDDLs7027156;
+	Fri, 29 Nov 2024 08:13:23 -0500
+From: Marcelo Schmitt <marcelo.schmitt@analog.com>
+To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
+        <marcelo.schmitt@analog.com>, <jic23@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <marcelo.schmitt1@gmail.com>
+Subject: [PATCH v5 0/4] Timestamp and PulSAR support for ad4000
+Date: Fri, 29 Nov 2024 10:13:17 -0300
+Message-ID: <cover.1732885470.git.marcelo.schmitt@analog.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: maxime.chevallier@bootlin.com
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: Ex1scHEu2xRMN87rdoQTfcojG-Wt80AB
+X-Proofpoint-GUID: Ex1scHEu2xRMN87rdoQTfcojG-Wt80AB
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=999
+ suspectscore=0 mlxscore=0 bulkscore=0 impostorscore=0 malwarescore=0
+ lowpriorityscore=0 clxscore=1015 adultscore=0 priorityscore=1501
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2411290108
 
-Hello Tristram,
+Complement the ad4000 driver with a timestamp channel, a minor adjust in
+transfer timing, and support for single-channel PulSAR devices.
 
-On Fri, 8 Nov 2024 17:56:33 -0800
-<Tristram.Ha@microchip.com> wrote:
+Change log v4 -> v5
+[IIO]
+- No changes.
+[Device tree]
+- Added const items for fallback compatibles.
 
-> From: Tristram Ha <tristram.ha@microchip.com>
-> 
-> The SGMII module of KSZ9477 switch can be setup in 3 ways: 0 for direct
-> connect, 1 for 1000BaseT/1000BaseX SFP, and 2 for 10/100/1000BaseT SFP.
-> 
-> SFP is typically used so the default is 1.  The driver can detect
-> 10/100/1000BaseT SFP and change the mode to 2.  For direct connect the
-> device tree can use fixed-link for the SGMII port as this link will
-> never be disconnected.
-> 
-> The SGMII module can only support basic link status of the SFP, so the
-> port can be simulated as having a regular internal PHY when SFP cage
-> logic is not used.
-> 
-> One issue for the 1000BaseX SFP is there is no link down interrupt, so
-> the driver has to use polling to detect link off when the link is up.
-> 
-> Note the SGMII interrupt cannot be masked in hardware.  Also the module
-> is not reset when the switch is reset.  It is important to reset the
-> module properly to make sure interrupt is not triggered prematurely.
-> 
-> A PCS driver for the SGMII port is added to accommodate the SFP cage
-> logic used in the phylink code.  It is used to confirm the link is up
-> and process the SGMII interrupt.
+Change log v3 -> v4
+[IIO]
+- No changes.
+[Device tree]
+- Sorted compatible strings in alphabetical order.
+- Left only fallback compatibles in allOf check list for adi,sdi-pin property.
 
-I'm currently working on a product on which I need the SGMII/1000BaseX
-port to work on KSZ9477, so I gave that series a try.
+Change log v2 -> v3
+[IIO]
+- Reverted to direct assignment of ad4000_time_spec structs.
+[Device tree]
+- No changes.
 
-I seems that this PCS is actually a Designware XPCS, reading the
-registers 0x2/3 returns 0x7996ced0, which is the PHY id for the
-Designware XPCS. Looking at the register definitions, they are
-indeed very very similar. Andrew already pointed out that the SGMII
-acccessors in the series (port_sgmii_r/w) look like C45 MDIO accessors.
+Change log v1 -> v2
+- Added Suggested-by and Reviewed-by tags.
+[IIO]
+- Commented the removal of unused AD4000_TQUIET1_NS define in commit body.
+- Made a common macro to assign ad4000_time_spec.
+- Explicitly initialized PulSAR t_quiet2_ns with 0 as those don't need any quiet time.
+- Improved PulSAR support commit description with more context.
+- Dropped support for AD7694.
+[Device tree]
+- Made "cs" the default adi,sdi-pin value for PulSAR devices.
 
-So, you could move forward by implementing an mdio bus for the PCS with
-the C45 accessors mentionned above, and then plumb that to the XPCS
-driver with the xpcs_create_mdiodev(). I'm still figuring out if the
-KSZ9477 needs some extra bits of configuration to get that port fully
-operationnal though.
+Link to v4: https://lore.kernel.org/linux-iio/cover.1732660478.git.marcelo.schmitt@analog.com/
+Link to v3: https://lore.kernel.org/linux-iio/cover.1732020224.git.marcelo.schmitt@analog.com/
+Link to v2: https://lore.kernel.org/linux-iio/cover.1731953012.git.marcelo.schmitt@analog.com/
+Link to v1: https://lore.kernel.org/linux-iio/cover.1731626099.git.marcelo.schmitt@analog.com/
 
-I'm currently integrating such a solution on a 6.6 kernel, I would be
-very happy to test any further version of this patchset.
 
-Thanks,
+Marcelo Schmitt (4):
+  dt-bindings: iio: adc: adi,ad4000: Add PulSAR
+  iio: adc: ad4000: Add timestamp channel
+  iio: adc: ad4000: Use device specific timing for SPI transfers
+  iio: adc: ad4000: Add support for PulSAR devices
 
-Maxime
+ .../bindings/iio/adc/adi,ad4000.yaml          |  59 ++++
+ drivers/iio/adc/ad4000.c                      | 311 +++++++++++++++---
+ 2 files changed, 319 insertions(+), 51 deletions(-)
+
+
+base-commit: 9dd2270ca0b38ee16094817f4a53e7ba78e31567
+-- 
+2.45.2
+
 
