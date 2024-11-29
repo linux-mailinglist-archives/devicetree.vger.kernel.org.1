@@ -1,276 +1,126 @@
-Return-Path: <devicetree+bounces-125442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C9D79DC026
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 09:01:08 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 063C59DC03C
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 09:10:37 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E8CA9B21FCE
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 08:01:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AE1BE162A64
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 08:10:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E60141598EE;
-	Fri, 29 Nov 2024 07:59:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA168155A34;
+	Fri, 29 Nov 2024 08:10:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cV8Fl2j8"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Vl3fTfXg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40B7F159209;
-	Fri, 29 Nov 2024 07:59:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7340745C14;
+	Fri, 29 Nov 2024 08:10:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732867193; cv=none; b=s2s8fHFhDpyEXZiz1HLytiM1AmhIqIEwvyNmupkKx4OvzrXNvQVHGcsRAHAcE6XxEtz4+JanpXkXpj+7PbxnqW/tdG39p5upBhLPx93mgSW9dk3FSvNU5eTGtZWSCKEsofcVkhdu6e4xRQYX/V6+OsNfeI7211t+vvAkswqWpQY=
+	t=1732867832; cv=none; b=DdV+TGXNFL9tcBEC+kxMSyGqOhZ/GmeZkY9h6fIhpxJLBdv3gXb345qaRG8HI9wDhhq/qrxCQbclzq3UDoWlO9nBX90ldotcIE/TRSJIeAF7kecQeZabPLgzeTR3jzcAc+wUjsmVn1De35CzlIk3YN8a3k/iiw0JWRMjqEVvHuA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732867193; c=relaxed/simple;
-	bh=TNj5EiTOMzDJ0PKM4MIWEv3ufyXXV6h9punYRpWZDKc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=Bf7MscjK+t+oQ1zvrqDNGoCuFjaJLbyXp4vnW83HEneEQ7Cg98+MVYin56XS7/pIT+bLrIfsWrCRydchcVjUAHWYqmdZfo/A6IOpsTsE7cfQBVAjAP3iJY0DC4Lnso1oaDztH4Kuzmjq5uBIAbWGDhcZi6dPfckF19rXRrcZE14=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cV8Fl2j8; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4ASLZ99Q011311;
-	Fri, 29 Nov 2024 07:59:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	c2W5Jc9ESQZPhwrskfSZmD27wZzekj5ji0rlq1whTWk=; b=cV8Fl2j8DMOopiNE
-	UW7BXAQ25HNQqcOyuJMxhWbsueCOQA1DSwYJxTls/gTjEDQ5X1K+GmFfCiQEB0FB
-	rsVlcVwMgwGLTd+YJRrRIs40USOUcXr9BmUJCj8/5xtGTkyqPjnVYzYy170fVrrw
-	HZPvb/XwDKYOQPkLEIugkdpE6rVQLi4FOsnP9xWdizWRIlErL2SBEVdgyRJ18Onk
-	Hz0NxpEGj06e3/ID7U+dhkGQnxmfrGTyInI+U6SJMPMHYACe/+TcBv1GIQJgvANh
-	0PafrbG8+UOao9rniOPnm3irQqSmZIipKlYfKfTAYBOJAL7Pahz4ZwBGgwKqjU8s
-	X5PNyA==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4366xw4vny-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 29 Nov 2024 07:59:39 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AT7xc4q002890
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 29 Nov 2024 07:59:38 GMT
-Received: from szioemm-lnxbld002.qualcomm.com (10.80.80.8) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 28 Nov 2024 23:59:31 -0800
-From: Xiangxu Yin <quic_xiangxuy@quicinc.com>
-Date: Fri, 29 Nov 2024 15:57:48 +0800
-Subject: [PATCH 8/8] drm/msm/dp: Support external GPIO HPD with 3rd pinctrl
- chip
+	s=arc-20240116; t=1732867832; c=relaxed/simple;
+	bh=AYPeFCSY+ZM8FxtiRhfjwjKx4LWm2P0yK9KPPipft6U=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=EExgx+2P45AF1NzBsVzCtrHdIpOtYJjXdXbeS4I5Mqq1xfmVucnBGa2UbhbIbYxDe4o4IqzedSZ95YTpDqRnSU41rX4Th/L55rkiqIKOZ765N7YIaci+dHUIaNU/O6NUCRQig9JzWBAgSzoOWdZWdIu9FZY1lAXCPNzkVRTv8u8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Vl3fTfXg; arc=none smtp.client-ip=217.70.183.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id ADF4240003;
+	Fri, 29 Nov 2024 08:10:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1732867819;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=xI6ZyEQYlO67EDyhVXwWpx45NB2tNXa1Y4U0cY6j/nk=;
+	b=Vl3fTfXgOUqb4XayzRUopNxuNO2a0PA88El3Vu57k1X2uvPqC3YDMFL4SXXvcnqdEv2qcC
+	p7VAOtljAwIHPBmNSp/2/uIvdwozWyEuG9XBsypuWuD9uKEPEgHC0fLTumczbcD3dofyC9
+	qwO/5TjFzq8qFITgBpYSGKkjQ8BvHIjfMvKXBRMcXgC/2yjhWejvojKqQRsryivCiD1JCy
+	dx5myJsMw0QS86yN7CcSdrwNtG5t2wrN0bmKXVAjU9S2vPTG9ALfB6xSEIHzaGIeJBjGxS
+	iM8o8ZeVZ4ex/HxBnuVh1FCfjxnQ9p06O9oGcM/2Z2YNI4a1b9mEiZwCTOlX7A==
+Date: Fri, 29 Nov 2024 09:10:13 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Michal Kubecek <mkubecek@suse.cz>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>, Andy Shevchenko
+ <andy.shevchenko@gmail.com>, Simon Horman <horms@kernel.org>, Lee Jones
+ <lee@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Derek Kiernan
+ <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, Bjorn Helgaas
+ <bhelgaas@google.com>, Philipp Zabel <p.zabel@pengutronix.de>, Lars Povlsen
+ <lars.povlsen@microchip.com>, Steen Hegelund
+ <Steen.Hegelund@microchip.com>, Daniel Machon
+ <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Saravana Kannan <saravanak@google.com>, "David S.
+ Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub
+ Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Horatiu Vultur
+ <horatiu.vultur@microchip.com>, Andrew Lunn <andrew@lunn.ch>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Allan Nielsen
+ <allan.nielsen@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v9 1/6] misc: Add support for LAN966x PCI device
+Message-ID: <20241129091013.029fced3@bootlin.com>
+In-Reply-To: <dywwnh7ns47ffndsttstpcsw44avxjvzcddmceha7xavqjdi77@cqdgmpdtywol>
+References: <20241010063611.788527-1-herve.codina@bootlin.com>
+	<20241010063611.788527-2-herve.codina@bootlin.com>
+	<dywwnh7ns47ffndsttstpcsw44avxjvzcddmceha7xavqjdi77@cqdgmpdtywol>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20241129-add-displayport-support-for-qcs615-platform-v1-8-09a4338d93ef@quicinc.com>
-References: <20241129-add-displayport-support-for-qcs615-platform-v1-0-09a4338d93ef@quicinc.com>
-In-Reply-To: <20241129-add-displayport-support-for-qcs615-platform-v1-0-09a4338d93ef@quicinc.com>
-To: Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar
-	<quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard
-	<mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie
-	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>, Vinod Koul
-	<vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Linus Walleij
-	<linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>, <quic_lliu6@quicinc.com>,
-        <quic_fangez@quicinc.com>
-CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <linux-gpio@vger.kernel.org>, Xiangxu Yin <quic_xiangxuy@quicinc.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1732867105; l=4469;
- i=quic_xiangxuy@quicinc.com; s=20241125; h=from:subject:message-id;
- bh=TNj5EiTOMzDJ0PKM4MIWEv3ufyXXV6h9punYRpWZDKc=;
- b=GyogZ628z9aZFe6b5wiADpPghpaIkxyLi/0Kuotl2chQMlWFKmVE/aM4lLc3LE7wf4wgiLMzs
- rqlHSHvRfzSDJpXyO6xaLLA2qfSCX6d7te4ywU7ad1sP8ogKOFVa8sD
-X-Developer-Key: i=quic_xiangxuy@quicinc.com; a=ed25519;
- pk=F1TwipJzpywfbt3n/RPi4l/A4AVF+QC89XzCHgZYaOc=
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: O8LqOFgAl-AgO4VTrSQFKu8WR8dshWwy
-X-Proofpoint-ORIG-GUID: O8LqOFgAl-AgO4VTrSQFKu8WR8dshWwy
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
- bulkscore=0 adultscore=0 suspectscore=0 mlxlogscore=999 mlxscore=0
- spamscore=0 malwarescore=0 lowpriorityscore=0 priorityscore=1501
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2411290064
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
-Add support for handling HPD (Hot Plug Detect) signals via external
-GPIOs connected through pinctrl chips (e.g., Semtech SX1509Q). This
-involves reinitializing the relevant GPIO and binding an interrupt
-handler to process hot plug events. Since external GPIOs only support
-edge interrupts (rising or falling) rather than state interrupts, the
-GPIO state must be read during the first DP bridge HPD enablement. This
-ensures the current connection state is determined and a hot plug event
-is reported accordingly.
+Hi Michal,
 
-Signed-off-by: Xiangxu Yin <quic_xiangxuy@quicinc.com>
----
- drivers/gpu/drm/msm/dp/dp_display.c | 83 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 83 insertions(+)
+On Thu, 28 Nov 2024 20:42:53 +0100
+Michal Kubecek <mkubecek@suse.cz> wrote:
 
-diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
-index eb6fb76c68e505fafbec563440e9784f51e1894b..22c288ca61b9b444a7b8d4a574c614bfef9d88be 100644
---- a/drivers/gpu/drm/msm/dp/dp_display.c
-+++ b/drivers/gpu/drm/msm/dp/dp_display.c
-@@ -13,6 +13,8 @@
- #include <linux/delay.h>
- #include <drm/display/drm_dp_aux_bus.h>
- #include <drm/drm_edid.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/of_gpio.h>
- 
- #include "msm_drv.h"
- #include "msm_kms.h"
-@@ -78,6 +80,10 @@ struct msm_dp_display_private {
- 
- 	unsigned int id;
- 
-+	bool ext_gpio;
-+	int gpio_num;
-+	struct work_struct  gpio_work;
-+
- 	/* state variables */
- 	bool core_initialized;
- 	bool phy_initialized;
-@@ -1182,6 +1188,42 @@ static irqreturn_t msm_dp_display_irq_handler(int irq, void *dev_id)
- 	return ret;
- }
- 
-+
-+static void msm_dp_gpio_work_handler(struct work_struct *work)
-+{
-+	struct msm_dp_display_private *dp = container_of(work,
-+			struct msm_dp_display_private, gpio_work);
-+	struct gpio_desc *desc;
-+	bool hpd;
-+
-+	if (dp->ext_gpio) {
-+		desc = gpio_to_desc(dp->gpio_num);
-+		if (!desc) {
-+			pr_err("Failed to get gpio_desc for GPIO %d\n", dp->gpio_num);
-+			return;
-+		}
-+
-+		hpd = gpiod_get_value_cansleep(desc);
-+		if (hpd)
-+			msm_dp_add_event(dp, EV_HPD_PLUG_INT, 0, 0);
-+		else
-+			msm_dp_add_event(dp, EV_HPD_UNPLUG_INT, 0, 0);
-+	}
-+}
-+
-+static irqreturn_t msm_dp_gpio_isr(int unused, void *data)
-+{
-+	struct msm_dp_display_private *dp = data;
-+
-+	if (!dp) {
-+		DRM_ERROR("NULL data\n");
-+		return IRQ_NONE;
-+	}
-+
-+	schedule_work(&dp->gpio_work);
-+	return IRQ_HANDLED;
-+}
-+
- static int msm_dp_display_request_irq(struct msm_dp_display_private *dp)
- {
- 	int rc = 0;
-@@ -1193,6 +1235,21 @@ static int msm_dp_display_request_irq(struct msm_dp_display_private *dp)
- 		return dp->irq;
- 	}
- 
-+	if (dp->ext_gpio) {
-+		int edge, gpio_irq;
-+
-+		gpio_irq = gpio_to_irq(dp->gpio_num);
-+		edge = IRQF_TRIGGER_FALLING | IRQF_TRIGGER_RISING;
-+
-+		rc = devm_request_threaded_irq(&pdev->dev, gpio_irq, NULL,
-+		msm_dp_gpio_isr, edge, "dp_gpio_isr", dp);
-+		if (rc < 0) {
-+			DRM_ERROR("failed to request ext-gpio IRQ%u: %d\n",
-+					gpio_irq, rc);
-+			return rc;
-+		}
-+	}
-+
- 	rc = devm_request_irq(&pdev->dev, dp->irq, msm_dp_display_irq_handler,
- 			      IRQF_TRIGGER_HIGH|IRQF_NO_AUTOEN,
- 			      "dp_display_isr", dp);
-@@ -1308,10 +1365,32 @@ static int msm_dp_display_probe(struct platform_device *pdev)
- 		return -EPROBE_DEFER;
- 	}
- 
-+	if (of_find_property(pdev->dev.of_node, "dp-hpd-gpio", NULL)) {
-+		dp->ext_gpio = true;
-+		dp->gpio_num = of_get_named_gpio(pdev->dev.of_node, "dp-hpd-gpio", 0);
-+		if (dp->gpio_num < 0) {
-+			dev_err(&pdev->dev, "Failed to get gpio:%d\n", dp->gpio_num);
-+			return dp->gpio_num;
-+		}
-+
-+		if (!gpio_is_valid(dp->gpio_num)) {
-+			DRM_ERROR("gpio(%d) invalid\n", dp->gpio_num);
-+			return -EINVAL;
-+		}
-+
-+		rc = gpio_request(dp->gpio_num, "dp-hpd-gpio");
-+		if (rc) {
-+			dev_err(&pdev->dev, "Failed to request gpio:%d\n", dp->gpio_num);
-+			return rc;
-+		}
-+		gpio_direction_input(dp->gpio_num);
-+	}
-+
- 	/* setup event q */
- 	mutex_init(&dp->event_mutex);
- 	init_waitqueue_head(&dp->event_q);
- 	spin_lock_init(&dp->event_lock);
-+	INIT_WORK(&dp->gpio_work, msm_dp_gpio_work_handler);
- 
- 	/* Store DP audio handle inside DP display */
- 	dp->msm_dp_display.msm_dp_audio = dp->audio;
-@@ -1678,6 +1757,10 @@ void msm_dp_bridge_hpd_enable(struct drm_bridge *bridge)
- 	msm_dp_catalog_hpd_config_intr(dp->catalog, DP_DP_HPD_INT_MASK, true);
- 
- 	msm_dp_display->internal_hpd = true;
-+
-+	if (dp->ext_gpio)
-+		schedule_work(&dp->gpio_work);
-+
- 	mutex_unlock(&dp->event_mutex);
- }
- 
+...
+> > --- a/drivers/misc/Kconfig
+> > +++ b/drivers/misc/Kconfig
+> > @@ -610,6 +610,30 @@ config MARVELL_CN10K_DPI
+> >  	  To compile this driver as a module, choose M here: the module
+> >  	  will be called mrvl_cn10k_dpi.
+> >  
+> > +config MCHP_LAN966X_PCI
+> > +	tristate "Microchip LAN966x PCIe Support"
+> > +	depends on PCI
+> > +	select OF
+> > +	select OF_OVERLAY  
+> 
+> Are these "select" statements what we want? When configuring current
+> mainline snapshot, I accidentally enabled this driver and ended up
+> flooded with an enormous amount of new config options, most of which
+> didn't make much sense on x86_64. It took quite long to investigate why.
+> 
+> Couldn't we rather use
+> 
+> 	depends on PCI && OF && OF_OVERLAY
+> 
+> like other drivers?
+> 
 
--- 
-2.25.1
+I don't have a strong opinion on this 'select' vs 'depends on' for those
+symbols.
 
+I used select because the dependency is not obvious for a user that just
+want the driver for the LAN966x PCI device.
+
+Best regards,
+Hervé
 
