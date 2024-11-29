@@ -1,196 +1,302 @@
-Return-Path: <devicetree+bounces-125489-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125490-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DFA19DC19F
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 10:45:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 376C79DC1AB
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 10:52:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2570280FC4
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 09:45:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 65BA7B20B94
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 09:51:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5CBD177998;
-	Fri, 29 Nov 2024 09:45:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 613B217277F;
+	Fri, 29 Nov 2024 09:51:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Wm9gViXh"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="VsIV0nnb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from MA0PR01CU012.outbound.protection.outlook.com (mail-southindiaazolkn19011026.outbound.protection.outlook.com [52.103.67.26])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06EF0158DD1
-	for <devicetree@vger.kernel.org>; Fri, 29 Nov 2024 09:45:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.50
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732873542; cv=none; b=Q7FuUNdkuiOpbSmEO9oglEGBptK5O75gPldRjkC9IR+nqhfAHMQMYXL3aTFHvM7xl4P0QnNJDy4mOnTC+vak0nSRqxy0+xPaeJ7WvEboToyaWMQ4xEavA6C/y5/VbtJ8zvl0RbRI0kXpDsNA/X4geLxuK97httSszl82DZCGVck=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732873542; c=relaxed/simple;
-	bh=kYTOdYLfumByQtT4lm725ivrBjreeVTVPxGOeWmX+/k=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=brhRk6SSIqub9ilkYcnMr7BdPxIlXxyxxbNsZ9yRv/R4g3f4Z+Rs1uplMBX3o/YjmXHFUSo031+HgN6qxjLu3tC4g2ZSlX732Re7/dLpCXSElRF3W1eHmDYF5DkRsD9nncHLEa/fbBHO0JvoZRUgs2sO4gtXeD7eW9pNWg00H4M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Wm9gViXh; arc=none smtp.client-ip=209.85.161.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-oo1-f50.google.com with SMTP id 006d021491bc7-5f201a932b2so677864eaf.3
-        for <devicetree@vger.kernel.org>; Fri, 29 Nov 2024 01:45:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732873540; x=1733478340; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=v/VnXj0xSm64G+xnhmGLSxnRi7eiVgvL2X5pSK2r9No=;
-        b=Wm9gViXhsZyJNbf9g5OwcrHY/H7XIEoTUjZf2h5O+fnnA7yi/TbH3WGRkSUZZ18+7/
-         7uiNhWnhTbpTr32Uy4Pw8A0a81GWTAemukRRYQbWiNIFy+oSgqVj85s6lqeiW9oJWAAb
-         zaEy4Ww9p6uErf/4DLAFgKXyU318c1GTj88lACZmIwytsco45J+G/cr33NFG1tiXGT62
-         z+h1/TVzl59xKQQInqdGfEHuI5l5O/SQ1LlRLYgQCDofC81A9ATWxecwtpDBG+IID/YG
-         QkpNsSabIy08xx+l75sVe0/li+2oAaCgxlTfWFAAsww1YLRvt9pbPFDQj7+BarRhuNaE
-         Jxmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732873540; x=1733478340;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=v/VnXj0xSm64G+xnhmGLSxnRi7eiVgvL2X5pSK2r9No=;
-        b=s/Rvg90gb7EzlJa+dAMpaJpId2wZfYrfxNwCIrj67FG3Yhx/oO2i9yz006yP3VIYmX
-         i8BNDvJ47kqneFs0sTRZgMPGTPJnAnveQji09DhySZgxVwQ2q3NMjo84rrSI+3GubUlW
-         6m3IKIOJJy2zk/w1ulnr2GVvAfcSUf2K+GLsaYw6vM5JRd6MXjYAL8hruF19ooftyoHl
-         V4o+apjiwhGqwlTZkPwNHynceoopvR45biHvpoGRaQspurfaFQPdjGCT2SHlw3uWARi7
-         POI2yok+IOg4Tkx2CE/yOy4Gva0DFvlmrZW+c9Lrc/I8ZvcPb8zgUjcTFipKVzlsojy7
-         2xfQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVpFwyDe3H/Hsd5iihQDmCx4p/gLp9s9E5uXEOKX4AxZQ0flSgiMVtgWHO1f1zLrc9VsAHp+VOP0Zhq@vger.kernel.org
-X-Gm-Message-State: AOJu0YyWKmkdQXtu2mSaqZOnx9Z0bcWpJDw8J1u0OGjD+4d1Ub6ZwMVV
-	jHOhNPkqm/cd+ncQwA9vi3Za9RtjOIT+SluehgYRuyuXRRrkt7nOzMaqnJYaIKDqHiORU1HDGUZ
-	lKU8pdoNXxUyPKRBNvSzPycKgnRW9C39ZBVjBEQ==
-X-Gm-Gg: ASbGncsTtpdPkKbfmXqpk+df3z20etHlC10uMmGA7vPj3jVf7ir4EisOzgcguIeSoE4
-	avHgzPI8Bl68aYnU87kEaqEUs5cCzDkmz
-X-Google-Smtp-Source: AGHT+IHnxS6dF7DDI6r75yOFHU8KPB1OwTru3sBOUtig1dAA1cBoVlmH0MuchExTRQ+k+9Oap9bXnNBRkMu1gCqUvYY=
-X-Received: by 2002:a05:6820:2183:b0:5ee:ebcb:e6e9 with SMTP id
- 006d021491bc7-5f20a168f5cmr5503129eaf.5.1732873540094; Fri, 29 Nov 2024
- 01:45:40 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 221DC1547D5;
+	Fri, 29 Nov 2024 09:51:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.67.26
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1732873915; cv=fail; b=WQBJNBgG5MJJhBfyR13tUuoNzbKbe7itTM03omU6tOrdxoQ44SL6K8PdledbtIR0razdfNiHokdcm3x/MKMUJeMbbDTv31N4PXqqvzU2gHYF7751lL1d90Z2q1SBd2GK1rV85vGN2eGG3k/CvPFBSTJw36OCriGwT3uVB5oX/0s=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1732873915; c=relaxed/simple;
+	bh=T6wl8GEbM6ZHlmVW2rJdCfk18Bep/L3Os+C4IXip/N0=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=QU52XjvdxcV5OJM4XzjRSLe0iiK+oN0KGtOD8//3HPUXYzzZafViATupKN+DAbc4TCChFkazXHNEVkI0KMoen38yaR24cPg9Ie6YYQ5T3dXQJhDi4dPUfCUiA9NnYzbPmBbMGRdbthBrWcLPN1By1TyDKqB/FXG+j39H9S52RMs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=VsIV0nnb; arc=fail smtp.client-ip=52.103.67.26
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ig1X5Uw/s2KpTdum1fqIIC0zd3C1x19e6hgZOvjgHe/4rGZK3tD4nK/xbEMYMKvbY8iewqSLCXzC1brCUzlzgaLkF0NdRPAAfpurcIiFrjK2C7vaHEuu4vtQukQRqp2+AcQMWO6QcAUgaVe/EE5fsUKPf3DWPO9DDEGLseDqdBRC6YfzZ4btlXAvS8JvzUvXsSE5UUelE/lEnoDmX2iXQo32vdVS8Kbvu9BNhD5uwnt6UAdnP+xZZPL/2KfSrgJXWYjsIDj/ijjfpoKpX8+PvRYYv1fhu9vZ9ACwDcNTnuBg7DnkX/UKpI2wksBPgb9jlbXdQi/+gIOvco4MGauLXA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4SH+Npp7zGYpYM+WO4iZx2VW/zbMhGhXlzkbgJ821i4=;
+ b=Unkax42Rg8YvZxhNw3jEA0Ve4mYmq6AGUTI0p3ZLVMZ9O5Zn72xezETZ2Xmk21Rf3QmLbTjqjl1S5taDpmE4oFlZaR+DrnDK8c8XIcMqOQ6iJWcwXIALNcv/MGnOGt8pFqa3xBgn8jw/MZ3uqA/5OVwwXw18kLfC08fGlfBh4TmFD13DfF9g4EmiNa0QU6QsZHZJqZkbbPIK8dCR56EdtXyose4pUFwwzUiY1UlUanZh/EOgm9qGNxKwpcDywC8zscVck3BKOySdhPTc1gpmKJkgE8v2gp/YXbQYEkkgNLQyvBAsv0JQ1vACiJJoCHaj1T0Qx718fN6HkuEV/WBB8w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4SH+Npp7zGYpYM+WO4iZx2VW/zbMhGhXlzkbgJ821i4=;
+ b=VsIV0nnbvIsd0fJ6aP18fY/U0+GiSICD184XhqlT+2Dc59pzaF7eFvNKUwvaxlAjDD6LDSNSEB8o8QOi18ICdDN82eVXtoF/ly593wzuucwdI2/h+BcD3q23vp011Je3og/5u5TFTmyR/hE7WO6tL6A0M/DHdr791FxRJ7kN/MlbLxK0hggWPk8DzdVWESS/EvVF+g7RGTfuJgu25wbP28XgwvxdqJ7/UEyOFY+zvjGWwtHxhu688YfuaqVGyxPCrAlTUGbRciNzBdxz3PYIyGzQkGeRt6yioHGodGDaMXprtOWf6mCusHhx0ZpjkUNDEtKDZc0DdigsTDUYIHycYA==
+Received: from MAXPR01MB3984.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:68::20)
+ by PN0PR01MB6547.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:74::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8207.15; Fri, 29 Nov
+ 2024 09:51:43 +0000
+Received: from MAXPR01MB3984.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::285f:e601:b80b:465a]) by MAXPR01MB3984.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::285f:e601:b80b:465a%6]) with mapi id 15.20.8207.010; Fri, 29 Nov 2024
+ 09:51:43 +0000
+Message-ID:
+ <MAXPR01MB3984C307B163E615811A25AAFE2A2@MAXPR01MB3984.INDPRD01.PROD.OUTLOOK.COM>
+Date: Fri, 29 Nov 2024 17:51:39 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/5] PCI: sg2042: Add Sophgo SG2042 PCIe driver
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: kw@linux.com, u.kleine-koenig@baylibre.com, aou@eecs.berkeley.edu,
+ arnd@arndb.de, bhelgaas@google.com, conor+dt@kernel.org, guoren@kernel.org,
+ inochiama@outlook.com, krzk+dt@kernel.org, lee@kernel.org,
+ lpieralisi@kernel.org, manivannan.sadhasivam@linaro.org, palmer@dabbelt.com,
+ paul.walmsley@sifive.com, pbrobinson@gmail.com, robh@kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-riscv@lists.infradead.org,
+ chao.wei@sophgo.com, xiaoguang.xing@sophgo.com, fengchun.li@sophgo.com
+References: <20241112212055.GA1859446@bhelgaas>
+From: Chen Wang <unicorn_wang@outlook.com>
+In-Reply-To: <20241112212055.GA1859446@bhelgaas>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SI2PR01CA0032.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:192::18) To MAXPR01MB3984.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a00:68::20)
+X-Microsoft-Original-Message-ID:
+ <2f2a60cb-265d-49db-af8d-72ca67d75a16@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241127-gs101-phy-lanes-orientation-phy-v1-0-1b7fce24960b@linaro.org>
- <20241127-gs101-phy-lanes-orientation-phy-v1-7-1b7fce24960b@linaro.org>
-In-Reply-To: <20241127-gs101-phy-lanes-orientation-phy-v1-7-1b7fce24960b@linaro.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Fri, 29 Nov 2024 09:45:29 +0000
-Message-ID: <CADrjBPpZgmE-rwRmbB3BFAL+s0G0rwBiPJ-ZMEVF8BNQ=tviVg@mail.gmail.com>
-Subject: Re: [PATCH 7/9] phy: exynos5-usbdrd: gs101: configure SS lanes based
- on orientation
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, Sylwester Nawrocki <s.nawrocki@samsung.com>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Tudor Ambarus <tudor.ambarus@linaro.org>, 
-	Sam Protsenko <semen.protsenko@linaro.org>, Will McVicker <willmcvicker@google.com>, 
-	Roy Luo <royluo@google.com>, kernel-team@android.com, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MAXPR01MB3984:EE_|PN0PR01MB6547:EE_
+X-MS-Office365-Filtering-Correlation-Id: 90278b0b-9649-4e6e-f44a-08dd105b6e30
+X-Microsoft-Antispam:
+	BCL:0;ARA:14566002|5072599009|19110799003|461199028|6090799003|8060799006|7092599003|15080799006|10035399004|3412199025|4302099013|440099028|1602099012;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?bTJxVHNlRW5SRlN1NUZpcjh1MjhiaGt4NW5MSENBbUduYzR2eFJhTlBqWm1B?=
+ =?utf-8?B?UGwzOExFcmFpN1hoMUpuRkdUazJvY0RpRzMrQ1NubFgrVFJqV3Q0V1cwelc0?=
+ =?utf-8?B?bXR1S0NCSVlvWkRkbXUrMlhqSzY5YXZzamhPOFprQkpOSE1RRmZDR2pGVUxw?=
+ =?utf-8?B?MjB1SVdlUEczNDdjdDZ3WVpsMnBBeDVOcXBuc3pJYmdlZk95OGlLTGVmR0JW?=
+ =?utf-8?B?RzJobm5JZ1BCNG9GdmdyTVNOdXR5bDhtaDBEa2hZbHplc0lQRWhDMUNUamRt?=
+ =?utf-8?B?OE5Uclp6eUZiZ3JjWkQxUmxLR0JlL2Z3Vzd1c1k2MERGWmNFTXdUTGVvOWJP?=
+ =?utf-8?B?cENWSEdtczAvUTcxU2Rsdnk4RzF1K1MvNFFwM2dZLzltVUdwZU41MjlvTnF1?=
+ =?utf-8?B?a2lNQXpMQ1cwVnRrZ09nZHVzTkZJV2hVL1krMDJEYVkvTG5WRGZBQTg0TC9r?=
+ =?utf-8?B?enFDdHN3ekhyS3pDYmtIaHAvVitKenRwQTVDaG9vZXZKcUtXRmZjd25TcVlh?=
+ =?utf-8?B?Z21ZZVhsL3BVTjR0ZlhRUUxDMjRNdXZUZFJyRVZ4akRUTjZxNEpjNmlNdGxa?=
+ =?utf-8?B?QjBsd2RsSmxzNEdxNUk2SzFYODZMQWFBS0ozRzQxZVVoL2d5RXh1ZDdhc2No?=
+ =?utf-8?B?MWpwVUM5TlVCTnBSU0F4cVVESWpaWUFkcVJad2h5UmNWSDd5Ly9TS1BWTnRC?=
+ =?utf-8?B?b0loREM3V3hyWDNqbjkwbWhhZ2IzQzR3ZStRZjFYOGFTYXM5VUxNOGh1VFFq?=
+ =?utf-8?B?QlRsaXcwQ3FiUWJTK0NDOWpHTm9rQSt6QjRkWXNZa0U4b3dFbmthcjVwSDlG?=
+ =?utf-8?B?RFlxckg2UnhUbktOMW1WRWV4dWFkSU93NmNBUGxYSHgwU1Q2SXY1TkdTRHJQ?=
+ =?utf-8?B?TnFzT0V3ZjB4bzdGVkhyTytPZXZ6M1lENEw3bXJDQmYwYzJBODVOZlRtQjh4?=
+ =?utf-8?B?OTNKWUFod1lHclpZZTYxSHNFeG83UE9JaVFnbTA3cEloK256OUt6dmlLQU5L?=
+ =?utf-8?B?MGs0bGxkV1E3RkE2RTlRNjAyREVQYzExZGVVYkcraFZTTy9sQmVOQjdHR1FD?=
+ =?utf-8?B?eUF2bHBjcW1RZEloWGpjZ1VtZ3I0K0RQK2ZLSThkMDZqNmRySmpOUm9uL2Q5?=
+ =?utf-8?B?aVBUM0pqMDZaOU9mZFFieHZtVW5uS3BaMGxQU1V4VmxycEllMExWcXRNcVpI?=
+ =?utf-8?B?eU1EWCtBK0YxTDRCQ21jTlZBWUY3OU1kbUhHSlVnWDVJaHNZZFdmL3pTTXVP?=
+ =?utf-8?B?dFI0RWVTQ1RVSDE5Tlp5RHpzVk0yeFJGcEVDSHF2em9RenAxUFJxUm5mT2RH?=
+ =?utf-8?B?N2NqcE1CUk1QV3g3TjBGZVhHV1lDRGR6MVRtWmk3NWFoVXdSR1dXZXRKQ2ZP?=
+ =?utf-8?B?dS9ybmZSS3VON1o2RU9NTnhoRUF1a2dKSWFjZE1YY05MQU5MQnFSaXNVOWN6?=
+ =?utf-8?B?L3Q4VWNZN0FTd1NJbTZoQ1ViZ1gycksyK0hBbERxS1RPVkxER3FzaEVBV3pr?=
+ =?utf-8?B?Q1FtOUpCYnQxK0N6ZklMSTd2S2JVM281Y3ozbzNWN2kzRU1PVDJmUDZsS1M3?=
+ =?utf-8?B?N2VCSnJqMVUxVUl3Z2pNdlpnLzVnWERLVjJRZ3lGOUxHKzBOcjVLc1h5Z3Rh?=
+ =?utf-8?Q?aN41BPNcMP5LQ/lbj+KcNlNKBCoVjQxFyhH75sfIFNtc=3D?=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?U1V3Ykc4cDM2eTlGWjJKeU9WN3VuM1ZZc0xPVUFxSXE1OVgwc1VTOWVmWVAy?=
+ =?utf-8?B?UkZhZHRMWVhyY2NBS1pmZXN3bWJrdlVjZkY5bWFWaGZhbi9WbWNQVzFxbFpJ?=
+ =?utf-8?B?YU1VU3FnVnpuaW05WmNTZHpyeGltQ3BnT0xHTS90Q3hrRVVkbk51cjNtUEVH?=
+ =?utf-8?B?UUwycHZ3WEUvR1Ria25ONTBaRlBFVnkyRlluQzNET1AvK1Q2MlJwZTgzdTRU?=
+ =?utf-8?B?U3ZaVTFpZnh1L1JZMG01MktWM25xZk9uQS8zZlllT0p2YmV6VllwTEJVM0Vq?=
+ =?utf-8?B?UTNtcHJ0VWJqOHYzZTh5bjZ4YndvQ3VRL3NWbTFxd1REWGJzdzdNdk5mczYw?=
+ =?utf-8?B?QTEvQ3RIOEQzVTQ5cW9mWGlYYURGcFhNbm1VK3NJOVgzZi8rTFlSTXBxY0hv?=
+ =?utf-8?B?QWREeVVkUFRiYk1HVE9hemJ3SHFyVXYzYjh1TXoycnM0ZGYrZCtra2xBYmc0?=
+ =?utf-8?B?clhTVllmQ3o0eTJXanIzRHE2cGwzQzhtcUp5R0pxZW5ueGVUSTU1Vlladk9n?=
+ =?utf-8?B?b3hrYWtpdG9XR0NWSk9CN1pjN0Ewek5HTkU3c3VMM3lRTXE5dFQxZXl0YUla?=
+ =?utf-8?B?UGNYNnN0cDhSNVZ3UThjR3RaQXduVkdLcDBNVnlTMTJGMWYzY3pWU2JZdW1k?=
+ =?utf-8?B?MEl5aFF4ZEEzZFlmQ2U4d0xUZXVuS0l3VDc3TmFacThBakM5WlNzaXBkOFFy?=
+ =?utf-8?B?d0pqL1liWitFR0puMXZ2cTlqSHdDVXF5MVRySFhRT2pDMWdNQnpydTVqemJt?=
+ =?utf-8?B?Z0gveWJJVm96TU1LNDBhaEZ5QXQ2cGwrelh5OWVvc00wc1IyekxlZ2VGdWVE?=
+ =?utf-8?B?N3o2eDlwVlI2YmdKVEM5UG1TcFdvcHFsSG1tRGdVV3BobGdvZTRacVgrTnZO?=
+ =?utf-8?B?UnFUaW9iTFFWNnAyUXluNWJWeSs0bFdxdkZud0ZTVGtmUlFPc1oyY2ZtSjYy?=
+ =?utf-8?B?MmE2akZPa1dqejl0R2gwVC9ueDgrL1FvOE4zdWVHWnRrT1FYWmI0eUZnSk9V?=
+ =?utf-8?B?MGVOaVh5VDNHSFdlNi84VjhFa01XOFRpblZUTTB6ckZtZmk5dzBvdlhoUVZa?=
+ =?utf-8?B?MVRTMXVqYnRjbFJkcTBycE5uWVRkR2wwelRnZUVyTjQ0TE1SVWVHWjc3anJr?=
+ =?utf-8?B?KzFzZmxIKzljR2JaRjhocDlUUEJqbDh3bVAwYUJzdkowR3ovTUJzZDgyZ3Vq?=
+ =?utf-8?B?ZlhjTHNyRHExaXhaK1RVUjZsVDVNSG5IOE1vVVJQdHFGT3hnM3lzOUpwOG1F?=
+ =?utf-8?B?YTJxZFNxWjZybCthQlY0ZTExWVp4akdoM1hqRzhmdzllK2lOZW53bE54dXN4?=
+ =?utf-8?B?S0tKR0pmdzZCV1ZMQUgxVjdJWVlvQmw0bnlvZG42VGFYbzhPN0p2RElDekVU?=
+ =?utf-8?B?QllxN2FJOHNrWE5nMStXUzNrdzdvRGtvdjBnaHcvdGlHdnUrV01MRllpRG9G?=
+ =?utf-8?B?YlJud01oQVlNMmNSLzAvWS9ibEdzVmd0d2VvUXlwbUhYWXlIb0NuLytQMGhy?=
+ =?utf-8?B?K2tlL3hEcXo5Q2hUb1RHUG5xMGsvQ3hkMW1ZMm1RbGZwL2Z5YXlaN3R0enpj?=
+ =?utf-8?B?N2tuSmhreEdvNy9zeW9iekN4WGs3eHVUL01RWEJzQndhMmlrZ1VhSThTbG5G?=
+ =?utf-8?B?aFJZZFhPa0dLQWpONnNVb2hNVXFEV1YxT01xaUhVQ3NXelIxZlZNVGkzZ2F1?=
+ =?utf-8?Q?3zauP1m1V0FM6EtNJbC2?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 90278b0b-9649-4e6e-f44a-08dd105b6e30
+X-MS-Exchange-CrossTenant-AuthSource: MAXPR01MB3984.INDPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Nov 2024 09:51:43.7661
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN0PR01MB6547
 
-Hi Andr=C3=A9,
+Hello~
 
-On Wed, 27 Nov 2024 at 10:58, Andr=C3=A9 Draszik <andre.draszik@linaro.org>=
- wrote:
->
-> USB SS lanes need to be configured based the connector orientation -
+On 2024/11/13 5:20, Bjorn Helgaas wrote:
+> On Mon, Nov 11, 2024 at 01:59:56PM +0800, Chen Wang wrote:
+>> From: Chen Wang <unicorn_wang@outlook.com>
+>>
+>> Add support for PCIe controller in SG2042 SoC. The controller
+>> uses the Cadence PCIe core programmed by pcie-cadence*.c. The
+>> PCIe controller will work in host mode only.
+>> +++ b/drivers/pci/controller/cadence/Kconfig
+>> @@ -67,4 +67,15 @@ config PCI_J721E_EP
+>>   	  Say Y here if you want to support the TI J721E PCIe platform
+>>   	  controller in endpoint mode. TI J721E PCIe controller uses Cadence PCIe
+>>   	  core.
+>> +
+>> +config PCIE_SG2042
+>> +	bool "Sophgo SG2042 PCIe controller (host mode)"
+>> +	depends on ARCH_SOPHGO || COMPILE_TEST
+>> +	depends on OF
+>> +	select PCIE_CADENCE_HOST
+>> +	help
+>> +	  Say Y here if you want to support the Sophgo SG2042 PCIe platform
+>> +	  controller in host mode. Sophgo SG2042 PCIe controller uses Cadence
+>> +	  PCIe core.
+> Reorder to keep these menu items in alphabetical order by vendor.
 
-small nit: "based the" -> "based on the"
+Sorry, I don't understand your question. I think the menu items in this 
+Kconfig file are already sorted alphabetically.
 
-> at most two lanes will be in use for USB (and the remaining two for
-> alternate modes like DP).
+>> +++ b/drivers/pci/controller/cadence/pcie-sg2042.c
+>> + * SG2042 PCIe controller supports two ways to report MSI:
+>> + * - Method A, the PICe controller implements an MSI interrupt controller inside,
+>> + *   and connect to PLIC upward through one interrupt line. Provides
+>> + *   memory-mapped msi address, and by programming the upper 32 bits of the
+>> + *   address to zero, it can be compatible with old pcie devices that only
+>> + *   support 32-bit msi address.
+>> + * - Method B, the PICe controller connects to PLIC upward through an
+>> + *   independent MSI controller "sophgo,sg2042-msi" on the SOC. The MSI
+>> + *   controller provides multiple(up to 32) interrupt sources to PLIC.
+>> + *   Compared with the first method, the advantage is that the interrupt source
+>> + *   is expanded, but because for SG2042, the msi address provided by the MSI
+>> + *   controller is fixed and only supports 64-bit address(> 2^32), it is not
+>> + *   compatible with old pcie devices that only support 32-bit msi address.
+>> + * Method A & B can be configured in DTS with property "sophgo,internal-msi",
+>> + * default is Method B.
+> s/PICe/PCIe/ (multiple)
+> s/msi/MSI/ (multiple)
+> s/pcie/PCIe/ (multiple)
 >
-> For the USB link to come up in SS, the lane configuration registers
-> have to be programmed accordingly.
+> Wrap comment (and code below) to fit in 80 columns.  Add blank lines
+> between paragraphs.
+Got, will change.
 >
-> While we still need a way to be notified of the actual connector
-> orientation and then reprogram the registers accordingly (at the moment
-> the configuration happens just once during phy_init() and never again),
-> we can prepare the code doing the configuration to take the orientation
-> into account.
+>> +#define SG2042_CDNS_PLAT_CPU_TO_BUS_ADDR	0xCFFFFFFFFF
+> Remove (see below).
+Yes, after some testing, seems this address fixup is not need, will 
+remove it.
+>> +static void sg2042_pcie_msi_irq_compose_msi_msg(struct irq_data *d,
+>> +						struct msi_msg *msg)
+>> +{
+>> +	struct sg2042_pcie *pcie = irq_data_get_irq_chip_data(d);
+>> +	struct device *dev = pcie->cdns_pcie->dev;
+>> +
+>> +	msg->address_lo = lower_32_bits(pcie->msi_phys) + BYTE_NUM_PER_MSI_VEC * d->hwirq;
+>> +	msg->address_hi = upper_32_bits(pcie->msi_phys);
+>> +	msg->data = 1;
+>> +
+>> +	pcie->num_applied_vecs = d->hwirq;
+> This looks questionable.  How do you know d->hwirq increases every
+> time this is called?
+Thanks, it's a bug, I will fix it.
+>> +	dev_info(dev, "compose msi msg hwirq[%d] address_hi[%#x] address_lo[%#x]\n",
+>> +		 (int)d->hwirq, msg->address_hi, msg->address_lo);
+> This seems too verbose to be a dev_info().  Maybe a dev_dbg() or
+> remove it altogether.
+Will change it to dev_dbg.
+>> + * We use the usual two domain structure, the top one being a generic PCI/MSI
+>> + * domain, the bottom one being SG2042-specific and handling the actual HW
+>> + * interrupt allocation.
+>> + * At the same time, for internal MSI controller(Method A), bottom chip uses a
+>> + * chained handler to handle the controller's MSI IRQ edge triggered.
+> Add blank line between paragraphs.
+OK.
 >
-> Do so.
->
-> Note: the mutex is needed to synchronize this with the upcoming
-> connector orientation callback.
->
-> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
-> ---
->  drivers/phy/samsung/phy-exynos5-usbdrd.c | 72 ++++++++++++++++++++++----=
-------
->  1 file changed, 51 insertions(+), 21 deletions(-)
->
-> diff --git a/drivers/phy/samsung/phy-exynos5-usbdrd.c b/drivers/phy/samsu=
-ng/phy-exynos5-usbdrd.c
-> index c1ce6fdeef31..1a34e9b4618a 100644
-> --- a/drivers/phy/samsung/phy-exynos5-usbdrd.c
-> +++ b/drivers/phy/samsung/phy-exynos5-usbdrd.c
-> @@ -23,6 +23,7 @@
->  #include <linux/regmap.h>
->  #include <linux/regulator/consumer.h>
->  #include <linux/soc/samsung/exynos-regs-pmu.h>
-> +#include <linux/usb/typec_mux.h>
->
->  /* Exynos USB PHY registers */
->  #define EXYNOS5_FSEL_9MHZ6             0x0
-> @@ -209,6 +210,10 @@
->
->  #define EXYNOS9_PMA_USBDP_CMN_REG00B8          0x02e0
->  #define CMN_REG00B8_LANE_MUX_SEL_DP            GENMASK(3, 0)
-> +#define CMN_REG00B8_LANE_MUX_SEL_DP_LANE3      BIT(3)
-> +#define CMN_REG00B8_LANE_MUX_SEL_DP_LANE2      BIT(2)
-> +#define CMN_REG00B8_LANE_MUX_SEL_DP_LANE1      BIT(1)
-> +#define CMN_REG00B8_LANE_MUX_SEL_DP_LANE0      BIT(0)
->
->  #define EXYNOS9_PMA_USBDP_CMN_REG01C0          0x0700
->  #define CMN_REG01C0_ANA_LCPLL_LOCK_DONE                BIT(7)
-> @@ -383,11 +388,13 @@ struct exynos5_usbdrd_phy_drvdata {
->   * @clks: clocks for register access
->   * @core_clks: core clocks for phy (ref, pipe3, utmi+, ITP, etc. as requ=
-ired)
->   * @drv_data: pointer to SoC level driver data structure
-> + * @phy_mutex: mutex protecting phy_init/exit & TCPC callbacks
->   * @phys: array for 'EXYNOS5_DRDPHYS_NUM' number of PHY
->   *         instances each with its 'phy' and 'phy_cfg'.
->   * @extrefclk: frequency select settings when using 'separate
->   *            reference clocks' for SS and HS operations
->   * @regulators: regulators for phy
-> + * @orientation: TypeC connector orientation - normal or flipped
->   */
->  struct exynos5_usbdrd_phy {
->         struct device *dev;
-> @@ -397,6 +404,7 @@ struct exynos5_usbdrd_phy {
->         struct clk_bulk_data *clks;
->         struct clk_bulk_data *core_clks;
->         const struct exynos5_usbdrd_phy_drvdata *drv_data;
-> +       struct mutex phy_mutex;
->         struct phy_usb_instance {
->                 struct phy *phy;
->                 u32 index;
-> @@ -406,6 +414,8 @@ struct exynos5_usbdrd_phy {
->         } phys[EXYNOS5_DRDPHYS_NUM];
->         u32 extrefclk;
->         struct regulator_bulk_data *regulators;
-> +
-> +       enum typec_orientation orientation;
+>> +static int sg2042_pcie_setup_msi_external(struct sg2042_pcie *pcie)
+>> +{
+>> +	struct device *dev = pcie->cdns_pcie->dev;
+>> +	struct device_node *np = dev->of_node;
+>> +	struct irq_domain *parent_domain;
+>> +	struct device_node *parent_np;
+>> +
+>> +	if (!of_find_property(np, "interrupt-parent", NULL)) {
+>> +		dev_err(dev, "Can't find interrupt-parent!\n");
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	parent_np = of_irq_find_parent(np);
+>> +	if (!parent_np) {
+>> +		dev_err(dev, "Can't find node of interrupt-parent!\n");
+> Can you use some kind of %pOF format to include more information here?
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/core-api/printk-formats.rst?id=v6.11#n463
 
-typec_orientation is defined in #include <linux/usb/typec.h> so it
-should be added to the includes
+Thanks, will double check this.
 
-Apart from that
+[......]
 
-Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
-Tested-by: Peter Griffin <peter.griffin@linaro.org>
+>> +	if (pcie->link_id == 1) {
+>> +		regmap_write(pcie->syscon, REG_LINK1_MSI_ADDR_LOW,
+>> +			     lower_32_bits(pcie->msi_phys));
+>> +		regmap_write(pcie->syscon, REG_LINK1_MSI_ADDR_HIGH,
+>> +			     upper_32_bits(pcie->msi_phys));
+>> +
+>> +		regmap_read(pcie->syscon, REG_LINK1_MSI_ADDR_SIZE, &value);
+>> +		value = (value & REG_LINK1_MSI_ADDR_SIZE_MASK) | MAX_MSI_IRQS;
+>> +		regmap_write(pcie->syscon, REG_LINK1_MSI_ADDR_SIZE, value);
+>> +	} else {
+>> +		regmap_write(pcie->syscon, REG_LINK0_MSI_ADDR_LOW,
+>> +			     lower_32_bits(pcie->msi_phys));
+>> +		regmap_write(pcie->syscon, REG_LINK0_MSI_ADDR_HIGH,
+>> +			     upper_32_bits(pcie->msi_phys));
+>> +
+>> +		regmap_read(pcie->syscon, REG_LINK0_MSI_ADDR_SIZE, &value);
+>> +		value = (value & REG_LINK0_MSI_ADDR_SIZE_MASK) | (MAX_MSI_IRQS << 16);
+>> +		regmap_write(pcie->syscon, REG_LINK0_MSI_ADDR_SIZE, value);
+>> +	}
+> Lot of pcie->link_id checking going on here.  Consider saving these
+> offsets in the struct sg2042_pcie so you don't need to test
+> everywhere.
 
-Validated that a super-speed USB link is established between Pixel 6
-phone and my laptop with this patch applied and that adb works.
+Actually, there are not many places in the code to check link_id. If to 
+add storage information in struct sg2042_pcie, at least four  u32 are 
+needed. And this logic will only be called one time in the probe. So I 
+think it is better to keep the current method. What do you think?
 
-regards,
+[......]
 
-Peter
+
 
