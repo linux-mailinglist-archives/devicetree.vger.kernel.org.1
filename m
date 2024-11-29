@@ -1,97 +1,126 @@
-Return-Path: <devicetree+bounces-125584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13B6D9DE962
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 16:29:36 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7460116322F
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 15:29:27 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 911A5145346;
-	Fri, 29 Nov 2024 15:29:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ii6Z6PWp"
-X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B7F59DE971
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 16:32:32 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53FD11448E0;
-	Fri, 29 Nov 2024 15:29:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E537C28247F
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 15:32:30 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05962148FF5;
+	Fri, 29 Nov 2024 15:32:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KYfJWagc"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11C30647;
+	Fri, 29 Nov 2024 15:32:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732894167; cv=none; b=cF1Wt2YlHuOuaER0lTGtRemiGTaWmuzXDaBqQH3cA8JtopcJr1sp8iB5ABmZ48ilBUPx9wo8ihCFTFR/kyWkQtX7VUoPliEDATKrdvoiJ9G6M+eqpAFyqcpUK5MLljS9u1KB05/U3DomU5vOVgsTsR8H8BMmu7Iivt2pHDDmCyc=
+	t=1732894341; cv=none; b=uX/wT90OK5FF7ihOq84AJYt/YZbGIGvegCjJPoaCcwHGNPXC74RuhWgbwv8MSbbVYByyXnm581Pn5rCRZNwYTvo/tSqml5pV4X5rdo7Fc8aahdxElQdhIcMzQL2rVqfllnPLy1qox5Ug4AndUThP3MvUAtkUilOeJN0f9dNcExM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732894167; c=relaxed/simple;
-	bh=gemHqc6nEYZsaj76pOy9Uu8PHBgdPrXwJF9PuGadYLI=;
+	s=arc-20240116; t=1732894341; c=relaxed/simple;
+	bh=VORdR2oTefI9Q07TPIcBdkIpcos+5okYlhQ1JFze8e4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZWcQhgt7oLlsfnKiYiVASjnurq4zt9Q3LS6l4FE82lawCvZwOPXQ2ykVtOehCGLEx07aT0G1k9ZfS0qfQwatW+zTwLWmv2V1i37t35rR6K5zYodeLQ0a0mTTIpneBynqQSQtRkTIogVxn8qCeFxLdV5vnp31rM9bsDQo0/bdeY8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ii6Z6PWp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E92EC4CECF;
-	Fri, 29 Nov 2024 15:29:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732894165;
-	bh=gemHqc6nEYZsaj76pOy9Uu8PHBgdPrXwJF9PuGadYLI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ii6Z6PWpgFnotEpHtJDL+pwmTDbL8kG6Vyjs8ff1Io8gJUYr11m50GX14dafdhVBk
-	 vSVjruUg1qpkHrXp0zkn82lGWi21eVQvOtCkYQakPQs8f1QrlPdj7JStfIf6FZnd5T
-	 BTPRsKHYARF0GK2pP4c6z/gc3QGrLtPBQ6vV5/r4MzDUZRP5lUV/9JN6ZER1XB2GDw
-	 q+6FbT/ylU1XuDFVtTk/WuFSBh+dHtKW4mT9wqDWxmW449Pkq4zON1flhTKWxkNxoi
-	 UHXM9IEfBppoi0KtevLTGmtwBTx2t2138lEM5rJRfRgUj5mZ7aVOBFw3u80nK3iQMJ
-	 jjpeq6+SowPgw==
-Date: Fri, 29 Nov 2024 15:29:21 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Sean Nyekjaer <sean@geanix.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=LtN55ri9ajKFFEn+XIgAIDyqEbpUAIZCtblGjpDeCqxIDOuVcELKcHmoVBVJQiSR89eqsznsY15VZ8bcwocnvY3/Uu1Sgi64be2pDcM5J5xxwhs+pqvaSAalf/ULmKY8oEfEjbuX5Q6zHUCRHX2PrgumFgGPRdFJ+DwvlEcIYeg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KYfJWagc; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1732894340; x=1764430340;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=VORdR2oTefI9Q07TPIcBdkIpcos+5okYlhQ1JFze8e4=;
+  b=KYfJWagcyoeP7w7hiFrIYWhcmmGTfCjMN2CvkZBv5fSkHFb0SZloGfCN
+   zWxa5w5MjjeJ25qeMDkuWK6xCKbBYJIzNLo7mThehbeSff+k14m9b7kBg
+   fFgyyNaUbxbQ1xOAqZN+BBWEuN0FqmZrZYOMN+bOAyPUlbZi45aMIK00Q
+   Qny9Xax+IkrOyDam3rJ9UH48Jo4uyXmiHNQRTRJbRkOibefkdyu8Tex8R
+   CY0FMiI4DCSU/5vqzLXVisNbVTiz0zk8ljQFsjKEXSHpCrm/MmALY/KEC
+   wlBhXNWZxzacOjmfkCPKkwntFF6h4MbD8tKlL430YejS0hXEIQYh++kkb
+   w==;
+X-CSE-ConnectionGUID: AbFpxLqrRkqL/+KoInmQPg==
+X-CSE-MsgGUID: NOtW8f+STB+n+kwLKV0Exw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11271"; a="37066646"
+X-IronPort-AV: E=Sophos;i="6.12,195,1728975600"; 
+   d="scan'208";a="37066646"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Nov 2024 07:32:19 -0800
+X-CSE-ConnectionGUID: PihCXGuDQu6h1LwuDv3v0A==
+X-CSE-MsgGUID: MmX9NisoSsWTwkpO78HDdg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,195,1728975600"; 
+   d="scan'208";a="123379883"
+Received: from lkp-server01.sh.intel.com (HELO 5e2646291792) ([10.239.97.150])
+  by orviesa002.jf.intel.com with ESMTP; 29 Nov 2024 07:32:16 -0800
+Received: from kbuild by 5e2646291792 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tH2yb-0000SV-12;
+	Fri, 29 Nov 2024 15:32:13 +0000
+Date: Fri, 29 Nov 2024 23:31:50 +0800
+From: kernel test robot <lkp@intel.com>
+To: Haylen Chu <heylenay@4d2.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Denis Ciocca <denis.ciocca@st.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: iio: st-sensors: Re-add IIS2MDC magnetometer
-Message-ID: <20241129-dictation-outplayed-0a6a0844158f@spud>
-References: <20241129-stmagdt-v1-1-963f0347fb0a@geanix.com>
+	Haylen Chu <heylenay@outlook.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-riscv@lists.infradead.org,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Inochi Amaoto <inochiama@outlook.com>,
+	Chen Wang <unicornxdotw@foxmail.com>,
+	Jisheng Zhang <jszhang@kernel.org>
+Subject: Re: [PATCH v3 3/3] clk: spacemit: Add clock support for Spacemit K1
+ SoC
+Message-ID: <202411292351.6EVdr1rF-lkp@intel.com>
+References: <20241126143125.9980-7-heylenay@4d2.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="8x+8u9VoME862kbh"
-Content-Disposition: inline
-In-Reply-To: <20241129-stmagdt-v1-1-963f0347fb0a@geanix.com>
-
-
---8x+8u9VoME862kbh
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20241126143125.9980-7-heylenay@4d2.org>
 
-On Fri, Nov 29, 2024 at 03:54:42PM +0100, Sean Nyekjaer wrote:
-> "iio: st-sensors: Update ST Sensor bindings" accidentially dropped
-> the compatible for the IIS2MDC magnetometer.
->=20
-> Fixes: 0cd71145803d ("iio: st-sensors: Update ST Sensor bindings")
-> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+Hi Haylen,
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+kernel test robot noticed the following build errors:
 
---8x+8u9VoME862kbh
-Content-Type: application/pgp-signature; name="signature.asc"
+[auto build test ERROR on 2d5404caa8c7bb5c4e0435f94b28834ae5456623]
 
------BEGIN PGP SIGNATURE-----
+url:    https://github.com/intel-lab-lkp/linux/commits/Haylen-Chu/dt-bindings-clock-spacemit-Add-clock-controllers-of-Spacemit-K1-SoC/20241128-101248
+base:   2d5404caa8c7bb5c4e0435f94b28834ae5456623
+patch link:    https://lore.kernel.org/r/20241126143125.9980-7-heylenay%404d2.org
+patch subject: [PATCH v3 3/3] clk: spacemit: Add clock support for Spacemit K1 SoC
+config: parisc-allmodconfig (https://download.01.org/0day-ci/archive/20241129/202411292351.6EVdr1rF-lkp@intel.com/config)
+compiler: hppa-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241129/202411292351.6EVdr1rF-lkp@intel.com/reproduce)
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ0nd0QAKCRB4tDGHoIJi
-0hSoAP99z6GkLqzidtt9MsGPQTs9Zyme4cGF5rWnbcoZ/87wYwD/Y/suo5mGJVhY
-3us36uOcTA98y73GMUKuAQ1DahbWbQM=
-=hAhQ
------END PGP SIGNATURE-----
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202411292351.6EVdr1rF-lkp@intel.com/
 
---8x+8u9VoME862kbh--
+All errors (new ones prefixed by >>, old ones prefixed by <<):
+
+ERROR: modpost: missing MODULE_LICENSE() in drivers/clk/spacemit/ccu_pll.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/spacemit/ccu_pll.o
+ERROR: modpost: missing MODULE_LICENSE() in drivers/clk/spacemit/ccu_mix.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/spacemit/ccu_mix.o
+ERROR: modpost: missing MODULE_LICENSE() in drivers/clk/spacemit/ccu_ddn.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/spacemit/ccu_ddn.o
+>> ERROR: modpost: "spacemit_ccu_mix_ops" [drivers/clk/spacemit/ccu-k1.ko] undefined!
+>> ERROR: modpost: "spacemit_ccu_ddn_ops" [drivers/clk/spacemit/ccu-k1.ko] undefined!
+>> ERROR: modpost: "spacemit_ccu_pll_ops" [drivers/clk/spacemit/ccu-k1.ko] undefined!
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
