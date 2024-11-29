@@ -1,197 +1,155 @@
-Return-Path: <devicetree+bounces-125503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F9679DC20E
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 11:23:54 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF5FC9DC21F
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 11:30:13 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2FF016460A
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 10:23:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 84C822827A9
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 10:30:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB6DA18871F;
-	Fri, 29 Nov 2024 10:23:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B9651974FE;
+	Fri, 29 Nov 2024 10:30:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50])
+Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com [209.85.217.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9770155753;
-	Fri, 29 Nov 2024 10:23:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8624318E34A;
+	Fri, 29 Nov 2024 10:29:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732875830; cv=none; b=lUH3szDIdQ2uGkdOBX/Mz3CEI4vzU65BH5dOX8vGjmHadPydmfTnhEeDzBblsHn4vueKCjEHQ5AZwI49KsSZcSOnUQMqGDb5vpt1RorOVmZux8LfqCOEYMHMUsyYudHictbZntd7x6TB2n2grWx6p9hBFeqBJUMDtt+uBOnLFck=
+	t=1732876200; cv=none; b=IP1xJR8YG/qpbzfkEqcaUqjmXYwLNgm1eWMkCmkH/uGzfFeHFPy1gEKyeO+o1rmWt0Uc98VtOZeVIBkEDNqA/t1/m1djV8sJc5o/BzhLehKfzKierY3g1gWVPV6fcVzgufh+z82b7DLAhnmsQYgw14DFH+5aC4F0iAjIGNWjKDg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732875830; c=relaxed/simple;
-	bh=N0sqU8NkAOZabHcNlGMMpaPfV+bPF/O7Yg+flTk9yhU=;
+	s=arc-20240116; t=1732876200; c=relaxed/simple;
+	bh=yKaFp5yqzqpNtQG9D+9HKY/4P32rt1Zkitv2khOZdnc=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fgHsOTV+obs9LjZmfX3YJqH/l+8W9rEyvkWi7KQFdD589j80Oh8D6Tjh+bDY+6xGWGgo7tQ1D0D+KyRRtWYRbm6XafZpvUwSbbRs9i4MTq4U2r2Vu+iEKhmR+gFeve1e7fSKoQAxayPdXBhDw0nNXNcZvVHlKEFOt1zEoOJzE1E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.50
+	 To:Cc:Content-Type; b=JQNMJ//keQQlx6CkMYeqntuBbyU8kjRvS0Y8B81kIj9RdfEq5LK42xgIzN5u+YQHLwimVLb8113/opj/9DvfxSXXI9NiB2Drc5afLOpN48UQAEm/JTSEHO2Ai1dxFfa95FG42KRP9ouKm129kvKlPQfvNO/Kj3CPnOqeZ4FOvm4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-4af4575ec4cso559601137.2;
-        Fri, 29 Nov 2024 02:23:48 -0800 (PST)
+Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-4aefdbf8134so458038137.2;
+        Fri, 29 Nov 2024 02:29:58 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732875827; x=1733480627;
+        d=1e100.net; s=20230601; t=1732876196; x=1733480996;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Lb0O6wOGoEZfGObCxjbicwXvMy3aEqtM9vf1++Bs8QA=;
-        b=kdFxJAeeZhzMYdTYnJLnD31wH0rZLYnpjjAowvFe+7TypxCbW9IZ4SxusOkmL8f8po
-         6cp2qYTSFZz1h7E43/9isrqEXP9d9ee/7eyoT9j9OXKvX3YlVKqdgzl+b872TLUu+OwD
-         LxDrRXG419Xnrze76cgrJZCVVBYJqsPgaXYQpoHrDMXJKTnXA0SwY1mwpCV73heIHHXZ
-         sxVxLVs7U5HIR4/p6V+5vD89aW8DCXkPUOOn9oEGJPtuOQiCXNmB+vbkhh8vX4rb+Gnw
-         eEbNhuOgiSeR3LdTaXA1W0zDC3B1vBp1Ee/TJ6LDTZmp4MrV0ICCVnm+OGAEYevuA4Xm
-         XPvg==
-X-Forwarded-Encrypted: i=1; AJvYcCV0ZKJHG3JfNgC1H9l45f9bktXYz42ebWUyNLFoIYj3u/Kk/NsryvquFCR8awy1NQZaO8NJRvul6iGi@vger.kernel.org, AJvYcCVA412TR6WOvw5xbKCCYUfFPxrbnoEK22SX16QRXcoWoWwpfBq31cW4HmUYzlnpwjxuvGYd2O9UKNDTmFD7E6GDNkU=@vger.kernel.org, AJvYcCVUV4gxXPZs6K/pLhz4ySi0ZRQl1p5rbTCiY2BHbmNJWGoqsBY5MhCECtwdao+Q+sKYraAuYdd63Ixp@vger.kernel.org, AJvYcCXBNu0HKvDvlKNONUQHqCoRX3HYy6EQ6mylkFHgp9FhDHdfjsomoMMkalNtF5BjYimG2ODNwMXsZD3rVEX+@vger.kernel.org
-X-Gm-Message-State: AOJu0YzyYRP/46pN2DrVvclRhrjUleF20zZrKXNuCi9NzDCFFtVPtIu+
-	bKu8BhVZq29j7mV66LkM9cfEiVpCCcBKKDeRRSvn1vi+aERdRdYhEDoDRHzDVtA=
-X-Gm-Gg: ASbGncvpdl/1wf9z0MmeMz6AYxFryftiBI48urIV8pFdZ5rynO3qBEs512acL2a72mV
-	HdGTrn0MrzG0/NF8Ql4QnHzYDmalkFJH1W6a5euhXesFVDik/VcowXRL7miu6GBAHBAK8YyokbA
-	H6mhvf0Haubbl+djs4hukpX5mOY5turgSShxSPuKqeFWF/yu2xOKVPtE+PZw0SB8rRuxNjoAPHJ
-	2teIcZhaYfhTpMFkU/DeU2Ttva8plic6SSLFbsSyvFp/Ti6nXnKTu7oNkza7l/NElMiYspcYWdH
-	csCAv4xaaxGK
-X-Google-Smtp-Source: AGHT+IGPX4Z7XXeacRRkXvXJizJ93foOwZUyFckFAkluw3CyKCBGUmwkUccHt2INEhkiufUAO5bY8w==
-X-Received: by 2002:a05:6102:26cc:b0:4af:496b:1bce with SMTP id ada2fe7eead31-4af496b1cfemr8687733137.4.1732875826855;
-        Fri, 29 Nov 2024 02:23:46 -0800 (PST)
-Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com. [209.85.217.47])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-85b82a0e475sm703509241.7.2024.11.29.02.23.46
+        bh=ppQhOfB0GTFohm0DRY2oBb++m5qCmhOXx8Ed8pgjkgA=;
+        b=DHMIT8k4sYePRRv8hv66Qno8wNI7NE0Zrr/tiwbLb744iEwuYKXPYspgI5pEhWS0c7
+         Myuzm9yUarMbgBi9HaZ3zIJ4UPxE9owX/SorYvXeo45uVXJO7dzaWsB+2MN4lIth8bej
+         +o3dTBPNTQWD3VdKFj5nnduW/jl8t8w2sByLNIHQQ1THm+unX1dtNoK2W0pHMo92dWhw
+         fqxv5EIuTh6o5ygFV0FYG1EbuG2Tg9psz35qPx3Cq9ufdxd6Zt7dIr5s+rhlJksjvAv9
+         juPnsKCKeDNcaxRIoSK2g06UcCj9WhaKM9MBwFJSaRVQw0/zuHRwkJiBhYZh6c8lOP0m
+         oRgw==
+X-Forwarded-Encrypted: i=1; AJvYcCUN9E00vm6AdieskEI6TEUdfs9O6Ns+gBi3cu0/mudtYzoBv/MnWOvwdxIPplKS+Upq2EnCfty+0FB9equC@vger.kernel.org, AJvYcCUbF1M2fdVDEKpbIEzk2LFsP1V1v8oa6z6u/PGZ5FeEGP2H0/0wnwdafGHrJnRdk5w7qRp8gAAY@vger.kernel.org, AJvYcCW/r7E3X6bpVvgmp6RNd5tG0PnONgYBISOIBBwzhhCEQFRuiwgRSDWnv5bbmT93VR+WQG4LayJhpUVx@vger.kernel.org, AJvYcCW88Hm0ltFvxk5YMO/YYQrb2PXnTajwIOYw5QxlLxbTcIXQBGPazpBGBghQC5lE8Yv8FN4/MIr9YwgE@vger.kernel.org
+X-Gm-Message-State: AOJu0YzomJh3CTG13xy/9dtE90TIPnPF4pGefi6QN6pjwmm3fqhB3VuT
+	NtXwzrX1BkeQM/ur9a4rDY2ClYa+76UF4vZCMpJARliP+e89HI5vuOMMxBr8nXI=
+X-Gm-Gg: ASbGnctN+t29dq+TLG92sgnpLQuF1uIIV6BzBRJlmRm6UelplZmF6Jo/dRWhepEuAnA
+	rhvmy9bq2w3HZ4nB5scXeW4F8eyk4hinNmKQ9CLTPZ1FsKB9gu5hDnJ/h9vhhBxy+J/HptUYPl+
+	E4j6aHgW7WI/aOEoTntHbjyKgQoWuqlC6IZMwscV0Ogm2p6W3sq0cQrZI8zetHjkWcrfWbyJwZD
+	ttMMXhYUJOldGuiuvuIQFZv56ZBIZ9etw4lIKioQI0v7dTWbApF6f9si43HB1smU/mUVuTekMGk
+	qBglVxcLLWTP
+X-Google-Smtp-Source: AGHT+IEcOE2rcIs0I6rQJgvoUwcTkXON9eIFaZI+35fuAr7ODGoHF8ouLi+Vszm+5v2BMc2RxdWmOA==
+X-Received: by 2002:a05:6102:151f:b0:4af:49cc:7515 with SMTP id ada2fe7eead31-4af49cc99d7mr12238631137.7.1732876196604;
+        Fri, 29 Nov 2024 02:29:56 -0800 (PST)
+Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com. [209.85.217.54])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-85b82a0e475sm705843241.7.2024.11.29.02.29.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Nov 2024 02:23:46 -0800 (PST)
-Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-4af1578d288so466789137.3;
-        Fri, 29 Nov 2024 02:23:46 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUcn1q0dXCDFkFpgHEhylaUADDDhfhlvTFgp++SELeluTHJBl0C+4iBKM/gQprG30Dl2xKNRQxcj2fB@vger.kernel.org, AJvYcCWAqRINAOa3tw+EC1RjI5YZ4aQv/gDuqH4xehJWfgTPkA9Ql9J22mXKPjlv+im/y0KFIDZdNU3VAttHGIcACuq1E10=@vger.kernel.org, AJvYcCWIQKPiASQf6yZO3Or4DbpRX6pD5iDDCeN2hmE9RPYbivKsJhorBZfUNuBACq69nWp35+2BGyQy/Yt+v66V@vger.kernel.org, AJvYcCXpF5SFVD1986BIGPOKMSTWnFH3izzLQ2M8+o0G/YWltTmHSNGPc33Nbwz+GprxUfOFc3MENbrLfbw2@vger.kernel.org
-X-Received: by 2002:a05:6102:390e:b0:4af:30c3:6a2c with SMTP id
- ada2fe7eead31-4af4492c932mr14186029137.10.1732875825820; Fri, 29 Nov 2024
- 02:23:45 -0800 (PST)
+        Fri, 29 Nov 2024 02:29:56 -0800 (PST)
+Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-4af490d79d4so440648137.0;
+        Fri, 29 Nov 2024 02:29:55 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU9jRzhHmbRN2wsEyR8i39eKN+io8VF0TaUwkG1izGfX8CtQbMbRUtWX+KztDOdIWk2Zny2iA9jQDdz@vger.kernel.org, AJvYcCVF02p3pVmyWSXlRcQWEp3k8PFMlPzfFM5G731JBoPS/ZXPlPdv8eX/Rm9HUfFrearepLfW/nOoO8T+@vger.kernel.org, AJvYcCVV0DUPPKH99yGZYHMJFPT+Xh15odT9GrBv1uKgtbvgLP0oIph3hLQ1snaXARzgGlrrc522z07igTX442jK@vger.kernel.org, AJvYcCWYPFJrhZanAzsd2jHJ22gWA/SnebQppDd0t2v97QGlEMZN0yKDlGTzTQmasfWiaW7ZUvE8Lx1g@vger.kernel.org
+X-Received: by 2002:a05:6102:f07:b0:4a3:a014:38aa with SMTP id
+ ada2fe7eead31-4af448a91b7mr13985272137.11.1732876195687; Fri, 29 Nov 2024
+ 02:29:55 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241126092050.1825607-1-claudiu.beznea.uj@bp.renesas.com>
- <20241126092050.1825607-3-claudiu.beznea.uj@bp.renesas.com>
- <CAMuHMdUvmTQeQXxhsXtj23-OS=aL3UgsyOtnawdmnusrEJ2JQw@mail.gmail.com>
- <32fa7eb8-2139-454c-8866-cb264d060616@tuxon.dev> <CAMuHMdXPQnCPjKRxoSceYabWPHF9Z_A7qVN85yaUZjPG7-o7tg@mail.gmail.com>
-In-Reply-To: <CAMuHMdXPQnCPjKRxoSceYabWPHF9Z_A7qVN85yaUZjPG7-o7tg@mail.gmail.com>
+References: <20241010063611.788527-1-herve.codina@bootlin.com>
+ <20241010063611.788527-2-herve.codina@bootlin.com> <dywwnh7ns47ffndsttstpcsw44avxjvzcddmceha7xavqjdi77@cqdgmpdtywol>
+ <20241129091013.029fced3@bootlin.com> <1a895f7c-bbfc-483d-b36b-921788b07b36@app.fastmail.com>
+ <CAMuHMdWXgXiHNUhrXB9jT4opnOQYUxtW=Vh0yBQT0jJS49+zsw@mail.gmail.com> <93ad42dc-eac6-4914-a425-6dbcd5dccf44@app.fastmail.com>
+In-Reply-To: <93ad42dc-eac6-4914-a425-6dbcd5dccf44@app.fastmail.com>
 From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 29 Nov 2024 11:23:34 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXLVKDybzgeXc0rqiOFXFfRrat0LDEAEsBdHA3rmDiL0w@mail.gmail.com>
-Message-ID: <CAMuHMdXLVKDybzgeXc0rqiOFXFfRrat0LDEAEsBdHA3rmDiL0w@mail.gmail.com>
-Subject: Re: [PATCH v2 02/15] soc: renesas: Add SYSC driver for Renesas RZ family
-To: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, p.zabel@pengutronix.de, magnus.damm@gmail.com, 
-	gregkh@linuxfoundation.org, yoshihiro.shimoda.uh@renesas.com, 
-	christophe.jaillet@wanadoo.fr, linux-phy@lists.infradead.org, 
+Date: Fri, 29 Nov 2024 11:29:44 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWgqEZtd82hSp0iYahtTcTnORFytTm11EiZOjLf8V9tQw@mail.gmail.com>
+Message-ID: <CAMuHMdWgqEZtd82hSp0iYahtTcTnORFytTm11EiZOjLf8V9tQw@mail.gmail.com>
+Subject: Re: [PATCH v9 1/6] misc: Add support for LAN966x PCI device
+To: Arnd Bergmann <arnd@arndb.de>
+Cc: Herve Codina <herve.codina@bootlin.com>, Michal Kubecek <mkubecek@suse.cz>, 
+	Andy Shevchenko <andy.shevchenko@gmail.com>, Simon Horman <horms@kernel.org>, Lee Jones <lee@kernel.org>, 
+	"derek.kiernan@amd.com" <derek.kiernan@amd.com>, "dragan.cvetic@amd.com" <dragan.cvetic@amd.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Lars Povlsen <lars.povlsen@microchip.com>, 
+	Steen Hegelund <Steen.Hegelund@microchip.com>, Daniel Machon <daniel.machon@microchip.com>, 
+	UNGLinuxDriver@microchip.com, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Saravana Kannan <saravanak@google.com>, "David S . Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Horatiu Vultur <horatiu.vultur@microchip.com>, Andrew Lunn <andrew@lunn.ch>, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-usb@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+	Netdev <netdev@vger.kernel.org>, linux-pci@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, 
+	Allan Nielsen <allan.nielsen@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 29, 2024 at 9:54=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
-> On Fri, Nov 29, 2024 at 9:48=E2=80=AFAM Claudiu Beznea <claudiu.beznea@tu=
-xon.dev> wrote:
-> > On 28.11.2024 17:24, Geert Uytterhoeven wrote:
-> > > On Tue, Nov 26, 2024 at 10:21=E2=80=AFAM Claudiu <claudiu.beznea@tuxo=
-n.dev> wrote:
-> > >> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> > >>
-> > >> The RZ/G3S system controller (SYSC) has various registers that contr=
-ol
-> > >> signals specific to individual IPs. IP drivers must control these si=
-gnals
-> > >> at different configuration phases.
-> > >>
-> > >> Add SYSC driver that allows individual SYSC consumers to control the=
-se
-> > >> signals. The SYSC driver exports a syscon regmap enabling IP drivers=
- to
-> > >> use a specific SYSC offset and mask from the device tree, which can =
-then be
-> > >> accessed through regmap_update_bits().
-> > >>
-> > >> Currently, the SYSC driver provides control to the USB PWRRDY signal=
-, which
-> > >> is routed to the USB PHY. This signal needs to be managed before or =
-after
-> > >> powering the USB PHY off or on.
-> > >>
-> > >> Other SYSC signals candidates (as exposed in the the hardware manual=
- of the
-> > >>
-> > >> * PCIe:
-> > >> - ALLOW_ENTER_L1 signal controlled through the SYS_PCIE_CFG register
-> > >> - PCIE_RST_RSM_B signal controlled through the SYS_PCIE_RST_RSM_B
-> > >>   register
-> > >> - MODE_RXTERMINATION signal controlled through SYS_PCIE_PHY register
-> > >>
-> > >> * SPI:
-> > >> - SEL_SPI_OCTA signal controlled through SYS_IPCONT_SEL_SPI_OCTA
-> > >>   register
-> > >>
-> > >> * I2C/I3C:
-> > >> - af_bypass I2C signals controlled through SYS_I2Cx_CFG registers
-> > >>   (x=3D0..3)
-> > >> - af_bypass I3C signal controlled through SYS_I3C_CFG register
-> > >>
-> > >> * Ethernet:
-> > >> - FEC_GIGA_ENABLE Ethernet signals controlled through SYS_GETHx_CFG
-> > >>   registers (x=3D0..1)
-> > >>
-> > >> As different Renesas RZ SoC shares most of the SYSC functionalities
-> > >> available on the RZ/G3S SoC, the driver if formed of a SYSC core
-> > >> part and a SoC specific part allowing individual SYSC SoC to provide
-> > >> functionalities to the SYSC core.
-> > >>
-> > >> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> > >
-> > >> --- /dev/null
-> > >> +++ b/drivers/soc/renesas/r9a08g045-sysc.c
-> > >> @@ -0,0 +1,31 @@
-> > >> +// SPDX-License-Identifier: GPL-2.0
-> > >> +/*
-> > >> + * RZ/G3S System controller driver
-> > >> + *
-> > >> + * Copyright (C) 2024 Renesas Electronics Corp.
-> > >> + */
-> > >> +
-> > >> +#include <linux/array_size.h>
-> > >> +#include <linux/bits.h>
-> > >> +#include <linux/init.h>
-> > >> +
-> > >> +#include "rz-sysc.h"
-> > >> +
-> > >> +#define SYS_USB_PWRRDY         0xd70
-> > >> +#define SYS_USB_PWRRDY_PWRRDY_N        BIT(0)
-> > >> +#define SYS_MAX_REG            0xe20
-> > >> +
-> > >> +static const struct rz_sysc_signal_init_data rzg3s_sysc_signals_ini=
-t_data[] __initconst =3D {
-> > >
-> > > This is marked __initconst...
-> > >
-> > >> +       {
-> > >> +               .name =3D "usb-pwrrdy",
-> > >> +               .offset =3D SYS_USB_PWRRDY,
-> > >> +               .mask =3D SYS_USB_PWRRDY_PWRRDY_N,
-> > >> +               .refcnt_incr_val =3D 0
-> > >> +       }
-> > >> +};
-> > >> +
-> > >> +const struct rz_sysc_init_data rzg3s_sysc_init_data =3D {
-> > >
-> > > ... but this is not __init, causing a section mismatch.
-> >
-> > Do you know if there is a way to detect this?
->
-> The kernel should tell you during the build...
+Hi Arnd,
 
-Sorry, I hit send too early; I was still verifying this...
-And it indeed doesn't trigger, strange...
+On Fri, Nov 29, 2024 at 10:23=E2=80=AFAM Arnd Bergmann <arnd@arndb.de> wrot=
+e:
+> On Fri, Nov 29, 2024, at 09:44, Geert Uytterhoeven wrote:
+> > On Fri, Nov 29, 2024 at 9:25=E2=80=AFAM Arnd Bergmann <arnd@arndb.de> w=
+rote:
+> >> On Fri, Nov 29, 2024, at 09:10, Herve Codina wrote:
+> >> I would write in two lines as
+> >>
+> >>         depends on PCI
+> >>         depends on OF_OVERLAY
+> >>
+> >> since OF_OVERLAY already depends on OF, that can be left out.
+> >> The effect is the same as your variant though.
+> >
+> > What about
+> >
+> >     depends on OF
+> >     select OF_OVERLAY
+> >
+> > as "OF" is a clear bus dependency, due to the driver providing an OF
+> > child bus (cfr. I2C or SPI bus controller drivers depending on I2C or
+> > SPI), and OF_OVERLAY is an optional software mechanism?
+>
+> OF_OVERLAY is currently a user visible option, so I think it's
+> intended to be used with 'depends on'. The only other callers
+> of this interface are the kunit test modules that just leave
+> out the overlay code if that is disabled.
+
+Indeed, there are no real upstream users of OF_OVERLAY left.
+Until commit 1760eb547276299a ("drm: rcar-du: Drop leftovers
+dependencies from Kconfig"), the rcar-lvds driver selected OF_OVERLAY
+to be able to fix up old DTBs.
+
+> If we decide to treat OF_OVERLAY as a library instead, it should
+> probably become a silent Kconfig option that gets selected by
+> all its users including the unit tests, and then we can remove
+> the #ifdef checks there.
+
+Yep.
+
+> Since OF_OVERLAY pulls in OF_DYNAMIC, I would still prefer that
+> to be a user choice. Silently enabling OF_OVERLAY definitely has
+> a risk of introducing regressions since it changes some of the
+> interesting code paths in the core, in particular it enables
+> reference counting in of_node_get(), which many drivers get wrong.
+
+Distro kernels will have to enable this anyway, if they want to
+support LAN966x...
 
 Gr{oetje,eeting}s,
 
