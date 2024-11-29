@@ -1,41 +1,63 @@
-Return-Path: <devicetree+bounces-125411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A3589DBEC5
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 03:49:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCFC69DBEC1
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 03:47:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B889A164982
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 02:49:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E6BAE164B7E
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 02:47:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3085C54279;
-	Fri, 29 Nov 2024 02:49:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4E0754279;
+	Fri, 29 Nov 2024 02:47:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="bL/N3Unq"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="eMB9XMO2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m2410.xmail.ntesmail.com (mail-m2410.xmail.ntesmail.com [45.195.24.10])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC85D1EA65;
-	Fri, 29 Nov 2024 02:49:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.195.24.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53B4C8F5A;
+	Fri, 29 Nov 2024 02:47:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732848560; cv=none; b=sUULFqN7pDaZ1dM9EuGXIkrCBtqp3bhA9/RENRF8OEObLG6+RXluXGMV6LmkDuGHGb/JLzp/OiLo7cm/1OLRw2gJQ+gfwXmoko8JvyD06eM7SEhmFvDiDmd+PDJ3vnkaqpyFcNej6kl3vnfynoqboMI9/VRu4TKX0HjLmJhGo68=
+	t=1732848435; cv=none; b=LC/6uNxCkK3oJduB/D+VOkByU5yTyG4lKzp2SJmjuMe1OhX+wtRIDXMVX3j4RvleFX2MoI6XBRyDkyEE/IK4fV6XDRh32fKibu3Q4l5vG+dMQ03nlGvJtW2UAItuLcSscD1RJ+bNRdN3Cjvlwz5xQbZ5P+7mrJw6r1MKeHMQzHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732848560; c=relaxed/simple;
-	bh=jZsEIhMOHvFqsQDpPGAdCTDyPd8ZaTjCTiY8iPbXGNM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aHe+64RdD2oVrh5RLTmVKJuI1ycw8GxiR6cD3h4dx1iP12QeL/hl90znKyF98LJr/+WHxGNYp6KhcnIhmNAAdqpFBejZPqu5VoKIjJF3ImZuAcdoM/EgOqZVm1lqTIpz1PDpxCgd/grw3Wk3KL2IDdxO4wtGVBEwzsN464O+3Wc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=bL/N3Unq; arc=none smtp.client-ip=45.195.24.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.26] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 42b18083;
-	Fri, 29 Nov 2024 10:43:57 +0800 (GMT+08:00)
-Message-ID: <6e1f35c0-5ea8-414f-b3ea-4e7222c605ef@rock-chips.com>
-Date: Fri, 29 Nov 2024 10:43:57 +0800
+	s=arc-20240116; t=1732848435; c=relaxed/simple;
+	bh=Jfnse/E7ivYvRB3Hs0F7MJpfOkXbMTzOWOL0KTcfotU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=XR78lrXWKzOchCPMbeovTOJoEPNxD+dzCfdAxpqWwmIIsNNp8ZIwl0AoW/yx0iLQsKGb0L9S0BXlhmnaTkHNKp0A+Uc+hA1/oNcWR2kiM8un5F6DO7pvjlaXsEcMZRlK4oZ+7QFPhCnfoF4VmBSwm74Mn8kik6HMPKVCy95TIFY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=eMB9XMO2; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4ASLYsCo031477;
+	Fri, 29 Nov 2024 02:47:08 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	fuSetdXFcy+pj6kZa/ngSUhlbKD/UHxR3gyV4PPX/3c=; b=eMB9XMO2TBCPOt5c
+	ZLueTc/tLDs7k1pgULAMHj+EYqY6pk5xqJTjt40r+lSJVC7H+Uy7EPX1wV3OZ526
+	jeTqixvZ0G8XUgHUPCOSdh+bdWvqB9DntVdqxxEchs/cse6r9iR5cAKhas+JX6IM
+	hgVobw9GmVSgOxYN8s9QLFGYBGbtDEVaTNt3F4qewzXtwVQr7xI+llwq5U2BYE0Q
+	LkK8CzZu0eOHajM5f4EmjqkRjrs0b50wn0O8ApB3+M2AbvkdlD94ulzop4DRu7Ic
+	GHq1nTgm7wkBzcaD9bTEKVbehI7l8CGrr6ETNVIc2/l+2D/WQYv16jw9T/oW5rhx
+	rC0+/Q==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43671ec4yr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 29 Nov 2024 02:47:08 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AT2l7Zf032149
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 29 Nov 2024 02:47:07 GMT
+Received: from [10.239.28.11] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 28 Nov
+ 2024 18:47:02 -0800
+Message-ID: <a6ac4e53-7137-42fa-9cef-d3f4a5816960@quicinc.com>
+Date: Fri, 29 Nov 2024 10:47:00 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -43,152 +65,83 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 04/10] phy: phy-rockchip-samsung-hdptx: Add support for
- eDP mode
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- rfoss@kernel.org, vkoul@kernel.org, sebastian.reichel@collabora.com,
- cristian.ciocaltea@collabora.com, l.stach@pengutronix.de,
- andy.yan@rock-chips.com, hjc@rock-chips.com, algea.cao@rock-chips.com,
- kever.yang@rock-chips.com, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org
-References: <20241127075157.856029-1-damon.ding@rock-chips.com>
- <4260470.1IzOArtZ34@diego>
- <8df0acc8-b7aa-453f-b55c-30144f51d7cf@rock-chips.com>
- <2131853.KlZ2vcFHjT@diego>
+Subject: Re: [PATCH v1 1/3] arm64: dts: qcom: sa8775p-ride: Change the BT node
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Marcel Holtmann
+	<marcel@holtmann.org>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad Dybcio" <konradybcio@kernel.org>,
+        Balakrishna Godavarthi
+	<quic_bgodavar@quicinc.com>,
+        Rocky Liao <quic_rjliao@quicinc.com>
+CC: <linux-bluetooth@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <quic_zijuhu@quicinc.com>, <quic_jiaymao@quicinc.com>,
+        <quic_mohamull@quicinc.com>
+References: <20241128120922.3518582-1-quic_chejiang@quicinc.com>
+ <20241128120922.3518582-2-quic_chejiang@quicinc.com>
+ <08c19ae1-b781-475a-8059-18bf9b708dfd@kernel.org>
 Content-Language: en-US
-From: Damon Ding <damon.ding@rock-chips.com>
-In-Reply-To: <2131853.KlZ2vcFHjT@diego>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ0seTVZOHUxJTx1MQh8eT0lWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZS1VLVUtVS1kG
-X-HM-Tid: 0a9375cdbbee03a3kunm42b18083
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Pk06MTo5DzIoFSEqNTY2LAo6
-	Iz0KCj1VSlVKTEhJQ09DSUhCTU5MVTMWGhIXVR8aFhQVVR8SFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFITk9LNwY+
-DKIM-Signature:a=rsa-sha256;
-	b=bL/N3Unq55qSkA26JYoRtN15Zz23QknxZHD/t3byhVLAxtGQaDu8Vi0Y838Nayz2QgaE46cZpnKAmZ/I0Q41VPh89kl26riBDRD6ePNIsmUD9gvj5luW7GmvLFlikXGeWmb033lk9ZmjxL6Ht8auxKsmbc/UY9vu1VhuKgKFw88=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=kpe86r9iOvjOisEL0baYQ/8aMf7jHymtGoN0ZQJx9H0=;
-	h=date:mime-version:subject:message-id:from;
+From: "Cheng Jiang (IOE)" <quic_chejiang@quicinc.com>
+In-Reply-To: <08c19ae1-b781-475a-8059-18bf9b708dfd@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 00NGTvecs9tja8cOwbJzRBfaSHm_llUv
+X-Proofpoint-GUID: 00NGTvecs9tja8cOwbJzRBfaSHm_llUv
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
+ impostorscore=0 mlxscore=0 phishscore=0 priorityscore=1501 clxscore=1015
+ bulkscore=0 lowpriorityscore=0 spamscore=0 adultscore=0 mlxlogscore=999
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2411290021
 
-Hi Heiko,
+Hi Krzysztof,
 
-On 2024/11/27 19:04, Heiko Stübner wrote:
-> Hi Damon,
-> 
-> Am Mittwoch, 27. November 2024, 12:00:10 CET schrieb Damon Ding:
->> Hi Heiko:
+On 11/28/2024 10:39 PM, Krzysztof Kozlowski wrote:
+> On 28/11/2024 13:09, Cheng Jiang wrote:
+>> The SA8775P-Ride uses the QCA6698 chipset, which shares the same IP core
+>> as the WCN6855. However, it has different RF components and RAM sizes,
+>> so new firmware is needed.  This change allows driver to distinguish it
+>> from the WCN6855 and load the specific firmware.
 >>
->> On 2024/11/27 17:29, Heiko Stübner wrote:
->>> Hi Damon,
->>>
->>> Am Mittwoch, 27. November 2024, 08:51:51 CET schrieb Damon Ding:
->>>> Add basic support for RBR/HBR/HBR2 link rates, and the voltage swing and
->>>> pre-emphasis configurations of each link rate have been verified according
->>>> to the eDP 1.3 requirements.
->>>>
->>>> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
->>>> ---
->>>
->>> [ ... huge block of DP phy support ...]
->>>
->>> yes that block was huge, but I also don't see a way to split that up in a
->>> useful way, so it should be fine.
->>>
+>> Signed-off-by: Cheng Jiang <quic_chejiang@quicinc.com>
+>> ---
+>>  arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
 >>
->> As for the huge block of DP phy support, I will try to use the existing
->> rk_hdptx_multi_reg_write() to set regs in next version, maybe the way
->> can make the codes more concise.
+>> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+>> index 3fc62e123..f95e709bd 100644
+>> --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+>> @@ -856,7 +856,7 @@ &uart17 {
+>>  	status = "okay";
+>>  
+>>  	bluetooth {
+>> -		compatible = "qcom,wcn6855-bt";
+>> +		compatible = "qcom,qca6698-bt";
 > 
-> I actually did like the the dp-side of the phy code.
+> This breaks users without mentioning it, without really justifying the
+> impact. Also it is not clear for me whether devices are or are not
+> compatible.
+QCA6698 can use the wcn6855 firmware, but the performance is not good as expect. 
+To avoid breaking existing projects, we plan to upstream a new firmware for this
+chip. 
+If use the 'firmware-name' to specify the firmware, we can keep the compatible
+here unchanged. Is it OK?
 > 
-> That you need to add all the DP stuff can't be helped and I actually find
-> real functions nicer than having anonymous register writes.
-> 
-> I.e. the hdmi-side with its register lists does write "magic" values to
-> registers.
-> 
-> So personally I'd just leave the dp-functions as is please, until someone
-> does complain (I was not trying to complain, just mentioned why I cut
-> it from the reply :-) )
-> 
-> 
-> Thanks
-> Heiko
-> 
-> 
->>>> +static int rk_hdptx_phy_set_mode(struct phy *phy, enum phy_mode mode,
->>>> +				 int submode)
->>>> +{
->>>> +	return 0;
->>>> +}
->>>
->>> I think it might make sense to go the same way as the DCPHY and also
->>> naneng combophy, to use #phy-cells = 1 to select the phy-mode via DT .
->>>
->>> See [0] for Sebastians initial suggestion regarding the DC-PHY.
->>> The naneng combophy already uses that scheme of mode-selection too.
->>>
->>> There is of course the issue of backwards-compatibility, but that can be
->>> worked around in the binding with something like:
->>>
->>>    '#phy-cells':
->>>       enum: [0, 1]
->>>       description: |
->>>         If #phy-cells is 0, PHY mode is set to PHY_TYPE_HDMI
->>>         If #phy-cells is 1 mode is set in the PHY cells. Supported modes are:
->>>           - PHY_TYPE_HDMI
->>>           - PHY_TYPE_DP
->>>         See include/dt-bindings/phy/phy.h for constants.
->>>
->>> PHY_TYPE_HDMI needs to be added to include/dt-bindings/phy/phy.h
->>> but PHY_TYPE_DP is already there.
->>>
->>> That way we would standardize on one form of accessing phy-types
->>> on rk3588 :-) .
->>>
->>> Also see the Mediatek CSI rx phy doing this too already [1]
->>>
->>>
->>> Heiko
->>>
->>> [0] https://lore.kernel.org/linux-rockchip/udad4qf3o7kt45nuz6gxsvsmprh4rnyfxfogopmih6ucznizih@7oj2jrnlfonz/
->>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/phy/mediatek,mt8365-csi-rx.yaml
->>>
->>
->> It is really a nice way to separate HDMI and DP modes.
+> Best regards,
+> Krzysztof
 
-I apologize for reopening the discussion about the phy-types setting.
-
-With the .set_mode() of struct phy_ops, the HDMI and eDP dynamic 
-switching can be achieved, which just depends on the right setting of
-enum phy_mode in include/linux/phy/phy.h. So the previous way of 
-configuring phy mode may be also good.
-
-And other phys may want to support dynamic switching too, like the 
-Rockchip USBDP combo phy.
-
->>
->>>
->>>
->>>
->>>
->>
->> Best regards,
->> Damon
->>
->>
-> 
-> 
-> 
-> 
-> 
-> 
-Best regards,
-Damon
 
