@@ -1,229 +1,181 @@
-Return-Path: <devicetree+bounces-125606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125607-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C3549DEB57
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 17:56:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 327319DEB7B
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 18:11:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C4A30B20FE9
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 16:56:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5F9528241B
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 17:11:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1B9919884C;
-	Fri, 29 Nov 2024 16:56:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5DC715622E;
+	Fri, 29 Nov 2024 17:11:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="SRjC66XG"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="bDOwkwrp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F1F6AD23
-	for <devicetree@vger.kernel.org>; Fri, 29 Nov 2024 16:56:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CABC615539A
+	for <devicetree@vger.kernel.org>; Fri, 29 Nov 2024 17:11:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732899380; cv=none; b=LxKU+Oh3O2xs8i5inocHmN+inndWV2q2S7CjkoVgo1Q9FhhtO55NLmqTBMeTuMt0nGPZ7IHRehqHUAMaWdDsIXRQZlXyD54BU23Pi1+e1cYRyUvWxbS8z9Vdf8GMYbJZvO+qNOPjW52jHgCkEpL8UQKakNN73lM1yGumRvpjyFs=
+	t=1732900284; cv=none; b=XWQJ4fjZz/Q/0nJAK615nkT+kG/rnPFxf0w4d/eIjkje+nN1U6m77rOYFlHSQan7zZ70dvImfGzpluBvtd8OP/fQJf6HbmMaGe1Q+KEtR7UN0ILIA+C7k64nme1Bpk97/OlZHmwjPVd0RU+ExX9woXhsI9DpRmWNO6DiQST0Tug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732899380; c=relaxed/simple;
-	bh=lQwbTwapAcxU9HUYx7ZhzBw2LZBa1rj3PgCAZS97aqM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FOy+zyUVkv4csHKpusDSyvLkj3J9MyTidsYlinKmULHy+3snpI7NN2m5TdF6224Gx9oG46YbJ2WvZ/gEQcp1keycf+D08KQQacszen1voxKpuS3tuT97BfpULfNrHNGIQrrIv9L5D+ziVDJtdZjaWThPTp2d04ucsDRCfF10W4U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=SRjC66XG; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AT83nca004319
-	for <devicetree@vger.kernel.org>; Fri, 29 Nov 2024 16:56:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	9N9+0StuwjFo78qzxGpA7gT4M9KWRW0S+SLyWV8Ydm4=; b=SRjC66XG6ukxUnql
-	QAhvEXXLmYdoqEywLif+5a3pD/fEzyeJuaE0KBFTyGuG1X+ROPeAHW7006tzhx1l
-	f9udFt63+k7gOJuAr+Mc+zVUSZ5f7NBfzvExm443ilGKpTkSSu5TN8LIpnPYZ6O1
-	osmCx1REcNLc9/9SBWPmRVHX6kDBmL/zXwY1HMimUH4Qc7vWmGcsA9cYqrMH7dZa
-	TbYxQN9uEe479CJDCsHoWQtAU4/t2f8V/LOJ70kMhqyjlKHMzIhAolRiTrXwibC2
-	9UKh85kPXc/1SwY7hg49nqJDvgzXwmHTulsifK4301kz1u7eKafttQGiiyPIOk1G
-	H0dyRg==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4379s6s9c1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 29 Nov 2024 16:56:16 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4667cab5e1bso3164591cf.3
-        for <devicetree@vger.kernel.org>; Fri, 29 Nov 2024 08:56:15 -0800 (PST)
+	s=arc-20240116; t=1732900284; c=relaxed/simple;
+	bh=u4VeqDNvTWRAhnRMPvx5ZxHgDaIe1hpfxIJoqfWrVgE=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=faIIEEMg8T92sT2m1IlVH2lQudyK+5iwQPKjZCpT+7l7mt7i+ahdVIVwJGtXjEpyIM9ObWEXVH+3uyVB2U6PgqXgGxLO5EXbHEQXX4htQYa76wM9xUmvfoal9We9EyUvratuRWiJCXyGOTDcmvZXCJ7jKrzOLE61m4tBxZp7jQQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=bDOwkwrp; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-53df80eeeedso2134690e87.2
+        for <devicetree@vger.kernel.org>; Fri, 29 Nov 2024 09:11:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1732900281; x=1733505081; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wKStJ4JMYm6/f7jAdkMonmjOHy/XStYH3AHNh9QPw+k=;
+        b=bDOwkwrp57+hdJuQM2yuTXFuR2uJQz4KquU51t8PIHqO8eQiDyD9aQNlzcorNorPaT
+         xp7YOLadRHiHqNeLg9IJY6J/ulFR/j/syM1NdPODXmEbzVOl5mUR/WOlAKf2q/W7pRWF
+         OVISodhH2VoKdzyWp6LX1fXe+h47Uvf/jzI/K4qJMK0C/xvuS5ytvS7xf5oYa3VTLyd7
+         VWtiSLzoTH2KjPpjC534rVGaPgyoky1fRIlQrXwp05orw95J08DpqUP7G6xtWuVpeMBw
+         wDC8XOyxR1Qfs1jSuK0KTWCb5rsWjIdgrxuwVXnYBHN2hXoRrC0USPiYqn3iDJLpFYf4
+         VHpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732899373; x=1733504173;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9N9+0StuwjFo78qzxGpA7gT4M9KWRW0S+SLyWV8Ydm4=;
-        b=k+fwx3EFgVN6fh2jinorsiiImd+mPPaj53s/QDt2z24i+qTdAMhWtRGSAmXdnTG+Zu
-         BI4Zj27CUrNsa/zkNBztRD9UBtmzW1cGw5qNApqHOxQUoHqzIHXUT/6mEWO+jnrA4+jp
-         2UOB2KfcAUUfljYr5ZaKYvEY82tTRpsQ6Puu61BHY8oXnTEMcPsp+Fr3KSEgrWQN9366
-         oabxGbrPTA0y3BoKmzJJ7G5sXq3OtWBF8OmPhBucqxWamLHZdt0DG8/KT5BfZyDiUuQS
-         00CysIX5nSKFJhyXdhb4kW7dKmK5MEt1keSFefuqSa+GJ4xIc1UVuI6Bv8DWChx/Wkih
-         epBQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWLMqWlB3BA2tRB6hz8CcPe+xUveGTl1m6tVraP83RVlzvTr66ITQXSA5OBtGEhvl3pt5CCNntFXq5F@vger.kernel.org
-X-Gm-Message-State: AOJu0YzgzzN+wjLRREg2v902AQRXUwrt3Fc4WhAkHyKB020anoDKLzsP
-	1m7o/oVz92zhCunXE3WhquF3Pmg8iI76gk/e9O3CiZ5VTNlc+Im01evqF8O5ZZiZlgXmKNjbIaY
-	qTixneleyb3uUs3yLgJoubZxMqvTIp1HTmVds8766JXiReDo/FoiQRi45S5J2
-X-Gm-Gg: ASbGncsuI84lyOxx88ZbAad7Sd2UD8tcAGyFG6eZMy7oCBGtjMcx0cSC+Kq8gdctMvI
-	58Xli0LpX863eCvQoHn3sRYytbGNfzG8s+eIL3U7OiWPu3uS+86Y+YP6mRRY49UUi5MjmqSD8tP
-	RX9BNt58OTeUxTJbgAJr9ahcFvvCdN33JRIgy1ujkBeGR+CpzN0QWjqGONvV23wsBoB3k/mTNZy
-	yv1mxVLW40ZNydB2OBLPkVmXx/37p9h7q0fpGaeaLWynp8f7/BAIifarsxe6btsRd/KQTT2p7uf
-	jt/B7wcTwRzh0NcRDmJw116E9GJM+bY=
-X-Received: by 2002:a05:622a:389:b0:462:fb65:cbb5 with SMTP id d75a77b69052e-466b36886b8mr76651361cf.16.1732899372940;
-        Fri, 29 Nov 2024 08:56:12 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGVQSLO78wLDzRLA3VpDJ6fBlRPS9lgHqu+R15VZlArJvaDZj5w/JO/kqnnSs0mQp12UhVnIQ==
-X-Received: by 2002:a05:622a:389:b0:462:fb65:cbb5 with SMTP id d75a77b69052e-466b36886b8mr76651111cf.16.1732899372416;
-        Fri, 29 Nov 2024 08:56:12 -0800 (PST)
-Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa5998e64c4sm190708566b.97.2024.11.29.08.56.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Nov 2024 08:56:11 -0800 (PST)
-Message-ID: <00941d91-7366-4836-9d3a-7e505528a4e8@oss.qualcomm.com>
-Date: Fri, 29 Nov 2024 17:56:09 +0100
+        d=1e100.net; s=20230601; t=1732900281; x=1733505081;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wKStJ4JMYm6/f7jAdkMonmjOHy/XStYH3AHNh9QPw+k=;
+        b=W9dl947sfzFLernF6VL/dQrRiwqf4N5bTFVKUztGWgLdJ4z+kKVR7YdPmXS9rwffNA
+         zR6UHiNGT6JM8lA7sMlkd90NnVSMhJ5n98qZW7waDsAN42ab4V/hPnt+9HkccVcufXQv
+         X9Cqok2Xdo7ATnvvyCwxKblpyw1648X5WW5+CZogHYM32tZ/SY6q6Aan/v6Y/9qZ5toh
+         M92qKWOpDCoFJoQKqGuDo/rb8+eAr0KKB49GeOaiyNHWIUX4CkAmh3iclJaRiuodjLOZ
+         u/gi7TFZYUmuWa3dfYac1anQrSg1k2vpjJ8pgFTsFUtFt645vcO0ZB50BHMpHZMGASd/
+         39QQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWrTaSvYzKSQa4mjX7+ULhdadlx1dOw6tzraHvg+IXHE08wLZ11UL4nsNadBreMxDTsBfrih7r79mjY@vger.kernel.org
+X-Gm-Message-State: AOJu0YyNrwyowWRy8Ph7o6qUaILWufE84eg4w1bmEVSIB0mHy6pV+j4R
+	E4OjbOYzMBRxPrfstzojTKV2HwaEt4xsaARouSFQSrORwbeeERMYdjWjDnKTCn4=
+X-Gm-Gg: ASbGnctJwS0yiD0ejcg8gmn7X4CZyR/8114FpQKV3D3n6RuGrFFZyYjnYqncUrc1Ibr
+	8znVqueACDtfpjRKP9bp+4Nq793CiEHvflYOMZZiIuafEfLojeSo68Wwi5CwR68+pFVcBVhrGmi
+	T4oWyK4tf477IHXcMgFlg43UHFYhlM4PNC72YvCTRyVRPGVsgvPrmpAb1uy5Ue75/M0jZWardVV
+	cdG3Et9koLfPmmmUIsN3KVxw3IdA0DcdNnA5k/OvhRpYk7HBofhzS+nph/b4a/rPcaTT487OPWT
+	4oYtQB252KuxfSdX07gC
+X-Google-Smtp-Source: AGHT+IHZ3oTCh7gVSsmHhrZ3fiOp7cXkhyrNMHuydkCIk2tz2qxDfVIno+QP7oK2bTxacMEqt16MJg==
+X-Received: by 2002:a05:6512:39d2:b0:53d:ec9a:138f with SMTP id 2adb3069b0e04-53df0112687mr8431697e87.57.1732900280754;
+        Fri, 29 Nov 2024 09:11:20 -0800 (PST)
+Received: from localhost (host-79-49-220-127.retail.telecomitalia.it. [79.49.220.127])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa5998e63a2sm192130166b.113.2024.11.29.09.11.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 29 Nov 2024 09:11:20 -0800 (PST)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Fri, 29 Nov 2024 18:11:53 +0100
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Andrea della Porta <andrea.porta@suse.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof Wilczynski <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Masahiro Yamada <masahiroy@kernel.org>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH v4 02/10] dt-bindings: pinctrl: Add RaspberryPi RP1
+ gpio/pinctrl/pinmux bindings
+Message-ID: <Z0n12a6irbXQomdD@apocalypse>
+References: <cover.1732444746.git.andrea.porta@suse.com>
+ <9b83c5ee8345e4fe26e942f343305fdddc01c59f.1732444746.git.andrea.porta@suse.com>
+ <4ufubysv62v7aq53qfzxmup5agmqypdvemd24vm6eentph46qq@3kveluud3zd3>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/7] drm/msm: adreno: dynamically generate GMU bw table
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Akhil P Oommen <quic_akhilpo@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20241128-topic-sm8x50-gpu-bw-vote-v3-0-81d60c10fb73@linaro.org>
- <20241128-topic-sm8x50-gpu-bw-vote-v3-3-81d60c10fb73@linaro.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20241128-topic-sm8x50-gpu-bw-vote-v3-3-81d60c10fb73@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: 8tWW4QjY6o2XMnE6juAvMzaJTN8KJtW8
-X-Proofpoint-GUID: 8tWW4QjY6o2XMnE6juAvMzaJTN8KJtW8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
- impostorscore=0 priorityscore=1501 malwarescore=0 suspectscore=0
- adultscore=0 lowpriorityscore=0 bulkscore=0 spamscore=0 clxscore=1015
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2411290137
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4ufubysv62v7aq53qfzxmup5agmqypdvemd24vm6eentph46qq@3kveluud3zd3>
 
-On 28.11.2024 11:25 AM, Neil Armstrong wrote:
-> The Adreno GPU Management Unit (GMU) can also scale the ddr
-> bandwidth along the frequency and power domain level, but for
-> now we statically fill the bw_table with values from the
-> downstream driver.
+Hi Krzysztof,
+
+On 08:55 Wed 27 Nov     , Krzysztof Kozlowski wrote:
+> On Sun, Nov 24, 2024 at 11:51:39AM +0100, Andrea della Porta wrote:
+> > +  '#interrupt-cells':
+> > +    description:
+> > +      Specifies the Bank number [0, 1, 2] and Flags as defined in
+> > +      include/dt-bindings/interrupt-controller/irq.h.
+> > +    const: 2
+> > +
+> > +  interrupt-controller: true
+> > +
+> > +patternProperties:
+> > +  "-state$":
+> > +    oneOf:
+> > +      - $ref: "#/$defs/raspberrypi-rp1-state"
+> > +      - patternProperties:
+> > +          "-pins$":
+> > +            $ref: "#/$defs/raspberrypi-rp1-state"
+> > +        additionalProperties: false
+> > +
+> > +$defs:
+> > +  raspberrypi-rp1-state:
+> > +    allOf:
+> > +      - $ref: pincfg-node.yaml#
+> > +      - $ref: pinmux-node.yaml#
+> > +
+> > +    description:
+> > +      Pin controller client devices use pin configuration subnodes (children
+> > +      and grandchildren) for desired pin configuration.
+> > +      Client device subnodes use below standard properties.
+> > +
+> > +    properties:
+> > +      pins:
+> > +        description:
+> > +          List of gpio pins affected by the properties specified in this
+> > +          subnode.
+> > +        items:
+> > +          pattern: "^gpio([0-9]|[1-5][0-9])$"
 > 
-> Only the first entry is used, which is a disable vote, so we
-> currently rely on scaling via the linux interconnect paths.
+> You have 54 GPIOs, so up to 53.
+
+Ack.
+
 > 
-> Let's dynamically generate the bw_table with the vote values
-> previously calculated from the OPPs.
+> Use also consistent quotes, either ' or ".
+
+Ack.
+
 > 
-> Those entried will then be used by the GMU when passing the
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-entries
+Many thanks,
+Andrea
 
-> appropriate bandwidth level while voting for a gpu frequency.
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
-
-[...]
-
->  drivers/gpu/drm/msm/adreno/a6xx_hfi.c | 39 ++++++++++++++++++++++++++++++++---
->  1 file changed, 36 insertions(+), 3 deletions(-)
+> Best regards,
+> Krzysztof
 > 
-> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_hfi.c b/drivers/gpu/drm/msm/adreno/a6xx_hfi.c
-> index cb8844ed46b29c4569d05eb7a24f7b27e173190f..fe1946650425b749bad483dad1e630bc8be83abc 100644
-> --- a/drivers/gpu/drm/msm/adreno/a6xx_hfi.c
-> +++ b/drivers/gpu/drm/msm/adreno/a6xx_hfi.c
-> @@ -621,6 +621,35 @@ static void a740_build_bw_table(struct a6xx_hfi_msg_bw_table *msg)
->  	msg->cnoc_cmds_data[1][0] = 0x60000001;
->  }
->  
-> +static void a740_generate_bw_table(const struct a6xx_info *info, struct a6xx_gmu *gmu,
-> +				   struct a6xx_hfi_msg_bw_table *msg)
-
-This should work for all targets
-
-> +{
-> +	unsigned int i, j;
-> +
-> +	msg->ddr_wait_bitmask = 0x7;
-
-GENMASK; also should be generated based on BCM data dynamically, there's
-logic for it in bcm-voter.c : tcs_list_gen()
-
-> +
-> +	for (i = 0; i < GMU_MAX_BCMS; i++) {
-> +		if (!info->bcms[i].name)
-> +			break;
-> +		msg->ddr_cmds_addrs[i] = cmd_db_read_addr(info->bcms[i].name);
-
-A7xx share a common list of BCMs, the buswidth may differ per soc and it's
-something already stored in ICC drivers
-
-> +	}
-> +	msg->ddr_cmds_num = i;
-> +
-> +	for (i = 0; i < gmu->nr_gpu_bws; ++i)
-> +		for (j = 0; j < msg->ddr_cmds_num; j++)
-> +			msg->ddr_cmds_data[i][j] = gmu->gpu_ib_votes[i][j];
-> +	msg->bw_level_num = gmu->nr_gpu_bws;
-> +
-> +	/* TODO also generate CNOC commands */
-
-We only do on/off (0/100 units - kbps?), it seems
-
-> +
-> +	msg->cnoc_cmds_num = 1;
-> +	msg->cnoc_wait_bitmask = 0x1;
-> +
-> +	msg->cnoc_cmds_addrs[0] = cmd_db_read_addr("CN0");
-> +	msg->cnoc_cmds_data[0][0] = 0x40000000;
-> +	msg->cnoc_cmds_data[1][0] = 0x60000001;
-> +}
-> +
->  static void a6xx_build_bw_table(struct a6xx_hfi_msg_bw_table *msg)
->  {
->  	/* Send a single "off" entry since the 630 GMU doesn't do bus scaling */
-> @@ -664,6 +693,7 @@ static int a6xx_hfi_send_bw_table(struct a6xx_gmu *gmu)
->  	struct a6xx_hfi_msg_bw_table *msg;
->  	struct a6xx_gpu *a6xx_gpu = container_of(gmu, struct a6xx_gpu, gmu);
->  	struct adreno_gpu *adreno_gpu = &a6xx_gpu->base;
-> +	const struct a6xx_info *info = adreno_gpu->info->a6xx;
->  
->  	if (gmu->bw_table)
->  		goto send;
-> @@ -690,9 +720,12 @@ static int a6xx_hfi_send_bw_table(struct a6xx_gmu *gmu)
->  		a690_build_bw_table(msg);
->  	else if (adreno_is_a730(adreno_gpu))
->  		a730_build_bw_table(msg);
-> -	else if (adreno_is_a740_family(adreno_gpu))
-> -		a740_build_bw_table(msg);
-> -	else
-> +	else if (adreno_is_a740_family(adreno_gpu)) {
-> +		if (info->bcms && gmu->nr_gpu_bws > 1)
-> +			a740_generate_bw_table(info, gmu, msg);
-
-This if should come before the hardcoded if-else chain, as it
-applies to all platforms
-
-Konrad
 
