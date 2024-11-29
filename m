@@ -1,126 +1,104 @@
-Return-Path: <devicetree+bounces-125586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B7F59DE971
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 16:32:32 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 382F39DE96E
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 16:32:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E537C28247F
-	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 15:32:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CA3C3B23059
+	for <lists+devicetree@lfdr.de>; Fri, 29 Nov 2024 15:32:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05962148FF5;
-	Fri, 29 Nov 2024 15:32:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E48F145B00;
+	Fri, 29 Nov 2024 15:32:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KYfJWagc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NoG9mMV0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11C30647;
-	Fri, 29 Nov 2024 15:32:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3335E82D66;
+	Fri, 29 Nov 2024 15:32:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732894341; cv=none; b=uX/wT90OK5FF7ihOq84AJYt/YZbGIGvegCjJPoaCcwHGNPXC74RuhWgbwv8MSbbVYByyXnm581Pn5rCRZNwYTvo/tSqml5pV4X5rdo7Fc8aahdxElQdhIcMzQL2rVqfllnPLy1qox5Ug4AndUThP3MvUAtkUilOeJN0f9dNcExM=
+	t=1732894340; cv=none; b=TulH09QdFMVg5yHb8Q0NJ5tKDIezuVcxJzbcFKQbtasRjvYSELkhqn80zAtac7+0TGF+J+lPCXProqftxd7Pxxd49NUw8pbD/qhKS/JSB+fPOmpntypM8S5NhPzoY2skLghiYNSHCIM4FBdxiyXQxgy0FYaubj6chPxMPrIwog0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732894341; c=relaxed/simple;
-	bh=VORdR2oTefI9Q07TPIcBdkIpcos+5okYlhQ1JFze8e4=;
+	s=arc-20240116; t=1732894340; c=relaxed/simple;
+	bh=ean5uOlXU7YQbgBBWb9aZHQqsCwn5eYutohhiNlRqTo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LtN55ri9ajKFFEn+XIgAIDyqEbpUAIZCtblGjpDeCqxIDOuVcELKcHmoVBVJQiSR89eqsznsY15VZ8bcwocnvY3/Uu1Sgi64be2pDcM5J5xxwhs+pqvaSAalf/ULmKY8oEfEjbuX5Q6zHUCRHX2PrgumFgGPRdFJ+DwvlEcIYeg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KYfJWagc; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1732894340; x=1764430340;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=VORdR2oTefI9Q07TPIcBdkIpcos+5okYlhQ1JFze8e4=;
-  b=KYfJWagcyoeP7w7hiFrIYWhcmmGTfCjMN2CvkZBv5fSkHFb0SZloGfCN
-   zWxa5w5MjjeJ25qeMDkuWK6xCKbBYJIzNLo7mThehbeSff+k14m9b7kBg
-   fFgyyNaUbxbQ1xOAqZN+BBWEuN0FqmZrZYOMN+bOAyPUlbZi45aMIK00Q
-   Qny9Xax+IkrOyDam3rJ9UH48Jo4uyXmiHNQRTRJbRkOibefkdyu8Tex8R
-   CY0FMiI4DCSU/5vqzLXVisNbVTiz0zk8ljQFsjKEXSHpCrm/MmALY/KEC
-   wlBhXNWZxzacOjmfkCPKkwntFF6h4MbD8tKlL430YejS0hXEIQYh++kkb
-   w==;
-X-CSE-ConnectionGUID: AbFpxLqrRkqL/+KoInmQPg==
-X-CSE-MsgGUID: NOtW8f+STB+n+kwLKV0Exw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11271"; a="37066646"
-X-IronPort-AV: E=Sophos;i="6.12,195,1728975600"; 
-   d="scan'208";a="37066646"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Nov 2024 07:32:19 -0800
-X-CSE-ConnectionGUID: PihCXGuDQu6h1LwuDv3v0A==
-X-CSE-MsgGUID: MmX9NisoSsWTwkpO78HDdg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,195,1728975600"; 
-   d="scan'208";a="123379883"
-Received: from lkp-server01.sh.intel.com (HELO 5e2646291792) ([10.239.97.150])
-  by orviesa002.jf.intel.com with ESMTP; 29 Nov 2024 07:32:16 -0800
-Received: from kbuild by 5e2646291792 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tH2yb-0000SV-12;
-	Fri, 29 Nov 2024 15:32:13 +0000
-Date: Fri, 29 Nov 2024 23:31:50 +0800
-From: kernel test robot <lkp@intel.com>
-To: Haylen Chu <heylenay@4d2.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=QfoDv6dg2JwrWcbeFTKSMl1g4s8Se+PQEEFv4Mm9DaX06xSwtHBX6kqeULoVmW8artF7Age3LURFaZT4s5JUQexYRAxXnoPK3lcRPrSmyYJpGiZDPAXPtLd8qRU2eN9k1XIbTaE8WuuIt0zIeN+T9mJaNzEaBa3okfqBxw+frPg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NoG9mMV0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1C25C4CED2;
+	Fri, 29 Nov 2024 15:32:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732894337;
+	bh=ean5uOlXU7YQbgBBWb9aZHQqsCwn5eYutohhiNlRqTo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NoG9mMV073BwdFpzgwm5oS2YIjkvCAmK2/Khxy7gYgPfFm5fi8CT+kXgVfF1W7DGD
+	 6a0dxAB2phRo3HDQGm59dm3LAElH9dw8c9R15sb1OU0L7qBzc96IJAt7aMruWRW9w/
+	 WD9DTScv0pQLTFmJMbgsAMOB3VmD1OobY83rJjc5PMojqJ8qCo7u7qHBDpITN45SvR
+	 5oMTrhz9Tiig1rzIicPmW8UIvvqP+XYip3eFUSHVWGWabsboX9EDzlWEogm48BaQxd
+	 GdjJLBHkzt4/PAvIUBX0l/qyJuBfxCMmha3PwWzD30YJXqWnv50A7YCSDR099zCkjC
+	 5SsPhf402dS6w==
+Date: Fri, 29 Nov 2024 15:32:12 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Haylen Chu <heylenay@outlook.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-riscv@lists.infradead.org,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Inochi Amaoto <inochiama@outlook.com>,
-	Chen Wang <unicornxdotw@foxmail.com>,
-	Jisheng Zhang <jszhang@kernel.org>
-Subject: Re: [PATCH v3 3/3] clk: spacemit: Add clock support for Spacemit K1
- SoC
-Message-ID: <202411292351.6EVdr1rF-lkp@intel.com>
-References: <20241126143125.9980-7-heylenay@4d2.org>
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Arthur Becker <arthur.becker@sentec.com>,
+	Emil Gedenryd <emil.gedenryd@axis.com>, Marek Vasut <marex@denx.de>,
+	Mudit Sharma <muditsharma.info@gmail.com>,
+	Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: iio: light: Drop BU27008 and BU27010
+Message-ID: <20241129-decency-haphazard-f121207c90cb@spud>
+References: <cover.1732819203.git.mazziesaccount@gmail.com>
+ <3be66a8ec15fedd18ef13afae48ebb182196da13.1732819203.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="gIB4Jymb2ZQVY78O"
+Content-Disposition: inline
+In-Reply-To: <3be66a8ec15fedd18ef13afae48ebb182196da13.1732819203.git.mazziesaccount@gmail.com>
+
+
+--gIB4Jymb2ZQVY78O
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241126143125.9980-7-heylenay@4d2.org>
+Content-Transfer-Encoding: quoted-printable
 
-Hi Haylen,
+On Thu, Nov 28, 2024 at 09:35:35PM +0200, Matti Vaittinen wrote:
+> The ROHM BU27008 and BU27010 RGB sensors got cancelled. I was informed
+> they never reached mass production stage.
+>=20
+> Keeping the bindings around is waste of maintenance resources. Drop the
+> bindings.
+>=20
+> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
 
-kernel test robot noticed the following build errors:
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-[auto build test ERROR on 2d5404caa8c7bb5c4e0435f94b28834ae5456623]
+--gIB4Jymb2ZQVY78O
+Content-Type: application/pgp-signature; name="signature.asc"
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Haylen-Chu/dt-bindings-clock-spacemit-Add-clock-controllers-of-Spacemit-K1-SoC/20241128-101248
-base:   2d5404caa8c7bb5c4e0435f94b28834ae5456623
-patch link:    https://lore.kernel.org/r/20241126143125.9980-7-heylenay%404d2.org
-patch subject: [PATCH v3 3/3] clk: spacemit: Add clock support for Spacemit K1 SoC
-config: parisc-allmodconfig (https://download.01.org/0day-ci/archive/20241129/202411292351.6EVdr1rF-lkp@intel.com/config)
-compiler: hppa-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241129/202411292351.6EVdr1rF-lkp@intel.com/reproduce)
+-----BEGIN PGP SIGNATURE-----
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202411292351.6EVdr1rF-lkp@intel.com/
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ0nefAAKCRB4tDGHoIJi
+0lvDAQDShvcW9sCaieKogYV80HikoC61aNp5Aqv8B02YZxACQwD9GMVpciDmMUWI
+GJfDGfpK6cajesUxhn+0uds7tAKergc=
+=diSv
+-----END PGP SIGNATURE-----
 
-All errors (new ones prefixed by >>, old ones prefixed by <<):
-
-ERROR: modpost: missing MODULE_LICENSE() in drivers/clk/spacemit/ccu_pll.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/spacemit/ccu_pll.o
-ERROR: modpost: missing MODULE_LICENSE() in drivers/clk/spacemit/ccu_mix.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/spacemit/ccu_mix.o
-ERROR: modpost: missing MODULE_LICENSE() in drivers/clk/spacemit/ccu_ddn.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/clk/spacemit/ccu_ddn.o
->> ERROR: modpost: "spacemit_ccu_mix_ops" [drivers/clk/spacemit/ccu-k1.ko] undefined!
->> ERROR: modpost: "spacemit_ccu_ddn_ops" [drivers/clk/spacemit/ccu-k1.ko] undefined!
->> ERROR: modpost: "spacemit_ccu_pll_ops" [drivers/clk/spacemit/ccu-k1.ko] undefined!
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--gIB4Jymb2ZQVY78O--
 
