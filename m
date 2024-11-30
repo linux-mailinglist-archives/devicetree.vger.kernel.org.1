@@ -1,139 +1,135 @@
-Return-Path: <devicetree+bounces-125759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40D3B9DF249
-	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 18:38:01 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C3C29DF24E
+	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 18:42:36 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0712928133C
-	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 17:38:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 21AE4162DFD
+	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 17:42:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 638171A7065;
-	Sat, 30 Nov 2024 17:37:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OVdMRJex"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A66331A42A5;
+	Sat, 30 Nov 2024 17:42:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from leonov.paulk.fr (leonov.paulk.fr [185.233.101.22])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33A031A3A8D;
-	Sat, 30 Nov 2024 17:37:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB19E433BC;
+	Sat, 30 Nov 2024 17:42:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.233.101.22
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732988276; cv=none; b=OtQIjM8ZoUrq/pHNNbAvGXpfYBuBHRgSxaMP9gI1zXnMdSU/FyOTwCZZbCxNL/18aNT2Nx+0s1kPlZ+E8e9i5r17OFmWh1qB0l28snh0m3vk6QH6F9oKSIlmO+nmSVf/wNlVCSXmjd8bWvccyYJNpZT61R6NWQ+lRAbrPnHdYXY=
+	t=1732988552; cv=none; b=pTLapITWX9UdsQAmDiqWf1VazbnfBy596fn3SL+Mu6HFTUvFy0F8mt3fCgc3zVv3JX5pQFs1UTL0WQDLb7/rQ9cW/9HnvQhZP0pMwZ+922kDOKoVRoXmTNq8uQc3XZ4JKjfPg5KvUAPDVsvqelJavzCaryi4qjBB2Gl0BHHbx00=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732988276; c=relaxed/simple;
-	bh=kCOuUEuvajqw8g2jrtCdEozPv6Hbu6aXVg+GWPVlp64=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WZucVerz/jIo8dF9d++SBw1oEvVBUrJ0bymTEcMOBkY0ffVD/JDBfiAwxgW6q6kAnwvKH0Rj4bsLEBwPRj1FkVJVjbHSIX3/0K+X+iHc63GJzV3l6ReiGhfKTACrBzrnlLBuLLsRUh12k4dN/lNBsDfmCW+z8kMnHFkV+cOoSNs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OVdMRJex; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D8D4C4CECC;
-	Sat, 30 Nov 2024 17:37:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1732988275;
-	bh=kCOuUEuvajqw8g2jrtCdEozPv6Hbu6aXVg+GWPVlp64=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=OVdMRJexHC6QlZVd0Qon7qUmZgzhLcnUdjZU2pXIJ57UQnaYd7j6ad4CAd7fddmb2
-	 gn3txEDBs5kHEBF7w2wnoS57OzU+ETaZ3NkQqyiQTD3S0+SuYzPee19gANK8bsnTde
-	 PgS3EFDK7NB1oSM36SeAxK/c1ba8hF3aF02L0cFyzbdw3rGrrAXZqPfW5yzbsy82qH
-	 oBNH3d7m6ooVThzEcZutSolzGazWFjyAZry7OBJ2qcbENA0jK+ho2TAFyXKeqitUjX
-	 1Qpw57hiYpfPaN45bh84YCInxqxKXTKaImAnN9wuriGhzRC6gpVj7lGVZxCkX+NJgj
-	 X9WVCPJPyyShA==
-Date: Sat, 30 Nov 2024 17:37:45 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>
-Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <lars@metafoo.de>,
- <Michael.Hennerich@analog.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
- <conor+dt@kernel.org>, <marcelo.schmitt1@gmail.com>, David Lechner
- <dlechner@baylibre.com>
-Subject: Re: [PATCH v5 2/4] iio: adc: ad4000: Add timestamp channel
-Message-ID: <20241130173745.52dd528a@jic23-huawei>
-In-Reply-To: <b151d6ec2eeae52718ab985a24b237049dbd283b.1732885470.git.marcelo.schmitt@analog.com>
-References: <cover.1732885470.git.marcelo.schmitt@analog.com>
-	<b151d6ec2eeae52718ab985a24b237049dbd283b.1732885470.git.marcelo.schmitt@analog.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1732988552; c=relaxed/simple;
+	bh=+kfZ5SEZ8b8nXPZSgsTRPSsm0L+d6KUzmtAc0ZEjGMM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gueGHOC2kPCO9Eei7JFBqvLVCx84oghoXQaG/B8wXOG0DFcaswM1FDYehx3zIBM897pSGGCQVdYGztOdSzE4QHmQ8OYl1VVo15jcZ0MNxVsVcDth1DP5DfTbOqhKl5/LahtQbivfNmDCOO+eeQGlK7WNbzNJLqyt2UJouNTn9KY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sys-base.io; spf=pass smtp.mailfrom=sys-base.io; arc=none smtp.client-ip=185.233.101.22
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sys-base.io
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sys-base.io
+Received: from laika.paulk.fr (12.234.24.109.rev.sfr.net [109.24.234.12])
+	by leonov.paulk.fr (Postfix) with ESMTPS id 0B1CB1F0004B;
+	Sat, 30 Nov 2024 17:42:24 +0000 (UTC)
+Received: by laika.paulk.fr (Postfix, from userid 65534)
+	id 4BFDEA66AC7; Sat, 30 Nov 2024 17:42:24 +0000 (UTC)
+X-Spam-Level: *
+Received: from localhost.localdomain (unknown [192.168.1.64])
+	by laika.paulk.fr (Postfix) with ESMTP id 52CB4A66AC0;
+	Sat, 30 Nov 2024 17:42:22 +0000 (UTC)
+From: Paul Kocialkowski <paulk@sys-base.io>
+To: linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Kocialkowski <paulk@sys-base.io>
+Subject: [PATCH 1/2] dt-bindings: iio: Add TI OPT4048 color sensor bindings
+Date: Sat, 30 Nov 2024 18:42:11 +0100
+Message-ID: <20241130174212.3298371-1-paulk@sys-base.io>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On Fri, 29 Nov 2024 10:13:52 -0300
-Marcelo Schmitt <marcelo.schmitt@analog.com> wrote:
+The Texas Instruments OPT4048 is a XYZ tristimulus color sensor.
 
-> The ADC data is pushed to the IIO buffer along with timestamp but no
-> timestamp channel was provided to retried the time data.
-> Add a timestamp channel to provide sample capture time.
-> 
-> Suggested-by: David Lechner <dlechner@baylibre.com>
-> Reviewed-by: David Lechner <dlechner@baylibre.com>
-> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-H Marcelo,
+It requires a VDD power supply and can optionally support an interrupt.
 
-Given you are going to be spinning a v6 anyway, trivial comments inline.
+Signed-off-by: Paul Kocialkowski <paulk@sys-base.io>
+---
+ .../bindings/iio/light/ti,opt4048.yaml        | 54 +++++++++++++++++++
+ 1 file changed, 54 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/light/ti,opt4048.yaml
 
-Thanks,
+diff --git a/Documentation/devicetree/bindings/iio/light/ti,opt4048.yaml b/Documentation/devicetree/bindings/iio/light/ti,opt4048.yaml
+new file mode 100644
+index 000000000000..e2b7472ab588
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/light/ti,opt4048.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/light/ti,opt4048.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments OPT4048 XYZ tristimulus color sensor
++
++maintainers:
++  - Paul Kocialkowski <paulk@sys-base.io>
++
++description: |
++  The device supports both interrupt-driven and interrupt-less operation,
++  depending on whether an interrupt property is present in the device-tree.
++
++properties:
++  compatible:
++    const: ti,opt4048
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++    description: |
++      The interrupt is detected on a falling edge, with a low level asserted
++      for 1 us. It might be missed because of hardware interrupt debouncing
++      mechanisms due to this short time.
++
++  vdd-supply: true
++
++additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - vdd-supply
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        light-sensor@44 {
++          compatible = "ti,opt4048";
++            reg = <0x44>;
++            interrupt-parent = <&pio>;
++            interrupts = <0 8 IRQ_TYPE_EDGE_FALLING>;
++            vdd-supply = <&reg_vcc_io>;
++        };
++    };
++...
+-- 
+2.47.0
 
-Jonathan
-
-> ---
->  drivers/iio/adc/ad4000.c | 98 +++++++++++++++++++++++-----------------
->  1 file changed, 56 insertions(+), 42 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/ad4000.c b/drivers/iio/adc/ad4000.c
-> index b3b82535f5c1..21731c4d31ee 100644
-> --- a/drivers/iio/adc/ad4000.c
-> +++ b/drivers/iio/adc/ad4000.c
-> @@ -49,6 +49,7 @@
->  	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |				\
->  			      BIT(IIO_CHAN_INFO_SCALE),				\
->  	.info_mask_separate_available = _reg_access ? BIT(IIO_CHAN_INFO_SCALE) : 0,\
-> +	.scan_index = 0,							\
->  	.scan_type = {								\
->  		.sign = _sign,							\
->  		.realbits = _real_bits,						\
-> @@ -62,6 +63,12 @@
->  	__AD4000_DIFF_CHANNEL((_sign), (_real_bits),				\
->  				     ((_real_bits) > 16 ? 32 : 16), (_reg_access))
->  
-> +#define AD4000_DIFF_CHANNELS(_sign, _real_bits, _reg_access)			\
-> +{										\
-> +	AD4000_DIFF_CHANNEL(_sign, _real_bits, _reg_access),			\
-> +	IIO_CHAN_SOFT_TIMESTAMP(1)						\
-Add a trailing ,
-In theory we can add more channels after this.
-> +}
-> +
->  #define __AD4000_PSEUDO_DIFF_CHANNEL(_sign, _real_bits, _storage_bits, _reg_access)\
->  {										\
->  	.type = IIO_VOLTAGE,							\
-> @@ -71,6 +78,7 @@
->  			      BIT(IIO_CHAN_INFO_SCALE) |			\
->  			      BIT(IIO_CHAN_INFO_OFFSET),			\
->  	.info_mask_separate_available = _reg_access ? BIT(IIO_CHAN_INFO_SCALE) : 0,\
-> +	.scan_index = 0,							\
->  	.scan_type = {								\
->  		.sign = _sign,							\
->  		.realbits = _real_bits,						\
-> @@ -84,6 +92,12 @@
->  	__AD4000_PSEUDO_DIFF_CHANNEL((_sign), (_real_bits),			\
->  				     ((_real_bits) > 16 ? 32 : 16), (_reg_access))
->  
-> +#define AD4000_PSEUDO_DIFF_CHANNELS(_sign, _real_bits, _reg_access)		\
-> +{										\
-> +	AD4000_PSEUDO_DIFF_CHANNEL(_sign, _real_bits, _reg_access),		\
-> +	IIO_CHAN_SOFT_TIMESTAMP(1)						\
-As above. Trailing comma should be here.
-The only exception to that is when we have a terminator entry (NULL or similar) 
-where we want to make it hard to add anything after it.
-
-
-> +}
-> +
 
