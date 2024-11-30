@@ -1,122 +1,140 @@
-Return-Path: <devicetree+bounces-125719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125720-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 190389DF030
-	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 12:37:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DB429DF033
+	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 12:37:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A23341638E8
-	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 11:37:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 22AAA16240A
+	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 11:37:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3648B198E74;
-	Sat, 30 Nov 2024 11:36:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 100F01917FE;
+	Sat, 30 Nov 2024 11:37:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tNQeEBik"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fXba2dg6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 698AB188717
-	for <devicetree@vger.kernel.org>; Sat, 30 Nov 2024 11:36:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62E9515CD42
+	for <devicetree@vger.kernel.org>; Sat, 30 Nov 2024 11:37:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732966615; cv=none; b=GkpMvK4m3CuFPd39owHpwru9F5QPiZvS926TmmUOTBu3/HY+OgPCBis5F1SDN3Ol33E0Nw0S6HrFOMwnwFoUt11RNe+rhZ0OhPUpFjiY7S8Jm2taqcOZdc0rFcKgEZ3tCda7/PinbptJGEtLRjIXY42cuXEeUsyNeBJy67rA1p4=
+	t=1732966648; cv=none; b=N0iQV3RDKKolCZTgXwHdS/ZM5OKPRNTnYF4Xw620ruiGA2xGO9VCjJU3M53DYMYy7rfMtpTXhY8SrQnTqDIblLrdtFf6KkRk2wyEVTa32adc8Ljvtbv3qXBxqQpgbek7FF5EYy+q6TAgeKLXNN7yZnZAlnaLzq9M60iLmfAeyp4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732966615; c=relaxed/simple;
-	bh=cs9uDUZB2++se5eVEafXkaa+FpWCY9F8GcDMnkcUmpI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D3CIILtdA8s4U+LfFGk5FLsYkRomMloIkMsh68NJKGt4nykBeq0xOddZYA2rKyNfpPKOrnEM7Zoy/Cxctx1ap8a8QtJJo5jPBlglV9cSHrKdLyn6v83ifszM4TGOV0ki9eA1JMYbxYU3H+imJnX3RbYv8eZdEukBpk0JaPrWmfQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tNQeEBik; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-53df19bf6a9so3197660e87.1
-        for <devicetree@vger.kernel.org>; Sat, 30 Nov 2024 03:36:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732966611; x=1733571411; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=S/Pf8loTaik8LYCta5Jf2Zin0SqS3BgDup0y9NRq4n4=;
-        b=tNQeEBiketj3ErhnxjUOND3PPJHIaHj3ZLmwJF9Y2HhRLjfYLjRla91ZgdJkDRjpbv
-         4IoVX1flWcm38hTYYpvjzLbmQJDk/fkidrkxmV4GGrdFKew12jsaAnQKHi9v1/H/zXAV
-         wye5m3Maq34BJehEze8FxevHvTZo1YW0uBWgZw20wgPswmS6KXo5/o2mUft8V61QvzoL
-         C24Ipo7JIljMYGUYNRE4Gbwrc75aUfelba5gS4AHQt/JLFcescz5SW3r2FMhUNxWpHQ8
-         Rle7XUtnlKtwMWpxj/BLWgRF0lcCFLEg07KJ1WSiLTRS0JxHvy4TSq3uF+lqvXCwF/7t
-         pxkQ==
+	s=arc-20240116; t=1732966648; c=relaxed/simple;
+	bh=Thmgg5qZ1Ayj21DY0zxPd/gKajl715z9C/UHZ6SA18Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=URf1eODGyOs6zzG2De/n6z48VF/7DT4WCA0X4oZFZt+Nn2pC6bFnh5KAaNCLtGQ8og1npareBihw6lpuPk2o6sOMX6iY9WHaIMz9eHgZttDNGx8+9QR1e7M8JaSm33rN5p3z8kZbHB/5PG7ZJluBYcq34JR+uF2/tWwFgfhCZkQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fXba2dg6; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AUAtIIS014640
+	for <devicetree@vger.kernel.org>; Sat, 30 Nov 2024 11:37:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	OZvpAxmieEw473kwTlA9LztuKkMS27kGy1qIBHQ8Lng=; b=fXba2dg6B7uaj/8F
+	I0Pd5UltCnJDKkvPA6mW6kOMXTA+eCTfLyJyPMZ/zsy5rJe11ZRK7GiwMYL4A8Ig
+	kvSTPWpfwLbs3a0yFHyD+TAg3NJTSGhWPsLHOnHmipBhVCBbIbyuLKK2ZD9rNxRv
+	KGCPB/ikg3boxGgj6yw6EhAMC1U2w3rj4uTmWefJsaHe0blB+sKyn4JabvOLhgpQ
+	VMKHp9dzHBBJM9QTz7tiEkRo7B9Mm0ihC970sXN4ybiy+cTnl3P+jnxgIaNdtg06
+	xcDS4HloFJwT65/sNt2Lcz+HLNssO1Lr8lu3MkgP69/0o+UWwDyWb2Ip0ISQrrhw
+	OWoc9g==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 437u368kxu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sat, 30 Nov 2024 11:37:25 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-466c4b8cab2so3774351cf.2
+        for <devicetree@vger.kernel.org>; Sat, 30 Nov 2024 03:37:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732966611; x=1733571411;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=S/Pf8loTaik8LYCta5Jf2Zin0SqS3BgDup0y9NRq4n4=;
-        b=SYfpKUdBUcYk4Ql2epgiTRLvCMYE/0RflpMmOHYYAVic/Pz0KtH78JSDLrys09IPOV
-         2Sv2MrHzH7JvlZZe1FVi8Hg5sKdRmAhdS0cUre7wOGZHO2Vq8dxUyIojvPlZEf9dC72K
-         SPMcJ4pMwEXq6PEH3/e4PnoQKkWsAnGd7IRKFILuEBoPagV0r0KhJML0pMjj3vmyiTAY
-         RfzIwnFtr5jD6jjXagHXTOmYdSObyqUcHCtO5UnuM41fw0rATYOX2lE/UJ9XWl7BhAXD
-         DXSuZ1J7mU4XJHh5HqVwsugRm7N4Op+FIdslpCErrMeQTBLgsA+FRvXDSKhULYaGbI37
-         MiGQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXxGIK1EeDJx92/7pHQwtesywmCu+7xMD8ROEQvfXukOTStWk0mwSoWnChVa37roGyKtv85EqwOrRmV@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy1KZsyb08sjLkCNMAxzH71xQJUtVWUy/wIZTcGdbM4YhOeSFuX
-	KtJ7FK14pXOMn9o76GMK3HpIl+RA7c4yARQsn6gSr1M8F5tfgczuUjSdPLAv60bYJXrrORewIqr
-	T
-X-Gm-Gg: ASbGncva7EMxl4JesRTN0g7UYPsNBRzowjlICMirAjnMid7FOIOfHwa56kezIe5x8ta
-	ExpXISSj+h/32nfDeLtRUG87bFPrRzgD5CpW7njVF8DKv6p/96jB03dyJXppbw1o3ghYOwJGGAv
-	LRewFUeYPIHYKglOb3G0R++M/OdLzx7W26JFPfM8NA5hI229qhEGd1priq2nvWzHL6D5LmakUaa
-	be3Xi76NkqfRi3HnWA4CZ9yKs4YTYSkkY1c8kjzX3YzkiysX2V63ehXqgKxroVH/qqYQJtDox2G
-	iA/q5m//8wPIXcySu5sWY3VTzl9kjA==
-X-Google-Smtp-Source: AGHT+IGIIEiDb6qXnTmJUVDYgM6wgGw7GPagKQ9KPPyyX5Q/cb5H82b2qn+Ew6KeyuYbpTeKoPB4zw==
-X-Received: by 2002:a05:6512:3f1f:b0:53d:d3ff:77f6 with SMTP id 2adb3069b0e04-53df010900cmr9945955e87.46.1732966611547;
-        Sat, 30 Nov 2024 03:36:51 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53df649f71asm754516e87.244.2024.11.30.03.36.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 30 Nov 2024 03:36:50 -0800 (PST)
-Date: Sat, 30 Nov 2024 13:36:47 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Sasha Finkelstein <fnkl.kernel@gmail.com>
-Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, asahi@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Nick Chan <towinchenmi@gmail.com>
-Subject: Re: [PATCH v2 3/5] drm: panel: Add a panel driver for the Summit
- display
-Message-ID: <qowuzrx7s76r3soelwcvlbnksvstlpdind5xxejuqeeohjzsbh@evmuvvzxp3qh>
-References: <20241126-adpdrm-v2-0-c90485336c09@gmail.com>
- <20241126-adpdrm-v2-3-c90485336c09@gmail.com>
- <pokf4zrrm7utx4dlq7sfob3pb4m2dh47eyw2g345tvh75x3s2s@ylajym3brih3>
- <CAMT+MTTGtmMvbPy7HvTQ+AdF_X4dTcfXV5n=krm414MnXYqxjg@mail.gmail.com>
+        d=1e100.net; s=20230601; t=1732966645; x=1733571445;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OZvpAxmieEw473kwTlA9LztuKkMS27kGy1qIBHQ8Lng=;
+        b=blzmDx0nkIxrEVZwkP21BqfksjgQP2jkudbJGi+7AVDpnGEd1tJKjFAqufVoHP03BN
+         xdp+d9vgkTu6A2C7Kqn4RB79oVsxWlYbWCKHdkzrbXmlW6+pFMWIY2eX/rd0VIxF60LZ
+         +ixkacO1wOFMTJsuV2dCg5dPM9PywHbXdsNJLJo5dZRGPJCfBW2i+R8EVmiTPM5cUdL+
+         ghhT/gOb5YTXu95fUfnTAUCBA649tHVkF9SX9UfyQuI64DSqbZWYvkqQgHCYzE2ZhhDw
+         R7EQvUS0h1KBLwq4gFJq5BxYBwwc+JAT4nAezC7QtGGotU6UAoCmYhfxF9cW/suIeOqT
+         5Jvg==
+X-Forwarded-Encrypted: i=1; AJvYcCUEsRNMdRvx8JuRBfpjZB79LhhVMLgJW4QtvShCHeIMduwhXImVA5mbcdTOWR2B7sPkCb1klD7d2aV8@vger.kernel.org
+X-Gm-Message-State: AOJu0YypxVefmOxsarGi+IrnVcKNS1ieTIQuKHZzBc/Nmu0xPeBQm/ch
+	dFxq6hm/1UvCJtqeDX7niVe+najtncbDcSvI7r5qXKjQ/wLsRtkD8TLAaEkigx9cajJQeT/wPWL
+	zbw4JMlC05hbApVaqKXniUhf4+MUUD+LgIFSJjVfypX0qt1bXkV6XfNRZzccO
+X-Gm-Gg: ASbGncvDrfbpA+fy3mWKwgNfZuRDo/NFAvqHTRl2HanLd95mbryfF+9p6+fP6GqA0HZ
+	8vxzppRp/K+xMmDXda8DakwkZkh62ptchzxzT/U7Yf20M8RrsFaJbFPZdyzu0dNAgD2bOd6TbAt
+	8dvkAkJ6vhaRokV6It/GFM8MSazKtdtQofHHsC8EZf1Uo9MV69GR4MiJkwXPBVAvHJFrs8fFLIL
+	Np5b53Oj38VjulwrdRYU1VMOuigMsIraaoDbuIYeThEcHiTWDuy5ce6eNSTE06MjPO5gelPrC1u
+	yuwcCn92sCgBawfa775QSh1F0NJzwTk=
+X-Received: by 2002:a05:622a:1a02:b0:463:5517:ffdf with SMTP id d75a77b69052e-466b36d27cbmr76067661cf.16.1732966645289;
+        Sat, 30 Nov 2024 03:37:25 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFzT9ypsq48UF7x887wPpK3Ma8DeIIzsTE7qzn3zdK4jFniAGHsJbfgxS0eMI6V8wqi307QdQ==
+X-Received: by 2002:a05:622a:1a02:b0:463:5517:ffdf with SMTP id d75a77b69052e-466b36d27cbmr76067521cf.16.1732966644925;
+        Sat, 30 Nov 2024 03:37:24 -0800 (PST)
+Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d0d1de7429sm195217a12.74.2024.11.30.03.37.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 30 Nov 2024 03:37:24 -0800 (PST)
+Message-ID: <6e01c2b4-2383-4c2c-b848-da3f3760ea98@oss.qualcomm.com>
+Date: Sat, 30 Nov 2024 12:37:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAMT+MTTGtmMvbPy7HvTQ+AdF_X4dTcfXV5n=krm414MnXYqxjg@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/3] arm64: dts: qcom: x1e80100-vivobook-s15: Use the
+ samsung,atna33xc20 panel driver
+To: maud_spierings@hotmail.com, Neil Armstrong <neil.armstrong@linaro.org>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Douglas Anderson
+ <dianders@chromium.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20241125-asus_qcom_display-v4-0-61a4da162406@hotmail.com>
+ <20241125-asus_qcom_display-v4-1-61a4da162406@hotmail.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20241125-asus_qcom_display-v4-1-61a4da162406@hotmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: wP7OKwe13MVxni35R6py3OWMFpFJcuI0
+X-Proofpoint-ORIG-GUID: wP7OKwe13MVxni35R6py3OWMFpFJcuI0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 mlxscore=0
+ clxscore=1015 bulkscore=0 adultscore=0 lowpriorityscore=0 impostorscore=0
+ mlxlogscore=760 phishscore=0 suspectscore=0 spamscore=0 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2411300096
 
-On Sat, Nov 30, 2024 at 12:15:25PM +0100, Sasha Finkelstein wrote:
-> On Sat, 30 Nov 2024 at 10:29, Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> wrote:
-> > > +
-> > > +static int summit_resume(struct device *dev)
-> > > +{
-> > > +     return summit_set_brightness(dev);
-> >
-> > Doesn't the generic code already handle that for you?
+On 25.11.2024 8:11 PM, Maud Spierings via B4 Relay wrote:
+> From: Maud Spierings <maud_spierings@hotmail.com>
 > 
-> Apparently not, I have commented out the pm ops, entered sleep
-> and the display stayed on.
+> The Asus vivobook s15 uses the ATNA56AC03 panel.
+> This panel is controlled by the atna33xc20 driver instead of the generic
+> edp-panel driver
+> 
+> Signed-off-by: Maud Spierings <maud_spierings@hotmail.com>
+> ---
 
-Please add BL_CORE_SUSPENDRESUME option to the backlight device.
-But interestingly enough, none of the panels set that flag.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
--- 
-With best wishes
-Dmitry
+Konrad
 
