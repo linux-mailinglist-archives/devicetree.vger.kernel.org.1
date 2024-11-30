@@ -1,162 +1,182 @@
-Return-Path: <devicetree+bounces-125745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 255579DF1AB
-	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 16:24:23 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57ABE9DF1C1
+	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 16:33:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 985A7B20D4C
-	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 15:24:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B5280B20D89
+	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 15:32:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5866146A68;
-	Sat, 30 Nov 2024 15:24:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F8941A08AB;
+	Sat, 30 Nov 2024 15:32:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="L7eYjkzh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="r/r2UrKB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A39719F117
-	for <devicetree@vger.kernel.org>; Sat, 30 Nov 2024 15:24:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1272442AA4
+	for <devicetree@vger.kernel.org>; Sat, 30 Nov 2024 15:32:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732980256; cv=none; b=fZozk1GxR0rFVoRy7Ggh+bNloeQe+sraDWg08Bh56iAdqwzt2Rp9IQH48bSGiQURHRJpwSZwyFHhSuUgBQAQOqV969Z0rnGTNay8r+3X+R1/M7oAIj5vM2udgYIHaif7TzKsC2j+9Pc6HcBSytXn8kv25ZiVGNtUD2kxkHGBrvA=
+	t=1732980773; cv=none; b=Hl80fqm9B3H3yCinKsvJsSm4/gPAnxDR71q0X3c81hYyx5aaESoHfe1L501P2nLpbju/A0YuJwgXBps6dUPzCpoqFavt2O9bpLfZnHPm/+oAQIYCm0cNpbnnMNJc+e7sdfQWC8WIGxapv2kV3A6V1xFUQzHvych94OzKQQwWvlA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732980256; c=relaxed/simple;
-	bh=m3lG8tW8CBZNIBSk61k+jdR/rPxh5Hq4C2n+AVw/DRo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IBV7shYJUbPU+Fijm5kusWdP0Bfa1mkar1qbWGu/xmKFXv82kWBRdEEOzet9nf5yunHwRfLPbNLhm2A/jxxKJwlSjlupr0IQg9MjE2HKwOAkMnZTNhw3TuuxmlhcF7XTYlfpHyfrpnpsZWvKzdLPpVrCCiQINhEryOfhm1CBTk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=L7eYjkzh; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AUCK6n9010728
-	for <devicetree@vger.kernel.org>; Sat, 30 Nov 2024 15:24:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	rkEBRyCKlCmlab4JaUyGSv/9Fn2CzlVl+RwfKcQPfLA=; b=L7eYjkzh0Fr2NDY3
-	YtgQvpRIOQmsnKwRaYcQSR5XAfK7GZ4PLlNhE6NyXSsha6r2qyHgEfDysASyUbBf
-	tEYikhekpRoU8JWWviEGVbNLdt7jXkSxvwiyxa8F0ud5Z5+9z8ygMHZ4PCm9UgjU
-	NwcPJgz0+gY8PAPBFmBQjUIGC4Lm7lcHt/37UL1R05v0jS/OgIUmW5kwkvj/G2m1
-	4wHapomIK9aoCEcI3n7ZvzHg+QiaigHP9ILQkFu4iSaAJOQhZvq/8/bq9hVAV6lx
-	jNCVbaa09CVx6q3mZIKJJHn4wLBR5L7gB9YNJsQ6p49CvyQqAB7O4rQgKqpcsVBS
-	GIc/DA==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 437r2ms52p-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 30 Nov 2024 15:24:13 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-466d3ec228bso2472071cf.2
-        for <devicetree@vger.kernel.org>; Sat, 30 Nov 2024 07:24:13 -0800 (PST)
+	s=arc-20240116; t=1732980773; c=relaxed/simple;
+	bh=Mmwr0wcR/cpd81hA4yBerElVsz/ymKKscLvdl1mokxY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ntEBqoR5pwcxLNL1OgvYjcj3bnl7/r934G4vBXs2OiUxqQr+lFoKoBYeRqh/ARaOsZIeS52AQGyAvGelJLOIbowz+aSQ71tlyEtFXmRoGuJKfLrgBCNZIzQOeOfJYUKD+JKW88fhGEa7/vXcQ60U3z5IWPzzn+HFD9e6DbX/GsE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=r/r2UrKB; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-53de92be287so4182882e87.1
+        for <devicetree@vger.kernel.org>; Sat, 30 Nov 2024 07:32:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1732980768; x=1733585568; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=3c6nP2biyY51IWSJhlHDMjwRqcJrCsvuje0PxvJuHtc=;
+        b=r/r2UrKBuZI3XH0sUn8lqKlVrtZj40ezWTcN1oBz33qb99ok6lsDbIglb4GA9vYGB8
+         bH14e6ol+DkOe0W2lT4O8MW29GG4X+3VaFgdU+7QHImoCo50qylGcNcNbe0sf/lSOs9n
+         5QUSK5XdIxmwO/o/hLvfUHcZCKf8GjlaudQpT0/WcZsqfiq7B6kygTB6oirlI8D2t05B
+         PODgDTLg1ZChVcu961FYO4zKMxCpF/irHprfvfg8UZrMeZkg7OSnt/hmAVZ5BfUUWVsV
+         PadNA8aNuA9IUaZCvPbZsRG5HH22QFCGyrVQ0uOqRBFlAUE1ty4OcePpYgr+QsqphqB3
+         wFBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732980253; x=1733585053;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rkEBRyCKlCmlab4JaUyGSv/9Fn2CzlVl+RwfKcQPfLA=;
-        b=IdlReZ57MwWdFZfbhz69Oi0wy0/oBUWSN76d8DXjLg5lhPSG6GPRYIcg6236XLUMS6
-         2jRWSQOh7BEP0N3YKWb4+thyxxyJWAliQloHRnPWiXKmUCDOQrXwuVGix6sN0nWiuJlR
-         hPg+w4iAryaqDPdTyI73U8lVV7yssia6ZgXZQrkKAkQCNX9tF5d1fcdxBj0AeOy/3P22
-         wgO1cpzhRxZXXSx6B74XgZdZ2phDEhztAerQyHyqAiBMssyb8GDu1dsdf7dYEDHrQN3f
-         zgZEWzwQSqHms2LFriG95FnouNZTsMmHRlkBZKonp0xJotHtuCThsMV8GHwJjc8nyMgp
-         nJTg==
-X-Forwarded-Encrypted: i=1; AJvYcCXI32Gj70KSFOxbPpFvVCX17l0JNMvt48vhtAj77wtiU2udneH9luRrtx33C7x3CVpKzPlZuThSHgWi@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw28sG5TMw7BptxbZV+BiD44tG65PF8IhBssAhjWjVeUtlomSV3
-	4w0R1DBuhC2UbtajxX/m+lsWSP0YNxyWpt1Y4lHdTlAA5ekTjZW2XEWR3xDBJv5FZ0KNmXx3DDb
-	HhQ+4wq45PVy37nKzi9UIuueGJU188ZtGkWzfqfaU3H4XZD+Hq1eni0ioK3+s
-X-Gm-Gg: ASbGncsVnf5WnH0NMTfQirvTa8qGMkpDyLCKIaLjOQwRMcBoVNO8cMcDmK8AuhLQDdp
-	OS0HoRB7R8M3EEUh8kt11ykBl2zDtwdk5NYXG25Y2NPRZPtyaXDnB6AMmfIJqAcGjyxrTDhhBsv
-	vW22FW9AVLbmt3RBI86fmSD9PVatoqjyjV5WWB5CahaSEovfJqpcUBn2NLY9ODvMKY3/i7URsQH
-	DqQVGsSYmB/vHjR0OoZBaULVaKCcQTQgAm1AjEG5vTxcGe/PkI7U4Evz4u55br6GIR71Ow1WRPW
-	ZqFxpVES/wyXJwUwwXwRgU56xXhcLB0=
-X-Received: by 2002:a05:622a:1213:b0:460:3a41:a9e5 with SMTP id d75a77b69052e-466b36596c8mr98367061cf.13.1732980253159;
-        Sat, 30 Nov 2024 07:24:13 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFepOWEbY18jP8Cq0UeF7mqpNdItekaNeFgBiNWvyl0FW8Isi7txtuCVVamfHjC0C5D8vj/ww==
-X-Received: by 2002:a05:622a:1213:b0:460:3a41:a9e5 with SMTP id d75a77b69052e-466b36596c8mr98366591cf.13.1732980251658;
-        Sat, 30 Nov 2024 07:24:11 -0800 (PST)
-Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa599953d53sm290277766b.181.2024.11.30.07.24.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 30 Nov 2024 07:24:11 -0800 (PST)
-Message-ID: <9f65c354-910b-4515-9323-e61e31567aaa@oss.qualcomm.com>
-Date: Sat, 30 Nov 2024 16:24:08 +0100
+        d=1e100.net; s=20230601; t=1732980768; x=1733585568;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3c6nP2biyY51IWSJhlHDMjwRqcJrCsvuje0PxvJuHtc=;
+        b=on0dF6oqe5iyT9UVe+DfjSwiVYEiKFCn8pxYzlPtNwqv5pMbqZOWz+JlneojmrdHcB
+         blGsz7TEGZ5OeM5vRCCRy+q0OGoZZhhdsrr/gFf9H21GHNCSDZ8d79KU0PPbwrOLlZ6S
+         xEkz5h9A+1zqK1ySuunis7EtF1BhjXxthYXWeMPMsurJCLYHqLq2TMGqwx2ygik4t61l
+         biNI6kQi0A6c3TeFQ4OZldtFenytruNHhSusBdM2Aj6nVzzHzRtaKNG9B51GgHvE45f9
+         TYnkGH8KLx1XMiuk1G2hpfjdsNWIkdiS5ZZOet0Ku0DI9VBYlAzn99/CeqC+prC8sm/f
+         6EtA==
+X-Forwarded-Encrypted: i=1; AJvYcCX5Wq1gvjKqDMONvdotg9wGcPSyTltvCMOdI/c+Xf9zzsL2ylDLo+Bi4Tf4ahxYPRSFCqIlZn0P1kIg@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz4bsfePWt/3YsDTjyzBvaZBAeQrYDZEPsxBXMM4SdAwDu4qC1R
+	XDo6bf2ic+bfqUMkFUbo/DLcgTvO08LeKF6bcPG6hARnoccix8Og7dwS25bGrN4=
+X-Gm-Gg: ASbGncvTvIRHZdY93Nve6qxgMLqLm4iRWHRjWieWPQVS3apS304IE1q717suUOHULpC
+	+gjiqiYn8jbQeMfKMeAGWovTEMcIY4EOiKQ+PVWS2m2o8J03r8GYQy2Vnne4Z/ITD3KQdqxAi8x
+	DhwBaINQgozpxuDGs2IHKfclIV1cKGrTLtc4qlYSff1qXZgniYmfSk0MlGz5zuwiL+BLp0voyhM
+	ikblYEP9JB2gp0o/XJJOKrX8I4B9abrIW7R69LyiWjA22nbDTpzJRRwu/9Y9JCQO1ZjXZObplzv
+	G+ShfUxO8jlULKT6ub5FTiiS0rBwBQ==
+X-Google-Smtp-Source: AGHT+IFErDW63p2PD42irUmoZJLwKPqVCbwqQAzMQ1RF+lVEg19qh0U51+2WE4NE6ZIxiJISUYRF/Q==
+X-Received: by 2002:a05:6512:3d86:b0:53d:a3a7:fe84 with SMTP id 2adb3069b0e04-53df00a96e8mr14216821e87.8.1732980768078;
+        Sat, 30 Nov 2024 07:32:48 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53df64432adsm794384e87.83.2024.11.30.07.32.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 30 Nov 2024 07:32:46 -0800 (PST)
+Date: Sat, 30 Nov 2024 17:32:44 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>, 
+	Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Odelu Kukatla <quic_okukatla@quicinc.com>, Mike Tipton <quic_mdtipton@quicinc.com>, 
+	Sibi Sankar <quic_sibis@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V6 1/4] interconnect: qcom: Add multidev EPSS L3 support
+Message-ID: <b2zicviv7nyl3izj2fzwzm2cp5phlxufaaoyi7e3g3iyxcyw56@iufgz33tsk33>
+References: <20241125174511.45-1-quic_rlaggysh@quicinc.com>
+ <20241125174511.45-2-quic_rlaggysh@quicinc.com>
+ <2b95cc25-a842-4edd-a5f3-2351038d264e@oss.qualcomm.com>
+ <5egskepgsr52ulnbw7jhvazfjayg5ge5vhg6pi7mllyxx2vwqw@a2ojvabzd36o>
+ <0881289f-db05-4e33-91a7-ffd415c2f37e@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: x1e78100-qcp: Enable Type-A USB
- ports labeled 3 and 4/6
-To: Abel Vesa <abel.vesa@linaro.org>, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20241105-x1e80100-qcp-t14-enable-usb-type-a-ports-v1-0-b4386def91d8@linaro.org>
- <20241105-x1e80100-qcp-t14-enable-usb-type-a-ports-v1-2-b4386def91d8@linaro.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20241105-x1e80100-qcp-t14-enable-usb-type-a-ports-v1-2-b4386def91d8@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: Me4qVmcc6h-Z-fI_W90cnxbHiklLOQfv
-X-Proofpoint-GUID: Me4qVmcc6h-Z-fI_W90cnxbHiklLOQfv
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 impostorscore=0
- bulkscore=0 priorityscore=1501 suspectscore=0 lowpriorityscore=0
- phishscore=0 mlxlogscore=483 clxscore=1015 mlxscore=0 adultscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2411300128
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0881289f-db05-4e33-91a7-ffd415c2f37e@oss.qualcomm.com>
 
-On 5.11.2024 12:37 PM, Abel Vesa wrote:
-> The X Elite QCP board has 3 USB-A ports. The ones labed as USB3 and
-> USB4/6 are both connected to the multiport controller, each one via a
-> separate NXP PTN3222 eUSB2-to-USB2 redriver to the eUSB2 PHY for
-> High-Speed support, with a dedicated QMP PHY for SuperSpeed support.
+On Sat, Nov 30, 2024 at 04:12:49PM +0100, Konrad Dybcio wrote:
+> On 30.11.2024 4:09 PM, Dmitry Baryshkov wrote:
+> > On Sat, Nov 30, 2024 at 01:49:56PM +0100, Konrad Dybcio wrote:
+> >> On 25.11.2024 6:45 PM, Raviteja Laggyshetty wrote:
+> >>> EPSS on SA8775P has two instances which requires creation of two device
+> >>> nodes with different compatible and device data because of unique
+> >>> icc node id and name limitation in interconnect framework.
+> >>> Add multidevice support to osm-l3 code to get unique node id from IDA
+> >>> and node name is made unique by appending node address.
+> >>>
+> >>> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
+> >>> ---
+> >>
+> >> [...]
+> >>
+> >>> +	ret = of_property_read_reg(pdev->dev.of_node, 0, &addr, NULL);
+> >>> +	if (ret)
+> >>> +		return ret;
+> >>> +
+> >>>  	qp->base = devm_platform_ioremap_resource(pdev, 0);
+> >>>  	if (IS_ERR(qp->base))
+> >>>  		return PTR_ERR(qp->base);
+> >>> @@ -242,8 +262,13 @@ static int qcom_osm_l3_probe(struct platform_device *pdev)
+> >>>  
+> >>>  	icc_provider_init(provider);
+> >>>  
+> >>> +	/* Allocate unique id for qnodes */
+> >>> +	for (i = 0; i < num_nodes; i++)
+> >>> +		qnodes[i]->id = ida_alloc_min(&osm_l3_id, OSM_L3_NODE_ID_START, GFP_KERNEL);
+> >>
+> >> As I've said in my previous emails, this is a framework-level problem.
+> >>
+> >> Up until now we've simply silently ignored the possibility of an
+> >> interconnect provider having more than one instance, as conveniently
+> >> most previous SoCs had a bunch of distinct bus masters.
+> >>
+> >> Currently, debugfs-client.c relies on the node names being unique.
+> >> Keeping them as such is also useful for having a sane sysfs/debugfs
+> >> interface. But it's not always feasible, and a hierarchical approach
+> >> (like in pmdomain) may be a better fit.
+> >>
+> >> Then, node->id is used for creating links, and we unfortunately cannot
+> >> assume that both src and dst are within the same provider.
+> >> I'm not a fan of these IDs being hardcoded, but there are some drivers
+> >> that rely on that, which itself is also a bit unfortunate..
+> >>
+> >>
+> >> If Mike (who introduced debugfs-client and is probably the main user)
+> >> doesn't object to a small ABI break (which is "fine" with a debugfs
+> >> driver that requires editing the source code to be compiled), we could
+> >> add a property within icc_provider like `bool dynamic_ids` and have an
+> >> ICC-global IDA that would take care of any conflicts.
+> > 
+> > Frankly speaking, I think this just delays the inevitable. We have been
+> > there with GPIOs and with some other suppliers. In my opinion the ICC
+> > subsystem needs to be refactored in order to support linking based on
+> > the supplier (fwnode?) + offset_id, but that's a huuuge rework.
 > 
-> Describe these two redrivers and enable each pair of PHYs along with the
-> USB controller, all in order to enable support for these 2 USB-A ports.
+> I thought about this too, but ended up not including it in the email..
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
+> I think this will be more difficult with ICC, as tons of circular
+> dependencies are inevitable by design and we'd essentially have to
+> either provide placeholder nodes (like it's the case today) or probe
+> only parts of a device, recursively, to make sure all links can be
+> created
 
+Or just allow probing, but then fail path creation. It will be a
+redesign, but I think it is inevitable in the end.
 
-> +&usb_mp_hsphy0 {
-> +	vdd-supply = <&vreg_l2e_0p8>;
-> +	vdda12-supply = <&vreg_l3e_1p2>;
-> +
-> +	phys = <&eusb6_repeater>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_mp_qmpphy0 {
-> +	vdda-phy-supply = <&vreg_l3e_1p2>;
-> +	vdda-pll-supply = <&vreg_l3c_0p8>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_mp_hsphy1 {
-> +	vdd-supply = <&vreg_l2e_0p8>;
-> +	vdda12-supply = <&vreg_l3e_1p2>;
-> +
-> +	phys = <&eusb3_repeater>;
-> +
-> +	status = "okay";
-> +};
+> 
+> Konrad
+> 
+> >> Provider drivers whose consumers don't already rely on programmatical
+> >> use of hardcoded IDs *and* don't have cross-provider links could then
+> >> enable that flag and have the node IDs and names set like you did in
+> >> this patch. This also sounds very useful for icc-clk.
+> > 
 
-Similarly
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-
-Konrad
+-- 
+With best wishes
+Dmitry
 
