@@ -1,36 +1,36 @@
-Return-Path: <devicetree+bounces-125646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2BAA9DEDE7
-	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 01:49:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63EE19DEDE6
+	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 01:49:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 401F1B2169D
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22570281607
 	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 00:49:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE9A64317E;
-	Sat, 30 Nov 2024 00:49:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA05B43ACB;
+	Sat, 30 Nov 2024 00:49:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3E911C28E
-	for <devicetree@vger.kernel.org>; Sat, 30 Nov 2024 00:49:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D7762628D
+	for <devicetree@vger.kernel.org>; Sat, 30 Nov 2024 00:49:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732927787; cv=none; b=CLFEs6Rxe+Q0BHs+d3PIkkezPsMrQ76blOOEHEEKhe2SJXZrPjWJ31ZTOlqa7XMbVjhxttRTCRdG6m6pWfulE6KqoWeEbaNM8eOuPELuc02py7T+pvlQrEp+4DjHX0DKdHnmr1+OQFHGvg/F4T97OsaSyz8Vbsyc8H1n1ZfJcQs=
+	t=1732927788; cv=none; b=K0gH5lPKGYwcTyRBlhJv/q8X2nOSN06IQGYEvGvKnEapbHqoL2Amak9bY50vpwK+/qGepn7rFNSs/85+NbBX2of6w+sQDHaI9JIrztuWM6qynsyQZtwOcNYOzQJxT9xcc3fuvLIuCAsNtwxSNhLgoZv0CTegnBEckYDBuZJvNuI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732927787; c=relaxed/simple;
-	bh=urD/8I1KGsH5vkRmtDI25bazjTdCs6zxq2ETSmZ4WZ4=;
+	s=arc-20240116; t=1732927788; c=relaxed/simple;
+	bh=RkvuU+3sh/gmVpGlhZ3iJH+Sf9wqymvrNF+DCGyXv4Y=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Nw6PrA3idV033HTF+EiTwNn8XgsEeKt9y71x/stS0WEFgEupcRV3c8iaokguUrVu1nadytI5jNQiESLwzXZpLY0pEJtgb1K6zRV+99F8Xl1+pDw3h7XrjHpSjmN8Fhn3vXJ7VjR3upFPlPnJdRREKAnZBCbtg0mVd7B0KwBmiBY=
+	 MIME-Version; b=j55/FTHAspNg2aDUp81dB4M1KMKwBbX1qOANy7KX9BC4k9F3ZLn/zNlaGa9KFjQr0Oo6WhVzHw1MWr+3uyg+M3ChTzUYnyBTYGcCDrylZDzHF0QNOBlWHxIQHSq9YJ9EfIqAYllU1hI15VZugjhRd+9Mv68Ur6q4zCazM384ihw=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
 Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
 Received: from secure.fukaumi.org ([10.0.0.2])
-	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 4AU0nQ2N024394;
+	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 4AU0nQ2O024394;
 	Sat, 30 Nov 2024 09:49:27 +0900
 From: FUKAUMI Naoki <naoki@radxa.com>
 To: heiko@sntech.de
@@ -39,9 +39,9 @@ Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
         inindev@gmail.com, cristian.ciocaltea@collabora.com,
         devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
         FUKAUMI Naoki <naoki@radxa.com>
-Subject: [PATCH 2/4] arm64: dts: rockchip: sort nodes in root node for Radxa ROCK 5B
-Date: Sat, 30 Nov 2024 00:49:18 +0000
-Message-ID: <20241130004920.7505-3-naoki@radxa.com>
+Subject: [PATCH 3/4] arm64: dts: rockchip: sort properties in .dts for Radxa ROCK 5B
+Date: Sat, 30 Nov 2024 00:49:19 +0000
+Message-ID: <20241130004920.7505-4-naoki@radxa.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20241130004920.7505-1-naoki@radxa.com>
 References: <20241130004920.7505-1-naoki@radxa.com>
@@ -57,89 +57,197 @@ sort alphanumerically.
 
 Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
 ---
- .../boot/dts/rockchip/rk3588-rock-5b.dts      | 42 +++++++++----------
- 1 file changed, 21 insertions(+), 21 deletions(-)
+ .../boot/dts/rockchip/rk3588-rock-5b.dts      | 79 +++++++++----------
+ 1 file changed, 36 insertions(+), 43 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-index 08f5efeeac9c..c816febb486a 100644
+index c816febb486a..fb39629c13c6 100644
 --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
 +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-@@ -91,30 +91,30 @@ typec_vin: regulator-typec-vin {
- 		regulator-boot-on;
- 	};
- 
--	vcc3v3_wf: regulator-vcc3v3-wf {
-+	/* pi6c pcie clock generator */
-+	vcc3v3_pi6c_05: vcc3v3_pcie30: regulator-vcc3v3-pi6c-05 {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
--		gpios = <&gpio1 RK_PD2 GPIO_ACTIVE_HIGH>;
-+		gpios = <&gpio1 RK_PA4 GPIO_ACTIVE_HIGH>;
+@@ -24,18 +24,15 @@ chosen {
+ 	analog-sound {
+ 		compatible = "audio-graph-card";
+ 		label = "rk3588-es8316";
+-
+-		widgets = "Microphone", "Mic Jack",
+-			  "Headphone", "Headphones";
+-
+-		routing = "MIC2", "Mic Jack",
+-			  "Headphones", "HPOL",
+-			  "Headphones", "HPOR";
+-
+ 		dais = <&i2s0_8ch_p0>;
+ 		hp-det-gpios = <&gpio1 RK_PD5 GPIO_ACTIVE_HIGH>;
  		pinctrl-names = "default";
--		pinctrl-0 = <&ekey_en>;
--		regulator-name = "vcc3v3_wf";
-+		pinctrl-0 = <&pcie30x4_pwren_h>;
-+		regulator-name = "vcc3v3_pi6c_05";
- 		regulator-min-microvolt = <3300000>;
- 		regulator-max-microvolt = <3300000>;
--		startup-delay-us = <50000>;
-+		startup-delay-us = <5000>;
- 		vin-supply = <&vcc5v0_sys>;
+ 		pinctrl-0 = <&hp_detect>;
++		routing = "MIC2", "Mic Jack",
++			  "Headphones", "HPOL",
++			  "Headphones", "HPOR";
++		widgets = "Microphone", "Mic Jack",
++			  "Headphone", "Headphones";
  	};
  
--	/* pi6c pcie clock generator */
--	vcc3v3_pi6c_05: vcc3v3_pcie30: regulator-vcc3v3-pi6c-05 {
-+	vcc3v3_wf: regulator-vcc3v3-wf {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
--		gpios = <&gpio1 RK_PA4 GPIO_ACTIVE_HIGH>;
-+		gpios = <&gpio1 RK_PD2 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
--		pinctrl-0 = <&pcie30x4_pwren_h>;
--		regulator-name = "vcc3v3_pi6c_05";
-+		pinctrl-0 = <&ekey_en>;
-+		regulator-name = "vcc3v3_wf";
- 		regulator-min-microvolt = <3300000>;
- 		regulator-max-microvolt = <3300000>;
--		startup-delay-us = <5000>;
-+		startup-delay-us = <50000>;
- 		vin-supply = <&vcc5v0_sys>;
- 	};
+ 	hdmi0-con {
+@@ -140,13 +137,13 @@ vcc5v0_sys: regulator-vcc5v0-sys {
  
-@@ -128,6 +128,16 @@ vcc4v0_sys: regulator-vcc4v0-sys {
- 		vin-supply = <&vcc5v0_sys>;
- 	};
- 
-+	vcc5v0_sys: regulator-vcc5v0-sys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_sys";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&typec_vin>;
-+	};
-+
  	vcc5v_usb: regulator-vcc5v-usb {
  		compatible = "regulator-fixed";
- 		regulator-name = "vcc5v_usb";
-@@ -140,16 +150,6 @@ vcc5v_usb: regulator-vcc5v-usb {
+-		regulator-name = "vcc5v_usb";
+-		regulator-min-microvolt = <5000000>;
+-		regulator-max-microvolt = <5000000>;
+ 		enable-active-high;
+ 		gpio = <&gpio4 RK_PB0 GPIO_ACTIVE_HIGH>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&usb_host_pwren_h>;
++		regulator-name = "vcc5v_usb";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
  		vin-supply = <&vcc5v0_sys>;
  	};
  
--	vcc5v0_sys: regulator-vcc5v0-sys {
--		compatible = "regulator-fixed";
--		regulator-name = "vcc5v0_sys";
--		regulator-always-on;
--		regulator-boot-on;
--		regulator-min-microvolt = <5000000>;
--		regulator-max-microvolt = <5000000>;
--		vin-supply = <&typec_vin>;
+@@ -315,10 +312,10 @@ &i2c7 {
+ 	es8316: audio-codec@11 {
+ 		compatible = "everest,es8316";
+ 		reg = <0x11>;
+-		clocks = <&cru I2S0_8CH_MCLKOUT>;
+-		clock-names = "mclk";
+ 		assigned-clocks = <&cru I2S0_8CH_MCLKOUT>;
+ 		assigned-clock-rates = <12288000>;
++		clocks = <&cru I2S0_8CH_MCLKOUT>;
++		clock-names = "mclk";
+ 		#sound-dai-cells = <0>;
+ 
+ 		port {
+@@ -407,18 +404,6 @@ &pcie3x4 {
+ };
+ 
+ &pinctrl {
+-	rtc {
+-		rtc_int_l: rtc-int-l {
+-			rockchip,pins = <0 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
+-		};
 -	};
 -
- 	vcc_1v1_nldo_s3: regulator-vcc-1v1-nldo-s3 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc_1v1_nldo_s3";
+-	sound {
+-		hp_detect: hp-detect {
+-			rockchip,pins = <1 RK_PD5 RK_FUNC_GPIO &pcfg_pull_none>;
+-		};
+-	};
+-
+ 	pcie2 {
+ 		pcie30x1_0_perstn_m1_l: pcie30x1-0-perstn-m1-l {
+ 			rockchip,pins = <4 RK_PA5 RK_FUNC_GPIO &pcfg_pull_none>;
+@@ -443,6 +428,18 @@ pcie30x4_pwren_h: pcie30x4-pwren-h {
+ 		};
+ 	};
+ 
++	rtc {
++		rtc_int_l: rtc-int-l {
++			rockchip,pins = <0 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++
++	sound {
++		hp_detect: hp-detect {
++			rockchip,pins = <1 RK_PD5 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++
+ 	usb {
+ 		usb_host_pwren_h: usb-host-pwren-h {
+ 			rockchip,pins = <4 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
+@@ -465,44 +462,44 @@ &saradc {
+ 
+ &sdhci {
+ 	bus-width = <8>;
++	mmc-hs400-1_8v;
++	mmc-hs400-enhanced-strobe;
+ 	no-sdio;
+ 	no-sd;
+ 	non-removable;
+-	mmc-hs400-1_8v;
+-	mmc-hs400-enhanced-strobe;
+ 	status = "okay";
+ };
+ 
+ &sdio {
+ 	max-frequency = <200000000>;
+-	no-sd;
+-	no-mmc;
+-	non-removable;
+ 	bus-width = <4>;
+ 	cap-sdio-irq;
+ 	disable-wp;
+ 	keep-power-in-suspend;
+-	wakeup-source;
++	no-sd;
++	no-mmc;
++	non-removable;
++	pinctrl-names = "default";
++	pinctrl-0 = <&sdiom0_pins>;
+ 	sd-uhs-sdr12;
+ 	sd-uhs-sdr25;
+ 	sd-uhs-sdr50;
+ 	sd-uhs-sdr104;
+ 	vmmc-supply = <&vcc3v3_wf>;
+ 	vqmmc-supply = <&vcc_1v8_s3>;
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&sdiom0_pins>;
++	wakeup-source;
+ 	status = "okay";
+ };
+ 
+ &sdmmc {
+ 	max-frequency = <200000000>;
+-	no-sdio;
+-	no-mmc;
+ 	bus-width = <4>;
+ 	cap-mmc-highspeed;
+ 	cap-sd-highspeed;
+ 	cd-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_LOW>;
+ 	disable-wp;
++	no-sdio;
++	no-mmc;
+ 	sd-uhs-sdr104;
+ 	vmmc-supply = <&vcc_3v3_s3>;
+ 	vqmmc-supply = <&vccio_sd_s0>;
+@@ -527,22 +524,21 @@ &spi2 {
+ 	status = "okay";
+ 	assigned-clocks = <&cru CLK_SPI2>;
+ 	assigned-clock-rates = <200000000>;
++	num-cs = <1>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&spi2m2_cs0 &spi2m2_pins>;
+-	num-cs = <1>;
+ 
+ 	pmic@0 {
+ 		compatible = "rockchip,rk806";
+-		spi-max-frequency = <1000000>;
+ 		reg = <0x0>;
+-
++		gpio-controller;
++		#gpio-cells = <2>;
+ 		interrupt-parent = <&gpio0>;
+ 		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
+-
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pmic_pins>, <&rk806_dvs1_null>,
+ 			    <&rk806_dvs2_null>, <&rk806_dvs3_null>;
+-
++		spi-max-frequency = <1000000>;
+ 		system-power-controller;
+ 
+ 		vcc1-supply = <&vcc4v0_sys>;
+@@ -561,9 +557,6 @@ pmic@0 {
+ 		vcc14-supply = <&vcc_1v1_nldo_s3>;
+ 		vcca-supply = <&vcc4v0_sys>;
+ 
+-		gpio-controller;
+-		#gpio-cells = <2>;
+-
+ 		rk806_dvs1_null: dvs1-null-pins {
+ 			pins = "gpio_pwrctrl1";
+ 			function = "pin_fun0";
 -- 
 2.43.0
 
