@@ -1,140 +1,119 @@
-Return-Path: <devicetree+bounces-125727-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A49379DF099
-	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 14:43:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB5DD9DF15C
+	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 15:58:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6540028188A
-	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 13:43:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 71AAA28150F
+	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 14:58:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDABE19AA72;
-	Sat, 30 Nov 2024 13:43:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8C3A19C575;
+	Sat, 30 Nov 2024 14:58:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VK10XMiY"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b="kNP1i5Wx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from lx20.hoststar.hosting (lx20.hoststar.hosting [168.119.41.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C9D522066
-	for <devicetree@vger.kernel.org>; Sat, 30 Nov 2024 13:43:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E14F3198E99;
+	Sat, 30 Nov 2024 14:58:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=168.119.41.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732974193; cv=none; b=J/O5/pC2QRTWjQ5KkJCxAoZ4rtmKlbWgT7pl/BQJWz/E8pmq4KIrqXUVmm9BqdjFL8mtfq5CvGrmA1fjkI0lHyvVdocLVuvFBoSg6QaSMmN4Wt4RT8/NpqUQjI12ZBzJJ48WWcOnBzWTDqPUDbm45MYUKANamshxR47hCQ6jy4Q=
+	t=1732978719; cv=none; b=MyghkJGGUCLAhP0L0MuOb9Cahs9Qc6NCju4FhVYRUB0XbpFQOXph9GGXZImGW+KwqFgvNo/HtJC4uJ0HHTwcZjGOzv5/cJQlRvlBsnD640YmsAhAnAhFq/YpnGBnvgvR9VL3mJg83ElPdWB5G2GZOWyJJJsm8b54CfcxpbQ7hHg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732974193; c=relaxed/simple;
-	bh=grBrgWFBcLUOaiRSE3/edYKfFqN2iEQy2qQlclkTI4Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ty8hOp79fLGULlPMBPr+RLDXazpl06BN9/WUo9tHCxYyX91YtTmnlT3zXfnUGs0Pf2hsS0Gar3oKIeRY03gt6EXCYRzqUlqY4kA9PTY191YbU7gXvxahJiuyz5JYdPYP6TxJox1YwVVlWN29lnjaVpgHQT/JcbY/V4F6tRLaBDc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VK10XMiY; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AUDNAse008048
-	for <devicetree@vger.kernel.org>; Sat, 30 Nov 2024 13:43:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	v1hS0vcVSga+NYrQR8U/CivFXM7UEZxTji0ocr8yqOk=; b=VK10XMiYuCXFjxS/
-	eAqZ3dfXq8qKyu/rrY43Y3ZJGwx78ZoIRWSvjMImoJBcRwDnYUHHdSnYmY3cxY1I
-	m23ZYB7KjmMjCZd/tNlJV6noIHfJ+ye6BUaGXFzKwnJQLmAeYdch6ngUwrKjJXkl
-	gjpoFyI2LXrm45kut4peL6cHb7E9U05B8db3gn5PpXn2PHedymU/4xDuSNfSdLx7
-	podsbl+zhxffV5SFP15AmV23vqyXqeF0zJrFeX5mTDf2Z7FnsHsT+lxlERER3WYa
-	mA8uL5Zw4o7XqBA0wAa2e3r5Sh9yfVpTzOvnnSh83qpHAyU35E8hOW6CArRa6PnX
-	BtxL/Q==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 437rde903f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 30 Nov 2024 13:43:11 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-46692fb862bso3542881cf.1
-        for <devicetree@vger.kernel.org>; Sat, 30 Nov 2024 05:43:11 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732974190; x=1733578990;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=v1hS0vcVSga+NYrQR8U/CivFXM7UEZxTji0ocr8yqOk=;
-        b=gqbIkDNj+PPImHV62zquGLobzvAZfCz6ps+J8cyofghQaMBF/m2zN6YDeAzUsn+wM2
-         hflsgAWqAelq/kcTb3sWgtsZ9SnX2WavDa63jsFlmyj7fxB2mxFTiDeHfTEywsn3cBNc
-         /u6L5f/kQtdJWQIyDnD85j2OxaiNkJxq2eQS9LX4JtTPPLwROeKImAa6VfITYJzgzC7X
-         FmggNLPOWOTkTJXgQwqZ9RaeS5ik4nrkRA4HzHUKEEyOpaEX7fENUU6azBI1Aej7At1L
-         bJWc8U57NzGs4u8nJ+AA99lc05PNMP5EcKK8U4cLCZ8zu5Uy5y+5VP7Q0utQsRWVMs6c
-         MuuA==
-X-Forwarded-Encrypted: i=1; AJvYcCVJ3+bj4FpiSrOSGOSuazBqZiq64ZjOHyrhgDzIgku+D5DagmCqPTcUCn2+7lUEsshhFbmfc25EMYaG@vger.kernel.org
-X-Gm-Message-State: AOJu0YygS4ZZWWqaSykUGqIP1jv0hDPkSIwA6QIOK4mDWtP4gXEGlvqG
-	4N/dXZI4Ij6whPID5OBXlQhXgpuO6BgKtzYjQ6vWGIYKfe5PPACly4hryuBLmBOyxzBwMN8TSXg
-	MQ+rd6wSBAZf/4HQUeymjVKO7ZmGXvtQBHWN092w4TrVGUb6f1vh0rcffpMs7
-X-Gm-Gg: ASbGncsnqx4M8p1LZnJxsWFJU6KTy1cM1+eTAr5ScRasuAeUgJ8WGNOG8+iXpfKAHzk
-	KXvUoa81y/TBB8ClGMkYilkV8Ke3Ogu8nmbT1wxRVDo/crwLny2rN5sinOHFqZgTLi5jrJ54yMe
-	dLe6XrwAHl7DohrsaHW10bSkwKoE03naivaWwGTwrxCUDzeh+HMWk5/ZKF1vpn/SWYjDQPr6mEq
-	ZvoHTpjqnIwyKQdy2wt7I2zfpkWmg33u+J/aIOJxecGlCqXmkvxnOx0wuug7/VaKbOvaAJpLL8w
-	huHkQGUp8QUv0QtOSMdXDxt8PLqEZZc=
-X-Received: by 2002:a05:622a:19a2:b0:460:9acd:68be with SMTP id d75a77b69052e-466b34ed7b1mr95186531cf.5.1732974190127;
-        Sat, 30 Nov 2024 05:43:10 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFdQkV3XDgMM42xOm0M80R9Lb5K62gj/42Xpq3XSJPAi+a1WhSXxCbcCgvSEKn5dX73E2jDew==
-X-Received: by 2002:a05:622a:19a2:b0:460:9acd:68be with SMTP id d75a77b69052e-466b34ed7b1mr95186381cf.5.1732974189776;
-        Sat, 30 Nov 2024 05:43:09 -0800 (PST)
-Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa59994b837sm279071466b.176.2024.11.30.05.43.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 30 Nov 2024 05:43:09 -0800 (PST)
-Message-ID: <7dc72269-63f0-4370-9564-e329bf53ea66@oss.qualcomm.com>
-Date: Sat, 30 Nov 2024 14:43:07 +0100
+	s=arc-20240116; t=1732978719; c=relaxed/simple;
+	bh=hRHt1lKznXLvZ2Cm50+cd/mXkEiynz1ejTZcgSUzC8Q=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=M5ZzQ9dq34+ylBnCKn+tbd/gYwbj+qOJS2w7Md4C2FU/0fZNLm4MjNI4MpJL/dG+g3AuOLCaG9eO/yKJTgqL32mjlVH3JD63dazJ1sNmr0OvrJQN74aeLFaq4wdOY7gn3wWL5MHoNhxXttRHuRnv9c3bFUNy3GSQwroxUQWN/OI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at; spf=pass smtp.mailfrom=emfend.at; dkim=pass (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b=kNP1i5Wx; arc=none smtp.client-ip=168.119.41.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=emfend.at
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=emfend.at;
+	 s=mail; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:
+	To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=LBqtIkKqqs3bjj0mz+CKgjkWz2efBS8qbc1Tcg5LZaI=; b=kNP1i5WxNv3Jj6oqGm67tOKT0M
+	l5b9i72VFafsO6LBqtqglQeA86VHYbMYweAc3y9BwvGmFiUSzlpKjuV4P17YMkin613UYI0i025eK
+	AJz6v67LBD4E8pezHQeOa5s9dau+oat8Pu7wb8/EcA2g5HPRgpUfzxbXo+S4fp40tk8E=;
+Received: from 194-208-208-245.tele.net ([194.208.208.245]:61203 helo=localhost.localdomain)
+	by lx20.hoststar.hosting with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.93)
+	(envelope-from <matthias.fend@emfend.at>)
+	id 1tHOHn-008ZQH-VJ; Sat, 30 Nov 2024 15:17:28 +0100
+From: Matthias Fend <matthias.fend@emfend.at>
+To: Michael Riesch <michael.riesch@wolfvision.net>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] media: dt-bindings: sony,imx415: add required clock-names property
+Date: Sat, 30 Nov 2024 15:17:15 +0100
+Message-Id: <20241130141716.1007115-1-matthias.fend@emfend.at>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] arm64: qcom: qcs8300: Add ADSP and CDSP0 fastrpc nodes
-To: Ling Xu <quic_lxu5@quicinc.com>, andersson@kernel.org,
-        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org
-Cc: quic_kuiw@quicinc.com, quic_ekangupt@quicinc.com, kernel@quicinc.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20241119120635.687936-1-quic_lxu5@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20241119120635.687936-1-quic_lxu5@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: u1XmqOd6biB5BXlbBSjygYGUcr2GynFn
-X-Proofpoint-GUID: u1XmqOd6biB5BXlbBSjygYGUcr2GynFn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxscore=0
- adultscore=0 malwarescore=0 mlxlogscore=673 phishscore=0 suspectscore=0
- impostorscore=0 clxscore=1015 lowpriorityscore=0 bulkscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2411300113
+Content-Transfer-Encoding: 8bit
+X-Spam-Score: 
+X-Spam-Bar: 
+X-Spam-Report: 
 
-On 19.11.2024 1:06 PM, Ling Xu wrote:
-> Add ADSP and CDSP0 fastrpc nodes for QCS8300 platform.
-> 
-> Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
-> ---
-> This patch depends on patch https://lore.kernel.org/all/20240904-qcs8300_initial_dtsi-v1-0-d0ea9afdc007@quicinc.com/#t
-> Changes since v1:
->  - Remove duplicate cdsp fastrpc nodes
->  - Add adsp memory-region and vmids
-> Changes since v2:
->  - Remove extra duplicate cdsp fastrpc nodes
+The imx415 driver expects a clock with the name "inck".
+Document this in the bindings.
 
-You removed effectively- duplicate iommus entries, no nodes were
-removed compared to v2.
+Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
+---
+ .../devicetree/bindings/media/i2c/sony,imx415.yaml          | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Also, I hope you gave this a smoke test, as some platforms in the
-past had very strict sid/mask matching policies that didn't really
-evaluate the effective value.
+diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx415.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx415.yaml
+index 34962c5c7006..e110b39bb391 100644
+--- a/Documentation/devicetree/bindings/media/i2c/sony,imx415.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/sony,imx415.yaml
+@@ -31,6 +31,10 @@ properties:
+     description: Input clock (24 MHz, 27 MHz, 37.125 MHz, 72 MHz or 74.25 MHz)
+     maxItems: 1
+ 
++  clock-names:
++    items:
++      - const: inck
++
+   avdd-supply:
+     description: Analog power supply (2.9 V)
+ 
+@@ -76,6 +80,7 @@ required:
+   - compatible
+   - reg
+   - clocks
++  - clock-names
+   - avdd-supply
+   - dvdd-supply
+   - ovdd-supply
+@@ -96,6 +101,7 @@ examples:
+             reg = <0x1a>;
+             avdd-supply = <&vcc2v9_cam>;
+             clocks = <&clock_cam>;
++            clock-names = "inck";
+             dvdd-supply = <&vcc1v1_cam>;
+             lens-focus = <&vcm>;
+             orientation = <2>;
+-- 
+2.34.1
 
-But it looks good now
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-
-Konrad
 
