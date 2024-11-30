@@ -1,179 +1,110 @@
-Return-Path: <devicetree+bounces-125779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125780-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15CFD9DF2F8
-	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 21:25:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E03D99DF2FC
+	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 21:29:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83308162CD5
-	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 20:25:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A4685162CD8
+	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 20:29:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 875E91AA1E9;
-	Sat, 30 Nov 2024 20:25:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0F951AA7BF;
+	Sat, 30 Nov 2024 20:28:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="0zKLputJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="THQQsrqH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94934132103;
-	Sat, 30 Nov 2024 20:25:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F96C1AA78A;
+	Sat, 30 Nov 2024 20:28:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732998336; cv=none; b=tbFr7AP5NgLrZNQYe+K1JJfkfe0sLRfkeGxjBN9M5tgC6cCd005wxImLjodGk2rtAn5nwCtf9+kNo5G5vAy6b/34N5sG4ZGX4B2TtuZx5uAkK+QtTosIlPxCZ0sL9NhozVJzkv678e2fQ9+u091kLGDxJvq7wP1twwSlz11fPfI=
+	t=1732998539; cv=none; b=OhA3yvLtuISjCQiB4b/ddVqZIfG9AKZGPw/U87mFbmz5ICJDvA2Ue5nxt/aPSpOnHueFPoZDqSMYbv8ScUF2r0nKDX1GqIAlibkWCALafKl8Y2r7ybT2qquV/D17+BYG4iZYVeZ3kfMlok/HCkwa0o/LMhGDwVclzrv1E3arJNc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732998336; c=relaxed/simple;
-	bh=uHokISs9XKOrrY5wB5eLy6qU757AOKlXohfQCDsXHdg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=oPunogi+4wBddljlCWu/TPgqTeZcTsoqyf1JkaECENNYqVFgh1QlH7fRczvgXnVQmUNmXgUfJvzAj6RxbkNa0+vxdNxtmC7w/TuGaGkaPq8kvqsggvwgPw+2+C4V5nnXsoavp3m/WpRRdtVogqVTpkMVaCpI5x+E2X3XR2YVOFM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=0zKLputJ; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=7zLaGCMDGsCJKOc1IwLPI+bZJjfcisw70zunW0yk10M=; b=0zKLputJip9nTRlXLWyCCTQ13n
-	1f/TZEKJPD/pkyR4NLE51GUwc7dCni98FZE/XXSaF9f0Ih5jKhQoUMWm2vcG4vAw95L/qERg2x67l
-	S/tTkfeWDzDr38USyDKIzP6O9sjp1tWRMpBoYORU8GccFAXgGaqL2rwEihHXg2QhAixwg/fPfAK3K
-	7ivms/2XXWzV6dkE8eX6HVMxNkZjX2yXpXFVz193aqEhvOG2i6w8TylQrCdRgFrKRB4K/6hv9tCPj
-	7egDlw08oLvW1tEHuAJv819qMZFd1gnkaBft7CofvqxX6l9FROxThpBfvGdWuUY9VXvjqqFZCoPh1
-	B4GIpIOg==;
-Received: from i5e86190f.versanet.de ([94.134.25.15] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tHU1h-0005Ux-7S; Sat, 30 Nov 2024 21:25:13 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Damon Ding <damon.ding@rock-chips.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- rfoss@kernel.org, vkoul@kernel.org, sebastian.reichel@collabora.com,
- cristian.ciocaltea@collabora.com, l.stach@pengutronix.de,
- andy.yan@rock-chips.com, hjc@rock-chips.com, algea.cao@rock-chips.com,
- kever.yang@rock-chips.com, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org
-Subject:
- Re: [PATCH v1 04/10] phy: phy-rockchip-samsung-hdptx: Add support for eDP
- mode
-Date: Sat, 30 Nov 2024 21:25:12 +0100
-Message-ID: <2886747.Y6S9NjorxK@diego>
-In-Reply-To: <6e1f35c0-5ea8-414f-b3ea-4e7222c605ef@rock-chips.com>
-References:
- <20241127075157.856029-1-damon.ding@rock-chips.com>
- <2131853.KlZ2vcFHjT@diego>
- <6e1f35c0-5ea8-414f-b3ea-4e7222c605ef@rock-chips.com>
+	s=arc-20240116; t=1732998539; c=relaxed/simple;
+	bh=SiY2Nq9QzSin2vjmXSMhAfeksH3aD0224fqxI9VqMSU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=mCKe+198PnoxHUwVh0xoUb7jdfYZ7ifX/kltylCipcbPW7ipHaEQLdjYfuDUwUDSYDm+yuBzzYEL8hMHur8jY34SfYvaxKr8nKbAW4ZfShc6PnUVzesWTqJKa+Ji9QchAOPrb78vi3Mg9l5dn4E3U4UVdTGJiKxyulKbQJHhLD4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=THQQsrqH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56089C4CECC;
+	Sat, 30 Nov 2024 20:28:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732998538;
+	bh=SiY2Nq9QzSin2vjmXSMhAfeksH3aD0224fqxI9VqMSU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=THQQsrqHLVL9bpqOb8h8nwY8dHsGur7AbcDZs3PJeFsc7ru2U4qfyFDktqvoXjGry
+	 Q8lNLqjiuV4aPq1uOx3A4QCxkueW7tBFkCXF1sgDqEddC1Zl9EmXXUAgwAGaaNO1bS
+	 qKan3lrqVwjoPfroskLWVASQNHSlU12VJjWoVg8fVmeoFhWTdDAWH3c6pypnFak+up
+	 pMiveP0yeP33GOzEWZrDlPqOuy28+9FaNlOrbo9tfSQcLQ8gjJGoU0h4djJCOslKbH
+	 XjhwGHiHQ5KChLWd6+88r7s2LPl2ybNFTAERShqtAhMH9fscgi9Mq0ymttTeismz5N
+	 0KYlOYrrQMYCg==
+Date: Sat, 30 Nov 2024 20:28:49 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Ming Yu <a0282524688@gmail.com>
+Cc: tmyu0@nuvoton.com, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, cmo@melexis.com, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Jean Delvare
+ <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v1 0/2] Add Nuvoton NCT7718W IIO driver
+Message-ID: <20241130202849.13eedb04@jic23-huawei>
+In-Reply-To: <20241126074005.546447-1-tmyu0@nuvoton.com>
+References: <20241126074005.546447-1-tmyu0@nuvoton.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hi Damon,
+On Tue, 26 Nov 2024 15:40:03 +0800
+Ming Yu <a0282524688@gmail.com> wrote:
 
-Am Freitag, 29. November 2024, 03:43:57 CET schrieb Damon Ding:
-> On 2024/11/27 19:04, Heiko St=FCbner wrote:
-> > Am Mittwoch, 27. November 2024, 12:00:10 CET schrieb Damon Ding:
-> >> On 2024/11/27 17:29, Heiko St=FCbner wrote:
-> >>> Am Mittwoch, 27. November 2024, 08:51:51 CET schrieb Damon Ding:
-> >>>> +static int rk_hdptx_phy_set_mode(struct phy *phy, enum phy_mode mod=
-e,
-> >>>> +				 int submode)
-> >>>> +{
-> >>>> +	return 0;
-> >>>> +}
-> >>>
-> >>> I think it might make sense to go the same way as the DCPHY and also
-> >>> naneng combophy, to use #phy-cells =3D 1 to select the phy-mode via D=
-T .
-> >>>
-> >>> See [0] for Sebastians initial suggestion regarding the DC-PHY.
-> >>> The naneng combophy already uses that scheme of mode-selection too.
-> >>>
-> >>> There is of course the issue of backwards-compatibility, but that can=
- be
-> >>> worked around in the binding with something like:
-> >>>
-> >>>    '#phy-cells':
-> >>>       enum: [0, 1]
-> >>>       description: |
-> >>>         If #phy-cells is 0, PHY mode is set to PHY_TYPE_HDMI
-> >>>         If #phy-cells is 1 mode is set in the PHY cells. Supported mo=
-des are:
-> >>>           - PHY_TYPE_HDMI
-> >>>           - PHY_TYPE_DP
-> >>>         See include/dt-bindings/phy/phy.h for constants.
-> >>>
-> >>> PHY_TYPE_HDMI needs to be added to include/dt-bindings/phy/phy.h
-> >>> but PHY_TYPE_DP is already there.
-> >>>
-> >>> That way we would standardize on one form of accessing phy-types
-> >>> on rk3588 :-) .
-> >>>
-> >>> Also see the Mediatek CSI rx phy doing this too already [1]
-> >>>
-> >>>
-> >>> Heiko
-> >>>
-> >>> [0] https://lore.kernel.org/linux-rockchip/udad4qf3o7kt45nuz6gxsvsmpr=
-h4rnyfxfogopmih6ucznizih@7oj2jrnlfonz/
-> >>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.gi=
-t/tree/Documentation/devicetree/bindings/phy/mediatek,mt8365-csi-rx.yaml
-> >>>
-> >>
-> >> It is really a nice way to separate HDMI and DP modes.
->=20
-> I apologize for reopening the discussion about the phy-types setting.
+> NCT7718W is an I2C based thermal sensor chip from Nuvoton.
+Hi Ming Yu,
 
-there is definitly no need to apologize. We're trying to find the best
-solution afterall :-) .
++CC Jean and Guenter,
+
+Why an IIO driver rather than a HWMON one?  Superficially this looks like a hwmon
+chip.  We do have the means to put a generic driver in IIO and bridge to hwmon, but
+when a device is very much intended for monitoring of hardware temperatures etc
+the IIO driver rarely has any purpose and a simpler hwmon only solution makes sense.
+
+For temperature sensors IIO normally makes sense if:
+1) They are part of a series of devices some of which have more functionality than temp
+2) Fast devices where hwmon sysfs interfaces become a bottleneck - note you have to have
+a usecase for reading them fast, not simply a device that is capable of it.
+3) 'Unusual' temperature sensors such as infrared thermometers or very high precision
+   thermocouple interfaces.
+
+Any of those apply here?
+
+Note that hwmon has better threshold and critical temperature handling than we can do
+in IIO and it seems your part has those as well.
+
+Thanks,
+
+Jonathan
 
 
-> With the .set_mode() of struct phy_ops, the HDMI and eDP dynamic=20
-> switching can be achieved, which just depends on the right setting of
-> enum phy_mode in include/linux/phy/phy.h. So the previous way of=20
-> configuring phy mode may be also good.
-
-I think the deciding factor is, is there a use-case for needing to switch
-modes at runtime.
-
-I do think the mode for the dc-phy and also the hdptx-phy is pretty much
-decided by the board design.
-
-I.e. when you end up in a DP-connector (or eDP-panel) on your board you
-need DP mode, and when you end up in a hdmi-connector you need the
-HDMI phy mode.
-
-So I think the phy-mode for the hdptx-phy is largely dictated by the static
-board definition (like devicetree), hence going with the dt-argument for
-the mode.
-
-Like similar to the Naneng combophy, selecting its mode via argument
-because deciding if it ends up in a sata port is a board-design thing.
-
-
-Is there a use-case where you need to switch at runtime between
-hdmi and eDP? Like starting the phy in eDP mode but then needing
-to switch to HDMI mode, while the device is running?
-
-
-> And other phys may want to support dynamic switching too, like the=20
-> Rockchip USBDP combo phy.
-
-I guess USBDP is special in that in also does both modes dynamical
-depending on its use (like type-c with option DP altmode)
-
-
-Have a great weekend
-Heiko
-
+> 
+> Ming Yu (2):
+>   dt-bindings: iio: temperature: Add support for NCT7718W
+>   iio: temperature: Add Nuvoton NCT7718W support
+> 
+>  .../iio/temperature/nuvoton,nct7718.yaml      |  44 ++
+>  MAINTAINERS                                   |   7 +
+>  drivers/iio/temperature/Kconfig               |  10 +
+>  drivers/iio/temperature/Makefile              |   1 +
+>  drivers/iio/temperature/nct7718.c             | 505 ++++++++++++++++++
+>  5 files changed, 567 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/temperature/nuvoton,nct7718.yaml
+>  create mode 100644 drivers/iio/temperature/nct7718.c
+> 
 
 
