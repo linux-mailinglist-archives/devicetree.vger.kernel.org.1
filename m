@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-125698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125699-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25B1E9DEF8B
-	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 10:30:53 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E68E89DEF8F
+	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 10:31:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA41928120F
-	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 09:30:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2A70BB222C3
+	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 09:31:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A117C1531F2;
-	Sat, 30 Nov 2024 09:30:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ECC47083A;
+	Sat, 30 Nov 2024 09:30:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Fyfeh4vG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m54oM/0k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E318A14C59C
-	for <devicetree@vger.kernel.org>; Sat, 30 Nov 2024 09:30:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E13477080A
+	for <devicetree@vger.kernel.org>; Sat, 30 Nov 2024 09:30:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732959043; cv=none; b=i8egF+dMhAxAXxBeDLAIdUujbfn0a/lXfJ5DJbMLuiqZfFYNmRnUHu76DZQdKPgnAP5Ea4pAXGPxHkgXzsoqq0O5GQ8QBvnsR3vrNus5uoYgpAbJM3l7d6FnmpwjR87clpyGXWKhEsFq0MseK/kzFMv7lStlD46iFSSelXvXylw=
+	t=1732959055; cv=none; b=sbnew1lZl+FiFldmXvFT/0uX8a+4vm21yblwDGxQZF/VUVIxyvfRsPo4rlFBP42OKSrgM3B5LmM9XUEKYLdGgc2x8USUcP5wZiUAOoTtm5kJdgh2cXzQtYvPL1nYJGuQyGuf9jExbEJK8NL3nAkFodU9ZB7kPNUijaMm9uEBwLs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732959043; c=relaxed/simple;
-	bh=GGcoDVrrmGOBOnQrOwTBqmoytJ87VR6L+NmhjB4EZaU=;
+	s=arc-20240116; t=1732959055; c=relaxed/simple;
+	bh=MEE1XIJr+3jsQKBb3VVMBvVqLpYNnDK0/E7pYnm+u68=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Yzhzf+/qTNK4SMpHm/iucB99xj6pe6cRltObnwNdRopfeMNrD1VygcGgsP/35HfWzVNr+othrLytfCOetthG6hGn2qN5DIougFJCPT1gXu9DGXR2eHlTxt3UwDjdKfa5o+BpbuAYRhDoeqWvVi68jWc7JR99qwTHRvJbk1YJgy0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Fyfeh4vG; arc=none smtp.client-ip=209.85.128.54
+	 In-Reply-To:Content-Type; b=HdRK2g2Z7XNUWCPT/4WJ4BkDOxA6WkmIWj4pGIoV6irmqxOka6Q8vhmQCqIOTBp4iUQZn9jbchIFqRCqaymg5WyOP9LqgoEIWaZi61GBG7mRGW5MI2bDlKefYsPKQeh4t02E5LTd/sKx1fpF5q2/PwiLeJKlVv9C5F6FBQzdDxs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=m54oM/0k; arc=none smtp.client-ip=209.85.221.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-434a36b82b7so2211085e9.1
-        for <devicetree@vger.kernel.org>; Sat, 30 Nov 2024 01:30:41 -0800 (PST)
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-38231f84d8fso245338f8f.3
+        for <devicetree@vger.kernel.org>; Sat, 30 Nov 2024 01:30:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732959040; x=1733563840; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1732959052; x=1733563852; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=egJfWDkT0UXr8umOBNy5NUnLgDDOV4+vBIoPAkgzGag=;
-        b=Fyfeh4vGwx5GtOjPqPeJUj8OHhlzL/vX+rEJjMdJIputrdCBmiMwlaMI56WMX7BYce
-         pwU4ecWr8c5ZfpuDEm5U4kd8hA2shugRxJtk4fHJysoY3uE28Kkrn09gJHTkOdX79rW4
-         EnJGvcdqF55ta2PTg9NIxqzdL/QQTfhWLRFxJMyhef9uESXHi8Av2LeQ2rH4Cdvq/zBH
-         s+soUQ8PZf2rFrGEl1XswA6CrRdfR3IVQwbbIhfYuy8hBdfomvo/LDEQjwuEgYCkHCee
-         i1zWRpBm/nb1icRGeLT7wRPOtBrpXlqdJcozJTnJgaDrJQiOvwMJoEFBEM3OP+8qFsTw
-         7UuQ==
+        bh=tB8OP+twrnV6sMGptrkcML5OcEGPJ+ANQJYi3cQEOvg=;
+        b=m54oM/0k5LnrB214gx9FyAUzFOW/9VaqzHa19YSDxH56NLrmZVmKCF6ExaqMgrmp/d
+         h6upwhu23kfkfGkkzSSl1o3mY1pBV0TohtwmSr1hUEECBesJ9Jfixvf3mDZJwo4stRx3
+         iyZBTt6vKe2MrY7qcLsrb64iUrpHLAHdrg816HvDirVm3IuUzVPc73UgZnfTNMyb7Wj4
+         UJ1rg2IIqhjZq7dVcYrmW6LfpJHR1KxTBvIbC0p75mncXqsCvTSXAzikBIaVWD+vQduM
+         udV9jMil/IS3LCbEHnacUp9ZL1dD/MKJv/bgo1OZc3/0DzDXBNo+gDOV+ULkuhTx7iJb
+         d4BA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732959040; x=1733563840;
+        d=1e100.net; s=20230601; t=1732959052; x=1733563852;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :from:references:cc:to:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=egJfWDkT0UXr8umOBNy5NUnLgDDOV4+vBIoPAkgzGag=;
-        b=Frswu53ChRqsWKFvwFUouwBohudMfvF1Se+bb1aWfJqStyl16hPByha6zR8B76QGZz
-         ZwzAu6ia0UvlHrcd/1KHgNTU1K1ba83V9SL3Xc59VGfu+e1ug2lQuQKtq2OwTbEt1rCV
-         ino6So1UN+UJVM8zoZ2Qmz+7jHg/bGs9MsZS4e+bEh+DjLhhKFIumWjG8z3VqmBU+I4X
-         v0SEbGvoruW3OGzUpTLlRSI/SfESJ0irSld+3o/rFFtagsh3vvr3sOzVSBgyAg9JKAho
-         gfMYB4YMRFE4NCkSkpbHFROZ5lNlXRvXAsdR7T/uqLgVFLa/KOh5S51sbefmWxc/Ls4M
-         B3Pg==
-X-Forwarded-Encrypted: i=1; AJvYcCXVzxAB5jLi09C7e+oQJ8RyqL1Z3r2cg/sEsupuZqgKocurh7/Wx6RseurHLub5vnmS/+ISan2HSQB/@vger.kernel.org
-X-Gm-Message-State: AOJu0YygYU/BzuOXHRsA0P7S1ieGVMcHN9+iNOB2jlRfsJ58GFYYqUwE
-	1BlUJRPDWeGun9rMxSLQBOnjh5ORW5CL9QGCj+ZmYS3WWTEiwgGOjexqzFSj1LE=
-X-Gm-Gg: ASbGncteZok2699CTTZTO3eKZUvLe9fut3Cf9+uQ8955KAebTQdshsMa3uPVlsZZY4A
-	VoHbCsAong+KM0Mv1bO7xtBOrtFWGZ9P738i8E+GxwRzf+zi0RE2AEpcVcauueJkOiMP/iithGf
-	RJkX/Ew7VmwqsY7i/6aIueCCbrg0VUrtX8C1g5lAvpGX/T2k7cg0rmq1q/n0v85dnjzTrxXzoYQ
-	b2XwQGVmdkBCKEMNHo/IyoYAtHbNl+88V+jm90j3T4GdnYSGq9tODmhdNh7k95xbgCK
-X-Google-Smtp-Source: AGHT+IGwNjrM0vQw5VkFK+wbUfZhDnw6nn6RQU2j3oePjtfzmU/sGlZmymLiRAU98jS0/WX/cRGeCA==
-X-Received: by 2002:a05:6000:2a4:b0:382:4b80:abb1 with SMTP id ffacd0b85a97d-385c6edb20dmr5193412f8f.10.1732959040326;
-        Sat, 30 Nov 2024 01:30:40 -0800 (PST)
+        bh=tB8OP+twrnV6sMGptrkcML5OcEGPJ+ANQJYi3cQEOvg=;
+        b=k1KiAS7g25U/i4J4b6Kqx+08Ubfna1seQgmMsqNfxGXQEBOObi2k3CUOBKeeBHAZ+h
+         8YrT8GG/XfadO/7Wl9a2+C/O+4aNa2EpsIzjcsp/fM62Kq69m/vDM/dt29tST414eNhf
+         zkXP43e/UA32/OLevoS3/Zd4Mlzb0PJlLxXMFpEeEosD/RViaK40uQh/75GaDNT5uDwO
+         YFwMJ1d68UmnS8m7iCJx5X91EgCJCikMJHOpPFwZL1RpcPMOgq4bYLSeY5JvujHJYIL9
+         9kWNWRW3PIwYjTbvofuH1CvMdb8KATrJ8vPkveB/kx25GSwSM8O6NA6pBr/86PeKjMgN
+         7nMA==
+X-Forwarded-Encrypted: i=1; AJvYcCVVMDKd3jdekhV4niqWHUCjbZQy1OQC1L/LJvW/Zc75llLZ7AgyIttI5/AGFRbHQGsmpMJpi4ZNYld8@vger.kernel.org
+X-Gm-Message-State: AOJu0YydIXTAa+fCvELCss6TavN6+KWYfUGO55fii0K0rDKuIQyOqLeA
+	MDnrzObN084pQYl5qWjOY1kGNGRWJde/B9LSDwP+lbGk9j9eSyC/KyRDY0blyF0=
+X-Gm-Gg: ASbGncv1fF0vRhs96x8MCz96oIMrOIo8wGGWleW5+0i39HCCe5GGS/IgFpuHu7w6jWq
+	HTz+7gAQJwjd2Vh35OgKDlIUXlrXw1QEyoCvEB8UYfIkRpKg2t/e+GEmGsWxnmSUu4YElFbq7q7
+	ufSWlpq8/q9McFg/kbWYMizsRJ5r/dqhSO2Vh0p5aGRsW0k64/enmjV7AZb9LRiulkm7xJtTkhb
+	pccYIHzzL9A7Jsuzt9HPaXqcIZYVGhe/dYthMelFIyQ2DZPsQjwi2w1jbFj04YOtwYI
+X-Google-Smtp-Source: AGHT+IHyG37NFARndh3vPp/Ss9gbFXVcwEVoBOsQ2++8clUBCCFEh/xGbX1YFxhj5T65o2myiFLw+w==
+X-Received: by 2002:a5d:6da5:0:b0:374:ca43:ac00 with SMTP id ffacd0b85a97d-385c6eb7051mr4686009f8f.4.1732959052204;
+        Sat, 30 Nov 2024 01:30:52 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.218.23])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-385df15e1e7sm3911397f8f.40.2024.11.30.01.30.35
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-385ccd68c1bsm6829829f8f.84.2024.11.30.01.30.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 30 Nov 2024 01:30:38 -0800 (PST)
-Message-ID: <8fbfe9e8-c7cb-4cf5-b851-75dd37f43ef5@linaro.org>
-Date: Sat, 30 Nov 2024 10:30:35 +0100
+        Sat, 30 Nov 2024 01:30:51 -0800 (PST)
+Message-ID: <397db016-54be-4bc6-93ed-46a129f37f62@linaro.org>
+Date: Sat, 30 Nov 2024 10:30:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,8 +81,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 25/31] arm64: dts: qcom: sc8280xp: move board clocks to
- sc8280xp.dtsi file
+Subject: Re: [PATCH v2 26/31] arm64: dts: qcom: sm6115: move board clocks to
+ sm6115.dtsi file
 To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
  Bjorn Andersson <andersson@kernel.org>,
  Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -111,7 +111,7 @@ Cc: Leo Yan <leo.yan@linux.dev>, Joseph Gates <jgates@squareup.com>,
  linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
 References: <20241130-fix-board-clocks-v2-0-b9a35858657e@linaro.org>
- <20241130-fix-board-clocks-v2-25-b9a35858657e@linaro.org>
+ <20241130-fix-board-clocks-v2-26-b9a35858657e@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
@@ -158,13 +158,13 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20241130-fix-board-clocks-v2-25-b9a35858657e@linaro.org>
+In-Reply-To: <20241130-fix-board-clocks-v2-26-b9a35858657e@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 30/11/2024 02:44, Dmitry Baryshkov wrote:
-> SC8280XP, SA8540P and SA8295P have main XO clock definition split
-> between the SoC dtsi file and the board file.
+> SM6115, SM4250 and QRB4210 have board-level clocks (XO, sleep)
+> definitions split between the SoC dtsi file and the board file.
 > This is not optimal, as the clocks are a part of the SoC + PMICs design.
 > Frequencies are common for the whole set of devices using the same SoC.
 > Remove the split and move frequencies to the SoC DTSI file.
