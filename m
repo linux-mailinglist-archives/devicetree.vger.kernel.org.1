@@ -1,119 +1,122 @@
-Return-Path: <devicetree+bounces-125741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125728-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB5DD9DF15C
-	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 15:58:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDF4D9DF122
+	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 15:27:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 71AAA28150F
-	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 14:58:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 912E52812A6
+	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 14:27:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8C3A19C575;
-	Sat, 30 Nov 2024 14:58:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8F4C19924A;
+	Sat, 30 Nov 2024 14:26:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b="kNP1i5Wx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O53JkXlJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lx20.hoststar.hosting (lx20.hoststar.hosting [168.119.41.54])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E14F3198E99;
-	Sat, 30 Nov 2024 14:58:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=168.119.41.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99D1A22066;
+	Sat, 30 Nov 2024 14:26:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732978719; cv=none; b=MyghkJGGUCLAhP0L0MuOb9Cahs9Qc6NCju4FhVYRUB0XbpFQOXph9GGXZImGW+KwqFgvNo/HtJC4uJ0HHTwcZjGOzv5/cJQlRvlBsnD640YmsAhAnAhFq/YpnGBnvgvR9VL3mJg83ElPdWB5G2GZOWyJJJsm8b54CfcxpbQ7hHg=
+	t=1732976817; cv=none; b=BDhLARIODujmW9S7x/8Uk/sGxKzChz/YyuH/Ebf5vwMSLC4v4DQbaajhfAlFlY0dgePYcEK0KoLmirG3f83tdx40VAE9Hi4oB3Z3cTU+ajo6D35Cgn9xe+Xoy6WIQ9YBOJFZ+R+tEqiqvBBz+F+KkhN4XdSoLa46B7dpp+BGBWY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732978719; c=relaxed/simple;
-	bh=hRHt1lKznXLvZ2Cm50+cd/mXkEiynz1ejTZcgSUzC8Q=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=M5ZzQ9dq34+ylBnCKn+tbd/gYwbj+qOJS2w7Md4C2FU/0fZNLm4MjNI4MpJL/dG+g3AuOLCaG9eO/yKJTgqL32mjlVH3JD63dazJ1sNmr0OvrJQN74aeLFaq4wdOY7gn3wWL5MHoNhxXttRHuRnv9c3bFUNy3GSQwroxUQWN/OI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at; spf=pass smtp.mailfrom=emfend.at; dkim=pass (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b=kNP1i5Wx; arc=none smtp.client-ip=168.119.41.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=emfend.at
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=emfend.at;
-	 s=mail; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:
-	To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
-	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=LBqtIkKqqs3bjj0mz+CKgjkWz2efBS8qbc1Tcg5LZaI=; b=kNP1i5WxNv3Jj6oqGm67tOKT0M
-	l5b9i72VFafsO6LBqtqglQeA86VHYbMYweAc3y9BwvGmFiUSzlpKjuV4P17YMkin613UYI0i025eK
-	AJz6v67LBD4E8pezHQeOa5s9dau+oat8Pu7wb8/EcA2g5HPRgpUfzxbXo+S4fp40tk8E=;
-Received: from 194-208-208-245.tele.net ([194.208.208.245]:61203 helo=localhost.localdomain)
-	by lx20.hoststar.hosting with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.93)
-	(envelope-from <matthias.fend@emfend.at>)
-	id 1tHOHn-008ZQH-VJ; Sat, 30 Nov 2024 15:17:28 +0100
-From: Matthias Fend <matthias.fend@emfend.at>
-To: Michael Riesch <michael.riesch@wolfvision.net>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] media: dt-bindings: sony,imx415: add required clock-names property
-Date: Sat, 30 Nov 2024 15:17:15 +0100
-Message-Id: <20241130141716.1007115-1-matthias.fend@emfend.at>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1732976817; c=relaxed/simple;
+	bh=1JfZBGt2E3X8qqsmgczArEGXlSVP0/Q35wYs6d/fGsA=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Hc0VEfYKvtOBaisMxngLFZYIxntueDK/eoKNtJpt3kcHFIy9qNkPFKFBwwbAqbfJ5w7skjeGwtSpJwqCfajqtSFXCsy7gkj5zC0HCJ/uNGgnp8YYuo1h2EKEm2FAD/4ZoRnk3rz/UpgBV9ojQapmU0ZS8p6AfUY49xnk61ZJDrE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O53JkXlJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA339C4CECC;
+	Sat, 30 Nov 2024 14:26:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1732976817;
+	bh=1JfZBGt2E3X8qqsmgczArEGXlSVP0/Q35wYs6d/fGsA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=O53JkXlJynh2OL1AY8XDIr+WPQ2QQ7LEameYwa7X9L/56q6E7eyx4hibKV/lkDmz8
+	 y4j59BnHz0H0k5Rw8A37ZAgc8bWWouAcWhDivyCCh3AIH1TOEFtrhM707YEptxtKR/
+	 +Z0bP8WMOKhg4I7GGWVrP6LamVRZshA4GIJ+5hxv70dH35W6dylqBQ+ya6CG0Nhsn9
+	 saWAIY54FegL0xYWgZ75XYnfD0TPLco8/kJUPb/ge2XWLkEBf2p4YhS7Cobhdw6yYP
+	 8ax3HswTO0zmat/bmYRofdLtg+I9FRPkx0lDvzYSiGW0z7MqmBymRxTUsbZDvoSYcW
+	 P4yWw9sN6v30A==
+Date: Sat, 30 Nov 2024 14:26:48 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Vasileios Amoiridis <vassilisamir@gmail.com>
+Cc: lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andriy.shevchenko@linux.intel.com,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/3] iio: chemical: bme680: add regulators
+Message-ID: <20241130142648.62ead7fe@jic23-huawei>
+In-Reply-To: <20241128193246.24572-3-vassilisamir@gmail.com>
+References: <20241128193246.24572-1-vassilisamir@gmail.com>
+	<20241128193246.24572-3-vassilisamir@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Score: 
-X-Spam-Bar: 
-X-Spam-Report: 
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-The imx415 driver expects a clock with the name "inck".
-Document this in the bindings.
+On Thu, 28 Nov 2024 20:32:45 +0100
+Vasileios Amoiridis <vassilisamir@gmail.com> wrote:
 
-Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
----
- .../devicetree/bindings/media/i2c/sony,imx415.yaml          | 6 ++++++
- 1 file changed, 6 insertions(+)
+> Add support for the regulators described in the dt-binding.
+> 
+> Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
+> ---
+>  drivers/iio/chemical/bme680_core.c | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+> 
+> diff --git a/drivers/iio/chemical/bme680_core.c b/drivers/iio/chemical/bme680_core.c
+> index 9783953e64e0..186e0a6cc2d7 100644
+> --- a/drivers/iio/chemical/bme680_core.c
+> +++ b/drivers/iio/chemical/bme680_core.c
+> @@ -15,6 +15,7 @@
+>  #include <linux/log2.h>
+>  #include <linux/module.h>
+>  #include <linux/regmap.h>
+> +#include <linux/regulator/consumer.h>
+>  
+>  #include <linux/iio/buffer.h>
+>  #include <linux/iio/iio.h>
+> @@ -111,6 +112,10 @@ enum bme680_scan {
+>  	BME680_GAS,
+>  };
+>  
+> +static const char *const bme680_supply_names[] = { "vdd", "vddio" };
+> +
+> +#define BME680_NUM_SUPPLIES ARRAY_SIZE(bme680_supply_names)
+Trivial: What benefit do we get from this define that is used in one place?
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx415.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx415.yaml
-index 34962c5c7006..e110b39bb391 100644
---- a/Documentation/devicetree/bindings/media/i2c/sony,imx415.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/sony,imx415.yaml
-@@ -31,6 +31,10 @@ properties:
-     description: Input clock (24 MHz, 27 MHz, 37.125 MHz, 72 MHz or 74.25 MHz)
-     maxItems: 1
- 
-+  clock-names:
-+    items:
-+      - const: inck
-+
-   avdd-supply:
-     description: Analog power supply (2.9 V)
- 
-@@ -76,6 +80,7 @@ required:
-   - compatible
-   - reg
-   - clocks
-+  - clock-names
-   - avdd-supply
-   - dvdd-supply
-   - ovdd-supply
-@@ -96,6 +101,7 @@ examples:
-             reg = <0x1a>;
-             avdd-supply = <&vcc2v9_cam>;
-             clocks = <&clock_cam>;
-+            clock-names = "inck";
-             dvdd-supply = <&vcc1v1_cam>;
-             lens-focus = <&vcm>;
-             orientation = <2>;
--- 
-2.34.1
+> +
+>  struct bme680_data {
+>  	struct regmap *regmap;
+>  	struct bme680_calib bme680;
+> @@ -1114,6 +1119,14 @@ int bme680_core_probe(struct device *dev, struct regmap *regmap,
+>  	data->heater_dur = 150;  /* milliseconds */
+>  	data->preheat_curr_mA = 0;
+>  
+> +	ret = devm_regulator_bulk_get_enable(dev, BME680_NUM_SUPPLIES,
+	ret = devm_regulator_bulk_get_enable(dev, ARRAY_SIZE(bme680_supply_names),
+					     bme680_supply_names);
+
+And don't worry about slightly over 80 chars line.
+
+> +					     bme680_supply_names);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "failed to get and enable supplies.\n");
+> +
+> +	fsleep(BME680_STARTUP_TIME_US);
+> +
+>  	ret = regmap_write(regmap, BME680_REG_SOFT_RESET, BME680_CMD_SOFTRESET);
+>  	if (ret < 0)
+>  		return dev_err_probe(dev, ret, "Failed to reset chip\n");
 
 
