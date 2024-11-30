@@ -1,173 +1,170 @@
-Return-Path: <devicetree+bounces-125684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 814699DEE61
-	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 02:51:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 901FF9DEED1
+	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 04:16:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 428402816E8
-	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 01:51:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44E3D2817CB
+	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 03:16:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FB87481AF;
-	Sat, 30 Nov 2024 01:46:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 567781C2BD;
+	Sat, 30 Nov 2024 03:16:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Tr2bvQwA"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NKudz865"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AFBA757FC
-	for <devicetree@vger.kernel.org>; Sat, 30 Nov 2024 01:46:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D883C2F3B;
+	Sat, 30 Nov 2024 03:16:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1732931188; cv=none; b=JFZdYY299ecAby1LLVrNLMewE0lfsEoG41+qLWeKTaFy6oEQkPLxsUxpQO4YYt/i9YRZIio93yBybZ6JjLsAY/cixcxdLkvpGvxycY6HiDWAwVQJczUeNC4PUIprulrBtYGp/oVUAMEjMRxsf+IXSVHFnFv0iQdOGaUN39pm6AU=
+	t=1732936612; cv=none; b=jhNcQNT+ejd0I8TjLWVzR/a+daFALYZCkJYtbiaRoqJBBPfSJHrI0JfcQp4yvDUM1ZJsdQNRpjbWvJiKj0GjYz/+h1om2JMBQIcU+js3UYbEKwhtbRxlw2B/qm29wqNDJ12J8hFG+4uomAo9aFQQIEaUr3GJM7ynyx7jU550Ls0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1732931188; c=relaxed/simple;
-	bh=nLzGw4fY9pPe6TJ8BvW0z1cK5A9YBYMULnyUl4VIxfs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S3cmAZNdaviB9OqJOIyQ/vjKPjHovgYC/49UUg9jyEQrX2JZA6vz/HSC+DxMyjttZfTVB06ATT8OCfEA0Z3VSR/JqBKCc9+8bPf7jJNiSu/Azkw/6L+nWiqi2Dj+IgXCsgwDn8NhhcAlC18M0Fu2GufUX0jNT9jD5WfMe6ChUxg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Tr2bvQwA; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-53de579f775so3648123e87.2
-        for <devicetree@vger.kernel.org>; Fri, 29 Nov 2024 17:46:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1732931185; x=1733535985; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=H4PlVmw1LkahlUXOIX8n7OSEzoIK20J0gufnIIJtzoE=;
-        b=Tr2bvQwArtPagIagX3nt4bmcM2C/xqchCvjbCpz+R++1/qNWrBhD2yZD5A/QVyLrkb
-         OgDlMTNPdbXnBHN6J6KkERtmwGTi8nDHpEW6p3KHJ2/IxITVoRMNeON+Qz+A1sKvogfJ
-         YOhwQLzwFyOzyNlIZfe5AUXCcI3H7qfJ7pbg0IrDxESzAe3PQBHuMSURY05ifk6GrU3g
-         sCh3gQLRtun/0Cgzxzge9fv8L9xQRLXEgQz+ke31bb20zTPVD88xsHwytvdqDwN0iU5q
-         4cbjCy08+yjuc4lIHgkHH7ou0hdqxjJcow9zUehb+TgWE5iRi/8KDzMqG5A8KjACw06f
-         j9hA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1732931185; x=1733535985;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=H4PlVmw1LkahlUXOIX8n7OSEzoIK20J0gufnIIJtzoE=;
-        b=lEbHmWElXcACkdqwvRe0M3X//kVAmtljUzK/YLmttno3G9YCj2RkOckuUspbow0wXD
-         qVIuEzk9CjU6zqL7SF1QwzQcZo0vXaHHHp9oQcagZxyHOkJ/AwdpOvafiD+5bigAWykY
-         L60TVG0i89sB0ssB6ofVk1OMfXCSn9wSZu1Sfm3MrWXU5u1em1ykZxIAXBal1PlgVLg4
-         oMljIDAftT0i5jJm7fZ4Y58P54mpmXBgSrxpRKAYiqj8CzfMHhGCma9NzHQ2jgN0DB8X
-         vw8xRL2QIeEa9ml8qCXrt8npaQ+NLIcDRZULyTrY88ajpQzt7WGmjg0dH5sxPCL8VWIa
-         UzIQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV3yDdmUI+ExAkgvfBY1I2Ko98kThQUuq0RGuClUb8qBWCR4KKAt9/eMKEcuXXAFbrMDWCwzl7KlKmp@vger.kernel.org
-X-Gm-Message-State: AOJu0YycEAFHvkXyNd79aXkMe1GqUs/X6LoPNSxqmYV+MRftYA4LOIp1
-	rXOu4d66ItLvbYA7XhiBkSNoySnW6GXzQgLbjQScvGZnkoGsEQFIVVn6zKoxwVc=
-X-Gm-Gg: ASbGncu0dfHQ/9/ssc7Gna4OxgOC8rwa+VqacKVtsYWuP7jj+hAXRTBbbq5c6479aSR
-	wQzZVYmT9v0RpQbic56PMl+4M69g3CTXEeS8XPOxi8ds/wp96CVzseUC0FZEffqt+F4DzTtOG+9
-	5pSmXFbK9I9dFcVrwmfTfwKIydI4ac1WUs2+nRhdrQhtxbu8p9UveQOJOI6trTi+MKNN/zXVBea
-	DrcM/UGE6YsBO3ydaPDQl26joWudu7T74gVPiza9bz0+0Qj7738NLmAgo0247Dszy8nL8PhxO5W
-	gCaNPhG7oUZ3MCEFVyQd0nGOPDS0dg==
-X-Google-Smtp-Source: AGHT+IFy7zoXZyEEJLmZhuv+3OHzOtIXv6pmGJpjBzPnl2Yo4ctu2uv+6diQz+Q9t538nZ+tQkXOZQ==
-X-Received: by 2002:a05:6512:3ba2:b0:53d:e602:c0ec with SMTP id 2adb3069b0e04-53df01171d5mr11709184e87.49.1732931184641;
-        Fri, 29 Nov 2024 17:46:24 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53df644341bsm628900e87.99.2024.11.29.17.46.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Nov 2024 17:46:23 -0800 (PST)
-Date: Sat, 30 Nov 2024 03:46:21 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Tingwei Zhang <quic_tingweiz@quicinc.com>
-Cc: Jingyi Wang <quic_jingyw@quicinc.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, quic_tengfan@quicinc.com, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH v3 4/4] arm64: dts: qcom: add base QCS8300 RIDE board
-Message-ID: <jho443tdtovkc77fmmco3liftultswemsgrqdjq5p4fvt6c5j7@hb4sgokel47j>
-References: <20241128-qcs8300_initial_dtsi-v3-0-26aa8a164914@quicinc.com>
- <20241128-qcs8300_initial_dtsi-v3-4-26aa8a164914@quicinc.com>
- <hswfcxj6vlutl7covrbqqzueljv6nkm3q4qrgccii3zh72qrig@spfbtrvrar5f>
- <3bdca75a-39aa-4ad8-a3f0-8124a0977c06@quicinc.com>
+	s=arc-20240116; t=1732936612; c=relaxed/simple;
+	bh=2l3KfqoOvZDkJTmLIM0ptsydik6v8ezmtCOy/dYLd3I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=W+uftp8v+xik9gA2gy+7mRByIb3o0ZfI6ZzNLg9Im9fDAUHCFDxOmP0fMKJJs1UiJVDqPNZbQ6JMbO3tEduuAg9sEWj3ZNg2N+p3Judk3Ob55DJZ/eP/Vn2UvGMRmGM8YX2dtG/Wad8N2imAYuphdy2HyTwFejEZB9o1LxtwIXY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NKudz865; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4AU0q3nQ020987;
+	Sat, 30 Nov 2024 03:16:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	LxpVgLo3JnamRIJ/XC6YKJPsC09k5vJCje9OieMiSLM=; b=NKudz865BFm5Ik07
+	uvx7TtMz2PMmWOZirimcJpEGW+pkhcV6WleILclDuLTgbKIIr4y21QU1EZS9tcIJ
+	o8P+xzqOQuekAKBcgj6qvKYDtVw2Ct9mgJev/5vih0GSzdT0lDwmC2cdgrh29Mx3
+	+IXOpnxMHPp0gCXw9sghoIVZ5vWMri005nS+0GwAa4/6kUzIVR8AxbEutonEuVjC
+	kN7+q4hXvxWTjf7uxDch/qGmW78FspBa03Zss000DoeruKj7pzYVPEmtxNt9ohZL
+	xD9ZeymCfM5y/svxskuAaw+nXeQuI+GLosF+bY+CMoWi8xWqeJxdQXmqipLOFxuZ
+	FI7/lQ==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43671eexg1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 30 Nov 2024 03:16:42 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4AU3Gf7u028597
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 30 Nov 2024 03:16:41 GMT
+Received: from [10.253.74.19] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 29 Nov
+ 2024 19:16:36 -0800
+Message-ID: <a82af64b-da8f-40c5-bd8c-9ea7621c4556@quicinc.com>
+Date: Sat, 30 Nov 2024 11:16:33 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <3bdca75a-39aa-4ad8-a3f0-8124a0977c06@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 2/3] dt-bindings: net: Add QCA6698 Bluetooth
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Marcel Holtmann <marcel@holtmann.org>,
+        Luiz Augusto von Dentz
+	<luiz.dentz@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        "Balakrishna
+ Godavarthi" <quic_bgodavar@quicinc.com>,
+        Rocky Liao
+	<quic_rjliao@quicinc.com>,
+        <linux-bluetooth@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <quic_mohamull@quicinc.com>, <quic_zijuhu@quicinc.com>,
+        <quic_jiaymao@quicinc.com>
+References: <20241128120922.3518582-1-quic_chejiang@quicinc.com>
+ <20241128120922.3518582-3-quic_chejiang@quicinc.com>
+ <jaq7tjdq4srboo7m4byfofdbigy5hyeeqwyrgh72t23xgwb65m@lz5yivskxbwd>
+ <cd82ea16-7c37-41cf-bfb1-7cc6d743d8e9@quicinc.com>
+ <vlmdm5yfekmx5miv5twjpukwhudcpjoijk3jxoobhzvecpsb54@her62ghhpruy>
+Content-Language: en-US
+From: "Cheng Jiang (IOE)" <quic_chejiang@quicinc.com>
+In-Reply-To: <vlmdm5yfekmx5miv5twjpukwhudcpjoijk3jxoobhzvecpsb54@her62ghhpruy>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: NJw95Kfa6I3jPVzKxJ82UHrJkm85GjHt
+X-Proofpoint-GUID: NJw95Kfa6I3jPVzKxJ82UHrJkm85GjHt
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
+ impostorscore=0 mlxscore=0 phishscore=0 priorityscore=1501 clxscore=1015
+ bulkscore=0 lowpriorityscore=0 spamscore=0 adultscore=0 mlxlogscore=999
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2411300025
 
-On Fri, Nov 29, 2024 at 11:13:28AM +0800, Tingwei Zhang wrote:
-> On 11/28/2024 9:29 PM, Dmitry Baryshkov wrote:
-> > > +#include "qcs8300.dtsi"
-> > > +/ {
-> > > +	model = "Qualcomm Technologies, Inc. QCS8300 Ride";
-> > > +	compatible = "qcom,qcs8300-ride", "qcom,qcs8300";
-> > > +	chassis-type = "embedded";
-> > > +
-> > > +	aliases {
-> > > +		serial0 = &uart7;
-> > > +	};
-> > > +
-> > > +	chosen {
-> > > +		stdout-path = "serial0:115200n8";
-> > > +	};
-> > > +
-> > > +	clocks {
-> > > +		xo_board_clk: xo-board-clk {
-> > > +			compatible = "fixed-clock";
-> > > +			#clock-cells = <0>;
-> > > +			clock-frequency = <38400000>;
-> > > +		};
-> > > +
-> > > +		sleep_clk: sleep-clk {
-> > > +			compatible = "fixed-clock";
-> > > +			#clock-cells = <0>;
-> > > +			clock-frequency = <32000>;
-> > > +		};
-> > Move both clocks to the qcs8300.dtsi. If you wish, you can keep
-> > frequencies in the board DT file.
-> > 
-> Dmirty,
-> 
-> Move xo clock and sleep clock to board DT from SoC DT are due to review
-> comments in [1] and [2].
-> 
-> As you and Krzysztof discussed in [3], there're pros and cons for different
-> solutions. There are three possible ways.
-> 
-> Put these two clocks in board DT is aligned with hardware. These two clocks
-> are provided by PMIC instead of SoC.
-> 
-> Put these two clocks in SoC DT can reduce duplication since they are not
-> supposed to be changed on different board.
-> 
-> Put these two clocks in SoC DT and set frequency in board DT.
-> 
-> We need a unify way to deal with this kind of nodes and keep it consistent
-> across Qualcomm SoC.
-> 
-> Who shall make this decision?
+Hi Dmitry,
 
-After an offline discussion I've send [4].
+On 11/30/2024 1:13 AM, Dmitry Baryshkov wrote:
+> On Fri, Nov 29, 2024 at 10:30:00AM +0800, Cheng Jiang (IOE) wrote:
+>> Hi Dmitry,
+>>
+>> On 11/28/2024 8:58 PM, Dmitry Baryshkov wrote:
+>>> On Thu, Nov 28, 2024 at 08:09:21PM +0800, Cheng Jiang wrote:
+>>>> Add the compatible for the Bluetooth part of the Qualcomm QCA6698 chipset.
+>>>
+>>> ... 
+>>> And you have misssed to explain why do you need to add it and how it is
+>>> different from WCN6855.
+>>>
+>> Got it. I just explain in the dts/driver change, forget to explain here. 
+>>
+>> If use the firmware-name solution, do we still need add the new compatible
+>> string for qcom,qca6698-bt here? The driver may not use this string.   
+> 
+> DT describes the hardware. If you want, you can still add new string
+> _and_ use old one as a fallback compatible: "qcom,qca6698-bt",
+> "qcom,wcn6855-bt".
+Got it. Thanks! 
+> 
+>>>>
+>>>> Signed-off-by: Cheng Jiang <quic_chejiang@quicinc.com>
+>>>> ---
+>>>>  .../devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml   | 2 ++
+>>>>  1 file changed, 2 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
+>>>> index 7bb68311c..82105382a 100644
+>>>> --- a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
+>>>> +++ b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
+>>>> @@ -18,6 +18,7 @@ properties:
+>>>>      enum:
+>>>>        - qcom,qca2066-bt
+>>>>        - qcom,qca6174-bt
+>>>> +      - qcom,qca6698-bt
+>>>>        - qcom,qca9377-bt
+>>>>        - qcom,wcn3988-bt
+>>>>        - qcom,wcn3990-bt
+>>>> @@ -170,6 +171,7 @@ allOf:
+>>>>            contains:
+>>>>              enum:
+>>>>                - qcom,wcn6855-bt
+>>>> +              - qcom,qca6698-bt
+>>>>      then:
+>>>>        required:
+>>>>          - vddrfacmn-supply
+>>>> -- 
+>>>> 2.25.1
+>>>>
+>>>
+>>
+> 
 
-[4] https://lore.kernel.org/linux-arm-msm/20241130-fix-board-clocks-v2-0-b9a35858657e@linaro.org/
-
-> 
-> [1]https://lore.kernel.org/all/10914199-1e86-4a2e-aec8-2a48cc49ef14@kernel.org/
-> [2]https://lore.kernel.org/all/be8b573c-db4e-4eec-a9a6-3cd83d04156d@kernel.org/
-> [3]https://lore.kernel.org/all/4kopdkvbkrpcpzwteezm427ml5putqvzsnfkpmg76spsple7l5@mg7v3ihwxnit/
-> 
-> > > +	};
-> > > +};
-> > > +
-> 
-> 
-> -- 
-> Thanks,
-> Tingwei
-
--- 
-With best wishes
-Dmitry
 
