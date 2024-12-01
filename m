@@ -1,88 +1,81 @@
-Return-Path: <devicetree+bounces-125788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125789-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE6259DF38C
-	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 23:36:01 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13B769DF457
+	for <lists+devicetree@lfdr.de>; Sun,  1 Dec 2024 02:30:06 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B040D162F05
+	for <lists+devicetree@lfdr.de>; Sun,  1 Dec 2024 01:30:02 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FB038C1E;
+	Sun,  1 Dec 2024 01:30:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="H6eY4+m5"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8E0628161A
-	for <lists+devicetree@lfdr.de>; Sat, 30 Nov 2024 22:35:59 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 211DC1AB51D;
-	Sat, 30 Nov 2024 22:35:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a97DjdWK"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30A2A1A4F01
-	for <devicetree@vger.kernel.org>; Sat, 30 Nov 2024 22:35:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C4183C30;
+	Sun,  1 Dec 2024 01:29:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733006155; cv=none; b=XU+LPinMKsqp2YV+AE/LDMfCNSAl9uGN2DrPuCZkiN0VG7FDYkTQSuFAM1j3iBq1uCF3FZhdzrZcps3oTLLRTOW2wX+FIpyeMhpq4jyoNF9cw5iF2zkySRhf4RXNuiWbtkemdTDriRdgaMz1lzkObByJekXx1DAKJVxVjmIrn4k=
+	t=1733016602; cv=none; b=jk/JXhEfUredWTkaVvMcKwRtL0MgGlh4T1/2GMD404Xm0lVOez6KxY1/ylQ6Q0uJplLKPdhtCR1RWvSY0COFiQhkssetGGfWwRXvNJ08kYuBe0SJcLrwuwNjF3s1hghZ0F6EEzXWRD+6iR8VAqExqmBsbVizc9o3tqdiCbPIf2A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733006155; c=relaxed/simple;
-	bh=e3Y+LPT4T+5s5Z1B9azCpm11KJqEouAd2GSPxWJzbrc=;
+	s=arc-20240116; t=1733016602; c=relaxed/simple;
+	bh=haqLix7x3nJiY/ncYc4LJgNxz8hpllnB+whjs+axSAE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XjPq6qAL9afwLKUIGswzOV1qccxHLpci6dDlTuR/MpxzH63/DWM9WYgcc0AkWINZtJopTScxlhca7hbrM4qtLWstHvOjnlZWQ43sllIC/umMHYx34t9Te0dzVRT9QCafXD+3yt8DPJ1L4NT+m96TUZxww/gLngUgznvkiN1saQg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=a97DjdWK; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-53de5ec22adso3623003e87.3
-        for <devicetree@vger.kernel.org>; Sat, 30 Nov 2024 14:35:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733006151; x=1733610951; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=NjEEdOsbPzZpO48x0whbp4HjANLGu9eqTa4aQfjzkTo=;
-        b=a97DjdWKvexPbFWtfAtSizs3GGqmFcT1xqlpJ5uKFWZinCbpqyNWIxGzsRUHhf2BvW
-         bvwZHTktqh698k8bjHI/j71Bgi5F7iDIWqS8V0LBnW8Gw5t+ykkvs2fJOGHQgNJU6x8P
-         bRiTxIQfASlk72hKSo0kWxh7mkUdPY5gakyfGMxXf1OlfQjyhy/i7Pqf4/XzlhkKw62H
-         8y1q+bMbsd94mDIjIy00j0lI3z3DLnlkvjUUj2gMJZ953bJofd2+91jJfAvnRkTVDbSU
-         1ceUD3gIdTTI9GsfMjzK/mQOR2UU61CNqhLu2ZHjdpIsAsC4ge1MywG9bTKCqzl20BaN
-         ohZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733006151; x=1733610951;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NjEEdOsbPzZpO48x0whbp4HjANLGu9eqTa4aQfjzkTo=;
-        b=WbjIrVhbNiXaZhB1QWVdhSPSBBaSyzEnD3BXZdKzgiH5PRlqNhq5srQytNxp2IRJYY
-         2fxpPPfhdsrNCZf95IY/hNBiPhxaamlBjFxfIa9eMINkTBO7FSVCA3txjiS2+pFGeJge
-         dH/JLMGt1HBNHfq1dtU76MW0xFs5/lYkcGXi05xBNQPzTMcb5EuT9lMz7WelCc5Aq2gi
-         vy/pvq/vbuQmP0BLnLVwfz7VjkYbj6XqAW5JVSLky/muUjs/bfUjU38+uIm50wvhT7Yo
-         EJlWZvXVS7JRVmHBTt5qiJwRZyo0WdM0mUEn63i+JPDpqzF9M2F2VjAElJS1kO2ioXvr
-         0JuQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVBeYTmfBjtDxGt2/GkrvDDoBmHiMGORNO1vhsnlXfdjIq6rtm/59WK/twF01AT7NzH5tQq3hrX9dH+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzjqus/z1zOiMhQblTh3KqYm47TJSE3H4WKupwX8wrc/WmDpiCs
-	2pag09KGu5e6U5+LTreK4UiwPnFC0ZlezrZWIi630GnKiVorjUsUD+BBKyVQq+A=
-X-Gm-Gg: ASbGncvqe4mPDEqlm5KAWLdYSoMoWMLGDHQe42n6IYJp/YobSYazLrLCECivOQLle93
-	LugRb94HBxdU9/tNj5Y+zfdnKm/xb6xpR+axjcscSoy180V80dddK50XQdkRQGr0GdgSTxU9s8f
-	5zlfZXtfqUMro02jE+29FJ1JCMlvLmcflcTZSK+mrnvuerSXmXUGphIsrKxHTyRpC5rnHhW14LV
-	0MRgmz04TUOPYET0kgGYlxngPfdM9OtOLv6oRUDoXCYgm1zJoOxcig/LHXyRvxUGp6g4GCAgk6c
-	KIKNjIFWNXucep1kG381r/2X/iHbqg==
-X-Google-Smtp-Source: AGHT+IFRjM9hiHSdh6QMnUl0xAn2h7VlGTe986jUjWKha/xgpcy6CHVBb/2l1zKz49suidogBV/Sfg==
-X-Received: by 2002:a05:6512:3983:b0:53d:ed77:37c1 with SMTP id 2adb3069b0e04-53df00ff831mr10041944e87.43.1733006151122;
-        Sat, 30 Nov 2024 14:35:51 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53df64a068esm877155e87.273.2024.11.30.14.35.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 30 Nov 2024 14:35:49 -0800 (PST)
-Date: Sun, 1 Dec 2024 00:35:47 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Naman Jain <quic_namajain@quicinc.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v2 0/2] nvmem: qfprom: add Qualcomm SAR2130P support
-Message-ID: <yeqgrz3tlhqhkd5au5ras7iyp3q5l6mjfjnpngyuffn6k2hu2y@toy6eqfpdoub>
-References: <20241027-sar2130p-nvmem-v2-0-743c1271bf2d@linaro.org>
- <5lucyuowwaz7k5x2grlifuc7xxxppant3ysofy52xsrxdsx4zf@2tj43gglshcf>
+	 Content-Type:Content-Disposition:In-Reply-To; b=bkrN4dOosMhjJvchY6VVlDGN7nxx6MZAoq/KQajIFuTYEl5GWkBC4PyWDP2X/YfgB682lhJovzmhB+TTz2QjZXSgNh6HZIVJ7v6FbNjtlNFCZ8IR/Un9YvcAQhlD/ftFpp4eayQ+wHaRYQV4mh2uAFSl2cMn5PRBqSSzfilaqSc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=H6eY4+m5; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1733016600; x=1764552600;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=haqLix7x3nJiY/ncYc4LJgNxz8hpllnB+whjs+axSAE=;
+  b=H6eY4+m5nUKtBVE5y5gRfPmNJdMrKcOE7CViip94D0Ljzz4ykfnmfF8O
+   FH3lFeDk0DlEWQKNFVGoWCgoEgtRdY3/+mOrmdpf/fJelhkwNk3snsNlj
+   UbfIb4ElSPZk1KJnbWRt7gpAMl8NMWoMgFVjo70pkAuufnE80EJoKeFh4
+   KGfutxdG+UabBoKlQ9cK4BYsxCZyswTcgKJ8iImSn+zovKXu+WtOdAQfB
+   Pf/vRws6k9Ln1CtketT8XTfwLSNAnkpMXlDsAJIdPm0lD6df7LuNi4ctQ
+   I8RpK0QFsqEkdxz/JctWe2i8/11oAIzh2h9OBXz77fQ3JXeBIDHOV63Js
+   g==;
+X-CSE-ConnectionGUID: PZFiPh28SEWXpVGFbVCEhQ==
+X-CSE-MsgGUID: sPIRkW33QR6Tf072Py+YLg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11272"; a="32559375"
+X-IronPort-AV: E=Sophos;i="6.12,199,1728975600"; 
+   d="scan'208";a="32559375"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Nov 2024 17:29:55 -0800
+X-CSE-ConnectionGUID: 3iwHBxacTl+pV0q+HYp8sw==
+X-CSE-MsgGUID: ZGLFqX3dR1C2XUEuGxt+Iw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,199,1728975600"; 
+   d="scan'208";a="130253783"
+Received: from lkp-server02.sh.intel.com (HELO 36a1563c48ff) ([10.239.97.151])
+  by orviesa001.jf.intel.com with ESMTP; 30 Nov 2024 17:29:52 -0800
+Received: from kbuild by 36a1563c48ff with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tHYlx-00016v-0j;
+	Sun, 01 Dec 2024 01:29:29 +0000
+Date: Sun, 1 Dec 2024 09:29:14 +0800
+From: kernel test robot <lkp@intel.com>
+To: Paul Kocialkowski <paulk@sys-base.io>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Kocialkowski <paulk@sys-base.io>
+Subject: Re: [PATCH 2/2] iio: light: Add support for the TI OPT4048 color
+ sensor
+Message-ID: <202412010950.qWyHjojX-lkp@intel.com>
+References: <20241130174212.3298371-2-paulk@sys-base.io>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,28 +84,157 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <5lucyuowwaz7k5x2grlifuc7xxxppant3ysofy52xsrxdsx4zf@2tj43gglshcf>
+In-Reply-To: <20241130174212.3298371-2-paulk@sys-base.io>
 
-On Fri, Nov 15, 2024 at 09:59:58AM +0200, Dmitry Baryshkov wrote:
-> On Sun, Oct 27, 2024 at 01:42:32AM +0300, Dmitry Baryshkov wrote:
-> > Pick up a fix from msm-5.x kernels and add compatible for the Qualcomm
-> > SAR2130P platform.
-> > 
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> > Changes in v2:
-> > - Picked up required patch from QCLinux.
-> > - Link to v1: https://lore.kernel.org/r/20241017-sar2130p-nvmem-v1-1-6cc32789afc6@linaro.org
-> 
-> These two patches have been sent two weeks ago, but got no response from
-> the maintainers. Is there any reason for that? Srinivas, is the
-> subsystem being maintained or should we change it to 'S: Odd Fixes'?
+Hi Paul,
 
-Another two weeks and still no response. Yes, we are in the merge
-window, so I don't expect the patches to be applied. However it would
-have been nice to get a feedback from the maintainer.
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on jic23-iio/togreg]
+[also build test ERROR on linus/master v6.12 next-20241128]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Paul-Kocialkowski/iio-light-Add-support-for-the-TI-OPT4048-color-sensor/20241201-014458
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+patch link:    https://lore.kernel.org/r/20241130174212.3298371-2-paulk%40sys-base.io
+patch subject: [PATCH 2/2] iio: light: Add support for the TI OPT4048 color sensor
+config: um-allmodconfig (https://download.01.org/0day-ci/archive/20241201/202412010950.qWyHjojX-lkp@intel.com/config)
+compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project 592c0fe55f6d9a811028b5f3507be91458ab2713)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241201/202412010950.qWyHjojX-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202412010950.qWyHjojX-lkp@intel.com/
+
+All error/warnings (new ones prefixed by >>):
+
+   In file included from drivers/iio/light/opt4048.c:7:
+   In file included from include/linux/i2c.h:19:
+   In file included from include/linux/regulator/consumer.h:35:
+   In file included from include/linux/suspend.h:5:
+   In file included from include/linux/swap.h:9:
+   In file included from include/linux/memcontrol.h:13:
+   In file included from include/linux/cgroup.h:26:
+   In file included from include/linux/kernel_stat.h:8:
+   In file included from include/linux/interrupt.h:11:
+   In file included from include/linux/hardirq.h:11:
+   In file included from arch/um/include/asm/hardirq.h:5:
+   In file included from include/asm-generic/hardirq.h:17:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:14:
+   In file included from arch/um/include/asm/io.h:24:
+   include/asm-generic/io.h:548:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     548 |         val = __raw_readb(PCI_IOBASE + addr);
+         |                           ~~~~~~~~~~ ^
+   include/asm-generic/io.h:561:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     561 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
+      37 | #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
+         |                                                   ^
+   In file included from drivers/iio/light/opt4048.c:7:
+   In file included from include/linux/i2c.h:19:
+   In file included from include/linux/regulator/consumer.h:35:
+   In file included from include/linux/suspend.h:5:
+   In file included from include/linux/swap.h:9:
+   In file included from include/linux/memcontrol.h:13:
+   In file included from include/linux/cgroup.h:26:
+   In file included from include/linux/kernel_stat.h:8:
+   In file included from include/linux/interrupt.h:11:
+   In file included from include/linux/hardirq.h:11:
+   In file included from arch/um/include/asm/hardirq.h:5:
+   In file included from include/asm-generic/hardirq.h:17:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:14:
+   In file included from arch/um/include/asm/io.h:24:
+   include/asm-generic/io.h:574:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     574 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
+      35 | #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
+         |                                                   ^
+   In file included from drivers/iio/light/opt4048.c:7:
+   In file included from include/linux/i2c.h:19:
+   In file included from include/linux/regulator/consumer.h:35:
+   In file included from include/linux/suspend.h:5:
+   In file included from include/linux/swap.h:9:
+   In file included from include/linux/memcontrol.h:13:
+   In file included from include/linux/cgroup.h:26:
+   In file included from include/linux/kernel_stat.h:8:
+   In file included from include/linux/interrupt.h:11:
+   In file included from include/linux/hardirq.h:11:
+   In file included from arch/um/include/asm/hardirq.h:5:
+   In file included from include/asm-generic/hardirq.h:17:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:14:
+   In file included from arch/um/include/asm/io.h:24:
+   include/asm-generic/io.h:585:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     585 |         __raw_writeb(value, PCI_IOBASE + addr);
+         |                             ~~~~~~~~~~ ^
+   include/asm-generic/io.h:595:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     595 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   include/asm-generic/io.h:605:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     605 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   include/asm-generic/io.h:693:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     693 |         readsb(PCI_IOBASE + addr, buffer, count);
+         |                ~~~~~~~~~~ ^
+   include/asm-generic/io.h:701:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     701 |         readsw(PCI_IOBASE + addr, buffer, count);
+         |                ~~~~~~~~~~ ^
+   include/asm-generic/io.h:709:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     709 |         readsl(PCI_IOBASE + addr, buffer, count);
+         |                ~~~~~~~~~~ ^
+   include/asm-generic/io.h:718:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     718 |         writesb(PCI_IOBASE + addr, buffer, count);
+         |                 ~~~~~~~~~~ ^
+   include/asm-generic/io.h:727:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     727 |         writesw(PCI_IOBASE + addr, buffer, count);
+         |                 ~~~~~~~~~~ ^
+   include/asm-generic/io.h:736:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     736 |         writesl(PCI_IOBASE + addr, buffer, count);
+         |                 ~~~~~~~~~~ ^
+   In file included from drivers/iio/light/opt4048.c:7:
+   In file included from include/linux/i2c.h:19:
+   In file included from include/linux/regulator/consumer.h:35:
+   In file included from include/linux/suspend.h:5:
+   In file included from include/linux/swap.h:9:
+   In file included from include/linux/memcontrol.h:21:
+   In file included from include/linux/mm.h:2213:
+   include/linux/vmstat.h:518:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
+     518 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
+         |                               ~~~~~~~~~~~ ^ ~~~
+>> drivers/iio/light/opt4048.c:576:3: warning: label followed by a declaration is a C23 extension [-Wc23-extensions]
+     576 |                 unsigned int scan_index;
+         |                 ^
+   drivers/iio/light/opt4048.c:615:3: warning: label followed by a declaration is a C23 extension [-Wc23-extensions]
+     615 |                 unsigned int index = 2 * state->conversion_time_index;
+         |                 ^
+>> drivers/iio/light/opt4048.c:808:24: error: incompatible function pointer types initializing 'int (*)(struct iio_dev *, const struct iio_chan_spec *, enum iio_event_type, enum iio_event_direction, bool)' (aka 'int (*)(struct iio_dev *, const struct iio_chan_spec *, enum iio_event_type, enum iio_event_direction, _Bool)') with an expression of type 'int (struct iio_dev *, const struct iio_chan_spec *, enum iio_event_type, enum iio_event_direction, int)' [-Wincompatible-function-pointer-types]
+     808 |         .write_event_config     = opt4048_iio_write_event_config,
+         |                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   15 warnings and 1 error generated.
+
+
+vim +808 drivers/iio/light/opt4048.c
+
+   800	
+   801	static const struct iio_info opt4048_iio_info = {
+   802		.read_raw		= opt4048_iio_read_raw,
+   803		.read_avail		= opt4048_iio_read_avail,
+   804		.write_raw		= opt4048_iio_write_raw,
+   805		.read_event_value	= opt4048_iio_read_event_value,
+   806		.write_event_value	= opt4048_iio_write_event_value,
+   807		.read_event_config	= opt4048_iio_read_event_config,
+ > 808		.write_event_config	= opt4048_iio_write_event_config,
+   809	};
+   810	
 
 -- 
-With best wishes
-Dmitry
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
