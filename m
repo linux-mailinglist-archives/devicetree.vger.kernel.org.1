@@ -1,256 +1,151 @@
-Return-Path: <devicetree+bounces-125791-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125792-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13D619DF481
-	for <lists+devicetree@lfdr.de>; Sun,  1 Dec 2024 04:17:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A5809DF4EA
+	for <lists+devicetree@lfdr.de>; Sun,  1 Dec 2024 08:13:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5DBE5B20E4C
-	for <lists+devicetree@lfdr.de>; Sun,  1 Dec 2024 03:17:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB601281A3A
+	for <lists+devicetree@lfdr.de>; Sun,  1 Dec 2024 07:13:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CEA81CD3F;
-	Sun,  1 Dec 2024 03:17:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5F4E5D477;
+	Sun,  1 Dec 2024 07:13:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JbPIGT6i"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LYjZ7MW7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FE4010A3E;
-	Sun,  1 Dec 2024 03:17:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0626014A84;
+	Sun,  1 Dec 2024 07:13:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733023059; cv=none; b=KW3Hi1aaQFldEvy/QyX6Vf5habH/5U4hq+0beE3FKIcd6kSF8iOUFkynY0tSbLqRDFYzRkqPsWtc718Qilr0fuwP+d9ekFtlF1YrDdDm8Zo/FDHnDe2pxgub3oxSBLCKzc6HGTDiG6rpvq5KTMgau+hVMyVVGmNKdhHieIRNCfI=
+	t=1733037232; cv=none; b=T9P/K5pLHhUECy3ob4phchsYNyJvchf+E8T2+nAq8AJCPNEJpGTBs5KfkOMalCUA33K7ZZAdi3WreR7k41PuDV8//McmzR01+Uw/e+J6mGZtNDe2UDBbIjy9Nj6ZOUXHwwFhoPEiozTxMG6fYxhvY4tHC5fN9lA2Qub22aUDeHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733023059; c=relaxed/simple;
-	bh=8ZWM1UzmI6V6bXywaSTwHDkGYM9wOeczaORCfASIHp0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OTWkT0/tP6FrAGbWBtAlHFRHMnYtCrA64rK0R0XKXXARbAJ++U5UEYo6aBi+z1TyHG112o1TSZW3Lbbys0B2ommg+RZoluqyzdbZm/j1TPvWalMGLQuDeT+WOORUURIFX5b5rKQmuOlhoG8R7oSJJaZRT8gqhrT1/uJxb8WchlU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JbPIGT6i; arc=none smtp.client-ip=198.175.65.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1733023058; x=1764559058;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=8ZWM1UzmI6V6bXywaSTwHDkGYM9wOeczaORCfASIHp0=;
-  b=JbPIGT6i3/42+bHr4m49Etg5HdiQ6d+ELas9TLu+ryHH+blXdpZF1yR0
-   Seol0ImgDNX+A8X8jPHd4mspDaAz//A7EFv9/pYhhU+6X9AJjmMF3qeuM
-   /LTxde6tVe/GtuX1FSy6tq1mSrR3lr76NxGFh+9mnQuaZTUZAT58GRJqC
-   zi9CB8ojFoqDYSTX1AeWGF98yX0dZjb2OAg/aiLj10n9924MR6RGaNRgw
-   ces3cHrztz/tBxHJwo0QKunBTQz/eWqEAMt/Si+nY1wiRG4E8sGu6rhdP
-   s4UPxkIW4JvP5dEd+HbILUM8tTseaLzp0yImnFzQhnlMOL/lgetjLKbrS
-   g==;
-X-CSE-ConnectionGUID: 5Us/A+n7RDGx/xHu0BCukw==
-X-CSE-MsgGUID: 9byGwM9SQR6BFkPRAa4GQQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11272"; a="43689094"
-X-IronPort-AV: E=Sophos;i="6.12,199,1728975600"; 
-   d="scan'208";a="43689094"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Nov 2024 19:17:37 -0800
-X-CSE-ConnectionGUID: 6hg/YWXCRTWIdGJ/fXIFnw==
-X-CSE-MsgGUID: 0oA03bYlS0KlbrM3m5qW5g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,199,1728975600"; 
-   d="scan'208";a="97892803"
-Received: from lkp-server02.sh.intel.com (HELO 36a1563c48ff) ([10.239.97.151])
-  by orviesa004.jf.intel.com with ESMTP; 30 Nov 2024 19:17:34 -0800
-Received: from kbuild by 36a1563c48ff with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tHaSh-0001BV-1V;
-	Sun, 01 Dec 2024 03:17:31 +0000
-Date: Sun, 1 Dec 2024 11:15:56 +0800
-From: kernel test robot <lkp@intel.com>
-To: Paul Kocialkowski <paulk@sys-base.io>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Kocialkowski <paulk@sys-base.io>
-Subject: Re: [PATCH 2/2] iio: light: Add support for the AMS TCS3430 color
- sensor
-Message-ID: <202412011132.uggaXWal-lkp@intel.com>
-References: <20241130174239.3298414-2-paulk@sys-base.io>
+	s=arc-20240116; t=1733037232; c=relaxed/simple;
+	bh=eF7SwQDQq8X4sYZVBnIdTlRL5EJnGXcq1h+TUQPdAC8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Z0YQVJdQOKfdiNy9IsscUcayq3cwLRO/M+3K5+SJD+T72GY34wVyxzgctZ2ajHXeXqrJVeZ+mI0rcDtHDYNlabVlOYLwzGUl16NQPm0CKgIfQONw9XL365NwTWB+AvZ3orLeJ+QwhNIVXdIFsWyJGNENeIZc/sthH3E6Qz6zEcY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LYjZ7MW7; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B16FvWJ012825;
+	Sun, 1 Dec 2024 07:13:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	5C/OYn75vUeGpVMKi1UlDtSYMsW9MJxYmqzuHkavfPQ=; b=LYjZ7MW7jpf4OglP
+	UmhI4r8W3IGz/0r2uO0StPV7Jp7QQXJtOX5dcEBkbSOUI9FMaOi49gUh2pNv8rwT
+	K8R83KEanIMx0uPU3SlpKvxkR+yYf6IJHsVr9WQ6bgPtvdfSmOaeeAvh2Nng5HMD
+	Aq7e2C6pjEvNT+NKSHwj5MfjYka5UPQv7uu9ZZYslFZMXx8OC1t0RZYNnBE+YWc1
+	HDVNPleSuzWTUwTV8eRskqd9v2BvQAfjqeebYJ6dJS7ImUyOVq10KJPEkQiFvZg1
+	lcq1DmnjyhjwNB/LhDgacMoQP+FNYTO+hOcOkWa1e0saXdNpQ9nhODPKDlboQ7Tn
+	zvjybA==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 437u369w6e-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 01 Dec 2024 07:13:34 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B17DXPC010545
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 1 Dec 2024 07:13:33 GMT
+Received: from [10.231.207.28] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sat, 30 Nov
+ 2024 23:13:27 -0800
+Message-ID: <c425b639-20a8-439c-9e9a-8b5095f8d3b0@quicinc.com>
+Date: Sun, 1 Dec 2024 15:13:25 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241130174239.3298414-2-paulk@sys-base.io>
-
-Hi Paul,
-
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on jic23-iio/togreg]
-[also build test WARNING on linus/master v6.12 next-20241128]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Paul-Kocialkowski/iio-light-Add-support-for-the-AMS-TCS3430-color-sensor/20241201-014517
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
-patch link:    https://lore.kernel.org/r/20241130174239.3298414-2-paulk%40sys-base.io
-patch subject: [PATCH 2/2] iio: light: Add support for the AMS TCS3430 color sensor
-config: um-allmodconfig (https://download.01.org/0day-ci/archive/20241201/202412011132.uggaXWal-lkp@intel.com/config)
-compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project 592c0fe55f6d9a811028b5f3507be91458ab2713)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241201/202412011132.uggaXWal-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202412011132.uggaXWal-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   In file included from drivers/iio/light/tcs3430.c:7:
-   In file included from include/linux/i2c.h:19:
-   In file included from include/linux/regulator/consumer.h:35:
-   In file included from include/linux/suspend.h:5:
-   In file included from include/linux/swap.h:9:
-   In file included from include/linux/memcontrol.h:13:
-   In file included from include/linux/cgroup.h:26:
-   In file included from include/linux/kernel_stat.h:8:
-   In file included from include/linux/interrupt.h:11:
-   In file included from include/linux/hardirq.h:11:
-   In file included from arch/um/include/asm/hardirq.h:5:
-   In file included from include/asm-generic/hardirq.h:17:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:14:
-   In file included from arch/um/include/asm/io.h:24:
-   include/asm-generic/io.h:548:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     548 |         val = __raw_readb(PCI_IOBASE + addr);
-         |                           ~~~~~~~~~~ ^
-   include/asm-generic/io.h:561:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     561 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
-         |                                                         ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
-      37 | #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
-         |                                                   ^
-   In file included from drivers/iio/light/tcs3430.c:7:
-   In file included from include/linux/i2c.h:19:
-   In file included from include/linux/regulator/consumer.h:35:
-   In file included from include/linux/suspend.h:5:
-   In file included from include/linux/swap.h:9:
-   In file included from include/linux/memcontrol.h:13:
-   In file included from include/linux/cgroup.h:26:
-   In file included from include/linux/kernel_stat.h:8:
-   In file included from include/linux/interrupt.h:11:
-   In file included from include/linux/hardirq.h:11:
-   In file included from arch/um/include/asm/hardirq.h:5:
-   In file included from include/asm-generic/hardirq.h:17:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:14:
-   In file included from arch/um/include/asm/io.h:24:
-   include/asm-generic/io.h:574:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     574 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
-         |                                                         ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
-      35 | #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
-         |                                                   ^
-   In file included from drivers/iio/light/tcs3430.c:7:
-   In file included from include/linux/i2c.h:19:
-   In file included from include/linux/regulator/consumer.h:35:
-   In file included from include/linux/suspend.h:5:
-   In file included from include/linux/swap.h:9:
-   In file included from include/linux/memcontrol.h:13:
-   In file included from include/linux/cgroup.h:26:
-   In file included from include/linux/kernel_stat.h:8:
-   In file included from include/linux/interrupt.h:11:
-   In file included from include/linux/hardirq.h:11:
-   In file included from arch/um/include/asm/hardirq.h:5:
-   In file included from include/asm-generic/hardirq.h:17:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:14:
-   In file included from arch/um/include/asm/io.h:24:
-   include/asm-generic/io.h:585:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     585 |         __raw_writeb(value, PCI_IOBASE + addr);
-         |                             ~~~~~~~~~~ ^
-   include/asm-generic/io.h:595:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     595 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
-         |                                                       ~~~~~~~~~~ ^
-   include/asm-generic/io.h:605:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     605 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
-         |                                                       ~~~~~~~~~~ ^
-   include/asm-generic/io.h:693:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     693 |         readsb(PCI_IOBASE + addr, buffer, count);
-         |                ~~~~~~~~~~ ^
-   include/asm-generic/io.h:701:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     701 |         readsw(PCI_IOBASE + addr, buffer, count);
-         |                ~~~~~~~~~~ ^
-   include/asm-generic/io.h:709:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     709 |         readsl(PCI_IOBASE + addr, buffer, count);
-         |                ~~~~~~~~~~ ^
-   include/asm-generic/io.h:718:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     718 |         writesb(PCI_IOBASE + addr, buffer, count);
-         |                 ~~~~~~~~~~ ^
-   include/asm-generic/io.h:727:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     727 |         writesw(PCI_IOBASE + addr, buffer, count);
-         |                 ~~~~~~~~~~ ^
-   include/asm-generic/io.h:736:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     736 |         writesl(PCI_IOBASE + addr, buffer, count);
-         |                 ~~~~~~~~~~ ^
-   In file included from drivers/iio/light/tcs3430.c:7:
-   In file included from include/linux/i2c.h:19:
-   In file included from include/linux/regulator/consumer.h:35:
-   In file included from include/linux/suspend.h:5:
-   In file included from include/linux/swap.h:9:
-   In file included from include/linux/memcontrol.h:21:
-   In file included from include/linux/mm.h:2213:
-   include/linux/vmstat.h:518:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
-     518 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
-         |                               ~~~~~~~~~~~ ^ ~~~
->> drivers/iio/light/tcs3430.c:134:27: warning: variable 'index' is uninitialized when used here [-Wuninitialized]
-     134 |                 sensor->atime_available[index] = atime_us / USEC_PER_SEC;
-         |                                         ^~~~~
-   drivers/iio/light/tcs3430.c:128:20: note: initialize the variable 'index' to silence this warning
-     128 |         unsigned int index;
-         |                           ^
-         |                            = 0
->> drivers/iio/light/tcs3430.c:565:3: warning: label followed by a declaration is a C23 extension [-Wc23-extensions]
-     565 |                 unsigned int scan_index;
-         |                 ^
-   drivers/iio/light/tcs3430.c:600:3: warning: label followed by a declaration is a C23 extension [-Wc23-extensions]
-     600 |                 unsigned int atime_us = state->atime_cycles *
-         |                 ^
-   drivers/iio/light/tcs3430.c:654:3: warning: label followed by a declaration is a C23 extension [-Wc23-extensions]
-     654 |                 unsigned int atime_us = value_first * USEC_PER_SEC +
-         |                 ^
-   drivers/iio/light/tcs3430.c:674:3: warning: label followed by a declaration is a C23 extension [-Wc23-extensions]
-     674 |                 unsigned int i;
-         |                 ^
-   18 warnings generated.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/2] Adds SPMI bus, PMIC and peripherals for
+ qcs8300-ride
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: <quic_fenglinw@quicinc.com>, <quic_tingweiz@quicinc.com>,
+        <kernel@quicinc.com>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20241128-adds-spmi-pmic-peripherals-for-qcs8300-v2-0-001c0bed7c67@quicinc.com>
+ <sxbjxywwjbep5rlndxoi5k62hqs24biryslkwbcxtvz3ilypvl@qi4omifueyqu>
+Content-Language: en-US
+From: Tingguo Cheng <quic_tingguoc@quicinc.com>
+In-Reply-To: <sxbjxywwjbep5rlndxoi5k62hqs24biryslkwbcxtvz3ilypvl@qi4omifueyqu>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: R43pZ14axOHVs73jyCuiNvQNmuLpBXGD
+X-Proofpoint-ORIG-GUID: R43pZ14axOHVs73jyCuiNvQNmuLpBXGD
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 mlxscore=0
+ clxscore=1015 bulkscore=0 adultscore=0 lowpriorityscore=0 impostorscore=0
+ mlxlogscore=999 phishscore=0 suspectscore=0 spamscore=0 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2412010056
 
 
-vim +/index +134 drivers/iio/light/tcs3430.c
 
-   124	
-   125	static void tcs3430_atime_available_setup(struct tcs3430_sensor *sensor)
-   126	{
-   127		unsigned int atime_us;
-   128		unsigned int index;
-   129		unsigned int i;
-   130	
-   131		for (i = 0; i < TCS3430_ATIME_CYCLES_MAX; i++) {
-   132			atime_us = (i + 1) * TCS3430_ATIME_CYCLE_TIME_US;
-   133	
- > 134			sensor->atime_available[index] = atime_us / USEC_PER_SEC;
-   135			index++;
-   136			sensor->atime_available[index] = atime_us % USEC_PER_SEC;
-   137			index++;
-   138		}
-   139	}
-   140	
+On 11/28/2024 9:10 PM, Dmitry Baryshkov wrote:
+> On Thu, Nov 28, 2024 at 05:40:15PM +0800, Tingguo Cheng wrote:
+>> Enable SPMI bus, PMIC and PMIC peripherals for qcs8300-ride board. The
+>> qcs8300-ride use 2 pmics(pmm8620au:0,pmm8650au:1) on the board, which
+>> are variants of pmm8654au used on sa8775p/qcs9100 -ride(4x pmics).
+>>
+>> This patch series depends on the patch series:
+>> https://lore.kernel.org/all/20240925-qcs8300_initial_dtsi-v2-0-494c40fa2a42@quicinc.com/
+>>
+>> Signed-off-by: Tingguo Cheng <quic_tingguoc@quicinc.com>
+>> ---
+>> Changes in v2:
+>> - Fixed comments in community.
+> 
+> comments in community? What does that mean?
+Comments given by the opensource community in the Email list. Sorry for 
+not being clear about this.
+> 
+>> - Added arbiter version(5.2.0) in commit message.
+>> - Link to v1: https://lore.kernel.org/r/20241126-adds-spmi-pmic-peripherals-for-qcs8300-v1-0-28af84cb86f8@quicinc.com
+>>
+>> ---
+>> Tingguo Cheng (2):
+>>        arm64: dts: qcom: qcs8300: Adds SPMI support
+>>        arm64: dts: qcom: qcs8300-ride: Enable PMIC peripherals
+>>
+>>   arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 23 +++++++++++++++++++++++
+>>   arch/arm64/boot/dts/qcom/qcs8300.dtsi     | 22 ++++++++++++++++++++++
+>>   2 files changed, 45 insertions(+)
+>> ---
+>> base-commit: decc701f41d07481893fdea942c0ac6b226e84cd
+>> change-id: 20241122-adds-spmi-pmic-peripherals-for-qcs8300-0a3c4458cf7e
+>> prerequisite-change-id: 20240925-qcs8300_initial_dtsi-ea614fe45341:v2
+>> prerequisite-patch-id: 73c78f31fa1d504124d4a82b578a6a14126cccd8
+>> prerequisite-patch-id: 5a01283c8654ae7c696d9c69cb21505b71c5ca27
+>> prerequisite-patch-id: dc633d5aaac790776a8a213ea2faa4890a3f665d
+>> prerequisite-patch-id: 9ecf4cb8b5842ac64e51d6baa0e6c1fbe449ee66
+>>
+>> Best regards,
+>> -- 
+>> Tingguo Cheng <quic_tingguoc@quicinc.com>
+>>
+> 
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thank you & BRs
+Tingguo
+
 
