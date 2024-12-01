@@ -1,73 +1,72 @@
-Return-Path: <devicetree+bounces-125840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B98339DF6F8
-	for <lists+devicetree@lfdr.de>; Sun,  1 Dec 2024 20:31:59 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D74059DF70E
+	for <lists+devicetree@lfdr.de>; Sun,  1 Dec 2024 21:12:30 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 79904281793
-	for <lists+devicetree@lfdr.de>; Sun,  1 Dec 2024 19:31:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83050162783
+	for <lists+devicetree@lfdr.de>; Sun,  1 Dec 2024 20:12:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 302191D86E8;
-	Sun,  1 Dec 2024 19:31:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2B1B1D89FA;
+	Sun,  1 Dec 2024 20:12:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="C+tRJ3CK"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="EYEqAMSE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07E991CEAC8;
-	Sun,  1 Dec 2024 19:31:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BCF21D86DC;
+	Sun,  1 Dec 2024 20:12:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733081515; cv=none; b=uJcuZgyqdJnua6Hq/WLduJYFMp/1TTW+czCDJk0Z9RVtZn9HpEI/ycSEG9U9zWduTwDqia8gN/z7obrBHpEmwaxXcREhLPkLTsvO8U1IwJgx+y3100e5VTeXyCZi3s7BCkf404CX/17rT9tD4kaEoQqL3pXQ6Z0lO8weIcfT7sQ=
+	t=1733083947; cv=none; b=i5bW5QN8fX513PpCe+95BfUZjLGXh/ZMv1GtqOZMCRIxv+BGzK1YBtmk8jZ+fXCRtOTY2hJ49zEHb0jdZPgufDcCXWlfVa+DvvqU8q9WZNJP5qJLYrJlmj/om6tyQTg8+bfscs19w6nejlyg5xwlV5yEv1EaqPWwbMULq9C+hRw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733081515; c=relaxed/simple;
-	bh=EJgIUkA3bzBbAoq+Poq7rlK4tzKmIEPa6o6tV53ZvCE=;
+	s=arc-20240116; t=1733083947; c=relaxed/simple;
+	bh=DO98wTZSoedT3RNKFgu/Mtl3yj+E/QB5/wWgWa2iINQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qzqknKVVjodTr/mQHURttZvLCVghNVE7cecRAYbVsLQ/iMyWWjVC2A8gSLDBmTpy5qWibp25NZKjavCFfxQMhNBteMoMvnLOx2nPRegIMRaCVStmPj5MDfhcmWkVtaQWgTlx7EMinWXNGOEO8dqYTpmaXt9bGNryB0MZSKdxhyc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=C+tRJ3CK; arc=none smtp.client-ip=198.175.65.19
+	 Content-Type:Content-Disposition:In-Reply-To; b=kb3hrKxGv5gYNh9hIqUZ3Hker7zEa1FqH55tOEi8NcJ2fP/EkZKBzDE+74LgCFE89bwBjHGr0h8SNhUOajAtyZrEOsVzRhVR0n3WvDTwxqdAnbefexDivCFdZLXQ3RcM2n/w4nbYBOk1CMWXKzFUBs+l4WXKJKIJKKjVyMQ+gGc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=EYEqAMSE; arc=none smtp.client-ip=192.198.163.13
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1733081511; x=1764617511;
+  t=1733083944; x=1764619944;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=EJgIUkA3bzBbAoq+Poq7rlK4tzKmIEPa6o6tV53ZvCE=;
-  b=C+tRJ3CKzgfBTeR1NZQHQf3GjvIxOJCfGitOWls0c0rodDOSoyb9PbKN
-   L6kghYNYJJH529cXqRikZgbQYzZF00W+3vVaWjTmBIDehQfPSFefsN9O0
-   xdqqtZOquhhgR99u8o/sgPHzX2gldRcrOTZb2+JgDgr71oxnl90AxJ2wx
-   /b6vkGTiqut81yJMCnwoMVhmwD4yUhgjwdLcf/r/OIDmrd4t++8LNdTXA
-   V4aZM9T+AsV9UcyBQ/dD+LykFDSJSWI9PG+q8FMhYWzT1KmbzJm2bqLa9
-   GJlf9aagwlSjuCdaUnzl1bj3ZN8XtYGbKy2V+2Y+HoWXSq6YpVTZQvygv
-   A==;
-X-CSE-ConnectionGUID: v/ZLoMHES3+Am6xsrtxP1g==
-X-CSE-MsgGUID: rohYVTBTR/O6EDQvlG1Fow==
-X-IronPort-AV: E=McAfee;i="6700,10204,11273"; a="33117089"
+  bh=DO98wTZSoedT3RNKFgu/Mtl3yj+E/QB5/wWgWa2iINQ=;
+  b=EYEqAMSEkP1pMf8sw8wq1m17nz7lY0BUDz1ggimytj6LydbBQdy1c3CO
+   NSBw4iIozfrpRfI9dJboy1k3eR1ejm4nGI8ZRgaUNStta+iHndCUrRudS
+   CS5lS1nXyGiQURTRE6F0JNALLi3eoHrQpsS6t9ch4Q9qpBam9+pO5jmxa
+   Eo8FnVDo1oeItht1uKdkJaNsDWk2tOnc4UUHQdHr4lxOytOB8Yh62P9NB
+   icZ4hHf2jSgCEdl/HgP8SDxRkfrxAGYXcnfcJE6KckbQ2iMqEAdLWE6KO
+   xrKUkj6Bq1i2/OZtMKsQRrBqouFRp+KEXwWsScm8fQNKhghEz8Oz+qiVl
+   Q==;
+X-CSE-ConnectionGUID: IDffGgZ4S9KkiwLHI7XUAw==
+X-CSE-MsgGUID: hfS25cmOQbutnFCtmdpbLA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11273"; a="36109567"
 X-IronPort-AV: E=Sophos;i="6.12,201,1728975600"; 
-   d="scan'208";a="33117089"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Dec 2024 11:31:50 -0800
-X-CSE-ConnectionGUID: n6/TC2XkSjyO2yYdkJABjQ==
-X-CSE-MsgGUID: 7fjb+LI7SYyno4B8OPnKKA==
+   d="scan'208";a="36109567"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Dec 2024 12:12:23 -0800
+X-CSE-ConnectionGUID: De9xxm3zRNC6Wb6b6jmFHQ==
+X-CSE-MsgGUID: /pNG//6TRiefYh+podYKyw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.12,201,1728975600"; 
-   d="scan'208";a="97878191"
+   d="scan'208";a="116187337"
 Received: from lkp-server02.sh.intel.com (HELO 36a1563c48ff) ([10.239.97.151])
-  by orviesa005.jf.intel.com with ESMTP; 01 Dec 2024 11:31:45 -0800
+  by fmviesa002.fm.intel.com with ESMTP; 01 Dec 2024 12:12:18 -0800
 Received: from kbuild by 36a1563c48ff with local (Exim 4.96)
 	(envelope-from <lkp@intel.com>)
-	id 1tHpfT-0001nN-0H;
-	Sun, 01 Dec 2024 19:31:43 +0000
-Date: Mon, 2 Dec 2024 03:31:10 +0800
+	id 1tHqIh-0001oz-2W;
+	Sun, 01 Dec 2024 20:12:15 +0000
+Date: Mon, 2 Dec 2024 04:12:02 +0800
 From: kernel test robot <lkp@intel.com>
 To: Dario Binacchi <dario.binacchi@amarulasolutions.com>,
 	linux-kernel@vger.kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-amarula@amarulasolutions.com,
+Cc: oe-kbuild-all@lists.linux.dev, linux-amarula@amarulasolutions.com,
 	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
 	Abel Vesa <abelvesa@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
 	Fabio Estevam <festevam@gmail.com>,
@@ -81,7 +80,7 @@ Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
 	devicetree@vger.kernel.org, imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
 Subject: Re: [PATCH v4 02/18] clk: imx8mp: rename video_pll1 to video_pll
-Message-ID: <202412020311.N7CKTzed-lkp@intel.com>
+Message-ID: <202412020312.z4UEdjd3-lkp@intel.com>
 References: <20241201174639.742000-3-dario.binacchi@amarulasolutions.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -107,24 +106,26 @@ url:    https://github.com/intel-lab-lkp/linux/commits/Dario-Binacchi/clk-imx8mm
 base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelvesa/linux.git clk/imx
 patch link:    https://lore.kernel.org/r/20241201174639.742000-3-dario.binacchi%40amarulasolutions.com
 patch subject: [PATCH v4 02/18] clk: imx8mp: rename video_pll1 to video_pll
-config: arm-randconfig-002-20241202 (https://download.01.org/0day-ci/archive/20241202/202412020311.N7CKTzed-lkp@intel.com/config)
-compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project 592c0fe55f6d9a811028b5f3507be91458ab2713)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241202/202412020311.N7CKTzed-lkp@intel.com/reproduce)
+config: arm64-randconfig-002-20241202 (https://download.01.org/0day-ci/archive/20241202/202412020312.z4UEdjd3-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241202/202412020312.z4UEdjd3-lkp@intel.com/reproduce)
 
 If you fix the issue in a separate patch/commit (i.e. not just a new version of
 the same patch/commit), kindly add following tags
 | Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202412020311.N7CKTzed-lkp@intel.com/
+| Closes: https://lore.kernel.org/oe-kbuild-all/202412020312.z4UEdjd3-lkp@intel.com/
 
 All errors (new ones prefixed by >>):
 
->> drivers/clk/imx/clk-imx8mp.c:465:6: error: use of undeclared identifier 'IMX8MP_VIDEO_PLL_BYPASS'
+   drivers/clk/imx/clk-imx8mp.c: In function 'imx8mp_clocks_probe':
+>> drivers/clk/imx/clk-imx8mp.c:465:13: error: 'IMX8MP_VIDEO_PLL_BYPASS' undeclared (first use in this function); did you mean 'IMX8MP_VIDEO_PLL1_BYPASS'?
      465 |         hws[IMX8MP_VIDEO_PLL_BYPASS] = imx_clk_hw_mux_flags("video_pll_bypass", anatop_base + 0x28, 16, 1, video_pll_bypass_sels, ARRAY_SIZE(video_pll_bypass_sels), CLK_SET_RATE_PARENT);
-         |             ^
-   1 error generated.
+         |             ^~~~~~~~~~~~~~~~~~~~~~~
+         |             IMX8MP_VIDEO_PLL1_BYPASS
+   drivers/clk/imx/clk-imx8mp.c:465:13: note: each undeclared identifier is reported only once for each function it appears in
 
 
-vim +/IMX8MP_VIDEO_PLL_BYPASS +465 drivers/clk/imx/clk-imx8mp.c
+vim +465 drivers/clk/imx/clk-imx8mp.c
 
    407	
    408	static int imx8mp_clocks_probe(struct platform_device *pdev)
