@@ -1,187 +1,159 @@
-Return-Path: <devicetree+bounces-125822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125823-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6ADA9DF68B
-	for <lists+devicetree@lfdr.de>; Sun,  1 Dec 2024 18:10:14 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2B3F9DF6A9
+	for <lists+devicetree@lfdr.de>; Sun,  1 Dec 2024 18:47:23 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B9E028165B
-	for <lists+devicetree@lfdr.de>; Sun,  1 Dec 2024 17:10:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 944D7162988
+	for <lists+devicetree@lfdr.de>; Sun,  1 Dec 2024 17:47:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A77D1D5CDB;
-	Sun,  1 Dec 2024 17:10:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D81851D79A3;
+	Sun,  1 Dec 2024 17:47:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="yX+sWY3U"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="gBU6/WMc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF35B33086;
-	Sun,  1 Dec 2024 17:10:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 245141D417B
+	for <devicetree@vger.kernel.org>; Sun,  1 Dec 2024 17:47:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733073010; cv=none; b=e4R7zvaEAP3ASbMlXyw4Q+UG0VHHNpV9tX2uhoL+GmVeDji16hJmwOSYLa6YRrY7keUm5sgY7z7V44V54T42zgY4a2hpONFWsf3phZdxEm+PfplgI70qJ0vbP4si/rBUcB1H//3lduPc2y83aMnSrSw4J/gdgdobhjOX/e1Olpo=
+	t=1733075240; cv=none; b=O/+eiCUCQgaiC3mvupALwBW3TfKTOfNk9xbqR6jCVEMaGTDynhtD3vlIFztsciCQKpYCuXwxusSWajR7nFrh4AFvsRKYvY+RPhNYH6vWCh2NiNjB4nIiSGmWDFwUPwuRGdg5ZR+8aBfZN301TBfNdNHHd4lXfASd2bx7iFUokA0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733073010; c=relaxed/simple;
-	bh=AHh6wZo9hURws++aV/42XxavFaokSvbg6imNNWwMBD4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=DiF6+bhz1olrC54E46qT7PVsjQVF+H8uMCGnh3wiiCjHW83GjKU1fjHgLjNwQFQmB4fj4PJKdyiwAqR3QhcB/9rOVK/gRCKKc0TQglBNKf3Lw3v+EqSeuTiOdB8RrNGlMpjXTttSm4X+ZVdtxcR1Ravud3hjiCCgZ1Ig/sfRysc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=yX+sWY3U; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 4B1H9gVu1591953
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Sun, 1 Dec 2024 11:09:42 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1733072982;
-	bh=oN/TNhxxv2ynjLBjJ9OZ5gYYDHMlfWmbssUcpigYGIQ=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=yX+sWY3Uf57X38xrsL5qyWcxCiAuJIQ4SxT+dMZ47UNVMJA2eSF3+HbNQZZFZO45U
-	 xHgDghmAbKwAkkiIW9NyBGnKKxbhsCIfxYsyRL0uWQ+Nkh+6KHU3fBC/FvrCtG9vPS
-	 MY1vbgjwd69rNpCZEZeGF2ehHvq4Rs68kgoQm3YY=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4B1H9gSL000899
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sun, 1 Dec 2024 11:09:42 -0600
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 1
- Dec 2024 11:09:42 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sun, 1 Dec 2024 11:09:42 -0600
-Received: from [137.167.1.99] (lt5cg1094w5k.dhcp.ti.com [137.167.1.99])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4B1H9cI6080016;
-	Sun, 1 Dec 2024 11:09:39 -0600
-Message-ID: <39af5076-7e96-4968-943d-bb33359f0573@ti.com>
-Date: Sun, 1 Dec 2024 19:09:38 +0200
+	s=arc-20240116; t=1733075240; c=relaxed/simple;
+	bh=qGyDbu8dbHa9uRw+TklcwCPRNvx4qe8HGiBX4mxWY1Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Mo3zJIMzMkzoQehrHbH7f+Qi/mpGBTu+CnSvFH25/iHcpvItWIx1O/mae3It3xBEyibWlKwutmibX2FbkMI5AltEMwKY/lPaPbIO+dZIv12AbaMHQJlIGtytxUo4w9dhmpnyxoG6umnqgUcsaTZjTB++ZmufS5EvhaW7RGe9uHA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=gBU6/WMc; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-aa53a971480so543731966b.1
+        for <devicetree@vger.kernel.org>; Sun, 01 Dec 2024 09:47:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google; t=1733075236; x=1733680036; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rchwEG8OXdVUFDvOBxqjyl0K00WGKeVLIMzEYmldbsw=;
+        b=gBU6/WMctDODqs2hcUo5lj8/jP16Ulrv43+IFNQHyXyawAhX12D6n4nBGVeZCoNqSu
+         2RKBb1KPHA3lS8HJn3fyEiBsY/NAfqyvZ4VA07HVNUdvr12+JiJRgGE+qqFfO05gCYOh
+         1tqaNjpQUiwG6xom2IxJ2++aP32v/bzzUXNlU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733075236; x=1733680036;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rchwEG8OXdVUFDvOBxqjyl0K00WGKeVLIMzEYmldbsw=;
+        b=bMU+ypmcFM33SN5AGYJPLQQX6lPHZ6idGunosoXsakXBotxn8whnQ4h+LQYz8pBe+/
+         rqxUkjSjn23jwwPd5pRUjpb2+nNUJq8Ys/49PANbGJ4ix1NwsrnI1YxYjm8jWMD7UbCu
+         Rj2swYxyhjLBF7FopD3GrbxPk6TB4VMhnbz1nXR6dL4lW0Jd5ANy+nswYqH8wPJTEdv5
+         VZkRb2tMiaHuOX45fpPAqi3zlMVYVu9Fv5OOPDYNCRouhayCf4UqQRMQsPQVlhp/YleS
+         Bm/E/HIOJKt7Ur5xpwBdbxb/sqHaNdi88CYHbVaVlqYB+oAoV5ydLKNcLGiO4Cq/ZDVy
+         mhgQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU2yN9nLYNAvNOsarypn0ZpKiplPTPz+++pyBtEEotrm4T1x5ueC0fpWd4UohH3PaEvr5xCW+BEcikT@vger.kernel.org
+X-Gm-Message-State: AOJu0YzRkcvKP0uUpTCOJn9U4LY6iFhDsxeodBFoAh2I9cxToPv2nmNh
+	VDkl5JWuJ5WMoc29N+5DPSVaM5XKlV/qmRpx7/S+0fc6Ur/zZ926Culd9aHJb+4=
+X-Gm-Gg: ASbGncu3jMX5Nwo1AAyEKzNyTsFdosSWyiON2bUUGlKNqTIQyECGEN23G1SHMRPPpq0
+	gqSATo1TMMLTJRbCFCnlF7r6M3cRNJmjnfh12L3R1SvGFAhVcj5gl42vvvp5QIKfKiKIQAOoq3/
+	XyaQ6sKqu9WheZY38L+vf714RcfilcVPUFp1mW+uC0xbIms71jU7nkaQNkJwDmmJ2+Ifx84AhK2
+	/Xs5/GglPKojjT6d9B5HnBhNtFQIhrjq4cZVrMzlkcBeYJ3aU+eiRrFo8YDXStwrTY3Gu8dSMK1
+	4AO766Vp9N7lfGFvIvYqfkvBVrzcKvazBwIsllVQYkMvbw9WhLsmOvsx5ohY88KPZ5hJ4NvmPjk
+	assWgcEkcTZ6o+gml
+X-Google-Smtp-Source: AGHT+IHOVUCcxf0ALDonprqfVqUEbAzV53v0SZ4mU7f60wTN66QJ2QUiGKJxXNAkQ6tdMuSLScJWrA==
+X-Received: by 2002:a17:907:7742:b0:aa5:152a:d0a5 with SMTP id a640c23a62f3a-aa580f2c2ecmr1673821766b.18.1733075236544;
+        Sun, 01 Dec 2024 09:47:16 -0800 (PST)
+Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-82-54-94-193.retail.telecomitalia.it. [82.54.94.193])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa59990a78esm415220066b.163.2024.12.01.09.47.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 01 Dec 2024 09:47:16 -0800 (PST)
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To: linux-kernel@vger.kernel.org
+Cc: linux-amarula@amarulasolutions.com,
+	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Abel Vesa <abelvesa@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Peng Fan <peng.fan@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org
+Subject: [PATCH v4 00/18] Support spread spectrum clocking for i.MX8N PLLs
+Date: Sun,  1 Dec 2024 18:46:00 +0100
+Message-ID: <20241201174639.742000-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 09/17] wifi: cc33xx: Add main.c
-To: Johannes Berg <johannes@sipsolutions.net>, Kalle Valo <kvalo@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>, <linux-wireless@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: Sabeeh Khan <sabeeh-khan@ti.com>
-References: <20241107125209.1736277-1-michael.nemanov@ti.com>
- <20241107125209.1736277-10-michael.nemanov@ti.com>
- <685d782d68bfc664c4fcc594dff96546ffc30e5f.camel@sipsolutions.net>
-Content-Language: en-US
-From: "Nemanov, Michael" <michael.nemanov@ti.com>
-In-Reply-To: <685d782d68bfc664c4fcc594dff96546ffc30e5f.camel@sipsolutions.net>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: 8bit
 
-On 11/8/2024 1:42 PM, Johannes Berg wrote:
->> +static void cc33xx_rc_update_work(struct work_struct *work)
->> +{
->> +	struct cc33xx_vif *wlvif = container_of(work, struct cc33xx_vif,
->> +						rc_update_work);
->> +	struct cc33xx *cc = wlvif->cc;
->> +	struct ieee80211_vif *vif = cc33xx_wlvif_to_vif(wlvif);
->> +
->> +	mutex_lock(&cc->mutex);
-> 
-> Given the way the wiphy mutex now works, I'd strongly recommend not
-> having your own mutex any more - it's a huge simplification in a lot of
-> places, and there's very little downside since everything coming from
-> higher layers holds the wiphy mutex already (and almost certainly needs
-> to acquire your own mutex.)
+The series adds support for spread spectrum clocking for i.MX8MN
+PLLs (audio, video and DRAM). It has been tested for the video PLL on
+a board using i.MX8MN.
+The patches added in version 4, such as the dt-bindings and the driver
+for anatop, were inspired by the extensive email exchange from version 3:
+https://lore.kernel.org/imx/20241106090549.3684963-1-dario.binacchi@amarulasolutions.com/
 
-Yeah I see how it simplifies things. I'll get rid of cc->mutex and use 
-wiphy_lock() for whatever code that is not called exclusively from 
-ieee80211_ops.
+The series added spectrum spread support for the imx8mn platform only,
+but in case it was merged, confirming that the directives and suggestions
+made by the maintainers were correctly understood and implemented, I will
+extend this support to the imx8mm and imx8mp platforms as well.
 
->> +static void cc33xx_recovery_work(struct work_struct *work)
->> +{
->> +	struct cc33xx *cc = container_of(work, struct cc33xx, recovery_work);
->> +	struct cc33xx_vif *wlvif;
->> +	struct ieee80211_vif *vif;
->> +
->> +	cc33xx_notice("CC33xx driver attempting recovery");
->> +
->> +	if (cc->conf.core.no_recovery) {
->> +		cc33xx_info("Recovery disabled by configuration, driver will not restart.");
->> +		return;
->> +	}
->> +
->> +	if (test_bit(CC33XX_FLAG_DRIVER_REMOVED, &cc->flags)) {
->> +		cc33xx_info("Driver being removed, recovery disabled");
->> +		return;
->> +	}
->> +
->> +	cc->state = CC33XX_STATE_RESTARTING;
->> +	set_bit(CC33XX_FLAG_RECOVERY_IN_PROGRESS, &cc->flags);
->> +
->> +	mutex_lock(&cc->mutex);
->> +	while (!list_empty(&cc->wlvif_list)) {
->> +		wlvif = list_first_entry(&cc->wlvif_list,
->> +					 struct cc33xx_vif, list);
->> +		vif = cc33xx_wlvif_to_vif(wlvif);
->> +
->> +		if (test_bit(WLVIF_FLAG_STA_ASSOCIATED, &wlvif->flags))
->> +			ieee80211_connection_loss(vif);
->> +
->> +		__cc33xx_op_remove_interface(cc, vif, false);
->> +	}
->> +	mutex_unlock(&cc->mutex);
->> +
->> +	cc33xx_turn_off(cc);
->> +	msleep(500);
->> +
->> +	mutex_lock(&cc->mutex);
->> +	cc33xx_init_fw(cc);
->> +	mutex_unlock(&cc->mutex);
->> +
->> +	ieee80211_restart_hw(cc->hw);
->> +
->> +	mutex_lock(&cc->mutex);
->> +	clear_bit(CC33XX_FLAG_RECOVERY_IN_PROGRESS, &cc->flags);
->> +	mutex_unlock(&cc->mutex);
-> 
-> even more so with the awful locking/unlocking/... here (also no need to
-> unlock to call restart_hw, I think?)
-> 
-> and using both a mutex and atomic ops seems ... odd?
+(no changes since v1)
 
-cc33xx_turn_off() is called in the driver remove path so it expects the 
-mutex to be unlocked while cc33xx_init_fw() touches many driver members 
-and requires the lock.
-OK if i keep it?
+Dario Binacchi (18):
+  clk: imx8mm: rename video_pll1 to video_pll
+  clk: imx8mp: rename video_pll1 to video_pll
+  dt-bindings: clock: imx8m-anatop: define clocks/clock-names
+  arm64: dts: imx8mm: add anatop clocks
+  arm64: dts: imx8mn: add anatop clocks
+  arm64: dts: imx8mp: add anatop clocks
+  arm64: dts: imx8mq: add anatop clocks
+  dt-bindings: clock: imx8mm: add binding definitions for anatop
+  dt-bindings: clock: imx8mn: add binding definitions for anatop
+  dt-bindings: clock: imx8mp: add binding definitions for anatop
+  clk: imx: add hw API imx8m_anatop_get_clk_hw
+  clk: imx: add support for i.MX8MN anatop clock driver
+  dt-bindings: clock: imx8m-clock: support spread spectrum clocking
+  arm64: dts: imx8mm: add PLLs to clock controller module (ccm)
+  arm64: dts: imx8mn: add PLLs to clock controller module (ccm)
+  arm64: dts: imx8mp: add PLLs to clock controller module (ccm)
+  clk: imx: pll14xx: support spread spectrum clock generation
+  clk: imx8mn: support spread spectrum clock generation
 
-Mutex protection for the flags is indeed redundant and will be removed.
+ .../bindings/clock/fsl,imx8m-anatop.yaml      |  53 +++-
+ .../bindings/clock/imx8m-clock.yaml           |  77 ++++-
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi     |  11 +-
+ arch/arm64/boot/dts/freescale/imx8mn.dtsi     |  11 +-
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi     |  11 +-
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi     |   2 +
+ drivers/clk/imx/Makefile                      |   2 +-
+ drivers/clk/imx/clk-imx8mm.c                  | 102 +++----
+ drivers/clk/imx/clk-imx8mn-anatop.c           | 281 ++++++++++++++++++
+ drivers/clk/imx/clk-imx8mn.c                  | 188 ++++++------
+ drivers/clk/imx/clk-imx8mp.c                  | 118 ++++----
+ drivers/clk/imx/clk-pll14xx.c                 | 127 ++++++++
+ drivers/clk/imx/clk.c                         |  26 ++
+ drivers/clk/imx/clk.h                         |  22 ++
+ include/dt-bindings/clock/imx8mm-clock.h      |  78 ++++-
+ include/dt-bindings/clock/imx8mn-clock.h      |  67 +++++
+ include/dt-bindings/clock/imx8mp-clock.h      |  79 ++++-
+ 17 files changed, 1022 insertions(+), 233 deletions(-)
+ create mode 100644 drivers/clk/imx/clk-imx8mn-anatop.c
 
->> +unlock:
->> +	mutex_unlock(&cc->mutex);
->> +
->> +	cancel_work_sync(&wlvif->rc_update_work);
->> +	cancel_delayed_work_sync(&wlvif->connection_loss_work);
->> +	cancel_delayed_work_sync(&wlvif->channel_switch_work);
->> +	cancel_delayed_work_sync(&wlvif->pending_auth_complete_work);
->> +	cancel_delayed_work_sync(&wlvif->roc_timeout_work);
->> +
->> +	mutex_lock(&cc->mutex);
-> 
-> also this kind of thing ... just use wiphy mutex/work
->
-Yeah all this work use cc->mutex so it seems safe, will do.
+-- 
+2.43.0
 
-Thanks and regards,
-Michael.
 
