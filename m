@@ -1,96 +1,90 @@
-Return-Path: <devicetree+bounces-125806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD1619DF5E6
-	for <lists+devicetree@lfdr.de>; Sun,  1 Dec 2024 14:57:25 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C1229DF650
+	for <lists+devicetree@lfdr.de>; Sun,  1 Dec 2024 17:00:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5DFAAB219B7
-	for <lists+devicetree@lfdr.de>; Sun,  1 Dec 2024 13:57:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4751DB211E0
+	for <lists+devicetree@lfdr.de>; Sun,  1 Dec 2024 16:00:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E3BD1D2B2F;
-	Sun,  1 Dec 2024 13:57:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC6F21D14E2;
+	Sun,  1 Dec 2024 16:00:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ER99qdtM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ceAkaDoC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCA901D27B9;
-	Sun,  1 Dec 2024 13:57:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 270321863E;
+	Sun,  1 Dec 2024 16:00:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733061441; cv=none; b=LtnwJ3HwAQ0KNNcFRq/3pZTQC9gF5pmw+qj5fu6rvi5C2ynbyHYAh+Ok0TgBvu1afRABXBJ3DX3OjWq+myMnQsFT8k2fRTDjXU3zuG0bmxKsZfblTcZT/6Rguky13GYGmRGbZU6Igu0u1U/mdzut1KZgkJuquY9gLFmPggDrOWw=
+	t=1733068844; cv=none; b=VVzEpsdSIF4Q2UfP2OKTUsVMY/9HUYBsfsQkr3kWhaWW5U75XVAFTPqn30YG+3LTPuTiqCtJmAL6p6K3Dty2tbXHuGRrralxb7dsuFaj6NR5MFvXdeU0XSQ/cN5qPXiiSjapJBnokwcfSn+oapri10DEO0eROF6ZpbwGl9Cjcho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733061441; c=relaxed/simple;
-	bh=iGOS0BxMkN+goOQ2G0G1bCT84brcDpqwOAacbt0Gs+I=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=VNqYFxvmlKlVDCP6yKNaSuuvTF5T4x5Wlzg1W5vlK6rqaYIWlJNI1yxz9nU4pJODz7GJd4lCLmSOZVIeZ4g0eIihIOwnRVRq87DbGRDHQzzBXx2hfPf3fS2nGfVzCz6t6DXsHd3W0aZdOh7MtXV2jlSHAI540AMTZGCzThbQJ8I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ER99qdtM; arc=none smtp.client-ip=209.85.210.171
+	s=arc-20240116; t=1733068844; c=relaxed/simple;
+	bh=yt9X+1PBEQfF2AmldoMT5luhhth2c6LUe3IRgSiyEvg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=o4An7TXMVG1iXr5Ycp9HzyTzUjqxjPXpVgVTCpJw5hROVhZZq19stzZYDgL2h0bXwCZGLGV5LkA8utArsajOWaao/dQdS8f0JZA9GwbRF/lpLZAbxefDzGnEF5YCrbMkk11XG3S1fD7xSW4KWqu58pP18FxdNw8a5UHdp4FcvEE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ceAkaDoC; arc=none smtp.client-ip=209.85.216.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-7253bc4d25eso2160429b3a.0;
-        Sun, 01 Dec 2024 05:57:19 -0800 (PST)
+Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-2ee709715d9so1189067a91.3;
+        Sun, 01 Dec 2024 08:00:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733061439; x=1733666239; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zSi63laDVLde5pIwB6wSgBpmbCeHCRHr3UINQDkHQJQ=;
-        b=ER99qdtMi4kEWHLJgiUVFP85qnwXkRLUOaFcPG2n+0SpKyqaRW43NFGwnkI+sj5nlQ
-         w8RbFmCjIyNDifbd2lhyTjMyjrmqoPjwqxaOtQI69D7PkN9Ud1JrcL3uflyvLv/iPPrq
-         iyHtOyGqFuG9yfqDBK9z9zuFpzghr7c4gUpeJIoyBrHyQ/veCKHjTEGbPEIGnTcXyiun
-         0TsNKTGiWooLWtR3lZl54eEmiz/IGsCORtKcnWy7t1YkCpGFuwMxs9ygoGevCb4phfug
-         CvQabfX0LTnR+smTKsVOXx/5Q6ak1CtXn1l1IwuHlXLeegjKEU1J8HQQzTWfIHNLFztq
-         j5cw==
+        d=gmail.com; s=20230601; t=1733068842; x=1733673642; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hLTw328DQY3n+nYpsFgKV/IZtfLPh9HpMEQT4J4adnI=;
+        b=ceAkaDoCdr3+p3Egoqjcr5Oh3LXtKzw2Wku1OOtinzsHAK1ONzP53oPi2i0u9h2tY9
+         3WXxeaEQHfci+Z/EWiZjelXFFN/pok11nu5LMU3YPHSFjajoWAJ8LAlSUgRadEbuebPt
+         bQjoE4nMAwV1B2AxmFNcTuozgv5sBGsVCMUQkSy45Bk1oCb4ZfqXLgdzeL+kxOccY86R
+         S/6a476Nmhrp0b1yl+FW5sV+2C90nZwSVORjekWyagDoc2FAWEsUPkgbXgQby9tt2TqL
+         /7+ISBktWAL6v7UWBmRwPr3qsArxhoGM9+M1t5TA0OLr7Y7yD8w9C02KlzrUYg+uoHDj
+         OFRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733061439; x=1733666239;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zSi63laDVLde5pIwB6wSgBpmbCeHCRHr3UINQDkHQJQ=;
-        b=IgDM9sff5tHX+C2hQY5KKM1CNGkhGJP6NfN3R5b13Ms9amRtrafSWCW812sEjbsCHS
-         oQd1N/COIyYYP4wJw2HLzy0vxHI/WETgxRV+0oUFG/YXDmRXepA77UYX+awS4PFzYDP0
-         moOlfbrIf7xKG/Jvz8NwcaoGnb2tt4Od4Qsv5dGll8pC79OnDcdV/nDbUo2+ACvdjzz1
-         2exc9EhpgdyCGeHn9rzZ2sNO7SBN4aWY8/E8bNZcXPf6+ilf0x1heCn0SaMler6GsAES
-         CBMvwnKvg4pxEizFxalrEe1S3s0NaVHbeMRT4OncR43hDJhMC4VzRPz4VDVhCnBl/oMZ
-         gHdw==
-X-Forwarded-Encrypted: i=1; AJvYcCUoe5UYx54xG9jwlcFeFGGVnvXCIlfr10J1h1Hf2x8+ahXkd+4E1BfRY1O6tZPUBbIbCI3qs768MJ0f@vger.kernel.org, AJvYcCVT4sh43dyNYzunYUjqnblBaj0oVBuFa4bmTq8uKtosBLm8NxHVe5W8Ltn4Od70oNwcVBrKC6EhOFUCrx1s@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx7tQIgNLEGvouGd/wCtjXi+8RYJn4w03zgydlvJxtRYLTZXbHW
-	uo9f+Izy/H34HShpg9mFfMbgGnMK4f+SbA8QKCz26yk+iSkGWptB
-X-Gm-Gg: ASbGncuU66IAISxcwSwrHZBDZaKx19aDocwzy36uQFWBu1arTPd+7vWmT3Fcs9E3ror
-	h6R+a9XfAiUWjiwfNNVbsnPLFnqbIFBoe4PpGjod/1piV96dsRDIYJuwpo9msCIj3WzfoQ1JbTM
-	kc43gJ2ubiwWZBVDoxO87o/Mim9E/Kf09oUO10qzOqquB3gN1PnD3UIwi6g9tSi5yH2gHgP3LPy
-	9fXe6PA31zHGyJ96liR6qHOGOFp06c31NTkCx1wuAOP9qaaJGJ7yYN2TtEa2VRvEbzP
-X-Google-Smtp-Source: AGHT+IFaEuhkU4qR7aHB0uV1Ch6t4H7GsWfvPfZ9GTPabcTVWYOp6CJKYF0f3EY1mkzg2xv4eosLWw==
-X-Received: by 2002:aa7:93b5:0:b0:725:3fb5:5151 with SMTP id d2e1a72fcca58-7253fb5528amr18770034b3a.12.1733061438923;
-        Sun, 01 Dec 2024 05:57:18 -0800 (PST)
-Received: from localhost.localdomain ([103.149.249.231])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7fc9c30e2d8sm5260617a12.38.2024.12.01.05.57.09
+        d=1e100.net; s=20230601; t=1733068842; x=1733673642;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hLTw328DQY3n+nYpsFgKV/IZtfLPh9HpMEQT4J4adnI=;
+        b=h6FB/IHLB/Q3l8cHff5YwyOcESSrhLLeQKbw+Ab6NykZtvTDRl7nYQ52OrfSTN+R2E
+         TrXHWlfkVxKeQLWaD7u1jQjw9JWIV0s1sDeVzXx2b/QBSgPhYCL6V4Ve3lgnCok3yidc
+         i2SPUpgjnWrQa4YAxoJhsQ4cmkazPwNJoOhvYiukTw/vIRGSI90b5rmwdqgsz6P7cBYA
+         VTv7szkE+8DuO/u8MhCdUWz+Sqm5TVwkgpJsE9n+vBhmnlHeNqdRvgIDgvacc+RUxh8I
+         gs3P7vQapVmHPwiuO9v9A8liacrq45MnqA1uysisFoKacaUy1lIk6EOndskJHJl3MTsb
+         tZjw==
+X-Forwarded-Encrypted: i=1; AJvYcCWCok0AhwA9Krixn1jPSyfH5OAHRdMeY/Xa03lE9KwLIa4GNMm4sPqFTS4xJQDttxZraBGCoCb7k3eE@vger.kernel.org, AJvYcCX8ESIPGwhEZ3Kw6gWk8zZuVCho1Fn9TrPqJARewSpd6zSfcOVxJABXVOqn58wJhBJ2lzuhC9aoYeHYhCNY@vger.kernel.org
+X-Gm-Message-State: AOJu0YwJLUxVnuwm4NW+2Wt+OyFNyWSTI69ctGiPwIB/wqd7DWQZ7oIC
+	8piLTDPAnr0cUYivBylwxwptltV78NA9ZfGtnUn+wvmTAYlwOZ40TKNVlg==
+X-Gm-Gg: ASbGncswtsGCYgU1GCs8yGHjhrF6ILBf0aykPNalOtyv/dn2SkzlXUMwBGAQLnpsRAe
+	L1vEUrSS/Vw8LWqTUgpXJJ3jZhiET4//7blH/FGJ/RueciKwswJi0deA/ugw0CjDscT5r+bckcc
+	W2sxL1MTSL70npWhTiLj6KL4g6nQvoTEYeTrhsLviC6ZrV/XS/3zZ1QEym/ohYlyvh6CwEVJNPa
+	Vbk9ubbBy4T7mZ/8YACey5NHLhry1v0i17tC30obkBq/ieXaoWBz7LajimKYKyurQ==
+X-Google-Smtp-Source: AGHT+IGchtk633+rQf9MvvkRJKgrKmqU7Z/WSWsyNWH69akPMsMA/WPwo6E4IF9tYA9VQ12V1KU66A==
+X-Received: by 2002:a17:90b:4a83:b0:2ee:bf84:4fe8 with SMTP id 98e67ed59e1d1-2eebf845036mr1872439a91.30.1733068840880;
+        Sun, 01 Dec 2024 08:00:40 -0800 (PST)
+Received: from localhost.localdomain ([59.188.211.160])
+        by smtp.googlemail.com with ESMTPSA id 98e67ed59e1d1-2ee6ebc4a73sm2395173a91.0.2024.12.01.08.00.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 01 Dec 2024 05:57:18 -0800 (PST)
-From: Jianhua Lu <lujianhua000@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
+        Sun, 01 Dec 2024 08:00:40 -0800 (PST)
+From: Nick Chan <towinchenmi@gmail.com>
+To: Hector Martin <marcan@marcan.st>,
+	Sven Peter <sven@svenpeter.dev>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Kalle Valo <kvalo@kernel.org>,
-	Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org,
+	asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	ath11k@lists.infradead.org,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Jianhua Lu <lujianhua000@gmail.com>
-Subject: [PATCH v4 3/3] arm64: dts: qcom: sm8250-xiaomi-elish: Add bluetooth node
-Date: Sun,  1 Dec 2024 21:57:16 +0800
-Message-ID: <20241201135716.141691-3-lujianhua000@gmail.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241201135716.141691-1-lujianhua000@gmail.com>
-References: <20241201135716.141691-1-lujianhua000@gmail.com>
+	linux-kernel@vger.kernel.org
+Cc: Nick Chan <towinchenmi@gmail.com>
+Subject: [PATCH v4 00/10] Add PMGR nodes for Apple A7-A11 SoCs
+Date: Sun,  1 Dec 2024 23:56:37 +0800
+Message-ID: <20241201155820.29259-1-towinchenmi@gmail.com>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,59 +93,95 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add bluetooth node and this bluetooth module is connected to uart.
+This series adds the PMGR nodes and all known power state subnodes for
+Apple A7-A11 SoCs, along with the associated dt-bindings.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
+Changes since v3:
+- Add "apple,always-on" property to "ps_spmi" in t8015 power domains.
+This is required for cpufreq to function correctly which will be added
+in a later series.
+
+Changes since v2:
+- Removed "apple,always-on" property from "ps_pmp" from s8001, t8011,
+t8015 power domains. It is not on at boot. (Mixed up with ps_pms which
+is required to be on)
+- Add asahi-soc/dt back into the subject prefix, missing from v2.
+
+Link to v2: https://lore.kernel.org/asahi/20241102011004.59339-1-towinchenmi@gmail.com
+
+Changes since v1:
+- Removed "framebuffer0" dt aliases. It is not standard and not needed.
+
+Link to v1: https://lore.kernel.org/asahi/20241029010526.42052-1-towinchenmi@gmail.com
+
+Nick Chan
 ---
-No changes in v4.
 
-No changes in v3.
+Nick Chan (10):
+  dt-bindings: arm: apple: apple,pmgr: Add A7-A11 compatibles
+  dt-bindings: arm: apple: apple,pmgr-pwrstate: Add A7-A11 compatibles
+  arm64: dts: apple: s5l8960x: Add PMGR node
+  arm64: dts: apple: t7000: Add PMGR node
+  arm64: dts: apple: t7001: Add PMGR node
+  arm64: dts: apple: s8000: Add PMGR nodes
+  arm64: dts: apple: s8001: Add PMGR nodes
+  arm64: dts: apple: t8010: Add PMGR nodes
+  arm64: dts: apple: t8011: Add PMGR nodes
+  arm64: dts: apple: t8015: Add PMGR nodes
 
-changes in v2:
-1. pick up Dmitry Baryshkov's Reviewed-by
+ .../bindings/arm/apple/apple,pmgr.yaml        |   5 +
+ .../bindings/power/apple,pmgr-pwrstate.yaml   |   5 +
+ arch/arm64/boot/dts/apple/s5l8960x-5s.dtsi    |   4 +
+ arch/arm64/boot/dts/apple/s5l8960x-air1.dtsi  |   4 +
+ arch/arm64/boot/dts/apple/s5l8960x-mini2.dtsi |   4 +
+ arch/arm64/boot/dts/apple/s5l8960x-pmgr.dtsi  | 610 ++++++++++++
+ arch/arm64/boot/dts/apple/s5l8960x.dtsi       |  13 +
+ arch/arm64/boot/dts/apple/s8000-pmgr.dtsi     | 757 ++++++++++++++
+ arch/arm64/boot/dts/apple/s8000.dtsi          |  22 +
+ arch/arm64/boot/dts/apple/s8001-common.dtsi   |   1 +
+ .../arm64/boot/dts/apple/s8001-j98a-j99a.dtsi |  26 +
+ arch/arm64/boot/dts/apple/s8001-j98a.dts      |   1 +
+ arch/arm64/boot/dts/apple/s8001-j99a.dts      |   1 +
+ arch/arm64/boot/dts/apple/s8001-pmgr.dtsi     | 822 ++++++++++++++++
+ arch/arm64/boot/dts/apple/s8001.dtsi          |  22 +
+ arch/arm64/boot/dts/apple/s800x-6s.dtsi       |   4 +
+ arch/arm64/boot/dts/apple/s800x-ipad5.dtsi    |   4 +
+ arch/arm64/boot/dts/apple/s800x-se.dtsi       |   4 +
+ arch/arm64/boot/dts/apple/t7000-6.dtsi        |   4 +
+ arch/arm64/boot/dts/apple/t7000-j42d.dts      |   1 +
+ arch/arm64/boot/dts/apple/t7000-mini4.dtsi    |   4 +
+ arch/arm64/boot/dts/apple/t7000-n102.dts      |   4 +
+ arch/arm64/boot/dts/apple/t7000-pmgr.dtsi     | 641 ++++++++++++
+ arch/arm64/boot/dts/apple/t7000.dtsi          |  14 +
+ arch/arm64/boot/dts/apple/t7001-air2.dtsi     |   1 +
+ arch/arm64/boot/dts/apple/t7001-pmgr.dtsi     | 650 ++++++++++++
+ arch/arm64/boot/dts/apple/t7001.dtsi          |  13 +
+ arch/arm64/boot/dts/apple/t8010-7.dtsi        |   4 +
+ arch/arm64/boot/dts/apple/t8010-ipad6.dtsi    |   4 +
+ arch/arm64/boot/dts/apple/t8010-n112.dts      |   4 +
+ arch/arm64/boot/dts/apple/t8010-pmgr.dtsi     | 772 +++++++++++++++
+ arch/arm64/boot/dts/apple/t8010.dtsi          |  22 +
+ arch/arm64/boot/dts/apple/t8011-common.dtsi   |   1 +
+ arch/arm64/boot/dts/apple/t8011-pmgr.dtsi     | 806 +++++++++++++++
+ arch/arm64/boot/dts/apple/t8011-pro2.dtsi     |   8 +
+ arch/arm64/boot/dts/apple/t8011.dtsi          |  22 +
+ arch/arm64/boot/dts/apple/t8015-common.dtsi   |   1 +
+ arch/arm64/boot/dts/apple/t8015-pmgr.dtsi     | 931 ++++++++++++++++++
+ arch/arm64/boot/dts/apple/t8015.dtsi          |  21 +
+ 39 files changed, 6237 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/apple/s5l8960x-pmgr.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/s8000-pmgr.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/s8001-j98a-j99a.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/s8001-pmgr.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/t7000-pmgr.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/t7001-pmgr.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/t8010-pmgr.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/t8011-pmgr.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/t8015-pmgr.dtsi
 
- .../dts/qcom/sm8250-xiaomi-elish-common.dtsi  | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
-index 7a55e271c3ac..100607da42ad 100644
---- a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
-@@ -30,6 +30,10 @@ / {
- 	qcom,msm-id = <QCOM_ID_SM8250 0x20001>; /* SM8250 v2.1 */
- 	qcom,board-id = <0x10008 0>;
- 
-+	aliases {
-+		serial0 = &uart6;
-+	};
-+
- 	chosen {
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-@@ -799,6 +803,21 @@ wlan_en_state: wlan-default-state {
- 	};
- };
- 
-+&uart6 {
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "qcom,qca6390-bt";
-+
-+		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-+		vddaon-supply = <&vreg_pmu_aon_0p59>;
-+		vddbtcmx-supply = <&vreg_pmu_btcmx_0p85>;
-+		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-+		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-+		vddrfa1p7-supply = <&vreg_pmu_rfa_1p7>;
-+	};
-+};
-+
- &usb_1 {
- 	/* USB 2.0 only */
- 	qcom,select-utmi-as-pipe-clk;
+base-commit: 9ad55a67a788c0806b0fe23be36fae6dbfbc3fc5
 -- 
-2.47.0
+2.47.1
 
 
