@@ -1,254 +1,140 @@
-Return-Path: <devicetree+bounces-125842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67B439DF759
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 00:00:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EDA39DF77C
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 00:46:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 193E5281904
-	for <lists+devicetree@lfdr.de>; Sun,  1 Dec 2024 23:00:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F7ED28148E
+	for <lists+devicetree@lfdr.de>; Sun,  1 Dec 2024 23:46:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E491E83CDA;
-	Sun,  1 Dec 2024 23:00:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 341361D88D4;
+	Sun,  1 Dec 2024 23:46:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="XU4v3l9x"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TPHdS0pK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECF5E10A3E;
-	Sun,  1 Dec 2024 23:00:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733094020; cv=pass; b=XfkaPKKELItt5E2pQ3y6Gn+v4zVFpYEYU6SOYxLesXOcKQD+qvT+qNn6rKSd89BpjkJxy39GJaUc5oSkA4q/iiC2kUnlPjHrNeCLN5MSbhrBOuZFnvz5rKUtF57ZHnB553bBPmo6+F/of37HrngPqLLTzVf9jhb4LLGE/MSADvI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733094020; c=relaxed/simple;
-	bh=5pGa4JNqs10EVsmcj0ibFw9kB9Wxnxmjz12xvBgQzD8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nVE0IHS7l2eIOba6TCtwIjliM+QxwFfQzaWLuhPu1WqS6Jky0vzp9onw9f4ixrI9+hrQFKuv5nhxm9oD+WsqH29pVTGreD+DOepb2/4+hZGedtS7z+uKoIuOSQEM/Xz4xxsERfNlQNOha2dmWIYNmmy4yo/26Cy6E5FtG3bE/5o=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=XU4v3l9x; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1733093992; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=bE0WtpXaK8QuDqsEc8P7YE2eJ11W+5K5q9JbFrcQc/1A6ud8HQ2rITJLIXnJwhAy/+j4gLCSWgUIHYpKPYRncvWL29atBpkaTHRDO7KC2refctyA8rz0Io7kcHKDOczkb8JAUiQX1iS5Je5SDeM2PCwYGP9n0dGsBOV7D/IHY7Y=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1733093992; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=wFU3BBsk/0IMP6GXJyqeVrQbjT8QvAYTSLEUrZjXm+Q=; 
-	b=aY5PVHs04X4fQ07Lk2Sn8m1mhP3j4MsVayOiiwINFOEdgyukzfy5jwS7s0cRiZRjIHt5kwZhYar9jfgC4l8S5vwQHzJXS5GLEQuj9fzOfIIRelyPfAYiBR42GrSdMHSrFfMVrHON+FqcXEJBv9UTI5LZ2qZGnTJHeEN9hfSjgdM=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1733093992;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=wFU3BBsk/0IMP6GXJyqeVrQbjT8QvAYTSLEUrZjXm+Q=;
-	b=XU4v3l9xaClvU1VdLFMm14fvcMNigi9JybtvULqmvWazK3Ya87JRiMrPMFDAYRpd
-	oscHX7Dwgu8dnf/fSXQMVW7BhdqqgvqFXmcVG6Fn3KNYYuY2GlDUM9MwUeYIlmndur6
-	AGWmSf9bLjJe6bu3MBzYnCHtftE7AVn8EDzsinxM=
-Received: by mx.zohomail.com with SMTPS id 1733093989260596.7489467887624;
-	Sun, 1 Dec 2024 14:59:49 -0800 (PST)
-Received: by mercury (Postfix, from userid 1000)
-	id 773D410604CF; Sun, 01 Dec 2024 23:59:43 +0100 (CET)
-Date: Sun, 1 Dec 2024 23:59:43 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>
-Cc: Damon Ding <damon.ding@rock-chips.com>, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, rfoss@kernel.org, vkoul@kernel.org, 
-	cristian.ciocaltea@collabora.com, l.stach@pengutronix.de, andy.yan@rock-chips.com, 
-	hjc@rock-chips.com, algea.cao@rock-chips.com, kever.yang@rock-chips.com, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
-Subject: Re: [PATCH v1 04/10] phy: phy-rockchip-samsung-hdptx: Add support
- for eDP mode
-Message-ID: <h4giob7bcrh7qmtepti6huym2llw4ujfmeff76vrgpahb5zy6x@dz6zghsifww5>
-References: <20241127075157.856029-1-damon.ding@rock-chips.com>
- <2131853.KlZ2vcFHjT@diego>
- <6e1f35c0-5ea8-414f-b3ea-4e7222c605ef@rock-chips.com>
- <2886747.Y6S9NjorxK@diego>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A2701D88A6
+	for <devicetree@vger.kernel.org>; Sun,  1 Dec 2024 23:46:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1733096785; cv=none; b=esnAvJ2GWeu4+WMZ8uQZVqF1p1ZSR+QjDdWLcWwzbO7LbMFRGuDSkHu0gP7U53N7nqX/MC1yi2QQkO9iAoZDZo16kF1X07ooLeus91+44vIeTrib7LyJ4CU5GMxdcgB8XZ5i9TQUTMyHgueDpEARVhVoLAdgRHlWz5rRqjtYpj0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1733096785; c=relaxed/simple;
+	bh=UDpRHkdG0AfHo5kvsFh6g8r69eWSfiPpXFLZAJ7ejdE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=k1IWmP/z4JEYF3Bz5cyU+sLxcf/uUO6oTYnDA8DgVrEanHs/uuEsB/8gX/X6k90LA82Yno9pr3629SvdTkXe184knFn5ynJBq7tmPKWd+vsPU2czQOjPu4+Fam3J6wOuP8QPM6KOdTWfi5qG2iAvvvDzgDGMzrPhtC5kvTpILDA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TPHdS0pK; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-385d6e36de7so3197789f8f.0
+        for <devicetree@vger.kernel.org>; Sun, 01 Dec 2024 15:46:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733096782; x=1733701582; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3n2sCT8MkP4WapXVYlrCUZa0gGtNlMO+qY9Q/noMw3M=;
+        b=TPHdS0pK7ceudLm1RrIV7JO+zh7Uv0jaqV3feUKsrIPGyg+ukKBujz0wqQn4JSOnWg
+         PUQ+j7DTcUfq1CYxa10/KNGS1KjkkdpmTReBtosCTfZhy1NooNpsyDs6z3jcAs3eFSE7
+         VnqOD+I9rQtaly4sVOqWGZPZazxVE8SWrLq50LW96vOOIsqPsZPf4eu5eU57fkWUcoIe
+         wMCp1rrdvZ4HjeEOYZkTFdXqwVPjlyZ9I/pWMXjTZ+OdEVsaWyC9qkrX/niaQJ854nkq
+         jv15CVosVXijdSTNVekmWz7eLV2osx1cq+Y7GxznzfeEd3EGXsHKj7Yq1TM+ZjKITVKI
+         fjKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733096782; x=1733701582;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3n2sCT8MkP4WapXVYlrCUZa0gGtNlMO+qY9Q/noMw3M=;
+        b=tbxiwwtTiQvJUpopPL/0qrJCFGr16RJwOHN6EQa6GPTyCM3IHkVuXCmxVoMJqmJSBG
+         P/pE4MGyk/m0rpn5l4XpM6K+jHxXmGvRmci1QhmhkOOGa3PsUgtu9QykmXSN9S+qUGFF
+         dwKSSV4rxmyToq/KZrx0WMx8eJoN3jA9Q0DNwD1MuuF8sBIkoEyysBGojuGpt5gM36pG
+         tZ71bBKkHqqndZouG7WXFG9jJQtcVZIC4fCyGluwSyHGxGr2H7drjVcVuLoK4kS4Pt+t
+         srlWAEr4GsUw5NVkv4L57z7wcN4/vQ2BblujJueoX/0ZYBK+Tzi7bF/aoU+ba20w0H8O
+         wVag==
+X-Forwarded-Encrypted: i=1; AJvYcCUEH7fjHlnUywYAHO6sUfZAlicPpxYJSFhlhf4M5VI0sRSu5El4/Mm9kaXif06mVPPOqpL5ul9635PC@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxvc6sEnA+g3kCD031AcIxRy33EQD6Mmg3rJqqoKo99NXzNBfuF
+	6h02UxPECQ+K17hvF55ShyYqwJC3J61HuEiQQgFV3yZHuCFeD8nY
+X-Gm-Gg: ASbGncuO+kETzjrD/b6JWF1odUUynk9BUDdrsAIC+OURUN8p88Bx/you16TUQp+4ncP
+	LMrmcGnBLGrDFd+2HXLXQMfB/sC9b0jYBigmPNCzg23gBpQ6Kp/Xr4mBVM7hn25fQM8SGbB1a/5
+	CtfKOxJgN3/Tn9GDni5iaa48+JSxZoTJUE3m5u/zKSxuJSMGsnKAAR0/FVeaQg8BONkgL4Csf1o
+	ysFhFw6kNT/vIXLII+DyLWThPYPr7370oTQYpyFgSmFneypdwakHnXerxkNMv/rtKoptkcP4rrs
+	dJjAh8BZbA==
+X-Google-Smtp-Source: AGHT+IEdd5dpHxDU60Rl23qbbsd+Utd3y4mwZDWURtLTMc8M+gvOWR1ABoBD6snXzArhEA0NYOrLJQ==
+X-Received: by 2002:a05:6000:705:b0:382:49fe:6f8a with SMTP id ffacd0b85a97d-385c6edd520mr21824979f8f.55.1733096781435;
+        Sun, 01 Dec 2024 15:46:21 -0800 (PST)
+Received: from cypher.localdomain (213.95.187.81.in-addr.arpa. [81.187.95.213])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-385e2c84d52sm6116014f8f.49.2024.12.01.15.46.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 01 Dec 2024 15:46:21 -0800 (PST)
+From: Peter Robinson <pbrobinson@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Cc: Peter Robinson <pbrobinson@gmail.com>
+Subject: [PATCH] arm64: dts: rockchip: enable rng on all rk356x
+Date: Sun,  1 Dec 2024 23:46:05 +0000
+Message-ID: <20241201234613.52322-1-pbrobinson@gmail.com>
+X-Mailer: git-send-email 2.47.1
+In-Reply-To: <a>
+References: <a>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="4uvvjljskgf7wmee"
-Content-Disposition: inline
-In-Reply-To: <2886747.Y6S9NjorxK@diego>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-1.3.1/233.51.66
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 8bit
 
+The rk356x rng is available on both the rk3566 and rk3568
+parts, the IP is all self contained within the SoCs so
+it's enabled already by default on rk3568 so let's enable
+it in the base rk356x.dtsi so it's enabled consistently
+everywhere.
 
---4uvvjljskgf7wmee
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v1 04/10] phy: phy-rockchip-samsung-hdptx: Add support
- for eDP mode
-MIME-Version: 1.0
+Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3568.dtsi      | 4 ----
+ arch/arm64/boot/dts/rockchip/rk356x-base.dtsi | 1 -
+ 2 files changed, 5 deletions(-)
 
-Hi,
+diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+index ecaefe208e3e..9dc09db5034d 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+@@ -397,10 +397,6 @@ power-domain@RK3568_PD_PIPE {
+ 	};
+ };
+ 
+-&rng {
+-	status = "okay";
+-};
+-
+ &usb_host0_xhci {
+ 	phys = <&usb2phy0_otg>, <&combphy0 PHY_TYPE_USB3>;
+ 	phy-names = "usb2-phy", "usb3-phy";
+diff --git a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
+index 62be06f3b863..2994cddb3464 100644
+--- a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
+@@ -1038,7 +1038,6 @@ rng: rng@fe388000 {
+ 		clocks = <&cru CLK_TRNG_NS>, <&cru HCLK_TRNG_NS>;
+ 		clock-names = "core", "ahb";
+ 		resets = <&cru SRST_TRNG_NS>;
+-		status = "disabled";
+ 	};
+ 
+ 	i2s0_8ch: i2s@fe400000 {
+-- 
+2.47.1
 
-On Sat, Nov 30, 2024 at 09:25:12PM +0100, Heiko St=FCbner wrote:
-> Am Freitag, 29. November 2024, 03:43:57 CET schrieb Damon Ding:
-> > On 2024/11/27 19:04, Heiko St=FCbner wrote:
-> > > Am Mittwoch, 27. November 2024, 12:00:10 CET schrieb Damon Ding:
-> > >> On 2024/11/27 17:29, Heiko St=FCbner wrote:
-> > >>> Am Mittwoch, 27. November 2024, 08:51:51 CET schrieb Damon Ding:
-> > >>>> +static int rk_hdptx_phy_set_mode(struct phy *phy, enum phy_mode m=
-ode,
-> > >>>> +				 int submode)
-> > >>>> +{
-> > >>>> +	return 0;
-> > >>>> +}
-> > >>>analogix_dp_phy_power_on
-> > >>> I think it might make sense to go the same way as the DCPHY and also
-> > >>> naneng combophy, to use #phy-cells =3D 1 to select the phy-mode via=
- DT .
-> > >>>
-> > >>> See [0] for Sebastians initial suggestion regarding the DC-PHY.
-> > >>> The naneng combophy already uses that scheme of mode-selection too.
-> > >>>
-> > >>> There is of course the issue of backwards-compatibility, but that c=
-an be
-> > >>> worked around in the binding with something like:
-> > >>>
-> > >>>    '#phy-cells':
-> > >>>       enum: [0, 1]
-> > >>>       description: |
-> > >>>         If #phy-cells is 0, PHY mode is set to PHY_TYPE_HDMI
-> > >>>         If #phy-cells is 1 mode is set in the PHY cells. Supported =
-modes are:
-> > >>>           - PHY_TYPE_HDMI
-> > >>>           - PHY_TYPE_DP
-> > >>>         See include/dt-bindings/phy/phy.h for constants.
-> > >>>
-> > >>> PHY_TYPE_HDMI needs to be added to include/dt-bindings/phy/phy.h
-> > >>> but PHY_TYPE_DP is already there.
-> > >>>
-> > >>> That way we would standardize on one form of accessing phy-types
-> > >>> on rk3588 :-) .
-> > >>>
-> > >>> Also see the Mediatek CSI rx phy doing this too already [1]
-> > >>>
-> > >>>
-> > >>> Heiko
-> > >>>
-> > >>> [0] https://lore.kernel.org/linux-rockchip/udad4qf3o7kt45nuz6gxsvsm=
-prh4rnyfxfogopmih6ucznizih@7oj2jrnlfonz/
-> > >>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.=
-git/tree/Documentation/devicetree/bindings/phy/mediatek,mt8365-csi-rx.yaml
-> > >>>
-> > >>
-> > >> It is really a nice way to separate HDMI and DP modes.
-> >=20
-> > I apologize for reopening the discussion about the phy-types setting.
->=20
-> there is definitly no need to apologize. We're trying to find the best
-> solution afterall :-) .
->=20
-> > With the .set_mode() of struct phy_ops, the HDMI and eDP dynamic=20
-> > switching can be achieved, which just depends on the right setting of
-> > enum phy_mode in include/linux/phy/phy.h. So the previous way of=20
-> > configuring phy mode may be also good.
->=20
-> I think the deciding factor is, is there a use-case for needing to switch
-> modes at runtime.
->=20
-> I do think the mode for the dc-phy and also the hdptx-phy is pretty much
-> decided by the board design.
->=20
-> I.e. when you end up in a DP-connector (or eDP-panel) on your board you
-> need DP mode, and when you end up in a hdmi-connector you need the
-> HDMI phy mode.
->=20
-> So I think the phy-mode for the hdptx-phy is largely dictated by the stat=
-ic
-> board definition (like devicetree), hence going with the dt-argument for
-> the mode.
->=20
-> Like similar to the Naneng combophy, selecting its mode via argument
-> because deciding if it ends up in a sata port is a board-design thing.
->
-> Is there a use-case where you need to switch at runtime between
-> HDMI and eDP? Like starting the phy in eDP mode but then needing
-> to switch to HDMI mode, while the device is running?
-
-I believe the eDP controller can only use the PHY in eDP mode and
-the HDMI controller can only use it in HDMI mode. So in order to
-support runtime switching, the following options are possible:
-
-1. Enable both controllers, the PHY decides which one is really
-   used, the other one is basically a non-functional dummy device
-   until the PHY is reconfigured. This requires the set_mode()
-   callback, since the HDMI and eDP drivers both expect their
-   PHY to be enabled.
-
-2. Properly enable / disable the used controller, so that only one
-   controller is active at the same time. In this case the switching
-   is handled one layer above and the PHY has nothing to do with it.
-   The phy_enable call from each controller would just set it up in
-   the right mode.
-
-I guess option 1 is the hacked solution, which is easier to
-implement as DRM's hotplug abilities are quite limited at the moment
-as far as I know. I think the second solution looks much cleaner and
-should be prefered for upstream. That solution does not require
-calling set_mode() for runtime switching making this whole argument
-void :)
-
-FWIW I think the DT argument based mode setting and the runtime set_mode
-are not necessarily mutual exclusive. In theory one could support both
-and adding set_mode support later does not change any ABI as far as
-I can see. Basically handle it like pin mux/configuration settings,
-which are usually automatically handled by the device core based on
-DT information, except for some drivers which have special needs.
-
-> > And other phys may want to support dynamic switching too, like the=20
-> > Rockchip USBDP combo phy.
->=20
-> I guess USBDP is special in that in also does both modes dynamical
-> depending on its use (like type-c with option DP altmode)
-
-The USBDP PHY is indeed quite different from the PHYs in your list
-above, but for a different reason: All the combined PHYs you listed
-above only support one mode at the same time. E.g. you need to
-decide between PCIe, SATA and USB3 mode for the Naneng combophy.
-
-For the USBDP PHY the modes are not mutually exclusive. The USB
-controller can request the USBDP PHY in USB mode at the same time
-as the DP controller requests it in DP mode. Some additional
-registers configure how the lanes are being muxed. A typcial setup
-would be 2 lanes for USB3 and 2 lanes for DP.
-
-Greetings,
-
--- Sebastian
-
---4uvvjljskgf7wmee
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmdM6lUACgkQ2O7X88g7
-+poROg/9ERk55HG40SbfPg+6kCZ6sywLSwJTZweCCXGjvq9Q9R7JK/pVHrkgVhtJ
-H28UpwMTj2wN+idMK64a1EGf4ls0jw8dpDXS9y6M8f7/5Lu7DpO+c6qu+HCEOavL
-rVfk4ISVpT0KmbVrDDew1KRXekee9ch+uSO+VQAj/febMToxvkdqFS9PUibzmq0h
-VoUsyfct/7Ek9NKhmDPkvLVlvMHYNOrk7RsmMqlRN53zcyzrJSnbHsHlLjKCobwl
-s7zl6vhanR1sYBeoQ+4UdENOIQrDFuzJzdVp+zP6LvIpl4KbxbOD89bSI2tQLPPz
-yQCC5vBj+lwwhca4SWBp7cwoAJnY2n8A5T8qbrqMYZA7bsjafmZTrYbg1Tqe1X/H
-kAnmcZSue5fhQWV10xh9TuMcSc7LZyBZaRK+7rCooTOy5za7J/6VLHJ64uYE41sv
-Bx1XvfG5uDUh4qz1s6cAoEHdu7FYs1q9tdFeBo+uAh6ei5eScxxgXcBISq0wlhsJ
-D051T1P0DWRh5PgMWluGS6WuhBGlMxx10bqNQC1ad6sdYHXVsEFsXRwSioCSbhYf
-YNdoLkCk7qKUdQ11PMzhDqAZtAqV4ddKz+g7ZdDQDBBx29WgKTR73UhWNA9LvIe7
-pdClppVvA3Xgarmd0hbGt7P8LI/T6u6TemJ6Xo8zft6aYlaZ4zw=
-=y/X7
------END PGP SIGNATURE-----
-
---4uvvjljskgf7wmee--
 
