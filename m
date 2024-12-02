@@ -1,175 +1,191 @@
-Return-Path: <devicetree+bounces-126160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126161-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BFC69E0738
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 16:39:14 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B6409E07CB
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 17:00:06 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B2D60BC1374
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 15:22:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 26B0617884A
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 15:23:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E78120899E;
-	Mon,  2 Dec 2024 15:18:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37181209F52;
+	Mon,  2 Dec 2024 15:18:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jumvelwu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qV0Yu/US"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EF32205AD0;
-	Mon,  2 Dec 2024 15:18:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09C9D209F4D;
+	Mon,  2 Dec 2024 15:18:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733152709; cv=none; b=R+52+IOmlDM/5I3J7xdg7e/jCOvfUMDbGdg6GwOAiK+812E4N7GyOkwOPOJ5BIFe+Z+qJzZeY2HRSxkSw4MYGRi/Uklnlv7VVbdY2CpKwnDhgphQ2Wlck2hns4YzpVjusRkqV1Vhc1Z1jYwsVW7mm41/CIE/kch3po4OBTR3jM8=
+	t=1733152723; cv=none; b=kAyi36hEsmAGLyG6EsTuYjN5WbkRrgn0kK4iU9vLtq3/7XmSjmvVLZ6nDSeGhxdXuEHYbqoFplFAx95aN8XXu0p1VuAjCM5+0xb5UPjknFWO26VbRhDpGdaq7NcTVByY7hHjoO9D9ALGbDr3PyJQREbHWxkq1jBNrxY32xQCobg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733152709; c=relaxed/simple;
-	bh=aX7gzIhJGHF2/34tUKFIjYrdsoJxefhzoc+j5VP6raE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hBwQWSaRTE4zO+Jk9S3+v+pcxMJr4PV51GmiFkMrqvrWEDWiQpLa8IlnRe8PtXctKIoszI/jwbbCKtxSfVZSMWtriqg5ENr1tPWQyIMovEDEYGuYW+N2IZEID8IS6ncziu2gpb63YjAc/KyMeaJCAx138SKaP1TN54qcs7kh6H0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jumvelwu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EEA8C4CED1;
-	Mon,  2 Dec 2024 15:18:21 +0000 (UTC)
+	s=arc-20240116; t=1733152723; c=relaxed/simple;
+	bh=UqawBlPgHPe0/V8FZ2gBXixgUUbPN61Mx7U2Ivpn0AU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pozYx+8ssAlkkIZqfzfn0qwZ7xMJrnq1QcDtshzkhkx4ijiKBSlYSsnHYHOMcL64I/dvnhLenFtmpB9Iw2HwOOYyypX7yG4mtIvfV7niZPCosTmiyPyEq1Nk26QigXBBuOKmO1FtWepbQL4cSelR24EAAa7P/bFob1uRbQexRw8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qV0Yu/US; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A208C4CED2;
+	Mon,  2 Dec 2024 15:18:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733152708;
-	bh=aX7gzIhJGHF2/34tUKFIjYrdsoJxefhzoc+j5VP6raE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Jumvelwu0qO2UhKpEGXgqujPYdE5SjwbQGvnjZTenNXd/20idFBtejn/kDeze7Cue
-	 Xbzj2GVhZZs31zKLhujROYdyo77v8PEzS+ljcWIGimLO5O03rkujibvAx1KIFg9ljh
-	 mX4zYTEXJ6fvvf0IJinSIH/Lbf7WN50fwqsC8EXMKs1nVEQHFVO5WtTlQkyox5Zflc
-	 sSJY51BF9VedBSDFYCKXmZsL67iL0FNISSQORmginAoRrZM1EQsTWFt13A+5HsGDCT
-	 TiQh9UiKC2eEddtOjpeCwZVfsKvHliLowyle2b/BH+YX9HIT40vAyeo5JSY6z6gtWI
-	 qJGgqA+960XxQ==
-Message-ID: <36ea46ce-7add-4322-a030-1ee6c458d5db@kernel.org>
-Date: Mon, 2 Dec 2024 16:18:19 +0100
+	s=k20201202; t=1733152721;
+	bh=UqawBlPgHPe0/V8FZ2gBXixgUUbPN61Mx7U2Ivpn0AU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qV0Yu/UScn0KhRx6DvafyEOnXyWNw9b4RnY0C4E2rcQLre445vQh5IEzOXCs5Za/D
+	 ZCkWjBRn9BScKK9v5R58e7J1GZ/eABKRHVJMk//DjqwGmwgUDTPf+HNe8YtFo2bDyN
+	 JD5hvVN0Rv1Zn2PO8KD9F2/kQyv0FrPOYwDjsb24tc7ogAQYQij3WznRZai/npbG+l
+	 IhFhNY+i/fPrU+hF4zyZZl28wfFhZqVsn46r9yL6ZSUXiD3SjFlMi58YhUmWdBThOn
+	 TTvWT/SBywsxQPcErqkbRw1y2IycW5V58qLqcmN1o6gyspGK/wo9TXa6LMAZ5LEi8o
+	 lE4XOvYO+jTJA==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1tI8C5-000000007Ja-1j1w;
+	Mon, 02 Dec 2024 16:18:37 +0100
+Date: Mon, 2 Dec 2024 16:18:37 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: x1e78100-t14s: Enable support
+ for both Type-A USB ports
+Message-ID: <Z03PzTsTi3EwaXcE@hovoldconsulting.com>
+References: <20241202-x1e80100-qcp-t14-enable-usb-type-a-ports-v2-0-7360ed65c769@linaro.org>
+ <20241202-x1e80100-qcp-t14-enable-usb-type-a-ports-v2-1-7360ed65c769@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/7] dtbindings: display: Fix BCM2835 HVS bindings for
- BCM2712
-To: Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Eric Anholt <eric@anholt.net>,
- =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
- Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
- Doug Berger <opendmb@gmail.com>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Florian Fainelli <f.fainelli@gmail.com>,
- linux-gpio@vger.kernel.org
-References: <20241202-dt-bcm2712-fixes-v1-0-fac67cc2f98a@raspberrypi.com>
- <20241202-dt-bcm2712-fixes-v1-2-fac67cc2f98a@raspberrypi.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241202-dt-bcm2712-fixes-v1-2-fac67cc2f98a@raspberrypi.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241202-x1e80100-qcp-t14-enable-usb-type-a-ports-v2-1-7360ed65c769@linaro.org>
 
-On 02/12/2024 15:31, Dave Stevenson wrote:
-> The previous patch adding the compatible string missed out that
-> the number of interrupts and clocks changed with BCM2712 too.
+On Mon, Dec 02, 2024 at 11:23:17AM +0200, Abel Vesa wrote:
+> The Thinkpad T14s has 2 USB-A ports, both connected to the USB
+> multiport controller, each one via a separate NXP PTN3222 eUSB2-to-USB2
+> redriver to the eUSB2 PHY for High-Speed support, with a dedicated QMP
+> PHY for SuperSpeed support.
 > 
-> Update to validate clock and interrupts for the variants.
+> Describe each redriver and then enable each pair of PHYs and the
+> USB controller itself, in order to enable support for the 2 USB-A ports.
 > 
-> Fixes: 6cfcbe548a3a ("dt-bindings: display: Add BCM2712 HVS bindings")
-
-
-No such commit on current next.
-
-> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 > ---
->  .../bindings/display/brcm,bcm2835-hvs.yaml         | 77 +++++++++++++++++-----
->  1 file changed, 61 insertions(+), 16 deletions(-)
+>  .../dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts     | 86 ++++++++++++++++++++++
+>  1 file changed, 86 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/brcm,bcm2835-hvs.yaml b/Documentation/devicetree/bindings/display/brcm,bcm2835-hvs.yaml
-> index f91c9dce2a44..ab59edbcf32c 100644
-> --- a/Documentation/devicetree/bindings/display/brcm,bcm2835-hvs.yaml
-> +++ b/Documentation/devicetree/bindings/display/brcm,bcm2835-hvs.yaml
-> @@ -19,12 +19,13 @@ properties:
->    reg:
->      maxItems: 1
+> diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
+> index 975550139e1024420ed335a2a46e4d54df7ee423..f936e3246ec87972746a60080c3a48d646a356f2 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
+> +++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
+> @@ -495,6 +495,40 @@ keyboard@3a {
+>  	};
+>  };
 >  
-> -  interrupts:
-> -    maxItems: 1
-> +  interrupts: true
-
-No, widest constrains are *always* here.
-
->  
-> -  clocks:
-> -    maxItems: 1
-> -    description: Core Clock
-> +  interrupt-names: true
+> +&i2c5 {
+> +	clock-frequency = <400000>;
 > +
-> +  clocks: true
+> +	status = "okay";
 > +
-> +  clock-names: true
+> +	eusb3_repeater: redriver@47 {
+> +		compatible = "nxp,ptn3222";
+> +		reg = <0x47>;
 
+The driver doesn't seem to actually communicate with these devices
+currently and the addresses you specify here do not match what the
+schematics says.
 
-No, this has to be complete (widest) here.
+Have you verified that these addresses are correct?
 
+> +		#phy-cells = <0>;
+> +
+> +		vdd3v3-supply = <&vreg_l13b_3p0>;
+> +		vdd1v8-supply = <&vreg_l4b_1p8>;
+> +
+> +		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
+> +
+> +		pinctrl-0 = <&eusb3_reset_n>;
+> +		pinctrl-names = "default";
+> +	};
+> +
+> +	eusb6_repeater: redriver@4f {
+> +		compatible = "nxp,ptn3222";
+> +		reg = <0x4f>;
 
+Same here.
+
+> +		#phy-cells = <0>;
+> +
+> +		vdd3v3-supply = <&vreg_l13b_3p0>;
+> +		vdd1v8-supply = <&vreg_l4b_1p8>;
+> +
+> +		reset-gpios = <&tlmm 184 GPIO_ACTIVE_LOW>;
+> +
+> +		pinctrl-0 = <&eusb6_reset_n>;
+> +		pinctrl-names = "default";
+> +	};
+> +};
+> +
+>  &i2c8 {
+>  	clock-frequency = <400000>;
 >  
->  required:
->    - compatible
-> @@ -33,17 +34,61 @@ required:
+> @@ -651,6 +685,22 @@ &tlmm {
+>  			       <72 2>, /* Secure EC I2C connection (?) */
+>  			       <238 1>; /* UFS Reset */
 >  
-Best regards,
-Krzysztof
+> +	eusb3_reset_n: eusb3-reset-n-state {
+> +		pins = "gpio6";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +		output-low;
+
+I don't think the pin configuration should assert reset, that should be
+left up to the driver to decide, that is,  when (and if) it's an
+appropriate thing to do.
+
+> +	};
+> +
+> +	eusb6_reset_n: eusb6-reset-n-state {
+> +		pins = "gpio184";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +		output-low;
+
+Same here.
+
+> +	};
+> +
+>  	tpad_default: tpad-default-state {
+>  		pins = "gpio3";
+>  		function = "gpio";
+> @@ -808,3 +858,39 @@ &usb_1_ss1_dwc3_hs {
+>  &usb_1_ss1_qmpphy_out {
+>  	remote-endpoint = <&pmic_glink_ss1_ss_in>;
+>  };
+
+And last, but not least, the T14s may hard reset if you disconnect a
+thumb drive connected to one of these ports while suspended (6.13-rc1).
+
+Once it survived with a lockdep splat indicating a circular locking
+dependency. I see that on the CRD as well, so possibly not related to
+the hard reset.
+
+No such issues with a FullSpeed keyboard.
+
+Johan
 
