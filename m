@@ -1,50 +1,103 @@
-Return-Path: <devicetree+bounces-125848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125852-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 964659DF8EA
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 03:34:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E21829DF8F0
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 03:37:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 514A01629A0
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 02:34:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A2262162861
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 02:37:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D05661F957;
-	Mon,  2 Dec 2024 02:34:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6196322098;
+	Mon,  2 Dec 2024 02:37:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QJQxfXYh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91480134A8
-	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 02:34:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D48C81804A;
+	Mon,  2 Dec 2024 02:37:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733106884; cv=none; b=aetYhjFqIaL5NboTYiZUv1ivr08fDvmWTtU4MFHCTGTAwsovgU4HB9I6mIt7NRvmU+653HeyylMVwQ8n5fBxFR0cY0vqf0PRM6sKaHzcNGjNYgOku+J9ZNLSLX9TsYRZ8Pi8EJeCNu0MoYFW0sF8qvFtSzGbGtCyngSKwHwGYBE=
+	t=1733107023; cv=none; b=CNU60f2ZEBOS5R2RXqInaoi1OLtSH0SAjE88NcqpHSrb1ZxGUf4e7WwWkaxv6ZHgXdUCoN94DSdwUqDtFksKEWRxJ3nnl9XgkJVyC8vwfdpirUWvzKr7eEbbZeUUtmEZSEhWDGFRiyv5+4EfEwREWLgpsIr72A6xZtWePkHF0i0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733106884; c=relaxed/simple;
-	bh=plZx+uPfGzyc6HMoHb8QCYLltJihchT+qHTYpPoz0jE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=RHj3DfBarV4GzHSMEZ4KYYy7p9289DVVAEyWh1E//HxhusTThpPQ3tLThXY7XZvVikzrgGf6/cpP+t++J5VlADnPBEXJiaHU0DDyyWFxbemaSNRPiTMS0Peh4xHNTrusvyVT2ZBaJ/QvDgzIXnB5YjQdyKxcH8di2Mw2qSL3wbs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
-Received: from secure.fukaumi.org ([10.0.0.2])
-	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 4B22XVDh000375;
-	Mon, 2 Dec 2024 11:33:34 +0900
-From: FUKAUMI Naoki <naoki@radxa.com>
-To: heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        dsimic@manjaro.org, sebastian.reichel@collabora.com, alchark@gmail.com,
-        inindev@gmail.com, cristian.ciocaltea@collabora.com,
-        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        FUKAUMI Naoki <naoki@radxa.com>
-Subject: [PATCH v2 4/4] arm64: dts: rockchip: cosmetic changes for Radxa ROCK 5B
-Date: Mon,  2 Dec 2024 02:32:27 +0000
-Message-ID: <20241202023227.2671-5-naoki@radxa.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241202023227.2671-1-naoki@radxa.com>
-References: <20241202023227.2671-1-naoki@radxa.com>
+	s=arc-20240116; t=1733107023; c=relaxed/simple;
+	bh=pir5yKyEtGvMf5i/5wpsq70+zVsXts+joZq/b77jr/k=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=b8A9GgbiJYOtLDGbceWS+XGSmY+ThGwlUwFD3Xrg4p8jv7gfrX5amepYbO9YRWtycmnv71UUn4K+QLrmKP/opiqwN3UM2OnxUk+6FZ1uE6V0f+dv9DKVNjj8FxA68Qo77czf+8D3p0cX1maQBzVmUO5ygpByT+xfOicQFAn600Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QJQxfXYh; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-215909152c5so4022025ad.3;
+        Sun, 01 Dec 2024 18:37:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733107021; x=1733711821; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=bDFs4/7sYxUQAdmK+DmPfpiIkb/3lOGS37ALBYfbAeQ=;
+        b=QJQxfXYh6GZY4sRrdwaIggjr7nRU6gtar1RQOscER7MTYzyRvGayPXZmT3TBzKA4Xs
+         HQG3v1/qRxvlaMBBZmFez2d0VmyTolqeWHuDQjR3hIcZFwW6iDwDfgC2U3rKFToWVPc2
+         /WUBRL6yhf/FjLNp5rFwDCO4xsTtYk+79Xvb0D6rjbbks0WAPKAGxO6N0S+j1wwNjZr7
+         qNPb7KxDkn0TzjmUUO4tS5Vqcpzo/PjTkvZfUwHxiOT39IqqLtU/U5cIt0i7mmxAXLPA
+         oHZJbhKynqpPK0x8KqqU5VOetgUKt+l+vZIngT+6WnapmK/5xuB3tVxkGzTc8lKY/c4Y
+         w3sg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733107021; x=1733711821;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bDFs4/7sYxUQAdmK+DmPfpiIkb/3lOGS37ALBYfbAeQ=;
+        b=MPy0NlfkRR5rQih/hm26mtEsAAR0yqkU+3rzrJUyBIniMXESsV1qZ9bdg6YPbT2+z7
+         YZddSOnBA9dzbsC/vYeqNZcQuOiMhfDXPxDRkOuSWULUK3Zhjd8VJ5+9fcpEZvN45Xc3
+         dHmubEXuwd3qjDgsXpVYRzosGrsXmfgrozJT5jjJgJV7Q4olZE2NfM3tzHNMdLGllrAW
+         iQMwL7x0wZfvy4dUy4ykR7YEt2Tfj5tqUdRViHUx/fClK8MNKiDD7mBV1GTtoruNRV5U
+         sugzvXuaB43ZuQvsfV5dMU+UZnhQHOZGGLtjhO8sr+RpBqRRWgpcgSpUNAKhEuXXrRNj
+         H4nw==
+X-Forwarded-Encrypted: i=1; AJvYcCUXUKiYoT4DNBT4fNUiaRU6PkaobZz9I+Fp0d/GZ+N9er3py0y1Z53iaFf79Pdt0O0ALpr5hF1U@vger.kernel.org, AJvYcCUgpwCem0aRrL1T3alUIO5S/kDHyM5FxC8Mdcao0wyWDyWo+vpbJinwsos88huvSqNaIbbKWdgy3BGrGHmr@vger.kernel.org, AJvYcCVzfy5M8BRSmu4y5LmYppXovvoKMSYwCQgODNOJ9hJZ3Mo5jHiLxjysDfmKwLmsnGUJpU/tgojc2iP+@vger.kernel.org
+X-Gm-Message-State: AOJu0YywjKtwEeEtKOPd3w4RJ2iGTz2s6+9AkvXbPddIU0Dnrb5uLxw5
+	d8eEWzymvyohhiXkLD6QBsBNyNe5sdDETUG5MdikoV2//iBfqDVF
+X-Gm-Gg: ASbGnctV4lzzw7p5YPc6L150E0eIt+eAi2/zc/vzxDvOCZsk4do4s9b+ivQ4Z/A81X1
+	mwl8VPe2SThcTJvMB/dSqurCYA52DDP2myU7TyqEiukuojlAQIiw/mjOJbMzN6rysRBVJ8LZRQw
+	0gVkkHC3IUZdoQHuxTYUvElbfrwHZN35bcoIiDCPb/rOzSg66BnQNM9t7UTBcQvj2S+YjMkInJH
+	mheKEA7ZNY8RQC5SVXrgxwLlTwhBh6atbA6yhdyRKTPB1WUJYVwUPDmFxY9EdHDAfAPOexwXpHs
+	OpSIxrvHQSkJsmw=
+X-Google-Smtp-Source: AGHT+IGLWJOBt6A4ZzleNpaTexfFquv9ndvXCA2owoRgs9f4h1shTttjNxjyQrv9s0g8p/Xs1tMZ1A==
+X-Received: by 2002:a17:902:d491:b0:215:4e40:e4b0 with SMTP id d9443c01a7336-2154e40e808mr142897375ad.9.1733107021039;
+        Sun, 01 Dec 2024 18:37:01 -0800 (PST)
+Received: from yclu-ubuntu.. (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2159ebee334sm2306375ad.67.2024.12.01.18.36.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 01 Dec 2024 18:37:00 -0800 (PST)
+From: Joey Lu <a0987203069@gmail.com>
+To: andrew+netdev@lunn.ch,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	mcoquelin.stm32@gmail.com,
+	richardcochran@gmail.com
+Cc: alexandre.torgue@foss.st.com,
+	joabreu@synopsys.com,
+	ychuang3@nuvoton.com,
+	schung@nuvoton.com,
+	yclu4@nuvoton.com,
+	peppe.cavallaro@st.com,
+	linux-arm-kernel@lists.infradead.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	openbmc@lists.ozlabs.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	Joey Lu <a0987203069@gmail.com>
+Subject: [PATCH v4 0/3] Add support for Nuvoton MA35D1 GMAC
+Date: Mon,  2 Dec 2024 10:36:40 +0800
+Message-Id: <20241202023643.75010-1-a0987203069@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,83 +106,82 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-no functional change is intended.
+This patch series is submitted to add GMAC support for Nuvoton MA35D1
+SoC platform. This work involves implementing a GMAC driver glue layer
+based on Synopsys DWMAC driver framework to leverage MA35D1's dual GMAC
+interface capabilities.
 
-Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
----
-Changes in v2:
-- none
----
- arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 13 ++++---------
- 1 file changed, 4 insertions(+), 9 deletions(-)
+Overview:
+  1. Added a GMAC driver glue layer for MA35D1 SoC, providing support for
+  the platform's two GMAC interfaces.
+  2. Added device tree settings, with specific configurations for our
+  development boards:
+    a. SOM board: Configured for two RGMII interfaces.
+    b. IoT board: Configured with one RGMII and one RMII interface.
+  3. Added dt-bindings for the GMAC interfaces.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-index c29c61b4ffa7..3662549714e6 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-@@ -138,7 +138,7 @@ vcc5v0_sys: regulator-vcc5v0-sys {
- 	vcc5v_usb: regulator-vcc5v-usb {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
--		gpio = <&gpio4 RK_PB0 GPIO_ACTIVE_HIGH>;
-+		gpios = <&gpio4 RK_PB0 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&usb_host_pwren_h>;
- 		regulator-name = "vcc5v_usb";
-@@ -293,7 +293,7 @@ regulator-state-mem {
- &i2c6 {
- 	status = "okay";
- 
--	hym8563: rtc@51 {
-+	rtc@51 {
- 		compatible = "haoyu,hym8563";
- 		reg = <0x51>;
- 		#clock-cells = <0>;
-@@ -309,7 +309,7 @@ hym8563: rtc@51 {
- &i2c7 {
- 	status = "okay";
- 
--	es8316: audio-codec@11 {
-+	audio-codec@11 {
- 		compatible = "everest,es8316";
- 		reg = <0x11>;
- 		assigned-clocks = <&cru I2S0_8CH_MCLKOUT>;
-@@ -471,7 +471,6 @@ &sdhci {
- };
- 
- &sdio {
--	max-frequency = <200000000>;
- 	bus-width = <4>;
- 	cap-sdio-irq;
- 	disable-wp;
-@@ -481,9 +480,6 @@ &sdio {
- 	non-removable;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&sdiom0_pins>;
--	sd-uhs-sdr12;
--	sd-uhs-sdr25;
--	sd-uhs-sdr50;
- 	sd-uhs-sdr104;
- 	vmmc-supply = <&vcc3v3_wf>;
- 	vqmmc-supply = <&vcc_1v8_s3>;
-@@ -492,7 +488,6 @@ &sdio {
- };
- 
- &sdmmc {
--	max-frequency = <200000000>;
- 	bus-width = <4>;
- 	cap-mmc-highspeed;
- 	cap-sd-highspeed;
-@@ -530,7 +525,7 @@ &spi2 {
- 
- 	pmic@0 {
- 		compatible = "rockchip,rk806";
--		reg = <0x0>;
-+		reg = <0>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 		interrupt-parent = <&gpio0>;
+v4:
+  - Update nuvoton,ma35d1-dwmac.yaml
+    - Remove unnecessary property 'select'.
+    - Remove unnecessary compatible entries and fix items.
+    - Specify number of entries for 'reg'.
+    - Remove already defined property 'phy-handle'.
+    - Update example.
+    - Modify the property internal path delay to match the driver.
+  - Update dtsi
+    - Move 'status' to be the last property.
+  - Update dwmac-nuvoton driver
+    - Use .remove instead of .remove_new.
+    - Use dev_err_probe instead.
+
+v3:
+  - Update nuvoton,ma35d1-dwmac.yaml
+    - Fix for dt_binding_check warnings/errors.
+    - Add compatible in snps,dwmac.yaml.
+  - Update dtsi
+    - Update dtsi to follow examples in yaml.
+  - Update dwmac-nuvoton driver
+    - Fix for auto build test warnings.
+    - Invalid path delay arguments will be returned.
+
+v2:
+  - Update nuvoton,ma35d1-dwmac.yaml
+    - Rename file to align with the compatible property.
+    - Add an argument to syscon to replace mac-id,
+      with corresponding descriptions.
+    - Use tx-internal-delay-ps and rx-internal-delay-ps properties for
+      configurable path delay with corresponding descriptions,
+      allowing selection between GMAC internal and PHY.
+    - Add all supported phy-mode options.
+    - Remove unused properties.
+  - Update dtsi
+    - Modify syscon configuration to include an argument for
+      GMAC interface selection.
+  - Update dwmac-nuvoton driver
+    - Remove redundant device information print statements.
+    - Remove non-global parameters.
+    - Retrieve GMAC interface selection from the syscon argument.
+    - Parse Tx and Rx path delays by correct properties.
+    - Update configurations to support Wake-on-LAN.
+
+Joey Lu (3):
+  dt-bindings: net: nuvoton: Add schema for Nuvoton MA35 family GMAC
+  arm64: dts: nuvoton: Add Ethernet nodes
+  net: stmmac: dwmac-nuvoton: Add dwmac glue for Nuvoton MA35 family
+
+ .../bindings/net/nuvoton,ma35d1-dwmac.yaml    | 134 +++++++++++++
+ .../devicetree/bindings/net/snps,dwmac.yaml   |   1 +
+ .../boot/dts/nuvoton/ma35d1-iot-512m.dts      |  12 ++
+ .../boot/dts/nuvoton/ma35d1-som-256m.dts      |  10 +
+ arch/arm64/boot/dts/nuvoton/ma35d1.dtsi       |  54 ++++++
+ drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 ++
+ drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+ .../ethernet/stmicro/stmmac/dwmac-nuvoton.c   | 179 ++++++++++++++++++
+ 8 files changed, 402 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/nuvoton,ma35d1-dwmac.yaml
+ create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c
+
 -- 
-2.43.0
+2.34.1
 
 
