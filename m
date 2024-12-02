@@ -1,137 +1,118 @@
-Return-Path: <devicetree+bounces-126168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126179-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BBF79E0A3D
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 18:39:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9876B9E0979
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 18:09:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C4E0FBC344B
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 15:27:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 66455B66FDB
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 15:46:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35B3D20B207;
-	Mon,  2 Dec 2024 15:24:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48837745F2;
+	Mon,  2 Dec 2024 15:46:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X6Itpbhg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nno5o5gi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0316120B1FF;
-	Mon,  2 Dec 2024 15:24:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E9C14CB5B;
+	Mon,  2 Dec 2024 15:46:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733153074; cv=none; b=Wx4qxhQJddv8cjYKrNa2k9dFMUkQOfVndqdb6xhs1y94aB07IDsZG8zNZLoeTTI39+l2SimF543viak5qjSvZsncaqD/pmAVdiCLnZDlGml4CrSKEyt4PMkTnM4j07VQhtgNKftGgctiPosVP29Y0qUdVOFKtixtAMQlVXeaUaQ=
+	t=1733154403; cv=none; b=j0TPaR2GsVbfc1rhVMX8V+AaL6kYc9iJXj1dzzIFViu0kR3iJIxYEuPN1ilBz2p9euezkDJFEKOQzHGInoD4YrB5UsMirKtUmuw4Z4RRRwVzGTmJLSkc4zSeAubqDPrryPNSCaRRyGkGo+JE42zCDkixCUKEQmEvWSGTVMygnno=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733153074; c=relaxed/simple;
-	bh=XYQ0z1Uam77lItbs5TmeenkmhhhYCbef5wkE8j7DNxg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CfgK8ZjF0ezKfqC2I32ZFNVK6SWw/CDdljaW4eIaAjWAvSHpaHu3oJCoOsCU+QqHnGTX6uDydDZACKYeABteieOg9dM/iK7aJoBCMIFK1PHc87CcH8XlZUzfFD2Vogp8R1V8OUDoTxXCfxVOujO0ae6zYhvnh6UqvhAnkZvMWtU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X6Itpbhg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED517C4CED1;
-	Mon,  2 Dec 2024 15:24:32 +0000 (UTC)
+	s=arc-20240116; t=1733154403; c=relaxed/simple;
+	bh=nq9CApm2lwU3fpXbg/FXX6NMDF+2uS9tBRO+bf3mRTs=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=EUjc5alotiSdT84/e0ed+GtHIdcp0ieLuBvgG2kZcu/xwV42A8rqNbp8tScaMdVBvg5LDr6uAkx1PQRtw5YQs2PGS7jBTARylvC17f9ztR6utWYBI1PEnoqaZBeNbiuhWG1x+pmtlTycY3+w61C7vmq64tBahO00+1lQIbFO9ZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nno5o5gi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D32DC4CED1;
+	Mon,  2 Dec 2024 15:46:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733153073;
-	bh=XYQ0z1Uam77lItbs5TmeenkmhhhYCbef5wkE8j7DNxg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=X6Itpbhg32uZaAfl/yleMRcAyuFbk6hyY6q62CjSVT5ePkBcDTqgCHMQflCRZPk3M
-	 mS7yABdBHT0BwG2EFPgBmiZaN+/l2JUlG4zdXhFOD7Ogq4aBLnI7qFXDKJqUIzto9D
-	 lATKQwjmIsLNaRhRU+p8KxkOl4cY1wyskRvCZFvvXo0GhKusl62rhNtUAb7LVlHUpH
-	 DKjyzFmiu2dAdvHzb2VI8GOOD7gvqGB7E9zcfT7sJwsz/b503QjgNsurAdHPHryYhx
-	 fIK9u421jmN5QOPoXjC3innffMfVLT2HiNHnJyDvEGsx9qbKoyXhuBfNdSdbFdbB2c
-	 5o7Xfgsz1Bg2w==
-Date: Mon, 2 Dec 2024 16:24:31 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Eric Anholt <eric@anholt.net>, 
-	=?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>, Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, 
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
-	Doug Berger <opendmb@gmail.com>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Florian Fainelli <f.fainelli@gmail.com>, 
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 4/7] arm64: dts: broadcom: Fix device tree warnings for
- BCM2712 display pipeline
-Message-ID: <20241202-goose-of-pragmatic-sympathy-3fbbe7@houat>
-References: <20241202-dt-bcm2712-fixes-v1-0-fac67cc2f98a@raspberrypi.com>
- <20241202-dt-bcm2712-fixes-v1-4-fac67cc2f98a@raspberrypi.com>
- <c8093283-f2c1-4a66-823a-50aeabb3c82b@kernel.org>
+	s=k20201202; t=1733154402;
+	bh=nq9CApm2lwU3fpXbg/FXX6NMDF+2uS9tBRO+bf3mRTs=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=Nno5o5ginogysZYOoinMPACfcmzLi+NvkvWdGsltRWpC9rd1iSKUzbuKi+dexEVC6
+	 VBtR9WlggSfrnvBoqJqs0HkfdK/167+6KxETARnP6EwNHRD5jVdxn6m4avfERluDb/
+	 5ss+bMZ4iGWtGQLEFZOa0nDNjhIxHi04yO8djXxrhWaRqpQhQhA8pJ/JeB/71CnHT9
+	 kIqWc4NVCgwZBbPXFy041BMzFegKtLFI70GfYZJZCjncRo2oi8cdWiCwxHRpyXWc3S
+	 npTdtucykpJxCkuIpL0b+1MP4REnLr1rGA+BZP8TpUGuEANUx/62bgjJYSDFun9x1z
+	 ReYvBWoS/hrYw==
+Date: Mon, 02 Dec 2024 09:46:40 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="u7k2sfuk7gzxc7b7"
-Content-Disposition: inline
-In-Reply-To: <c8093283-f2c1-4a66-823a-50aeabb3c82b@kernel.org>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Florian Fainelli <f.fainelli@gmail.com>, devicetree@vger.kernel.org, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Doug Berger <opendmb@gmail.com>, 
+ =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-rpi-kernel@lists.infradead.org, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Maxime Ripard <mripard@kernel.org>, linux-gpio@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, 
+ dri-devel@lists.freedesktop.org, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Simona Vetter <simona@ffwll.ch>, Ray Jui <rjui@broadcom.com>, 
+ Eric Anholt <eric@anholt.net>, Linus Walleij <linus.walleij@linaro.org>, 
+ Scott Branden <sbranden@broadcom.com>, David Airlie <airlied@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ linux-kernel@vger.kernel.org
+To: Dave Stevenson <dave.stevenson@raspberrypi.com>
+In-Reply-To: <20241202-dt-bcm2712-fixes-v1-1-fac67cc2f98a@raspberrypi.com>
+References: <20241202-dt-bcm2712-fixes-v1-0-fac67cc2f98a@raspberrypi.com>
+ <20241202-dt-bcm2712-fixes-v1-1-fac67cc2f98a@raspberrypi.com>
+Message-Id: <173315440083.2722567.15501799626521434805.robh@kernel.org>
+Subject: Re: [PATCH 1/7] dtbindings: display: bcm2711-hdmi: Correct
+ bindings for 2712
 
 
---u7k2sfuk7gzxc7b7
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 4/7] arm64: dts: broadcom: Fix device tree warnings for
- BCM2712 display pipeline
-MIME-Version: 1.0
+On Mon, 02 Dec 2024 14:31:54 +0000, Dave Stevenson wrote:
+> The previous patch just adding the compatible missed out that the
+> number of interrupts changed
+> 
+> Fixes: 62948c62abca ("dt-bindings: display: Add BCM2712 HDMI bindings")
+> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> ---
+>  .../bindings/display/brcm,bcm2711-hdmi.yaml        | 44 +++++++++++++++-------
+>  1 file changed, 30 insertions(+), 14 deletions(-)
+> 
 
-On Mon, Dec 02, 2024 at 04:20:46PM +0100, Krzysztof Kozlowski wrote:
-> On 02/12/2024 15:31, Dave Stevenson wrote:
-> > Fixes up errors on HDMI and interrupt controllers that weren't
->=20
-> What errors? I can't find anything in the commit. Describe the error.
->=20
-> > noticed before merging.
-> >=20
-> > Fixes: de9bc2dba3db ("arm64: dts: broadcom: Add display pipeline suppor=
-t to BCM2712")
-> > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
-> > ---
-> >  arch/arm64/boot/dts/broadcom/bcm2712.dtsi | 8 ++++----
-> >  1 file changed, 4 insertions(+), 4 deletions(-)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi b/arch/arm64/boo=
-t/dts/broadcom/bcm2712.dtsi
-> > index 39305e0869ec..f42fad2d8b37 100644
-> > --- a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
-> > +++ b/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
-> > @@ -336,7 +336,7 @@ ddc1: i2c@7d508280 {
-> >  			#size-cells =3D <0>;
-> >  		};
-> > =20
-> > -		bsc_irq: intc@7d508380 {
-> > +		bsc_irq: interrupt-controller@7d508380 {
->=20
->=20
-> Do not mix cleanups with bugfixes.
->=20
-> BTW, do not mix DTS to DRM. DRM has its own development style. DTS
-> *cannot* be merged there, so combining these series is not welcomed and
-> leads to issues (like DRM applying DTS!).
+My bot found errors running 'make dt_binding_check' on your patch:
 
-When did that ever happen?
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml:59:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml:67:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml:76:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml:84:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
 
-Maxime
+dtschema/dtc warnings/errors:
 
---u7k2sfuk7gzxc7b7
-Content-Type: application/pgp-signature; name="signature.asc"
+doc reference errors (make refcheckdocs):
 
------BEGIN PGP SIGNATURE-----
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241202-dt-bcm2712-fixes-v1-1-fac67cc2f98a@raspberrypi.com
 
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ03RLgAKCRAnX84Zoj2+
-dgeyAX9OFiJpZFQbio0wgmyjERHOVqZ0QnzuwU8/l4uYS3Js8d451pGqbMSkwSuV
-y4TIeoEBf1bUqFd30CrhbLvlNqnr2LgNABbYjWU0AzVWN6SzLXWEYk4U7injMDWQ
-ojUpgGixPg==
-=czBy
------END PGP SIGNATURE-----
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
---u7k2sfuk7gzxc7b7--
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
