@@ -1,376 +1,113 @@
-Return-Path: <devicetree+bounces-126011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126012-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 730A59DFEB8
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 11:23:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 931209DFECF
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 11:25:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3851F1632C1
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 10:23:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D3D216347E
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 10:25:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4868D1FC0E2;
-	Mon,  2 Dec 2024 10:23:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FF8C1FC0FC;
+	Mon,  2 Dec 2024 10:25:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PahSbI/X"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kcqIsGqz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B3C31FA829;
-	Mon,  2 Dec 2024 10:23:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0373F1FC0F1;
+	Mon,  2 Dec 2024 10:25:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733135004; cv=none; b=fon6NZWXfykfcPNdSqN/ESEe1RFQ4WFyNOxeM07ZQC9RPICqSKUp0NwB1lVdiSNt44NWZxEaUXvuOnZDpEYQCja66ernQsAoZ6iOtr89acufgVWlhz+dXLW8AdR97mFQWWOd3aReMSLFpdkthcZJ4heF/5l8vHGyRGiEqBH4fps=
+	t=1733135137; cv=none; b=aq/DVmf2tY0CJkYitYbtLG5Y7pLexreDTKCpC/crmmJFpdOFjVEHaqr46/7GMXOKuU+5GJrqAWaI/k3kMZwUwaok41Z0ydd0gOUdaRxBzSio23cmSGnHZNRtV6/OBa5QItBHHDPjl1+q4FqZ/vHDAjGilTmu4NA7XC2jTySpDss=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733135004; c=relaxed/simple;
-	bh=8BS/xJX6ypVQCl4Re3aAiciu/UhD3J9Ut8F6ZMNAF4A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=h55u7UeCfa+DYFA3qCRn2pY7DSVzd4nIIF6ICycmHi7Z90qV0rZKBiuro/pFdCSHNB/23kdB0PDS1CLnwFTe8lxsGEvB10oIU9rxti3e52vXXQVxznk8HKyAvetnBbr/zQg52qRNW7sg6+X25wg10C5QgawySCCoWK8hafPYxFY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PahSbI/X; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAD6AC4CED1;
-	Mon,  2 Dec 2024 10:23:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733135003;
-	bh=8BS/xJX6ypVQCl4Re3aAiciu/UhD3J9Ut8F6ZMNAF4A=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PahSbI/X1m9veA7z+v/VgZe9eCxT9RYybHUNxemJSHqeKec0xNb6nWC2pVrGbV2+M
-	 W0xGRixWRGTeH3PRB+FRPyq9rc8UoYS7kxigWEwOmU5NIGYB4UObW6LJU97/vqF6Qd
-	 SvaWq59ByyFgr4fSkmxgQ7Gfsr7P2HJXM/C+pdDQiwZy41qycnO9epib2LBpICZdA2
-	 crs3fout2xem/o3rkqKbx8HTSuYt3VtaOv3/xN9HMn361/Y+FZQAPKL16+hcD5HRxN
-	 qCrrql54PiHv85/CGfj/NT8nM5FJqLjFsok2w3m5nK4ka0vXyehsefk8Xjkf1sLCNt
-	 pkhVokbG6tNVQ==
-Message-ID: <59c27c5d-3db7-44da-b3ac-7b8e7c8b6f16@kernel.org>
-Date: Mon, 2 Dec 2024 11:23:16 +0100
+	s=arc-20240116; t=1733135137; c=relaxed/simple;
+	bh=sfXpJT1s17rQbX+XpjPOQ5N1pYmn6N1R89Yl9PbRhng=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DTr2NKPsqZoATa1uwZUkloieY5599MaoiWc31yU+w3f0/PeZnqkGsO6iJXRKjPaiv9hSmqskGqr96u/UpOqWdYemZLgTJY92oigM4F/G/exUix6g+Sqfi66QzOW+rsYwle0EJJ0pf3uRlvTuGBms55Baa2sHNi68NNJEs2uR8Uw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kcqIsGqz; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1733135136; x=1764671136;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=sfXpJT1s17rQbX+XpjPOQ5N1pYmn6N1R89Yl9PbRhng=;
+  b=kcqIsGqznv2OHwDk2fGaMnh1HZdtuwk5M128Ixfeyow777HIs+TMu5Qd
+   Pq9gXqosTFSuRy8sdyHlUx8bwDMVgDYyRE/ZL/v2S+FB5RRLkTRTDNEtg
+   VRNZfw5nz2OJuUkbglf2cRFjN6RxBMBoJRbqxkA4paiKEm9oCnHJNyZMU
+   poHOW92YGua9dGxnme/cWV0aadSXthRMdtC/81TJZgWdepo6YWacXXu7n
+   PGeCSS3j27ZYCzce6LesCZlS9Pw4mcWDfwyN4rJ/eEVXk/d1/CjZRWQBJ
+   AATcITtLGnjf8LOosITaYWonBzespGrBsRMjRENd21ayUHyrQV6kxMc8k
+   w==;
+X-CSE-ConnectionGUID: KhZcexIBRCKVPiqfZmQQ0g==
+X-CSE-MsgGUID: vroHt+IhT+GP4i1QnMNh8w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11273"; a="44674861"
+X-IronPort-AV: E=Sophos;i="6.12,202,1728975600"; 
+   d="scan'208";a="44674861"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Dec 2024 02:25:36 -0800
+X-CSE-ConnectionGUID: VKo2MdWuQXaW0GvXph8fOQ==
+X-CSE-MsgGUID: pHwGe0BwQGeUyl6kL4RAdg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,202,1728975600"; 
+   d="scan'208";a="92900460"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO mdjait-mobl) ([10.245.244.72])
+  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Dec 2024 02:25:33 -0800
+Date: Mon, 2 Dec 2024 11:25:25 +0100
+From: Mehdi Djait <mehdi.djait@linux.intel.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, 
+	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/7] iio: accel: kx022a: Support ICs with different
+ G-ranges
+Message-ID: <4waoywlqb63yav6q3rdvqnwbihxccgl6p5y7f72yzdadnlzezz@g4fz63owgguj>
+References: <cover.1732783834.git.mazziesaccount@gmail.com>
+ <fc667b1495adf4e3f29ecbb336495c1f18b47e61.1732783834.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 6/9] mfd: Add new driver for MAX77705 PMIC
-To: Dzmitry Sankouski <dsankouski@gmail.com>,
- Sebastian Reichel <sre@kernel.org>, Chanwoo Choi <cw00.choi@samsung.com>,
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>,
- Hans de Goede <hdegoede@redhat.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
- Purism Kernel Team <kernel@puri.sm>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-input@vger.kernel.org,
- linux-leds@vger.kernel.org
-References: <20241202-starqltechn_integration_upstream-v9-0-a1adc3bae2b8@gmail.com>
- <20241202-starqltechn_integration_upstream-v9-6-a1adc3bae2b8@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241202-starqltechn_integration_upstream-v9-6-a1adc3bae2b8@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <fc667b1495adf4e3f29ecbb336495c1f18b47e61.1732783834.git.mazziesaccount@gmail.com>
 
-On 02/12/2024 10:47, Dzmitry Sankouski wrote:
-> Add the core MFD driver for max77705 PMIC. We define five sub-devices
-> for which the drivers will be added in subsequent patches.
-> 
-> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+Hi Matti,
+
+Sorry for the late answer. I know that this was already applied so maybe
+you can post a really small follow-up patch ?
+
+> diff --git a/drivers/iio/accel/kionix-kx022a.h b/drivers/iio/accel/kionix-kx022a.h
+> index 7060438ad88c..36e9d9de8c13 100644
+> --- a/drivers/iio/accel/kionix-kx022a.h
+> +++ b/drivers/iio/accel/kionix-kx022a.h
+> @@ -161,6 +161,8 @@ struct kx022a_data;
+>  struct kx022a_chip_info {
+>  	const char *name;
+>  	const struct regmap_config *regmap_config;
+> +	const int (*scale_table)[2];
+> +	const int scale_table_size;
+
+Could you please add kernel-doc for these two new elements like the others already
+have ?
+
+>  	const struct iio_chan_spec *channels;
+>  	unsigned int num_channels;
+>  	unsigned int fifo_length;
+> -- 
+> 2.47.0
 > 
 
-
-...
-
-> +
-> +static int max77705_i2c_probe(struct i2c_client *i2c)
-> +{
-> +	struct max77693_dev *max77705;
-> +	struct i2c_client *i2c_fg;
-> +	struct regmap_irq_chip_data *irq_data;
-> +	struct irq_domain *domain;
-> +	int ret;
-> +	unsigned int pmic_rev_value;
-> +	enum max77705_hw_rev pmic_rev;
-> +
-> +
-
-
-Only one blank line
-
-> +	max77705 = devm_kzalloc(&i2c->dev, sizeof(*max77705), GFP_KERNEL);
-> +	if (!max77705)
-> +		return -ENOMEM;
-> +
-> +	max77705->i2c = i2c;
-> +	max77705->dev = &i2c->dev;
-> +	max77705->irq = i2c->irq;
-> +	max77705->type = TYPE_MAX77705;
-> +	i2c_set_clientdata(i2c, max77705);
-> +
-> +	max77705->regmap = devm_regmap_init_i2c(i2c, &max77705_regmap_config);
-> +
-
-No blank line. Theer is never blank line between call and its error check.
-
-> +	if (IS_ERR(max77705->regmap))
-> +		return PTR_ERR(max77705->regmap);
-> +
-> +	if (regmap_read(max77705->regmap, MAX77705_PMIC_REG_PMICREV, &pmic_rev_value) < 0)
-> +		return -ENODEV;
-> +
-> +	pmic_rev = pmic_rev_value & MAX77705_REVISION_MASK;
-> +
-
-Drop blank line.
-
-> +	if (pmic_rev != MAX77705_PASS3) {
-> +		dev_err(max77705->dev, "rev.0x%x is not tested",
-> +			pmic_rev);
-
-Unnecessary line wrap.
-
-> +		return -ENODEV;
-> +	}
-> +
-> +	max77705->regmap_leds = devm_regmap_init_i2c(i2c, &max77705_leds_regmap_config);
-> +
-> +	if (IS_ERR(max77705->regmap_leds))
-> +		return PTR_ERR(max77705->regmap_leds);
-> +
-> +	ret = devm_regmap_add_irq_chip(max77705->dev, max77705->regmap,
-> +					max77705->irq,
-> +					IRQF_ONESHOT | IRQF_SHARED, 0,
-> +					&max77705_topsys_irq_chip,
-> +					&irq_data);
-> +
-
-Same issues, all over the code.
-
-> +	if (ret)
-> +		dev_err(max77705->dev, "failed to add irq chip: %d\n", ret);
-> +
-> +	/* Unmask interrupts from all blocks in interrupt source register */
-> +	ret = regmap_update_bits(max77705->regmap,
-> +				 MAX77705_PMIC_REG_INTSRC_MASK,
-> +				 MAX77705_SRC_IRQ_ALL, (unsigned int)~MAX77705_SRC_IRQ_ALL);
-
-
-The need for cast comes from some compiler warning?
-
-> +
-> +	if (ret < 0) {
-> +		dev_err(max77705->dev,
-> +			"Could not unmask interrupts in INTSRC: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	domain = regmap_irq_get_domain(irq_data);
-> +
-> +	i2c_fg = devm_i2c_new_dummy_device(max77705->dev, max77705->i2c->adapter, I2C_ADDR_FG);
-> +
-> +	if (IS_ERR(i2c_fg))
-> +		return PTR_ERR(i2c_fg);
-> +
-> +	max77705->i2c_fg = i2c_fg;
-> +
-> +	for (int i = 0; i < ARRAY_SIZE(max77705_devs); i++) {
-> +		if (!strcmp(max77705_devs[i].name, FUEL_GAUGE_NAME)) {
-> +			max77705_devs[i].platform_data = &i2c_fg;
-> +			max77705_devs[i].pdata_size = sizeof(i2c_fg);
-> +		}
-> +	}
-> +
-> +	ret = devm_mfd_add_devices(max77705->dev, PLATFORM_DEVID_NONE,
-> +				   max77705_devs, ARRAY_SIZE(max77705_devs),
-> +				   NULL, 0, domain);
-> +
-> +	if (ret) {
-> +		dev_err(max77705->dev, "Failed to register child devices: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	device_init_wakeup(max77705->dev, true);
-> +
-> +	return 0;
-> +}
-> +
-> +static int max77705_suspend(struct device *dev)
-> +{
-> +	struct i2c_client *i2c = to_i2c_client(dev);
-> +	struct max77693_dev *max77705 = i2c_get_clientdata(i2c);
-> +
-> +	disable_irq(max77705->irq);
-> +
-> +	if (device_may_wakeup(dev))
-> +		enable_irq_wake(max77705->irq);
-> +
-> +	return 0;
-> +}
-> +
-> +static int max77705_resume(struct device *dev)
-> +{
-> +	struct i2c_client *i2c = to_i2c_client(dev);
-> +	struct max77693_dev *max77705 = i2c_get_clientdata(i2c);
-> +
-> +	if (device_may_wakeup(dev))
-> +		disable_irq_wake(max77705->irq);
-> +
-> +	enable_irq(max77705->irq);
-> +
-> +	return 0;
-> +}
-> +DEFINE_SIMPLE_DEV_PM_OPS(max77705_pm_ops, max77705_suspend, max77705_resume);
-> +
-> +static const struct of_device_id max77705_i2c_of_match[] = {
-> +	{ .compatible = "maxim,max77705" },
-> +	{ },
-> +};
-> +MODULE_DEVICE_TABLE(of, max77705_i2c_of_match);
-> +
-> +static struct i2c_driver max77705_i2c_driver = {
-> +	.driver = {
-> +		.name			= "max77705",
-> +		.of_match_table		= max77705_i2c_of_match,
-> +		.pm			= pm_sleep_ptr(&max77705_pm_ops),
-> +		.suppress_bind_attrs	= true,
-> +	},
-> +	.probe = max77705_i2c_probe,
-> +};
-> +module_i2c_driver(max77705_i2c_driver);
-> +
-> +MODULE_DESCRIPTION("Maxim MAX77705 PMIC core driver");
-> +MODULE_AUTHOR("Dzmitry Sankouski <dsankouski@gmail.com>");
-> +MODULE_LICENSE("GPL");
-> diff --git a/include/linux/mfd/max77693-common.h b/include/linux/mfd/max77693-common.h
-> index a5bce099f1ed..8665097892cd 100644
-> --- a/include/linux/mfd/max77693-common.h
-> +++ b/include/linux/mfd/max77693-common.h
-> @@ -1,6 +1,6 @@
->  /* SPDX-License-Identifier: GPL-2.0+ */
->  /*
-> - * Common data shared between Maxim 77693 and 77843 drivers
-> + * Common data shared between Maxim 77693, 77705 and 77843 drivers
->   *
->   * Copyright (C) 2015 Samsung Electronics
->   */
-> @@ -11,6 +11,7 @@
->  enum max77693_types {
->  	TYPE_MAX77693_UNKNOWN,
->  	TYPE_MAX77693,
-> +	TYPE_MAX77705,
->  	TYPE_MAX77843,
->  
->  	TYPE_MAX77693_NUM,
-> @@ -25,6 +26,7 @@ struct max77693_dev {
->  	struct i2c_client *i2c_muic;	/* 0x4A , MUIC */
->  	struct i2c_client *i2c_haptic;	/* MAX77693: 0x90 , Haptic */
->  	struct i2c_client *i2c_chg;	/* MAX77843: 0xD2, Charger */
-> +	struct i2c_client *i2c_fg;	/* MAX77843: 0xD2, Charger */
-
-
-You mix patchsets. Don't grow 77843 wigth 77705. Or is this not max77843?
-
->  
->  	enum max77693_types type;
->  
-> @@ -32,6 +34,7 @@ struct max77693_dev {
->  	struct regmap *regmap_muic;
->  	struct regmap *regmap_haptic;	/* Only MAX77693 */
->  	struct regmap *regmap_chg;	/* Only MAX77843 */
-> +	struct regmap *regmap_leds;	/* Only MAX77705 */
->  
->  	struct regmap_irq_chip_data *irq_data_led;
->  	struct regmap_irq_chip_data *irq_data_topsys;
-> diff --git a/include/linux/mfd/max77705-private.h b/include/linux/mfd/max77705-private.h
-> new file mode 100644
-> index 000000000000..be781a0f9802
-
-
-...
-
-> +
-> +enum max77705_led_reg {
-> +	MAX77705_RGBLED_REG_BASE		= 0x30,
-> +	MAX77705_RGBLED_REG_LEDEN		= 0,
-> +	MAX77705_RGBLED_REG_LED0BRT,
-> +	MAX77705_RGBLED_REG_LED1BRT,
-> +	MAX77705_RGBLED_REG_LED2BRT,
-> +	MAX77705_RGBLED_REG_LED3BRT,
-> +	MAX77705_RGBLED_REG_LEDRMP,
-> +	MAX77705_RGBLED_REG_LEDBLNK,
-> +	MAX77705_LED_REG_END
-> +};
-> +
-> +enum max77705_charger_battery_state {
-> +	MAX77705_BATTERY_NOBAT,
-> +	MAX77705_BATTERY_PREQUALIFICATION,
-> +	MAX77705_BATTERY_DEAD,
-> +	MAX77705_BATTERY_GOOD,
-> +	MAX77705_BATTERY_LOWVOLTAGE,
-> +	MAX77705_BATTERY_OVERVOLTAGE,
-> +	MAX77705_BATTERY_RESERVED,
-> +};
-> +
-> +enum max77705_charger_charge_type {
-> +	MAX77705_CHARGER_CONSTANT_CURRENT	= 1,
-> +	MAX77705_CHARGER_CONSTANT_VOLTAGE,
-> +	MAX77705_CHARGER_END_OF_CHARGE,
-> +	MAX77705_CHARGER_DONE,
-> +};
-> +
-> +extern const struct dev_pm_ops max77705_pm_ops;
-
-
-Why do you need it in the header?
-
-> +
-> +#endif /* __LINUX_MFD_MAX77705_PRIV_H */
-> 
-
-
-Best regards,
-Krzysztof
+--
+Kind Regards
+Mehdi Djait
 
