@@ -1,128 +1,178 @@
-Return-Path: <devicetree+bounces-126123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1ED69E07E6
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 17:05:42 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3ACA9E07FA
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 17:08:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DF720B45807
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 14:30:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 76C02B48388
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 14:36:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2F2F204F67;
-	Mon,  2 Dec 2024 14:30:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF93B20B811;
+	Mon,  2 Dec 2024 14:32:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VquWEe1R"
+	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="SBFZtwSh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ACA02940F
-	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 14:30:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAE6820B7E0
+	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 14:32:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733149830; cv=none; b=Pxxn5QmH/c/D1dUtuuTs9T3mYrDwOpvglWLAsBaAC9zsnYdv/aMoB+jKHfYo6APRSTPZwTZvtYfqJqoa4iP3iXx9vBBBNB/DNhQw85rVfkccWghwtG+lNL+XiddwOJVvchz0V7OETxM908zKksIYME562QYzwiOLB5DQrhvd0LM=
+	t=1733149939; cv=none; b=auX/UZLqr7Hka37BXh/f+POGLm3kA//DYqC4NfnvR/N7bW4wexn0o8n7PJOkvYdhMvAwWWdRGzm9Gwikxwlz3PE1szmRcHrmOPyd0Dj/b/VMnxo8sOGKLJ+yaCWjdm+jRj3UMbg9sMl1ibzJpNKxsoKwrUHkgSkcUsKTo21mmVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733149830; c=relaxed/simple;
-	bh=JKudxHQZAMvenvuQlThpOxs+MgeFGbhhq/9B/KOCpcA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KEWdSZD8hgYpZ9ZZj/RLi1Z6jUzIiBfqB5E8upiZwNu99J828utiTHacs//4aF0NQdJrFBAjfeYy91z82mX6AhR20wPZUjIbtKEaNGejigPL0QbmWP0uoFadshLFgBfx3/amG6wivWIW0R3x4qXJUgLrWwvdO//LJ7NAzz5jGKA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VquWEe1R; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B28khr1029794
-	for <devicetree@vger.kernel.org>; Mon, 2 Dec 2024 14:30:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	opJ/u7aIb+6rMXmWGckJvu/bfCwMl33RWOEqNCV31vY=; b=VquWEe1RLGrvadi4
-	+COaUnJRyGGhjYHqZppe4bZ3jhOGa3g7ml2a8SJItS7czFte2OnVMCgqstXlugDQ
-	K8WV6oj9zg+8cnX6uEe8vYyd+v7XVpD0WeoM86U6l0z+KdpnLwE1PdwwRxyIpIWz
-	2lb4jTivnzC/L6WtEc0a0cnM4V4B92QHYZPnsPfwv1dk9Tm1P0CxLAGxT+LVsocC
-	43qFwMOpKUhuA46lS57Tk675247+Gwl778zVT+96U94uOpqV4wW5cdUvZZLzESf+
-	w3/ci0PcUmLJgijw5td2xAteFTUmsZQhTHTVhj2riitEMatjxOL3eNnho5rc7odE
-	Yu2jrA==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 437ta2w27a-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 14:30:28 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-46699075dd4so9588711cf.3
-        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 06:30:28 -0800 (PST)
+	s=arc-20240116; t=1733149939; c=relaxed/simple;
+	bh=qOmQJTbCQeuHlJprqQwHbB2+QP0lQNzJMUj3CXSju98=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=oz2uRfuS6nfWdvJVML685S6YdC3Jv/uPsGtMnvjWsqf7OLQGSig3e2ktP69AF8BWE/ZrmwZzZNLbNxkP4f+qrvxsAnTEGVFDISrQRpW6X+pbKOviJ0WF7B8iqt4KrFtWZ+YxhDe+Fczcz4kD7+xm67OtuUVrhs6F5qtnLZ7/JPk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=SBFZtwSh; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-385f06d0c8eso762474f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 06:32:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=raspberrypi.com; s=google; t=1733149936; x=1733754736; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iOx9NaY1qX5HDoI2TYyztMEaA2o1c52TzC8u++gvhCQ=;
+        b=SBFZtwShXawYeNjjUhQw+4rL9onAhwCscQ9RguLo0UFvZVSaYE6fdFw2emSBV+sbYr
+         0Gpk6kcv64QNj4Ffm3MFy/+T7n8YXvGPiGdAVhKaly+CrOS7S4P9yHuIrIz7t7xbE3DC
+         9BxHxtL2DGZ12+7E3s/iDpmY/t4RfA6gKFuHsyIBgoptIT7ftKlF/SxSpqEgruKPqbYr
+         PgEf1+/OBWMrjCm4WDh1juXONUBFm60P9qXZg2dSK9VwuvOLzfK/Hn1FLUCbSyYBiS1g
+         QdkuDxNKDABgHOXn3MoplgmvNpDaCmWox5/D+e7/C4It+MmQ2ZPjw+k7r9nAg15ewGU7
+         7dTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733149827; x=1733754627;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=opJ/u7aIb+6rMXmWGckJvu/bfCwMl33RWOEqNCV31vY=;
-        b=KN5LlU67xN4lTkRBj2Z5CExafkk73cWUKNGFgZ/qsCQGBzXiKRHpj57EfMBLCUHfxu
-         x1jRgR1cKe600VTXBFSPShsqfTGs15Tm0Axo+U5wSialIulxHlUFcYdSqps3WO83GYku
-         Kkg1wOlfPUN3X0av4NBoZgFeozWS0ZKOlG3dRzoXSzX0LIZhbiiH+Wbrp0Y6VcynD/DI
-         caTLkVbtV6sxjdZCSeG04GOE+r79JN44i/rqeE7KssFKmuchL4JDslChzq9jG2wmivU0
-         6uTu1DGiMYlyfyPhuKTCJ3R0p2zzMsjesm4m+rmgeuDkC7FZJjaadn408LQy3W9ztO+c
-         kE2w==
-X-Forwarded-Encrypted: i=1; AJvYcCXtL/2IcZ7doI4iyc8E+nPqvk6v7BTOFtRGzw9mbEqsdqFg6ji1ziDIZ10qq0jBHlOniNvDW4/A77Qg@vger.kernel.org
-X-Gm-Message-State: AOJu0YzeaBYH7yZ9Rshimbth4jHjsALkSZ2sbGNHwHMEDzqynCXZKN8g
-	DL2IN1ArojvyOZUihtikaKRw/CsoiWoQTANeturij9dvxgDJq56XJsdBEpockiFslXxdgrxk3x2
-	N+SfZFxjiYlmN3MWQWyMQPm+OMSsG6qsTEZwxixJpTS/AN1f/QvOSnxCPA+Kx
-X-Gm-Gg: ASbGncs538io6Yp45hONSx393b/1AnwJEMmxV/fLbhYv7Z48/bmxp1M5fgK8+K3MgCm
-	ze0IouM6KqBFNWHtFlxYtx88XGrRpMAqEGDBBwcMD7uZUREaTHeDGYuQhGnL1Bj1fGVWqkKUylH
-	YrovSGCZY6NN0ZBKTTeO3msBtedJtMbFMPEzrGmuY8zc8q24xZ8nghNE9UIYKOEzXujnlHawUV1
-	Ru3fGHCoQ/kowT71SfNUxAfTWmCMZNVTfSBkSn9zUwvPcQEUOF7H09BNTpTijQpyG6BbNx3R5Tz
-	uoaGlRf5QVEJA4+vYtILduDLwXDX+xg=
-X-Received: by 2002:a05:622a:1a13:b0:460:62a1:70be with SMTP id d75a77b69052e-466b36737d2mr150946411cf.13.1733149827261;
-        Mon, 02 Dec 2024 06:30:27 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHyWUKeBXhhoq1965fOPrse19lfgFS9Hoi0RqhL/1OBQ3mXf5NYh73GoEjiIReak/2sYFLgpQ==
-X-Received: by 2002:a05:622a:1a13:b0:460:62a1:70be with SMTP id d75a77b69052e-466b36737d2mr150945211cf.13.1733149824157;
-        Mon, 02 Dec 2024 06:30:24 -0800 (PST)
-Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d0c04ac64dsm3519962a12.68.2024.12.02.06.30.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Dec 2024 06:30:23 -0800 (PST)
-Message-ID: <7ae4bed8-c170-411c-8ece-d685271aeeab@oss.qualcomm.com>
-Date: Mon, 2 Dec 2024 15:30:21 +0100
+        d=1e100.net; s=20230601; t=1733149936; x=1733754736;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=iOx9NaY1qX5HDoI2TYyztMEaA2o1c52TzC8u++gvhCQ=;
+        b=otAQlVqf3HaxBJpoNL8VUOGzVhPyfOD6+WyxmOv7t/ml9m2zaLC1kCkJOu2XqjqyEs
+         IesityQ4au0hJNZHwe/Od4w8LxEKryyzyXjT+zmhvJeMSehqzImTdp6v/AuUreMPnIvs
+         P5c1rOCDdvSBTFHrrpxdG+fIDhMn9mQ+eR/vvjlKcX8lPw1Mqntezx+0Kx3D6Ruo/Iwr
+         sVCZ15ewx7M6rNfvMXKgsaEpc7JnI2WPLCgVXuDVbh6nz/2z9OrpEMcT91byxkrBneAP
+         75o0ljFHVLBzY+RWjinKcbso0iBscmTvfa6FCt+1ejS2kA0fJcdTIaNUhsX1/oJm3jWI
+         R5AQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVfHdatEp0LAG1slZ1ZedDihPKesHwc0QRdigvgcJjSVh7BMioA0qp3PfnO/cictENTzMHEjt2bhZpd@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw+mWxQLtuCPuL6BD4lq8Ackz7vLbedKBDzP6Q7yUixbA2/IOgr
+	aYGqOl5JvHWcgBZWNGojPnncGlNARHOcu+rAoocZqKx3G/nlSsCqlxHusdj/3SM=
+X-Gm-Gg: ASbGncs1h7O+mSVjBzdSWPXPmsEc54LUzXtiP5RkDHANgsdKDKNs9+9+jnbrAd1GMvs
+	t3lLfH54mozFiRa6qgatojVUs0SUsJvCiUlexhLaLarlJSBfy33wBDR4wFxyoHNHLEBkyotFhQm
+	BMH4LomBcCiLcm8YXY0oXl0M7egMBWY1/qIxT+U/VR3s1jzPyCKwdWSM3wgoMfpXy+2A7UGHVbX
+	EAV1vV9CZIJUcMN+XZkv9KjERYEBexVmnHg+aZPHA==
+X-Google-Smtp-Source: AGHT+IGWILDCH0oN5IIP6AmBZHCVw8v8xYQoGIqxbhQefLB2luB62aEimC6i2AGfGXR0N+C6cAzdpg==
+X-Received: by 2002:a5d:6c6d:0:b0:385:e8aa:2a4e with SMTP id ffacd0b85a97d-385e8aa2c01mr5694103f8f.31.1733149936076;
+        Mon, 02 Dec 2024 06:32:16 -0800 (PST)
+Received: from [127.0.1.1] ([2a00:1098:3142:e::8])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-434aa74f1e6sm188429555e9.9.2024.12.02.06.32.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Dec 2024 06:32:15 -0800 (PST)
+From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date: Mon, 02 Dec 2024 14:31:54 +0000
+Subject: [PATCH 1/7] dtbindings: display: bcm2711-hdmi: Correct bindings
+ for 2712
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/3] arm64: dts: qcom: qcs615: add the APPS SMMU node
-To: Qingqing Zhou <quic_qqzhou@quicinc.com>, andersson@kernel.org,
-        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, robimarko@gmail.com, will@kernel.org,
-        robin.murphy@arm.com, joro@8bytes.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, iommu@lists.linux.dev
-References: <20241105032107.9552-1-quic_qqzhou@quicinc.com>
- <20241105032107.9552-4-quic_qqzhou@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20241105032107.9552-4-quic_qqzhou@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: JIIKZW_VPVnb_jIp13DvLZfJqVtEl-8q
-X-Proofpoint-GUID: JIIKZW_VPVnb_jIp13DvLZfJqVtEl-8q
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
- lowpriorityscore=0 suspectscore=0 mlxscore=0 impostorscore=0
- malwarescore=0 adultscore=0 priorityscore=1501 mlxlogscore=848
- phishscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412020124
+Message-Id: <20241202-dt-bcm2712-fixes-v1-1-fac67cc2f98a@raspberrypi.com>
+References: <20241202-dt-bcm2712-fixes-v1-0-fac67cc2f98a@raspberrypi.com>
+In-Reply-To: <20241202-dt-bcm2712-fixes-v1-0-fac67cc2f98a@raspberrypi.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Eric Anholt <eric@anholt.net>, 
+ =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>, 
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, 
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
+ Doug Berger <opendmb@gmail.com>, Linus Walleij <linus.walleij@linaro.org>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Florian Fainelli <f.fainelli@gmail.com>, 
+ linux-gpio@vger.kernel.org, Dave Stevenson <dave.stevenson@raspberrypi.com>
+X-Mailer: b4 0.14.1
 
-On 5.11.2024 4:21 AM, Qingqing Zhou wrote:
-> Add the APPS SMMU node for QCS615 platform. Add the dma-ranges
-> to limit DMA address range to 36bit width to align with system
-> architecture.
-> 
-> Signed-off-by: Qingqing Zhou <quic_qqzhou@quicinc.com>
-> ---
+The previous patch just adding the compatible missed out that the
+number of interrupts changed
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Fixes: 62948c62abca ("dt-bindings: display: Add BCM2712 HDMI bindings")
+Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+---
+ .../bindings/display/brcm,bcm2711-hdmi.yaml        | 44 +++++++++++++++-------
+ 1 file changed, 30 insertions(+), 14 deletions(-)
 
-Konrad
+diff --git a/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml b/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
+index 6d11f5955b51..6af342c9b6b8 100644
+--- a/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
++++ b/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
+@@ -56,22 +56,38 @@ properties:
+       - const: cec
+ 
+   interrupts:
+-    items:
+-      - description: CEC TX interrupt
+-      - description: CEC RX interrupt
+-      - description: CEC stuck at low interrupt
+-      - description: Wake-up interrupt
+-      - description: Hotplug connected interrupt
+-      - description: Hotplug removed interrupt
++    oneOf:
++      - items:
++        - description: CEC TX interrupt
++        - description: CEC RX interrupt
++        - description: CEC stuck at low interrupt
++        - description: Wake-up interrupt
++        - description: Hotplug connected interrupt
++        - description: Hotplug removed interrupt
++
++      - items:
++        - description: CEC TX interrupt
++        - description: CEC RX interrupt
++        - description: CEC stuck at low interrupt
++        - description: Hotplug connected interrupt
++        - description: Hotplug removed interrupt
+ 
+   interrupt-names:
+-    items:
+-      - const: cec-tx
+-      - const: cec-rx
+-      - const: cec-low
+-      - const: wakeup
+-      - const: hpd-connected
+-      - const: hpd-removed
++    oneOf:
++      - items:
++        - const: cec-tx
++        - const: cec-rx
++        - const: cec-low
++        - const: wakeup
++        - const: hpd-connected
++        - const: hpd-removed
++
++      - items:
++        - const: cec-tx
++        - const: cec-rx
++        - const: cec-low
++        - const: hpd-connected
++        - const: hpd-removed
+ 
+   ddc:
+     $ref: /schemas/types.yaml#/definitions/phandle
+
+-- 
+2.34.1
+
 
