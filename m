@@ -1,48 +1,63 @@
-Return-Path: <devicetree+bounces-126016-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126017-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 825959DFEF8
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 11:31:38 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D8A3162DB8
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 10:31:35 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59AAA1FBCA2;
-	Mon,  2 Dec 2024 10:31:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GmvKD82R"
-X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 083F69DFF02
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 11:32:23 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25F181D5CC6;
-	Mon,  2 Dec 2024 10:31:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCBB2281B5C
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 10:32:21 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 257421FCCF9;
+	Mon,  2 Dec 2024 10:32:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="gPHIHzQA"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49E151D5CC6;
+	Mon,  2 Dec 2024 10:32:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733135494; cv=none; b=SglnFU/gwj1bOtn380856ppUwqmeKvuqjhaHCZiNq47KPwFKvbAcgbqa0NAjwWoqzI/6wIMIOQ+c+tqa9cru90TeUliFD9fj+2FnCG1qZ3IpUJXFOOwthwx0QRQbS9xT37rh2TjLgAW1ImNB6WbdKkUpn9YvYnGb9w/gXH+pud0=
+	t=1733135532; cv=none; b=eGj+444LIb/LtLKV/Aytb5DL3i+uwZlkiZm9jC5jEhGi9VBjJXcaJHZamR6DbYfiHp2IY400gjOpfFEvywvVXslDWLzCoCjSCxRuPePcqoCO5/xDorhqGGVg/UuH0Z+jKxxRTCdSFLoUwl6ldYhDMzE4c9bfQfvZLb58REK9fAM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733135494; c=relaxed/simple;
-	bh=+mpPAO8B1YWkkS4hc0ma/RFGnsazCjxU8SUCwb3i4kA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JRDFBAkCISLG8yBdkWR0Xr5YXrZdrSu/RPkBC83d3JBwbBvkGW/Cz+LaLyFB0PZVtm0fEcgn9BXhTMIo+v12HNLrGvRMb8KpiBt6CWbQJc9gsgdMBs1ni06ButZle0Rax4EkGuP+AzGVKVpC+tUt6anghNJyC+acQf4L/te8PJs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GmvKD82R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C92BC4CED1;
-	Mon,  2 Dec 2024 10:31:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733135493;
-	bh=+mpPAO8B1YWkkS4hc0ma/RFGnsazCjxU8SUCwb3i4kA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GmvKD82RAOOTGrv+jD6bmZcxqIFZIAfdUwExOimWdCy2FBqm8Q6i8Ddxugyjz0iUe
-	 u273R15tmV+S3bZ1V0oJTFSjIQcBukDvNN64ce5lTEU8GA2oAlQLQZFGiTMeHEu1vF
-	 h+7lZ9YCs2HSZYVVoUtigqhJ2lDhrgXGFDEmXHJCArxBQMZvgFvq5+0FBjGxAQabK6
-	 VLpYNGUOyUXUveH2oet7ztAE33mr3cLRMQxCFCyFcUxtPZgYbPDjc87/jsr7XHH6pf
-	 MWaHgKLxqrJ+8py5cOkYr5OCvl/YUY9C4c1+ucU9jDrCcrBfxUEdXBthlx0vK9WpQO
-	 Oy+HH2D+8Lf8A==
-Message-ID: <ab06e590-f113-459d-80b6-28136a79e10d@kernel.org>
-Date: Mon, 2 Dec 2024 11:31:27 +0100
+	s=arc-20240116; t=1733135532; c=relaxed/simple;
+	bh=pBEqhwK9TP5I9OhQd/r6yDn+7IaVfkgbK9aPFk7bDi0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=r0pS2PkLa+6IUR1rzSCBUV6Gy77xO7cdjsWfAaPmduwShOhgTbudAzW+Hwg1fmC3xsJ59mtp2vrnAOmcFaiE9v/1lJNsZZ1K3ArrDb+6LvLiip0vaPH1Ym1WZ3v80F4uDcyxJ6567F6I22Qmcsdd/Qnhyr9ybDP9xHHcx83DR5c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=gPHIHzQA; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B28PD8r030509;
+	Mon, 2 Dec 2024 10:31:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	V9JKIx72ZzU6OqC05+Y0cV4EzX/9xl6Xv4DQi1WQZEY=; b=gPHIHzQAq5b3PbBr
+	5zksYJJH7AjoF0Cyyx4OcUXfLi2YtKe126piVvjWtAqQTkkwGaWWoiG4ziEvSaY9
+	t7+xhLEOjKZyIldwADuzca1oFHHg7u6rEuqkdW6T9OjfWFzX35H01yfck7j6LTsD
+	58sGy1dVSAaSrbC1JTAw4HS6NhGKJhn+jvu6dhzbkqsracwkV2SCqN875hebPIEV
+	/U6HM5bawBWTrh4c9khrUgEWtnqmbcrztDA2i248cVi/gnLXZWWVG7CyG4fzNcCT
+	IacBlmyiTWeO+QPXTN0gkvVhln2k4dLXJ9AaTivY8AamMAgOM6Se+N9V5rNePG9C
+	/m9ujQ==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 437sq64hfe-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 02 Dec 2024 10:31:54 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B2AVr7m000301
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 2 Dec 2024 10:31:53 GMT
+Received: from [10.64.16.135] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 2 Dec 2024
+ 02:31:46 -0800
+Message-ID: <22600892-3b0d-4b0f-9c46-e74241960dda@quicinc.com>
+Date: Mon, 2 Dec 2024 18:31:44 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,95 +65,264 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] media: dt-bindings: sony,imx415: add required clock-names
- property
-To: Michael Riesch <michael.riesch@wolfvision.net>,
- Matthias Fend <matthias.fend@emfend.at>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20241130141716.1007115-1-matthias.fend@emfend.at>
- <bh3obpt6bcklejdvrk4r6ienraz5zmhrdyotijhvlwexussqgj@hicmx34vi27w>
- <f088a247-8049-49a7-bab3-5b517cb0c531@wolfvision.net>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <f088a247-8049-49a7-bab3-5b517cb0c531@wolfvision.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH 3/8] phy: qcom: qmp-usbc: Add DP phy mode support on
+ QCS615
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov
+	<dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten
+	<marijn.suijten@somainline.org>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Kuogee
+ Hsieh" <quic_khsieh@quicinc.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        "Kishon
+ Vijay Abraham I" <kishon@kernel.org>,
+        Linus Walleij
+	<linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>, <quic_lliu6@quicinc.com>,
+        <quic_fangez@quicinc.com>
+CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <linux-gpio@vger.kernel.org>
+References: <20241129-add-displayport-support-for-qcs615-platform-v1-0-09a4338d93ef@quicinc.com>
+ <20241129-add-displayport-support-for-qcs615-platform-v1-3-09a4338d93ef@quicinc.com>
+ <b310587f-c6c3-41dd-83bf-6affbcc65730@kernel.org>
+From: Xiangxu Yin <quic_xiangxuy@quicinc.com>
+In-Reply-To: <b310587f-c6c3-41dd-83bf-6affbcc65730@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: ouCZElGXG-cUky1JI7neTh2rj2duVt65
+X-Proofpoint-ORIG-GUID: ouCZElGXG-cUky1JI7neTh2rj2duVt65
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
+ priorityscore=1501 mlxscore=0 clxscore=1011 lowpriorityscore=0
+ suspectscore=0 adultscore=0 spamscore=0 impostorscore=0 mlxlogscore=999
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412020093
 
-On 02/12/2024 09:18, Michael Riesch wrote:
-> Hi Matthias, Krzysztof,
-> 
-> On 12/2/24 08:56, Krzysztof Kozlowski wrote:
->> On Sat, Nov 30, 2024 at 03:17:15PM +0100, Matthias Fend wrote:
->>> The imx415 driver expects a clock with the name "inck".
->>> Document this in the bindings.
+
+
+On 11/29/2024 4:18 PM, Krzysztof Kozlowski wrote:
+> On 29/11/2024 08:57, Xiangxu Yin wrote:
+>> Extended DP support for QCS615 USB or DP phy. Differentiated between
+>> USBC and DP PHY using the match table’s type, dynamically generating
+>> different types of cfg and layout attributes during initialization based
+>> on this type. Static variables are stored in cfg, while parsed values
+>> are organized into the layout structure.
 >>
->> No, fix the driver instead of bypassing review. It was decided to drop
->> it during review, so you cannot reintroduce it 2 years later claiming
->> that's now ABI. Of course original submission was buggy and never
->> tested, but that does not allow review bypass.
+>> Signed-off-by: Xiangxu Yin <quic_xiangxuy@quicinc.com>
+>> ---
+>>  drivers/phy/qualcomm/phy-qcom-qmp-dp-phy.h |    1 +
+>>  drivers/phy/qualcomm/phy-qcom-qmp-usbc.c   | 1453 ++++++++++++++++++++++++----
+>>  2 files changed, 1254 insertions(+), 200 deletions(-)
 > 
-> Just to make sure I am on the same page here: Between v2 and v3 of the
-> IMX415 submission the clock-names property was dropped. At that point,
-> we should have changed the acquisition of the clock from
->     sensor->clk = devm_clk_get(sensor->dev, "inck");
-> to
->     sensor->clk = devm_clk_get(sensor->dev, NULL);
 > 
-> Is that correct/the proper fix?
+> 
+> ...
+> 
+>> +	/* program default setting first */
+>> +	writel(0x2A, tx + QSERDES_V3_TX_TX_DRV_LVL);
+>> +	writel(0x20, tx + QSERDES_V3_TX_TX_EMP_POST1_LVL);
+>> +	writel(0x2A, tx2 + QSERDES_V3_TX_TX_DRV_LVL);
+>> +	writel(0x20, tx2 + QSERDES_V3_TX_TX_EMP_POST1_LVL);
+>> +
+>> +	writel(voltage_swing_cfg, tx + QSERDES_V3_TX_TX_DRV_LVL);
+>> +	writel(pre_emphasis_cfg, tx + QSERDES_V3_TX_TX_EMP_POST1_LVL);
+>> +	writel(voltage_swing_cfg, tx2 + QSERDES_V3_TX_TX_DRV_LVL);
+>> +	writel(pre_emphasis_cfg, tx2 + QSERDES_V3_TX_TX_EMP_POST1_LVL);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int qcs615_qmp_configure_dp_phy(struct qmp_usbc *qmp)
+>> +{
+>> +	struct qmp_phy_dp_layout *layout = to_dp_layout(qmp);
+>> +	u32 status;
+>> +
+>> +	writel(0x01, layout->dp_phy + QSERDES_DP_PHY_CFG);
+>> +	writel(0x05, layout->dp_phy + QSERDES_DP_PHY_CFG);
+>> +	writel(0x01, layout->dp_phy + QSERDES_DP_PHY_CFG);
+>> +	writel(0x09, layout->dp_phy + QSERDES_DP_PHY_CFG);
+>> +
+>> +	writel(0x20, layout->dp_serdes + QSERDES_COM_RESETSM_CNTRL);
+>> +
+>> +	// C_READY
+> 
+> Use Linux coding style.
+> 
+> Anyway, drop all useless comments. Say something useful or don't say
+> anything.
+> 
+Ok, will update in next seperated patches.
+>> +	if (readl_poll_timeout(layout->dp_serdes + QSERDES_COM_C_READY_STATUS,
+>> +			status,
+>> +			((status & BIT(0)) > 0),
+>> +			500,
+>> +			10000)) {
+>> +		dev_err(qmp->dev, "C_READY not ready\n");
+>> +		return -ETIMEDOUT;
+>> +	}
+>> +
+>> +	// FREQ_DONE
+>> +	if (readl_poll_timeout(layout->dp_serdes + QSERDES_COM_CMN_STATUS,
+>> +			status,
+>> +			((status & BIT(0)) > 0),
+>> +			500,
+>> +			10000)){
+>> +		dev_err(qmp->dev, "FREQ_DONE not ready\n");
+>> +		return -ETIMEDOUT;
+>> +	}
+>> +
+>> +	// PLL_LOCKED
+>> +	if (readl_poll_timeout(layout->dp_serdes + QSERDES_COM_CMN_STATUS,
+>> +			status,
+>> +			((status & BIT(1)) > 0),
+>> +			500,
+>> +			10000)){
+>> +		dev_err(qmp->dev, "PLL_LOCKED not ready\n");
+>> +		return -ETIMEDOUT;
+>> +	}
+>> +
+>> +	writel(0x19, layout->dp_phy + QSERDES_DP_PHY_CFG);
+>> +	udelay(10);
+>> +
+>> +	// TSYNC_DONE
+>> +	if (readl_poll_timeout(layout->dp_phy + QSERDES_V3_DP_PHY_STATUS,
+>> +			status,
+>> +			((status & BIT(0)) > 0),
+>> +			500,
+>> +			10000)){
+>> +		dev_err(qmp->dev, "TSYNC_DONE not ready\n");
+>> +		return -ETIMEDOUT;
+>> +	}
+>> +
+>> +	// PHY_READY
+>> +	if (readl_poll_timeout(layout->dp_phy + QSERDES_V3_DP_PHY_STATUS,
+>> +			status,
+>> +			((status & BIT(1)) > 0),
+>> +			500,
+>> +			10000)){
+>> +		dev_err(qmp->dev, "PHY_READY not ready\n");
+>> +		return -ETIMEDOUT;
+>> +	}
+>> +
+>> +	writel(0x3f, layout->dp_tx + QSERDES_V3_TX_TRANSCEIVER_BIAS_EN);
+>> +	writel(0x10, layout->dp_tx + QSERDES_V3_TX_HIGHZ_DRVR_EN);
+>> +	writel(0x0a, layout->dp_tx + QSERDES_V3_TX_TX_POL_INV);
+>> +	writel(0x3f, layout->dp_tx2 + QSERDES_V3_TX_TRANSCEIVER_BIAS_EN);
+>> +	writel(0x10, layout->dp_tx2 + QSERDES_V3_TX_HIGHZ_DRVR_EN);
+>> +	writel(0x0a, layout->dp_tx2 + QSERDES_V3_TX_TX_POL_INV);
+>> +
+>> +	writel(0x18, layout->dp_phy + QSERDES_DP_PHY_CFG);
+>> +	writel(0x19, layout->dp_phy + QSERDES_DP_PHY_CFG);
+>> +
+>> +	if (readl_poll_timeout(layout->dp_phy + QSERDES_V3_DP_PHY_STATUS,
+>> +			status,
+>> +			((status & BIT(1)) > 0),
+>> +			500,
+>> +			10000)){
+>> +		dev_err(qmp->dev, "PHY_READY not ready\n");
+>> +		return -ETIMEDOUT;
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int qcs615_qmp_calibrate_dp_phy(struct qmp_usbc *qmp)
+>> +{
+>> +	static const u8 cfg1_settings[] = {0x13, 0x23, 0x1d};
+>> +	struct qmp_phy_dp_layout *layout = to_dp_layout(qmp);
+>> +	u8 val;
+>> +
+>> +	layout->dp_aux_cfg++;
+>> +	layout->dp_aux_cfg %= ARRAY_SIZE(cfg1_settings);
+>> +	val = cfg1_settings[layout->dp_aux_cfg];
+>> +
+>> +	writel(val, layout->dp_phy + QSERDES_DP_PHY_AUX_CFG1);
+>> +
+>> +	qmp_usbc_check_dp_phy(qmp, "pos_calibrate");
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int qmp_usbc_com_init(struct phy *phy)
+>>  {
+>>  	struct qmp_usbc *qmp = phy_get_drvdata(phy);
+>> -	const struct qmp_phy_cfg *cfg = qmp->cfg;
+>> -	void __iomem *pcs = qmp->pcs;
+>> +	int num_vregs;
+>>  	u32 val = 0;
+>>  	int ret;
+>> +	unsigned int reg_pwr_dn;
+>>  
+>> -	ret = regulator_bulk_enable(cfg->num_vregs, qmp->vregs);
+>> +	if (qmp->type == QMP_PHY_USBC_USB) {
+> 
+> 
+> Sorry, all this code is unreviewable. Organize your changes in logical,
+> reviewable chunks.
+> 
+Will create new patch list and seperate patchsets.
+>> +		struct qmp_phy_usb_cfg *cfg = to_usb_cfg(qmp);
+>> +
+>> +		num_vregs = cfg->num_vregs;
+>> +		reg_pwr_dn = cfg->regs[QPHY_PCS_POWER_DOWN_CONTROL];
+>> +	} else {
+> 
+> ...
+> 
+>> +		.compatible = "qcom,qcs615-qmp-dp-phy",
+>> +		.data =  &(struct dev_cfg) {
+>> +			.type = QMP_PHY_USBC_DP,
+>> +			.cfg = &qcs615_dpphy_cfg,
+>> +		},
+>>  	}, {
+>>  		.compatible = "qcom,sdm660-qmp-usb3-phy",
+>> -		.data = &sdm660_usb3phy_cfg,
+>> +		.data =  &(struct dev_cfg) {
+>> +			.type = QMP_PHY_USBC_USB,
+>> +			.cfg = &sdm660_usb3phy_cfg,
+>> +		},
+>>  	}, {
+>>  		.compatible = "qcom,sm6115-qmp-usb3-phy",
+>> -		.data = &qcm2290_usb3phy_cfg,
+>> +		.data =  &(struct dev_cfg) {
+>> +			.type = QMP_PHY_USBC_USB,
+>> +			.cfg = &qcm2290_usb3phy_cfg,
+>> +		},
+>>  	},
+>>  	{ },
+>>  };
+>> +
+> 
+> 
+> You make some random changes all over this file. No, clean it up.
+> 
+>>  MODULE_DEVICE_TABLE(of, qmp_usbc_of_match_table);
+>>  
+>>  static struct platform_driver qmp_usbc_driver = {
+>>
+> 
+> 
+> Best regards,
+> Krzysztof
 
-Yes, because driver could simply not work. It was never tested, after
-the change.
-
-Best regards,
-Krzysztof
 
