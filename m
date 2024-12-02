@@ -1,44 +1,63 @@
-Return-Path: <devicetree+bounces-125889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125890-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33B759DF9BE
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 05:00:13 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 663529DF9BF
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 05:01:05 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 581F1B210B3
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 04:00:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2154A1627A6
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 04:01:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA6E12AF0B;
-	Mon,  2 Dec 2024 04:00:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8DAE2A1D1;
+	Mon,  2 Dec 2024 04:01:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YXf2gQrn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbg156.qq.com (smtpbg156.qq.com [15.184.82.18])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD5032A1D1
-	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 03:59:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=15.184.82.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5898EC4;
+	Mon,  2 Dec 2024 04:00:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733112006; cv=none; b=LEv9MfCf1qfJ27jXwPo3DhelVhlL4cp0ZLCQc+L5mqirlsJFPeN2z1kpa2qW3kCOPIdq79HQXCtVwZVN+pORmPvnw61pUSX69PbXiZDl8s5c0Vn+L7/Zquk2zZat8qY8Gkn2RQKmBzOcFrPGIgujt7RQrp6R4kmhMyq6TDl6NOo=
+	t=1733112060; cv=none; b=F8+dxpic6fQFnQYhb7IzhzpQDqLEailtAW+rR22Q/IWTaRnITOr88B2gw0eQRxOcsBfKjTf43aETdVSdPD4vR3c9kfWlIeRgzJ9Ue63IThu/zAXr3VQCPjoFZSN4ezHgVvBPPpHflw/oJlJ2q5eY1kOX3PsfMnW3YGLfnGgvYmc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733112006; c=relaxed/simple;
-	bh=ermHuo6jV/pcLVbGYfZxvZxG1sVeTGCBgJ+A6kxc1Jo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ijNegrfEd462gGBKJA9bafVFGDrmJwwsfXAtuKzeQTbVMIkNIPcfJllbGDuHJTvD8XI+aifGJOicHLFHEn0iaW6voqMIFc8VHGSqYOAmyoH/baPjjwWHEPZ6lNbwzDXHNohV6SjoJF6MZyNRFCUlKKiXJhP0FmdGjoKy4L6/tdE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=15.184.82.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: bizesmtpip4t1733111899tlvff56
-X-QQ-Originating-IP: vMQJaOZ47cUFKgAjPqPaMmnImir+v1iuEhaK45dHo9g=
-Received: from [IPV6:240f:10b:7440:1:f3e2:5ab0 ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Mon, 02 Dec 2024 11:58:14 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 14815698824521554148
-Message-ID: <E09DCB0C302E5757+722fa6e3-3001-4c3d-8a31-bbd7efa0d3b3@radxa.com>
-Date: Mon, 2 Dec 2024 12:58:13 +0900
+	s=arc-20240116; t=1733112060; c=relaxed/simple;
+	bh=Pkx06eFoSQ5pLlwbVD3xNXp4h4D9c9tDfBn+JoB0TJE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=WS/uRpf2drisXU9A3eMp+oGSTPy5sUY6r2tAHY5ZRPr7WAtO2+NxxWWoWai4GjE1caNaJsMJ5ntdWPK2XMJ/lhCYo+tNOcCBVsq/Dzsx9k5qx62tSqXN1bpiqnqzaY+NXkPr78Y+Yn2gp/1IXCBRLaEfHFKnSjfy0Un6iwbw/WA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YXf2gQrn; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B21rVc9010828;
+	Mon, 2 Dec 2024 04:00:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	UZ6U475vxcpKZIrB8K4blpoWg3pR0JybXy3nKP2lGy4=; b=YXf2gQrnG/9T9zGG
+	qtFNEQm68ssCiXPQvij43zDrDFABuikzlryUFeFAhELcvsXGzXkFPhMdi9dfXANB
+	A7tq10EUKVzB0WLdS76F3edFrC5L53oRL56Y3iUXR4tZmiM1nF4FG9+2vQvOuNIF
+	S5gKTUCchUl0+WsjaBWY2ITbVXHbMnw/ocjlMTmuWWeiyGnL0OORToR+JzWEL642
+	liOMa5oGG5N+fFzvJk4JX8laoHf3yb25Llubmyr74si1oVbDYBRaPFr9K+pwM2BM
+	lP0/JbPawhCcxifYI4c1gZvmxTfP/trtwAS1WkcrqI65967LOwnneYJNuweuXXC2
+	lopsUg==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4393mp87m8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 02 Dec 2024 04:00:38 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B240bYT007770
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 2 Dec 2024 04:00:37 GMT
+Received: from [10.217.219.207] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 1 Dec 2024
+ 20:00:31 -0800
+Message-ID: <a8b1ccd2-c37b-4a6f-b592-caf1a53be02c@quicinc.com>
+Date: Mon, 2 Dec 2024 09:30:29 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,76 +65,108 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/4] arm64: dts: rockchip: cosmetic changes for Radxa
- ROCK 5B
-To: heiko@sntech.de
-Cc: robh@kernel.org, conor+dt@kernel.org, inindev@gmail.com,
- devicetree@vger.kernel.org, sebastian.reichel@collabora.com,
- linux-rockchip@lists.infradead.org, alchark@gmail.com, krzk+dt@kernel.org,
- dsimic@manjaro.org
-References: <20241202023227.2671-1-naoki@radxa.com>
+Subject: Re: [PATCH v5 1/4] dt-bindindgs: i2c: qcom,i2c-geni: Document shared
+ flag
+To: Krzysztof Kozlowski <krzk@kernel.org>, <konrad.dybcio@linaro.org>,
+        <andersson@kernel.org>, <andi.shyti@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <dmaengine@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
+        <conor+dt@kernel.org>, <agross@kernel.org>,
+        <devicetree@vger.kernel.org>, <vkoul@kernel.org>, <linux@treblig.org>,
+        <dan.carpenter@linaro.org>, <Frank.Li@nxp.com>,
+        <konradybcio@kernel.org>, <bryan.odonoghue@linaro.org>,
+        <krzk+dt@kernel.org>, <robh@kernel.org>
+CC: <quic_vdadhani@quicinc.com>
+References: <20241129144357.2008465-1-quic_msavaliy@quicinc.com>
+ <20241129144357.2008465-2-quic_msavaliy@quicinc.com>
+ <db428697-a9dc-46e1-abbe-73341306403f@kernel.org>
 Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <20241202023227.2671-1-naoki@radxa.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+In-Reply-To: <db428697-a9dc-46e1-abbe-73341306403f@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
-X-QQ-XMAILINFO: MRY6qckr/MVJ2xWtCpd5wkq6Prz6Albv7Q5hK2xBLOFOSa3E19CUut/l
-	n5IwDPpcooFCC/j8yzUL8WdK21WehKkufQbdDgu0tlImFge2oFV9fu1OIf23+l9Sem2wHoG
-	JaqYcvSNEA2pUafhFCh/zds+KOqZVFdoplzTFh4V79Ow2frqiVJbZd0xKMAjWLQjOQ+v7lb
-	oWrDpheskCcJ0nCFojsPdQUhU+Rq9sGjbgHuSAfaXXTTsDOvXeezqIktM18+UL7oW+JcYG0
-	NIwIhFRqBJf/o4D6eHmUEMOgbGeU2OVnASaWNtxPyK2pl7RznHLNKIc/S+NYTL1tzkHt5p5
-	lHdm4D4TvyrJCxbiyaqu3fs0xz2OrdNDga40JRqKx9VxAVVRxJGwA+Zlo98vOP2qQG5Jo1h
-	Hh0YYqlB6H///7aiY1Eq3TbxT2Lx5UeLvxqubo7oVwtfQ/o0yNhKwtredvIgFw74zSwF59f
-	TunUKGgQljc4aTHQfUprtCHQV2MEgnonmGR7qlr6uvUFi1KECrvMNiRmmGuQPBus6N+La8U
-	HbeFxqsLwBp1cXLkJnhYfI069LoqXk+u0XKBlD9tgV4dpLu6zMOOtbBH7iLtCV4V+ilg2dP
-	cNhKuutWgbUTmVISorm6E3BFWAe0KHoNw3yDSH8opD+EjSdlHDdNOopcrTjmUyeBed2Iu8A
-	NHTasuqNNky0N7SNa8q1QR1g3pIxBIpDuWriGeB9yYbIQuGGluja8AVxUADbIeFDFUacO7Y
-	lbBqKtVX0Apug0hmu/v6m2w2++BnRS2Wfkj7I3NGLroqLozO2lljY4j/d4R5HdR/9T61rAt
-	st6JnwBaZDsTwDdFFvPl5m68DtP6ojMK8F7JbtkJfkNO4T9yzSKwx2O9q2gkpJBlNfbnxqh
-	8PIvo7WesV7k/o0QenSPqcicM/vWE8ccpQQ1PHWREKY=
-X-QQ-XMRINFO: Nq+8W0+stu50PRdwbJxPCL0=
-X-QQ-RECHKSPAM: 0
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: EuGOnA2UC-Qlre3pOkAgEbPsw931QVz9
+X-Proofpoint-GUID: EuGOnA2UC-Qlre3pOkAgEbPsw931QVz9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=999
+ impostorscore=0 mlxscore=0 malwarescore=0 suspectscore=0
+ lowpriorityscore=0 adultscore=0 spamscore=0 priorityscore=1501
+ clxscore=1015 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412020032
 
-Hi,
+Hi Krzysztof,
 
-I'm preparing patches for ROCK 5B+ (upgrade version of 5B) and for ROCK 
-5T (upgrade version of 5B+).
-
-I think it's possible to make shared .dtsi for these three boards.
-
-then, these two patch series
-  "arm64: dts: rockchip: sync dts with schematic for Radxa ROCK 5B"
-and
-  "arm64: dts: rockchip: cosmetic changes for Radxa ROCK 5B"
-will be dropped.
-
-please wait a week or so to submit my new patch series.
-
-Best regards,
-
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
-
-On 12/2/24 11:32, FUKAUMI Naoki wrote:
-> this patch series sort nodes and properties, remove redundant
-> properties, and minor cosmetic changes.
+On 11/29/2024 8:44 PM, Krzysztof Kozlowski wrote:
+> On 29/11/2024 15:43, Mukesh Kumar Savaliya wrote:
+>> Adds qcom,shared-se flag usage. Use this flag when I2C serial controller
+>> needs to be shared in multiprocessor system(APPS,Modem,ADSP) environment.
+>>
+>> SE(Serial Engine HW controller acting as protocol master controller) is an
+>> I2C controller. Basically a programmable SERDES(serializer/deserializer)
+>> coupled with data DMA entity, capable in handling a bus protocol, and data
+>> moves to/from system memory.
+>>
+>> Two clients from different processors can share an I2C controller for same
+>> slave device OR their owned slave devices. Assume I2C Slave EEPROM device
+>> connected with I2C controller. Each client from ADSP SS and APPS Linux SS
+>> can perform i2c transactions.
+>>
+>> Transfer gets serialized by Lock TRE + DMA xfer + Unlock TRE at HW level.
+>>
+>> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+>> ---
+>>   .../devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml       | 8 ++++++++
+>>   1 file changed, 8 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
+>> index 9f66a3bb1f80..88682a333399 100644
+>> --- a/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
+>> +++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
+>> @@ -60,6 +60,14 @@ properties:
+>>     power-domains:
+>>       maxItems: 1
+>>   
+>> +  qcom,shared-se:
+>> +    description: True if I2C controller is shared between two or more system processors.
+>> +        SE(Serial Engine HW controller working as protocol master controller) is an
+>> +        I2C controller. Basically, a programmable SERDES(serializer/deserializer)
+>> +        coupled with data DMA entity, capable in handling a bus protocol, and data
+>> +        moves to/from system memory.
+> I replied why I NAK it. You did not really address my concerns, but
+> replied with some generic statement. After that generic statement you
+> gave me exactly 0 seconds to react and you sent v5.
 > 
-> no functional change is intended.
+Sorry for 0 seconds, i thought of addressing comment and uploading it 
+new patch as i wanted to explain SE. whatever i have added for SE 
+explanation is in qualcomm hardware programming guide document.
+> Really 0 seconds to respond to your comment, while you give yourself
+> days to respond to my comments.
 > 
-> this patch series depend on following patch series:
->   "arm64: dts: rockchip: sync dts with schematic for Radxa ROCK 5B"
->   https://patchwork.kernel.org/project/linux-rockchip/cover/20241130004057.7432-1-naoki@radxa.com/
+> This is not how it works.
 > 
-> FUKAUMI Naoki (4):
->    arm64: dts: rockchip: sort nodes in .dts for Radxa ROCK 5B
->    arm64: dts: rockchip: sort nodes in root node for Radxa ROCK 5B
->    arm64: dts: rockchip: sort properties in .dts for Radxa ROCK 5B
->    arm64: dts: rockchip: cosmetic changes for Radxa ROCK 5B
+Sure, let me first conclude here what exactly should be done.
+> NAK
 > 
->   .../boot/dts/rockchip/rk3588-rock-5b.dts      | 184 ++++++++----------
->   1 file changed, 86 insertions(+), 98 deletions(-)
+> Implement previous feedback. Don't send any new versions before you
+> understand what you have to do and get some agreement with reviewers.
+> 
+Sure, this is definitely a good way. what did i do for previous comment ?
+I have opened SE and expanded, explained.
 
+which statement or explanation should i rephrase ? Is it description 
+statement from this yaml file ? Could you please suggested better word 
+instead of shared-se if this flag name is not suitable ?
+
+I could not get this ask -
+"There are few of such flags already and there are some patches adding 
+it in different flavors."
+
+> Best regards,
+> Krzysztof
 
