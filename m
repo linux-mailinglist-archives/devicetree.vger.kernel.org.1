@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-126015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94F989DFEF1
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 11:30:06 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 825959DFEF8
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 11:31:38 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4EB7B282185
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 10:30:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D8A3162DB8
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 10:31:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 235821FC7EE;
-	Mon,  2 Dec 2024 10:30:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59AAA1FBCA2;
+	Mon,  2 Dec 2024 10:31:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ikhjkACi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GmvKD82R"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D91B61FC119;
-	Mon,  2 Dec 2024 10:30:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25F181D5CC6;
+	Mon,  2 Dec 2024 10:31:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733135402; cv=none; b=txKCpco/3scPb5EseulNB+WfY3vO+3kZSCQRcvcJ6yHiB7THnUTkfPdCIdx0X6mwOiye+n5y3DyCUriMXEqHdGdY/0gThaQWFb0cFSNKPk85KTDZurk8gFGHo0fpFvt4qfkyD/NcRZTlnNXNKk7QpX8U5uIOoXg3hIKBOO7jDh0=
+	t=1733135494; cv=none; b=SglnFU/gwj1bOtn380856ppUwqmeKvuqjhaHCZiNq47KPwFKvbAcgbqa0NAjwWoqzI/6wIMIOQ+c+tqa9cru90TeUliFD9fj+2FnCG1qZ3IpUJXFOOwthwx0QRQbS9xT37rh2TjLgAW1ImNB6WbdKkUpn9YvYnGb9w/gXH+pud0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733135402; c=relaxed/simple;
-	bh=LuFsk7gRGBuCuEnZFd0Z5kjf8SQVkInCv2kWohtubqk=;
+	s=arc-20240116; t=1733135494; c=relaxed/simple;
+	bh=+mpPAO8B1YWkkS4hc0ma/RFGnsazCjxU8SUCwb3i4kA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Jm8LYo7TN47dq8RfdAGMiOHpIbAnGjiJAi7uRaOQxSnmQ3KWwBmtsfj5JvtbmAsD4wWaz2YPUqbgpGaDKKKIIK22AyqvoVPSF25tuSbdnFF1LdO0w28Gor33KWgT0U9zRS+pcVdWnQj2pWTM0c0kBOMeDLOQV7KHBcLyVWodv48=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ikhjkACi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D399C4CED1;
-	Mon,  2 Dec 2024 10:29:56 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=JRDFBAkCISLG8yBdkWR0Xr5YXrZdrSu/RPkBC83d3JBwbBvkGW/Cz+LaLyFB0PZVtm0fEcgn9BXhTMIo+v12HNLrGvRMb8KpiBt6CWbQJc9gsgdMBs1ni06ButZle0Rax4EkGuP+AzGVKVpC+tUt6anghNJyC+acQf4L/te8PJs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GmvKD82R; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C92BC4CED1;
+	Mon,  2 Dec 2024 10:31:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733135401;
-	bh=LuFsk7gRGBuCuEnZFd0Z5kjf8SQVkInCv2kWohtubqk=;
+	s=k20201202; t=1733135493;
+	bh=+mpPAO8B1YWkkS4hc0ma/RFGnsazCjxU8SUCwb3i4kA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ikhjkACihn+xC0pbMrkkFlVcoFHZag2jhTZJ60iU9/et26klYWxrv6eJdU74GDyaS
-	 1apJVYRRuCyNDXXFgLyvs+WnpF0dEoKpKIOVGWeAJOy14chBW62C8/R3gENIsKDTbx
-	 QbxjcJdo4B6qpc9vxFtICOsIl/vrayaE4Sc1wutLTBNNXN1dljAviJRqJCLY3EtN/y
-	 pOl+9lP5qnsQ3bzb5E6+8Eu9/YK1Sj+l5c1kxj92uwNjUYWACBwd14naoJqk6z+f6L
-	 mVB9tX5qnByqNqTbi+YsXOM5vZkKwqq2PNQvZlPIXHSoo2K2b4sOwufxkmJGIsf2mh
-	 ZDujRu2/s69QA==
-Message-ID: <b7e4162a-a7f7-462d-9dde-121eeb59d148@kernel.org>
-Date: Mon, 2 Dec 2024 11:29:54 +0100
+	b=GmvKD82RAOOTGrv+jD6bmZcxqIFZIAfdUwExOimWdCy2FBqm8Q6i8Ddxugyjz0iUe
+	 u273R15tmV+S3bZ1V0oJTFSjIQcBukDvNN64ce5lTEU8GA2oAlQLQZFGiTMeHEu1vF
+	 h+7lZ9YCs2HSZYVVoUtigqhJ2lDhrgXGFDEmXHJCArxBQMZvgFvq5+0FBjGxAQabK6
+	 VLpYNGUOyUXUveH2oet7ztAE33mr3cLRMQxCFCyFcUxtPZgYbPDjc87/jsr7XHH6pf
+	 MWaHgKLxqrJ+8py5cOkYr5OCvl/YUY9C4c1+ucU9jDrCcrBfxUEdXBthlx0vK9WpQO
+	 Oy+HH2D+8Lf8A==
+Message-ID: <ab06e590-f113-459d-80b6-28136a79e10d@kernel.org>
+Date: Mon, 2 Dec 2024 11:31:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 9/9] leds: max77705: Add LEDs support
-To: Dzmitry Sankouski <dsankouski@gmail.com>,
- Sebastian Reichel <sre@kernel.org>, Chanwoo Choi <cw00.choi@samsung.com>,
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>,
- Hans de Goede <hdegoede@redhat.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
- Purism Kernel Team <kernel@puri.sm>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-input@vger.kernel.org,
- linux-leds@vger.kernel.org
-References: <20241202-starqltechn_integration_upstream-v9-0-a1adc3bae2b8@gmail.com>
- <20241202-starqltechn_integration_upstream-v9-9-a1adc3bae2b8@gmail.com>
+Subject: Re: [PATCH] media: dt-bindings: sony,imx415: add required clock-names
+ property
+To: Michael Riesch <michael.riesch@wolfvision.net>,
+ Matthias Fend <matthias.fend@emfend.at>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20241130141716.1007115-1-matthias.fend@emfend.at>
+ <bh3obpt6bcklejdvrk4r6ienraz5zmhrdyotijhvlwexussqgj@hicmx34vi27w>
+ <f088a247-8049-49a7-bab3-5b517cb0c531@wolfvision.net>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,89 +110,34 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241202-starqltechn_integration_upstream-v9-9-a1adc3bae2b8@gmail.com>
+In-Reply-To: <f088a247-8049-49a7-bab3-5b517cb0c531@wolfvision.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 02/12/2024 10:48, Dzmitry Sankouski wrote:
-> This adds basic support for LEDs for the max77705 PMIC.
+On 02/12/2024 09:18, Michael Riesch wrote:
+> Hi Matthias, Krzysztof,
 > 
-> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+> On 12/2/24 08:56, Krzysztof Kozlowski wrote:
+>> On Sat, Nov 30, 2024 at 03:17:15PM +0100, Matthias Fend wrote:
+>>> The imx415 driver expects a clock with the name "inck".
+>>> Document this in the bindings.
+>>
+>> No, fix the driver instead of bypassing review. It was decided to drop
+>> it during review, so you cannot reintroduce it 2 years later claiming
+>> that's now ABI. Of course original submission was buggy and never
+>> tested, but that does not allow review bypass.
 > 
-> ---
-> Changes for v8:
-> - join line where possible to fit in 100 chars
-
-
-Coding style asks for 80. checkpatch is not a coding style, unless this
-came from maintainer's review.
-
-> - change comment style C++ -> C
+> Just to make sure I am on the same page here: Between v2 and v3 of the
+> IMX415 submission the clock-names property was dropped. At that point,
+> we should have changed the acquisition of the clock from
+>     sensor->clk = devm_clk_get(sensor->dev, "inck");
+> to
+>     sensor->clk = devm_clk_get(sensor->dev, NULL);
 > 
+> Is that correct/the proper fix?
 
-> Changes for v6:
-> - change compatible suffix to 'rgb'
-> - remove I2C dependency in Kconfig
-> - remove copyright and author from 'based on' header statement
-> - replace MFD abbreviation with PMIC
-> - MAINTAINERS: alphabetic order
-> - max77705_rgb_blink: replace ternary operators with if..else if sequence
-> - max77705_rgb_blink: move hardcoded numbers to constants
-> - max77705_led_brightness_set: move ret to the bottom
-> - s/map/regmap
-> - replace device_for_each_child_node with scoped version
-> - s/rv/ret
-> Changes for v5:
-> - use same hardware name in Kconfig and module descriptions
-> - remove copyrighter owner from module authors
-> 
-> Changes in v4:
-> - inline BLINK_(ON|OFF) macro
-> - remove camel case
-> - drop backwards compatibility(new driver)
-> - drop module alias
-> ---
->  MAINTAINERS                          |   1 +
->  drivers/leds/Kconfig                 |   6 ++++++
->  drivers/leds/Makefile                |   1 +
->  drivers/leds/leds-max77705.c         | 167 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
->  include/linux/mfd/max77705-private.h |  18 ++++++++++++++++
->  5 files changed, 193 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-
-
-...
-
-> diff --git a/include/linux/mfd/max77705-private.h b/include/linux/mfd/max77705-private.h
-> index be781a0f9802..2140693ce747 100644
-> --- a/include/linux/mfd/max77705-private.h
-> +++ b/include/linux/mfd/max77705-private.h
-> @@ -35,6 +35,24 @@
->  #define MAX77705_SYSTEM_IRQ_SYSOVLO_INT	BIT(5)
->  #define MAX77705_SYSTEM_IRQ_TSHDN_INT	BIT(6)
->  #define MAX77705_SYSTEM_IRQ_TM_INT	BIT(7)
-> +/* MAX77705_RGBLED_REG_LEDEN register */
-> +#define MAX77705_RGBLED_EN_WIDTH	2
-> +/* MAX77705_RGBLED_REG_LEDBLNK register */
-> +#define MAX77705_RGB_DELAY_100_STEP_LIM 500
-> +#define MAX77705_RGB_DELAY_100_STEP_COUNT 4
-> +#define MAX77705_RGB_DELAY_100_STEP 100
-> +#define MAX77705_RGB_DELAY_250_STEP_LIM 3250
-> +#define MAX77705_RGB_DELAY_250_STEP 250
-> +#define MAX77705_RGB_DELAY_500_STEP 500
-> +#define MAX77705_RGB_DELAY_500_STEP_COUNT 10
-> +#define MAX77705_RGB_DELAY_500_STEP_LIM 5000
-> +#define MAX77705_RGB_DELAY_1000_STEP_LIM 8000
-> +#define MAX77705_RGB_DELAY_1000_STEP_COUNT 13
-> +#define MAX77705_RGB_DELAY_1000_STEP 1000
-> +#define MAX77705_RGB_DELAY_2000_STEP 2000
-> +#define MAX77705_RGB_DELAY_2000_STEP_COUNT 13
-> +#define MAX77705_RGB_DELAY_2000_STEP_LIM 12000
-> +
->  
-
-No need for multiple line breaks.
+Yes, because driver could simply not work. It was never tested, after
+the change.
 
 Best regards,
 Krzysztof
