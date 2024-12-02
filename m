@@ -1,394 +1,268 @@
-Return-Path: <devicetree+bounces-125995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125997-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2E639DFDBA
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 10:49:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 353D79DFDCD
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 10:52:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5E2C11629B5
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 09:49:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E5A73163221
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 09:52:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56D7A1FDE3E;
-	Mon,  2 Dec 2024 09:48:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E77AE1FBC8B;
+	Mon,  2 Dec 2024 09:52:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="I7BCR6/J"
+	dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b="hjpmb72G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2044.outbound.protection.outlook.com [40.107.22.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 245021FDE1A;
-	Mon,  2 Dec 2024 09:48:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733132900; cv=none; b=lOaQ7PuO7kGPCestd4iu+m1UiIJGaG9nmduxdH9WgWhLtPBgQ+2FdT94uGzk0VZKBYAMxGyGNRo65RYP0YpBhghCZY6SFp6wRvoXVtVXS4/VcctDOEXuHtmCaLxLmqmUAJCI5sKr7wfyRiuw7ZvItKUzSuSSeVxGg4b4kAMSl5M=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733132900; c=relaxed/simple;
-	bh=nNKdt6aAQ4O8gBwlr5BJKCp3j+YjqzXknQ+peKB2yLI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=jp3nJaISAMrp5WxDVa75wwEB3FQm0NsL93KCtPcR42624cctiflqjxozYX+96BRvpff2yACn1J5qR+X97K/E5GywIWKjQOb1NMrqIeitvDdyMPfQ0jzAArwSUQIbh9GheouuqWQHa51cJTHz1YXCo0pHhfFkaEjBKCXM9CUmpx0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=I7BCR6/J; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-aa5366d3b47so658983666b.0;
-        Mon, 02 Dec 2024 01:48:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733132896; x=1733737696; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7LBTuoCDOxxqO2y3YAKj2vln0gXaFFLFmx9hGGgry74=;
-        b=I7BCR6/JorJiUQBCeQOLi9aerEJyRZPtO2yg74ByHkP/zrFkojUiBPjdO6VxdGZlyt
-         Zv22/G392VPKV7knFn2f8Xkl7G4VpL4Lps/gJ7K2UGPQL8u4FxXEHcnjM1/fod7IAnie
-         ijPV9+DynSMcK/UOi4c14LZcxncNhLW2djQrRkKkbnCIow5xW6yPPKcG8vJNxBbn/uG4
-         waxCEziGUc3Pyrj4nK/aVxY23VfIY6cg1Lgt1VwPQ1oiMCtCrFJqLgsCSaOkPuLO2ae7
-         a9oS4ryGs0rVMd+7GJzbJyDYSL/6pnMhqe0E7liCI/fq1bBwTD3qoY6I6K9KZCgEh8KI
-         L9Qw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733132896; x=1733737696;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7LBTuoCDOxxqO2y3YAKj2vln0gXaFFLFmx9hGGgry74=;
-        b=TxHTRn/TsrRYk6/wlodrYzobX6oFUFs/MupgfpSJ0keMHEKOgRF3eHkgLWCaeHruLX
-         FqbHKp1WIPGCjTq1XLFRXRDdAFwFE7A14wckzaSiAfNXkRRTDB+v2ZI+M1A/jbwVZYyA
-         7hw6HO7Cy6dRcI+8Q0CCljwNGXvrIwJ3zhUqli3sswCGEuQGYFM/zU1RakCjrmXGWdHX
-         eyoWI7G3Xlb5KYI09Perkh9/Nw4boOnRVFMlrI8iXe6sAHtrRH1WaiRV0jkRlgjNKDAe
-         teoFjQ45n1xj7e35m7qiq6T665cPnZtT3/Nz/roN4tSBWjbm0vB27enMQT3ChOcl2SHU
-         6Zwg==
-X-Forwarded-Encrypted: i=1; AJvYcCUO+e8Fs5Ozk3u3DOp1u/jWti4bwQJ3XxDjXU7MqGCtdNGVgZi53nGGuM6RNwzKDIow8XVnyEpZ7CUB@vger.kernel.org, AJvYcCUmFSaICuR2uLg1jzFlCzIUep7T553g3bLTMo1ddGXRuJh2/ht5Y6SME2++vxE8sMLK5EtkWioBTAEzFw==@vger.kernel.org, AJvYcCUvmyMlYl9pf1+Gr95rxVcfouJCCZNcTcztw7+iRLz5nOz18BailVwstSBuLhfUQ1grOMf2gk+nEnmJXjgN@vger.kernel.org, AJvYcCXvZw5kseB8T6fkP88ktw05K+i4yZEF9ee+VQeBF8hN5gY/FF5jIy3CUvkQPW9OCBt+fdhEyY3VSyQ7+BU=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzBkob99VrBUDWqNavejnHRn4u+hahEgqLySrXqbOhUlXaEs4Yn
-	+dMVmCFMKCgn0iRM1ncUdDAani8GQPWbjBlmAo0n0NPJSOe0EwGrYraZMJGw
-X-Gm-Gg: ASbGncsaVI4fHIHL1qUlKdIfv1vbuUeViwUPwuqWXuCBygwblq1wnz4jG8TFlIkr6ce
-	GJ1sqjDB4Kl6z0LPJmWkFaUQYYSgaERXERM2gWYHArq8R8/ddP3MZvx9OU2oIjyUdZrPll5lDzn
-	D8Gnsu1m1EYv9+rl6c8mcCDYGzvoRsOxLuiMOhfNaBdW2ui06BSg11mmM/lXZfRMXLz79v4OW4H
-	xfx1cQ3VrlHqzrmKCLg5wD1m+ErrMTjyiJB5UcwoHX8HfiX
-X-Google-Smtp-Source: AGHT+IHsaeJj8mT7GOA42WhtBau+dDuXWqOnDvfQuTAh9WNbaNkUzyrQhibpZTRFojC5RUS0VNNy/Q==
-X-Received: by 2002:a17:906:329b:b0:aa5:241a:dc75 with SMTP id a640c23a62f3a-aa58103b03amr2068889466b.41.1733132896299;
-        Mon, 02 Dec 2024 01:48:16 -0800 (PST)
-Received: from [127.0.1.1] ([46.53.242.72])
-        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-aa599957594sm487059766b.197.2024.12.02.01.48.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Dec 2024 01:48:15 -0800 (PST)
-From: Dzmitry Sankouski <dsankouski@gmail.com>
-Date: Mon, 02 Dec 2024 12:48:02 +0300
-Subject: [PATCH v9 9/9] leds: max77705: Add LEDs support
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDA621FA84A;
+	Mon,  2 Dec 2024 09:52:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.44
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1733133135; cv=fail; b=PFHI3dO4BgWmSby0piW/8klMLTckW/Cq7pnBLuPZhx9psloW5gXtpWWaPT1C7e0j2as1m2JZly60xQu+jxTO1eEtDN/n8XEhnTTZs9ONlZnS/vQgxm9q664aW80YD+qX+AzNxHYDtF141EMPKKOL8Fo2INQp+u4Ivke87fLQ228=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1733133135; c=relaxed/simple;
+	bh=D+BHw0IDSXF5JgwguJUv9ax1ADYkVydGsEKJ7AcnxQ4=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=JBo4KM2OEzZKe+OTC4zDWec1SmJXvTRd1xFkrcSLvU2ziAw7EM+XLqKPk1NYcoxgKN0BkXZdGYRkJPC5af7YnNdokmeKA45Ea6Zcje5rPY8XlxD5VRT4iguLD9edfI0xOtmEVtJ3u5yAKXC4uMF273Jv6uPb8E8Gy2ks2RYOBAk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de; spf=pass smtp.mailfrom=cherry.de; dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b=hjpmb72G; arc=fail smtp.client-ip=40.107.22.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherry.de
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=FbD93iO6SxQ5zQQqaNKty4LbbGCWwxkL/b6t9Q0XOqp6lMR2MnoLLN3W1aq1VAf6B75uXJ/QTtmZazUKj85EEyadd96D2JLRskQGa0plCsbmyljZyuAGcytR7WFCsPDGzQ0cL3ZNQruv5SsEOPGrOMj15JWxKgftQQ6QGCDZzAclx+fSK4ZvcgOc6XgwOShx9o4Nh7b0uk8qx88LwLzXHtz+TNIYzp40wn81bmLi2TkWckvLqlkAknB9oShIbLFb3fuygIqReoBvwwd+oHOvzLh7Nbi2DOhEXLagxri6h2q4pL5+4vZZGkAWtY4+7FTfSRoC1TLOsxQubAM2jAjAKQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iXgz+7R7UFZOhCrpab9KPYwxBnwB9NGWrEa1XDoD6y8=;
+ b=ThJaZsHXSMT+yYY1tB6pDPrMgCJndu4Zc3nlEHcJC6mdh4Bvj7FjMeG2htPlS7rcxiYaKub6/wTEw80j0kfymGi5RQ0LI+mkFbddj+tYfm4lG3/MNyv6OZS5id/hUU+/d/OVLxGJT0i4GMSTXjMImW4u9O0I6xLQmbv+vA7kxoHdkBaHuLe0DMbqeSiUqaVEXCSZzKgHBrdVUYfIiCEXAvwtFgPD0i3WvB1emTFKnFnB3XHI8SwQEPyi3dkLEl2T3KgfsOOorQELADv0YX3/zegMklbLluNIfWcIZtB2qKHZqu/ePaKjttnA6pC6LPtsHjBgvgu8g86v/v8LViDf0g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
+ dkim=pass header.d=cherry.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iXgz+7R7UFZOhCrpab9KPYwxBnwB9NGWrEa1XDoD6y8=;
+ b=hjpmb72GKtbdBr8xsC7cdBh73uJRjoOWgrIUioN/cyjrDfvk43qGAd5GSbpVz58PNk9CWlkQdzpzz2DdYNYkcbeQNgvoWfUVmnGZRZFAkYwLf++J0EiBVpelsMnp8plkZrD4J8Gx83THTHLSGav/hCNxoFmsxsmheyGSzbDT7Go=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=cherry.de;
+Received: from AS8PR04MB8897.eurprd04.prod.outlook.com (2603:10a6:20b:42c::20)
+ by VI2PR04MB10764.eurprd04.prod.outlook.com (2603:10a6:800:271::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8207.18; Mon, 2 Dec
+ 2024 09:52:07 +0000
+Received: from AS8PR04MB8897.eurprd04.prod.outlook.com
+ ([fe80::35f6:bc7d:633:369a]) by AS8PR04MB8897.eurprd04.prod.outlook.com
+ ([fe80::35f6:bc7d:633:369a%7]) with mapi id 15.20.8207.017; Mon, 2 Dec 2024
+ 09:52:07 +0000
+Message-ID: <63b3be80-cb6c-49e5-858f-70fd826140c5@cherry.de>
+Date: Mon, 2 Dec 2024 10:52:06 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: rockchip: increase gmac rx_delay to 0x11 on
+ rk3399-puma
+To: Jakob Unterwurzacher <jakobunt@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Sasha Levin <sashal@kernel.org>,
+ Iskander Amara <iskander.amara@theobroma-systems.com>,
+ Jakob Unterwurzacher <jakob.unterwurzacher@cherry.de>,
+ Vahe Grigoryan <vahe.grigoryan@theobroma-systems.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20241202090408.201662-1-jakob.unterwurzacher@cherry.de>
+Content-Language: en-US
+From: Quentin Schulz <quentin.schulz@cherry.de>
+In-Reply-To: <20241202090408.201662-1-jakob.unterwurzacher@cherry.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR2P281CA0028.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:14::15) To AS8PR04MB8897.eurprd04.prod.outlook.com
+ (2603:10a6:20b:42c::20)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241202-starqltechn_integration_upstream-v9-9-a1adc3bae2b8@gmail.com>
-References: <20241202-starqltechn_integration_upstream-v9-0-a1adc3bae2b8@gmail.com>
-In-Reply-To: <20241202-starqltechn_integration_upstream-v9-0-a1adc3bae2b8@gmail.com>
-To: Sebastian Reichel <sre@kernel.org>, 
- Chanwoo Choi <cw00.choi@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>, 
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>, 
- Hans de Goede <hdegoede@redhat.com>, 
- Marek Szyprowski <m.szyprowski@samsung.com>, 
- Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>, 
- Purism Kernel Team <kernel@puri.sm>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
- linux-leds@vger.kernel.org, Dzmitry Sankouski <dsankouski@gmail.com>
-X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1733132883; l=9372;
- i=dsankouski@gmail.com; s=20240619; h=from:subject:message-id;
- bh=nNKdt6aAQ4O8gBwlr5BJKCp3j+YjqzXknQ+peKB2yLI=;
- b=lqOL710ADYdroNvivLFtJqxDW/B2k0YIEfUdTW1AoSgfn6y4OztdCSKy404OknY/71n9B739U
- SmwXihpZKFcDE83MuGFeiDdNsMETjse/ldrlO+TaBki7RoBzSq0Vn3i
-X-Developer-Key: i=dsankouski@gmail.com; a=ed25519;
- pk=YJcXFcN1EWrzBYuiE2yi5Mn6WLn6L1H71J+f7X8fMag=
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS8PR04MB8897:EE_|VI2PR04MB10764:EE_
+X-MS-Office365-Filtering-Correlation-Id: 930ebb99-24b3-44dd-b6d1-08dd12b6fb96
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|7416014|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?Z0xWWktmMFFKbDBkZUt6YXIrcGRtY1NkQStQbzZrSUpGdHc4S3B5K2xhQjZ3?=
+ =?utf-8?B?NkRZeDJEdjBMUGtpZGdUOC9kNXUxQmxKdStiM2RXTlhCbVF6VHRTejIrZzA1?=
+ =?utf-8?B?YlBiRlpubDArY3RUWFJGV29VZFJVbEtKQ3hUM1grNkRDZ1RtM1ZuWjZyNFV3?=
+ =?utf-8?B?NFk1b1hCNjMxUE9mVVBEMXk4NXJETSsweFM3Zm9LMmNzODJ2aFkzVmkwYmZn?=
+ =?utf-8?B?cVVPZ3dodEoxS09ZZTJWVDJHOTNzN3Ezdk5JYVBYU3dLRFo1WEFTUjBIYTdZ?=
+ =?utf-8?B?R0dReHlxaVNXUWRjbzVZdzk5bHRHR3piaVAwWkZUTDNvbDVxVno4L0x2cVlD?=
+ =?utf-8?B?Undla0IwOHIrOXZxdHlrMXE4dlArd2dlbmRYWFNSVGI1ZmJ5VnptQ2laaElk?=
+ =?utf-8?B?Y3hKSzdZNUp5VkpCREhINlc3aHZoWHhFaERDRkdTZlM3L2tqUEJlS1lhaFJL?=
+ =?utf-8?B?RWtKRzJNSktXblpZZm9teHE5U0cxSVdzQ1A5N2g3U2pPcW9Ld3ZpZ2VkOUx6?=
+ =?utf-8?B?L05WZzBoNkFQbWxjRlB0Tk1yK3ZsQlhFdG50Nk5zK21vQWlHNlYramZSNEl2?=
+ =?utf-8?B?TjltRWpOR0xBUGE3QUdWZnlmU2t0ZlV4WlVGSE1zYWg5cUgrQUd4K3FGMm5J?=
+ =?utf-8?B?b2tYczVRZzNiR2F3Z0VHaURFQVFGY2J0aURYVGxHaFArR2syangyM3JCOHJj?=
+ =?utf-8?B?eUVzSWxCWVNOTDFkMG03cHlyL1lpWEFDSHBaaUp0S2JFeHRRdllRM05yMENL?=
+ =?utf-8?B?NVlqdmE2dWNNaG9VUzZlZDJIMDMzeENQMjZjYkRJaEltVnMwYVZxM2VmQUQ3?=
+ =?utf-8?B?bjNjNTJUV09CRUNBNy9ERVlXRFg5NHdsVXgyRjhhbDVibjJhbGFYZmRvRW1J?=
+ =?utf-8?B?WHgzTU1OMUtjb2ZadnpFa3lPK2VTL0U4MlI4eTloOEdZV2ZoN2o4WjZvdWFi?=
+ =?utf-8?B?VzY2QjNWTDB5dG1EM3VNUDBzcERRdmM3YUdhSWxtaExPUkszWWRFSHUyclBa?=
+ =?utf-8?B?RXRFT2RUOHdGYnpuanRIM3M1Yjl5S3ZtVFNaTDBFQlBzTTRhbjJmYURUOTlk?=
+ =?utf-8?B?ZHdMdVYyeWZNL0tUV1l4SHI2WXk0VmlLM2U3K3JIbDlZNytuSHRXMXpRN1h0?=
+ =?utf-8?B?dG1VMFovVC8xclUxVWFqeW9TZzVJQUtGR1g1WHVQbDBmZFBrdFptVzFEQzhp?=
+ =?utf-8?B?OTBMY2FKWEc3THY2SEgzTkR2a0NHNjRXRDNHMFd3VjBscjlmenU1ZFF6bWYy?=
+ =?utf-8?B?L3l2R3p6MEt5Zk5zeHg3TnNOU0dmeEcxaW0vQlZOd1hJcDBtNWNpd2xvdHVZ?=
+ =?utf-8?B?RDN4NFVwWGxVYXVqTjArQW1KNGt5M3dIK1hjM1JQNTdrNFU4bFA0YkJMbmdv?=
+ =?utf-8?B?NEJrMklpTU12VVBPYUNuTXBoWmdqUjN3U2V0VTFWZkNVVm16N2J6S0owcTQ2?=
+ =?utf-8?B?UUswRWFlRWVRaTAzZURYcVIrYlBUUFJDOTBNYmlxTWNsdUFaY0ZCNk5Eak1Y?=
+ =?utf-8?B?KzhBdU9URG5mOERiQnBrV2puc09ZSkNrTlpGQjBvYlQvTldqL3RiQTY2R3Y5?=
+ =?utf-8?B?MXpkRzdkREFReHd6SGlGaWZycTU3aTFLOWh2YjJXOFpnUjRaRERYTHc4elF3?=
+ =?utf-8?B?Y0M0bkloRWpFZmY4V0tkc3oxeU5LUTJseUo3NW9YNWVQVDdhanVaNmtCSzdP?=
+ =?utf-8?B?WlN1a0VDblNIeW8xaEQ5b2pjWkVBZnhlVXB6RFJHSUZ2dUFIQnZ2ZXRFc293?=
+ =?utf-8?B?NUVRai9oc0RGNklHODVWZkhxU1lXdnd3NGxLSTlMZ2hNY3phajFpWmtFOWpI?=
+ =?utf-8?B?RjhReTVRdjBtdUlORGJiUT09?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8897.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?TEl0cFJCT2VDcDZGYnhXNzFjMWFBVTBuRW5JTDFPZWo1WnJhNnE0TDQ2dC8x?=
+ =?utf-8?B?VEJsUjdweUtIQzVjMHlGeW0wb0tLZlJqRUc1eStIZzBKeWJqNWYrTi94R1g4?=
+ =?utf-8?B?eFd1UTU2enRrcTIxSWJqZXc4c211VjI0QTg1eUFrZC9lQmcwNEpib0c2L2dO?=
+ =?utf-8?B?Z2cyZ01EV01LQUw4WkhSSENtTXZOcWpCajhHbkdQNS8rZWw2cmNrQlZDalZH?=
+ =?utf-8?B?Ky9Ga3c3TlI0TlhDNkZzVnVQRGRBVGJSWlRIbUtrczY5SFNrL3ZnRGhWaEhN?=
+ =?utf-8?B?L3ZKMXdPbnE5b3NsOVYyQzJ1alk2MEtsRDVaM2t1M2c5UWRSMHlTdmpvZVhJ?=
+ =?utf-8?B?S01DN3BkWEN5M0RNQUpSS2dQWGNuMWw1VUhRTVVYM0tQUlhHRUdkWE5kT2pz?=
+ =?utf-8?B?NFhGT00vRmozV3h3Y3ZvbmZ2SVJmMFNnZlFobzFVb1hyMGROSnF2Ni9JcW15?=
+ =?utf-8?B?RXEzUjZMeWkwelEvRVpJckpiaENuNWFWN3Jvb2VYNUJGb0tIdG5HY0pPZ2t4?=
+ =?utf-8?B?ZUQ0Rk9UUUFwalNyMlY4OXJOWDJtVEI4RS9qcDJrMlVsdXhtNUM1QlNtUnhx?=
+ =?utf-8?B?NzVjSjNOVFlwWUlmRU1USHZOcWsxaEZURlVrOStQMnFIU01SYmtPckFnTFF6?=
+ =?utf-8?B?K1E3RWRuQVdyK1BLRXdaVGhvSzAxakltZGwvWnVlSXY3YnZ1VWRlZk0vQ0NZ?=
+ =?utf-8?B?ZWdVbnBVSVRKR3J6UjFHck5uL2ptN3VCVEQ5TW5DUGpQR2FFbExUTXFWbmRR?=
+ =?utf-8?B?akFNcVdIY2hjRDZHeXV2TzhPV1VlNURqUFduampJWGdpc3NiNU1BL0tROENq?=
+ =?utf-8?B?cDhIRis3N3NrYjluRjRjbTJibkZiRnZVempnZXdlUEtBemQ5MXgwbnB2Yk92?=
+ =?utf-8?B?THV3RTlhL285RVNhUXd2WGQ0Y0RnUTNrZUxSamg2c3VDNnQvMll0cm04SXpF?=
+ =?utf-8?B?M1NUWlVoQVV3bU1VaFRXc3RyN1U3czFpMlI3TzBuMndhNkFyZGdKdTQ4QnVn?=
+ =?utf-8?B?Z1pUd0xkQ0w3WC9OanRKek16VVVwRk01VlNsZmpGZDVSS2trTWZqdUpsbmcx?=
+ =?utf-8?B?OFlvNEs5L3pFRDFMTUNUSTlBeG5Rb1J0aHM0eDQzZkNtTkx3VXJ0YXJQSzV2?=
+ =?utf-8?B?M2tzRHRxVyswNzJGaFRtK0tjU0hGMGFDTkN1eVNUeWJhd0FqanJZUlIxZkpn?=
+ =?utf-8?B?M0U1WEF0MDBTcldaSm1DbDZQT0Z6N2t0ZHd3bWd0dWVYd3RhVzJZck9GWGc5?=
+ =?utf-8?B?MUdJTy9Zc2w2a2w3cFZTSVlRcG5pMjhUeTVWNHpGK2tmWHRrTjlXUGU2SmJE?=
+ =?utf-8?B?ZXpkZ1ZxejNOMkRRL3pjRzBxWkVZZVdZRzB4azRVSlZoOTJ5SVpQOC9vMjBz?=
+ =?utf-8?B?K0tLNFZSS096bXRzNUdTV1NLUHBWUHRnQjVITFJZU0JOQlE5NFE0VXVNd2RS?=
+ =?utf-8?B?RXZIV21lTVN2MzM1cUFPNy9MQ0JxRGlKTGN5cnVaZFpHZWNqM0VhenVKRVZD?=
+ =?utf-8?B?bHQvWW50VGhxeVlhOVVaMUtSMXQ0M24vaGpHWlRWNnh4MklBcmV0Q3dRRlFQ?=
+ =?utf-8?B?MnovcHRMR3lFTkovendMWEd3cm52azhacTVHYXRFbEtYTzFINlBnOHc2cEdE?=
+ =?utf-8?B?S2dKS0s3SG5QM2VzWm9ic2hwaGRVb21nblBQeEpDVjlRSExUZUlobFc0QW11?=
+ =?utf-8?B?cDBIRmltK3NEQ1JrZlc4Njl5L25BdEtHSS9IZnh6ZHJVeWxnVjhwUzhaeVBI?=
+ =?utf-8?B?NHNJRTlXWFZLeDV0TXk0UHhRVU9nZTQ0MTZyMjROZE0vNWdubFdiSXBVNnF6?=
+ =?utf-8?B?d2piL0c1TE1LTU5qZFNhTWcvQWlyZWczSVpHNXFCQUNuNFBKWThxWDhKcmJw?=
+ =?utf-8?B?UEpxOXlleUh1ZGE1SkJ5R0k5YWhQRlQ5MTkrYUVoSm1lb2VzUjFxK3JXT3pZ?=
+ =?utf-8?B?V0xjemNLdlNXL3ZaNnluUlh1ak82b2drdmlMOWN1YUFud0dxd0lOUTJKeXpE?=
+ =?utf-8?B?cXlVaUdHV3ZBL0h2V0hXRFNhYmdHRkhaaC83UWVhN3F2ejdhL2VoSmU5R0lT?=
+ =?utf-8?B?eWlRaHhqRjdhemZoaEU4SkZTK1hNWk5NTGlyK1U3WG9RTERZdnh4Q1QrSnRX?=
+ =?utf-8?B?L2R0eFhObHR3cnB6Z1d1enFrRkNmaXoyTnpyVzRtT3lFQ082UlJZb3BHVm5F?=
+ =?utf-8?B?Tmc9PQ==?=
+X-OriginatorOrg: cherry.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: 930ebb99-24b3-44dd-b6d1-08dd12b6fb96
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8897.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2024 09:52:07.2182
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: agHZADi1Yqoes5pBEYUEOQxoB68VWfukLfDdgdqb5Er9ooCjfPHV2HzMuhPWBWq2bJgWTe9MASkKwCqig8k/AocwAJs5WIBP5FS3fPcyir8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI2PR04MB10764
 
-This adds basic support for LEDs for the max77705 PMIC.
+Hi Jakob,
 
-Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+On 12/2/24 10:04 AM, Jakob Unterwurzacher wrote:
+> During mass manufacturing, we noticed the mmc_rx_crc_error counter,
+> as reported by "ethtool -S eth0 | grep mmc_rx_crc_error" to increase
+> above zero during nuttcp speedtests.
+> 
+> Cycling through the rx_delay range on two boards shows that is a large
+> "good" region from 0x11 to 0x35 (see below for details).
+> 
 
----
-Changes for v8:
-- join line where possible to fit in 100 chars
-- change comment style C++ -> C
+Is this missing a "there" after that? "that there is a large good region"?
 
-Changes for v6:
-- change compatible suffix to 'rgb'
-- remove I2C dependency in Kconfig
-- remove copyright and author from 'based on' header statement
-- replace MFD abbreviation with PMIC
-- MAINTAINERS: alphabetic order
-- max77705_rgb_blink: replace ternary operators with if..else if sequence
-- max77705_rgb_blink: move hardcoded numbers to constants
-- max77705_led_brightness_set: move ret to the bottom
-- s/map/regmap
-- replace device_for_each_child_node with scoped version
-- s/rv/ret
-Changes for v5:
-- use same hardware name in Kconfig and module descriptions
-- remove copyrighter owner from module authors
+> This commit increases rx_delay to 0x11, which is the smallest
+> possible change that fixes the issue we are seeing on the KSZ9031 PHY.
+> This also matches what most other rk3399 boards do.
+> 
+> Tests for Puma PCBA S/N TT0069903:
+> 
+> 	rx_delay mmc_rx_crc_error
+> 	-------- ----------------
+> 	0x09 (dhcp broken)
+> 	0x10 897
+> 	0x11 0
+> 	0x20 0
+> 	0x30 0
+> 	0x35 0
+> 	0x3a 745
+> 	0x3b 11375
+> 	0x3c 36680
+> 	0x40 (dhcp broken)
+> 	0x7f (dhcp broken)
+> 
+> Tests for Puma PCBA S/N TT0157733:
+> 
+> 	rx_delay mmc_rx_crc_error
+> 	-------- ----------------
+> 	0x10 59
+> 	0x11 0
+> 	0x35 0
+> 
+> Signed-off-by: Jakob Unterwurzacher <jakob.unterwurzacher@cherry.de>
 
-Changes in v4:
-- inline BLINK_(ON|OFF) macro
-- remove camel case
-- drop backwards compatibility(new driver)
-- drop module alias
----
- MAINTAINERS                          |   1 +
- drivers/leds/Kconfig                 |   6 ++++++
- drivers/leds/Makefile                |   1 +
- drivers/leds/leds-max77705.c         | 167 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- include/linux/mfd/max77705-private.h |  18 ++++++++++++++++
- 5 files changed, 193 insertions(+)
+This would be a candidate for backporting I believe.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b269d0456da3..7a21e871ba7c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14188,6 +14188,7 @@ F:	Documentation/devicetree/bindings/*/maxim,max77693.yaml
- F:	Documentation/devicetree/bindings/*/maxim,max77705*.yaml
- F:	Documentation/devicetree/bindings/*/maxim,max77843.yaml
- F:	Documentation/devicetree/bindings/clock/maxim,max77686.txt
-+F:	drivers/leds/leds-max77705.c
- F:	drivers/*/*max77843.c
- F:	drivers/*/max14577*.c
- F:	drivers/*/max77686*.c
-diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-index b784bb74a837..27ce55b32543 100644
---- a/drivers/leds/Kconfig
-+++ b/drivers/leds/Kconfig
-@@ -753,6 +753,12 @@ config LEDS_MAX77650
- 	help
- 	  LEDs driver for MAX77650 family of PMICs from Maxim Integrated.
- 
-+config LEDS_MAX77705
-+	tristate "LED support for Maxim MAX77705 PMIC"
-+	depends on MFD_MAX77705 && LEDS_CLASS
-+	help
-+	  LED driver for MAX77705 PMIC from Maxim Integrated.
-+
- config LEDS_MAX8997
- 	tristate "LED support for MAX8997 PMIC"
- 	depends on LEDS_CLASS && MFD_MAX8997
-diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
-index 18afbb5a23ee..096bf244527d 100644
---- a/drivers/leds/Makefile
-+++ b/drivers/leds/Makefile
-@@ -60,6 +60,7 @@ obj-$(CONFIG_LEDS_LP8860)		+= leds-lp8860.o
- obj-$(CONFIG_LEDS_LT3593)		+= leds-lt3593.o
- obj-$(CONFIG_LEDS_MAX5970)		+= leds-max5970.o
- obj-$(CONFIG_LEDS_MAX77650)		+= leds-max77650.o
-+obj-$(CONFIG_LEDS_MAX77705)		+= leds-max77705.o
- obj-$(CONFIG_LEDS_MAX8997)		+= leds-max8997.o
- obj-$(CONFIG_LEDS_MC13783)		+= leds-mc13783.o
- obj-$(CONFIG_LEDS_MENF21BMC)		+= leds-menf21bmc.o
-diff --git a/drivers/leds/leds-max77705.c b/drivers/leds/leds-max77705.c
-new file mode 100644
-index 000000000000..29db23702231
---- /dev/null
-+++ b/drivers/leds/leds-max77705.c
-@@ -0,0 +1,167 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Based on leds-max77650 driver
-+ *
-+ * LED driver for MAXIM 77705 PMIC.
-+ * Copyright (C) 2024 Dzmitry Sankouski <dsankouski@gmail.org>
-+ */
-+
-+#include <linux/i2c.h>
-+#include <linux/leds.h>
-+#include <linux/mfd/max77705-private.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+
-+#define MAX77705_LED_NUM_LEDS		4
-+#define MAX77705_LED_EN_MASK		GENMASK(1, 0)
-+#define MAX77705_LED_MAX_BRIGHTNESS	0xff
-+
-+struct max77705_led {
-+	struct led_classdev cdev;
-+	struct regmap *regmap;
-+	unsigned int en_shift;
-+	unsigned int reg_brightness;
-+};
-+
-+static struct max77705_led *max77705_to_led(struct led_classdev *cdev)
-+{
-+	return container_of(cdev, struct max77705_led, cdev);
-+}
-+
-+static int max77705_rgb_blink(struct led_classdev *cdev,
-+				unsigned long *delay_on,
-+				unsigned long *delay_off)
-+{
-+	struct max77705_led *led = max77705_to_led(cdev);
-+	int value, on_value, off_value;
-+
-+	if (*delay_on < MAX77705_RGB_DELAY_100_STEP)
-+		on_value = 0;
-+	else if (*delay_on < MAX77705_RGB_DELAY_100_STEP_LIM)
-+		on_value = *delay_on / MAX77705_RGB_DELAY_100_STEP - 1;
-+	else if (*delay_on < MAX77705_RGB_DELAY_250_STEP_LIM)
-+		on_value = (*delay_on - MAX77705_RGB_DELAY_100_STEP_LIM) /
-+				MAX77705_RGB_DELAY_250_STEP +
-+				MAX77705_RGB_DELAY_100_STEP_COUNT;
-+	else
-+		on_value = 15;
-+
-+	on_value <<= 4;
-+
-+	if (*delay_off < 1)
-+		off_value = 0;
-+	else if (*delay_off < MAX77705_RGB_DELAY_500_STEP)
-+		off_value = 1;
-+	else if (*delay_off < MAX77705_RGB_DELAY_500_STEP_LIM)
-+		off_value = *delay_off / MAX77705_RGB_DELAY_500_STEP;
-+	else if (*delay_off < MAX77705_RGB_DELAY_1000_STEP_LIM)
-+		off_value = (*delay_off - MAX77705_RGB_DELAY_1000_STEP_LIM) /
-+				MAX77705_RGB_DELAY_1000_STEP +
-+				MAX77705_RGB_DELAY_500_STEP_COUNT;
-+	else if (*delay_off < MAX77705_RGB_DELAY_2000_STEP_LIM)
-+		off_value = (*delay_off - MAX77705_RGB_DELAY_2000_STEP_LIM) /
-+				MAX77705_RGB_DELAY_2000_STEP +
-+				MAX77705_RGB_DELAY_1000_STEP_COUNT;
-+	else
-+		off_value = 15;
-+
-+	value = on_value | off_value;
-+	return regmap_write(led->regmap, MAX77705_RGBLED_REG_LEDBLNK, value);
-+}
-+
-+static int max77705_led_brightness_set(struct led_classdev *cdev,
-+					enum led_brightness brightness)
-+{
-+	struct max77705_led *led = max77705_to_led(cdev);
-+	unsigned long blink_default = 0;
-+	int ret;
-+
-+	if (brightness == LED_OFF) {
-+		/* Flash OFF */
-+		ret = regmap_update_bits(led->regmap,
-+					MAX77705_RGBLED_REG_LEDEN,
-+					MAX77705_LED_EN_MASK << led->en_shift, 0);
-+		max77705_rgb_blink(cdev, &blink_default, &blink_default);
-+	} else {
-+		/* Set current */
-+		ret = regmap_write(led->regmap, led->reg_brightness, brightness);
-+		if (ret < 0)
-+			return ret;
-+
-+		ret = regmap_update_bits(led->regmap,
-+					MAX77705_RGBLED_REG_LEDEN, LED_ON << led->en_shift,
-+					MAX77705_LED_EN_MASK << led->en_shift);
-+	}
-+
-+	return ret;
-+}
-+
-+static int max77705_led_probe(struct platform_device *pdev)
-+{
-+	struct max77705_led *leds, *led;
-+	struct device *dev = &pdev->dev;
-+	struct regmap *regmap;
-+	int ret, num_leds;
-+	u32 reg;
-+
-+	leds = devm_kcalloc(dev, sizeof(*leds), MAX77705_LED_NUM_LEDS, GFP_KERNEL);
-+	if (!leds)
-+		return -ENOMEM;
-+
-+	regmap = dev_get_regmap(dev->parent, NULL);
-+	if (!regmap)
-+		return -ENODEV;
-+
-+	num_leds = device_get_child_node_count(dev);
-+	if (num_leds < 0 || num_leds > MAX77705_LED_NUM_LEDS)
-+		return -ENODEV;
-+
-+	device_for_each_child_node_scoped(dev, child) {
-+		struct led_init_data init_data = {};
-+
-+		ret = fwnode_property_read_u32(child, "reg", &reg);
-+		if (ret || reg >= MAX77705_LED_NUM_LEDS)
-+			ret = -EINVAL;
-+
-+		led = &leds[reg];
-+		led->regmap = regmap;
-+		led->reg_brightness = MAX77705_RGBLED_REG_LED0BRT + reg;
-+		led->en_shift = MAX77705_RGBLED_EN_WIDTH * reg;
-+		led->cdev.brightness_set_blocking = max77705_led_brightness_set;
-+		led->cdev.blink_set = max77705_rgb_blink;
-+		led->cdev.max_brightness = MAX77705_LED_MAX_BRIGHTNESS;
-+
-+		init_data.fwnode = child;
-+
-+		ret = devm_led_classdev_register_ext(dev, &led->cdev,
-+							&init_data);
-+		if (ret)
-+			return ret;
-+
-+		ret = max77705_led_brightness_set(&led->cdev, LED_OFF);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id max77705_led_of_match[] = {
-+	{ .compatible = "maxim,max77705-rgb" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, max77705_led_of_match);
-+
-+static struct platform_driver max77705_led_driver = {
-+	.driver = {
-+		.name = "max77705-led",
-+		.of_match_table = max77705_led_of_match,
-+	},
-+	.probe = max77705_led_probe,
-+};
-+module_platform_driver(max77705_led_driver);
-+
-+MODULE_DESCRIPTION("Maxim MAX77705 LED driver");
-+MODULE_AUTHOR("Dzmitry Sankouski <dsankouski@gmail.com>");
-+MODULE_LICENSE("GPL");
-diff --git a/include/linux/mfd/max77705-private.h b/include/linux/mfd/max77705-private.h
-index be781a0f9802..2140693ce747 100644
---- a/include/linux/mfd/max77705-private.h
-+++ b/include/linux/mfd/max77705-private.h
-@@ -35,6 +35,24 @@
- #define MAX77705_SYSTEM_IRQ_SYSOVLO_INT	BIT(5)
- #define MAX77705_SYSTEM_IRQ_TSHDN_INT	BIT(6)
- #define MAX77705_SYSTEM_IRQ_TM_INT	BIT(7)
-+/* MAX77705_RGBLED_REG_LEDEN register */
-+#define MAX77705_RGBLED_EN_WIDTH	2
-+/* MAX77705_RGBLED_REG_LEDBLNK register */
-+#define MAX77705_RGB_DELAY_100_STEP_LIM 500
-+#define MAX77705_RGB_DELAY_100_STEP_COUNT 4
-+#define MAX77705_RGB_DELAY_100_STEP 100
-+#define MAX77705_RGB_DELAY_250_STEP_LIM 3250
-+#define MAX77705_RGB_DELAY_250_STEP 250
-+#define MAX77705_RGB_DELAY_500_STEP 500
-+#define MAX77705_RGB_DELAY_500_STEP_COUNT 10
-+#define MAX77705_RGB_DELAY_500_STEP_LIM 5000
-+#define MAX77705_RGB_DELAY_1000_STEP_LIM 8000
-+#define MAX77705_RGB_DELAY_1000_STEP_COUNT 13
-+#define MAX77705_RGB_DELAY_1000_STEP 1000
-+#define MAX77705_RGB_DELAY_2000_STEP 2000
-+#define MAX77705_RGB_DELAY_2000_STEP_COUNT 13
-+#define MAX77705_RGB_DELAY_2000_STEP_LIM 12000
-+
- 
- enum max77705_hw_rev {
- 	MAX77705_PASS1 = 1,
+Therefore, a
 
--- 
-2.39.5
+Cc: <stable@vger.kernel.org>
 
+here would have been nice (in the commit log), c.f. 
+https://www.kernel.org/doc/html/latest/process/submitting-patches.html#select-the-recipients-for-your-patch
+
+> ---
+>   arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
+> index 9efcdce0f593..13d0c511046b 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
+> @@ -181,7 +181,7 @@ &gmac {
+>   	snps,reset-active-low;
+>   	snps,reset-delays-us = <0 10000 50000>;
+>   	tx_delay = <0x10>;
+> -	rx_delay = <0x10>;
+> +	rx_delay = <0x11>;
+
+While at it, we could reorder this alphabetically and move rx_delay 
+between pinctrl-0 and snps,reset-gpio? c.f. 
+https://www.kernel.org/doc/html/latest/devicetree/bindings/dts-coding-style.html#order-of-properties-in-device-node 
+rx_delay and tx_delay seem to be vendor-specific but without the vendor 
+prefix, but so is snps,reset-gpio so that should be fine to reorder this 
+way.
+
+Considering we have an option for KSZ9031 on RK3588 Jaguar and RK3588 
+Tiger and the "same" MAC IP is used and that we use the same TXD and RXD 
+delay than on RK3399 Puma right now, I guess we would want to check 
+those don't need a change as well? (funnily enough, all RK3588-based 
+boards in 6.12 actually have 0x00 for rx_delay and 0x43/0x44 for 
+tx_delay, except ours which are at 0x10). Not a blocker for this patch 
+though, so:
+
+Reviewed-by: Quentin Schulz <quentin.schulz@cherry.de>
+
+Thanks!
+Quentin
 
