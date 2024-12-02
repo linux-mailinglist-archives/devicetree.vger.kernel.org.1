@@ -1,151 +1,154 @@
-Return-Path: <devicetree+bounces-126172-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126173-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B3A09E0743
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 16:40:44 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20C939E083A
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 17:17:43 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CE68A283516
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 15:40:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D57C516648F
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 15:43:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41969209F43;
-	Mon,  2 Dec 2024 15:40:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC3F2209F53;
+	Mon,  2 Dec 2024 15:43:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="D169VzNP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IqmPlnHq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF0D4208978;
-	Mon,  2 Dec 2024 15:40:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15A43209F49
+	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 15:43:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733154039; cv=none; b=D80CXp1CfmSt8EqMkfok9S9TlVXligzaQsmTH72p7QBBTiYdKKuqDAkc5id+uKgO5WIQJYfI8nHwpegLN9QFOkO2vMPtFCs+Ov/TSwgWTu1z5HKTknRps1YdAAt2sy9lPGuF0XlS4Np7PuSd54dXTAlCG4VM/DJNPjKFwGeQGqU=
+	t=1733154192; cv=none; b=YA/1bS0sFZY930pSIKQrLEGkcJKmkboScOI8xtuAjkC5TVEApoi+5a08h19+Y+ZV5wLpK4hpJBeVCObtTyYIMw5B8x3w4ctPOWUW6MM/Ipe+fetKkJB7NaTG2gksOSv1kYJ7EDG0cG7qMQ1mbCrBA49GrVXVLmX1xaKGS5i3xFY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733154039; c=relaxed/simple;
-	bh=YBy3s9fNCR8iPUJjr2BKvztJ9a50NhpU8H/uASU98Ho=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uZpuWUsbK1T89Qt3wfigOGdLU8hib+MB2AC1h2Y9BBNGHl3PYhHj8KhK7nOIexfZTDKOX3cXcpZcmSNzUHU+hKuh5emsHu4RRO/Ocajib8rkAivMFyUA4Hc9r9Bqp/bcAyWtgt8CnJwVuEwTOJDObcLoAKXxOs/XKahCiO9vOEc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=D169VzNP; arc=none smtp.client-ip=212.227.17.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1733154008; x=1733758808; i=wahrenst@gmx.net;
-	bh=ie04BQKrraW4QBO6vajJjoLi/zc/N6fbE/aXMCjogQI=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=D169VzNPq7SZOZg+lDoCe8Qf9x4Ncfat6lSA8IyAbuNBnfUL/Q9MDGWnJUJCA0DW
-	 dLNnlNOjomMt4+Q6od04JHoYRtsywJQIu7SBcLHR2m31KbjMmE9kmITXY4H+6TMc0
-	 fx1vgPrZAZK6y0ZyocL24gTmDW53yv/yWXxVIX9vKqvGfGOR7jA4YON64tNOksEop
-	 +UQgz2Tg7rRUvWxOCrnd87YkIm2cfRgR/NZNAXsiP7XiwyEMyQXepO8xk+lII0oyb
-	 EbJaEEM+lJrfIhHaB/tspcParFHb/+W+79JIQSf37b4GbdiN+6SKoJQPDCHkeCmtH
-	 0frRuODZCyztIYRkFQ==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.105] ([37.4.251.153]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1M8ykg-1tLy0s1Jig-005GpS; Mon, 02
- Dec 2024 16:40:08 +0100
-Message-ID: <b80097a1-4c8b-43f1-920f-b31489619111@gmx.net>
-Date: Mon, 2 Dec 2024 16:40:04 +0100
+	s=arc-20240116; t=1733154192; c=relaxed/simple;
+	bh=k/f3AXTfh4IjLpqTVVBdk7brWdn7oU78wvX2hwXU6+I=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MhMWLtee40ORTeLNSrxpMWvaz+Yx6D6bq5/JrFmeD3gsh6oRaELhAuLnFdOCW3L5jnR/lOtJQsPaH3uHqC4Addn+dcC7dVkM4EOBdeOvUzkGsmZK0Va3FtayBMQy4CIpL5ZKi/CJYujzvrVJoUAFnpP+CLHaV0rNQ7gtB9pMjKc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IqmPlnHq; arc=none smtp.client-ip=209.85.219.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-e3983f8ff40so2780942276.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 07:43:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733154190; x=1733758990; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=QbUP+dvKWDKM0wMQ0TznKmY7PM7PyjlXbsmxh8B0to8=;
+        b=IqmPlnHqHkx9fZ4PM+jApLoKAxqFgyHu6GrVatp2BwLJ07iS9QBXBVJrZ1CpBcK9ms
+         KgHIbGlEBRDZYqOV9hVaNq+l2El+qTmIXDNdLk2r3i8HoJEFgBNi2JzXOArI7dEu212B
+         Dpi8RwRQAnxRWXM6NIgh/ahe+nfDCtWUTP/siTnKXuCcv5FQKYYK2FuI4zaWEH1UpIGF
+         Pmvvgh+qz/5HNGdLLH20AtP57Kn5ZgfkCQnyKPu2uaENfRMsoKoYmJrZRhWupu18u9ZF
+         I/t3OgvNbmWC187Ow7OUC8NCP9lnovuj1xm3Qs8WU8/8rHfuOJsCtKwwWr/sUiX5vF0x
+         5Ldg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733154190; x=1733758990;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QbUP+dvKWDKM0wMQ0TznKmY7PM7PyjlXbsmxh8B0to8=;
+        b=AkX9B/dbH+T69vSwVJJYMNMSThdw7jutYdFQY0790r/LlZx3o46Gj3zCIUdCVnmt4y
+         dDAA8xf2y3M1f4ulEuf7o/rGhg6xKHyVTcqQREoAFNG58HEIfwCVSrj3z+nq59ZeXjJl
+         BMi4dwULFTmnMjO+yt1FYk/00lM+O/Rp6D0Kadk/h/y6Pbp/vJDUL3zf4TzrGoo7I2KP
+         nPc9+laycLNaN/RGwut8VGB0pY1HgLtv71GhkJeyj6p0FFfCkN3WFrwJMX2jwEF3L/1B
+         7rsmXMEG+pXViH7XjCtOtLy4iUUDf6m6yr3Z7kGntVdijduw1wls3E3Z2H+Ho3S7ClJX
+         16LA==
+X-Forwarded-Encrypted: i=1; AJvYcCVns31ZiM7gtNBWN2/Wim6GKxJ64E4PnA99yGI0HQBddJN7cLFzH8cRhAVQjTTnlXSyG97FWbk0TzM0@vger.kernel.org
+X-Gm-Message-State: AOJu0YzhGClq63YUs3zv24toE8GlHTGYpDBb8JQqPupeDDszqZba4top
+	QsjhWMLk1inP9WO2/w0yt2kiImDWQGoY8Z59QE9HswWqxTI12gLRMSftNavITZXN+TW2+ByhcvN
+	zExpHrOhQUN6xaWfOPBBfBOgf6MA1onLlkRkT1Q==
+X-Gm-Gg: ASbGnctTPJq3Eco5Sd0h+pRG2JJmePtvv5C/cfPc6BXHEjIZ13nn7Val/s/rzNZ8QrD
+	kGyAz2cCIADJW6ziBwGJqBFnE7+UThMIW
+X-Google-Smtp-Source: AGHT+IGP8X//RtopJ14zcmxJJXKBWB66Fq15r096151qIaf1u6T7kK82VeRXbbWQnNMTUe+do88W/Mt9VjkNBUNU2jY=
+X-Received: by 2002:a05:6902:2804:b0:e2e:440e:d29f with SMTP id
+ 3f1490d57ef6-e395b8939bdmr23346211276.20.1733154190066; Mon, 02 Dec 2024
+ 07:43:10 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/7] arm: dts: broadcom: Add interrupt-controller flag for
- intc on BCM2711
-To: Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, =?UTF-8?Q?Ma=C3=ADra_Canal?=
- <mcanal@igalia.com>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
- Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
- Doug Berger <opendmb@gmail.com>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Florian Fainelli <f.fainelli@gmail.com>,
- linux-gpio@vger.kernel.org
-References: <20241202-dt-bcm2712-fixes-v1-0-fac67cc2f98a@raspberrypi.com>
- <20241202-dt-bcm2712-fixes-v1-6-fac67cc2f98a@raspberrypi.com>
-Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <20241202-dt-bcm2712-fixes-v1-6-fac67cc2f98a@raspberrypi.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:Ua8NGna7H1m0vTQYmzbtvKSsnWt7yxjKDiRlZ6y6icjnDgqA/Rw
- /0PsbSmLeFBFOxkLDl9tr9eOyUv8wyP+8jY6Pp8QjoFFW8CIWEZpR+8ViC//uhoPH/8/0BG
- KRCx039CoaP1f1Vshra/aY7f3pxy5O6QWuXNpROz5+0avGCJ/KP9rqlPSQ6Zc9o9Truei2B
- dJa4Xg0fqCw+MNTU/dPVg==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:vuiMuJHOccw=;E9PY0fNnCVNiEPWlmRO41i52zgF
- rFS2qSJ+pK5e633kWJlXJlpMb39Y2KmLH5x0LfVzs+RS7FvzHzMVYSorFuF9szTvf6LuzVoj+
- 4gpR04bpsPfPXVqXMxsQSZWNY1JNV0d2qc4qMoyZ7l5RQpjD0oeemojGh8OOZ0xpyY1w0DT/T
- EouR1ODjvHLmYQKSNAfYXayUSVXFXp5WbLgcRQFnHDOIeiARhDGbahlxLc1UXBmCJeUNb9rvb
- tVg+MLbdtp8fw4q951b7aW/Q3CbnTUZIHUO0ogQWrg8ObpeTnTsLGAQRsppMJSHR2LF+z53tT
- hsCDz4jICvqTwuHMAsz6uw3yEgTjY0dbWSUoGpFTK+9YOu8HdprHYdomGc0MRz4DtFu9WeCyt
- lZYonEKUFDCCMn9QqDos2j9J7SEKytpy5Q/DHqbGCc/Mtx2v8ZY/RTAlxtLot0GYqimaeweiP
- a5YkzNRhquVIKZgKoxrU38AcKvjcnNHCtyBCaVqqKAgGmE0mDrdjsRliHxxWH1xG3B7LvlZCs
- VtpDBUghMkk9INyS4yXEdPuHQuAv2qzxLD3ilDXwJhFIDJE/2iZrJtwVrqNYDnfM6x8IgcRQF
- glqGd80UnGdT0nQmef1FzwedB364zKgdcrGKeAgm7bkI6ElhzSES/IMdMwH0KtCh+c5a1E6mC
- qdrREvnsecRJxZ4xqA9CK2mOouV0y1bKIq2HfRptRNngv4T3CQlUDllDTAYaai6573bB0v47H
- y2XoYu39+Rx/zvuvC+9vbmcAY0XtNEv7+wA4ApG/Nd18TDDDZEN7zqvMzxPdDHq7vFBznnrD/
- 89LN0H6qo38sQlJYGgG8Zy0E1NZO0CdlwmN2y1eMSJJruq+HTUUkkBDNzaz0VpPXlQJzLB0x1
- d5n95BQeSzxCzDNLMAkJZAkM8NxuvmGDTKqT82DMsFbsYouaulpG9JW/rrTM4O41t51zUZoJ1
- pnRDLI8wanLLFCnsgleMvJHJ655BpE8SYPv2OPfswSUZWsTrZXJhTfS7YqSAI4Qf8wrVVjsEu
- W5S1irsSQqfpipXhthvT/VdfrjIKCdkUUA8JB/lCrGEtFACr40tRhajeQcxV4FujgbZgVsuAr
- VHWXetzRWXT4gpU2KKzZOM2iBLyr9b
+References: <20241202151228.32609-1-ansuelsmth@gmail.com>
+In-Reply-To: <20241202151228.32609-1-ansuelsmth@gmail.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Mon, 2 Dec 2024 16:42:33 +0100
+Message-ID: <CAPDyKFqrY7uLD8ATqH0LghmkHgApQSsGtvGkOTd8UVazGu0_uA@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: cpufreq: Document support for Airoha
+ EN7581 CPUFreq
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, upstream@airoha.com
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Dave,
-
-Am 02.12.24 um 15:31 schrieb Dave Stevenson:
-> BCM2711 DT was producing dtbinding validation errors of
+On Mon, 2 Dec 2024 at 16:20, Christian Marangi <ansuelsmth@gmail.com> wrote:
 >
-> interrupt-controller@40000000: 'interrupt-controller' is a required
-> property
-> interrupt-controller@40000000: '#interrupt-cells' is a required property
+> Document required property for Airoha EN7581 CPUFreq .
 >
-> Fix them by adding the required flags.
+> On newer Airoha SoC, CPU Frequency is scaled indirectly with SMCCC commands
+> to ATF and no clocks are exposed to the OS.
 >
-> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Did you actually test these changes, because the last time [1] it broke
-the boot of RPi 4 and likely for RPi 5, too?
-
-Best regards
-
-[1] -
-https://lore.kernel.org/linux-arm-kernel/07154679-42bc-43ba-8b72-62083ed78=
-a4d@gmx.net/
+> The SoC have performance state described by ID for each OPP, for this a
+> Power Domain is used that sets the performance state ID according to the
+> required OPPs defined in the CPU OPP tables.
+>
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 > ---
->   arch/arm/boot/dts/broadcom/bcm2711.dtsi | 2 ++
->   1 file changed, 2 insertions(+)
+> Changes v4:
+> - Add this patch
 >
-> diff --git a/arch/arm/boot/dts/broadcom/bcm2711.dtsi b/arch/arm/boot/dts=
-/broadcom/bcm2711.dtsi
-> index e4e42af21ef3..313b1046d74f 100644
-> --- a/arch/arm/boot/dts/broadcom/bcm2711.dtsi
-> +++ b/arch/arm/boot/dts/broadcom/bcm2711.dtsi
-> @@ -51,6 +51,8 @@ soc {
->   		local_intc: interrupt-controller@40000000 {
->   			compatible =3D "brcm,bcm2836-l1-intc";
->   			reg =3D <0x40000000 0x100>;
-> +			interrupt-controller;
-> +			#interrupt-cells =3D <2>;
->   		};
+>  .../cpufreq/airoha,en7581-cpufreq.yaml        | 259 ++++++++++++++++++
+>  1 file changed, 259 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.yaml
 >
->   		gicv2: interrupt-controller@40041000 {
->
+> diff --git a/Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.yaml b/Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.yaml
+> new file mode 100644
+> index 000000000000..a5bdea7f34b5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.yaml
 
+[...]
+
+> +examples:
+> +  - |
+> +    / {
+> +        #address-cells = <2>;
+> +       #size-cells = <2>;
+> +
+> +        cpus {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            cpu0: cpu@0 {
+> +                device_type = "cpu";
+> +                compatible = "arm,cortex-a53";
+> +                reg = <0x0>;
+> +                operating-points-v2 = <&cpu_opp_table>;
+> +                enable-method = "psci";
+> +                clocks = <&cpufreq>;
+> +                clock-names = "cpu";
+> +                power-domains = <&cpufreq>;
+> +                power-domain-names = "cpu_pd";
+
+Nitpick: Perhaps clarify the name to be "perf" or "cpu_perf", to
+indicate it's a power-domain with performance scaling support.
+
+> +                next-level-cache = <&l2>;
+> +                #cooling-cells = <2>;
+> +            };
+> +
+
+[...]
+
+Other than the very minor thing above, feel free to add:
+
+Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
+
+Kind regards
+Uffe
 
