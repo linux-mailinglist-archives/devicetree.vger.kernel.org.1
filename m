@@ -1,139 +1,138 @@
-Return-Path: <devicetree+bounces-126220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A75D9E0917
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 17:53:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72BE59E0965
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 18:05:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F958282295
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 16:53:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D19E72823BC
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 17:05:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF2DB1D9320;
-	Mon,  2 Dec 2024 16:53:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E90C91D9694;
+	Mon,  2 Dec 2024 17:05:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="VJZ4NDMG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com [91.218.175.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 338BD52F76
-	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 16:53:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A8F31DAC90
+	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 17:05:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733158411; cv=none; b=UT5qzy/Afi7ksfv8eAct4dHswLoooi3QXwTnnaZFrkickIzRipeu+JAwftE8q/3ZZVaE+RpWFadROHxYvdkATaATIrJRIxD9WE59I8MrNWaDY3ZFp5Ua75QZFWHTdjb6d1Ep9kB+8TW4fFkVX1AgBaOkqckDkGJgAKQgIwBWhDA=
+	t=1733159122; cv=none; b=ut103U+8+DJu+AFAlqyGjgvTNe3HD/ltDUHWbg+LkT2ZRnYjP1H69EMFc6620PjoXQvot56LHOE0MEyb+8vTzKGvCnMQrc5coghvyDygKdQszOEwaZoZg/StdsRlS/+Y7nSKaVWL8vlRLS204cgizZ0qOxCOIn5SnJgoMRxzU9s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733158411; c=relaxed/simple;
-	bh=klKH3RyoOaJCrXHvRvq9NFyNn0uyJB3GIr99zeWJSos=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=byL6wa/NJ4zolz7DjtPnfLvB7ChEpLsgBXekbRxg7K2nFzhLG+9XlvjczC9nWn/Dw0jNJPnEw+X3xrAIRVPry4uRjYfRpfr6rSSsWYIul/VD0DPK2+l5BBs1vKv+8tPGEEpKdRH++1i2Tgn8hHShqCK3ma7rSGURmw0+ldNrM+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tI9fk-00087b-1U; Mon, 02 Dec 2024 17:53:20 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tI9fi-001KRE-1C;
-	Mon, 02 Dec 2024 17:53:19 +0100
-Received: from pengutronix.de (pd9e59fec.dip0.t-ipconnect.de [217.229.159.236])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id BECBD383973;
-	Mon, 02 Dec 2024 16:53:18 +0000 (UTC)
-Date: Mon, 2 Dec 2024 17:53:18 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Jonas Rebmann <jre@pengutronix.de>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Schocher <hs@denx.de>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org, kernel@pengutronix.de, 
-	David Jander <david@protonic.nl>
-Subject: Re: [PATCH 2/3] dt-bindings: mtd: mchp48l640 add mb85rs128ty
- compatible
-Message-ID: <20241202-stereotyped-otter-of-agility-44b71b-mkl@pengutronix.de>
-References: <20241202-mb85rs128ty-v1-0-a660b6490dc8@pengutronix.de>
- <20241202-mb85rs128ty-v1-2-a660b6490dc8@pengutronix.de>
+	s=arc-20240116; t=1733159122; c=relaxed/simple;
+	bh=zJYXkTKsJoO27+zOwQFYPrBEnFxvuMvJSvVvulZQuxs=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=sMYlJ2JDpGb6DmOQU+szmEciTz4Ayer5q7XI5LMAqwTyVQp3X/dXr2opjsRx5UX90DYNAgFWSGomVVOAeOx+jbTGYqey4T0tOxO8xDI8IxlFFlVCL6hsGgyKs8Z/b/VjYk6g1pUGjrcySVx2wKX/x026oxgxWNEf/O9RbIBsVOE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=VJZ4NDMG; arc=none smtp.client-ip=91.218.175.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="s577esmvwab2woq7"
-Content-Disposition: inline
-In-Reply-To: <20241202-mb85rs128ty-v1-2-a660b6490dc8@pengutronix.de>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1733159115;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=gOAOvw778ddifzLBAVTAVA7ViPhpzAN8s/3Zy+v6TwY=;
+	b=VJZ4NDMGPhmVUUl1yFPrEKK3II45/5cEG2KXmEIfKitVGXhwnFNbVoGxcw2RA2nGUo9wBD
+	fv4uKeEhwV74RapauaXWTUbqb33nust/6u4NsclfxW9Bs2kKz3+XoSnJq2I04iI/JbZkII
+	RfnXhA530DawCl08cSo2nGgTJdfxn3RAGqK26ITNMxYy3QqAjtIfTIrqLRGO55MuXb1zQ4
+	cOY2Hs9H+0qN/b2nnO6ELaMVgL0IrjPsZ+2W2OpwQv0+HyYt/x7BJv/TbUrVq1BK0KCiBx
+	t17qD8DWYubEJviYSZYrX/sKuksIoEhA15bjiuRjnI1AWh3BUW5qGLBjBW0hiw==
+Content-Type: multipart/signed;
+ boundary=7e48cb5c561c9c94c8ce91377d76abea74c76a1a74e817be5c3f74398612;
+ micalg=pgp-sha256; protocol="application/pgp-signature"
+Date: Mon, 02 Dec 2024 18:05:03 +0100
+Message-Id: <D61DMK8O9JCR.1C62A5UGI51BT@cknow.org>
+Cc: <heiko@sntech.de>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+ <marcin.juszkiewicz@linaro.org>
+Subject: Re: [PATCH] arm64: dts: rockchip: Describe why is HWRNG disabled in
+ RK356x base dtsi
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <didi.debian@cknow.org>
+To: "Dragan Simic" <dsimic@manjaro.org>,
+ <linux-rockchip@lists.infradead.org>
+References: <6b272e2f8f916c04b05db50df621659a5a7f29ab.1733149874.git.dsimic@manjaro.org>
+In-Reply-To: <6b272e2f8f916c04b05db50df621659a5a7f29ab.1733149874.git.dsimic@manjaro.org>
+X-Migadu-Flow: FLOW_OUT
 
-
---s577esmvwab2woq7
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
+--7e48cb5c561c9c94c8ce91377d76abea74c76a1a74e817be5c3f74398612
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 2/3] dt-bindings: mtd: mchp48l640 add mb85rs128ty
- compatible
-MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 
-On 02.12.2024 17:35:21, Jonas Rebmann wrote:
-> Add a compatible string to support Fujitsu MB85RS128TY.
->=20
-> Signed-off-by: Jonas Rebmann <jre@pengutronix.de>
+Hi,
+
+I'd have swapped 'is' and 'HWRNG' in the subject, but otherwise ...
+
+On Mon Dec 2, 2024 at 3:44 PM CET, Dragan Simic wrote:
+> Despite the presence of the hardware random number generator (HWRNG) in t=
+he
+> different Rockchip RK356x SoC variants, it remains disabled for the RK356=
+6
+> SoC because testing showed [1] that it produces unacceptably low quality =
+of
+> random data, for some yet unknown reason.  The HWRNG is enabled for the R=
+K3568
+> SoC, on which the testing showed good quality of the generated random dat=
+a.
+>
+> To avoid possible confusion in the future, [2] let's have this described
+> briefly in the RK356x base SoC dtsi.
+>
+> [1] https://lore.kernel.org/linux-rockchip/cover.1720969799.git.daniel@ma=
+krotopia.org/T/#u
+> [2] https://lore.kernel.org/linux-rockchip/20241201234613.52322-1-pbrobin=
+son@gmail.com/T/#u
+>
+> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
 > ---
->  Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/mtd/microchip,mchp48l640.y=
-aml b/Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml
-> index 0ff32bd00bf6aee279fa78c624d8d47c6162f7f1..973f06b665dbbcb9ea1090418=
-eb18fbe2285acef 100644
-> --- a/Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml
-> @@ -18,6 +18,7 @@ properties:
->    compatible:
->      items:
-       ^^^^^
-I think you need to change to "oneOf"
-
->        - const: microchip,48l640
-> +      - const: fujitsu,mb85rs128ty
+>  arch/arm64/boot/dts/rockchip/rk356x-base.dtsi | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi b/arch/arm64/b=
+oot/dts/rockchip/rk356x-base.dtsi
+> index 62be06f3b863..ab8f42c0a843 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
+> @@ -1032,6 +1032,11 @@ sdhci: mmc@fe310000 {
+>  		status =3D "disabled";
+>  	};
 > =20
->    reg:
->      maxItems: 1
+> +	/*
+> +	 * Testing showed that the HWRNG found in RK3566 produces unacceptably
+> +	 * low quality of random data, so the HWRNG isn't enabled for all RK356=
+x
+> +	 * SoC variants despite its presence.
+> +	 */
+>  	rng: rng@fe388000 {
+>  		compatible =3D "rockchip,rk3568-rng";
+>  		reg =3D <0x0 0xfe388000 0x0 0x4000>;
 
-regards,
-Marc
+Reviewed-by: Diederik de Haas <didi.debian@cknow.org>
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+Thanks for this :-)
 
---s577esmvwab2woq7
+--7e48cb5c561c9c94c8ce91377d76abea74c76a1a74e817be5c3f74398612
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmdN5fsACgkQKDiiPnot
-vG8UNAf/Q0okczdUcs5kfrn7qodwy1gJZ1E3wkuMmNmcw4x/WrjD4EfQqkFY2YvK
-z9Xme7Hvl6o4Cwg6jyQj3RB6S4CsLwhAPCtJ0XWFbg6Tg9x6KExvGAT1gSqXQ9ax
-Rud4h6YlzmevP5mISgYL3oZg2L1G0TuO4DPp+Qr78hvgN6oOxmCPE64xQa8/yQWj
-HBRfgrYw5xlJ+TIbTKCx4gGS7tIDi8k2uie/GzuN8GG0YCrYfoTeVMmQJuRlNxhY
-Nu4CnQTe36vAvvSvv8bWlboHa4VTI+1w+B5qIG4E9etiG4wPU1IVdI7xH/btNYn/
-B+Me2jGYLRWkmSvHpwKT9ilEpwXhAw==
-=jMo0
+iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZ03oxAAKCRDXblvOeH7b
+bnskAQCQUuFH8eysdScwXJpiPkXXRdU7mTDzJMtkUptCsFOzoQD/XP1IvlnN/atD
+YZ36wXEYt7ZtYgV2N+r28ZD2HWPOIgY=
+=+WZI
 -----END PGP SIGNATURE-----
 
---s577esmvwab2woq7--
+--7e48cb5c561c9c94c8ce91377d76abea74c76a1a74e817be5c3f74398612--
 
