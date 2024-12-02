@@ -1,144 +1,288 @@
-Return-Path: <devicetree+bounces-126025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 357169DFF7D
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 11:59:25 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 375969DFF8C
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 12:01:15 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DA87CB21A93
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 10:59:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E94B716242D
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 11:01:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 548841FCCFE;
-	Mon,  2 Dec 2024 10:59:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 028901FBC8B;
+	Mon,  2 Dec 2024 11:01:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="GcpKU428"
+	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="jWnQmxgk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from mxout3.routing.net (mxout3.routing.net [134.0.28.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17B461FCCF9;
-	Mon,  2 Dec 2024 10:59:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 243381FBCAF;
+	Mon,  2 Dec 2024 11:01:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733137155; cv=none; b=YBmavWEvQRYiFobLo/vv8MCsQjHnJGXRIdLmYT4SfG+1BSzk7nIH5bvHr88JjkLWIVuwB4rmzWYY9tY3g1ehKALhLt6PT/Lx0lpsg4yWgJivzbaE2Z8Zx+V33IQusbfMV9DdUWsZMSxMPiCnZXKXaoc78XEDb6oUbtsGX2KKxTM=
+	t=1733137270; cv=none; b=VD3ZKaqx5el3O88RmDa80Hm9v30ihTVxOkrr2y3u0IQKpLfl/eiMXFNneIqml3netn6/H01j7CyegfWsSnih/kn/WTOQ4iZcWdg04ndaZh7D8Ln8uJ4A4Y3k6lGI/BErWTYKLUApNL+3Zzaxym1MIdr4JXTANUwYlnukkgOpl7o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733137155; c=relaxed/simple;
-	bh=h6LHm0GL1agp3F0vMLqQLA4/Wx6MXOOeOZnMnA64k50=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PNu7iAVtcBZtp7ya4bhhMEecD3O7PI/RV6nOSu5lL6gz11Iuj8aA7o6pmIur6soXmfOlCrCQf+0S3J+ioFlvakByzwEBxL7heTz6UFiRGQDuojihu1sTIGS8TP1NX/k8KVXRr4oS5h0cpWeIpCZCCx6Bzp8Zw48OOW77FOcBZsU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=GcpKU428; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 4B2Awmcr1282120
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 2 Dec 2024 04:58:49 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1733137129;
-	bh=2vgqNbahwuMClWcsdgda7zc19e2mmsJjqzzMtuFFmBA=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=GcpKU428HI9NKHd6UF5q3+UydrZzmd0zo425FzF1FNWxIlm6pigK5pVyDovlyODWW
-	 CjOoQgUR99EjuuQIU3V3TVhimuN/0h+KcWemvYgtm5a1estvfUw5aHIB+IYyAajeiH
-	 uJKoisHjyZ5I7YZxtW/7mUN+9bD1u33050VWyHR0=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4B2Awmhs055903
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 2 Dec 2024 04:58:48 -0600
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 2
- Dec 2024 04:58:48 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 2 Dec 2024 04:58:48 -0600
-Received: from localhost (uda0492258.dhcp.ti.com [10.24.72.81])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4B2Awkdp100025;
-	Mon, 2 Dec 2024 04:58:47 -0600
-Date: Mon, 2 Dec 2024 16:28:46 +0530
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Romain Naour <romain.naour@smile.fr>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-omap@vger.kernel.org>,
-        <conor+dt@kernel.org>, <krzk+dt@kernel.org>, <robh@kernel.org>,
-        <kristo@kernel.org>, <vigneshr@ti.com>, <nm@ti.com>,
-        Romain Naour
-	<romain.naour@skf.com>,
-        Siddharth Vadapalli <s-vadapalli@ti.com>
-Subject: Re: [PATCHv2] arm64: dts: ti: k3-j721e-beagleboneai64: Enable
- ACSPCIE output for PCIe1
-Message-ID: <k7udgqugqseweckb7hjniz3aops4kn35ttju2ju7f2pcbmndrg@dau5nr4leish>
-References: <20241202101140.48778-1-romain.naour@smile.fr>
- <dabbad2b-f8a6-4ed7-86da-ec696cf67461@kernel.org>
+	s=arc-20240116; t=1733137270; c=relaxed/simple;
+	bh=IvpqhaV/xulVv5zlmJNnCYugVm2DCsNChR4uZU0CDlk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=PUaszpeln95dsmoLi79+axXop5uMc3UudPbDW3aj71wwv8qzO+UW/RLnlRfcTaTHFKjT1oZhxdizEUkzA2/oNrpz64pVhKXbOkF6fzJWJyzGeqVLNqPUx2qLJz6oMEFHeZf5IIoV9ziskX0qp/a6g1+H9JL0cTJA/1r9cSPt5Oo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=jWnQmxgk; arc=none smtp.client-ip=134.0.28.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
+Received: from mxbox2.masterlogin.de (unknown [192.168.10.89])
+	by mxout3.routing.net (Postfix) with ESMTP id 4B8D860FA4;
+	Mon,  2 Dec 2024 11:01:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+	s=20200217; t=1733137261;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=wyqoNi8b0e4G/mNuoNqWCCyWIXNgFap4NSrKlakizDk=;
+	b=jWnQmxgku532SImzVOvuu35tPoZrB/MDuyEJomKh6H1lDaNVZ+xwvX/O6+lYX5iX3P+t7c
+	tPX/tWNT24o3cMsOhIIdd3StsGWECMmAP4KjPz1lo25GVXZgNaW8gl33kUrJha3pCI5XHp
+	mumQciykHwsn04y3CqEYGBaJT6/SfZ0=
+Received: from frank-u24.. (fttx-pool-217.61.149.104.bambit.de [217.61.149.104])
+	by mxbox2.masterlogin.de (Postfix) with ESMTPSA id 818A4100475;
+	Mon,  2 Dec 2024 11:01:00 +0000 (UTC)
+From: Frank Wunderlich <linux@fw-web.de>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Sean Wang <sean.wang@kernel.org>
+Cc: Frank Wunderlich <frank-w@public-files.de>,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH v5 5/5] arm64: dts: mediatek: mt7988: add pinctrl subnodes for bpi-r4
+Date: Mon,  2 Dec 2024 12:00:39 +0100
+Message-ID: <20241202110045.22084-6-linux@fw-web.de>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20241202110045.22084-1-linux@fw-web.de>
+References: <20241202110045.22084-1-linux@fw-web.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <dabbad2b-f8a6-4ed7-86da-ec696cf67461@kernel.org>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: 8bit
+X-Mail-ID: c495ca34-053a-4cad-a31c-eb515f8c7e92
 
-On Mon, Dec 02, 2024 at 11:14:46AM +0100, Krzysztof Kozlowski wrote:
+From: Frank Wunderlich <frank-w@public-files.de>
 
-Hello Krzysztof,
+Add board specidic pinctrl configurations on Bananapi R4.
 
-> On 02/12/2024 11:11, Romain Naour wrote:
-> > From: Romain Naour <romain.naour@skf.com>
-> > 
-> > Unlike the SK-TDA4VM (k3-j721e-sk) board, there is no clock generator
-> > (CDCI6214RGET) on the BeagleBone AI-64 (k3-j721e-beagleboneai64) to
-> > provide PCIe refclk signal to PCIe Endponts. So the ACSPCIE module must
-> > provide refclk through PCIe_REFCLK pins.
-> > 
-> > Use the new "ti,syscon-acspcie-proxy-ctrl" property to enable ACSPCIE
-> > module's PAD IO Buffers.
-> > 
-> > Reuse the compatible "ti,j784s4-acspcie-proxy-ctrl" since the ACSPCIE
-> > buffer and its functionality is the same across all K3 SoCs.
-> > 
-> > Cc: Siddharth Vadapalli <s-vadapalli@ti.com>
-> > Signed-off-by: Romain Naour <romain.naour@skf.com>
-> > ---
-> > With this patch, we can remove "HACK: Sierra: Drive clock out" patch
-> > applied on vendor kernel for BeagleBone AI-64:
-> > https://openbeagle.org/beagleboard/linux/-/commit/ad65d7ef675966cdbc5d75f2bd545fad1914ba9b
-> > 
-> > v2:
-> >  - use generic style comments
-> >  - use "syscon" as generic node name for "acspcie0_proxy_ctrl" node
-> >  - Keep the compatible "ti,j784s4-acspcie-proxy-ctrl" since the
-> >    ACSPCIE buffer and its functionality is the same across all K3 SoCs.
-> >    (Siddharth Vadapalli)
-> > 
-> >    "The compatible "ti,j784s4-acspcie-pcie-ctrl" should be reused for
-> >    J721E and all other K3 SoCs.
-> 
-> No, it shouldn't and you got comment on this. You always need specific
-> compatible, see writing bindings doc.
+Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+---
+ .../dts/mediatek/mt7988a-bananapi-bpi-r4.dts  | 189 ++++++++++++++++++
+ 1 file changed, 189 insertions(+)
 
-Could you please clarify in which cases reusing the compatible is
-permissible? The list of compatibles at:
-https://github.com/torvalds/linux/blob/v6.12/Documentation/devicetree/bindings/mfd/syscon.yaml#L112
-namely,
-          - ti,am62-opp-efuse-table
-          - ti,am62-usb-phy-ctrl
-          - ti,am625-dss-oldi-io-ctrl
-          - ti,am62p-cpsw-mac-efuse
-          - ti,am654-dss-oldi-io-ctrl
-          - ti,j784s4-pcie-ctrl
-have all been reused for different TI SoCs since they all correspond to the
-device functionality enabled via the CTRL_MMR System Controller registers.
-The compatible "ti,j784s4-acspcie-pcie-ctrl" has also been added to the
-list:
-https://github.com/torvalds/linux/blob/v6.12/Documentation/devicetree/bindings/mfd/syscon.yaml#L117
-with the intent of reusing it the same way that other compatibles have
-been reused.
+diff --git a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dts b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dts
+index efc4ad0b08b8..aa2dabc041fd 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dts
++++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dts
+@@ -9,3 +9,192 @@ / {
+ 	model = "Banana Pi BPI-R4";
+ 	chassis-type = "embedded";
+ };
++
++&pio {
++	mdio0_pins: mdio0-pins {
++		mux {
++			function = "eth";
++			groups = "mdc_mdio0";
++		};
++
++		conf {
++			pins = "SMI_0_MDC", "SMI_0_MDIO";
++			drive-strength = <8>;
++		};
++	};
++
++	i2c0_pins: i2c0-g0-pins {
++		mux {
++			function = "i2c";
++			groups = "i2c0_1";
++		};
++	};
++
++	i2c1_pins: i2c1-g0-pins {
++		mux {
++			function = "i2c";
++			groups = "i2c1_0";
++		};
++	};
++
++	i2c1_sfp_pins: i2c1-sfp-g0-pins {
++		mux {
++			function = "i2c";
++			groups = "i2c1_sfp";
++		};
++	};
++
++	i2c2_0_pins: i2c2-g0-pins {
++		mux {
++			function = "i2c";
++			groups = "i2c2_0";
++		};
++	};
++
++	i2c2_1_pins: i2c2-g1-pins {
++		mux {
++			function = "i2c";
++			groups = "i2c2_1";
++		};
++	};
++
++	gbe0_led0_pins: gbe0-led0-pins {
++		mux {
++			function = "led";
++			groups = "gbe0_led0";
++		};
++	};
++
++	gbe1_led0_pins: gbe1-led0-pins {
++		mux {
++			function = "led";
++			groups = "gbe1_led0";
++		};
++	};
++
++	gbe2_led0_pins: gbe2-led0-pins {
++		mux {
++			function = "led";
++			groups = "gbe2_led0";
++		};
++	};
++
++	gbe3_led0_pins: gbe3-led0-pins {
++		mux {
++			function = "led";
++			groups = "gbe3_led0";
++		};
++	};
++
++	gbe0_led1_pins: gbe0-led1-pins {
++		mux {
++			function = "led";
++			groups = "gbe0_led1";
++		};
++	};
++
++	gbe1_led1_pins: gbe1-led1-pins {
++		mux {
++			function = "led";
++			groups = "gbe1_led1";
++		};
++	};
++
++	gbe2_led1_pins: gbe2-led1-pins {
++		mux {
++			function = "led";
++			groups = "gbe2_led1";
++		};
++	};
++
++	gbe3_led1_pins: gbe3-led1-pins {
++		mux {
++			function = "led";
++			groups = "gbe3_led1";
++		};
++	};
++
++	i2p5gbe_led0_pins: 2p5gbe-led0-pins {
++		mux {
++			function = "led";
++			groups = "2p5gbe_led0";
++		};
++	};
++
++	i2p5gbe_led1_pins: 2p5gbe-led1-pins {
++		mux {
++			function = "led";
++			groups = "2p5gbe_led1";
++		};
++	};
++
++	mmc0_pins_emmc_45: mmc0-emmc-45-pins {
++		mux {
++			function = "flash";
++			groups = "emmc_45";
++		};
++	};
++
++	mmc0_pins_emmc_51: mmc0-emmc-51-pins {
++		mux {
++			function = "flash";
++			groups = "emmc_51";
++		};
++	};
++
++	mmc0_pins_sdcard: mmc0-sdcard-pins {
++		mux {
++			function = "flash";
++			groups = "sdcard";
++		};
++	};
++
++	uart0_pins: uart0-pins {
++		mux {
++			function = "uart";
++			groups =  "uart0";
++		};
++	};
++
++	snfi_pins: snfi-pins {
++		mux {
++			function = "flash";
++			groups = "snfi";
++		};
++	};
++
++	spi0_pins: spi0-pins {
++		mux {
++			function = "spi";
++			groups = "spi0";
++		};
++	};
++
++	spi0_flash_pins: spi0-flash-pins {
++		mux {
++			function = "spi";
++			groups = "spi0", "spi0_wp_hold";
++		};
++	};
++
++	spi1_pins: spi1-pins {
++		mux {
++			function = "spi";
++			groups = "spi1";
++		};
++	};
++
++	spi2_pins: spi2-pins {
++		mux {
++			function = "spi";
++			groups = "spi2";
++		};
++	};
++
++	spi2_flash_pins: spi2-flash-pins {
++		mux {
++			function = "spi";
++			groups = "spi2", "spi2_wp_hold";
++		};
++	};
++};
+-- 
+2.43.0
 
-Regards,
-Siddharth.
 
