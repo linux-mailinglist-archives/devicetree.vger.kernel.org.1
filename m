@@ -1,95 +1,134 @@
-Return-Path: <devicetree+bounces-126222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AF759E0BA6
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 20:06:32 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D6199E0AEE
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 19:26:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 01ACBB47568
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 16:57:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2FBC6B2BA04
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 16:58:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 716FF1D9A78;
-	Mon,  2 Dec 2024 16:57:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07F4F1D79BE;
+	Mon,  2 Dec 2024 16:58:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="VSkN8ZkJ"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="OGm7CBJd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3F1213C8E8;
-	Mon,  2 Dec 2024 16:57:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5577513C8E8;
+	Mon,  2 Dec 2024 16:58:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733158641; cv=none; b=SgeO8kb8s0G3k3QtGinnApxfl0UJ69k2lvm+wsA7+hKau2QDWWYHiHptYy8iEN7djLZzS8yXRcgXAEWC9C3MN4Pqai0keBr4HG/PGj3ki09Yw4hsPcp8S1dF4AXksl0jGvuDsBshDhYH9yI9TuVRdMHGkMjMcwCc08n42Lry+/g=
+	t=1733158713; cv=none; b=f69gYvNsUpECvrM66Lm448lgmnfucUHW43/OUgBdQrFiPcy5W3aw4Vwkg3zyaO8YbzNINDBR/rWQIC/HDGLYK1hNCYy6yY262eUjIiRPpA1mHF/wRuoClYTLkFsZTRjCA3YcEwXD22aENEHRX1VOlFQ8t9kWmTYfXFCooLxCFPQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733158641; c=relaxed/simple;
-	bh=uJsWqmIq1oa/qJRElqzZus4/s+VgdKlbkG9mgDS7sNE=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=SKHkHff16EvDT3fMtWcaota6uaNiNeKz0gsPUU6CO0GuB6gsMnSo9DxGuC4Al6uagzBnsTZ8f97vK+hifR2TZRjd4IBPNm4WcLvex+NVcMT1QdvtyICMmLa9OQfVtQVaG0mXdXoNnzSVsGlVuSre3fuwEmUPs09mKPNCw+F8CH4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=VSkN8ZkJ; arc=none smtp.client-ip=217.70.183.201
+	s=arc-20240116; t=1733158713; c=relaxed/simple;
+	bh=+/aze2XdCAbp3s1wCqprW1SADqz2t0OMsYVnR+C5QD4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=r25C9x4a26zUxHb9VGjBx+9G7m99bo3zttvG3OmcNT9KFTtTNGeAZuG1LLBUlPQDyKudysQkRGJ+oQVPTowGRvqZhYwj800GZnWomHLy+kg7su+JJcv0vAZuT6aE4aDUGFMuezK7/zaEWnhW0eyHXe04Utrb2rhSxG8qtDKPpZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=OGm7CBJd; arc=none smtp.client-ip=217.70.183.196
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 18B1A1BF206;
-	Mon,  2 Dec 2024 16:57:10 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPA id 236B2E0003;
+	Mon,  2 Dec 2024 16:58:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1733158630;
+	t=1733158709;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=rwJhyHk0KFMT+SspT26kxCXdvr9xbBBJKrLs3UwpEic=;
-	b=VSkN8ZkJeUeTRw2LmDazBUhNapQ6k5z70UoeTPWZRwkhVI3EDrH3qvNDYylCHOwxXU+44g
-	JkDY8NAL7vKRRrcXxul0ZWkGjVJ+mePFdRPQeXa7YU443Pcd2ev9PkJ+wPuJ46ko83NYSG
-	ltHDoK7cIkCRsBIdF3JJRpqV/Z/Of5qQG2rn22z7fZvXwrRdY9mVwy2sZ9mA/WaKJHZR/Z
-	vep6asofT2F50lOkz1I/yPjE3/eYBGwrUAkx0FC4hnlRO00WPFO89Besjz/bJfIjtFPlnI
-	9AD+bLY0RrGVDRDQObNyFXhxOepoG90Smm25dLB67JH7SXinixFfbhFtz/jzWw==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Md Sadre Alam <quic_mdalam@quicinc.com>
-Cc: <broonie@kernel.org>,  <robh@kernel.org>,  <krzk+dt@kernel.org>,
-  <conor+dt@kernel.org>,  <andersson@kernel.org>,
-  <konradybcio@kernel.org>,  <richard@nod.at>,  <vigneshr@ti.com>,
-  <manivannan.sadhasivam@linaro.org>,  <linux-arm-msm@vger.kernel.org>,
-  <linux-spi@vger.kernel.org>,  <devicetree@vger.kernel.org>,
-  <linux-kernel@vger.kernel.org>,  <linux-mtd@lists.infradead.org>,
-  <quic_srichara@quicinc.com>,  <quic_varada@quicinc.com>
-Subject: Re: [PATCH v14 0/8] Add QPIC SPI NAND driver
-In-Reply-To: <20241120091507.1404368-1-quic_mdalam@quicinc.com> (Md Sadre
-	Alam's message of "Wed, 20 Nov 2024 14:44:58 +0530")
-References: <20241120091507.1404368-1-quic_mdalam@quicinc.com>
-User-Agent: mu4e 1.12.7; emacs 29.4
-Date: Mon, 02 Dec 2024 17:57:09 +0100
-Message-ID: <87mshe58gq.fsf@bootlin.com>
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=crHXj6kSMxBwiHS4OFprzVGLLYPQotmxut5qDRHbC9A=;
+	b=OGm7CBJdwa/YOzj/A+yWhzEDKMSlz4FKa+GbTgVCyqjDEmP20x1pXABhO0rP2HKdX2UPUs
+	OfsxFl1WVvv4q7n4OT2/Ne3MtYcmxHpJ/RUDI+QaXypAZfPYdWlTOkYf2y7m3G4KQDYx94
+	bS/x2idB9+NXlDCAd7zQy+ixQP9vdCaXPrO9tzFijLXKN29OU1rh0vEp+WwZN0i+u3BwMm
+	PzgPC1wUKGW6DTNfNcHNTKYefvgc0khHOYcmF36L3s63aIS10UWlYTeGubjPGu/ER7sqKE
+	iFE7LGuXU55yNc4D5FwdF4QbeE58rSmbYn9Yc45LvcOIun//70kzgF4pMHLoag==
+From: Herve Codina <herve.codina@bootlin.com>
+To: Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Stephen Boyd <stephen.boyd@linaro.org>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Herve Codina <herve.codina@bootlin.com>,
+	stable@vger.kernel.org
+Subject: [PATCH] of: Fix error path in of_parse_phandle_with_args_map()
+Date: Mon,  2 Dec 2024 17:58:19 +0100
+Message-ID: <20241202165819.158681-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
-Hi Marc,
+The current code uses some 'goto put;' to cancel the parsing operation
+and can lead to a return code value of 0 even on error cases.
 
-On 20/11/2024 at 14:44:58 +0530, Md Sadre Alam <quic_mdalam@quicinc.com> wr=
-ote:
+Indeed, some goto calls are done from a loop without setting the ret
+value explicitly before the goto call and so the ret value can be set to
+0 due to operation done in previous loop iteration. For instance match
+can be set to 0 in the previous loop iteration (leading to a new
+iteration) but ret can also be set to 0 it the of_property_read_u32()
+call succeed. In that case if no match are found or if an error is
+detected the new iteration, the return value can be wrongly 0.
 
-> v14:
->  * Updated commit message
->  * Fix spelling mistake
->  * Remove "inline" from multiple APIs from qcom_nandc.c file
->  * Move '|' in qcom_param_page_type_exec() APIs at the end of line
+Avoid those cases setting the ret value explicitly before the goto
+calls.
 
-I guess it is now time to move on, I can apply patches 2-5 and share an
-immutable tag. However, due to the frequent inconsistencies observed
-during the lifetime of this patchset, we might be slightly more
-conservative than usual and split the patches over two kernel
-releases. I fear there might be annoying fixes on the mtd side needed
-because of some side effects. Without these, the spi tree might have
-broken qcom support for several weeks. What do you think?
+Fixes: bd6f2fd5a1d5 ("of: Support parsing phandle argument lists through a nexus node")
+Cc: <stable@vger.kernel.org>
+Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+---
+ drivers/of/base.c | 15 ++++++++++-----
+ 1 file changed, 10 insertions(+), 5 deletions(-)
 
-Cheers,
-Miqu=C3=A8l
+diff --git a/drivers/of/base.c b/drivers/of/base.c
+index 7dc394255a0a..809324607a5c 100644
+--- a/drivers/of/base.c
++++ b/drivers/of/base.c
+@@ -1507,8 +1507,10 @@ int of_parse_phandle_with_args_map(const struct device_node *np,
+ 			map_len--;
+ 
+ 			/* Check if not found */
+-			if (!new)
++			if (!new) {
++				ret = -EINVAL;
+ 				goto put;
++			}
+ 
+ 			if (!of_device_is_available(new))
+ 				match = 0;
+@@ -1518,17 +1520,20 @@ int of_parse_phandle_with_args_map(const struct device_node *np,
+ 				goto put;
+ 
+ 			/* Check for malformed properties */
+-			if (WARN_ON(new_size > MAX_PHANDLE_ARGS))
+-				goto put;
+-			if (map_len < new_size)
++			if (WARN_ON(new_size > MAX_PHANDLE_ARGS) ||
++			    map_len < new_size) {
++				ret = -EINVAL;
+ 				goto put;
++			}
+ 
+ 			/* Move forward by new node's #<list>-cells amount */
+ 			map += new_size;
+ 			map_len -= new_size;
+ 		}
+-		if (!match)
++		if (!match) {
++			ret = -ENOENT;
+ 			goto put;
++		}
+ 
+ 		/* Get the <list>-map-pass-thru property (optional) */
+ 		pass = of_get_property(cur, pass_name, NULL);
+-- 
+2.47.0
+
 
