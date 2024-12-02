@@ -1,124 +1,125 @@
-Return-Path: <devicetree+bounces-126178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126180-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CCA69E081E
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 17:13:45 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E4291171D37
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 15:46:39 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDC8B3FB0E;
-	Mon,  2 Dec 2024 15:46:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="C4TYS1Us"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F0FE9E077C
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 16:48:40 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FFEBBA53;
-	Mon,  2 Dec 2024 15:46:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9A44280D89
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 15:48:38 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F16A8433D2;
+	Mon,  2 Dec 2024 15:48:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ioCIHjXV"
+X-Original-To: devicetree@vger.kernel.org
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4F2F42AAD;
+	Mon,  2 Dec 2024 15:48:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733154398; cv=none; b=RlM74gcqgK0Chq2mvBMHpggr+MAiuI9QpsCzd8uzPnXu3buHTMFNRAdEXfQF6PVDPaCGYAUd2h93GZY579qJP1wplImiOJTuEEiRHiCnossnlsa15RE+cWjTaXSc4CZdTTzN+Xvf8tudqnRtVWXni+nsFX3tVDRe8Th68cjchDY=
+	t=1733154482; cv=none; b=apgIg1A2OoRHgAOA+Dw3M+CnGRac2D985RnOHxsObE+dPKSM309GfCnZOAdrojo68AxAZ3wRXbCiO10TNf6zAFMl7RyUKljdC+BI4Y3K7IffrpRNmyz1Acps4sqT07kG92dYTdXNYvdJV0hWX/Ccnx9AyK9K5vKFYdkREnPD/K8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733154398; c=relaxed/simple;
-	bh=KkbmJ/0wUFhwA7bjHSghg85dmdpPXJnyMoZLc288wGU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Oiail1W7wPShDxHYb7qMv8NSrPdGZJBFn/DrqkJvW5U7Ql4LsOcxapxQN/hQNlzWwboTv2lzMWkfMKkSNm4ZGpc9d7VLrE6jysoanOAsLm5ndHvoc30Xpb5nkX8AaqmHp5fHXVq40uNAUMvV1KafaaKXjz4AoOvhP1icbPrkYHE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=C4TYS1Us; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B28lSlB028149;
-	Mon, 2 Dec 2024 15:46:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	SZqfzFnoinYb8hXvyVjaGDwr8pEj/sloniKe/f3uz+A=; b=C4TYS1Ustp1jxs60
-	Wtgd9JIg1qGQJ7DehkReoJC65U4n8EpfxICVbODI2QT1lSzYwKSJQ5Qg2FQY1xnR
-	W9pR5H4Y+2wYiTnelH/OyJ5tPLxaMM22ObQCGHVI8aOHYXxPsVScWVolPC/PweBd
-	x7VNV1+Kvq4V6agMNJWwUVxEHNfevriJkiDGBjHAwGZN8/zeivADnBLJ4HKK4Q/L
-	2kHE2XxH+29cvU2tHrd6U5KgmPF1QpOm5yDdHyfzMf43A72M2UiFMTdYIyDo1T6U
-	7+Mi85ZjzNoi6dvjGqqSQRtK/ZLSMCqIviQJirzmnk8w9GU/llobpIA96/PYiRP0
-	Ua75vQ==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 437r2mwgtx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 02 Dec 2024 15:46:09 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B2Fk8K0029779
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 2 Dec 2024 15:46:08 GMT
-Received: from [10.81.24.74] (10.49.16.6) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 2 Dec 2024
- 07:46:07 -0800
-Message-ID: <626c3135-9d8a-4e22-a3ad-6b637cbbd463@quicinc.com>
-Date: Mon, 2 Dec 2024 07:46:07 -0800
+	s=arc-20240116; t=1733154482; c=relaxed/simple;
+	bh=tUIUYos7HfM9zp290BdrLXtD0sN1aHS92XAApgYZMBk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LuP4DNTuvyHF8NBeOoMvksqjcNmVGI5K3huSG5Xn9AU+saXrWIv0aKIOeKk3jgp8/aWloLWpHBigzVXXAC3yfbKFFnejIWzV/JD0yObN1trFsBOgUacizM1Bqf83koNdyYkqjIuQnuoH/Ey4AttcS11DXKD52h5h6271XwJtxUQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ioCIHjXV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F31C6C4CEDD;
+	Mon,  2 Dec 2024 15:48:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733154482;
+	bh=tUIUYos7HfM9zp290BdrLXtD0sN1aHS92XAApgYZMBk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ioCIHjXVuT/MldTsu21M7/2/vGwSGBcdP9+5GJAHnU0Y4BT4VQr7yPOWGNAjTcScY
+	 Vxb1JlB6qY1HPYy9ZkPJN1UUqMZz4hPlLoFZiFQKHUG30UbWIhK9nhzIg8OVF0MPTb
+	 R5Ti1zMcRH/YL3LnS1DO05aGdN1+OWvWWIWH/TIwfOhr6Ll29jvpja36E+7O+2jONx
+	 IoRimoYA0BpeNRFX+A2PtCKCnhUjI1wICHzKv0Al4isIXhPTij/dhljOm5++R+pfsO
+	 jZb1N8ZXJibwa1PseqjjbPJsYGjtDMUEoxCmlx14hqTPvxt4fIsEf6lAU8BgrQ0ewY
+	 w6quEcbYKeXCw==
+Date: Mon, 2 Dec 2024 09:48:00 -0600
+From: Rob Herring <robh@kernel.org>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, Lizhi Hou <lizhi.hou@amd.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	Allan Nielsen <allan.nielsen@microchip.com>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Steen Hegelund <steen.hegelund@microchip.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v4 5/6] of: Add #address-cells/#size-cells in the
+ device-tree root empty node
+Message-ID: <20241202154800.GA2617722-robh@kernel.org>
+References: <20241202131522.142268-1-herve.codina@bootlin.com>
+ <20241202131522.142268-6-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] input: apple_z2: Add a driver for Apple Z2
- touchscreens
-To: <fnkl.kernel@gmail.com>, Hector Martin <marcan@marcan.st>,
-        Sven Peter
-	<sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Dmitry
- Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Henrik Rydberg <rydberg@bitmath.org>
-CC: <asahi@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Janne Grunau <j@jannau.net>
-References: <20241128-z2-v2-0-76cc59bbf117@gmail.com>
- <20241128-z2-v2-2-76cc59bbf117@gmail.com>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-Content-Language: en-US
-In-Reply-To: <20241128-z2-v2-2-76cc59bbf117@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: fkhK5wsaq_hXSjnF0-8oIRRhsx6pzl93
-X-Proofpoint-GUID: fkhK5wsaq_hXSjnF0-8oIRRhsx6pzl93
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 impostorscore=0
- bulkscore=0 priorityscore=1501 suspectscore=0 lowpriorityscore=0
- phishscore=0 mlxlogscore=870 clxscore=1011 mlxscore=0 adultscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412020135
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241202131522.142268-6-herve.codina@bootlin.com>
 
-On 11/28/24 14:29, Sasha Finkelstein via B4 Relay wrote:
-> From: Sasha Finkelstein <fnkl.kernel@gmail.com>
+On Mon, Dec 02, 2024 at 02:15:17PM +0100, Herve Codina wrote:
+> On systems where ACPI is enabled or when a device-tree is not passed to
+> the kernel by the bootloader, a device-tree root empty node is created.
+> This device-tree root empty node does not have the #address-cells and
+> the #size-cells properties
 > 
-> Adds a driver for Apple touchscreens using the Z2 protocol.
+> This leads to the use of the default address cells and size cells values
+> which are defined in the code to 1 for the address cells value and 1 for
+> the size cells value.
 > 
-> Signed-off-by: Janne Grunau <j@jannau.net>
-> Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
+> According to the devicetree specification and the OpenFirmware standard
+> (IEEE 1275-1994) the default value for #address-cells should be 2.
+> 
+> Also, according to the devicetree specification, the #address-cells and
+> the #size-cells are required properties in the root node.
+> 
+> The device tree compiler already uses 2 as default value for address
+> cells and 1 for size cells. The powerpc PROM code also uses 2 as default
+> value for address cells and 1 for size cells. Modern implementation
+> should have the #address-cells and the #size-cells properties set and
+> should not rely on default values.
+> 
+> On x86, this root empty node is used and the code default values are
+> used.
+> 
+> In preparation of the support for device-tree overlay on PCI devices
+> feature on x86 (i.e. the creation of the PCI root bus device-tree node),
+> the default value for #address-cells needs to be updated. Indeed, on
+> x86_64, addresses are on 64bits and the upper part of an address is
+> needed for correct address translations. On x86_32 having the default
+> value updated does not lead to issues while the upper part of a 64-bit
+> value is zero.
+> 
+> Changing the default value for all architectures may break device-tree
+> compatibility. Indeed, existing dts file without the #address-cells
+> property set in the root node will not be compatible with this
+> modification.
+> 
+> Instead of updating default values, add both required #address-cells
+> and #size-cells properties in the device-tree empty node.
+> 
+> Use 2 for both properties value in order to fully support 64-bit
+> addresses and sizes on systems using this empty root node.
+> 
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 > ---
-...
-> +MODULE_LICENSE("GPL");
-> +MODULE_FIRMWARE("apple/dfrmtfw-*.bin");
+>  drivers/of/empty_root.dts | 9 ++++++++-
+>  1 file changed, 8 insertions(+), 1 deletion(-)
 
+This also fixes unittest hitting a warning added for 6.13. So 
+I've applied this patch as a fix.
 
-Since commit 1fffe7a34c89 ("script: modpost: emit a warning when the
-description is missing"), a module without a MODULE_DESCRIPTION() will
-result in a warning when built with make W=1.
-
-Please add the missing MODULE_DESCRIPTION()
-
+Rob
 
