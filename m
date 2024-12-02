@@ -1,134 +1,182 @@
-Return-Path: <devicetree+bounces-126085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91D6F9E066A
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 16:10:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 704229E0674
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 16:11:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA17CB289BB
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 13:14:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1383EB2464E
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 13:39:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9A6F1FDE05;
-	Mon,  2 Dec 2024 13:14:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C16C1FF5F4;
+	Mon,  2 Dec 2024 13:39:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TBYdnuZ2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CtxJ3itz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2997BB667
-	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 13:14:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 454DC487A7;
+	Mon,  2 Dec 2024 13:39:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733145284; cv=none; b=IoroXTX+Z/46I3USwXV3UyX27RsqSq/Oi8ZKOwQ2V+rDj8kOMrk5tS8S6q/5xh+Y0DdCJkEb6jvSGxW5rhNu/W5XCDEYeoolNohwhWXkrRAtbqfKqtf4eKpje4B9CYaFTAAMmCkVi5lw0PPU0KKgLKgBmY1Qv1OCV934lpC4n2k=
+	t=1733146773; cv=none; b=LIiFMNy+jQlTi7uKO3CaftOWaqljBYvxSVOB1s7JC7UMtdvR/vJZcmvrVnEBEGeqsm7cw9mCUMGVsyigsRJaJcO97IZJsPdd3FrmE6M+8pPcHSzujTszGz1BqskDPRqlq0JCrJi0CptGLmDsWAXUwo0U5iYcw5oCHAyQrpRWRxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733145284; c=relaxed/simple;
-	bh=n6OtK1dfIujI4tEQ9KeSB8WK+LPUcdntX10s769oNJo=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=QdijwaIoXrfA0SIJHuoV5WDHNYYV6nBki+HcBCSWSmmckWk5s+AjEvpNhQUcw8fTSdIdUIxDhlqMg1sFblNsjIUNgyZ+h13RIF4Q6HFKF6sVa1dIfg5w4YvT8JjRvrMPnBjvYe4MkUGipD7BEWW0dT95ZJwyFKeDC7evMhZcLCo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TBYdnuZ2; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-215a0390925so7092045ad.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 05:14:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733145281; x=1733750081; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=/1mPxrL1Y7CTfszE/p7DdZQ6YpQR2r4wgKkulpNFYZ4=;
-        b=TBYdnuZ2wYUYowxZYaiVnNFfZI3rVk8McKxKcuogJkZAPKSGwLXarazZbx6vNvn4YZ
-         MW59r6DAfc0Xmzu8V3KgmNGMWXdZzQKKe2COvvvaZVUOeC4l1g6Uq7/ZBPpX0H+QiLWO
-         QswQg6fgq1npbDCL3BVwFA7M8gsZC0fjaj71sYOMWK9Z3thbwIfes95cYwnH/VCuwfF5
-         lM4zdwa6McCschjRS8iho6Jz9gsOJ3UjIIOH6OHuLnYtJoRQVkAJGydG39gIpVg5ajtG
-         Xg8CLmJ5meototaAyG0S6vhnol8sx7jM8bucBo6jru7VoX+MxtU9UJcREeGlXsUA6Wc7
-         RQ5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733145281; x=1733750081;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/1mPxrL1Y7CTfszE/p7DdZQ6YpQR2r4wgKkulpNFYZ4=;
-        b=FqPn762w7z1H7bFtGmHUIIPvnKxgEKpylkODORc+BVWDPCxVFPpGVfUKGzueR6+EVJ
-         HNH7t4DPFTRXJbKlIxQ4q4LdWX3lPEA8S7JlcrKz6Ehrm/o8U17YPHAip7PzbeHT94ss
-         RBUeM86BbqnPJmgT8HdGJetAnK3pyQSQvYWp+metZcnUVq3d8lKMtkCf7C2nC6hNaj9j
-         nRj6A2mvDN7wsM60UeenoI1HWZxnsQ/4hukJDdT43gfk1zaFBNacuVpw9dbQEvtq/z7t
-         CErWXC4yZsww2YD5XFGfGFOSPkVPXlthpGzUbZ/rjxkipvoFyas8VHzbmZoUrj7Wed/l
-         ZcPA==
-X-Forwarded-Encrypted: i=1; AJvYcCWEiwfgyedqLReyQgcdGK5PBMkPU3YjwuHu8/z7NfefEsmQBUk9gU8INs/eXDzjIhkvgNjsqpYpdXA5@vger.kernel.org
-X-Gm-Message-State: AOJu0YylgWzLDVWfgM6R8arBgZHFg52IYMnLZmNJKFpccIgaZtyBFYWh
-	HvYZKrY0U1Jh2Db0nko1HfElvjgSGhtL5V5t+EODNcIeu9X4BXKr
-X-Gm-Gg: ASbGncvxbp8NjMdO33GGQy7pXbDeaMbDXzklcMXVLqiZI2fysU8Lxk+0cS1kXaxDdlS
-	02g72A98CZUGp3broDIQyCiXPBQqpua8hJIGRvNGXq1Ta9nNUrbTXnDUbfoZ2cBfGk7G3EO7Qmj
-	D4xMzkzqKFWmq5IeSggjHMCexVWcqygNGCtB5b2E6SMGSzVWLejUaf2zELpoi3NVPK8TidUkmnb
-	gced76vghYc14mVSw30/XNCtr7Pa9o47fRFKhAkuuzBNYa9pg3LpHN2ziXCQQ==
-X-Google-Smtp-Source: AGHT+IGHvec3b5O/wMNDj0wv/JrLlnI/n0gm1B17WHelsWMiUm7JPRj7siX5XK3LdinbBLvTJUOaPQ==
-X-Received: by 2002:a17:902:d50a:b0:215:9642:4d7a with SMTP id d9443c01a7336-21596424f65mr50683835ad.0.1733145281185;
-        Mon, 02 Dec 2024 05:14:41 -0800 (PST)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:9b87:b3a5:736:1fc])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2154e5d6965sm50007655ad.71.2024.12.02.05.14.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Dec 2024 05:14:40 -0800 (PST)
-From: Fabio Estevam <festevam@gmail.com>
-To: shawnguo@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	francesco.dolcini@toradex.com,
-	Fabio Estevam <festevam@denx.de>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH RESEND v2] ARM: dts: imx6qdl-apalis: Change to "adi,force-bt656-4"
-Date: Mon,  2 Dec 2024 10:14:23 -0300
-Message-Id: <20241202131423.586743-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1733146773; c=relaxed/simple;
+	bh=h+f7LeboncX/Q/r47LxyF6ZIWkjsAtbSrvPVVgbYlJI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hp2yPNAHFPCSFMX2bPFwQ8MBPqKrRtiDqsdUwzpqZnhJpXBI6c4PTVtGKdPz4ypiFR94Hhe11S/ku9t1CKWQ0ijniVQ2HviObsKyvzNvvw+I5hxFFgsIj6iXZ9U5s3KpAhUo5TM7HXNjlYeHFCNsWTCjBa9TI4CfHA+OKYs/Tuc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CtxJ3itz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFC3DC4CED1;
+	Mon,  2 Dec 2024 13:39:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733146772;
+	bh=h+f7LeboncX/Q/r47LxyF6ZIWkjsAtbSrvPVVgbYlJI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=CtxJ3itz1bhSJHOccSi3bR/Yz1ANI+gOcu4d91Rgo6vzV9fxdFZFquELZ6h8l7kVm
+	 o1Ec2KYKkmhPqB2ZvJr1h8MV+R+Ta0lpDp73yiUTpJJ3VbFWwSIucNourw0SsrY/al
+	 WggmnR+F1Pn6qdSo4F3OQQML0K3ihGZ34jERKfvuh+jPiexu4gPYMDFK1hsEZLPDwB
+	 HVQc7OnFIPQ68wSNvUDG4zCCNNBoIVNQXnKTCJx9a1Bm0u+T8iolnDd734FhGCntU6
+	 /q3ldrHHAUB43GYQEqYZ+8KcUQlmG5/v9xS8TmOGNAIRWH+iZIBqys4S0/RQBNkTEk
+	 311Tpi9RDADyQ==
+Message-ID: <ec4bd953-1cd7-46bc-9415-0983bb9cbe89@kernel.org>
+Date: Mon, 2 Dec 2024 14:39:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] dt-bindings: power: supply: add max77759-fg flavor
+ and don't require nvme address
+To: t.antoine@uclouvain.be, Sebastian Reichel <sre@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Dimitri Fedrau <dima.fedrau@gmail.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>
+Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org
+References: <20241202-b4-gs101_max77759_fg-v1-0-98d2fa7bfe30@uclouvain.be>
+ <20241202-b4-gs101_max77759_fg-v1-2-98d2fa7bfe30@uclouvain.be>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241202-b4-gs101_max77759_fg-v1-2-98d2fa7bfe30@uclouvain.be>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Fabio Estevam <festevam@denx.de>
+On 02/12/2024 14:07, Thomas Antoine via B4 Relay wrote:
+> From: Thomas Antoine <t.antoine@uclouvain.be>
+> 
+> As the Maxim max77759 fuel gauge has no non-volatile memory slave address,
 
-According to adv7180.yaml, the correct property name is
-"adi,force-bt656-4".
 
-Update it accordingly to fix several dt-schema warnings:
+s/max77759/MAX77759/
 
-adv7280@21: 'adv,force-bt656-4' does not match any of the regexes: ...
+Please explain the device in general, e.g. fuel gauge is only one part
+of the PMIC chip. Otherwise 'fg' compatible suffix would not be justified.
 
-imx6qdl-apalis.dtsi is the only in-tree kernel user of this property.
+> make it non-obligatory. Except for this, the max77759 seems to behave the
+> same as the max1720x.
+> 
+> Signed-off-by: Thomas Antoine <t.antoine@uclouvain.be>
+> ---
+>  .../devicetree/bindings/power/supply/maxim,max17201.yaml   | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max17201.yaml b/Documentation/devicetree/bindings/power/supply/maxim,max17201.yaml
+> index fe3dd9bd5585618e45220c51023391a5b21acfd2..417fc2c4a1c1961654bc54ec1ac24602012f3335 100644
+> --- a/Documentation/devicetree/bindings/power/supply/maxim,max17201.yaml
+> +++ b/Documentation/devicetree/bindings/power/supply/maxim,max17201.yaml
+> @@ -16,6 +16,7 @@ properties:
+>    compatible:
+>      oneOf:
+>        - const: maxim,max17201
+> +      - const: maxim,max77759-fg
+>        - items:
+>            - enum:
+>                - maxim,max17205
+> @@ -25,11 +26,13 @@ properties:
+>      items:
+>        - description: ModelGauge m5 registers
+>        - description: Nonvolatile registers
+> +    minItems: 1
+>  
+>    reg-names:
+>      items:
+>        - const: m5
+>        - const: nvmem
+> +    minItems: 1
 
-BSD does have a adv7180 driver, so should not be impacted.
+You need allOf:if:then section narrowing it per each variant.
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
-- Resending it as a standalone patch. The dt-bindings and driver
-changes have alaready been applied in 6.13-rc1. 
-Changes since v1:
-- Explained that BSD is not impacted. (Krzysztof)
-- Collected Krzysztof' Reviewed-by tag.
+>  
+>    interrupts:
+>      maxItems: 1
+> @@ -56,3 +59,14 @@ examples:
+>          interrupts = <31 IRQ_TYPE_LEVEL_LOW>;
+>        };
+>      };
+> +  - |
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      fuel-gauge@36 {
+> +        compatible = "maxim,max77759-fg";
 
- arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi
-index 1c72da417011..dffab5aa8b9c 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi
-@@ -691,7 +691,7 @@ &i2c3 {
- 
- 	adv_7280: adv7280@21 {
- 		compatible = "adi,adv7280";
--		adv,force-bt656-4;
-+		adi,force-bt656-4;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pinctrl_ipu1_csi0>;
- 		reg = <0x21>;
--- 
-2.34.1
+No need for new example if it differs with one property.
 
+
+
+Best regards,
+Krzysztof
 
