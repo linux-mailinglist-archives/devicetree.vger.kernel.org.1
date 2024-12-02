@@ -1,424 +1,155 @@
-Return-Path: <devicetree+bounces-125903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46A0C9DFA94
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 07:02:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B7AC9DFAD9
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 07:47:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A4207B2253A
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 06:02:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D287281945
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 06:46:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65AAF1F9431;
-	Mon,  2 Dec 2024 06:02:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87A301F8EEC;
+	Mon,  2 Dec 2024 06:46:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fzeHfWzk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6C6E1F8AFE;
-	Mon,  2 Dec 2024 06:02:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E44C1D63FA;
+	Mon,  2 Dec 2024 06:46:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733119337; cv=none; b=kyGeg8z1Hgvj4uru1PFfVWAjmQJlD+LPj59sKxbDD6tazFZKG21AN+pYenX9N4GhrtFFShh3HY2esIbIj81hnlEvXdou3qYUFy4v/T5aKgTNEwgxSx8R6gkIKfQ28Ln54U5zHVC29t/x+dCgO0Rw/wV3J3MI62xm/OENvDQt1/o=
+	t=1733122016; cv=none; b=Un18Ym+H+DejhxUeIZ2x7GvycGtOHJotvIxAXQJqUUC+tMqW79HdqLpRi5P/fM10k7wnbTYI9q3Q/GUn/DG4neKuYXIlOgbQKvXGFiFHqEHC39vyNks4u38D9MKWNWcTXWynyNDbkGs35/JG2pnB7vP2/2QMKD+Ltm6kuaNFePE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733119337; c=relaxed/simple;
-	bh=HzYDcz+G8YwaNDy5O0qqXAPJN4iBnYBxo0Z2mkFYbHE=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=o3MREoJnFvtZ6zRaHoHyWUVOeP6482SqFGCdq+bmvFPE/EKOEVkfy6ShmO246/SKjg4zBRQfaw+W+Y3K6blnFeezP9V93AhXMJoI+wrJ/s1umofBw0xAudC3IHz+BqNXS14eHfh7GJxelIjWF3UeEZB8xB7PO/iTyL/sgZ5n5JA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=andestech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
-Received: from mail.andestech.com (ATCPCS31.andestech.com [10.0.1.89])
-	by Atcsqr.andestech.com with ESMTPS id 4B261qmP017802
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 2 Dec 2024 14:01:52 +0800 (+08)
-	(envelope-from ben717@andestech.com)
-Received: from swlinux02.andestech.com (10.0.15.183) by ATCPCS31.andestech.com
- (10.0.1.89) with Microsoft SMTP Server id 14.3.498.0; Mon, 2 Dec 2024
- 14:01:51 +0800
-From: Ben Zong-You Xie <ben717@andestech.com>
-To: <linux-pwm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: <ukleinek@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, Ben Zong-You Xie <ben717@andestech.com>
-Subject: [PATCH v2 2/2] pwm: atcpit100: add Andes PWM driver support
-Date: Mon, 2 Dec 2024 14:01:47 +0800
-Message-ID: <20241202060147.1271264-3-ben717@andestech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241202060147.1271264-1-ben717@andestech.com>
-References: <20241202060147.1271264-1-ben717@andestech.com>
+	s=arc-20240116; t=1733122016; c=relaxed/simple;
+	bh=BGKKT4M7B0mxH9LQy3CTxmDnpSGj6ANQv/xzPYnQNCo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DsVI2GkAS3Bn0lnW7dmUE/UdR7rBaHegg3YxRuzZNTb0V0sEK42ccUmr3uYrSDUvKcatsCn0UtBD0GKRrGaZbH9GhlpKfEq2s31PO3o06iR2Rd6fPrKzsJWeLxQAkDIcp98y3OlFP+MfumqmoLtqsRWVlbLDkHwS8z6qX7grT7Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fzeHfWzk; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-53df1d1b726so4378762e87.0;
+        Sun, 01 Dec 2024 22:46:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733122012; x=1733726812; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mTzKZUoU+tSJjf2CzUJWcZUzAimmxO6c48VQPd9iPRY=;
+        b=fzeHfWzkmFmNod9eZj/ZhKe2nyPe0Nw4v2x+2RnjLBwyrUke1bjJy/6tODZ5kn03ue
+         4gkZqYla+2B67iHMiZbTfMIwYovOkAttbQF6U/5x851UOChI+N93fGLCidi8aVuzfSbR
+         eZdI9E4C0nHHoM7Fb5WUTm8iVlKD1BYLQgolJWMPmrjFfbpOwLEiTDqsuF9S8X/fQBc0
+         Wzak2pjOAMlukdbq55YeQ05VAgNaB8O5Iudpo7t7XLgrLg67Io8OTpXtG6/StwEt8MF4
+         e4AEVUaRh5VqCYQsuH4kxsfsIRVR2EmLGx1Ppv/rGweR2aCm6N4uqpM2CIoJWJv3kLkR
+         639A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733122012; x=1733726812;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mTzKZUoU+tSJjf2CzUJWcZUzAimmxO6c48VQPd9iPRY=;
+        b=vLJf9Kj0e51IwJwPay1eTHO4ym+SHZ2hn0KbhbiOeN+YSn4WCfLOfnu06MrsXjuNqO
+         CUhfs1FxQkSUBU9HnKjpZBdDVwR6Q40jWschVw3TDztCql3vb0MV/eHAcJOXbTaGs5xi
+         yvfg2W4KMjb7VkEtSeSbCJVxosnIfK8SLX/3D9zhRxHfcKrQEVSofGa1Tf9g7Ll4Abat
+         WWshMEZw1jDdGbHLqBCY/H0RHDnc7/LYfQwXtCSeZLkTRHyyCZjhVHYZ5Ypu9+J4akQH
+         QFKv2Zjq8yTPyUxZr5NQMizfcL9LGPQfNrFg92/OVONUpItiZVxoGV/lD9K9OMLzQCb+
+         TrsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUzMekcGtCUcIUFY0JWCSJiH306/5PF6EB2A9Kf4gIbsJKYdUYlvR5b337m9uEUBmp2ziP6uPoMC98+@vger.kernel.org, AJvYcCWOsPApz3Y6rHY6liDmdgRukaTFFYEnZI3qtXJa8DsvUbI6KCHTVdIAqps6jrHo2BnfrH7chMbO8mQ7@vger.kernel.org, AJvYcCXPDLAmgel6WteSUFTCI/fbnbgVTJYImQpxIJV6BGnFM7ZV9V+wmrRK9j94TmfVwxAOMKOutr1WlYo7f7H+@vger.kernel.org
+X-Gm-Message-State: AOJu0YzIddGfq+F/943MaZ92MO4Y+cIC9uZkwLUWb8pJu8s4dVKL4ucV
+	CY2w6ntvGIrhTbkzPGxxkXlpHvbmduE8q1v624otC19tLi84F26nUmi89Q==
+X-Gm-Gg: ASbGncv0kwBS3KjjSQlkJ3hM+Y6t3OqIiVXMeMAJ0VBopsvosjI8SPzzntDt25xSbwd
+	cdXgAYk4sYH0rgigDXaWmk03kLzfRDeG+JU6z6FOyRQ3+eiix9vQMuvAt5qmK7cJaRQ2IVOXW4m
+	wl55p6WRTGdrkU8kmj5V7ZdHDanCXJBw9ZIvi/nPfAK3wEuOfJtY/4CIKFM/sDK863WlEuw2n9O
+	CBw5oecrnba5L8V81mSdspAZ9uB4SVWcIS1Lm1oQJpZws9UzWyin5I47ot4HeotolGL8mTaBhcv
+	q5Br6Gj2Tg7Ww7dvWTX6mTUD2HeAAq8=
+X-Google-Smtp-Source: AGHT+IGT1CTRHEZ51DGMX9V+sWOuY45xKYqAVKYGhRYRSyCDmD7rrN0ZQiHjblIK8mLkO1bisFQHpw==
+X-Received: by 2002:a05:6512:3d93:b0:53d:e537:c780 with SMTP id 2adb3069b0e04-53df0104745mr11017388e87.35.1733122010882;
+        Sun, 01 Dec 2024 22:46:50 -0800 (PST)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53df6443305sm1363510e87.79.2024.12.01.22.46.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 01 Dec 2024 22:46:49 -0800 (PST)
+Message-ID: <a52bce75-c1df-453a-b54e-2dfbeb9c285e@gmail.com>
+Date: Mon, 2 Dec 2024 08:46:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-DNSRBL: 
-X-SPAM-SOURCE-CHECK: pass
-X-MAIL:Atcsqr.andestech.com 4B261qmP017802
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 7/7] iio: accel: kx022a: align with subsystem way
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <cover.1732783834.git.mazziesaccount@gmail.com>
+ <9b63813ecf10b1cd0126cb950bc09514c4287b9a.1732783834.git.mazziesaccount@gmail.com>
+ <20241130181506.27d0c72a@jic23-huawei> <20241130182628.3d35817b@jic23-huawei>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20241130182628.3d35817b@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add PWM driver support for Andes atcpit100.
+On 30/11/2024 20:26, Jonathan Cameron wrote:
+> On Sat, 30 Nov 2024 18:15:06 +0000
+> Jonathan Cameron <jic23@kernel.org> wrote:
+> 
+>> On Thu, 28 Nov 2024 11:03:40 +0200
+>> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+>>
+>>> Many of the Kionix/ROHM accelerometers have a "PC1 - bit" which enables
+>>> the accelerometer. While a sensor configuration like ODR, g-range, FIFO
+>>> status etc. are changed, the PC1 bit must be cleared (sensor must be
+>>> disabled). (See the description for different CNTL registers [1])
+>>>
+>>> In order to ensure this the kx022a driver uses a mutex, which is locked
+>>> when the PC1 bit is cleared, and held for the duration of the
+>>> configuration, and released after PC1 bit is set again (enabling the
+>>> sensor).
+>>>
+>>> The locking and PC1 bit toggling was implemented using functions:
+>>> kx022a_turn_off_lock() and kx022a_turn_on_unlock().
+>>>
+>>> Based on a discussions [2], the IIO subsystem prefers open-coding the
+>>> locking with scoped_guard() over these functions.
+>>>
+>>> Drop the kx022a_turn_off_lock() and kx022a_turn_on_unlock() and use
+>>> scoped_guard() instead.
+>>>
+>>> [1]: https://fscdn.rohm.com/kionix/en/datasheet/kx022acr-z-e.pdf
+>>> [2]: https://lore.kernel.org/all/20241126175550.4a8bedf3@jic23-huawei/
+>>>
+>>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+>>>
+>>> ---
+>>> Revision history:
+>>> v2 => v3:
+>>>   - New patch
+>>>
+>>> NOTE: This patch uses the if_not_cond_guard() which is currently missing
+>>> the iio_testing.
+>>> https://lore.kernel.org/all/20241001-cleanup-if_not_cond_guard-v1-1-7753810b0f7a@baylibre.com/T/#m69982b23da9f71e72d84855b34e9b142cb3a1920
+>>
+>> Looks good to me.  If no one else comments, I'll pick this up when
+>> I have the precursor available (so hopefully just after rc1)
+> or maybe not.
+> https://lore.kernel.org/all/CAHk-=whn07tnDosPfn+UcAtWHBcLg=KqA16SHVv0GV4t8P1fHw@mail.gmail.com/
+> 
+> Seems Linus is unconvinced.
+> Hmmm. We might have to roll back the uses of cond_guard() entirely.
+> Which will be a pain.  Ah well. Sometimes an idea turns out to not be as useful
+> as it initially seemed.
+> 46 instances to get rid of in the tree today...
 
-Signed-off-by: Ben Zong-You Xie <ben717@andestech.com>
----
- MAINTAINERS                 |   1 +
- drivers/pwm/Kconfig         |  17 +++
- drivers/pwm/Makefile        |   1 +
- drivers/pwm/pwm-atcpit100.c | 289 ++++++++++++++++++++++++++++++++++++
- 4 files changed, 308 insertions(+)
- create mode 100644 drivers/pwm/pwm-atcpit100.c
+Ouch! :( Sorry to hear Jonathan.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index ebbc7edcf077..39c6e1f21339 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3555,6 +3555,7 @@ ATCPIT100 PWM DRIVER
- M:	Ben Zong-You Xie <ben717@andestech.com>
- S:	Supported
- F:	Documentation/devicetree/bindings/pwm/andestech,atcpit100-pwm.yaml
-+F:	drivers/pwm/pwm-atcpit100.c
- 
- ATHEROS 71XX/9XXX GPIO DRIVER
- M:	Alban Bedel <albeu@free.fr>
-diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-index 0915c1e7df16..f45ff74fb44e 100644
---- a/drivers/pwm/Kconfig
-+++ b/drivers/pwm/Kconfig
-@@ -66,6 +66,23 @@ config PWM_APPLE
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called pwm-apple.
- 
-+config PWM_ATCPIT100
-+	tristate "Andes ATCPIT100 PWM support"
-+	depends on OF && HAS_IOMEM
-+	depends on RISCV || COMPILE_TEST
-+	select REGMAP_MMIO
-+	help
-+	  Generic PWM framework driver for ATCPIT100 on Andes AE350 platform
-+
-+	  The ATCPIT100 Programmable Interval Timer (PIT) is a set of compact
-+	  multi-function timers, which can be used as pulse width
-+	  modulators (PWM) as well as simple timers. ATCPIT100 supports up to 4
-+	  PIT channels. Each PIT channel can be a simple timer or PWM, or a
-+	  combination of timer and PWM.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called pwm-atcpit100.
-+
- config PWM_ATMEL
- 	tristate "Atmel PWM support"
- 	depends on ARCH_AT91 || COMPILE_TEST
-diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-index 9081e0c0e9e0..ad6e803f12d0 100644
---- a/drivers/pwm/Makefile
-+++ b/drivers/pwm/Makefile
-@@ -3,6 +3,7 @@ obj-$(CONFIG_PWM)		+= core.o
- obj-$(CONFIG_PWM_AB8500)	+= pwm-ab8500.o
- obj-$(CONFIG_PWM_ADP5585)	+= pwm-adp5585.o
- obj-$(CONFIG_PWM_APPLE)		+= pwm-apple.o
-+obj-$(CONFIG_PWM_ATCPIT100)	+= pwm-atcpit100.o
- obj-$(CONFIG_PWM_ATMEL)		+= pwm-atmel.o
- obj-$(CONFIG_PWM_ATMEL_HLCDC_PWM)	+= pwm-atmel-hlcdc.o
- obj-$(CONFIG_PWM_ATMEL_TCB)	+= pwm-atmel-tcb.o
-diff --git a/drivers/pwm/pwm-atcpit100.c b/drivers/pwm/pwm-atcpit100.c
-new file mode 100644
-index 000000000000..a8bbac878130
---- /dev/null
-+++ b/drivers/pwm/pwm-atcpit100.c
-@@ -0,0 +1,289 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * PWM driver for ATCPIT100 on Andes AE350 platform
-+ *
-+ * Copyright (C) 2024 Andes Technology Corporation.
-+ *
-+ * Limitations:
-+ * - When disabling a channel, the current period will not be completed, and the
-+ *   output will be constant zero.
-+ * - The current period will be completed first while reconfiguring.
-+ * - Further, if the reconfiguration changes the clock source, the output will
-+ *   not be the old one nor the new one. And the output will be the new one
-+ *   once writing to the reload register.
-+ * - The hardware can neither do a 0% nor a 100% relative duty cycle.
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <linux/err.h>
-+#include <linux/math64.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/pwm.h>
-+#include <linux/regmap.h>
-+#include <linux/time.h>
-+#include <linux/types.h>
-+
-+#define ATCPIT100_CHANNEL_MAX			4
-+#define ATCPIT100_CHANNEL_ENABLE		0x1C
-+#define ATCPIT100_CHANNEL_ENABLE_PWM(ch)	BIT(3 + (4 * ch))
-+#define ATCPIT100_CHANNEL_CTRL(ch)		(0x20 + (0x10 * ch))
-+#define ATCPIT100_CHANNEL_CTRL_MODE_PWM		0x04
-+#define ATCPIT100_CHANNEL_CTRL_CLK		BIT(3)
-+#define ATCPIT100_CHANNEL_CTRL_MASK		GENMASK(4, 0)
-+#define ATCPIT100_CHANNEL_RELOAD(ch)		(0x24 + (0x10 * ch))
-+#define ATCPIT100_CHANNEL_RELOAD_HIGH		GENMASK(31, 16)
-+#define ATCPIT100_CHANNEL_RELOAD_LOW		GENMASK(15, 0)
-+#define ATCPIT100_CYCLE_MIN			1
-+#define ATCPIT100_CYCLE_MAX			0x010000
-+#define ATCPIT100_IS_VALID_PERIOD(p)		\
-+		in_range(p, min_period, max_period - min_period + 1)
-+
-+enum atcpit100_clk {
-+	ATCPIT100_CLK_EXT = 0,
-+	ATCPIT100_CLK_APB,
-+	NUM_ATCPIT100_CLK
-+};
-+
-+struct atcpit100_pwm {
-+	struct regmap *regmap;
-+	struct clk *ext_clk;
-+	struct clk *apb_clk;
-+};
-+
-+static const struct regmap_config atcpit100_pwm_regmap_config = {
-+	.reg_bits = 32,
-+	.reg_stride = 4,
-+	.val_bits = 32,
-+};
-+
-+static inline struct atcpit100_pwm *to_atcpit100_pwm(struct pwm_chip *chip)
-+{
-+	return pwmchip_get_drvdata(chip);
-+}
-+
-+static int atcpit100_pwm_enable(struct pwm_chip *chip, unsigned int channel,
-+				bool enable)
-+{
-+	unsigned int enable_bit = ATCPIT100_CHANNEL_ENABLE_PWM(channel);
-+	struct atcpit100_pwm *ap = to_atcpit100_pwm(chip);
-+
-+	return regmap_update_bits(ap->regmap, ATCPIT100_CHANNEL_ENABLE,
-+				  enable_bit, enable ? enable_bit : 0);
-+}
-+
-+static int atcpit100_pwm_config(struct pwm_chip *chip, unsigned int channel,
-+				const struct pwm_state *state)
-+{
-+	int clk;
-+	int ret;
-+	unsigned int reload_val;
-+	unsigned long rate[NUM_ATCPIT100_CLK];
-+	u64 max_period;
-+	u64 min_period;
-+	u64 high_cycle;
-+	u64 low_cycle;
-+	struct atcpit100_pwm *ap = to_atcpit100_pwm(chip);
-+	unsigned int ctrl_val = ATCPIT100_CHANNEL_CTRL_MODE_PWM;
-+	u64 high_period = state->duty_cycle;
-+	u64 low_period = state->period - high_period;
-+
-+	rate[ATCPIT100_CLK_EXT] = clk_get_rate(ap->ext_clk);
-+	rate[ATCPIT100_CLK_APB] = clk_get_rate(ap->apb_clk);
-+
-+	/*
-+	 * Reload register for PWM mode:
-+	 *
-+	 *		31 : 16    15 : 0
-+	 *		PWM16_Hi | PWM16_Lo
-+	 *
-+	 * In the PWM mode, the high period is (PWM16_Hi + 1) cycles, and the
-+	 * low period is (PWM16_Lo + 1) cycles. Since we need to write
-+	 * "numcycles - 1" to the register, the valid range of numcycles will
-+	 * be between 1 to 0x10000. Calculate the possible periods that satisfy
-+	 * the above restriction:
-+	 *
-+	 *	Let m = 1, M = 0x10000,
-+	 *	m <= floor(cycle) <= M
-+	 * <=>	m <= floor(rate * period / NSEC_PER_SEC) <= M
-+	 * <=>	m <= rate * period / NSEC_PER_SEC < M + 1
-+	 * <=>	m * NSEC_PER_SEC / rate <= period < (M + 1) * NSEC_PER_SEC / rate
-+	 * <=>	ceil(m * NSEC_PER_SEC / rate) <= period <= ceil((M + 1) * NSEC_PER_SEC / rate) - 1
-+	 *
-+	 * Since there are two clock sources for ATCPIT100, if the period is not
-+	 * valid for the first clock source, then the second clock source will
-+	 * be checked. Reject the request when both clock sources are not valid
-+	 * for the settings.
-+	 */
-+	for (clk = ATCPIT100_CLK_EXT; clk < NUM_ATCPIT100_CLK; clk++) {
-+		max_period =
-+			DIV64_U64_ROUND_UP(
-+				(ATCPIT100_CYCLE_MAX + 1) * NSEC_PER_SEC,
-+				rate[clk]) - 1;
-+		min_period =
-+			DIV64_U64_ROUND_UP(ATCPIT100_CYCLE_MIN * NSEC_PER_SEC,
-+					   rate[clk]);
-+
-+		if (ATCPIT100_IS_VALID_PERIOD(high_period) &&
-+		    ATCPIT100_IS_VALID_PERIOD(low_period))
-+			break;
-+	}
-+
-+	if (clk == NUM_ATCPIT100_CLK)
-+		return -EINVAL;
-+
-+	/*
-+	 * Once changing the clock source here, the output will be neither the
-+	 * old one nor the new one until writing to the reload register.
-+	 */
-+	ctrl_val |= clk ? ATCPIT100_CHANNEL_CTRL_CLK : 0;
-+	ret = regmap_update_bits(ap->regmap, ATCPIT100_CHANNEL_CTRL(channel),
-+				 ATCPIT100_CHANNEL_CTRL_MASK, ctrl_val);
-+	if (ret)
-+		return ret;
-+
-+	high_cycle = mul_u64_u64_div_u64(rate[clk], high_period, NSEC_PER_SEC);
-+	low_cycle = mul_u64_u64_div_u64(rate[clk], low_period, NSEC_PER_SEC);
-+	reload_val = FIELD_PREP(ATCPIT100_CHANNEL_RELOAD_HIGH, high_cycle - 1) |
-+		     FIELD_PREP(ATCPIT100_CHANNEL_RELOAD_LOW, low_cycle - 1);
-+
-+	return regmap_write(ap->regmap, ATCPIT100_CHANNEL_RELOAD(channel),
-+			    reload_val);
-+}
-+
-+static int atcpit100_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-+			       const struct pwm_state *state)
-+{
-+	int ret;
-+	unsigned int channel = pwm->hwpwm;
-+
-+	/* ATCPIT100 PWM driver now only supports normal polarity. */
-+	if (state->polarity != PWM_POLARITY_NORMAL)
-+		return -EINVAL;
-+
-+	if (!state->enabled) {
-+		if (pwm->state.enabled)
-+			return atcpit100_pwm_enable(chip, channel, false);
-+
-+		return 0;
-+	}
-+
-+	if (ret)
-+		return ret;
-+
-+	ret = atcpit100_pwm_config(chip, channel, state);
-+	if (ret)
-+		return ret;
-+
-+	return atcpit100_pwm_enable(chip, channel, true);
-+}
-+
-+static int atcpit100_pwm_get_state(struct pwm_chip *chip,
-+				   struct pwm_device *pwm,
-+				   struct pwm_state *state)
-+{
-+	int ret;
-+	unsigned int ctrl_val;
-+	unsigned int reload_val;
-+	unsigned long rate;
-+	u16 pwm_high;
-+	u16 pwm_low;
-+	unsigned int channel = pwm->hwpwm;
-+	struct atcpit100_pwm *ap = to_atcpit100_pwm(chip);
-+
-+	ret = regmap_read(ap->regmap, ATCPIT100_CHANNEL_CTRL(channel),
-+			  &ctrl_val);
-+	if (ret)
-+		return ret;
-+
-+	rate = (ctrl_val & ATCPIT100_CHANNEL_CTRL_CLK) ?
-+	       clk_get_rate(ap->apb_clk) : clk_get_rate(ap->ext_clk);
-+	state->enabled =
-+		regmap_test_bits(ap->regmap, ATCPIT100_CHANNEL_ENABLE,
-+				 ATCPIT100_CHANNEL_ENABLE_PWM(channel));
-+	state->polarity = PWM_POLARITY_NORMAL;
-+	ret = regmap_read(ap->regmap, ATCPIT100_CHANNEL_RELOAD(channel),
-+			  &reload_val);
-+	if (ret)
-+		return ret;
-+
-+	pwm_high = FIELD_GET(ATCPIT100_CHANNEL_RELOAD_HIGH, reload_val);
-+	pwm_low = FIELD_GET(ATCPIT100_CHANNEL_RELOAD_LOW, reload_val);
-+	state->duty_cycle =
-+		DIV64_U64_ROUND_UP((pwm_high + 1) * NSEC_PER_SEC, rate);
-+	state->period =
-+		state->duty_cycle +
-+		DIV64_U64_ROUND_UP((pwm_low + 1) * NSEC_PER_SEC, rate);
-+
-+	return 0;
-+}
-+
-+static const struct pwm_ops atcpit_pwm_ops = {
-+	.apply = atcpit100_pwm_apply,
-+	.get_state = atcpit100_pwm_get_state,
-+};
-+
-+static int atcpit100_pwm_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct atcpit100_pwm *ap;
-+	struct pwm_chip *chip;
-+	void __iomem *base;
-+	int ret;
-+
-+	chip = devm_pwmchip_alloc(dev, ATCPIT100_CHANNEL_MAX, sizeof(*ap));
-+	if (IS_ERR(chip))
-+		return PTR_ERR(chip);
-+
-+	ap = to_atcpit100_pwm(chip);
-+	base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(base))
-+		return PTR_ERR(base);
-+
-+	ap->ext_clk = devm_clk_get(dev, "ext");
-+	if (IS_ERR(ap->ext_clk)) {
-+		dev_err_probe(dev, PTR_ERR(ap->ext_clk),
-+			      "failed to obtain external clock\n");
-+	}
-+
-+	ap->apb_clk = devm_clk_get_enabled(dev, "apb");
-+	if (IS_ERR(ap->apb_clk)) {
-+		dev_err_probe(dev, PTR_ERR(ap->apb_clk),
-+			      "failed to obtain APB clock\n");
-+	}
-+
-+	ap->regmap = devm_regmap_init_mmio(dev, base,
-+					   &atcpit100_pwm_regmap_config);
-+	if (IS_ERR(ap->regmap)) {
-+		return dev_err_probe(dev, PTR_ERR(ap->regmap),
-+				     "failed to init register map\n");
-+	}
-+
-+	chip->ops = &atcpit_pwm_ops;
-+	ret = devm_pwmchip_add(dev, chip);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to add PWM chip\n");
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id atcpit100_pwm_dt[] = {
-+	{ .compatible = "andestech,atcpit100-pwm" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, atcpit100_pwm_dt);
-+
-+static struct platform_driver atcpit100_pwm_driver = {
-+	.driver = {
-+		.name = "atcpit100-pwm",
-+		.of_match_table = atcpit100_pwm_dt,
-+	},
-+	.probe = atcpit100_pwm_probe,
-+};
-+module_platform_driver(atcpit100_pwm_driver);
-+
-+MODULE_AUTHOR("Ben Zong-You Xie <ben717@andestech.com>");
-+MODULE_DESCRIPTION("Andes ATCPIT100 PWM driver");
-+MODULE_LICENSE("GPL");
--- 
-2.34.1
-
+Yours,
+	-- Matti
 
