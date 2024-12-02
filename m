@@ -1,118 +1,219 @@
-Return-Path: <devicetree+bounces-126053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D5389E00D5
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 12:44:17 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 475AD9E00EE
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 12:51:07 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 02AC316221A
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 11:51:04 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 836C51FE456;
+	Mon,  2 Dec 2024 11:51:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mBftX+RP"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 228DD281DCE
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 11:44:16 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A966A1FBCAF;
-	Mon,  2 Dec 2024 11:44:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dBqcCjy+"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com [209.85.217.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26C0A1D8DFB;
-	Mon,  2 Dec 2024 11:44:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 108061FDE0B;
+	Mon,  2 Dec 2024 11:51:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733139852; cv=none; b=SrX7B0nWd/OGoyIrWWDKMxWUlC7VYOV2vhvlAcjp2XROr/TF1U87eQkTrqztz4aIs9fgAObINPpPW301L/bo1hQ0KBKmJF9msg8+PVomN7x6kA4h2kcp7Pg71bDM674g71JnM4GwA4O+T1z6MqDo9qyAyKbAVhU8G5QQP1bDTvo=
+	t=1733140263; cv=none; b=PWWrmYBYo6tgkyE4cyYzqN7UH7MO7+PdRHnWwzbMVnUYiJgZtfeOVY2T7DMYw2SmNTCY6bH8NWfhYZXYxLyiV1VMSzdd3DQ68lkbV7aTWuKnl9DyHJW1Q1o7UBoQTpzW3pOjjgOfdCHBgQwJTHu1M/QML6TCXe+KmxzRp9GSxdA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733139852; c=relaxed/simple;
-	bh=GZsoeQW5hdstO/v+cThYbQR7nprHNq50b7WyQzu5d9M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZTur6QRqsigFR3LJ0r8GxMHH7PHHb1nyzAyzYfPLWzo/Y3KxXA6EFcanQTEhPkB91IEUqZMR0/g0gwftpd/HfgRM47vUw28GZqMgyQgEkKgcqyDhy7mpUtDt2IiCQC2vEkFBGDeb1XdTn0Wfa8HePUVyjU+v5/jc6DcuyNv76H4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dBqcCjy+; arc=none smtp.client-ip=209.85.217.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f51.google.com with SMTP id ada2fe7eead31-4aef7d0cc2dso868879137.1;
-        Mon, 02 Dec 2024 03:44:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733139850; x=1733744650; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JKw95k+5UoWoDfh+G04oOPe4eVhSYepVo1cu+W92jK8=;
-        b=dBqcCjy+WDtrC18zopz4vRG1g0OCoNx3b8JEo//BWU+jmb1BRvTXZZEHrfCtkVV7aP
-         ePNUo8b3pQa7k5QWvF2iASE5X1rW/Z2vy9yfMsTJvKVVmbZ/y3l00ZrHPItnrmK5JPy6
-         RY+svnpnC2DMi8jRohENFNnU1ZXuFHRIs9852IqIz9VXpObxKFEMGFcUcJlYs2hEDaa6
-         Y/3KMG0XvlnUD8d1txhOPDCNMfrYiFUU062+KgG9NGrEAM85gTrQHS7zDp+Y24gUIEeE
-         tZdwtZgvq+//lGnR2v/cmFblPFr1PhQZOW9Pd5JXABkfKBMYa5rravGxNf38k30kIeL7
-         B8Tw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733139850; x=1733744650;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JKw95k+5UoWoDfh+G04oOPe4eVhSYepVo1cu+W92jK8=;
-        b=LbxO59a0UAD+LOCvo76IIgvLZd7uOYBNqFINoFV/dWpRtB9PYnhp6NXzEpazlryDGi
-         fApgtIpH1Xle0S+OqpEowtVtLaVwV5gHPfAARldGhaOKDR33t4W9xB51IblCXrjAOJxh
-         IQ+ofqKyWr2eUT9Yz0WRBQMyPNCJnxecJ2mRiYph2G13j3OOIDaUviKQI82MHs7dCAcz
-         b5l5wvBWudoMehGFr2zoczbj7IuE3jfhQs94Y5J0jpSXBPU/JXuipz26YeYC3z2UQbfF
-         6jS+uZ2kx5kSRg+N1JEHrNiZQ7ZuAPn8SrnqyM9vhCI/1d3ID2KRwRvd3cSBSkgUbkXR
-         2xvQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV8tq9/kjs7EHzyslnr3AlrgUBWxfDKDOtLpr1x+ZPWamcWpTmV1VOyqr2PUFoZUrzMvCFEPGJ6881+POPY3A==@vger.kernel.org, AJvYcCX4c+upDoBZ8gAg8CzeSfc72+L+6kiM2XGAc28OAhNF/GgWidsHXJjmenhptslm6QiP34jL0+DOinamjc9w@vger.kernel.org, AJvYcCXKsX/ANem1MyJdti589H5kXoO1j8zwyRKdM+ZHepMW/3YX09H1Kl2BWISdgLkHIioexzWCk+NJcaA9@vger.kernel.org
-X-Gm-Message-State: AOJu0YyvAgZJ8suTC1CAhZhI5MxK9M6+d08oybMmTtYuefS/EVvZ3F9d
-	rt+vrxv2MawwbO3J8g3iAr0AVyN4bMZW/BmOG9KUyiD1tE1tvdVI4sFCbrOjZIpQ3oY4kxUeXlG
-	tx0tVW1adH300NAHbfRjDFvoTM/2tFg==
-X-Gm-Gg: ASbGncsiQ3Y+nnKF65vN1v6QQKYM7Ytn8bl/X4i7J1Ko0F/9o3+1QIw1k+0QupeGOlm
-	KslcQRyrTJZaH2lprDWw1R6cnZUXNow==
-X-Google-Smtp-Source: AGHT+IFQK9mVZMREASLpV6lvotlW3aXUn/QES//1LdyM8DiaRquQ1A0m9N6f1DElbFsTRnQNKQ1EC88tDCGg+NIaJlQ=
-X-Received: by 2002:a05:6102:c8f:b0:4af:57c8:5b2a with SMTP id
- ada2fe7eead31-4af57c85bfcmr19692567137.20.1733139849959; Mon, 02 Dec 2024
- 03:44:09 -0800 (PST)
+	s=arc-20240116; t=1733140263; c=relaxed/simple;
+	bh=6s+NoKimPKemUsivQ2UQfp09dpUvkW+1d2SOJ8lE8Ts=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=o1R/LAkKz+HX7kVE6SjtqAHn2fm4r9sv/9bw0URwZ+KF9qbyqvMpId/F0k0d7g76W7fgdHZl/NtnvrWJ2Xhd2FohvdrAS2ty9v0wHgN8fb9DJpJ2vH3DyQKheCLfJNdgJqcYE98iPG+1zMj+2x+TPMn3OCqhyFOkWRJsDEPROso=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mBftX+RP; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1733140261; x=1764676261;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=6s+NoKimPKemUsivQ2UQfp09dpUvkW+1d2SOJ8lE8Ts=;
+  b=mBftX+RPASQON6ykWFjqdbeeRraYXXkOuC4Wg/cpFcX2yKddo1JDwbS4
+   ilFwVZmHvgd/O3R6H7PgPX9Z/pm3KDoyg9zfbqbn/FZoNTQAAX3gaWIDq
+   UUkzOZUb4SS1ddjNrCmUlSQIC567vafr/KGOySHReac4qZHCrIsSWTwzU
+   UTPoKzGHgZnQ1OQfzW4rcPNT4fny7hxHT2pVdqVrgEdOzktATb68G+E43
+   M+Kxav5Oaa9qCRIH/H9KySEAoQIgRXWqWmELmnyhgz3T1onhw7Jse5ofm
+   32sEVaYSKxCdTaKDBr038Iz2Y/SBVtXAbvvCcTeM2kBiTtrJgiWa6B2v3
+   Q==;
+X-CSE-ConnectionGUID: KA6uCkhtRPG07d0meB7+qg==
+X-CSE-MsgGUID: B7PmB1v0Sy+IkRe/FN5iJw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="43915758"
+X-IronPort-AV: E=Sophos;i="6.12,202,1728975600"; 
+   d="scan'208";a="43915758"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Dec 2024 03:51:00 -0800
+X-CSE-ConnectionGUID: twTOEWXkQZG/Kp2jTLzKIg==
+X-CSE-MsgGUID: D07UsJe3T1OBrjeWggGlWg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
+   d="scan'208";a="98117906"
+Received: from lkp-server02.sh.intel.com (HELO 36a1563c48ff) ([10.239.97.151])
+  by orviesa003.jf.intel.com with ESMTP; 02 Dec 2024 03:50:58 -0800
+Received: from kbuild by 36a1563c48ff with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tI4x5-0002NM-2S;
+	Mon, 02 Dec 2024 11:50:55 +0000
+Date: Mon, 2 Dec 2024 19:50:10 +0800
+From: kernel test robot <lkp@intel.com>
+To: Ben Zong-You Xie <ben717@andestech.com>, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, ukleinek@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	Ben Zong-You Xie <ben717@andestech.com>
+Subject: Re: [PATCH v2 2/2] pwm: atcpit100: add Andes PWM driver support
+Message-ID: <202412021900.oCRrT3PV-lkp@intel.com>
+References: <20241202060147.1271264-3-ben717@andestech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241008-starqltechn_integration_upstream-v6-0-5445365d3052@gmail.com>
- <20241008-starqltechn_integration_upstream-v6-10-5445365d3052@gmail.com> <0cdd22af-150a-4dbc-8436-13211d93d417@oss.qualcomm.com>
-In-Reply-To: <0cdd22af-150a-4dbc-8436-13211d93d417@oss.qualcomm.com>
-From: Dzmitry Sankouski <dsankouski@gmail.com>
-Date: Mon, 2 Dec 2024 14:43:59 +0300
-Message-ID: <CABTCjFB1oG8TwZcQQzBMhuXUHjQdjE987RdZ9QgG_oi1R8WYoA@mail.gmail.com>
-Subject: Re: [PATCH v6 10/12] arm64: dts: qcom: sdm845-starqltechn: add
- initial sound support
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: cros-qcom-dts-watchers@chromium.org, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241202060147.1271264-3-ben717@andestech.com>
 
-=D1=81=D0=B1, 26 =D0=BE=D0=BA=D1=82. 2024=E2=80=AF=D0=B3. =D0=B2 13:32, Kon=
-rad Dybcio <konrad.dybcio@oss.qualcomm.com>:
->
-> On 8.10.2024 6:51 PM, Dzmitry Sankouski wrote:
-> > Add support for sound (headphones and mics only)
-> > Also redefine slpi reserved memory, because adsp_mem overlaps with
-> > slpi_mem inherited from sdm845.dtsi.
-> >
-> > Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
-> >
-> > ---
->
-> [...]
->
-> > +&sound {
-> > +     compatible =3D "qcom,sdm845-sndcard";
-> > +     model =3D "Samsung Galaxy S9";
->
-> Are spaces cool with userspace?
+Hi Ben,
 
-Yes. Oneplus enchilada is the same.
+kernel test robot noticed the following build warnings:
 
---=20
-Best regards and thanks for review,
-Dzmitry
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linus/master thierry-reding-pwm/for-next v6.13-rc1 next-20241128]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Ben-Zong-You-Xie/dt-bindings-pwm-add-atcpit100-pwm/20241202-140437
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20241202060147.1271264-3-ben717%40andestech.com
+patch subject: [PATCH v2 2/2] pwm: atcpit100: add Andes PWM driver support
+config: m68k-allyesconfig (https://download.01.org/0day-ci/archive/20241202/202412021900.oCRrT3PV-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241202/202412021900.oCRrT3PV-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202412021900.oCRrT3PV-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   In file included from include/linux/jiffies.h:7,
+                    from include/linux/ktime.h:25,
+                    from include/linux/timer.h:6,
+                    from include/linux/workqueue.h:9,
+                    from include/linux/srcu.h:21,
+                    from include/linux/notifier.h:16,
+                    from include/linux/clk.h:14,
+                    from drivers/pwm/pwm-atcpit100.c:18:
+   drivers/pwm/pwm-atcpit100.c: In function 'atcpit100_pwm_config':
+>> drivers/pwm/pwm-atcpit100.c:123:59: warning: integer overflow in expression of type 'long int' results in '94030336' [-Woverflow]
+     123 |                                 (ATCPIT100_CYCLE_MAX + 1) * NSEC_PER_SEC,
+         |                                                           ^
+   include/linux/math64.h:298:39: note: in definition of macro 'DIV64_U64_ROUND_UP'
+     298 |         ({ u64 _tmp = (d); div64_u64((ll) + _tmp - 1, _tmp); })
+         |                                       ^~
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for GET_FREE_REGION
+   Depends on [n]: SPARSEMEM [=n]
+   Selected by [y]:
+   - RESOURCE_KUNIT_TEST [=y] && RUNTIME_TESTING_MENU [=y] && KUNIT [=y]
+
+
+vim +123 drivers/pwm/pwm-atcpit100.c
+
+    76	
+    77	static int atcpit100_pwm_config(struct pwm_chip *chip, unsigned int channel,
+    78					const struct pwm_state *state)
+    79	{
+    80		int clk;
+    81		int ret;
+    82		unsigned int reload_val;
+    83		unsigned long rate[NUM_ATCPIT100_CLK];
+    84		u64 max_period;
+    85		u64 min_period;
+    86		u64 high_cycle;
+    87		u64 low_cycle;
+    88		struct atcpit100_pwm *ap = to_atcpit100_pwm(chip);
+    89		unsigned int ctrl_val = ATCPIT100_CHANNEL_CTRL_MODE_PWM;
+    90		u64 high_period = state->duty_cycle;
+    91		u64 low_period = state->period - high_period;
+    92	
+    93		rate[ATCPIT100_CLK_EXT] = clk_get_rate(ap->ext_clk);
+    94		rate[ATCPIT100_CLK_APB] = clk_get_rate(ap->apb_clk);
+    95	
+    96		/*
+    97		 * Reload register for PWM mode:
+    98		 *
+    99		 *		31 : 16    15 : 0
+   100		 *		PWM16_Hi | PWM16_Lo
+   101		 *
+   102		 * In the PWM mode, the high period is (PWM16_Hi + 1) cycles, and the
+   103		 * low period is (PWM16_Lo + 1) cycles. Since we need to write
+   104		 * "numcycles - 1" to the register, the valid range of numcycles will
+   105		 * be between 1 to 0x10000. Calculate the possible periods that satisfy
+   106		 * the above restriction:
+   107		 *
+   108		 *	Let m = 1, M = 0x10000,
+   109		 *	m <= floor(cycle) <= M
+   110		 * <=>	m <= floor(rate * period / NSEC_PER_SEC) <= M
+   111		 * <=>	m <= rate * period / NSEC_PER_SEC < M + 1
+   112		 * <=>	m * NSEC_PER_SEC / rate <= period < (M + 1) * NSEC_PER_SEC / rate
+   113		 * <=>	ceil(m * NSEC_PER_SEC / rate) <= period <= ceil((M + 1) * NSEC_PER_SEC / rate) - 1
+   114		 *
+   115		 * Since there are two clock sources for ATCPIT100, if the period is not
+   116		 * valid for the first clock source, then the second clock source will
+   117		 * be checked. Reject the request when both clock sources are not valid
+   118		 * for the settings.
+   119		 */
+   120		for (clk = ATCPIT100_CLK_EXT; clk < NUM_ATCPIT100_CLK; clk++) {
+   121			max_period =
+   122				DIV64_U64_ROUND_UP(
+ > 123					(ATCPIT100_CYCLE_MAX + 1) * NSEC_PER_SEC,
+   124					rate[clk]) - 1;
+   125			min_period =
+   126				DIV64_U64_ROUND_UP(ATCPIT100_CYCLE_MIN * NSEC_PER_SEC,
+   127						   rate[clk]);
+   128	
+   129			if (ATCPIT100_IS_VALID_PERIOD(high_period) &&
+   130			    ATCPIT100_IS_VALID_PERIOD(low_period))
+   131				break;
+   132		}
+   133	
+   134		if (clk == NUM_ATCPIT100_CLK)
+   135			return -EINVAL;
+   136	
+   137		/*
+   138		 * Once changing the clock source here, the output will be neither the
+   139		 * old one nor the new one until writing to the reload register.
+   140		 */
+   141		ctrl_val |= clk ? ATCPIT100_CHANNEL_CTRL_CLK : 0;
+   142		ret = regmap_update_bits(ap->regmap, ATCPIT100_CHANNEL_CTRL(channel),
+   143					 ATCPIT100_CHANNEL_CTRL_MASK, ctrl_val);
+   144		if (ret)
+   145			return ret;
+   146	
+   147		high_cycle = mul_u64_u64_div_u64(rate[clk], high_period, NSEC_PER_SEC);
+   148		low_cycle = mul_u64_u64_div_u64(rate[clk], low_period, NSEC_PER_SEC);
+   149		reload_val = FIELD_PREP(ATCPIT100_CHANNEL_RELOAD_HIGH, high_cycle - 1) |
+   150			     FIELD_PREP(ATCPIT100_CHANNEL_RELOAD_LOW, low_cycle - 1);
+   151	
+   152		return regmap_write(ap->regmap, ATCPIT100_CHANNEL_RELOAD(channel),
+   153				    reload_val);
+   154	}
+   155	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
