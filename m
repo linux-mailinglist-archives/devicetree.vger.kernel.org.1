@@ -1,129 +1,173 @@
-Return-Path: <devicetree+bounces-126255-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126257-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFBC49E0C4D
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 20:39:58 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8BC8D16549E
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 19:39:55 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E308E1DE89C;
-	Mon,  2 Dec 2024 19:39:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LP/HF7Sp"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 603569E0C5E
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 20:41:39 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA02D1DE893;
-	Mon,  2 Dec 2024 19:39:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25CD02845CF
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 19:41:38 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E4051DE8A5;
+	Mon,  2 Dec 2024 19:41:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PLIeE0i0"
+X-Original-To: devicetree@vger.kernel.org
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45A191DE893;
+	Mon,  2 Dec 2024 19:41:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733168375; cv=none; b=dNGLTEZlaGOJO7tUYVAR2CCIeTcgtFOlg+kIMpjYsCct5xqvcrXxlL9M+SSlcvMhanQ7YcROP2WPnyLECTYQTnmbLi1K9LStVuJUB1foWFG0FsQj35KNUI29QuMtlgKxLwZitEmj6yWey80DOJHoj5i6o+txdStqVwjYysX+JxY=
+	t=1733168492; cv=none; b=ZdvFQtNePS+fJiWsaPJEls+WDNUXDQaFoNHRh5Qe+ypTVPFSFq7n5k6OVi5t0ftnKbmss62uwaxJFSfc6G/ipCCWV6Afmuqb36kGCyQ+3H1LKR+lucYQ+gafo2SmNQ3UCFZM8F6GFVGD/FYhMEzVzJoZy0nrUn4AZAUrr4ioSxA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733168375; c=relaxed/simple;
-	bh=ELAb8l5Gsy/ftM10z1411EjhX0fFdKa41HXQZK0rAU4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OF0rTiE0tYqFpgEAgUP8m63YFzLy147ISRr2Prd9dtUjmZZOxqGN7PSZ7NOtdFKZTffWCvx5KX9BYNHhAPq+7mT9Ab63HyiPoN7Gtw2k2hzH+kO+oWIc8hgSA4eES2wx8doE3nWR7mvpSv/dps/FwL+AqSANqOK3caRSBwV9U4o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LP/HF7Sp; arc=none smtp.client-ip=198.175.65.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1733168374; x=1764704374;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ELAb8l5Gsy/ftM10z1411EjhX0fFdKa41HXQZK0rAU4=;
-  b=LP/HF7SpHb3q+FSnKXyJWnIxKFk/ZWJWEsjV1VNojAVOqDOgEkK57SuV
-   tURIvo03eFrOlhbMepUdP1/2ijO8hLW/m0sZs6HfCfshR8+cvRNaIsBvC
-   MtdXiE04Xg0Bpo/KmvXMjPARAoUaRa9mu1y/qg5ve7feKl9JZTAViKOWw
-   VXzI1qevBUiTRA5GR6/VWBH5PmVr+tnhMIsnnN3xGSRK7PBMu+Tt+T3do
-   DZRHG2z86I8zAyB0w5HfYpOMJjNKTGqrmp21ugiBjcwARjdVilirHy76x
-   aYxPP+0JQR9e1oE/rsKWSfxD4ZqLgvozMDZOLxGzxmfWMwjLrF97ukPyy
-   w==;
-X-CSE-ConnectionGUID: 200lfTjTTZG+hapiavgHBQ==
-X-CSE-MsgGUID: I/PPEV0CR1+/fbamr14hQQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="33230620"
-X-IronPort-AV: E=Sophos;i="6.12,203,1728975600"; 
-   d="scan'208";a="33230620"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Dec 2024 11:39:25 -0800
-X-CSE-ConnectionGUID: a80X3z8mS5uZnqnZnO4kKQ==
-X-CSE-MsgGUID: YGElb9ROQXWsWxpozJ9vgg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,203,1728975600"; 
-   d="scan'208";a="116466901"
-Received: from smile.fi.intel.com ([10.237.72.154])
-  by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Dec 2024 11:39:24 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1tICGN-00000003EVQ-3nuW;
-	Mon, 02 Dec 2024 21:39:19 +0200
-Date: Mon, 2 Dec 2024 21:39:19 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Vasileios Amoiridis <vassilisamir@gmail.com>
-Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, ajarizzo@gmail.com, ak@it-klinger.de,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/3] iio: pressure: bmp280: Minor cleanup
-Message-ID: <Z04M552eW9LwYVhH@smile.fi.intel.com>
-References: <20241202181907.21471-1-vassilisamir@gmail.com>
- <Z03_fBy9PmqDGLg3@smile.fi.intel.com>
- <Z04JgFlg57-slCsU@vamoirid-laptop>
+	s=arc-20240116; t=1733168492; c=relaxed/simple;
+	bh=rNGn5lYsz515JXXPpEUswF6PhdUyNi1X5qQjQ2VMzQk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=rXDgsor8eEHU3ImZuIYBxNInr3J+eDh9h22vWLOmP8+u6z6S/srhw9VB6+am8k/nAhLtdkQ/RX+UP6jErWneZ9WCTl+PgK5oaE+g1wDpnSEjvdnpNjqQii3dXJX+iI3qWyWj2du4p6gu7z/Sb9jYj0QMn8zF25Oo62DivGCnNCE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PLIeE0i0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B7C86C4CED9;
+	Mon,  2 Dec 2024 19:41:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733168491;
+	bh=rNGn5lYsz515JXXPpEUswF6PhdUyNi1X5qQjQ2VMzQk=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=PLIeE0i0ErxutQaGoJFacKEuuSRwAbTgH9jFEcAK7glsvUzPe8941USzycIGkTC3o
+	 bjQGlRb4uUlxkovJCqpsvTb+jKM1Z6w0iBusfMuL8oF9VFpkI6/XPI1jE5Cpawhv+D
+	 k4lnAn0J2wvD1m2TopcHtXglXkQ/e7Q7zGUNL5AcF+3YgKwngxCupLYPMdw5cDkMLD
+	 q5QxSqyadUiy+91S9qFzCSYSjlKyA6ARnviwsd8x4OhxzNi5BQRWT5KXvfQ6WTHf4/
+	 FKXH7RK33UYjUhXiTDSRLJ+QjmoV3gx81WdCOkvUTIW64AOlcXkzJYfnRxFMo6urSH
+	 +fRiePjom4Rmg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 99484E69E87;
+	Mon,  2 Dec 2024 19:41:31 +0000 (UTC)
+From: Jens Glathe via B4 Relay <devnull+jens.glathe.oldschoolsolutions.biz@kernel.org>
+Subject: [PATCH v3 0/3] arm64: dts: qcom: x1e80100-hp-x14: dt for HP
+ Omnibook X Laptop 14
+Date: Mon, 02 Dec 2024 20:41:28 +0100
+Message-Id: <20241202-hp-omnibook-x14-v3-0-0fcd96483723@oldschoolsolutions.biz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z04JgFlg57-slCsU@vamoirid-laptop>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGgNTmcC/3XOwQ6CMAyA4VchOzuzlQHBk+9hPLCxuUWkZMMFJ
+ by7g3gwIR7/Jv3amQTtnQ7klM3E6+iCwz5FfsiIsk1/09S1qQkwEJzzktqB4qN3EvFOJy5ozYq
+ 8No2qeNGStDV4bdy0iZdrauvCiP61HYh8nX4tEDsrcsqoFlCCYVAI05yxa4OyiF3A7jmm38JRu
+ jdZ4Qg/WM72GCSsAoBKqlJKI/5iy7J8AN/wCEAIAQAA
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Jens Glathe <jens.glathe@oldschoolsolutions.biz>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1733168490; l=3638;
+ i=jens.glathe@oldschoolsolutions.biz; s=20240919;
+ h=from:subject:message-id;
+ bh=rNGn5lYsz515JXXPpEUswF6PhdUyNi1X5qQjQ2VMzQk=;
+ b=q6EiZmR19/dO+ECqSEVIl03r794vd63LL70/3v3eyh3klS1GlTQmYtsF3aRlp8btfXVaopraW
+ ZbEUTQrUfX+DTRw2/qQbUouiTnLyigTeSxgTHfPEXZaslydCLYt7ysy
+X-Developer-Key: i=jens.glathe@oldschoolsolutions.biz; a=ed25519;
+ pk=JcRJqJc/y8LsxOlPakALD3juGfOKmFBWtO+GfELMJVg=
+X-Endpoint-Received: by B4 Relay for
+ jens.glathe@oldschoolsolutions.biz/20240919 with auth_id=216
+X-Original-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+Reply-To: jens.glathe@oldschoolsolutions.biz
 
-On Mon, Dec 02, 2024 at 08:24:48PM +0100, Vasileios Amoiridis wrote:
-> On Mon, Dec 02, 2024 at 08:42:04PM +0200, Andy Shevchenko wrote:
-> > On Mon, Dec 02, 2024 at 07:19:04PM +0100, Vasileios Amoiridis wrote:
+Introduce device tree for the HP Omnibook X Laptop 14-fe0750ng
+(hp-omnibook-x14). It is a Laptop based on the Qualcomm Snapdragon
+X Elite SoC. There seem to be other SKUs, some with Wifi-7 (WCN7850)
+instead of Wifi-6E (WCN6855). This dt explicitly supports WCN6855,
+I haven't found a good way yet to describe both.
+    
+PDF link: https://www8.hp.com/h20195/V2/GetPDF.aspx/c08989140
 
-...
+Supported features:
+    
+- Keyboard (no function keys though)
+- Display (IPS 2240x1400, 300nits)
+- PWM brightness control (works via brightnessctl)
+- Touchpad
+- Touchscreen
+- PCIe ports (pcie4, pcie6a)
+- USB type-c, type-a
+- WCN6855 Wifi-6E
+- WCN6855 Bluetooth
+- ADSP and CDSP
+- X1 GPU
+- GPIO Keys (Lid switch)
+- Audio definition (works via USB)
+- prepared for DP Altmode
 
-> > > Changes in v2:
-> > > 
-> > > Patch 1/3:
-> > > 	- Switch if case for better readability
-> > > 
-> > > Patch 2/3:
-> > > 	- Reword commit message
-> > > 
-> > > ---
-> > > v1: https://lore.kernel.org/linux-iio/20241128232450.313862-1-vassilisamir@gmail.com/
-> > > 
-> > > This series adds the SPI interface description on the device-tree file
-> > > of the sensor, adds proper self-described sized variables and performs
-> > > a minor optimization in time variable names.
-> > 
-> > For some reason your patches still have v1 in them. I dunno how you prepare
-> > your series but I recommend one of the two options:
-> > 1) b4 relay
-> > 2) my script: https://github.com/andy-shev/home-bin-tools/blob/master/ge2maintainer.sh
+Bringup work has started with the Asus Vivobook S15 as initial template,
+worked from there by comparing and copying from the CRD, QCP, 
+Yoga Slim 7, Thinkpad T14s. Special thanks to all the people that helped
+on #aarch64-laptops [1] with comments and suggestions.
+I tested on my laptop, mostly. Since the dt is also in Ubuntu-Concept X1E
+[2] there is also test exposure there, with some feedback.
 
-> Ah, my mistake! I didn't pay close attention. I use the --reroll-count
-> from git format-patch. I was not aware of those automated ways, I will
-> definitely use them. Thanks for pointing it out.
-> 
-> The patches are correct, the versioning is wrong, I can resend them if it
-> is necessary. 
+For WiFi to work you need a board file matching the board string [3]. By 
+experiment and pure guess I found the already existing calibration for
+HP_G8_LANCIA_14 to be quite nice, it gives 866MB/s link speed here. A 
+patch proposal [5] has been sent.
 
-Up to Jonathan, if the patches are correct, I don't see the necessity of
-resending until there are some issues being noted.
+For this patchset to work you also need patch [4] in the tree,
+otherwise uart14 for BT will be mising.
 
+[1] https://oftc.irclog.whitequark.org/aarch64-laptops
+[2] https://discourse.ubuntu.com/t/ubuntu-24-10-concept-snapdragon-x-elite/48800
+[3] "bus=pci,vendor=17cb,device=1103,subsystem-vendor=105b,subsystem-device=e108,qmi-chip-id=2,qmi-board-id=255"
+[4] https://lore.kernel.org/all/20241007-x1e80100-pwrseq-qcp-v1-0-f7166510ab17@linaro.org/
+[5] https://lore.kernel.org/all/f6693075-60ea-4fed-8453-9e124e94203b@oldschoolsolutions.biz/
+
+To: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+
+Changes in v3:
+- removed patch for the BOE panel from the set, already merged
+  c1bae6802ee9 drm/panel-edp: Add unknown BOE panel for HP Omnibook X14
+- added link to the WiFi board file patch
+- Link to v2: https://lore.kernel.org/r/20241130-hp-omnibook-x14-v2-0-72227bc6bbf4@oldschoolsolutions.biz
+
+Changes in v2:
+- amended usb_mp_dwc3 definition to reference both phys that are used,
+  as suggested by Krishna Kurapati
+- Link to v1: https://lore.kernel.org/r/20241124-hp-omnibook-x14-v1-0-e4262f0254fa@oldschoolsolutions.biz
+
+---
+Jens Glathe (3):
+      dt-bindings: arm: qcom: Add HP Omnibook X 14
+      firmware: qcom: scm: Allow QSEECOM for HP Omnibook X14
+      arm64: dts: qcom: x1e80100-hp-x14: dt for HP Omnibook X Laptop 14
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |    1 +
+ arch/arm64/boot/dts/qcom/Makefile                  |    1 +
+ .../boot/dts/qcom/x1e80100-hp-omnibook-x14.dts     | 1693 ++++++++++++++++++++
+ drivers/firmware/qcom/qcom_scm.c                   |    1 +
+ 4 files changed, 1696 insertions(+)
+---
+base-commit: 02d920be494a5f953319e7589d23a8ba3f00ce05
+change-id: 20241116-hp-omnibook-x14-90539fac715d
+
+Best regards,
 -- 
-With Best Regards,
-Andy Shevchenko
+Jens Glathe <jens.glathe@oldschoolsolutions.biz>
 
 
 
