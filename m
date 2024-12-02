@@ -1,52 +1,53 @@
-Return-Path: <devicetree+bounces-126237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126236-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7FD79E0C97
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 20:54:33 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A16D49E0BF1
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 20:22:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 66508B35EB4
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 18:18:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3B92CB2C56E
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 18:18:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0F111DDC19;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5B691DDA37;
 	Mon,  2 Dec 2024 18:18:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LFGSH9jX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A89GfAx5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0B4F1DD0F6;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 981E81DACBE;
 	Mon,  2 Dec 2024 18:18:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733163503; cv=none; b=eKtZJHnvdlp0d0suLoLFPlcRLmy/kwsOZaaJk4XJUuA/VJdB1fFaIeWw3Px6PlT9nO12mk4tLVlxcJBsIDuhW+70vYhN7kNz2YyhMKxFJQ/mugdGb5c71hwPmy0TJyHEiG2EpPlDM7TDA9b2OYhACEpvFP6incQxLUMTyru4kK8=
+	t=1733163503; cv=none; b=kaiUWtuAokrIH/WZWtM3DzCRLoknpGkRwlZp2Nd3T7VRK4UXpW3RHf6EzKwJ9KcSoVCVKweJn8biZCRSGxThn3VcNvF7B1yavdQCvBuWtHY0ABMxwehws38f/ibxvR+Lpgj1hniJttH7cEmbcHdAbobPQS4O5mzQm81Ohqu9Ofo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1733163503; c=relaxed/simple;
-	bh=tcxvbR1FAr5OU+Ae2DnYPGRw2+BZE+xh7hbNlNtOolE=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=vFHhpOLeMST8bwlaFa9xInQh4c15Acid3tj/SqAo7tuYDtNAcCb/42VLPigjDHz84zuejdIojQ5BZqqjm+rwga/bZv1Eo8YED3Jb+Jqxc1g5vGIRaGvYjaS8wpFv0i7z5CnGG6RyM4vh8uou4WFodzjs/qC31zq+ifF+D2SaN0E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LFGSH9jX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 42FDBC4CED1;
+	bh=8sJw68/x7LRX6GAezVBs9korCRxUnf0mjseISjnG5/M=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=RJJsfq1utkFVIr6Ccep18nfYrPymDiPjIgq6PtM++1nFBt7Dca5R3DqPHwtvCz7vv+MvLHDYtXmTe7KJneDe+Snmf192inQP7RFvSTp+nL8DIivjceEoO2ne2zhTLT23JxIXg7SJ8PsV5MyfjJeQea3IRepHLiBTM6o9+7YZMQg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A89GfAx5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 5E782C4CED9;
 	Mon,  2 Dec 2024 18:18:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1733163503;
-	bh=tcxvbR1FAr5OU+Ae2DnYPGRw2+BZE+xh7hbNlNtOolE=;
-	h=From:Subject:Date:To:Cc:Reply-To:From;
-	b=LFGSH9jXOMABRKfPLbPUYaYC4oiLOZIXkNU0ltX96PVvgNB3cRx8Q8vBJSUfeMaK0
-	 u2bvi5v7b+W4pxjxSYvgIOEQI1s/+xo8UZ0fx46FklNHH4FGUGvwxC9rHppaXa+7c4
-	 tF+LVvc7sLJK3jY8lwOyfk+NjljIFQeWBc7FErnr56NIeQ+O9InMk7Y42DBthPnBQv
-	 JAXQtxxAyLmR4XEgE2+XyNMpkwR0V59t4p13lMfscZB3y7sgzWS7Pf0p/qSulm9Izi
-	 yLYu1mxU/2LwyL/Zg0LXhEAqxatt+KljQrZAB3Yi6bH4QkMvuE1Jcj4IwIP1KGs5JX
-	 o8NRaEutEW1Aw==
+	bh=8sJw68/x7LRX6GAezVBs9korCRxUnf0mjseISjnG5/M=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=A89GfAx5cX1ythx96t5ytOB/Vcyb0cf86xZJySBmCPytP0WGHq/4kxzW3PBGrGUNY
+	 1CSdG66d9hOtJHiUu/aFtmVP1hSj3FlvwwuIkg4oCViHwtScClytrrClkdp+K1RbMg
+	 IkJ3lDYgvJnHUJcVJ5nW7xXdrYadfq+GVPBD8zq305IlXarcSfvK0MVn2DAfY22jYq
+	 4g29QWxSodYkPQDg2t42zDlrwMj/IMtMefG4S7GeGwA0KjiVw6SA8kujabdkpTEoOr
+	 zmjFfhrkvVfqpBKMsJlyUraos90YP4gBR0Y99uvMnCS3pF6GwzAXNR8CbLnibufBrp
+	 WVD0DCnslWr9w==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 27E27E69E83;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4C0D4E69E85;
 	Mon,  2 Dec 2024 18:18:23 +0000 (UTC)
 From: Maud Spierings via B4 Relay <devnull+maud_spierings.hotmail.com@kernel.org>
-Subject: [PATCH v5 0/3] Asus vivobook s15 improvements
-Date: Mon, 02 Dec 2024 19:18:10 +0100
-Message-Id: <20241202-asus_qcom_display-v5-0-e0d3752ff71f@hotmail.com>
+Date: Mon, 02 Dec 2024 19:18:12 +0100
+Subject: [PATCH v5 2/3] arm64: dts: qcom: x1e80100-vivobook-s15: Add lid
+ switch
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,12 +56,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAOL5TWcC/4XPTQ6CMBAF4KuYrq1ppz+IK+9hjBmglSYgSpVIC
- Hd3IC40krh8kzffZAYWXRtcZLvVwFrXhRiaCwWzXrG8xMvZ8VBQZiBASyktx/iIp1ve1KcixGu
- FPc+d8T6BVCktGO1dW+fDczYPR8pliPem7ecTnZymbw3UgtZJLvjWYOp9Clog7svmXmOoNtRik
- 9fBXwPIQJF5vzWJpd6voT4NvWQoMoSALAGVyRTEr6E/DbNkaDKsRF2gtPSM/TbGcXwBHe90c4A
- BAAA=
-X-Change-ID: 20241116-asus_qcom_display-ce5ff7293340
+Message-Id: <20241202-asus_qcom_display-v5-2-e0d3752ff71f@hotmail.com>
+References: <20241202-asus_qcom_display-v5-0-e0d3752ff71f@hotmail.com>
+In-Reply-To: <20241202-asus_qcom_display-v5-0-e0d3752ff71f@hotmail.com>
 To: Bjorn Andersson <andersson@kernel.org>, 
  Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -68,14 +66,13 @@ To: Bjorn Andersson <andersson@kernel.org>,
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, 
  Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- Maud Spierings <maud_spierings@hotmail.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+ Maud Spierings <maud_spierings@hotmail.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1733163500; l=2074;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1733163500; l=1659;
  i=maud_spierings@hotmail.com; s=20241110; h=from:subject:message-id;
- bh=tcxvbR1FAr5OU+Ae2DnYPGRw2+BZE+xh7hbNlNtOolE=;
- b=ohRxTArBAYUdhoIgMRFpdrg9/yJh+2+tZgfkLMpmkp9Pv4KW0YofZetk3vbXtVqUnw38Y+db9
- VO1cd4syZT1DzriVb3xnKZOdzXfOC0tpAm1iuz/lZqkysi4PxgR0h+U
+ bh=dtYV+z9lYSzEf2bGKf8JU+PRYZscyBu18hsPuUz7+R4=;
+ b=oFexVHzJ+JHXkTZSw77tN0eIKNWlVe1xOEP2WEw7dp4PyYUK/X7uJqwCH/VcifJihPkJ4okiM
+ 7C7HG/KnkILDCyXQdDFvoOmuKia0bkBKUUjvdZ3evuOso0R3No4d3oq
 X-Developer-Key: i=maud_spierings@hotmail.com; a=ed25519;
  pk=CeFKVnZvRfX2QjB1DpdiAe2N+MEjwLEB9Yhx/OAcxRc=
 X-Endpoint-Received: by B4 Relay for maud_spierings@hotmail.com/20241110
@@ -83,58 +80,65 @@ X-Endpoint-Received: by B4 Relay for maud_spierings@hotmail.com/20241110
 X-Original-From: Maud Spierings <maud_spierings@hotmail.com>
 Reply-To: maud_spierings@hotmail.com
 
-Improves several parts of the devicetree:
-1. The eDP panel bindings
-2. Add a lid switch
-3. Add bluetooth and describe wlan (depends on [1])
+From: Maud Spierings <maud_spierings@hotmail.com>
 
-[1]: https://lore.kernel.org/all/20241007-x1e80100-pwrseq-qcp-v1-0-f7166510ab17@linaro.org/
+Add the lid switch for the Asus vivobook s15
 
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Signed-off-by: Maud Spierings <maud_spierings@hotmail.com>
 ---
-I seem to get a warning that the pci17cb vendor is undocumented (wlan)
-I can find this compatible in
-Documentation/devicetree/bindings/net/wireless/qcom,ath12k.yaml
-But pci17cb doesn't really seem like a vendor name to me, I have ignored
-this warning for now.
+ .../boot/dts/qcom/x1e80100-asus-vivobook-s15.dts    | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
 
-Changes in v5:
-- Fix the pinctrl-# definition in the wcn7850-pmu node in the
-  bluetooth/wifi patch
-- Link to v4: https://lore.kernel.org/r/20241125-asus_qcom_display-v4-0-61a4da162406@hotmail.com
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
+index 8cdb2888d10a1dfc0c28480b6636584ab06853bb..7269f8e7709988657b363004875163a69142f16c 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
+@@ -7,6 +7,7 @@
+ /dts-v1/;
+ 
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/gpio-keys.h>
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ 
+ #include "x1e80100.dtsi"
+@@ -17,6 +18,20 @@ / {
+ 	compatible = "asus,vivobook-s15", "qcom,x1e80100";
+ 	chassis-type = "laptop";
+ 
++	gpio-keys {
++		compatible = "gpio-keys";
++		pinctrl-0 = <&hall_int_n_default>;
++		pinctrl-names = "default";
++
++		switch-lid {
++			gpios = <&tlmm 92 GPIO_ACTIVE_LOW>;
++			linux,input-type = <EV_SW>;
++			linux,code = <SW_LID>;
++			wakeup-source;
++			wakeup-event-action = <EV_ACT_DEASSERTED>;
++		};
++	};
++
+ 	pmic-glink {
+ 		compatible = "qcom,x1e80100-pmic-glink",
+ 			     "qcom,sm8550-pmic-glink",
+@@ -539,6 +554,12 @@ edp_reg_en: edp-reg-en-state {
+ 		bias-disable;
+ 	};
+ 
++	hall_int_n_default: hall-int-n-state {
++		pins = "gpio92";
++		function = "gpio";
++		bias-disable;
++	};
++
+ 	kybd_default: kybd-default-state {
+ 		pins = "gpio67";
+ 		function = "gpio";
 
-Changes in v4:
-- Fixed the pin parameters for the backlight enable pin
-- Fixed the wcn_sw_en drive-strength, this was not in the acpi table I
-  checked.
-- Fixed the ordering of several nodes in the bluetooth/wifi patch
-- Link to v3: https://lore.kernel.org/r/20241124-asus_qcom_display-v3-0-002b723b1920@hotmail.com
-
-Changes in v3:
-- Fixed commit message formatting (line wrapping)
-- Fixed bad indentation (lid switch pinctrl)
-- Fixed bluetooth addition and added wifi description
-- Link to v2: https://lore.kernel.org/r/20241123-asus_qcom_display-v2-0-a0bff8576024@hotmail.com
-
-Changes in v2:
-- Add missing gpiokeys include in the lid switch patch
-- Add depends on for the bluetooth patch
-- Link to v1: https://lore.kernel.org/r/20241123-asus_qcom_display-v1-0-85a9ff9240aa@hotmail.com
-
----
-Maud Spierings (3):
-      arm64: dts: qcom: x1e80100-vivobook-s15: Use the samsung,atna33xc20 panel driver
-      arm64: dts: qcom: x1e80100-vivobook-s15: Add lid switch
-      arm64: dts: qcom: x1e80100-vivobook-s15: Add bluetooth
-
- .../boot/dts/qcom/x1e80100-asus-vivobook-s15.dts   | 202 ++++++++++++++++++++-
- 1 file changed, 201 insertions(+), 1 deletion(-)
----
-base-commit: 5f48de798324665d18f539ee09a61de1a9221f33
-change-id: 20241116-asus_qcom_display-ce5ff7293340
-
-Best regards,
 -- 
-Maud Spierings <maud_spierings@hotmail.com>
+2.47.1
 
 
 
