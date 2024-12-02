@@ -1,118 +1,110 @@
-Return-Path: <devicetree+bounces-126201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126232-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA97D9E0BD0
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 20:15:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5ACD59E0C31
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 20:33:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EE00CB87625
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 16:16:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4975CB806D6
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 17:38:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF31117A5A4;
-	Mon,  2 Dec 2024 16:16:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46BAD1DE2CA;
+	Mon,  2 Dec 2024 17:36:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kLhb4XZr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b19kVneh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B37FC13B797;
-	Mon,  2 Dec 2024 16:16:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C91A1DE2A6;
+	Mon,  2 Dec 2024 17:36:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733156212; cv=none; b=Kap1nYpNS2gXSkSb/6KHRUtAYe8A0n+JFW3cHGS8PpLAojDYlJfr4jTzZaNsUMn83KrvbnbU0xP/3aI9AlXyetjp8djGpss7Dk+jTLkwhHvu7RThdL9OypiSKrmXUI1dzJE0nDDgo8+Ykn5Jb6kBOuZ7VJf2Tw1D0nCCyO3Q3lQ=
+	t=1733161002; cv=none; b=KRi9LBCy8t7qX075KD8McZNjKvfCRZZjmsa9wL3dTwHs8LWh6Jpp+WMzRkUn0low6GuXZfVC8EZ8J+PS36xqnFpGplUXl1/yuVoBd5DjFp5xsQaLlhHWWZBcBIql10cbX4m0GdaS/8/xse/OcckhwtKkvm2sTMLFbCIcMrMrGGI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733156212; c=relaxed/simple;
-	bh=DWFL09z1J64BfAXn8YMn9UGDThioP/LSRTugwMav8u4=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=uaiiMHGXREB9BinavV9q1mAzDzDrRTJGcFn8Hy70I7/o6W5FojtxLevJTbamfmhllRadJB0yIqbreTWa8WtQ8H9H0PxIJnaW86zNiHBPKQKYzBMs1Jz7X/Hz0ifBuUIA20K3JHgTlstBTmKGHI4B/c2lnNcT35rC822DOEVoRxo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kLhb4XZr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10764C4CED1;
-	Mon,  2 Dec 2024 16:16:51 +0000 (UTC)
+	s=arc-20240116; t=1733161002; c=relaxed/simple;
+	bh=omTd30O7il1d2T+mDSNJwSln23SjccFOcva3lTl0BNM=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=D6sOXGBCS5RnMaW6Ej9Wj3krG/fm82c7W+FAyMgqh+5qViHZ2IUx96wL7TxR7wV5k4vQzSAB09pmZsLJLaNG0AUDHGkzS/r+c1ZPFDsuXjErSVpTJg1cHpdPF5IvZY49Ooc7O7saXshYcoJQxHyDomTP/JLkH7SxynTfvpuL/Pw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b19kVneh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 304DFC4CED1;
+	Mon,  2 Dec 2024 17:36:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733156212;
-	bh=DWFL09z1J64BfAXn8YMn9UGDThioP/LSRTugwMav8u4=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=kLhb4XZrjUxlPTywimQb+87Ep9XgUAE0Z1Tf4DEVrvQSAw8h6++heu3sCe5o6AuJS
-	 absKvHrsSrhHdH3f7/JPheaMEx0PFtdGHkDzgHVJCV9u/eoPFh3g5Q3shdUFON68J9
-	 p4okSY4oT1iBsAQN1ZhcoV6l/XjmhLwlr1nmnkJMq43722MzUWVvFHbPto7xGZoBz1
-	 pp6TYJiZMg9lTZsKVcsu1LSxlFUCnvnx/8jNc3/Ugz8iab5ObNmfzVkAmTXasUvN3+
-	 NknDj4tPA/fpobA1w68yAUnM/vVaN9U7LwVQO3iLPxc3bBRvB+qWHr96t8PCM1ZOxv
-	 Y+yxFsf8M/jiA==
-Date: Mon, 02 Dec 2024 10:16:50 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1733161001;
+	bh=omTd30O7il1d2T+mDSNJwSln23SjccFOcva3lTl0BNM=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=b19kVnehK87/IHsaAlnext5C0DLQu+oMKO/RGC3yE1KO7I4S7YiSqBP4ixcBu7T7V
+	 pslBw3IDuEShQYa+q7Hc59fYzDmjm+kdKmCv/vmAOy3KR2tXLJqetTbpGuKY14PMte
+	 FWckDfSmTUhObsvxRgQc90zg/WAG5ffooD3PuW32t/w4W89r3inzfCTvJ0EbUI5s5b
+	 u1LRi5G42x1MN8Dss5s8NnkAbor0+O4GYcbwuYBk16D58T5S9JenhHmDti4kOrb3jb
+	 FZCS0sRSEvo2GUs2cMjOMK9Z45Tx7l50x6swtErPlK6Kc1uZpKqDPYiwCRPWXMhChQ
+	 B/Mj/LxzFO0Ew==
+From: Mark Brown <broonie@kernel.org>
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ vaishnav.a@ti.com, Srikanth Boyapally <srikanth.boyapally@amd.com>
+Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, git@amd.com, srinivas.goud@amd.com, 
+ radhey.shyam.pandey@amd.com, srikanthboyapally2016@gmail.com, 
+ sai.krishna.potthuri@amd.com
+In-Reply-To: <20241120120951.56327-1-srikanth.boyapally@amd.com>
+References: <20241120120951.56327-1-srikanth.boyapally@amd.com>
+Subject: Re: [PATCH 0/3] spi: cadence-quadspi: Add support for device reset
+Message-Id: <173316099889.156452.1327566549326122960.b4-ty@kernel.org>
+Date: Mon, 02 Dec 2024 17:36:38 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Viresh Kumar <viresh.kumar@linaro.org>, 
- upstream@airoha.com, linux-pm@vger.kernel.org, 
- "Rafael J. Wysocki" <rafael@kernel.org>, devicetree@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-In-Reply-To: <20241202151228.32609-1-ansuelsmth@gmail.com>
-References: <20241202151228.32609-1-ansuelsmth@gmail.com>
-Message-Id: <173315621067.2847395.10872023371219236097.robh@kernel.org>
-Subject: Re: [PATCH v4 1/2] dt-bindings: cpufreq: Document support for
- Airoha EN7581 CPUFreq
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-9b746
 
-
-On Mon, 02 Dec 2024 16:12:03 +0100, Christian Marangi wrote:
-> Document required property for Airoha EN7581 CPUFreq .
+On Wed, 20 Nov 2024 17:39:48 +0530, Srikanth Boyapally wrote:
+> Add support for device reset via OSPI on Versal Gen 2 platform.
 > 
-> On newer Airoha SoC, CPU Frequency is scaled indirectly with SMCCC commands
-> to ATF and no clocks are exposed to the OS.
+> Srikanth Boyapally (3):
+>   dt-bindings: qspi: cdns,qspi-nor: Add compatible string to support
+>     OSPI controller on Versal Gen2 platform
+>   spi: cadence-quadspi: Use quirks to set dma_set_mask instead of
+>     compatible string for 64-bit DMA support
+>   spi: cadence-quadspi: Support for device reset via OSPI controller
 > 
-> The SoC have performance state described by ID for each OPP, for this a
-> Power Domain is used that sets the performance state ID according to the
-> required OPPs defined in the CPU OPP tables.
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
-> Changes v4:
-> - Add this patch
-> 
->  .../cpufreq/airoha,en7581-cpufreq.yaml        | 259 ++++++++++++++++++
->  1 file changed, 259 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.yaml
-> 
+> [...]
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Applied to
 
-yamllint warnings/errors:
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.example.dtb: /: 'compatible' is a required property
-	from schema $id: http://devicetree.org/schemas/root-node.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.example.dtb: /: 'model' is a required property
-	from schema $id: http://devicetree.org/schemas/root-node.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.example.dtb: opp-table-cpu-smcc: $nodename:0: 'opp-table-cpu-smcc' does not match '^opp-table(-[a-z0-9]+)?$'
-	from schema $id: http://devicetree.org/schemas/opp/opp-v2.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.example.dtb: opp-table-cpu-smcc: Unevaluated properties are not allowed ('opp0', 'opp1', 'opp10', 'opp11', 'opp12', 'opp13', 'opp14', 'opp2', 'opp3', 'opp4', 'opp5', 'opp6', 'opp7', 'opp8', 'opp9' were unexpected)
-	from schema $id: http://devicetree.org/schemas/opp/opp-v2.yaml#
+Thanks!
 
-doc reference errors (make refcheckdocs):
+[1/3] dt-bindings: qspi: cdns,qspi-nor: Add compatible string to support OSPI controller on Versal Gen2 platform
+      commit: 707080d4fea8f6b8319ceead569f34c2be5bf1d5
+[2/3] spi: cadence-quadspi: Use quirks to set dma_set_mask instead of compatible string for 64-bit DMA support
+      commit: 2e4d9f5111a3b3c24550e34710efa690c03b3ea1
+[3/3] spi: cadence-quadspi: Support for device reset via OSPI controller
+      commit: 27cf57f65bea55d985f0ad0dc1737ce1d01f05dc
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241202151228.32609-1-ansuelsmth@gmail.com
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-pip3 install dtschema --upgrade
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Thanks,
+Mark
 
 
