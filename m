@@ -1,144 +1,158 @@
-Return-Path: <devicetree+bounces-126101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ED6A9E03C3
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 14:41:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDF379E03D1
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 14:42:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 14D0B281A1E
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 13:41:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92F00281C4F
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 13:42:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AA42200105;
-	Mon,  2 Dec 2024 13:41:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A59E8202F89;
+	Mon,  2 Dec 2024 13:41:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bdVL44YO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gvGY5e0m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AC341FF7AD;
-	Mon,  2 Dec 2024 13:41:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75CF020101A;
+	Mon,  2 Dec 2024 13:41:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733146873; cv=none; b=s1+lydgLxHID5kj2Tn7xjpNKbumxaQfhvOe9miiaIcidj76fQyHlbbPF08uG5ttSBZYrIHsqTSj3YgMYse4dZ+9G1lBHxDUX8ynjlSGrvNNMtTjmOJeFP5AmO5kSrbdB9aSDm9UK9IIAgBVlTqieOtg8iCcE6tr4h89LoTLzPAg=
+	t=1733146902; cv=none; b=PdKSFJJ/lDljjM25cR08SrsQyU1FlSZtAB82nRWImaYKGkB0kezFY0zAReUZeukivW25fDqqf00PFqUxcgF5MllcWetCyDOYbN5STAwDp0miMuZtNnUqrW6QLVm/sgMaR7Qup2mnGfeSC0OfU1muLjNmPfEt1lEIGyAP0ez9Ghk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733146873; c=relaxed/simple;
-	bh=LCfNSPlMUD/kqu8SE4a82o6X8loD/j5Z+2jmH99MAAY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Dp+BYe312/rk+q3IO9r56yD0O6+GHPserGoJmuiLHQhD0Av1rgI9bgWS8WotqBjm3kPra28TcFNsj5Wk9R5QgBb5XFoINUOpGMX6Mz6TwucrABLPqC8ZZAf3rPk1A65rhvW1akLeePuBGdo3RrPMf/LB8PrwrZEIa0YlxdZ0JeA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bdVL44YO; arc=none smtp.client-ip=209.85.160.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-29e61fcc3d2so865123fac.2;
-        Mon, 02 Dec 2024 05:41:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733146871; x=1733751671; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gUYIZ2ydxDwLVYAeG6jV9nAoFWZtZeFvJf0Vki0Iops=;
-        b=bdVL44YObS5VrDfaXesaemeXxtpsGDcig+y+sE1F2zYTh2XlT+JLnJ0ko7nu89A7f/
-         8z5N92zrpHjbwlWo+dgyG1XQEcW+yjyjZiXSzuSdJj6Z+7a9Re7xC2WaRyK78SVwhuco
-         6yp4QBh+SyeGxNSaKDUR4iddWsyZiuImM4uOxAD9iiwCQcb3g4yklt4FvafkUhZk6bp5
-         vFu7Rtf+uN/brgEojif/ftF8PxN/ybCQ0qf+RGHXlGgl39+SAosPohkTHVCZZlPzLOWa
-         Ga4wCi5HSf6N2wyZT0d5heMcpaQJHkZwZCNmdckTld7CVPCG9EPXf7IuKd56GQBT1WUK
-         g6PQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733146871; x=1733751671;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gUYIZ2ydxDwLVYAeG6jV9nAoFWZtZeFvJf0Vki0Iops=;
-        b=PyyrhkFiMa1mX8iVHexCA1nGZ8KoEK3hNOpBEmyeCIYDPesDeriPj/mg9DPNkqI0TT
-         pRfELHvADQjgLt6PIlWSdctotZMJCR6KyDRB+OgKByBU97PAGTDZIlEBs6tjpij3pHSf
-         hlu/elDlESwmtSObC37DL19HKMsPYQtr1+y35PIToS+j/4Jn6uhT/FC2HCTo8Z/InYze
-         OhgCQdff0hjFGKqJb/OE0obFh1WdeBfxa1cMd/uzMMgIUgn8TDM/DxwLQZYaB5Yfz2VQ
-         0SR6oJWeXqAzstZnNYkHmNGkdCcXSwvbRU0pY8Gn1bXLreI/AWFuuurEbKkjNyQskwNz
-         +35A==
-X-Forwarded-Encrypted: i=1; AJvYcCU+iHf6lorQDJ+uiGzkt6/YlrKtfl1lXpr9bPV+xfWeQ8YOVBKCdmhzwRY1aFkpOU5O+G6+mRkIvTaw@vger.kernel.org, AJvYcCWCEkwZKoppFRWHviXQDwLmyYU9nARgu/IKWrpZK39Azip6A+AbZqrqmng+2qxGg0ipa55fgxtvbi7307ns1Q==@vger.kernel.org, AJvYcCWgvSOZRoTTtiun04tdMLEfghSYHmutCqY7YXsWZtNu2ZQe34hsLblEWzI4hLarVd+M7VwsLBoRD+/PTF2W@vger.kernel.org
-X-Gm-Message-State: AOJu0YyLoX6HzfBiugLetvR0hic61rapLRctnhsmV+4lQyFb1MfTmYSR
-	COd58qEpLgjTqL0vLsYiMoWTNoZFGSNejmshKh3co5mLkm0suyFE93qhH5kZtoc0nrzCLgPWYVX
-	T7viMIej/6hs0hUdLz9MzkPDz15E=
-X-Gm-Gg: ASbGncsujnBj5N9cGlSf9kUGLLt/sLGqCfgc49uMZcI6oJ+00rY10+dSIJsqQ3/5Uqx
-	A8GA5jfuDgBdW2lyjzxM8WcNXxCmSVg==
-X-Google-Smtp-Source: AGHT+IGPj/GY+jCbhbdEdoPHQRBT3R11lJWFYCs1Inn00vxYoVG9APhbHVCybk7MXBCd0TqoaGD2Mo2/0wOkdEPCJYQ=
-X-Received: by 2002:a05:6358:4b12:b0:1ca:9dcc:e6af with SMTP id
- e5c5f4694b2df-1cab15a79fbmr648012355d.6.1733146871036; Mon, 02 Dec 2024
- 05:41:11 -0800 (PST)
+	s=arc-20240116; t=1733146902; c=relaxed/simple;
+	bh=aHbNT8/7s93kv5HKX8tdKETN3m1n4K+2pSzalI1wkBw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fSBXuvQSRh14paoog0gMRi0ApNAUQT316T4Qkp9UhoflLyemZrFCZt51+QuwtVXPG189oT7w7m1yngyWBr6zrcWZlrZ1J1CwH4VGIJ/4B4H+YUDixPkTN+nBnbhTfiAriEszQJO9tcNlYDtCH0pGOfGzxjMEkDwtJKAhzTHatr8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gvGY5e0m; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED9ABC4CEE0;
+	Mon,  2 Dec 2024 13:41:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733146902;
+	bh=aHbNT8/7s93kv5HKX8tdKETN3m1n4K+2pSzalI1wkBw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=gvGY5e0mRTR1JDu8827hApyq9ya3WkD973VUrcZAAOnSe+PEdDnHZ3EDlyI7CmPFr
+	 aDugMn6ECPHzREpNrD9jJ+NbtGTI90MmaPSOILiVXZ6QXnaf2IX8P34wp9tMajCGp7
+	 SMHU0REinpjeLGlGYbYPHdmagKYnFs1ERSFeHuY2bvycV/EsM1vQdN4r/JwGdn/Z9L
+	 c19VWhm7Xs/YKo5H0KZB5/kPS5IcR4Lc+sZ43Q/jT9qRpS+2mXgyZ/9sY/RQQtInv9
+	 bDvJxJ8hKF9gFNQkDoMRgRp6dQ2izAF5Mj9+D6eXqGvwSYA/WRwit0Qc3CRUU9BVl4
+	 plKbU4kszGcDA==
+Message-ID: <68b897f0-5583-4d09-87d5-4ff4d3080ef7@kernel.org>
+Date: Mon, 2 Dec 2024 14:41:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241008-starqltechn_integration_upstream-v6-0-5445365d3052@gmail.com>
- <20241008-starqltechn_integration_upstream-v6-3-5445365d3052@gmail.com> <33e14868-e6ee-45ca-b36c-c553e0dcfbef@oss.qualcomm.com>
-In-Reply-To: <33e14868-e6ee-45ca-b36c-c553e0dcfbef@oss.qualcomm.com>
-From: Dzmitry Sankouski <dsankouski@gmail.com>
-Date: Mon, 2 Dec 2024 16:41:00 +0300
-Message-ID: <CABTCjFCTggnU7UvqcKYq53iRLACBxWE7C1TKRi7dr42o-=0Mqg@mail.gmail.com>
-Subject: Re: [PATCH v6 03/12] arm64: dts: qcom: sdm845-starqltechn: fix usb
- regulator mistake
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: cros-qcom-dts-watchers@chromium.org, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/4] arm64: dts: exynos: gs101-oriole: enable Maxim
+ max77759 fuel gauge
+To: t.antoine@uclouvain.be, Sebastian Reichel <sre@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Dimitri Fedrau <dima.fedrau@gmail.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>
+Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org
+References: <20241202-b4-gs101_max77759_fg-v1-0-98d2fa7bfe30@uclouvain.be>
+ <20241202-b4-gs101_max77759_fg-v1-4-98d2fa7bfe30@uclouvain.be>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241202-b4-gs101_max77759_fg-v1-4-98d2fa7bfe30@uclouvain.be>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-=D1=81=D0=B1, 26 =D0=BE=D0=BA=D1=82. 2024=E2=80=AF=D0=B3. =D0=B2 13:41, Kon=
-rad Dybcio <konrad.dybcio@oss.qualcomm.com>:
->
-> On 8.10.2024 6:51 PM, Dzmitry Sankouski wrote:
-> > Usb regulator was wrongly pointed to vreg_l1a_0p875.
-> > However, on starqltechn it's powered from vreg_l5a_0p8.
-> >
-> > Fixes: d711b22eee55 ("arm64: dts: qcom: starqltechn: add initial device=
- tree for starqltechn")
-> > Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
-> >
-> > ---
->
-> I really really doubt that the supplies for on-SoC PHYs were altered,
-> given these regulators are assigned based on their specific characteristi=
-cs
->
+On 02/12/2024 14:07, Thomas Antoine via B4 Relay wrote:
+> From: Thomas Antoine <t.antoine@uclouvain.be>
+> 
+> Add the node for the max77759 fuel gauge as a slave of the i2c.
+> 
+> The fuel gauge has been tested and seems to give coherent results.
+> Manual activation of the charger via i2cset shows that the sign of
+> the current does indicate charging/discharging status.
+> 
+> Signed-off-by: Thomas Antoine <t.antoine@uclouvain.be>
+> ---
+>  arch/arm64/boot/dts/exynos/google/gs101-oriole.dts | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
+> index 387fb779bd29ea3812331a7951f03b181c5fe659..4c45dd6fd0173889234b7b04d7abb4b382c7706c 100644
+> --- a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
+> +++ b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
+> @@ -90,6 +90,13 @@ eeprom: eeprom@50 {
+>  &hsi2c_12 {
+>  	status = "okay";
+>  	/* TODO: add the devices once drivers exist */
 
-From rooted android system from klabit87 on starqltechn:
 
-```
-starqltechn:/ # cat /proc/cpuinfo | grep Hardware
-Hardware        : Qualcomm Technologies, Inc SDM845
-starqltechn:/ # uname -a
-Linux localhost 4.9.186-klabitV6.5 #1 SMP PREEMPT Thu Dec 10 19:42:53
-CST 2020 aarch64
-starqltechn:/ # cat
-/sys/kernel/debug/regulator/soc:rpmh-regulator-ldoa1-pm8998_l1/consumers
-Device-Supply                    EN    Min_uV   Max_uV  load_uA
-ae90000.qcom,dp_display-vdda-0p9 N     880000   880000        0
-1d87000.ufsphy_mem-vdda-phy      Y     880000   880000    62900
-ae96400.qcom,mdss_dsi_phy0-vdda-0p9 N          0        0        0
-ae94400.qcom,mdss_dsi_phy0-vdda-0p9 Y     880000   880000    36000
-1c00000.qcom,pcie-vreg-0.9       Y     880000   880000    24000
-pm8998_l1                        N          0        0        0
-starqltechn:/ # cat
-/sys/kernel/debug/regulator/soc:rpmh-regulator-ldoa5-pm8998_l5/consumers
-Device-Supply                    EN    Min_uV   Max_uV  load_uA
-ae90000.qcom,dp_display-vdda-usb1-ss-core N          0        0        0
-88e2000.qusb-vdd                 Y     800000   800000        0
-88e8000.ssphy-vdd                Y     800000   800000        0
-pm8998_l5                        N          0        0        0
-```
+Is this still applicable?
 
-I also downloaded kernel source from Samsung, to check its dts,
-and it also powers qusb@88e2000 and ssphy@88e8000 from 'pm8998_l5' regulato=
-r.
+> +
+> +	fuel-gauge@36 {
+> +		compatible = "maxim,max77759-fg";
+> +		reg = <0x36>;
+> +		reg-names = "m5";
 
---=20
-Best regards and thanks for review,
-Dzmitry
+
+No interrupts?
+
+> +	};
+> +
+
+
+Do not add stray blank lines.
+
+Best regards,
+Krzysztof
 
