@@ -1,366 +1,140 @@
-Return-Path: <devicetree+bounces-125972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125973-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FD359DFD29
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 10:31:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27FC39DFD2D
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 10:32:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0FD782816B0
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 09:31:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DFC93281792
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 09:32:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 363381F9EA6;
-	Mon,  2 Dec 2024 09:31:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C3281F9EAC;
+	Mon,  2 Dec 2024 09:32:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AhNZNBGP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e+0uG3sL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54BB63398B;
-	Mon,  2 Dec 2024 09:31:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19A7B3398B;
+	Mon,  2 Dec 2024 09:32:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733131870; cv=none; b=iww92jJJpSu3eieJZaj7f7hxSJMr6O/mMOyfwfva+az1ndPDjNxohCmIB/ZpQr+/DnyZKzKu3n3g3aH0RHi69FzHYBbB0ClfCUiylsW0aGVA8f/vLo66kFPF9lMf5/++hBtxB410QACen+BTrK+mNq5omg066jZ3jUixBlf0jpg=
+	t=1733131928; cv=none; b=pooAYccYldv88NNKNFNnlBhQt+bGGZfeZKqgC5DTL13PlZBd3k5uKFYVaq3GRPDOJ5geX78c8tuMKTyCLA5a287HpaOAfmN4giZ7v992ugVpDPAsjuOQy/wBj6xwtebzOd+W2zduxBuhAH0wP487eVLpgdpL4WVIh9vb6ysrfXA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733131870; c=relaxed/simple;
-	bh=tF7gEWm2Zx5VzHOPv9iUoY44HiA9fpxBXMaVhvsyQtE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FWuacAWJAoqtGHtJCbF2J7Ofl6MS7SaEy57zGtEY2MNZbj+iKhZoEwr5Z0jLjkpfgapk3a6X9gxxSsHuHZqFe5dHQHFcLYn11s++N70GFa4ILp2dvBmA8MII0eDJQLr/NaYAcJbZwIgeH03AsqMT6OFVUPHcC9FZ8GQRe8nsq1E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AhNZNBGP; arc=none smtp.client-ip=209.85.128.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-6ef7f8acc33so9792837b3.1;
-        Mon, 02 Dec 2024 01:31:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733131866; x=1733736666; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2Aoss/XkVgxtLxmwM1bSt0KorgawUhi01yNafo9R0a4=;
-        b=AhNZNBGPdwvoFU08FbHOaMLRviH3Z5ae94Wha/YznMXxjN8RutrFcsVqhGNqtq4jYD
-         xOhdmQhZlOCb4Ljt3tt7FezP2oHdzA1DWpjrePEktxqD9NGaBLefbuWB61Y8MHKRorqQ
-         MSxucyOe3PMJQ0VykzNU0Cu8joNmRCvmv/tDNzNa6Qw+ZLdySjFG9R7VbQOMsqAVo2vG
-         f5P/wTazIgZPUK8Df2Lu1md2meSDSxuL9fSasPW6nfeh/t+ZqXSCPKnk/5HG44LZxNPs
-         HKYG1QXJICnKEuFK1RbrMWg68gqU2793boSiSFQJ5Jx4LHdgk+IH9Br6Ahi5RbElCVi9
-         eLyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733131866; x=1733736666;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2Aoss/XkVgxtLxmwM1bSt0KorgawUhi01yNafo9R0a4=;
-        b=ZjKidWQ0WMjWRhtWTREUC3Md92haj08ddLjjxb7/28erqUz9AeVB/WrH2rgUgGmbER
-         D2gzrO9ePxl8RHXfbPsCdv9477DejoDtQFm5MFE0tlady7m2oxDsinbihRo4YDrrB0r0
-         laYCJfaZBml4vpbdSp2D/hi0sI+TSArUzwk+b89t5qUv6YFUFAORBEWguuzFED8rfCf0
-         kxVTUo5eHgqC8mMfG9tRv4xqvdww261UFeI0TJESX87GaXpahG04wzCYxAZeoMUBLxhT
-         rQvfbESC60oAFVy50NMmJb+6RiskWgy1RKcgYl7/QlCWtaC19DZzV936EN060HUbAKkI
-         shOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVfA9VV/JWAoputlLLL5rDARQfPZQmObRzUkJfHNAFjAPpOskJzw5aXMkaXppw1uPrHbjt9uT0n7fnVpBoo@vger.kernel.org, AJvYcCX1cmNFlL2mu02LoRIoUouwzL4HHr6GdMsigTd4rcVNKGptG+9XifzpkFrRsWILwUq2utEiJYk5LzLL@vger.kernel.org, AJvYcCXmxATsocoj8iUjfcPc5dg37qqvwGfKhJ+3iMP8EEK51V7R7W5UptcKVf3mTpcoDBBd4E1Bn7d4rFrB@vger.kernel.org
-X-Gm-Message-State: AOJu0YxI8wkwd9bPPxpHmZcad5rO9wYeTd1vBt0RWRsW2I61awKPmszj
-	wWn1qsdsILZZd/IXzEcFyXCc19edN9Zf+X3Z01+1e+BybkSeU8MI2Bhs0C7cbDrovMIGwzP5znt
-	xjyQe6s3XgIrwooNmcvUCgjeWM7g=
-X-Gm-Gg: ASbGncul6SzUJLqMf/ZOyv217GZe2fj/ho6Xdtt44r5NJYMxijwE6Gli5VJNlxYoXW1
-	C1aNrwG9rUmsIAXDKHXn5fG9o0+wHBtnPU635d3vYlTzK3x/Be/aFyxg9K9pdBxbc
-X-Google-Smtp-Source: AGHT+IEjdWzZ+SSQO7ixCc/QMQkkM2B0OurRLofzWsNFboTM/kVCFJcwpVVHxgN7WNTCiDhrzr35t06Qy+V8xjswDcU=
-X-Received: by 2002:a05:6902:2784:b0:e39:96af:53b7 with SMTP id
- 3f1490d57ef6-e3996af85e1mr7134013276.52.1733131866096; Mon, 02 Dec 2024
- 01:31:06 -0800 (PST)
+	s=arc-20240116; t=1733131928; c=relaxed/simple;
+	bh=8UsYqMOxJ0arN9+vXhANKE5wwESYoXE0U11JMMjiERM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=B60wKYNHtsbpAvOfnobc3de5q+9BaV/eJf1Njutg3u4qXDUF1m/O+tmGMEuBKBtGFJUFwdKp8KWy30b1CD0OIuy2aeZh7GampVP2IzcTFjI2MAOBd1xj5/VEPrhJ7WCYePSdyCWHJCzcl15UHDVzDlZdB6iMMqf6ZEBJV4kLFkU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e+0uG3sL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B4FAC4CED2;
+	Mon,  2 Dec 2024 09:32:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733131927;
+	bh=8UsYqMOxJ0arN9+vXhANKE5wwESYoXE0U11JMMjiERM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=e+0uG3sLR7ut5srAlCuR9U9VUVN4TCK5y1b/j4DL31uGRsJ60KrnRUJGt0FSb1BPS
+	 a1Q0QAv6LI5Wjw/x0WQ0c+ZrGvprGM520DCYmnJ3lND2OTeLu90HSLM/qxaE5m7SVm
+	 ucA4daeWxiovZiBqiozUXljcTQCeQYtKMOCDjv/i2hn8O9E4qaFHuQqeWm4Zlastrl
+	 EuAUdwPkpvtjtlf/mCGfUpOKpk/TIxDbn27tGoTFm1v0WwIY3sbEBhX9ONHKZ8bUyQ
+	 wyGUYvTG3PRFqORsSmKRju3mcOU9HdZw7Q3vITIEWSgGpJZvJuBbo7XxilzQPock6H
+	 eEyr7Axdfg66g==
+Message-ID: <c3c5155b-fd0e-4790-bbd5-3874077e8159@kernel.org>
+Date: Mon, 2 Dec 2024 10:32:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241126074005.546447-1-tmyu0@nuvoton.com> <20241126074005.546447-3-tmyu0@nuvoton.com>
- <20241130203929.67c6c7f6@jic23-huawei>
-In-Reply-To: <20241130203929.67c6c7f6@jic23-huawei>
-From: Ming Yu <a0282524688@gmail.com>
-Date: Mon, 2 Dec 2024 17:30:54 +0800
-Message-ID: <CAOoeyxVXWAFC4ZL5Hr7H4+Vk8b86Qf2FBY0vGWa7NWPWHo6MWg@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] iio: temperature: Add Nuvoton NCT7718W support
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: tmyu0@nuvoton.com, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, cmo@melexis.com, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/4] arm64: dts: agilex5: add gmac nodes
+To: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+Cc: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Richard Cochran <richardcochran@gmail.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+ linux-clk@vger.kernel.org, kernel@pengutronix.de
+References: <20241125-v6-12-topic-socfpga-agilex5-v2-0-864256ecc7b2@pengutronix.de>
+ <20241125-v6-12-topic-socfpga-agilex5-v2-2-864256ecc7b2@pengutronix.de>
+ <14110c3d-4aee-49a9-8cc2-fbeac298f1ff@kernel.org>
+ <87o71u8odo.fsf@pengutronix.de>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <87o71u8odo.fsf@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Dear Jonathan,
+On 02/12/2024 09:45, Steffen Trumtrar wrote:
+>>> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+>>> index b1debf0317d0576f7b00200e9593481671183faa..647ccd0b5a66b68fab745d443b975c12d6ce63df 100644
+>>> --- a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+>>> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+>>> @@ -141,6 +141,93 @@ soc: soc@0 {
+>>>  		device_type = "soc";
+>>>  		interrupt-parent = <&intc>;
+>>>
+>>> +		gmac0: ethernet@10810000 {
+>>> +			compatible = "altr,socfpga-stmmac-a10-s10",
+>>
+>>
+>> That's odd compatible, this is not Arria10 SoC, neither Stratix 10.
+> 
+> Yes, it is. The socfpga-dwmac.txt says "Arria10/Agilex/Stratix10 SoCs" should use "altr,socfpga-stmmac-a10-s10".
+> 
+> So, how to proceed? Adding a "altr,socfpga-stmmac-agilex5" to the binding doc and driver?
+> And converting the txt to yaml, because touched it last?
 
-Thank you for your comments,
-I will move the driver to HWMON.
+You need dedicated front compatible.
+
 
 Best regards,
-Ming
-
-Jonathan Cameron <jic23@kernel.org> =E6=96=BC 2024=E5=B9=B412=E6=9C=881=E6=
-=97=A5 =E9=80=B1=E6=97=A5 =E4=B8=8A=E5=8D=884:39=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On Tue, 26 Nov 2024 15:40:05 +0800
-> Ming Yu <a0282524688@gmail.com> wrote:
->
-> > This patch adds support for the Nuvoton NCT7718W temperature sensor.
-> >
-> Hi Ming, I'll give this a quick look only as I suspect you will end
-> up moving over to hwmon.
->
-> Thanks,
->
-> Jonathan
->
-> > Signed-off-by: Ming Yu <tmyu0@nuvoton.com>
-> ...
->
-> > diff --git a/drivers/iio/temperature/nct7718.c b/drivers/iio/temperatur=
-e/nct7718.c
-> > new file mode 100644
-> > index 000000000000..60624b3de629
-> > --- /dev/null
-> > +++ b/drivers/iio/temperature/nct7718.c
-> > @@ -0,0 +1,505 @@
->
-> > +struct nct7718_data {
-> > +     struct i2c_client *client;
-> > +     struct mutex lock;
-> Locks need a comment to say what data they are protecting.
->
-> > +     u16 status_mask;
-> > +};
->
-> > +static int nct7718_write_event_config(struct iio_dev *indio_dev,
-> > +                                   const struct iio_chan_spec *chan,
-> > +                                   enum iio_event_type type,
-> > +                                   enum iio_event_direction dir,
-> > +                                   int state)
-> > +{
-> > +     struct nct7718_data *data =3D iio_priv(indio_dev);
-> > +     unsigned int status_mask;
-> > +     int ret;
-> > +
-> > +     switch (chan->channel2) {
-> > +     case IIO_MOD_TEMP_AMBIENT:
-> > +             if (dir =3D=3D IIO_EV_DIR_RISING)
-> > +                     status_mask =3D NCT7718_MSK_LTH;
-> > +             break;
-> > +     case IIO_MOD_TEMP_OBJECT:
-> > +             if (dir =3D=3D IIO_EV_DIR_RISING)
-> > +                     status_mask =3D NCT7718_MSK_RT1H;
-> > +             else
-> > +                     status_mask =3D NCT7718_MSK_RT1L;
-> > +             break;
-> > +     default:
-> > +             return -EINVAL;
-> > +     }
-> > +
-> > +     mutex_lock(&data->lock);
-> > +     ret =3D i2c_smbus_read_byte_data(data->client, NCT7718_ALERTMASK_=
-REG);
-> > +     mutex_unlock(&data->lock);
-> > +     if (ret < 0)
-> > +             return ret;
-> > +
-> > +     if (state)
-> > +             ret &=3D ~status_mask;
-> > +     else
-> > +             ret |=3D  status_mask;
-> I would not bother with this sort of alignment. It tends to be fragile lo=
-nger
-> term as code gets modified and doesn't make much difference to readablili=
-ty.
->
-> > +
-> > +     return i2c_smbus_write_byte_data(data->client, NCT7718_ALERTMASK_=
-REG,
-> > +                                      data->status_mask =3D ret);
-> > +}
->
-> > +
-> > +static int nct7718_write_thresh(struct iio_dev *indio_dev,
-> > +                             const struct iio_chan_spec *chan,
-> > +                             enum iio_event_type type,
-> > +                             enum iio_event_direction dir,
-> > +                             enum iio_event_info info,
-> > +                             int val, int val2)
-> > +{
-> > +     struct nct7718_data *data =3D iio_priv(indio_dev);
-> > +     struct i2c_client *client =3D data->client;
-> > +     u8 msb_reg, lsb_reg;
-> > +     s16 thresh;
-> > +     int ret, s_val;
-> > +
-> > +     switch (chan->channel2) {
-> > +     case IIO_MOD_TEMP_AMBIENT:
-> > +             val =3D clamp_val(val, NCT7718_LOCAL_TEMP_MIN,
-> > +                             NCT7718_LOCAL_TEMP_MAX);
-> > +
-> > +             if (dir =3D=3D IIO_EV_DIR_RISING) {
-> > +                     return i2c_smbus_write_byte_data(client,
-> > +                                                      NCT7718_LT_HALER=
-T_REG,
-> > +                                                      val);
-> > +             }
-> > +             break;
-> > +     case IIO_MOD_TEMP_OBJECT:
-> > +             s_val =3D (val < 0) ? ((val * 1000000) - val2) :
-> > +                                 ((val * 1000000) + val2);
-> > +
-> > +             s_val =3D clamp_val(s_val, NCT7718_REMOTE_TEMP_MIN_MICRO,
-> > +                               NCT7718_REMOTE_TEMP_MAX_MICRO);
-> > +
-> > +             if (dir =3D=3D IIO_EV_DIR_RISING) {
-> > +                     msb_reg =3D NCT7718_RT1_HALERT_MSB_REG;
-> > +                     lsb_reg =3D NCT7718_RT1_HALERT_LSB_REG;
-> > +             } else {
-> > +                     msb_reg =3D NCT7718_RT1_LALERT_MSB_REG;
-> > +                     lsb_reg =3D NCT7718_RT1_LALERT_LSB_REG;
-> > +             }
-> > +
-> > +             thresh =3D (s16)(s_val / (1000000 >> 3));
-> > +             ret =3D i2c_smbus_write_byte_data(client,
-> > +                                             msb_reg, thresh >> 3);
-> > +             if (ret < 0)
-> > +                     return ret;
-> > +             return i2c_smbus_write_byte_data(client,
-> > +                                              lsb_reg, thresh << 5);
-> > +     default:
-> > +             break;
-> return -EINVAL; and drop return below.
->
-> > +     }
-> > +
-> > +     return -EINVAL;
-> > +}
-> >
-> > +
-> > +static bool nct7718_check_id(struct i2c_client *client)
-> > +{
-> > +     int chip_id, vendor_id, device_id;
-> > +
-> > +     chip_id =3D i2c_smbus_read_byte_data(client, NCT7718_VID_REG);
-> > +     if (chip_id < 0)
-> > +             return false;
-> > +
-> > +     vendor_id =3D i2c_smbus_read_byte_data(client, NCT7718_VID_REG);
-> > +     if (vendor_id < 0)
-> > +             return false;
-> > +
-> > +     device_id =3D i2c_smbus_read_byte_data(client, NCT7718_DID_REG);
-> > +     if (device_id < 0)
-> > +             return false;
-> > +
-> > +     return (chip_id =3D=3D NCT7718_CHIP_ID &&
-> > +             vendor_id =3D=3D NCT7718_VENDOR_ID &&
-> > +             device_id =3D=3D NCT7718_DEVICE_ID);
-> As below. Don't treat this failing as an error.   It is an error if
-> you can't read anything however.
->
-> > +}
-> > +
-> > +static int nct7718_chip_config(struct nct7718_data *data)
-> > +{
-> > +     int ret;
-> > +
-> > +     /* Enable MSK_LTH, MSK_RT1H, and MSK_RT1L to monitor alarm */
-> Code makes this fairly obvoius.
->
-> > +     ret =3D i2c_smbus_read_byte_data(data->client,
-> > +                                    NCT7718_ALERTMASK_REG);
-> > +     if (ret < 0)
-> > +             return ret;
-> > +     data->status_mask =3D ret;
-> > +     data->status_mask &=3D ~(NCT7718_MSK_LTH  |
-> > +                            NCT7718_MSK_RT1H |
-> > +                            NCT7718_MSK_RT1L);
-> > +
-> > +     ret =3D i2c_smbus_write_byte_data(data->client,
-> > +                                     NCT7718_ALERTMASK_REG,
-> > +                                     data->status_mask);
->
-> Perhaps consider regmap for it's richer set of functionality.
->
-> > +     if (ret < 0)
-> > +             return ret;
-> > +
-> > +     /* Config ALERT Mode Setting to comparator mode */
->
-> Ideally (like here) the code should be self explanatory so you don't
-> need comments.  When that is the case the comment is both unnecessary
-> and a source of possible future confusion if the code changes and we
-> fail to keep the comment in sync.
->
-> > +     return i2c_smbus_write_byte_data(data->client,
-> > +                                      NCT7718_ALERTMODE_REG,
-> > +                                      NCT7718_MOD_COMP);
-> > +}
-> > +
-> > +static int nct7718_probe(struct i2c_client *client)
-> > +{
-> > +     struct nct7718_data *data;
-> > +     struct iio_dev *indio_dev;
-> > +     int ret;
-> > +
-> > +     if (!nct7718_check_id(client)) {
-> > +             dev_err(&client->dev, "No NCT7718 device\n");
->
-> If you get an ID missmatch, it is fine to print a message, but carry on a=
-nyway.
-> This is necessary because DT has fallback compatibles to allow for newer =
-devices
-> working with older drivers.  That only works if we believe the firmware a=
-nd
-> ignore a mismatched ID.
->
-> > +             return -ENODEV;
-> > +     }
-> > +
-> > +     indio_dev =3D devm_iio_device_alloc(&client->dev, sizeof(*data));
-> > +     if (!indio_dev)
-> > +             return -ENOMEM;
-> > +
-> > +     data =3D iio_priv(indio_dev);
-> > +     data->client =3D client;
-> > +     mutex_init(&data->lock);
->
-> For new code prefer
->         ret =3D devm_mutex_init()
->         if (ret)
->                 return ret;
->
-> > +
-> > +     indio_dev->name =3D client->name;
->
-> client->name doesn't always end up as the part number which is what
-> we need here.  Just put "nct7718" in here directly.
->
-> Some drivers do this wrong and we can't fix them without breaking
-> userspace, but we don't want to introduce more.
->
-> > +     indio_dev->channels =3D nct7718_channels;
-> > +     indio_dev->num_channels =3D ARRAY_SIZE(nct7718_channels);
-> > +     indio_dev->info =3D &nct7718_info;
-> > +     indio_dev->modes =3D INDIO_DIRECT_MODE;
-> > +
-> > +     ret =3D nct7718_chip_config(data);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     if (client->irq) {
-> > +             ret =3D devm_request_threaded_irq(&client->dev,
-> > +                                             client->irq,
-> > +                                             NULL,
-> > +                                             nct7718_alert_handler,
-> > +                                             IRQF_TRIGGER_FALLING |
-> > +                                             IRQF_ONESHOT,
-> > +                                             "nct7718", indio_dev);
-> > +             if (ret) {
-> > +                     dev_err(&client->dev, "Failed to request irq!\n")=
-;
-> > +                     return ret;
-> > +             }
-> > +     }
-> > +
-> > +     return devm_iio_device_register(&client->dev, indio_dev);
-> > +}
+Krzysztof
 
