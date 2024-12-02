@@ -1,112 +1,95 @@
-Return-Path: <devicetree+bounces-126247-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126248-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAA559E0C17
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 20:28:43 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51C179E0BBB
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 20:09:49 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F26ACB2B0B5
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 18:42:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74F7E162A04
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 19:09:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91C481DE3AD;
-	Mon,  2 Dec 2024 18:42:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04CE51DDC3A;
+	Mon,  2 Dec 2024 19:09:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NDuB9Eia"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tjBZb05Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCC221DE2B5;
-	Mon,  2 Dec 2024 18:42:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBB5776C61;
+	Mon,  2 Dec 2024 19:09:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733164932; cv=none; b=bfCWT6h/FDAMK2/g5DBxDIoJh0SIsP/r6luIwoP+hDU2pPOoFkN9m4oaVz7bXcTn1bVvPHHBxUX9g/irOcVxkH1qpdqSppCkrgRgj3lxH9cbPyGG+OmOSwQ91Y4LH98MosY37w0Dh+JkWqCwJIQa0Lsmxp9+pZh1feXDnVmYli4=
+	t=1733166573; cv=none; b=BTkD++t0ZcGsQMenrg55kXfpo1gmskGfzWHtnTntoJaqVWpjGqjckQExUxVc5y9os6qcclh8ov6JfumIOvAx+i01XW8/mKPh5eFCvrxKJRvbDclwlC+G44vjneiujsytBTR5LSpBrUMAZ9bfcm+L1loBABpttLR2mgc96jPwFl8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733164932; c=relaxed/simple;
-	bh=L5Ijyy9dZ3Ky9mGp6GfzWtNpgc+FMQNImJC3qA2CI00=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=giT8dSxgyU934ZP4Kojj+hT6ozk+gTS+I9YssKCer5c6turm6QcXBqL41ouo9W939bbjm1c2p+ADxIT6YFbQ31MuQLc4Xn5GaaDNsq8LRa4NM8xvkr8msnDyzGAZUMOO7i4U1Mg2mm696noUHA3pp/MalmiHcyu1RqD1TvCd4Qk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NDuB9Eia; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1733164931; x=1764700931;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=L5Ijyy9dZ3Ky9mGp6GfzWtNpgc+FMQNImJC3qA2CI00=;
-  b=NDuB9EiaKzA8FAt03xT9fd0u3y+i42kLzJ620Iahfe2ZbqO5pP5fBaic
-   I2h1NESJDkAPTpIOp+wdIP7DqsatMWwx74F9arbpsPKeP6EY3WIjdYIhU
-   /76tYRleIc9xkfIopps73CH1zVAOecsqrG86qG024FJ5myKpvawkYA5R2
-   HQaKhPU/KOj6hzMX37ywUJzChcuDw8XAy9UF+kXVZ+aRiAqoSx6NoIroB
-   FZGXYfMMtwHInfUyWtvWb1ke55yw0Bi8DNbpR/m7YOs/qu3UVPUyBDSZt
-   EzwoIDe1BTKS9UbrzQuIfqm00vniDVxzBlMKOyM75HW6iqpm522rN1/dB
-   Q==;
-X-CSE-ConnectionGUID: 2t/L6PDXT42NS0C5KwVVsg==
-X-CSE-MsgGUID: JihQGMNMTeWRyebJ0Qlgfw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="37290703"
-X-IronPort-AV: E=Sophos;i="6.12,203,1728975600"; 
-   d="scan'208";a="37290703"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Dec 2024 10:42:10 -0800
-X-CSE-ConnectionGUID: eLbJ7IBJRkKkFYhiyn4nFw==
-X-CSE-MsgGUID: 31XlT2VdThGTfAGMRDIHag==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,203,1728975600"; 
-   d="scan'208";a="93098357"
-Received: from smile.fi.intel.com ([10.237.72.154])
-  by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Dec 2024 10:42:08 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1tIBMy-00000003Dkd-1rrN;
-	Mon, 02 Dec 2024 20:42:04 +0200
-Date: Mon, 2 Dec 2024 20:42:04 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Vasileios Amoiridis <vassilisamir@gmail.com>
-Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, ajarizzo@gmail.com, ak@it-klinger.de,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	s=arc-20240116; t=1733166573; c=relaxed/simple;
+	bh=umy77aQd2gb3zfX2M3K2vwZXQQnnIJU+TbwFDWYEObs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=LOOkSfFDh9LMgSfo0zaFCUH56PxumnlC5tNyzDZROPMXKTsqAvIF5frcAS9H7/0UzfiO5FLm/fWQwn1AuHN8anuwH+Da0fVPTLyDpTicfMWa42LH/BSMQUFpWS6+4dbq19GD6uKh3r9OxAJG01qCbwgWkhjjbaojwWBKOcjRZRo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tjBZb05Y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF390C4CED1;
+	Mon,  2 Dec 2024 19:09:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733166573;
+	bh=umy77aQd2gb3zfX2M3K2vwZXQQnnIJU+TbwFDWYEObs=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=tjBZb05Y7vmgX/nXYA4hvHtbMBfgSdNP4Ojbam74gn8fSMv5BXKRONsu1XDyPOZHG
+	 RCq15boRuTECFD4/Z/3I50rFpdjNrvxo6a5J1nQJrgYlcFuNRTkAz1XuIXEQZ+1yRs
+	 w/Xnt4pyf1y/2UB2GEFaPQ2sf+IKfLngISGtJWmWj7syJH2PVM0fV3VbgFohvU6sQM
+	 lImNoudzacbzX5sNS0TqJGYnr8wQuODttyFX9Y+UuMsXUH84pkrdWmFi/egam7pj57
+	 bklQ6FLl17VD36oZa9HWsxTIcwMV7sJt/GHudMGcQqs3TlXP0QdGW5+Qi3c6ZwgZmV
+	 TbMjB2+XJBNww==
+From: Conor Dooley <conor@kernel.org>
+To: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Henry Bell <dmoo_dv@protonmail.com>,
+	E Shattow <e@freeshell.de>
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/3] iio: pressure: bmp280: Minor cleanup
-Message-ID: <Z03_fBy9PmqDGLg3@smile.fi.intel.com>
-References: <20241202181907.21471-1-vassilisamir@gmail.com>
+Subject: Re: [PATCH v4 0/1] riscv: dts: starfive: jh7110-pine64-star64: enable usb0 host function
+Date: Mon,  2 Dec 2024 19:09:25 +0000
+Message-ID: <20241202-gimmick-fading-87a41318bb4e@spud>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20241127151843.70341-1-e@freeshell.de>
+References: <20241127151843.70341-1-e@freeshell.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241202181907.21471-1-vassilisamir@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=597; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=xeDHdB8e4cS0BxMn6/ptFXFTuJZ7eEI88nwD+dI+sCo=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDOl+rM+2/n0izeQ3ddG73dnZgY1fTnOGZuvmX08qEWwpa FRpnsPXUcrCIMbBICumyJJ4u69Fav0flx3OPW9h5rAygQxh4OIUgIko1DIyTLZbXTnBnVVDr+bb PX0vvaBKkfAD76N/d3W0ljXH24UcZfhnd9Royoebv77k712QYF41KehA4vn0DJcym7wVlglJm+f wAAA=
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 
-On Mon, Dec 02, 2024 at 07:19:04PM +0100, Vasileios Amoiridis wrote:
-> Changes in v2:
+From: Conor Dooley <conor.dooley@microchip.com>
+
+On Wed, 27 Nov 2024 07:15:04 -0800, E Shattow wrote:
+> Enable host mode JH7110 on-chip USB for Pine64 Star64 by setting host mode
+> and connect vbus pinctrl.
 > 
-> Patch 1/3:
-> 	- Switch if case for better readability
+> This functionality depends on setting the USB over-current register to
+> disable at bootloader phase, for example U-Boot:
+> https://patchwork.ozlabs.org/project/uboot/patch/20241012031328.4268-6-minda.chen@starfivetech.com/
 > 
-> Patch 2/3:
-> 	- Reword commit message
-> 
-> ---
-> v1: https://lore.kernel.org/linux-iio/20241128232450.313862-1-vassilisamir@gmail.com/
-> 
-> This series adds the SPI interface description on the device-tree file
-> of the sensor, adds proper self-described sized variables and performs
-> a minor optimization in time variable names.
+> [...]
 
-For some reason your patches still have v1 in them. I dunno how you prepare
-your series but I recommend one of the two options:
-1) b4 relay
-2) my script: https://github.com/andy-shev/home-bin-tools/blob/master/ge2maintainer.sh
+Applied to riscv-dt-for-next, thanks!
 
--- 
-With Best Regards,
-Andy Shevchenko
+[1/1] riscv: dts: starfive: jh7110-pine64-star64: enable usb0 host function
+      https://git.kernel.org/conor/c/03bd268ae048
 
-
+Thanks,
+Conor.
 
