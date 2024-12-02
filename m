@@ -1,165 +1,300 @@
-Return-Path: <devicetree+bounces-126013-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126014-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 026419DFEDF
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 11:28:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 574A19DFEE1
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 11:28:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C1A58161756
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 10:28:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 151DF1617CA
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 10:28:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96EB61FC10A;
-	Mon,  2 Dec 2024 10:27:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FAD81FC117;
+	Mon,  2 Dec 2024 10:28:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Gg+I9iMo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j+6Ds/Ai"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC89F1FBC84;
-	Mon,  2 Dec 2024 10:27:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2902018AEA;
+	Mon,  2 Dec 2024 10:28:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733135279; cv=none; b=uViRsU4pxt67QGLS4eKCRRw346l4gNDNuJo/xmSmJfdUhKcIIitFCqWcd5HZFkNjHYpLZezeP0eF1+455ZyKWfbPhRVj6s0BXAkvtf13jBVOEePEm6rSN2TQ2VC/08bHbTZ8x7yjewaPQyQiLPOVscFN+odoOl5uayBkis7xEjE=
+	t=1733135296; cv=none; b=AGlLDqag8ZlS78Rk5aX92hEXJQdGbCR9sveLJOrdC0DosLycscG7sXGQ9ASUkF/gksOjmdhYaY4IUN5GyJi/0/Q5btuKEPhmjzK7kgFK2Fw1BI/aDTjOtsNcjdTLNkr6KM2xhXXm0FE1wipTii5hBAuFx23H4VqGloA7htysfpg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733135279; c=relaxed/simple;
-	bh=BkUn3FMsNhDblXI75Naua904u4McBVaZYep6S0B5egI=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=EpjT8RZsbU3tT7X4Qch8PCiPSbBLjscsI8fWnJQtzFA1ScwKf2xfHi7k66OrdEfUipCvoqORo+71s2pliPaNQ0q1MqTFHwQA1PGpqVJUJaDSzgteE0fTrTzyG3oPxbpzILpvtLbr7qQsT1kwln1DxYi2ByenaveldI+xz1DvEjg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Gg+I9iMo; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-434a0fd9778so37339215e9.0;
-        Mon, 02 Dec 2024 02:27:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733135276; x=1733740076; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=QALA3vJFqR8NKYOn5MTUFDxKO0FcS0aiXq3k1iQUdts=;
-        b=Gg+I9iMoRFTxVkZ9GQSixIIBCBlULGEpYeHRmhpA80KA9K+FtrE+7Qz+2eKZ5uROTC
-         yli3T8JFe5Gpn3gI792S83hlsfTlV4Wk5bdx8AK1S9opPiyInAkMpx6HDF2CMeZTJD/R
-         R98LSPla4EojhLmbTj5w0RGgs60FDLrIQAhE8N6hWo/YLvNrRnJ8ZXv7DXrMWtK/r+t4
-         3ISsn9rDjdQtVa6TBB/QFuiQNKYqe1Lhg4pXyX5pxKlt3vrPe7s0RW75vl5E8POP2izR
-         e0GI5Y/ofelR61nUHLyJDpzZo2o/BgbzxxL5qRkzKXlWr8DjKiMT40fFgDlpcKDKNGmd
-         6VqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733135276; x=1733740076;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QALA3vJFqR8NKYOn5MTUFDxKO0FcS0aiXq3k1iQUdts=;
-        b=PR/vYqnYRCjw8wq+4GHjr9iXM00fiDZx2sMnNOKu/2JPBgaHCVFeWKv6N42wn0s7d8
-         0pVj28RIuc3LXRyK9k/avw0earCiuhUfVtMXFUDJjE509aJM3ardzEZ3lTL65frrJdkk
-         0IDoHipjjuUhnDOT8dnYuLwMrE/QUtClChUg+vQjOJpaTyNjo5+18Rhq98QvaWE6eiOC
-         UZSyDLcDuiKFO98FXow75dQLV+i9M+gHNq2Q+uaWyOSOLusGJgaOvh1qp7e8N/OJQrG1
-         DFZepS4OB6Tdyj30sTVq//8gJLv+xew0NENqoOoaABqHldoPRDIVe3K/pHhPzVo7Ae0u
-         0UEg==
-X-Forwarded-Encrypted: i=1; AJvYcCWuSNQCE0/g1Nd22N4ob5vKgUBORCKbPDk1wJzhSD2IiA54/MKHIfkyA40JcoOhcUP1RHS95JNwdU3x5mZ3@vger.kernel.org, AJvYcCX0iJY6Zrin0vQPM87BijK1GUU3e+FrZ691aGVuULa3+0a0WA9+HSPYDWa4+hAyz1P87yeRpjWoq8LY@vger.kernel.org
-X-Gm-Message-State: AOJu0YyKCP44B3dWDvbd2HCZZRzlPspOY73YsCULs4jbVgRj2wthzx7S
-	t244ieW7NzmWZJlGMMKsXKg4JEdLdsc6c1IoTUtjb+ujAcinUD7P
-X-Gm-Gg: ASbGncsklh85smWXp3e3YcBfIxoPrOPzcbJXMxYZ+BiaCR5I7DfFHBxftJE/BGi9w+C
-	qfCLESTBWlw5HyMLWSVLjcb9o2d56HOuqw+O/qW3n7LHpo0DPXye5O8aPOcJv9KzSPfgCql6JTw
-	kg+0PTi1p5JifK4P9VcTU5O2SGnBX5NbQvuczTu6WJikLM3owG7+7q1Vdn6xwkRE8FZYt03mKBU
-	VMpYzazVnxohiDDVf/07hB46ELG/O3DxLnwGVOcfkG4uel3paHNECUxXTSayIM4DKDjzFwo3w2p
-	j6MYSIi2H72zheUxVtA=
-X-Google-Smtp-Source: AGHT+IEtcv376POJl9E2bAxspbhqve3Y2tJ7pgMGWk2qvbJcgbnauunS2AuXTdMYxck6zEO85ZI3Tg==
-X-Received: by 2002:a05:6000:4610:b0:385:df43:2179 with SMTP id ffacd0b85a97d-385df432337mr10679245f8f.17.1733135275802;
-        Mon, 02 Dec 2024 02:27:55 -0800 (PST)
-Received: from opti3050-1.lan (ip092042140082.rev.nessus.at. [92.42.140.82])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-385eeb999f4sm3781643f8f.109.2024.12.02.02.27.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Dec 2024 02:27:55 -0800 (PST)
-From: Jakob Unterwurzacher <jakobunt@gmail.com>
-X-Google-Original-From: Jakob Unterwurzacher <jakob.unterwurzacher@cherry.de>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Quentin Schulz <quentin.schulz@cherry.de>,
-	Iskander Amara <iskander.amara@theobroma-systems.com>,
-	Sasha Levin <sashal@kernel.org>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Jakob Unterwurzacher <jakob.unterwurzacher@cherry.de>,
-	Vahe Grigoryan <vahe.grigoryan@theobroma-systems.com>,
-	Klaus Goger <klaus.goger@theobroma-systems.com>
-Cc: stable@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: rockchip: increase gmac rx_delay to 0x11 on rk3399-puma
-Date: Mon,  2 Dec 2024 11:25:44 +0100
-Message-Id: <20241202102543.204154-1-jakob.unterwurzacher@cherry.de>
-X-Mailer: git-send-email 2.39.5
+	s=arc-20240116; t=1733135296; c=relaxed/simple;
+	bh=dmAO+00hD77a0xSfiVTts1xUU/62BM73uZLkMdxPVFw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Rg3pFRP7AFv3ehu4N8mr4nDYM0kJ1eDC34dHV7U630Ce7dlKWh0F/TPBOXz11kXHI+6V0BUDJovU2W+K5tmj0jE+8E2UQAUxd+biZsMsCm8385evnklKSwsZHxxBE1Nz/hA5UICUu/f2epqYU/hKp565E18BlaCGuzZyz9psm1E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j+6Ds/Ai; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2DFEC4CED1;
+	Mon,  2 Dec 2024 10:28:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733135295;
+	bh=dmAO+00hD77a0xSfiVTts1xUU/62BM73uZLkMdxPVFw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=j+6Ds/AimDuv/Im3j3QOYKPEjaL3Oe7hW4vzSsWfGDxz8EN+TXZkhYMgdOgiQqkQz
+	 0qlTlaD0t7Mb1Qs039F6pw03cG7IhPqHKVd8GQs5lE9ll+tXN1XM+FmtUIlRAonEZz
+	 Z5io3bjCvG9QT17MM37+b6IWbZmlWG51RJV/Q/fwbQ+W8cXd1mUguQ/TyvIuJwjpUs
+	 FzIhTt4hrERMY4H5sd7strUi6XK+9GtIp5jjrRdnZSjwULu/jf7N+Wnc5pZsJG+j6L
+	 vSlcrYT0MIllO0oeJ+hXP3mxg/3qF2Ut+GA4Bfl8S2ZbEltRShD/QyfQi+Ok5fSG9w
+	 TNR2q7ngRZjAA==
+Message-ID: <9b88a26c-088d-44a8-9226-8317a0bf63f1@kernel.org>
+Date: Mon, 2 Dec 2024 11:28:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 8/9] power: supply: max77705: Add charger driver for
+ Maxim 77705
+To: Dzmitry Sankouski <dsankouski@gmail.com>,
+ Sebastian Reichel <sre@kernel.org>, Chanwoo Choi <cw00.choi@samsung.com>,
+ Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+ Hans de Goede <hdegoede@redhat.com>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
+ Purism Kernel Team <kernel@puri.sm>
+Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+ linux-leds@vger.kernel.org
+References: <20241202-starqltechn_integration_upstream-v9-0-a1adc3bae2b8@gmail.com>
+ <20241202-starqltechn_integration_upstream-v9-8-a1adc3bae2b8@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241202-starqltechn_integration_upstream-v9-8-a1adc3bae2b8@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-During mass manufacturing, we noticed the mmc_rx_crc_error counter,
-as reported by "ethtool -S eth0 | grep mmc_rx_crc_error" to increase
-above zero during nuttcp speedtests.
+On 02/12/2024 10:48, Dzmitry Sankouski wrote:
+> Add driver for Maxim 77705 switch-mode charger (part of max77705
+> MFD driver) providing power supply class information to userspace.
+> 
+> The driver is configured through DTS (battery and system related
+> settings).
+> 
+> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+> 
 
-Cycling through the rx_delay range on two boards shows that there is a
-large "good" region from 0x11 to 0x35 (see below for details).
 
-This commit increases rx_delay to 0x11, which is the smallest
-possible change that fixes the issue we are seeing on the KSZ9031 PHY.
-This also matches what most other rk3399 boards do.
+...
 
-Tests for Puma PCBA S/N TT0069903:
+> +
+> +static int max77705_charger_probe(struct platform_device *pdev)
+> +{
+> +	struct power_supply_config pscfg = {};
+> +	struct i2c_client *i2c_chg;
+> +	struct max77693_dev *max77705;
+> +	struct max77705_charger_data *chg;
+> +	struct device *dev, *parent;
+> +	struct regmap_irq_chip_data *irq_data;
+> +	int ret;
+> +
+> +	dev = &pdev->dev;
+> +	parent = dev->parent;
+> +	max77705 = dev_get_drvdata(parent);
+> +
+> +	chg = devm_kzalloc(dev, sizeof(*chg), GFP_KERNEL);
+> +	if (!chg)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, chg);
+> +
+> +	i2c_chg = devm_i2c_new_dummy_device(dev, max77705->i2c->adapter, I2C_ADDR_CHG);
+> +
 
-	rx_delay mmc_rx_crc_error
-	-------- ----------------
-	0x09 (dhcp broken)
-	0x10 897
-	0x11 0
-	0x20 0
-	0x30 0
-	0x35 0
-	0x3a 745
-	0x3b 11375
-	0x3c 36680
-	0x40 (dhcp broken)
-	0x7f (dhcp broken)
+Same problems as in other patchset. This really needs some work to look
+closer to Linux coding style.
 
-Tests for Puma PCBA S/N TT0157733:
 
-	rx_delay mmc_rx_crc_error
-	-------- ----------------
-	0x10 59
-	0x11 0
-	0x35 0
+> +	if (IS_ERR(i2c_chg))
+> +		return PTR_ERR(i2c_chg);
+> +
+> +	chg->regmap = devm_regmap_init_i2c(i2c_chg, &max77705_chg_regmap_config);
+> +
+> +	if (IS_ERR(chg->regmap))
+> +		return PTR_ERR(chg->regmap);
+> +
+> +	chg->dev = dev;
+> +
+> +	ret = regmap_update_bits(chg->regmap,
+> +				MAX77705_CHG_REG_INT_MASK,
+> +				MAX77705_CHGIN_IM, 0);
+> +
+> +	if (ret)
+> +		return ret;
+> +
+> +	pscfg.of_node = dev->of_node;
+> +	pscfg.drv_data = chg;
+> +
+> +	chg->psy_chg = devm_power_supply_register(dev, &max77705_charger_psy_desc, &pscfg);
+> +	if (IS_ERR(chg->psy_chg))
+> +		return PTR_ERR(chg->psy_chg);
+> +
+> +	max77705_charger_irq_chip.irq_drv_data = chg;
+> +	ret = devm_regmap_add_irq_chip(chg->dev, chg->regmap, max77705->irq,
+> +					IRQF_ONESHOT | IRQF_SHARED, 0,
+> +					&max77705_charger_irq_chip,
+> +					&irq_data);
+> +	if (ret) {
+> +		dev_err(dev, "failed to add irq chip: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	chg->wqueue = create_singlethread_workqueue(dev_name(dev));
+> +	if (IS_ERR(chg->wqueue)) {
+> +		dev_err(dev, "failed to create workqueue\n");
+> +		return PTR_ERR(chg->wqueue);
+> +	}
+> +	INIT_WORK(&chg->chgin_work, max77705_chgin_isr_work);
+> +
+> +	max77705_charger_initialize(chg);
+> +
+> +	return max77705_charger_enable(chg);
+> +}
+> +
+> +static void max77705_charger_remove(struct platform_device *pdev)
+> +{
+> +	struct max77705_charger_data *chg = platform_get_drvdata(pdev);
+> +
+> +	max77705_charger_disable(chg);
 
-Fixes: 2c66fc34e945 ("arm64: dts: rockchip: add RK3399-Q7 (Puma) SoM")
-Cc: <stable@vger.kernel.org>
-Reviewed-by: Quentin Schulz <quentin.schulz@cherry.de>
-Signed-off-by: Jakob Unterwurzacher <jakob.unterwurzacher@cherry.de>
----
-v2: cc stable, add "Fixes:", add omitted "there" to commit msg,
-    add Reviewed-by.
 
- arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Use devm for this. You use shared interrupt, so you are not suppose to
+mix devm and non-devm, even if this is actually safe.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
-index 9efcdce0f593..13d0c511046b 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
-@@ -181,7 +181,7 @@ &gmac {
- 	snps,reset-active-low;
- 	snps,reset-delays-us = <0 10000 50000>;
- 	tx_delay = <0x10>;
--	rx_delay = <0x10>;
-+	rx_delay = <0x11>;
- 	status = "okay";
- };
- 
--- 
-2.39.5
+> +}
+> +
+> +static const struct of_device_id max77705_charger_of_match[] = {
+> +	{ .compatible = "maxim,max77705-charger" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, max77705_charger_of_match);
+> +
+> +static struct platform_driver max77705_charger_driver = {
+> +	.driver = {
+> +		.name = "max77705-charger",
+> +		.of_match_table = max77705_charger_of_match,
+> +	},
+> +	.probe = max77705_charger_probe,
+> +	.remove = max77705_charger_remove,
+> +};
+> +module_platform_driver(max77705_charger_driver);
+> +
+> +MODULE_AUTHOR("Dzmitry Sankouski <dsankouski@gmail.com>");
+> +MODULE_DESCRIPTION("Maxim MAX77705 charger driver");
+> +MODULE_LICENSE("GPL");
+> diff --git a/include/linux/power/max77705_charger.h b/include/linux/power/max77705_charger.h
+> new file mode 100644
+> index 000000000000..44ecd6b32cbe
+> --- /dev/null
+> +++ b/include/linux/power/max77705_charger.h
+> @@ -0,0 +1,216 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Maxim MAX77705 definitions.
+> + *
+> + * Copyright (C) 2015 Samsung Electronics, Inc.
+> + * Copyright (C) 2024 Dzmitry Sankouski <dsankouski@gmail.com>
+> + */
 
+
+...
+
+> +
+> +/* MAX77705_CHG_REG_CNFG_10 */
+> +#define MAX77705_CHG_WCIN_LIM		GENMASK(5, 0)
+> +
+> +/* MAX77705_CHG_REG_CNFG_11 */
+> +#define MAX77705_VBYPSET_SHIFT		0
+> +#define MAX77705_VBYPSET_MASK		GENMASK(6, 0)
+> +
+> +/* MAX77705_CHG_REG_CNFG_12 */
+> +#define MAX77705_CHGINSEL_SHIFT		5
+> +#define MAX77705_CHGINSEL_MASK		BIT(MAX77705_CHGINSEL_SHIFT)
+> +#define MAX77705_WCINSEL_SHIFT		6
+> +#define MAX77705_WCINSEL_MASK		BIT(MAX77705_WCINSEL_SHIFT)
+> +#define MAX77705_VCHGIN_REG_MASK	GENMASK(4, 3)
+> +#define MAX77705_WCIN_REG_MASK		GENMASK(2, 1)
+> +#define MAX77705_REG_DISKIP_SHIFT	0
+> +#define MAX77705_REG_DISKIP_MASK	BIT(MAX77705_REG_DISKIP_SHIFT)
+> +/* REG=4.5V, UVLO=4.7V */
+> +#define MAX77705_VCHGIN_4_5		0
+> +/* REG=4.5V, UVLO=4.7V */
+> +#define MAX77705_WCIN_4_5		0
+> +#define MAX77705_DISABLE_SKIP		1
+> +#define MAX77705_AUTO_SKIP		0
+> +
+> +/* mA */
+> +#define MAX77705_CURRENT_STEP		25
+> +#define MAX77705_CURRENT_WCIN_MAX	1600
+> +#define MAX77705_CURRENT_CHGIN_MAX	3200
+> +
+> +/* Convert current in mA to corresponding CNFG09 value */
+> +inline u8 max77705_convert_ma_to_chgin_ilim_value(unsigned int cur)
+> +{
+> +	if (cur < MAX77705_CURRENT_STEP)
+> +		return 0;
+> +	if (cur < MAX77705_CURRENT_CHGIN_MAX)
+> +		return (cur / MAX77705_CURRENT_STEP) - 1;
+> +	else
+> +		return (MAX77705_CURRENT_CHGIN_MAX / MAX77705_CURRENT_STEP) - 1;
+> +}
+
+
+Drop all inlines from header. You are not suppose to have such driver
+functions inlined all over the users.
+
+
+Best regards,
+Krzysztof
 
