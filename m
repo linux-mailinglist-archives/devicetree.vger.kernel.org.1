@@ -1,242 +1,167 @@
-Return-Path: <devicetree+bounces-125970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 110FF9DFD01
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 10:23:51 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C7C59DFD1B
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 10:27:50 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C6A20280E19
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 09:23:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 77196163390
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 09:27:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A4BE1FAC30;
-	Mon,  2 Dec 2024 09:23:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9C231FA270;
+	Mon,  2 Dec 2024 09:27:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CWmT5Yti"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QDAYzJSe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 761421FA160
-	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 09:23:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19F1E1FA252;
+	Mon,  2 Dec 2024 09:27:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733131413; cv=none; b=XmoSnGm3Ar82kupET+pZlh7OOn9mcWjTHjBOyF78jGJ84hz+uyhCTqlp3pd9ZrFLfQ8HH+iptljhLX83mReUzZcOJzOgO89Y5Yi2iaptFJUtzbn6CfM9chaCBvjBpK1dWW+g1/My7uaZc/GpftMbfuvevSDdoYv+Tcjl4zjBb3I=
+	t=1733131641; cv=none; b=ZsRcW2HSC5+S2vbkCZmwiLErfK3bsfzfv4F0/p0CSHY2Anx/Z7498HmIJr3aFuBnIIbe9AA7AQyaL5Qtk3mVA/T+y2f3ZKUM1tup7jGq5UHR4wgSLR2PqksbsyJyMxpUn3Fgc5MdSzm5K2o66lONkhKI/X+243gYyfPNhCIBVp0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733131413; c=relaxed/simple;
-	bh=tqg7gzkgA4MYt/pRkxLKHP2cWrGEuuks3ig+VrWudZM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=EnZRBHxlN9qrqsKibn6pMJPBNgUj7AnwJs01MbqpZizpBJvPo+HjiuNU72MZZpU4cuA+s/4acX5ALJfXXPfdQy4unvR9pq7xGYd2AbPUYl/o+XkGS2F5145RmtG0SWSnOMhqCRmovD2L35C8EdepepiXFkMUroKGHlwr+OHcc8o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CWmT5Yti; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-434aafd68e9so33524455e9.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 01:23:31 -0800 (PST)
+	s=arc-20240116; t=1733131641; c=relaxed/simple;
+	bh=2HdQ79P7tEMpX4iY+ZlkpDA9tIbAwPcdYuX+GFXpRys=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PW/QokP6G1gwo1FMhrF54o6ee+ILEwHL/fW0s4ZrhR8dPlunb9lreb/+S9nGqH0dvKi5x14QnXuGZn5vT9Yit8XRK2G2i1W0WP/3q5sCi1ul0u9MBQe1mjyGu/9HTuCCsyGG8MO2mvqAk075aMRoNQFpXOL8RUa/fpRfxFFsD0E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QDAYzJSe; arc=none smtp.client-ip=209.85.128.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-6eeb31b10ceso32591697b3.1;
+        Mon, 02 Dec 2024 01:27:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733131410; x=1733736210; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XiMGM/nWXpyvgXGPxpGpfX8jLfqYzeixD1E53niaNPI=;
-        b=CWmT5YtiRQtoBygULHK8mlqV6r428lLLRWWU8PEhjclOblwVn51TXZaYh4tY7dH8j/
-         lt6gyDl24tZ1NQK+BLlh8dBm2hlbVaeWg5+5S+PYP3Y1JGp/um3lgGsuguRKbluBztoM
-         3yFmQxJ31Zp0fRVr8CgZDZXnjHwwAKR+gj5gJAHsaGJD+1STxpmRBCqKNPxcKYy6XQSl
-         Yn0XiLchVZ1PnQvlP1fFPFWUA9KQCLZwK0z3COD4KIYavPUWKBK46yUVA3uGxw39tEeC
-         ljd81vByvV+yz8X5rr398k+XdOdI+4qnA7kDPa4CeeI8hEdSc+TsPcaR2GAf3Ty0sPxw
-         G9uA==
+        d=gmail.com; s=20230601; t=1733131639; x=1733736439; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GD/Z51a6lchMwVYFjuhQ3sJcF0heDeQ5X8C8r2Z+aFw=;
+        b=QDAYzJSeiBIJkoCUZza9SjrHB4OTAfEIFwkZLog2kqIruKm1TnQFUXuPldJAGBPNti
+         dpV0r3l/El5tZLfQT3vdWL7TJsDXn4vN81GyaX2Wjy7udwubOfn537rKzUybuDxF4a7U
+         v3E9G8CZL4JSIRzDj2NKuB7UwzmQOiTRrL/pxACPiw5jPxyEH1a/RfEtvOabNMHvIWXv
+         425Yl9J0PYqLe8uChhsgg79tIpYeh5LBWaNlnjYC6/xPliiSismuEaVLKJCpoOpISgUx
+         1iBek0ra07wTUs7/YDVYM7C02d+wpiB2A/mLhb/q/PRWZTai3hJ43xnW3Cn0Cg0fImlI
+         IFxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733131410; x=1733736210;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1733131639; x=1733736439;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=XiMGM/nWXpyvgXGPxpGpfX8jLfqYzeixD1E53niaNPI=;
-        b=YWqhN1L+fLGomulE2QuX24/5wdYUIlqm1b+FKbuEtRkca+vM+aerVJOMzGElknQwI+
-         0sOP5pUblqjPk0CwwcaEm11uZJYv5LuSka1/chbc0BdQ26Ezmkv0s0LcqMHK6h4WvTRm
-         dYhhqEuI7zvDWxHekjuruDQ6GaLYSkle3emg2bDplMlCcfvjCQ27NIRfalYOWuYL4yiY
-         ReCgtOhL1eehGDZGdTnNRV0vaGazUS8o6ZX26ib78UXMiG8Yqmn/oT/fR8cg5zL+vKZb
-         fIcoIQ/LFYCRkdoTwry0+Cs5CVpLyIbLO6jSTrIH5rzXFk7RIMXN/8r15qwgOOI2mA6H
-         9VCg==
-X-Forwarded-Encrypted: i=1; AJvYcCWImNlp3dOCZ9o17J8oTEG9Ub2/mr0Qax7QwkUChgfuMJdQevMqQt+d3WR62Fp5vEdnD91+3aye8/tA@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXCZQhVbWA2F+5j0A/ExnrOUbPWGpvW0RFvl+Y/BTo6LYnHWnm
-	vT68INW1KnyXQhP8mAlnzmjrUcU6L73X7q/AWFLNU3l4/BlPheCJozoXHPj0GL0=
-X-Gm-Gg: ASbGncumsn/5lt3j4X6mguSGBh6Jd9in21h0No2I1oYV4hmmVC/Z/BFrsbWHlOVehzB
-	7pJ9b9qYDPPK/1tQBNClpbH6UBdI3qOWpI9QuLRaR3BBZTWDLBrjwbBXqxVqWCalgt2EJjOnSGH
-	tkDSRdNx8xi7U2Tk376xDMaMKyGBqx4Pli2T4/Yn7W/cwLpNEA/+qrt6SEM27HE7XAl/pnrukPd
-	kIebOeyiUSGIR1WQBIUXjT9D5wkji9XQtT3kvtl1hFf26+Z1w==
-X-Google-Smtp-Source: AGHT+IGkW5mxPjQmyLvxG8GcPkJwiL6bZvT9/RnZ8OiXx4aWYYIaccK72XIFNkOLMjFAbLHZ/3amPw==
-X-Received: by 2002:a5d:6485:0:b0:385:e176:43ea with SMTP id ffacd0b85a97d-385e1764628mr8641610f8f.28.1733131409708;
-        Mon, 02 Dec 2024 01:23:29 -0800 (PST)
-Received: from [127.0.1.1] ([82.76.168.176])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-385d7264f27sm11014744f8f.80.2024.12.02.01.23.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Dec 2024 01:23:29 -0800 (PST)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Mon, 02 Dec 2024 11:23:18 +0200
-Subject: [PATCH v2 2/2] arm64: dts: qcom: x1e78100-qcp: Enable Type-A USB
- ports labeled 3 and 4/6
+        bh=GD/Z51a6lchMwVYFjuhQ3sJcF0heDeQ5X8C8r2Z+aFw=;
+        b=YrYICI4mPwWsSypLydRwG65oUsD8Cvhf5Rm4eFHQaVB4iQ3O5vnx0Ndt7hhYsgFiGc
+         j5zmnHb1yPLnKVTxI+3d624GY+afvjdIypVvxd0OLNkiXM6waGejIf7hu97v3Hk4f/lR
+         +baUXoBXFzua5ASn88CjOOabwlZ0iY1JprARw1J41M7Z8Huv7bi9e5Jt7eovP0MFw7Di
+         RKWTmlWx5e2RhFj0WcBpcuz8tIAir1KcWdVWAb+Q4M7ARkGyyCcTy+4B4++mqNajljLb
+         RXeXjRXHF4/52/Ktdnep1ACzLMv9u8ggL7Cjsn7R77d+u/62kCVarO/7QrVD2FhBnd7R
+         aMEw==
+X-Forwarded-Encrypted: i=1; AJvYcCUXhC32RxoPyGY6l4l4PXp2M0KK+qpYLzdxvivHzpO5FSumQtcxzSl4R48wnis93F3lC3ggn8M1E8qw@vger.kernel.org, AJvYcCUaGyl3TX4iMRgTmH31wnGFreMVaxua7SXo7iKsSJNerMauJD+JSgiatfu2RiUIj9pievhqkJKJIsjS@vger.kernel.org, AJvYcCUsYcREIu2f//bdCsQwuq5tnceZgP6oIzr0FtzlD7iezMFnH+UOa04dZcuvKIIws34UsvzL9kOXgC+T+/SB@vger.kernel.org
+X-Gm-Message-State: AOJu0YwW97aczciXhZHd2KJj/x/gbgyYHP7XHXRQDCVo76iquxB2lXXg
+	z1oX/vtQl2uILNWCA4pFSenUMw+c522yD4BMtItxFxcgHKcL6lj895a77rvnoWxwCuNAhW58NaB
+	n3fRWuXDPnBT/RhyJnMi2mxSNtH5rdA==
+X-Gm-Gg: ASbGncspH82c7LGIj91SWK+dl8C2cYiExvGDPstgt7oEcRU0NyvhyRe+meDmewASVDI
+	lJowWmlU5axSui3wo88kakRbIHcsS9P5S6ji64wOlK0ffT1y1EUWEof5YEINMZOkb
+X-Google-Smtp-Source: AGHT+IEtxUVrNr5CD0x73k1QiBveCl8DG1RU5r3OTxhTUiUZMGNDcN5DybBQsyn/Z4eeB3jYqCrSdv6PcKXin0vphA0=
+X-Received: by 2002:a05:6902:dc9:b0:e30:7c38:668b with SMTP id
+ 3f1490d57ef6-e395b94b0b1mr17381590276.37.1733131639101; Mon, 02 Dec 2024
+ 01:27:19 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241202-x1e80100-qcp-t14-enable-usb-type-a-ports-v2-2-7360ed65c769@linaro.org>
-References: <20241202-x1e80100-qcp-t14-enable-usb-type-a-ports-v2-0-7360ed65c769@linaro.org>
-In-Reply-To: <20241202-x1e80100-qcp-t14-enable-usb-type-a-ports-v2-0-7360ed65c769@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Abel Vesa <abel.vesa@linaro.org>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.15-dev-dedf8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2981; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=tqg7gzkgA4MYt/pRkxLKHP2cWrGEuuks3ig+VrWudZM=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBnTXyMEDvNhdMm3eST43LpgWDgnzisRdswLSLS9
- 889P214jt2JAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZ018jAAKCRAbX0TJAJUV
- ViY/EAC98lUfBJ6Kq/7KCbPeZaxSU4AIb8eA/BrjJc3IyQvYzmPpmzhHvXh7MW+eG6yOgh1ErMR
- lCHfZvj1DT47nAn4KBgoeLg5rnYO5d7JSVuaHGGA+pXlEr1Az9MMYh2EQ6NyUHZOJGCjL1yAmfJ
- xwPAuGbCZBltp+XjApQibShh39o6hPA+h6M/Jcriu2CwMWEHPPCb1NMoID3S6VGvMsSO8HR1GZX
- U2WHHu9rjuYMBjo5phsNnB5QxH0aMgV2Lchhjv1+sOHFaiXSisvTEsRV3HKJp045egcA/DZ3H0s
- K0/H9pDfI1N2e5hP6zKb+uazkzltew2oqZ+eyY9aw4YaRJSL+E7MDTD6JohXuYNGoWCTJOBSgSA
- u8RPsc+42FcpCLERm7dxwjG6QU2l5VA37jdZ2ck/emsUjU6vS/pK6LNDfOPvMSQgcjBGpvSB7Ac
- qIwhjCqGKsARVAVo1d28CReQdycftcCsPLNBJ58RfmkhJb5H/8rUEl1F+7qdnONod/63sWzTUSV
- VfWYURd4ApX49kBVbXCokKnlpxWBmM9zmD5QlnSvHYEEscikHreFgsMLTT2KDgLvfmQa9M2B2gU
- 8rOxgg/jcyC+pyccLMdxaTf5ZJXS2TsnY/EMMKt4GPndsZC5vQb4qsKrG28yhkDVtYwJWUg7hO5
- t9xeP+5qfRkdlWA==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+References: <20241126074005.546447-1-tmyu0@nuvoton.com> <20241130202849.13eedb04@jic23-huawei>
+ <9174d169-6037-400e-8ec5-6e2653c07a1b@roeck-us.net>
+In-Reply-To: <9174d169-6037-400e-8ec5-6e2653c07a1b@roeck-us.net>
+From: Ming Yu <a0282524688@gmail.com>
+Date: Mon, 2 Dec 2024 17:27:08 +0800
+Message-ID: <CAOoeyxVJr8p2RtxKOBGPW8J-DhOQUzHOC-05EDkh0UQ6+Pu_4w@mail.gmail.com>
+Subject: Re: [PATCH v1 0/2] Add Nuvoton NCT7718W IIO driver
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: Jonathan Cameron <jic23@kernel.org>, tmyu0@nuvoton.com, lars@metafoo.de, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, cmo@melexis.com, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Jean Delvare <jdelvare@suse.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The X Elite QCP board has 3 USB-A ports. The ones labed as USB3 and
-USB4/6 are both connected to the multiport controller, each one via a
-separate NXP PTN3222 eUSB2-to-USB2 redriver to the eUSB2 PHY for
-High-Speed support, with a dedicated QMP PHY for SuperSpeed support.
+Dear Guenter,
 
-Describe these two redrivers and enable each pair of PHYs along with the
-USB controller, all in order to enable support for these 2 USB-A ports.
+Thank you for your reply. I will add a patch to the LM90 driver to
+support NCT7718W.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
- arch/arm64/boot/dts/qcom/x1e80100-qcp.dts | 86 +++++++++++++++++++++++++++++++
- 1 file changed, 86 insertions(+)
+Best regards,
+Ming
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-index 5ef030c60abe2998d093ee60a6754a90cd5aaf72..7c133e60e6f00f65f94adc5863cf935954989589 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-@@ -616,6 +616,40 @@ zap-shader {
- 	};
- };
- 
-+&i2c5 {
-+	clock-frequency = <400000>;
-+
-+	status = "okay";
-+
-+	eusb3_repeater: redriver@47 {
-+		compatible = "nxp,ptn3222";
-+		reg = <0x47>;
-+		#phy-cells = <0>;
-+
-+		vdd3v3-supply = <&vreg_l13b_3p0>;
-+		vdd1v8-supply = <&vreg_l4b_1p8>;
-+
-+		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
-+
-+		pinctrl-0 = <&eusb3_reset_n>;
-+		pinctrl-names = "default";
-+	};
-+
-+	eusb6_repeater: redriver@4f {
-+		compatible = "nxp,ptn3222";
-+		reg = <0x4f>;
-+		#phy-cells = <0>;
-+
-+		vdd3v3-supply = <&vreg_l13b_3p0>;
-+		vdd1v8-supply = <&vreg_l4b_1p8>;
-+
-+		reset-gpios = <&tlmm 184 GPIO_ACTIVE_LOW>;
-+
-+		pinctrl-0 = <&eusb6_reset_n>;
-+		pinctrl-names = "default";
-+	};
-+};
-+
- &lpass_tlmm {
- 	spkr_01_sd_n_active: spkr-01-sd-n-active-state {
- 		pins = "gpio12";
-@@ -819,6 +853,22 @@ edp_reg_en: edp-reg-en-state {
- 		bias-disable;
- 	};
- 
-+	eusb3_reset_n: eusb3-reset-n-state {
-+		pins = "gpio6";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+		output-low;
-+	};
-+
-+	eusb6_reset_n: eusb6-reset-n-state {
-+		pins = "gpio184";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+		output-low;
-+	};
-+
- 	nvme_reg_en: nvme-reg-en-state {
- 		pins = "gpio18";
- 		function = "gpio";
-@@ -981,3 +1031,39 @@ &usb_1_ss2_dwc3_hs {
- &usb_1_ss2_qmpphy_out {
- 	remote-endpoint = <&pmic_glink_ss2_ss_in>;
- };
-+
-+&usb_mp {
-+	status = "okay";
-+};
-+
-+&usb_mp_hsphy0 {
-+	vdd-supply = <&vreg_l2e_0p8>;
-+	vdda12-supply = <&vreg_l3e_1p2>;
-+
-+	phys = <&eusb6_repeater>;
-+
-+	status = "okay";
-+};
-+
-+&usb_mp_hsphy1 {
-+	vdd-supply = <&vreg_l2e_0p8>;
-+	vdda12-supply = <&vreg_l3e_1p2>;
-+
-+	phys = <&eusb3_repeater>;
-+
-+	status = "okay";
-+};
-+
-+&usb_mp_qmpphy0 {
-+	vdda-phy-supply = <&vreg_l3e_1p2>;
-+	vdda-pll-supply = <&vreg_l3c_0p8>;
-+
-+	status = "okay";
-+};
-+
-+&usb_mp_qmpphy1 {
-+	vdda-phy-supply = <&vreg_l3e_1p2>;
-+	vdda-pll-supply = <&vreg_l3c_0p8>;
-+
-+	status = "okay";
-+};
-
--- 
-2.34.1
-
+Guenter Roeck <linux@roeck-us.net> =E6=96=BC 2024=E5=B9=B412=E6=9C=881=E6=
+=97=A5 =E9=80=B1=E6=97=A5 =E4=B8=8A=E5=8D=884:50=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On 11/30/24 12:28, Jonathan Cameron wrote:
+> > On Tue, 26 Nov 2024 15:40:03 +0800
+> > Ming Yu <a0282524688@gmail.com> wrote:
+> >
+> >> NCT7718W is an I2C based thermal sensor chip from Nuvoton.
+> > Hi Ming Yu,
+> >
+> > +CC Jean and Guenter,
+> >
+> > Why an IIO driver rather than a HWMON one?  Superficially this looks li=
+ke a hwmon
+> > chip.  We do have the means to put a generic driver in IIO and bridge t=
+o hwmon, but
+> > when a device is very much intended for monitoring of hardware temperat=
+ures etc
+> > the IIO driver rarely has any purpose and a simpler hwmon only solution=
+ makes sense.
+> >
+> > For temperature sensors IIO normally makes sense if:
+> > 1) They are part of a series of devices some of which have more functio=
+nality than temp
+> > 2) Fast devices where hwmon sysfs interfaces become a bottleneck - note=
+ you have to have
+> > a usecase for reading them fast, not simply a device that is capable of=
+ it.
+> > 3) 'Unusual' temperature sensors such as infrared thermometers or very =
+high precision
+> >     thermocouple interfaces.
+> >
+> > Any of those apply here?
+> >
+>
+> Also, it looks like this chip is compatible to LM90. It isn't entirely cl=
+ear to me
+> why this would require a new driver.
+>
+> Guenter
+>
+> > Note that hwmon has better threshold and critical temperature handling =
+than we can do
+> > in IIO and it seems your part has those as well.
+> >
+> > Thanks,
+> >
+> > Jonathan
+> >
+> >
+> >>
+> >> Ming Yu (2):
+> >>    dt-bindings: iio: temperature: Add support for NCT7718W
+> >>    iio: temperature: Add Nuvoton NCT7718W support
+> >>
+> >>   .../iio/temperature/nuvoton,nct7718.yaml      |  44 ++
+> >>   MAINTAINERS                                   |   7 +
+> >>   drivers/iio/temperature/Kconfig               |  10 +
+> >>   drivers/iio/temperature/Makefile              |   1 +
+> >>   drivers/iio/temperature/nct7718.c             | 505 ++++++++++++++++=
+++
+> >>   5 files changed, 567 insertions(+)
+> >>   create mode 100644 Documentation/devicetree/bindings/iio/temperature=
+/nuvoton,nct7718.yaml
+> >>   create mode 100644 drivers/iio/temperature/nct7718.c
+> >>
+> >
+>
 
