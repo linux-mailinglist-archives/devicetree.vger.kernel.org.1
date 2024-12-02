@@ -1,186 +1,241 @@
-Return-Path: <devicetree+bounces-126000-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126001-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 506519DFDE1
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 10:57:21 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EAC09DFDFA
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 11:00:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DA9D9B2270E
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 09:57:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5C808B247BF
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 10:00:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCD101FBCAB;
-	Mon,  2 Dec 2024 09:57:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D969D1FA157;
+	Mon,  2 Dec 2024 10:00:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="i/dJ/qDZ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="m8NKRSXk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D9521F949;
-	Mon,  2 Dec 2024 09:57:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CF3915A8;
+	Mon,  2 Dec 2024 10:00:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733133434; cv=none; b=q5ryqdrEy+0XSBf9zExqWv46jjCyvPO4hR8paMlTv1JuNZR4CfChZbyG1xN1Lo159lRWG2ObOZZDxYIw8kVNZeduVaSN+rWp1sN3GJORoSAzKPuQR2eAQ7cRKEsHNfalvB2h7c2ikpiJBJ0X8XBdmMk39zPSSoNGnEXDUtSujNU=
+	t=1733133641; cv=none; b=r1dORd/54cIIUIxaG4qAxurBnMCJV0Dr3mRzlhBwN29f6sBNW30bppvyiC0sCiSDtNf3GZakAgq059FPLTuROR4Qbdmf+8m/bi3CcEch9Aj5y1mYaQ99AcB0iGO0SZgxT2pX2XymBVqNwHmPreM6mLrbcksYg1/3fOC1eg2NbxI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733133434; c=relaxed/simple;
-	bh=GnfNzt3KbFYFi9nwt42MZ8lghzINadPOi1gcOZVLanI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iKYXTrOlqBLNFazeSIHOB4dwgP+1FUTNoDtwxq42cPQNprKgVpzH4YNUbH/OZlt639mTxjrUXhN2l2gUqG3fnpVcGIbWb5lCMfX+gv4W0Wyt024djlavRi4BguCobiMbbdepLd8L+6o1Z12i+nV/AbbbkijH55aFKa9nLwbKxbQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=i/dJ/qDZ; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=zX++2BfI71EfbL0UifJIyYdnjIn03M87iaL/MLYsMe4=; b=i/dJ/qDZA4x76D5c0J418PwECQ
-	pPOKivungXawQrf6RAPl5Qkpki5ptQMnwt6cWyxMj81J8JQG5s0V4B8s9z46wVRtMDLDP9BgCHuBu
-	qmo/ukICI31OS4muDHfZxYHggjmt4paR2h1nCFoQqKKFtrvJPj+YAD+/TaC1UpD9y/9WkDg2bE3mc
-	wYZmq2jl2BWnEnBhLcRltjz3FuNkDg9xVwXK/5VYnBcQzsB0MTrN1T12AzMuRX8nJ4b3e4tottRWv
-	4Nf5TZg3lHKGR51Rp6jX083np7KoII81O2a48MBF/ZSTMuN52ni2047l5iKt1qnFK7h5qN+hCtnEE
-	5NbaPxBQ==;
-Received: from i53875bc4.versanet.de ([83.135.91.196] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tI3Am-0000Ii-BO; Mon, 02 Dec 2024 10:56:56 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Jakob Unterwurzacher <jakobunt@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Sasha Levin <sashal@kernel.org>,
- Iskander Amara <iskander.amara@theobroma-systems.com>,
- Jakob Unterwurzacher <jakob.unterwurzacher@cherry.de>,
- Vahe Grigoryan <vahe.grigoryan@theobroma-systems.com>,
- Quentin Schulz <quentin.schulz@cherry.de>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH] arm64: dts: rockchip: increase gmac rx_delay to 0x11 on
- rk3399-puma
-Date: Mon, 02 Dec 2024 10:56:55 +0100
-Message-ID: <2578458.4XsnlVU6TS@diego>
-In-Reply-To: <63b3be80-cb6c-49e5-858f-70fd826140c5@cherry.de>
-References:
- <20241202090408.201662-1-jakob.unterwurzacher@cherry.de>
- <63b3be80-cb6c-49e5-858f-70fd826140c5@cherry.de>
+	s=arc-20240116; t=1733133641; c=relaxed/simple;
+	bh=icZCGmtk1DzL9HBbjQGZeFbvR7o/kKnLVv3vWsSW6Oo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=NTZFMzmngGWfEF0N+UsE54ofKlgksvP3FXs746X3EeHxLUfOzoCTkllAPvMpq2HNjez8oTMSw2zKAETtLdzwvuRpiEexy40HhaXT/N5X4z6bw3oXFERem/fv/h+jS+f/uAOSrAPMhXQjP96/fW6BFAUDzSES6YLybr+rmNs5JAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=m8NKRSXk; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B29KcSo028211;
+	Mon, 2 Dec 2024 10:00:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	6PW9fOxBZRxPpo7YtTCol7KQG5Qyjq+kU1ABzjHmWuQ=; b=m8NKRSXkUqcs+Ryr
+	dZqTr1BEhva2kvMDJ1Bu7988TVLvzYxsbwPSaqXbpHwSyLEfuvp6zIDkyTZBcUO6
+	+L27esdZq5c1Z+AcufjQP0by//jZzGWzlxIBXE1cWS7Ksxncq58CF+LnwItiUcXf
+	H3R7MhvEwYfcCKvOzz1NOzBShUelDiS/HZOWJclBe5m0vstGkWaStjK2dY1WLdc1
+	IPpIwHvv+ojW+5jR6+jy1IsgTZDS0x22qTU4JsI5LSdbYTLfUHqc9MTvlODvz9kD
+	6yX3VTV7bE6Y282OzmuCD0VEyJ3tNW1CCQPKFUb/trf20XqxT1DySgUCvS+G0fsw
+	Ug+iVQ==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 437ufe4a69-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 02 Dec 2024 10:00:31 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B2A0VFs031561
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 2 Dec 2024 10:00:31 GMT
+Received: from [10.233.21.53] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 2 Dec 2024
+ 02:00:28 -0800
+Message-ID: <80b1a205-422f-4e6d-97e9-69ee335a31f8@quicinc.com>
+Date: Mon, 2 Dec 2024 18:00:25 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-
-Am Montag, 2. Dezember 2024, 10:52:06 CET schrieb Quentin Schulz:
-> Hi Jakob,
-> 
-> On 12/2/24 10:04 AM, Jakob Unterwurzacher wrote:
-> > During mass manufacturing, we noticed the mmc_rx_crc_error counter,
-> > as reported by "ethtool -S eth0 | grep mmc_rx_crc_error" to increase
-> > above zero during nuttcp speedtests.
-> > 
-> > Cycling through the rx_delay range on two boards shows that is a large
-> > "good" region from 0x11 to 0x35 (see below for details).
-> > 
-> 
-> Is this missing a "there" after that? "that there is a large good region"?
-> 
-> > This commit increases rx_delay to 0x11, which is the smallest
-> > possible change that fixes the issue we are seeing on the KSZ9031 PHY.
-> > This also matches what most other rk3399 boards do.
-> > 
-> > Tests for Puma PCBA S/N TT0069903:
-> > 
-> > 	rx_delay mmc_rx_crc_error
-> > 	-------- ----------------
-> > 	0x09 (dhcp broken)
-> > 	0x10 897
-> > 	0x11 0
-> > 	0x20 0
-> > 	0x30 0
-> > 	0x35 0
-> > 	0x3a 745
-> > 	0x3b 11375
-> > 	0x3c 36680
-> > 	0x40 (dhcp broken)
-> > 	0x7f (dhcp broken)
-> > 
-> > Tests for Puma PCBA S/N TT0157733:
-> > 
-> > 	rx_delay mmc_rx_crc_error
-> > 	-------- ----------------
-> > 	0x10 59
-> > 	0x11 0
-> > 	0x35 0
-> > 
-> > Signed-off-by: Jakob Unterwurzacher <jakob.unterwurzacher@cherry.de>
-> 
-> This would be a candidate for backporting I believe.
-> 
-> Therefore, a
-
-also please include a
-
-Fixes: 2c66fc34e945 ("arm64: dts: rockchip: add RK3399-Q7 (Puma) SoM")
-
-> Cc: <stable@vger.kernel.org>
-> 
-> here would have been nice (in the commit log), c.f. 
-> https://www.kernel.org/doc/html/latest/process/submitting-patches.html#select-the-recipients-for-your-patch
-> 
-> > ---
-> >   arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi | 2 +-
-> >   1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
-> > index 9efcdce0f593..13d0c511046b 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
-> > @@ -181,7 +181,7 @@ &gmac {
-> >   	snps,reset-active-low;
-> >   	snps,reset-delays-us = <0 10000 50000>;
-> >   	tx_delay = <0x10>;
-> > -	rx_delay = <0x10>;
-> > +	rx_delay = <0x11>;
-> 
-> While at it, we could reorder this alphabetically and move rx_delay 
-
-I would disagree. This is a "fix", so should ideally only do the minimal
-changes to make life of the stable people easier.
-
-Doing this one-line change is way easier to understand than stuff also
-moving around.
-
-Heiko
-
-> between pinctrl-0 and snps,reset-gpio? c.f. 
-> https://www.kernel.org/doc/html/latest/devicetree/bindings/dts-coding-style.html#order-of-properties-in-device-node 
-> rx_delay and tx_delay seem to be vendor-specific but without the vendor 
-> prefix, but so is snps,reset-gpio so that should be fine to reorder this 
-> way.
-> 
-> Considering we have an option for KSZ9031 on RK3588 Jaguar and RK3588 
-> Tiger and the "same" MAC IP is used and that we use the same TXD and RXD 
-> delay than on RK3399 Puma right now, I guess we would want to check 
-> those don't need a change as well? (funnily enough, all RK3588-based 
-> boards in 6.12 actually have 0x00 for rx_delay and 0x43/0x44 for 
-> tx_delay, except ours which are at 0x10). Not a blocker for this patch 
-> though, so:
-> 
-> Reviewed-by: Quentin Schulz <quentin.schulz@cherry.de>
-> 
-> Thanks!
-> Quentin
-> 
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/4] arm64: dts: qcom: add QCS8300 platform
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon
+	<will@kernel.org>
+CC: <quic_tengfan@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20241128-qcs8300_initial_dtsi-v3-0-26aa8a164914@quicinc.com>
+ <20241128-qcs8300_initial_dtsi-v3-3-26aa8a164914@quicinc.com>
+ <2a2a780d-5e3e-4582-b75d-211732a9b727@oss.qualcomm.com>
+Content-Language: en-US
+From: Jingyi Wang <quic_jingyw@quicinc.com>
+In-Reply-To: <2a2a780d-5e3e-4582-b75d-211732a9b727@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: HEOdVLP-gKj__kJ1q_HwxYOSaysqhkX_
+X-Proofpoint-GUID: HEOdVLP-gKj__kJ1q_HwxYOSaysqhkX_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
+ spamscore=0 impostorscore=0 lowpriorityscore=0 priorityscore=1501
+ mlxlogscore=999 clxscore=1015 adultscore=0 bulkscore=0 mlxscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412020088
 
 
 
+On 11/29/2024 4:14 AM, Konrad Dybcio wrote:
+> On 28.11.2024 9:44 AM, Jingyi Wang wrote:
+>> Add initial DTSI for QCS8300 SoC.
+>>
+>> Features added in this revision:
+>> - CPUs with PSCI idle states
+>> - Interrupt-controller with PDC wakeup support
+>> - Timers, TCSR Clock Controllers
+>> - Reserved Shared memory
+>> - GCC and RPMHCC
+>> - TLMM
+>> - Interconnect
+>> - QuP with uart
+>> - SMMU
+>> - QFPROM
+>> - Rpmhpd power controller
+>> - UFS
+>> - Inter-Processor Communication Controller
+>> - SRAM
+>> - Remoteprocs including ADSP,CDSP and GPDSP
+>> - BWMONs
+>>
+>> Written with help from Zhenhua Huang(added the smmu node), Xin Liu(added
+>> ufs, adsp and gpdsp nodes), Tingguo Cheng(added the rpmhpd node), Kyle
+>> Deng(added the aoss_qmp node), Raviteja Laggyshetty(added interconnect
+>> nodes) and Cong Zhang(added the INTID of EL2 non-secure physical timer).
+>>
+>> Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
+>> ---
+> 
+> [...]
+> 
+>> +		cpu-map {
+>> +			cluster0 {
+>> +				core0 {
+>> +					cpu = <&cpu0>;
+>> +				};
+>> +
+>> +				core1 {
+>> +					cpu = <&cpu1>;
+>> +				};
+>> +
+>> +				core2 {
+>> +					cpu = <&cpu2>;
+>> +				};
+>> +
+>> +				core3 {
+>> +					cpu = <&cpu3>;
+>> +				};
+>> +
+>> +				core4 {
+>> +					cpu = <&cpu4>;
+>> +				};
+> 
+> The MPIDR_EL1 register value (CPU node reg) suggests they are not
+> part of the same cluster (as you confirmed in the psci idle domains
+> description)
+> 
+will separate into 2 clusters.
+> [...]
+> 
+>> +
+>> +		ufs_mem_hc: ufs@1d84000 {
+>> +			compatible = "qcom,qcs8300-ufshc", "qcom,ufshc", "jedec,ufs-2.0";
+>> +			reg = <0x0 0x01d84000 0x0 0x3000>;
+>> +			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
+>> +			phys = <&ufs_mem_phy>;
+>> +			phy-names = "ufsphy";
+>> +			lanes-per-direction = <2>;
+>> +			#reset-cells = <1>;
+>> +			resets = <&gcc GCC_UFS_PHY_BCR>;
+>> +			reset-names = "rst";
+>> +
+>> +			power-domains = <&gcc GCC_UFS_PHY_GDSC>;
+>> +			required-opps = <&rpmhpd_opp_nom>;
+>> +
+>> +			iommus = <&apps_smmu 0x100 0x0>;
+>> +			dma-coherent;
+>> +
+>> +			interconnects = <&aggre1_noc MASTER_UFS_MEM 0
+> 
+> QCOM_ICC_TAG_ALWAYS, file-wide
+> 
+well noted.
+> [...]
+> 
+>> +		ufs_mem_phy: phy@1d87000 {
+>> +			compatible = "qcom,qcs8300-qmp-ufs-phy", "qcom,sa8775p-qmp-ufs-phy";
+>> +			reg = <0x0 0x01d87000 0x0 0xe10>;
+>> +			/*
+>> +			 * Yes, GCC_EDP_REF_CLKREF_EN is correct in qref. It
+>> +			 * enables the CXO clock to eDP *and* UFS PHY.
+>> +			 */
+>> +			clocks = <&rpmhcc RPMH_CXO_CLK>,
+>> +				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>,
+>> +				 <&gcc GCC_EDP_REF_CLKREF_EN>;
+> 
+> Are you sure about this, or is this just copypasted from sa8775p?
+> 
+> [...]
+> 
+>> +
+>> +		intc: interrupt-controller@17a00000 {
+>> +			compatible = "arm,gic-v3";
+>> +			reg = <0x0 0x17a00000 0x0 0x10000>,     /* GICD */
+>> +			      <0x0 0x17a60000 0x0 0x100000>;    /* GICR * 8 */
+> 
+> Drop these comments
+> 
+well noted.
+>> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+>> +			#interrupt-cells = <3>;
+>> +			interrupt-controller;
+>> +			#redistributor-regions = <1>;
+>> +			redistributor-stride = <0x0 0x20000>;
+>> +		};
+>> +
+>> +		memtimer: timer@17c20000 {
+> 
+> Unused label
+> 
+well noted.
+> [...]
+> 
+>> +	arch_timer: timer {
+> 
+> Ditto
+> 
+well noted.
+> Konrad
 
+Thanks,
+Jingyi
 
