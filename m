@@ -1,84 +1,106 @@
-Return-Path: <devicetree+bounces-126230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126231-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DE3D9E09F8
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 18:31:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D7A19E0A02
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 18:32:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EEE851600D9
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 17:31:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B9EC6161589
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 17:32:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A62751DDC25;
-	Mon,  2 Dec 2024 17:31:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44B621DBB21;
+	Mon,  2 Dec 2024 17:32:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CwX9Hvm3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rn1qsH8V"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77E8718784A;
-	Mon,  2 Dec 2024 17:31:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F9A61DB37B;
+	Mon,  2 Dec 2024 17:32:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733160675; cv=none; b=V3vK2YhRsLP1iv2FPOzp8p7r6iK3jC6p8mU9UaQ+9YNzZNj8XHHVeYyAiPfqb5XCorlFMf5w3elzWqxoSzrQX83SGkXHiMqCPq1nyKUlgpgwFKb/Pn/6855eNmES2wVTR/3xV/ovAKPRShuUKl52rwkU83it++fGj6W2wHQlN3s=
+	t=1733160752; cv=none; b=FvzUX3EfxxmgaZZBW/eo7qlJKlnaJSygcwXR+A3w1S96mxx4Y818m7ursJfQH86paqMJ+o+vk/54kngm5LkIfbev1Jqb1KUG3ZDoTD7v/SROlMXXZVNysGS0cL/g94cI1/JTnyK2IQCdoCqF8n4iUGJ5eGXTFxH3zh86r8fdF9I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733160675; c=relaxed/simple;
-	bh=CAbiLMi4YxUdG9Ik2Xv87eZs8pKV4/K+/quwKpT/55k=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=dRwxbwYrG1EbofsOqBjwkzg2fcBJp6Smjz6qwxNS6uNFBmF+nJqHZopqIxItZLqtEMCs/7/CJgHk30UC9DafKvtawgLaODN3VMjr6A9xDhQfCEdQWx5R53LgwduASTb/XhDqonolp3+ngc+tbr73GeX8EwVOMejCpcECxY7ij10=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CwX9Hvm3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24C25C4CED2;
-	Mon,  2 Dec 2024 17:31:10 +0000 (UTC)
+	s=arc-20240116; t=1733160752; c=relaxed/simple;
+	bh=w6qO0Ed/ublU69cCli1C54Cmd72s6/ejpFNGotr9uzI=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=Q03l5fuPQqcLrE4CzIgNALXOwsT2sbYVqtVK5bBeA/4B6MPvXR8J8Q/qQrGlKunz3rQQThpjI4O2VgvC4hM1w1nfD6xXNz1P2hhfTb3dQmkw6qbXEHkyeTLzG8GhcieWJR9Brz14y9S5XKAqSMrkNX8qT5oOlGsvFSgyi+9E9rg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rn1qsH8V; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B186C4CED1;
+	Mon,  2 Dec 2024 17:32:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733160675;
-	bh=CAbiLMi4YxUdG9Ik2Xv87eZs8pKV4/K+/quwKpT/55k=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=CwX9Hvm3S2n3U+1E+nCQNyp4qHnxQTYCuAN0goDhNzGwLtKvwEbKSIrYqJS7jVbBD
-	 RYGf9SrS8eFHvcZdYQ77AK7lkSYmokjBQ7lsXV0KeMkJvBW7LtepsIz4rQOxU7ckAl
-	 MnX0CHDmoVF3eu1/JP/d8iHx1qD1PNYDO8Sh9azqglnE9FiXPQnPTmFIAgdGfLRe3b
-	 MbQ85hof+67z5iForJg25Cz6HzWJrx8mqUdx/efVGy38arqW2TQ1U9nLGkdMc/77UC
-	 m+A3zXi49tis7m8Y3YHGUZ8TWm2Ae9J8f5TwFocxqB0L+IfutgU/2z1msVr9P61plT
-	 5EwhaNMr6SAhw==
-From: Vinod Koul <vkoul@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Viken Dadhaniya <quic_vdadhani@quicinc.com>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
- linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20241108-topic-sa8775_dma2-v1-0-1d3b0d08d153@oss.qualcomm.com>
-References: <20241108-topic-sa8775_dma2-v1-0-1d3b0d08d153@oss.qualcomm.com>
-Subject: Re: (subset) [PATCH 0/2] Add SA8775P GPI DMA compatible
-Message-Id: <173316067073.538095.13350944715952515644.b4-ty@kernel.org>
-Date: Mon, 02 Dec 2024 23:01:10 +0530
+	s=k20201202; t=1733160751;
+	bh=w6qO0Ed/ublU69cCli1C54Cmd72s6/ejpFNGotr9uzI=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=Rn1qsH8VMjXlRnQHHa9Dv++TvuG6MSvi1tGugzebcjkhjuluwxukyhCupbFV3tNGs
+	 HiJXBOa2SA9qR24iA06crMO49iD1hjRj6xOrgv+KM+hAXv5H4KqKCwuQXsek6+ZB5Z
+	 5mD8+l/gJywwdqKjA6MlYbOGTaNrnv9UytiEwNGtyBgMFTu9zUz4kHsNs3BJ4/yilz
+	 eui4ZFhp27082Kjc4dl1tu+BzDq1HMxknSaa+wXulCEl7FoMhZKX2w9puG2tAJH80/
+	 9bKhZL4ih+nN2yEb7em2KP/SjlLMc5WYGWIyZG/+G+B46RzbSvaiG7TTO9YlgPLwOW
+	 tuwHh3GKVUGSA==
+Date: Mon, 02 Dec 2024 11:32:29 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, linux-mtd@lists.infradead.org, 
+ devicetree@vger.kernel.org, David Jander <david@protonic.nl>, 
+ Richard Weinberger <richard@nod.at>, kernel@pengutronix.de, 
+ Vignesh Raghavendra <vigneshr@ti.com>, 
+ Miquel Raynal <miquel.raynal@bootlin.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Heiko Schocher <hs@denx.de>, 
+ linux-kernel@vger.kernel.org
+To: Jonas Rebmann <jre@pengutronix.de>
+In-Reply-To: <20241202-mb85rs128ty-v1-2-a660b6490dc8@pengutronix.de>
+References: <20241202-mb85rs128ty-v1-0-a660b6490dc8@pengutronix.de>
+ <20241202-mb85rs128ty-v1-2-a660b6490dc8@pengutronix.de>
+Message-Id: <173316074958.3037004.1498863519585640694.robh@kernel.org>
+Subject: Re: [PATCH 2/3] dt-bindings: mtd: mchp48l640 add mb85rs128ty
+ compatible
 
 
-On Fri, 08 Nov 2024 22:41:16 +0100, Konrad Dybcio wrote:
-> Fill in the missing parts of the initial submission
+On Mon, 02 Dec 2024 17:35:21 +0100, Jonas Rebmann wrote:
+> Add a compatible string to support Fujitsu MB85RS128TY.
 > 
+> Signed-off-by: Jonas Rebmann <jre@pengutronix.de>
+> ---
+>  Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Applied, thanks!
+My bot found errors running 'make dt_binding_check' on your patch:
 
-[1/2] dt-bindings: dma: qcom,gpi: Add SA8775P compatible
-      commit: bf9b0834552e615b1dbd3015c2f0ed2a3bdf62a4
+yamllint warnings/errors:
 
-Best regards,
--- 
-~Vinod
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/microchip,mchp48l640.example.dtb: eeram@0: compatible: ['microchip,48l640'] is too short
+	from schema $id: http://devicetree.org/schemas/mtd/microchip,mchp48l640.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/microchip,mchp48l640.example.dtb: eeram@0: Unevaluated properties are not allowed ('compatible' was unexpected)
+	from schema $id: http://devicetree.org/schemas/mtd/microchip,mchp48l640.yaml#
 
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241202-mb85rs128ty-v1-2-a660b6490dc8@pengutronix.de
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
