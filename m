@@ -1,148 +1,169 @@
-Return-Path: <devicetree+bounces-126068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126078-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C3329E035B
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 14:28:57 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1E789E05A6
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 15:56:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EC9DFB31EA6
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 12:27:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 92C6DB26EE5
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 12:55:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AEF220409E;
-	Mon,  2 Dec 2024 12:26:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 392501FECBB;
+	Mon,  2 Dec 2024 12:55:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="ve43uN6Z"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="EJys/Oln"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout2.routing.net (mxout2.routing.net [134.0.28.12])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D75B2036E2;
-	Mon,  2 Dec 2024 12:26:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A13A11FDE05;
+	Mon,  2 Dec 2024 12:55:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733142383; cv=none; b=ogvXTW2t4FVvuX6+58FOx3M0lrNnXvmdh0cLeShcogDTUBZ47tSBC+HSILsNWEDeNzfeVQhwIq4IM0grCXiOpYfvmRd5MEJBaxFPX9/3I5bO6Ir17Em14rXRZVHnbkGuHLb/PKASHKIBooqMrSD0a7BcN/jQpJjPiPSCdkucaok=
+	t=1733144154; cv=none; b=chg2WzF9lx7r+kI8zNE7nLbmUoiWG6zpXDXMJS0VZ+wXig42uG+vkxgtMsMAJ4nA3dsFRWFREFGE81mDQ0x2X0iICwVKLyyylu0UlIxkbU5giK3NCklBoBYxVITiitfHZekfd4hJTY5DITJGhWF5kG3xG4gH1dGMMD+/fwCVDBY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733142383; c=relaxed/simple;
-	bh=v/lvT40iQkeFihnGl29We4f/Ljx2oLq5cwc5zGdZYVc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=CyJfxUOKK5h818X7AOvcXVAyMdf11vyp7ZveDHOQKGrj+Mpj4uKoMwpt7DLZ2fVSi1NAVHPdZw1Bef4mu4IK98E4rCXcJkjav/6v6wnqlFX/5pM6q+Zms2CTfbemOyG776HpKLbeA5Zad043/LroiFrT6QhMs355oWMun0XvBQ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=ve43uN6Z; arc=none smtp.client-ip=134.0.28.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
-Received: from mxbox3.masterlogin.de (unknown [192.168.10.78])
-	by mxout2.routing.net (Postfix) with ESMTP id 9FE8B6046B;
-	Mon,  2 Dec 2024 12:26:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-	s=20200217; t=1733142379;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=F+NbD+wZQ6ShmiTE1VBzMI+WZ0I6gWWrVj/25CLxM5M=;
-	b=ve43uN6ZvLOqxl2lmQMnJ2uQBQ+GcRMqa7bX86qX3Rj4PskemQh4N+1kxThe4XiUI/niXd
-	Pgi9K8zr/j6hiFg/Tr7qFLYke3t8Jl5TsGndIEMtlCYkIJ6KhbZx4s7xJzMZ17543iOYGd
-	uWXgm58HtaO5BTDeREfkSZVidlC8rpY=
-Received: from frank-u24.. (fttx-pool-217.61.149.104.bambit.de [217.61.149.104])
-	by mxbox3.masterlogin.de (Postfix) with ESMTPSA id 23765360552;
-	Mon,  2 Dec 2024 12:26:19 +0000 (UTC)
-From: Frank Wunderlich <linux@fw-web.de>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Frank Wunderlich <frank-w@public-files.de>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: [PATCH v2 16/18] arm64: dts: mediatek: mt7988: add i2c-mux on bpi-r4
-Date: Mon,  2 Dec 2024 13:25:57 +0100
-Message-ID: <20241202122602.30734-17-linux@fw-web.de>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241202122602.30734-1-linux@fw-web.de>
-References: <20241202122602.30734-1-linux@fw-web.de>
+	s=arc-20240116; t=1733144154; c=relaxed/simple;
+	bh=vd13ZkzEmnU5zASTA5DJf0GZ3dPvQMRCej5XzVRFx20=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=hzOr9gBA1ZrFOC496nAKR/RhYnWp4ozKOLsRXk1UPoHNM50Rv+AmJR3a4mNq0HHCD+AUCxKp8eTmZiQ6DGIl3ARJ8UpVpFgxw+FpZXjem9iY1orDwwbUxNmTZrp3MCwPmGGCmueqvg6q/kjw4q4y85SMusK2zTCh/HMqNUqMOVE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=EJys/Oln; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B29fHfI010836;
+	Mon, 2 Dec 2024 12:55:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	UaL9rDM7akT1qiyQz0TMbTWhesPFrPNHkY8MNQHniqg=; b=EJys/OlnfBmSMPl3
+	eVncF0OwWPXJ+l1L3unjd2MugM6CRSZTRFVDRzMpv2ff56+KXWqWkyrNLWLKtaPh
+	RhrdOM6c95S6McCJjCx/k9HsObTNFubrNAApNG9OhlzbfUUkSBgcHtf8nL+CextJ
+	irPRi8G+UG0vPn8udM6++Y4nHnXJK4j/cHIn5znXGdZnNbQL/0XDcyvgyBk+8RKM
+	hLxaj2+5DoF2P13J66iB9xycvsT1QfQrS7q4P5Ji7hdkC7sL4e0Cmw5x0ZYEwV3J
+	589CSkUooUrOdCBwp3cBq+1U8RevYd/45mTxIEhCyZQUOawP42kwNuwALIWxwUw1
+	vgUJpQ==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4393mp9rf4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 02 Dec 2024 12:55:44 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B2CthV7021626
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 2 Dec 2024 12:55:43 GMT
+Received: from [10.217.219.207] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 2 Dec 2024
+ 04:55:38 -0800
+Message-ID: <da2ba3df-eb47-4b55-a0c9-e038a3b9da30@quicinc.com>
+Date: Mon, 2 Dec 2024 18:25:35 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mail-ID: e9fef51d-d790-4f4a-a033-1e5bd1d942c1
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/4] dt-bindindgs: i2c: qcom,i2c-geni: Document shared
+ flag
+To: Krzysztof Kozlowski <krzk@kernel.org>, <konrad.dybcio@linaro.org>,
+        <andersson@kernel.org>, <andi.shyti@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <dmaengine@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
+        <conor+dt@kernel.org>, <agross@kernel.org>,
+        <devicetree@vger.kernel.org>, <vkoul@kernel.org>, <linux@treblig.org>,
+        <dan.carpenter@linaro.org>, <Frank.Li@nxp.com>,
+        <konradybcio@kernel.org>, <bryan.odonoghue@linaro.org>,
+        <krzk+dt@kernel.org>, <robh@kernel.org>
+CC: <quic_vdadhani@quicinc.com>
+References: <20241129144357.2008465-1-quic_msavaliy@quicinc.com>
+ <20241129144357.2008465-2-quic_msavaliy@quicinc.com>
+ <db428697-a9dc-46e1-abbe-73341306403f@kernel.org>
+ <a8b1ccd2-c37b-4a6f-b592-caf1a53be02c@quicinc.com>
+ <fc33c4ed-32e5-46cc-87d6-921f2e58b4ff@kernel.org>
+ <75f2cc08-e3ab-41fb-aa94-22963c4ffd82@quicinc.com>
+ <904ae8ea-d970-4b4b-a30a-cd1b65296a9b@kernel.org>
+Content-Language: en-US
+From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+In-Reply-To: <904ae8ea-d970-4b4b-a30a-cd1b65296a9b@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: XA6PMkdLBdJuYQISwDC-dpgvldnzt9NW
+X-Proofpoint-GUID: XA6PMkdLBdJuYQISwDC-dpgvldnzt9NW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=974
+ impostorscore=0 mlxscore=0 malwarescore=0 suspectscore=0
+ lowpriorityscore=0 adultscore=0 spamscore=0 priorityscore=1501
+ clxscore=1015 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412020113
 
-From: Frank Wunderlich <frank-w@public-files.de>
 
-Bananapi R4 uses an i2c multiplexer for SFP slots, rtc and eeprom.
-Add its node to the right i2c controller.
 
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
----
----
- .../dts/mediatek/mt7988a-bananapi-bpi-r4.dts  | 40 +++++++++++++++++++
- 1 file changed, 40 insertions(+)
+On 12/2/2024 4:34 PM, Krzysztof Kozlowski wrote:
+> On 02/12/2024 11:38, Mukesh Kumar Savaliya wrote:
+>>>
+>>> Come with one flag or enum, if needed, covering all your cases like this.
+>>>
+>> Let me explain, this feature is one of the additional software case
+>> adding on base protocol support. if we dont have more than one usecase
+>> or repurposing this feature, why do we need to add enums ? I see one
+>> flag gpi_mode but it's internal to driver not exposed to user or expose
+>> any usecase/feature.
+>>
+>> Below was our earlier context, just wanted to add for clarity.
+>> --
+>>   > Is sharing of IP blocks going to be also for other devices? If yes, then
+>>   > this should be one property for all Qualcomm devices. If not, then be
+>>   > sure that this is the case because I will bring it up if you come with
+>>   > one more solution for something else.
+> 
+> 
+> You keep repeating the same. You won't receive any other answer.
+> 
+So far i was in context to SEs. I am not sure in qualcomm SOC all cores 
+supporting this feature and if it at all it supports, it may have it's 
+own mechanism then what is followed in SE IP. I was probably thinking on 
+my owned IP core hence i was revolving around.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dts b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dts
-index 550c373b3d70..9ceefc990000 100644
---- a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dts
-@@ -2,6 +2,7 @@
- 
- /dts-v1/;
- 
-+#include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/regulator/richtek,rt5190a-regulator.h>
- 
- #include "mt7988a.dtsi"
-@@ -138,6 +139,45 @@ &i2c2 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&i2c2_1_pins>;
- 	status = "okay";
-+
-+	pca9545: i2c-mux@70 {
-+		reg = <0x70>;
-+		compatible = "nxp,pca9545";
-+		reset-gpios = <&pio 5 GPIO_ACTIVE_LOW>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+
-+			pcf8563: rtc@51 {
-+				compatible = "nxp,pcf8563";
-+				reg = <0x51>;
-+				#clock-cells = <0>;
-+			};
-+
-+			eeprom@57 {
-+				compatible = "atmel,24c02";
-+				reg = <0x57>;
-+				size = <256>;
-+			};
-+
-+		};
-+
-+		i2c_sfp1: i2c@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+		};
-+
-+		i2c_sfp2: i2c@2 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <2>;
-+		};
-+	};
- };
- 
- &pio {
--- 
-2.43.0
+Hope this dt-binding i can conclude somewhere by seeking answer from 
+other IP core owners within qualcomm.
+>>   >
+>> IP blocks like SE can be shared. Here we are talking about I2C sharing.
+>> In future it can be SPI sharing. But design wise it fits better to add
+>> flag per SE node. Same we shall be adding for SPI too in future.
+> 
+> 
+> How flag per SE node is relevant? I did not ask to move the property.
+> 
+>>
+>> Please let me know your further suggestions.
+> We do not talk about I2C or SPI here only. We talk about entire SoC.
+> Since beginning. Find other patch proposals and align with rest of
+> Qualcomm developers so that you come with only one definition for this
+> feature/characteristic. Or do you want to say that I am free to NAK all
+> further properties duplicating this one?
+> 
+> Please confirm that you Qualcomm engineers understand the last statement
+> and that every block will use se-shared, even if we speak about UFS for
+> example.
+This UFS word atleast makes me understand and gave me clarity that i 
+need to talk to different IP owners within qualcomm and get an agreement 
+for my i2c feature. I am not sure if there exist an usecase the way we 
+are sharing for i2c. Also i don't know how we can make similar 
+description if different cores and functionality are different.  If you 
+have heard from any other IP core, please keep some usecases/IP names.
 
+Since This demands internal discussion, so give me time to conclude how 
+the IPs are shared and is it the similar to what i have developed here 
+for I2C. (sorry that so far i was in context to my SE protocols/ IPs only).
+> 
+> Best regards,
+> Krzysztof
 
