@@ -1,71 +1,73 @@
-Return-Path: <devicetree+bounces-125942-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125943-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9578D9DFBB4
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 09:16:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBDF59DFBB7
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 09:16:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 35FA5B21CE5
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 08:16:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B16C2281879
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 08:16:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3159C1F8EED;
-	Mon,  2 Dec 2024 08:16:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CC261F9ED5;
+	Mon,  2 Dec 2024 08:16:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="UsOE4jgC"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="iERyl+iD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A234E4430
-	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 08:16:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 067291F9ABD
+	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 08:16:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733127375; cv=none; b=XxHs+2snp4BDk03AfS/FJuntHaQzMtT3+oJkLddeXAV3Uw1oUhyEnDy8XSQM3SkmU7+1qWEAhIX6QMvMPjbz/NMVQBINmQSrrllvYl0RPiXyLehbc2S5npEVvByI45pYFqiLtu27S1PSoC9ilUqjvXSFG/xwXSSpRo1NHISKIvM=
+	t=1733127377; cv=none; b=p8VY25IkwZLpoHjFTjqleJD+AJyf8KWKxYor9Ku/pYNWUWt5oqDnnMw9T/kpvKq+Fk4WeqdhnqTR6tySLW4pQZJCwj/lGRZksDwd3++efN+svoVWG42sJK/nCarP3W3W6rzFG9cubsnk2xRBMyDyMZAuEGAGDTUOcPHl99GCtC4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733127375; c=relaxed/simple;
-	bh=cKjQ4U+62O9DIJTfWQt+BVUMCS1OvPdRfnbG1jjIL1c=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=slxZMkOxqnySu66yMmroMsLLgezBNnH586faoIw1k1+mBuIh5vYFQZpbzyZ46hIlUVAi3/Iuc+jCAKR11HEe61djVYvXtDSgsIvB8SezxQ++mF8h44WeYwgrCpokNT4uczK8slekkUK5OV4HorrlSO7IAfD8H68i3mBFyxrz2eE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=UsOE4jgC; arc=none smtp.client-ip=209.85.215.175
+	s=arc-20240116; t=1733127377; c=relaxed/simple;
+	bh=wyRBTDJhchh2VRwMqvWdPrsDGYSLS50T4XeRr0/TSKo=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=UZ4AC5rfYXC6x5QwgemVevUM119+zqMPK2VOiUK7W8FzbgmsUB7cInnY9uEGX/MW+HB6xvZJ7DoEe9O8ys15GM5kAbM4tz902ndh4Npi/M+79fGowUDthnUR7xU87MZnEKg0iWDdPo6f3gwzoJYD2VZX2VqZnlbnTJX/F5wmOXQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=iERyl+iD; arc=none smtp.client-ip=209.85.215.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-7ea8de14848so2362839a12.2
-        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 00:16:13 -0800 (PST)
+Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-7fc93152edcso2758589a12.0
+        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 00:16:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1733127373; x=1733732173; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=9gfcfEqLWRgyB2HQV5UbiI2sXq612OlwtqN3jGuE7po=;
-        b=UsOE4jgCSyuHkG897ntJ9p1fVrOz1ta324z6HymQYrDKnsGNM+2pFtX2/2O76jVuWN
-         QFLw4Ed6O2TrItcCG52t6eGt+w3Jy0TguwSEdEPc4FzMwY+ek/mwyskAHBFz5PgLtbCP
-         bL/akNDhw1MCRPXxRE7jQV3QPGrXkeFXXl0jY=
+        d=chromium.org; s=google; t=1733127375; x=1733732175; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wFwz407Fv/XwMseJNTNI7dRyydn8B5G2ldLHp0TZ1PA=;
+        b=iERyl+iDp5FrZNcCyxogxqh/5MFzkP8MTuGNjQgWatdpo3G78veboJ7oQxzUa8vxDz
+         +Qh/gBQFrWHBz10293+gIwzNkFTeHoOSNwUn2dcZxyZhM6gopAJHhwqrqJ3VmF+yztTf
+         MYpRppABgbp0IbSrYVBqD+5uyTvX+0c6C2HuA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733127373; x=1733732173;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9gfcfEqLWRgyB2HQV5UbiI2sXq612OlwtqN3jGuE7po=;
-        b=IafzuFpm6Erd22FrGyqd182fd3fGzJYUH2gNVgzOTfwrZz+sJQkOv7eYpz/8yiqMLq
-         xzOBZQSdtAAsBNGqreXv/p7j5NDeXO9NrQpPbPhc+G2P/ks1s7JYNsIR7Kgb+HDTwxDe
-         NUXqUC8C10Wu4MCdblRg2HX6Y02AjZIS9G/lugMcKrqFshcxVfLZMYCxl9u2pCVga2dg
-         ZEZvtz9eyCYhJmhjDN8vKLWnsy9disgT5PJORSS9spQaBLxqDF1q5+z7o2Bj8OKuFU7P
-         gNA6Bcytg9G3T8wmdeXMeAgbx/QjGRcP1GXZiEI7ZW3r7VywG+HxjxkATXKWVLYJFVpE
-         SKvQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVG2THCG5tvJceRP7n+1Sbqs4Rg5bDKszApArgpmnNBEmN7HE/7DyXW+f+l+3n5bftB8k3aZbVmeLJB@vger.kernel.org
-X-Gm-Message-State: AOJu0YzUbpuTfvpeCg3YDPwkJCwMbgFe02OiqCPXvZbjJ/Mi7/eQmQxB
-	6dgN9qwD6BOaNOP0I9FlX9N4VDqe7l3yHGSvPXclIR/In4U8qJ2BDDrKcoI3bw==
-X-Gm-Gg: ASbGncsCd24Yc7QAL7uQPHIScQHHr7/x7EJ9qjP4HWMPBGXMIHD7vfO5dfk6wNLo5Dh
-	5UPhU1GVPO3zykTp6Dq9iOOwWji5XoYhBLuy1xJyYuW6/Dv5g4xOa+1i36XmBJkwAqz1jQkSL2+
-	CStAexaU0wV+/EtxFFBJuwV1wCHOwTeQ2L1RtBsBXywiE700vZ0VvwblM7RPa2OA6r989C/vNi1
-	OSYPefNtQz+91ezeqiR7z/kQYIbxD0SvlB+tv8k4zpK0u/Na8uqdZXWWV5uCkZtzAO2
-X-Google-Smtp-Source: AGHT+IFqZTzJX7eXH4gzncrgMaOzS5d2OoQ3YCV38eFWBvyrMOWlzrisueoiJ989ZcLF70r9MzLOag==
-X-Received: by 2002:a05:6a20:1593:b0:1db:df7b:471a with SMTP id adf61e73a8af0-1e0e0bf54d3mr32960644637.43.1733127372940;
-        Mon, 02 Dec 2024 00:16:12 -0800 (PST)
+        d=1e100.net; s=20230601; t=1733127375; x=1733732175;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wFwz407Fv/XwMseJNTNI7dRyydn8B5G2ldLHp0TZ1PA=;
+        b=gj9COM+lDrKupZj2jgvm2XDeVmd+mlGYTVmC4YUC6ZbZ9wss2yi2RylhxXQWUndUa6
+         o9ELSE83oW/ESm9lqBTlqcers/FFkBxtpitcj+tm5mqSw9pEovD09vPQ57h0JFVZA3b+
+         hmZyw4THKoQ+n0ADJRo3JhFLIsRrd3P8e6q523UClG1rl+rDUeZ0mxjiMcKabnXoFFGP
+         3nmN9BdVE8QbUcRNGn3aw++MkiMzybMYDhpgNNQ1tGHS4n51tGxA26R5I8p+52MTr8hO
+         fUEGlGZLdsyQmey7P5rIB/5pdA/CbzruMMxG/pXqZThzy+ftllsSjrIyBJo9j0t6TzJC
+         Jnfw==
+X-Forwarded-Encrypted: i=1; AJvYcCWMKwhkop3kBf4atgc9gjNXd5d78voMt60G0DaTmkGXPEoXT9CNy74L+potEZ3NDAnxMUP+Id4P7LQ7@vger.kernel.org
+X-Gm-Message-State: AOJu0YwF8vzSjXRIyJZjt/KkXFK8em5pbUobMl1WK+AiDG6/WzlbFVTp
+	XPjkl5Or/MSyaarWb0VVAd+RxXQOHQ6yje/uJVCkKrGC6r2LamiWMfuTZR01+w==
+X-Gm-Gg: ASbGnctR3OXvhVUVockj1lEv3BBNHrR4ARhjzA1lRbFBrniy1UfiKbwKLd1HRWEPUr3
+	M1kb45HPgkn6z/X0ydjH3caMRg5JZ63DkWKBH57Uq5ZKeh8IORAwz0JaBF4shrXmBJra/rsVPrm
+	sHKE6e16zWqPTeBrDOOf4NBt5QsIZ8I9X6aznCozs3ArzRCpQWmcN2h3Ad3VuEvqSXQtIt8mtpW
+	mnd07YyNM3eI2UoPGXZIGvZEDVlf+XPaYHupMKX0NEVFIFV1vnP1CrvIe9FPASF/Yj0
+X-Google-Smtp-Source: AGHT+IGVKJH1h0FeZuaxYpdL1EkQ7vtbsLObgOmtsoxPqtC7AsSUKW71maa+1Cg0tbmdqz/W2Hd3KQ==
+X-Received: by 2002:a17:90a:fa45:b0:2ea:61c4:a443 with SMTP id 98e67ed59e1d1-2ee25abf59cmr26106958a91.4.1733127375376;
+        Mon, 02 Dec 2024 00:16:15 -0800 (PST)
 Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:94c8:21f5:4a03:8964])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72541848505sm7891833b3a.178.2024.12.02.00.16.10
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72541848505sm7891833b3a.178.2024.12.02.00.16.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Dec 2024 00:16:12 -0800 (PST)
+        Mon, 02 Dec 2024 00:16:14 -0800 (PST)
 From: Chen-Yu Tsai <wenst@chromium.org>
 To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Sasha Levin <sashal@kernel.org>
@@ -76,46 +78,55 @@ Cc: Chen-Yu Tsai <wenst@chromium.org>,
 	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
 	devicetree@vger.kernel.org,
 	linux-mediatek@lists.infradead.org,
-	Koichiro Den <koichiro.den@canonical.com>
-Subject: [PATCH 6.6 1/2] Revert "arm64: dts: mediatek: mt8195-cherry: Mark USB 3.0 on xhci1 as disabled"
-Date: Mon,  2 Dec 2024 16:15:49 +0800
-Message-ID: <20241202081552.156183-1-wenst@chromium.org>
+	Koichiro Den <koichiro.den@canonical.com>,
+	=?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= <nfraprado@collabora.com>
+Subject: [PATCH 6.6 2/2] arm64: dts: mediatek: mt8195-cherry: Mark USB 3.0 on xhci1 as disabled
+Date: Mon,  2 Dec 2024 16:15:50 +0800
+Message-ID: <20241202081552.156183-2-wenst@chromium.org>
 X-Mailer: git-send-email 2.47.0.338.g60cca15819-goog
+In-Reply-To: <20241202081552.156183-1-wenst@chromium.org>
+References: <20241202081552.156183-1-wenst@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-This reverts commit 090386dbedbc2f099c44a0136eb8eb8713930072.
+[ Upstream commit 09d385679487c58f0859c1ad4f404ba3df2f8830 ]
 
-The hunk was applied to the wrong device node when the commit was
-backported to the 6.6 stable branch.
+USB 3.0 on xhci1 is not used, as the controller shares the same PHY as
+pcie1. The latter is enabled to support the M.2 PCIe WLAN card on this
+design.
 
-Revert it to re-do the backport correctly.
+Mark USB 3.0 as disabled on this controller using the
+"mediatek,u3p-dis-msk" property.
 
-Reported-by: Koichiro Den <koichiro.den@canonical.com>
-Closes: https://lore.kernel.org/stable/6itvivhxbjlpky5hn6x2hmc3kzz4regcvmsk226t6ippjad7yk@26xug5lrdqdw/
-Fixes: 090386dbedbc ("arm64: dts: mediatek: mt8195-cherry: Mark USB 3.0 on xhci1 as disabled")
+Reported-by: Nícolas F. R. A. Prado <nfraprado@collabora.com> #KernelCI
+Closes: https://lore.kernel.org/all/9fce9838-ef87-4d1b-b3df-63e1ddb0ec51@notapiano/
+Fixes: b6267a396e1c ("arm64: dts: mediatek: cherry: Enable T-PHYs and USB XHCI controllers")
+Cc: stable@vger.kernel.org
+Link: https://lore.kernel.org/r/20240731034411.371178-2-wenst@chromium.org
+Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
 ---
- arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+ arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-index 34e18eb5d7f4..b78f408110bf 100644
+index b78f408110bf..b21663b46b51 100644
 --- a/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
 +++ b/arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi
-@@ -1312,7 +1312,6 @@ &xhci3 {
- 	usb2-lpm-disable;
+@@ -1296,6 +1296,7 @@ &xhci1 {
+ 
  	vusb33-supply = <&mt6359_vusb_ldo_reg>;
  	vbus-supply = <&usb_vbus>;
--	mediatek,u3p-dis-msk = <1>;
++	mediatek,u3p-dis-msk = <1>;
  };
  
- #include <arm/cros-ec-keyboard.dtsi>
+ &xhci2 {
 -- 
 2.47.0.338.g60cca15819-goog
 
