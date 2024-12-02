@@ -1,80 +1,63 @@
-Return-Path: <devicetree+bounces-126020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C390F9DFF3E
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 11:46:17 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBC8E9DFF31
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 11:44:23 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96ED0161358
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 10:44:20 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95C751FC7C6;
+	Mon,  2 Dec 2024 10:44:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="AON0inJV"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B9E3EB29213
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 10:40:33 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BFFB1FCD0B;
-	Mon,  2 Dec 2024 10:40:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JCuZDf45"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 734861FCCFD
-	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 10:40:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA8BC156C40;
+	Mon,  2 Dec 2024 10:44:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733136008; cv=none; b=ZGSfZGCPii2BWjJCf9GDVkiZIujjQuPhv1UZO/MPtT9vYj5b1LuWof6uiuIDFyBHQGQ25/irshOQL+0YDfVMqaM8dbtu0RyrCMSp0+H8j7pVGIg7nwqqs7f4nxUT8AzgjyXc3gTB0WJF24OEikMuMSNR+mMHZNWuges2fuEUwXU=
+	t=1733136259; cv=none; b=LBRxwWXafkiJ5SB3l9qJQupf9M9Q65rfjecRwEngaseNaid+84PNDm/RPDMCkhRvnGiOK4ujqSR8TB2BIKCanNTm4K2PZzdrmTdZzufLcm1SPlKij+/+EbVLnkc+H5cUAvQETFeK39CNX7Ysz5C/HytEl9M9y8Tus2mfs35ZJj8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733136008; c=relaxed/simple;
-	bh=xalUBh6zRmqOmj1ZYQNXzIDhdbYBu556smNjpr7R520=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QkVKhKuKKe0V5vDaqB4KVvA7PWfh94wdUJtGIHSocmLLrJO9/TytfoXrIboEwG5jXfz6a5Fh6lWl/MDg+4m/N1giKCnJ3CLDU0CZ2JeO3xgLKq7UQrSY1q0iv5O0HQaxV9+J6X3HIpRZK740FX7RwAsbQfXDe0DiNr9Tp6sGXbI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JCuZDf45; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2f7657f9f62so38083891fa.3
-        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 02:40:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733136004; x=1733740804; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=jP25TYUqJwcL/fuEV7RObAqteQ/sd95uJofPv025g0s=;
-        b=JCuZDf45elC9jTdrtAfj+FM3VhR3MWYbVMhEHBoEesNaE9QzoR3KwdISBHfDn9lM3s
-         DASzV81jx7DrfilcBI2v5HnFMsa9Fncp7/LgezGMDMWX+TKTZlorGtvA7XMr9xm8nFSo
-         9IHSWP8fK4g9ugygnNsnMQihdxqIhIbuZnkG7RZcG0Wll/YspbKsjyoqBd35ApU0eGBI
-         nMnTrl6o+QYjmvRSv94qQsoMPjAZHJ6Q6+0mz4mhX0jWcn4517Lk0NVUiD5ctWVItA4X
-         jhPZxMV0A7VGodImQvvxwOKp+dIBCaN4H0cUQYJ8K/QpAqzkdvPou7QfIeDBwHvqVvAE
-         UXLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733136004; x=1733740804;
-        h=content-transfer-encoding:in-reply-to:organization:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jP25TYUqJwcL/fuEV7RObAqteQ/sd95uJofPv025g0s=;
-        b=aftNwggEOO8qL5h42gfUJg55QDAmYiP2k6HuOjunyKgNyX+8OIQkCFQKPKxYgVK6Dm
-         /xOA4ieFXRkHCgLym+tmiVr5lYy9PUucTlSwDGrm2hOqS2ZZNe7dMTyU+rjnnzbcG3ro
-         OI06HQa5wdDDTawYmSmTYC5ihLNXtfb5Hyu30XaQ0OQqseZ/vIiigYWUTk4cjR2Rcidn
-         Jpq5MU7QGaOiBzYxSCY6+CVE9U2EoTKkEn14vyzhS1RUDO7DrxE0E7iSMOyt8Cs7UPyF
-         f4nQigxwetSO+p6i28DoY6KCQd+sSz6PFQVmRN6F4HPw0cNSaNnO4fV+NxdNYxUMreFm
-         KcCQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVRHhc4mi0LL3SEiPxh5MLvKNEN5yI9RxNLRlL2Wn+JR+sCbqy/bVW8brzf6tiPeWN++X6Q9Nf8qg//@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy4+q4G94hGSFK4xq0gyFOWP3KVaP0eYToUVz8KNK+Hn7FaAqB3
-	naKqj78Z7YCC/VGYoGE0ynG0wq5cpwYqcR/wB1uNNJDQpEyYtbnk0K07GMTXN3A=
-X-Gm-Gg: ASbGnct4O5xgathy463Sc0tt2CniD4msu0feNBvj7L5MHn8Q5rK2t+eCfN8rspg5DXk
-	7GU+Bh1sBJ08mpQBPQiukPLm/1PnenITU91Vbq02fOTKQICeSw6fEf218VspZEfoAA1O8av/UuA
-	IFi6kcrnJFaMh3WXVVY5Rlu+4uZpN2J1VWEljvr8KLA0xmKrYNNIEw5LSYHw1EFXqkFeGBwEEgz
-	wjmegvTizgzQAzPFvy8L8TWDx8pYSRMYcCNxo+Crz2H3XVKDzudzoyo4FizsNRCrtWWCpOgy4/6
-	DPubg4jGSeEwk2efYdI6poLeaaSb
-X-Google-Smtp-Source: AGHT+IG8o/j6bnKJ+zKrlKTnEYo13Y0X3dZZFejDWDKGBLT2LAuwWFwKmgOXvNqPPtyC3J1B7R4CZg==
-X-Received: by 2002:a2e:a54b:0:b0:2fb:8777:7359 with SMTP id 38308e7fff4ca-2ffd611bf55mr110031081fa.39.1733136004456;
-        Mon, 02 Dec 2024 02:40:04 -0800 (PST)
-Received: from [192.168.210.26] (83.11.10.28.ipv4.supernova.orange.pl. [83.11.10.28])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ffdfbef7a3sm12397121fa.45.2024.12.02.02.40.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Dec 2024 02:40:04 -0800 (PST)
-Message-ID: <b50376c7-c5d5-41ae-95ea-e2d68c1cc809@linaro.org>
-Date: Mon, 2 Dec 2024 11:40:01 +0100
+	s=arc-20240116; t=1733136259; c=relaxed/simple;
+	bh=4sKLhRnj/x4uCu5ixovaErdTt5e8IYVY2IDX1QxJYno=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=UWIC8LmFDMBELYcE5DwNR4GL/+12FnLiIqb/IFCJy8XslD7huUBpgMDdGT5JnbSvGeRJotaO2d3aXcejIk1JiLOV6PIR+Xd0KTdO3HStdwcQfekjhK5CqFWziCVJ21YpKe54DdSeExz6nJGH8HTDO049Rs9eNV+gnjcoq5AgHr8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=AON0inJV; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B29J3M4008791;
+	Mon, 2 Dec 2024 10:44:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	zIbZQqiUOZa7NHCTcnjS7+zXYV4ycmI9J9tUWIBbXIU=; b=AON0inJV67hC1Ysi
+	ixGeDsa5ca3rSZbYcpe8ZXOLAm/SG4OPcTYfvz+ufoGdUHvsh6AgO3dQHSV6+Yr4
+	YQq8KCwKjyP1m9SqiNkLv+vxaxGKNObfKwBqhG+8OshCTu4oZxaClrp8exi+1V3s
+	EQV2/tVX/m9TUN8MXJtsOKE74xs4Smw+ULGf1hSc6QMaSg64xUUSFCbh4HfQ6bu7
+	dviPI1McbTieb4rGx/SLwjLMy2sJSu4u6VT70CVo/JjQBN6oNk485XbvPxlXH9gf
+	Zt75JpfVrm4rNA5gLvyTaVFIt3sx9hJV6LqRD3RLU+Nkrm1wSm9jQbABsNhwwG2S
+	GjWG7g==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 437snqvjtf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 02 Dec 2024 10:44:08 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B2Ai7i9002724
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 2 Dec 2024 10:44:07 GMT
+Received: from [10.217.219.207] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 2 Dec 2024
+ 02:44:02 -0800
+Message-ID: <d49b16b2-95e5-42b4-9bc1-40cb0bfa15b1@quicinc.com>
+Date: Mon, 2 Dec 2024 16:13:59 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,35 +65,91 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: rockchip: enable rng on all rk356x
-To: Dragan Simic <dsimic@manjaro.org>, Peter Robinson <pbrobinson@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org
-References: <a> <20241201234613.52322-1-pbrobinson@gmail.com>
- <302bdae2f4defeefe88ea4018a0be11f@manjaro.org>
-From: Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>
-Content-Language: pl-PL, en-GB
-Organization: Linaro
-In-Reply-To: <302bdae2f4defeefe88ea4018a0be11f@manjaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH v5 2/4] dmaengine: gpi: Add Lock and Unlock TRE support to
+ access I2C exclusively
+To: Vinod Koul <vkoul@kernel.org>
+CC: <konrad.dybcio@linaro.org>, <andersson@kernel.org>,
+        <andi.shyti@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <dmaengine@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-i2c@vger.kernel.org>, <conor+dt@kernel.org>,
+        <agross@kernel.org>, <devicetree@vger.kernel.org>, <linux@treblig.org>,
+        <dan.carpenter@linaro.org>, <Frank.Li@nxp.com>,
+        <konradybcio@kernel.org>, <bryan.odonoghue@linaro.org>,
+        <krzk+dt@kernel.org>, <robh@kernel.org>, <quic_vdadhani@quicinc.com>
+References: <20241129144357.2008465-1-quic_msavaliy@quicinc.com>
+ <20241129144357.2008465-3-quic_msavaliy@quicinc.com> <Z01YBLcxDXI2UwXR@vaman>
+Content-Language: en-US
+From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+In-Reply-To: <Z01YBLcxDXI2UwXR@vaman>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: hzEH8zAEJZMpnmkmAE55X43yklyT2SVy
+X-Proofpoint-GUID: hzEH8zAEJZMpnmkmAE55X43yklyT2SVy
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
+ phishscore=0 adultscore=0 impostorscore=0 malwarescore=0
+ lowpriorityscore=0 suspectscore=0 priorityscore=1501 mlxscore=0
+ mlxlogscore=999 clxscore=1015 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2411120000 definitions=main-2412020095
 
-W dniu 2.12.2024 o 04:55, Dragan Simic pisze:
- > On 2024-12-02 00:46, Peter Robinson wrote:
- >> The rk356x rng is available on both the rk3566 and rk3568
- >> parts, the IP is all self contained within the SoCs so
- >> it's enabled already by default on rk3568 so let's enable
- >> it in the base rk356x.dtsi so it's enabled consistently
- >> everywhere.
+Thanks for the review comments Vinod !
+
+On 12/2/2024 12:17 PM, Vinod Koul wrote:
+> On 29-11-24, 20:13, Mukesh Kumar Savaliya wrote:
+>> GSI DMA provides specific TREs(Transfer ring element) namely Lock and
+>> Unlock TRE. It provides mutually exclusive access to I2C controller from
+>> any of the processor(Apps,ADSP). Lock prevents other subsystems from
+>> concurrently performing DMA transfers and avoids disturbance to data path.
+>> Basically for shared I2C usecase, lock the SE(Serial Engine) for one of
+>> the processor, complete the transfer, unlock the SE.
+>>
+>> Apply Lock TRE for the first transfer of shared SE and Apply Unlock
+>> TRE for the last transfer.
+>>
+>> Also change MAX_TRE macro to 5 from 3 because of the two additional TREs.
+>>
+> 
+> ...
+> 
+>> @@ -65,6 +65,9 @@ enum i2c_op {
+>>    * @rx_len: receive length for buffer
+>>    * @op: i2c cmd
+>>    * @muli-msg: is part of multi i2c r-w msgs
+>> + * @shared_se: bus is shared between subsystems
+>> + * @bool first_msg: use it for tracking multimessage xfer
+>> + * @bool last_msg: use it for tracking multimessage xfer
+>>    */
+>>   struct gpi_i2c_config {
+>>   	u8 set_config;
+>> @@ -78,6 +81,9 @@ struct gpi_i2c_config {
+>>   	u32 rx_len;
+>>   	enum i2c_op op;
+>>   	bool multi_msg;
+>> +	bool shared_se;
+> 
+> Looking at this why do you need this field? It can be internal to your
+> i2c driver... Why not just set an enum for lock and use the values as
+> lock/unlock/dont care and make the interface simpler. I see no reason to
+> use three variables to communicate the info which can be handled in
+> simpler way..?
+> 
+Below was earlier reply to [PATCH V3, 2/4], please let me know if you 
+have any additional comment and need further clarifications.
+--
+ > Looking at the usage in following patches, why cant this be handled
+ > internally as part of prep call?
  >
- > Please, go through the mailing list threads [1][2] that have led us
- > to the current state.  To sum it up, it isn't about what's supported
- > in the two RK356x SoC variants, but about the RK3566's HWRNG being
- > disabled because the testing showed that it produces unacceptably
- > low quality of random data, for some yet unknown reason.
-
-So maybe there should be a comment in rockchip/rk3568.dtsi so we would 
-not get back to it again.
+As per design, i2c driver iterates over each message and submits to GPI 
+where it creates TRE. Since it's per transfer, we need to create Lock 
+and Unlock TRE based on first or last message.
+--
+>> +	bool first_msg;
+>> +	bool last_msg;
+> 
 
