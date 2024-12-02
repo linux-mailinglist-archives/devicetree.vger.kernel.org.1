@@ -1,120 +1,135 @@
-Return-Path: <devicetree+bounces-126104-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126107-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5A699E0703
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 16:27:38 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 571A09E0697
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 16:16:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 306D3B63839
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 14:04:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 99F5DB297BF
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 14:07:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32BE3204F6B;
-	Mon,  2 Dec 2024 14:02:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D01962036E6;
+	Mon,  2 Dec 2024 14:07:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Il36N5Xd"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mswMmFWm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A09F2040B8
-	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 14:02:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2385C202F86;
+	Mon,  2 Dec 2024 14:07:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733148138; cv=none; b=rOsExau/CXScda8wIOdK3TnEMfTO88p2uALtWCYzwr5yd7aYW3CmMB3KfC1oSkkOF7gLp9LotYhMUa+z1NO1yWDwGS0OhcQgCQAZthp9vOVN5Aoieudr6YD4oB33CyvmK9VBWtij1TOxuDlgC6DtIbDKqYullBjfLgKaXV3RuXA=
+	t=1733148448; cv=none; b=ifXOYJzOZY2oom80YxjE9vkUq3Sq5ye7zRHDDTc6nTBgb3Y0SXMRBIHSHHXnqJZ7MFcCuN5WQP7MuBOktssGSZ8pTVFCYzbjqLPLNIcIPQieR018ly+q5P0HdXDy3vtql/6T+qvtxTq7BxZa84DTJgxSTOGjEza0jMkH/Wa+uCE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733148138; c=relaxed/simple;
-	bh=xEY/MYEzww5v0mEutJbZHHy0DYJ5xp3n5zeADP54oQM=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=smk80Og+FWm5SHa4pcqQD7VgylUteb5DMJGiUQqhlxqpiglbG6+hkZIBOAPDfbnmUsfZ1lQxoMCJZyj7FT6tc9SIEW+ADesakVRgH6HQHywKymYWz4/FKe5gUtP8AlplZe8yJ7fRpvIRgE+YZV/nWe6rTThP88lTo2vHcoRFHm0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Il36N5Xd; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4349ec4708bso3606205e9.2
-        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 06:02:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733148135; x=1733752935; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZFdTL5VEPeunnOwNpwyKpiYpCh3mlklnlXFkbGWKFNQ=;
-        b=Il36N5XdHOijTPmyx0W4A+hb9woYKhF7acX1cEwefc1A0tcVqnQGodbUqy9m6K+5yu
-         kkNIxMy/zjGi598u8K9lGyKEaR3raSjwcnccA8ctpoHUcCILqlm1LL6lFwbCAsozTJk/
-         xcKnEuAi0+5S6dAg1bJhMLFDiFMW4A76QMsmHrD1tFaU4jCljMZwdR90mrFxVVDSLRag
-         zJo4fXImBDclVoGlw++fRvE/xdRoQnjlbyjp1SZFwhd9GOiVybdtmjsYYsQQHh1d1vs7
-         KATzl7crdPgDrkJN28ielGb+NlbdG1LEmpOGCPqUch4eEVGQTzPS9n3tTUje6vaTxgK8
-         dQBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733148135; x=1733752935;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ZFdTL5VEPeunnOwNpwyKpiYpCh3mlklnlXFkbGWKFNQ=;
-        b=n4vJH6+LwR+pZQEsnGDaAMC2fLgjOzAjcQf2Z95SjU3ARgaCJATu1HWlaesHt68NMe
-         3tgerX1ERDoAg2FsSkVQHKxm2qTFrKW2dwuDC+7p8m8Z3EQ24YnEN3wk84oyjpaaWF08
-         JIjKsCwPDMlfM0yhhpdZExZrx7eNfVA7OUDOWHch7u+0fJhUADrMmkngtSsUeGOo+wJU
-         O3za5uvfwedi5DoD1gC7RgZ8yyONkFJzyjp5lymxRo7V1vJ0NTuf0QaJoqSiPQn+cZFS
-         pazW+pmrD7SMRMr1gkw7vv6KbmJQQdvvhOMOJiPttaBOIqFIk2GZAMfoA6ROiJ84iMfa
-         N1hg==
-X-Forwarded-Encrypted: i=1; AJvYcCXuvg0iZefwIzWEr/5Hgy5s0qGmrrsBzATWoMeVP1PLeN1pTdsWs8Oy2cLzbfMiWzKFQflx4wfrWsIE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx7hI0qd5Qc11tBJj2UjELjCrngWEqAIdEHdZU8yDE2MIMebRc5
-	2AMQ2q7Hs/ukFDvBSOjB4ZlIFB9T4KDe6UtPWNybZPNZJ/sKGvgo6fOkPF0Vw4M=
-X-Gm-Gg: ASbGnct8yXDj6iloNigAjGLRfy0PXYY7HqKmfE9QFzfVwuezMRxGOHFKCDcRDGyn6Xt
-	mArGlPWOtWSXYJRewQ6juwEOzI583/b69TbgrhNL8zTi9Ych7IL7oRS5WGVDQV6gRBmZDAhuLk/
-	9zguvMhESBfTP1N9F8mbjUKAgZpX+o7EKUBN570YLRXiR+ZQknePHeF+InzZv/iAbgP1yi/+MRm
-	JmqvrqgM7cM7oGJOwVuWy6V+dBkAUOMktr84pX4w84sGwX895/6LXP6MhfwLZdc
-X-Google-Smtp-Source: AGHT+IGxwUtz2qX6sl87AP1MAktuEdNdgWw/JHxE62KrZvo42zm/39LbfbWZORwukdi9PptFej8bKQ==
-X-Received: by 2002:a05:600c:1d1e:b0:42c:aeee:da86 with SMTP id 5b1f17b1804b1-434a9e1ce8emr81193255e9.8.1733148133134;
-        Mon, 02 Dec 2024 06:02:13 -0800 (PST)
-Received: from [127.0.1.1] ([178.197.218.23])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434aa7691b0sm184502815e9.17.2024.12.02.06.02.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Dec 2024 06:02:12 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Sota4Ever <wachiturroxd150@gmail.com>
-Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20241114143636.374-1-wachiturroxd150@gmail.com>
-References: <20241114143636.374-1-wachiturroxd150@gmail.com>
-Subject: Re: [PATCH v3 0/2] Add support for Samsung Galaxy S20 FE
- (SM-G780F/r8s) [SoC Exynos990]
-Message-Id: <173314813121.47662.7729149107568659652.b4-ty@linaro.org>
-Date: Mon, 02 Dec 2024 15:02:11 +0100
+	s=arc-20240116; t=1733148448; c=relaxed/simple;
+	bh=finh4zIrmB/B6vTx4hHBDo6hqNjGs4DUogj01fxBl9o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=TwhaxLJzI7+CVpvK8N2ZvPQLRt3U5Xes5tAjkGHmBzcOxodYKa8mQivdUrXHAv9pW3FHp90VPt+BztlnQ32vD36Ja5wXzQH2PKEtYR2UPSTnKrBbblO1jNTtO0TaJN9KIwYix8P1+StgNKpQc6k9bY30CSfxPCERQR0dsoP3GiI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=mswMmFWm; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B28FvZJ019971;
+	Mon, 2 Dec 2024 14:07:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	vt74bQlK2rg8iXRO+La37nuO9AD5ByusHr3+bvoPIkI=; b=mswMmFWmeSCWmk9+
+	/voQ5BxL96E5M53PbY7FsT2oLi5BJglXVhvFk+lEvzIXvqlmwBjcyvXclZOgpAGl
+	pKU2etUtrsYZXvQGUTWyYB0PL5gbrZ7V6CvXbjekGuy5C+et3u8DYRbjo3NE1o3t
+	NFEtPzQn3i5o6FCCs/EhCIEk/ntTbeJaefm5/o6n6VVM78pIa85stj5P/tpqIusb
+	zTdAqkeJXYqF29QV/n7bCuE8wzNCQona9b+LR8Qi0wNKPdHh6XD91DtjKtX8/PzO
+	/UEQ6BtO5lBINcY2CAMMYxbo2cKza/2s0ZetJnA5J51qJma7mPWlb/5160KfwyQf
+	0LmSjw==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 437u36d1pd-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 02 Dec 2024 14:07:22 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B2E7Lem020645
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 2 Dec 2024 14:07:21 GMT
+Received: from [10.216.19.249] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 2 Dec 2024
+ 06:07:16 -0800
+Message-ID: <555d8793-320b-4f16-88a2-9d5bd40599ed@quicinc.com>
+Date: Mon, 2 Dec 2024 19:37:13 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] arm64: dts: qcom: qcs6490-rb3gen2: enable Bluetooth
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Krzysztof Kozlowski
+	<krzk@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <quic_mohamull@quicinc.com>, <quic_hbandi@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_msavaliy@quicinc.com>
+References: <20241022104600.3228-1-quic_janathot@quicinc.com>
+ <dd008ff5-ee2a-47be-8a5b-d4f3a1e2bac3@kernel.org>
+ <75dc7814-a55e-4a6f-9df9-39b7c875dee9@quicinc.com>
+ <6a40b442-6c4e-4abb-aeba-54ff9e86dfde@kernel.org>
+ <3f0b67f7-32ca-4b5a-a655-df6f92258cce@oss.qualcomm.com>
+Content-Language: en-US
+From: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
+In-Reply-To: <3f0b67f7-32ca-4b5a-a655-df6f92258cce@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: BryXGnVL6HfFLnPHrs64F_Sz1OPVfQyc
+X-Proofpoint-ORIG-GUID: BryXGnVL6HfFLnPHrs64F_Sz1OPVfQyc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 mlxscore=0
+ clxscore=1011 bulkscore=0 adultscore=0 lowpriorityscore=0 impostorscore=0
+ mlxlogscore=499 phishscore=0 suspectscore=0 spamscore=0 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2412020122
 
 
-On Thu, 14 Nov 2024 14:36:34 +0000, Sota4Ever wrote:
-> From: Denzeel Oliva <wachiturroxd150@gmail.com>
+
+On 12/2/2024 4:56 PM, Konrad Dybcio wrote:
+> On 2.12.2024 10:36 AM, Krzysztof Kozlowski wrote:
+>> On 02/12/2024 10:32, Janaki Ramaiah Thota wrote:
+>>>>
+>>>>> +	pinctrl-names = "default", "sleep";
+>>>>> +	pinctrl-1 = <&qup_uart7_sleep_cts>, <&qup_uart7_sleep_rts>,
+>>>>> +			<&qup_uart7_sleep_tx>, <&qup_uart7_sleep_rx>;
+>>>>
+>>>> This could be just one phandle to state node with multiple pins subnode.
+>>>>
+>>>
+>>> Since we have different configuration for 3 GPIOs, it’s not good to
+>>> combine all 4 GPIOs into one common sleep configuration. Each GPIO
+>>> configuration is having separate requirements based on the Bluetooth SOC.
+>>
+>> I did not propose that. Please read bindings and other existing DTS sources.
 > 
-> Hello :),
+> Janaki,
 > 
-> I'm a newbie and I started getting interested 1 year ago.
-> Well, that's the beginning,
-> until I learn more about kernels and the C language,
-> which is important in that.
+> you can refer to my older patch (attached)
 > 
-> [...]
+> Konrad
 
-Applied, thanks!
+Thank you very much for the information Konrad.
 
-[1/2] dt-bindings: arm: samsung: Add compatible for Samsung Galaxy S20 FE (SM-G780F)
-      https://git.kernel.org/krzk/linux/c/9163693d368f00c02fb8a07beabe2c2f18fe0a32
-[2/2] arm64: dts: Add initial support for Samsung Galaxy S20 FE (r8s)
-      https://git.kernel.org/krzk/linux/c/706119fbbdff2f95a62d1665fb4234ebe4e9392c
-
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+Thanks,
+Janakiram
 
