@@ -1,113 +1,138 @@
-Return-Path: <devicetree+bounces-126056-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126057-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 988E59E02B3
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 14:01:28 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDC0E9E01FC
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 13:21:13 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 98C81B2AFC9
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 12:01:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E573C16851D
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 12:17:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49B8E1FE472;
-	Mon,  2 Dec 2024 12:01:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B8F920969E;
+	Mon,  2 Dec 2024 12:11:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="LiQyTvQw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BvhJpLxO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-188.mta0.migadu.com (out-188.mta0.migadu.com [91.218.175.188])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0427E1FE46C
-	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 12:01:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.188
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B1FF1FF7A0
+	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 12:11:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733140886; cv=none; b=N7uel/HejD2b+8IWtGAAHn7GXrYCHxWI0Ce2xHazEjYADh0wk/SHGVoIJHTBMRax3ffOE5CFJQQTfZ8LJtHjliAlvIM1Yw5zEbF5vSyrllbYATtsinWReC9+2UXOdxZvPNGw2S9QwHWvn3DOfpRxlQJSr7a07lc0fpoJSLXS0ro=
+	t=1733141468; cv=none; b=diXXFNt2aWcmUValN8MDEsoWEEkyA4E68TxSmFWFcrvkJ+YSo6ky2iVSUUC9rzM+k91n89ss81xMkR8b70r2dT3X9Ox/LkEahEDrR2loKp954hiOI4KtlS7+mG6dMLCdKYYEv0lN5Ka1bpKjmcFBp871tZW3Nvj71Uv+xRkjVV0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733140886; c=relaxed/simple;
-	bh=PRhhx/rkuQYBeniRsGpTWdYSxZ4tb3wEn5gvZ56ZAlQ=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=hMKtSu+MQOF0eGpGfCKCtwXNgWsrLCk6ALpaQrLrN/CeLXlippSznpdwvHMiih9ZOjyHD6Dgft8Q2medu+EQDxd339n7uF+ZVVKG/RSi6sG3iGf59n1U1EpIVB2GSj7oj58K312oYB2y0oCZl48dmXX7tdkDlgNdWRI5/vS3KzQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=LiQyTvQw; arc=none smtp.client-ip=91.218.175.188
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+	s=arc-20240116; t=1733141468; c=relaxed/simple;
+	bh=h6VpcuSndvt5gb/Lu3I7A7ng3nwMLL1ZD7IPVdwY++s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IHLMBedshvouWldrea7i8TWqc0nsZLveQv48FhOo86NXtStO5iGPenrKZZtD528M/akf/m2q9QL44QfZ5zQzeCVj1E8J/UL+Hh/fizrmm1KA6VJpKk0s1dE/cJN4D3aVP+3qr/ar95Spw9E4K/+24xDFs+GSz0oUMfsQZDQsz+E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BvhJpLxO; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-53de92be287so5853065e87.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 04:11:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733141465; x=1733746265; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=yQXENZQVJNQwnHrGpO9XimeeddczjCL8gDUobO6Gaic=;
+        b=BvhJpLxOWGf4z5LOJu1sLGJhk7b7mAU0wz2VVtmyrflK28Be8nX9jWEishs4RSSvEh
+         y9ZhnI4D5D8xSo4A+K/sZxrtaV0lwMeKpRnMkHN7rxwZt+dZukd59uj1Ou3m+YllaFC1
+         s2TpnZd+CCPmmSD/4QG4tn94qfjgw5U5CvzdjvPM2YYHBVJSNfY7GnuViEqx2nIEKRhy
+         DLopHQ3fu3aknKtwk0nSO9dzv7ZIy+A0RarB0Y0P2HydFFtI0rQc/dOxxHigxj7tE9gU
+         csAlkcXihu8R/dsOrk4P0kbHFI2GYueABRf1rQ2s2GQKqLZmrW9tEiHhY2lPC532nMhp
+         MeBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733141465; x=1733746265;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yQXENZQVJNQwnHrGpO9XimeeddczjCL8gDUobO6Gaic=;
+        b=nWv7tF3Fkbt2qrd0NcbJbz/jwiZpEuYFngtnK+cswF40fZOFnG9oDlM5Jn5+npusEC
+         kBdXYpE68gxkh25BKnb43eHedvKpmLt9n21huHlZxOz/DuxuMqu5xjI2M7bp1JBhEJGF
+         zYJbz8dE6ad5iSLIOA/K1dH5pYVA/UERVtsnBluXpGEOb55Yjras2u8YKFGygPpCw6n0
+         ls/anJNjGgqnBBJmbqJ56AbuE+yOFHp22SpufNAJeMCZu07wcjXZGY3DXOc6IyGpjHsK
+         3WLolPjL1NZO8aiWEfyxPkXsSZ6LSXWK2uvDJ8xWAP4tn1UUKIswSRJ9st+NJKCCn1Vu
+         dyCw==
+X-Forwarded-Encrypted: i=1; AJvYcCXqMqYsDRVu/BC61o+sHPX5H0y86oMkQ/1tuP1i74kiuVrpSGBhkLWOJp6DYTr13N3v4dL2TWgvrPF+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx6O/YjLVMBMvoyAIQQJa2mrtoUHLZc9yllkFtxPY3fUlZgNX5b
+	UKqnJMP9+cLiGO1WA/LhtlhVw9PrmmlbcslYfghbfKWgY7jYQ8nKhTfdYBpdfwU=
+X-Gm-Gg: ASbGnctoMNVXjcJTNCUY3n7L5W+zY4tgOMLrBI6KawjD8fV/PTPXBDsJWi5Xcv98FyB
+	Ol4fGkal8BjFYiS1ETJbaJ9EW9BMYskeP9ZXDgpIUP1VDTH63opHvT5MQaSOqglFRFJmJeoBuL5
+	hXy/NRkEOGjPWiz0TbRBKWcTBcISk7KCTSpFiGwT5PgWI3V8Evz766RApB9y6L1jBKNIXwm5wbr
+	CIt4+SivR80dGLnKEt5ar8MAmmRBocHvBPg0xmVK5spE3kOaBk32BR8+zaPrrlnLG/EEqi/SLl+
+	bg8gXQ2uMWup0lpDi13GBknCi5ypjQ==
+X-Google-Smtp-Source: AGHT+IEzRcIhzwnknvixHamvE9vlf/Jqh7zUcscNKtxe89RF9mRI+5Y0+FdqdzWwutifP0uXEZ5FAQ==
+X-Received: by 2002:a05:6512:1247:b0:53d:deb5:3376 with SMTP id 2adb3069b0e04-53df010b17bmr16440685e87.40.1733141464583;
+        Mon, 02 Dec 2024 04:11:04 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53df64968d6sm1416507e87.200.2024.12.02.04.11.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Dec 2024 04:11:03 -0800 (PST)
+Date: Mon, 2 Dec 2024 14:11:00 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Taniya Das <quic_tdas@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Abhishek Sahu <absahu@codeaurora.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Ajit Pandey <quic_ajipan@quicinc.com>, Imran Shaik <quic_imrashai@quicinc.com>, 
+	Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Gabor Juhos <j4g8y7@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Subject: Re: [PATCH v3 00/11] Add support for videocc, camcc, dispcc and
+ gpucc on Qualcomm QCS615 platform
+Message-ID: <urlb2pn3cezyx7e6fxxf4j7psmf37amshnlzu7buixp6sxkrgy@mg4zljxn5s3v>
+References: <20241108-qcs615-mm-clockcontroller-v3-0-7d3b2d235fdf@quicinc.com>
+ <a4f6ojknv3hats4rwmdg5mw2rxhx7kq4u6axybdawak54crn5s@xnjbl7zno42s>
+ <bfabfba2-6688-4461-83d6-b6f4c86b08ab@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1733140880;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=zE2OmnrpksGvdeKauyPLCFpi8Ev/7hTWSH5TEETlfos=;
-	b=LiQyTvQwaQqMmBNU1M5tMte6SZt2JDT2miztkcBeTMXSmwtYLHyROU2fPKNARIVxhHR7SI
-	CefFw+TjjmXafVH0t4wJwk2MHYgiMKyET7oiR20SvDhBnEfIU+6dUB9JEHR3TILwV0pkPI
-	C4xufc+6oGA7ft1bR0xHYRvhQx/6UxwIzW0g4d0fx5yZWVdNb2L32veMPZH9XLCvq1vqvM
-	oU9pzM17CvNQcs65bpHd1YyyjMPuIjn6Re+Rp/l9jeNoAIXw5WaIqxhijbRm3ZOnB9zC0C
-	a7VxyLkjR3iCkj/RU7ee+gHWnc1WKb5v5r57Cmt8nY6CIsxW6Nr97Dr17M/6Ng==
-Content-Type: multipart/signed;
- boundary=b5f45d1f61fb7924a69af3f0023ad359b7a5d5d310c6ea15f796a8275403;
- micalg=pgp-sha256; protocol="application/pgp-signature"
-Date: Mon, 02 Dec 2024 13:01:09 +0100
-Message-Id: <D6175VTSP13T.200HWIIHOIDQQ@cknow.org>
-Cc: "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Heiko
- Stuebner" <heiko@sntech.de>, <devicetree@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>,
- <linux-rockchip@lists.infradead.org>
-Subject: Re: [PATCH] arm64: dts: rockchip: enable rng on all rk356x
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <didi.debian@cknow.org>
-To: "Marcin Juszkiewicz" <marcin.juszkiewicz@linaro.org>, "Dragan Simic"
- <dsimic@manjaro.org>, "Peter Robinson" <pbrobinson@gmail.com>
-References: <20241201234613.52322-1-pbrobinson@gmail.com>
- <302bdae2f4defeefe88ea4018a0be11f@manjaro.org>
- <b50376c7-c5d5-41ae-95ea-e2d68c1cc809@linaro.org>
-In-Reply-To: <b50376c7-c5d5-41ae-95ea-e2d68c1cc809@linaro.org>
-X-Migadu-Flow: FLOW_OUT
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <bfabfba2-6688-4461-83d6-b6f4c86b08ab@quicinc.com>
 
---b5f45d1f61fb7924a69af3f0023ad359b7a5d5d310c6ea15f796a8275403
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+On Mon, Dec 02, 2024 at 01:09:12PM +0530, Taniya Das wrote:
+> 
+> 
+> On 12/2/2024 9:55 AM, Bjorn Andersson wrote:
+> > On Fri, Nov 08, 2024 at 09:39:17AM +0530, Taniya Das wrote:
+> > > Add support for multimedia clock controllers on Qualcomm QCS615 platform.
+> > > Update the defconfig to enable these clock controllers.
+> > > 
+> > > Global clock controller support
+> > > https://lore.kernel.org/all/20241022-qcs615-clock-driver-v4-0-3d716ad0d987@quicinc.com/
+> > > 
+> > > Signed-off-by: Taniya Das<quic_tdas@quicinc.com>
+> > Dropping this series from my queue, due to lack of response from author.
+> > 
+> > Taniya, please answer questions/feedback from Dmitry, Vladimir and
+> > Bryan, and repose as necessary.
+> 
+> Sure, Bjorn, I had a dependency on the GCC patch.
+> 
+> https://lore.kernel.org/all/20241022-qcs615-clock-driver-v4-0-3d716ad0d987@quicinc.com/
+> 
+> I will fix the comments once the Global clock controller patch is picked.
 
-On Mon Dec 2, 2024 at 11:40 AM CET, Marcin Juszkiewicz wrote:
-> W dniu 2.12.2024 o 04:55, Dragan Simic pisze:
->  > On 2024-12-02 00:46, Peter Robinson wrote:
->  >> The rk356x rng is available on both the rk3566 and rk3568
->  >> parts, the IP is all self contained within the SoCs so
->  >> it's enabled already by default on rk3568 so let's enable
->  >> it in the base rk356x.dtsi so it's enabled consistently
->  >> everywhere.
->  >
->  > Please, go through the mailing list threads [1][2] that have led us
->  > to the current state.  To sum it up, it isn't about what's supported
->  > in the two RK356x SoC variants, but about the RK3566's HWRNG being
->  > disabled because the testing showed that it produces unacceptably
->  > low quality of random data, for some yet unknown reason.
->
-> So maybe there should be a comment in rockchip/rk3568.dtsi so we would=20
-> not get back to it again.
+I think this makes a good generic feedback (I observe the antipattern in
+other engineer's behaviour too): please try responding to the comment
+after receiving it, not just before getting back to the series.
 
-I suggested to put that in the (original) commit message:
-https://lore.kernel.org/linux-rockchip/6690040.iosknibmi9@bagend/
-precisely because this was quite predictable to happen.
+For this particular case: there is no need to wait on GCC. Please stop
+using the external dt-bindings header and use <&gcc_foo_clock> instead.
+This is just an example, not a c&p from the platform's DT.
 
-So a +1 on a comment in the dtsi with a link to the discussion in the
-commit message.
 
---b5f45d1f61fb7924a69af3f0023ad359b7a5d5d310c6ea15f796a8275403
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZ02hiAAKCRDXblvOeH7b
-bl8ZAQDzAkc1dza7+FMijsFijExJqS8p/Wf3mTBaIcy5txEEmQEAyJoYozFLN/9W
-nHDB3oiWH07uU/u4hh5+ih8L8E5J5Qg=
-=4tEc
------END PGP SIGNATURE-----
-
---b5f45d1f61fb7924a69af3f0023ad359b7a5d5d310c6ea15f796a8275403--
+-- 
+With best wishes
+Dmitry
 
