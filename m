@@ -1,81 +1,48 @@
-Return-Path: <devicetree+bounces-125959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125960-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78BA19DFC63
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 09:47:54 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17B1E9DFC6D
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 09:53:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 391CD283B68
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 08:47:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 72AA2B20C63
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 08:53:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B12111F9EA6;
-	Mon,  2 Dec 2024 08:47:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 529861F9EA6;
+	Mon,  2 Dec 2024 08:53:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Zb2yPi8A"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qe4QPO+g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E68AA1F8EF5
-	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 08:47:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 225361D6DD8;
+	Mon,  2 Dec 2024 08:53:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733129270; cv=none; b=WcOfEQPwiQG5PQdbzsqC0Or9GGknHSK18RcSdxBQVDzDUdoEncIVeq2tucxmcRuirWbii/SoESx1C076KY1Gi1pQfVr2S+L88LHL9y5+vBo0ffEZQRKkCzqrB5GDiMl+oa6X5kpTyNtfyhlRMBVZRALKy4IXVQVearsQ7U6YYRI=
+	t=1733129589; cv=none; b=RzakLbqo1H5CEQ391m6M4KaAp52n6WRebSEJ13PICpRTRPxxFYYVnk9zAPTqh7Ij93yDn76x4GJJ7znwUypFIboi9B9kJOckG1vv675/dl2e3XuZgeuyn29Ce++VUlqcFX+4GWCxKRPF0AVnJ/oMFN5GRs7fS6gotkWeFNitglY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733129270; c=relaxed/simple;
-	bh=iQswkUcZqkc3rR4ZXaPjtScTrAFdnuNfZ8doDQQU5jU=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=eC3pcXqV2OojGWRsLUWglNlvZDQyaodaPweA0IxajKpqevynPEps2LWoIcdMwV4zLf9FfSD8tOyDAw8TgYHd3Mxjrl3Iei0ckRHCuqJER8DPPzOmtAA1jSMqaBnQDxevK1zvoAj+dVtY8oFvP8Uh8+arxmpeOXtEeDG8jk2ZMhQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Zb2yPi8A; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-434a9f2da82so33838475e9.2
-        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 00:47:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733129267; x=1733734067; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=868g4RybWVTONYV+5WNJ4Psz8+PDv8VmyMXOni0Et/E=;
-        b=Zb2yPi8ACqP9AgTihZD7sit1rkGQU9Eq/kkTAv/aXe0KDMv/pZg955arVNi0ALiUp/
-         tqXlUomr6UC4R8A7cByVcB/D4Qj//hWa/HWLsg5mly5f+sSyg6C++AxcwhbfWQX5YLD5
-         tJ1PThhKpXAtYDi/tl/QMArnSEqMjpkKQeaX/47DlXcdo8CMuU8Ri3P34H3LqA36jjwJ
-         yasCGSV9psfWgd3//YzNCHpGDo3MUGNCbH6bhoQRaiafko/gxXo9n0R7QLvn+Jlmd6Px
-         1BY2dG5b9cV7NktVqOW6Av15WW5ofkYy2H4UCGEIJkgNOAw9UVyPT8oJ+YZygKlic3/4
-         ckfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733129267; x=1733734067;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=868g4RybWVTONYV+5WNJ4Psz8+PDv8VmyMXOni0Et/E=;
-        b=jbQELMbZtmq+7lUpYQ+GLZalSLY6icRPY2LKIvO75fwnHAhavPGcBS5Y+b1j/MFLwz
-         VtdwWZLN5LutblB1upudZymplctk27dTYaKvVVEgBxy/ke9MJ6vKlVrH+Z0MAUlBuGLU
-         /Sl5nLgLpA9IVLeiCk8mAGzKKqDqBdaeywSwgHZXQisl7oDAohq340riJw/imawNkuqp
-         f+VE09pE0X+Msaw6rBENreVN0qjDhhoTv5skll4vrVRUKkxtdoaqj1Hq+wHTVI5jb3Z7
-         08Nvv/cVC8tKrabqXfhTlpYeczILRaGbzfAwPzgR9Lp39OZDHcEIlv7Q+7VsxXA09VWq
-         TzYg==
-X-Forwarded-Encrypted: i=1; AJvYcCWbLBcScwVXjB9h20qkdOx38tQD+gEN0q4615frTOf9ehRXuTCZPS/B8r7ReGfuwfx4ORkdTmYy53Ef@vger.kernel.org
-X-Gm-Message-State: AOJu0YycddEGDbtKC7kTNiF9ugEqfkTy4bIHZDUvFjSVXi7q1DPZZ4zv
-	6ZCZz764n1o+IRRCZ4OVGulsb/TRjfQKKu2xQ3B/ufNwmBoDxYLrbncaO2SKvBw=
-X-Gm-Gg: ASbGnctr2wDUrlPmxszPvZYKAQ4g+Xb7GOWdDuWT9vRmfZC2j/lVeSpTeNBCProHrVF
-	TYs+VWQNw1cKuFPT1O9+OHzsb4oRh6eZTiaqU1IeIlGykgiHMVHvLPzkbxN35qQfemB1GDiX2Ng
-	lsr0luhwcpgAey0huIQJ3mtsPASenmJtpDExIlxoak1Rn820FD5BbpsSwxlp58gscwts2JSRs/+
-	ianCOr5dzUvbvHY8yhpEbMSRAqMfYioVK7ape3Se6p891sDtLphgaNuS3GknEKHJ1c7lEc0v/Ou
-	v0E+akPPqy6N9f1iC4YA90RQm6E=
-X-Google-Smtp-Source: AGHT+IGJHbzNJoBprBMkButUw4pIj5gIiLHg+0YoFuF1r/DNY4OA1vmPgg66dYl398uyPtEYyLRRXg==
-X-Received: by 2002:a05:600c:1d9c:b0:434:9ef2:f6e3 with SMTP id 5b1f17b1804b1-434a9dbf66bmr188026545e9.8.1733129267215;
-        Mon, 02 Dec 2024 00:47:47 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:1485:2a78:787c:c669? ([2a01:e0a:982:cbb0:1485:2a78:787c:c669])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-385f0056637sm3156494f8f.15.2024.12.02.00.47.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Dec 2024 00:47:46 -0800 (PST)
-Message-ID: <9add2288-36eb-43cd-a591-68f1819fb911@linaro.org>
-Date: Mon, 2 Dec 2024 09:47:46 +0100
+	s=arc-20240116; t=1733129589; c=relaxed/simple;
+	bh=5ZRYXSnNLVX/dpqy5eky4CyC6h5dC+ibmrNL9B1eVqI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=s11A705TRYwYrQrxfpyspb/iXPwuXVhPo9iNOKlfPw8/FwGuc5WJmxmV8t/gq4rMOjnfd/2KilT2Cyrr3nIX4F2YHODFvXzVd1aTx7zuO/H9XzQKLtwmoxBqcrEUm32ptGovkU/txrun7ixcGvyzb7eaw+d9ENUunF0PYcSSsKc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qe4QPO+g; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C4B5C4CED2;
+	Mon,  2 Dec 2024 08:53:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733129588;
+	bh=5ZRYXSnNLVX/dpqy5eky4CyC6h5dC+ibmrNL9B1eVqI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=qe4QPO+gDWXnjlZDuYpAEaTLOOYSV79oI8YBpj1iYTG0Cyv9ER7/lclbfg6nGOuWK
+	 BGUQ+JZUsIhuIa1vctLwTB3B3/9/Eia1qJU0ZBoxJclJh3upXPn+9/9ODLTt6EVWyX
+	 51VYt50t8lij4I+VjfehA0xHODpt0D4X57xTiLK4N4OlHyvdbFGIY/51+bMIE6FHKp
+	 d02xdX9hnTbGlks+TjxSP0NXCqFvYsQ5e+Vv6o9qwpmuGWqi5un4PItYceNsmRc0dA
+	 GyHgWBR/czwCx51pe5bWhW5NQGvhCl3k97/khr4OZKwOq9ENa4Wn1ECkrGglGzLXcw
+	 cvhwzHouYhI9w==
+Message-ID: <88f6ab28-1b3f-4144-91c8-0131ee008838@kernel.org>
+Date: Mon, 2 Dec 2024 09:53:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,99 +50,97 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 5/7] drm/msm: adreno: enable GMU bandwidth for A740 and
- A750
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Akhil P Oommen <quic_akhilpo@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20241128-topic-sm8x50-gpu-bw-vote-v3-0-81d60c10fb73@linaro.org>
- <20241128-topic-sm8x50-gpu-bw-vote-v3-5-81d60c10fb73@linaro.org>
- <5fc71011-7a67-47b9-b372-b5e52ffea757@oss.qualcomm.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <5fc71011-7a67-47b9-b372-b5e52ffea757@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH v3 3/4] arm64: dts: exynos: Add initial support for
+ Samsung Galaxy S20 5G (x1s)
+To: Umer Uddin <umer.uddin@mentallysanemainliners.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ igor.belwon@mentallysanemainliners.org
+References: <20241030232308.72210-1-umer.uddin@mentallysanemainliners.org>
+ <20241030232308.72210-4-umer.uddin@mentallysanemainliners.org>
+ <9f48459e-f381-446a-86bf-c8d1bb8858bc@gmail.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <9f48459e-f381-446a-86bf-c8d1bb8858bc@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/11/2024 16:25, Konrad Dybcio wrote:
-> On 28.11.2024 11:25 AM, Neil Armstrong wrote:
->> Now all the DDR bandwidth voting via the GPU Management Unit (GMU)
->> is in place, declare the Bus Control Modules (BCMs) and the
->> corresponding parameters in the GPU info struct and add the
->> GMU_BW_VOTE feature bit to enable it.
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   drivers/gpu/drm/msm/adreno/a6xx_catalog.c | 22 ++++++++++++++++++++++
->>   1 file changed, 22 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_catalog.c b/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
->> index 0c560e84ad5a53bb4e8a49ba4e153ce9cf33f7ae..edffb7737a97b268bb2986d557969e651988a344 100644
->> --- a/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
->> +++ b/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
->> @@ -1388,6 +1388,17 @@ static const struct adreno_info a7xx_gpus[] = {
->>   			.pwrup_reglist = &a7xx_pwrup_reglist,
->>   			.gmu_chipid = 0x7020100,
->>   			.gmu_cgc_mode = 0x00020202,
->> +			.bcms = (const struct a6xx_bcm[]) {
->> +				{ .name = "SH0", .buswidth = 16 },
->> +				{ .name = "MC0", .buswidth = 4 },
->> +				{
->> +					.name = "ACV",
->> +					.fixed = true,
->> +					.perfmode = BIT(3),
->> +					.perfmode_bw = 16500000,
->> +				},
->> +				{ /* sentinel */ },
->> +			},
+On 14/11/2024 10:09, Ivaylo Ivanov wrote:
+>> +
+>> +/ {
+>> +	#address-cells = <2>;
+>> +	#size-cells = <2>;
+>> +
+>> +	model = "Samsung Galaxy S20 5G";
+>> +	compatible = "samsung,x1s", "samsung,exynos990";
+>> +
+>> +	memory@80000000 {
+>> +		device_type = "memory";
+>> +		reg = <0x0 0x80000000 0x0 0x3ab00000>,
+>> +		      /* Memory hole */
+>> +		      <0x0 0xc1200000 0x0 0x1ee00000>,
+>> +		      /* Memory hole */
+>> +		      <0x0 0xe1900000 0x0 0x1e700000>,
+>> +		      /* Memory hole */
 > 
-> This is not going to fly the second there's two SoCs implementing the
-> same GPU with a difference in bus topology. I think we could add
-> something like drvdata to ICC nodes and use it for BCMs on icc-rpmh.
-> Then, we could retrieve it from the interconnect path we get from the
-> dt node. It would also reduce duplication.
-
-I don't want to go into that, we can optimize this when adding topologies
-for other GPUs later, as-is this is a pointer so we can already share the
-same table between GPUs.
-
+> The space from 0x100000000 to 0x880000000 isn't a hole in the memory
+> though, is it? 0x880000000 is in the 64 bit address space.
 > 
-> Konrad
+> Best regards, Ivo.
+Umer,
 
+I wanted to apply the series, but for two weeks you ignored this
+feedback/comment, so I am dropping the patchset from my queue.
+
+Be sure you respond to reviewers in timely manner (and if you give
+yourself more than two weeks to respond it also means other have more
+than two weeks...).
+
+Best regards,
+Krzysztof
 
