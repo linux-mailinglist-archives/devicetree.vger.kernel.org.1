@@ -1,237 +1,142 @@
-Return-Path: <devicetree+bounces-125885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C25FD9DF9A1
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 04:33:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B15FB9DF9AC
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 04:41:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 32F43B21626
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 03:33:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76DC3281848
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 03:41:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A49F51F8AC7;
-	Mon,  2 Dec 2024 03:33:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 203361F8AD0;
+	Mon,  2 Dec 2024 03:41:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="FwPs+mgL"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="elbtE0eC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m2419.xmail.ntesmail.com (mail-m2419.xmail.ntesmail.com [45.195.24.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 653BA26AE4;
-	Mon,  2 Dec 2024 03:33:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.195.24.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CDA82868B
+	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 03:41:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733110415; cv=none; b=ASTkD5ivx1D+Xo8LmE9RiVLxIXbPs8loTY+/0v4rIOmxI7EcEyrmL1zz1etfH6LX3nlHFjdphPrYdeyxrC52VaTlbCg//aST3dAOyPAQIR5FZojHnOywH1HSNrCvg93MF7jMZCF9zApYd6tdPuoJTltupDTNvk98ZpBDxwveeXg=
+	t=1733110895; cv=none; b=JiCTilR4xM3edvukMYY3MljOC8re9g6fB/kU15ZGvq3B+Eqbe4fxpn0fPWjM3wh08cUsZHDc+VRfuNglko+INEF7zQ60yJna6PDvcmIOD3LdOva+awot8YB65mYTZe/USX6v3YykwXPYy/2nQJI+t7pUO0mXK2c4zSFQX7x63Ro=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733110415; c=relaxed/simple;
-	bh=Ek+OcQyflY9h5nFyAqHgRlIJbK87HX/LJo8zXY6/tQs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=W6ZLGOXlF75834Zt+BCAysOH5T/Bzkpj610bpnfCzFuGwr+viymaIIyoQCSqnSiXvxagBEdtyF0Y8gwLthhdZ1jG0rERZkoqYEaB8pHUG+BuPZnslskFxoCd762KLGq0saXI1SqeB/YgHbTZAtViH41pkJPR7+b0CZm9kCqI8ig=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=FwPs+mgL; arc=none smtp.client-ip=45.195.24.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.26] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 464683d7;
-	Mon, 2 Dec 2024 11:28:13 +0800 (GMT+08:00)
-Message-ID: <2342f342-672c-447e-90d8-674b748af6a4@rock-chips.com>
-Date: Mon, 2 Dec 2024 11:28:13 +0800
+	s=arc-20240116; t=1733110895; c=relaxed/simple;
+	bh=WL4yh0AElDBPFlk9xy3xVvMWfNNY0b2isFFOAhLsxUM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KpsGZWI/oVXrsAKMp2ITw/GMvWSjEKxiviT/dnqSMmuYEPAE/QloW+O48IlSwnlCRp+uxuoEDZWdkPx+9rCsemfdqGnKIjoEy2uAVgHqKawxPHkPUTt+/UcbmvNQ0Tnto03KyvrRHacw7UySy05g7OeeSjSNGu3gu3Kz8jM0sJU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=elbtE0eC; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-53dd0cb9ce3so3278243e87.3
+        for <devicetree@vger.kernel.org>; Sun, 01 Dec 2024 19:41:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1733110891; x=1733715691; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9bTlnjRzF2JRQH5FoLyAwJy6PscFmIMIE7nVuxtFSPk=;
+        b=elbtE0eC+XNjDXAm/xsnNNpXN0XQVW/t6GdTEn2eOwR5zDvKG1UOw3SrRyuLbrNt3p
+         Ejv0y7X1PwIggpiJ3zhuK4CjwRNyuDWjWuJzFIZMPHa7CxisO+xA0D2DDx5mnBQq9lYs
+         9SKTnMXsk1UfLdAYa/sSpDPXfbXGVLnuy5XDE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733110891; x=1733715691;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9bTlnjRzF2JRQH5FoLyAwJy6PscFmIMIE7nVuxtFSPk=;
+        b=BnvfFCcrHK4/VficAt9M5NupR/SuXOlo7T7eJa7IogtsNDb4km0G2rGOOKiSRFA0Is
+         Nsp0PIgUrk9XJ2cpibn19wUCP7FJr0x+vpxL7rAB+sujsyX2EezFF3SYWUEzkpDmqsxP
+         lINOSVnwopospeeUPDG1dCooE1ciV4Nletq0ed0PMxLK83O0lN68hhB7hRKbqufNoB2c
+         RLYYDJCvcVCs+VQsY4unzKsX4JohkYztyQd7p6lHNt/fgd6x+wQbMh+12ebWS7iFD9KQ
+         DFrTKBLWX1ubmdrw5fDuujp7zp/zwI34l2kBnWIRp7kah1D7+2dGXt6vWdE9tRkw+ihS
+         qPHg==
+X-Forwarded-Encrypted: i=1; AJvYcCWMeBdqnxnf5BWvTkH1L9jYA20h/+qJjGRde54tgBVLUWQ5q+kmrr2pcEJS/2w/WF+qKa+ZGROvT1ya@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy32Why4avrw1EDUsmQ3fNMv46wG9D7stYjzHX7U7VXYheL+48A
+	I09xQVZOj1WXLXW5TVtk+Xhmy5oKlT6KosapA585xQoAvArzPl3NoFflJQkwg83TvgNOlliRGSv
+	zmwISDAu5pGBN0HYYFRAY8OnZSswYuagwRnPR
+X-Gm-Gg: ASbGnctZ+nmQQLuUmr2/y4jbJOgDPsBCsThXaJf5240bXA0Xn4TU0/mdPFzbhY0LR0T
+	s9ER15I/eBxOmFNBCoQE8bmRNuGkaXahoZR4Xjg2SeKjIX7e0ee4wnI3QypU=
+X-Google-Smtp-Source: AGHT+IFBGoFOaRz+qRuU+qOg6hWpwu/Z+nHG5cJ1fZ9YkpTnT8oQX9A4GdCR+xRN4nrprMU5eqtqFpCUbyCnVLzassA=
+X-Received: by 2002:a05:6512:2356:b0:53d:ab10:c273 with SMTP id
+ 2adb3069b0e04-53df0104928mr6377365e87.40.1733110891515; Sun, 01 Dec 2024
+ 19:41:31 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 04/10] phy: phy-rockchip-samsung-hdptx: Add support for
- eDP mode
-To: Sebastian Reichel <sebastian.reichel@collabora.com>,
- =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- rfoss@kernel.org, vkoul@kernel.org, cristian.ciocaltea@collabora.com,
- l.stach@pengutronix.de, andy.yan@rock-chips.com, hjc@rock-chips.com,
- algea.cao@rock-chips.com, kever.yang@rock-chips.com,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
-References: <20241127075157.856029-1-damon.ding@rock-chips.com>
- <2131853.KlZ2vcFHjT@diego>
- <6e1f35c0-5ea8-414f-b3ea-4e7222c605ef@rock-chips.com>
- <2886747.Y6S9NjorxK@diego>
- <h4giob7bcrh7qmtepti6huym2llw4ujfmeff76vrgpahb5zy6x@dz6zghsifww5>
-Content-Language: en-US
-From: Damon Ding <damon.ding@rock-chips.com>
-In-Reply-To: <h4giob7bcrh7qmtepti6huym2llw4ujfmeff76vrgpahb5zy6x@dz6zghsifww5>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQhgYT1ZLT05OHh1JSkIYS0lWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
-	NVSktLVUpCS0tZBg++
-X-HM-Tid: 0a938569573e03a3kunm464683d7
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NVE6NDo*LTIvARwqHjYRLSIs
-	GAoKCilVSlVKTEhISkpLS0JOSE1NVTMWGhIXVR8aFhQVVR8SFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFNTE1LNwY+
-DKIM-Signature:a=rsa-sha256;
-	b=FwPs+mgLMwp68zTG3bQWxeiIZ8ov1pFf6HC8h8Y1jUaZPur5mKpIg3OQm7hTItUn0SEhpu1zzicOw9goEnCXOK/Oh3N1OuPZZ1CGRE7oZpPt2ZMKGodcg2kkYgFMR7GFl7lrX9Aso4fOo/IhdFD/GS1wF4kGfIVjZZKpoTBoWsw=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=vInghskew2dflu0c8gMWmhPKWVHVkA65wStDFK4/TW0=;
-	h=date:mime-version:subject:message-id:from;
+References: <20241112052211.3087348-1-nico@fluxnic.net> <20d3a0be-ba5f-439f-80ff-2e2bda3bb144@linaro.org>
+In-Reply-To: <20d3a0be-ba5f-439f-80ff-2e2bda3bb144@linaro.org>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Mon, 2 Dec 2024 11:41:20 +0800
+Message-ID: <CAGXv+5H0ocBWxGseoRXWyBo48+5-F-FRLZZcywcM-_vwu4=jVg@mail.gmail.com>
+Subject: Re: [PATCH 0/5] thermal: multi-sensor aggregation support
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: Nicolas Pitre <nico@fluxnic.net>, "Rafael J . Wysocki" <rafael@kernel.org>, linux-pm@vger.kernel.org, 
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Nicolas Pitre <npitre@baylibre.com>, 
+	Alexandre Bailon <abailon@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Sat, Nov 30, 2024 at 4:00=E2=80=AFAM Daniel Lezcano
+<daniel.lezcano@linaro.org> wrote:
+>
+> On 12/11/2024 06:19, Nicolas Pitre wrote:
+> > This series provides support for thermal aggregation of multiple sensor=
+s.
+> > The "one sensor per zone" model is preserved for all its advantages.
+> > Aggregation is performed via the creation of a special zone whose purpo=
+se
+> > consists in aggregating its associated primary zones using a weighted
+> > average.
+> >
+> > Motivation for this work stems from use cases where multiple sensors ar=
+e
+> > contained within the same performance domain. In such case it is prefer=
+able
+> > to apply thermal mitigation while considering all such sensors as a who=
+le.
+>
+> Do we have a real use case where we can compare the per sensor vs
+> aggregated sensors approach ?
 
-On 2024/12/2 6:59, Sebastian Reichel wrote:
-> Hi,
-> 
-> On Sat, Nov 30, 2024 at 09:25:12PM +0100, Heiko Stübner wrote:
->> Am Freitag, 29. November 2024, 03:43:57 CET schrieb Damon Ding:
->>> On 2024/11/27 19:04, Heiko Stübner wrote:
->>>> Am Mittwoch, 27. November 2024, 12:00:10 CET schrieb Damon Ding:
->>>>> On 2024/11/27 17:29, Heiko Stübner wrote:
->>>>>> Am Mittwoch, 27. November 2024, 08:51:51 CET schrieb Damon Ding:
->>>>>>> +static int rk_hdptx_phy_set_mode(struct phy *phy, enum phy_mode mode,
->>>>>>> +				 int submode)
->>>>>>> +{
->>>>>>> +	return 0;
->>>>>>> +}
->>>>>> analogix_dp_phy_power_on
->>>>>> I think it might make sense to go the same way as the DCPHY and also
->>>>>> naneng combophy, to use #phy-cells = 1 to select the phy-mode via DT .
->>>>>>
->>>>>> See [0] for Sebastians initial suggestion regarding the DC-PHY.
->>>>>> The naneng combophy already uses that scheme of mode-selection too.
->>>>>>
->>>>>> There is of course the issue of backwards-compatibility, but that can be
->>>>>> worked around in the binding with something like:
->>>>>>
->>>>>>     '#phy-cells':
->>>>>>        enum: [0, 1]
->>>>>>        description: |
->>>>>>          If #phy-cells is 0, PHY mode is set to PHY_TYPE_HDMI
->>>>>>          If #phy-cells is 1 mode is set in the PHY cells. Supported modes are:
->>>>>>            - PHY_TYPE_HDMI
->>>>>>            - PHY_TYPE_DP
->>>>>>          See include/dt-bindings/phy/phy.h for constants.
->>>>>>
->>>>>> PHY_TYPE_HDMI needs to be added to include/dt-bindings/phy/phy.h
->>>>>> but PHY_TYPE_DP is already there.
->>>>>>
->>>>>> That way we would standardize on one form of accessing phy-types
->>>>>> on rk3588 :-) .
->>>>>>
->>>>>> Also see the Mediatek CSI rx phy doing this too already [1]
->>>>>>
->>>>>>
->>>>>> Heiko
->>>>>>
->>>>>> [0] https://lore.kernel.org/linux-rockchip/udad4qf3o7kt45nuz6gxsvsmprh4rnyfxfogopmih6ucznizih@7oj2jrnlfonz/
->>>>>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/phy/mediatek,mt8365-csi-rx.yaml
->>>>>>
->>>>>
->>>>> It is really a nice way to separate HDMI and DP modes.
->>>
->>> I apologize for reopening the discussion about the phy-types setting.
->>
->> there is definitly no need to apologize. We're trying to find the best
->> solution afterall :-) .
->>
->>> With the .set_mode() of struct phy_ops, the HDMI and eDP dynamic
->>> switching can be achieved, which just depends on the right setting of
->>> enum phy_mode in include/linux/phy/phy.h. So the previous way of
->>> configuring phy mode may be also good.
->>
->> I think the deciding factor is, is there a use-case for needing to switch
->> modes at runtime.
->>
->> I do think the mode for the dc-phy and also the hdptx-phy is pretty much
->> decided by the board design.
->>
->> I.e. when you end up in a DP-connector (or eDP-panel) on your board you
->> need DP mode, and when you end up in a hdmi-connector you need the
->> HDMI phy mode.
->>
->> So I think the phy-mode for the hdptx-phy is largely dictated by the static
->> board definition (like devicetree), hence going with the dt-argument for
->> the mode.
->>
->> Like similar to the Naneng combophy, selecting its mode via argument
->> because deciding if it ends up in a sata port is a board-design thing.
->>
->> Is there a use-case where you need to switch at runtime between
->> HDMI and eDP? Like starting the phy in eDP mode but then needing
->> to switch to HDMI mode, while the device is running?
+The MediaTek platforms have one sensor per CPU core, but the cores are
+grouped into two clusters, and DVFS is tied together for all the cores
+in each cluster, as is commonly seen on ARM systems.
 
-Indeed, we have the board as you described, on which the DP-connector 
-and HDMI-connector both have been configured.
+Furthermore, there is a hardware block that does minute OPP voltage
+tweaking based on thermal readings, and AFAIK that block wants the
+per-cluster aggregate temperature.
 
-And the dynamic switching is more useful for RK3576, which has the same 
-eDP/HDMI design as RK3588 but only one eDP controller/HDMI 
-controller/HDPTX phy. We can only enable both of eDP/HDMI by this way.
+ChenYu
 
-> 
-> I believe the eDP controller can only use the PHY in eDP mode and
-> the HDMI controller can only use it in HDMI mode. So in order to
-> support runtime switching, the following options are possible:
-> 
-> 1. Enable both controllers, the PHY decides which one is really
->     used, the other one is basically a non-functional dummy device
->     until the PHY is reconfigured. This requires the set_mode()
->     callback, since the HDMI and eDP drivers both expect their
->     PHY to be enabled.
-> 
-> 2. Properly enable / disable the used controller, so that only one
->     controller is active at the same time. In this case the switching
->     is handled one layer above and the PHY has nothing to do with it.
->     The phy_enable call from each controller would just set it up in
->     the right mode.
-> 
-> I guess option 1 is the hacked solution, which is easier to
-> implement as DRM's hotplug abilities are quite limited at the moment
-> as far as I know. I think the second solution looks much cleaner and
-> should be prefered for upstream. That solution does not require
-> calling set_mode() for runtime switching making this whole argument
-> void :)
-> 
-
-Your friendly and detailed analysis has brought me some valuable 
-insights. :)
-
-The option 2 is really a better way to support the dynamic switching, 
-and we still need the .set_mode() to select the configurations for 
-either eDP or HDMI in HDPTX phy at the controller level. Would you mind
-elaborating on the useful way to choose the phy mode for the second 
-solution?
-
-> FWIW I think the DT argument based mode setting and the runtime set_mode
-> are not necessarily mutual exclusive. In theory one could support both
-> and adding set_mode support later does not change any ABI as far as
-> I can see. Basically handle it like pin mux/configuration settings,
-> which are usually automatically handled by the device core based on
-> DT information, except for some drivers which have special needs.
-> 
-
->>> And other phys may want to support dynamic switching too, like the
->>> Rockchip USBDP combo phy.
->>
->> I guess USBDP is special in that in also does both modes dynamical
->> depending on its use (like type-c with option DP altmode)
-> 
-> The USBDP PHY is indeed quite different from the PHYs in your list
-> above, but for a different reason: All the combined PHYs you listed
-> above only support one mode at the same time. E.g. you need to
-> decide between PCIe, SATA and USB3 mode for the Naneng combophy.
-> 
-> For the USBDP PHY the modes are not mutually exclusive. The USB
-> controller can request the USBDP PHY in USB mode at the same time
-> as the DP controller requests it in DP mode. Some additional
-> registers configure how the lanes are being muxed. A typcial setup
-> would be 2 lanes for USB3 and 2 lanes for DP.
-> 
-> Greetings,
-> 
-> -- Sebastian
-
-Best regards,
-Damon
-
+> > Previous incarnation by Alexandre Bailon can be found here:
+> > https://patchwork.kernel.org/project/linux-pm/cover/20240613132410.1616=
+63-1-abailon@baylibre.com/
+> >
+> > diffstat:
+> >   .../bindings/thermal/thermal-zones.yaml       |   5 +-
+> >   arch/arm64/boot/dts/mediatek/mt8195.dtsi      | 210 +-----
+> >   drivers/thermal/Kconfig                       |  27 +
+> >   drivers/thermal/thermal_core.c                | 643 +++++++++++++++++=
++
+> >   drivers/thermal/thermal_core.h                |  14 +
+> >   drivers/thermal/thermal_of.c                  |  86 ++-
+> >   6 files changed, 780 insertions(+), 205 deletions(-)
+>
+>
+> --
+> <http://www.linaro.org/> Linaro.org =E2=94=82 Open source software for AR=
+M SoCs
+>
+> Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+> <http://twitter.com/#!/linaroorg> Twitter |
+> <http://www.linaro.org/linaro-blog/> Blog
+>
 
