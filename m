@@ -1,138 +1,125 @@
-Return-Path: <devicetree+bounces-126130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126133-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 500299E0825
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 17:14:48 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE4569E075D
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 16:45:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2D9C2B68330
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 14:37:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 61278B83BE5
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 14:46:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F400520C48C;
-	Mon,  2 Dec 2024 14:32:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD39021C16F;
+	Mon,  2 Dec 2024 14:33:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="knUY+1F2"
+	dkim=pass (1024-bit key) header.d=smile.fr header.i=@smile.fr header.b="NJ5e1wOu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E70EF20C02B
-	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 14:32:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B55B2194B6
+	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 14:33:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733149943; cv=none; b=Q+heqO4bW0RlM166o4UsHT2ZLfXv0Bw5bYp9vHCyaeeeol+1WkqEBGYDRAeGkw1l4JmPriy/5/a1cnuGlmIyV4+RrJ/rhG41w2IohUJXnTp/VzAj3aq2ChbCD9KhGieYUoWHV8OTa7kDVIugAmX+yR7pM28m6Zo2lS+qQqmIJeU=
+	t=1733150020; cv=none; b=u9HLO0whMzOl7ueUPsoD3miJuwTPQyMxYrLqpd8w9wzxJ8iiBR/1knUmaZ68pknC0mGDGU9vjsjH2i5qQU0ePDaR3tBO72wpGHOGJCIlDtyaqchtB3uLE0ncTQCL4otJDd6/tcQWUHrnYOvArx/yPX7SBHzYznAJ0p+48gb/F/4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733149943; c=relaxed/simple;
-	bh=qsen7kpH4VQmiESFj7V0wT47esSpDLB8//iY+z6pNNU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Swqhiyl8sg56Rlr+hV6Yj13dQtkQnxA5L9Plxa2Bcgq7adF+VqaL/AR2g/a999gNbho+xDo5tcumO9iCkjxoQnHI+ZcJK5flfLN/RSh6+MZ3WXSQpDo/37nT4n0VrafFw5/nlBpftOZ8NDiZNjeSzFFff+2rW1WvvOfvDqTABcI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=knUY+1F2; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-434aafd68e9so36739195e9.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 06:32:21 -0800 (PST)
+	s=arc-20240116; t=1733150020; c=relaxed/simple;
+	bh=BaGHpzbQnGS9h9+GmmvEjlZrAsuM0BYLJeHZ7pkhhK8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZNoDaVblfuyNn6LbGmKi4jZquhMWZ+ivWZyPUjdw20gXp5jnM5DYwI+VKU7QuxXjIkYJN+3P5LYHCATSyBNnkPDRwWcXxOz6dnKjLHpW0918UsSChP3/FwlnQqoHIFKgNWtqDMB73YuUa2CkjkIJgBu0hrQywFTwhV1HxTzK4gc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=smile.fr; spf=pass smtp.mailfrom=smile.fr; dkim=pass (1024-bit key) header.d=smile.fr header.i=@smile.fr header.b=NJ5e1wOu; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=smile.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=smile.fr
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-434a852bb6eso39885505e9.3
+        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 06:33:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1733149940; x=1733754740; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0SWv286JLLtaOue4mQfrx4lljgfdeCl/Poe2xcsSj1A=;
-        b=knUY+1F2e7K/fwawvYzH/1/EM+1DSin4RiN2Ki2sDeDLKyV8J0fQA+Zf+1BFeHTi6s
-         SVbJ1Jn9YmzpQodv8TCGiHMLAwzR89d3vICtHYwmhC+DzUto7ySOgIJ9HPXe9mZEiBFv
-         fDYUQRnnlPxuUv70HP6hUY7MWxpFsokegHVh7tPKQM4BSR+KAc4RBu8zPZt2voP3nhdK
-         DUUasswnxDVFB1uZbKsZn2tZQNDoaZrgvhRYcx6vjIZGOJ2onZzIlaaQ/MhzB4wrRvky
-         b7QDsI1kSOrvI6P2DyKrPoEx1O2Et21LMuFPesVyiS17IkYjVHrR6LpbI72+ItzOzJMj
-         i8Ag==
+        d=smile.fr; s=google; t=1733150016; x=1733754816; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MO7RndIL4M9BqBFNQs9/VUiPinRWNZHXUCcV/Hhz6kY=;
+        b=NJ5e1wOui/G55zH8hsIDORqpWqMbVufaEry+obnX+0qt5vpA2jD18laX/l9P0te0ca
+         DBWMBTcJT2U+FaYLXoKg0zj7tTm1um7obw0KqNz5GLDFoZvCi6UjS2iOSPiGIiPVI1Kc
+         /eNN76oqjk9+alqY6nNCTERxJ5RddKu7p0Duo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733149940; x=1733754740;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0SWv286JLLtaOue4mQfrx4lljgfdeCl/Poe2xcsSj1A=;
-        b=DRO6JENhrpco9ebbrpqWrez3ihxXapjab6+m+jmAS3uXGUavic+03e+MaRF+SWieUD
-         byVDA5+y1quQRfXeI/IhRrhLKqXdRXbrWYzWrqzQB/PkceB6aWWLtpJCcDb+f1wfODPU
-         B2aNzEXqTpnybgfnuV5XLQdNnpClNa+ST2/VU/8Pe1xOW9844DJAOsfyIE4BMDGJKvBH
-         PX7UzR95nhrK5yYFAfuczcx7b0WdjTP/ddBzysBodgtOejltTZSrZfRsQaUxLT2bE4KH
-         +LWOdWVFA68/YY3jaPfsBAuJ4R84YzAnDMWCpJi4amt1kcNsokjWZCdeoqJ0Zn8CiOU2
-         g2HA==
-X-Forwarded-Encrypted: i=1; AJvYcCUvvhD5ErLransaYK7CoXmxxwx/ksI//CjUKB1MvClrFJZS7cnGlysrzAjurXLgCmrI1tvZFyxKh8kO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzjz+2XVPeMN31mKCZ9oNOerQmVlMn1Z7SOD7fogBA4clfjb5cy
-	U5EQ24p/ixy+Aow7SJGEACeTNMkCRPeYZFLsRafSML/ElVFn41oISYdtYFK7SoY=
-X-Gm-Gg: ASbGnctoTfZ5RSz/6b89bfa86LmQsqJ8AstSIpN8+fwfgT+jU+6JxXi6UYNF3nmoOXv
-	Z19ARnRobiZCgA21M/+twyci15o/hxTQ42BWz1Ele7cd6PBJCKw7DkJnuZX0vnxmjPx1cwq8RjF
-	NKt16ggP7s00oKngNKV7MbPGVTTJSPMsNMQUOBjYK0yYqkb/TYEQQBj3xHPdoaMX3AgKvrPYoYI
-	a+MpNIE+0IiZZUkb6BJbFarsDkdgDUiw6p3pSVGUQ==
-X-Google-Smtp-Source: AGHT+IGdEnNzVlMLwDBvV0S4CV4yuBsyp8Dkp7xJueCrLVsr6eLGBmMPHRLxa0QvyyA/TmmOBjlOGA==
-X-Received: by 2002:a05:600c:45c9:b0:434:a196:6377 with SMTP id 5b1f17b1804b1-434a9dbed9bmr221354295e9.14.1733149940210;
-        Mon, 02 Dec 2024 06:32:20 -0800 (PST)
-Received: from [127.0.1.1] ([2a00:1098:3142:e::8])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-434aa74f1e6sm188429555e9.9.2024.12.02.06.32.19
+        d=1e100.net; s=20230601; t=1733150016; x=1733754816;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MO7RndIL4M9BqBFNQs9/VUiPinRWNZHXUCcV/Hhz6kY=;
+        b=YwIKYXdLbPWpWq1hyBlnaMcxfdX/uBIJPC634DMUcRZmOOHQkagLi9mPCGtOBQ7Gjd
+         gbOFC4MsuVMnx6XGBGR8WJ1TunXJhNCX3d2WgyXZwiOWYjF3e3oMxI+ugtDdGisWOZQx
+         O4sXEW2PCHcFUsoUS+/2407kYJLIyrPwXSDCH4t9h5tLMqOUG1SrkBNTQxqWxviU9gyz
+         4nAhNcevMHkTkUhnldrK6AbVNr4s6mvnFHfQXro5ygEgmPjrjeuVNnbNSVATtlsyjXom
+         LvFyU9OxyiwE7lbGrgCn4lFhe8JaMvjk4Cf3zFZ6Z1zK+P/Zh63LsFxdX094uVQaBqSN
+         2FvQ==
+X-Gm-Message-State: AOJu0YywGTsJkVC5akB/mOtNrLZQ+i6SDu/mHtb4ocDXnN4RjVeqOPVo
+	tXQSBG4iKpRv1JqnBlWT+s/pq1qYlXa5W3XXZ8g8Wq1AocAe4JRVxAbqySC+SNwji+ij0oqtMGq
+	p
+X-Gm-Gg: ASbGncuaKUJGpICEjsVY0jF1M1wg3jeOqHLB02KLOv18xiV1BAxhev/zzvN2llWkIo+
+	QeG+oYBTMG0XWjP7v4IAl1C93sp3upj+m/ujWwJmhWIoXCINGpCC2WTWbZOs6j6Gbp/4oUpcMzl
+	6hlNRCkoFDpjK0OSOgY7gpj/E5rAhsPSzCzvZOo1h8xRf4thJJPv+xXfglfGCXLFMqQwH6S29Fc
+	cOMGgFmDKjUpgcWDIwtY8Ur57mrYDlmpQ/zoF/yDXv183gKUHpHWEVA3WOgS7DqoeQ6bzK5ult0
+	yzCtXbd0qrwvVhBtbmLFi8UBA0bkipoxllQsUQM5oRJtWOI=
+X-Google-Smtp-Source: AGHT+IFnRH0g2zecuvkeg70vcEHwDBSX16i2HnGbj1QA8WdxkOgfJwLhEB0xy8ebIOY3bQXUoeRFnA==
+X-Received: by 2002:a5d:5f81:0:b0:385:e9ba:acda with SMTP id ffacd0b85a97d-385e9baaeeamr5801500f8f.2.1733150016329;
+        Mon, 02 Dec 2024 06:33:36 -0800 (PST)
+Received: from P-NTS-Evian.home (2a01cb05949d5800e3ef2d7a4131071f.ipv6.abo.wanadoo.fr. [2a01:cb05:949d:5800:e3ef:2d7a:4131:71f])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-385eed2510esm4312569f8f.69.2024.12.02.06.33.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Dec 2024 06:32:19 -0800 (PST)
-From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Mon, 02 Dec 2024 14:31:58 +0000
-Subject: [PATCH 5/7] arm64: dts: broadcom: Add interrupt-controller flag
- for intc on BCM2712
+        Mon, 02 Dec 2024 06:33:36 -0800 (PST)
+From: Romain Naour <romain.naour@smile.fr>
+To: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-omap@vger.kernel.org,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	kristo@kernel.org,
+	vigneshr@ti.com,
+	nm@ti.com,
+	Romain Naour <romain.naour@skf.com>
+Subject: [PATCHv3 1/2] dt-bindings: mfd: syscon: Add ti,j721e-acspcie-proxy-ctrl compatible
+Date: Mon,  2 Dec 2024 15:33:30 +0100
+Message-ID: <20241202143331.126800-1-romain.naour@smile.fr>
+X-Mailer: git-send-email 2.45.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241202-dt-bcm2712-fixes-v1-5-fac67cc2f98a@raspberrypi.com>
-References: <20241202-dt-bcm2712-fixes-v1-0-fac67cc2f98a@raspberrypi.com>
-In-Reply-To: <20241202-dt-bcm2712-fixes-v1-0-fac67cc2f98a@raspberrypi.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Eric Anholt <eric@anholt.net>, 
- =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>, 
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, 
- Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>, 
- Doug Berger <opendmb@gmail.com>, Linus Walleij <linus.walleij@linaro.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Florian Fainelli <f.fainelli@gmail.com>, 
- linux-gpio@vger.kernel.org, Dave Stevenson <dave.stevenson@raspberrypi.com>
-X-Mailer: b4 0.14.1
+Content-Transfer-Encoding: 8bit
 
-BCM2712 DT was producing dtbinding validation errors of
+From: Romain Naour <romain.naour@skf.com>
 
-interrupt-controller@7cd00000: 'interrupt-controller' is a required
-property
-interrupt-controller@7cd00000: '#interrupt-cells' is a required property
+The ACSPCIE_PROXY_CTRL registers within the CTRL_MMR space of TI's J721e
+SoC are used to drive the reference clock to the PCIe Endpoint device via
+the PAD IO Buffers. Add the compatible for allowing the PCIe driver to
+obtain the regmap for the ACSPCIE_CTRL register within the System
+Controller device-tree node in order to enable the PAD IO Buffers.
 
-Fix them by adding the required flags.
+The Technical Reference Manual for J721e SoC with details of the
+ASCPCIE_CTRL registers is available at:
+https://www.ti.com/lit/zip/spruil1
 
-Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Signed-off-by: Romain Naour <romain.naour@skf.com>
 ---
- arch/arm64/boot/dts/broadcom/bcm2712.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi b/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
-index f42fad2d8b37..0ba076ab9caf 100644
---- a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
-@@ -224,6 +224,8 @@ mailbox: mailbox@7c013880 {
- 		local_intc: interrupt-controller@7cd00000 {
- 			compatible = "brcm,bcm2836-l1-intc";
- 			reg = <0x7cd00000 0x100>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
- 		};
- 
- 		uart10: serial@7d001000 {
-
+diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
+index b414de4fa779..032cdd30d95f 100644
+--- a/Documentation/devicetree/bindings/mfd/syscon.yaml
++++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+@@ -115,6 +115,7 @@ select:
+           - ti,am625-dss-oldi-io-ctrl
+           - ti,am62p-cpsw-mac-efuse
+           - ti,am654-dss-oldi-io-ctrl
++          - ti,j721e-acspcie-proxy-ctrl
+           - ti,j784s4-acspcie-proxy-ctrl
+           - ti,j784s4-pcie-ctrl
+           - ti,keystone-pllctrl
 -- 
-2.34.1
+2.45.0
 
 
