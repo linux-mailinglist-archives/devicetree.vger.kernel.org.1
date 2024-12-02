@@ -1,231 +1,158 @@
-Return-Path: <devicetree+bounces-125966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125967-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB95F9DFCC2
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 10:06:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 068579DFCF5
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 10:23:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 35FDBB20D2F
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 09:06:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA17F281D8E
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 09:23:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D89611FA14B;
-	Mon,  2 Dec 2024 09:06:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 227B11FA178;
+	Mon,  2 Dec 2024 09:23:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Lvk0Nskf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MRaXnheW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21B571F9F7C;
-	Mon,  2 Dec 2024 09:06:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D7E21FA16A;
+	Mon,  2 Dec 2024 09:23:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733130371; cv=none; b=WZOtU97Hgd1loE0u72KO/xkbiKajNTOFCSpDd8jS1mBVuBmegH477aqBByXLkNkXb0YUpzF4rPaihg8AXId9HHY6SmtUGw8wUCYeTd8RgjFVsHb180nbXB+chczu2D7XG3kcwhV7RzEB/hYw/C6769JvYzvNZPARaFFSVXGiAYo=
+	t=1733131386; cv=none; b=Hb5rjlki+IJTmv32Y8VXc4OUHP+6Of6tADDoM8rs/c4EMntOQxje1ERx+orgV2nVUqwYE1F52NAcvi260+khvyMb4iHYcO7aJf5DwJyDP/yrRqASvwjZsRxAYJ3Lk7/JV63prYNrFS684MrW+eF2onDbpLdF5ILZCoR3Q2Cj5SE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733130371; c=relaxed/simple;
-	bh=FeRiWK/Mi3cvW5oP5QNPzPX/ZuOrxFunwvbdy+KhMlA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ceHqJabEpi+lx5SD6NrAO3jV6jaRJ9LKdOBMYKtZUUzief3Rx3zzaz+ktCSBXhywsQGfsIP4uCWP3qDVvDbww+2qa5lopNNGbsZnZ8IDNCud5+LdUKOvhv4LrYEf/lPm+ldQmOLBZQeT0/YflFoZZ/5M95S2mWUBou3meQX9ihs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Lvk0Nskf; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B290TwE010338;
-	Mon, 2 Dec 2024 09:05:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Q+PjIrCert+/x3e/5SEkFOVcd9o7Q54etqy826imJuw=; b=Lvk0Nskf1gPfvfDw
-	6oiXQJKJretf1FbX6tCF65Oin00bzsNqPMVLSqto5EjPwoOpWEPYgs+gRxPnYPvJ
-	OugShnOB3gSM79fEDqRmEQ8XPhpWD3KqT1LC5gxg6NKa8wQee/sdLBKJLOJl84Ml
-	z+puN4qOi2uAEjJAArl7BULURcrB2m5egdBKKGFp/IT0RtKVgs+rMAS1BZAtm56/
-	9edM3NsNnYyqQnpTLI6H7otEPojliXVkq7xuuxMSf5t+cW/0HXwfYHh0sttMSi+0
-	OipxLk/k6/UWv5z098AG+rtXMIaiTw8GXzuHuhrR3+ki+ByzTzCeacU2DFtjVHIh
-	9ZfvvQ==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 437v07m479-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 02 Dec 2024 09:05:52 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B295qEj015760
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 2 Dec 2024 09:05:52 GMT
-Received: from [10.64.16.135] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 2 Dec 2024
- 01:05:45 -0800
-Message-ID: <95a78722-8266-4d5d-8d2f-e8efa1aa2e87@quicinc.com>
-Date: Mon, 2 Dec 2024 17:05:37 +0800
+	s=arc-20240116; t=1733131386; c=relaxed/simple;
+	bh=g4gw6HyzaksuOXDxjYZHVe1BewoRaC3XCvYQTNgdJjc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=sZzqxszyvbWp3vUkA2g0fAOiMbvgkaDA8/A8uNE9wuTAAa+Y8g3Zwn782T0HGpnQJiMGCvCynptTnxXhaSxjqEbhSXShyeZKWis4fDMH4dHiSG6ZM/hX4jfZdMnbKmsRs8NNLookJzbRXoeeDio+OssuBrX7Y3LcjyIjlG9GzvM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MRaXnheW; arc=none smtp.client-ip=209.85.219.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-e2bd7d8aaf8so3291823276.3;
+        Mon, 02 Dec 2024 01:23:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733131383; x=1733736183; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eoSXCHM+h910tSJRU701H8nxQkL3/nyAdM8/SWBnlLA=;
+        b=MRaXnheW7AB+hCm9pAHj98UYTpbEdv6Qj5uvsgE+OhBwtmxxWJZLEiOwalshXVZUdP
+         3N00dduUEiPNd5vsCr4x+sLf/xU1gCLT39urSUG+lf/qYJlch3Yb+6+AYtzLvXMuLNfY
+         vaocj1qhY5WZANtqwbAjjZVGnp/SCq0X9K/3E7O6jHqRX2YYV66wsFHBEVdEsM5BtPOZ
+         N2NC20C7VeDaqKABmOtPQ8t76djvbe8D4xRVZidAcM0SD0hPqOymlX2Z5O0C5cgv6PzK
+         wzVFDqYMwudA1CJRwT3CUTwhc3ts8/Shx/5YnswbL3os2PBpd4KrOIivhHGY2280NjaV
+         9Iww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733131383; x=1733736183;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=eoSXCHM+h910tSJRU701H8nxQkL3/nyAdM8/SWBnlLA=;
+        b=tMQyjjgan1rffiUFTg+635RIiDnfC3VNK/jAVv96K18g0/W+9XsTr8uIGf2S2TIZde
+         hLrM3CsBtho9CGY8DPlhhxZdrg+SYFVjsi6S9zE8wn+rOZTnvU6AE5mlIl4NC30DR/Re
+         G7KxyaMxbpgg5Va8p8TpQtzDOksq9+eg9gCRSvS4Tiv0YjhbszM5ZT94kyVnwe0U7mVN
+         ox09oNm71k+dqEPAjpH8T70U/OX7ABZDp7hNLo8HqrJ0ntPQkgphnGk3NPUEG4/VwWfz
+         8SJAhPsNGZUhf8SjJ5MuMmy/TnU0qlCDYW54uBzmr/41x7sFWXY8XIoVFjrrN42/xITR
+         NDGQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUpBqjMHaO5mb/7IO1f3cKdwVonge/3yU2wMYwA1JigEP5nfeKN1dbwnPhhzXcgo+V/6goUETR6g2i3@vger.kernel.org, AJvYcCX/nTwtcOlvfDyRlNYK0ZsgJ1YoDvPPaELQQKMHJqjomCDhnwIsNeQcW5SQZyjZOZqC62hx9JnYxqVsDpWo@vger.kernel.org, AJvYcCXBNf9xPF+g8Ev4Nerf3HHGhGrKUabeHNfUSbaQRLs0NkEwGrwwyj1+Zmv+7p99gleUyhC8UfSUAFY3@vger.kernel.org
+X-Gm-Message-State: AOJu0Yza3vEBZWuH26zQwXKC/9cldbiwudj1g5yiik3ocYTIW9iD0oxb
+	ktllL9Nubz5mQNuTwaryFL7+gT7kXh6WgeXod6+ATBXkCnxPEXD0BVk6EoB1vKr/O0m0RXYqBpP
+	VGcXKP25bMNuSYEOBogPducxM/+M=
+X-Gm-Gg: ASbGnctLbh8FiVCZRzNGH1T2JZVrTa4xz85em460UaeERN3zic1ACEa0iMcGYXK+iA5
+	NsHOu9y4dHb5A+aSjGuDG0VJMzXL4SHCQkEcW4GJHp5BoHBee7oxGF7uLlZv95md0
+X-Google-Smtp-Source: AGHT+IGztXoxAdcHJd9YnxaBaWbobaVNYryb4PFIcv1saAQn7Wr5i8e+trUl1lQbr3FaaKSqn8OvN2L7sBaEmyvuzis=
+X-Received: by 2002:a05:6902:721:b0:e39:8a36:5781 with SMTP id
+ 3f1490d57ef6-e398a365a98mr11154731276.1.1733131383334; Mon, 02 Dec 2024
+ 01:23:03 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/8] drm/msm/dp: Add maximum width limitation for modes
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar
-	<quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Kuogee
- Hsieh" <quic_khsieh@quicinc.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        "Kishon
- Vijay Abraham I" <kishon@kernel.org>,
-        Linus Walleij
-	<linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>, <quic_lliu6@quicinc.com>,
-        <quic_fangez@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>, <freedreno@lists.freedesktop.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <linux-gpio@vger.kernel.org>
-References: <20241129-add-displayport-support-for-qcs615-platform-v1-0-09a4338d93ef@quicinc.com>
- <20241129-add-displayport-support-for-qcs615-platform-v1-6-09a4338d93ef@quicinc.com>
- <CAA8EJpprTGRTxO+9BC6GRwxE4A3CuvmySsxS2Nh4Tqj0nDRT_Q@mail.gmail.com>
-From: Xiangxu Yin <quic_xiangxuy@quicinc.com>
-In-Reply-To: <CAA8EJpprTGRTxO+9BC6GRwxE4A3CuvmySsxS2Nh4Tqj0nDRT_Q@mail.gmail.com>
+References: <20241126074005.546447-1-tmyu0@nuvoton.com> <20241130202849.13eedb04@jic23-huawei>
+In-Reply-To: <20241130202849.13eedb04@jic23-huawei>
+From: Ming Yu <a0282524688@gmail.com>
+Date: Mon, 2 Dec 2024 17:22:52 +0800
+Message-ID: <CAOoeyxUyi_HKLH64Sokd9YU9vDnuizBaP2AOUYqQ8hTvJKo2-g@mail.gmail.com>
+Subject: Re: [PATCH v1 0/2] Add Nuvoton NCT7718W IIO driver
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: tmyu0@nuvoton.com, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, cmo@melexis.com, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: GJp2ATP3aUD-3hgyB8FaFF86sI5EXzVQ
-X-Proofpoint-GUID: GJp2ATP3aUD-3hgyB8FaFF86sI5EXzVQ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
- adultscore=0 mlxlogscore=999 bulkscore=0 suspectscore=0 priorityscore=1501
- impostorscore=0 lowpriorityscore=0 spamscore=0 mlxscore=0 clxscore=1015
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2412020079
+Content-Transfer-Encoding: quoted-printable
+
+Dear Jonathan,
+
+Thank you for your reply, I'll move the driver to HWMON.
+Additionally, for conventional ADC, Thermal sensor, and tachometer
+like chips, would it be more appropriate to implement them in HWMON?
+
+Best regards
+Ming
 
 
-
-On 11/29/2024 9:52 PM, Dmitry Baryshkov wrote:
-> On Fri, 29 Nov 2024 at 09:59, Xiangxu Yin <quic_xiangxuy@quicinc.com> wrote:
->>
->> Introduce a maximum width constraint for modes during validation. This
->> ensures that the modes are filtered based on hardware capabilities,
->> specifically addressing the line buffer limitations of individual pipes.
-> 
-> This doesn't describe, why this is necessary. What does "buffer
-> limitations of individual pipes" mean?
-> If the platforms have hw capabilities like being unable to support 8k
-> or 10k, it should go to platform data
-> 
-It's SSPP line buffer limitation for this platform and only support to 2160 mode width.
-Then, shall I add max_width config to struct msm_dp_desc in next patch? for other platform will set defualt value to ‘DP_MAX_WIDTH 7680'
->>
->> Signed-off-by: Xiangxu Yin <quic_xiangxuy@quicinc.com>
->> ---
->>  drivers/gpu/drm/msm/dp/dp_display.c |  3 +++
->>  drivers/gpu/drm/msm/dp/dp_display.h |  1 +
->>  drivers/gpu/drm/msm/dp/dp_panel.c   | 13 +++++++++++++
->>  drivers/gpu/drm/msm/dp/dp_panel.h   |  1 +
->>  4 files changed, 18 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
->> index 4c83402fc7e0d41cb7621fa2efda043269d0a608..eb6fb76c68e505fafbec563440e9784f51e1894b 100644
->> --- a/drivers/gpu/drm/msm/dp/dp_display.c
->> +++ b/drivers/gpu/drm/msm/dp/dp_display.c
->> @@ -944,6 +944,9 @@ enum drm_mode_status msm_dp_bridge_mode_valid(struct drm_bridge *bridge,
->>         msm_dp_display = container_of(dp, struct msm_dp_display_private, msm_dp_display);
->>         link_info = &msm_dp_display->panel->link_info;
->>
->> +       if (mode->hdisplay > msm_dp_display->panel->max_dp_width)
->> +               return MODE_BAD;
->> +
->>         if (drm_mode_is_420_only(&dp->connector->display_info, mode) &&
->>             msm_dp_display->panel->vsc_sdp_supported)
->>                 mode_pclk_khz /= 2;
->> diff --git a/drivers/gpu/drm/msm/dp/dp_display.h b/drivers/gpu/drm/msm/dp/dp_display.h
->> index ecbc2d92f546a346ee53adcf1b060933e4f54317..7a11f7eeb691976f06afc7aff67650397d7deb90 100644
->> --- a/drivers/gpu/drm/msm/dp/dp_display.h
->> +++ b/drivers/gpu/drm/msm/dp/dp_display.h
->> @@ -11,6 +11,7 @@
->>  #include "disp/msm_disp_snapshot.h"
->>
->>  #define DP_MAX_PIXEL_CLK_KHZ   675000
->> +#define DP_MAX_WIDTH   7680
->>
->>  struct msm_dp {
->>         struct drm_device *drm_dev;
->> diff --git a/drivers/gpu/drm/msm/dp/dp_panel.c b/drivers/gpu/drm/msm/dp/dp_panel.c
->> index 8654180aa259234bbd41f4f88c13c485f9791b1d..10501e301c5e073d8d34093b86a15d72e646a01f 100644
->> --- a/drivers/gpu/drm/msm/dp/dp_panel.c
->> +++ b/drivers/gpu/drm/msm/dp/dp_panel.c
->> @@ -4,6 +4,7 @@
->>   */
->>
->>  #include "dp_panel.h"
->> +#include "dp_display.h"
->>  #include "dp_utils.h"
->>
->>  #include <drm/drm_connector.h>
->> @@ -455,6 +456,16 @@ static u32 msm_dp_panel_link_frequencies(struct device_node *of_node)
->>         return frequency;
->>  }
->>
->> +static u32 msm_dp_panel_max_width(struct device_node *of_node)
->> +{
->> +       u32 max_width = 0;
->> +
->> +       if (of_property_read_u32(of_node, "max-width", &max_width))
->> +               max_width = DP_MAX_WIDTH;
->> +
->> +       return max_width;
-> 
-> msm_dp_panel->max_dp_width = DP_MAX_WIDTH;
-> of_property_read_u32(of_node, "max-width", &msm_dp_panel->max_dp_width);
-> 
->> +}
->> +
->>  static int msm_dp_panel_parse_dt(struct msm_dp_panel *msm_dp_panel)
->>  {
->>         struct msm_dp_panel_private *panel;
->> @@ -490,6 +501,8 @@ static int msm_dp_panel_parse_dt(struct msm_dp_panel *msm_dp_panel)
->>         if (!msm_dp_panel->max_dp_link_rate)
->>                 msm_dp_panel->max_dp_link_rate = DP_LINK_RATE_HBR2;
->>
->> +       msm_dp_panel->max_dp_width = msm_dp_panel_max_width(of_node);
->> +
->>         return 0;
->>  }
->>
->> diff --git a/drivers/gpu/drm/msm/dp/dp_panel.h b/drivers/gpu/drm/msm/dp/dp_panel.h
->> index 7603b92c32902bd3d4485539bd6308537ff75a2c..61513644161209c243bbb623ee4ded951b2a0597 100644
->> --- a/drivers/gpu/drm/msm/dp/dp_panel.h
->> +++ b/drivers/gpu/drm/msm/dp/dp_panel.h
->> @@ -51,6 +51,7 @@ struct msm_dp_panel {
->>         u32 lane_map[DP_MAX_NUM_DP_LANES];
->>         u32 max_dp_lanes;
->>         u32 max_dp_link_rate;
->> +       u32 max_dp_width;
->>
->>         u32 max_bw_code;
->>  };
->>
->> --
->> 2.25.1
->>
-> 
-> 
-
+Jonathan Cameron <jic23@kernel.org> =E6=96=BC 2024=E5=B9=B412=E6=9C=881=E6=
+=97=A5 =E9=80=B1=E6=97=A5 =E4=B8=8A=E5=8D=884:28=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On Tue, 26 Nov 2024 15:40:03 +0800
+> Ming Yu <a0282524688@gmail.com> wrote:
+>
+> > NCT7718W is an I2C based thermal sensor chip from Nuvoton.
+> Hi Ming Yu,
+>
+> +CC Jean and Guenter,
+>
+> Why an IIO driver rather than a HWMON one?  Superficially this looks like=
+ a hwmon
+> chip.  We do have the means to put a generic driver in IIO and bridge to =
+hwmon, but
+> when a device is very much intended for monitoring of hardware temperatur=
+es etc
+> the IIO driver rarely has any purpose and a simpler hwmon only solution m=
+akes sense.
+>
+> For temperature sensors IIO normally makes sense if:
+> 1) They are part of a series of devices some of which have more functiona=
+lity than temp
+> 2) Fast devices where hwmon sysfs interfaces become a bottleneck - note y=
+ou have to have
+> a usecase for reading them fast, not simply a device that is capable of i=
+t.
+> 3) 'Unusual' temperature sensors such as infrared thermometers or very hi=
+gh precision
+>    thermocouple interfaces.
+>
+> Any of those apply here?
+>
+> Note that hwmon has better threshold and critical temperature handling th=
+an we can do
+> in IIO and it seems your part has those as well.
+>
+> Thanks,
+>
+> Jonathan
+>
+>
+> >
+> > Ming Yu (2):
+> >   dt-bindings: iio: temperature: Add support for NCT7718W
+> >   iio: temperature: Add Nuvoton NCT7718W support
+> >
+> >  .../iio/temperature/nuvoton,nct7718.yaml      |  44 ++
+> >  MAINTAINERS                                   |   7 +
+> >  drivers/iio/temperature/Kconfig               |  10 +
+> >  drivers/iio/temperature/Makefile              |   1 +
+> >  drivers/iio/temperature/nct7718.c             | 505 ++++++++++++++++++
+> >  5 files changed, 567 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/iio/temperature/n=
+uvoton,nct7718.yaml
+> >  create mode 100644 drivers/iio/temperature/nct7718.c
+> >
+>
 
