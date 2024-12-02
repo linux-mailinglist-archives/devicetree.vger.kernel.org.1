@@ -1,38 +1,38 @@
-Return-Path: <devicetree+bounces-126074-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E0AE9E023B
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 13:31:45 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6228B16A42C
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 12:29:17 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FF47205E36;
-	Mon,  2 Dec 2024 12:26:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="hrLB8VeH"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mxout4.routing.net (mxout4.routing.net [134.0.28.9])
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F7859E026D
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 13:48:14 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4BD61FECAC;
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9F04BB3461D
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 12:28:15 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02815204F76;
 	Mon,  2 Dec 2024 12:26:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.9
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="miO23gm/"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mxout3.routing.net (mxout3.routing.net [134.0.28.8])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CC5E1FECA2;
+	Mon,  2 Dec 2024 12:26:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733142386; cv=none; b=htl80RoPuEezZpLNH7rMlfkyqTFXjcLl6jbOT7xrJh4cj3bjnxXByHGyfFjXAppbEJ9/pFs3qC8Yql8IeREOcWI1jqVXSeZx54tBqoODR5Mlrekk7FXH9SOjGsvuZ0e8xYgMGfCdT6+xevT3ysN2iFcD+l6y7ubOqjs3wfvuiII=
+	t=1733142383; cv=none; b=TnJo9z1+PNqgPxev9wXZoWXLdE/fLqeqFGJzNzAKQXYZQnj3bBFc1o8t9Jwtqistco6pzMNmjzGcJyyq37HTZOx45Njo/X2SwnwuWu8m66ZYcsh+mhW0pDAPPSsuSSX2fmkaU/Bwyy/C9cexRF2q11kH4fL8sVawGop1Gd/XXuQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733142386; c=relaxed/simple;
-	bh=xLprQlIqNKxyVeP42J/u1rSD08lzXU1wrf6cPOyrbuk=;
+	s=arc-20240116; t=1733142383; c=relaxed/simple;
+	bh=tXmGE50YOIz5SzcYHsKev2mYhOC/YO1vLvPg1XfuhQo=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=LxCEXJOEMgHc4cnrlwdNr3UiW7vAQ3HbqJWpNc5y0JKBxSoZVsSHlx44+dRHZrKMfAB70Slg11jmKaW4TY9uGxc2SiCedHSVA2F2FWm9cz4yfHOXdJl9RnaXkB79V5+BMqyvx254KVU7iwsgPj+qlXyVf2q9VvTmA/Ci24xpSuo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=hrLB8VeH; arc=none smtp.client-ip=134.0.28.9
+	 MIME-Version; b=U/AgMvGxDLiTA2Z8xWI1W5DDkNGsFeg8BTo5v4s/dhuijTllApa4AAJeFoe4/hVL/ZpO8AkLmPDcb4fPqxwJqJ08OYQ+fNYP6AzLOech9FVg0vmJgrDEaMLBndmR9F6xwvBv+Paa1SuNQQy+2UgJSKSgbNxDhBmPTEuxQtjaL6c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=miO23gm/; arc=none smtp.client-ip=134.0.28.8
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
 Received: from mxbox3.masterlogin.de (unknown [192.168.10.78])
-	by mxout4.routing.net (Postfix) with ESMTP id 2B90B100942;
+	by mxout3.routing.net (Postfix) with ESMTP id DB71A613E1;
 	Mon,  2 Dec 2024 12:26:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
 	s=20200217; t=1733142380;
@@ -40,13 +40,13 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=ZnCQcuap27aQvWaJkwaLNH/UmeyU0Tp7uQ2SHxBdKYo=;
-	b=hrLB8VeH2sW2jHCznKzHfXlutYsYdI9gbBFN7R5KpeWJQEC3PwJXZgh/xXKBZ+yXdq1Z8Y
-	rJgCEWrnUttDz3idjcFVDtcOgwQUxJZVyBr8VcbBcN5aI54I28Xk3dgu6gdE0Swrnq56xj
-	WgC+gyRJhJpks9J2OD1Jq3vfcMELUZs=
+	bh=RLz82rdcKDrgd4xoVhfZ0YMlDvGMQtoiJXXkans2pP0=;
+	b=miO23gm/nSsZ0oaYi8oGEcKaTVbGDLIaibifAiQnTfcQ+/HVeFzS8Ecbj7B/tmd76ZdQVh
+	g/gCLu2HYWBaWGbGtAs/NRBB2pO9bf/JZ0kpF6UzKZm2+fS2iMyc+qtRedSdHP3bJ+RUkp
+	4shDPCZ6jPdOMXcWZWOud8ReGk1yb/8=
 Received: from frank-u24.. (fttx-pool-217.61.149.104.bambit.de [217.61.149.104])
-	by mxbox3.masterlogin.de (Postfix) with ESMTPSA id 9D2A73600C0;
-	Mon,  2 Dec 2024 12:26:19 +0000 (UTC)
+	by mxbox3.masterlogin.de (Postfix) with ESMTPSA id 28516360552;
+	Mon,  2 Dec 2024 12:26:20 +0000 (UTC)
 From: Frank Wunderlich <linux@fw-web.de>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -58,9 +58,9 @@ Cc: Frank Wunderlich <frank-w@public-files.de>,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org
-Subject: [PATCH v2 17/18] arm64: dts: mediatek: mt7988: enable ssusb1 on bpi-r4
-Date: Mon,  2 Dec 2024 13:25:58 +0100
-Message-ID: <20241202122602.30734-18-linux@fw-web.de>
+Subject: [PATCH v2 18/18] arm64: dts: mediatek: mt7988: enable pwm on bpi-r4
+Date: Mon,  2 Dec 2024 13:25:59 +0100
+Message-ID: <20241202122602.30734-19-linux@fw-web.de>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20241202122602.30734-1-linux@fw-web.de>
 References: <20241202122602.30734-1-linux@fw-web.de>
@@ -71,11 +71,11 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mail-ID: 1f99d702-05b9-4d36-a621-a42fdbb3903e
+X-Mail-ID: 4134b58f-ee95-4f76-aa1e-472263d0e3cf
 
 From: Frank Wunderlich <frank-w@public-files.de>
 
-Enable front-usb on Bananapi R4 board.
+Enable pwm on Bananapi R4 board.
 
 Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 ---
@@ -84,33 +84,33 @@ Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
  2 files changed, 5 insertions(+), 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dts b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dts
-index 9ceefc990000..12b45b18955b 100644
+index 12b45b18955b..181bb997cd8d 100644
 --- a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dts
 +++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dts
-@@ -373,6 +373,10 @@ &serial0 {
- 	status = "okay";
+@@ -369,6 +369,10 @@ mux {
+ 	};
  };
  
-+&ssusb1 {
++&pwm {
 +	status = "okay";
 +};
 +
- &watchdog {
+ &serial0 {
  	status = "okay";
  };
 diff --git a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
-index 93c21a5248fa..2be84acac06a 100644
+index 2be84acac06a..11651f5e167d 100644
 --- a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
 +++ b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
-@@ -336,7 +336,7 @@ usb@11190000 {
- 			clock-names = "sys_ck", "ref_ck", "mcu_ck", "dma_ck", "xhci_ck";
+@@ -211,7 +211,7 @@ mux {
+ 			};
  		};
  
--		usb@11200000 {
-+		ssusb1: usb@11200000 {
- 			compatible = "mediatek,mt7988-xhci", "mediatek,mtk-xhci";
- 			reg = <0 0x11200000 0 0x2e00>,
- 			      <0 0x11203e00 0 0x0100>;
+-		pwm@10048000 {
++		pwm: pwm@10048000 {
+ 			compatible = "mediatek,mt7988-pwm";
+ 			reg = <0 0x10048000 0 0x1000>;
+ 			clocks = <&infracfg CLK_INFRA_66M_PWM_BCK>,
 -- 
 2.43.0
 
