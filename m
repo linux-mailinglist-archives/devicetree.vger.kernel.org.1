@@ -1,100 +1,102 @@
-Return-Path: <devicetree+bounces-126165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9E339E079A
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 16:53:32 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 785769E06F3
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 16:25:57 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F24216ACCE
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 15:25:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E94628145B
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 15:25:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D98ED208996;
-	Mon,  2 Dec 2024 15:24:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A172120969C;
+	Mon,  2 Dec 2024 15:24:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DkRyrnDG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="k5Lk6NCL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DFBD208962
-	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 15:24:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA888209675
+	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 15:24:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733153045; cv=none; b=CZ+pgLmvt1KsQNI8DaaSl3gsOHHffrW4a0OaOiP3RkyLx8HN9rkNzgoq+ySz0bGf42Ot7zRXd9tsSMwaNtXEEtFBkfyQ0MyLrviWeYS4mHdyVJpIZmdaDqleDlItZZAGsb1mbVIQ9yb97r/W39zVTbUFPudc9epDIXDWw61zBn4=
+	t=1733153050; cv=none; b=AWl46CskcidGTpyW2aoVewZ4Dp4GZwpJIchL4Q+gOfumEta2LVACqAE6qcw7yFE4R8BnI8xCCDhHT9pN/2ownAeMCgfusalFU0sOcosQxPY+s7jUj0adpD5hccjR3qQSFrjU8eD7OSKnU31Vcshutwd4dubGm0q+omi9Facqb58=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733153045; c=relaxed/simple;
-	bh=emBsO7UD/fsFeG160T0J2TEDqg+OGFUi4iJaEE8IBNY=;
+	s=arc-20240116; t=1733153050; c=relaxed/simple;
+	bh=+Xl8s91uz6z0166yhunqPMLThqhGtXNxm6DGP1hGyaY=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oALW0sjuCjSVUWf1TS6c55nGwK7aVJzqEvEl/ExTpXjqbAGpJbg9mbggPwXgpIJC/zzzgtWcLnJmTNLGxFvK211CsFb+9E6V0qmFqEzYiUrWBTp0jCuorDPJQTIYjZ2QYDDsGx1LhPkzKc8uKAZZXIAWZsYxQX/3bMzAJtsOq+s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DkRyrnDG; arc=none smtp.client-ip=209.85.219.174
+	 To:Cc:Content-Type; b=aU/o8Fd8D5OOl80PxWjz2ttYgnbfFs57vW851tVfUH2ImKiHqvgAztcvDNhD3m48XeUJL+vEig88w5iDfyVvybCBPzMQIKzY6VZaBeXjmfHqskQdCgEfX/bLlYab5JAypkoI84y2J+PYm05qk2sA78Fn6crwkuOOVRSZD7IueoY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=k5Lk6NCL; arc=none smtp.client-ip=209.85.219.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-e38df4166c7so3536077276.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 07:24:02 -0800 (PST)
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-e398273d6ffso3020843276.0
+        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 07:24:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733153042; x=1733757842; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1733153047; x=1733757847; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=aBidcxxw0LkaUAD5/9IMQ9Iuz+pdOXkp8f04uFCwiXE=;
-        b=DkRyrnDGRJDp26VILXj//3dtmFDuGra1t1T6iCCb+ftjsGYAdDdbSr1/CmY/Awpgt2
-         DR6vcmaGeKlb2yWBJFqkY2+ZfmxImy9Wft+W0eq3m12r+zLLq09lZFiAyq3O1QBBiG5n
-         A2+7iSTqfPI6H4QSDggQPO6xkchnjJ2I+IPOooD1yZ2hctRDynsDort9qvyiWtSaFtc5
-         8tqFCRllsC/gYw4YmUijD67mUOGLj+6YGKmQhFiEkEFOBUiSSTvkQ+4/BdwYnOIPbj5x
-         TZmvuGljRo5V4zi3L8hAQ1j4BM7JYJ91/ZoGUDtAFvRcQ+oIbth7K/46e8N6FWwCghKn
-         drNw==
+        bh=XMx9usLc+8H+1O3Ux5r/Qz56sk5GB2iRle+hBCjO6+0=;
+        b=k5Lk6NCL/Q9S2n2SD7XUQy3GgjWsjcXzD2V/+giR9rhAUrOGGCsMQ/r8/8dAPLYGsW
+         ulCSdELHI1aTBluKfiDycsvm82o8sgvRyGtiXYSAGP0/WxrT27xmDDDgbwE+M/CCvKEd
+         0uh4t60+ULG1Ks4uJ4LNZYFklbSa+BPzal9TSB/GfYKX+XXRNKkYMor2pa3wur1kOHlS
+         FwhQtAJpO5o9tSZUZtX+ynvGl4TSVftm5BgyNchSRDtjBsudY0vkHF6+9NmXWz9zclq8
+         x8WgYa44Bx7oS49t0Opu8E+xUy/9ma+sg7UrILv5kSFdznhmNNCq9kHIJbfa2juCgfhX
+         oyJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733153042; x=1733757842;
+        d=1e100.net; s=20230601; t=1733153047; x=1733757847;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=aBidcxxw0LkaUAD5/9IMQ9Iuz+pdOXkp8f04uFCwiXE=;
-        b=Lx+hq1T1LxMqxRYdcB+Dt80twD8EO3ldZ6D/f4o2MEiPbHk8kPnSjHA5abs22dkrAQ
-         wxTd/H35zdtIreZ6zkt9cUgG40nllDCIUlF/R5AmD9g78ZqXgsfYDwnWNzqPCH4raW6+
-         UXFbp3hhg/Tp+myQ39UV8Uymz5KMvyqUy28KDrOUG45wIZCiZ+TjmdawyI7/GujhOcen
-         9djuHdkpbw4kMDWSGwxKBtJmNCxD3lUAwfMRymdvg8E/bqn9IxiNrE7oswTJwMEsxdVG
-         NFrAGZt9/tkiHD3GeVzgvOnYs1cRrlFkusV/JlY5SyPWqs8ULyJVpRT45WjmOJDBxUTO
-         7Vhg==
-X-Forwarded-Encrypted: i=1; AJvYcCUkd5ScSCOZgQP38RppHCJd6+LBRLYkJpj51QwV47KXzNG6PzHuHFjPJh4Eof3Z4dEKpYbzE25Hb1K/@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywo+RuFLg/80y21XxLTHwzoxM3EDk2uDBVR452HLps/d52shDqd
-	9xR8z7WcS/pQVoUzj3JWm468q1njpmIqm9isXwweidSF/pbfOIAcEp+zlSqv5XdouZz/KWhhSNM
-	0lXoaIff/RXvfHr2DOGf7mW7IgJewndS8QDpafw==
-X-Gm-Gg: ASbGncub/Jrod0iCn6ugUJzxzVb/WOyewjQn5Lz5kCPe27REJEuy0Exgmc+M8vof0qq
-	NhgaE8cfe0RBKiFy/jP9Gwk87/hHkdbLR
-X-Google-Smtp-Source: AGHT+IHloKnYMU2YPvEvU4xjaTsmIlSJr7XS8O22fOpOceAV6w9xzQeEE9Oq/ecfzP79HELT5y0lhlpm0hWJnPxFg30=
-X-Received: by 2002:a05:6902:11c2:b0:e39:890b:a55c with SMTP id
- 3f1490d57ef6-e39890ba7a7mr14479567276.20.1733153041992; Mon, 02 Dec 2024
- 07:24:01 -0800 (PST)
+        bh=XMx9usLc+8H+1O3Ux5r/Qz56sk5GB2iRle+hBCjO6+0=;
+        b=DtrdLIkLt9mqmbIfgmKMpTImCEXRYFzSwj3KGb0QUWlYgWjokTofN4sbL6r5VI+t82
+         W7KNnTBcxAy2ESY1KTe7VzcDbVvVtsCOHx5J/a7ODNkAjkqu0bTkVTfe9SoP8z4wJoX3
+         zukOnE/TxLbhIUUCAooMUQx8XR5Z+1tfaKciyXq8Y7Rxv6ulSzzbBNx1tDx0UVnEc+Qx
+         mAj0ajvAKWFqtNYPyHVQ1/xVeiJh5Px+WXDhY1tzcRQ0sEhEBQRy/JTBb0a/r8HcrcOw
+         RScjmZWT/6z7F/qwSgLDoJRZJ0Pg7R4MmRYrKJ4yf8TU17xqt5G+BZnGxUy5+NOKTZhR
+         oXnQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXB1mDVIdevo7jGk2U9g7YpveozVIQ+G+2imHkqZfs3hlM4smoaHhBHP48wHSwE8L1/UviJS03SU74f@vger.kernel.org
+X-Gm-Message-State: AOJu0YxxzooD+pUypkPnb69viKOX/Jjo6/CrSJ99N8if4tXPFGRoJfFk
+	DfnascbSkUUoQtXlpzCYx/1zbTmXl5kL1hViVdydX0glrY7OJF+0p7gDvXU42ZAk7djFnQIl6YG
+	z4AtRXWC9jtXT9CkiW08LiyoDieA9rs0mqHaXOg==
+X-Gm-Gg: ASbGnct6+YHVRJkStWuA7S2Bl9jhHpY9j3f1MVvbYvgcqjDTmuuqg1Ecz/vji2UUp4C
+	kjnU7AfJgcsNNZXPSs4AT/GY5ctIBflI0
+X-Google-Smtp-Source: AGHT+IEGJdd9IwF7sSUzoqqAWgtWCRY1a0UMhBwb88ErQOHU8BaxnCWHnPMW9+ru+41yFpFYGuJqHhtoLonEK76JtT0=
+X-Received: by 2002:a05:6902:1895:b0:e30:c614:5c3a with SMTP id
+ 3f1490d57ef6-e395b869b78mr21357729276.3.1733153046692; Mon, 02 Dec 2024
+ 07:24:06 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241113225602.1782573-1-robh@kernel.org>
-In-Reply-To: <20241113225602.1782573-1-robh@kernel.org>
+References: <cover.1732030972.git.Ryan.Wanner@microchip.com> <e9e9e4cf0753422706bdc44fe7d20ca3a686ce7a.1732030972.git.Ryan.Wanner@microchip.com>
+In-Reply-To: <e9e9e4cf0753422706bdc44fe7d20ca3a686ce7a.1732030972.git.Ryan.Wanner@microchip.com>
 From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Mon, 2 Dec 2024 16:23:26 +0100
-Message-ID: <CAPDyKFohGpnh0fCgktbeSatKyrD3Za7TsvnyB03xDmHh6AxKtw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mmc: marvell,xenon-sdhci: Simplify Armada
- 3700 if/then schema
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Hu Ziji <huziji@marvell.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
+Date: Mon, 2 Dec 2024 16:23:30 +0100
+Message-ID: <CAPDyKFpN-2kowdi_eCtbW1WEdc5OKh7tj60GfbPPBR0Hbpyj5Q@mail.gmail.com>
+Subject: Re: [PATCH 04/15] dt-bindings: mmc: atmel,sama5d2-sdhci: add microchip,sama7d65-sdhci
+To: Ryan.Wanner@microchip.com
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com, 
+	claudiu.beznea@tuxon.dev, mturquette@baylibre.com, sboyd@kernel.org, 
+	arnd@arndb.de, dharma.b@microchip.com, mihai.sain@microchip.com, 
+	romain.sioen@microchip.com, varshini.rajendran@microchip.com, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-spi@vger.kernel.org, linux-serial@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 
-On Wed, 13 Nov 2024 at 23:56, Rob Herring (Arm) <robh@kernel.org> wrote:
+On Tue, 19 Nov 2024 at 17:42, <Ryan.Wanner@microchip.com> wrote:
 >
-> Properties are supposed to be defined in the top-level schema and then
-> disallowed in an if/then schema if necessary. Move the "marvell,pad-type"
-> property to follow this.
+> From: Dharma Balasubiramani <dharma.b@microchip.com>
 >
-> "reg" can also be similarly described at the top-level with only the
-> number of entries restricted in the if/then schema.
+> Add mmc binding documentation for SAMA7D65.
 >
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
 
 Applied for next, thanks!
 
@@ -103,87 +105,23 @@ Uffe
 
 
 > ---
->  .../bindings/mmc/marvell,xenon-sdhci.yaml     | 48 +++++++++----------
->  1 file changed, 22 insertions(+), 26 deletions(-)
+>  Documentation/devicetree/bindings/mmc/atmel,sama5d2-sdhci.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 >
-> diff --git a/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml b/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
-> index cfe6237716f4..3f48d8292d5b 100644
-> --- a/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
-> @@ -38,15 +38,9 @@ properties:
+> diff --git a/Documentation/devicetree/bindings/mmc/atmel,sama5d2-sdhci.yaml b/Documentation/devicetree/bindings/mmc/atmel,sama5d2-sdhci.yaml
+> index 8c8ade88e8fe..ba75623b7778 100644
+> --- a/Documentation/devicetree/bindings/mmc/atmel,sama5d2-sdhci.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/atmel,sama5d2-sdhci.yaml
+> @@ -22,6 +22,7 @@ properties:
+>        - items:
+>            - enum:
+>                - microchip,sam9x7-sdhci
+> +              - microchip,sama7d65-sdhci
+>                - microchip,sama7g5-sdhci
+>            - const: microchip,sam9x60-sdhci
 >
->    reg:
->      minItems: 1
-> -    maxItems: 2
-> -    description: |
-> -      For "marvell,armada-3700-sdhci", two register areas.  The first one
-> -      for Xenon IP register. The second one for the Armada 3700 SoC PHY PAD
-> -      Voltage Control register.  Please follow the examples with compatible
-> -      "marvell,armada-3700-sdhci" in below.
-> -      Please also check property marvell,pad-type in below.
-> -
-> -      For other compatible strings, one register area for Xenon IP.
-> +    items:
-> +      - description: Xenon IP registers
-> +      - description: Armada 3700 SoC PHY PAD Voltage Control register
->
->    clocks:
->      minItems: 1
-> @@ -61,6 +55,17 @@ properties:
->    interrupts:
->      maxItems: 1
->
-> +  marvell,pad-type:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    enum:
-> +      - sd
-> +      - fixed-1-8v
-> +    description:
-> +      Type of Armada 3700 SoC PHY PAD Voltage Controller register. If "sd" is
-> +      selected, SoC PHY PAD is set as 3.3V at the beginning and is switched to
-> +      1.8V when later in higher speed mode. If "fixed-1-8v" is selected, SoC PHY
-> +      PAD is fixed 1.8V, such as for eMMC.
-> +
->    marvell,xenon-sdhc-id:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      minimum: 0
-> @@ -147,27 +152,18 @@ allOf:
->      then:
->        properties:
->          reg:
-> -          items:
-> -            - description: Xenon IP registers
-> -            - description: Armada 3700 SoC PHY PAD Voltage Control register
-> -
-> -        marvell,pad-type:
-> -          $ref: /schemas/types.yaml#/definitions/string
-> -          enum:
-> -            - sd
-> -            - fixed-1-8v
-> -          description: |
-> -            Type of Armada 3700 SoC PHY PAD Voltage Controller register.
-> -            If "sd" is selected, SoC PHY PAD is set as 3.3V at the beginning
-> -            and is switched to 1.8V when later in higher speed mode.
-> -            If "fixed-1-8v" is selected, SoC PHY PAD is fixed 1.8V, such as for
-> -            eMMC.
-> -            Please follow the examples with compatible
-> -            "marvell,armada-3700-sdhci" in below.
-> +          minItems: 2
->
->        required:
->          - marvell,pad-type
->
-> +    else:
-> +      properties:
-> +        reg:
-> +          maxItems: 1
-> +
-> +        marvell,pad-type: false
-> +
->    - if:
->        properties:
->          compatible:
 > --
-> 2.45.2
+> 2.43.0
+>
 >
 
