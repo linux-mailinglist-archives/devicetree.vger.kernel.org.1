@@ -1,172 +1,172 @@
-Return-Path: <devicetree+bounces-126175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126176-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0103C9E08E4
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 17:43:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AD9A9E0763
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 16:45:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6F48CB2F3AA
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 15:45:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 314C4281972
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 15:45:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 938BE33080;
-	Mon,  2 Dec 2024 15:45:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8EE42B2D7;
+	Mon,  2 Dec 2024 15:45:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Zze8m65W"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="jFnqVkxO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7EA03BB48;
-	Mon,  2 Dec 2024 15:45:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FDEBBA53;
+	Mon,  2 Dec 2024 15:45:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733154323; cv=none; b=rOFj50UO1yqzoAq2tCPwq5+KPiKdsaFgPNgvugV53OcknpZoE2KX1iW9L4ek/jl4WKzO4kcnSxvysOfL75uagd1+jQuSDhE2dBPDFrR46FeopWyf7ZPk4FQ5EIYSHiEpEXGkM4pFpFH3LRxKwyIOsKC1KcuGhmg9TNnZMeHJ3Ms=
+	t=1733154356; cv=none; b=gBj80ZQOm/rhYzQ3tD9CgCRuDTgLRySi6uMghfSae0S5k/Nn6ElauVX8l5ZjyeO8Mxj9IXfqy5w5ISBK/z03Dr95AvHJIbGWV5gXmZ23eVB0bzfVCSPHhA/VAj/8i39ANu0k9jisuAl/RIOSzSXnQqlS0b5NXoLUXEommsiAhNI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733154323; c=relaxed/simple;
-	bh=IfPb5EUoYdJYs1hy5/eHs2puOOO/sRNQcEJYmuuvUXE=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FmwnTijU0bdGW38UBRvssG+Qu+s25vx111grEmc5Vlb7gHgTTXnmEg09ntyFXm1x/SZ597Tjw/k2K714bWY/agLvI1WbrT6+XTN1xOMWy+1R8o9/UoT3gkTwt6Su6bk3q1I6Ly8dHDL+bJ8p9/JblWAp/aAUmo4/jXRgthI8mfQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Zze8m65W; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-434a2f3bae4so41582245e9.3;
-        Mon, 02 Dec 2024 07:45:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733154320; x=1733759120; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=MoUizhuqEAXgVu/0YeOyha2OmR9oGnm0hqMAD2OhirU=;
-        b=Zze8m65W1Y0Wz8qJSPvTKdiakk5QDYE2fuR2pzcQI7a2yhJoVdvErICGJKZ5P+LYdT
-         JtK3faSP+9zhm4jz8JI0zyGFoUqrwI2h+dZkp9jgqifidjuQPJa5rK1/S6xPB/lxiJnU
-         EI2VaKpdtQ+r6NLACQULzcyN6MYr3SRhT147yxoIba8j81jT2BGdM6HSzP04v9It4dPI
-         fYqyuhnJ0LPlEr6xVLZHPh4kmCOVnKV4bQZtvG60AOOlZXWh5FpF4wzfRobJnYMxMh1V
-         C1UdPE3ioh7pOy4iwSmzMeYPQPO9U8dJvzNqJe9mj8J7DA7roxkzO+yJEKDpoNRuojNw
-         unWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733154320; x=1733759120;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MoUizhuqEAXgVu/0YeOyha2OmR9oGnm0hqMAD2OhirU=;
-        b=Z/KPMT+Jao1zDOIMLBRxpL+QE4M8iSyYjBtlpPH7juOxse9rYURE+hyQ+lwmflPl0J
-         FgJfrwwCSH6hGZ+U6XP/qcZC2OlgJh81hmkP0/0ajkhFnjLE8CNoAWwgSzcthyEmK/c3
-         CKOdEBgczemd29idBZ/2qouW926aXDvipzp7aXXrZkNUCDjSQWHPHBzOxNvNgR8DYfpo
-         /3D5ovXpkgjmNYH3f/MFqftU9Qat7LI8CG112DVq646hAOzNFAYCF3vJWjHYe3cZCLNL
-         bnTnmGTjqQc0gSVK1Zh/MFlAj3sIA7ntmQAtqI+eI4B7Vn1TCOOiwZsOD9QAaJI3a7La
-         2WjA==
-X-Forwarded-Encrypted: i=1; AJvYcCX+W/BxNBodnRy65P0mt1ycf8GyWb8wz5ITHmHs57+EHSG29LhtIsXmgOvqBKty5ROa2cyC8zzW2lA=@vger.kernel.org, AJvYcCX/ySlqEMeepNB/kbtwKJhuLQdkJjnkh6BQdRC00s9J0bD+J4H4ZxVP92qonSwKlqHZdi4Wg0eSc6hJ@vger.kernel.org, AJvYcCXZuP7qOFKXyNziV0cRzpnm/VvrovoqEGGHrGPiHcOoEDMMzs0IJuSgeVIIn+OZ0p4xo8RX77D8+QMe8Wnl@vger.kernel.org
-X-Gm-Message-State: AOJu0YxbzUQVGuK0/jyVa8V7v/0NKmNxrjyOc1XE8Nll+Gb4LQGvAv85
-	3bthGtA0DVpYd+t4xVlKHu0WGuNCBpC5QAHoLlfXdLMQyKtTjdre
-X-Gm-Gg: ASbGnctUMl8IETDnlwRSK00+xiboyLgBE2aMjKge9Z9AEZ7DOssxHuXOS2HR/T+GSFy
-	T+3NKFxsuMqanGTabNP8SrXdeDtveQUOHJbCCnVYXnrZeuYbJzHmiWKdUk9mLs8bNbt8ARQyggA
-	YVfvYI+I4MX6xmBM6Ew2GNKN5v8m/hP1eXmQWdu8HxXUu+gYJiWn6yt/aHCJxHUgmqW1waLS6hz
-	dWzexY2HP/enwECYCyJ3+HVtfDUgBYiH9QgjYb/2tK2IIQ+Gj9fxzfo6hUGROwcqkZVYkewHkPH
-	EurdEA==
-X-Google-Smtp-Source: AGHT+IHtub8MZwmpbSi8cbBQN+W9HkJP6rT/9hlN4QVwtkTVtRbw9Ou100Gw25JfII1BdilNaat2zQ==
-X-Received: by 2002:a05:600c:3b16:b0:434:a4fe:cd6d with SMTP id 5b1f17b1804b1-434a9dc02c5mr218940475e9.12.1733154319958;
-        Mon, 02 Dec 2024 07:45:19 -0800 (PST)
-Received: from Ansuel-XPS. (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434aa78120dsm186781435e9.24.2024.12.02.07.45.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Dec 2024 07:45:19 -0800 (PST)
-Message-ID: <674dd60f.7b0a0220.2ba255.7b7a@mx.google.com>
-X-Google-Original-Message-ID: <Z03WDRk4dKxQZokO@Ansuel-XPS.>
-Date: Mon, 2 Dec 2024 16:45:17 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	upstream@airoha.com
-Subject: Re: [PATCH v4 1/2] dt-bindings: cpufreq: Document support for Airoha
- EN7581 CPUFreq
-References: <20241202151228.32609-1-ansuelsmth@gmail.com>
- <CAPDyKFqrY7uLD8ATqH0LghmkHgApQSsGtvGkOTd8UVazGu0_uA@mail.gmail.com>
+	s=arc-20240116; t=1733154356; c=relaxed/simple;
+	bh=4I9QHeroahVRAcECbMKflPvnEDVlzZlkgByl3OFeVto=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ugP1Z0m9YI5KoRoSI/6aEGCBnr+7G6BOScRLUO5f93KhTVTVg4sX6PmJ1/vJbEFvJMYkPnb59Fc8bXUNedQMbM082fidhM2m6ZIxX7oaWe8tsH+eQHtgYLsc0l76N3RADPKQ0dRPZLzbSa4MYR771frTWC+cH//MC1YRR36ShSA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=jFnqVkxO; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4B2FjjrN114294;
+	Mon, 2 Dec 2024 09:45:45 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1733154345;
+	bh=wANpDU65LhU/8X4F+bXK7+FUgsbERBICABWmsZeuQxA=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=jFnqVkxOIUyPOkGVaCVEyrgdzttAInlmUGz4K49J1QYGbRX3VbQ3/AaZiDZXls69J
+	 sRj6A3T2hq5s6b27di1Uut3P1QDu+UJ1S31GYwueGCc1gbWo0jfrA5x/n7pbFTE0I6
+	 DD5GMW2bDD0MDxEwp8a+YDExQw6lkTcWfj7Zm1og=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4B2FjjZr018855
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 2 Dec 2024 09:45:45 -0600
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 2
+ Dec 2024 09:45:44 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 2 Dec 2024 09:45:44 -0600
+Received: from localhost (uda0492258.dhcp.ti.com [10.24.72.81])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4B2Fjh03025124;
+	Mon, 2 Dec 2024 09:45:44 -0600
+Date: Mon, 2 Dec 2024 21:15:43 +0530
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Siddharth Vadapalli <s-vadapalli@ti.com>,
+        Romain Naour
+	<romain.naour@smile.fr>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-omap@vger.kernel.org>,
+        <conor+dt@kernel.org>, <krzk+dt@kernel.org>, <robh@kernel.org>,
+        <kristo@kernel.org>, <vigneshr@ti.com>, <nm@ti.com>,
+        Romain Naour
+	<romain.naour@skf.com>
+Subject: Re: [PATCHv2] arm64: dts: ti: k3-j721e-beagleboneai64: Enable
+ ACSPCIE output for PCIe1
+Message-ID: <rjecpmr4bsedbfhu74sdlzmdz2mh2shsr5myawb3qveooawa3j@i2ysnnyf7hio>
+References: <20241202101140.48778-1-romain.naour@smile.fr>
+ <dabbad2b-f8a6-4ed7-86da-ec696cf67461@kernel.org>
+ <k7udgqugqseweckb7hjniz3aops4kn35ttju2ju7f2pcbmndrg@dau5nr4leish>
+ <abeb632b-9efc-48e5-a28a-a9d7c02e0a6e@kernel.org>
+ <cndc3fopwhwkotfikul2jtzfczpdpwlrs5uhuqq76ck36ndtfs@gvxavxt5tgd5>
+ <f332947a-d7b5-4f68-84d8-3ecce118c24c@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <CAPDyKFqrY7uLD8ATqH0LghmkHgApQSsGtvGkOTd8UVazGu0_uA@mail.gmail.com>
+In-Reply-To: <f332947a-d7b5-4f68-84d8-3ecce118c24c@kernel.org>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Mon, Dec 02, 2024 at 04:42:33PM +0100, Ulf Hansson wrote:
-> On Mon, 2 Dec 2024 at 16:20, Christian Marangi <ansuelsmth@gmail.com> wrote:
-> >
-> > Document required property for Airoha EN7581 CPUFreq .
-> >
-> > On newer Airoha SoC, CPU Frequency is scaled indirectly with SMCCC commands
-> > to ATF and no clocks are exposed to the OS.
-> >
-> > The SoC have performance state described by ID for each OPP, for this a
-> > Power Domain is used that sets the performance state ID according to the
-> > required OPPs defined in the CPU OPP tables.
-> >
-> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > ---
-> > Changes v4:
-> > - Add this patch
-> >
-> >  .../cpufreq/airoha,en7581-cpufreq.yaml        | 259 ++++++++++++++++++
-> >  1 file changed, 259 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.yaml b/Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.yaml
-> > new file mode 100644
-> > index 000000000000..a5bdea7f34b5
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.yaml
+On Mon, Dec 02, 2024 at 04:09:51PM +0100, Krzysztof Kozlowski wrote:
+> On 02/12/2024 15:53, Siddharth Vadapalli wrote:
+> > On Mon, Dec 02, 2024 at 12:07:17PM +0100, Krzysztof Kozlowski wrote:
+> > 
+> > Hello Krzysztof,
+> > 
+> >> On 02/12/2024 11:58, Siddharth Vadapalli wrote:
+> >>> On Mon, Dec 02, 2024 at 11:14:46AM +0100, Krzysztof Kozlowski wrote:
+> >>>
+> >>> Hello Krzysztof,
+> >>>
+> >>>> On 02/12/2024 11:11, Romain Naour wrote:
+> >>>>> From: Romain Naour <romain.naour@skf.com>
+> >>>>>
+> >>>>> Unlike the SK-TDA4VM (k3-j721e-sk) board, there is no clock generator
+> >>>>> (CDCI6214RGET) on the BeagleBone AI-64 (k3-j721e-beagleboneai64) to
+> >>>>> provide PCIe refclk signal to PCIe Endponts. So the ACSPCIE module must
+> >>>>> provide refclk through PCIe_REFCLK pins.
+> >>>>>
+> >>>>> Use the new "ti,syscon-acspcie-proxy-ctrl" property to enable ACSPCIE
+> >>>>> module's PAD IO Buffers.
+> >>>>>
+> >>>>> Reuse the compatible "ti,j784s4-acspcie-proxy-ctrl" since the ACSPCIE
+> >>>>> buffer and its functionality is the same across all K3 SoCs.
+> >>>>>
+> >>>>> Cc: Siddharth Vadapalli <s-vadapalli@ti.com>
+> >>>>> Signed-off-by: Romain Naour <romain.naour@skf.com>
+> >>>>> ---
+> >>>>> With this patch, we can remove "HACK: Sierra: Drive clock out" patch
+> >>>>> applied on vendor kernel for BeagleBone AI-64:
+> >>>>> https://openbeagle.org/beagleboard/linux/-/commit/ad65d7ef675966cdbc5d75f2bd545fad1914ba9b
+> >>>>>
+> >>>>> v2:
+> >>>>>  - use generic style comments
+> >>>>>  - use "syscon" as generic node name for "acspcie0_proxy_ctrl" node
+> >>>>>  - Keep the compatible "ti,j784s4-acspcie-proxy-ctrl" since the
+> >>>>>    ACSPCIE buffer and its functionality is the same across all K3 SoCs.
+> >>>>>    (Siddharth Vadapalli)
+> >>>>>
+> >>>>>    "The compatible "ti,j784s4-acspcie-pcie-ctrl" should be reused for
+> >>>>>    J721E and all other K3 SoCs.
+> >>>>
+> >>>> No, it shouldn't and you got comment on this. You always need specific
+> >>>> compatible, see writing bindings doc.
+> >>>
+> >>> Could you please clarify in which cases reusing the compatible is
+> >>> permissible? The list of compatibles at:
+> >>
+> >> Never? You always need specific compatible. Did you read the writing
+> >> bindings document?
+> > 
+> > I went through the bindings document again at:
+> > https://www.kernel.org/doc/Documentation/devicetree/bindings/writing-bindings.rst
+> > It mentions:
+> > - DON'T use 'syscon' alone without a specific compatible string. A 'syscon'
+> >   hardware block should have a compatible string unique enough to infer the
+> >   register layout of the entire block (at a minimum).
+> > 
+> > The ACSCPCIE Block as well as its integration across all of TI's K3 SoCs
+> > is the same i.e. same Hardware/IP. The register bits corresponding to
 > 
-> [...]
 > 
-> > +examples:
-> > +  - |
-> > +    / {
-> > +        #address-cells = <2>;
-> > +       #size-cells = <2>;
-> > +
-> > +        cpus {
-> > +            #address-cells = <1>;
-> > +            #size-cells = <0>;
-> > +
-> > +            cpu0: cpu@0 {
-> > +                device_type = "cpu";
-> > +                compatible = "arm,cortex-a53";
-> > +                reg = <0x0>;
-> > +                operating-points-v2 = <&cpu_opp_table>;
-> > +                enable-method = "psci";
-> > +                clocks = <&cpufreq>;
-> > +                clock-names = "cpu";
-> > +                power-domains = <&cpufreq>;
-> > +                power-domain-names = "cpu_pd";
+> And first rule for compatible property? DT bindings maintainers keep
+> repeating it over and over - specific means soc as front compatible.
 > 
-> Nitpick: Perhaps clarify the name to be "perf" or "cpu_perf", to
-> indicate it's a power-domain with performance scaling support.
+> > the feature to be enabled/disabled via the ACSPCIE block are the same as
+> > well i.e. "register layout can be inferred". The same goes for the
+> > compatibles listed below in my previous reply i.e. they aren't bugs.
+> > Same IP and integration across SoCs and hence reused in the sense of
+> > Hardware and not Software. I hope this clarifies the rationale for the
+> > "reuse".
 > 
+> 
+> You mix re-use with fallback. These are almost never the same blocks,
+> which you imply here.
 
-Will change to cpu_perf. Thanks a lot for the review!
+I know that the IP is the same, the bits are the same and those bits enable
+the same functionality of the IP across the SoCs. If you still insist that
+they are not same, I don't know what to say anymore.
 
-> > +                next-level-cache = <&l2>;
-> > +                #cooling-cells = <2>;
-> > +            };
-> > +
-> 
-> [...]
-> 
-> Other than the very minor thing above, feel free to add:
-> 
-> Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
-> 
-> Kind regards
-> Uffe
-
--- 
-	Ansuel
+Regards,
+Siddharth.
 
