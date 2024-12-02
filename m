@@ -1,86 +1,79 @@
-Return-Path: <devicetree+bounces-126254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126255-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFCB69E0C04
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 20:25:15 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFBC49E0C4D
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 20:39:58 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8BC8D16549E
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 19:39:55 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E308E1DE89C;
+	Mon,  2 Dec 2024 19:39:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LP/HF7Sp"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85669282E36
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 19:25:14 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C0E71DE3D4;
-	Mon,  2 Dec 2024 19:24:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CeYhRmDU"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF4A61DE3C8;
-	Mon,  2 Dec 2024 19:24:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA02D1DE893;
+	Mon,  2 Dec 2024 19:39:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733167494; cv=none; b=CpGQgHWOEqlk+2fjOPBmYbgk7WZ7vNNZLNVGZ5ZtOaFMJNib4wlBm+smokF5wHW4YoEWI6G3ArsLv3EIiDkYJZzbwwKT/Yb4tkiKhWQRbAnH+GqDScPIzpqVw3ZFx6opbQqb4iCuFW+MbKQsdT7gTkExfPftZqg2yU/RoQ4Rfd4=
+	t=1733168375; cv=none; b=dNGLTEZlaGOJO7tUYVAR2CCIeTcgtFOlg+kIMpjYsCct5xqvcrXxlL9M+SSlcvMhanQ7YcROP2WPnyLECTYQTnmbLi1K9LStVuJUB1foWFG0FsQj35KNUI29QuMtlgKxLwZitEmj6yWey80DOJHoj5i6o+txdStqVwjYysX+JxY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733167494; c=relaxed/simple;
-	bh=wayb2byA9PXjEbaCd3kqDOfxdaTNaFw/0tj3MFZqjgI=;
+	s=arc-20240116; t=1733168375; c=relaxed/simple;
+	bh=ELAb8l5Gsy/ftM10z1411EjhX0fFdKa41HXQZK0rAU4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tKsb2TjSc2Gvlj/lJGtrf3MdAX0sSGHjO3j11lyVfe/CAOs34ad8CxzouM44mAJ0wJWOipY+vgUi7cWdpyMTgcc32b4M2mSdshok4iVzyrnn46dVKYQcPibw5zz6StOBJOGGJPSDG98IRGt2XfRMppLZ3qgdsNAe/e9svqO7GJc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CeYhRmDU; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-385f4a4093eso897101f8f.1;
-        Mon, 02 Dec 2024 11:24:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733167491; x=1733772291; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=7O2hkmzneJO23kQhspKnzrj/ryO+yA8CoJyww/4RjX8=;
-        b=CeYhRmDUPEZ8wChHjazLeOJihBJ2CTb4gOzsuzKd5Ted9q+4EwHJ+F8P/2hGRSyXNV
-         ViUbHugod9F5jjIlYYyONJzhZ+93uPSuYt+lSQFb8iYzBhBW5D+VtSUhves4+C4kbVED
-         0chnXNiBTDwIGoaZfKloJOhwMcghNSbvHX3kwE+43gNdSpYRwIlAeF/EjY3Ji5Uxk52+
-         muABSk3ZO9qDsHfyCEAwwc0mgAyMoKi5Zr8jAgYzvrniUdN7ytBAVnWJBzQHhvHO5pQv
-         0PHf+lxN92JphvmN/uqZ1y0Ne/2wAkRROQDmxh6LX2ZgcvWjmba8VACTTFsE2NNg1UjN
-         miPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733167491; x=1733772291;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7O2hkmzneJO23kQhspKnzrj/ryO+yA8CoJyww/4RjX8=;
-        b=hE2oNndGgIEH/DpdZmO7TCswk6KfCG3oE0KOaKl2lQ/xOU4jd5DL0yDabxzSJi4QD/
-         jrsTfKup18z5yXkJDYnFAa6xDKzrZvDje8LCXc6hMyhoWQOFYbBCbGcKFLA9s/zuyviz
-         /yCdOIsH/BXo9JdpKMVUdHL7SExW2UYWxhv1NL0PO+WpxaGyF+f+FI39d/tNyp0PeR0B
-         dnfU0KKrHk3NvFAY673IbZRZHUUWNLvs36JJSeTQEFXlRqNF7jP2ikqW4NrQ9U05ejBY
-         80YbIsG8zfr0CSyZGWcUJZ8QmE7Z9BlwUn2FkRru0LRTsWSXA9U++KfnCtEaBwOUI6iZ
-         3EKw==
-X-Forwarded-Encrypted: i=1; AJvYcCU+5aUkncV3FOOthVIEWB6RsSiDqPpskL8NHJlTofkqSk/Yi9xFq+h9uzGpuHfhGmvofwFuajcW/LbmWoh8@vger.kernel.org, AJvYcCUuAwiUcxFEEaS/1hJAEIMR4sNfydmBdPruzXrLbYAFCb2ZpQW9jEPB2w7gFjR7wtYLdCiMNApfZ9rO@vger.kernel.org, AJvYcCWPmOi1PgDxgkYKh5IPcN0B4vwpwrdUVIxLQ0gLYTXuCZBFGGkiU1OKShjsbv02hKY/+KY1BlOQeCKr@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz/cS6Ei252YdsGScqQJpgdtvlW0zlU1ZDpTnjdxSxYm6/5Vurn
-	KvAdyoJJ8mWAFQAFEhNk2ohVA1qHtTcNtmzbpfnQTDB4+/9bL5KO
-X-Gm-Gg: ASbGncudFCAyRlUWd/6qUvTYhj5b78E/Qx8rdklcA8de1zq1J2u+msaZzlN1P5vN6s1
-	4CAKIzfKebPW9FQCC1coafsq0gqGWzjqQX5EDzw5MUDRC7+npPsTHb6uhYSuyuZSnqXtDIoLpEL
-	N6uI5LcQmmUpkB0F3TduYWA4GFttPibmq+p0yovfGMRIsHxDQoBBZ6L9XREtI0aHM4GK6YRN4H9
-	WXp+PWs3pcz4077pc5RertyWpxXZYRoOm99AW5oHd6raEoo1aXuXm6qGav3
-X-Google-Smtp-Source: AGHT+IFwxIOIwaZWMhaN7+zUbd/VzyxqPZTFWKRTbTZVar0ITlWmPFKfB3gwF9By+Pk+SThJ38n7eQ==
-X-Received: by 2002:a5d:598f:0:b0:385:f5c4:b318 with SMTP id ffacd0b85a97d-385f5c4b718mr4410404f8f.31.1733167490701;
-        Mon, 02 Dec 2024 11:24:50 -0800 (PST)
-Received: from vamoirid-laptop ([2a04:ee41:82:7577:ea8a:93ec:a066:eb25])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-385ccd36b80sm13210273f8f.29.2024.12.02.11.24.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Dec 2024 11:24:50 -0800 (PST)
-Date: Mon, 2 Dec 2024 20:24:48 +0100
-From: Vasileios Amoiridis <vassilisamir@gmail.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=OF0rTiE0tYqFpgEAgUP8m63YFzLy147ISRr2Prd9dtUjmZZOxqGN7PSZ7NOtdFKZTffWCvx5KX9BYNHhAPq+7mT9Ab63HyiPoN7Gtw2k2hzH+kO+oWIc8hgSA4eES2wx8doE3nWR7mvpSv/dps/FwL+AqSANqOK3caRSBwV9U4o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LP/HF7Sp; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1733168374; x=1764704374;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ELAb8l5Gsy/ftM10z1411EjhX0fFdKa41HXQZK0rAU4=;
+  b=LP/HF7SpHb3q+FSnKXyJWnIxKFk/ZWJWEsjV1VNojAVOqDOgEkK57SuV
+   tURIvo03eFrOlhbMepUdP1/2ijO8hLW/m0sZs6HfCfshR8+cvRNaIsBvC
+   MtdXiE04Xg0Bpo/KmvXMjPARAoUaRa9mu1y/qg5ve7feKl9JZTAViKOWw
+   VXzI1qevBUiTRA5GR6/VWBH5PmVr+tnhMIsnnN3xGSRK7PBMu+Tt+T3do
+   DZRHG2z86I8zAyB0w5HfYpOMJjNKTGqrmp21ugiBjcwARjdVilirHy76x
+   aYxPP+0JQR9e1oE/rsKWSfxD4ZqLgvozMDZOLxGzxmfWMwjLrF97ukPyy
+   w==;
+X-CSE-ConnectionGUID: 200lfTjTTZG+hapiavgHBQ==
+X-CSE-MsgGUID: I/PPEV0CR1+/fbamr14hQQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="33230620"
+X-IronPort-AV: E=Sophos;i="6.12,203,1728975600"; 
+   d="scan'208";a="33230620"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Dec 2024 11:39:25 -0800
+X-CSE-ConnectionGUID: a80X3z8mS5uZnqnZnO4kKQ==
+X-CSE-MsgGUID: YGElb9ROQXWsWxpozJ9vgg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,203,1728975600"; 
+   d="scan'208";a="116466901"
+Received: from smile.fi.intel.com ([10.237.72.154])
+  by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Dec 2024 11:39:24 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1tICGN-00000003EVQ-3nuW;
+	Mon, 02 Dec 2024 21:39:19 +0200
+Date: Mon, 2 Dec 2024 21:39:19 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Vasileios Amoiridis <vassilisamir@gmail.com>
 Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
 	conor+dt@kernel.org, ajarizzo@gmail.com, ak@it-klinger.de,
 	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
 Subject: Re: [PATCH v2 0/3] iio: pressure: bmp280: Minor cleanup
-Message-ID: <Z04JgFlg57-slCsU@vamoirid-laptop>
+Message-ID: <Z04M552eW9LwYVhH@smile.fi.intel.com>
 References: <20241202181907.21471-1-vassilisamir@gmail.com>
  <Z03_fBy9PmqDGLg3@smile.fi.intel.com>
+ <Z04JgFlg57-slCsU@vamoirid-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,45 +82,48 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Z03_fBy9PmqDGLg3@smile.fi.intel.com>
+In-Reply-To: <Z04JgFlg57-slCsU@vamoirid-laptop>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Mon, Dec 02, 2024 at 08:42:04PM +0200, Andy Shevchenko wrote:
-> On Mon, Dec 02, 2024 at 07:19:04PM +0100, Vasileios Amoiridis wrote:
-> > Changes in v2:
+On Mon, Dec 02, 2024 at 08:24:48PM +0100, Vasileios Amoiridis wrote:
+> On Mon, Dec 02, 2024 at 08:42:04PM +0200, Andy Shevchenko wrote:
+> > On Mon, Dec 02, 2024 at 07:19:04PM +0100, Vasileios Amoiridis wrote:
+
+...
+
+> > > Changes in v2:
+> > > 
+> > > Patch 1/3:
+> > > 	- Switch if case for better readability
+> > > 
+> > > Patch 2/3:
+> > > 	- Reword commit message
+> > > 
+> > > ---
+> > > v1: https://lore.kernel.org/linux-iio/20241128232450.313862-1-vassilisamir@gmail.com/
+> > > 
+> > > This series adds the SPI interface description on the device-tree file
+> > > of the sensor, adds proper self-described sized variables and performs
+> > > a minor optimization in time variable names.
 > > 
-> > Patch 1/3:
-> > 	- Switch if case for better readability
-> > 
-> > Patch 2/3:
-> > 	- Reword commit message
-> > 
-> > ---
-> > v1: https://lore.kernel.org/linux-iio/20241128232450.313862-1-vassilisamir@gmail.com/
-> > 
-> > This series adds the SPI interface description on the device-tree file
-> > of the sensor, adds proper self-described sized variables and performs
-> > a minor optimization in time variable names.
+> > For some reason your patches still have v1 in them. I dunno how you prepare
+> > your series but I recommend one of the two options:
+> > 1) b4 relay
+> > 2) my script: https://github.com/andy-shev/home-bin-tools/blob/master/ge2maintainer.sh
+
+> Ah, my mistake! I didn't pay close attention. I use the --reroll-count
+> from git format-patch. I was not aware of those automated ways, I will
+> definitely use them. Thanks for pointing it out.
 > 
-> For some reason your patches still have v1 in them. I dunno how you prepare
-> your series but I recommend one of the two options:
-> 1) b4 relay
-> 2) my script: https://github.com/andy-shev/home-bin-tools/blob/master/ge2maintainer.sh
-> 
-> -- 
-> With Best Regards,
-> Andy Shevchenko
-> 
->
+> The patches are correct, the versioning is wrong, I can resend them if it
+> is necessary. 
 
-Hi Andy,
+Up to Jonathan, if the patches are correct, I don't see the necessity of
+resending until there are some issues being noted.
 
-Ah, my mistake! I didn't pay close attention. I use the --reroll-count
-from git format-patch. I was not aware of those automated ways, I will
-definitely use them. Thanks for pointing it out.
+-- 
+With Best Regards,
+Andy Shevchenko
 
-The patches are correct, the versioning is wrong, I can resend them if it
-is necessary. 
 
-Cheers,
-Vasilis
 
