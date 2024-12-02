@@ -1,101 +1,141 @@
-Return-Path: <devicetree+bounces-126140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126142-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6636D9E08F6
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 17:47:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 936209E0719
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 16:31:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7BA81B86738
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 14:52:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 196B3B2C008
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 14:55:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EB6420C472;
-	Mon,  2 Dec 2024 14:44:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 916D1205E03;
+	Mon,  2 Dec 2024 14:48:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="PUkoZ0sI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hb8RGcuY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BA9920896F;
-	Mon,  2 Dec 2024 14:44:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 862EE2040AA
+	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 14:48:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733150659; cv=none; b=HgycZRBdh2rjIumAcqE+PlSpfhajjVcZnT9kuf9sebslIrogPUHHEKksZGlrgQwGYh46WE0dtgcwXRkKWHsFqO5E4OUlv0k8XZIH7SEJmatrLVE5UjSBOraBqblU6xxVQ4gSaQ67nUriFwe9LxlYCbj6sdB/utEHhxUDFc0SMQo=
+	t=1733150935; cv=none; b=UeyJG5CpNFmgWSiYe5gUYE1M0u1wXfzsLTWXVTAfXMLP5xaaBxZnLKFUwSmM47nZJ8QX45/UgIxNZzMITOjEWOjdRMn9JGXK//KKjYkcOtwDuFQuKtDQacv4L9ULq62IDkiwoYl9csy8Uci9yGLQzgT59y1ClehfySuL2po0bYk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733150659; c=relaxed/simple;
-	bh=RhmgU2LQevOuNgGHPl7VYwtenvcTXhvRn2Ebadd1Sxs=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=CwoTUroiHTqk94xE529g2EHF59SayaGCtBWNiVeKnonPJH+n1zoNesLkxPc0HT0NUfF1nWhBZKDb2dJMc6Sj7tNOPi0OIhME1sE4hjgu7LrTQ1W8TCHLZwU+1UBU/HTPA30zcZpDk9yhLVwkP8B3Aoaa/6ecqIHtjjqrZ9ONWBY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=PUkoZ0sI; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-From: Dragan Simic <dsimic@manjaro.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1733150655;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=yRJZlOcms6c9rbeZYvsX5MTDNXpRGMuOjccJ3gJk83o=;
-	b=PUkoZ0sICV8QIm+TzgZgwT/vqL+UjIf3NGBGb4D6j6pG4v29Wgv3b4n0uv1BsxglBCNmIH
-	uODreYlZFOZvBu6Bla55ay6k7a88JO2vegl7w/C1uKNt6atCe4rGTesKRxdMw1lf3ErBdZ
-	SwZY/UPtaJtvmqUt0kSNhPAXX+KO5XvfrbS2EyKPYjw4IOKqcOtGR8FRvKqNT/X9F45v9z
-	pCf63WuI1kut/xi52Pq4ZAZ/L8upFLkVLyChu8t/Es9LeaBkIPoioS66Z/PzSHaGNuSBbd
-	UHXh4KwW+ec1Yq/jgzU8Pfrs1HSxEykI6tlI7PtH2l4+kKPJo3e497eV4UfaWQ==
-To: linux-rockchip@lists.infradead.org
-Cc: heiko@sntech.de,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	didi.debian@cknow.org,
-	marcin.juszkiewicz@linaro.org
-Subject: [PATCH] arm64: dts: rockchip: Describe why is HWRNG disabled in RK356x base dtsi
-Date: Mon,  2 Dec 2024 15:44:06 +0100
-Message-Id: <6b272e2f8f916c04b05db50df621659a5a7f29ab.1733149874.git.dsimic@manjaro.org>
+	s=arc-20240116; t=1733150935; c=relaxed/simple;
+	bh=XYknei693eTxY8aq2XA9wDND4yyWPBY7zhkDQopy7l0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OGEh+xk4V6/3Lo/o4nSzjqR6KtL9IXAz3WC3zV3d1jXfw8lx/21vncX6CNknkigClStIgG4tG2a6Yo2/FppAqKePDSrdzOTvPzBHXpgPfTSz451z4EWhfnIweBsJFaLP/C5SmVFsdwpPwweVN6qstVQgXwNWHxxDbpx1l1PzkcE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hb8RGcuY; arc=none smtp.client-ip=209.85.214.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-2156e078563so12869705ad.2
+        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 06:48:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733150932; x=1733755732; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=GpKDAl11fDGEFH2u0shHgW2aMBuMgZUzlcce2vSqOBc=;
+        b=hb8RGcuYKhOi7tMJgRYG8tTJ7+Ab1PeCtAzgDmTXJ6D/Y4h3Mst9WscRTg8KST32h+
+         omXakHLVSviaq8a0esaR+3lCm1fpoKXI2MVGKUeB5tsZ1X81ryefdMt1bEP7KsVNzl+G
+         imr8yt+UmHPkOo4X4TSFccdPnIe/b8gK6+mLjknlrmTKKY8Y/KpjYmuIZul3xn6yTt0l
+         xaUB3Z42AI/2FYZTjNy9M8dsxQXl/YA5AAyc9zerb7Q7fOHoE00uDgzPii0SN2L2p622
+         JV55ClJOMxlUu9ZU2zDOCaMdlnVXLALXvKENiNyOR6gyeRVecZiBbNCBfgeRdI/qpa+7
+         lT+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733150932; x=1733755732;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GpKDAl11fDGEFH2u0shHgW2aMBuMgZUzlcce2vSqOBc=;
+        b=Mca5l2zXhCc82DK7y/kok9fLCiULOFySz28Xe3Hsfp8ebBAkRC94ICW9GMhle07lYI
+         MlzXOsCNHi0NAP7CHUvWd2ECiO5mYu52RGOq+n4Iykpm6CuxladusxgjrG96j9s3gmWj
+         60uhu5wTXB3E9jSAtg8U6+Se0OEg6HvBEgAgwLv8rJwx+LaXS5jYa6oEN613aCjIKSk/
+         19XqjI4qqUCuDL+4V4mwXxVsbkzeCzD5ZGR2Fz5a6MDAE8Hbi3S4Pgn+PHgGjl0IkeyS
+         dkVVMHaWQ26efpkErizaOuGvEA8bzNXDFWj5j/5tLLBziM4eGLklh5VUsEwgxj3ORvME
+         w7Fg==
+X-Forwarded-Encrypted: i=1; AJvYcCWbT3g/D+HZ41W7sv6QAavwxPSSldxxv9XMUvbL92orYD++F+IEDOfmhHMfVaHV8yPP4rIz8L875O7R@vger.kernel.org
+X-Gm-Message-State: AOJu0YxX/5B17DDCHqCpAoADTqRD1tEpWkAT3vZA0gH9Z1IPf6HZeini
+	74017xKEqCIvE2G5Zu6R3B9JaANv68C15mTMjQl2yoPrKhRehhEJFTdQLhZROw==
+X-Gm-Gg: ASbGncsiALoz5v7ytM8WUE4V+U2a+H2kGrjSMiHg6Q2grUsS1tTvjV5ezuggQrLNGb7
+	rjLuqxNv+fUm0/TVDDSuGK89UweTsJGAc2bKBVE5zFLfS2mX+wtniglKaBSEHZrUUdR/QP8pDXD
+	OLZG/RQc49X/xnRpp3evveNEnFncAcg7i3xS+iCjgKkHTOxz89WDYpHQPWo6fzI4wU2EaZmx35U
+	LoLkjAbdB30mouDwvKLOJiR5zWRU8hQCPzujWLCGHFzFZUlK13bG7Oib0lyuw==
+X-Google-Smtp-Source: AGHT+IEqa+tt8+8vAVIq3UE9y4O1HQ9UBxGGwNoUbUmxwVoafsrUcqpH/ZT38yQrrxK6IssCIyvowg==
+X-Received: by 2002:a17:902:f611:b0:215:3fc6:7994 with SMTP id d9443c01a7336-2153fc67ba5mr207835105ad.49.1733150931824;
+        Mon, 02 Dec 2024 06:48:51 -0800 (PST)
+Received: from thinkpad ([120.60.140.110])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2154704346asm57084655ad.18.2024.12.02.06.48.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Dec 2024 06:48:51 -0800 (PST)
+Date: Mon, 2 Dec 2024 20:18:44 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Xin Liu <quic_liuxin@quicinc.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Avri Altman <avri.altman@wdc.com>,
+	Bart Van Assche <bvanassche@acm.org>,
+	Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org,
+	quic_jiegan@quicinc.com, quic_aiquny@quicinc.com,
+	quic_tingweiz@quicinc.com, quic_sayalil@quicinc.com,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: qcs615-ride: Enable UFS node
+Message-ID: <20241202144844.erqdn5ltsblyhy27@thinkpad>
+References: <20241122064428.278752-1-quic_liuxin@quicinc.com>
+ <20241122064428.278752-4-quic_liuxin@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+In-Reply-To: <20241122064428.278752-4-quic_liuxin@quicinc.com>
 
-Despite the presence of the hardware random number generator (HWRNG) in the
-different Rockchip RK356x SoC variants, it remains disabled for the RK3566
-SoC because testing showed [1] that it produces unacceptably low quality of
-random data, for some yet unknown reason.  The HWRNG is enabled for the RK3568
-SoC, on which the testing showed good quality of the generated random data.
+On Fri, Nov 22, 2024 at 02:44:28PM +0800, Xin Liu wrote:
+> From: Sayali Lokhande <quic_sayalil@quicinc.com>
+> 
+> Enable UFS on the Qualcomm QCS615 Ride platform.
+> 
+> Signed-off-by: Sayali Lokhande <quic_sayalil@quicinc.com>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Co-developed-by: Xin Liu <quic_liuxin@quicinc.com>
+> Signed-off-by: Xin Liu <quic_liuxin@quicinc.com>
 
-To avoid possible confusion in the future, [2] let's have this described
-briefly in the RK356x base SoC dtsi.
+Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-[1] https://lore.kernel.org/linux-rockchip/cover.1720969799.git.daniel@makrotopia.org/T/#u
-[2] https://lore.kernel.org/linux-rockchip/20241201234613.52322-1-pbrobinson@gmail.com/T/#u
+One question below.
 
-Signed-off-by: Dragan Simic <dsimic@manjaro.org>
----
- arch/arm64/boot/dts/rockchip/rk356x-base.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+> ---
+>  arch/arm64/boot/dts/qcom/qcs615-ride.dts | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+> index ee6cab3924a6..79634646350b 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+> @@ -214,6 +214,22 @@ &uart0 {
+>  	status = "okay";
+>  };
+>  
+> +&ufs_mem_hc {
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
-index 62be06f3b863..ab8f42c0a843 100644
---- a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
-@@ -1032,6 +1032,11 @@ sdhci: mmc@fe310000 {
- 		status = "disabled";
- 	};
- 
-+	/*
-+	 * Testing showed that the HWRNG found in RK3566 produces unacceptably
-+	 * low quality of random data, so the HWRNG isn't enabled for all RK356x
-+	 * SoC variants despite its presence.
-+	 */
- 	rng: rng@fe388000 {
- 		compatible = "rockchip,rk3568-rng";
- 		reg = <0x0 0xfe388000 0x0 0x4000>;
+No 'reset-gpios' to reset the UFS device?
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
