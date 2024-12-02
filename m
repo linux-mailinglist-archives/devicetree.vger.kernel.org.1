@@ -1,77 +1,96 @@
-Return-Path: <devicetree+bounces-126054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126055-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 475AD9E00EE
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 12:51:07 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 02AC316221A
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 11:51:04 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 836C51FE456;
-	Mon,  2 Dec 2024 11:51:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mBftX+RP"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B35789E00FB
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 12:53:16 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 108061FDE0B;
-	Mon,  2 Dec 2024 11:51:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 744282824C0
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 11:53:15 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB9541FE47D;
+	Mon,  2 Dec 2024 11:53:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yagIull6"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C886C1FE460
+	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 11:53:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733140263; cv=none; b=PWWrmYBYo6tgkyE4cyYzqN7UH7MO7+PdRHnWwzbMVnUYiJgZtfeOVY2T7DMYw2SmNTCY6bH8NWfhYZXYxLyiV1VMSzdd3DQ68lkbV7aTWuKnl9DyHJW1Q1o7UBoQTpzW3pOjjgOfdCHBgQwJTHu1M/QML6TCXe+KmxzRp9GSxdA=
+	t=1733140385; cv=none; b=mY7vtBtlGHG3beAJCqbItz4TEgwNlZnZ1guEKj/bqnQIqQMkU98af5HdJeRbkvz6wqM0hQywzTLaXdFiDoWIaUPqj5cFcLJDAFMSHhXqb/KlfEIgtV0u4f3LeRkGIUgQcv/AtG1VE38M/+FOzjvIhvOSVDOVJFF15yI/SmIV0lo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733140263; c=relaxed/simple;
-	bh=6s+NoKimPKemUsivQ2UQfp09dpUvkW+1d2SOJ8lE8Ts=;
+	s=arc-20240116; t=1733140385; c=relaxed/simple;
+	bh=8u0/pKiZzR0QMfbIwSXjbnuu80JXSFmRExSsBIV679g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o1R/LAkKz+HX7kVE6SjtqAHn2fm4r9sv/9bw0URwZ+KF9qbyqvMpId/F0k0d7g76W7fgdHZl/NtnvrWJ2Xhd2FohvdrAS2ty9v0wHgN8fb9DJpJ2vH3DyQKheCLfJNdgJqcYE98iPG+1zMj+2x+TPMn3OCqhyFOkWRJsDEPROso=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mBftX+RP; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1733140261; x=1764676261;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=6s+NoKimPKemUsivQ2UQfp09dpUvkW+1d2SOJ8lE8Ts=;
-  b=mBftX+RPASQON6ykWFjqdbeeRraYXXkOuC4Wg/cpFcX2yKddo1JDwbS4
-   ilFwVZmHvgd/O3R6H7PgPX9Z/pm3KDoyg9zfbqbn/FZoNTQAAX3gaWIDq
-   UUkzOZUb4SS1ddjNrCmUlSQIC567vafr/KGOySHReac4qZHCrIsSWTwzU
-   UTPoKzGHgZnQ1OQfzW4rcPNT4fny7hxHT2pVdqVrgEdOzktATb68G+E43
-   M+Kxav5Oaa9qCRIH/H9KySEAoQIgRXWqWmELmnyhgz3T1onhw7Jse5ofm
-   32sEVaYSKxCdTaKDBr038Iz2Y/SBVtXAbvvCcTeM2kBiTtrJgiWa6B2v3
-   Q==;
-X-CSE-ConnectionGUID: KA6uCkhtRPG07d0meB7+qg==
-X-CSE-MsgGUID: B7PmB1v0Sy+IkRe/FN5iJw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="43915758"
-X-IronPort-AV: E=Sophos;i="6.12,202,1728975600"; 
-   d="scan'208";a="43915758"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Dec 2024 03:51:00 -0800
-X-CSE-ConnectionGUID: twTOEWXkQZG/Kp2jTLzKIg==
-X-CSE-MsgGUID: D07UsJe3T1OBrjeWggGlWg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
-   d="scan'208";a="98117906"
-Received: from lkp-server02.sh.intel.com (HELO 36a1563c48ff) ([10.239.97.151])
-  by orviesa003.jf.intel.com with ESMTP; 02 Dec 2024 03:50:58 -0800
-Received: from kbuild by 36a1563c48ff with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tI4x5-0002NM-2S;
-	Mon, 02 Dec 2024 11:50:55 +0000
-Date: Mon, 2 Dec 2024 19:50:10 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ben Zong-You Xie <ben717@andestech.com>, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, ukleinek@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	Ben Zong-You Xie <ben717@andestech.com>
-Subject: Re: [PATCH v2 2/2] pwm: atcpit100: add Andes PWM driver support
-Message-ID: <202412021900.oCRrT3PV-lkp@intel.com>
-References: <20241202060147.1271264-3-ben717@andestech.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Mxu0z3qbPLN3VC4T2j5Z8tfdVCzF3MQxnebq4FzfHlFx0zr+TYYPYXmN4cwklOW3R8YyU0ROpf0BiBcNQ+wilaJP9bTvWFDcfQdxyctw24p+WdoMkgTydg0RuZHYL+3suJnpnzcnhRtkGejZa/3qU8Dhk2BRN2rPKo4iRv6jCTw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yagIull6; arc=none smtp.client-ip=209.85.208.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2f7657f9f62so38996531fa.3
+        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 03:53:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733140382; x=1733745182; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=UfgDbmGn22ssjxiKjmQ0kPNy7r0F8TDilTFlsUWSPaw=;
+        b=yagIull6sud+PgG6fzBASbhFh+RN7LAIsfF+pQMzZUztK4nQguYz+K7va14ZIfj+t0
+         T3fR3aLzHgu+X3EHE7HauEmsozCQl9ULR/etDVe+XuZreXhWQ8UkXt4G2oeVqgZIF2At
+         KyJaCpM0mL1/RU8O0zNIHMOG5tew8B/3oPbEyd7ra1rhr6PLE32nFqlCsQGHrvCSg7wN
+         RXVAlbY3t4Wxj5lFygmuTTFNahgFvDewLTUS5FjAdGnq+i0mbrbvTjAI77OQzhC97ZZa
+         F7v/M+mcQ6dpJhhcxowhATIG3AaONhkeTYbCepzyTuxNOLvbvPx1tH+UiZHfLVQATmqj
+         IaaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733140382; x=1733745182;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UfgDbmGn22ssjxiKjmQ0kPNy7r0F8TDilTFlsUWSPaw=;
+        b=DXtYH5cw589vyZX/e+yrscksXNykpQpgWZ/eEh2jECEyEwJWiod6r53sM7pG/eYb6C
+         GLAO6NRXFmzw97CzZJB64PXJKEH0q6Ed1V8CMwvWSNKzma/NZ0oyb1wgVyrSC+XLpwUS
+         l0OFRkH100Q44ABI9gfejBmYNMun+9+YXkrP0b+HrvMNLOpJetGvBJhwEOpKr4a8BR5R
+         G6i7i08I9PzSgaWexWBzFCxgjbBOR90vF6qxsdT/vSpO1fYbg+P6F7Sw/5h70QA8gHcc
+         ul2ilQl0FiVupVCSTb7RrkakSF0Z8ayzCr7ZtDrDufvDev029JxkOhcOnz/zabrdSU+f
+         94Tg==
+X-Forwarded-Encrypted: i=1; AJvYcCXc4ni4oRnoCPAHDTRCJ551SFx13oiAeDPpkJEDhDB/a8utQj6QSxbB08E1WQobLUsQz9W0vNjNE660@vger.kernel.org
+X-Gm-Message-State: AOJu0YzoyIs/D4r2yj9iS+F4LdchXvhdUPg+Y3OvXL5McCXYkGtirvry
+	V8s7x+IPmenmJGSzLfhdGiVatjrjF0phXaw0H67UtGF+qsa6wvdZwZU9KKsSbnQ=
+X-Gm-Gg: ASbGncsEjqKFxD+aWhJoLmc6qhC6q9vZ3lCOPM0pXS/5OU25ubuFkYUCTXyh0o/XB07
+	KE+8hA/iozJ1yU96g92Xv19bEs/Ks67DO4bhM0TWx6yrE8O2PO6LV9SEQwW5Kr2kLHL8b7xvOnP
+	N80UcDgXku4Owx744wR1+2nBn1AQXBAFqyNS9Ms2aZ5umhN3TFgD5MzR9m4RDdoZp47c3ZuIk8/
+	zPscPuK/Hw0qMzWv8RLlFIVzWhC5nq47H6mDY1hH1RbmEA/qdXlhaKKkeT+kjjvOWfIvWM7jUDk
+	qsdaqz6kw5g+yke6iFARFdb+FVAADg==
+X-Google-Smtp-Source: AGHT+IF7qcUlqwZCH0DJeBeEV13wXeWiYQJ32iffEYuN9hp6lhdLXbyTbs8ChuNW2LVLJzXXZe/bZw==
+X-Received: by 2002:a2e:b8c7:0:b0:2ff:559e:c94b with SMTP id 38308e7fff4ca-2ffd6059c0amr97739501fa.17.1733140380217;
+        Mon, 02 Dec 2024 03:53:00 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ffdfc097c3sm12501411fa.54.2024.12.02.03.52.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Dec 2024 03:52:58 -0800 (PST)
+Date: Mon, 2 Dec 2024 13:52:57 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Taniya Das <quic_tdas@quicinc.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, 
+	"Rob Herring (Arm)" <robh@kernel.org>, Will Deacon <will@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Abhishek Sahu <absahu@codeaurora.org>, 
+	Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
+	Imran Shaik <quic_imrashai@quicinc.com>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Ajit Pandey <quic_ajipan@quicinc.com>
+Subject: Re: [PATCH v3 05/11] dt-bindings: clock: Add Qualcomm QCS615 Display
+ clock controller
+Message-ID: <afbxakprrm62hnlirqr3244wuf4zzlureejlce76av5xyqsuyy@gadkbshd3dam>
+References: <20241108-qcs615-mm-clockcontroller-v3-0-7d3b2d235fdf@quicinc.com>
+ <20241108-qcs615-mm-clockcontroller-v3-5-7d3b2d235fdf@quicinc.com>
+ <173104478441.565041.9851772057058427001.robh@kernel.org>
+ <s5rie2osuh2ngkwd2jinly7ulogqqeqois724h3e54a7rqrn2w@wn3yypxi7wca>
+ <74e5b8b5-ee09-4fb5-9643-14ea11c445e5@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,140 +99,54 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241202060147.1271264-3-ben717@andestech.com>
+In-Reply-To: <74e5b8b5-ee09-4fb5-9643-14ea11c445e5@quicinc.com>
 
-Hi Ben,
+On Mon, Dec 02, 2024 at 01:05:54PM +0530, Taniya Das wrote:
+> 
+> 
+> On 11/8/2024 5:09 PM, Krzysztof Kozlowski wrote:
+> > > dtschema/dtc warnings/errors:
+> > > Documentation/devicetree/bindings/clock/qcom,qcs615-dispcc.example.dts:19:18: fatal error: dt-bindings/clock/qcom,qcs615-gcc.h: No such file or directory
+> > >     19 |         #include <dt-bindings/clock/qcom,qcs615-gcc.h>
+> > >        |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> > > compilation terminated.
+> > > make[2]: *** [scripts/Makefile.dtbs:129: Documentation/devicetree/bindings/clock/qcom,qcs615-dispcc.example.dtb] Error 1
+> > > make[2]: *** Waiting for unfinished jobs....
+> > > make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1442: dt_binding_check] Error 2
+> > > make: *** [Makefile:224: __sub-make] Error 2
+> > > 
+> > > doc reference errors (make refcheckdocs):
+> > > 
+> > > Seehttps://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241108-qcs615-mm-clockcontroller-v3-5-7d3b2d235fdf@quicinc.com
+> > > 
+> > > The base for the series is generally the latest rc1. A different dependency
+> > > should be noted in*this*  patch.
+> > I see this patchset being sent again without changes and receiving same
+> > errors again, so maybe you expect different results, like some review? I
+> > don't know, but just in case that's the case please carefully read
+> > message you got.
+> > 
+> > If lack of review is expected, then of course no problem here.
+> 
+> The base patch dependency(GCC) clock controller was mentioned in the cover
+> letter:
+> https://lore.kernel.org/all/20241022-qcs615-clock-driver-v4-0-3d716ad0d987@quicinc.com/
+> 
+> Thanks, I will keep a note to notify reviewers explicitly mentioning the
+> dependency.
 
-kernel test robot noticed the following build warnings:
+This is usually being solved by:
+- specifying correct base id and prerequisites in b4 prep --edit-deps,
+- using ephemeral DT nodes in the bindings examples.
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master thierry-reding-pwm/for-next v6.13-rc1 next-20241128]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Ben-Zong-You-Xie/dt-bindings-pwm-add-atcpit100-pwm/20241202-140437
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20241202060147.1271264-3-ben717%40andestech.com
-patch subject: [PATCH v2 2/2] pwm: atcpit100: add Andes PWM driver support
-config: m68k-allyesconfig (https://download.01.org/0day-ci/archive/20241202/202412021900.oCRrT3PV-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241202/202412021900.oCRrT3PV-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202412021900.oCRrT3PV-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   In file included from include/linux/jiffies.h:7,
-                    from include/linux/ktime.h:25,
-                    from include/linux/timer.h:6,
-                    from include/linux/workqueue.h:9,
-                    from include/linux/srcu.h:21,
-                    from include/linux/notifier.h:16,
-                    from include/linux/clk.h:14,
-                    from drivers/pwm/pwm-atcpit100.c:18:
-   drivers/pwm/pwm-atcpit100.c: In function 'atcpit100_pwm_config':
->> drivers/pwm/pwm-atcpit100.c:123:59: warning: integer overflow in expression of type 'long int' results in '94030336' [-Woverflow]
-     123 |                                 (ATCPIT100_CYCLE_MAX + 1) * NSEC_PER_SEC,
-         |                                                           ^
-   include/linux/math64.h:298:39: note: in definition of macro 'DIV64_U64_ROUND_UP'
-     298 |         ({ u64 _tmp = (d); div64_u64((ll) + _tmp - 1, _tmp); })
-         |                                       ^~
-
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for GET_FREE_REGION
-   Depends on [n]: SPARSEMEM [=n]
-   Selected by [y]:
-   - RESOURCE_KUNIT_TEST [=y] && RUNTIME_TESTING_MENU [=y] && KUNIT [=y]
-
-
-vim +123 drivers/pwm/pwm-atcpit100.c
-
-    76	
-    77	static int atcpit100_pwm_config(struct pwm_chip *chip, unsigned int channel,
-    78					const struct pwm_state *state)
-    79	{
-    80		int clk;
-    81		int ret;
-    82		unsigned int reload_val;
-    83		unsigned long rate[NUM_ATCPIT100_CLK];
-    84		u64 max_period;
-    85		u64 min_period;
-    86		u64 high_cycle;
-    87		u64 low_cycle;
-    88		struct atcpit100_pwm *ap = to_atcpit100_pwm(chip);
-    89		unsigned int ctrl_val = ATCPIT100_CHANNEL_CTRL_MODE_PWM;
-    90		u64 high_period = state->duty_cycle;
-    91		u64 low_period = state->period - high_period;
-    92	
-    93		rate[ATCPIT100_CLK_EXT] = clk_get_rate(ap->ext_clk);
-    94		rate[ATCPIT100_CLK_APB] = clk_get_rate(ap->apb_clk);
-    95	
-    96		/*
-    97		 * Reload register for PWM mode:
-    98		 *
-    99		 *		31 : 16    15 : 0
-   100		 *		PWM16_Hi | PWM16_Lo
-   101		 *
-   102		 * In the PWM mode, the high period is (PWM16_Hi + 1) cycles, and the
-   103		 * low period is (PWM16_Lo + 1) cycles. Since we need to write
-   104		 * "numcycles - 1" to the register, the valid range of numcycles will
-   105		 * be between 1 to 0x10000. Calculate the possible periods that satisfy
-   106		 * the above restriction:
-   107		 *
-   108		 *	Let m = 1, M = 0x10000,
-   109		 *	m <= floor(cycle) <= M
-   110		 * <=>	m <= floor(rate * period / NSEC_PER_SEC) <= M
-   111		 * <=>	m <= rate * period / NSEC_PER_SEC < M + 1
-   112		 * <=>	m * NSEC_PER_SEC / rate <= period < (M + 1) * NSEC_PER_SEC / rate
-   113		 * <=>	ceil(m * NSEC_PER_SEC / rate) <= period <= ceil((M + 1) * NSEC_PER_SEC / rate) - 1
-   114		 *
-   115		 * Since there are two clock sources for ATCPIT100, if the period is not
-   116		 * valid for the first clock source, then the second clock source will
-   117		 * be checked. Reject the request when both clock sources are not valid
-   118		 * for the settings.
-   119		 */
-   120		for (clk = ATCPIT100_CLK_EXT; clk < NUM_ATCPIT100_CLK; clk++) {
-   121			max_period =
-   122				DIV64_U64_ROUND_UP(
- > 123					(ATCPIT100_CYCLE_MAX + 1) * NSEC_PER_SEC,
-   124					rate[clk]) - 1;
-   125			min_period =
-   126				DIV64_U64_ROUND_UP(ATCPIT100_CYCLE_MIN * NSEC_PER_SEC,
-   127						   rate[clk]);
-   128	
-   129			if (ATCPIT100_IS_VALID_PERIOD(high_period) &&
-   130			    ATCPIT100_IS_VALID_PERIOD(low_period))
-   131				break;
-   132		}
-   133	
-   134		if (clk == NUM_ATCPIT100_CLK)
-   135			return -EINVAL;
-   136	
-   137		/*
-   138		 * Once changing the clock source here, the output will be neither the
-   139		 * old one nor the new one until writing to the reload register.
-   140		 */
-   141		ctrl_val |= clk ? ATCPIT100_CHANNEL_CTRL_CLK : 0;
-   142		ret = regmap_update_bits(ap->regmap, ATCPIT100_CHANNEL_CTRL(channel),
-   143					 ATCPIT100_CHANNEL_CTRL_MASK, ctrl_val);
-   144		if (ret)
-   145			return ret;
-   146	
-   147		high_cycle = mul_u64_u64_div_u64(rate[clk], high_period, NSEC_PER_SEC);
-   148		low_cycle = mul_u64_u64_div_u64(rate[clk], low_period, NSEC_PER_SEC);
-   149		reload_val = FIELD_PREP(ATCPIT100_CHANNEL_RELOAD_HIGH, high_cycle - 1) |
-   150			     FIELD_PREP(ATCPIT100_CHANNEL_RELOAD_LOW, low_cycle - 1);
-   151	
-   152		return regmap_write(ap->regmap, ATCPIT100_CHANNEL_RELOAD(channel),
-   153				    reload_val);
-   154	}
-   155	
+I think either of the options could have worked here. I don't know if
+the bot picks up prerequisites from the cover letter, but even if it
+doesn't, the issue is on its side, not on yours. However we still see
+the same issue on and on. Could you please update the internal
+guidelines on writing DT bindings so that the issue of (not) using
+bindings of (other) clock controllers gets handled there?
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+With best wishes
+Dmitry
 
