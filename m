@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-126306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 276429E0F52
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 00:29:59 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 981BD9E0F4B
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 00:29:37 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E65C9282911
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 23:29:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 59A78164EAF
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 23:29:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8209B1DFE34;
-	Mon,  2 Dec 2024 23:29:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 682541DF248;
+	Mon,  2 Dec 2024 23:29:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="XkormIfK"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="eE0xRWhZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7D0E1DFE2A
-	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 23:29:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D13011D79B4
+	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 23:29:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733182184; cv=none; b=VwvmwF6HhcBqWdYnww3oWHlc6bIGXG3n2c13pmyq5Z5VwnJuHa1e/MV31MyrfItYm6FAn1/VjAudpUVIjxVwRmoQDYlhIxsCM01GdNAhYwS+LfVwOEFo1agcCCznORBCfonp3lbyGmSXcYB/U8980f6E6427cTYpl2ZdAnPf1Zo=
+	t=1733182174; cv=none; b=hbOhhgeGWZnO1wkUpi0IXvD46MXTj6SoErpiMQoGrjDq/d8Jg9Kp7hVArAfXDWmLJqrHr1C77vogGFC4Fs2YugNvIUI++lN1DO4W/aOb+0cMCG8Z941IAnW9l6sAEIV47YYOsZT5M8cfrPTTAvGPiWpITEAZ9EqaPqpObmdWRVg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733182184; c=relaxed/simple;
-	bh=Kbb+ZpAkWtDhPIIEmlWdl5PSOqDB55lz6StWm0cOpA8=;
+	s=arc-20240116; t=1733182174; c=relaxed/simple;
+	bh=/pLj/az1S4tFUlP3jAN+IbWfwYdpYAlJZ11KaKtXLuM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VzALk9iPcR/Fxgw/HRIt6FYmq97h6FhrDAqDOx7r4BlzLlg+7NA/n37Mxe0I4B69mffyLBwBtGyz3NMoh+Mgoz2dpvHRAfgHq+81QQtahaz4dIE49mz64dsrnB45ByvufiJdgVQnwIYURMSq01b++exJGHiUYTGIhUk6P3cjvec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=XkormIfK; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=S9s74usP9Ut1Q4gXoBH6Im26DPYJHO+BNxL5kPmfTFY2OXPIqzB1trYczsJpxPTPmUNL+j19XdO6kZoXu0S7BfYbtLvIWSaTzamnSEPEUnwepP8G6VTeKw3T2/xy5TvgIs7BvvQiAlTrS6PSkupe5nX108mb63xjPw3Bab9urjY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=eE0xRWhZ; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
@@ -37,37 +37,34 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=LXjlLr10nL652nOirJQGwQvnZ/wVzDxyYQeBTmt9Ex8=; b=XkormIfKy0bQwW9lEejYRetW0r
-	R233wHdQwvqZ2nfj73Wkt7VeS27IAGG6VHETUq3MpLKyiJWSO0OA/fijtKCvne/OyoY5OLKgn3JCL
-	ayZvnqF4Zed1JhvLfxN6QHKusFjilhGXldsorlCQUMi1a9uWQEOs2XgoNJkyprLI6CM4ZI8J2cyEF
-	/JEW7r5Rm/3xIKufsDB6VtNTLgJ0/e5zwsFt9EfusZ+uAOSRHJKBWFxgwRAckmX/7fY9BiLcci9o4
-	S+MIMdue6RewhnfXgt1OsbG9CC/OBsiayJ7y0cyTd6zSfl3zlpvZqnNqOo880VGe+CZrUMr3id4wm
-	ENE79gGg==;
+	bh=29fB5kRe7CnPK8fdvqH3jrlWfZQ7tWQhR8QI7YnEq5o=; b=eE0xRWhZiFOHfjubLdvTdKXZKR
+	Mz1Ml87vJo0aETOg4TanzKDvVuVgTmKDOtZ+sjyN//FraH/wi2Edjfi7Rienm6PTYpTTAoGCEBJqL
+	RdJL4DvD5po1cIdTDUB6ilBLGi0D1WRNMd5khvCx39LhwtWBkbjnwT0KuVHMXB3mUDRbzp3o8CekK
+	40fDHvhlcHQ+kkXXr7u6R8ZMoItVCJ3vSzmUQHnJqDxSoaH6/JTTfv/vIhkmFKWlSK79KWvICxA45
+	COQVRZLNnw8dOwxqGcZZjsbubfBjSbpp94vE5t55Da7koQxEXQZqUv8hxqOmjUr9ylSHGgopGW95y
+	XbKAIG5g==;
 Received: from i53875bc4.versanet.de ([83.135.91.196] helo=localhost.localdomain)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1tIFr6-0000OB-IN; Tue, 03 Dec 2024 00:29:28 +0100
+	id 1tIFr7-0000OB-1l; Tue, 03 Dec 2024 00:29:29 +0100
 From: Heiko Stuebner <heiko@sntech.de>
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	Conor Dooley <conor+dt@kernel.org>,
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Yifeng Zhao <yifeng.zhao@rock-chips.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Niklas Cassel <cassel@kernel.org>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Damien Le Moal <dlemoal@kernel.org>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: Re: (subset) [PATCH 1/2] arm64: dts: rockchip: rk3568: add reset-names for combphy
-Date: Tue,  3 Dec 2024 00:29:14 +0100
-Message-ID: <173318214612.1403925.12222889205247999008.b4-ty@sntech.de>
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: rockchip: enable the mmu600_pcie IOMMU on the rk3588 SoC
+Date: Tue,  3 Dec 2024 00:29:15 +0100
+Message-ID: <173318214614.1403925.12812225885440711307.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241122073006.99309-1-amadeus@jmu.edu.cn>
-References: <20241122073006.99309-1-amadeus@jmu.edu.cn>
+In-Reply-To: <20241107123732.1160063-2-cassel@kernel.org>
+References: <20241107123732.1160063-2-cassel@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,15 +75,22 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Fri, 22 Nov 2024 15:30:05 +0800, Chukun Pan wrote:
-> The reset-names of combphy are missing, add it.
+On Thu, 07 Nov 2024 13:37:33 +0100, Niklas Cassel wrote:
+> Commit cd81d3a0695c ("arm64: dts: rockchip: add rk3588 pcie and php
+> IOMMUs") added the rk3588 SoC's pcie IOMMU and php IOMMU as disabled.
 > 
+> The mmu600_pcie is connected with the five PCIe controllers.
+> See 8.2 Block Diagram, in rk3588 TRM (Technical Reference Manual).
 > 
+> The five PCIe controllers are:
+> pcie3x4, pcie3x2, pcie2x1l0, pcie2x1l1, pcie2x1l2.
+> 
+> [...]
 
 Applied, thanks!
 
-[1/2] arm64: dts: rockchip: rk3568: add reset-names for combphy
-      commit: 8b9c12757f919157752646faf3821abf2b7d2a64
+[1/1] arm64: dts: rockchip: enable the mmu600_pcie IOMMU on the rk3588 SoC
+      commit: da92d3dfc871e821a1bface3ba5afcf8cda19805
 
 Best regards,
 -- 
