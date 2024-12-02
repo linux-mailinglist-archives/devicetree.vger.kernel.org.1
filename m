@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-126030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126036-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3E949DFFB5
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 12:07:31 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EC779DFFDF
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 12:13:44 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8093716069C
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 11:07:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D078281D91
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 11:13:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BDC61FCFF2;
-	Mon,  2 Dec 2024 11:07:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 313D71FCFFD;
+	Mon,  2 Dec 2024 11:13:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="learJTxA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m34HbNQo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2149128399;
-	Mon,  2 Dec 2024 11:07:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E86261FA167;
+	Mon,  2 Dec 2024 11:13:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733137643; cv=none; b=YOQOz2jEnEHuf9gJU/RcGFGcv1UHpAAtIl6QT2ODaBuC0YT2AqzNCPq5uRNvXv/NUttv9XYgnFWbbXPEKM1MP2ouY1GkjoIdK1rdDtNS4l59RMm2XGPxnXieqEJn9domTGcT1m2dyeZREpDjWql5OcCwpsQRP1lATYzy5nASAe0=
+	t=1733138019; cv=none; b=p9HU53wk+UlKsv7Uc/iXmQzALEkadtNyTQHUAdmOBJooLeLa5WTLXAM9uv3Swzs5VTEUwgiKRSpmZW1eRBNQhcJOdWzXd7IxQp2ShwIiuU4NS4tDIib9Mw19+AP0lnFUnIkHRtatBC6M3wf6qJ6+jpyq89ruXkZdV+1LvESu4mU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733137643; c=relaxed/simple;
-	bh=HTnR6QNXRoEAw79Cedv/RZZNLWaGNO75PTZKzHXcD/g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kvf34QrH6KKNC8P69td0xGP6SZ1O28vxgnHpez/oZmsvh1iW5/Vy2LqxUB/KmplmOJt7iTsu4VDm/Y8lByM9j1fL6FbhNgEgcpL2FRtX3oiiSa8c+3dcXur7CwwIquIg4HmCLw5I55NZB4FvWmwY0HCXPM87XGZs55jl/ZlNuFc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=learJTxA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B745C4CED1;
-	Mon,  2 Dec 2024 11:07:19 +0000 (UTC)
+	s=arc-20240116; t=1733138019; c=relaxed/simple;
+	bh=RNC+kkS0e2Xbu+AuY957Pz/SQYrDMXQ+AGut6URecdw=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=KAan+Ad4JSd65je9stZS6MOu2FLmhx8FuXxvhEiQyO1CMRjc/a1fyTrvmhEXtzPAkSLoNomhQ3iqjU2Lq+ZxkTErhvGkHcEOQdHha9956gf0PbZDO8uHhog49GZYYf4zl8UQfVkOy8BQbn/54h7ESatrqUQC8gb9ilIqBTQ5qz4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m34HbNQo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5AC63C4CED1;
+	Mon,  2 Dec 2024 11:13:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733137642;
-	bh=HTnR6QNXRoEAw79Cedv/RZZNLWaGNO75PTZKzHXcD/g=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=learJTxAmC0Jd8r+CT3JAmJ5qCKKgzwPfwAMTEFGSXebSeSlemY7c36lsGcTfsmfj
-	 fFQD4/aOMcM3gtc/4PNQaY91XUVpA2eGk2ABLan/5YmR56rdwt1kTiqDrk87Ez7uIG
-	 5l/LiT61oU4dc4MYQwRG+wIIkb9bdvauQBjrL6NumcV6CGwEkHbn4bNVvGLijixE0C
-	 700BxjAL+9V9ysJ7ZjMVxhWtpvsS7Y5PyhRwO92pQsUzCQkqVXod4uXCFmja/8aQSX
-	 hoSUpIKj+OA5tN91MLK4Hr7w8o1TwmYN97KrchDFE7kR71l+z1PCPTrqDTEv1qwFrP
-	 NWy7cSgEolxpQ==
-Message-ID: <abeb632b-9efc-48e5-a28a-a9d7c02e0a6e@kernel.org>
-Date: Mon, 2 Dec 2024 12:07:17 +0100
+	s=k20201202; t=1733138018;
+	bh=RNC+kkS0e2Xbu+AuY957Pz/SQYrDMXQ+AGut6URecdw=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=m34HbNQoLpYYY+m6HnBuwB74SsFteM2zAyvSHojwuscWxDzyWd6npdcdkWyK/VBPo
+	 +e8K5A/NBI8xDheoFF+2dO5fD2m/IHuQI2D8Jemvt6YV1VhZqAehAHyoQG/3Ix+5nU
+	 IfcGK9YKV6sZUL9yBRINaR4yu9oVv05c7XCbLYgO8HtRk/QLUt1P7DS/tLl9wfJ1Ey
+	 kjGlve/mq4nFY73IFj5P/Sz7DTXkT7dfv/mMriT2fZvoxBU5748qPkqCj0Eut70rku
+	 Eg8vmPNuwKyRNrf9smKH+XAZEdrq22zOAJA/Rhk3tMvi3QbIUAKsM/IFZpFOlYkK9A
+	 Q5KhDY9Hh13AQ==
+Message-ID: <fa3ee895-5353-44f5-b816-9d17b6a7d199@kernel.org>
+Date: Mon, 2 Dec 2024 12:13:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCHv2] arm64: dts: ti: k3-j721e-beagleboneai64: Enable ACSPCIE
- output for PCIe1
-To: Siddharth Vadapalli <s-vadapalli@ti.com>
-Cc: Romain Naour <romain.naour@smile.fr>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
- conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, kristo@kernel.org,
- vigneshr@ti.com, nm@ti.com, Romain Naour <romain.naour@skf.com>
-References: <20241202101140.48778-1-romain.naour@smile.fr>
- <dabbad2b-f8a6-4ed7-86da-ec696cf67461@kernel.org>
- <k7udgqugqseweckb7hjniz3aops4kn35ttju2ju7f2pcbmndrg@dau5nr4leish>
+Subject: Re: [PATCH v5 1/4] dt-bindindgs: i2c: qcom,i2c-geni: Document shared
+ flag
 From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>,
+ konrad.dybcio@linaro.org, andersson@kernel.org, andi.shyti@kernel.org,
+ linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+ conor+dt@kernel.org, agross@kernel.org, devicetree@vger.kernel.org,
+ vkoul@kernel.org, linux@treblig.org, dan.carpenter@linaro.org,
+ Frank.Li@nxp.com, konradybcio@kernel.org, bryan.odonoghue@linaro.org,
+ krzk+dt@kernel.org, robh@kernel.org
+Cc: quic_vdadhani@quicinc.com
+References: <20241129144357.2008465-1-quic_msavaliy@quicinc.com>
+ <20241129144357.2008465-2-quic_msavaliy@quicinc.com>
+ <db428697-a9dc-46e1-abbe-73341306403f@kernel.org>
+ <a8b1ccd2-c37b-4a6f-b592-caf1a53be02c@quicinc.com>
+ <fc33c4ed-32e5-46cc-87d6-921f2e58b4ff@kernel.org>
+ <75f2cc08-e3ab-41fb-aa94-22963c4ffd82@quicinc.com>
+ <904ae8ea-d970-4b4b-a30a-cd1b65296a9b@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -105,76 +113,60 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <k7udgqugqseweckb7hjniz3aops4kn35ttju2ju7f2pcbmndrg@dau5nr4leish>
+In-Reply-To: <904ae8ea-d970-4b4b-a30a-cd1b65296a9b@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 02/12/2024 11:58, Siddharth Vadapalli wrote:
-> On Mon, Dec 02, 2024 at 11:14:46AM +0100, Krzysztof Kozlowski wrote:
-> 
-> Hello Krzysztof,
-> 
->> On 02/12/2024 11:11, Romain Naour wrote:
->>> From: Romain Naour <romain.naour@skf.com>
+On 02/12/2024 12:04, Krzysztof Kozlowski wrote:
+> On 02/12/2024 11:38, Mukesh Kumar Savaliya wrote:
 >>>
->>> Unlike the SK-TDA4VM (k3-j721e-sk) board, there is no clock generator
->>> (CDCI6214RGET) on the BeagleBone AI-64 (k3-j721e-beagleboneai64) to
->>> provide PCIe refclk signal to PCIe Endponts. So the ACSPCIE module must
->>> provide refclk through PCIe_REFCLK pins.
+>>> Come with one flag or enum, if needed, covering all your cases like this.
 >>>
->>> Use the new "ti,syscon-acspcie-proxy-ctrl" property to enable ACSPCIE
->>> module's PAD IO Buffers.
->>>
->>> Reuse the compatible "ti,j784s4-acspcie-proxy-ctrl" since the ACSPCIE
->>> buffer and its functionality is the same across all K3 SoCs.
->>>
->>> Cc: Siddharth Vadapalli <s-vadapalli@ti.com>
->>> Signed-off-by: Romain Naour <romain.naour@skf.com>
->>> ---
->>> With this patch, we can remove "HACK: Sierra: Drive clock out" patch
->>> applied on vendor kernel for BeagleBone AI-64:
->>> https://openbeagle.org/beagleboard/linux/-/commit/ad65d7ef675966cdbc5d75f2bd545fad1914ba9b
->>>
->>> v2:
->>>  - use generic style comments
->>>  - use "syscon" as generic node name for "acspcie0_proxy_ctrl" node
->>>  - Keep the compatible "ti,j784s4-acspcie-proxy-ctrl" since the
->>>    ACSPCIE buffer and its functionality is the same across all K3 SoCs.
->>>    (Siddharth Vadapalli)
->>>
->>>    "The compatible "ti,j784s4-acspcie-pcie-ctrl" should be reused for
->>>    J721E and all other K3 SoCs.
+>> Let me explain, this feature is one of the additional software case 
+>> adding on base protocol support. if we dont have more than one usecase 
+>> or repurposing this feature, why do we need to add enums ? I see one 
+>> flag gpi_mode but it's internal to driver not exposed to user or expose 
+>> any usecase/feature.
 >>
->> No, it shouldn't and you got comment on this. You always need specific
->> compatible, see writing bindings doc.
+>> Below was our earlier context, just wanted to add for clarity.
+>> --
+>>  > Is sharing of IP blocks going to be also for other devices? If yes, then
+>>  > this should be one property for all Qualcomm devices. If not, then be
+>>  > sure that this is the case because I will bring it up if you come with
+>>  > one more solution for something else.
 > 
-> Could you please clarify in which cases reusing the compatible is
-> permissible? The list of compatibles at:
+> 
+> You keep repeating the same. You won't receive any other answer.
+> 
+>>  >
+>> IP blocks like SE can be shared. Here we are talking about I2C sharing.
+>> In future it can be SPI sharing. But design wise it fits better to add
+>> flag per SE node. Same we shall be adding for SPI too in future.
+> 
+> 
+> How flag per SE node is relevant? I did not ask to move the property.
+> 
+>>
+>> Please let me know your further suggestions.
+> We do not talk about I2C or SPI here only. We talk about entire SoC.
+> Since beginning. Find other patch proposals and align with rest of
+> Qualcomm developers so that you come with only one definition for this
+> feature/characteristic. Or do you want to say that I am free to NAK all
+> further properties duplicating this one?
+> 
+> Please confirm that you Qualcomm engineers understand the last statement
+> and that every block will use se-shared, even if we speak about UFS for
+> example.
+> 
 
-Never? You always need specific compatible. Did you read the writing
-bindings document?
+I think I was pretty clear also 2 months ago what do I expect from this:
 
-> https://github.com/torvalds/linux/blob/v6.12/Documentation/devicetree/bindings/mfd/syscon.yaml#L112
-> namely,
->           - ti,am62-opp-efuse-table
->           - ti,am62-usb-phy-ctrl
->           - ti,am625-dss-oldi-io-ctrl
->           - ti,am62p-cpsw-mac-efuse
->           - ti,am654-dss-oldi-io-ctrl
->           - ti,j784s4-pcie-ctrl
-> have all been reused for different TI SoCs since they all correspond to the
-> device functionality enabled via the CTRL_MMR System Controller registers.
+https://lore.kernel.org/all/52f83419-cc5e-49f3-90a7-26a5b4ddd5a0@kernel.org/
 
-If you find a bug, does it mean you can send new patch introducing the
-same bug?
 
-> The compatible "ti,j784s4-acspcie-pcie-ctrl" has also been added to the
-> list:
-> https://github.com/torvalds/linux/blob/v6.12/Documentation/devicetree/bindings/mfd/syscon.yaml#L117
-> with the intent of reusing it the same way that other compatibles have
-> been reused.
+I do not see this addressing qcom-wide way at all. Four new versions of
+patch and you still did not address first fedback you got.
 
-And?
 
 Best regards,
 Krzysztof
