@@ -1,127 +1,146 @@
-Return-Path: <devicetree+bounces-126093-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FC6D9E0327
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 14:18:48 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 855489E0342
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 14:22:56 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3301B288D4B
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 13:18:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9EC5A1614B5
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 13:22:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 835E21FF7C3;
-	Mon,  2 Dec 2024 13:18:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA4A96AAD;
+	Mon,  2 Dec 2024 13:22:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="npBdrIyG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TH78526E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC5E91FE469;
-	Mon,  2 Dec 2024 13:18:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B01241FE457
+	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 13:22:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733145493; cv=none; b=BZa6qYQUa5ewZ5EncDM23IcqWIG1LXN70eqrxeiadAd2jkfAkyW5yD6P7MEUmldMjNX78ckSNmbseISAZtytpQ1K30hGNwdPDr2m0VYpolNkXPlotEOKeA44ft+/OFqPxuIbfnp/5siijnoUTTaz2wGZsghS9lIRNhlmFeM9RMA=
+	t=1733145727; cv=none; b=J6nmXC469A7/h9FDkACJLsjhVFqfMabhbBtzVclErqMmA9ApzGsrxEm70ucV+Y/NvLUfAhSZZH+yKvGkUnzrS8L1kHR9oAEUJcjppQOpsxcpB6xwMDzBQz4wyTXPQ5DQkuQPo44EOw4yhOeWU5nrEu86A/KfDKK5YEn9J5MuzJc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733145493; c=relaxed/simple;
-	bh=5/X2VWZcLhb884B2U06+UxdVUml1aa+Rb3ufKfjRT9I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BbI8vO5ceB9gxU3kcSmJ7Hos+TwO1r0uZ8MyThZG5dCTjUIn8I48HpeBjGk6fWUdHKLY881l/FlbWLf/F5LB9kMpP7yf6c+mlBqvrvx1Ovj1wo55RESezz/c4vxj7ZClJnWHRq7r+nVv0wRykqmYOT4XLtOCjpNRMnl+eh7Q+Uc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=npBdrIyG; arc=none smtp.client-ip=209.85.161.41
+	s=arc-20240116; t=1733145727; c=relaxed/simple;
+	bh=VD9nBKBk+YgE/kXPZ+USclBw7JwaYYsZMf+/pcq7BNE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=LHBeWRHgU6Vg9Sf2BquKApzJJFXQZz1up4alpVmS5Ytr2IWlGhepJIRJ+Gl15jkq1Jt7VnrWYlTRZGtECRs0aGioVgQozGQPUYzEvSVxOGmX2GMKQQE/3kiW+kJD/j96PyQwdeaoUIH9+8PTzi5hZQWfirZRyUzAyS7GAygD7bk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TH78526E; arc=none smtp.client-ip=209.85.210.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f41.google.com with SMTP id 006d021491bc7-5f1ef6324aeso1729829eaf.2;
-        Mon, 02 Dec 2024 05:18:11 -0800 (PST)
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-7250844b0ecso3397431b3a.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 05:22:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733145491; x=1733750291; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oNkzhZsX5grWLCVpB7LFS/T82bw7a5CHASaDFwVA1Hk=;
-        b=npBdrIyGhfNK07Un0W8DcI8ZMbodwXav7ebnkVpM6H21F1CGKDmv4XiWlBeJZGeN5A
-         ySRpoZvjx0WcO6xcH52dLpHHQIYQ2oMOGB9pPR1jjOA4z/LJ7pQZnldWgdwpcUVY0qbY
-         JUdJ5qUngRn+1qSVqxWQkDxcUKLTWYhtOC1DWyEw+bhUvxzdnP0HKJX/Y13bJTEROY+0
-         8KIuKzIJoyGtBwGQBZp4XIkYYEAiZenA0CGr5YtYV+utcjCLTHQP+IXx+qbul2+EbSmY
-         xI+e7t30/osdp3lqdo+Ak1BvLp6B/5XFllCmMQUuYNkHJiwmmwTsQRY+kpu1/cwG5Xas
-         C+NA==
+        d=gmail.com; s=20230601; t=1733145725; x=1733750525; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=sv0//fy9Y6u/oppBNlbQtYr2WKWUynWe9KC5I1xpzZU=;
+        b=TH78526EfJJdr3olXGtP0FC06ViyErHejjDutE4KmeeQEUjHyjDjVSRu4YVTxpb03F
+         5Hb2pUh5xm2Jqsa8/Amoi5gMYwDL0rwZtp1G82kiG4yh1n7rQuIMJnlZhHhbPwdVgoau
+         TdAl+k999YYwAU61HOuEZM6/ZVF/3c/FZmSxM756eW1wwynj2kTJDLU3MYRIht2qu4UQ
+         Z+OqIejZBUjhFGLxRbyjBb6VrlASJ5CrBgtNp3uXjUmzIqexYoC0D6308WCFtd/Syy9d
+         g4ugUrIVKGzMfdhhCH7sRos0Dz8tJxBMVdohhgJQ2b1R0vpZtFNsQ5FfEcCHHq/qKCC+
+         bjGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733145491; x=1733750291;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oNkzhZsX5grWLCVpB7LFS/T82bw7a5CHASaDFwVA1Hk=;
-        b=aIZ5xxkluhzptAMLtKDVAZrxcJCea9/4QH39EYwyqr8u/Dopo8TgnPC808pGAiqxO3
-         qaGQV7gcrTv9733/Qzv5uXcnLqhJh0OEzVYJZ8q4LSrl71q4EJkLPwTIyqGEuvfnBaLG
-         dQVSSdH2a1/26s0j6zfrzqKDuxFcs9E92zBh0+ixUz+6E5ntfBFdgLRliJu3LW++KtLE
-         oyzYIj+1OAk7FQ9+xf23f4wP5KcdGtY6jJMKVzCIoP5C4UQd1PJ3R/XRY7GW4NU+98sz
-         hFZA+ckUJglSL/haoHan/eAsiM88VrgJf/HkDYkS3G5s3MRcaO0jbvj2CVHKzlrhNTyr
-         1dlQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUoVh1fcTHouWTHKwlxt5OU+T68hKfrWqZK5Az3RjMGDCP4HDKARenI7pZCBsvcjUEe/ahakzd4Rflq@vger.kernel.org, AJvYcCWm+v21yorREAlL4fQ4bppJTymihkencX9UQ6AkOv4o+0SMpjLQseZ1MKfxVxVnJ+XWuBE4jZIFjIPpTAAr@vger.kernel.org, AJvYcCXtKjA8fnbiAAoKQUGKhHfRlsxV5e+6PCkMrf3KlSefE/uoatpYv53dXvuZd7gz7LHFt/CbCbYjtvzK7eTH3g==@vger.kernel.org
-X-Gm-Message-State: AOJu0YzhUqNdKjhaCU+hASSjbccBYtNpw1gSV4eqvwgfg0ANftAKqYdP
-	BZVAe/mijCFCVZ2mSnQRnV+sahyCNTx7Fw40HTdjGAWViY18IBtw21wd3gzoQZaKun8rFP/bc2P
-	irfJiI19jDfiKKgbI2HgV++EgrcM=
-X-Gm-Gg: ASbGncut4Ht4L6L/KmqzHeauHpBBRtUnokKUkXZieTrDVqm3q23cGLqEvtf9FvzAeb5
-	L3iRw41++SKhg3TYy+Yv63JH3BjIZ9w==
-X-Google-Smtp-Source: AGHT+IFRt02lZMTpOM1bIS2v4MnRUOIjLLxGB7sjqggzgFKovM0VxSCGDIp3nEMxIqbchMvq1WVzeeNNUcq8+NihUfQ=
-X-Received: by 2002:a05:6358:7e95:b0:1ca:9540:33d4 with SMTP id
- e5c5f4694b2df-1cab16a8c0bmr850755055d.23.1733145490862; Mon, 02 Dec 2024
- 05:18:10 -0800 (PST)
+        d=1e100.net; s=20230601; t=1733145725; x=1733750525;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sv0//fy9Y6u/oppBNlbQtYr2WKWUynWe9KC5I1xpzZU=;
+        b=PNgNnMGpPsqyWnC2j4I1ZtIBFrwpNRSOCyxj0MNYX77e7fkUwNiij23byJyY58szg4
+         Fbod9UdArJgzNFRZfhcc155HFDMDKQ5sNjbL3skL2Koc+3fm/VhuMOwcFfHN1f3HA19i
+         vS11vx1GYUi6fuuo7fddk860wQmvLS5KCrfXOOE/LnuOdsxQc1G9Se2j0VBRDQzQyGys
+         0bCG6/CYl9gQQ3qfM3+erwypavbJMdFo1KpmzMvahK/SYV0eKKCCvvZPKubwA5/CiNBm
+         HOGgAVkiLdwN8ECXDNJKSFiaWxDMFwJW1vObNJlqBfGSk4JR344cR6Gio8BWHTAroLYq
+         wbbw==
+X-Forwarded-Encrypted: i=1; AJvYcCUWZhfk9bVwc/z9yqiy5oDzDDq2DQePAxjANx3B7DlQ2bmVQp55dgzuN+VmGWOPy1v1GCRRkKQAzT/C@vger.kernel.org
+X-Gm-Message-State: AOJu0YzlPAPlGFXg2vWxoZInXmIkSRX8L73dku8UvGrw6KQ2EJeN8rMw
+	liP2uhGi5wg+dXcfImHE39ABJ0hKvNFs7URZsLRvXaRvHrPaRvzO
+X-Gm-Gg: ASbGncvQzQmS/ZSaj24NmJh1jYR91Ur/vCYFcQrkaMee/scBUuWn+dGPlc+pxgpaZtV
+	V0RUnC0NTvJl+WhsHId6g8fu/YdMcL4RP947DSmBiBt+1GZ8Kiyv08G9anx5S1oQ0edY0+tvqyb
+	3wIjxhba9uvg3OXuloliNmQxX2FEd9oizuA/GGHUsRJgbJuLuvTUnD5FlKfVQ9wwSoMt2qgdiKM
+	KdvbUPNPUVBPcrVDQAbVuXb3VKk0KxzQ8bzVVDUuuslgpKBTgTgvy3Ein9F4g==
+X-Google-Smtp-Source: AGHT+IGsdegJ1akRjnaYj76rP0o2QuAbiXTdSzIRk1IHeRT4Dt5LR1a5f8LbW6gNsw+JFjA0TQAakQ==
+X-Received: by 2002:a17:903:230e:b0:212:5786:7bbe with SMTP id d9443c01a7336-215018570fcmr366988885ad.24.1733145724679;
+        Mon, 02 Dec 2024 05:22:04 -0800 (PST)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:9b87:b3a5:736:1fc])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21521967290sm76476535ad.142.2024.12.02.05.22.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Dec 2024 05:22:04 -0800 (PST)
+From: Fabio Estevam <festevam@gmail.com>
+To: robh@kernel.org
+Cc: krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	tglx@linutronix.de,
+	daniel.lezcano@linaro.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Fabio Estevam <festevam@denx.de>,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH RESEND 1/2] dt-bindings: timer: fsl,imxgpt: Fix the fsl,imx7d-gpt fallback
+Date: Mon,  2 Dec 2024 10:21:46 -0300
+Message-Id: <20241202132147.587799-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241008-starqltechn_integration_upstream-v6-0-5445365d3052@gmail.com>
- <20241008-starqltechn_integration_upstream-v6-8-5445365d3052@gmail.com> <ee668cbf-54e0-4c0a-b690-8606cb3785b7@oss.qualcomm.com>
-In-Reply-To: <ee668cbf-54e0-4c0a-b690-8606cb3785b7@oss.qualcomm.com>
-From: Dzmitry Sankouski <dsankouski@gmail.com>
-Date: Mon, 2 Dec 2024 16:18:00 +0300
-Message-ID: <CABTCjFAUp9Oa_qRweO-EpLHDTi78=07i_St+L9EDSgYxHMrc4w@mail.gmail.com>
-Subject: Re: [PATCH v6 08/12] arm64: dts: qcom: sdm845-starqltechn: add
- display PMIC
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: cros-qcom-dts-watchers@chromium.org, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-=D0=BF=D0=BD, 4 =D0=BD=D0=BE=D1=8F=D0=B1. 2024=E2=80=AF=D0=B3. =D0=B2 17:15=
-, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>:
->
-> On 8.10.2024 6:51 PM, Dzmitry Sankouski wrote:
-> > Add support for s2dos05 display / touchscreen PMIC
-> >
-> > Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
-> > ---
-> > Changes in v6:
-> > - refactor: s/starqltechn/sdm845-starqltechn in subject
-> > - refactor: 'i' < 'm', so put tlmm i2c node before motor*
->
-> Now you have 'i'2c21 before 'g'pio-regulator :/
+From: Fabio Estevam <festevam@denx.de>
 
-That refactor was about tlmm inner nodes. For soc nodes
-rule `nodes of the same type can be grouped together` should apply I guess.
-I think I should move it to regulators.
+imx7s.dtsi correctly describes the GPT node as:
 
-> [...]
->
-> >
-> > +     i2c21 {
-> > +             compatible =3D "i2c-gpio";
->
-> I'm not sure this has been asked before - is the GENI SE for I2C21
-> disabled? Or are there reasons to use i2c-gpio instead?
->
+compatible = "fsl,imx7d-gpt", "fsl,imx6dl-gpt";
 
-I2c21 is wired on pins 127, 128, and those pins don't have a GENI SE functi=
-on.
+Document the fallback compatible to be "fsl,imx6dl-gpt" in the bindings.
 
---
-Best regards and thanks for review,
-Dzmitry
+This fixes the following dt-schema warnings:
+
+timer@302f0000: compatible: 'oneOf' conditional failed, one must be fixed:
+	['fsl,imx7d-gpt', 'fsl,imx6dl-gpt'] is too long
+	'fsl,imx1-gpt' was expected
+	'fsl,imx21-gpt' was expected
+	'fsl,imx27-gpt' was expected
+	'fsl,imx31-gpt' was expected
+	'fsl,imx7d-gpt' is not one of ['fsl,imx25-gpt', 'fsl,imx50-gpt', 'fsl,imx51-gpt', 'fsl,imx53-gpt', 'fsl,imx6q-gpt']
+	'fsl,imx6dl-gpt' was expected
+	'fsl,imx7d-gpt' is not one of ['fsl,imx6sl-gpt', 'fsl,imx6sx-gpt', 'fsl,imx8mp-gpt', 'fsl,imxrt1050-gpt', 'fsl,imxrt1170-gpt']
+	'fsl,imx6sx-gpt' was expected
+
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+Reviewed-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+---
+ Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml b/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
+index e2607377cbae..a2fcb1e8e74e 100644
+--- a/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
++++ b/Documentation/devicetree/bindings/timer/fsl,imxgpt.yaml
+@@ -31,6 +31,7 @@ properties:
+           - enum:
+               - fsl,imx6sl-gpt
+               - fsl,imx6sx-gpt
++              - fsl,imx7d-gpt
+               - fsl,imx8mp-gpt
+               - fsl,imxrt1050-gpt
+               - fsl,imxrt1170-gpt
+@@ -38,7 +39,6 @@ properties:
+       - items:
+           - enum:
+               - fsl,imx6ul-gpt
+-              - fsl,imx7d-gpt
+           - const: fsl,imx6sx-gpt
+ 
+   reg:
+-- 
+2.34.1
+
 
