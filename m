@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-125938-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125939-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9DAF9DFB7D
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 08:56:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2AD99DFB90
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 09:01:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53AFC163905
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 07:56:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD99E16051D
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 08:00:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EB7A1F9F52;
-	Mon,  2 Dec 2024 07:56:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 716EB1F8F15;
+	Mon,  2 Dec 2024 08:00:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YAQBLFbz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aiY8l3p7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FE1F1F9EAA;
-	Mon,  2 Dec 2024 07:56:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C80FF9E6;
+	Mon,  2 Dec 2024 08:00:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733126171; cv=none; b=rOEjnR0JmWEcndJ4f1T/tSRKY5buapDm3llApdiEk0HO7I+fw325cJ+2k8bcD5gBgo1mv+RWp8CBXoIFWrBmk7zlxxAnuSemgWMb0t0v77Yuc+JIfo1GTDLZkvCcESygR7cxzGdZCcWw8WxaUsS3brmkLPTCtFmhekhaZEPerRw=
+	t=1733126459; cv=none; b=UvSOm9trZJG0mggzvHL523OYSGTN3ERITrZHJKgEiaW50brf4cCCQWxRyiaZUftAp4enUB9oPqCKGivrhnoqQdpNFduYSqbOILjt7XudVhP23J36kgUBx10nM1u4A5StWAyWGoJEZ5upsnl4yNI0D+lVB+GPOVY47P+XGb5iAD8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733126171; c=relaxed/simple;
-	bh=kZjVug5ya7hH0mDNjWlcPVU/GfxeZCgwrE9NG175/s4=;
+	s=arc-20240116; t=1733126459; c=relaxed/simple;
+	bh=cKBxlD9oIvW3qwky/x/hjrqOR1DuqNbxWT7KDNIlPqM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FiyQC3YUrPuSuPweJ/c4X5NvTDx5GTnpxIN0LewhkQycGlg5UbyMvPPRg1gP3r//Sd6Q4BQxy4HRmzp+Rh6LUtGlli5UXEvYSkSJPUyog2OhM+FjR9KLuwOBOUBrCD9mg8BPXhOh9tEvqn7U74qLKbUgIdeM8u63UAHsrVOSejA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YAQBLFbz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2D21C4CED2;
-	Mon,  2 Dec 2024 07:56:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Qj7FO3SJvTecTZyMB/zTbIlN9j1heSKZFPxA4zDoVKV0MOAVOgvZRyIroSXAVyEMXMH44ASiadAf04tmsvj2A1aT8LpUf0WkPYQIpcd2uUu1O7HRhoEHecRY05MN/g9ac37+LY3wjYn4wBf5DL57oVSrrFA6TST3JQti30fI+Ig=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aiY8l3p7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1EE0C4CED2;
+	Mon,  2 Dec 2024 08:00:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733126170;
-	bh=kZjVug5ya7hH0mDNjWlcPVU/GfxeZCgwrE9NG175/s4=;
+	s=k20201202; t=1733126458;
+	bh=cKBxlD9oIvW3qwky/x/hjrqOR1DuqNbxWT7KDNIlPqM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YAQBLFbzade4+DSJ9YhBk0Yft2NNUlROVJ3w1OZynq1eVWROLvLc3ieheeSwrWfgJ
-	 GSGu1f+rBsnsRISz5mla0Ok/GvoJs8TN/mpUspXtJv8HT9unMivZ8uvcL4IVKGmQQO
-	 UlRAr2m06+t48T34AW6hhOjmhU4Amqt+9D0fdkFXCn/qKHB972QIsF+kYG1rf2rxW7
-	 nYY6mAejKzs7N7WCKRCX689XRrRCqg4Kk+mMO1rqV6LH2jAJnI3MnY51/mTd9nICjM
-	 0mXg1531ZuMTM9eJtHt3v7a1bxWhUCIZC3U8GR0LV2ArZEfoUn3SYw4vaQETo0BZq7
-	 ZduM6j8UAACXA==
-Date: Mon, 2 Dec 2024 08:56:07 +0100
+	b=aiY8l3p7SZwggHaDbYmUcdWfR2qpRzyaCyA2smpmjaSJOaJzSbz52hFbcDkUJLPRr
+	 jRVOif4iR8t7lwZyFUhY2wEK78dx5LfjR/rktxJYWzcFQBFNRXnYZllTIBgdCisXNp
+	 sBufH6nBla0vn/kL3m2C7El9KqxCWyXYCFT0n97nXS4QEyj2jqETc8fZiGJHreLKHB
+	 W/V2aU6CPj6QFXEc+2KOdF4lV6C4MuI1Qx9921BN63gp01hA/ZhWAFzrXOZqkwWicW
+	 xtlGcqfCqohFw1sy69tGNuJcmzSCvBhZ7HiCEzthaAqrcMSdJ8a9BTIbsrsaduF261
+	 LlM20nHY4faPg==
+Date: Mon, 2 Dec 2024 09:00:55 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Matthias Fend <matthias.fend@emfend.at>
-Cc: Michael Riesch <michael.riesch@wolfvision.net>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+To: Konrad Dybcio <konradybcio@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] media: dt-bindings: sony,imx415: add required
- clock-names property
-Message-ID: <bh3obpt6bcklejdvrk4r6ienraz5zmhrdyotijhvlwexussqgj@hicmx34vi27w>
-References: <20241130141716.1007115-1-matthias.fend@emfend.at>
+	Ulf Hansson <ulf.hansson@linaro.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>, 
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH 1/2] dt-bindings: power: domain-idle-state: Allow
+ idle-state-name
+Message-ID: <ci253udczwm4ovo2prpbyuqd5d2x73t52auf7adyhlyzvuzkaf@v4krfcgcvrpu>
+References: <20241130-topic-idle_state_name-v1-0-d0ff67b0c8e9@oss.qualcomm.com>
+ <20241130-topic-idle_state_name-v1-1-d0ff67b0c8e9@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,16 +63,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241130141716.1007115-1-matthias.fend@emfend.at>
+In-Reply-To: <20241130-topic-idle_state_name-v1-1-d0ff67b0c8e9@oss.qualcomm.com>
 
-On Sat, Nov 30, 2024 at 03:17:15PM +0100, Matthias Fend wrote:
-> The imx415 driver expects a clock with the name "inck".
-> Document this in the bindings.
+On Sat, Nov 30, 2024 at 05:39:36PM +0100, Konrad Dybcio wrote:
+> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> 
+> Allow specifying a name for idle states, similar to CPU idle states
+> in cpu/idle-states.yaml
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> ---
+>  Documentation/devicetree/bindings/power/domain-idle-state.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/power/domain-idle-state.yaml b/Documentation/devicetree/bindings/power/domain-idle-state.yaml
+> index ec1f6f669e50b2e7b0756cb6a737c685ad81045b..4dd4f59bbbec3058cf20f064aeec4c9602a99eb7 100644
+> --- a/Documentation/devicetree/bindings/power/domain-idle-state.yaml
+> +++ b/Documentation/devicetree/bindings/power/domain-idle-state.yaml
+> @@ -54,6 +54,11 @@ patternProperties:
+>            (i.e. idle states node with entry-method property is set to "psci")
+>            must specify this property.
+>  
+> +      idle-state-name:
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        description:
+> +          A string used as a descriptive name for the idle state.
 
-No, fix the driver instead of bypassing review. It was decided to drop
-it during review, so you cannot reintroduce it 2 years later claiming
-that's now ABI. Of course original submission was buggy and never
-tested, but that does not allow review bypass.
+For user-visible strings we have 'label' property, but I see cpu idle
+states already use this one, so I guess it is fine.
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
