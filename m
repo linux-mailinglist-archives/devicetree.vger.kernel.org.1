@@ -1,79 +1,108 @@
-Return-Path: <devicetree+bounces-125956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA0959DFC38
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 09:43:51 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2E849DFC45
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 09:45:26 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F431282423
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 08:43:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B425161621
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 08:45:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DAB91F9F52;
-	Mon,  2 Dec 2024 08:43:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eAhKsO1Z"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E42231FA140;
+	Mon,  2 Dec 2024 08:45:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1067A2940F;
-	Mon,  2 Dec 2024 08:43:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 239221F9F6E
+	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 08:45:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733129027; cv=none; b=ApNSk58U36HrwgKn6SR/YpabGrCWy9bdpM9rrPx4uaR0uWFPzSnGIL8Y6cajix1NMjz4HGcyuAGQSlVFr1VEUrNHBjVTOlmgwvbDfUf1IWCuVD5/yk2GEmdbNxXTtvhLxmjihT+T1fFsLMV+LgpN8MuDntvvqi5nA3nTzUwE1lE=
+	t=1733129118; cv=none; b=uVUGAVxDav3c4lA0IM+Cau/A7KbYVNy3hmd84MMqJDJd8pMhEv732gevIkPRqUBmYo2A+1lzOHsAi8vFkedxaDdhzPBAlSgud2wxyVVpbDXuE45meOo6lBirPxQSMJ4HRv/Gnd7tEOikh3qZAw3ej1qZrUYZunYWzsB24LYCB50=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733129027; c=relaxed/simple;
-	bh=1sVtE4uEehXRaXvN8ESWtlHpi3uBM+vuC6madLMzWMs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o+hWiwxRZ4Ny4gL8wfU6J/DpOOVSBEmTBecKkrlHcZu+/CtPfrQt2rCACa6YeSGUaqVobRiPNm7gZDsqAO1PSDoSr/FfuCI+dCl0dDLmMzkk0Ed21MIHfy+wAhFVXjwKJsh5OXJIv5x6vhjAkj7zFTzDAiBA0Y0vgayMq5ZO1aA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eAhKsO1Z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11C6DC4CED2;
-	Mon,  2 Dec 2024 08:43:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733129026;
-	bh=1sVtE4uEehXRaXvN8ESWtlHpi3uBM+vuC6madLMzWMs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eAhKsO1ZCB6C8tH1oHhPNC6qUnt3JiCyhQkICTjOLNWZ2fX2yeCd/Ie8wnOFhaUsj
-	 uMVNBDCIHwSTxVDFHoL2ZXn8jM/1PO/xGioAX8+qtl/Zl8UD6RpjgrL49jetT6ozmz
-	 QIdQqEcGxygSYNARdko3t7GwJftZ1lbmdYLL6qKbEXggGZS48M5SgpwIXHB9RDoo/5
-	 3b35nWnCl8SmxCwRViRo9AFuO37fUfWF/8D0UiRQyNJXIlRGVduwdhIkIZFPsfhbcI
-	 3ru8r7O+5JD0seDtC9t1UrfMv8a3w6a9D6RqJqI4GG4aQi7T+iLMLyg0vfFTGJYFs8
-	 K9cT8BpofYxvg==
-Date: Mon, 2 Dec 2024 09:43:44 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Cody Eksal <masterr3c0rd@epochal.quest>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	Parthiban Nallathambi <parthiban@linumiz.com>, Andre Przywara <andre.przywara@arm.com>
-Subject: Re: [PATCH 1/2] dt-bindings: sram: sunxi-sram: Add A100 compatible
-Message-ID: <xos2khgdmnt6iinglnuuat6ak7bxzrufw775stmoy72igul7b7@5oqu374t2764>
-References: <20241202-a100-syscon-v1-0-86c6524f24d7@epochal.quest>
- <20241202-a100-syscon-v1-1-86c6524f24d7@epochal.quest>
+	s=arc-20240116; t=1733129118; c=relaxed/simple;
+	bh=8uv53xupTrNP2ieMkOQogRXWVx9INQ9I9BIT46nEVHY=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=TmBOCpUbfX7ImeqfqXqEtDuBYcKw8RbZJ+8hRZ3RcceQDI1g4t3U2tuDIfyWZSbpoaXXzEtons4p8H2zgqlZBwXWlvR3Gvff5DorhDmY2mBgg0PFo7QBwkTxe+kTieCTAOiTOOp2RRlAi2WAn0qGu0CtG81SyIwFoQxsV/KDXZ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=ratatoskr.pengutronix.de)
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <s.trumtrar@pengutronix.de>)
+	id 1tI23I-0005AI-BF; Mon, 02 Dec 2024 09:45:08 +0100
+From: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Dinh Nguyen <dinguyen@kernel.org>,  Rob Herring <robh@kernel.org>,
+  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor Dooley
+ <conor+dt@kernel.org>,  Richard Cochran <richardcochran@gmail.com>,
+  Michael Turquette <mturquette@baylibre.com>,  Stephen Boyd
+ <sboyd@kernel.org>,  devicetree@vger.kernel.org,
+  linux-kernel@vger.kernel.org,  netdev@vger.kernel.org,
+  linux-clk@vger.kernel.org,  kernel@pengutronix.de
+Subject: Re: [PATCH v2 2/4] arm64: dts: agilex5: add gmac nodes
+In-Reply-To: <14110c3d-4aee-49a9-8cc2-fbeac298f1ff@kernel.org> (Krzysztof
+	Kozlowski's message of "Mon, 25 Nov 2024 11:51:04 +0100")
+References: <20241125-v6-12-topic-socfpga-agilex5-v2-0-864256ecc7b2@pengutronix.de>
+	<20241125-v6-12-topic-socfpga-agilex5-v2-2-864256ecc7b2@pengutronix.de>
+	<14110c3d-4aee-49a9-8cc2-fbeac298f1ff@kernel.org>
+User-Agent: mu4e 1.12.7; emacs 30.0.92
+Date: Mon, 02 Dec 2024 09:45:07 +0100
+Message-ID: <87o71u8odo.fsf@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241202-a100-syscon-v1-1-86c6524f24d7@epochal.quest>
+Content-Type: text/plain; format=flowed
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: s.trumtrar@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Mon, Dec 02, 2024 at 12:43:26AM -0400, Cody Eksal wrote:
-> The Allwinner A100 has a system configuration block similar to that of
-> the A64 and H6. Add a compatible for it.
-> 
-> Signed-off-by: Cody Eksal <masterr3c0rd@epochal.quest>
-> ---
+On 2024-11-25 at 11:51 +01, Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> On 25/11/2024 11:33, Steffen Trumtrar wrote:
+> > The Agilex5 provides three Synopsys XGMAC ethernet cores, that can be
+> > used to transmit and receive data at 10M/100M/1G/2.5G over ethernet
+> > connections and enables support for Time Sensitive Networking (TSN)
+> > applications.
+> >
+> > Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+> > ---
+> >  arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi | 87 ++++++++++++++++++++++++++
+> >  1 file changed, 87 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+> > index b1debf0317d0576f7b00200e9593481671183faa..647ccd0b5a66b68fab745d443b975c12d6ce63df 100644
+> > --- a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+> > +++ b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+> > @@ -141,6 +141,93 @@ soc: soc@0 {
+> >  		device_type = "soc";
+> >  		interrupt-parent = <&intc>;
+> >
+> > +		gmac0: ethernet@10810000 {
+> > +			compatible = "altr,socfpga-stmmac-a10-s10",
+>
+>
+> That's odd compatible, this is not Arria10 SoC, neither Stratix 10.
+
+Yes, it is. The socfpga-dwmac.txt says "Arria10/Agilex/Stratix10 SoCs" should use "altr,socfpga-stmmac-a10-s10".
+
+So, how to proceed? Adding a "altr,socfpga-stmmac-agilex5" to the binding doc and driver?
+And converting the txt to yaml, because touched it last?
+
 
 Best regards,
-Krzysztof
+Steffen
 
+--
+Pengutronix e.K.                | Dipl.-Inform. Steffen Trumtrar |
+Steuerwalder Str. 21            | https://www.pengutronix.de/    |
+31137 Hildesheim, Germany       | Phone: +49-5121-206917-0       |
+Amtsgericht Hildesheim, HRA 2686| Fax:   +49-5121-206917-5555    |
 
