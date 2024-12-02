@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-126007-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126008-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43E089DFE94
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 11:16:13 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F4599DFE97
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 11:16:34 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 01A32162D83
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 10:16:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9CB52819A1
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 10:16:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AA071FC7CC;
-	Mon,  2 Dec 2024 10:14:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FD311FA26C;
+	Mon,  2 Dec 2024 10:16:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mZeOuYr5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mUzrRIhk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D62BE1FC7C7;
-	Mon,  2 Dec 2024 10:14:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED1C21D8E10;
+	Mon,  2 Dec 2024 10:16:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733134492; cv=none; b=cgnmzNwKijkYsYkAIKujuBlzG+dQizM+5BnobMmzTXs93Xe9woPfoW2GRLFm7vgVMldgHMq3NeI+wsu07Bxr6vF172o5k2AVyUfLlz0A0WhmgslvWpmfHRymXuzKceHdvSsAO2tOgX8Hbmsa5g1bLGQnCyZ3pSvV2SXJme6f6Ys=
+	t=1733134589; cv=none; b=aRVRc0mjQiWxhJBvdBl3XlwoP0UEb2oAjoU81B8gbveZxJFjDScl4fyRh00gaK53k+QZNVDPIG3gfmd5lDidWKniAPBvAFX3sFNfrKtWJq/PcxFMsr7V9NlsG63vrDUzRvgZs+MtkbJ+eyW6OQJRkSpfV68Uut9xqN5e4PSr1t0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733134492; c=relaxed/simple;
-	bh=UPiH6OxK7a+tjPG8wPVKRgPcGsYQ3XZcFQgo+TNLwO8=;
+	s=arc-20240116; t=1733134589; c=relaxed/simple;
+	bh=VeyGyrt8lzSc0gMCv+H0+uTSDCYGlOKoYE+GGCTCvkU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OsDeeOrnGMAEmNFHuaFJHlM9vlixtXcryOne9r0CN5qiFcp2rLXJgxgvHIRfNr2CeNPviDn7TTPhM5zHKEa3wBzh0YOEohQUeWmPDVAp4JnJvxlWg5k3A+d0qq8TGPf18XBbllcd7s+MNUJAWPggq4w0O2aHQrdSKIxlEIy72M4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mZeOuYr5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CCFAC4CED1;
-	Mon,  2 Dec 2024 10:14:48 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=tVDAxxs5oa5NSoLbbsvRjy9qHcOTSQVMupVcwc1ioNC9IdvULkU6CNF65Lo+QFwUAbhV5eHgJxg3l4GtWLLCKZcL5c0ThveyRWIjqm8/ViZ599ZeCgYM62zzvuVchswsj0iuIY0wZYVjL1zJCuAxIXcxSNM87D8K7i1JJckzSCM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mUzrRIhk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8AC6FC4CED2;
+	Mon,  2 Dec 2024 10:16:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733134492;
-	bh=UPiH6OxK7a+tjPG8wPVKRgPcGsYQ3XZcFQgo+TNLwO8=;
+	s=k20201202; t=1733134588;
+	bh=VeyGyrt8lzSc0gMCv+H0+uTSDCYGlOKoYE+GGCTCvkU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mZeOuYr5JndHg2txWoEX25RXvikuq5ou2bIBLwElC6ZGhb0ifWWWf2Xon1lg3xx/a
-	 CFgbb/a3fkX8KfNwIdD9bPfRT1o3J/N3OtSqGtuKVAA2mJ9IjOG1zwcyT/jMh3KaJx
-	 FRePqg0HVlQcq+uVreK2YRS39SK3FSIPnSVH0Z4WW5FOF8xDOKTeyiwlY8kRT+9LKs
-	 DvriAcmFQkuokL1DtZh153K/lfjFTtLz0wAWT+HQ/wyNu0kAEQu+J+l0ZV6i2St4rZ
-	 osVcWs1f/kKma7nMeP7OQPBzvmc+G4PhT//3n092lav6TTUDSRki3IcrFWOVk382M4
-	 IAGlXHRUmGkTA==
-Message-ID: <dabbad2b-f8a6-4ed7-86da-ec696cf67461@kernel.org>
-Date: Mon, 2 Dec 2024 11:14:46 +0100
+	b=mUzrRIhkQEz61XGkipCLG2mjUF92JUEAHCboc1hDJ2ddG/3hcE8TXaWyMnduTvom4
+	 8JDaxAtgOZNV+Zhq7ofNfwAkk0IQ8jdB4UE0jKBzFDyM3q/pAhT0CTc4Sh6P0yYuM9
+	 Dum4Y3n2Vyc/0y55EM4SIrCCJnNYAeoZyzaFtGZ2uk8FJxxGkcuQAzXAW0who/bRwP
+	 iRyR+KRNXajrhLN2zrxXErJUb651MxZ4a3G+8rIa6C9fNm56486rWciJ4/JiaAz7dB
+	 Dq7IXyzN337B875oMMcSPO/w6KAO13bpJa0WmjFc9II/5Y6RzSSL6bLlFLZJjNqLub
+	 NMR65y3GRkOqA==
+Message-ID: <666145e0-d8c8-47cc-92d4-08d6877786c0@kernel.org>
+Date: Mon, 2 Dec 2024 11:16:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCHv2] arm64: dts: ti: k3-j721e-beagleboneai64: Enable ACSPCIE
- output for PCIe1
-To: Romain Naour <romain.naour@smile.fr>, devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
- conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, kristo@kernel.org,
- vigneshr@ti.com, nm@ti.com, Romain Naour <romain.naour@skf.com>,
- Siddharth Vadapalli <s-vadapalli@ti.com>
-References: <20241202101140.48778-1-romain.naour@smile.fr>
-Content-Language: en-US
+Subject: Re: [PATCH v9 2/9] dt-bindings: power: supply: max17042: add max77705
+ support
+To: Dzmitry Sankouski <dsankouski@gmail.com>,
+ Sebastian Reichel <sre@kernel.org>, Chanwoo Choi <cw00.choi@samsung.com>,
+ Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+ Hans de Goede <hdegoede@redhat.com>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
+ Purism Kernel Team <kernel@puri.sm>
+Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+ linux-leds@vger.kernel.org
+References: <20241202-starqltechn_integration_upstream-v9-0-a1adc3bae2b8@gmail.com>
+ <20241202-starqltechn_integration_upstream-v9-2-a1adc3bae2b8@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -103,43 +111,29 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241202101140.48778-1-romain.naour@smile.fr>
+In-Reply-To: <20241202-starqltechn_integration_upstream-v9-2-a1adc3bae2b8@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 02/12/2024 11:11, Romain Naour wrote:
-> From: Romain Naour <romain.naour@skf.com>
+On 02/12/2024 10:47, Dzmitry Sankouski wrote:
+> Add max77705 fuel gauge support.
 > 
-> Unlike the SK-TDA4VM (k3-j721e-sk) board, there is no clock generator
-> (CDCI6214RGET) on the BeagleBone AI-64 (k3-j721e-beagleboneai64) to
-> provide PCIe refclk signal to PCIe Endponts. So the ACSPCIE module must
-> provide refclk through PCIe_REFCLK pins.
-> 
-> Use the new "ti,syscon-acspcie-proxy-ctrl" property to enable ACSPCIE
-> module's PAD IO Buffers.
-> 
-> Reuse the compatible "ti,j784s4-acspcie-proxy-ctrl" since the ACSPCIE
-> buffer and its functionality is the same across all K3 SoCs.
-> 
-> Cc: Siddharth Vadapalli <s-vadapalli@ti.com>
-> Signed-off-by: Romain Naour <romain.naour@skf.com>
+> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
 > ---
-> With this patch, we can remove "HACK: Sierra: Drive clock out" patch
-> applied on vendor kernel for BeagleBone AI-64:
-> https://openbeagle.org/beagleboard/linux/-/commit/ad65d7ef675966cdbc5d75f2bd545fad1914ba9b
+>  Documentation/devicetree/bindings/power/supply/maxim,max17042.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> v2:
->  - use generic style comments
->  - use "syscon" as generic node name for "acspcie0_proxy_ctrl" node
->  - Keep the compatible "ti,j784s4-acspcie-proxy-ctrl" since the
->    ACSPCIE buffer and its functionality is the same across all K3 SoCs.
->    (Siddharth Vadapalli)
-> 
->    "The compatible "ti,j784s4-acspcie-pcie-ctrl" should be reused for
->    J721E and all other K3 SoCs.
+> diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max17042.yaml b/Documentation/devicetree/bindings/power/supply/maxim,max17042.yaml
+> index 085e2504d0dc..f929e7e2b82a 100644
+> --- a/Documentation/devicetree/bindings/power/supply/maxim,max17042.yaml
+> +++ b/Documentation/devicetree/bindings/power/supply/maxim,max17042.yaml
+> @@ -20,6 +20,7 @@ properties:
+>        - maxim,max17050
+>        - maxim,max17055
+>        - maxim,max77849-battery
+> +      - maxim,max77705-battery
 
-No, it shouldn't and you got comment on this. You always need specific
-compatible, see writing bindings doc.
+Keep alphabetical order.
 
 Best regards,
 Krzysztof
