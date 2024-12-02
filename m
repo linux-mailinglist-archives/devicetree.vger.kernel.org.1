@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-126060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126062-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CDB49E021D
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 13:26:23 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 930919E0226
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 13:28:10 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5855282FF0
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 12:26:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A14681654A1
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 12:26:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18FF31FECA5;
-	Mon,  2 Dec 2024 12:26:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73E1E1FECDF;
+	Mon,  2 Dec 2024 12:26:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="JDvX5Rsw"
+	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="VPKUJ0pX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout3.routing.net (mxout3.routing.net [134.0.28.8])
+Received: from mxout2.routing.net (mxout2.routing.net [134.0.28.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E50911F9F7A;
-	Mon,  2 Dec 2024 12:26:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AED11FE479;
+	Mon,  2 Dec 2024 12:26:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733142376; cv=none; b=TPmOUSEisrQcEJ41BuUYTJKDCQpcO/Jj9R3W5+wgQCeY6j4dHwOWXLiMERFDA+Bq8Z9hfgKCeFbGAgtifchmqw4/6c1OjaeY/mxC4ETedvdtU7hczVexQvytkNuddPD6re2HFzaDW8XVaDOd/+3j+7UminTFX1+tDqQGgSSW+lw=
+	t=1733142377; cv=none; b=RKUI7vBaR4sloVMzdFA3fAu6dkaC4wym1V4+o02W9Ie9WQ/aZEpiuiLYsYRe8QjLmKdK+dhr/58IK/oO1QH9qDXKt5+c2inDNYxSFM5sLZD2U+gwXY1smJf8bY/T2TYkfmOLv2uWcwYik5ii3TCnKf9h07LHwLmn/pF/lV3LCb8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733142376; c=relaxed/simple;
-	bh=S0ZKI/qABEMegVq4CXB3M5p7sMXkllVQQkGVBnROvrE=;
+	s=arc-20240116; t=1733142377; c=relaxed/simple;
+	bh=8ZdDWa+iBQG6l45nOzdE91MJ3ECiqDra5V7T+0G+T7U=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ofCTf/2wCJI+SUTkYFH9IcDf0I/edlnMouOwK9yDStMwmCZ9wi6nZ6uKaIc4PrLDi9yRRfHE9N3i57kcF6BaUZVgE2/QqIqmcyVXjzjA3JhbX5REvwRAzmoPlBc06PNrcBbF+PMDy4EosPlmxSzVvw9+GIDJza+klHfk/8OxLv4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=JDvX5Rsw; arc=none smtp.client-ip=134.0.28.8
+	 MIME-Version; b=sGv24etK8tVXrSLNCru/hA2qHwBvMZ0HS8Aj+DclV7NezX6XdaHVQaDLe3qJtfn+lNi8A17IarThP4BPtpYNow5TDnzy8o7xPERwlD0YDdDVwwByk1adPKBVv2ABgOq8Esj0rkWfmL7prLvtSmTKqF5d5gmp2of3i2urC7uZW0Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=VPKUJ0pX; arc=none smtp.client-ip=134.0.28.12
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
 Received: from mxbox3.masterlogin.de (unknown [192.168.10.78])
-	by mxout3.routing.net (Postfix) with ESMTP id 40DC7613F7;
-	Mon,  2 Dec 2024 12:26:12 +0000 (UTC)
+	by mxout2.routing.net (Postfix) with ESMTP id D0B476046B;
+	Mon,  2 Dec 2024 12:26:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-	s=20200217; t=1733142372;
+	s=20200217; t=1733142373;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=xvio4qYnn152relW8d8dOOQlvOo0mSc7MB7Rnu0hWEg=;
-	b=JDvX5RswSd2RQ/g18NW4rQ0qtVwn6IhhlCcpyGPRkmpyhxpxlfCiWLYLaeu6Cj51EnuuFC
-	WiWnAQE5V24sCQjKuqg5sNhPdgFexNhcuwL0GWtMXlQrZe55QFOEuIv93h+4mSH5Gd8l+T
-	DELL4n1NCuMb9Kb6ezsbNAs+mzQktPA=
+	bh=QlHsPSsds4wfVdPuw/KHUgIalps/TN1syiynk/4rlxw=;
+	b=VPKUJ0pXjVdKTjVTRrobEnKmmFoOGFI0D2hoT94iNr31w86RhVvTkuRK5mgcnoAzVEyVyC
+	CBl1l29rVubzNMEQdKxjQYHDEUnMwtp3VzIrR0bv7FY5t6yaJoihzg+vk/6IDxH+cYlW6L
+	YDx8+9ok51wZBnK6wIrVQToIgYwSyxQ=
 Received: from frank-u24.. (fttx-pool-217.61.149.104.bambit.de [217.61.149.104])
-	by mxbox3.masterlogin.de (Postfix) with ESMTPSA id ABDA0360188;
-	Mon,  2 Dec 2024 12:26:11 +0000 (UTC)
+	by mxbox3.masterlogin.de (Postfix) with ESMTPSA id 4DABC3600C0;
+	Mon,  2 Dec 2024 12:26:13 +0000 (UTC)
 From: Frank Wunderlich <linux@fw-web.de>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -58,9 +58,9 @@ Cc: Frank Wunderlich <frank-w@public-files.de>,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org
-Subject: [PATCH v2 03/18] arm64: dts: mediatek: mt7988: add fixed regulators for 1v8 and 3v3
-Date: Mon,  2 Dec 2024 13:25:44 +0100
-Message-ID: <20241202122602.30734-4-linux@fw-web.de>
+Subject: [PATCH v2 06/18] arm64: dts: mediatek: mt7988: add thermal trips to bpi-r4
+Date: Mon,  2 Dec 2024 13:25:47 +0100
+Message-ID: <20241202122602.30734-7-linux@fw-web.de>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20241202122602.30734-1-linux@fw-web.de>
 References: <20241202122602.30734-1-linux@fw-web.de>
@@ -71,49 +71,57 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mail-ID: f3d04e75-e09a-4074-aa49-cde4d43063c7
+X-Mail-ID: 6c17b30a-1971-4b14-a2ad-0f3552d83a74
 
 From: Frank Wunderlich <frank-w@public-files.de>
 
-Add regulator nodes used for mmc to Bananapi R4 board.
+Add additional thermal trips to Bananapi R4 board.
+SoC only contains the critical trip.
 
 Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 ---
-v2:
-- move mmc regulators to board dts of bpi-r4
----
- .../dts/mediatek/mt7988a-bananapi-bpi-r4.dts   | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+ .../dts/mediatek/mt7988a-bananapi-bpi-r4.dts  | 28 +++++++++++++++++++
+ 1 file changed, 28 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dts b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dts
-index d914eae2b524..df53512c6890 100644
+index df53512c6890..8a320d9da443 100644
 --- a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dts
 +++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dts
-@@ -8,6 +8,24 @@ / {
- 	compatible = "bananapi,bpi-r4", "mediatek,mt7988a";
- 	model = "Banana Pi BPI-R4";
- 	chassis-type = "embedded";
-+
-+	reg_1p8v: regulator-1p8v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "fixed-1.8V";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	reg_3p3v: regulator-3p3v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "fixed-3.3V";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
+@@ -28,6 +28,34 @@ reg_3p3v: regulator-3p3v {
+ 	};
  };
  
++&cpu_thermal {
++	trips {
++		cpu_trip_hot: hot {
++			temperature = <120000>;
++			hysteresis = <2000>;
++			type = "hot";
++		};
++
++		cpu_trip_active_high: active-high {
++			temperature = <115000>;
++			hysteresis = <2000>;
++			type = "active";
++		};
++
++		cpu_trip_active_med: active-med {
++			temperature = <85000>;
++			hysteresis = <2000>;
++			type = "active";
++		};
++
++		cpu_trip_active_low: active-low {
++			temperature = <40000>;
++			hysteresis = <2000>;
++			type = "active";
++		};
++	};
++};
++
  &pio {
+ 	mdio0_pins: mdio0-pins {
+ 		mux {
 -- 
 2.43.0
 
