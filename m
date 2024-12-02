@@ -1,113 +1,292 @@
-Return-Path: <devicetree+bounces-126096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 900B59E04A4
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 15:18:13 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BE199E0384
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 14:32:46 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ECDBF163A81
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 13:32:36 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CF8A1FF7A2;
+	Mon,  2 Dec 2024 13:32:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="brYUzhj5"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F81FB2B4E4
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 13:25:56 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98D321FECD3;
-	Mon,  2 Dec 2024 13:25:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WKzZBmvu"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21BA28F6B;
-	Mon,  2 Dec 2024 13:25:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ECCF1FF7A0;
+	Mon,  2 Dec 2024 13:32:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733145951; cv=none; b=jEvBGTRVecI1gT8QkQ66BJFtyClgVMKVzy4FOfHx9R1XCXgB26Glv5ZNujRdh2gZ1AlBZk7azuFMi4D9E3nqZ0G6wLOlQIM7vFBXwQKya8b9S5RVan1g4wEKEXBrMiFHx4oxAz1YRJbhnEYw92BQ1jCi9Dqin1hVqCc6KAHAcOQ=
+	t=1733146349; cv=none; b=c6EplLAwHKtdjIvSuw74PSZjNn9LPMDfaY6Mxat+6m5SmbFdLMZRopdC/If+QCNmYN98+chWHFstwkslZQXMB8Tp8FiUqdLwpflpdMPyw15LMQZkz/Do0O1pCeVHhL0pkZqVpodhs3NWpLSwCOXE85X2OkJZ93vHIPK4M1igS8c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733145951; c=relaxed/simple;
-	bh=JzAfREBlzGyxMfq2M3UIkfA3PLTZmhEwa6RuZHSJ35g=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RY/k6QISo5WXPojumpQokJNuDHdYOf6doZoiFmFKyhYCM6SrO2cDEF9Xtq7w8qaLsQKEBmII36YVevso8kUEIfe6tARpnn0RUBvQ5SZ00n392MaBw0mUTDOLJxWNHAQxm2QLbtRub0lA75DhV4vMCVrkXwQm2nB5pG1XK/rH3Qg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WKzZBmvu; arc=none smtp.client-ip=209.85.160.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-29e71d653fbso217434fac.3;
-        Mon, 02 Dec 2024 05:25:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733145949; x=1733750749; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JzAfREBlzGyxMfq2M3UIkfA3PLTZmhEwa6RuZHSJ35g=;
-        b=WKzZBmvuhdw02o69LehtlaP0H5WnrKT6YCMs11ilof82dA7tBaxzPvAZf+jrX9t02i
-         4dYcsh1W8SS+cHTur/SCmedhI11n+OXYHtXZVOn+x/WLuor9qs0xmgUyUdOMEnhYfwFd
-         1dRhfc3sg5TIJVw5fQPU/kVSX7VhfrJnxLZuangVX/ifzcGKPZKHV60193TFXdmA6dFx
-         mFfp5K6RJqFhDljmIsjjrCl4PfNfu+QwIjxGRpm40hiQuN2TwKgetEWOn7UeMKBv7j3o
-         NpUibk1v/iLEb2EfikUQtLHBr+/zpIARewz8LVljrrXvCWmJ3NJsYhayozl2QNB+ArtJ
-         ktVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733145949; x=1733750749;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JzAfREBlzGyxMfq2M3UIkfA3PLTZmhEwa6RuZHSJ35g=;
-        b=S5K2MO9FwaIPA/lHkWyxVeqIDEVI4Bb+N8WWAm5s+lkDintbPSPKzS4+3lmvZarnjE
-         bJo4oHlCYhF92ppwOO4ULXHKbTo4cIMWCaFBqYHiAeVxcHglAIm95Hv/ewL0GKs+TwdU
-         lU1i17DaYMbJcqsVCgG4X5L4JpSmg19bSiKkVNhb/bvJ0EVV0Jw47AmnvN5rfKmU4u2n
-         pjGfmWYnjqPTpZ+sxiGTa6dstvRLCgq98m/jzKcJ8xDVvyfGZJ0fLt7KVVvgX96b5g9L
-         aKj+Oljo4gRqz+WgpKu16VgvG/l5pGarSqo+RPNj6Vi3BV04JI4mcvufZvmiVI/SWPaM
-         yxsA==
-X-Forwarded-Encrypted: i=1; AJvYcCVbtihUtEq9xQOJ6djXGQ+4uWHTGHLKwndvz7tsFRaIG32V2p/L3h6z611lzdZ1Yqxr2Xi9aFAUjGap0YUKHg==@vger.kernel.org, AJvYcCWUxBXuGVnlqE+cTIJLmZ/oDbhkwo8t/E/AK5Zg+E85eGp5B3XdbHy13JnE6FDCSPihVO8hQKsDJxHAtEWy@vger.kernel.org, AJvYcCXl/+3h/x7CQ5jlBP/t7d8mkVXGUyivICU+L+2wfTYk4kQdHDyUUqDXl8RrH1BV9Qos0eNLepDxr04N@vger.kernel.org
-X-Gm-Message-State: AOJu0YwlizZ9Yq7yd/1p3q48UbhF2qJcrWdJJGMByRVM/n3t0s365bfh
-	POb85lTr55U4n70LsOH2mUfy/NWnshIy5z4/WSGm0pP+N6bBvoBe3hUgSRN7FGAJ8yB0riGGLyi
-	+5IhXzbGNj3fd7vNdiWWD8A7A8wA=
-X-Gm-Gg: ASbGncs2KTi4Tkei4v3Z48JXNvH1AgjL2fage4r1xpcGOu8t8Z1CXJo2l79eJIE3xn8
-	E5o4ZJfqJP0Lc+fiQIvR/t5NKG40bgA==
-X-Google-Smtp-Source: AGHT+IEunf9HVnSmilfUsSj/yqIgpyQyjJyUhDfSWV570fxCrjjkJ0fUDzssd3DZMUWvaGkF/Ze3nmoehiVW0J9D7+w=
-X-Received: by 2002:a05:6358:6f18:b0:1ca:a296:f6fe with SMTP id
- e5c5f4694b2df-1cab15cff10mr826643055d.6.1733145949084; Mon, 02 Dec 2024
- 05:25:49 -0800 (PST)
+	s=arc-20240116; t=1733146349; c=relaxed/simple;
+	bh=CDxQ76K29ySxjy69TWob7M9xTmGbQtEA07UobbD25nc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=go47Ozf3zJ8bpaM7llVcU6fTu/EACvqwIDGcsqRjdFPAKTGJ5FCLXISCxOMiGqxLQ/cgxFKFfW7+4qOpZR4k1zN8yJz/SY/QZTEcb1DzmwP2zm5x5Vie/gr5Mb64ZUCsSX9JOkFm9qfVkGwi8xJErkXGD/irC0qpDfEKHjHCCTo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=brYUzhj5; arc=none smtp.client-ip=198.175.65.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1733146347; x=1764682347;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=CDxQ76K29ySxjy69TWob7M9xTmGbQtEA07UobbD25nc=;
+  b=brYUzhj5QGfPRW0bCNR+iRfZpDrVYvGj0/8DIU52y7YDIWc2QgdvV2jq
+   aYhneN5LZuyS9UknKFxVB5X8t5NeY82zbX+qQid12x99tdUbzD2HYZYGe
+   rPVDS509Uo8silQG948M0OWOj4pMEWvZpl6rZTi7I6tsHplgqT33pNrJy
+   IZLPGL3y9sR2SDJQMb+ty9lYK68ade7MlBVMzD3vjQMnMyZkp4Q68BCNN
+   J2odFxRSHa77Mity6wIWPET0l8wbUFfTH4rmLhcy/xSqdgokCJIE6aJVu
+   gt6ED8Kk+2Uq3TMkSFifhYqV4pioHsjRnNEQOGTh4NvYs/inGQbJudBrg
+   A==;
+X-CSE-ConnectionGUID: qUSqv1vBSdu5znv9C6iZvw==
+X-CSE-MsgGUID: VqhuWQFhTkqu1d08/dPD7w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="33463825"
+X-IronPort-AV: E=Sophos;i="6.12,202,1728975600"; 
+   d="scan'208";a="33463825"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Dec 2024 05:32:26 -0800
+X-CSE-ConnectionGUID: KLNh7abMQDOTikbp6hpLrw==
+X-CSE-MsgGUID: x7hnWGAKTL+U3JJDutLRDg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,202,1728975600"; 
+   d="scan'208";a="93006245"
+Received: from lkp-server02.sh.intel.com (HELO 36a1563c48ff) ([10.239.97.151])
+  by orviesa009.jf.intel.com with ESMTP; 02 Dec 2024 05:32:23 -0800
+Received: from kbuild by 36a1563c48ff with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tI6XE-0002S1-1h;
+	Mon, 02 Dec 2024 13:32:20 +0000
+Date: Mon, 2 Dec 2024 21:32:14 +0800
+From: kernel test robot <lkp@intel.com>
+To: Ben Zong-You Xie <ben717@andestech.com>, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	ukleinek@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, Ben Zong-You Xie <ben717@andestech.com>
+Subject: Re: [PATCH v2 2/2] pwm: atcpit100: add Andes PWM driver support
+Message-ID: <202412022109.FiMppwWS-lkp@intel.com>
+References: <20241202060147.1271264-3-ben717@andestech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241008-starqltechn_integration_upstream-v6-0-5445365d3052@gmail.com>
- <20241008-starqltechn_integration_upstream-v6-8-5445365d3052@gmail.com> <ee668cbf-54e0-4c0a-b690-8606cb3785b7@oss.qualcomm.com>
-In-Reply-To: <ee668cbf-54e0-4c0a-b690-8606cb3785b7@oss.qualcomm.com>
-From: Dzmitry Sankouski <dsankouski@gmail.com>
-Date: Mon, 2 Dec 2024 16:25:38 +0300
-Message-ID: <CABTCjFDMFTJCBm3o+5HVd5DiNF7HJETc=Lc2b=fqmKZM9Mz1gA@mail.gmail.com>
-Subject: Re: [PATCH v6 08/12] arm64: dts: qcom: sdm845-starqltechn: add
- display PMIC
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: cros-qcom-dts-watchers@chromium.org, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241202060147.1271264-3-ben717@andestech.com>
 
-=D0=BF=D0=BD, 4 =D0=BD=D0=BE=D1=8F=D0=B1. 2024=E2=80=AF=D0=B3. =D0=B2 17:15=
-, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>:
->
-> On 8.10.2024 6:51 PM, Dzmitry Sankouski wrote:
-> > Add support for s2dos05 display / touchscreen PMIC
-> >
-> > Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
-> > ---
-> > Changes in v6:
-> > - refactor: s/starqltechn/sdm845-starqltechn in subject
-> > - refactor: 'i' < 'm', so put tlmm i2c node before motor*
->
-> Now you have 'i'2c21 before 'g'pio-regulator :/
->
-WIll move i2c21 node before gpio-keys, too
+Hi Ben,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linus/master thierry-reding-pwm/for-next v6.13-rc1 next-20241128]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Ben-Zong-You-Xie/dt-bindings-pwm-add-atcpit100-pwm/20241202-140437
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20241202060147.1271264-3-ben717%40andestech.com
+patch subject: [PATCH v2 2/2] pwm: atcpit100: add Andes PWM driver support
+config: hexagon-allyesconfig (https://download.01.org/0day-ci/archive/20241202/202412022109.FiMppwWS-lkp@intel.com/config)
+compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project 592c0fe55f6d9a811028b5f3507be91458ab2713)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241202/202412022109.FiMppwWS-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202412022109.FiMppwWS-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   In file included from drivers/pwm/pwm-atcpit100.c:25:
+   In file included from include/linux/regmap.h:20:
+   In file included from include/linux/iopoll.h:14:
+   In file included from include/linux/io.h:14:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:548:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     548 |         val = __raw_readb(PCI_IOBASE + addr);
+         |                           ~~~~~~~~~~ ^
+   include/asm-generic/io.h:561:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     561 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
+      37 | #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
+         |                                                   ^
+   In file included from drivers/pwm/pwm-atcpit100.c:25:
+   In file included from include/linux/regmap.h:20:
+   In file included from include/linux/iopoll.h:14:
+   In file included from include/linux/io.h:14:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:574:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     574 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
+      35 | #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
+         |                                                   ^
+   In file included from drivers/pwm/pwm-atcpit100.c:25:
+   In file included from include/linux/regmap.h:20:
+   In file included from include/linux/iopoll.h:14:
+   In file included from include/linux/io.h:14:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:585:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     585 |         __raw_writeb(value, PCI_IOBASE + addr);
+         |                             ~~~~~~~~~~ ^
+   include/asm-generic/io.h:595:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     595 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   include/asm-generic/io.h:605:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     605 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+>> drivers/pwm/pwm-atcpit100.c:123:31: warning: overflow in expression; result is 94'030'336 with type 'long' [-Winteger-overflow]
+     122 |                         DIV64_U64_ROUND_UP(
+         |                         ~~~~~~~~~~~~~~~~~~~
+     123 |                                 (ATCPIT100_CYCLE_MAX + 1) * NSEC_PER_SEC,
+         |                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~
+     124 |                                 rate[clk]) - 1;
+         |                                 ~~~~~~~~~~
+   include/linux/math64.h:298:32: note: expanded from macro 'DIV64_U64_ROUND_UP'
+     298 |         ({ u64 _tmp = (d); div64_u64((ll) + _tmp - 1, _tmp); })
+         |                                       ^~
+>> drivers/pwm/pwm-atcpit100.c:173:6: warning: variable 'ret' is uninitialized when used here [-Wuninitialized]
+     173 |         if (ret)
+         |             ^~~
+   drivers/pwm/pwm-atcpit100.c:159:9: note: initialize the variable 'ret' to silence this warning
+     159 |         int ret;
+         |                ^
+         |                 = 0
+   8 warnings generated.
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for MODVERSIONS
+   Depends on [n]: MODULES [=y] && !COMPILE_TEST [=y]
+   Selected by [y]:
+   - RANDSTRUCT_FULL [=y] && (CC_HAS_RANDSTRUCT [=y] || GCC_PLUGINS [=n]) && MODULES [=y]
+   WARNING: unmet direct dependencies detected for GET_FREE_REGION
+   Depends on [n]: SPARSEMEM [=n]
+   Selected by [y]:
+   - RESOURCE_KUNIT_TEST [=y] && RUNTIME_TESTING_MENU [=y] && KUNIT [=y]
 
 
---
-Best regards and thanks for review,
-Dzmitry
+vim +123 drivers/pwm/pwm-atcpit100.c
+
+    76	
+    77	static int atcpit100_pwm_config(struct pwm_chip *chip, unsigned int channel,
+    78					const struct pwm_state *state)
+    79	{
+    80		int clk;
+    81		int ret;
+    82		unsigned int reload_val;
+    83		unsigned long rate[NUM_ATCPIT100_CLK];
+    84		u64 max_period;
+    85		u64 min_period;
+    86		u64 high_cycle;
+    87		u64 low_cycle;
+    88		struct atcpit100_pwm *ap = to_atcpit100_pwm(chip);
+    89		unsigned int ctrl_val = ATCPIT100_CHANNEL_CTRL_MODE_PWM;
+    90		u64 high_period = state->duty_cycle;
+    91		u64 low_period = state->period - high_period;
+    92	
+    93		rate[ATCPIT100_CLK_EXT] = clk_get_rate(ap->ext_clk);
+    94		rate[ATCPIT100_CLK_APB] = clk_get_rate(ap->apb_clk);
+    95	
+    96		/*
+    97		 * Reload register for PWM mode:
+    98		 *
+    99		 *		31 : 16    15 : 0
+   100		 *		PWM16_Hi | PWM16_Lo
+   101		 *
+   102		 * In the PWM mode, the high period is (PWM16_Hi + 1) cycles, and the
+   103		 * low period is (PWM16_Lo + 1) cycles. Since we need to write
+   104		 * "numcycles - 1" to the register, the valid range of numcycles will
+   105		 * be between 1 to 0x10000. Calculate the possible periods that satisfy
+   106		 * the above restriction:
+   107		 *
+   108		 *	Let m = 1, M = 0x10000,
+   109		 *	m <= floor(cycle) <= M
+   110		 * <=>	m <= floor(rate * period / NSEC_PER_SEC) <= M
+   111		 * <=>	m <= rate * period / NSEC_PER_SEC < M + 1
+   112		 * <=>	m * NSEC_PER_SEC / rate <= period < (M + 1) * NSEC_PER_SEC / rate
+   113		 * <=>	ceil(m * NSEC_PER_SEC / rate) <= period <= ceil((M + 1) * NSEC_PER_SEC / rate) - 1
+   114		 *
+   115		 * Since there are two clock sources for ATCPIT100, if the period is not
+   116		 * valid for the first clock source, then the second clock source will
+   117		 * be checked. Reject the request when both clock sources are not valid
+   118		 * for the settings.
+   119		 */
+   120		for (clk = ATCPIT100_CLK_EXT; clk < NUM_ATCPIT100_CLK; clk++) {
+   121			max_period =
+   122				DIV64_U64_ROUND_UP(
+ > 123					(ATCPIT100_CYCLE_MAX + 1) * NSEC_PER_SEC,
+   124					rate[clk]) - 1;
+   125			min_period =
+   126				DIV64_U64_ROUND_UP(ATCPIT100_CYCLE_MIN * NSEC_PER_SEC,
+   127						   rate[clk]);
+   128	
+   129			if (ATCPIT100_IS_VALID_PERIOD(high_period) &&
+   130			    ATCPIT100_IS_VALID_PERIOD(low_period))
+   131				break;
+   132		}
+   133	
+   134		if (clk == NUM_ATCPIT100_CLK)
+   135			return -EINVAL;
+   136	
+   137		/*
+   138		 * Once changing the clock source here, the output will be neither the
+   139		 * old one nor the new one until writing to the reload register.
+   140		 */
+   141		ctrl_val |= clk ? ATCPIT100_CHANNEL_CTRL_CLK : 0;
+   142		ret = regmap_update_bits(ap->regmap, ATCPIT100_CHANNEL_CTRL(channel),
+   143					 ATCPIT100_CHANNEL_CTRL_MASK, ctrl_val);
+   144		if (ret)
+   145			return ret;
+   146	
+   147		high_cycle = mul_u64_u64_div_u64(rate[clk], high_period, NSEC_PER_SEC);
+   148		low_cycle = mul_u64_u64_div_u64(rate[clk], low_period, NSEC_PER_SEC);
+   149		reload_val = FIELD_PREP(ATCPIT100_CHANNEL_RELOAD_HIGH, high_cycle - 1) |
+   150			     FIELD_PREP(ATCPIT100_CHANNEL_RELOAD_LOW, low_cycle - 1);
+   151	
+   152		return regmap_write(ap->regmap, ATCPIT100_CHANNEL_RELOAD(channel),
+   153				    reload_val);
+   154	}
+   155	
+   156	static int atcpit100_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+   157				       const struct pwm_state *state)
+   158	{
+   159		int ret;
+   160		unsigned int channel = pwm->hwpwm;
+   161	
+   162		/* ATCPIT100 PWM driver now only supports normal polarity. */
+   163		if (state->polarity != PWM_POLARITY_NORMAL)
+   164			return -EINVAL;
+   165	
+   166		if (!state->enabled) {
+   167			if (pwm->state.enabled)
+   168				return atcpit100_pwm_enable(chip, channel, false);
+   169	
+   170			return 0;
+   171		}
+   172	
+ > 173		if (ret)
+   174			return ret;
+   175	
+   176		ret = atcpit100_pwm_config(chip, channel, state);
+   177		if (ret)
+   178			return ret;
+   179	
+   180		return atcpit100_pwm_enable(chip, channel, true);
+   181	}
+   182	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
