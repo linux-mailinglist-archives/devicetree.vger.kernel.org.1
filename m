@@ -1,133 +1,111 @@
-Return-Path: <devicetree+bounces-126273-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126274-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B82DF9E0D6B
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 21:57:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F1E89E0D70
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 21:59:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 85CDE16552E
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 20:57:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3CDFF165519
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 20:59:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69E761DEFF7;
-	Mon,  2 Dec 2024 20:57:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A8271DEFF7;
+	Mon,  2 Dec 2024 20:59:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BLdvUXL0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VTcGLgss"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C4B619BBA;
-	Mon,  2 Dec 2024 20:57:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 313021DDC24;
+	Mon,  2 Dec 2024 20:59:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733173062; cv=none; b=qw1JxMoqGQzIm/Mpn4ImrcStWwmHokyif47P4Age/AehTHupR+IbC0bXJty8srio6+RrXr0vV1CbDV40Z1llTbAGR32tyKa0vEtqMpoUiMSPjdv+SP6Y1ijRO8MuxmhaiQn3UeRM+ON6LooKXzrztcXphA0CBkz/3472dO+zpVI=
+	t=1733173144; cv=none; b=DgIsUbFIYT42dbfKZpz9Vx4kbkw+FrMLnno5g4hmAs1G58Sbl32H/lYdLkXFJn5QedyXnPxKKAdzU5gBeDqHY4I7tC23tTJsKHweOPL9d7JM7C1bZRwKdmtguWtuyOe+K/6uE+7uPm8o74rrc6QSyXLAV6j6D+YN/1eFH7Hl0SY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733173062; c=relaxed/simple;
-	bh=y8VzxnsyxdZ299ksar2rMfEnBfUOR8Om3RcJKlRKg8Q=;
+	s=arc-20240116; t=1733173144; c=relaxed/simple;
+	bh=BqWecxSXgQIa8giUNeZ2BAp4YD5tR1OQ3mAJHBxTKik=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UUKdtso5qrhFLwXgP4xsh1iA3F2gp9LxUfmZ3K1KGO3Nagyqwt2Pa3N2hLrxi4rveXZXLH91+I1ocVNE7u2oLA9cvwMn6OdVjlpIlq1Ett+VrBFvS+R7xje5r05MAspLURXf0bYDM+Hqf0x300OWu86dcxUXbPCNZixOQHudsBw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BLdvUXL0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 555E6C4CED1;
-	Mon,  2 Dec 2024 20:57:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=RYFIQeQBYSFqxpIOlySS9DuN5pJkssK4dAZXJUhgEIFZVDEDnx67Xp7Ki88Ksm4VyTMybNUbr0tR94ruImAqX6O6BR9lF4iGnZzMn9HPo7AEXGdIgTrPFMN/vvzIQpqk0vyIQpJBcHNG+YwNSya7qwvXqN/PMFeha1rvhNzINVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VTcGLgss; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47996C4CED1;
+	Mon,  2 Dec 2024 20:59:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733173061;
-	bh=y8VzxnsyxdZ299ksar2rMfEnBfUOR8Om3RcJKlRKg8Q=;
+	s=k20201202; t=1733173143;
+	bh=BqWecxSXgQIa8giUNeZ2BAp4YD5tR1OQ3mAJHBxTKik=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BLdvUXL0NmalifhfD7a9PThBw2rUv5zYnuaYUEM8G9ffDYemWzgSOpLhQtw1rx0Q9
-	 xFcv6FIpo0VLKdU2ROAGpRhQg3kqMuo9HqhxQQ3LglT/9sYWKt+MQgrCjRQ+MajkpZ
-	 QvungpfEPoysMEZpJUauAih5kMLy7VGkv5XU6X70215SN6BGJ8OgAnFpWHo47exZtj
-	 956t2OmsZJ4ZWj1u6aZEF8Q0XK9sFrMv4UH05P9nbFgL6q7J9AvEvvyykdtzrCW3q0
-	 lFmDZCw5dPS9PpyXaX9j9XNUToEZ/vSjrrJi5ivFjxNwGeQxXCFeM8+j7wjk/HgpN1
-	 bx6z6sEmYdXkg==
-Date: Mon, 2 Dec 2024 14:57:38 -0600
+	b=VTcGLgssR0iDsOKrcFy5f2jhrehoim0WjgkUIfZ8MC74zgng7L60W7kqT3Qa4Zxv1
+	 SxUUslZkPERVEJVmZ1tHp7hbkwHZE13h04GK4ZJrhYnMM/TD8I+zMnNT9Q6s9LNHyt
+	 ROEQYFd/AsyM8wSwJ4Hxqc5XmvlvnTQi5wGiPkRMMkHbA5FTr6kHBgHiFf4zrhXzyU
+	 RdzB1k1PYdJmOvS/MmU9PLcH4kjgHyxOLwlzjbNS1cSpIHH0xxlAo5A0D1TenYClkA
+	 xccj0DKwHmuiLL6WRFi33hjhnuSyPqjnKiXBo+MMn6ujpGvigZJ4LbDNXVqodidtkv
+	 AHxuqZtLeT8hg==
+Date: Mon, 2 Dec 2024 14:59:00 -0600
 From: Rob Herring <robh@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
+To: Marc Kleine-Budde <mkl@pengutronix.de>
+Cc: Jonas Rebmann <jre@pengutronix.de>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>, Heiko Schocher <hs@denx.de>,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	upstream@airoha.com
-Subject: Re: [PATCH v4 1/2] dt-bindings: cpufreq: Document support for Airoha
- EN7581 CPUFreq
-Message-ID: <20241202205738.GA3149730-robh@kernel.org>
-References: <20241202151228.32609-1-ansuelsmth@gmail.com>
- <CAPDyKFqrY7uLD8ATqH0LghmkHgApQSsGtvGkOTd8UVazGu0_uA@mail.gmail.com>
- <674dd60f.7b0a0220.2ba255.7b7a@mx.google.com>
+	linux-mtd@lists.infradead.org, kernel@pengutronix.de,
+	David Jander <david@protonic.nl>
+Subject: Re: [PATCH 2/3] dt-bindings: mtd: mchp48l640 add mb85rs128ty
+ compatible
+Message-ID: <20241202205900.GA3155769-robh@kernel.org>
+References: <20241202-mb85rs128ty-v1-0-a660b6490dc8@pengutronix.de>
+ <20241202-mb85rs128ty-v1-2-a660b6490dc8@pengutronix.de>
+ <20241202-stereotyped-otter-of-agility-44b71b-mkl@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <674dd60f.7b0a0220.2ba255.7b7a@mx.google.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241202-stereotyped-otter-of-agility-44b71b-mkl@pengutronix.de>
 
-On Mon, Dec 02, 2024 at 04:45:17PM +0100, Christian Marangi wrote:
-> On Mon, Dec 02, 2024 at 04:42:33PM +0100, Ulf Hansson wrote:
-> > On Mon, 2 Dec 2024 at 16:20, Christian Marangi <ansuelsmth@gmail.com> wrote:
-> > >
-> > > Document required property for Airoha EN7581 CPUFreq .
-> > >
-> > > On newer Airoha SoC, CPU Frequency is scaled indirectly with SMCCC commands
-> > > to ATF and no clocks are exposed to the OS.
-> > >
-> > > The SoC have performance state described by ID for each OPP, for this a
-> > > Power Domain is used that sets the performance state ID according to the
-> > > required OPPs defined in the CPU OPP tables.
-> > >
-> > > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > > ---
-> > > Changes v4:
-> > > - Add this patch
-> > >
-> > >  .../cpufreq/airoha,en7581-cpufreq.yaml        | 259 ++++++++++++++++++
-> > >  1 file changed, 259 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.yaml b/Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.yaml
-> > > new file mode 100644
-> > > index 000000000000..a5bdea7f34b5
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.yaml
+On Mon, Dec 02, 2024 at 05:53:18PM +0100, Marc Kleine-Budde wrote:
+> On 02.12.2024 17:35:21, Jonas Rebmann wrote:
+> > Add a compatible string to support Fujitsu MB85RS128TY.
 > > 
-> > [...]
+> > Signed-off-by: Jonas Rebmann <jre@pengutronix.de>
+> > ---
+> >  Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
 > > 
-> > > +examples:
-> > > +  - |
-> > > +    / {
-> > > +        #address-cells = <2>;
-> > > +       #size-cells = <2>;
-> > > +
-> > > +        cpus {
-> > > +            #address-cells = <1>;
-> > > +            #size-cells = <0>;
-> > > +
-> > > +            cpu0: cpu@0 {
-> > > +                device_type = "cpu";
-> > > +                compatible = "arm,cortex-a53";
-> > > +                reg = <0x0>;
-> > > +                operating-points-v2 = <&cpu_opp_table>;
-> > > +                enable-method = "psci";
-> > > +                clocks = <&cpufreq>;
-> > > +                clock-names = "cpu";
-> > > +                power-domains = <&cpufreq>;
-> > > +                power-domain-names = "cpu_pd";
-> > 
-> > Nitpick: Perhaps clarify the name to be "perf" or "cpu_perf", to
-> > indicate it's a power-domain with performance scaling support.
-> > 
+> > diff --git a/Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml b/Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml
+> > index 0ff32bd00bf6aee279fa78c624d8d47c6162f7f1..973f06b665dbbcb9ea1090418eb18fbe2285acef 100644
+> > --- a/Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml
+> > +++ b/Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml
+> > @@ -18,6 +18,7 @@ properties:
+> >    compatible:
+> >      items:
+>        ^^^^^
+> I think you need to change to "oneOf"
+
+"enum" rather than oneOf plus const entries.
+
 > 
-> Will change to cpu_perf. Thanks a lot for the review!
+> >        - const: microchip,48l640
+> > +      - const: fujitsu,mb85rs128ty
+> >  
+> >    reg:
+> >      maxItems: 1
+> 
+> regards,
+> Marc
+> 
+> -- 
+> Pengutronix e.K.                 | Marc Kleine-Budde          |
+> Embedded Linux                   | https://www.pengutronix.de |
+> Vertretung Nürnberg              | Phone: +49-5121-206917-129 |
+> Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
 
-Is that defined in arm/cpus.yaml? No.
 
-The current choices are perf or psci though those aren't enforced (yet). 
-Or nothing which is my preference if there is only 1 power domain.
- 
-Rob
 
