@@ -1,169 +1,247 @@
-Return-Path: <devicetree+bounces-126078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126079-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1E789E05A6
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 15:56:37 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D72229E02D9
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 14:08:15 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 92C6DB26EE5
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 12:55:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E2116161168
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 13:06:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 392501FECBB;
-	Mon,  2 Dec 2024 12:55:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48B7FEAD2;
+	Mon,  2 Dec 2024 13:06:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="EJys/Oln"
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="DFEEpBy2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2048.outbound.protection.outlook.com [40.107.20.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A13A11FDE05;
-	Mon,  2 Dec 2024 12:55:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733144154; cv=none; b=chg2WzF9lx7r+kI8zNE7nLbmUoiWG6zpXDXMJS0VZ+wXig42uG+vkxgtMsMAJ4nA3dsFRWFREFGE81mDQ0x2X0iICwVKLyyylu0UlIxkbU5giK3NCklBoBYxVITiitfHZekfd4hJTY5DITJGhWF5kG3xG4gH1dGMMD+/fwCVDBY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733144154; c=relaxed/simple;
-	bh=vd13ZkzEmnU5zASTA5DJf0GZ3dPvQMRCej5XzVRFx20=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=hzOr9gBA1ZrFOC496nAKR/RhYnWp4ozKOLsRXk1UPoHNM50Rv+AmJR3a4mNq0HHCD+AUCxKp8eTmZiQ6DGIl3ARJ8UpVpFgxw+FpZXjem9iY1orDwwbUxNmTZrp3MCwPmGGCmueqvg6q/kjw4q4y85SMusK2zTCh/HMqNUqMOVE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=EJys/Oln; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B29fHfI010836;
-	Mon, 2 Dec 2024 12:55:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	UaL9rDM7akT1qiyQz0TMbTWhesPFrPNHkY8MNQHniqg=; b=EJys/OlnfBmSMPl3
-	eVncF0OwWPXJ+l1L3unjd2MugM6CRSZTRFVDRzMpv2ff56+KXWqWkyrNLWLKtaPh
-	RhrdOM6c95S6McCJjCx/k9HsObTNFubrNAApNG9OhlzbfUUkSBgcHtf8nL+CextJ
-	irPRi8G+UG0vPn8udM6++Y4nHnXJK4j/cHIn5znXGdZnNbQL/0XDcyvgyBk+8RKM
-	hLxaj2+5DoF2P13J66iB9xycvsT1QfQrS7q4P5Ji7hdkC7sL4e0Cmw5x0ZYEwV3J
-	589CSkUooUrOdCBwp3cBq+1U8RevYd/45mTxIEhCyZQUOawP42kwNuwALIWxwUw1
-	vgUJpQ==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4393mp9rf4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 02 Dec 2024 12:55:44 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B2CthV7021626
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 2 Dec 2024 12:55:43 GMT
-Received: from [10.217.219.207] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 2 Dec 2024
- 04:55:38 -0800
-Message-ID: <da2ba3df-eb47-4b55-a0c9-e038a3b9da30@quicinc.com>
-Date: Mon, 2 Dec 2024 18:25:35 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E28368F6B;
+	Mon,  2 Dec 2024 13:06:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.48
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1733144810; cv=fail; b=DkD3HJiCrLvw+Re8GWNtg5Q76SuSo36yd2VHkG5X5pRXF5DW14DKacbNIDeY5Q2xYAntlJS4LICovYt/8RzOeRlaiRuFTNl0lY93KaMXxxwN3E0a1DsrnW8b05oGOD82a/jATdxYtCIQNQuepKVaI0e4pjrRuBFxNP0/qBN1GC4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1733144810; c=relaxed/simple;
+	bh=6g1Bjk/Fu3jx2yXOGK4cj4CqoyvfB3VBUdhG7CPw4UQ=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=KKPUX3UR2YgsOJTpGPFMQjaKLZRpfTBBOySIhKnmT+mudHBOVUPswdztHsFAQu1DjMqflR0cRXRNUoUIaIYPx0pN2Us/puGur8UeN115IkOXE/yUMUre+KrUBYZe5Q0AH9u8lb79ZrRQVlNwYsUlxuw+0KKF/AiYxgd9UZey10E=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=DFEEpBy2; arc=fail smtp.client-ip=40.107.20.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=d+LvjE4TGo8INLu7O5BjaMTjZmT+pWmo6oH1u7x3QG/rQRwkdHg0PThiYYEqFHkCJRoVQf4tAlA1MFcOJUfJcFtwxvseM1RgB9jzZcj1W/J/qwWOJUdrz3mYYC2widsjYU6WY/BGclk787l/vzqdpMKPr3JvLGwzdCzs7pU3fgtypAx/g5Cgf29q4df/kVgqU5PW0FpE6RCbhUzYXCd6UU97UnlUpeD7xC1Hl0Jn+g7Kook9m2ToN460xNiVZz6BdlCM7FI9x3ZBMpPU6H4/6G3FiMxMVeMPG4N09prQ0hiADTesaC1DQusMGiCgzAOjQoJCfnkPYuH2w3OH0LX2lQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=14MP4AG3bbVf4OvK/l6vQiZZ8GvKBfb+E3gtEZ2JMus=;
+ b=ylVPqyxu2eoGd8RUmxdrxMAm+2MFe5NCowcvLR0fsz3TOdEmSuqpBJ4rWXd10znGNcXxuQzgF52NPb+DCUgC9WU8pkIkCQdX1TrIeicKsUPjZ2/9PHvZsI0573gsrct8QRLpZVBwH6JEhRcBD23u8w8qS3b2avXvx4RIu1tK3/B2l2QA23b9w4p6qAw2l+HRCGZ9uUQVF7V10fec6+vgFQ9g0Ipedn/LiIX5PTsMNEPNbSQIMtjNDIdmJiFKf3ZbTtn+HVDxD8BfJrjj3J1dcxvzLtuWiGvYUGGUwHejw333qLd06M4RKCBoP9KKj4fFUSaFbr5HL7BOSuoneEdENA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=14MP4AG3bbVf4OvK/l6vQiZZ8GvKBfb+E3gtEZ2JMus=;
+ b=DFEEpBy2fZOakIXGqTd72zJ7ujDd7IY2uV6z+rnOjh5mJ8yYoiUcORidpwbXcFgIkam+/fbx9lXNI4MRsPxcKK85NBeyd6I0yyT3QjIFdPyPfdpAAikxdxIWwECC16D0iEnoetzrZzIMzMnHW5XwkhVig3m9PEcLOaw0dRikAJWZr0CWuCqWYzBJcIPx1JGGVjtTIX9axlcCz7X9CnTRMNigY8KkAO3LDl5Zfb4E7UVrTWW9y4b8v9tGWBMny3IJQoYL/GMSldiNg/Wr5wqh6DG0UBi0dTCZllDyZGIDajtHxzrajJYNpekUb8R1tM/JOfb/sOjNC0cd+orZo9oT2A==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9251.eurprd04.prod.outlook.com (2603:10a6:10:352::15)
+ by PA4PR04MB7582.eurprd04.prod.outlook.com (2603:10a6:102:f2::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8207.18; Mon, 2 Dec
+ 2024 13:06:44 +0000
+Received: from DU0PR04MB9251.eurprd04.prod.outlook.com
+ ([fe80::708f:69ee:15df:6ebd]) by DU0PR04MB9251.eurprd04.prod.outlook.com
+ ([fe80::708f:69ee:15df:6ebd%6]) with mapi id 15.20.8207.017; Mon, 2 Dec 2024
+ 13:06:44 +0000
+Message-ID: <e2329870-2e4b-4c38-ae20-c6aa5108a0da@oss.nxp.com>
+Date: Mon, 2 Dec 2024 15:06:38 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/4] rtc: s32g: add NXP S32G2/S32G3 SoC support
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: Frank Li <Frank.li@nxp.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>, linux-rtc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+ NXP S32 Linux <s32@nxp.com>, Christophe Lizzi <clizzi@redhat.com>,
+ Alberto Ruiz <aruizrui@redhat.com>, Enric Balletbo <eballetb@redhat.com>,
+ Bogdan Hamciuc <bogdan.hamciuc@nxp.com>,
+ Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>
+References: <20241126114940.421143-1-ciprianmarian.costea@oss.nxp.com>
+ <20241126114940.421143-3-ciprianmarian.costea@oss.nxp.com>
+ <Z0YN+5GfP6iR8a/A@lizhi-Precision-Tower-5810>
+ <14e90ec7-3815-4f06-826c-3fcf0d8d53c8@oss.nxp.com>
+ <2024112715321236991788@mail.local>
+Content-Language: en-US
+From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+In-Reply-To: <2024112715321236991788@mail.local>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AM0PR01CA0144.eurprd01.prod.exchangelabs.com
+ (2603:10a6:208:168::49) To DU0PR04MB9251.eurprd04.prod.outlook.com
+ (2603:10a6:10:352::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/4] dt-bindindgs: i2c: qcom,i2c-geni: Document shared
- flag
-To: Krzysztof Kozlowski <krzk@kernel.org>, <konrad.dybcio@linaro.org>,
-        <andersson@kernel.org>, <andi.shyti@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <dmaengine@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
-        <conor+dt@kernel.org>, <agross@kernel.org>,
-        <devicetree@vger.kernel.org>, <vkoul@kernel.org>, <linux@treblig.org>,
-        <dan.carpenter@linaro.org>, <Frank.Li@nxp.com>,
-        <konradybcio@kernel.org>, <bryan.odonoghue@linaro.org>,
-        <krzk+dt@kernel.org>, <robh@kernel.org>
-CC: <quic_vdadhani@quicinc.com>
-References: <20241129144357.2008465-1-quic_msavaliy@quicinc.com>
- <20241129144357.2008465-2-quic_msavaliy@quicinc.com>
- <db428697-a9dc-46e1-abbe-73341306403f@kernel.org>
- <a8b1ccd2-c37b-4a6f-b592-caf1a53be02c@quicinc.com>
- <fc33c4ed-32e5-46cc-87d6-921f2e58b4ff@kernel.org>
- <75f2cc08-e3ab-41fb-aa94-22963c4ffd82@quicinc.com>
- <904ae8ea-d970-4b4b-a30a-cd1b65296a9b@kernel.org>
-Content-Language: en-US
-From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-In-Reply-To: <904ae8ea-d970-4b4b-a30a-cd1b65296a9b@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: XA6PMkdLBdJuYQISwDC-dpgvldnzt9NW
-X-Proofpoint-GUID: XA6PMkdLBdJuYQISwDC-dpgvldnzt9NW
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=974
- impostorscore=0 mlxscore=0 malwarescore=0 suspectscore=0
- lowpriorityscore=0 adultscore=0 spamscore=0 priorityscore=1501
- clxscore=1015 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412020113
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR04MB9251:EE_|PA4PR04MB7582:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6cf37398-4f4f-4615-3647-08dd12d22b72
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|7416014|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?UzBSVHRob09yQ0V0dUxPaUdlUGg0MVZVSldHUnk2TmV5ank5aUFKa3ZYSGp6?=
+ =?utf-8?B?TEVtOExtYUliTXNHTWtzeVVuTGFMb1dMUVVjZFpEMm5zTlhaVzFoRGY5a2xR?=
+ =?utf-8?B?d01oMDMxaHdGNzU2QmREemxQRFE3Zzh4RVNpdUE4VnRDM3dxZHRDTDMyaDJR?=
+ =?utf-8?B?TjA5UGsrQ3FaL1BlbnFrQ1JBQU1sNVdPZUFhNWFod0d2c3dKNk9YdlBDRFAx?=
+ =?utf-8?B?Yk4vYnJVUVB1dTdaQ3NOVXlXUGRrS2gxaFpvS09SSGdLNHNnYXI0S3BRYlFY?=
+ =?utf-8?B?ekR1TTAyQkJLb2lDYWJ4YkhacHp4bTR3ZlJWU25qK1UxMHlIY0Nyay9wZ3NU?=
+ =?utf-8?B?TXYzMWFmRDJvRDNYTlNaTGdMYjI4TEJFQ1RIYU5jc0lQOGtZRnFUcHdQeG4x?=
+ =?utf-8?B?eFY1ejhpKzd2WHdVNFJjRkdNL2luT3VZRFk2aUxta2tFaXZ5QWhDQ0t0dU9x?=
+ =?utf-8?B?N2ZpdTE3cHd5c2Zjbll1ZjNRektacWIrbU5nTGprUVM2NEFSTDVVQTNFOTFN?=
+ =?utf-8?B?bzI4K0hQVWltS2FPTkRtUUN4b1FWNlNLNVF0L2ljbWhpNTFuSVB4V2dBLzZ4?=
+ =?utf-8?B?cm1PRHo5cHFHZWo3bnVRc2JiNU1WNHRmZDM2K2lmenBSUW4wa0RFSTJzaFQ3?=
+ =?utf-8?B?TDlnU083MUdPU3VQV0tRUENxNnV6cjJML1BheVNEMTJkcUhhU3QxMkdaRGpL?=
+ =?utf-8?B?VnJEc1dpUUZaOHozT21heHdxdm84d05YYUR2bHVIb2JqWjlFNEgyZWh2aXV2?=
+ =?utf-8?B?QUZJTTdIVUNYdEhwN3B0VDRxUGVMSXp0cDVGT2lxTFZXUEJSTnFlelk5ZXUw?=
+ =?utf-8?B?YXRSQXlXL0dpNU9MOCt0bkg1VTN4eEdJTE9UZVNDZjlQQmM2VDU1d2Y4L1lm?=
+ =?utf-8?B?QmY5UDBWcHdacVRGdDFjVWVWeWZsR05rQXRnZWZBaFl4NEo1TlFMTjZZdkhG?=
+ =?utf-8?B?TUc0UmNRbFdKd1FVK0h2cGVySVRzRVRKSmNuSGtiN0MyU2t4NndWUVl6RTBu?=
+ =?utf-8?B?Zy9GeTNyT0V1ZlBVZjRSQmpmbTk0QjhjaXVxUEljVG1UY1BLZjdKaVowVyts?=
+ =?utf-8?B?L05FZDAwanUwREMwdGNUSVM1L0JiRWF1QnB6U21MaTR6N0M2R2J0M2VoTGJV?=
+ =?utf-8?B?VXlBcm5TaW5vMEVJRlE1d1NiN2tMRU53dk01Wk13YkFWbkNUenVScDdjTWww?=
+ =?utf-8?B?bXNaMFdDcFd2dWEvd2h0WXBQL1pVd0pIeDJmQlRNcnk4QnFVaTBxYTZ2NndM?=
+ =?utf-8?B?dUtGd2twUWxrTDhUK1JOSzBWN3YySmliOHlPbGE2clRWWFd0Qm92RTBiTW5J?=
+ =?utf-8?B?MCtBRWF0K2JQcWlUajFSbmtwdTdoUm9PUndPTlMxOUticmxla1lxelRlNlJk?=
+ =?utf-8?B?ZWZjTmo4SlBTNmx6V3ZhRHZQbkhUYk5MS1NlTGc4N0tVbG81czE0ZVRDdGJh?=
+ =?utf-8?B?eERJUFptK3pRUVBtNThqd1plaG1ld3pnemtpSkFHUTJyRFVBczRCVmJ4aUVo?=
+ =?utf-8?B?NGtNSjBQVDRDS3RaQWUvc1h3OUp2VWYyZUpIV2s3OTFyU3MwcGdyVlovTDFq?=
+ =?utf-8?B?T2V3dFltSzFObGNFelArdi8vUTFBSzJIeENkbXFVMFZaOVhiRTUxUCt0UENF?=
+ =?utf-8?B?TkFKd3pFVU8rdGpvM2VXT2hFUmdTd3RsWGhtM1hVUGQ4RmZRdkFxbTNvNHdI?=
+ =?utf-8?B?VE84ZlN4VitzWmZlYlM4VDN0ejRUTEFlM3lVbVA0OTV1UkVrTEpGVVJLT2s1?=
+ =?utf-8?B?ZVVTVzRhN0hBdUNVZkRSSytzSGUzSlpFTUhXajE3VE5sckRtSFdnWnRxc2Ez?=
+ =?utf-8?B?TEZBK3ZPYVRwQnFEUGJxQT09?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9251.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?SDc2a25vSmozbGloUlFzdlQ2b2Z2WnUvZGdCdHhKeVFUdmU5MnBINmlnWi9F?=
+ =?utf-8?B?dGZNQlhpcExoLy9WMWVMaE1lamVDZHNpZnNHeWtEcHBBWXpHRVVXY0JhQVo2?=
+ =?utf-8?B?MWpCNVk3M3NBY2tmaWJINjZKa3oralYxN2RHenNOdFBIZDVwVHpjVXIrUXFh?=
+ =?utf-8?B?TEFPV2J4TGIybXFPd3ZBZDIxaVFhQW5nUWtsWk9adit3UWE0bGhXVjRjMHF5?=
+ =?utf-8?B?VVZhMktlajVld1psL2ZjU2duOEQxU3JQWjdJMkliaU0wdmZyU09rbTljeE5r?=
+ =?utf-8?B?VG1JTVNwOTZXOTFHWngwdFR1NHJ6ejluODB3Sm5ZY2lEdlRYNWVJTjJENmc1?=
+ =?utf-8?B?QjlrUVBWVFN3VWRnL2pGcWZCK3VQL05GdmpJSDdaTFFpcDVrRlBsa2QzdHUv?=
+ =?utf-8?B?TDFkQzE5bWdSakNWcWlzOUlVTHJOM1VuVjhnMXIrQTNZYVpLUjEvUGF6eUxy?=
+ =?utf-8?B?cE1zT3YzK2s0WW9TUEdoY3doTDI1STloTUpTMDZlbTZmdnA5ZVdSblUwWEZR?=
+ =?utf-8?B?RW1WN2lka1J2K3N6djRGdmNONjgybFVBUS9HQXRBN3pHelA5WUl6TUpFTXk3?=
+ =?utf-8?B?eGdXdWZOc2NHK2x1Z1RjajJEREpXME1nUDhnZHcwbm80U1RaaWpFR3VkTDFa?=
+ =?utf-8?B?cFdFdTRFVWJwTU0ybUpyZTJHSTg4R1lEMWgrTUhERU5WZ1pyRklwSzhaOEM3?=
+ =?utf-8?B?Zm4zYlovWEJMaVQvM3V3UmhhN1c3ZG1PSnRPQ1ZIWDhXa2VxUmJXN2dxd285?=
+ =?utf-8?B?UDF2Y1NqeDQvdXBlVDZjZGgwVENpaVlYbzFBZU42SWpvcGNoWmxKSnkwWWIx?=
+ =?utf-8?B?cEprZktGd0x5Ym1US2M2NmtGRGFIaEMxa0VheGxiSzNIYWZTLzl4REpoT2Zq?=
+ =?utf-8?B?TFRiYjlpYVA2d1FlQ2JRc2tSRmR6elZYY09WcFllSkYyOGRPbFNkQ3FmelpC?=
+ =?utf-8?B?NGNIZ3Bpd0VQUitMc0wyYnNiNFdYb3FjbFQ0SW5VOXQ0L0I1ZUdyT05SdGRI?=
+ =?utf-8?B?WDV0Vks1Qy9VN2FNVnZhVytrMWZiM1llK25pK0hhZ1Mya0t2b0ROQ3lpKzlv?=
+ =?utf-8?B?VGFKRkNFM2tuU1Bxd1JiYUJ6bnpnSCtid0ZabExrZW8xM1d2dUJqL1JRZFFI?=
+ =?utf-8?B?YWlmL2lwYWV2REhZMVA2clJEQ2tNMVdOK0Ntd3B0SGdrckIyOTd5VmJNMm1Z?=
+ =?utf-8?B?YUJkbG13R0FKdmo0eXpGSkF6V0lIeU5qSFNrTW5oMFN4eVhWV3hFSU9JZkNH?=
+ =?utf-8?B?dU4zSGZKR1N5YXlNMkxzaVhVcmVNcStTWHlkSURpMThsWFNJSVUyaVNSYTJQ?=
+ =?utf-8?B?VUpnZ2tPdFcyYU0zeksxVnczK2NoQVB0cUE5NlIzbVVqbURsa2dXTlFtRWhX?=
+ =?utf-8?B?c2p5MklMaTlTcHNaeDY3NW9Kbnl1aVkvckliZFBTUFFOb2VFajVvTStheDk1?=
+ =?utf-8?B?YituT3RXS0NZOXJTVzc4MnNyUUNCZzI5aE01TEZDU1hWR2hRVTJPNnBUVTZu?=
+ =?utf-8?B?YWNiY2c1U1dHTEp0NElKUVpmQ2QxdjFwL3pZNGdTbXM2bk1BVXc0eVN1NFRR?=
+ =?utf-8?B?MkN6S05EUE9YQUo2Z3MwR3JUUDZWRFgzWGFLRGIzV3d0ZFNiaVhObHM2RGds?=
+ =?utf-8?B?a3JncVMzVTY0NVQwL0ZhT3FEcjFCZVZ1ajlhM01VNFY3Nk85ZzNheFFQeFNi?=
+ =?utf-8?B?NldxZVlTNG5ZbCtWZVJTR092ZjMyRkowb1l0U0NQazhnQUhhcEo3ajZvN3c1?=
+ =?utf-8?B?cWIxQ0o5MGdmbjJxdDRTQVNWREh1Z0ZhdnZKQXBuUG9RQk14OVE3Q1dNYmh0?=
+ =?utf-8?B?Y0tlWSt0cHYraEU5MXVjdWp4VjRIMGRNUXk2alpTWGYvNlJMM3lwQXpONkgw?=
+ =?utf-8?B?LzNMZkJKLy9WRDJtZEJUQ01RWFg1dmo0VHI1SFRzRmdXR3NZVlJaL2o3NGZE?=
+ =?utf-8?B?ZDhMbWlNUmZtSXVBSTAwaUhmTnd4ZGJWVEFmZ1d1SVV6aDJGR2ovcVdaMnJH?=
+ =?utf-8?B?elJNd0d3bVdYSytGYlM1cWduRmZDMUZtUUgwZzhqYTAya0JJUTdnYXQva2dw?=
+ =?utf-8?B?S3RlbXppbHRmR0cwOTZRUGdsZC8ydVpqd3R5WHpkUmVUTklzSjFnSDRrYzRW?=
+ =?utf-8?B?bzhQRGZQU0ltL3FGVnR4MEtsVU9YbFg2eExXT0kvbzV5RW1TVDkxR3FoMUxY?=
+ =?utf-8?Q?V2pD45yrnVhvXNoWxPD5l9s=3D?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6cf37398-4f4f-4615-3647-08dd12d22b72
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9251.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2024 13:06:44.1717
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: n3SfIz9gB0Tg76fRgkc5jBEsAU4V3SgrZQ2Gzr6KExntl+ZUc2C52qQIsxU5E7Tq9mgv45OgQiW6XshbZlrxu4tW1XcmV8sCjZnC/xRHz5s=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7582
 
-
-
-On 12/2/2024 4:34 PM, Krzysztof Kozlowski wrote:
-> On 02/12/2024 11:38, Mukesh Kumar Savaliya wrote:
+On 11/27/2024 5:32 PM, Alexandre Belloni wrote:
+> On 27/11/2024 17:07:48+0200, Ciprian Marian Costea wrote:
+>>>> +	if (priv->dt_irq_id < 0)
+>>>> +		return priv->dt_irq_id;
+>>>> +
+>>>> +	ret = devm_request_irq(dev, priv->dt_irq_id,
+>>>> +			       s32g_rtc_handler, 0, dev_name(dev), pdev);
+>>>> +	if (ret) {
+>>>> +		dev_err(dev, "Request interrupt %d failed, error: %d\n",
+>>>> +			priv->dt_irq_id, ret);
+>>>> +		goto disable_rtc;
 >>>
->>> Come with one flag or enum, if needed, covering all your cases like this.
 >>>
->> Let me explain, this feature is one of the additional software case
->> adding on base protocol support. if we dont have more than one usecase
->> or repurposing this feature, why do we need to add enums ? I see one
->> flag gpi_mode but it's internal to driver not exposed to user or expose
->> any usecase/feature.
+>>> Already enable rtc at rtc_clk_src_setup(), you direct return fail after
+>>> check clk_get_rate();
+>>>
+>>> if you want to disable_rtc, you use devm_add_action_or_reset() to add
+>>> a disable action callback and return dev_err_probe() here directly.
+>>>
+>>> Frank
+>>>
 >>
->> Below was our earlier context, just wanted to add for clarity.
->> --
->>   > Is sharing of IP blocks going to be also for other devices? If yes, then
->>   > this should be one property for all Qualcomm devices. If not, then be
->>   > sure that this is the case because I will bring it up if you come with
->>   > one more solution for something else.
-> 
-> 
-> You keep repeating the same. You won't receive any other answer.
-> 
-So far i was in context to SEs. I am not sure in qualcomm SOC all cores 
-supporting this feature and if it at all it supports, it may have it's 
-own mechanism then what is followed in SE IP. I was probably thinking on 
-my owned IP core hence i was revolving around.
-
-Hope this dt-binding i can conclude somewhere by seeking answer from 
-other IP core owners within qualcomm.
->>   >
->> IP blocks like SE can be shared. Here we are talking about I2C sharing.
->> In future it can be SPI sharing. But design wise it fits better to add
->> flag per SE node. Same we shall be adding for SPI too in future.
-> 
-> 
-> How flag per SE node is relevant? I did not ask to move the property.
-> 
+>> Thanks for pointing this out. I will use 'devm_add_action_or_reset' in V6.
 >>
->> Please let me know your further suggestions.
-> We do not talk about I2C or SPI here only. We talk about entire SoC.
-> Since beginning. Find other patch proposals and align with rest of
-> Qualcomm developers so that you come with only one definition for this
-> feature/characteristic. Or do you want to say that I am free to NAK all
-> further properties duplicating this one?
 > 
-> Please confirm that you Qualcomm engineers understand the last statement
-> and that every block will use se-shared, even if we speak about UFS for
-> example.
-This UFS word atleast makes me understand and gave me clarity that i 
-need to talk to different IP owners within qualcomm and get an agreement 
-for my i2c feature. I am not sure if there exist an usecase the way we 
-are sharing for i2c. Also i don't know how we can make similar 
-description if different cores and functionality are different.  If you 
-have heard from any other IP core, please keep some usecases/IP names.
+> Won't this disable the RTC on driver unload which we already discussed
+> should not be done?
+> 
 
-Since This demands internal discussion, so give me time to conclude how 
-the IPs are shared and is it the similar to what i have developed here 
-for I2C. (sorry that so far i was in context to my SE protocols/ IPs only).
+This is true. Thanks for reminding me about this discussion/issue.
+I will just fix the error paths for 'clk_get_rate' and 'platform_get_irq'.
+
+>>>> +	/* Reset RTC to prevent overflow.
+>>>> +	 * RTCCNT (RTC Counter) cannot be individually reset
+>>>> +	 * since it is RO (read-only).
+>>>> +	 */
+>>>
+>>> what's happen if overflow happen? I suppose it should go back to 0 and
+>>> continue increase?
+>>>
+>>
+>> Indeed if overflow happens the 'RTCCNT' counter goes back to 0 and continues
+>> to increase. The reason for resetting it here in 'suspend' routine comes
+>> after dropping the rollover support (as agreed on V4 of this patchset) to
+>> prevent an overflow during the standby state.
+>>
 > 
-> Best regards,
-> Krzysztof
+> I don't think the overflow matters as the comparator should continue to work
+> properly after it happens so you always have the complete range to wait
+> for the alarm to happen.
+> 
+> 
+
+I think I can drop the RTC reset from the suspend routine for this 
+current patchset.
+
+
+Best Regards,
+Ciprian
+
 
