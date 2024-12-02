@@ -1,158 +1,132 @@
-Return-Path: <devicetree+bounces-126268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126269-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E11EA9E0D0E
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 21:36:00 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90F589E0D52
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 21:51:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A1AD1282005
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 20:35:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F1C58B2889A
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 20:38:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FC531DED70;
-	Mon,  2 Dec 2024 20:35:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC6ED1DEFC0;
+	Mon,  2 Dec 2024 20:38:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SThf1rvm"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="wqpe08Np"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52B9C1DED67;
-	Mon,  2 Dec 2024 20:35:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB0C31DED76
+	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 20:38:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733171756; cv=none; b=ddscd6rWOTwvFL3Lg07fO8LFX6tdhcdmqOWP31aHPLNtQpvnFSB54wtLZt8k1cQSnI3UTGb5NtVdy1yk6aNMm7/+V1OV8Xvu6S4hnYPGx7Mc0ac/Ttix4jndT/l08Zb0RsYcaWvn3NkoEEG6em+hkgKBInvh2rXcdRbgEqgSgl8=
+	t=1733171897; cv=none; b=LFWY2RA8/7tGK7FvJDHHMhpSncXGSNEKZ+MbDYemMCwc2ShDnh+TvKL4ayiTzgj7mdD4vL7z72Kk/fLsEo2ArDhVEHl9En2ESXXmUjIXKOX799DjMyJMLUQhjM3Ae/yOeXewrwQEnUqFchlKqB225A2jpoSZkPsBCrxtM6PijAg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733171756; c=relaxed/simple;
-	bh=K0SRLS1zBinq9uePKXPGIuJwFWqSYthf1EILnl68Y2Q=;
+	s=arc-20240116; t=1733171897; c=relaxed/simple;
+	bh=Fknba/O+ZHWgcmf+uvpRQRxG3dSyqy07apcpBLYjnA0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OGhcvYSr4Ob+6EtYMnbMwQuzBtxTsramVrhJSmb75dJsQEw1INV4C2Xv8v+8PV417owklP9LYSbg6mXOx+TO6SftuAY2/nubtmnxygrLEWpx9XvmbMJit/ypOHGWOJAVQOihkDNQ/CGtpf0/lQ58Q4MxCdAP6zTI/9KjytYGPIQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SThf1rvm; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-434a95095efso33766375e9.0;
-        Mon, 02 Dec 2024 12:35:53 -0800 (PST)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Y/soWISlPrw1Q/omG/a7iEuE4zeW3nt0VEDWyh9MD7UgTvD20yBPvBe6j9ukvKjLM/mFmhZj5IG0BaY57YBCQNKI9SwtTCa5MGeuOOLGQN7PlYbmd2YeZanHJQgJ5fNsL1HSHqfkCDFJgm+3xMwVGQKfuO3Ph8/GP7jF1mtlHfI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=wqpe08Np; arc=none smtp.client-ip=209.85.221.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-385de59c1a0so3351654f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 12:38:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733171752; x=1733776552; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1733171894; x=1733776694; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=OhcWIpnby9xGQEV4fZR6/EyTnMePzY+oDN+hxtPpgdI=;
-        b=SThf1rvmnZ5EwFLp0x+VZtT4fdTrpuE+Rw4w2tOa0mu5S3jW1WBnLlZrBNmVvpjNjU
-         zRQB9nytMlea6aXyTC4X9mEM/wIOSW3pLAMHfY/wLZx5emQdEGKQjQMUw77kFqnwlPAX
-         20YsBEg1burg10fpu1x1u9jpefvsx/YxStt0u0jmcATg5K+PSu4D3LL/4FvoUYe9vFwG
-         Bfn1Kr0Q2brXsh+65E7HSbRdKTYaj6od6qVbfk4x3hJi4YwMJKnNElHEZwSGDScDvs0L
-         O4TTSKSIJyKhm8BTss5LtKKpFyv2sp5nEdv5qe5HsVFG2iuXOseN+dRy1xcn+yJBMODX
-         Izyg==
+        bh=0B11LnLO2cf8eL3FiCrq4OBSETxAhB6ivWgjWwx+o3o=;
+        b=wqpe08NpeQg2IwUehmCZx0IzJ6NwGAXOmx+PwHJJ3fyFUy+jrVE8YOaNTgqNx6BLgC
+         UEBwWhkb1vvzRC8TWXd9HDI2CMENFUEck+tyFJtM2M3kPLSNERRxu8k5GUmD3QjcYxGf
+         IT/gUzkGEg3wQmP8xmzBMI6CvrXMkGfXwTHvSgu1jjcZYgYkXT+hJghWA4Xr4kGtZye4
+         2mDS51m00UjwEzE6KJOJCMjziE1hj0e1/SVWlyuWMYykFX0ByHx0aeGQLvGpw27gFWpY
+         kILze9u2pUDQwdB+LbtL9sX/yx/1njoN9On44ueWJaXWIhr/kJfbwIgfNAmBib/n/Ewv
+         LkHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733171752; x=1733776552;
+        d=1e100.net; s=20230601; t=1733171894; x=1733776694;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=OhcWIpnby9xGQEV4fZR6/EyTnMePzY+oDN+hxtPpgdI=;
-        b=id/b6GpI/jpnp4fFhuVdeJkZLY6PEI/Wy3a37bWTK0G2/DiR8R21dwNRz1yiTlHhdA
-         z9KRGu4B3htyVeuBKgZ220CmWy+LmxP6Z59i/+Olm3KCBl6sdSQUR5JvYrOKtfVrlV8C
-         9V6pC4yTEzjPPI4N6FsafX1wOQ4uMjg7M2G/R171YlfqcLxKIhMC4FpWHFszYFgkF400
-         QubkxjCfrDq5VbDXtLGjG7pTi18mLd6QSSxuQlxmZ+VZp5EX9znJ6w15MalbA1nwC5Bt
-         Dc2xIjRF/Q4oNyk4oCfgm7ue9MaM2LtgOlR9XEmF2vYiGp/yeYOKVBX/whZWlzm2/Tvu
-         zGhw==
-X-Forwarded-Encrypted: i=1; AJvYcCVWUltzOshFu9R5YxhhH9WOkZlzncSY2AXo0/riMHt+/JyvMFbifUM+hP3Fgm0RfbonSAshRAbm37c8@vger.kernel.org, AJvYcCX+p2VVD9rpNu0SzBUv/wlaAeOs0X68lHdv98cbHdf0JIKVzkg+jBGs5rAxrD/zaZ4LCVFegj/8qUTB@vger.kernel.org, AJvYcCXsCe7LdASVaCgUC7aPAeurebf40yMaXGpV4+jXlvAWokr18u4AUOifAdIKu2NDn0eaNnPynVvQt4g1S7xD@vger.kernel.org
-X-Gm-Message-State: AOJu0YycGTiOgTk0o9vSXQqRfjEDitza2g3Ll0hzS6GAonXUPPgGwFCH
-	Y4QVem/550o0b4zpM3gE6KyZCX+eo9n4iy7GsSXJUgdDITnAZEY2
-X-Gm-Gg: ASbGncusHOkN7FtY8v8+voqsn7XLYBEeeqOtTDmypmTMzJxOiHXIyW6pOT+NvpyAvGR
-	LVAur3u/QUk74vy4Vcz0DTqZXyIoTHbK2WGrGT3zO0Iy+MmCD/AHy94J+MHwkyD3xpupjKJiHZc
-	TvNqo16F/8fvPI4F48fRz18CNzPYzch/yddSWfSq5/05QFguYGB+h2kB0hPwxtKPdyZMPzQBnD9
-	+OYei8/iVMAkZQ8LOrLlESos8drYzXDRrzqNetOLtdCLzpiitC3TNLsZGLX
-X-Google-Smtp-Source: AGHT+IEG0celYf1rLgnMGys32FMcLMcNhKL/v7R07oCF0IJqmSNqUGYsJbIgcTev0ZHvzgfCw3GxUg==
-X-Received: by 2002:a05:6000:18a5:b0:385:df84:849b with SMTP id ffacd0b85a97d-385df8486eemr12642549f8f.11.1733171752453;
-        Mon, 02 Dec 2024 12:35:52 -0800 (PST)
-Received: from vamoirid-laptop ([2a04:ee41:82:7577:ea8a:93ec:a066:eb25])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434aa76a8e0sm196001075e9.15.2024.12.02.12.35.51
+        bh=0B11LnLO2cf8eL3FiCrq4OBSETxAhB6ivWgjWwx+o3o=;
+        b=C+y3mG+AyYacAIa0Kd4hI+Rm+lA6CbtEwoWv4eYxfaiNFsxnpuMkj47Dwc966/gQDJ
+         WBhXXvUwupZQuiFdV9vwM/ztp/OaHsHd9EUTcgTeyjpVNBvT+UxAFU31cRJtS5bVli/C
+         xzvtzww18JG4dy4aJ2QOSemjjgzupYxFs5sNmZiq1rUVtt5oMOINgpNYOEV5HTic8Shl
+         Q2SgWwdiAsnWmB63wBYSBx/shXohjU4z1+wlDuyW94kCkeSHw8tqnVUm7khVJWcZDeeX
+         y/Y1fzIRTmp/JnA/an+ujiUjXnfqCOda/AKom6WaM/n3Hw5OiPCO5XuyJHxVOK2YHEpo
+         nZag==
+X-Forwarded-Encrypted: i=1; AJvYcCUG6p8T/lstauvT8teb6nSI2WQ3iCN0LnUqMDws0tCAwrHWfUtiYYes/A0E/RZJmzKyBOkaxX5+F5SV@vger.kernel.org
+X-Gm-Message-State: AOJu0YxYF3tQfmrTAyogQAiUniGVxdvl0wbZ720Kd4hOzE21sKdXcSGu
+	Ghq2HXzowaRcNqLpNTt3qYFqUFvKt+VTPPA8gtz932fBMPs5Q4RmVNszCmGI3Ls=
+X-Gm-Gg: ASbGncv6rVtw907WaZzFE3m4sH9UTbom3AmFusWxMHGHMoM8pU9LvVyIIoP16ZtlVE1
+	BIPRebtzIToZX3O+OHK3PjGaN6VIvKrXWdXJYH38cvPMHgkpaqidNCJ4aBT1KEsGaiFOZ28gCHQ
+	8n+ECroCbZv7KuZ6MgdGkvCgnVgZFsJdVeGjxkhVURZf3QpwCKG/P36nYmQZdFzrVjbgxAvtv8q
+	S9RT9PDE5RW4Ssj0BafJaqRBsdH/DO3cOKV3IUqi1wFVD8PksUKdcI=
+X-Google-Smtp-Source: AGHT+IGe28vQDIaFIgCC9RenjZh4P8td2rpt6P0oSCfNhYVmfcSAwCHxdXrQlDqOm7zyHYBCcHYvBg==
+X-Received: by 2002:a05:6000:2103:b0:385:ea2b:12cc with SMTP id ffacd0b85a97d-385ea2b14e6mr6583684f8f.13.1733171894207;
+        Mon, 02 Dec 2024 12:38:14 -0800 (PST)
+Received: from localhost ([2a02:8071:b783:6940:8b46:9e8f:6651:c738])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-385e9fda2f6sm6530162f8f.107.2024.12.02.12.38.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Dec 2024 12:35:51 -0800 (PST)
-Date: Mon, 2 Dec 2024 21:35:50 +0100
-From: Vasileios Amoiridis <vassilisamir@gmail.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, u.kleine-koenig@pengutronix.de,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 3/3] iio: chemical: bme680: add power management
-Message-ID: <Z04aJg7eoBR9CYKe@vamoirid-laptop>
-References: <20241202192341.33187-1-vassilisamir@gmail.com>
- <20241202192341.33187-4-vassilisamir@gmail.com>
- <Z04N6GUSL2H0zt6_@smile.fi.intel.com>
+        Mon, 02 Dec 2024 12:38:13 -0800 (PST)
+Date: Mon, 2 Dec 2024 21:38:10 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Viresh Kumar <viresh.kumar@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, upstream@airoha.com
+Subject: Re: [PATCH v4 2/2] cpufreq: airoha: Add EN7581 CPUFreq SMCCC driver
+Message-ID: <ktzz2btcxjlt7l36k7pgv4widhw45p44ol4hr2kjrf6ui62fjk@2yfvkmvdyk73>
+References: <20241202151228.32609-1-ansuelsmth@gmail.com>
+ <20241202151228.32609-2-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="7dl3rip5k2ligpjw"
 Content-Disposition: inline
-In-Reply-To: <Z04N6GUSL2H0zt6_@smile.fi.intel.com>
+In-Reply-To: <20241202151228.32609-2-ansuelsmth@gmail.com>
 
-On Mon, Dec 02, 2024 at 09:43:36PM +0200, Andy Shevchenko wrote:
-> On Mon, Dec 02, 2024 at 08:23:41PM +0100, Vasileios Amoiridis wrote:
-> > Add runtime power management to the device.
-> 
-> ...
-> 
-> > +	ret = pm_runtime_resume_and_get(dev);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = __bme680_read_raw(indio_dev, chan, val, val2, mask);
-> > +	pm_runtime_mark_last_busy(dev);
-> > +	pm_runtime_put_autosuspend(dev);
-> 
-> Side note: as long as idle method is not defined (NULL) the above dance is
-> already taken into account in the regular put.
-> 
-> ...
-> 
 
-Hi Andy,
+--7dl3rip5k2ligpjw
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: Re: [PATCH v4 2/2] cpufreq: airoha: Add EN7581 CPUFreq SMCCC driver
+MIME-Version: 1.0
 
-Thanks again for the review! Indeed by looking at the code a bit, it
-looks like the suspend callback is being called if the idle one is not
-found. But I have seen this dance that you mention much more often in
-the IIO that's why I used it. We can see what Jonathan has to say as
-well, I think what you propose, simplifies things.
+hello,
 
-> > +static int bme680_buffer_preenable(struct iio_dev *indio_dev)
-> > +{
-> > +	struct bme680_data *data = iio_priv(indio_dev);
-> > +	struct device *dev = regmap_get_device(data->regmap);
-> > +	int ret;
-> 
-> > +	ret = pm_runtime_resume_and_get(dev);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	return 0;
-> 
-> Either this is broken (if the above can return positive codes), or can be
-> replaced with direct return:
-> 
-> 	return pm_...
-> 
-> (but I believe it's the former and you wanted something like if (ret < 0)
->  there).
-> 
-> > +}
-> 
+On Mon, Dec 02, 2024 at 04:12:04PM +0100, Christian Marangi wrote:
+> +static struct platform_driver airoha_cpufreq_driver = {
+> +	.probe = airoha_cpufreq_probe,
+> +	.remove_new = airoha_cpufreq_remove,
 
-Well, pm_runtime_resume_and_get() looks like it returns 0 on success and
-negative value on error so I think the if (ret) is correct, no? But I
-agree with you that it can be simplified as you proposed.
+That doesn't build on top of mainline since commit e70140ba0d2b ("Get rid of 'remove_new' relic from platform driver struct")
 
-Cheers,
-Vasilis
+Please use .remove.
 
-> -- 
-> With Best Regards,
-> Andy Shevchenko
-> 
-> 
+Best regards
+Uwe
+
+--7dl3rip5k2ligpjw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmdOGrAACgkQj4D7WH0S
+/k7a8Af+Jt0Co+uy1yD4dd0JKMWk5nFPZ9EBupH+eH/6sDuFh41r6Ix3P/famD6I
+5R6dk2u0GZhSnD1Rw6JODUjRNDMkOZfE/IdYaaEpUKzgTb9BOCmmBksklEibsWjL
+2jVeKhcE78owqqoytj0iR1zRFHhkegNsOjVeJ9UwG9urS8vWkX0GtyhziI5HVUAR
++MMhdMAyHT9Kbmi0q3zHbJNtUgb1CIdkkw3b0oBzoDbvvo8yWiwprBTtG+J+yc5v
+gY8ZEdXHlPHlWLSH4ca9PgU/tbhAEQRXSMqxQg1Vhz+kYH6oic9UJXMzlSlHVC4T
+qWhB5WgLJ1a8G4pireyw1QCOY1X7hg==
+=E/Mo
+-----END PGP SIGNATURE-----
+
+--7dl3rip5k2ligpjw--
 
