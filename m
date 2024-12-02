@@ -1,161 +1,174 @@
-Return-Path: <devicetree+bounces-126152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C50B9E0AB7
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 19:11:55 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBDB99E09C8
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 18:24:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 63D7BB252F5
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 15:07:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D4DF9BC103E
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 15:22:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 402B4204F78;
-	Mon,  2 Dec 2024 15:06:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5749205E15;
+	Mon,  2 Dec 2024 15:17:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="b5TRXOqL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rq2WOtSZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACBB12040AA
-	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 15:06:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B58EE2040AA;
+	Mon,  2 Dec 2024 15:17:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733152019; cv=none; b=MKTT4H41HL15BjwDtkSEiJtRRnkTOhoPM32Fiogb0cWETEVAlXHv7IbbYeaulXeMJ8C4tzB3InE/dwKyOtujyoRkrQB/CzA7hOnK/YxwjFQd1F9wt1t5ick6THY2YBB9C0Fvua0XyK50u60aeOt6S6r4iWBU3XVUBzWJtfjxo94=
+	t=1733152628; cv=none; b=ZnsMUWKnVqEx6TQ/qcO0d+wtEqQafs6fzoB9UkerwoO/bZ1UfIHVTGAz3ql8yb9/XUAbZj5f4xD8MlTCgH1RKjvVftSBXyjqaVwao6/Y/hiyNooQCO51RdpTuB+dn9RddYR9LVcpBSKYFYouReCuOucIR5Sgu5pz1xJbP8zfu58=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733152019; c=relaxed/simple;
-	bh=1EX3Q/6V7Sjs15HKyRfyVFj2pNMzzOFk0u9V9vlZJYA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fOC7qznW/DytZ7dPxGNMiLke59g+jNC43Yqc3/cQXRnirgUF0SyBQEffl8ueRJLj3dCI+rPuaTR6roxx6QQr1kZfqS4Sw7+VCgXkDHH6GrMCkx5Ym7RYex1IK3e6WOat+n+x/6GPbmbTub2EbdCobDO9r7f9Uy+KWPZEENelBR4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=b5TRXOqL; arc=none smtp.client-ip=209.85.210.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-724e7d5d5b2so4088035b3a.2
-        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 07:06:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733152017; x=1733756817; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=rhh1F0FNt93OWks/1WTeBIrSdzXMhFaYNcAsFDXPT8E=;
-        b=b5TRXOqLyMkneZu+DnXQuUD7bvlUpwIFiiElKNUbUXI2zD2FTD3mWl7fS2ag5V/t+o
-         FJHjHFgesW3oAMZe72MTtaO+XvkTFuRU2Fbzs4MymAx/MNtQuqkm1mbNFo6DFOzQJTty
-         USzIFP8M0JvhiX2KDktHWxKvnHMGmwnvyjq1jVSRZneTfOozRTGD0tzrDG392HedUPbV
-         oo0eobFCOi7FPveFrG9MxQLU0U+rUDOE5owNMRU/ZwxrhFqq0JzgwPiIBrVcMvXtY4L+
-         UTesjtq0C/6A0H7riYvz9a8SBWzsKITTcM+c/hhkNQoyTwewPgMC/yukgoV5iU5yqaBy
-         hFKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733152017; x=1733756817;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rhh1F0FNt93OWks/1WTeBIrSdzXMhFaYNcAsFDXPT8E=;
-        b=YxLMDAVbkrBPePAhU4Np1regxa2NF0dbOOatNY2DwjJZDNjkFe4RJB+8wOmb6y5OUS
-         SkkPOqNNxnjnnc1U2ylMlJZPClojVVFNPkIkICRkc8QZ35RJljthfuPLtYqCHKGON5wq
-         EaWVm2u+Xlo6KFXTqmf5+O+LxzbKW7egp1MU0mkUiOQ7WioySzTmbZw7QAMwsdWtiqNe
-         mlkofVzrjLgu/B0sFG+1RcXVjIZcdhrsHgLtHmzvRF8Ade7OdK8Nh6/gy4FoIxF5c4hd
-         YHGf8VXDkPmc15ZPXLtb6J7ff2NyyfIr6eKRhfKdVDea3j96K5UtU41TE4Z62RcUeL8K
-         u5Xw==
-X-Forwarded-Encrypted: i=1; AJvYcCXb7mBNowqAN2vRhppLgUmhrjc/N9G2jg2P4NCL018s2HomiNSuaH8k1kBtIVfus7QJOOvNqBJwjHLb@vger.kernel.org
-X-Gm-Message-State: AOJu0YyZf6pYOh2bSdujanVEOqgvGwgYR1bJbMvnssQbnPZkTa6bc1jT
-	B1XDuFwpnQvjfOWbNr22udUuB3wC0qRRGL84MgLLGgcpQpWhb2yVQKej/cnKkw==
-X-Gm-Gg: ASbGncsFz61wpyqHAS+sW1+yFp6M5A+D32QzKhFCW4RWLC4INC1qisIcg74JKnjoppK
-	Sp4Y1A0C2hVX1qYHc249zE25yUkHbAHd2HVgR1Xf1nb1I6bApR2Ao/vp0/kriCWxjLSBFqPS1Tb
-	cIYf5ojH3jgO+yN5PlOV3h6hiYM3eYetgf5fyCT0q9N2x0iNwbxjsIQO9iaDRagaofYK0dJnmzN
-	To6Mi5r9Wc3sTYuN52OGSQHZGiKHGi4geTIuF8xQjYL2Y2JzyC2raj1qkfh5A==
-X-Google-Smtp-Source: AGHT+IHc2nR+uOEZidcr15cshfEn4P+vpBs4f+sVjGhFr5D8hxW5/7LO0D+hvIuBPYBe1VGyJsW1Rw==
-X-Received: by 2002:a17:903:2347:b0:215:6c9a:15 with SMTP id d9443c01a7336-2156c9a0365mr117358825ad.42.1733152016720;
-        Mon, 02 Dec 2024 07:06:56 -0800 (PST)
-Received: from thinkpad ([120.60.140.110])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2158103ba15sm26841555ad.280.2024.12.02.07.06.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Dec 2024 07:06:55 -0800 (PST)
-Date: Mon, 2 Dec 2024 20:36:48 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-Cc: cros-qcom-dts-watchers@chromium.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, quic_vbadigan@quicinc.com,
-	quic_ramkri@quicinc.com, quic_nitegupt@quicinc.com,
-	quic_skananth@quicinc.com, quic_vpernami@quicinc.com,
-	quic_mrana@quicinc.com, mmareddy@quicinc.com,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
-Subject: Re: [PATCH 1/3] arm64: dts: qcom: sc7280: Increase config size to
- 256MB for ECAM feature
-Message-ID: <20241202150648.fwi2wzbdyyedueby@thinkpad>
-References: <20241117-ecam-v1-0-6059faf38d07@quicinc.com>
- <20241117-ecam-v1-1-6059faf38d07@quicinc.com>
+	s=arc-20240116; t=1733152628; c=relaxed/simple;
+	bh=SoX6p1yA2O8NnnyxuSjhY3p8fMe5bc9Az3QhUnQrqNM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=R7oCJTm5F6yPo0qe+zUiDbXUpdeS6OUiXTOhybd+FAckE380oxwd5lyVt01cdXUYOJoFeEQA3iNsSPN9Lh0sQd6CI03uBc9HM744zmDVKRM7AG6yO0/FISBQDNShdlIX+q0JHldgfGg+pH9Mh36YUViykyvQXFQpinla1QBNcLY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rq2WOtSZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 950ECC4CED1;
+	Mon,  2 Dec 2024 15:17:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733152628;
+	bh=SoX6p1yA2O8NnnyxuSjhY3p8fMe5bc9Az3QhUnQrqNM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Rq2WOtSZ8e/nyoYmqqWhc1AyEyiXxAGjZqUGOZ02LDFoLwpSQFxQ31jaKciYAK8EZ
+	 lz9quxcAAscQP+wh9Gld5g9v7Eipm7W5D7kso8XhlA38LnjbjLG+IJaB7DbuAJ0NvX
+	 BvZKbpDqowDreMnlbEg9I9Km4PqP/ZZKE4PsugfiOMbY75xsxn9Ayf7Vl88KasAl2G
+	 GIzwht0Wf+G7RcmSjzF4b9Jtjjz+J9mP2OYakm5iCiIlPAXY0Srs+3sXvs/+05IuW2
+	 JB+6qbRs0KhjYIuzj770vJF4HXUoQtk4jx5IYsoCUO2UmJKNWOU8m1PShKPl4FdeP/
+	 OeuB1ARmvFP3Q==
+Message-ID: <0167e83b-7b73-4784-b022-903272866fe1@kernel.org>
+Date: Mon, 2 Dec 2024 16:16:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241117-ecam-v1-1-6059faf38d07@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/7] dtbindings: display: bcm2711-hdmi: Correct bindings
+ for 2712
+To: Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Eric Anholt <eric@anholt.net>,
+ =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ Doug Berger <opendmb@gmail.com>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Florian Fainelli <f.fainelli@gmail.com>,
+ linux-gpio@vger.kernel.org
+References: <20241202-dt-bcm2712-fixes-v1-0-fac67cc2f98a@raspberrypi.com>
+ <20241202-dt-bcm2712-fixes-v1-1-fac67cc2f98a@raspberrypi.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241202-dt-bcm2712-fixes-v1-1-fac67cc2f98a@raspberrypi.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sun, Nov 17, 2024 at 03:30:18AM +0530, Krishna chaitanya chundru wrote:
-> Increase the configuration size to 256MB as required by the ECAM feature.
-> And also move config space, DBI, ELBI, IATU to upper PCIe region and use
-> lower PCIe region entierly for BAR region.
+On 02/12/2024 15:31, Dave Stevenson wrote:
+> The previous patch just adding the compatible missed out that the
+
+
+"The previous" is meaningless in this context. There is nothing
+previous. Refer to commit (see submitting patches).
+
+> number of interrupts changed
 > 
+> Fixes: 62948c62abca ("dt-bindings: display: Add BCM2712 HDMI bindings")
 
-Is this change compatible with old kernels before commit '10ba0854c5e6 ("PCI:
-qcom: Disable mirroring of DBI and iATU register space in BAR region")'?
+There is no such commit in linux-next. Fix patches while they are on the
+mailing list. If you refer here to broken DRM process, then basically
+you are on your own because we won't able to see it.
 
-- Mani
+> Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
 
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Typo in subject prefix. It's dt-bindings.
+
 > ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
+>  .../bindings/display/brcm,bcm2711-hdmi.yaml        | 44 +++++++++++++++-------
+>  1 file changed, 30 insertions(+), 14 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 3d8410683402..a7e3d3e9d034 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -2196,10 +2196,10 @@ wifi: wifi@17a10040 {
->  		pcie1: pcie@1c08000 {
->  			compatible = "qcom,pcie-sc7280";
->  			reg = <0 0x01c08000 0 0x3000>,
-> -			      <0 0x40000000 0 0xf1d>,
-> -			      <0 0x40000f20 0 0xa8>,
-> -			      <0 0x40001000 0 0x1000>,
-> -			      <0 0x40100000 0 0x100000>;
-> +			      <4 0x00000000 0 0xf1d>,
-> +			      <4 0x00000f20 0 0xa8>,
-> +			      <4 0x10000000 0 0x1000>,
-> +			      <4 0x00000000 0 0x10000000>;
+> diff --git a/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml b/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
+> index 6d11f5955b51..6af342c9b6b8 100644
+> --- a/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
+> +++ b/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
+> @@ -56,22 +56,38 @@ properties:
+>        - const: cec
 >  
->  			reg-names = "parf", "dbi", "elbi", "atu", "config";
->  			device_type = "pci";
-> @@ -2210,8 +2210,8 @@ pcie1: pcie@1c08000 {
->  			#address-cells = <3>;
->  			#size-cells = <2>;
->  
-> -			ranges = <0x01000000 0x0 0x00000000 0x0 0x40200000 0x0 0x100000>,
-> -				 <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x1fd00000>;
-> +			ranges = <0x01000000 0x0 0x00000000 0x0 0x40000000 0x0 0x100000>,
-> +				 <0x02000000 0x0 0x40100000 0x0 0x40100000 0x0 0x1ff00000>;
->  
->  			interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
->  				     <GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH>,
-> 
-> -- 
-> 2.34.1
-> 
+>    interrupts:
+> -    items:
+> -      - description: CEC TX interrupt
+> -      - description: CEC RX interrupt
+> -      - description: CEC stuck at low interrupt
+> -      - description: Wake-up interrupt
+> -      - description: Hotplug connected interrupt
+> -      - description: Hotplug removed interrupt
+> +    oneOf:
+> +      - items:
+> +        - description: CEC TX interrupt
+> +        - description: CEC RX interrupt
+> +        - description: CEC stuck at low interrupt
+> +        - description: Wake-up interrupt
+> +        - description: Hotplug connected interrupt
+> +        - description: Hotplug removed interrupt
 
--- 
-மணிவண்ணன் சதாசிவம்
+You need to narrow these per variant in allOf:if:then.
+Best regards,
+Krzysztof
 
