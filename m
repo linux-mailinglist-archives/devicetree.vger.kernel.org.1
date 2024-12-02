@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-126102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDF379E03D1
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 14:42:04 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EC959E04A5
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 15:18:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92F00281C4F
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 13:42:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 70A24B26557
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 13:46:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A59E8202F89;
-	Mon,  2 Dec 2024 13:41:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7947F1FCF6B;
+	Mon,  2 Dec 2024 13:46:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gvGY5e0m"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uiERZGJM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75CF020101A;
-	Mon,  2 Dec 2024 13:41:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DB7133F6;
+	Mon,  2 Dec 2024 13:46:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733146902; cv=none; b=PdKSFJJ/lDljjM25cR08SrsQyU1FlSZtAB82nRWImaYKGkB0kezFY0zAReUZeukivW25fDqqf00PFqUxcgF5MllcWetCyDOYbN5STAwDp0miMuZtNnUqrW6QLVm/sgMaR7Qup2mnGfeSC0OfU1muLjNmPfEt1lEIGyAP0ez9Ghk=
+	t=1733147191; cv=none; b=Q5FPSfZjyss3Zwdyst8oZqgfX8ZyFVoAbEt6x+0cZpmBJtNSHcaGqZakiHWX/NCLiRMCPrZQTOXug8e6R7uomaxIZ7ph9Xjx8qmdna01BVkoHmDMl+TDeyN+hA7bcyG4WJIU49UX2bm0vJPLFHNJ2XYmC6QPNKdJuydTImk8rU4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733146902; c=relaxed/simple;
-	bh=aHbNT8/7s93kv5HKX8tdKETN3m1n4K+2pSzalI1wkBw=;
+	s=arc-20240116; t=1733147191; c=relaxed/simple;
+	bh=/NSTDjvvY+wAlu1r8FN+e8bDKuQxH4ffI35tRMVD7Nc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fSBXuvQSRh14paoog0gMRi0ApNAUQT316T4Qkp9UhoflLyemZrFCZt51+QuwtVXPG189oT7w7m1yngyWBr6zrcWZlrZ1J1CwH4VGIJ/4B4H+YUDixPkTN+nBnbhTfiAriEszQJO9tcNlYDtCH0pGOfGzxjMEkDwtJKAhzTHatr8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gvGY5e0m; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED9ABC4CEE0;
-	Mon,  2 Dec 2024 13:41:36 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=IY6UtH2IMDflNfyH1THasWXJd+RmLwVNE82hxJWMLyoZJhItQfu68U+FbjnHELH0ejIrhDJWH0Ad/Qj8d5E7L/qc1svp9sMRF09g9RKHoshuqaRYm7UEBMiP+a2/WUpG9Nwx/IV+kdMCaISl8RzemZq+rnUnDY0wJZcOx0P0iTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uiERZGJM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB09FC4CED1;
+	Mon,  2 Dec 2024 13:46:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733146902;
-	bh=aHbNT8/7s93kv5HKX8tdKETN3m1n4K+2pSzalI1wkBw=;
+	s=k20201202; t=1733147190;
+	bh=/NSTDjvvY+wAlu1r8FN+e8bDKuQxH4ffI35tRMVD7Nc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gvGY5e0mRTR1JDu8827hApyq9ya3WkD973VUrcZAAOnSe+PEdDnHZ3EDlyI7CmPFr
-	 aDugMn6ECPHzREpNrD9jJ+NbtGTI90MmaPSOILiVXZ6QXnaf2IX8P34wp9tMajCGp7
-	 SMHU0REinpjeLGlGYbYPHdmagKYnFs1ERSFeHuY2bvycV/EsM1vQdN4r/JwGdn/Z9L
-	 c19VWhm7Xs/YKo5H0KZB5/kPS5IcR4Lc+sZ43Q/jT9qRpS+2mXgyZ/9sY/RQQtInv9
-	 bDvJxJ8hKF9gFNQkDoMRgRp6dQ2izAF5Mj9+D6eXqGvwSYA/WRwit0Qc3CRUU9BVl4
-	 plKbU4kszGcDA==
-Message-ID: <68b897f0-5583-4d09-87d5-4ff4d3080ef7@kernel.org>
-Date: Mon, 2 Dec 2024 14:41:34 +0100
+	b=uiERZGJMNln1H1SFPtpaBe01iV4Dk6tH9rit9dqBGC+v0k+/lhJDM+SgnpxcDuK6m
+	 1wH3vjb3jLuJEDBW64WHpaGddhjSkEwicNUM/XPxg0XImxJNoWkBf9MwFDmJJsj7c8
+	 DKcfMFnG+uGo13qTAbi46SXVedRCz504y17ZIcw3t8asqRVpMUDgavL0u7w6UCh2wp
+	 jA50V3DH7/2e61gj+00X0w4sRX2UZ/CxFN7nuFeeSDT00zWWFt/LDxr5Vq1A7jYpih
+	 cfehFyxz9jw1P38vg69AM+WWaPi1R1Gi1kcabZugsHXVqAYxJaGmbs30bbxmcsR6Qx
+	 Ht/qeJCuCdq/g==
+Message-ID: <0fb58a4a-7bad-4623-99c8-67f5763558bb@kernel.org>
+Date: Mon, 2 Dec 2024 14:46:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] arm64: dts: exynos: gs101-oriole: enable Maxim
- max77759 fuel gauge
-To: t.antoine@uclouvain.be, Sebastian Reichel <sre@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Dimitri Fedrau <dima.fedrau@gmail.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Peter Griffin <peter.griffin@linaro.org>,
- Alim Akhtar <alim.akhtar@samsung.com>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org
-References: <20241202-b4-gs101_max77759_fg-v1-0-98d2fa7bfe30@uclouvain.be>
- <20241202-b4-gs101_max77759_fg-v1-4-98d2fa7bfe30@uclouvain.be>
+Subject: Re: [PATCH v2 11/18] arm64: dts: mediatek: mt7988: add chosen node on
+ bpi-r4
+To: Frank Wunderlich <linux@fw-web.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Frank Wunderlich <frank-w@public-files.de>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20241202122602.30734-1-linux@fw-web.de>
+ <20241202122602.30734-12-linux@fw-web.de>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,50 +106,33 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241202-b4-gs101_max77759_fg-v1-4-98d2fa7bfe30@uclouvain.be>
+In-Reply-To: <20241202122602.30734-12-linux@fw-web.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 02/12/2024 14:07, Thomas Antoine via B4 Relay wrote:
-> From: Thomas Antoine <t.antoine@uclouvain.be>
+On 02/12/2024 13:25, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
 > 
-> Add the node for the max77759 fuel gauge as a slave of the i2c.
+> Add chosen node on Bananapi R4 board with stdout and default bootargs.
 > 
-> The fuel gauge has been tested and seems to give coherent results.
-> Manual activation of the charger via i2cset shows that the sign of
-> the current does indicate charging/discharging status.
-> 
-> Signed-off-by: Thomas Antoine <t.antoine@uclouvain.be>
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 > ---
->  arch/arm64/boot/dts/exynos/google/gs101-oriole.dts | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dts | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
-> index 387fb779bd29ea3812331a7951f03b181c5fe659..4c45dd6fd0173889234b7b04d7abb4b382c7706c 100644
-> --- a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
-> +++ b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
-> @@ -90,6 +90,13 @@ eeprom: eeprom@50 {
->  &hsi2c_12 {
->  	status = "okay";
->  	/* TODO: add the devices once drivers exist */
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dts b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dts
+> index 9037f35857a9..1c2a806f6f6c 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4.dts
+> @@ -9,6 +9,11 @@ / {
+>  	model = "Banana Pi BPI-R4";
+>  	chassis-type = "embedded";
+>  
+> +	chosen {
+> +		stdout-path = &serial0;
+> +		bootargs = "console=ttyS0,115200n1";
 
-
-Is this still applicable?
-
-> +
-> +	fuel-gauge@36 {
-> +		compatible = "maxim,max77759-fg";
-> +		reg = <0x36>;
-> +		reg-names = "m5";
-
-
-No interrupts?
-
-> +	};
-> +
-
-
-Do not add stray blank lines.
+Drop or merge into stdout path.
 
 Best regards,
 Krzysztof
