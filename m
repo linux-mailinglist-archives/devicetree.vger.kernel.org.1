@@ -1,110 +1,162 @@
-Return-Path: <devicetree+bounces-126143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126146-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F94F9E06C6
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 16:22:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A78A89E0700
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 16:27:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E00B016CC2F
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 14:56:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE69B16AECC
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 14:59:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FCD6207A14;
-	Mon,  2 Dec 2024 14:50:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B63F204F81;
+	Mon,  2 Dec 2024 14:55:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="pS0QbCiu"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="G8NksDRE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1F75207A06
-	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 14:50:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FA341C760D;
+	Mon,  2 Dec 2024 14:55:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733151011; cv=none; b=u00vdfh6Ap2hAybDh7OL+eiDeICcabnBNvlzSJEeQTlsIFQpOdcWky9X+YzX7VNKeTgit1dJEqmPyaX0NgDMyzrv9zX5i8NIi7fzAE4uaa6uxs3/Bep3A78DHZSg34LpjGlWRJFzR4LCGObDZcL1rEm7BTUk88cMkElrWOTxAQs=
+	t=1733151313; cv=none; b=d1VnA+2FVDWsi5mB8a+dxsx6jqQZy6NBBlv1EYbfTlkKLd9nSP3r4PWZ+bvBycdtmbq707tFgS4+kQviTj6nGeZjc7FxTsoCB7WCCis8eUZNJ8MUXHqbaO5UdWeabUNzCcf54auQ+n6wD3U8wF5HgSgWyY8V3KzKLkLheYP2VGk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733151011; c=relaxed/simple;
-	bh=XEGTqbtT7pe1Ebzp0pMotPdumC3lBdb2XvX3D5M15zw=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=djqrRII5wAz7nysyJ/4SRN7VdWD31VMUOWjsfsllmwMp5ILT6my99e5dDKJypWg2X4P5O0cPBxL4MqrEiF050a58V3vGcRq/AAr9u1Y6TMWkcYg91h+ZmF9QTW0rDv0CXp0nc0STxUMYX8aGmjyRcQnjTFIgKikrM+Xn8vZqklk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=pS0QbCiu; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1733151313; c=relaxed/simple;
+	bh=Xi7z3mGKYAnFo2hmFL0lmu9h3tus4BKQg5mPtJ0FUhU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kKKR9KUyLqS3snlXWMeoU/sOLybCViD9GG5Rfk7DZ6utNPotTnffVuQz7G7f40v4/tww4XLa39rshgVZF9h/T/Ha3EqaDLQkLH5FQ4Ms2MP5Xb2bLYBvTRLJJvrY8MP7CcMaCfZiz3lucKuD1BiwJDwjaxlerVuhFaAeRtROsqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=G8NksDRE; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1733151311; x=1764687311;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=Xi7z3mGKYAnFo2hmFL0lmu9h3tus4BKQg5mPtJ0FUhU=;
+  b=G8NksDREv7P9A08h/qE25zr/SOtjymRYT21vnCZXeRzM+DqdZ+kslKqt
+   uQudAzHutj2mo+QW8BjUQw3NkZtWaUoA76wCCa/6JisnOj453eCOTeXOo
+   JUQPZnITJDE5RTLApnP7hIv2Fj5B8ptHklkmcv483OaFR7QY45BisZxyG
+   bHHs/dVzNdf3ptG3iKswZAJCdTbmwsFTQTITEWEtButQLy9xJhP/HpnAx
+   wVPNuJuyBalN2A0Lsi4nQIr+m23fjB+opGVLa3u3p1BsenRBs0C1HtTnE
+   miecR4qf/EThYK/flrf+APeZJKdhw/0iF/JnIknJXxrLpKvRaNCowXFHI
+   A==;
+X-CSE-ConnectionGUID: CORq2IjRQN+nDrg9k/yr+A==
+X-CSE-MsgGUID: f39yfV8TQz6DMGEfQtf6dw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="44700083"
+X-IronPort-AV: E=Sophos;i="6.12,202,1728975600"; 
+   d="scan'208";a="44700083"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Dec 2024 06:55:10 -0800
+X-CSE-ConnectionGUID: HNqifk7jTMyUCk8FpgpNMQ==
+X-CSE-MsgGUID: SVs3sPoySgazHwnjNAQBUw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,202,1728975600"; 
+   d="scan'208";a="97896772"
+Received: from oandoniu-mobl3.ger.corp.intel.com (HELO mdjait-mobl) ([10.245.244.139])
+  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Dec 2024 06:55:08 -0800
+Date: Mon, 2 Dec 2024 15:55:00 +0100
+From: Mehdi Djait <mehdi.djait@linux.intel.com>
+To: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Cc: Paul Kocialkowski <paulk@sys-base.io>, 
+	Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH 2/2] iio: light: Add support for the TI OPT4048 color
+ sensor
+Message-ID: <2yc2igv2lxh3u4kmkz73httg3sp24ziagcoaa7unfupagji7zk@ezaue3umwe44>
+References: <20241130174212.3298371-1-paulk@sys-base.io>
+ <20241130174212.3298371-2-paulk@sys-base.io>
+ <20241201115529.1375c6c3@jic23-huawei>
+ <Z0yjTkXt0JhqdD15@collins>
+ <20241202110659.00000171@huawei.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1733151007;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=vQvOggYULqzBhMJ1cY0fm/C4jvh7h3UH+EMhmZlNNE4=;
-	b=pS0QbCiu8xFRfw7wE1bmSxp5FwrCCQ7/IeSubP+/JE1ZcuSt9bvx7lAQZBC2D7c3HOvkLW
-	MaQZz9jvzhikGm+LmNat93W+iWIk/1ubZj687HfwnHSiaqB0ee1aospPvE6m5AR5p9VpaA
-	ugsmOogHnfzYq1o9/hDstMM+UIN0WqeWK0qpAa4SreV0jZA5cLjKYmDVUZ6KHw1h3DZeVA
-	QzrUP4L8KwX5MGLXhesRfQpk7YPhYvV2OJRaKzWM87y1/1qaZHr4SzUyIGBy3Ft1Bh9mMP
-	FlI4sC/lh2Wc5OGAe8omv6ITXiPYo+Kv7ZnHHmi6kzvA5FUVpYxGG3QfFkQMRA==
-Date: Mon, 02 Dec 2024 15:50:07 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Diederik de Haas <didi.debian@cknow.org>
-Cc: Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>, Peter Robinson
- <pbrobinson@gmail.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: rockchip: enable rng on all rk356x
-In-Reply-To: <D6175VTSP13T.200HWIIHOIDQQ@cknow.org>
-References: <20241201234613.52322-1-pbrobinson@gmail.com>
- <302bdae2f4defeefe88ea4018a0be11f@manjaro.org>
- <b50376c7-c5d5-41ae-95ea-e2d68c1cc809@linaro.org>
- <D6175VTSP13T.200HWIIHOIDQQ@cknow.org>
-Message-ID: <c50f603a9e1a819f17f72e97e92aeebd@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241202110659.00000171@huawei.com>
 
-Hello Diederik and Marcin,
+Hello Paul :)
 
-On 2024-12-02 13:01, Diederik de Haas wrote:
-> On Mon Dec 2, 2024 at 11:40 AM CET, Marcin Juszkiewicz wrote:
->> W dniu 2.12.2024 o 04:55, Dragan Simic pisze:
->>  > On 2024-12-02 00:46, Peter Robinson wrote:
->>  >> The rk356x rng is available on both the rk3566 and rk3568
->>  >> parts, the IP is all self contained within the SoCs so
->>  >> it's enabled already by default on rk3568 so let's enable
->>  >> it in the base rk356x.dtsi so it's enabled consistently
->>  >> everywhere.
->>  >
->>  > Please, go through the mailing list threads [1][2] that have led us
->>  > to the current state.  To sum it up, it isn't about what's 
->> supported
->>  > in the two RK356x SoC variants, but about the RK3566's HWRNG being
->>  > disabled because the testing showed that it produces unacceptably
->>  > low quality of random data, for some yet unknown reason.
->> 
->> So maybe there should be a comment in rockchip/rk3568.dtsi so we would
->> not get back to it again.
+On Mon, Dec 02, 2024 at 11:06:59AM +0000, Jonathan Cameron wrote:
+> On Sun, 1 Dec 2024 18:56:30 +0100
+> Paul Kocialkowski <paulk@sys-base.io> wrote:
 > 
-> I suggested to put that in the (original) commit message:
-> https://lore.kernel.org/linux-rockchip/6690040.iosknibmi9@bagend/
-> precisely because this was quite predictable to happen.
+> > Hi Jonathan,
+> > 
+> > Le Sun 01 Dec 24, 11:55, Jonathan Cameron a écrit :
+> > > On Sat, 30 Nov 2024 18:42:12 +0100
+> > > Paul Kocialkowski <paulk@sys-base.io> wrote:
+> > >   
+> > > > The Texas Instruments OPT4048 is a XYZ tristimulus color sensor,
+> > > > with an additional wide (visible + IR) channel.
+> > > > 
+> > > > This driver implements support for all channels, with configurable
+> > > > integration time and auto-gain. Both direct reading and
+> > > > triggered-buffer modes are supported.
+> > > > 
+> > > > Note that the Y channel is also reported as a separate illuminance
+> > > > channel, for which a scale is provided (following the datasheet) to
+> > > > convert it to lux units. Falling and rising thresholds are supported
+> > > > for this channel.
+> > > > 
+> > > > The device's interrupt can be used to sample all channels at the end
+> > > > of conversion and is optional.
+> > > > 
+> > > > Signed-off-by: Paul Kocialkowski <paulk@sys-base.io>  
+> > > Hi Paul,
+> > > 
+> > > Various comments inline. Most significant is that this seems to be
+> > > suitable for a simple dataready trigger that will make your various
+> > > interrupt and non interrupt flows more similar.  
+> > 
+> > And thanks for the fast review and insightful comments!
+> > 
+> > I considered implementing a trigger in the driver, but the issue I found
+> > is that the trigger is expected to be called from hard irq context,
+> > while the new values are read in the bottom half. 
 > 
-> So a +1 on a comment in the dtsi with a link to the discussion in the
-> commit message.
+> The trigger can be called from either the hard irq context or from
+> a thread.  See iio_trigger_poll_nested()
+> There is a quirk that you then don't end up calling the registered
+> hard irq handler for the trigger so sometimes a bit of fiddly code
+> is needed to ensure timestamps etc are grabbed.  Not sure that matters
+> here.
+> 
 
-Totally agreed on adding a brief summary to the RK356x base SoC dtsi,
-so I went ahead and sent a patch that adds it. [1]  I also expected
-that to be described in the base dtsi back when the HWRNG support was
-added, but it somehow went in without the description.
+If the timestamps do matter: here is a (maybe relevant?) discussion for
+an issue I faced with timestamps for a driver that supports both FIFO
+and triggered buffer mode
 
-[1] 
-https://lore.kernel.org/linux-rockchip/6b272e2f8f916c04b05db50df621659a5a7f29ab.1733149874.git.dsimic@manjaro.org/
+Please note that iio_trigger_poll_nested() was called
+iio_trigger_poll_chained() back in that discussion.
+
+https://lore.kernel.org/linux-iio/Y+6QoBLh1k82cJVN@carbian/
+
+> > I understand the triggered
+> > buffer callbacks are executed as a thread as well, so there would be race
+> > between the two which could result in previous values being returned.
+> 
+> With the above nested call it is all run in the same thread
+> See handle_nested_irq() in particular the function docs.
+> https://elixir.bootlin.com/linux/v6.12.1/source/kernel/irq/chip.c#L459
+> 
+> > So I concluded that it was more beneficial to preserve the synchronous reading
+> > mechanism over implementing the trigger.
+> 
+> Definite preference for a trigger approach, but I may well still be missing
+> a detail.
+
+--
+Kind Regards
+Mehdi Djait
 
