@@ -1,179 +1,186 @@
-Return-Path: <devicetree+bounces-126295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75A449E0EAF
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 23:10:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F396B9E0EDB
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 23:21:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 37869165798
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 22:10:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B6987165512
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 22:21:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 547181E0E09;
-	Mon,  2 Dec 2024 22:07:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 340C51DF97A;
+	Mon,  2 Dec 2024 22:21:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="onAkKEu0"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="MNnX0H/w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 882151E0DF4;
-	Mon,  2 Dec 2024 22:07:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 658E71D9A60
+	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 22:21:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733177276; cv=none; b=kxgB58v6Whru7l7FqaUihZRRnCaJNsv+vx+nPK03wfvYSsMwrcWNvvrDFxUYPkcuuE7Oo5hmMPnB0xUyeI0jq85zhx9gsZSoqDmuDMB1i7JImSeXNKnwevydseTOGHlYIwUwv4j+sbTd8UQ/oMqmGw2GY6hP6QK38Wb9TyqCMjI=
+	t=1733178099; cv=none; b=JwcIzgnG1Wr3jQRzds3DDGxN1FqdFb1hElprnpOWp+CE7KFezfAoOesYZCCOLT/dIeokzvDAGiGX7qFSuEFGT4StxTlXexUNgOV0T2uyyAIBW73NlcXl4hVX7PC6LILXofCWzV9Rf+fyFTPj8ZrcmIOe4+qKRJikZQ57AKsTpbM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733177276; c=relaxed/simple;
-	bh=UpTDOAh2SM9Av2dj4fbrvCE+NCvXwCG9JOnqnSIZY0M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ML0iac8/XjBB/itK18eJk6e/YZjhPvL2b57Ml6yJn/h9KESfdHLeVheBJp6cNUv0GQpKaZZgIqRc3RapE8sYoYMAPM2um+fmo9Yh2S0l4+Rpk1DYc00Y/NzpCS6sGvWOApHcNrXUIVa/KPKIrN44vb1qEnSAB2D0ExiGaiweU8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=onAkKEu0; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=tz4mFzbX9P9yZ/D0ZDZ+CHiKfmuXSyJYiag6bxKZjO8=; b=onAkKEu03knw+yi7mGzMg38F/a
-	eahRL0lxTZx3whiM4B1MeXRexDYWzMYK9BxBpAjL218lJRkT3cNpjCWYiRjWd334Ah2wQ7MujmY3q
-	bq95CThA6JvVB7z3DvP8QhRGb4t27jySO6SfLxGJKdmHLW3jI/DzpTbyhBj8UJqb4JYqp07TzxAEP
-	pZ4pxgISjskPougD7Wssqqk44PW/wrW9sEiZGfW1XgZ6DYMZv5O73usxojtbU7Z3m1hBq0o0g6+RC
-	ySXEJFbmfd0cgDr6aJ1mRJb0TpQVA9JDZSZsBO8fIVEc/ASQQ6vsXF6uHfFzJVnTFINuN8FiyiaYs
-	qrJYl1Tg==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:39114)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1tIEZn-0000ru-0X;
-	Mon, 02 Dec 2024 22:07:31 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1tIEZk-0003v9-2I;
-	Mon, 02 Dec 2024 22:07:28 +0000
-Date: Mon, 2 Dec 2024 22:07:28 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: jan.petrous@oss.nxp.com
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Minda Chen <minda.chen@starfivetech.com>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Iyappan Subramanian <iyappan@os.amperecomputing.com>,
-	Keyur Chudgar <keyur@os.amperecomputing.com>,
-	Quan Nguyen <quan@os.amperecomputing.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	imx@lists.linux.dev, devicetree@vger.kernel.org,
-	NXP S32 Linux Team <s32@nxp.com>, 0x1207@gmail.com,
-	fancer.lancer@gmail.com, Jacob Keller <jacob.e.keller@intel.com>
-Subject: Re: [PATCH net-next v7 02/15] net: driver: stmmac: Extend CSR calc
- support
-Message-ID: <Z04voJN9uj1Vefef@shell.armlinux.org.uk>
-References: <20241202-upstream_s32cc_gmac-v7-0-bc3e1f9f656e@oss.nxp.com>
- <20241202-upstream_s32cc_gmac-v7-2-bc3e1f9f656e@oss.nxp.com>
+	s=arc-20240116; t=1733178099; c=relaxed/simple;
+	bh=K6qdGsv9rncddp1uJyfOLr9w0wJrOROqBbZo+QJHdBc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NuK8YE9JBWCEP3ATz+Y1As6AG4b5ikxD3sv6GcPxu/+NFDsdX8EGKVxpTBxAfFVKKWEI+RgLanmD8Bsz+jm/e9wXNAzNbn9npsYxSvLlvdpwRoBsOClVR+Bh6NUXKQrv0/mXvLEfFmGEOSAJ7/SsG36v7PF0Q6oTZusXhOJ6xn8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=MNnX0H/w; arc=none smtp.client-ip=209.85.167.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-3ea55e95d0fso2416018b6e.2
+        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 14:21:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1733178094; x=1733782894; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=L7JPQc1khf/GUJg+4Lfme601MXC/XRn+qWK7wBatyTg=;
+        b=MNnX0H/wy2D+OzxY8Qy9q+psJasaF3+h7GNMgGOvUBk3ABQoZPnlZu/fwxRkgzRmjP
+         yGmKs2+Bje/gB8smjlXl2T/4oO5MfZWH9xXanG2kw5B3upXOcQ8JiQwyAO2V2hRqhhts
+         puHkmITOzgwJfJSwBfJw5/goDHSrWs1e5C6FUysW15w/Nxrcxy8cWvFqDXzToOO3jadW
+         Nxw1KODpJJ8K4X/19eXekHFQT6D77b1n7725re1MDr5psJIGGSFU9OuSvAs83P1RdlC6
+         Z0vzgrFTx4aG+biKHkhiBGJbKfykLEbu07L4RN0F4KDBgtXE2mW8SmgdQfxchgQ/UzNh
+         ullw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733178094; x=1733782894;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=L7JPQc1khf/GUJg+4Lfme601MXC/XRn+qWK7wBatyTg=;
+        b=dA0CbZqszBNqwTd4T9l5vVH9Nza9JOi0F3XtQf6ZWaCNgTdQiZKq7cxyozC47Kp0NW
+         UdgLFVFF+jIaNZPUBbjVa/s/38Ba6LlIsVXSsnxSJe+6oLKvGlDimm4zO4Re3APZnAV6
+         qZCilCuy+2Aaj2flPsVg6rAjP9dZa4JRNtSe8KtmuFhv12Sjs8cBW89+s8sDHtaTRE1p
+         8HJggn/Um64dylMgM3xl+9TBdLHOMTo5jfCRAUEvdCXrSC1L2m1WQXqrGFdz3F0MNNgW
+         Mv5UV/H0Ts0AcOx5WDMn9ty+Kh6m7n2sQgRcKPUxZiIa5hrfPvaldPGsNf9T3hKGMDiV
+         6gXw==
+X-Forwarded-Encrypted: i=1; AJvYcCXmBgKeswKxZkCEfLmHwblSSD2PLZR4jxkUYF3VM/J5Ck6QTZrQ/97S7JAFKQbY2GPCGHZLtxfz/qXd@vger.kernel.org
+X-Gm-Message-State: AOJu0YyB0GHUDNy/uFJx3nbIUH3iQXtt/3jWmKw4NKZUuE4+ye/ZiTsB
+	yhBh8mVOZ5Dz+ERePrzkjw1aijD+73bbqbqWXxt+4ypRQIG5FBXYN8c9CqUph5Q=
+X-Gm-Gg: ASbGnctHvaoQ3z92bgpYgnFLxeSZ1uiNCZ8ksRLrrWoPidaEAbIJ+/81XCuTjVbq1Wh
+	XJ2Hpukek0+10aiCa3pcpduR7B/LhAjwsvQBbyVe8Xj6HIw5zcaki3W4T+UWCrA4teolKtCzx5J
+	dmNy30mCkyi3avo/TBJGcZZwRWWFpwmrf0yiCZB4Xv2rjrAtLZgr/hE/YHzYp1G5es5rO0rF62Z
+	1g3+ocDrreJ+sqaofAupg4/TGkuydvnFNzZmSBRMvKKNpe8ziswO15DchI1tTq4XEh5Slu0ho8L
+	ApB6AJHrbEM=
+X-Google-Smtp-Source: AGHT+IG3AMQarL4RhG3Os+XmQUKhY9ZiY4GhYh+yf5CUfkRn32xlYB8p450z/FZ5Ke74fWDPV/KDiQ==
+X-Received: by 2002:a05:6808:38c9:b0:3ea:6708:51af with SMTP id 5614622812f47-3ea6dc27ff4mr24272753b6e.20.1733178094462;
+        Mon, 02 Dec 2024 14:21:34 -0800 (PST)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-3ea8634d733sm2482803b6e.50.2024.12.02.14.21.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Dec 2024 14:21:32 -0800 (PST)
+Message-ID: <7eadbe02-4f81-42d6-b1c5-932e6bbedb19@baylibre.com>
+Date: Mon, 2 Dec 2024 16:21:31 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241202-upstream_s32cc_gmac-v7-2-bc3e1f9f656e@oss.nxp.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 2/3] dt-bindings: iio: adc: ad7192: Add sync gpio
+To: Alisa-Dariana Roman <alisadariana@gmail.com>,
+ Alisa-Dariana Roman <alisa.roman@analog.com>,
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+ Michael Hennerich <michael.hennerich@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Jonathan Cameron
+ <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+References: <20241128125811.11913-1-alisa.roman@analog.com>
+ <20241128125811.11913-3-alisa.roman@analog.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20241128125811.11913-3-alisa.roman@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi,
-
-As per patch 1, no need for "driver:" in the subject line.
-
-Thanks.
-
-On Mon, Dec 02, 2024 at 11:03:41PM +0100, Jan Petrous via B4 Relay wrote:
-> From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
+On 11/28/24 6:55 AM, Alisa-Dariana Roman wrote:
+> Add support for the SYNC pin GPIO specification in the devicetree
+> bindings. This pin allows synchronization of digital filters and analog
+> modulators when using multiple devices. Update the examples to
+> demonstrate the usage of the new property.
 > 
-> Add support for CSR clock range up to 800 MHz.
+> Also update the interrupt type in the examples to use the proper
+> IRQ_TYPE_EDGE_FALLING macro instead of the raw value.
 > 
-> Reviewed-by: Jacob Keller <jacob.e.keller@intel.com>
-> Reviewed-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-> Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
+> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
 > ---
->  drivers/net/ethernet/stmicro/stmmac/common.h      | 2 ++
->  drivers/net/ethernet/stmicro/stmmac/stmmac_main.c | 4 ++++
->  include/linux/stmmac.h                            | 2 ++
->  3 files changed, 8 insertions(+)
+>  .../bindings/iio/adc/adi,ad7192.yaml          | 19 +++++++++++++++++--
+>  1 file changed, 17 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/common.h b/drivers/net/ethernet/stmicro/stmmac/common.h
-> index 1367fa5c9b8e..70d601f45481 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/common.h
-> +++ b/drivers/net/ethernet/stmicro/stmmac/common.h
-> @@ -257,6 +257,8 @@ struct stmmac_safety_stats {
->  #define CSR_F_150M	150000000
->  #define CSR_F_250M	250000000
->  #define CSR_F_300M	300000000
-> +#define CSR_F_500M	500000000
-> +#define CSR_F_800M	800000000
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+> index f70caefdace7..1cd0fd13bc42 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+> @@ -59,6 +59,17 @@ properties:
+>    interrupts:
+>      maxItems: 1
 >  
->  #define	MAC_CSR_H_FRQ_MASK	0x20
->  
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> index 9b262cdad60b..3cb7ad6ccc4e 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
-> @@ -325,6 +325,10 @@ static void stmmac_clk_csr_set(struct stmmac_priv *priv)
->  			priv->clk_csr = STMMAC_CSR_150_250M;
->  		else if ((clk_rate >= CSR_F_250M) && (clk_rate <= CSR_F_300M))
->  			priv->clk_csr = STMMAC_CSR_250_300M;
-> +		else if ((clk_rate >= CSR_F_300M) && (clk_rate < CSR_F_500M))
-> +			priv->clk_csr = STMMAC_CSR_300_500M;
-> +		else if ((clk_rate >= CSR_F_500M) && (clk_rate < CSR_F_800M))
-> +			priv->clk_csr = STMMAC_CSR_500_800M;
->  	}
->  
->  	if (priv->plat->flags & STMMAC_FLAG_HAS_SUN8I) {
-> diff --git a/include/linux/stmmac.h b/include/linux/stmmac.h
-> index 75cbfb576358..865d0fe26f98 100644
-> --- a/include/linux/stmmac.h
-> +++ b/include/linux/stmmac.h
-> @@ -34,6 +34,8 @@
->  #define	STMMAC_CSR_35_60M	0x3	/* MDC = clk_scr_i/26 */
->  #define	STMMAC_CSR_150_250M	0x4	/* MDC = clk_scr_i/102 */
->  #define	STMMAC_CSR_250_300M	0x5	/* MDC = clk_scr_i/124 */
-> +#define	STMMAC_CSR_300_500M	0x6	/* MDC = clk_scr_i/204 */
-> +#define	STMMAC_CSR_500_800M	0x7	/* MDC = clk_scr_i/324 */
->  
->  /* MTL algorithms identifiers */
->  #define MTL_TX_ALGORITHM_WRR	0x0
-> 
-> -- 
-> 2.47.0
-> 
-> 
-> 
-> 
+> +  sync-gpios:
+> +    description: |
+> +      Optional GPIO spec for the SYNC pin. The SYNC pin allows synchronization
+> +      of the digital filters and analog modulators when using multiple AD7192
+> +      devices. When SYNC is pulled low, it resets the digital filter nodes,
+> +      filter control logic, calibration control logic, and holds the analog
+> +      modulator in reset state. Only specify this property if you need to
+> +      actively control SYNC for multi-device synchronization, otherwise it
+> +      defaults to HIGH.
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+The datasheet says that the /SYNC pin can also be used to trigger a conversion.
+But I'm not sure we really need all this explanation here. The important parts
+are that this is a GPIO that is connected to the /SYNC pin and in the
+synchronization use case, the same GPIO might be connected to multiple ADC
+chips.
+
+> +    maxItems: 1
+> +
+>    aincom-supply:
+>      description: |
+>        AINCOM voltage supply. Analog inputs AINx are referenced to this input
+> @@ -182,6 +193,8 @@ unevaluatedProperties: false
+>  
+>  examples:
+>    - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+>      spi {
+>          #address-cells = <1>;
+>          #size-cells = <0>;
+> @@ -194,8 +207,9 @@ examples:
+>              spi-cpha;
+>              clocks = <&ad7192_mclk>;
+>              clock-names = "mclk";
+> -            interrupts = <25 0x2>;
+> +            interrupts = <25 IRQ_TYPE_EDGE_FALLING>;
+>              interrupt-parent = <&gpio>;
+> +            sync-gpios = <&gpio0 26 GPIO_ACTIVE_HIGH>;
+
+On the schematic, the SYNC pin is marked as active low, so I would
+expect GPIO_ACTIVE_LOW here.
+
+>              aincom-supply = <&aincom>;
+>              dvdd-supply = <&dvdd>;
+>              avdd-supply = <&avdd>;
+> @@ -208,6 +222,7 @@ examples:
+>          };
+>      };
+>    - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+>      spi {
+>          #address-cells = <1>;
+>          #size-cells = <0>;
+> @@ -223,7 +238,7 @@ examples:
+>              spi-cpol;
+>              spi-cpha;
+>              #clock-cells = <0>;
+> -            interrupts = <25 0x2>;
+> +            interrupts = <25 IRQ_TYPE_EDGE_FALLING>;
+>              interrupt-parent = <&gpio>;
+>              aincom-supply = <&aincom>;
+>              dvdd-supply = <&dvdd>;
+
 
