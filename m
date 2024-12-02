@@ -1,111 +1,171 @@
-Return-Path: <devicetree+bounces-126274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126275-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F1E89E0D70
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 21:59:08 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3CDFF165519
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 20:59:05 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A8271DEFF7;
-	Mon,  2 Dec 2024 20:59:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VTcGLgss"
-X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48D7E9E0D76
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 21:59:57 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 313021DDC24;
-	Mon,  2 Dec 2024 20:59:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2F4B284B36
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 20:59:55 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 703B71DF243;
+	Mon,  2 Dec 2024 20:59:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e+GvnVv5"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FDE01DDC24;
+	Mon,  2 Dec 2024 20:59:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733173144; cv=none; b=DgIsUbFIYT42dbfKZpz9Vx4kbkw+FrMLnno5g4hmAs1G58Sbl32H/lYdLkXFJn5QedyXnPxKKAdzU5gBeDqHY4I7tC23tTJsKHweOPL9d7JM7C1bZRwKdmtguWtuyOe+K/6uE+7uPm8o74rrc6QSyXLAV6j6D+YN/1eFH7Hl0SY=
+	t=1733173192; cv=none; b=fqWr9IbcdKsKVDgt1cs1+r6ayV5SAShtwS+3CVK0yduILrkpyGPESy93FzDxOordiefUCP0PQZ5T7bvn0K7yRxka+HvwYWcJyBkgUPRm7lDv8w8MjP7QO25i2Qzij4JfaqEouJ9tJsVxePynxVIIEnmfImuDCPTcM0nDtkY7s/c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733173144; c=relaxed/simple;
-	bh=BqWecxSXgQIa8giUNeZ2BAp4YD5tR1OQ3mAJHBxTKik=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RYFIQeQBYSFqxpIOlySS9DuN5pJkssK4dAZXJUhgEIFZVDEDnx67Xp7Ki88Ksm4VyTMybNUbr0tR94ruImAqX6O6BR9lF4iGnZzMn9HPo7AEXGdIgTrPFMN/vvzIQpqk0vyIQpJBcHNG+YwNSya7qwvXqN/PMFeha1rvhNzINVI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VTcGLgss; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47996C4CED1;
-	Mon,  2 Dec 2024 20:59:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733173143;
-	bh=BqWecxSXgQIa8giUNeZ2BAp4YD5tR1OQ3mAJHBxTKik=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VTcGLgssR0iDsOKrcFy5f2jhrehoim0WjgkUIfZ8MC74zgng7L60W7kqT3Qa4Zxv1
-	 SxUUslZkPERVEJVmZ1tHp7hbkwHZE13h04GK4ZJrhYnMM/TD8I+zMnNT9Q6s9LNHyt
-	 ROEQYFd/AsyM8wSwJ4Hxqc5XmvlvnTQi5wGiPkRMMkHbA5FTr6kHBgHiFf4zrhXzyU
-	 RdzB1k1PYdJmOvS/MmU9PLcH4kjgHyxOLwlzjbNS1cSpIHH0xxlAo5A0D1TenYClkA
-	 xccj0DKwHmuiLL6WRFi33hjhnuSyPqjnKiXBo+MMn6ujpGvigZJ4LbDNXVqodidtkv
-	 AHxuqZtLeT8hg==
-Date: Mon, 2 Dec 2024 14:59:00 -0600
-From: Rob Herring <robh@kernel.org>
-To: Marc Kleine-Budde <mkl@pengutronix.de>
-Cc: Jonas Rebmann <jre@pengutronix.de>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
+	s=arc-20240116; t=1733173192; c=relaxed/simple;
+	bh=2PK5ha2wx0lgaGR40rHwlMuiaDdWxyYKuGnI/G4Plgc=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rX59QH+tL/6aVak4hhT3mKUzLi2AHVqwhPVk3htZ6H1+yjnNW5+lLGr78IxkMOV8yd/YdPJEoGElRdDbVW8Jg7S4YhhLwbs8RcpvLv4wBrJlBJzpNIZeKZQOLJKlBXAda298WGlxevQFq3KrxqZthvu9BrrY7g0seGhPyDxGShQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e+GvnVv5; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-385d6e36de7so4141864f8f.0;
+        Mon, 02 Dec 2024 12:59:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733173189; x=1733777989; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=nMjaw1yBGxjyAFkiqRAKXLHvRiHxJiioylVtFCyhof8=;
+        b=e+GvnVv51M6G6LmGpYKeEIYwakPMpG2+8JWllA3Ga5YUg142BEDR8DF0MPih0wco2y
+         biOHHAuvGHkQJ5V/IKQDWI88+MdRSse/0gE70e3ow0ZAYgQ+AFI/lq8ekYHbPdx0ypgM
+         0110t4UYWa9NkbdsoisrDTroQ5LYsjsUJDRNzVaSIjzTLqz9TvRNt8EVzg4yuyGnl3ZZ
+         V8GYPy7G9F59TwpXjh+7CNhBkce/NciavrUjQ+FvalhaHsnJfmaTEBwpHOS/ca0kaXaw
+         oAzoimDxszE120ru/loOMhro67HOOtnXihQ1nFhKjQ9WqjJJvsJpUb1K5aK3jq7lNjUk
+         tgag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733173189; x=1733777989;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nMjaw1yBGxjyAFkiqRAKXLHvRiHxJiioylVtFCyhof8=;
+        b=WpieEVLhOGycvppkRiRyNHdmZjJWhxQew4FsbdDfK1SdwDmgg9g6dQVmhrLc4FX8SW
+         2AEfGhwt+B/CwdvATP7Id6Tx5hoJV2tKZ132pP5PeYn4TPT4l3TGkp4wLARxy1tzRpG+
+         s9ZJYz+twWgJTcPwWNm8VTMQoNPb5fbyi8Lj23JgUhxZ4UjNMVmmDNhOa9UA3X6XiZe7
+         CMld8iL6NPaa1GtYTDCBHfMsKjKgHViSTLXxqg9q4EECE9VzuTXoUs7oZNPpgiIdxemn
+         jS+4F+xY1TBySzJavjOrShb8YgwmIczLoBNZDH06dkNJAJfXOwS4TZNHhFAaqWXwoxvW
+         RdPw==
+X-Forwarded-Encrypted: i=1; AJvYcCV76M8vHRnzupyEFy8GrspBvE0p2CO78nF/pXWhaSYhDivOFOPt6aVFkF6ke06PjUwFro3rfXzk2mJzlBK/@vger.kernel.org, AJvYcCWVMrvuKBIkO349HIqp8Y59HJXgfnMH6Y32PbUvExt3U/nRWAjvMI5CD+IcTJc2G4SGllPVGaVPMlke@vger.kernel.org, AJvYcCWaZsXcoylpPlHgmX6ejPIxnqeguOEUmlG/5IkO7exnoBTEGCimUQHq2WqrkIV1A0WvUamgF0Hu8wo=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yza9/RexCdEGVJGywyDKb1D8/bZSyxWiTqUfbb+OwTnQLI9vtoq
+	ZkzA18t1lpnu7z1Lp8gpSQgKfBBTl5rabdT/cqZdjkhnVI9lkv0xu32Luw==
+X-Gm-Gg: ASbGncvjYdChliQsGregq1CeKaM6EKYjv80eOShOsLO9HUYu4oK56jt/z6sEFbrdtRU
+	Cf7NyGOvSZniiMlF4ya2LDb9LLwuVbZz/X7dnMBmttOWbg4GlZTsWzVILrKdxw/+vyb82ZtECbY
+	gS1XiVIIo9LqS8F30IgWxu+I/id47ylZPSI1Q8IwtxwjWnl//+zwW4+btSWX6zJfv88y0kkCGfB
+	kK+TMCSZn3bq0uXrWp1Nc+W47sZ3HrjQcreA8H9SgWEj7ePoBfDlenERfK/cXDt0Ru/NHki4nvS
+	+ZhaCA==
+X-Google-Smtp-Source: AGHT+IHhdAUMBDhh/fABRlqFfHvgANTFrgvyVHAUXfoPzB6A1STCBLs6LN6aqRXQ9wlQ9Hj9wW7l3Q==
+X-Received: by 2002:a5d:6da4:0:b0:385:d7f9:f16c with SMTP id ffacd0b85a97d-385d7f9f23fmr17710725f8f.46.1733173188463;
+        Mon, 02 Dec 2024 12:59:48 -0800 (PST)
+Received: from Ansuel-XPS. (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-385ccd80435sm13308858f8f.100.2024.12.02.12.59.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Dec 2024 12:59:48 -0800 (PST)
+Message-ID: <674e1fc4.050a0220.a615a.6ff9@mx.google.com>
+X-Google-Original-Message-ID: <Z04fwdEkNp_-T98L@Ansuel-XPS.>
+Date: Mon, 2 Dec 2024 21:59:45 +0100
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Heiko Schocher <hs@denx.de>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mtd@lists.infradead.org, kernel@pengutronix.de,
-	David Jander <david@protonic.nl>
-Subject: Re: [PATCH 2/3] dt-bindings: mtd: mchp48l640 add mb85rs128ty
- compatible
-Message-ID: <20241202205900.GA3155769-robh@kernel.org>
-References: <20241202-mb85rs128ty-v1-0-a660b6490dc8@pengutronix.de>
- <20241202-mb85rs128ty-v1-2-a660b6490dc8@pengutronix.de>
- <20241202-stereotyped-otter-of-agility-44b71b-mkl@pengutronix.de>
+	upstream@airoha.com
+Subject: Re: [PATCH v4 1/2] dt-bindings: cpufreq: Document support for Airoha
+ EN7581 CPUFreq
+References: <20241202151228.32609-1-ansuelsmth@gmail.com>
+ <CAPDyKFqrY7uLD8ATqH0LghmkHgApQSsGtvGkOTd8UVazGu0_uA@mail.gmail.com>
+ <674dd60f.7b0a0220.2ba255.7b7a@mx.google.com>
+ <20241202205738.GA3149730-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241202-stereotyped-otter-of-agility-44b71b-mkl@pengutronix.de>
+In-Reply-To: <20241202205738.GA3149730-robh@kernel.org>
 
-On Mon, Dec 02, 2024 at 05:53:18PM +0100, Marc Kleine-Budde wrote:
-> On 02.12.2024 17:35:21, Jonas Rebmann wrote:
-> > Add a compatible string to support Fujitsu MB85RS128TY.
+On Mon, Dec 02, 2024 at 02:57:38PM -0600, Rob Herring wrote:
+> On Mon, Dec 02, 2024 at 04:45:17PM +0100, Christian Marangi wrote:
+> > On Mon, Dec 02, 2024 at 04:42:33PM +0100, Ulf Hansson wrote:
+> > > On Mon, 2 Dec 2024 at 16:20, Christian Marangi <ansuelsmth@gmail.com> wrote:
+> > > >
+> > > > Document required property for Airoha EN7581 CPUFreq .
+> > > >
+> > > > On newer Airoha SoC, CPU Frequency is scaled indirectly with SMCCC commands
+> > > > to ATF and no clocks are exposed to the OS.
+> > > >
+> > > > The SoC have performance state described by ID for each OPP, for this a
+> > > > Power Domain is used that sets the performance state ID according to the
+> > > > required OPPs defined in the CPU OPP tables.
+> > > >
+> > > > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > > > ---
+> > > > Changes v4:
+> > > > - Add this patch
+> > > >
+> > > >  .../cpufreq/airoha,en7581-cpufreq.yaml        | 259 ++++++++++++++++++
+> > > >  1 file changed, 259 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.yaml
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.yaml b/Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..a5bdea7f34b5
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.yaml
+> > > 
+> > > [...]
+> > > 
+> > > > +examples:
+> > > > +  - |
+> > > > +    / {
+> > > > +        #address-cells = <2>;
+> > > > +       #size-cells = <2>;
+> > > > +
+> > > > +        cpus {
+> > > > +            #address-cells = <1>;
+> > > > +            #size-cells = <0>;
+> > > > +
+> > > > +            cpu0: cpu@0 {
+> > > > +                device_type = "cpu";
+> > > > +                compatible = "arm,cortex-a53";
+> > > > +                reg = <0x0>;
+> > > > +                operating-points-v2 = <&cpu_opp_table>;
+> > > > +                enable-method = "psci";
+> > > > +                clocks = <&cpufreq>;
+> > > > +                clock-names = "cpu";
+> > > > +                power-domains = <&cpufreq>;
+> > > > +                power-domain-names = "cpu_pd";
+> > > 
+> > > Nitpick: Perhaps clarify the name to be "perf" or "cpu_perf", to
+> > > indicate it's a power-domain with performance scaling support.
+> > > 
 > > 
-> > Signed-off-by: Jonas Rebmann <jre@pengutronix.de>
-> > ---
-> >  Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml b/Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml
-> > index 0ff32bd00bf6aee279fa78c624d8d47c6162f7f1..973f06b665dbbcb9ea1090418eb18fbe2285acef 100644
-> > --- a/Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml
-> > +++ b/Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml
-> > @@ -18,6 +18,7 @@ properties:
-> >    compatible:
-> >      items:
->        ^^^^^
-> I think you need to change to "oneOf"
-
-"enum" rather than oneOf plus const entries.
-
+> > Will change to cpu_perf. Thanks a lot for the review!
 > 
-> >        - const: microchip,48l640
-> > +      - const: fujitsu,mb85rs128ty
-> >  
-> >    reg:
-> >      maxItems: 1
+> Is that defined in arm/cpus.yaml? No.
 > 
-> regards,
-> Marc
+> The current choices are perf or psci though those aren't enforced (yet). 
+> Or nothing which is my preference if there is only 1 power domain.
 > 
-> -- 
-> Pengutronix e.K.                 | Marc Kleine-Budde          |
-> Embedded Linux                   | https://www.pengutronix.de |
-> Vertretung Nürnberg              | Phone: +49-5121-206917-129 |
-> Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
 
+I would also prefer not having to define the names property but I guess
+that is mandatory for the PD APIs? Maybe Ulf can confirm. 
 
+-- 
+	Ansuel
 
