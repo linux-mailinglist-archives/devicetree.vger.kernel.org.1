@@ -1,148 +1,108 @@
-Return-Path: <devicetree+bounces-125899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E75B9DFA0F
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 05:58:10 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D09BA9DFACB
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 07:39:53 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 03A2116229C
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 04:58:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9633C280FE7
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 06:39:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA9D51D7984;
-	Mon,  2 Dec 2024 04:58:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BEAC1F8EE2;
+	Mon,  2 Dec 2024 06:39:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Z8Ki21Qy"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="YmCCzhv7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m12775.qiye.163.com (mail-m12775.qiye.163.com [115.236.127.75])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39D521D5CF9
-	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 04:58:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B482433F6;
+	Mon,  2 Dec 2024 06:39:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.236.127.75
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733115486; cv=none; b=PSo9hhQARTUF0LgTUHgARml6kpo8nAXgCZENx8gDAa+Ss9eniTLwAPbUkcE1uyec8OFeY7qKmi/TG4Lsk/myuPItnvYDWoE/ViPzxcmDH7Fz3XSw4naCEEkOQYbYi2jD3W3WZL03kh2CHmz75OcsQ6A9tb3BD6gNQANlOJzUNCU=
+	t=1733121590; cv=none; b=Qb1jEeBiE8nZQKyP83smKWDXb2cYiDhQ2a2luwFYyISgjrUemwFibCyXPOTNgLOJv4DqYK9zi6UgGGATXCWlXkfTxxsmO4DbpEyC9O7v77tiK3HjgevxNwp6efWpagPB9X2lQlyVbdZoDqMfud8j0Nq9zFLhJ4hEm03317ZS7wk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733115486; c=relaxed/simple;
-	bh=nwOnFLjkl/AZuun/GsZ/MT/Esupxc6jZTrkx7WlRFtw=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=IF02xH3V10hpgcdXItRNUcVfupSpHAFPmgiiGOaUbJc3RC/nAyNnXNSionL6s0ihG5BfwCh5gKGglEqkmjXvL4m76yfZ1OhgkhZ3uh7ysSHUUpiYVCiC4FH50ncmAgTEoflE3dEaXz3HEK8RbaNBFw5QNqJfhM4gRe4iYm0DtHM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Z8Ki21Qy; arc=none smtp.client-ip=209.85.167.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-3ea3cc9a5ddso1867642b6e.3
-        for <devicetree@vger.kernel.org>; Sun, 01 Dec 2024 20:58:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1733115484; x=1733720284; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=vDhO31tk1fZx5nO1D34ac67vgcEF+XlfAfCpGqdW5mI=;
-        b=Z8Ki21QyBsU+eNA1HqdAEMXlqb8i6Lqzc+ho+oawDBf6rqhZLn6l2zV8SvyIL+6Ov8
-         k2yo2xowBhYTJqQK0YVyFVncFpUBCSzwAwiIcaREDtTifvsh7tp5Ku4aAHWKi7DQQgHZ
-         zuF5ez44A8VthW+XNgkVDBN8Kqn43nhqIDYtc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733115484; x=1733720284;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vDhO31tk1fZx5nO1D34ac67vgcEF+XlfAfCpGqdW5mI=;
-        b=Jd3CXUkcyxlJnbm0FIevi30PyiDcJn7iBIZnp+HlYWy/z1kdiXrxpG+WESqQilYikk
-         GMjF9724ZZ1CD9xbjo3+OnKeFswL1md7P1XRHLc1WHHcf8Ltp+uL/xGRVXFCXQX0w+Qb
-         Iqhf7vBuLaJebr2EzEUo/v+ZqAe3NnRnoSYJ34MpIqIuWUxDL0fSt6gIvS1uZq//rtSd
-         fqRjz3/5yH+snkzu2FdeDxPbUzs/3YIwqtfT9/httUGUs0UhJGTYQMLmHrF3wgGQDKOn
-         CjxKBQz4sDUcWJAF57TiYpZq3I9TZoo1EqraHtNGzkGS4H7cualCJjV1uni6o4BCaSd4
-         GJ0w==
-X-Forwarded-Encrypted: i=1; AJvYcCXO1GB/FpLfHANiaPFMDiIYSlNTYi70aSJqXIO6lkXbIei69q3A8GS93rwqAM58HG+pt9mvG5bP//ee@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzsj60DtHvgJtpOqqot63vGni+kpnHmJnncSryADT7GPFld3mKO
-	0exfY+KJI/S2IWCnmIkK5yeU0fkCF4TbpXuJxc5aE5cgX5YsleRxI5ilwqDz0g==
-X-Gm-Gg: ASbGncuzBf5NSykH7xDpzB3TwsTEO6ed+A2oyVKFR5ZDp5gNVyQ+0MHrVyoMKAC2asw
-	zvg2TodkenHhTRwooKItiRScNzAdQucxI8o0t6cA3bULqT6An5Ial5Tdyb7LvsefGtTyyLZYVrh
-	SoK5fs9qqe9+OziP+yxHC71BmuMj+xXcfgu3LopS+yVgJbUUD/TrkKf9/Ktof0SYoOgkAVIvOxP
-	XI2S1h1xbWDVTqo+JZIqMkpxeCrfQtZJrRkdV/eLR9sZ4tFcCytqzuTVhAHM8V8o1j0
-X-Google-Smtp-Source: AGHT+IFb+ZRLH+3t3GZ+Wqs0KteaVy0F6ImlvlAlGAnh/Pchain6QOhSaXFDzaByBXFgCM7QNb8V/Q==
-X-Received: by 2002:a05:6808:2018:b0:3e6:3860:596b with SMTP id 5614622812f47-3ea6db6410dmr21148963b6e.8.1733115484363;
-        Sun, 01 Dec 2024 20:58:04 -0800 (PST)
-Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:94c8:21f5:4a03:8964])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7fc9c2d5be4sm6970599a12.3.2024.12.01.20.58.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 01 Dec 2024 20:58:03 -0800 (PST)
-From: Chen-Yu Tsai <wenst@chromium.org>
-To: Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Chen-Yu Tsai <wenst@chromium.org>,
-	linuxppc-dev@lists.ozlabs.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Frank Li <Frank.Li@nxp.com>,
-	stable@vger.kernel.org
-Subject: [PATCH] dt-bindings: soc: fsl: cpm_qe: Limit matching to nodes with "fsl,qe"
-Date: Mon,  2 Dec 2024 12:57:55 +0800
-Message-ID: <20241202045757.39244-1-wenst@chromium.org>
-X-Mailer: git-send-email 2.47.0.338.g60cca15819-goog
+	s=arc-20240116; t=1733121590; c=relaxed/simple;
+	bh=QF6bRx+38A/b4SJ3Hk5Wl9bwRWRZht6DkboFL4ATpb0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eqX8nR17E8X/RtXiLPIqVyr+/Oo/gq9/tpW4eqSfw+uRhqRr8ARmgHfNtigdtvYoFuIo9/2p9jdpspza10yeCCEFvn8FbH0RQfsk7HoUOVQc8oq1tGhu6KjwpEi70B6bpC5VIcCy5YYQuZQh9kVxSj2CKScIJQPHajzg38Rot0U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=YmCCzhv7; arc=none smtp.client-ip=115.236.127.75
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.26] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 461506be;
+	Mon, 2 Dec 2024 10:03:42 +0800 (GMT+08:00)
+Message-ID: <79421ac4-ffb5-4763-8ba7-cb7bd25c1c80@rock-chips.com>
+Date: Mon, 2 Dec 2024 10:03:42 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 02/10] dt-bindings: display: rockchip: analogix-dp: Add
+ support for RK3588
+To: Krzysztof Kozlowski <krzk@kernel.org>, heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ rfoss@kernel.org, vkoul@kernel.org, sebastian.reichel@collabora.com,
+ cristian.ciocaltea@collabora.com, l.stach@pengutronix.de,
+ andy.yan@rock-chips.com, hjc@rock-chips.com, algea.cao@rock-chips.com,
+ kever.yang@rock-chips.com, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org
+References: <20241127075157.856029-1-damon.ding@rock-chips.com>
+ <20241127075157.856029-3-damon.ding@rock-chips.com>
+ <5d4bebf5-7954-4739-9cd4-93d78d337738@kernel.org>
+Content-Language: en-US
+From: Damon Ding <damon.ding@rock-chips.com>
+In-Reply-To: <5d4bebf5-7954-4739-9cd4-93d78d337738@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGUxJGFYaHU9LSkNCTRoaSklWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
+	NVSktLVUpCS0tZBg++
+X-HM-Tid: 0a93851bf68803a3kunm461506be
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PRg6Izo*DzIYNxwXPDMOGEs*
+	DTBPFBNVSlVKTEhISktOS0lPSElJVTMWGhIXVR8aFhQVVR8SFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFMS043Bg++
+DKIM-Signature:a=rsa-sha256;
+	b=YmCCzhv7vginIZyrZcj/ecu0aLKtyt+uIpxiTMR1jogyL9BG3ZBbpB6ePDvB6dYxlsc4xGs49TbcG3qacO2l4tUp+wEuyrCqlkVpLbzEzmC1kV9vMcP9F9r9RBMwOtFXL2KEfuhnrjcgbE96xO251M5eyIn0ocPEiX1XEa6jrT0=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=Y241lptnwQ37OUoaH11vBxiTF8EY0NMjd3KnNF0LCj8=;
+	h=date:mime-version:subject:message-id:from;
 
-Otherwise the binding matches against random nodes with "simple-bus"
-giving out all kinds of invalid warnings:
+Hi Krzysztof,
 
-    $ make CHECK_DTBS=y mediatek/mt8188-evb.dtb
-      SYNC    include/config/auto.conf.cmd
-      UPD     include/config/kernel.release
-      SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-      DTC [C] arch/arm64/boot/dts/mediatek/mt8188-evb.dtb
-    arch/arm64/boot/dts/mediatek/mt8188-evb.dtb: soc: compatible:0: 'fsl,qe' was expected
-	    from schema $id: http://devicetree.org/schemas/soc/fsl/cpm_qe/fsl,qe.yaml#
-    arch/arm64/boot/dts/mediatek/mt8188-evb.dtb: soc: compatible: ['simple-bus'] is too short
-	    from schema $id: http://devicetree.org/schemas/soc/fsl/cpm_qe/fsl,qe.yaml#
-    arch/arm64/boot/dts/mediatek/mt8188-evb.dtb: soc: interrupt-controller@c000000:compatible:0: 'fsl,qe-ic' was expected
-	    from schema $id: http://devicetree.org/schemas/soc/fsl/cpm_qe/fsl,qe.yaml#
-    arch/arm64/boot/dts/mediatek/mt8188-evb.dtb: soc: interrupt-controller@c000000:reg: [[0, 201326592, 0, 262144], [0, 201588736, 0, 2097152]] is too long
-	    from schema $id: http://devicetree.org/schemas/soc/fsl/cpm_qe/fsl,qe.yaml#
-    arch/arm64/boot/dts/mediatek/mt8188-evb.dtb: soc: interrupt-controller@c000000:#interrupt-cells:0:0: 1 was expected
-	    from schema $id: http://devicetree.org/schemas/soc/fsl/cpm_qe/fsl,qe.yaml#
-    arch/arm64/boot/dts/mediatek/mt8188-evb.dtb: soc: interrupt-controller@c000000: '#redistributor-regions', 'ppi-partitions' do not match any of the regexes: 'pinctrl-[0-9]+'
-	    from schema $id: http://devicetree.org/schemas/soc/fsl/cpm_qe/fsl,qe.yaml#
-    arch/arm64/boot/dts/mediatek/mt8188-evb.dtb: soc: 'reg' is a required property
-	    from schema $id: http://devicetree.org/schemas/soc/fsl/cpm_qe/fsl,qe.yaml#
-    arch/arm64/boot/dts/mediatek/mt8188-evb.dtb: soc: 'bus-frequency' is a required property
-	    from schema $id: http://devicetree.org/schemas/soc/fsl/cpm_qe/fsl,qe.yaml#
+On 2024/11/27 18:23, Krzysztof Kozlowski wrote:
+> On 27/11/2024 08:51, Damon Ding wrote:
+>> Add the compatible "rockchip,rk3588-edp".
+> 
+> This we see from the diff. Say something about hardware and why it is
+> not compatible with existing variants.
 
-Fixes: ecbfc6ff94a2 ("dt-bindings: soc: fsl: cpm_qe: convert to yaml format")
-Cc: Frank Li <Frank.Li@nxp.com>
-Cc: <stable@vger.kernel.org> # v6.11+
-Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
----
- .../devicetree/bindings/soc/fsl/cpm_qe/fsl,qe.yaml        | 8 ++++++++
- 1 file changed, 8 insertions(+)
+In response to your kind suggestion, I will add more details in next 
+version, specifically:
 
-diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe.yaml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe.yaml
-index 89cdf5e1d0a8..9e07a2c4d05b 100644
---- a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe.yaml
-+++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe.yaml
-@@ -21,6 +21,14 @@ description: |
-   The description below applies to the qe of MPC8360 and
-   more nodes and properties would be extended in the future.
- 
-+select:
-+  properties:
-+    compatible:
-+      contains:
-+        const: fsl,qe
-+  required:
-+    - compatible
-+
- properties:
-   compatible:
-     items:
--- 
-2.47.0.338.g60cca15819-goog
+Compared with RK3288/RK3399, the HBR2 link rate support is the main
+improvement of RK3588 eDP TX controller, and there are also two
+independent eDP display interfaces on RK3588 Soc.
+
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
+> 
+
+Best regards,
+Damon
 
 
