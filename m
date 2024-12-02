@@ -1,111 +1,146 @@
-Return-Path: <devicetree+bounces-126006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126007-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8ABB9DFE82
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 11:14:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43E089DFE94
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 11:16:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 69A33163E49
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 10:14:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 01A32162D83
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 10:16:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2D5B1FCCF7;
-	Mon,  2 Dec 2024 10:12:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AA071FC7CC;
+	Mon,  2 Dec 2024 10:14:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jTioyHDM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mZeOuYr5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BA761FCCE4
-	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 10:12:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D62BE1FC7C7;
+	Mon,  2 Dec 2024 10:14:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733134358; cv=none; b=CPmWjtzMBUcOkp3Ea1BSJnGp6sdjH4kKBVoLxhzM9qICrX48Es9LmEGSKsZVo1VrSN1xtXTvzkzPC/+utLgSsvdkbsuQ27SlAYKGFQ+3niS+EyvpfD/yR3ASNkfrwesFtw4Eqd1A4YTkBkWOYGhioQJtfh597NFIli4TeEeK2fE=
+	t=1733134492; cv=none; b=cgnmzNwKijkYsYkAIKujuBlzG+dQizM+5BnobMmzTXs93Xe9woPfoW2GRLFm7vgVMldgHMq3NeI+wsu07Bxr6vF172o5k2AVyUfLlz0A0WhmgslvWpmfHRymXuzKceHdvSsAO2tOgX8Hbmsa5g1bLGQnCyZ3pSvV2SXJme6f6Ys=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733134358; c=relaxed/simple;
-	bh=cEz5WCEcvO0LA3NyHkeRpJjFKEfwc7Bb03yBcNKzoGM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H9n66tf4cDv4/89NWreiuivaNyKzWB0B5IU1mn3Ue/OvAhsc+EDGbJIa2Muky7WDDtKlimUjcMTfrkYPMFUugL2WaQUFpZ1C5gUrtf3vdEAY28YdOylOpMUoT0iirkmNTlwFHvTI2vCyxYnBogUlA/UDNcMn18dpTmCZArjiNxs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jTioyHDM; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-53df19bf6a9so4533305e87.1
-        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 02:12:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733134355; x=1733739155; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=PdrLpX+axI2CPbjnNH3X9noFZkYJRbcHp1c258OKeSY=;
-        b=jTioyHDM/gKwYzRH83ICipPzoAfVgg/0SIwxVXVOChYhXA0icuZJDNukrXo2yPaBJV
-         OjkWaXDpCgQDMK0d4w0JGEKtVt45gVeM/RKEWNt/YzBQX1Co16Sl00R+IZL9+rnQ+rFt
-         IeoLScFYA7+PHsoz7CSORUuidhHKIV0fPWQU2shS/4f1BvyhOwcrc34OdyyEOAf278cp
-         MSFAPvDQZbzt8DMHtxZy9j5VCIGQWj6joAtwmvNH5TEycb3o/VNeqq+g3elSpJRDCrcp
-         RQAF3foIzsfRJuqhtBD7jmgV5oNO4rEiWnHPK8Lk/Mg/UVhqHoHhi5D4eAbinGqYQT1y
-         L8Dw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733134355; x=1733739155;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PdrLpX+axI2CPbjnNH3X9noFZkYJRbcHp1c258OKeSY=;
-        b=LPOw2llULU2vfDEnKUOjTzsR5mtzoGD30OduHpNU6yAfFkCL+vbTC6ls2BM05TVEXb
-         Abjh/zGvsQPHwVk+lLRG+MyWdFyzGrU0z9H1H0nM/HY1UWva8b727l5JOwSmOMynKKYc
-         34252+tTSZdaxksIKgjdE0qDZ0xLPnnOrryn4u23H9ah6KZaBNWHpZcVQE+vQ5pwwCXd
-         LjthIGSEjfwCaeg5DWhMBOIoorppYwoz/cNUFDdNfCfgOrChS11TXZtjRIvt7NIEGPI1
-         oPNrE2DCHlBqOU/gcyGwpUmx9/zxeRgbloDJdOkaHMDQGJs+YxZHfvyw/emYU95jrc9R
-         gPcw==
-X-Forwarded-Encrypted: i=1; AJvYcCW5nNeLriGCKedNuzc0BkGf+PQJApE9OT/s/bxsPSJBwSAbne7WorNoIhTWT7yxkFxZHcLJbm4VWlcC@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/WrD+l7WfwD3JsObaOdWY8cYU5cJKhYPGONITkyxffDDGArzJ
-	3DjAIFzuMOvYBMta8oAQX0bCAu1/WWUwSmsOOn662BKLRruRy3jx0BK2Y+uEdZE=
-X-Gm-Gg: ASbGncvS3CSzE6Ghah9Cx6J/DITVj8T7F8vqrTLfLWLyEt/8ofrnbtOLLaRfh6DOfok
-	5YOR+Mf/kudk1eBbxmFlcPOAfSWr0H+cnmetXWT2LzU5++7M9PdxEqykyAZdQU3IDwI2H3blm0w
-	J6SC6mBj/83r8+sP8rpWLN5GaZzCSTXh+qcvEugBKy63TP4Psene3qKEQUmhOkRHwfCUIx/Pa7z
-	V5/jd3GU6BdnEkVqtN7YhtSdcgAXkdtwcrypjVZcPO3k2Uptx2LnKiI21ikgqMNuyYRJ8YfFykA
-	0qqLv1MP2LowBin2S9MI+jIYhNCD+Q==
-X-Google-Smtp-Source: AGHT+IENA1UtOB2vC+9sMeQjU5RSPscJVa+h3RiiqVEgdoucohrY/p3JAOJdi4XwYr8/MGauEsX3WA==
-X-Received: by 2002:a05:6512:400f:b0:53d:a93c:649e with SMTP id 2adb3069b0e04-53df0109024mr12516120e87.35.1733134355114;
-        Mon, 02 Dec 2024 02:12:35 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53df64968d6sm1380786e87.200.2024.12.02.02.12.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Dec 2024 02:12:33 -0800 (PST)
-Date: Mon, 2 Dec 2024 12:12:31 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Tingguo Cheng <quic_tingguoc@quicinc.com>
-Cc: quic_fenglinw@quicinc.com, quic_tingweiz@quicinc.com, 
-	kernel@quicinc.com, quic_eberman@quicinc.com, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 3/3] arm64: dts: qcom: qcs615-ride: Enable PMIC
- peripherals
-Message-ID: <lzmfmo2ll5izofq2pcpv7dkhcdawwijxotw45cqu4vlydt4cle@yta6qyume6e5>
-References: <20241202-adds-spmi-pmic-peripherals-for-qcs615-v6-0-bdd306b4940d@quicinc.com>
- <20241202-adds-spmi-pmic-peripherals-for-qcs615-v6-3-bdd306b4940d@quicinc.com>
+	s=arc-20240116; t=1733134492; c=relaxed/simple;
+	bh=UPiH6OxK7a+tjPG8wPVKRgPcGsYQ3XZcFQgo+TNLwO8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OsDeeOrnGMAEmNFHuaFJHlM9vlixtXcryOne9r0CN5qiFcp2rLXJgxgvHIRfNr2CeNPviDn7TTPhM5zHKEa3wBzh0YOEohQUeWmPDVAp4JnJvxlWg5k3A+d0qq8TGPf18XBbllcd7s+MNUJAWPggq4w0O2aHQrdSKIxlEIy72M4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mZeOuYr5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CCFAC4CED1;
+	Mon,  2 Dec 2024 10:14:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733134492;
+	bh=UPiH6OxK7a+tjPG8wPVKRgPcGsYQ3XZcFQgo+TNLwO8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=mZeOuYr5JndHg2txWoEX25RXvikuq5ou2bIBLwElC6ZGhb0ifWWWf2Xon1lg3xx/a
+	 CFgbb/a3fkX8KfNwIdD9bPfRT1o3J/N3OtSqGtuKVAA2mJ9IjOG1zwcyT/jMh3KaJx
+	 FRePqg0HVlQcq+uVreK2YRS39SK3FSIPnSVH0Z4WW5FOF8xDOKTeyiwlY8kRT+9LKs
+	 DvriAcmFQkuokL1DtZh153K/lfjFTtLz0wAWT+HQ/wyNu0kAEQu+J+l0ZV6i2St4rZ
+	 osVcWs1f/kKma7nMeP7OQPBzvmc+G4PhT//3n092lav6TTUDSRki3IcrFWOVk382M4
+	 IAGlXHRUmGkTA==
+Message-ID: <dabbad2b-f8a6-4ed7-86da-ec696cf67461@kernel.org>
+Date: Mon, 2 Dec 2024 11:14:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241202-adds-spmi-pmic-peripherals-for-qcs615-v6-3-bdd306b4940d@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCHv2] arm64: dts: ti: k3-j721e-beagleboneai64: Enable ACSPCIE
+ output for PCIe1
+To: Romain Naour <romain.naour@smile.fr>, devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
+ conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org, kristo@kernel.org,
+ vigneshr@ti.com, nm@ti.com, Romain Naour <romain.naour@skf.com>,
+ Siddharth Vadapalli <s-vadapalli@ti.com>
+References: <20241202101140.48778-1-romain.naour@smile.fr>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241202101140.48778-1-romain.naour@smile.fr>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Dec 02, 2024 at 05:37:24PM +0800, Tingguo Cheng wrote:
-> Enable PMIC and PMIC peripherals for qcs615-ride board.
+On 02/12/2024 11:11, Romain Naour wrote:
+> From: Romain Naour <romain.naour@skf.com>
 > 
-> Signed-off-by: Tingguo Cheng <quic_tingguoc@quicinc.com>
+> Unlike the SK-TDA4VM (k3-j721e-sk) board, there is no clock generator
+> (CDCI6214RGET) on the BeagleBone AI-64 (k3-j721e-beagleboneai64) to
+> provide PCIe refclk signal to PCIe Endponts. So the ACSPCIE module must
+> provide refclk through PCIe_REFCLK pins.
+> 
+> Use the new "ti,syscon-acspcie-proxy-ctrl" property to enable ACSPCIE
+> module's PAD IO Buffers.
+> 
+> Reuse the compatible "ti,j784s4-acspcie-proxy-ctrl" since the ACSPCIE
+> buffer and its functionality is the same across all K3 SoCs.
+> 
+> Cc: Siddharth Vadapalli <s-vadapalli@ti.com>
+> Signed-off-by: Romain Naour <romain.naour@skf.com>
 > ---
->  arch/arm64/boot/dts/qcom/qcs615-ride.dts | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+> With this patch, we can remove "HACK: Sierra: Drive clock out" patch
+> applied on vendor kernel for BeagleBone AI-64:
+> https://openbeagle.org/beagleboard/linux/-/commit/ad65d7ef675966cdbc5d75f2bd545fad1914ba9b
 > 
+> v2:
+>  - use generic style comments
+>  - use "syscon" as generic node name for "acspcie0_proxy_ctrl" node
+>  - Keep the compatible "ti,j784s4-acspcie-proxy-ctrl" since the
+>    ACSPCIE buffer and its functionality is the same across all K3 SoCs.
+>    (Siddharth Vadapalli)
+> 
+>    "The compatible "ti,j784s4-acspcie-pcie-ctrl" should be reused for
+>    J721E and all other K3 SoCs.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+No, it shouldn't and you got comment on this. You always need specific
+compatible, see writing bindings doc.
 
--- 
-With best wishes
-Dmitry
+Best regards,
+Krzysztof
 
