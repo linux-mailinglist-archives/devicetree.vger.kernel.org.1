@@ -1,106 +1,139 @@
-Return-Path: <devicetree+bounces-126219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126220-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ECAF9E090E
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 17:51:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A75D9E0917
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 17:53:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 146802822C0
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 16:51:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F958282295
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 16:53:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39A411DA60F;
-	Mon,  2 Dec 2024 16:51:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iSPWq743"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF2DB1D9320;
+	Mon,  2 Dec 2024 16:53:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 111DD1D959E;
-	Mon,  2 Dec 2024 16:51:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 338BD52F76
+	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 16:53:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733158273; cv=none; b=kxGpQXNjEW6xVwei/HCdpEFoQ5OmikMKLa6E+tPqfTDKSUcqQu/F0V3qII+spNxXkVFlS9WkKbvSOsgFzOsB9v7FJQWfVQ3cEoPOU8fyIcOnRNJj810FSJD0ZL76nuv/KuGyplw66mQXFaG4vqaNeu71BBcWcH1ca6+HRN+WWq0=
+	t=1733158411; cv=none; b=UT5qzy/Afi7ksfv8eAct4dHswLoooi3QXwTnnaZFrkickIzRipeu+JAwftE8q/3ZZVaE+RpWFadROHxYvdkATaATIrJRIxD9WE59I8MrNWaDY3ZFp5Ua75QZFWHTdjb6d1Ep9kB+8TW4fFkVX1AgBaOkqckDkGJgAKQgIwBWhDA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733158273; c=relaxed/simple;
-	bh=ZdAQdXXjCYljteTFBRHsVw/rpxpZmdzMc5aDBqCIVy4=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=N6+xrhMKbUx88J7FeY7g/DO543GrFU1DUjc9G9RUtANl6HltETZGg/CJNrk5BQ6xrXqOqHJ3dkvhUD35Adj/XoWHELeDFQ70gBy6ahm9phXWxcMyDB8upAUoDt36shARBSwp6bzN1/PG+1Nz35iNmuO5+AWh6oEy+A194llQRaQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iSPWq743; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34CCDC4CED6;
-	Mon,  2 Dec 2024 16:51:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733158272;
-	bh=ZdAQdXXjCYljteTFBRHsVw/rpxpZmdzMc5aDBqCIVy4=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=iSPWq743CIYZAfEvP/0i+dSExVhNx/pKe3BLTKkZnq3y/0UZ77r7x0LTj+kgtS7AR
-	 A1TjutON18aDwgk8Bt3aBPP13pwhirJDhK2wXkAWoyfkA8nBqev6K824bYl6YSm0wD
-	 KYe+90UjI6hP4o7JrCVXKE0ciu0xWPLIEl1+rvz2Bs3T0rYacZrvYHsxcEvOEDIPqS
-	 KP1GOM2kzMsD/oZacBAaaiikbsaPezHv2LkjfnenxqyQczcoUfMhezH8hcqzvK/ieK
-	 /afc03wEG5xP+oJNb8TU3bhqI2GkTTLV0FgF1fhgzZSMkklV5R+Hj4k8iLSbrb1YtG
-	 AFGisWHbX9mWA==
-From: Mark Brown <broonie@kernel.org>
-To: robh@kernel.org, Fabio Estevam <festevam@gmail.com>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
- linux-spi@vger.kernel.org, shawnguo@kernel.org, 
- linux-arm-kernel@lists.infradead.org, lukma@denx.de, 
- Fabio Estevam <festevam@denx.de>
-In-Reply-To: <20241023120015.1049008-1-festevam@gmail.com>
-References: <20241023120015.1049008-1-festevam@gmail.com>
-Subject: Re: (subset) [PATCH 1/3] dt-bindings: misc: lwn,bk4-spi: Add
- binding
-Message-Id: <173315826769.126887.7195905602758530196.b4-ty@kernel.org>
-Date: Mon, 02 Dec 2024 16:51:07 +0000
+	s=arc-20240116; t=1733158411; c=relaxed/simple;
+	bh=klKH3RyoOaJCrXHvRvq9NFyNn0uyJB3GIr99zeWJSos=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=byL6wa/NJ4zolz7DjtPnfLvB7ChEpLsgBXekbRxg7K2nFzhLG+9XlvjczC9nWn/Dw0jNJPnEw+X3xrAIRVPry4uRjYfRpfr6rSSsWYIul/VD0DPK2+l5BBs1vKv+8tPGEEpKdRH++1i2Tgn8hHShqCK3ma7rSGURmw0+ldNrM+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tI9fk-00087b-1U; Mon, 02 Dec 2024 17:53:20 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tI9fi-001KRE-1C;
+	Mon, 02 Dec 2024 17:53:19 +0100
+Received: from pengutronix.de (pd9e59fec.dip0.t-ipconnect.de [217.229.159.236])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id BECBD383973;
+	Mon, 02 Dec 2024 16:53:18 +0000 (UTC)
+Date: Mon, 2 Dec 2024 17:53:18 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Jonas Rebmann <jre@pengutronix.de>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>, 
+	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Schocher <hs@denx.de>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org, kernel@pengutronix.de, 
+	David Jander <david@protonic.nl>
+Subject: Re: [PATCH 2/3] dt-bindings: mtd: mchp48l640 add mb85rs128ty
+ compatible
+Message-ID: <20241202-stereotyped-otter-of-agility-44b71b-mkl@pengutronix.de>
+References: <20241202-mb85rs128ty-v1-0-a660b6490dc8@pengutronix.de>
+ <20241202-mb85rs128ty-v1-2-a660b6490dc8@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-9b746
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="s577esmvwab2woq7"
+Content-Disposition: inline
+In-Reply-To: <20241202-mb85rs128ty-v1-2-a660b6490dc8@pengutronix.de>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Wed, 23 Oct 2024 09:00:13 -0300, Fabio Estevam wrote:
-> Add a lwn,bk4-spi.yaml binding for Liebherr's BK4 external SPI controller.
-> 
-> Currently, the compatible string used for this device is "lwn,bk4",
-> which is the same as the board compatible string documented at fsl.yaml.
-> 
-> This causes several dt-schema warnings:
-> 
-> [...]
 
-Applied to
+--s577esmvwab2woq7
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 2/3] dt-bindings: mtd: mchp48l640 add mb85rs128ty
+ compatible
+MIME-Version: 1.0
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+On 02.12.2024 17:35:21, Jonas Rebmann wrote:
+> Add a compatible string to support Fujitsu MB85RS128TY.
+>=20
+> Signed-off-by: Jonas Rebmann <jre@pengutronix.de>
+> ---
+>  Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mtd/microchip,mchp48l640.y=
+aml b/Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml
+> index 0ff32bd00bf6aee279fa78c624d8d47c6162f7f1..973f06b665dbbcb9ea1090418=
+eb18fbe2285acef 100644
+> --- a/Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/microchip,mchp48l640.yaml
+> @@ -18,6 +18,7 @@ properties:
+>    compatible:
+>      items:
+       ^^^^^
+I think you need to change to "oneOf"
 
-Thanks!
+>        - const: microchip,48l640
+> +      - const: fujitsu,mb85rs128ty
+> =20
+>    reg:
+>      maxItems: 1
 
-[1/3] dt-bindings: misc: lwn,bk4-spi: Add binding
-      commit: 36e7886075262429158aec6f258e6a5a92f025b1
-[2/3] spi: spidev: Add an entry for lwn,bk4-spi
-      commit: 096c34ddf5835f02f5260719cd8a16fcf5e5e56f
+regards,
+Marc
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+--s577esmvwab2woq7
+Content-Type: application/pgp-signature; name="signature.asc"
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+-----BEGIN PGP SIGNATURE-----
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmdN5fsACgkQKDiiPnot
+vG8UNAf/Q0okczdUcs5kfrn7qodwy1gJZ1E3wkuMmNmcw4x/WrjD4EfQqkFY2YvK
+z9Xme7Hvl6o4Cwg6jyQj3RB6S4CsLwhAPCtJ0XWFbg6Tg9x6KExvGAT1gSqXQ9ax
+Rud4h6YlzmevP5mISgYL3oZg2L1G0TuO4DPp+Qr78hvgN6oOxmCPE64xQa8/yQWj
+HBRfgrYw5xlJ+TIbTKCx4gGS7tIDi8k2uie/GzuN8GG0YCrYfoTeVMmQJuRlNxhY
+Nu4CnQTe36vAvvSvv8bWlboHa4VTI+1w+B5qIG4E9etiG4wPU1IVdI7xH/btNYn/
+B+Me2jGYLRWkmSvHpwKT9ilEpwXhAw==
+=jMo0
+-----END PGP SIGNATURE-----
 
-Thanks,
-Mark
-
+--s577esmvwab2woq7--
 
