@@ -1,192 +1,275 @@
-Return-Path: <devicetree+bounces-125950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-125951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28D669DFBF0
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 09:33:04 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CF819DFC1F
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 09:40:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CCF92281921
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 08:33:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 73087B20B11
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 08:40:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 276D11F9EA4;
-	Mon,  2 Dec 2024 08:33:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CF521F9EDD;
+	Mon,  2 Dec 2024 08:40:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="nyGd1eoJ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fSai7UVm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2070.outbound.protection.outlook.com [40.107.92.70])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3577A13635B;
-	Mon,  2 Dec 2024 08:32:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.92.70
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733128382; cv=fail; b=GBq88mk0TFNGWKrzqmgty5GQGQcBvm/O3ukpXgQWFM7bx79Gi0izJsKIWdE88dzQ/d9tAehSYEBEIap0ZQ/N7hu9SZ6l8ztIpXPJstphlt6N3eECyDbc6KWogbrCv6rzhzmglq8e4l7k2JJ0t0Sx0I+9ejp0KdqDAQQ9Be+jwTY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733128382; c=relaxed/simple;
-	bh=plvEi4oCtKqX8QXmQ6xcdKzdm+Sz7g5Y6l/F5b0YRkQ=;
-	h=From:To:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=AxP0rSng0NxU/SBqhR1Ar8ApaScS+jKehv/biUqvfAJGTOrRuhMTpULM8UfIR5Sy5H3s88EFfxMLBd+gqefKck5VqY0CA0sy0SzkQlgZ7C4Z3aZUlaqGqSRfrrmgIWIITv78OuJN5EuMrgYQHgOQXOncAZkQngZSDvpM2/rsrZA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=nyGd1eoJ; arc=fail smtp.client-ip=40.107.92.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bHd6ynR0ukTrtP4mtF2ZWQyw0tXSKg8xQy0tkp2ripCY+BttYAJxWPaPiV4PWeIwh2NUuXUXER+hOfp8vj06bSMBgelyuoGFnC5oZmjyMpqoXEhspDcYIpRK688L8DaIPQxMV2TTpqcvli0cwBdeMvJiPL2yu5FIgaSVp5PY3WX73R9cVxGXagTkjrmiLfFh13oSUICL3J7bFzorCDiySzCYKxcsjpxB1AY4hLqzRyckxkIByAzp/D2lAUT9ttK9mlj2FrUPgZJYzshvIfUQmKEdKsdGcB83GydIMcswm6nrumxqDseVzmv2QHnR4m23vNDe5dIGMZTJ+C5HTYOG8A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=plvEi4oCtKqX8QXmQ6xcdKzdm+Sz7g5Y6l/F5b0YRkQ=;
- b=bPHt7m98u2KrY8EK3v1LBA8nHe/GpiIbYddx/FMsKBsOYaccfp/ddHS7G5YNsv4mvzy4u11aqEav2Xl7nrrWkHa0fsrq1b7xZPn7d0yhugWOoJtSEKBqLsLhcUbv6Vgi/QNkZ5oKLvbbwKZlHc1l6WKeS5G6yg7xLLtJvFlSZrwJmtwhVzdmbhroR5CYswrtxCicGBm1IcQSt3U3fjfTZZGPAFJ3GNXEj6epOybCxqNz8x5BGvFLCkd2hBH3kIZbX7UqXUysz2UXPPd298JufcEyR/Y8k6Z4ihmx9Ju8F9C2BOd5gZgDZ5tYltodGQoTdnuS1/ZkqOZKU+Ekfm1dfw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=plvEi4oCtKqX8QXmQ6xcdKzdm+Sz7g5Y6l/F5b0YRkQ=;
- b=nyGd1eoJW8y494+opx16Ej7r+IVYtFMaavBQW1kRpvELbTUcNSipMHST6GfWoD2Rzcpi1fw9G8czZ4MJiOzEwoUysq13+oUfB5d3X129UUS/ceO4XSIsYRDlh1D5g1M8lsR3Jinfg6uf+fiXiZ7n2kYfsnzLWATt4rq+3LpNtCe8SfsSuQMLj2kITHlvQBjQCjXTFkoWVJNSpBYUuf2Os0sSGqUCbs3/srxk+j22/WO5UUz+m82wcbYLqrOIgn4H8fSF5wFMDWZnHaQ8+n/OzKfawlXugtBDVrf23+7EePz122/ZHoYtkhoH3elPIb8ZjoOoK4GkEWNvcWJ+RovLJg==
-Received: from PH8PR11MB6804.namprd11.prod.outlook.com (2603:10b6:510:1bc::6)
- by CY8PR11MB7057.namprd11.prod.outlook.com (2603:10b6:930:53::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8207.18; Mon, 2 Dec
- 2024 08:32:54 +0000
-Received: from PH8PR11MB6804.namprd11.prod.outlook.com
- ([fe80::6f39:a4f:9001:ea75]) by PH8PR11MB6804.namprd11.prod.outlook.com
- ([fe80::6f39:a4f:9001:ea75%5]) with mapi id 15.20.8207.017; Mon, 2 Dec 2024
- 08:32:53 +0000
-From: <Mihai.Sain@microchip.com>
-To: <claudiu.beznea@tuxon.dev>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <Nicolas.Ferre@microchip.com>,
-	<alexandre.belloni@bootlin.com>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH 2/2] ARM: dts: microchip: sam9x75_curiosity: Add power
- monitor support
-Thread-Topic: [PATCH 2/2] ARM: dts: microchip: sam9x75_curiosity: Add power
- monitor support
-Thread-Index: AQHbPLVlL5R94FkZFUuD/5fCO/yderLSqvuAgAAERgA=
-Date: Mon, 2 Dec 2024 08:32:53 +0000
-Message-ID:
- <PH8PR11MB68043702680864433060E9B482352@PH8PR11MB6804.namprd11.prod.outlook.com>
-References: <20241122080523.3941-1-mihai.sain@microchip.com>
- <20241122080523.3941-3-mihai.sain@microchip.com>
- <2d8dd1c8-fd4b-4dc1-ba62-312ac86335a6@tuxon.dev>
-In-Reply-To: <2d8dd1c8-fd4b-4dc1-ba62-312ac86335a6@tuxon.dev>
-Accept-Language: en-GB, en-US, ro-RO
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH8PR11MB6804:EE_|CY8PR11MB7057:EE_
-x-ms-office365-filtering-correlation-id: d2e072c3-a8a1-4806-6cf3-08dd12abea6d
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH8PR11MB6804.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|366016|376014|1800799024|38070700018;
-x-microsoft-antispam-message-info:
- =?utf-8?B?L1JydXdrUG5FRmNaNjhseldTM1lUMnQrbCtCRjBFcTRwa01mR3llQTFuK3FW?=
- =?utf-8?B?eEJaM1FWTkVFdDZZM0M2aHpIZWNOR2hlU0FOSnF6QU41S0xJcWxKYzh6Nldi?=
- =?utf-8?B?OUl1aXdkRk9Uai9WamRBbUxqMklyWVJTK2NOM3JjTHVNMVBDSjVwYmsxSHZT?=
- =?utf-8?B?NFJ3Y2FNZE53a2dXRHlQUHdGYnBpMUQvd2tEaHNVSEg4WUVYYTRtK3F0Vm9y?=
- =?utf-8?B?bDFZVjQxNGI3ZEJqYU9VTnp6cUx0MVYxRnphSzNnUGQ4WGRpMXN0VVNYMnR6?=
- =?utf-8?B?OE5GM1F5RldVMEdJT3dQdU1Fc2JxdDRObkQzWmFlaFdKSjJXYVlXUVp6bTAy?=
- =?utf-8?B?RjVEM3VuNHZPM2FlLzBPRzVRWDhjdzNLc0hvZkUyeXRJWi9MSW9VY2hVNkl2?=
- =?utf-8?B?VDg5NmFCVDc0SHZnRHd6NFVGOG40RmNDcUhYeDJXMzllREJyWmM1elJoUkd1?=
- =?utf-8?B?OTd6OVB5K3IyNXVBeExwUk1GNUk1dWZFT0F6Uk1xdE9OWWo0L25SSk9QNjl4?=
- =?utf-8?B?amJHWFVLKzFCMEZlVUlWVk1rUE5tNjQ3RkJnYUZxZUplVWdwbFlLUXozNzZJ?=
- =?utf-8?B?eElFSHp0OEpRc2RTSkNKWnFKNU5HR1UwN0JtQjEvK20yR051d3p5NFlkbkVy?=
- =?utf-8?B?QkFxYXVJdUhkWUpkZzVMaUNqRCt5VWpPTjdzQWNOc25KYjYyakwxcW1YUVh5?=
- =?utf-8?B?RDQ2SURORStxU0p0R2FCOUhmVXo2SVlhRVA5Zmx0WWRPa3RmMVI2UHloZHly?=
- =?utf-8?B?bDRQZzVuWUxVWkY1cjJTemhEemZyT1BSZnAraVJzbSs3SU9FTEVKNm9BVG5V?=
- =?utf-8?B?NnF2OVNITERMdGd3ZU5Jd2pWOVJDbTI5K3JUVGV4WkpobXkzeW5Jb0loRjhm?=
- =?utf-8?B?KzFUQlQ1UE4vVHMwb1BBclZNUUcxTlpXWHJmUnhrRTVaRDRJMnFCU3Q1M3RU?=
- =?utf-8?B?VHMvZEFvZjlHeUJydE1HZUExQTdZWFBuc3pKc25KWHl3bUtoSjhEQjB4UFd3?=
- =?utf-8?B?Q2EwZ1ppMW9aZFE5NHlBdWJDQjZvNDVDbGoya3dWdlVoNDNQcm5qazdFSkRm?=
- =?utf-8?B?N1pYTjMzWFlBQUpyUDBkZnJZRXdQdm5McW0vU2ZMdjI0R0FJb2lzM3lWZXRY?=
- =?utf-8?B?SEtCNklaaXFZRFRJQW56ajlpaklZRDRUbisvMkRTSFYvZmt6VW05RmlScHlM?=
- =?utf-8?B?Wkd1NjhJcXg5L2tDd3JERUxKTHc2SktXVUJzSkw4ME4wT3RFOGlLeVRHYlNm?=
- =?utf-8?B?aldZV0FBOXVNQWd5RkpvK2FRZytvSTJvWjRRWFBzREpPWGVRUUxCSW9ESS9t?=
- =?utf-8?B?SkNnTFJHQWR6dWUxR1h3d1ZtT2tZNE9XUWVFM1J6UnpHUllvR3VzdzRGYzVE?=
- =?utf-8?B?MDMrS011NzFsZStTSVpvQys3aVZBUll0VlNQcWUrUVpqYW45TUxoUnQ2QXFI?=
- =?utf-8?B?bG9ERDVJUW9WSmpKZlVKSGE0Q0dYM294Q3dmWkFSeklGcTYwS3V3Y0NhVndL?=
- =?utf-8?B?WC9DQTlkQ2dCWTNjaEd1S01uZllwcm5hWi9aUjBlMEI5MWtOa2pQQzhMUlJ3?=
- =?utf-8?B?UjJUdCtuZkZUTjhqdnFUTW85SmFYS2JFdHZIQUdNYndscExYTmcveERiVk4v?=
- =?utf-8?B?Q2JqQUNvNE1EUEFmQWJFeG1FUHZ1TXg2QzhrdzEwOGE5NTJhUkpWMVVPQWo3?=
- =?utf-8?B?ekRnWFozeVFuc2EyenRWNzhtWS9sVnFYUjZNNDA1OGZLQUVhTkUvM0ZhQjFG?=
- =?utf-8?B?M0hFeHd1amowZlZ1ZWRiRG4zTVlEeHNpSWVvNGw4WUNnK1lYdUZlMHM2TnBr?=
- =?utf-8?B?SjZzd0hUSTlrcEVjaVhnSlp1WTE2TFZKZDIySjZyaTBJcmJ4dmE2TmU1WHJv?=
- =?utf-8?B?ck45aTVxMlJmSUR5Y1Q0OEhLUVdmNWlUS2lSa0QxSGJNSUE9PQ==?=
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?RTFMOHdDSWsycnd4Mk5tdVVzWDRORnhEeFkwTHRST1VHR3N2QU5aRkd6RFBw?=
- =?utf-8?B?Y1RHQU9BSlNlcjFSOEYyeVlzRGttZzk0TDRkekJ6S3Nha0RYVDQwM1hMQzNt?=
- =?utf-8?B?ekZPUmFBM2hFZHNFeUtGeEtNVWlWOGpUR1pvT3FHdXoyVEhnOXhKdU5YMUJk?=
- =?utf-8?B?YnFWS0R6aCtPNVBic1lRTGR4TS9kZW1FSHYxWnJzdDdsZjNMam9yZEVFWVN1?=
- =?utf-8?B?dXNUZUxVNUdnWisyV3doV0NHdTdjUXZzWCtka0lnWDVxckhpYXE1aXlSaGJV?=
- =?utf-8?B?V2dNcXllT0FTNUk0dVhHM0tFUzNwSitaWFdlNjQ2QkJEYzJ3SDlvYVF2S2g3?=
- =?utf-8?B?V2pLTHBGMFd5Mmt4djA5OGQwTDJ0Umlub01GOVVaQVc0Q2pXaG1mcmhmdXFZ?=
- =?utf-8?B?ZndOSVlHV1J0YnYxUzU1QVpuc2pNdlQ4dUJJa01HQ1ZnSTNJTlhNWXRISkhJ?=
- =?utf-8?B?QzRjbzVwdEtFa1hjWWJCTXhXUFkrZURYTkpRaEgzMHFWMTRDY1dDajhlbGJ6?=
- =?utf-8?B?YkRPM29kWHpwMm1iYkdvbTdvaC9KZDlxSUNaZWRnamNpck1zOVlVY0laOEYx?=
- =?utf-8?B?bCtzZ3JSQnp6WjVydXU4SjdHWi81ZTZCdEdUOUZqbFgwMVRkL3VLekU4WG95?=
- =?utf-8?B?d3VCUFNJRzh5OTVQdG8vUytyZitPb2xwR09NVkh3cWtkemFFd3VyaGU3cEJq?=
- =?utf-8?B?V3d0V1dOZno5LzlRS0ZsZ2ZwVVpyNDBSdHJkRldqdW9tcVFsWktRakZrcHU2?=
- =?utf-8?B?WTBZUmkvMDlZME5DQTNSNEFtR1B4V3EwQUdoTy9QOWZhVTNKMGRvTWkyZ3lo?=
- =?utf-8?B?dE5vNFVkVEIybURPQ1VRRDQxVTFmSDNzdnYwRlZrVDFVZ3Nwc3N1czBKNENv?=
- =?utf-8?B?T056RHJkd1VsRVpGY2ROUDUzT2VvWGROanppK25BbzRQREdhcTVzYzY3TWJU?=
- =?utf-8?B?ZlRXOW1UbTRhM1VucGxXTndwOHE1T2NxSlBndm5vMUNSU1JMUysvdk5SUXMz?=
- =?utf-8?B?TXYybWlIVUdZY3dNVFdSOWQ5ellhbzg5S2xFSWxONTFNdzFTYy9ZdzlzaWdY?=
- =?utf-8?B?RldwUHdsUGRSMld0SHJQajRIWFFDTVdGTk9tSmNYWk5paitjV08yT1VVRzda?=
- =?utf-8?B?RzAxSmk2K2lqd0gzWjFaSU94QnNjR3QxRGlOWDluTDhaYy9xWmtReElwbi9w?=
- =?utf-8?B?YlpzWU5wTXY4OGoyenVkcnJkQkQ0eDNtZzFCUVpMcWtFNVpqNy9LUFkvN3d4?=
- =?utf-8?B?RlorQTVyRFZOZkNjVDNmVStGbnRCNFJaYlg3d3JKNk9YVVBFTU5FRW94Q3Y0?=
- =?utf-8?B?ZnlDVEQvWVlETVZVc3liN1dUZUtmQS8zSGJlb1V1MVg1WVFDV3JXSzRYM2VI?=
- =?utf-8?B?dDVTWUpmd1crc29LcDNSYVRpMVF3ZEhBTjRQTk02ZFR6UUtmMG1XZlBCZkhz?=
- =?utf-8?B?a2Y2T2RMcmtBRGRERU81Ti8vZXUvNzdVY3dQU1QrK1NxbFFrZDU4RW9admxv?=
- =?utf-8?B?cy9MdTZ1a2ZveklvMGxjN3NheThidzdOaVp3ZHNrSFVWRTNPZ1FucWVyOUJv?=
- =?utf-8?B?em15TXVtdmRtL051L0NDRGNmQzE2cmp0c3IxaitScHB5YVdDN2JmTkpmd2hq?=
- =?utf-8?B?WlM1Tm0rTW8wMXNqK1ZiRXJSVDRBRFZyMUJDQ1JVNFRJVkZ5TDN2ZnExd3hp?=
- =?utf-8?B?Q01lZFlZcjQzQXZmbXJJeGdBVGhOamM1MFJ2Y1U2NFBWTWJ6V2NscitrRWh3?=
- =?utf-8?B?aWkrQjcwMzc5RW1id2RPeUVMWEVSaDlyNU1tclJuVEZzZlpCQVFTSFpyYnFF?=
- =?utf-8?B?UmRHb3lzQ3FIeW44dXZrakRCSjFKSG9WeTlFNUJzTUtkTkJOUU1VRFZ4YlV3?=
- =?utf-8?B?clFRWkM3cndsWXpaRlFYYVpoT2orTFpwWnRGQUdBb1RZVW5NREVNWGhReWkr?=
- =?utf-8?B?V0xHaVhZdFlWS0VsUlY4NHN2T09sZFJnUXhUdUJ5bjhSc3dwdElmc3BlWUpI?=
- =?utf-8?B?M0JiM21lYklNN1VYU0NRUEVHSTNiM0NoNkxIcU91bHFyNlpUbUVEUndHbFZt?=
- =?utf-8?B?aE1GQjlMVWdIb2htem1iSjdBQmsvWk8ydGF1bWViV3NFei8yN3pCa3plOXlu?=
- =?utf-8?Q?FlnyZEo4b5KR4HM9UaJBiZ/pV?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F6682940F;
+	Mon,  2 Dec 2024 08:40:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1733128840; cv=none; b=rr78mlibcRQwhjxltho+DW+PgORkGtp7wvsYWjxgp7nNV1dNc/mb52ZNwgYW90R1PuSYC893gYTfxBHblujhW5PqzVfMRf28qATXh2tRsjKoZOOZ+0XZsoG2Gmte/vCwPE75LDAKN/fy4l40O/LMqOpFieQ1ogCovz/vivIDgzg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1733128840; c=relaxed/simple;
+	bh=h6jcD5vXKAJ5zyMD/qLEPhjvidG+7vNU+qJNYWs8Zwo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=sZEOqNPbamlkhGrB6MWII66qZwC3LE5UBvtuTxWDSpO9ofJZ8oxxqWLC3fLurxQ47QSzC6c4PPZS5Vf5W1r7uSszFKiTNGGh0w/oEpsxE4Px/GjcXV3P7uJVRmL58fNhOPSLrXOmWJXWWEP4HrTTEW0+UxI6PyrzFDiPC53JZCg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fSai7UVm; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B28Uu2k021119;
+	Mon, 2 Dec 2024 08:40:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	HeL2iecHpxNbwU1PE2soIu8EgoaRWstR/yFhgFxBzAI=; b=fSai7UVmscAa1/Bb
+	IXx0N4tS8w/LgVA2oP07N6HigPqB3r3MDp+s+UaNjzBCbF26+sGg/S6LvedqU0y2
+	5ouabkHm0Ks0tEyhkQ/PlHuCKOBNKeeHe9LUZO0n1yfJWK+CVuQ56LKer0ZnmTRW
+	8c5aA29vvcios1O1/vxB4VeOaqsy6yLwpcWPogKgKP9j+NcOvejYRLTWkT2vrstI
+	ddK5dhCmC9VzAXn7kywIuGlvKmy63Q2uzaLLfpw/GycqwrTDqF6eXAXhAAaouLpi
+	SvrCb58aaMPrSzfWv6k8fbaxp0d6ckBehullwi7UCvcuL7HPd+bz8vIwF2xvEvqI
+	3+5rKg==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 437u36c55r-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 02 Dec 2024 08:40:15 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B28eECo025659
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 2 Dec 2024 08:40:14 GMT
+Received: from [10.64.16.135] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 2 Dec 2024
+ 00:40:08 -0800
+Message-ID: <d2a3cd6f-1077-4edb-9f0c-0c940a639050@quicinc.com>
+Date: Mon, 2 Dec 2024 16:40:05 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: microchip.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB6804.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d2e072c3-a8a1-4806-6cf3-08dd12abea6d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Dec 2024 08:32:53.8036
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: sQaqzHNQ370H86uors+P+MdgJiUMSFB3yUq/Ybf3bTdzmmL0JV1bU5mStaZWo0nwOTf7MKhUC10dpQZYmZB8UK7NMEpxLyb8/rPCe1mO3J4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7057
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/8] drm/msm/dp: Add support for lane mapping
+ configuration
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar
+	<quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten
+	<marijn.suijten@somainline.org>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Kuogee
+ Hsieh" <quic_khsieh@quicinc.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        "Kishon
+ Vijay Abraham I" <kishon@kernel.org>,
+        Linus Walleij
+	<linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>, <quic_lliu6@quicinc.com>,
+        <quic_fangez@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <freedreno@lists.freedesktop.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <linux-gpio@vger.kernel.org>
+References: <20241129-add-displayport-support-for-qcs615-platform-v1-0-09a4338d93ef@quicinc.com>
+ <20241129-add-displayport-support-for-qcs615-platform-v1-5-09a4338d93ef@quicinc.com>
+ <CAA8EJpoY8hySQd00yODGeHjSpVZpEBLjF3aBiKGJPUhpr-2mgw@mail.gmail.com>
+From: Xiangxu Yin <quic_xiangxuy@quicinc.com>
+In-Reply-To: <CAA8EJpoY8hySQd00yODGeHjSpVZpEBLjF3aBiKGJPUhpr-2mgw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: PHJmxWI0XMzeCBQZZmYhYTGnRQH3TbOp
+X-Proofpoint-ORIG-GUID: PHJmxWI0XMzeCBQZZmYhYTGnRQH3TbOp
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 mlxscore=0
+ clxscore=1011 bulkscore=0 adultscore=0 lowpriorityscore=0 impostorscore=0
+ mlxlogscore=999 phishscore=0 suspectscore=0 spamscore=0 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2412020076
 
-SGkgQ2xhdWRpdSwNCg0KPiA+ICsgICAgICAgICAgICAgY2hhbm5lbEAyIHsNCj4gPiArICAgICAg
-ICAgICAgICAgICAgICAgcmVnID0gPDB4Mj47DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgIHNo
-dW50LXJlc2lzdG9yLW1pY3JvLW9obXMgPSA8MTAwMDA+Ow0KPiA+ICsgICAgICAgICAgICAgICAg
-ICAgICBsYWJlbCA9ICJWRERPVVQ0IjsNCj4gDQo+IE9uIHRoZSBzY2hlbWF0aWNzIGF0IFsxXSB0
-aGlzIHNlZW1zIHRvIGJlIG5hbWVkIERDREM0LiBJcyB0aGVyZSBhIG1pc3Rha2Ugb24NCj4gWzFd
-IG9yIHRoaXMgcGF0Y2ggbmVlZHMgYWRqdXN0bWVudHM/IElmIHNvLCBJIGNhbiBkbyBpdCB3aGls
-ZSBhcHBseWluZy4NCg0KSSBqdXN0IHdhbnRlZCB0byB1c2UgYSBtb3JlIGZyaWVuZGx5IG5hbWUg
-Zm9yIGJ1Y2s0LCBzaW5jZSB0aGlzIHJlZ3VsYXRvciBpcyBub3QgdXNlZC4NCg0KPiANCj4gVGhh
-bmsgeW91LA0KPiBDbGF1ZGl1DQo+IA0KPiBbMV0NCj4gaHR0cHM6Ly93dzEubWljcm9jaGlwLmNv
-bS9kb3dubG9hZHMvYWVtRG9jdW1lbnRzL2RvY3VtZW50cy9NUFUzMi9Qcm9kdWN0RG9jdW1lbg0K
-PiB0cy9Vc2VyR3VpZGVzL1NBTTlYNzUtQ3VyaW9zaXR5LVVzZXItR3VpZGUtRFM2MDAwMTg1OS5w
-ZGYNCj4gDQoNClJlZ2FyZHMsDQpNaWhhaQ0K
+
+
+On 11/29/2024 9:50 PM, Dmitry Baryshkov wrote:
+> On Fri, 29 Nov 2024 at 09:59, Xiangxu Yin <quic_xiangxuy@quicinc.com> wrote:
+>>
+>> Add the ability to configure lane mapping for the DP controller. This is
+>> required when the platform's lane mapping does not follow the default
+>> order (0, 1, 2, 3). The mapping rules are now configurable via the
+>> `data-lane` property in the devicetree. This property defines the
+>> logical-to-physical lane mapping sequence, ensuring correct lane
+>> assignment for non-default configurations.
+>>
+>> Signed-off-by: Xiangxu Yin <quic_xiangxuy@quicinc.com>
+>> ---
+>>  drivers/gpu/drm/msm/dp/dp_catalog.c | 11 +++++------
+>>  drivers/gpu/drm/msm/dp/dp_catalog.h |  2 +-
+>>  drivers/gpu/drm/msm/dp/dp_ctrl.c    |  2 +-
+>>  drivers/gpu/drm/msm/dp/dp_panel.c   | 13 ++++++++++---
+>>  drivers/gpu/drm/msm/dp/dp_panel.h   |  3 +++
+>>  5 files changed, 20 insertions(+), 11 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/msm/dp/dp_catalog.c b/drivers/gpu/drm/msm/dp/dp_catalog.c
+>> index b4c8856fb25d01dd1b30c5ec33ce821aafa9551d..34439d0709d2e1437e5669fd0b995936420ee16f 100644
+>> --- a/drivers/gpu/drm/msm/dp/dp_catalog.c
+>> +++ b/drivers/gpu/drm/msm/dp/dp_catalog.c
+>> @@ -361,17 +361,16 @@ void msm_dp_catalog_ctrl_config_ctrl(struct msm_dp_catalog *msm_dp_catalog, u32
+>>         msm_dp_write_link(catalog, REG_DP_CONFIGURATION_CTRL, cfg);
+>>  }
+>>
+>> -void msm_dp_catalog_ctrl_lane_mapping(struct msm_dp_catalog *msm_dp_catalog)
+>> +void msm_dp_catalog_ctrl_lane_mapping(struct msm_dp_catalog *msm_dp_catalog, u32 *l_map)
+> 
+> lane_map, not l_map.
+> 
+Ok, will update in next patch.
+>>  {
+>>         struct msm_dp_catalog_private *catalog = container_of(msm_dp_catalog,
+>>                                 struct msm_dp_catalog_private, msm_dp_catalog);
+>> -       u32 ln_0 = 0, ln_1 = 1, ln_2 = 2, ln_3 = 3; /* One-to-One mapping */
+>>         u32 ln_mapping;
+>>
+>> -       ln_mapping = ln_0 << LANE0_MAPPING_SHIFT;
+>> -       ln_mapping |= ln_1 << LANE1_MAPPING_SHIFT;
+>> -       ln_mapping |= ln_2 << LANE2_MAPPING_SHIFT;
+>> -       ln_mapping |= ln_3 << LANE3_MAPPING_SHIFT;
+>> +       ln_mapping = l_map[0] << LANE0_MAPPING_SHIFT;
+>> +       ln_mapping |= l_map[1] << LANE1_MAPPING_SHIFT;
+>> +       ln_mapping |= l_map[2] << LANE2_MAPPING_SHIFT;
+>> +       ln_mapping |= l_map[3] << LANE3_MAPPING_SHIFT;
+>>
+>>         msm_dp_write_link(catalog, REG_DP_LOGICAL2PHYSICAL_LANE_MAPPING,
+>>                         ln_mapping);
+>> diff --git a/drivers/gpu/drm/msm/dp/dp_catalog.h b/drivers/gpu/drm/msm/dp/dp_catalog.h
+>> index e932b17eecbf514070cd8cd0b98ca0fefbe81ab7..8b8de2a7d3ad561c1901e1bdaad92d4fab12e808 100644
+>> --- a/drivers/gpu/drm/msm/dp/dp_catalog.h
+>> +++ b/drivers/gpu/drm/msm/dp/dp_catalog.h
+>> @@ -69,7 +69,7 @@ u32 msm_dp_catalog_aux_get_irq(struct msm_dp_catalog *msm_dp_catalog);
+>>  /* DP Controller APIs */
+>>  void msm_dp_catalog_ctrl_state_ctrl(struct msm_dp_catalog *msm_dp_catalog, u32 state);
+>>  void msm_dp_catalog_ctrl_config_ctrl(struct msm_dp_catalog *msm_dp_catalog, u32 config);
+>> -void msm_dp_catalog_ctrl_lane_mapping(struct msm_dp_catalog *msm_dp_catalog);
+>> +void msm_dp_catalog_ctrl_lane_mapping(struct msm_dp_catalog *msm_dp_catalog, u32 *l_map);
+>>  void msm_dp_catalog_ctrl_mainlink_ctrl(struct msm_dp_catalog *msm_dp_catalog, bool enable);
+>>  void msm_dp_catalog_ctrl_psr_mainlink_enable(struct msm_dp_catalog *msm_dp_catalog, bool enable);
+>>  void msm_dp_catalog_setup_peripheral_flush(struct msm_dp_catalog *msm_dp_catalog);
+>> diff --git a/drivers/gpu/drm/msm/dp/dp_ctrl.c b/drivers/gpu/drm/msm/dp/dp_ctrl.c
+>> index bc2ca8133b790fc049e18ab3b37a629558664dd4..49c8ce9b2d0e57a613e50865be3fe98e814d425a 100644
+>> --- a/drivers/gpu/drm/msm/dp/dp_ctrl.c
+>> +++ b/drivers/gpu/drm/msm/dp/dp_ctrl.c
+>> @@ -177,7 +177,7 @@ static void msm_dp_ctrl_configure_source_params(struct msm_dp_ctrl_private *ctrl
+>>  {
+>>         u32 cc, tb;
+>>
+>> -       msm_dp_catalog_ctrl_lane_mapping(ctrl->catalog);
+>> +       msm_dp_catalog_ctrl_lane_mapping(ctrl->catalog, ctrl->panel->lane_map);
+>>         msm_dp_catalog_ctrl_mainlink_ctrl(ctrl->catalog, true);
+>>         msm_dp_catalog_setup_peripheral_flush(ctrl->catalog);
+>>
+>> diff --git a/drivers/gpu/drm/msm/dp/dp_panel.c b/drivers/gpu/drm/msm/dp/dp_panel.c
+>> index 5d7eaa31bf3176566f40f01ff636bee64e81c64f..8654180aa259234bbd41f4f88c13c485f9791b1d 100644
+>> --- a/drivers/gpu/drm/msm/dp/dp_panel.c
+>> +++ b/drivers/gpu/drm/msm/dp/dp_panel.c
+>> @@ -11,7 +11,6 @@
+>>  #include <drm/drm_of.h>
+>>  #include <drm/drm_print.h>
+>>
+>> -#define DP_MAX_NUM_DP_LANES    4
+>>  #define DP_LINK_RATE_HBR2      540000 /* kbytes */
+>>
+>>  struct msm_dp_panel_private {
+>> @@ -461,6 +460,7 @@ static int msm_dp_panel_parse_dt(struct msm_dp_panel *msm_dp_panel)
+>>         struct msm_dp_panel_private *panel;
+>>         struct device_node *of_node;
+>>         int cnt;
+>> +       u32 lane_map[DP_MAX_NUM_DP_LANES] = {0, 1, 2, 3};
+>>
+>>         panel = container_of(msm_dp_panel, struct msm_dp_panel_private, msm_dp_panel);
+>>         of_node = panel->dev->of_node;
+>> @@ -474,10 +474,17 @@ static int msm_dp_panel_parse_dt(struct msm_dp_panel *msm_dp_panel)
+>>                 cnt = drm_of_get_data_lanes_count(of_node, 1, DP_MAX_NUM_DP_LANES);
+>>         }
+>>
+>> -       if (cnt > 0)
+>> +       if (cnt > 0) {
+>> +               struct device_node *endpoint;
+>> +
+>>                 msm_dp_panel->max_dp_lanes = cnt;
+>> -       else
+>> +               endpoint = of_graph_get_endpoint_by_regs(of_node, 1, -1);
+>> +               of_property_read_u32_array(endpoint, "data-lanes", lane_map, cnt);
+>> +       } else {
+>>                 msm_dp_panel->max_dp_lanes = DP_MAX_NUM_DP_LANES; /* 4 lanes */
+>> +       }
+> 
+> Why? This sounds more like dp_catalog or (after the refactoring at
+> [1]) dp_ctrl. But not the dp_panel.
+> 
+> [1] https://patchwork.freedesktop.org/project/freedreno/series/?ordering=-last_updated
+> 
+We are used the same prop 'data-lanes = <3 2 0 1>' in mdss_dp_out to keep similar behaviour with dsi_host_parse_lane_data.
+From the modules used, catalog seems more appropriate, but since the max_dp_lanes is parsed at dp_panel, it has been placed here.
+Should lane_map parsing in msm_dp_catalog_get, and keep max_dp_lanes parsing at the dp_panel?
+>> +
+>> +       memcpy(msm_dp_panel->lane_map, lane_map, msm_dp_panel->max_dp_lanes * sizeof(u32));
+>>
+>>         msm_dp_panel->max_dp_link_rate = msm_dp_panel_link_frequencies(of_node);
+>>         if (!msm_dp_panel->max_dp_link_rate)
+>> diff --git a/drivers/gpu/drm/msm/dp/dp_panel.h b/drivers/gpu/drm/msm/dp/dp_panel.h
+>> index 0e944db3adf2f187f313664fe80cf540ec7a19f2..7603b92c32902bd3d4485539bd6308537ff75a2c 100644
+>> --- a/drivers/gpu/drm/msm/dp/dp_panel.h
+>> +++ b/drivers/gpu/drm/msm/dp/dp_panel.h
+>> @@ -11,6 +11,8 @@
+>>  #include "dp_aux.h"
+>>  #include "dp_link.h"
+>>
+>> +#define DP_MAX_NUM_DP_LANES    4
+>> +
+>>  struct edid;
+>>
+>>  struct msm_dp_display_mode {
+>> @@ -46,6 +48,7 @@ struct msm_dp_panel {
+>>         bool video_test;
+>>         bool vsc_sdp_supported;
+>>
+>> +       u32 lane_map[DP_MAX_NUM_DP_LANES];
+>>         u32 max_dp_lanes;
+>>         u32 max_dp_link_rate;
+>>
+>>
+>> --
+>> 2.25.1
+>>
+> 
+> 
+
 
