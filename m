@@ -1,111 +1,132 @@
-Return-Path: <devicetree+bounces-126261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126265-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8B599E0CA6
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 20:59:54 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EFB89E0CB3
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 21:01:11 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6DB152839B4
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 19:59:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 698871658D1
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 20:01:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F299C1DED42;
-	Mon,  2 Dec 2024 19:59:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 133311DEFC1;
+	Mon,  2 Dec 2024 20:00:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PQfniddA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eLoILcxR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6D021D63CA;
-	Mon,  2 Dec 2024 19:59:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECE621DD863
+	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 20:00:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733169589; cv=none; b=fnNnqzBpyGdUNwmyAbk05pxi5hrV2pAYy0zsI8Zr/Pp0PQZtCpPwbc1TA7APPLH4QqYLvEEsJwqNYeqhjywJ5p/YTSsaj0J9+EXlhVviLpeopVAyc+DGmwqKe3l5cVUGpC78Q1QBvCiHXPXyaX7fgcrSlaXfjUcBSCB/0jeIYXA=
+	t=1733169647; cv=none; b=F3pMAEi1gzcJOJeX/a8serh+GJI5onLbw0ANRRlOelhst9RyKcdKw2sJF5l762/+JlYCckMiYyaFY5c1KALTJlhqaE7iJ9pHfSUQf2dfSq00bWfNmRgQzlT6zNX54JfFiWGIiW6dIDnwViZ5uZ/k+SoK7qVdlq5VbHaWW9RZb2M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733169589; c=relaxed/simple;
-	bh=c83gLcAqjf8TQGAjIo9T7GBoyRViZ4YLSRSevQSiLSY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=m31lV0K/ESpmAncDS6uVz/6Y0Vmn7P3nzff6F5yp38IOVUCT2Fl+TMkOd6x1YATOt3cwHvtBLiV2CuMeWdDfq0vT7kG/bleoBTKJHKvG+h9tuTxPHuI7YhxhSeW3wc9E39zAZKeLft3PjoMGy2advY6qPGpFguJTOW9JiVn9VHM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PQfniddA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 69DC2C4CED9;
-	Mon,  2 Dec 2024 19:59:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733169589;
-	bh=c83gLcAqjf8TQGAjIo9T7GBoyRViZ4YLSRSevQSiLSY=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=PQfniddAF8+XcO90FGf2Te98dKJQESBCec1HE7Rj7eWWyOIInktB0nUR8/RvbUZ1J
-	 wiYMhhMYNypOOQXXhOtC5GYYTgG4gh59Bc+yjsK462JufwjB5BdiKZqoNAPD1EP0nI
-	 INbBUHRDNCmhNMFceqTlP1WYdbnBC2XHri4fkoCRRNnZ8dRPDSix5kEQvTj11pjSm5
-	 8vXC1/AYAiQyrr+jZ2+xNYIJd9/SCqh5vPWkT+J/cimPjiMkItfUJbwVNQBsh+3N3T
-	 xYLc+DLWJpTVcNryTNwcx74PJla7HNljWeguH/JV8SwOVOvmEZAZR1vUEy9M6PI5KN
-	 LaOz5nxnlaSPg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 57DF0E69E90;
-	Mon,  2 Dec 2024 19:59:49 +0000 (UTC)
-From: Jens Glathe via B4 Relay <devnull+jens.glathe.oldschoolsolutions.biz@kernel.org>
-Date: Mon, 02 Dec 2024 20:59:46 +0100
-Subject: [PATCH v9 2/3] firmware: qcom: scm: Allow QSEECOM for Windows Dev
- Kit 2023
+	s=arc-20240116; t=1733169647; c=relaxed/simple;
+	bh=ZwT9XETIGPRtoz06e9/Bz1xnjU0UUFwfd1/wc/ZJOT0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ojyDZ3DM1EXnat7bWLJyzXhKl/LI2JsfYJGY2aXXLQT0VfeCQ947s0z12SDMIlPSoSGFvqTjKe8RhC+2gnhPWg0KfgaoNT9gZHm8sGihY7bPeYOYKopcjrnTxQXmvWlG6C6IMbr4Dd2eLFAxaqRLa8iQuD6XNL4KPoZpU+AYgUo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eLoILcxR; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-53de556ecdaso4718586e87.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 12:00:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733169642; x=1733774442; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=uXAhtq60I6waVpW/O2JwlPsYrhNNVeFfaONkbV0wS/U=;
+        b=eLoILcxRM3AmrUCxOGkNENSkBe1t/WhBa7Srj5s2SrXQoKOshUxRyDoap0Rmn9IuNk
+         0RNMdwzGZkwbcPANhyF5bzB4a9dHHtE/Mb/VJh9a7ovFx7YmWrcHXxEQuUlrMxtK9gF5
+         Fee6fVsy1niD5nt3VedUCT2slYSrdlLskoF5WTKJfO/YEQgnpYWrKV5PY3tr+PMu+/Uq
+         VkYj4SerPwlc1jKuZ1QosIGA08QfQ6BlRiPKtahnopZQ3pAPbDW2vOCV8JVe8pE1KfoM
+         K5Bfd9U3d4NB7w0nRUQVKyYrnnS5O8PMdtfKYsWOACxb2ad5y+4jUatNJSY8XP/KLlh7
+         km2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733169642; x=1733774442;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uXAhtq60I6waVpW/O2JwlPsYrhNNVeFfaONkbV0wS/U=;
+        b=jb0C+Z3txEni/9ZnZuJRI5R3x5k+eIjlvopIzOQ/d9gdLlJwJRePKfIworp3syPhF+
+         S9tCm3TnkCWNgxDxak5mKYiVaA4XjGXwldfmZ1pkDSJJ2zYJlUAnIKLzCXC7JDKoGvm7
+         ysowKfvwgqCsrNCy6o1RNkgS9Csc8SmlZ2+RjVKL8Yib1LqH2yLVXcY8IOcSHaWatbu4
+         UIDPnmyJ15u7F76TsKOYIhe78rclxSzC37XncWdilTBKSOtuQz7yQ9rnHxeYh5sFTrCp
+         xZy5aYodBkpcSEV4q+cRJ1jYFRvIHDHW6FtGWUTpRN1v7SMZD9b+anNzkG8qAsHbxYnS
+         +7kg==
+X-Forwarded-Encrypted: i=1; AJvYcCXlNDHNiOkhoDysMOvupOrrPGFWzlkDGvxRc3+wFUvLIn8OyTU9euD7Cfefj5XDnwwlveRWiLvjz9Ky@vger.kernel.org
+X-Gm-Message-State: AOJu0YyY656j0nFR4eGGozp1T478cO8Ovir6YYA322tOLEe/afaIOUtd
+	4fhtLI5X1UauuaNjPl5/EX0Np1xQa33mWlKRgLSl7KicrGzDee2yjmxG61kiRuY=
+X-Gm-Gg: ASbGncufkqc4sbRquyZgSpJWdvs/KrTK5bevGi20Mtubzk5aMVdZa0Yww1iyLOpVFG0
+	Z9sWaVQlqgAfQ/25Kd+rVj51GUdNEdEs+ET+AfrrhGuKC77JBdV1o1dcFFWc5BXCNqkwgKm/8mP
+	Q1Y/B87XGE5Tw31xVke1X9Pn225m1K1i2LPd2tBf0FnheM7TiGT8OAcbqRBGPKB2C91W5+RrfbP
+	iPS57RlIrCNeJwzTuzPs2gL4MyGxOfE8Od0hziwJARFey4Q1J3ukx5P72TRo/cu0eRey507J67t
+	XPK39NA1PyZpqsBBGoPwOOu+HCPK5g==
+X-Google-Smtp-Source: AGHT+IHlBla2bkS939rzD6EaoiaSpmSshKV9IUflTjWZle/0CJSDrrxy8jwAJY6npjQNBvZiqQHQNA==
+X-Received: by 2002:a05:6512:1286:b0:53d:e88b:eb4 with SMTP id 2adb3069b0e04-53df00d1ba7mr12812129e87.21.1733169642056;
+        Mon, 02 Dec 2024 12:00:42 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53df646f136sm1550171e87.166.2024.12.02.12.00.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Dec 2024 12:00:40 -0800 (PST)
+Date: Mon, 2 Dec 2024 22:00:38 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Luca Weiss <luca.weiss@fairphone.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: power: rpmpd: Fix comment for SM6375
+Message-ID: <yo5cc3cvvwwdrqrrgwlquztj52sijip3ffyyqag55jrnztxi2m@hn75ylkhnxie>
+References: <20241202-rpmpd-sm6375-v1-1-12a4f0182133@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241202-jg-blackrock-for-upstream-v9-2-385bb46ca122@oldschoolsolutions.biz>
-References: <20241202-jg-blackrock-for-upstream-v9-0-385bb46ca122@oldschoolsolutions.biz>
-In-Reply-To: <20241202-jg-blackrock-for-upstream-v9-0-385bb46ca122@oldschoolsolutions.biz>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Merck Hung <merckhung@gmail.com>, 
- xlazom00@gmail.com, Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1733169587; l=916;
- i=jens.glathe@oldschoolsolutions.biz; s=20240919;
- h=from:subject:message-id;
- bh=SPEO1LR4rPbgAYook8a7vfGRX+RKcgosJIhhsVSzbHY=;
- b=HRBdgbw8S35D9PXLsDv1bkVCSENcOPtBkheB2NxYSq+p+ymtyPMorZKB4MMsTYF4tbX5TfOcD
- CsVrVRArYJWD6jv+JHp2CW/WwTMGU2+1yMmMXTYA0XLjy27fHu/9cHI
-X-Developer-Key: i=jens.glathe@oldschoolsolutions.biz; a=ed25519;
- pk=JcRJqJc/y8LsxOlPakALD3juGfOKmFBWtO+GfELMJVg=
-X-Endpoint-Received: by B4 Relay for
- jens.glathe@oldschoolsolutions.biz/20240919 with auth_id=216
-X-Original-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-Reply-To: jens.glathe@oldschoolsolutions.biz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241202-rpmpd-sm6375-v1-1-12a4f0182133@fairphone.com>
 
-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+On Mon, Dec 02, 2024 at 04:45:02PM +0100, Luca Weiss wrote:
+> During an earlier commit, the comment from SM6350 was copied without
+> modifying. Adjust the comment to reflect the defines.
+> 
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 
-add "microsoft,blackrock" as compatible device for QSEECOM
+Fixes tag, please.
 
-This is required to get access to efivars and uefi boot loader support.
-
-Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
----
- drivers/firmware/qcom/qcom_scm.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/firmware/qcom/qcom_scm.c b/drivers/firmware/qcom/qcom_scm.c
-index 72bf87ddcd969..bd660618fb365 100644
---- a/drivers/firmware/qcom/qcom_scm.c
-+++ b/drivers/firmware/qcom/qcom_scm.c
-@@ -1774,6 +1774,7 @@ static const struct of_device_id qcom_scm_qseecom_allowlist[] __maybe_unused = {
- 	{ .compatible = "lenovo,thinkpad-x13s", },
- 	{ .compatible = "lenovo,yoga-slim7x" },
- 	{ .compatible = "microsoft,arcata", },
-+	{ .compatible = "microsoft,blackrock" },
- 	{ .compatible = "microsoft,romulus13", },
- 	{ .compatible = "microsoft,romulus15", },
- 	{ .compatible = "qcom,sc8180x-primus" },
+> ---
+>  include/dt-bindings/power/qcom-rpmpd.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/include/dt-bindings/power/qcom-rpmpd.h b/include/dt-bindings/power/qcom-rpmpd.h
+> index df599bf462207267a412eac8e01634189a696a59..d9b7bac309537cbfd2488e7d4fe21d195c919ef5 100644
+> --- a/include/dt-bindings/power/qcom-rpmpd.h
+> +++ b/include/dt-bindings/power/qcom-rpmpd.h
+> @@ -65,7 +65,7 @@
+>  #define SM6350_MSS	4
+>  #define SM6350_MX	5
+>  
+> -/* SM6350 Power Domain Indexes */
+> +/* SM6375 Power Domain Indexes */
+>  #define SM6375_VDDCX		0
+>  #define SM6375_VDDCX_AO	1
+>  #define SM6375_VDDCX_VFL	2
+> 
+> ---
+> base-commit: 40384c840ea1944d7c5a392e8975ed088ecf0b37
+> change-id: 20241202-rpmpd-sm6375-06582e126d7f
+> 
+> Best regards,
+> -- 
+> Luca Weiss <luca.weiss@fairphone.com>
+> 
 
 -- 
-2.43.0
-
-
+With best wishes
+Dmitry
 
