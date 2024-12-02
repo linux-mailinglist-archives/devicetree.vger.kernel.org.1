@@ -1,144 +1,189 @@
-Return-Path: <devicetree+bounces-126164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 376379E06EA
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 16:25:12 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9E339E079A
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 16:53:32 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ECBD228222C
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 15:25:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F24216ACCE
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 15:25:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B78A1207A03;
-	Mon,  2 Dec 2024 15:22:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D98ED208996;
+	Mon,  2 Dec 2024 15:24:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UUUx7lHf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DkRyrnDG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85CFB204F8F;
-	Mon,  2 Dec 2024 15:22:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DFBD208962
+	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 15:24:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733152936; cv=none; b=m4wKKeaxGk9cfOjyrgvb8mAMkNEPNHl1suQrTNT3atf8thIZ9gDjvFiA1u0qC+Pc3gKIoLtOnKbtwsnQ6q/uJRTXGHCLZhUaTEcpF6ZkhrsPu/BZGXKQfBhzbwnGe0rkAvDGZbvcja7dQlp6ZvI1hFpmfXt0Bc7F/koOYtx6pSU=
+	t=1733153045; cv=none; b=CZ+pgLmvt1KsQNI8DaaSl3gsOHHffrW4a0OaOiP3RkyLx8HN9rkNzgoq+ySz0bGf42Ot7zRXd9tsSMwaNtXEEtFBkfyQ0MyLrviWeYS4mHdyVJpIZmdaDqleDlItZZAGsb1mbVIQ9yb97r/W39zVTbUFPudc9epDIXDWw61zBn4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733152936; c=relaxed/simple;
-	bh=fMgv+yuJZSY3uaaQETMbs+RJU+yPn08IqtayuTbK6/c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fjSSBzw3wFCVi0SmlgZJ6Ws49Es8mvPatqR4ZssdOYOwgLf7iZNvt+O2ui9kaw9k1YBLVz26u7hD8aN7ur+M4F/Jn0mXwrdPx2mybHkjqJx3fCD+++fnhj86rfMAS1/T8SboGf/DmOntkMicKmCpvItfQSOjcDdo1/RvP7HZZj8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UUUx7lHf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F95FC4CED6;
-	Mon,  2 Dec 2024 15:22:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733152936;
-	bh=fMgv+yuJZSY3uaaQETMbs+RJU+yPn08IqtayuTbK6/c=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=UUUx7lHfUhva2ZxmhoIl2hQOl9DNlES3J4+BPvQ3+8OyGWmTKMFVE6zaT2pat5Nst
-	 ljE0gu0tVuCZUZDudHcX1odlZv9w2KqP42fLvARo42f1jTo8HT9twAjq92tCldRLJR
-	 gWkPziQX1V98Ksi6rxZSXqvtrEujuK7/DS7c3n3FFrh84TuL4oOj99Hj7VAZpbVx4k
-	 1B/7bCop+HaUKysizSj/hE2xc5Q1a/Dhg6kKnqF5tnpFHkJx5axVYDrp/1rWkhDp5w
-	 pReLyOtZJRoZWsBdPU5q2F5XrqTYsDr93gUcCJVwv4ozBMuC0o39apjlJmMRaFcHdi
-	 ZiT873HdU4BwA==
-Message-ID: <8b2863e7-d504-49dc-a2ad-d34bfbeb6de8@kernel.org>
-Date: Mon, 2 Dec 2024 16:22:06 +0100
+	s=arc-20240116; t=1733153045; c=relaxed/simple;
+	bh=emBsO7UD/fsFeG160T0J2TEDqg+OGFUi4iJaEE8IBNY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=oALW0sjuCjSVUWf1TS6c55nGwK7aVJzqEvEl/ExTpXjqbAGpJbg9mbggPwXgpIJC/zzzgtWcLnJmTNLGxFvK211CsFb+9E6V0qmFqEzYiUrWBTp0jCuorDPJQTIYjZ2QYDDsGx1LhPkzKc8uKAZZXIAWZsYxQX/3bMzAJtsOq+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DkRyrnDG; arc=none smtp.client-ip=209.85.219.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-e38df4166c7so3536077276.0
+        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 07:24:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733153042; x=1733757842; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=aBidcxxw0LkaUAD5/9IMQ9Iuz+pdOXkp8f04uFCwiXE=;
+        b=DkRyrnDGRJDp26VILXj//3dtmFDuGra1t1T6iCCb+ftjsGYAdDdbSr1/CmY/Awpgt2
+         DR6vcmaGeKlb2yWBJFqkY2+ZfmxImy9Wft+W0eq3m12r+zLLq09lZFiAyq3O1QBBiG5n
+         A2+7iSTqfPI6H4QSDggQPO6xkchnjJ2I+IPOooD1yZ2hctRDynsDort9qvyiWtSaFtc5
+         8tqFCRllsC/gYw4YmUijD67mUOGLj+6YGKmQhFiEkEFOBUiSSTvkQ+4/BdwYnOIPbj5x
+         TZmvuGljRo5V4zi3L8hAQ1j4BM7JYJ91/ZoGUDtAFvRcQ+oIbth7K/46e8N6FWwCghKn
+         drNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733153042; x=1733757842;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aBidcxxw0LkaUAD5/9IMQ9Iuz+pdOXkp8f04uFCwiXE=;
+        b=Lx+hq1T1LxMqxRYdcB+Dt80twD8EO3ldZ6D/f4o2MEiPbHk8kPnSjHA5abs22dkrAQ
+         wxTd/H35zdtIreZ6zkt9cUgG40nllDCIUlF/R5AmD9g78ZqXgsfYDwnWNzqPCH4raW6+
+         UXFbp3hhg/Tp+myQ39UV8Uymz5KMvyqUy28KDrOUG45wIZCiZ+TjmdawyI7/GujhOcen
+         9djuHdkpbw4kMDWSGwxKBtJmNCxD3lUAwfMRymdvg8E/bqn9IxiNrE7oswTJwMEsxdVG
+         NFrAGZt9/tkiHD3GeVzgvOnYs1cRrlFkusV/JlY5SyPWqs8ULyJVpRT45WjmOJDBxUTO
+         7Vhg==
+X-Forwarded-Encrypted: i=1; AJvYcCUkd5ScSCOZgQP38RppHCJd6+LBRLYkJpj51QwV47KXzNG6PzHuHFjPJh4Eof3Z4dEKpYbzE25Hb1K/@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywo+RuFLg/80y21XxLTHwzoxM3EDk2uDBVR452HLps/d52shDqd
+	9xR8z7WcS/pQVoUzj3JWm468q1njpmIqm9isXwweidSF/pbfOIAcEp+zlSqv5XdouZz/KWhhSNM
+	0lXoaIff/RXvfHr2DOGf7mW7IgJewndS8QDpafw==
+X-Gm-Gg: ASbGncub/Jrod0iCn6ugUJzxzVb/WOyewjQn5Lz5kCPe27REJEuy0Exgmc+M8vof0qq
+	NhgaE8cfe0RBKiFy/jP9Gwk87/hHkdbLR
+X-Google-Smtp-Source: AGHT+IHloKnYMU2YPvEvU4xjaTsmIlSJr7XS8O22fOpOceAV6w9xzQeEE9Oq/ecfzP79HELT5y0lhlpm0hWJnPxFg30=
+X-Received: by 2002:a05:6902:11c2:b0:e39:890b:a55c with SMTP id
+ 3f1490d57ef6-e39890ba7a7mr14479567276.20.1733153041992; Mon, 02 Dec 2024
+ 07:24:01 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/7] arm64: dts: broadcom: Add interrupt-controller flag
- for intc on BCM2712
-To: Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Eric Anholt <eric@anholt.net>,
- =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
- Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
- Doug Berger <opendmb@gmail.com>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, Florian Fainelli <f.fainelli@gmail.com>,
- linux-gpio@vger.kernel.org
-References: <20241202-dt-bcm2712-fixes-v1-0-fac67cc2f98a@raspberrypi.com>
- <20241202-dt-bcm2712-fixes-v1-5-fac67cc2f98a@raspberrypi.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241202-dt-bcm2712-fixes-v1-5-fac67cc2f98a@raspberrypi.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20241113225602.1782573-1-robh@kernel.org>
+In-Reply-To: <20241113225602.1782573-1-robh@kernel.org>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Mon, 2 Dec 2024 16:23:26 +0100
+Message-ID: <CAPDyKFohGpnh0fCgktbeSatKyrD3Za7TsvnyB03xDmHh6AxKtw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mmc: marvell,xenon-sdhci: Simplify Armada
+ 3700 if/then schema
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Hu Ziji <huziji@marvell.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 02/12/2024 15:31, Dave Stevenson wrote:
-> BCM2712 DT was producing dtbinding validation errors of
+On Wed, 13 Nov 2024 at 23:56, Rob Herring (Arm) <robh@kernel.org> wrote:
+>
+> Properties are supposed to be defined in the top-level schema and then
+> disallowed in an if/then schema if necessary. Move the "marvell,pad-type"
+> property to follow this.
+>
+> "reg" can also be similarly described at the top-level with only the
+> number of entries restricted in the if/then schema.
+>
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
-s/DT/DTS/
-No one uses term like "dtbinding". Use full make target name or DT schema.
+Applied for next, thanks!
+
+Kind regards
+Uffe
 
 
-> 
-> interrupt-controller@7cd00000: 'interrupt-controller' is a required
-> property
-> interrupt-controller@7cd00000: '#interrupt-cells' is a required property
-> 
-> Fix them by adding the required flags.
-
-But are these valid? Why do you think that binding is correct? Or you
-just silence the warning regardless whether this matches the hardware?
-
-
-Best regards,
-Krzysztof
+> ---
+>  .../bindings/mmc/marvell,xenon-sdhci.yaml     | 48 +++++++++----------
+>  1 file changed, 22 insertions(+), 26 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml b/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
+> index cfe6237716f4..3f48d8292d5b 100644
+> --- a/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/marvell,xenon-sdhci.yaml
+> @@ -38,15 +38,9 @@ properties:
+>
+>    reg:
+>      minItems: 1
+> -    maxItems: 2
+> -    description: |
+> -      For "marvell,armada-3700-sdhci", two register areas.  The first one
+> -      for Xenon IP register. The second one for the Armada 3700 SoC PHY PAD
+> -      Voltage Control register.  Please follow the examples with compatible
+> -      "marvell,armada-3700-sdhci" in below.
+> -      Please also check property marvell,pad-type in below.
+> -
+> -      For other compatible strings, one register area for Xenon IP.
+> +    items:
+> +      - description: Xenon IP registers
+> +      - description: Armada 3700 SoC PHY PAD Voltage Control register
+>
+>    clocks:
+>      minItems: 1
+> @@ -61,6 +55,17 @@ properties:
+>    interrupts:
+>      maxItems: 1
+>
+> +  marvell,pad-type:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    enum:
+> +      - sd
+> +      - fixed-1-8v
+> +    description:
+> +      Type of Armada 3700 SoC PHY PAD Voltage Controller register. If "sd" is
+> +      selected, SoC PHY PAD is set as 3.3V at the beginning and is switched to
+> +      1.8V when later in higher speed mode. If "fixed-1-8v" is selected, SoC PHY
+> +      PAD is fixed 1.8V, such as for eMMC.
+> +
+>    marvell,xenon-sdhc-id:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      minimum: 0
+> @@ -147,27 +152,18 @@ allOf:
+>      then:
+>        properties:
+>          reg:
+> -          items:
+> -            - description: Xenon IP registers
+> -            - description: Armada 3700 SoC PHY PAD Voltage Control register
+> -
+> -        marvell,pad-type:
+> -          $ref: /schemas/types.yaml#/definitions/string
+> -          enum:
+> -            - sd
+> -            - fixed-1-8v
+> -          description: |
+> -            Type of Armada 3700 SoC PHY PAD Voltage Controller register.
+> -            If "sd" is selected, SoC PHY PAD is set as 3.3V at the beginning
+> -            and is switched to 1.8V when later in higher speed mode.
+> -            If "fixed-1-8v" is selected, SoC PHY PAD is fixed 1.8V, such as for
+> -            eMMC.
+> -            Please follow the examples with compatible
+> -            "marvell,armada-3700-sdhci" in below.
+> +          minItems: 2
+>
+>        required:
+>          - marvell,pad-type
+>
+> +    else:
+> +      properties:
+> +        reg:
+> +          maxItems: 1
+> +
+> +        marvell,pad-type: false
+> +
+>    - if:
+>        properties:
+>          compatible:
+> --
+> 2.45.2
+>
 
