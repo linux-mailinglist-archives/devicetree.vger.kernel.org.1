@@ -1,48 +1,87 @@
-Return-Path: <devicetree+bounces-126118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF17B9E04D2
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 15:26:35 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0D66C167EDF
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 14:25:43 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 957C0205E0E;
-	Mon,  2 Dec 2024 14:24:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ox+ox1b9"
-X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 261269E0505
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 15:32:19 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61A3A205E01;
-	Mon,  2 Dec 2024 14:24:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 21A7FB3BFFD
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 14:27:16 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E975205AAF;
+	Mon,  2 Dec 2024 14:26:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="akdzHQk2"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B8EA1FF5F9
+	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 14:26:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733149488; cv=none; b=VkOjDaJxfz7BckmKFH3t8QsQFqzlqRen6an7xm7vX1HCD3M4z7t2kcumBDJb8bNvMw5+85YR9dNJ9GtZ1jkUrMeKoHrTeKg2+qaUlkJIND5xUUwh73oagkncDdv3a9IifW0tJJBOBM5VBbfmXN+nzfyXoykmh+65bOdqyx49ZWY=
+	t=1733149581; cv=none; b=VdkfsCGshOF5+G9YkzXKzM4CJ8enCcRwBF+/7eumufuXjC8BWLbTVXeaq590YAHqZhg4749LiKW0TcYgzMVfrOMDC0ZQnt3fYwuJ2uB/+d+grknuA83aovpWcCy7vJpdXeuIWRkJmUUBxVq7EJRIkTLYlvgcM12PK624MzMa3EA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733149488; c=relaxed/simple;
-	bh=Xx/D7lDCCFjn7E4qJiycmX1zgCDu9SsFkkSXil1i524=;
+	s=arc-20240116; t=1733149581; c=relaxed/simple;
+	bh=U5V8w3BHhDumOMT4/n+/DHbu+Z9WvE7y+HF6Y3k+6k0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Y5x91N8FFCoX8rYgAZnVk42mw1mdiQMUsKC69LNW1liiVj2sGrYfRcGvP/OIaKRqpIl0/ohTi78AnFgeceCY78UeqjBwlYo8v9w/LWWK6ZgQ2bQ7Oa2uxzI08GqM/cUoFx/f4CHoGBQ2hW+AxDqVq7jz58venNFNLa0kDt30iQA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ox+ox1b9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E35FAC4CED6;
-	Mon,  2 Dec 2024 14:24:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733149487;
-	bh=Xx/D7lDCCFjn7E4qJiycmX1zgCDu9SsFkkSXil1i524=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ox+ox1b9h5kwYjHJV5EbfaSOgavcB5cwBowF161NNpbvqeur0IYx0lmPD5JBnBCTJ
-	 ufr1Dte0XvDVFrej7A7tIJPQNBrEaDcRtJbmB2O7uIDPrHktdoM2tuNABLw9ZB4/hE
-	 PKod4OkI/EX/wyUjKtISRduPHDoNGSb50wcjQExh84TDcDA3CaHkl25L4tj2rURGWl
-	 jcPRbC1LX9cy6q29ugykdnch69iRB5jRHD/3jeqfiuA8Npl8hPxJy6kDyUWkosOMTu
-	 AO2LUFkATnm6y25RCF3ZJEsqtQK237zN8KMb1tFfojE1qw6NcobS5Rm4nFjQIPz1he
-	 p61LaNs8VmOYQ==
-Message-ID: <682e8a50-8247-4f98-9ecd-03e1b3b3c359@kernel.org>
-Date: Mon, 2 Dec 2024 15:24:40 +0100
+	 In-Reply-To:Content-Type; b=hWIHm88Jn7uftzOlVq1QvF/IWd3Kb3v46gnmu0RcigETzoMQhzzGcQ7lvkr22PJ0WYn2G5i1KVYR0njxoIKOJQEnQxNSBJRp6SgEwSw7oNkx4yGFWTD7Kur/xi0ELpnQA0J/rbd7IhYtXnhWQvkNVEsn5KSsjYFNrsrNUSTdJ2A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=akdzHQk2; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B29BTu9010645
+	for <devicetree@vger.kernel.org>; Mon, 2 Dec 2024 14:26:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	C9+aPPZFAJemDOGMrrzpUMQVAlKiCGsFemq1XONcpZk=; b=akdzHQk2JJvu6c+o
+	cnFE7I42krUUOtwqd6rQMddEcSyZd066KzphvS2c5B8jHDcf8YX5ToDEA/uDVnt6
+	hWGds3Ugt3t7R9qfBjptMG7h2noyxlp4Ese/lk4TC5iDt1Ip7ZaqZ3Dbd1uwVSNe
+	Yf1fdh74no9Uc3h98tFdTt3NSQws5xi5geUPf1pDYGD4MoUONLk60xfR8bfHfKmQ
+	KmZzIRxZfUeG+UQLOB3XBC3owX97GqPJjTarEcsQ/PRE3ZaY7Syg3kkCXqo7ztCC
+	4WWR5SAGdxobqnE6fC50Fciu8kPSLUJCtWLZh0uayWxFFcQUvBYOThAWt0Ocdf7q
+	YDzpmw==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 437snqw45e-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 14:26:17 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-46692fb862bso5049451cf.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 06:26:17 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733149575; x=1733754375;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=C9+aPPZFAJemDOGMrrzpUMQVAlKiCGsFemq1XONcpZk=;
+        b=i/NiSxykrcw5Oi1/7K79Fa/qzbZYj3kAzJgBB4uq1xk8nZt9SOf0SYkf3/S55DM4HP
+         Q+W2c4O8R1ClQj9ODxUqBo38BDcJ08wzBZlKuXXAyj7fYR1SEQmm847cFbAV1rTDrnrS
+         dHTSwUFXhYt+AMPYKjO9PGL/vJYl6bayCOTfReZgnvXaNEkywRc6A0P9WSIBmd0NT8T9
+         ZEFYpfuEGPDEs5AGyJ0rU8VUiGBzZb5ZGWy2fykxvEJUOvLRZzit6M6xRmqd/U8PTgcv
+         SsRIGF2D2E5ORvaSDYemQcCmeoR3aqm4BYX70FTFzoYdpcyjLkEihL9y0r42tGhGscBj
+         +y1Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXqLExQOEgwiRiXPntyHrzRAGZ4hjhzF69HmV68gDbzAh6FhB5CO+w6NOZh/O7OXtcm45cpnbPUFGzI@vger.kernel.org
+X-Gm-Message-State: AOJu0YxCJOD+l410woMkijLms2BoogHDE+xaGFG9yXglXMFpJ4fe1tjZ
+	NE/yM0ervNp9BIYPnZ9zjGYip9vg4RNXbF7POPT0VH6QKWO9SW9fM4MsJVGOY5McDHpnXqO5d18
+	yCchek3rU6jd+tX0AIuKg/qLHtD4x02ehHpIjPsqA+/puT+vVe0cTvIxhy/Nl
+X-Gm-Gg: ASbGncsiMm3TS0AeM6227zL5m5WmTqVuTVaNI1FGDYtMbBRqn1JF6ZH71HOXrjlFNt/
+	i+7CQda8hoKxjdZMnz6ga/x9uSxxiqGtELkTG07p2H8dF8C80cuTHS+WcBHVCfogVoc39Ll9F+6
+	G8Gs6pwuMiR4vNf8SFxiwSVJ1rcdRlNniqRarPIoePOvHUqh5paw3ybsplL1NcdT83XyW5lQMxJ
+	MVFQNGJzPMGiiTVDJc8Y+FR28MyinLaEvIXuDmTQ7dVcDsMiAPYgmPCkD7712FsPraO+MQbyuh5
+	ko0ADyvMw9Am3aBqb7LEnri4XLPar14=
+X-Received: by 2002:ac8:5f46:0:b0:466:85eb:6114 with SMTP id d75a77b69052e-466b34eb098mr142606671cf.4.1733149575184;
+        Mon, 02 Dec 2024 06:26:15 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEks5Q89gw/Ra65Tb+SUhB7kvtV72Gy/kgkC1JbMoRUkpqIZ4f3DHNc/WA4iENdSFUUHOA4+w==
+X-Received: by 2002:ac8:5f46:0:b0:466:85eb:6114 with SMTP id d75a77b69052e-466b34eb098mr142606291cf.4.1733149574666;
+        Mon, 02 Dec 2024 06:26:14 -0800 (PST)
+Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa599800a6dsm515436666b.90.2024.12.02.06.26.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Dec 2024 06:26:14 -0800 (PST)
+Message-ID: <25873cef-2871-46c0-a764-9b5ee85e9a58@oss.qualcomm.com>
+Date: Mon, 2 Dec 2024 15:26:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,90 +89,49 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 10/10] arm64: dts: exynos: Add initial support for
- Samsung Galaxy S9 (SM-G960F)
-To: Markuss Broks <markuss.broks@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Linus Walleij <linus.walleij@linaro.org>, Tomasz Figa
- <tomasz.figa@gmail.com>, Will Deacon <will@kernel.org>,
- Mark Rutland <mark.rutland@arm.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-gpio@vger.kernel.org, Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
- Maksym Holovach <nergzd@nergzd723.xyz>
-References: <20241028-exynos9810-v4-0-6191f9d0c0f1@gmail.com>
- <20241028-exynos9810-v4-10-6191f9d0c0f1@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v2 6/6] arm64: dts: qcom: qcs615: enable pcie for qcs615
+ platform dts
+To: Ziyue Zhang <quic_ziyuzhan@quicinc.com>, vkoul@kernel.org,
+        kishon@kernel.org, robh+dt@kernel.org,
+        manivannan.sadhasivam@linaro.org, bhelgaas@google.com, kw@linux.com,
+        lpieralisi@kernel.org, quic_qianyu@quicinc.com, conor+dt@kernel.org,
+        neil.armstrong@linaro.org, andersson@kernel.org,
+        konradybcio@kernel.org
+Cc: quic_tsoni@quicinc.com, quic_shashim@quicinc.com,
+        quic_kaushalk@quicinc.com, quic_tdas@quicinc.com,
+        quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com, kernel@quicinc.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        Krishna chaitanya chundru <quic_krichai@quicinc.com>
+References: <20241122020305.1584577-1-quic_ziyuzhan@quicinc.com>
+ <20241122020305.1584577-7-quic_ziyuzhan@quicinc.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241028-exynos9810-v4-10-6191f9d0c0f1@gmail.com>
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20241122020305.1584577-7-quic_ziyuzhan@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: 0WmlMQ3GTjhEGJnT8vKvmj60YPtyd678
+X-Proofpoint-GUID: 0WmlMQ3GTjhEGJnT8vKvmj60YPtyd678
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
+ phishscore=0 adultscore=0 impostorscore=0 malwarescore=0
+ lowpriorityscore=0 suspectscore=0 priorityscore=1501 mlxscore=0
+ mlxlogscore=713 clxscore=1015 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2411120000 definitions=main-2412020124
 
-On 28/10/2024 10:22, Markuss Broks wrote:
-> Samsung Galaxy S9 (SM-G960F), codenamed starlte, is a mobile phone
-> released in 2017. It has 4GB of RAM, 64GB of UFS storage, Exynos9810
-> SoC and 1440x2960 Super AMOLED display.
+On 22.11.2024 3:03 AM, Ziyue Zhang wrote:
+> From: Krishna chaitanya chundru <quic_krichai@quicinc.com>
 > 
-> This initial device tree enables the framebuffer pre-initialised
-> by bootloader and physical buttons of the device, with more support
-> to come in the future.
+> Add platform configurations in devicetree for PCIe, board related
+> gpios, PMIC regulators, etc.
 > 
-> Co-developed-by: Maksym Holovach <nergzd@nergzd723.xyz>
-> Signed-off-by: Maksym Holovach <nergzd@nergzd723.xyz>
-> Signed-off-by: Markuss Broks <markuss.broks@gmail.com>
+> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+> Signed-off-by: Ziyue Zhang <quic_ziyuzhan@quicinc.com>
 > ---
->  arch/arm64/boot/dts/exynos/Makefile               |   1 +
->  arch/arm64/boot/dts/exynos/exynos9810-starlte.dts | 119 ++++++++++++++++++++++
->  2 files changed, 120 insertions(+)
 
-This does not apply. Please rebase and resend.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Best regards,
-Krzysztof
+Konrad
 
