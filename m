@@ -1,103 +1,106 @@
-Return-Path: <devicetree+bounces-126218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126219-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 099AA9E08EC
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 17:45:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4ECAF9E090E
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 17:51:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C3369281C2A
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 16:45:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 146802822C0
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 16:51:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD4611D90A1;
-	Mon,  2 Dec 2024 16:45:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39A411DA60F;
+	Mon,  2 Dec 2024 16:51:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="fMZUqAQB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iSPWq743"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 053D31D79BE;
-	Mon,  2 Dec 2024 16:45:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 111DD1D959E;
+	Mon,  2 Dec 2024 16:51:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733157906; cv=none; b=Bnuiqw9ScVJFF+aehVnfzVZqeTsWlKg45fphRFEJU9aAOtxm8vF04W3Hkc1wHat3dpbS6/je1xe1yAVDHxG6V8N5k/7BslU+MndGap17pNbbJrACviGs0QJGfSlRwWa5bzGzar4nAYCLrmsuXcQE3nlal+sB5kDmMciCGOZNq4Y=
+	t=1733158273; cv=none; b=kxGpQXNjEW6xVwei/HCdpEFoQ5OmikMKLa6E+tPqfTDKSUcqQu/F0V3qII+spNxXkVFlS9WkKbvSOsgFzOsB9v7FJQWfVQ3cEoPOU8fyIcOnRNJj810FSJD0ZL76nuv/KuGyplw66mQXFaG4vqaNeu71BBcWcH1ca6+HRN+WWq0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733157906; c=relaxed/simple;
-	bh=I4VHummiJrKsJbIUwMd52De56NeUEhWbPfaStA1+8kE=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=d/Mh3wWBZTnXAH0PXc13p+9gj56HFj4blj/EeVfEZ0oqCLhuX2YAlCgPGtM6xJDpy6PdM/99Fcjbrgbgo+RsZ8QUa1g1ymKUb0G4177yPCMyZI0X50vrP3i/cmWOQ3F6WCi7jBzcp0NdQspARXitMtgKtkAonBD/JXCxvYpvPVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=fMZUqAQB; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPA id AF488C0008;
-	Mon,  2 Dec 2024 16:45:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1733157902;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=imbv659LCzWmKKL5WFDY3dC6juoBFr1RJzTd9558NvU=;
-	b=fMZUqAQBK2vAl+1QGbORAF7xexnH/uspJ3FXPTTF8FrYeqx/dJ0MPkPbx2q9njcmhQZ0Au
-	Fp4Gas+n/6lTdWk43wD7n8AzwwUjbZz/1tysffdQrtslgUUvbjK4RuwbhHCrtCUb2/DLrx
-	viPmNiCEEKTJfphmer4z5TDBCQ2OnQOAczvylh/8McRz5dNT1gOEShcG9hkCcyfYeukQFB
-	VHcOxwJPMWIqYWjUFhfnkDMwUVRKeyu2/iiFKrI5mI2seKQCN3Skgb41+k2GbYjM7s7o9m
-	Er0Fy21+EEqVmoMaLi+Z/XZNjprapuhc5G52TzYhT/HI3RuLVUdhKGGTJet5oQ==
-From: Herve Codina <herve.codina@bootlin.com>
-To: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Herve Codina <herve.codina@bootlin.com>
-Subject: [PATCH 1/1] pwm: Add support for pwm nexus dt bindings
-Date: Mon,  2 Dec 2024 17:44:59 +0100
-Message-ID: <20241202164459.157672-1-herve.codina@bootlin.com>
-X-Mailer: git-send-email 2.47.0
+	s=arc-20240116; t=1733158273; c=relaxed/simple;
+	bh=ZdAQdXXjCYljteTFBRHsVw/rpxpZmdzMc5aDBqCIVy4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=N6+xrhMKbUx88J7FeY7g/DO543GrFU1DUjc9G9RUtANl6HltETZGg/CJNrk5BQ6xrXqOqHJ3dkvhUD35Adj/XoWHELeDFQ70gBy6ahm9phXWxcMyDB8upAUoDt36shARBSwp6bzN1/PG+1Nz35iNmuO5+AWh6oEy+A194llQRaQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iSPWq743; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34CCDC4CED6;
+	Mon,  2 Dec 2024 16:51:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733158272;
+	bh=ZdAQdXXjCYljteTFBRHsVw/rpxpZmdzMc5aDBqCIVy4=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=iSPWq743CIYZAfEvP/0i+dSExVhNx/pKe3BLTKkZnq3y/0UZ77r7x0LTj+kgtS7AR
+	 A1TjutON18aDwgk8Bt3aBPP13pwhirJDhK2wXkAWoyfkA8nBqev6K824bYl6YSm0wD
+	 KYe+90UjI6hP4o7JrCVXKE0ciu0xWPLIEl1+rvz2Bs3T0rYacZrvYHsxcEvOEDIPqS
+	 KP1GOM2kzMsD/oZacBAaaiikbsaPezHv2LkjfnenxqyQczcoUfMhezH8hcqzvK/ieK
+	 /afc03wEG5xP+oJNb8TU3bhqI2GkTTLV0FgF1fhgzZSMkklV5R+Hj4k8iLSbrb1YtG
+	 AFGisWHbX9mWA==
+From: Mark Brown <broonie@kernel.org>
+To: robh@kernel.org, Fabio Estevam <festevam@gmail.com>
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
+ linux-spi@vger.kernel.org, shawnguo@kernel.org, 
+ linux-arm-kernel@lists.infradead.org, lukma@denx.de, 
+ Fabio Estevam <festevam@denx.de>
+In-Reply-To: <20241023120015.1049008-1-festevam@gmail.com>
+References: <20241023120015.1049008-1-festevam@gmail.com>
+Subject: Re: (subset) [PATCH 1/3] dt-bindings: misc: lwn,bk4-spi: Add
+ binding
+Message-Id: <173315826769.126887.7195905602758530196.b4-ty@kernel.org>
+Date: Mon, 02 Dec 2024 16:51:07 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-9b746
 
-Platforms can have a standardized connector/expansion slot that exposes
-signals like PWMs to expansion boards in an SoC agnostic way.
+On Wed, 23 Oct 2024 09:00:13 -0300, Fabio Estevam wrote:
+> Add a lwn,bk4-spi.yaml binding for Liebherr's BK4 external SPI controller.
+> 
+> Currently, the compatible string used for this device is "lwn,bk4",
+> which is the same as the board compatible string documented at fsl.yaml.
+> 
+> This causes several dt-schema warnings:
+> 
+> [...]
 
-The support for nexus node [1] has been added to handle those cases in
-commit bd6f2fd5a1d5 ("of: Support parsing phandle argument lists through
-a nexus node") and the gpio subsystem adopted the support in commit
-c11e6f0f04db ("gpio: Support gpio nexus dt bindings")
+Applied to
 
-Add support for nexus node dt binding in the pwm subsystem.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
-[1] https://github.com/devicetree-org/devicetree-specification/blob/v0.4/source/chapter2-devicetree-basics.rst#nexus-nodes-and-specifier-mapping
+Thanks!
 
-Signed-off-by: Herve Codina <herve.codina@bootlin.com>
----
- drivers/pwm/core.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+[1/3] dt-bindings: misc: lwn,bk4-spi: Add binding
+      commit: 36e7886075262429158aec6f258e6a5a92f025b1
+[2/3] spi: spidev: Add an entry for lwn,bk4-spi
+      commit: 096c34ddf5835f02f5260719cd8a16fcf5e5e56f
 
-diff --git a/drivers/pwm/core.c b/drivers/pwm/core.c
-index 9c733877e98e..4a7454841cef 100644
---- a/drivers/pwm/core.c
-+++ b/drivers/pwm/core.c
-@@ -1707,8 +1707,7 @@ static struct pwm_device *of_pwm_get(struct device *dev, struct device_node *np,
- 			return ERR_PTR(index);
- 	}
- 
--	err = of_parse_phandle_with_args(np, "pwms", "#pwm-cells", index,
--					 &args);
-+	err = of_parse_phandle_with_args_map(np, "pwms", "pwm", index, &args);
- 	if (err) {
- 		pr_err("%s(): can't parse \"pwms\" property\n", __func__);
- 		return ERR_PTR(err);
--- 
-2.47.0
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
