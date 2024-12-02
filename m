@@ -1,196 +1,138 @@
-Return-Path: <devicetree+bounces-126234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126238-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A95D49E0A97
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 19:02:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2459A9E0AD0
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 19:18:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D751281588
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 18:02:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9A08281962
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 18:18:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF76F1DACA1;
-	Mon,  2 Dec 2024 18:02:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7B5F1DDC28;
+	Mon,  2 Dec 2024 18:18:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PSjB0Axh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 997EF70818;
-	Mon,  2 Dec 2024 18:02:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0BAD1DD866;
+	Mon,  2 Dec 2024 18:18:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733162567; cv=none; b=dxmfQR3TNgpuZTIqp7DN1743evI+eLp2/a6Rwq/K1aE7I2r+/iBb5oaL4ZuHuS/Q1W7FUlqdxr2vhp0WleXqLjJYBxEJDJBuH5iaQzDerQC8Q+yb/rch1+0cHB9HJl13xUuSSjW95OsTVqygbeNXdi9WnZ+r4zM7W//182FS+f0=
+	t=1733163503; cv=none; b=MgHHJSqpYW/zvRfepfJ5wRDWwIqJAQrf7U3GVtAHBqpuU93vzpBSU4AdvtzonNOlhoiWuXvTrCZYfpDMTUTP5RCESxziiE4NmF12MYyV09a60Olvx8u18wtpfY0Jfs1bm0dVPbPWYL7X5W0soAgErnDR0o9vNbreQO2dsbnlKMI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733162567; c=relaxed/simple;
-	bh=LVuZUa24WaOmzfyvxHMhny2Hxp6afc/nbtxIS6Y1I/U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VfODmEwsfMqewcMHrFrqKxcpiM873CuwL3wmgw976VZhs2kj+e2yw3yCVZJ+DlcZuKrrk1ZVy4QDeaRWL1mCkgJA7GBXFaQive1nB1sJ8eOMyfI6kcJ2KeUt/Wp2tF22rDdXlAiPPklEQce++RVI/aKniZr9NaUektrJBFhbNl8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gompa.dev; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gompa.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-aa55171d73cso1003190766b.0;
-        Mon, 02 Dec 2024 10:02:45 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733162564; x=1733767364;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=X5gHcQ4FCTGNFnaCtGHvpnPCQcPDHMQwxknwgQhKcio=;
-        b=Erhgivk49lpHA2GJTjVcQGOi736PgKLzvBbhpEJnfpvRAmmRyCfjg66oZe+AqG/e9i
-         q4nPG7ypQ5V5umMvLqMQjExssTKfiNZpM39v0PUtMao3iKcKEiOyDHgABqB9EP5gRuLk
-         NqaBOk6kuKZ4T3xxKYzPbyLZgoFHJzs7VOgZza3JX/kZnlawjQzOChw/T95GFYtgRCpY
-         n6NMeKh4N8IanC73FuWD4VgenT8yBlMh6l0O2qLa3XCk6GDAiVaavkS4MvayaBx9CcHs
-         FFmHGtN7AFTMeej3c5RSiLVrrNf9otQ+s4BFlWpqgErQVywKx/eSwZDtfM3zAIcOH2LS
-         Uu2g==
-X-Forwarded-Encrypted: i=1; AJvYcCVTd1JH21VWQ+4JvX8PY4Hg/m67mOQLKu1KyTL2IdexHMv71q5q3TCq/P8pOruCuFu2X4Pp0BMbPMZU@vger.kernel.org, AJvYcCVVbxe0iE7vZuKQm8IPaErEctzrUZhR/h+I4ZHFU7EDplgYVVDs+iRPGaraBylshV4A4RqWqCA9h+hAdLTn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy5CEBrn9JVz8UajkWgCEC0OeNWvN/QCwxsTdCWlCQCM5shIe36
-	dA2ot4Hq9jFgAAusr6wD/lNW55aAiATLVj/dC6HUTWudxV3Z2OVfktposJRTIC0=
-X-Gm-Gg: ASbGncsNDWRHE0xxs8aj8dNtXlfoubJu10PqAzvXcmTJyyEYsYQy1DeCEnWK5392nXc
-	VX3aq+SDIHLDSbcvFZ2e3Nw9SG8vb1BHeA+lgcehe4JX+P/ztC0qc6SHLBLpnH1JnqQaOYuQHdU
-	Mu5I57dHIEXj0LmbDni7yDcOYfk2UbMYEBPjI69EL//+kV1F8HhX+eLq4wtCfcRu+e4b/Cd8KBl
-	MQ7Ya18Wf9ZAgPQMQU3hMED9eF8Mxkw6Y23ZuClLcttjj2mMPbBZrAu6tTcXuEGoQRyst3pOi1z
-	MCox
-X-Google-Smtp-Source: AGHT+IHqH+RXpiHj2HSPOSUU3Knk7DPh8DqmSqIhMb4UKXSYS6ukJYTT9fNPjk+TZ9PpbJflCx6yeA==
-X-Received: by 2002:a17:907:7ea6:b0:a9e:82f3:d4ab with SMTP id a640c23a62f3a-aa594535329mr2319592666b.9.1733162562169;
-        Mon, 02 Dec 2024 10:02:42 -0800 (PST)
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com. [209.85.218.42])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa5999058fbsm530281566b.143.2024.12.02.10.02.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Dec 2024 10:02:42 -0800 (PST)
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-aa539d2b4b2so826505766b.1;
-        Mon, 02 Dec 2024 10:02:41 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUwjbl9bkYmc+hcM/hiHY8/wSVd+WGKr3FnlKUpylSxRB7zLpai6Rroh+QXsBTtrIijBxGWe8KPpgrF@vger.kernel.org, AJvYcCVNTnhQ+TGtIHfaBaTv5FgNduAtTIwCKYwB4iXcul4C9skf5J7R3K2U+Ubx948vn9fhY6LpRpcoJGl8ukrr@vger.kernel.org
-X-Received: by 2002:a17:906:2181:b0:a9a:616c:459e with SMTP id
- a640c23a62f3a-aa59467032cmr2043918466b.27.1733162560648; Mon, 02 Dec 2024
- 10:02:40 -0800 (PST)
+	s=arc-20240116; t=1733163503; c=relaxed/simple;
+	bh=KiM+r2+vbQFz4ZNDqr52yOHioGTJ04fsaje5jz3Xr5Y=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=lVjPEc46ij8+WK4zePcD/QdmcHMOJnlj4sAKs4cNt0lms+ze3HZUNDoZajK04ZzVM6yOVSPmRLtUlA1NPf31iz1shp4cBQ9O39+Pep5+S24Y2GdMXg+CUAG/PnGRqVss9d74LicIldmNjv2Nx0Lg7qFjrHLaQjuUulzY4BYJZMM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PSjB0Axh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 57919C4CED6;
+	Mon,  2 Dec 2024 18:18:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733163503;
+	bh=KiM+r2+vbQFz4ZNDqr52yOHioGTJ04fsaje5jz3Xr5Y=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=PSjB0Axhn9Bsigm4qrNtdYDoH0A5Ipu+Lb3QRUkEqaU2HMGYlwXRq2BAoCc9hsj/Q
+	 cfhVDn+BT32V6wasWFuERR/nErDjLUIFbY0sYcUI2El6OYGqdRVP+/ATeluk7kx14Q
+	 v5T+JtVvHPZ3XetL9c9OFnWwPpAbH7xup1NXerhAPGdXJF2Gc9DVym2Nmx906lS3rP
+	 3cFEb/4pquhlPyR0QpvzcxmgJtC2Jfi3scMBQCiOKHTpEsWn7Nj28MHNVbB+a05VxL
+	 LabVIF7Za/X/3Ami9iDgtc0frTk5ia9OAI9ZiHcVuuVoz5cpY++xNUmUv2uDWZCsM8
+	 bQ19Tc3Vd+NOg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3AE78E69E81;
+	Mon,  2 Dec 2024 18:18:23 +0000 (UTC)
+From: Maud Spierings via B4 Relay <devnull+maud_spierings.hotmail.com@kernel.org>
+Date: Mon, 02 Dec 2024 19:18:11 +0100
+Subject: [PATCH v5 1/3] arm64: dts: qcom: x1e80100-vivobook-s15: Use the
+ samsung,atna33xc20 panel driver
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241201155820.29259-1-towinchenmi@gmail.com>
-In-Reply-To: <20241201155820.29259-1-towinchenmi@gmail.com>
-From: Neal Gompa <neal@gompa.dev>
-Date: Mon, 2 Dec 2024 13:02:04 -0500
-X-Gmail-Original-Message-ID: <CAEg-Je97QmLUrOV+dvg2zbV56R44Ouj4gLwV36z-RdvG-H+hGw@mail.gmail.com>
-Message-ID: <CAEg-Je97QmLUrOV+dvg2zbV56R44Ouj4gLwV36z-RdvG-H+hGw@mail.gmail.com>
-Subject: Re: [PATCH v4 00/10] Add PMGR nodes for Apple A7-A11 SoCs
-To: Nick Chan <towinchenmi@gmail.com>
-Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241202-asus_qcom_display-v5-1-e0d3752ff71f@hotmail.com>
+References: <20241202-asus_qcom_display-v5-0-e0d3752ff71f@hotmail.com>
+In-Reply-To: <20241202-asus_qcom_display-v5-0-e0d3752ff71f@hotmail.com>
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Maud Spierings <maud_spierings@hotmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1733163500; l=1501;
+ i=maud_spierings@hotmail.com; s=20241110; h=from:subject:message-id;
+ bh=+p57oSoZcIYd3K5X0WVZ9oWNtOr7Y9V+E7VoIgmgr4k=;
+ b=UvCXU/oj2NIOtXiRqc+lXairShldjGizHXQl22p7ObP16xd+ji8CLaUEUTe//M+/Q1XITtCW5
+ F6QjXCf8Ck7BZqX6gRkBFI5WMLlOMOkGYpkrMdm610q1AxSlKfp39Gp
+X-Developer-Key: i=maud_spierings@hotmail.com; a=ed25519;
+ pk=CeFKVnZvRfX2QjB1DpdiAe2N+MEjwLEB9Yhx/OAcxRc=
+X-Endpoint-Received: by B4 Relay for maud_spierings@hotmail.com/20241110
+ with auth_id=273
+X-Original-From: Maud Spierings <maud_spierings@hotmail.com>
+Reply-To: maud_spierings@hotmail.com
 
-On Sun, Dec 1, 2024 at 11:00=E2=80=AFAM Nick Chan <towinchenmi@gmail.com> w=
-rote:
->
-> This series adds the PMGR nodes and all known power state subnodes for
-> Apple A7-A11 SoCs, along with the associated dt-bindings.
->
-> Changes since v3:
-> - Add "apple,always-on" property to "ps_spmi" in t8015 power domains.
-> This is required for cpufreq to function correctly which will be added
-> in a later series.
->
-> Changes since v2:
-> - Removed "apple,always-on" property from "ps_pmp" from s8001, t8011,
-> t8015 power domains. It is not on at boot. (Mixed up with ps_pms which
-> is required to be on)
-> - Add asahi-soc/dt back into the subject prefix, missing from v2.
->
-> Link to v2: https://lore.kernel.org/asahi/20241102011004.59339-1-towinche=
-nmi@gmail.com
->
-> Changes since v1:
-> - Removed "framebuffer0" dt aliases. It is not standard and not needed.
->
-> Link to v1: https://lore.kernel.org/asahi/20241029010526.42052-1-towinche=
-nmi@gmail.com
->
-> Nick Chan
-> ---
->
-> Nick Chan (10):
->   dt-bindings: arm: apple: apple,pmgr: Add A7-A11 compatibles
->   dt-bindings: arm: apple: apple,pmgr-pwrstate: Add A7-A11 compatibles
->   arm64: dts: apple: s5l8960x: Add PMGR node
->   arm64: dts: apple: t7000: Add PMGR node
->   arm64: dts: apple: t7001: Add PMGR node
->   arm64: dts: apple: s8000: Add PMGR nodes
->   arm64: dts: apple: s8001: Add PMGR nodes
->   arm64: dts: apple: t8010: Add PMGR nodes
->   arm64: dts: apple: t8011: Add PMGR nodes
->   arm64: dts: apple: t8015: Add PMGR nodes
->
->  .../bindings/arm/apple/apple,pmgr.yaml        |   5 +
->  .../bindings/power/apple,pmgr-pwrstate.yaml   |   5 +
->  arch/arm64/boot/dts/apple/s5l8960x-5s.dtsi    |   4 +
->  arch/arm64/boot/dts/apple/s5l8960x-air1.dtsi  |   4 +
->  arch/arm64/boot/dts/apple/s5l8960x-mini2.dtsi |   4 +
->  arch/arm64/boot/dts/apple/s5l8960x-pmgr.dtsi  | 610 ++++++++++++
->  arch/arm64/boot/dts/apple/s5l8960x.dtsi       |  13 +
->  arch/arm64/boot/dts/apple/s8000-pmgr.dtsi     | 757 ++++++++++++++
->  arch/arm64/boot/dts/apple/s8000.dtsi          |  22 +
->  arch/arm64/boot/dts/apple/s8001-common.dtsi   |   1 +
->  .../arm64/boot/dts/apple/s8001-j98a-j99a.dtsi |  26 +
->  arch/arm64/boot/dts/apple/s8001-j98a.dts      |   1 +
->  arch/arm64/boot/dts/apple/s8001-j99a.dts      |   1 +
->  arch/arm64/boot/dts/apple/s8001-pmgr.dtsi     | 822 ++++++++++++++++
->  arch/arm64/boot/dts/apple/s8001.dtsi          |  22 +
->  arch/arm64/boot/dts/apple/s800x-6s.dtsi       |   4 +
->  arch/arm64/boot/dts/apple/s800x-ipad5.dtsi    |   4 +
->  arch/arm64/boot/dts/apple/s800x-se.dtsi       |   4 +
->  arch/arm64/boot/dts/apple/t7000-6.dtsi        |   4 +
->  arch/arm64/boot/dts/apple/t7000-j42d.dts      |   1 +
->  arch/arm64/boot/dts/apple/t7000-mini4.dtsi    |   4 +
->  arch/arm64/boot/dts/apple/t7000-n102.dts      |   4 +
->  arch/arm64/boot/dts/apple/t7000-pmgr.dtsi     | 641 ++++++++++++
->  arch/arm64/boot/dts/apple/t7000.dtsi          |  14 +
->  arch/arm64/boot/dts/apple/t7001-air2.dtsi     |   1 +
->  arch/arm64/boot/dts/apple/t7001-pmgr.dtsi     | 650 ++++++++++++
->  arch/arm64/boot/dts/apple/t7001.dtsi          |  13 +
->  arch/arm64/boot/dts/apple/t8010-7.dtsi        |   4 +
->  arch/arm64/boot/dts/apple/t8010-ipad6.dtsi    |   4 +
->  arch/arm64/boot/dts/apple/t8010-n112.dts      |   4 +
->  arch/arm64/boot/dts/apple/t8010-pmgr.dtsi     | 772 +++++++++++++++
->  arch/arm64/boot/dts/apple/t8010.dtsi          |  22 +
->  arch/arm64/boot/dts/apple/t8011-common.dtsi   |   1 +
->  arch/arm64/boot/dts/apple/t8011-pmgr.dtsi     | 806 +++++++++++++++
->  arch/arm64/boot/dts/apple/t8011-pro2.dtsi     |   8 +
->  arch/arm64/boot/dts/apple/t8011.dtsi          |  22 +
->  arch/arm64/boot/dts/apple/t8015-common.dtsi   |   1 +
->  arch/arm64/boot/dts/apple/t8015-pmgr.dtsi     | 931 ++++++++++++++++++
->  arch/arm64/boot/dts/apple/t8015.dtsi          |  21 +
->  39 files changed, 6237 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/apple/s5l8960x-pmgr.dtsi
->  create mode 100644 arch/arm64/boot/dts/apple/s8000-pmgr.dtsi
->  create mode 100644 arch/arm64/boot/dts/apple/s8001-j98a-j99a.dtsi
->  create mode 100644 arch/arm64/boot/dts/apple/s8001-pmgr.dtsi
->  create mode 100644 arch/arm64/boot/dts/apple/t7000-pmgr.dtsi
->  create mode 100644 arch/arm64/boot/dts/apple/t7001-pmgr.dtsi
->  create mode 100644 arch/arm64/boot/dts/apple/t8010-pmgr.dtsi
->  create mode 100644 arch/arm64/boot/dts/apple/t8011-pmgr.dtsi
->  create mode 100644 arch/arm64/boot/dts/apple/t8015-pmgr.dtsi
->
->
-> base-commit: 9ad55a67a788c0806b0fe23be36fae6dbfbc3fc5
-> --
-> 2.47.1
->
->
+From: Maud Spierings <maud_spierings@hotmail.com>
 
-These seem reasonable.
+The Asus vivobook s15 uses the ATNA56AC03 panel.
+This panel is controlled by the atna33xc20 driver instead of the generic
+edp-panel driver
 
-Acked-by: Neal Gompa <neal@gompa.dev>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Signed-off-by: Maud Spierings <maud_spierings@hotmail.com>
+---
+ .../arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
+index f25991b887de3fca0092c5f81c881c5d8bd71aac..8cdb2888d10a1dfc0c28480b6636584ab06853bb 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
+@@ -407,9 +407,13 @@ &mdss_dp3 {
+ 
+ 	aux-bus {
+ 		panel {
+-			compatible = "edp-panel";
++			compatible = "samsung,atna56ac03", "samsung,atna33xc20";
++			enable-gpios = <&pmc8380_3_gpios 4 GPIO_ACTIVE_HIGH>;
+ 			power-supply = <&vreg_edp_3p3>;
+ 
++			pinctrl-0 = <&edp_bl_en>;
++			pinctrl-names = "default";
++
+ 			port {
+ 				edp_panel_in: endpoint {
+ 					remote-endpoint = <&mdss_dp3_out>;
+@@ -475,6 +479,18 @@ &pcie6a_phy {
+ 	status = "okay";
+ };
+ 
++&pmc8380_3_gpios {
++	edp_bl_en: edp-bl-en-state {
++		pins = "gpio4";
++		function = "normal";
++		power-source = <1>;
++		qcom,drive-strength = <2>;
++		bias-pull-down;
++		input-disable;
++		output-enable;
++	};
++};
++
+ &qupv3_0 {
+ 	status = "okay";
+ };
+
+-- 
+2.47.1
 
 
-
---
-=E7=9C=9F=E5=AE=9F=E3=81=AF=E3=81=84=E3=81=A4=E3=82=82=E4=B8=80=E3=81=A4=EF=
-=BC=81/ Always, there's only one truth!
 
