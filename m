@@ -1,128 +1,329 @@
-Return-Path: <devicetree+bounces-126242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126246-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6088B9E0C82
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 20:46:57 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E95919E0CF0
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 21:21:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 998DDB80F00
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 18:19:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 76BF2B2BA08
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 18:34:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0A7B1DE3A2;
-	Mon,  2 Dec 2024 18:19:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABDDB1DDC37;
+	Mon,  2 Dec 2024 18:34:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TMQUHe4o"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hjrBh33F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 291D21DDC2D;
-	Mon,  2 Dec 2024 18:19:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C336270805;
+	Mon,  2 Dec 2024 18:34:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733163563; cv=none; b=NnkhELP0+DXKOJhAe9GlIcaz9y2iwxtZZL0ObxRddM4+fi0+k3ritazUCq0iYpxcCzbhSyXTU3jL5t1fLNXCElxIp8nObxjR/PzV2xgi28m8S2Uihw7SCvP0ccX5ZERonVyjVkoXix5McmWyAFL5TUpDFxZ5u84PaVrbTfhadAU=
+	t=1733164483; cv=none; b=qjsReaRB9IhQNwTwJ00z5XNlW35jkKodaReVe/FqD/sVgGQq3vJpzI507MBLucddt/D03A10QqneAgno5tx/NGdViTsypQimCL+az197YbSroI1ClRG3iIZ9hsG1q8+fuAb5tFI8xZWqptTSlgOYdr7PGNXy075tzf/Ne2dZBlc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733163563; c=relaxed/simple;
-	bh=8cfqVcuvu6Dd7DohWdDqpCnMytrUlELdFITjfBYZfII=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=lHK1kxo44yY+3Th3jneUPWiKP7nO+DtGQtL0s2XS0FIFf+UM7qfMmTIZCgG/SZ7eJO/NZv52+NbepaUl8+ACPEm+6P6b86B0et0708MwZC8BSMtu5gkmGDPBoYXJzwTD7J3plO5VMPq8ElUn8k8o0mcl5jwPal1dYZbdCjqf/ZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TMQUHe4o; arc=none smtp.client-ip=209.85.221.50
+	s=arc-20240116; t=1733164483; c=relaxed/simple;
+	bh=w7+TjjMa4hcPmMEI/iUbF42Sq9G4esf/zUXgYlaYYQc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=M0zFmTOMbqTrflL7kdmVASFYiFxHPG+mzZ7lni6X9ABznDpvCwHTplfW6BlA1de887cllhaJVPAKUPADH39NUqmj1pNDZ+F47QLSGunTIxLn4icuMOX/H+mForp/g1m93YQ+soSSvtcT7x3oAkectf12UcQ5FE44a4Ne9rE4qxg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hjrBh33F; arc=none smtp.client-ip=209.85.221.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-385eed29d17so1064988f8f.0;
-        Mon, 02 Dec 2024 10:19:21 -0800 (PST)
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-385d6e36de7so4023942f8f.0;
+        Mon, 02 Dec 2024 10:34:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733163560; x=1733768360; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LZI+PX4giaZn5+7rofJ1gQ2SKwa0tGnvULF4f5VsZys=;
-        b=TMQUHe4oKbpXntQpjm5oMdYnxN6VWF+R0PEJTs1WvE8x7twxuuUCV7cWNF/Dzbm8hA
-         FjsCgRmegpVQcaZy32nq+lSHG/Y56jJXyWyslqExUYj15POFgKLzaq5R2mYihVhBGRai
-         XleFoV6xdcWMkg1UKiFCLc7X2MersE6FNKz3HFMYsMVFoqUqLMORGjeO1zkoaHboOGcd
-         s2SmimkxkuIhT9+IS6WJScGzXYecxnyW9jfqPMack/xJcUINDXB2NzOgnnj1l8EH9zjw
-         s2dwznuu154GV7KHq+eKFg24qQ2mKgWX7k5z1xzsuqYLkRkTbrR3IY70xP1eV1kokG8D
-         ejlA==
+        d=gmail.com; s=20230601; t=1733164479; x=1733769279; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XdNngqGjPgL3P4DeiY0oFYOBDi1lPXH2hvH4Y2w5NdU=;
+        b=hjrBh33FU3EWh5qHHe0crcBLobRGwFCApBNy8N5quWwJ4dA6zHBH56dZ0icTRtLaHt
+         9B0/ol8UN1nPJclTvc9OPqcdSU2qpxyB4SnBGnJeIpYIDLVnUEa49Bw5MqGdmd3VPcaQ
+         1a9UuH5deA1ldOPoQwRpBViGAEEXgwlVtExmRJKe6+1KdDKqE0d6l4p5Ypus5qkRMeO5
+         JyeQ3CQFWMrPSbCnHfvvGFTPGxLr8gmhFG3oMd/Ag9cER5uK37c+l1/jbaeHjd8T7Kzn
+         by2N5eEuWFHC6FHVrNIcaMsVO1LbwkwgZ++P9B7pJ4hDhEwxEjnZpQBZUEYgxrfJZZ8E
+         +zWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733163560; x=1733768360;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LZI+PX4giaZn5+7rofJ1gQ2SKwa0tGnvULF4f5VsZys=;
-        b=F33CnqMT0VxRGOaKWHyaw7c+DwfxMbZeTAvFEnUXIYpntTdE+hG41ONk/5tnuucb3j
-         kokDTntOpSy/UEEUlAAnj9qFo2MVCelvlY1CviEfuBbblOSpRW+KCzgV8zMFmHUiy4I7
-         rhuLmsjDRd4Q35FsazZvVep2VgnPlFQvE5Lef81oYYdc+ShCioK3VtsjqhXpzv/g22iG
-         AL1KJGmcATRRAyAyCSLmOevYlmMbS8w/LaUI2v62aGDcHZVZJYHS4k/jxfLSMEmh6ov+
-         Uxu0IZXcOFEroY65BP4nrhhLO79UdwgNnm6M4p1ENQd3WwH2K5ceeL67/BSazJINmjss
-         RFkA==
-X-Forwarded-Encrypted: i=1; AJvYcCUglO3SHslnz29DrT714/MpRYnEZHvBtC6XwVMnbjKaEEsDoE7/OUZsw8gwpY5S9qBq0zidGyMz+J05vGG/@vger.kernel.org, AJvYcCUp5XPtD36NzGeKEpNz+pharBkmyMicrxcvAC8W9BHiHle1qAvAII1Ikbcq6pOwxTGovjPRi8SE+5Gn@vger.kernel.org, AJvYcCXrzvPgs3omv8fjNF/h588xoRRcQ9rBBEacqXX4OnrkjgB/we1xMGEL3s97an34hIOl7m8xZLsyzxkv@vger.kernel.org
-X-Gm-Message-State: AOJu0YwR8vMk/U6T4xRCIsSdw9RegSGvQBkiI5iQbqKRjFbL4HzAv8Zp
-	OzGvd8zxpWzL98s91CU4rnsBYhMbfu5W59qzRAjl2kDL94fPsG4d
-X-Gm-Gg: ASbGnctXBzgVO8pFz7DdIHCrwY2WBMrDm7RgRJ3n9QfVlDwdvghXWFnAu84I5bHEkmn
-	MrHD00pZGBUVzcxYNuxavLVGSqr2zcQuuY5L64UJBAT43kM2H5QV2/qfwSLhpIYtZOpAVzka2DA
-	AeF5FqODfJ7341ehTZulJmxWT+qOK6G4mu8NgI0wAQhIgmQQyP9kTk1azhOVdz6/odONsjNHRw2
-	EdgTDpFsJCqnNQwmhj4WoXltHgFats7aLB0VPoEOGnfuu910MKXdoCZu8O3XjI=
-X-Google-Smtp-Source: AGHT+IFRCfmBA9Br+e9+cpC0O5nJA9Ktgj/g+LYDzfon53L7mLFMHNjZ0IASQZv0OK5POXVzle2Nlg==
-X-Received: by 2002:a05:6000:4010:b0:385:f0d4:d5ed with SMTP id ffacd0b85a97d-385f0d4d7fbmr5194789f8f.22.1733163560243;
-        Mon, 02 Dec 2024 10:19:20 -0800 (PST)
-Received: from vamoirid-laptop.. ([2a04:ee41:82:7577:ea8a:93ec:a066:eb25])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-385d7d4d9b0sm11659108f8f.65.2024.12.02.10.19.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Dec 2024 10:19:19 -0800 (PST)
-From: Vasileios Amoiridis <vassilisamir@gmail.com>
-To: jic23@kernel.org,
-	lars@metafoo.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	andriy.shevchenko@linux.intel.com
-Cc: ajarizzo@gmail.com,
-	ak@it-klinger.de,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	vassilisamir@gmail.com
-Subject: [PATCH v1 2/3] iio: pressure: bmp280: Use sizeof() for denominator
-Date: Mon,  2 Dec 2024 19:19:06 +0100
-Message-ID: <20241202181907.21471-3-vassilisamir@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241202181907.21471-1-vassilisamir@gmail.com>
-References: <20241202181907.21471-1-vassilisamir@gmail.com>
+        d=1e100.net; s=20230601; t=1733164479; x=1733769279;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XdNngqGjPgL3P4DeiY0oFYOBDi1lPXH2hvH4Y2w5NdU=;
+        b=pe5YgFGkULWuqLCDxmuUz1+Uwo7vHcLbIEHwmLvjDEpUIAv8HTlkxE5a0ILN/t1sqx
+         jo0AUs2UF4RFF+zal+caUelsDv5dSC/5xrEhr6BtpwQjzegru9qgxBwPyCZcA3tnzRGe
+         cOQGmDSFhjA5UoSWeD/GI3g0GHjeTj6f5geJXZbGhAVPOwfmMHuP9b2T2YauU3FBGBTC
+         s4+sA3RU2gFy95Wya3Vv2ursnNtsIrzcikwEsueNCi3LpDjNZtB/o7a0CR2yNMqQQYC6
+         lXWL+HQKPU8W79k0XI6B6oPUm4Bs7cUJBODG4xMSpJjlWIaTg07tLdd49wzjdi9GFeLN
+         9New==
+X-Forwarded-Encrypted: i=1; AJvYcCU2bnjNmnRUKKZtZT5Kwp3ZXSUOuKaBh7t33ZAaXtgVI8jI5R23UoMrTQa5ZSEeaelGk23jQEFNrYl3IxA7@vger.kernel.org, AJvYcCV71skKavwBkRNUNvGONoAZz5TOxfPJ75VC4yCGuzuf438lDefflL5/Aio9PDtbkxsLeUcFl43BCuuf+M8=@vger.kernel.org, AJvYcCVnD52etRDOQ5Tkl+ghw+PX8Tb4oY9jBtLUQhfNhT0/jqG+j4Q9OyBNNTWD8MWD4I02CKhKm7USBGHu@vger.kernel.org, AJvYcCXF+IFYdyFIkSC8rr4vcVEO6ipSGvHwPa0LzoWT8NkLSS6dCgDnubXnrjri+kEKXmXppbWoMSLWvZMtSQ==@vger.kernel.org
+X-Gm-Message-State: AOJu0YyKGh8fjC8ME0gdsKEfQGQ5UkzKXXelMfgcX4l2kMLirnyy+A00
+	V8R/vE2nyZ1rPOysQvMAHx8IxcXBIEGDdwlaxAECWZ89fOJ5s6fC
+X-Gm-Gg: ASbGnctgABe2oEYyttMKMdDfyivdG3e9e6aWSi7YLoi8R/T4A11n2mRJaaAY5sNQ4WF
+	h6OUCIaB4hnnN18bHPBEVKHF8qEQTa/j6pLrgf/QjMa93PFXYX4BAYPbNVYUc/Nw5vmJS0gqa+v
+	ZTLZoolX8vbYJiSGXBkA41GoB7pUECwXD0jXKltV4ExgYA1vcFlyz48cvsx7rOLchZipTvqVrk0
+	v+LXu3VaGkoCrGmv0YgE+AEb2wKATMnBTtefoU+B0D5D95AORvJ7eOmCU6vLrQ=
+X-Google-Smtp-Source: AGHT+IFTs9nQsYKTa8mf+UgRlTGVkJvOJrefe9/gekWw/ONQ/23aZWmDIeD6FYulsuhRtZb/LhW6/w==
+X-Received: by 2002:a05:6000:1a8f:b0:385:e3c2:a47d with SMTP id ffacd0b85a97d-385e3c2a4ebmr10128976f8f.23.1733164478708;
+        Mon, 02 Dec 2024 10:34:38 -0800 (PST)
+Received: from [192.168.0.131] ([194.183.54.57])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d0c93e5d37sm3203030a12.35.2024.12.02.10.34.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Dec 2024 10:34:37 -0800 (PST)
+Message-ID: <dd08d546-b4a0-c3e0-685d-6b742bf73fb2@gmail.com>
+Date: Mon, 2 Dec 2024 19:34:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v9 4/9] dt-bindings: mfd: add maxim,max77705
+Content-Language: en-US
+To: Dzmitry Sankouski <dsankouski@gmail.com>,
+ Sebastian Reichel <sre@kernel.org>, Chanwoo Choi <cw00.choi@samsung.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+ Hans de Goede <hdegoede@redhat.com>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
+ Purism Kernel Team <kernel@puri.sm>
+Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+ linux-leds@vger.kernel.org
+References: <20241202-starqltechn_integration_upstream-v9-0-a1adc3bae2b8@gmail.com>
+ <20241202-starqltechn_integration_upstream-v9-4-a1adc3bae2b8@gmail.com>
+From: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+In-Reply-To: <20241202-starqltechn_integration_upstream-v9-4-a1adc3bae2b8@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Instead of using magic number 2 as a denominator, make it intuitive by
-using sizeof().
+Hi Dzmitry,
 
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
----
- drivers/iio/pressure/bmp280.h | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+On 12/2/24 10:47, Dzmitry Sankouski wrote:
+> Add maxim,max77705 binding.
+> 
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+> ---
+> Changes in v9:
+> - replace max77705 fuel gauge with max17042
+> - remove monitored battery because not supported by max17042
+> 
+> Changes in v8:
+> - fix leds compatible
+> 
+> Changes in v6:
+> - unevaluatedProperties must be false
+> - drop excessive sentence from description,
+>    just describe the device
+> - change leds compatible to maxim,max77705-rgb
+> 
+> Changes in v5:
+> - formatting changes
+> - add unevaluatedProperties: false for nodes referencing
+>    common schemas
+> - remove additionalProperties on nodes with
+>    unevaluatedProperties: false
+> - add min and max to led index
+> Changes in v4:
+> - change dts example intendation from tabs
+>   to spaces
+> - remove interrupt-names property
+> - remove obvious reg description
+> - split long(>80) lines
+> ---
+>   Documentation/devicetree/bindings/mfd/maxim,max77705.yaml | 155 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+>   MAINTAINERS                                               |   1 +
+>   2 files changed, 156 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/maxim,max77705.yaml b/Documentation/devicetree/bindings/mfd/maxim,max77705.yaml
+> new file mode 100644
+> index 000000000000..fbc264cfc609
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/maxim,max77705.yaml
+> @@ -0,0 +1,155 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/maxim,max77705.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Maxim MAX77705 Companion Power Management IC and USB Type-C interface IC
+> +
+> +maintainers:
+> +  - Dzmitry Sankouski <dsankouski@gmail.com>
+> +
+> +description: |
+> +  The Maxim MAX77705 is a Companion Power Management and Type-C
+> +  interface IC which includes charger, fuelgauge, LED, haptic motor driver and
+> +  Type-C management IC.
+> +
+> +properties:
+> +  compatible:
+> +    const: maxim,max77705
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  charger:
+> +    $ref: /schemas/power/supply/power-supply.yaml
+> +    unevaluatedProperties: false
+> +    properties:
+> +      compatible:
+> +        const: maxim,max77705-charger
+> +
+> +    required:
+> +      - compatible
+> +      - monitored-battery
+> +
+> +  fuel-gauge:
+> +    $ref: /schemas/power/supply/maxim,max17042.yaml#
+> +
+> +  haptic:
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      compatible:
+> +        const: maxim,max77705-haptic
+> +
+> +      haptic-supply: true
+> +
+> +      pwms:
+> +        maxItems: 1
+> +
+> +    required:
+> +      - compatible
+> +      - haptic-supply
+> +      - pwms
+> +
+> +  leds:
+> +    type: object
+> +    additionalProperties: false
+> +    description:
+> +      Up to 4 LEDs supported. One LED is represented by one child node.
+> +
+> +    properties:
+> +      compatible:
+> +        const: maxim,max77705-rgb
+> +
+> +      "#address-cells":
+> +        const: 1
+> +
+> +      "#size-cells":
+> +        const: 0
+> +
+> +    patternProperties:
+> +      "^led@[0-3]$":
+> +        $ref: /schemas/leds/common.yaml#
+> +        type: object
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          reg:
+> +            description: LED index.
+> +            minimum: 0
+> +            maximum: 3
+> +
+> +        required:
+> +          - reg
+> +
+> +    required:
+> +      - compatible
+> +      - "#address-cells"
+> +      - "#size-cells"
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/leds/common.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        pmic@66 {
+> +            compatible = "maxim,max77705";
+> +            reg = <0x66>;
+> +            interrupt-parent = <&pm8998_gpios>;
+> +            interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
+> +            pinctrl-0 = <&chg_int_default>;
+> +            pinctrl-names = "default";
+> +
+> +            leds {
+> +                compatible = "maxim,max77705-rgb";
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                led@1 {
+> +                    reg = <1>;
+> +                    label = "red:usr1";
 
-diff --git a/drivers/iio/pressure/bmp280.h b/drivers/iio/pressure/bmp280.h
-index 2df1175b6b85..a3631bc0e188 100644
---- a/drivers/iio/pressure/bmp280.h
-+++ b/drivers/iio/pressure/bmp280.h
-@@ -470,8 +470,8 @@ struct bmp280_data {
- 		/* Sensor data buffer */
- 		u8 buf[BME280_BURST_READ_BYTES];
- 		/* Calibration data buffers */
--		__le16 bmp280_cal_buf[BMP280_CONTIGUOUS_CALIB_REGS / 2];
--		__be16 bmp180_cal_buf[BMP180_REG_CALIB_COUNT / 2];
-+		__le16 bmp280_cal_buf[BMP280_CONTIGUOUS_CALIB_REGS / sizeof(__le16)];
-+		__be16 bmp180_cal_buf[BMP180_REG_CALIB_COUNT / sizeof(__be16)];
- 		u8 bme280_humid_cal_buf[BME280_CONTIGUOUS_CALIB_REGS];
- 		u8 bmp380_cal_buf[BMP380_CALIB_REG_COUNT];
- 		/* Miscellaneous, endianness-aware data buffers */
+In the driver you're using devm_led_classdev_register_ext(), but in DT
+example you're proposing to use legacy 'label' property, instead of
+'color' and 'function' devm_led_classdev_register_ext() is able to
+parse. Either use devm_led_classdev_register() (discouraged), or modify
+this example to use modern LED DT properties.
+
+> +                };
+> +
+> +                led@2 {
+> +                    reg = <2>;
+> +                    label = "green:usr2";
+> +                };
+> +
+> +                led@3 {
+> +                    reg = <3>;
+> +                    label = "blue:usr3";
+> +                };
+> +            };
+> +
+> +            max77705_charger: charger {
+> +                compatible = "maxim,max77705-charger";
+> +                monitored-battery = <&battery>;
+> +            };
+> +
+> +            fuel-gauge {
+> +                compatible = "maxim,max77705-battery";
+> +                power-supplies = <&max77705_charger>;
+> +                maxim,rsns-microohm = <5000>;
+> +            };
+> +
+> +            haptic {
+> +                compatible = "maxim,max77705-haptic";
+> +                haptic-supply = <&vib_regulator>;
+> +                pwms = <&vib_pwm 0 50000>;
+> +            };
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 1240e75ecf4b..c3f66093edd1 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -14185,6 +14185,7 @@ B:	mailto:linux-samsung-soc@vger.kernel.org
+>   F:	Documentation/devicetree/bindings/*/maxim,max14577.yaml
+>   F:	Documentation/devicetree/bindings/*/maxim,max77686.yaml
+>   F:	Documentation/devicetree/bindings/*/maxim,max77693.yaml
+> +F:	Documentation/devicetree/bindings/*/maxim,max77705*.yaml
+>   F:	Documentation/devicetree/bindings/*/maxim,max77843.yaml
+>   F:	Documentation/devicetree/bindings/clock/maxim,max77686.txt
+>   F:	drivers/*/*max77843.c
+> 
+
 -- 
-2.43.0
-
+Best regards,
+Jacek Anaszewski
 
