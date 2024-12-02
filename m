@@ -1,73 +1,72 @@
-Return-Path: <devicetree+bounces-126200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126204-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63D849E0AC3
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 19:15:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD0A89E0B4E
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 19:50:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 19198B2C89A
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 16:15:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 50BB5BA298B
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 16:22:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4348188583;
-	Mon,  2 Dec 2024 16:15:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29AAD1A7270;
+	Mon,  2 Dec 2024 16:22:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mentallysanemainliners.org header.i=@mentallysanemainliners.org header.b="E/bVuty0"
+	dkim=pass (2048-bit key) header.d=mentallysanemainliners.org header.i=@mentallysanemainliners.org header.b="mvbEfbbS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from out-03.smtp.spacemail.com (out-03.smtp.spacemail.com [63.250.43.88])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D01C317FAC2;
-	Mon,  2 Dec 2024 16:15:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80A4B1A3AA9;
+	Mon,  2 Dec 2024 16:22:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=63.250.43.88
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733156102; cv=none; b=I9WllrxTxaBn5m+oZzTCb4Zs+UY0sIkeriUkI1iXMY/fNmCSdb5+FfkcaROBaMy9w4pDPx+NhZFy3+PJp8v/YxkN8WfkN3CY+VslOgBG2ChRxJbALbnPIEkEgI5l+/h6XOA5Yy2mr5qwvFOlQUVjhPnCg08Qz1ZzJPxC0m8i1yY=
+	t=1733156558; cv=none; b=Bnaxp92NgkarHXmbg+e7W58VahQHtOURvKhCppOuX8zg7B4II5GLd9qwz5jT3IZuzZzv9KpC8FGerRv+9WEhqbCXU+yB8y8D8DH83Y/geASeMffljRTS8THHp3aMhXv0j3mcxyqomR7F2MnOF3CeXcKqQAmMI3HO7KAnp916TLQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733156102; c=relaxed/simple;
-	bh=rf3tmdsNPhNTXCWTXYttONTJQUg5LXdbItehquCHLoI=;
+	s=arc-20240116; t=1733156558; c=relaxed/simple;
+	bh=wmnPzi5qSZXoOHQdV8XxTwA45ynaj0iN/09u5qaTPy4=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=umI/kT1MubDq/+zTwGgPvTaSR29PbXlVk55oHOgjIjIdeJF+7kFWdQhelwZxUzX+/XU7Ciy3esSibuMTtkNUbzF2GZEByrGemK/kTuNtczacylqweUu4OuEa1qLn+UQEsmdkBgDs54Nn7rUmYMDggftPEpIQQQ1yTRTuep/ZvaM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=mentallysanemainliners.org header.i=@mentallysanemainliners.org header.b=E/bVuty0; arc=none smtp.client-ip=63.250.43.88
+	 MIME-Version; b=cCHYI+Zuyfd1SYfXJN/2Z/CuYzIcepM6iu+mDP5mSSknOYc087Xamn5PLV0Bw1CMfqE+1lza2xKtQuRkUCHy6YFcMXSOjacfS59rDs7Uydj4Wx720eqweHJi1tumxUb9f+9DPKvx0cFSDxjOiTCGIBe+eJgGBUBli/uvEqCzf+c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=mentallysanemainliners.org header.i=@mentallysanemainliners.org header.b=mvbEfbbS; arc=none smtp.client-ip=63.250.43.88
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
 Received: from prod-lbout-phx.jellyfish.systems (unknown [198.177.122.3])
-	by smtp.spacemail.com (Postfix) with ESMTPA id 4Y27tj4c7CzGp3g;
-	Mon, 02 Dec 2024 16:06:05 +0000 (UTC)
+	by smtp.spacemail.com (Postfix) with ESMTPA id 4Y28Fj54PKzGpHL;
+	Mon, 02 Dec 2024 16:22:33 +0000 (UTC)
 Received: from umer-b550pro4.lan (host-213-78-252-153.as13285.net [213.78.252.153])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mail.spacemail.com (Postfix) with ESMTPSA id 4Y27tY2H9zz6tkK;
-	Mon,  2 Dec 2024 16:05:57 +0000 (UTC)
+	by mail.spacemail.com (Postfix) with ESMTPSA id 4Y28FY6vqyz6tkR;
+	Mon,  2 Dec 2024 16:22:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-	d=mentallysanemainliners.org; s=spacemail; t=1733155560;
-	bh=rf3tmdsNPhNTXCWTXYttONTJQUg5LXdbItehquCHLoI=;
+	d=mentallysanemainliners.org; s=spacemail; t=1733156548;
+	bh=wmnPzi5qSZXoOHQdV8XxTwA45ynaj0iN/09u5qaTPy4=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=E/bVuty0ksgZbd+R3sKLadsOLuXj9zd02pmVZghBvEktX0XXII9fLQCOgKbmBFXB+
-	 RdhUl2Vx2ickBwg0E9GZhEWO9hnhuhyRXGH+eSQ4io+fzWLeiot1rgzclGOSjcuXjJ
-	 tGgemc2GLr/p2Cv6aSK9KGzuG3NLXbXhd383dHiaekyLYAcAYhS0wJ5qELxyEEBJYt
-	 MH0KrR8AIOgxKROvRGNuGJ5jwd4rSq1jsGQ1REqKky4dQmsWxsf+qP1Sblz9M65UVS
-	 /mmV+nJ9kPmqff15FFflHeiYQ1Bm01cuwZsXc3bAOMDqzLAM1xYEEbbrmzrnq+02yP
-	 lIBNr9yS8+cgg==
+	b=mvbEfbbSWVGxWuUD1gmzcIl04n9KYr/8PUw/umRTwSY7mBRgTIFbey8buj7wMZ3DL
+	 0J0S0xqwMoMtNPvt++SbOpy12FR2gaFju9N5J2WQ2lG3OcboIzuNp4dWUbZQSILluL
+	 nM4SJ04XUC3sdilhLQbCvL4sNAX1/F/x1WppceGVHtDu4vTLbledcEbGwa8i5ksF1Z
+	 6S1deCt/T6X7bpR06UcT/O2mgsOfUO//bd74ulUimyL/RR2S8RjELhkRa6CmphLdIY
+	 TQYWJm3Z+NahME6SBPRcGpyo2T345NZ7XQeDI86ig7A66k2pf7zrqE3u4hjsmc5HHe
+	 /AX5aNsUA0Pxw==
 From: Umer Uddin <umer.uddin@mentallysanemainliners.org>
-To: ivo.ivanov.ivanov1@gmail.com
-Cc: alim.akhtar@samsung.com,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	igor.belwon@mentallysanemainliners.org,
-	krzk@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org,
 	linux-samsung-soc@vger.kernel.org,
-	robh@kernel.org,
-	umer.uddin@mentallysanemainliners.org
-Subject: Re: Re: [PATCH v3 3/4] arm64: dts: exynos: Add initial support for Samsung Galaxy S20 5G (x1s)
-Date: Mon,  2 Dec 2024 16:05:48 +0000
-Message-ID: <20241202160548.3672-1-umer.uddin@mentallysanemainliners.org>
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	igor.belwon@mentallysanemainliners.org
+Subject: [PATCH v3 3/4] arm64: dts: exynos: Add initial support for Samsung Galaxy S20 5G (x1s)
+Date: Mon,  2 Dec 2024 16:21:57 +0000
+Message-ID: <20241202162158.5208-4-umer.uddin@mentallysanemainliners.org>
 X-Mailer: git-send-email 2.47.1
-In-Reply-To: <9f48459e-f381-446a-86bf-c8d1bb8858bc@gmail.com>
-References: <9f48459e-f381-446a-86bf-c8d1bb8858bc@gmail.com>
+In-Reply-To: <20241202162158.5208-1-umer.uddin@mentallysanemainliners.org>
+References: <20241202162158.5208-1-umer.uddin@mentallysanemainliners.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,33 +75,69 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-On 14/11/2024 10:09, Ivaylo Ivanov wrote:
+Add initial support for the Samsung Galaxy S20 5G (x1s/SM-G981B)
+phone. It was launched in 2020, and it's based on the Exynos 990 SoC. It
+has only one configuration with 12GB of RAM and 128GB of UFS 3.0 storage.
 
->> +
->> +/ {
->> +	#address-cells = <2>;
->> +	#size-cells = <2>;
->> +
->> +	model = "Samsung Galaxy S20 5G";
->> +	compatible = "samsung,x1s", "samsung,exynos990";
->> +
->> +	memory@80000000 {
->> +		device_type = "memory";
->> +		reg = <0x0 0x80000000 0x0 0x3ab00000>,
->> +		      /* Memory hole */
->> +		      <0x0 0xc1200000 0x0 0x1ee00000>,
->> +		      /* Memory hole */
->> +		      <0x0 0xe1900000 0x0 0x1e700000>,
->> +		      /* Memory hole */
-> 
-> The space from 0x100000000 to 0x880000000 isn't a hole in the memory
-> though, is it? 0x880000000 is in the 64 bit address space.
-> 
-> Best regards, Ivo.
+This device tree adds support for the following:
 
-Hi Ivo, This device tree was based on the work done on c1s and
-Igor had also labelled the part as a memory hole, also same with
-the r8s device tree done by Denzeel, also downstream fdt skips out
-on this region abruptly hence why I had also labelled it a memory
-hole.
+- SimpleFB
+- 12GB RAM
+- Buttons
+
+Signed-off-by: Umer Uddin <umer.uddin@mentallysanemainliners.org>
+---
+ arch/arm64/boot/dts/exynos/Makefile          |  1 +
+ arch/arm64/boot/dts/exynos/exynos990-x1s.dts | 28 ++++++++++++++++++++
+ 2 files changed, 29 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/exynos/exynos990-x1s.dts
+
+diff --git a/arch/arm64/boot/dts/exynos/Makefile b/arch/arm64/boot/dts/exynos/Makefile
+index 7a934499b..deb8dc509 100644
+--- a/arch/arm64/boot/dts/exynos/Makefile
++++ b/arch/arm64/boot/dts/exynos/Makefile
+@@ -9,5 +9,6 @@ dtb-$(CONFIG_ARCH_EXYNOS) += \
+ 	exynos850-e850-96.dtb		\
+ 	exynos8895-dreamlte.dtb		\
+ 	exynos990-c1s.dtb		\
++	exynos990-x1s.dtb		\
+ 	exynosautov9-sadk.dtb		\
+ 	exynosautov920-sadk.dtb
+diff --git a/arch/arm64/boot/dts/exynos/exynos990-x1s.dts b/arch/arm64/boot/dts/exynos/exynos990-x1s.dts
+new file mode 100644
+index 000000000..162961446
+--- /dev/null
++++ b/arch/arm64/boot/dts/exynos/exynos990-x1s.dts
+@@ -0,0 +1,28 @@
++// SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause
++/*
++ * Samsung Galaxy S20 5G (x1s/SM-G981B) device tree source
++ *
++ * Copyright (c) 2024, Umer Uddin <umer.uddin@mentallysanemainliners.org>
++ */
++
++/dts-v1/;
++#include "exynos990-hubble-common.dtsi"
++
++/ {
++	#address-cells = <2>;
++	#size-cells = <2>;
++
++	model = "Samsung Galaxy S20 5G";
++	compatible = "samsung,x1s", "samsung,exynos990";
++
++	memory@80000000 {
++		device_type = "memory";
++		reg = <0x0 0x80000000 0x0 0x3ab00000>,
++		      /* Memory hole */
++		      <0x0 0xc1200000 0x0 0x1ee00000>,
++		      /* Memory hole */
++		      <0x0 0xe1900000 0x0 0x1e700000>,
++		      /* Memory hole */
++		      <0x8 0x80000000 0x2 0x7e800000>;
++	};
++};
+-- 
+2.47.1
+
 
