@@ -1,133 +1,118 @@
-Return-Path: <devicetree+bounces-126245-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0ACF9E0B0F
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 19:33:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA97D9E0BD0
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 20:15:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9590B28149A
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 18:33:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EE00CB87625
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 16:16:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8927B1DDC02;
-	Mon,  2 Dec 2024 18:33:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF31117A5A4;
+	Mon,  2 Dec 2024 16:16:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="IIAJLXtj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kLhb4XZr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A00E970805;
-	Mon,  2 Dec 2024 18:33:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B37FC13B797;
+	Mon,  2 Dec 2024 16:16:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733164403; cv=none; b=EfEhG8nxIWqu46lkax37qDRMu1VerAPufbgqB1tHovLtRT6FVNqhfW8FovV14GJHVdFEEKMwfxCZ8PTbgR8e1oqnk99OCAEwmCADPCdmF4qMRZMKkqcF5bw//KyYVt8Oj1jybJMLrmEiHyih2bgJKTsUyvE6ndd25gH2B5dxi6s=
+	t=1733156212; cv=none; b=Kap1nYpNS2gXSkSb/6KHRUtAYe8A0n+JFW3cHGS8PpLAojDYlJfr4jTzZaNsUMn83KrvbnbU0xP/3aI9AlXyetjp8djGpss7Dk+jTLkwhHvu7RThdL9OypiSKrmXUI1dzJE0nDDgo8+Ykn5Jb6kBOuZ7VJf2Tw1D0nCCyO3Q3lQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733164403; c=relaxed/simple;
-	bh=h1qlyqId4BOF+Lfoq4Fb9qENDipG8uPrVlfugJ5VUiA=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=OexF0cKd3jN1KKGBfFACFgHv7LD6NWIGMGrfNipMVJIRBTGT88zNhe4knGN2dlLz1rYcqm9H7+oAw0c0BRwiFeQcODDMNeyWC3K1XJQjakRyta7RpWCLsXIJRx9ghVy5mm2eszij59t3vRBTF8k+/cuBuA48b5iqEzny5aEZDRo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=IIAJLXtj; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1733156212; c=relaxed/simple;
+	bh=DWFL09z1J64BfAXn8YMn9UGDThioP/LSRTugwMav8u4=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=uaiiMHGXREB9BinavV9q1mAzDzDrRTJGcFn8Hy70I7/o6W5FojtxLevJTbamfmhllRadJB0yIqbreTWa8WtQ8H9H0PxIJnaW86zNiHBPKQKYzBMs1Jz7X/Hz0ifBuUIA20K3JHgTlstBTmKGHI4B/c2lnNcT35rC822DOEVoRxo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kLhb4XZr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10764C4CED1;
+	Mon,  2 Dec 2024 16:16:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733156212;
+	bh=DWFL09z1J64BfAXn8YMn9UGDThioP/LSRTugwMav8u4=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=kLhb4XZrjUxlPTywimQb+87Ep9XgUAE0Z1Tf4DEVrvQSAw8h6++heu3sCe5o6AuJS
+	 absKvHrsSrhHdH3f7/JPheaMEx0PFtdGHkDzgHVJCV9u/eoPFh3g5Q3shdUFON68J9
+	 p4okSY4oT1iBsAQN1ZhcoV6l/XjmhLwlr1nmnkJMq43722MzUWVvFHbPto7xGZoBz1
+	 pp6TYJiZMg9lTZsKVcsu1LSxlFUCnvnx/8jNc3/Ugz8iab5ObNmfzVkAmTXasUvN3+
+	 NknDj4tPA/fpobA1w68yAUnM/vVaN9U7LwVQO3iLPxc3bBRvB+qWHr96t8PCM1ZOxv
+	 Y+yxFsf8M/jiA==
+Date: Mon, 02 Dec 2024 10:16:50 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1733164399;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=qHPvkOem4VaVW0AE4Dt/YoeQQMrZt/gFJPXE7rL/cFE=;
-	b=IIAJLXtj9bchvOfkoZlqx6PZMyEfYABMekDNw/5duAKp9mvYOnVJH/MoZI9he/IIjRZaxF
-	Si6D9du4z0mlAw777O1JDmlf/Jdmzga2wqATb0H8TFpdLn1xp1yukDdro1NTpGJEA6rvdc
-	boFP9qJnfgD/ARjBWzZm6D6cRZEIunL2gX9CgrJXSPFiGgZdhXOQvwezmm0vtPQcnK9vdl
-	6sMSLzqQ/SU6s59QuMmLZhwQlI/7nTbFv0809vdQM7OmYSZ7PXXcrPGZfrX9aFiWP3UKZa
-	w57EuTxZsmAUeW5r/L1WfZLnEo5yDvUp3pwbPPaZAeyGKcDRVoqdJbB8nu/bnA==
-Date: Mon, 02 Dec 2024 19:33:18 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Diederik de Haas <didi.debian@cknow.org>
-Cc: linux-rockchip@lists.infradead.org, heiko@sntech.de,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, marcin.juszkiewicz@linaro.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Describe why is HWRNG disabled in
- RK356x base dtsi
-In-Reply-To: <D61DMK8O9JCR.1C62A5UGI51BT@cknow.org>
-References: <6b272e2f8f916c04b05db50df621659a5a7f29ab.1733149874.git.dsimic@manjaro.org>
- <D61DMK8O9JCR.1C62A5UGI51BT@cknow.org>
-Message-ID: <a6eaa2ca428abe2bedf10cc8c213513b@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Viresh Kumar <viresh.kumar@linaro.org>, 
+ upstream@airoha.com, linux-pm@vger.kernel.org, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, devicetree@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+In-Reply-To: <20241202151228.32609-1-ansuelsmth@gmail.com>
+References: <20241202151228.32609-1-ansuelsmth@gmail.com>
+Message-Id: <173315621067.2847395.10872023371219236097.robh@kernel.org>
+Subject: Re: [PATCH v4 1/2] dt-bindings: cpufreq: Document support for
+ Airoha EN7581 CPUFreq
 
-Hello Diederik,
 
-On 2024-12-02 18:05, Diederik de Haas wrote:
-> I'd have swapped 'is' and 'HWRNG' in the subject, but otherwise ...
-
-Ah, I'd actually write it as "Describe why the HWRNG is disabled
-in the RK356x base SoC dtsi", but that's way too long for a patch
-summary, so I went with something shorter that also makes it sound
-more like a question than a statement. :)
-
-> On Mon Dec 2, 2024 at 3:44 PM CET, Dragan Simic wrote:
->> Despite the presence of the hardware random number generator (HWRNG) 
->> in the
->> different Rockchip RK356x SoC variants, it remains disabled for the 
->> RK3566
->> SoC because testing showed [1] that it produces unacceptably low 
->> quality of
->> random data, for some yet unknown reason.  The HWRNG is enabled for 
->> the RK3568
->> SoC, on which the testing showed good quality of the generated random 
->> data.
->> 
->> To avoid possible confusion in the future, [2] let's have this 
->> described
->> briefly in the RK356x base SoC dtsi.
->> 
->> [1] 
->> https://lore.kernel.org/linux-rockchip/cover.1720969799.git.daniel@makrotopia.org/T/#u
->> [2] 
->> https://lore.kernel.org/linux-rockchip/20241201234613.52322-1-pbrobinson@gmail.com/T/#u
->> 
->> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
->> ---
->>  arch/arm64/boot/dts/rockchip/rk356x-base.dtsi | 5 +++++
->>  1 file changed, 5 insertions(+)
->> 
->> diff --git a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi 
->> b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
->> index 62be06f3b863..ab8f42c0a843 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
->> +++ b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
->> @@ -1032,6 +1032,11 @@ sdhci: mmc@fe310000 {
->>  		status = "disabled";
->>  	};
->> 
->> +	/*
->> +	 * Testing showed that the HWRNG found in RK3566 produces 
->> unacceptably
->> +	 * low quality of random data, so the HWRNG isn't enabled for all 
->> RK356x
->> +	 * SoC variants despite its presence.
->> +	 */
->>  	rng: rng@fe388000 {
->>  		compatible = "rockchip,rk3568-rng";
->>  		reg = <0x0 0xfe388000 0x0 0x4000>;
+On Mon, 02 Dec 2024 16:12:03 +0100, Christian Marangi wrote:
+> Document required property for Airoha EN7581 CPUFreq .
 > 
-> Reviewed-by: Diederik de Haas <didi.debian@cknow.org>
+> On newer Airoha SoC, CPU Frequency is scaled indirectly with SMCCC commands
+> to ATF and no clocks are exposed to the OS.
 > 
-> Thanks for this :-)
+> The SoC have performance state described by ID for each OPP, for this a
+> Power Domain is used that sets the performance state ID according to the
+> required OPPs defined in the CPU OPP tables.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+> Changes v4:
+> - Add this patch
+> 
+>  .../cpufreq/airoha,en7581-cpufreq.yaml        | 259 ++++++++++++++++++
+>  1 file changed, 259 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.yaml
+> 
 
-Thanks. :)
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.example.dtb: /: 'compatible' is a required property
+	from schema $id: http://devicetree.org/schemas/root-node.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.example.dtb: /: 'model' is a required property
+	from schema $id: http://devicetree.org/schemas/root-node.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.example.dtb: opp-table-cpu-smcc: $nodename:0: 'opp-table-cpu-smcc' does not match '^opp-table(-[a-z0-9]+)?$'
+	from schema $id: http://devicetree.org/schemas/opp/opp-v2.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.example.dtb: opp-table-cpu-smcc: Unevaluated properties are not allowed ('opp0', 'opp1', 'opp10', 'opp11', 'opp12', 'opp13', 'opp14', 'opp2', 'opp3', 'opp4', 'opp5', 'opp6', 'opp7', 'opp8', 'opp9' were unexpected)
+	from schema $id: http://devicetree.org/schemas/opp/opp-v2.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241202151228.32609-1-ansuelsmth@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
