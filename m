@@ -1,48 +1,79 @@
-Return-Path: <devicetree+bounces-126027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BE389DFFA7
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 12:05:07 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DA939DFFAE
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 12:06:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0A320B22FAD
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 11:04:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 25051B260C5
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 11:05:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 202041FBCAF;
-	Mon,  2 Dec 2024 11:04:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8F9B1FC7E8;
+	Mon,  2 Dec 2024 11:05:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bQRUFp0d"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OxVQmLsE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDE751F9EA4;
-	Mon,  2 Dec 2024 11:04:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3C171FBC9E;
+	Mon,  2 Dec 2024 11:05:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733137467; cv=none; b=SkwfkzROJWtZuVUYQRW0+sPXwnQe5SRww4fnuUdSuQuc8lXsJmjHvka5yow50oMcqw3QslJjJ1HhYZVjXzRFIn0v+OgVjH0qXXabrSaym95yimkLrRNQWTHqD2BeAYCsZwORyFzUpqzoNbafQsDynYuBbzqK7II1srhTcSBxGFo=
+	t=1733137531; cv=none; b=bYzs5qO/cE1j9eRK5m6YJ1wn4UnRcrSUomwj0Sa4gh5+3hMhX60FiDlavGfnQSFPuumzbTjmGJQZCi+XwQVT04FLxnR8TwzDInE2w9Vhwu1P7Y/KsdDjwfWhNRmIyDVIZYJhdzWIXconuADMpBUxRCLMbg4VE9aIgXJ30gxnjLk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733137467; c=relaxed/simple;
-	bh=K+6tmtYJZ7Kg4i/cQ0Vn10V8zjtm4KpfKvX1Vv0EL4o=;
+	s=arc-20240116; t=1733137531; c=relaxed/simple;
+	bh=1sYak3cuRCq5GY57CnsyhYDpYhlm2E5QeWuWN5eGYys=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gkMK6HroxG4Io6ChCBTl75B6uWVsNJvG2Tc/g+HH86qVKccMafwJMBvLDSKsC5g84IQl/bPL0ye+vFhaDhAdo99UkZn7otBWAcAYvr8Th7k5LFeC/o9ZbVP52opCzUOR/7W57lovJaGD03XFEU62tHjeBOc4g9qc2prDLOvk+oc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bQRUFp0d; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01034C4CED1;
-	Mon,  2 Dec 2024 11:04:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733137466;
-	bh=K+6tmtYJZ7Kg4i/cQ0Vn10V8zjtm4KpfKvX1Vv0EL4o=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=bQRUFp0dMZI38BtGhZK5sEiz+Xpf7PygpwaT9eU6oxRUfMBqijv6lSVfMMl/scKBq
-	 lu4ktokDgCEC8ozstz1JvZY68qHbuSlKXNJocD6vUkIo+u02qJnJcUw8pyGYxLB8na
-	 sNb3TdRyvcVZjFJ1v3SNgQowD1sRqmPWTXmtTDmLWhwccunC86ONkfSSjJ+8ROMrGh
-	 PC0RtLjZRyX5+oUraB3e5ph431mLHXCNi5BAVLi+/pVxVaMRqBrzsA/+gGl5nonBfO
-	 SPL3FGxmIefMKdtx4UjBxE8+UPMMZDDy5O6hCHVSCcLkKhV0BBGNiu+T+lTFbitO8N
-	 5M0fX1BAiHhjg==
-Message-ID: <904ae8ea-d970-4b4b-a30a-cd1b65296a9b@kernel.org>
-Date: Mon, 2 Dec 2024 12:04:17 +0100
+	 In-Reply-To:Content-Type; b=ZMcQx2+R+3vXRAsXPkO+OukgTUt6zXapKipUGqCemjBChERPV3f/X3qWgq6O3XgAtaJJU9/Dg+sotNl3EmDShqLEXpnd0efjiMsAEXfbot4d6jK1+4kaMBU3hi9bSV+L1jBAi4SVXMOytBzEwG2StvSoY6cUAsg376O67xqnJoA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OxVQmLsE; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-53de852a287so4607534e87.2;
+        Mon, 02 Dec 2024 03:05:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733137528; x=1733742328; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Uu0zS28pDaBagRkiedQBFXcTK0YW989CQebdf4iD8HE=;
+        b=OxVQmLsEGBWsg1YtMXcnmYRsxdoL1hGZnu49HQWP5wPasjKoQzbFu5VJ3KEGhuxZuX
+         kWMgvQINilaTknsDnJmLWj7O7kj01w8oT5GzbRxNvnp5PpmUMJEwnIuXiT6RiNVr5LAY
+         bFSkILipYCal/cafzBnm/y51002rnvGeoS1LANAjbjLKuxSIL4foWbk0b281gCtovUms
+         w4D2Q043n94q0diCmspmIT7yUGEK9c5NtvgSJk4DEy0Z0hSkAufF7Cz0ZHNgYDcMgOP/
+         sEB7POqTPIMVr34v7/Qhto7qEQAVHgSA1ea9jMQaDdZTDCeLWDxrBudr9znfuiGfuKoB
+         hNDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733137528; x=1733742328;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Uu0zS28pDaBagRkiedQBFXcTK0YW989CQebdf4iD8HE=;
+        b=RUuoP4k1CUUgDk7CUREYC+rKBNA9u+15tn1goSnYa3scdxZJ+ialCyXLj4pJ7Hk0JN
+         WrJEhZztuPqXOynM2vjVdWR+GHcgiY4T4abFSr5OvuMd22/xLKc+Z+aDTXMqij0atDjp
+         ktTlzcCAJhkbci5prcXVrrfJZbtomLtWwP55ADQpFSrTl+mdaJv1nXdbaj8+MaNc86d2
+         9CFdLHS94c1PNQL0l63Mg77Oo802nf6WOBw6dYkgtRJAkJjqruO/jXq4rzcWEPpKj9mY
+         S9kbXE4IJ39WpfBIQW8bdO9kEduX6dar4hrxV06ksyQNmvyn/YdqJsrlOUHvwChbcLCc
+         /hHg==
+X-Forwarded-Encrypted: i=1; AJvYcCU9Gr0N+XcPOca9TGuawNJF9juuQaR47chrSYb4GqctutooIRvz0C1jaYQeoiNiXXUanlqvRzl0PkQw@vger.kernel.org, AJvYcCXJCTLKMqGCXGHhIgTfMyeKOG8r8E+s6XGK3/uQQN9PDJi1u2QuhK6KdtCPB/ydhbMH9TnmxvScbYTY@vger.kernel.org, AJvYcCXUp0YjvQc0bYRrhIA+Yl3kJmVVxcGCBwAmZh+7y8G2cftSlDutLMfg5vHCqgNJAeMLfOaolNIcLTP4rS6Z@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyl1fnxAedkPKPOmUDSnMH83WX3Pz9R06efbN1FI6yZCSPeSxPu
+	Cy2i6lHSBECpjuMjtwwJcgHlVx5M3kG7PA1p3qUWylLYKIn+Pmxv
+X-Gm-Gg: ASbGncuTFWoUKRWw7fOwsSkJz5PcvEeapnLhj6IUteIM5FxOS5tKwPQpNymAp4r5vhr
+	GAY+T/RSNDFMwA7DPivRxtBjhuNaQWD4T+2K9LJk7iOWmTF27A9tgxAUkzvh8wivzkd4HDTeJqW
+	bk06ZXeRHybwehg1UK3dIueRypx0mrbemtfqp4TpISuQxWxYV1f0txMkSdadXnuRiClwNJiePJV
+	3C42qPz6TOFSuGp090qF5vDeVA9l5v3FNuqOn7ZHcH9VKhqnZ300FQj0AzkEk0oOnfRCv+aQ1dM
+	VjxkCOGAFRa1x2dulaXo7P4Zo/CPenI=
+X-Google-Smtp-Source: AGHT+IHJ/ldxxdVE8q6UHKkJydQA5phLfWvYSU924t20aswrS8s0hNVnWrCwGluXgOaN/mFoO+Kq4g==
+X-Received: by 2002:a05:6512:3e08:b0:53d:a5c8:aaa6 with SMTP id 2adb3069b0e04-53df00d2c5amr6461246e87.13.1733137527730;
+        Mon, 02 Dec 2024 03:05:27 -0800 (PST)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53df64a07d8sm1440953e87.275.2024.12.02.03.05.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Dec 2024 03:05:27 -0800 (PST)
+Message-ID: <108cb61d-df0c-4224-9e81-c642de81e147@gmail.com>
+Date: Mon, 2 Dec 2024 13:05:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,112 +81,45 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/4] dt-bindindgs: i2c: qcom,i2c-geni: Document shared
- flag
-To: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>,
- konrad.dybcio@linaro.org, andersson@kernel.org, andi.shyti@kernel.org,
- linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
- conor+dt@kernel.org, agross@kernel.org, devicetree@vger.kernel.org,
- vkoul@kernel.org, linux@treblig.org, dan.carpenter@linaro.org,
- Frank.Li@nxp.com, konradybcio@kernel.org, bryan.odonoghue@linaro.org,
- krzk+dt@kernel.org, robh@kernel.org
-Cc: quic_vdadhani@quicinc.com
-References: <20241129144357.2008465-1-quic_msavaliy@quicinc.com>
- <20241129144357.2008465-2-quic_msavaliy@quicinc.com>
- <db428697-a9dc-46e1-abbe-73341306403f@kernel.org>
- <a8b1ccd2-c37b-4a6f-b592-caf1a53be02c@quicinc.com>
- <fc33c4ed-32e5-46cc-87d6-921f2e58b4ff@kernel.org>
- <75f2cc08-e3ab-41fb-aa94-22963c4ffd82@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <75f2cc08-e3ab-41fb-aa94-22963c4ffd82@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH v3 2/7] iio: accel: kx022a: Support ICs with different
+ G-ranges
+To: Mehdi Djait <mehdi.djait@linux.intel.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <cover.1732783834.git.mazziesaccount@gmail.com>
+ <fc667b1495adf4e3f29ecbb336495c1f18b47e61.1732783834.git.mazziesaccount@gmail.com>
+ <4waoywlqb63yav6q3rdvqnwbihxccgl6p5y7f72yzdadnlzezz@g4fz63owgguj>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <4waoywlqb63yav6q3rdvqnwbihxccgl6p5y7f72yzdadnlzezz@g4fz63owgguj>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 02/12/2024 11:38, Mukesh Kumar Savaliya wrote:
->>
->> Come with one flag or enum, if needed, covering all your cases like this.
->>
-> Let me explain, this feature is one of the additional software case 
-> adding on base protocol support. if we dont have more than one usecase 
-> or repurposing this feature, why do we need to add enums ? I see one 
-> flag gpi_mode but it's internal to driver not exposed to user or expose 
-> any usecase/feature.
+On 02/12/2024 12:25, Mehdi Djait wrote:
+> Hi Matti,
 > 
-> Below was our earlier context, just wanted to add for clarity.
-> --
->  > Is sharing of IP blocks going to be also for other devices? If yes, then
->  > this should be one property for all Qualcomm devices. If not, then be
->  > sure that this is the case because I will bring it up if you come with
->  > one more solution for something else.
-
-
-You keep repeating the same. You won't receive any other answer.
-
->  >
-> IP blocks like SE can be shared. Here we are talking about I2C sharing.
-> In future it can be SPI sharing. But design wise it fits better to add
-> flag per SE node. Same we shall be adding for SPI too in future.
-
-
-How flag per SE node is relevant? I did not ask to move the property.
-
+> Sorry for the late answer. I know that this was already applied so maybe
+> you can post a really small follow-up patch ?
 > 
-> Please let me know your further suggestions.
-We do not talk about I2C or SPI here only. We talk about entire SoC.
-Since beginning. Find other patch proposals and align with rest of
-Qualcomm developers so that you come with only one definition for this
-feature/characteristic. Or do you want to say that I am free to NAK all
-further properties duplicating this one?
+>> diff --git a/drivers/iio/accel/kionix-kx022a.h b/drivers/iio/accel/kionix-kx022a.h
+>> index 7060438ad88c..36e9d9de8c13 100644
+>> --- a/drivers/iio/accel/kionix-kx022a.h
+>> +++ b/drivers/iio/accel/kionix-kx022a.h
+>> @@ -161,6 +161,8 @@ struct kx022a_data;
+>>   struct kx022a_chip_info {
+>>   	const char *name;
+>>   	const struct regmap_config *regmap_config;
+>> +	const int (*scale_table)[2];
+>> +	const int scale_table_size;
+> 
+> Could you please add kernel-doc for these two new elements like the others already
+> have ?
 
-Please confirm that you Qualcomm engineers understand the last statement
-and that every block will use se-shared, even if we speak about UFS for
-example.
+Thanks Mehdi. I think this makes sense :)
 
-Best regards,
-Krzysztof
+Yours,
+	-- Matti
 
