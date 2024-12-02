@@ -1,182 +1,122 @@
-Return-Path: <devicetree+bounces-126098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126099-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 704229E0674
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 16:11:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF3E19E070C
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 16:29:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1383EB2464E
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 13:39:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 72E4FB28251
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 13:40:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C16C1FF5F4;
-	Mon,  2 Dec 2024 13:39:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 344431FF61D;
+	Mon,  2 Dec 2024 13:40:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CtxJ3itz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="heF/Yf61"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 454DC487A7;
-	Mon,  2 Dec 2024 13:39:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2452487A7
+	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 13:39:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733146773; cv=none; b=LIiFMNy+jQlTi7uKO3CaftOWaqljBYvxSVOB1s7JC7UMtdvR/vJZcmvrVnEBEGeqsm7cw9mCUMGVsyigsRJaJcO97IZJsPdd3FrmE6M+8pPcHSzujTszGz1BqskDPRqlq0JCrJi0CptGLmDsWAXUwo0U5iYcw5oCHAyQrpRWRxo=
+	t=1733146800; cv=none; b=n8P4ifMpYzy44w10beUsPmetDA2Gy4/86+Q6no2jU7iteAU12cj/sKDNtxgIElQxQuFKXYlt3PNV7Ffa1tPvwDMM/zyZ37YCcwOWAgcGMUH+F0gce6DX7ZgTJ4C2/F88bCAbd14uz/0E8frv4G75URzem0H/2kbCqQenj/IAs/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733146773; c=relaxed/simple;
-	bh=h+f7LeboncX/Q/r47LxyF6ZIWkjsAtbSrvPVVgbYlJI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hp2yPNAHFPCSFMX2bPFwQ8MBPqKrRtiDqsdUwzpqZnhJpXBI6c4PTVtGKdPz4ypiFR94Hhe11S/ku9t1CKWQ0ijniVQ2HviObsKyvzNvvw+I5hxFFgsIj6iXZ9U5s3KpAhUo5TM7HXNjlYeHFCNsWTCjBa9TI4CfHA+OKYs/Tuc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CtxJ3itz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFC3DC4CED1;
-	Mon,  2 Dec 2024 13:39:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733146772;
-	bh=h+f7LeboncX/Q/r47LxyF6ZIWkjsAtbSrvPVVgbYlJI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CtxJ3itz1bhSJHOccSi3bR/Yz1ANI+gOcu4d91Rgo6vzV9fxdFZFquELZ6h8l7kVm
-	 o1Ec2KYKkmhPqB2ZvJr1h8MV+R+Ta0lpDp73yiUTpJJ3VbFWwSIucNourw0SsrY/al
-	 WggmnR+F1Pn6qdSo4F3OQQML0K3ihGZ34jERKfvuh+jPiexu4gPYMDFK1hsEZLPDwB
-	 HVQc7OnFIPQ68wSNvUDG4zCCNNBoIVNQXnKTCJx9a1Bm0u+T8iolnDd734FhGCntU6
-	 /q3ldrHHAUB43GYQEqYZ+8KcUQlmG5/v9xS8TmOGNAIRWH+iZIBqys4S0/RQBNkTEk
-	 311Tpi9RDADyQ==
-Message-ID: <ec4bd953-1cd7-46bc-9415-0983bb9cbe89@kernel.org>
-Date: Mon, 2 Dec 2024 14:39:25 +0100
+	s=arc-20240116; t=1733146800; c=relaxed/simple;
+	bh=2MD7iyWXHkBZcmWFDvPEWRexWtDu6BcZYXptYqvoY1I=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jdBVE815462d0AzhAyTaWhw3egHu+GjDyJgPgF7gZSh8Hl+4l5PIL+eUNnOsQamSeyIdHkoUdapo2Iw437J5vOig4GW3Yexbt0gDcHqhAvUF8EtxBNe57Iwjo5B4GXPIJNs97n4qdKMp5UEvA/7XYgI379yvhE9soUeVI1ZKpUk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=heF/Yf61; arc=none smtp.client-ip=209.85.160.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f179.google.com with SMTP id d75a77b69052e-46686a258f7so41492851cf.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 05:39:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733146797; x=1733751597; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Go2QJK5N99/ZxaNUR6SVaJEPwnwYySGUbHfGQS2DIBg=;
+        b=heF/Yf619swcUBXgbu2PxkATlaV4XMmTpGs4LCrzyNalcfQNU9TYDgkVZMFkJgaBE9
+         ytRRG62ea8Cm71VYWAh/NMR4r9EHUMucQeGcZbmcxcRpUBdnKFZSAkQkiioMLbARQ9oh
+         F5O3OmRp8tqwDOJlo5s5coDj+KtFn0jW8cOaiukxy2eeuLC23rghtOpfBtq8LCMfDhuS
+         kY1xPVdmay+e92pCJkZf/8ZzNaVtOv3knMYkfc2AypuKt9Omzlm0v/kbVJFhjR1W4OzF
+         Wp2pnhqB8OyHYbMOSvcnfEWeLG4yzUY5DhW5+fy2FB9DaQ9EfMAzWyCrqtbBpf0hleSM
+         N8RQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733146797; x=1733751597;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Go2QJK5N99/ZxaNUR6SVaJEPwnwYySGUbHfGQS2DIBg=;
+        b=oPLzM8K+avnEyeDPN0ZPxdDe70e2F9s4rw2JX+UxPaiBfYelZfXS1lVUmWiH5EZLt1
+         f/ZQySU60Q0duLStWXC+NUO0rYfvVnVmq5RWbGXhPJCO+6Vm27nZBuKhbtEtMLnOyC49
+         cBenOppshK7yq3KWCkK+9NhhhO4kebhgsZXgfSftP8sn+DX3a1jK1vrg9GejLePjHeUi
+         FRxtfps14qBzD04eOPGi8dr51WLGPpYGlRCQdxML3JqIlC9sTlIYlBe4ZsRNoJZ48pib
+         7QtvQdk2oC/5IoHrjZBItRORVmU0alBlt/mvdG0s1BUUGIClo8Ycp8sBV8RgllHtoRVh
+         pHXA==
+X-Forwarded-Encrypted: i=1; AJvYcCWIv5dIGI6omSVMIeGYwDhbSCrXoc56XYsms41dL/fQqTsdi0kHwdsQzfrEnScpVCS31MzW8B+GnNUj@vger.kernel.org
+X-Gm-Message-State: AOJu0YzabsKHvmYdDVsdSbfhQlOjziu537Br0FOkeayuSLDexp/i/0cW
+	3GUItGphH8LiV/n2i0q3SC/Nijph87O2S3ODvrEVMvkpQnfKOcR9ADbp9+ihqxXj6fndmwx4ByP
+	6dFzklokD8OQBvPp+pKI/DWUlfiY=
+X-Gm-Gg: ASbGncvp58sQbgNMJHvhzj8+RQq21ZNGi3BWqegHufCjUKjBWHqSKS4S1n2bJi4T0P4
+	kDk+DWAP8LNCsxf0ayWK2dWn6DzoyU6yW6VNAhjUiAVO3ashILbK1/mFDRAgwEto=
+X-Google-Smtp-Source: AGHT+IGstlLcCFJpHkRAg42eh7KZl/i+CKsEuiJDlDZHxAkhc8lIxzYPj+BnGrQsbzRQn9lJ/eMVvML+J2MFUgQodDM=
+X-Received: by 2002:ac8:59cc:0:b0:466:96ef:de06 with SMTP id
+ d75a77b69052e-466b3646872mr373457801cf.34.1733146797554; Mon, 02 Dec 2024
+ 05:39:57 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] dt-bindings: power: supply: add max77759-fg flavor
- and don't require nvme address
-To: t.antoine@uclouvain.be, Sebastian Reichel <sre@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Dimitri Fedrau <dima.fedrau@gmail.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Peter Griffin <peter.griffin@linaro.org>,
- Alim Akhtar <alim.akhtar@samsung.com>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org
-References: <20241202-b4-gs101_max77759_fg-v1-0-98d2fa7bfe30@uclouvain.be>
- <20241202-b4-gs101_max77759_fg-v1-2-98d2fa7bfe30@uclouvain.be>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241202-b4-gs101_max77759_fg-v1-2-98d2fa7bfe30@uclouvain.be>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20241130004057.7432-1-naoki@radxa.com> <20241130004057.7432-6-naoki@radxa.com>
+In-Reply-To: <20241130004057.7432-6-naoki@radxa.com>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Mon, 2 Dec 2024 17:39:46 +0400
+Message-ID: <CABjd4YwV+cthjL4uYkpnwxzTzEUWsWEyoOZCkt+Un2iB=GMgxA@mail.gmail.com>
+Subject: Re: [PATCH 5/6] arm64: dts: rockchip: fix pwm-fan node for Radxa ROCK 5B
+To: FUKAUMI Naoki <naoki@radxa.com>
+Cc: heiko@sntech.de, robh@kernel.org, conor+dt@kernel.org, inindev@gmail.com, 
+	devicetree@vger.kernel.org, sebastian.reichel@collabora.com, 
+	linux-rockchip@lists.infradead.org, krzk+dt@kernel.org, dsimic@manjaro.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 02/12/2024 14:07, Thomas Antoine via B4 Relay wrote:
-> From: Thomas Antoine <t.antoine@uclouvain.be>
-> 
-> As the Maxim max77759 fuel gauge has no non-volatile memory slave address,
+Hi Naoki,
 
-
-s/max77759/MAX77759/
-
-Please explain the device in general, e.g. fuel gauge is only one part
-of the PMIC chip. Otherwise 'fg' compatible suffix would not be justified.
-
-> make it non-obligatory. Except for this, the max77759 seems to behave the
-> same as the max1720x.
-> 
-> Signed-off-by: Thomas Antoine <t.antoine@uclouvain.be>
+On Mon, Dec 2, 2024 at 5:35=E2=80=AFPM FUKAUMI Naoki <naoki@radxa.com> wrot=
+e:
+>
+> fix properties to match with vendor kernel.
+>
+> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
 > ---
->  .../devicetree/bindings/power/supply/maxim,max17201.yaml   | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max17201.yaml b/Documentation/devicetree/bindings/power/supply/maxim,max17201.yaml
-> index fe3dd9bd5585618e45220c51023391a5b21acfd2..417fc2c4a1c1961654bc54ec1ac24602012f3335 100644
-> --- a/Documentation/devicetree/bindings/power/supply/maxim,max17201.yaml
-> +++ b/Documentation/devicetree/bindings/power/supply/maxim,max17201.yaml
-> @@ -16,6 +16,7 @@ properties:
->    compatible:
->      oneOf:
->        - const: maxim,max17201
-> +      - const: maxim,max77759-fg
->        - items:
->            - enum:
->                - maxim,max17205
-> @@ -25,11 +26,13 @@ properties:
->      items:
->        - description: ModelGauge m5 registers
->        - description: Nonvolatile registers
-> +    minItems: 1
->  
->    reg-names:
->      items:
->        - const: m5
->        - const: nvmem
-> +    minItems: 1
+>  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64=
+/boot/dts/rockchip/rk3588-rock-5b.dts
+> index 7c8359fe712a..6a02febaefb7 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> @@ -64,10 +64,10 @@ led-0 {
+>
+>         fan: pwm-fan {
+>                 compatible =3D "pwm-fan";
+> -               cooling-levels =3D <0 120 150 180 210 240 255>;
+> -               fan-supply =3D <&vcc5v0_sys>;
+> -               pwms =3D <&pwm1 0 50000 0>;
+>                 #cooling-cells =3D <2>;
+> +               cooling-levels =3D <0 64 128 192 255>;
 
-You need allOf:if:then section narrowing it per each variant.
-
->  
->    interrupts:
->      maxItems: 1
-> @@ -56,3 +59,14 @@ examples:
->          interrupts = <31 IRQ_TYPE_LEVEL_LOW>;
->        };
->      };
-> +  - |
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      fuel-gauge@36 {
-> +        compatible = "maxim,max77759-fg";
-
-
-No need for new example if it differs with one property.
-
-
+Could you please share your testing setup for this part? In my
+experience using Radxa 4010 fan, it didn't spin up reliably below 120,
+so the value of 64 looks not helpful here.
 
 Best regards,
-Krzysztof
+Alexey
 
