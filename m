@@ -1,214 +1,188 @@
-Return-Path: <devicetree+bounces-126003-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126004-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B74F9DFE8A
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 11:15:02 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1ABC99DFEA5
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 11:18:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C7F30B293FD
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 10:12:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 83C9FB2AA57
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 10:13:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53AF81FCD09;
-	Mon,  2 Dec 2024 10:11:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C134C1FC11A;
+	Mon,  2 Dec 2024 10:12:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="itzXzNIS"
+	dkim=pass (1024-bit key) header.d=smile.fr header.i=@smile.fr header.b="O4JbVMfr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 209891FCCF4
-	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 10:11:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EB761FC109
+	for <devicetree@vger.kernel.org>; Mon,  2 Dec 2024 10:12:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733134272; cv=none; b=USw92yZzRqNCQLKiMxdO9RfwyIT72pf7ARdkDtNH957Gjj6PXpYmqvKfvtUZPe6nWvZNSve/7RYBDLMmwzusfmM3jIevwcY4mmGn3x0uHOJjne5elfIwZnXR5fjVtGKEJn7sO+EypsXjy95KJKpdxR8nlO+XeCUlY01v+3oLeuM=
+	t=1733134328; cv=none; b=uEHsg49RRABd0SkwE35YACsO89HhfgKFmqYgfcEVs6p6aukmpD0ICeK8N2Vb/qCnHtaWR1D6zf+c8slC9vgpXPVMs2l0uiip5cWFkDcnTIp3Y4cO4pIBbUOpKtHfFL/+TNb76vtRfrFd1CDc786WueDkSE0jnMbbjhg2CbJWtJs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733134272; c=relaxed/simple;
-	bh=VhG3rq+iTy9Ea+5rk5iSMoBYCrjEGHdVkuGWSFpQ38w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jcsRfU4disWKR918ac/xjX09fFjnUodmFmUgrdXyQyph85IukkbpAZFGF81rMiD0UA36h5Kc/lwhmvyrkdObbouIrg87D+JAWkGafG/yD2DETGOoCIwLc6BaO5fmnd7aZP7mrooPr5RCxkSijOrtASQKrgEWF++2ZxVwU3C9BZY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=itzXzNIS; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-434a10588f3so24848275e9.1
-        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 02:11:09 -0800 (PST)
+	s=arc-20240116; t=1733134328; c=relaxed/simple;
+	bh=1Yk2xE+4LvLgWaCrE+PAUJ3/KYCQQt2CuK4BT5+wpoI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=IRcQOEBn68bC3q4JrcS9+rNsYUBwvmN+fKftJK9ExkoPNIw+ae1p19lvTpX6G9MWAWHBqbp1pN4hktLBvneXVWjPoizIJpyn/UgdmmtSrGCRwouR9zNn58fQEnvi+GWxbFbCMzaoMHAbxZne88V/y0ZIyMGDfOP5qlCvBLVCA3U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=smile.fr; spf=pass smtp.mailfrom=smile.fr; dkim=pass (1024-bit key) header.d=smile.fr header.i=@smile.fr header.b=O4JbVMfr; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=smile.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=smile.fr
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-434aabd688fso24804635e9.3
+        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 02:12:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1733134268; x=1733739068; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uALrewd2bf6VCEyNjbilrOuFF8ofT7dZTVrBfsuxsiI=;
-        b=itzXzNISgbYOjPSzFg0Gt8afHHqlFeLge8D3lBCW8mtp7QpPJGtRN4DbeAHRutZzsj
-         IGn/9hcfed0uKvIYLEH0xwfahU/PCCXyAhSMJtwXJI9D9QiML6YDplME0h0pH2ybChrI
-         nkni2avrsu5WtzD+05Tw23tUZgpJWXgqR7PrmeD/M7H1XyZMzCvVTOV0tSrb0PDUmfqq
-         wRhIVOl5qIyzJPVssqvPZl+DYnOwG6J3X/xMwYlG1w2b4iQU9WEDMedgtwEQHotb+dhx
-         6B/xCyLuPibLxC4073IsOBao6LVMV75zOgI8/S+ACq/9dl4JDsUTb3pCObRf1hMGlYPO
-         vs+g==
+        d=smile.fr; s=google; t=1733134323; x=1733739123; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YQPjFrGxUzPXgGYDSfzbk9xwSYIQ5wTw0sR1TTLwdZg=;
+        b=O4JbVMfrCRYZz2JSdCoI1cpArB8KS5TWynkm2vaFCGkKxfmRnrjyeNy1DV3bCJmxmy
+         eMEnh/3TRIiwSihdUQrpCguh82204AdFscimZ97UnbjCRA9Gtkmh7XDvXOUAMZlDgUzb
+         1Xor3YKxY4qsNt7Fy6qioH8jnqNqBAWtL1nUY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733134268; x=1733739068;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uALrewd2bf6VCEyNjbilrOuFF8ofT7dZTVrBfsuxsiI=;
-        b=cTfT0fyDc+BN/WSOyAjUd7J/04ic/zkA38TBceMpwcZP1IjoRRCm0MEhyRiZXiReoe
-         fMaqXHhbEa2kjvWjBe/aW5UC6HtsE7VcfsUZJkXZ6sPxac15X0/14EQ17Ujd71zvObmL
-         Jutj0tysgcdrS4sZVJ286F/EygzA7D4SacXo9e+8l8xsolBTFi/3u+iVpONnCywsLf5R
-         ZjEgA4IZyko78d+RZTOgviv+IyZ30nblwijOlSv6QKW6WcoEdUIxhr+DcV9CJeSDaT3h
-         fr16o1kL2Pp7k2X7+pehiB1cXpADgkLsDAJj+SzJse/CKah/82qYYveRrLH+Pz6hfK52
-         SEYA==
-X-Forwarded-Encrypted: i=1; AJvYcCWEtniFlyrVd7XsiC1TLtTngtwE9gsS7bMDTw2Y3ifhe53OqxbnABEBP6gBNuUbvjeG+0AgAQR6a5fi@vger.kernel.org
-X-Gm-Message-State: AOJu0YxP+mBC45eg0AezOv07Ba1czmiB7CcRp+B9BxStuIYLWBpcX54F
-	Q+xPvr/dpSbEw4PGAdXrJKd6w3WE0mRDqD+zqJpORdY9pq+oZ/uCyS2JbFqh+Kw=
-X-Gm-Gg: ASbGncu9N7pnRnVrJupSvhefyxRVTs/4039udQOYTs0N+A9scQ5TDBuGUEjavEg1nDa
-	HA8GubDIgnRl/0uMznYecYDhqDv3piqZXAFEk0/6LffNO/R48SDGLAiKzJ3O1g5wb5QrgBXoPK5
-	o9x5sI71LFL+26qZVHW/RKWGo62/VASfk7s6sWWlvRX0MHYH9UNTh50Hi7sTVttt/IO7a+wlKRc
-	ZFKTJphGqaYr5J8wEw6FT6RO+iwbepyj+lojRZljCuwcJjbhDL33XGhyw==
-X-Google-Smtp-Source: AGHT+IErBHQMNcCywMPgGeLil++jgNC3MB2USHxqD4fnoD5fhsRnNjP8lRK2LV8oHmVsxpRvL8auCQ==
-X-Received: by 2002:a05:600c:314a:b0:434:9e63:fb15 with SMTP id 5b1f17b1804b1-434a9dbb864mr173023505e9.1.1733134268229;
-        Mon, 02 Dec 2024 02:11:08 -0800 (PST)
-Received: from [192.168.50.4] ([82.78.167.46])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434aa78c202sm177567155e9.26.2024.12.02.02.11.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Dec 2024 02:11:07 -0800 (PST)
-Message-ID: <014a8db6-adcc-4755-8ab5-a15afa1d3f44@tuxon.dev>
-Date: Mon, 2 Dec 2024 12:11:05 +0200
+        d=1e100.net; s=20230601; t=1733134323; x=1733739123;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YQPjFrGxUzPXgGYDSfzbk9xwSYIQ5wTw0sR1TTLwdZg=;
+        b=upIfSx26rJNN1euQmtGYa57m1h5Vu5esVPhEDT6PmqrEVz/3R+wSv3YJ29tIgFnI2E
+         3zInGm1zF6owE1yks306L6HcR9+gbjyjKCfDxSQ9JlZdC17vcuXaXSdeUn7nX1iGdCSl
+         IpUyj28axSGZO4+YtS74n5b8CzQWPtjS0I4HU+9ULk5pFOpzlyufSggaFUCD9xT1smfT
+         crWBq3xd6ngNHVwpfj/J6xakpLdSUBVRD7HKZDg4/C9aocSIr0F9ym5v2tHL6XYFfduW
+         wvO1gLVThXEKO84BwbaDT3IBQjG6CpOddS2/DUhMDqeerdet/tWm5sKwaG8NDlgiZY50
+         ptlA==
+X-Gm-Message-State: AOJu0Yx2EfYhs3YLyX8JjnyywC7T0j9ZTMGvRMHmZekixakDvMdZJXOP
+	b3CkPbqqhTAAeqNbOElvdOaBnR4C8uDgjnDULF+Lv6retn1w8yZp+wE8uKBQp/B5261nFUU6prT
+	N
+X-Gm-Gg: ASbGncsia2B5IKsxK2pqL4uhEWrlpUWLERKDe3bKVuGW6lJQKU1aLjVg2pgKvYUozaT
+	1HpiiN3229WF0wj0DbSLKPukNd9GBEUaSubEBDEjpXSndMEmckiuZHPMQ80IxOCzNcaFr8+SIdq
+	IN3FjmldTLPo0m7Q4iZRXwSxWPxOzfJWd0biw9dK2JNi5frnfeXph98UFBsf0ndyEGxifQHyF/M
+	uGCw20HRcD/DT4wEQ/H11AQSI+TXSB0yQUFsPiNn0u4z3Ttzi8GBZBycqbS3M3IGccLKuuil4pk
+	w3UiBFWECS0hzlziFXNOV0nUkNg/fKbD5dlCJz5kmIpsPM4=
+X-Google-Smtp-Source: AGHT+IG4GMzTCNAiDXoQ6IfMdGYliGKIimtD8bjQyryGARkZpxz5JZzdvAJtPu8GPuKep9KHnrEIyw==
+X-Received: by 2002:a05:600c:b87:b0:434:a1e7:27b0 with SMTP id 5b1f17b1804b1-434a9dc3d08mr194372895e9.11.1733134323371;
+        Mon, 02 Dec 2024 02:12:03 -0800 (PST)
+Received: from P-NTS-Evian.home (2a01cb05949d5800e3ef2d7a4131071f.ipv6.abo.wanadoo.fr. [2a01:cb05:949d:5800:e3ef:2d7a:4131:71f])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434aa763c50sm177341885e9.12.2024.12.02.02.12.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Dec 2024 02:12:03 -0800 (PST)
+From: Romain Naour <romain.naour@smile.fr>
+To: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org,
+	linux-omap@vger.kernel.org,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	kristo@kernel.org,
+	vigneshr@ti.com,
+	nm@ti.com,
+	Romain Naour <romain.naour@skf.com>,
+	Siddharth Vadapalli <s-vadapalli@ti.com>
+Subject: [PATCHv2] arm64: dts: ti: k3-j721e-beagleboneai64: Enable ACSPCIE output for PCIe1
+Date: Mon,  2 Dec 2024 11:11:40 +0100
+Message-ID: <20241202101140.48778-1-romain.naour@smile.fr>
+X-Mailer: git-send-email 2.45.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 01/15] dt-bindings: soc: renesas: renesas,rzg2l-sysc:
- Add #renesas,sysc-signal-cells
-Content-Language: en-US
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, p.zabel@pengutronix.de, magnus.damm@gmail.com,
- gregkh@linuxfoundation.org, yoshihiro.shimoda.uh@renesas.com,
- christophe.jaillet@wanadoo.fr, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, linux-usb@vger.kernel.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
- Ulf Hansson <ulf.hansson@linaro.org>
-References: <20241126092050.1825607-1-claudiu.beznea.uj@bp.renesas.com>
- <20241126092050.1825607-2-claudiu.beznea.uj@bp.renesas.com>
- <CAMuHMdWjzR6vgbr_CfR7r-h1FqWxs1nY0hm274kxFmoHjCtRAA@mail.gmail.com>
- <0bb9f461-c7a2-4db0-9492-c04cc298504d@tuxon.dev>
- <CAMuHMdUuRSJu1c2zJvOc8EGrZy1uYcN0aiUG6T7WShawPmCNJg@mail.gmail.com>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <CAMuHMdUuRSJu1c2zJvOc8EGrZy1uYcN0aiUG6T7WShawPmCNJg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Hi, Geert,
+From: Romain Naour <romain.naour@skf.com>
 
-On 29.11.2024 10:38, Geert Uytterhoeven wrote:
-> Hi Claudiu,
-> 
-> On Fri, Nov 29, 2024 at 9:21 AM Claudiu Beznea <claudiu.beznea@tuxon.dev> wrote:
->> On 28.11.2024 17:46, Geert Uytterhoeven wrote:
->>> On Tue, Nov 26, 2024 at 10:21 AM Claudiu <claudiu.beznea@tuxon.dev> wrote:
->>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>>>
->>>> The RZ/G3S system controller (SYSC) has registers to control signals that
->>>> are routed to various IPs. These signals must be controlled during
->>>> configuration of the respective IPs. One such signal is the USB PWRRDY,
->>>> which connects the SYSC and the USB PHY. This signal must to be controlled
->>>> before and after the power to the USB PHY is turned off/on.
->>>>
->>>> Other similar signals include the following (according to the RZ/G3S
->>>> hardware manual):
->>>>
->>>> * PCIe:
->>>> - ALLOW_ENTER_L1 signal controlled through the SYS_PCIE_CFG register
->>>> - PCIE_RST_RSM_B signal controlled through the SYS_PCIE_RST_RSM_B
->>>>   register
->>>> - MODE_RXTERMINATION signal controlled through SYS_PCIE_PHY register
->>>>
->>>> * SPI:
->>>> - SEL_SPI_OCTA signal controlled through SYS_IPCONT_SEL_SPI_OCTA
->>>>   register
->>>>
->>>> * I2C/I3C:
->>>> - af_bypass I2C signals controlled through SYS_I2Cx_CFG registers
->>>>   (x=0..3)
->>>> - af_bypass I3C signal controlled through SYS_I3C_CFG register
->>>>
->>>> * Ethernet:
->>>> - FEC_GIGA_ENABLE Ethernet signals controlled through SYS_GETHx_CFG
->>>>   registers (x=0..1)
->>>>
->>>> Add #renesas,sysc-signal-cells DT property to allow different SYSC signals
->>>> consumers to manage these signals.
->>>>
->>>> The goal is to enable consumers to specify the required access data for
->>>> these signals (through device tree) and let their respective drivers
->>>> control these signals via the syscon regmap provided by the system
->>>> controller driver. For example, the USB PHY will describe this relation
->>>> using the following DT property:
->>>>
->>>> usb2_phy1: usb-phy@11e30200 {
->>>>         // ...
->>>>         renesas,sysc-signal = <&sysc 0xd70 0x1>;
->>>>         // ...
->>>> };
->>>
->>> IIUIC, the consumer driver will  appear to control the SYSC bits
->>> directly, but due to the use of custom validating regmap accessors
->>> and reference counting in the SYSC driver, this is safe?
->>
->> I'm not sure I fully understand the safety concern.
-> 
-> Sorry for my bad expression, this was more like a rhetorical question.
-> I meant that it is safe because:
->   1. Consumers cannot perform arbitrary register accesses,
->   2. The reference counting guarantees correct operation, despite
->       both usb-phy nodes using the same renesas,sysc-signal.
-> 
-> So everything is fine.
-> 
->>> The extra safety requires duplicating the register bits in both DT
->>> and the SYSC driver.
->>
->> One other option I saw was to have common defines for registers that could
->> have been shared b/w driver and DTSes. But it looked better to me the way
->> it has been presented in this series.
->>
->>> Both usb-phy nodes on RZG3S use the same renesas,sysc-signal, so the
->>> reference counting is indeed needed.  They are in different power
->>> domains, could that be an issue w.r.t. ordering?
->>
->> In chapter "32.4.2.1 USB/PHY related pins", section "When either Port1 or
->> Port2 is unused" of the RZ/G3S HW manual it is mentioned "Since USB_VDD18 /
->> USB_VDD33 are common to 2 Port PHY, it is necessary to supply power even
->> when one of the
->>  ports is not in use".
-> 
-> Does that mean you have to power the other PHY on through the
-> CPG_BUS_PERI_COM_MSTOP register, too?
+Unlike the SK-TDA4VM (k3-j721e-sk) board, there is no clock generator
+(CDCI6214RGET) on the BeagleBone AI-64 (k3-j721e-beagleboneai64) to
+provide PCIe refclk signal to PCIe Endponts. So the ACSPCIE module must
+provide refclk through PCIe_REFCLK pins.
 
-I don't know at the moment if there is hard requirement b/w USB PWRRDY and
-the USB PHY CPG MSTOP bit. I'll have to ask further internally.
+Use the new "ti,syscon-acspcie-proxy-ctrl" property to enable ACSPCIE
+module's PAD IO Buffers.
 
-Thank you,
-Claudiu
+Reuse the compatible "ti,j784s4-acspcie-proxy-ctrl" since the ACSPCIE
+buffer and its functionality is the same across all K3 SoCs.
 
-> (I know you haven't added R9A08G045_PD_USBx to the USB nodes yet,
->  as #power-domain-cells is still 0).
-> 
->> (From the discussions w/ the internal HW team) The PWRRDY is an (software
->> controlled) indicator to the USB PHY that power supply is ready.
->>
->> From that and [1] I get that both PHYs are powered by the same regulators
->> (USB_VDD18/USB_VDD33) and the USB PWRRDY signal need to be set before/after
->> the USB PHY power off/on. Because of this I consider the order doesn't matter.
->>
->> [1] https://gcdnb.pbrd.co/images/0a1zYBFZXZVb.png
-> 
-> Gr{oetje,eeting}s,
-> 
->                         Geert
-> 
+Cc: Siddharth Vadapalli <s-vadapalli@ti.com>
+Signed-off-by: Romain Naour <romain.naour@skf.com>
+---
+With this patch, we can remove "HACK: Sierra: Drive clock out" patch
+applied on vendor kernel for BeagleBone AI-64:
+https://openbeagle.org/beagleboard/linux/-/commit/ad65d7ef675966cdbc5d75f2bd545fad1914ba9b
+
+v2:
+ - use generic style comments
+ - use "syscon" as generic node name for "acspcie0_proxy_ctrl" node
+ - Keep the compatible "ti,j784s4-acspcie-proxy-ctrl" since the
+   ACSPCIE buffer and its functionality is the same across all K3 SoCs.
+   (Siddharth Vadapalli)
+
+   "The compatible "ti,j784s4-acspcie-pcie-ctrl" should be reused for
+   J721E and all other K3 SoCs.
+   For example, see:
+   https://lore.kernel.org/r/20240402105708.4114146-1-s-vadapalli@ti.com/
+   which introduced "ti,am62p-cpsw-mac-efuse" compatible.
+
+   The same compatible is reused across all K3 SoCs:
+   https://lore.kernel.org/r/20240628151518.40100-1-afd@ti.com/ "
+---
+ arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts |  5 +++++
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi          | 10 ++++++++--
+ 2 files changed, 13 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+index fb899c99753e..741ad2ba6fdb 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
++++ b/arch/arm64/boot/dts/ti/k3-j721e-beagleboneai64.dts
+@@ -859,6 +859,11 @@ &pcie1_rc {
+ 	num-lanes = <2>;
+ 	max-link-speed = <3>;
+ 	reset-gpios = <&main_gpio0 22 GPIO_ACTIVE_HIGH>;
++	/*
++	 * There is no on-board or external reference clock generators,
++	 * use refclk from the ACSPCIE module's PAD IO Buffers.
++	 */
++	ti,syscon-acspcie-proxy-ctrl = <&acspcie0_proxy_ctrl 0x3>;
+ };
+ 
+ &ufs_wrapper {
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+index af3d730154ac..b9bb59ce4ed2 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+@@ -5,6 +5,7 @@
+  * Copyright (C) 2016-2024 Texas Instruments Incorporated - https://www.ti.com/
+  */
+ #include <dt-bindings/phy/phy.h>
++#include <dt-bindings/phy/phy-cadence.h>
+ #include <dt-bindings/phy/phy-ti.h>
+ #include <dt-bindings/mux/mux.h>
+ 
+@@ -82,6 +83,11 @@ ehrpwm_tbclk: clock-controller@4140 {
+ 			reg = <0x4140 0x18>;
+ 			#clock-cells = <1>;
+ 		};
++
++		acspcie0_proxy_ctrl: syscon@18090 {
++			compatible = "ti,j784s4-acspcie-proxy-ctrl", "syscon";
++			reg = <0x18090 0x4>;
++		};
+ 	};
+ 
+ 	main_ehrpwm0: pwm@3000000 {
+@@ -979,8 +985,8 @@ pcie1_rc: pcie@2910000 {
+ 		max-link-speed = <3>;
+ 		num-lanes = <2>;
+ 		power-domains = <&k3_pds 240 TI_SCI_PD_EXCLUSIVE>;
+-		clocks = <&k3_clks 240 1>;
+-		clock-names = "fck";
++		clocks = <&k3_clks 240 1>, <&serdes1 CDNS_SIERRA_DERIVED_REFCLK>;
++		clock-names = "fck", "pcie_refclk";
+ 		#address-cells = <3>;
+ 		#size-cells = <2>;
+ 		bus-range = <0x0 0xff>;
+-- 
+2.45.0
+
 
