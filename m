@@ -1,120 +1,118 @@
-Return-Path: <devicetree+bounces-126147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126148-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3439D9E06BF
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 16:21:21 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AD7E9E08B9
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 17:36:34 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 028FC16D721
-	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 14:59:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8544FBA1E37
+	for <lists+devicetree@lfdr.de>; Mon,  2 Dec 2024 15:00:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64BAA205AD0;
-	Mon,  2 Dec 2024 14:55:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3922205E1B;
+	Mon,  2 Dec 2024 14:56:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="wzZJ5ig4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CDN0R1dT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9B60205AB8;
-	Mon,  2 Dec 2024 14:55:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18263205E18;
+	Mon,  2 Dec 2024 14:56:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733151348; cv=none; b=p30BsRJuLRb7exxvNEE3y8dSAgEaE/O64pqgwZ9b/Eg89UD8jRnjY9sKhRTrccjAMiXmG7JiAA/LnrK5kONyhkQCuR1RRqkTcSr+Ys4/wYJ7E4vD2ayuujKaKAbn9T87uNlQXQuDQgBrLfxeMI/myxOYvg1ed89IbyVwmZjDybc=
+	t=1733151404; cv=none; b=s3LaMQLuqmbkCm5rgTwqSgIi8vZrfVhEIbQeNJ0+I43LyMcf0HUW0TV/+gm2dbuhCEmbd6LovuQ9gPYh4pJniQaCT3sb9MEUNCCzrbrdbbkO4zvDWK4rHPBBPg7QILZQvueGhWKk0S+RIlj8twGYpBbj1jhIeXXDt5SjBYUatb8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733151348; c=relaxed/simple;
-	bh=v+Wfi/VFVB56v7rGv4wRgnfv9hhwXrZ8c6SdZNvK4So=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=EDx912TMb7BsAalRdICxbw0Hl+uXTs+xa5bmY6s2e9+J+nL665I6oBrYSvM6aJa6ik49fdtLYwLBG4uyX+DM+WJ3XgW1ZEQVd21W/nUxGJLvdNPlkl/EUNCkbJDXBz8/pgORPe3A3VqNyuyCAitZt6abtu14rHbNea+5MeW0ezw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=wzZJ5ig4; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1733151404; c=relaxed/simple;
+	bh=Rdwzy6vHNgihlRT5BPotf+BGfF/xjXHKGqMg9A3o3Cw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DtVfidXRBLUfXt0puKsL8n2LZFuMIB2fiQPRDEhX5/+Ik340GvE4WqLOZBTdTNm9v8NfiYhEfInxJvwKAqYFUY3ZRGOD/QnLuuxcLbauwXNAgq6T9zCYAt7lCgacrobWEotwj2YqwWrJ8w9faRPBnXy/r6QvK9U6Quvlugi36oo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CDN0R1dT; arc=none smtp.client-ip=209.85.210.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f49.google.com with SMTP id 46e09a7af769-71d3e506981so1742282a34.1;
+        Mon, 02 Dec 2024 06:56:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733151402; x=1733756202; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vq812pWWGRQ3G1kkOSCyU4FgoSqNPDkfuDdYU6oqqPg=;
+        b=CDN0R1dT3G53uni9m7BLFp5vJNwo08we7WbCBHnUj71Ix7KlJqe1l9kkZlIcI/4s3b
+         EV2Zc3EU2yUE6QSuNAogQr9CA84twhUYBl4qKxc4MW3tagJpn1R8eGBHvPVn6AvwIqW9
+         21qgBeuINujkpKniXpxlVOG2aIxk6mnTFQc8V2jaM6na1f2AP+c3HjePjalgMAPNq+kr
+         m8O41xgJ0aAWM5x25hWm2QHMKWWHQ0x7WzVBv7+MLb5CFWx26ZuH6eru7ZZNn/4VPd9W
+         GhK6npM4VHK7xPelXdeilp1oF3Uv5V0SfPbFoMSS3ZkZqcn7sTsWwiltMhz+cv/ak/TC
+         njTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733151402; x=1733756202;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vq812pWWGRQ3G1kkOSCyU4FgoSqNPDkfuDdYU6oqqPg=;
+        b=Bo42bPW41J3VGGZmM6o03WWS9oMWyXeTZj0yCirH20aHtXlc8Nne7eBdlwfr3YINM4
+         SwC6TeYVGwAi5R4vQUWioAO+mAN4Q1ejLbrr6j345V0vb/Hea64O/pFVPzfWZ8zw7xql
+         2t4buENjupg+HpC9KGFdhvHFV2sBd+Yb67V+IhZlUbvr6UsHbuiWzCkGG5vsYzNZaoKh
+         WvnSgyvTFrulgJrGOkFjQnOU4A/N91wyvrVju3Ip5O7oTeDbL+0cG9rkAvKQ76KSa0xr
+         dLn7FfO1LFH47pEdSLtJXikCI8Km78NDDEr+x+lvfck1Z34HiyktIu4ZkVGWohRg1rS4
+         vW9w==
+X-Forwarded-Encrypted: i=1; AJvYcCUU9tcWSB9nLCgCenPTKMmQTQG0tBwrm04IOyyvmDz0C4/2OWHEGIfPDCY6QEDjzo0vzWBLEN11f0hF@vger.kernel.org, AJvYcCWdkZuMqqQaYlA4wHi+mPqdV8wAy/hM1IpfzQRii1eiiSBWoNJrgHVg2tB28veMkAXTCYSHLLrCWKittNmE@vger.kernel.org, AJvYcCX9e+JarDQHj3iGI2k4KwwxFnwaT5SLXL/uPKo4MHTCS1lRqEtvKF92QxtRwObEg7SCt88hQghGDBA5@vger.kernel.org
+X-Gm-Message-State: AOJu0YwSnc/qEnt6nO7nx8NPCYZjvBYWVV6UlGMXO/ouE1zOWqjd2HjI
+	qFNQFO/U4k9E8f+ldH+rSomhNjudWl72cAf5jr/ARLBafNynKmeR
+X-Gm-Gg: ASbGncviAJMQ5g51i3E2BhaHi08VieA2yCftIUFkhsXBFOrpIGlBrcNAyZJQxRAq31+
+	jF1hQn9M0e1GwwqP4xEKa7k4ucvufrjEtTlbT/i49AHTEQSbaLVCq9Pq6PIlFhg4AFgFeI4MTgF
+	2vhny/pM1z2vt+ONzp1VEDOULtyd8jAxLoZYAlayH1Yv3gztPfcTC17vimwVQkoVxa1aVNqgj6Z
+	c7/VzyXPayIuMCZUOtzBDNCN1sIAW9K/JlIRCm77MOJlUZRrBQXTumgtGdlWD8=
+X-Google-Smtp-Source: AGHT+IHXpSHOGKQ+h5TeoRVyNle86vfvvoWeT8dxmfjolFtZTKCjYhSttXDb+54xLUUhMLEHjkoz7w==
+X-Received: by 2002:a05:6830:6516:b0:71d:5b20:8f9a with SMTP id 46e09a7af769-71d65cfb504mr18227782a34.23.1733151402024;
+        Mon, 02 Dec 2024 06:56:42 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7fc9c3034c8sm7851560a12.31.2024.12.02.06.56.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Dec 2024 06:56:41 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Mon, 2 Dec 2024 06:56:40 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: Ming Yu <a0282524688@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, tmyu0@nuvoton.com, lars@metafoo.de,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	cmo@melexis.com, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Jean Delvare <jdelvare@suse.com>
+Subject: Re: [PATCH v1 0/2] Add Nuvoton NCT7718W IIO driver
+Message-ID: <6867cd67-9ab9-4a5c-902a-e2d14b846c51@roeck-us.net>
+References: <20241126074005.546447-1-tmyu0@nuvoton.com>
+ <20241130202849.13eedb04@jic23-huawei>
+ <CAOoeyxUyi_HKLH64Sokd9YU9vDnuizBaP2AOUYqQ8hTvJKo2-g@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1733151344;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=9CIAZBFucCTn7nA63nHKJ4UCE5j3QR50Z+lHS5TV934=;
-	b=wzZJ5ig4Q//Dign/WpW4UDKBQfoP5dbbGWp1Ll88JFutMca5oJnpx0xFRVYN1k7YNwXu0f
-	V6wl2ZbJ6pWWCMX9ndXNr+WqDuAb/HQvC4Bvl/P9lpN4y2b5UntJ6o2bFOyGPOLpW6Ity0
-	vSbjLjup8huZtj25VcjgZjenhpGcB48u4a/oiU/HKGw/s1W4dGcTH6EAbYn53NeNOYWlxN
-	7Y5PnOYAzPF+VgOW2C/TvmhNyAIqp+YGJXfO7C41IG48RoR3EXgkRzhoD/qC/l67qo9y1/
-	2GmbdmPllkkJ42PvqqlE0d/a/CoOOT6CNAUL0qXiruPshX3gWPeV3ULCy58lYw==
-Date: Mon, 02 Dec 2024 15:55:44 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: linux-rockchip@lists.infradead.org
-Cc: heiko@sntech.de, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, didi.debian@cknow.org,
- marcin.juszkiewicz@linaro.org, pbrobinson@gmail.com
-Subject: Re: [PATCH] arm64: dts: rockchip: Describe why is HWRNG disabled in
- RK356x base dtsi
-In-Reply-To: <6b272e2f8f916c04b05db50df621659a5a7f29ab.1733149874.git.dsimic@manjaro.org>
-References: <6b272e2f8f916c04b05db50df621659a5a7f29ab.1733149874.git.dsimic@manjaro.org>
-Message-ID: <2415bfe796ae9190a23d05d4c0d23d4d@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAOoeyxUyi_HKLH64Sokd9YU9vDnuizBaP2AOUYqQ8hTvJKo2-g@mail.gmail.com>
 
-On 2024-12-02 15:44, Dragan Simic wrote:
-> Despite the presence of the hardware random number generator (HWRNG) in 
-> the
-> different Rockchip RK356x SoC variants, it remains disabled for the 
-> RK3566
-> SoC because testing showed [1] that it produces unacceptably low 
-> quality of
-> random data, for some yet unknown reason.  The HWRNG is enabled for the 
-> RK3568
-> SoC, on which the testing showed good quality of the generated random 
-> data.
+On Mon, Dec 02, 2024 at 05:22:52PM +0800, Ming Yu wrote:
+> Dear Jonathan,
 > 
-> To avoid possible confusion in the future, [2] let's have this 
-> described
-> briefly in the RK356x base SoC dtsi.
-> 
-> [1] 
-> https://lore.kernel.org/linux-rockchip/cover.1720969799.git.daniel@makrotopia.org/T/#u
-> [2] 
-> https://lore.kernel.org/linux-rockchip/20241201234613.52322-1-pbrobinson@gmail.com/T/#u
-> 
-> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+> Thank you for your reply, I'll move the driver to HWMON.
 
-Oh, I forgot to Cc Peter as well while sending this patch, so I did
-that now.  Sorry for the noise.
+AFAICS the chip is compatible to lm90, so please add support for
+it to the lm90 driver. Note that this also applies to NCT7717, which
+looks like an internal-sensor-only version of the same chip.
 
-> ---
->  arch/arm64/boot/dts/rockchip/rk356x-base.dtsi | 5 +++++
->  1 file changed, 5 insertions(+)
+> Additionally, for conventional ADC, Thermal sensor, and tachometer
+> like chips, would it be more appropriate to implement them in HWMON?
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
-> b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
-> index 62be06f3b863..ab8f42c0a843 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
-> @@ -1032,6 +1032,11 @@ sdhci: mmc@fe310000 {
->  		status = "disabled";
->  	};
-> 
-> +	/*
-> +	 * Testing showed that the HWRNG found in RK3566 produces 
-> unacceptably
-> +	 * low quality of random data, so the HWRNG isn't enabled for all 
-> RK356x
-> +	 * SoC variants despite its presence.
-> +	 */
->  	rng: rng@fe388000 {
->  		compatible = "rockchip,rk3568-rng";
->  		reg = <0x0 0xfe388000 0x0 0x4000>;
+
+Thermal sensor and tachometer, yes. For ADC it depends on the use case.
+If the ADC is used for hardware monitoring (which is typically the case
+if it has limit and alert support), yes. If it is a pure ADC, IIO
+is a better place.
+
+Thanks,
+Guenter
 
