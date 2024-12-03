@@ -1,56 +1,57 @@
-Return-Path: <devicetree+bounces-126708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E3899E2A92
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 19:15:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40E929E2B01
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 19:36:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F1DF2848C8
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 18:15:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01BFB282E9F
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 18:36:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E61861FA161;
-	Tue,  3 Dec 2024 18:15:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3D441FCCE0;
+	Tue,  3 Dec 2024 18:36:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="V9qoUSjI"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="ksOrMPfR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-178.mta0.migadu.com (out-178.mta0.migadu.com [91.218.175.178])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 598C2B660
-	for <devicetree@vger.kernel.org>; Tue,  3 Dec 2024 18:15:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 137D714A088;
+	Tue,  3 Dec 2024 18:36:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733249732; cv=none; b=NHxvbK58zdWZ+1xvEffrBVM979sNmDbHBc7bKjBJ1NW/KqAIecs7Qpqq1rcz43iqiMkemF7V+vmDANDyQP1tGD+J0QiogamiTVfCTGl6sHf/srzwjpL1mQQvfy03neXzfrrjQXgN6kiJB6Fz9t01vqCU3pn6kM4vOyoyPyAziR8=
+	t=1733250972; cv=none; b=HPWE1WRZGzgw3wIMHpnUwVfiyE8oRD8bpwTfQNygKRIBHVcS6r3v5qC11UXRWJCH5BGIRc9p8ifzFbT9eaiXg0Kz7ua7okgqiJzVt8TkikAXL7f2Dof+tVa0ghLfm8Tn7fKZJKzSNtiJ/Z4y2++uNKUar//sfmo1BiD2W6H1KG0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733249732; c=relaxed/simple;
-	bh=ts6/amOxa0dJ1j4L7dg7bZ63rmuGs6CM+DqRX/TLxSM=;
+	s=arc-20240116; t=1733250972; c=relaxed/simple;
+	bh=TcGLLUD9uMOYsuBJvRw54mbBra/9tntvzY8X8oSktKU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aaWiYUCuLfhTjxXSqv+eA5TIMRCW459XavYrsy3yQjCAu6lSAtL7fzO6ZidFrmi3l7nHuOa7P2ZMeQCTU/Ju+A2WQUfNG+ICn0sen5eN+OBoX/cii6aG15SESbEtYSEd8hl1MpQAZ+XWTGasU573xUIUjm1gBDLOWZENWoN/bs8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=V9qoUSjI; arc=none smtp.client-ip=91.218.175.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <b8bde033-13a8-4726-a9ff-2fa4eff898e1@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1733249727;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=/d6d21lYDvEFZiQrySVvNDh1sU8fuz6MdG1q72i45IU=;
-	b=V9qoUSjI7EsoODFNlUsz+6kzYDm+vLmfMrzU58PdFBqKNq4K6EbSDCZpEzrvtvsDleq6X/
-	lvYlX2Vpf1PANTfSnRQ7vUc/O8yBYK+NDtT0axw/iAUMFx54f/MT7ojgOI9gGpXDNfMMzs
-	m62ISwNM0CUjQeFHObWvuIDyWidawdg=
-Date: Tue, 3 Dec 2024 23:44:27 +0530
+	 In-Reply-To:Content-Type; b=L11qOxEdctsprgOzLTlQ8ynC4IEEZ1qXTFB+HDMKiC5Q/XkGdzv0QpPlhwDnEKT7TWHjyiaF7wm7HbI5NeHWzwlC5ey0T/KI4yaxypDAIlldQxulYbOn6/XdoTb5JhmEmvoOqgcMpijy7aW7ZZXGhVix/b9Rc32j7Fy++lNTkfE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=ksOrMPfR; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-157-155-49.elisa-laajakaista.fi [91.157.155.49])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id E60BA670;
+	Tue,  3 Dec 2024 19:35:39 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1733250941;
+	bh=TcGLLUD9uMOYsuBJvRw54mbBra/9tntvzY8X8oSktKU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ksOrMPfRxzfbTdTiQiz0cKEqBrcsN2Q0uB5vplNoLNLa6rFck6UJvRR1oAbjUsuo8
+	 074vFhXVLAmyXLWe4WckW4ZpMshHf+aQuYtFkX35hceq6wvbPE3IJVQMBSfy9sRt82
+	 peeUF6tPe7eTJeMxVmCXVnzOR0SFfVs6BI5XO8Ho=
+Message-ID: <9ade7a5d-dd87-4a08-9fdd-c24eb20e733c@ideasonboard.com>
+Date: Tue, 3 Dec 2024 20:36:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v4 0/3] drm/tidss: Add OLDI bridge support
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+To: Aradhya Bhatia <aradhya.bhatia@linux.dev>
 Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Nishanth Menon
  <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
  Devarsh Thakkar <devarsht@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
@@ -70,222 +71,187 @@ Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Nishanth Menon
  Simona Vetter <simona@ffwll.ch>
 References: <20241124143649.686995-1-aradhya.bhatia@linux.dev>
  <8b57d6a4-6bc1-4542-abf4-8bc4a3120c25@ideasonboard.com>
+ <b8bde033-13a8-4726-a9ff-2fa4eff898e1@linux.dev>
 Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Aradhya Bhatia <aradhya.bhatia@linux.dev>
-In-Reply-To: <8b57d6a4-6bc1-4542-abf4-8bc4a3120c25@ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <b8bde033-13a8-4726-a9ff-2fa4eff898e1@linux.dev>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
 
 Hi,
 
-On 03/12/24 17:42, Tomi Valkeinen wrote:
+On 03/12/2024 20:14, Aradhya Bhatia wrote:
 > Hi,
 > 
-> On 24/11/2024 16:36, Aradhya Bhatia wrote:
->> Hello all,
+> On 03/12/24 17:42, Tomi Valkeinen wrote:
+>> Hi,
 >>
->> This patch series add support for the dual OLDI TXes supported in Texas
->> Instruments' AM62x and AM62Px family of SoCs. The OLDI TXes support
->> single-lvds
->> lvds-clone, and dual-lvds modes. These have now been represented
->> through DRM
->> bridges within TI-DSS.
+>> On 24/11/2024 16:36, Aradhya Bhatia wrote:
+>>> Hello all,
+>>>
+>>> This patch series add support for the dual OLDI TXes supported in Texas
+>>> Instruments' AM62x and AM62Px family of SoCs. The OLDI TXes support
+>>> single-lvds
+>>> lvds-clone, and dual-lvds modes. These have now been represented
+>>> through DRM
+>>> bridges within TI-DSS.
+>>>
+>>>    - Some history and hardware description for this patch series.
+>>>
+>>> This patch series is a complete re-vamp from the previously posted
+>>> series[1] and
+>>> hence, the version index has been reset to v1. The OLDI support from
+>>> that series
+>>> was dropped and only the base support for AM62x DSS was kept (and
+>>> eventually
+>>> merged)[2].
+>>>
+>>> The OLDI display that the tidss driver today supports, could not be
+>>> extended for
+>>> the newer SoCs. The OLDI display in tidss is modelled after the DSS
+>>> and OLDI
+>>> hardware in the AM65x SoC. The DSS in AM65x SoC, has two video-ports.
+>>> Both these
+>>> video-ports (VP) output DPI video signals. One of the DPI output (from
+>>> VP1) from
+>>> the DSS connects to a singular OLDI TX present inside the SoC. There
+>>> is no other
+>>> way for the DPI from VP1 to be taken out of the SoC. The other DPI output
+>>> however - the one from VP2 - is taken out of the SoC as is. Hence we
+>>> have an
+>>> OLDI bus output and a DPI bus output from the SoC. Since the VP1 and
+>>> OLDI are
+>>> tightly coupled, the tidss driver considers them as a single entity.
+>>> That is
+>>> why, any OLDI sink connects directly to the DSS ports in the OF graphs.
+>>>
+>>> The newer SoCs have varying DSS and OLDI integrations.
+>>>
+>>> The AM62x DSS also has 2 VPs. The 2nd VP, VP2, outputs DPI signals
+>>> which are
+>>> taken out of the SoC - similar to the AM65x above. For the VP1, there
+>>> are 2 OLDI
+>>> TXes. These OLDI TXes can only receive DPI signals from VP1, and don't
+>>> connect
+>>> to VP2 at all.
+>>>
+>>> The AM62Px SoC has 2 OLDI TXes like AM62x SoC. However, the AM62Px SoC
+>>> also has
+>>> 2 separate DSSes. The 2 OLDI TXes can now be shared between the 2 VPs
+>>> of the 2
+>>> DSSes.
+>>>
+>>> The addition of the 2nd OLDI TX (and a 2nd DSS in AM62Px) creates a
+>>> need for
+>>> some major changes for a full feature experience.
+>>>
+>>> 1. The OF graph needs to be updated to accurately show the data flow.
+>>> 2. The tidss and OLDI drivers now need to support the dual-link and
+>>> the cloned
+>>>      single-link OLDI video signals.
+>>> 3. The drivers also need to support the case where 2 OLDI TXes are
+>>> connected to
+>>>      2 different VPs - thereby creating 2 independent streams of
+>>> single-link OLDI
+>>>      outputs.
+>>>
+>>> Note that the OLDI does not have registers of its own. It is still
+>>> dependent on
+>>> the parent VP. The VP that provides the DPI video signals to the OLDI
+>>> TXes, also
+>>> gives the OLDI TXes all the config data. That is to say, the hardware
+>>> doesn't
+>>> sit on the bus directly - but does so through the DSS.
+>>>
+>>> In light of all of these hardware variations, it was decided to have a
+>>> separate
+>>> OLDI driver (unlike AM65x) but not entirely separate so as to be a
+>>> platform
+>>> device. The OLDI TXes are now being represented as DRM bridges under
+>>> the tidss.
+>>>
+>>> Also, since the DRM framework only really supports a linear encoder-
+>>> bridge
+>>> chain, the OLDI driver creates a DRM bridge ONLY for the primary OLDI
+>>> TX in
+>>> cases of dual-link or cloned single-link OLDI modes. That bridge then
+>>> attaches
 >>
->>   - Some history and hardware description for this patch series.
->>
->> This patch series is a complete re-vamp from the previously posted
->> series[1] and
->> hence, the version index has been reset to v1. The OLDI support from
->> that series
->> was dropped and only the base support for AM62x DSS was kept (and
->> eventually
->> merged)[2].
->>
->> The OLDI display that the tidss driver today supports, could not be
->> extended for
->> the newer SoCs. The OLDI display in tidss is modelled after the DSS
->> and OLDI
->> hardware in the AM65x SoC. The DSS in AM65x SoC, has two video-ports.
->> Both these
->> video-ports (VP) output DPI video signals. One of the DPI output (from
->> VP1) from
->> the DSS connects to a singular OLDI TX present inside the SoC. There
->> is no other
->> way for the DPI from VP1 to be taken out of the SoC. The other DPI output
->> however - the one from VP2 - is taken out of the SoC as is. Hence we
->> have an
->> OLDI bus output and a DPI bus output from the SoC. Since the VP1 and
->> OLDI are
->> tightly coupled, the tidss driver considers them as a single entity.
->> That is
->> why, any OLDI sink connects directly to the DSS ports in the OF graphs.
->>
->> The newer SoCs have varying DSS and OLDI integrations.
->>
->> The AM62x DSS also has 2 VPs. The 2nd VP, VP2, outputs DPI signals
->> which are
->> taken out of the SoC - similar to the AM65x above. For the VP1, there
->> are 2 OLDI
->> TXes. These OLDI TXes can only receive DPI signals from VP1, and don't
->> connect
->> to VP2 at all.
->>
->> The AM62Px SoC has 2 OLDI TXes like AM62x SoC. However, the AM62Px SoC
->> also has
->> 2 separate DSSes. The 2 OLDI TXes can now be shared between the 2 VPs
->> of the 2
->> DSSes.
->>
->> The addition of the 2nd OLDI TX (and a 2nd DSS in AM62Px) creates a
->> need for
->> some major changes for a full feature experience.
->>
->> 1. The OF graph needs to be updated to accurately show the data flow.
->> 2. The tidss and OLDI drivers now need to support the dual-link and
->> the cloned
->>     single-link OLDI video signals.
->> 3. The drivers also need to support the case where 2 OLDI TXes are
->> connected to
->>     2 different VPs - thereby creating 2 independent streams of
->> single-link OLDI
->>     outputs.
->>
->> Note that the OLDI does not have registers of its own. It is still
->> dependent on
->> the parent VP. The VP that provides the DPI video signals to the OLDI
->> TXes, also
->> gives the OLDI TXes all the config data. That is to say, the hardware
->> doesn't
->> sit on the bus directly - but does so through the DSS.
->>
->> In light of all of these hardware variations, it was decided to have a
->> separate
->> OLDI driver (unlike AM65x) but not entirely separate so as to be a
->> platform
->> device. The OLDI TXes are now being represented as DRM bridges under
->> the tidss.
->>
->> Also, since the DRM framework only really supports a linear encoder-
->> bridge
->> chain, the OLDI driver creates a DRM bridge ONLY for the primary OLDI
->> TX in
->> cases of dual-link or cloned single-link OLDI modes. That bridge then
->> attaches
+>> How does the clone case work, then? There are two panels, what does the
+>> second one connect to?
 > 
-> How does the clone case work, then? There are two panels, what does the
-> second one connect to?
-
-For the clone case, the devicetree will show the true connections - as
-they are in the hardware.
-
-2 endpoints from a single DSS VP devicetree port will be connected to 2
-OLDIs, OLDI0 and OLDI1. The outputs of these OLDIs will be connected to
-2 distinct single-link panels.
-
-The driver and DRM side of things do not show the same picture, however.
-The tidss_oldi code creates and registers a drm_bridge only for the
-primary OLDI. The driver is capable of detecting the expected OLDI mode,
-and if a companion OLDI is present, then the primary OLDI drm_bridge
-keeps a note of that.
-
-The clock and config resources are shared between the primary and
-companion OLDI hardware. So configuring the primary OLDI takes care of
-the companion too.
-The only case where it is not shared is the OLDI IO bit in the Control
-MMR (ctrl_mmr) region. But, since the primary OLDI drm_bridge remains
-aware about the presence of companion OLDI, it makes sure to enable /
-disable the comapnion OLDI IO when required.
-
+> For the clone case, the devicetree will show the true connections - as
+> they are in the hardware.
 > 
->> to the tidss's display core - which consists of a CRTC, an Encoder
->> (dummy) and a
->> bridge (dummy). On the other end, it attaches to OLDI sinks (panels or
->> other
->> bridges).
->>
->> Since the OLDI TX have a hardware dependency with the VP, the OLDI
->> configuration
->> needs to happen before that VP is enabled for streaming. VP stream
->> enable takes
->> place in tidss_crtc_atomic_enable hook. I have posted a patch allowing
->> DRM
->> bridges to get pre-enabled before the CRTC of that bridge is
->> enabled[0]. Without
->> that patch, some warnings or glitches can be seen.
->>
->> These patches have been tested on AM625 based Beagleplay[3] platform
->> with a
->> Lincolntech LCD185 dual-lvds panel. The patches with complete support
->> including
->> the expected devicetree configuration of the OLDI TXes can be found in
->> the
->> "next_oldi_v4_tests" branch of my github fork[4]. This branch also has
->> support
->> for Microtips dual-lvds panel (SK-LCD1) which is compatible with the
->> SK-AM625
->> EVM platform.
->>
->> Due to lack of hardware, I haven't been able to test single-link / cloned
->> single-link OLDI modes. I have only used a sample cloned single-link
->> DTBO and
->> booted the board with it. I didn't see any probe_deferred errors (as seen
->> previously), and the `kmsprint` utility enumerated the display details
->> fine.
->>
->> Regardless, I'd appreciate it if somebody can test it, and report back
->> if they
->> observe any issues.
->>
->> Thanks,
->> Aradhya
->>
->>
->> Additional Notes:
->>
->> * Important note about a false positive in dtbs_check *
->> Both the ports, port0 and port1, are required for the OLDI
->> functionality to
->> work. The schema suggests this condition too. Additionally, the OLDI
->> devicetree
->> node is expected to be defined in the soc.dtsi file, and kept as
->> disabled.
->> Over the current platforms (Beagleplay and SK-AM625 EVM), the OLDI
->> panel is not
->> always attached, and hence we use a DT overlay to add panel details -
->> which is
->> where we enable the OLDI nodes. The structure of files is like this -
->>
->> - soc.dtsi                  (OLDI disabled)
->> - soc-baseboard.dts         (OLDI disabled)
->> - soc-baseboard-panel.dtso  (OLDI enabled)
->>
->> During dtbs_check runs, it was observed that the check was not able to
->> rule out
->> OLDI issues even when its DT was disabled in the soc-baseboard.dts. It is
->> impractical and impossible to add OLDI ports prior to the panel
->> overlay file.
->> While the dtbs_check usually ignores checking disabled devicetree
->> nodes, it was
->> unable to do so in the OLDI's case.
+> 2 endpoints from a single DSS VP devicetree port will be connected to 2
+> OLDIs, OLDI0 and OLDI1. The outputs of these OLDIs will be connected to
+> 2 distinct single-link panels.
 > 
-> While there might be something amiss with dtbs_check, what's the problem
-> with adding both port nodes to the soc.dtsi? If you have no endpoints
-> there, it's not connected to anything.
->
-
-Ran dtbs_check with this. The errors are silenced indeed. I didn't
-really like having empty ports in an already long DSS devicetree node,
-but this way the checks remain clean. I will use this for DT patches.
-Thank you! =)
-
+> The driver and DRM side of things do not show the same picture, however.
+> The tidss_oldi code creates and registers a drm_bridge only for the
+> primary OLDI. The driver is capable of detecting the expected OLDI mode,
+> and if a companion OLDI is present, then the primary OLDI drm_bridge
+> keeps a note of that.
 > 
-[...]
-> 
+> The clock and config resources are shared between the primary and
+> companion OLDI hardware. So configuring the primary OLDI takes care of
+> the companion too.
+> The only case where it is not shared is the OLDI IO bit in the Control
+> MMR (ctrl_mmr) region. But, since the primary OLDI drm_bridge remains
+> aware about the presence of companion OLDI, it makes sure to enable /
+> disable the comapnion OLDI IO when required.
 
--- 
-Regards
-Aradhya
+But if there's just one bridge (for the first oldi), how is the second 
+panel connected to the DRM pipeline? Who e.g. calls the 
+drm_panel_funcs.enable() in the panel driver for the second panel?
+
+Or, say, if we have two LVDS->HDMI bridges, with the cloning setup, how 
+does all the plumbing work if "DRM framework only really supports a 
+linear encoder-bridge chain"?
+
+  Tomi
 
 
