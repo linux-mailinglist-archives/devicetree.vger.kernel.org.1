@@ -1,80 +1,59 @@
-Return-Path: <devicetree+bounces-126584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64E999E1F14
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 15:26:16 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A6E29E1EDE
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 15:18:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B8553B29DC9
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 12:42:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 28D8CB254F7
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 12:59:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E88151EB9E5;
-	Tue,  3 Dec 2024 12:42:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="L4OpATY3"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0877B1EC00D;
+	Tue,  3 Dec 2024 12:59:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+Received: from relay06.th.seeweb.it (relay06.th.seeweb.it [5.144.164.167])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 246872500BB;
-	Tue,  3 Dec 2024 12:42:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D93032BD1D;
+	Tue,  3 Dec 2024 12:58:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.144.164.167
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733229763; cv=none; b=CY8IDGt0peyEvyc/1c5P/+FsL+W0cBmlb1SiSGYTroX8DJLrNAeKoR8T+p0XlXYk8mZuQnj2eHka+Ebd9GA+saDceepetCuzYxJsHk65/yev3lWBwnM8OjZdmxdEfW0JCwtdfFXYzF0CAnIQujrNaH25kiCpytPAZMwqyZvGlwU=
+	t=1733230741; cv=none; b=ctnRHH0eCpBiiL5m0kTfFXAGwTR7RM72PYK7r5WAiq3EMt+hJJqG8hqchFdTfYi5wgLVEjqEs6MEKkwP6/1e/88n8sR5kl5Mqr0pvITvWamVkIXub20vJSRt42b5YoIJyhSrK26v4S5dWnK1wvpHWcNSOpJbSoOJzzGS2bhYtSo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733229763; c=relaxed/simple;
-	bh=GEVDWoXU8EkXt2/Ud0xmX9mi2TRTdqO++Z+8LyxF8Gc=;
+	s=arc-20240116; t=1733230741; c=relaxed/simple;
+	bh=gbyrzLHaaP8vNy3gYuCqPffQEaN2dfO6mj1VA8VUbsk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C85owkEbnzdz4Xa+ZwWGj5lXRwm+Q0pOyPjib/+dU2jqkeaHb3GCDLq0kWlBCcju/bj7MBBLJ1vH6ZXz04IH8CsVDDwsG01cAIEj0zwq4KYx9YepFqvYcMJ+zXwuXzhRj4HkoyL7GtbaQS22fa2rDiU6AJKxJf5CVwkvyG1oFr4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=L4OpATY3; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1733229762; x=1764765762;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=GEVDWoXU8EkXt2/Ud0xmX9mi2TRTdqO++Z+8LyxF8Gc=;
-  b=L4OpATY39k2zAx0zqAEuEJV/RxYeKf1+Bb0zcBPPt4+35+ntAOcyIwlU
-   cbOGldUV3Na7dgn3oGlZc4O0qxp4XjcNHilbfo9jic4qbPjD7ggSQE61h
-   CMJTP4m2RqTxMhiMwBBA1VR6BzY1ntDiP/wA1f7pFxLSefSH0DNhtOhIU
-   w5ZjlnkLpA4sK45FxamohMC2QSGRG8SupfJ2gaKKug6BuLsixJ6N46b+R
-   MClXAxRk1Ga3YJGeWq08RmgQVv0ZFEk0cwZC1aYsnxFFPwA+6XutKnVf9
-   /eW8O2hytnD6ajXUvL9xms02gNzGo7fQmkfN9gvPwIFqTpkl+vN+mOcJo
-   A==;
-X-CSE-ConnectionGUID: caj+rfiXSI+cemIc9nzeMg==
-X-CSE-MsgGUID: K2MP4OWPRF2YarTwMLAfnA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="32785675"
-X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; 
-   d="scan'208";a="32785675"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Dec 2024 04:42:41 -0800
-X-CSE-ConnectionGUID: Cjp9XN5TQnWBwd25pyBIQg==
-X-CSE-MsgGUID: skx+fdfuTdKqJ4NbE8lekQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; 
-   d="scan'208";a="93510610"
-Received: from smile.fi.intel.com ([10.237.72.154])
-  by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Dec 2024 04:42:39 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1tISEe-00000003RGH-1eT5;
-	Tue, 03 Dec 2024 14:42:36 +0200
-Date: Tue, 3 Dec 2024 14:42:36 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Vasileios Amoiridis <vassilisamir@gmail.com>
-Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, u.kleine-koenig@pengutronix.de,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	 Content-Type:Content-Disposition:In-Reply-To; b=iJPm0kdNxl+sKQ20DW/sdePN5bB9sOuE66k0CUkFwjdBAfRvulFB+oJ+tGd1lJnWKCQ3mKucPZm4alvGFbasxWdD/q9jZJh701s9JX6q9m7sYXsEz6bt/gLTjxGitnp6Cmxfks95P+FNPACca62ARXNhls6YS9PYMGLYFX57QYw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org; spf=pass smtp.mailfrom=somainline.org; arc=none smtp.client-ip=5.144.164.167
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=somainline.org
+Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 026083EA59;
+	Tue,  3 Dec 2024 13:58:50 +0100 (CET)
+Date: Tue, 3 Dec 2024 13:58:49 +0100
+From: Marijn Suijten <marijn.suijten@somainline.org>
+To: Luca Weiss <luca.weiss@fairphone.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, ~postmarketos/upstreaming@lists.sr.ht, 
+	phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 3/3] iio: chemical: bme680: add power management
-Message-ID: <Z078vIxRoQf_zLsy@smile.fi.intel.com>
-References: <20241202192341.33187-1-vassilisamir@gmail.com>
- <20241202192341.33187-4-vassilisamir@gmail.com>
- <Z04N6GUSL2H0zt6_@smile.fi.intel.com>
- <Z04aJg7eoBR9CYKe@vamoirid-laptop>
+Subject: Re: [PATCH] dt-bindings: power: rpmpd: Fix comment for SM6375
+Message-ID: <eovguha2tvc3rxd72yfqxgcg37waokoyqs377kvwmtdgssi4no@ii3i2bvl675i>
+Mail-Followup-To: Marijn Suijten <marijn.suijten@somainline.org>, 
+	Luca Weiss <luca.weiss@fairphone.com>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, ~postmarketos/upstreaming@lists.sr.ht, 
+	phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+References: <20241202-rpmpd-sm6375-v1-1-12a4f0182133@fairphone.com>
+ <yo5cc3cvvwwdrqrrgwlquztj52sijip3ffyyqag55jrnztxi2m@hn75ylkhnxie>
+ <D61WIF2XWKL8.MWU6PK2XGX4F@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,69 +62,65 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Z04aJg7eoBR9CYKe@vamoirid-laptop>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <D61WIF2XWKL8.MWU6PK2XGX4F@fairphone.com>
 
-On Mon, Dec 02, 2024 at 09:35:50PM +0100, Vasileios Amoiridis wrote:
-> On Mon, Dec 02, 2024 at 09:43:36PM +0200, Andy Shevchenko wrote:
-> > On Mon, Dec 02, 2024 at 08:23:41PM +0100, Vasileios Amoiridis wrote:
-> > > Add runtime power management to the device.
-
-...
-
-> > > +	ret = pm_runtime_resume_and_get(dev);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	ret = __bme680_read_raw(indio_dev, chan, val, val2, mask);
-> > > +	pm_runtime_mark_last_busy(dev);
-> > > +	pm_runtime_put_autosuspend(dev);
-> > 
-> > Side note: as long as idle method is not defined (NULL) the above dance is
-> > already taken into account in the regular put.
-
-> Thanks again for the review! Indeed by looking at the code a bit, it
-> looks like the suspend callback is being called if the idle one is not
-> found. But I have seen this dance that you mention much more often in
-> the IIO that's why I used it. We can see what Jonathan has to say as
-> well, I think what you propose, simplifies things.
-
-Yeah, this is cargo cult by many people (including me :-) who missed that
-detail. If any, this can be addressed in a different series.
-
-...
-
-> > > +static int bme680_buffer_preenable(struct iio_dev *indio_dev)
-> > > +{
-> > > +	struct bme680_data *data = iio_priv(indio_dev);
-> > > +	struct device *dev = regmap_get_device(data->regmap);
-> > > +	int ret;
-> > 
-> > > +	ret = pm_runtime_resume_and_get(dev);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	return 0;
-> > 
-> > Either this is broken (if the above can return positive codes), or can be
-> > replaced with direct return:
-> > 
-> > 	return pm_...
-> > 
-> > (but I believe it's the former and you wanted something like if (ret < 0)
-> >  there).
-> > 
-> > > +}
+On 2024-12-03 08:52:59, Luca Weiss wrote:
+> On Mon Dec 2, 2024 at 9:00 PM CET, Dmitry Baryshkov wrote:
+> > On Mon, Dec 02, 2024 at 04:45:02PM +0100, Luca Weiss wrote:
+> > > During an earlier commit, the comment from SM6350 was copied without
+> > > modifying. Adjust the comment to reflect the defines.
+> > > 
+> > > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> >
+> > Fixes tag, please.
 > 
-> Well, pm_runtime_resume_and_get() looks like it returns 0 on success and
-> negative value on error so I think the if (ret) is correct, no? But I
-> agree with you that it can be simplified as you proposed.
+> I thought for just a comment fix it's not necessary / desired.
 
-Please, go ahead with the simplification!
+Makes one wonder why the SoC name is repeated in a comment in the first place,
+when it is already in every named constant and the containing filename too.
+That's only prone to errors as you've demonstrated here, requiring a separate
+commit and discussion (and automatic backporting via Fixes:) to patch up, while
+it already wasn't relevant/useful for anyone.
 
--- 
-With Best Regards,
-Andy Shevchenko
+Less is more.
 
+- Marijn
 
+PS: That's a suggestion to see if we can perhaps remove these from all header
+files instead to save the copy-paste burden in the future?
+
+> 
+> Anyways:
+> 
+> Fixes: 2d48e6ea3080 ("dt-bindings: power: rpmpd: Add SM6375 power domains")
+> 
+> 
+> >
+> > > ---
+> > >  include/dt-bindings/power/qcom-rpmpd.h | 2 +-
+> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > 
+> > > diff --git a/include/dt-bindings/power/qcom-rpmpd.h b/include/dt-bindings/power/qcom-rpmpd.h
+> > > index df599bf462207267a412eac8e01634189a696a59..d9b7bac309537cbfd2488e7d4fe21d195c919ef5 100644
+> > > --- a/include/dt-bindings/power/qcom-rpmpd.h
+> > > +++ b/include/dt-bindings/power/qcom-rpmpd.h
+> > > @@ -65,7 +65,7 @@
+> > >  #define SM6350_MSS	4
+> > >  #define SM6350_MX	5
+> > >  
+> > > -/* SM6350 Power Domain Indexes */
+> > > +/* SM6375 Power Domain Indexes */
+> > >  #define SM6375_VDDCX		0
+> > >  #define SM6375_VDDCX_AO	1
+> > >  #define SM6375_VDDCX_VFL	2
+> > > 
+> > > ---
+> > > base-commit: 40384c840ea1944d7c5a392e8975ed088ecf0b37
+> > > change-id: 20241202-rpmpd-sm6375-06582e126d7f
+> > > 
+> > > Best regards,
+> > > -- 
+> > > Luca Weiss <luca.weiss@fairphone.com>
+> > > 
+> 
 
