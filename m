@@ -1,205 +1,188 @@
-Return-Path: <devicetree+bounces-126454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B52999E175B
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 10:25:32 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B72C99E1959
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 11:33:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 755172842C9
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 09:25:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EA76DB311AA
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 09:29:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57C2E1DED7F;
-	Tue,  3 Dec 2024 09:25:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFDA21DFE01;
+	Tue,  3 Dec 2024 09:27:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zh0JgbkR"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VoZzCYFp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 288871B1D61;
-	Tue,  3 Dec 2024 09:25:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CA481E0DB1;
+	Tue,  3 Dec 2024 09:27:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733217930; cv=none; b=ayB0lkXAWV0CfOP/iQQQNXJc2VuuhsEcwYEybJHB0io49QGc8C/JJrx4BVrT/kU+0isnBzaOgXovZfOHWWQ7uVZexRp28ZKVEevKmph4G5v0y+HJh0Logdp2U0wqj4IqRIdnnQANLJtMsHCc4dg52NDtoJpdVsVstpa2CkmkXhY=
+	t=1733218069; cv=none; b=La+lzvlCdr4wvjWPog/5mN7+HXwq8Up338O9GtU77cJ/s7kbDCmujzXH76w2UvUijmyGLXfgP49a5cC1kjgWW7sC/Ub6qsJmoCWNM6joyWxuYT13k3gWG5rDJhO+O/Ab//BwKATElplsJNhJK8C1rDNdxPQ+u28GbtCjbxW4yEw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733217930; c=relaxed/simple;
-	bh=HwwyHKZpSpwbNj5lmUmqqtV+pJ6DtpE/w3ilanXMcO0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lfiP2UpAAo6tvl8Fp/znKH4hxlqKNoCOSBWR1nHCwSq1G24HYCi/Z7Pci2NQAGRe/E6auaa9lN1Sldu9STkBAsMGQYvV0HlHnouM3IylrmJ3kXilHU96a9znC0nIJO6jvxxuLrsGW2LM2hf1p8pAIz55kqt28wNX0rjiyS3WJV8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zh0JgbkR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A24F4C4CED6;
-	Tue,  3 Dec 2024 09:25:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733217929;
-	bh=HwwyHKZpSpwbNj5lmUmqqtV+pJ6DtpE/w3ilanXMcO0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Zh0JgbkRdP2KmuXfPVysz3DJESjr17Sqi2LvmPRU+IoNSYd8ybikrs0/DVMMJLoTb
-	 oGj8F/WT7oGgYInBTIKyc+G3fyFMKMPBFA3yZNFXpGTneRC0UuwhzgrcCfKLAargbI
-	 UWeZLlIbUhrXotXYm3z6W3LOvPUVkU+JAmih/p5GaiFq86VULgDL5Z1x1Sr7bUt7Tv
-	 S2W4xqKfYrCxAhAdx5BYsjTXCTf/OVHMCfRWgTpAq3GEEk1mstwXIiZjbgBeBHgd23
-	 A6wABnvPBSVX621TrDs3GEkuCIPBEOmgl0VLsjbrSM62TuSgS0/bcMT1RZDvdufWAT
-	 iUUcXICR9/GoQ==
-Message-ID: <4c5044a0-8286-463c-ace9-78a4245f112e@kernel.org>
-Date: Tue, 3 Dec 2024 10:25:16 +0100
+	s=arc-20240116; t=1733218069; c=relaxed/simple;
+	bh=T96BcuoR6g93Ngo3aMuJXGBNQ20OEsJzQg4Jmbm8yA8=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=VIA3+orw0dH8PqNvBjupCg+lI1GlB0voFlDWXgf86Ifj/HlKIhNDhzzjgsWwp3OfZoC84sMmbR5hMBZzWxvNy35NqUmH/ZqIwsMr5q4SHMQC/HrcusamPu6YGbzMRAMEbE4VTfxiQ2RHn/BxjP+cXYDI0rAdDc+miJ/2hLqhePM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=VoZzCYFp; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B362axI027818;
+	Tue, 3 Dec 2024 09:27:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=q2RBkO3nvuxlv2gjSgJxbO
+	Xgxf5FYdpDETzUvFONTeQ=; b=VoZzCYFppgIvu7pYsHDbWVK3NzkyiOO4YEgb5c
+	gRA1mMfulOFXStZ4awltJdmqMdFHjB5NyDyVfBbm45gfJ9+aSwbxMuHXEPIZaQlp
+	rgxU/xP5MhtQ38ANoyK1UGb6bweZO/JeBpjFwfAIJEyKbbsKzkRhM079MrVxWuH6
+	0FsSbbZSaiNRi9CfpA7djGuOWvLbxqiflfiqpDi07czrbuTwbK/gn2+cGVsE3FIX
+	tapaacGrZYZCqoUHI/NjvAjAEuq3wczZyvct25BCpi9UEttxFqDmpklsvQSm9BR1
+	6CkFU0ZVMFAi0iWUivlaaoKgTaYpJRpZqQ/F+DOJ+17Vyjdg==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 439vceghp5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 03 Dec 2024 09:27:40 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B39RdTr014991
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 3 Dec 2024 09:27:39 GMT
+Received: from jingyw-gv.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 3 Dec 2024 01:27:35 -0800
+From: Jingyi Wang <quic_jingyw@quicinc.com>
+Subject: [PATCH v4 0/4] Add initial support for QCS8300 SoC and QCS8300
+ RIDE board
+Date: Tue, 3 Dec 2024 17:27:11 +0800
+Message-ID: <20241203-qcs8300_initial_dtsi-v4-0-d7c953484024@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: Add binding for Nuvoton
- NCT720x ADCs
-To: Eason Yang <j2anfernee@gmail.com>, avifishman70@gmail.com,
- tmaimon77@gmail.com, tali.perry1@gmail.com, venture@google.com,
- yuenn@google.com, benjaminfair@google.com, jic23@kernel.org,
- lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- nuno.sa@analog.com, dlechner@baylibre.com, javier.carrasco.cruz@gmail.com,
- andriy.shevchenko@linux.intel.com, marcelo.schmitt@analog.com,
- olivier.moysan@foss.st.com, mitrutzceclan@gmail.com, tgamblin@baylibre.com,
- matteomartelli3@gmail.com, alisadariana@gmail.com, gstols@baylibre.com,
- thomas.bonnefille@bootlin.com, ramona.nechita@analog.com,
- mike.looijmans@topic.nl, chanh@os.amperecomputing.com, KWLIU@nuvoton.com,
- yhyang2@nuvoton.com
-Cc: openbmc@lists.ozlabs.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20241203091540.3695650-1-j2anfernee@gmail.com>
- <20241203091540.3695650-2-j2anfernee@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241203091540.3695650-2-j2anfernee@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAO/OTmcC/3XP0U7DMAwF0F+Z8kyQnYQm2RP/gdDkOgmzxFrWl
+ Ao07d/JOgmBYI/Xlo91T6rmSXJV281JTXmRKuPQgrvbKN7T8JK1pJaVAeMQTdBHrsEC7GSQWeh
+ 1l+YqmpItGC1nTF6107cpF/lY2afnlvdS53H6XL8seJmuIERw/4MLatAJMkUqiQH84/FdWAa+5
+ /GgLuRifjDm4QZjGuOiYweFDDnzl7HfzO16i22M6YgCYeciut/M+dp4ym1aZb7WVj3VrNv+IPN
+ 2U1zoOFA77wN6Uzrbp8QeEDsCDtGTL7aAadj5C8dzOc+UAQAA
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Catalin Marinas
+	<catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+CC: <quic_tengfan@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Jingyi Wang
+	<quic_jingyw@quicinc.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.15-dev-99b12
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1733218055; l=2910;
+ i=quic_jingyw@quicinc.com; s=20240910; h=from:subject:message-id;
+ bh=T96BcuoR6g93Ngo3aMuJXGBNQ20OEsJzQg4Jmbm8yA8=;
+ b=hpZHCYEtZXoBsGltYPA15q+LLQXi9gwAfMaRJ6Zca9sDD2vtK7F7k6qE/KNDhJJk7YV7vj5gP
+ EKSBfgo/3bkCH0Z7LVGFZXBXWOeJBVQ4TfOx1k8xddT0N/taCSQem5c
+X-Developer-Key: i=quic_jingyw@quicinc.com; a=ed25519;
+ pk=ZRP1KgWMhlXXWlSYLoO7TSfwKgt6ke8hw5xWcSY+wLQ=
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: TuKrq-KOtN24SrnUSjVF73LsKhO6_b3o
+X-Proofpoint-ORIG-GUID: TuKrq-KOtN24SrnUSjVF73LsKhO6_b3o
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ bulkscore=0 mlxlogscore=999 adultscore=0 suspectscore=0 spamscore=0
+ impostorscore=0 phishscore=0 mlxscore=0 malwarescore=0 clxscore=1015
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412030081
 
-On 03/12/2024 10:15, Eason Yang wrote:
-> This adds a binding specification for the Nuvoton NCT7201/NCT7202
+Introduce the Device Tree for the QCS8300 platform.
 
+Features added and enabled:
+- CPUs with PSCI idle states
+- Interrupt-controller with PDC wakeup support
+- Timers, TCSR Clock Controllers
+- Reserved Shared memory
+- GCC and RPMHCC
+- TLMM
+- Interconnect
+- QuP with uart
+- SMMU
+- QFPROM
+- Rpmhpd power controller
+- UFS
+- Inter-Processor Communication Controller
+- SRAM
+- Remoteprocs including ADSP,CDSP and GPDSP
+- BWMONs
 
-Please do not use "This commit/patch/change", but imperative mood. See
-longer explanation here:
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+binding dependencies:
+- remoteproc: https://lore.kernel.org/linux-arm-msm/20240925-qcs8300_remoteproc_binding-v3-1-21b0c52b142b@quicinc.com/ - Reviewed
+- qfprom: https://lore.kernel.org/all/20240911-qcs8300_qfprom_binding-v2-1-d39226887493@quicinc.com/ - Reviewed
+- pdc: https://lore.kernel.org/all/20240911-qcs8300_binding-v2-1-de8641b3eaa1@quicinc.com/ - Reviewed
 
-A nit, subject: drop second/last, redundant "bindings". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
+---
+Changes in v4:
+- fixup typo in Makefile(Andrew & Krzysztof)
+- add board name in the commit message of the defconfig change(Dmitry)
+- separate cpus into 2 clusters in cpu-map(Konrad)
+- use QCOM_ICC_TAG_ALWAYS instead of "0" for interconnect nodes(Konrad)
+- Remove unused labels and drop redundant comments(Konrad)
+- Move clocks to the dtsi file(Dmitry)
+- drop reviewed-by tag for dts patch for the code change
+- Link to v3: https://lore.kernel.org/r/20241128-qcs8300_initial_dtsi-v3-0-26aa8a164914@quicinc.com
 
-> 
-> Signed-off-by: Eason Yang <j2anfernee@gmail.com>
-> ---
->  .../bindings/iio/adc/nuvoton,nct720x.yaml     | 40 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 41 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/nuvoton,nct720x.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/nuvoton,nct720x.yaml b/Documentation/devicetree/bindings/iio/adc/nuvoton,nct720x.yaml
-> new file mode 100644
-> index 000000000000..2ed1e15b953b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/nuvoton,nct720x.yaml
-> @@ -0,0 +1,40 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/nuvoton,nct720x.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Nuvoton nct7202 and similar ADCs
-> +
-> +maintainers:
-> +  - Eason Yang <j2anfernee@gmail.com>
-> +
-> +description: |
-> +   Family of ADCs with i2c interface.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nuvoton,nct7201
-> +      - nuvoton,nct7202
-> +
-> +  reg:
-> +    maxItems: 1
+Changes in v3:
+- Update title and cleanup signed-off-by tag(Bjorn)
+- fix the INTID of EL2 non-secure physical timer(Cong)
+- add reviewed-by tag(except for the dtsi patch for the code change)
+- code rebase
+- Link to v2: https://lore.kernel.org/r/20240925-qcs8300_initial_dtsi-v2-0-494c40fa2a42@quicinc.com
 
+Changes in v2:
+- decoupled from the original series
+- Drop compatible for QCS8275
+- fix property order and add line breaks
+- move sleep_clk node to qcs8300-ride.dts
+- move l3-cache nodes out of l2-cache nodes and remove cluster1/cluster2
+- add BWMON nodes
+- commit-msg update
+- Link to v1: https://lore.kernel.org/r/20240904-qcs8300_initial_dtsi-v1-0-d0ea9afdc007@quicinc.com
 
-No other properties? No resources?
+---
+Jingyi Wang (4):
+      dt-bindings: arm: qcom: document QCS8300 SoC and reference board
+      arm64: defconfig: enable clock controller, interconnect and pinctrl for QCS8300
+      arm64: dts: qcom: add QCS8300 platform
+      arm64: dts: qcom: add base QCS8300 RIDE board
 
-I think you skipped quite a lot from previous review.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        nct7202@1d {
-
-Nothing improved here.
-
-<form letter>
-This is a friendly reminder during the review process.
-
-It seems my or other reviewer's previous comments were not fully
-addressed. Maybe the feedback got lost between the quotes, maybe you
-just forgot to apply it. Please go back to the previous discussion and
-either implement all requested changes or keep discussing them.
-
-Thank you.
-</form letter>
-
+ Documentation/devicetree/bindings/arm/qcom.yaml |    6 +
+ arch/arm64/boot/dts/qcom/Makefile               |    1 +
+ arch/arm64/boot/dts/qcom/qcs8300-ride.dts       |  235 ++++
+ arch/arm64/boot/dts/qcom/qcs8300.dtsi           | 1405 +++++++++++++++++++++++
+ arch/arm64/configs/defconfig                    |    3 +
+ 5 files changed, 1650 insertions(+)
+---
+base-commit: f486c8aa16b8172f63bddc70116a0c897a7f3f02
+change-id: 20241128-qcs8300_initial_dtsi-ad3f193ce1d7
 
 Best regards,
-Krzysztof
+-- 
+Jingyi Wang <quic_jingyw@quicinc.com>
+
 
