@@ -1,159 +1,127 @@
-Return-Path: <devicetree+bounces-126361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46E569E13D2
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 08:17:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72ACE9E1424
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 08:29:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B36E164440
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 07:17:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7017416792C
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 07:28:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76E441862BB;
-	Tue,  3 Dec 2024 07:17:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71F72199948;
+	Tue,  3 Dec 2024 07:22:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B5qqApr9"
+	dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b="h5o/K34o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4908F2500A8;
-	Tue,  3 Dec 2024 07:17:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C853193404;
+	Tue,  3 Dec 2024 07:22:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.30.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733210238; cv=none; b=WG3Vqe/puAg7w5Th0jAbCt/rO7SJLtwpTUKdvZpedvLWgvYB0RrLj4w4EjKy3m+L8PJDrSGkcJyVCTXn+3ybUqGLsfnZxJNKMcWslkE3vSRAHeDeSU3w8NiIWLYY3zNrNv0KAu1lcgbZM0liUnEr2ZBHq/GbWZQnOKeFrkRai2I=
+	t=1733210549; cv=none; b=cod+VLo3NoVXsvoqieqqpZ7Q47NTaelO1BXDM6BiyEHR4TLjjGi8JNTjbgEAuSWvyVC43V806Z3MJWxam8JnKTXU56KF7ATXtMOvxRmve9i43YVlKbEeijFgQz+fl2jqBBdHaIfE3aXJZrL68rBQdreRegmlHmw9isdkdJLcL9k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733210238; c=relaxed/simple;
-	bh=oHoyC7GK2kz/nIjAQJxYXF9aa8lo5J4l0FqurxPxZEQ=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=DUoN9v/y5ocbgF7WU1tlqWgRjAwXE11Is3spHDs/gVwRwcbus9VSIF3l+23ntYMcKUP9qXPVDFe0wfxR39VfvVU6nJIg/PmjeZNg/s1YskbKg9hkqO9ROye45F0yjKCcy3fYRc2ZLRBIYW5MF8yfoyxW/bQZitGPxpAZFsEHnJA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B5qqApr9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42CA3C4CECF;
-	Tue,  3 Dec 2024 07:17:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733210237;
-	bh=oHoyC7GK2kz/nIjAQJxYXF9aa8lo5J4l0FqurxPxZEQ=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=B5qqApr9HlCf1+hmDijd6BVI9RvJZryiJNpBpaAUzj6AaVi5CHoczEZ3sTxF+V8Tw
-	 v4Y5+hzP2JE0gmKTd6b5WFnvfkCwO5zKeoigYTd7t2gg9Uk4wb2D16clHZOiQU8bfv
-	 JJrtKsjzmIIe1/sxowJUSqLz2v9BtwhhpfGS1r2hMnt0V5qGMM5d8esELw3mdi6xrT
-	 KvYsMmAdELsXxejc3oresj6yiamBoOgGpNTmCMTJGhwKRSOIspjTtJwfF0BU0+cwa+
-	 wkottm8U/J+XWB8CxHcYcAxJRxR4yQoqnQNu9ZOr4ILSYJD6zFxEIabheKne84UO5N
-	 0e545FfaYJNfg==
-Message-ID: <990b0efe-0018-4910-910a-8d1431ea26d8@kernel.org>
-Date: Tue, 3 Dec 2024 08:17:13 +0100
+	s=arc-20240116; t=1733210549; c=relaxed/simple;
+	bh=DFyp/R0jxpqhgTccWILwnURhQxdrodsREP29KXQN+N4=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=SNm4f1Bvk9arHJ15jLeMR5f9AlkD7R3LSttN9FTsmS6/I8fEuYoc0eG+tdDjRks7Cjm3BGGyPpG6Tfuyb1pzMD5aVEnf2IVgyPvxGxwG3F2+QBu5JIAVHvee+4tLPMfPRS+lK+ShXJTLT295OubQhSdnFhHT2nB9Oqx2tEp6z2g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com; spf=pass smtp.mailfrom=geanix.com; dkim=pass (2048-bit key) header.d=geanix.com header.i=@geanix.com header.b=h5o/K34o; arc=none smtp.client-ip=188.40.30.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=geanix.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=geanix.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
+	s=default2211; h=Cc:To:Message-Id:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Subject:Date:From:Sender:Reply-To:Content-ID:Content-Description
+	:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References; bh=6jVLTp18SWbdeHtZP7DxFFXE7kTlMhv8zC8+fegqAt8=; b=h5
+	o/K34oPg8+8SwkBX8khV2d7Wu0g3b4ZOpHjfAR3tPBXA6w+M5QnUkx1VCy9oSEP1egtXjetVywu8v
+	rqQZ9m3asJCGVwvI3X23OXs+9GutOQlLs7CdT+T8nSU41H3IgqRRL+GZBW+Lc3vbdOPfXtYe8u0Ah
+	kZDSFGz84FakPUU45uufuu+patmO9SA9W+0IViMkI9JXTn+JvwHqmk6w6VH3lxb+wjq3Ox3As/LMO
+	jxFfUDDl5KwQJ07NgCgziGHXLJsKUEZKioJiwx6fScOpZ6wPWlzIPi8h06SNgdl/I81xRq+3YpiP2
+	m1auGuSBqWqDDgGffG+04g9wcwVR+drQ==;
+Received: from sslproxy04.your-server.de ([78.46.152.42])
+	by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <sean@geanix.com>)
+	id 1tINEl-000Fgf-BV; Tue, 03 Dec 2024 08:22:23 +0100
+Received: from [185.17.218.86] (helo=zen.localdomain)
+	by sslproxy04.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <sean@geanix.com>)
+	id 1tINEk-000MPv-2Y;
+	Tue, 03 Dec 2024 08:22:22 +0100
+From: Sean Nyekjaer <sean@geanix.com>
+Date: Tue, 03 Dec 2024 08:22:11 +0100
+Subject: [PATCH v2] dt-bindings: iio: accel: fxls8962af: add wakeup-source
+ property
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: pwm: add atcpit100-pwm
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ben Zong-You Xie <ben717@andestech.com>
-Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, ukleinek@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org
-References: <20241202060147.1271264-1-ben717@andestech.com>
- <20241202060147.1271264-2-ben717@andestech.com>
- <qmbaftzr4ww35txfjvt6iao5g5jjikx5swgh6cdqbiu36dwo2y@74vnlk2a3ihn>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <qmbaftzr4ww35txfjvt6iao5g5jjikx5swgh6cdqbiu36dwo2y@74vnlk2a3ihn>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20241203-fxlsdt-v2-1-ef523461b507@geanix.com>
+X-B4-Tracking: v=1; b=H4sIAKKxTmcC/2XMQQ7CIBCF4as0sxbDjLWkrryH6YJQaCdRMNAQT
+ MPdxW5d/i8v3w7JRrYJbt0O0WZOHHwLOnVgVu0XK3huDSSpR6RRuPJM8yZIIl0v0mipBmjnd7S
+ OywE9ptYrpy3Ez+Fm/K1/REaBwjk1jEr3yhh9X6z2XM4mvGCqtX4BzuD9qJ0AAAA=
+X-Change-ID: 20241129-fxlsdt-2012530ca076
+To: Jonathan Cameron <jic23@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Sean Nyekjaer <sean@geanix.com>
+X-Mailer: b4 0.14.2
+X-Authenticated-Sender: sean@geanix.com
+X-Virus-Scanned: Clear (ClamAV 0.103.10/27475/Mon Dec  2 10:41:11 2024)
 
-On 02/12/2024 08:40, Krzysztof Kozlowski wrote:
-> On Mon, Dec 02, 2024 at 02:01:46PM +0800, Ben Zong-You Xie wrote:
->> Document devicetree bindings for Andes atcpit100-pwm.
->>
->> Signed-off-by: Ben Zong-You Xie <ben717@andestech.com>
->> ---
->>  .../bindings/pwm/andestech,atcpit100-pwm.yaml | 51 +++++++++++++++++++
->>  MAINTAINERS                                   |  5 ++
->>  2 files changed, 56 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/pwm/andestech,atcpit100-pwm.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/pwm/andestech,atcpit100-pwm.yaml b/Documentation/devicetree/bindings/pwm/andestech,atcpit100-pwm.yaml
->> new file mode 100644
->> index 000000000000..4b707f32ad72
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/pwm/andestech,atcpit100-pwm.yaml
->> @@ -0,0 +1,51 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/pwm/andestech,atcpit100-pwm.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Andes atcpit100 PWM
->> +
->> +maintainers:
->> +  - Ben Zong-You Xie <ben717@andestech.com>
->> +
->> +allOf:
->> +  - $ref: pwm.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    const: andestech,atcpit100-pwm
-> 
-> 
-> Previously, before we removed it in 2022, this was just
-> andestech,atcpit100, so questions:
-> 
-> 1. Why are you re-introducing it? Please address all the comments or
-> aspects leading to removal.
-> 2. Why are you using different compatible? Is this one device?
+Add a wakeup-source property to the binding to describe whether the
+wakeup interrupts from the accelerometer can wake the system from
+suspend.
 
-For some reason you replied while removing most of the people from
-address list. That's weird. Don't change the recipients list.
+Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+---
+Changes in v2:
+- Corrected commit message
+- Link to v1: https://lore.kernel.org/r/20241129-fxlsdt-v1-1-ff7697a47cca@geanix.com
+---
+ Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-All my statements are still standing.
+diff --git a/Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml b/Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml
+index 2d99e3811da07ea0453feafbcf82a227185ecea2..c175f4c4cbdb8f8debb0fe64ed21157f3a878d59 100644
+--- a/Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml
++++ b/Documentation/devicetree/bindings/iio/accel/nxp,fxls8962af.yaml
+@@ -46,6 +46,11 @@ properties:
+   drive-open-drain:
+     type: boolean
+ 
++  wakeup-source:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      Enable wake on accelerometer event
++
+ required:
+   - compatible
+   - reg
+@@ -69,6 +74,7 @@ examples:
+             interrupt-parent = <&gpio0>;
+             interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
+             interrupt-names = "INT1";
++            wakeup-source;
+         };
+     };
+   - |
+
+---
+base-commit: a61ff7eac77e86de828fe28c4e42b8ae9ec2b195
+change-id: 20241129-fxlsdt-2012530ca076
+
 Best regards,
-Krzysztof
+-- 
+Sean Nyekjaer <sean@geanix.com>
+
 
