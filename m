@@ -1,139 +1,291 @@
-Return-Path: <devicetree+bounces-126707-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126708-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94F129E2A65
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 19:07:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E3899E2A92
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 19:15:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B1F7285319
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 18:07:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F1DF2848C8
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 18:15:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 961431FAC5C;
-	Tue,  3 Dec 2024 18:07:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E61861FA161;
+	Tue,  3 Dec 2024 18:15:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="V9qoUSjI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from out-178.mta0.migadu.com (out-178.mta0.migadu.com [91.218.175.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A9A31E868;
-	Tue,  3 Dec 2024 18:07:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 598C2B660
+	for <devicetree@vger.kernel.org>; Tue,  3 Dec 2024 18:15:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733249260; cv=none; b=rfYZZk+CgQLa6ars5mZW9yoS+TrIqkeWV9IKsXWHXst1qfl5WU+36DWYFQ3Rq5j8dmNDZAM/yuzmuZN5NRiKCAr0jBKUZJdlb7Y3+9aejoPArk+8GdKKWkmQL+drmBgQeambvgbsGeRTYk1mcxvmoZsvpVuBnKmGBb4G7XWmRjw=
+	t=1733249732; cv=none; b=NHxvbK58zdWZ+1xvEffrBVM979sNmDbHBc7bKjBJ1NW/KqAIecs7Qpqq1rcz43iqiMkemF7V+vmDANDyQP1tGD+J0QiogamiTVfCTGl6sHf/srzwjpL1mQQvfy03neXzfrrjQXgN6kiJB6Fz9t01vqCU3pn6kM4vOyoyPyAziR8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733249260; c=relaxed/simple;
-	bh=dqztknOIkm8ntS9wy+GQNN8ohu1VudzQqaeaZ2cvWb4=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=i/nkJ0re27qWWXI8a3nA+wfSjtn3tZ1H7D07A0Xerp94J6nPisPT4YsiJ4ABAJY3I4t0lyC5KBFcBNK9q75c9nLIjCPyXCNtIFzaMtv2kZQQI1TAPXQE98Uh7O869qHDCjz0w1ZFZP7drIsDjTckoLxRYKYm7dw0AqD4C1EXfFE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Y2pR80KFJz6K6XW;
-	Wed,  4 Dec 2024 02:03:00 +0800 (CST)
-Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
-	by mail.maildlp.com (Postfix) with ESMTPS id D7E5F140B63;
-	Wed,  4 Dec 2024 02:07:12 +0800 (CST)
-Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
- (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Tue, 3 Dec
- 2024 19:07:12 +0100
-Date: Tue, 3 Dec 2024 18:07:10 +0000
-From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-To: Paul Barker <paul.barker.ct@bp.renesas.com>
-CC: Claudiu <claudiu.beznea@tuxon.dev>,
-	<prabhakar.mahadev-lad.rj@bp.renesas.com>, <jic23@kernel.org>,
-	<lars@metafoo.de>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <geert+renesas@glider.be>, <magnus.damm@gmail.com>,
-	<mturquette@baylibre.com>, <sboyd@kernel.org>, <p.zabel@pengutronix.de>,
-	<linux-iio@vger.kernel.org>, <linux-renesas-soc@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-clk@vger.kernel.org>, Claudiu Beznea
-	<claudiu.beznea.uj@bp.renesas.com>
-Subject: Re: [PATCH 06/14] iio: adc: rzg2l_adc: Simplify the locking scheme
- in rzg2l_adc_read_raw()
-Message-ID: <20241203180710.0000204d@huawei.com>
-In-Reply-To: <6f627195-6c55-4687-b6b6-7fb791d13819@bp.renesas.com>
-References: <20241203111314.2420473-1-claudiu.beznea.uj@bp.renesas.com>
-	<20241203111314.2420473-7-claudiu.beznea.uj@bp.renesas.com>
-	<6f627195-6c55-4687-b6b6-7fb791d13819@bp.renesas.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1733249732; c=relaxed/simple;
+	bh=ts6/amOxa0dJ1j4L7dg7bZ63rmuGs6CM+DqRX/TLxSM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aaWiYUCuLfhTjxXSqv+eA5TIMRCW459XavYrsy3yQjCAu6lSAtL7fzO6ZidFrmi3l7nHuOa7P2ZMeQCTU/Ju+A2WQUfNG+ICn0sen5eN+OBoX/cii6aG15SESbEtYSEd8hl1MpQAZ+XWTGasU573xUIUjm1gBDLOWZENWoN/bs8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=V9qoUSjI; arc=none smtp.client-ip=91.218.175.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <b8bde033-13a8-4726-a9ff-2fa4eff898e1@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1733249727;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/d6d21lYDvEFZiQrySVvNDh1sU8fuz6MdG1q72i45IU=;
+	b=V9qoUSjI7EsoODFNlUsz+6kzYDm+vLmfMrzU58PdFBqKNq4K6EbSDCZpEzrvtvsDleq6X/
+	lvYlX2Vpf1PANTfSnRQ7vUc/O8yBYK+NDtT0axw/iAUMFx54f/MT7ojgOI9gGpXDNfMMzs
+	m62ISwNM0CUjQeFHObWvuIDyWidawdg=
+Date: Tue, 3 Dec 2024 23:44:27 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml500009.china.huawei.com (7.191.174.84) To
- frapeml500008.china.huawei.com (7.182.85.71)
+Subject: Re: [PATCH v4 0/3] drm/tidss: Add OLDI bridge support
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Nishanth Menon
+ <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Devarsh Thakkar <devarsht@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
+ Udit Kumar <u-kumar1@ti.com>, Jayesh Choudhary <j-choudhary@ti.com>,
+ Francesco Dolcini <francesco@dolcini.it>,
+ Alexander Sverdlin <alexander.sverdlin@siemens.com>,
+ Max Krummenacher <max.oss.09@gmail.com>,
+ DRI Development List <dri-devel@lists.freedesktop.org>,
+ Devicetree List <devicetree@vger.kernel.org>,
+ Linux Kernel List <linux-kernel@vger.kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jyri Sarha <jyri.sarha@iki.fi>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>,
+ David Airlie <airlied@gmail.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Simona Vetter <simona@ffwll.ch>
+References: <20241124143649.686995-1-aradhya.bhatia@linux.dev>
+ <8b57d6a4-6bc1-4542-abf4-8bc4a3120c25@ideasonboard.com>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Aradhya Bhatia <aradhya.bhatia@linux.dev>
+In-Reply-To: <8b57d6a4-6bc1-4542-abf4-8bc4a3120c25@ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 
-On Tue, 3 Dec 2024 13:03:29 +0000
-Paul Barker <paul.barker.ct@bp.renesas.com> wrote:
+Hi,
 
-> Hi Claudiu,
+On 03/12/24 17:42, Tomi Valkeinen wrote:
+> Hi,
 > 
-> On 03/12/2024 11:13, Claudiu wrote:
-> > From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> > 
-> > Simplify the locking scheme in rzg2l_adc_read_raw() by saving the converted
-> > value only if the rzg2l_adc_conversion() returns success. The approach
-> > simplifies the addition of thermal sensor support (that will be done in the
-> > next commits). The downside is that the ret variable need to be checked
-> > twice.
-> > 
-> > Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> > ---
-> >  drivers/iio/adc/rzg2l_adc.c | 9 +++------
-> >  1 file changed, 3 insertions(+), 6 deletions(-)
-> > 
-> > diff --git a/drivers/iio/adc/rzg2l_adc.c b/drivers/iio/adc/rzg2l_adc.c
-> > index 62932f9295b6..eed2944bd98d 100644
-> > --- a/drivers/iio/adc/rzg2l_adc.c
-> > +++ b/drivers/iio/adc/rzg2l_adc.c
-> > @@ -227,14 +227,11 @@ static int rzg2l_adc_read_raw(struct iio_dev *indio_dev,
-> >  		mutex_lock(&adc->lock);
-> >  		ch = chan->channel & RZG2L_ADC_CHN_MASK;
-> >  		ret = rzg2l_adc_conversion(indio_dev, adc, ch);
-> > -		if (ret) {
-> > -			mutex_unlock(&adc->lock);
-> > -			return ret;
-> > -		}
-> > -		*val = adc->last_val[ch];
-> > +		if (!ret)
-> > +			*val = adc->last_val[ch];
-> >  		mutex_unlock(&adc->lock);
-> >  
-> > -		return IIO_VAL_INT;
-> > +		return ret ? ret : IIO_VAL_INT;  
+> On 24/11/2024 16:36, Aradhya Bhatia wrote:
+>> Hello all,
+>>
+>> This patch series add support for the dual OLDI TXes supported in Texas
+>> Instruments' AM62x and AM62Px family of SoCs. The OLDI TXes support
+>> single-lvds
+>> lvds-clone, and dual-lvds modes. These have now been represented
+>> through DRM
+>> bridges within TI-DSS.
+>>
+>>   - Some history and hardware description for this patch series.
+>>
+>> This patch series is a complete re-vamp from the previously posted
+>> series[1] and
+>> hence, the version index has been reset to v1. The OLDI support from
+>> that series
+>> was dropped and only the base support for AM62x DSS was kept (and
+>> eventually
+>> merged)[2].
+>>
+>> The OLDI display that the tidss driver today supports, could not be
+>> extended for
+>> the newer SoCs. The OLDI display in tidss is modelled after the DSS
+>> and OLDI
+>> hardware in the AM65x SoC. The DSS in AM65x SoC, has two video-ports.
+>> Both these
+>> video-ports (VP) output DPI video signals. One of the DPI output (from
+>> VP1) from
+>> the DSS connects to a singular OLDI TX present inside the SoC. There
+>> is no other
+>> way for the DPI from VP1 to be taken out of the SoC. The other DPI output
+>> however - the one from VP2 - is taken out of the SoC as is. Hence we
+>> have an
+>> OLDI bus output and a DPI bus output from the SoC. Since the VP1 and
+>> OLDI are
+>> tightly coupled, the tidss driver considers them as a single entity.
+>> That is
+>> why, any OLDI sink connects directly to the DSS ports in the OF graphs.
+>>
+>> The newer SoCs have varying DSS and OLDI integrations.
+>>
+>> The AM62x DSS also has 2 VPs. The 2nd VP, VP2, outputs DPI signals
+>> which are
+>> taken out of the SoC - similar to the AM65x above. For the VP1, there
+>> are 2 OLDI
+>> TXes. These OLDI TXes can only receive DPI signals from VP1, and don't
+>> connect
+>> to VP2 at all.
+>>
+>> The AM62Px SoC has 2 OLDI TXes like AM62x SoC. However, the AM62Px SoC
+>> also has
+>> 2 separate DSSes. The 2 OLDI TXes can now be shared between the 2 VPs
+>> of the 2
+>> DSSes.
+>>
+>> The addition of the 2nd OLDI TX (and a 2nd DSS in AM62Px) creates a
+>> need for
+>> some major changes for a full feature experience.
+>>
+>> 1. The OF graph needs to be updated to accurately show the data flow.
+>> 2. The tidss and OLDI drivers now need to support the dual-link and
+>> the cloned
+>>     single-link OLDI video signals.
+>> 3. The drivers also need to support the case where 2 OLDI TXes are
+>> connected to
+>>     2 different VPs - thereby creating 2 independent streams of
+>> single-link OLDI
+>>     outputs.
+>>
+>> Note that the OLDI does not have registers of its own. It is still
+>> dependent on
+>> the parent VP. The VP that provides the DPI video signals to the OLDI
+>> TXes, also
+>> gives the OLDI TXes all the config data. That is to say, the hardware
+>> doesn't
+>> sit on the bus directly - but does so through the DSS.
+>>
+>> In light of all of these hardware variations, it was decided to have a
+>> separate
+>> OLDI driver (unlike AM65x) but not entirely separate so as to be a
+>> platform
+>> device. The OLDI TXes are now being represented as DRM bridges under
+>> the tidss.
+>>
+>> Also, since the DRM framework only really supports a linear encoder-
+>> bridge
+>> chain, the OLDI driver creates a DRM bridge ONLY for the primary OLDI
+>> TX in
+>> cases of dual-link or cloned single-link OLDI modes. That bridge then
+>> attaches
 > 
-> It would be maybe slightly neater to use:
-> 
-> 	if (!ret) {
-> 		*val = adc->last_val[ch];
-> 		ret = IIO_VAL_INT;
-> 	}
-> 	mutex_unlock(&adc->lock);
-> 
-> 	return ret;
-> 
-Better I think to use {} for scope and
-guard(mutex)()
-...
-if (ret)
-	return ret;
+> How does the clone case work, then? There are two panels, what does the
+> second one connect to?
 
-*val = adc->last_val[ch];
+For the clone case, the devicetree will show the true connections - as
+they are in the hardware.
 
-Where possible keeping the error path as the out of line element is
-easier to follow on basis that is most common pattern so what a reviewers
-eye is 'trained' to see.
+2 endpoints from a single DSS VP devicetree port will be connected to 2
+OLDIs, OLDI0 and OLDI1. The outputs of these OLDIs will be connected to
+2 distinct single-link panels.
 
-Jonathan
+The driver and DRM side of things do not show the same picture, however.
+The tidss_oldi code creates and registers a drm_bridge only for the
+primary OLDI. The driver is capable of detecting the expected OLDI mode,
+and if a companion OLDI is present, then the primary OLDI drm_bridge
+keeps a note of that.
 
-> Thanks,
+The clock and config resources are shared between the primary and
+companion OLDI hardware. So configuring the primary OLDI takes care of
+the companion too.
+The only case where it is not shared is the OLDI IO bit in the Control
+MMR (ctrl_mmr) region. But, since the primary OLDI drm_bridge remains
+aware about the presence of companion OLDI, it makes sure to enable /
+disable the comapnion OLDI IO when required.
+
 > 
+>> to the tidss's display core - which consists of a CRTC, an Encoder
+>> (dummy) and a
+>> bridge (dummy). On the other end, it attaches to OLDI sinks (panels or
+>> other
+>> bridges).
+>>
+>> Since the OLDI TX have a hardware dependency with the VP, the OLDI
+>> configuration
+>> needs to happen before that VP is enabled for streaming. VP stream
+>> enable takes
+>> place in tidss_crtc_atomic_enable hook. I have posted a patch allowing
+>> DRM
+>> bridges to get pre-enabled before the CRTC of that bridge is
+>> enabled[0]. Without
+>> that patch, some warnings or glitches can be seen.
+>>
+>> These patches have been tested on AM625 based Beagleplay[3] platform
+>> with a
+>> Lincolntech LCD185 dual-lvds panel. The patches with complete support
+>> including
+>> the expected devicetree configuration of the OLDI TXes can be found in
+>> the
+>> "next_oldi_v4_tests" branch of my github fork[4]. This branch also has
+>> support
+>> for Microtips dual-lvds panel (SK-LCD1) which is compatible with the
+>> SK-AM625
+>> EVM platform.
+>>
+>> Due to lack of hardware, I haven't been able to test single-link / cloned
+>> single-link OLDI modes. I have only used a sample cloned single-link
+>> DTBO and
+>> booted the board with it. I didn't see any probe_deferred errors (as seen
+>> previously), and the `kmsprint` utility enumerated the display details
+>> fine.
+>>
+>> Regardless, I'd appreciate it if somebody can test it, and report back
+>> if they
+>> observe any issues.
+>>
+>> Thanks,
+>> Aradhya
+>>
+>>
+>> Additional Notes:
+>>
+>> * Important note about a false positive in dtbs_check *
+>> Both the ports, port0 and port1, are required for the OLDI
+>> functionality to
+>> work. The schema suggests this condition too. Additionally, the OLDI
+>> devicetree
+>> node is expected to be defined in the soc.dtsi file, and kept as
+>> disabled.
+>> Over the current platforms (Beagleplay and SK-AM625 EVM), the OLDI
+>> panel is not
+>> always attached, and hence we use a DT overlay to add panel details -
+>> which is
+>> where we enable the OLDI nodes. The structure of files is like this -
+>>
+>> - soc.dtsi                  (OLDI disabled)
+>> - soc-baseboard.dts         (OLDI disabled)
+>> - soc-baseboard-panel.dtso  (OLDI enabled)
+>>
+>> During dtbs_check runs, it was observed that the check was not able to
+>> rule out
+>> OLDI issues even when its DT was disabled in the soc-baseboard.dts. It is
+>> impractical and impossible to add OLDI ports prior to the panel
+>> overlay file.
+>> While the dtbs_check usually ignores checking disabled devicetree
+>> nodes, it was
+>> unable to do so in the OLDI's case.
+> 
+> While there might be something amiss with dtbs_check, what's the problem
+> with adding both port nodes to the soc.dtsi? If you have no endpoints
+> there, it's not connected to anything.
+>
+
+Ran dtbs_check with this. The errors are silenced indeed. I didn't
+really like having empty ports in an already long DSS devicetree node,
+but this way the checks remain clean. I will use this for DT patches.
+Thank you! =)
+
+> 
+[...]
+> 
+
+-- 
+Regards
+Aradhya
 
 
