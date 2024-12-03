@@ -1,80 +1,81 @@
-Return-Path: <devicetree+bounces-126578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F39D9E1C52
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 13:40:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 123099E1C5B
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 13:41:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03C5C284702
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 12:40:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C76672821FF
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 12:41:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CCD61E8828;
-	Tue,  3 Dec 2024 12:40:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 526FF1EBA17;
+	Tue,  3 Dec 2024 12:40:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vwGas5DL"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ADFBl/vv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4F951E7671
-	for <devicetree@vger.kernel.org>; Tue,  3 Dec 2024 12:40:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB95B1E767D
+	for <devicetree@vger.kernel.org>; Tue,  3 Dec 2024 12:40:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733229629; cv=none; b=LjVbonBhjyAYraKTduUezVqLSJDFA5xzaE6mV3pOWf1XH/dmAa2xQp9APyRyGvN86m+4L3CfmO6eg1TwIfM2Z/Q2V8ADgrb+2uaOqDC6SgC2qFHFy3a0byUgqXPxA7wYMaq7hWMVzjDWgCSkVgq26wZ7aDZ+AsC+3saK0IUBzp0=
+	t=1733229632; cv=none; b=d9ccPATSAk6NIyHo9xTnYC8cwCea5kqBktJ9I8Hu7FH59jDLboqhoQqRr+lmRm6kAL8ionoGEbvSylTalR05AQlJE+98DqXUx6EIdX9KClcDjXQRNmHhdlZ/9Vb/adB/i9imJtoSvbqagji/WurnqCDXwZyH9dZKcQlyshvqEcw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733229629; c=relaxed/simple;
-	bh=M9v4cnhexcFGnFb67v5mL0hn+ZbZK0KVsMGyMVUjDr8=;
+	s=arc-20240116; t=1733229632; c=relaxed/simple;
+	bh=ErHr+ubnC2nccg316Z42nK3s1bkSHAlf8m9iyKpuF2A=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=AuCG4CXO6VmbU2Kvkc1ej/BAb9JauQNSzvphUpKvKg0pg7SqADBNmWTLkgUXpYliYc8GtL2yhB21evjzebmWuqRo/fPpwMaGpyPFAykATKcCHrLNQ3PEPqj5Vrv3Zx4xW/vZJ8L+od9nVrzZZyOguwcr47keFtuzZw0mXF4/U9c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vwGas5DL; arc=none smtp.client-ip=209.85.218.47
+	 In-Reply-To:To:Cc; b=LHJVDv87myQ1C08TlAN7iFeiNshcaaySkyHR8QZDdgqArOcnWsX45gMf7lM80+E3f4SaLnPcVbSOYyTOwGOF/gjAZt4F3HSs9/Jrc92dDHkTt78pnHNJ4B8U20dscGv0shiMv8MQX0YWGfAiu0C1Jw9pEwDjByltZRlD2xr+nWA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ADFBl/vv; arc=none smtp.client-ip=209.85.218.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-aa530a94c0eso883213866b.2
-        for <devicetree@vger.kernel.org>; Tue, 03 Dec 2024 04:40:27 -0800 (PST)
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-aa53ebdf3caso262574466b.2
+        for <devicetree@vger.kernel.org>; Tue, 03 Dec 2024 04:40:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733229626; x=1733834426; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1733229627; x=1733834427; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=JKz/6LOX+Qb687N6TewJgIJoPVXxUJjOmnFbpocgz8Q=;
-        b=vwGas5DLhzlG2FqYYuZ00vYVx0teMEr647Z75tVdId2R1YJA1SjMhaIwew5Ir38xZA
-         zHn2eaHFeMvt/34gaBPn2TjzJnkIhXEvGgBIsIxa8QLJ841xP81apTy5Dyxkj4Iy6MmU
-         befqAg+nMXAlJARkvfqLydSsxFWtn2h4EpNeRPg8oBe+AfTiddI8+sHr7Ef1pS03jdi6
-         YNMWyNf48rak9pngrdAIgppLpZgfFOl4VuzmIiou+8eVcXc1XUdr4dm9pbP8C7ZHK05X
-         aqKs3DG+mzHpy6aqCwK2jJMPhr0w7IfE+oTnsESfe8FSko10WZgSh3COk1rixbRJ7agv
-         pTQg==
+        bh=gSM9DgJ8s8ciANY65GvKwivzFuJwV1VAivJ5cEw7IQQ=;
+        b=ADFBl/vv/P9Oyj3DQxcRpL61ZPtzDcfin/WZvXA2NG6ptuiYCkOmuHLe8T0c9huOov
+         jCXwhMpRkTaA/Isuh4gOr38yyXMb7Kpvc/LMRCqx8AlrcBF1eDWZ5G+0yhq0WHzBwSlM
+         sNPA+o0q3MucMgplUWmBvlvwJQbi7d1IQrvAYoOQWB7K0+bnKNGxGoZqb5f+a6Dos6TK
+         w9qW/0aqr1azCYaX3xjZdmEjr7Y8xf50WeKNujYXcFZ/7o//Y2m3racKlYa788hNl5SD
+         CPSfew7wCFgeKifYsH33HSYRUs2Hvbmitx0sk37y7FseWYRMQnGv5zYivzaW4QsuY3OD
+         s1AA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733229626; x=1733834426;
+        d=1e100.net; s=20230601; t=1733229627; x=1733834427;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=JKz/6LOX+Qb687N6TewJgIJoPVXxUJjOmnFbpocgz8Q=;
-        b=NfdppVhXt6oxoSKgwTnRa4fciX6liu8RDx6gYZ+HQ3pdpvMZ4zzCui6I807368eUu7
-         fFtsIjAiFYy6cPm8sjbHzDV07C2bPkjWcD6c3agNcOSu2Ym4A72D1d6pgmmxL6omOfNR
-         6LBN6W16dVlgAqtzD3SYvw4aui+Tjd/PGuFYnjQblShOnaQXTf43wjKYVm0dwAo07y2Q
-         luPEmoxLGPBIzlfp5bDJD/9odbpvEjvpgviaStVrEG7VTIZ8imRwkggZQ669p5+rHloZ
-         aM9UHpjUeARsj2P4o8tHdq3SETGG63eaeiB/hfRhWkHWiGO/gx+q7mPSaPWrZqkVO63F
-         3Hng==
-X-Forwarded-Encrypted: i=1; AJvYcCW4FSqvlGbatfnfJVVlW3YHVH8QLTTur989shlr3aRR/sy00K9tFf8weCQk+UJ7N3PfZyIWrrmYTfUt@vger.kernel.org
-X-Gm-Message-State: AOJu0YyV/slTZZ/Pt5DGybOgdE7ZnodhqoRi6V4gLBJ6yBYu91d8Y9Q4
-	dI2mEfpZE78UarF4bcxZt/XMG0I65dK98DTIDqwcatI5BaH5sFnvY5w8MNq/jwc=
-X-Gm-Gg: ASbGnctEhIYMlVO5anleXEUDAieKKfrY92bR44ppdcuA6k3gCdVB2VWsh7iUHisLNtR
-	5Ll+n8CZMdkoWf4AZGZ6Cf81NcWboV8oLk231A2bz/a81MDYVdQrxqASDSP74H5X2h7qkoSk9Lg
-	jJI71UjCuZN2LKu3eVTPaGHa1jaLzVgS0/y2ic6LANuNc0ly8MTKehH9NzaTUQd5kDr9axBkCsH
-	8F2VYh9rOfEj42MzBeKZ7WfVmhF2sI68uksicVN/9hXyhA6QHce4Y5FpPUdt4L1dmodbMwAv4gz
-	hJRdQstNti8PkAiGEkh2Rc86XhhR7WUY0w==
-X-Google-Smtp-Source: AGHT+IHQO6w8q/8y2vmYj3AwKDx8/AcSW1egkdyxl/hQEjDRsUnB02G5MYsyfeveHXAuRhqJX5unqQ==
-X-Received: by 2002:a17:906:6a18:b0:a9e:c267:78c5 with SMTP id a640c23a62f3a-aa5f7f19e62mr225441066b.55.1733229626045;
-        Tue, 03 Dec 2024 04:40:26 -0800 (PST)
+        bh=gSM9DgJ8s8ciANY65GvKwivzFuJwV1VAivJ5cEw7IQQ=;
+        b=YcXhD/BiDHW918czcAC6CeXDRGXE/6/ubAFZh2Y7Iajb2tTzGWaaCZiwwH5D1g3fTz
+         V4YsEPWwOW764CqtCwQJCXE1KiqcB+rPBfiU/xdQDaIWKvmNPVr88K//HPbiM2aCLJjg
+         2hZjZAJfECd44jWFHCsJj+7q3Mjorqr3Dwy/DmrugVWT5KXmWqtp/OyuVNdOIc8y4NbT
+         c4nRb8OwqIb9Jr/qqN8ZNoIt+NtPjxO6DS1/LURc4GYcWQ6Ny5UgcSg8jmlzJJmPPATN
+         fTm1z2uHJ97U5Ird7Z/lUAXl9CEKNbW74CMuFpvul9jATugKwqidhpHseX5LwtTcdUMY
+         FTjg==
+X-Forwarded-Encrypted: i=1; AJvYcCW+Ze7qD6G+K2GyBhEKl5B86qo8MD4AbkQAbdc8IMASPmNCCD/1dYodt3SbvaXR7699EkH/3PMFsVeb@vger.kernel.org
+X-Gm-Message-State: AOJu0YwcceL3Q7tGfXiu+Q+perMo3jsnRZPm0hKpV8Jxh0+gsiznx678
+	aCouPsNid8/f2RdSPab8NjsJnTE57NUrdTh7t/WCfhMQP8P/iT3I33Q36bmvo/c=
+X-Gm-Gg: ASbGncu9zaO9qUHkzd3c2oFzuTefiVTpO3nkXheFC3VPk53wTRwD9Zr1/PRCKaaDEzU
+	DZXqMVQbWh0CvKTs7IQYr5gfAo3a3vK7Y0jexL6qEaP9ag3bxf2oH4OoXbCwf6fxqJNlXt4whcI
+	xGpvPdu6BwbeSkppSQAelBarvZzQDuBzs2y2Z/CRrSLenZAEk+r7uX2NcOhdJrVd2zX1ePW4eHU
+	xnwc2Hk48f2ONdoYql5fMLH3kRQOH9rSnDnpspihMnmWaXXKmaJ7B7rTS7K6vpVYCYxTyFWizrJ
+	4dTI43GHpq70ZfmqAxztieuZsUQif55Vpg==
+X-Google-Smtp-Source: AGHT+IHow5Ax9TALz74PlLZBVVpeQZfnTQ4QfucP7E9gMwHlWhWcBplvAxbKn5vgo6QeTg9aVvDQPw==
+X-Received: by 2002:a17:906:1ba9:b0:a99:4162:4e42 with SMTP id a640c23a62f3a-aa5f7eef4demr200217966b.37.1733229627078;
+        Tue, 03 Dec 2024 04:40:27 -0800 (PST)
 Received: from puffmais.c.googlers.com (64.227.90.34.bc.googleusercontent.com. [34.90.227.64])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa5998e6a4csm616809466b.106.2024.12.03.04.40.25
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa5998e6a4csm616809466b.106.2024.12.03.04.40.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Dec 2024 04:40:25 -0800 (PST)
+        Tue, 03 Dec 2024 04:40:26 -0800 (PST)
 From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Tue, 03 Dec 2024 12:40:24 +0000
-Subject: [PATCH v2 1/5] arm64: defconfig: enable Maxim TCPCI driver
+Date: Tue, 03 Dec 2024 12:40:26 +0000
+Subject: [PATCH v2 3/5] arm64: dts: exynos: gs101: allow stable USB phy
+ Vbus detection
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,7 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20241203-gs101-phy-lanes-orientation-dts-v2-1-1412783a6b01@linaro.org>
+Message-Id: <20241203-gs101-phy-lanes-orientation-dts-v2-3-1412783a6b01@linaro.org>
 References: <20241203-gs101-phy-lanes-orientation-dts-v2-0-1412783a6b01@linaro.org>
 In-Reply-To: <20241203-gs101-phy-lanes-orientation-dts-v2-0-1412783a6b01@linaro.org>
 To: Catalin Marinas <catalin.marinas@arm.com>, 
@@ -99,31 +100,44 @@ Cc: Tudor Ambarus <tudor.ambarus@linaro.org>,
  =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
 X-Mailer: b4 0.13.0
 
-Enable the Maxim max33359 as this is used by the gs101-oriole (Google
-Pixel 6) board.
+For the DWC3 core to reliably detect the connected phy's Vbus state, we
+need to disable phy suspend.
 
-Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
+Add
+    snps,dis_u2_susphy_quirk
+    snps,dis_u3_susphy_quirk
+to do that.
+
+While at it, also add
+    snps,has-lpm-erratum
+as this is set downstream which implies that the core was configured
+with LPM Erratum. We should do the same here.
+
 Signed-off-by: André Draszik <andre.draszik@linaro.org>
 
 ---
 v2:
-* collect tags
+- drop snps,dis_rxdet_inp3_quirk and instead use the mentioned
+  properties. The former alone wasn't reliable enough in all
+  situations, e.g. when attached to certain USB hubs.
 ---
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index d13218d0c30f..5080fe2ce776 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1121,6 +1121,7 @@ CONFIG_USB_MASS_STORAGE=m
- CONFIG_TYPEC=m
- CONFIG_TYPEC_TCPM=m
- CONFIG_TYPEC_TCPCI=m
-+CONFIG_TYPEC_TCPCI_MAXIM=m
- CONFIG_TYPEC_FUSB302=m
- CONFIG_TYPEC_QCOM_PMIC=m
- CONFIG_TYPEC_UCSI=m
+diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+index 18d4e7852a1a..c5335dd59dfe 100644
+--- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
++++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+@@ -1302,6 +1302,9 @@ usbdrd31_dwc3: usb@0 {
+ 				interrupts = <GIC_SPI 463 IRQ_TYPE_LEVEL_HIGH 0>;
+ 				phys = <&usbdrd31_phy 0>, <&usbdrd31_phy 1>;
+ 				phy-names = "usb2-phy", "usb3-phy";
++				snps,has-lpm-erratum;
++				snps,dis_u2_susphy_quirk;
++				snps,dis_u3_susphy_quirk;
+ 				status = "disabled";
+ 			};
+ 		};
 
 -- 
 2.47.0.338.g60cca15819-goog
