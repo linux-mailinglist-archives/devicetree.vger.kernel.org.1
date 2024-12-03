@@ -1,84 +1,80 @@
-Return-Path: <devicetree+bounces-126680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 780449E281C
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 17:50:52 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D80C9E2830
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 17:52:51 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CCFA2887ED
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 16:50:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53A33162C2C
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 16:52:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EE761F9F77;
-	Tue,  3 Dec 2024 16:50:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05BB51F8AD4;
+	Tue,  3 Dec 2024 16:52:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kyW7aAvf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cKJ6etyZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CD4D1F9F5C;
-	Tue,  3 Dec 2024 16:50:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D17BE1F756E;
+	Tue,  3 Dec 2024 16:52:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733244610; cv=none; b=cmzxEnJAditD9S6Cu58+hGrzkbXH94KVNjXue7fKVqp7n4F2jeeO6qcr2hNWSttWbFK9Gv4riBy9BYANnJ0jNZrpIGn42I/j1A1vfvP49n7dnW7NWlJyYkgWWC4geAyidsv7+E1lL/2YnRkdB8OOjbN26/uX0uujEgj8mM3WrfQ=
+	t=1733244766; cv=none; b=pzLMYcbdvzmz1om+ClpS6GM9ioREAjYAR4y2ZRzuAb40dfe1Sf3OEf2fZjJ5KUNcJVh/MB09eV8jziys1cDqUeZXoa2ewt9CeVHFYrYEDdJsF14f+Ow2ydqhIxewiCWRqLclzjvl15E/vKAoUOPm35MBbGSZFBDTPUS9mdngKuM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733244610; c=relaxed/simple;
-	bh=hl4qjq6wBEq5/6rBW02XlLyDQNXhu4x9H//HnoHXZC0=;
+	s=arc-20240116; t=1733244766; c=relaxed/simple;
+	bh=I8I+dhZpF/dN9uHNRQFTrUQz+PFUAZBF99lsuTvprzo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nI00WfWQCmml1u8T6wsSfNMX8/Lj+4uj1A6BPF67MR7cwl2BTLE7gX4Vc/8WCUPLxI/7/ndZACJsYrAxRV+ZFqTTUb7zDXriScUKrkz5Bul4dzJsPVIi4Jve0TGdRBOVROzCNUVlrcDsX4/FwomQ5DXaJItULCJO3ZimX/V1dGI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kyW7aAvf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE083C4CECF;
-	Tue,  3 Dec 2024 16:50:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ErkPfF2NVx5MV40jGigmuiZsTn4npEUAW42Id5fF6q1Qx4/XZU2yq6tT+Qml7ELhW+iZTLREagRLMJIYY5HjZJwUkEsg8d2bFmqf1OZYGBJndgf+IfPWnbsIGKPqQsZH/WnnvPOlwVj85phIhyDlBM93ECUKVH9obW83fLL7dQA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cKJ6etyZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DC71C4CECF;
+	Tue,  3 Dec 2024 16:52:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733244609;
-	bh=hl4qjq6wBEq5/6rBW02XlLyDQNXhu4x9H//HnoHXZC0=;
+	s=k20201202; t=1733244766;
+	bh=I8I+dhZpF/dN9uHNRQFTrUQz+PFUAZBF99lsuTvprzo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kyW7aAvfsRsd+goXqPtxbrF2GZ9SUIgO8a/u1AJ8BIEnmbS5M3rvY8PwauYRqY69E
-	 wMH5EFRYngFm5G+VV1tipxqdIFc41sJlBO0qh3qPCzE4sbfpkOA5o2Vyiy1qWqgIFB
-	 tDM8h/jaa0EONYCKZBgvbq7BzhmLostW8/EjWPzgZMtsAzVQxFUDMqN0NCdgm9ZDLg
-	 4fb6XRDcTbDHRJQdleIIvXoILAqO8mFQ9vF1/QKq2tdmUJNpeYz4vXfsC5H4pgkF5H
-	 yXF+ZFN/xAJAxY7eBbV6DIDQiMKdXO9IDBGv7yUgvqUy0TKwnw3Vi60mUCL2qMjhMk
-	 nZROfofiKrMYw==
-Date: Tue, 3 Dec 2024 10:50:07 -0600
+	b=cKJ6etyZmzEdINsl2+6kcmoyVt1Mu1n1IIC/kztXxOKDTr+drPVMx9YUOxsWM2aCk
+	 gaJVGLmBzoJA0Ee3qoUlGzkDcfu8paj7T2ytqHspxHxohUmDK3i4mOkJYXcwy8sRbi
+	 6rtI/Qo8HsNUVcNniEiYE4niUBXYI25aOPzdDMXBhnmJpPTvvgMtgOxlHsO5XI5Dmy
+	 ht1YoJAapQ0VA9jrPeOXETG00wX3p99+5qxl/rs3WnsbTkUP4W0jJUzr3etCEZd/CB
+	 MIpRZpbYDsN04fpEK5H29ugsuUVhsGWmEYxX0vJsCKZgqgThSFs9ZlWL+K81chFj70
+	 n0Lxzm80hrE/w==
+Date: Tue, 3 Dec 2024 10:52:44 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: chunkuang.hu@kernel.org, p.zabel@pengutronix.de,
-	linux-mediatek@lists.infradead.org, matthias.bgg@gmail.com,
-	linux-arm-kernel@lists.infradead.org, conor+dt@kernel.org,
-	airlied@gmail.com, mripard@kernel.org, devicetree@vger.kernel.org,
-	ck.hu@mediatek.com, linux-kernel@vger.kernel.org,
-	maarten.lankhorst@linux.intel.com, simona@ffwll.ch,
-	dri-devel@lists.freedesktop.org, kernel@collabora.com,
-	tzimmermann@suse.de, krzk+dt@kernel.org
-Subject: Re: [PATCH v1 1/7] dt-bindings: display: mediatek: Add binding for
- HDMIv2 DDC
-Message-ID: <173324460711.1946104.15731375026648249870.robh@kernel.org>
-References: <20241120124512.134278-1-angelogioacchino.delregno@collabora.com>
- <20241120124512.134278-2-angelogioacchino.delregno@collabora.com>
+To: Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>
+Cc: Saravana Kannan <saravanak@google.com>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH] of/fdt: Implement use BIN_ATTR_SIMPLE macro for fdt
+ sysfs attribute
+Message-ID: <173324476215.1949223.15229221375993731416.robh@kernel.org>
+References: <20241122-sysfs-const-bin_attr-of-v1-1-7052f9dcd4be@weissschuh.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20241120124512.134278-2-angelogioacchino.delregno@collabora.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241122-sysfs-const-bin_attr-of-v1-1-7052f9dcd4be@weissschuh.net>
 
 
-On Wed, 20 Nov 2024 13:45:06 +0100, AngeloGioacchino Del Regno wrote:
-> Add a binding for the Display Data Channel (DDC) IP in MediaTek
-> SoCs with version 2 HDMI TX IP.
+On Fri, 22 Nov 2024 13:14:00 +0100, Thomas Weiﬂschuh wrote:
+> The usage of the macro allows to remove the custom handler function,
+> saving some memory. Additionally the code is easier to read.
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> While at it also mark the attribute as __ro_after_init, as the only
+> modification happens in the __init phase.
+> 
+> Signed-off-by: Thomas Weiﬂschuh <linux@weissschuh.net>
 > ---
->  .../mediatek/mediatek,mt8195-hdmi-ddc.yaml    | 41 +++++++++++++++++++
->  1 file changed, 41 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml
+>  drivers/of/fdt.c | 16 ++++------------
+>  1 file changed, 4 insertions(+), 12 deletions(-)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Applied, thanks!
 
 
