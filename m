@@ -1,255 +1,135 @@
-Return-Path: <devicetree+bounces-126585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E7869E1CCE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 13:53:50 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3343D9E1D02
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 14:04:56 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7AB34160519
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 12:53:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDE15282182
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 13:04:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A46011EBFF5;
-	Tue,  3 Dec 2024 12:53:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B34451EBFE6;
+	Tue,  3 Dec 2024 13:04:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF79C1EBA04;
-	Tue,  3 Dec 2024 12:53:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [5.144.164.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83FDA131E2D;
+	Tue,  3 Dec 2024 13:04:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.144.164.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733230415; cv=none; b=BsD2QP0/2AlFwEagnryw+8lU0j/50V4C6t48vCiMO4TZFK86+RXPBsYJmzVLI0gLYconcjUG1yTsWWk5HL1wSUAmoFcgefUrT3mgY/SF1tLJLZeYke6ILfEV/EN9ZP7ZYT8Bj9JkUKk3Agw9ia4cpYJfQaNPTpx/WTUA1/tx9o8=
+	t=1733231055; cv=none; b=RvGj80n6sZhC2YpMXMSewEP34v9fcJeWlE6jtRiXpKatoEg7lvIZQjXqX4bqZ0Dwo8uANrUIuK6/KqpIc2sqzOJ2lzfSSTHykNZBvMQW5hjEe+SKkuXQDMR0+SLGnzzBs5s0r0p9q7IfDtp8AAYy+JF9ppH6vylb0Y1V2YAgI2I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733230415; c=relaxed/simple;
-	bh=cNmkxzapUO7QczoDwL+xVGi9yBG+fPmNhU/lvd+cUvs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=a9nj/H4gCHfSqw8wYg/iWEDP7MtcQx1xpehxTDZYP9+KTybSZJ6rm07exHRbMQH4Qoj1rPmhkfgrYHnmXHR7IrJkLtwiB1WIgL03XFEC8RKUP8Vg2RUIX0vT64p2pMi8hN3fFJQ2C2UfxgIUwfqJNZwp5Budk0wNV4lkEQtEMgc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: NZ2Q9QJrS8etHAiLa1x1gg==
-X-CSE-MsgGUID: JtmiqDwnS4m1caDtvBSMNA==
-X-IronPort-AV: E=Sophos;i="6.12,205,1728918000"; 
-   d="asc'?scan'208";a="226786275"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 03 Dec 2024 21:53:30 +0900
-Received: from [10.226.93.8] (unknown [10.226.93.8])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 161DC4002623;
-	Tue,  3 Dec 2024 21:53:24 +0900 (JST)
-Message-ID: <9fbf057c-164b-4451-85a8-cf4d5807b4c1@bp.renesas.com>
-Date: Tue, 3 Dec 2024 12:53:23 +0000
+	s=arc-20240116; t=1733231055; c=relaxed/simple;
+	bh=4Red2NtFdNCPFlrjhj3hdUEFF7Dn8UGMxBKxTlgNFyI=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sa5JT+ktWGuBdmiumQ1jgs8OCcXl0ONWGnvZghndiZ4yJzHnV6SvYOvbQz39/kr+VO880N7BE9xzO04w1XeXEV1I6xAB54n6xHVkucya7B6+mjLGE85Is73AJVM8HvfMxbFU3CGrzRu2hzwD8x8Kxk1Li5AG/EErMISvn7+EtB4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org; spf=pass smtp.mailfrom=somainline.org; arc=none smtp.client-ip=5.144.164.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=somainline.org
+Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 935553EDDF;
+	Tue,  3 Dec 2024 14:04:05 +0100 (CET)
+Date: Tue, 3 Dec 2024 14:04:04 +0100
+From: Marijn Suijten <marijn.suijten@somainline.org>
+To: Luca Weiss <luca.weiss@fairphone.com>, 
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: power: rpmpd: Fix comment for SM6375
+Message-ID: <5qd74wbiyytgcn3k726jykm37ctahi4yd26vvhqea2rmcv6m6b@v7kcfhu3fyy3>
+Mail-Followup-To: Marijn Suijten <marijn.suijten@somainline.org>, 
+	Luca Weiss <luca.weiss@fairphone.com>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, ~postmarketos/upstreaming@lists.sr.ht, 
+	phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+References: <20241202-rpmpd-sm6375-v1-1-12a4f0182133@fairphone.com>
+ <yo5cc3cvvwwdrqrrgwlquztj52sijip3ffyyqag55jrnztxi2m@hn75ylkhnxie>
+ <D61WIF2XWKL8.MWU6PK2XGX4F@fairphone.com>
+ <eovguha2tvc3rxd72yfqxgcg37waokoyqs377kvwmtdgssi4no@ii3i2bvl675i>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 03/14] iio: adc: rzg2l_adc: Simplify the runtime PM code
-Content-Language: en-GB
-To: Claudiu <claudiu.beznea@tuxon.dev>,
- prabhakar.mahadev-lad.rj@bp.renesas.com, jic23@kernel.org, lars@metafoo.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- geert+renesas@glider.be, magnus.damm@gmail.com, mturquette@baylibre.com,
- sboyd@kernel.org, p.zabel@pengutronix.de
-Cc: linux-iio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20241203111314.2420473-1-claudiu.beznea.uj@bp.renesas.com>
- <20241203111314.2420473-4-claudiu.beznea.uj@bp.renesas.com>
-From: Paul Barker <paul.barker.ct@bp.renesas.com>
-In-Reply-To: <20241203111314.2420473-4-claudiu.beznea.uj@bp.renesas.com>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------ejkQ6uLn0GaiFSlClZC0XSqf"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <eovguha2tvc3rxd72yfqxgcg37waokoyqs377kvwmtdgssi4no@ii3i2bvl675i>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------ejkQ6uLn0GaiFSlClZC0XSqf
-Content-Type: multipart/mixed; boundary="------------dmg0AGwwVL6W8RXA0ox4qbMm";
- protected-headers="v1"
-From: Paul Barker <paul.barker.ct@bp.renesas.com>
-To: Claudiu <claudiu.beznea@tuxon.dev>,
- prabhakar.mahadev-lad.rj@bp.renesas.com, jic23@kernel.org, lars@metafoo.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- geert+renesas@glider.be, magnus.damm@gmail.com, mturquette@baylibre.com,
- sboyd@kernel.org, p.zabel@pengutronix.de
-Cc: linux-iio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Message-ID: <9fbf057c-164b-4451-85a8-cf4d5807b4c1@bp.renesas.com>
-Subject: Re: [PATCH 03/14] iio: adc: rzg2l_adc: Simplify the runtime PM code
-References: <20241203111314.2420473-1-claudiu.beznea.uj@bp.renesas.com>
- <20241203111314.2420473-4-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20241203111314.2420473-4-claudiu.beznea.uj@bp.renesas.com>
+On 2024-12-03 13:58:51, Marijn Suijten wrote:
+> On 2024-12-03 08:52:59, Luca Weiss wrote:
+> > On Mon Dec 2, 2024 at 9:00 PM CET, Dmitry Baryshkov wrote:
+> > > On Mon, Dec 02, 2024 at 04:45:02PM +0100, Luca Weiss wrote:
+> > > > During an earlier commit, the comment from SM6350 was copied without
+> > > > modifying. Adjust the comment to reflect the defines.
+> > > > 
+> > > > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> > >
+> > > Fixes tag, please.
+> > 
+> > I thought for just a comment fix it's not necessary / desired.
+> 
+> Makes one wonder why the SoC name is repeated in a comment in the first place,
+> when it is already in every named constant and the containing filename too.
+> That's only prone to errors as you've demonstrated here, requiring a separate
+> commit and discussion (and automatic backporting via Fixes:) to patch up, while
+> it already wasn't relevant/useful for anyone.
 
---------------dmg0AGwwVL6W8RXA0ox4qbMm
-Content-Type: multipart/mixed; boundary="------------u8Ideiazs4hCjoXAckzRyQhI"
+Never mind, the filename isn't different, I glanced over too quickly.
 
---------------u8Ideiazs4hCjoXAckzRyQhI
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+In that case the repeat is still somewhat relevant as a separator between all
+the SoC-specific defines in this file, even if the #define repeats it as well?
 
-Hi Claudiu,
+Apologies for the noise.
 
-On 03/12/2024 11:13, Claudiu wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->=20
-> All Renesas SoCs using the rzg2l_adc driver manage ADC clocks through P=
-M
-> domains. Calling pm_runtime_{resume_and_get, put_sync}() implicitly set=
-s
-> the state of the clocks. As a result, the code in the rzg2l_adc driver =
-that
-> explicitly manages ADC clocks can be removed, leading to simpler and
-> cleaner implementation.
->=20
-> Additionally, replace the use of rzg2l_adc_set_power() with direct PM
-> runtime API calls to further simplify and clean up the code.
->=20
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> ---
->  drivers/iio/adc/rzg2l_adc.c | 100 ++++++++----------------------------=
-
->  1 file changed, 20 insertions(+), 80 deletions(-)
->=20
-> diff --git a/drivers/iio/adc/rzg2l_adc.c b/drivers/iio/adc/rzg2l_adc.c
-> index 7039949a7554..a17690ecbdc3 100644
-> --- a/drivers/iio/adc/rzg2l_adc.c
-> +++ b/drivers/iio/adc/rzg2l_adc.c
-> @@ -8,7 +8,6 @@
->   */
-> =20
->  #include <linux/bitfield.h>
-> -#include <linux/clk.h>
->  #include <linux/completion.h>
->  #include <linux/delay.h>
->  #include <linux/iio/iio.h>
-> @@ -69,8 +68,6 @@ struct rzg2l_adc_data {
-> =20
->  struct rzg2l_adc {
->  	void __iomem *base;
-> -	struct clk *pclk;
-> -	struct clk *adclk;
->  	struct reset_control *presetn;
->  	struct reset_control *adrstn;
->  	struct completion completion;
-> @@ -188,29 +185,18 @@ static int rzg2l_adc_conversion_setup(struct rzg2=
-l_adc *adc, u8 ch)
->  	return 0;
->  }
-> =20
-> -static int rzg2l_adc_set_power(struct iio_dev *indio_dev, bool on)
-> -{
-> -	struct device *dev =3D indio_dev->dev.parent;
-> -
-> -	if (on)
-> -		return pm_runtime_resume_and_get(dev);
-> -
-> -	return pm_runtime_put_sync(dev);
-> -}
-> -
->  static int rzg2l_adc_conversion(struct iio_dev *indio_dev, struct rzg2=
-l_adc *adc, u8 ch)
->  {
-> +	struct device *dev =3D indio_dev->dev.parent;
->  	int ret;
-> =20
-> -	ret =3D rzg2l_adc_set_power(indio_dev, true);
-> +	ret =3D pm_runtime_resume_and_get(dev);
->  	if (ret)
->  		return ret;
-
-Should we check (ret < 0) here instead of just (ret)? According to the
-docs [1], pm_runtime_resume_and_get() can return 1 if the device is
-already active.
-
-[1]: https://docs.kernel.org/power/runtime_pm.html#runtime-pm-device-help=
-er-functions
-
-Thanks,
-
---=20
-Paul Barker
---------------u8Ideiazs4hCjoXAckzRyQhI
-Content-Type: application/pgp-keys; name="OpenPGP_0x27F4B3459F002257.asc"
-Content-Disposition: attachment; filename="OpenPGP_0x27F4B3459F002257.asc"
-Content-Description: OpenPGP public key
-Content-Transfer-Encoding: quoted-printable
-
------BEGIN PGP PUBLIC KEY BLOCK-----
-
-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3D
-=3DsIIN
------END PGP PUBLIC KEY BLOCK-----
-
---------------u8Ideiazs4hCjoXAckzRyQhI--
-
---------------dmg0AGwwVL6W8RXA0ox4qbMm--
-
---------------ejkQ6uLn0GaiFSlClZC0XSqf
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-wnsEABYIACMWIQSiu8gv1Xr0fIw/aoLbaV4Vf/JGvQUCZ07/QwUDAAAAAAAKCRDbaV4Vf/JGvVOM
-AQCiRexXepiHi421Gc03OVPh445YisuIwwomitYof6QldgEAujvSzuyZroUMHy7zZTCeAHqe4H/E
-Z+DS14dFXJTVyQU=
-=hrD+
------END PGP SIGNATURE-----
-
---------------ejkQ6uLn0GaiFSlClZC0XSqf--
+> 
+> Less is more.
+> 
+> - Marijn
+> 
+> PS: That's a suggestion to see if we can perhaps remove these from all header
+> files instead to save the copy-paste burden in the future?
+> 
+> > 
+> > Anyways:
+> > 
+> > Fixes: 2d48e6ea3080 ("dt-bindings: power: rpmpd: Add SM6375 power domains")
+> > 
+> > 
+> > >
+> > > > ---
+> > > >  include/dt-bindings/power/qcom-rpmpd.h | 2 +-
+> > > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > > 
+> > > > diff --git a/include/dt-bindings/power/qcom-rpmpd.h b/include/dt-bindings/power/qcom-rpmpd.h
+> > > > index df599bf462207267a412eac8e01634189a696a59..d9b7bac309537cbfd2488e7d4fe21d195c919ef5 100644
+> > > > --- a/include/dt-bindings/power/qcom-rpmpd.h
+> > > > +++ b/include/dt-bindings/power/qcom-rpmpd.h
+> > > > @@ -65,7 +65,7 @@
+> > > >  #define SM6350_MSS	4
+> > > >  #define SM6350_MX	5
+> > > >  
+> > > > -/* SM6350 Power Domain Indexes */
+> > > > +/* SM6375 Power Domain Indexes */
+> > > >  #define SM6375_VDDCX		0
+> > > >  #define SM6375_VDDCX_AO	1
+> > > >  #define SM6375_VDDCX_VFL	2
+> > > > 
+> > > > ---
+> > > > base-commit: 40384c840ea1944d7c5a392e8975ed088ecf0b37
+> > > > change-id: 20241202-rpmpd-sm6375-06582e126d7f
+> > > > 
+> > > > Best regards,
+> > > > -- 
+> > > > Luca Weiss <luca.weiss@fairphone.com>
+> > > > 
+> > 
 
