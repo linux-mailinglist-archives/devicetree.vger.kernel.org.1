@@ -1,115 +1,145 @@
-Return-Path: <devicetree+bounces-126642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23A9A9E22DB
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 16:29:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6ED299E233C
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 16:34:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA18816B439
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 15:25:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8FEEF16632D
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 15:29:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A5691F7550;
-	Tue,  3 Dec 2024 15:25:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B58C1F76A4;
+	Tue,  3 Dec 2024 15:29:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BibNDSdI"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="BanYC0op"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 363E71F130F;
-	Tue,  3 Dec 2024 15:25:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C95CD1F4276
+	for <devicetree@vger.kernel.org>; Tue,  3 Dec 2024 15:29:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733239518; cv=none; b=nUIU4k4Ppfsoyp21z/EnVWbCNTgD3C9q1IHAKrMMz3Y9PXMCEkT6wScsCDgU3Hw0yXvjdfoMpMLXcHEKwGP2RdtDq4jsRcheacVKakXOq1UAvqiRJfto7Ju0W4e9NmqqUgfoqLr787VrWDsqvkNWWxpIWE229OjmqOGH8hRdjuA=
+	t=1733239758; cv=none; b=qiYQ4OjBbUpitYMMa06fza3wvdZv7G4R0OZCEFpKd1nDT06af5LWDXsHeI2nbb2EWHsNjqGBRFe6aD8wIL7IveOH/6TqTBHMhGOCyvD+ks7DLDdvjiTZGM2eyEhdcdQX/asbHLC/u0kIOppzwxFnK9tqrlF7L1qLLdrSHdKIrd0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733239518; c=relaxed/simple;
-	bh=X/PwEvQP5tU0vB8EoXqX3xfn/sW++pmyf4vXD3OCWfI=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=tshxSQneNN1nR7nRnCitHxhsqPnf6L7NCIp0Z5D5IJzP/ydu/jty1E+7TDERC0WSvuU0uzjyv1xsM9rs00l5pgRlmED+gx4NSIwR3y3vHFws9q/RNH3YY5aNBTxrROmqf8jVrL1qNlP8kmF4fKdsNe5Dn3YYZqtu+j8FcslO30o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BibNDSdI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4D98C4CECF;
-	Tue,  3 Dec 2024 15:25:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733239518;
-	bh=X/PwEvQP5tU0vB8EoXqX3xfn/sW++pmyf4vXD3OCWfI=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=BibNDSdIxD5dJNes1vJ7140QWABbcfK++KnAHPuRH34JJyltkmOovhdFy1ythpMcf
-	 Jgt+X0vAfjdECQevLJNkTTtUM9aIJAefQRcN5aRk2mOXcIzItQZYV+TYYf9kHkbMsN
-	 JB43bQz718szORF+xGZB1wrbaN6402z/7dJ/e1OMHJI4QMRkr2M/Wup8ldZAAW0bHL
-	 arhJtg9HrfmdBNiCy15xVrQcxPODNLdMDZXsFOpjw4CqjZyn88aCXAoj1G/CVJOTCa
-	 OLhJ7kNSWUAGXTiDqyC6R2x/C0ATmOvC9ytIP2sxvUPXMX5LD7v2D0pMT91r9TTHee
-	 kco2TN/wiPeGg==
-Date: Tue, 03 Dec 2024 09:25:16 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1733239758; c=relaxed/simple;
+	bh=8mqfvdU74vH9ZSU9MATXgEKnH3/8mW6oJ58BTcHD8cY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=r7K65M0O0seHJfFaCk/GUPTCE7oijrqKEj7saIRGImVYnzKgGsabhuRKUltfFKJBb91nhinVib7d4KK/u7VOBAXYgsazkpnEvFX4JjwGlIPzUR/LDoJzbM6ekcn/a9uW10qklshDNmbNU5N2LgVHleZnLhtronDy0ZcRFkBs5qw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=BanYC0op; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1733239755;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=6QU1EnJ1BaXMVfYiRhAHSxvTRukbAoSNbyni68t4ov0=;
+	b=BanYC0opgLZ9iLVBrlbaSHQRkod1L50e0uJIn4VLfu+0E/sjE+PyzzKlX4cVGYsJFr3MoW
+	bVbFv+kEq6HSQA9hSaYhcDXTHgrp4DyiYq9kgLjw4iznkzFncjvXoREr53wq/aB5EmAk+K
+	dOLi+pM5dnDZlu+slRlYzXTVamhtY3M=
+Received: from mail-ot1-f71.google.com (mail-ot1-f71.google.com
+ [209.85.210.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-58-_WNSDHIJNmWSgoJhEgjRTQ-1; Tue, 03 Dec 2024 10:29:14 -0500
+X-MC-Unique: _WNSDHIJNmWSgoJhEgjRTQ-1
+X-Mimecast-MFC-AGG-ID: _WNSDHIJNmWSgoJhEgjRTQ
+Received: by mail-ot1-f71.google.com with SMTP id 46e09a7af769-71d3fc258fbso1063856a34.3
+        for <devicetree@vger.kernel.org>; Tue, 03 Dec 2024 07:29:14 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733239754; x=1733844554;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6QU1EnJ1BaXMVfYiRhAHSxvTRukbAoSNbyni68t4ov0=;
+        b=c9tRE0HXT5t64YSauLnOpsuY80w6bW+C3z0Cs8/jxtgbQNgQspnhzTBHzT/Zz8vVOl
+         np+RMIz6U6UqsnW+efTeKHJR0Ma/6lznp42q/lLHDdHK05cZ1HEh+0M2KU5zWSLG9O4U
+         wD870yPtiVdwStB2DBzUYIa4o1bjfhoSKKL2xdIqGLgiGqtA9qOVQnHqkx8lLT+GoNOW
+         5uyBbRR+qIlIHmMeiyyu3PVh0VfDZy6QR2aA7CGOKEtJZHHLVplNInI+XVXhJ68X2Rxn
+         yFtRR7bXJw9lCvrryx8VH5FwsS1941F3v7YvgEGZFvPvYIZ5AaAafNxmPCBuu3LeNEq/
+         URzQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWBu/4NgA8w81tu1xpvC15hVoNcLcqzImdZyJTDqiVwjknI6Vh471a7lshvmaUHX7Bb0F0vOP+Nd/6s@vger.kernel.org
+X-Gm-Message-State: AOJu0YwfQVVNI8NKsY11F4k7LB1/YszkoQMcUKWboWjVZu0aN/aybItb
+	+vdOtfHgw16l3qxrNZBNqfwNlPEpKqDP81PCdzf4txmyN9z65cZthwhMDo325tqrFy75FgrpwQm
+	rEuLLeMUBoIcBM1IH8DhJAtUoQFArXF7AVIEGa2vFZGYKpFH7Y0x2NWglh5iGnPkl8XHrEE+YSG
+	5z0vvbivjXJQIotHV2IuwEzPwILxJtUj3oUA==
+X-Gm-Gg: ASbGncuA+2hc2Bm74GsB8nYQ6Gwvd8XDoJeAgCu0AwagkBtNrnbYfeWMsvTz5hXCRek
+	QL35Jc6qw9Bb4LKkRxR7jSngQvjBqiQ==
+X-Received: by 2002:a05:6830:2aa5:b0:71d:5290:4b0a with SMTP id 46e09a7af769-71dae4057famr723608a34.0.1733239753809;
+        Tue, 03 Dec 2024 07:29:13 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHowgZk/e3MXb1mhieu2vCwR76idfUlz6/II/BUj2dbmWaA1ntB1qRuQmc4QRLODYAXY7IRZgLgXUJnlG7wXdE=
+X-Received: by 2002:a05:6830:2aa5:b0:71d:5290:4b0a with SMTP id
+ 46e09a7af769-71dae4057famr723600a34.0.1733239753522; Tue, 03 Dec 2024
+ 07:29:13 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: m.szyprowski@samsung.com, frank.binns@imgtec.com, 
- linux-kernel@vger.kernel.org, maarten.lankhorst@linux.intel.com, 
- paul.walmsley@sifive.com, jszhang@kernel.org, 
- linux-riscv@lists.infradead.org, ulf.hansson@linaro.org, 
- mturquette@baylibre.com, wefu@redhat.com, conor+dt@kernel.org, 
- dri-devel@lists.freedesktop.org, linux-pm@vger.kernel.org, 
- airlied@gmail.com, aou@eecs.berkeley.edu, matt.coster@imgtec.com, 
- guoren@kernel.org, devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
- sboyd@kernel.org, simona@ffwll.ch, drew@pdp7.com, krzk+dt@kernel.org, 
- jassisinghbrar@gmail.com, mripard@kernel.org, palmer@dabbelt.com, 
- tzimmermann@suse.de
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <20241203134137.2114847-9-m.wilczynski@samsung.com>
-References: <20241203134137.2114847-1-m.wilczynski@samsung.com>
- <CGME20241203134159eucas1p1eafefef0dfe7f2b6343a639733012bcf@eucas1p1.samsung.com>
- <20241203134137.2114847-9-m.wilczynski@samsung.com>
-Message-Id: <173323951617.1836905.12806289628083482638.robh@kernel.org>
-Subject: Re: [RFC PATCH v1 08/14] dt-bindings: power: thead,th1520: Add
- support for power domains
+References: <20241126-am69sk-dt-usb-v1-1-aa55aed7b89e@redhat.com>
+ <2nuncc5rscu6h74ylaiu6yozg34aoigaj5d4uzvdtolt5q7bmv@6hacpxyb2532>
+ <CALE0LRtUN2N_Z05jH_BMSg7yvirSRob0pSErmQxTu8AatmODgw@mail.gmail.com>
+ <CALE0LRu-Sx5oTVNY3hm+Msu-zb04a7_ZD+r3xF1eRfR_WtK0VA@mail.gmail.com> <wbsg3fmco6rwjj7vtiqtqv7trfjor73j7rjx7efnlafo4pz4bc@awixm2iygd55>
+In-Reply-To: <wbsg3fmco6rwjj7vtiqtqv7trfjor73j7rjx7efnlafo4pz4bc@awixm2iygd55>
+From: Enric Balletbo i Serra <eballetb@redhat.com>
+Date: Tue, 3 Dec 2024 16:29:02 +0100
+Message-ID: <CALE0LRvZNnNJ8jBG35bU8Ev5Fvr2400O5qXUsRn0zufkidJeJw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am69-sk: Add USB SuperSpeed support
+To: s-vadapalli <s-vadapalli@ti.com>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Dasnavis Sabiya <sabiya.d@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi,
 
-On Tue, 03 Dec 2024 14:41:31 +0100, Michal Wilczynski wrote:
-> Add power domain support to the Thead TH1520 clock controller bindings.
-> This enables devices to specify their power domain dependencies,
-> improving power management for components like the GPU.
-> 
-> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
-> ---
->  .../bindings/power/thead,th1520-power.yaml    | 52 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 53 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/thead,th1520-power.yaml
-> 
+On Thu, Nov 28, 2024 at 10:58=E2=80=AFAM s-vadapalli <s-vadapalli@ti.com> w=
+rote:
+>
+> On Thu, Nov 28, 2024 at 10:47:42AM +0100, Enric Balletbo i Serra wrote:
+> > Hi,
+>
+> [...]
+>
+> > So I changed the dr_mode to otg instead of host and tried to configure
+> > a usb mass storage gadget but unfortunately didn't work, but this
+> > could be a driver problem, I got the following error
+> >
+> >   UDC core: g1: couldn't find an available UDC
+> >
+> > As the devicetree should describe the hardware, and as far as I can
+> > see it should support the type-c port act as a gadget, I'm fine with
+> > changing the dr_mode, unless anyone have more information about this,
+> > the thing that makes me think a bit more is that, in the TI kernel
+> > this is set to host, so I'm wondering if I'm missing something or is
+> > just that was never tested.
+>
+> Are all interfaces (Type-A and Type-C) functional as Host when the
+> dr_mode is set to "otg"? (Do USB devices connected to the interfaces
+> enumerate on AM69-SK?) If yes, then it could be a DIP Switch setting
+> that is related to OTG mode of operation or a USB-C Mux that needs to be
+> configured.
+>
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Yes, all interfaces (Type-A and Type-C) are functional as host when
+the dr_mode is set to "otg". Looking at SK-AM69 Processor Start Kit
+User's Guide (Rev. A) [1] I don't see any DIP Switch related to the
+OTG  mode. Looks like the type-c connector connects directly to the
+SoC through a USB HUB (TUSB4041).
 
-yamllint warnings/errors:
+[1] https://www.ti.com/lit/ug/spruj70a/spruj70a.pdf?ts=3D1733215039014
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/thead,th1520-power.example.dtb: vosys@ffef528000: compatible: ['syscon'] is too short
-	from schema $id: http://devicetree.org/schemas/mfd/syscon-common.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/thead,th1520-power.example.dtb: vosys@ffef528000: reg: [[255, 4015161344], [0, 4096]] is too long
-	from schema $id: http://devicetree.org/schemas/mfd/syscon-common.yaml#
+Regards,
+  Enric
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241203134137.2114847-9-m.wilczynski@samsung.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+> Regards,
+> Siddharth.
+>
 
 
