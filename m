@@ -1,59 +1,55 @@
-Return-Path: <devicetree+bounces-126519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126512-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BBA39E1A0A
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 11:55:55 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6009B9E19DE
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 11:50:48 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 620F2283EE3
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 10:55:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 264A11612FE
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 10:50:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A597B1E2854;
-	Tue,  3 Dec 2024 10:55:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8FAB1E25FE;
+	Tue,  3 Dec 2024 10:50:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C98EC1E284A;
-	Tue,  3 Dec 2024 10:55:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A085E1E25F0;
+	Tue,  3 Dec 2024 10:50:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733223351; cv=none; b=Iog8UDY9bCor3ePaWBoRA86bjgAKBz0G/jem4ci5SyA2XA1emlTDPpIpSbafc5i/dtz2Db/ULu4GnowLvFV1AeEmXCMUB0MG1/2XmmYcHlFoO29OzHlXtPvzJ/WzZ6JfSlLdx9ib+V7ki/NT/lakcp9qHnm8mH6stBjd6wOZpwk=
+	t=1733223046; cv=none; b=SOBXryXEDh+beeFN2z0g8gCMIzEMngWsEpoew/eBE5lgnbInDPIxS8bBxRkjEiBwi8+vi1U9011lg9xvmtSd04lFIoVIVy9DWLExus9QJ+LsNPzEHnKBXHMPimhgLM2cl/nLIy33vxdaHi5O7nccb/UWaRIxSnvSmMJTUvTWkCo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733223351; c=relaxed/simple;
-	bh=il5uQxRRwe3m1cW8/aVHsvKrWXrxpCQj0vVq+9VUl88=;
+	s=arc-20240116; t=1733223046; c=relaxed/simple;
+	bh=0o4J4J8nc2g+xgTx0PcuHy4Ujy7JYoHu87x6kLgXW8M=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=siRdRtgfXIzlXYmKDCYjJr5QKAMQWuvlYV3/gU/zkltX9FnbpgVzNNTE0J4ekE6GV+VUZOR1c54hvb5YYAXaSX8YFUz4jJhA/MZ4V3b/yBRg85bAQ36CVPNLcljNHzxWCW4o4aRyHgc6H7/xWx8CDToBLVSfEUGUcsnZrETt9OA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
+	 MIME-Version; b=maF4+LOnl7j5DYSLu3sno+dP9eE8NCNmIDPo8Nh8BDRLRbzsuSZq6uHZG2YwLZOyjxHTf+8EIb4QbNA64WGcvxccvcxjuDjEgzWSk7Rfm51GgZkZQfTggM907WMGur+6Ks0DB3qKzzRUjMif9B7igZCPR8KmRzuCXCK7v39MNSU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: r4vTt+CxSIOfAhlqah7OKQ==
-X-CSE-MsgGUID: YrcfNOrUQZ6zR4nofdf4Ig==
+X-CSE-ConnectionGUID: acGjIY8xRmqVWZGWVr8SXg==
+X-CSE-MsgGUID: kL9QiM0tRzabTjBlJOKxkg==
 X-IronPort-AV: E=Sophos;i="6.12,204,1728918000"; 
-   d="scan'208";a="226779505"
+   d="scan'208";a="230754414"
 Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 03 Dec 2024 19:50:40 +0900
+  by relmlie6.idc.renesas.com with ESMTP; 03 Dec 2024 19:50:43 +0900
 Received: from localhost.localdomain (unknown [10.226.93.2])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 9A6DA4003FA4;
-	Tue,  3 Dec 2024 19:50:24 +0900 (JST)
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id B93A040062A5;
+	Tue,  3 Dec 2024 19:50:40 +0900 (JST)
 From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>
 Cc: Biju Das <biju.das.jz@bp.renesas.com>,
 	Geert Uytterhoeven <geert+renesas@glider.be>,
 	Magnus Damm <magnus.damm@gmail.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
 	linux-renesas-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	Biju Das <biju.das.au@gmail.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v2 04/13] dt-bindings: clock: renesas: Document RZ/G3E SoC CPG
-Date: Tue,  3 Dec 2024 10:49:31 +0000
-Message-ID: <20241203105005.103927-5-biju.das.jz@bp.renesas.com>
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v2 09/13] arm64: dts: renesas: Add initial DTSI for RZ/G3E SoC
+Date: Tue,  3 Dec 2024 10:49:36 +0000
+Message-ID: <20241203105005.103927-10-biju.das.jz@bp.renesas.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20241203105005.103927-1-biju.das.jz@bp.renesas.com>
 References: <20241203105005.103927-1-biju.das.jz@bp.renesas.com>
@@ -65,91 +61,218 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Document the device tree bindings for the Renesas RZ/G3E SoC
-Clock Pulse Generator (CPG).
+Add the initial DTSI for the RZ/G3E SoC.
+The files in this commit have the following meaning:
+  - r9a09g047.dtsi:    RZ/G3E family SoC common parts
+  - r9a09g047e57.dtsi: RZ/G3E R0A09G047E{4,5}{7,8} SoC specific parts
+  - r9a09g047e37.dtsi: RZ/G3E R0A09G047E{2,3}{7,8} SoC specific parts
 
-Also define constants for the core clocks of the RZ/G3E SoC.
-
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
 Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 ---
 v1->v2:
- * Added Ack from Conor Dooley.
- * Fixed typo "CORE_CLK*"->"CORECLK*" to match with hardware manual.
+ * No change.
 ---
- .../bindings/clock/renesas,rzv2h-cpg.yaml     | 15 +++++++------
- .../dt-bindings/clock/renesas,r9a09g047-cpg.h | 21 +++++++++++++++++++
- 2 files changed, 30 insertions(+), 6 deletions(-)
- create mode 100644 include/dt-bindings/clock/renesas,r9a09g047-cpg.h
+ arch/arm64/boot/dts/renesas/r9a09g047.dtsi    | 144 ++++++++++++++++++
+ arch/arm64/boot/dts/renesas/r9a09g047e37.dtsi |  18 +++
+ arch/arm64/boot/dts/renesas/r9a09g047e57.dtsi |  13 ++
+ 3 files changed, 175 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a09g047.dtsi
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a09g047e37.dtsi
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a09g047e57.dtsi
 
-diff --git a/Documentation/devicetree/bindings/clock/renesas,rzv2h-cpg.yaml b/Documentation/devicetree/bindings/clock/renesas,rzv2h-cpg.yaml
-index 926c503bed1f..c3fe76abd549 100644
---- a/Documentation/devicetree/bindings/clock/renesas,rzv2h-cpg.yaml
-+++ b/Documentation/devicetree/bindings/clock/renesas,rzv2h-cpg.yaml
-@@ -4,19 +4,22 @@
- $id: http://devicetree.org/schemas/clock/renesas,rzv2h-cpg.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: Renesas RZ/V2H(P) Clock Pulse Generator (CPG)
-+title: Renesas RZ/{G3E,V2H(P)} Clock Pulse Generator (CPG)
- 
- maintainers:
-   - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
- 
- description:
--  On Renesas RZ/V2H(P) SoCs, the CPG (Clock Pulse Generator) handles generation
--  and control of clock signals for the IP modules, generation and control of resets,
--  and control over booting, low power consumption and power supply domains.
-+  On Renesas RZ/{G3E,V2H(P)} SoCs, the CPG (Clock Pulse Generator) handles
-+  generation and control of clock signals for the IP modules, generation and
-+  control of resets, and control over booting, low power consumption and power
-+  supply domains.
- 
- properties:
-   compatible:
--    const: renesas,r9a09g057-cpg
-+    enum:
-+      - renesas,r9a09g047-cpg # RZ/G3E
-+      - renesas,r9a09g057-cpg # RZ/V2H
- 
-   reg:
-     maxItems: 1
-@@ -37,7 +40,7 @@ properties:
-     description: |
-       - For CPG core clocks, the two clock specifier cells must be "CPG_CORE"
-         and a core clock reference, as defined in
--        <dt-bindings/clock/renesas,r9a09g057-cpg.h>,
-+        <dt-bindings/clock/renesas,r9a09g0*-cpg.h>,
-       - For module clocks, the two clock specifier cells must be "CPG_MOD" and
-         a module number.  The module number is calculated as the CLKON register
-         offset index multiplied by 16, plus the actual bit in the register
-diff --git a/include/dt-bindings/clock/renesas,r9a09g047-cpg.h b/include/dt-bindings/clock/renesas,r9a09g047-cpg.h
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
 new file mode 100644
-index 000000000000..1d031bf6bf03
+index 000000000000..4176b9aa6892
 --- /dev/null
-+++ b/include/dt-bindings/clock/renesas,r9a09g047-cpg.h
-@@ -0,0 +1,21 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++++ b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
+@@ -0,0 +1,144 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++/*
++ * Device Tree Source for the RZ/G3E SoC
 + *
 + * Copyright (C) 2024 Renesas Electronics Corp.
 + */
-+#ifndef __DT_BINDINGS_CLOCK_RENESAS_R9A09G047_CPG_H__
-+#define __DT_BINDINGS_CLOCK_RENESAS_R9A09G047_CPG_H__
 +
-+#include <dt-bindings/clock/renesas-cpg-mssr.h>
++#include <dt-bindings/clock/renesas,r9a09g047-cpg.h>
++#include <dt-bindings/interrupt-controller/arm-gic.h>
 +
-+/* Core Clock list */
-+#define R9A09G047_SYS_0_PCLK			0
-+#define R9A09G047_CA55_0_CORECLK0		1
-+#define R9A09G047_CA55_0_CORECLK1		2
-+#define R9A09G047_CA55_0_CORECLK2		3
-+#define R9A09G047_CA55_0_CORECLK3		4
-+#define R9A09G047_CA55_0_PERIPHCLK		5
-+#define R9A09G047_CM33_CLK0			6
-+#define R9A09G047_CST_0_SWCLKTCK		7
-+#define R9A09G047_IOTOP_0_SHCLK			8
++/ {
++	compatible = "renesas,r9a09g047";
++	#address-cells = <2>;
++	#size-cells = <2>;
 +
-+#endif /* __DT_BINDINGS_CLOCK_RENESAS_R9A09G047_CPG_H__ */
++	audio_extal_clk: audio-clk {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		/* This value must be overridden by the board */
++		clock-frequency = <0>;
++	};
++
++	cpus {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		cpu0: cpu@0 {
++			compatible = "arm,cortex-a55";
++			reg = <0>;
++			device_type = "cpu";
++			next-level-cache = <&L3_CA55>;
++			enable-method = "psci";
++		};
++
++		cpu1: cpu@100 {
++			compatible = "arm,cortex-a55";
++			reg = <0x100>;
++			device_type = "cpu";
++			next-level-cache = <&L3_CA55>;
++			enable-method = "psci";
++		};
++
++		cpu2: cpu@200 {
++			compatible = "arm,cortex-a55";
++			reg = <0x200>;
++			device_type = "cpu";
++			next-level-cache = <&L3_CA55>;
++			enable-method = "psci";
++		};
++
++		cpu3: cpu@300 {
++			compatible = "arm,cortex-a55";
++			reg = <0x300>;
++			device_type = "cpu";
++			next-level-cache = <&L3_CA55>;
++			enable-method = "psci";
++		};
++
++		L3_CA55: cache-controller-0 {
++			compatible = "cache";
++			cache-unified;
++			cache-size = <0x100000>;
++			cache-level = <3>;
++		};
++	};
++
++	psci {
++		compatible = "arm,psci-1.0", "arm,psci-0.2";
++		method = "smc";
++	};
++
++	qextal_clk: qextal-clk {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		/* This value must be overridden by the board */
++		clock-frequency = <0>;
++	};
++
++	rtxin_clk: rtxin-clk {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		/* This value must be overridden by the board */
++		clock-frequency = <0>;
++	};
++
++	soc: soc {
++		compatible = "simple-bus";
++		interrupt-parent = <&gic>;
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		cpg: clock-controller@10420000 {
++			compatible = "renesas,r9a09g047-cpg";
++			reg = <0 0x10420000 0 0x10000>;
++			clocks = <&audio_extal_clk>, <&rtxin_clk>, <&qextal_clk>;
++			clock-names = "audio_extal", "rtxin", "qextal";
++			#clock-cells = <2>;
++			#reset-cells = <1>;
++			#power-domain-cells = <0>;
++		};
++
++		scif0: serial@11c01400 {
++			compatible = "renesas,scif-r9a09g047", "renesas,scif-r9a09g057";
++			reg = <0 0x11c01400 0 0x400>;
++			interrupts = <GIC_SPI 529 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 532 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 533 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 530 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 534 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 531 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 535 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 536 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 537 IRQ_TYPE_EDGE_RISING>;
++			interrupt-names = "eri", "rxi", "txi", "bri", "dri",
++					  "tei", "tei-dri", "rxi-edge", "txi-edge";
++			clocks = <&cpg CPG_MOD 0x8f>;
++			clock-names = "fck";
++			power-domains = <&cpg>;
++			resets = <&cpg 0x95>;
++			status = "disabled";
++		};
++
++		gic: interrupt-controller@14900000 {
++			compatible = "arm,gic-v3";
++			reg = <0x0 0x14900000 0 0x20000>,
++			      <0x0 0x14940000 0 0x80000>;
++			#interrupt-cells = <3>;
++			#address-cells = <0>;
++			interrupt-controller;
++			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
++		};
++	};
++
++	timer {
++		compatible = "arm,armv8-timer";
++		interrupts-extended = <&gic GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
++				      <&gic GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
++				      <&gic GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
++				      <&gic GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>,
++				      <&gic GIC_PPI 12 IRQ_TYPE_LEVEL_LOW>;
++		interrupt-names = "sec-phys", "phys", "virt", "hyp-phys", "hyp-virt";
++	};
++};
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g047e37.dtsi b/arch/arm64/boot/dts/renesas/r9a09g047e37.dtsi
+new file mode 100644
+index 000000000000..e50d9159e832
+--- /dev/null
++++ b/arch/arm64/boot/dts/renesas/r9a09g047e37.dtsi
+@@ -0,0 +1,18 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++/*
++ * Device Tree Source for the RZ/G3E R9A09G047E37 SoC specific parts
++ *
++ * Copyright (C) 2024 Renesas Electronics Corp.
++ */
++
++/dts-v1/;
++#include "r9a09g047.dtsi"
++
++/ {
++	compatible = "renesas,r9a09g047e37", "renesas,r9a09g047";
++
++	cpus {
++		/delete-node/ cpu@200;
++		/delete-node/ cpu@300;
++	};
++};
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g047e57.dtsi b/arch/arm64/boot/dts/renesas/r9a09g047e57.dtsi
+new file mode 100644
+index 000000000000..98a5faebd47a
+--- /dev/null
++++ b/arch/arm64/boot/dts/renesas/r9a09g047e57.dtsi
+@@ -0,0 +1,13 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++/*
++ * Device Tree Source for the RZ/G3E R9A09G047E57 SoC specific parts
++ *
++ * Copyright (C) 2024 Renesas Electronics Corp.
++ */
++
++/dts-v1/;
++#include "r9a09g047.dtsi"
++
++/ {
++	compatible = "renesas,r9a09g047e57", "renesas,r9a09g047";
++};
 -- 
 2.43.0
 
