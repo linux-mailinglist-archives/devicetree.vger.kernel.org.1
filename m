@@ -1,135 +1,178 @@
-Return-Path: <devicetree+bounces-126588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3343D9E1D02
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 14:04:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 213DE9E1D53
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 14:17:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDE15282182
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 13:04:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 03B16B29FA3
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 12:14:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B34451EBFE6;
-	Tue,  3 Dec 2024 13:04:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFE011E571C;
+	Tue,  3 Dec 2024 12:13:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bdO4b7BN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [5.144.164.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83FDA131E2D;
-	Tue,  3 Dec 2024 13:04:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.144.164.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DE5A1E492C
+	for <devicetree@vger.kernel.org>; Tue,  3 Dec 2024 12:13:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733231055; cv=none; b=RvGj80n6sZhC2YpMXMSewEP34v9fcJeWlE6jtRiXpKatoEg7lvIZQjXqX4bqZ0Dwo8uANrUIuK6/KqpIc2sqzOJ2lzfSSTHykNZBvMQW5hjEe+SKkuXQDMR0+SLGnzzBs5s0r0p9q7IfDtp8AAYy+JF9ppH6vylb0Y1V2YAgI2I=
+	t=1733228035; cv=none; b=CTQq/fFbjAPIzRHQ7ew/fjjelb0v7/ANqORhHbXbQlUe2lLvslxtL45GCpxOY9o9qHex7iPstap/qBOxtrHKUd7cAdFJCpw95khOFaKRTybPGLA/Gf093LQW6oSgZjzdW5eYkPOVaIXTCUSYjwyQk+vEHc0z8O3eHvKwJyIIxyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733231055; c=relaxed/simple;
-	bh=4Red2NtFdNCPFlrjhj3hdUEFF7Dn8UGMxBKxTlgNFyI=;
-	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sa5JT+ktWGuBdmiumQ1jgs8OCcXl0ONWGnvZghndiZ4yJzHnV6SvYOvbQz39/kr+VO880N7BE9xzO04w1XeXEV1I6xAB54n6xHVkucya7B6+mjLGE85Is73AJVM8HvfMxbFU3CGrzRu2hzwD8x8Kxk1Li5AG/EErMISvn7+EtB4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org; spf=pass smtp.mailfrom=somainline.org; arc=none smtp.client-ip=5.144.164.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=somainline.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=somainline.org
-Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 935553EDDF;
-	Tue,  3 Dec 2024 14:04:05 +0100 (CET)
-Date: Tue, 3 Dec 2024 14:04:04 +0100
-From: Marijn Suijten <marijn.suijten@somainline.org>
-To: Luca Weiss <luca.weiss@fairphone.com>, 
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: power: rpmpd: Fix comment for SM6375
-Message-ID: <5qd74wbiyytgcn3k726jykm37ctahi4yd26vvhqea2rmcv6m6b@v7kcfhu3fyy3>
-Mail-Followup-To: Marijn Suijten <marijn.suijten@somainline.org>, 
-	Luca Weiss <luca.weiss@fairphone.com>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, ~postmarketos/upstreaming@lists.sr.ht, 
-	phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-References: <20241202-rpmpd-sm6375-v1-1-12a4f0182133@fairphone.com>
- <yo5cc3cvvwwdrqrrgwlquztj52sijip3ffyyqag55jrnztxi2m@hn75ylkhnxie>
- <D61WIF2XWKL8.MWU6PK2XGX4F@fairphone.com>
- <eovguha2tvc3rxd72yfqxgcg37waokoyqs377kvwmtdgssi4no@ii3i2bvl675i>
+	s=arc-20240116; t=1733228035; c=relaxed/simple;
+	bh=W+szB8DHIS9wuynuF+WKAS1RRUY0K1c/z545AfxmLt0=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=o0k8cuY9bDZpJqWqIw664adc3jaaLr+2NXfkHuW7HGyksmnDPIVmMJlaUKnUNXYr3EQprYL3QVpST/c+Zsvupnd7VZpBplP3IVNTEuyi2z5afB5uzD7552cqF/UxwSCs99QxKs3f4/1Qb227hJvazh6JQit4NPA1l/YgWf2FmQE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bdO4b7BN; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-aa5302a0901so660570066b.0
+        for <devicetree@vger.kernel.org>; Tue, 03 Dec 2024 04:13:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733228032; x=1733832832; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mWpaKqqVYEb45LFrVAOE9nPtLWbHCab8i1TbI6jQ3+I=;
+        b=bdO4b7BNGjxldtopbXr3OfpwxBtDEw0rKeVkOWfFxQDEb2wF2fvj/KbiAlAYChZxTC
+         LVRDR+1uzgHK9m/Eg1m96b+cfTTyASByYv8gx25Cl4pSLS+6KpFsCctZo8T/M8VAa9ul
+         f4rahCfDVUEtmiX97cPliYTUCHZEwCUTYM5/zN6p5In9V+Prf3ohUQLv/skHm4MKVamh
+         Cv9V3Kt1Rx/NtB39GOgCJvheJb9J8Yh4n98Mk3WyDPwWpoyQHLzTzsT827vl6Qmxmr9t
+         7R5cpra948Z58253O18oTyT9XKcM9QAwU8aWsJShG4STPTDAiByLfZ6lQOVk8H9iKoqi
+         v/wA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733228032; x=1733832832;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mWpaKqqVYEb45LFrVAOE9nPtLWbHCab8i1TbI6jQ3+I=;
+        b=UhWhX1Dui1qiy+ncZMj8Mb+woslKgxap+WHXTJ/eiGcMG/7NBE5tQPxSO5EZ6rX2zp
+         j7gORmjG10SbjbkP1TdvIucYs5UZnThFp2+keJ/FQNHpsgJLr6vA2QjEa8slejdoeSrt
+         GbsLCADupxjLM0ET+RAMY1k9msCb8F2jyAqL7UAQNpDliqzlo9nPOgh2InnfDhxVrEBV
+         V0kNsCAD9FXT8e5rHTxjPLuaougYgTsp/utAWmZcDZ4GMB2byurRqg0AyJMNwXo11mSt
+         AIDhYR88DHD50Zec6oytlzR4+f+RhNE+mREzsqlbt2NCxsRa1nzpInrJ30iAbGCTKXRm
+         3D/A==
+X-Forwarded-Encrypted: i=1; AJvYcCUBgvHmtVqweT7VOV1bJg9gc2Y4AfpZpLSxPbEwMPTmIRRVCNs3HL8oB7XHfSAv30eLMRsgJyju/ULL@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy31WlKwWQKq8aBmi0MSIgORyN0ZPZbrLCzKfWerXP9vE56tanp
+	3fQvvqzcumL5c4jynN+POtQPZIV7kr8VP/6g8e7tyo1Me4MeoroLYnfBt6FF1tk=
+X-Gm-Gg: ASbGnctJbCkNBnoMF/FvuRMMltJraLQWWEHnf30R61Uo9A4Zoewqk1evXfGoX3jUuNi
+	epiT/xUwhXl+gX3Go5R8EKaAl5K5uxMW1sHbr/ZE7iO9C7mrTcJmAIlgrceI7DOsADs6qsCGATp
+	gEzm5vzZvUFcN5+VA5YQyobr4L1i52QnJaOt1lGwcGQB6OFnn8zjm1CnhFV5FZFbfdlbG9OAZA9
+	+0ftvM/9zCPKwkCSKP8a8uKXrhfJ9w8kHKxXvqQZA4bAB+ItvumrIT+YfIVD5tIe3r3Bj/sFMlM
+	S587LT7FeviNI2x5BIuUEJCfMTaNvntapw==
+X-Google-Smtp-Source: AGHT+IGn4eg/NfZJAVu0hqE9cK2q2j0R5oIme9rHukh+yJlN3vdSnhKD++AzSGAOtBHFlLtbaiKfNw==
+X-Received: by 2002:a17:907:7632:b0:a9e:df65:3a81 with SMTP id a640c23a62f3a-aa5f7f4f3bfmr155819366b.59.1733228031882;
+        Tue, 03 Dec 2024 04:13:51 -0800 (PST)
+Received: from puffmais.c.googlers.com (64.227.90.34.bc.googleusercontent.com. [34.90.227.64])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa5996c245bsm607603766b.8.2024.12.03.04.13.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Dec 2024 04:13:51 -0800 (PST)
+From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Date: Tue, 03 Dec 2024 12:13:50 +0000
+Subject: [PATCH v2 2/8] dt-bindings: phy: samsung,usb3-drd-phy: gs101:
+ require Type-C properties
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <eovguha2tvc3rxd72yfqxgcg37waokoyqs377kvwmtdgssi4no@ii3i2bvl675i>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20241203-gs101-phy-lanes-orientation-phy-v2-2-40dcf1b7670d@linaro.org>
+References: <20241203-gs101-phy-lanes-orientation-phy-v2-0-40dcf1b7670d@linaro.org>
+In-Reply-To: <20241203-gs101-phy-lanes-orientation-phy-v2-0-40dcf1b7670d@linaro.org>
+To: Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Marek Szyprowski <m.szyprowski@samsung.com>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ Alim Akhtar <alim.akhtar@samsung.com>
+Cc: Peter Griffin <peter.griffin@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Sam Protsenko <semen.protsenko@linaro.org>, 
+ Will McVicker <willmcvicker@google.com>, Roy Luo <royluo@google.com>, 
+ kernel-team@android.com, linux-phy@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+X-Mailer: b4 0.13.0
 
-On 2024-12-03 13:58:51, Marijn Suijten wrote:
-> On 2024-12-03 08:52:59, Luca Weiss wrote:
-> > On Mon Dec 2, 2024 at 9:00 PM CET, Dmitry Baryshkov wrote:
-> > > On Mon, Dec 02, 2024 at 04:45:02PM +0100, Luca Weiss wrote:
-> > > > During an earlier commit, the comment from SM6350 was copied without
-> > > > modifying. Adjust the comment to reflect the defines.
-> > > > 
-> > > > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> > >
-> > > Fixes tag, please.
-> > 
-> > I thought for just a comment fix it's not necessary / desired.
-> 
-> Makes one wonder why the SoC name is repeated in a comment in the first place,
-> when it is already in every named constant and the containing filename too.
-> That's only prone to errors as you've demonstrated here, requiring a separate
-> commit and discussion (and automatic backporting via Fixes:) to patch up, while
-> it already wasn't relevant/useful for anyone.
+orientation-switch is the standard declaration to inform the Type-C mux
+layer that a remote-endpoint is capable of processing orientation
+change messages.
 
-Never mind, the filename isn't different, I glanced over too quickly.
+The USB PHY on gs101 needs to be configured based on the orientation of
+the connector. For that the DTS needs a link between the phy's port and
+a TCPCi, and we'll need to inform the phy driver that it should handle
+the orientation (register a handler).
 
-In that case the repeat is still somewhat relevant as a separator between all
-the SoC-specific defines in this file, even if the #define repeats it as well?
+Update the schema to enforce that by requiring the orientation-switch
+and port properties on gs101 (only). We disallow orientation-switch on
+all other supported platforms, since other versions of this phy (or its
+system integration) don't currently support or even need it.
 
-Apologies for the noise.
+Even though this new required gs101 property is an ABI break, the
+intention for the driver is to behave as before if it's missing
+(meaning for gs101 it will work in SS mode in one orientation only).
+Other platforms are not affected.
 
-> 
-> Less is more.
-> 
-> - Marijn
-> 
-> PS: That's a suggestion to see if we can perhaps remove these from all header
-> files instead to save the copy-paste burden in the future?
-> 
-> > 
-> > Anyways:
-> > 
-> > Fixes: 2d48e6ea3080 ("dt-bindings: power: rpmpd: Add SM6375 power domains")
-> > 
-> > 
-> > >
-> > > > ---
-> > > >  include/dt-bindings/power/qcom-rpmpd.h | 2 +-
-> > > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > > > 
-> > > > diff --git a/include/dt-bindings/power/qcom-rpmpd.h b/include/dt-bindings/power/qcom-rpmpd.h
-> > > > index df599bf462207267a412eac8e01634189a696a59..d9b7bac309537cbfd2488e7d4fe21d195c919ef5 100644
-> > > > --- a/include/dt-bindings/power/qcom-rpmpd.h
-> > > > +++ b/include/dt-bindings/power/qcom-rpmpd.h
-> > > > @@ -65,7 +65,7 @@
-> > > >  #define SM6350_MSS	4
-> > > >  #define SM6350_MX	5
-> > > >  
-> > > > -/* SM6350 Power Domain Indexes */
-> > > > +/* SM6375 Power Domain Indexes */
-> > > >  #define SM6375_VDDCX		0
-> > > >  #define SM6375_VDDCX_AO	1
-> > > >  #define SM6375_VDDCX_VFL	2
-> > > > 
-> > > > ---
-> > > > base-commit: 40384c840ea1944d7c5a392e8975ed088ecf0b37
-> > > > change-id: 20241202-rpmpd-sm6375-06582e126d7f
-> > > > 
-> > > > Best regards,
-> > > > -- 
-> > > > Luca Weiss <luca.weiss@fairphone.com>
-> > > > 
-> > 
+Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
+Signed-off-by: André Draszik <andre.draszik@linaro.org>
+
+---
+v2:
+* squash original patches #2 and #3
+* actually disallow orientation-switch on !gs101 (not just optional) (Conor)
+* update commit message to clarify that the intention for the driver is
+  to work with old and new DTS (Conor)
+* collect tags
+---
+ Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml b/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml
+index 1f8b35917b11..c1d16254aeec 100644
+--- a/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml
+@@ -51,6 +51,9 @@ properties:
+   "#phy-cells":
+     const: 1
+ 
++  orientation-switch:
++    $ref: /schemas/usb/usb-switch.yaml#/properties/orientation-switch
++
+   port:
+     $ref: /schemas/graph.yaml#/properties/port
+     description:
+@@ -139,6 +142,8 @@ allOf:
+ 
+       required:
+         - reg-names
++        - orientation-switch
++        - port
+         - pll-supply
+         - dvdd-usb20-supply
+         - vddh-usb20-supply
+@@ -146,6 +151,10 @@ allOf:
+         - vdda-usbdp-supply
+         - vddh-usbdp-supply
+ 
++    else:
++      properties:
++        orientation-switch: false
++
+   - if:
+       properties:
+         compatible:
+
+-- 
+2.47.0.338.g60cca15819-goog
+
 
