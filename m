@@ -1,90 +1,87 @@
-Return-Path: <devicetree+bounces-126747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A91E9E2FEF
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 00:36:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 439D39E2FF2
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 00:37:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EFF432834BF
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 23:36:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 051072833F4
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 23:37:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BFDF204F6C;
-	Tue,  3 Dec 2024 23:36:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4014F205E1C;
+	Tue,  3 Dec 2024 23:37:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DyQrCnB2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RmCN8XN/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E89801DD0FF;
-	Tue,  3 Dec 2024 23:36:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B72F5202F84;
+	Tue,  3 Dec 2024 23:37:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733268996; cv=none; b=T/LnYBI+hJx4myPxlH7pm76KX+BIHMCz4jA0Cd9RcQmQkIvF7e1L8qLwcd/UoGFhwZVYAJ9UiJC22I7omDRZHGZnzXl2EsAchmRPUu7I/pd1tHVqlkmJN4pSZf0pYiQYZaAchBbjrvv7okEXFVPVzCG4zf+nKeWlYG4kKNMzAsE=
+	t=1733269043; cv=none; b=dOzrX1Tmjfakg6JWHYBtghQDq+vitPzyE7cQFN5I8cjjRIAuDjt0cGQgjO47eh2DcdrMo5523AFQm4vRjOugNJy7jJhVN1tnW6w+5hOp9Igx65f6e6yp8Wl8oOvnhGjgiG1YPX/JDED1kz5+3FNWIoCKPQN/Cn2kDIiqdPXZahQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733268996; c=relaxed/simple;
-	bh=O9DB98ly00EVi5jqCLscYDWCYJVerIKnNbLNJ0XJlv0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=KuLTnIB63aEjfSkWTaGJUpU3H4SmQPoot2Z58Ktl4AaFNpVwdumZpzMcY+IWekwbDnXHz/6xVy1zMrVtTXwRVh9zZyGzQsW8oVMB6unHi5UaECwHyBbiaOlVweTxpJZ3uoM2cJ8DX/UXkUQw7/6gPNMwLhbqNDYmlBWUQc0WnGk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DyQrCnB2; arc=none smtp.client-ip=209.85.214.181
+	s=arc-20240116; t=1733269043; c=relaxed/simple;
+	bh=q1u93VWbmhkuangUi+34Ds4LKF42kWp+h/JOuvnQvnc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=H3O9rirY3VweitKbDZgQ0tEnz7QDhGjNEeMIRpaCAmB9skBSHHS3poqdWIJqF+hAbPhEcdg8ojWpoM53W50DxhSeA46KT7nif9LYNfsXEUbJbK+DtFymi0E0f0b7NOqaNwCiuL0s03rt0QeKn0VCEIreKrxywYKPvnvWx/DKfiM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RmCN8XN/; arc=none smtp.client-ip=209.85.216.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2156e078563so27201845ad.2;
-        Tue, 03 Dec 2024 15:36:34 -0800 (PST)
+Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-2eed82ca5b4so2083035a91.2;
+        Tue, 03 Dec 2024 15:37:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733268994; x=1733873794; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1733269040; x=1733873840; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Pc5TgHTZwt6LxhA2uVCI7tpp7Tqag/4j85Yn1WwfR0E=;
-        b=DyQrCnB2AQ+TvYI2QxiatN6TQxs1y1F3Zhbr9z8IOGwsVXWVug3oUm4pXSEpf76D0x
-         We+RSOo2Of7emjtiqSGkoxCKSpZW9oK9g/vVyW4rJACSIQmW2NPMBZrzxx56ivSUz1JW
-         /8VgfX9JX/WWv77LeO0oog/0RiYocQvPPerLFJYerG61pOd8/uBt7dgv+DFRv5cayX/8
-         nMbpxNloqNI1/gGJmV6nZs9e72h8s5cwptb6f1UAkHUDmq4DVSmum9QuD23eXJt1zZvT
-         +s8gu/3gU7fKVBBehES7h/HrT+KfdbpHVmdjdS1TbejaSXCzYZ7SKYQ0Fj+rT6h1+lEd
-         S43A==
+        bh=Q5qEW4jJfic/KmqYMW2G0FOLqVypcgVgmsP5xVbecKw=;
+        b=RmCN8XN/kbXo9gooOIn8547zZtyJZ6RDYRbhTjVDlG+3nMe1TF1bft7m+0S5goJTrn
+         j4tv7S/hsrDDDYB/A0W8kUlRTJQ9wOvwsGRVvAb08DXZKHswQsXdkQb9CKnAjsaoJuy9
+         GDmN/AlMlDzvtj3K8ccMvD0McZLO7krKkJaFvO0qOXmA56xPiz7nhMiFQ9+J70lSMI7I
+         remrm6J3+mwJkswPbMoWBdL0z8ttYbAPZuYZqHf0O0e8bUljEgBjW+lrKzX3BBApgMYD
+         bSuGZ2CydjhjaQJEhv+XCP1CEYmfJFIIVg/n+k3Mdx7ggNFc1nNaJmQrIV+eJ2T6IIM6
+         3hNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733268994; x=1733873794;
+        d=1e100.net; s=20230601; t=1733269040; x=1733873840;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Pc5TgHTZwt6LxhA2uVCI7tpp7Tqag/4j85Yn1WwfR0E=;
-        b=Ti8WOQOVU0o5AfWWj6bRzMAMmWAZmEK3BySH3pBLPKt3AzRg1Oa8fhKJn8QvQxQRUI
-         BX1rQYKM02vsPVglHnfRYOgjT42yVUWdi3lIJQNjqLpzmvMWRMCCTtOqK5OQh05O30zm
-         kdhexzh5+97ulV94awMgHJtUBeYNKCEJJ4lpRLXcMiIhsBWAk1gbiAszq/9iBWpa5k4X
-         FWhKzULTTl7E5tZqZ2qa7MfRwZitpxBX0+fuRrJLBoOUrFlyue2hrcYIyXe9eG70Xa7L
-         3GcEbmOKYk4UwsubSgoMlQlpD+n65TedX5Z3HxqTzNH/fPmDfwb1p1Vt/ZCOJo6LQQ7U
-         PgbA==
-X-Forwarded-Encrypted: i=1; AJvYcCU28PgmqWsnNSVQ76K85Y9H4O3uOwcQCnnzEdNleddxbU2iQLmY6pi92DM65HSgEkzSZj1sk9MpaCZl@vger.kernel.org, AJvYcCXkd8bX+mlaLr7uSMV5PIB+Kx9xdHpIExxSynE6PS2yl6BZNE7rUjsG678MOOlttN971kXXdv8kMYCpo4MH@vger.kernel.org
-X-Gm-Message-State: AOJu0YyWiPaJ12F6SVzVCDgt3/1mJEEU2CMoiTPwYOOgN+pJaJF2S1bH
-	CUOsX5zINZTYcktaXnCN5cXlEcENtdHBI+VqRF3WKdFrocS7uOKo
-X-Gm-Gg: ASbGnctjj0y5QiXa4jKJlVGKWewKuzxfbM+JZNvPEqmlE8HU6dLidMC8J4Ni1FWfINt
-	i5baMsqqAl/gtQ8uEx/eMNxdenywif9KWiwLLhqA2HWHC/3ZdXX0m+1r3jFxTinRMQ+tgtdwxqD
-	5XQqjpOtvEjlCE3aH7cV09ABWojEood3W3IXr/7LqIYjeXTh8qnVgL/zLPrAlcciCmvdbBymL7s
-	JJUxTU8yQSRC0Mhwjrxv0r9XQ==
-X-Google-Smtp-Source: AGHT+IHf1rNluLIVYS/a49eRccOObI5iM0YG6/dTrhTZp7oNxYqcMIrUbYetBc5idn9jC/IMI8gNOg==
-X-Received: by 2002:a17:902:dac5:b0:215:772c:fa6b with SMTP id d9443c01a7336-215bd241a4amr48023815ad.40.1733268994177;
-        Tue, 03 Dec 2024 15:36:34 -0800 (PST)
+        bh=Q5qEW4jJfic/KmqYMW2G0FOLqVypcgVgmsP5xVbecKw=;
+        b=Fe1tjp8IEXvsUn9E6O9i0eTXvWxSxsmAHMLKo66Uncv87rKMRYdFCquw+GPntieHsy
+         fszPCMsdoLUTNu2B0mvS1zGFIlPK+34l+msC8xlGnfgZSyYCt0MeaptIXzTON3CZ5nGW
+         37hQzG83zQjRI65RnsQWdp030knfFe9hndD2i6bGCV8cxH9H6uRtnCuXCzWq43aMWneo
+         HJjri/aLoRMdpoP3DZgYvDxOiRO2k8SP2Bl+Zt6d06LcId4nB7tUpX6NKr/xZ7RzAXIJ
+         Fkdsi0n1197GHW7BN0/3ItHuHQURrol4zGOh0VgpNPXrsN4YF+oFgjlic9OINwe9CDm7
+         k2xg==
+X-Forwarded-Encrypted: i=1; AJvYcCW3S/YQ897C4ZEh4WydpNEckA/qHxsk4UxCuBs4oyN6OFO7DNNw7ZVfZ2GcZRVE6JoZqNUmHM/4XeGC@vger.kernel.org, AJvYcCWGaVq17EVZe/v1EWJjinQq49pFT2gRNJwwxJ70qGE+njCI7i2pfqRe+QcNdlPh/Qj8Aai+3y/vt8WKiCg2@vger.kernel.org
+X-Gm-Message-State: AOJu0YzkBm0yu5a/+elI4nTmMcBYYmtF3vKgyPbnl4qAN6rCJdDnk+oZ
+	FkzT3JudiVzQE6aWhBEiqp5sUNgSnga/vHIPc51aGQf/D8WkMHNE
+X-Gm-Gg: ASbGnctF4dumt62tuXSxPxuO6UYxEx/9KwPgZQWfKzejzTznWJj3X4qZbCOlwBRTuck
+	apsOUOouj/e5vQv9rrgnLGAK8GMkus1MW3Wkx4T9D41K34EaQdDCCBg/qUfGadGmZledNM+3Y51
+	wp1URDsU2QFq5XdQ5Vwq18FWSmlMSV0mgwmJNZCcn+AcfEyzEVgPmPgLtxV/hx01R8GnZOENdg9
+	zf7PHBppKdEFrklFWke0sm47A==
+X-Google-Smtp-Source: AGHT+IGmUB8QfjA0RY2ydXBICshKM7ronJUqIxAE4e7WvnlpNAzxGCSvOX9ygh9d1aeEy5n49zRLvQ==
+X-Received: by 2002:a17:90b:3a85:b0:2ee:d024:e4fc with SMTP id 98e67ed59e1d1-2ef012748a3mr6764344a91.33.1733269039866;
+        Tue, 03 Dec 2024 15:37:19 -0800 (PST)
 Received: from ryzen.lan ([2601:644:8200:dab8::a86])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-215964b6b76sm40401725ad.191.2024.12.03.15.36.32
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2ef270352c2sm119187a91.33.2024.12.03.15.37.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Dec 2024 15:36:33 -0800 (PST)
+        Tue, 03 Dec 2024 15:37:19 -0800 (PST)
 From: Rosen Penev <rosenp@gmail.com>
 To: linux-arm-kernel@lists.infradead.org
-Cc: Rob Herring <robh@kernel.org>,
+Cc: Andrew Lunn <andrew@lunn.ch>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	William Zhang <william.zhang@broadcom.com>,
-	Anand Gore <anand.gore@broadcom.com>,
-	Kursad Oney <kursad.oney@broadcom.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
 	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
 	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH] arm64: dts: bcm4908: nvmem-layout conversion
-Date: Tue,  3 Dec 2024 15:36:32 -0800
-Message-ID: <20241203233632.184861-1-rosenp@gmail.com>
+Subject: [PATCH] arm64: dts: armada-3720-gl-mv1000: use nvmem-layout
+Date: Tue,  3 Dec 2024 15:37:17 -0800
+Message-ID: <20241203233717.185016-1-rosenp@gmail.com>
 X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -98,38 +95,57 @@ nvmem-layout is a more flexible replacement for nvmem-cells.
 
 Signed-off-by: Rosen Penev <rosenp@gmail.com>
 ---
- .../dts/broadcom/bcmbca/bcm4906-netgear-r8000p.dts   | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+ .../dts/marvell/armada-3720-gl-mv1000.dts     | 30 +++++++++----------
+ 1 file changed, 15 insertions(+), 15 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4906-netgear-r8000p.dts b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4906-netgear-r8000p.dts
-index 999d93730240..a5f9ec92bd5e 100644
---- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4906-netgear-r8000p.dts
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4906-netgear-r8000p.dts
-@@ -144,16 +144,20 @@ partitions {
- 		#size-cells = <1>;
+diff --git a/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts b/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts
+index 56930f2ce481..7b801b60862d 100644
+--- a/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts
++++ b/arch/arm64/boot/dts/marvell/armada-3720-gl-mv1000.dts
+@@ -98,10 +98,24 @@ partition@f0000 {
+ 				reg = <0xf0000 0x8000>;
+ 			};
  
- 		partition@0 {
--			compatible = "nvmem-cells";
- 			label = "cferom";
- 			reg = <0x0 0x100000>;
--
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges = <0 0x0 0x100000>;
- 
--			base_mac_addr: mac@106a0 {
--				reg = <0x106a0 0x6>;
-+			nvmem-layout {
-+				compatible = "fixed-layout";
-+				#address-cells = <1>;
-+				#size-cells = <1>;
+-			factory: partition@f8000 {
++			partition@f8000 {
+ 				label = "factory";
+ 				reg = <0xf8000 0x8000>;
+ 				read-only;
 +
-+				base_mac_addr: mac@106a0 {
-+					reg = <0x106a0 0x6>;
++				nvmem-layout {
++					compatible = "fixed-layout";
++					#address-cells = <1>;
++					#size-cells = <1>;
++
++					macaddr_factory_0: macaddr@0 {
++						reg = <0x0 0x6>;
++					};
++
++					macaddr_factory_6: macaddr@6 {
++						reg = <0x6 0x6>;
++					};
 +				};
  			};
- 		};
  
+ 			partition@100000 {
+@@ -221,17 +235,3 @@ fixed-link {
+ 		full-duplex;
+ 	};
+ };
+-
+-&factory {
+-	compatible = "nvmem-cells";
+-	#address-cells = <1>;
+-	#size-cells = <1>;
+-
+-	macaddr_factory_0: macaddr@0 {
+-		reg = <0x0 0x6>;
+-	};
+-
+-	macaddr_factory_6: macaddr@6 {
+-		reg = <0x6 0x6>;
+-	};
+-};
 -- 
 2.47.0
 
