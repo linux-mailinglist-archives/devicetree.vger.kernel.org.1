@@ -1,78 +1,77 @@
-Return-Path: <devicetree+bounces-126622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126624-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AA879E1E85
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 14:59:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B8AB9E1EA4
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 15:07:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C39A283690
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 13:59:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF401283E4E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 14:07:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C8B31F4281;
-	Tue,  3 Dec 2024 13:59:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B4F71F4276;
+	Tue,  3 Dec 2024 14:07:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qrf57wu3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ueArWRrB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C70A1F4739
-	for <devicetree@vger.kernel.org>; Tue,  3 Dec 2024 13:58:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 471B61E531
+	for <devicetree@vger.kernel.org>; Tue,  3 Dec 2024 14:07:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733234341; cv=none; b=KT6ERNkv4WlLo7yR2GJEDqicGiLuzZXo0otR/0Nt3p9YOU3ack3PSKHJ/+zpRX7jFUBpF21WoH5DZZtGYwoBi9DsiUYaihSfH/umJBbKlBMsOmY4BYjzrrgIwnMUykJv51ZvD3gu82wxtGwdEN2/iILNPk1lSVuqv8QHS8PGyAg=
+	t=1733234861; cv=none; b=YYyAufO/M+wcxBocBkTx0I6RGhnWcengdJBN2nMwLCfu3D5czE3vOoHrHkQXvDKdTPfWyMI8zCe7goXJIaSuqSKIXZJaZqZNRdycEgCIw0tIEGdMxNuus3/h6YevDzEQ0CEUAKSnnGvFPjKnUcBWz5TJ8GW5CAw1sPl2vLCRDUY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733234341; c=relaxed/simple;
-	bh=TF0PUhtQTicvC6M129Y4QTNRkQEuUNF1PsicyZbmyQI=;
+	s=arc-20240116; t=1733234861; c=relaxed/simple;
+	bh=8oFkiMvC+CSj7nvMpm/gEdf0IkyXTLTgDlt6meawxdo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QTa+GE+zDJ78ApqlkDx2iwhOgKHhbGs/cDyqGF8qZ3OHBKLpOcLyLesj4UHGaXcVnwc7/uxmFzXMuGEKIyYGhsSv3TfJ0Iem23owyJrNixVOz9G9khOD/YRVV1bGmidXHw06DiGGcMB46ycPTomuUMeSsfP+sWiLNSWGHd+n2m0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qrf57wu3; arc=none smtp.client-ip=209.85.167.49
+	 Content-Type:Content-Disposition:In-Reply-To; b=TIi1O0xo/rKypJRg0gTL/TvtVFdeZ1u0XkVdyuX3rYtUvZCa3rF+ERbMrdhVeEf/ikRL1fy9NAJZyf4Afgo0EQoIvgrxSgbUmgqSiBdNKN4diuHq6p5pVPUAeQsGFfVmndWh8Ifj4JIDlpqKXrE7BtDiuh+jOEK8hgXWWHSvkvU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ueArWRrB; arc=none smtp.client-ip=209.85.208.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-53de579f775so7804765e87.2
-        for <devicetree@vger.kernel.org>; Tue, 03 Dec 2024 05:58:59 -0800 (PST)
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2ffced84ba8so53779421fa.2
+        for <devicetree@vger.kernel.org>; Tue, 03 Dec 2024 06:07:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733234338; x=1733839138; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ratoXWp/EmolcxNUAUNGQ1kmRPcGIDYTBbsytoKVT70=;
-        b=qrf57wu3TdmSGq5Rpxe3lX4V0TQeAepWhnssvHbbk8N159cFgJ90/doN8H5xLTXReZ
-         sXvpT7H3Eb0h7rWguridTBqAh2kIsyJIXuNCjUuYhpagjs093HORXq0W4Iez4dW0x5kY
-         M0gx8tCna6n21Fgt+Z76TQY0j/3Ikf3Z1rFmbRFKcJMKUmhoVKrMGNhmg8ToME3FS1EE
-         a1zIFEcPlQaoCuO2Cux+EQ2ivB5GHCAporzlupljAo8PDk04wZtB+zouiyJYzS8o938e
-         z0nABEzlRdn3gwkoPqUEirMQ7x/ujdwNEdufQ+MLOiMSWJ07CkZQgWTq4GPpbbKYWe6x
-         NONQ==
+        d=linaro.org; s=google; t=1733234857; x=1733839657; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=alsc9vr73lToVKNbHqTqZ3F3g1arQk5UqwKIUtPE6Ps=;
+        b=ueArWRrB/0J89auGOzYm/ud1AdVww/DDQaM9I7Yx791XEY6LZyORVkhl+LUsNPmOw2
+         QiTurQmbHjQ4/vE3p/xORudPEuy3mVt33VqMj51zpPCoaao/ra8HajRCWKMXv+VqUHYy
+         Cy0z5JVZGhldGRQLnfaDhRjknQUo5gUihK3UXGYsHNfGJ4VQfVMGeAD+p41ts05C9icE
+         6BTI6t0//mA21tKq7AFFemvDuKVhT/8OO4CCtK+5jcTRhThfdnigXYzppaa9LIWniCe0
+         9rOX1uiDkUQK6sd/AqJGXhQvssnsQ/Otan74bu4jotEvYbraAqEuIc7wR0Cp1h5hnUaB
+         MypA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733234338; x=1733839138;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ratoXWp/EmolcxNUAUNGQ1kmRPcGIDYTBbsytoKVT70=;
-        b=wrrP7vjB8cYvhNnMvthKN0918RhjdMroI5uFBjwfs2QTbxu0TZ8IrF+dGfm3QUnZmC
-         AGu7iFy+NzGYFrqcU9xEN5vb6isUr8bE9WS9xqOTq3FGJ8fsW/2EO3cbmKCI+AXFtg+e
-         YMEGQrfaqT0ZVe0NsmaeWBenaem2lUb9ORjUyXijCukdERv0RwhdQ+jGTdbPVS/GCPEq
-         a/7XftMqV8XZ6ce8Y91Nx51ghFgXJW4w+rSYl8kVGX7scPa2g8Zb+3Zqamqsa+j39IXA
-         5mW/dcVdBbmH7NWm3K/icghUzBxHg7L3BEWOdaP22eV6WchShnr4NoFtRWOWQlAmUOuS
-         dycg==
-X-Forwarded-Encrypted: i=1; AJvYcCWu5WMbZIHBbEGU6DSB16ZKACedfEm58ytLWJ168aYoOTKmeLv9OmB+mdIh3mYSO9bhtYWKobXtdNcJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxnnlhSlzgvJtCSb3t5xbcB8tG2bEclHFzHj9NsfDPctZni4408
-	QOPoLv2PV3Qij10+GNxxgXgnxJZ3XN/MLS4NA6IbO0j9c3wYx4CWjOxurBYNAE8=
-X-Gm-Gg: ASbGncuYOoW7JZ+OZkCqvQ89gU+5E4+y2Qq/4X4GM7zMsSUXuGcEzv+tJ3c+/pThbSa
-	nDaorDTPZ3sA+RqtNPPh58LPKcR80jrfdjBCT9w9iAx3HE2XBptZsCYEDVqlTdhmg7k8kvNp8kf
-	wDlJBtfBzhVa/DYVGzvFR+5LDJMpAAWHccnfYr4cmJjzB4Ee/SqNgmKdyjgtGyBiY5gOnKmGGo+
-	ChzbwVdLYIIV8Kxq5vK+/fPrVChJopvFkByo97zesAtgBeu7osnKp1Et6HG92zO/94F3AjJM7IK
-	o/Ck/E43jMl30k7QfPukJcsOvg/wzw==
-X-Google-Smtp-Source: AGHT+IGXwu7iAMc0T7nz4ZWr7DVCTldVmrbcWesEg5VeYru0HhyDfTDMH7KA7Bk8Gf9p7i1oKm3lyg==
-X-Received: by 2002:a05:6512:3182:b0:53d:a025:1142 with SMTP id 2adb3069b0e04-53e12a39336mr2285402e87.54.1733234338202;
-        Tue, 03 Dec 2024 05:58:58 -0800 (PST)
+        d=1e100.net; s=20230601; t=1733234857; x=1733839657;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=alsc9vr73lToVKNbHqTqZ3F3g1arQk5UqwKIUtPE6Ps=;
+        b=qD2fk30XeEHL77R70S684UZCMAyF76RvS2JwSZSJhEYB9QfoXkmzZAd5BUxo0SKq1i
+         PPIzZayEjoD9wHWSWFNesYrIj0bjO/W4fJIl9D3yN9V1Hlt2DSGZ/z6QMs3b52zNNKMh
+         flMkRRDzIpL16lda/mt/tV5ix3MkhKa2t/DG3MBWl8L8ZfiHNbQLhmvLUDF8oHXF4ndM
+         aZBtb0nRsonGMpNnCEUz04gzXEgVTskGk+D27niVpxuZz7k6YyTxXdLvPARcyM8qoXZK
+         3+tMEs0KJbOanY6ZNXqlDWeHoetg9fMFxnLf2vslk2D6U8OcaqsjAwpSeZA8ntFVxtGZ
+         k9Uw==
+X-Forwarded-Encrypted: i=1; AJvYcCXdFsRqD/TBm4IHbUNESFWRU7Y45qoS661++uL2v/vK4ZlPO3382K0MYCt2fOMmGIGTrw8RK83taNtg@vger.kernel.org
+X-Gm-Message-State: AOJu0YwGBKHvcgxaL1AjZF+K+sS8pMdzq5FwCjS84XIOkFgxfELvBFrw
+	yV76TTFnGCPLtSxzmnT2Wcd9S3/f/aYrzcWlPe2oc5Q0WVJqNFxE3f2UxuJFR/Y=
+X-Gm-Gg: ASbGncu/JU+XABllGggb4aousAH6cHX8n0FUh6c9TSDdkXdHFFmuHGJUXqRjkEGCBA/
+	YpNqwqPZsC+HMyTNwQBAB4Tp1wn43qz94TX8bxUWJFLs0AAaCrPVwPed2HVOrLhLsdOT0nnrYmQ
+	gQeb+oAqEX/UddHwG6b3nPFjeRYbAggGwSQNI/KPyFHOBsXEBAiT8AIi5Toi70Kug5JshT+fWP1
+	aQoKFSQiKiErsvZeBZcw25xlY3HF9CjeC6Xrczh+uLTD20XNzr60Ai10BvOOzLfx+Mlx7PcmPV7
+	dUgiGO9AuF6f8CzaTVPwpOQIcid/EA==
+X-Google-Smtp-Source: AGHT+IGzMeET4siJUKFgW4BnmqUwqvzwcdd9B9sOmlcJgCBnOeScvQxwQ4zyH6t4AC935j3xTebwFQ==
+X-Received: by 2002:a2e:bd82:0:b0:2fb:5ebe:ed40 with SMTP id 38308e7fff4ca-30009c3443dmr15745541fa.15.1733234855610;
+        Tue, 03 Dec 2024 06:07:35 -0800 (PST)
 Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53df64a06fesm1843812e87.258.2024.12.03.05.58.55
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ffdfc74a1csm16403761fa.69.2024.12.03.06.07.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Dec 2024 05:58:56 -0800 (PST)
-Date: Tue, 3 Dec 2024 15:58:54 +0200
+        Tue, 03 Dec 2024 06:07:33 -0800 (PST)
+Date: Tue, 3 Dec 2024 16:07:31 +0200
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To: Xiangxu Yin <quic_xiangxuy@quicinc.com>
 Cc: Rob Clark <robdclark@gmail.com>, 
@@ -87,66 +86,129 @@ Cc: Rob Clark <robdclark@gmail.com>,
 	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
 	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 6/8] drm/msm/dp: Add maximum width limitation for modes
-Message-ID: <fb6enh3wzusadc6r7clg7n7ik2jsucimoi7dnecnsstcz4r6e6@dtahvlm522jj>
+Subject: Re: [PATCH 7/8] drm/msm/dp: Retry Link Training 2 with lower pattern
+Message-ID: <xlmgdysjah3ueypdrdu5b6botvidb2wn4rfm4qpeysclscmuwy@vpfv2ymprblj>
 References: <20241129-add-displayport-support-for-qcs615-platform-v1-0-09a4338d93ef@quicinc.com>
- <20241129-add-displayport-support-for-qcs615-platform-v1-6-09a4338d93ef@quicinc.com>
- <CAA8EJpprTGRTxO+9BC6GRwxE4A3CuvmySsxS2Nh4Tqj0nDRT_Q@mail.gmail.com>
- <95a78722-8266-4d5d-8d2f-e8efa1aa2e87@quicinc.com>
- <CAA8EJpo-1o9i4JhZgdbvRxvoYQE2v18Lz_8dVg=Za7a_pk5EDA@mail.gmail.com>
- <86b9a8be-8972-4c19-af0c-da6b3667cbf4@quicinc.com>
+ <20241129-add-displayport-support-for-qcs615-platform-v1-7-09a4338d93ef@quicinc.com>
+ <CAA8EJpoN1qBHyZrQJT_=e_26+tcaKRnSrhtxrK6zBP4BwpL=Hg@mail.gmail.com>
+ <b4345b9e-62c6-470d-b1b0-4758cef7f175@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <86b9a8be-8972-4c19-af0c-da6b3667cbf4@quicinc.com>
+In-Reply-To: <b4345b9e-62c6-470d-b1b0-4758cef7f175@quicinc.com>
 
-On Tue, Dec 03, 2024 at 03:41:53PM +0800, Xiangxu Yin wrote:
+On Tue, Dec 03, 2024 at 04:13:22PM +0800, Xiangxu Yin wrote:
 > 
 > 
-> On 12/2/2024 5:32 PM, Dmitry Baryshkov wrote:
-> > On Mon, 2 Dec 2024 at 11:05, Xiangxu Yin <quic_xiangxuy@quicinc.com> wrote:
+> On 11/29/2024 9:53 PM, Dmitry Baryshkov wrote:
+> > On Fri, 29 Nov 2024 at 09:59, Xiangxu Yin <quic_xiangxuy@quicinc.com> wrote:
 > >>
-> >>
-> >>
-> >> On 11/29/2024 9:52 PM, Dmitry Baryshkov wrote:
-> >>> On Fri, 29 Nov 2024 at 09:59, Xiangxu Yin <quic_xiangxuy@quicinc.com> wrote:
-> >>>>
-> >>>> Introduce a maximum width constraint for modes during validation. This
-> >>>> ensures that the modes are filtered based on hardware capabilities,
-> >>>> specifically addressing the line buffer limitations of individual pipes.
-> >>>
-> >>> This doesn't describe, why this is necessary. What does "buffer
-> >>> limitations of individual pipes" mean?
-> >>> If the platforms have hw capabilities like being unable to support 8k
-> >>> or 10k, it should go to platform data
-> >>>
-> >> It's SSPP line buffer limitation for this platform and only support to 2160 mode width.
-> >> Then, shall I add max_width config to struct msm_dp_desc in next patch? for other platform will set defualt value to ‘DP_MAX_WIDTH 7680'
+> >> Add a mechanism to retry Link Training 2 by lowering the pattern level
+> >> when the link training #2 first attempt fails. This approach enhances
+> >> compatibility, particularly addressing issues caused by certain hub
+> >> configurations.
 > > 
-> > SSPP line buffer limitations are to be handled in the DPU driver. The
-> > DP driver shouldn't care about those.
+> > Please reference corresponding part of the standard, describing this lowering.
 > > 
-> Ok, Will drop this part in next patch.
+> Per DisplayPort 1.4a specification Section 3.5.1.2 and Table 3-10, while the standard doesn't explicitly define a TPS downgrade mechanism, it does specify:
 
-If you drop it, what will be left from the patch itself?
+Anything in DP 2.1?
 
-> >>>>
-> >>>> Signed-off-by: Xiangxu Yin <quic_xiangxuy@quicinc.com>
-> >>>> ---
-> >>>>  drivers/gpu/drm/msm/dp/dp_display.c |  3 +++
-> >>>>  drivers/gpu/drm/msm/dp/dp_display.h |  1 +
-> >>>>  drivers/gpu/drm/msm/dp/dp_panel.c   | 13 +++++++++++++
-> >>>>  drivers/gpu/drm/msm/dp/dp_panel.h   |  1 +
-> >>>>  4 files changed, 18 insertions(+)
+> - All devices shall support TPS1 and TPS2
+> - HDR2-capable devices shall support TPS3
+> - HDR3-capable devices shall support TPS4
+> While these capabilities are explicitly defined DPCD for sink devices, source device capabilities are less strictly defined, with the minimum requirement being support for TPS1 and TPS2.
+> In QCS615 DP phy is only supporting to HBR2, we observed a critical interoperability scenario with a DP->HDMI bridge. When link training at TPS4 consistently failed, downgrading to the next lower training pattern successfully established the link and display output successfully.
+
+Any other driver doing such TPS lowering? Or maybe we should be
+selecting TPS3 for HBR2-only devices?
+
+> 
+> This experience suggests that implementing a flexible link training pattern downgrade mechanism can significantly improve compatibility with third-party, non-standard hubs and displays,
+> especially in scenarios where strict adherence to the highest training pattern might prevent successful connection.
+> >>
+> >> Signed-off-by: Xiangxu Yin <quic_xiangxuy@quicinc.com>
+> >> ---
+> >>  drivers/gpu/drm/msm/dp/dp_ctrl.c | 34 ++++++++++++++++++++++++++++++----
+> >>  1 file changed, 30 insertions(+), 4 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/msm/dp/dp_ctrl.c b/drivers/gpu/drm/msm/dp/dp_ctrl.c
+> >> index 49c8ce9b2d0e57a613e50865be3fe98e814d425a..b1862294cb98c9f756b0108b7670cb42de37bae4 100644
+> >> --- a/drivers/gpu/drm/msm/dp/dp_ctrl.c
+> >> +++ b/drivers/gpu/drm/msm/dp/dp_ctrl.c
+> >> @@ -1220,7 +1220,7 @@ static void msm_dp_ctrl_clear_training_pattern(struct msm_dp_ctrl_private *ctrl)
+> >>  }
+> >>
+> >>  static int msm_dp_ctrl_link_train_2(struct msm_dp_ctrl_private *ctrl,
+> >> -                       int *training_step)
+> >> +                       int *training_step, bool downgrade)
+> >>  {
+> >>         int tries = 0, ret = 0;
+> >>         u8 pattern;
+> >> @@ -1243,6 +1243,28 @@ static int msm_dp_ctrl_link_train_2(struct msm_dp_ctrl_private *ctrl,
+> >>                 state_ctrl_bit = 2;
+> >>         }
+> >>
+> >> +       /*
+> >> +        * DP link training uses the highest allowed pattern by default.
+> >> +        * If it fails, the pattern is downgraded to improve cable and monitor compatibility.
+> >> +        */
+> >> +       if (downgrade) {
+> >> +               switch (pattern) {
+> >> +               case DP_TRAINING_PATTERN_4:
+> >> +                       pattern = DP_TRAINING_PATTERN_3;
+> >> +                       state_ctrl_bit = 3;
+> >> +                       break;
+> >> +               case DP_TRAINING_PATTERN_3:
+> >> +                       pattern = DP_TRAINING_PATTERN_2;
+> >> +                       state_ctrl_bit = 2;
+> >> +                       break;
+> >> +               default:
+> >> +                       break;
+> >> +               }
+> >> +       }
+> >> +
+> >> +       drm_dbg_dp(ctrl->drm_dev, "pattern(%d) state_ctrl_bit(%d) downgrade(%d)\n",
+> >> +               pattern, state_ctrl_bit, downgrade);
+> >> +
+> >>         ret = msm_dp_catalog_ctrl_set_pattern_state_bit(ctrl->catalog, state_ctrl_bit);
+> >>         if (ret)
+> >>                 return ret;
+> >> @@ -1311,10 +1333,14 @@ static int msm_dp_ctrl_link_train(struct msm_dp_ctrl_private *ctrl,
+> >>         /* print success info as this is a result of user initiated action */
+> >>         drm_dbg_dp(ctrl->drm_dev, "link training #1 successful\n");
+> >>
+> >> -       ret = msm_dp_ctrl_link_train_2(ctrl, training_step);
+> >> +       ret = msm_dp_ctrl_link_train_2(ctrl, training_step, false);
+> >>         if (ret) {
+> >> -               DRM_ERROR("link training #2 failed. ret=%d\n", ret);
+> >> -               goto end;
+> >> +               drm_dbg_dp(ctrl->drm_dev, "link training #2 failed, retry downgrade.\n");
+> >> +               ret = msm_dp_ctrl_link_train_2(ctrl, training_step, true);
+> >> +               if (ret) {
+> >> +                       DRM_ERROR("link training #2 failed. ret=%d\n", ret);
+> >> +                       goto end;
+> >> +               }
+> >>         }
+> >>
+> >>         /* print success info as this is a result of user initiated action */
+> >>
+> >> --
+> >> 2.25.1
+> >>
 > > 
 > > 
 > 
+> 
+> -- 
+> linux-phy mailing list
+> linux-phy@lists.infradead.org
+> https://lists.infradead.org/mailman/listinfo/linux-phy
 
 -- 
 With best wishes
