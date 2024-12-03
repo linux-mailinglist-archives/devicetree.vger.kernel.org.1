@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-126548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126549-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DC119E1C0A
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 13:23:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3924D9E1A8F
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 12:15:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2BE5CB43223
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 11:15:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2CA4283FFD
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 11:15:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CF471E6316;
-	Tue,  3 Dec 2024 11:13:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 452741E7653;
+	Tue,  3 Dec 2024 11:13:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="Z+2gqJEx"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="A861IbJF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A2AB1E5711
-	for <devicetree@vger.kernel.org>; Tue,  3 Dec 2024 11:13:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 174E21E5739
+	for <devicetree@vger.kernel.org>; Tue,  3 Dec 2024 11:13:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733224424; cv=none; b=HROdjXBCBfJrWbQnDI9nO0u3P8gnvhvSfKclWiMqUcvfStStLNW86RoWwqbXIlKY1gIzKs/ayOzD3ngFB9rTD9gUQExTp629ngeEoBhficQ+ObtZbZJ9o9ygiYHztrla9jJE4XbjJldu4yb0ZjfrRpFJFPsxIILbBUo2UmaN/5Q=
+	t=1733224426; cv=none; b=Mv4OspNQjSGFXBHv28M7+QzPUqRJYFF1wpkJO9daikiFn4mGYqnKhO7OXh6Gd5jzmWoa92cMPKe/+Z2v6YnSTwMQ6Sv/nRoco0agRznmw+xsIGTBVxFsUyngYqut2hq1fOkv6scVb6en5I96lox2pd5N5E57caGJ0+n0zv4dYeM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733224424; c=relaxed/simple;
-	bh=dJ66VqH1lPKbG1vJ5uyMkdnhCZK/cj9xWl8VrZo+eZw=;
+	s=arc-20240116; t=1733224426; c=relaxed/simple;
+	bh=xJ4dALnf5mNTVJSAEIwW3H4ATLoC4Hm1NI+znfsjunw=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=nx4hFSPB5XgXCI8B7bxfmN/IrPuq2Ser25hFo8a1+PNZuW+7wMF9DZPtlRHGuXSaderSBh7ro3/ZI1JwiOJTkKPaGab65DwtnU9GanVqk7oOEjOhZctvxmuo/xs4sFbyi2apzUnkDeC0PhthcaWVqNQDZT7NHiJENlbetyqEUdc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=Z+2gqJEx; arc=none smtp.client-ip=209.85.128.53
+	 MIME-Version; b=gjEstjct0nc2A/cc8+vTQA//ywk8sZGa2kbkhrKxll20bqr5FizURLUtPjlsPTIAvSErW/9e2WUjuDkFsHqTGK5haMIdTPcRw4DfE2ENVF967KtMwlSOFllXHvcGuHUEUUA9ctlNSWHv8cTNUyAaHK2ph0BaLTzPY3uYJvT+04w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=A861IbJF; arc=none smtp.client-ip=209.85.221.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-434a736518eso66708985e9.1
-        for <devicetree@vger.kernel.org>; Tue, 03 Dec 2024 03:13:42 -0800 (PST)
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-385df53e559so3004843f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 03 Dec 2024 03:13:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1733224421; x=1733829221; darn=vger.kernel.org;
+        d=tuxon.dev; s=google; t=1733224422; x=1733829222; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=JGjJNxAUoLlbHeze5dKZ8rYLCdUS04mEhaX4QA4tgNs=;
-        b=Z+2gqJExQdzuRiPv9DPdYMSZwZ5IdAbriIf91XWR916L8+vIxd4nR6+x5WeJtL9BuV
-         bGQzsrLyFcBToFHCiOHVrC+16vXjoVi5XiodBOLM4KyEdUa7bujkBN2liLc9GjE3+Sh/
-         NMER/kcmbuI17iMa32Pq4r0H+TI3Q1kEd3qFvU9YEB524KuuWy7VisMkdIGaof+t3FOi
-         Qrp8o79MZu69kJ6XgUpamlAJqPWpcCwQxi7bgfS845vRXOD92ujjh41zbUULSNO3S7Et
-         +7BDQnnQBXx4ZjWIUN4ABT6PeJrpyw9dg4QerBeYSZcFsCer9HWVnnQpRmnyya1/4VvK
-         pC0Q==
+        bh=hbKn6tGUYWTywSMd7jgYmbuzMuj/ru2cA6G4h80SF4s=;
+        b=A861IbJFvPqA0ouBOg6H/VFTbkVVUyfnDKvu2joAuZJxrouD6xfUJl/TLRH+NGhGMB
+         7LkgwlXpWUqglpi9ncwFA+Gj6Z9Y9vMMyF19ydwDHh+TylqjmL455QNqRbeI982W7Kxj
+         c5e2FmpJ/ORzqcZKc4DCG58GkClfNl5wxTZSG0Aqt2nMsX2zc/OkEaifBj3a6KVM49KD
+         BoiJ1u94FdjpvesXHq8lx4D1SwTPka3YMz/wO9+KLBPkfrS50uVmFuXCgfiS+98olfVU
+         EeorCt1y5XVfKhhU5IIcsZPBMIddEplRksqSQTGMUz3wxRdVjAEWg/PWTSKiQ/TieUua
+         62kA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733224421; x=1733829221;
+        d=1e100.net; s=20230601; t=1733224422; x=1733829222;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=JGjJNxAUoLlbHeze5dKZ8rYLCdUS04mEhaX4QA4tgNs=;
-        b=nbD5/bM2OE/Ar3z9ou3A0VHLjtk95LHWlSoEceN8n+p6Unh7vTal1wTJ8ksJ6gG/i5
-         p5jGoJRsxiX55PUoGrdA+l2MnWBeuKOV5oBRiJwxYASdbyq7bbe4P5qSCVVM1GUSSlTG
-         4BSqagLxCzcJbxmJ7sBs+o0KK4MbA/SlGRiPMVixiBEu9O9BQkHksueMTOmuFi8cu1l7
-         OaCQ7oyc2mdXNGR8034+76uYOluLyuUryPP3yNLiBiDkkJE401Qujv56XIdFU0KQpOVo
-         AIys1/eN/09mEzAes2+LmRiyWmulkW/XcdsDTOJhGN5Pss9MMsa1lxSjNeXjF52/qBHw
-         ZlPA==
-X-Forwarded-Encrypted: i=1; AJvYcCV1M7f+qkxPjOdcxX0+bjPE8hXyh7z89/ovviSl0PhoszbA+vQDYOjsHyma3Q14J1+HmFX3YpxYELJL@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw95tWzZLysg7o2t+yt8WtbWQS8FmBh/2+Wt0ksJpRQsVOPvWNX
-	NJGOsRSocRDg8nF3mTNvrZB5PZP9PMWRvbcGdpgMhbqsjMsMav9eyw+dLRiNx0w=
-X-Gm-Gg: ASbGncuooRhgBRw9W735EbDT9t5Ihyv1hu3JLntrOxfcPxvO42kI+MTdSBdrE6PoZ/E
-	7XNXeaCN4ZCprKcLMZKQU5xOSfT4boYgOORoqu1ZlEtHr59bhNHbNLxWEeCnRJxKmISnpFzS0Jw
-	Jj6nibsXe6oUCpXgLKMWvL4j3K9uB4kq+/Ji+ry+pClo3yAcHSswK6v8OGV/B2xr8llbxlIzUxY
-	j7JGwWPOBICNrFWIdML8lWnOD/80Jo5i0Xo4wUG5BX3wd/T8dt1P8g4CSfNSYlzBHv/dJDMt+Qd
-	TOyv
-X-Google-Smtp-Source: AGHT+IE+s1yoVLBzbwgkBBIAjbk6p+3eCyfk26hAJKZF4jfFJbnwH4ZzJ60DDcfVvJaXNdjv9UMOjA==
-X-Received: by 2002:a05:600c:138a:b0:434:a684:984 with SMTP id 5b1f17b1804b1-434d09b2f31mr20189215e9.4.1733224420880;
-        Tue, 03 Dec 2024 03:13:40 -0800 (PST)
+        bh=hbKn6tGUYWTywSMd7jgYmbuzMuj/ru2cA6G4h80SF4s=;
+        b=oXXgTZ/Hjck929S1o5Si0om3sqJsuTlswWRCNoH62dn7jOdkfpKA1xeL7z8ZuJSNsu
+         3/RLoj4oYK+iC/c39atSIz13I95WEE9u1jkBzk3TQRSpFvq7jLhWUTidN8rleKpblsyt
+         8hHgMCz/hSuZf7l7gQLYhFAXtuzkhTcz8lNO2Qhzjk2n0UuxltiwTCfQKqsEgezrFnzs
+         oN1ODJAJycHCLxh5skPpvBFb5hGhRueMhOc0x5rjptdK1X2OfkWwGHdNmAm5+/FVNwz3
+         s4igfmjclg6PzzCCEYjd1JA9mhDfJ/XzsYEyCvUfPGTPIqfXR15wx5Anz0Qp97Ggo0Z0
+         K9fQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXVbqTFwa9QKhoqXJeOWieRMjitRrbm5z69FlB2PA2Crgjo1GMN0UREcl5M658j9HdjSnoMBYz+ZnYZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxIe5XNsCRYJxBFhPBbSEZK9XBGQwi3UFtGdHr4UABBk5dBUKjI
+	HYA8Y/9vD4xE4eRfqpf+7+1e6fNLc1mnWly2XZT/K71p4uz9ysKV8Arjq5hXqTs=
+X-Gm-Gg: ASbGncuxedCnuF++dVCM+DjN4LquoSWUB6cnbgiEg80sdMg/eLAv1YuKwfwr9MGDfYx
+	YP+2XWqQInCIBq9fDRAUn6/98dQ3wjAyxQbXKiqkc6M07WrU1ghO1AsU40Ig7kisTtOV61SWRaJ
+	ukl2C4jkHsdRKyjSkmq7vWRobuYAFrMVPUwBNFiwdhCJLOZkQ0+YUmhoeD0PxXpcfyOFD0AP2au
+	LDv4FKUozcqkLUTbBh9CbPmeHFYOGLgoAbg0ZJwjCuqYpiLJrmh+VJfjTjRYVZ4hnFxIN25Yw/P
+	octl
+X-Google-Smtp-Source: AGHT+IEOrZno5uDxt9ZVOUtNbpTQHBOs2RWQccg81owHc2jnjCTJ+2WWar5weAlgmhDsBKHCTYxVnw==
+X-Received: by 2002:a5d:5988:0:b0:385:fb56:5596 with SMTP id ffacd0b85a97d-385fd3cebdamr1638266f8f.19.1733224422476;
+        Tue, 03 Dec 2024 03:13:42 -0800 (PST)
 Received: from claudiu-X670E-Pro-RS.. ([82.78.167.161])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-385e0117069sm11794315f8f.60.2024.12.03.03.13.39
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-385e0117069sm11794315f8f.60.2024.12.03.03.13.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Dec 2024 03:13:40 -0800 (PST)
+        Tue, 03 Dec 2024 03:13:42 -0800 (PST)
 From: Claudiu <claudiu.beznea@tuxon.dev>
 X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
 To: prabhakar.mahadev-lad.rj@bp.renesas.com,
@@ -92,9 +92,9 @@ Cc: claudiu.beznea@tuxon.dev,
 	linux-kernel@vger.kernel.org,
 	linux-clk@vger.kernel.org,
 	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: [PATCH 06/14] iio: adc: rzg2l_adc: Simplify the locking scheme in rzg2l_adc_read_raw()
-Date: Tue,  3 Dec 2024 13:13:06 +0200
-Message-Id: <20241203111314.2420473-7-claudiu.beznea.uj@bp.renesas.com>
+Subject: [PATCH 07/14] iio: adc: rzg2l_adc: Enable runtime PM autosuspend support
+Date: Tue,  3 Dec 2024 13:13:07 +0200
+Message-Id: <20241203111314.2420473-8-claudiu.beznea.uj@bp.renesas.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20241203111314.2420473-1-claudiu.beznea.uj@bp.renesas.com>
 References: <20241203111314.2420473-1-claudiu.beznea.uj@bp.renesas.com>
@@ -108,39 +108,54 @@ Content-Transfer-Encoding: 8bit
 
 From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Simplify the locking scheme in rzg2l_adc_read_raw() by saving the converted
-value only if the rzg2l_adc_conversion() returns success. The approach
-simplifies the addition of thermal sensor support (that will be done in the
-next commits). The downside is that the ret variable need to be checked
-twice.
+Enable runtime PM autosuspend support for the rzg2l_adc driver. With this
+change, consecutive conversion requests will no longer cause the device to
+be runtime-enabled/disabled after each request. Instead, the device will
+transition based on the delay configured by the user.
+
+This approach reduces the frequency of hardware register access during
+runtime PM suspend/resume cycles, thereby saving CPU cycles. The default
+autosuspend delay is set to zero to maintain the previous driver behavior.
 
 Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 ---
- drivers/iio/adc/rzg2l_adc.c | 9 +++------
- 1 file changed, 3 insertions(+), 6 deletions(-)
+ drivers/iio/adc/rzg2l_adc.c | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/iio/adc/rzg2l_adc.c b/drivers/iio/adc/rzg2l_adc.c
-index 62932f9295b6..eed2944bd98d 100644
+index eed2944bd98d..fda8b42ded81 100644
 --- a/drivers/iio/adc/rzg2l_adc.c
 +++ b/drivers/iio/adc/rzg2l_adc.c
-@@ -227,14 +227,11 @@ static int rzg2l_adc_read_raw(struct iio_dev *indio_dev,
- 		mutex_lock(&adc->lock);
- 		ch = chan->channel & RZG2L_ADC_CHN_MASK;
- 		ret = rzg2l_adc_conversion(indio_dev, adc, ch);
--		if (ret) {
--			mutex_unlock(&adc->lock);
--			return ret;
--		}
--		*val = adc->last_val[ch];
-+		if (!ret)
-+			*val = adc->last_val[ch];
- 		mutex_unlock(&adc->lock);
+@@ -207,7 +207,8 @@ static int rzg2l_adc_conversion(struct iio_dev *indio_dev, struct rzg2l_adc *adc
+ 	rzg2l_adc_start_stop(adc, false);
  
--		return IIO_VAL_INT;
-+		return ret ? ret : IIO_VAL_INT;
+ rpm_put:
+-	pm_runtime_put_sync(dev);
++	pm_runtime_mark_last_busy(dev);
++	pm_runtime_put_autosuspend(dev);
+ 	return ret;
+ }
  
- 	default:
- 		return -EINVAL;
+@@ -372,7 +373,8 @@ static int rzg2l_adc_hw_init(struct device *dev, struct rzg2l_adc *adc)
+ 	rzg2l_adc_writel(adc, RZG2L_ADM(3), reg);
+ 
+ exit_hw_init:
+-	pm_runtime_put_sync(dev);
++	pm_runtime_mark_last_busy(dev);
++	pm_runtime_put_autosuspend(dev);
+ 	return ret;
+ }
+ 
+@@ -412,6 +414,9 @@ static int rzg2l_adc_probe(struct platform_device *pdev)
+ 		return PTR_ERR(adc->presetn);
+ 	}
+ 
++	/* Default 0 for power saving. Can be overridden via sysfs. */
++	pm_runtime_set_autosuspend_delay(dev, 0);
++	pm_runtime_use_autosuspend(dev);
+ 	ret = devm_pm_runtime_enable(dev);
+ 	if (ret)
+ 		return ret;
 -- 
 2.39.2
 
