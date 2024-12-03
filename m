@@ -1,169 +1,291 @@
-Return-Path: <devicetree+bounces-126640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 249FE9E2493
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 16:50:24 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 601EA9E22AE
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 16:27:45 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A84B8BA29B3
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 15:14:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A77B16988A
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 15:22:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0400E1FBEA5;
-	Tue,  3 Dec 2024 15:11:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA6E01F757E;
+	Tue,  3 Dec 2024 15:22:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TTNZgXCU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UOuFnNua"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f67.google.com (mail-wm1-f67.google.com [209.85.128.67])
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AB7C1FBC9F
-	for <devicetree@vger.kernel.org>; Tue,  3 Dec 2024 15:11:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 212621F755B
+	for <devicetree@vger.kernel.org>; Tue,  3 Dec 2024 15:22:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733238691; cv=none; b=QciCSIzm1Z9rt2eGHoD8nJMQVKTBCgJTQ7+2E0rSfmGXk4cUGVQ8viNSXKk3/6Mt3noiRo00twq+5nKy/A//sh2H9oufHxBhgzlezuPU+sBoa3Zc6IY8zCQJywtofa/mbbtmMH/HOPKfb2+q/wsdP+kJDBWAv6aiReH03lrk604=
+	t=1733239359; cv=none; b=t1HthhBPW0yBrn2ac1qLUEomNHlT/KuG0qYHREzGYCzhg+vyO/K0OMBP7wpKcJ63MnDSYNRJaTMGw9cbmKSMJFlSsL88/3kLBTrjGy5NnriJZmS3v19+MwMu0wD9L6NHTgtmzktsmlk0N0VFF8B2P5QS0pkhwrbftKInIjXmIaY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733238691; c=relaxed/simple;
-	bh=Uei6j24yL3vgxy4vncTGsY2siuJb0kM1VOXijaR88jw=;
+	s=arc-20240116; t=1733239359; c=relaxed/simple;
+	bh=3HKMqPH2mz9m9zUiyexitBS0CiX5BNdBQAn5qpYcUUw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D+aXlBLzlhG1CeUArKYGGPEmlVzOYLd7yhWDQLWZn0bxDUpkRwHA2aRM0UXM+eYoKE7f5FjRe3L7Z0Mok7wOPEO1CVlBk9RW3Hjvze/m/BY4OoUCuLM6Z/0JR6bd1uOaYyBTPFr2ed1rHHbMxgsrcWX5lx6Po7lzOzWEXf6KqYM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TTNZgXCU; arc=none smtp.client-ip=209.85.128.67
+	 Content-Type:Content-Disposition:In-Reply-To; b=jAP4EJ+7PhJWxUNpgQ6wLZNVdDBjzqAhNSfE/EO1hFfmciLg6KAmVIubgI++1fetGMpIkAL+DhvJh4rHU1hkr4kk/tTqlNJeIRLOE/X6lalsJCh/oAxstAKTaaoHe0pd3w3JcBOHKdPL53jYm9qihhWbrqYNhgTYvkdD5rOIYKM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UOuFnNua; arc=none smtp.client-ip=209.85.210.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f67.google.com with SMTP id 5b1f17b1804b1-434a14d6bf4so50974545e9.1
-        for <devicetree@vger.kernel.org>; Tue, 03 Dec 2024 07:11:28 -0800 (PST)
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-724d8422f37so4617681b3a.2
+        for <devicetree@vger.kernel.org>; Tue, 03 Dec 2024 07:22:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733238687; x=1733843487; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=zREpKid1FijkM8w3fvUJYYcepCZqPc1/enXnI+QFhQI=;
-        b=TTNZgXCU8vVl158hgBSDkr+Zx0cG0tZLufC86xognLJ6Os3DvGbcuG4ssB2k14dKOv
-         l4yUZDM6ysHGjQNU5QPfapoDS07SEnjfz364PZyazpVkxUtfJLJh1heBO9UcmWMUVNdf
-         dBKB92KSnfVJiWQXDgOTSEc7VFmrF2KiJ21wh7yQTAhr+ReXLBTksV2Jl9l1JJSC20+h
-         4ZBxnZIA1LSaKiK/nTEF/sCjoLEMpgzNfbKiDr61GPfiWssx8EW/zy4aSy3Q+kN8P7aA
-         rr2FmXe1Wl0YLiI6D1smAnXDypdol8MCbuS9ZaUzsvxt0FlG+8AkYDHJcTasoCVZeOAW
-         nusQ==
+        d=linaro.org; s=google; t=1733239357; x=1733844157; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=3axE8hWFEOAcBbBVlVC5J9i71o0iCzSmsJDKDt+tz5A=;
+        b=UOuFnNuapXdK7ztlXYhcWUhmsYGLUMqVpnC7kJTa0b4wcHThxZIhxtiQibmm+TZpuT
+         C/PhA9lT/47M6jt/qpV+b3g3YESYMvg/60SoZ6SPI1qaslUOzPaR6FUuJBD7PCkjqQff
+         hkuFoGFFBN2vEfEgNtTqCLsXZY9vofTsy/u7tyTnKglCBjdTbJd042v7/SUtQUg8IBLV
+         3mf2NCzGNRxy/PP7kVEATu6DdetFzR86lcYmizZPsWoy6QmIgEaEA/nTbMbMbWR9GAWD
+         qP57LdFFcRROzSHoaif1AI6idCG5h2c8+lVNRZvKGegY8ImzBBBjUSLlOdX2jZkMvJ2W
+         0RZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733238687; x=1733843487;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zREpKid1FijkM8w3fvUJYYcepCZqPc1/enXnI+QFhQI=;
-        b=xPhlDkmEpB9HoUFP7v9C9Qz4yzHjxBaiClxwQO5w3KcZj/dJFyIJDLNIqgrSzelU84
-         VoXvXgRXJynhNhS4CkMxcDB+03W5iJr5dTXjMH8O1O6ylW9mvJE7kU18/DsV8llNnk43
-         F7jDpK+VqBMDwR2oMcLGInzJkfVQ0hvpxr0Fr7A0DxoCUuwoAjC5FcHRL/PDvHY/Ld2G
-         ifsQk6cEtA1s8p5XppfrQd0Pneo7cj1Fn6geu4HrfOBhVM/P26wCT+ESCkiUpK+9GHLu
-         1Tj6N39hvH9k/tfO4kMF8niTVjdBbfsU/N2y2NwK0/3h+tUCvN9k3v87vepAlxBg56+B
-         aLqQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXktSUw9KpgtnEp65+4PnskMon4C2YuBZ/ijUqRLMuCHYX06XHr5sNsQrZhOjD5V1MHfUL8NNUGHVgp@vger.kernel.org
-X-Gm-Message-State: AOJu0YxRgbMfJ6ssoasQop6CwmoR2iHDUCkE56UvDO7SdDF0VUpwuRNQ
-	x8C6aXv6b3Lsrv47gv5uF+bjcHhoFGXCrxFx5skm0E4Ih8vFAgnYgG8MsKETxl0=
-X-Gm-Gg: ASbGncv0WS+Eq4pRMenGU2SzsF1DgoiXeJNUeOGMiNLyyDtR69+GHtuC7eQX7t6wQGm
-	LUTUlLcbi8gcE8unwEKGLHqbVl7M7QEGJyKz7CIbvjPSmGlRmWxR2of+2XBmE+j5XHQQCnYAjrS
-	ggFWWWlntjI5hTfrxAcY4nrlwv0BQqO6XYy7Z6ChfS+VcVzULuWk0ou7uJw9NPOOvx+C8jqkqRS
-	BClAQvcA2HU6EnwzKD1i2lQ0qhUnVW85Joxwp1L4gc72SefXsyKlZbJwYUQjQ==
-X-Google-Smtp-Source: AGHT+IHpG+YYkt5XvDCdFdtRCKt3GJs9wG1S7RmUFMFyXfoO+hh7Lfjm2kqMdLvybUfLqLTQRDejCw==
-X-Received: by 2002:a05:600c:3ca7:b0:431:12a8:7f1a with SMTP id 5b1f17b1804b1-434d09c12bfmr28153625e9.16.1733238687261;
-        Tue, 03 Dec 2024 07:11:27 -0800 (PST)
-Received: from linaro.org ([2a02:2454:ff21:ef80:41ad:5703:2486:8f59])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434b0dc99b3sm191481505e9.24.2024.12.03.07.11.26
+        d=1e100.net; s=20230601; t=1733239357; x=1733844157;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3axE8hWFEOAcBbBVlVC5J9i71o0iCzSmsJDKDt+tz5A=;
+        b=eTqJuHxtyW/J1TiMDNI0lDZM6Q/aHdvHBL4cS3xAxzB9UHxUSNznYsMh8ddHBnz+RH
+         FludXimHdtZM5/4aspFogORyAHHF7o30oMDeWt8LUI/gj6+5IG3uWxkz9MWjrIVVpY4g
+         dG5ptI1nt/lMXf/UwvN/n57FHcog/lDjEoSzp0pW263KBYGCycCI5qAi1kI2tQta2XqU
+         qZBbMnef8k9B+fVwRvFSoeVEWA5VkZgDhvJZ/jirzEHzUqrdNsyaAf+V+EeMyjjeQTSQ
+         GgpxCr0yLf38k7IzPTuBXkkPT4YyJwQ05wvMSILQdFvacvbg+/jDanoW5c0jay9ugbhX
+         irWw==
+X-Forwarded-Encrypted: i=1; AJvYcCVxkRbrDROSWsA0xug0JiaeLwXjUT/2MD7q3qqXk4vk7tNnpN42Kpk70Pi3nzuAH7a0yHTgFrGw5IVz@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy7FYG0sNiY5X8oV3qQ+JUgEXcrFIJr24J1O1lAix1RJD7HxVZ7
+	ExSVwTo8u8JeuOK1KRd+1bORKUUSFj9KddlQz0gPmLjw2+beNasiRgpuP3eZ/A==
+X-Gm-Gg: ASbGncvyc79w8ukqQgwdJOXzeL89pyorFi3+Z782N8BBXSudj3vwE7nvp2eKJpok1Ga
+	JKLByOTQcS/B5Ia6/NNQ2ue6cHOf/doaZJdf1CaitO0lacBo/Kxht720REZXA4hqWD5/b9cIfUU
+	JMUz8FYSvc2IIUhKwkUVtrhfOmBtmRqq4MuvW/eES8qMnFTCMDjShtFk6492cgYSQEzi/HD6cQT
+	v6r4R28O/shtmGptcEyJAkHxUJbZD4g8u3cY7PooKQYJIwB9/XS6nBC+rL1
+X-Google-Smtp-Source: AGHT+IEZzaiAa/sDP0NIqy+9CcPtC9S0iqjWkUM0fW3/+Qg2jpqxzNaED37DXLoNtAbdVeskjdanNg==
+X-Received: by 2002:a05:6a00:1826:b0:71e:74bf:6b1a with SMTP id d2e1a72fcca58-7257fcae158mr3814643b3a.16.1733239357479;
+        Tue, 03 Dec 2024 07:22:37 -0800 (PST)
+Received: from thinkpad ([120.60.48.217])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7254176f8f9sm10906738b3a.66.2024.12.03.07.22.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Dec 2024 07:11:26 -0800 (PST)
-Date: Tue, 3 Dec 2024 16:11:22 +0100
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Abel Vesa <abel.vesa@linaro.org>, Johan Hovold <johan@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Krishna Kurapati <quic_kriskura@quicinc.com>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>, linux-usb@vger.kernel.org,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: x1e80100-crd: Add USB multiport
- fingerprint readery
-Message-ID: <Z08fmvBEh6dYQimN@linaro.org>
-References: <20241118-x1e80100-crd-fp-v1-0-ec6b553a2e53@linaro.org>
- <20241118-x1e80100-crd-fp-v1-1-ec6b553a2e53@linaro.org>
- <Z07bgH5vVk44zuEH@hovoldconsulting.com>
- <Z07r3Upr50vLluyn@linaro.org>
- <Z07zeVJU3Y1GiSLL@linaro.org>
+        Tue, 03 Dec 2024 07:22:37 -0800 (PST)
+Date: Tue, 3 Dec 2024 20:52:30 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Christian Bruel <christian.bruel@foss.st.com>
+Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+	bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+	p.zabel@pengutronix.de, cassel@kernel.org,
+	quic_schintav@quicinc.com, fabrice.gasnier@foss.st.com,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 4/5] PCI: stm32: Add PCIe endpoint support for
+ STM32MP25
+Message-ID: <20241203152230.5mdrt27u5u5ecwcz@thinkpad>
+References: <20241126155119.1574564-1-christian.bruel@foss.st.com>
+ <20241126155119.1574564-5-christian.bruel@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <Z07zeVJU3Y1GiSLL@linaro.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241126155119.1574564-5-christian.bruel@foss.st.com>
 
-+Cc Dmitry
+On Tue, Nov 26, 2024 at 04:51:18PM +0100, Christian Bruel wrote:
 
-On Tue, Dec 03, 2024 at 02:03:05PM +0200, Abel Vesa wrote:
-> On 24-12-03 12:30:37, Stephan Gerhold wrote:
-> > On Tue, Dec 03, 2024 at 11:20:48AM +0100, Johan Hovold wrote:
-> > > [ +CC: Krishna, Thinh and the USB list ]
-> > > 
-> > > On Mon, Nov 18, 2024 at 11:34:29AM +0100, Stephan Gerhold wrote:
-> > > > The X1E80100 CRD has a Goodix fingerprint reader connected to the USB
-> > > > multiport controller on eUSB6. All other ports (including USB super-speed
-> > > > pins) are unused.
-> > > > 
-> > > > Set it up in the device tree together with the NXP PTN3222 repeater.
-> > > > 
-> > > > Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
-> > > > ---
-> > > >  arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 48 +++++++++++++++++++++++++++++++
-> > > >  1 file changed, 48 insertions(+)
-> > > > 
-> > > > diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-> > > > index 39f9d9cdc10d..44942931c18f 100644
-> > > > --- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-> > > > +++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-> > > > @@ -735,6 +735,26 @@ keyboard@3a {
-> > > >  	};
-> > > >  };
-> > > >  
-> > > > +&i2c5 {
-> > > > +	clock-frequency = <400000>;
-> > > > +
-> > > > +	status = "okay";
-> > > > +
-> > > > +	eusb6_repeater: redriver@4f {
-> > > > +		compatible = "nxp,ptn3222";
-> > > > +		reg = <0x4f>;
-> > > 
-> > > The driver does not currently check that there's actually anything at
-> > > this address. Did you verify that this is the correct address? 
-> > > 
-> > > (Abel is adding a check to the driver as we speak to catch any such
-> > > mistakes going forward).
-> > > 
-> > 
-> > Yes, I verified this using
-> > https://git.codelinaro.org/stephan.gerhold/linux/-/commit/45d5add498612387f88270ca944ee16e2236fddd
-> > 
-> > (I sent this to Abel back then, so I'm surprised he didn't run that :-))
-> 
-> I don't remember seeing this commit back then. Maybe I didn't look
-> careful enough. Sorry.
-> 
-> Since you already did the work, can you send that on the list?
-> 
+[...]
 
-Sure, no problem. What exactly do we want for upstream?
+> +static int stm32_pcie_start_link(struct dw_pcie *pci)
+> +{
+> +	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
+> +	int ret;
+> +
+> +	if (stm32_pcie->link_status == STM32_PCIE_EP_LINK_ENABLED) {
+> +		dev_dbg(pci->dev, "Link is already enabled\n");
+> +		return 0;
+> +	}
+> +
+> +	ret = stm32_pcie_enable_link(pci);
+> +	if (ret) {
+> +		dev_err(pci->dev, "PCIe cannot establish link: %d\n", ret);
+> +		return ret;
+> +	}
 
-My patch above isn't ideal, because it checks the CHIP_ID on every PHY
-power up. But briefly powering up the PHY during probe() just for
-reading the CHIP_ID is also a bit weird. Not sure what the best approach
-here is.
+How the REFCLK is supplied to the endpoint? From host or generated locally?
 
-Thanks,
-Stephan
+> +
+> +	stm32_pcie->link_status = STM32_PCIE_EP_LINK_ENABLED;
+> +
+> +	enable_irq(stm32_pcie->perst_irq);
+> +
+> +	return 0;
+> +}
+> +
+> +static void stm32_pcie_stop_link(struct dw_pcie *pci)
+> +{
+> +	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
+> +
+> +	if (stm32_pcie->link_status == STM32_PCIE_EP_LINK_DISABLED) {
+> +		dev_dbg(pci->dev, "Link is already disabled\n");
+> +		return;
+> +	}
+> +
+> +	disable_irq(stm32_pcie->perst_irq);
+> +
+> +	stm32_pcie_disable_link(pci);
+> +
+> +	stm32_pcie->link_status = STM32_PCIE_EP_LINK_DISABLED;
+> +}
+> +
+> +static int stm32_pcie_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
+> +				unsigned int type, u16 interrupt_num)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
+> +
+> +	switch (type) {
+> +	case PCI_IRQ_INTX:
+> +		return dw_pcie_ep_raise_intx_irq(ep, func_no);
+> +	case PCI_IRQ_MSI:
+> +		return dw_pcie_ep_raise_msi_irq(ep, func_no, interrupt_num);
+> +	default:
+> +		dev_err(pci->dev, "UNKNOWN IRQ type\n");
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static const struct pci_epc_features stm32_pcie_epc_features = {
+> +	.msi_capable = true,
+> +	.align = 1 << 16,
+
+Use SZ_64K
+
+> +};
+> +
+
+[...]
+
+> +static int stm32_add_pcie_ep(struct stm32_pcie *stm32_pcie,
+> +			     struct platform_device *pdev)
+> +{
+> +	struct dw_pcie *pci = stm32_pcie->pci;
+> +	struct dw_pcie_ep *ep = &pci->ep;
+> +	struct device *dev = &pdev->dev;
+> +	int ret;
+> +
+> +	ret = regmap_update_bits(stm32_pcie->regmap, SYSCFG_PCIECR,
+> +				 STM32MP25_PCIECR_TYPE_MASK,
+> +				 STM32MP25_PCIECR_EP);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = pm_runtime_resume_and_get(dev);
+> +	if (ret < 0) {
+> +		dev_err(dev, "pm runtime resume failed: %d\n", ret);
+> +		return ret;
+> +	}
+
+You might want to do runtime resume before accessing regmap.
+
+> +
+> +	reset_control_assert(stm32_pcie->rst);
+> +	reset_control_deassert(stm32_pcie->rst);
+> +
+> +	ep->ops = &stm32_pcie_ep_ops;
+> +
+> +	ret = dw_pcie_ep_init(ep);
+> +	if (ret) {
+> +		dev_err(dev, "failed to initialize ep: %d\n", ret);
+> +		goto err_init;
+> +	}
+> +
+> +	ret = stm32_pcie_enable_resources(stm32_pcie);
+> +	if (ret) {
+> +		dev_err(dev, "failed to enable resources: %d\n", ret);
+> +		goto err_clk;
+> +	}
+> +
+> +	ret = dw_pcie_ep_init_registers(ep);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to initialize DWC endpoint registers\n");
+> +		goto err_init_regs;
+> +	}
+> +
+> +	pci_epc_init_notify(ep->epc);
+> +
+> +	return 0;
+> +
+> +err_init_regs:
+> +	stm32_pcie_disable_resources(stm32_pcie);
+> +
+> +err_clk:
+> +	dw_pcie_ep_deinit(ep);
+> +
+> +err_init:
+> +	pm_runtime_put_sync(dev);
+> +	return ret;
+> +}
+> +
+> +static int stm32_pcie_probe(struct platform_device *pdev)
+> +{
+> +	struct stm32_pcie *stm32_pcie;
+> +	struct dw_pcie *dw;
+> +	struct device *dev = &pdev->dev;
+> +	int ret;
+> +
+> +	stm32_pcie = devm_kzalloc(dev, sizeof(*stm32_pcie), GFP_KERNEL);
+> +	if (!stm32_pcie)
+> +		return -ENOMEM;
+> +
+> +	dw = devm_kzalloc(dev, sizeof(*dw), GFP_KERNEL);
+> +	if (!dw)
+> +		return -ENOMEM;
+
+Why can't you allocate it statically inside 'struct stm32_pcie'?
+
+> +
+> +	stm32_pcie->pci = dw;
+> +
+> +	dw->dev = dev;
+> +	dw->ops = &dw_pcie_ops;
+> +
+> +	stm32_pcie->regmap = syscon_regmap_lookup_by_compatible("st,stm32mp25-syscfg");
+> +	if (IS_ERR(stm32_pcie->regmap))
+> +		return dev_err_probe(dev, PTR_ERR(stm32_pcie->regmap),
+> +				     "No syscfg specified\n");
+> +
+> +	stm32_pcie->phy = devm_phy_get(dev, "pcie-phy");
+> +	if (IS_ERR(stm32_pcie->phy))
+> +		return dev_err_probe(dev, PTR_ERR(stm32_pcie->phy),
+> +				     "failed to get pcie-phy\n");
+> +
+> +	stm32_pcie->clk = devm_clk_get(dev, NULL);
+> +	if (IS_ERR(stm32_pcie->clk))
+> +		return dev_err_probe(dev, PTR_ERR(stm32_pcie->clk),
+> +				     "Failed to get PCIe clock source\n");
+> +
+> +	stm32_pcie->rst = devm_reset_control_get_exclusive(dev, NULL);
+> +	if (IS_ERR(stm32_pcie->rst))
+> +		return dev_err_probe(dev, PTR_ERR(stm32_pcie->rst),
+> +				     "Failed to get PCIe reset\n");
+> +
+> +	stm32_pcie->perst_gpio = devm_gpiod_get(dev, "reset", GPIOD_IN);
+> +	if (IS_ERR(stm32_pcie->perst_gpio))
+> +		return dev_err_probe(dev, PTR_ERR(stm32_pcie->perst_gpio),
+> +				     "Failed to get reset GPIO\n");
+> +
+> +	ret = phy_set_mode(stm32_pcie->phy, PHY_MODE_PCIE);
+
+Hmm, so PHY mode is common for both endpoint and host?
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
