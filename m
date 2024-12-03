@@ -1,277 +1,120 @@
-Return-Path: <devicetree+bounces-126702-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126703-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46F3E9E29BA
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 18:44:47 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 137021650AD
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 17:44:32 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24B251FDE2B;
-	Tue,  3 Dec 2024 17:41:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="NJxEB3Rs"
-X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFB2F9E29F5
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 18:49:56 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F05720B1E4;
-	Tue,  3 Dec 2024 17:41:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A6E2DB24FDD
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 17:45:42 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6738E1FCF54;
+	Tue,  3 Dec 2024 17:44:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UbzJ2JFW"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 970401FC7EF
+	for <devicetree@vger.kernel.org>; Tue,  3 Dec 2024 17:44:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733247691; cv=none; b=eFQo0/3bUMNkaHSUjhiE7JA1uefusZ8KH2Caa3LqGNiHqnS9DK2TSSKZ3rbBzXPqYFEM5b1jxPDFT0GhxdkSh+XK6a0aFArZ86fut59ZyCOZJoJ5f6Nzz0q4T0nCENLT8/E3KPaNUtz23yUb31C0JqqpzIYvuPmuGfveQqn9bYo=
+	t=1733247861; cv=none; b=Oq+DRxeG8ni3IYy97P4Sr1DBr5lqRn7GEzkE4CB5ARLKSc+aQoaf/8EBk6GpfM3yzMsEbmRRCGWQGGLbnwrUMXlXBh642FpdtSB+oj7sOZFHltqUjjmCWJTfyl16W5vrZ8XyyEIIlwQ0NdIrdCVyJYtd9fc0pIFIr/Okivk0n3U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733247691; c=relaxed/simple;
-	bh=MrAYS6+75TXhTvIswrs+00AuQpc9NWlcqaE9xH3V65Q=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=s/bWZms1xtvn2Z4nEi8a6c5c82UFMDd93PbD9Xn2mLDAR8D4qghVki/uYGdfGd6P4k/Dz4964WW7ZyzwIm6ZpeHvP1hQqCY6NUAVf3osDVfBorUG4/mP+KEMhHg6IVyL/kKR3QKLn/eJVMJcVsDnDOAMzyh5aDn4tDZ5q1kRyRM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=NJxEB3Rs; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4B3HfG1t124426;
-	Tue, 3 Dec 2024 11:41:16 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1733247676;
-	bh=duiFeAaSBhIytnaxrND6nGOkl5Gph0V28FDpDxMvpzI=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=NJxEB3RsRDV0Uy2dnrLl/5hl5dmxtFHw1dAYwQHBGyG5ju18HqbnrkJTzNxB+SZ4d
-	 SJ3mIUy9k0eplP2aZKtm3uC2HU+LdfPhufL9gyKivNqo+zchnQ0bNU1iVau5oN0Lbm
-	 6zFOegEPj16UfubJ/v2m0HSn7q3O48BspOObQuRM=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4B3HfGgR001712
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 3 Dec 2024 11:41:16 -0600
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 3
- Dec 2024 11:41:16 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 3 Dec 2024 11:41:16 -0600
-Received: from fllvsmtp7.itg.ti.com ([10.249.42.149])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4B3HfF8K076485;
-	Tue, 3 Dec 2024 11:41:15 -0600
-From: Andrew Davis <afd@ti.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Jason Kridner <jkridner@beagleboard.org>,
-        Robert
- Nelson <robertcnelson@beagleboard.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Andrew Davis <afd@ti.com>
-Subject: [PATCH 2/2] arm64: dts: ti: k3-am67a-beagley-ai: Add remote processor nodes
-Date: Tue, 3 Dec 2024 11:41:14 -0600
-Message-ID: <20241203174114.94751-2-afd@ti.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20241203174114.94751-1-afd@ti.com>
-References: <20241203174114.94751-1-afd@ti.com>
+	s=arc-20240116; t=1733247861; c=relaxed/simple;
+	bh=bXf/te9VFRBRe5PRM7DWDcYGUns6cx/3ajaFp1ywx0o=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ElK7I1MoLeubd1LlaaZ4CqB5bSD31XFPD6ZJbk5EqO/S9cNb8bJhMQk7/v3KNBiHm/PB5ngH5C9+wzPlYvkO44RVoW+Kp5ZHK6y3ynycSziCCfpW8mhIdf9k1Hs/Z+vEsYTlCiubLqn/aTflG1ytuUchtR7x6mlQMRrUaTEFnRo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UbzJ2JFW; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-434a1833367so202135e9.1
+        for <devicetree@vger.kernel.org>; Tue, 03 Dec 2024 09:44:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733247858; x=1733852658; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=/fVBRQkH8PWec7dz2yBm01osQMyK0T0Vy920HgPS7D0=;
+        b=UbzJ2JFWRS3BHY08OnOGZh1sk3F0/sfjDVkTma5K/X31L9JItx9GbB32tTZ1OvHkdD
+         nG5sHABk+cq3gTBCATlIX2FlDCcprjDgKrSO91G9P67sb7KLi05YAkgoE5i+74ftVxmZ
+         ZJ00LA4cIWW3DmnnOaYTM/310Li115N1WXpmXpbzyg9CmP7yXrFuG0icBU8w8X87Yk2M
+         MwCfDycNc+YrDZiLgFMoXfJ92T//gcyEN0RJUVhc38uyyBf4gpWawCsu2kGRjxkoD4Fj
+         QpOeUInqWKU+6qTjyA2JIX7BUP6BUtQwz5rxSPQdYf8pPpQAS98a/RvXZMEj9oeiapBu
+         GlJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733247858; x=1733852658;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/fVBRQkH8PWec7dz2yBm01osQMyK0T0Vy920HgPS7D0=;
+        b=AhCBywEmrPe+6JnA1f/8oWU93GbxNA60oPy8pfDibfft2dljGePrYqksMs1MJkKFqf
+         RuKQX5Ur2faoWgC7RJe9X907UD+0lFN6oBJ+eV3srnTV0uCOoeElhNgJYIB40C5tmuk1
+         j9TYo2Lj+ZFeBm8IuVH/I7Jyc7LAczEj/Vc2IF5wK+Wun5XRj7E5PpEoX2eNqlXqp3L0
+         bxB+ryeKKWQrsc9UoVdVxWTPQbm894iU+r3IG1Pf2yubJeEYWYkarp0wm3xkfrIFDWca
+         Qtq7gqTZGyvsTJ8vCP5odOArX0htRlR30bczbURxrmtXMjFTuEL5no1aPCQKb8M4U1zi
+         XWmw==
+X-Forwarded-Encrypted: i=1; AJvYcCUZqnssRixTnxnFw999uo9XAGzZOiEWTJ3AAQZkrm+kdNmtdNuTp75SWZDAerkX0xpOEOL/zrNvyOlX@vger.kernel.org
+X-Gm-Message-State: AOJu0YxCJwpl7NHowizGr4H9dLI1RZlGMF/Vi4WDDn5SUeD4COnWc/4x
+	zun5ddOoPVYe+xsoe1d+FmVbiHxHAwWTW8oTrvuGIy7uoEH+Kamu8iYHK7QK/2U=
+X-Gm-Gg: ASbGncsSyJGGYluP4DspA7zel/xjcKT99V+JGT8sjBQSyCj+T4V5Uz9xA0BKkFOdfmx
+	921GJjWxygTp6MQeLaHQwIsnxem0Vdmfr4SjEBiYL918/qcTmVT8piYZuPQorxjFCO0qn/EbQNZ
+	/X1LeUC55U7KcsfuZiEpv24nvhbw5slmW8RlX/1/49EE5QBrt2NvzSq73ehJWdw9jcs681F8WXS
+	JVWqbhZcmDKROcZiaqu9H+uTVllpwviaedpiSSqCV2vob6wc2TrtKRBIbIEUCY=
+X-Google-Smtp-Source: AGHT+IEs4LeO99eCaIOoE9rg/x5K0sS885yURJsnOJqPCzOSieWlVxKgUXgYFoQwze9hgWuJ2e2ndw==
+X-Received: by 2002:a05:600c:190e:b0:434:9f77:e1dd with SMTP id 5b1f17b1804b1-434d0d204e7mr28633775e9.5.1733247857854;
+        Tue, 03 Dec 2024 09:44:17 -0800 (PST)
+Received: from [127.0.0.2] ([2a02:2454:ff21:ef40:9f9f:834f:9008:1528])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434d05b4909sm17648055e9.2.2024.12.03.09.44.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Dec 2024 09:44:17 -0800 (PST)
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+Subject: [PATCH 0/2] arm64: dts: qcom: Drop duplicate DMIC supplies for
+ X13S/CRD
+Date: Tue, 03 Dec 2024 18:44:01 +0100
+Message-Id: <20241203-x1e80100-va-mic-bias-v1-0-0dfd4d9b492c@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGFDT2cC/x3MPQqAMAxA4atIZgNptVS8ijikNWoGf2hBBPHuF
+ sdveO+BLEklQ189kOTSrMdeYOoK4sr7IqhTMViyrbHU4G2kI0OEF+OmEYNyxsChCZNjH52Hkp5
+ JZr3/7TC+7we24Uf2ZgAAAA==
+X-Change-ID: 20241203-x1e80100-va-mic-bias-bab3bd5a7c57
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>, 
+ Johan Hovold <johan@kernel.org>
+X-Mailer: b4 0.14.2
 
-Add nodes for the R5F and C7x cores on the SoC. This includes the mailbox
-and memory carveouts used by these remote cores.
+Drop the duplicated MIC BIAS supplies in "audio-routing" for the ThinkPad
+X13S and the X1E80100. "MIC BIASn" and "VA MIC BIASn" are mutually
+exclusive, only one of them can be active at the same time.
 
-Signed-off-by: Andrew Davis <afd@ti.com>
+Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
 ---
- .../arm64/boot/dts/ti/k3-am67a-beagley-ai.dts | 158 ++++++++++++++++++
- 1 file changed, 158 insertions(+)
+Stephan Gerhold (2):
+      arm64: dts: qcom: sc8280xp-x13s: Drop duplicate DMIC supplies
+      arm64: dts: qcom: x1e80100-crd: Drop duplicate DMIC supplies
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am67a-beagley-ai.dts b/arch/arm64/boot/dts/ti/k3-am67a-beagley-ai.dts
-index 44dfbdf892775..9be6bba28c26f 100644
---- a/arch/arm64/boot/dts/ti/k3-am67a-beagley-ai.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am67a-beagley-ai.dts
-@@ -50,11 +50,71 @@ secure_ddr: optee@9e800000 {
- 			no-map;
- 		};
- 
-+		wkup_r5fss0_core0_dma_memory_region: r5f-dma-memory@a0000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa0000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
- 		wkup_r5fss0_core0_memory_region: r5f-memory@a0100000 {
- 			compatible = "shared-dma-pool";
- 			reg = <0x00 0xa0100000 0x00 0xf00000>;
- 			no-map;
- 		};
-+
-+		mcu_r5fss0_core0_dma_memory_region: mcu-r5fss-dma-memory-region@a1000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa1000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		mcu_r5fss0_core0_memory_region: mcu-r5fss-memory-region@a1100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa1100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		main_r5fss0_core0_dma_memory_region: main-r5fss-dma-memory-region@a2000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa2000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		main_r5fss0_core0_memory_region: main-r5fss-memory-region@a2100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa2100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		c7x_0_dma_memory_region: c7x-dma-memory@a3000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa3000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		c7x_0_memory_region: c7x-memory@a3100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa3100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		c7x_1_dma_memory_region: c7x-dma-memory@a4000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa4000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		c7x_1_memory_region: c7x-memory@a4100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa4100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
-+		rtos_ipc_memory_region: ipc-memories@a5000000 {
-+			reg = <0x00 0xa5000000 0x00 0x1c00000>;
-+			alignment = <0x1000>;
-+			no-map;
-+		};
- 	};
- 
- 	vsys_5v0: regulator-1 {
-@@ -391,3 +451,101 @@ &sdhci1 {
- 	ti,fails-without-test-cd;
- 	status = "okay";
- };
-+
-+&mailbox0_cluster0 {
-+	status = "okay";
-+
-+	mbox_wkup_r5_0: mbox-wkup-r5-0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+};
-+
-+&mailbox0_cluster1 {
-+	status = "okay";
-+
-+	mbox_mcu_r5_0: mbox-mcu-r5-0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+};
-+
-+&mailbox0_cluster2 {
-+	status = "okay";
-+
-+	mbox_c7x_0: mbox-c7x-0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+};
-+
-+&mailbox0_cluster3 {
-+	status = "okay";
-+
-+	mbox_main_r5_0: mbox-main-r5-0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+
-+	mbox_c7x_1: mbox-c7x-1 {
-+		ti,mbox-rx = <2 0 0>;
-+		ti,mbox-tx = <3 0 0>;
-+	};
-+};
-+
-+/* Timers are used by Remoteproc firmware */
-+&main_timer0 {
-+	status = "reserved";
-+};
-+
-+&main_timer1 {
-+	status = "reserved";
-+};
-+
-+&main_timer2 {
-+	status = "reserved";
-+};
-+
-+&wkup_r5fss0 {
-+	status = "okay";
-+};
-+
-+&wkup_r5fss0_core0 {
-+	mboxes = <&mailbox0_cluster0 &mbox_wkup_r5_0>;
-+	memory-region = <&wkup_r5fss0_core0_dma_memory_region>,
-+			<&wkup_r5fss0_core0_memory_region>;
-+};
-+
-+&mcu_r5fss0 {
-+	status = "okay";
-+};
-+
-+&mcu_r5fss0_core0 {
-+	mboxes = <&mailbox0_cluster1 &mbox_mcu_r5_0>;
-+	memory-region = <&mcu_r5fss0_core0_dma_memory_region>,
-+			<&mcu_r5fss0_core0_memory_region>;
-+};
-+
-+&main_r5fss0 {
-+	status = "okay";
-+};
-+
-+&main_r5fss0_core0 {
-+	mboxes = <&mailbox0_cluster3 &mbox_main_r5_0>;
-+	memory-region = <&main_r5fss0_core0_dma_memory_region>,
-+			<&main_r5fss0_core0_memory_region>;
-+};
-+
-+&c7x_0 {
-+	mboxes = <&mailbox0_cluster2 &mbox_c7x_0>;
-+	memory-region = <&c7x_0_dma_memory_region>,
-+			<&c7x_0_memory_region>;
-+	status = "okay";
-+};
-+
-+&c7x_1 {
-+	mboxes = <&mailbox0_cluster3 &mbox_c7x_1>;
-+	memory-region = <&c7x_1_dma_memory_region>,
-+			<&c7x_1_memory_region>;
-+	status = "okay";
-+};
+ arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 3 ---
+ arch/arm64/boot/dts/qcom/x1e80100-crd.dts                  | 4 ----
+ 2 files changed, 7 deletions(-)
+---
+base-commit: 12b080aaf4275c579c91106ed926044b4d5df0af
+change-id: 20241203-x1e80100-va-mic-bias-bab3bd5a7c57
+
+Best regards,
 -- 
-2.39.2
+Stephan Gerhold <stephan.gerhold@linaro.org>
 
 
