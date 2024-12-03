@@ -1,131 +1,142 @@
-Return-Path: <devicetree+bounces-126427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126429-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F29D79E1679
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 09:59:08 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7F909E167E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 09:59:56 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41C042837D2
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 08:59:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C085165FEE
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 08:59:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 983291DE3D4;
-	Tue,  3 Dec 2024 08:59:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA6BA1DFDA4;
+	Tue,  3 Dec 2024 08:59:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="TPJeg2VV"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="K/1+7Yd1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FB151DE2B5;
-	Tue,  3 Dec 2024 08:58:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 939D71DE3B9;
+	Tue,  3 Dec 2024 08:59:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733216340; cv=none; b=uIoEolFvxoHkudiZookcb42IAPdT79cccOyDVhHeqw4JqEsCJRyjWw2TN7vLSU9wRXY25fq516UeskouWs/D+tEOfMnpKPZ8W+us50xHs/BEKL0BvwgVS0yw++Q04G3xjvSPLFj3pqlubi8cPvTCpY8BDoCDnvb4liSo0BMKl00=
+	t=1733216349; cv=none; b=qFAqQu61N6niAeUYW3ks6/kaVj+1EtpA/w1Cjaq08KkXT304Vw6V/ih4P/8PUoXFEWZQkkXobxakdnK5+qcc1vvC/RXbuLmPli6PdEA/V/mnjbtuMPEC6d9ITR9kwQV4pD2sGWKUaMhM/trSKDyshFde66R7q/16JCuu63+shrY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733216340; c=relaxed/simple;
-	bh=7TdkIdIVYA7jvhQ5R/UJVvs1ETwBeeutES9glqcome0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=txMHg6ynXlOUxCiL4nZqidzx1fn14RiGT3lnxDBA7YHDO1EfL0oRkqexqvy85wXJKpaLhsYIeWGOunxsI6kq0ZO+oiUvotspTZ3IdAXxatWLuRd2xNyAm1kEdje2l28eBxkn5/daomTePDGwuNc6gq0NYAIg6kH0ffY1s+nBzAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=TPJeg2VV; arc=none smtp.client-ip=46.19.9.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-	s=default; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=Hebjg8d1ud196QRT/FPsRQkPPUDkXoifi6lpVnSqeK4=; b=TPJeg2VV1cgYtaO2h7wremtQvj
-	qL3ctHhy1Sj52LsasyWcjhQWpc2auaXTx0as2Qss09E3Dx7MG7Aig5HMmKpIHZ58B0x7sdj9sBokB
-	smW0bH6/5fHucLRTZEi87lKF4UnqlqAZ41HzSItHprzDcORb1MWom8L0AscNKlMD512km36JWDpwc
-	QIymxeOPTW/F2yR7qQwmKE1Aljp5k1K5iu42xjf18dtZN7Jyb86zp8dR3tGkm+yJWy7kQgb+k47rJ
-	1HBut63dbP6xSk0xpRnGPNei/UD2vvj2pgj3LKBIB3X6isXWklj6e1cyS0kn0lTQoCjTh73Y8n1wT
-	GEVnFYoA==;
-Received: from [89.212.21.243] (port=47386 helo=and-HP-Z4..)
-	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <andrej.picej@norik.com>)
-	id 1tIOkD-00BGOq-0l;
-	Tue, 03 Dec 2024 09:58:56 +0100
-From: Andrej Picej <andrej.picej@norik.com>
-To: andrzej.hajda@intel.com,
-	neil.armstrong@linaro.org,
-	rfoss@kernel.org,
-	Laurent.pinchart@ideasonboard.com,
-	jonas@kwiboo.se,
-	jernej.skrabec@gmail.com,
-	airlied@gmail.com,
-	simona@ffwll.ch,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	marex@denx.de
-Cc: dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	upstream@lists.phytec.de
-Subject: [PATCH v2 3/3] arm64: dts: imx8mm-phyboard-polis-peb-av-10: Set lvds-vod-swing
-Date: Tue,  3 Dec 2024 09:58:22 +0100
-Message-Id: <20241203085822.2475138-4-andrej.picej@norik.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241203085822.2475138-1-andrej.picej@norik.com>
-References: <20241203085822.2475138-1-andrej.picej@norik.com>
+	s=arc-20240116; t=1733216349; c=relaxed/simple;
+	bh=AXohgFBDfSQ80DP0PaKhMEukCXRSu69hXmxjxJQKr2w=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=jR7n2nNm2E/4k5iKsCJQeqqD9kKOX7nxktdk8ncA8Ys8164ijSUBjVgE5dugKfEjEfZG3r/ECm4oltgwEForOtaLKp723swJSy/9wWfhnuMYbWLEQh8+swBfRQ+PUNzubW/AnjUAVrfnkLK4kKXUWOrnj+ui+bYp/yhtuLJj220=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=K/1+7Yd1; arc=none smtp.client-ip=217.70.183.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 7DE924000C;
+	Tue,  3 Dec 2024 08:59:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1733216344;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ipAWjKWXEBKTkDDGzjyfQHhzJCH217f8pclyvAEW6h8=;
+	b=K/1+7Yd1DLpLGHd0KB+FNn/0V8VphLlsBeWugnSPlrTb0Fy2mqkkkbtu0+A/UqmpJvYidi
+	s/scVc4ktaMe6ApyWwYNDb4qQRwFa4DtnVo5XIzEfUL85dAVnGFDc9re2jC7hGElZJom06
+	m5cbX7JbPnkCkDXDiT2M6fD0zjjB6580mXX1hLgJAle4t9ZtbPrMVE1PwtibvdBmDNfv5d
+	yqH3/1oCRpuR5jOscqenNCxTS9rhG4MhNjeGaXAr0/9nT/gC3Bo664C2AVx0Gy5AaxGrAk
+	S8XnXBgxSqiCeyJ6qMYRUeF2GHLIqnxPaXK9h0Q7GVkP9bVkcE541CFpuxpvvg==
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Kory Maincent <kory.maincent@bootlin.com>, linux-i2c@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-gpio@vger.kernel.org,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>,
+ Arnd Bergmann <arnd@arndb.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Cosmin Tanislav <demonsingur@gmail.com>
+Subject: Re: [PATCH v3 8/9] i2c: Support dynamic address translation
+Date: Tue, 03 Dec 2024 09:59:03 +0100
+Message-ID: <21399801.1it9Cbg30u@fw-rgant>
+In-Reply-To: <141bbac1-5289-4335-a566-387721439bef@ideasonboard.com>
+References:
+ <20241125-fpc202-v3-0-34e86bcb5b56@bootlin.com>
+ <20241125-fpc202-v3-8-34e86bcb5b56@bootlin.com>
+ <141bbac1-5289-4335-a566-387721439bef@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
-X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-GND-Sasl: romain.gantois@bootlin.com
 
-Set custom differential output voltage for LVDS, to fulfill requirements
-of the connected display. LVDS differential voltage for data-lanes and
-clock output has to be between 200 mV and 600 mV.
-Driver sets 200 Ohm near-end termination by default.
+Hi,
 
-Signed-off-by: Andrej Picej <andrej.picej@norik.com>
----
-Changes in v2:
-- use new properties from previous patches
----
- .../boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtso     | 2 ++
- 1 file changed, 2 insertions(+)
+On vendredi 29 novembre 2024 10:54:35 heure normale d=E2=80=99Europe centra=
+le Tomi Valkeinen wrote:
+> Hi Romain,
+>=20
+=2E..
+> > ATR channel's translation table whenever an I2C transaction with unmapp=
+ed
+> > clients is requested.
+> >=20
+> > Add a mutex to protect alias_list. This prevents
+> > i2c_atr_dynamic_attach/detach_addr from racing with the bus notifier
+> > handler to modify alias_list.
+> >=20
+> > Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
+> > ---
+> >=20
+> >   drivers/i2c/i2c-atr.c         | 244
+> >   ++++++++++++++++++++++++++++++++----------
+> >   drivers/media/i2c/ds90ub960.c |   2 +-
+> >   include/linux/i2c-atr.h       |  13 ++-
+> >   3 files changed, 202 insertions(+), 57 deletions(-)
+>=20
+> This fails with:
+>=20
+> WARNING: CPU: 1 PID: 360 at lib/list_debug.c:35
+> __list_add_valid_or_report+0xe4/0x100
+>=20
+> as the i2c_atr_create_c2a() calls list_add(), but i2c_atr_attach_addr(),
+> which is changed to use i2c_atr_create_c2a(), also calls list_add().
+>=20
+> Also, if you add i2c_atr_create_c2a() which hides the allocation and
+> list_add, I think it makes sense to add a i2c_atr_destroy_c2a() to
+> revert that.
+>=20
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtso b/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtso
-index a9de42cf14be..8bf9cc553bea 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtso
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtso
-@@ -186,6 +186,8 @@ port@2 {
- 			reg = <2>;
- 			bridge_out: endpoint {
- 				remote-endpoint = <&panel_in>;
-+				ti,lvds-vod-swing-clock-microvolt = <200000 600000>;
-+				ti,lvds-vod-swing-data-microvolt = <200000 600000>;
- 			};
- 		};
- 	};
--- 
-2.34.1
+Sure, I just thought that it was safer to have an explicit "kfree" in the
+code, as it would be clear that the c2a pointer shouldn't be used after thi=
+s.
+But setting the pointer to NULL after calling i2c_atr_destroy_c2a() would
+essentially achieve the same thing, so I'll be going with your suggestion.
+
+> There's also a memory error "BUG: KASAN: slab-use-after-free in
+> __lock_acquire+0xc4/0x375c" (see below) when unloading the ub960 or
+> ub953 driver. I haven't looked at that yet.
+>=20
+
+I don't have the hardware to actually reproduce this but I'll see if I can
+find out what the problem is by reading the code.
+
+Thanks,
+
+=2D-=20
+Romain Gantois, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+
 
 
