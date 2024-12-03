@@ -1,227 +1,132 @@
-Return-Path: <devicetree+bounces-126612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126614-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3DFC9E1E11
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 14:46:50 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2329A9E1E55
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 14:56:05 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3871166281
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 13:46:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA6752847B0
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 13:56:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E348F1F12F7;
-	Tue,  3 Dec 2024 13:43:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EC5C1F1315;
+	Tue,  3 Dec 2024 13:55:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DpNk56ja"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="nj6Qod6/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B4761EE00D
-	for <devicetree@vger.kernel.org>; Tue,  3 Dec 2024 13:43:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 742981EE00D;
+	Tue,  3 Dec 2024 13:55:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733233421; cv=none; b=o/GeaAL1I/j+Uae/dNJ62NP6RRthfuPGbuqN8jZwd7w0GsV8Aushu8hXtORbJk6eBLI5z15UoWS9tadnrFeTaNJRM+99jNmHyZcgtZb/k7VBT1ZsnT3ROdkHXBpXQz+MS/lUmWWzuRBUlgLlTYt49WFvl+5ZP7vOH8ZXTqtwxAU=
+	t=1733234158; cv=none; b=l4oT3rQwAm2ue4qWuVVrbPlm6cE/3z6tDNBbN6L8d6SpcHldipL8RPl8hEs1NcoOJtc3ZVeDiCXG31GNJ8s0/dpQ7b4xTxfqlpMe4TXfWtRYywuZH7Qd2d/5CwselDebffTbLJfb9crRikD2jn3qwV/0wHjQBpSPWtQkP8/ppHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733233421; c=relaxed/simple;
-	bh=F6JTPbaZ0AnfReoQLyIReQvRzUqbdKV8lK42/skKSls=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KiYbYQGN+Ju4qgnXskXADbRe0s9bWqfzdm11y1TRmhPnZ2JsubFhwFVUnCtGzdkd82X/VQn9O6SPhTGSIh4My7+Sb9Aao5I8ug4RBTy1ljsmnfcQb4P/wg0ACmjn3vXn/UTIihZK2x77RMxIiVtduYtI4VFdiHnTScAoo5iRz/E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DpNk56ja; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-53de771c5ebso6519092e87.2
-        for <devicetree@vger.kernel.org>; Tue, 03 Dec 2024 05:43:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733233418; x=1733838218; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=BexXqu1YANquKbhWrZTOr7m0R8hKt1AEONAGEhu8ML8=;
-        b=DpNk56jauH1VgV1EFVhyi8NKrDtLYmWxaJ1llpxq5Bz1lbg4x+hD+gWz6VwoSo/Q8i
-         uzqYgEZz84KA55k7CJ4VTo4rJa2Ygj73OuC5jC5aRqy9v0woVUAZvJsYNaOCIfp+pCRx
-         jdhk7rtbwzEEMrRIGr/SHPejX6dvaV9d5MWwKkk8MRE5hxX8e3ps5XqBYfZ9+Dxjbijj
-         loIHr3/4SBZLZ8odYI6MSX2vdSMaQedhiCfKx9DEqU0MsWokPerJaETqSSVWxJMShkv3
-         64NEqei5qVdCXS87Lw5tcdLwoOq5vGwnCye/NSv9y4xlrTt1mepDxXRu3RjOeRTJYYOF
-         tglQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733233418; x=1733838218;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BexXqu1YANquKbhWrZTOr7m0R8hKt1AEONAGEhu8ML8=;
-        b=Rs0RDEHlcpKuwaZnACmamSBxuOr9dcUttv/VgCR2RFDFDFZe21O5Xhc0B9Inx8gOzi
-         X7EyO31LflgWchyimQSSZ8oyTS4fv8apBdUDatkehzyoQh2EQmHjGzxr9WpnIBNqiNQw
-         owGnLcfx02oROAVeYkEiLm7q9nDSb4sPowilka4a5H2H2USD62CmmC6JH9mhindYHCjc
-         3brTqo3GJsKT4u/hjnnCUV7q2hLMxZ6gbKiKZmK889zAIRNeAHAPeBpei7mQSZDygXyy
-         xvGuxcWBQWUj945JPVqbh0mSjqQwwYxxgM8PKuhXR+O6rPJ8PtYzl07kCWdnd0jVfY6m
-         VSag==
-X-Forwarded-Encrypted: i=1; AJvYcCVA1JvQC7SyKFpfnSyNurWKzDF2GLeAaUNC+11RH/Iah35aEAbWJCUJblfzakKVQ/Wp5JBkaisM06Vk@vger.kernel.org
-X-Gm-Message-State: AOJu0YzvIXyP0Z1EbFnDz5hdO2P3IqvqjT9s60fzeVk1bUl6s4pKnwJ2
-	Ik+L8s3OZ+V4GzXndCM78vS4JoZOMWvzZLTma/vsvbMYqlK2rGINKLhzl8J2MgM=
-X-Gm-Gg: ASbGncvWig+eP3pgHJ9xeJ/6A0+2GkV/u9XVxijxuq9WI2TWbVrP6n4bPixGQcuSWrB
-	GJuRpzStUwQLKTQ+MhGdRlMWi4KPYTb+divSFYoY0GlY7N2tC4v+KuRhlxLnmrmLzOy7qmhB/QL
-	E3iNrV8aegBUu7Pq7ADBO6M2N/yQM9y4ngHmHBSbaez3crrLmn79i/usli6BiXzhVWcHX5+S2z6
-	3njiW0EAtMBboLv96q3ZDV42yEY40ts13ipOAMyE9vY20QUtMQWKqm3QU4EMXiyuRSUi2qFBRv0
-	lUUY8/OW8g8MaVCfwAyLq2xjjn2pdQ==
-X-Google-Smtp-Source: AGHT+IE8R6jm4cCT/ek6WXdRlNZG6O64AcF1SkyDRfFBDn4mzR/uUulOEMTuStC5oxV2xJ+QqSD9DQ==
-X-Received: by 2002:a05:6512:12cd:b0:53d:ea1d:50fc with SMTP id 2adb3069b0e04-53e12a28351mr1659356e87.48.1733233418239;
-        Tue, 03 Dec 2024 05:43:38 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53e1394662fsm197862e87.38.2024.12.03.05.43.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Dec 2024 05:43:37 -0800 (PST)
-Date: Tue, 3 Dec 2024 15:43:35 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Abhinav Kumar <quic_abhinavk@quicinc.com>
-Cc: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Kuogee Hsieh <quic_khsieh@quicinc.com>, 
-	Mahadevan <quic_mahap@quicinc.com>, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/4] dt-bindings: display/msm: add stream 1 pixel clock
- binding
-Message-ID: <edlw7grqy74rihy5jw5t2krcyfn24c6b2lfxht4b52wx6fvck6@pqeqrbnwtsf3>
-References: <20241202-dp_mst_bindings-v1-0-9a9a43b0624a@quicinc.com>
- <20241202-dp_mst_bindings-v1-3-9a9a43b0624a@quicinc.com>
+	s=arc-20240116; t=1733234158; c=relaxed/simple;
+	bh=EC9Dl1l1MQgi7BjluXyVcMHnEDdLKfTGSqTeB2Yn/K0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=UGioOeyZ7FfNvmsTBIyxGPqzfNRnmMiOirZoPhinyPGnflY9jZ+kdPA+hWP3hg+P/bKWMA1Z1i3G97rpUtTkiAZddQ0hEpiRRj9indEl7PABBGE7ESIXeVW7tyz7uSRyekCm6S2EMz9OXU6OdwC7mCidtwV427tQwKB+Kqkbx8I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=nj6Qod6/; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 5E8DC60007;
+	Tue,  3 Dec 2024 13:55:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1733234148;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=rvvx0a8RYQ/dRE3IBReGFV/D4LCSjgLGQJuojR4U/sM=;
+	b=nj6Qod6/4KlDinuZVy7Q6qV1D9eQs4lotapjdpSPkC1a+GNOfppLL35gKhM64DrgIZcc6J
+	OU5AWW2Os8xpO7FB3hnY1OexrlQH5cFScYV7UiroXIWOzww6EXWnZ4E1R/ach1r4elSSGY
+	3CWYNsuijYRzlKRvwfpSd/NY9Y6AILPz6XDgGWfww8Fld8gDK0el7MgiJx7360zd/RTDre
+	yBhuS0VMJVP8NwLtSywD7kz22kvm5kenYb0mHN7UyDj9j1NPDtsdCSrgPL71fhOUJB3JUe
+	KBEN28adD9RmbZaAO+XJZE5Ghm+KCFTJlKqZ9eFmJO8wkjaNfQEZLFMp36Youw==
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: [PATCH 0/6] nvmem: rmem: cleanup & add checksumming support for
+ Mobileye EyeQ5
+Date: Tue, 03 Dec 2024 14:55:43 +0100
+Message-Id: <20241203-rmem-v1-0-24f4970cf14e@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241202-dp_mst_bindings-v1-3-9a9a43b0624a@quicinc.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAN8NT2cC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxNDIwNj3aLc1FxdQ9OUNEtjA8PkNIMkJaDSgqLUtMwKsDHRsbW1AC6mgFx
+ WAAAA
+X-Change-ID: 20241203-rmem-15df9301cf0b
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Nicolas Saenz Julienne <nsaenz@kernel.org>, 
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-mips@vger.kernel.org, 
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+ =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
+ =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+X-Mailer: b4 0.14.2
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-On Mon, Dec 02, 2024 at 07:31:41PM -0800, Abhinav Kumar wrote:
-> On some chipsets the display port controller can support more
-> than one pixel stream (multi-stream transport). To support MST
-> on such chipsets, add the binding for stream 1 pixel clock for
-> display port controller. Since this mode is not supported on all
-> chipsets, add exception rules and min/max items to clearly mark
-> which chipsets support only SST mode (single stream) and which ones
-> support MST.
-> 
-> Signed-off-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
-> ---
->  .../bindings/display/msm/dp-controller.yaml        | 32 ++++++++++++++++++++++
->  .../bindings/display/msm/qcom,sa8775p-mdss.yaml    |  9 ++++--
->  2 files changed, 38 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-> index 9fe2bf0484d8..650d19e58277 100644
-> --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
-> @@ -50,30 +50,38 @@ properties:
->      maxItems: 1
->  
->    clocks:
-> +    minItems: 5
->      items:
->        - description: AHB clock to enable register access
->        - description: Display Port AUX clock
->        - description: Display Port Link clock
->        - description: Link interface clock between DP and PHY
->        - description: Display Port stream 0 Pixel clock
-> +      - description: Display Port stream 1 Pixel clock
->  
->    clock-names:
-> +    minItems: 5
->      items:
->        - const: core_iface
->        - const: core_aux
->        - const: ctrl_link
->        - const: ctrl_link_iface
->        - const: stream_pixel
-> +      - const: stream_1_pixel
->  
->    assigned-clocks:
-> +    minItems: 2
->      items:
->        - description: link clock source
->        - description: stream 0 pixel clock source
-> +      - description: stream 1 pixel clock source
->  
->    assigned-clock-parents:
-> +    minItems: 2
->      items:
->        - description: Link clock PLL output provided by PHY block
->        - description: Stream 0 pixel clock PLL output provided by PHY block
-> +      - description: Stream 1 pixel clock PLL output provided by PHY block
->  
->    phys:
->      maxItems: 1
-> @@ -175,6 +183,30 @@ allOf:
->        required:
->          - "#sound-dai-cells"
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,sa8775p-dp
+Hi,
 
-Why do you need an extra platform conditional?
+This series is two-fold.
 
-> +
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 6
-> +        clock-names:
-> +          items:
-> +            - const: core_iface
-> +            - const: core_aux
-> +            - const: ctrl_link
-> +            - const: ctrl_link_iface
-> +            - const: stream_pixel
-> +            - const: stream_1_pixel
-> +        assigned-clocks:
-> +          maxItems: 3
-> +        assigned-clock-parents:
-> +          maxItems: 3
-> +
->  additionalProperties: false
->  
->  examples:
-> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml
-> index 58f8a01f29c7..7f10e6ad8f63 100644
-> --- a/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml
-> @@ -177,16 +177,19 @@ examples:
->                       <&dispcc_dptx0_aux_clk>,
->                       <&dispcc_dptx0_link_clk>,
->                       <&dispcc_dptx0_link_intf_clk>,
-> -                     <&dispcc_dptx0_pixel0_clk>;
-> +                     <&dispcc_dptx0_pixel0_clk>,
-> +                     <&dispcc_dptx0_pixel1_clk>;
->              clock-names = "core_iface",
->                            "core_aux",
->                            "ctrl_link",
->                            "ctrl_link_iface",
-> -                          "stream_pixel";
-> +                          "stream_pixel",
-> +                          "stream_1_pixel";
->  
->              assigned-clocks = <&dispcc_mdss_dptx0_link_clk_src>,
-> +                              <&dispcc_mdss_dptx0_pixel1_clk_src>,
->                                <&dispcc_mdss_dptx0_pixel0_clk_src>;
-> -            assigned-clock-parents = <&mdss0_edp_phy 0>, <&mdss0_edp_phy 1>;
-> +            assigned-clock-parents = <&mdss0_edp_phy 0>, <&mdss0_edp_phy 1>, <&mdss0_edp_phy 1>;
->  
->              phys = <&mdss0_edp_phy>;
->              phy-names = "dp";
-> 
-> -- 
-> 2.34.1
-> 
+ - First some cleanup to nvmem/rmem.
 
+   [PATCH 2/6] nvmem: specify ->reg_read/reg_write() expected return values
+   [PATCH 3/6] nvmem: rmem: make ->reg_read() straight forward code
+   [PATCH 4/6] nvmem: rmem: remove unused struct rmem::size field
+
+   Those patches were sent on the 2024-07-24 [0] and saw no feedback.
+   There are small improvements to the commit messages but the commit
+   bodies stayed the same. I did not label this as V2 as the EyeQ5
+   compatible (see below) wasn't part of V1, and I wouldn't want people
+   to think it has been through a round of lkml review.
+
+ - Second, add a new compatible to rmem for the EyeQ5-specific usecase;
+   it parses a header and does checksumming at probe.
+
+   [PATCH 1/6] dt-bindings: nvmem: rmem: Add mobileye,eyeq5-bootloader-config
+   [PATCH 5/6] nvmem: rmem: add CRC validation for Mobileye EyeQ5 NVMEM
+   [PATCH 6/6] MIPS: mobileye: eyeq5: add bootloader config reserved memory
+
+Code is tested on real hardware, an EyeQ5 evaluation board.
+
+Have a nice day,
+Thanks,
+Théo
+
+[0]: https://lore.kernel.org/lkml/20240724-nvmem-rmem-v1-0-d2e3a97349a0@bootlin.com/
+
+Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+---
+Théo Lebrun (6):
+      dt-bindings: nvmem: rmem: Add mobileye,eyeq5-bootloader-config
+      nvmem: specify ->reg_read/reg_write() expected return values
+      nvmem: rmem: make ->reg_read() straight forward code
+      nvmem: rmem: remove unused struct rmem::size field
+      nvmem: rmem: add CRC validation for Mobileye EyeQ5 NVMEM
+      MIPS: mobileye: eyeq5: add bootloader config reserved memory
+
+ Documentation/devicetree/bindings/nvmem/rmem.yaml |  1 +
+ arch/mips/boot/dts/mobileye/eyeq5.dtsi            | 22 ++++++
+ drivers/nvmem/rmem.c                              | 95 ++++++++++++++++++++---
+ include/linux/nvmem-provider.h                    |  4 +-
+ 4 files changed, 110 insertions(+), 12 deletions(-)
+---
+base-commit: 40384c840ea1944d7c5a392e8975ed088ecf0b37
+change-id: 20241203-rmem-15df9301cf0b
+
+Best regards,
 -- 
-With best wishes
-Dmitry
+Théo Lebrun <theo.lebrun@bootlin.com>
+
 
