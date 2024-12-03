@@ -1,75 +1,76 @@
-Return-Path: <devicetree+bounces-126675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126678-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A94229E27C1
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 17:40:50 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6132F9E280D
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 17:50:01 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F11A285245
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 16:40:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF9DC1690C4
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 16:49:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CA281F8AD4;
-	Tue,  3 Dec 2024 16:40:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB7B81F9F58;
+	Tue,  3 Dec 2024 16:49:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="zVAqtSjP"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="jTaNCrgB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C13C51E3DD8;
-	Tue,  3 Dec 2024 16:40:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02DC21F8AE0;
+	Tue,  3 Dec 2024 16:49:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733244046; cv=none; b=hfxKvenV4b/8Aqa+97hoh1oulidF6zKndnBX7E/D9bdYOFfcJ3w0wtt7m1OYSLmCKpRYsxK4pQA8EbuaM5R4xItjowvTIZIepYb0gUhn5Zicb6qBKjmZbwDiu8mxJus8W+fGWdo1tb4DNqyWLAsXShVpE1GTCL8cMptBL4cUhTg=
+	t=1733244590; cv=none; b=mPTwsffpZnky6XeRfZzU8T293KxXO7LJu3aHihdM2tW7Wsd002lDjFxt+4k2eMFoGuAMC+h8hzP5svRp37ssowUcYMaOWNvNCGhgg2IrQlCnQufWl9r4ESetZjK9hG/fAMr8k6RpQF1didqEJ8eoLlo7ca/4JFjS9KwOx7gqXSw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733244046; c=relaxed/simple;
-	bh=oda6rss1hbVSU+HqWVOcypQWjsz9ajKF5JvreXNrCZQ=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=lGNUV7y0f4F4l9cS5BrS8ZeyBRMs+X9FBmD33qvNyDTRYKkUG4ZsfQhL3TfKioeMs4+TtTU3uXV5qmWCG8I2bm5MiyefM0kBmEeR+Y1MfiF2j6qgSkOeWGjJkLH/BoHACRBjePtNOpc9BZ3TRHFt2fu9PM8rS4gWjeyR+i0yZ08=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=zVAqtSjP; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 4B3GeX8L1911581
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 3 Dec 2024 10:40:33 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1733244033;
-	bh=NA5nU2Vd4Cr3takSlNTHL5m15aLLN71NSVIMs5qo4U0=;
-	h=From:To:CC:Subject:Date;
-	b=zVAqtSjPqmM7yBmQehi/Wpfg3wQHyk9CWsfhVAqRskCcs8OK5d4il3+7cUwMXHXXU
-	 R4qOW7IzFihd79iIDfcFIqgLbM34F+jXE/iXPGRMqX/X0/JX6ZKPGE4Xsi/YhFFRxc
-	 dKiE8kmLhy6lHHGMfmebGyPpK3qfVVMTi3k3ZMY0=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4B3GeXHr051919
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 3 Dec 2024 10:40:33 -0600
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 3
- Dec 2024 10:40:33 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 3 Dec 2024 10:40:32 -0600
-Received: from lelvsmtp5.itg.ti.com ([10.249.42.149])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4B3GeWal035675;
-	Tue, 3 Dec 2024 10:40:32 -0600
-From: Andrew Davis <afd@ti.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Andrew Davis <afd@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-am625-sk: Remove M4 mailbox node redefinition
-Date: Tue, 3 Dec 2024 10:40:31 -0600
-Message-ID: <20241203164031.20211-1-afd@ti.com>
-X-Mailer: git-send-email 2.39.2
+	s=arc-20240116; t=1733244590; c=relaxed/simple;
+	bh=wWH4tgKlouNqImBYePx9huDiTJpEIRPS6nir8j7hcWA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=saFYofdfz1dO457YtG6pQD+esfsZ87lqHQOOQ7vCwCU3vyWrKhhNYZk++h6/OHu9e66vwA/7iv32zvzcV1rheSGgWYMIB5s/F06wmdXG77SYNHbLUhbVmppcT9O5SC41jU2kvooNo0hPR6fzO4jPtUIIGaQK58AWtFqgCFg+KyM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=jTaNCrgB; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:MIME-Version:References:
+	In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=dDXtirkofJxQHdUKHvGa7WJ/KJTFg04tK9XP7XOZ27M=; b=jTaNCrgBZ+IiFYouTRSOu4rbUl
+	mYagNk3XadpVmDdPny1K2WzbbzERGPcw+xyns8UUQI1Rf9RTGsfToipMIY6e8aFbN07LeTEvOZP4f
+	o+DuMzw7BFBiHDBf8/6oR5EEiZ6lmYJsBgRcM/5+3MS9PZypJOzp+B/nWmEHakjTyeRsKrJPs1U43
+	Tb8339IgRSBRRgZNWQmkOyYvKo/Oyi0kya7DLWKvMii+Gm8Ckw4tRG0IouGQ9zIdXbxLYXXfqXL+k
+	TyS2Skc3KiNhnx43BQkMRXlPD/E8xAKemDIq3M7azRFznhSSOUw2O4DrpOb7xkboEXSMa7FLxNl1B
+	98OfhNcw==;
+Received: from i53875bc4.versanet.de ([83.135.91.196] helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tIW5n-0003fy-Rc; Tue, 03 Dec 2024 17:49:43 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: vkoul@kernel.org,
+	kishon@kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	quentin.schulz@cherry.de,
+	sebastian.reichel@collabora.com,
+	heiko@sntech.de,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	dse@thaumatec.com,
+	Heiko Stuebner <heiko.stuebner@cherry.de>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v5 1/2] dt-bindings: phy: Add Rockchip MIPI C-/D-PHY schema
+Date: Tue,  3 Dec 2024 17:49:31 +0100
+Message-ID: <20241203164934.1500616-2-heiko@sntech.de>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20241203164934.1500616-1-heiko@sntech.de>
+References: <20241203164934.1500616-1-heiko@sntech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,36 +78,116 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-This node is already defined in the included k3-am62x-sk-common.dtsi.
-Remove this redefinition.
+From: Heiko Stuebner <heiko.stuebner@cherry.de>
 
-Signed-off-by: Andrew Davis <afd@ti.com>
+Add dt-binding schema for the MIPI C-/D-PHY found on
+Rockchip RK3588 SoCs.
+
+Tested-by: Daniel Semkowicz <dse@thaumatec.com>
+Tested-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
 ---
- arch/arm64/boot/dts/ti/k3-am625-sk.dts | 7 -------
- 1 file changed, 7 deletions(-)
+ .../phy/rockchip,rk3588-mipi-dcphy.yaml       | 87 +++++++++++++++++++
+ 1 file changed, 87 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/rockchip,rk3588-mipi-dcphy.yaml
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am625-sk.dts b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-index ae81ebb39d02d..2fbfa37193457 100644
---- a/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am625-sk.dts
-@@ -219,13 +219,6 @@ cpsw3g_phy1: ethernet-phy@1 {
- 	};
- };
- 
--&mailbox0_cluster0 {
--	mbox_m4_0: mbox-m4-0 {
--		ti,mbox-rx = <0 0 0>;
--		ti,mbox-tx = <1 0 0>;
--	};
--};
--
- &fss {
- 	bootph-all;
- };
+diff --git a/Documentation/devicetree/bindings/phy/rockchip,rk3588-mipi-dcphy.yaml b/Documentation/devicetree/bindings/phy/rockchip,rk3588-mipi-dcphy.yaml
+new file mode 100644
+index 000000000000..c8ff5ba22a86
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/rockchip,rk3588-mipi-dcphy.yaml
+@@ -0,0 +1,87 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/phy/rockchip,rk3588-mipi-dcphy.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Rockchip MIPI D-/C-PHY with Samsung IP block
++
++maintainers:
++  - Guochun Huang <hero.huang@rock-chips.com>
++  - Heiko Stuebner <heiko@sntech.de>
++
++properties:
++  compatible:
++    enum:
++      - rockchip,rk3576-mipi-dcphy
++      - rockchip,rk3588-mipi-dcphy
++
++  reg:
++    maxItems: 1
++
++  "#phy-cells":
++    const: 1
++    description: |
++      Argument is mode to operate in. Supported modes are:
++        - PHY_TYPE_DPHY
++        - PHY_TYPE_CPHY
++      See include/dt-bindings/phy/phy.h for constants.
++
++  clocks:
++    maxItems: 2
++
++  clock-names:
++    items:
++      - const: pclk
++      - const: ref
++
++  resets:
++    maxItems: 4
++
++  reset-names:
++    items:
++      - const: m_phy
++      - const: apb
++      - const: grf
++      - const: s_phy
++
++  rockchip,grf:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      Phandle to the syscon managing the 'mipi dcphy general register files'.
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - resets
++  - reset-names
++  - "#phy-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
++    #include <dt-bindings/reset/rockchip,rk3588-cru.h>
++
++    soc {
++      #address-cells = <2>;
++      #size-cells = <2>;
++
++      phy@feda0000 {
++        compatible = "rockchip,rk3588-mipi-dcphy";
++        reg = <0x0 0xfeda0000 0x0 0x10000>;
++        clocks = <&cru PCLK_MIPI_DCPHY0>,
++                 <&cru CLK_USBDPPHY_MIPIDCPPHY_REF>;
++        clock-names = "pclk", "ref";
++        resets = <&cru SRST_M_MIPI_DCPHY0>,
++                 <&cru SRST_P_MIPI_DCPHY0>,
++                 <&cru SRST_P_MIPI_DCPHY0_GRF>,
++                 <&cru SRST_S_MIPI_DCPHY0>;
++        reset-names = "m_phy", "apb", "grf", "s_phy";
++        rockchip,grf = <&mipidcphy0_grf>;
++        #phy-cells = <1>;
++      };
++    };
 -- 
-2.39.2
+2.45.2
 
 
