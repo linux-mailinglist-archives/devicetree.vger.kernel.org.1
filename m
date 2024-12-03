@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-126480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DE569E1802
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 10:42:55 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51DF39E1949
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 11:31:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E6A98283478
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 09:42:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 08539B460C3
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 09:43:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 611F01E04B2;
-	Tue,  3 Dec 2024 09:40:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 771421E25FB;
+	Tue,  3 Dec 2024 09:40:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="EReIGTd7"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="a/ZVNgm3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F3611E1A2F;
-	Tue,  3 Dec 2024 09:40:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B846A1E1C14;
+	Tue,  3 Dec 2024 09:40:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733218849; cv=none; b=Ye4vGEZWk4GjRuP64roaF/PfuX3HCA+c1P55DmuQaV1RUxr6u//b1qocayYk7nSiPJdYvxNJ6/u+lQ+JsQX38CplAE39ygQrjeCe0hBaGbCvC0MzJ23w5Nkxo36b3zuc18HJjT0+jodptM8hqX5d4H5D5I2FhhKgAnBpPl5RBk0=
+	t=1733218851; cv=none; b=GYNnkfLuttE7OmdjSUy3uwH1lE2i8JCAqscvWZxTBZgWDeMnlmWiui6ljaHmVhLUG89+Md0FNoZCetZldbScBXDm7PHDmQqlcaxjEt4aV28oTpa4gdEg5fu8TCq2Rr00ERmtfkzPmsOi4ozjI9g1FkStKFrGqEHc/8mTkdBBs9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733218849; c=relaxed/simple;
-	bh=6WuAClq8M68owHut10bo/Y4zfAyMTKIxsgOOv/8ymMs=;
+	s=arc-20240116; t=1733218851; c=relaxed/simple;
+	bh=m+v2wzlj8p9whw1bgEUHxO6xtm0DYanxCgtzMnVEIqI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mDUs5tvfTYVZ69pG8tRWAmHF1uz+nYqk+xoqa5jhIugpgOKa1I0BxZcc4COPeFJREsUyrXD/AxotomO1OdWKWueZvIaVZ+/u1C0yxRHV1sNELRbkqVpZquOnSFrd5k0rNUVS6fJAmksAkyVeHi2sutkNBsWXWhbgRchMZVXBcTQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=EReIGTd7; arc=none smtp.client-ip=148.251.105.195
+	 In-Reply-To:Content-Type; b=QbDUvZbubQuis9oqSR5DuCKnSTLsYqRFMMc7MNFwUIt3bEXSk9IyQjuc1DjTkgrQP9to+fXFQppeZRhuZBwLEOVzisL/Ch1NfBg1E+qMlPidlXvQ7boV3NW8EygnWPTTCrACgDGla+5KkqSTq/MbjCYZsrc4ewgsz5u6Utbf7bw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=a/ZVNgm3; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1733218846;
-	bh=6WuAClq8M68owHut10bo/Y4zfAyMTKIxsgOOv/8ymMs=;
+	s=mail; t=1733218848;
+	bh=m+v2wzlj8p9whw1bgEUHxO6xtm0DYanxCgtzMnVEIqI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EReIGTd7WIAMBf3p4YP7I5bDNR2b7UoNya5BSCY+hTD2abhrmLQvUQptTG8QxeKND
-	 teMXfHbIRttBh6Qg09bPckAvQO2odtMNE4/MabDLAbdqFhFfAKe61bQ74Kg3RLEGtz
-	 YyDEYfu54ZD1p4OffiNi/eoOqS4yvEecm/Pmrs5EltpD0xPQufofi/ZsGEd5dEiLRM
-	 o9CRp3CeicuXVl/kw7VIZB1Dx1hXo7lqsbyRlfEjc8IL5dQg1F9klhqewQmXIOrMBF
-	 ILbD1q3ko1XS+rtEAnm+gcmf5SvLk9DSxoIbinN8sNV/YmBwHdl+ullx4wnJ96n8dU
-	 b25xGEieFUY5A==
+	b=a/ZVNgm3NYnLzgjiP99LRYtHRBeDBRvYOgaJcYdTn/xxXeokNQZ8CzdJmYk3mhwdu
+	 PkGXQ1QYL64Ep7NAZ/qvNWVJtuGX+47OLXzGSB5tr1iz01Ug8gHTz1I2OU+/rDCBpL
+	 6D7RSoFZlXz+sfZYG8jmlGrQAWUFXBUbjmGWY+xSpnCPHRMZc75TnHxA+H1iIRgHJ4
+	 5hrOrVow0yFUyoSKUDNZe1TmDV/nLMOSDxWxzln/W2qxawKNnWRKzrH6KjM9ctfk+n
+	 0db/fJsWTise/ouiG7cjdtbSyAMaPgTvzNim2sbdCvGwaMuNwvfZS+YjWLj2JBawQc
+	 nLbK8OWV+9dyw==
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9CD1317E35E0;
-	Tue,  3 Dec 2024 10:40:45 +0100 (CET)
-Message-ID: <6a547915-4a20-427c-ab91-9e64d3afeb67@collabora.com>
-Date: Tue, 3 Dec 2024 10:40:45 +0100
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9F1A917E35E9;
+	Tue,  3 Dec 2024 10:40:47 +0100 (CET)
+Message-ID: <d9ca723c-300b-4f38-9a1c-125df2fb982b@collabora.com>
+Date: Tue, 3 Dec 2024 10:40:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,8 +57,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 12/18] arm64: dts: mediatek: mt7988: add missing
- clock-div property for i2c
+Subject: Re: [PATCH v2 05/18] arm64: dts: mediatek: mt7988: add thermal-zone
 To: Frank Wunderlich <linux@fw-web.de>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
@@ -66,30 +65,20 @@ Cc: Frank Wunderlich <frank-w@public-files.de>, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-mediatek@lists.infradead.org
 References: <20241202122602.30734-1-linux@fw-web.de>
- <20241202122602.30734-13-linux@fw-web.de>
+ <20241202122602.30734-6-linux@fw-web.de>
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-In-Reply-To: <20241202122602.30734-13-linux@fw-web.de>
+In-Reply-To: <20241202122602.30734-6-linux@fw-web.de>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 Il 02/12/24 13:25, Frank Wunderlich ha scritto:
 > From: Frank Wunderlich <frank-w@public-files.de>
 > 
-> I2C binding requires clock-div property.
+> Add basic thermal-zone node.
 > 
 > Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 
-Can you please group all of the DTSI commits at the beginning, and all of the
-BPI-R4 commits after?
-Of course, do that *only* where possible - like, this one can be moved as it
-is only touching the dtsi and *nothing else*.
-
-...Besides, this commit also needs a Fixes tag ;-)
-
-After adding the relevant Fixes tag:
-
 Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
 
 
