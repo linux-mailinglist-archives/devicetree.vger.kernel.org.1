@@ -1,144 +1,136 @@
-Return-Path: <devicetree+bounces-126746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A28449E2F9E
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 00:15:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A91E9E2FEF
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 00:36:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 68FBF282ECA
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 23:15:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EFF432834BF
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 23:36:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1768F202F84;
-	Tue,  3 Dec 2024 23:15:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BFDF204F6C;
+	Tue,  3 Dec 2024 23:36:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="eR+qloIo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DyQrCnB2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E71C8460;
-	Tue,  3 Dec 2024 23:15:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E89801DD0FF;
+	Tue,  3 Dec 2024 23:36:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733267748; cv=none; b=Wj0277Ubfp92cCbas3NNjwhlfqF/ypLl9HjROnas0ADtV7rVCyAl45G1Kz1Eh/2KVoHdL2GKMnxNAy5II36qCm04DVmvGjCl2R8zTxByWXUJ7e1HdhaRXfnMCdGsTuiczf3Srh5hBLVkzLbUER5ukMet0WJT5lCIW9VH7Ua0A2I=
+	t=1733268996; cv=none; b=T/LnYBI+hJx4myPxlH7pm76KX+BIHMCz4jA0Cd9RcQmQkIvF7e1L8qLwcd/UoGFhwZVYAJ9UiJC22I7omDRZHGZnzXl2EsAchmRPUu7I/pd1tHVqlkmJN4pSZf0pYiQYZaAchBbjrvv7okEXFVPVzCG4zf+nKeWlYG4kKNMzAsE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733267748; c=relaxed/simple;
-	bh=YkZAsANfAmRYtI/Mt+2RDqFV4yBRm6bxvA1qhI5AL7s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=u8nmnksC9KFvaRTk2rCge+BSJPk8HtYF0BCsaKCwajQvMerIuXetZVbslltpwYoVS+R48yVYSDllae0ZY1f9sHMrTus1mjZSaP4Ujp9lPMaiQz1AYH1PCW5KDqitgINl48oBwBUt5v8gArN5EoOP9g1ITtyMmPixhkPL3pLdfT0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=eR+qloIo; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B3HoXEb030978;
-	Tue, 3 Dec 2024 23:15:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	YkZAsANfAmRYtI/Mt+2RDqFV4yBRm6bxvA1qhI5AL7s=; b=eR+qloIoJOhXZhC3
-	+GWiiJaVz2i49lUqyAj6fCUrb9PgOUliB6bWQccpZaGU7P93SrpaGtY8kEJUIjIb
-	W9z5tEKDGINKGUU+XBLRhXY62FlwSMfe/FNsKjPr9B0Kcz/Nwj4OOzynEPAMMTwO
-	bXIrTZZkm4fDBk5+S/Qr54JN0+6zp5xJ0fKsKTqF7aZgZiRYD8RXIPIzwQPSCvgJ
-	CR45+vroSXgspmZXj9cLOj47Llb6i8HJr2TdX/G5SfE2QEbm+X5k+KPE2krE1axX
-	Kvz36WzMH4+93BgHFa37ZdPjfIRnsc33wR+f1a2+5s+CzN3dc928N5JS+D+fh8zO
-	jNHveA==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 439w90tdtb-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 03 Dec 2024 23:15:26 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B3NFOQc010563
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 3 Dec 2024 23:15:24 GMT
-Received: from [10.110.57.23] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 3 Dec 2024
- 15:15:23 -0800
-Message-ID: <28023a83-04a5-4c62-85a9-ca41be0ba9e1@quicinc.com>
-Date: Tue, 3 Dec 2024 15:15:23 -0800
+	s=arc-20240116; t=1733268996; c=relaxed/simple;
+	bh=O9DB98ly00EVi5jqCLscYDWCYJVerIKnNbLNJ0XJlv0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=KuLTnIB63aEjfSkWTaGJUpU3H4SmQPoot2Z58Ktl4AaFNpVwdumZpzMcY+IWekwbDnXHz/6xVy1zMrVtTXwRVh9zZyGzQsW8oVMB6unHi5UaECwHyBbiaOlVweTxpJZ3uoM2cJ8DX/UXkUQw7/6gPNMwLhbqNDYmlBWUQc0WnGk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DyQrCnB2; arc=none smtp.client-ip=209.85.214.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2156e078563so27201845ad.2;
+        Tue, 03 Dec 2024 15:36:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733268994; x=1733873794; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Pc5TgHTZwt6LxhA2uVCI7tpp7Tqag/4j85Yn1WwfR0E=;
+        b=DyQrCnB2AQ+TvYI2QxiatN6TQxs1y1F3Zhbr9z8IOGwsVXWVug3oUm4pXSEpf76D0x
+         We+RSOo2Of7emjtiqSGkoxCKSpZW9oK9g/vVyW4rJACSIQmW2NPMBZrzxx56ivSUz1JW
+         /8VgfX9JX/WWv77LeO0oog/0RiYocQvPPerLFJYerG61pOd8/uBt7dgv+DFRv5cayX/8
+         nMbpxNloqNI1/gGJmV6nZs9e72h8s5cwptb6f1UAkHUDmq4DVSmum9QuD23eXJt1zZvT
+         +s8gu/3gU7fKVBBehES7h/HrT+KfdbpHVmdjdS1TbejaSXCzYZ7SKYQ0Fj+rT6h1+lEd
+         S43A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733268994; x=1733873794;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Pc5TgHTZwt6LxhA2uVCI7tpp7Tqag/4j85Yn1WwfR0E=;
+        b=Ti8WOQOVU0o5AfWWj6bRzMAMmWAZmEK3BySH3pBLPKt3AzRg1Oa8fhKJn8QvQxQRUI
+         BX1rQYKM02vsPVglHnfRYOgjT42yVUWdi3lIJQNjqLpzmvMWRMCCTtOqK5OQh05O30zm
+         kdhexzh5+97ulV94awMgHJtUBeYNKCEJJ4lpRLXcMiIhsBWAk1gbiAszq/9iBWpa5k4X
+         FWhKzULTTl7E5tZqZ2qa7MfRwZitpxBX0+fuRrJLBoOUrFlyue2hrcYIyXe9eG70Xa7L
+         3GcEbmOKYk4UwsubSgoMlQlpD+n65TedX5Z3HxqTzNH/fPmDfwb1p1Vt/ZCOJo6LQQ7U
+         PgbA==
+X-Forwarded-Encrypted: i=1; AJvYcCU28PgmqWsnNSVQ76K85Y9H4O3uOwcQCnnzEdNleddxbU2iQLmY6pi92DM65HSgEkzSZj1sk9MpaCZl@vger.kernel.org, AJvYcCXkd8bX+mlaLr7uSMV5PIB+Kx9xdHpIExxSynE6PS2yl6BZNE7rUjsG678MOOlttN971kXXdv8kMYCpo4MH@vger.kernel.org
+X-Gm-Message-State: AOJu0YyWiPaJ12F6SVzVCDgt3/1mJEEU2CMoiTPwYOOgN+pJaJF2S1bH
+	CUOsX5zINZTYcktaXnCN5cXlEcENtdHBI+VqRF3WKdFrocS7uOKo
+X-Gm-Gg: ASbGnctjj0y5QiXa4jKJlVGKWewKuzxfbM+JZNvPEqmlE8HU6dLidMC8J4Ni1FWfINt
+	i5baMsqqAl/gtQ8uEx/eMNxdenywif9KWiwLLhqA2HWHC/3ZdXX0m+1r3jFxTinRMQ+tgtdwxqD
+	5XQqjpOtvEjlCE3aH7cV09ABWojEood3W3IXr/7LqIYjeXTh8qnVgL/zLPrAlcciCmvdbBymL7s
+	JJUxTU8yQSRC0Mhwjrxv0r9XQ==
+X-Google-Smtp-Source: AGHT+IHf1rNluLIVYS/a49eRccOObI5iM0YG6/dTrhTZp7oNxYqcMIrUbYetBc5idn9jC/IMI8gNOg==
+X-Received: by 2002:a17:902:dac5:b0:215:772c:fa6b with SMTP id d9443c01a7336-215bd241a4amr48023815ad.40.1733268994177;
+        Tue, 03 Dec 2024 15:36:34 -0800 (PST)
+Received: from ryzen.lan ([2601:644:8200:dab8::a86])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-215964b6b76sm40401725ad.191.2024.12.03.15.36.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Dec 2024 15:36:33 -0800 (PST)
+From: Rosen Penev <rosenp@gmail.com>
+To: linux-arm-kernel@lists.infradead.org
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	William Zhang <william.zhang@broadcom.com>,
+	Anand Gore <anand.gore@broadcom.com>,
+	Kursad Oney <kursad.oney@broadcom.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH] arm64: dts: bcm4908: nvmem-layout conversion
+Date: Tue,  3 Dec 2024 15:36:32 -0800
+Message-ID: <20241203233632.184861-1-rosenp@gmail.com>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v30 28/30] ALSA: usb-audio: Add USB offload route kcontrol
-To: Cezary Rojewski <cezary.rojewski@intel.com>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-input@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <srinivas.kandagatla@linaro.org>,
-        <mathias.nyman@intel.com>, <perex@perex.cz>, <conor+dt@kernel.org>,
-        <dmitry.torokhov@gmail.com>, <corbet@lwn.net>, <broonie@kernel.org>,
-        <lgirdwood@gmail.com>, <krzk+dt@kernel.org>,
-        <pierre-louis.bossart@linux.intel.com>, <Thinh.Nguyen@synopsys.com>,
-        <tiwai@suse.com>, <robh@kernel.org>, <gregkh@linuxfoundation.org>
-References: <20241106193413.1730413-1-quic_wcheng@quicinc.com>
- <20241106193413.1730413-29-quic_wcheng@quicinc.com>
- <1a361446-7a18-4f49-9eeb-d60d1adaa088@intel.com>
-Content-Language: en-US
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <1a361446-7a18-4f49-9eeb-d60d1adaa088@intel.com>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: IBwKgWcd3KUzuxMkopp3EOItLDqwSWCj
-X-Proofpoint-GUID: IBwKgWcd3KUzuxMkopp3EOItLDqwSWCj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=709 bulkscore=0
- impostorscore=0 phishscore=0 suspectscore=0 adultscore=0 mlxscore=0
- spamscore=0 clxscore=1011 priorityscore=1501 malwarescore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412030192
 
+nvmem-layout is a more flexible replacement for nvmem-cells.
 
-On 12/3/2024 8:13 AM, Cezary Rojewski wrote:
-> On 2024-11-06 8:34 PM, Wesley Cheng wrote:
->> In order to allow userspace/applications know about USB offloading status,
->> expose a sound kcontrol that fetches information about which sound card
->> and PCM index the USB device is mapped to for supporting offloading.  In
->> the USB audio offloading framework, the ASoC BE DAI link is the entity
->> responsible for registering to the SOC USB layer.
->
-> ...
->
-> R) += mixer_usb_offload.o
->> diff --git a/sound/usb/mixer_usb_offload.c b/sound/usb/mixer_usb_offload.c
->> new file mode 100644
->> index 000000000000..e0689a3b9b86
->> --- /dev/null
->> +++ b/sound/usb/mixer_usb_offload.c
->> @@ -0,0 +1,102 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
->> + */
->> +
->> +#include <linux/usb.h>
->> +
->> +#include <sound/core.h>
->> +#include <sound/control.h>
->> +#include <sound/soc-usb.h>
->
-> ALSA-components should not be dependent on ASoC ones. It should be done the other way around: ALSA <- ASoC.
->
+Signed-off-by: Rosen Penev <rosenp@gmail.com>
+---
+ .../dts/broadcom/bcmbca/bcm4906-netgear-r8000p.dts   | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
-At least for this kcontrol, we need to know the status of the ASoC state, so that we can communicate the proper path to userspace.  If the ASoC path is not probed or ready, then this module isn't blocked.  It will just communicate that there isn't a valid offload path.
+diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4906-netgear-r8000p.dts b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4906-netgear-r8000p.dts
+index 999d93730240..a5f9ec92bd5e 100644
+--- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4906-netgear-r8000p.dts
++++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4906-netgear-r8000p.dts
+@@ -144,16 +144,20 @@ partitions {
+ 		#size-cells = <1>;
+ 
+ 		partition@0 {
+-			compatible = "nvmem-cells";
+ 			label = "cferom";
+ 			reg = <0x0 0x100000>;
+-
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges = <0 0x0 0x100000>;
+ 
+-			base_mac_addr: mac@106a0 {
+-				reg = <0x106a0 0x6>;
++			nvmem-layout {
++				compatible = "fixed-layout";
++				#address-cells = <1>;
++				#size-cells = <1>;
++
++				base_mac_addr: mac@106a0 {
++					reg = <0x106a0 0x6>;
++				};
+ 			};
+ 		};
+ 
+-- 
+2.47.0
 
-
->> +
->> +#include "usbaudio.h"
->> +#include "card.h"
->> +#include "helper.h"
->> +#include "mixer.h"
->> +
->> +#include "mixer_usb_offload.h"
 
