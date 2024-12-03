@@ -1,189 +1,142 @@
-Return-Path: <devicetree+bounces-126415-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B66AD9E1607
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 09:42:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B3199E1638
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 09:50:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76B61283FB6
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 08:42:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 78842B2BFFD
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 08:48:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DABFD1D9341;
-	Tue,  3 Dec 2024 08:42:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63ED21D79B3;
+	Tue,  3 Dec 2024 08:48:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="D4u4DAer"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="t9brO18N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4012198A0E;
-	Tue,  3 Dec 2024 08:42:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 851321BD50C;
+	Tue,  3 Dec 2024 08:48:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733215334; cv=none; b=T88M/zsOT+GDDBgYEatH2adTSGBXiFyUkYGvpuKxrVUY9G6pbWDNgYmoqOuzk2sBV8sILV9uYWph8TD337udvE1mOJU5RkrS+MG0sMWm/fM2LcgN9SXXGUvtRy04yR9XbgY+1iu7XLlaoRo7sKEv4/Xvj8JBHGYtuIFBRmugLvI=
+	t=1733215720; cv=none; b=CtHW+OKVm4g1kP09DNnsl1A+FhygfENif4KxbQrEP5Pt/gZA+PuM7pcI5lASCWmWagim8/J+WKfLQ0JeGQVeynVyQQGE3LQeDK+2bDhK4jtyRF0aql3yfgAxHzPEyACceihCGD9UQgukLprccbogtbvXF3Ii4uFzVYVcXibkns8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733215334; c=relaxed/simple;
-	bh=1LL0a0VvGUs2KJHR20ihr44gH9CEmZgb7sSztgcg4sk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=APSc38NuiWh+ICZEpzbSuv/jFLRuA8ttww53SABaV59khbEQqLyHOUoVHUBagZFpHNOWsp0H7yoHTMlH5LM+DSPlWYrUkFY6n2rWeb9H6ZJin3db1iCHq0Mcnukdyu12bLSDTPLLjBRzUiYk2+erbWWN16rEDWJIha2xaBK5v8Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=D4u4DAer; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 97D551C0002;
-	Tue,  3 Dec 2024 08:42:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1733215329;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=1LL0a0VvGUs2KJHR20ihr44gH9CEmZgb7sSztgcg4sk=;
-	b=D4u4DAertPFx/SADXzplx4K/IDuHU1eCM1Gw4x5xPjt+Wd96ykLaFN/WBzNal36E4INFc4
-	SvJ77zuvPBkPaTBtJfN/WIyfxQk4JGMXaEc+oEt2/WB5QafkRwJVAkKac2culVtSLUUrKR
-	dAcgKl+0DFEBlEBlVH4NOIsBn2gFw/Elv2bCuBvRaVkDQzH4Godc2Q1ByX4gn2r1h146uk
-	uu/E5WeI+PF4Fgr279+Fn8HnMw7M8vo8Bifz6V1g4m5uBUBJhHGwncpbRKheyugnZpkzT/
-	2LgQ9CWC1q8kfTVvuGgH57LxYRMs8kxCOJi9uiXO0qKRw38nmqG1SHZ517W4Nw==
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Kory Maincent <kory.maincent@bootlin.com>, linux-i2c@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-media@vger.kernel.org, linux-gpio@vger.kernel.org,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>,
- Arnd Bergmann <arnd@arndb.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Cosmin Tanislav <demonsingur@gmail.com>
-Subject: Re: [PATCH v3 0/9] misc: Support TI FPC202 dual-port controller
-Date: Tue, 03 Dec 2024 09:42:07 +0100
-Message-ID: <2843405.KjTqZUKg7o@fw-rgant>
-In-Reply-To: <0a125973-fd33-455d-a3ab-fba3357155ee@ideasonboard.com>
-References:
- <20241125-fpc202-v3-0-34e86bcb5b56@bootlin.com>
- <0a125973-fd33-455d-a3ab-fba3357155ee@ideasonboard.com>
+	s=arc-20240116; t=1733215720; c=relaxed/simple;
+	bh=0OpAzWPuoryPxuF28/pNqAjWqcvclJtIH5b6VDVvfN0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=um5pyVf9PoAwRII8IK1pGV6aR79deiXO3G0LqjmkqOmJqTaCbyL3dRqmiS+u0MyjUnGlTWmtCeUFwItbbyEAGThQQy6IziUB38vexfi4eNkAQEaX4GEJiJT22u6WEr+0kxmnwfC229SwxHnuj8NuiXthsvLJgUcqMza+2v6imNs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=t9brO18N; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 785328DB;
+	Tue,  3 Dec 2024 09:48:08 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1733215688;
+	bh=0OpAzWPuoryPxuF28/pNqAjWqcvclJtIH5b6VDVvfN0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=t9brO18N9dPcCEATfgU02ojolfRs6YqdOaDkiWn8yJNW2atTCM8O/g2Vpd3wQepmp
+	 ump13EAQaDL8jKuuK21ZroYB2mMypvk/OS1PrO0EwnKrj05YkBaLle8XTBOoR9iEnd
+	 NepGOJeAQW124EcLase6euLcGdjJmhfO/N3nS0BI=
+Date: Tue, 3 Dec 2024 10:48:24 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, LUU HOAI <hoai.luu.ub@renesas.com>,
+	Jagan Teki <jagan@amarulasolutions.com>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+Subject: Re: [PATCH 4/9] drm/rcar-du: dsi: Fix PHY lock bit check
+Message-ID: <20241203084824.GG10736@pendragon.ideasonboard.com>
+References: <20241203-rcar-gh-dsi-v1-0-738ae1a95d2a@ideasonboard.com>
+ <20241203-rcar-gh-dsi-v1-4-738ae1a95d2a@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-GND-Sasl: romain.gantois@bootlin.com
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241203-rcar-gh-dsi-v1-4-738ae1a95d2a@ideasonboard.com>
 
 Hi Tomi,
 
-On vendredi 29 novembre 2024 13:01:58 heure normale d=E2=80=99Europe centra=
-le Tomi Valkeinen wrote:
-> Hi,
->=20
-> On 25/11/2024 10:45, Romain Gantois wrote:
-> > Hello everyone,
-> >=20
-> > This is version three of my series which adds support for the TI FPC202
-> > dual-port controller. This is an unusual kind of device which is used a=
-s a
-> > low-speed signal aggregator for various types of SFP-like hardware port=
-s.
-> >=20
-> > The FPC202 exposes an I2C, or SPI (not supported in this series) control
-> > interface, which can be used to access two downstream I2C busses, along
-> > with a set of low-speed GPIO signals for each port. It also has I2C
-> > address
-> > translation (ATR) features, which allow multiple I2C devices with the s=
-ame
-> > address (e.g. SFP EEPROMs at address 0x50) to be accessed from the
-> > upstream
-> > control interface on different addresses.
-> >=20
-> > I've chosen to add this driver to the misc subsystem, as it doesn't
-> > strictly belong in either the i2c or gpio sybsystem, and as far as I kn=
-ow
-> > it is the first device of its kind to be added to the kernel.
-> >=20
-> > Along with the FPC202 driver itself, this series also adds support for
-> > dynamic address translation to the i2c-atr module. This allows I2C addr=
-ess
-> > translators to update their translation table on-the-fly when they rece=
-ive
-> > transactions to unmapped clients. This feature is needed by the FPC202
-> > driver to access up to three logical I2C devices per-port, given that t=
-he
-> > FPC202 address translation table only has two address slots.
->=20
-> While the FPD-Link devices are quite different than the TPC202, I wonder
-> what's the difference wrt. the ATR... Afaics, the difference is that the
-> FPC202 has 2 slots whereas UB960 has 8. So if you have 3+ remote devices
-> on FPC202, you get problems, or if you have 9+ devices on UB960, you get
-> problems.
->=20
-> Yet this series adds a I2C_ATR_FLAG_DYNAMIC_C2A flag which the driver
-> needs to set, and the i2c-atr has different code paths depending on the
-> flag. In other words, either the driver author (if it's a hardcoded
-> flag) or the driver (if it's set dynamically) is assumed to know how
-> many remote devices there are, and whether that flag is needed.
->=20
-> On the other hand, if I consider I2C_ATR_FLAG_DYNAMIC_C2A meaning that
-> the device can support dynamically changing the ATR, then it makes more
-> sense, and also UB960 should set the flag.
->=20
+Thank you for the patch.
 
-Indeed, the need for dynamic address translation isn't solely determined by
-the ATR model. It's also determined by the number of logical I2C devices
-connected to the downstream ports. In that sense, hardcoding the flag in the
-ATR driver doesn't seem completely appropriate.
+On Tue, Dec 03, 2024 at 10:01:38AM +0200, Tomi Valkeinen wrote:
+> From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+> 
+> The driver checks for bit 16 (using CLOCKSET1_LOCK define) in CLOCKSET1
+> register when waiting for the PPI clock. However, the right bit to check
+> is bit 17 (CLOCKSET1_LOCK_PHY define). Not only that, but there's
+> nothing in the documents for bit 16 for V3U nor V4H.
+> 
+> So, fix the check to use bit 17, and drop the define for bit 16.
+> 
+> Fixes: 155358310f01 ("drm: rcar-du: Add R-Car DSI driver")
+> Fixes: 11696c5e8924 ("drm: Place Renesas drivers in a separate dir")
 
-However, you could reasonably imagine that some future ATR models won't
-support hot-swapping aliases at runtime. In this case, this flag will be
-necessary at the very least as a capability flag i.e. "this ATR model can do
-dynamic translation but it's not necessarily activated by default".
+Should this have CC: stable ?
 
-> But then I wonder, do we even have cases with ATRs that need to be
-> programmed once at init time, and cannot be changed afterwards? If not,
-> then the I2C_ATR_FLAG_DYNAMIC_C2A can be the default, and the
-> non-I2C_ATR_FLAG_DYNAMIC_C2A code can be dropped. Actually, even the
-> current upstream i2c-atr is dynamic in a sense: the clients are attached
-> via the i2c_atr_bus_notifier_call(), one by one.
->=20
+> Signed-off-by: Tomi Valkeiben <tomi.valkeinen+renesas@ideasonboard.com>
 
-Indeed, if an ATR component doesn't support hot-swapping of aliases, then
-it will be broken anyway if a device attaches after the ATR's been initiali=
-zed.
-Maybe we should just assume that all supported ATR's should be capable of
-modifying their translation table after initialization then.
+Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 
-> If we just have .attach_addr()/.detach_addr(), and call those on demand,
-> and perhaps use LRU to handle the ATR table, it would maybe work for
-> both FPC202 and FPD-Link just fine.
->=20
-> So TLDR: do we even need any kind of special "dynamic atr"-feature for
-> FPC202, or is it really just a small improvement to the current i2c-atr
-> and applies to all ATR devices?
->=20
+> ---
+>  drivers/gpu/drm/renesas/rcar-du/rcar_mipi_dsi.c      | 2 +-
+>  drivers/gpu/drm/renesas/rcar-du/rcar_mipi_dsi_regs.h | 1 -
+>  2 files changed, 1 insertion(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/renesas/rcar-du/rcar_mipi_dsi.c b/drivers/gpu/drm/renesas/rcar-du/rcar_mipi_dsi.c
+> index 2dba7c5ffd2c..92f4261305bd 100644
+> --- a/drivers/gpu/drm/renesas/rcar-du/rcar_mipi_dsi.c
+> +++ b/drivers/gpu/drm/renesas/rcar-du/rcar_mipi_dsi.c
+> @@ -587,7 +587,7 @@ static int rcar_mipi_dsi_startup(struct rcar_mipi_dsi *dsi,
+>  	for (timeout = 10; timeout > 0; --timeout) {
+>  		if ((rcar_mipi_dsi_read(dsi, PPICLSR) & PPICLSR_STPST) &&
+>  		    (rcar_mipi_dsi_read(dsi, PPIDLSR) & PPIDLSR_STPST) &&
+> -		    (rcar_mipi_dsi_read(dsi, CLOCKSET1) & CLOCKSET1_LOCK))
+> +		    (rcar_mipi_dsi_read(dsi, CLOCKSET1) & CLOCKSET1_LOCK_PHY))
+>  			break;
+>  
+>  		usleep_range(1000, 2000);
+> diff --git a/drivers/gpu/drm/renesas/rcar-du/rcar_mipi_dsi_regs.h b/drivers/gpu/drm/renesas/rcar-du/rcar_mipi_dsi_regs.h
+> index f8114d11f2d1..a6b276f1d6ee 100644
+> --- a/drivers/gpu/drm/renesas/rcar-du/rcar_mipi_dsi_regs.h
+> +++ b/drivers/gpu/drm/renesas/rcar-du/rcar_mipi_dsi_regs.h
+> @@ -142,7 +142,6 @@
+>  
+>  #define CLOCKSET1			0x101c
+>  #define CLOCKSET1_LOCK_PHY		(1 << 17)
+> -#define CLOCKSET1_LOCK			(1 << 16)
+>  #define CLOCKSET1_CLKSEL		(1 << 8)
+>  #define CLOCKSET1_CLKINSEL_EXTAL	(0 << 2)
+>  #define CLOCKSET1_CLKINSEL_DIG		(1 << 2)
 
-In any case, it's a necessary improvement for the FPC202 case, but it could
-indeed apply to all ATR devices. Maybe we should just enable dynamic
-translation by default.
+-- 
+Regards,
 
-However, I don't quite understand what you mean by "calling attach/detach()
-on demand", my current understanding is that we should call attach from
-the bus notifier and from the ATR I2C transaction handler. Do you mean that
-these callbacks should be called from other parts of the kernel?
-
-Thanks,
-
-=2D-=20
-Romain Gantois, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
-
-
+Laurent Pinchart
 
