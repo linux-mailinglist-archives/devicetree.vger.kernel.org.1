@@ -1,131 +1,123 @@
-Return-Path: <devicetree+bounces-126446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1740D9E16F3
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 10:16:13 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 681C49E170C
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 10:19:20 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF709160E7F
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 09:16:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D2D0280FCF
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 09:19:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AED61AD41F;
-	Tue,  3 Dec 2024 09:16:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 652591DE4CB;
+	Tue,  3 Dec 2024 09:19:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Zt4846W+"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="j/ZyoZ3w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52D671898E9
-	for <devicetree@vger.kernel.org>; Tue,  3 Dec 2024 09:16:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E29B33F8F7;
+	Tue,  3 Dec 2024 09:19:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733217370; cv=none; b=ANY/ogfZnBtGFyeR6u3KXiAYUsIwmgSdmx7yib+cTe2mBNtFuWapICXR7tzWLiaYYDN3twRSLFW+SmLWyW1PYUfJAEUb42maR83Qu5xxUcCD1WajAuxhki5LEupsbBGJHuffDtCje0My/ekStVJNIFmSZy/eN15cUIj/23vCap4=
+	t=1733217556; cv=none; b=aWmJ+8aX5gmnacIGel2NSD2523HVCW5UN/7BlZ5i7U+wr+HtcWu4NZ6Z18ZQyOh+sNQRWv0FCmZaCNrisDecuz1S8ENaYK38FsieBn3L0g6TJwzmbMkgDi++FcS2IEvmLMNC+5lR3rrlKsSeWaxEm0QswaaCIM+ZvsTYt5GCe80=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733217370; c=relaxed/simple;
-	bh=Ynw/BXgvGPSdFG5UhefPcou+uPZ7b5PbzWEqBuapC6I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=kHGOUNWyKK5hx6vy0Tja4qmtlaZ5N6QtodgtJcIxqbZHdlQ0+ayCKBiPy6Mhn+xAzpssygd12ivgi7u4c4oUBz0QDw35cKxuCIIv/YgBqhtqLAF/bM9VVrXI1IROW1Drg2gM4pq+yot5uVVvekNnIvOec++GnxtLu1tpMFgPX4w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Zt4846W+; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-53dd9e853ccso5529857e87.1
-        for <devicetree@vger.kernel.org>; Tue, 03 Dec 2024 01:16:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1733217366; x=1733822166; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tKpX/3oOMoY2CpjSV1lkQJtqW/CgZx6kTl37vj9RWvQ=;
-        b=Zt4846W+gXINDWFvYq9JH6nTldtbdRbrJnH4mUfp0EqlmazMWVBchWLyRNsh/C9VTw
-         fIM1eARbYnr0r0Sg45QGRnKdmc4LV9EH6NFXuYkSUw/jgiC3CI0RMkxOqRKh458pYjh1
-         wRCD2xjQ9MQDFyQyOFThAjdh+Glbwe19vrdOc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733217366; x=1733822166;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tKpX/3oOMoY2CpjSV1lkQJtqW/CgZx6kTl37vj9RWvQ=;
-        b=ncFfpDzykLBzQCGrWf9ue1XZA2PohbEwcvLNhZQBGYSOF4h+BHMi+C5szWVCxKXjer
-         jV4WhlKEsP1a43uXCqm954A6/Eg6OeaeTB0v4MvueK6HNmoHg/qV0/7UhSX7PQo8dNqL
-         STTS52yKmfTD8/A7V0XNKViUkLotLslgKtz+ZrJd7kgP/TNcbJJ7UPcEf3EeujMhJJT0
-         aOffERTi5zW/DtWOMVjgKD5HdRgZr443tPp9jJcrQdwVcz6iiKs7me8yZFeJ82UIb1ge
-         aVxyKVUHO0kE1sJ30ml40yBPI5nQrN4mVhd2p80yTKCgyBXr3mJjr4W0LF82pE/+957Z
-         129g==
-X-Forwarded-Encrypted: i=1; AJvYcCXsz010bqURTNTWd8MrLFoRz2PZDFQkWPs7EFuJm/gqtcSdz38utdXUj/bq/yY0lTThHnc3Kt/XJMmG@vger.kernel.org
-X-Gm-Message-State: AOJu0YyfAuAxuFsWcv6xm+Z4D2+uokIbQHU+OgWeF85Cn0/eEHJcvKkI
-	IRvjvIsI5Mj1mk8jJNWkeM2DW6JFirLYpmIWpZVNTFF3luMmAdfif35Df2zBzY8EpZzOrVHoAaW
-	0RAY0O362oIzRBIj7PYfIAqjTGcXnbuHU6kZk
-X-Gm-Gg: ASbGncvVlS7l8X531cb7nyxdCGXER8gnyYwqzLJ3odpKvTH2mXYOhc1OZCy2iPrc4/o
-	O51BT1jMgA8GOo4ZCOmEQ4PtLTGmq4MKxCrP11CyZwEc4nbOEE8pJ7/7WfJQ=
-X-Google-Smtp-Source: AGHT+IHblgyX3h9C40czpfBFU4FlCVyQGCJtmnMsdRZhtqjaXaMQ/snRbicpRd77CCHWP8KcHzPutSl+2EBTyk0stG8=
-X-Received: by 2002:a05:6512:474:b0:53e:166d:bdf with SMTP id
- 2adb3069b0e04-53e166d0c7fmr436640e87.14.1733217366415; Tue, 03 Dec 2024
- 01:16:06 -0800 (PST)
+	s=arc-20240116; t=1733217556; c=relaxed/simple;
+	bh=x2vsnah+FQn6F5RImqP2xAcLMZpjRl3druEdJIaaO14=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=fKrtNyn/44tVU7hCa5/BYretO2Z8YCeCmo2P9Fh1k7R2CNR/Q6ES0JwUwCY6xBCV/vnGh8jxahFwVZQhWcpsZdYxZvhUB+lrBMwMDuEwDFJTD2TBsZg+mz6XoURqdDrvM4gClreRtIA3Cr5IofB1MWgPDIpzI4AawBMHyslRt10=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=j/ZyoZ3w; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B38O3YD028930;
+	Tue, 3 Dec 2024 09:19:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	4FmtQeza1CzHNqrTW/NmGRcEE/2b9bklTjsRtN7+/ds=; b=j/ZyoZ3wwk69T1oX
+	I+VmYIq1lpIxXpbAuFsg+MPHzSgrKr/lfrpS+ubkueH66xhY8WFt+b/Vv7UuXsbj
+	g0G4q8MI1Sef1BhtPuNKZ3BkmYgYbQvBNdsjxoEat/ftcNpELSEuYgaao3PYGsvq
+	pjzTCmOa6HmXWHeyjhP6r7kmrowC2VX7lDfOd1uUQbpKVIdHdG3EaaSnMU3Yw7d8
+	EdNvAFXp1v6ra5JqfwJ6U2nbP0zhL4Gy4tZtoTbP21wUM2nDBkiRd8ZDTlAxgEEd
+	KJd7TWCi1tJUOT6bWD34URQ7UGcRWjN7N/33BmKymETbbd9hF0hV53SwKJ7VAqqD
+	smkpvg==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 437tstfk69-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 03 Dec 2024 09:19:06 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B39J5Ze021551
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 3 Dec 2024 09:19:05 GMT
+Received: from [10.151.41.184] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 3 Dec 2024
+ 01:19:01 -0800
+Message-ID: <0796510c-20bd-4a81-bd60-40aacbcf61c0@quicinc.com>
+Date: Tue, 3 Dec 2024 14:48:58 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241202032035.29045-1-xiazhengqiao@huaqin.corp-partner.google.com>
- <20241202032035.29045-4-xiazhengqiao@huaqin.corp-partner.google.com>
-In-Reply-To: <20241202032035.29045-4-xiazhengqiao@huaqin.corp-partner.google.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Tue, 3 Dec 2024 17:15:55 +0800
-Message-ID: <CAGXv+5HsOgRCpGOFxEJorVD+=-6GbW_=K3AChkBSxTs27fNJ3w@mail.gmail.com>
-Subject: Re: [PATCH v4 3/4] arm64: dts: mediatek: Add exton node for DP bridge
-To: Zhengqiao Xia <xiazhengqiao@huaqin.corp-partner.google.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
-	hsinyi@chromium.org, sean.wang@mediatek.com, dianders@google.com, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 15/22] wifi: ath12k: add BDF address in hardware
+ parameter
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        <ath12k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, Kalle Valo <kvalo@kernel.org>,
+        "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Jeff Johnson <jjohnson@kernel.org>,
+        "Bjorn
+ Andersson" <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+References: <20241015182637.955753-1-quic_rajkbhag@quicinc.com>
+ <20241015182637.955753-16-quic_rajkbhag@quicinc.com>
+ <142f92d7-72e1-433b-948d-2c7e7d37ecfc@oss.qualcomm.com>
+Content-Language: en-US
+From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+In-Reply-To: <142f92d7-72e1-433b-948d-2c7e7d37ecfc@oss.qualcomm.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 2sj9l3bAucBR50kKxPni91PBON0uv-o0
+X-Proofpoint-GUID: 2sj9l3bAucBR50kKxPni91PBON0uv-o0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ malwarescore=0 spamscore=0 impostorscore=0 mlxlogscore=999 mlxscore=0
+ priorityscore=1501 suspectscore=0 phishscore=0 adultscore=0 clxscore=1015
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412030079
 
-On Mon, Dec 2, 2024 at 11:21=E2=80=AFAM Zhengqiao Xia
-<xiazhengqiao@huaqin.corp-partner.google.com> wrote:
->
-> Add exton node for DP bridge to make the display work properly.
-      ^ extcon.
+On 11/4/2024 7:46 PM, Konrad Dybcio wrote:
+> On 15.10.2024 8:26 PM, Raj Kumar Bhagat wrote:
+>> The Ath2k AHB device (IPQ5332) firmware requests BDF_MEM_REGION_TYPE
+>> memory during QMI memory requests. This memory is part of the
+>> HOST_DDR_REGION_TYPE. Therefore, add the BDF memory address to the
+>> hardware parameter and provide this memory address to the firmware
+>> during QMI memory requests.
+> 
+> Sounds like something to put in the device tree, no?
+> 
 
-Same for the subject.
+This BDF memory address is the RAM offset. We did add this in device tree in
+version 1. This is removed from device tree in v2 based on the review comment that
+DT should not store RAM offset.
 
-> Signed-off-by: Zhengqiao Xia <xiazhengqiao@huaqin.corp-partner.google.com=
->
-> ---
->  arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi | 6 ++++++
->  1 file changed, 6 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi b/arch/arm6=
-4/boot/dts/mediatek/mt8186-corsola.dtsi
-> index cfcc7909dfe6..e324e3fd347e 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-> @@ -424,6 +424,7 @@
->                 ovdd-supply =3D <&mt6366_vsim2_reg>;
->                 pwr18-supply =3D <&pp1800_dpbrdg_dx>;
->                 reset-gpios =3D <&pio 177 GPIO_ACTIVE_LOW>;
-> +               extcon =3D <&usbc_extcon>;
->
->                 ports {
->                         #address-cells =3D <1>;
-> @@ -1656,6 +1657,11 @@
->                                 try-power-role =3D "source";
->                         };
->                 };
-> +
-> +               usbc_extcon: extcon0 {
-> +                       compatible =3D "google,extcon-usbc-cros-ec";
-> +                       google,usb-port-id =3D <0>;
-> +               };
->         };
->  };
->
-> --
-> 2.17.1
->
+refer below link:
+Link: https://lore.kernel.org/all/f8cd9c3d-47e1-4709-9334-78e4790acef0@kernel.org/
 
