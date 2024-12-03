@@ -1,167 +1,119 @@
-Return-Path: <devicetree+bounces-126573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E35E9E1BF5
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 13:20:08 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A45639E1C04
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 13:22:01 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0CFBF167656
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 12:19:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 686B228186D
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 12:22:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 794A21E765A;
-	Tue,  3 Dec 2024 12:17:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F390F1E47D3;
+	Tue,  3 Dec 2024 12:21:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ES/XGxI1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BE355tkF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com [209.85.222.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0DED52F76
-	for <devicetree@vger.kernel.org>; Tue,  3 Dec 2024 12:17:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 625834F218;
+	Tue,  3 Dec 2024 12:21:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733228268; cv=none; b=nZFHOiJaczTA7BOgRxDZJNvgNnw1lFR/UzT78SSPftgrFeFyZRcd81O1NhLps+//WnTEMZQtNDlRC1DgIXEjSdcW65+8NbQVEnPvAPObhmXhibOTcxLpuxht0f/+zTfbhRJyxFEGBpYVjpWIOJnZSfTPiyfkkYFG6ELBNnJ90JQ=
+	t=1733228515; cv=none; b=iqK+/b9j5V3KoGPkIXvD2cqVOzSnKWtGbDQz4/Q0UCT6+SX67/NJxvgBZxBRHGmhSqpogQ7wSVsySxFt94feNwCSIYcBPQGsDNsmYEdWbXGjlujfTnswzdfjTmFmYgNW34LZw82EkwJD7K++mx0rU+UEdTpvFQTm3koWv8IXQRg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733228268; c=relaxed/simple;
-	bh=M49V6RgMFX9yBEfjwwyJSmpJ/ZrX7Mn6P9h37XiEDzE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=eHrPZeTLLcJ1GsGoxkue1Q4uLUxYNyqdo5q7aQyT6t6bDz2SNsoGzAfsCBHYsFufFzonUxRZtkV0WQrq6UuGhBP3EoqnZoc0Tm4Y9socXQacxv048Eqgbx7ZPoYMUf/VRhEVV7MWEnn4pa/d3OcnjrMcFBV6+uOYt9GAl5ewUE8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ES/XGxI1; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-aa560a65fd6so921907266b.0
-        for <devicetree@vger.kernel.org>; Tue, 03 Dec 2024 04:17:45 -0800 (PST)
+	s=arc-20240116; t=1733228515; c=relaxed/simple;
+	bh=MpIXVp6qOzjwdqyxitDOtzmLzxJa7XWFAuMvx362IEI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WMD7td/PtxMYf0l1emoAbLv2hfwH4DPqWlSXfKQDDp6GVtjlJ4oxNhqFEFdGw5Dgq0IAsri8bUg0NpoX8TYo2BltNI/8zPiBWU4UtWR/C1NlGxbLH3ayaxjAE/8AvJC+CNF5NimOR/WNJsadilQ/hRLu+cOyq5G+cy1miOESWq0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BE355tkF; arc=none smtp.client-ip=209.85.222.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-85b988ec4f0so559818241.1;
+        Tue, 03 Dec 2024 04:21:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733228264; x=1733833064; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=W2UfI3tNP6hp450YILSsuMQQhfugKH625KrlazXf/FU=;
-        b=ES/XGxI1RowTnEOgPR+/WKiEZbwzok4NLJKXaySo/A+4ClcFYBftjJ2Tt202iJ5Mhk
-         ZnEBcxwSkCVXK9JU6geyaPSXkyVOLWBEDlMPLy4M8KtfQ0EVekcaXQ5K22vyZKHxBVBp
-         +LevHQo9x7gvfNTvIGcCgpty7BfWYpEsSAqc1Mn2FmzDNJ4jriDk3h7WRqsFunqLnYYq
-         Daqfi6BTo2zZwJ2QclL8QL7gk/C8Suy7NST2KAIs37RI5xYXaDh2wWCC5q47tAKloykI
-         HTjNLy5EYahad7klgH0wpl5qT+ds7MxtvyZRiOYFE31WIh0RNEjkGU65m/xF4I3ebbo5
-         FVEg==
+        d=gmail.com; s=20230601; t=1733228513; x=1733833313; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MpIXVp6qOzjwdqyxitDOtzmLzxJa7XWFAuMvx362IEI=;
+        b=BE355tkFrSSVnuJuQQMWEtC2yOodZU+b7z0fhvFbvXv6q8EFgk/GgJnokwMHFLnMTl
+         z8Ce42MgXxAUz/KIAFejC7wsqaiEA3ZtbnMUl0+C71Puw8Qe6jClqJl/r+U3YG+VdUUB
+         9HrUdy2Ss15Go3Mh0HEDykJHgT9o5Jzn7t+oMI+YiCchwOpVnzU+1AVDsTE3mB+jFuOB
+         fMRxfHpP2f3a3It1ZuA+GprrKB5JHqfhpZ1tvEl0nmN/FJByu+zuBWNkhu6WMWM+aL0p
+         GOnv4B0Wh/oZmBhmymQY3hr3BMnK51glLdaBbxetSTQT6h/axQVtxUwMG1M8bYtjIRax
+         G/Og==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733228264; x=1733833064;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=W2UfI3tNP6hp450YILSsuMQQhfugKH625KrlazXf/FU=;
-        b=eGDiHroAVH/0x5dFcj/NCC3P9PQcZCKqK7QYTsWmBz0FZLd+EB8eRTVunVKDKTq+d1
-         moyEcV6ARCSEHTqSmUV5UHCslDST6nJPzYOkFN4pryzDZnBpEJOtspLRglYCxY6MV1ey
-         AZISCD4t7GZxbETziBDv+EwL+oJ+yaeHnPhN4SN8K6V4CfSBGOo6esbhXwrBNrxCkwnc
-         4NTaxV1IWj+T6iydz1vnuf8ob6EacqzIS99o3Lll0a7RSRVZODiwS4F/04bD3XSTizu+
-         IU3eG551jl3zis622mX82f0EKo6kgXOdC/URbxli1EBXPQgIZ1M080oh21fq9kXC+ekI
-         ZQFg==
-X-Forwarded-Encrypted: i=1; AJvYcCWFMGN1WfZv9U/N3r7Tl9apl4mQgr0neiJ+XsQItY7bEpgNZ69HSXtZyA6t5oVzrAOH8oCU87nqPMsI@vger.kernel.org
-X-Gm-Message-State: AOJu0YwNrIPxTccfdU2hU8348kBfd8YhbQPFiy9GtWHjkhh+blL9Y97i
-	kMqKRnS8f3CMHk9S4iVkVnNiFqE+I2Ztk5eyqZ7BS15m8rsT+Uf0GGYnyqvfn+8=
-X-Gm-Gg: ASbGncsFkBObNvzV/7saaGVYCwsFlCR0Up2JStyZO/pxtL4HpHCtxZJhnk+B+EG7lQm
-	LMbteFp06Ab7Qx0+XF01VFwzM27pNcBte5FdVI84kyXzXs8mZQadeCgAM2ypYU6nF4CwugDxmHs
-	DHq/DqUJxF9kJAXkKdwxTV/QxfaQAcO147AY6t3HUta1Zg5vA+4ZA9Ewwigm6lJurvQlV5ADxbW
-	6tP7ebvYobDEMeNpiprUghFOlKx1u5g+eshDg/NhlmYjE0zKsEZw+a6SzW4BgcS2pR6R1oLq0s/
-	GpNCQ7WQvuaXEGw8eiipVPejx9tDEB4PgQ==
-X-Google-Smtp-Source: AGHT+IFuDfNoLsR+aGkqAxGMjkMHHCufm2JdaFXPMbn11SwOi0SEY0sCF5NfPxV3s0eUPciCzqcP2Q==
-X-Received: by 2002:a17:906:3d2a:b0:a9a:616c:459e with SMTP id a640c23a62f3a-aa5f742699amr195441766b.27.1733228264338;
-        Tue, 03 Dec 2024 04:17:44 -0800 (PST)
-Received: from puffmais.c.googlers.com (64.227.90.34.bc.googleusercontent.com. [34.90.227.64])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa5996df797sm616652266b.68.2024.12.03.04.17.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Dec 2024 04:17:44 -0800 (PST)
-From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Tue, 03 Dec 2024 12:17:35 +0000
-Subject: [PATCH v3] dt-bindings: usb: max33359: add max77759-tcpci flavor
+        d=1e100.net; s=20230601; t=1733228513; x=1733833313;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MpIXVp6qOzjwdqyxitDOtzmLzxJa7XWFAuMvx362IEI=;
+        b=dp8psN6VqofIF0Wv4pkdj0Ia963Pv2jp8aKJDu0GOUn6AaqRQdjiSeowNIX1lsGIX8
+         myWM2qOuX5C748ubcRtB1sMEu9SyPovH4E9/q2PQ56LLBWoUdPop/zowGdPtKwTx0+T0
+         Sblh7V7opL8BumjaIPDgTVP/E35dY8HPjxlk5gSAWKeeNVEPGIdd4toB4h3y3BLyH8Ne
+         Fs+c4b9SlG/DXZxTGgqjJxGYa3e3fLYoQQ3rGEkZrvRCkjG0NFf8W3Z3w45ZMBpy/13I
+         dxTcbiJxi9KJ4th6Vy+ws+GLXhgx7oqSi84MM0b0eoEe0xE5NB0A9kidv7b3xKMi/at/
+         B3bQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVKznPFiUQE7aVd3gyBY28Kun8Zm7Ua5Tf2BlJ4lE30BG8Nttzdn/qL0oA0Tqhz/nKGssGOhvCvEZHr@vger.kernel.org, AJvYcCVLsCv6B6JUbKrLcA2lXhaVeX7FPXrf5ptlutTzCYx7r/okvwI8yesylfgpUyJ/F7iwA3Rq9SWY2/m2Nw==@vger.kernel.org, AJvYcCViwbvQHH8nsWF6b32WnGfrve1NOun58cgMFwHfcWdVlKWAHWv6TYuNTxrbxEXk8OQSFH/HWAqBCMK4a6nS@vger.kernel.org, AJvYcCWKNGCjxmhmEymIE9XmwNsEu+Z6sX5L9E20TVAGxJfGsRQxSGymaL1POiNXat1anrQuyoSqIRCyQE8=@vger.kernel.org, AJvYcCXQcA9twTyMGLaRyPfHUNzv+1ynmbCNnLiHTBcwvePYYbxOsFHFtW7x/TqrTvyXschfFwlA2vToM19ie2A=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwxE7ygWV5ZBMXwUDH+vGABc7LJaao2jQozeN7l/IcsGsLNxTno
+	xA18u+yfr8uaqBQ977JLaXeFpYjQb1xRZYvnH73nnNxnsARCMaSWI6OLx9yRuWAKORzX67w+IBE
+	b3sS7Dpm3V4255LjIWZ3OXLIdRmY=
+X-Gm-Gg: ASbGncuHLKnOtYJxjQLI+ympqPo4vwBEmjP9LiTPpXJ3FqI0yApalzkjHI2yx66rBx9
+	R5cTflgg9A0bq35qolhlCOS6hjJLk5w==
+X-Google-Smtp-Source: AGHT+IHvSfIxxZEFrMUMf9JkQ6m84tL4tuWoNpHCUoaLftm4kgpv9pueuEl2AvhcVOPltmicw6auZhK0Kuc4LSVYVTI=
+X-Received: by 2002:a05:6102:38d4:b0:4af:48a6:79d4 with SMTP id
+ ada2fe7eead31-4af971fc9c4mr2434948137.6.1733228513292; Tue, 03 Dec 2024
+ 04:21:53 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20241203-dtbinding-max77759-v3-1-e1a1d86aca8e@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAN72TmcC/6XNQQ7CIBCF4as0sxZTBirVlfcwLqBgO4mCgYbUN
- Nxd2gO4cfm/ZL5ZIblILsGlWSG6TImCryEODQyT9qNjZGsDtig5x57Z2ZC35Ef20otSqjszI6w
- 1Fk+ykxLq4Tu6By07ervXnijNIX72H5lv608uc8aZEmJwKIe2b/H6JK9jOIY4wuZl/NMopXwBt
- mcw5fkAAAA=
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jagan Sridharan <badhri@google.com>
-Cc: Peter Griffin <peter.griffin@linaro.org>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, 
- Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-X-Mailer: b4 0.13.0
+References: <20241202-starqltechn_integration_upstream-v9-0-a1adc3bae2b8@gmail.com>
+ <20241202-starqltechn_integration_upstream-v9-9-a1adc3bae2b8@gmail.com> <b7e4162a-a7f7-462d-9dde-121eeb59d148@kernel.org>
+In-Reply-To: <b7e4162a-a7f7-462d-9dde-121eeb59d148@kernel.org>
+From: Dzmitry Sankouski <dsankouski@gmail.com>
+Date: Tue, 3 Dec 2024 15:21:42 +0300
+Message-ID: <CABTCjFDyoF7g-5tj_dr6k7ScB_313dwEmfdJ+49rwMYfN63x1Q@mail.gmail.com>
+Subject: Re: [PATCH v9 9/9] leds: max77705: Add LEDs support
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Sebastian Reichel <sre@kernel.org>, Chanwoo Choi <cw00.choi@samsung.com>, Lee Jones <lee@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>, 
+	Hans de Goede <hdegoede@redhat.com>, Marek Szyprowski <m.szyprowski@samsung.com>, 
+	Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>, Purism Kernel Team <kernel@puri.sm>, 
+	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
+	linux-leds@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Maxim's MAX77759 is a companion PMIC for USB Type-C applications. It
-comprises the following in one package:
-* top (including GPIO)
-* charger
-* fuel gauge
-* TCPCi
+=D0=BF=D0=BD, 2 =D0=B4=D0=B5=D0=BA. 2024=E2=80=AF=D0=B3. =D0=B2 13:30, Krzy=
+sztof Kozlowski <krzk@kernel.org>:
+>
+> On 02/12/2024 10:48, Dzmitry Sankouski wrote:
+> > This adds basic support for LEDs for the max77705 PMIC.
+> >
+> > Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+> >
+> > ---
+> > Changes for v8:
+> > - join line where possible to fit in 100 chars
+>
+>
+> Coding style asks for 80. checkpatch is not a coding style, unless this
+> came from maintainer's review.
+>
 
-While in the same package, TCPCi and Fuel Gauge have separate I2C
-addresses, interrupt lines and interrupt status registers and can be
-treated independently.
+On v6 discussion, Lee Jones stated 'This is old guidance':
+https://patchwork.kernel.org/project/linux-input/patch/20241007-starqltechn=
+_integration_upstream-v6-7-0d38b5090c57@gmail.com/
 
-While the TCPCi part appears identical to max33359 on the surface, it
-should still have a dedicated compatible, though, as it is a different
-implementation. This will allow for handling differences in case they
-are discovered in the future.
-
-max77759 is used on Google Pixel 6 and Pixel 6 Pro.
-
-Add a dedicated compatible, maxim,max77759-tcpci, to allow for
-potential differences in the future.
-
-Signed-off-by: André Draszik <andre.draszik@linaro.org>
----
-Changes in v3:
-- change compatible from maxim,max77759 to maxim,max77759-tcpci - the
-  former should be reserved for a top-level MFD device for the
-  remaining components
-- drop Acked-by tags due to compatible change
-- Link to v2: https://lore.kernel.org/r/20241128-dtbinding-max77759-v1-1-733ce24c0802@linaro.org
-
-Changes in v2:
-- collect tags
-- split out from original series (Krzysztof)
-- link to original series:
-  https://lore.kernel.org/all/20241127-gs101-phy-lanes-orientation-dts-v1-2-5222d8508b71@linaro.org/
----
- Documentation/devicetree/bindings/usb/maxim,max33359.yaml | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml b/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
-index 20b62228371b..a31e00e6b967 100644
---- a/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
-+++ b/Documentation/devicetree/bindings/usb/maxim,max33359.yaml
-@@ -13,8 +13,12 @@ description: Maxim TCPCI Type-C PD controller
- 
- properties:
-   compatible:
--    enum:
--      - maxim,max33359
-+    oneOf:
-+      - enum:
-+          - maxim,max33359
-+      - items:
-+          - const: maxim,max77759-tcpci
-+          - const: maxim,max33359
- 
-   reg:
-     maxItems: 1
-
----
-base-commit: ed9a4ad6e5bd3a443e81446476718abebee47e82
-change-id: 20241128-dtbinding-max77759-b3ddbd264544
-
-Best regards,
--- 
-André Draszik <andre.draszik@linaro.org>
-
+--=20
+Best regards and thanks for review,
+Dzmitry
 
