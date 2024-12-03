@@ -1,207 +1,121 @@
-Return-Path: <devicetree+bounces-126377-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126378-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DF769E14B2
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 08:55:39 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 121389E14CA
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 08:59:41 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 32BDCB234CA
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 07:55:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D9812164655
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 07:59:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FD631A01B9;
-	Tue,  3 Dec 2024 07:55:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 175F51CCEE0;
+	Tue,  3 Dec 2024 07:57:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tyzQFlgt"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Bp9cDtKY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56300185B48;
-	Tue,  3 Dec 2024 07:55:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 432B81C6F56
+	for <devicetree@vger.kernel.org>; Tue,  3 Dec 2024 07:57:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733212513; cv=none; b=tnI6MSX1XqMwSAAL+XYnnRazVG9LdTB4g6j7PUhST3jeRiyNS4ex3HvkOdYszqtKApl4MoWEIZdiaSYIXkyIhglyX58wDw5CnUwU39DvNQUF/kHuVNxtfxZgnVvWYilf2eGJco7vWmc4c6lxzuD+ZHBAzI+HaIXeIxOTznUbivw=
+	t=1733212630; cv=none; b=HoFc7Pn+OqvV4DPyu2SRLA1cH0tnJ7KAxC5ZJeQdWTgHsuqKzCy4K2XXz0n8cGpRiIlGqLBuWYqs/QHUv5Jsgk3RS0M1iM2+VIt2SPwLluqTTUa5Wffx+Mzm5N2adn2MxhXUkJkgDT/IW3K37sQEDlWAWMo78KgvPFV1pVbRj6Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733212513; c=relaxed/simple;
-	bh=WrHlyr23JlkF3WQuc2H2dadcp19Wdg5V79yaG1l9A0A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pIHWivNk5114AmsSvrjgAkg8jSeiduNwHLcDnbnZ9NfrGwE6vp9D2mBoOBg7rMDzzRf12Iwy+IyXKWKlU2hPo2bT/Pr20XfxUUJrWCM26fxNYePFM2rf7Dy+pRKlhr6UxiR1wPDXXMjb8bl5EuiZEHsQonyNl8g7FL/o3xys6Q0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tyzQFlgt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A1ECC4CED9;
-	Tue,  3 Dec 2024 07:55:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733212512;
-	bh=WrHlyr23JlkF3WQuc2H2dadcp19Wdg5V79yaG1l9A0A=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tyzQFlgt45fO47xEmlGNLTRAwrwbk+D156dnkI0ekGAi6LwR2KeFy9LfnxV4cWy9/
-	 EZ0MYDCcwz+jOqtoc7bfwRJxZYyHqB3Yr+m9KtpP3//ApR4/TqZc1R4xFw8Y/cYNhJ
-	 TC2O2i+Fu+WeVaZFUNJcHUF3NG5znsVzsq7Yhk1WISl+nx0m61wV4j5ZrcdCG+gTMi
-	 JLgmkWZxjnJ2ZKXrVbQ2YCNsmTQYit8AZnaweIrPtVFOXZRi4REUU3EhvQS0moGkSc
-	 9Ex+o/G5eZSLwJRmJLgPCjfDgIupbuAPyeZ897lWPF1csm1YkY/JhqgFgvEOElTI8F
-	 HjNkwABKsyYlQ==
-Message-ID: <ccaff25d-d757-4b0a-851b-8f6c2dd9fb4b@kernel.org>
-Date: Tue, 3 Dec 2024 08:55:05 +0100
+	s=arc-20240116; t=1733212630; c=relaxed/simple;
+	bh=BN9oqBHKXYcufRO+eCasqfzBY8zLc9V3aSmv0W/2EC4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=neGT5OFI0gparBnegJ6GJgRq2imIyWThA0fp3HOlng3Q8pMzJw8n66VcEngnGjk5kP0uxWgxLLsJf+ilxKcyBcIKENo0UyMVjgkipJNljElXmCJJtiafeDLhAZ/Rj5MT2juZ7Ug99O5CCd0Xi29AnRSBAYx8EvXaEMb80NqIhfY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Bp9cDtKY; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-53df1d1b6e8so5351667e87.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 23:57:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1733212626; x=1733817426; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7WSM6TGpmmItz1uM+DrPz33P+iBBhPav9/6+0hNpzfY=;
+        b=Bp9cDtKYIulZYLJVsMyF4pbX80JXp7spNIRLp4Z3kZZEjnIn3jlZ0HMyVF3kMzayq2
+         wOF3k7XrBBw1vjbeOOLaTynL7BI+r352g7ZouMhhK7bn6DdBX3rsFNRC2VQuHwgkVk/O
+         USaav2g7eV97nFYkw7/gDAHYL0EKww5/Xk1Yk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733212626; x=1733817426;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7WSM6TGpmmItz1uM+DrPz33P+iBBhPav9/6+0hNpzfY=;
+        b=qe56iy9Ik7I2Yba0qBv7N6Lt3H2R8JKI6X0BjCKmvBPuEcCwy8CZ0RbWVqpcsqUmSO
+         8wmipMo1phhsY176msKnOMqx3dKa0Vg8x3Ud5HsLJZ91SvLyQU4ByMLqnJQFQ4R1Mey1
+         8+lTyAqvsOTZSxLKT/LnXa8HZwOnV007+5DwqnmFEbUbda5VUCjd6qLIvvX8rokbggld
+         PPbdt3rGc6btyl3Yphhaf6qNSfPrdxHzMzu1D3G2fozXjlReUqD5iDfgfJkfJ9SKYski
+         FCOvT8B4x0LXwzlaXxE+sxSpHhtsFKAPaghJvkINniONl0MBLbg75fhkR6ts7tiF6nj+
+         QXuA==
+X-Forwarded-Encrypted: i=1; AJvYcCUqZPVVQufbpp/V+/z5ov6vPCcm1tIbmqIDHh0qPxza0jovY1hZkqP0nwF0l+kKopQKtiXSSAm3Qs8o@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz1zoXnI4gD5eqhlfC9Y3TD7PtsG9R4OkINs8B1L8b/mEVIb3Nh
+	NzmcVM2yOyQQQcMtxaje48u6nejshvFk572jvB/nQnBC5uJH19oxzf4thdBHlvHcf9Q0rLlT2w5
+	kezNazzOxmMn59aEeUul3N16ZFzfRX3+txRjz
+X-Gm-Gg: ASbGnct+tEIAYqPrXNncINJCK9fi2Q51y16z5jDmQzrUNgLg9xs7jqvXbtEcFVGGoxf
+	4+iGKvVztEygQq/WYjA6Xx03PHIYLW8n06X/Tdo/RdHpMmY+ecRrjMAn71ZU=
+X-Google-Smtp-Source: AGHT+IGpQFfklgML0v0C4LtaU2v74NIo4jtxn8wZdpHFLuloc5xneMzv1C9DI4bftKit5brhjQgwO+p7wVaG2CY8JIk=
+X-Received: by 2002:a05:6512:138c:b0:53d:e5f0:32bb with SMTP id
+ 2adb3069b0e04-53e12a3929bmr524178e87.51.1733212626459; Mon, 02 Dec 2024
+ 23:57:06 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 07/10] dt-bindings: arm: qcomtee: add QTEE driver
- devicetree binding for TEE subsystem
-To: Amirreza Zarrabi <quic_azarrabi@quicinc.com>,
- Jens Wiklander <jens.wiklander@linaro.org>,
- Sumit Garg <sumit.garg@linaro.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, op-tee@lists.trustedfirmware.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org
-References: <20241202-qcom-tee-using-tee-ss-without-mem-obj-v1-0-f502ef01e016@quicinc.com>
- <20241202-qcom-tee-using-tee-ss-without-mem-obj-v1-7-f502ef01e016@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241202-qcom-tee-using-tee-ss-without-mem-obj-v1-7-f502ef01e016@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20241202032035.29045-1-xiazhengqiao@huaqin.corp-partner.google.com>
+ <20241202032035.29045-5-xiazhengqiao@huaqin.corp-partner.google.com>
+In-Reply-To: <20241202032035.29045-5-xiazhengqiao@huaqin.corp-partner.google.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Tue, 3 Dec 2024 15:56:55 +0800
+Message-ID: <CAGXv+5Hp030iiCXDYHYX6F1mD5WnsL=EziHPfM7Hm4kMxnhgXw@mail.gmail.com>
+Subject: Re: [PATCH v4 4/4] arm64: dts: mediatek: Modify audio codec name for pmic
+To: Zhengqiao Xia <xiazhengqiao@huaqin.corp-partner.google.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
+	hsinyi@chromium.org, sean.wang@mediatek.com, dianders@google.com, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 03/12/2024 05:19, Amirreza Zarrabi wrote:
-> Introduce qcom,tee compatible string.
+On Mon, Dec 2, 2024 at 11:21=E2=80=AFAM Zhengqiao Xia
+<xiazhengqiao@huaqin.corp-partner.google.com> wrote:
+>
+> change `codec` in pmic (in mt8186-corsola.dtsi) to `audio-codec`
+>
+> Signed-off-by: Zhengqiao Xia <xiazhengqiao@huaqin.corp-partner.google.com=
+>
 
-Why? What is it for? You have entire commit msg for this, instead of
-repeating subject.
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
 
-A nit, subject: drop second/last, redundant "devicetree binding". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-
-Also drop driver, bindings are not for drivers.
-
-> 
-> Signed-off-by: Amirreza Zarrabi <quic_azarrabi@quicinc.com>
 > ---
->  .../devicetree/bindings/arm/firmware/qcom,tee.yaml | 34 ++++++++++++++++++++++
->  1 file changed, 34 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/firmware/qcom,tee.yaml b/Documentation/devicetree/bindings/arm/firmware/qcom,tee.yaml
-> new file mode 100644
-> index 000000000000..43b7e8ac944e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/firmware/qcom,tee.yaml
-> @@ -0,0 +1,34 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/firmware/qcom,tee.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm TEE
-> +
-> +maintainers:
-> +  - Amirreza Zarrabi <quic_azarrabi@quicinc.com>
-> +
-> +description: |
-
-Do not need '|' unless you need to preserve formatting.
-
-> +  QTEE is a piece of software provide a Trusted Execution Environment using ARM
-> +  TrustZone for Qualcomm SoC.
-> +
-> +properties:
-> +  $nodename:
-> +    const: qcom_tee
-
-No, first it is not correct (see coding style), second is not even
-needed. Drop.
-
-> +
-> +  compatible:
-> +    const: qcom,tee
-
-One, same interface for all devices? Nothing SoC specific? You are
-making now a contract, so please carefully analyze it internally what it
-means.
-
-> +
-> +required:
-> +  - compatible
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    firmware {
-
-Drop
-
-> +        qcom_tee {
-
-See DTS coding style.
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-
-> +            compatible = "qcom,tee";
-
-No resources? Nothing here? What is the point except of instantiating
-your driver?
-
-> +        };
-> +    };
-> 
-
-
-Best regards,
-Krzysztof
+>  arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi b/arch/arm6=
+4/boot/dts/mediatek/mt8186-corsola.dtsi
+> index e324e3fd347e..cebb134331fb 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
+> @@ -1276,7 +1276,7 @@
+>                 interrupts-extended =3D <&pio 201 IRQ_TYPE_LEVEL_HIGH>;
+>                 #interrupt-cells =3D <2>;
+>
+> -               mt6366codec: codec {
+> +               mt6366codec: audio-codec {
+>                         compatible =3D "mediatek,mt6366-sound", "mediatek=
+,mt6358-sound";
+>                         Avdd-supply =3D <&mt6366_vaud28_reg>;
+>                         mediatek,dmic-mode =3D <1>; /* one-wire */
+> --
+> 2.17.1
+>
 
