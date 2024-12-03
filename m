@@ -1,131 +1,114 @@
-Return-Path: <devicetree+bounces-126358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126359-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DC909E13BB
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 08:08:28 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4CEF81643AE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 07:08:25 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52351186E27;
-	Tue,  3 Dec 2024 07:08:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b="1WyptBjK"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.24])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 635059E13C2
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 08:12:57 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C97142AA3;
-	Tue,  3 Dec 2024 07:08:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.24
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C86A1282BA5
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 07:12:55 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 018E0189F39;
+	Tue,  3 Dec 2024 07:12:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qDMG7BJ8"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EDFC18870B
+	for <devicetree@vger.kernel.org>; Tue,  3 Dec 2024 07:12:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733209703; cv=none; b=tlkcIAh9VDoHV0gcHn5ukEGfCdA0opbCrJz/PZ8mb+iLyXDboKWWRgRDg7vusDN7Ku1YW+MlJYQv0ZBqJY4yy/0+wTtktQ6chzSrDOweOF8bPTOSqEARmuVuCTLnsx/L4xYIHCWjHGAnCg6XdusIl3DivxC05+2JjEcay90uchU=
+	t=1733209971; cv=none; b=krFpaRsfNXxAyVJSx+TjDM7GF8FWw9F8tWYmG97qiow3OUcV4/B9UI3JhbVLIEGsrZ9YtvyY4P77crEYu+lPaPBgGwHb+PeqyXXaDvHXW7mDaFw4IneO+o6UTigrQluItn52TWjdd0Q6p8mex7oX0hboqItSSyBq2GKNj6ILcgc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733209703; c=relaxed/simple;
-	bh=sv/ZLZNiP+ORYCqKhKoa1tROOZS7hHnvR4oSVaz6GKA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NEzONaIig5+ydWNUlkSVI3OvFafyqwz4qFMN9+Z1IceVwSU7+iL4QoypQKR9h3YlsVWDPNr6vHQT5txhXcSYOSqM/n+GPaipYVNIuAypBggPMoSpvtSOceaAdLfj5zmowZksUgQgLlZHD61fXMUTViYMjpqIErcyqe/k5XSu8Y0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz; spf=pass smtp.mailfrom=oldschoolsolutions.biz; dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b=1WyptBjK; arc=none smtp.client-ip=212.227.17.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oldschoolsolutions.biz
+	s=arc-20240116; t=1733209971; c=relaxed/simple;
+	bh=EVBM5qoQmU3xuxiwaVTztbikwXOSdVscc5nB635UeFk=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=RsigQ7qDILHUUX4R/Xr+SgVqPgN9XT6fIsozzq1ieAD5zLWWTZtCCA7oYapq6fqgp4xwS50j6s1/m5NpVyEMyNaJ/AC2BF4pSUGbd3tXvv60xDUItkp7Qe92SVqv6iI4+/MJXm0tnQpjSoAoudAUwk51LzX5qezSBsB3SCwT3Yc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qDMG7BJ8; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-385e25c5d75so2168276f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 23:12:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=oldschoolsolutions.biz; s=s1-ionos; t=1733209676; x=1733814476;
-	i=jens.glathe@oldschoolsolutions.biz;
-	bh=sv/ZLZNiP+ORYCqKhKoa1tROOZS7hHnvR4oSVaz6GKA=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=1WyptBjKNhHiqJNh8cQZueublvUjY6F7C5tt6kytTzW/16O45V1RTDzpY37rc4d3
-	 y9DFHa4zlknelPMcuu4Gxz2F1yJKuGxjKN2E4Ennr79Qi/3lwyl4i2WLKg45N2qcq
-	 C57/Z2msEzrrL+IjjovVquqjwDVe5gYeGTteUCYcVbnnzVQIwmS7XvdtFUHw6rctZ
-	 9rIYfRC814clNGeQc0ztVxgsCsch0FxA3G5f9bWzvZAg2XLBTEsDbc8AKAueXOaRz
-	 oPWbXgwop7r/a+MhSNuIZ8Wp/TH8Jxw8e+jgyvxBlwQYw+BP3AvLr3mV9ni39HJBn
-	 AvDH6tc2Vvv70x3jPw==
-X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
-Received: from [192.168.0.174] ([91.64.229.215]) by mrelayeu.kundenserver.de
- (mreue109 [212.227.15.183]) with ESMTPSA (Nemesis) id
- 1MJV9S-1sydCW2ICe-00TY9Z; Tue, 03 Dec 2024 08:07:56 +0100
-Message-ID: <7f5d424d-09a1-46ca-92a6-a1e7f8084bf0@oldschoolsolutions.biz>
-Date: Tue, 3 Dec 2024 08:07:55 +0100
+        d=linaro.org; s=google; t=1733209968; x=1733814768; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=EVBM5qoQmU3xuxiwaVTztbikwXOSdVscc5nB635UeFk=;
+        b=qDMG7BJ81Lf/g9f1GghHh7MzczQegiRSoRy7y6fp4ppq0iDNaCpXGgIhmJrtUaVfMd
+         QSkx9LYCNcS3+UsmkVo11zXTf6Gm80uofi2ZPSzYg5EmJ47IZ6GzDuBR6rGw1ABVP6Et
+         /biKtlYuoVdh3U0+qfeDt3A7BkX5nkJKF4I1cV84UZAqmFuLmFJLjR9+FUsi5pZNw043
+         cVF50/JTLOqj3kMxI2oTs8VdYXBwzV7DifO6ytf9i9rjjhK1YolfCn+Ym8NDKCwdAYXH
+         NdCvO4RhIXlCtksCcOU4dJ4ozHAMvzVS0SUI6W+JG2n1ZTBjArh8JIU/5pkOL4ZcA8nH
+         NjIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733209968; x=1733814768;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EVBM5qoQmU3xuxiwaVTztbikwXOSdVscc5nB635UeFk=;
+        b=hp5rKV4ZEPoB3d6PvOzDXI6pDv7JWP83GCkBJMiUEFC2iLSqB6bl9TNlHymzLUR5YS
+         SpozuxYouhouDF8ZOJytMFeE2dtNWcYFh+jxMXZvfhA/PaXL9gtzez9J5zBRlhy3AuIK
+         DOejM7gsMl+ZXe3sE+33THWar35+oIYna0m8l1ymv/mzOMKWFUvtNakfmE0OmNKMeCe0
+         xlkIFHiFu99HcEJsLn1lfQDSj6dol9CGdo3WBBTWVMkGcS+c2IR1xZIVOsdYwH18OmI8
+         eWjUJz62vgGpwTE8ZHhHwS+Vc7K4O7z9OxYiaXZJ1kXgg6W+ZkLuGBYLgdvDTI7hgtxq
+         GwSg==
+X-Forwarded-Encrypted: i=1; AJvYcCUH56zd8/v6kALf8W28LgT8T1wn7skWot5t8O6hfQ1AXccctP3AbHrrWcWOYeMu7H0kNQiJUFXvBzm+@vger.kernel.org
+X-Gm-Message-State: AOJu0YzwX2aI4Ya0HmFOvxDcdQqFqqSvm35eBbJeSs4WGdgylHv6QOsI
+	M1M+oZHXfgKbQ9TGJbqBL2SM9hKMR+vqPdd8n1UYTXtyuYUW/aQpP0qOOqXRXb8=
+X-Gm-Gg: ASbGnctIOAYIH9iCfCdQ6fFeRmYjf8uhUOuqcl5QtFUv3CWpAAcT1MPZP+cbv2iPQbe
+	1IAk4YFrZqZGFopaDTSPIuyYyigKb7L12c9Xg8cVSilQsJFzg4mSRUSN+tnpvXEUk0vO7iG3JT2
+	irPZDhbmDAZ+LLjCaVBnHBAB3BrmoZI77BvMyRkJSrGZhyf/rJZRVm/d9R3Y4lMWULUmC0ji5vR
+	hcqlTAAZNpPczk2z0bcWt3YbfsokkLIzr6GKRwLANcvaoF8847Er9M=
+X-Google-Smtp-Source: AGHT+IEplB7jYEBVeBsm9qKzYjb6Q/52WlhBD/Tf3x0VCfolLamrC+TuTTucz1KuLRGPu4rrqQllDQ==
+X-Received: by 2002:a05:6000:1fa7:b0:382:51ae:7569 with SMTP id ffacd0b85a97d-385fd3e8f28mr1191117f8f.18.1733209968624;
+        Mon, 02 Dec 2024 23:12:48 -0800 (PST)
+Received: from [10.1.1.109] ([80.111.64.44])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-385e2c84d52sm9859752f8f.49.2024.12.02.23.12.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Dec 2024 23:12:48 -0800 (PST)
+Message-ID: <e23721ebd766f410103ddfb8705f3d7d6e5ae3e9.camel@linaro.org>
+Subject: Re: [PATCH 2/4] dt-bindings: power: supply: add max77759-fg flavor
+ and don't require nvme address
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: t.antoine@uclouvain.be, Sebastian Reichel <sre@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Dimitri Fedrau <dima.fedrau@gmail.com>, Catalin
+ Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Peter
+ Griffin <peter.griffin@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org
+Date: Tue, 03 Dec 2024 07:12:47 +0000
+In-Reply-To: <20241202-b4-gs101_max77759_fg-v1-2-98d2fa7bfe30@uclouvain.be>
+References: <20241202-b4-gs101_max77759_fg-v1-0-98d2fa7bfe30@uclouvain.be>
+	 <20241202-b4-gs101_max77759_fg-v1-2-98d2fa7bfe30@uclouvain.be>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.1-4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 3/3] arm64: dts: qcom: sc8280xp-blackrock: dt
- definition for WDK2023
-To: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: Kalle Valo <kvalo@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Rob Herring <robh@kernel.org>, Merck Hung <merckhung@gmail.com>,
- xlazom00@gmail.com, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-References: <20241202-jg-blackrock-for-upstream-v9-0-385bb46ca122@oldschoolsolutions.biz>
- <20241202-jg-blackrock-for-upstream-v9-3-385bb46ca122@oldschoolsolutions.biz>
- <0352b36d-92fa-42ba-bc20-40cef0f9ea42@oss.qualcomm.com>
-Content-Language: en-US
-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-In-Reply-To: <0352b36d-92fa-42ba-bc20-40cef0f9ea42@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:tWOFzcbo+m+ObCOiNlwoCMMFHZX41Levru0sbPKXuhwKAASYWST
- fyBC0QtCcJoFmuAQ7ET6NKAZHh/jPmRh10gEyGNY4CyCWapsiiiUhHvP1tEcd18RuHXgWZc
- sXv/rnYuF6uso3VsXPet71gcNVPSzv7qCVBkdd81DGzI+Mz7vc8bmjSGxdY87SObOFkdfxr
- 9BT55lV2G4CJOOyvVQrlw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:FD4rmPGlEW4=;j2SPBrS/ywcUJ4QmXa8fDkTDkG1
- cORRp8hCXcarqbGLeHcQfugA68zlus5gxsgB0olmhfe0Qxt0LVLf7mm3ZU2ThaHlXAmCxMCeY
- oZggykU6Zc/Jvlh6f434yPDG3WmAZa6EvgB4iiYqgzhd74GpkcXo1riOb22WrmnmWILFE/skO
- 5nzyjVGTmKs87FYY2aRdEM4+qyjs2PNBfz7rBC6pL5CkS92D68JUL8iEtdRqK/siQGlVqlVR4
- pylB0K4tA8MSXvBtaBc1jEbrQGFK7mNrpb80cGsZz9QTodpLrWHq7LUZBBHgAXAeunky5IA/v
- CrM7lVmI/2+IfJCwO5pkutexuvyYsaDkb+6PMcnhy80RV3kWHZcEwxTJ5WVKxHQ/n/LMlX08/
- oolAbqPeWvPuoWOzhkEpGoQ9ovM+mGvvRsLXQAppLze3KItlHICabfJMbnNVQOHV2c2wM34KP
- f8FJJ4LJ44x8nERG6ztA9BBbmn/GPectVzwWpRbpCTdjQI+0H9e0ksDuOUCy/5GoCj8cuPJK/
- sdfsmTMuhYipPxpltTM3N7rTTVRWMjtIgHxrGzk/W9IVGnfnpZLCV7Ndp0p6VC6vijGZ0u7K6
- bgHGTV3gBUgIchiPDytg7YCfRQGqxewLyrBPwh1bmLPny13JGVEpvsbnq+pMhmkvLGly9EpT+
- isMuQIe/KdSAgTIiRg+ub6ljEgabcMixb/z1e+vv8G/U196BvhsW1ArU8igrsdbZ6aAbzwW17
- TVXWiBdTBS6P1gqc+Y91xdOfwFi0dJ9bAfyUSSYRh43DcOZS2nmSo6HZSC+Fi09RIeztRJCcV
- /o0w0yVscx5pieXC3zNhWW14RN4cCOvwZ9AZbeiyb13/NSdeVI6zXEfOI0lofFO6I1hxdYIig
- gEYkoRGCqGupP3AZzRYKlK+a4V1Iqn0wj5yl0Az0U1+kSmPBi+bxHUm4C1RtNl+/lFqb5uUMY
- PV0AJnW3+cfFd0NKgTu53K1KVQBHSM2cn7dBlSTvDhb2i9gnZSNqDYPt2unaKbWal3WQ9U17Q
- NcSUfNnx2G7Str4LrNFTq0B7/7Ua3B5Ifhoq2NV
 
-On 03.12.24 06:08, Krishna Kurapati wrote:
+On Mon, 2024-12-02 at 14:07 +0100, Thomas Antoine via B4 Relay wrote:
+> From: Thomas Antoine <t.antoine@uclouvain.be>
+>=20
+> As the Maxim max77759 fuel gauge has no non-volatile memory slave address=
+,
+> make it non-obligatory. Except for this, the max77759 seems to behave the
+> same as the max1720x.
 
-[...]
->
-> Although functionally unused, there is one more connector node that
-> runs between QMPPHY and DWC3 node. For example in [1], please check
-> "usb_dp_qmpphy_usb_ss_in" and "usb_1_dwc3_ss"
->
-> Would be good to check why it is missing and add it further.
->
-> [1]:
-> https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/qcom/q=
-cs6490-rb3gen2.dts
->
->
-I checked, there's an extra endpoint for usb_?_qmpphy_usb_ss_in and
-usb_?_qmpphy_dp_in.=C2=A0 usb_?_qmpphy_usb_ss_in=C2=A0 are defined (and "w=
-ired")
-between port@1 of usb_?_qmpphy and port@1 of usb_?_dwc3, in
-sc8280xp.dtsi. On port@2 of the qmpphy is usb_?_qmpphy_dp_in as
-endpoint, which is further defined in sc8280xp-microsoft-blackrock.dts
-as connecting to mdss0_dp?_out. Maybe that's wrong, it's the same as in
-sc8280xp-lenvo-thinkpad-x13s.dts.
+What about the battery characterization tables? Aren't they needed for
+correct reporting?
 
-with best regards
-
-Jens
-
+Cheers,
+Andre'
 
 
