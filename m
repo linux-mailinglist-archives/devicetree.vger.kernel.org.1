@@ -1,111 +1,180 @@
-Return-Path: <devicetree+bounces-126636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0291E9E2094
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 16:00:41 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C86A4166844
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 14:59:37 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE8A01F75A4;
-	Tue,  3 Dec 2024 14:59:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="LnB4d1FL"
-X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E0D79E20CE
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 16:03:52 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4D6E1F7071;
-	Tue,  3 Dec 2024 14:58:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1FCE28432E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 15:03:50 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92D761F7585;
+	Tue,  3 Dec 2024 15:03:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YEPhEVrF"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D933533FE;
+	Tue,  3 Dec 2024 15:03:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733237940; cv=none; b=S7Uz1uV6GCnJNVlTAA3vrMQFovf1P7VVxesB5PSfHNbTN4J6HG+IMiRH1RobFrL0UQI8O9w4h9NdRBQcVy+yEPW/qqqvOMc5tb19IZzBRXreXwgxPMJUhnglzvUDbqN+fciLkRpkU+qo978F7xhGo+mEblGjVRCNp1ADdheav24=
+	t=1733238219; cv=none; b=akZ7gbOCRE9IsSoC7hGLVWsgDvV5rj8lT7u9LAYBrnxPXnisB0q3crksDzw+pS9m/NMf0pKLPukXVkkQ13q1kx3SOHMTtTNgA/4avepW72+h4TXjHWTlrLGErnUV4Yj12pJqt6TukVzRrzrXSkxwD+xl3c06ets6i+YQfDN1kzI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733237940; c=relaxed/simple;
-	bh=tInhdEsQvO5/sVLGY5Zzicbns+gadmFD8V+laCIIyfQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AkKtelMCP4KizCguYw/Od7TjN6GOmAv76m4++3R9iMTHNBo8297YiMa6TeHtYhhibuL1lgfc9qLYN46RQ+zLMIn6s58vd83KcLrvNqxk69HIspzj+UP4dSd0QqLjPYXxIXPuZJ6cUukR9APZY+3UbYjvIHnmsYYIkeonKWGQCkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=LnB4d1FL; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=AQfWXnwBtjN4+gVX0bHkzy3HHnT2/jPXP6zHmg2fCvs=; b=Ln
-	B4d1FLm6hFKT1zzUVBGaUbFqCSIXxlRMFuTgS6FHvoDQDHLEdDcUOJ8gi8ngmraFhNAug/S96vt/i
-	t3QOSt5H8yDbjbaPbKmXFEjhTgrH+vleuSIwL0JbIp+/p6Xs3FsMCIm+Nafv2zdnT/daIZdJpICGx
-	oZHrT0RltarQVX4=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tIUMM-00F6Nb-5j; Tue, 03 Dec 2024 15:58:42 +0100
-Date: Tue, 3 Dec 2024 15:58:42 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Joey Lu <a0987203069@gmail.com>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
-	richardcochran@gmail.com, alexandre.torgue@foss.st.com,
-	joabreu@synopsys.com, ychuang3@nuvoton.com, schung@nuvoton.com,
-	yclu4@nuvoton.com, peppe.cavallaro@st.com,
-	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	openbmc@lists.ozlabs.org, linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH v4 3/3] net: stmmac: dwmac-nuvoton: Add dwmac glue for
- Nuvoton MA35 family
-Message-ID: <ba09cea2-4cf7-4203-ae98-ea5d8413f69e@lunn.ch>
-References: <20241202023643.75010-1-a0987203069@gmail.com>
- <20241202023643.75010-4-a0987203069@gmail.com>
- <9f2c8532-8e52-439a-b253-ad2ceb07b21b@lunn.ch>
- <75eb13d7-b582-4056-b707-706865611706@gmail.com>
+	s=arc-20240116; t=1733238219; c=relaxed/simple;
+	bh=mBYRXw2fAY2rADsGqfrX/V45Ur3RlgA4Uz9jGwAr0RY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=PWLdiuoVhqQ5FoYg/OVe5Qc5V+/2FErhzlfweqxs+U7TwXoCRElgLRuvTMWeU/sxsGZrlHCNOjdq/bFBDAV/56JzwkVFmHlkqybG/y1vzGYAuE1/REZCGuFOT9l+A942mjCJPIVi3UzfDJs1/hwZiLtd6Blf4EU/RDPwQa9H4zg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YEPhEVrF; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B39qfIw025869;
+	Tue, 3 Dec 2024 15:03:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	FH9erZS96n4ZTw/Bg76WPXMK3nYn4CXdCAOmD6/eekg=; b=YEPhEVrFL6T4SVhI
+	DUoppbbjIktJbGeAkMT2Ykl2Im6fG5vNqd244mYkpPbBQkBRtg6TToOM3s8wBn2u
+	ficbEWdWDrVWixKIiJAo69H3Bxr6UIxRjAH/AhYkojKvxGlmGHj460Cjp3RQ3y3K
+	0ziyAmQxn2zMX49owUQllr2LegF4c87ArVzmeFxDm8Xto0dlP1nwaZcqsgCsOGSN
+	ZC8FhLvm5AwonAhIgSRB1P5l29+UR8RFY2/mGXpnnpet9hY/ui+JhK351z6/5qVj
+	RJOCOEsXYo2oFBBDUhwg5d5SXU5FgoXpxjaa/WhNWzyf8GlC4kBJ+mt6PyTLL73G
+	//b62A==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 439yr9gqew-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 03 Dec 2024 15:03:30 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B3F3T6U026257
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 3 Dec 2024 15:03:29 GMT
+Received: from [10.217.216.47] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 3 Dec 2024
+ 07:03:24 -0800
+Message-ID: <e6c17b91-e771-480e-b46d-f11c167a96bf@quicinc.com>
+Date: Tue, 3 Dec 2024 20:33:21 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <75eb13d7-b582-4056-b707-706865611706@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: sa8775p: Add CPU OPP tables to
+ scale DDR/L3
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Brian Masney <bmasney@redhat.com>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Ajit Pandey <quic_ajipan@quicinc.com>,
+        "Imran
+ Shaik" <quic_imrashai@quicinc.com>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        "Satya Priya Kakitapalli" <quic_skakitap@quicinc.com>,
+        Shivnandan Kumar
+	<quic_kshivnan@quicinc.com>
+References: <20241017-sa8775p-cpufreq-l3-ddr-scaling-v1-0-074e0fb80b33@quicinc.com>
+ <20241017-sa8775p-cpufreq-l3-ddr-scaling-v1-2-074e0fb80b33@quicinc.com>
+ <ZxEwVShJuMH4J1Hp@x1> <9179759d-7af1-409f-8130-1136c9ae4ecd@quicinc.com>
+ <daqa3krsp6emdha6h7tlcelsggb6qeilnojgtfxjbp5zw4n6ow@xzwdmu55ygjf>
+Content-Language: en-US
+From: Jagadeesh Kona <quic_jkona@quicinc.com>
+In-Reply-To: <daqa3krsp6emdha6h7tlcelsggb6qeilnojgtfxjbp5zw4n6ow@xzwdmu55ygjf>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: pLAoaY0_fsUXMsB6E8PTMqaMDhOArjt_
+X-Proofpoint-GUID: pLAoaY0_fsUXMsB6E8PTMqaMDhOArjt_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 impostorscore=0
+ clxscore=1015 priorityscore=1501 mlxlogscore=960 phishscore=0
+ lowpriorityscore=0 malwarescore=0 mlxscore=0 suspectscore=0 adultscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412030127
 
-On Tue, Dec 03, 2024 at 05:12:24PM +0800, Joey Lu wrote:
-> Dear Andrew,
-> 
-> You're correct. In the stmmac_hw_init function within stmmac_main.c, whether
-> pmt is true is determined by checking the pmt_remote_wake_up bit in the
-> hardware feature register. However, our hardware configuration only supports
-> magic packet and not remote wakeup, so it must be overwritten in the glue
-> driver.
-
-Please add a comment explaining this. 
 
 
-I'm not sure why the original code doesn't include magic packet as part
-> of pmt.
+On 11/15/2024 4:18 AM, Dmitry Baryshkov wrote:
+> On Mon, Nov 11, 2024 at 06:39:48PM +0530, Jagadeesh Kona wrote:
+>>
+>>
+>> On 10/17/2024 9:12 PM, Brian Masney wrote:
+>>> On Thu, Oct 17, 2024 at 02:58:31PM +0530, Jagadeesh Kona wrote:
+>>>> +	cpu0_opp_table: opp-table-cpu0 {
+>>>> +		compatible = "operating-points-v2";
+>>>> +		opp-shared;
+>>>> +
+>>>> +		cpu0_opp_1267mhz: opp-1267200000 {
+>>>> +			opp-hz = /bits/ 64 <1267200000>;
+>>>> +			opp-peak-kBps = <6220800 29491200>;
+>>>> +		};
+>>>> +
+>>>> +		cpu0_opp_1363mhz: opp-1363200000 {
+>>>> +			opp-hz = /bits/ 64 <1363200000>;
+>>>> +			opp-peak-kBps = <6220800 29491200>;
+>>>> +		};
+>>>
+>>> [snip]
+>>>
+>>>> +	cpu4_opp_table: opp-table-cpu4 {
+>>>> +		compatible = "operating-points-v2";
+>>>> +		opp-shared;
+>>>> +
+>>>> +		cpu4_opp_1267mhz: opp-1267200000 {
+>>>> +			opp-hz = /bits/ 64 <1267200000>;
+>>>> +			opp-peak-kBps = <6220800 29491200>;
+>>>> +		};
+>>>> +
+>>>> +		cpu4_opp_1363mhz: opp-1363200000 {
+>>>> +			opp-hz = /bits/ 64 <1363200000>;
+>>>> +			opp-peak-kBps = <6220800 29491200>;
+>>>> +		};
+>>>
+>>> There's no functional differences in the cpu0 and cpu4 opp tables. Can
+>>> a single table be used?
+>>>
+>>> This aligns with my recollection that this particular SoC only has the
+>>> gold cores.
+>>>
+>>> Brian
+>>>
+>>
+>> Thanks Brian for your review. Sorry for the delayed response.
+>>
+>> We require separate OPP tables for CPU0 and CPU4 to allow independent
+>> scaling of DDR and L3 frequencies for each CPU domain, with the final
+>> DDR and L3 frequencies being an aggregate of both.
+>>
+>> If we use a single OPP table for both CPU domains, then _allocate_opp_table() [1]
+>> won't be invoked for CPU4. As a result both CPU devices will end up in sharing
+>> the same ICC path handle, which could lead to one CPU device overwriting the bandwidth
+>> votes of other.
 > 
-> source code:
+> All of this should be a part of the commit message.
 > 
->         stmmac_hw_init() @net/ethernet/stmicro/stmmac/stmmac_main.c
-> 
->         priv->plat->enh_desc = priv->dma_cap.enh_desc;
->         priv->plat->pmt = priv->dma_cap.pmt_remote_wake_up &&
->                 !(priv->plat->flags & STMMAC_FLAG_USE_PHY_WOL);
->         priv->hw->pmt = priv->plat->pmt;
-> 
-> Or modify the condition as follows:
-> 
->         priv->plat->pmt = (priv->dma_cap.pmt_remote_wake_up || priv->
-> dma_cap.pmt_magic_frame) &&
->                 !(priv->plat->flags & STMMAC_FLAG_USE_PHY_WOL);
 
-Are there other glue drivers which would benefit from this? It is hard
-for me to say if you hardware is odd, or if this should be a generic
-feature which other glue drivers would use.
+Thanks Dmitry for your review. Will include this in commit text while posting the next series.
 
-	Andrew
+Thanks,
+Jagadeesh
+
+>>
+>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/opp/core.c#n1588
+>>
+>> Thanks,
+>> Jagadeesh
+>>  
+> 
 
