@@ -1,291 +1,115 @@
-Return-Path: <devicetree+bounces-126641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126642-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 601EA9E22AE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 16:27:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23A9A9E22DB
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 16:29:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A77B16988A
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 15:22:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA18816B439
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 15:25:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA6E01F757E;
-	Tue,  3 Dec 2024 15:22:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A5691F7550;
+	Tue,  3 Dec 2024 15:25:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UOuFnNua"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BibNDSdI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 212621F755B
-	for <devicetree@vger.kernel.org>; Tue,  3 Dec 2024 15:22:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 363E71F130F;
+	Tue,  3 Dec 2024 15:25:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733239359; cv=none; b=t1HthhBPW0yBrn2ac1qLUEomNHlT/KuG0qYHREzGYCzhg+vyO/K0OMBP7wpKcJ63MnDSYNRJaTMGw9cbmKSMJFlSsL88/3kLBTrjGy5NnriJZmS3v19+MwMu0wD9L6NHTgtmzktsmlk0N0VFF8B2P5QS0pkhwrbftKInIjXmIaY=
+	t=1733239518; cv=none; b=nUIU4k4Ppfsoyp21z/EnVWbCNTgD3C9q1IHAKrMMz3Y9PXMCEkT6wScsCDgU3Hw0yXvjdfoMpMLXcHEKwGP2RdtDq4jsRcheacVKakXOq1UAvqiRJfto7Ju0W4e9NmqqUgfoqLr787VrWDsqvkNWWxpIWE229OjmqOGH8hRdjuA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733239359; c=relaxed/simple;
-	bh=3HKMqPH2mz9m9zUiyexitBS0CiX5BNdBQAn5qpYcUUw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jAP4EJ+7PhJWxUNpgQ6wLZNVdDBjzqAhNSfE/EO1hFfmciLg6KAmVIubgI++1fetGMpIkAL+DhvJh4rHU1hkr4kk/tTqlNJeIRLOE/X6lalsJCh/oAxstAKTaaoHe0pd3w3JcBOHKdPL53jYm9qihhWbrqYNhgTYvkdD5rOIYKM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UOuFnNua; arc=none smtp.client-ip=209.85.210.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-724d8422f37so4617681b3a.2
-        for <devicetree@vger.kernel.org>; Tue, 03 Dec 2024 07:22:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733239357; x=1733844157; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=3axE8hWFEOAcBbBVlVC5J9i71o0iCzSmsJDKDt+tz5A=;
-        b=UOuFnNuapXdK7ztlXYhcWUhmsYGLUMqVpnC7kJTa0b4wcHThxZIhxtiQibmm+TZpuT
-         C/PhA9lT/47M6jt/qpV+b3g3YESYMvg/60SoZ6SPI1qaslUOzPaR6FUuJBD7PCkjqQff
-         hkuFoGFFBN2vEfEgNtTqCLsXZY9vofTsy/u7tyTnKglCBjdTbJd042v7/SUtQUg8IBLV
-         3mf2NCzGNRxy/PP7kVEATu6DdetFzR86lcYmizZPsWoy6QmIgEaEA/nTbMbMbWR9GAWD
-         qP57LdFFcRROzSHoaif1AI6idCG5h2c8+lVNRZvKGegY8ImzBBBjUSLlOdX2jZkMvJ2W
-         0RZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733239357; x=1733844157;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3axE8hWFEOAcBbBVlVC5J9i71o0iCzSmsJDKDt+tz5A=;
-        b=eTqJuHxtyW/J1TiMDNI0lDZM6Q/aHdvHBL4cS3xAxzB9UHxUSNznYsMh8ddHBnz+RH
-         FludXimHdtZM5/4aspFogORyAHHF7o30oMDeWt8LUI/gj6+5IG3uWxkz9MWjrIVVpY4g
-         dG5ptI1nt/lMXf/UwvN/n57FHcog/lDjEoSzp0pW263KBYGCycCI5qAi1kI2tQta2XqU
-         qZBbMnef8k9B+fVwRvFSoeVEWA5VkZgDhvJZ/jirzEHzUqrdNsyaAf+V+EeMyjjeQTSQ
-         GgpxCr0yLf38k7IzPTuBXkkPT4YyJwQ05wvMSILQdFvacvbg+/jDanoW5c0jay9ugbhX
-         irWw==
-X-Forwarded-Encrypted: i=1; AJvYcCVxkRbrDROSWsA0xug0JiaeLwXjUT/2MD7q3qqXk4vk7tNnpN42Kpk70Pi3nzuAH7a0yHTgFrGw5IVz@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7FYG0sNiY5X8oV3qQ+JUgEXcrFIJr24J1O1lAix1RJD7HxVZ7
-	ExSVwTo8u8JeuOK1KRd+1bORKUUSFj9KddlQz0gPmLjw2+beNasiRgpuP3eZ/A==
-X-Gm-Gg: ASbGncvyc79w8ukqQgwdJOXzeL89pyorFi3+Z782N8BBXSudj3vwE7nvp2eKJpok1Ga
-	JKLByOTQcS/B5Ia6/NNQ2ue6cHOf/doaZJdf1CaitO0lacBo/Kxht720REZXA4hqWD5/b9cIfUU
-	JMUz8FYSvc2IIUhKwkUVtrhfOmBtmRqq4MuvW/eES8qMnFTCMDjShtFk6492cgYSQEzi/HD6cQT
-	v6r4R28O/shtmGptcEyJAkHxUJbZD4g8u3cY7PooKQYJIwB9/XS6nBC+rL1
-X-Google-Smtp-Source: AGHT+IEZzaiAa/sDP0NIqy+9CcPtC9S0iqjWkUM0fW3/+Qg2jpqxzNaED37DXLoNtAbdVeskjdanNg==
-X-Received: by 2002:a05:6a00:1826:b0:71e:74bf:6b1a with SMTP id d2e1a72fcca58-7257fcae158mr3814643b3a.16.1733239357479;
-        Tue, 03 Dec 2024 07:22:37 -0800 (PST)
-Received: from thinkpad ([120.60.48.217])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7254176f8f9sm10906738b3a.66.2024.12.03.07.22.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Dec 2024 07:22:37 -0800 (PST)
-Date: Tue, 3 Dec 2024 20:52:30 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Christian Bruel <christian.bruel@foss.st.com>
-Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-	bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
-	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
-	p.zabel@pengutronix.de, cassel@kernel.org,
-	quic_schintav@quicinc.com, fabrice.gasnier@foss.st.com,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/5] PCI: stm32: Add PCIe endpoint support for
- STM32MP25
-Message-ID: <20241203152230.5mdrt27u5u5ecwcz@thinkpad>
-References: <20241126155119.1574564-1-christian.bruel@foss.st.com>
- <20241126155119.1574564-5-christian.bruel@foss.st.com>
+	s=arc-20240116; t=1733239518; c=relaxed/simple;
+	bh=X/PwEvQP5tU0vB8EoXqX3xfn/sW++pmyf4vXD3OCWfI=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=tshxSQneNN1nR7nRnCitHxhsqPnf6L7NCIp0Z5D5IJzP/ydu/jty1E+7TDERC0WSvuU0uzjyv1xsM9rs00l5pgRlmED+gx4NSIwR3y3vHFws9q/RNH3YY5aNBTxrROmqf8jVrL1qNlP8kmF4fKdsNe5Dn3YYZqtu+j8FcslO30o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BibNDSdI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4D98C4CECF;
+	Tue,  3 Dec 2024 15:25:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733239518;
+	bh=X/PwEvQP5tU0vB8EoXqX3xfn/sW++pmyf4vXD3OCWfI=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=BibNDSdIxD5dJNes1vJ7140QWABbcfK++KnAHPuRH34JJyltkmOovhdFy1ythpMcf
+	 Jgt+X0vAfjdECQevLJNkTTtUM9aIJAefQRcN5aRk2mOXcIzItQZYV+TYYf9kHkbMsN
+	 JB43bQz718szORF+xGZB1wrbaN6402z/7dJ/e1OMHJI4QMRkr2M/Wup8ldZAAW0bHL
+	 arhJtg9HrfmdBNiCy15xVrQcxPODNLdMDZXsFOpjw4CqjZyn88aCXAoj1G/CVJOTCa
+	 OLhJ7kNSWUAGXTiDqyC6R2x/C0ATmOvC9ytIP2sxvUPXMX5LD7v2D0pMT91r9TTHee
+	 kco2TN/wiPeGg==
+Date: Tue, 03 Dec 2024 09:25:16 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241126155119.1574564-5-christian.bruel@foss.st.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: m.szyprowski@samsung.com, frank.binns@imgtec.com, 
+ linux-kernel@vger.kernel.org, maarten.lankhorst@linux.intel.com, 
+ paul.walmsley@sifive.com, jszhang@kernel.org, 
+ linux-riscv@lists.infradead.org, ulf.hansson@linaro.org, 
+ mturquette@baylibre.com, wefu@redhat.com, conor+dt@kernel.org, 
+ dri-devel@lists.freedesktop.org, linux-pm@vger.kernel.org, 
+ airlied@gmail.com, aou@eecs.berkeley.edu, matt.coster@imgtec.com, 
+ guoren@kernel.org, devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
+ sboyd@kernel.org, simona@ffwll.ch, drew@pdp7.com, krzk+dt@kernel.org, 
+ jassisinghbrar@gmail.com, mripard@kernel.org, palmer@dabbelt.com, 
+ tzimmermann@suse.de
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <20241203134137.2114847-9-m.wilczynski@samsung.com>
+References: <20241203134137.2114847-1-m.wilczynski@samsung.com>
+ <CGME20241203134159eucas1p1eafefef0dfe7f2b6343a639733012bcf@eucas1p1.samsung.com>
+ <20241203134137.2114847-9-m.wilczynski@samsung.com>
+Message-Id: <173323951617.1836905.12806289628083482638.robh@kernel.org>
+Subject: Re: [RFC PATCH v1 08/14] dt-bindings: power: thead,th1520: Add
+ support for power domains
 
-On Tue, Nov 26, 2024 at 04:51:18PM +0100, Christian Bruel wrote:
 
-[...]
+On Tue, 03 Dec 2024 14:41:31 +0100, Michal Wilczynski wrote:
+> Add power domain support to the Thead TH1520 clock controller bindings.
+> This enables devices to specify their power domain dependencies,
+> improving power management for components like the GPU.
+> 
+> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+> ---
+>  .../bindings/power/thead,th1520-power.yaml    | 52 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 53 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/thead,th1520-power.yaml
+> 
 
-> +static int stm32_pcie_start_link(struct dw_pcie *pci)
-> +{
-> +	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
-> +	int ret;
-> +
-> +	if (stm32_pcie->link_status == STM32_PCIE_EP_LINK_ENABLED) {
-> +		dev_dbg(pci->dev, "Link is already enabled\n");
-> +		return 0;
-> +	}
-> +
-> +	ret = stm32_pcie_enable_link(pci);
-> +	if (ret) {
-> +		dev_err(pci->dev, "PCIe cannot establish link: %d\n", ret);
-> +		return ret;
-> +	}
+My bot found errors running 'make dt_binding_check' on your patch:
 
-How the REFCLK is supplied to the endpoint? From host or generated locally?
+yamllint warnings/errors:
 
-> +
-> +	stm32_pcie->link_status = STM32_PCIE_EP_LINK_ENABLED;
-> +
-> +	enable_irq(stm32_pcie->perst_irq);
-> +
-> +	return 0;
-> +}
-> +
-> +static void stm32_pcie_stop_link(struct dw_pcie *pci)
-> +{
-> +	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
-> +
-> +	if (stm32_pcie->link_status == STM32_PCIE_EP_LINK_DISABLED) {
-> +		dev_dbg(pci->dev, "Link is already disabled\n");
-> +		return;
-> +	}
-> +
-> +	disable_irq(stm32_pcie->perst_irq);
-> +
-> +	stm32_pcie_disable_link(pci);
-> +
-> +	stm32_pcie->link_status = STM32_PCIE_EP_LINK_DISABLED;
-> +}
-> +
-> +static int stm32_pcie_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
-> +				unsigned int type, u16 interrupt_num)
-> +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
-> +
-> +	switch (type) {
-> +	case PCI_IRQ_INTX:
-> +		return dw_pcie_ep_raise_intx_irq(ep, func_no);
-> +	case PCI_IRQ_MSI:
-> +		return dw_pcie_ep_raise_msi_irq(ep, func_no, interrupt_num);
-> +	default:
-> +		dev_err(pci->dev, "UNKNOWN IRQ type\n");
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static const struct pci_epc_features stm32_pcie_epc_features = {
-> +	.msi_capable = true,
-> +	.align = 1 << 16,
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/thead,th1520-power.example.dtb: vosys@ffef528000: compatible: ['syscon'] is too short
+	from schema $id: http://devicetree.org/schemas/mfd/syscon-common.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/power/thead,th1520-power.example.dtb: vosys@ffef528000: reg: [[255, 4015161344], [0, 4096]] is too long
+	from schema $id: http://devicetree.org/schemas/mfd/syscon-common.yaml#
 
-Use SZ_64K
+doc reference errors (make refcheckdocs):
 
-> +};
-> +
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241203134137.2114847-9-m.wilczynski@samsung.com
 
-[...]
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-> +static int stm32_add_pcie_ep(struct stm32_pcie *stm32_pcie,
-> +			     struct platform_device *pdev)
-> +{
-> +	struct dw_pcie *pci = stm32_pcie->pci;
-> +	struct dw_pcie_ep *ep = &pci->ep;
-> +	struct device *dev = &pdev->dev;
-> +	int ret;
-> +
-> +	ret = regmap_update_bits(stm32_pcie->regmap, SYSCFG_PCIECR,
-> +				 STM32MP25_PCIECR_TYPE_MASK,
-> +				 STM32MP25_PCIECR_EP);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = pm_runtime_resume_and_get(dev);
-> +	if (ret < 0) {
-> +		dev_err(dev, "pm runtime resume failed: %d\n", ret);
-> +		return ret;
-> +	}
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-You might want to do runtime resume before accessing regmap.
+pip3 install dtschema --upgrade
 
-> +
-> +	reset_control_assert(stm32_pcie->rst);
-> +	reset_control_deassert(stm32_pcie->rst);
-> +
-> +	ep->ops = &stm32_pcie_ep_ops;
-> +
-> +	ret = dw_pcie_ep_init(ep);
-> +	if (ret) {
-> +		dev_err(dev, "failed to initialize ep: %d\n", ret);
-> +		goto err_init;
-> +	}
-> +
-> +	ret = stm32_pcie_enable_resources(stm32_pcie);
-> +	if (ret) {
-> +		dev_err(dev, "failed to enable resources: %d\n", ret);
-> +		goto err_clk;
-> +	}
-> +
-> +	ret = dw_pcie_ep_init_registers(ep);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to initialize DWC endpoint registers\n");
-> +		goto err_init_regs;
-> +	}
-> +
-> +	pci_epc_init_notify(ep->epc);
-> +
-> +	return 0;
-> +
-> +err_init_regs:
-> +	stm32_pcie_disable_resources(stm32_pcie);
-> +
-> +err_clk:
-> +	dw_pcie_ep_deinit(ep);
-> +
-> +err_init:
-> +	pm_runtime_put_sync(dev);
-> +	return ret;
-> +}
-> +
-> +static int stm32_pcie_probe(struct platform_device *pdev)
-> +{
-> +	struct stm32_pcie *stm32_pcie;
-> +	struct dw_pcie *dw;
-> +	struct device *dev = &pdev->dev;
-> +	int ret;
-> +
-> +	stm32_pcie = devm_kzalloc(dev, sizeof(*stm32_pcie), GFP_KERNEL);
-> +	if (!stm32_pcie)
-> +		return -ENOMEM;
-> +
-> +	dw = devm_kzalloc(dev, sizeof(*dw), GFP_KERNEL);
-> +	if (!dw)
-> +		return -ENOMEM;
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
-Why can't you allocate it statically inside 'struct stm32_pcie'?
-
-> +
-> +	stm32_pcie->pci = dw;
-> +
-> +	dw->dev = dev;
-> +	dw->ops = &dw_pcie_ops;
-> +
-> +	stm32_pcie->regmap = syscon_regmap_lookup_by_compatible("st,stm32mp25-syscfg");
-> +	if (IS_ERR(stm32_pcie->regmap))
-> +		return dev_err_probe(dev, PTR_ERR(stm32_pcie->regmap),
-> +				     "No syscfg specified\n");
-> +
-> +	stm32_pcie->phy = devm_phy_get(dev, "pcie-phy");
-> +	if (IS_ERR(stm32_pcie->phy))
-> +		return dev_err_probe(dev, PTR_ERR(stm32_pcie->phy),
-> +				     "failed to get pcie-phy\n");
-> +
-> +	stm32_pcie->clk = devm_clk_get(dev, NULL);
-> +	if (IS_ERR(stm32_pcie->clk))
-> +		return dev_err_probe(dev, PTR_ERR(stm32_pcie->clk),
-> +				     "Failed to get PCIe clock source\n");
-> +
-> +	stm32_pcie->rst = devm_reset_control_get_exclusive(dev, NULL);
-> +	if (IS_ERR(stm32_pcie->rst))
-> +		return dev_err_probe(dev, PTR_ERR(stm32_pcie->rst),
-> +				     "Failed to get PCIe reset\n");
-> +
-> +	stm32_pcie->perst_gpio = devm_gpiod_get(dev, "reset", GPIOD_IN);
-> +	if (IS_ERR(stm32_pcie->perst_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(stm32_pcie->perst_gpio),
-> +				     "Failed to get reset GPIO\n");
-> +
-> +	ret = phy_set_mode(stm32_pcie->phy, PHY_MODE_PCIE);
-
-Hmm, so PHY mode is common for both endpoint and host?
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
 
