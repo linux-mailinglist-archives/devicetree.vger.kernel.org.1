@@ -1,164 +1,145 @@
-Return-Path: <devicetree+bounces-126646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126648-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CB3E9E2396
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 16:39:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B84969E23FC
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 16:45:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1DC9E287192
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 15:39:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7819828772B
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 15:45:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 481F71FBC9E;
-	Tue,  3 Dec 2024 15:34:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 444341FBEA3;
+	Tue,  3 Dec 2024 15:41:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YvHU+quh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8C301F9A88;
-	Tue,  3 Dec 2024 15:34:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B2151F755B;
+	Tue,  3 Dec 2024 15:41:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733240086; cv=none; b=XU29JB/pgMdPrBA5K3gPcVy0LoF0Z+EYGk2ERxBIAxPladFYFcflLt7JNzQ/j15k/CX2xRm6GwUg05cQnIk3P5WWl6R5KW36F83IdwJ6YOqtHb6DY4EZsr2tcLEwvA24E2OLJlWxsA/+MnukZARwNBWA8DkQ+39q+YtFo+l1miI=
+	t=1733240513; cv=none; b=kKFW0wl88ysJFbRsLX0bJK7DUpQdkKTbRmNwC1s2RbygGg65rCx5RQE8pokCBp6nVtlAHAHJcj67jKOSbP38SVJ6fAsYuxpYToF1T4/YjBEuNNFTVIRQJTPaSKXo/4j2qT/Nl3eaewmLpzU4FcCL1HIzYxTTYQSFMDgqTVUAFDc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733240086; c=relaxed/simple;
-	bh=/t81Kipm80KSB2ytCFacecH45iV4Rgpz9NMkvjdx3oo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=l0Ddq+ahlHJHxQxkuRYlm+Rb6qYEXqcVdbAW827o+s2bP/Medlt1ePli6BEAaTfmaMA8W4HhrF79HcyXCy+sKB69dX5+p1B8izbWwJTPnR66ZrhGIoEyQgM7UjrGDE1YIpi5NrxBz2sre2qN0AIXzsaflcP973SrRwmlGgUjnXE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2ffc7a2c5d5so59410311fa.1;
-        Tue, 03 Dec 2024 07:34:41 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733240078; x=1733844878;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=N9ct1kVI68mHIDVHyGKkb/UxzcQ9qI2NSHiJbGWgjuE=;
-        b=qHTO7CDwFASzqYb/mOW906cOEf8h4mIWxeu66W+uGHbmt8qjQjZ0S0aBY2ySVeXbNT
-         jR7EDBI/vzccKLNdLoV/pcmN2CRzZ01jhSzywPY50RH2+a6GQQoiO4rWG0IBDWUXD711
-         nS1cgywaOO+l6p9p5v1eV+b+vehX75eYrbt6MRG5uQdBsbZWyUHcqZsqXYscSSDpwljG
-         cqEggxj82qYThKIqXketjDLsQ8tGPnJ2krxXS8mnj29fN25zykZQBzMPwkNqbx4GVf/V
-         gWxDTQ+rmn3lWKrjQxmyUU7x+HOfd945yP9duzc9f88gOnvpR+SwDqYaIRUHFlmus0D7
-         u2ug==
-X-Forwarded-Encrypted: i=1; AJvYcCUb1o5BHPmHyCeeoVxq5xUMWDdgyyTrPIPd1McNmThYebGrYBf3K0+g5YbA82tLEjD0HrTRrOFdwzOatdHn@vger.kernel.org, AJvYcCXwY2C98/WYJqF0tn5pM+UZrJHaaIsBS2tJrS4Kezcafar7b0LyrMRV424TrfL01xMgqrNqHMIBd2Le@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxl79ApXGgwTK3EODcoxzjAVoq8EzZwxF5Z/P4kNdDc3sOVWzUx
-	f9j+ZxE5hQVWwpQ58MY4pvjSdtymvl1LUWmv1ggXilyeV/RGU9r36XPfgBp8
-X-Gm-Gg: ASbGncuQJhpsaYroiXe9yGezK5iKs1lAyZpaRCIDhw26AZKXKIGlxUpAKXVfwJEYqkl
-	JWzfgrgMBvlJclj5LVng5dQaXclh9H1+8rxsSbMpiIFs7jHP40J3yALIdlfDM4Yo4skP9/lA+Pq
-	uTZqFblt8RezzirKzmWMxns/itus6HEQP83Tao2EjVpSkrKjImZ6aFNRqHP0t17UDgdzKbuONyN
-	E6RdHe9TraYBkwvAoaQi28ihnkkzsx5wDfFGooExZsT1DhFeg5cQLj5Oo++Vyo6zTX8H0oYVtdJ
-	tFuUiVY=
-X-Google-Smtp-Source: AGHT+IE/83d5OrDkNvu9lh6Exv3S7LwQO4ZBKxWveF7Sc0z2K+zmbxe4sxOGtyhks50aWk9SP6FYkw==
-X-Received: by 2002:a05:651c:2120:b0:300:1448:c526 with SMTP id 38308e7fff4ca-30014eac030mr2199531fa.37.1733240077442;
-        Tue, 03 Dec 2024 07:34:37 -0800 (PST)
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com. [209.85.208.174])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2ffdfbb8e8dsm16746701fa.8.2024.12.03.07.34.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Dec 2024 07:34:37 -0800 (PST)
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2ffbfee94d7so47292251fa.3;
-        Tue, 03 Dec 2024 07:34:36 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCV+vuP/Qww58zBzwDr884BbRf3En/zgmnR87IcFMYaCLxNjTqzD7C6csaxQJmb595HpElu/uM751y76ZLuX@vger.kernel.org, AJvYcCVUlt0W3eZg8OsivLFTSBimVAITAlQ0xnWiKQTdnHctzz+oxMH8aqHmpoPlVbYJIla4+pTvf9q/7xfv@vger.kernel.org
-X-Received: by 2002:a2e:be1c:0:b0:2ff:cb09:ccae with SMTP id
- 38308e7fff4ca-30014e22085mr2966011fa.17.1733240076014; Tue, 03 Dec 2024
- 07:34:36 -0800 (PST)
+	s=arc-20240116; t=1733240513; c=relaxed/simple;
+	bh=VyAdMxSYG+cl45PhOpWPbrnYSr+SfukqYZMo12P6x78=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Y5FyychLDhCGB2EYtX6PtZypPzE07UAJ5KLY3XJi+fmCS+MVyHO7BttZjo1gGaLp4+8Eqmw0MzYUFAVPuf+Is1rPZE5pSFZ9Jsg/AJ4NuiaTb7M/PulTcu5bN4IGcGi4mNKPKjsM5TdIlGEfDDhpHPRuLnz/NvZz/GfVEWQ4Fpg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YvHU+quh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B0B7C4CED6;
+	Tue,  3 Dec 2024 15:41:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733240512;
+	bh=VyAdMxSYG+cl45PhOpWPbrnYSr+SfukqYZMo12P6x78=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=YvHU+quh/Q3xeeBQ3KUKeCqM8UWiDuQYe0SqnXFhj94mQ2T3rM2ELnQXjJJburTcH
+	 B8ngd0ILz4lRv5abztXP4x37jqbg4U/yqVxdNL2ib9d7/+Z62VHW998vYIawPO5MhG
+	 9Zty7IDG05pIHd3RiuWBGfzwaOgaJbxH87GmdkblKHN1J38XTnYP5qvN9CNNtBYvqR
+	 ETouzXeRIkebGiJhpSSAG6ICCt7jdCPKwM+R5O47ZNao8NhZe4yPYkaO+nZKg4HcVn
+	 CER1WGmX2q38uOrTf78XbytTRdE2NNt65a9NkL46lgYQeRFziUWG+eem9zMoCExiVe
+	 PQ/9uIc1eU4Yw==
+Message-ID: <1954a13a-6102-45cd-a8a4-0aa8939b7e0e@kernel.org>
+Date: Tue, 3 Dec 2024 16:41:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241202-a100-syscon-v1-0-86c6524f24d7@epochal.quest> <20241202-a100-syscon-v1-2-86c6524f24d7@epochal.quest>
-In-Reply-To: <20241202-a100-syscon-v1-2-86c6524f24d7@epochal.quest>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Tue, 3 Dec 2024 23:34:23 +0800
-X-Gmail-Original-Message-ID: <CAGb2v66RAyKrpn7EJMoPUzM6W6J-3ch0xwQnY7uBm6dXgFJ5bg@mail.gmail.com>
-Message-ID: <CAGb2v66RAyKrpn7EJMoPUzM6W6J-3ch0xwQnY7uBm6dXgFJ5bg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: allwinner: a100: Add syscon nodes
-To: Cody Eksal <masterr3c0rd@epochal.quest>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	linux-kernel@vger.kernel.org, Parthiban Nallathambi <parthiban@linumiz.com>, 
-	Andre Przywara <andre.przywara@arm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH v1 02/14] dt-bindings: clock: thead,th1520: Rename
+ header file
+To: Michal Wilczynski <m.wilczynski@samsung.com>, mturquette@baylibre.com,
+ sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ drew@pdp7.com, guoren@kernel.org, wefu@redhat.com, jassisinghbrar@gmail.com,
+ paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+ frank.binns@imgtec.com, matt.coster@imgtec.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch, ulf.hansson@linaro.org,
+ jszhang@kernel.org, m.szyprowski@samsung.com
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ dri-devel@lists.freedesktop.org, linux-pm@vger.kernel.org
+References: <20241203134137.2114847-1-m.wilczynski@samsung.com>
+ <CGME20241203134151eucas1p18edf7fb37cd8f30983a559d7481f560b@eucas1p1.samsung.com>
+ <20241203134137.2114847-3-m.wilczynski@samsung.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241203134137.2114847-3-m.wilczynski@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Dec 2, 2024 at 12:43=E2=80=AFPM Cody Eksal <masterr3c0rd@epochal.qu=
-est> wrote:
->
-> The Allwinner A100 has a system configuration block, denoted as SYS_CFG
-> in the user manual's memory map. It is undocumented in the manual, but
-> a glance at the vendor tree shows this block is similar to its
-> predecessors in the A64 and H6. The A100 also has 3 SRAM blocks: A1, A2,
-> and C. Add all of these to the SoC's device tree.
->
-> Signed-off-by: Cody Eksal <masterr3c0rd@epochal.quest>
+On 03/12/2024 14:41, Michal Wilczynski wrote:
+> As support for clocks from new subsystems is being added to the T-Head
+> TH1520 SoC, the header file name should reflect this broader scope. The
+
+No, there is no such rule, so "should" is not appropriate.
+
+
+> existing header file 'thead,th1520-clk-ap.h' includes the '-ap' suffix,
+> indicating it's specific to the Application Processor (AP) subsystem.
+> 
+> Rename the header file to 'thead,th1520-clk.h' to generalize it for all
+> subsystems.  Update all references to this header file accordingly.
+> 
+> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
 > ---
->  arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi | 31 ++++++++++++++++++++=
-++++++
->  1 file changed, 31 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi b/arch/arm64/=
-boot/dts/allwinner/sun50i-a100.dtsi
-> index 29ac7716c7a5284ccf8af675db9c7d016785f0ff..31540a7ca1f01c6c2e69e3290=
-54aca16ffd112c4 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-> @@ -101,6 +101,37 @@ soc {
->                 #size-cells =3D <1>;
->                 ranges =3D <0 0 0 0x3fffffff>;
->
-> +               syscon: syscon@3000000 {
-> +                       compatible =3D "allwinner,sun50i-a100-system-cont=
-rol",
-> +                                    "allwinner,sun50i-a64-system-control=
-";
-> +                       reg =3D <0x03000000 0x1000>;
-> +                       #address-cells =3D <1>;
-> +                       #size-cells =3D <1>;
-> +                       ranges;
-> +
-> +                       sram_a1: sram@20000 {
-> +                               compatible =3D "mmio-sram";
-> +                               reg =3D <0x00020000 0x4000>;
-> +                               #address-cells =3D <1>;
-> +                               #size-cells =3D <1>;
-> +                               ranges =3D <0 0x00020000 0x4000>;
-> +                       };
+>  .../devicetree/bindings/clock/thead,th1520-clk-ap.yaml        | 4 ++--
+>  .../devicetree/bindings/mailbox/thead,th1520-mbox.yaml        | 2 +-
+>  MAINTAINERS                                                   | 2 +-
+>  arch/riscv/boot/dts/thead/th1520.dtsi                         | 2 +-
+>  drivers/clk/thead/clk-th1520.h                                | 2 +-
+>  .../clock/{thead,th1520-clk-ap.h => thead,th1520-clk.h}       | 0
 
-Each child node should have an empty line preceding it, as mentioned
-in the dts coding style doc:
+Don't mix driver, bindings and DTS. See checkpatch warning. Don't rename
+files just because you prefer other names.
 
-    Documentation/devicetree/bindings/dts-coding-style.rst
-
-ChenYu
-
-> +                       sram_c: sram@24000 {
-> +                               compatible =3D "mmio-sram";
-> +                               reg =3D <0x024000 0x21000>;
-> +                               #address-cells =3D <1>;
-> +                               #size-cells =3D <1>;
-> +                               ranges =3D <0 0x024000 0x21000>;
-> +                       };
-> +                       sram_a2: sram@100000 {
-> +                               compatible =3D "mmio-sram";
-> +                               reg =3D <0x0100000 0x14000>;
-> +                               #address-cells =3D <1>;
-> +                               #size-cells =3D <1>;
-> +                               ranges =3D <0 0x0100000 0x14000>;
-> +                       };
-> +               };
-> +
->                 ccu: clock@3001000 {
->                         compatible =3D "allwinner,sun50i-a100-ccu";
->                         reg =3D <0x03001000 0x1000>;
->
-> --
-> 2.47.1
->
+Best regards,
+Krzysztof
 
