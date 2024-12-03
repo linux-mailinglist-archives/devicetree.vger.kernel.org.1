@@ -1,119 +1,113 @@
-Return-Path: <devicetree+bounces-126592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEFFE9E1EF5
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 15:22:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB5529E1F08
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 15:25:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 34440B25E90
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 13:23:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 09108B26233
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 13:24:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74EC91DA314;
-	Tue,  3 Dec 2024 13:23:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 745E11E1C37;
+	Tue,  3 Dec 2024 13:24:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GG+N/WIf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e1iB8Kw8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D707224F0;
-	Tue,  3 Dec 2024 13:23:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46B961B0F39;
+	Tue,  3 Dec 2024 13:24:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733232187; cv=none; b=jiHTUQjkSk0H43/UeS49BWiGjZ24SBFwnJTw4aNmLqJlJD+tvc2ps4RhgZSKsppV9YGIJIb0aSi3Qsor1mztsNCc+S0t4pXbI48wksoEOC1T3w9HVXD/4HAjTWFCbhDnPV4QyC9lzktzoROqBhh05EHswvwJThaKuZoh1XrhfyQ=
+	t=1733232278; cv=none; b=hc8pwqM/9Ko9irAGtQvzx4FvqHZ8HJ34lUlMAoS4/nkg3ogRULgasgbLoTa9tUkp8GXj7RMVJWwcFK8r/2fWuuDWehPCTqo5naaN4u/JnVMqi2gppzJDj3o19yGTQaEnaWiiAA+bmGexuFQxWgqaIUOfjrqnpFeJeadJwW1kH1s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733232187; c=relaxed/simple;
-	bh=iZ4QmU3VYs0LDZ8lr0fIemo81foNLGPlwRopsTWq1P0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=GQ8y3+GDPMO93lYOSmFtuHgkdUAHjok80Blzr6KuLeF7+7jq9j9VTMdow1J6DN08KCuVd1s/jIj1uLlOosplWrg216otR+HsRhROxToRRHyTNrz8HjRJtzu+XWwXMqCuQBPLv3ub5lw1ZriJojq90P2JFDWxfHRKi7HuKLaWSPU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GG+N/WIf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 74229C4CED8;
-	Tue,  3 Dec 2024 13:23:06 +0000 (UTC)
+	s=arc-20240116; t=1733232278; c=relaxed/simple;
+	bh=W5skNtS2qJ7Ukf1XBAMfccxob+Vl5KkMcv8VnjEJ84Y=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=oIGWbgu5VgS0uCegSOxs5px93Ts8zrtL0ETgC3i35Ioulq/KNyPk/LVGzLRzDAxuV0j4FabnIYfl5v+JXqg4pCBGBRwyXPzqPvgvP99jRGo3Xfuwv+iZ6DzcCU2Yz0q1hkv689lij7kXwlztKoS/4O1iot+aatiJowqRd+0TojI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e1iB8Kw8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9CCBDC4CECF;
+	Tue,  3 Dec 2024 13:24:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733232186;
-	bh=iZ4QmU3VYs0LDZ8lr0fIemo81foNLGPlwRopsTWq1P0=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=GG+N/WIfnow38JRGkOfEUiqgEc8xibKWgESFJaJwR0/r5CeXFZfjHzUPdkXqIVXoZ
-	 sSSEQ7mkh31hGjPyo1lXQ0JdWOf5gS/pK7+x21tsqZyBOGzK1xDwtBUEdzPjclGXMk
-	 q67bDbgYt8PCuctS91TY55sFkMoZL/N3iXF4eAdedqqd0kCUlL6J7SnW4As8neP9M7
-	 LYmT2SClZZbkYnk1DeHDGbkt2m4nuUW2CKjvUIxFjCDm0HvS+iPn1+mdONVT1mn2iP
-	 siHZgH2lDRXJ8VBcdmW/odcujw3h1He5t1pFB2mj5ck3JKb6R8Ie0+Kh43UUc8aLDi
-	 M79Lh9i6I1xSQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6A53BE64A93;
-	Tue,  3 Dec 2024 13:23:06 +0000 (UTC)
-From: Manojkiran Eda via B4 Relay <devnull+manojkiran.eda.gmail.com@kernel.org>
-Date: Tue, 03 Dec 2024 18:52:45 +0530
-Subject: [PATCH] ARM: dts: aspeed: Enable video engine for IBM System1
+	s=k20201202; t=1733232277;
+	bh=W5skNtS2qJ7Ukf1XBAMfccxob+Vl5KkMcv8VnjEJ84Y=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=e1iB8Kw8FW8i8thSCt8e30tHAK9qLpt3NlGfGVpoOnLf3rimjvUM6hZGYoypJfKn8
+	 +ODdcjPQwZyQTg2PfQmyshDVM9xzyT88fbsAMnbzkAby/eyUb9wXKKD5t08BzvebKe
+	 mBdwpIIM8Q5BCCB5mwm7fuZq5Hgbw17tbP5BHhXMrIsaDrP+xoPgrzJqUAvilbluTA
+	 hQRfzaJUdRMvRe4vRYogYTBN5ES9JyeutNkhiXxiEgz2sGt/VedWEJ1R8LKTCF97Dm
+	 jcjx5gMhC+4upEQA+WikpKR9H33aPIkw4wl7NKtZj2x4WZYPZZtpNcc8nSUHAgE3SL
+	 2XX2iTtCFjE5Q==
+Date: Tue, 03 Dec 2024 07:24:35 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241203-dts-system1-video-v1-1-008e5e660106@gmail.com>
-X-B4-Tracking: v=1; b=H4sIACQGT2cC/x3MMQqAMAxA0atIZgNNtSJeRRzERs1glUZEKd7d4
- viG/xMoR2GFrkgQ+RKVPWRQWcC0jmFhFJ8N1tiarKnQn4r66Mkb4SWedzSmJe/cSK5hyN0ReZb
- 7f/bD+36t1tcFYwAAAA==
-To: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- Andrew Jeffery <andrew@codeconstruct.com.au>, 
- Eddie James <eajames@linux.ibm.com>, Ninad Palsule <ninad@linux.ibm.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
- openbmc@lists.ozlabs.org, Manojkiran Eda <manojkiran.eda@gmail.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1733232165; l=1038;
- i=manojkiran.eda@gmail.com; s=20241203; h=from:subject:message-id;
- bh=ejXpM+ALtz0H3f+cLC7p2P7soAQAZRSfhVgLG/KNusk=;
- b=JjpeBLox0ewhPlPyR7prwy4gXMJDMjI5b0bU4tGW8YA3C9sw1giJi/yDs/0TpN8fL4ElkieUV
- 1aQ6F65esdRAp5zDtx9n76PrAZNP1uwmNdM+yruTohVCsvcdrDKlH7S
-X-Developer-Key: i=manojkiran.eda@gmail.com; a=ed25519;
- pk=54WqHEFtBzlAODOpTWKI2J1uhv/sAk3WQ+lDMxMyKTI=
-X-Endpoint-Received: by B4 Relay for manojkiran.eda@gmail.com/20241203 with
- auth_id=292
-X-Original-From: Manojkiran Eda <manojkiran.eda@gmail.com>
-Reply-To: manojkiran.eda@gmail.com
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-kernel@vger.kernel.org, manivannan.sadhasivam@linaro.org, 
+ bharat.kumar.gogada@amd.com, lpieralisi@kernel.org, 
+ linux-pci@vger.kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ bhelgaas@google.com, devicetree@vger.kernel.org, michal.simek@amd.com, 
+ kw@linux.com, jingoohan1@gmail.com
+To: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+In-Reply-To: <20241203123608.2944662-2-thippeswamy.havalige@amd.com>
+References: <20241203123608.2944662-1-thippeswamy.havalige@amd.com>
+ <20241203123608.2944662-2-thippeswamy.havalige@amd.com>
+Message-Id: <173323227578.1564578.13597091753228653730.robh@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: PCI: amd-mdb: Add AMD Versal2 MDB
+ PCIe Root Port Bridge
 
-From: Manojkiran Eda <manojkiran.eda@gmail.com>
 
-Signed-off-by: Manojkiran Eda <manojkiran.eda@gmail.com>
----
-This patch enables the aspeed video engine support in ASPEED BMC for
-IBM System1. It is crucial for facilitating the BMC's video capture
-and redirection capabilities, which are integral to remote management
-and KVM (Keyboard-Video-Mouse) over IP functionality.
----
- arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+On Tue, 03 Dec 2024 18:06:07 +0530, Thippeswamy Havalige wrote:
+> Add AMD Versal2 MDB (Multimedia DMA Bridge) PCIe Root Port Bridge.
+> 
+> Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+> ---
+> Changes in v2:
+> -------------
+> - Modify patch subject.
+> - Add pcie host bridge reference.
+> - Modify filename as per compatible string.
+> - Remove standard PCI properties.
+> - Modify interrupt controller description.
+> - Indentation
+> ---
+>  .../bindings/pci/amd,versal2-mdb-host.yaml    | 132 ++++++++++++++++++
+>  1 file changed, 132 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pci/amd,versal2-mdb-host.yaml
+> 
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
-index c8597dcded31..bea858b2eee6 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
-@@ -479,6 +479,10 @@ &lpc_snoop {
- 	snoop-ports = <0x80>, <0x81>;
- };
- 
-+&video {
-+	status = "okay";
-+};
-+
- &i2c0 {
- 	status = "okay";
- 
+My bot found errors running 'make dt_binding_check' on your patch:
 
----
-base-commit: f6d73b12ca9fd3b1c29a6a725cd751b972c740cf
-change-id: 20241203-dts-system1-video-0081d55a156e
+yamllint warnings/errors:
 
-Best regards,
--- 
-Manojkiran Eda <manojkiran.eda@gmail.com>
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/amd,versal2-mdb-host.yaml: $id: Cannot determine base path from $id, relative path/filename doesn't match actual path or filename
+ 	 $id: http://devicetree.org/schemas/pci/amd,mdb-pcie.yaml
+ 	file: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/amd,versal2-mdb-host.yaml
 
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241203123608.2944662-2-thippeswamy.havalige@amd.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
