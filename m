@@ -1,129 +1,151 @@
-Return-Path: <devicetree+bounces-126521-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E151A9E1B21
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 12:38:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CFE89E1ACC
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 12:23:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 38C85B25124
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 10:58:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B509BB23587
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 11:01:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46C391E32BE;
-	Tue,  3 Dec 2024 10:58:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 392D01E0E06;
+	Tue,  3 Dec 2024 11:01:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="catE6Oo8"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="WyPYgl13"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f66.google.com (mail-wm1-f66.google.com [209.85.128.66])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D5CB1E2610;
-	Tue,  3 Dec 2024 10:58:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BF9155C29
+	for <devicetree@vger.kernel.org>; Tue,  3 Dec 2024 11:01:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733223503; cv=none; b=TxCJHep9mICWqBsOWlp0TSvhxU4F/pXlLjjAdbRgTyjvSCSfn2A9WYS6MPxL0KZ0d3tqAKVlZRuBgNJ3AKh0LRUNvFTPnP7je1QQ/3fVFVpGQ+GhQFMlbywgbHtW1ZTHok73aQRqjsgDZUJ3GGkWhtos/alogQK17510Pnz4e+U=
+	t=1733223669; cv=none; b=bM1zAxCpZ3kTNT0q+OBQr6FYZr3bauByQ4ZAqeeuuZ3u9r9hAcybiNX5IOipnWEtMEgIMF+CsK+vegXeu8z02mdbum4zLDJU/mDV4ZYMtAqfVUUciwe5qVkWeo4opcbH9ghbk1QmoCyc4X1w/C9cijgWK3e8nSPFJ9V2h7Hj/Ns=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733223503; c=relaxed/simple;
-	bh=ViWFhif/deFZuZbnJbaYJlieWHE9b1wDUanLpmlN4gs=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=h4zBdGr382OA2hQ8B1nq3cru1ckrFCFi7N+u7jG2Xu5BWVcmFVBOp4jnDiRxmapNOQQqaR+CQjnu6ft8j+qlQiNyfx1lZrYtSKB/0zQmjzCIJDrI8P46hdNKwDHW93627c1UYEU369y9aKE3HQ3dqteJmmxLv8bjZ5l4dr9nkM0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=catE6Oo8; arc=none smtp.client-ip=212.227.17.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
-	s=s31663417; t=1733223487; x=1733828287; i=frank-w@public-files.de;
-	bh=ViWFhif/deFZuZbnJbaYJlieWHE9b1wDUanLpmlN4gs=;
-	h=X-UI-Sender-Class:Date:From:To:CC:Subject:Reply-to:In-Reply-To:
-	 References:Message-ID:MIME-Version:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=catE6Oo8vo76H6xateUNLsfwp9A1mxYE8wru5d7gmBXwD/wQoM3xHUHsO9Kjx4bu
-	 c+G2p0YieMUzdvcxXcMRBIiO7d4AW+fICVP4HlVthGFWGf82FMxQxJ7ekE6YhrWwC
-	 jf6f4E2dbhppLK3SkWXDrASN5IymeN8UqqUt2bqsjMydYiHZ12twnarjX+MVwx0e5
-	 x/eHrhzhaTX6qZUa5PoZlqvxFheXi5p//DfaPfFggA5bLBolJHDqfLCHVUCXvAfPF
-	 v7PhObqnw1WyC7gPtqyfxoDTl6QgPAsRdInPuZEwmcshYx69y8JLVJ5PotjAFVU3B
-	 o5EOoWM1LChNVHI+4w==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [127.0.0.1] ([157.180.225.184]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1Mn2aN-1tysUC0VwV-00bTSm; Tue, 03
- Dec 2024 11:58:07 +0100
-Date: Tue, 03 Dec 2024 11:58:07 +0100
-From: Frank Wunderlich <frank-w@public-files.de>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Frank Wunderlich <linux@fw-web.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>
-CC: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v2_13/18=5D_arm64=3A_dts=3A_medi?=
- =?US-ASCII?Q?atek=3A_mt7988=3A_add_i2c_to_bpi-r4_board?=
-User-Agent: K-9 Mail for Android
-Reply-to: frank-w@public-files.de
-In-Reply-To: <1ad355df-3f2a-4257-9374-1d125e138791@collabora.com>
-References: <20241202122602.30734-1-linux@fw-web.de> <20241202122602.30734-14-linux@fw-web.de> <1ad355df-3f2a-4257-9374-1d125e138791@collabora.com>
-Message-ID: <CA7E06EB-D26A-45D0-BF13-9C6B640F27A0@public-files.de>
+	s=arc-20240116; t=1733223669; c=relaxed/simple;
+	bh=9aFLp2UwMkCrCD1W6kB9Fs3gglql8rQOhGvhuZru+PI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=PQ8isgTABnxbUk63ravlfrNQQyRUEGBQHkM1mmvIZ5Ag4axaYOAoGXZiYvVK/Cx4VU9wHLQYdgzLDdl92CLgXgHDtX8oFvjmbl6S5yTai7Sq63+Eu/EG2DKPR140vVI7P2oesjthpboaxXBnjjx9l6m3qg/TJFoQmwhL083jJis=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=WyPYgl13; arc=none smtp.client-ip=209.85.128.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f66.google.com with SMTP id 5b1f17b1804b1-434a2f3bae4so49895255e9.3
+        for <devicetree@vger.kernel.org>; Tue, 03 Dec 2024 03:01:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1733223665; x=1733828465; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=83EbeQ3NUYtAM8mYvWu7CzrFt9hhvjnvcuhdWuTyizk=;
+        b=WyPYgl130N54MUpoe5CFdpn8AIDsjrKfzJJUYxI8UmgNABTSUsBANynXuxQAM+3f5p
+         Aps5eBida7CUrbkN/TiCSURbKnWSds4QsYHjs/gYODcftk6a7FYD4BcffOV2KVUwpAKG
+         E1UgFGw3ocrtL52pgb6FbWkIuGLDWQ/CMlzYniPdGfCG7nUX7mDqau+VYDKCd8t1g+9n
+         bU5B7XLmnNXI9pN9DUEjerty0r08L8PyYFgtt9duUPiW1KRPgRSBQPBHXCSp9v+gb4jL
+         chDiP2Iqv4sXWE/R2p7VCnEpMXGF+VeBdraHgjgFxh1J5m2NVB1iwlfM+GtZzBV6Bh+P
+         sU2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733223665; x=1733828465;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=83EbeQ3NUYtAM8mYvWu7CzrFt9hhvjnvcuhdWuTyizk=;
+        b=HfNNm0z5cwbWyrHmuGDCKwAo74H6MHpNHIp0/TUFyTC53aP7PmebkvCz9RrhIYttrJ
+         2oIcQWY4U3FQ1zckY0ZQQZpCjFD3/VBWwe6spAm4Isuvi1KZWQNObEkZWlz8BWbJHhzZ
+         atLZrCVgvLQbhRfRk1wJhD45FY2oX8YJ+C2EPx7K/X9jUBZ8Oeni1G589keUKshCUm2e
+         rRLbzffwXilHhd6/joB3n+WsucPO8XeE4+s9TfTxypU3YjGHiJHikTS3IDDZAHQF3H3O
+         +sd+NSMHCAmn94grNayTg2ApfTOwmX7ep05dZ/iOFFgRfMiHmamIEqXxZ0amstkCfy1B
+         ckJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUQCQFAaiEipGLHMcg+Seb0Esb23sNoor46khBYp2qElXAgi344vnNVJkjR5lKhdoU/xlQghcFjJBLZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxCcYYZHv7fGcko+xMNuvAladeoNlH9vr399R3mqHyvthAaXryk
+	iqb+Bp/cOxU7/mvc0HudjEc+OEeW4q4gRBakBCQxayTGJFR+c81iLWRkI407yVk=
+X-Gm-Gg: ASbGnct+vUShehP4BJ+e8XpUWwTSZXCSVBYGS7EkUtTfb9BOwTeP2GYU4nejjEsASFU
+	3csLmzlSWSQMZ5RzK4hp1mZcKre0Ky6R7SbVqf0tOCKAu0BVRnxDKMgzelQUjfkQM/kdI2vWcar
+	8LOl2ihs9EBZO5BD4MmdDowkBZ0ikInGTNGCwAYi8Qa89BPd8I9n1pWpoBvcoB2+tVWdVQKLKD2
+	/Ang6jDA4rNVM9ts5vo3DHHMSSCumUW4TulZRgQI/n5wODmUdQPEOmII6E7qmfyxILjripjzGHq
+	JmuVbI6CuVSlwIDwtxpS082YBGLmITwcNBXJkPI=
+X-Google-Smtp-Source: AGHT+IG9PdivsQJQW3m8jQp1iuI/nJlHassAfrJAEhEid8unKf+FsGT08pRwJS1GHzGWNu46JenEUw==
+X-Received: by 2002:a05:600c:1d92:b0:434:a9bd:e67d with SMTP id 5b1f17b1804b1-434d09b6895mr18716985e9.13.1733223664756;
+        Tue, 03 Dec 2024 03:01:04 -0800 (PST)
+Received: from localhost (p200300f65f242d005bbc9b581c6b9666.dip0.t-ipconnect.de. [2003:f6:5f24:2d00:5bbc:9b58:1c6b:9666])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434aa74f05asm215388645e9.1.2024.12.03.03.01.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Dec 2024 03:01:04 -0800 (PST)
+From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	linux-iio@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alisa-Dariana Roman <alisa.roman@analog.com>,
+	Renato Lui Geh <renatogeh@gmail.com>,
+	Ceclan Dumitru <dumitru.ceclan@analog.com>,
+	devicetree@vger.kernel.org,
+	Nuno Sa <nuno.sa@analog.com>,
+	David Lechner <dlechner@baylibre.com>,
+	Alexandru Ardelean <aardelean@baylibre.com>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	Trevor Gamblin <tgamblin@baylibre.com>
+Subject: [PATCH v5 00/10] iio: adc: ad7124: Various fixes
+Date: Tue,  3 Dec 2024 12:00:20 +0100
+Message-ID: <20241203110019.1520071-12-u.kleine-koenig@baylibre.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:wVh/VT4zyLEOOLYLOzpPuxIpal1zwRBxEtQNrRChYqjhtpSmpbf
- 2U6qcQfUeOBex46poaqbKi3AsAoyE3PrgU+6UobajJqfs5EeA/g67gxFWAo5Uf01+zSU8Eb
- gtypw3djq16hUoUtPI8Pvyil2HlMh1Hwc4TWp+7Ysoz/2Ijadww/0BK5wP3O6niNzJsiNpT
- 5Gf7Xw8LjOXzGBhgWXZoQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:LV1CDWyYqq8=;r6TAGlS+V55H76U9GsrrMswN3d+
- 8Xwv/2BFoCClTb58octvBihMkB4cdzns2fsZkwNByO4DV4jAUOfSzwVaLD6PSZv6oe46A9Bix
- REDnk+Y2hQHGcFYN/vYDRNlejxHv8A+8CUvTc6RGvWS608xkCCK1hYh+aUM8K+DEp442Q8orf
- VUoK2q4Wstzc8UpVPIt1epv5HYUl2sdD8w7kXQ0qbu2/z+5W1kbP6FT4Gg5D0GkLpren9Mtai
- ap7c7ZnVy3qjuPwimzre6n1sbyR75c57Ramv/ngkrjanx9kIwqzr+LnEo64+jivcBsY5iQea+
- NM/ZNRNIH3GrEG7sP/3HQHOuElw9Q99iMfyiXH75Om9OW+Xnpl9WOi8G/Rz7clUv9lcIhkiX5
- 8+cUJ5kXgEmK23ufk76pZQt5qkPrGgABSzepJIYD9QgOO3qo295de3d5kOg4j+m3le66pcbzv
- M8WIeVeXb6r1kH3GyApzXTIGUb8mqI9qVDsvS2tx9vdMdFNd9biAdkAElvdRY9JDNxZikdZt6
- TykXsiCNLW92XNvYL4v7oKW43Hffndcjo8mtYCSe8tT5PxOS2AFGLhenT5FXPKQ0luRYguP6L
- dE+52dgmcLU7Qc00tHZASvL4FaYLYktWmizpZEIe/KvUP4r+DcBKuce+CT5EUXx+YHOZ8StDN
- CyXr7PMGhbqp6DJFOpsTr8aSKoP8I9EjcUAjRL0wIqoPNz1a7U0JfwomHcvy1WI7MpVkODoHi
- uYLiVrFXvWxjn7j7pq9lRJ95bGYNXG3VXVmup5gYSm0sB8pIgB2jbmBTr6rX0CfhcS7eRKhgi
- WGUTQz14iCtCZgqaWlTZcGHPQOQf6mC5beFxFHO3Hc+7CImx1aO1EDuLe0g49T6Ij/h1xGhhF
- vlfAp43zPPkngtG7wy+4XpH2jBH0vQ5fv+3dNgSgsJUXnwnkIIKDyUXFntRA5dJKD9ZDNZj1M
- 2e1EFE/1PPCapEkI+za5CCiu8NAezMdonRvcX+YCKSb9fOvLljqI7Mn5Wb6d616RwiY4NHk/q
- 7lihezwS9v4Tt2yYSExI494kmDgWTgXGs4JaWDtL6R6QiaSlfwNU3yz6Gat103/J6bFfKZO7G
- nIByL/MNjYpizZammHW2BNDUf57wuQ
+Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2026; i=u.kleine-koenig@baylibre.com; h=from:subject; bh=9aFLp2UwMkCrCD1W6kB9Fs3gglql8rQOhGvhuZru+PI=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBnTuTEJu2K4EEixhLBarXOfNQwtBwY0g1+ukESY QEaNitAVZOJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZ07kxAAKCRCPgPtYfRL+ TkaTB/9uigvAoY0m5I5XqPFYL+UM5JbKckZGUR87+lNq66p457QgNDa47/aCWCKv+4mGvZAxa+H AsMo/7JnBSA9UNY+wC5oRtGJ79bv8bOLOZDjKeo+VGYmMbR/KLrSxbtJOn0mbs/E1a4SuKu87Gn UrFC+uk5I2She5HLEFOb60NFLAMpT+ijs8BsSUyT3dUDY5POEkJkjKcjgqy3Cm1PSktiuExPLlV 1Y4WT0K5/8Y0k6mdsvGswWWG4ML1bMWSWv3V7d6o1Av30mQW4s5DuF07G2b1Hj1WDv9nJiMqYK+ +UeJZYjW7XT/Ii2j4F3lSMAtSNBpi6rrfb4PC7CX/+gozNiC
+X-Developer-Key: i=u.kleine-koenig@baylibre.com; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+Content-Transfer-Encoding: 8bit
 
-Am 3=2E Dezember 2024 10:40:38 MEZ schrieb AngeloGioacchino Del Regno <ange=
-logioacchino=2Edelregno@collabora=2Ecom>:
->Il 02/12/24 13:25, Frank Wunderlich ha scritto:
->> From: Frank Wunderlich <frank-w@public-files=2Ede>
->>=20
->> Add basic i2c nodes to bananapi R4 board=2E
->>=20
->> Signed-off-by: Frank Wunderlich <frank-w@public-files=2Ede>
->
->arm64: dts: mediatek: mt7988a-bpi-r4: Enable I2C controllers
->
->Enable the I2C0, I2C2 controllers found on the BananaPi R4 board; these
->controllers are accessible at =2E=2E=2E I don't know, a header on the boa=
-rd?
+Hello,
 
-These 2 i2c have directly connected spare devices (pmic on i2c0 and i2c-mu=
-x on i2c2 added in later commits to have it a bit cleaner)=2E I2c1 is on gp=
-io header which i have not added to let user choose if he wants i2c option =
-or gpio=2E I can also add i2c1 to r4 board with the right pinctrl but imho =
-it should be disabled to have gpio function default=2E
+changes since v4, https://lore.kernel.org/linux-iio/20241127145929.679408-12-u.kleine-koenig@baylibre.com
 
->After which,
->
->Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino=2Edelregno@coll=
-abora=2Ecom>
->
->
+ - Drop | after description in the binding docs (Rob in v2)
+ - Dynamically allocate spi buffer (Jonathan)
+ - Fix capitalisation of a comment (Jonathan)
+ - drop comments about already emitted error messages (Jonathan)
+
+As before this is based on v6.12 + 64612ec9b909 ("iio: adc:
+ad7124: Disable all channels at probe time").
+
+Best regards
+Uwe
+
+Uwe Kleine-König (10):
+  iio: adc: ad7124: Don't create more channels than the driver can handle
+  iio: adc: ad7124: Refuse invalid input specifiers
+  dt-bindings: iio: adc: adi,ad7{124,173,192,780}: Allow specifications of a gpio for irq line
+  iio: adc: ad_sigma_delta: Add support for reading irq status using a GPIO
+  iio: adc: ad_sigma_delta: Handle CS assertion as intended in ad_sd_read_reg_raw()
+  iio: adc: ad_sigma_delta: Fix a race condition
+  iio: adc: ad_sigma_delta: Store information about reset sequence length
+  iio: adc: ad_sigma_delta: Check for previous ready signals
+  iio: adc: ad7124: Add error reporting during probe
+  iio: adc: ad7124: Implement temperature measurement
+
+ .../bindings/iio/adc/adi,ad7124.yaml          |  13 ++
+ .../bindings/iio/adc/adi,ad7173.yaml          |  12 +
+ .../bindings/iio/adc/adi,ad7192.yaml          |  15 ++
+ .../bindings/iio/adc/adi,ad7780.yaml          |  11 +
+ drivers/iio/adc/ad7124.c                      | 217 +++++++++++++-----
+ drivers/iio/adc/ad7173.c                      |   1 +
+ drivers/iio/adc/ad7192.c                      |   4 +-
+ drivers/iio/adc/ad7791.c                      |   1 +
+ drivers/iio/adc/ad7793.c                      |   3 +-
+ drivers/iio/adc/ad_sigma_delta.c              | 190 ++++++++++++---
+ include/linux/iio/adc/ad_sigma_delta.h        |   8 +-
+ 11 files changed, 387 insertions(+), 88 deletions(-)
 
 
-regards Frank
+base-commit: adc218676eef25575469234709c2d87185ca223a
+prerequisite-patch-id: 617af17fc377a984762c61893b9f2a92ae62213a
+-- 
+2.45.2
+
 
