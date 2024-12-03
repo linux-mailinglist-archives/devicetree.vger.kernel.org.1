@@ -1,171 +1,167 @@
-Return-Path: <devicetree+bounces-126711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B5C69E2B6B
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 19:54:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EDDA29E2B84
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 19:59:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D1753165667
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 18:54:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C3C1E164DCD
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 18:59:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6A631FDE14;
-	Tue,  3 Dec 2024 18:54:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28FAB1FE444;
+	Tue,  3 Dec 2024 18:59:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HiwXQEmi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OJ/rffnc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 065DE1362;
-	Tue,  3 Dec 2024 18:54:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E96331FDE26;
+	Tue,  3 Dec 2024 18:59:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733252073; cv=none; b=HB20BflUna70rYV1T8un2ckfeyi/OQchwNDZRJjEyScbZH11kGO508RfBec3QSBgheIHK2fjfp/hEBtIrIldmYoFsAzsHtUP2+9DiIY4d+ayGUpbCPcpegOHihxrb5l2t3O3xaejuLHsWXdzeRrJYlnAayO+k8xIH8AWSEqTdFs=
+	t=1733252383; cv=none; b=PP9wciCgtJqzG2TUvt2AZTG41bSTLxADzu19jwUo0emGnTgaqZFkSgl/U6M4wGGpdW2s0H3megnGyUBPwTMQYTnIsqK30QByVz3HPKqwnddZ5quz7E/I47vdKibjCEx5cDeDICoseOkJ2it32gXx3chF5jnoQiH4r/pAhPxrVb4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733252073; c=relaxed/simple;
-	bh=60yk3Un3mOUOU5fBr7J6kvdiEa38IlN7DapF4V0egX0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CGRCoPriddw+aNLtJP4x4F0AlxmhQGyFSj1Y7GIET7R4B8cG2aln7qNnIbq4BLYihmg5aTIHWN1ym6WjbWRDbMnutFSzLnIy5JpOBxrrNtyDpAMiF2L/Yh1Le8cqVWcbtxQqZ2fSHA4r7JLx9pclU1GQo1c2Rd8FeT52HJbyPvs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HiwXQEmi; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a9f1c590ecdso994054666b.1;
-        Tue, 03 Dec 2024 10:54:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733252070; x=1733856870; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FviEcMHkuex0XRkvCZB3GMVGniNscSHmKW1gWw04XDc=;
-        b=HiwXQEmijSTLF9BPZFDru/zH5gsJU3QpjZs3uRbBZ0Dm7Fnk4Kqufwtn7MVjzSVBtg
-         MXi988ieTvYcM0S6u/GknqL6mMKePpsr3TWSMfyoxIbejj4FniKuackb5HveWXtSNQd3
-         8VNL4q/PJ/Bstz6NghlEFUPnPrYEwm+iLjaZzj4Lbcy+BsT9bZ3RjzNMndMA5xIPT1/S
-         BbhKmbAaGzH/QXN8lLlx/fKeBDXfSc3XjuXsVt9giia/no3HMdayeJCnoJ2LKGNMnrMx
-         YoVPl9qd+pHlt4u9uTr0XIR+ZAcNgk1VVi6LDQ2UdDhxMJUCA0nHDZzz+XH1Fas9TfA/
-         zctg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733252070; x=1733856870;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FviEcMHkuex0XRkvCZB3GMVGniNscSHmKW1gWw04XDc=;
-        b=RxvSavsPmbqXyiRgZauVoQaUaU9YA4PbSNSHe02+3b4/f1bzaVJycbUNgNjSgjB4qa
-         wVx0eA4c7VB2dfUesMvxYjMLcstzipoZrKP++EGr/HQkWUU14UE7oAx2KTJcPXm4zo54
-         9Ze+Kz59uEHlBNwSnxIpFwJqz3Fz8i6kCA4cLctWDgDpZ0Q5H5hXmqlyKJtAFfrrA2Hr
-         zRZvrx+gqqktYeSBvoqfCB8PMVg/UdQReILY+FrIV9nNS8g//z57E2aD5QKqSO2JqPb4
-         vjT4qFu6isr6lhfdbOvLz+9EEEPfjNqkOSZ5G5IPvTZWDto4yEO3xTzRnMtjK9U42UOf
-         crlQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUg8y6PCWDzLQBaJd/BkKoOHNtsIHfTD4PGVOh54tFnTSA71Lsou6OET+aueqeBVGjjAxk1qevQZ/Kf@vger.kernel.org, AJvYcCXMH73btKXBn7D2ZY7r/RhXlCsXfIG5Ci2sEreKR3LlFGj+gXj7aD4Tr9Qz4EdzcBTyLghRMnmH9ZFv@vger.kernel.org
-X-Gm-Message-State: AOJu0YxEzGJ5ld1GOZFEco7qsAo/KqMC2XGcl7wFCBrXJNmpKyHh0G53
-	OIt08M6INGhU9HdYJpNEKkcjOQ9BRQPBUSr1et01Vi+pclTlwwlk9frq5fLhSyFEKd9raEi5LTX
-	tQir8xiqJnWbP4WVFz5lsEeheMjxEq7px
-X-Gm-Gg: ASbGncvFqBuY8ejCu3iRj10m/KtF6BQg4dwg0usUmrW5E3aHcv36jrUgGfroSxNuKIW
-	/T8U8Kton5JwJeWfwiID8nE27Pw1l9B0=
-X-Google-Smtp-Source: AGHT+IFF4zn1I7bui9V0BRnykOTY+aa6zcx1lsvanAEYAX+TL2Qt9qt0vuMbXxL6JtYR3Ao7FhNflDGt3bT7MRxVfZI=
-X-Received: by 2002:a17:906:23ea:b0:a99:f887:ec1d with SMTP id
- a640c23a62f3a-aa5f7f53a6emr318507066b.49.1733252069993; Tue, 03 Dec 2024
- 10:54:29 -0800 (PST)
+	s=arc-20240116; t=1733252383; c=relaxed/simple;
+	bh=zNkpo8H89tmms49Rp+rl0QDB/6wIVSL/SKuA8+xZqvY=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=FUkkf39bHMsfwuQByrYfaEFpg3Zxjf9urxHwE5yFLfSzPU1jAJM7O0vVSsbKvu9tgWkgJp8dtqspZaiSeai1NHEEwZI7wI1c55Pde604cPh4lAQV0VGx18jpN7jkjhrs3ObaQrMrpkQN+POdrTaGG57eA3qMqgTdtDQKRyjVuKM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OJ/rffnc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0101C4CECF;
+	Tue,  3 Dec 2024 18:59:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733252382;
+	bh=zNkpo8H89tmms49Rp+rl0QDB/6wIVSL/SKuA8+xZqvY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=OJ/rffnc+chhzGjKiolyoS0CekuLEm/cMW1wHkJ24aQBuKF3/l8DQ2n47LAFwWHlr
+	 xkAvtiNFfv+5Or16fQswtR2N3163Sh7O5yE+EaWEtQWz6UOCvY7a1JojYyifCQ4j9A
+	 8XBkLaNuu1wW8O1TmbEBkPL2VmBrIveE13ewdtJ2PxsdeoRf+pZLsozwrSdqQiD7Qj
+	 CfTLrxxtMaFsOsJMuEyD57AJCSsgcjzEUJCa9+yli6vVEmLaLKB5OM5kNLaLRW6f7y
+	 Sq8evEJ2VglWRqjfUdHnuIR3OmnULg/400vNtjtzyD+AAq5D4tb2C/7ge/0d9BFRGL
+	 kTu4wSF4Si4mQ==
+Date: Tue, 3 Dec 2024 12:59:40 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Cc: cros-qcom-dts-watchers@chromium.org,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, quic_vbadigan@quicinc.com,
+	quic_ramkri@quicinc.com, quic_nitegupt@quicinc.com,
+	quic_skananth@quicinc.com, quic_vpernami@quicinc.com,
+	quic_mrana@quicinc.com, mmareddy@quicinc.com,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
+Subject: Re: [PATCH 3/3] PCI: qcom: Enable ECAM feature based on config size
+Message-ID: <20241203185940.GA2910223@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241203110019.1520071-12-u.kleine-koenig@baylibre.com>
- <20241203110019.1520071-20-u.kleine-koenig@baylibre.com> <CAHp75VfuTRDAjOD73re8tCWWJsAFUq_P6hPiPd4j_mOFM8oKGw@mail.gmail.com>
- <wfcqlw3xqs2farpvkn3jjlot2bhmsgfa7lfpyzrjwuwuininsn@ni5rcnm3zdxs>
- <CAHp75VdYagk3Rk=ZwhrONHmJBQ=oxQuJc0-RHZwj7E_wGim-OA@mail.gmail.com> <ysobvgq5vxvoe6cr3aryxwfaaqg7ckdyxr72mo7k3r4z2n7bnj@hgfh4ec2sopp>
-In-Reply-To: <ysobvgq5vxvoe6cr3aryxwfaaqg7ckdyxr72mo7k3r4z2n7bnj@hgfh4ec2sopp>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Tue, 3 Dec 2024 20:53:53 +0200
-Message-ID: <CAHp75VeZNX1zzts3yCsbdsk7ZyXQS8MFoL67aLXvdkP8AqSn1w@mail.gmail.com>
-Subject: Re: [PATCH v5 08/10] iio: adc: ad_sigma_delta: Check for previous
- ready signals
-To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, linux-iio@vger.kernel.org, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alisa-Dariana Roman <alisa.roman@analog.com>, Renato Lui Geh <renatogeh@gmail.com>, 
-	Ceclan Dumitru <dumitru.ceclan@analog.com>, devicetree@vger.kernel.org, 
-	Nuno Sa <nuno.sa@analog.com>, David Lechner <dlechner@baylibre.com>, 
-	Alexandru Ardelean <aardelean@baylibre.com>, Trevor Gamblin <tgamblin@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241117-ecam-v1-3-6059faf38d07@quicinc.com>
 
-On Tue, Dec 3, 2024 at 8:47=E2=80=AFPM Uwe Kleine-K=C3=B6nig
-<u.kleine-koenig@baylibre.com> wrote:
-> On Tue, Dec 03, 2024 at 07:47:53PM +0200, Andy Shevchenko wrote:
-> > On Tue, Dec 3, 2024 at 6:16=E2=80=AFPM Uwe Kleine-K=C3=B6nig
-> > <u.kleine-koenig@baylibre.com> wrote:
-> > > On Tue, Dec 03, 2024 at 03:10:30PM +0200, Andy Shevchenko wrote:
-> > > > On Tue, Dec 3, 2024 at 1:01=E2=80=AFPM Uwe Kleine-K=C3=B6nig
-> > > > <u.kleine-koenig@baylibre.com> wrote:
-> > > > >
-> > > > > It can happen if a previous conversion was aborted the ADC pulls =
-down
-> > > > > the =CC=85R=CC=85D=CC=85Y line but the event wasn't handled befor=
-e. In that case enabling
-> > > >
-> > > > Interesting use of Unicode, but I suggest to avoid it when it can b=
-e
-> > > > avoided, i.e.
-> > > > using the notation of #RDY_N might be appropriate as that is how
-> > > > usually the HW people refer to the active low signals.
-> > >
-> > > Usage of =CC=85R=CC=85D=CC=85Y has the advantage to match the referen=
-ce manual and data
-> > > sheet. So I tend to keep it.
-> >
-> > Not sure it's strictly the same. The above has two dashes on top
-> > (actually misaligned a bit) of two letters out of three, this is quite
-> > confusing (as to me to an electrical engineer) and I hardly believe
-> > it's the same in the datasheet (however nowadays everything is
-> > possible with (ab)use of Unicode).
->
-> I think this is "only" a misrepresentation on your end.
+On Sun, Nov 17, 2024 at 03:30:20AM +0530, Krishna chaitanya chundru wrote:
+> Enable the ECAM feature if the config space size is equal to size required
+> to represent number of buses in the bus range property.
+> 
+> The ELBI registers falls after the DBI space, so use the cfg win returned
+> from the ecam init to map these regions instead of doing the ioremap again.
+> ELBI starts at offset 0xf20 from dbi.
+> 
+> On bus 0, we have only the root complex. Any access other than that should
+> not go out of the link and should return all F's. Since the IATU is
+> configured for bus 1 onwards, block the transactions for bus 0:0:1 to
+> 0:31:7 (i.e., from dbi_base + 4KB to dbi_base + 1MB) from going outside the
+> link through ecam blocker through parf registers.
 
-I think it depends on all possible compositions of the fonts, glyphs
-and unicode libraries, now since I looked at the lore.kernel.org (via
-the same browser!) I see a different appearance of this, i.e. it now
-has one dash on top of both R and D and one (still misaligned) on top
-of R on top of the first dash, the thickness of them is also different
-there.
+s/ecam/ECAM/
+s/dbi/DBI/
+s/IATU/iATU/ (Seems to be the convention?  Also below)
+s/parf/PARF/ (I assume an initialism?)
 
-> Sometimes it
-> happens for me, too. A forced redraw helps then. I think that's a bug in
-> the unicode render engine. In gitk it looks completely wrong.
-> Syntactically it's correct however, the sequence is:
-> \xcc\x85R\xcc\x85D\xcc\x85Y, where "\xcc\x85" is the UTF-8
-> representation of the "combining overline" code point (0x305).
+Use conventional format for PCI bus addresses ... I assume "0:0:1"
+means bus 0, device 0, function 1, which would normally be formatted
+as "00:00.1" (also below).
 
-With all this said, please, change it to a less confusing (dependent
-to external libraries/tools) way.
+> +static int qcom_pci_config_ecam_blocker(struct dw_pcie_rp *pp)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> +	struct qcom_pcie *pcie = to_qcom_pcie(pci);
+> +	u64 addr, addr_end;
+> +	u32 val;
+> +
+> +	/* Set the ECAM base */
+> +	writel(lower_32_bits(pci->dbi_phys_addr), pcie->parf + PARF_ECAM_BASE);
+> +	writel(upper_32_bits(pci->dbi_phys_addr), pcie->parf + PARF_ECAM_BASE_HI);
+> +
+> +	/*
+> +	 * On bus 0, we have only the root complex. Any access other than that
+> +	 * should not go out of the link and should return all F's. Since the
+> +	 * IATU is configured for bus 1 onwards, block the transactions for
+> +	 * bus 0:0:1 to 0:31:7 (i.e from dbi_base + 4kb to dbi_base + 1MB) from
+> +	 * going outside the link.
 
-> That makes me remember the times when having a non-ASCII char in your
-> name was a problem:
+s/IATU/iATU/ to match other usage.
 
-Your name in UTF-8 looks nice to me, the below is different character
-set mis-conversions, but it's not the same as we are talking here
-about.
+Use conventional formatting of PCI bus/device/function addresses.
 
-> $ git log v6.13-rc1 | grep -P -o 'Kleine-K.*?nig' | sort | uniq -c
->       8 Kleine-K=C3=83=C2=B6nig
->       1 Kleine-K=3DC3=3DB6nig
->       1 Kleine-K=3DF6nig
->       1 Kleine-K?nig
->      10 Kleine-Knig
->     156 Kleine-Koenig
->       8 Kleine-Konig
->   12862 Kleine-K=C3=B6nig
->       1 Kleine-K <u.kleine-koenig
->
-> If we don't start using these, it will never be repaired ...
+Unless the root bus number is hard-wired to be zero, maybe this should
+say "root bus" instead of "bus 0"?
 
-Sometimes it's better not to start at all... :-)
+There is no architected presence of a PCIe Root Complex as a PCI
+device.  Maybe this should say "the only device on bus 0 is the *Root
+Port*"?
 
---=20
-With Best Regards,
-Andy Shevchenko
+Or maybe there's a PCI device with some sort of device-specific
+interface to Root Complex registers?  But if that were the *only*
+device on bus 0, there would be no Root Port to reach other devices,
+so this doesn't seem likely.
+
+> +static bool qcom_pcie_check_ecam_support(struct device *dev)
+
+Rename to be an assertion that can be either true or false, e.g.,
+"ecam_supported".  "Check" doesn't hint about what true/false mean.
+
+> +{
+> +	struct platform_device *pdev = to_platform_device(dev);
+> +	struct resource bus_range, *config_res;
+> +	u64 bus_config_space_count;
+> +	int ret;
+> +
+> +	/* If bus range is not present, keep the bus range as maximum value */
+> +	ret = of_pci_parse_bus_range(dev->of_node, &bus_range);
+> +	if (ret) {
+> +		bus_range.start = 0x0;
+> +		bus_range.end = 0xff;
+> +	}
+
+I would have thought the generic OF parsing would already default to
+[bus 00-ff]?
+
+> +	config_res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "config");
+> +	if (!config_res)
+> +		return false;
+
+Move of_pci_parse_bus_range() (if it's needed) down here so it's
+together with the use of the results.  No point in calling it before
+looking for "config".
+
+> +	bus_config_space_count = resource_size(config_res) >> PCIE_ECAM_BUS_SHIFT;
+> +	if (resource_size(&bus_range) > bus_config_space_count)
+> +		return false;
+> +
+> +	return true;
+> +}
 
