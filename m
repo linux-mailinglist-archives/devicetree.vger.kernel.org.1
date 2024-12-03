@@ -1,256 +1,344 @@
-Return-Path: <devicetree+bounces-126562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A48979E1CDA
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 13:58:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6E599E1C21
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 13:27:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 00D5EB30B70
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 12:03:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4920DB24C8A
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 12:12:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2D751E4929;
-	Tue,  3 Dec 2024 12:03:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53D261E47B9;
+	Tue,  3 Dec 2024 12:12:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VKt0pbeO"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="EhuypSiS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E96121E490B
-	for <devicetree@vger.kernel.org>; Tue,  3 Dec 2024 12:03:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2346C1E492C;
+	Tue,  3 Dec 2024 12:12:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733227390; cv=none; b=cxO985ZhUjR8PV9OShbT2KWpfIIiJ2v0Ae1NsGeQvDHZRs001B0gPNX1XFeFT10e0MVQSXDvu3Mc6jXaH1nh4pM0l3Ol6QgBUL2LnfMiO/Hs1s8fBWPR5KI5fQFl8L1wZU0j2MS0QfytinbOwS/IC0TfYEOaXtLx2C06nexEXEs=
+	t=1733227932; cv=none; b=Ra2xh5ac3OziNh/xP78DWK2qw0phFwIpiPYd4uoGIbXUR1bWpj0iyD3PRfAftLK9LtqMwi+xt6lYza3sz6kqGAV64MT2gy5WGeuuqfTLld8IpIqHgeXjxqNeuxxLvidog8lQdyJPMwEvTxHqPcg6tdcn3RMGIrZFmqNrjTMdA0E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733227390; c=relaxed/simple;
-	bh=/SHUjEZj0+DIt9galfwmQtnRJJrNtbTjKsnxqJpKtVQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Wi/ikt3MpmUAtzKcv9YOcJm17E8eYhyR25FSpnKB+AgRM2Y36T3tLnbavHoJ2afF80E8nKK3Pezei/B6L7Dutz9fAmSvuCtDHoM3wI3Hf52CKt9nG2D3h1ynhV6hZYCJeZzqVboAE2JdtnIveBygIdLJ8fDFjhhwhshYhfqb6CI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VKt0pbeO; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-434a0fd9778so50155445e9.0
-        for <devicetree@vger.kernel.org>; Tue, 03 Dec 2024 04:03:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733227387; x=1733832187; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=y0I7eoP4tW1sy5Wnizr4Z0EwfocpUFRNEULcv2IVlsM=;
-        b=VKt0pbeOjDTzcWY7bYHbQBR5pBgJmIXYSicNJj48qkYVUd2pDmITsE1z7ggPkgEYgq
-         5L/W9i/w/02VIk8DHhVNA1q+Yhl/5Q1vyWfT+5or/TsbR5SUGuBsIEYqVtgSt2f1aJrn
-         I0gmFgYglz9y9Qz9prdJP/KSXWg/iRzOu0Jd3mcWxf24udoy1uw87+13hopFaAmuquM6
-         FHdvxly8z8olS9DxWwDV6pibq/4lxpWLYbguQxeJc7GdceLGo89HgN9poYzPHMABdLKw
-         1aeHIsaqYmkd9eUfb2og9E0C83S5dp26nLM8MnMfly0I3pckDswRLlCSdG54M7me3W4h
-         G8zA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733227387; x=1733832187;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=y0I7eoP4tW1sy5Wnizr4Z0EwfocpUFRNEULcv2IVlsM=;
-        b=UoUvv92NURdsBgDDQqpLiY12LsEqL73Io5IKo4sJUCcZ9ZhJkJKN+5OQGKPW+1FeBr
-         B7S3y8vfqfej+2P46hQ8Rd2OTHCtFxkAqsWVzLAKEg0vtSCjR+6fAU7IhBRB+/xszbqW
-         Z8Z8XpjS02/HSDZRKmchD42zBXmO2HyFKrUQSfc4d/9Wg4N+9dTwO08zpy1uHQp8xGpS
-         yCBVuvoybdY+CkwwtGDG/jfQ/FOrG/gCVKUDWdha0NXcFzs6rsv2RvpdMQx3DWFqhJG+
-         Pv6ZilRh+UBGJxxEPnhWIXo6o8YQ1mAErL2lkbWoOZaY7qHnJ/rcjFTEhStm91B6nUIh
-         FT3w==
-X-Forwarded-Encrypted: i=1; AJvYcCWXsPRP1Y5rvmby9Tf+co5+K78rPHDEqqq4fEYJ6ZB1rgC9qM0T42WNrd9usOkknNzG8eeKKDEgtung@vger.kernel.org
-X-Gm-Message-State: AOJu0YzvLsj7SQuyZlOcmHHy0pODISWR+rVvSFkHgOj2SiY91wNY0+SH
-	x7KHPUK9v5w4GVQqIlHH3cAlT4kRWglL3I9hd8spL+b3UzpWYeBwowtZ7FN1Z5s=
-X-Gm-Gg: ASbGncvCiN6js6GKSDtnGFBFH7pUdERKJafgNTuWbnuCqhw9Dyg/cQwE4k1GAe0N6jZ
-	pepR93J9OKdGqlHcEiTGkBg1wS/chYTqzyMZmvTSvL0xeLDeiE2S4aDeGjKHdeI3oMTkO88IaL9
-	ezlN+9VrKx1SGcrIaYSq5SzQAn1AYdyZQquxfphoR+hBBGrWmDqHXKIbJDArJOnKOtN1BH4GkUq
-	NZesBPMkxZ93WM+UrmPuMRz+cpzGeSlWxKVjneZl78JVQ3w
-X-Google-Smtp-Source: AGHT+IGJuNygbZCGb6hKSPq7svZI0UjE9YSI8WZDBfz+rnhnNF8S82REfql2U1Ng0i3TWUIKQNJLRw==
-X-Received: by 2002:a05:600c:138a:b0:431:52da:9d67 with SMTP id 5b1f17b1804b1-434d09b1831mr21654615e9.3.1733227387134;
-        Tue, 03 Dec 2024 04:03:07 -0800 (PST)
-Received: from linaro.org ([82.76.168.176])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434b0f326a9sm189099435e9.35.2024.12.03.04.03.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Dec 2024 04:03:06 -0800 (PST)
-Date: Tue, 3 Dec 2024 14:03:05 +0200
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: Johan Hovold <johan@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Krishna Kurapati <quic_kriskura@quicinc.com>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>, linux-usb@vger.kernel.org
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: x1e80100-crd: Add USB multiport
- fingerprint readery
-Message-ID: <Z07zeVJU3Y1GiSLL@linaro.org>
-References: <20241118-x1e80100-crd-fp-v1-0-ec6b553a2e53@linaro.org>
- <20241118-x1e80100-crd-fp-v1-1-ec6b553a2e53@linaro.org>
- <Z07bgH5vVk44zuEH@hovoldconsulting.com>
- <Z07r3Upr50vLluyn@linaro.org>
+	s=arc-20240116; t=1733227932; c=relaxed/simple;
+	bh=GDwPr4QyEhVpjwGfXI94ePk9KDZB32MM6IodRBbOegE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WfrDB00lWOYR/1WvIYt4KEsYR/uJOh5qwDzTLu48Kyly4FYUao6woRYFfwCavtE7gMJ5SMKHl1ZAvf+wv76PLcthqAxpT1Hz/CVt9grgmj3ksQWYu5EqB+E8oY5eAzhzDnKdwhD+yaiFgWrZu3TewWSz0LYTY97STJXXQSsdJGw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=EhuypSiS; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-157-155-49.elisa-laajakaista.fi [91.157.155.49])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 57177E1;
+	Tue,  3 Dec 2024 13:11:38 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1733227899;
+	bh=GDwPr4QyEhVpjwGfXI94ePk9KDZB32MM6IodRBbOegE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=EhuypSiS7ql2Xn5Q089wPUoQSUUfwPanDrw7CAM5AISzigC9L5iI5tC4de3/2x+ZD
+	 jf/j7zi7jldnWsLdc9EZjC5woenOj+F/3+WK873qFwik2HDngeYWbbaMX4UrgMPcYG
+	 gUYYYEdi8DcNWtJ/ed2fIF0z2WE3RwJUhruhhAN8=
+Message-ID: <8b57d6a4-6bc1-4542-abf4-8bc4a3120c25@ideasonboard.com>
+Date: Tue, 3 Dec 2024 14:12:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z07r3Upr50vLluyn@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/3] drm/tidss: Add OLDI bridge support
+To: Aradhya Bhatia <aradhya.bhatia@linux.dev>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Nishanth Menon
+ <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Devarsh Thakkar <devarsht@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
+ Udit Kumar <u-kumar1@ti.com>, Jayesh Choudhary <j-choudhary@ti.com>,
+ Francesco Dolcini <francesco@dolcini.it>,
+ Alexander Sverdlin <alexander.sverdlin@siemens.com>,
+ Max Krummenacher <max.oss.09@gmail.com>,
+ DRI Development List <dri-devel@lists.freedesktop.org>,
+ Devicetree List <devicetree@vger.kernel.org>,
+ Linux Kernel List <linux-kernel@vger.kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jyri Sarha <jyri.sarha@iki.fi>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>,
+ David Airlie <airlied@gmail.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Simona Vetter <simona@ffwll.ch>
+References: <20241124143649.686995-1-aradhya.bhatia@linux.dev>
+Content-Language: en-US
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <20241124143649.686995-1-aradhya.bhatia@linux.dev>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 24-12-03 12:30:37, Stephan Gerhold wrote:
-> On Tue, Dec 03, 2024 at 11:20:48AM +0100, Johan Hovold wrote:
-> > [ +CC: Krishna, Thinh and the USB list ]
-> > 
-> > On Mon, Nov 18, 2024 at 11:34:29AM +0100, Stephan Gerhold wrote:
-> > > The X1E80100 CRD has a Goodix fingerprint reader connected to the USB
-> > > multiport controller on eUSB6. All other ports (including USB super-speed
-> > > pins) are unused.
-> > > 
-> > > Set it up in the device tree together with the NXP PTN3222 repeater.
-> > > 
-> > > Signed-off-by: Stephan Gerhold <stephan.gerhold@linaro.org>
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 48 +++++++++++++++++++++++++++++++
-> > >  1 file changed, 48 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-> > > index 39f9d9cdc10d..44942931c18f 100644
-> > > --- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-> > > +++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
-> > > @@ -735,6 +735,26 @@ keyboard@3a {
-> > >  	};
-> > >  };
-> > >  
-> > > +&i2c5 {
-> > > +	clock-frequency = <400000>;
-> > > +
-> > > +	status = "okay";
-> > > +
-> > > +	eusb6_repeater: redriver@4f {
-> > > +		compatible = "nxp,ptn3222";
-> > > +		reg = <0x4f>;
-> > 
-> > The driver does not currently check that there's actually anything at
-> > this address. Did you verify that this is the correct address? 
-> > 
-> > (Abel is adding a check to the driver as we speak to catch any such
-> > mistakes going forward).
-> > 
-> 
-> Yes, I verified this using
-> https://git.codelinaro.org/stephan.gerhold/linux/-/commit/45d5add498612387f88270ca944ee16e2236fddd
-> 
-> (I sent this to Abel back then, so I'm surprised he didn't run that :-))
+Hi,
 
-I don't remember seeing this commit back then. Maybe I didn't look
-careful enough. Sorry.
+On 24/11/2024 16:36, Aradhya Bhatia wrote:
+> Hello all,
+> 
+> This patch series add support for the dual OLDI TXes supported in Texas
+> Instruments' AM62x and AM62Px family of SoCs. The OLDI TXes support single-lvds
+> lvds-clone, and dual-lvds modes. These have now been represented through DRM
+> bridges within TI-DSS.
+> 
+>   - Some history and hardware description for this patch series.
+> 
+> This patch series is a complete re-vamp from the previously posted series[1] and
+> hence, the version index has been reset to v1. The OLDI support from that series
+> was dropped and only the base support for AM62x DSS was kept (and eventually
+> merged)[2].
+> 
+> The OLDI display that the tidss driver today supports, could not be extended for
+> the newer SoCs. The OLDI display in tidss is modelled after the DSS and OLDI
+> hardware in the AM65x SoC. The DSS in AM65x SoC, has two video-ports. Both these
+> video-ports (VP) output DPI video signals. One of the DPI output (from VP1) from
+> the DSS connects to a singular OLDI TX present inside the SoC. There is no other
+> way for the DPI from VP1 to be taken out of the SoC. The other DPI output
+> however - the one from VP2 - is taken out of the SoC as is. Hence we have an
+> OLDI bus output and a DPI bus output from the SoC. Since the VP1 and OLDI are
+> tightly coupled, the tidss driver considers them as a single entity. That is
+> why, any OLDI sink connects directly to the DSS ports in the OF graphs.
+> 
+> The newer SoCs have varying DSS and OLDI integrations.
+> 
+> The AM62x DSS also has 2 VPs. The 2nd VP, VP2, outputs DPI signals which are
+> taken out of the SoC - similar to the AM65x above. For the VP1, there are 2 OLDI
+> TXes. These OLDI TXes can only receive DPI signals from VP1, and don't connect
+> to VP2 at all.
+> 
+> The AM62Px SoC has 2 OLDI TXes like AM62x SoC. However, the AM62Px SoC also has
+> 2 separate DSSes. The 2 OLDI TXes can now be shared between the 2 VPs of the 2
+> DSSes.
+> 
+> The addition of the 2nd OLDI TX (and a 2nd DSS in AM62Px) creates a need for
+> some major changes for a full feature experience.
+> 
+> 1. The OF graph needs to be updated to accurately show the data flow.
+> 2. The tidss and OLDI drivers now need to support the dual-link and the cloned
+>     single-link OLDI video signals.
+> 3. The drivers also need to support the case where 2 OLDI TXes are connected to
+>     2 different VPs - thereby creating 2 independent streams of single-link OLDI
+>     outputs.
+> 
+> Note that the OLDI does not have registers of its own. It is still dependent on
+> the parent VP. The VP that provides the DPI video signals to the OLDI TXes, also
+> gives the OLDI TXes all the config data. That is to say, the hardware doesn't
+> sit on the bus directly - but does so through the DSS.
+> 
+> In light of all of these hardware variations, it was decided to have a separate
+> OLDI driver (unlike AM65x) but not entirely separate so as to be a platform
+> device. The OLDI TXes are now being represented as DRM bridges under the tidss.
+> 
+> Also, since the DRM framework only really supports a linear encoder-bridge
+> chain, the OLDI driver creates a DRM bridge ONLY for the primary OLDI TX in
+> cases of dual-link or cloned single-link OLDI modes. That bridge then attaches
 
-Since you already did the work, can you send that on the list?
+How does the clone case work, then? There are two panels, what does the 
+second one connect to?
 
-So if you remember, back then I hunted down all of these with i2cget on
-my t14s (it has 3 such repeaters, unlike CRD).
-
+> to the tidss's display core - which consists of a CRTC, an Encoder (dummy) and a
+> bridge (dummy). On the other end, it attaches to OLDI sinks (panels or other
+> bridges).
 > 
-> > > +		#phy-cells = <0>;
-> > 
-> > nit: I'd put provider properties like this one last.
-> > 
-> > > +		vdd3v3-supply = <&vreg_l13b_3p0>;
-> > > +		vdd1v8-supply = <&vreg_l4b_1p8>;
-> > 
-> > Sort by supply name?
-> > 
+> Since the OLDI TX have a hardware dependency with the VP, the OLDI configuration
+> needs to happen before that VP is enabled for streaming. VP stream enable takes
+> place in tidss_crtc_atomic_enable hook. I have posted a patch allowing DRM
+> bridges to get pre-enabled before the CRTC of that bridge is enabled[0]. Without
+> that patch, some warnings or glitches can be seen.
 > 
-> Ack.
+> These patches have been tested on AM625 based Beagleplay[3] platform with a
+> Lincolntech LCD185 dual-lvds panel. The patches with complete support including
+> the expected devicetree configuration of the OLDI TXes can be found in the
+> "next_oldi_v4_tests" branch of my github fork[4]. This branch also has support
+> for Microtips dual-lvds panel (SK-LCD1) which is compatible with the SK-AM625
+> EVM platform.
 > 
-> > > +		reset-gpios = <&tlmm 184 GPIO_ACTIVE_LOW>;
-> > > +
-> > > +		pinctrl-0 = <&eusb6_reset_n>;
-> > > +		pinctrl-names = "default";
-> > > +	};
-> > > +};
-> > > +
-> > >  &i2c8 {
-> > >  	clock-frequency = <400000>;
-> > >  
-> > > @@ -1047,6 +1067,14 @@ edp_reg_en: edp-reg-en-state {
-> > >  		bias-disable;
-> > >  	};
-> > >  
-> > > +	eusb6_reset_n: eusb6-reset-n-state {
-> > > +		pins = "gpio184";
-> > > +		function = "gpio";
-> > > +		drive-strength = <2>;
-> > > +		bias-disable;
-> > > +		output-low;
-> > 
-> > I don't think the pin config should assert reset, that should be up to
-> > the driver to control.
-> > 
+> Due to lack of hardware, I haven't been able to test single-link / cloned
+> single-link OLDI modes. I have only used a sample cloned single-link DTBO and
+> booted the board with it. I didn't see any probe_deferred errors (as seen
+> previously), and the `kmsprint` utility enumerated the display details fine.
 > 
-> I can drop it I guess, but pinctrl is applied before the driver takes
-> control of the GPIO. This means if the GPIO happens to be in input mode
-> before the driver loads (with pull up or pull down), then we would
-> briefly leave it floating when applying the bias-disable.
-> 
-> Or I guess we could drop the bias-disable, since it shouldn't be
-> relevant for a pin we keep in output mode all the time?
-> 
-> > > +	};
-> > > +
-> > >  	hall_int_n_default: hall-int-n-state {
-> > >  		pins = "gpio92";
-> > >  		function = "gpio";
-> > > @@ -1260,3 +1288,23 @@ &usb_1_ss2_dwc3_hs {
-> > >  &usb_1_ss2_qmpphy_out {
-> > >  	remote-endpoint = <&pmic_glink_ss2_ss_in>;
-> > >  };
-> > > +
-> > > +&usb_mp {
-> > > +	status = "okay";
-> > > +};
-> > > +
-> > > +&usb_mp_dwc3 {
-> > > +	/* Limit to USB 2.0 and single port */
-> > > +	maximum-speed = "high-speed";
-> > > +	phys = <&usb_mp_hsphy1>;
-> > > +	phy-names = "usb2-1";
-> > > +};
-> > 
-> > The dwc3 driver determines (and acts on) the number of ports based on
-> > the port interrupts in DT and controller capabilities. 
-> > 
-> > I'm not sure we can (should) just drop the other HS PHY and the SS PHYs
-> > that would still be there in the SoC (possibly initialised by the boot
-> > firmware).
-> > 
-> > I had a local patch to enable the multiport controller (for the suspend
-> > work) and I realise that you'd currently need to specify a repeater also
-> > for the HS PHY which does not have one, but that should be possible to
-> > fix somehow.
-> > 
-> 
-> I think there are two separate questions here:
-> 
->  1. Should we (or do we even need to) enable unused PHYs?
->  2. Do we need to power off unused PHYs left enabled by the firmware?
-> 
-> For (1), I'm not not sure if there is a technical reason that requires
-> us to. And given that PHYs typically consume quite a bit of power, I'm
-> not sure if we should. Perhaps it's not worth spending effort on this
-> minor optimization now, but then the device tree would ideally still
-> tell us which PHYs are actually used (for future optimizations).
-> 
-> For (2), yes, we probably need to. But my impression so far is that this
-> might be a larger problem that we need to handle on the SoC level. I
-> have seen some firmware versions that blindly power up all USB
-> controllers, even completely unused ones. Ideally we would power down
-> unused components during startup and then leave them off.
+> Regardless, I'd appreciate it if somebody can test it, and report back if they
+> observe any issues.
 > 
 > Thanks,
-> Stephan
+> Aradhya
+> 
+> 
+> Additional Notes:
+> 
+> * Important note about a false positive in dtbs_check *
+> Both the ports, port0 and port1, are required for the OLDI functionality to
+> work. The schema suggests this condition too. Additionally, the OLDI devicetree
+> node is expected to be defined in the soc.dtsi file, and kept as disabled.
+> Over the current platforms (Beagleplay and SK-AM625 EVM), the OLDI panel is not
+> always attached, and hence we use a DT overlay to add panel details - which is
+> where we enable the OLDI nodes. The structure of files is like this -
+> 
+> - soc.dtsi                  (OLDI disabled)
+> - soc-baseboard.dts         (OLDI disabled)
+> - soc-baseboard-panel.dtso  (OLDI enabled)
+> 
+> During dtbs_check runs, it was observed that the check was not able to rule out
+> OLDI issues even when its DT was disabled in the soc-baseboard.dts. It is
+> impractical and impossible to add OLDI ports prior to the panel overlay file.
+> While the dtbs_check usually ignores checking disabled devicetree nodes, it was
+> unable to do so in the OLDI's case.
+
+While there might be something amiss with dtbs_check, what's the problem 
+with adding both port nodes to the soc.dtsi? If you have no endpoints 
+there, it's not connected to anything.
+
+  Tomi
+
+> 
+> 
+> * Important note about the authorship of patches *
+> All the patches in the of this series were authored when I owned a "ti.com"
+> based email id, i.e. <a-bhatia1@ti.com>. This email id is not in use anymore,
+> and all the work done later has been part of my personal work. Since the
+> original patches were authored using TI's email id, I have maintained the
+> original authorships as they are, as well as their sign offs.
+> 
+> I have further added another sign off that uses my current (and personal) email
+> id, the one that is being used to send this revision, i.e.
+> <aradhya.bhatia@linux.dev>.
+> 
+> ---
+> 
+> Change Log:
+> V4:
+>    - Implement fixes suggested by Krzysztof Kozlowski:
+>      - Squash patches v3:2/4 and v3:3/4 to v4:2/3, and add more hardware details
+>        in commit description.
+>      - Change the serial clock name for OLDI, from "s_clk" to "serial".
+>      - Fix the required condition in the OLDI schema.
+>      - Other minor fixes.
+>    - Change "oldi-txes" OLDI DT node name to "oldi-transmitters".
+>    - Update secondary-OLDI property requirements to be more relaxing for AM62P
+>      DSS configuration.
+> 
+> V3:
+>    - Fix the dt_binding_check warning in patch 3/4[5] by adding
+>      "additionalProperties" constraint.
+> 
+> V2:
+>    - Add all the R-b and A-b tags from Laurent Pinchart, Rob Herring, and
+>      Tomi Valkeinen.
+>    - Reword the subject for patch 1/4.
+>    - Reword the commit descriptions to add proper hardware detail.
+>    - Drop the change in schema reference for port@0 in patch 3/4.
+>    - Lots of improvements for patch 4/4.
+>      * Refactor OLDI selection logic in tidss_oldi_tx_power().
+>      * Add "companion_instance" support to identify the OLDI index in
+>        dual-link or cloned sinle-link modes.
+>      * De-initialize tidss_oldi during tidss removal.
+>      * Use dev_err_probe() instead of dev_err().
+>      * Drop OLDI(n) macro.
+>      * Move OLDI Config register bits to tidss_dispc_regs.h.
+>      * Drop oldi bridge atomic_check().
+>      * s/%d/%u for all print instances of "oldi_instance".
+>      * Move OLDI init after DISPC init in tidss_probe.
+>      * Use devm_drm_of_get_bridge() instead of
+>        drm_of_find_panel_or_bridge() to find the next bridge and drop all
+>        the drm_panel support from tidss_oldi.
+> 
+> Previous revisions:
+> V3: https://lore.kernel.org/all/20240716084248.1393666-1-a-bhatia1@ti.com/
+> V2: https://lore.kernel.org/all/20240715200953.1213284-1-a-bhatia1@ti.com/
+> V1: https://lore.kernel.org/all/20240511193055.1686149-1-a-bhatia1@ti.com/
+> 
+> 
+> [0]: Dependency Patch:
+> ("drm/atomic-helper: Re-order bridge chain pre-enable and post-disable")
+> https://lore.kernel.org/all/20240622110929.3115714-11-a-bhatia1@ti.com/
+> 
+> [1]: AM62 OLDI Series - v7
+> https://lore.kernel.org/all/20230125113529.13952-1-a-bhatia1@ti.com/
+> 
+> [2]: AM62 DSS Series - v9
+> https://lore.kernel.org/all/20230616150900.6617-1-a-bhatia1@ti.com/
+> 
+> [3]: TI AM625 SoC based Beagleplay platform
+> https://www.beagleboard.org/boards/beagleplay
+> 
+> [4]: GitHub Fork for OLDI tests
+> https://github.com/aradhya07/linux-ab/tree/next_oldi_v4_tests
+> 
+> [5]: ("ti,am65x-dss.yaml: oldi-txes: Missing additionalProperties/
+>        unevaluatedProperties constraint")
+> https://lore.kernel.org/all/172107979988.1595945.9666141982402158422.robh@kernel.org/
+> 
+> Aradhya Bhatia (3):
+>    dt-bindings: display: ti,am65x-dss: Re-indent the example
+>    dt-bindings: display: ti: Add schema for AM625 OLDI Transmitter
+>    drm/tidss: Add OLDI bridge support
+> 
+>   .../bindings/display/ti/ti,am625-oldi.yaml    | 119 ++++
+>   .../bindings/display/ti/ti,am65x-dss.yaml     | 195 ++++++-
+>   MAINTAINERS                                   |   1 +
+>   drivers/gpu/drm/tidss/Makefile                |   3 +-
+>   drivers/gpu/drm/tidss/tidss_dispc.c           |  20 +-
+>   drivers/gpu/drm/tidss/tidss_dispc.h           |   4 +
+>   drivers/gpu/drm/tidss/tidss_dispc_regs.h      |  14 +
+>   drivers/gpu/drm/tidss/tidss_drv.c             |   9 +
+>   drivers/gpu/drm/tidss/tidss_drv.h             |   5 +
+>   drivers/gpu/drm/tidss/tidss_oldi.c            | 537 ++++++++++++++++++
+>   drivers/gpu/drm/tidss/tidss_oldi.h            |  51 ++
+>   11 files changed, 935 insertions(+), 23 deletions(-)
+>   create mode 100644 Documentation/devicetree/bindings/display/ti/ti,am625-oldi.yaml
+>   create mode 100644 drivers/gpu/drm/tidss/tidss_oldi.c
+>   create mode 100644 drivers/gpu/drm/tidss/tidss_oldi.h
+> 
+> 
+> base-commit: cfba9f07a1d6aeca38f47f1f472cfb0ba133d341
+
 
