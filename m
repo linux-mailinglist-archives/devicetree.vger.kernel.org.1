@@ -1,121 +1,147 @@
-Return-Path: <devicetree+bounces-126378-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126379-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 121389E14CA
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 08:59:41 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 622CF9E14D2
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 09:00:08 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D9812164655
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 07:59:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22A7D28337A
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 08:00:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 175F51CCEE0;
-	Tue,  3 Dec 2024 07:57:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 233E41D89FA;
+	Tue,  3 Dec 2024 07:58:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Bp9cDtKY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qeR6BTWh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 432B81C6F56
-	for <devicetree@vger.kernel.org>; Tue,  3 Dec 2024 07:57:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC2D01D79BE;
+	Tue,  3 Dec 2024 07:58:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733212630; cv=none; b=HoFc7Pn+OqvV4DPyu2SRLA1cH0tnJ7KAxC5ZJeQdWTgHsuqKzCy4K2XXz0n8cGpRiIlGqLBuWYqs/QHUv5Jsgk3RS0M1iM2+VIt2SPwLluqTTUa5Wffx+Mzm5N2adn2MxhXUkJkgDT/IW3K37sQEDlWAWMo78KgvPFV1pVbRj6Y=
+	t=1733212685; cv=none; b=bFdcES6Z+pceSNhJ/nnsciBmOIZdfco+a1tJ0hr2lq59fY+0zRAQjmvV+5toE2Qv3Wm2PgZ5CmtFNSoUN2RvemdenB+BNUiRmcomUaNYOhSYIJCEMNqrC+pbNgwWe7wdu5DF3xb97gz7uV6R3tTQw2nfGVIU6Yd2M13vwfBXxFY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733212630; c=relaxed/simple;
-	bh=BN9oqBHKXYcufRO+eCasqfzBY8zLc9V3aSmv0W/2EC4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=neGT5OFI0gparBnegJ6GJgRq2imIyWThA0fp3HOlng3Q8pMzJw8n66VcEngnGjk5kP0uxWgxLLsJf+ilxKcyBcIKENo0UyMVjgkipJNljElXmCJJtiafeDLhAZ/Rj5MT2juZ7Ug99O5CCd0Xi29AnRSBAYx8EvXaEMb80NqIhfY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Bp9cDtKY; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-53df1d1b6e8so5351667e87.1
-        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 23:57:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1733212626; x=1733817426; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7WSM6TGpmmItz1uM+DrPz33P+iBBhPav9/6+0hNpzfY=;
-        b=Bp9cDtKYIulZYLJVsMyF4pbX80JXp7spNIRLp4Z3kZZEjnIn3jlZ0HMyVF3kMzayq2
-         wOF3k7XrBBw1vjbeOOLaTynL7BI+r352g7ZouMhhK7bn6DdBX3rsFNRC2VQuHwgkVk/O
-         USaav2g7eV97nFYkw7/gDAHYL0EKww5/Xk1Yk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733212626; x=1733817426;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7WSM6TGpmmItz1uM+DrPz33P+iBBhPav9/6+0hNpzfY=;
-        b=qe56iy9Ik7I2Yba0qBv7N6Lt3H2R8JKI6X0BjCKmvBPuEcCwy8CZ0RbWVqpcsqUmSO
-         8wmipMo1phhsY176msKnOMqx3dKa0Vg8x3Ud5HsLJZ91SvLyQU4ByMLqnJQFQ4R1Mey1
-         8+lTyAqvsOTZSxLKT/LnXa8HZwOnV007+5DwqnmFEbUbda5VUCjd6qLIvvX8rokbggld
-         PPbdt3rGc6btyl3Yphhaf6qNSfPrdxHzMzu1D3G2fozXjlReUqD5iDfgfJkfJ9SKYski
-         FCOvT8B4x0LXwzlaXxE+sxSpHhtsFKAPaghJvkINniONl0MBLbg75fhkR6ts7tiF6nj+
-         QXuA==
-X-Forwarded-Encrypted: i=1; AJvYcCUqZPVVQufbpp/V+/z5ov6vPCcm1tIbmqIDHh0qPxza0jovY1hZkqP0nwF0l+kKopQKtiXSSAm3Qs8o@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz1zoXnI4gD5eqhlfC9Y3TD7PtsG9R4OkINs8B1L8b/mEVIb3Nh
-	NzmcVM2yOyQQQcMtxaje48u6nejshvFk572jvB/nQnBC5uJH19oxzf4thdBHlvHcf9Q0rLlT2w5
-	kezNazzOxmMn59aEeUul3N16ZFzfRX3+txRjz
-X-Gm-Gg: ASbGnct+tEIAYqPrXNncINJCK9fi2Q51y16z5jDmQzrUNgLg9xs7jqvXbtEcFVGGoxf
-	4+iGKvVztEygQq/WYjA6Xx03PHIYLW8n06X/Tdo/RdHpMmY+ecRrjMAn71ZU=
-X-Google-Smtp-Source: AGHT+IGpQFfklgML0v0C4LtaU2v74NIo4jtxn8wZdpHFLuloc5xneMzv1C9DI4bftKit5brhjQgwO+p7wVaG2CY8JIk=
-X-Received: by 2002:a05:6512:138c:b0:53d:e5f0:32bb with SMTP id
- 2adb3069b0e04-53e12a3929bmr524178e87.51.1733212626459; Mon, 02 Dec 2024
- 23:57:06 -0800 (PST)
+	s=arc-20240116; t=1733212685; c=relaxed/simple;
+	bh=38p7GC9R1as6v+LwylJU+xoFYW0MlJUbCVhahYq60k0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=B7pMLi0k4RnfpNdEf2zheP02F1YTQIHrVQZLYN06AWoPhVju/zS58LpqNoJEapS16/WS6QGPXwEF28ZiCD0692hCLaFXVV/nK9KhhWt7ivFwhJtkEUM64ujjnLVGUqdl5tR7JvEvhFp7Bj1Q1AEhHPfdgSI0NeCha/gVd6abi7I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qeR6BTWh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 6AF42C4CED8;
+	Tue,  3 Dec 2024 07:58:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733212684;
+	bh=38p7GC9R1as6v+LwylJU+xoFYW0MlJUbCVhahYq60k0=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=qeR6BTWh4npu/nUeKHUeW2TbqLOv4TMu4hL+exb2g/ysR8Yp0Rfxc30XcZzLKJLJx
+	 pJwBj9P9QmSsrI/CH1I1dfrqpZEE7qDC0Ibdl08aqLGLGCN6qpkecibzXL0yKd2qyB
+	 c2ZBVPnshRHQoJpJW6EC99Ej3LWge0R4g0uRvCuFoMSIxJJA2Z3dw5QepUZjt/JhdI
+	 02n0hu2mdqhZVFqPVSEye3pykhyDqCBqXXMIik5wMkXj7RaI6pMtY6c6+9uhIJM113
+	 qNHafSEhCeJYqNi6BFF9G3ggPK+ku8DWMDASCi0eFBKVS2kDsMlDYK4ucWQW2KgnD4
+	 qJaxxsC52twXg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4CB9BE6C615;
+	Tue,  3 Dec 2024 07:58:04 +0000 (UTC)
+From: Janne Grunau via B4 Relay <devnull+j.jannau.net@kernel.org>
+Subject: [PATCH v2 0/5] Add Apple SPI controller and spi-nor dt nodes
+Date: Tue, 03 Dec 2024 08:57:56 +0100
+Message-Id: <20241203-asahi-spi-dt-v2-0-cd68bfaf0c84@jannau.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241202032035.29045-1-xiazhengqiao@huaqin.corp-partner.google.com>
- <20241202032035.29045-5-xiazhengqiao@huaqin.corp-partner.google.com>
-In-Reply-To: <20241202032035.29045-5-xiazhengqiao@huaqin.corp-partner.google.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Tue, 3 Dec 2024 15:56:55 +0800
-Message-ID: <CAGXv+5Hp030iiCXDYHYX6F1mD5WnsL=EziHPfM7Hm4kMxnhgXw@mail.gmail.com>
-Subject: Re: [PATCH v4 4/4] arm64: dts: mediatek: Modify audio codec name for pmic
-To: Zhengqiao Xia <xiazhengqiao@huaqin.corp-partner.google.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
-	hsinyi@chromium.org, sean.wang@mediatek.com, dianders@google.com, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAS6TmcC/1XMQQ6CMBCF4auQWTumrSWiK+5hWAxlkHFRSIuNh
+ vTuVhIXLv+XvG+DyEE4wrXaIHCSKLMvYQ4VuIn8nVGG0mCUsVorjRRpEoyL4LBi3Rhb970e6MR
+ QLkvgUV47d+tKTxLXObx3Penv+oPMP5Q0KjyTs9Ypaprx0j7Ie3oePa/Q5Zw/IzMp36kAAAA=
+X-Change-ID: 20241101-asahi-spi-dt-58245bb1da3e
+To: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Janne Grunau <j@jannau.net>, Neal Gompa <neal@gompa.dev>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2988; i=j@jannau.net;
+ s=yk2024; h=from:subject:message-id;
+ bh=38p7GC9R1as6v+LwylJU+xoFYW0MlJUbCVhahYq60k0=;
+ b=owGbwMvMwCW2UNrmdq9+ahrjabUkhnS/XVx8XB/sTvDsaRLr+iK/Suegj9iJztcWOsxvK+x27
+ D86/8jtjlIWBjEuBlkxRZYk7ZcdDKtrFGNqH4TBzGFlAhnCwMUpABORX8bw30W1lDOg+3Gy3CPu
+ vw/D46uTHhxYdPGBLXd2sVeXtcnBXQz/S+z2MiqWmTl371rHnNT+ikHccNOBi31u7JEtl77tWtT
+ CBgA=
+X-Developer-Key: i=j@jannau.net; a=openpgp;
+ fpr=8B336A6BE4E5695E89B8532B81E806F586338419
+X-Endpoint-Received: by B4 Relay for j@jannau.net/yk2024 with auth_id=264
+X-Original-From: Janne Grunau <j@jannau.net>
+Reply-To: j@jannau.net
 
-On Mon, Dec 2, 2024 at 11:21=E2=80=AFAM Zhengqiao Xia
-<xiazhengqiao@huaqin.corp-partner.google.com> wrote:
->
-> change `codec` in pmic (in mt8186-corsola.dtsi) to `audio-codec`
->
-> Signed-off-by: Zhengqiao Xia <xiazhengqiao@huaqin.corp-partner.google.com=
->
+This series adds SPI controller and SPI NOR flash device nodes to the
+man Apple silicon SoC dts files. Only the subset of used SPI controllers
+is added. Five SPI controllers exists according to pmgr ADT data but the
+commits only add controllers found in use on any of the devices. The
+parameters for the missing nodes are guessable but there's no point in
+adding them since no further M1 or M2 devices are expected.
+Together with controller nodes the first SPI device is added. All Apple
+silicon devices connect a SPI NOR flash to spi1. This holds Apple's 1st
+stage bootloader, firmwares, platform and machine specific config data
+and a writeable key-value store (nvram). Expose only the nvram as mtd
+partition since it has use beyond exploring the content. Tools from
+asahi-nvram [1] can modify the (default) boot configuration
+(asahi-bless), read Bluetooth sync keys (asahi-btsync) and read and
+write arbitrary keys (asahi-nvram).
 
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+Devicetree bindings are included in the driver series. Last version at
+https://lore.kernel.org/linux-devicetree/20241101-asahi-spi-v3-0-3b411c5fb8e5@jannau.net/
 
-> ---
->  arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi b/arch/arm6=
-4/boot/dts/mediatek/mt8186-corsola.dtsi
-> index e324e3fd347e..cebb134331fb 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-> @@ -1276,7 +1276,7 @@
->                 interrupts-extended =3D <&pio 201 IRQ_TYPE_LEVEL_HIGH>;
->                 #interrupt-cells =3D <2>;
->
-> -               mt6366codec: codec {
-> +               mt6366codec: audio-codec {
->                         compatible =3D "mediatek,mt6366-sound", "mediatek=
-,mt6358-sound";
->                         Avdd-supply =3D <&mt6366_vaud28_reg>;
->                         mediatek,dmic-mode =3D <1>; /* one-wire */
-> --
-> 2.17.1
->
+This series passes `make CHECK_DTBS=1 dtbs` with the spi bindings except
+for "local-mac-address" for the Bluetooth device (I need get back to
+this).
+
+[1] https://github.com/WhatAmISupposedToPutHere/asahi-nvram/
+
+Signed-off-by: Janne Grunau <j@jannau.net>
+---
+Changes in v2:
+- added spi0 pins from https://lore.kernel.org/asahi/969b7440-5173-4ecc-af31-c3cd1f3f5acf@marcan.st/
+- rebased onto v6.13-rc1
+- added Neal's Rb:
+- Link to v1: https://lore.kernel.org/r/20241102-asahi-spi-dt-v1-0-7ac44c0a88f9@jannau.net
+              https://lore.kernel.org/r/20241127-asahi-spi-dt-v1-0-907c9447f623@jannau.net
+
+---
+Hector Martin (1):
+      arm64: dts: apple: t8103: Fix spi4 power domain sort order
+
+Janne Grunau (4):
+      arm64: dts: apple: t8103: Add spi controller nodes
+      arm64: dts: apple: t8112: Add spi controller nodes
+      arm64: dts: apple: t600x: Add spi controller nodes
+      arm64: dts: apple: Add SPI NOR nvram partition to all devices
+
+ arch/arm64/boot/dts/apple/spi1-nvram.dtsi      | 39 +++++++++++++
+ arch/arm64/boot/dts/apple/t600x-common.dtsi    |  7 +++
+ arch/arm64/boot/dts/apple/t600x-die0.dtsi      | 28 ++++++++++
+ arch/arm64/boot/dts/apple/t600x-gpio-pins.dtsi | 14 +++++
+ arch/arm64/boot/dts/apple/t600x-j314-j316.dtsi |  2 +
+ arch/arm64/boot/dts/apple/t600x-j375.dtsi      |  2 +
+ arch/arm64/boot/dts/apple/t8103-jxxx.dtsi      |  2 +
+ arch/arm64/boot/dts/apple/t8103-pmgr.dtsi      | 18 +++---
+ arch/arm64/boot/dts/apple/t8103.dtsi           | 76 ++++++++++++++++++++++++++
+ arch/arm64/boot/dts/apple/t8112-jxxx.dtsi      |  2 +
+ arch/arm64/boot/dts/apple/t8112.dtsi           | 44 ++++++++++++++-
+ 11 files changed, 224 insertions(+), 10 deletions(-)
+---
+base-commit: 40384c840ea1944d7c5a392e8975ed088ecf0b37
+change-id: 20241101-asahi-spi-dt-58245bb1da3e
+
+Best regards,
+-- 
+Janne Grunau <j@jannau.net>
+
+
 
