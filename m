@@ -1,93 +1,94 @@
-Return-Path: <devicetree+bounces-126670-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126671-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FB869E2767
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 17:28:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCF4C9E2772
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 17:30:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3462A286C5C
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 16:28:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82D6D287052
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 16:30:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6BF51F8AC9;
-	Tue,  3 Dec 2024 16:28:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9424E1F8ACF;
+	Tue,  3 Dec 2024 16:29:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gu9SbOiK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ti9pdhA+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A65CF1F4283;
-	Tue,  3 Dec 2024 16:28:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CDDD18BC1D;
+	Tue,  3 Dec 2024 16:29:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733243308; cv=none; b=N4FdqdV5143F1sT88/FWrF7ngIbqSRX7pafCcgrmtHK+zzzkXo3CjkoUg/Tt5Jvp85r+z5MaT89kUJeDWQ1884ygGurNs+bhNb+BODDynpfUSstD3wwYgXsSXKfcGw2fhON32c+PhL9Dx9x+9zIAXCg2jUQXFn3EeCYbRKQpSCY=
+	t=1733243399; cv=none; b=b4wxvovOrLD9UUAnDeBwavWhmsyGBQkyQQGRxPRBUJbpQgFN2udNEnftRRTOv8JYT03cEAnstzllJVGvq4+dx21BvLVhOnUKC/RuiZ/8DjVba50GpJmuifz1/kZAJE7GBXeEpI2BBQu5siPZy7v0Eba1cNAoiJUbQXvL6HikOFw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733243308; c=relaxed/simple;
-	bh=WA9WK5xt/YZ5TBsjm5H9d3XA02FoCiAuwBjHtqD7DI8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AwY7xLqaN1fBI8jefumxoNaxxRdz/FNaAHf1jvsP7Db+Xs12zv4cTk4zxnI/9yseU/JZNmdVJyuVrB6MFCKPdv1H3qg2+UT/H1yBQ72FuWKw3MdMS+ClQF/HPE2KBejex6mDGdihl2vllBfexqaycPpdvAVS2JKrHUSgD7l3v4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gu9SbOiK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B1A5C4CECF;
-	Tue,  3 Dec 2024 16:28:25 +0000 (UTC)
+	s=arc-20240116; t=1733243399; c=relaxed/simple;
+	bh=Tv0/FtCsUcuTGQ+jsoiF0iOjSni5uFgH74oUN7PTxcM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=A68j8vLS6YNpUK8lwnzmSlKKTtD6b/MDs0Ze8rnRn5UJBVyOicB1SBvrm/OANdVHtP530pAA3DRCZsKz2lTsiQ2jDGDWdU8j8TEV4eWR3iZhn9jbv8TvgwmI5FGXvLTptruyFiguaf/VmaHXm1mPzEvi5gp293qzXhk1+QicmTk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ti9pdhA+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9D88C4CECF;
+	Tue,  3 Dec 2024 16:29:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733243307;
-	bh=WA9WK5xt/YZ5TBsjm5H9d3XA02FoCiAuwBjHtqD7DI8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gu9SbOiKMIRWdhGnOhlKEZM0/Ed5+XlHK954RHDcgiIyGrU+dgacczRCqaa4MYJt0
-	 Atzb7NsfeSTqERoOmUAA6UbjJOoCjcLsWvaFY1AcQkg2xJ2EmWe4G6ZWFk9XCrREam
-	 3zFsyunrFH4ycdr/YsF53IGukbh0PwHRA8AVYPx8LTlxZ38B8N92EA5L91rgq68Zkm
-	 m+9eLB8Lvqc7ybLyNTVHk865LCgmNC3FLbDc4oKH/71swiLZ4TNEnZpoq9Ni8s1N0J
-	 75ze2+0FQVIlGt9OYbXVnmclzjsizLnRVM5bkGM8ex6jCBz0jpTlKIBVSs6Fxsxc+/
-	 cmOlLKWFTeg6g==
-Date: Tue, 3 Dec 2024 16:28:23 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Sean Nyekjaer <sean@geanix.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: iio: accel: fxls8962af: add
- wakeup-source property
-Message-ID: <20241203-famished-satisfied-13c6f350a387@spud>
-References: <20241203-fxlsdt-v2-1-ef523461b507@geanix.com>
+	s=k20201202; t=1733243399;
+	bh=Tv0/FtCsUcuTGQ+jsoiF0iOjSni5uFgH74oUN7PTxcM=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=ti9pdhA+K7R/MPEZB9ABHCXpptFb69ykzeorjO1rSowT+A1f1/5qsxBMP9aRP5y2O
+	 OAKylJF/RCg0sYh48Rb9frTmiNMGek+mCyy6aDOUhouTxm5B2yG1fXBuoPKPM8lrR7
+	 HK7c/XG29FNkOe7ozwcPw9kkTFCuArWHMOoL+m4OfYxK0iLKHbijYR+lJXpMxBk75B
+	 UE+lUdwXMRCA1+DrAiC8nw6gZAyYSOH76Rb1FkqS7z/QTCjbEUtuVsDjr66tTk1fTI
+	 zTGk5nGOSiP1es4Mz85xnsfYlRjCcqWseLp2wpCcno/hvOP34AzgraYIWEaYgUkh1m
+	 qfInz0nP1ZKqA==
+Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-e388503c0d7so4183916276.0;
+        Tue, 03 Dec 2024 08:29:58 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUKhvZtTq6htWmh9ZkRpmfwp6HYpmljM97RC5eRN5YMgyVbjKxcXg8y4exdQdljVwQmRjGJH1ARho9Z@vger.kernel.org, AJvYcCXGPoZ0gBqpscnZ1mjhWlQhM+QuMVq8KmiEU2YxBag00QBDDgylkccUbJWXIa4c/H1kwKHzt20aVt4Grqrz@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZDBLM7YpB6uRPB7FernF92Z74HyVCeHcp5TiboLq3UeLb1nji
+	Kc2P4me/0Y3QFaodfWVPaxRsaP9MeAttHfGwY9STU4eGIUNq+rL2FtHmLV71DDN3oNtaxIG1Wmu
+	FfNnpsscacGLVu9SRo7fahFsLCg==
+X-Google-Smtp-Source: AGHT+IEjhzwVUw3GpUhAyfiDrfv9x9+EZvaLuj9fZM6qMK5uI75t59+f1FnfnDvhq+imIO6/SaFkHANqNEPhKwxddCU=
+X-Received: by 2002:a05:6902:f89:b0:e30:e39b:9d72 with SMTP id
+ 3f1490d57ef6-e39d3a2a894mr3508084276.16.1733243398164; Tue, 03 Dec 2024
+ 08:29:58 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="2p5oSk5jhsUPyj0M"
-Content-Disposition: inline
-In-Reply-To: <20241203-fxlsdt-v2-1-ef523461b507@geanix.com>
-
-
---2p5oSk5jhsUPyj0M
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20241023185841.1183706-1-festevam@gmail.com> <20241024-pep-proud-d714705c9ddf@spud>
+ <CAOMZO5BSZ4YAZ7Lqa3eGP9Wx=Ed7cgug==_UZqc7F57=XCJv3A@mail.gmail.com> <CAOMZO5AgQxd2_gkcPSdhfSDArEEkBVvo_yAW3hdHVXtHH5FyAg@mail.gmail.com>
+In-Reply-To: <CAOMZO5AgQxd2_gkcPSdhfSDArEEkBVvo_yAW3hdHVXtHH5FyAg@mail.gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 3 Dec 2024 10:29:47 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKeAknYwaR_VRfrT7bHf9q6iNMyC9VV+dNBPd5VZNTLAg@mail.gmail.com>
+Message-ID: <CAL_JsqKeAknYwaR_VRfrT7bHf9q6iNMyC9VV+dNBPd5VZNTLAg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: timer: fsl,imxgpt: Fix the fsl,imx7d-gpt fallback
+To: Fabio Estevam <festevam@gmail.com>
+Cc: tglx@linutronix.de, daniel.lezcano@linaro.org, krzk+dt@kernel.org, 
+	Conor Dooley <conor@kernel.org>, conor+dt@kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, Fabio Estevam <festevam@denx.de>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 03, 2024 at 08:22:11AM +0100, Sean Nyekjaer wrote:
-> Add a wakeup-source property to the binding to describe whether the
-> wakeup interrupts from the accelerometer can wake the system from
-> suspend.
->=20
-> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+On Wed, Nov 13, 2024 at 11:57=E2=80=AFAM Fabio Estevam <festevam@gmail.com>=
+ wrote:
+>
+> Rob,
+>
+> On Tue, Nov 5, 2024 at 7:48=E2=80=AFAM Fabio Estevam <festevam@gmail.com>=
+ wrote:
+>
+> > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> >
+> > Can you apply this series via your tree?
+>
+> A gentle ping.
 
---2p5oSk5jhsUPyj0M
-Content-Type: application/pgp-signature; name="signature.asc"
+Daniel should apply this. That was my assumption and it was out of my
+queue (which drops the chances of me ever reading this ping).
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ08xpwAKCRB4tDGHoIJi
-0iQtAP9KMNDYQjqQXpZeoqZTkyBQ65EW+ZT5zt7Y77XsYDLqbwEA4aMEZxQJzAYQ
-P2xyf9mRg0sLbRBbQQvsnOeSPddI7gQ=
-=i+Lh
------END PGP SIGNATURE-----
-
---2p5oSk5jhsUPyj0M--
+Rob
 
