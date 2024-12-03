@@ -1,185 +1,128 @@
-Return-Path: <devicetree+bounces-126638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFF5B9E20E8
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 16:05:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93B7A9E2435
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 16:47:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2BA19B2A4B3
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 15:04:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 413FEB60F68
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 13:50:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54D871F759C;
-	Tue,  3 Dec 2024 15:04:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB18E1F12F6;
+	Tue,  3 Dec 2024 13:50:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Y17tl2V0"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dZsoufkj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A13C833FE;
-	Tue,  3 Dec 2024 15:04:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB1F11EE006;
+	Tue,  3 Dec 2024 13:50:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733238242; cv=none; b=U+Li2Dl+SpnrYPzFCkEAIBNzHHcpX2VpDzWo6IpQfXX5ZF6CbfFC1OR6GrHwI+Sdz0VwuawxapTe9kAo3wtRd5pj1OEKu+2HfK4f3UtwZLwXa+9Mfg3oTHd/DCsLzvZwLASJOYQw/4Syw4NFRSeQ9hozNKl+/zgCF9RFfF+22hU=
+	t=1733233822; cv=none; b=SyFZq1ZfWBDLevonW+BWMUKIfHGELe2IBP1rCytKRDc4+pk7EjUzpGqqxyq0CXRP8s8rCvhGM9H8uu07feaYF51suyuDv41LkxfU0k2RjMaxVXQHvldsbpPBg2UBNj8doUvp76NaHYfmYBQ8i9yt0qunxK/GYsBYm8HnDJ6/XD4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733238242; c=relaxed/simple;
-	bh=oZxcYeeBKfP2Xf+eDmjixDYj1PkvTZRQCoJoWW36lg0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=pIayI8E+qo50JmwpwRte4CaK/3D5UTSYDpqndpCMpoU10oii9gMeznuRk8vjfjKK59XxCJoYKidR/mvDhaUeu+j6E6iJS9NPxYrgYWfZa7Sy5yQ7WFDk+AatXu6J5IWd3j/HB2GzaMVhhxPfNgW5ajPYNElwvXj0de3ZcPxo8zw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Y17tl2V0; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B36NGek024941;
-	Tue, 3 Dec 2024 15:03:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	MY7TDK45v9rxCivZyWPBJNhQjz//IUsfYUZw5ZsKQRY=; b=Y17tl2V0UQ3A5LmA
-	agcuIl0bUonzdbvFF8vltUEadKeYOM3ugkAOYiqd/GP4yKpaoFrVkHUwvEwyIyQ0
-	4Yyf2WLLTxPXQSmWcYi4nMBYcXUdpsiDUga/lcuMTYRZ3TaV4U8q0bcp5Q/Bz8Gl
-	aBZZaUVwj7A4Hov0mIrIWwM2COwK4XDI5SHKfCVv58DETha+fae1Sd6AARC6jVIA
-	BQMSZgfd0SRQCwi9PKhEtoUrIaUs6ibLTgmwlIFCHk7YqhvLOctdapoh/jL5MTZD
-	CDXaElr0VzvQ9sgSX1F1EvTI3LGkoGtNw+D91M+0WNXIHVpLIM6hBNFikPm7aOHq
-	rHQ1RQ==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 439vnys7ud-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 03 Dec 2024 15:03:55 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B3F3r8g025733
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 3 Dec 2024 15:03:53 GMT
-Received: from [10.217.216.47] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 3 Dec 2024
- 07:03:49 -0800
-Message-ID: <d78e6fc9-2238-4f55-a604-f60df8565166@quicinc.com>
-Date: Tue, 3 Dec 2024 20:33:46 +0530
+	s=arc-20240116; t=1733233822; c=relaxed/simple;
+	bh=Zib4VMRdhk2SyW/n2/OIybINtZxsOwBjr0XGB3bosyo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OOY4zvJvYlffNO86tJv3+slXnbiIksYbiMlnxEhuqfq0J5LtHpF9MEPrft3vLg9hmnSAQujAOQ7BhLSlh+jkCJsZPta43UXRF49gnYVYur9HJ9dOzGqsgCvpu2ikEdvRqXate8QJPySVfiMa69Z5AYNwkLBScgmpnYtRNIIKFUI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dZsoufkj; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1733233821; x=1764769821;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Zib4VMRdhk2SyW/n2/OIybINtZxsOwBjr0XGB3bosyo=;
+  b=dZsoufkjYJiRMBnMGI+ljKejykHpieC7uSDfBfpMuF/C8SYsLG+4kNL5
+   0lrOREsiLKD93WMo9joY1rsW4xu8qt+htzacOiUmafNWCB27zq2IAlP5q
+   WRo2EAU2JxnwfnZds1FlGAgJWYDIAUrdkM4Da25/k1RaisF2Ntf4/8PP9
+   pPTNXPIHbVTtMj/hZUwBqGj6/GJWDOxItqDsihFm1n/BnM6iQJN7Vnt8d
+   QnxT/ohjRHBbeSSbpCtmOIfWFYlif3KG2Ihc/oFnSHjqM3ENUWaDcIYnl
+   sXqaPQOPSz0lUne1vIvQFpMJsLqCOpX/8ac8yk72dnLBZF+VONj0Bbdfs
+   Q==;
+X-CSE-ConnectionGUID: C4gnboSiRYO8WQHA3/mU6Q==
+X-CSE-MsgGUID: Z6rHieKvSMOIyfAUnbVPyQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11275"; a="36299231"
+X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; 
+   d="scan'208";a="36299231"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Dec 2024 05:50:20 -0800
+X-CSE-ConnectionGUID: Y3t33y3ySZ+ldxE8KMacsw==
+X-CSE-MsgGUID: 4TpyAc/pSOWCHKgyzIC1TQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; 
+   d="scan'208";a="130904309"
+Received: from smile.fi.intel.com ([10.237.72.154])
+  by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Dec 2024 05:50:13 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1tITI1-00000003S9G-1cCT;
+	Tue, 03 Dec 2024 15:50:09 +0200
+Date: Tue, 3 Dec 2024 15:50:09 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Eason Yang <j2anfernee@gmail.com>
+Cc: avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+	venture@google.com, yuenn@google.com, benjaminfair@google.com,
+	jic23@kernel.org, lars@metafoo.de, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, nuno.sa@analog.com,
+	dlechner@baylibre.com, javier.carrasco.cruz@gmail.com,
+	marcelo.schmitt@analog.com, olivier.moysan@foss.st.com,
+	mitrutzceclan@gmail.com, tgamblin@baylibre.com,
+	matteomartelli3@gmail.com, alisadariana@gmail.com,
+	gstols@baylibre.com, thomas.bonnefille@bootlin.com,
+	ramona.nechita@analog.com, mike.looijmans@topic.nl,
+	chanh@os.amperecomputing.com, KWLIU@nuvoton.com,
+	yhyang2@nuvoton.com, openbmc@lists.ozlabs.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] iio: adc: add Nuvoton NCT720x ADC driver
+Message-ID: <Z08MkR40fjfW3MXZ@smile.fi.intel.com>
+References: <20241203091540.3695650-1-j2anfernee@gmail.com>
+ <20241203091540.3695650-3-j2anfernee@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sa8775p: Add CPU OPP tables to
- scale DDR/L3
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>
-CC: Brian Masney <bmasney@redhat.com>, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Ajit Pandey <quic_ajipan@quicinc.com>,
-        "Imran
- Shaik" <quic_imrashai@quicinc.com>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        "Satya Priya Kakitapalli" <quic_skakitap@quicinc.com>,
-        Shivnandan Kumar
-	<quic_kshivnan@quicinc.com>
-References: <20241017-sa8775p-cpufreq-l3-ddr-scaling-v1-0-074e0fb80b33@quicinc.com>
- <20241017-sa8775p-cpufreq-l3-ddr-scaling-v1-2-074e0fb80b33@quicinc.com>
- <ZxEwVShJuMH4J1Hp@x1> <9179759d-7af1-409f-8130-1136c9ae4ecd@quicinc.com>
- <daqa3krsp6emdha6h7tlcelsggb6qeilnojgtfxjbp5zw4n6ow@xzwdmu55ygjf>
- <5c3d91e3-e9d3-4e8d-bd4f-f7cbe765dddc@oss.qualcomm.com>
-Content-Language: en-US
-From: Jagadeesh Kona <quic_jkona@quicinc.com>
-In-Reply-To: <5c3d91e3-e9d3-4e8d-bd4f-f7cbe765dddc@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: A1pciyluYGEhyE04isEvtUXARHh2q3PN
-X-Proofpoint-GUID: A1pciyluYGEhyE04isEvtUXARHh2q3PN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
- mlxlogscore=730 bulkscore=0 impostorscore=0 mlxscore=0 suspectscore=0
- spamscore=0 priorityscore=1501 lowpriorityscore=0 phishscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412030128
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241203091540.3695650-3-j2anfernee@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-
-
-On 11/30/2024 8:02 PM, Konrad Dybcio wrote:
-> On 14.11.2024 11:48 PM, Dmitry Baryshkov wrote:
->> On Mon, Nov 11, 2024 at 06:39:48PM +0530, Jagadeesh Kona wrote:
->>>
->>>
->>> On 10/17/2024 9:12 PM, Brian Masney wrote:
->>>> On Thu, Oct 17, 2024 at 02:58:31PM +0530, Jagadeesh Kona wrote:
->>>>> +	cpu0_opp_table: opp-table-cpu0 {
->>>>> +		compatible = "operating-points-v2";
->>>>> +		opp-shared;
->>>>> +
->>>>> +		cpu0_opp_1267mhz: opp-1267200000 {
->>>>> +			opp-hz = /bits/ 64 <1267200000>;
->>>>> +			opp-peak-kBps = <6220800 29491200>;
->>>>> +		};
->>>>> +
->>>>> +		cpu0_opp_1363mhz: opp-1363200000 {
->>>>> +			opp-hz = /bits/ 64 <1363200000>;
->>>>> +			opp-peak-kBps = <6220800 29491200>;
->>>>> +		};
->>>>
->>>> [snip]
->>>>
->>>>> +	cpu4_opp_table: opp-table-cpu4 {
->>>>> +		compatible = "operating-points-v2";
->>>>> +		opp-shared;
->>>>> +
->>>>> +		cpu4_opp_1267mhz: opp-1267200000 {
->>>>> +			opp-hz = /bits/ 64 <1267200000>;
->>>>> +			opp-peak-kBps = <6220800 29491200>;
->>>>> +		};
->>>>> +
->>>>> +		cpu4_opp_1363mhz: opp-1363200000 {
->>>>> +			opp-hz = /bits/ 64 <1363200000>;
->>>>> +			opp-peak-kBps = <6220800 29491200>;
->>>>> +		};
->>>>
->>>> There's no functional differences in the cpu0 and cpu4 opp tables. Can
->>>> a single table be used?
->>>>
->>>> This aligns with my recollection that this particular SoC only has the
->>>> gold cores.
->>>>
->>>> Brian
->>>>
->>>
->>> Thanks Brian for your review. Sorry for the delayed response.
->>>
->>> We require separate OPP tables for CPU0 and CPU4 to allow independent
->>> scaling of DDR and L3 frequencies for each CPU domain, with the final
->>> DDR and L3 frequencies being an aggregate of both.
->>>
->>> If we use a single OPP table for both CPU domains, then _allocate_opp_table() [1]
->>> won't be invoked for CPU4. As a result both CPU devices will end up in sharing
->>> the same ICC path handle, which could lead to one CPU device overwriting the bandwidth
->>> votes of other.
+On Tue, Dec 03, 2024 at 05:15:40PM +0800, Eason Yang wrote:
+> Add Nuvoton NCT7201/NCT7202 system voltage monitor 12-bit ADC driver
 > 
-> Oh that's a fun find.. clocks get the same treatment.. very bad,
-> but may explain some schroedingerbugs.
+> NCT7201/NCT7202 supports up to 12 analog voltage monitor inputs and up to
+> 4 SMBus addresses by ADDR pin. Meanwhile, ALERT# hardware event pins for
+> independent alarm signals, and the all threshold values could be set for
+> system protection without any timing delay. It also supports reset input
+> RSTIN# to recover system from a fault condition.
 > 
-> Taking a peek at some code paths, wouldn't dropping opp-shared
-> solve our issues? dev_pm_opp_set_sharing_cpus() overrides it
-> 
-> Konrad
+> Currently, only single-edge mode conversion and threshold events support.
 
-Thanks Konrad for your review.
+Please, get rid of explicit castings where the are not needed or implied, like
 
-Yes, correct. I tried dropping opp-shared but it is again getting set due to
-dev_pm_opp_set_sharing_cpus().
+	u16 foo;
+	...
+	foo = (u16)bar;
 
-Thanks,
-Jagadeesh
+you have a lot of this in the code.
+
+Second, why do you need two regmaps? How debugfs is supposed to work on the
+registers that are 16-bit if you access them via 8-bit regmap and vice versa?
+
+Can't you simply use bulk reads/writes when it makes sense and drop 16-bit
+regmap completely?
+
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
