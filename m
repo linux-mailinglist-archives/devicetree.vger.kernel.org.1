@@ -1,106 +1,132 @@
-Return-Path: <devicetree+bounces-126628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3380B9E1EF6
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 15:23:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D48039E1F03
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 15:25:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED16028147B
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 14:23:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 951CA2815E5
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 14:25:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCF5C1F470B;
-	Tue,  3 Dec 2024 14:23:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC7621F4712;
+	Tue,  3 Dec 2024 14:24:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="HDHGIQr4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Co2V7fSy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E86D1DE2DE;
-	Tue,  3 Dec 2024 14:23:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8835A1DE2DE;
+	Tue,  3 Dec 2024 14:24:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733235830; cv=none; b=QqPELJ6Y/hdYbaTkHUnKxM9EDI2v/DxoG//evTGXLONrPiJLrZO0eDUdkQTrFlSLgmyi1T137tiraQo6gWUeoubRt3CZRio94vLUUh4lQ2v5Jh27X78Y3mA85scdAnA/Vd39OBnNBVfx+YLgyH7fzCc4gUI/r87LVeqVUTsBJ6o=
+	t=1733235899; cv=none; b=A3b6O9M4HDAxgLzBIYuBEfytsIhGZMMc9TWoBDZ8+l+IPiVv5mc9NPQxDSXDEOc8CAO8DuWJP2DCC6HDY+m9LHcL19xq3W4Sh74HR/Y/kFB+WkDEZt73joA6HHj9D3fPad42F/enQS3ykFu/PtT9HqTlid1n4QJD5nTVO2T2ys4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733235830; c=relaxed/simple;
-	bh=iUYCthuBSmOjrDmuj+W4FEtenoQajCGj/nGcHrCp+Y4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cvSueQxQMN3g+S3TkYVNshyyo562wksYAbspKdTaPL44R77UHUTcM2TA54FNlIlFyQUH8abkgWSYsX0mvy1xyeQu1OecsxMPyC295YVVJ3HU8+VduFJIw0yQpvXv1lF191JxwdTpQY/y8/Wr2SaAH2s0D4uBcl7tk13CFKJVTL8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=HDHGIQr4; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1733235826;
-	bh=iUYCthuBSmOjrDmuj+W4FEtenoQajCGj/nGcHrCp+Y4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HDHGIQr4ZOP+6nOkv9NiLDKRLFN6dAlvE+LiEiArCuc2pwc4PJxfifRwd/H0l+aOp
-	 xl3UdXx7s/BRwqRPH+fZUkxHhYyBqHjVgvVAzjKJXfdsnb/8z+FMvCbT7BvLsOsCiN
-	 fnScm7AdEeAZN1lRaZN/YdWTd/ozIK2qmRU8wsHvQyevysrNgS1UftlaLrJc8WxO0D
-	 5JfSWj27FNx88mUwpo2OdvlQZo4rwBxtU0jdhkqJuFDsmRF7ojCgkp6sGUyT6Gezk1
-	 uiXAf8CEm/u7wKYtiGtYlPlU13NFbP8WMGNsCCciKdZj4xQH3inLfGbNIjlIjh258Q
-	 1hKZ/TuOSSCKg==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 2536517E0E37;
-	Tue,  3 Dec 2024 15:23:46 +0100 (CET)
-Message-ID: <fea3783a-0ca2-4a46-8b82-ef1156dc8f3c@collabora.com>
-Date: Tue, 3 Dec 2024 15:23:44 +0100
+	s=arc-20240116; t=1733235899; c=relaxed/simple;
+	bh=DKmOU7vnkUqoQgoBcoXntMTXjpSRQwhxPRgQDZ5KdtU=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=vEfooaoUdlVuQYfsBwyczvaR0ad2vRWRc6Nmf/12pmQLGtvH54iZm0Unaf78ZlUBN7UrNFQTkjuLCd8FwyO7tVk4j6XYpftgVtGPosE+boXNkxK8hOeyqcJMjSib3cNVYKnjppu5Rbva0TJSJTWX5v0k7CNdIB8CWspAR1/XVtU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Co2V7fSy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BD77C4CED8;
+	Tue,  3 Dec 2024 14:24:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733235899;
+	bh=DKmOU7vnkUqoQgoBcoXntMTXjpSRQwhxPRgQDZ5KdtU=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=Co2V7fSy5ZfdLr+VU+LEXPhBV1RGVb3XC0N4BvcXmZle40bb/bDgxXKxbL8EWyEgX
+	 ehTkv5t4EHupg8b3wg66x51JtG/jCwgDNrNZadsTi2ZHt+lWO0+3bto9DKBEj3O7GW
+	 h1OSEnLghbB8E9MbSCd4qA0YanTnWyeS0RrZFPBPpupM4RpbLRB8IoS4HTXDRLiH6G
+	 ehB7Cu1myEGkH9U9L/laOJ7tr+D2U6Al15ozJGDl8ZO/kXyYtRPi8xbClkPoHEUOOI
+	 PdGnXBIcuYwNFgQlMDAprEzCI4d1xtIgq7EdQaHMRhzw3Vhp8aI1B+zL8bYZC5+dxT
+	 yVOXtExy4DzyA==
+Date: Tue, 03 Dec 2024 08:24:57 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 10/18] arm64: dts: mediatek: mt7988: enable serial0 on
- bpi-r4
-To: frank-w@public-files.de, Frank Wunderlich <linux@fw-web.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20241202122602.30734-1-linux@fw-web.de>
- <20241202122602.30734-11-linux@fw-web.de>
- <32ef5ab8-a163-4fdc-8603-f5a6f0e8526b@collabora.com>
- <6964E096-7C19-450C-8434-6A4456AFDD55@public-files.de>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <6964E096-7C19-450C-8434-6A4456AFDD55@public-files.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: mripard@kernel.org, m.szyprowski@samsung.com, 
+ maarten.lankhorst@linux.intel.com, mturquette@baylibre.com, 
+ aou@eecs.berkeley.edu, tzimmermann@suse.de, frank.binns@imgtec.com, 
+ simona@ffwll.ch, wefu@redhat.com, jszhang@kernel.org, 
+ linux-pm@vger.kernel.org, drew@pdp7.com, guoren@kernel.org, 
+ palmer@dabbelt.com, linux-riscv@lists.infradead.org, 
+ devicetree@vger.kernel.org, paul.walmsley@sifive.com, 
+ linux-clk@vger.kernel.org, ulf.hansson@linaro.org, 
+ linux-kernel@vger.kernel.org, krzk+dt@kernel.org, sboyd@kernel.org, 
+ dri-devel@lists.freedesktop.org, matt.coster@imgtec.com, airlied@gmail.com, 
+ jassisinghbrar@gmail.com, conor+dt@kernel.org
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <20241203134137.2114847-3-m.wilczynski@samsung.com>
+References: <20241203134137.2114847-1-m.wilczynski@samsung.com>
+ <CGME20241203134151eucas1p18edf7fb37cd8f30983a559d7481f560b@eucas1p1.samsung.com>
+ <20241203134137.2114847-3-m.wilczynski@samsung.com>
+Message-Id: <173323589571.1743485.13611709278152187222.robh@kernel.org>
+Subject: Re: [RFC PATCH v1 02/14] dt-bindings: clock: thead,th1520: Rename
+ header file
 
-Il 03/12/24 12:27, Frank Wunderlich ha scritto:
-> Am 3. Dezember 2024 10:40:45 MEZ schrieb AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>:
->> Il 02/12/24 13:25, Frank Wunderlich ha scritto:
->>> From: Frank Wunderlich <frank-w@public-files.de>
->>>
->>
->> arm64: dts: mediatek: mt7988a-bpi-r4: Enable serial0 debug uart
+
+On Tue, 03 Dec 2024 14:41:25 +0100, Michal Wilczynski wrote:
+> As support for clocks from new subsystems is being added to the T-Head
+> TH1520 SoC, the header file name should reflect this broader scope. The
+> existing header file 'thead,th1520-clk-ap.h' includes the '-ap' suffix,
+> indicating it's specific to the Application Processor (AP) subsystem.
 > 
-> You want new prefix here? That will change all r4 commits,right?
+> Rename the header file to 'thead,th1520-clk.h' to generalize it for all
+> subsystems.  Update all references to this header file accordingly.
+> 
+> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+> ---
+>  .../devicetree/bindings/clock/thead,th1520-clk-ap.yaml        | 4 ++--
+>  .../devicetree/bindings/mailbox/thead,th1520-mbox.yaml        | 2 +-
+>  MAINTAINERS                                                   | 2 +-
+>  arch/riscv/boot/dts/thead/th1520.dtsi                         | 2 +-
+>  drivers/clk/thead/clk-th1520.h                                | 2 +-
+>  .../clock/{thead,th1520-clk-ap.h => thead,th1520-clk.h}       | 0
+>  6 files changed, 6 insertions(+), 6 deletions(-)
+>  rename include/dt-bindings/clock/{thead,th1520-clk-ap.h => thead,th1520-clk.h} (100%)
 > 
 
-Yeah - that prefix should be shortening the commit titles but mainly will
-make it more straightforward when reading the commit history with --oneline.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Thanks,
-Angelo
+yamllint warnings/errors:
 
->>> Enable the debug uart on Bananapi R4 board.
->>>
->>> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
->>
->> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>
-> 
-> 
-> regards Frank
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/mailbox/thead,th1520-mbox.example.dts:24:18: fatal error: dt-bindings/clock/thead,th1520-clk.h: No such file or directory
+   24 |         #include <dt-bindings/clock/thead,th1520-clk.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/mailbox/thead,th1520-mbox.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+Documentation/devicetree/bindings/clock/thead,th1520-clk-ap.example.dts:18:18: fatal error: dt-bindings/clock/thead,th1520-clk.h: No such file or directory
+   18 |         #include <dt-bindings/clock/thead,th1520-clk.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/clock/thead,th1520-clk-ap.example.dtb] Error 1
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1506: dt_binding_check] Error 2
+make: *** [Makefile:251: __sub-make] Error 2
 
+doc reference errors (make refcheckdocs):
 
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241203134137.2114847-3-m.wilczynski@samsung.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
