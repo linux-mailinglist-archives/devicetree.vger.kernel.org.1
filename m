@@ -1,127 +1,85 @@
-Return-Path: <devicetree+bounces-126469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87FF19E17DF
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 10:38:49 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 585699E17EE
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 10:40:45 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E4C8282BBD
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 09:38:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C549160346
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 09:40:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5A931E0DCD;
-	Tue,  3 Dec 2024 09:37:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DA591DF275;
+	Tue,  3 Dec 2024 09:40:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="jNP3uz9X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D56141DFE07
-	for <devicetree@vger.kernel.org>; Tue,  3 Dec 2024 09:37:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DB564317C;
+	Tue,  3 Dec 2024 09:40:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733218664; cv=none; b=D83uK6AnT62E9+rzWckFxQu8dujPyyuai2BfU8A8nD4tMqRhTDk99Bn4UL+8/MSEhnuP9IGSd9HQ3sbQuCgq5jC2Lc4rAdSNCslnGAQjK6Yp+Vo7+Esj56OfpPILr+CKTAuR3I2AVqmrr4vn1zXjScLYlDoFQpK5pEU07hOH8n4=
+	t=1733218841; cv=none; b=D+jQaKqmHTKkiEqVm4RvrdBPvcHeQiEmOKZt47wxzE9CjHYUDvASa2AxlHqf88mFqhE0He8UkNomh/C5vEkfkMUlAYAYSTP5Qc6vauEApyPhRk45Dn4QUld7fs8dVXmBazdU35O9+SC51EOUNLk0k1QJWtcGeVt+vF187rK6IHw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733218664; c=relaxed/simple;
-	bh=4Znxh2vezX6ykUQvILB+ITgVuJR4RNnDtKVTVonUfCM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=RL7WFLmfeC+hAA1EZzecnXNrSey2KgsLvyylmdAzcDoVwJx2s+YWTaTH8+dbKTwIbqe1606XZB8vVpa24Fo2ALheyPLib8CxtRwbPunRgHHWpfJ0+AUbQlXwFsjGgZY28+m2zFir2HO9Gt8ImzXhrzURLlAsTLgddQKJB1qE1VY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <jre@pengutronix.de>)
-	id 1tIPLZ-0006C6-LP; Tue, 03 Dec 2024 10:37:33 +0100
-From: Jonas Rebmann <jre@pengutronix.de>
-Date: Tue, 03 Dec 2024 10:37:27 +0100
-Subject: [PATCH v2 3/3] mtd: mchp48l640: add support for Fujitsu
- MB85RS128TY FRAM
+	s=arc-20240116; t=1733218841; c=relaxed/simple;
+	bh=wkD5ZG0b5Saq9pX6c33R8kg0GEShIHTUFOKG19yOu1M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Uhh3I+ZhKH1KXlwP64rpwd1OIQj5ToPnqhVEfNPDDOfvxjmAUI2NY5MpiULMuq/vEocP4QtDEnunw9XuEJLs5bIV6xaoV1Jx7x2twBO6leYaPdLk1JnF0hdoBxq+h/W3F7iANeogHatzGZ3ukONC7Mka4EUa8e4TYR1BAsD8bCQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=jNP3uz9X; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1733218832;
+	bh=wkD5ZG0b5Saq9pX6c33R8kg0GEShIHTUFOKG19yOu1M=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=jNP3uz9XNK7fEx4lT6DwfIANO0jhE77WW89/iGPKIJncfQhE5pCDHYp84sW3Rg5mO
+	 YoZyuO4bpY1QnomLTM8cDWAgdw3EGGRK+flPCEaYCAuxUYrWctGEtsqo7HjpOzrQL/
+	 Z5h81p6oRlRzkoplzQ9Mx38wEP49TC8oHK9pcYGmUuqh0PR5i3yItFuRYwnEhpNWNR
+	 0KAueuldIlzgNqlicmV08rx+9EYG+InTyTbBY+udrE6+OL0n90M2d6d1PXPG0DLS5O
+	 k6enp4yTVI0+v9Qzwa6Yy/qD4gat9UIYcUsgIk7cNCN4Zj46u79pX2+e1hJgAObLr2
+	 +emi3+hD5NpcA==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 88E8417E35D0;
+	Tue,  3 Dec 2024 10:40:31 +0100 (CET)
+Message-ID: <754b7179-a3b9-48b9-90eb-cb6d6754edf6@collabora.com>
+Date: Tue, 3 Dec 2024 10:40:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 18/18] arm64: dts: mediatek: mt7988: enable pwm on
+ bpi-r4
+To: Frank Wunderlich <linux@fw-web.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Frank Wunderlich <frank-w@public-files.de>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20241202122602.30734-1-linux@fw-web.de>
+ <20241202122602.30734-19-linux@fw-web.de>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20241202122602.30734-19-linux@fw-web.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241203-mb85rs128ty-v2-3-42df3e7ff147@pengutronix.de>
-References: <20241203-mb85rs128ty-v2-0-42df3e7ff147@pengutronix.de>
-In-Reply-To: <20241203-mb85rs128ty-v2-0-42df3e7ff147@pengutronix.de>
-To: Miquel Raynal <miquel.raynal@bootlin.com>, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Schocher <hs@denx.de>
-Cc: linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, David Jander <david@protonic.nl>, 
- kernel@pengutronix.de, Jonas Rebmann <jre@pengutronix.de>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1626; i=jre@pengutronix.de;
- h=from:subject:message-id; bh=Urh+tFnbGE+nh11saAIXFyyQDAFGEwL1Wkf7BzXgzas=;
- b=owGbwMvMwCF2ZcYT3onnbjcwnlZLYkj3uxiTNfOttAjX5mD/AxUNHJmXL1TNqtnzzML55m2x2
- 6XpZj+aO0pZGMQ4GGTFFFli1eQUhIz9r5tV2sXCzGFlAhnCwMUpABMRL2L4H3DEr8AxpzdJcWmR
- OE97eNFB58rmG85qmSx3j/bbdp/WZPjvcmCJ5dTtYlbeP4+dOc8quW9L062pGpblmecvdZ2MWiL
- GCAA=
-X-Developer-Key: i=jre@pengutronix.de; a=openpgp;
- fpr=0B7B750D5D3CD21B3B130DE8B61515E135CD49B5
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::ac
-X-SA-Exim-Mail-From: jre@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-From: David Jander <david@protonic.nl>
+Il 02/12/24 13:25, Frank Wunderlich ha scritto:
+> From: Frank Wunderlich <frank-w@public-files.de>
+> 
+> Enable pwm on Bananapi R4 board.
+> 
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 
-The Fujitsu FRAM chips use the same command set as Microchip EERAM.
-The only differences are that the Fujitsu FRAM chips don't really have a
-page size limit, nor do they automatically reset the WEL bit.
-
-Signed-off-by: David Jander <david@protonic.nl>
-Signed-off-by: Jonas Rebmann <jre@pengutronix.de>
----
- drivers/mtd/devices/mchp48l640.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
-
-diff --git a/drivers/mtd/devices/mchp48l640.c b/drivers/mtd/devices/mchp48l640.c
-index 4cdd24aaed416fc7e40a8060b5c7eaf6684fc6d5..7584d0ba93969d79ba3d9c7a97bc63bd0e5ef327 100644
---- a/drivers/mtd/devices/mchp48l640.c
-+++ b/drivers/mtd/devices/mchp48l640.c
-@@ -303,6 +303,12 @@ static const struct mchp48_caps mchp48l640_caps = {
- 	.auto_disable_wel = true,
- };
- 
-+static const struct mchp48_caps mb85rs128ty_caps = {
-+	.size = SZ_16K,
-+	.page_size = 256,
-+	.auto_disable_wel = false,
-+};
-+
- static int mchp48l640_probe(struct spi_device *spi)
- {
- 	struct mchp48l640_flash *flash;
-@@ -361,6 +367,10 @@ static const struct of_device_id mchp48l640_of_table[] = {
- 		.compatible = "microchip,48l640",
- 		.data = &mchp48l640_caps,
- 	},
-+	{
-+		.compatible = "fujitsu,mb85rs128ty",
-+		.data = &mb85rs128ty_caps,
-+	},
- 	{}
- };
- MODULE_DEVICE_TABLE(of, mchp48l640_of_table);
-@@ -370,6 +380,10 @@ static const struct spi_device_id mchp48l640_spi_ids[] = {
- 		.name = "48l640",
- 		.driver_data = (kernel_ulong_t)&mchp48l640_caps,
- 	},
-+	{
-+		.name = "mb85rs128ty",
-+		.driver_data = (kernel_ulong_t)&mb85rs128ty_caps,
-+	},
- 	{}
- };
- MODULE_DEVICE_TABLE(spi, mchp48l640_spi_ids);
-
--- 
-2.39.5
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
 
