@@ -1,63 +1,48 @@
-Return-Path: <devicetree+bounces-126450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 681C49E170C
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 10:19:20 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43DD69E173F
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 10:22:47 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D2D0280FCF
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 09:19:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 170F816182B
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 09:22:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 652591DE4CB;
-	Tue,  3 Dec 2024 09:19:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55F0A1DE3A2;
+	Tue,  3 Dec 2024 09:21:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="j/ZyoZ3w"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I613wnmC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E29B33F8F7;
-	Tue,  3 Dec 2024 09:19:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27C951CD204;
+	Tue,  3 Dec 2024 09:21:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733217556; cv=none; b=aWmJ+8aX5gmnacIGel2NSD2523HVCW5UN/7BlZ5i7U+wr+HtcWu4NZ6Z18ZQyOh+sNQRWv0FCmZaCNrisDecuz1S8ENaYK38FsieBn3L0g6TJwzmbMkgDi++FcS2IEvmLMNC+5lR3rrlKsSeWaxEm0QswaaCIM+ZvsTYt5GCe80=
+	t=1733217675; cv=none; b=P4AQUV3W4c+/IGl+tgSZWH8qafCqsrzXNA2llwxs6MlZqMIEJB5g+B5p27X+CAnGTLI2x2g/2yCZt07Y07tmAztrYieMZNKC3yXaFrtMrHjx5Y/2nFvfIrvcfBHrpwCTq+w4grTojfJAWZXgmXFyFTDfT8Y/nM1ULDYNEOzZOMk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733217556; c=relaxed/simple;
-	bh=x2vsnah+FQn6F5RImqP2xAcLMZpjRl3druEdJIaaO14=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=fKrtNyn/44tVU7hCa5/BYretO2Z8YCeCmo2P9Fh1k7R2CNR/Q6ES0JwUwCY6xBCV/vnGh8jxahFwVZQhWcpsZdYxZvhUB+lrBMwMDuEwDFJTD2TBsZg+mz6XoURqdDrvM4gClreRtIA3Cr5IofB1MWgPDIpzI4AawBMHyslRt10=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=j/ZyoZ3w; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B38O3YD028930;
-	Tue, 3 Dec 2024 09:19:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4FmtQeza1CzHNqrTW/NmGRcEE/2b9bklTjsRtN7+/ds=; b=j/ZyoZ3wwk69T1oX
-	I+VmYIq1lpIxXpbAuFsg+MPHzSgrKr/lfrpS+ubkueH66xhY8WFt+b/Vv7UuXsbj
-	g0G4q8MI1Sef1BhtPuNKZ3BkmYgYbQvBNdsjxoEat/ftcNpELSEuYgaao3PYGsvq
-	pjzTCmOa6HmXWHeyjhP6r7kmrowC2VX7lDfOd1uUQbpKVIdHdG3EaaSnMU3Yw7d8
-	EdNvAFXp1v6ra5JqfwJ6U2nbP0zhL4Gy4tZtoTbP21wUM2nDBkiRd8ZDTlAxgEEd
-	KJd7TWCi1tJUOT6bWD34URQ7UGcRWjN7N/33BmKymETbbd9hF0hV53SwKJ7VAqqD
-	smkpvg==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 437tstfk69-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 03 Dec 2024 09:19:06 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B39J5Ze021551
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 3 Dec 2024 09:19:05 GMT
-Received: from [10.151.41.184] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 3 Dec 2024
- 01:19:01 -0800
-Message-ID: <0796510c-20bd-4a81-bd60-40aacbcf61c0@quicinc.com>
-Date: Tue, 3 Dec 2024 14:48:58 +0530
+	s=arc-20240116; t=1733217675; c=relaxed/simple;
+	bh=cPYxrvjdP6SGqJbH8TZQtoM+u/6iqcvQ/yJ8kNSftb0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=T7gb8RJbA5KmKDzeNyRr7m1gKKEZKoambeG77th9g3yNwX3mUFEy+CQUXCRY+bmsGGq6BI2LAi0fdfTiXB6VmXxn7uZ24gjeKaohIJtaH968/ofKGzngMB0Ls8YDZLwYg3wLlYvNjgDWCOqq+he/3/ZOGLkTQYTpOUPGoPhmVH4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I613wnmC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DB9DC4CECF;
+	Tue,  3 Dec 2024 09:21:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733217673;
+	bh=cPYxrvjdP6SGqJbH8TZQtoM+u/6iqcvQ/yJ8kNSftb0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=I613wnmCIOKB15gqKYn613rxiX9OCD+ZyVVZ0fdR2WDw3y6R35QUap4YmrOQl9G4M
+	 mwvfoBCKYaj3bg9pw9wXeBlHZyiOqHDdh4EEYkf1/0fabi+WFZemOAbDBDkxT062uG
+	 Zb2Jztog5RsBdsYi7054ut+oKquO1QmbE5qnnjv9vYdiK08WqHzptNQFVToLqikPW+
+	 o/YTkv07I/vOagqwWeIvVbj99ZQ27uOuKUbaiPKIazE/xHYUI+khDZ3WwyvWUZCMf5
+	 zMOlxWKsZSfS2lUslV2y0Q15OmM+m5hgl5FNHW1eigyW3w61e/BEpzP7+rBaJIeDZi
+	 RIzt/9q5DKWbw==
+Message-ID: <a25f7cfe-ef43-4841-ab81-0ecf59b20f15@kernel.org>
+Date: Tue, 3 Dec 2024 10:21:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,59 +50,49 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 15/22] wifi: ath12k: add BDF address in hardware
- parameter
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        <ath12k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, Kalle Valo <kvalo@kernel.org>,
-        "Rob
- Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        Jeff Johnson <jjohnson@kernel.org>,
-        "Bjorn
- Andersson" <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-References: <20241015182637.955753-1-quic_rajkbhag@quicinc.com>
- <20241015182637.955753-16-quic_rajkbhag@quicinc.com>
- <142f92d7-72e1-433b-948d-2c7e7d37ecfc@oss.qualcomm.com>
+Subject: Re: [PATCH v3 07/16] rust: add `Revocable` type
+To: Alice Ryhl <aliceryhl@google.com>
+Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
+ ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
+ gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
+ tmgross@umich.edu, a.hindborg@samsung.com, airlied@gmail.com,
+ fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com,
+ ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org,
+ daniel.almeida@collabora.com, saravanak@google.com,
+ rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ Wedson Almeida Filho <wedsonaf@gmail.com>
+References: <20241022213221.2383-1-dakr@kernel.org>
+ <20241022213221.2383-8-dakr@kernel.org>
+ <CAH5fLgjcy=DQrCYt-k40D4_NcwgdrykUW9d74srGn5hxxo2Xmw@mail.gmail.com>
+From: Danilo Krummrich <dakr@kernel.org>
 Content-Language: en-US
-From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-In-Reply-To: <142f92d7-72e1-433b-948d-2c7e7d37ecfc@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 2sj9l3bAucBR50kKxPni91PBON0uv-o0
-X-Proofpoint-GUID: 2sj9l3bAucBR50kKxPni91PBON0uv-o0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- malwarescore=0 spamscore=0 impostorscore=0 mlxlogscore=999 mlxscore=0
- priorityscore=1501 suspectscore=0 phishscore=0 adultscore=0 clxscore=1015
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412030079
+In-Reply-To: <CAH5fLgjcy=DQrCYt-k40D4_NcwgdrykUW9d74srGn5hxxo2Xmw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 11/4/2024 7:46 PM, Konrad Dybcio wrote:
-> On 15.10.2024 8:26 PM, Raj Kumar Bhagat wrote:
->> The Ath2k AHB device (IPQ5332) firmware requests BDF_MEM_REGION_TYPE
->> memory during QMI memory requests. This memory is part of the
->> HOST_DDR_REGION_TYPE. Therefore, add the BDF memory address to the
->> hardware parameter and provide this memory address to the firmware
->> during QMI memory requests.
+On 10/29/24 2:26 PM, Alice Ryhl wrote:
+> On Tue, Oct 22, 2024 at 11:33 PM Danilo Krummrich <dakr@kernel.org> wrote:
+>> +/// A guard that allows access to a revocable object and keeps it alive.
+>> +///
+>> +/// CPUs may not sleep while holding on to [`RevocableGuard`] because it's in atomic context
+>> +/// holding the RCU read-side lock.
+>> +///
+>> +/// # Invariants
+>> +///
+>> +/// The RCU read-side lock is held while the guard is alive.
+>> +pub struct RevocableGuard<'a, T> {
+>> +    data_ref: *const T,
+>> +    _rcu_guard: rcu::Guard,
+>> +    _p: PhantomData<&'a ()>,
+>> +}
 > 
-> Sounds like something to put in the device tree, no?
+> Is this needed? Can't all users just use `try_access_with_guard`?
+
+Without this guard, how to we access `T` with just the `rcu::Guard`?
+
+> 
+> Alice
 > 
 
-This BDF memory address is the RAM offset. We did add this in device tree in
-version 1. This is removed from device tree in v2 based on the review comment that
-DT should not store RAM offset.
-
-refer below link:
-Link: https://lore.kernel.org/all/f8cd9c3d-47e1-4709-9334-78e4790acef0@kernel.org/
 
