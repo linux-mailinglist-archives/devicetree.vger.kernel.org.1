@@ -1,119 +1,111 @@
-Return-Path: <devicetree+bounces-126635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126636-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C02059E2030
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 15:55:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0291E9E2094
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 16:00:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 105E81654AF
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 14:55:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C86A4166844
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 14:59:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F19C1F76A7;
-	Tue,  3 Dec 2024 14:54:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE8A01F75A4;
+	Tue,  3 Dec 2024 14:59:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WEszCSdy"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="LnB4d1FL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C5691F76A1
-	for <devicetree@vger.kernel.org>; Tue,  3 Dec 2024 14:54:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4D6E1F7071;
+	Tue,  3 Dec 2024 14:58:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733237681; cv=none; b=qJMvr+imy+osXo7CdfLheFw51XZyBGVETopBk5nozueAxm8ralNJt31TNdWGT1+eY6lg+vcWWc8HSuaX3zgq+gPgV8LoPO0xSxHWTZ3fXdQPtoDJbCIpqgmEvHn1jpqO4E7aAo3VKthUB4mPzkrZ0l4aUsus/TjCsLyhrTzNP54=
+	t=1733237940; cv=none; b=S7Uz1uV6GCnJNVlTAA3vrMQFovf1P7VVxesB5PSfHNbTN4J6HG+IMiRH1RobFrL0UQI8O9w4h9NdRBQcVy+yEPW/qqqvOMc5tb19IZzBRXreXwgxPMJUhnglzvUDbqN+fciLkRpkU+qo978F7xhGo+mEblGjVRCNp1ADdheav24=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733237681; c=relaxed/simple;
-	bh=1IAIN/8H5junEHBZ26iMTzfLpfhHD6gUNd1uIhVvdUw=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=l5ZAyrkaERGiWT1e0MzQ9lTCHIXhp9KNAoEIME0xTK5b87vYQGa1pjPMFkowIFC1iQKR/406yarJkKw4X/qUKCSBS36QJHq0eQoAcbvunWzLiuJwvJSp3Pev83mZHeKkCAZHwAl1n/L6j91zp78I+BHXAUZMid9iGFOm5Wj3inE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WEszCSdy; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-385e40aa2e6so206388f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 03 Dec 2024 06:54:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733237678; x=1733842478; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KVQnKfNjMPfmMsvNdciOTib0L8uKRN+DbCQBwL/l93U=;
-        b=WEszCSdyb/quMaY/xM90z0vbReOThk7ymw8H2b8CXqyZytrnoncXrTaS3iyO4tfJp5
-         0oUmDVFKuNFpb0H02/3/Bx80fE2P4qXHZqSA+2Pngba7anNwWdV1W7kUHLKTMLv2eD8b
-         07nOQLsosDRp/fJACnPmjMQlzXoNWXrkamo6n4p1c8LpMlu5LqA737bB0vCP5zHQMVDX
-         G8BSLNa1HYfQWnFAcSI7SIClmMFOvcCBJ4UmyRBn/tHfek7LPaieaW80vCAu35YaTBrQ
-         gu2UGUp/mJJp9g3qNcABz34cZDLTxF/Qf/xDIA2LAJNk31fdy8VB5qCOYm0DtYALvJkd
-         21sQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733237678; x=1733842478;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KVQnKfNjMPfmMsvNdciOTib0L8uKRN+DbCQBwL/l93U=;
-        b=xTdyeb4U5HC1w8kVGJ3/vw1UjVys4Iy0k4EWZrWiOSMDjYEp4acTmEM9Gc93eESOyS
-         5Pmxc3X0azGaNE0jy+orFjv4IC7HlaLWnz5HJ1CQL3LYHJo12zkjnAgblm1YGTyeHzma
-         2nIHfebp0nYzfi+7bzOJ0rVRT2m0FbBt4uQS1dXNIALmKJZXd3XDPNVChbwrCZOjqdg9
-         bPOT3iwOlUTDHjqju75wrhn3mjruNyX+K5p2RK2iqEdxP1/7Suj+e9gt+EPgXqQMdcbz
-         +lMaPhX7Q+swSyJtiDZTDCzGeUHBiEgY4RF0K+XakmIO7c5FMa6AAnlAa4Y1eLNLIphD
-         Ab5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUmxYXLyI+ChnwKtece/HJWvlRlSlQ0FFH4tTcOXqhkEFbO9KgNiCeGnOVT4HaoYmKt99DdG31mrclr@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywmv+RzEstBDNSweYmClMeKM5C0QqqmoOS/vizHyG+/WbYO82OJ
-	4LnPoopqpJ46qmWtaahJoHDXOw/HjYO0V1NF2JqstNP7j60h76CyR+on9JOcxRk=
-X-Gm-Gg: ASbGncv7r1otP1s2Xk5m6SFo/HzyuC4qjKPBVYjZlQICg5pviJCDjMxMY6cR26aXRMF
-	FhXbjUT/pTWox+TFNhm3YdrzWghob973XMsUMZrRNcIrZ7Gxe3auRGOqlzfm+OOA3+X+o2jv/wP
-	qbdTnVZmkmYZJx3Ow+eOPyjMfYKeKljtnElLlt72XHtKqrZ4FN9/DToxcYLWpy1Yz/Fff+wAdY5
-	KkqNt6/3uM0doY6F1OPZaDCppUjuF/zDb8qfhN1Pvgi3pw1TEFcDwUvBAm7sfiF
-X-Google-Smtp-Source: AGHT+IHjNqIwgyhBQxftpcXHAw9igzv0feJ/dyVPh3zNKBEM6I1JcxxoasxFhTbuCSeSbCfEViDLAQ==
-X-Received: by 2002:a5d:5988:0:b0:385:e374:bd4 with SMTP id ffacd0b85a97d-385fd3c76c5mr949206f8f.3.1733237677714;
-        Tue, 03 Dec 2024 06:54:37 -0800 (PST)
-Received: from [127.0.1.1] ([178.197.218.23])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434aa7e4df1sm223440855e9.39.2024.12.03.06.54.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Dec 2024 06:54:37 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Stefan Wahren <stefan.wahren@chargebyte.com>, 
- Stefan Wahren <wahrenst@gmx.net>, 
- =?utf-8?q?Kry=C5=A1tof_=C4=8Cern=C3=BD?= <cleverline1mc@gmail.com>
-Cc: Ben Gardner <bgardner@wabtec.com>, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
-In-Reply-To: <20241129-ds2482-add-reg-v6-0-bd95ad171e19@gmail.com>
-References: <20241129-ds2482-add-reg-v6-0-bd95ad171e19@gmail.com>
-Subject: Re: [PATCH v6 0/4] Add support for attaching a regulator to w1:
- ds2482
-Message-Id: <173323767575.74728.10700048422477290412.b4-ty@linaro.org>
-Date: Tue, 03 Dec 2024 15:54:35 +0100
+	s=arc-20240116; t=1733237940; c=relaxed/simple;
+	bh=tInhdEsQvO5/sVLGY5Zzicbns+gadmFD8V+laCIIyfQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AkKtelMCP4KizCguYw/Od7TjN6GOmAv76m4++3R9iMTHNBo8297YiMa6TeHtYhhibuL1lgfc9qLYN46RQ+zLMIn6s58vd83KcLrvNqxk69HIspzj+UP4dSd0QqLjPYXxIXPuZJ6cUukR9APZY+3UbYjvIHnmsYYIkeonKWGQCkQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=LnB4d1FL; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=AQfWXnwBtjN4+gVX0bHkzy3HHnT2/jPXP6zHmg2fCvs=; b=Ln
+	B4d1FLm6hFKT1zzUVBGaUbFqCSIXxlRMFuTgS6FHvoDQDHLEdDcUOJ8gi8ngmraFhNAug/S96vt/i
+	t3QOSt5H8yDbjbaPbKmXFEjhTgrH+vleuSIwL0JbIp+/p6Xs3FsMCIm+Nafv2zdnT/daIZdJpICGx
+	oZHrT0RltarQVX4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tIUMM-00F6Nb-5j; Tue, 03 Dec 2024 15:58:42 +0100
+Date: Tue, 3 Dec 2024 15:58:42 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Joey Lu <a0987203069@gmail.com>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
+	richardcochran@gmail.com, alexandre.torgue@foss.st.com,
+	joabreu@synopsys.com, ychuang3@nuvoton.com, schung@nuvoton.com,
+	yclu4@nuvoton.com, peppe.cavallaro@st.com,
+	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	openbmc@lists.ozlabs.org, linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH v4 3/3] net: stmmac: dwmac-nuvoton: Add dwmac glue for
+ Nuvoton MA35 family
+Message-ID: <ba09cea2-4cf7-4203-ae98-ea5d8413f69e@lunn.ch>
+References: <20241202023643.75010-1-a0987203069@gmail.com>
+ <20241202023643.75010-4-a0987203069@gmail.com>
+ <9f2c8532-8e52-439a-b253-ad2ceb07b21b@lunn.ch>
+ <75eb13d7-b582-4056-b707-706865611706@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.14.2
+In-Reply-To: <75eb13d7-b582-4056-b707-706865611706@gmail.com>
 
-
-On Fri, 29 Nov 2024 14:25:52 +0100, KryÅ¡tof ÄŒernÃ½ wrote:
-> Kept the exit_w1_remove path as requested in the review.
+On Tue, Dec 03, 2024 at 05:12:24PM +0800, Joey Lu wrote:
+> Dear Andrew,
 > 
+> You're correct. In the stmmac_hw_init function within stmmac_main.c, whether
+> pmt is true is determined by checking the pmt_remote_wake_up bit in the
+> hardware feature register. However, our hardware configuration only supports
+> magic packet and not remote wakeup, so it must be overwritten in the glue
+> driver.
+
+Please add a comment explaining this. 
+
+
+I'm not sure why the original code doesn't include magic packet as part
+> of pmt.
 > 
+> source code:
+> 
+>         stmmac_hw_init() @net/ethernet/stmicro/stmmac/stmmac_main.c
+> 
+>         priv->plat->enh_desc = priv->dma_cap.enh_desc;
+>         priv->plat->pmt = priv->dma_cap.pmt_remote_wake_up &&
+>                 !(priv->plat->flags & STMMAC_FLAG_USE_PHY_WOL);
+>         priv->hw->pmt = priv->plat->pmt;
+> 
+> Or modify the condition as follows:
+> 
+>         priv->plat->pmt = (priv->dma_cap.pmt_remote_wake_up || priv->
+> dma_cap.pmt_magic_frame) &&
+>                 !(priv->plat->flags & STMMAC_FLAG_USE_PHY_WOL);
 
-Applied, thanks!
+Are there other glue drivers which would benefit from this? It is hard
+for me to say if you hardware is odd, or if this should be a generic
+feature which other glue drivers would use.
 
-[1/4] dt-bindings: w1: ds2482: Add vcc-supply property
-      https://git.kernel.org/krzk/linux-w1/c/be197d90def4282af7d1f7f1210ee1f9342a67d1
-[2/4] w1: ds2482: switch to devm_kzalloc() from kzalloc()
-      https://git.kernel.org/krzk/linux-w1/c/19c6d8bd88652936c43f5c53550d74563829a15e
-[3/4] w1: ds2482: Add regulator support
-      https://git.kernel.org/krzk/linux-w1/c/6e0bb206c6af6c8775b447b2fae9209f02f13143
-[4/4] w1: ds2482: Fix datasheet URL
-      https://git.kernel.org/krzk/linux-w1/c/5f69c091a6c0001ffade8bc00c1d33e1e224a2e7
-
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
+	Andrew
 
