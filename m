@@ -1,66 +1,63 @@
-Return-Path: <devicetree+bounces-126686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126687-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 352F29E285B
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 17:57:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD1E09E2863
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 17:58:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A307162A19
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 16:57:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 92A651687CB
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 16:58:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D71DE1F8AE4;
-	Tue,  3 Dec 2024 16:57:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4DEE1F8AF9;
+	Tue,  3 Dec 2024 16:58:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="a9HWlm9G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YA/+5FUC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A4CC1304BA;
-	Tue,  3 Dec 2024 16:57:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA6591304BA;
+	Tue,  3 Dec 2024 16:58:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733245057; cv=none; b=pUf/y7JNG9brNJ5WTHDP8MjYSX5xQaxU/trUpFcIJTMyvx7ZGDHe8sNc0HGw0ezVYKXZlAK4qms9lskpM0o7re1sOyxlFQXqRCFy3He5MxX/zEYGY/lAqjBSvoH1KJbD7rNYnGvG3nEJsihAG0tlpSPCOgWnVW2/Yagyj2ryyJU=
+	t=1733245109; cv=none; b=ElSi9ucc25wlB22d+3Gmf0+Eii8XOhunFrh/BJCTBw+Lw3/mRUORBvFfWPQhvHzBZ7Y19DsGsYtvTQsqj/dJt9l9OvJb1utUPQP+el8pHAllxqF2fr9Jy4LxCjpFM/ExRKvJrrmhAh9uOMHaoKgdH4hXrJ2n1gaQlpoh5SeQusA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733245057; c=relaxed/simple;
-	bh=wGKBlGJR9PYQuQmm+KN9fPDWsy9XNuxCnD1p9Jbj42g=;
+	s=arc-20240116; t=1733245109; c=relaxed/simple;
+	bh=arF+AUtSeu6ScqKrFJj4z1B2pVwQCLt63eW9K0h113I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bxbE4pgNxEUVA3c8INzdd0QLQi83VbbiTo2wepVj0bskp6ABYy08CaQ0DWA1U86Qaa0IYWC/cLYQDOmwyhKlhZaPgNzrIalQriBlz5Yb/Wln8DkcfCBNt1JqJ/7UkS6LSzhbg36p2OKoqPg98+YwCJHgPTAE5eH3Rr2juEMBeZU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=a9HWlm9G; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38AF0C4CECF;
-	Tue,  3 Dec 2024 16:57:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1733245056;
-	bh=wGKBlGJR9PYQuQmm+KN9fPDWsy9XNuxCnD1p9Jbj42g=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=lcdM6S/vynftENeOYTJsPKyzCTxH0e3GxIuvlO+oHxNcl6O+GnpiyokyuFivrAK8WxaA0xowVVAngM/itQYSA04ixXAPsB3hCQtyTzqki09+s4+01gR1h3mss0fNrCBqObb/54ylWQ+iKOeWBYc/bBVEUcCGOFBT4Lz6K8ZFkmg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YA/+5FUC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDD3DC4CECF;
+	Tue,  3 Dec 2024 16:58:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733245109;
+	bh=arF+AUtSeu6ScqKrFJj4z1B2pVwQCLt63eW9K0h113I=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=a9HWlm9GsQYghXAdB/zR5ovWElWz2sGgYAbhIdEJYdM/LvFW+9filE4+EP+QnLmEP
-	 zG6dFpFYYTyUsFqQyR7iEKkEHI/cBlX9Mhh2xRauscv5BAxYUPhR17HqooidCPJS2T
-	 2xzN0iEuVQi6loIif9+i2LAv3i5ZkPUshTxSoa+Q=
-Date: Tue, 3 Dec 2024 17:57:33 +0100
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Cezary Rojewski <cezary.rojewski@intel.com>
-Cc: Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
-	Wesley Cheng <quic_wcheng@quicinc.com>,
-	Takashi Iwai <tiwai@suse.de>, srinivas.kandagatla@linaro.org,
-	mathias.nyman@intel.com, perex@perex.cz, conor+dt@kernel.org,
-	dmitry.torokhov@gmail.com, corbet@lwn.net, broonie@kernel.org,
-	lgirdwood@gmail.com, krzk+dt@kernel.org, Thinh.Nguyen@synopsys.com,
-	tiwai@suse.com, robh@kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-sound@vger.kernel.org,
-	linux-usb@vger.kernel.org, linux-input@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v30 00/30] Introduce QC USB SND audio offloading support
-Message-ID: <2024120320-recant-tameness-6c81@gregkh>
-References: <20241106193413.1730413-1-quic_wcheng@quicinc.com>
- <edfeb642-297e-42bb-ad09-cbf74f995514@quicinc.com>
- <2024111655-approve-throwback-e7df@gregkh>
- <2f512d8d-e5f3-4bdd-8172-37114a382a69@quicinc.com>
- <875xoi3wqw.wl-tiwai@suse.de>
- <d0da6552-238a-41be-b596-58da6840efbb@quicinc.com>
- <CF49CA0A-4562-40BC-AA98-E550E39B366A@linux.dev>
- <65273bba-5ec1-44ea-865b-fb815afccc91@intel.com>
+	b=YA/+5FUCNsnzc7OLhztiJaztpx3YVhqilIZltxUkySH8DqVvnFKO/OXroDo3LgeWn
+	 uE8dW8TU8STjU4G3thzdB8bI2m7LSqs1TlH0rahyfAt2Ok5J0pZO4UMMSRIogcgJh9
+	 FI2tGRgC//SEy3MVb/TGxsLK6kahOu3BPmkeZkUmHwUFIfkERsKMN+ZRszO4q6LyF8
+	 DRKgCORo7yHFban6Du/ieT/y1Bzi5WI+xhsOwX6zDdR5tvnVdyb2F/Vn+3fEQbT/Q1
+	 LUfN4eTq6DIdmmjvfZuHVgQHZVvizSHYxgmD6D/D36aELHM/cDPt6xDUQPxslOU0UE
+	 k0d+YW0B12Xew==
+Date: Tue, 3 Dec 2024 10:58:27 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Damon Ding <damon.ding@rock-chips.com>
+Cc: sebastian.reichel@collabora.com, cristian.ciocaltea@collabora.com,
+	krzk+dt@kernel.org, rfoss@kernel.org, devicetree@vger.kernel.org,
+	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
+	l.stach@pengutronix.de, algea.cao@rock-chips.com,
+	linux-arm-kernel@lists.infradead.org,
+	dri-devel@lists.freedesktop.org, hjc@rock-chips.com,
+	conor+dt@kernel.org, vkoul@kernel.org, kever.yang@rock-chips.com,
+	linux-rockchip@lists.infradead.org, andy.yan@rock-chips.com,
+	heiko@sntech.de
+Subject: Re: [PATCH v1 07/10] dt-bindings: display: rockchip: Fix label name
+ of hdptxphy for RK3588 HDMI TX Controller
+Message-ID: <173324510682.1955832.14077962445640350158.robh@kernel.org>
+References: <20241127075157.856029-1-damon.ding@rock-chips.com>
+ <20241127075157.856029-8-damon.ding@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,30 +66,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <65273bba-5ec1-44ea-865b-fb815afccc91@intel.com>
+In-Reply-To: <20241127075157.856029-8-damon.ding@rock-chips.com>
 
-On Tue, Dec 03, 2024 at 05:17:48PM +0100, Cezary Rojewski wrote:
-> On 2024-12-01 4:14 AM, Pierre-Louis Bossart wrote:
-> > Sorry to chime in late, I only look at email occasionally.
-> > 
-> 
-> ...
-> 
-> > My Reviewed-by tags were added in the last updates. I am not sure if anyone else at Intel had the time to review this large patchset.
-> > 
-> > > I believe Amadeusz was still against having the two card design, and wants the routing to automatically happen when playback happens on the sound card created by the USB SND layer.  However, even with that kind of implementation, the major pieces brought in by this series should still be relevant, ie soc-usb and the vendor offload driver.  The only thing that would really change is adding a path from the USB SND PCM ops to interact with the ASoC entities.  Complexity-wise, this would obviously have a good amount of changes to the USB SND/ASoC core drivers.  Some things I can think of that we'd need to introduce:
-> > 
-> > The notion of two cards was agreed inside Intel as far back as 2018, when Rakesh first looked at USB offload.
-> 
-> 
-> Well, I believe a lot has changed since then, not sure if USB Audio Offload
-> (UAOL) was even stable on the Windows solution back then. Obviously we want
-> to incorporate what we have learned during all that time into our solution
-> before it lands on upstream.
 
-Great, can you help review this series please?
+On Wed, 27 Nov 2024 15:51:54 +0800, Damon Ding wrote:
+> The hdptxphy is a combo transmit-PHY for HDMI2.1 TMDS Link, FRL Link, DP
+> and eDP Link. Therefore, it is better to name it hdptxphy0 other than
+> hdptxphy_hdmi0, which will be referenced by both hdmi0 and edp0 nodes.
+> 
+> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+> ---
+>  .../bindings/display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml   | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-thanks,
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-greg k-h
 
