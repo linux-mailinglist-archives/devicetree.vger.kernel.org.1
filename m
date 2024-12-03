@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-126546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126547-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B57939E1CEE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 14:02:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABC739E1A88
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 12:14:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BB896B3DC5A
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 11:14:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BD99283A3B
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 11:14:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 942721E5018;
-	Tue,  3 Dec 2024 11:13:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D8091E3DE4;
+	Tue,  3 Dec 2024 11:13:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="OjDrWbkg"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="XP2VKFR9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD97E1E47DC
-	for <devicetree@vger.kernel.org>; Tue,  3 Dec 2024 11:13:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D94201E3789
+	for <devicetree@vger.kernel.org>; Tue,  3 Dec 2024 11:13:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733224420; cv=none; b=rJCCwx5J/rR9kUnLjgXF7tf4ksBglASAhrexOVE5BMYzX5lb4eyF21D4lKy11XBupT3/L2Aix85cv3wcseyWeKqtfzZst/EdLxZKpTSc/mF7KuGdTmRS0wxoOrFBXVIiSVUNfSdgdcliZ30Ly9eh1oWs9nqdXi9QKqMToIMH9h4=
+	t=1733224423; cv=none; b=MTRteSP4lT1efkkQ0az6TuBq74w0MwalcSt2Nr3gG1XE6WzOQjr5hSdeaqDhT8ZAEw4vFgXjpSYzjCHE6ZvtkkXIVguknxsl4bbSK5Oe5D8L5bpa41Pmnp4SaXDOt0buhpQNE7sLe6FYSpGc3r8VAHglAknudOXITlH9zMnE5NM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733224420; c=relaxed/simple;
-	bh=kBpmpcLbsXFGXe3UmBXplOGwMMgg51mcXkZvmc6/gLc=;
+	s=arc-20240116; t=1733224423; c=relaxed/simple;
+	bh=gO4ZvBXUTFcYGZh6RIIOFvueXczmp6/AUCy3wQSSRGg=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Az7K6OODAvlfU8YHa9x7/2iyAC4hhcXpQaQE606gxTYU6yU7vgxvg8qaGCMR3/zVgqvodQfSIOhu9lv0Gy9kAMR1zKOW55I/hhkSJSBDwIQM+zSNDj0dWLMTrWzV4W3EP2ejDh9hvo97Eiw11oLxPKRdexvRofAq82Dtcg9Euyk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=OjDrWbkg; arc=none smtp.client-ip=209.85.128.46
+	 MIME-Version; b=ci08e0WqdPKvQ35uFrgHl/eJnGIEnhsp2sYHgJ9o+S2sV4J47IJAO4ZToK+hFBu7/S791iLt2QvnBxn6rUjwkhG8EORjgsufsDZVMUkX1pvDOowsU90l7L1nPjhY/DRIhqZZ+KiyiUbd2o/FJ7pG6NhTHBSgaU639Z/TX+X7LI0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=XP2VKFR9; arc=none smtp.client-ip=209.85.221.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4349fb56260so46960625e9.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Dec 2024 03:13:38 -0800 (PST)
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-385dece873cso2073621f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 03 Dec 2024 03:13:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1733224417; x=1733829217; darn=vger.kernel.org;
+        d=tuxon.dev; s=google; t=1733224419; x=1733829219; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=qCdRwZ15asQpEWGBGdVbcDEbuZKZAPYkAztgT8carm4=;
-        b=OjDrWbkglJnlbnbDvew4aYjatMVBQCQrNalegnLg0iETy9KquqwrMI51GKzNnhSKv8
-         mUuiGAvKTKk3EOTqJHZuqLiToZS1UfOxV2R0aKjDbpFZWofsgkttjMOQ9D5K3YmOPFGE
-         FNpalWHCJv2UctmBvkwCcv+C4hkBk0ifd3mAmMu0HvM8xX1CK4H07wdGkcCiIj8tL2lI
-         5FCKJGddkxJPvLhU3AJ5w3M1oPDfnLNOx2itaKvkgcKfbNN6hJSquu8mAaJtv9tXS+xG
-         2U4poCmjcE0lsGm6VuYqjjmtr/J6D360b/ulSnn/ISl+JuY+SdJfNLcVfYDF2myExygx
-         0ixg==
+        bh=Ea89qn+C4sQlE1UymOyNPT2kFEXlVUxJjzTr785WLz8=;
+        b=XP2VKFR913pfmHCy1D8qPSgum3T3g+TA10hDPU/AqwV7mnJj87BQRGzargn3NpvshF
+         kANQbNbnHJEWA2RsHd8rkOtFGG+x01m9zipj1xILf9iW19z858YbGhqjF214qxkRbnfi
+         Bfl10Tc/CEwCCZHoS/DmTInWNjwiaL8ceDWb5XSs+Q0UsQGHiz4jZkYbl6GqaRlEBSM2
+         xnBwHQva5DXcPfd0/MWcrUZOpz6trjwtpa5oeT7pcrWUHKZF4Wo3n7OryZNIwvMe7E3/
+         zUYL+boGth3mHMgUeSoPw7R430K9JymkUSMkPLVt+2ir4xCGxysKEbWAajjphHGQ/8dv
+         Smfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733224417; x=1733829217;
+        d=1e100.net; s=20230601; t=1733224419; x=1733829219;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=qCdRwZ15asQpEWGBGdVbcDEbuZKZAPYkAztgT8carm4=;
-        b=HZLYkPsEjAfWs404IGk7E7izzzipzdp46gq7CtM0/0RaM+j0wyYBjhl7n/3JnR570w
-         oDa9cXwsdn4UeMs7rBwc+gn0+ecngvDxYfBbkeCGqsAkr1xU+mMCDVI4Agj9YhFP886P
-         AUIXUTpne0ssekL+olK/8vfWH+64IOwzoEBMhwoy14AjKP2k2I6lVxA6gqiqBBunQkyY
-         +NoST139ZyiqWfsg0aLGHklaPBm3KfRSuw59Ea59KpBzCRYEllDfDAwsYwZ9W4yo2gZj
-         4R8j5GUV5cHKXDYvv7Ac8MTkkBClSXE9wINGCk4KG6/gOUeWUSrk+qpEGyJxJb75sti2
-         +7Zw==
-X-Forwarded-Encrypted: i=1; AJvYcCUaALRq0Au9AcyLZmFrgTnQ7X5QUVbFIBA6XQr2RhJicgu07+5ZJ5Qr+S8AqJbEDY3NEW3QbGxaD4zu@vger.kernel.org
-X-Gm-Message-State: AOJu0YxdtkROrzPVdSqokE+Wa2v7v1rGVYSyySh8IYTOmi/B14pi091a
-	01rjidv3hW/A/txUQ9jHKvKaCecKr4GXA8m6UA/IPuuTRFUArx1fdCc4NHTPPR8=
-X-Gm-Gg: ASbGncu21hfFQLJhVvx3/T92jTDi0geMTbBMaZl9iLY6/XIHBEXM0LJQADpH602JElD
-	zHQwOFEnwkqgsyQcR8KpuvNsTW7HsjBaG7qlN55sQSkYVJIwqBy/B1Q8sla5XrFpzDAZAWfnB2h
-	U3ET/TR6iprqh9GPCZu65lhoDWZXQBowxQygItzGpi1Lzeg58XSsbNcyI0FlBef1TiEbH4n3uas
-	wzIc7mJQm1RYp0wPhxUG9JlesZoudOajipdocXQ+e+OrKDeG6P83G48RPSiVXnTATMZkwJ8kUB1
-	tqPJ
-X-Google-Smtp-Source: AGHT+IEJrW8VqyFtyApubzrpsWUPJ9RNDeZrlqESW1F89PjKceyNMo6DqT1d4/sGwkbfkKpWXv02Sw==
-X-Received: by 2002:a5d:588f:0:b0:385:ef2f:9282 with SMTP id ffacd0b85a97d-385fd3ce082mr1856119f8f.5.1733224417034;
-        Tue, 03 Dec 2024 03:13:37 -0800 (PST)
+        bh=Ea89qn+C4sQlE1UymOyNPT2kFEXlVUxJjzTr785WLz8=;
+        b=bVWzmTTEnKxzntDjbx1WM1FUNKCYnSZgqUynOLIT+8TSjyVHCwdoh9Nok8Zt+fH/+S
+         9PmmRWAbyjoqzGJoqnJwLfnIIhsWP6nRouRv58PiNIaDEoMLwAtJr+aWRz1sZbM3D91e
+         knk5BJwgt9E5rlWA/+la8/8E8Lx+t8e0fpQpvFpnDdDK0X3Vgn5ROoCEfZQ+ZmRNy2FI
+         SDxhCeVBxMfraebM6mZOoVdrGU0lIERelHSykAgIgvDORvOTQAIXGfr0b5wKss1D2UMJ
+         8siUJ5b6GfK/Mp2yJQedwqb78g5p0TACZyPtxjn5FcNs/59+TRjGZPYLu++1v+R9D/Er
+         EWNA==
+X-Forwarded-Encrypted: i=1; AJvYcCXJvwOhQygp68olm7NEzcACyjplrSYIVTvESCghOFGTDXGDB+cycX+taJmV4IPcEneQipTVH92LFv37@vger.kernel.org
+X-Gm-Message-State: AOJu0YzoeMy8OTXPLTQXiXAHWkequgCtaznUGf57qMT3kqFieSp3pijm
+	W2WqpsGjnB8AzKdUw/3hGyUyTigPRZM2Enc8PPu2OgI+quqjL5DfJgkZQBVv/tg=
+X-Gm-Gg: ASbGnct0AUSOwFMVY2W2A4TJxtxMOvRs69oGyzksKYZ+uCbnxkkeBoiqPkY0M1IcxVY
+	4YAqfPlXvLL2xnm8mXEUWsMATRIdR/j2qFkSF+G6AQNbYVbYvBIIo+bK/sz07JAKW/ll1QdE4tG
+	ALiha30t4bpEm23LVWq9U1dMmcnZEP8sO1QI+WKmEpHh8E3xWyf01Zcb+xLcJzi9Er2Diw0iobm
+	h4liRVzOXlDGLRzGbIsSm1Q8WpuOCmCWDBRHiGCCEXt9y6wnFomvEHSr96aAgRvAbPUStMiYgpS
+	OYPp
+X-Google-Smtp-Source: AGHT+IFPqx8VqZ8PfxTE5fU9zGnVOxsbbHEHY67sOEJJ9ywazNa1wCT+yEhiDBsok1OIhNAHxkrIZg==
+X-Received: by 2002:a5d:6c62:0:b0:385:f17b:de54 with SMTP id ffacd0b85a97d-385fd3c4576mr1617956f8f.5.1733224419249;
+        Tue, 03 Dec 2024 03:13:39 -0800 (PST)
 Received: from claudiu-X670E-Pro-RS.. ([82.78.167.161])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-385e0117069sm11794315f8f.60.2024.12.03.03.13.35
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-385e0117069sm11794315f8f.60.2024.12.03.03.13.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Dec 2024 03:13:36 -0800 (PST)
+        Tue, 03 Dec 2024 03:13:38 -0800 (PST)
 From: Claudiu <claudiu.beznea@tuxon.dev>
 X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
 To: prabhakar.mahadev-lad.rj@bp.renesas.com,
@@ -92,9 +92,9 @@ Cc: claudiu.beznea@tuxon.dev,
 	linux-kernel@vger.kernel.org,
 	linux-clk@vger.kernel.org,
 	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: [PATCH 04/14] iio: adc: rzg2l_adc: Switch to RUNTIME_PM_OPS() and pm_ptr()
-Date: Tue,  3 Dec 2024 13:13:04 +0200
-Message-Id: <20241203111314.2420473-5-claudiu.beznea.uj@bp.renesas.com>
+Subject: [PATCH 05/14] iio: adc: rzg2l_adc: Use read_poll_timeout()
+Date: Tue,  3 Dec 2024 13:13:05 +0200
+Message-Id: <20241203111314.2420473-6-claudiu.beznea.uj@bp.renesas.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20241203111314.2420473-1-claudiu.beznea.uj@bp.renesas.com>
 References: <20241203111314.2420473-1-claudiu.beznea.uj@bp.renesas.com>
@@ -108,60 +108,83 @@ Content-Transfer-Encoding: 8bit
 
 From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-The use of SET_RUNTIME_PM_OPS() is now deprecated and requires
-__maybe_unused annotations to avoid warnings about unused functions.
-Switching to RUNTIME_PM_OPS() and pm_ptr() eliminates the need for such
-annotations because the compiler can directly reference the runtime PM
-functions, thereby suppressing the warnings. As a result, the
-__maybe_unused markings can be removed.
+Replace the driver-specific implementation with the read_poll_timeout()
+function. This change simplifies the code and improves maintainability by
+leveraging the standardized helper.
 
 Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 ---
- drivers/iio/adc/rzg2l_adc.c | 10 ++++------
- 1 file changed, 4 insertions(+), 6 deletions(-)
+ drivers/iio/adc/rzg2l_adc.c | 29 ++++++++++-------------------
+ 1 file changed, 10 insertions(+), 19 deletions(-)
 
 diff --git a/drivers/iio/adc/rzg2l_adc.c b/drivers/iio/adc/rzg2l_adc.c
-index a17690ecbdc3..5437b21c4e70 100644
+index 5437b21c4e70..62932f9295b6 100644
 --- a/drivers/iio/adc/rzg2l_adc.c
 +++ b/drivers/iio/adc/rzg2l_adc.c
-@@ -462,7 +462,7 @@ static const struct of_device_id rzg2l_adc_match[] = {
- };
- MODULE_DEVICE_TABLE(of, rzg2l_adc_match);
+@@ -13,6 +13,7 @@
+ #include <linux/iio/iio.h>
+ #include <linux/interrupt.h>
+ #include <linux/io.h>
++#include <linux/iopoll.h>
+ #include <linux/mod_devicetable.h>
+ #include <linux/module.h>
+ #include <linux/platform_device.h>
+@@ -112,7 +113,7 @@ static void rzg2l_adc_pwr(struct rzg2l_adc *adc, bool on)
  
--static int __maybe_unused rzg2l_adc_pm_runtime_suspend(struct device *dev)
-+static int rzg2l_adc_pm_runtime_suspend(struct device *dev)
+ static void rzg2l_adc_start_stop(struct rzg2l_adc *adc, bool start)
  {
- 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
- 	struct rzg2l_adc *adc = iio_priv(indio_dev);
-@@ -472,7 +472,7 @@ static int __maybe_unused rzg2l_adc_pm_runtime_suspend(struct device *dev)
- 	return 0;
+-	int timeout = 5;
++	int ret;
+ 	u32 reg;
+ 
+ 	reg = rzg2l_adc_readl(adc, RZG2L_ADM(0));
+@@ -125,15 +126,10 @@ static void rzg2l_adc_start_stop(struct rzg2l_adc *adc, bool start)
+ 	if (start)
+ 		return;
+ 
+-	do {
+-		usleep_range(100, 200);
+-		reg = rzg2l_adc_readl(adc, RZG2L_ADM(0));
+-		timeout--;
+-		if (!timeout) {
+-			pr_err("%s stopping ADC timed out\n", __func__);
+-			break;
+-		}
+-	} while (((reg & RZG2L_ADM0_ADBSY) || (reg & RZG2L_ADM0_ADCE)));
++	ret = read_poll_timeout(rzg2l_adc_readl, reg, !(reg & (RZG2L_ADM0_ADBSY | RZG2L_ADM0_ADCE)),
++				200, 1000, true, adc, RZG2L_ADM(0));
++	if (ret)
++		pr_err("%s stopping ADC timed out\n", __func__);
  }
  
--static int __maybe_unused rzg2l_adc_pm_runtime_resume(struct device *dev)
-+static int rzg2l_adc_pm_runtime_resume(struct device *dev)
+ static void rzg2l_set_trigger(struct rzg2l_adc *adc)
+@@ -342,7 +338,6 @@ static int rzg2l_adc_parse_properties(struct platform_device *pdev, struct rzg2l
+ 
+ static int rzg2l_adc_hw_init(struct device *dev, struct rzg2l_adc *adc)
  {
- 	struct iio_dev *indio_dev = dev_get_drvdata(dev);
- 	struct rzg2l_adc *adc = iio_priv(indio_dev);
-@@ -483,9 +483,7 @@ static int __maybe_unused rzg2l_adc_pm_runtime_resume(struct device *dev)
- }
+-	int timeout = 5;
+ 	u32 reg;
+ 	int ret;
  
- static const struct dev_pm_ops rzg2l_adc_pm_ops = {
--	SET_RUNTIME_PM_OPS(rzg2l_adc_pm_runtime_suspend,
--			   rzg2l_adc_pm_runtime_resume,
--			   NULL)
-+	RUNTIME_PM_OPS(rzg2l_adc_pm_runtime_suspend, rzg2l_adc_pm_runtime_resume, NULL)
- };
+@@ -355,14 +350,10 @@ static int rzg2l_adc_hw_init(struct device *dev, struct rzg2l_adc *adc)
+ 	reg |= RZG2L_ADM0_SRESB;
+ 	rzg2l_adc_writel(adc, RZG2L_ADM(0), reg);
  
- static struct platform_driver rzg2l_adc_driver = {
-@@ -493,7 +491,7 @@ static struct platform_driver rzg2l_adc_driver = {
- 	.driver		= {
- 		.name		= DRIVER_NAME,
- 		.of_match_table = rzg2l_adc_match,
--		.pm		= &rzg2l_adc_pm_ops,
-+		.pm		= pm_ptr(&rzg2l_adc_pm_ops),
- 	},
- };
+-	while (!(rzg2l_adc_readl(adc, RZG2L_ADM(0)) & RZG2L_ADM0_SRESB)) {
+-		if (!timeout) {
+-			ret = -EBUSY;
+-			goto exit_hw_init;
+-		}
+-		timeout--;
+-		usleep_range(100, 200);
+-	}
++	ret = read_poll_timeout(rzg2l_adc_readl, reg, reg & RZG2L_ADM0_SRESB,
++				200, 1000, false, adc, RZG2L_ADM(0));
++	if (ret)
++		goto exit_hw_init;
  
+ 	/* Only division by 4 can be set */
+ 	reg = rzg2l_adc_readl(adc, RZG2L_ADIVC);
 -- 
 2.39.2
 
