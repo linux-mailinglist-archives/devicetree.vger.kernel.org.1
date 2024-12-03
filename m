@@ -1,230 +1,124 @@
-Return-Path: <devicetree+bounces-126587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126589-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9993E9E202B
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 15:55:18 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42BBC9E1D22
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 14:09:28 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2B792B34FB2
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 13:04:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3C80164B2B
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 13:09:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 262811EE024;
-	Tue,  3 Dec 2024 13:03:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 220371EF0AC;
+	Tue,  3 Dec 2024 13:09:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wzfxKmuY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E743C1E0E0C;
-	Tue,  3 Dec 2024 13:03:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E46671EF085
+	for <devicetree@vger.kernel.org>; Tue,  3 Dec 2024 13:08:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733231032; cv=none; b=dI2Ea8RHIMPlS4fSPP+Oth7+146MvjXcN+bS1jSjcZtPStjOZTNWxjwCPVfm0Yq3tnPT3NVpgpF+doOCY5IGR77GOQUO+MNAbRRan75a3z2GBE6ghLueD/0CCJ0jzB+EeEF4Dz3vs8gETk9vyRK9xksrHhn1RmnftZUbEd2iWC0=
+	t=1733231342; cv=none; b=eExfgt49cp80t3CCkhRv8tC3BqOmKhw2AT+sSjCX9K6X6+ZiTQmOS3jr/lNkJau8KPxBX4/as8sFwWjTfoBuzaPSAY4rpZn2jZ5mNTmP7M+Ro0yn06iCoQd3NWI0GgfFXC2Maj3xKFw24gsuYrHYLhSPiV+WwprshR+pv8tDH+I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733231032; c=relaxed/simple;
-	bh=ulhV8p19khZo4FSRs3NgrLM359uPbLHsOWsvdJIfP+A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OS6FhU+mAtkc66MxhSquVEPewjOmIuXoJTlot/Jz2VNNRA7cAptNPYeRwxmhOjrEIy464MFBj374u8/arSfk8ql61POaQsYVDvBony/flJHfdj2JNPDQT2YlV+KENTWfqq8VeP6T6D+VmB3lJ6iLjX7fmW7vupw7PJPZ0KQJ4Vs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: cThaTchoSu24saTRNojErw==
-X-CSE-MsgGUID: moxWudRiTVaFLZlderrHNA==
-X-IronPort-AV: E=Sophos;i="6.12,205,1728918000"; 
-   d="asc'?scan'208";a="226786721"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 03 Dec 2024 22:03:47 +0900
-Received: from [10.226.93.8] (unknown [10.226.93.8])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 801B540727CD;
-	Tue,  3 Dec 2024 22:03:30 +0900 (JST)
-Message-ID: <6f627195-6c55-4687-b6b6-7fb791d13819@bp.renesas.com>
-Date: Tue, 3 Dec 2024 13:03:29 +0000
+	s=arc-20240116; t=1733231342; c=relaxed/simple;
+	bh=WoMHRJb0tkxTD9vjf51l2F+vHsZpZpKuGhGA2Oq1gss=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OdGv+f6nAC7KkUuhHtHjRtdUdMWUmhUMfCYJrJIRARJTrZZ/uEMk4fAOCPgN3hQ9M8aqWMR/FudGvW/vWJiz+gbcrPGzdt/gxYbsMN1ayCed6B1PpcjuGX+6it9HHTJE3UVSYEuvicPJzYy6zv9QhpNRuKnxdBVDy07f6VPCiWg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wzfxKmuY; arc=none smtp.client-ip=209.85.208.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2ffa8df8850so62525471fa.3
+        for <devicetree@vger.kernel.org>; Tue, 03 Dec 2024 05:08:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733231338; x=1733836138; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=I/lL5pAiR2kE/Mua5K3k92X0rB9806Pb8dHr6N7ntE4=;
+        b=wzfxKmuYk5ozemAQGpcNecfNwB1VoPsCN0nT8udbJgCnd4C128IpW7bfZ7EmHeHFfb
+         geQgPtClkssTwkbCqtfQU3Zo/VfMBZy+J9enEoSYswfL0FPFvnwKtBSuvCbna8fld9Z/
+         88FyWdMGgHSp8Jv/uEKMnoBGJZl2fwCht80Ustv9gMstEyZA91OfbZpZidEekDR/lymH
+         GYSFQRr2Xr6xJzKRxedoIMW7CgRDn9PtY1XJ/NVzKg0+MVTX7uJC17i4mNm+91aUxMKo
+         X3jiuJa5hSZyXMviaywgKgzI+akl/s9cBFZF2qczSp15ktgGYgwf5v5P9fuymPaNlzjb
+         Ml6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733231338; x=1733836138;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=I/lL5pAiR2kE/Mua5K3k92X0rB9806Pb8dHr6N7ntE4=;
+        b=B3T8lElPSYCDv6++OaNnJu8DuxiR2aQFoqPH4W+Z4DM/lt0FdC7yOGdmnKQ5/BWvD5
+         CUj787nR3GrgLMoUysWlmBc+zmdgz2gEUEx5OyRJoNu0xkrbY8STxkaKbjB1cMt0TJMX
+         O+AtcJGg4O5HzMd32/HJ66GejXrFqRuBewVD/XYl8PpctboGsBpzZQPjUfT1H/IDQkid
+         bhH/rj6WhIh/nREoG+F/Ay6vXxt75AYCNYlD3aF1YCvsRQ8ZiF2wXvakpM4UoKikA3We
+         32Mkb7PHklH5FQIzrbIG8kDDOHQfaXeIK4gafIIvhsgQ4tCrDk5mUvdjrnudlNguS1jw
+         ypTg==
+X-Forwarded-Encrypted: i=1; AJvYcCUWy+Y2tCyEXEEUApqxn7iXLL0oSexm2CjQzqIIN1bZPfyFcprOjLDxpvBR9gHhOj9chWC65Pfi2XPT@vger.kernel.org
+X-Gm-Message-State: AOJu0YxllWNjjNk1Fau7bMBEA0H3g5P6qOKddfxd4Bt0CH1JPHts0xhp
+	R57cqo1zcvM9wnE5y1Z4ClVZxYLsU9o/g0Ceoe7oKK/g/gLZ84fvkZOXJHWh8PM=
+X-Gm-Gg: ASbGncvb940alNCB8KVL0expkC+pufrn3xFrFBEgs6MD+wiprRa7lp9vUgwS/KjjQy3
+	xFle52opfI5AjHgX/PtWkFfTtV6XqO5BIVf/IsM1O8T1SaxxXmYAhCqT1eo7HVWZ9fGCexCdKx2
+	tWozPCDl9SVP+n6wtQcizO8bo+p56udR7h2AUDyqGz1J85BjAf+jImLNRka+1owrTfa2kxb08Wv
+	jxlq2GbuVp/djTaFoIIc+ILnKaMwbIPipgtCWaxDq5W1p0erFijuye5dTO3vjmbQcGA3QN/HO7f
+	HavLKoZjtentsgPDgqiNdBNyQ1AYhw==
+X-Google-Smtp-Source: AGHT+IFThbwM7lX3Y2ipfgIhRvnqePc6hLDMc8QwYoeSkbRqOQTvnGXT+2fwk+HTyaWcY0FW9Hg0Cw==
+X-Received: by 2002:a05:651c:503:b0:2ff:c349:8d08 with SMTP id 38308e7fff4ca-30009c73a30mr17954081fa.8.1733231338062;
+        Tue, 03 Dec 2024 05:08:58 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3000a3fb991sm1970151fa.70.2024.12.03.05.08.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Dec 2024 05:08:56 -0800 (PST)
+Date: Tue, 3 Dec 2024 15:08:53 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: "Yu Zhang(Yuriy)" <quic_yuzha@quicinc.com>
+Cc: andersson@kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, agross@kernel.org, 
+	ath11k@lists.infradead.org, konradybcio@kernel.org, kvalo@kernel.org, 
+	linux-media@vger.kernel.org, mchehab@kernel.org, quic_jjohnson@quicinc.com, 
+	quic_miaoqing@quicinc.com, quic_vgarodia@quicinc.com, stanimir.k.varbanov@gmail.com, 
+	quic_jiaymao@quicinc.com
+Subject: Re: [PATCH v3] arm64: dts: qcom: qcs615: add WiFi/BT nodes
+Message-ID: <vpnvycgbjtksjbktiksaltb73w34ogdxt5satz7cpmel63j3mm@aqvih2idpdfw>
+References: <20241203060318.1750927-1-quic_yuzha@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 06/14] iio: adc: rzg2l_adc: Simplify the locking scheme in
- rzg2l_adc_read_raw()
-Content-Language: en-GB
-To: Claudiu <claudiu.beznea@tuxon.dev>,
- prabhakar.mahadev-lad.rj@bp.renesas.com, jic23@kernel.org, lars@metafoo.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- geert+renesas@glider.be, magnus.damm@gmail.com, mturquette@baylibre.com,
- sboyd@kernel.org, p.zabel@pengutronix.de
-Cc: linux-iio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20241203111314.2420473-1-claudiu.beznea.uj@bp.renesas.com>
- <20241203111314.2420473-7-claudiu.beznea.uj@bp.renesas.com>
-From: Paul Barker <paul.barker.ct@bp.renesas.com>
-In-Reply-To: <20241203111314.2420473-7-claudiu.beznea.uj@bp.renesas.com>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------6t5Uabc36aLXyj0ONpUFbPVQ"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241203060318.1750927-1-quic_yuzha@quicinc.com>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------6t5Uabc36aLXyj0ONpUFbPVQ
-Content-Type: multipart/mixed; boundary="------------SWTOlpOL7ORz8bE0b0020s80";
- protected-headers="v1"
-From: Paul Barker <paul.barker.ct@bp.renesas.com>
-To: Claudiu <claudiu.beznea@tuxon.dev>,
- prabhakar.mahadev-lad.rj@bp.renesas.com, jic23@kernel.org, lars@metafoo.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- geert+renesas@glider.be, magnus.damm@gmail.com, mturquette@baylibre.com,
- sboyd@kernel.org, p.zabel@pengutronix.de
-Cc: linux-iio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Message-ID: <6f627195-6c55-4687-b6b6-7fb791d13819@bp.renesas.com>
-Subject: Re: [PATCH 06/14] iio: adc: rzg2l_adc: Simplify the locking scheme in
- rzg2l_adc_read_raw()
-References: <20241203111314.2420473-1-claudiu.beznea.uj@bp.renesas.com>
- <20241203111314.2420473-7-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20241203111314.2420473-7-claudiu.beznea.uj@bp.renesas.com>
+On Tue, Dec 03, 2024 at 02:03:18PM +0800, Yu Zhang(Yuriy) wrote:
+> Add a node for the PMU module of the WCN6855 present on the qcs615
+> board. Assign its LDO power outputs to the existing WiFi/BT module.
+> 
+> This patch depends on below patch series:
+> - base
+> https://lore.kernel.org/all/20241104-add_initial_support_for_qcs615-v5-0-9dde8d7b80b0@quicinc.com/
+> - pmic
+> https://lore.kernel.org/all/20241202-adds-spmi-pmic-peripherals-for-qcs615-v6-0-bdd306b4940d@quicinc.com/
+> - pci
+> https://lore.kernel.org/all/20241122023314.1616353-1-quic_ziyuzhan@quicinc.com/
 
---------------SWTOlpOL7ORz8bE0b0020s80
-Content-Type: multipart/mixed; boundary="------------VivEKTRZRP7bCjISc0I0PIV1"
+This doesn't belong to the commit message. The list of dependncies makes
+no sense once they land upstream. Please switch to the b4 tool, use b4
+prep --edit-cover to list such info (it will be automatically added to a
+non-commit part of the email) and b4 prep --edit-deps to list
+dependncies in a machine-readable format.
 
---------------VivEKTRZRP7bCjISc0I0PIV1
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+The patch itself looks good to me.
 
-Hi Claudiu,
+> 
+> Signed-off-by: Yu Zhang(Yuriy) <quic_yuzha@quicinc.com>
+> 
+> 
 
-On 03/12/2024 11:13, Claudiu wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->=20
-> Simplify the locking scheme in rzg2l_adc_read_raw() by saving the conve=
-rted
-> value only if the rzg2l_adc_conversion() returns success. The approach
-> simplifies the addition of thermal sensor support (that will be done in=
- the
-> next commits). The downside is that the ret variable need to be checked=
-
-> twice.
->=20
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> ---
->  drivers/iio/adc/rzg2l_adc.c | 9 +++------
->  1 file changed, 3 insertions(+), 6 deletions(-)
->=20
-> diff --git a/drivers/iio/adc/rzg2l_adc.c b/drivers/iio/adc/rzg2l_adc.c
-> index 62932f9295b6..eed2944bd98d 100644
-> --- a/drivers/iio/adc/rzg2l_adc.c
-> +++ b/drivers/iio/adc/rzg2l_adc.c
-> @@ -227,14 +227,11 @@ static int rzg2l_adc_read_raw(struct iio_dev *ind=
-io_dev,
->  		mutex_lock(&adc->lock);
->  		ch =3D chan->channel & RZG2L_ADC_CHN_MASK;
->  		ret =3D rzg2l_adc_conversion(indio_dev, adc, ch);
-> -		if (ret) {
-> -			mutex_unlock(&adc->lock);
-> -			return ret;
-> -		}
-> -		*val =3D adc->last_val[ch];
-> +		if (!ret)
-> +			*val =3D adc->last_val[ch];
->  		mutex_unlock(&adc->lock);
-> =20
-> -		return IIO_VAL_INT;
-> +		return ret ? ret : IIO_VAL_INT;
-
-It would be maybe slightly neater to use:
-
-	if (!ret) {
-		*val =3D adc->last_val[ch];
-		ret =3D IIO_VAL_INT;
-	}
-	mutex_unlock(&adc->lock);
-
-	return ret;
-
-Thanks,
-
---=20
-Paul Barker
---------------VivEKTRZRP7bCjISc0I0PIV1
-Content-Type: application/pgp-keys; name="OpenPGP_0x27F4B3459F002257.asc"
-Content-Disposition: attachment; filename="OpenPGP_0x27F4B3459F002257.asc"
-Content-Description: OpenPGP public key
-Content-Transfer-Encoding: quoted-printable
-
------BEGIN PGP PUBLIC KEY BLOCK-----
-
-xsFNBGS4BNsBEADEc28TO+aryCgRIuhxWAviuJl+f2TcZ1JeeaMzRLgSXKuXzkiI
-g6JIVfNvThjwJaBmb7+/5+D7kDLJuutu9MFfOzTS0QOQWppwIPgbfktvMvwwsq3m
-7e9Qb+S1LVeV0/ldZfuzgzAzHFDwmzryfIyt2JEbsBsGTq/QE+7hvLAe8R9xofIn
-z6/IndiiTYhNCNf06nFPR4Y5ZDZPGb9aw5Jisqh+OSxtc0BFHDSV8/35yWM/JLQ1
-Ja8AOHw1kP9KO+iE9rHMt0+7lH3mN1GBabxH26EdgFfPShsi14qmziLOuUlGLuwO
-ApIYqvdtCs+zlMA8PsiJIMuxizZ6qCLur3r2b+/YXoJjuFDcax9M+Pr0D7rZX0Hk
-6PW3dtvDQHfspwLY0FIlXbbtCfCqGLe47VaS7lvG0XeMlo3dUEsf707Q2h0+G1tm
-wyeuWSPEzZQq/KI7JIFlxr3N/3VCdGa9qVf/40QF0BXPfJdcwTEzmPlYetRgA11W
-bglw8DxWBv24a2gWeUkwBWFScR3QV4FAwVjmlCqrkw9dy/JtrFf4pwDoqSFUcofB
-95u6qlz/PC+ho9uvUo5uIwJyz3J5BIgfkMAPYcHNZZ5QrpI3mdwf66im1TOKKTuf
-3Sz/GKc14qAIQhxuUWrgAKTexBJYJmzDT0Mj4ISjlr9K6VXrQwTuj2zC4QARAQAB
-zStQYXVsIEJhcmtlciA8cGF1bC5iYXJrZXIuY3RAYnAucmVuZXNhcy5jb20+wsGU
-BBMBCgA+FiEE9KKf333+FIzPGaxOJ/SzRZ8AIlcFAmS4BNsCGwEFCQPCZwAFCwkI
-BwIGFQoJCAsCBBYCAwECHgECF4AACgkQJ/SzRZ8AIlfxaQ/8CM36qjfad7eBfwja
-cI1LlH1NwbSJ239rE0X7hU/5yra72egr3T5AUuYTt9ECNQ8Ld03BYhbC6hPki5rb
-OlFM2hEPUQYeohcJ4Na5iIFpTxoIuC49Hp2ce6ikvt9Hc4O2FAntabg+9hE8WA4f
-QWW+Qo5ve5OJ0sGylzu0mRZ2I3mTaDsxuDkXOICF5ggSdjT+rcd/pRVOugImjpZv
-/jzSgUfKV2wcZ8vVK0616K21tyPiRjYtDQjJAKff8gBY6ZvP5REPl+fYNvZm1y4l
-hsVupGHL3aV+BKooMsKRZIMTiKJCIy6YFKHOcgWFG62cuRrFDf4r54MJuUGzyeoF
-1XNFzbe1ySoRfU/HrEuBNqC+1CEBiduumh89BitfDNh6ecWVLw24fjsF1Ke6vYpU
-lK9/yGLV26lXYEN4uEJ9i6PjgJ+Q8fubizCVXVDPxmWSZIoJg8EspZ+Max03Lk3e
-flWQ0E3l6/VHmsFgkvqhjNlzFRrj/k86IKdOi0FOd0xtKh1p34rQ8S/4uUN9XCVj
-KtmyLfQgqPVEC6MKv7yFbextPoDUrFAzEgi4OBdqDJjPbdU9wUjONxuWJRrzRFcr
-nTIG7oC4dae0p1rs5uTlaSIKpB2yulaJLKjnNstAj9G9Evf4SE2PKH4l4Jlo/Hu1
-wOUqmCLRo3vFbn7xvfr1u0Z+oMTOOARkuAhwEgorBgEEAZdVAQUBAQdAcuNbK3VT
-WrRYypisnnzLAguqvKX3Vc1OpNE4f8pOcgMDAQgHwsF2BBgBCgAgFiEE9KKf333+
-FIzPGaxOJ/SzRZ8AIlcFAmS4CHACGwwACgkQJ/SzRZ8AIlc90BAAr0hmx8XU9KCj
-g4nJqfavlmKUZetoX5RB9g3hkpDlvjdQZX6lenw3yUzPj53eoiDKzsM03Tak/KFU
-FXGeq7UtPOfXMyIh5UZVdHQRxC4sIBMLKumBfC7LM6XeSegtaGEX8vSzjQICIbaI
-roF2qVUOTMGal2mvcYEvmObC08bUZuMd4nxLnHGiej2t85+9F3Y7GAKsA25EXbbm
-ziUg8IVXw3TojPNrNoQ3if2Z9NfKBhv0/s7x/3WhhIzOht+rAyZaaW+31btDrX4+
-Y1XLAzg9DAfuqkL6knHDMd9tEuK6m2xCOAeZazXaNeOTjQ/XqCHmZ+691VhmAHCI
-7Z7EBPh++TjEqn4ZH+4KPn6XD52+ruWXGbJP29zc+3bwQ+ZADfUaL3ADj69ySxzm
-bO24USHBAg+BhZAZMBkbkygbTen/umT6tBxG91krqbKlDdc8mhGonBN6i+nz8qv1
-6MdC5P1rDbo834rxNLvoFMSLCcpjoafiprl9qk0wQLq48WGphs9DX7V75ZAU5Lt6
-yA+je8i799EZJsVlB933Gpj688H4csaZqEMBjq7vMvI+a5MnLCGcjwRhsUfogpRb
-AWTx9ddVau4MJgEHzB7UU/VFyP2vku7XPj6mgSfSHyNVf2hqxwISQ8eZLoyxauOD
-Y61QMX6YFL170ylToSFjH627h6TzlUDOMwRkuAiAFgkrBgEEAdpHDwEBB0Bibkmu
-Sf7yECzrkBmjD6VGWNVxTdiqb2RuAfGFY9RjRsLB7QQYAQoAIBYhBPSin999/hSM
-zxmsTif0s0WfACJXBQJkuAiAAhsCAIEJECf0s0WfACJXdiAEGRYIAB0WIQSiu8gv
-1Xr0fIw/aoLbaV4Vf/JGvQUCZLgIgAAKCRDbaV4Vf/JGvZP9AQCwV06n3DZvuce3
-/BtzG5zqUuf6Kp2Esgr2FrD4fKVbogD/ZHpXfi9ELdH/JTSVyujaTqhuxQ5B7UzV
-CUIb1qbg1APIEA/+IaLJIBySehy8dHDZQXit/XQYeROQLTT9PvyM35rZVMGH6VG8
-Zb23BPCJ3N0ISOtVdG402lSP0ilP/zSyQAbJN6F0o2tiPd558lPerFd/KpbCIp8N
-kYaLlHWIDiN2AE3c6sfCiCPMtXOR7HCeQapGQBS/IMh1qYHffuzuEy7tbrMvjdra
-VN9Rqtp7PSuRTbO3jAhm0Oe4lDCAK4zyZfjwiZGxnj9s1dyEbxYB2GhTOgkiX/96
-Nw+m/ShaKqTM7o3pNUEs9J3oHeGZFCCaZBv97ctqrYhnNB4kzCxAaZ6K9HAAmcKe
-WT2q4JdYzwB6vEeHnvxl7M0Dj9pUTMujW77Qh5IkUQLYZ2XQYnKAV2WI90B0R1p9
-bXP+jqqkaNCrxKHV1tYOB6037CziGcZmiDneiTlM765MTLJLlHNqlXxDCzRwEazU
-y9dNzITjVT0qhc6th8/vqN9dqvQaAGa13u86Gbv4XPYdE+5MXPM/fTgkKaPBYcIV
-QMvLfoZxyaTk4nzNbBxwwEEHrvTcWDdWxGNtkWRZw0+U5JpXCOi9kBCtFrJ701UG
-UFs56zWndQUS/2xDyGk8GObGBSRLCwsXsKsF6hSX5aKXHyrAAxEUEscRaAmzd6O3
-ZyZGVsEsOuGCLkekUMF/5dwOhEDXrY42VR/ZxdDTY99dznQkwTt4o7FOmkY=3D
-=3DsIIN
------END PGP PUBLIC KEY BLOCK-----
-
---------------VivEKTRZRP7bCjISc0I0PIV1--
-
---------------SWTOlpOL7ORz8bE0b0020s80--
-
---------------6t5Uabc36aLXyj0ONpUFbPVQ
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-wnsEABYIACMWIQSiu8gv1Xr0fIw/aoLbaV4Vf/JGvQUCZ08BoQUDAAAAAAAKCRDbaV4Vf/JGvVgY
-AP9xoHxYUzRAXikKlbEGaySUX2sauonk6OzOZCKl3ET1wgD+LAWpd6JAzuokpIiTdQtTmfhgdZ1i
-AN+1R/m9yw0bQgE=
-=rjmV
------END PGP SIGNATURE-----
-
---------------6t5Uabc36aLXyj0ONpUFbPVQ--
+-- 
+With best wishes
+Dmitry
 
