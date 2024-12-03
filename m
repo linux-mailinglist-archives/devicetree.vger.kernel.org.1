@@ -1,166 +1,194 @@
-Return-Path: <devicetree+bounces-126332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126333-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B8A59E128B
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 05:53:27 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C7E61164DCC
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 04:53:23 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA08F14F136;
-	Tue,  3 Dec 2024 04:53:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OIuGBpBJ"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1AEF9E129D
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 06:07:21 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E72B517C68;
-	Tue,  3 Dec 2024 04:53:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 721622822A8
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 05:07:20 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BAD315C140;
+	Tue,  3 Dec 2024 05:07:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TJRLYU6I"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD53D6F2FE;
+	Tue,  3 Dec 2024 05:07:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733201602; cv=none; b=X+amsbVqVIq7TuUOlqX6Qd/UIogdS0lWqDHOioLEQmyXqV2N04o4xQNJSwH3GZcAvgk4j/YwvhSzlCn2Mqgh5nSXxzkAjBVaQ0VdoAD9St1sWUOMO/xDvtsojdvVjb4/1PSWmZxmGwXZpvgEMsJwRNndGInF7BxVQKuMMjqel4Y=
+	t=1733202437; cv=none; b=K8KDHxSFsYDdSUvwuzNJ/S1UDFiAwPLx0cinWRkFokiqvhDo+pifATzVKb1R0MKgKNZp4VPWFf10y7VYgmbWJn8h6iKy63UIeyh79PNVztgIpamiIF60U9O9sacGCoBaVV0L1OxKof8Kd4TLkXfsPN9d9gd1lgA9Q4Kwz4oMyJg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733201602; c=relaxed/simple;
-	bh=1I//fqllUMG8UsEaJCBLU0K+QZ3aDENe5fmu2FD9bIo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=aNnTeetepwC2K+D9VheKzNv1UeZKfOEZdxaPklr15JayIn4KjK9Z/sLxKmGF4XG5KHftTBqCG5O64M4Zxh5pRsfHStFXQ82o/8dG+TdZXsS76u4a4Od5lnAozUuDjTGvM1+VEjwHQl1PgeCTCTnxYvto8jyEhpS8ctRlIWUtBio=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=OIuGBpBJ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B2JRFcI008932;
-	Tue, 3 Dec 2024 04:52:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	VTouYPAoBHZd1DCtz10lm0vwlJCD13zQd4YAdiJBYIw=; b=OIuGBpBJ52z6l2GF
-	G5onlzWhIxKisdD2gLHDwRrN13T0BB9KwbgXOQFoMe6BXgnFiSWIa6nT1zIdQ/Mp
-	TEZulxLUcZpNS3jTHcRl2Kt5LwYKC8BC/HhjYgUMTe8kgOFoHHYqzf0du4dlT1up
-	lpCGJJpgJu4YhAHwcyCyTPyAGV0YQBdCvoCt+fSVMKoWJlcwLu1LiopeeXUs5ZrY
-	g3ucs3ydTKmSuqjaLUV3QmdY+AsxCYwKsCAA2Qw9s5n1qgX9LpznFlMd8EJa2lSl
-	kMWDgICEZLhloYImRZUUE1AbQXhT6P0VIgYVXwPmqwO4lZO4+FDdmglzhkFoCG5Q
-	GdG+/Q==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 437ta2xtuy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 03 Dec 2024 04:52:55 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B34qrW1029944
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 3 Dec 2024 04:52:54 GMT
-Received: from [10.216.7.36] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 2 Dec 2024
- 20:52:45 -0800
-Message-ID: <ab9d5e1c-ffb6-88df-80e6-243bfae8cf59@quicinc.com>
-Date: Tue, 3 Dec 2024 10:22:42 +0530
+	s=arc-20240116; t=1733202437; c=relaxed/simple;
+	bh=mKNFYhHNL0v4AvoQavKMO8Rr8+7P897pTzA0dJM28/U=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nCrmmcgc4mbyVx52RMnJwo/qpt0hnt//kKQ+zSeD2SBPeRtiFZ//uQwv0ErKaWiDWQVKGkIDGNLdUQVbeh5Ep+DZwUFDnt18n3CnGAtWUnzNIizrVRjEcUCLeMX0BmD6FgZOR3CQII/9pT0iFc7LnJ++FoLvmI5Wzdl2xN6nswk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TJRLYU6I; arc=none smtp.client-ip=209.85.210.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-7250906bc63so3785516b3a.1;
+        Mon, 02 Dec 2024 21:07:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733202435; x=1733807235; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=z1y/UHRMXAPYx3GISOfCtLlDpAXY6Bu+5WAmn6OKXMQ=;
+        b=TJRLYU6I1/zWIpqBwmuY48esMq9ohtFiPeWb35OXxqNAPqER0YMn2IMJi2tmzjvcMo
+         oFyr/goOc1s7atlKT/aZv+W7wSXvySGeHNlzy7AasKp0AMrgep+R6Oh8aimJIEHJssfQ
+         J3T15iRaKR1kdzZrYoxYtYa7Ny7os8jD2bmrU4nTqk7b5VPD5K68XmMWFhrhxkD+fFPU
+         s+Xcjb8awqUiWrB3LyKzeWyqfLCQLdWoDiauDGiDtozQIE84YkD/+hE57lLb+OMFgApI
+         259vE+4t+jSrJ6vWspxkxooXI7itWgw2QI72X5PibFbv7rJjfdKWEUVN4ZwePAq8skfN
+         T8UA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733202435; x=1733807235;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=z1y/UHRMXAPYx3GISOfCtLlDpAXY6Bu+5WAmn6OKXMQ=;
+        b=kD+RA5fEAi7Iy0BdiRKno/grEEhPouBnsIThUL710EPpvBMgeMnpJvNsn56mNnwCHu
+         996W2Vbp0z0o0Z69FSzP5yI66NUc+JsQWvKklDvGOWnjNlPOv4VXgU5PjzNXufYXo6O6
+         fhDKNrsMFw3WSh9oKWCl6B6s3oM+zQzK+S0cqfhUcvU4Vj9rSDvsPz5PJdPpJk6gM4Oa
+         bDAWZ1d12QMbaHlB7QQcVSEKO5EEI6k1tml+gZN8D3KW7yxRcqH3DLHMSMcAMQOuRaap
+         Cw24nA9dlu4h2Kfi0XTLWED/QGWqKNCKNjZfVIEYrGz2OhS3gC0rveF8ndJQALendtoc
+         YOdg==
+X-Forwarded-Encrypted: i=1; AJvYcCVId0NY6pJz7EtfnZMPf5wWiTwUh4SUpH6QVogJXcaogIIE3zLAe5L4r6OSCm42zAYoKj6AsZsQZ7Q4@vger.kernel.org, AJvYcCXaHNDwHOy2O5MZ5gPyZ86LhNl/wCwc203FWUTLPKGrW5VTcK+JCGDlG2USlUP7b2mdVSNhoeKqbsfaJxZi@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw/PMrz7ex7FhX47qginY1Q8b0tQxDxtSapXx4qLA+Kt+ixXRdh
+	/8w0jL69HdPuo7wt2OuBe9B3LoSfWgJHZ6zReN97UVJ3luwkiEDs
+X-Gm-Gg: ASbGnctyJyPWRlfllA66DJX6vG9bkWnIqnjZSN7Mpd3mZed4ARcWzdxxhqnUZXymwQI
+	fId6nFUVz8s+lgtZB8uiFPjIy+//arpWsWpXR3WDGNGNZH/tYdGUC/IxOTnnXLkU3Y/EUcsc+W7
+	9Y9RlZjUtTW8UNEbUF2BjLHt7iXMnza61jyZJ9ITHpCCxqIMHMSI+UyXaShoDiQTY8cnxQfc0HV
+	YwhJ6M9fwz0DeVmEsWuviphP/abioj6O4hg5ZelwieLLzUWYA+D19wCt+6HHPdtSA==
+X-Google-Smtp-Source: AGHT+IEbfoV1aAFVp9GssTPLkbkHiqHshw1BAHV/JqI8/B7VSItMkDiZOcTGZQPqX+w+8P/MSchV7w==
+X-Received: by 2002:a17:902:f688:b0:215:ba2b:cd55 with SMTP id d9443c01a7336-215bd45d02dmr16275355ad.2.1733202434761;
+        Mon, 02 Dec 2024 21:07:14 -0800 (PST)
+Received: from localhost.localdomain ([59.188.211.160])
+        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-21586d40afasm33242385ad.270.2024.12.02.21.07.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Dec 2024 21:07:14 -0800 (PST)
+From: Nick Chan <towinchenmi@gmail.com>
+To: Hector Martin <marcan@marcan.st>,
+	Sven Peter <sven@svenpeter.dev>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Nick Chan <towinchenmi@gmail.com>
+Subject: [PATCH v5 00/10] Add PMGR nodes for Apple A7-A11 SoCs
+Date: Tue,  3 Dec 2024 13:05:30 +0800
+Message-ID: <20241203050640.109378-1-towinchenmi@gmail.com>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v3 1/5] ASoC: dt-bindings: Add bindings for wcd937x static
- channel mapping
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Liam Girdwood
-	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Bard Liao
-	<yung-chuan.liao@linux.intel.com>,
-        Jaroslav Kysela <perex@perex.cz>, "Takashi
- Iwai" <tiwai@suse.com>,
-        Pierre-Louis Bossart
-	<pierre-louis.bossart@linux.dev>,
-        Sanyog Kale <sanyog.r.kale@intel.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_rohkumar@quicinc.com>,
-        <kernel@quicinc.com>
-References: <20241126164300.3305903-1-quic_mohs@quicinc.com>
- <20241126164300.3305903-2-quic_mohs@quicinc.com>
- <br4vo2iygjc6p5zezss6wccuakodthej4cut3cpw76ltxyxkpb@pjalqvpszxvo>
-From: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-In-Reply-To: <br4vo2iygjc6p5zezss6wccuakodthej4cut3cpw76ltxyxkpb@pjalqvpszxvo>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: rDtz8oyU-eOdltnCCRBYJga771fdnlGl
-X-Proofpoint-GUID: rDtz8oyU-eOdltnCCRBYJga771fdnlGl
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
- lowpriorityscore=0 suspectscore=0 mlxscore=0 impostorscore=0
- malwarescore=0 adultscore=0 priorityscore=1501 mlxlogscore=999
- phishscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412030039
+Content-Transfer-Encoding: 8bit
 
-On 11/27/2024 1:35 PM, Krzysztof Kozlowski wrote:
-> On Tue, Nov 26, 2024 at 10:12:56PM +0530, Mohammad Rafi Shaik wrote:
->> Add wcd937x static channel mapping values to avoid
->> having to use unclear number indices in device trees.
->>
->> Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
->> ---
->>   include/dt-bindings/sound/qcom,wcd93xx.h | 13 +++++++++++++
->>   1 file changed, 13 insertions(+)
->>   create mode 100644 include/dt-bindings/sound/qcom,wcd93xx.h
->>
->> diff --git a/include/dt-bindings/sound/qcom,wcd93xx.h b/include/dt-bindings/sound/qcom,wcd93xx.h
->> new file mode 100644
->> index 000000000000..45bcc30d0393
->> --- /dev/null
->> +++ b/include/dt-bindings/sound/qcom,wcd93xx.h
-> 
-> Filename matching compatible, always.
-> 
->> @@ -0,0 +1,13 @@
->> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> + * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
->> + */
->> +
->> +#ifndef __DT_SOUND_QCOM_WCD93xx_H
->> +#define __DT_SOUND_QCOM_WCD93xx_H
->> +
->> +#define SWRM_CH1 1
->> +#define SWRM_CH2 2
->> +#define SWRM_CH3 4
->> +#define SWRM_CH4 8
-> 
-> Bindings define interface between driver and DTS. The values are
-> abstract, so alwys start from 0 or 1 and are incremented by 1, not by
-> power of 2. Also missing some sort of prefix, w.g. WCD9390_xxx
-> 
-> Anyway, this does not look like binding.
-> 
+This series adds the PMGR nodes and all known power state subnodes for
+Apple A7-A11 SoCs, along with the associated dt-bindings.
 
-Ack,
+Changes since v4:
+- Use imperative mood in commit messages.
 
-Will add the Prefix WCD9370_SWRM_CH1,
+Link to v4: https://lore.kernel.org/asahi/20241201161942.36027-1-towinchenmi@gmail.com/T
+
+Changes since v3:
+- Add "apple,always-on" property to "ps_spmi" in t8015 power domains.
+This is required for cpufreq to function correctly which will be added
+in a later series.
+
+Link to v3: https://lore.kernel.org/asahi/20241122095136.35046-1-towinchenmi@gmail.com/T
+
+Changes since v2:
+- Removed "apple,always-on" property from "ps_pmp" from s8001, t8011,
+t8015 power domains. It is not on at boot. (Mixed up with ps_pms which
+is required to be on)
+- Add asahi-soc/dt back into the subject prefix, missing from v2.
+
+Link to v2: https://lore.kernel.org/asahi/20241102011004.59339-1-towinchenmi@gmail.com/T
+
+Changes since v1:
+- Removed "framebuffer0" dt aliases. It is not standard and not needed.
+
+Link to v1: https://lore.kernel.org/asahi/20241029010526.42052-1-towinchenmi@gmail.com/T
+
+Nick Chan
+---
+
+Nick Chan (10):
+  dt-bindings: arm: apple: apple,pmgr: Add A7-A11 compatibles
+  dt-bindings: arm: apple: apple,pmgr-pwrstate: Add A7-A11 compatibles
+  arm64: dts: apple: s5l8960x: Add PMGR node
+  arm64: dts: apple: t7000: Add PMGR node
+  arm64: dts: apple: t7001: Add PMGR node
+  arm64: dts: apple: s8000: Add PMGR nodes
+  arm64: dts: apple: s8001: Add PMGR nodes
+  arm64: dts: apple: t8010: Add PMGR nodes
+  arm64: dts: apple: t8011: Add PMGR nodes
+  arm64: dts: apple: t8015: Add PMGR nodes
+
+ .../bindings/arm/apple/apple,pmgr.yaml        |   5 +
+ .../bindings/power/apple,pmgr-pwrstate.yaml   |   5 +
+ arch/arm64/boot/dts/apple/s5l8960x-5s.dtsi    |   4 +
+ arch/arm64/boot/dts/apple/s5l8960x-air1.dtsi  |   4 +
+ arch/arm64/boot/dts/apple/s5l8960x-mini2.dtsi |   4 +
+ arch/arm64/boot/dts/apple/s5l8960x-pmgr.dtsi  | 610 ++++++++++++
+ arch/arm64/boot/dts/apple/s5l8960x.dtsi       |  13 +
+ arch/arm64/boot/dts/apple/s8000-pmgr.dtsi     | 757 ++++++++++++++
+ arch/arm64/boot/dts/apple/s8000.dtsi          |  22 +
+ arch/arm64/boot/dts/apple/s8001-common.dtsi   |   1 +
+ .../arm64/boot/dts/apple/s8001-j98a-j99a.dtsi |  26 +
+ arch/arm64/boot/dts/apple/s8001-j98a.dts      |   1 +
+ arch/arm64/boot/dts/apple/s8001-j99a.dts      |   1 +
+ arch/arm64/boot/dts/apple/s8001-pmgr.dtsi     | 822 ++++++++++++++++
+ arch/arm64/boot/dts/apple/s8001.dtsi          |  22 +
+ arch/arm64/boot/dts/apple/s800x-6s.dtsi       |   4 +
+ arch/arm64/boot/dts/apple/s800x-ipad5.dtsi    |   4 +
+ arch/arm64/boot/dts/apple/s800x-se.dtsi       |   4 +
+ arch/arm64/boot/dts/apple/t7000-6.dtsi        |   4 +
+ arch/arm64/boot/dts/apple/t7000-j42d.dts      |   1 +
+ arch/arm64/boot/dts/apple/t7000-mini4.dtsi    |   4 +
+ arch/arm64/boot/dts/apple/t7000-n102.dts      |   4 +
+ arch/arm64/boot/dts/apple/t7000-pmgr.dtsi     | 641 ++++++++++++
+ arch/arm64/boot/dts/apple/t7000.dtsi          |  14 +
+ arch/arm64/boot/dts/apple/t7001-air2.dtsi     |   1 +
+ arch/arm64/boot/dts/apple/t7001-pmgr.dtsi     | 650 ++++++++++++
+ arch/arm64/boot/dts/apple/t7001.dtsi          |  13 +
+ arch/arm64/boot/dts/apple/t8010-7.dtsi        |   4 +
+ arch/arm64/boot/dts/apple/t8010-ipad6.dtsi    |   4 +
+ arch/arm64/boot/dts/apple/t8010-n112.dts      |   4 +
+ arch/arm64/boot/dts/apple/t8010-pmgr.dtsi     | 772 +++++++++++++++
+ arch/arm64/boot/dts/apple/t8010.dtsi          |  22 +
+ arch/arm64/boot/dts/apple/t8011-common.dtsi   |   1 +
+ arch/arm64/boot/dts/apple/t8011-pmgr.dtsi     | 806 +++++++++++++++
+ arch/arm64/boot/dts/apple/t8011-pro2.dtsi     |   8 +
+ arch/arm64/boot/dts/apple/t8011.dtsi          |  22 +
+ arch/arm64/boot/dts/apple/t8015-common.dtsi   |   1 +
+ arch/arm64/boot/dts/apple/t8015-pmgr.dtsi     | 931 ++++++++++++++++++
+ arch/arm64/boot/dts/apple/t8015.dtsi          |  21 +
+ 39 files changed, 6237 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/apple/s5l8960x-pmgr.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/s8000-pmgr.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/s8001-j98a-j99a.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/s8001-pmgr.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/t7000-pmgr.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/t7001-pmgr.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/t8010-pmgr.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/t8011-pmgr.dtsi
+ create mode 100644 arch/arm64/boot/dts/apple/t8015-pmgr.dtsi
 
 
-Added new binding support header file 
-(include/dt-bindings/sound/qcom,wcd93xx.h) for providing channel mapping 
-values to avoid having
-to use unclear number indices in device trees.
-
-> Best regards,
-> Krzysztof
-> 
+base-commit: 9ad55a67a788c0806b0fe23be36fae6dbfbc3fc5
+-- 
+2.47.1
 
 
