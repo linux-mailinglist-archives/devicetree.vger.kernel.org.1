@@ -1,79 +1,48 @@
-Return-Path: <devicetree+bounces-126364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAC629E1420
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 08:29:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2AB19E1425
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 08:29:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6FBEE2851CE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 07:29:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2807CB25F41
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 07:29:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A219618DF81;
-	Tue,  3 Dec 2024 07:23:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB8761CF7B8;
+	Tue,  3 Dec 2024 07:25:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="b3WbDip/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oKfUSdsB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4EB71862BB
-	for <devicetree@vger.kernel.org>; Tue,  3 Dec 2024 07:23:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95C4418FC90;
+	Tue,  3 Dec 2024 07:25:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733210622; cv=none; b=PdCy53S5h7OXZpRcUjS8b9z6XqyXCUXF3vuoNvxh4OYbNSBSGJZmLB4xlbpWVdFEmUJziL/oqeJXECWJK8wMOnZMFleh5HXPQ3F4GhlreZguiA6L9cXP+YK1L83RsvFFMlq996vAedMmlfA8RhsLz1FfDct2ptp6BDe4Q7q/hdw=
+	t=1733210746; cv=none; b=LvCzCh7lVKue59ZM4RR5ANCsgozPkkVSOtizdN/cHrjlq/id/tMlBJlL+0tEVpvQLI8OUkBZQDPs3evAbSwS85WwqAyEBYehQina7LtCNNS8oyuuLgpyRc/11o2VhWnrrhAr637FtMO2DJG3GMoPIARu2tnReIa+ww6pX/7aIWY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733210622; c=relaxed/simple;
-	bh=sfsrLHQenVwdb3gi3yEoCkvl6ivRHHYrDS51eqUQFvI=;
+	s=arc-20240116; t=1733210746; c=relaxed/simple;
+	bh=Dowwf5vOCbH6Ot1zhsb+tcWHaPLxDB1jAvKz9HFlY4w=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=svDsS58rjt1pMIX7tJZ8LuGfQZuotUyVuhzbqmYsDn9LR/DXfOULHTG5+RWe8TUHdoP4MZmK6mJ+7fIGnHrM1qNmIoAMmVB4cUMffEsbJdsCvie9NpaCv1hAYGT8tVbCYWdRq0zjET4p2xKpaJisFVttEaALb3M9cZI8U9YN4JI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=b3WbDip/; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-434941aac88so4609055e9.3
-        for <devicetree@vger.kernel.org>; Mon, 02 Dec 2024 23:23:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733210619; x=1733815419; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=/91xuqITk+GltGA0sI0HtdBhv+y0RGaZqN6WSvqLMfg=;
-        b=b3WbDip/Y+u9FiiRSUCJO6KCKPpCNtRnsdZgrZaUtwThSj6jSVXjRDQmEe/mfhOzu9
-         YR3M2vNvldWo57UoDHtGeGIa7BKK0vQaUX7Xf/rDcSMiQkt9FiggGqznNrlLVnOTfRWl
-         gSvcZebKiJj36VL18PKuv1V3PekiQfZEm7alFWGURFRbOCFZfl9z7Xx9mS4GE98TJRi/
-         aLXnpLiFOAga9vjeJppYEWQIhqs+TKoqOWGAj0Dafk1jOhuQfxnpVbI7ymcFPAPuY5gk
-         mRfLjGcIcmF9Y2MTmWawoC0IaMA8DfNJMwJdl8IL+D8cgtCywrPrU0IOvxtGmqDC4kAA
-         XKRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733210619; x=1733815419;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/91xuqITk+GltGA0sI0HtdBhv+y0RGaZqN6WSvqLMfg=;
-        b=AY0zGxVgH4EZZbV7s8fN9hxAJcZDuF3ye+gx30Wtp4sX1Z1GSb1eGdUzPidFnPE4Kj
-         FkEgMwGENZ3NP0OR5vm8+YSHuoXrWvsSD/D32aN87jgFLXmt03ZGfv4OMJadbdXdIt3e
-         2wQb7KWnbOvjZi+fus/HP1haVaONaXFkx9PcOfPD0rwkSwvOm4Yfjts5jloxAyEtt3Dt
-         vF+AI2B8CZWDKrsCInmcN7Kx9NA59EEsQS3XVvNVDPiZYuuLWGQZKOot3a7xskf7GxNy
-         0NZxFYN3amKEti4gMVJcLjCskcImcrc0c05xKJ3LUan5lbOPOiBcrSEbf56JxU5BuIv1
-         H8bg==
-X-Forwarded-Encrypted: i=1; AJvYcCX3H74QGYsGeNNRgR0pFyzRSZDnho049h2+zrZftjBpJmlYp3OENXcK63ebDjXtQmZU+qFy9gMjkZec@vger.kernel.org
-X-Gm-Message-State: AOJu0YzpPDeQYDx20QPWxMv9HZ95wBbFtO0+Z5pxjf9nGKd8Cl+8G0+W
-	RkHjr8W8xREz+NatanOVUTVbRYy+e+WStgbyA2606LVabOBOp085rXkAo+BEXOI=
-X-Gm-Gg: ASbGncvoLAxcQgw0EBht3HpM3mJKn14xt9MzzbTVUhblWwiM7j8vgX9A5OtyKg9hm6V
-	gh6ttzVbq3AevtclDSlm30xKsS+duGcI1/C5ClWuGpcQlK8otvxjpfkC3yMtZPbjBrgZzlJqUvQ
-	cbeFxz6yHBrJnvE3qnHD53qu7u/lUtDm6iSiY65hXTSd0oAH2tcnv8gM0fWWIV1IvhaEYTG7/e6
-	HRIJ22zM6M7G28K2aTyd2HpEzkCoeh1RA3JP5YC7mzt/64/pz5BgXsOn+iQBBJQrJTP
-X-Google-Smtp-Source: AGHT+IGEf4xa3iUiO68cVMCRutIBsMDpZkfAInNM5pRE6IApqH/YMYOCMXQv0XInIkRbVlFj4ThwWA==
-X-Received: by 2002:a05:600c:511b:b0:432:7c08:d0fb with SMTP id 5b1f17b1804b1-434d28e4323mr451805e9.3.1733210618676;
-        Mon, 02 Dec 2024 23:23:38 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.218.23])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434b0d9bc11sm183154845e9.4.2024.12.02.23.23.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Dec 2024 23:23:37 -0800 (PST)
-Message-ID: <e5960ea6-c3f3-4cb4-a93d-adff20a665e2@linaro.org>
-Date: Tue, 3 Dec 2024 08:23:35 +0100
+	 In-Reply-To:Content-Type; b=Wc3HNIjspQstTWYFHk+hE1bG3XkUu9gpcZwu32kRZ8UrqbgY+Apsd5FSDZOHdC/ZV70sMk6hnbuKHiBs8wtAa+nrGlA1N/yXXhfVzZ4SrxauF4W90pEVEZDTDRFAD5h3eqv8AShegf0MLPU4S+jt+xQVvCfPHnKQNxE157qo2cM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oKfUSdsB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA524C4CECF;
+	Tue,  3 Dec 2024 07:25:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733210746;
+	bh=Dowwf5vOCbH6Ot1zhsb+tcWHaPLxDB1jAvKz9HFlY4w=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=oKfUSdsBIJwlO6rUdfy6UFCBfTvSJmL/AhzIRHJQpr9YRCJp1kdT4SUuujrHGgfl+
+	 4tNS5JWFvcPNuLraiIuGAqPQOMkYfH624sC4A5fm/I5VC/23cpztI0Y3QGeKQ1hR4b
+	 rYYLPaRuquO6GPkNhWe4kDXn1PIYIcEj1sPzQ+YWL8eSFjA8D4wU8Q9pRlhZOtUo/B
+	 9F+GKEfpDP1zycQ2TiOnoLIhr+UNHw/7V6DYPsLpmGe50LfUQsNvCx1e4zxQWRM6Cp
+	 O1OfolnUfu5AwKFl6Le4czkOInYHXNVvI6cF8q5weXjcyyH/5J5iq89iedwUShzMRl
+	 A+d+MsMQR54AQ==
+Message-ID: <1b5ebd38-1f2c-42fe-b863-e93916252e8c@kernel.org>
+Date: Tue, 3 Dec 2024 08:25:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,21 +50,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/3] dt-bindings: iio: pressure: bmp085: Add SPI
- interface
-To: Vasileios Amoiridis <vassilisamir@gmail.com>,
- "Rob Herring (Arm)" <robh@kernel.org>
-Cc: ak@it-klinger.de, jic23@kernel.org, conor+dt@kernel.org,
- linux-iio@vger.kernel.org, lars@metafoo.de, linux-kernel@vger.kernel.org,
- krzk+dt@kernel.org, andriy.shevchenko@linux.intel.com,
- devicetree@vger.kernel.org, ajarizzo@gmail.com
-References: <20241202181907.21471-1-vassilisamir@gmail.com>
- <20241202181907.21471-2-vassilisamir@gmail.com>
- <173317237354.3142409.6212368803030680874.robh@kernel.org>
- <Z04u8eAvytu-y8LH@vamoirid-laptop>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v3 1/5] ASoC: dt-bindings: Add bindings for wcd937x static
+ channel mapping
+To: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Bard Liao <yung-chuan.liao@linux.intel.com>, Jaroslav Kysela
+ <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
+ Sanyog Kale <sanyog.r.kale@intel.com>, linux-arm-msm@vger.kernel.org,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, quic_rohkumar@quicinc.com, kernel@quicinc.com
+References: <20241126164300.3305903-1-quic_mohs@quicinc.com>
+ <20241126164300.3305903-2-quic_mohs@quicinc.com>
+ <br4vo2iygjc6p5zezss6wccuakodthej4cut3cpw76ltxyxkpb@pjalqvpszxvo>
+ <ab9d5e1c-ffb6-88df-80e6-243bfae8cf59@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
  JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
@@ -105,72 +79,91 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  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
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <Z04u8eAvytu-y8LH@vamoirid-laptop>
+ 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 fv0=
+In-Reply-To: <ab9d5e1c-ffb6-88df-80e6-243bfae8cf59@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 02/12/2024 23:04, Vasileios Amoiridis wrote:
-> On Mon, Dec 02, 2024 at 02:46:13PM -0600, Rob Herring (Arm) wrote:
->>
->> On Mon, 02 Dec 2024 19:19:05 +0100, Vasileios Amoiridis wrote:
->>> The BMP{2,3,5}80 and BME280 devices have an SPI interface, so include it
->>> in the device-tree.
+On 03/12/2024 05:52, Mohammad Rafi Shaik wrote:
+> On 11/27/2024 1:35 PM, Krzysztof Kozlowski wrote:
+>> On Tue, Nov 26, 2024 at 10:12:56PM +0530, Mohammad Rafi Shaik wrote:
+>>> Add wcd937x static channel mapping values to avoid
+>>> having to use unclear number indices in device trees.
 >>>
->>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
+>>> Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
 >>> ---
->>>  .../bindings/iio/pressure/bmp085.yaml         | 32 +++++++++++++++++++
->>>  1 file changed, 32 insertions(+)
+>>>   include/dt-bindings/sound/qcom,wcd93xx.h | 13 +++++++++++++
+>>>   1 file changed, 13 insertions(+)
+>>>   create mode 100644 include/dt-bindings/sound/qcom,wcd93xx.h
 >>>
+>>> diff --git a/include/dt-bindings/sound/qcom,wcd93xx.h b/include/dt-bindings/sound/qcom,wcd93xx.h
+>>> new file mode 100644
+>>> index 000000000000..45bcc30d0393
+>>> --- /dev/null
+>>> +++ b/include/dt-bindings/sound/qcom,wcd93xx.h
 >>
->> My bot found errors running 'make dt_binding_check' on your patch:
+>> Filename matching compatible, always.
 >>
->> yamllint warnings/errors:
+>>> @@ -0,0 +1,13 @@
+>>> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> + * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+>>> + */
+>>> +
+>>> +#ifndef __DT_SOUND_QCOM_WCD93xx_H
+>>> +#define __DT_SOUND_QCOM_WCD93xx_H
+>>> +
+>>> +#define SWRM_CH1 1
+>>> +#define SWRM_CH2 2
+>>> +#define SWRM_CH3 4
+>>> +#define SWRM_CH4 8
 >>
->> dtschema/dtc warnings/errors:
->> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/pressure/bmp085.example.dtb: pressure@0: interrupts: False schema does not allow [[25, 1]]
+>> Bindings define interface between driver and DTS. The values are
+>> abstract, so alwys start from 0 or 1 and are incremented by 1, not by
+>> power of 2. Also missing some sort of prefix, w.g. WCD9390_xxx
+>>
+>> Anyway, this does not look like binding.
+>>
 > 
-> Hi Rob, Krzysztof,
+> Ack,
 > 
-> The error is in the example, I put the tree from the I2C example to SPI
-> but I used bmp280 which is not supporting interrupts. Will be fixed.
+> Will add the Prefix WCD9370_SWRM_CH1,
 
 
-So you sent a patch with a known bug or just did not test?
+No, this is not a binding, so drop. You skipped my entire reply
+explaining why this is not a binding.
+
 
 Best regards,
 Krzysztof
