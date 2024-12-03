@@ -1,128 +1,151 @@
-Return-Path: <devicetree+bounces-126580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADC059E1E9B
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 15:04:16 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64E999E1F14
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 15:26:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 85671B3240D
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 12:40:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B8553B29DC9
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 12:42:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 016EA1E885E;
-	Tue,  3 Dec 2024 12:40:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E88151EB9E5;
+	Tue,  3 Dec 2024 12:42:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yFaBUlMN"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="L4OpATY3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E1891E7677
-	for <devicetree@vger.kernel.org>; Tue,  3 Dec 2024 12:40:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 246872500BB;
+	Tue,  3 Dec 2024 12:42:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733229630; cv=none; b=aIIa7qzGvw5/fEPO30+qayBw1+boIK5TLkj/hAv6lKaQgGl2xWs4mmpquJZs1/Z9mZ89eDtreZlcKISI5dF60nIH51tkQ1G7MSkrqdXOQZYBTQtawPdwJjRiggSIZGY2v44ccJezViY8vv/fJgrZw7p6P9XZmLdghJ/SHe8kFw8=
+	t=1733229763; cv=none; b=CY8IDGt0peyEvyc/1c5P/+FsL+W0cBmlb1SiSGYTroX8DJLrNAeKoR8T+p0XlXYk8mZuQnj2eHka+Ebd9GA+saDceepetCuzYxJsHk65/yev3lWBwnM8OjZdmxdEfW0JCwtdfFXYzF0CAnIQujrNaH25kiCpytPAZMwqyZvGlwU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733229630; c=relaxed/simple;
-	bh=wuW9dlmQHK3i/Jcfb0eJR/IK57A7oEJMFzUPWXw07Qg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=gyw2dvaj5BQ9lSF+N8Mt8Nzz0+JP8aSILPZGBRuRcpwkd4j2NLmf2u/5dfs6AegzClp9vN8BT7mzHofgE18eETExqFQNl7fnl3YaVrMLhMwSXf0AqHairdDexPWFRmLe2lSpWb9oDkyNuWhlVgjmQHIL37Yn0js+FqxW9t9Qz8k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yFaBUlMN; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5d0cfb9fecaso4518875a12.2
-        for <devicetree@vger.kernel.org>; Tue, 03 Dec 2024 04:40:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733229626; x=1733834426; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sFCCGNoly/ihHw+f0V0Z4F6JNgdV9f0RgxXs1v/pmwo=;
-        b=yFaBUlMNnZAAoJ7AVCC17HlfrbiVEJSN4sYdHxbO5CkloLRsoAgm5cD4RrEG5wFuWH
-         LjsNolr7AiFOX01F1+/vyUtKayG4+eYeA9nr78j5xNb94SaNahNWyNi7Hdw5pD1TmTu0
-         q17eTpcj/Yc2EeK2G5b/QJdsGmjXpND3H3rheMy0YN2bKUHNrbCCRarKmBPr8ltJR0q9
-         V1za+CemA03lO0wnTvOa/N5awDnvHFhJIdnZshU1GykHbtRLjHT0VtvkLrOYGJaUvY69
-         e1F8SNtk1tDwrsMW5/hUOpmsuOVlWWOmoZh0PuMQr5ntLvkP2CyMnVp2ZntjD9fSold1
-         LOTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733229626; x=1733834426;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sFCCGNoly/ihHw+f0V0Z4F6JNgdV9f0RgxXs1v/pmwo=;
-        b=Kep4J023Zt2i5pw5BBfESYjFya/mbtmerQ9cu3W1QkfU2r4mLZblCmliB9uE9vAjxi
-         sHWWqvdrmHB18GmjFdi8Q1VhxvMqiB6B6cv7HjZkpHQ5u+oLzNIwv/Aw7B0B9Zl0DcGW
-         YgiiWIapsdCufhmeg72LoQvelippCGILe+cZnWARRxsei4kKd1DWegujllz19TNAnYDF
-         JfT4Q6i/OzDk4ooTCjG/iGUeUbkXJETHlWo9DOK6mKA7ndJUqueTrsSJN6jpS5/SWi13
-         VEASD+/X+53iOslHdl4W0SfeoK9uSXWFY6qLVRAkkZMxAfOyG1ntZYryjYTCXxqQQPDi
-         J9Gw==
-X-Forwarded-Encrypted: i=1; AJvYcCVdKHnfSK/05iYrBpdziEgiQFZNrBehLUCwadeN840qUFZsXI963TPP2tQaowmqp79b+o91JLCGHRet@vger.kernel.org
-X-Gm-Message-State: AOJu0YxrMALPyvh/rDkhR7IzUQCdgTkgBFSsb2dWJOWu+j04xD79Zt5n
-	2akqzrHgIa/8ltc54rz0NOzn+2fF6Fv2IjG8v7O5USHB8zofYzILsTQscda/a2E=
-X-Gm-Gg: ASbGncv/HFdgMl2hoS7uKrY40MGDQSrNILsS5Yltcxr6VSyDz1y3tz4U5qmlVfavhh9
-	XCgcIB24hIsVQ0KYKyjFXZIHemIATpF9QZ0xN+pkZYAAWbnbZkWdOP5F7ik+JMLvm/J7+wKbyQB
-	YMKiPIuBFhfAgk4ptA8onjyzG+8eGPHJ05zz9fYOCYVRfDUb1J2DNd0aVWJg0E1Ryf5pJmxT7Ff
-	kiR77c++SxTkfTJx7p+o50CcO4Qg/daTlUh5SzC/objoP5AJcEDAcJF0IGDkZ/3GE9d+Gr2KU3M
-	Pw5tCYiu+IgjWgww1irGmXt9PdnkGqQEDA==
-X-Google-Smtp-Source: AGHT+IHeM2tS5DyKwmkwrU7i8UC/H8zcEneFmZTgM0O6tCH1VZOWSZmfl7YcO9+J0m0pG/15uh5zHQ==
-X-Received: by 2002:a17:906:2932:b0:aa5:1ef5:261e with SMTP id a640c23a62f3a-aa5f7d4ed45mr162940566b.17.1733229626589;
-        Tue, 03 Dec 2024 04:40:26 -0800 (PST)
-Received: from puffmais.c.googlers.com (64.227.90.34.bc.googleusercontent.com. [34.90.227.64])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aa5998e6a4csm616809466b.106.2024.12.03.04.40.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Dec 2024 04:40:26 -0800 (PST)
-From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Tue, 03 Dec 2024 12:40:25 +0000
-Subject: [PATCH v2 2/5] arm64: dts: exynos: gs101: phy region for
- exynos5-usbdrd is larger
+	s=arc-20240116; t=1733229763; c=relaxed/simple;
+	bh=GEVDWoXU8EkXt2/Ud0xmX9mi2TRTdqO++Z+8LyxF8Gc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=C85owkEbnzdz4Xa+ZwWGj5lXRwm+Q0pOyPjib/+dU2jqkeaHb3GCDLq0kWlBCcju/bj7MBBLJ1vH6ZXz04IH8CsVDDwsG01cAIEj0zwq4KYx9YepFqvYcMJ+zXwuXzhRj4HkoyL7GtbaQS22fa2rDiU6AJKxJf5CVwkvyG1oFr4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=L4OpATY3; arc=none smtp.client-ip=192.198.163.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1733229762; x=1764765762;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=GEVDWoXU8EkXt2/Ud0xmX9mi2TRTdqO++Z+8LyxF8Gc=;
+  b=L4OpATY39k2zAx0zqAEuEJV/RxYeKf1+Bb0zcBPPt4+35+ntAOcyIwlU
+   cbOGldUV3Na7dgn3oGlZc4O0qxp4XjcNHilbfo9jic4qbPjD7ggSQE61h
+   CMJTP4m2RqTxMhiMwBBA1VR6BzY1ntDiP/wA1f7pFxLSefSH0DNhtOhIU
+   w5ZjlnkLpA4sK45FxamohMC2QSGRG8SupfJ2gaKKug6BuLsixJ6N46b+R
+   MClXAxRk1Ga3YJGeWq08RmgQVv0ZFEk0cwZC1aYsnxFFPwA+6XutKnVf9
+   /eW8O2hytnD6ajXUvL9xms02gNzGo7fQmkfN9gvPwIFqTpkl+vN+mOcJo
+   A==;
+X-CSE-ConnectionGUID: caj+rfiXSI+cemIc9nzeMg==
+X-CSE-MsgGUID: K2MP4OWPRF2YarTwMLAfnA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="32785675"
+X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; 
+   d="scan'208";a="32785675"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Dec 2024 04:42:41 -0800
+X-CSE-ConnectionGUID: Cjp9XN5TQnWBwd25pyBIQg==
+X-CSE-MsgGUID: skx+fdfuTdKqJ4NbE8lekQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; 
+   d="scan'208";a="93510610"
+Received: from smile.fi.intel.com ([10.237.72.154])
+  by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Dec 2024 04:42:39 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1tISEe-00000003RGH-1eT5;
+	Tue, 03 Dec 2024 14:42:36 +0200
+Date: Tue, 3 Dec 2024 14:42:36 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Vasileios Amoiridis <vassilisamir@gmail.com>
+Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, u.kleine-koenig@pengutronix.de,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 3/3] iio: chemical: bme680: add power management
+Message-ID: <Z078vIxRoQf_zLsy@smile.fi.intel.com>
+References: <20241202192341.33187-1-vassilisamir@gmail.com>
+ <20241202192341.33187-4-vassilisamir@gmail.com>
+ <Z04N6GUSL2H0zt6_@smile.fi.intel.com>
+ <Z04aJg7eoBR9CYKe@vamoirid-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20241203-gs101-phy-lanes-orientation-dts-v2-2-1412783a6b01@linaro.org>
-References: <20241203-gs101-phy-lanes-orientation-dts-v2-0-1412783a6b01@linaro.org>
-In-Reply-To: <20241203-gs101-phy-lanes-orientation-dts-v2-0-1412783a6b01@linaro.org>
-To: Catalin Marinas <catalin.marinas@arm.com>, 
- Will Deacon <will@kernel.org>, Peter Griffin <peter.griffin@linaro.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, 
- Sam Protsenko <semen.protsenko@linaro.org>, 
- Will McVicker <willmcvicker@google.com>, Roy Luo <royluo@google.com>, 
- kernel-team@android.com, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
- devicetree@vger.kernel.org, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-X-Mailer: b4 0.13.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z04aJg7eoBR9CYKe@vamoirid-laptop>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Turns out there are some additional registers in the phy region, update
-the DT accordingly.
+On Mon, Dec 02, 2024 at 09:35:50PM +0100, Vasileios Amoiridis wrote:
+> On Mon, Dec 02, 2024 at 09:43:36PM +0200, Andy Shevchenko wrote:
+> > On Mon, Dec 02, 2024 at 08:23:41PM +0100, Vasileios Amoiridis wrote:
+> > > Add runtime power management to the device.
 
-Signed-off-by: André Draszik <andre.draszik@linaro.org>
----
- arch/arm64/boot/dts/exynos/google/gs101.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+...
 
-diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-index 302c5beb224a..18d4e7852a1a 100644
---- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-+++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-@@ -1267,7 +1267,7 @@ cmu_hsi0: clock-controller@11000000 {
- 
- 		usbdrd31_phy: phy@11100000 {
- 			compatible = "google,gs101-usb31drd-phy";
--			reg = <0x11100000 0x0100>,
-+			reg = <0x11100000 0x0200>,
- 			      <0x110f0000 0x0800>,
- 			      <0x110e0000 0x2800>;
- 			reg-names = "phy", "pcs", "pma";
+> > > +	ret = pm_runtime_resume_and_get(dev);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	ret = __bme680_read_raw(indio_dev, chan, val, val2, mask);
+> > > +	pm_runtime_mark_last_busy(dev);
+> > > +	pm_runtime_put_autosuspend(dev);
+> > 
+> > Side note: as long as idle method is not defined (NULL) the above dance is
+> > already taken into account in the regular put.
+
+> Thanks again for the review! Indeed by looking at the code a bit, it
+> looks like the suspend callback is being called if the idle one is not
+> found. But I have seen this dance that you mention much more often in
+> the IIO that's why I used it. We can see what Jonathan has to say as
+> well, I think what you propose, simplifies things.
+
+Yeah, this is cargo cult by many people (including me :-) who missed that
+detail. If any, this can be addressed in a different series.
+
+...
+
+> > > +static int bme680_buffer_preenable(struct iio_dev *indio_dev)
+> > > +{
+> > > +	struct bme680_data *data = iio_priv(indio_dev);
+> > > +	struct device *dev = regmap_get_device(data->regmap);
+> > > +	int ret;
+> > 
+> > > +	ret = pm_runtime_resume_and_get(dev);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	return 0;
+> > 
+> > Either this is broken (if the above can return positive codes), or can be
+> > replaced with direct return:
+> > 
+> > 	return pm_...
+> > 
+> > (but I believe it's the former and you wanted something like if (ret < 0)
+> >  there).
+> > 
+> > > +}
+> 
+> Well, pm_runtime_resume_and_get() looks like it returns 0 on success and
+> negative value on error so I think the if (ret) is correct, no? But I
+> agree with you that it can be simplified as you proposed.
+
+Please, go ahead with the simplification!
 
 -- 
-2.47.0.338.g60cca15819-goog
+With Best Regards,
+Andy Shevchenko
+
 
 
