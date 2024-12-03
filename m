@@ -1,54 +1,53 @@
-Return-Path: <devicetree+bounces-126615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126616-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB6739E1E58
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 14:56:12 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9C0B9E1E59
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 14:56:17 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8023C166BBE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 13:56:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FF1F285235
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 13:56:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F00F1F4279;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 846631F4289;
 	Tue,  3 Dec 2024 13:55:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="HSqCII8a"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="pGVkKslm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8F591F12E0;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 700A2189F3F;
 	Tue,  3 Dec 2024 13:55:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733234159; cv=none; b=Ll9UCL4yDIcNaQ/qFjC82iVyIPO2UXKly8GOOQeepO91QYt2J9n9I4jpIKpq2B6CP3W134k1JfAFr8IvyYx8bonUxuXSwaS+Y4oHLtGaIluYu3pLk3DOkeca9Nl62w6TxB9WszZmUAxhEc689LNEQyZov94feX2021HUMma0gCg=
+	t=1733234159; cv=none; b=in0tFqrdXVU1AvgmtqQoDWpXE6Y5qdr3mUMAxR1VD5A1Kn2bVf01bz96ioBMcgsUDFcmWGYvsltXVpFcarPr6w9KvcLvpflQdUAJ/9lQXCRxKdUCq+GuuK228eBm7hyLmcz91JMRFu3zCW/eJD0WOpeIsScBWOEUQQB0UlQWlGQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1733234159; c=relaxed/simple;
-	bh=WD2pcUsyR0upLOY68yPUH/zihPiSwjXCHeCuOd7afPs=;
+	bh=/Wb5mnMykMP2xH0s1vcKryQucphSiN86XrEBmBaWTAw=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=P9i0wg37daxLkFDefd+ifEBJr1wXKyfIDdLlXFBWX1/KwO6g9MmldtsK3vGdoGQHY6u6jcf2s35ZhOQA5Y+OpWDmoukRUcUD1VD0WQu8lVW7GoJ1676XQ3ED5O//FphZfKZ/er2raM54KHJoRuM8GIYpKJDYxE7+JTWiRBF1LrA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=HSqCII8a; arc=none smtp.client-ip=217.70.183.195
+	 In-Reply-To:To:Cc; b=RhW+M4bYa0xtX5FQ/Ygj2VUr4Z2EjDUIQFAdjQSa7HkJLVMSS45aiMXBDk2P+s/gD90mqRz3SJyKB0hOC5v/2lVQVEzBxlclLwokJkOVnsxibb9WWxbOiQJUhLTfScDZ9GS5CJCMu6rnwx5nUP9233GSbDFGtoBFU5d1qG2BLMw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=pGVkKslm; arc=none smtp.client-ip=217.70.183.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 32EE260002;
-	Tue,  3 Dec 2024 13:55:48 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 8418860006;
+	Tue,  3 Dec 2024 13:55:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1733234148;
+	t=1733234150;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=RSAkpiI3SH9b1GWZEbN5u/HHHSzZvKkCgjFgcbGhZsk=;
-	b=HSqCII8aaLodB5Kcmh20iVxBXp78ebeJAeo4oCwNM4j/JH+NOVHmyPSYNE50uCDB2SrR2+
-	8zFu1bfVNxyOJVnzcX2IPGPYzksHFOWtD9ccsAOQYjyDfMnO69auMAMO7/jTA0Mg3vLldr
-	oDwsSYLSuU77FTfBrObq5lsqwSmYAG0jtCczQKEBcWSS3fLnUxEaAqaReDJLZkJmt0rGpF
-	IwpGUO6HLTcOQinXV8mlYjcJPd9JVwMGDMJFnQBesHtCdd/V5K3eTSVcWvXhZ0Plytcu+T
-	/CAjqWL6/QzLBQSuSBGwH4cXNpkxEbWff0s2y2X5x1fh2xjCbOADQBllAvY/kg==
+	bh=2t34cnBs5FIaeftw7DyeBVQ1s8Ww5ZRuvy9kmRpnaCI=;
+	b=pGVkKslmTGSKjlVYV0LAVQRfXbyomRirzBJoAHPcXsiR1XjLKX7ZkFRCekeQAV0KliH9Ry
+	r7wF13aTnIaOJqj+7ZIIxkvGt52cbVFY4Oe4wBmnpgMTEelKRuFRY9Am5bjAWo/QAqpNiA
+	ZFjR1xB8bSkyUXxu416Hxl1vqprxms9FtohjTfh2WFIrJoOTllba2DFAmMpZqI/OPT5uuY
+	1P+n4zGxZRMbmPy3rad7lPJZpJLdwnXG0MfTuRxth2Ajx3mKC2/RDc+MJqhRF0GqzeSFex
+	e4qk2kPQIzmWmSse/4lD6FmZqFvZkGYZAwgCMef5ib2ArJodRCtptBD2U6QzSg==
 From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Date: Tue, 03 Dec 2024 14:55:44 +0100
-Subject: [PATCH 1/6] dt-bindings: nvmem: rmem: Add
- mobileye,eyeq5-bootloader-config
+Date: Tue, 03 Dec 2024 14:55:46 +0100
+Subject: [PATCH 3/6] nvmem: rmem: make ->reg_read() straight forward code
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,7 +56,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20241203-rmem-v1-1-24f4970cf14e@bootlin.com>
+Message-Id: <20241203-rmem-v1-3-24f4970cf14e@bootlin.com>
 References: <20241203-rmem-v1-0-24f4970cf14e@bootlin.com>
 In-Reply-To: <20241203-rmem-v1-0-24f4970cf14e@bootlin.com>
 To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
@@ -75,27 +74,62 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 X-Mailer: b4 0.14.2
 X-GND-Sasl: theo.lebrun@bootlin.com
 
-On Mobileye EyeQ5, the bootloader will put MAC addresses into memory.
-Declare that as reserved memory to be used by the kernel, exposing
-nvmem cells. That region has a 12-byte header and a 4-byte trailing CRC.
+memory_read_from_buffer() is a weird choice; it:
+ - is made for iteration with ppos a pointer.
+ - does futile error checking in our case.
+ - does NOT ensure we read exactly N bytes.
+
+Replace it by:
+1. A check that (offset + bytes) lands inside the region and,
+2. a plain memcpy().
 
 Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
 ---
- Documentation/devicetree/bindings/nvmem/rmem.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/nvmem/rmem.c | 15 ++++++---------
+ 1 file changed, 6 insertions(+), 9 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/nvmem/rmem.yaml b/Documentation/devicetree/bindings/nvmem/rmem.yaml
-index 1ec0d09bcafa857c05ae722834c9e13bf63ee851..85f9f5de3906d2f1afce74ce001cf5db06e50806 100644
---- a/Documentation/devicetree/bindings/nvmem/rmem.yaml
-+++ b/Documentation/devicetree/bindings/nvmem/rmem.yaml
-@@ -16,6 +16,7 @@ properties:
-   compatible:
-     items:
-       - enum:
-+          - mobileye,eyeq5-bootloader-config
-           - raspberrypi,bootloader-config
-           - raspberrypi,bootloader-public-key
-       - const: nvmem-rmem
+diff --git a/drivers/nvmem/rmem.c b/drivers/nvmem/rmem.c
+index 7f907c5a445e7865c8626e00362df0040fe52241..0dc5c8237c7538efe4597c182d7bdb709b945851 100644
+--- a/drivers/nvmem/rmem.c
++++ b/drivers/nvmem/rmem.c
+@@ -21,10 +21,10 @@ static int rmem_read(void *context, unsigned int offset,
+ 		     void *val, size_t bytes)
+ {
+ 	struct rmem *priv = context;
+-	size_t available = priv->mem->size;
+-	loff_t off = offset;
+ 	void *addr;
+-	int count;
++
++	if ((phys_addr_t)offset + bytes > priv->mem->size)
++		return -EIO;
+ 
+ 	/*
+ 	 * Only map the reserved memory at this point to avoid potential rogue
+@@ -36,20 +36,17 @@ static int rmem_read(void *context, unsigned int offset,
+ 	 * An alternative would be setting the memory as RO, set_memory_ro(),
+ 	 * but as of Dec 2020 this isn't possible on arm64.
+ 	 */
+-	addr = memremap(priv->mem->base, available, MEMREMAP_WB);
++	addr = memremap(priv->mem->base, priv->mem->size, MEMREMAP_WB);
+ 	if (!addr) {
+ 		dev_err(priv->dev, "Failed to remap memory region\n");
+ 		return -ENOMEM;
+ 	}
+ 
+-	count = memory_read_from_buffer(val, bytes, &off, addr, available);
++	memcpy(val, addr + offset, bytes);
+ 
+ 	memunmap(addr);
+ 
+-	if (count < 0)
+-		return count;
+-
+-	return count == bytes ? 0 : -EIO;
++	return 0;
+ }
+ 
+ static int rmem_probe(struct platform_device *pdev)
 
 -- 
 2.47.1
