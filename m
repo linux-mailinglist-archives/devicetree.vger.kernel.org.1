@@ -1,142 +1,147 @@
-Return-Path: <devicetree+bounces-126429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7F909E167E
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 09:59:56 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C085165FEE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 08:59:53 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA6BA1DFDA4;
-	Tue,  3 Dec 2024 08:59:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="K/1+7Yd1"
-X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F10469E16E0
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 10:12:22 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 939D71DE3B9;
-	Tue,  3 Dec 2024 08:59:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8E1FEB28E1D
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 08:37:59 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A511B1D90A1;
+	Tue,  3 Dec 2024 08:37:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="ThMdEicJ"
+X-Original-To: devicetree@vger.kernel.org
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F06201BDA99;
+	Tue,  3 Dec 2024 08:37:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733216349; cv=none; b=qFAqQu61N6niAeUYW3ks6/kaVj+1EtpA/w1Cjaq08KkXT304Vw6V/ih4P/8PUoXFEWZQkkXobxakdnK5+qcc1vvC/RXbuLmPli6PdEA/V/mnjbtuMPEC6d9ITR9kwQV4pD2sGWKUaMhM/trSKDyshFde66R7q/16JCuu63+shrY=
+	t=1733215074; cv=none; b=qjaiIm+O1kNlDRfJTmBpzQEyGr9C0kKQ+BI1R095S1eoLdeyKDL2UlvLjZ/WuYFT3XNAz7GVJgBD1qOknZrKQ9zihcuSxP57sYcnCR7iedbNMeGqHu2nnrjOIoNt67xJLDlP03/lYQiVZ19DbJt0x8Mup8WXp49FotkPIvO8KtM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733216349; c=relaxed/simple;
-	bh=AXohgFBDfSQ80DP0PaKhMEukCXRSu69hXmxjxJQKr2w=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jR7n2nNm2E/4k5iKsCJQeqqD9kKOX7nxktdk8ncA8Ys8164ijSUBjVgE5dugKfEjEfZG3r/ECm4oltgwEForOtaLKp723swJSy/9wWfhnuMYbWLEQh8+swBfRQ+PUNzubW/AnjUAVrfnkLK4kKXUWOrnj+ui+bYp/yhtuLJj220=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=K/1+7Yd1; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 7DE924000C;
-	Tue,  3 Dec 2024 08:59:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1733216344;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ipAWjKWXEBKTkDDGzjyfQHhzJCH217f8pclyvAEW6h8=;
-	b=K/1+7Yd1DLpLGHd0KB+FNn/0V8VphLlsBeWugnSPlrTb0Fy2mqkkkbtu0+A/UqmpJvYidi
-	s/scVc4ktaMe6ApyWwYNDb4qQRwFa4DtnVo5XIzEfUL85dAVnGFDc9re2jC7hGElZJom06
-	m5cbX7JbPnkCkDXDiT2M6fD0zjjB6580mXX1hLgJAle4t9ZtbPrMVE1PwtibvdBmDNfv5d
-	yqH3/1oCRpuR5jOscqenNCxTS9rhG4MhNjeGaXAr0/9nT/gC3Bo664C2AVx0Gy5AaxGrAk
-	S8XnXBgxSqiCeyJ6qMYRUeF2GHLIqnxPaXK9h0Q7GVkP9bVkcE541CFpuxpvvg==
-From: Romain Gantois <romain.gantois@bootlin.com>
+	s=arc-20240116; t=1733215074; c=relaxed/simple;
+	bh=PYHQYJMAlXFNnWhLgpfhqxgPeimkafKhp9uGyvCwl2w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=m1r3FdYJT7w61YQe1VI01kpTme50lniM1u/uw44dMl+8VpR9ggfcbotspWuUuqM1acrLBoMStzk9OE1BPtCMMLK9zkCfdvTqls444Q27Kl39izAPSMgOl5yxYNYlKKO7CryqQcb2I5Ht+x9NImBtIlt71m5Tk0GLrIsaGoWU6wE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=ThMdEicJ; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 080D68DB;
+	Tue,  3 Dec 2024 09:37:23 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1733215043;
+	bh=PYHQYJMAlXFNnWhLgpfhqxgPeimkafKhp9uGyvCwl2w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ThMdEicJ+cJ2NLIxjymB3476Nrp2qS9QxLdkIAKUWOrvDQDF2q46vs1gH0wqX+72/
+	 8wu9GOmfAxKfNJlWor95paWzw4sXdtafinEYF38QoKbzdHQYT2s1GI2590WZSTZbzd
+	 A+osDw1FJhDaO9mcLvOYQc7rWOuXH++HmlTF96Hg=
+Date: Tue, 3 Dec 2024 10:37:38 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Kory Maincent <kory.maincent@bootlin.com>, linux-i2c@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-media@vger.kernel.org, linux-gpio@vger.kernel.org,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>,
- Arnd Bergmann <arnd@arndb.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Cosmin Tanislav <demonsingur@gmail.com>
-Subject: Re: [PATCH v3 8/9] i2c: Support dynamic address translation
-Date: Tue, 03 Dec 2024 09:59:03 +0100
-Message-ID: <21399801.1it9Cbg30u@fw-rgant>
-In-Reply-To: <141bbac1-5289-4335-a566-387721439bef@ideasonboard.com>
-References:
- <20241125-fpc202-v3-0-34e86bcb5b56@bootlin.com>
- <20241125-fpc202-v3-8-34e86bcb5b56@bootlin.com>
- <141bbac1-5289-4335-a566-387721439bef@ideasonboard.com>
+Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, LUU HOAI <hoai.luu.ub@renesas.com>,
+	Jagan Teki <jagan@amarulasolutions.com>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+Subject: Re: [PATCH 3/9] clk: renesas: r8a779h0: Add display clocks
+Message-ID: <20241203083738.GF10736@pendragon.ideasonboard.com>
+References: <20241203-rcar-gh-dsi-v1-0-738ae1a95d2a@ideasonboard.com>
+ <20241203-rcar-gh-dsi-v1-3-738ae1a95d2a@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-GND-Sasl: romain.gantois@bootlin.com
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241203-rcar-gh-dsi-v1-3-738ae1a95d2a@ideasonboard.com>
 
-Hi,
+Hi Tomi,
 
-On vendredi 29 novembre 2024 10:54:35 heure normale d=E2=80=99Europe centra=
-le Tomi Valkeinen wrote:
-> Hi Romain,
->=20
-=2E..
-> > ATR channel's translation table whenever an I2C transaction with unmapp=
-ed
-> > clients is requested.
-> >=20
-> > Add a mutex to protect alias_list. This prevents
-> > i2c_atr_dynamic_attach/detach_addr from racing with the bus notifier
-> > handler to modify alias_list.
-> >=20
-> > Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
-> > ---
-> >=20
-> >   drivers/i2c/i2c-atr.c         | 244
-> >   ++++++++++++++++++++++++++++++++----------
-> >   drivers/media/i2c/ds90ub960.c |   2 +-
-> >   include/linux/i2c-atr.h       |  13 ++-
-> >   3 files changed, 202 insertions(+), 57 deletions(-)
->=20
-> This fails with:
->=20
-> WARNING: CPU: 1 PID: 360 at lib/list_debug.c:35
-> __list_add_valid_or_report+0xe4/0x100
->=20
-> as the i2c_atr_create_c2a() calls list_add(), but i2c_atr_attach_addr(),
-> which is changed to use i2c_atr_create_c2a(), also calls list_add().
->=20
-> Also, if you add i2c_atr_create_c2a() which hides the allocation and
-> list_add, I think it makes sense to add a i2c_atr_destroy_c2a() to
-> revert that.
->=20
+Thank you for the patch.
 
-Sure, I just thought that it was safer to have an explicit "kfree" in the
-code, as it would be clear that the c2a pointer shouldn't be used after thi=
-s.
-But setting the pointer to NULL after calling i2c_atr_destroy_c2a() would
-essentially achieve the same thing, so I'll be going with your suggestion.
+On Tue, Dec 03, 2024 at 10:01:37AM +0200, Tomi Valkeinen wrote:
+> From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+> 
+> Add display related clocks for DU, DSI, FCPVD, and VSPD.
+> 
+> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+> ---
+>  drivers/clk/renesas/r8a779h0-cpg-mssr.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/drivers/clk/renesas/r8a779h0-cpg-mssr.c b/drivers/clk/renesas/r8a779h0-cpg-mssr.c
+> index e20c048bfa9b..dc37e987c0e6 100644
+> --- a/drivers/clk/renesas/r8a779h0-cpg-mssr.c
+> +++ b/drivers/clk/renesas/r8a779h0-cpg-mssr.c
+> @@ -179,6 +179,9 @@ static const struct mssr_mod_clk r8a779h0_mod_clks[] __initconst = {
+>  	DEF_MOD("canfd0",	328,	R8A779H0_CLK_SASYNCPERD2),
+>  	DEF_MOD("csi40",	331,	R8A779H0_CLK_CSI),
+>  	DEF_MOD("csi41",	400,	R8A779H0_CLK_CSI),
+> +	DEF_MOD("dis0",		411,	R8A779H0_CLK_S0D3),
+> +	DEF_MOD("dsitxlink0",	415,	R8A779H0_CLK_DSIREF),
+> +	DEF_MOD("fcpvd0",	508,	R8A779H0_CLK_S0D3),
+>  	DEF_MOD("hscif0",	514,	R8A779H0_CLK_SASYNCPERD1),
+>  	DEF_MOD("hscif1",	515,	R8A779H0_CLK_SASYNCPERD1),
+>  	DEF_MOD("hscif2",	516,	R8A779H0_CLK_SASYNCPERD1),
+> @@ -227,6 +230,7 @@ static const struct mssr_mod_clk r8a779h0_mod_clks[] __initconst = {
+>  	DEF_MOD("vin15",	811,	R8A779H0_CLK_S0D4_VIO),
+>  	DEF_MOD("vin16",	812,	R8A779H0_CLK_S0D4_VIO),
+>  	DEF_MOD("vin17",	813,	R8A779H0_CLK_S0D4_VIO),
+> +	DEF_MOD("vspd0",	830,	R8A779H0_CLK_S0D1_VIO),
 
-> There's also a memory error "BUG: KASAN: slab-use-after-free in
-> __lock_acquire+0xc4/0x375c" (see below) when unloading the ub960 or
-> ub953 driver. I haven't looked at that yet.
->=20
+The clock names and numbers are fine. The parents are not explicitly
+listed in documentation, but the VIODBUSD1 clock description (table
+8.1.4a) mentions FCPVD and VSPD as target modules. This is something
+that should probably be double-checked. Quite interestingly, VIOBUSD2
+also mentions the same target modules, hinting as a more complex clock
+tree. A similar issue is perhaps present for "dis0" too, that's a DU
+clock and the DU isn't listed as a target module of S0D3.
 
-I don't have the hardware to actually reproduce this but I'll see if I can
-find out what the problem is by reading the code.
+The way we model the "module stop" bits as clocks is clearly a limiting
+factor as it can't represent real clock topologies. I don't however
+don't expect it to cause any functional issue here, as the devices
+related to the above clocks do not depend on the clock frequency.
+There's no strict need to model the real hardware clock tree if it has
+no impact on software, so
 
-Thanks,
+Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 
-=2D-=20
-Romain Gantois, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+I think it could be worth it check with Renesas what parent to use here,
+and we can update the clock definitions later if needed.
 
+>  	DEF_MOD("wdt1:wdt0",	907,	R8A779H0_CLK_R),
+>  	DEF_MOD("cmt0",		910,	R8A779H0_CLK_R),
+>  	DEF_MOD("cmt1",		911,	R8A779H0_CLK_R),
+> 
 
+-- 
+Regards,
 
+Laurent Pinchart
 
