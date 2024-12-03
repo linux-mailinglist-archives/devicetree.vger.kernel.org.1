@@ -1,793 +1,143 @@
-Return-Path: <devicetree+bounces-126715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 316249E2C7A
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 20:56:19 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE3C01679B4
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 19:56:15 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D57C02036EB;
-	Tue,  3 Dec 2024 19:56:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RAB8Btjv"
-X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF2079E2C8E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 21:00:35 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A31C41FA167;
-	Tue,  3 Dec 2024 19:56:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3EB7E284410
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 20:00:34 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A4E818DF81;
+	Tue,  3 Dec 2024 20:00:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DCOrFjlE"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98DE8170A1B;
+	Tue,  3 Dec 2024 20:00:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733255774; cv=none; b=fBCQ8ipSA9k4YKuf0LMZkFClIuSEMaHbloF2xYGFMUpE4YRkls+MoZhLiVnjyFO0r0tUohPkkozmVG3oKNMp7FE8sWGIO3PEOLrqeu1Yn9K4YnqyuHTm1PNlaAVPltc/XcIG9RS5vzFKLDqjk1sqaEJZuu8cpOJ8riWGjepHsfI=
+	t=1733256031; cv=none; b=P4YH4AjI8wf3b7cZ6HORCkCrmgFQktJpO5TS21TpCQuEt6EBILxQbjS4YjhuNHL7pFySVuuElfKaXqZvdxjxNOQmg8eV38/4GhyZaRghEQOjLq4SlsHB8PIQ8LK6R34PgMbsH6tdjpG0nIbthDPlWnkFFFgufAU4RCabMCjKFyw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733255774; c=relaxed/simple;
-	bh=LNPOhasfBl6uX7u447Qvpak0EuJj+PGtNRVYhR85x7I=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=YyDtBmIHJ5geyRzc0XNaQoC+muFYq1gJuwihXMONjiXqMnuxLbKk3wvqi4Mdvoakg0lgOeaiNI2LJT4CGErn+Eo/VT5X2PgLxzuu6gth8za1gGybt84rp//e8MZoFtFp0QTpv3eKHCE8I7Lej71An4o2x/DSWzXIJKujsxSiVAY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RAB8Btjv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38188C4CECF;
-	Tue,  3 Dec 2024 19:56:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733255774;
-	bh=LNPOhasfBl6uX7u447Qvpak0EuJj+PGtNRVYhR85x7I=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=RAB8BtjvBbU4DmxEjf39Sq+poyFeYWcOoBMdzHq0+Mpq3Uvu7qzLmiX3vj5yloGKv
-	 2Q/hWW0JIiOEVrk3HfSwBbSzettwEmFRMmi8Bjy9DmNoZICACJJsgFe7Shbo2u+FYf
-	 yNKg22oheCKB/pHYXDC5ORWa3HS+4nx0oTBKj/1z+I7Z6b2B7yKGrMEadRf7werA0y
-	 hbeASB+dHIqchQAwQ//l+cxmVBXHGdjq1m4ysmKiTXQWfjkVaZlBX4yCayS4CnI58J
-	 H1zrHlD043xfOrl7R9weTMQSNUQLHfdgBQwUbB8SWPrFiV5ZXd0xTfhgSTXTPN9BJb
-	 TY6jhvZjmJqZA==
-Message-ID: <94a57c718a09a20d148101884bf2e5f2.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1733256031; c=relaxed/simple;
+	bh=6uAeWI2STg46YgvhSqTgmb3rOQBK6s5GRHhk8EF+tmk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BtZnSbIXoJw/61agaYjftV3J7Nnt35CIfHPYDx056aiPrv/ti6Up9wxZPdZjw6kPYB+tISYzR/zJAFsPsuilva+6SamMOiW06yM1POqp5DSGET0N34uxOkswzN6jfN0owKHejOjLsP+T6jH/f7X/MPEyfz3n6SxFeyMexMVdud0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DCOrFjlE; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4349f160d62so50403005e9.2;
+        Tue, 03 Dec 2024 12:00:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733256028; x=1733860828; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=fPcFrDSFLv4qUbsRXPZLxGzQXYHN+6av9DLrdlqIt80=;
+        b=DCOrFjlEkaOL+5Ikk/orgOzts4YwM00dpHcItzo3xw1ut0SRtxsxHdG3HcUwtqjate
+         mTcq41DykwmjqHS4rUrb/F45C4BFP8FMbwmg0xbw7g/Ew4784LCFVkzaO4nkXolVEQXz
+         dVJPdKy3Hl6gqyqEbwP+T0nPQsrVqPszJS7k+ZNy66cv6lTCMxtk+kweDR8AsihejV2F
+         jOWp3HUVXnN+RdN51XPWyM/1XYzZzQV7bjg19G3SaChJvTZr+iudYk8VpkbIOC+3wnsD
+         KB+4pkbqS5YC5YVvgeS4u7osWJplpV3cHJjy1HiS0KFK9Pr4h5x5cF1Xf7mrgrvjXSGL
+         ykkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733256028; x=1733860828;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fPcFrDSFLv4qUbsRXPZLxGzQXYHN+6av9DLrdlqIt80=;
+        b=HAn83PeZdYnM0WppT5SezR1kE6AwzkBJ75QgCgyv+uTwMuD+T/Cu8R/7yzpsqPJthQ
+         zpVQ00rEBWOnIyQLehsbQJ43N2+VxlFcCa9lT4imwq1UB6aMUTIRpwrLBQmFVknd1FP3
+         5gl/AxK1SUNZ8GMautWgfSG1K/nbEkZwCCF+Or5jH3TJpWlxzreFvhvNPypds7UYPEns
+         Vb9obJ1F5smjKrv3w1gCiQAAFzM/P1lGqd5pZNh8QVumITAvNGD0I25m8k4LzZge77Eq
+         +OGkrc9qPsuMOqti32DDpBwrq9Bgx9l3CteThVqRg423oL4c8YFBq4KUAFtGl/DCejsq
+         6TUQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWZLkK2/GPoSyo5pMy46N5YnJ+reyEOke38aCkP6w6HcyTejGoHbvR7ZzC3Cc825ocUrGDMdSBikCmH@vger.kernel.org, AJvYcCWh/ELsjPHQ6czGVINPdWTw/bb/xX1EQkjsZS98zWbCXwNSqpgqwqMPhVwtgnDJybReWzDOyEvrWzQa@vger.kernel.org, AJvYcCWoggFBcAtCAXb5dvVjq+2voh9OmZp6M9UIYMTcKlhgrRq9dor/AIsVv55jlNqCSfUjpkC1wKxM7ti6+35Y@vger.kernel.org
+X-Gm-Message-State: AOJu0YySYD5GTTPk81lPHb1JTYGjt/WociLt56f8RMwDhfQYVF1ewRxT
+	fkY+dFlmq9/opHpx5IsK3rcmSbu22XsRdd8ZCaDQb63Stvtr7yDw
+X-Gm-Gg: ASbGncsVfxNBS5Loi+VTQx/Og4+HFIlNaW4UxhTmfTIgZyCwEstaP/ugdQ39Ms51u3f
+	Es0AVv0uBnUU5OHz/Z5aUYhx4jC4vSch7dcnAH0moE0R+XH9Ve0QTQueNNRLlBUNMyrwRYSiNws
+	g9RGFdUlmK3WJDvCzvQnwxzaZ1nXaDXs1grAGinMJwwENkFRICh3uvwXJrkCxgJSVSseF6tlYGS
+	mQiO+hAwl/kRbIdh3g13HL+dVTWVkThUYwukx1jch5/Nz4RtHlPIzCl5Gqx
+X-Google-Smtp-Source: AGHT+IFqkRi3A0DxsdIwParZrxce5ddjcJdKQjPGSpkoTXuB4rouM4hIag2al4lXuSZEcgl1FfwkOg==
+X-Received: by 2002:a5d:64e8:0:b0:385:f677:8594 with SMTP id ffacd0b85a97d-385fd419108mr3016367f8f.43.1733256027443;
+        Tue, 03 Dec 2024 12:00:27 -0800 (PST)
+Received: from vamoirid-laptop ([2a04:ee41:82:7577:56d9:cf1e:faf4:54e1])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-385dc169d79sm14455575f8f.92.2024.12.03.12.00.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Dec 2024 12:00:26 -0800 (PST)
+Date: Tue, 3 Dec 2024 21:00:24 +0100
+From: Vasileios Amoiridis <vassilisamir@gmail.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: "Rob Herring (Arm)" <robh@kernel.org>, ak@it-klinger.de,
+	jic23@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org,
+	lars@metafoo.de, linux-kernel@vger.kernel.org, krzk+dt@kernel.org,
+	andriy.shevchenko@linux.intel.com, devicetree@vger.kernel.org,
+	ajarizzo@gmail.com
+Subject: Re: [PATCH v1 1/3] dt-bindings: iio: pressure: bmp085: Add SPI
+ interface
+Message-ID: <Z09jWONoaH3R3XSX@vamoirid-laptop>
+References: <20241202181907.21471-1-vassilisamir@gmail.com>
+ <20241202181907.21471-2-vassilisamir@gmail.com>
+ <173317237354.3142409.6212368803030680874.robh@kernel.org>
+ <Z04u8eAvytu-y8LH@vamoirid-laptop>
+ <e5960ea6-c3f3-4cb4-a93d-adff20a665e2@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20241203134137.2114847-2-m.wilczynski@samsung.com>
-References: <20241203134137.2114847-1-m.wilczynski@samsung.com> <CGME20241203134150eucas1p24ba8d2fbf2af5b8f9abe503b4334127d@eucas1p2.samsung.com> <20241203134137.2114847-2-m.wilczynski@samsung.com>
-Subject: Re: [RFC PATCH v1 01/14] clk: thead: Refactor TH1520 clock driver to share common code
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, dri-devel@lists.freedesktop.org, linux-pm@vger.kernel.org, Michal Wilczynski <m.wilczynski@samsung.com>
-To: Michal Wilczynski <m.wilczynski@samsung.com>, airlied@gmail.com, aou@eecs.berkeley.edu, conor+dt@kernel.org, drew@pdp7.com, frank.binns@imgtec.com, guoren@kernel.org, jassisinghbrar@gmail.com, jszhang@kernel.org, krzk+dt@kernel.org, m.szyprowski@samsung.com, maarten.lankhorst@linux.intel.com, matt.coster@imgtec.com, mripard@kernel.org, mturquette@baylibre.com, palmer@dabbelt.com, paul.walmsley@sifive.com, robh@kernel.org, simona@ffwll.ch, tzimmermann@suse.de, ulf.hansson@linaro.org, wefu@redhat.com
-Date: Tue, 03 Dec 2024 11:56:12 -0800
-User-Agent: alot/0.12.dev1+gaa8c22fdeedb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e5960ea6-c3f3-4cb4-a93d-adff20a665e2@linaro.org>
 
-Quoting Michal Wilczynski (2024-12-03 05:41:24)
-> diff --git a/drivers/clk/thead/Makefile b/drivers/clk/thead/Makefile
-> index 7ee0bec1f251..d7cf88390b69 100644
-> --- a/drivers/clk/thead/Makefile
-> +++ b/drivers/clk/thead/Makefile
-> @@ -1,2 +1,2 @@
->  # SPDX-License-Identifier: GPL-2.0
-> -obj-$(CONFIG_CLK_THEAD_TH1520_AP) +=3D clk-th1520-ap.o
-> +obj-$(CONFIG_CLK_THEAD_TH1520_AP) +=3D clk-th1520.o clk-th1520-ap.o
+On Tue, Dec 03, 2024 at 08:23:35AM +0100, Krzysztof Kozlowski wrote:
+> On 02/12/2024 23:04, Vasileios Amoiridis wrote:
+> > On Mon, Dec 02, 2024 at 02:46:13PM -0600, Rob Herring (Arm) wrote:
+> >>
+> >> On Mon, 02 Dec 2024 19:19:05 +0100, Vasileios Amoiridis wrote:
+> >>> The BMP{2,3,5}80 and BME280 devices have an SPI interface, so include it
+> >>> in the device-tree.
+> >>>
+> >>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >>> Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
+> >>> ---
+> >>>  .../bindings/iio/pressure/bmp085.yaml         | 32 +++++++++++++++++++
+> >>>  1 file changed, 32 insertions(+)
+> >>>
+> >>
+> >> My bot found errors running 'make dt_binding_check' on your patch:
+> >>
+> >> yamllint warnings/errors:
+> >>
+> >> dtschema/dtc warnings/errors:
+> >> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/pressure/bmp085.example.dtb: pressure@0: interrupts: False schema does not allow [[25, 1]]
+> > 
+> > Hi Rob, Krzysztof,
+> > 
+> > The error is in the example, I put the tree from the I2C example to SPI
+> > but I used bmp280 which is not supporting interrupts. Will be fixed.
+> 
+> 
+> So you sent a patch with a known bug or just did not test?
+> 
+> Best regards,
+> Krzysztof
 
-Can the -ap driver be extended instead? Or are the clks in a different
-IO region?
+Hi Krzysztof,
 
-> diff --git a/drivers/clk/thead/clk-th1520-ap.c b/drivers/clk/thead/clk-th=
-1520-ap.c
-> index 17e32ae08720..a6015805b859 100644
-> --- a/drivers/clk/thead/clk-th1520-ap.c
-> +++ b/drivers/clk/thead/clk-th1520-ap.c
-> @@ -5,297 +5,9 @@
->   *  Authors: Yangtao Li <frank.li@vivo.com>
->   */
-> =20
-> -#include <dt-bindings/clock/thead,th1520-clk-ap.h>
+Nothing of the two. I didn't test properly. I am trying to automate my
+testing+sending patches process (Andy mentioned something similar in
+another e-mail in this series). Do you have any advice/tool to propose
+on how to automate this? It would be very welcome!
 
-Presumably this should stay here.
+Sorry for the inconvenience in any case.
 
-> -#include <linux/bitfield.h>
-> -#include <linux/clk-provider.h>
-> -#include <linux/device.h>
-> -#include <linux/module.h>
-> -#include <linux/platform_device.h>
-> -#include <linux/regmap.h>
-
-These should all stay here as well.
-
-> -
-> -#define TH1520_PLL_POSTDIV2    GENMASK(26, 24)
-> -#define TH1520_PLL_POSTDIV1    GENMASK(22, 20)
-> -#define TH1520_PLL_FBDIV       GENMASK(19, 8)
-> -#define TH1520_PLL_REFDIV      GENMASK(5, 0)
-> -#define TH1520_PLL_BYPASS      BIT(30)
-> -#define TH1520_PLL_DSMPD       BIT(24)
-> -#define TH1520_PLL_FRAC                GENMASK(23, 0)
-> -#define TH1520_PLL_FRAC_BITS    24
-> -
-> -struct ccu_internal {
-> -       u8      shift;
-> -       u8      width;
-> -};
-> -
-> -struct ccu_div_internal {
-> -       u8      shift;
-> -       u8      width;
-> -       u32     flags;
-> -};
-> -
-> -struct ccu_common {
-> -       int             clkid;
-> -       struct regmap   *map;
-> -       u16             cfg0;
-> -       u16             cfg1;
-> -       struct clk_hw   hw;
-> -};
-> -
-> -struct ccu_mux {
-> -       struct ccu_internal     mux;
-> -       struct ccu_common       common;
-> -};
-> -
-> -struct ccu_gate {
-> -       u32                     enable;
-> -       struct ccu_common       common;
-> -};
-> -
-> -struct ccu_div {
-> -       u32                     enable;
-> -       struct ccu_div_internal div;
-> -       struct ccu_internal     mux;
-> -       struct ccu_common       common;
-> -};
-> -
-> -struct ccu_pll {
-> -       struct ccu_common       common;
-> -};
-> -
-> -#define TH_CCU_ARG(_shift, _width)                                     \
-> -       {                                                               \
-> -               .shift  =3D _shift,                                      =
- \
-> -               .width  =3D _width,                                      =
- \
-> -       }
-> -
-> -#define TH_CCU_DIV_FLAGS(_shift, _width, _flags)                       \
-> -       {                                                               \
-> -               .shift  =3D _shift,                                      =
- \
-> -               .width  =3D _width,                                      =
- \
-> -               .flags  =3D _flags,                                      =
- \
-> -       }
-> -
-> -#define CCU_GATE(_clkid, _struct, _name, _parent, _reg, _gate, _flags) \
-> -       struct ccu_gate _struct =3D {                                    =
- \
-> -               .enable =3D _gate,                                       =
- \
-> -               .common =3D {                                            =
- \
-> -                       .clkid          =3D _clkid,                      =
- \
-> -                       .cfg0           =3D _reg,                        =
- \
-> -                       .hw.init        =3D CLK_HW_INIT_PARENTS_DATA(    =
- \
-> -                                               _name,                  \
-> -                                               _parent,                \
-> -                                               &clk_gate_ops,          \
-> -                                               _flags),                \
-> -               }                                                       \
-> -       }
-> -
-> -static inline struct ccu_common *hw_to_ccu_common(struct clk_hw *hw)
-> -{
-> -       return container_of(hw, struct ccu_common, hw);
-> -}
-> -
-> -static inline struct ccu_mux *hw_to_ccu_mux(struct clk_hw *hw)
-> -{
-> -       struct ccu_common *common =3D hw_to_ccu_common(hw);
-> -
-> -       return container_of(common, struct ccu_mux, common);
-> -}
-> -
-> -static inline struct ccu_pll *hw_to_ccu_pll(struct clk_hw *hw)
-> -{
-> -       struct ccu_common *common =3D hw_to_ccu_common(hw);
-> +#include "clk-th1520.h"
-> =20
-> -       return container_of(common, struct ccu_pll, common);
-> -}
-> -
-> -static inline struct ccu_div *hw_to_ccu_div(struct clk_hw *hw)
-> -{
-> -       struct ccu_common *common =3D hw_to_ccu_common(hw);
-> -
-> -       return container_of(common, struct ccu_div, common);
-> -}
-> -
-> -static inline struct ccu_gate *hw_to_ccu_gate(struct clk_hw *hw)
-> -{
-> -       struct ccu_common *common =3D hw_to_ccu_common(hw);
-> -
-> -       return container_of(common, struct ccu_gate, common);
-> -}
-> -
-> -static u8 ccu_get_parent_helper(struct ccu_common *common,
-> -                               struct ccu_internal *mux)
-> -{
-> -       unsigned int val;
-> -       u8 parent;
-> -
-> -       regmap_read(common->map, common->cfg0, &val);
-> -       parent =3D val >> mux->shift;
-> -       parent &=3D GENMASK(mux->width - 1, 0);
-> -
-> -       return parent;
-> -}
-> -
-> -static int ccu_set_parent_helper(struct ccu_common *common,
-> -                                struct ccu_internal *mux,
-> -                                u8 index)
-> -{
-> -       return regmap_update_bits(common->map, common->cfg0,
-> -                       GENMASK(mux->width - 1, 0) << mux->shift,
-> -                       index << mux->shift);
-> -}
-> -
-> -static void ccu_disable_helper(struct ccu_common *common, u32 gate)
-> -{
-> -       if (!gate)
-> -               return;
-> -       regmap_update_bits(common->map, common->cfg0,
-> -                          gate, ~gate);
-> -}
-> -
-> -static int ccu_enable_helper(struct ccu_common *common, u32 gate)
-> -{
-> -       unsigned int val;
-> -       int ret;
-> -
-> -       if (!gate)
-> -               return 0;
-> -
-> -       ret =3D regmap_update_bits(common->map, common->cfg0, gate, gate);
-> -       regmap_read(common->map, common->cfg0, &val);
-> -       return ret;
-> -}
-> -
-> -static int ccu_is_enabled_helper(struct ccu_common *common, u32 gate)
-> -{
-> -       unsigned int val;
-> -
-> -       if (!gate)
-> -               return true;
-> -
-> -       regmap_read(common->map, common->cfg0, &val);
-> -       return val & gate;
-> -}
-> -
-> -static unsigned long ccu_div_recalc_rate(struct clk_hw *hw,
-> -                                        unsigned long parent_rate)
-> -{
-> -       struct ccu_div *cd =3D hw_to_ccu_div(hw);
-> -       unsigned long rate;
-> -       unsigned int val;
-> -
-> -       regmap_read(cd->common.map, cd->common.cfg0, &val);
-> -       val =3D val >> cd->div.shift;
-> -       val &=3D GENMASK(cd->div.width - 1, 0);
-> -       rate =3D divider_recalc_rate(hw, parent_rate, val, NULL,
-> -                                  cd->div.flags, cd->div.width);
-> -
-> -       return rate;
-> -}
-> -
-> -static u8 ccu_div_get_parent(struct clk_hw *hw)
-> -{
-> -       struct ccu_div *cd =3D hw_to_ccu_div(hw);
-> -
-> -       return ccu_get_parent_helper(&cd->common, &cd->mux);
-> -}
-> -
-> -static int ccu_div_set_parent(struct clk_hw *hw, u8 index)
-> -{
-> -       struct ccu_div *cd =3D hw_to_ccu_div(hw);
-> -
-> -       return ccu_set_parent_helper(&cd->common, &cd->mux, index);
-> -}
-> -
-> -static void ccu_div_disable(struct clk_hw *hw)
-> -{
-> -       struct ccu_div *cd =3D hw_to_ccu_div(hw);
-> -
-> -       ccu_disable_helper(&cd->common, cd->enable);
-> -}
-> -
-> -static int ccu_div_enable(struct clk_hw *hw)
-> -{
-> -       struct ccu_div *cd =3D hw_to_ccu_div(hw);
-> -
-> -       return ccu_enable_helper(&cd->common, cd->enable);
-> -}
-> -
-> -static int ccu_div_is_enabled(struct clk_hw *hw)
-> -{
-> -       struct ccu_div *cd =3D hw_to_ccu_div(hw);
-> -
-> -       return ccu_is_enabled_helper(&cd->common, cd->enable);
-> -}
-> -
-> -static const struct clk_ops ccu_div_ops =3D {
-> -       .disable        =3D ccu_div_disable,
-> -       .enable         =3D ccu_div_enable,
-> -       .is_enabled     =3D ccu_div_is_enabled,
-> -       .get_parent     =3D ccu_div_get_parent,
-> -       .set_parent     =3D ccu_div_set_parent,
-> -       .recalc_rate    =3D ccu_div_recalc_rate,
-> -       .determine_rate =3D clk_hw_determine_rate_no_reparent,
-> -};
-> -
-> -static unsigned long th1520_pll_vco_recalc_rate(struct clk_hw *hw,
-> -                                               unsigned long parent_rate)
-> -{
-> -       struct ccu_pll *pll =3D hw_to_ccu_pll(hw);
-> -       unsigned long div, mul, frac;
-> -       unsigned int cfg0, cfg1;
-> -       u64 rate =3D parent_rate;
-> -
-> -       regmap_read(pll->common.map, pll->common.cfg0, &cfg0);
-> -       regmap_read(pll->common.map, pll->common.cfg1, &cfg1);
-> -
-> -       mul =3D FIELD_GET(TH1520_PLL_FBDIV, cfg0);
-> -       div =3D FIELD_GET(TH1520_PLL_REFDIV, cfg0);
-> -       if (!(cfg1 & TH1520_PLL_DSMPD)) {
-> -               mul <<=3D TH1520_PLL_FRAC_BITS;
-> -               frac =3D FIELD_GET(TH1520_PLL_FRAC, cfg1);
-> -               mul +=3D frac;
-> -               div <<=3D TH1520_PLL_FRAC_BITS;
-> -       }
-> -       rate =3D parent_rate * mul;
-> -       rate =3D rate / div;
-> -       return rate;
-> -}
-> -
-> -static unsigned long th1520_pll_postdiv_recalc_rate(struct clk_hw *hw,
-> -                                                   unsigned long parent_=
-rate)
-> -{
-> -       struct ccu_pll *pll =3D hw_to_ccu_pll(hw);
-> -       unsigned long div, rate =3D parent_rate;
-> -       unsigned int cfg0, cfg1;
-> -
-> -       regmap_read(pll->common.map, pll->common.cfg0, &cfg0);
-> -       regmap_read(pll->common.map, pll->common.cfg1, &cfg1);
-> -
-> -       if (cfg1 & TH1520_PLL_BYPASS)
-> -               return rate;
-> -
-> -       div =3D FIELD_GET(TH1520_PLL_POSTDIV1, cfg0) *
-> -             FIELD_GET(TH1520_PLL_POSTDIV2, cfg0);
-> -
-> -       rate =3D rate / div;
-> -
-> -       return rate;
-> -}
-> -
-> -static unsigned long ccu_pll_recalc_rate(struct clk_hw *hw,
-> -                                        unsigned long parent_rate)
-> -{
-> -       unsigned long rate =3D parent_rate;
-> -
-> -       rate =3D th1520_pll_vco_recalc_rate(hw, rate);
-> -       rate =3D th1520_pll_postdiv_recalc_rate(hw, rate);
-> -
-> -       return rate;
-> -}
-> -
-> -static const struct clk_ops clk_pll_ops =3D {
-> -       .recalc_rate    =3D ccu_pll_recalc_rate,
-> -};
-> +#define NR_CLKS        (CLK_UART_SCLK + 1)
-> =20
->  static const struct clk_parent_data osc_24m_clk[] =3D {
->         { .index =3D 0 }
-> @@ -956,15 +668,6 @@ static struct ccu_common *th1520_gate_clks[] =3D {
->         &sram3_clk.common,
->  };
-> =20
-> -#define NR_CLKS        (CLK_UART_SCLK + 1)
-
-Why did this move?
-
-> -
-> -static const struct regmap_config th1520_clk_regmap_config =3D {
-> -       .reg_bits =3D 32,
-> -       .val_bits =3D 32,
-> -       .reg_stride =3D 4,
-> -       .fast_io =3D true,
-> -};
-> -
->  static int th1520_clk_probe(struct platform_device *pdev)
->  {
->         struct device *dev =3D &pdev->dev;
-> diff --git a/drivers/clk/thead/clk-th1520.c b/drivers/clk/thead/clk-th152=
-0.c
-> new file mode 100644
-> index 000000000000..e2bfe56de9af
-> --- /dev/null
-> +++ b/drivers/clk/thead/clk-th1520.c
-> @@ -0,0 +1,188 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
-> + * Copyright (C) 2023 Vivo Communication Technology Co. Ltd.
-> + *  Authors: Yangtao Li <frank.li@vivo.com>
-> + */
-> +
-> +#include "clk-th1520.h"
-
-Explicitly include linux headers here, don't just put them all into a
-header file. It helps us easily see what C files are using different
-parts of the kernel infrastructure.
-
-> +
-> +static u8 ccu_get_parent_helper(struct ccu_common *common,
-> +                               struct ccu_internal *mux)
-> +{
-> +       unsigned int val;
-> +       u8 parent;
-> +
-> +       regmap_read(common->map, common->cfg0, &val);
-> +       parent =3D val >> mux->shift;
-> +       parent &=3D GENMASK(mux->width - 1, 0);
-> +
-> +       return parent;
-> +}
-> +
-> +static int ccu_set_parent_helper(struct ccu_common *common,
-> +                                struct ccu_internal *mux, u8 index)
-> +{
-> +       return regmap_update_bits(common->map, common->cfg0,
-> +                                 GENMASK(mux->width - 1, 0) << mux->shif=
-t,
-> +                                 index << mux->shift);
-> +}
-> +
-> +static void ccu_disable_helper(struct ccu_common *common, u32 gate)
-> +{
-> +       if (!gate)
-> +               return;
-> +       regmap_update_bits(common->map, common->cfg0, gate, ~gate);
-> +}
-> +
-> +static int ccu_enable_helper(struct ccu_common *common, u32 gate)
-> +{
-> +       unsigned int val;
-> +       int ret;
-> +
-> +       if (!gate)
-> +               return 0;
-> +
-> +       ret =3D regmap_update_bits(common->map, common->cfg0, gate, gate);
-> +       regmap_read(common->map, common->cfg0, &val);
-> +       return ret;
-> +}
-> +
-> +static int ccu_is_enabled_helper(struct ccu_common *common, u32 gate)
-> +{
-> +       unsigned int val;
-> +
-> +       if (!gate)
-> +               return true;
-> +
-> +       regmap_read(common->map, common->cfg0, &val);
-> +       return val & gate;
-> +}
-> +
-> +static unsigned long ccu_div_recalc_rate(struct clk_hw *hw,
-> +                                        unsigned long parent_rate)
-> +{
-> +       struct ccu_div *cd =3D hw_to_ccu_div(hw);
-> +       unsigned long rate;
-> +       unsigned int val;
-> +
-> +       regmap_read(cd->common.map, cd->common.cfg0, &val);
-> +       val =3D val >> cd->div.shift;
-> +       val &=3D GENMASK(cd->div.width - 1, 0);
-> +       rate =3D divider_recalc_rate(hw, parent_rate, val, NULL, cd->div.=
-flags,
-> +                                  cd->div.width);
-> +
-> +       return rate;
-> +}
-> +
-> +static u8 ccu_div_get_parent(struct clk_hw *hw)
-> +{
-> +       struct ccu_div *cd =3D hw_to_ccu_div(hw);
-> +
-> +       return ccu_get_parent_helper(&cd->common, &cd->mux);
-> +}
-> +
-> +static int ccu_div_set_parent(struct clk_hw *hw, u8 index)
-> +{
-> +       struct ccu_div *cd =3D hw_to_ccu_div(hw);
-> +
-> +       return ccu_set_parent_helper(&cd->common, &cd->mux, index);
-> +}
-> +
-> +static void ccu_div_disable(struct clk_hw *hw)
-> +{
-> +       struct ccu_div *cd =3D hw_to_ccu_div(hw);
-> +
-> +       ccu_disable_helper(&cd->common, cd->enable);
-> +}
-> +
-> +static int ccu_div_enable(struct clk_hw *hw)
-> +{
-> +       struct ccu_div *cd =3D hw_to_ccu_div(hw);
-> +
-> +       return ccu_enable_helper(&cd->common, cd->enable);
-> +}
-> +
-> +static int ccu_div_is_enabled(struct clk_hw *hw)
-> +{
-> +       struct ccu_div *cd =3D hw_to_ccu_div(hw);
-> +
-> +       return ccu_is_enabled_helper(&cd->common, cd->enable);
-> +}
-> +
-> +const struct clk_ops ccu_div_ops =3D {
-> +       .disable =3D ccu_div_disable,
-> +       .enable =3D ccu_div_enable,
-> +       .is_enabled =3D ccu_div_is_enabled,
-> +       .get_parent =3D ccu_div_get_parent,
-> +       .set_parent =3D ccu_div_set_parent,
-> +       .recalc_rate =3D ccu_div_recalc_rate,
-> +       .determine_rate =3D clk_hw_determine_rate_no_reparent,
-> +};
-> +
-> +static unsigned long th1520_pll_vco_recalc_rate(struct clk_hw *hw,
-> +                                               unsigned long parent_rate)
-> +{
-> +       struct ccu_pll *pll =3D hw_to_ccu_pll(hw);
-> +       unsigned long div, mul, frac;
-> +       unsigned int cfg0, cfg1;
-> +       u64 rate =3D parent_rate;
-> +
-> +       regmap_read(pll->common.map, pll->common.cfg0, &cfg0);
-> +       regmap_read(pll->common.map, pll->common.cfg1, &cfg1);
-> +
-> +       mul =3D FIELD_GET(TH1520_PLL_FBDIV, cfg0);
-> +       div =3D FIELD_GET(TH1520_PLL_REFDIV, cfg0);
-> +       if (!(cfg1 & TH1520_PLL_DSMPD)) {
-> +               mul <<=3D TH1520_PLL_FRAC_BITS;
-> +               frac =3D FIELD_GET(TH1520_PLL_FRAC, cfg1);
-> +               mul +=3D frac;
-> +               div <<=3D TH1520_PLL_FRAC_BITS;
-> +       }
-> +       rate =3D parent_rate * mul;
-> +       rate =3D rate / div;
-> +       return rate;
-> +}
-> +
-> +static unsigned long th1520_pll_postdiv_recalc_rate(struct clk_hw *hw,
-> +                                                   unsigned long parent_=
-rate)
-> +{
-> +       struct ccu_pll *pll =3D hw_to_ccu_pll(hw);
-> +       unsigned long div, rate =3D parent_rate;
-> +       unsigned int cfg0, cfg1;
-> +
-> +       regmap_read(pll->common.map, pll->common.cfg0, &cfg0);
-> +       regmap_read(pll->common.map, pll->common.cfg1, &cfg1);
-> +
-> +       if (cfg1 & TH1520_PLL_BYPASS)
-> +               return rate;
-> +
-> +       div =3D FIELD_GET(TH1520_PLL_POSTDIV1, cfg0) *
-> +             FIELD_GET(TH1520_PLL_POSTDIV2, cfg0);
-> +
-> +       rate =3D rate / div;
-> +
-> +       return rate;
-> +}
-> +
-> +static unsigned long ccu_pll_recalc_rate(struct clk_hw *hw,
-> +                                        unsigned long parent_rate)
-> +{
-> +       unsigned long rate =3D parent_rate;
-> +
-> +       rate =3D th1520_pll_vco_recalc_rate(hw, rate);
-> +       rate =3D th1520_pll_postdiv_recalc_rate(hw, rate);
-> +
-> +       return rate;
-> +}
-> +
-> +const struct clk_ops clk_pll_ops =3D {
-> +       .recalc_rate =3D ccu_pll_recalc_rate,
-> +};
-> +
-> +const struct regmap_config th1520_clk_regmap_config =3D {
-
-I don't get why this is moved.
-
-> +       .reg_bits =3D 32,
-> +       .val_bits =3D 32,
-> +       .reg_stride =3D 4,
-> +       .fast_io =3D true,
-> +};
-> diff --git a/drivers/clk/thead/clk-th1520.h b/drivers/clk/thead/clk-th152=
-0.h
-> new file mode 100644
-> index 000000000000..285d41e65008
-> --- /dev/null
-> +++ b/drivers/clk/thead/clk-th1520.h
-> @@ -0,0 +1,134 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
-> + * Copyright (C) 2023 Vivo Communication Technology Co. Ltd.
-> + *  Authors: Yangtao Li <frank.li@vivo.com>
-> + *
-> + * clk-th1520.h - Common definitions for T-HEAD TH1520 Clock Drivers
-> + */
-> +
-> +#ifndef CLK_TH1520_H
-> +#define CLK_TH1520_H
-> +
-> +#include <dt-bindings/clock/thead,th1520-clk-ap.h>
-
-dt-bindings comes after linux includes, but this shouldn't be here
-anyway.
-
-> +#include <linux/bitfield.h>
-> +#include <linux/clk-provider.h>
-
-Seems we have to have this one for clk_hw.
-
-> +#include <linux/device.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-
-I don't see these includes used here, so remove them.
-
-> +#include <linux/regmap.h>
-
-Forward declare regmap and drop the include
-
-struct regmap;
-
-> +
-> +#define TH1520_PLL_POSTDIV2    GENMASK(26, 24)
-> +#define TH1520_PLL_POSTDIV1    GENMASK(22, 20)
-> +#define TH1520_PLL_FBDIV       GENMASK(19, 8)
-> +#define TH1520_PLL_REFDIV      GENMASK(5, 0)
-> +#define TH1520_PLL_BYPASS      BIT(30)
-> +#define TH1520_PLL_DSMPD       BIT(24)
-> +#define TH1520_PLL_FRAC                GENMASK(23, 0)
-> +#define TH1520_PLL_FRAC_BITS    24
-
-Are these going to be used in multiple drivers?
-
-> +
-> +struct ccu_internal {
-> +       u8      shift;
-> +       u8      width;
-> +};
-> +
-> +struct ccu_div_internal {
-> +       u8      shift;
-> +       u8      width;
-> +       u32     flags;
-> +};
-> +
-> +struct ccu_common {
-> +       int             clkid;
-> +       struct regmap   *map;
-> +       u16             cfg0;
-> +       u16             cfg1;
-> +       struct clk_hw   hw;
-> +};
-> +
-> +struct ccu_mux {
-> +       struct ccu_internal     mux;
-> +       struct ccu_common       common;
-> +};
-> +
-> +struct ccu_gate {
-> +       u32                     enable;
-> +       struct ccu_common       common;
-> +};
-> +
-> +struct ccu_div {
-> +       u32                     enable;
-> +       struct ccu_div_internal div;
-> +       struct ccu_internal     mux;
-> +       struct ccu_common       common;
-> +};
-> +
-> +struct ccu_pll {
-> +       struct ccu_common       common;
-> +};
-> +
-> +#define TH_CCU_ARG(_shift, _width)                                     \
-> +       {                                                               \
-> +               .shift  =3D _shift,                                      =
- \
-> +               .width  =3D _width,                                      =
- \
-> +       }
-> +
-> +#define TH_CCU_DIV_FLAGS(_shift, _width, _flags)                       \
-> +       {                                                               \
-> +               .shift  =3D _shift,                                      =
- \
-> +               .width  =3D _width,                                      =
- \
-> +               .flags  =3D _flags,                                      =
- \
-> +       }
-> +
-> +#define CCU_GATE(_clkid, _struct, _name, _parent, _reg, _gate, _flags) \
-> +       struct ccu_gate _struct =3D {                                    =
- \
-> +               .enable =3D _gate,                                       =
- \
-> +               .common =3D {                                            =
- \
-> +                       .clkid          =3D _clkid,                      =
- \
-> +                       .cfg0           =3D _reg,                        =
- \
-> +                       .hw.init        =3D CLK_HW_INIT_PARENTS_DATA(    =
- \
-> +                                               _name,                  \
-> +                                               _parent,                \
-> +                                               &clk_gate_ops,          \
-> +                                               _flags),                \
-> +               }                                                       \
-> +       }
-> +
-> +static inline struct ccu_common *hw_to_ccu_common(struct clk_hw *hw)
-> +{
-> +       return container_of(hw, struct ccu_common, hw);
-> +}
-> +
-> +static inline struct ccu_mux *hw_to_ccu_mux(struct clk_hw *hw)
-> +{
-> +       struct ccu_common *common =3D hw_to_ccu_common(hw);
-> +
-> +       return container_of(common, struct ccu_mux, common);
-> +}
-> +
-> +static inline struct ccu_pll *hw_to_ccu_pll(struct clk_hw *hw)
-> +{
-> +       struct ccu_common *common =3D hw_to_ccu_common(hw);
-> +
-> +       return container_of(common, struct ccu_pll, common);
-> +}
-> +
-> +static inline struct ccu_div *hw_to_ccu_div(struct clk_hw *hw)
-> +{
-> +       struct ccu_common *common =3D hw_to_ccu_common(hw);
-> +
-> +       return container_of(common, struct ccu_div, common);
-> +}
-> +
-> +static inline struct ccu_gate *hw_to_ccu_gate(struct clk_hw *hw)
-> +{
-> +       struct ccu_common *common =3D hw_to_ccu_common(hw);
-> +
-> +       return container_of(common, struct ccu_gate, common);
-> +}
-> +
-> +extern const struct clk_ops ccu_div_ops;
-> +extern const struct clk_ops clk_pll_ops;
-> +extern const struct regmap_config th1520_clk_regmap_config;
-
-Why is the regmap config exported?
+Cheers,
+Vasilis
 
