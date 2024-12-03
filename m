@@ -1,33 +1,33 @@
-Return-Path: <devicetree+bounces-126677-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126682-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FA089E2B3F
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 19:45:15 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDD3A9E2B44
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 19:45:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C18E2B609C7
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 16:49:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5DB66B25D44
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 16:55:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A2401F8AF9;
-	Tue,  3 Dec 2024 16:49:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ACEA1F8AF8;
+	Tue,  3 Dec 2024 16:55:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="xLgs2Li0"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Y8iWdbpw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B8D91F8927;
-	Tue,  3 Dec 2024 16:49:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A71F71F7577;
+	Tue,  3 Dec 2024 16:55:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733244590; cv=none; b=f7HukSC3GYfqSwHgKDNL+d1F8rdbmx3RVQRSbIm0bp/a5G2cxrEi6m3t3tnx3K9e1WnVByy/4BsO8qKmB/kKFPhm/cRnoL7vKPFXN5yQVhDWCiTq3Hi9DgSFQlCVkSdYwt+aGSqopijB3bIu/SHn3LaZ/zHpArUDUvr2iGyqVKk=
+	t=1733244931; cv=none; b=e/2l4jye+TBMnV0KQDgSzTtJKsxquIQfuwmMN//Vs96+pXpKX4+EYlylasl0bxHqAx7zAVPZFQgpx3WYlRMvG6H6zIWF44VDmydfTP0cmr1166Z4zROzg96oR2/3xeP0+KHW/Osb4+H+eH5vlLBHsXoYIGxeVcCpQ2fPIOdppD0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733244590; c=relaxed/simple;
-	bh=9QjjQhrpIZoRjOjWjhp0+i8iOw4Ja0a0dKJQLqjYaIM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=dQ+cAlVmqHVSlby2arOxbXmag8FAYJn3BlSgmxI/OuZVBbZgWhbGCxmc+p/OOSVCa21l8IH7aWrhOrQlV9GGXVji+Lp8XPDNQP1hTzNzDW4SRtgi6PnT1BlF/B8aMbJoIjzhHAp44wYD0gwKNMjpzgeUT3se9hIErUqeW+Fdkz8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=xLgs2Li0; arc=none smtp.client-ip=185.11.138.130
+	s=arc-20240116; t=1733244931; c=relaxed/simple;
+	bh=np3rDj9i/CNOoH7ZmlxjUt529HFfvmDvk2GlvIxwHoU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fLM8DyArmxcccAqsJKYfUnlOj86QqCxwgcDR45RjLbqfoMJGOi51KEREMmm1FG54p3JlNmmGZZvhEbmqPr9ExNeULL2qZ/Eu255ZgqelfTcWW8PWqnrtf8Al831gilk4TDj3NAzPz+wruk+DEGryC96PMxpIgJOifcJDA5kQ3EA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Y8iWdbpw; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
@@ -36,35 +36,41 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
 	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=zUMJP/s3MYtTzLFMldW9WHKV2OFH1dxcgqMyCi8YpAA=; b=xLgs2Li0E4WWYgibJQvB/usQtS
-	yWwXBBzBss1CTxpCwTQVUlxYtxqwQKa26hziDiYvJi4B9VhJBUYggV6CEHnwCv5pGZ1AsINt7lML8
-	Kxt9hWcUy4uTExzuAEd/m83ea+gro1NVHD1EFXOYXJ4ZIqN5s8Kboq3hobJ5HImqauVbCJkGz6B0d
-	pVWI3APtYH46o8Dw3zLkeT1T0g+2j6pZCeoVvOtECq8ULONzDDj/4esGWWqVhoBayXe/6WEotxcsL
-	/LuF6baMzZL0uphFqncOt1itZkjB0RknpMzV03UhTwfGRE1E9GcoTKfAYrLyE+DDCec/ikyhNcI+L
-	DZ+aRvzQ==;
+	bh=mifr4D877RlkCLVgbGm1cw56zl1YNVNgujNjwJ/u/SA=; b=Y8iWdbpwXnuN/IDru4JY/+TVdx
+	uJIZpyxM5FNxvmFlGHx58TXeJx2mxXWLk8FVWNhipUpWsJq4uaRfniRlGar92CK0W9N9ZEq7aPFJS
+	oFfiislFpZMrAnwbd4zvnAk1YK9fxsEBVX2vs+1sKO4vow83j1et4xDo6JmQx6NXimzXM+tfeW+Lk
+	MeVobA3uQ97sORMgKDxMI7gROxF7UDtPgXCiDcMk3prKR7z6jDcyekkx/w1eI1v/mUX0eDExEPsh4
+	8GXG5PilaAr5rPZwBPwaiW3ePoNoyb+1ePUXogA47rAD+ewKUHCtpIHjRnxwCyW4yrpfdq7j2dlv2
+	PKO/1+Kg==;
 Received: from i53875bc4.versanet.de ([83.135.91.196] helo=localhost.localdomain)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1tIW5n-0003fy-5X; Tue, 03 Dec 2024 17:49:43 +0100
+	id 1tIWAt-0003jl-FF; Tue, 03 Dec 2024 17:54:59 +0100
 From: Heiko Stuebner <heiko@sntech.de>
-To: vkoul@kernel.org,
-	kishon@kernel.org
-Cc: robh@kernel.org,
+To: heiko@sntech.de
+Cc: andy.yan@rock-chips.com,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	robh@kernel.org,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
-	quentin.schulz@cherry.de,
-	sebastian.reichel@collabora.com,
-	heiko@sntech.de,
-	linux-phy@lists.infradead.org,
+	andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org,
+	rfoss@kernel.org,
+	Laurent.pinchart@ideasonboard.com,
+	jonas@kwiboo.se,
+	jernej.skrabec@gmail.com,
+	dri-devel@lists.freedesktop.org,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	dse@thaumatec.com
-Subject: [PATCH v5 0/2] MIPI DSI phy for rk3588
-Date: Tue,  3 Dec 2024 17:49:30 +0100
-Message-ID: <20241203164934.1500616-1-heiko@sntech.de>
+	quentin.schulz@cherry.de
+Subject: [PATCH v3 0/3] drm/rockchip: Add driver for the new DSI2 controller
+Date: Tue,  3 Dec 2024 17:54:46 +0100
+Message-ID: <20241203165450.1501219-1-heiko@sntech.de>
 X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -74,62 +80,60 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-This adds the phy driver need for DSI output on rk3588.
+This series adds a bridge and glue driver for the DSI2 controller found
+in the rk3588 soc from Rockchip, that is based on a Synopsis IP block.
 
-The phy itself is used for both DSI output and CSI input, though the
-CSI part for the whole chain needs a lot more work, so is left out for
-now and only the DSI part implemented.
+As the manual states:
+The Display Serial Interface 2 (DSI-2) is part of a group of communication
+protocols defined by the MIPI Alliance. The MIPI DSI-2 Host Controller is
+a digital core that implements all protocol functions defined in the
+MIPI DSI-2 Specification.
 
-This allows the rk3588 with its current VOP support to drive a DSI display
-using the DSI2 controller driver I'll submit in a next step.
 
-Only generic phy interfaces are used, so the DSI part is pretty straight
-forward.
+While the driver structure is very similar to the previous DSI controller,
+the programming model of the core is quite different, with a completely
+new register set.
 
-changes in v5:
-- add bitfield.h for the FIELD_PROP definition
-  (reported by kernel-test-robot)
-- add Sebastian's Reviewed-by
-- add Conor's Ack to the dt-binding
-
-changes in v4:
-- moved to #phy-cells = 1 as suggested by Sebastian, with the argument
-  denoting the requested phy-type (C-PHY, D-PHY). This works similarly
-  how the Mediatek C/D-PHY already implements this, see mails around:
-  https://lore.kernel.org/all/20230608200552.GA3303349-robh@kernel.org/
-- dropped Krzysztof's review tag from the binding because of this
-- dropped custom UPDATE macro and use FIELD_PREP instead
-- build a FIELD_PREP_HIWORD macro for the GRF settings
-- add received Tested-by tags
+Another notable difference is that the phy interface is variable now too
+in its width and some other settings.
 
 changes in v3:
-- add Krzysztof review tag to the binding
-- address Sebastian's review comments
-  - better error handling
-  - dropping empty function
-  - headers
-  - not using of_match_ptr - this should also make the
-    test-robot happier
+- remove double-empty line in bridge part (Neil)
+- add bitfield.h to both bridge and glue for FIELD_PROP
+  (reported by kernel test robot)
+- add Neil's Reviewed-by to bridge part
+- add Rob's Reviewed-by to binding
 
 changes in v2:
-- fix error in dt-binding example
-- drop unused frequency table
-- pull in some more recent improvements from the vendor-kernel
-  which includes a lot less magic values
-- already include the support for rk3576
-- use dev_err_probe
+- clean up includes (Diederik)
+- fix Kconfig description (Diederik)
+- constant naming (Diederik)
+- binding fixes (paths, sorting, labels) (Rob)
+- move to use regmap
+- drop custom UPDATE macro and use FIELD_PREP instead
+- use dev_err instead of DRM_DEV_ERROR
 
-Heiko Stuebner (2):
-  dt-bindings: phy: Add Rockchip MIPI C-/D-PHY schema
-  phy: rockchip: Add Samsung MIPI D-/C-PHY driver
+Heiko Stuebner (3):
+  drm/bridge/synopsys: Add MIPI DSI2 host controller bridge
+  dt-bindings: display: rockchip: Add schema for RK3588 DW DSI2
+    controller
+  drm/rockchip: Add MIPI DSI2 glue driver for RK3588
 
- .../phy/rockchip,rk3588-mipi-dcphy.yaml       |   87 +
- drivers/phy/rockchip/Kconfig                  |   12 +
- drivers/phy/rockchip/Makefile                 |    1 +
- .../phy/rockchip/phy-rockchip-samsung-dcphy.c | 1604 +++++++++++++++++
- 4 files changed, 1704 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/phy/rockchip,rk3588-mipi-dcphy.yaml
- create mode 100644 drivers/phy/rockchip/phy-rockchip-samsung-dcphy.c
+ .../rockchip/rockchip,rk3588-mipi-dsi2.yaml   |  119 ++
+ drivers/gpu/drm/bridge/synopsys/Kconfig       |    6 +
+ drivers/gpu/drm/bridge/synopsys/Makefile      |    1 +
+ .../gpu/drm/bridge/synopsys/dw-mipi-dsi2.c    | 1030 +++++++++++++++++
+ drivers/gpu/drm/rockchip/Kconfig              |   10 +
+ drivers/gpu/drm/rockchip/Makefile             |    1 +
+ .../gpu/drm/rockchip/dw-mipi-dsi2-rockchip.c  |  524 +++++++++
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c   |    2 +
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.h   |    1 +
+ include/drm/bridge/dw_mipi_dsi2.h             |   95 ++
+ 10 files changed, 1789 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-mipi-dsi2.yaml
+ create mode 100644 drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi2.c
+ create mode 100644 drivers/gpu/drm/rockchip/dw-mipi-dsi2-rockchip.c
+ create mode 100644 include/drm/bridge/dw_mipi_dsi2.h
 
 -- 
 2.45.2
