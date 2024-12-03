@@ -1,148 +1,189 @@
-Return-Path: <devicetree+bounces-126416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CD7D9E1614
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 09:44:31 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B66AD9E1607
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 09:42:19 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1091B16491F
-	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 08:44:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76B61283FB6
+	for <lists+devicetree@lfdr.de>; Tue,  3 Dec 2024 08:42:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E8AC1D90B6;
-	Tue,  3 Dec 2024 08:44:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DABFD1D9341;
+	Tue,  3 Dec 2024 08:42:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="D4u4DAer"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 337D53F8F7;
-	Tue,  3 Dec 2024 08:44:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4012198A0E;
+	Tue,  3 Dec 2024 08:42:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733215467; cv=none; b=mVRwLxjnotJcDgYdRGPQ+NEDoqWJeNMynViDVrTgWrc25jGApnmAENtyxKVRffbJmL2s26v6SqFcQDGNoqK0roIcjOHavAp8WkLSax44om+834+8zYNpaTOq5Rx47YZynEDSZ0/KJM/ACpxXl8dliWO/Otn2Th8I3Dwu1jnSAXY=
+	t=1733215334; cv=none; b=T88M/zsOT+GDDBgYEatH2adTSGBXiFyUkYGvpuKxrVUY9G6pbWDNgYmoqOuzk2sBV8sILV9uYWph8TD337udvE1mOJU5RkrS+MG0sMWm/fM2LcgN9SXXGUvtRy04yR9XbgY+1iu7XLlaoRo7sKEv4/Xvj8JBHGYtuIFBRmugLvI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733215467; c=relaxed/simple;
-	bh=ZeHFodpx3VLmxFv0DlR0ZvwcUm1DKBF4oVR8jqUwTuA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MZlIkAXivJl8xCXOo7hn7Lcx/fmQbU3/eIZlDglUDX0DaO3DgsEgP5avXm2fFU2o/OjBJRndbAGzF2MCp9lMptrkoLwOrVu0zw2+HvxCKdQWcbAkRQAS3GKmMyIYaO3obkVgGWH22JKOYHXpXno7GDZ15VPU09T45Ez2PwNO2dY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.166.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-io1-f49.google.com with SMTP id ca18e2360f4ac-841a6af60e9so168556539f.0;
-        Tue, 03 Dec 2024 00:44:24 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733215464; x=1733820264;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OywAl/2Im4NnR7aC+FvycngflhlDkW9ZjU4GtxVKkHI=;
-        b=cG5jO5oUkooloZa5C/fxxYV/0Ec4T9nWeGW03TVmVYfyANIbDoM+PwNneJR4zV75kS
-         T5TOinjU4GtnvYiFzGI12+2ahZ16kfM+JVktpVVtiamKv1G/PQLUK40TjgP+S0WmPx6T
-         BdWwwa4Ij/M94Q1quAMJJwVDHFjMnrlv/ZwnYvgCKvHK0vsMSmEKXL9KUrpyLeoNB0Nq
-         s4w7VGeI0kOOItB+PCx0S7Lo10ehwBHP8MReUwwaoWktl5zZr3Ygr1wiab+H3nnDo6ca
-         DHiEwhJA5aPfyCBBVtFKxnKHlP7W3ww21hxUpgzsWjQYxPNeiRMfiBGkF1FpdV3I0PIR
-         8BFA==
-X-Forwarded-Encrypted: i=1; AJvYcCV5UCZc3VFnW96DcFAhBuKxrwf0ErVVdsi6Lq496x6Ggdwz5K/8NSJHBdDh8MOnYwjuV+EJBaqUkh0p@vger.kernel.org, AJvYcCVGYAGP8x9Eqz3YVnhOWUKJID2wrLvKhk9OFMqsjoFp9Pv/0xbYmTmh9n67eR6tsYHZ4941nQJdl6QP+E8I@vger.kernel.org, AJvYcCW74GoZq9hUfXsRQyVfnL5ouchnQOymBH7S2mjxDz3MrfWfn9GmeFEIqMmBunrDJLCnFMSPOBJcsgYida7UEuuy244=@vger.kernel.org, AJvYcCXCPCBzbtd1Cl0li+m+H43RNxjp+BE7kh/rw/hfkqGVwuJ/aXc+T/akgvmFmC7X5f6q50oLy5vImUdQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxXYDwnU4XrWat4nXMNC1bq25PbJfREz4Zj7v61ub5cG0DxxFGt
-	ewRKN85t9GJZpDxyQ7Dy6X/Y6v5JVcil+PWZyCkLblExJ8H18urOOh5h97Iw
-X-Gm-Gg: ASbGncvWjP3iz/xlnDmn9/tQY4RWmWPmRSpr3G0dfnOqCLVAdc0QKuLIcLc5SV6gxGo
-	rTY8Ybu9JI/11ckpy6/ozbGe47yLuvMUq0HmB7OGrXgTiPlvAOdTEF/Zcux7mFzLOtumd0v3hjH
-	T4aNkCKsvwgT04GyyKkjbYEa7GRepmwCJH0Dxc85cejr1AP8GQD4FUbjxDsH1TCYqDScVxWSS82
-	hGJSpNaeadRPfLi+hgQTSAPPpC6CtfdEWCo4dUoLIJ3pFB9BsP2juM5IsTaD7e2dHWUEkQnCj04
-	wPyRg8v50aru
-X-Google-Smtp-Source: AGHT+IHupeDpNKXPF7yQcBX/90jhPP2R6a3vuIPkpZw7xdutQfx1qfeDNYqDA+SVMmf6sIqAuKtQCw==
-X-Received: by 2002:a05:6602:1546:b0:841:a80a:f536 with SMTP id ca18e2360f4ac-8445b5e36d5mr243858639f.14.1733215464011;
-        Tue, 03 Dec 2024 00:44:24 -0800 (PST)
-Received: from mail-io1-f48.google.com (mail-io1-f48.google.com. [209.85.166.48])
-        by smtp.gmail.com with ESMTPSA id ca18e2360f4ac-84405ef1377sm246509539f.24.2024.12.03.00.44.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Dec 2024 00:44:23 -0800 (PST)
-Received: by mail-io1-f48.google.com with SMTP id ca18e2360f4ac-841a6af60e9so168555839f.0;
-        Tue, 03 Dec 2024 00:44:23 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVTPIKNdcLEDQ96tsooF3obnK1VwzOTCwtsR44t/AYK04mZ2IQBPoXnsrn7S9w7BJob0Yd2oItda9MZ@vger.kernel.org, AJvYcCVX+YGXVpnFOWvnf0ctWxfstpov/PBp8Bp/js6Opef26Yc5B6FXEITVvSPwf+gliM3YwPOmtzCaXO7Ukodj@vger.kernel.org, AJvYcCWZpGBD/fDOPvfVCR01Y4eu8s9aBO3IzRpo3P2lXL6JeHpzXLt57H3Rrs/CtjIg5aheLR6Fe4tPyNpUKtZBqGYL8TM=@vger.kernel.org, AJvYcCXSfJbLj+6Cf10ZbugoRefD12sPxa/b4xY0PMI3vl7j65TrOUxYXg4L4cPFzmVFhyZABYAnUwxdh6eQ@vger.kernel.org
-X-Received: by 2002:a05:6102:3587:b0:4af:3cb5:e3b4 with SMTP id
- ada2fe7eead31-4af97273dd1mr2273980137.16.1733215136897; Tue, 03 Dec 2024
- 00:38:56 -0800 (PST)
+	s=arc-20240116; t=1733215334; c=relaxed/simple;
+	bh=1LL0a0VvGUs2KJHR20ihr44gH9CEmZgb7sSztgcg4sk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=APSc38NuiWh+ICZEpzbSuv/jFLRuA8ttww53SABaV59khbEQqLyHOUoVHUBagZFpHNOWsp0H7yoHTMlH5LM+DSPlWYrUkFY6n2rWeb9H6ZJin3db1iCHq0Mcnukdyu12bLSDTPLLjBRzUiYk2+erbWWN16rEDWJIha2xaBK5v8Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=D4u4DAer; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 97D551C0002;
+	Tue,  3 Dec 2024 08:42:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1733215329;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=1LL0a0VvGUs2KJHR20ihr44gH9CEmZgb7sSztgcg4sk=;
+	b=D4u4DAertPFx/SADXzplx4K/IDuHU1eCM1Gw4x5xPjt+Wd96ykLaFN/WBzNal36E4INFc4
+	SvJ77zuvPBkPaTBtJfN/WIyfxQk4JGMXaEc+oEt2/WB5QafkRwJVAkKac2culVtSLUUrKR
+	dAcgKl+0DFEBlEBlVH4NOIsBn2gFw/Elv2bCuBvRaVkDQzH4Godc2Q1ByX4gn2r1h146uk
+	uu/E5WeI+PF4Fgr279+Fn8HnMw7M8vo8Bifz6V1g4m5uBUBJhHGwncpbRKheyugnZpkzT/
+	2LgQ9CWC1q8kfTVvuGgH57LxYRMs8kxCOJi9uiXO0qKRw38nmqG1SHZ517W4Nw==
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Kory Maincent <kory.maincent@bootlin.com>, linux-i2c@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-gpio@vger.kernel.org,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>,
+ Arnd Bergmann <arnd@arndb.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Cosmin Tanislav <demonsingur@gmail.com>
+Subject: Re: [PATCH v3 0/9] misc: Support TI FPC202 dual-port controller
+Date: Tue, 03 Dec 2024 09:42:07 +0100
+Message-ID: <2843405.KjTqZUKg7o@fw-rgant>
+In-Reply-To: <0a125973-fd33-455d-a3ab-fba3357155ee@ideasonboard.com>
+References:
+ <20241125-fpc202-v3-0-34e86bcb5b56@bootlin.com>
+ <0a125973-fd33-455d-a3ab-fba3357155ee@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241203-rcar-gh-dsi-v1-0-738ae1a95d2a@ideasonboard.com>
- <20241203-rcar-gh-dsi-v1-2-738ae1a95d2a@ideasonboard.com> <20241203081935.GE10736@pendragon.ideasonboard.com>
-In-Reply-To: <20241203081935.GE10736@pendragon.ideasonboard.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 3 Dec 2024 09:38:44 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVZui9c4X0FQ3Xke4gzxa9gvs6Nsp0eh5avzr_G3wd=ig@mail.gmail.com>
-Message-ID: <CAMuHMdVZui9c4X0FQ3Xke4gzxa9gvs6Nsp0eh5avzr_G3wd=ig@mail.gmail.com>
-Subject: Re: [PATCH 2/9] dt-bindings: display: renesas,du: Add r8a779h0
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
-	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	LUU HOAI <hoai.luu.ub@renesas.com>, Jagan Teki <jagan@amarulasolutions.com>, 
-	Sam Ravnborg <sam@ravnborg.org>, Biju Das <biju.das.jz@bp.renesas.com>, 
-	dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org, 
-	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-GND-Sasl: romain.gantois@bootlin.com
 
-Hi Laurent,
+Hi Tomi,
 
-On Tue, Dec 3, 2024 at 9:19=E2=80=AFAM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
-> On Tue, Dec 03, 2024 at 10:01:36AM +0200, Tomi Valkeinen wrote:
-> > From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-> >
-> > Extend the Renesas DU display bindings to support the r8a779h0 V4M.
-> >
-> > Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-> > ---
-> >  Documentation/devicetree/bindings/display/renesas,du.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/renesas,du.yaml =
-b/Documentation/devicetree/bindings/display/renesas,du.yaml
-> > index c5b9e6812bce..d369953f16f7 100644
-> > --- a/Documentation/devicetree/bindings/display/renesas,du.yaml
-> > +++ b/Documentation/devicetree/bindings/display/renesas,du.yaml
-> > @@ -41,6 +41,7 @@ properties:
-> >        - renesas,du-r8a77995 # for R-Car D3 compatible DU
-> >        - renesas,du-r8a779a0 # for R-Car V3U compatible DU
-> >        - renesas,du-r8a779g0 # for R-Car V4H compatible DU
-> > +      - renesas,du-r8a779h0 # for R-Car V4M compatible DU
-> >
-> >    reg:
-> >      maxItems: 1
->
-> You also need to add h0 to the g0 block in the conditional properties
-> below. With that,
+On vendredi 29 novembre 2024 13:01:58 heure normale d=E2=80=99Europe centra=
+le Tomi Valkeinen wrote:
+> Hi,
+>=20
+> On 25/11/2024 10:45, Romain Gantois wrote:
+> > Hello everyone,
+> >=20
+> > This is version three of my series which adds support for the TI FPC202
+> > dual-port controller. This is an unusual kind of device which is used a=
+s a
+> > low-speed signal aggregator for various types of SFP-like hardware port=
+s.
+> >=20
+> > The FPC202 exposes an I2C, or SPI (not supported in this series) control
+> > interface, which can be used to access two downstream I2C busses, along
+> > with a set of low-speed GPIO signals for each port. It also has I2C
+> > address
+> > translation (ATR) features, which allow multiple I2C devices with the s=
+ame
+> > address (e.g. SFP EEPROMs at address 0x50) to be accessed from the
+> > upstream
+> > control interface on different addresses.
+> >=20
+> > I've chosen to add this driver to the misc subsystem, as it doesn't
+> > strictly belong in either the i2c or gpio sybsystem, and as far as I kn=
+ow
+> > it is the first device of its kind to be added to the kernel.
+> >=20
+> > Along with the FPC202 driver itself, this series also adds support for
+> > dynamic address translation to the i2c-atr module. This allows I2C addr=
+ess
+> > translators to update their translation table on-the-fly when they rece=
+ive
+> > transactions to unmapped clients. This feature is needed by the FPC202
+> > driver to access up to three logical I2C devices per-port, given that t=
+he
+> > FPC202 address translation table only has two address slots.
+>=20
+> While the FPD-Link devices are quite different than the TPC202, I wonder
+> what's the difference wrt. the ATR... Afaics, the difference is that the
+> FPC202 has 2 slots whereas UB960 has 8. So if you have 3+ remote devices
+> on FPC202, you get problems, or if you have 9+ devices on UB960, you get
+> problems.
+>=20
+> Yet this series adds a I2C_ATR_FLAG_DYNAMIC_C2A flag which the driver
+> needs to set, and the i2c-atr has different code paths depending on the
+> flag. In other words, either the driver author (if it's a hardcoded
+> flag) or the driver (if it's set dynamically) is assumed to know how
+> many remote devices there are, and whether that flag is needed.
+>=20
+> On the other hand, if I consider I2C_ATR_FLAG_DYNAMIC_C2A meaning that
+> the device can support dynamically changing the ATR, then it makes more
+> sense, and also UB960 should set the flag.
+>=20
 
-Which is not sufficient, as the DU on R-Car V4M has only a single channel,
-unlike on R-Car V3U and V4H.
+Indeed, the need for dynamic address translation isn't solely determined by
+the ATR model. It's also determined by the number of logical I2C devices
+connected to the downstream ports. In that sense, hardcoding the flag in the
+ATR driver doesn't seem completely appropriate.
 
-Gr{oetje,eeting}s,
+However, you could reasonably imagine that some future ATR models won't
+support hot-swapping aliases at runtime. In this case, this flag will be
+necessary at the very least as a capability flag i.e. "this ATR model can do
+dynamic translation but it's not necessarily activated by default".
 
-                        Geert
+> But then I wonder, do we even have cases with ATRs that need to be
+> programmed once at init time, and cannot be changed afterwards? If not,
+> then the I2C_ATR_FLAG_DYNAMIC_C2A can be the default, and the
+> non-I2C_ATR_FLAG_DYNAMIC_C2A code can be dropped. Actually, even the
+> current upstream i2c-atr is dynamic in a sense: the clients are attached
+> via the i2c_atr_bus_notifier_call(), one by one.
+>=20
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+Indeed, if an ATR component doesn't support hot-swapping of aliases, then
+it will be broken anyway if a device attaches after the ATR's been initiali=
+zed.
+Maybe we should just assume that all supported ATR's should be capable of
+modifying their translation table after initialization then.
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> If we just have .attach_addr()/.detach_addr(), and call those on demand,
+> and perhaps use LRU to handle the ATR table, it would maybe work for
+> both FPC202 and FPD-Link just fine.
+>=20
+> So TLDR: do we even need any kind of special "dynamic atr"-feature for
+> FPC202, or is it really just a small improvement to the current i2c-atr
+> and applies to all ATR devices?
+>=20
+
+In any case, it's a necessary improvement for the FPC202 case, but it could
+indeed apply to all ATR devices. Maybe we should just enable dynamic
+translation by default.
+
+However, I don't quite understand what you mean by "calling attach/detach()
+on demand", my current understanding is that we should call attach from
+the bus notifier and from the ATR I2C transaction handler. Do you mean that
+these callbacks should be called from other parts of the kernel?
+
+Thanks,
+
+=2D-=20
+Romain Gantois, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+
+
 
