@@ -1,199 +1,182 @@
-Return-Path: <devicetree+bounces-126929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 122849E394D
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 12:54:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EBD69E39B2
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 13:17:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D37FA168EBB
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 11:54:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 41B44164C56
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 12:17:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE23B1B3945;
-	Wed,  4 Dec 2024 11:54:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1E591B87EA;
+	Wed,  4 Dec 2024 12:16:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="cE2j7htD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wM1/Jb56"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 632ED1ABEDC
-	for <devicetree@vger.kernel.org>; Wed,  4 Dec 2024 11:54:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37A2E1B4137
+	for <devicetree@vger.kernel.org>; Wed,  4 Dec 2024 12:16:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733313271; cv=none; b=YB0alWkE21NYzq2drubfEb8vTtbk1+57Td/wwK8ihbuMqEFTqTW+83gjGo/kwqwk4LIWfacM8TaZq+1624WDnRk+rWzoVUv2rdULD0pBi90cHrOqj+urneT4fu+2Yr1xrPBAQQiqE0KsAnkShux9ic22sRsvxvozG+LAu7sYQ14=
+	t=1733314611; cv=none; b=tpKd3QR+2sHFh4Xdmlmzdm8vYME8bVexHWYh+hS+7kncoMj37SDrh7p5MgcjMiMQUVR3GVe/QHARlgWppf7RnC22qXhuZWtNrNG6c236EQnAtwXISNCoGZuW8JHTc/VHuzUKXUoSpJi0nO86PjRHN8UQ4KkuDdToRXFIQu2i81w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733313271; c=relaxed/simple;
-	bh=xD6rA0HebJRzBuAKP+mZdufFn4gVhzxzz3XUxT5RSvU=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=kkrqIk/SOKDJPCAY8O3w7xmR5qb36v1pFQKkvUcqNbzj1vw99+4eMTUx0KPVY86EBPy8A3EQo0Pks/frZIMB8+Vs3oMeO+inAnTpBaRWhHgFkvt9YH7HDKapKHZwf45ziz2liWOkdZr/JqyjBP80ocisIqApfk8idFhywxMW6rY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=cE2j7htD; arc=none smtp.client-ip=185.125.188.122
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-oa1-f72.google.com (mail-oa1-f72.google.com [209.85.160.72])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id A7A313F1CE
-	for <devicetree@vger.kernel.org>; Wed,  4 Dec 2024 11:54:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1733313267;
-	bh=ZZ0KuXCkwVIsgqmnVBvqG5NLt7HlyOEZfYjDmvMmLyo=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=cE2j7htDZmzYRn/9l8iH9MpxMb3IOgJbLcUThR98BK2dp7k4pF3LmwKwTRYjTD1Mn
-	 NUrJrzyYZWmCdK++u9IZxEPK1HOS0MYfQreY1udJKZNnyeXpYunLzPwCXgskpex/nC
-	 B19q95phFHFI0R/7agXn63GrACzyHF7dPQv/+7YsWUiOOM3AavDsP0GOrRgJyBYS7H
-	 JPLXrhvZ6ZtggToMUfaTV2T3DFG93PeGhxiG80C3Vn/cl/1nFs+G7mD6H+PGMOr6N2
-	 BdrSYxDgYDTyQroUCSaJqRNcOfrHXVgjeo7K9YWkzDePP7Xnr+yyU69O6exk0Ww/2H
-	 wJJyE0saQgGTg==
-Received: by mail-oa1-f72.google.com with SMTP id 586e51a60fabf-29e522438cdso3349485fac.0
-        for <devicetree@vger.kernel.org>; Wed, 04 Dec 2024 03:54:27 -0800 (PST)
+	s=arc-20240116; t=1733314611; c=relaxed/simple;
+	bh=KXAAx1ZKzifV7TLp8TeLj1Qr6IjBc4QuuslfgHre3LI=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=TlTAMrcY/DUD4M2lZJBQdmeVK1cHGcmWq13nsM0QZQ1mkMRV6kIcgWQRUQlbVe4b+im8n5iyMoGYC47ctp+hpcfRfaxXehhh1ip9eQzGjvRMtKAjNYXropWXkH/9CBjokqbrtGG4Va5W9jc5ZBu07TbYSf7p6nKKhpPf8iVLKhc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wM1/Jb56; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-432d86a3085so56903725e9.2
+        for <devicetree@vger.kernel.org>; Wed, 04 Dec 2024 04:16:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733314607; x=1733919407; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OsrlpBP8obJw6VCACGbPEH2Vr95rnfvemDgmT8o7KPQ=;
+        b=wM1/Jb56h8rPS4wbamlYA7r66qiTvGUMsc821nkUl4hco9+jvXTIQvhiKZm0eDaPda
+         //BxvK360WX8PYUafNUMTzMe1nOY1oo7SQGwsdqFLw4u7n/Bd4EzeLNudZPvRm1iH1gk
+         tWIg16mNzqdFHVffAIv3T9GxnBAyr7vg/wUgtWiLOsZuL7HqqrngjGIkp1pnTuateuBA
+         LQk3o/ZB7UYumnLYRm/tGU9csnpbxDha0iYfneBGNfOp+295u//mAEkkSwDDn6cBNKSx
+         lg35S7ehPbox0TQ6oXCQzyv0yVHjubjhw3HF9Aw7HiWP/68oQSs8WDAZddC3O8gS0urH
+         P3QQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733313266; x=1733918066;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZZ0KuXCkwVIsgqmnVBvqG5NLt7HlyOEZfYjDmvMmLyo=;
-        b=JWWklZEmdP8Osfcg/saNWs6FXTDJ0r8CiRYUVDjyc9vq9+BKtVVYjfvF6LqzgkoiYx
-         933pSPBEPpPlircw5yaLPU1rSoZnY/sHjcw2yjPIr0cuB02B0z28EcqVbFEEZ7CrKanb
-         OA97jzfHfAcyRTw/JpJEN2sl6XeNdWxpM3ZfZP1JbVyqJryPzpIxhn4vK10C/smpyOv0
-         Tb8vFGv9DeaSDmLdi8UHv7QNc9YtUhI2nYq/wnZqp2Z6VUgfrdrePg9CowPJiCLbs3cG
-         iPeOdA11rSC+kOn8ClU0vz0mUbJZEvbN2ITCd8Zbf1q65GI4kRN0QZSQ5uU3C1rNmjrv
-         jAAA==
-X-Forwarded-Encrypted: i=1; AJvYcCXw7gkAs+2ie6b/Xpr7yTKCQd8PTQVBYGsjnpD9eB5Q43S5fjWjR6HlcAqaq/Tilj+xiC9LDm0ilO53@vger.kernel.org
-X-Gm-Message-State: AOJu0YwCVMTe7zP1C2SXeEcGG90Y2NU5ZGfiYVje9jE9tkAlIyFbkWZ9
-	0wt4x0xRSpSr90QSnfZqtNawpXTASMXNJjfwKEor9AWS8at2zr4IE8OobfFSxmEqwu+0sjQb4M/
-	4Y9dQyvyGt9Dr/otNSA1XkrBxdBF7xyS9j+KPcv/IoqbGIJ05bbVl8BYKGZUqfZ2ft0vcKuPia2
-	FKBVPNpSMi6YSkhEhICiPxn1jYQfyablpm+cKCQ1BZW5GSRkXvcA==
-X-Gm-Gg: ASbGnctkk8Oyk4y7PJnU+GcFDnYURksGnGBntp647PsZaoK7YIJgZpnz4GNZuuA/KNi
-	+VGZddWbX3TCitUblWolW2y6ZbkIfyn35Sn8Y5VFjjfKmyY4ZhImDG3Jghmts
-X-Received: by 2002:a05:6870:96a7:b0:29e:509c:3711 with SMTP id 586e51a60fabf-29e88611583mr5475021fac.15.1733313266399;
-        Wed, 04 Dec 2024 03:54:26 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEwNtBRj1a6Oig1wQNPMOX7J3gElLahKM+e/WFt9W2DcJnKUJX69cF+v6/fGKa1JigCuGVZtni+R40UsicskUU=
-X-Received: by 2002:a05:6870:96a7:b0:29e:509c:3711 with SMTP id
- 586e51a60fabf-29e88611583mr5475008fac.15.1733313266148; Wed, 04 Dec 2024
- 03:54:26 -0800 (PST)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 4 Dec 2024 03:54:25 -0800
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <20241126143125.9980-2-heylenay@4d2.org>
-References: <20241126143125.9980-2-heylenay@4d2.org>
+        d=1e100.net; s=20230601; t=1733314607; x=1733919407;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=OsrlpBP8obJw6VCACGbPEH2Vr95rnfvemDgmT8o7KPQ=;
+        b=Vj/o5GAVC74/gwDQ+uObM8dN3bHoBhD2r2s07MxvgO8yxKhCcn0A/YYa+hRH1VFD0l
+         j7ZyC/4+sTxYuLSja6ULZTMBZEOpGqTqwY3cbgPjqTbj0yWkcYO8LNKOb352HbympLG1
+         jwRbXAwGcJuKfqDtULu59BV4uj4BwkLsx8z8SS4R2+eDzJSbRWT+yOF70QcZnUXgb7y0
+         xdjE5TDDwJVOraMAmJsf/fgXvzAU8v8ZMjRqihSSKuCowH+/KLHvgTI4y0tTut0hJGeQ
+         W8Jz0POpi8v+WEaF1eQ8SqhcE8jUaG+dTOO7LfJKHGHkNP3L+wJhD5N8G8wmgLv+yQvQ
+         Ffvg==
+X-Forwarded-Encrypted: i=1; AJvYcCUsbQzm7uZw/Yzyjw939i2rUm9ndmuTCJKwpbYnzSyFKNZDN/asRUke6IVI2eUnOLZyGQOlNUjlBNwy@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw/XIFaTECV4SXGKpf+FZhk0lUiivS9a+m2p+xB+CpVZiah7UJP
+	Tnx7+xYbe0qugZotNi8Vpv1eRL1xerzAZzCCOYjiXmNJjG0/xVTTGWAs1JEbcCg=
+X-Gm-Gg: ASbGncs0SjATJR7ShmjEQDq/TmFJOtk7ao2UBCH1J4WXCTUdhY/DFURWt07zjxasfJY
+	tSKUX+BdlLxzkjUqJlWN6mD3JySia6zSSyFy3OjKX2qHzCOxWZg6SrRgglUqG6BoacPiMmTJmD+
+	b1l2wxx31X1/hri0rJUlWXu29CmNMSfrgg09Atz1sc5kZbE7tq+lY7lTcYMQkIYYxiBql60fuoi
+	Oypsrp8DIQNPA8JGZ9uHLpzr2gUWBqOLu32/Kj0VBZWkdAuRIAKY5AR+6Y4NRGUaKlIdE4rrSK8
+	V3+QbkPPJ130Xq4Q53QIXq2g
+X-Google-Smtp-Source: AGHT+IE2rtqMWa9+kZfR6jcHTdOC6kwhGO00zx/AmvAzhEp4BTAiotGeRPIG83pyVvpHpOaI0tu0Ow==
+X-Received: by 2002:a05:6000:4713:b0:385:f5c4:b30d with SMTP id ffacd0b85a97d-385fd429ae3mr5535200f8f.39.1733314607498;
+        Wed, 04 Dec 2024 04:16:47 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:740:b323:3531:5c75? ([2a01:e0a:982:cbb0:740:b323:3531:5c75])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-385e8badc9esm11882932f8f.39.2024.12.04.04.16.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Dec 2024 04:16:47 -0800 (PST)
+Message-ID: <0c1f4e6a-a77b-46d1-b944-9eb47d66556d@linaro.org>
+Date: Wed, 4 Dec 2024 13:16:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Wed, 4 Dec 2024 03:54:25 -0800
-Message-ID: <CAJM55Z88=jq4brJeDuXF37yAHqQKCCs7L8gVOdHQhjVT7r-eZA@mail.gmail.com>
-Subject: Re: [PATCH v3 0/3] Add clock controller support for Spacemit K1
-To: Haylen Chu <heylenay@4d2.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Haylen Chu <heylenay@outlook.com>
-Cc: linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Inochi Amaoto <inochiama@outlook.com>, Chen Wang <unicornxdotw@foxmail.com>, 
-	Jisheng Zhang <jszhang@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 2/5] arm64: dts: qcom: sdm845-db845c-navigation-mezzanine:
+ fix ov7251 lane properties
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241204-topic-misc-dt-fixes-v1-0-6d320b6454e6@linaro.org>
+ <20241204-topic-misc-dt-fixes-v1-2-6d320b6454e6@linaro.org>
+ <vlvchjynnwvevr2raosrwggwmjd5bdrs5skbsztskmzxjjdg7v@6qkhrjyaxlsz>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <vlvchjynnwvevr2raosrwggwmjd5bdrs5skbsztskmzxjjdg7v@6qkhrjyaxlsz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Haylen Chu wrote:
-> The clock tree of Spacemit K1 is managed by several independent
-> controllers in different SoC parts. In this series, all clock hardwares
-> in APBS, MPMU, APBC and APMU, are implemented. With some changes to UART
-> driver, CPU cores and UARTs could be brought up (see below). More clocks
-> will be implemented later soon.
->
-> No device tree changes are included since Spacemit K1 UART needs two
-> clocks to operate, but for now the driver gets only one. I would like to
-> defer the changes until this is resolved.
+On 04/12/2024 12:05, Dmitry Baryshkov wrote:
+> On Wed, Dec 04, 2024 at 11:56:54AM +0100, Neil Armstrong wrote:
+>> Bindings documents data-lanes as a single entry with a separate
+>> clock-lanes property, but DT uses 2 entries in data-lanes.
+>>
+>> This would suggest clock-lanes is missing, fix the DT using the
+>> bindings example.
+>>
+>> This fixes:
+>> sdm845-db845c-navigation-mezzanine.dtso: camera@60: port:endpoint:data-lanes: [0, 1] is too long
+>> 	from schema $id: http://devicetree.org/schemas/media/i2c/ovti,ov7251.yaml#
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtso | 3 ++-
+>>   1 file changed, 2 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtso b/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtso
+>> index 0a87df806cafc8e726aacc07a772ca478d0ee3df..5a16f4c2b346b314af3d614266e1ca034057e643 100644
+>> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtso
+>> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtso
+>> @@ -115,7 +115,8 @@ camera@60 {
+>>   
+>>   		port {
+>>   			ov7251_ep: endpoint {
+>> -				data-lanes = <0 1>;
+>> +				clock-lanes = <1>;
+>> +				data-lanes = <0>;
+> 
+> Is it really this way or the other way around, clock = <0>, data = <1>?
 
-Hi,
+No idea actually, on the schematics the lanes from the DB845 are :
 
-Do you have a git tree with these dt changes though? It's impossible to test
-this patchset without them.
+CSI0_P/N -> OV7251_CSI3_LANE0_P/N -> MIPI_CSI3_LANE0_P -> SoC
+and
+CLKP/N -> OV7251_CSI3_CLK_P/N -> MIPI_CSI3_CLK_P/N -> SoC
 
-/Emil
+So I assume the data-lane is 0, for clock-lane I just used
+the example, but I found nothing in the code using those assignments
 
->
-> This driver has been tested on BananaPi-F3 board and successfully
-> brought up I2C, RTC, mmc and ethernet controllers. A clock tree dump
-> could be obtained here[1].
->
-> [1]: https://gist.github.com/heylenayy/ebc6316692dd3aff56575dbf0eb4f1a9
->
-> Link: https://developer.spacemit.com/documentation?token=LCrKwWDasiJuROkVNusc2pWTnEb
->
-> Changed from v2
-> - dt-binding fixes
-> - misc improvements in code
-> - drop unnecessary spinlock in the driver
-> - implement missing bus clocks
-> - Link to v2: https://lore.kernel.org/all/SEYPR01MB4221829A2CD4D4C1704BABD7D7602@SEYPR01MB4221.apcprd01.prod.exchangelabs.com/
->
-> Changed from v1
-> - add SoC prefix (k1)
-> - relicense dt-binding header
-> - misc fixes and style improvements for dt-binding
-> - document spacemit,k1-syscon
-> - implement all APBS, MPMU, APBC and APMU clocks
-> - code cleanup
-> - Link to v1: https://lore.kernel.org/all/SEYPR01MB4221B3178F5233EAB5149E41D7902@SEYPR01MB4221.apcprd01.prod.exchangelabs.com/
->
-> Haylen Chu (3):
->   dt-bindings: clock: spacemit: Add clock controllers of Spacemit K1 SoC
->   dt-bindings: soc: spacemit: Add spacemit,k1-syscon
->   clk: spacemit: Add clock support for Spacemit K1 SoC
->
->  .../bindings/clock/spacemit,k1-ccu.yaml       |   57 +
->  .../soc/spacemit/spacemit,k1-syscon.yaml      |   86 +
->  drivers/clk/Kconfig                           |    1 +
->  drivers/clk/Makefile                          |    1 +
->  drivers/clk/spacemit/Kconfig                  |   20 +
->  drivers/clk/spacemit/Makefile                 |    5 +
->  drivers/clk/spacemit/ccu-k1.c                 | 1747 +++++++++++++++++
->  drivers/clk/spacemit/ccu_common.h             |   62 +
->  drivers/clk/spacemit/ccu_ddn.c                |  146 ++
->  drivers/clk/spacemit/ccu_ddn.h                |   85 +
->  drivers/clk/spacemit/ccu_mix.c                |  296 +++
->  drivers/clk/spacemit/ccu_mix.h                |  336 ++++
->  drivers/clk/spacemit/ccu_pll.c                |  198 ++
->  drivers/clk/spacemit/ccu_pll.h                |   80 +
->  include/dt-bindings/clock/spacemit,k1-ccu.h   |  246 +++
->  15 files changed, 3366 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/spacemit,k1-ccu.yaml
->  create mode 100644 Documentation/devicetree/bindings/soc/spacemit/spacemit,k1-syscon.yaml
->  create mode 100644 drivers/clk/spacemit/Kconfig
->  create mode 100644 drivers/clk/spacemit/Makefile
->  create mode 100644 drivers/clk/spacemit/ccu-k1.c
->  create mode 100644 drivers/clk/spacemit/ccu_common.h
->  create mode 100644 drivers/clk/spacemit/ccu_ddn.c
->  create mode 100644 drivers/clk/spacemit/ccu_ddn.h
->  create mode 100644 drivers/clk/spacemit/ccu_mix.c
->  create mode 100644 drivers/clk/spacemit/ccu_mix.h
->  create mode 100644 drivers/clk/spacemit/ccu_pll.c
->  create mode 100644 drivers/clk/spacemit/ccu_pll.h
->  create mode 100644 include/dt-bindings/clock/spacemit,k1-ccu.h
->
->
-> base-commit: 2d5404caa8c7bb5c4e0435f94b28834ae5456623
-> prerequisite-patch-id: 47dcf6861f7d434d25855b379e6d7ef4ce369c9c
-> prerequisite-patch-id: 77787fe82911923aff15ccf565e8fa451538c3a6
-> prerequisite-patch-id: b0bdb1742d96c5738f05262c3b0059102761390b
-> prerequisite-patch-id: 3927d39d8d77e35d5bfe53d9950da574ff8f2054
-> prerequisite-patch-id: a98039136a4796252a6029e474f03906f2541643
-> prerequisite-patch-id: c95f6dc0547a2a63a76e3cba0cf5c623b212b4e6
-> prerequisite-patch-id: 66e750e438ee959ddc2a6f0650814a2d8c989139
-> prerequisite-patch-id: 29a0fd8c36c1a4340f0d0b68a4c34d2b8abfb1ab
-> prerequisite-patch-id: 0bdfff661c33c380d1cf00a6c68688e05f88c0b3
-> prerequisite-patch-id: 99f15718e0bfbb7ed1a96dfa19f35841b004dae9
-> --
-> 2.47.0
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+Neil
+
+> 
+>>   /*				remote-endpoint = <&csiphy3_ep>; */
+>>   			};
+>>   		};
+>>
+>> -- 
+>> 2.34.1
+>>
+> 
+
 
