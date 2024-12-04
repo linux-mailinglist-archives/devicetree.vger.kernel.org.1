@@ -1,223 +1,158 @@
-Return-Path: <devicetree+bounces-126834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45DBB9E3541
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 09:28:10 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39ED49E354B
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 09:29:03 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 066C728118F
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 08:28:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 08AB516909F
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 08:29:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 060EB18E368;
-	Wed,  4 Dec 2024 08:28:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C30C4193072;
+	Wed,  4 Dec 2024 08:29:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="TAPD1f8F"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nX5cXpuX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ec2-44-216-146-169.compute-1.amazonaws.com (ec2-44-216-146-169.compute-1.amazonaws.com [44.216.146.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 215AA192B84;
-	Wed,  4 Dec 2024 08:27:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=44.216.146.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C8EB192D87;
+	Wed,  4 Dec 2024 08:28:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733300885; cv=none; b=oBCoRSci3JZWiUA964fIAQHRC+iAb6HcuLvuyOlSPrp4rQFyFm92CSUgCnlyI8BPUPAZPSNIhKSeQWh9p1YwGDPHh9VYzppErtDowzKT5wgU4N59w85kTex7bOoT8xPq2eoNOiuNz9J5a9uaWwCi0lM1dKgqtMeJ5b4jlzCdRrM=
+	t=1733300940; cv=none; b=pUC2tozQFqorQINEsWBBh6yGY4khRRCIQYse6MJ7yzpsgd87UeEFj7us2FyH3Iok1OaEOAqlViNvEdZ1WgyCSM+diY+V4tf3e2E8aj38KXtL4Ca1HQDhA0JiHxTthH3pzcLBh41NdY5rVcc1i2imgzTo4KxyBfaSnl9Bk+195fA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733300885; c=relaxed/simple;
-	bh=iiFxfL+bQqjAVxbGhBgCvmQIAaSje273zxKbjy/k1/Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZnP3RDu90YUh/blZLQuLo2xjV+8XqcyJ11rGbXg2tjPzL7QDpnYcgobOWAoDtGsN71ZiMOTUGnn4y9TSePg4hs/F4o48u3JXiWC+kbuFUkMbXzvWBJpwl6XCpRUfGFb6OTcSBEOaRX2Ptg8vVOmH6L/E/2zp2JsI1YL5kDlGfo0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=TAPD1f8F; arc=none smtp.client-ip=44.216.146.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.69] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 4ad26a51;
-	Wed, 4 Dec 2024 16:22:40 +0800 (GMT+08:00)
-Message-ID: <0f76db0b-3860-432e-a203-51ada754edd7@rock-chips.com>
-Date: Wed, 4 Dec 2024 16:22:24 +0800
+	s=arc-20240116; t=1733300940; c=relaxed/simple;
+	bh=txIE/I72Y8y4XvomCX31CWB0nBeznf49Izae2g+/X2U=;
+	h=From:Date:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=J+HIOC1K5EIxj4QQAkLDaU8cva4FkIgJ0NxTAEojeHMoogSGbEM59hkQOVDO2Jz11vTVi5OhiswlcqfRTrvgacIJ15YcBr/pAcUUFWFEszAZZ3P/hqafVWLEW6xKqyIBMbuDrj6mVxq8lVkqtXXZGG+Ul9B1gI85z1dSWkrRaxA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nX5cXpuX; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-215c4000c20so15207445ad.3;
+        Wed, 04 Dec 2024 00:28:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733300938; x=1733905738; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:date:from
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GUWkO09ScmfYLGTWW9HNvL8CRZ3OvigAhD+dzpuCh8U=;
+        b=nX5cXpuXM0a0Mx2y3z/bi2a6yjHfKST1i7eM3FoW1P9dpa+3gAyGVuKUBuA2VTtPhD
+         RSNyJ0ybJtD3hIv4mTzNFerTVPVMpx6RwrHx8tcW5xLKv4l3OQUhH1vvYfgFF3QKX5BE
+         b2bxI+KUKmRa2JYt/L4ClRfQjpvzVoctppXxmN+hdzoGGSOkFBnDSXgFi525taT3t8+M
+         2goVZN/ZNQLTMrf2UQrzpR9gkx5kXGM+2aLtTDanLbekP0WjAVORhKlbFSFjxMn2cxtt
+         V8u3AWzRjuxt4R8ysShn16pmB+KQ3ZhETGDB9MW4y2Qzuk0b4wz4z3nUdeXrTYWWm5fB
+         YCPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733300938; x=1733905738;
+        h=content-disposition:mime-version:message-id:subject:cc:to:date:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GUWkO09ScmfYLGTWW9HNvL8CRZ3OvigAhD+dzpuCh8U=;
+        b=lHH2yGK/5osigesCNuKplcUBPyBusz+aWGAKs+GhVqMEThxtXo7roWwJZDAZ5SPQ2y
+         QM2GA1S7Kq4eVC+rH7zUAFUs6VR/x6Y4/gR9PJZD8C3D1vgDjIz+xAFoeCZlYJu1Bt7c
+         lvlcH3Bq2wWMpe5g5oCAkLOgwlzbAxIMl8SY/MivhGF5s9vmokMp00CWH4ICLFZmaTj9
+         3E6jyRmJ7NSWMa0SgrSpWi7IYObH+njJs+VSH7YUHjGHhvojI6vPy3MVsHV9sFVA3IYS
+         db7SENKVSGE0ByqdrupzHrkp5HOR8o/cYD19ZKq9K5VXXqjRDtqqaYvpgNXggWJIRFSx
+         w5fQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV5xlHMdY80Htvk8DA9vQSBiTlGqB+QW6AsT10/fE+bCCFui2XAGAaMMPZBJ1UmNQLwlsslwTWw+LHboSj1@vger.kernel.org, AJvYcCVw4/K2qV7aI7qjbBfj5yV+BcBepoZRUIh+y7oPguJegWHU6PHAQ4ucNx1Iu02tZBZbfviAthcOCmv9@vger.kernel.org, AJvYcCWL4xK3gPH98v+P5o2qT4D7BEAZEmoB73Fd1a8a08q3hFZyf9u8QnNiwfQEBzAt5Vzp8rqgmVzviZI=@vger.kernel.org, AJvYcCX40PDvodNOjapy37hxSXwttG4MuEd4dkU8GTPEzXK1q7GehvqKpVWN9vXc0R9KOMvUlBu3Exdofn7Q8x/8TA==@vger.kernel.org
+X-Gm-Message-State: AOJu0YzXjYGJ9aaoR20kIwkJnY9YWkBcXfq/NjrNdKA0WCBY8P0GyZwZ
+	9visETcJaMjLWbo4BDraaEizLZmmgxFw8ADUb55icSi4UpSr+FJ0
+X-Gm-Gg: ASbGnct3Inkv9ipearv8OgYsN6dXXP+F5hqFZ1R8OSW3dm4oddCXHpgVZPDuSGbPIIu
+	JNNyS/2HsHDHfmLL1aamw++hX0mwLfgLX23aN1w+y+sRTwq/2QDAfbV+FjWsyM/l0w9R54cEV33
+	UVcDxPKJ3rsd5s/bLfFap4T8lYsCaEU+8j76vMlSS2MV7scDtXOn+ioJSQnwBUsKZbGLte9WlJb
+	fnb2mnHsr/qu51zjAmWY9LhWALGe9mSkrJb1ON9lOIq8E7YhU1Vd+x5RpM=
+X-Google-Smtp-Source: AGHT+IHBB8zm57kTineu1HQVncxbz7lNJJvZp2gDMacf/P23sMkeqR8Um6ILeNeARtCklWIsKTJOgg==
+X-Received: by 2002:a17:903:183:b0:215:acb3:375d with SMTP id d9443c01a7336-215bd1ce3a6mr68186245ad.18.1733300937791;
+        Wed, 04 Dec 2024 00:28:57 -0800 (PST)
+Received: from gmail.com ([113.240.217.127])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2155f195b2asm71157375ad.273.2024.12.04.00.28.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Dec 2024 00:28:57 -0800 (PST)
+From: Dmitry Baryshkov <lee.lockhey@gmail.com>
+X-Google-Original-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Wed, 4 Dec 2024 16:28:49 +0800
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Akhil P Oommen <quic_akhilpo@quicinc.com>,
+	Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Connor Abbott <cwabbott0@gmail.com>, linux-pm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 04/11] drm/msm: adreno: add GMU_BW_VOTE feature flag
+Message-ID: <Z1ASwcMuxEWmudzP@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] dt-bindings: display: rockchip: Add schema for
- RK3588 DW DSI2 controller
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
- rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- quentin.schulz@cherry.de, Heiko Stuebner <heiko.stuebner@cherry.de>
-References: <20241203165450.1501219-1-heiko@sntech.de>
- <20241203165450.1501219-3-heiko@sntech.de>
-Content-Language: en-US
-From: Andy Yan <andy.yan@rock-chips.com>
-In-Reply-To: <20241203165450.1501219-3-heiko@sntech.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQkJKGlZPQ05OTh1JGR5DSEtWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpKQk
-	xVSktLVUpCS0tZBg++
-X-HM-Tid: 0a9390c3a48509d6kunm4ad26a51
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MEk6HRw5GjIuMwkuEx8VMise
-	AzoaCxRVSlVKTEhISEtLTk1JTE1LVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
-	WUFZTkNVSUlVTFVKSk9ZV1kIAVlBT0tISTcG
-DKIM-Signature:a=rsa-sha256;
-	b=TAPD1f8FrzY6bmr10MqyHDoY5QJ80Wh6VhBXBw6Iig/0uuoRrXaXbst4bgNpUF/Q513M5PxDAwJMF04xHt/7EuHnvXgFjyNnqGA61iVaFJ9GAhdWhrQzZu2+7fxjTNeEizNHOCywYHueLz1GC+lOLiWMzWyP3UFSFpX+BaS7BBU=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=q8GexcfsqDSq0Xf6Sj9VSbRCh6kFnCMa2Fvig5PVGyM=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Hi Heiko,
-
-On 12/4/24 00:54, Heiko Stuebner wrote:
-> From: Heiko Stuebner <heiko.stuebner@cherry.de>
+On Wed, Nov 20, 2024 at 01:37:48PM +0100, Neil Armstrong wrote:
+> On 20/11/2024 12:19, Dmitry Baryshkov wrote:
+> > On Tue, Nov 19, 2024 at 06:56:39PM +0100, Neil Armstrong wrote:
+> > > The Adreno GMU Management Unit (GNU) can also scale the DDR Bandwidth
+> > > along the Frequency and Power Domain level, but by default we leave the
+> > > OPP core vote for the interconnect ddr path.
+> > > 
+> > > While scaling via the interconnect path was sufficient, newer GPUs
+> > > like the A750 requires specific vote paremeters and bandwidth to
+> > > achieve full functionality.
+> > > 
+> > > While the feature will require some data in a6xx_info, it's safer
+> > > to only enable tested platforms with this flag first.
+> > > 
+> > > Add a new feature enabling DDR Bandwidth vote via GMU.
+> > 
+> > Squash into the implementation patch.
 > 
-> The Display Serial Interface 2 (DSI-2) is part of a group of communication
-> protocols defined by the MIPI Alliance. The RK3588 implements this
-> specification in its two MIPI DSI-2 Host Controllers that are based on a
-> new Synopsis IP.
+> Which one ? the flag is use in the next 3 patches
 
-   Synopsys ?
+First one which uses it
 
 > 
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
-> ---
->   .../rockchip/rockchip,rk3588-mipi-dsi2.yaml   | 119 ++++++++++++++++++
->   1 file changed, 119 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-mipi-dsi2.yaml
+> > 
+> > > 
+> > > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> > > ---
+> > >   drivers/gpu/drm/msm/adreno/adreno_gpu.h | 1 +
+> > >   1 file changed, 1 insertion(+)
+> > > 
+> > > diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.h b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+> > > index 4702d4cfca3b58fb3cbb25cb6805f1c19be2ebcb..394b96eb6c83354ae008b15b562bedb96cd391dd 100644
+> > > --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+> > > +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+> > > @@ -58,6 +58,7 @@ enum adreno_family {
+> > >   #define ADRENO_FEAT_HAS_HW_APRIV		BIT(0)
+> > >   #define ADRENO_FEAT_HAS_CACHED_COHERENT		BIT(1)
+> > >   #define ADRENO_FEAT_PREEMPTION			BIT(2)
+> > > +#define ADRENO_FEAT_GMU_BW_VOTE			BIT(3)
+> > >   /* Helper for formating the chip_id in the way that userspace tools like
+> > >    * crashdec expect.
+> > > 
+> > > -- 
+> > > 2.34.1
+> > > 
+> > 
 > 
-> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-mipi-dsi2.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-mipi-dsi2.yaml
-> new file mode 100644
-> index 000000000000..7c017e927223
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-mipi-dsi2.yaml
-> @@ -0,0 +1,119 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/rockchip/rockchip,rk3588-mipi-dsi2.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Rockchip specific extensions to the Synopsys Designware MIPI DSI2
-> +
-> +maintainers:
-> +  - Heiko Stuebner <heiko@sntech.de>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - rockchip,rk3588-mipi-dsi2
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 2
-> +
-> +  clock-names:
-> +    items:
-> +      - const: pclk
-> +      - const: sys
-> +
-> +  rockchip,grf:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      This SoC uses GRF regs to switch between vopl/vopb.
-> +
-> +  phys:
-> +    maxItems: 1
-> +
-> +  phy-names:
-> +    const: dcphy
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  reset-names:
-> +    const: apb
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Input node to receive pixel data.
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: DSI output node to panel.
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
-> +required:
-> +  - compatible
-> +  - clocks
-> +  - clock-names
-> +  - rockchip,grf
-> +  - phys
-> +  - phy-names
-> +  - ports
-> +  - reg
-> +
-> +allOf:
-> +  - $ref: /schemas/display/dsi-controller.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/power/rk3588-power.h>
-> +    #include <dt-bindings/reset/rockchip,rk3588-cru.h>
-> +
-> +    soc {
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-> +
-> +      dsi@fde20000 {
-> +        compatible = "rockchip,rk3588-mipi-dsi2";
-> +        reg = <0x0 0xfde20000 0x0 0x10000>;
-> +        interrupts = <GIC_SPI 167 IRQ_TYPE_LEVEL_HIGH 0>;
-> +        clocks = <&cru PCLK_DSIHOST0>, <&cru CLK_DSIHOST0>;
-> +        clock-names = "pclk", "sys";
-> +        resets = <&cru SRST_P_DSIHOST0>;
-> +        reset-names = "apb";
-> +        power-domains = <&power RK3588_PD_VOP>;
-> +        phys = <&mipidcphy0>;
-> +        phy-names = "dcphy";
-> +        rockchip,grf = <&vop_grf>;
-> +
-> +        ports {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +          dsi0_in: port@0 {
-> +            reg = <0>;
-> +          };
-> +
-> +          dsi0_out: port@1 {
-> +            reg = <1>;
-> +          };
-> +        };
-> +      };
-> +    };
+
+-- 
+With best wishes
+Dmitry
+
+
+----- End forwarded message -----
 
