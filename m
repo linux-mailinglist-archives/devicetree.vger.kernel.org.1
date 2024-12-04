@@ -1,192 +1,135 @@
-Return-Path: <devicetree+bounces-126829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 046519E34DF
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 09:04:14 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1BBF41656F8
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 08:04:00 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F11581AC8AE;
-	Wed,  4 Dec 2024 07:59:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JclNz/p7"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E6BDA9E3576
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 09:32:54 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7B9D18D64B;
-	Wed,  4 Dec 2024 07:59:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7B40BB368EA
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 08:04:52 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D31418D65A;
+	Wed,  4 Dec 2024 08:00:54 +0000 (UTC)
+X-Original-To: devicetree@vger.kernel.org
+Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com [209.85.217.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B11081FA4;
+	Wed,  4 Dec 2024 08:00:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733299155; cv=none; b=eKpeyM0bOmYY20QM/59SuDbOpy94MFvfHsX4wXgX0c/Saas3FeY98jYbrVHsozuvAFYY1Hum8Nc36cFmEvsJFeidOw85goU9m4vcp9tq+a6lvdqU/8PWR3Dyo39lvohnt7NF1iAn50YRPH7WXCjhXjU0tei2UiTNBFTytFAJbF8=
+	t=1733299254; cv=none; b=A5zDulQaa9rE32hrU9vPd7RndCorR7dInE11+zHQ2IOpMIbFWLn/tN0Roc64JfoDe+bKT8IYVtqqD3V8cjqA5J3kUaHhY4I5BgKwgH44XM4xwrmGsVnyPu0OdaEkW01rmEWfB4kQ50QEeSU6mXDk5m4iBxws2iLbiWw8xcf5XuA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733299155; c=relaxed/simple;
-	bh=dla2OavfONZnuxYDO0na34UIfYLSxKvedCCKO3QRYZ8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Un6UcDBRIfjzjS7+wZiPVwU61eHGqlLv/fNqDhP05/ERp2e+g8F/reZ5ole8dbadGd7rP220/xDBH2yhqvReBKJeR/cF2lyyQYCVFXfvw02mXxv+JUDxbIqZVR03LvF700lc9tkCMrc6qI+yR+300SIPbTtr7d+N+HZCGoSscbo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JclNz/p7; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1733299154; x=1764835154;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=dla2OavfONZnuxYDO0na34UIfYLSxKvedCCKO3QRYZ8=;
-  b=JclNz/p7mx6mBdc8+/GR5bLQV831eJgwghDElIpENkaMKWTYquwfhhEP
-   9DI+v1eZk1dWy7hwM5v+bj82E8TaYPutObUucGpxmzKodiNxHGzW9hOaF
-   l1EHJu7gSRG1ALfC9h17B0wQW0ETCuNW/Z0XHF7E0CWfad4kesNh3FGBp
-   aFPD1NQfHJ20hUJLNsxEt77uI5SVZHB1PWG3p0eUXGnKLAM15zy/rgJyD
-   3JDE1V6UEnQZD7EACz0czz6GyLMF+FGpRBijvY9CI3gw321pIqgQ05aTu
-   h/YecjOaqfBUP1z77vUOWYYBLqIo2ShfG52GGgFyQrWY0McyS8cVxyeDF
-   w==;
-X-CSE-ConnectionGUID: UA2HucZnT3yrEoIIIE7bFw==
-X-CSE-MsgGUID: uj/f0C7XR0+oaw/YT2SVWg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11275"; a="37489212"
-X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; 
-   d="scan'208";a="37489212"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Dec 2024 23:59:13 -0800
-X-CSE-ConnectionGUID: PC4KpNUfSrGyLVf7P94GMw==
-X-CSE-MsgGUID: IfGixa41TfS8YD1r6539OA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
-   d="scan'208";a="98707680"
-Received: from lkp-server02.sh.intel.com (HELO 1f5a171d57e2) ([10.239.97.151])
-  by orviesa003.jf.intel.com with ESMTP; 03 Dec 2024 23:59:09 -0800
-Received: from kbuild by 1f5a171d57e2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tIkHj-0002jB-1x;
-	Wed, 04 Dec 2024 07:59:01 +0000
-Date: Wed, 4 Dec 2024 15:58:08 +0800
-From: kernel test robot <lkp@intel.com>
-To: =?unknown-8bit?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nicolas Saenz Julienne <nsaenz@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	=?unknown-8bit?Q?Gr=C3=A9gory?= Clement <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	=?unknown-8bit?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH 5/6] nvmem: rmem: add CRC validation for Mobileye EyeQ5
- NVMEM
-Message-ID: <202412041522.01H5Kj6F-lkp@intel.com>
-References: <20241203-rmem-v1-5-24f4970cf14e@bootlin.com>
+	s=arc-20240116; t=1733299254; c=relaxed/simple;
+	bh=qX0JAZx3mOqjs38gq9rFR5GKcM/eDXXMNX8VRgGDQT4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=mYG8nqGOGR3+8EKiJdthrMbaGBuzwaCB6esR4/I+gtG8wA7GH91EDH1f2EDThqV8o8pSi9Xrq+I2vqzNCw1TIUuH0y7sKjPn5JR8cdRt6pUkljVLT7cFKjoXMNj9u9y+44CYqkIxaltDmYDNRUOc/2HxvHQ4mQaWsVtbIIZ6/cE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f42.google.com with SMTP id ada2fe7eead31-4af4da7d22fso2019506137.0;
+        Wed, 04 Dec 2024 00:00:52 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733299250; x=1733904050;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GONdbMSirRoIxoa5Koj9rUw2uC+DqLIh+b3SysJcOZo=;
+        b=O9iwlmCzU/dxCI/tmH+GSNVOcdGI0v6jh2sOsZjgXU+LPwiZ4RAWmqmODX7pR0pX2w
+         ilFCMrpqpnrP4res4ODMyX/YpO6zhiEYrycL7pNXmzZtsQm9+UioLWVDUQhRPeBSl8xa
+         ro69gGhNc1eyM2Jie50pJykRQZviglZZCrAbY7bylOqSyOcN8zX46EXXfccU1w8ATO4f
+         PbxESEHghs88AVNVxzxzXYBMgUw+dNMXhMHP6PLmA8CC5p/0Fvf2Vh8iqol9LfWwwQaO
+         fUU6+8lKy0IXXDsAgESqz/B+IIXiKBga/4TrX3YAiYtav6Iom7QwiBbK7d3O1X11Xyp5
+         orgg==
+X-Forwarded-Encrypted: i=1; AJvYcCUqE8Pk9zJU9hsbYPil+BTtJujvILxSa/CFm5Ot1U/eWMpHTkTkbvIB44qwFxKEuSNLXNMYlMkIw9s3eLebawp6/L0=@vger.kernel.org, AJvYcCVXfkNR8eIqKIcMo7JTZu0BBOWAQlAG3M3s/c5fORXxOpmOm0SJUkt5R5otOcJMS31zwT8eExOYmakL@vger.kernel.org, AJvYcCW8ztWsPiJfVX3het/duL44zxgq6b35Lk56XTMi6FUPpNtS30dKc3zoGq7sSlhJNbcjK9mAqc8S5mKE69Be@vger.kernel.org, AJvYcCXU8mDm1V7P+Z/cjZsLVbCTAdsvdB2LDMvIeTOSVmHeKCFG95S6PWjZq1WqvEDNjZUkk21LcStPexFo@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywxcik7CDqgMT7z7frgRtDJdNqKdodfPRP7fDWOg7yAFkLKo0mz
+	zKDdtod7NB5d3hnOzTdB41O6TQU6Kkx6yWwBi+WE09C/l7F8mvn56qjbsxBt
+X-Gm-Gg: ASbGncvLSxPb4+zHIbL0iEbohf3sP9VkCaUkdfDoyyhbiQOLLgD+7FjLOI46AkrLy1W
+	rDSCNnkPrmxhE3ZLx4CSDkF7FsD6tvpbmQyyM2eALrdBNIqr/+SOra2PcVF63Qxgq31TZfC0Tf9
+	5Rx/g21DZwlTu8p1LNAzfIF8Y5rYje3c6hMxSYDOOdS8/ldvFL1RPChTJXaz+PQbrPsPD5GNGr2
+	WLejEX5lKHNZjTGQa11+CEtGeIXGCoXAsCOBhK9dL4uxnCBYYxi1EbdSBTfdPNM1ys/OuUc3NiB
+	svLcY7rBjDYZ
+X-Google-Smtp-Source: AGHT+IEQYVxqngvc8AC/wSX2bHJFoU/I2ALJvF4bOv8wQshvnR8+yueiI6A/gDzEoNBA6cQaGf+khg==
+X-Received: by 2002:a05:6102:3753:b0:4af:469b:d3ae with SMTP id ada2fe7eead31-4af9729081cmr7373184137.27.1733299250501;
+        Wed, 04 Dec 2024 00:00:50 -0800 (PST)
+Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com. [209.85.217.49])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4afa51e97casm276276137.10.2024.12.04.00.00.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Dec 2024 00:00:47 -0800 (PST)
+Received: by mail-vs1-f49.google.com with SMTP id ada2fe7eead31-4af173cd0e5so2083932137.1;
+        Wed, 04 Dec 2024 00:00:47 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCV9nL7mkPq3IYcpfbd+9phvhb11N15j17wcT/7N6H5gX9vs4ryqNxFalUeGYV1KwzQoZkP9vLP1SnZz@vger.kernel.org, AJvYcCWgXmogVtieeaO9G7Da0cU5JaX+uZDNEhEouqUcRMXDVzig6ne2M8hF3ruReAvUvXXIqnTcS7WEcibjkpnf@vger.kernel.org, AJvYcCXb6ZkaLDbgi/IfMF5kI6muEQoNp/dJI+aYjzznWo6MECtAElitmjIThDRJmXhA+y+1NnX2WV8ED2XiDrWLny0hBtU=@vger.kernel.org, AJvYcCXjiCbXQ4KPhZJDCRr+JOtcvaaW4rTtwxums2x9aNs1Nr0CFdFYRkRBEIyGCENxBT3sN9i9L0HsGn9e@vger.kernel.org
+X-Received: by 2002:a05:6102:41a5:b0:4af:5eb5:8448 with SMTP id
+ ada2fe7eead31-4af97162869mr6809478137.6.1733299246794; Wed, 04 Dec 2024
+ 00:00:46 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=unknown-8bit
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241203-rmem-v1-5-24f4970cf14e@bootlin.com>
+References: <20241203-rcar-gh-dsi-v1-0-738ae1a95d2a@ideasonboard.com>
+In-Reply-To: <20241203-rcar-gh-dsi-v1-0-738ae1a95d2a@ideasonboard.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 4 Dec 2024 09:00:35 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVatmOscaX9++y3L5SPhpPpbLw6fROqCw1Cc9iU=YJFpw@mail.gmail.com>
+Message-ID: <CAMuHMdVatmOscaX9++y3L5SPhpPpbLw6fROqCw1Cc9iU=YJFpw@mail.gmail.com>
+Subject: Re: [PATCH 0/9] drm: Add DSI/DP support for Renesas r8a779h0 V4M and
+ grey-hawk board
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	LUU HOAI <hoai.luu.ub@renesas.com>, Jagan Teki <jagan@amarulasolutions.com>, 
+	Sam Ravnborg <sam@ravnborg.org>, Biju Das <biju.das.jz@bp.renesas.com>, 
+	dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, linux-clk@vger.kernel.org, 
+	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Théo,
+Hi Tomi,
 
-kernel test robot noticed the following build errors:
+On Tue, Dec 3, 2024 at 9:02=E2=80=AFAM Tomi Valkeinen
+<tomi.valkeinen@ideasonboard.com> wrote:
+> Add everything needed to support the DSI output on Renesas r8a779h0
+> (V4M) SoC, and the DP output (via sn65dsi86 DSI to DP bridge) on the
+> Renesas grey-hawk board.
+>
+> Overall the DSI and the board design is almost identical to Renesas
+> r8a779g0 and white-hawk board.
 
-[auto build test ERROR on 40384c840ea1944d7c5a392e8975ed088ecf0b37]
+Thanks for your series!
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Th-o-Lebrun/dt-bindings-nvmem-rmem-Add-mobileye-eyeq5-bootloader-config/20241204-103417
-base:   40384c840ea1944d7c5a392e8975ed088ecf0b37
-patch link:    https://lore.kernel.org/r/20241203-rmem-v1-5-24f4970cf14e%40bootlin.com
-patch subject: [PATCH 5/6] nvmem: rmem: add CRC validation for Mobileye EyeQ5 NVMEM
-config: arm-randconfig-002 (https://download.01.org/0day-ci/archive/20241204/202412041522.01H5Kj6F-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241204/202412041522.01H5Kj6F-lkp@intel.com/reproduce)
+> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202412041522.01H5Kj6F-lkp@intel.com/
+Woot, SoB tags for cover letters ;-)
 
-All errors (new ones prefixed by >>):
+Works fine up to 2560x1440 (I don't have a 4K display).
 
-   drivers/nvmem/rmem.c: In function 'rmem_eyeq5_checksum':
-   drivers/nvmem/rmem.c:66:9: error: cleanup argument not a function
-      66 |         void *buf __free(kfree) = NULL;
-         |         ^~~~
-   drivers/nvmem/rmem.c:97:15: error: implicit declaration of function 'kmalloc'; did you mean 'mm_alloc'? [-Wimplicit-function-declaration]
-      97 |         buf = kmalloc(header.size, GFP_KERNEL);
-         |               ^~~~~~~
-         |               mm_alloc
->> drivers/nvmem/rmem.c:97:13: error: assignment to 'void *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
-      97 |         buf = kmalloc(header.size, GFP_KERNEL);
-         |             ^
+Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
+Gr{oetje,eeting}s,
 
-vim +97 drivers/nvmem/rmem.c
+                        Geert
 
-    62	
-    63	static int rmem_eyeq5_checksum(struct rmem *priv)
-    64	{
-    65		struct rmem_eyeq5_header header;
-    66		void *buf __free(kfree) = NULL;
-    67		u32 computed_crc, *target_crc;
-    68		size_t data_size;
-    69		int ret;
-    70	
-    71		ret = rmem_read(priv, 0, &header, sizeof(header));
-    72		if (ret)
-    73			return ret;
-    74	
-    75		if (header.magic != RMEM_EYEQ5_MAGIC)
-    76			return -EINVAL;
-    77	
-    78		/*
-    79		 * Avoid massive kmalloc() if header read is invalid;
-    80		 * the check would be done by the next rmem_read() anyway.
-    81		 */
-    82		if (header.size > priv->mem->size)
-    83			return -EINVAL;
-    84	
-    85		/*
-    86		 *           0 +-------------------+
-    87		 *             | Header (12 bytes) | \
-    88		 *             +-------------------+ |
-    89		 *             |                   | | data to be CRCed
-    90		 *             |        ...        | |
-    91		 *             |                   | /
-    92		 *   data_size +-------------------+
-    93		 *             |   CRC (4 bytes)   |
-    94		 * header.size +-------------------+
-    95		 */
-    96	
-  > 97		buf = kmalloc(header.size, GFP_KERNEL);
-    98		if (!buf)
-    99			return -ENOMEM;
-   100	
-   101		ret = rmem_read(priv, 0, buf, header.size);
-   102		if (ret)
-   103			return ret;
-   104	
-   105		data_size = header.size - sizeof(*target_crc);
-   106		target_crc = buf + data_size;
-   107		computed_crc = crc32(U32_MAX, buf, data_size) ^ U32_MAX;
-   108	
-   109		if (computed_crc == *target_crc)
-   110			return 0;
-   111	
-   112		dev_err(priv->dev,
-   113			"checksum failed: computed %#x, expected %#x, header (%#x, %#x, %#x)\n",
-   114			computed_crc, *target_crc, header.magic, header.version, header.size);
-   115		return -EINVAL;
-   116	}
-   117	
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
