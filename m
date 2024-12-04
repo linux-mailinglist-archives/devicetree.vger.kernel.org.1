@@ -1,188 +1,274 @@
-Return-Path: <devicetree+bounces-126766-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126767-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21B679E312A
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 03:10:57 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28E309E3148
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 03:16:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D51B1284FB2
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 02:10:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 913B8B2273B
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 02:15:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEC35762E0;
-	Wed,  4 Dec 2024 02:10:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6182217BCA;
+	Wed,  4 Dec 2024 02:15:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ebtb5bka"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="lyWyNyFq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C066502B1;
-	Wed,  4 Dec 2024 02:10:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 908FB944E;
+	Wed,  4 Dec 2024 02:15:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733278238; cv=none; b=W3QRk9grLwXffs+2sQKqFQuYH//LnmJtDn8dtZE7VviV//8AREWs9r9GopGtTkWN5sk/YFAVcsgaFcBx4ma3eoBvxtOU7RKia6E0q8Fp49foFldZlzwcyO9j3V5rJVCU1FdWK8W6gnZYGKR66Z8n9zHnztcFcCUU56yzHR3BuRg=
+	t=1733278554; cv=none; b=AZ93CRgswaWLEN5DsxLA7Qhjp3azuMe1du1JyXxjWvD4M3q2o6Rzemq3TsWqWunUKm31hrF0qSGH71G5U0FBBKLaQpEXIpMF6nwcJQWVApRw8BManqkE3nc/axnBr+it2kkJXRq+sSat6UlgCOGAmaUf798ADOvaZEX2ntjrd10=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733278238; c=relaxed/simple;
-	bh=Doe0MwewGAhauo6FL34Oa8tMjvZ06r9tSHSBscneF7Q=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=nJG8RqSjiDZ2x8QzmdRUerye6kP6WN1lthFPoH/WueLIwzdu93kkD6VO6/z+uYJj+yCBEaizasbt+G/j5QYvZ8UwVUGqE8/3JlKpc3vZ6qFqbA4VYv+PP5PhqeSIkz1ZK5H6Z1kWuTG6wRKGez04NS8hy/TYapx/JxBXa7S6p6k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ebtb5bka; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-21577f65bdeso3127605ad.0;
-        Tue, 03 Dec 2024 18:10:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733278235; x=1733883035; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Y8dhTpLIBr5me5F35lRQFrvVcb4wHxn4cA08Itluul0=;
-        b=ebtb5bka6lu5nwvf+IsKa8Ba3PViZt4hqf82KNmBxMInevlUwwBQLTpcPaHUO8TLgR
-         qu9OWaICE+lEY7nF/y76ZiQo9wAmMgU44twfqmKqDv2UJdl+8G8cRDECgX7Y9SREVE2V
-         JySNDrjz/8h0cmgNkygGEnLqzlz/cs4MFIqbD+UhE9QvDzhhATm5fpx946MzUukoflaJ
-         T2Uxbn20Fz49s9cpKjk+CHMZSyF4xayewKgIyOlWy5GFpoPDDsUo4cNrcYc3UKmvrUKn
-         rTPxPvYUJlPf+tSVxfzlXuZKHfuUrewpZSIlQKmsfsjNhcQTdwZxpusLgwDoMH+sQ9HA
-         GlUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733278235; x=1733883035;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Y8dhTpLIBr5me5F35lRQFrvVcb4wHxn4cA08Itluul0=;
-        b=dEElbmTCqEMVl8v6rbQ7WmUoiW3XI4bnX6yIinBUoEoHMo9DzLddedOq9BYBu/vMYV
-         M3Z6o1k4aielp3Ifb/wgmOVfIfQBikvsH56FccJNsWgwGVutwU+ZqnEFv8UFrxhf1a0H
-         FOi0z3B2bIRPltejY1+zOHqiqsB5xDFRyun5zyMq6XXHE7kMrSOt1MHuIE4kIWz461mU
-         EGSzwPUufSrzlGFAlzAs4etDz2PlksjBuOtnHNTOyYpkqrnn9YOlKZuOQrLMLXlz64T/
-         DTOR5GDtCyFsSzyHKBkUAkAFfcTfv89D0l85L3OGFZjggOo0g8gA6o0BvfJuRrmF2Rw9
-         RULA==
-X-Forwarded-Encrypted: i=1; AJvYcCUTAPZh0oYqJ7V+gBXBcmD8bVoufLpERjtqDaMnpIDfaUBH4pLSVfuBzN0qiuHiJU2jJmWOeizZZp0s@vger.kernel.org, AJvYcCUZqam1rCa2wzozvjWUtvNxf9RG4QNPBpel9qGDVrVrx3ONr839r3suJVSmh7eSvjrpX93sPKai/r6FnVw=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxXYpIi/wl6gcJjxpriRm+c5vIQ5cFs9/d9KfseHaC6BUuEEYHC
-	q9c8P09hXAPAFWqIxAYxjQhKQedcMpIg873B6GuUtVYVTUvLWrTuNmBK0Q==
-X-Gm-Gg: ASbGnct3FJdDdCJHJKQbE6vjMr+p7IetHxg5U9m5N43Q2ahlCd0J4R2qDUZZ+vRvhNM
-	+ASKq9P81G2FA8W7EEIngbGbqc5O7+ARrEvjMAqobGGhtIqqd4KbX3iDiH60+/KCQDGdYuxA89H
-	TiyZt/3Mspmx7K32JLLcWLSNnmYype5OTUm3CQGREAejMyIEGgg5pkYy+BvsB4z0CBEC6XNT/l3
-	bJJEHVqiS+xjG1e4POz79WDWs8FTsNHhaJRZwVOwBshdNmQKy4SGuc6I8aEdVV5kNYhW6OBbaQu
-	PfQuU4bfyDMUzNFMFh+/hFDHOVNbzVStW+Y=
-X-Google-Smtp-Source: AGHT+IHv34fl1zF21h28QS1304jqN3qm1y2mC9/dqDbZryhdc9R6IjuT3cNWpoVXgTk9IJ3grX7J5w==
-X-Received: by 2002:a17:902:db10:b0:215:65c2:f3f2 with SMTP id d9443c01a7336-21565c2f650mr253229155ad.6.1733278235600;
-        Tue, 03 Dec 2024 18:10:35 -0800 (PST)
-Received: from localhost.localdomain (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2156815bcfesm62785115ad.215.2024.12.03.18.10.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Dec 2024 18:10:35 -0800 (PST)
-From: Ming-Jen Chen <mjchen0829@gmail.com>
-To: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-input@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	mjchen0829@gmail.com,
-	sudeep.holla@arm.com,
-	arnd@arndb.de,
-	peng.fan@nxp.com,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	dmitry.torokhov@gmail.com
-Subject: [PATCH v4 2/2] dt-bindings: input: Add Nuvoton MA35D1 keypad
-Date: Wed,  4 Dec 2024 02:10:14 +0000
-Message-Id: <20241204021014.5083-3-mjchen0829@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241204021014.5083-1-mjchen0829@gmail.com>
-References: <20241204021014.5083-1-mjchen0829@gmail.com>
+	s=arc-20240116; t=1733278554; c=relaxed/simple;
+	bh=OlHHrgP4UplwfyoIXDphhR2ghnkX9MTPH5x6SWstMFs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=KL2cjF2Qhq7yx4OlDu7t6zN7et/oSbhax5EVQLY5DP7p0adTmpXDolu5O/h/JHvcmb/40PupL7Oj/c/6UVFNSB9qkoULohW3EkK5ygbTEn2Leskt5UjNpVJj3BfHJ7GcZPONC1zjkoFDvKZcDdyLWSk++cy1Zyb36nUx90Ic7EQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=lyWyNyFq; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B3DMQMl001285;
+	Wed, 4 Dec 2024 02:15:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ts4Njp90c68ZwdyOqQwSIi/UZ2klvbHWWrBIP09mKUE=; b=lyWyNyFqjOm1pqWy
+	d9YY71DDPXxBIEr4e2jTEUNz2a3rAm9+2uFYt4B8AebRXoiBAM0NNffTqxZBPQZy
+	budvROV/b0bUnmuq5N2+rGaysQag9gtlzrjMNk0r51H9e9nOpIzFma39bOZ7DM7k
+	Shu9CMGuFKMwh2xyqEpibrpHbZ+TqZfRo4x17WMzrOvqN9EtsHifQ0PNv/vWp7gQ
+	vZNrmambHvnomLbMMOU3E6RXPmnR+MraoY4+RErqDLDvBE+V+B+0ieT1jSvChqO0
+	Is16BOQvkbVZlLGmJPHyt3fOq/iuHQy58onu1nnpzeUa1obkSn4V4wzlLogWBOwV
+	jBJZhA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 439trbk627-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 04 Dec 2024 02:15:42 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B42FfJn000307
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 4 Dec 2024 02:15:42 GMT
+Received: from [10.216.45.237] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 3 Dec 2024
+ 18:15:33 -0800
+Message-ID: <b42e1ec7-11a0-ab6b-c552-86d204dcb041@quicinc.com>
+Date: Wed, 4 Dec 2024 07:45:29 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH 2/3] PCI: dwc: Add ECAM support with iATU configuration
+Content-Language: en-US
+To: Bjorn Helgaas <helgaas@kernel.org>
+CC: <cros-qcom-dts-watchers@chromium.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
+        "Manivannan
+ Sadhasivam" <manivannan.sadhasivam@linaro.org>,
+        Lorenzo Pieralisi
+	<lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?=
+	<kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>, <quic_vbadigan@quicinc.com>,
+        <quic_ramkri@quicinc.com>, <quic_nitegupt@quicinc.com>,
+        <quic_skananth@quicinc.com>, <quic_vpernami@quicinc.com>,
+        <quic_mrana@quicinc.com>, <mmareddy@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>
+References: <20241203185534.GA2910014@bhelgaas>
+From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
+In-Reply-To: <20241203185534.GA2910014@bhelgaas>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: CPnu4dIKNOho9qE0pdApt9yBJ8mIhRzr
+X-Proofpoint-ORIG-GUID: CPnu4dIKNOho9qE0pdApt9yBJ8mIhRzr
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 mlxscore=0
+ suspectscore=0 spamscore=0 malwarescore=0 adultscore=0 priorityscore=1501
+ clxscore=1015 phishscore=0 lowpriorityscore=0 impostorscore=0 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2412040018
 
-Add YAML bindings for MA35D1 SoC keypad.
 
-Signed-off-by: Ming-Jen Chen <mjchen0829@gmail.com>
----
- .../bindings/input/nuvoton,ma35d1-keypad.yaml | 69 +++++++++++++++++++
- 1 file changed, 69 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml
 
-diff --git a/Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml b/Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml
-new file mode 100644
-index 000000000000..54a81583bf2b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/nuvoton,ma35d1-keypad.yaml
-@@ -0,0 +1,69 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/nuvoton,ma35d1-keypad.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Nuvoton MA35D1 Keypad
-+
-+maintainers:
-+  - Ming-jen Chen <mjchen0829@gmail.com>
-+
-+allOf:
-+  - $ref: /schemas/input/matrix-keymap.yaml#
-+
-+properties:
-+  compatible:
-+    const: nuvoton,ma35d1-kpi
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  debounce-delay-ms:
-+    description: Debounce delay time in milliseconds.
-+    maxItems: 1
-+
-+  scan-interval-ms:
-+    description: Scan interval time in milliseconds.
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - debounce-delay-ms
-+  - scan-interval-ms
-+  - linux,keymap
-+  - keypad,num-rows
-+  - keypad,num-columns
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/input/input.h>
-+    keypad@404a0000 {
-+      compatible = "nuvoton,ma35d1-kpi";
-+      reg = <0x404a0000 0x10000>;
-+      interrupts = <79>;
-+      clocks = <&clk>;
-+      keypad,num-rows = <2>;
-+      keypad,num-columns = <2>;
-+
-+      linux,keymap = <
-+         MATRIX_KEY(0, 0, KEY_ENTER)
-+         MATRIX_KEY(0, 1, KEY_ENTER)
-+         MATRIX_KEY(1, 0, KEY_SPACE)
-+         MATRIX_KEY(1, 1, KEY_Z)
-+      >;
-+
-+      debounce-delay-ms = <1>;
-+      scan-interval-ms = <20>;
-+    };
--- 
-2.25.1
+On 12/4/2024 12:25 AM, Bjorn Helgaas wrote:
+> On Sun, Nov 17, 2024 at 03:30:19AM +0530, Krishna chaitanya chundru wrote:
+>> The current implementation requires iATU for every configuration
+>> space access which increases latency & cpu utilization.
+>>
+>> Configuring iATU in config shift mode enables ECAM feature to access the
+>> config space, which avoids iATU configuration for every config access.
+>>
+>> Add "ctrl2" into struct dw_pcie_ob_atu_cfg  to enable config shift mode.
+>>
+>> As DBI comes under config space, this avoids remapping of DBI space
+>> separately. Instead, it uses the mapped config space address returned from
+>> ECAM initialization. Change the order of dw_pcie_get_resources() execution
+>> to acheive this.
+> 
+> s/acheive/achieve/
+> 
+>> Introduce new ecam_init() function op for the clients to configure after
+>> ecam window creation has been done.
+>>
+>> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+>> ---
+>>   drivers/pci/controller/dwc/pcie-designware-host.c | 114 ++++++++++++++++++----
+>>   drivers/pci/controller/dwc/pcie-designware.c      |   2 +-
+>>   drivers/pci/controller/dwc/pcie-designware.h      |   6 ++
+>>   3 files changed, 102 insertions(+), 20 deletions(-)
+>>
+>> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+>> index 3e41865c7290..e98cc841a2a9 100644
+>> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+>> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+>> @@ -418,6 +418,62 @@ static void dw_pcie_host_request_msg_tlp_res(struct dw_pcie_rp *pp)
+>>   	}
+>>   }
+>>   
+>> +static int dw_pcie_config_ecam_iatu(struct dw_pcie_rp *pp)
+>> +{
+>> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+>> +	struct dw_pcie_ob_atu_cfg atu = {0};
+>> +	struct resource_entry *bus;
+>> +	int ret, bus_range_max;
+>> +
+>> +	bus = resource_list_first_type(&pp->bridge->windows, IORESOURCE_BUS);
+>> +
+>> +	/*
+>> +	 * Bus 1 config space needs type 0 atu configuration
+>> +	 * Remaining buses need type 1 atu configuration
+> 
+> s/atu/ATU/ (initialism, looks like "iATU" might be appropriate here?)
+> 
+> I'm confused about the bus numbering; you refer to "bus 1" and "bus
+> 2".  Is bus 1 the root bus, i.e., the primary bus of a Root Port?
+> 
+> The root bus number would typically be 0, not 1, and is sometimes
+> programmable.  I don't know how the DesignWare core works, but since
+> you have "bus" here, referring to "bus 1" and "bus 2" here seems
+> overly specific.
+> 
+root bus is bus 0 and we don't need any iATU configuration for it as
+its config space is accessible from the system memory, for usp port of
+the switch or the direct the endpoint i.e bus 1 we need to send
+Configuration Type 0 requests and for other buses we need to send
+Configuration Type 1 requests this is as per PCIe spec, I will try to
+include PCIe spec details in next patch.
+>> +	 */
+>> +	atu.index = 0;
+>> +	atu.type = PCIE_ATU_TYPE_CFG0;
+>> +	atu.cpu_addr = pp->cfg0_base + SZ_1M;
+>> +	atu.size = SZ_1M;
+>> +	atu.ctrl2 = PCIE_ATU_CFG_SHIFT_MODE_ENABLE;
+>> +	ret = dw_pcie_prog_outbound_atu(pci, &atu);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	bus_range_max = bus->res->end - bus->res->start + 1;
+>> +
+>> +	/* Configure for bus 2 - bus_range_max in type 1 */
+>> +	atu.index = 1;
+>> +	atu.type = PCIE_ATU_TYPE_CFG1;
+>> +	atu.cpu_addr = pp->cfg0_base + SZ_2M;
+>> +	atu.size = (SZ_1M * (bus_range_max - 2));
+>> +	atu.ctrl2 = PCIE_ATU_CFG_SHIFT_MODE_ENABLE;
+>> +	return dw_pcie_prog_outbound_atu(pci, &atu);
+>> +}
+>> +
+>> +static int dw_pcie_create_ecam_window(struct dw_pcie_rp *pp, struct resource *res)
+>> +{
+>> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+>> +	struct device *dev = pci->dev;
+>> +	struct resource_entry *bus;
+>> +
+>> +	bus = resource_list_first_type(&pp->bridge->windows, IORESOURCE_BUS);
+>> +	if (!bus)
+>> +		return -ENODEV;
+>> +
+>> +	pp->cfg = pci_ecam_create(dev, res, bus->res, &pci_generic_ecam_ops);
+>> +	if (IS_ERR(pp->cfg))
+>> +		return PTR_ERR(pp->cfg);
+>> +
+>> +	pci->dbi_base = pp->cfg->win;
+>> +	pci->dbi_phys_addr = res->start;
+>> +
+>> +	if (pp->ops->ecam_init)
+>> +		pp->ops->ecam_init(pci, pp->cfg);
+> 
+> .ecam_init() is defined to return int, but you ignore the return value.
+> If it's practical, I think it would be nicer if you could manage to:
+> 
+>    - Drop .enable_ecam.
+> 
+>    - Have .ecam_init() return failure if there's not enough ECAM space
+>      or whatever, i.e., move the qcom_pcie_check_ecam_support() code
+>      there.
+> 
+>    - Handle .ecam_init() failure here by doing whatever we did before.
+> 
+> If there's no useful return value from .ecam_init(), make it void.
+> 
+In controller driver we need to skip few thing if we want to enable
+this feature before calling dw_pcie_host_init, better to have this way
+>> +	return 0;
+>> +}
+> 
+>> @@ -454,6 +499,30 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
+>>   
+>>   	pp->bridge = bridge;
+>>   
+>> +	pp->cfg0_size = resource_size(res);
+>> +	pp->cfg0_base = res->start;
+>> +
+>> +	if (!pp->enable_ecam) {
+> 
+> If you can't get rid of .enable_ecam, reverse order so this uses
+> positive logic:
+> 
+>    if (pp->enable_ecam) {
+>      ...
+>    } else {
+>      ...
+>    }
+> 
+ack.
 
+- Krishna Chaitanya.
+>> +		pp->va_cfg0_base = devm_pci_remap_cfg_resource(dev, res);
+>> +		if (IS_ERR(pp->va_cfg0_base))
+>> +			return PTR_ERR(pp->va_cfg0_base);
+>> +
+>> +		/* Set default bus ops */
+>> +		bridge->ops = &dw_pcie_ops;
+>> +		bridge->child_ops = &dw_child_pcie_ops;
+>> +		bridge->sysdata = pp;
+>> +	} else {
+>> +		ret = dw_pcie_create_ecam_window(pp, res);
+>> +		if (ret)
+>> +			return ret;
+>> +		bridge->ops = (struct pci_ops *)&pci_generic_ecam_ops.pci_ops;
+>> +		pp->bridge->sysdata = pp->cfg;
+>> +	}
+> 
 
