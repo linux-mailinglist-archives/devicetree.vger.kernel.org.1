@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-127006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127007-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E5679E3E2E
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 16:24:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 196659E3E36
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 16:25:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF185282763
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 15:24:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4E58282493
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 15:25:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D93B20C032;
-	Wed,  4 Dec 2024 15:24:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 297AD20C019;
+	Wed,  4 Dec 2024 15:25:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pxILafI6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LT4VMiVw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49F1420B817
-	for <devicetree@vger.kernel.org>; Wed,  4 Dec 2024 15:24:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 385C320B7E4
+	for <devicetree@vger.kernel.org>; Wed,  4 Dec 2024 15:25:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733325884; cv=none; b=hjrGDDhz6qC0IlEjD4w87vt+r320nShnMVups20cOm6rnda3BznPEresXEnMX+oLTDxF61D6I+5uB3pHywU7Qv7Ni2L9qPloyHcXfoLU13j7H4kdeMQJwW2YIcacXs+8v5rQS891RQWJwfYQjqCTAETOCBsRaHp60Z8SFSkvLxY=
+	t=1733325930; cv=none; b=l5oDnHnqBThuqig1lUDigpYzpIkAeTH2Sf+Gh24/pmFOmzR+56C/wgOVXoPOw4XJCh1DMejZFttwxTywFHDTM3ugIEYKq0gHJulggeTbsUrVMGngM5yLZezvM1POY3upV8SjZU39SdwpMNX30WFzdG+OEELcrdnpa1jTm84lLTw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733325884; c=relaxed/simple;
-	bh=S16P0GGasnPzLoyJ+ehPn1yGLMLx+zwDl70/2m0gk4Y=;
+	s=arc-20240116; t=1733325930; c=relaxed/simple;
+	bh=ItfF21lgCpkme/udRWq5VgMzq0q4roB7rTlqXhTLIG8=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=jlmpgCTBJ5bg0fDUAMfLPZBOukgLxzYdVz9QaK+17lVzf4dBOO9+GVzpdf1cTQACI6JrrHL0M0KB4+vs1AGownLgHPrLxDSXV36hjt5dla3xB4Fo4RNsFAW+0lLVhdR3fTd6/34HysahQX4hh7hdh5Qg2VhfWosGXxqR2c8Eqeg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pxILafI6; arc=none smtp.client-ip=209.85.128.46
+	 In-Reply-To:Content-Type; b=QDtmwR0sgxJXDpxWuECLoyXI7MBk6cSUaMsU3FCxrSqSUFWGXvLzv+pgJBrKHeBaOYEZdavna3v73XWCCV7W87bxx7lgSuUrc4KY+W/8IwwJnke3gm4EepjzMSqU//sBWmQQWHU78cyMTQP6FOMUGzZ0WgrQZMxEe1iA9/waLS0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LT4VMiVw; arc=none smtp.client-ip=209.85.221.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-434a736518eso84840125e9.1
-        for <devicetree@vger.kernel.org>; Wed, 04 Dec 2024 07:24:41 -0800 (PST)
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-385dfb168cbso3361961f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 04 Dec 2024 07:25:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733325879; x=1733930679; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1733325926; x=1733930726; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=pcDoThk5nkP9GPoOLpcXYjEJmqHuOxUV4Ii6iLnvCQs=;
-        b=pxILafI6aSny4oT0tSndtrTqITff9OePa3y0mDjcCvJMOr4BF0DVuWmu9DjyyfC1jO
-         eDb6GKDE5QyhCzjlC0wPp7cFDzBi8YNpeMX2bvYt0HLpt2lpvJ1HivoseK23ZxnzVgN6
-         3+xgd4bAbBhE+8KYPnRbFaGyccAG6dlTohkXZjjnR08JbmDwIORVV6fOlhKioO6ShBXE
-         TTnq6orucvr7O5nI2cIJbAwsfHXwcHu2cmfV7NNyTY8pmu4i3nVc0kT0wPg3vKsP7Rgz
-         c/BWkn+zW7w/b73jWcyHHlBKKJIbAD5J7v1aygOlPxuNgK1VXVIh7ohj88/J9Zm103cq
-         zaQA==
+        bh=S8/NXif9wJVFj2hQElb83aSq+sssv9oaN1dht0koEM4=;
+        b=LT4VMiVwV9n/VgwbBo7nHKV4aG1r5hOCvSDgEijFyOkZUMwhXmqb7FFy0bqcb3cHku
+         Pt4ugU0bflv/xeQn3c2ld0UAtbZO7VzRiKBUH5ZUF2F1BM9nIwL9PLsz8jjwYZDdzTHy
+         lstoHHwcTMnHsL2NcljgG0PDEFnlYPuExeWTPK7X6e2tOiL6nSLmLl6lkcN8Bcq+F2FQ
+         u7lSdb+gv8cOttffoouSu2HeLJSwyc0i5VK77g5dRoilMnLRq4OPEkilqjOPZHpyCn/Y
+         DCQG7pmrvWeqrCpcYNqcHdA9pU16BDDrxRgLXXZ7oaGgvQyBmGvZQEf4iPnYhdlErt80
+         VdLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733325879; x=1733930679;
+        d=1e100.net; s=20230601; t=1733325926; x=1733930726;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=pcDoThk5nkP9GPoOLpcXYjEJmqHuOxUV4Ii6iLnvCQs=;
-        b=Nx0BmAeIWrqEAMoGf+SqYlz+jEf7MaX2+84mPAm03YnUqPCCK60Hqm7QRbURi3Mf8e
-         lZR+wQJHgOf+vgx2QIM1upLZeyPECSVvk2iVgwM0731CxrYX6cvQ2A58cO8jjolNKgMV
-         LgFcn5XDZwVOI/7mgCgWx5EgMjcxYriNReYi/NCnkvOLsRpOdr2kpA1eYceGJBX6ZvBK
-         N6JaqOoCuD9zYrgiGfqLchPneBtgQyBTwU3ulgXY2xZyNloqGryLdGoYeNfwoXgjuRe+
-         8FFbta0UkINBbXp6IwtqRphLnDGBDLORdfM/+YL8PYJze37ji1Fj6CAN4O73eZDgW5V3
-         LfNg==
-X-Forwarded-Encrypted: i=1; AJvYcCUB77rsCDScnBiFgDnty28l2KQ6HL7hJeZrDmTk5hlYRY22YTf/k2G15Z48GJDq0TLTk/qKj9iMoO+Q@vger.kernel.org
-X-Gm-Message-State: AOJu0YyH72xZgSphqFy5O0F/Ye7g4oIuAc7yVzPiFQz9HSAuU14RBymV
-	X8XfDIikDgXjRYIogL6aYW67STP/xhgsKXNZGw1ZAwDGxFA8QvRLb2eofoVO3TE=
-X-Gm-Gg: ASbGncu69MqArJ5qHHw2uKUKitQwJaH8sE+bSKX3c65opOO5dnrRrQ6aI/azwUyljBS
-	MxdE6ZtoTYsy5RQzv7kfOJZpCw/OMxp/Qace0UKwdoARim+DYTLyM48v5C/csDnKMgV+uTWRvs0
-	EcHl3EsXBCEyugMvSgPrABYq8ldrxwPvyEZTIqWEnb6bXSPHPelnb2QpzG26U5BYfBFSrguuR/Z
-	tF53L6HZ4JBw78LjPJhmJx4xwoO/H+vPd0UZqDJn2V/yaaf+7iBab35CoVonmmRS9BXyWSrntsq
-	kEelBvAJrjOFHFakIIoBzbKc
-X-Google-Smtp-Source: AGHT+IGzZgVutv3m9yqKptNTE4FEmFL/zGlx8ahUg57dJciZ6G4bHRdy7JyKr6NDvAhD5P+RLYkMNg==
-X-Received: by 2002:a05:600c:1c8b:b0:434:a802:e9a6 with SMTP id 5b1f17b1804b1-434d09b2e53mr63022025e9.7.1733325879600;
-        Wed, 04 Dec 2024 07:24:39 -0800 (PST)
+        bh=S8/NXif9wJVFj2hQElb83aSq+sssv9oaN1dht0koEM4=;
+        b=Ra94oLxA+96cxBQjgJHhwhD7IIj9YVEVTNJ2ovQJn4k1B4WY3DhW4A0U99YZM8hMVf
+         WBgBivjw3sHABUNo2e7gD12zjTgW++WEAx0gnwQQ8lH1PBG8UwBGPiLfSG7rU7aEcz/l
+         RttS5nDr749ftv2QXFuhRQMFs2NhLQW35lB+vOmd5d4jE5wyFEohIf+0mn/+jn4u3j6h
+         bQcjuHvNeDMp8yjtoC7UmCnWeuy59kpTsVF4sERF8zx8O1TEBFPqFxF6lrLeEdqccjco
+         Xk4SLGWkoLjy//0igulojjpFmClZpB1BQ6FOVIFoIhRrOZGGhqs0WdmRarcGJechZyOe
+         BX5g==
+X-Forwarded-Encrypted: i=1; AJvYcCVOtcIr84EMJe6I0kP9LBh63uTonSh2Q4r8f3JUSDUnaR2ihKdgGcxzSM5YHLHnFAAXl7YFS3kszOio@vger.kernel.org
+X-Gm-Message-State: AOJu0YzxyDtjygOnciRZyCacemfKFg50bvgPTwAjvGyBcuNg0ll8Oob+
+	UBRpJwA4BcW9+DnkRoFjOSKbf3fOEgbTmZD5MM/h79nTnfr3/8SeqmiYoK0RW50=
+X-Gm-Gg: ASbGncuIdY2I1FXdoQ/JcKLHTmnaKXWZwegHtLJH2xK9emGhicnzuH8GheaqU7S755j
+	LH3V6Y2cw2EbH4i+rEgxngo8Nk0TuTdvp0EAk8NFvllxnFQL47fE6n3B/UiW0kQV5IdSkdXbbkm
+	fSEATtaTN+RweCwx9VguiDtUvhzOgpv5N5UBecVq74KEpcwGQVeuERi+168NaQ4NVE73Zv8Kqvq
+	QB/UU06Z8r1s8V92v67y2OmSNbHaXLKcUpTYYPoQCBR2jnZ6uJ4pQhnUNpUBhaPTveST+uHoaE+
+	518E91uzmgBAmLT95Q4WqE20
+X-Google-Smtp-Source: AGHT+IHZdt66nSwUCQIPlgcKC9J/gPvEuCIw+nsx+zth2Wzv3Qbr5bQfnlxx8iimG4axcn5Pscuwug==
+X-Received: by 2002:a5d:64ae:0:b0:385:f2a2:50df with SMTP id ffacd0b85a97d-385fd3e9e05mr5689269f8f.27.1733325926545;
+        Wed, 04 Dec 2024 07:25:26 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:982:cbb0:740:b323:3531:5c75? ([2a01:e0a:982:cbb0:740:b323:3531:5c75])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-385d7f103e0sm16938977f8f.19.2024.12.04.07.24.38
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-385d80a77a0sm16812983f8f.58.2024.12.04.07.25.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Dec 2024 07:24:39 -0800 (PST)
-Message-ID: <c19e36cf-b041-4eaa-bbc2-007b30460963@linaro.org>
-Date: Wed, 4 Dec 2024 16:24:37 +0100
+        Wed, 04 Dec 2024 07:25:26 -0800 (PST)
+Message-ID: <0a85859a-9487-48fd-b1cb-a4a4195a8e63@linaro.org>
+Date: Wed, 4 Dec 2024 16:25:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,8 +85,8 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: neil.armstrong@linaro.org
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v1 4/7] soc: qcom: geni-se:: Add support to load QUP SE
- Firmware via Linux subsystem
+Subject: Re: [PATCH v1 1/7] dt-bindings: i2c: qcom,i2c-geni: Document DT
+ properties for QUP firmware loading
 To: Viken Dadhaniya <quic_vdadhani@quicinc.com>, andi.shyti@kernel.org,
  robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
  gregkh@linuxfoundation.org, jirislaby@kernel.org, broonie@kernel.or,
@@ -98,7 +98,7 @@ To: Viken Dadhaniya <quic_vdadhani@quicinc.com>, andi.shyti@kernel.org,
 Cc: =quic_msavaliy@quicinc.com, quic_anupkulk@quicinc.com,
  Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
 References: <20241204150326.1470749-1-quic_vdadhani@quicinc.com>
- <20241204150326.1470749-5-quic_vdadhani@quicinc.com>
+ <20241204150326.1470749-2-quic_vdadhani@quicinc.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -125,76 +125,60 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20241204150326.1470749-5-quic_vdadhani@quicinc.com>
+In-Reply-To: <20241204150326.1470749-2-quic_vdadhani@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi,
-
 On 04/12/2024 16:03, Viken Dadhaniya wrote:
-> Load the firmware to QUP SE based on the "qcom,load-firmware" property
-> specified in devicetree. Populate Serial engine and base address details
-> in the probe function of the protocol driver and pass to firmware load
-> routine.
+> Document the 'qcom,load-firmware' and 'qcom,xfer-mode' properties to
+> support SE(Serial Engine) firmware loading from the protocol driver and to
+> select the data transfer mode, either GPI DMA (Generic Packet Interface)
+> or non-GPI mode (PIO/CPU DMA).
 > 
-> Skip the firmware loading if the firmware is already loaded in Serial
-> Engine's firmware memory area.
+> I2C controller can operate in one of two modes based on the
+> 'qcom,xfer-mode' property, and the firmware is loaded accordingly.
 > 
 > Co-developed-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
 > Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
 > Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
 > ---
->   drivers/soc/qcom/qcom-geni-se.c      | 445 +++++++++++++++++++++++++++
->   include/linux/soc/qcom/geni-se.h     |  17 +
->   include/linux/soc/qcom/qup-fw-load.h | 179 +++++++++++
->   3 files changed, 641 insertions(+)
->   create mode 100644 include/linux/soc/qcom/qup-fw-load.h
+>   .../devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml   | 11 +++++++++++
+>   1 file changed, 11 insertions(+)
 > 
-> diff --git a/drivers/soc/qcom/qcom-geni-se.c b/drivers/soc/qcom/qcom-geni-se.c
-> index 4cb959106efa..423102fac3fc 100644
-> --- a/drivers/soc/qcom/qcom-geni-se.c
-> +++ b/drivers/soc/qcom/qcom-geni-se.c
-> @@ -1,5 +1,6 @@
->   // SPDX-License-Identifier: GPL-2.0
->   // Copyright (c) 2017-2018, The Linux Foundation. All rights reserved.
-> +// Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+> diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
+> index 9f66a3bb1f80..a26f34fce1bb 100644
+> --- a/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
+> @@ -66,6 +66,15 @@ properties:
+>     required-opps:
+>       maxItems: 1
 >   
->   /* Disable MMIO tracing to prevent excessive logging of unwanted MMIO traces */
->   #define __DISABLE_TRACE_MMIO__
-> @@ -15,6 +16,7 @@
->   #include <linux/pinctrl/consumer.h>
->   #include <linux/platform_device.h>
->   #include <linux/soc/qcom/geni-se.h>
-> +#include <linux/soc/qcom/qup-fw-load.h>
->   
->   /**
->    * DOC: Overview
-> @@ -97,6 +99,9 @@ struct geni_wrapper {
->   	unsigned int num_clks;
->   };
->   
-> +/* elf file should be at /lib/firmware/ */
-> +#define QUP_FW_ELF_FILE	"qupv3fw.elf"
+> +  qcom,load-firmware:
+> +    type: boolean
+> +    description: Optional property to load SE (serial engine) Firmware from protocol driver.
+> +
+> +  qcom,xfer-mode:
+> +    description: Value 1,2 and 3 represents FIFO, CPU DMA and GSI DMA mode respectively.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [1, 2, 3]
 
-I supposed the qupv3fw.elf is SoC specific, so it should use /lib/firmware/qcom
-base path and also a SoC/platform specific path that should be specified
-with firmware-name in DT.
+In the code, FIFO mode is default if not specified, please precise it in the
+bindings aswell.
 
-With this property, "qcom,load-firmware" could be dropped.
+Thanks,
+Neil
 
 > +
->   /**
->    * struct geni_se_desc - Data structure to represent the QUP Wrapper resources
->    * @clks:		Name of the primary & optional secondary AHB clocks
-> @@ -110,6 +115,9 @@ struct geni_se_desc {
->   static const char * const icc_path_names[] = {"qup-core", "qup-config",
->   						"qup-memory"};
->   
-> +static const char * const protocol_name[] = { "None", "SPI", "UART",
-> +					      "I2C", "I3C", "SPI SLAVE"};
-> +
->   #define QUP_HW_VER_REG			0x4
->   
-<snip>
+>   required:
+>     - compatible
+>     - interrupts
+> @@ -142,5 +151,7 @@ examples:
+>           interconnect-names = "qup-core", "qup-config", "qup-memory";
+>           power-domains = <&rpmhpd SC7180_CX>;
+>           required-opps = <&rpmhpd_opp_low_svs>;
+> +        qcom,load-firmware;
+> +        qcom,xfer-mode = <1>;
+>       };
+>   ...
 
 
