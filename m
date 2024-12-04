@@ -1,92 +1,89 @@
-Return-Path: <devicetree+bounces-127136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127137-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 343429E483F
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 23:59:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E77AB9E4860
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 00:01:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB6C51880532
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 22:59:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C2E61167EE4
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 23:01:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D2BA202C25;
-	Wed,  4 Dec 2024 22:59:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0918194A43;
+	Wed,  4 Dec 2024 23:01:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IXiSUX49"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fY5Oqv6i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3609C1FC7C6
-	for <devicetree@vger.kernel.org>; Wed,  4 Dec 2024 22:59:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D40C18FDD5
+	for <devicetree@vger.kernel.org>; Wed,  4 Dec 2024 23:01:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733353167; cv=none; b=qLi/WVAl7haaki9LZcqQDGFGclzIju2rC+L+Bsp/KEGoSoh3wVhv0TmPp/LY3cEHvy9/iY27dY1z6ZmsGuixKIlF5qQcH/Vo5rCoEPz/169olCxklt8rT8TWZE2n3uVGsX6dLmgWb1VXRPXvvTWKrTggi5IDO1JDbPw0mWrVMTw=
+	t=1733353299; cv=none; b=TT4vRAW1S7gv/ikuLnih/Wv+ApC7FPzkPJVSkbkvcySaj6vPbenAKH13UFJ9myMMTIvh8PgtYOZk+QRkvltBXGa0X4qXwHD/a90/KOkqUbU36DRCUO3AcU3WH5KjjJByV4vSi/SVaH2BuAhoo78U6FKKToDrgAtKL+1BvXFaTYw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733353167; c=relaxed/simple;
-	bh=zu2zn/CG8LATXGnamKjYNIPIAQAZIUfMCZnfMDljbJw=;
+	s=arc-20240116; t=1733353299; c=relaxed/simple;
+	bh=dZvdIAAIVCb1Gn6fGg1mI/DXu0J+s56rXzMjSqtVB7k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CaqQFYCeQVWIQOulbmD+BYo2c32ORZEy9Th/Dey6SaHU6n1ejZDwcLAA3TcBfni8bsB5iKfJ4dInaQ5u57A84SG2wU05UBUvXr3T/UGdezmBMAdnTrgWhvT90MsXDW1pLzi7D0FkAGX6qpzGypWjf4ude2y1RjZoFd58mPPJmXc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IXiSUX49; arc=none smtp.client-ip=209.85.167.49
+	 Content-Type:Content-Disposition:In-Reply-To; b=R+icJ2naSBOf4+aJhGwWU9ImfiRADy0IBH2GMAP+bgebwYAe0K6yswSzm4/HpQRpPTtDa5BAUO+eLiFl2za8ug6y+31JOrRiNBQbl+2bEcM+GBzhS4C5L/nHGjHdhHOosc6GXI2UORRGh9nDof4uekiIVgEyB6+nphxoEtYYc/I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fY5Oqv6i; arc=none smtp.client-ip=209.85.208.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-53dde5262fdso400859e87.2
-        for <devicetree@vger.kernel.org>; Wed, 04 Dec 2024 14:59:24 -0800 (PST)
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2ffa8df8850so2440471fa.3
+        for <devicetree@vger.kernel.org>; Wed, 04 Dec 2024 15:01:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733353163; x=1733957963; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1733353296; x=1733958096; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=YTycC8k0POiTYVULvZ4XnFfri7Upa5YgerEMaIs+Jd8=;
-        b=IXiSUX49C5EBU55+Vp5Lm6WBVLlKpOw12VSzXQiQ9BctKqBt2mNbFdy4bApo0/hCL6
-         y/1P++taUn1sfQz75tL3k466L2ZAbQXHbOXbRkbMQ8lp+FjfM9HTWkO/7BM2j4yKfZ6S
-         XJnL2Mc1oJaj3iEzTBGlpjCS+IbsqQcWckJWcvM7qQ5WRGSB8pr0GT/1aRJzELYvB1u4
-         717qhqxcVAKjrFo8pWSqOhcYn+MjtR3MHrn1d4ABUjMe15DpzGI8+A/4Kb4Zf7DMBgqi
-         eM4sUPSErrJ8SO4gOlICgpUtTXcp4cLqlmxuzaEiyHEH4ms1PTjQq3aBi1pO89Ie94ve
-         uzwA==
+        bh=9vaTYGf0bQtIjfkF3yhPnmJiZRJ8Kz7bkXSyKGXSTLE=;
+        b=fY5Oqv6iVNGz5a75L+TcLjyw/m0PcoKYfX2u+3vz7J+XJEfIdxt+th9QCWAoAqe2t0
+         +MAxCoS2mz0tKnEzfOL5itN7zigHBrKLJMvhtIRqDK05fp5sdWxpQAl8tMAQW/VtOohy
+         ScFtWSzw+lPFQk8GIJD+OEqVLuOprqC5Aj0+XTX7fNkdRgFCg5LtGphGyOuokdk9QtON
+         jd5THf5Ce5IcMC+knBDKoEWJaGGHW6L4nZFyMJrivM/oWRzMbUjtjPLQd2cLu5DEBusU
+         OJoup6a7e0KNG84/wp82ODxa/t/Ro+y/HXtc1IMPx/AzFpZXdXwUA+sUBmQJsEprcs8Z
+         REGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733353163; x=1733957963;
+        d=1e100.net; s=20230601; t=1733353296; x=1733958096;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=YTycC8k0POiTYVULvZ4XnFfri7Upa5YgerEMaIs+Jd8=;
-        b=usSYaKO0Lejq7I/MytBNmTP4sxLwpd6xXwJsXGsTPsJschtBGDFOuwJPPXsyd/kggM
-         oIYShONT/+LxKJzWj6PdtKcdPTUEv9efcqs73PhTM9goz1kosVVsS7wo5sweBXvRG9Yc
-         HuJEDM6xxthhDhczVEks1HQZ1CHf9pwZO6fYioFo0I60igS/FWx7oIBcoE2iPziB8Uvd
-         WcksIvN72UgDJgpaU2EZtSGpOh14Aw3zCRiOf5NGkWVMqprQ21yT5lSzpklkf7WkK+JE
-         BRsaTWKRxWsNB41XZeaxMr2NTvQI/biNZd0pWlX3zIzxUctbsLtDHTBDZn9S4PSUp52v
-         +QrA==
-X-Forwarded-Encrypted: i=1; AJvYcCUWTJa8U+km2ODN1Vpl2tsMANOGZfP5OrhyHncgE5LbyMPGSexp3RF7Eh89lqZ6FdL2f/wDwbkfZkl5@vger.kernel.org
-X-Gm-Message-State: AOJu0YwITtCbGaHVnzC+PKgd27HjjsyeQHNYb3qff7EV71813U9nwpar
-	ptTbH5xYgfira+q819uiBadrf3F/g0qemxMCyQ9RV+qiSf/ugJPLii1ZJlhDmVQ=
-X-Gm-Gg: ASbGncvL1rDYNn++BFSBo7apUBovTXNDVBv/7/KhYD8ARYO0OZ/oeK1owR3uDW+EFBv
-	0QuVh8Bsk+/01zXopm74rsr0qP+ymSqMZPcM8G+86vgp10rQUnFIjYgYfRMSs9Lq0/KQTBLiHYf
-	rM3sCusD0HS5DZMl5mmxDOfuGsj1BHkTdlfKJYLcSmCdSSdEZ5zCEidRcxmazuGCk0IlYyo8Kkc
-	04GwWSDa9Dy3DR2CjVwl1jg/st5uWVX47BuWut27gqOXvOirkT8NQ1zno3jfksTvDdPhU5/JltE
-	/I615V9rPSDCJ6nnk09eC20Pl9JHkw==
-X-Google-Smtp-Source: AGHT+IFRjL/KhmDcGC8MucpwxgwNr0ZNRoGoJL7sxAYkJFIl0HN1ssgHjTDj9GY1umPdAlN+l8LS0A==
-X-Received: by 2002:a05:6512:2252:b0:53d:d3ff:77f6 with SMTP id 2adb3069b0e04-53e12a22f22mr5085713e87.46.1733353163247;
-        Wed, 04 Dec 2024 14:59:23 -0800 (PST)
+        bh=9vaTYGf0bQtIjfkF3yhPnmJiZRJ8Kz7bkXSyKGXSTLE=;
+        b=Rxeaf/XtuPa6eY5+3DB+pTL+M9YnAwid1yAuyUrCsgtXpb1u76tQE97jG2keBqVrUF
+         oqPwgWSudRT+Ybc38aBsfVRqcD+fYbAZ6RULvB1vV5QM5no/YcPY+ZQc0b1CyGhB/IAP
+         lPBZvBAv/d4dNkW89Ml8jPPEsbs/LK1wUf8lyZDUErav1+8kPgdLTC8A4pp16/6eEoXi
+         5Lytai9gv3SvoadrhlOtSpKdzvUdsJl/B9p4AzlsZIkwQ/TRy3N4lA/XspcopYNGdsTN
+         BnOPWYYbycp9DUnyE6m4/7QZpZttfV7Fnd8ezsFyXNLYmbWwMOMqGuEUrSSTSGJhTpt3
+         bZXw==
+X-Forwarded-Encrypted: i=1; AJvYcCVrH9Jw1yLoT0sWHEFsTCJyh6d6nRmaKnDgN0e51aCMcCajiSomQwTh5FBcyFK1nv+iiSWStEGZFmK1@vger.kernel.org
+X-Gm-Message-State: AOJu0YyVc5Dj5op1Pkgr5i5GIihAurrrtcBZieGiF+V9GzA0MV4tXoRk
+	pDlWhtpjkLqMrewfok+bEBeC8BFmuvDxl/y6eB7JEBMo1it3348chjkzHWGnOZs=
+X-Gm-Gg: ASbGncvHCsGSopXhoNH1x4wM4ie7+VjwA3+j+3ENPPMlZ0KxvUhuv/sCQhYqNlb7++N
+	qDIrHgMfJv2amIFygOPlql2vK61tP1XzCWhWq7GAiZsxwRReNSu5t1db9jtj8JHWWkfUWkWaPAB
+	TsBi6UbLQwrRrdILWbJai+oY4PWqsEg0WCj8kvJvaCEKD20DDdmoxXX2oSLbJp9RPF4ECo+r35W
+	ZlXJVZoiY+QNHt+r2YYwSqR4VIeCytqUbz2fBMqi026vvGg0Iz0QKmtAnrt1GPoPMNJ0GK5hCGd
+	o7R2zk/n6yfJZvm5jYANEmGUiwyvLw==
+X-Google-Smtp-Source: AGHT+IFTuplv2isdxHj5cnxXRgLfLSYqhiljXH2if0rM2tCYLl4uD9OrVYwTUyo0WS8OVxU2kC/gEw==
+X-Received: by 2002:a2e:bd0c:0:b0:2ff:d7e8:b71b with SMTP id 38308e7fff4ca-30009c940a7mr53718381fa.12.1733353296270;
+        Wed, 04 Dec 2024 15:01:36 -0800 (PST)
 Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53e22947a16sm29976e87.33.2024.12.04.14.59.20
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30020da27f1sm124871fa.37.2024.12.04.15.01.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Dec 2024 14:59:21 -0800 (PST)
-Date: Thu, 5 Dec 2024 00:59:19 +0200
+        Wed, 04 Dec 2024 15:01:34 -0800 (PST)
+Date: Thu, 5 Dec 2024 01:01:32 +0200
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Marcel Holtmann <marcel@holtmann.org>, 
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Bartosz Golaszewski <brgl@bgdev.pl>, quic_mohamull@quicinc.com, 
-	quic_hbandi@quicinc.com, quic_anubhavg@quicinc.com, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-bluetooth@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v4 2/4] arm64: dts: qcom: qcs6490-rb3gen: add and enable
- BT node
-Message-ID: <pzkijkdswskaq6232uldapz3b6v6zplif7uah24iwq3ymlezft@skbcy2vod3c5>
-References: <20241204131706.20791-1-quic_janathot@quicinc.com>
- <20241204131706.20791-3-quic_janathot@quicinc.com>
+To: Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc: lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org, 
+	robh@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	vkoul@kernel.org, kishon@kernel.org, andersson@kernel.org, konradybcio@kernel.org, 
+	p.zabel@pengutronix.de, quic_nsekar@quicinc.com, linux-arm-msm@vger.kernel.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-phy@lists.infradead.org
+Subject: Re: [PATCH v2 2/6] phy: qcom: Introduce PCIe UNIPHY 28LP driver
+Message-ID: <f2yfxyuhoiavwziq3nd64mly3qdxif5abt2qp4qvrizqytqrid@fqfb22rpu6ug>
+References: <20241204113329.3195627-1-quic_varada@quicinc.com>
+ <20241204113329.3195627-3-quic_varada@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,60 +92,35 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241204131706.20791-3-quic_janathot@quicinc.com>
+In-Reply-To: <20241204113329.3195627-3-quic_varada@quicinc.com>
 
-On Wed, Dec 04, 2024 at 06:47:04PM +0530, Janaki Ramaiah Thota wrote:
-> Add a node for the PMU module of the WCN6750 present on the
-> qcs6490-rb3gen board and assign its power outputs to the Bluetooth
-> module.
+On Wed, Dec 04, 2024 at 05:03:25PM +0530, Varadarajan Narayanan wrote:
+> From: Nitheesh Sekar <quic_nsekar@quicinc.com>
 > 
-> Signed-off-by: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
+> Add Qualcomm PCIe UNIPHY 28LP driver support present
+> in Qualcomm IPQ5332 SoC and the phy init sequence.
+> 
+> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
 > ---
->  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 165 ++++++++++++++++++-
->  1 file changed, 164 insertions(+), 1 deletion(-)
+> v2: Drop IPQ5018 related code and data
+>     Use uniform prefix for struct names
+>     Place "}, {", on the same line
+>     In qcom_uniphy_pcie_init(), use for-loop instead of while
+>     Swap reset and clock disable order in qcom_uniphy_pcie_power_off
+>     Add reset assert to qcom_uniphy_pcie_power_on's error path
+>     Use macros for usleep duration
+>     Inlined qcom_uniphy_pcie_get_resources & use devm_platform_get_and_ioremap_resource
+>     Drop 'clock-output-names' from phy_pipe_clk_register
+> ---
+>  drivers/phy/qualcomm/Kconfig                  |  12 +
+>  drivers/phy/qualcomm/Makefile                 |   1 +
+>  .../phy/qualcomm/phy-qcom-uniphy-pcie-28lp.c  | 307 ++++++++++++++++++
+>  3 files changed, 320 insertions(+)
+>  create mode 100644 drivers/phy/qualcomm/phy-qcom-uniphy-pcie-28lp.c
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> index 27695bd54220..07650648214e 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-> @@ -1,6 +1,6 @@
->  // SPDX-License-Identifier: BSD-3-Clause
->  /*
-> - * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> + * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
->   */
->  
->  /dts-v1/;
-> @@ -33,6 +33,7 @@
->  
->  	aliases {
->  		serial0 = &uart5;
-> +		serial1 = &uart7;
->  	};
->  
->  	chosen {
-> @@ -217,6 +218,63 @@
->  		regulator-min-microvolt = <3700000>;
->  		regulator-max-microvolt = <3700000>;
->  	};
-> +
-> +	wcn6750-pmu {
-> +		compatible = "qcom,wcn6750-pmu";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&bt_en>;
-> +		vddaon-supply = <&vreg_s7b_0p972>;
-> +		vddasd-supply = <&vreg_l11c_2p8>;
-> +		vddpmu-supply = <&vreg_s7b_0p972>;
-> +		vddrfa0p8-supply = <&vreg_s7b_0p972>;
-> +		vddrfa1p2-supply = <&vreg_s8b_1p272>;
-> +		vddrfa1p7-supply = <&vreg_s1b_1p872>;
-> +		vddrfa2p2-supply = <&vreg_s1c_2p19>;
-> +
-> +		bt-enable-gpios = <&tlmm 85 GPIO_ACTIVE_HIGH>;
 
-Doesn't WCN6750 also have SW_CTRL and wifi-enable pins?
-
-> +
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 -- 
 With best wishes
