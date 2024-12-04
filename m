@@ -1,59 +1,58 @@
-Return-Path: <devicetree+bounces-127029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83C7F9E4403
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 20:04:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D39259E42C4
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 19:02:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0B1E9BE3055
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 18:02:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 923D42856E9
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 18:02:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F8EB1F03F6;
-	Wed,  4 Dec 2024 17:45:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FF682066D2;
+	Wed,  4 Dec 2024 17:46:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mGp82C19"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c/jv1T6H"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 124EFB64A;
-	Wed,  4 Dec 2024 17:45:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D74B02066CF;
+	Wed,  4 Dec 2024 17:46:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733334313; cv=none; b=iqAfDZscEZlw5gSeqTaV+rx5hdwT4CycKLgsDcL0iQFXAxMwEq6yXj/cEeF1gcp3h7zUQFMCFkvUTZxSceFCPn5u3joWEezOIf+Sdg9JX9QVl2bt+JUIQqkfhVd/QTSzCiiL1hXUyxvJs7BYi9xYhh5h7P3gcmvqLe7m1kDT7AU=
+	t=1733334396; cv=none; b=F8nRdUArmTQRzqUhniRtHnVP3CmzJRvjx0G4JLNWFFRA52lSUWypp/Sp4UfdE8AKVmSG69+0tAbbvJBEhaszRpybMpFsGOOR4ZF1FQpUfLJvvNfjJdyX4TdQzN81MFWLZtCOPMKSz7+9ZCuaXZHwmRUCTFStV1sV4uVgnL7uifI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733334313; c=relaxed/simple;
-	bh=wf6CEilJbwd8lHy0ndxTActmOsu8tzbKBpEHpl727pY=;
+	s=arc-20240116; t=1733334396; c=relaxed/simple;
+	bh=wUa+JkE2RUtcqn7XNNQ88PQJGiolCj0UUBSyZYkVs/E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t9TAjXhDMkwIturjKrMMwArW5bea8yjJz7XLtX0nbBn0wDA2dpFCZyiP2Yh0jmf+/PJyjN1iFlpcqhX8zHK1Fl7BvufSW2Wt+TJg12Wr92XYBHytkeMhzdMbnuhT6pf7pt+sbl+QxW4fziBAwTe8b5ruPUHjY4GAuqwEdICJCXU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mGp82C19; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F212BC4CECD;
-	Wed,  4 Dec 2024 17:45:10 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=hahKqMe26gS0Ir/MbNxWXr61Azt2GX1FLwyBQa2O9ZrGqKQdc4wxzN2lMB3rlROLn3rFszxvtualxG/CHzinvzR088x5IaWAYBFQ1xai9sCdiW06p7AP/eYVSZOq+JEBcsI55/Chz9IGmxH9+EieUutXWnnWRS5bC+Sac4r9e98=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c/jv1T6H; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BE55C4CEDF;
+	Wed,  4 Dec 2024 17:46:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733334312;
-	bh=wf6CEilJbwd8lHy0ndxTActmOsu8tzbKBpEHpl727pY=;
+	s=k20201202; t=1733334395;
+	bh=wUa+JkE2RUtcqn7XNNQ88PQJGiolCj0UUBSyZYkVs/E=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mGp82C19f3rwQXalbvgRLx+83VFRM0kwVocrV4Q+uR9oSQx1BbAty3iyusJbjALfc
-	 8YAXRKrF3WC/G8vZnfHYC/nWis90Dxf1KdQZa30WkKxc94E8S5XWEScb1IZQs9libG
-	 D6RDPBPiq1qxorKq/5bqV6bnyAK3AOEoVWVrQMdDhg5vTCIYzsXYTa0WP4lbmY8Mnj
-	 0uix7MA9b1yz/oy55arLQrplfZD0qjaadl/4XjHTpOcHyL3n4Vk5dc0w9WjZfprGI9
-	 VGLNn7kQffoQDf5Kxl06xPbWLiGZncwYlH11HebBmOeLlL0YidaljtuxhIVEEC6KXa
-	 JAnxEEAHvnvLQ==
-Date: Wed, 4 Dec 2024 17:45:08 +0000
+	b=c/jv1T6HGttJoVwQj+dv1IxBoqkNPGxDDEIBL+Ki8fseJf5lUNL3/0vJ0mrjrhuH1
+	 jyVBpRnv5nNWZvjCWyJgK5v/XczKmpTAZ8hP7OiY2WbDq7BnttOHECgOoAuk6QhJc3
+	 40KuZvH1P0S0ajqIQE6hsGPeqcV50jBBtUCb/3hSkOPhF9FzPHXNd3UQDZlkPr5Dj/
+	 hcIVJ+UloxFnx/h/Ps8fHbv/p0msrJvQIzL4YVIePHVVGDxig61pb6Y7SIcD/nLZ1B
+	 67d//HSwZEcoL9ShtMqlFgz2ODOjH0z4EyUV8xhlrEidhmmLQpbA6hGoa6cGxNg55i
+	 MEXaEav2R4/7A==
+Date: Wed, 4 Dec 2024 17:46:30 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Igor Belwon <igor.belwon@mentallysanemainliners.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: soc: samsung: exynos-pmu: Add
- exynos990-pmu compatible
-Message-ID: <20241204-flyover-freckles-241e17dc2262@spud>
-References: <20241204145559.524932-1-igor.belwon@mentallysanemainliners.org>
- <20241204145559.524932-2-igor.belwon@mentallysanemainliners.org>
+To: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, robimarko@gmail.com,
+	quic_gurus@quicinc.com, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	quic_srichara@quicinc.com, quic_varada@quicinc.com
+Subject: Re: [PATCH 1/2] dt-bindings: firmware: qcom,scm: Document ipq5424 SCM
+Message-ID: <20241204-detest-overshoot-90470523378e@spud>
+References: <20241204133627.1341760-1-quic_mmanikan@quicinc.com>
+ <20241204133627.1341760-2-quic_mmanikan@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,35 +60,33 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="goWN9glBiQhpQ2Qv"
+	protocol="application/pgp-signature"; boundary="fACjiKA501eq81FY"
 Content-Disposition: inline
-In-Reply-To: <20241204145559.524932-2-igor.belwon@mentallysanemainliners.org>
+In-Reply-To: <20241204133627.1341760-2-quic_mmanikan@quicinc.com>
 
 
---goWN9glBiQhpQ2Qv
+--fACjiKA501eq81FY
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Dec 04, 2024 at 03:55:58PM +0100, Igor Belwon wrote:
-> Add a dt-binding compatible for the Exynos990 PMU. It's compatible
-> with the Exynos7 PMU design. It handles system reboot, as well as
-> other system control registers (i.e registers for the USB PHY).
+On Wed, Dec 04, 2024 at 07:06:26PM +0530, Manikanta Mylavarapu wrote:
+> Document the scm compatible for ipq5424 SoC.
 >=20
-> Signed-off-by: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---goWN9glBiQhpQ2Qv
+--fACjiKA501eq81FY
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ1CVJAAKCRB4tDGHoIJi
-0mUeAQDYQ4nkN/nPls385/Cfaq+RGGyLfxIq0/BrJdSoN9IglQD/XZYhF1NfKp7Q
-jT6zhIMDGugUT/G4n+VglbsyNkAZNQ0=
-=bhAe
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ1CVdgAKCRB4tDGHoIJi
+0lpAAQDZVcAqQ52MB0o3a09WHlt3q3vdFrKpd6C1WbNoxlInxwD9EfMysKFmg2Rr
+orEuyI106kKxJCu9Yxwi8VAaG1QfbAA=
+=HZK3
 -----END PGP SIGNATURE-----
 
---goWN9glBiQhpQ2Qv--
+--fACjiKA501eq81FY--
 
