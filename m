@@ -1,219 +1,111 @@
-Return-Path: <devicetree+bounces-126962-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126963-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21CE79E3C55
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 15:12:48 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88F8C169FFA
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 14:12:30 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 824EA207A33;
-	Wed,  4 Dec 2024 14:10:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H/lWxIYj"
-X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28CF89E3C5F
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 15:14:45 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 559941F8923;
-	Wed,  4 Dec 2024 14:10:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E227E2837FA
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 14:14:43 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B8121F7547;
+	Wed,  4 Dec 2024 14:14:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Z+f9Wlet"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE6DB1AF0DD;
+	Wed,  4 Dec 2024 14:14:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733321438; cv=none; b=EPNnU7uNHnr/utnI8iwW4EUYyCQiRIG9VJqOMIUqq6hQ7ddgakifd4UdoIOppiTAnqRMUDEW62awx4RsndcpzU1XAdQf3wsZXXgmofF7Fd50XYQyID/XnP3G4BuHtLNbywYQIY6n0C8H3ePsxDpHt+UpL7GfsNKw418cT9LYNy8=
+	t=1733321680; cv=none; b=SC94KM6ANRx2Nqvqpxtd5A4Muy1KEOU5CQu7ihS/Y6siLvkVcn5sEY+xWx/bVUaB3mtsNjqTCXmxYOWn4prpbtATmk+HF9wgYYR5ZpsBSYYVKf1j37UbqS5hZF0OsOiusT2dOuz4N2aeyQntoQTB0uSzEA6LZFGPsf2EgWCvpu0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733321438; c=relaxed/simple;
-	bh=YYSDsgbu4kMtRDP07uuP9pCt0culwplV4KoPxA6I3hI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dPBpR9ffUnK+C7+bYsaxbQxIQFQT4XFgjS5JJFFEeQT9S7rYHjlUVtYHSdkVl+mHow/ub2E7SNwaDo/v6jvuJwdRzhoCkbHB6dzn+BY3AJJ1VLQyoToBoHYfR8zZ5cU92+sQr5Rds3s4KebK9vy0pvQf4ZhQDiYUOGJC8N6aQRI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H/lWxIYj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27C5CC4CECD;
-	Wed,  4 Dec 2024 14:10:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733321437;
-	bh=YYSDsgbu4kMtRDP07uuP9pCt0culwplV4KoPxA6I3hI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=H/lWxIYjb/XMOitGejfbUCVwTnb0OQSj1sa+6z8o3yOf4vflWP64boaCLJocOV4Ua
-	 nWsNmJVSmkzqfwRHMOn67u+rRQFvBClGDfQ/Z1xKOdG+O1PzGPCXaoReoDJzuY1pes
-	 3wdqP2Nox7ZMZg6TyUIWi7RRSKoA31J3sf0D1MGdije5K/uCQmqCFd9zOCs4VmwH2u
-	 NPKaS/BiZG333RDBeSLQ6fVxw9IL0Rqx/C9HPxQnY7YrGy+V73ArLNIb3S/ljP4U/k
-	 MyDtgIJr1GYIQSxcgORFPh7DH+JyjoEPRMucX+x1IT3LSVl3ZRjeAiHIjtHA3gwAVH
-	 010T6iI30fqhg==
-Date: Wed, 4 Dec 2024 19:40:34 +0530
-From: Vinod Koul <vkoul@kernel.org>
-To: =?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-Cc: Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Sylwester Nawrocki <s.nawrocki@samsung.com>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Sam Protsenko <semen.protsenko@linaro.org>,
-	Will McVicker <willmcvicker@google.com>,
-	Roy Luo <royluo@google.com>, kernel-team@android.com,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH 8/9] phy: exynos5-usbdrd: subscribe to orientation
- notifier if required
-Message-ID: <Z1Bi2gRJefYy1tyo@vaman>
-References: <20241127-gs101-phy-lanes-orientation-phy-v1-0-1b7fce24960b@linaro.org>
- <20241127-gs101-phy-lanes-orientation-phy-v1-8-1b7fce24960b@linaro.org>
+	s=arc-20240116; t=1733321680; c=relaxed/simple;
+	bh=MDti7bPllJiHrMkEafMYWNSx072qv+rKy8Fhlfz1Jj4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Dq9/ThwH7pqXMOE7pRelFLjjc6qkMoBVu0cGOV2wlnWTnT4V4TQHTmFW9G5w75vjTg+Xk7WZWquk5reIcXfFaYfkx6HRFeGWqBmefx2+tpw3FrpPciB2q/rWMdUKycptmn0FQayWhec1GYtAKhqE7Gg9TPVgG71aVagKo5ARJGc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Z+f9Wlet; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B46j1tR030963;
+	Wed, 4 Dec 2024 14:14:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=pzbR+osZaDbdaEBknZn1z2
+	dHZzNqzcMOUfUL0hgShMc=; b=Z+f9WleteO3BWqbnNJVLpI2fg0LKSP7GuOHm5z
+	UbzJgluIuexpBiW/0KETISBcAa6T7TpB3GafsFRs8RDprBf0RGQ9W6qMckLC4FbF
+	K2BPb2Q5H8gEmrgsfXwNdkW4DIQn2dnMcw/djtxZN5Exjcy7Iv6ybJNeDj+a0gOm
+	D7MArvpL4i21drxK+4ZL+nPCKJ+goM1DqFT06wzQ2lHe8wsLzyIXy0BXXtZDD76x
+	pz2jBVCpXEWCCXZfWzaMVTQAnIQVEtYUmajTes0Q7J6TkmiMzw2z/hzt5gxFRxcq
+	DQwhjeOQ9hPQOzX3QHdAXmz3THbMA6nLBW7kdXCh6Vxi544g==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 439w90vg1e-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 04 Dec 2024 14:14:35 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B4EEYQw006891
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 4 Dec 2024 14:14:34 GMT
+Received: from hu-mmanikan-blr.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 4 Dec 2024 06:14:30 -0800
+From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+To: <lee@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
+Subject: [PATCH 0/2] Add the download mode support for IPQ5424
+Date: Wed, 4 Dec 2024 19:44:14 +0530
+Message-ID: <20241204141416.1352545-1-quic_mmanikan@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241127-gs101-phy-lanes-orientation-phy-v1-8-1b7fce24960b@linaro.org>
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: nYs55h1bDCvd_5LsPNAq1Eub8FdcAgY5
+X-Proofpoint-GUID: nYs55h1bDCvd_5LsPNAq1Eub8FdcAgY5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=516 bulkscore=0
+ impostorscore=0 phishscore=0 suspectscore=0 adultscore=0 mlxscore=0
+ spamscore=0 clxscore=1011 priorityscore=1501 malwarescore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412040108
 
-On 27-11-24, 10:58, André Draszik wrote:
-> gs101's SS phy needs to be configured differently based on the
-> connector orientation, as the SS link can only be established if the
-> mux is configured correctly.
-> 
-> The code to handle programming of the mux is in place already, this commit
-> now adds the missing pieces to subscribe to the Type-C orientation
-> switch event.
-> 
-> Note that for this all to work we rely on the USB controller
-> re-initialising us. It should invoke our .exit() upon cable unplug, and
-> during cable plug we'll receive the orientation event after which we
-> expect our .init() to be called.
-> 
-> Above reinitialisation happens if the DWC3 controller can enter runtime
-> suspend automatically. For the DWC3 driver, this is an opt-in:
->     echo auto > /sys/devices/.../11110000.usb/power/control
-> Once done, things work as long as the UDC is not bound as otherwise it
-> stays busy because it doesn't cancel / stop outstanding TRBs. For now
-> we have to manually unbind the UDC in that case:
->      echo "" > sys/kernel/config/usb_gadget/.../UDC
-> 
-> Signed-off-by: André Draszik <andre.draszik@linaro.org>
-> ---
->  drivers/phy/samsung/Kconfig              |  1 +
->  drivers/phy/samsung/phy-exynos5-usbdrd.c | 60 ++++++++++++++++++++++++++++++++
->  2 files changed, 61 insertions(+)
-> 
-> diff --git a/drivers/phy/samsung/Kconfig b/drivers/phy/samsung/Kconfig
-> index f10afa3d7ff5..fc7bd1088576 100644
-> --- a/drivers/phy/samsung/Kconfig
-> +++ b/drivers/phy/samsung/Kconfig
-> @@ -80,6 +80,7 @@ config PHY_EXYNOS5_USBDRD
->  	tristate "Exynos5 SoC series USB DRD PHY driver"
->  	depends on (ARCH_EXYNOS && OF) || COMPILE_TEST
->  	depends on HAS_IOMEM
-> +	depends on TYPEC || (TYPEC=n && COMPILE_TEST)
->  	depends on USB_DWC3_EXYNOS
->  	select GENERIC_PHY
->  	select MFD_SYSCON
-> diff --git a/drivers/phy/samsung/phy-exynos5-usbdrd.c b/drivers/phy/samsung/phy-exynos5-usbdrd.c
-> index 1a34e9b4618a..2010d25ee817 100644
-> --- a/drivers/phy/samsung/phy-exynos5-usbdrd.c
-> +++ b/drivers/phy/samsung/phy-exynos5-usbdrd.c
-> @@ -394,6 +394,7 @@ struct exynos5_usbdrd_phy_drvdata {
->   * @extrefclk: frequency select settings when using 'separate
->   *	       reference clocks' for SS and HS operations
->   * @regulators: regulators for phy
-> + * @sw: TypeC orientation switch handle
->   * @orientation: TypeC connector orientation - normal or flipped
->   */
->  struct exynos5_usbdrd_phy {
-> @@ -415,6 +416,7 @@ struct exynos5_usbdrd_phy {
->  	u32 extrefclk;
->  	struct regulator_bulk_data *regulators;
->  
-> +	struct typec_switch_dev *sw;
->  	enum typec_orientation orientation;
->  };
->  
-> @@ -1400,6 +1402,60 @@ static int exynos5_usbdrd_phy_clk_handle(struct exynos5_usbdrd_phy *phy_drd)
->  	return 0;
->  }
->  
-> +#if IS_ENABLED(CONFIG_TYPEC)
-> +static int exynos5_usbdrd_orien_sw_set(struct typec_switch_dev *sw,
-> +				       enum typec_orientation orientation)
-> +{
-> +	struct exynos5_usbdrd_phy *phy_drd = typec_switch_get_drvdata(sw);
-> +
-> +	scoped_guard(mutex, &phy_drd->phy_mutex)
-> +		phy_drd->orientation = orientation;
-> +
-> +	return 0;
-> +}
-> +
-> +static void exynos5_usbdrd_orien_switch_unregister(void *data)
-> +{
-> +	struct exynos5_usbdrd_phy *phy_drd = data;
-> +
-> +	typec_switch_unregister(phy_drd->sw);
-> +}
-> +
-> +static int exynos5_usbdrd_setup_notifiers(struct exynos5_usbdrd_phy *phy_drd)
-> +{
-> +	int ret;
-> +
-> +	phy_drd->orientation = (enum typec_orientation)-1;
+Enable the support for download mode to collect the RAM dumps if
+system crashes, to perform the post mortem analysis.
 
-Should this be TYPEC_ORIENTATION_NONE?
+Depends On:
+https://lore.kernel.org/linux-arm-msm/20241204133627.1341760-1-quic_mmanikan@quicinc.com/
 
-> +	if (device_property_present(phy_drd->dev, "orientation-switch")) {
-> +		struct typec_switch_desc sw_desc = { };
-> +
-> +		sw_desc.drvdata = phy_drd;
-> +		sw_desc.fwnode = dev_fwnode(phy_drd->dev);
-> +		sw_desc.set = exynos5_usbdrd_orien_sw_set;
-> +
-> +		phy_drd->sw = typec_switch_register(phy_drd->dev, &sw_desc);
-> +		if (IS_ERR(phy_drd->sw))
-> +			return dev_err_probe(phy_drd->dev,
-> +					     PTR_ERR(phy_drd->sw),
-> +					     "Failed to register TypeC orientation switch\n");
-> +
-> +		ret = devm_add_action_or_reset(phy_drd->dev,
-> +					       exynos5_usbdrd_orien_switch_unregister,
-> +					       phy_drd);
-> +		if (ret)
-> +			return dev_err_probe(phy_drd->dev, ret,
-> +					     "Failed to register TypeC orientation devm action\n");
-> +	}
-> +
-> +	return 0;
-> +}
-> +#else /* CONFIG_TYPEC */
-> +static int exynos5_usbdrd_setup_notifiers(struct exynos5_usbdrd_phy *phy_drd)
-> +{
-> +	return 0;
-> +}
-> +#endif /* CONFIG_TYPEC */
-> +
->  static const struct exynos5_usbdrd_phy_config phy_cfg_exynos5[] = {
->  	{
->  		.id		= EXYNOS5_DRDPHY_UTMI,
-> @@ -1789,6 +1845,10 @@ static int exynos5_usbdrd_phy_probe(struct platform_device *pdev)
->  	if (ret)
->  		return dev_err_probe(dev, ret, "failed to get regulators\n");
->  
-> +	ret = exynos5_usbdrd_setup_notifiers(phy_drd);
-> +	if (ret)
-> +		return ret;
-> +
->  	dev_vdbg(dev, "Creating usbdrd_phy phy\n");
->  
->  	for (i = 0; i < EXYNOS5_DRDPHYS_NUM; i++) {
-> 
-> -- 
-> 2.47.0.338.g60cca15819-goog
+Manikanta Mylavarapu (2):
+  dt-bindings: mfd: qcom,tcsr: Add compatible for ipq5424
+  arm64: dts: qcom: ipq5424: enable the download mode support
 
+ Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml | 1 +
+ arch/arm64/boot/dts/qcom/ipq5424.dtsi                | 6 ++++++
+ 2 files changed, 7 insertions(+)
+
+
+base-commit: c245a7a79602ccbee780c004c1e4abcda66aec32
+prerequisite-patch-id: 61ac27a1827f3c1ccd07515350c06378db1082d3
+prerequisite-patch-id: c4165710e51bc7f88970f09e3c5d9b2e4cf7c535
 -- 
-~Vinod
+2.34.1
+
 
