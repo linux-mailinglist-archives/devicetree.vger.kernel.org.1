@@ -1,189 +1,198 @@
-Return-Path: <devicetree+bounces-127004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127005-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 454C89E3F13
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 17:03:45 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 564289E3E09
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 16:19:46 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C069165425
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 15:19:43 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70A8F20ADC6;
+	Wed,  4 Dec 2024 15:19:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="YlEtrGEL"
+X-Original-To: devicetree@vger.kernel.org
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AC07CB24531
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 15:13:55 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C96D20B7ED;
-	Wed,  4 Dec 2024 15:13:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="C4IQ0q8H"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A24E420B1F7;
-	Wed,  4 Dec 2024 15:13:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD33C1F7079
+	for <devicetree@vger.kernel.org>; Wed,  4 Dec 2024 15:19:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733325231; cv=none; b=p9y5tITPShmOQS6qbc64fSVpX9eJ0uo2Y66pQQmJTWKEAVLO9oyYNkbS9Twe3DCsS901n5XH+POq5oFbB5NbYhN7TF/8X3cgDblFPJnknaS3K3hPKfd95CN/0MiUBYFwbTRUEM3ii3By0NwwlHYpmk/r+klRmjEfroNMcgIf7wQ=
+	t=1733325582; cv=none; b=XKCFU7rOEEHqLGLIAGyyFIXFulxANjM/fkrEnH4fRRFXeE2GqQCFam+PJssAzSMY4I8PDe9yLmfmnGJ19vJ5yOzW/wJb4/HzSvtVa64awBx9OaIgetLqFHdFG6hD/AM/s5/0wGgE2qZx8Ag8c0ML7JCh3qC9qtlN+hxf4cWwN/4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733325231; c=relaxed/simple;
-	bh=EEf76SgX/3puazt8ufia4uZKilO394GYwACgLeP/Df8=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ns/YOO+lGL3fL4XOAMKOJuHGe7pd5jirrZxMG2LbbRkE/qhPNzoDXeI5qbKEFBEGcuSW/49//dxtAKw6rkV9igHUur0hwN1Ul7Ao7mO5JIntvEtnqpfwD3PNT8by1v2ixeiJEkLq0M6X1D404j1fyYnzoBsVBdj7fD1Smsi9u2g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=C4IQ0q8H; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-434a10588f3so45357535e9.1;
-        Wed, 04 Dec 2024 07:13:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733325228; x=1733930028; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=K67aLAUzSfbUuMMVxrZ7xG6js3aZNsZytWIuEf4fsUo=;
-        b=C4IQ0q8HeQT/BKuAjnV4MA+fh/7s4fm00qxOCzdV1zteEXEXuQk+Je0+BnVY25pA7a
-         x7eexYzBzXdYUZJn5av4cLh0sSFbsumeQ8wxr+cmclBOeQWpFM17TVIrbfqI75uCGXrm
-         w/CuxHljucCS0YzoJI9WBVMcmzqKPJatrtXS6+hSbJApORWk4IR3v27iMzvjCmqU7vIn
-         t2a7aI8W0XpZ0rZ4Swc1ejMIFLyoxLC+OtR3LS5wW/mAiea3FYML9L5M1lAgb0as49g2
-         LTdk9Kd13eUBoNlnaMsuIcecWf5TX1uLnfSXWnM2wqQpJTAy2N3N3mmbGZBeROm4C/Vp
-         7ANw==
+	s=arc-20240116; t=1733325582; c=relaxed/simple;
+	bh=rKDCPf8A9rIpjJrOC+5ylAOaezhr016mpWauI4DkMDU=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=RvzFl+bHZNxEraap9eJkjbMnDVWTToK47k3NcJaSq4aMzch1/97QoyM0NCfK2VPeBfNPUHQq5baZZlA5TGBg1Ixp/xHm2899x2U6pDs4ty1ROd87tjg+WeXo8LetPdDEpQ/2PuikHoNCNLUI72/FoMes+4xbnTb/73/pLr9Mxcg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=YlEtrGEL; arc=none smtp.client-ip=185.125.188.122
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-oo1-f71.google.com (mail-oo1-f71.google.com [209.85.161.71])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 01D5B40CEB
+	for <devicetree@vger.kernel.org>; Wed,  4 Dec 2024 15:19:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1733325574;
+	bh=mT6saqI3kUrpS1by1WPPwkqD7keXMeGTbVJLvZHkNkU=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=YlEtrGEL8R6MyiKrBGHAakJvcfiWPg/J3Yu3/SOecA6iJusYMObwiZDlWfQYHHhbF
+	 LR4K4ScOSj9w2GafGDxCQiFvHXIhNPQT2Wpq7LxTWgG+3/vPiIT6jn4J7NBvwbOALL
+	 QtrW5seFcuh5JYhza3mKUwfXKzpcnbBjl3A8akH1a/GMC2H49JTkzb5ZS3nAuUiDMr
+	 eBMDZHccb4Fekspbfr/FeZh9v+yls757uVbq8OKsATJ0bCTSXKvWzUXSqkXnALEmlU
+	 Lp9Up6ihCOe08K8jaOU2pUet41QMqhi/27Q/zLKuNZFHxrBaWv89GUXF0z/D8j1F+6
+	 6inTmbqjhVhjw==
+Received: by mail-oo1-f71.google.com with SMTP id 006d021491bc7-5f1e9fac321so810657eaf.1
+        for <devicetree@vger.kernel.org>; Wed, 04 Dec 2024 07:19:33 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733325228; x=1733930028;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=K67aLAUzSfbUuMMVxrZ7xG6js3aZNsZytWIuEf4fsUo=;
-        b=o59UXcUL8okyEK5wYD2tb1RUgqi3Z8hFGT2iEx8AwdWiueAS2Zn2GEhxg2X+hPu8h/
-         wpwL15CJlTbb2hpJ9e9yCc+oCNXChk3crO2DL2vAbwe0zkPkopZAHHYZDXNhpYTlf0oL
-         zGQHf1XDWDf/vh71YgwPL2WrROwr+sFm/YiL2S5IG0o9m5X/l04WK93CF0M0uH72SgRC
-         RLZ/eB5jK1D0jfKck/paL8P0CAVAx2MHp3Td8j9r1o/nuPKTvq2xEApLIbpYI9DkND7E
-         qaQCLreDD9rCNw8qvYyE/KWWJpi+/4vSaSGihSIbF++5lcu5SWYPJYxyPNzTMRcqG1TQ
-         XxBg==
-X-Forwarded-Encrypted: i=1; AJvYcCWqRYh9ZljQpb5Tq03LxpQdGQnGoI2WviFJ6GkrOk+l/W54fQSVOSqIRIyy381zfQ9WFE9kqKoW2iIx@vger.kernel.org, AJvYcCXTpqQ0+lDveLEv3kDakRah/W3lUVNEa5w8LONQ5HxzfzQXbmiUfkr0FljJJWrxpVdsw+8y6mYO4vE=@vger.kernel.org, AJvYcCXa1tt8IEWP6b2XURceeL9ue9SuvBZXIn6lJfq4KCtPaARX6wJpb2a8ZyBAA+ya74xbpxFjShJbTHIqz154@vger.kernel.org
-X-Gm-Message-State: AOJu0YxqUxnHJ2sW5W2wKz2ZvQ0ogBwvvvVKP9nBgi0AHGe3WGDP72aF
-	ubn8BsO1ZxN3gIl1eX0gy6Ge+yUQPwPVtZ6bRU1OjHS6YjyH9pwlyISLLw==
-X-Gm-Gg: ASbGncs0JPkVesa7ECWE2rSn7mg/BjKS3EfJpR0Xz45hocSjo+uDWf+xxwd0ax3C04v
-	SxITgTsy0d7zMhVmo4KAZ6qxaJhvAe9DShP/q0a9+/8b3xsxRR4+icLLhQWHOzhZfY2xHrmAwQf
-	mpOC85l5vyxq4G1v2G/YHfTE0NRsG+nWp/BVeuNYSbH3w9zAZ9uCxVEv+ljeL/L75cZB5bMTkzN
-	1RUu7XBvqBmZ+WULNwTB6KYPsF9DFqrVYqxPTUdtCP3OA7TAWfvHWiFR3+ov9kASX8RwUL72w3M
-	Iq53qw==
-X-Google-Smtp-Source: AGHT+IGZWimo8j6jMFRask/atuO/zxTgFDYDzsdxIc9v2gqFWxahTgIfn6oEZjIvWK770r9mpIOd6Q==
-X-Received: by 2002:a05:600c:1c1d:b0:434:932b:a44c with SMTP id 5b1f17b1804b1-434d3fe339emr38546645e9.27.1733325227755;
-        Wed, 04 Dec 2024 07:13:47 -0800 (PST)
-Received: from Ansuel-XPS. (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434d5288e02sm27431415e9.20.2024.12.04.07.13.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Dec 2024 07:13:47 -0800 (PST)
-Message-ID: <675071ab.7b0a0220.183cea.8610@mx.google.com>
-X-Google-Original-Message-ID: <Z1Bxp0xQYLa6G0a6@Ansuel-XPS.>
-Date: Wed, 4 Dec 2024 16:13:43 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: kernel test robot <lkp@intel.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	upstream@airoha.com, llvm@lists.linux.dev,
-	oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH v5 2/2] cpufreq: airoha: Add EN7581 CPUFreq SMCCC driver
-References: <20241203163158.580-2-ansuelsmth@gmail.com>
- <202412041929.8aCqrGnO-lkp@intel.com>
+        d=1e100.net; s=20230601; t=1733325569; x=1733930369;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mT6saqI3kUrpS1by1WPPwkqD7keXMeGTbVJLvZHkNkU=;
+        b=MPrHWvp3KMgTvsW6NTmF3XXzQwirFDRbvXlb8d2TQ0FlHGcelesHTdzlux/f1c76aP
+         4z0hVehJwv5zljMXhh1v3webGwTSmd+ZddpRychMkUzCl9KrQ7qVciyWSkwYgv5JPgO3
+         n400J9TdqJWulTow71bEGihm7EHfDTGhf5J2ccXmPrnPdXDLOOCQ+zm8qPdp1QFLbZ4r
+         BpXPCFatxPz4U6RP+lgoBFmzkv9X2FqCRDRsV4ytHd6HmtYNnQ2/muFcLwe81xvB7P0u
+         Jd1fyJsBw+liBUZ8u7mLryYbewJmPnpahBcE0t1TqLVSnzGeXXFTSnbrQu8LWJafMdUQ
+         awbw==
+X-Forwarded-Encrypted: i=1; AJvYcCVFIhGHisX/uIvUK3tXmk/tA+FcgaZ+txBxzcEVziiAibEzP07peJVm/OBR/548nmH2kDBs1hBW8cg5@vger.kernel.org
+X-Gm-Message-State: AOJu0YxFUt1Urh6YCpg/7T7oBahifSYO7t5A2Nf9J5Y2HhFVUZCq6pKz
+	xKmhfB3NXt2vxmI3jxRtIMPRT+yquPiRRqK3jNUhHM5lo0CYYovoq9imRvmUbRm6zFyCZw07fE0
+	44t5wlK3oFMukCQcrhgDmF/o3cPhnEEIFjcq4PHd/WN/vFhchqRSaMlDCun/ELeVrcINysdliap
+	o3g7BhXA+ysEp350XG9PAYwmM/SgQ0JWI2feiEcXsSPV9Vx1QuBA==
+X-Gm-Gg: ASbGncu7HfUZ1lSdE4yaIBl7ACctIW3KZl7klp+UDs7NDNj5R5EH5kthOaN2LF/CYxN
+	RZC3PwpC7cRHDL7W/yKTV2dym/GqU987JzcgJotVYW/4LNOnldvT/iuKn1T1h
+X-Received: by 2002:a05:6820:1e10:b0:5f1:dc89:fa85 with SMTP id 006d021491bc7-5f25b131ff8mr4435715eaf.3.1733325569635;
+        Wed, 04 Dec 2024 07:19:29 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEYwLk9Qr3DA7xA9lz+xOHZPQK14U34Jh9h4Le9KlnSbh+Bl4LotmHax0+v3W1xjiGt64wfnRfDdpr4eIKywwE=
+X-Received: by 2002:a05:6820:1e10:b0:5f1:dc89:fa85 with SMTP id
+ 006d021491bc7-5f25b131ff8mr4435690eaf.3.1733325569341; Wed, 04 Dec 2024
+ 07:19:29 -0800 (PST)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 4 Dec 2024 15:19:28 +0000
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <20241204111424.263055-1-bigunclemax@gmail.com>
+References: <20241204111424.263055-1-bigunclemax@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <202412041929.8aCqrGnO-lkp@intel.com>
+Mime-Version: 1.0
+Date: Wed, 4 Dec 2024 15:19:28 +0000
+Message-ID: <CAJM55Z-YAMtRN=K5KxCH1+++Xw4uMM_c49z8tGzi3snU+-KrYA@mail.gmail.com>
+Subject: Re: [PATCH v1] riscv: dts: thead: Fix TH1520 emmc and shdci clock rate
+To: bigunclemax@gmail.com
+Cc: Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, linux-riscv@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Dec 04, 2024 at 07:22:41PM +0800, kernel test robot wrote:
-> Hi Christian,
-> 
-> kernel test robot noticed the following build errors:
-> 
-> [auto build test ERROR on rafael-pm/linux-next]
-> [also build test ERROR on rafael-pm/bleeding-edge robh/for-next linus/master v6.13-rc1 next-20241203]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch#_base_tree_information]
-> 
-> url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Marangi/cpufreq-airoha-Add-EN7581-CPUFreq-SMCCC-driver/20241204-113105
-> base:   https://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git linux-next
-> patch link:    https://lore.kernel.org/r/20241203163158.580-2-ansuelsmth%40gmail.com
-> patch subject: [PATCH v5 2/2] cpufreq: airoha: Add EN7581 CPUFreq SMCCC driver
-> config: arm-randconfig-003 (https://download.01.org/0day-ci/archive/20241204/202412041929.8aCqrGnO-lkp@intel.com/config)
-> compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project 592c0fe55f6d9a811028b5f3507be91458ab2713)
-> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241204/202412041929.8aCqrGnO-lkp@intel.com/reproduce)
-> 
-> If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202412041929.8aCqrGnO-lkp@intel.com/
-> 
-> All errors (new ones prefixed by >>):
-> 
-> >> drivers/cpufreq/airoha-cpufreq.c:41:34: error: variable has incomplete type 'const struct arm_smccc_1_2_regs'
->       41 |         const struct arm_smccc_1_2_regs args = {
->          |                                         ^
->    drivers/cpufreq/airoha-cpufreq.c:41:15: note: forward declaration of 'struct arm_smccc_1_2_regs'
->       41 |         const struct arm_smccc_1_2_regs args = {
->          |                      ^
-> >> drivers/cpufreq/airoha-cpufreq.c:45:28: error: variable has incomplete type 'struct arm_smccc_1_2_regs'
->       45 |         struct arm_smccc_1_2_regs res;
->          |                                   ^
->    drivers/cpufreq/airoha-cpufreq.c:41:15: note: forward declaration of 'struct arm_smccc_1_2_regs'
->       41 |         const struct arm_smccc_1_2_regs args = {
->          |                      ^
-> >> drivers/cpufreq/airoha-cpufreq.c:47:2: error: call to undeclared function 'arm_smccc_1_2_smc'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
->       47 |         arm_smccc_1_2_smc(&args, &res);
->          |         ^
->    drivers/cpufreq/airoha-cpufreq.c:81:34: error: variable has incomplete type 'const struct arm_smccc_1_2_regs'
->       81 |         const struct arm_smccc_1_2_regs args = {
->          |                                         ^
->    drivers/cpufreq/airoha-cpufreq.c:81:15: note: forward declaration of 'struct arm_smccc_1_2_regs'
->       81 |         const struct arm_smccc_1_2_regs args = {
->          |                      ^
->    drivers/cpufreq/airoha-cpufreq.c:86:28: error: variable has incomplete type 'struct arm_smccc_1_2_regs'
->       86 |         struct arm_smccc_1_2_regs res;
->          |                                   ^
->    drivers/cpufreq/airoha-cpufreq.c:81:15: note: forward declaration of 'struct arm_smccc_1_2_regs'
->       81 |         const struct arm_smccc_1_2_regs args = {
->          |                      ^
->    drivers/cpufreq/airoha-cpufreq.c:88:2: error: call to undeclared function 'arm_smccc_1_2_smc'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
->       88 |         arm_smccc_1_2_smc(&args, &res);
->          |         ^
->    6 errors generated.
-> 
-> 
-> vim +41 drivers/cpufreq/airoha-cpufreq.c
-> 
->     37	
->     38	static unsigned long airoha_cpufreq_clk_get(struct clk_hw *hw,
->     39						    unsigned long parent_rate)
->     40	{
->   > 41		const struct arm_smccc_1_2_regs args = {
->     42			.a0 = AIROHA_SIP_AVS_HANDLE,
->     43			.a1 = AIROHA_AVS_OP_GET_FREQ,
->     44		};
->   > 45		struct arm_smccc_1_2_regs res;
->     46	
->   > 47		arm_smccc_1_2_smc(&args, &res);
->     48	
->     49		/* SMCCC returns freq in MHz */
->     50		return (int)(res.a0 * 1000 * 1000);
->     51	}
->     52	
-> 
-> -- 
-> 0-DAY CI Kernel Test Service
-> https://github.com/intel/lkp-tests/wiki
+bigunclemax@ wrote:
+> From: Maksim Kiselev <bigunclemax@gmail.com>
+>
+> In accordance with LicheePi 4A BSP the clock that comes to emmc/sdhci
+> is 198Mhz.
+>
+> But changing from fixed-clock to CLK_EMMC_SDIO leads to increasing input
+> clock from 198Mhz to 792Mhz. Because the CLK_EMMC_SDIO is actually 792Mhz.
+>
+> Therefore calculation of output SDCLK is incorrect now.
+> The mmc driver sets the divisor to 4 times larger than it should be
+> and emmc/sd works 4 times slower.
+>
+> This can be confirmed with fio test:
+> Sequential read of emmc with fixed 198Mz clock:
+> READ: bw=289MiB/s (303MB/s)
+>
+> Sequential read with CLK_EMMC_SDIO clock:
+> READ: bw=82.6MiB/s (86.6MB/s)
+>
+> Let's fix this issue by providing fixed-factor-clock that divides
+> CLK_EMMC_SDIO by 4 for emmc/sd nodes.
 
-False positive or better say my error in the kconfig depends logic
+Thanks for finding this bug!
 
-This driver REQUIRE ARM64 bit for smccc and the target SoC is 64bit
-only. The randconfig catch a situation with ARCH_AIROHA and 32bit.
+However, this feels like a work-around for a bug in the clock driver, and even
+if there is a fixed factor divider somewhere this should probably be modelled
+by the clock driver. Did you look into the documentation[1] and try to figure
+out where eMMC clock comes from and where the /4 is missing?
 
--- 
-	Ansuel
+There is also a vendor tree somewhere with a much more complete clock driver.
+Drew do you remember where it is? Maybe it's worth looking at how that driver
+models the eMMC clocks.
+
+[1]: https://openbeagle.org/beaglev-ahead/beaglev-ahead/-/blob/main/docs/TH1520%20System%20User%20Manual.pdf
+
+/Emil
+
+>
+> Fixes: 03a20182e1e0 ("riscv: dts: thead: change TH1520 mmc nodes to use clock controller")
+> Signed-off-by: Maksim Kiselev <bigunclemax@gmail.com>
+> ---
+>  arch/riscv/boot/dts/thead/th1520.dtsi | 14 +++++++++++---
+>  1 file changed, 11 insertions(+), 3 deletions(-)
+>
+> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
+> index acfe030e803a..6c20965cd10c 100644
+> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
+> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+> @@ -229,6 +229,14 @@ stmmac_axi_config: stmmac-axi-config {
+>  		snps,blen = <0 0 64 32 0 0 0>;
+>  	};
+>
+> +	sdhci_clk: sdhci-clock {
+> +		compatible = "fixed-factor-clock";
+> +		clocks = <&clk CLK_EMMC_SDIO>;
+> +		#clock-cells = <0>;
+> +		clock-div = <4>;
+> +		clock-mult = <1>;
+> +	};
+> +
+>  	soc {
+>  		compatible = "simple-bus";
+>  		interrupt-parent = <&plic>;
+> @@ -328,7 +336,7 @@ emmc: mmc@ffe7080000 {
+>  			compatible = "thead,th1520-dwcmshc";
+>  			reg = <0xff 0xe7080000 0x0 0x10000>;
+>  			interrupts = <62 IRQ_TYPE_LEVEL_HIGH>;
+> -			clocks = <&clk CLK_EMMC_SDIO>;
+> +			clocks = <&sdhci_clk>;
+>  			clock-names = "core";
+>  			status = "disabled";
+>  		};
+> @@ -337,7 +345,7 @@ sdio0: mmc@ffe7090000 {
+>  			compatible = "thead,th1520-dwcmshc";
+>  			reg = <0xff 0xe7090000 0x0 0x10000>;
+>  			interrupts = <64 IRQ_TYPE_LEVEL_HIGH>;
+> -			clocks = <&clk CLK_EMMC_SDIO>;
+> +			clocks = <&sdhci_clk>;
+>  			clock-names = "core";
+>  			status = "disabled";
+>  		};
+> @@ -346,7 +354,7 @@ sdio1: mmc@ffe70a0000 {
+>  			compatible = "thead,th1520-dwcmshc";
+>  			reg = <0xff 0xe70a0000 0x0 0x10000>;
+>  			interrupts = <71 IRQ_TYPE_LEVEL_HIGH>;
+> -			clocks = <&clk CLK_EMMC_SDIO>;
+> +			clocks = <&sdhci_clk>;
+>  			clock-names = "core";
+>  			status = "disabled";
+>  		};
+> --
+> 2.45.2
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
