@@ -1,168 +1,117 @@
-Return-Path: <devicetree+bounces-126788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4A0F9E32B2
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 05:42:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 614869E32D0
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 05:55:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8D4A8284BCD
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 04:42:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2686B282A79
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 04:55:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A666D1632FE;
-	Wed,  4 Dec 2024 04:42:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TLjMdvyI"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F0BA17B421;
+	Wed,  4 Dec 2024 04:55:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5A1F383;
-	Wed,  4 Dec 2024 04:42:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C0451514CC
+	for <devicetree@vger.kernel.org>; Wed,  4 Dec 2024 04:55:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733287369; cv=none; b=dICt09rn2gd4PcqdAb444ykUou24HwKFGmcN2FFHhEGdw9KO8Qc9jgXnEU/IpXaRoT7/Us1GwkILp3qov7X3Ikn5uYjiG8k2nSRRaJsp0Bfm8a9A0M6l2yfr4F20SPaHi3qxS72jltJIhA6QPs8jS8RqURm2C72yPyz0lt0v8SI=
+	t=1733288143; cv=none; b=L08N+7ZFOwJ8C7EhA0/9lcPfBH+qBuNfCCFRqEoo3eqObgYdB0rRG+qTFcng6H/31SzODE+q34dpVKnY+g25DkJJYrJsz3mizXTml6q33D5jQmiDuTRkySLLHijBBvMYKS5AtML5ZmLr9CxEJ0nnYf7Y2gLRq3jjAQLlVW7blE4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733287369; c=relaxed/simple;
-	bh=5EKfOt38K82BnMIxNgyxs4POZDCXZEsPDK8yiorxv0U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=AgcQ/oGMZtXO40Djk2Z1N+CsGXse7bgmTsQIZcTrxm0SrELpsg/Lhx3Cn+VjdWOEAFp0zB2xDqETwoPtCOZE90v9lOIk+bVKPE8z6I3jSO/FivcbVogK2II13EgQI0RghUp/mjlI/jsK+dE/sBWp6a7S58IGsgRP3NGMCpmW8dE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TLjMdvyI; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B445VG9020221;
-	Wed, 4 Dec 2024 04:42:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	uWCTtijkX4Ym2tIYCpmzq6UqmSqL+/Rn/56+j7deBjc=; b=TLjMdvyImEtAvjHZ
-	dOD3bmnycsnpUVwdSbVmhwWfdvIi+WD91Z6h7yD9eEOGJee/xsnEW7aQnS8oYdsY
-	tVCbzcytPBZ0VsJ6phmm3tLDQA05xVPNJbR47ktpKm4XYfnK1OjaYvnHjf6uip4n
-	4Ined8RGD9/3Ntho7/tfS8T5Ip7Gvu+xpwilwHZXCSrBjzm2XRSyBsCe0bonFQ+v
-	MHVlWVJz6x1W+VHLtx40pQkg60HwqYrA28meV5y0l/1ZypkIpqJFFw19MA4dN0te
-	b9cTMM12p4Rt8K+w5U910hGxtUf6Fkw2Vu/6mAxalz07R/IoPf7UlzGWWBC85GpP
-	Fdatlw==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43a3exa0bt-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 04 Dec 2024 04:42:32 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B44gV8J001336
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 4 Dec 2024 04:42:31 GMT
-Received: from [10.217.217.81] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 3 Dec 2024
- 20:42:26 -0800
-Message-ID: <6cbe51ea-01a0-4adf-af41-314d42ec6d65@quicinc.com>
-Date: Wed, 4 Dec 2024 10:12:24 +0530
+	s=arc-20240116; t=1733288143; c=relaxed/simple;
+	bh=39tnwAoIM0dYsuBuJKAf/+puY0/UkQOOGhP6myvyn1I=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=g4ZudjUQetflDZSoK6WUOIVcheOF+ptmtkUokHBoSJznUjeh/C9hi09Vm8Lc7vxMFW1R7Zxad9vSwxJwq0R7lyGS0ITVqcTur84BTUS63si8TXtorGZtU0BlhHPeVYGYhZeFtejfmJcZ8yMhzV8Fh/e3zH0jjssXFzNTnCqRZBA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
+Received: from secure.fukaumi.org ([10.0.0.2])
+	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 4B44sq0l009553;
+	Wed, 4 Dec 2024 13:54:53 +0900
+From: FUKAUMI Naoki <naoki@radxa.com>
+To: heiko@sntech.de
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        dsimic@manjaro.org, sebastian.reichel@collabora.com,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        FUKAUMI Naoki <naoki@radxa.com>
+Subject: [PATCH 1/2] arm64: dts: rockchip: add package_thermal for Radxa ROCK 5A/5C
+Date: Wed,  4 Dec 2024 04:54:46 +0000
+Message-ID: <20241204045447.1036-1-naoki@radxa.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/7] clk: qcom: rpmh: Add support for SM8750 rpmh
- clocks
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Melody Olvera
-	<quic_molvera@quicinc.com>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        "Satya Durga
- Srinivasu Prabhala" <quic_satyap@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        "Bryan
- O'Donoghue" <bryan.odonoghue@linaro.org>
-References: <20241112002807.2804021-1-quic_molvera@quicinc.com>
- <20241112002807.2804021-3-quic_molvera@quicinc.com>
- <5pgwerxhqhyr2u47grqzgzvvng4rojzq4gozil7vy37bew5pqj@wt676vfjs7bg>
- <8d3c2efd-b6c3-4b01-ae01-78460f4e9f26@quicinc.com>
- <lyqiwzahl46fy2eqaz6g4wqwik623mstbjlew5mkfqj2zp4jxz@xjnt5uh2bc3p>
-Content-Language: en-US
-From: Taniya Das <quic_tdas@quicinc.com>
-In-Reply-To: <lyqiwzahl46fy2eqaz6g4wqwik623mstbjlew5mkfqj2zp4jxz@xjnt5uh2bc3p>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: QxO7JkSaVZU_cyUo6Os1g_BZxg5fkDb5
-X-Proofpoint-GUID: QxO7JkSaVZU_cyUo6Os1g_BZxg5fkDb5
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
- mlxlogscore=999 clxscore=1015 phishscore=0 adultscore=0 suspectscore=0
- malwarescore=0 spamscore=0 priorityscore=1501 impostorscore=0 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2412040035
+Content-Transfer-Encoding: 8bit
 
+add and enable package temperature based active cooling.
 
+Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+---
+this patch depends on [1] which depends on [2].
 
-On 11/19/2024 7:28 AM, Dmitry Baryshkov wrote:
-> On Mon, Nov 18, 2024 at 10:53:16AM -0800, Melody Olvera wrote:
->> On 11/15/2024 7:31 AM, Dmitry Baryshkov wrote:
->>> On Mon, Nov 11, 2024 at 04:28:02PM -0800, Melody Olvera wrote:
->>>> From: Taniya Das <quic_tdas@quicinc.com>
-> 
-> [...]
-> 
->>>> @@ -894,6 +919,7 @@ static const struct of_device_id clk_rpmh_match_table[] = {
->>>>    	{ .compatible = "qcom,sa8775p-rpmh-clk", .data = &clk_rpmh_sa8775p},
->>>>    	{ .compatible = "qcom,sar2130p-rpmh-clk", .data = &clk_rpmh_sar2130p},
->>>>    	{ .compatible = "qcom,sc7180-rpmh-clk", .data = &clk_rpmh_sc7180},
->>>> +	{ .compatible = "qcom,sc7280-rpmh-clk", .data = &clk_rpmh_sc7280},
->>>>    	{ .compatible = "qcom,sc8180x-rpmh-clk", .data = &clk_rpmh_sc8180x},
->>>>    	{ .compatible = "qcom,sc8280xp-rpmh-clk", .data = &clk_rpmh_sc8280xp},
->>>>    	{ .compatible = "qcom,sdm845-rpmh-clk", .data = &clk_rpmh_sdm845},
->>>> @@ -909,7 +935,7 @@ static const struct of_device_id clk_rpmh_match_table[] = {
->>>>    	{ .compatible = "qcom,sm8450-rpmh-clk", .data = &clk_rpmh_sm8450},
->>>>    	{ .compatible = "qcom,sm8550-rpmh-clk", .data = &clk_rpmh_sm8550},
->>>>    	{ .compatible = "qcom,sm8650-rpmh-clk", .data = &clk_rpmh_sm8650},
->>>> -	{ .compatible = "qcom,sc7280-rpmh-clk", .data = &clk_rpmh_sc7280},
->>> Please don't mix fixes and actual code. I'd suggest splitting sc7280
->>> move to the separate commit.
->>
->> Bryan O'Donoghue requested we sort these as part of this patch. I don't feel
->> strongly either way,
->> but clear guidance here would be appreciated.
-> 
-> I don't see v1 of this patch on the linux-arm-msm list (hint: use b4
-> tool to send patches), so I can not comment on what Bryan ment. But I'd
-> definitely say, moving of the sc7280 entry is a _separate_ commit.
-> 
->>
+[1] https://patchwork.kernel.org/project/linux-rockchip/cover/20241128121929.62646-1-naoki@radxa.com/
+[2] https://patchwork.kernel.org/project/linux-rockchip/patch/20241119095113.78151-1-naoki@radxa.com/
+---
+ .../boot/dts/rockchip/rk3588s-rock-5.dtsi     | 32 ++++++++++++++++++-
+ 1 file changed, 31 insertions(+), 1 deletion(-)
 
-I will push the latest patch fixing the issues in this patch.
-
->> Thanks,
->> Melody
->>
->>>
->>>> +	{ .compatible = "qcom,sm8750-rpmh-clk", .data = &clk_rpmh_sm8750},
->>>>    	{ .compatible = "qcom,x1e80100-rpmh-clk", .data = &clk_rpmh_x1e80100},
->>>>    	{ }
->>>>    };
->>>> -- 
->>>> 2.46.1
->>>>
->>
-> 
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5.dtsi
+index a8f40f43c838..a1cac40d439e 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5.dtsi
+@@ -33,7 +33,7 @@ analog-sound {
+ 			  "Headphone", "Headphones";
+ 	};
+ 
+-	fan {
++	fan: fan {
+ 		compatible = "pwm-fan";
+ 		#cooling-cells = <2>;
+ 		cooling-levels = <0 64 128 192 255>;
+@@ -379,6 +379,36 @@ rgmii_phy1: ethernet-phy@1 {
+ 	};
+ };
+ 
++&package_thermal {
++	polling-delay = <1000>;
++
++	trips {
++		package_fan0: package-fan0 {
++			hysteresis = <2000>;
++			temperature = <55000>;
++			type = "active";
++		};
++
++		package_fan1: package-fan1 {
++			hysteresis = <2000>;
++			temperature = <65000>;
++			type = "active";
++		};
++	};
++
++	cooling-maps {
++		map0 {
++			cooling-device = <&fan THERMAL_NO_LIMIT 1>;
++			trip = <&package_fan0>;
++		};
++
++		map1 {
++			cooling-device = <&fan 2 THERMAL_NO_LIMIT>;
++			trip = <&package_fan1>;
++		};
++	};
++};
++
+ &pcie2x1l2 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pcie20x1_2_perstn_m0>,
 -- 
-Thanks & Regards,
-Taniya Das.
+2.43.0
+
 
