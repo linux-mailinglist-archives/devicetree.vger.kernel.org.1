@@ -1,140 +1,115 @@
-Return-Path: <devicetree+bounces-127064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F9639E45E4
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 21:38:50 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37A379E44A6
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 20:33:53 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F3B2EB344DF
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 19:30:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 11CDB165068
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 19:33:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD6971C3BF4;
-	Wed,  4 Dec 2024 19:30:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C07921C3C1A;
+	Wed,  4 Dec 2024 19:33:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cnZ+uEiw"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="VkZoTORc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AB3D2391B3;
-	Wed,  4 Dec 2024 19:30:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 158CD1A8F7A
+	for <devicetree@vger.kernel.org>; Wed,  4 Dec 2024 19:33:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733340636; cv=none; b=OtUXgu2TOi9/lA9cYhY75nkYXVsrkzAzRuG1ZIWFSApiiPCRYx0mR7kQ79Bl/xmIVpRZNxFqXTm1hPCDetschaqKlPx8kFbh9R6EZ2n3QEFNLy0NS3cSvJCnUT8mmLaT85+ljFaVPD2bYCJTeuhlPM1+6TiYkRvhFN0T/B5doOw=
+	t=1733340826; cv=none; b=OIc7YlOUf8mjQ/u1N611rYKnwiTu2r8MDxQ8qqvLB6Z4lPwgK/xg/THOtq3iH65EbEekV3RBzTD3fDVjZdwP5I9yCYYhozlAS1UZSBWN9KzChHDS9EAwRUD96ztWkX6paiIF76p2rAZrTGOQIZ/qOHhaciZIh3ix6+nP9YSQQ+I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733340636; c=relaxed/simple;
-	bh=ihTJ2yXjg6e57IAiUEukEcJ9ypSdLyvvGf7Ps6RHyt0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VMpcMdxgwSeEuxhNmmMUtr1NJpX417MALBk+gKL+fSZAlg+sXVCjiiB2BuDPf0ZC3wvlaz+9ODIcoUQr10vO21em7qeqEGKOSEhA3AL09Mj65vpS5ApmEvgmzjs58HvcxIk4VIVOKMpCHKzeqKhi35fhVtOd2lQaG8E6pWVhVdg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cnZ+uEiw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0E9CC4CECD;
-	Wed,  4 Dec 2024 19:30:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733340636;
-	bh=ihTJ2yXjg6e57IAiUEukEcJ9ypSdLyvvGf7Ps6RHyt0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cnZ+uEiw68/OknjbhzgE+/eIr8+afVQ3AJWoZGCkSot6CAZdVdgTue6fDmbb1x1rX
-	 wIODjfF3hRtRWvjM747e+BRK8d9ymv17QK9eKDI1+xB+a3jqJp1QdZZib7gJGQokPO
-	 66v2ClrheJoJfWREGiOLZTyksrhNxg6DPlmANx+m94PgybMW3IKwrZUbIFsZBDz3On
-	 1fRbCOXjFTgAGaWUtcHbjqYIcUjKj5yp9q38enqHLcqmi5X0ae2uOYaD9atrNJXu+G
-	 ddRtepnXXcZ1AmDVTwizihUYWiQumh+TSk6f2SUhJEJM56vuHfsC0wTor/4JZbuOve
-	 CZcPAzztRHpyQ==
-Date: Wed, 4 Dec 2024 20:30:28 +0100
-From: Danilo Krummrich <dakr@kernel.org>
-To: Daniel Almeida <daniel.almeida@collabora.com>
-Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
-	ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
-	gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
-	tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com,
-	airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net,
-	pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com,
-	robh@kernel.org, saravanak@google.com,
-	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 15/16] rust: platform: add basic platform device /
- driver abstractions
-Message-ID: <Z1Ct1PhowNg4HiET@pollux>
-References: <20241022213221.2383-1-dakr@kernel.org>
- <20241022213221.2383-16-dakr@kernel.org>
- <7EA482EF-1D3E-4C3E-A805-4F404758610C@collabora.com>
+	s=arc-20240116; t=1733340826; c=relaxed/simple;
+	bh=b1Xpy6CD6aMD49xSm64SabOF+AaRJHNJEm1DcSmxM48=;
+	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ISYnkbgINVerqOFm/6hhfYYcHvHqBIpXrZ9GweMC0rjtyW9MaI1qIMBULkZqurpPe5M/KaGhtQlZxqi5z0iLvkv0x7rd45Y783PYzjOIUGLclvPfE4oXXSKrKTYJne+hDESTPaDRVmO0HfmjGVPUGMbofySPLS1U1ttzqMAzUbE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=VkZoTORc; arc=none smtp.client-ip=209.85.219.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-e2bd7d8aaf8so121061276.3
+        for <devicetree@vger.kernel.org>; Wed, 04 Dec 2024 11:33:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1733340823; x=1733945623; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aNJFJ6pRI65Hkx3S3msz6HnheriMpI4d7aUoNtf1ZHk=;
+        b=VkZoTORcjOF/QO7o5Z/7eH11o2WV19FflQSxUGnrBjPp6cm9ifyJkM6OD1nF9LlbG2
+         hEYp5cTQDP/ml/k/GHc7NFbVauLJgsfPFCKEHLFYCBxqUCIEZT5HYrRaa+XfwGKreIlT
+         /kDm/2ydT93Tdo3JCdISCeGy0K3FeIqe7aEMw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733340823; x=1733945623;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aNJFJ6pRI65Hkx3S3msz6HnheriMpI4d7aUoNtf1ZHk=;
+        b=NvTwDM5Xj9dt160yV+jyluAlqMbwMDe0Ov07/7p5WcDHKhb6R+XT9NQRkMrcVItpOg
+         u+xqzujtRA626vFKWkdsuVU7q+MV3008B33TTDrW7D+pQ0m3VK9L9VV6uNoAO9KeWfKf
+         bfeSg2yVaiMf3X6FVyrlbBw959lgun2C2MjUuUgo6pa6CwJ3tpCryJzOMK2as0YqbiOP
+         SN1CtOF9vSAOD6ocJMX/gPsmEX1YBjSx0yE/jMxeG8OZ3EtOgbigCCQbBiUnhWmqe3AO
+         B5jUhTNJbOu2NOwOkJt6aKqWaP1/lsi7bc8pcm19h7mUeuBgLazfxUphWzjbn7w/iUOE
+         d9bg==
+X-Forwarded-Encrypted: i=1; AJvYcCVebSj7PsZj7Q/IPWgDBVddZ9e8ofe1pClF6FYM51wMxgUQUsPcyx0gJHj1kbFS0yU1deEHrGbcZiIh@vger.kernel.org
+X-Gm-Message-State: AOJu0YxkBKq/OlSdPt4CyqJCiZqJWTYerJZ9ufQpYTkkzyjzB5Ba7qR+
+	D0GDWEwOfhdWBbqTU+1PmJFEkkS+X3n0xWFN8w7ENh2lS1gK5qNNlrPRCEQZI1pok/Qcn8hoF57
+	m2HXSNGbsmrNAgBr+4Pist3muu3Fv+2AtjJ70
+X-Gm-Gg: ASbGnctIuaDr5lLbZvhebroE+NO2qlRsSaFQKlm5yvlIvweiLmSjTSWkGnhWvmCgrYI
+	du2cLqB6ZevvfWBrlWI5Ut45I+D9lyPkQ4l6naeeusL50Ads3k55Y4QYn9rg=
+X-Google-Smtp-Source: AGHT+IH3lQTfDvoVM5SgtnrmkWgM8tKtP2qmtpTk83iDRH4qhKbofq2v85Sk9lkW6T3GFBZuCLJYvwma2CMebDYV29Q=
+X-Received: by 2002:a05:6902:726:b0:e39:8a36:5781 with SMTP id
+ 3f1490d57ef6-e39d39ee243mr6896832276.1.1733340823079; Wed, 04 Dec 2024
+ 11:33:43 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 4 Dec 2024 14:33:42 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <7EA482EF-1D3E-4C3E-A805-4F404758610C@collabora.com>
+In-Reply-To: <202412041839.pjv6awcS-lkp@intel.com>
+References: <20241204000415.2404264-1-swboyd@chromium.org> <202412041839.pjv6awcS-lkp@intel.com>
+From: Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.12.dev1+gaa8c22fdeedb
+Date: Wed, 4 Dec 2024 14:33:42 -0500
+Message-ID: <CAE-0n51ZnUnL9Ghc4VV=hH0ju+VNnq4HWj_xV5cOA-Q0B-Au5Q@mail.gmail.com>
+Subject: Re: [PATCH] of: Hide of_default_bus_match_table[]
+To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	kernel test robot <lkp@intel.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	patches@lists.linux.dev, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Dec 04, 2024 at 04:25:32PM -0300, Daniel Almeida wrote:
-> Hi Danilo,
-> 
-> > On 22 Oct 2024, at 18:31, Danilo Krummrich <dakr@kernel.org> wrote:
-> > +
-> > +/// The platform device representation.
-> > +///
-> > +/// A platform device is based on an always reference counted `device:Device` instance. Cloning a
-> > +/// platform device, hence, also increments the base device' reference count.
-> > +///
-> > +/// # Invariants
-> > +///
-> > +/// `Device` holds a valid reference of `ARef<device::Device>` whose underlying `struct device` is a
-> > +/// member of a `struct platform_device`.
-> > +#[derive(Clone)]
-> > +pub struct Device(ARef<device::Device>);
-> > +
-> > +impl Device {
-> > +    /// Convert a raw kernel device into a `Device`
-> > +    ///
-> > +    /// # Safety
-> > +    ///
-> > +    /// `dev` must be an `Aref<device::Device>` whose underlying `bindings::device` is a member of a
-> > +    /// `bindings::platform_device`.
-> > +    unsafe fn from_dev(dev: ARef<device::Device>) -> Self {
-> > +        Self(dev)
-> > +    }
-> > +
-> > +    fn as_dev(&self) -> &device::Device {
-> 
-> This has to be pub, since a platform::Device is at least as useful as a device::Device.
-> 
-> IOW: if an API takes &device::Device, there is no reason why someone with a &platform::Device
-> shouldn’t be able to call it.
-> 
-> In particular, having this as private makes it impossible for a platform driver to use Abdiel’s DMA allocator at [0].
+Quoting kernel test robot (2024-12-04 03:00:44)
+> Hi Stephen,
+>
+> kernel test robot noticed the following build warnings:
+>
+> [auto build test WARNING on 40384c840ea1944d7c5a392e8975ed088ecf0b37]
+>
+> url:    https://github.com/intel-lab-lkp/linux/commits/Stephen-Boyd/of-Hide-of_default_bus_match_table/20241204-123701
+> base:   40384c840ea1944d7c5a392e8975ed088ecf0b37
+> patch link:    https://lore.kernel.org/r/20241204000415.2404264-1-swboyd%40chromium.org
+> patch subject: [PATCH] of: Hide of_default_bus_match_table[]
+> config: sparc-allnoconfig (https://download.01.org/0day-ci/archive/20241204/202412041839.pjv6awcS-lkp@intel.com/config)
+> compiler: sparc-linux-gcc (GCC) 14.2.0
+> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241204/202412041839.pjv6awcS-lkp@intel.com/reproduce)
+>
+> If you fix the issue in a separate patch/commit (i.e. not just a new version of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202412041839.pjv6awcS-lkp@intel.com/
+>
+> All warnings (new ones prefixed by >>):
+>
+> >> drivers/of/platform.c:27:34: warning: 'of_default_bus_match_table' defined but not used [-Wunused-const-variable=]
+>       27 | static const struct of_device_id of_default_bus_match_table[] = {
+>          |                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~
 
-No worries, I already made it public in my branch [1], I'll send out a v4 soon.
-
-[1] https://github.com/Rust-for-Linux/linux/blob/staging/dev/rust/kernel/platform.rs#L213
-
-- Danilo
-
-> 
-> > +        &self.0
-> > +    }
-> > +
-> > +    fn as_raw(&self) -> *mut bindings::platform_device {
-> > +        // SAFETY: By the type invariant `self.0.as_raw` is a pointer to the `struct device`
-> > +        // embedded in `struct platform_device`.
-> > +        unsafe { container_of!(self.0.as_raw(), bindings::platform_device, dev) }.cast_mut()
-> > +    }
-> > +}
-> > +
-> > +impl AsRef<device::Device> for Device {
-> > +    fn as_ref(&self) -> &device::Device {
-> > +        &self.0
-> > +    }
-> > +}
-> > -- 
-> > 2.46.2
-> > 
-> 
-> — Daniel
-> 
-> [0]: https://lkml.org/lkml/2024/12/3/1281
-> 
+I will move the array into the function that uses it then.
 
