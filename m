@@ -1,119 +1,143 @@
-Return-Path: <devicetree+bounces-127134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17A2E9E4827
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 23:49:54 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 411279E482D
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 23:54:08 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D8B3618803B3
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 22:54:07 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD8E11F543C;
+	Wed,  4 Dec 2024 22:54:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="iP/8hB6x"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 564272845FD
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 22:49:52 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 014CF202C4A;
-	Wed,  4 Dec 2024 22:49:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="gJ9Buxxr"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3AF4202C2E
-	for <devicetree@vger.kernel.org>; Wed,  4 Dec 2024 22:49:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A65E2391AD;
+	Wed,  4 Dec 2024 22:54:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733352571; cv=none; b=SjLk7iUWGPHdh9fZG2aQc71xXy7uw016MRzV5vnJuricS4ZMJ1dIfoYn68+k4Gl/S3gA+oBOG5pgb8hKMXznEm8XMIlrWPY/KoebR3lI1/i/t+xxNkCLmYEFMIWmrva8f3BbGldL2caI5STzv6b9RE/FZZg/oTtMA615jiuzoaE=
+	t=1733352843; cv=none; b=PxUSKhGSsDRAqBEMRtMwGmNuyzY84qOOs/PlW1AnaHuRiRwV0vfvTVkmCh/9EKxaPMspKj34L/tdZve5PQTg3SiBC1DuVKXhh2zt3QGdwR8fjlbBu/aZ8PCsMHF9NjyAmHcLw0v+it9hqGDlbE2XmzStn6pcYoQkQZl7JXuKcpc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733352571; c=relaxed/simple;
-	bh=TFhy+fON5EYXB48RBtCSmjPevQfB+1YjtuhEruheq8w=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OE6m787+2aElZK7mOJ5Pqla/yLgKV0IjahESoiDXUUE3EDCIhx1MMGp++f+OQlHjHk0BYYnMJaVdA0OcJSHbHzPKwCPwVcqqwHALSd3+9jsVtJ3QamRYMmsvfV7YpeZif1i94U+EOH4jvjJmwuSyksG9pxtxJZ4BYCBt7Xnecyc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=gJ9Buxxr; arc=none smtp.client-ip=209.85.208.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2ffc3f2b3a9so2015711fa.1
-        for <devicetree@vger.kernel.org>; Wed, 04 Dec 2024 14:49:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1733352565; x=1733957365; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=s3NqyklxNKjn7GA1Xiioa4rdBEF1bx3QvQxtDhyi8+k=;
-        b=gJ9Buxxr4i+Zh6zHQ84t1zFOu/ew1Y4U7mWy78f/U7w/hx7N8N8W7d/jJG79Dh0xJ8
-         6ZeRKcS6YXNTjQf/WbV+IpV8jp+ObWuYrVj1YDZWKlmXyJl0+s2dXyd5a0X46Ci8brFp
-         VhMqaetajVFBEXAMLIW1NJ7MjulHdFgN00v+g=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733352565; x=1733957365;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=s3NqyklxNKjn7GA1Xiioa4rdBEF1bx3QvQxtDhyi8+k=;
-        b=mpIM/qbyFumdL/Zb7LKOFi7Zwk/gqbHOY451HVAhMpsHBidDU7puPJCaalxXTUMWsH
-         DuCgXTAfmV+2k2jTRWY5nHZGgTIPksaP8gGW/5ijAJ8PU6eZUYo2ParfdN2Lanmo19Jn
-         Z/E4Vck0UO5SElnOp1duhpM/fLMaP95h5WjFisc2hEJAlr88uy8JQ64k0CG3874pE8j3
-         iUfBSHLUGGU5wOO2BV/e8r77U65AeauucM63ETZ3ckBYQbxhp2K1qpAQlyOQme/V6gEF
-         oLdYULzV2XIzRUS7+c987MDcuhm9PUYJ73so4dBoQXIG9VsTPlmIg1pAhKMVCdYuClur
-         wQ3w==
-X-Forwarded-Encrypted: i=1; AJvYcCV/1klSJaQ4YpgW1UYdLfuTaiJPflG5OItOTtpR31piZq98fOZq3d+GSac1ShEkD4W16icnOqvWANEI@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzv38hHQLnfgJYiRfiz1OQsXXXAXJwr8RxxSmRSirflQCLXu+b6
-	sSr7+3LVisPoNJ9bIWRBQMyjJo5FqVYmZzYO/OREWbmE4qoTukxn5uXqa3loKQp3i5c4vgq2KSh
-	Y9O28
-X-Gm-Gg: ASbGncsiUHCMJxw0WVLOkAwZORHXfUFDu/zagUJqqat2MHz7Mxblg3DJZST0GaEfWM6
-	kXRfh/4prJyuw38pdpUbGzafzWHy5G3e+TdWqLbElRQYphlJa3ujLi7QEUrS+PFBkYKIDPcMGKw
-	8SBSoOlXJDvS8Da1rlIC0CFz/2gIN7MBY8nqy/WO7/aWuTZMAejrl7yoN/CGD77oSkMSwQM0/hf
-	+Ts6FWuSWVHTUT6DxlJu89jo8A6IAjyV0i5SwXPY6vtvOWLW373J77idwTOQWGDPULRlWes5src
-	gBqSb3ar30y2QgsOVQ==
-X-Google-Smtp-Source: AGHT+IHDKXwK6VsFoXIFpUtMUBaYHEmjk7+AuMEdQtt8/jzmClwqVD5ci/gV6HrYFLVyWGPhGP5B0g==
-X-Received: by 2002:a2e:a90a:0:b0:2fa:cdac:8732 with SMTP id 38308e7fff4ca-30009ce0b00mr68693031fa.30.1733352565003;
-        Wed, 04 Dec 2024 14:49:25 -0800 (PST)
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com. [209.85.208.179])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30020d85356sm94221fa.15.2024.12.04.14.49.23
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Dec 2024 14:49:23 -0800 (PST)
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2ffdbc0c103so1981001fa.3
-        for <devicetree@vger.kernel.org>; Wed, 04 Dec 2024 14:49:23 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWkFkZD3ktQkfdeMUPExrspnj0630lNY+Le1FU1ttD5MMiWGzTx76TOqdPRI4Fq3gvEKzmbEvsEEHgs@vger.kernel.org
-X-Received: by 2002:a05:6512:b0a:b0:53d:d44e:fae4 with SMTP id
- 2adb3069b0e04-53e12a0687fmr5763487e87.28.1733352563093; Wed, 04 Dec 2024
- 14:49:23 -0800 (PST)
+	s=arc-20240116; t=1733352843; c=relaxed/simple;
+	bh=phBG4qPWzZ0qStQD5GB5kfJM1TvRh39dWaqrGwY+E64=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=rqG14DWh+CvrHyNv6Dh2byjlW9x7oxpnvr3REx6b6EnZlcpgWjqzZtY6Nl6YqY5IGshqD1Nrct+it6Idn9Fpd61Nua/7vkqGUJVuwLHx1h7Nd2xcVHlLeKeIueMkcpJAkGy0UbyZDXucMhRtWTDqrfojCCc+BjcZ4eesT1xd1bI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=iP/8hB6x; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B4MfLcS026173;
+	Wed, 4 Dec 2024 22:53:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=/Q+3VnkjXBFaSuC92/iafg
+	3bdPqJUT22HKrS5ADna5o=; b=iP/8hB6x86ighS1gD4YgJj6pmJ/AnX7rAo+qtE
+	TDWnq2xLHZiwlY0TEqaqjCEPeHY00abtg4ufi9q2NMgO30KZJSSLKlJbvLCThT/P
+	2FXQ51qn24HPjomaph+/h3i+pdyZfnvdsPCKPfiSq+q9ZzB14i9CnXQto8YUzdzc
+	YXPaJJqFEE0+r9RW+JUUeCyf3GaV2jbBImEfxe2JKj5S/tJWnAuy+tUp112p3IZ9
+	4apqrcSuNzw/NszZ7Yn9S/j8PDY88hEKfKPDm4t3lHf+0itk2EXsU4BCxgzsCpFk
+	FxY8cfvoocEK2PBHdn85+F3iq7hjxS/10QzBj0YRxphY2vRw==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 439yr9n4s7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 04 Dec 2024 22:53:46 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B4MrjlI000790
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 4 Dec 2024 22:53:45 GMT
+Received: from hu-molvera-lv.qualcomm.com (10.49.16.6) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 4 Dec 2024 14:53:45 -0800
+From: Melody Olvera <quic_molvera@quicinc.com>
+Date: Wed, 4 Dec 2024 14:53:37 -0800
+Subject: [PATCH RESEND] dt-bindings: interrupt-controller: qcom,pdc:
+ Document SM8750 PDC
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241204-topic-misc-dt-fixes-v1-0-6d320b6454e6@linaro.org> <20241204-topic-misc-dt-fixes-v1-5-6d320b6454e6@linaro.org>
-In-Reply-To: <20241204-topic-misc-dt-fixes-v1-5-6d320b6454e6@linaro.org>
-From: Doug Anderson <dianders@chromium.org>
-Date: Wed, 4 Dec 2024 14:49:11 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=UKyyp4_BfHwpYLEB-N+-R0P=RVBsUDHHu2gS=Zwi3WmQ@mail.gmail.com>
-Message-ID: <CAD=FV=UKyyp4_BfHwpYLEB-N+-R0P=RVBsUDHHu2gS=Zwi3WmQ@mail.gmail.com>
-Subject: Re: [PATCH 5/5] arm64: dts: qcom: sc7180: fix psci power domain node names
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20241204-sm8750_master_pdc-v1-1-3a06cb62a28f@quicinc.com>
+X-B4-Tracking: v=1; b=H4sIAHDdUGcC/0XMPQ+CMBSF4b9C7mzJ7QeCTg6yOuhoDGnKRZpYi
+ i0SE8J/t7o4Pic57wKRgqUI+2yBQLON1g8JfJOB6fVwJ2bbZBAoFBeoWHRVWWDjdJwoNGNrmCg
+ LKjSiJDKQfmOgzr5/zSuc60t9OsIt7V3wjk19IP0vouBCopK7XGylUBUyzp4vaxrnHzMFffjCD
+ iY33sG6fgDA978GrwAAAA==
+X-Change-ID: 20241204-sm8750_master_pdc-275e5a003eec
+To: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Satya Durga Srinivasu Prabhala
+	<quic_satyap@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>,
+        Melody Olvera <quic_molvera@quicinc.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1733352825; l=1221;
+ i=quic_molvera@quicinc.com; s=20241204; h=from:subject:message-id;
+ bh=phBG4qPWzZ0qStQD5GB5kfJM1TvRh39dWaqrGwY+E64=;
+ b=iiXf6Qjb/hsHC45eAXMlOWfmC2zrz5+cqteIPU35vh9zkc/MpPRJr9Et2Ong94e/ZQuifgREA
+ cMuxRmoT3k5DiGwzBRFRUKFQoQP9yxI6XKecvnB4+7KSJe99HBF10fA
+X-Developer-Key: i=quic_molvera@quicinc.com; a=ed25519;
+ pk=1DGLp3zVYsHAWipMaNZZTHR321e8xK52C9vuAoeca5c=
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: G8oFa1XUxzk6P31GiSuHHsJrRSYElQ_Z
+X-Proofpoint-GUID: G8oFa1XUxzk6P31GiSuHHsJrRSYElQ_Z
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 impostorscore=0
+ clxscore=1015 priorityscore=1501 mlxlogscore=712 phishscore=0
+ lowpriorityscore=0 malwarescore=0 mlxscore=0 suspectscore=0 adultscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412040175
 
-Hi,
+Document the PDC block on the SM8750 SoC.
 
-On Wed, Dec 4, 2024 at 2:57=E2=80=AFAM Neil Armstrong <neil.armstrong@linar=
-o.org> wrote:
->
-> Rename the psci power domain node names to match the bindings.
->
-> This Fixes:
-> sc7180-acer-aspire1.dts: psci: 'cpu-cluster0', 'cpu0', 'cpu1', 'cpu2', 'c=
-pu3', 'cpu4', 'cpu5', 'cpu6', 'cpu7' do not match any of the regexes: '^pow=
-er-domain-', 'pinctrl-[0-9]+'
->
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc7180.dtsi | 18 +++++++++---------
->  1 file changed, 9 insertions(+), 9 deletions(-)
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+---
+Resending in case this fell through the cracks.
+Original:
+https://lore.kernel.org/all/20241021230439.2632480-1-quic_molvera@quicinc.com/
+---
+ Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
+index a54da66a89e73212f7b965997dc487d9f0d421b0..5d4a22322c45528a1a8b9a41cc9d4c88387b5a0f 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml
+@@ -47,6 +47,7 @@ properties:
+           - qcom,sm8450-pdc
+           - qcom,sm8550-pdc
+           - qcom,sm8650-pdc
++          - qcom,sm8750-pdc
+           - qcom,x1e80100-pdc
+       - const: qcom,pdc
+ 
+
+---
+base-commit: bcf2acd8f64b0a5783deeeb5fd70c6163ec5acd7
+change-id: 20241204-sm8750_master_pdc-275e5a003eec
+
+Best regards,
+-- 
+Melody Olvera <quic_molvera@quicinc.com>
+
 
