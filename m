@@ -1,54 +1,55 @@
-Return-Path: <devicetree+bounces-126986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B8549E3E88
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 16:42:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC1509E3E8E
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 16:43:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 90DE0B28D5D
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 14:59:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3F609B3D00C
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 15:00:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47CD420B1EC;
-	Wed,  4 Dec 2024 14:59:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7196620B1F5;
+	Wed,  4 Dec 2024 14:59:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mentallysanemainliners.org header.i=@mentallysanemainliners.org header.b="d2bJkY/v"
+	dkim=pass (2048-bit key) header.d=mentallysanemainliners.org header.i=@mentallysanemainliners.org header.b="CXJSZNLB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from out-02.smtp.spacemail.com (out-02.smtp.spacemail.com [63.250.43.87])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7A7C1B87C6;
-	Wed,  4 Dec 2024 14:59:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6B051B4124;
+	Wed,  4 Dec 2024 14:59:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=63.250.43.87
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733324385; cv=none; b=NRlm6bUdwWMF3S7rQdR/pp8nIkETkJyBlNoWWe6kZQZKYq37pfDeebCkUz546Z/acpPjG1QWrSqnGINBnWUNIO3pTCvgxF1nb3UtFviJICpH8l4le4t277iltFHeqxdNmW8efCK8cnXtKanKX1a9QdlwQOfgdU3wVZqiYrBsRv4=
+	t=1733324392; cv=none; b=exuo/sg1kpPGM36dlUERFMuZuDNds50nho1ok5zECYT7unOBHY0uI0lw3lJSK+tg/q4l6cLoBwrhCTlb1aA4q12CYV2btjwQD9oSKUTikIlKCeA0GdJ+UGHkvDkIlT3Ft8y2YchPkOGHejIOFDPoxZT4FrkqEQ3SB92LlFUro3k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733324385; c=relaxed/simple;
-	bh=xO9FfRnXogXsKagT1s91UTrFV6QVAy00nXwpxknoUZU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=s+OW2iYhnQtzuMmNjWowRqvGO5eB5ZplPk7ra8KU36FE2PdJw8Emc5afHF1ILiC/B5DqMfnFASult4OWLOSsk80T2YQImgm13WbR07O1flQe03kNUmCWaLNRXRHlFYPedfACkZsx5ySHM2eYLdLPhA+10ts+HLBjJgMLsCHAH5Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=mentallysanemainliners.org header.i=@mentallysanemainliners.org header.b=d2bJkY/v; arc=none smtp.client-ip=63.250.43.87
+	s=arc-20240116; t=1733324392; c=relaxed/simple;
+	bh=BOopPzcToEprpdw2LIS55Y82go8hBPaS/MvQht0hXKk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=iNMN+VwE4MUpY5TFKEbrmeWerVJxPIk173+MURfiXhBqbfdqjkOQ5dQf0GgTuK3qIcbBVM/HYbrKP1DwXFWHG9dLjg72ZoJ0rw/sBPqBw/zfiD/mD+d5o9CF6VqGweors6CoHIcNoB5gJjM4R1cwgx9gc6yBg8BADB/2gKmGyAs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=mentallysanemainliners.org header.i=@mentallysanemainliners.org header.b=CXJSZNLB; arc=none smtp.client-ip=63.250.43.87
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
 Received: from prod-lbout-phx.jellyfish.systems (unknown [198.177.122.3])
-	by smtp.spacemail.com (Postfix) with ESMTPA id 4Y3LK95QMwz4wVV;
-	Wed, 04 Dec 2024 14:59:41 +0000 (UTC)
+	by smtp.spacemail.com (Postfix) with ESMTPA id 4Y3LKG0FvQz4wVY;
+	Wed, 04 Dec 2024 14:59:46 +0000 (UTC)
 Received: from localhost.localdomain (83.21.102.241.ipv4.supernova.orange.pl [83.21.102.241])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mail.spacemail.com (Postfix) with ESMTPSA id 4Y3LK25jlsz8sWT;
-	Wed,  4 Dec 2024 14:59:34 +0000 (UTC)
+	by mail.spacemail.com (Postfix) with ESMTPSA id 4Y3LK710qhz8sWX;
+	Wed,  4 Dec 2024 14:59:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-	d=mentallysanemainliners.org; s=spacemail; t=1733324376;
-	bh=xO9FfRnXogXsKagT1s91UTrFV6QVAy00nXwpxknoUZU=;
-	h=From:To:Cc:Subject:Date:From;
-	b=d2bJkY/v1AH+WRJBuTIvpf1BtUbHPCNO2AmEEJBah+7pFmJq4WG2i3a/Uib2ub1mJ
-	 rcCqqlFIYlj0wN9J5SltOpz7hxyjLChIHJB5BS5JO3DEiaQmtx2XoCo8n6Cz5ngXk2
-	 pe5O1et6LClWZfeC/3GfrCl0QAVzOFKvSbLWB4eF9/P6QudQUdYnpQSTY6zS/72BEg
-	 PR42xTG5wKvTJv7LwKc1Cp7e+hRU34Chm0xTS4foYDnflkns0WjkmuNvs99+vqlDeL
-	 TM8rIH7k+5x9/2cWo8MAKrg/csqYehG2vBSMKUaMfiQ1m2r1rpjwa63vClMgkCo/9P
-	 cS1U8TD2LjB5g==
+	d=mentallysanemainliners.org; s=spacemail; t=1733324380;
+	bh=BOopPzcToEprpdw2LIS55Y82go8hBPaS/MvQht0hXKk=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=CXJSZNLBlXP7xJOKeyw91iiFtUVza9hZIAr2xPPcF3+PDekLkrwDiNJa+LY1c54vl
+	 D/noGHbrxvO2Oels2LpVvzzqJw0/xZAfWvMz9cxODtccoCeoEbiXlxgN7RUUClfui4
+	 GLeXHMCp5BWVF8wfq1VrswtdR7pjzPoEAmuwkzqBrGkTAQMU93fj3bJgfWGtHlk7R7
+	 lSuaIcVQJ8Q6hn65uOxoSXtr1AoRL+3NvVOYMp84JbogPuoC0F9ebPok8FOblq3j8P
+	 Oy9RlbJ8uQfSTJxk3ILitflezCUYLKi6LW78yLJFNZzSwN9QIx2wTBs8kQiSU4Fp/f
+	 ikjpsNqC3IkQg==
 From: Igor Belwon <igor.belwon@mentallysanemainliners.org>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -58,10 +59,12 @@ Cc: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-samsung-soc@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 0/2] Add pmu and syscon-reboot support to Exynos990
-Date: Wed,  4 Dec 2024 15:55:57 +0100
-Message-ID: <20241204145559.524932-1-igor.belwon@mentallysanemainliners.org>
+Subject: [PATCH v2 2/2] arm64: dts: exynos990: Add pmu and syscon-reboot nodes
+Date: Wed,  4 Dec 2024 15:55:59 +0100
+Message-ID: <20241204145559.524932-3-igor.belwon@mentallysanemainliners.org>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20241204145559.524932-1-igor.belwon@mentallysanemainliners.org>
+References: <20241204145559.524932-1-igor.belwon@mentallysanemainliners.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,33 +73,43 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Hi all,
+Add PMU syscon, and syscon-reboot nodes to the Exynos990 dtsi.
 
-This small series adds support for the pmu, as well as syscon-reboot
-support to the Exynos990 SoC. It has been tested with the reboot command
-in an initramfs.
+Reboot of the Exynos990 SoC is handled by setting bit(SWRESET_TRIGGER[1])
+of SWRESET register (PMU + 0x3a00).
 
-Typically, this would be added during the initial SoC bringup,
-however I was unsure as to if the syscon would work correctly until I
-could test it (especially when it comes to reboot), which I just got
-around to doing.
+Tested using the "reboot" command.
 
+Signed-off-by: Igor Belwon <igor.belwon@mentallysanemainliners.org>
 ---
-Changes since v1:
-- Wrote a description for the PMU in the dt-bindings commit (thanks Krzysztof!)
+ arch/arm64/boot/dts/exynos/exynos990.dtsi | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-Kind regards,
-
-Igor
-
-Igor Belwon (2):
-  dt-bindings: soc: samsung: exynos-pmu: Add exynos990-pmu compatible
-  arm64: dts: exynos990: Add pmu and syscon-reboot nodes
-
- .../bindings/soc/samsung/exynos-pmu.yaml           |  1 +
- arch/arm64/boot/dts/exynos/exynos990.dtsi          | 14 ++++++++++++++
- 2 files changed, 15 insertions(+)
-
+diff --git a/arch/arm64/boot/dts/exynos/exynos990.dtsi b/arch/arm64/boot/dts/exynos/exynos990.dtsi
+index c1986f00e443..2619f821bc7c 100644
+--- a/arch/arm64/boot/dts/exynos/exynos990.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynos990.dtsi
+@@ -227,6 +227,20 @@ wakeup-interrupt-controller {
+ 			};
+ 		};
+ 
++		pmu_system_controller: system-controller@15860000 {
++			compatible = "samsung,exynos990-pmu",
++				     "samsung,exynos7-pmu", "syscon";
++			reg = <0x15860000 0x10000>;
++
++			reboot: syscon-reboot {
++				compatible = "syscon-reboot";
++				regmap = <&pmu_system_controller>;
++				offset = <0x3a00>; /* SWRESET */
++				mask = <0x2>; /* SWRESET_TRIGGER */
++				value = <0x2>;
++			};
++		};
++
+ 		pinctrl_cmgp: pinctrl@15c30000 {
+ 			compatible = "samsung,exynos990-pinctrl";
+ 			reg = <0x15c30000 0x1000>;
 -- 
 2.45.2
 
