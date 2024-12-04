@@ -1,72 +1,52 @@
-Return-Path: <devicetree+bounces-126883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126884-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 566A29E3741
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 11:11:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEAC99E3761
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 11:21:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 20DA416593C
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 10:11:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D4AAB164FB3
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 10:21:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 771091AC887;
-	Wed,  4 Dec 2024 10:11:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF5571AE005;
+	Wed,  4 Dec 2024 10:21:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="EtuoIiIb"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ChbWaFvN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACD4719049A
-	for <devicetree@vger.kernel.org>; Wed,  4 Dec 2024 10:11:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37CFA1AB528;
+	Wed,  4 Dec 2024 10:21:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733307093; cv=none; b=D0ZbAjDxouRoX/F8fEQaanyOvL6uW0Z7ZAMAIwqAt8dUCH3WbRSVkfiBaaKfWFK372jFSnOTkAd2kxLDpjlZbjDFNq2lbTBQV6IMEhs+7H+2pSaWvULtHg/AlSZ8GbPcNf5kW8wcGOzhy/VysScI6YkcOkkqkMfUNSM6Ny14GvI=
+	t=1733307704; cv=none; b=mKAskBSVd6Kr5kJh2GdmzMnO8G4lkdXgLEpCk0jRRkBeKqgirlPG5JQ/WxgloffbTwqzBrmdmeHtMcmsuxy/U2riMAjQyOobc2s7SHNxnSGwPBBkPGbTBM3DyESjjGAFCRgLolErwQ1/xWvbwONCrQ6tkqxbDiVG7JwLnaL8XAA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733307093; c=relaxed/simple;
-	bh=cd8J5vW/fp2sgShONVWxTpMQ9WZEJZIAF9Ttsji4fQI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=uZCy5RWjHuKpRfOnK9gElpHwDcQmjXFqm68MmplXs/DSwPthLnE2tu/inOyzLJtqFoqruK+fYOkxk1EETJ5ANkqGxIIljPeS/ub5KhNYDMWxV/RNlrxy4sZqcP/CaiLwQc9gqy9HYqBwp4/lCfGCoHJyIQyJfksoFVSUTP1x66Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=EtuoIiIb; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20241204101129euoutp02bf404278bfa03cccb36b3ee767c83816~N8Z0yPnM81688316883euoutp02V
-	for <devicetree@vger.kernel.org>; Wed,  4 Dec 2024 10:11:29 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20241204101129euoutp02bf404278bfa03cccb36b3ee767c83816~N8Z0yPnM81688316883euoutp02V
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1733307089;
-	bh=EuqndAqdKmSf/8miGqIK4IlylxV/hAtKHgomM2ekQI8=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=EtuoIiIbzEqQ8wkOHLVPpRNuS5W/VZRes35ei/vkIPze8hssoCOj3yMgplxVkeO3g
-	 eZ9FzTdhXEdEJ9X5QKKK4aNPXKVsjam6kxIiNJA84xQ/8bo/9B+ewFOaQG7/pCcO2I
-	 3uHWtRDQ1GE3pGmIwlFc8+46pBe3/HIsTVrTyMps=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-	20241204101128eucas1p25ef8b2a4716d2cb3bee6e1f1b8884e1b~N8Z0JlD4D0619706197eucas1p2v;
-	Wed,  4 Dec 2024 10:11:28 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-	eusmges3new.samsung.com (EUCPMTA) with SMTP id 82.E8.20397.0DA20576; Wed,  4
-	Dec 2024 10:11:28 +0000 (GMT)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20241204101127eucas1p179dcc956b027a7b919043a4c65c04a71~N8ZzvXPbA1897018970eucas1p1-;
-	Wed,  4 Dec 2024 10:11:27 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20241204101127eusmtrp1e121421c025121a497c41359c15ff375~N8ZzueqwA2729527295eusmtrp1j;
-	Wed,  4 Dec 2024 10:11:27 +0000 (GMT)
-X-AuditID: cbfec7f5-e59c770000004fad-f6-67502ad0bd06
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-	eusmgms2.samsung.com (EUCPMTA) with SMTP id E5.B6.19654.FCA20576; Wed,  4
-	Dec 2024 10:11:27 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20241204101126eusmtip2a89da49f3dc9db1702403a20dc33d885~N8Zyb6hBh1974719747eusmtip2t;
-	Wed,  4 Dec 2024 10:11:26 +0000 (GMT)
-Message-ID: <07bfb02a-1df3-4a03-83bb-d7edc540739d@samsung.com>
-Date: Wed, 4 Dec 2024 11:11:26 +0100
+	s=arc-20240116; t=1733307704; c=relaxed/simple;
+	bh=oCF4F6g4HETPFEI1bzhzEo0O0nQ0nCkNsbcFVdrgYHM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=R+fGheRqRISx9+plmcKCSAe/ydT7eR4R55v/VTFMa+0nwig5Wop81jwNaPbjfitaT6RKG7L+MTVe48FufSaoeHwRiJr6iMBtIxWc1cRvXlCQpRlIBw0woLwM1kf5onRyfxRm4koEbUgRgiHRRl5rnjAR8RLkwGSkSDscEi3xwu4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ChbWaFvN; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id EA09E6000B;
+	Wed,  4 Dec 2024 10:21:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1733307700;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=avT8sCPNh7sFRj+FBqxStI57oHP5ZUEtBKxa7gJHFZw=;
+	b=ChbWaFvNQ1XrD7sl6Uf+fcuNS/6xV+IJMdTHXnbtTVh2nMUCA5yN9w5FZ5WbtI9WORhE3v
+	/mFgbhFLH6z0A3woWTbnR2dt4eu1Uc9Q8MPZdDvn18vVBMf41vg+UR0BXOqQJdWgX7y4Y4
+	rCzseGALJEIX2IrzGL04PnAxF9uY6JE1Wf2GMLrWPE08jjmecFZlqxHcHtZJf/XRd+9fI+
+	GL8LW9sWmZqomuWVaQyzjMHB0ADihQrZMts4QiK3F8b0mJqFk+2KfAmz+JK8usMG5OyWxZ
+	lvKmD1vt/3Z8HtHMPp3LpifIdvpxw/bfbqkNXvGCR1p3qGVzafD6G/UKeEYwyw==
+Message-ID: <e405b65e-e9b7-451b-9b40-64d5d9cafa98@bootlin.com>
+Date: Wed, 4 Dec 2024 11:21:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,236 +54,77 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v1 05/14] dt-bindings: clock: thead,th1520: Add
- support for Video Output subsystem
-To: Krzysztof Kozlowski <krzk@kernel.org>, mturquette@baylibre.com,
-	sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	drew@pdp7.com, guoren@kernel.org, wefu@redhat.com, jassisinghbrar@gmail.com,
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	frank.binns@imgtec.com, matt.coster@imgtec.com,
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
-	airlied@gmail.com, simona@ffwll.ch, ulf.hansson@linaro.org,
-	jszhang@kernel.org, m.szyprowski@samsung.com
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	dri-devel@lists.freedesktop.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: ti: k3-j784s4: use ti,j7200-padconf
+ compatible
+To: Francesco Dolcini <francesco@dolcini.it>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ u-kumar1@ti.com, Tero Kristo <kristo@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ gregory.clement@bootlin.com, thomas.petazzoni@bootlin.com,
+ richard.genoud@bootlin.com
+References: <20241113-j784s4-s2r-pinctrl-v1-1-19aeb62739bc@bootlin.com>
+ <20241119190106.GA70080@francesco-nb>
+ <6e47e420-84c4-4539-ba54-5e1e939a37a5@bootlin.com>
+ <Z1An9_auC3dRyPln@gaggiata.pivistrello.it>
 Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <f21ffd12-167b-4d10-9017-33041ec322b0@kernel.org>
+From: Thomas Richard <thomas.richard@bootlin.com>
+In-Reply-To: <Z1An9_auC3dRyPln@gaggiata.pivistrello.it>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA01Se0xTVxzeub2999JavC06TpgLoXFugsNNxJxMQ+ZeuYlZBnMZGS7DZr0W
-	x8u0wDaECdIRxGp0SJidAiKTBocMKOVRXitIKUVaYTwm5eEGhJIyZCApI7JRL278933f7/H9
-	vpND8STNhB91MiGJVSbI4qSEADd0rthetQeGK15bbhejrqESDNWuakn0U3Mvhoo6evlorE+P
-	oV8fzxPozpSdRDPNmTga1F0nUVZnJYGc2jEC2Ww/k2hBM8ZH/Y3XCLR4oQMgw6KaQBUdoyS6
-	sVCLo9L6RoCyz93io/vd7yJnv4aHsrVb0T9N9SRaG6zC0Q9/tpJI77rMR+aKSKRuvYK/+SIz
-	P/wtybicTpxpz1kimeblYpxp0I6SjKahBzDV5ecIxjHYRDCFlghm/LwZY2pKzzDqik6MmW8Z
-	IJiL+nLA9GUNkUyN9XS4OEpwSM7GnUxhlXvDjgtisqbt+Km2kK/qa6v4GeBSYC7woiC9Hy5l
-	DpO5QEBJaB2AroLCDbIE4MTZIowjiwCevTjAezbS/uPfBFcoA3DlyV3AkTkAF7vKgKdLRIfB
-	343FuAfj9E5oHGnjcboYWq5OPtW30/5w/MH3pAf70HHwF9co7lm0jb6CQ3dJ89MBHl0HYFeP
-	iMO+8MGk5yYviqD3wYmyIr4He62b1ebPAq7HH9bNXeN5FkHaIoDuhzfWHah18g60OQ9xEXzg
-	rFlPcngHtOZpcA4nwonavzZipsEGjXkDH4SOXk9kan3/bljZuJeTD8Mus25juzccnhNzF3jD
-	7wwFPE4WwZxsCde9C+ZrLvxn2qszYJeAVLvpUbSbMmo3ZdH+71sM8HLgyyar4hWsKiSB/TJY
-	JYtXJScogj9PjK8G6z/cumZ+XA90swvBJoBRwAQgxZNuE0WUfqCQiOSyr1NZZWK0MjmOVZnA
-	CxQu9RW9JPdnJbRClsTGsuwpVvmsilFefhnYpy8nNR3ufiXeaG7zTXFuXziin//M+/33hvIi
-	R1SpX8TsUDe99caJOrZyfE0+ZSRZvFSxJ+25rGkiShPijj4TkGlUTOYIhEF+W3QR/eYnzzta
-	9kdbRjJK7E3qkunIb65+VFghf9t1TOe4n71TEXrb5ZcSJAw4feKow+pzQBy69chq2prwetZI
-	0L3qsYf5q5/MpEf+MWOuOX4719Rd128LNMFoiyLAfmyg0tJVmGEIe3SULmrfc15YYre7w5Me
-	fVzQmmeo0t05cAs7aFjuaEmyzsTs/m2qLN2ZvhJap5zKDupQm/uGVnsCqA/FKNUWuyWANd7r
-	dcndVNTdEeHNfbGXpbgqRvZ6IE+pkv0Ldt9DKVAEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrPKsWRmVeSWpSXmKPExsVy+t/xe7rntQLSDV73G1qcuL6IyWLr71ns
-	Fmv2nmOymH/kHKvFvUtbmCyufH3PZrHu6QV2ixd7G1ksrq2Yy27RfGw9m8XLWffYLM6f38Bu
-	8bHnHqvF5V1z2Cw+9x5htNj2uYXNYu2Ru+wWCz9uZbFYsmMXo0Vb5zJWi4unXC1eXu5htmib
-	xW/xf88Odot/1zayWMx+t5/dYsubiawWx9eGW7Tsn8LiIOvx/kYru8ebly9ZPA53fGH32Ptt
-	AYvHzll32T16dp5h9Ni0qpPN4861PWwe804GetzvPs7ksXlJvUfL2mNMHu/3XWXz6NuyitHj
-	UvN1do/Np6sDBKP0bIryS0tSFTLyi0tslaINLYz0DC0t9IxMLPUMjc1jrYxMlfTtbFJSczLL
-	Uov07RL0MpqfXWApOGBcsWPrRtYGxglaXYycHBICJhKHl/5iA7GFBJYySvS8zIaIy0hc637J
-	AmELS/y51gVV85pR4tI+KRCbV8BO4tHuBWA1LAIqErtvH2CGiAtKnJz5BCwuKiAvcf/WDHYQ
-	W1ggR+Lgm7tAcS4OEYEpLBKrH/1jBnGYBbYzSmyYOZURxBES+Mso8bR1Btg6ZgFxiVtP5jOB
-	2GwCRhIPls9nBbE5gVZvnfoKqIEDqEZdYv08IYhyeYntb+cwT2AUmoXkkFlIJs1C6JiFpGMB
-	I8sqRpHU0uLc9NxiI73ixNzi0rx0veT83E2MwJS17djPLTsYV776qHeIkYmD8RCjBAezkghv
-	4BL/dCHelMTKqtSi/Pii0pzU4kOMpsDAmMgsJZqcD0yaeSXxhmYGpoYmZpYGppZmxkrivGxX
-	zqcJCaQnlqRmp6YWpBbB9DFxcEo1MPFc+e8Xvi17e2vg2X9VbB/ykletedhqbrw5aLNl19Y4
-	K7PM+tkreyWiYhjq74fs/OHE91y0cI7L5GitmCy2ojdPZk+dr9C2in/dTJGlNcKO+RymD5PD
-	5780+MBybvsHjzeVaSfcytMPbZs0927DgSTxz4f3/Fp17Kg1262iyTzOa22FZjsppW6aYhrZ
-	fYTTST4pLOP+p6743JQrH7IYMnbfnrTmwfFd97wkG2V3CURtXLesOOLPtD8xrddVdPrOBAau
-	ki34Yym+bsfCGUsVMgy00+XfFa3T2y0k+SBl+yTjk32CFzlCE7kU3LJmnlmSKcedM+uzZbA4
-	s3hOgMpjB/sSFpPvIcfY+66fDvzIoMRSnJFoqMVcVJwIADEy7ZviAwAA
-X-CMS-MailID: 20241204101127eucas1p179dcc956b027a7b919043a4c65c04a71
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20241203134155eucas1p1e90c71c4f8eb5da41d2cc8a500f54dc7
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20241203134155eucas1p1e90c71c4f8eb5da41d2cc8a500f54dc7
-References: <20241203134137.2114847-1-m.wilczynski@samsung.com>
-	<CGME20241203134155eucas1p1e90c71c4f8eb5da41d2cc8a500f54dc7@eucas1p1.samsung.com>
-	<20241203134137.2114847-6-m.wilczynski@samsung.com>
-	<f21ffd12-167b-4d10-9017-33041ec322b0@kernel.org>
+X-GND-Sasl: thomas.richard@bootlin.com
 
-
-
-On 12/3/24 16:45, Krzysztof Kozlowski wrote:
-> On 03/12/2024 14:41, Michal Wilczynski wrote:
->> The device tree bindings for the T-Head TH1520 SoC clocks currently
->> support only the Application Processor (AP) subsystem. This commit
->> extends the bindings to include the Video Output (VO) subsystem clocks.
+On 12/4/24 10:59, Francesco Dolcini wrote:
+> Hello Thomas,
+> thanks for the update.
+> 
+> On Wed, Dec 04, 2024 at 10:08:43AM +0100, Thomas Richard wrote:
+>> On 11/19/24 20:01, Francesco Dolcini wrote:
+>>> Hello Thomas and TI folks,
+>>>
+>>> On Wed, Nov 13, 2024 at 11:43:05AM +0100, Thomas Richard wrote:
+>>>> Like on j7200, pinctrl contexts shall be saved and restored during
+>>>> suspend-to-ram.
+>>>>
+>>>> So use ti,j7200-padconf compatible.
+>>>>
+>>>> Signed-off-by: Thomas Richard <thomas.richard@bootlin.com>
+>>>> ---
+>>>> Use ti,j7200-padconf compatible to save and restore pinctrl contexts during
+>>>> suspend-to-ram.
+>>>> ---
+>>>>  arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi       |  6 +++---
+>>>>  arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi | 12 ++++++------
+>>>
+>>> Do j784s4 supports any kind of low power mode and/or suspend to ram? My
+>>> understanding was that this was not supported, but maybe there is some
+>>> details that was lost when I was told this information.
 >>
->> Update the YAML schema to define the VO subsystem clocks, allowing the
->> clock driver to configure and manage these clocks appropriately. This
->> addition is necessary to enable the proper operation of the video output
->> features on the TH1520 SoC.
->>
->> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
->> ---
->>  .../bindings/clock/thead,th1520-clk-ap.yaml   | 31 +++++++++++++++----
->>  1 file changed, 25 insertions(+), 6 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/clock/thead,th1520-clk-ap.yaml b/Documentation/devicetree/bindings/clock/thead,th1520-clk-ap.yaml
->> index 4a0806af2bf9..5a8f1041f766 100644
->> --- a/Documentation/devicetree/bindings/clock/thead,th1520-clk-ap.yaml
->> +++ b/Documentation/devicetree/bindings/clock/thead,th1520-clk-ap.yaml
->> @@ -4,11 +4,13 @@
->>  $id: https://protect2.fireeye.com/v1/url?k=f595e769-941ef222-f5946c26-74fe485fb305-6d0b73471bbfc1a2&q=1&e=6b918e4d-d81f-4b44-8516-776d7b4f9dae&u=http%3A%2F%2Fdevicetree.org%2Fschemas%2Fclock%2Fthead%2Cth1520-clk-ap.yaml%23
->>  $schema: https://protect2.fireeye.com/v1/url?k=5b94114b-3a1f0400-5b959a04-74fe485fb305-0e2c50f5c24cf3e9&q=1&e=6b918e4d-d81f-4b44-8516-776d7b4f9dae&u=http%3A%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23
->>  
->> -title: T-HEAD TH1520 AP sub-system clock controller
->> +title: T-HEAD TH1520 sub-systems clock controller
->>  
->>  description: |
->> -  The T-HEAD TH1520 AP sub-system clock controller configures the
->> -  CPU, DPU, GMAC and TEE PLLs.
->> +  The T-HEAD TH1520 sub-systems clock controller configures the
->> +  CPU, DPU, GMAC and TEE PLLs for the AP subsystem. For the VO
->> +  subsystem clock gates can be configured for the HDMI, MIPI and
->> +  the GPU.
->>  
->>    SoC reference manual
->>    https://protect2.fireeye.com/v1/url?k=cceb6120-ad60746b-cceaea6f-74fe485fb305-b294b70f1b52a5ab&q=1&e=6b918e4d-d81f-4b44-8516-776d7b4f9dae&u=https%3A%2F%2Fopenbeagle.org%2Fbeaglev-ahead%2Fbeaglev-ahead%2F-%2Fblob%2Fmain%2Fdocs%2FTH1520%2520System%2520User%2520Manual.pdf
->> @@ -20,7 +22,9 @@ maintainers:
->>  
->>  properties:
->>    compatible:
->> -    const: thead,th1520-clk-ap
->> +    enum:
->> +      - thead,th1520-clk-ap
->> +      - thead,th1520-clk-vo
->>  
->>    reg:
->>      maxItems: 1
->> @@ -29,6 +33,17 @@ properties:
->>      items:
->>        - description: main oscillator (24MHz)
->>  
->> +  thead,vosys-regmap:
->> +    $ref: /schemas/types.yaml#/definitions/phandle
->> +    description: |
->> +      Phandle to a syscon node representing the shared register
->> +      space of the VO (Video Output) subsystem. This register space
->> +      includes both clock control registers and other control
->> +      registers used for operations like resetting the GPU. Since
+>> We are working on suspend-to-ram support for j7200 and j784s4.
+>> During suspend-to-ram the SoC is fully powered-off (thanks to the PMIC
+>> which powers off all the power rails except the DDR which is in
+>> self-refresh), like on j7200.
+>> Please let me know if you want more details.
 > 
-> 
-> It seems you wanted to implement reset controller...
+> ok, that's quite different from the common suspend-to-ram we use to have
+> implemented on other SoC. You would have some boot firmware (likely U-Boot)
+> code executing during resume, taking some different code path, in a similar way
+> to what it is being done for the partial-io support on am62p. It's going to be
+> more similar to hibernation from some point of view.
 
-Thank you for your feedback.
+If you want more details you can have a look to this presentation [1]
+(from my colleague Gregory CLEMENT).
 
-I understand your concern about the reset controller. In the TH1520 SoC,
-the GPU doesn't have its own reset controller. Instead, its reset is
-managed through the power domain's registers as part of the power-up
-sequence.
-
-According to the Video Image Processing Manual 1.4.1 [1], the GPU
-requires the following steps to power up:
-
-1) Enable the GPU clock gate.
-2) After 32 core clock cycles, release the GPU soft reset
-
-Since these steps are closely tied to power management, I implemented
-the reset functionality within the power-domain driver.
-
-Because the GPU doesn't support the resets property, introducing a reset
-controller wouldn't align with the existing device tree well.
-
-[1] - https://openbeagle.org/beaglev-ahead/beaglev-ahead/-/blob/main/docs/TH1520%20Video%20Image%20Processing%20User%20Manual.pdf
-> 
->> +      these registers reside in the same address space, access to
->> +      them is coordinated through a shared syscon regmap provided by
->> +      the specified syscon node.
-> 
-> Drop last sentence. syscon regmap is a Linux term, not hardware one.
-> 
-> Anyway, this needs to be constrained per variant.
-> 
->> +
->>    "#clock-cells":
->>      const: 1
->>      description:
->> @@ -36,8 +51,6 @@ properties:
->>  
->>  required:
->>    - compatible
->> -  - reg
-> 
-> No, that's a clear NAK. You claim you have no address space but in the
-> same time you have address space via regmap.
-
-I see your concern. The VOSYS subsystem's address space includes
-registers for various components, such as clock gates and reset
-controls, which are scattered throughout the address space as specified
-in the manual 4.4.1 [2]. Initially, I attempted to use a shared syscon
-regmap for access, but I realize this might not be the best approach.
-
-To address this, I'll specify the 'reg' property in each node to define
-the address ranges explicitly fragmenting the address space for the VOSYS
-manually.
-
-vosys_clk: clock-controller@ffef528050 {
-	compatible = "thead,th1520-clk-vo";
-	reg = <0xff 0xef528050 0x0 0x8>;
-	#clock-cells = <1>;
-};
-
-pd: power-domain@ffef528000 {
-	compatible = "thead,th1520-pd";
-	reg = <0xff 0xef528000 0x0 0x8>;
-	#power-domain-cells = <1>;
-};
-
-I would be happy to proceed like this if that's okay.
-
-[2] - https://openbeagle.org/beaglev-ahead/beaglev-ahead/-/blob/main/docs/TH1520%20System%20User%20Manual.pdf
+[1] https://www.youtube.com/watch?v=sN4krurp8bM
 
 > 
->> -  - clocks
-> 
-> Nope, not explained, unless you wanted to make it different per variants.
-> 
->>    - "#clock-cells"
->>  
->>  additionalProperties: false
->> @@ -51,3 +64,9 @@ examples:
->>          clocks = <&osc>;
->>          #clock-cells = <1>;
->>      };
->> +
->> +    clock-controller-vo {
-> 
-> Node names should be generic. See also an explanation and list of
-> examples (not exhaustive) in DT specification:
-> https://protect2.fireeye.com/v1/url?k=1e9cac96-7f17b9dd-1e9d27d9-74fe485fb305-f0538482114df941&q=1&e=6b918e4d-d81f-4b44-8516-776d7b4f9dae&u=https%3A%2F%2Fdevicetree-specification.readthedocs.io%2Fen%2Flatest%2Fchapter2-devicetree-basics.html%23generic-names-recommendation
-> 
-> 
->> +        compatible = "thead,th1520-clk-vo";
->> +        thead,vosys-regmap = <&vosys_regmap>;
-> 
-> That's a "reg" property. Do not encode address space as something else.
-> 
-> 
->> +        #clock-cells = <1>;
->> +    };
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+> Do you expect to have this feature nicely integrated within the standard
+> suspend/resume "framework" in Linux?
+
+Yes.
+
+Regards,
+
+Thomas
 
