@@ -1,187 +1,116 @@
-Return-Path: <devicetree+bounces-127147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127154-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 727809E48C0
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 00:24:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 823529E4A2F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 00:55:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D7D331880422
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 23:24:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 599CE161B07
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 23:55:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C2731F03CB;
-	Wed,  4 Dec 2024 23:24:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 300161A4F2F;
+	Wed,  4 Dec 2024 23:55:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GiOWzsli"
+	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="oTge788a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7079119DFB4;
-	Wed,  4 Dec 2024 23:24:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59C782B9B7;
+	Wed,  4 Dec 2024 23:55:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733354682; cv=none; b=CXtwid035kuDxPWIbFjlHHNyNLUJMGhen/zDu527eQP8P3hC8X2T6jssH5Mc7Yv+XdGkdiL/rCqXYPu4LL9ZqHoHMvXv+ucfznnAZr1gKwW+xOxS+9phS+HTq+xSRBAPGgGI85UHYBbj7LitX5pM58mmKWhbrLXgKC4u+Tb7yZA=
+	t=1733356516; cv=none; b=F08InoRe5JniQbCkA9mhpuzlXyRxMOQVBKz1j/2ClRTGfF/vx/g+H6AzblAT5WJvwiMk6o8FQxT41UDzjup9jP/ZGPpBT8pYb8HBjyoBg40OtF6mcGtp+DfDulf9XZPq18x6ocaDj0ER3rsJ56+HFsqSHT7DDzDrKOse37VFLyU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733354682; c=relaxed/simple;
-	bh=n6tt8G5iTvpqN8Ai25XZii/0NhY4FJ0gg4/pPLwKCLU=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:To:Date; b=Sx71rXZHyQ4Ap2iTmMrU57+u42DO8jZBYrds8KFX9HuMlFy3UrqrKakcON6fncvLW9xMDarUvGwCLR/8FK3GixGI2lq2wtwmmvHG1uvjayM9UiEkh51LfpcDc1WZcdY2TTUO5e+6I4IRhWAJAXXDnfwku/NevRYY8lYgBgfyFhM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GiOWzsli; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39D87C4CECD;
-	Wed,  4 Dec 2024 23:24:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733354682;
-	bh=n6tt8G5iTvpqN8Ai25XZii/0NhY4FJ0gg4/pPLwKCLU=;
-	h=In-Reply-To:References:Subject:From:To:Date:From;
-	b=GiOWzsliDjYjlm7BEB7r0ofwLpgEMaFF1CGsnuzGfzn3rh9A2v2GqkccSbrv1sJiB
-	 nyNb6EBSmgIV/FNj23TTr9go6o8Y2kTC/gUtGyOX55nD8WrRXMiINDLLtIz1vJCjY4
-	 d6iBZmpUJB5yp2lADEAQO1ulCBnKanstPMRIATkRj0xBuSiodEyezHFGjBjztzfPYk
-	 6/AB26dA+ZB0Pml+u0UUDE/kS747yKT0oGfF53KrQ7o1hQLesFLCVxrCnYaTbGSyud
-	 NKxTGfE5Iz2YYqKLPlRSbG7CA+RK4C1SVmWivF3EZ+lr4wU+fIYubbzTqyl/AGgQt9
-	 N3iRPScMm7DFw==
-Message-ID: <9ccfb478d9a122db6c634e9559e211ff.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1733356516; c=relaxed/simple;
+	bh=w4DwnwQZe9iqhYjIa7v7pAsGS4bSwBMahJaNaZywnvs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=GGp2D7aAd34uaeKGqzFOB/tYijAA32bNHp9SCfuAdT2OQ+oBkSEltajKELnhMJjHshg/piwwTChefyJm7wxeikvv0gm4XPDJ/JX50CZuYGJMLsmC5cyep5C+/loyPT5HlR9FWQqrbsW3ZyKZG6nTGfxalqH31YZGsorjq98KI9I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=oTge788a; arc=none smtp.client-ip=193.68.50.107
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
+Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
+	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id A3306A073D;
+	Thu,  5 Dec 2024 00:55:03 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:from:from:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to; s=mail; bh=RV+fzjkuUAXvunQLcKjp
+	BbQhkQYXpBIz4gwClKxSjmo=; b=oTge788a+OuVgJY0sV2M8WcxdjJ6F2IvlAd1
+	vdMrVNePMOVQ/Y8sTk1alPYuiRaQOLBGgVVsMWHYyaZ/JNswfSO9iwv74HB8hrhR
+	5KzFAyqb2rrXr9Wk5JsS48ojEY0EyJ+emz7+zvXcu26IqzW2devn+fAcT8WLoGf+
+	DI+05sneW3Sw/WnQ8V9yAMzIP+VIQQdKDUuhGpmG7ZGYIscUKwze3TEkTtO9HZ5f
+	VFnYbo5oNa2y8kgTjLj+HYuyTyjSvSYMQVxuyOkkCxP2QByzEJslY1bjRFjj6uKE
+	P1M3Z9fr8f/Sv11uls8QYDquYfUH6qHd9Y8d5ZicTjfPS9Surahbc/JZoksBgAg6
+	FSbu2dHZcjdHgXBw/eEUPHstfyylrSDVj/HCn/EKhX6cF1sdo0u+c0DOOuSR1VbC
+	dCt//H35zQpUzHY4c+MSDmrZioSmMraRVwyVlUliTZrzyc2b5D1FNLjIrdXYVANw
+	l8L2dc1GiI+p/IdcX0y3u0kJbyk2sioSrTemWrXBPfuR/B3RxxeThiOQIJKpa4T2
+	a2s5wCfpDIj79gkYr7KMRbMUm0GH15wFL2y+ASXL7PyXnLYwU1stH0ZsdDpPtbyR
+	4F6XdKUjohYMayzyNu81mXg0jwUMikaCaRPgreXLoQ1mbGIi4xCjgHN3ijMbwCjL
+	x9oDtQ0=
+Message-ID: <932d4f7a-c9cf-4e48-afd3-476b6c0fbc86@prolan.hu>
+Date: Thu, 5 Dec 2024 00:55:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <OS8PR06MB75419637D55A022300E00850F2352@OS8PR06MB7541.apcprd06.prod.outlook.com>
-References: <20241028053018.2579200-1-ryan_chen@aspeedtech.com> <20241028053018.2579200-4-ryan_chen@aspeedtech.com> <287924eed186e3b6b52cd13bcf939ab6.sboyd@kernel.org> <SI6PR06MB7535F5D22E3FCCF5C610B307F2552@SI6PR06MB7535.apcprd06.prod.outlook.com> <a68516df98c8b8fb80f094e6e55fcb8d.sboyd@kernel.org> <OS8PR06MB75419637D55A022300E00850F2352@OS8PR06MB7541.apcprd06.prod.outlook.com>
-Subject: RE: [PATCH v7 3/3] clk: aspeed: add AST2700 clock driver.
-From: Stephen Boyd <sboyd@kernel.org>
-To: Ryan Chen <ryan_chen@aspeedtech.com>, andrew@codeconstruct.com.au, conor+dt@kernel.org, devicetree@vger.kernel.org, dmitry.baryshkov@linaro.org, joel@jms.id.au, krzk+dt@kernel.org, lee@kernel.org, linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, mturquette@baylibre.com, p.zabel@pengutronix.de, robh@kernel.org
-Date: Wed, 04 Dec 2024 15:24:40 -0800
-User-Agent: alot/0.12.dev1+gaa8c22fdeedb
+User-Agent: Mozilla Thunderbird
+Subject: Re: (subset) [PATCH v5 0/5] Add support for DMA of F1C100s
+To: Vinod Koul <vkoul@kernel.org>, <dmaengine@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-sunxi@lists.linux.dev>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC: Mark Brown <broonie@kernel.org>, Mesih Kilinc <mesihkilinc@gmail.com>,
+	Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>, Philipp Zabel
+	<p.zabel@pengutronix.de>, Conor Dooley <conor.dooley@microchip.com>, "Rob
+ Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, Amit Singh Tomar <amitsinght@marvell.com>
+References: <20241122161128.2619172-1-csokas.bence@prolan.hu>
+ <173331833897.673424.223627111827356616.b4-ty@kernel.org>
+Content-Language: en-US
+From: =?UTF-8?B?Q3PDs2vDoXMgQmVuY2U=?= <csokas.bence@prolan.hu>
+In-Reply-To: <173331833897.673424.223627111827356616.b4-ty@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: ATLAS.intranet.prolan.hu (10.254.0.229) To
+ ATLAS.intranet.prolan.hu (10.254.0.229)
+X-EsetResult: clean, is OK
+X-EsetId: 37303A2980D94855627561
 
-Quoting Ryan Chen (2024-12-01 19:12:01)
-> > > > Subject: Re: [PATCH v7 3/3] clk: aspeed: add AST2700 clock driver.
-> > > >
-> > > > Quoting Ryan Chen (2024-10-27 22:30:18)
-> > > > > diff --git a/drivers/clk/clk-ast2700.c b/drivers/clk/clk-ast2700.c
-> > > > > new file mode 100644 index 000000000000..db9ee5031b7c
-> > > > > --- /dev/null
-> > > > > +++ b/drivers/clk/clk-ast2700.c
-> > > > > @@ -0,0 +1,1513 @@
-> > > > > +// SPDX-License-Identifier: GPL-2.0
-> > [...]
-> > > > > +struct ast2700_clk_info {
-> > > > > +       const char *name;
-> > > > > +       const char * const *parent_names;
-> > > >
-> > > > Please don't use strings for parent names.
-> > > Sorry, do you mean use clk_parent_data struct for parent?
-> > >         +const struct clk_parent_data   parent;         /* For gate */
-> > >         +const struct clk_parent_data   *parents;               /*
-> > For mux */
-> >=20
-> > Yes.
-> And I find a better way for parent_data. The following is my modification=
-.=20
-> And parent_data will be union data structure. Like following.
-> Is this good direction?=20
+Hi,
 
-Looks OK.
+On 2024. 12. 04. 14:18, Vinod Koul wrote:
+> 
+> On Fri, 22 Nov 2024 17:11:23 +0100, Csókás, Bence wrote:
+>> Support for Allwinner F1C100s/200s series audio was
+>> submitted in 2018 as an RFC series, but was not merged,
+>> despite having only minor errors. However, this is
+>> essential for having audio on these SoCs.
+>> This series was forward-ported/rebased to the best of
+>> my abilities, on top of Linus' tree as of now:
+>> commit 28eb75e178d3 ("Merge tag 'drm-next-2024-11-21' of https://gitlab.freedesktop.org/drm/kernel")
+>>
+>> [...]
+> 
+> Applied, thanks!
+> 
+> [1/5] dma-engine: sun4i: Add a quirk to support different chips
+>        commit: eeca1b60138189ef1b9636709e578d0c9e0de517
+> [2/5] dma-engine: sun4i: Add has_reset option to quirk
+>        commit: 1f738d0c2f67ae3551e4543e8dddbfb44cdd9f53
+> [3/5] dt-bindings: dmaengine: Add Allwinner suniv F1C100s DMA
+>        commit: 1ad2ebf3be836e62792788f4cd105b30ca9178b6
+> [4/5] dma-engine: sun4i: Add support for Allwinner suniv F1C100s
+>        commit: 61785259d1eb4e4c4acef8551a2524441683dbf3
 
->=20
-> #define DIVIDER_CLK(_id, _name, _parent, _reg, _shift, _width, _div_table=
-) \
->         [_id] =3D { \
->                 .type =3D CLK_DIVIDER, \
->                 .name =3D _name, \
->                 .data =3D { \
->                         .div =3D { \
->                                 .parent =3D _parent, \
->                                 .reg =3D _reg, \
->                                 .bit_shift =3D _shift, \
->                                 .bit_width =3D _width, \
->                                 .div_table =3D _div_table, \
->                         }, \
->                 }, \
->         }
-> struct ast2700_clk_info {
->         const char *name;
->         u8 clk_idx;
->         u32 reg;
->         u32 type;
->         union {
->                 struct ast2700_clk_fixed_factor_data factor;
->                 struct ast2700_clk_fixed_rate_data rate;
->                 struct ast2700_clk_gate_data gate;
->                 struct ast2700_clk_div_data div;
->                 struct ast2700_clk_pll_data pll;
->                 struct ast2700_clk_mux_data mux;
->         } data;
-> };
->=20
-> struct ast2700_clk_div_data {
->         const struct clk_div_table *div_table;
->         const struct clk_parent_data *parent;
->         u8 bit_shift;
->         u8 bit_width;
->         u32 reg;
-> };
->=20
-> static const struct ast2700_clk_info ast2700_scu0_clk_info[] __initconst =
-=3D {
-> ...........................
->         DIVIDER_CLK(SCU0_CLK_AHB, "soc0-ahb", soc0_ahbmux,
+Thanks! Though unfortunately, b4 has once again mangled my sign-off, 
+leaving it empty :/
 
-Can you also show what soc0_ahbmux is?
+Bence
 
->                     SCU0_HWSTRAP1, 5, 2, ast2700_hclk_div_table),
-> ......................
-> >=20
-> > >
-> > > >
-> > > > > +       const struct clk_div_table *div_table;
-> > > > > +       unsigned long fixed_rate;
-> > > > > +       unsigned int mult;
-> > > > > +       unsigned int div;
-> > > > > +       u32 reg;
-> > > > > +       u32 flags;
-> > > > > +       u32 type;
-> > > > > +       u8 clk_idx;
-> > > > > +       u8 bit_shift;
-> > > > > +       u8 bit_width;
-> > > > > +       u8 num_parents;
-> > > > > +};
-> > > > > +
-> > > > [...]
-> > > > > +
-> > > > > +static const struct clk_div_table ast2700_clk_div_table2[] =3D {
-> > > > > +       { 0x0, 2 },
-> > > > > +       { 0x1, 4 },
-> > > > > +       { 0x2, 6 },
-> > > > > +       { 0x3, 8 },
-> > > > > +       { 0x4, 10 },
-> > > > > +       { 0x5, 12 },
-> > > > > +       { 0x6, 14 },
-> > > > > +       { 0x7, 16 },
-> > > >
-> > > > Isn't this the default divider setting for struct clk_divider?
-> > > Sorry, I don't catch your point.
-> > > the SoC do have default divider setting. But it can be modified.
-> > > And also have different divider table setting.
-> >=20
-> > I mean that this is the way that struct clk_divider works already. So y=
-ou don't
-> > need to make the clk_div_table array for what is supported in code.
->=20
-> Sorry, I understand your point. But I trace the code didn't get any clue.=
- "clk_divider work already".
-> finally function call will be __clk_hw_register_divider
-> https://github.com/torvalds/linux/blob/master/drivers/clk/clk-divider.c#L=
-589
-> It still need table point need to address. Can you give me more direction=
- or example?
->=20
-
-The 'table' member is optional. When the table is NULL, we treat each
-number that fits into the divider field width as a divider. It may be
-CLK_DIVIDER_EVEN_INTEGERS that you have here though.
 
