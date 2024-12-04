@@ -1,128 +1,338 @@
-Return-Path: <devicetree+bounces-127137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127148-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E77AB9E4860
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 00:01:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 239F69E494B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 00:36:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C2E61167EE4
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 23:01:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2499F1883716
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 23:33:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0918194A43;
-	Wed,  4 Dec 2024 23:01:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B96F521322F;
+	Wed,  4 Dec 2024 23:28:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fY5Oqv6i"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mLBBZRae"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D40C18FDD5
-	for <devicetree@vger.kernel.org>; Wed,  4 Dec 2024 23:01:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D36F20CCC0;
+	Wed,  4 Dec 2024 23:28:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733353299; cv=none; b=TT4vRAW1S7gv/ikuLnih/Wv+ApC7FPzkPJVSkbkvcySaj6vPbenAKH13UFJ9myMMTIvh8PgtYOZk+QRkvltBXGa0X4qXwHD/a90/KOkqUbU36DRCUO3AcU3WH5KjjJByV4vSi/SVaH2BuAhoo78U6FKKToDrgAtKL+1BvXFaTYw=
+	t=1733354900; cv=none; b=uiTWlaxYE060G8DC57+i6GMPv0/aqVN3Ju3df/9HP9UQH2WaVVUiBZ8Ef0meg5/yngUIUCPzu79ZoSpvB7U0WTy/eBKrn8iwjCueFcID4Srq45VmQIHs5aCO7NftrA4W/sIHomg0uWjAb9dSRhzYLBRQrBuehCgeurHl3Bw1vTc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733353299; c=relaxed/simple;
-	bh=dZvdIAAIVCb1Gn6fGg1mI/DXu0J+s56rXzMjSqtVB7k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R+icJ2naSBOf4+aJhGwWU9ImfiRADy0IBH2GMAP+bgebwYAe0K6yswSzm4/HpQRpPTtDa5BAUO+eLiFl2za8ug6y+31JOrRiNBQbl+2bEcM+GBzhS4C5L/nHGjHdhHOosc6GXI2UORRGh9nDof4uekiIVgEyB6+nphxoEtYYc/I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fY5Oqv6i; arc=none smtp.client-ip=209.85.208.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2ffa8df8850so2440471fa.3
-        for <devicetree@vger.kernel.org>; Wed, 04 Dec 2024 15:01:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1733353296; x=1733958096; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=9vaTYGf0bQtIjfkF3yhPnmJiZRJ8Kz7bkXSyKGXSTLE=;
-        b=fY5Oqv6iVNGz5a75L+TcLjyw/m0PcoKYfX2u+3vz7J+XJEfIdxt+th9QCWAoAqe2t0
-         +MAxCoS2mz0tKnEzfOL5itN7zigHBrKLJMvhtIRqDK05fp5sdWxpQAl8tMAQW/VtOohy
-         ScFtWSzw+lPFQk8GIJD+OEqVLuOprqC5Aj0+XTX7fNkdRgFCg5LtGphGyOuokdk9QtON
-         jd5THf5Ce5IcMC+knBDKoEWJaGGHW6L4nZFyMJrivM/oWRzMbUjtjPLQd2cLu5DEBusU
-         OJoup6a7e0KNG84/wp82ODxa/t/Ro+y/HXtc1IMPx/AzFpZXdXwUA+sUBmQJsEprcs8Z
-         REGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733353296; x=1733958096;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9vaTYGf0bQtIjfkF3yhPnmJiZRJ8Kz7bkXSyKGXSTLE=;
-        b=Rxeaf/XtuPa6eY5+3DB+pTL+M9YnAwid1yAuyUrCsgtXpb1u76tQE97jG2keBqVrUF
-         oqPwgWSudRT+Ybc38aBsfVRqcD+fYbAZ6RULvB1vV5QM5no/YcPY+ZQc0b1CyGhB/IAP
-         lPBZvBAv/d4dNkW89Ml8jPPEsbs/LK1wUf8lyZDUErav1+8kPgdLTC8A4pp16/6eEoXi
-         5Lytai9gv3SvoadrhlOtSpKdzvUdsJl/B9p4AzlsZIkwQ/TRy3N4lA/XspcopYNGdsTN
-         BnOPWYYbycp9DUnyE6m4/7QZpZttfV7Fnd8ezsFyXNLYmbWwMOMqGuEUrSSTSGJhTpt3
-         bZXw==
-X-Forwarded-Encrypted: i=1; AJvYcCVrH9Jw1yLoT0sWHEFsTCJyh6d6nRmaKnDgN0e51aCMcCajiSomQwTh5FBcyFK1nv+iiSWStEGZFmK1@vger.kernel.org
-X-Gm-Message-State: AOJu0YyVc5Dj5op1Pkgr5i5GIihAurrrtcBZieGiF+V9GzA0MV4tXoRk
-	pDlWhtpjkLqMrewfok+bEBeC8BFmuvDxl/y6eB7JEBMo1it3348chjkzHWGnOZs=
-X-Gm-Gg: ASbGncvHCsGSopXhoNH1x4wM4ie7+VjwA3+j+3ENPPMlZ0KxvUhuv/sCQhYqNlb7++N
-	qDIrHgMfJv2amIFygOPlql2vK61tP1XzCWhWq7GAiZsxwRReNSu5t1db9jtj8JHWWkfUWkWaPAB
-	TsBi6UbLQwrRrdILWbJai+oY4PWqsEg0WCj8kvJvaCEKD20DDdmoxXX2oSLbJp9RPF4ECo+r35W
-	ZlXJVZoiY+QNHt+r2YYwSqR4VIeCytqUbz2fBMqi026vvGg0Iz0QKmtAnrt1GPoPMNJ0GK5hCGd
-	o7R2zk/n6yfJZvm5jYANEmGUiwyvLw==
-X-Google-Smtp-Source: AGHT+IFTuplv2isdxHj5cnxXRgLfLSYqhiljXH2if0rM2tCYLl4uD9OrVYwTUyo0WS8OVxU2kC/gEw==
-X-Received: by 2002:a2e:bd0c:0:b0:2ff:d7e8:b71b with SMTP id 38308e7fff4ca-30009c940a7mr53718381fa.12.1733353296270;
-        Wed, 04 Dec 2024 15:01:36 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30020da27f1sm124871fa.37.2024.12.04.15.01.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Dec 2024 15:01:34 -0800 (PST)
-Date: Thu, 5 Dec 2024 01:01:32 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc: lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org, 
-	robh@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	vkoul@kernel.org, kishon@kernel.org, andersson@kernel.org, konradybcio@kernel.org, 
-	p.zabel@pengutronix.de, quic_nsekar@quicinc.com, linux-arm-msm@vger.kernel.org, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-phy@lists.infradead.org
-Subject: Re: [PATCH v2 2/6] phy: qcom: Introduce PCIe UNIPHY 28LP driver
-Message-ID: <f2yfxyuhoiavwziq3nd64mly3qdxif5abt2qp4qvrizqytqrid@fqfb22rpu6ug>
-References: <20241204113329.3195627-1-quic_varada@quicinc.com>
- <20241204113329.3195627-3-quic_varada@quicinc.com>
+	s=arc-20240116; t=1733354900; c=relaxed/simple;
+	bh=mzYkslIUXLeOFOh0aayYYVU2C1ENA1994A5krtiOfoY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=GVXb2OtBvZcse9a41PNuMNzALhxs1L44s9hH0Sx4bFJ0+IGF+hxRgDfzG9Vf+NWLLkV1e4Zq7oN+rWIQ9rCUUTiM4shxYOBCMBbfuOLpRmnLWJ9bk6qi5svmeGD9HPMd7yXhSnxX7wYQFKeGvkNXD4SnI+j/mv0quvLClZ0XGDg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mLBBZRae; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F09FC4CECD;
+	Wed,  4 Dec 2024 23:28:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733354900;
+	bh=mzYkslIUXLeOFOh0aayYYVU2C1ENA1994A5krtiOfoY=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=mLBBZRaehrAp5keH1n3oXJqZuiFKnh6C+9DcnPLp4C57xlPfPqSMMGhNqAAZRFN9w
+	 hfVNfSLKLsbwTL/cHogdPZzodgwjjLb7bfVRHyJCHPhKcVLnv0IqmdhvYaw2aV237D
+	 aEdINgJDalASeVdDqRfXCWMIgCI+FkDJ6scOeBFLJVDrY7noRaCVap5zYNbaenlVJS
+	 BBuJDf6fHoR4CRstGHGyb9avqK4a67+ai0sD1meQ5SZkK2ND23r0lmWxi9rnehShve
+	 oOhcxQYQE7jgdVCaTqQ1SaG/8f17jdClfCXEVxQHY0YrQgLsqZNB4Y1wqS3ZQFWIYj
+	 XGhHCG29mxWCw==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Cc: Xi Ruoyao <xry111@xry111.site>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Sasha Levin <sashal@kernel.org>,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	si.yanteng@linux.dev,
+	jiaxun.yang@flygoat.com,
+	davem@davemloft.net,
+	devicetree@vger.kernel.org,
+	linux-mips@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.12 13/15] MIPS: Loongson64: DTS: Really fix PCIe port nodes for ls7a
+Date: Wed,  4 Dec 2024 17:16:07 -0500
+Message-ID: <20241204221627.2247598-13-sashal@kernel.org>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20241204221627.2247598-1-sashal@kernel.org>
+References: <20241204221627.2247598-1-sashal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241204113329.3195627-3-quic_varada@quicinc.com>
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-stable-base: Linux 6.12.1
+Content-Transfer-Encoding: 8bit
 
-On Wed, Dec 04, 2024 at 05:03:25PM +0530, Varadarajan Narayanan wrote:
-> From: Nitheesh Sekar <quic_nsekar@quicinc.com>
-> 
-> Add Qualcomm PCIe UNIPHY 28LP driver support present
-> in Qualcomm IPQ5332 SoC and the phy init sequence.
-> 
-> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
-> v2: Drop IPQ5018 related code and data
->     Use uniform prefix for struct names
->     Place "}, {", on the same line
->     In qcom_uniphy_pcie_init(), use for-loop instead of while
->     Swap reset and clock disable order in qcom_uniphy_pcie_power_off
->     Add reset assert to qcom_uniphy_pcie_power_on's error path
->     Use macros for usleep duration
->     Inlined qcom_uniphy_pcie_get_resources & use devm_platform_get_and_ioremap_resource
->     Drop 'clock-output-names' from phy_pipe_clk_register
-> ---
->  drivers/phy/qualcomm/Kconfig                  |  12 +
->  drivers/phy/qualcomm/Makefile                 |   1 +
->  .../phy/qualcomm/phy-qcom-uniphy-pcie-28lp.c  | 307 ++++++++++++++++++
->  3 files changed, 320 insertions(+)
->  create mode 100644 drivers/phy/qualcomm/phy-qcom-uniphy-pcie-28lp.c
-> 
+From: Xi Ruoyao <xry111@xry111.site>
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+[ Upstream commit 4fbd66d8254cedfd1218393f39d83b6c07a01917 ]
 
+Fix the dtc warnings:
+
+    arch/mips/boot/dts/loongson/ls7a-pch.dtsi:68.16-416.5: Warning (interrupt_provider): /bus@10000000/pci@1a000000: '#interrupt-cells' found, but node is not an interrupt provider
+    arch/mips/boot/dts/loongson/ls7a-pch.dtsi:68.16-416.5: Warning (interrupt_provider): /bus@10000000/pci@1a000000: '#interrupt-cells' found, but node is not an interrupt provider
+    arch/mips/boot/dts/loongson/loongson64g_4core_ls7a.dtb: Warning (interrupt_map): Failed prerequisite 'interrupt_provider'
+
+And a runtime warning introduced in commit 045b14ca5c36 ("of: WARN on
+deprecated #address-cells/#size-cells handling"):
+
+    WARNING: CPU: 0 PID: 1 at drivers/of/base.c:106 of_bus_n_addr_cells+0x9c/0xe0
+    Missing '#address-cells' in /bus@10000000/pci@1a000000/pci_bridge@9,0
+
+The fix is similar to commit d89a415ff8d5 ("MIPS: Loongson64: DTS: Fix PCIe
+port nodes for ls7a"), which has fixed the issue for ls2k (despite its
+subject mentions ls7a).
+
+Signed-off-by: Xi Ruoyao <xry111@xry111.site>
+Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/mips/boot/dts/loongson/ls7a-pch.dtsi | 73 +++++++++++++++++++----
+ 1 file changed, 60 insertions(+), 13 deletions(-)
+
+diff --git a/arch/mips/boot/dts/loongson/ls7a-pch.dtsi b/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
+index cce9428afc41f..ee71045883e7e 100644
+--- a/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
++++ b/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
+@@ -70,7 +70,6 @@ pci@1a000000 {
+ 			device_type = "pci";
+ 			#address-cells = <3>;
+ 			#size-cells = <2>;
+-			#interrupt-cells = <2>;
+ 			msi-parent = <&msi>;
+ 
+ 			reg = <0 0x1a000000 0 0x02000000>,
+@@ -234,7 +233,7 @@ phy1: ethernet-phy@1 {
+ 				};
+ 			};
+ 
+-			pci_bridge@9,0 {
++			pcie@9,0 {
+ 				compatible = "pci0014,7a19.1",
+ 						   "pci0014,7a19",
+ 						   "pciclass060400",
+@@ -244,12 +243,16 @@ pci_bridge@9,0 {
+ 				interrupts = <32 IRQ_TYPE_LEVEL_HIGH>;
+ 				interrupt-parent = <&pic>;
+ 
++				#address-cells = <3>;
++				#size-cells = <2>;
++				device_type = "pci";
+ 				#interrupt-cells = <1>;
+ 				interrupt-map-mask = <0 0 0 0>;
+ 				interrupt-map = <0 0 0 0 &pic 32 IRQ_TYPE_LEVEL_HIGH>;
++				ranges;
+ 			};
+ 
+-			pci_bridge@a,0 {
++			pcie@a,0 {
+ 				compatible = "pci0014,7a09.1",
+ 						   "pci0014,7a09",
+ 						   "pciclass060400",
+@@ -259,12 +262,16 @@ pci_bridge@a,0 {
+ 				interrupts = <33 IRQ_TYPE_LEVEL_HIGH>;
+ 				interrupt-parent = <&pic>;
+ 
++				#address-cells = <3>;
++				#size-cells = <2>;
++				device_type = "pci";
+ 				#interrupt-cells = <1>;
+ 				interrupt-map-mask = <0 0 0 0>;
+ 				interrupt-map = <0 0 0 0 &pic 33 IRQ_TYPE_LEVEL_HIGH>;
++				ranges;
+ 			};
+ 
+-			pci_bridge@b,0 {
++			pcie@b,0 {
+ 				compatible = "pci0014,7a09.1",
+ 						   "pci0014,7a09",
+ 						   "pciclass060400",
+@@ -274,12 +281,16 @@ pci_bridge@b,0 {
+ 				interrupts = <34 IRQ_TYPE_LEVEL_HIGH>;
+ 				interrupt-parent = <&pic>;
+ 
++				#address-cells = <3>;
++				#size-cells = <2>;
++				device_type = "pci";
+ 				#interrupt-cells = <1>;
+ 				interrupt-map-mask = <0 0 0 0>;
+ 				interrupt-map = <0 0 0 0 &pic 34 IRQ_TYPE_LEVEL_HIGH>;
++				ranges;
+ 			};
+ 
+-			pci_bridge@c,0 {
++			pcie@c,0 {
+ 				compatible = "pci0014,7a09.1",
+ 						   "pci0014,7a09",
+ 						   "pciclass060400",
+@@ -289,12 +300,16 @@ pci_bridge@c,0 {
+ 				interrupts = <35 IRQ_TYPE_LEVEL_HIGH>;
+ 				interrupt-parent = <&pic>;
+ 
++				#address-cells = <3>;
++				#size-cells = <2>;
++				device_type = "pci";
+ 				#interrupt-cells = <1>;
+ 				interrupt-map-mask = <0 0 0 0>;
+ 				interrupt-map = <0 0 0 0 &pic 35 IRQ_TYPE_LEVEL_HIGH>;
++				ranges;
+ 			};
+ 
+-			pci_bridge@d,0 {
++			pcie@d,0 {
+ 				compatible = "pci0014,7a19.1",
+ 						   "pci0014,7a19",
+ 						   "pciclass060400",
+@@ -304,12 +319,16 @@ pci_bridge@d,0 {
+ 				interrupts = <36 IRQ_TYPE_LEVEL_HIGH>;
+ 				interrupt-parent = <&pic>;
+ 
++				#address-cells = <3>;
++				#size-cells = <2>;
++				device_type = "pci";
+ 				#interrupt-cells = <1>;
+ 				interrupt-map-mask = <0 0 0 0>;
+ 				interrupt-map = <0 0 0 0 &pic 36 IRQ_TYPE_LEVEL_HIGH>;
++				ranges;
+ 			};
+ 
+-			pci_bridge@e,0 {
++			pcie@e,0 {
+ 				compatible = "pci0014,7a09.1",
+ 						   "pci0014,7a09",
+ 						   "pciclass060400",
+@@ -319,12 +338,16 @@ pci_bridge@e,0 {
+ 				interrupts = <37 IRQ_TYPE_LEVEL_HIGH>;
+ 				interrupt-parent = <&pic>;
+ 
++				#address-cells = <3>;
++				#size-cells = <2>;
++				device_type = "pci";
+ 				#interrupt-cells = <1>;
+ 				interrupt-map-mask = <0 0 0 0>;
+ 				interrupt-map = <0 0 0 0 &pic 37 IRQ_TYPE_LEVEL_HIGH>;
++				ranges;
+ 			};
+ 
+-			pci_bridge@f,0 {
++			pcie@f,0 {
+ 				compatible = "pci0014,7a29.1",
+ 						   "pci0014,7a29",
+ 						   "pciclass060400",
+@@ -334,12 +357,16 @@ pci_bridge@f,0 {
+ 				interrupts = <40 IRQ_TYPE_LEVEL_HIGH>;
+ 				interrupt-parent = <&pic>;
+ 
++				#address-cells = <3>;
++				#size-cells = <2>;
++				device_type = "pci";
+ 				#interrupt-cells = <1>;
+ 				interrupt-map-mask = <0 0 0 0>;
+ 				interrupt-map = <0 0 0 0 &pic 40 IRQ_TYPE_LEVEL_HIGH>;
++				ranges;
+ 			};
+ 
+-			pci_bridge@10,0 {
++			pcie@10,0 {
+ 				compatible = "pci0014,7a19.1",
+ 						   "pci0014,7a19",
+ 						   "pciclass060400",
+@@ -349,12 +376,16 @@ pci_bridge@10,0 {
+ 				interrupts = <41 IRQ_TYPE_LEVEL_HIGH>;
+ 				interrupt-parent = <&pic>;
+ 
++				#address-cells = <3>;
++				#size-cells = <2>;
++				device_type = "pci";
+ 				#interrupt-cells = <1>;
+ 				interrupt-map-mask = <0 0 0 0>;
+ 				interrupt-map = <0 0 0 0 &pic 41 IRQ_TYPE_LEVEL_HIGH>;
++				ranges;
+ 			};
+ 
+-			pci_bridge@11,0 {
++			pcie@11,0 {
+ 				compatible = "pci0014,7a29.1",
+ 						   "pci0014,7a29",
+ 						   "pciclass060400",
+@@ -364,12 +395,16 @@ pci_bridge@11,0 {
+ 				interrupts = <42 IRQ_TYPE_LEVEL_HIGH>;
+ 				interrupt-parent = <&pic>;
+ 
++				#address-cells = <3>;
++				#size-cells = <2>;
++				device_type = "pci";
+ 				#interrupt-cells = <1>;
+ 				interrupt-map-mask = <0 0 0 0>;
+ 				interrupt-map = <0 0 0 0 &pic 42 IRQ_TYPE_LEVEL_HIGH>;
++				ranges;
+ 			};
+ 
+-			pci_bridge@12,0 {
++			pcie@12,0 {
+ 				compatible = "pci0014,7a19.1",
+ 						   "pci0014,7a19",
+ 						   "pciclass060400",
+@@ -379,12 +414,16 @@ pci_bridge@12,0 {
+ 				interrupts = <43 IRQ_TYPE_LEVEL_HIGH>;
+ 				interrupt-parent = <&pic>;
+ 
++				#address-cells = <3>;
++				#size-cells = <2>;
++				device_type = "pci";
+ 				#interrupt-cells = <1>;
+ 				interrupt-map-mask = <0 0 0 0>;
+ 				interrupt-map = <0 0 0 0 &pic 43 IRQ_TYPE_LEVEL_HIGH>;
++				ranges;
+ 			};
+ 
+-			pci_bridge@13,0 {
++			pcie@13,0 {
+ 				compatible = "pci0014,7a29.1",
+ 						   "pci0014,7a29",
+ 						   "pciclass060400",
+@@ -394,12 +433,16 @@ pci_bridge@13,0 {
+ 				interrupts = <38 IRQ_TYPE_LEVEL_HIGH>;
+ 				interrupt-parent = <&pic>;
+ 
++				#address-cells = <3>;
++				#size-cells = <2>;
++				device_type = "pci";
+ 				#interrupt-cells = <1>;
+ 				interrupt-map-mask = <0 0 0 0>;
+ 				interrupt-map = <0 0 0 0 &pic 38 IRQ_TYPE_LEVEL_HIGH>;
++				ranges;
+ 			};
+ 
+-			pci_bridge@14,0 {
++			pcie@14,0 {
+ 				compatible = "pci0014,7a19.1",
+ 						   "pci0014,7a19",
+ 						   "pciclass060400",
+@@ -409,9 +452,13 @@ pci_bridge@14,0 {
+ 				interrupts = <39 IRQ_TYPE_LEVEL_HIGH>;
+ 				interrupt-parent = <&pic>;
+ 
++				#address-cells = <3>;
++				#size-cells = <2>;
++				device_type = "pci";
+ 				#interrupt-cells = <1>;
+ 				interrupt-map-mask = <0 0 0 0>;
+ 				interrupt-map = <0 0 0 0 &pic 39 IRQ_TYPE_LEVEL_HIGH>;
++				ranges;
+ 			};
+ 		};
+ 
 -- 
-With best wishes
-Dmitry
+2.43.0
+
 
