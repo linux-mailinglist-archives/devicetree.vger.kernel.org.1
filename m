@@ -1,115 +1,171 @@
-Return-Path: <devicetree+bounces-127065-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37A379E44A6
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 20:33:53 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 400EB9E44C3
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 20:38:07 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 11CDB165068
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 19:33:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9A0E2828E6
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 19:38:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C07921C3C1A;
-	Wed,  4 Dec 2024 19:33:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 061021F03FB;
+	Wed,  4 Dec 2024 19:37:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="VkZoTORc"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="laWfwfby"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 158CD1A8F7A
-	for <devicetree@vger.kernel.org>; Wed,  4 Dec 2024 19:33:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 450F51C3C1F;
+	Wed,  4 Dec 2024 19:37:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733340826; cv=none; b=OIc7YlOUf8mjQ/u1N611rYKnwiTu2r8MDxQ8qqvLB6Z4lPwgK/xg/THOtq3iH65EbEekV3RBzTD3fDVjZdwP5I9yCYYhozlAS1UZSBWN9KzChHDS9EAwRUD96ztWkX6paiIF76p2rAZrTGOQIZ/qOHhaciZIh3ix6+nP9YSQQ+I=
+	t=1733341066; cv=none; b=H5fAmQhB3RmMSR54DOwDC5uCAWJYeuTlrrMNqOkN6lvxNN24ZCDgiI98v6BAVn+XgAMKcEpSbX7OKtuiLCx3F+Lrkd1d1cC/p6FUxmqvlmCE+eZac+alntN9S6+Tg9vPQQ8unou1sWWC8wsypBB1JI5QfkxMYqaWLLO6NyWsEYk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733340826; c=relaxed/simple;
-	bh=b1Xpy6CD6aMD49xSm64SabOF+AaRJHNJEm1DcSmxM48=;
-	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ISYnkbgINVerqOFm/6hhfYYcHvHqBIpXrZ9GweMC0rjtyW9MaI1qIMBULkZqurpPe5M/KaGhtQlZxqi5z0iLvkv0x7rd45Y783PYzjOIUGLclvPfE4oXXSKrKTYJne+hDESTPaDRVmO0HfmjGVPUGMbofySPLS1U1ttzqMAzUbE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=VkZoTORc; arc=none smtp.client-ip=209.85.219.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-e2bd7d8aaf8so121061276.3
-        for <devicetree@vger.kernel.org>; Wed, 04 Dec 2024 11:33:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1733340823; x=1733945623; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aNJFJ6pRI65Hkx3S3msz6HnheriMpI4d7aUoNtf1ZHk=;
-        b=VkZoTORcjOF/QO7o5Z/7eH11o2WV19FflQSxUGnrBjPp6cm9ifyJkM6OD1nF9LlbG2
-         hEYp5cTQDP/ml/k/GHc7NFbVauLJgsfPFCKEHLFYCBxqUCIEZT5HYrRaa+XfwGKreIlT
-         /kDm/2ydT93Tdo3JCdISCeGy0K3FeIqe7aEMw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733340823; x=1733945623;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aNJFJ6pRI65Hkx3S3msz6HnheriMpI4d7aUoNtf1ZHk=;
-        b=NvTwDM5Xj9dt160yV+jyluAlqMbwMDe0Ov07/7p5WcDHKhb6R+XT9NQRkMrcVItpOg
-         u+xqzujtRA626vFKWkdsuVU7q+MV3008B33TTDrW7D+pQ0m3VK9L9VV6uNoAO9KeWfKf
-         bfeSg2yVaiMf3X6FVyrlbBw959lgun2C2MjUuUgo6pa6CwJ3tpCryJzOMK2as0YqbiOP
-         SN1CtOF9vSAOD6ocJMX/gPsmEX1YBjSx0yE/jMxeG8OZ3EtOgbigCCQbBiUnhWmqe3AO
-         B5jUhTNJbOu2NOwOkJt6aKqWaP1/lsi7bc8pcm19h7mUeuBgLazfxUphWzjbn7w/iUOE
-         d9bg==
-X-Forwarded-Encrypted: i=1; AJvYcCVebSj7PsZj7Q/IPWgDBVddZ9e8ofe1pClF6FYM51wMxgUQUsPcyx0gJHj1kbFS0yU1deEHrGbcZiIh@vger.kernel.org
-X-Gm-Message-State: AOJu0YxkBKq/OlSdPt4CyqJCiZqJWTYerJZ9ufQpYTkkzyjzB5Ba7qR+
-	D0GDWEwOfhdWBbqTU+1PmJFEkkS+X3n0xWFN8w7ENh2lS1gK5qNNlrPRCEQZI1pok/Qcn8hoF57
-	m2HXSNGbsmrNAgBr+4Pist3muu3Fv+2AtjJ70
-X-Gm-Gg: ASbGnctIuaDr5lLbZvhebroE+NO2qlRsSaFQKlm5yvlIvweiLmSjTSWkGnhWvmCgrYI
-	du2cLqB6ZevvfWBrlWI5Ut45I+D9lyPkQ4l6naeeusL50Ads3k55Y4QYn9rg=
-X-Google-Smtp-Source: AGHT+IH3lQTfDvoVM5SgtnrmkWgM8tKtP2qmtpTk83iDRH4qhKbofq2v85Sk9lkW6T3GFBZuCLJYvwma2CMebDYV29Q=
-X-Received: by 2002:a05:6902:726:b0:e39:8a36:5781 with SMTP id
- 3f1490d57ef6-e39d39ee243mr6896832276.1.1733340823079; Wed, 04 Dec 2024
- 11:33:43 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 4 Dec 2024 14:33:42 -0500
+	s=arc-20240116; t=1733341066; c=relaxed/simple;
+	bh=i+aZQ7pNxIDERryH/wFzRNbRnyQtHrSyce+j8Y50dIg=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=sBAsqjIJWKeUDMKf0DTk/1xIPsKzdm/0qWvrymGQTYYP1ph7m4nYXn+uxgKEMUzy1TY4oi+xsnx3VmutQI+4pejdqZU2ap9keMUcq0Q4F7FoKXmnIxVzxe3fkAYEqko+u7JCQvy1uq10bCRBWS3BEkP6f1D3n2TYL5ITn5ot8ZE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=laWfwfby; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B4GIM4n024065;
+	Wed, 4 Dec 2024 19:37:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=WODLAJk42mCopfvblmGFF0
+	a+uKhmx6oZsPEUVFz6sf4=; b=laWfwfbyidozToeyWNEjOKJfn2wZqmO6D8MxB7
+	U60LjPkLzFgCDdRD75j3BrOhOEHS6zA8X847vFTFsWekgQBM3obiKmMj3pJyVDtN
+	YszHxtbe8V7pubUDGTDl9zax2Df6rDXu2MjlzhT0DLdRNJAm7EN2LhKPFMBv3Wgu
+	Qs2cHCvEWQqjb8Ru13R8L8WOxL7Iex5x3R15hgu7cF3yJlqayf5eJW2sYhu5fP8j
+	nBusB0FtIGSmSFPKZUkPNMS+IQbOH+1fg6GbjxVs4fHOBmY5LXCnulUqDns5OHVy
+	o0cOKX/Fph+oMhGK2j2WWN77m2VundSEkGSHXYSk4bYhdnnw==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 439vnywa55-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 04 Dec 2024 19:37:40 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B4JbcRu018548
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 4 Dec 2024 19:37:38 GMT
+Received: from hu-molvera-lv.qualcomm.com (10.49.16.6) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 4 Dec 2024 11:37:38 -0800
+From: Melody Olvera <quic_molvera@quicinc.com>
+Subject: [PATCH v3 0/8] clks: qcom: Introduce clks for SM8750
+Date: Wed, 4 Dec 2024 11:37:12 -0800
+Message-ID: <20241204-sm8750_master_clks-v3-0-1a8f31a53a86@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <202412041839.pjv6awcS-lkp@intel.com>
-References: <20241204000415.2404264-1-swboyd@chromium.org> <202412041839.pjv6awcS-lkp@intel.com>
-From: Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.12.dev1+gaa8c22fdeedb
-Date: Wed, 4 Dec 2024 14:33:42 -0500
-Message-ID: <CAE-0n51ZnUnL9Ghc4VV=hH0ju+VNnq4HWj_xV5cOA-Q0B-Au5Q@mail.gmail.com>
-Subject: Re: [PATCH] of: Hide of_default_bus_match_table[]
-To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
-	kernel test robot <lkp@intel.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	patches@lists.linux.dev, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGivUGcC/x3MSQqAMAxA0atI1hbaWutwFZHiEDU40ogI4t0tL
+ t/i/wcYPSFDGT3g8SKmfQtI4gi6qdlGFNQHg5baKC2N4DXPUunWhk/0rltmFqgtqrYwyrYWQnh
+ 4HOj+p1X9vh/WEIhYZAAAAA==
+X-Change-ID: 20241204-sm8750_master_clks-e26e1b9416b6
+To: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Melody Olvera
+	<quic_molvera@quicinc.com>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>,
+        Bryan O'Donoghue
+	<bryan.odonoghue@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1733341058; l=2688;
+ i=quic_molvera@quicinc.com; s=20241204; h=from:subject:message-id;
+ bh=i+aZQ7pNxIDERryH/wFzRNbRnyQtHrSyce+j8Y50dIg=;
+ b=QwcFbbYsS8LA0xZJAZIsFCpZ7jST7othk6TOAjTJ/uMuX2e9gs+KzOv7hB7peOknsZJmbEC26
+ PpinNazyYoJDqRSOF2eGbjwg3UZdb5cn4TtdYm+j2AijV1U0vTfkiim
+X-Developer-Key: i=quic_molvera@quicinc.com; a=ed25519;
+ pk=1DGLp3zVYsHAWipMaNZZTHR321e8xK52C9vuAoeca5c=
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: AmkfZW5UH2N_JiB5e295RQaxQX-6sCIO
+X-Proofpoint-GUID: AmkfZW5UH2N_JiB5e295RQaxQX-6sCIO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
+ mlxlogscore=640 bulkscore=0 impostorscore=0 mlxscore=0 suspectscore=0
+ spamscore=0 priorityscore=1501 lowpriorityscore=0 phishscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412040150
 
-Quoting kernel test robot (2024-12-04 03:00:44)
-> Hi Stephen,
->
-> kernel test robot noticed the following build warnings:
->
-> [auto build test WARNING on 40384c840ea1944d7c5a392e8975ed088ecf0b37]
->
-> url:    https://github.com/intel-lab-lkp/linux/commits/Stephen-Boyd/of-Hide-of_default_bus_match_table/20241204-123701
-> base:   40384c840ea1944d7c5a392e8975ed088ecf0b37
-> patch link:    https://lore.kernel.org/r/20241204000415.2404264-1-swboyd%40chromium.org
-> patch subject: [PATCH] of: Hide of_default_bus_match_table[]
-> config: sparc-allnoconfig (https://download.01.org/0day-ci/archive/20241204/202412041839.pjv6awcS-lkp@intel.com/config)
-> compiler: sparc-linux-gcc (GCC) 14.2.0
-> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241204/202412041839.pjv6awcS-lkp@intel.com/reproduce)
->
-> If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202412041839.pjv6awcS-lkp@intel.com/
->
-> All warnings (new ones prefixed by >>):
->
-> >> drivers/of/platform.c:27:34: warning: 'of_default_bus_match_table' defined but not used [-Wunused-const-variable=]
->       27 | static const struct of_device_id of_default_bus_match_table[] = {
->          |                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~
+Add GCC, RPMH, and TCSR clocks for the SM8750 SoC.
 
-I will move the array into the function that uses it then.
+The Qualcomm Technologies, Inc. SM8750 SoC is the latest in the line of
+consumer mobile device SoCs. See more at:
+https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/images/company/news-media/media-center/press-kits/snapdragon-summit-2024/day-1/documents/Snapdragon8EliteProductBrief.pdf
+
+Changes in V3:
+- removed unused rfclka4 and rfclka5 from clk-rpmh [Dmitry]
+- split the SC7280 match table to a new commit [Dmitry]
+- There are bindings difference between SM8650 and SM8750, so bring back
+  the v1 binding https://patchwork.kernel.org/project/linux-clk/patch/20241021230359.2632414-5-quic_molvera@quicinc.com/
+  and fix the unused bindings.
+- Update the DT indexes as per the GCC bindings
+- Use the qcom_cc_probe() instead of qcom_cc_really_probe() for TCSRCC [Dmitry]
+
+Changes in V2:
+- removed unneeded rpmh macros, bcm ops
+- renamed CXO_PAD to CXO
+- ordered rpmh compatibles in alpha order
+- reordered clk_alpha_pll regs
+- removed redundant bindings for sm8750
+- revised gcc driver for pcie 0
+
+Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+---
+Taniya Das (8):
+      dt-bindings: clock: qcom-rpmhcc: Add RPMHCC for SM8750
+      clk: qcom: rpmh: Sort the match table alphabetically
+      clk: qcom: rpmh: Add support for SM8750 rpmh clocks
+      clk: qcom: clk-alpha-pll: Add support for controlling Taycan PLLs
+      dt-bindings: clock: qcom: Add SM8750 GCC
+      clk: qcom: Add support for GCC on SM8750
+      dt-bindings: clock: qcom: Document the SM8750 TCSR Clock Controller
+      clk: qcom: Add TCSR clock driver for SM8750
+
+ .../devicetree/bindings/clock/qcom,rpmhcc.yaml     |    1 +
+ .../bindings/clock/qcom,sm8550-tcsr.yaml           |    2 +
+ .../devicetree/bindings/clock/qcom,sm8750-gcc.yaml |   62 +
+ drivers/clk/qcom/Kconfig                           |   17 +
+ drivers/clk/qcom/Makefile                          |    2 +
+ drivers/clk/qcom/clk-alpha-pll.c                   |   14 +
+ drivers/clk/qcom/clk-alpha-pll.h                   |    7 +
+ drivers/clk/qcom/clk-rpmh.c                        |   26 +-
+ drivers/clk/qcom/gcc-sm8750.c                      | 3274 ++++++++++++++++++++
+ drivers/clk/qcom/tcsrcc-sm8750.c                   |  141 +
+ include/dt-bindings/clock/qcom,sm8750-gcc.h        |  226 ++
+ include/dt-bindings/clock/qcom,sm8750-tcsr.h       |   15 +
+ 12 files changed, 3786 insertions(+), 1 deletion(-)
+---
+base-commit: bcf2acd8f64b0a5783deeeb5fd70c6163ec5acd7
+change-id: 20241204-sm8750_master_clks-e26e1b9416b6
+
+Best regards,
+-- 
+Melody Olvera <quic_molvera@quicinc.com>
+
 
