@@ -1,55 +1,70 @@
-Return-Path: <devicetree+bounces-126968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126969-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BE699E3D78
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 15:59:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A175B9E3C9E
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 15:22:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 38842B3E9F4
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 14:19:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66116280FB7
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 14:22:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 817C31F8AC4;
-	Wed,  4 Dec 2024 14:18:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 785CE1FC7EC;
+	Wed,  4 Dec 2024 14:22:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s9kRAenX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rxU7py+B"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59CFF1F759E;
-	Wed,  4 Dec 2024 14:18:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E6D21BD014;
+	Wed,  4 Dec 2024 14:22:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733321931; cv=none; b=OrWbS47KWlsVdfkhNZZbuLJDHwgLz9eqPgPfC5X6X5vQjT5sB3Q+4PS7dERQKBXeBQO5pwl6aVL1yaEW1ZtrwF5KvoezYXRnDH51vNOwFF5N3megvAH88ERQ+vu9QpvKpaC9gg79laJXGObORJAkrdcx5CWSkuwdVO+qWpTDtA8=
+	t=1733322148; cv=none; b=eD0zbmGl2ygF9sMdeIfhJY22Vqf+fDS36NGiuNIF52Nqv3WmVgQp336SOW2XpHJuop38cQUr0ilwFcu4CACr3wsk4QpuBBgtSyWlg9vkQBhbztx7n+ghAJm1qOYBrwIhVldXm1uVvQQmE16qYHzxiR9jwzWmYKb9lbkT58z7JFU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733321931; c=relaxed/simple;
-	bh=Fs0kG04zp71DgQHcr3MV0SWPjFXHt61BmC4WUOKacWo=;
+	s=arc-20240116; t=1733322148; c=relaxed/simple;
+	bh=CCyS4K6qH/1DQ/HGcYr/W1D5AC4ouG8yMRT5gs8nL6k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GV7R9RZpUQwUdJhjtJn6VGHXtQ1XMXuFrUik6r38I8Rg44/Juv6MQU5JrnJUlwhs5RE/wJbh9ADWpGhRtf/U1SCYgKY+myi5l70Jpjnbls4q3wdRCnPIY+8a4JZqPo73W05EARJ4DsMyCCwjppWxs9ba75+RCPEXOqnoXtdYNUA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s9kRAenX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFCABC4CECD;
-	Wed,  4 Dec 2024 14:18:50 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=eeiRSc9DtdRZCiDDo9+pCaeDMSEeJh42xjRK6wV/28IYmx0NsOPp+gS361tifTOrzU5cGOWxH0aSw/GRt96EIrTqQmQjw16JSlipbTTN61XXbHqkKuYVAMRBCmDq4jIpec0zSqgCeJ++NWc6vMLYiijuNqShqPM8S3f55LEy3u8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rxU7py+B; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9622AC4CECD;
+	Wed,  4 Dec 2024 14:22:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733321930;
-	bh=Fs0kG04zp71DgQHcr3MV0SWPjFXHt61BmC4WUOKacWo=;
+	s=k20201202; t=1733322147;
+	bh=CCyS4K6qH/1DQ/HGcYr/W1D5AC4ouG8yMRT5gs8nL6k=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=s9kRAenXpzlwDAcIEs5FRkhITLP8swS9W5xKUHBTxctik2gCJrxIAVtX0d9dGHmaS
-	 OyZjQfPkjtiY82YXgQfqVOYUw9zybklhAxXp9nck8ObzkjHHP72RkXdUxzr1TRkelq
-	 /yRWxRp95Utsog/K4myPF7vc5mkk7oxiqUczQ9Kj/O/jO15fV48VF/38raU0fEp+z8
-	 yQ3fX/XMuGzd4kpC6zRque7Je0CLOS3l4mD7tH05ILbHY6JqZCuzE90rSz1FYCrSij
-	 QeOKJ1bH+uR+oyS5xfoFzovVMCY9WH8RJVYdcnlUInMMuu2Lfmu3tQNg0GqoJM5GCC
-	 1FrrwzhYU0uyQ==
-Date: Wed, 4 Dec 2024 08:18:49 -0600
-From: Rob Herring <robh@kernel.org>
-To: Yang Li <yang.lee@linux.alibaba.com>
-Cc: saravanak@google.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Abaci Robot <abaci@linux.alibaba.com>
-Subject: Re: [PATCH -next] of: base: Add missing parameter description to
- of_get_next_child_with_prefix()
-Message-ID: <20241204141849.GA169572-robh@kernel.org>
-References: <20241129061155.52874-1-yang.lee@linux.alibaba.com>
+	b=rxU7py+B1rzxO1rwvwjkwSfstGL2d7Ydzk2eMWyY6MvP7M4dhhs6TWO9RCqpoEGpq
+	 +GFBuLNpYHgQokCjGSh2CguCiJUK3WNucXamRd5mSMU7JfuciAEwtnucZkKPL3Z0GF
+	 KhLvRbBo7XnXQqxjoNsDdJrV1niEVibkXH0b8fh7mlXz44DoSus8PK4rXSLADWqKpT
+	 dAEfjbuuSfuihx1/i9W9oQs8gqPF350v8SIib1tnoORLGtiaSbO0t1BZBm5p7PHBSo
+	 zNRzZgQteJ0XbQzavIliblf4ajk6clNRKBpTlrxyCqi2Fq80oCCQhpysFMRANjtD02
+	 qCeGqvfmwJ/CA==
+Date: Wed, 4 Dec 2024 08:22:25 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Petr Vorel <pvorel@suse.cz>, linux-usb@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	Yassine Oudjana <y.oudjana@protonmail.com>,
+	Konrad Dybcio <konradybcio@gmail.com>,
+	Alexander Reimelt <alexander.reimelt@posteo.de>,
+	Bjorn Andersson <andersson@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	=?utf-8?B?S3J5xaF0b2YgxIxlcm7DvQ==?= <cleverline1mc@gmail.com>,
+	Wesley Cheng <quic_wcheng@quicinc.com>,
+	Dominik Kobinski <dominikkobinski314@gmail.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Harry Austen <hpausten@protonmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH RFT 1/4] dt-bindings: usb: qcom,dwc3: Make ss_phy_irq
+ optional for MSM8996
+Message-ID: <173332214517.177124.9883201791486953471.robh@kernel.org>
+References: <20241129-topic-qcom_usb_dtb_fixup-v1-0-cba24120c058@oss.qualcomm.com>
+ <20241129-topic-qcom_usb_dtb_fixup-v1-1-cba24120c058@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,20 +73,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241129061155.52874-1-yang.lee@linux.alibaba.com>
+In-Reply-To: <20241129-topic-qcom_usb_dtb_fixup-v1-1-cba24120c058@oss.qualcomm.com>
 
-On Fri, Nov 29, 2024 at 02:11:55PM +0800, Yang Li wrote:
-> The function of_get_next_child_with_prefix() lacked a description for
-> the prefix parameter in its documentation. This patch adds the missing
-> description to ensure all parameters are properly documented.
+
+On Fri, 29 Nov 2024 23:12:45 +0100, Konrad Dybcio wrote:
+> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 > 
-> Reported-by: Abaci Robot <abaci@linux.alibaba.com>
-> Closes: https://bugzilla.openanolis.cn/show_bug.cgi?id=12178
-> Signed-off-by: Yang Li <yang.lee@linux.alibaba.com>
+> MSM8996 has two DWC3 hosts, one of which is USB2, which naturally
+> means it doesn't have a SuperSpeed interrupt. 3 interrupts are already
+> allowed, apply the same logic to interrupt-names.
+> 
+> This fixes warnings such as:
+> 
+> usb@76f8800: interrupt-names: ['pwr_event', 'qusb2_phy', 'hs_phy_irq'] is too short
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 > ---
->  drivers/of/base.c | 1 +
+>  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 1 +
 >  1 file changed, 1 insertion(+)
+> 
 
-Thanks, but already fixed in upstream commit 0d40daa1c136 ("of: base: 
-Document prefix argument for of_get_next_child_with_prefix()").
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+
 
