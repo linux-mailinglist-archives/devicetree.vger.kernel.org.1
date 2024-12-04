@@ -1,177 +1,116 @@
-Return-Path: <devicetree+bounces-127124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127125-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3F039E47D1
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 23:28:03 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 76FB7163480
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 22:28:00 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6E941C3C04;
-	Wed,  4 Dec 2024 22:27:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="d587a/xC"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 409099E47E2
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 23:32:42 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C824D18FC75;
-	Wed,  4 Dec 2024 22:27:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 00BC22810BD
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 22:32:41 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B8B01A8F7E;
+	Wed,  4 Dec 2024 22:32:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DeFL3Kh7"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C33E18E056
+	for <devicetree@vger.kernel.org>; Wed,  4 Dec 2024 22:32:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733351278; cv=none; b=dls8AwCPyEyyTA5Zf9rSGrzhQqYGhswbQQoPYAnMdB6UeykYY8EGjHyVe446uRHwKtdIBRAWohlaA8i6QUoi+7JdJrZIYGWKMa9Gg5sHdzkbn7qmZw+GVG8oZrDqEhPOoC5Wjyr1lAMTInSn6hqHU2m+YZHUZZYH+iBnoo89Ar0=
+	t=1733351558; cv=none; b=mEQD+juh8sSJnIVDabdqXNx1spxsqq1hMscc9UxCABXI34EO+8p9G4YDvRQfFW+jEIUc274OWaVq2HXLXY+k4/6KJmmWiH4/2UzE6EF6os4EQcMxmO84619wxs0raHNzXwcGE/Y1rQJ5OkOP7vDLT3y/ioolOo3YA+bg+Xzy48w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733351278; c=relaxed/simple;
-	bh=V0EjKFyoMiFzOVSQ2/2Apzaa49TPf9F5tzWQ/pgCq8s=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=srqNuBx51IZJbQJ26niA1kV2OzQzX7MUeRn8823CjZnemClXp6qdLGZMB+KNPm+WJAhUoZVcRmBRkG1Gs8MnkyZG79g84rKzqzwm1qmgr0uAllqpc0n08OF6nybixbaROhd//E8stRGVY/8Q38M493JKylEhhda4WXM4SaPw6vQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=d587a/xC; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B4Ffhtp023308;
-	Wed, 4 Dec 2024 22:27:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=KRjpFeJFwblmAtEAARVx5E
-	6IoRyDcUDcuisAWgu+n+g=; b=d587a/xCCUV1xlZVo1Dl/5L+of2hPGKT5zxEOH
-	thyRn+cQD2qZfs5Ofjma1eiGH0MFDBSbFIodivsMW824TDF/8ozzr1LvX2GUeI91
-	qPTMgGUCVddolZSgSQ5I4TJLiWr0uvF0XqgU7RLr7m6LNjT77FVWQ/BupgkZh68/
-	wxD8aAF9gHw2kM3cd48H7W87NBYX8trgtXDOj1mXlXK0ysCEM3I6VTzZV/fNcaH8
-	Sma2aP8594N1NallT5AzxdUGX/FNtrTDT3RyFiCG08N6y1SDzayX8ddl/kLkYRjX
-	6EkzfZ7Xmg5hmM0oKZdzi+qiJLKPEOgFrRA2SjP/WTdqh6XA==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43aj42ab51-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 04 Dec 2024 22:27:43 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B4MRgJw026652
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 4 Dec 2024 22:27:42 GMT
-Received: from hu-molvera-lv.qualcomm.com (10.49.16.6) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 4 Dec 2024 14:27:42 -0800
-From: Melody Olvera <quic_molvera@quicinc.com>
-Date: Wed, 4 Dec 2024 14:27:25 -0800
-Subject: [PATCH RESEND v2] dt-bindings: arm-smmu: Document SM8750 SMMU
+	s=arc-20240116; t=1733351558; c=relaxed/simple;
+	bh=vOa7LETYg7icjKW7lrEIWCbaGqar/4hAk8skymKe1nc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iT7kDCEV0jAgYoaUjPzhQs08U7EL6yA0RYB0hHKXhlzb9UV0he3H0cnsk6tOP+In3yAypQhI85n61jAZPfIM/mDV0oIZMn6fdU9bRtXrmLzqPAKStAdsO9kCpAV9Z/jd6ND6KkixUSXfXpua8X/Mcx0+8DvEg4jKO3Er1M1GstE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DeFL3Kh7; arc=none smtp.client-ip=209.85.208.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2ffa974b2b0so1689201fa.3
+        for <devicetree@vger.kernel.org>; Wed, 04 Dec 2024 14:32:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733351555; x=1733956355; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=7lUKjEXOkSq/BvCViX3wWNqzFdxMzt0G+l0vc3wMpMM=;
+        b=DeFL3Kh7enETMSi2GUQVozhxyMgbsZUaZRESVhxCsQKILPA03cwV5cjjC9eFqYmobW
+         gUlyhpluCQkJU/r7ElO+G0vPabvuF54wPdo3JUClUIJeZlxthToUPvSRtxfO+qLJtnfm
+         JiJ28JeyCbEbaW18s63aXck6PFQsQBQPrTNqMd9AUSJukOCO3hWmh3QFPmYhgpTKB6fI
+         hcg3/hofC+1yjz26Pb99w/jderIZxb67GRMEf5EIK/YKakOXXIHuEEe/+uRl4xzi+LqT
+         MW9PJuoAa1m3uvry3m2D47tnzvZsPRYFzg0cUySPNpH9VnhtifRCjsZWZHw5wIMcxvce
+         kf5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733351555; x=1733956355;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7lUKjEXOkSq/BvCViX3wWNqzFdxMzt0G+l0vc3wMpMM=;
+        b=aKzNPS4Y9Bd23s8zFqJW7A3+dvUMKCiePCmdF02/P0FdcEMXz5IqPslgQCLr14iHO1
+         lPifm+mCkWXf8Z8o0NmTdB4RKYtuc8BpOzj9sKzLRI6uK3E6olKXP86ME6dmNBo8ibxv
+         72lMEJE92xIj6+NLSKSkRiI9ZRXZzT1hsH6pnA41YCJ7QlbDTA3KTSAVTQypDDD/2wZG
+         Xgx/GAAaNjgBxBNPi+YxUuCTvRLax0dnm289qlQj5bocWUbad9dC4cucomtvZJa9Sdf2
+         0iCdInso1fzL3PC+CNyl6iTUZ650IDuqjp+nFmoA19a/K8DfCNizbsAl2IOk17Rg9/EM
+         r9uQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUXL4wqJj5xiLtyjwOzhjm27LIoZoK1Inxws9iFz4h6kHQnb1nYkucgUKqBRoKPs5QCss4G67UZgmfm@vger.kernel.org
+X-Gm-Message-State: AOJu0YxGtnUqRxfNj1K8p/U5IZz0/Eg8os+9oagPD6Tbz9yl2XQGVlgQ
+	sNzk7JacKbSUQF8fi2cKD2rucxuTprBTPzg/uywRNv0BGgi/O2Xva8Rhvp7pBGU=
+X-Gm-Gg: ASbGncvS5PU1EUnfAVrkNbp86Ttt3Hh9whKatJp8h7RzOGhykDh01ypdiRDttaMpA0w
+	RmKcO4j7q5HA5ajIP8KZvBzoqbtF6eIiS5JEmBypwkrVjEhpqpG/bpPC5dOZhqYU9Dqd8cR9c1j
+	BT3uHTt4HK7zOQcGOd9axbkyoFnbBH1laDH92EV/MwJhe79OTS269IMijN8LEXg0EG9PdS0vlvH
+	73xfwG6SamaPoP38mJ0FIjtBl6pFqVQY1BZNIXS5/j/BxCpu+AUVfyfA3S3YJQGTEC9/TEXW5px
+	eEK6eB2kaGUECXNoHGQOvSeXXe57gQ==
+X-Google-Smtp-Source: AGHT+IFNWhkJVAJckm6/eNAWU6WXd/hjHauSXtKnuiWCrx2cr6kF+AVPGV20Vj2333ehZHP0bITu8Q==
+X-Received: by 2002:a2e:bd82:0:b0:300:1f05:5bcb with SMTP id 38308e7fff4ca-3001f055dc6mr2766501fa.16.1733351554688;
+        Wed, 04 Dec 2024 14:32:34 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-30020d85256sm51301fa.11.2024.12.04.14.32.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Dec 2024 14:32:34 -0800 (PST)
+Date: Thu, 5 Dec 2024 00:32:31 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Melody Olvera <quic_molvera@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Subject: Re: [PATCH v3 3/8] clk: qcom: rpmh: Add support for SM8750 rpmh
+ clocks
+Message-ID: <a2ztbxi2sth6pws6vtw2t7tnrqfh3d3j4dhbphey4vckkkdjep@jrgtpu7uw57z>
+References: <20241204-sm8750_master_clks-v3-0-1a8f31a53a86@quicinc.com>
+ <20241204-sm8750_master_clks-v3-3-1a8f31a53a86@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20241204-sm8750_master_smmu-v2-1-9e73e3fc15f2@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIAEzXUGcC/0XMsQ6CMBSF4Vchd7akLbQUJwdZHXQ0htR6kSaWa
- gvEhPDuVhfH/yTnWyBisBhhmy0QcLbR+iEF32Rgej3ckdhbauCUl4zTkkSnKkFbp+OIoY3OTYQ
- qWelrXdRSSUjHZ8DOvn/oGY7NqTns4ZL2LnhHxj6g/pMsobTgrMq5olIISRh5Tda0zj9mDHr3D
- TuY3HgH6/oBfVqR27AAAAA=
-X-Change-ID: 20241204-sm8750_master_smmu-0867ab939686
-To: Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        "Joerg
- Roedel" <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Satya Durga
- Srinivasu Prabhala" <quic_satyap@quicinc.com>,
-        Trilok Soni
-	<quic_tsoni@quicinc.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <linux-arm-msm@vger.kernel.org>,
-        <iommu@lists.linux.dev>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Melody Olvera <quic_molvera@quicinc.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1733351262; l=2153;
- i=quic_molvera@quicinc.com; s=20241204; h=from:subject:message-id;
- bh=V0EjKFyoMiFzOVSQ2/2Apzaa49TPf9F5tzWQ/pgCq8s=;
- b=b77X0mjGkOducpwujz+ZTFigyyl4sxFcRudE/3M71yfrHCMXSz3OvnqXB2KCIKYweMCE4YVkf
- WXjsjpTpNhFAIaUO5T6SQ6zhQUHGzyi9zCJ+z22B+qZ+5N/wZZApIBi
-X-Developer-Key: i=quic_molvera@quicinc.com; a=ed25519;
- pk=1DGLp3zVYsHAWipMaNZZTHR321e8xK52C9vuAoeca5c=
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: YXbxqXhYN0xtRyb2g79QR4yAhObGnCo9
-X-Proofpoint-ORIG-GUID: YXbxqXhYN0xtRyb2g79QR4yAhObGnCo9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 bulkscore=0
- mlxscore=0 mlxlogscore=972 lowpriorityscore=0 clxscore=1015 malwarescore=0
- priorityscore=1501 spamscore=0 adultscore=0 suspectscore=0 impostorscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2412040172
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241204-sm8750_master_clks-v3-3-1a8f31a53a86@quicinc.com>
 
-Document the SM8750 SMMU block.
+On Wed, Dec 04, 2024 at 11:37:15AM -0800, Melody Olvera wrote:
+> From: Taniya Das <quic_tdas@quicinc.com>
+> 
+> Add the RPMH clocks present in SM8750 SoC.
+> 
+> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> ---
+>  drivers/clk/qcom/clk-rpmh.c | 24 ++++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+> 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
----
-Resending since I forgot to include linux-arm-msm.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Changes in V2:
-- added additional documentation for gpu and clocks
----
- Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-index c1e11bc6b7a054e6e839b4cff356231170d95093..e4e067a2b778e3b9ed30bbb973b50b2b86ddd2f1 100644
---- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-+++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-@@ -61,6 +61,7 @@ properties:
-               - qcom,sm8450-smmu-500
-               - qcom,sm8550-smmu-500
-               - qcom,sm8650-smmu-500
-+              - qcom,sm8750-smmu-500
-               - qcom,x1e80100-smmu-500
-           - const: qcom,smmu-500
-           - const: arm,mmu-500
-@@ -102,6 +103,7 @@ properties:
-               - qcom,sm8450-smmu-500
-               - qcom,sm8550-smmu-500
-               - qcom,sm8650-smmu-500
-+              - qcom,sm8750-smmu-500
-               - qcom,x1e80100-smmu-500
-           - const: qcom,adreno-smmu
-           - const: qcom,smmu-500
-@@ -550,6 +552,23 @@ allOf:
-             - description: GPU SNoC bus clock
-             - description: GPU AHB clock
- 
-+  - if:
-+      properties:
-+        compatible:
-+          items:
-+            - const: qcom,sm8750-smmu-500
-+            - const: qcom,adreno-smmu
-+            - const: qcom,smmu-500
-+            - const: arm,mmu-500
-+    then:
-+      properties:
-+        clock-names:
-+          items:
-+            - const: hlos
-+        clocks:
-+          items:
-+            - description: HLOS vote clock
-+
-   # Disallow clocks for all other platforms with specific compatibles
-   - if:
-       properties:
-
----
-base-commit: bcf2acd8f64b0a5783deeeb5fd70c6163ec5acd7
-change-id: 20241204-sm8750_master_smmu-0867ab939686
-
-Best regards,
 -- 
-Melody Olvera <quic_molvera@quicinc.com>
-
+With best wishes
+Dmitry
 
