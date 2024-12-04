@@ -1,67 +1,68 @@
-Return-Path: <devicetree+bounces-126991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126993-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66E0A9E3E64
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 16:34:21 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3CA89E3F00
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 17:01:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D881FB3C0A3
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 15:03:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4AAF4B45D08
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 15:04:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33DE320B1F7;
-	Wed,  4 Dec 2024 15:03:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A1F620C470;
+	Wed,  4 Dec 2024 15:03:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LBz0K0Dv"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LHRmde/G"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8054B1B87CA;
-	Wed,  4 Dec 2024 15:03:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CCFD20B815;
+	Wed,  4 Dec 2024 15:03:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733324621; cv=none; b=VmJ3q8hXPt2YKgQjzYQYK/bYXB+IBnaXKG2AZN3UICuLbWqoM+E3uly7kbw6w4myK3vWUqgFDNkKXJv2yKG2IhDH9kSi5KY3aIRel7vYSUUIMRjCJwpiIefHkOSOpRHRObtDoasB8GK14fGolt3RlvyrG/GnjaZpJ1WHc2fGZMU=
+	t=1733324623; cv=none; b=qgQ41lqyiEkTv2HMXlegaIveTr9KnX8kmzPBFJ263la3L78xIvdklL3FzAlfNqhPAwsjZxKSUGVRdUIF4opSzeqX1dgpnsXjTAik6RfVbOHNdbwFe12dHcZqZqUpPqohO3QwHR621pfYZgi5vdjZZTkVME1Jnrg/poO888Mm1+4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733324621; c=relaxed/simple;
-	bh=RJZpRdXklt9afDLfyrX0kbFxsMEnivc1AyA4R+ZkLNk=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=mDNA7wP7gU+pMVhHMbI0rmEdbwtMMfc4RPtt+Vn9uIomo5l1yUe0BEpgIf6j7mFwDZacDG389x+z2YfXE5Lw9X8OQoxcWl20pwj6Bu+tNp6goJBbcE5OnZPgwccYPnc35K3SovkXwJYCRWkiaqy/Tg4gSSWPsOmnEwD0Ul/81DI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LBz0K0Dv; arc=none smtp.client-ip=205.220.180.131
+	s=arc-20240116; t=1733324623; c=relaxed/simple;
+	bh=qUpwcFctgaSbcmltm9vm1oWGHxZFJkRvyZBwZHKDWbo=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=IoHHcgC4XXpPX7IOWUD311J5e12v1VuNLbTomZwWInr0c+e8Yfq8aBwa2RH/ZuPs0ttGX9qGBp7KaRHmamSORGYv0b+lF0RapZ61NVTnfLSMQU469r14KtB3I6nIRvh0g2RV27cKIvzBfapd+jP/99eo+5NL9RVziMrykFfWr/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LHRmde/G; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B46qpTC024061;
-	Wed, 4 Dec 2024 15:03:34 GMT
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B45d6Vw010056;
+	Wed, 4 Dec 2024 15:03:36 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=7pWlAWVrXj0TJ0a5lUMNguM4peO0VQ6AkqY
-	khPgM/WM=; b=LBz0K0DvvSg8F4PGc9xipn8lwTgdzeb2v1V6eD61loGNM5HYrLu
-	3sKeAOq4/NMoYmDrf61QLVuLn1oZpBU5I1cchQStx7C6aAadiX/SnzyO/0bfh8EH
-	EPv8/WesRChi4XCkm/2G7Sa2QDuQLsTp/PQNFMnSRkhun2sPqckveRqbgXwMu5OM
-	0oywPRvqDldH+beBA1K/CRcMdGz1qus8wvamncH5/AlLMOY+4XgDa56+QEGRdcWD
-	chpLco2irFowrGuS22nsWDpVcnl+/LN82gEDLTgcARyQk3VuFn/FVMcRSH2U1KXN
-	dM92KqV7aYthdxRqFQct9VbQ+YhygbZ16VQ==
+	cc:content-transfer-encoding:date:from:in-reply-to:message-id
+	:mime-version:references:subject:to; s=qcppdkim1; bh=zTeBrV8sFGk
+	ExL1TodO3azPzB/azrJKb1LMySxLeY4w=; b=LHRmde/GIQNVH/UmEhwY2pmWv4Y
+	K2u6JehwQ7tnvJq+QzuTp07E6jzD6LXFdPrVmhLIomrv41l/0+wNLlD4+Fw7BWWf
+	4CbVk3OHPI/5eqk3JpqRMN8cX/JPirJIU224EifJPboLmHhWAx1M5cn8AgfXXJ/U
+	U/vcbQQXOG1VuUnL4PlWSoaMsiSe1do5AmVcT5m8lzEnq3nqJHNi2LDS/rQY46nq
+	XozSgFcNRWrRnKWatqxx41mxYFF8G0Z7cuddDqm0SC9VrY5AaYyPnNFsDz7hulpg
+	MlLb+22r5tDOgEno9TfXqgpsJITM0v87wIslmA7G3sAOsfR7ok2+mwBaS/A==
 Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 439vnyvkam-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43a4by3ap9-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 04 Dec 2024 15:03:34 +0000 (GMT)
+	Wed, 04 Dec 2024 15:03:35 +0000 (GMT)
 Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 4B4F3U8R025562;
-	Wed, 4 Dec 2024 15:03:30 GMT
+	by APBLRPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 4B4F3WOn025780;
+	Wed, 4 Dec 2024 15:03:32 GMT
 Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 437uskx4tm-1
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 437uskx4ty-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 04 Dec 2024 15:03:30 +0000
+	Wed, 04 Dec 2024 15:03:32 +0000
 Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 4B4F3Tmp025554;
-	Wed, 4 Dec 2024 15:03:29 GMT
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 4B4F3WB8025774;
+	Wed, 4 Dec 2024 15:03:32 GMT
 Received: from hu-devc-hyd-u22-c.qualcomm.com ([10.213.97.252])
-	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 4B4F3TWC025547
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 4B4F3VeR025773
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 04 Dec 2024 15:03:29 +0000
+	Wed, 04 Dec 2024 15:03:32 +0000
 Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 4047106)
-	id EAC01503; Wed,  4 Dec 2024 20:33:28 +0530 (+0530)
+	id 52CF4540; Wed,  4 Dec 2024 20:33:31 +0530 (+0530)
 From: Viken Dadhaniya <quic_vdadhani@quicinc.com>
 To: andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
         conor+dt@kernel.org, gregkh@linuxfoundation.org, jirislaby@kernel.org,
@@ -71,11 +72,14 @@ To: andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-serial@vger.kernel.org, linux-spi@vger.kernel.org
 Cc: =quic_msavaliy@quicinc.com, quic_anupkulk@quicinc.com,
-        Viken Dadhaniya <quic_vdadhani@quicinc.com>
-Subject: [PATCH v1 0/7] Add support to load QUP SE firmware from
-Date: Wed,  4 Dec 2024 20:33:19 +0530
-Message-Id: <20241204150326.1470749-1-quic_vdadhani@quicinc.com>
+        Viken Dadhaniya <quic_vdadhani@quicinc.com>,
+        Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+Subject: [PATCH v1 2/7] spi: dt-bindings: Document DT properties for QUP firmware loading
+Date: Wed,  4 Dec 2024 20:33:21 +0530
+Message-Id: <20241204150326.1470749-3-quic_vdadhani@quicinc.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20241204150326.1470749-1-quic_vdadhani@quicinc.com>
+References: <20241204150326.1470749-1-quic_vdadhani@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,67 +91,61 @@ X-QCInternal: smtphost
 X-QCInternal: smtphost
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
 X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Z05rgUxWlbQ_1pqq0XpWAVQkHOj1gUP0
-X-Proofpoint-GUID: Z05rgUxWlbQ_1pqq0XpWAVQkHOj1gUP0
+X-Proofpoint-GUID: -qds7HOjfrudXOD0BDa90wdtXFvl8IPo
+X-Proofpoint-ORIG-GUID: -qds7HOjfrudXOD0BDa90wdtXFvl8IPo
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
  definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 adultscore=0
- mlxlogscore=999 bulkscore=0 impostorscore=0 mlxscore=0 suspectscore=0
- spamscore=0 priorityscore=1501 lowpriorityscore=0 phishscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1011
+ impostorscore=0 suspectscore=0 adultscore=0 phishscore=0 spamscore=0
+ priorityscore=1501 malwarescore=0 lowpriorityscore=0 mlxlogscore=999
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
  engine=8.19.0-2411120000 definitions=main-2412040115
 
-In Qualcomm SoCs, firmware loading for Serial Engines (SE) in the QUP
-hardware has traditionally been managed by TrustZone (TZ). This setup
-handled Serial Engines(SE) assignments and access control permissions,
-ensuring a high level of security but limiting flexibility and
-accessibility.
- 
-This limitation poses a significant challenge for developers who need more
-flexibility to enable any protocol on any of the SEs within the QUP
-hardware.
- 
-To address this, we are introducing a change that opens the firmware
-loading mechanism to the Linux environment. This enhancement increases
-flexibility and allows for more streamlined and efficient management. We
-can now handle SE assignments and access control permissions directly
-within Linux, eliminating the dependency on TZ.
- 
-We propose an alternative method for firmware loading and SE
-ownership/transfer mode configuration based on device tree configuration.
-This method does not rely on other execution environments, making it
-accessible to all developers.
- 
-For SEs used prior to the kernel, their firmware will be loaded by the
-respective image drivers (e.g., Debug UART, Secure or trusted SE).
-Additionally, the GSI firmware, which is common to all SEs per QUPV3 core,
-will not be loaded by Linux driver but TZ only. At the kernel level, only
-the SE protocol driver should load the respective protocol firmware.
+Document the 'qcom,load-firmware' and 'qcom,xfer-mode' properties to
+support SE(Serial Engine) firmware loading from the protocol driver and
+to select the data transfer mode, either GPI DMA (Generic Packet Interface)
+or non-GPI mode (PIO/CPU DMA).
 
-Viken Dadhaniya (7):
-  dt-bindings: i2c: qcom,i2c-geni: Document DT properties for QUP
-    firmware loading
-  spi: dt-bindings: Document DT properties for QUP firmware loading
-  dt-bindings: serial: Document DT properties for QUP firmware loading
-  soc: qcom: geni-se:: Add support to load QUP SE Firmware via Linux
-    subsystem
-  i2c: qcom-geni: Load i2c qup Firmware from linux side
-  spi: geni-qcom: Load spi qup Firmware from linux side
-  serial: qcom-geni: Load UART qup Firmware from linux side
+SPI controller can operate in one of two modes based on the
+'qcom,xfer-mode' property, and the firmware is loaded accordingly.
 
- .../bindings/i2c/qcom,i2c-geni-qcom.yaml      |  11 +
- .../serial/qcom,serial-geni-qcom.yaml         |  12 +
- .../bindings/spi/qcom,spi-geni-qcom.yaml      |  11 +
- drivers/i2c/busses/i2c-qcom-geni.c            |  11 +-
- drivers/soc/qcom/qcom-geni-se.c               | 445 ++++++++++++++++++
- drivers/spi/spi-geni-qcom.c                   |   7 +-
- drivers/tty/serial/qcom_geni_serial.c         |   7 +-
- include/linux/soc/qcom/geni-se.h              |  17 +
- include/linux/soc/qcom/qup-fw-load.h          | 179 +++++++
- 9 files changed, 692 insertions(+), 8 deletions(-)
- create mode 100644 include/linux/soc/qcom/qup-fw-load.h
+Co-developed-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
+---
+ .../devicetree/bindings/spi/qcom,spi-geni-qcom.yaml   | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/spi/qcom,spi-geni-qcom.yaml b/Documentation/devicetree/bindings/spi/qcom,spi-geni-qcom.yaml
+index 2e20ca313ec1..7038981f54ff 100644
+--- a/Documentation/devicetree/bindings/spi/qcom,spi-geni-qcom.yaml
++++ b/Documentation/devicetree/bindings/spi/qcom,spi-geni-qcom.yaml
+@@ -66,6 +66,15 @@ properties:
+   reg:
+     maxItems: 1
+ 
++  qcom,load-firmware:
++    type: boolean
++    description: Optional property to load SE (serial engine) Firmware from protocol driver.
++
++  qcom,xfer-mode:
++    description: Value 1,2 and 3 represents FIFO, CPU DMA and GSI DMA mode respectively.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [1, 2, 3]
++
+ required:
+   - compatible
+   - clocks
+@@ -97,6 +106,8 @@ examples:
+         interconnects = <&qup_virt MASTER_QUP_CORE_0 0 &qup_virt SLAVE_QUP_CORE_0 0>,
+                         <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_QUP_0 0>;
+         interconnect-names = "qup-core", "qup-config";
++        qcom,load-firmware;
++        qcom,xfer-mode = <1>;
+     };
+ 
+   - |
 -- 
 2.34.1
 
