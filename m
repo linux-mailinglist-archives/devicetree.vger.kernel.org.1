@@ -1,172 +1,198 @@
-Return-Path: <devicetree+bounces-126975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85E4D9E3D2F
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 15:49:14 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0EFD5161FAE
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 14:49:11 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E20A20B1F3;
-	Wed,  4 Dec 2024 14:49:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GgWqHh0J"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9738C9E3D37
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 15:50:16 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67C531F709B;
-	Wed,  4 Dec 2024 14:49:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 523BA281241
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 14:50:15 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18A7D20B7EC;
+	Wed,  4 Dec 2024 14:49:59 +0000 (UTC)
+X-Original-To: devicetree@vger.kernel.org
+Received: from leonov.paulk.fr (leonov.paulk.fr [185.233.101.22])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C77820ADD8;
+	Wed,  4 Dec 2024 14:49:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.233.101.22
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733323746; cv=none; b=qbB2DaS3LlWsDDCuq3m6g1TYnD1w9+wY6PzGEBGg5FJW2LY+GI5aJXUgdsdm5xsR4asDcqP+ykVQnsA+vjPb9WiZWLDreYs80R0w78uMLbNmhcwFEuyMSMFXSOlbmIQDPLb2HrseW7Gx9FRLDxWvpEqNc9YTdgozcPlXB19agHE=
+	t=1733323799; cv=none; b=q9q20E6+XZVnI+1cjBDkSkCH/SYrJxumerr8FrRW/CfngUwdIDrqFRIH24Nb7zNTMniO9lWJ2OXbLE6ql5Ai+YmC/7SRJ+S1JR1qTQiQNozY1gaWXuP6HeQtSDz/jRkyBD2riqRU9hvPsjl6cnmN4C7PmWjGTvTiXyjEkYFmJUc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733323746; c=relaxed/simple;
-	bh=f3vtN1u5WBFqe7Z+wdQv6YdkOLXhLcLZNvoW4Nv5FkI=;
+	s=arc-20240116; t=1733323799; c=relaxed/simple;
+	bh=bXoOo221xUwCnbX7R8WuAO+TIq3l4xTdXpLcxUomPwI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FzAX5ixFKaMUDhRyiB6plARP9nOC+xxxIQPQKdRB4yEbdimmkqDiJByIESa7YqUMO+zrz4Akoo2XiDMnQv7qbXjJYycgF2pBmvmo3YGXkocpbcdJrwHTEG394XwBdU1pgTgnZiCtUBQuwsU5ExpI6ffHnCyabFj/76OZIkXifFI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=GgWqHh0J; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1733323744; x=1764859744;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=f3vtN1u5WBFqe7Z+wdQv6YdkOLXhLcLZNvoW4Nv5FkI=;
-  b=GgWqHh0J06YK5etmuVzq3n9FOID+hjWMJLRG/i5w6+MZ+3+8bbDzfnyt
-   ObtwJjryeRL+lnhABAWeienzsQ8fca+5mpECLZi9zk8FcQY8fRItrYj11
-   37S7rt+PyX3hGOyByewstwroA8mL/iPTMqGyw5A/ajfJ17nQYqSFLoleS
-   w8GfzcNgJYewwg4Owc63Mg4bVCNqW+cuWOl34idRzKuCnJlA5RU204jNU
-   pgpVeRZSzLGdDvUD7Q2IfTbVXV45fYX/98Q53dtZuEWtMgiqcUdbrZ0kF
-   HElnjAkAqSRZPowKcpayKqhLYHUU8udWHM7/EZ0FXuDtTdZzsj5smyROm
-   w==;
-X-CSE-ConnectionGUID: o5sGyxOiSgW2Xx093kRvJg==
-X-CSE-MsgGUID: FL2iznceSK69RrrldjabKQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="36436392"
-X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; 
-   d="scan'208";a="36436392"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Dec 2024 06:49:02 -0800
-X-CSE-ConnectionGUID: dcVWHyIOSUqKjoi5sxDWTA==
-X-CSE-MsgGUID: 7l9lL/7nT7SoVdN1u8A6gA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; 
-   d="scan'208";a="94614100"
-Received: from lkp-server02.sh.intel.com (HELO 1f5a171d57e2) ([10.239.97.151])
-  by orviesa008.jf.intel.com with ESMTP; 04 Dec 2024 06:48:58 -0800
-Received: from kbuild by 1f5a171d57e2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tIqgR-00038r-32;
-	Wed, 04 Dec 2024 14:48:55 +0000
-Date: Wed, 4 Dec 2024 22:48:53 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ming-Jen Chen <mjchen0829@gmail.com>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, sudeep.holla@arm.com,
-	arnd@arndb.de, peng.fan@nxp.com, conor+dt@kernel.org,
-	krzk+dt@kernel.org, robh@kernel.org, dmitry.torokhov@gmail.com
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH v4 1/2] input: keypad: add new keypad driver for MA35D1
-Message-ID: <202412042245.5jwzbfGS-lkp@intel.com>
-References: <20241204021014.5083-2-mjchen0829@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=S5DmgaIQZel91ptBh+FrsVD8F1dQ7Y1cvfxauB1dG2Dz6uGFTizkx8Q2zOeott3pj1uze6hiepTqh8WLgkqJ6LXHWdu/wNA6jscKaW13+QBsi1j09XAHY/MOrDEIdPbE2JTEdyk3fUaB5RGJ0vGlgfm7X0LgWHPH1qMBRp4mgqI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sys-base.io; spf=pass smtp.mailfrom=sys-base.io; arc=none smtp.client-ip=185.233.101.22
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sys-base.io
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sys-base.io
+Received: from laika.paulk.fr (12.234.24.109.rev.sfr.net [109.24.234.12])
+	by leonov.paulk.fr (Postfix) with ESMTPS id 7C0941F0004F;
+	Wed,  4 Dec 2024 14:49:49 +0000 (UTC)
+Received: by laika.paulk.fr (Postfix, from userid 65534)
+	id F208EA6751D; Wed,  4 Dec 2024 14:49:47 +0000 (UTC)
+X-Spam-Level: 
+Received: from collins (unknown [192.168.1.1])
+	by laika.paulk.fr (Postfix) with ESMTPSA id 41819A67516;
+	Wed,  4 Dec 2024 14:49:46 +0000 (UTC)
+Date: Wed, 4 Dec 2024 15:49:43 +0100
+From: Paul Kocialkowski <paulk@sys-base.io>
+To: Mehdi Djait <mehdi.djait@linux.intel.com>
+Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH 2/2] iio: light: Add support for the TI OPT4048 color
+ sensor
+Message-ID: <Z1BsBxsIKmQkHKmD@collins>
+References: <20241130174212.3298371-1-paulk@sys-base.io>
+ <20241130174212.3298371-2-paulk@sys-base.io>
+ <20241201115529.1375c6c3@jic23-huawei>
+ <Z0yjTkXt0JhqdD15@collins>
+ <20241202110659.00000171@huawei.com>
+ <2yc2igv2lxh3u4kmkz73httg3sp24ziagcoaa7unfupagji7zk@ezaue3umwe44>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="/tsIYVWsj1EIUdB7"
 Content-Disposition: inline
-In-Reply-To: <20241204021014.5083-2-mjchen0829@gmail.com>
-
-Hi Ming-Jen,
-
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on dtor-input/next]
-[also build test ERROR on dtor-input/for-linus hid/for-next soc/for-next linus/master v6.13-rc1 next-20241203]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Ming-Jen-Chen/input-keypad-add-new-keypad-driver-for-MA35D1/20241204-123001
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/dtor/input.git next
-patch link:    https://lore.kernel.org/r/20241204021014.5083-2-mjchen0829%40gmail.com
-patch subject: [PATCH v4 1/2] input: keypad: add new keypad driver for MA35D1
-config: s390-allyesconfig (https://download.01.org/0day-ci/archive/20241204/202412042245.5jwzbfGS-lkp@intel.com/config)
-compiler: s390-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241204/202412042245.5jwzbfGS-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202412042245.5jwzbfGS-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/input/keyboard/ma35d1_keypad.c: In function 'ma35d1_keypad_scan_matrix':
-   drivers/input/keyboard/ma35d1_keypad.c:83:24: error: implicit declaration of function 'readl' [-Wimplicit-function-declaration]
-      83 |         key_event[0] = readl(keypad->mmio_base + KPI_KPE0);
-         |                        ^~~~~
->> drivers/input/keyboard/ma35d1_keypad.c:89:9: error: implicit declaration of function 'writel' [-Wimplicit-function-declaration]
-      89 |         writel(key_event[0], (keypad->mmio_base + KPI_KPE0));
-         |         ^~~~~~
+In-Reply-To: <2yc2igv2lxh3u4kmkz73httg3sp24ziagcoaa7unfupagji7zk@ezaue3umwe44>
 
 
-vim +/writel +89 drivers/input/keyboard/ma35d1_keypad.c
+--/tsIYVWsj1EIUdB7
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-    72	
-    73	static void ma35d1_keypad_scan_matrix(struct ma35d1_keypad *keypad, unsigned int status)
-    74	{
-    75		struct input_dev *input_dev = keypad->input_dev;
-    76		u32 row_shift = get_count_order(keypad->kpi_col);
-    77		u32 *keymap = input_dev->keycode;
-    78		u32 code, key, index;
-    79		u32 key_event[4];
-    80		u64 pressed_keys = 0, released_keys = 0;
-    81	
-    82		/* Read key event status */
-    83		key_event[0] = readl(keypad->mmio_base + KPI_KPE0);
-    84		key_event[1] = readl(keypad->mmio_base + KPI_KPE1);
-    85		key_event[2] = readl(keypad->mmio_base + KPI_KRE0);
-    86		key_event[3] = readl(keypad->mmio_base + KPI_KRE1);
-    87	
-    88		/* Clear key event status */
-  > 89		writel(key_event[0], (keypad->mmio_base + KPI_KPE0));
-    90		writel(key_event[1], (keypad->mmio_base + KPI_KPE1));
-    91		writel(key_event[2], (keypad->mmio_base + KPI_KRE0));
-    92		writel(key_event[3], (keypad->mmio_base + KPI_KRE1));
-    93	
-    94		pressed_keys  = key_event[0] | ((u64)key_event[1] << 32);
-    95		released_keys = key_event[2] | ((u64)key_event[3] << 32);
-    96	
-    97		/* Process pressed keys */
-    98		for_each_set_bit(index, (const unsigned long *)&pressed_keys, KEY_EVENT_BITS) {
-    99			code = MATRIX_SCAN_CODE(index / 8, (index % 8), row_shift);
-   100			key = keymap[code];
-   101	
-   102			input_event(input_dev, EV_MSC, MSC_SCAN, code);
-   103			input_report_key(input_dev, key, 1);
-   104		}
-   105	
-   106		/* Process released keys */
-   107		for_each_set_bit(index, (const unsigned long *)&released_keys, KEY_EVENT_BITS) {
-   108			code = MATRIX_SCAN_CODE(index / 8, (index % 8), row_shift);
-   109			key = keymap[code];
-   110	
-   111			input_event(input_dev, EV_MSC, MSC_SCAN, code);
-   112			input_report_key(input_dev, key, 0);
-   113		}
-   114	
-   115		input_sync(input_dev);
-   116	}
-   117	
+Hi Mehdi,
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Glad to see you active here :)
+
+Le Mon 02 Dec 24, 15:55, Mehdi Djait a =C3=A9crit :
+> Hello Paul :)
+>=20
+> On Mon, Dec 02, 2024 at 11:06:59AM +0000, Jonathan Cameron wrote:
+> > On Sun, 1 Dec 2024 18:56:30 +0100
+> > Paul Kocialkowski <paulk@sys-base.io> wrote:
+> >=20
+> > > Hi Jonathan,
+> > >=20
+> > > Le Sun 01 Dec 24, 11:55, Jonathan Cameron a =C3=A9crit :
+> > > > On Sat, 30 Nov 2024 18:42:12 +0100
+> > > > Paul Kocialkowski <paulk@sys-base.io> wrote:
+> > > >  =20
+> > > > > The Texas Instruments OPT4048 is a XYZ tristimulus color sensor,
+> > > > > with an additional wide (visible + IR) channel.
+> > > > >=20
+> > > > > This driver implements support for all channels, with configurable
+> > > > > integration time and auto-gain. Both direct reading and
+> > > > > triggered-buffer modes are supported.
+> > > > >=20
+> > > > > Note that the Y channel is also reported as a separate illuminance
+> > > > > channel, for which a scale is provided (following the datasheet) =
+to
+> > > > > convert it to lux units. Falling and rising thresholds are suppor=
+ted
+> > > > > for this channel.
+> > > > >=20
+> > > > > The device's interrupt can be used to sample all channels at the =
+end
+> > > > > of conversion and is optional.
+> > > > >=20
+> > > > > Signed-off-by: Paul Kocialkowski <paulk@sys-base.io> =20
+> > > > Hi Paul,
+> > > >=20
+> > > > Various comments inline. Most significant is that this seems to be
+> > > > suitable for a simple dataready trigger that will make your various
+> > > > interrupt and non interrupt flows more similar. =20
+> > >=20
+> > > And thanks for the fast review and insightful comments!
+> > >=20
+> > > I considered implementing a trigger in the driver, but the issue I fo=
+und
+> > > is that the trigger is expected to be called from hard irq context,
+> > > while the new values are read in the bottom half.=20
+> >=20
+> > The trigger can be called from either the hard irq context or from
+> > a thread.  See iio_trigger_poll_nested()
+> > There is a quirk that you then don't end up calling the registered
+> > hard irq handler for the trigger so sometimes a bit of fiddly code
+> > is needed to ensure timestamps etc are grabbed.  Not sure that matters
+> > here.
+> >=20
+>=20
+> If the timestamps do matter: here is a (maybe relevant?) discussion for
+> an issue I faced with timestamps for a driver that supports both FIFO
+> and triggered buffer mode
+>=20
+> Please note that iio_trigger_poll_nested() was called
+> iio_trigger_poll_chained() back in that discussion.
+>=20
+> https://lore.kernel.org/linux-iio/Y+6QoBLh1k82cJVN@carbian/
+
+Thanks for the hint! I'll definitely look it up for details.
+
+Cheers,
+
+Paul
+
+> > > I understand the triggered
+> > > buffer callbacks are executed as a thread as well, so there would be =
+race
+> > > between the two which could result in previous values being returned.
+> >=20
+> > With the above nested call it is all run in the same thread
+> > See handle_nested_irq() in particular the function docs.
+> > https://elixir.bootlin.com/linux/v6.12.1/source/kernel/irq/chip.c#L459
+> >=20
+> > > So I concluded that it was more beneficial to preserve the synchronou=
+s reading
+> > > mechanism over implementing the trigger.
+> >=20
+> > Definite preference for a trigger approach, but I may well still be mis=
+sing
+> > a detail.
+>=20
+> --
+> Kind Regards
+> Mehdi Djait
+
+--=20
+Paul Kocialkowski,
+
+Independent contractor - sys-base - https://www.sys-base.io/
+Free software developer - https://www.paulk.fr/
+
+Expert in multimedia, graphics and embedded hardware support with Linux.
+
+--/tsIYVWsj1EIUdB7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEAbcMXZQMtj1fphLChP3B6o/ulQwFAmdQbAcACgkQhP3B6o/u
+lQwKixAAmXxZLS4V0z+oSrzrze+9q4oHHWWJtMguYnuHikHkgPc05uq/2Hf0x+OQ
+V/np9Pbz1AlObo9q9Upk2WcU9ngpof6FxSwutt6EqWqHn4sXXiGoFUec3nSFmHA4
+QvcQSeSf3BeowlM2uWDJ7/og5s7QeUqeCgNnuQ4x1cw7KMJnLqPVm80Tv4qwsUPC
+qSNK+HQvXIM2HQeNOAZAuS/3oOe9C2BWv7vuE0NCUUnHxXRtsQ3mKVQSHx+/prgo
+fkQWACxhsUcl0erxt7xuapRO4eVcGb4xHobiLYju8pK508gUEtJK/GGOPz69XaMu
+77FChx02zsrtPscVrD/ooiRCSK+9dqWlP5Cs7CyCi8ezJByWHE2cIeLvm2tW0ygu
+6xKe10+KEKgapshlpjAo+uKg/1BwkiutqR3IqNml0XUpphig26SHPXEYpQIAsEr7
+IcYyGiDk/NsSMvS5bdDRsv9MB1sAmtrGPNhJ3nJQO44sr7ZuXfdJl7ZQVYtqydqo
+ZeBHv6t5IzSHHFNv0VHVHcwqkYvCZTzNxQ3c+O9jhDBiHd01Th4wYgbrGUYX7XhL
+kY6BNzrPOO45c2xH9bSbaBpntGlM8TthEOOyY2aFq34jugUpsjHTpTpEWNjbeRsP
+Ar0zGG2yK2sRaLTOZdnGc0STnLjRE6WXoka29uKXb6QupVdEdvQ=
+=OO2/
+-----END PGP SIGNATURE-----
+
+--/tsIYVWsj1EIUdB7--
 
