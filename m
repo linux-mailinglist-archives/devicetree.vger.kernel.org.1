@@ -1,167 +1,131 @@
-Return-Path: <devicetree+bounces-127027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDDC59E4388
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 19:40:02 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D92E59E42BD
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 19:02:02 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8701E1671C9
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 18:01:39 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 302381C3C06;
+	Wed,  4 Dec 2024 17:42:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="41PxPg18"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 01105B6488A
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 17:59:20 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A01121765D;
-	Wed,  4 Dec 2024 17:26:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="LSKG2vqp"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9929221764E
-	for <devicetree@vger.kernel.org>; Wed,  4 Dec 2024 17:26:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 436B9152E12;
+	Wed,  4 Dec 2024 17:42:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733333175; cv=none; b=jr2mg0XR8NtXi3uHCbnQI6C04if7mN61hX4djcMJAsb45ZST4hG7ZbutdFOCfDTiM5SF+rPTUqZBYXR+/PgtzjcTY/6Yn7t4sIqJB2iExNv794i88q+FWuZJHLSGCW/U74a/lHUiN7Tw5dl32rZmDNBOAz1WEiR3Heqs5RNkido=
+	t=1733334130; cv=none; b=EafJVFWl97lYf0KNuqaph9IvZFS1Sj7e2bk5cg5mQx5Um0nALTYibxJ3+iWCzL4XsVGN007lZ/F8TxIURRae3UFRRm7rnjggj50+1sq9aBrbQuATij8UPrkrB3Egq/3VeSSLF0HsViKGrXHziZ5NiLBYkcg1hEFkwMwkSQ+/Pgs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733333175; c=relaxed/simple;
-	bh=3XOKyfOtCe+byiVNEcWIU0XMb6iWf0YuG2kDOBxGSKk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dHnUUOCZsXGeFpp/TJIkr54rWmmXEk04/8scokc/XAWe2hFxmGkmWudO0iCpHVbGzYKeJWhtO3FnfJfds8PbtnlUwn8LPsUFDEhlrWYPdlg5b1JYIUhaMNwhlC1I5Em1c6a+ZWC0mF4rQ5EHCjVYtuLlIpZshtbxWbxS97FyQT0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=LSKG2vqp; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-53e0844ee50so59180e87.0
-        for <devicetree@vger.kernel.org>; Wed, 04 Dec 2024 09:26:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1733333169; x=1733937969; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wcxUVGNwDSHYT0cP1lB+JvbULa6oEpjDSAOsUsCsW1c=;
-        b=LSKG2vqprD3CCsdcM8jWHqrbrOpbuAGhAlFzg/M4LGr9jIQ2EBeekSdY8OU7LUL/2q
-         QGfDRQQdYikv6OWWcgp1Qjso/q0Uxjqti+wqhT2Sk/eGIIt21TVLvYwOWj0g93FjI6+E
-         3Hz3pNUf+i9ca7bS5qmDB/j1gKcQwjjgYfaYA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733333169; x=1733937969;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wcxUVGNwDSHYT0cP1lB+JvbULa6oEpjDSAOsUsCsW1c=;
-        b=S5RDvH/2IrdJ/ClLErS4tWoTavgIpul59KKH3KTZPQutp1rr3AlCbiSy++ze2H8uZc
-         RbylwlMHi+ft4UQhzbbswwL35V5rTyoTEG6j7K7b5I7VL1B8Wql02gggtd7fURdxUWF6
-         3P7FLGqgw1tS0pWkYol3U3MhBMkK8EYZLa1w38pnErumlpI/RN2G3IyqWxEzTXkpIQ4D
-         8v0RODIYZ+GOPmygwsBUA0N+gMI4+UxPDSh0OzRAHChtkjjdz+DgJgIALKdcAY+Fn6+V
-         QNYw5FJ3U1l8WMNhf4Oem+IML8olfwPVVl+oYfEuKelvKtzOnUaI1IyFFlVVzB1geIEx
-         MgTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXQUJ+mohRl8P2FmERLxk6i11pd+7kWDoCrFbU7tVMeXZAeXtHn5w29gXrGu//dyUHWdrQL7O4OWdVG@vger.kernel.org
-X-Gm-Message-State: AOJu0YzYFcapx08C+9QQiuQpSFwen4sfPwDNg6Pik+nUSKr59X4TyDdo
-	lEPOgAN+xlfP+oWTbVXVXOOr5M18WVP4uV5zhmey+IAWFtzYKNzEU4hVRa2yixFBxJiF4gOrF+7
-	W0w==
-X-Gm-Gg: ASbGncuY27S3bRv1OVdgviGxTdvyij0hHlsDqAADzvO120mjtLloZav+FeFHwL+azxg
-	Yi8KkhInDH1S32r8VsHhvivxCnIJPmP2WGnrjwl4zZjAv50ohzK2pK85MLkA0hwGuPRNmqeHL+b
-	w+R6eOtifnxFZqS4Jjw1ds5sqbZoxqEXB/EHZ60/RKPO/RSSd+zDa5PUgABsglZPXMIh18gQV3c
-	0WYDXI2a/QWjTeg9X/Q1mjztV6Ve/zUzrQkK80ZbA2+RITK1oaPnbIXD0C3f1e/3Tmn7193OQk/
-	hF7rcw9bkFVE2g+L2Q==
-X-Google-Smtp-Source: AGHT+IH69kzeXo5CAJnGrRWOgTy0ycl1lgo+dYSbEkPNFerONp8p+gkS3AyKb+QWgOpLTkWMrDkxjg==
-X-Received: by 2002:a05:6512:3d04:b0:53e:1959:3239 with SMTP id 2adb3069b0e04-53e195933admr2368934e87.28.1733333169214;
-        Wed, 04 Dec 2024 09:26:09 -0800 (PST)
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com. [209.85.208.180])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-53df64a2b5csm2243574e87.283.2024.12.04.09.26.07
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Dec 2024 09:26:08 -0800 (PST)
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2ffd6af012eso82352051fa.2
-        for <devicetree@vger.kernel.org>; Wed, 04 Dec 2024 09:26:07 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXWCJR4FbX+DDxQBIlebIpBGC+GcPSSkczqkV0b+LaFR6tt10X7pLyCaIfRq4/YcZYa4TXQg2dz0HbM@vger.kernel.org
-X-Received: by 2002:a2e:a108:0:b0:2ff:c027:cf5c with SMTP id
- 38308e7fff4ca-30009c3f871mr30428561fa.16.1733333166812; Wed, 04 Dec 2024
- 09:26:06 -0800 (PST)
+	s=arc-20240116; t=1733334130; c=relaxed/simple;
+	bh=3L9eOiR18IaXDUf8McGC7rXg/jOof5o0S5IiQTTr9Yc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=gebGl+CZ74utE8FsPiz/kdDeP98xPRr568n+zj3Vd+FEXkJ9b82yVD56toP2fJ0GmuMVFW+PJ/5xa+TIgluFzTBg7ZbYyU2WDByqOzmACZQWgu9DQrxZmKl+LkcqmJ05uG6EcGAwsqUTs+FQcMiJSbofnMSqlGEIUxZWr2OYWlw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=41PxPg18; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=Cc:From:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References;
+	bh=3dmzYk0uh63gJxP2aLsDAmg9xvUtfWv6FeOCSsbtOSw=; b=41PxPg1845mHrLLARQxHghNZ+/
+	a3oODHuaDCzeV6Aag4pMNvkymxiqFOzkHJnZchoGMNECBEtbMEFfbRQ/7QPUFLnCDFoqqK+6HXXlC
+	xC+QRbLp2Enn0iLABBRw74sXmoliaALlRXUY8P4owXDbYFAfP1EdrA5fJf6GyEeG13GopnXTPZnNU
+	LWiDt/at8yJPQd1UmQlFBvLbCWThLYNc7E9AWlTMjYF9m472jgRxOovr4LRLBHyO5sMU+5a0tu6U2
+	Cv4j0jeUcZlPHKStlBWHWEAZMHo2dO9frRNhq1/vX9t5AihZy61ykTpkzN0TRuiBTRQgrY9OgSuC8
+	TuTLz5GQ==;
+From: Andreas Kemnade <andreas@kemnade.info>
+To: tony@atomide.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andreas@kemnade.info,
+	hns@goldelico.com,
+	linux-omap@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	aaro.koskinen@iki.fi,
+	khilman@baylibre.com,
+	rogerq@kernel.org
+Cc: stable@vger.kernel.org
+Subject: [PATCH v3] ARM: dts: ti/omap: gta04: fix pm issues caused by spi module
+Date: Wed,  4 Dec 2024 18:41:52 +0100
+Message-Id: <20241204174152.2360431-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241204150326.1470749-1-quic_vdadhani@quicinc.com> <20241204150326.1470749-2-quic_vdadhani@quicinc.com>
-In-Reply-To: <20241204150326.1470749-2-quic_vdadhani@quicinc.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Wed, 4 Dec 2024 09:25:54 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=XF+9wxZ5xNtO3Uy8QW9UY4tb+KR46jkondvBeQuVLsrA@mail.gmail.com>
-Message-ID: <CAD=FV=XF+9wxZ5xNtO3Uy8QW9UY4tb+KR46jkondvBeQuVLsrA@mail.gmail.com>
-Subject: Re: [PATCH v1 1/7] dt-bindings: i2c: qcom,i2c-geni: Document DT
- properties for QUP firmware loading
-To: Viken Dadhaniya <quic_vdadhani@quicinc.com>
-Cc: andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, gregkh@linuxfoundation.org, jirislaby@kernel.org, 
-	broonie@kernel.or, andersson@kernel.org, konradybcio@kernel.org, 
-	johan+linaro@kernel.org, agross@kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
-	linux-spi@vger.kernel.org, =quic_msavaliy@quicinc.com, 
-	quic_anupkulk@quicinc.com, Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi,
+Despite CM_IDLEST1_CORE and CM_FCLKEN1_CORE behaving normal,
+disabling SPI leads to messages like when suspending:
+Powerdomain (core_pwrdm) didn't enter target state 0
+and according to /sys/kernel/debug/pm_debug/count off state is not
+entered. That was not connected to SPI during the discussion
+of disabling SPI. See:
+https://lore.kernel.org/linux-omap/20230122100852.32ae082c@aktux/
 
-On Wed, Dec 4, 2024 at 7:03=E2=80=AFAM Viken Dadhaniya
-<quic_vdadhani@quicinc.com> wrote:
->
-> Document the 'qcom,load-firmware' and 'qcom,xfer-mode' properties to
-> support SE(Serial Engine) firmware loading from the protocol driver and t=
-o
-> select the data transfer mode, either GPI DMA (Generic Packet Interface)
-> or non-GPI mode (PIO/CPU DMA).
->
-> I2C controller can operate in one of two modes based on the
-> 'qcom,xfer-mode' property, and the firmware is loaded accordingly.
->
-> Co-developed-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-> Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
-> ---
->  .../devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml   | 11 +++++++++++
->  1 file changed, 11 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yam=
-l b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
-> index 9f66a3bb1f80..a26f34fce1bb 100644
-> --- a/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-geni-qcom.yaml
-> @@ -66,6 +66,15 @@ properties:
->    required-opps:
->      maxItems: 1
->
-> +  qcom,load-firmware:
-> +    type: boolean
-> +    description: Optional property to load SE (serial engine) Firmware f=
-rom protocol driver.
-> +
-> +  qcom,xfer-mode:
-> +    description: Value 1,2 and 3 represents FIFO, CPU DMA and GSI DMA mo=
-de respectively.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [1, 2, 3]
+The reason is that SPI is per default in slave mode. Linux driver
+will turn it to master per default. It slave mode, the powerdomain seems to
+be kept active if active chip select input is sensed.
 
-I'm a little confused about this. I'll admit I haven't fully analyzed
-your patch with actual code in it, but in the past "CPU DMA" mode and
-"FIFO" mode were compatible with each other and then it was up to the
-driver to decide which of the two modes made sense in any given
-situation. For instance, last I looked at the i2c driver it tried to
-use DMA for large transfers and FIFO for small transfers. The SPI
-driver also has some cases where it will use DMA mode and then
-fallback to FIFO mode.
+Fix that by explicitly disabling the SPI3 pins which used to be muxed by
+the bootloader since they are available on an optionally fitted header
+which would require dtb overlays anyways.
 
-...so what exactly is the point of differentiating between "FIFO" and
-"CPU DMA" mode here?
+Fixes: a622310f7f01 ("ARM: dts: gta04: fix excess dma channel usage")
+CC: stable@vger.kernel.org
+Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+---
+Changes in V3:
+- use gpio mode instead of mode7 which is not safe mode in this special
+  case
 
-Then when it comes to "GSI DMA" mode, my understanding is that the
-firmware for "GSI DMA" mode is always loaded by Trustzone because the
-whole point is that the GSI mode arbitrates between multiple clients.
-Presumably if the firmware already loaded the GSI firmware then the
-code would just detect that case. ...so there shouldn't need to be any
-reason to specify GSI mode here either, right?
+Changes in V2:
+- instead of reenabling mcspi, do a fix more near the root of the
+  problem
 
--Doug
+ arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi b/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi
+index 2ee3ddd640209..536070e80b2c6 100644
+--- a/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi
++++ b/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi
+@@ -446,6 +446,7 @@ &omap3_pmx_core2 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <
+ 			&hsusb2_2_pins
++			&mcspi3hog_pins
+ 	>;
+ 
+ 	hsusb2_2_pins: hsusb2-2-pins {
+@@ -459,6 +460,15 @@ OMAP3630_CORE2_IOPAD(0x25fa, PIN_INPUT_PULLDOWN | MUX_MODE3)	/* etk_d15.hsusb2_d
+ 		>;
+ 	};
+ 
++	mcspi3hog_pins: mcspi3hog-pins {
++		pinctrl-single,pins = <
++			OMAP3630_CORE2_IOPAD(0x25dc, PIN_OUTPUT_PULLDOWN | MUX_MODE4)	/* etk_d0 */
++			OMAP3630_CORE2_IOPAD(0x25de, PIN_OUTPUT_PULLDOWN | MUX_MODE4)	/* etk_d1 */
++			OMAP3630_CORE2_IOPAD(0x25e0, PIN_OUTPUT_PULLDOWN | MUX_MODE4)	/* etk_d2 */
++			OMAP3630_CORE2_IOPAD(0x25e2, PIN_OUTPUT_PULLDOWN | MUX_MODE4)	/* etk_d3 */
++		>;
++	};
++
+ 	spi_gpio_pins: spi-gpio-pinmux-pins {
+ 		pinctrl-single,pins = <
+ 			OMAP3630_CORE2_IOPAD(0x25d8, PIN_OUTPUT | MUX_MODE4) /* clk */
+-- 
+2.39.2
+
 
