@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-127056-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EB599E4621
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 21:53:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FE9D9E462B
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 21:59:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B16C3B31941
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 19:07:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 64C86B865E1
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 19:07:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8464F1C3BE3;
-	Wed,  4 Dec 2024 19:07:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFAC41E2306;
+	Wed,  4 Dec 2024 19:07:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="eQrkpD6h"
+	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="d+3YpRfV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-181.mta1.migadu.com (out-181.mta1.migadu.com [95.215.58.181])
+Received: from out-177.mta1.migadu.com (out-177.mta1.migadu.com [95.215.58.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B70871B81B2
-	for <devicetree@vger.kernel.org>; Wed,  4 Dec 2024 19:07:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5D251C3C0E
+	for <devicetree@vger.kernel.org>; Wed,  4 Dec 2024 19:07:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733339234; cv=none; b=db6aPJilwUM12CsKXC5z0iyT6ZzjUBx7TQYHKJTCDht6cj9rKKYGEgejdx2SqCURgHm9bkzsc0Iaj75J/mzA/1ezPSxpnaEzzJcAI5eGakjiJPavt7JGlKK8GhJzQEs/VvkvPZzisnGrNUGzcB4dW0yoI49+uR/59ljn8WjMi4Y=
+	t=1733339250; cv=none; b=YtFm1zQn4GSNCic7PiCf6igPmJHkHKHVsD8Zww0qUbTNncM/1FCoVnJmsrRej0HfWmfla/RhZNeIdOsOLAMqWhSOcVoa9JWX3xwxaW/EEBxXdY973EQ0p8yFqvurCd2PrmMhXY/umRbnEr7RSDsEUeekFwPgcdKlRV66BGOefPo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733339234; c=relaxed/simple;
-	bh=aQE1gmaRdLJ7mHFEJuV0eH30B18Gkbbass08/5idHG0=;
+	s=arc-20240116; t=1733339250; c=relaxed/simple;
+	bh=1lmPBAarauhw9fo2j79KXl1M8rrUv5gHBcEOuWC22RY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=MK72I486fNNJ6BecCIn+sRs0jZ4XS2iPWkhHqB+tjLJZRpc3Gc4LkJ7aRjWFEnVThaH22KKHwexGCn1gZrcRhmTdRb40Zq8kdvJyvOLBrOFqHlVjPPoBITT2weUGw5Mh7vt6FKWhLHJ7rupS3X7LTYIt4mPJMm16UG86Jc7ReIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=eQrkpD6h; arc=none smtp.client-ip=95.215.58.181
+	 MIME-Version; b=kcka/ilgyTtJrMYjShErX3lU9cLHID8xSXMPnBzTFLwbownbkCgx2iN/aIiPymP0EPNeDIdni7TRuIaAec/DxG7kPZ5sQwD6I6+W9kMAovm+aAYsr7BU+KqrA9JXZcJot8nwHt7Texoqb43/k2Bnqm8tNUN48Oy0R3irpvK4X/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=d+3YpRfV; arc=none smtp.client-ip=95.215.58.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=packett.cool
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=packett.cool;
-	s=key1; t=1733339231;
+	s=key1; t=1733339247;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=+lSfZLSwrFfKO4D+tL1HHWmCXCga7hprCT6tDTU5BJ4=;
-	b=eQrkpD6hvWCLJmo0fgibWsvez7c+vM0S65jUKaHpvVUrSn0Q8GlqRUmwS4dtLeTCIRhXoc
-	0L/2ohKwmjRH6aWARiXJLulyt2uW2pjWRE4mip+enrD7Iw2GL6ftKxZ4lABYeTGHNomu8F
-	kuyyHirZ9VZnIg9MkTnYuG4b/u6XO4VRzmbQ5YTEzEy4Ppm0T6vFS7eNwoqlJ+588K1HGJ
-	x3s61U8qk5vVHAt4elheQ4WX+U8ts76nKqA12wsSzG0Iy1ZZMTokOY70FxpRyHLK59P9j6
-	Ac4J6LgR9KOcr8NkAj9q/NGW6fw0qH5jjJA6T7QPuarmYeJ+QxtOErVGwGcqNg==
+	bh=2jDd4bBMDalT9ZxoYHLpyRHVnoZ11E0Z+zGVQfgaKds=;
+	b=d+3YpRfV8bJMMNZ+zJ7Aciv82CZF5FknOjrbzQJEiv0QIw5G23aQHgIgEA8hM+bIACt5WJ
+	ZqJUwW1T2jj9qqhl4F9djUU+lRrdQmJiXLEb7d6gUKxHe0QinqK54vOq2IW36p5XEyzPEl
+	9QM7BPMlDWoVkesz0/ZjkDcw2txR10fETinlnQsXTV+IcoLc9puBfR9xJISNVzjy+msJuH
+	bo8P3XQbyUR7+g3D6y6KwJGoLYcYywX+IRgFcyDEVIh6p6k97g9yo7uKd5C92lhAush/BV
+	a3mV0jtdZPKZAChNlx00/sm8MWdeVuKLAEsUB5mvOdSL+biEZTWARGFhuxPVYQ==
 From: Val Packett <val@packett.cool>
 To: 
 Cc: Val Packett <val@packett.cool>,
@@ -57,9 +57,9 @@ Cc: Val Packett <val@packett.cool>,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org
-Subject: [PATCH 2/5] arm64: dts: mediatek: mt8516: fix wdt irq type
-Date: Wed,  4 Dec 2024 16:05:05 -0300
-Message-ID: <20241204190524.21862-3-val@packett.cool>
+Subject: [PATCH 4/5] arm64: dts: mediatek: mt8516: reserve 192 KiB for TF-A
+Date: Wed,  4 Dec 2024 16:05:07 -0300
+Message-ID: <20241204190524.21862-5-val@packett.cool>
 In-Reply-To: <20241204190524.21862-1-val@packett.cool>
 References: <20241204190524.21862-1-val@packett.cool>
 Precedence: bulk
@@ -71,27 +71,32 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
 
-The GICv2 does not support EDGE_FALLING interrupts, so the watchdog
-would refuse to attach due to a failing check coming from the GIC driver.
+The Android DTB for the related MT8167 reserves 0x30000. This is likely
+correct for MT8516 Android devices as well, and there's never any harm
+in reserving 64KiB more.
 
 Fixes: 5236347bde42 ("arm64: dts: mediatek: add dtsi for MT8516")
 Signed-off-by: Val Packett <val@packett.cool>
 ---
- arch/arm64/boot/dts/mediatek/mt8516.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/mediatek/mt8516.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/mediatek/mt8516.dtsi b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-index 444429341302..098c32ebf678 100644
+index dd17d8a88c19..e30623ebac0e 100644
 --- a/arch/arm64/boot/dts/mediatek/mt8516.dtsi
 +++ b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
-@@ -206,7 +206,7 @@ watchdog@10007000 {
- 			compatible = "mediatek,mt8516-wdt",
- 				     "mediatek,mt6589-wdt";
- 			reg = <0 0x10007000 0 0x1000>;
--			interrupts = <GIC_SPI 198 IRQ_TYPE_EDGE_FALLING>;
-+			interrupts = <GIC_SPI 198 IRQ_TYPE_LEVEL_LOW>;
- 			#reset-cells = <1>;
+@@ -144,10 +144,10 @@ reserved-memory {
+ 		#size-cells = <2>;
+ 		ranges;
+ 
+-		/* 128 KiB reserved for ARM Trusted Firmware (BL31) */
++		/* 192 KiB reserved for ARM Trusted Firmware (BL31) */
+ 		bl31_secmon_reserved: secmon@43000000 {
+ 			no-map;
+-			reg = <0 0x43000000 0 0x20000>;
++			reg = <0 0x43000000 0 0x30000>;
  		};
+ 	};
  
 -- 
 2.47.1
