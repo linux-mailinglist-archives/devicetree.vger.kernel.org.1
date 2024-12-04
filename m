@@ -1,168 +1,226 @@
-Return-Path: <devicetree+bounces-126868-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126869-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D88ED9E36BC
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 10:34:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42B869E36D1
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 10:41:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A6448169387
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 09:34:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 10579169309
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 09:41:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85E251AF0A4;
-	Wed,  4 Dec 2024 09:33:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AclPQvOS"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CAF519D886;
+	Wed,  4 Dec 2024 09:41:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com [209.85.217.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C012B1AB6D8;
-	Wed,  4 Dec 2024 09:33:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44C3B13AA2E;
+	Wed,  4 Dec 2024 09:41:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733304821; cv=none; b=AJonBSqHQtJ/uAaPVI67TiCb5dRfoWuOAI9bUjabXJWR9f5zOo2t7UxrtC1TVoeqWm+Q0w7bExtTovFvjfjgMwH2dOBYL4e8pmMVzFARUkFS6PS4/FFKixJgNSbQsh9S3tLVirNZ3xePINXjE3oxLZHbotnniKnvnPuDHPMcb1Y=
+	t=1733305276; cv=none; b=Ee3XNevBc7SPv1mgNBv3RHRadsbSZr8eL7kB6b6OOoGk8VQBKIKjpYKCOesq43qRQKnJHLbC4aVTYz3jCYo6xne+3wnDtd2DfBAtA/ihkrqzIgRGwEfvtQUkISVznf1tVt7kBJiPs2LsYC0ztP6piOZp8nz1O2yYMkOK6s9kvOs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733304821; c=relaxed/simple;
-	bh=RIZW/WfNZyrOeWlTB6eYY7isnBUW5eKR31/FdBoXGbU=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=caRmsv9JQ13G7l3qIM8c1rGSh1ckc29j+9GMg3RyrE8Z1SWy3476lwLqF+//kFav+tpOqebprVNKUAwAQbe01siAmtk8LjFIeOmM+0ZtmudtftCJqI3IqJHfJUJZLGjD/MOao275P3oZuwxzvB2BbE4Fe/8MIzbFMbtWzI+zo4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AclPQvOS; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1733305276; c=relaxed/simple;
+	bh=tVmbPF2pJpMy5k0c/k1i6rwkCBPV7LEpyNc6zrDcJs8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=de7HPw1nn1l3t1UiBT4sk5Py1C6t5pM2fIxfzrl9BB1jkHZ+ZVxnybZbR4gi7GtIjYy6Oxp8z23XrtmPB7By/9QhRNeedfP5mfflhkJQoi7X0xJz/9QLfQwQ+wV1h0WX0qBYgssGpucISRpZC6Fwjc05zVtvtW40ruTAw6wTQGQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4349e1467fbso57746875e9.1;
-        Wed, 04 Dec 2024 01:33:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733304818; x=1733909618; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=0lKyObJsYIZ+s7QoNlqdjkApw/9Igt91fCr/HAkbPEo=;
-        b=AclPQvOSnDs6Eot11Eslrl9aTk4FbseOfLmUcDa8q2pOZUNcMvyXl8cgfmfTbeV0q0
-         atelsTER5fnWYUUMKdVrpOMtNzXGSvt6bOxMFIem0sf4YUctzs24xVJCbapdu3GtsIS1
-         WZElSm6zE2DqNM1aw/LTkwIZfaoZGE0TOGVZsK78yvXRTQhVZKVoqDV3R2B8Y9XBRfHE
-         mUnIEa7C2NS0/i2+2j/HzF2Mnf9PCdkRZfH1tUIcaQGrwFBfQU8yjyP6v7FJfm/gh9yi
-         1sLFKl3O1jPiSN6naPziMv4YB7SEfhM/jmCr/PsXsRIMbCqgjWdxWIntVSsHbN3bUJzJ
-         0Kow==
+Received: by mail-vs1-f44.google.com with SMTP id ada2fe7eead31-4afb23be757so83588137.0;
+        Wed, 04 Dec 2024 01:41:14 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733304818; x=1733909618;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0lKyObJsYIZ+s7QoNlqdjkApw/9Igt91fCr/HAkbPEo=;
-        b=aEFhbmG1uhK1m38GN0pgpkFqhZujk/0b02PGlRvgGRSTZp8Rdb2LpY/hslDAshNRE4
-         TigrTpRsgJcfseTmJCfSfT2n8xq7Ry1xvUFYl9kdBX53xVXZgvZlcxpbk7aq02gsq64j
-         f6Fr5tnlGUx34C31jIeALhvlcxt/VixqwOTE60Gxgvysq2c8N3QbLlmMSAN1mp5y8WxE
-         lnkoG0UhXmlpPXTZQcX55YNNAWUGQsBivInDjvJx6JqJlCkMBD7/D77nXSYXBeREshDH
-         qYM7h6koOXHMKXtdTEkujeR2Y6surylHvMGiP8MfClAaIp271+ZhBJbOvUTJ8nIcqldq
-         2O8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVJ8TwlKdtzvvG5kgEpdDT2gaBLQk5bj7Gt61/IzFx7Ff2ZaiNM93HXUDG6X8IUTSkFThU9uVGHXVeUIdSn@vger.kernel.org, AJvYcCWcBj1BxEVOY1JNMpDosE0PUalNJ/Cd3YWo948bHYYX5zP4YoF7hsdHMKzXcQrOAzWxIbS2YDgLgoyF@vger.kernel.org, AJvYcCXPvH76srWyF7W3RVoNjcXQjmeOlhHBz+nS5I84HCcK9h9q4z+X46EILWe2DhrDWaSLB2pz0Js/@vger.kernel.org
-X-Gm-Message-State: AOJu0YzFBhRirTWj3Xj6XQSpB/7YbGBkl1xe8QtXOB94kyawNd5e1nw4
-	dV+FRcwi76iSXcED4yRhf5RnYgqDld/qVyH7fh0P2OdJwKb5e1PzI/SOZA==
-X-Gm-Gg: ASbGncuS+3Ax7vax7IMtsIOhMB8Oqb82zAkgPw+JeOtc4/pNHQxP96dEdA7rhfZUgrQ
-	64ZIrmwhWLNpy1Eu02/Ra3tXgvIi/uGz1muoXYOAIysiS3qnDYclYqdR14Zp7/Y4+oh8XawYm6e
-	b+en3d1YCsgLF8OCerTJ3WN8pyHgBpiEal1WGe59UJatdTHDs/rIX1uVqSobB5rXfLuWpxYGOBr
-	NvO6QKCB0XxnSN4vOrKbqmtobTE/WhSRqPLsDliF7EMqVwJ7KEG3OSW9n1Kf9bpLwpi4QFMK7JU
-	ypXrhQ==
-X-Google-Smtp-Source: AGHT+IH/s8dECPHycbZW4A5CqIvcbgj0fpA7rWE3Kg3D1zgk6Q5Z6J5agkhMd5wneZvBY5ksUhkntA==
-X-Received: by 2002:a05:600c:3596:b0:431:50cb:2398 with SMTP id 5b1f17b1804b1-434d48291b5mr18322755e9.2.1733304817815;
-        Wed, 04 Dec 2024 01:33:37 -0800 (PST)
-Received: from Ansuel-XPS. (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434d526b14csm18364155e9.2.2024.12.04.01.33.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Dec 2024 01:33:37 -0800 (PST)
-Message-ID: <675021f1.050a0220.34c00a.3a0c@mx.google.com>
-X-Google-Original-Message-ID: <Z1Ah7YFSAGnTlWfw@Ansuel-XPS.>
-Date: Wed, 4 Dec 2024 10:33:33 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	upstream@airoha.com
-Subject: Re: [net-next PATCH v8 3/4] net: dsa: Add Airoha AN8855 5-Port
- Gigabit DSA Switch driver
-References: <20241204072427.17778-1-ansuelsmth@gmail.com>
- <20241204072427.17778-4-ansuelsmth@gmail.com>
- <20241204100922.0af25d7e@fedora.home>
- <67501d7b.050a0220.3390ac.353c@mx.google.com>
- <Z1Af3YaN3xjq_Gtb@shell.armlinux.org.uk>
+        d=1e100.net; s=20230601; t=1733305271; x=1733910071;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3I1mx9iMvoMrIftcsdLHcYs1anLKta4hVW8NBR8O1XM=;
+        b=NwP09RRo8mVgAC9FGF6a7llfp7NKbERw3lnU9oMEwO4QPumm+B/bny51JFutIkXhFj
+         BL98/nJY6KaO0P/BgHmdGKiKK7Av5aVuYL8y0wKlUDS3jFinv3B1fS6ZkPi9mu6RHpbn
+         fjO0WkslGqg+FJuxB1uxVMwlLcpAsdRarb8CZLh92+mIHYPwN09oe0/MCDi45oDwpIuW
+         uwaQRD/9KqdCwUJbdI6c9jiji4xulynhyu0mU+5rhNQbtKbWX33a8CjUGm+Qi9OelHRJ
+         GTsMzN2pbH4xswUV5tRoK5JX47RJskyrB4KCRgFDpBPkOtvRCwd2o2S5caDnub70ax2y
+         I91A==
+X-Forwarded-Encrypted: i=1; AJvYcCU9uLbaTnHDN6m25IVUdvTArx/LS9omm7lTtBEP9mpDCx1lXwVhleaw8TqtKRoJr0N8SN6EzoH5CUMV@vger.kernel.org, AJvYcCWHMo2tvih24mrhh3PRqkwVIN6nkZS9BRGqAJgRHFPyMmZ6bP5kgeMM+7UaWe52QZ34JQHa3ZYk8Thn@vger.kernel.org, AJvYcCWVNCWVo3i2MrbMRXUOaPpwmGbVH7CzBbDMk2tLVfP/5H7t6ylRCv3UhlT9YK55kexf6eQp1Eg3KMsv9XgL@vger.kernel.org, AJvYcCWpWICwfvmZxwWlaYREgku73cmW2xApSLiLFvdE6XaDRunJUMzOkh/w/NAbTQdmy8xNLup7YZ1gjVpQ@vger.kernel.org, AJvYcCXRP5INpnK7eAc4xHZL77FzskElLlqodIlP7DXh4MJyA9bh1ZXnnR2W2r547kU29YHKBzpW4mZNjNGnUQDL2FQZPGg=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw6TXUT75QQMZd5cSyNQFKtvXnPRDNsPezpiIIl/yf5wTUP2uSv
+	B8+e7dF0oDroL57gje9TKN9jZ3TSu3jFl8O8An63KyXIff3Lf15/W8gohqT7
+X-Gm-Gg: ASbGncvgKonKJSlYKg2uMuyKh9zfMpe5ldnHy9H3S/jCqRPAQDYEzdzixUwxX5m1Fs9
+	Jebqfi/LPDF8+3GCDtHw09dflrIUqGybc1hYT7FDhvtnwudsOPJvSPBugwc0TlIvgJiYVlPH96L
+	s3/Ex63wUcARX1gH8ERtkUPGKX7qggxd86KLq2v8C0+2XAybUb3Owwg2gsQujzoWJzc2hPUSgW0
+	vd2zkTknQEEztdCSY7DIynCCSzcWksii9THe3Hk1EIfOk5UC7g2DScnET1VgcSLLzKZuYDQpiqH
+	ZbJvbdCsOC/P
+X-Google-Smtp-Source: AGHT+IHQUITYODpk38lmOSp76al6jYxknEGib6bMTxU6siSDzku1pIV2UkJWxBfAu3z1f/D7rZNrXA==
+X-Received: by 2002:a05:6102:548a:b0:4a4:8346:186d with SMTP id ada2fe7eead31-4af9731606cmr8190089137.26.1733305271273;
+        Wed, 04 Dec 2024 01:41:11 -0800 (PST)
+Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com. [209.85.222.43])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4af592352b8sm2384145137.27.2024.12.04.01.41.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Dec 2024 01:41:10 -0800 (PST)
+Received: by mail-ua1-f43.google.com with SMTP id a1e0cc1a2514c-85bad9e0214so979142241.3;
+        Wed, 04 Dec 2024 01:41:10 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVNe99KEpT2QNSLRZMACFKz8nQyB12pkWdVqX8RP/e4ewCXYdcQbwImV4bzgpIqbSHmxMthgyWJkc5LZHSg@vger.kernel.org, AJvYcCW6quHemLO4plfEo/FTNPtW2zgeMUIsxNeTYs6Tob8WrOPByH9FBR9oTinZjVTEs4BBz6M+vZHdUVh1@vger.kernel.org, AJvYcCWQm0fvt+Kdrs1dKsK4HKyo63BHxwuUbvdSrB9Y4BGQbTqUZqnYpwha8MMPe3BueosyhRPHQABnBbbf@vger.kernel.org, AJvYcCWrjAbTk6HWlCPVN7FicfldGiYKweuRI7UaIMYFA7YEafH9ve9XeA64xj1WTH6l7ZrKbMZte2dMO+F6bHN8FN++DPk=@vger.kernel.org, AJvYcCWtGrw43U3nVqTDgrOMQ7V7b30LIwKFo/BRGd1neKXu8TyflqUNpVdg8AKyUYHKC3agZ95xlzxF4k0W@vger.kernel.org
+X-Received: by 2002:a05:6102:2929:b0:4af:5f93:3557 with SMTP id
+ ada2fe7eead31-4af97183aa1mr6835274137.5.1733305269874; Wed, 04 Dec 2024
+ 01:41:09 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z1Af3YaN3xjq_Gtb@shell.armlinux.org.uk>
+References: <20241203111314.2420473-1-claudiu.beznea.uj@bp.renesas.com>
+ <20241203111314.2420473-9-claudiu.beznea.uj@bp.renesas.com> <20241203200941.03ec9ea3@jic23-huawei>
+In-Reply-To: <20241203200941.03ec9ea3@jic23-huawei>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 4 Dec 2024 10:40:58 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVGXqn2AMfEmTHfOc2pYWs3KB9cJoCEW3gV8d1zsCqg_w@mail.gmail.com>
+Message-ID: <CAMuHMdVGXqn2AMfEmTHfOc2pYWs3KB9cJoCEW3gV8d1zsCqg_w@mail.gmail.com>
+Subject: Re: [PATCH 08/14] iio: adc: rzg2l_adc: Prepare for the addition of
+ RZ/G3S support
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Claudiu <claudiu.beznea@tuxon.dev>, prabhakar.mahadev-lad.rj@bp.renesas.com, 
+	lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	geert+renesas@glider.be, magnus.damm@gmail.com, mturquette@baylibre.com, 
+	sboyd@kernel.org, p.zabel@pengutronix.de, linux-iio@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Dec 04, 2024 at 09:24:45AM +0000, Russell King (Oracle) wrote:
-> On Wed, Dec 04, 2024 at 10:14:31AM +0100, Christian Marangi wrote:
-> > On Wed, Dec 04, 2024 at 10:09:22AM +0100, Maxime Chevallier wrote:
-> > > > +	case 5:
-> > > > +		phy_interface_set_rgmii(config->supported_interfaces);
-> > > > +		__set_bit(PHY_INTERFACE_MODE_SGMII,
-> > > > +			  config->supported_interfaces);
-> > > > +		__set_bit(PHY_INTERFACE_MODE_2500BASEX,
-> > > > +			  config->supported_interfaces);
-> > > > +		break;
-> > > > +	}
-> > > > +
-> > > > +	config->mac_capabilities = MAC_ASYM_PAUSE | MAC_SYM_PAUSE |
-> > > > +				   MAC_10 | MAC_100 | MAC_1000FD;
-> > > 
-> > > For port 5, you may also add the MAC_2500FD capability as it supports
-> > > 2500BASEX ?
-> > > 
-> > 
-> > I didn't account for the CPU port that runs at 2.5. The LAN port are
-> > only 1g. Will add or maybe add the 2500FD only for cpu port?
-> > 
-> > Maybe Russel can help in this?
-> 
-> *ll* please.
+Hi Jonathan,
 
-emabrassing... sorry.
-
-> 
-> Well, 2500BASE-X runs at 2.5G, so if MAC_2500FD isn't set in the mask,
-> validation will fail for 2500BASE-X.
-> 
-> > > > +		case SPEED_5000:
-> > > > +			reg |= AN8855_PMCR_FORCE_SPEED_5000;
-> > > > +			break;
-> > > 
-> > > There's no mention of any mode that can give support for the 5000Mbps
-> > > speed, is it a leftover from previous work on the driver ?
-> > > 
-> > 
-> > Added 5000 as this is present in documentation bits but CPU can only go
-> > up to 2.5. Should I drop it? Idea was to futureproof it since it really
-> > seems they added these bits with the intention of having a newer switch
-> > with more advanced ports.
-> 
-> Is there any mention of supporting interfaces faster than 2500BASE-X ?
+On Tue, Dec 3, 2024 at 9:09=E2=80=AFPM Jonathan Cameron <jic23@kernel.org> =
+wrote:
+> On Tue,  3 Dec 2024 13:13:08 +0200
+> Claudiu <claudiu.beznea@tuxon.dev> wrote:
+> > The ADC IP available on the RZ/G3S differs slightly from the one found =
+on
+> > the RZ/G2L. The identified differences are as follows:
+> > - different number of channels (one being used for temperature conversi=
+on);
+> >   consequently, various registers differ
+> > - different default sampling periods
+> > - the RZ/G3S variant lacks the ADVIC register.
+> >
+> > To accommodate these differences, the rzg2l_adc driver has been updated=
+ by
+> > introducing the struct rzg2l_adc_hw_params, which encapsulates the
+> > hardware-specific differences between the IP variants. A pointer to an
+> > object of type struct rzg2l_adc_hw_params is embedded in
+> > struct rzg2l_adc_data.
+> >
+> > Additionally, the completion member of struct rzg2l_adc_data was reloca=
+ted
+> > to avoid potential padding, if any.
+> >
+> > The code has been adjusted to utilize hardware-specific parameters stor=
+ed
+> > in the new structure instead of relying on plain macros.
+> >
+> > The check of chan->channel in rzg2l_adc_read_raw() function, against th=
+e
+> > driver specific mask was removed as the subsystem should have already
+> > been done this before reaching the rzg2l_adc_read_raw() function.
+> >
+> > Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> > ---
+> >  drivers/iio/adc/rzg2l_adc.c | 92 ++++++++++++++++++++++++++-----------
+> >  1 file changed, 64 insertions(+), 28 deletions(-)
+> >
+> > diff --git a/drivers/iio/adc/rzg2l_adc.c b/drivers/iio/adc/rzg2l_adc.c
+> > index fda8b42ded81..aff41152ebf8 100644
+> > --- a/drivers/iio/adc/rzg2l_adc.c
+> > +++ b/drivers/iio/adc/rzg2l_adc.c
+> > @@ -32,20 +32,15 @@
+> >  #define RZG2L_ADM1_MS                        BIT(2)
+> >  #define RZG2L_ADM1_BS                        BIT(4)
+> >  #define RZG2L_ADM1_EGA_MASK          GENMASK(13, 12)
+> > -#define RZG2L_ADM2_CHSEL_MASK                GENMASK(7, 0)
+> >  #define RZG2L_ADM3_ADIL_MASK         GENMASK(31, 24)
+> >  #define RZG2L_ADM3_ADCMP_MASK                GENMASK(23, 16)
+> > -#define RZG2L_ADM3_ADCMP_E           FIELD_PREP(RZG2L_ADM3_ADCMP_MASK,=
+ 0xe)
+> > -#define RZG2L_ADM3_ADSMP_MASK                GENMASK(15, 0)
+> >
+> >  #define RZG2L_ADINT                  0x20
+> > -#define RZG2L_ADINT_INTEN_MASK               GENMASK(7, 0)
+> >  #define RZG2L_ADINT_CSEEN            BIT(16)
+> >  #define RZG2L_ADINT_INTS             BIT(31)
+> >
+> >  #define RZG2L_ADSTS                  0x24
+> >  #define RZG2L_ADSTS_CSEST            BIT(16)
+> > -#define RZG2L_ADSTS_INTST_MASK               GENMASK(7, 0)
+> >
+> >  #define RZG2L_ADIVC                  0x28
+> >  #define RZG2L_ADIVC_DIVADC_MASK              GENMASK(8, 0)
+> > @@ -56,12 +51,26 @@
+> >  #define RZG2L_ADCR(n)                        (0x30 + ((n) * 0x4))
+> >  #define RZG2L_ADCR_AD_MASK           GENMASK(11, 0)
+> >
+> > -#define RZG2L_ADSMP_DEFAULT_SAMPLING 0x578
+> > -
+> > -#define RZG2L_ADC_MAX_CHANNELS               8
+> > -#define RZG2L_ADC_CHN_MASK           0x7
+> >  #define RZG2L_ADC_TIMEOUT            usecs_to_jiffies(1 * 4)
+> >
+> > +/**
+> > + * struct rzg2l_adc_hw_params - ADC hardware specific parameters
+> > + * @default_adsmp: default ADC sampling period (see ADM3 register)
+> > + * @adsmp_mask: ADC sampling period mask (see ADM3 register)
+> > + * @adint_inten_mask: conversion end interrupt mask (see ADINT registe=
+r)
+> > + * @default_adcmp: default ADC cmp (see ADM3 register)
+> > + * @num_channels: number of supported channels
+> > + * @adivc: specifies if ADVIC register is available
+> > + */
+> > +struct rzg2l_adc_hw_params {
+> > +     u16 default_adsmp;
+> > +     u16 adsmp_mask;
+> > +     u16 adint_inten_mask;
+> > +     u8 default_adcmp;
+> > +     u8 num_channels;
+> > +     bool adivc;
+> > +};
+> > +
+> >  struct rzg2l_adc_data {
+> >       const struct iio_chan_spec *channels;
+> >       u8 num_channels;
+> > @@ -71,10 +80,11 @@ struct rzg2l_adc {
+> >       void __iomem *base;
+> >       struct reset_control *presetn;
+> >       struct reset_control *adrstn;
+> > -     struct completion completion;
+> >       const struct rzg2l_adc_data *data;
+> > +     const struct rzg2l_adc_hw_params *hw_params;
+> > +     u16 *last_val;
+> > +     struct completion completion;
+> >       struct mutex lock;
+> > -     u16 last_val[RZG2L_ADC_MAX_CHANNELS];
 >
+> Just make this big enough for the max device.  Chances are it will make l=
+ittle or
+> no difference to this allocation and nice to avoid the dynamic part.
+>
+> Feel free to add a runtime check to make sure this is big enough to avoid=
+ any
+> future problems with forgetting to update it.
 
-In MAC Layer function description, they say:
-- Support 10/100/1000/2500/5000 Mbps bit rates
+Flexible array member and the new __counted_by() attribute?
 
-So in theory it can support up to that speed.
+Gr{oetje,eeting}s,
 
--- 
-	Ansuel
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
