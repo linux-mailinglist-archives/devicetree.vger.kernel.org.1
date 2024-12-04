@@ -1,119 +1,157 @@
-Return-Path: <devicetree+bounces-127021-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127023-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBDB19E3F4D
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 17:10:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E3609E3FAE
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 17:30:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83C5A169886
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 16:09:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 02767164369
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 16:30:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA14720D4E5;
-	Wed,  4 Dec 2024 16:06:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AABDF156C6A;
+	Wed,  4 Dec 2024 16:30:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SMlGYcgT"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="X+zfg9iu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8850620C489;
-	Wed,  4 Dec 2024 16:06:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB0291F1316
+	for <devicetree@vger.kernel.org>; Wed,  4 Dec 2024 16:30:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733328394; cv=none; b=Z7sfFMJ8cFQTuigo9liZ8gF38UnbidhnGdMWXvjsWpnmT4zEPefnvE8hIgSVsS1tFZ+G0OcWLMNGWnPZNYDhkHhCMRMemrKczCHncpIzcu0LgOa5S2jeL/WJF5y4q3iJ61HfQOUuu5VrCU5SeZEo7+Box20VKqLjUcjxbP6rUok=
+	t=1733329823; cv=none; b=YlshrbG0ay7w76xq/6iwsEGNHPxzNpaHJaLh5NZrOfSRupY9aQk6FrzbowA296aSwB5Quto5OaOMuDpkAlxI7SZKVU0BGzkfU9GfjFkeA//m3UUA+JZ5FLjvBR3tBRdnWsXSBPHkw+0nqwZ6jYytP6q/hIcL+rbwrXDDiEl0Ymg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733328394; c=relaxed/simple;
-	bh=caG52ZRp1/jQY4rcSWmiiteqmXt1GTPM57aTXkjfahw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=etc6xBXS9Zt4duJeAurs7OhP+7ZLIWDJZSJ8s5QRYz1dR5LbxtfE5WJM96i/VGjoCsGdSnJJtOML/gkYvFbeMyYzShQIIAFzuxrq0wErhR8w2KmgGGwZ4eLm3rjO9R2s/uqNtGizHAjfdmwrYvv5veXf1gCNJxfmjPOcvfru8WA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SMlGYcgT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 2E693C4CEEC;
-	Wed,  4 Dec 2024 16:06:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733328394;
-	bh=caG52ZRp1/jQY4rcSWmiiteqmXt1GTPM57aTXkjfahw=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=SMlGYcgT6LjEvSQyZZAmmpLbdC+E5SFhP9pH/8xD3QzyjK2uTP2Jt48fchgvESj/n
-	 JSnZraps5oI92bXzCVY8JGAkne2U81os6p1iTDJ9hTt9RLhGPPEfPz03puCkHF900G
-	 BKHnKnBxPWfmvXzuIZ5zJAhpFU94FdZ+kEgp/eh/grD36r2X7ZVcAeGQsS+ikBHKX4
-	 PfS8VucLsx0jwzsG9AuDofAP+JYN7hOVz+njS7ZZEP94iZoMlb19Zad8vdV5YMC80a
-	 12JyoEX/UivDB9RsT/eRVB65Cg3oQovlynY+dviNBkmPazoO4r9LNuHiRoUPaKNWBE
-	 a/uIArj/l0ZXQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 21599E77174;
-	Wed,  4 Dec 2024 16:06:34 +0000 (UTC)
-From: Nikolaos Pasaloukos via B4 Relay <devnull+nikolaos.pasaloukos.blaize.com@kernel.org>
-Date: Wed, 04 Dec 2024 16:05:29 +0000
-Subject: [PATCH v5 6/6] MAINTAINER: Add entry for Blaize SoC
+	s=arc-20240116; t=1733329823; c=relaxed/simple;
+	bh=thgMt5oOkCDSC48kZPkzM7HNTCLSaLWJrJuzdHUbcoo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=P+jA9cGBXD58V9ymKFbrfIDCsbsC8Bqh978BMFDP7x9CBAunnebtOE3nkLX22TCkn+kkXoeK86ZL2CKdQun3nxYbXDi1z0EYbQg3nXH5A0JWCxssA7ZIJu3auR6JP67wsTs0ySRuu516wCuW02bwHafompkBjH/CwLevaI53CXM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=X+zfg9iu; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-434a099ba95so63554505e9.0
+        for <devicetree@vger.kernel.org>; Wed, 04 Dec 2024 08:30:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1733329820; x=1733934620; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BrQinLFv8ymHrMMRcJBp3H6sh/YyzVemksPWSpbvKz0=;
+        b=X+zfg9iuUiA4wH9umB+ftgLHQ+WyXmY2eGhHuiHwMRCAYqmkjzQccYZ2eefGIiw1I6
+         34ACmv9z6CtQlPt+n53xbSULPxHWPYHygsK6hZT1MvBDzEljIIBKuYiA1YVPOwH1/2e0
+         54XeGgAdxLCUdhxTIwtL1IzbBUP68exD2yvMeoSTVQg5c/SczQvdLSQ3vw85CZXxABsc
+         1OvMbxKcOveREYw31KUknwWEuF9+evzSi1+JOWaRmhaTEcFBobT6iaDahjXctN/J5IfK
+         C3STuN3zukxXvoeX3hyAZPTgQ8m0Mf2AfvOJv5MrCpJ7zIXWb0GAK+0cmdI/3UCLaBsA
+         j9vA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733329820; x=1733934620;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BrQinLFv8ymHrMMRcJBp3H6sh/YyzVemksPWSpbvKz0=;
+        b=CnYP6vx8pLeDzFS0P9aS1nApHVgxyR/GR9ELji/x3mUSMPLC5e9uWuXfwDBBmF8Uf2
+         lLhQTaV6MsOXFJ+NAkFnJNk5hv3nCdZxwhvBEf/0KbbGvDlcod8i+DocmapkCCavBuI2
+         dY4i7e0psm9V/wO3hOBjkRdvN1YfilI5VUJHFcBfpmIA8x6DJnTf+LPW0KfDl8LSCWjk
+         sOWCefim9aroBfQEM3wK+DJ6U19TEuYUCZNMlzaSgsZAPrB8fZQhgrvs5i0QFebIjEk7
+         kQIeGpugOilU0jOfbiXbuhkwaFQk6cRx4NqUk2BKbBSFrCJMQj2c2uk03u8Lcf/X4zNl
+         6dCw==
+X-Forwarded-Encrypted: i=1; AJvYcCULhiSQui06qX2C8wWto/2/PfMN6u7sZ2ESpoeNLfLLfzxfh9qfi8lYGmUMofIN4qN2EwBc3z848shW@vger.kernel.org
+X-Gm-Message-State: AOJu0YzRnV6JxbRCPMOEJeFz8UmIz006z7/AyQPUT6ssX5jwI/di3BrK
+	0KaMbBXc/mP8PIt8AeYsTCQIqfhf1jAoT5QrCk2iR8U+OTUL/1XVeJxCOHBae6g=
+X-Gm-Gg: ASbGncs/Opy+R3Y8YtEV96pw1TicEVGM6UxiZwlUllb5blnU7ppLZUCQgiJrf30dBYG
+	Mxky80XI78Lww88mWnC5PcMBfmjMRCUNsz4ugqzRZj2m6nZj4oLE8WgHzzKgEN1dfQvu8UlFLyZ
+	B+fYEb7Nx5YebEfj9wNpyG08X9sUcfcVK7fh8NTSrjLEjF9Bjwa7BX2QcHu617M2FeojGkL0Q3M
+	vC/n8GeeSIxrK0OWUBAr7WC4/R9IPyu7lN9iAgju3e8VH7Oh1Ex1vaDSdo=
+X-Google-Smtp-Source: AGHT+IEJjin9oQpmKSImnwO7+sXeF3u6nObq01UhSCPPk/+4V+h/bVgDfEFHT0Nc3qSjHT5jWzKGFg==
+X-Received: by 2002:a5d:5888:0:b0:385:ebaf:3826 with SMTP id ffacd0b85a97d-385fd3f19dbmr5021359f8f.33.1733329820069;
+        Wed, 04 Dec 2024 08:30:20 -0800 (PST)
+Received: from [192.168.50.4] ([82.78.167.161])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-385ebaf3bccsm11283335f8f.68.2024.12.04.08.30.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Dec 2024 08:30:19 -0800 (PST)
+Message-ID: <1b691ff5-2240-4eba-bc3a-b33193ba0630@tuxon.dev>
+Date: Wed, 4 Dec 2024 18:30:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: renesas: rzg3s-smarc: Enable I2C1 and
+ connected power monitor
+Content-Language: en-US
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ linux-renesas-soc@vger.kernel.org
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20241120085345.24638-2-wsa+renesas@sang-engineering.com>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <20241120085345.24638-2-wsa+renesas@sang-engineering.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241204-blaize-blzp1600_init_board_support-v5-6-b642bcc49307@blaize.com>
-References: <20241204-blaize-blzp1600_init_board_support-v5-0-b642bcc49307@blaize.com>
-In-Reply-To: <20241204-blaize-blzp1600_init_board_support-v5-0-b642bcc49307@blaize.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- James Cowgill <james.cowgill@blaize.com>, 
- Matt Redfearn <matt.redfearn@blaize.com>, 
- Neil Jones <neil.jones@blaize.com>, 
- Niko Pasaloukos <nikolaos.pasaloukos@blaize.com>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
- Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, soc@lists.linux.dev
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1733328392; l=1011;
- i=nikolaos.pasaloukos@blaize.com; s=20241111; h=from:subject:message-id;
- bh=B8JPdEWFjlJ8iEOYfys3/T/ybAOs8kuytmN42/vy2FE=;
- b=69fm4FjATA2NwB5OGt8iyDk9vJ/CiyV9KeDh/wGTGXFqK24nbZoonpWBIw7h7n36QG+NsR/eT
- ZUX5cmE+gCtCDWs7fkmPLb33xMqw5aS1cLuJ9T70M1GH4NASTaqSw+Y
-X-Developer-Key: i=nikolaos.pasaloukos@blaize.com; a=ed25519;
- pk=gGEjGCXdSuvCJPIiu0p0UeiPcW5LC710Z6KGN/dzo3g=
-X-Endpoint-Received: by B4 Relay for
- nikolaos.pasaloukos@blaize.com/20241111 with auth_id=274
-X-Original-From: Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>
-Reply-To: nikolaos.pasaloukos@blaize.com
 
-From: Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>
+Hi, Wolfram,
 
-Add MAINTAINERS entry for Blaize SoC platform with a list of
-maintainers.
+On 20.11.2024 10:49, Wolfram Sang wrote:
+> Enable I2C1 for the carrier board and the connected power monitor
+> ISL28022. Limit the bus speed to the maximum the power monitor supports.
+> 
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> ---
+> 
+> i2c1 gets enabled in the current SoM-DTSI as well, but to be safe
+> regarding other SoM DTSIs to come, I opted for explicitly enabling it in
+> the carrier board as well.
+> 
+> I picked the 'average-samples' value using my gut feeling. If someone
+> has a reason to pick a better one, I am all for it.
+> 
+>  arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
+> index 7945d44e6ee1..5e4bfaeafd20 100644
+> --- a/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
+> @@ -73,6 +73,19 @@ &i2c0 {
+>  	clock-frequency = <1000000>;
+>  };
+>  
+> +&i2c1 {
+> +	status = "okay";
+> +
+> +	clock-frequency = <400000>;
 
-Signed-off-by: Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>
----
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+This could be moved before status to comply with [1]. I can take care of it
+later as I failed to follow [1] for i2c0 as well.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 273a84483b74543b510de7b08804bbd1f6514358..43846a23f9d990ae9fe066e65ed2bdd36376e327 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2238,6 +2238,15 @@ F:	arch/arm64/boot/dts/bitmain/
- F:	drivers/clk/clk-bm1880.c
- F:	drivers/pinctrl/pinctrl-bm1880.c
- 
-+ARM/BLAIZE ARCHITECTURE
-+M:	James Cowgill <james.cowgill@blaize.com>
-+M:	Matt Redfearn <matt.redfearn@blaize.com>
-+M:	Neil Jones <neil.jones@blaize.com>
-+M:	Nikolaos Pasaloukos <nikolaos.pasaloukos@blaize.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/arm/blaize.yaml
-+F:	arch/arm64/boot/dts/blaize/
-+
- ARM/CALXEDA HIGHBANK ARCHITECTURE
- M:	Andre Przywara <andre.przywara@arm.com>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+Other than this:
+Reviewed-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
--- 
-2.43.0
+I gave it a try on RZ/G3S:
+Tested-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
+Thank you,
+Claudiu
 
+[1]
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/dts-coding-style.rst#n112
+
+> +
+> +	power-monitor@44 {
+> +		compatible = "renesas,isl28022";
+> +		reg = <0x44>;
+> +		shunt-resistor-micro-ohms = <8000>;
+> +		renesas,average-samples = <32>;
+> +	};
+> +};
+> +
+>  &pinctrl {
+>  	key-1-gpio-hog {
+>  		gpio-hog;
 
