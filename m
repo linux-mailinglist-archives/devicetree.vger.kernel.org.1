@@ -1,299 +1,125 @@
-Return-Path: <devicetree+bounces-126935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126937-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2073F9E39E6
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 13:28:16 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C81A59E39F9
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 13:30:26 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6077286048
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 12:28:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A4E40164E76
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 12:30:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0ED31CDFD4;
-	Wed,  4 Dec 2024 12:27:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27FEC1B3920;
+	Wed,  4 Dec 2024 12:30:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TEg+sV1R"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YLHP9E1i"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C32431CD1EA;
-	Wed,  4 Dec 2024 12:27:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2C5919F475;
+	Wed,  4 Dec 2024 12:30:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733315236; cv=none; b=DzgKrFzIEPK4+wWJnkTQBiS1IxxL91Jgus2G5D0suBACN20OHjxOC8aAorGNyuxslHY7dlZgxUWF2vciQSGO3tWIDYDBidPeawl4N5c4/Tn13eMwH+TpPX+Uc2bz1Ma+9AdhyJhLmvzVF/lIuZ+dMg4MhrofK4XLPOiRRoxpnhI=
+	t=1733315422; cv=none; b=Hbhk4jgd9trE8RdgkJbQG6K1RnBzCfKN6mnu58VcP5G0DufHWBE4MFCkG3sGBUMre72XfE5dtyAnemuc8E5yxFtnjmmJoIpRF0XJDmAA14leBXWgRy3E7pIS6I6WcOoLpX884V33xRo3+ITyfiWElmt9R0Dbv7Djqp/pWfyhFbc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733315236; c=relaxed/simple;
-	bh=UxizGPyiKooAv1o2lgGxygM1OJg+7KaIJs+QdQqJngE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=EhmV74ZjKsQ9oYnN1N5llPBaDB0zXbC719TuxKtE+D1MjFr9mvLW/lhI874XwaV90JKu5qbz3RPapvElroMocsr3EOgwYbuoQbJPeiTXk7PHaa+2SmIowWq59GOpTppK23OpaXjglACA26lt7dX7Q05tN7TQMUu3qeuePpPFYOM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TEg+sV1R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 734B2C4CEE5;
-	Wed,  4 Dec 2024 12:27:16 +0000 (UTC)
+	s=arc-20240116; t=1733315422; c=relaxed/simple;
+	bh=9eXfoMW90qUkMCd8PB4s1IZLPRKdwA5Uo9N7wSUezic=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DkQ5tQZkK8nIO6eoSxaI1PzsuJvT1L3BtMAPqIXLrEpB8ZJA7+cBUxiiGy2NjLLCvha0gKGTW8yj/8FIosvDBmGH9ltfSM/VBBnOMLE0RQvM3stJPVMnAQe3rh1rwFjyjME8yLkmA/B2a1CWgVpe8SO5z4h6sEmKq6sq4II/OI4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YLHP9E1i; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3203C4CED1;
+	Wed,  4 Dec 2024 12:30:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733315236;
-	bh=UxizGPyiKooAv1o2lgGxygM1OJg+7KaIJs+QdQqJngE=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=TEg+sV1Rb4Ibip2EhkX2eVJvOErSBta1V+8g+RV0GIwXuD1Wn3ocDQa3DO9av4xNE
-	 EFllm7ni2UWBjQwP9jQQGtut5o82He49+QuhVDOdIATFzaAqrHhzegemu2o1ebAVc6
-	 lmsSpOJ/e3wA61e5/fabaHIbLCl2MK9BtJO3qEjm8uq37jw9LVYW06lrN1FvobQnI+
-	 BysOtr+Xolzdulk0DGkGOUV1wGRrT8RPCFsRkipDCCHD5hQRPceaeTrt2xe98BcOik
-	 /wMeKQbLHn3DfZsPY711R56dFJt52Z1yWS8LBIFSWEsQcwjyZT6xCpsLJOuRm0TN/f
-	 PibELoDUPGW5Q==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 669BAE7716E;
-	Wed,  4 Dec 2024 12:27:16 +0000 (UTC)
-From: Maud Spierings via B4 Relay <devnull+maud_spierings.hotmail.com@kernel.org>
-Date: Wed, 04 Dec 2024 13:26:39 +0100
-Subject: [PATCH v6 3/3] arm64: dts: qcom: x1e80100-vivobook-s15: Add
- bluetooth
+	s=k20201202; t=1733315421;
+	bh=9eXfoMW90qUkMCd8PB4s1IZLPRKdwA5Uo9N7wSUezic=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YLHP9E1ilKkb5b/js9GkK+0QO4RJKJy7Ie06FdBX7VxDg7v6fAtdqaY1Xa7tRsb9K
+	 S1gGNgvoI+uqFINbRzwCbnwrPMh2THSOnD8R6SmSe1CG8ZrIqptKE+LV8ufhRFrDiA
+	 5AaJcWSksLaj0fimhuM8fkOumVJjzdNhYbhCIvjnIPPjVdXcsve3nkqRzYv66D/bkS
+	 oiy43qe5c8K5piLHora63ZD1cpjQWIrlRUDNVRZi18hgsotZEaasbTDUQ/J2dAY3P8
+	 rmWxlj+W7f3RVMzz5bHzCLVTDXYHylQcsKTglDbdyY8qgvhvRsXGtRK6cOKl0NK6oi
+	 KNijLrrJHWJyA==
+Date: Wed, 4 Dec 2024 18:00:17 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Vaishnav Achath <vaishnav.a@ti.com>
+Cc: peter.ujfalusi@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	u-kumar1@ti.com, j-choudhary@ti.com, vigneshr@ti.com
+Subject: Re: [PATCH v3 2/2] dmaengine: ti: k3-udma: Add support for J722S CSI
+ BCDMA
+Message-ID: <Z1BLWYY8/eVXZxVu@vaman>
+References: <20241127101627.617537-1-vaishnav.a@ti.com>
+ <20241127101627.617537-3-vaishnav.a@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241204-asus_qcom_display-v6-3-91079cd8234e@hotmail.com>
-References: <20241204-asus_qcom_display-v6-0-91079cd8234e@hotmail.com>
-In-Reply-To: <20241204-asus_qcom_display-v6-0-91079cd8234e@hotmail.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Johan Hovold <johan@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Maud Spierings <maud_spierings@hotmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1733315235; l=5300;
- i=maud_spierings@hotmail.com; s=20241110; h=from:subject:message-id;
- bh=dNILjRbnJ8l6wI0B1HRe9YcN+zM+h5wgYgzS1Wi5B5M=;
- b=aM0ecy6evLFXeJloga0iyZRezMHEVmKFBahslAuBGck1N0Y3PWE/9xEn99TYyqYiDEWXDmoOM
- XEetiJgeBUSAfienYwLcbFaL2anaZ+KaI+PPqvyqH6QfB+FAMmhaQFW
-X-Developer-Key: i=maud_spierings@hotmail.com; a=ed25519;
- pk=CeFKVnZvRfX2QjB1DpdiAe2N+MEjwLEB9Yhx/OAcxRc=
-X-Endpoint-Received: by B4 Relay for maud_spierings@hotmail.com/20241110
- with auth_id=273
-X-Original-From: Maud Spierings <maud_spierings@hotmail.com>
-Reply-To: maud_spierings@hotmail.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241127101627.617537-3-vaishnav.a@ti.com>
 
-From: Maud Spierings <maud_spierings@hotmail.com>
+On 27-11-24, 15:46, Vaishnav Achath wrote:
+> J722S CSI BCDMA is similar to J721S2 CSI BCDMA but there are slight
+> integration differences like different PSIL thread base ID which is
+> currently handled in the driver based on udma_of_match data. Add an
+> entry to support J722S CSIRX.
+> 
+> Signed-off-by: Vaishnav Achath <vaishnav.a@ti.com>
+> ---
+> 
+> V2->V3 : Minor edit in commit message.
+> 
+> V1->V2:
+> 	* Add new compatible for J722S instead of modifying AM62A
+> 
+>  drivers/dma/ti/k3-udma.c | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+> 
+> diff --git a/drivers/dma/ti/k3-udma.c b/drivers/dma/ti/k3-udma.c
+> index b3f27b3f9209..7ed1956b4642 100644
+> --- a/drivers/dma/ti/k3-udma.c
+> +++ b/drivers/dma/ti/k3-udma.c
+> @@ -4404,6 +4404,18 @@ static struct udma_match_data j721s2_bcdma_csi_data = {
+>  	.soc_data = &j721s2_bcdma_csi_soc_data,
+>  };
+>  
+> +static struct udma_match_data j722s_bcdma_csi_data = {
+> +	.type = DMA_TYPE_BCDMA,
+> +	.psil_base = 0x3100,
+> +	.enable_memcpy_support = false,
+> +	.burst_size = {
+> +		TI_SCI_RM_UDMAP_CHAN_BURST_SIZE_64_BYTES, /* Normal Channels */
+> +		0, /* No H Channels */
+> +		0, /* No UH Channels */
 
-Add bluetooth for the asus vivobook s15
-Describe wlan configuration
+Why are these zeros? we expect valid size...
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Maud Spierings <maud_spierings@hotmail.com>
----
- .../boot/dts/qcom/x1e80100-asus-vivobook-s15.dts   | 161 +++++++++++++++++++++
- 1 file changed, 161 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
-index ba52c0eef4e32019f6eb7c7ae3c4cd727df23490..6564386e92e5c8c08ae2807ba512f83537358cf5 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
-@@ -19,6 +19,10 @@ / {
- 	compatible = "asus,vivobook-s15", "qcom,x1e80100";
- 	chassis-type = "laptop";
- 
-+	aliases {
-+		serial1 = &uart14;
-+	};
-+
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 		pinctrl-0 = <&hall_int_n_default>;
-@@ -153,6 +157,101 @@ vph_pwr: regulator-vph-pwr {
- 		regulator-always-on;
- 		regulator-boot-on;
- 	};
-+
-+	vreg_wcn_0p95: regulator-wcn-0p95 {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "VREG_WCN_0P95";
-+		regulator-min-microvolt = <950000>;
-+		regulator-max-microvolt = <950000>;
-+
-+		vin-supply = <&vreg_wcn_3p3>;
-+	};
-+
-+	vreg_wcn_1p9: regulator-wcn-1p9 {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "VREG_WCN_1P9";
-+		regulator-min-microvolt = <1900000>;
-+		regulator-max-microvolt = <1900000>;
-+
-+		vin-supply = <&vreg_wcn_3p3>;
-+	};
-+
-+	vreg_wcn_3p3: regulator-wcn-3p3 {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "VREG_WCN_3P3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpio = <&tlmm 214 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-0 = <&wcn_sw_en>;
-+		pinctrl-names = "default";
-+
-+		regulator-boot-on;
-+	};
-+
-+	wcn7850-pmu {
-+		compatible = "qcom,wcn7850-pmu";
-+
-+		vdd-supply = <&vreg_wcn_0p95>;
-+		vddio-supply = <&vreg_l15b_1p8>;
-+		vddaon-supply = <&vreg_wcn_0p95>;
-+		vdddig-supply = <&vreg_wcn_0p95>;
-+		vddrfa1p2-supply = <&vreg_wcn_1p9>;
-+		vddrfa1p8-supply = <&vreg_wcn_1p9>;
-+
-+		wlan-enable-gpios = <&tlmm 117 GPIO_ACTIVE_HIGH>;
-+		bt-enable-gpios = <&tlmm 116 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&wcn_wlan_en>, <&wcn_bt_en>;
-+		pinctrl-names = "default";
-+
-+		regulators {
-+			vreg_pmu_rfa_cmn: ldo0 {
-+				regulator-name = "vreg_pmu_rfa_cmn";
-+			};
-+
-+			vreg_pmu_aon_0p59: ldo1 {
-+				regulator-name = "vreg_pmu_aon_0p59";
-+			};
-+
-+			vreg_pmu_wlcx_0p8: ldo2 {
-+				regulator-name = "vreg_pmu_wlcx_0p8";
-+			};
-+
-+			vreg_pmu_wlmx_0p85: ldo3 {
-+				regulator-name = "vreg_pmu_wlmx_0p85";
-+			};
-+
-+			vreg_pmu_btcmx_0p85: ldo4 {
-+				regulator-name = "vreg_pmu_btcmx_0p85";
-+			};
-+
-+			vreg_pmu_rfa_0p8: ldo5 {
-+				regulator-name = "vreg_pmu_rfa_0p8";
-+			};
-+
-+			vreg_pmu_rfa_1p2: ldo6 {
-+				regulator-name = "vreg_pmu_rfa_1p2";
-+			};
-+
-+			vreg_pmu_rfa_1p8: ldo7 {
-+				regulator-name = "vreg_pmu_rfa_1p8";
-+			};
-+
-+			vreg_pmu_pcie_0p9: ldo8 {
-+				regulator-name = "vreg_pmu_pcie_0p9";
-+			};
-+
-+			vreg_pmu_pcie_1p8: ldo9 {
-+				regulator-name = "vreg_pmu_pcie_1p8";
-+			};
-+		};
-+	};
- };
- 
- &apps_rsc {
-@@ -198,6 +297,13 @@ vreg_l14b_3p0: ldo14 {
- 			regulator-max-microvolt = <3072000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 		};
-+
-+		vreg_l15b_1p8: ldo15 {
-+			regulator-name = "vreg_l15b_1p8";
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
- 	};
- 
- 	regulators-1 {
-@@ -476,6 +582,23 @@ &pcie4_phy {
- 	status = "okay";
- };
- 
-+&pcie4_port0 {
-+	wifi@0 {
-+		compatible = "pci17cb,1107";
-+		reg = <0x10000 0x0 0x0 0x0 0x0>;
-+
-+		vddaon-supply = <&vreg_pmu_aon_0p59>;
-+		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-+		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
-+		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-+		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-+		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-+		vddrfa1p8-supply = <&vreg_pmu_rfa_1p8>;
-+		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
-+		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
-+	};
-+};
-+
- &pcie6a {
- 	perst-gpios = <&tlmm 152 GPIO_ACTIVE_LOW>;
- 	wake-gpios = <&tlmm 154 GPIO_ACTIVE_LOW>;
-@@ -625,6 +748,44 @@ tpad_default: tpad-default-state {
- 		function = "gpio";
- 		bias-disable;
- 	};
-+
-+	wcn_bt_en: wcn-bt-en-state {
-+		pins = "gpio116";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-pull-down;
-+	};
-+
-+	wcn_sw_en: wcn-sw-en-state {
-+		pins = "gpio214";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-disable;
-+	};
-+
-+	wcn_wlan_en: wcn-wlan-en-state {
-+		pins = "gpio117";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-disable;
-+	};
-+};
-+
-+&uart14 {
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "qcom,wcn7850-bt";
-+		max-speed = <3200000>;
-+
-+		vddaon-supply = <&vreg_pmu_aon_0p59>;
-+		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-+		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
-+		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
-+		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-+		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-+		vddrfa1p8-supply = <&vreg_pmu_rfa_1p8>;
-+	};
- };
- 
- &usb_1_ss0_hsphy {
+> +	},
+> +	.soc_data = &j721s2_bcdma_csi_soc_data,
+> +};
+> +
+>  static const struct of_device_id udma_of_match[] = {
+>  	{
+>  		.compatible = "ti,am654-navss-main-udmap",
+> @@ -4435,6 +4447,10 @@ static const struct of_device_id udma_of_match[] = {
+>  		.compatible = "ti,j721s2-dmss-bcdma-csi",
+>  		.data = &j721s2_bcdma_csi_data,
+>  	},
+> +	{
+> +		.compatible = "ti,j722s-dmss-bcdma-csi",
+> +		.data = &j722s_bcdma_csi_data,
+> +	},
+>  	{ /* Sentinel */ },
+>  };
+>  MODULE_DEVICE_TABLE(of, udma_of_match);
+> -- 
+> 2.34.1
 
 -- 
-2.47.1
-
-
+~Vinod
 
