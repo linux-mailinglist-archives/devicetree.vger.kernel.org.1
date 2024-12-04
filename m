@@ -1,476 +1,191 @@
-Return-Path: <devicetree+bounces-127063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 309969E46B7
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 22:33:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C0309E46F7
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 22:38:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5EDBCB29D86
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 19:26:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 94327B83B78
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 19:38:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A936A1C3BE7;
-	Wed,  4 Dec 2024 19:26:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 325B51F543F;
+	Wed,  4 Dec 2024 19:37:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=daniel.almeida@collabora.com header.b="ew5P/ekN"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dfnfqXED"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B31A1B4130;
-	Wed,  4 Dec 2024 19:26:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733340390; cv=pass; b=D/VUz0w5l6IfBkvIH4/ObSyHYwxF+CEGndgMbxcSIDtyBik2ET0BJjw05kS6G5JFWHB4yaZMM11EeAMfi4NMOwNn4Ud+95fW1RAD8UaGdJDs9bdAR5c6DBjmEQQ08fVGXQbehae861MaFvJQklTTwWbnHkx4pwXfDJzd2lHDGaw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733340390; c=relaxed/simple;
-	bh=h8ARnmfbTqF/cI3q9mowC7+FcZgp77jQGxY5HlVPKMU=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=ggD6OpOMUy4i7edSTO2d7L/zkm5emzUQhJ/L0/h+2D1YC+JbLgcVBOcfo7MHPIs/g4Rn54Rn8mCjjG/DLFZxEbq5FtwDI0aL6GrQHZo6HUgam2Dap5KUvczm5ADj31m4V18jgHmQNOMIPV1gU8BIQ29hw2r/NBXAcQBOhtdfth0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=daniel.almeida@collabora.com header.b=ew5P/ekN; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1733340352; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=XIwroMswiSsLiZ3HgtEZFwvaVmvR2N6pBF+Vt2d2mr72R7vZS4r26hLbYVEP3luaxIvZFKAzoBl4mS6kU6XmSHU+IiQcAMnudX1stUDfwSpaezqnhPl5Iw4QCOkeGr0EO92G+qWf9IqmbIuM1kmJJBdspRS4YttURnCbpYcQM9g=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1733340352; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=iXSruM2DtO1V1jXF1qxqYiltGJ6X2Z7W1MHrcYL9i1k=; 
-	b=gwD/aFMIjtpfd//dqdqUQ/HHPSpREM88fwB5DjrWtdA1aGf+VzsEMYYf8ZPWKeEQ/t2eIX/G1p5iOlaQJr79E/Y7h6vDIH0BbDMX2gO7QRfOI6nhtwVVYeJS7xRAqjBYDx4xBgk3RQIUx+YxdRGxn5NVSymwHYIxMV708ajxtKc=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=daniel.almeida@collabora.com;
-	dmarc=pass header.from=<daniel.almeida@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1733340352;
-	s=zohomail; d=collabora.com; i=daniel.almeida@collabora.com;
-	h=Content-Type:Mime-Version:Subject:Subject:From:From:In-Reply-To:Date:Date:Cc:Cc:Content-Transfer-Encoding:Message-Id:Message-Id:References:To:To:Reply-To;
-	bh=iXSruM2DtO1V1jXF1qxqYiltGJ6X2Z7W1MHrcYL9i1k=;
-	b=ew5P/ekNO7qTA0tfv9Z+m25DEwH1Nj26NjGlST+5hFfBqXnNJNKPQD1KKw7SlFPD
-	EVCosCCUjrdOvyGVc+BFQXf/qoUhVhRldDC6SsVUK8H5P5Nco1cHyZLPKTZ7UP3X2s8
-	4zXHxa24cGe58pn9k0SLVujgkjz0EmJG+wDa3jfY=
-Received: by mx.zohomail.com with SMTPS id 173334034960492.0857786888331;
-	Wed, 4 Dec 2024 11:25:49 -0800 (PST)
-Content-Type: text/plain;
-	charset=utf-8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FA5A1F03DD;
+	Wed,  4 Dec 2024 19:37:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1733341068; cv=none; b=n8xSPNX2lMB5FcJf5Y86pSf4jnMBObMoUmSs1BAb1eOpjDP/mqA9ZsJpuDPmDayvsebaz51xYds28XqAXvk9/6KsbH3Mfm6jYNpvvMk65ZHYHi8UeLJCtOezMro/v9Uf4GAlgzY6c4pt9MPODLfRZhtXwYcdgXZ3tbg3NT9EFtM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1733341068; c=relaxed/simple;
+	bh=ybquNvhu3fwqsGgB0h3HTK1V90aQE1rAdBik/KxijJY=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
+	 In-Reply-To:To:CC; b=GIXpdPgQccJ60urqTVgsOqhOeZyS1TdEa8Mgrgi6DXufrDzs0YvgJh3UePsj9jn1wC7P37XsmpGLYHON/5aswDqMHQjNb2xsuWmyI5wgZzSXWkhvC7w3GNTWY7vFS0pozAiPS5OJaYuOdQnzU7zILJJPqC4+YSFl0dpg5Wb9V/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=dfnfqXED; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B4H6KpV024772;
+	Wed, 4 Dec 2024 19:37:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	JqaiQr43W7Y8YIMX4TayhXzJvPjTkQo4hxliRcBkemU=; b=dfnfqXEDXryh0DKK
+	DaAVnnclP/Un6c/2aNZg/EzL86ywFpjjJWBBr+q1Fft99ZFavzcJuXVZHJ8f1cQJ
+	/9nvSGjxZksAom6Y6git2WWnCfuLpctXLjCVraZLfE6u0w4GIFi9GwqO+4Xt8lcu
+	yKK4IEXlRo6t1tYC0cMqGYtxAaSbYKGyI7JSlsA1yBdh0FvEaAJjrVkhs3lMG0zi
+	ofGxpfdnCyB3H9pg+XMqEX7Gzb5F/XqB4So322FULbpKPLRrAgAp9wuyV7QEtY86
+	Yd/nL7JvJEOKe0ooMuPC3aezZvz6z3tWq21ye2vSdfFAzp3pgNj26sLt8LLcRhdT
+	D3sgjw==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 439vnywa56-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 04 Dec 2024 19:37:41 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B4JbeLJ031068
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 4 Dec 2024 19:37:40 GMT
+Received: from hu-molvera-lv.qualcomm.com (10.49.16.6) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 4 Dec 2024 11:37:39 -0800
+From: Melody Olvera <quic_molvera@quicinc.com>
+Date: Wed, 4 Dec 2024 11:37:16 -0800
+Subject: [PATCH v3 4/8] clk: qcom: clk-alpha-pll: Add support for
+ controlling Taycan PLLs
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.200.121\))
-Subject: Re: [PATCH v3 15/16] rust: platform: add basic platform device /
- driver abstractions
-From: Daniel Almeida <daniel.almeida@collabora.com>
-In-Reply-To: <20241022213221.2383-16-dakr@kernel.org>
-Date: Wed, 4 Dec 2024 16:25:32 -0300
-Cc: gregkh@linuxfoundation.org,
- rafael@kernel.org,
- bhelgaas@google.com,
- ojeda@kernel.org,
- alex.gaynor@gmail.com,
- boqun.feng@gmail.com,
- gary@garyguo.net,
- bjorn3_gh@protonmail.com,
- benno.lossin@proton.me,
- tmgross@umich.edu,
- a.hindborg@samsung.com,
- aliceryhl@google.com,
- airlied@gmail.com,
- fujita.tomonori@gmail.com,
- lina@asahilina.net,
- pstanner@redhat.com,
- ajanulgu@redhat.com,
- lyude@redhat.com,
- robh@kernel.org,
- saravanak@google.com,
- rust-for-linux@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- linux-pci@vger.kernel.org,
- devicetree@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <7EA482EF-1D3E-4C3E-A805-4F404758610C@collabora.com>
-References: <20241022213221.2383-1-dakr@kernel.org>
- <20241022213221.2383-16-dakr@kernel.org>
-To: Danilo Krummrich <dakr@kernel.org>
-X-Mailer: Apple Mail (2.3826.200.121)
-X-ZohoMailClient: External
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20241204-sm8750_master_clks-v3-4-1a8f31a53a86@quicinc.com>
+References: <20241204-sm8750_master_clks-v3-0-1a8f31a53a86@quicinc.com>
+In-Reply-To: <20241204-sm8750_master_clks-v3-0-1a8f31a53a86@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Melody Olvera
+	<quic_molvera@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1733341058; l=3482;
+ i=quic_molvera@quicinc.com; s=20241204; h=from:subject:message-id;
+ bh=NnNEqYZ5pV8Imdcrsg1kU2E1AOytgnDs8DFuBqwClzI=;
+ b=LAnzFjB99jLjkvqOrLKEIvXdXc/GCcYtZrl3gqW0lxOn/0xmFWKg5Vv96m3ruNO1Y8RuLu+zk
+ WmEuOE0n0aZD8AuqivoZO7/RNm+ug676/ZOROf0Bk/PoCVYkX6hVjAj
+X-Developer-Key: i=quic_molvera@quicinc.com; a=ed25519;
+ pk=1DGLp3zVYsHAWipMaNZZTHR321e8xK52C9vuAoeca5c=
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: NwpLKTWyg_w-jsCiMuOjVybpDkokGPZA
+X-Proofpoint-GUID: NwpLKTWyg_w-jsCiMuOjVybpDkokGPZA
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 adultscore=0
+ mlxlogscore=999 bulkscore=0 impostorscore=0 mlxscore=0 suspectscore=0
+ spamscore=0 priorityscore=1501 lowpriorityscore=0 phishscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412040150
 
-Hi Danilo,
+From: Taniya Das <quic_tdas@quicinc.com>
 
-> On 22 Oct 2024, at 18:31, Danilo Krummrich <dakr@kernel.org> wrote:
->=20
-> Implement the basic platform bus abstractions required to write a =
-basic
-> platform driver. This includes the following data structures:
->=20
-> The `platform::Driver` trait represents the interface to the driver =
-and
-> provides `pci::Driver::probe` for the driver to implement.
->=20
-> The `platform::Device` abstraction represents a `struct =
-platform_device`.
->=20
-> In order to provide the platform bus specific parts to a generic
-> `driver::Registration` the `driver::RegistrationOps` trait is =
-implemented
-> by `platform::Adapter`.
->=20
-> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
-> ---
-> MAINTAINERS                     |   1 +
-> rust/bindings/bindings_helper.h |   1 +
-> rust/helpers/helpers.c          |   1 +
-> rust/helpers/platform.c         |  13 ++
-> rust/kernel/lib.rs              |   1 +
-> rust/kernel/platform.rs         | 217 ++++++++++++++++++++++++++++++++
-> 6 files changed, 234 insertions(+)
-> create mode 100644 rust/helpers/platform.c
-> create mode 100644 rust/kernel/platform.rs
->=20
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 87eb9a7869eb..173540375863 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -6985,6 +6985,7 @@ F: rust/kernel/device.rs
-> F: rust/kernel/device_id.rs
-> F: rust/kernel/devres.rs
-> F: rust/kernel/driver.rs
-> +F: rust/kernel/platform.rs
->=20
-> DRIVERS FOR OMAP ADAPTIVE VOLTAGE SCALING (AVS)
-> M: Nishanth Menon <nm@ti.com>
-> diff --git a/rust/bindings/bindings_helper.h =
-b/rust/bindings/bindings_helper.h
-> index 312f03cbdce9..217c776615b9 100644
-> --- a/rust/bindings/bindings_helper.h
-> +++ b/rust/bindings/bindings_helper.h
-> @@ -18,6 +18,7 @@
-> #include <linux/of_device.h>
-> #include <linux/pci.h>
-> #include <linux/phy.h>
-> +#include <linux/platform_device.h>
-> #include <linux/refcount.h>
-> #include <linux/sched.h>
-> #include <linux/slab.h>
-> diff --git a/rust/helpers/helpers.c b/rust/helpers/helpers.c
-> index 8bc6e9735589..663cdc2a45e0 100644
-> --- a/rust/helpers/helpers.c
-> +++ b/rust/helpers/helpers.c
-> @@ -17,6 +17,7 @@
-> #include "kunit.c"
-> #include "mutex.c"
-> #include "page.c"
-> +#include "platform.c"
-> #include "pci.c"
-> #include "rbtree.c"
-> #include "rcu.c"
-> diff --git a/rust/helpers/platform.c b/rust/helpers/platform.c
-> new file mode 100644
-> index 000000000000..ab9b9f317301
-> --- /dev/null
-> +++ b/rust/helpers/platform.c
-> @@ -0,0 +1,13 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +#include <linux/platform_device.h>
-> +
-> +void *rust_helper_platform_get_drvdata(const struct platform_device =
-*pdev)
-> +{
-> + return platform_get_drvdata(pdev);
-> +}
-> +
-> +void rust_helper_platform_set_drvdata(struct platform_device *pdev, =
-void *data)
-> +{
-> + platform_set_drvdata(pdev, data);
-> +}
-> diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
-> index 5946f59f1688..9e8dcd6d7c01 100644
-> --- a/rust/kernel/lib.rs
-> +++ b/rust/kernel/lib.rs
-> @@ -53,6 +53,7 @@
-> pub mod net;
-> pub mod of;
-> pub mod page;
-> +pub mod platform;
-> pub mod prelude;
-> pub mod print;
-> pub mod rbtree;
-> diff --git a/rust/kernel/platform.rs b/rust/kernel/platform.rs
-> new file mode 100644
-> index 000000000000..addf5356f44f
-> --- /dev/null
-> +++ b/rust/kernel/platform.rs
-> @@ -0,0 +1,217 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +//! Abstractions for the platform bus.
-> +//!
-> +//! C header: =
-[`include/linux/platform_device.h`](srctree/include/linux/platform_device.=
-h)
-> +
-> +use crate::{
-> +    bindings, container_of, device,
-> +    device_id::RawDeviceId,
-> +    driver,
-> +    error::{to_result, Result},
-> +    of,
-> +    prelude::*,
-> +    str::CStr,
-> +    types::{ARef, ForeignOwnable},
-> +    ThisModule,
-> +};
-> +
-> +/// An adapter for the registration of platform drivers.
-> +pub struct Adapter<T: Driver>(T);
-> +
-> +impl<T: Driver + 'static> driver::RegistrationOps for Adapter<T> {
-> +    type RegType =3D bindings::platform_driver;
-> +
-> +    fn register(
-> +        pdrv: &mut Self::RegType,
-> +        name: &'static CStr,
-> +        module: &'static ThisModule,
-> +    ) -> Result {
-> +        pdrv.driver.name =3D name.as_char_ptr();
-> +        pdrv.probe =3D Some(Self::probe_callback);
-> +
-> +        // Both members of this union are identical in data layout =
-and semantics.
-> +        pdrv.__bindgen_anon_1.remove =3D Some(Self::remove_callback);
-> +        pdrv.driver.of_match_table =3D T::ID_TABLE.as_ptr();
-> +
-> +        // SAFETY: `pdrv` is guaranteed to be a valid `RegType`.
-> +        to_result(unsafe { bindings::__platform_driver_register(pdrv, =
-module.0) })
-> +    }
-> +
-> +    fn unregister(pdrv: &mut Self::RegType) {
-> +        // SAFETY: `pdrv` is guaranteed to be a valid `RegType`.
-> +        unsafe { bindings::platform_driver_unregister(pdrv) };
-> +    }
-> +}
-> +
-> +impl<T: Driver + 'static> Adapter<T> {
-> +    fn id_info(pdev: &Device) -> Option<&'static T::IdInfo> {
-> +        let table =3D T::ID_TABLE;
-> +        let id =3D T::of_match_device(pdev)?;
-> +
-> +        Some(table.info(id.index()))
-> +    }
-> +
-> +    extern "C" fn probe_callback(pdev: *mut =
-bindings::platform_device) -> core::ffi::c_int {
-> +        // SAFETY: The platform bus only ever calls the probe =
-callback with a valid `pdev`.
-> +        let dev =3D unsafe { device::Device::from_raw(&mut =
-(*pdev).dev) };
-> +        // SAFETY: `dev` is guaranteed to be embedded in a valid =
-`struct platform_device` by the
-> +        // call above.
-> +        let mut pdev =3D unsafe { Device::from_dev(dev) };
-> +
-> +        let info =3D Self::id_info(&pdev);
-> +        match T::probe(&mut pdev, info) {
-> +            Ok(data) =3D> {
-> +                // Let the `struct platform_device` own a reference =
-of the driver's private data.
-> +                // SAFETY: By the type invariant `pdev.as_raw` =
-returns a valid pointer to a
-> +                // `struct platform_device`.
-> +                unsafe { =
-bindings::platform_set_drvdata(pdev.as_raw(), data.into_foreign() as _) =
-};
-> +            }
-> +            Err(err) =3D> return Error::to_errno(err),
-> +        }
-> +
-> +        0
-> +    }
-> +
-> +    extern "C" fn remove_callback(pdev: *mut =
-bindings::platform_device) {
-> +        // SAFETY: `pdev` is a valid pointer to a `struct =
-platform_device`.
-> +        let ptr =3D unsafe { bindings::platform_get_drvdata(pdev) };
-> +
-> +        // SAFETY: `remove_callback` is only ever called after a =
-successful call to
-> +        // `probe_callback`, hence it's guaranteed that `ptr` points =
-to a valid and initialized
-> +        // `KBox<T>` pointer created through `KBox::into_foreign`.
-> +        let _ =3D unsafe { KBox::<T>::from_foreign(ptr) };
-> +    }
-> +}
-> +
-> +/// Declares a kernel module that exposes a single platform driver.
-> +///
-> +/// # Examples
-> +///
-> +/// ```ignore
-> +/// kernel::module_platform_driver! {
-> +///     type: MyDriver,
-> +///     name: "Module name",
-> +///     author: "Author name",
-> +///     description: "Description",
-> +///     license: "GPL v2",
-> +/// }
-> +/// ```
-> +#[macro_export]
-> +macro_rules! module_platform_driver {
-> +    ($($f:tt)*) =3D> {
-> +        $crate::module_driver!(<T>, $crate::platform::Adapter<T>, { =
-$($f)* });
-> +    };
-> +}
-> +
-> +/// IdTable type for platform drivers.
-> +pub type IdTable<T> =3D &'static dyn =
-kernel::device_id::IdTable<of::DeviceId, T>;
-> +
-> +/// The platform driver trait.
-> +///
-> +/// # Example
-> +///
-> +///```
-> +/// # use kernel::{bindings, c_str, of, platform};
-> +///
-> +/// struct MyDriver;
-> +///
-> +/// kernel::of_device_table!(
-> +///     OF_TABLE,
-> +///     MODULE_OF_TABLE,
-> +///     <MyDriver as platform::Driver>::IdInfo,
-> +///     [
-> +///         (of::DeviceId::new(c_str!("redhat,my-device")), ())
-> +///     ]
-> +/// );
-> +///
-> +/// impl platform::Driver for MyDriver {
-> +///     type IdInfo =3D ();
-> +///     const ID_TABLE: platform::IdTable<Self::IdInfo> =3D =
-&OF_TABLE;
-> +///
-> +///     fn probe(
-> +///         _pdev: &mut platform::Device,
-> +///         _id_info: Option<&Self::IdInfo>,
-> +///     ) -> Result<Pin<KBox<Self>>> {
-> +///         Err(ENODEV)
-> +///     }
-> +/// }
-> +///```
-> +/// Drivers must implement this trait in order to get a platform =
-driver registered. Please refer to
-> +/// the `Adapter` documentation for an example.
-> +pub trait Driver {
-> +    /// The type holding information about each device id supported =
-by the driver.
-> +    ///
-> +    /// TODO: Use associated_type_defaults once stabilized:
-> +    ///
-> +    /// type IdInfo: 'static =3D ();
-> +    type IdInfo: 'static;
-> +
-> +    /// The table of device ids supported by the driver.
-> +    const ID_TABLE: IdTable<Self::IdInfo>;
-> +
-> +    /// Platform driver probe.
-> +    ///
-> +    /// Called when a new platform device is added or discovered.
-> +    /// Implementers should attempt to initialize the device here.
-> +    fn probe(dev: &mut Device, id_info: Option<&Self::IdInfo>) -> =
-Result<Pin<KBox<Self>>>;
-> +
-> +    /// Find the [`of::DeviceId`] within [`Driver::ID_TABLE`] =
-matching the given [`Device`], if any.
-> +    fn of_match_device(pdev: &Device) -> Option<&of::DeviceId> {
-> +        let table =3D Self::ID_TABLE;
-> +
-> +        // SAFETY:
-> +        // - `table` has static lifetime, hence it's valid for read,
-> +        // - `dev` is guaranteed to be valid while it's alive, and so =
-is
-> +        //   `pdev.as_dev().as_raw()`.
-> +        let raw_id =3D unsafe { =
-bindings::of_match_device(table.as_ptr(), pdev.as_dev().as_raw()) };
-> +
-> +        if raw_id.is_null() {
-> +            None
-> +        } else {
-> +            // SAFETY: `DeviceId` is a `#[repr(transparent)` wrapper =
-of `struct of_device_id` and
-> +            // does not add additional invariants, so it's safe to =
-transmute.
-> +            Some(unsafe { &*raw_id.cast::<of::DeviceId>() })
-> +        }
-> +    }
-> +}
-> +
-> +/// The platform device representation.
-> +///
-> +/// A platform device is based on an always reference counted =
-`device:Device` instance. Cloning a
-> +/// platform device, hence, also increments the base device' =
-reference count.
-> +///
-> +/// # Invariants
-> +///
-> +/// `Device` holds a valid reference of `ARef<device::Device>` whose =
-underlying `struct device` is a
-> +/// member of a `struct platform_device`.
-> +#[derive(Clone)]
-> +pub struct Device(ARef<device::Device>);
-> +
-> +impl Device {
-> +    /// Convert a raw kernel device into a `Device`
-> +    ///
-> +    /// # Safety
-> +    ///
-> +    /// `dev` must be an `Aref<device::Device>` whose underlying =
-`bindings::device` is a member of a
-> +    /// `bindings::platform_device`.
-> +    unsafe fn from_dev(dev: ARef<device::Device>) -> Self {
-> +        Self(dev)
-> +    }
-> +
-> +    fn as_dev(&self) -> &device::Device {
+Add clock ops for Taycan PLL, add the register offsets for supporting
+the PLL.
 
-This has to be pub, since a platform::Device is at least as useful as a =
-device::Device.
+Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+---
+ drivers/clk/qcom/clk-alpha-pll.c | 14 ++++++++++++++
+ drivers/clk/qcom/clk-alpha-pll.h |  7 +++++++
+ 2 files changed, 21 insertions(+)
 
-IOW: if an API takes &device::Device, there is no reason why someone =
-with a &platform::Device
-shouldn=E2=80=99t be able to call it.
+diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
+index b8351f8c0b8401f55c564e8ea32308333d012887..5e9217ea3760efe640718040b8659cb37ef9ede5 100644
+--- a/drivers/clk/qcom/clk-alpha-pll.c
++++ b/drivers/clk/qcom/clk-alpha-pll.c
+@@ -197,6 +197,20 @@ const u8 clk_alpha_pll_regs[][PLL_OFF_MAX_REGS] = {
+ 		[PLL_OFF_TEST_CTL_U1] = 0x34,
+ 		[PLL_OFF_TEST_CTL_U2] = 0x38,
+ 	},
++	[CLK_ALPHA_PLL_TYPE_TAYCAN_ELU] = {
++		[PLL_OFF_OPMODE] = 0x04,
++		[PLL_OFF_STATE] = 0x08,
++		[PLL_OFF_STATUS] = 0x0c,
++		[PLL_OFF_L_VAL] = 0x10,
++		[PLL_OFF_ALPHA_VAL] = 0x14,
++		[PLL_OFF_USER_CTL] = 0x18,
++		[PLL_OFF_USER_CTL_U] = 0x1c,
++		[PLL_OFF_CONFIG_CTL] = 0x20,
++		[PLL_OFF_CONFIG_CTL_U] = 0x24,
++		[PLL_OFF_CONFIG_CTL_U1] = 0x28,
++		[PLL_OFF_TEST_CTL] = 0x2c,
++		[PLL_OFF_TEST_CTL_U] = 0x30,
++	},
+ 	[CLK_ALPHA_PLL_TYPE_RIVIAN_EVO] = {
+ 		[PLL_OFF_OPMODE] = 0x04,
+ 		[PLL_OFF_STATUS] = 0x0c,
+diff --git a/drivers/clk/qcom/clk-alpha-pll.h b/drivers/clk/qcom/clk-alpha-pll.h
+index c6d1b8429f951a27fa18cd5b82f067acdf826454..87bd469d9c2c2ec4e0758c97231527b92fe6afe5 100644
+--- a/drivers/clk/qcom/clk-alpha-pll.h
++++ b/drivers/clk/qcom/clk-alpha-pll.h
+@@ -27,6 +27,7 @@ enum {
+ 	CLK_ALPHA_PLL_TYPE_ZONDA_OLE,
+ 	CLK_ALPHA_PLL_TYPE_LUCID_EVO,
+ 	CLK_ALPHA_PLL_TYPE_LUCID_OLE,
++	CLK_ALPHA_PLL_TYPE_TAYCAN_ELU,
+ 	CLK_ALPHA_PLL_TYPE_RIVIAN_EVO,
+ 	CLK_ALPHA_PLL_TYPE_DEFAULT_EVO,
+ 	CLK_ALPHA_PLL_TYPE_BRAMMO_EVO,
+@@ -185,12 +186,15 @@ extern const struct clk_ops clk_alpha_pll_zonda_ops;
+ #define clk_alpha_pll_zonda_ole_ops clk_alpha_pll_zonda_ops
+ 
+ extern const struct clk_ops clk_alpha_pll_lucid_evo_ops;
++#define clk_alpha_pll_taycan_elu_ops clk_alpha_pll_lucid_evo_ops
+ extern const struct clk_ops clk_alpha_pll_reset_lucid_evo_ops;
+ #define clk_alpha_pll_reset_lucid_ole_ops clk_alpha_pll_reset_lucid_evo_ops
+ extern const struct clk_ops clk_alpha_pll_fixed_lucid_evo_ops;
+ #define clk_alpha_pll_fixed_lucid_ole_ops clk_alpha_pll_fixed_lucid_evo_ops
++#define clk_alpha_pll_fixed_taycan_elu_ops clk_alpha_pll_fixed_lucid_evo_ops
+ extern const struct clk_ops clk_alpha_pll_postdiv_lucid_evo_ops;
+ #define clk_alpha_pll_postdiv_lucid_ole_ops clk_alpha_pll_postdiv_lucid_evo_ops
++#define clk_alpha_pll_postdiv_taycan_elu_ops clk_alpha_pll_postdiv_lucid_evo_ops
+ 
+ extern const struct clk_ops clk_alpha_pll_rivian_evo_ops;
+ #define clk_alpha_pll_postdiv_rivian_evo_ops clk_alpha_pll_postdiv_fabia_ops
+@@ -218,6 +222,9 @@ void clk_lucid_evo_pll_configure(struct clk_alpha_pll *pll, struct regmap *regma
+ 				 const struct alpha_pll_config *config);
+ void clk_lucid_ole_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+ 				 const struct alpha_pll_config *config);
++#define clk_taycan_elu_pll_configure(pll, regmap, config) \
++	clk_lucid_evo_pll_configure(pll, regmap, config)
++
+ void clk_rivian_evo_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+ 				  const struct alpha_pll_config *config);
+ void clk_stromer_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
 
-In particular, having this as private makes it impossible for a platform =
-driver to use Abdiel=E2=80=99s DMA allocator at [0].
-
-> +        &self.0
-> +    }
-> +
-> +    fn as_raw(&self) -> *mut bindings::platform_device {
-> +        // SAFETY: By the type invariant `self.0.as_raw` is a pointer =
-to the `struct device`
-> +        // embedded in `struct platform_device`.
-> +        unsafe { container_of!(self.0.as_raw(), =
-bindings::platform_device, dev) }.cast_mut()
-> +    }
-> +}
-> +
-> +impl AsRef<device::Device> for Device {
-> +    fn as_ref(&self) -> &device::Device {
-> +        &self.0
-> +    }
-> +}
-> --=20
-> 2.46.2
->=20
-
-=E2=80=94 Daniel
-
-[0]: https://lkml.org/lkml/2024/12/3/1281
+-- 
+2.46.1
 
 
