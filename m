@@ -1,228 +1,172 @@
-Return-Path: <devicetree+bounces-126761-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126762-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B7FA9E30E9
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 02:50:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7AF19E3103
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 02:59:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA16BB27F72
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 01:50:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4C8F0B27890
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 01:59:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3AF0FC08;
-	Wed,  4 Dec 2024 01:50:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6847717BCA;
+	Wed,  4 Dec 2024 01:59:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U0v+auKG"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="pyW+3v/1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B8494C7D;
-	Wed,  4 Dec 2024 01:50:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E2E2802;
+	Wed,  4 Dec 2024 01:59:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733277034; cv=none; b=e3S/0N0FUI8t+U+ESWX+qbzblBpzpRZ/pYSdnuBc1+hkJxiulKn071hXTj+bmNoVda2w2iBGI97jMFIpbnKOce7mRB7xIWZyH4xFQGYZmnFVjMEI0uLsaohHHB0OhCNfu35uO1bRXVanSnrDRqMClsLxIYjG+pRwJfsZMOx4DxE=
+	t=1733277550; cv=none; b=KejbB0KYRs42hBtBlf8fmQ8Cm0ZXRNntH9doUbuOhVxbVdxjUls2aSFKwvr730vCwHgfdxVZd3GsABt4Ak5GiudCMyw992Uobzqb9rlCXgVne1ZETmrMGj68PkhgPbImntNt9z/F6TcX5mPLyHgdKKJMryWZY2hJa4aHAdLs6xQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733277034; c=relaxed/simple;
-	bh=lR+efRJP8qpHPwJBFvy8mo1CkDs6ptk2s7Q6VJKImog=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dbYn0p/mQ/sVckKTn4T51nBLn11+Sj+LSfbB4Km1ZZLaNKvFAgv+3Wf/AEeA2wGC+cVzeEMzJDiUQgyZyAHK+XnOwsGsPN+01vt++z9s2htZvMDuube+21U7Wf+SdhBOyd5FECwNehq70Nuvz9jN0TyiV4AZANxZ7boHB8/mbPI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U0v+auKG; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-385ddcfc97bso4239038f8f.1;
-        Tue, 03 Dec 2024 17:50:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733277030; x=1733881830; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lN201ByzpfUAhxwhR4UdOa7zJC44kIZT0kSYye3sxJk=;
-        b=U0v+auKGJvTFLJcl0bCX9QmhUpot0RgSbkLerRCxBzioCmNyqVcZvwFbaYHk4aryjI
-         /XP0iG2dBJq1ttkFTp3Ip8rm+UWcXHT9GeTfzn+e6+n+aQCWlY4FRJuaiqI4y0SltNr/
-         wbyvG2yWS1sb8oVptjQJw4EfSFtfinpVDz0Fl6yOFDxDmTYoagD4EYzDrnU3vLfm0rB+
-         qyyB5WkTpfHXVuZvmpd5exVVxaHwPIb5jyw0PjVQvKMm3oTcNaGi/UmwdTOpdmn5XqCF
-         NIaJbLVgqZvcYny2VpqNJWjN1KKOjBvgIMhicBEfiF5w6/9q+CoP+mTT/cbGZI2QrC6V
-         BI4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733277030; x=1733881830;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lN201ByzpfUAhxwhR4UdOa7zJC44kIZT0kSYye3sxJk=;
-        b=MIHFANjl86GCHTKcxfDjhYSW7JMFVstjUrAkHgBv3aCZ1VBiB7rIEyjVPqVpD1Lyrv
-         ta3E2qLKDAYx9MWBAGCwGkGMkf+8liBV+F38r93C11ZaITsOIc42fQYiV79HxbevoeZJ
-         Kvp9516f9353zmZDynf8fFPUxVltXsbalEzqRqKyySs2msFMOyTQF3ghu55TdzZHhTbE
-         Bzr5r50f4oiTSMAynOQbWZAP1nD7o8g3B0zJDQ2UWerJzuslh4fjvPiNwAwLqTtphfXX
-         LBiNIH5tLhVaySZXu5jJeZ05rBEetXc+vDSx09Zi3bU/IAQaBQU5MxSL3qyJ4MWXye4b
-         Pz8w==
-X-Forwarded-Encrypted: i=1; AJvYcCU7Ut8F8ZqOLzMS0Ks6bxFgn5B3uQBzMzq+Rho/mppYjL5/QzNfMh8URXTiWm8qRdv2agnujbZwX0JF@vger.kernel.org, AJvYcCV3yTXEyCw1ZmON83wSO52d/2UiEcGyhuGMxN1ECuB6dchCytAPJy/ptcJWbaoJxVsCbILKI2M8zVRiR22w@vger.kernel.org, AJvYcCW2OXmI/u2H25zn9UKHzQyjfB+maP7xeeTPv/L9TpE1neQ5iwWVG/cnAPsdB19zNURLlkIQu5oY6Kxk@vger.kernel.org
-X-Gm-Message-State: AOJu0YzqniauoDWXJFQLUU/gS5iXb4mcctGzUEmnxzCjDw9K//saOogx
-	jrF2+kfUZUVtbj14PAfo/vLEkuZgdAJ7uzJf7sGPR5an7PVMzztbT2rxTdPNCkDlnBNvTWxO8Ca
-	Ii0dt8sR6e3PucCroJFaMXhWdBVI=
-X-Gm-Gg: ASbGncsAz4l7yVcxI0nXM5NfENp4OjMi3LiWx1htaCMyXFOTDDnTq2n4JFiBkc+hxbR
-	VXDzi5hv9Lfu6xoyZK5LTepuH34n40eQ=
-X-Google-Smtp-Source: AGHT+IHt9Rwm6Nd4suIuWugkJHbvZnTpYJfiKM9I4W2YblEGY0ueUGw7HgR+ojWzcmeKMRQIpKOnzXiSEBUQLBxHqpA=
-X-Received: by 2002:a5d:64e4:0:b0:385:f47b:1508 with SMTP id
- ffacd0b85a97d-385fd3f35efmr4593054f8f.35.1733277030274; Tue, 03 Dec 2024
- 17:50:30 -0800 (PST)
+	s=arc-20240116; t=1733277550; c=relaxed/simple;
+	bh=6px3nMewNz5U3azGAq8dupSl8iP0Ism8ATYbvHM22uY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=R+zt6dwSm9fEAE6FQ1nMF7/hO137wmlEvTRQJZ/P/p184QbU8misNpJeYYVndXGtjB2BxYbL94C2bO0SfjWo+HZNAlrzpZpdAn0wcADc6052aw9GWCeMU0QRSHCPGWKq8HOTLMh8UJAoOfmo4JL8rIkPgkqAVrGgdkUigVP+Pjs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=pyW+3v/1; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B3H2Qtg031188;
+	Wed, 4 Dec 2024 01:58:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	OlsOEZknfuP2mKF9fzrlKtZr6iB5ieP+FcHOtEu9FkA=; b=pyW+3v/1PJ7ojsqn
+	hegA0pqdIijvJl4ov+avNOv8hDs0tKMuZW3lAbdIPKKj4h6i/pPhVrQALZFJUPWb
+	CJsUl0N9x24OIsxHaUDBMjq7hKmbXRXFAXrRCD7T3qwIoD/ItqOaS0afVx6Afh+C
+	2HNW0RvbeTbaZG8ryo/xQtP7mk59c+0j55icM/uRobL6kM0N8uBf1l7zXsb2d1wf
+	5VbC8o092cerFGYl1gjm/9VzqHaKsfO83F4mJ5yPcLDnO8Uy3TbUG8YwsvG4B0/P
+	rCk+s2qJYBcctv7VnwKr/7DQb1cZZRkC31O0atb/5ffCKGke08S8F6LZmQlMiYML
+	EE4tRQ==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 439w90tqam-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 04 Dec 2024 01:58:59 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B41wwcQ013223
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 4 Dec 2024 01:58:58 GMT
+Received: from [10.216.45.237] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 3 Dec 2024
+ 17:58:49 -0800
+Message-ID: <064b93db-5e7b-23d2-46e9-b1fe28233def@quicinc.com>
+Date: Wed, 4 Dec 2024 07:28:45 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241106023916.440767-1-j2anfernee@gmail.com> <20241106023916.440767-3-j2anfernee@gmail.com>
- <fd4db31d-4e55-4f0e-a96d-d193c28fd784@kernel.org> <CA+4VgcJSt-LUNtH6TMpk7om+PbO1aQvmt1WHi-cYMxa8p+Um5A@mail.gmail.com>
- <20241109134538.6f09971d@jic23-huawei>
-In-Reply-To: <20241109134538.6f09971d@jic23-huawei>
-From: Yu-Hsian Yang <j2anfernee@gmail.com>
-Date: Wed, 4 Dec 2024 09:49:53 +0800
-Message-ID: <CA+4VgcKaL+B1yDG+X7HLGam5T5njgccp9ebCnQJwiv3V5w07ow@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] iio: adc: add Nuvoton NCT720x ADC driver
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, avifishman70@gmail.com, tmaimon77@gmail.com, 
-	tali.perry1@gmail.com, venture@google.com, yuenn@google.com, 
-	benjaminfair@google.com, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, nuno.sa@analog.com, dlechner@baylibre.com, 
-	javier.carrasco.cruz@gmail.com, andy@kernel.org, marcelo.schmitt@analog.com, 
-	olivier.moysan@foss.st.com, mitrutzceclan@gmail.com, 
-	matteomartelli3@gmail.com, alisadariana@gmail.com, joao.goncalves@toradex.com, 
-	marius.cristea@microchip.com, mike.looijmans@topic.nl, 
-	chanh@os.amperecomputing.com, KWLIU@nuvoton.com, yhyang2@nuvoton.com, 
-	openbmc@lists.ozlabs.org, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH 1/3] arm64: dts: qcom: sc7280: Increase config size to
+ 256MB for ECAM feature
+Content-Language: en-US
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+CC: <cros-qcom-dts-watchers@chromium.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
+        Lorenzo Pieralisi
+	<lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?=
+	<kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>, <quic_vbadigan@quicinc.com>,
+        <quic_ramkri@quicinc.com>, <quic_nitegupt@quicinc.com>,
+        <quic_skananth@quicinc.com>, <quic_vpernami@quicinc.com>,
+        <quic_mrana@quicinc.com>, <mmareddy@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>
+References: <20241117-ecam-v1-0-6059faf38d07@quicinc.com>
+ <20241117-ecam-v1-1-6059faf38d07@quicinc.com>
+ <20241202150648.fwi2wzbdyyedueby@thinkpad>
+From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
+In-Reply-To: <20241202150648.fwi2wzbdyyedueby@thinkpad>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: wpGnz_c3EvE3_2jUrX-VUlnUbS_d4rB9
+X-Proofpoint-GUID: wpGnz_c3EvE3_2jUrX-VUlnUbS_d4rB9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=969 bulkscore=0
+ impostorscore=0 phishscore=0 suspectscore=0 adultscore=0 mlxscore=0
+ spamscore=0 clxscore=1015 priorityscore=1501 malwarescore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412040015
 
-Thank you for your comment.
 
-Jonathan Cameron <jic23@kernel.org> =E6=96=BC 2024=E5=B9=B411=E6=9C=889=E6=
-=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8B=E5=8D=889:45=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On Thu, 7 Nov 2024 08:41:21 +0800
-> Yu-Hsian Yang <j2anfernee@gmail.com> wrote:
->
-> > Dear Krzysztof Kozlowski,
-> >
-> > Thank you for your response.
-> >
-> > Krzysztof Kozlowski <krzk@kernel.org> =E6=96=BC 2024=E5=B9=B411=E6=9C=
-=886=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=889:41=E5=AF=AB=E9=81=93=
-=EF=BC=9A
-> > >
-> > > On 06/11/2024 03:39, Eason Yang wrote:
-> > > > Add Nuvoton NCT7201/NCT7202 system voltage monitor 12-bit ADC drive=
-r
-> > > >
-> > > > NCT7201/NCT7202 supports up to 12 analog voltage monitor inputs and=
- up to
-> > > > 4 SMBus addresses by ADDR pin. Meanwhile, ALERT# hardware event pin=
-s for
-> > > > independent alarm signals, and the all threshold values could be se=
-t for
-> > > > system protection without any timing delay. It also supports reset =
-input
-> > > > RSTIN# to recover system from a fault condition.
-> > > >
-> > > > Currently, only single-edge mode conversion and threshold events su=
-pport.
-> > > >
-> > > > Signed-off-by: Eason Yang <j2anfernee@gmail.com>
-> > >
-> > > ...
-> > >
-> > > > +
-> > > > +static int nct720x_probe(struct i2c_client *client)
-> > > > +{
-> > > > +     const struct i2c_device_id *id =3D i2c_client_get_device_id(c=
-lient);
-> > > > +     struct nct720x_chip_info *chip;
-> > > > +     struct iio_dev *indio_dev;
-> > > > +     int ret;
-> > > > +     u32 tmp;
-> > > > +
-> > > > +     indio_dev =3D devm_iio_device_alloc(&client->dev, sizeof(*chi=
-p));
-> > > > +     if (!indio_dev)
-> > > > +             return -ENOMEM;
-> > > > +     chip =3D iio_priv(indio_dev);
-> > > > +
-> > > > +     if (client->dev.of_node)
-> > > > +             chip->type =3D (enum nct720x_chips)device_get_match_d=
-ata(&client->dev);
-> > > > +     else
-> > > > +             chip->type =3D i2c_match_id(nct720x_id, client)->driv=
-er_data;
-> > >
-> > > I believe there is a I2C wrapper for above.
-> > >
-> >
-> > Got it.
->
-> Don't pass an enum value as data.  Pass a pointer to a structure that des=
-cribes the particular
-> variant.  The 0 value which tends to end up in enums is an error for devi=
-ce_get_match_data.
->
 
-I would pass a pointer to the data structure not id to describe the
-particular variant.
-I would rewrite the code as below,
+On 12/2/2024 8:36 PM, Manivannan Sadhasivam wrote:
+> On Sun, Nov 17, 2024 at 03:30:18AM +0530, Krishna chaitanya chundru wrote:
+>> Increase the configuration size to 256MB as required by the ECAM feature.
+>> And also move config space, DBI, ELBI, IATU to upper PCIe region and use
+>> lower PCIe region entierly for BAR region.
+>>
+> 
+> Is this change compatible with old kernels before commit '10ba0854c5e6 ("PCI:
+> qcom: Disable mirroring of DBI and iATU register space in BAR region")'?
+> 
+> - Mani
+No mani, we need this commit '10ba0854c5e6 ("PCI:
+ > qcom: Disable mirroring of DBI and iATU register space in BAR region")
+for this.
 
-static const struct nct720x_adc_model_data nct7201_model_data =3D {
-.model_name =3D "nct7201",
-.channels =3D nct7201_channels,
-.num_channels =3D ARRAY_SIZE(nct7201_channels),
-.vin_max =3D 8,
-};
-
-static const struct nct720x_adc_model_data nct7202_model_data =3D {
-.model_name =3D "nct7202",
-.channels =3D nct7202_channels,
-.num_channels =3D ARRAY_SIZE(nct7202_channels),
-.vin_max =3D 12,
-};
-
-static const struct i2c_device_id nct720x_id[] =3D {
-{ "nct7201", (kernel_ulong_t)&nct7201_model_data },
-{ "nct7202", (kernel_ulong_t)&nct7202_model_data },
-{ }
-};
-MODULE_DEVICE_TABLE(i2c, nct720x_id);
-
-static const struct of_device_id nct720x_of_match[] =3D {
-{
-.compatible =3D "nuvoton,nct7201",
-.data =3D &nct7201_model_data,
-},
-{
-.compatible =3D "nuvoton,nct7202",
-.data =3D &nct7202_model_data,
-},
-{ }
-};
-MODULE_DEVICE_TABLE(of, nct720x_of_match);
-
-> >
-> > > > +
-> > > > +     chip->vin_max =3D (chip->type =3D=3D nct7201) ? NCT7201_VIN_M=
-AX : NCT7202_VIN_MAX;
-> > > > +
-> > > > +     ret =3D of_property_read_u32(client->dev.of_node, "read-vin-d=
-ata-size", &tmp);
-> > > > +     if (ret < 0) {
-> > > > +             pr_err("read-vin-data-size property not found\n");
-> > >
-> > > Please use dev_xxx in your driver code.
-> >
-> > Got it.
-> >
-> > >
-> > >
-> > > Best regards,
-> > > Krzysztof
-> > >
->
+- Krishna Chaitanya.
+> 
+>> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sc7280.dtsi | 12 ++++++------
+>>   1 file changed, 6 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> index 3d8410683402..a7e3d3e9d034 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> @@ -2196,10 +2196,10 @@ wifi: wifi@17a10040 {
+>>   		pcie1: pcie@1c08000 {
+>>   			compatible = "qcom,pcie-sc7280";
+>>   			reg = <0 0x01c08000 0 0x3000>,
+>> -			      <0 0x40000000 0 0xf1d>,
+>> -			      <0 0x40000f20 0 0xa8>,
+>> -			      <0 0x40001000 0 0x1000>,
+>> -			      <0 0x40100000 0 0x100000>;
+>> +			      <4 0x00000000 0 0xf1d>,
+>> +			      <4 0x00000f20 0 0xa8>,
+>> +			      <4 0x10000000 0 0x1000>,
+>> +			      <4 0x00000000 0 0x10000000>;
+>>   
+>>   			reg-names = "parf", "dbi", "elbi", "atu", "config";
+>>   			device_type = "pci";
+>> @@ -2210,8 +2210,8 @@ pcie1: pcie@1c08000 {
+>>   			#address-cells = <3>;
+>>   			#size-cells = <2>;
+>>   
+>> -			ranges = <0x01000000 0x0 0x00000000 0x0 0x40200000 0x0 0x100000>,
+>> -				 <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x1fd00000>;
+>> +			ranges = <0x01000000 0x0 0x00000000 0x0 0x40000000 0x0 0x100000>,
+>> +				 <0x02000000 0x0 0x40100000 0x0 0x40100000 0x0 0x1ff00000>;
+>>   
+>>   			interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
+>>   				     <GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH>,
+>>
+>> -- 
+>> 2.34.1
+>>
+> 
 
