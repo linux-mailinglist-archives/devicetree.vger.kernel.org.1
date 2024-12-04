@@ -1,127 +1,157 @@
-Return-Path: <devicetree+bounces-126754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F00BE9E3039
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 01:04:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1E8D9E3072
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 01:45:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4D2E2839E3
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 00:04:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 411C9283199
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 00:45:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E1D24A21;
-	Wed,  4 Dec 2024 00:04:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A74F2500C0;
+	Wed,  4 Dec 2024 00:45:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="PS6589Ef"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="AS4W69/C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F80C33D1
-	for <devicetree@vger.kernel.org>; Wed,  4 Dec 2024 00:04:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 452142500AC;
+	Wed,  4 Dec 2024 00:45:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733270660; cv=none; b=k8lvip5jV8bFQJUNzFsmPnbk6YyS/SRnpA5/R2NP0YWxU0zfIno+g2HO2eYa87Zaf5u9fzP0rMcF4EWbi5tZKUR+9JysHFrtfpoY2ZSLIQJwjFjYXII/HAWISmVJ5vDRAF/Mdazm8zdDS8wMQ9xndxrHxwdORv18DU41M704kk0=
+	t=1733273134; cv=none; b=eE9nVD1rCgB1OwnL3SjQuDTXdF1KXir6frAldLp4PpREYexurPMZIj6JnJ/A7K8TrX01HpN3U13HnPhFj7ekDNZZSugt8Syn0MZV12HDeWJOrlayS/k1vNjaFLWczo2CghYbf2/loaJqm+puG/MiTQdyBk9cA8Z/D36/UCsmOJ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733270660; c=relaxed/simple;
-	bh=+ipD/Vuf+WHiBO3am03cEGfuJhA/9jJW/6w7HvVxhiM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=biXeHJpZQl+ZQ760YsK3hMU7lctRj1gJJQcXPzVJbWgU+eFC6HnVtBYdoL2GIsLngTejZYxvk60M3YQffmloA6iHd906rdiAFDH5C1/AIb8SsRvnUOsJUoTp2r4b0k2hPhYYY51E48nm/udWWXwvtk7BGU2jdUj+mDELdMEb6X8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=PS6589Ef; arc=none smtp.client-ip=209.85.215.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-7ee51d9ae30so4275473a12.1
-        for <devicetree@vger.kernel.org>; Tue, 03 Dec 2024 16:04:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1733270658; x=1733875458; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=4m7pNMsdgNYxzBIEAAkmRSEO/6g/enlI6isMmxPuL6o=;
-        b=PS6589EfNPLkMBJE7QPiT5HZe5+kRBMX8llZn0HLTVb15lpo4ztq+DNGb4AGKFOWL5
-         LFxilEAob59DyafywN30LwTSuwi4tcv37qd2sZLFO5wDQSCzON5ntYUyw6difkD8bCUA
-         xOpaGdfxOm3nTzyfIuik9iaeeB7wYvy6FDkUk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733270658; x=1733875458;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4m7pNMsdgNYxzBIEAAkmRSEO/6g/enlI6isMmxPuL6o=;
-        b=JdNiXLfV0agLvOzGXL6AJjQR0XiTzvPKP+GnJ+DnAgGvBVi06HyT3aG+GwCaprPh0O
-         sIWEG9I0efmEVlYulNyDw+SQtfubH929P8PhFtkqVkry596XCWStlhNLF1Ty2LKfpMKH
-         tXLwMR4gME1xMLxA655hNfa0tKMV+YtNBkKx1wJjPogUgvEAbL4UdFRNXz+CK4H4OqXs
-         fA9dOd0EEDI9X+58CIqbwM2xBOVs8y3qwJ8AgtKrcsSok7DeMbqrtcULmnRZv6rWPeCB
-         X/zDiouWYufu6vAiJljQ/qj9mHupcDMpiBYaeCqOQD/EOZ1eFKv9hnla//0YrsWqCMDh
-         TXHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU3mtLeuHr1bLZHXhb8BYwsIZpiWosBLA8SiVEi2XmKfm5/4sSzlOKaPoNgojfrOXESUNPgTq13Jmt/@vger.kernel.org
-X-Gm-Message-State: AOJu0YyLe5x+3UyuDGJs40h1cd5aXZgrQ/mEm8S9M721xroEoA1XKUbi
-	8lkxTBj2kJLsJmxMnatmusPGFDOxopPDVkyDWjZHpQKqKr3rBtdRNyFPEHB2ZQ==
-X-Gm-Gg: ASbGncsxWvJ7OSL39XKwW2LcHn6vXUyE3v5RbKY7mF1qc6GecuqkgZAcCgdYPyYtxd1
-	A7wsUAdDPkkx1ykpvohJmgDguErqVeCqQo6zCsqY2tMqoWIYw29fvP1N3emJKmfEhUrF3Z5br/i
-	aElp+Q0nrm6u4HKjiCMz/X3R38KyZ9e3O4bhfw9BHQcxtdITAAj4Q4i8ce6Mh7DXKa0rijdfq0i
-	7oal8T9NaWqVnX24MQQ8cmGS4NeTdx32q41ZBObvQbAyNApGOznldafgYAYZQwnZdaIW/pA8lwq
-	ayZQ5Ldv/rZLZw==
-X-Google-Smtp-Source: AGHT+IHYAWFOhMRMmsJogPCN+keqI5onO24l06foMGQMmqGxtDSAhpXuUqKm8NyRO5YVeG1E5lAVvQ==
-X-Received: by 2002:a05:6a20:430d:b0:1db:ebf4:2cb8 with SMTP id adf61e73a8af0-1e1654132b6mr7413981637.38.1733270657782;
-        Tue, 03 Dec 2024 16:04:17 -0800 (PST)
-Received: from localhost (188.139.125.34.bc.googleusercontent.com. [34.125.139.188])
-        by smtp.gmail.com with UTF8SMTPSA id d2e1a72fcca58-7254176f3ccsm11049434b3a.56.2024.12.03.16.04.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Dec 2024 16:04:17 -0800 (PST)
-From: Stephen Boyd <swboyd@chromium.org>
-To: Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>
-Cc: linux-kernel@vger.kernel.org,
-	patches@lists.linux.dev,
-	devicetree@vger.kernel.org
-Subject: [PATCH] of: Hide of_default_bus_match_table[]
-Date: Tue,  3 Dec 2024 16:04:12 -0800
-Message-ID: <20241204000415.2404264-1-swboyd@chromium.org>
-X-Mailer: git-send-email 2.47.0.338.g60cca15819-goog
+	s=arc-20240116; t=1733273134; c=relaxed/simple;
+	bh=KwpksROF8MIl17VHFw2GUEgj6nQPUlGTObzL6xopRRI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=lW0nAszP44OOpSHZi/sbviEo4kSSxODsUMSKyeVxtZTL6rUsLm+87u3iah/pZ35NJe1ipmw+BXOSY7UIqnaDfLBzf4XqFRwjKpd8MRhYQoT1CzsRX9ny6fh6JZlTEQ2jCGm4NEQc0HDRfa7J3sJQ1i7Y4xNf3S6baOp9ccagZ8Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=AS4W69/C; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B3GaDOc024054;
+	Wed, 4 Dec 2024 00:45:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	S9+QcQG+ya2i4p6PSZQryV4ua7A0gAjw7d9g+kWUA7w=; b=AS4W69/C75Ne5Bh3
+	Wq8fkSZmg6Syn3IaOYloxq4TSAbdS5rTM6+7909Pad2LKnrAPqWdhsvFsJcUwsOw
+	yhYUNML2cFVoDWfYlWomwhY83sOuRIvoioedwcB7dWtQ5kGB+W7J+7KCFp0JVtZb
+	TTD0xlNtO9iEneihahEJ0yiwxExaVVe93nh/WLL2M6sQtPO9OCGDFcnTdgxo6nt2
+	xoE/CgDnw2vizk1HqQM1k0JB9S9qyU3VxSCRyu85t12Y0xxc+yQXw6AZgOal5s7P
+	pNKU47T9e5OhAnGwjm9w3DUUmheIalNexInBtL59p7k7KbHvmkA5H2hv+LcCA9FF
+	IrsWyQ==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 439vnytm2a-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 04 Dec 2024 00:45:23 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B40jM5v005563
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 4 Dec 2024 00:45:22 GMT
+Received: from [10.4.85.39] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 3 Dec 2024
+ 16:45:19 -0800
+Message-ID: <873da5ca-c18a-4f31-a4a5-53903e14950f@quicinc.com>
+Date: Wed, 4 Dec 2024 11:45:17 +1100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/10] Trusted Execution Environment (TEE) driver for
+ Qualcomm TEE (QTEE)
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Trilok Soni <quic_tsoni@quicinc.com>,
+        Jens Wiklander
+	<jens.wiklander@linaro.org>,
+        Sumit Garg <sumit.garg@linaro.org>,
+        "Bjorn
+ Andersson" <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        "Rob Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor Dooley" <conor+dt@kernel.org>,
+        Bartosz Golaszewski
+	<bartosz.golaszewski@linaro.org>,
+        Srinivas Kandagatla
+	<srinivas.kandagatla@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <op-tee@lists.trustedfirmware.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>
+References: <20241202-qcom-tee-using-tee-ss-without-mem-obj-v1-0-f502ef01e016@quicinc.com>
+ <518ee3f1-b871-4349-ba85-3b3fc835a4ca@quicinc.com>
+ <0df58435-94e7-4b81-b688-ec0e1c49c0e0@quicinc.com>
+ <gtfm7paylpcobucmwmapgdxva2wnvn5skkakaalzpx4ip7x2h2@lphbinkzaw7k>
+From: Amirreza Zarrabi <quic_azarrabi@quicinc.com>
+In-Reply-To: <gtfm7paylpcobucmwmapgdxva2wnvn5skkakaalzpx4ip7x2h2@lphbinkzaw7k>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 8y4aOpmRfA2PO1Qffh1I4_FYMo2mbQwd
+X-Proofpoint-GUID: 8y4aOpmRfA2PO1Qffh1I4_FYMo2mbQwd
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 adultscore=0
+ mlxlogscore=947 bulkscore=0 impostorscore=0 mlxscore=0 suspectscore=0
+ spamscore=0 priorityscore=1501 lowpriorityscore=0 phishscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2412040005
 
-This isn't used outside this file. Hide the array in the C file.
 
-Signed-off-by: Stephen Boyd <swboyd@chromium.org>
----
- drivers/of/platform.c       | 2 +-
- include/linux/of_platform.h | 2 --
- 2 files changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-index 9bafcff3e628..f09dc183975b 100644
---- a/drivers/of/platform.c
-+++ b/drivers/of/platform.c
-@@ -24,7 +24,7 @@
- 
- #include "of_private.h"
- 
--const struct of_device_id of_default_bus_match_table[] = {
-+static const struct of_device_id of_default_bus_match_table[] = {
- 	{ .compatible = "simple-bus", },
- 	{ .compatible = "simple-mfd", },
- 	{ .compatible = "isa", },
-diff --git a/include/linux/of_platform.h b/include/linux/of_platform.h
-index a2ff1ad48f7f..17471ef8e092 100644
---- a/include/linux/of_platform.h
-+++ b/include/linux/of_platform.h
-@@ -47,8 +47,6 @@ struct of_dev_auxdata {
- 	{ .compatible = _compat, .phys_addr = _phys, .name = _name, \
- 	  .platform_data = _pdata }
- 
--extern const struct of_device_id of_default_bus_match_table[];
--
- /* Platform drivers register/unregister */
- extern struct platform_device *of_device_alloc(struct device_node *np,
- 					 const char *bus_id,
+On 12/4/2024 10:43 AM, Dmitry Baryshkov wrote:
+> On Wed, Dec 04, 2024 at 09:13:43AM +1100, Amirreza Zarrabi wrote:
+>> Based on our discussions, we implemented significant changes. We essentially
+>> rewrote most of the files and altered the overall direction, except for a
+>> couple of files. The changelog entry would have been extensive.
+> 
+> At least some changelog should be provided, even if tells "reworked to
+> use TEE framework, made it jump over the head and tie the shoelaces".
+> 
 
-base-commit: 40384c840ea1944d7c5a392e8975ed088ecf0b37
--- 
-https://chromeos.dev
+Sure, I'll provide some changelog.
 
+> Also please don't top-post, this style is frowned upon in the mailing
+> list discussions, it breaks the logic of reading.
+> 
+
+;) Oops, that shouldn't have been sent out like this. My apologies.
+I'll ensure it doesn't happen again..
+
+- Amir
+
+>>
+>> - Amir
+>>
+>> On 12/3/2024 5:06 PM, Trilok Soni wrote:
+>>> On 12/2/2024 8:19 PM, Amirreza Zarrabi wrote:
+>>>> This patch series introduces a Trusted Execution Environment (TEE)
+>>>> driver for Qualcomm TEE (QTEE). QTEE enables Trusted Applications (TAs)
+>>>> and services to run securely. It uses an object-based interface, where
+>>>> each service is an object with sets of operations. Clients can invoke
+>>>> these operations on objects, which can generate results, including other
+>>>> objects. For example, an object can load a TA and return another object
+>>>> that represents the loaded TA, allowing access to its services.
+>>>
+>>> The first patch series was RFC and now you had removed the RFC. Can you please
+>>> provide the reasons?
+>>>
+>>> https://lwn.net/ml/all/20240702-qcom-tee-object-and-ioctls-v1-0-633c3ddf57ee@quicinc.com/
+>>>
+>>> I understand that you have now changed to tee framework but I want to check
+>>> if we should continue with the version and increment here or start from [00]?
+>>>
+> 
 
