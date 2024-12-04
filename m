@@ -1,182 +1,120 @@
-Return-Path: <devicetree+bounces-127086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0509E9E4584
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 21:20:20 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CDEFF16826B
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 20:20:16 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFCF71F03F8;
-	Wed,  4 Dec 2024 20:20:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="M8lm2Enu"
-X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20DB59E458D
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 21:21:33 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 961A21F1316;
-	Wed,  4 Dec 2024 20:20:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CFD6E284E65
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 20:21:19 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6EF31F5409;
+	Wed,  4 Dec 2024 20:21:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M2cEbKOw"
+X-Original-To: devicetree@vger.kernel.org
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94F881C3BF5;
+	Wed,  4 Dec 2024 20:21:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733343617; cv=none; b=M8a3wKHxnvP81mTGOx5hcVBRi1iFdDh2hQrIhn40S4aj919wOmq6p1/EgtRWqCn5aO2DwuJhyVVru2BHuy+IY5MgcX8JfRKnAzC6j9PXSejtl9VKGXcJBkOTv+/PNbm1eFMbdLZs3XOqXQhtlBDwPly519XKARpORUrTiOoiFSg=
+	t=1733343675; cv=none; b=Rd1fYY/OxNyX1ObptTzi/gdJ/GI/LQd78wWmKZViR+QIePRTXs2aB7+3Dbg00Q+X1BaBgIoyvAk3CZQ/XABk4lIDr0D0DOK0QHzy5XNOPGgAKmQwg6J/i5/zfD70eC3+XYbzC3fKmlpK3WFCy0muVVczD+MOOxvKa9QxCUMPd8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733343617; c=relaxed/simple;
-	bh=2DwAxXKr5OmgZNqp/rw57rkElXZOOYwlLMtsGH2s168=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UD68N60d+sJbWJd50e3Xd33ApvWkVMqAnwapFo8fz/bALE8xYJqRc7G6SvqsgoFHWI0nOewfPdPRq7Itmq0WIOBAHjFYsENsGCxaDNlJjHZkmksFyF974dNVKIv1I0P7a2eREeQz+WUnpss9CKeWBSbfC2YfLwhnoXIuA9FciNg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=M8lm2Enu; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1733343616; x=1764879616;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=2DwAxXKr5OmgZNqp/rw57rkElXZOOYwlLMtsGH2s168=;
-  b=M8lm2EnuJ0A1mAPggTtULvCr0HyMm8n5UMxEj1yZuzhfzAbkQQPjHo3v
-   yiF7Qsl2a9USGG2xcEv3PirZIW5klCmMmrVoLM8MMeRQBcCBTe1hn4EW+
-   0nlIiGtWUO/I7JKtRbUsITLkxRM7lPb0TTXVWSs/ZYXnTrquxB9c8NtgW
-   XGw7Xp8tYThoVzhkiWYrh3APMfxpgtsazlVNrByxouKkrx0X3YdaMwnTO
-   s0cXaeZkauDM1uHqtsF76gECj+cIbjyVYH5Q3HxaTh/jxnZ7Oerf3dk9B
-   7JkaJr45J88t1fMQjRPWMFVxfXFC9FOgXrD88R25CIWXCZZwSr0vX7yaQ
-   w==;
-X-CSE-ConnectionGUID: D333gxziSWa6AoiQmKwpAw==
-X-CSE-MsgGUID: SoWwH3IQRXy/m68ZNPLIKA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="44664944"
-X-IronPort-AV: E=Sophos;i="6.12,208,1728975600"; 
-   d="scan'208";a="44664944"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Dec 2024 12:20:15 -0800
-X-CSE-ConnectionGUID: IU3ZpTEuTOejbQP8wEFewg==
-X-CSE-MsgGUID: bE2DErQ6T+qJMIn+xvSW/A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,208,1728975600"; 
-   d="scan'208";a="93773478"
-Received: from lkp-server02.sh.intel.com (HELO 1f5a171d57e2) ([10.239.97.151])
-  by orviesa009.jf.intel.com with ESMTP; 04 Dec 2024 12:20:09 -0800
-Received: from kbuild by 1f5a171d57e2 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tIvqs-0003SH-1D;
-	Wed, 04 Dec 2024 20:20:02 +0000
-Date: Thu, 5 Dec 2024 04:19:25 +0800
-From: kernel test robot <lkp@intel.com>
-To: Viken Dadhaniya <quic_vdadhani@quicinc.com>, andi.shyti@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	gregkh@linuxfoundation.org, jirislaby@kernel.org, broonie@kernel.or,
-	andersson@kernel.org, konradybcio@kernel.org,
-	johan+linaro@kernel.org, dianders@chromium.org, agross@kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org, linux-spi@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, =quic_msavaliy@quicinc.com,
-	quic_anupkulk@quicinc.com,
-	Viken Dadhaniya <quic_vdadhani@quicinc.com>,
-	Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-Subject: Re: [PATCH v1 4/7] soc: qcom: geni-se:: Add support to load QUP SE
- Firmware via Linux subsystem
-Message-ID: <202412050429.SJvNsU2f-lkp@intel.com>
-References: <20241204150326.1470749-5-quic_vdadhani@quicinc.com>
+	s=arc-20240116; t=1733343675; c=relaxed/simple;
+	bh=Fvm8TjgK6dJo9sv6O3H2+X+LOIwV0o7fADFI/iSpstQ=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=Mzk84MUoLHj97HaSllw7A8K6lx7sisVHJL5NNVjXEBSkc6AfVD64V0Mq75u2jBoJbAdRQmH9kftqyF8SplnZH2605ZhMF9REVSdljW3ba+6lzrt+fMyPXmPSP2yGxuUdXi4AHslYcoNqh1q+qwDLZheSFB3UFJ5rbVwTsEFi4kE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M2cEbKOw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3121C4CED1;
+	Wed,  4 Dec 2024 20:21:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733343674;
+	bh=Fvm8TjgK6dJo9sv6O3H2+X+LOIwV0o7fADFI/iSpstQ=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=M2cEbKOwrwNXj/0EW5nPs7opxCoG9ZxUJ6pP+Ao0yOfCpW+0b/QRhU8GIo5XzO2/W
+	 9giaByRFWJLRCKWF+ueHmf5tSkYX+aLu1kM497LHq/lAmlcprxdbRz5hpOO0tGip7o
+	 96tH3N7Uk9Ysb3154VA1c0Sz7UAO6ShuCbkTz2qrRdU5IdGIsjWk0uV/X9m4N/QUDY
+	 DlI2mpNybcduhZDH6L0P2JeKABEKKCjy1VKIaDs9fIzq/2Jb8T0cjjvf3UY00zfjHo
+	 KaXAy0e0iK83A/Sj08R7/R/wbpxfrgce6lLjgfTH0BIwk+1sHHR13uWFBKMtJUZ3nj
+	 EdkVwnlbvWKAg==
+Message-ID: <1b05b11b2a8287c0ff4b6bdd079988c7.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241204150326.1470749-5-quic_vdadhani@quicinc.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <07bfb02a-1df3-4a03-83bb-d7edc540739d@samsung.com>
+References: <20241203134137.2114847-1-m.wilczynski@samsung.com> <CGME20241203134155eucas1p1e90c71c4f8eb5da41d2cc8a500f54dc7@eucas1p1.samsung.com> <20241203134137.2114847-6-m.wilczynski@samsung.com> <f21ffd12-167b-4d10-9017-33041ec322b0@kernel.org> <07bfb02a-1df3-4a03-83bb-d7edc540739d@samsung.com>
+Subject: Re: [RFC PATCH v1 05/14] dt-bindings: clock: thead,th1520: Add support for Video Output subsystem
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, dri-devel@lists.freedesktop.org, linux-pm@vger.kernel.org
+To: Krzysztof Kozlowski <krzk@kernel.org>, Michal Wilczynski <m.wilczynski@samsung.com>, airlied@gmail.com, aou@eecs.berkeley.edu, conor+dt@kernel.org, drew@pdp7.com, frank.binns@imgtec.com, guoren@kernel.org, jassisinghbrar@gmail.com, jszhang@kernel.org, krzk+dt@kernel.org, m.szyprowski@samsung.com, maarten.lankhorst@linux.intel.com, matt.coster@imgtec.com, mripard@kernel.org, mturquette@baylibre.com, palmer@dabbelt.com, paul.walmsley@sifive.com, robh@kernel.org, simona@ffwll.ch, tzimmermann@suse.de, ulf.hansson@linaro.org, wefu@redhat.com
+Date: Wed, 04 Dec 2024 12:21:11 -0800
+User-Agent: alot/0.12.dev1+gaa8c22fdeedb
 
-Hi Viken,
+Quoting Michal Wilczynski (2024-12-04 02:11:26)
+> On 12/3/24 16:45, Krzysztof Kozlowski wrote:
+> > On 03/12/2024 14:41, Michal Wilczynski wrote:
+>=20
+> [1] - https://openbeagle.org/beaglev-ahead/beaglev-ahead/-/blob/main/docs=
+/TH1520%20Video%20Image%20Processing%20User%20Manual.pdf
+> >=20
+> >> +      these registers reside in the same address space, access to
+> >> +      them is coordinated through a shared syscon regmap provided by
+> >> +      the specified syscon node.
+> >=20
+> > Drop last sentence. syscon regmap is a Linux term, not hardware one.
+> >=20
+> > Anyway, this needs to be constrained per variant.
+> >=20
+> >> +
+> >>    "#clock-cells":
+> >>      const: 1
+> >>      description:
+> >> @@ -36,8 +51,6 @@ properties:
+> >> =20
+> >>  required:
+> >>    - compatible
+> >> -  - reg
+> >=20
+> > No, that's a clear NAK. You claim you have no address space but in the
+> > same time you have address space via regmap.
+>=20
+> I see your concern. The VOSYS subsystem's address space includes
+> registers for various components, such as clock gates and reset
+> controls, which are scattered throughout the address space as specified
+> in the manual 4.4.1 [2]. Initially, I attempted to use a shared syscon
+> regmap for access, but I realize this might not be the best approach.
+>=20
+> To address this, I'll specify the 'reg' property in each node to define
+> the address ranges explicitly fragmenting the address space for the VOSYS
+> manually.
+>=20
+> vosys_clk: clock-controller@ffef528050 {
+>         compatible =3D "thead,th1520-clk-vo";
+>         reg =3D <0xff 0xef528050 0x0 0x8>;
+>         #clock-cells =3D <1>;
+> };
+>=20
+> pd: power-domain@ffef528000 {
+>         compatible =3D "thead,th1520-pd";
+>         reg =3D <0xff 0xef528000 0x0 0x8>;
+>         #power-domain-cells =3D <1>;
+> };
 
-kernel test robot noticed the following build warnings:
+You should have one node:
 
-[auto build test WARNING on andi-shyti/i2c/i2c-host]
-[also build test WARNING on tty/tty-testing tty/tty-next tty/tty-linus broonie-spi/for-next linus/master v6.13-rc1 next-20241204]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Viken-Dadhaniya/dt-bindings-i2c-qcom-i2c-geni-Document-DT-properties-for-QUP-firmware-loading/20241204-230736
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/andi.shyti/linux.git i2c/i2c-host
-patch link:    https://lore.kernel.org/r/20241204150326.1470749-5-quic_vdadhani%40quicinc.com
-patch subject: [PATCH v1 4/7] soc: qcom: geni-se:: Add support to load QUP SE Firmware via Linux subsystem
-config: arm-randconfig-002 (https://download.01.org/0day-ci/archive/20241205/202412050429.SJvNsU2f-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241205/202412050429.SJvNsU2f-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202412050429.SJvNsU2f-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   drivers/soc/qcom/qcom-geni-se.c: In function 'read_elf':
->> drivers/soc/qcom/qcom-geni-se.c:975:23: warning: assignment discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
-     975 |                 *phdr = &phdrs[i];
-         |                       ^
-   drivers/soc/qcom/qcom-geni-se.c: At top level:
-   drivers/soc/qcom/qcom-geni-se.c:1268:5: warning: no previous prototype for 'qup_fw_load' [-Wmissing-prototypes]
-    1268 | int qup_fw_load(struct qup_se_rsc *rsc)
-         |     ^~~~~~~~~~~
-
-
-vim +/const +975 drivers/soc/qcom/qcom-geni-se.c
-
-   946	
-   947	/**
-   948	 * read_elf: Function to read elf file.
-   949	 * @rsc: A pointer to SE resources structure.
-   950	 * @fw: A pointer to the fw buffer.
-   951	 * @pelfseg: A pointer to SE specific elf header.
-   952	 * @phdr: pointer to one of the valid headers from list from fw buffer.
-   953	 *
-   954	 * This function reads the ELF file and outputs the pointer to header
-   955	 * data which contains the FW data and any other details.
-   956	 *
-   957	 * return: Return 0 if no error, else return error value.
-   958	 */
-   959	static int read_elf(struct qup_se_rsc *rsc, const struct firmware *fw,
-   960			    struct elf_se_hdr **pelfseg, struct elf32_phdr **phdr)
-   961	{
-   962		const struct elf32_phdr *phdrs;
-   963		const struct elf32_hdr *ehdr;
-   964		const u8 *addr;
-   965		int i;
-   966	
-   967		ehdr = (struct elf32_hdr *)fw->data;
-   968	
-   969		if (ehdr->e_phnum < 2)
-   970			return -EINVAL;
-   971	
-   972		phdrs = (struct elf32_phdr *)(ehdr + 1);
-   973	
-   974		for (i = 0; i < ehdr->e_phnum; i++) {
- > 975			*phdr = &phdrs[i];
-   976			if (!elf_phdr_valid(*phdr))
-   977				continue;
-   978	
-   979			if ((*phdr)->p_filesz >= sizeof(struct elf_se_hdr)) {
-   980				addr =  fw->data + (*phdr)->p_offset;
-   981				*pelfseg = (struct elf_se_hdr *)addr;
-   982	
-   983				if ((*pelfseg)->magic == MAGIC_NUM_SE &&
-   984				    (*pelfseg)->version == 1 &&
-   985				    valid_seg_size(*pelfseg, (*phdr)->p_filesz))
-   986					if ((*pelfseg)->serial_protocol == rsc->protocol &&
-   987					    (*pelfseg)->serial_protocol != GENI_SE_NONE)
-   988						return 0;
-   989			}
-   990		}
-   991		return -EINVAL;
-   992	}
-   993	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+    clock-controller@ffef528000 {
+      compatible =3D "thead,th1520-vo";
+      reg =3D <0xff 0xef528050 0x0 0x1a04>;
+      #clock-cells =3D <1>;
+      #power-domain-cells =3D <1>;
+    };
 
