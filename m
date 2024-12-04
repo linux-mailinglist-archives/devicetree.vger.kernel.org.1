@@ -1,128 +1,116 @@
-Return-Path: <devicetree+bounces-126826-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126827-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFEF49E3528
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 09:24:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 154879E34CA
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 09:02:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2E889B34B98
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 08:01:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CED3C286003
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 08:02:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D36B1917D7;
-	Wed,  4 Dec 2024 07:52:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E25218FC65;
+	Wed,  4 Dec 2024 07:54:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="JfPDQira"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dg46Bgf9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38EF618E368;
-	Wed,  4 Dec 2024 07:52:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCED9188012;
+	Wed,  4 Dec 2024 07:54:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733298734; cv=none; b=MqY1K/Kzv/QHsP/u3HXz6mkHXBN36U1URRN9MQ8ZIgGTGu+eMJTyZ4ltPgs8SgLpfAlB31Bua+zLiv/SY1usw7XL6ntfhd8UPGiyNT23/QzwA554k+yjZs/6wX0BAFxd53VWRQ6PTway3bXOsPHmsKU08J3q88ORJwUh+Ekd+KY=
+	t=1733298852; cv=none; b=Jt7Rqg5qmI4ZqKpbLZgGyxaVzlXSXtrHMI2v+BEic2lKwCrrOIeh6wuJn6dK8iedyTfyPjGuWfO8ODxHkkRjFsDjEefWAZ7HQ3PuwWWdSukZT2t1tTBj3TVT1v6+UtRNLnaHV/mu+NDU78X7td6fkqeb1zvM5B5lk2/6KY0t14w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733298734; c=relaxed/simple;
-	bh=O/unXNLcf1eONeSIFuIlI3mgX9zgjQWIx/EDoMBp9mw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Hz37ksNGrECkQvqwD7OxAPWN6T7bzgsx4fmr4wMh/9qX3HyhIBEfCsWsT8viBsqu5IkhhyiqB+EkGnmXnBRASYIoM89r9lqrEP9RSyER3ING1XBECVADNMV6ZEu4Ys7pvdnKrKtp8cjx08Vm8iuxkOh3CgIhSjUskI4TtZ3qfQg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=JfPDQira; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 4B47q32M1757814
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 4 Dec 2024 01:52:03 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1733298723;
-	bh=qvLdxoCg2whNqusOckWdCk+BimF7TYRi9/jur9YYrOk=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=JfPDQiraJHbcleiFqbXaEJfok7m5INVrjh5UfBgZ3uhz5Dw/Yo5U953pAlOcNf5Uy
-	 QgTQ0lWT4j3IdaKEn+8t0TXiqgpLY1YDFR2wJTWwKZAVEWWvaME2ADQuIPVFPwR73/
-	 kNP6U8NrWaBg59gXw9AC2MrSqzKMzHdb3loJnO/Q=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4B47q3b9012229
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 4 Dec 2024 01:52:03 -0600
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 4
- Dec 2024 01:52:03 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 4 Dec 2024 01:52:03 -0600
-Received: from [10.24.69.37] (a0497641-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [10.24.69.37] (may be forged))
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4B47q0QJ114667;
-	Wed, 4 Dec 2024 01:52:00 -0600
-Message-ID: <e280d338-d05d-4910-8017-bc121eb2b94b@ti.com>
-Date: Wed, 4 Dec 2024 13:21:59 +0530
+	s=arc-20240116; t=1733298852; c=relaxed/simple;
+	bh=r7spAKgJ9nwULUJ94kYk71uQKUoe4HtwLYlFt5AYFJI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=d6OYhAVcTLU2pPvSQ0SlWwc5TywjALJC1w816w0AR/9Du+u8hnqFKAC8M8AHhzeh276ENPQgZwDyGMZk3njuUSOAb7NHaUr/ZhhzusXjg3AA8qhxac+xao7h3PMqslDNX0YwpJ21+SDbWdax8v/K8WHet6BQ80DFm9V8Lc2s5Qg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dg46Bgf9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92EA3C4CED1;
+	Wed,  4 Dec 2024 07:54:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733298852;
+	bh=r7spAKgJ9nwULUJ94kYk71uQKUoe4HtwLYlFt5AYFJI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=dg46Bgf9jwMe6I1uCUp3Lsqtqf6L/k+MOBRHQoLdYmuzUIj0YUPcWbX0FtmUbIOMh
+	 /+dpPtOR1Mg9DF47VITfak8t3HqsepZ8N0gAtcWbT/6pxjIAqvvjniAX1LLVgw7bAv
+	 V31ZZPZO5JGoHe70R9EUujt8ApeIxGQSN2FHtuLpDeFwBHMvZt7nUB4zPOdfIl+35Y
+	 shSaxILOJRNytxvk+PlaGNVVI6LhNiGKKuEe1HsxGlNunsHDkFmJ/hO3htzzthOhGs
+	 WoTh7KGN6Wdvj/s576JgluvmyghHZTCHILiPJucuZ5Ury76Jttc74A+mCtU4XIUUMJ
+	 t5DVVQuNwx9MQ==
+Date: Wed, 4 Dec 2024 08:54:09 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Andrej Picej <andrej.picej@norik.com>
+Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
+	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com, 
+	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
+	festevam@gmail.com, marex@denx.de, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, upstream@lists.phytec.de
+Subject: Re: [PATCH v3 1/3] dt-bindings: drm/bridge: ti-sn65dsi83: Add
+ properties for ti,lvds-vod-swing
+Message-ID: <vgg3bygtmj6sotatddkqfapset5bofsqvkzuj7ejuvomn6hs3n@mscq2jbhtaux>
+References: <20241203110054.2506123-1-andrej.picej@norik.com>
+ <20241203110054.2506123-2-andrej.picej@norik.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/6] arm64: dts: ti: k3-j7*: Add missing ESM and
-To: <robh@kernel.org>, <conor+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <vigneshr@ti.com>, <nm@ti.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kristo@kernel.org>, <u-kumar1@ti.com>
-References: <20240425211233.2006233-1-n-francis@ti.com>
-Content-Language: en-US
-From: Neha Malcom Francis <n-francis@ti.com>
-In-Reply-To: <20240425211233.2006233-1-n-francis@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241203110054.2506123-2-andrej.picej@norik.com>
 
-Hi Vignesh,
+On Tue, Dec 03, 2024 at 12:00:52PM +0100, Andrej Picej wrote:
+> Add properties which can be used to specify LVDS differential output
+> voltage. Since this also depends on near-end signal termination also
+> include property which sets this. LVDS differential output voltage is
+> specified with an array (min, max), which should match the one from
+> connected device.
+> 
+> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+> ---
+> Changes in v3:
+> - no change
 
-Pinging on the below old patch series, applies cleanly with 3-way merge on the 
-latest tip as well, so should be okay to pick up if all looks fine.
 
-On 26/04/24 02:42, Neha Malcom Francis wrote:
-> Add missing ESM and watchdog nodes for the sake of devicetree completion
-> of hardware description w.r.t Linux and ESM and WDT enablement on
-> U-Boot. This patch series adds the missing nodes for J721E and J7200.
-> 
-> Boot logs (updated for v3):
-> https://gist.github.com/nehamalcom/5dc94ab60f57df5d515d0a6d0da6e0d1
-> 
-> Changes since v3:
-> - added patch (6/6) for adding bootph-pre-ram in main_esm nodes (Udit)
-> - no change to boot logs
-> 
-> Changes since v2:
-> https://lore.kernel.org/all/20240412042537.666137-1-n-francis@ti.com/
-> - corrected register size for MCU watchdog instance in J7200 (Udit)
-> - added Reviewed-by tag (Udit)
-> 
-> Changes since v1:
-> https://lore.kernel.org/all/20240326122723.2329402-1-n-francis@ti.com/
-> - modified node name numbering to be in sync with TRM (Udit)
-> - disabled wkup_esm node in J721E (Udit)
-> - added patch (5/5) for MCU domain watchdog instances in J7200 (Udit)
-> Neha Malcom Francis (6):
-> 
-> arm64: dts: ti: k3-j721e-mcu: Add the WKUP ESM instance
->    arm64: dts: ti: k3-j721e-mcu: Add the MCU domain watchdog instances
->    arm64: dts: ti: k3-j721e-main: Add the MAIN domain watchdog instances
->    arm64: dts: ti: k3-j7200-main: Add the MAIN domain watchdog instances
->    arm64: dts: ti: k3-j7200-mcu: Add the MCU domain watchdog instances
->    arm64: dts: ti: k3-j7*-main: Add bootph-pre-ram to main_esm
-> 
->   arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     | 28 ++++++
->   .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      | 26 +++++
->   arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 94 +++++++++++++++++++
->   .../boot/dts/ti/k3-j721e-mcu-wakeup.dtsi      | 32 +++++++
->   4 files changed, 180 insertions(+)
-> 
+One version of patchset per 24h.
 
--- 
-Thanking You
-Neha Malcom Francis
+> Changes in v2:
+> - move LVDS port schema to a $defs and reference it from there
+> - properties are now defined in microvolts/ohms
+> - use 1 property for data-lane and 1 for clock-lane LVDS voltage swing
+> - add 1 property which sets LVDS near-end termination
+> - since major change was done change the authorship to myself
+> ---
+>  .../bindings/display/bridge/ti,sn65dsi83.yaml | 36 +++++++++++++++++--
+>  1 file changed, 33 insertions(+), 3 deletions(-)
+
+...
+
+>  allOf:
+>    - if:
+>        properties:
+> @@ -120,7 +150,7 @@ allOf:
+>            properties:
+>              port@1: false
+>  
+> -additionalProperties: false
+> +additionalProperties: true
+
+This cannot be true. Not explained in commit msg and this is not shared
+schema.
+
+>  
+>  examples:
+>    - |
+> -- 
+> 2.34.1
+> 
 
