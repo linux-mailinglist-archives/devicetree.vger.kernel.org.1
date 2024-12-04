@@ -1,106 +1,180 @@
-Return-Path: <devicetree+bounces-126758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126759-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D0879E30C0
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 02:27:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0AD09E30C7
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 02:34:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 34373163FD3
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 01:27:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A43D164081
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 01:34:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF1F5846F;
-	Wed,  4 Dec 2024 01:27:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lNqz7lh3"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A75B533D1;
+	Wed,  4 Dec 2024 01:34:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpbgau1.qq.com (smtpbgau1.qq.com [54.206.16.166])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 201B54C8F;
-	Wed,  4 Dec 2024 01:27:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 110372114
+	for <devicetree@vger.kernel.org>; Wed,  4 Dec 2024 01:34:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.206.16.166
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733275655; cv=none; b=GAbli/c6/4VZ+IbOc+mFb88ZunQhFlEAmkTTUaEMdWPGTGj+paVQUVAR+9kbohURy2OHgrhnQXNefwv/Vyns9FSyUtEeU6jhVXo5l0TmDprrgEuoFuXIoR+T2mIr7+dFIPt3hR8hdYaUAtC7Lpeovw6YlPC5ZpZGQiOYZQxNvQs=
+	t=1733276049; cv=none; b=SvMWQlqGX/LchaAJnjmHJLdvg6R1Gfs5jMB/EjuhzjSmeZFAiTHGcTyQ6xKjJyT5DwEqlrnnEjjTfFkq+x/Y6ltni9I3natH97i/lcC+mDRrX4w+Sv6HfZOQ1Q1CanAqTG2tfuF1FJDjRCkOXH1WPGaHkYwYSUw+XbSYzMiWcec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733275655; c=relaxed/simple;
-	bh=pgZt2M+Pwhjrmzxt+QO2q5ObG9qhyr231Wbd5HX4CQw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DJQhXKslUGcrsQaUjkDeu2fhxvzGC7qgrNcxJ2q1BxRfgUxNN/IklZxPPhlBDfomr+7UANKZtb4DbqC8Vjdu0Tzr1BYypR49PLz+eVpsVYI3wQimz2C/hn7yaL9QR4myxyBU3sGqltfBDsWclgykx+9V1wrR2NGuiI77lTPwRLY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lNqz7lh3; arc=none smtp.client-ip=209.85.128.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-6e9f8dec3daso49662687b3.0;
-        Tue, 03 Dec 2024 17:27:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733275653; x=1733880453; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=50u1RJmER8i7s9/SprHkL8TRwZkGr9nPZOt7IMSKd/Q=;
-        b=lNqz7lh3X4MXNngl+F0glsiODhBZPI6b4eDibbaE7mIPlQa3sn9EyL/PLpWnKXA/aC
-         klRMvTwQQS4H9pozCRdCbveLhHz0tqWuoIjGONzySKaxV6qMMdkiM6Y9j1DkeRb+eCiP
-         Q+nf0WnMs1o+BXzR+dxZ4rfp9X/1Y5VfcScC7MUEfkKzCBjItJocq2mxHfBjGAN731PT
-         4ylP6QfRW9GSWKw9GlFyJaJc31QOR7VxLq16UDRF2OFKiEMStXBdNfjgWcsUfsN7kfKR
-         wmfEBpq4AcYd3xeEqLnER7hxjAfFuySJBZXggumvPd8K70MJ8kbKdnp6pqbq7cx14ewn
-         dhZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733275653; x=1733880453;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=50u1RJmER8i7s9/SprHkL8TRwZkGr9nPZOt7IMSKd/Q=;
-        b=YFW+NOFL/ovk6WdjvcQtKxZR0J1I8z/nrGVn8f7dFQ8/HjbLMpDK5xtcEb7Tiw7IT0
-         Ud/RBsLus36njIHsmUC85MHz7HUNm+Zfd4tCmw7XaIW1rfIsM9Y7xOIRM2XJWbW51RC5
-         OwWKvP2DUFd+rDTkrPgbGsOJZduSHnCHosxzcsCiwKda5DbXZqpBwfjVIpvMgdrRtbBi
-         VEXj06Ya/JTVCbaF7q8270h55jevRMo/T77Vx8/36SFYboe4tydnC07kGQYjLhf2LNkU
-         rgBSEu0f+AeO8eNm6Y96VFTOgS/fNU3UBtvSjqsUrc5CJbNr7AD3wUWXDnE65XAQ8XBY
-         ssfQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVeI8/0R+8VxXCqsUbpptBmvOTScFoSIRs7vcfzr/Dsck1vW0cfDYd9pGncQICzHBfwZ0SeIo7UL3B1hPHX@vger.kernel.org, AJvYcCX/0Jb8AeoHIoSL9htZrUwPISKeDyosdSUekb39I5ExFlk51n65itwtNpuzaJ524YQxfvfS1hWbPRNg@vger.kernel.org
-X-Gm-Message-State: AOJu0YyRVf5HkKLIUnX7/prwbnPF0H7ikqKPzqB9pBicjH9ygN8maDcD
-	dFLKZoXCSvtEPtwQlZAuUlhwY3Fl+NVU2XY1cRzgGiSwiUgTjwkx/ACiJaNPYxwT7LEnT7WBEut
-	tRVeIrhdFuVn96wIhgH4uj87BZx0=
-X-Gm-Gg: ASbGncuvsgeOFIJfe7Fvmxjr+i1JxEkQD2FnSIY9o9eeyqLBpxEGdtNHXzCAkbTrP4u
-	kXo4Ndulh1RdxFaJim2psAUT7JRA6yfCvYSM0cXSNSSLF
-X-Google-Smtp-Source: AGHT+IGrd/NkggySgngjjRAWLRFHYhjYZYjpO5V3Ph17rxzb/RIMEJRHh6MZW7V/BkdjtwKB1NIeF84yZ7lgyc0QtuA=
-X-Received: by 2002:a05:690c:d89:b0:6ef:8c41:def8 with SMTP id
- 00721157ae682-6efad311464mr68861377b3.38.1733275653265; Tue, 03 Dec 2024
- 17:27:33 -0800 (PST)
+	s=arc-20240116; t=1733276049; c=relaxed/simple;
+	bh=mxUSXwCNru7rQTNK1ZNNZQp7CALSep/yDXJcAtT0apM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pk9UaoxAvrMy7XngItLFVielXlSQk3A/SZET014N4kpIctCSeaQooxXYgAsMo+/zMa+QD2P+BRQ/v03daTY1DzCjzh9YL1smROaRHrf7G5khtvwP8uwE8VnH2okLojOmaVqzTom49KHJqeNmXpTgmVJG+uF1XWToPgct1aJok2U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.206.16.166
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
+X-QQ-mid: bizesmtpip3t1733275883tnx5ffe
+X-QQ-Originating-IP: teASfYra7NZMjwlWGGLXuPXJK9/eEJToD5O7UiJ39Qc=
+Received: from [IPV6:240f:10b:7440:1:c275:7079 ( [localhost])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Wed, 04 Dec 2024 09:31:18 +0800 (CST)
+X-QQ-SSF: 0001000000000000000000000000000
+X-QQ-GoodBg: 2
+X-BIZMAIL-ID: 13518081938172122736
+Message-ID: <2471CF562C95BE8C+b828c025-8d4c-423d-8cbc-4e30e07fdf32@radxa.com>
+Date: Wed, 4 Dec 2024 10:31:17 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241203233717.185016-1-rosenp@gmail.com> <560369d3-e37c-4c44-86df-a0b81c899f9a@lunn.ch>
-In-Reply-To: <560369d3-e37c-4c44-86df-a0b81c899f9a@lunn.ch>
-From: Rosen Penev <rosenp@gmail.com>
-Date: Tue, 3 Dec 2024 17:27:22 -0800
-Message-ID: <CAKxU2N8gVqUKmD0hj_rXwJEOL8KStNHm+O23Sww-yVT5cp2yWQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: armada-3720-gl-mv1000: use nvmem-layout
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: linux-arm-kernel@lists.infradead.org, 
-	Gregory Clement <gregory.clement@bootlin.com>, 
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] arm64: dts: rockchip: use Type-C port as USB HOST
+ port for Radxa ROCK 5B
+To: Sebastian Reichel <sebastian.reichel@collabora.com>,
+ =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ dsimic@manjaro.org, alchark@gmail.com, inindev@gmail.com,
+ cristian.ciocaltea@collabora.com, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org
+References: <20241130014043.12942-1-naoki@radxa.com>
+ <18640241.sWSEgdgrri@diego>
+ <hxctagkzzd37n7q7onvivptj5gsac5tn5gxdlvgo2fuumatjmh@ckvjcxtub26f>
+Content-Language: en-US
+From: FUKAUMI Naoki <naoki@radxa.com>
+In-Reply-To: <hxctagkzzd37n7q7onvivptj5gsac5tn5gxdlvgo2fuumatjmh@ckvjcxtub26f>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
+X-QQ-XMAILINFO: Mp8EMf2MKfJZxw0VYgcVn53jw+vDjtilK7Y+ec5SXrLEwYVjqyDnrssG
+	RFi9rAi71OE0T+uJfmo+bcus63fkb25qwrINzyE1id8U091olgyuaycXch1u82s+RQNHU8x
+	/81SJADc9/7wJ/WCYzOzPqC9gFwXkM6+e15z+bCvCDymmb76ihmsboEkEHerD8D1K6g/U3n
+	4tUKyR2mCderp7afdJZCS+en3y+313Qxi1uhSwXhFqk9Fy2ZG0PdBRacqq5f21ca5SLI5Xn
+	NTgh1kNE/lglR3oKKBkBAh3Qu8E9uJ5/CYLSIQ0OkQVUYnpZah3ZWG580qU1DmxSEar46HG
+	EwkGhv0IBHmg19NBz7o698Zr9blYerpUVie7bAtz1fTE49LODyF8C5hdTC3xTsLqdpRyyvB
+	dTlEvm+AgcduxxDMQtT71k7d9rO2NmdSCqIfMlYoOzcMFcVoIgFsWvoFgDCY0Af56dXKrXb
+	ASM515JONSNARW16u9QYyFqG6jGP4X2frFFQgAti7h9caeFSM93O8J9EmonRY5cTYGaCdNm
+	xXHE11OHv37uOLsn1KWW9LdK8EINDBkC1CHW2rSJg/rfDOrOK8I7+Ss7d0v5Hx44Rime4FP
+	iHwqLBTFgl7aFF3KbWNIpPt/eSlKtOpX2MOkpe31VprhNoHqm5EpPyGOVKKCQoWzgv/3k1A
+	OsY3wzzn3R0teQEd82Y9Lhihic6SrPNiOZ0+mkEJE6DM0l8GwgE3dQ0AjnV4qUF/Htlf349
+	Bvtpk6qxz/ceOzgQwQB1qH9KPAAkZYgbMjew+g5TC4P/FoiUkC43izTgKe4LmpfJxzEUFBm
+	onR5joEHXdW3KHT97Z2qwmgR2WznGWJck0OnwwNC3H81kAKWKoOY6wugHnY8XyFEGsfpQkJ
+	ARvt6s6Mbc03/xsTI02F1UmIRph/plCzbCP5Fhp0/mWAORli8N1p5w==
+X-QQ-XMRINFO: NI4Ajvh11aEj8Xl/2s1/T8w=
+X-QQ-RECHKSPAM: 0
 
-On Tue, Dec 3, 2024 at 3:44=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wrote:
->
-> On Tue, Dec 03, 2024 at 03:37:17PM -0800, Rosen Penev wrote:
-> > nvmem-layout is a more flexible replacement for nvmem-cells.
->
-> Do you have this reference board? How did you test this patch?
-Only compile time tested.
+Hi Heiko and Sebastian,
 
-2cc3b37f5b6df8189d55d0e812d9658ce256dfec marks nvmem-cells as legacy
-and most dts files have already been converted.
+thank you for your comments!
 
-This is not a crazy API change that would break anything.
+On 12/4/24 02:11, Sebastian Reichel wrote:
+> Hi,
+> 
+> On Tue, Dec 03, 2024 at 05:18:39PM +0100, Heiko Stübner wrote:
+>> Am Samstag, 30. November 2024, 02:40:42 CET schrieb FUKAUMI Naoki:
+>>> Type-C port is dual-role USB 3.0 port. add usb_host0_xhci and phy
+>>> nodes to use it as HOST port.
+>>
+>> This needs a bit more explanation on _why_ you're statically
+>> setting this to host-mode.
+> 
+> The USB-C port can be used in peripheral mode, so this is just
+> wrong. Also it should be added together with the USB PD controller
+> for proper muxing and role switch support. The reason I have not yet
+> send the patch is that this needed a fix in U-Boot first.
+> 
+> Most users are powering their Rock 5Bs via the USB-C port and a
+> bad description results in unexpected hardware resets at boot
+> time.
+> 
+> I mostly waited for the rc1 tag to happen now that U-Boot support
+> has landed. Also I expect that even with all those precautions
+> some people will start seeing issues. Unfortunately there are
+> many non-compliant USB-PD power sources :(
 
->
->         Andrew
+I see. I'll wait proper implementation.
+please ignore my patch.
+
+Best regards,
+
+--
+FUKAUMI Naoki
+Radxa Computer (Shenzhen) Co., Ltd.
+
+> -- Sebastian
+> 
+>>
+>> Heiko
+>>
+>>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
+>>> ---
+>>>   arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 17 +++++++++++++++++
+>>>   1 file changed, 17 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+>>> index 0ec4992b43cd..c5776e3b4aab 100644
+>>> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+>>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+>>> @@ -840,6 +840,14 @@ &tsadc {
+>>>   	status = "okay";
+>>>   };
+>>>   
+>>> +&u2phy0 {
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&u2phy0_otg {
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>>   &u2phy1 {
+>>>   	status = "okay";
+>>>   };
+>>> @@ -883,6 +891,11 @@ &usb_host0_ehci {
+>>>   	status = "okay";
+>>>   };
+>>>   
+>>> +&usb_host0_xhci {
+>>> +	dr_mode = "host";
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>>   &usb_host1_ehci {
+>>>   	status = "okay";
+>>>   };
+>>> @@ -900,6 +913,10 @@ &usb_host2_xhci {
+>>>   	status = "okay";
+>>>   };
+>>>   
+>>> +&usbdp_phy0 {
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>>   &usbdp_phy1 {
+>>>   	status = "okay";
+>>>   };
+>>>
+>>
+>>
+>>
+>>
+
 
