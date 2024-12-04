@@ -1,65 +1,80 @@
-Return-Path: <devicetree+bounces-127072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127079-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 738EE9E465A
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 22:13:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E02F59E474C
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 22:58:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8AC1CB84B79
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 19:38:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AC956B44FA0
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 20:10:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E562D202C3A;
-	Wed,  4 Dec 2024 19:37:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32C96202C2B;
+	Wed,  4 Dec 2024 20:10:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JcPz/vYA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DcjmpqrF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 279501F540A;
-	Wed,  4 Dec 2024 19:37:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A2051F6691;
+	Wed,  4 Dec 2024 20:10:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733341068; cv=none; b=RAq177Kyco/Sg/Ab956PLduR4R5cTpTzzOMeGDGk9w0eykySRDa9YUipn01zKeEItRzklfuMPDY4u+qSqvkhsnixj/sAEZ/34uiEUL/MCZaZXWZYcf5yZDt0q4GcZ0oxdL90DSxAs9MyV9J+wgwP4Bid7mAQOl8aEdR5wPHhFb4=
+	t=1733343015; cv=none; b=hedDK8z0lOojMoUrOzcoPEXpXxgg3e9SUVSlT1qLic247iZhKexKoAYIDZnZ3SYGU/DFAiXVesHXcmoJtPTnHr8NZx+UvTP2xs2kx7IM9icLxxZEYorVeqFg0oI2ska3qMsCJKIfVX2FJQMToxJhMeGOebktgwvxOq/rif7NhrQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733341068; c=relaxed/simple;
-	bh=gZ07YdL8YR89AQ1pkLtEVxOY0cvmmLaP8+IsEdybwsU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=FTR2prvWdZxGXjLH6VP5jr3IqdgwCg7+8KNmtK94Vg9Bd7WiJPrqD7SAFTffaPu/UX9sLbXvRam767u+uIZaLAlWZw7d81zWh7Nty7fWjZla9URqzyUdcPVAkA3wOV0rYg5cgLfX7/LIasfYUZtyqvSvnHUjc8iJpE6UjMidwRo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=JcPz/vYA; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B4G7bNg030963;
-	Wed, 4 Dec 2024 19:37:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	zPCXmqMiSiAftVrIeuSeVwSPk5JNmkYmP1w+3VC+J88=; b=JcPz/vYAsKr9RpBB
-	Sx6TMCO5ZaRAgKxoeKp5MtApoe7blKLasDHoiu+svz6xT2YahQh/mZ9vYUp/8gqj
-	IUarNNref93a2Z1CZuIBUtlyGKKvOVPdFo5BR4mMjztB9SgBgqRbYBIZ97PFoC+m
-	t7a9H7XMTG6vV88iANHA/lTntmaROAbVXRDfqnYT/81tg+mCMIN29ejVISEB2oCc
-	jW0e/qeJB0cbNhZ9TzySwFr/OQoPbYBfnfnEgCDue+8BzdH8xC5xcojxw9ISl6AI
-	LZ6LmDyeOhpHUr/q25+Xl8CDOYCEA+hsnREvVB/gwPDz2Eh62ArEY5qq/ZOH/TMu
-	t01DYA==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 439w90wav2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 04 Dec 2024 19:37:42 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B4Jbf5u004439
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 4 Dec 2024 19:37:41 GMT
-Received: from hu-molvera-lv.qualcomm.com (10.49.16.6) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 4 Dec 2024 11:37:40 -0800
-From: Melody Olvera <quic_molvera@quicinc.com>
-Date: Wed, 4 Dec 2024 11:37:19 -0800
-Subject: [PATCH v3 7/8] dt-bindings: clock: qcom: Document the SM8750 TCSR
- Clock Controller
+	s=arc-20240116; t=1733343015; c=relaxed/simple;
+	bh=RPQPYzIUrIV7KUtwuEchVeJdACROjNk9ItK/nS5eUAg=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=sxKhuVd0fK+5FUCkSrVvDcA7QD9yB8ihGvRYb570pvGZic2902fP1TMUIGM+ASZEcTj2QhGJ9OgVdLlchj6dgwdhZ1WzfBazbifEta366SLlGDupWd1xGnAMLKHYJw9NHHOZUIMaWjIRBQ7No6QV2LV8TFFGWn8qfm+R95R+1/c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DcjmpqrF; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5d0bf6ac35aso138780a12.1;
+        Wed, 04 Dec 2024 12:10:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733343011; x=1733947811; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TvEYgr/6tTPCr/J7KKhyXeJ8K6wnSFjt2RRmJPjvqmw=;
+        b=DcjmpqrFgfEI404mWsTxUM1AbcI9+RxLbRx2lrutnTI9ocrFjDxmwgDaGMYvlGxUFj
+         Mq5XF309TSv787UvgusTlCaqyaVqzg2gsbFsDXatzCGG1Fol09SjSnpD+PNTOUKFFlSW
+         fb01AArMHqM1Wzc4Zhfm1vamJukw8gheajUARQSKKIt/gL/N4VU9H3dpYt+8cCaKoapy
+         ML860WnJ+LpKC5vBHqMJXkI+BJCfw4Oa6PLCB0V9a/wum4Uva8r4SyBIam9i7zF9SONC
+         HyVzKPfPqwWIaZfSZUmT8gPYbJG+x3ThjsfbINoSq/gYvl5SWyDvWzqJKPjCvus/9H3j
+         7khQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733343011; x=1733947811;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TvEYgr/6tTPCr/J7KKhyXeJ8K6wnSFjt2RRmJPjvqmw=;
+        b=FOiUOkpLqNGjPQ0hXDUYKQHQy2PvPKAbzuxmdCF7JKktjYG0sZ6R6DSxVod7tfWQKH
+         MsStbT6zlrkzaQoPd74zwgI5n5wSlVE+Ar9X8qlu3ZqYhvyNzRyVoto6kLdBOqVuchTm
+         BfH53kQnpW97RIpOjmBKs/0yy6OuURX1jdDsaUu6loZdh6HLdQIrp19xHR7LBOIVZogh
+         YCP371K+oW6v5m2VGiOtl2ghKvu+RHzIEFfv/OkPlhokYj2o5veVR0FcSJun5RSWnOrv
+         n5G87/6OIXAs2K5AQgrbEGDQz/Uxjn+ynO21x9tPhGLZyvs3/BsYwl0umWMo8YpJQMuM
+         /82A==
+X-Forwarded-Encrypted: i=1; AJvYcCU9AmFHosOXCbQGUYHR5svwKqGkTkHZzrq9605N5mzpY2XnFoVIRWGLfn1zaQQjh55JubOR+wAs10yCTQ==@vger.kernel.org, AJvYcCXb1lfS9JFthiMRPKRFTGnN53KC3ECeEHU2DCqpj2fpDujtuLQo7I6ke2btqcK3L1EcsFeB2bCrZRWvnUVE@vger.kernel.org, AJvYcCXggeDm6ukm24qaE+FBhS5MF5O6paOujGlhpRhvhM0/ZSnQ0yDMK4NpXz0bfO+tiFQ8bFfFKotbQ2fVKPY=@vger.kernel.org, AJvYcCXsOnRfYumqehe1GguC27MgWjMLZsDCqVJIRyAVTOhre1QghBX9TZqP9LhwIT05lWO6X+ThQCLkBNm0@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx/febtmUfFsoZW1y23rt7oRzwujBcoUGObyzUmFLSm3/AFYdip
+	AMz/CIukENgUgeN3PoX3+rafKrU4nyYvsn71yKsYkEqYN5je6qbiretbnA==
+X-Gm-Gg: ASbGncvnz5XFmRXO4RTDE5WchmZTvp2hODbjZBQSt3JVEKstrFf6CQ8dlxx8pQm0Kok
+	5KERuZ3ZML7ZdhV7OzTAmoqv9P4Te5RoQbjuSzgnEG1XCxvk8JaVdIh0xCCoy1pqSkwYGw8QvdV
+	S3GkReUIYJh7BWu34cr1A9Ps07sTuvhAX5ReHsHa8+Az4R9CM7htAWaeS5j1CvvDZw7bbm3cHhz
+	VcgZMMiXKwEBE6VrAJ6w+rOlG/KUe/HZzC94+dUAE/lkNfT
+X-Google-Smtp-Source: AGHT+IEzr7ntDpPcQS/5uHc9iPibkZ0jlntra62Tz5y3XbWzANT8GEqg00Aa+rtdPGIWpW6yd87VAg==
+X-Received: by 2002:a05:6402:4301:b0:5d0:ce1d:44ef with SMTP id 4fb4d7f45d1cf-5d10cb564c1mr11264596a12.13.1733343011214;
+        Wed, 04 Dec 2024 12:10:11 -0800 (PST)
+Received: from [127.0.1.1] ([46.53.242.72])
+        by smtp.googlemail.com with ESMTPSA id 4fb4d7f45d1cf-5d0b7ce5584sm6266526a12.54.2024.12.04.12.10.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Dec 2024 12:10:10 -0800 (PST)
+From: Dzmitry Sankouski <dsankouski@gmail.com>
+Date: Wed, 04 Dec 2024 23:09:52 +0300
+Subject: [PATCH v10 2/8] dt-bindings: power: supply: max17042: add max77705
+ support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,102 +83,55 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-ID: <20241204-sm8750_master_clks-v3-7-1a8f31a53a86@quicinc.com>
-References: <20241204-sm8750_master_clks-v3-0-1a8f31a53a86@quicinc.com>
-In-Reply-To: <20241204-sm8750_master_clks-v3-0-1a8f31a53a86@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette
-	<mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Melody Olvera
-	<quic_molvera@quicinc.com>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1733341058; l=2005;
- i=quic_molvera@quicinc.com; s=20241204; h=from:subject:message-id;
- bh=ySYPgeVBwlX6fAJgBZVf8FK/j8AMPcK1DVz9NNfgaSs=;
- b=zmSQIF7H9jW7r4O5gFvjtVG/PPhD1q2X7mmG2/FEK5Hwt1Oi3Y+pUIA4pSgApwKKlFuR+qiLS
- ymZC0mJ5i9vDFIOCfK8xaAe0PmsNqWCBMZF6gDPmhWFr0eKGf7BAbWO
-X-Developer-Key: i=quic_molvera@quicinc.com; a=ed25519;
- pk=1DGLp3zVYsHAWipMaNZZTHR321e8xK52C9vuAoeca5c=
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: aaXGufzUCgnbHnsa9Aauj5PFSEWIcuAP
-X-Proofpoint-GUID: aaXGufzUCgnbHnsa9Aauj5PFSEWIcuAP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 bulkscore=0
- impostorscore=0 phishscore=0 suspectscore=0 adultscore=0 mlxscore=0
- spamscore=0 clxscore=1015 priorityscore=1501 malwarescore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412040150
+Message-Id: <20241204-starqltechn_integration_upstream-v10-2-7de85e48e562@gmail.com>
+References: <20241204-starqltechn_integration_upstream-v10-0-7de85e48e562@gmail.com>
+In-Reply-To: <20241204-starqltechn_integration_upstream-v10-0-7de85e48e562@gmail.com>
+To: Sebastian Reichel <sre@kernel.org>, 
+ Chanwoo Choi <cw00.choi@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>, 
+ Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>, 
+ Hans de Goede <hdegoede@redhat.com>, 
+ Marek Szyprowski <m.szyprowski@samsung.com>, 
+ Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>, 
+ Purism Kernel Team <kernel@puri.sm>
+Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
+ linux-leds@vger.kernel.org, Dzmitry Sankouski <dsankouski@gmail.com>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1733343003; l=797;
+ i=dsankouski@gmail.com; s=20240619; h=from:subject:message-id;
+ bh=RPQPYzIUrIV7KUtwuEchVeJdACROjNk9ItK/nS5eUAg=;
+ b=BzSHFDbt7Ayfe9wdSGOHsd8aYVzWhRvmUFcvQYnbo0RRXTFjhxXESfEHqEmyWQxuqjSY0Kd0R
+ b1C/GDcBx3fCI7SJ9S20o4RkAUTekhksMzBQsOTv/uScOUP8KaNuyfr
+X-Developer-Key: i=dsankouski@gmail.com; a=ed25519;
+ pk=YJcXFcN1EWrzBYuiE2yi5Mn6WLn6L1H71J+f7X8fMag=
 
-From: Taniya Das <quic_tdas@quicinc.com>
+Add max77705 fuel gauge support.
 
-Add bindings documentation for the SM8750 Clock Controller.
+Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
-Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
 ---
- .../devicetree/bindings/clock/qcom,sm8550-tcsr.yaml       |  2 ++
- include/dt-bindings/clock/qcom,sm8750-tcsr.h              | 15 +++++++++++++++
- 2 files changed, 17 insertions(+)
+Changes in v10:
+- keep alphabetical order
+---
+ Documentation/devicetree/bindings/power/supply/maxim,max17042.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8550-tcsr.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8550-tcsr.yaml
-index 3b546deb514af2ffe35d80337335509e8f6a559d..f3afbb25e8682de83fb16acaa35448545f77ce77 100644
---- a/Documentation/devicetree/bindings/clock/qcom,sm8550-tcsr.yaml
-+++ b/Documentation/devicetree/bindings/clock/qcom,sm8550-tcsr.yaml
-@@ -16,6 +16,7 @@ description: |
-   See also:
-   - include/dt-bindings/clock/qcom,sm8550-tcsr.h
-   - include/dt-bindings/clock/qcom,sm8650-tcsr.h
-+  - include/dt-bindings/clock/qcom,sm8750-tcsr.h
+diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max17042.yaml b/Documentation/devicetree/bindings/power/supply/maxim,max17042.yaml
+index 085e2504d0dc..14242de7fc08 100644
+--- a/Documentation/devicetree/bindings/power/supply/maxim,max17042.yaml
++++ b/Documentation/devicetree/bindings/power/supply/maxim,max17042.yaml
+@@ -19,6 +19,7 @@ properties:
+       - maxim,max17047
+       - maxim,max17050
+       - maxim,max17055
++      - maxim,max77705-battery
+       - maxim,max77849-battery
  
- properties:
-   compatible:
-@@ -24,6 +25,7 @@ properties:
-           - qcom,sar2130p-tcsr
-           - qcom,sm8550-tcsr
-           - qcom,sm8650-tcsr
-+          - qcom,sm8750-tcsr
-           - qcom,x1e80100-tcsr
-       - const: syscon
- 
-diff --git a/include/dt-bindings/clock/qcom,sm8750-tcsr.h b/include/dt-bindings/clock/qcom,sm8750-tcsr.h
-new file mode 100644
-index 0000000000000000000000000000000000000000..1c502ac7c7f40807f930583301e9b7b73ebea477
---- /dev/null
-+++ b/include/dt-bindings/clock/qcom,sm8750-tcsr.h
-@@ -0,0 +1,15 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+/*
-+ * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
-+ */
-+
-+#ifndef _DT_BINDINGS_CLK_QCOM_TCSR_CC_SM8750_H
-+#define _DT_BINDINGS_CLK_QCOM_TCSR_CC_SM8750_H
-+
-+/* TCSR_CC clocks */
-+#define TCSR_PCIE_0_CLKREF_EN				0
-+#define TCSR_UFS_CLKREF_EN				1
-+#define TCSR_USB2_CLKREF_EN				2
-+#define TCSR_USB3_CLKREF_EN				3
-+
-+#endif
+   reg:
 
 -- 
-2.46.1
+2.39.5
 
 
