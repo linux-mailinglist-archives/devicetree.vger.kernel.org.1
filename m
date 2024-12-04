@@ -1,44 +1,44 @@
-Return-Path: <devicetree+bounces-126759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0AD09E30C7
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 02:34:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD3B19E30C8
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 02:34:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A43D164081
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 01:34:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B665A164083
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 01:34:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A75B533D1;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F35D12114;
 	Wed,  4 Dec 2024 01:34:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgau1.qq.com (smtpbgau1.qq.com [54.206.16.166])
+Received: from smtpbgjp3.qq.com (smtpbgjp3.qq.com [54.92.39.34])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 110372114
-	for <devicetree@vger.kernel.org>; Wed,  4 Dec 2024 01:34:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.206.16.166
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87F8636D
+	for <devicetree@vger.kernel.org>; Wed,  4 Dec 2024 01:34:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.92.39.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733276049; cv=none; b=SvMWQlqGX/LchaAJnjmHJLdvg6R1Gfs5jMB/EjuhzjSmeZFAiTHGcTyQ6xKjJyT5DwEqlrnnEjjTfFkq+x/Y6ltni9I3natH97i/lcC+mDRrX4w+Sv6HfZOQ1Q1CanAqTG2tfuF1FJDjRCkOXH1WPGaHkYwYSUw+XbSYzMiWcec=
+	t=1733276049; cv=none; b=m8OJWH4Uk4HiXhvCBa5WkR0cJaPTIU6R83244vOcZMBLLYV9F4kWzL84t+VU+yv2NrplWUzSyx+yytDFL8v6WrReVNDWALrA5yG/BxP6ynQcx8IJeWrsLCp0IZIQn2K8cney4EiZI9sX+dLaK+kPbMRDhTThRrDVMmyJNtZXX6A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1733276049; c=relaxed/simple;
-	bh=mxUSXwCNru7rQTNK1ZNNZQp7CALSep/yDXJcAtT0apM=;
+	bh=OUPLYA0RwGUpwt4cLeNsVmIzE7PSYHuVblqMZ4HMsb0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pk9UaoxAvrMy7XngItLFVielXlSQk3A/SZET014N4kpIctCSeaQooxXYgAsMo+/zMa+QD2P+BRQ/v03daTY1DzCjzh9YL1smROaRHrf7G5khtvwP8uwE8VnH2okLojOmaVqzTom49KHJqeNmXpTgmVJG+uF1XWToPgct1aJok2U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.206.16.166
+	 In-Reply-To:Content-Type; b=lfw8tbGVWLhyt2zojcHgYNCBNl7YN/DTkIw3zeP97CI8Ur3zf+zG83QDac8F8iQreZyoc9+fLjIQIZSehVKwqwXSvNfIoZwLNY5IuXLkV/UcrLRTI2RP/OWSPxTF9qHNkPcgSjaXf7sq4rGaY43nnh+rJuQvi+ZdtiMQI+rv0Sw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.92.39.34
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: bizesmtpip3t1733275883tnx5ffe
-X-QQ-Originating-IP: teASfYra7NZMjwlWGGLXuPXJK9/eEJToD5O7UiJ39Qc=
+X-QQ-mid: bizesmtpip4t1733276037tc2o1xi
+X-QQ-Originating-IP: mIAJ5jGNqHI9WzkY9PnTP5KVZOet4dlgFiUSDEWWg3M=
 Received: from [IPV6:240f:10b:7440:1:c275:7079 ( [localhost])
 	by bizesmtp.qq.com (ESMTP) with 
-	id ; Wed, 04 Dec 2024 09:31:18 +0800 (CST)
-X-QQ-SSF: 0001000000000000000000000000000
-X-QQ-GoodBg: 2
-X-BIZMAIL-ID: 13518081938172122736
-Message-ID: <2471CF562C95BE8C+b828c025-8d4c-423d-8cbc-4e30e07fdf32@radxa.com>
-Date: Wed, 4 Dec 2024 10:31:17 +0900
+	id ; Wed, 04 Dec 2024 09:33:52 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 798759568462877452
+Message-ID: <1E761945EF83B097+dd2dae29-235b-4741-9c4e-dad22b2cf93b@radxa.com>
+Date: Wed, 4 Dec 2024 10:33:52 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -46,8 +46,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: rockchip: use Type-C port as USB HOST
- port for Radxa ROCK 5B
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: fix USB 3.0 bottom port for
+ Radxa ROCK 5B
 To: Sebastian Reichel <sebastian.reichel@collabora.com>,
  =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
 Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
@@ -55,63 +55,59 @@ Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
  cristian.ciocaltea@collabora.com, devicetree@vger.kernel.org,
  linux-rockchip@lists.infradead.org
 References: <20241130014043.12942-1-naoki@radxa.com>
- <18640241.sWSEgdgrri@diego>
- <hxctagkzzd37n7q7onvivptj5gsac5tn5gxdlvgo2fuumatjmh@ckvjcxtub26f>
+ <20241130014043.12942-2-naoki@radxa.com> <2724169.KRxA6XjA2N@diego>
+ <6o2nwuxemfrdnq74tsag3s5cbdeopk5cgoa2iqg3vpkh64xdvs@gpzehjwjioph>
 Content-Language: en-US
 From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <hxctagkzzd37n7q7onvivptj5gsac5tn5gxdlvgo2fuumatjmh@ckvjcxtub26f>
+In-Reply-To: <6o2nwuxemfrdnq74tsag3s5cbdeopk5cgoa2iqg3vpkh64xdvs@gpzehjwjioph>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-QQ-SENDSIZE: 520
 Feedback-ID: bizesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
-X-QQ-XMAILINFO: Mp8EMf2MKfJZxw0VYgcVn53jw+vDjtilK7Y+ec5SXrLEwYVjqyDnrssG
-	RFi9rAi71OE0T+uJfmo+bcus63fkb25qwrINzyE1id8U091olgyuaycXch1u82s+RQNHU8x
-	/81SJADc9/7wJ/WCYzOzPqC9gFwXkM6+e15z+bCvCDymmb76ihmsboEkEHerD8D1K6g/U3n
-	4tUKyR2mCderp7afdJZCS+en3y+313Qxi1uhSwXhFqk9Fy2ZG0PdBRacqq5f21ca5SLI5Xn
-	NTgh1kNE/lglR3oKKBkBAh3Qu8E9uJ5/CYLSIQ0OkQVUYnpZah3ZWG580qU1DmxSEar46HG
-	EwkGhv0IBHmg19NBz7o698Zr9blYerpUVie7bAtz1fTE49LODyF8C5hdTC3xTsLqdpRyyvB
-	dTlEvm+AgcduxxDMQtT71k7d9rO2NmdSCqIfMlYoOzcMFcVoIgFsWvoFgDCY0Af56dXKrXb
-	ASM515JONSNARW16u9QYyFqG6jGP4X2frFFQgAti7h9caeFSM93O8J9EmonRY5cTYGaCdNm
-	xXHE11OHv37uOLsn1KWW9LdK8EINDBkC1CHW2rSJg/rfDOrOK8I7+Ss7d0v5Hx44Rime4FP
-	iHwqLBTFgl7aFF3KbWNIpPt/eSlKtOpX2MOkpe31VprhNoHqm5EpPyGOVKKCQoWzgv/3k1A
-	OsY3wzzn3R0teQEd82Y9Lhihic6SrPNiOZ0+mkEJE6DM0l8GwgE3dQ0AjnV4qUF/Htlf349
-	Bvtpk6qxz/ceOzgQwQB1qH9KPAAkZYgbMjew+g5TC4P/FoiUkC43izTgKe4LmpfJxzEUFBm
-	onR5joEHXdW3KHT97Z2qwmgR2WznGWJck0OnwwNC3H81kAKWKoOY6wugHnY8XyFEGsfpQkJ
-	ARvt6s6Mbc03/xsTI02F1UmIRph/plCzbCP5Fhp0/mWAORli8N1p5w==
-X-QQ-XMRINFO: NI4Ajvh11aEj8Xl/2s1/T8w=
+X-QQ-XMAILINFO: MShfLn39PbN2Om0kt0PS7crBK5AawOEllWaID644ItiMmuobkuxFJeVw
+	gWYukaTZKj3FaWE2Y7I2lohMzJzTM/USL41td++zzspdashPydbPLalIwPfWP/eNl1nG03m
+	Qq2ryr5DMdboNAWmRPAvn2pfLPpD75c0A67k5NKu+Aw3V5g55jsiH1yNjhYvPIS8/AGv0nF
+	jP+NDo/6crGbXdhmGJI+d2fGx3X7o/33W/llpICUiAqx5+a5JkAvSx8txbOn9wDe8QXFxwg
+	8127pl6vl6fnfNEYbkeSCk5iSJTUPRk0yOpPAyqMSuIv6TJT5G5fGsU36h44Qa6GJc31gPK
+	pTwhKzwCx7r3abevd/j1fAz82s9VGhboXJft67/JPKS6VJNJIbaEVlxwhu8Etc5dIQWk4L/
+	twE9vFkYINmu/Syco40FKsl7PGWrFHsvn+tqAYV8Mya3lYeHxdeSNV5MN4RKtHlygKywMey
+	9lEbjljVOJmBCDh7Vm2fdXYbzZ3iv532Editfs4wjEmBuR8XJu7+f4UVvxG9wJn4y1sGs+p
+	57aNoJOzlVz0MNmhXvannnM3ylYfT+1N/eXXgm1oToPvIjomYtS7/6C+qRtvBylsyZNC343
+	rJsaQZzIaHLhJgvHgnKE7yBk6ZqElH87xHOennKxoqzW5IGFFl50EyE+RXJ1FewnfFUOUOE
+	W5NMFLWs32h+EoPbbKMNajEQ+7SqYecrjcD0BFeiApS9bMAgyYf1u/6uTS87336z6AkOwIe
+	irtSFbPeR+3RM1OII2BWIAXuVdeYxXSDN7XxZs+MtbWkqtCkTUNoqCoVrvvuZWwwZOx4nfZ
+	c6DXa/RlSI7+M8f4k1Hz3KknsBrbbZ6KHHzaG6TS356f6S4cD8BHdLFoTd75dpRHa+SnimI
+	7CCQqczDiaQJk+hbDZqu8Hk0yVsnYowPUA9FnrNmpJ0yOu40uCGb4Q==
+X-QQ-XMRINFO: NS+P29fieYNw95Bth2bWPxk=
 X-QQ-RECHKSPAM: 0
 
-Hi Heiko and Sebastian,
+Hi,
 
-thank you for your comments!
-
-On 12/4/24 02:11, Sebastian Reichel wrote:
+On 12/4/24 02:01, Sebastian Reichel wrote:
 > Hi,
 > 
-> On Tue, Dec 03, 2024 at 05:18:39PM +0100, Heiko Stübner wrote:
->> Am Samstag, 30. November 2024, 02:40:42 CET schrieb FUKAUMI Naoki:
->>> Type-C port is dual-role USB 3.0 port. add usb_host0_xhci and phy
->>> nodes to use it as HOST port.
+> On Tue, Dec 03, 2024 at 05:19:55PM +0100, Heiko Stübner wrote:
+>> Am Samstag, 30. November 2024, 02:40:43 CET schrieb FUKAUMI Naoki:
+>>> add rockchip,dp-lane-mux to usbdp_phy1 to make it work properly.
 >>
->> This needs a bit more explanation on _why_ you're statically
->> setting this to host-mode.
+>> Make it work properly is not an ideal commit description.
+>>
+>> I guess the lane assignment for the dp port should be discoverable
+>> in the device schematics, so the commit description should explain
+>> as much.
 > 
-> The USB-C port can be used in peripheral mode, so this is just
-> wrong. Also it should be added together with the USB PD controller
-> for proper muxing and role switch support. The reason I have not yet
-> send the patch is that this needed a fix in U-Boot first.
+> Rock 5B does not have SSRX2P/SSRX2N and SSTX2P/SSTX2N connected to
+> anything, so this description is just wrong. The other lanes are
+> connected to a USB-A port and thus no USB-C controller is involved,
+> which takes care of any muxing. Not specifying any
+> rockchip,dp-lane-mux configuration sets mode to UDPHY_MODE_USB,
+> which is correct.
 > 
-> Most users are powering their Rock 5Bs via the USB-C port and a
-> bad description results in unexpected hardware resets at boot
-> time.
-> 
-> I mostly waited for the rc1 tag to happen now that U-Boot support
-> has landed. Also I expect that even with all those precautions
-> some people will start seeing issues. Unfortunately there are
-> many non-compliant USB-PD power sources :(
+> Naoki, if you see any problems, it is most likely a bug in the USBDP
+> PHY or DWC3 driver.
 
-I see. I'll wait proper implementation.
-please ignore my patch.
+sorry, I should write error message. I understand it, please ignore my 
+patch.
 
 Best regards,
 
@@ -119,58 +115,52 @@ Best regards,
 FUKAUMI Naoki
 Radxa Computer (Shenzhen) Co., Ltd.
 
+> Greetings,
+> 
 > -- Sebastian
 > 
 >>
->> Heiko
->>
+>>> tested with ELECOM U3HC-A424P10BK[1]:
+>>>
+>>> $ lsusb -t
+>>> /:  Bus 001.Port 001: Dev 001, Class=root_hub, Driver=ehci-platform/1p, 480M
+>>>      |__ Port 001: Dev 002, If 0, Class=Hub, Driver=hub/4p, 480M
+>>>          |__ Port 003: Dev 003, If 0, Class=Wireless, Driver=btusb, 12M
+>>>          |__ Port 003: Dev 003, If 1, Class=Wireless, Driver=btusb, 12M
+>>> /:  Bus 002.Port 001: Dev 001, Class=root_hub, Driver=ohci-platform/1p, 12M
+>>> /:  Bus 003.Port 001: Dev 001, Class=root_hub, Driver=ehci-platform/1p, 480M
+>>> /:  Bus 004.Port 001: Dev 001, Class=root_hub, Driver=xhci-hcd/1p, 480M
+>>> /:  Bus 005.Port 001: Dev 001, Class=root_hub, Driver=xhci-hcd/1p, 5000M
+>>>      |__ Port 001: Dev 002, If 0, Class=Mass Storage, Driver=usb-storage, 5000M
+>>> /:  Bus 006.Port 001: Dev 001, Class=root_hub, Driver=xhci-hcd/1p, 480M
+>>>      |__ Port 001: Dev 002, If 0, Class=Hub, Driver=hub/5p, 480M
+>>>          |__ Port 005: Dev 003, If 0, Class=Billboard, Driver=[none], 480M
+>>> /:  Bus 007.Port 001: Dev 001, Class=root_hub, Driver=xhci-hcd/1p, 5000M
+>>>      |__ Port 001: Dev 002, If 0, Class=Hub, Driver=hub/4p, 5000M
+>>>          |__ Port 004: Dev 003, If 0, Class=Mass Storage, Driver=usb-storage, 5000M
+>>> /:  Bus 008.Port 001: Dev 001, Class=root_hub, Driver=xhci-hcd/1p, 480M
+>>> /:  Bus 009.Port 001: Dev 001, Class=root_hub, Driver=xhci-hcd/1p, 5000M
+>>>      |__ Port 001: Dev 002, If 0, Class=Mass Storage, Driver=usb-storage, 5000M
+>>>
+>>> [1] https://www.elecom.co.jp/products/U3HC-A424P10BK.html
+>>>
 >>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
 >>> ---
->>>   arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 17 +++++++++++++++++
->>>   1 file changed, 17 insertions(+)
+>>>   arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 1 +
+>>>   1 file changed, 1 insertion(+)
 >>>
 >>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->>> index 0ec4992b43cd..c5776e3b4aab 100644
+>>> index c5776e3b4aab..43fc1f24dfc9 100644
 >>> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
 >>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->>> @@ -840,6 +840,14 @@ &tsadc {
->>>   	status = "okay";
+>>> @@ -918,6 +918,7 @@ &usbdp_phy0 {
 >>>   };
 >>>   
->>> +&u2phy0 {
->>> +	status = "okay";
->>> +};
->>> +
->>> +&u2phy0_otg {
->>> +	status = "okay";
->>> +};
->>> +
->>>   &u2phy1 {
->>>   	status = "okay";
->>>   };
->>> @@ -883,6 +891,11 @@ &usb_host0_ehci {
->>>   	status = "okay";
->>>   };
->>>   
->>> +&usb_host0_xhci {
->>> +	dr_mode = "host";
->>> +	status = "okay";
->>> +};
->>> +
->>>   &usb_host1_ehci {
->>>   	status = "okay";
->>>   };
->>> @@ -900,6 +913,10 @@ &usb_host2_xhci {
->>>   	status = "okay";
->>>   };
->>>   
->>> +&usbdp_phy0 {
->>> +	status = "okay";
->>> +};
->>> +
 >>>   &usbdp_phy1 {
+>>> +	rockchip,dp-lane-mux = <2 3>;
 >>>   	status = "okay";
 >>>   };
+>>>   
 >>>
 >>
 >>
