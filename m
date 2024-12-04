@@ -1,109 +1,91 @@
-Return-Path: <devicetree+bounces-126785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 592D69E321B
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 04:29:10 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78D2E9E32A1
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 05:17:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EA0F2B2314F
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 03:29:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0D967B28725
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 04:17:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F204149E00;
-	Wed,  4 Dec 2024 03:29:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4351182876;
+	Wed,  4 Dec 2024 04:17:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o981C59W"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="DJrluDAK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D9422745E;
-	Wed,  4 Dec 2024 03:29:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCF5E219E4;
+	Wed,  4 Dec 2024 04:17:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733282944; cv=none; b=uGJgHl1u/aZNNw2GX17w0g+fEM3+7NMV2AKYePx0ZBGBSm5VZQlI3ciWKW8+C5eIQKo9v8YTgH86JwuWXjZk6WpxUAmZ9Jl7hUdfpWaGA2ezcuDYhp3n/bRaDQlLoAauztfpv2AxGLgmJwpLPIcJq4XaHouX+CC9hObz+hMhLfA=
+	t=1733285862; cv=none; b=cgRK8xqtf+j880XdYtSbAW2biFRx7XVEiKGKSHseErbFcv2+/sTI6OdrCmGKZuK+oMZ56I+IWMp8C21YPvsfINb5FqeE8aA4hUbJAVkEohDtyAXuXF/qJNFrReys8k2yjqki1lCwd7xpmwobrWSK5pnXYjh0PoHzXDGwZCBevF0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733282944; c=relaxed/simple;
-	bh=5Rjgp/VIG+mrvRzrXwsjZlf0OGDLrjFESpHXXJ3leeY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ccIgX6WdyHSBJw7wiMy4puZ6+8UO2vYApFuGqG49aE/4rMGrCCyQkUyD4dYV1fPIP91Rlq3y2ojlZHefJYqa1BVqi9HMfsGJQcpTs1++esE5Gdu9bnDPIK84RP6EaN78SSlKU2KEPLe0Tuch+975FSINq16t4KRH2TN65Ho9UrQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o981C59W; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B781C4CEDC;
-	Wed,  4 Dec 2024 03:29:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733282943;
-	bh=5Rjgp/VIG+mrvRzrXwsjZlf0OGDLrjFESpHXXJ3leeY=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=o981C59WlKvB86a3QmUaV+F6LosyfaWniMHxVOqBbkpV5UiCXw0eHOgC+ugp6dlzw
-	 GQ38vn71Ea4Dp0FjhnWnRUL1PEX3tOzpssvahevxwS1M0iyLDEXGw/Hq+cK8olFgUB
-	 YIKx4+oM2FoSWMOAIXmLOkifbw5wD+6mzcp9YoXj9PgckwYp6RKbQXv2ZoXfrRthHe
-	 /KeNnP5bT0ezhVh1+U/pycJYAppzzvLtS+s2gW5M1pSUPO9JIxnyoTTQmo9rRrH8Yj
-	 SJJmjcizGKXLyKPAcDY8FRUM2ITOEKSeLhs/dLj86fWq1KoWiC2xkmrHz5Di3CaqTS
-	 6PwHrKmsNwGPQ==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Jingyi Wang <quic_jingyw@quicinc.com>
-Cc: quic_tengfan@quicinc.com,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: (subset) [PATCH v4 0/4] Add initial support for QCS8300 SoC and QCS8300 RIDE board
-Date: Tue,  3 Dec 2024 21:29:00 -0600
-Message-ID: <173328293797.350699.5295104276161877235.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241203-qcs8300_initial_dtsi-v4-0-d7c953484024@quicinc.com>
-References: <20241203-qcs8300_initial_dtsi-v4-0-d7c953484024@quicinc.com>
+	s=arc-20240116; t=1733285862; c=relaxed/simple;
+	bh=LrOFYJV2ZrZYy6LgVD19Et9UmHlo6S9eT8BWN0Eq0bQ=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=SXt8UaPeMmxdUXx6in18mSeWYPEetORVwTcDPyvNYqTpfJkYnEy+P5mYj9UFx338ev0BwoXyPDlDpXcRAK21xVHj2mc3SPsgXEObvpoEOmrnBCc7+p52bvoZ8bZpJJ1koKTT7GZDMeVR5E2uKpSvbxWWY1hVtaglbewlZ9Aoz/Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=DJrluDAK; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1733285336;
+	bh=LrOFYJV2ZrZYy6LgVD19Et9UmHlo6S9eT8BWN0Eq0bQ=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=DJrluDAKGeNcgsdW3x3ei/ik/ffQfZJIkBG3/v2CrO1qnlv/S7WLHQPFrZ3zuEEHv
+	 Ql/kiy4lRF9SdAOLkNiMVLcm4qOlIt9pzcAHvDatDUiW7rwKAUEpHE+MusHS3ffky/
+	 TmH8r50SqdUbjnz+i8N7lzhba4EMsUiqJGe8fdWAGRVfbpRK1e1/6PyfyM79sh+Nym
+	 V6l9PJU0fiY0HD1KxdcqrZsUvdezusjkCVZ5bqhdgVaEBm6Fiwf59SE6TgvQwUZxzN
+	 U1JQevi0+nyNR+LxqBN31xERHHWhB9pSYC/mbEyXjNpwXieFBfT65zhuVx3PzaL4yb
+	 6pTB1aWUb035A==
+Received: from [192.168.68.112] (ppp118-210-165-44.adl-adc-lon-bras34.tpg.internode.on.net [118.210.165.44])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id C3CC96D6B6;
+	Wed,  4 Dec 2024 12:08:54 +0800 (AWST)
+Message-ID: <9ff74b8a13ff58921a4f7f18dbded9c06b195c06.camel@codeconstruct.com.au>
+Subject: Re: [PATCH] ARM: dts: aspeed: Enable video engine for IBM System1
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: manojkiran.eda@gmail.com, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Eddie James
+ <eajames@linux.ibm.com>, Ninad Palsule <ninad@linux.ibm.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+	openbmc@lists.ozlabs.org
+Date: Wed, 04 Dec 2024 14:38:53 +1030
+In-Reply-To: <20241203-dts-system1-video-v1-1-008e5e660106@gmail.com>
+References: <20241203-dts-system1-video-v1-1-008e5e660106@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
 
+Hi Manoj,
 
-On Tue, 03 Dec 2024 17:27:11 +0800, Jingyi Wang wrote:
-> Introduce the Device Tree for the QCS8300 platform.
-> 
-> Features added and enabled:
-> - CPUs with PSCI idle states
-> - Interrupt-controller with PDC wakeup support
-> - Timers, TCSR Clock Controllers
-> - Reserved Shared memory
-> - GCC and RPMHCC
-> - TLMM
-> - Interconnect
-> - QuP with uart
-> - SMMU
-> - QFPROM
-> - Rpmhpd power controller
-> - UFS
-> - Inter-Processor Communication Controller
-> - SRAM
-> - Remoteprocs including ADSP,CDSP and GPDSP
-> - BWMONs
-> 
-> [...]
+On Tue, 2024-12-03 at 18:52 +0530, Manojkiran Eda via B4 Relay wrote:
+> From: Manojkiran Eda <manojkiran.eda@gmail.com>
+>=20
+> Signed-off-by: Manojkiran Eda <manojkiran.eda@gmail.com>
+> ---
+> This patch enables the aspeed video engine support in ASPEED BMC for
+> IBM System1. It is crucial for facilitating the BMC's video capture
+> and redirection capabilities, which are integral to remote management
+> and KVM (Keyboard-Video-Mouse) over IP functionality.
 
-Applied, thanks!
+Can you please put this in the body of the commit message rather than
+in a comment?
 
-[1/4] dt-bindings: arm: qcom: document QCS8300 SoC and reference board
-      commit: d511280ce9cc5920442e78a589946f63c247dd3b
-[3/4] arm64: dts: qcom: add QCS8300 platform
-      commit: 7be190e4bdd2bd1aca84afef06bb755c06a85473
-[4/4] arm64: dts: qcom: add base QCS8300 RIDE board
-      commit: 45d55e2da9bd10d24c4730b452b11a76dc3960b8
+Commit messages need a body and not just a subject.
 
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+Cheers,
+
+Andrew
+
 
