@@ -1,170 +1,228 @@
-Return-Path: <devicetree+bounces-126760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126761-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD3B19E30C8
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 02:34:13 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B665A164083
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 01:34:10 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F35D12114;
-	Wed,  4 Dec 2024 01:34:09 +0000 (UTC)
-X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgjp3.qq.com (smtpbgjp3.qq.com [54.92.39.34])
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B7FA9E30E9
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 02:50:41 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87F8636D
-	for <devicetree@vger.kernel.org>; Wed,  4 Dec 2024 01:34:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.92.39.34
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA16BB27F72
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 01:50:38 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3AF0FC08;
+	Wed,  4 Dec 2024 01:50:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U0v+auKG"
+X-Original-To: devicetree@vger.kernel.org
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B8494C7D;
+	Wed,  4 Dec 2024 01:50:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733276049; cv=none; b=m8OJWH4Uk4HiXhvCBa5WkR0cJaPTIU6R83244vOcZMBLLYV9F4kWzL84t+VU+yv2NrplWUzSyx+yytDFL8v6WrReVNDWALrA5yG/BxP6ynQcx8IJeWrsLCp0IZIQn2K8cney4EiZI9sX+dLaK+kPbMRDhTThRrDVMmyJNtZXX6A=
+	t=1733277034; cv=none; b=e3S/0N0FUI8t+U+ESWX+qbzblBpzpRZ/pYSdnuBc1+hkJxiulKn071hXTj+bmNoVda2w2iBGI97jMFIpbnKOce7mRB7xIWZyH4xFQGYZmnFVjMEI0uLsaohHHB0OhCNfu35uO1bRXVanSnrDRqMClsLxIYjG+pRwJfsZMOx4DxE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733276049; c=relaxed/simple;
-	bh=OUPLYA0RwGUpwt4cLeNsVmIzE7PSYHuVblqMZ4HMsb0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lfw8tbGVWLhyt2zojcHgYNCBNl7YN/DTkIw3zeP97CI8Ur3zf+zG83QDac8F8iQreZyoc9+fLjIQIZSehVKwqwXSvNfIoZwLNY5IuXLkV/UcrLRTI2RP/OWSPxTF9qHNkPcgSjaXf7sq4rGaY43nnh+rJuQvi+ZdtiMQI+rv0Sw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.92.39.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: bizesmtpip4t1733276037tc2o1xi
-X-QQ-Originating-IP: mIAJ5jGNqHI9WzkY9PnTP5KVZOet4dlgFiUSDEWWg3M=
-Received: from [IPV6:240f:10b:7440:1:c275:7079 ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Wed, 04 Dec 2024 09:33:52 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 798759568462877452
-Message-ID: <1E761945EF83B097+dd2dae29-235b-4741-9c4e-dad22b2cf93b@radxa.com>
-Date: Wed, 4 Dec 2024 10:33:52 +0900
+	s=arc-20240116; t=1733277034; c=relaxed/simple;
+	bh=lR+efRJP8qpHPwJBFvy8mo1CkDs6ptk2s7Q6VJKImog=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dbYn0p/mQ/sVckKTn4T51nBLn11+Sj+LSfbB4Km1ZZLaNKvFAgv+3Wf/AEeA2wGC+cVzeEMzJDiUQgyZyAHK+XnOwsGsPN+01vt++z9s2htZvMDuube+21U7Wf+SdhBOyd5FECwNehq70Nuvz9jN0TyiV4AZANxZ7boHB8/mbPI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U0v+auKG; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-385ddcfc97bso4239038f8f.1;
+        Tue, 03 Dec 2024 17:50:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733277030; x=1733881830; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lN201ByzpfUAhxwhR4UdOa7zJC44kIZT0kSYye3sxJk=;
+        b=U0v+auKGJvTFLJcl0bCX9QmhUpot0RgSbkLerRCxBzioCmNyqVcZvwFbaYHk4aryjI
+         /XP0iG2dBJq1ttkFTp3Ip8rm+UWcXHT9GeTfzn+e6+n+aQCWlY4FRJuaiqI4y0SltNr/
+         wbyvG2yWS1sb8oVptjQJw4EfSFtfinpVDz0Fl6yOFDxDmTYoagD4EYzDrnU3vLfm0rB+
+         qyyB5WkTpfHXVuZvmpd5exVVxaHwPIb5jyw0PjVQvKMm3oTcNaGi/UmwdTOpdmn5XqCF
+         NIaJbLVgqZvcYny2VpqNJWjN1KKOjBvgIMhicBEfiF5w6/9q+CoP+mTT/cbGZI2QrC6V
+         BI4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733277030; x=1733881830;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lN201ByzpfUAhxwhR4UdOa7zJC44kIZT0kSYye3sxJk=;
+        b=MIHFANjl86GCHTKcxfDjhYSW7JMFVstjUrAkHgBv3aCZ1VBiB7rIEyjVPqVpD1Lyrv
+         ta3E2qLKDAYx9MWBAGCwGkGMkf+8liBV+F38r93C11ZaITsOIc42fQYiV79HxbevoeZJ
+         Kvp9516f9353zmZDynf8fFPUxVltXsbalEzqRqKyySs2msFMOyTQF3ghu55TdzZHhTbE
+         Bzr5r50f4oiTSMAynOQbWZAP1nD7o8g3B0zJDQ2UWerJzuslh4fjvPiNwAwLqTtphfXX
+         LBiNIH5tLhVaySZXu5jJeZ05rBEetXc+vDSx09Zi3bU/IAQaBQU5MxSL3qyJ4MWXye4b
+         Pz8w==
+X-Forwarded-Encrypted: i=1; AJvYcCU7Ut8F8ZqOLzMS0Ks6bxFgn5B3uQBzMzq+Rho/mppYjL5/QzNfMh8URXTiWm8qRdv2agnujbZwX0JF@vger.kernel.org, AJvYcCV3yTXEyCw1ZmON83wSO52d/2UiEcGyhuGMxN1ECuB6dchCytAPJy/ptcJWbaoJxVsCbILKI2M8zVRiR22w@vger.kernel.org, AJvYcCW2OXmI/u2H25zn9UKHzQyjfB+maP7xeeTPv/L9TpE1neQ5iwWVG/cnAPsdB19zNURLlkIQu5oY6Kxk@vger.kernel.org
+X-Gm-Message-State: AOJu0YzqniauoDWXJFQLUU/gS5iXb4mcctGzUEmnxzCjDw9K//saOogx
+	jrF2+kfUZUVtbj14PAfo/vLEkuZgdAJ7uzJf7sGPR5an7PVMzztbT2rxTdPNCkDlnBNvTWxO8Ca
+	Ii0dt8sR6e3PucCroJFaMXhWdBVI=
+X-Gm-Gg: ASbGncsAz4l7yVcxI0nXM5NfENp4OjMi3LiWx1htaCMyXFOTDDnTq2n4JFiBkc+hxbR
+	VXDzi5hv9Lfu6xoyZK5LTepuH34n40eQ=
+X-Google-Smtp-Source: AGHT+IHt9Rwm6Nd4suIuWugkJHbvZnTpYJfiKM9I4W2YblEGY0ueUGw7HgR+ojWzcmeKMRQIpKOnzXiSEBUQLBxHqpA=
+X-Received: by 2002:a5d:64e4:0:b0:385:f47b:1508 with SMTP id
+ ffacd0b85a97d-385fd3f35efmr4593054f8f.35.1733277030274; Tue, 03 Dec 2024
+ 17:50:30 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: fix USB 3.0 bottom port for
- Radxa ROCK 5B
-To: Sebastian Reichel <sebastian.reichel@collabora.com>,
- =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- dsimic@manjaro.org, alchark@gmail.com, inindev@gmail.com,
- cristian.ciocaltea@collabora.com, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org
-References: <20241130014043.12942-1-naoki@radxa.com>
- <20241130014043.12942-2-naoki@radxa.com> <2724169.KRxA6XjA2N@diego>
- <6o2nwuxemfrdnq74tsag3s5cbdeopk5cgoa2iqg3vpkh64xdvs@gpzehjwjioph>
-Content-Language: en-US
-From: FUKAUMI Naoki <naoki@radxa.com>
-In-Reply-To: <6o2nwuxemfrdnq74tsag3s5cbdeopk5cgoa2iqg3vpkh64xdvs@gpzehjwjioph>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
-X-QQ-XMAILINFO: MShfLn39PbN2Om0kt0PS7crBK5AawOEllWaID644ItiMmuobkuxFJeVw
-	gWYukaTZKj3FaWE2Y7I2lohMzJzTM/USL41td++zzspdashPydbPLalIwPfWP/eNl1nG03m
-	Qq2ryr5DMdboNAWmRPAvn2pfLPpD75c0A67k5NKu+Aw3V5g55jsiH1yNjhYvPIS8/AGv0nF
-	jP+NDo/6crGbXdhmGJI+d2fGx3X7o/33W/llpICUiAqx5+a5JkAvSx8txbOn9wDe8QXFxwg
-	8127pl6vl6fnfNEYbkeSCk5iSJTUPRk0yOpPAyqMSuIv6TJT5G5fGsU36h44Qa6GJc31gPK
-	pTwhKzwCx7r3abevd/j1fAz82s9VGhboXJft67/JPKS6VJNJIbaEVlxwhu8Etc5dIQWk4L/
-	twE9vFkYINmu/Syco40FKsl7PGWrFHsvn+tqAYV8Mya3lYeHxdeSNV5MN4RKtHlygKywMey
-	9lEbjljVOJmBCDh7Vm2fdXYbzZ3iv532Editfs4wjEmBuR8XJu7+f4UVvxG9wJn4y1sGs+p
-	57aNoJOzlVz0MNmhXvannnM3ylYfT+1N/eXXgm1oToPvIjomYtS7/6C+qRtvBylsyZNC343
-	rJsaQZzIaHLhJgvHgnKE7yBk6ZqElH87xHOennKxoqzW5IGFFl50EyE+RXJ1FewnfFUOUOE
-	W5NMFLWs32h+EoPbbKMNajEQ+7SqYecrjcD0BFeiApS9bMAgyYf1u/6uTS87336z6AkOwIe
-	irtSFbPeR+3RM1OII2BWIAXuVdeYxXSDN7XxZs+MtbWkqtCkTUNoqCoVrvvuZWwwZOx4nfZ
-	c6DXa/RlSI7+M8f4k1Hz3KknsBrbbZ6KHHzaG6TS356f6S4cD8BHdLFoTd75dpRHa+SnimI
-	7CCQqczDiaQJk+hbDZqu8Hk0yVsnYowPUA9FnrNmpJ0yOu40uCGb4Q==
-X-QQ-XMRINFO: NS+P29fieYNw95Bth2bWPxk=
-X-QQ-RECHKSPAM: 0
+References: <20241106023916.440767-1-j2anfernee@gmail.com> <20241106023916.440767-3-j2anfernee@gmail.com>
+ <fd4db31d-4e55-4f0e-a96d-d193c28fd784@kernel.org> <CA+4VgcJSt-LUNtH6TMpk7om+PbO1aQvmt1WHi-cYMxa8p+Um5A@mail.gmail.com>
+ <20241109134538.6f09971d@jic23-huawei>
+In-Reply-To: <20241109134538.6f09971d@jic23-huawei>
+From: Yu-Hsian Yang <j2anfernee@gmail.com>
+Date: Wed, 4 Dec 2024 09:49:53 +0800
+Message-ID: <CA+4VgcKaL+B1yDG+X7HLGam5T5njgccp9ebCnQJwiv3V5w07ow@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] iio: adc: add Nuvoton NCT720x ADC driver
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, avifishman70@gmail.com, tmaimon77@gmail.com, 
+	tali.perry1@gmail.com, venture@google.com, yuenn@google.com, 
+	benjaminfair@google.com, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, nuno.sa@analog.com, dlechner@baylibre.com, 
+	javier.carrasco.cruz@gmail.com, andy@kernel.org, marcelo.schmitt@analog.com, 
+	olivier.moysan@foss.st.com, mitrutzceclan@gmail.com, 
+	matteomartelli3@gmail.com, alisadariana@gmail.com, joao.goncalves@toradex.com, 
+	marius.cristea@microchip.com, mike.looijmans@topic.nl, 
+	chanh@os.amperecomputing.com, KWLIU@nuvoton.com, yhyang2@nuvoton.com, 
+	openbmc@lists.ozlabs.org, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Thank you for your comment.
 
-On 12/4/24 02:01, Sebastian Reichel wrote:
-> Hi,
-> 
-> On Tue, Dec 03, 2024 at 05:19:55PM +0100, Heiko Stübner wrote:
->> Am Samstag, 30. November 2024, 02:40:43 CET schrieb FUKAUMI Naoki:
->>> add rockchip,dp-lane-mux to usbdp_phy1 to make it work properly.
->>
->> Make it work properly is not an ideal commit description.
->>
->> I guess the lane assignment for the dp port should be discoverable
->> in the device schematics, so the commit description should explain
->> as much.
-> 
-> Rock 5B does not have SSRX2P/SSRX2N and SSTX2P/SSTX2N connected to
-> anything, so this description is just wrong. The other lanes are
-> connected to a USB-A port and thus no USB-C controller is involved,
-> which takes care of any muxing. Not specifying any
-> rockchip,dp-lane-mux configuration sets mode to UDPHY_MODE_USB,
-> which is correct.
-> 
-> Naoki, if you see any problems, it is most likely a bug in the USBDP
-> PHY or DWC3 driver.
+Jonathan Cameron <jic23@kernel.org> =E6=96=BC 2024=E5=B9=B411=E6=9C=889=E6=
+=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8B=E5=8D=889:45=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On Thu, 7 Nov 2024 08:41:21 +0800
+> Yu-Hsian Yang <j2anfernee@gmail.com> wrote:
+>
+> > Dear Krzysztof Kozlowski,
+> >
+> > Thank you for your response.
+> >
+> > Krzysztof Kozlowski <krzk@kernel.org> =E6=96=BC 2024=E5=B9=B411=E6=9C=
+=886=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=889:41=E5=AF=AB=E9=81=93=
+=EF=BC=9A
+> > >
+> > > On 06/11/2024 03:39, Eason Yang wrote:
+> > > > Add Nuvoton NCT7201/NCT7202 system voltage monitor 12-bit ADC drive=
+r
+> > > >
+> > > > NCT7201/NCT7202 supports up to 12 analog voltage monitor inputs and=
+ up to
+> > > > 4 SMBus addresses by ADDR pin. Meanwhile, ALERT# hardware event pin=
+s for
+> > > > independent alarm signals, and the all threshold values could be se=
+t for
+> > > > system protection without any timing delay. It also supports reset =
+input
+> > > > RSTIN# to recover system from a fault condition.
+> > > >
+> > > > Currently, only single-edge mode conversion and threshold events su=
+pport.
+> > > >
+> > > > Signed-off-by: Eason Yang <j2anfernee@gmail.com>
+> > >
+> > > ...
+> > >
+> > > > +
+> > > > +static int nct720x_probe(struct i2c_client *client)
+> > > > +{
+> > > > +     const struct i2c_device_id *id =3D i2c_client_get_device_id(c=
+lient);
+> > > > +     struct nct720x_chip_info *chip;
+> > > > +     struct iio_dev *indio_dev;
+> > > > +     int ret;
+> > > > +     u32 tmp;
+> > > > +
+> > > > +     indio_dev =3D devm_iio_device_alloc(&client->dev, sizeof(*chi=
+p));
+> > > > +     if (!indio_dev)
+> > > > +             return -ENOMEM;
+> > > > +     chip =3D iio_priv(indio_dev);
+> > > > +
+> > > > +     if (client->dev.of_node)
+> > > > +             chip->type =3D (enum nct720x_chips)device_get_match_d=
+ata(&client->dev);
+> > > > +     else
+> > > > +             chip->type =3D i2c_match_id(nct720x_id, client)->driv=
+er_data;
+> > >
+> > > I believe there is a I2C wrapper for above.
+> > >
+> >
+> > Got it.
+>
+> Don't pass an enum value as data.  Pass a pointer to a structure that des=
+cribes the particular
+> variant.  The 0 value which tends to end up in enums is an error for devi=
+ce_get_match_data.
+>
 
-sorry, I should write error message. I understand it, please ignore my 
-patch.
+I would pass a pointer to the data structure not id to describe the
+particular variant.
+I would rewrite the code as below,
 
-Best regards,
+static const struct nct720x_adc_model_data nct7201_model_data =3D {
+.model_name =3D "nct7201",
+.channels =3D nct7201_channels,
+.num_channels =3D ARRAY_SIZE(nct7201_channels),
+.vin_max =3D 8,
+};
 
---
-FUKAUMI Naoki
-Radxa Computer (Shenzhen) Co., Ltd.
+static const struct nct720x_adc_model_data nct7202_model_data =3D {
+.model_name =3D "nct7202",
+.channels =3D nct7202_channels,
+.num_channels =3D ARRAY_SIZE(nct7202_channels),
+.vin_max =3D 12,
+};
 
-> Greetings,
-> 
-> -- Sebastian
-> 
->>
->>> tested with ELECOM U3HC-A424P10BK[1]:
->>>
->>> $ lsusb -t
->>> /:  Bus 001.Port 001: Dev 001, Class=root_hub, Driver=ehci-platform/1p, 480M
->>>      |__ Port 001: Dev 002, If 0, Class=Hub, Driver=hub/4p, 480M
->>>          |__ Port 003: Dev 003, If 0, Class=Wireless, Driver=btusb, 12M
->>>          |__ Port 003: Dev 003, If 1, Class=Wireless, Driver=btusb, 12M
->>> /:  Bus 002.Port 001: Dev 001, Class=root_hub, Driver=ohci-platform/1p, 12M
->>> /:  Bus 003.Port 001: Dev 001, Class=root_hub, Driver=ehci-platform/1p, 480M
->>> /:  Bus 004.Port 001: Dev 001, Class=root_hub, Driver=xhci-hcd/1p, 480M
->>> /:  Bus 005.Port 001: Dev 001, Class=root_hub, Driver=xhci-hcd/1p, 5000M
->>>      |__ Port 001: Dev 002, If 0, Class=Mass Storage, Driver=usb-storage, 5000M
->>> /:  Bus 006.Port 001: Dev 001, Class=root_hub, Driver=xhci-hcd/1p, 480M
->>>      |__ Port 001: Dev 002, If 0, Class=Hub, Driver=hub/5p, 480M
->>>          |__ Port 005: Dev 003, If 0, Class=Billboard, Driver=[none], 480M
->>> /:  Bus 007.Port 001: Dev 001, Class=root_hub, Driver=xhci-hcd/1p, 5000M
->>>      |__ Port 001: Dev 002, If 0, Class=Hub, Driver=hub/4p, 5000M
->>>          |__ Port 004: Dev 003, If 0, Class=Mass Storage, Driver=usb-storage, 5000M
->>> /:  Bus 008.Port 001: Dev 001, Class=root_hub, Driver=xhci-hcd/1p, 480M
->>> /:  Bus 009.Port 001: Dev 001, Class=root_hub, Driver=xhci-hcd/1p, 5000M
->>>      |__ Port 001: Dev 002, If 0, Class=Mass Storage, Driver=usb-storage, 5000M
->>>
->>> [1] https://www.elecom.co.jp/products/U3HC-A424P10BK.html
->>>
->>> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
->>> ---
->>>   arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 1 +
->>>   1 file changed, 1 insertion(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->>> index c5776e3b4aab..43fc1f24dfc9 100644
->>> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
->>> @@ -918,6 +918,7 @@ &usbdp_phy0 {
->>>   };
->>>   
->>>   &usbdp_phy1 {
->>> +	rockchip,dp-lane-mux = <2 3>;
->>>   	status = "okay";
->>>   };
->>>   
->>>
->>
->>
->>
->>
+static const struct i2c_device_id nct720x_id[] =3D {
+{ "nct7201", (kernel_ulong_t)&nct7201_model_data },
+{ "nct7202", (kernel_ulong_t)&nct7202_model_data },
+{ }
+};
+MODULE_DEVICE_TABLE(i2c, nct720x_id);
 
+static const struct of_device_id nct720x_of_match[] =3D {
+{
+.compatible =3D "nuvoton,nct7201",
+.data =3D &nct7201_model_data,
+},
+{
+.compatible =3D "nuvoton,nct7202",
+.data =3D &nct7202_model_data,
+},
+{ }
+};
+MODULE_DEVICE_TABLE(of, nct720x_of_match);
+
+> >
+> > > > +
+> > > > +     chip->vin_max =3D (chip->type =3D=3D nct7201) ? NCT7201_VIN_M=
+AX : NCT7202_VIN_MAX;
+> > > > +
+> > > > +     ret =3D of_property_read_u32(client->dev.of_node, "read-vin-d=
+ata-size", &tmp);
+> > > > +     if (ret < 0) {
+> > > > +             pr_err("read-vin-data-size property not found\n");
+> > >
+> > > Please use dev_xxx in your driver code.
+> >
+> > Got it.
+> >
+> > >
+> > >
+> > > Best regards,
+> > > Krzysztof
+> > >
+>
 
