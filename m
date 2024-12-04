@@ -1,63 +1,55 @@
-Return-Path: <devicetree+bounces-126967-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126968-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 545949E3C6E
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 15:16:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BE699E3D78
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 15:59:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1AF06286181
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 14:16:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 38842B3E9F4
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 14:19:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1755C207A20;
-	Wed,  4 Dec 2024 14:15:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 817C31F8AC4;
+	Wed,  4 Dec 2024 14:18:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g+zJ5Drg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s9kRAenX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC5E3205E3B;
-	Wed,  4 Dec 2024 14:15:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59CFF1F759E;
+	Wed,  4 Dec 2024 14:18:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733321740; cv=none; b=BTxkc8sUOhGjsVOljAUEcCdpoIO1kZm487NwPw7UOajzskmxHxp/LOfkjLbZg4E3gUvqYwA9ARdRbpbk0cL0F4tI3/xtJQZxyAl+JLW3U49qfNNYpj2Tl/gcZWRZpWTAyA9wtxq3n0lUIPdDzBxHoEU3BBjZIl+a8zOpziMziP8=
+	t=1733321931; cv=none; b=OrWbS47KWlsVdfkhNZZbuLJDHwgLz9eqPgPfC5X6X5vQjT5sB3Q+4PS7dERQKBXeBQO5pwl6aVL1yaEW1ZtrwF5KvoezYXRnDH51vNOwFF5N3megvAH88ERQ+vu9QpvKpaC9gg79laJXGObORJAkrdcx5CWSkuwdVO+qWpTDtA8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733321740; c=relaxed/simple;
-	bh=dkmyXph1LZLtubmC+Y3gSWPwY6XxfO8QFNuBW9+XxDQ=;
+	s=arc-20240116; t=1733321931; c=relaxed/simple;
+	bh=Fs0kG04zp71DgQHcr3MV0SWPjFXHt61BmC4WUOKacWo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J/5ccO199/0pGiWT5LACLQNWSDBC+ndPq1KJ7j4VE3eiOx1kMkL9wIi8pQljeds+uKl5jYbUsmZV9tg0NOqaynSkuiPLJbdv+tp2tmdIWg9/MAMPH2cAjBfZ78OPOPwxCYizBF94SC5wxOz9h1FYR0VBzViDrKeDmdqBGP+//uM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g+zJ5Drg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02EEAC4CECD;
-	Wed,  4 Dec 2024 14:15:38 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=GV7R9RZpUQwUdJhjtJn6VGHXtQ1XMXuFrUik6r38I8Rg44/Juv6MQU5JrnJUlwhs5RE/wJbh9ADWpGhRtf/U1SCYgKY+myi5l70Jpjnbls4q3wdRCnPIY+8a4JZqPo73W05EARJ4DsMyCCwjppWxs9ba75+RCPEXOqnoXtdYNUA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s9kRAenX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFCABC4CECD;
+	Wed,  4 Dec 2024 14:18:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733321739;
-	bh=dkmyXph1LZLtubmC+Y3gSWPwY6XxfO8QFNuBW9+XxDQ=;
+	s=k20201202; t=1733321930;
+	bh=Fs0kG04zp71DgQHcr3MV0SWPjFXHt61BmC4WUOKacWo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=g+zJ5Drg3iDsdHi1dyoEx3Gj47WWJNUMH1/tSQdHxH2wJ5ilJeW81PK0917pSkpng
-	 jKbllMC7sTZRpYu9Ss86d0dz38y4qKFvzEID45Tt8TQL3jtE0Xe3zVNFqmYS4SW/L+
-	 uuYaDcrY0mS7QqpDmpU+cwd6CJJpBoL5ITmT7wyAaDtAGlnl+tyDlEmSHQJULB4Fyl
-	 gB6a0Q+eni1l934lXTKsFTSpXVuWpjEkE7Z8qobKhiRSFV5biMmUKKWUOI/kBa7qsr
-	 6S6OT9viflvMwzEjCJyfoa/FPKpg8l+5b/ZzxYVaXYs1fR9d2s8hZj7J2mDj1ZrFgu
-	 g4ajx28u8d9XQ==
-Date: Wed, 4 Dec 2024 08:15:37 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, linux-mmc@vger.kernel.org,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	Kevin Hilman <khilman@baylibre.com>,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH v4 3/5] dt-bindings: mmc: controller: remove '|' when not
- needed
-Message-ID: <173332173692.169425.77201239393030979.robh@kernel.org>
-References: <20241128-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v4-0-11d9f9200a59@linaro.org>
- <20241128-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v4-3-11d9f9200a59@linaro.org>
+	b=s9kRAenXpzlwDAcIEs5FRkhITLP8swS9W5xKUHBTxctik2gCJrxIAVtX0d9dGHmaS
+	 OyZjQfPkjtiY82YXgQfqVOYUw9zybklhAxXp9nck8ObzkjHHP72RkXdUxzr1TRkelq
+	 /yRWxRp95Utsog/K4myPF7vc5mkk7oxiqUczQ9Kj/O/jO15fV48VF/38raU0fEp+z8
+	 yQ3fX/XMuGzd4kpC6zRque7Je0CLOS3l4mD7tH05ILbHY6JqZCuzE90rSz1FYCrSij
+	 QeOKJ1bH+uR+oyS5xfoFzovVMCY9WH8RJVYdcnlUInMMuu2Lfmu3tQNg0GqoJM5GCC
+	 1FrrwzhYU0uyQ==
+Date: Wed, 4 Dec 2024 08:18:49 -0600
+From: Rob Herring <robh@kernel.org>
+To: Yang Li <yang.lee@linux.alibaba.com>
+Cc: saravanak@google.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Abaci Robot <abaci@linux.alibaba.com>
+Subject: Re: [PATCH -next] of: base: Add missing parameter description to
+ of_get_next_child_with_prefix()
+Message-ID: <20241204141849.GA169572-robh@kernel.org>
+References: <20241129061155.52874-1-yang.lee@linux.alibaba.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,21 +58,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241128-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v4-3-11d9f9200a59@linaro.org>
+In-Reply-To: <20241129061155.52874-1-yang.lee@linux.alibaba.com>
 
-
-On Thu, 28 Nov 2024 16:16:43 +0100, Neil Armstrong wrote:
-> Adding "|" is used to keep the description format, remove it when
-> not needed after the split into mmc-controller.yaml and
-> mmc-controller-common.yaml files.
+On Fri, Nov 29, 2024 at 02:11:55PM +0800, Yang Li wrote:
+> The function of_get_next_child_with_prefix() lacked a description for
+> the prefix parameter in its documentation. This patch adds the missing
+> description to ensure all parameters are properly documented.
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Reported-by: Abaci Robot <abaci@linux.alibaba.com>
+> Closes: https://bugzilla.openanolis.cn/show_bug.cgi?id=12178
+> Signed-off-by: Yang Li <yang.lee@linux.alibaba.com>
 > ---
->  Documentation/devicetree/bindings/mmc/mmc-controller-common.yaml | 6 +++---
->  Documentation/devicetree/bindings/mmc/mmc-controller.yaml        | 2 +-
->  2 files changed, 4 insertions(+), 4 deletions(-)
-> 
+>  drivers/of/base.c | 1 +
+>  1 file changed, 1 insertion(+)
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-
+Thanks, but already fixed in upstream commit 0d40daa1c136 ("of: base: 
+Document prefix argument for of_get_next_child_with_prefix()").
 
