@@ -1,159 +1,158 @@
-Return-Path: <devicetree+bounces-126796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126795-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 299D39E3316
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 06:32:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9929B9E3314
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 06:32:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E154A284E27
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 05:32:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DC7F283B96
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 05:32:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D05BC184527;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7189617C21E;
 	Wed,  4 Dec 2024 05:32:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="Bvvj9Ls2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gl4Xng5u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAD572F22
-	for <devicetree@vger.kernel.org>; Wed,  4 Dec 2024 05:32:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D550016EB54
+	for <devicetree@vger.kernel.org>; Wed,  4 Dec 2024 05:32:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733290336; cv=none; b=j3LScGGwn23CBRicFFbQpNReCSpn0n0QZ85ieU+hxvw5NpUWe9CgVRwjRzS+25JaurKb+gqV3ChpNyWWDPphexFgH4ke23CwxfqpEfra8w/anRSRpaYzF0Vu3oR7UoACcm0fCjnP+owY7b9KTr5OAnfmC3jEEEUBAE7uI0TdE8Y=
+	t=1733290336; cv=none; b=I2aolsOjNwOPeurxG2QX70Gurfgm1PDgo25/efD79u78iOxmmp+mJzox1YDhj9OPjjn0/sQKLcrZawYdCiPxiA45GQGqQkffPqMMQ24uAk2BIrZWXV0LVHgmLKIRGCfdBKpirbvYPgYEOFQSW/vERfZeqb6HJwcdRSoqH72vQiQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1733290336; c=relaxed/simple;
-	bh=l9IzWt+vT6V6XRfj0p1LOJ4GbGEQ77NKKt2ugO5kTZ4=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=VX2ET9P6JEHtK9s9M+kQUW1KeuyznflOU3JC7xy6vvZpbH9WQ2dSB+v7ABV/ZDAOJs1jsJQV/EjZLChvvAAD9wMIHHABW0yW4s7YFWubnIDYGsBWU4OiZ8c3YJ0Fvr5d5Fl7jYYkJJNCWLZ4Cv+3EuQrBMlWGNft1uNsrQ32lPI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=Bvvj9Ls2; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	bh=7yzDt2THE5UiqFlbGqXqjqL/3debzqNeA00lnjfD6RQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TgDrTu5m4GbGcN/6PZcqKIvSJ4HPG8eg2ENuGnUHqP2c5tGQVR43/xipZZK5CyTf3ZhpqElCFefORYGhaVcdEJoL/byt9tBITJGoOWTKLD6Sfan80SKOEP7iemCkGpTXxmSRLYHPADU/jGOg0EAhsvh77ixiYzbyvoO1iEVjMEc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gl4Xng5u; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-215a0390925so30541315ad.0
+        for <devicetree@vger.kernel.org>; Tue, 03 Dec 2024 21:32:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1733290334; x=1733895134; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=+xH+XGfz/MFflVGjWhhbYcbFyLOKyHtqNKF1p6JTm9o=;
+        b=gl4Xng5u+KyebJym4yGuyIFGO51WJHaDqkq1AhrFE5E44nz4QSBmfRZEhh4I2NVxqW
+         iMn/uuoaqfOW2X27o+JeZn7kTy+QJZ98uDtv1Yi9yqvOBtApxC6EwWE0u8C3zand7IyT
+         9A+UhUsG7b4NucWZ4bFe+md1nkN7aONV5imKtAvVFsB0dMjOHvWWLNxHs5AogkOXhDot
+         m0ZP0qSAimjMYUJDCtvKic1ctJdeMJ505sfwCamgBRvFKi/cI7j5KrdBB0e+/Uv+lYCI
+         V4UjpnSJxUU4pQsjRtmzjbOfFCtqNtmP25UMnKhQeMaWhXFQM/59lNdHD7HU0vSr+dDL
+         HiWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733290334; x=1733895134;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+xH+XGfz/MFflVGjWhhbYcbFyLOKyHtqNKF1p6JTm9o=;
+        b=SKAY6ySOC2qnXGbeSaDJfOJLLxwNUaatvnvuggQ8vN33ePLApSE224kU1ZMGXScoih
+         ZG3n+4AR4F9z+DvkJBjulzmqVlju9wU1zVdIG5U5I7/lk65YUsapMpVU2BIuezEs3Fkm
+         /lY+5RhzFllfXSsP7cRwQ3sM9khCznPy8D2MKSJJAIyoXdjMAdPFTTpgdgiwwyYcZTz5
+         LrQOZ16wuDjCp0LiQkkZiGgCAkpdQIYNFCk88dvm3TbpoIuQNh21fAZgDmeaQ0T0CP+z
+         h8GNeRzLGMTaFB8ch7HvA/xVSgtDUwDVk/2tij6um27FnHcergRLvx9P2LjGSTu0WYZ4
+         pTsw==
+X-Forwarded-Encrypted: i=1; AJvYcCVEVohCx7zpiwcBRJ2oa+VaE7WEGqoBH8ZzUEedgz44n6qiGCdURxTlPpj9CRNeSUz+F5TyL4FH56JG@vger.kernel.org
+X-Gm-Message-State: AOJu0YyjvcHe2bvxTLSKIfUewQrT7Fpz2xW6khmKEQSIvXFHYRFtxgwr
+	Dz9GboWTqnBn8xrKqMCiOg01e69fTQNgbju4MHSOMGYxdM7e9PuIlDOrYrWcPJ0=
+X-Gm-Gg: ASbGncvHTdC8LVFlznO48L/TdzV2jB6ogKilbl5nyWlDQTOd1vtMD/B/y1Jjelq773Q
+	MSOk/EcvphdMS1b2g6co3s3l7Ju2hrkUqX0ro+IDIRhjFeQsNbTL9p7O1i9sFXvUT+ykciLcpa2
+	VkFtaQ0F0ev0eTvJZ/BGjWwDt4ch524eUHGbGVKgNby1eZ38i7ibBcL7TqlyVkwuU1IiNUqIyHJ
+	sQReXJmL+9ciaYpD07hAYbdmuIFfxDdF6ZM2oWhdGRCfjUk1OTS
+X-Google-Smtp-Source: AGHT+IHI2jzyqH0buZt4jEgwjAnflBCcsEvaoj9C3brK3XgP4S7w4dRM1Ni3AlMJnPowOpakPzhdzg==
+X-Received: by 2002:a17:902:da81:b0:215:5d43:6f0e with SMTP id d9443c01a7336-215bd24af1cmr62921975ad.41.1733290334226;
+        Tue, 03 Dec 2024 21:32:14 -0800 (PST)
+Received: from localhost ([122.172.86.146])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-215b08965b4sm28711185ad.180.2024.12.03.21.32.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Dec 2024 21:32:13 -0800 (PST)
+Date: Wed, 4 Dec 2024 11:02:11 +0530
+From: Viresh Kumar <viresh.kumar@linaro.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	upstream@airoha.com
+Subject: Re: [PATCH v5 2/2] cpufreq: airoha: Add EN7581 CPUFreq SMCCC driver
+Message-ID: <20241204053211.6gdogcpi4g3eavw5@vireshk-i7>
+References: <20241203163158.580-1-ansuelsmth@gmail.com>
+ <20241203163158.580-2-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1733290325;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Az5A+rRdCT+65dWELbjmGzucu2S59JBdQaqLrwEHadw=;
-	b=Bvvj9Ls2Cr3DuxHyKHd72SdJVenXMbAFJ+W6dI22xe4NOZOqVRsMrUdJ7Tu5tywLZGXTRe
-	swL2E2QZ5muv5SZ9v0FOu1FbnHJAmPFrWWjeuwga2fjByZUdWAjqLhXjSsZt0U9V332iAl
-	UWC/Tx6NBp1Vkz2gs/5TUEtvo2jVtZL+kGvpaaO39rbl0Pq00LGo/F3g5ge+MwyyyiSy6p
-	zFj+iU/MKxVVNbxgnHCC9mxAgNIT/rJcYEZ2vGwk5AVvPOBiLpeiZ7LRZ2V+EeT8qAm+0S
-	+6feBGlcm8OPgILU5uBFZ/oLtYWPyjMdcJIl0uaRCkMwF/TLnp0BY4t3xkJAQg==
-Date: Wed, 04 Dec 2024 06:32:04 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: FUKAUMI Naoki <naoki@radxa.com>
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, sebastian.reichel@collabora.com,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 1/2] arm64: dts: rockchip: add package_thermal for Radxa
- ROCK 5A/5C
-In-Reply-To: <20241204045447.1036-1-naoki@radxa.com>
-References: <20241204045447.1036-1-naoki@radxa.com>
-Message-ID: <71aa84af7a030e66487076e0976c8cad@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241203163158.580-2-ansuelsmth@gmail.com>
 
-Hello Fukaumi,
-
-Please, see a few comments below.
-
-On 2024-12-04 05:54, FUKAUMI Naoki wrote:
-> add and enable package temperature based active cooling.
-
-I'd suggest that you rewrite the patch summary to read like this:
-
-   arm64: dts: rockchip: Enable automatic fan control on Rock 5A/5C
-
-and to rewrite the patch description like this, which is a recycled
-and a bit improved description of the commit 4a152231b050 ("arm64:
-dts: rockchip: enable automatic fan control on Rock 5B"):
-
-   Link the PWM fan on Radxa ROCK 5A/5C as an active cooling device
-   managed automatically by the thermal subsystem, with a target SoC
-   temperature of 65 oC and a minimum-spin interval from 55 oC to
-   65 oC, to ensure airflow when the system gets warm.
-
-> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
-> ---
-> this patch depends on [1] which depends on [2].
-> 
-> [1] 
-> https://patchwork.kernel.org/project/linux-rockchip/cover/20241128121929.62646-1-naoki@radxa.com/
-> [2] 
-> https://patchwork.kernel.org/project/linux-rockchip/patch/20241119095113.78151-1-naoki@radxa.com/
-> ---
->  .../boot/dts/rockchip/rk3588s-rock-5.dtsi     | 32 ++++++++++++++++++-
->  1 file changed, 31 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5.dtsi
-> b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5.dtsi
-> index a8f40f43c838..a1cac40d439e 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5.dtsi
-> @@ -33,7 +33,7 @@ analog-sound {
->  			  "Headphone", "Headphones";
->  	};
-> 
-> -	fan {
-> +	fan: fan {
-
-It would be better to use "fan: pwm-fan { ... }", to ensure some kind
-of consistency with the other similar portions of board dts files.
-
->  		compatible = "pwm-fan";
->  		#cooling-cells = <2>;
->  		cooling-levels = <0 64 128 192 255>;
-> @@ -379,6 +379,36 @@ rgmii_phy1: ethernet-phy@1 {
->  	};
->  };
-> 
-> +&package_thermal {
-> +	polling-delay = <1000>;
+On 03-12-24, 17:31, Christian Marangi wrote:
+> diff --git a/drivers/cpufreq/airoha-cpufreq.c b/drivers/cpufreq/airoha-cpufreq.c
+> +struct airoha_cpufreq_priv {
+> +	struct clk_hw hw;
+> +	struct generic_pm_domain pd;
 > +
-> +	trips {
-> +		package_fan0: package-fan0 {
-> +			hysteresis = <2000>;
-> +			temperature = <55000>;
-> +			type = "active";
-> +		};
-> +
-> +		package_fan1: package-fan1 {
-> +			hysteresis = <2000>;
-> +			temperature = <65000>;
-> +			type = "active";
-> +		};
-> +	};
-> +
-> +	cooling-maps {
-> +		map0 {
-> +			cooling-device = <&fan THERMAL_NO_LIMIT 1>;
-> +			trip = <&package_fan0>;
-> +		};
-> +
-> +		map1 {
-> +			cooling-device = <&fan 2 THERMAL_NO_LIMIT>;
-> +			trip = <&package_fan1>;
-> +		};
-> +	};
+> +	int opp_token;
+> +	struct dev_pm_domain_list *pd_list;
+> +	struct platform_device *cpufreq_dt;
 > +};
 > +
->  &pcie2x1l2 {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&pcie20x1_2_perstn_m0>,
+> +static long airoha_cpufreq_clk_round(struct clk_hw *hw, unsigned long rate,
+> +				     unsigned long *parent_rate)
+> +{
+> +	return rate;
+> +}
+> +
+> +static unsigned long airoha_cpufreq_clk_get(struct clk_hw *hw,
+> +					    unsigned long parent_rate)
+> +{
+> +	const struct arm_smccc_1_2_regs args = {
+> +		.a0 = AIROHA_SIP_AVS_HANDLE,
+> +		.a1 = AIROHA_AVS_OP_GET_FREQ,
+> +	};
+> +	struct arm_smccc_1_2_regs res;
+> +
+> +	arm_smccc_1_2_smc(&args, &res);
+> +
+> +	/* SMCCC returns freq in MHz */
+> +	return (int)(res.a0 * 1000 * 1000);
 
-The rest of the patch is looking good to me.  Thanks for the patch!
+Why casting to "int" when we can return ulong ?
+
+> +}
+> +
+> +/* Airoha CPU clk SMCC is always enabled */
+> +static int airoha_cpufreq_clk_is_enabled(struct clk_hw *hw)
+> +{
+> +	return true;
+> +}
+> +
+> +static const struct clk_ops airoha_cpufreq_clk_ops = {
+> +	.recalc_rate = airoha_cpufreq_clk_get,
+> +	.is_enabled = airoha_cpufreq_clk_is_enabled,
+> +	.round_rate = airoha_cpufreq_clk_round,
+> +};
+> +
+> +static const char * const airoha_cpufreq_clk_names[] = { "cpu", NULL };
+> +
+> +/* NOP function to disable OPP from setting clock */
+> +static int airoha_cpufreq_config_clks_nop(struct device *dev,
+> +					  struct opp_table *opp_table,
+> +					  struct dev_pm_opp *opp,
+> +					  void *data, bool scaling_down)
+> +{
+> +	return 0;
+> +}
+
+I wonder whats better here. Provide this helper or provide a dummy clk-set-rate
+at the provider itself ?
+
+-- 
+viresh
 
