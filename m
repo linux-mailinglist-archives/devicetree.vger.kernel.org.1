@@ -1,97 +1,170 @@
-Return-Path: <devicetree+bounces-126831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77B529E34E8
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 09:05:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07D519E34ED
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 09:06:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53995161C9D
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 08:05:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8CBC6164289
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 08:06:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82B4419048D;
-	Wed,  4 Dec 2024 08:02:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FcA61YJp"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 697C818C03B;
+	Wed,  4 Dec 2024 08:05:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F25A18F2CF;
-	Wed,  4 Dec 2024 08:02:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C3A5187858
+	for <devicetree@vger.kernel.org>; Wed,  4 Dec 2024 08:05:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733299342; cv=none; b=tl6tV1QkXrS2UfJczPY1EMS3G1Y+x+oJ3rIyZssdbtDYVJbdefPKBQxzN1PnbYNXdnVN780dtA7dSGaUFafT/0MzmrxafSW/5fizcGIVZpmkkyfC43uU9J4+FZomfYaYlUzAd5YnsSk9kw57yPxgBpGl4bauqPW4ZO+NkvvZoJg=
+	t=1733299558; cv=none; b=FC/bYafXAw6BR2N76+OlJjWhxyjW/a4ojvT9Ai8PFI19+RiGyGBE99oqjmvpxnV5p5ehZHa8DyVtnhAbFNeSIOB3aklp8rqPnWT7Bv0oXNrtW30jKv6dNXa/DphOA+F7BC1oc82duRHz6YLFYxnXxjolXx7I+kynWrHLZGGwdQU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733299342; c=relaxed/simple;
-	bh=M+VgsjFFjkbJsHcaeIjSbhxuSnKP2h02k6+chfrtbN4=;
+	s=arc-20240116; t=1733299558; c=relaxed/simple;
+	bh=TFk100t4oChT5j4+F4h+MI9bm4tyQpBRk98BNOzwQfQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mvJuwFVZobmCjAzgj3FgJLnuMUwT3m6lTy5GgBr13uLJb8ItaQMBWvIGQ7N9xcNrx2NF7iXjjI/9gyJjepi1PM6nyrX0Nep3GyZNzCQ6tZZg6FEK41+G9y6LzY+P0zP5IESOwKKT0DHo99uJxAzARWVi6YKV7C4nGQFqEEVJp2Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FcA61YJp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10ECCC4CED1;
-	Wed,  4 Dec 2024 08:02:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733299341;
-	bh=M+VgsjFFjkbJsHcaeIjSbhxuSnKP2h02k6+chfrtbN4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FcA61YJpyB9VroU9zHwG0pkluA4QSt5ZwmkLnHzEKhCQ5Ag9dbBcMc+diJuK9YLkU
-	 AsPWwSjkEJhsNdyYik8FOERb7zUir1QDbWKR7gxgXWjbIetYvdwPJo8bO7t2d+0jew
-	 T7zwhTXLH+39wYN2izalXeOW5XsiWOYgsiXHcTsfiwmfJXRTxhGbXJdz86dr+E80z5
-	 UYR/s8TWLFGHqB0g9gAEyGHfqjKRbWNLDJfofhN20yD85P1N5TQyvhrdGZ16x90VAX
-	 3RF08NVEkU1wrN8csXTVAULzHUfMeNU3Iay5qnElPYqNloS29cOawR+A4hQDyIpCak
-	 IdqF4Wsk6G1Yg==
-Date: Wed, 4 Dec 2024 09:02:18 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>, 
-	Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	 Content-Type:Content-Disposition:In-Reply-To; b=moO9p/k5YZ/QZEjsMIU6LXskxBSs93/TxzIknUMoZS3wD5VsulqEO+os5NnKqPM5sh33Jdi6+NyW41BUJOJx+Tl+4FaxYIQc9Y0P60b6/AYqyxGONBQHoAHPoPC6nbxuuBqWbuKpbdqcWTl4sBynkvD2J6uMtGrQWzqCL5+oJKQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tIkOC-0004wH-5O; Wed, 04 Dec 2024 09:05:40 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tIkOA-001c9E-2o;
+	Wed, 04 Dec 2024 09:05:39 +0100
+Received: from pengutronix.de (pd9e59fec.dip0.t-ipconnect.de [217.229.159.236])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 3FAF8385421;
+	Wed, 04 Dec 2024 08:05:39 +0000 (UTC)
+Date: Wed, 4 Dec 2024 09:05:38 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
+Cc: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
 	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Kuogee Hsieh <quic_khsieh@quicinc.com>, 
-	Mahadevan <quic_mahap@quicinc.com>, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/4] dt-bindings: display: msm: dp-controller: document
- clock parents better
-Message-ID: <hqe2pipkcnxftoq5mvdk36xmkj3ybr3oto6eghimq75rqlncsm@v45smglhedy7>
-References: <20241202-dp_mst_bindings-v1-0-9a9a43b0624a@quicinc.com>
- <20241202-dp_mst_bindings-v1-2-9a9a43b0624a@quicinc.com>
- <bfa857c2-cd74-4fe2-a88c-3b35a58710b0@kernel.org>
- <gpqrugcsyhz32bvip5mgjtcservhral2o5b6c5nz4ocwbjw5uo@eypv4x6jyrdr>
+	Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, NXP S32 Linux <s32@nxp.com>, imx@lists.linux.dev, 
+	Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>, 
+	Enric Balletbo <eballetb@redhat.com>
+Subject: Re: [PATCH v4 3/3] can: flexcan: add NXP S32G2/S32G3 SoC support
+Message-ID: <20241204-chipmunk-of-unmatched-research-e89301-mkl@pengutronix.de>
+References: <20241204074916.880466-1-ciprianmarian.costea@oss.nxp.com>
+ <20241204074916.880466-4-ciprianmarian.costea@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ewgk54txqho2u6s4"
 Content-Disposition: inline
-In-Reply-To: <gpqrugcsyhz32bvip5mgjtcservhral2o5b6c5nz4ocwbjw5uo@eypv4x6jyrdr>
+In-Reply-To: <20241204074916.880466-4-ciprianmarian.costea@oss.nxp.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Tue, Dec 03, 2024 at 03:41:48PM +0200, Dmitry Baryshkov wrote:
-> On Tue, Dec 03, 2024 at 09:01:31AM +0100, Krzysztof Kozlowski wrote:
-> > On 03/12/2024 04:31, Abhinav Kumar wrote:
-> > > Document the assigned-clock-parents better for the DP controller node
-> > > to indicate its functionality better.
-> > 
-> > 
-> > You change the clocks entirely, not "document". I would say that's an
-> > ABI break if it really is a Linux requirement. You could avoid any
-> > problems by just dropping the property from binding.
-> 
-> But if you take a look at the existing usage, the proposed change
-> matches the behaviour. So, I'd say, it's really a change that makes
-> documentation follow the actual hardware.
 
-First, this should be in the commit msg, instead of "document better to
-indicate functionality better".
+--ewgk54txqho2u6s4
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v4 3/3] can: flexcan: add NXP S32G2/S32G3 SoC support
+MIME-Version: 1.0
 
-Second, what is the point of documenting it in the first place if you
-can change it and changing has no impact? So maybe just drop?
+On 04.12.2024 09:49:15, Ciprian Costea wrote:
+> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+>=20
+> Add device type data for S32G2/S32G3 SoC.
+>=20
+> FlexCAN module from S32G2/S32G3 is similar with i.MX SoCs, but interrupt
+> management is different.
+>=20
+> On S32G2/S32G3 SoC, there are separate interrupts for state change, bus
+> errors, Mailboxes 0-7 and Mailboxes 8-127 respectively.
+> In order to handle this FlexCAN hardware particularity, first reuse the
+> 'FLEXCAN_QUIRK_NR_IRQ_3' quirk provided by mcf5441x's irq handling
+> support. Secondly, use the newly introduced
+> 'FLEXCAN_QUIRK_SECONDARY_MB_IRQ' quirk which handles the case where two
+> separate mailbox ranges are controlled by independent hardware interrupt
+> lines.
+>=20
+> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+> ---
 
-Best regards,
-Krzysztof
+Looks good to me!
 
+Unrelated to this patch, but I want to extend the "FLEXCAN hardware
+feature flags" table in "flexcan.h". Can you provide the needed
+information?
+
+> /* FLEXCAN hardware feature flags
+>  *
+>  * Below is some version info we got:
+>  *    SOC   Version   IP-Version  Glitch- [TR]WRN_INT IRQ Err Memory err =
+RTR rece-   FD Mode     MB
+>  *                                Filter? connected?  Passive detection  =
+ption in MB Supported?
+>  * MCF5441X FlexCAN2  ?               no       yes        no       no    =
+    no           no     16
+>  *    MX25  FlexCAN2  03.00.00.00     no        no        no       no    =
+    no           no     64
+>  *    MX28  FlexCAN2  03.00.04.00    yes       yes        no       no    =
+    no           no     64
+>  *    MX35  FlexCAN2  03.00.00.00     no        no        no       no    =
+    no           no     64
+>  *    MX53  FlexCAN2  03.00.00.00    yes        no        no       no    =
+    no           no     64
+>  *    MX6s  FlexCAN3  10.00.12.00    yes       yes        no       no    =
+   yes           no     64
+>  *    MX8QM FlexCAN3  03.00.23.00    yes       yes        no       no    =
+   yes          yes     64
+>  *    MX8MP FlexCAN3  03.00.17.01    yes       yes        no      yes    =
+   yes          yes     64
+>  *    VF610 FlexCAN3  ?               no       yes        no      yes    =
+   yes?          no     64
+>  *  LS1021A FlexCAN2  03.00.04.00     no       yes        no       no    =
+   yes           no     64
+>  *  LX2160A FlexCAN3  03.00.23.00     no       yes        no      yes    =
+   yes          yes     64
+>  *
+>  * Some SOCs do not have the RX_WARN & TX_WARN interrupt line connected.
+>  */
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--ewgk54txqho2u6s4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmdQDU8ACgkQKDiiPnot
+vG/0PAf+LSUwLnlxSvT5Jr4AbggMyghAkIAtN+WSik13Bc58adVUmQxUKXw/pFUT
+bRhErPWGJqhtcMCAb/3fETKKhwEV9tnSGx4AYiHw+8q9mAKiy6CxCd6bKh/AKUmK
+vtgAQ5kJL1OAVDMZ8w9DQ0ncqjYhd25D/Rw0gKI9MvMmQK2jaaInweR2t2iSNTB8
+d9P4B8jklNS2+4r9xRsCKTMbSLt0eGpC1ti7z0FeopPYaVdhZIJ0JmC7zVAXoEx/
+bXkTdyHSHJADnu7hrlAVoSWv8R0fGm3yeK1NTAkcZZwvbBj5zlcbRXPM985auMhc
+7WT9QnQH+31jNMRyjKYIvneKbmwdMw==
+=19Vs
+-----END PGP SIGNATURE-----
+
+--ewgk54txqho2u6s4--
 
