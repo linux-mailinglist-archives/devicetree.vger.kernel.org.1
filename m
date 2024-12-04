@@ -1,200 +1,100 @@
-Return-Path: <devicetree+bounces-126978-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 789E19E3D52
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 15:52:41 +0100 (CET)
-Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 57271160902
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 14:52:38 +0000 (UTC)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D880D20ADCF;
-	Wed,  4 Dec 2024 14:52:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fb/f6iea"
-X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70FB99E3D7C
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 15:59:56 +0100 (CET)
+Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE79E20A5E7;
-	Wed,  4 Dec 2024 14:52:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 367C7281836
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 14:59:55 +0000 (UTC)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DBC720B803;
+	Wed,  4 Dec 2024 14:59:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=mentallysanemainliners.org header.i=@mentallysanemainliners.org header.b="UOqS+q4K"
+X-Original-To: devicetree@vger.kernel.org
+Received: from out-02.smtp.spacemail.com (out-02.smtp.spacemail.com [63.250.43.87])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E79B1B4124;
+	Wed,  4 Dec 2024 14:59:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=63.250.43.87
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733323958; cv=none; b=T0BnPaKvKTOs13uQ9laVlMPQa7OPk9EIjS8IRHiMw5S2X8Rw97JHhcLO8ir1HzXx5/CFvkddFyn0utdKgmUbs3hewyHSclBXJ+NUwvpk8KGehLYfClCGB5RRyDwyii94180m8wynWTVFs18SbF0n3IVl348gMLenVzpmQdbme4w=
+	t=1733324387; cv=none; b=EaEsnqmLdNZmATeWDkvVnhnXxa3SctWtvdnYPDY2sgc4QVYpNdHMjNvLouPsmbA58DrkXVJlf0Ct1iCFlrk9z5bSZ6PXQ0OTRnlEo5WxxopLFBPTHuVNm8hpandi1OPSmGhgPMOizEm/5wCV8ZuOoeFpMGOvWfCeYvl9duQla18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733323958; c=relaxed/simple;
-	bh=q1EI/ZvprzWeZhl8skF4PiVduPC/wxv9wUqtG/H4t0A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C8NUKUneP6Gn5R9aXc1CqtvWTnGCYM0L3ffq7+M1Ti3I0bgRbr1YvLgECtm6UVLyXxVwPzi5YSvdKbjiFCvx/6R7WTgsQGhh9t4tMBtAbX6YNU/d2M+zBJoEwAUvsqQTMu+DSCCbSqiTCPzY83b/nNvVoIDt0Fd4DUZxwxKsD1Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fb/f6iea; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 233CDC4CECD;
-	Wed,  4 Dec 2024 14:52:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733323958;
-	bh=q1EI/ZvprzWeZhl8skF4PiVduPC/wxv9wUqtG/H4t0A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fb/f6ieaBtCN8GEiop0yP175EUVy7Pn3gw34bWjj9fQuqnYC49cUEfsV8iGyiAghi
-	 KVWPFvAEp/hKopU+K5jgI9gffGx8mifzIK5eQJIa4NQKvDx8YUDkJgFzIquR94ylYr
-	 DJjGW/wFTDCzU/ivgUpcRShAsap5DCtpdybeflUAOt/Ruwa4IVPLbsKU8Bf3WyX3wh
-	 8Xp5NuczD6FpmRyZx8a//ssvoTRHiBIJtaVaDYTyTLGGYO5aCvvBHRLW1EkpxxvAaV
-	 ejzhGvSC1zxljUXjXYxwskNLGQu2YPu8wJxfZRdAtpEM8IcKIn//sRWCFcEABviwqP
-	 UzKkrqejgQQyw==
-Date: Wed, 4 Dec 2024 08:52:36 -0600
-From: Rob Herring <robh@kernel.org>
-To: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
-Cc: paul.walmsley@sifive.com, palmer@dabbelt.com,
-	conor.dooley@microchip.com, conor+dt@kernel.org,
-	jassisinghbrar@gmail.com, krzk+dt@kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 3/4] dt-bindings: mailbox: add binding for Microchip
- IPC mailbox controller
-Message-ID: <20241204145236.GA202257-robh@kernel.org>
-References: <20241202141107.193809-1-valentina.fernandezalanis@microchip.com>
- <20241202141107.193809-4-valentina.fernandezalanis@microchip.com>
+	s=arc-20240116; t=1733324387; c=relaxed/simple;
+	bh=NcUhC83cFlqmRmSFrXtC0hbpqm6HSQrM74C2peoi7/Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=c7YTMV9lHrfnBCwm/tFsY6p9U+kbQpb6cwfjCNOoACH4DLfMfnKL30yc76hwPcofV+Oxc4bbrNkxynCQAyCaMOq0l3dnT8jwyKhajXfNlEmmi2fCORjg3vmRWbKboDpRIM8yXUPXo+m/m5dWZh9CsV3Ii4kKAtaTvUkYg8aP5lk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=mentallysanemainliners.org header.i=@mentallysanemainliners.org header.b=UOqS+q4K; arc=none smtp.client-ip=63.250.43.87
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
+Received: from prod-lbout-phx.jellyfish.systems (unknown [198.177.122.3])
+	by smtp.spacemail.com (Postfix) with ESMTPA id 4Y3LKD0JDNz4wVW;
+	Wed, 04 Dec 2024 14:59:44 +0000 (UTC)
+Received: from localhost.localdomain (83.21.102.241.ipv4.supernova.orange.pl [83.21.102.241])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.spacemail.com (Postfix) with ESMTPSA id 4Y3LK501txz8sWV;
+	Wed,  4 Dec 2024 14:59:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+	d=mentallysanemainliners.org; s=spacemail; t=1733324378;
+	bh=NcUhC83cFlqmRmSFrXtC0hbpqm6HSQrM74C2peoi7/Q=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=UOqS+q4KniEzdyIqIrbQMfKgc0SzdFrItO9+xVg61ME9ZaE9lgsvLqwhOKrSATEq0
+	 vNQX0pGhDNdm4wmGHP/RJTa/OdPIgM+A9sHrx8r42t0amx+dPxa0oI4absH8d8rbFl
+	 2Ui2FSARKScF3zQze4f8ybXCwKnj1DKes6guYRJcO/T1Vp9hgxAhj3mZx7LxjcNO7B
+	 M9qfxzAx3uDkPyxWAXUVlhesxk8lERD+ZiraFmYWVx30NwtZldigAxWDlNPmfusCCK
+	 8COsfKiDRt37CNlHtXhTG7pDnrxYvefxWbloyTRGKW5IZ8ui9DtRCKfqHdLvax1BNj
+	 szWjOQ7NBbYNw==
+From: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: soc: samsung: exynos-pmu: Add exynos990-pmu compatible
+Date: Wed,  4 Dec 2024 15:55:58 +0100
+Message-ID: <20241204145559.524932-2-igor.belwon@mentallysanemainliners.org>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20241204145559.524932-1-igor.belwon@mentallysanemainliners.org>
+References: <20241204145559.524932-1-igor.belwon@mentallysanemainliners.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241202141107.193809-4-valentina.fernandezalanis@microchip.com>
 
-On Mon, Dec 02, 2024 at 02:11:06PM +0000, Valentina Fernandez wrote:
-> Add a dt-binding for the Microchip Inter-Processor Communication (IPC)
-> mailbox controller.
-> 
-> Signed-off-by: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
-> ---
->  .../bindings/mailbox/microchip,sbi-ipc.yaml   | 117 ++++++++++++++++++
->  1 file changed, 117 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/microchip,sbi-ipc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mailbox/microchip,sbi-ipc.yaml b/Documentation/devicetree/bindings/mailbox/microchip,sbi-ipc.yaml
-> new file mode 100644
-> index 000000000000..e104573d45c1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mailbox/microchip,sbi-ipc.yaml
-> @@ -0,0 +1,117 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mailbox/microchip,sbi-ipc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip Inter-processor communication (IPC) mailbox controller
-> +
-> +maintainers:
-> +  - Valentina Fernandez <valentina.fernandezalanis@microchip.com>
-> +
-> +description:
-> +  The Microchip Inter-processor Communication (IPC) facilitates
-> +  message passing between processors using an interrupt signaling
-> +  mechanism.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - description:
-> +          Intended for use by software running in supervisor privileged
-> +          mode (s-mode). This SBI interface is compatible with the Mi-V
-> +          Inter-hart Communication (IHC) IP.
-> +        const: microchip,sbi-ipc
-> +
-> +      - description:
-> +          Intended for use by the SBI implementation in machine mode
-> +          (m-mode), this compatible string is for the MIV_IHC Soft-IP.
-> +        const: microchip,miv-ihc-rtl-v2
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    minItems: 1
-> +    maxItems: 5
-> +
-> +  interrupt-names:
-> +    minItems: 1
-> +    maxItems: 5
-> +    items:
-> +      enum:
-> +        - hart-0
-> +        - hart-1
-> +        - hart-2
-> +        - hart-3
-> +        - hart-4
-> +        - hart-5
+Add a dt-binding compatible for the Exynos990 PMU. It's compatible
+with the Exynos7 PMU design. It handles system reboot, as well as
+other system control registers (i.e registers for the USB PHY).
 
-I don't know why Krzysztof said to list them, when all you needed to do 
-was drop the '+':
+Signed-off-by: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+---
+ Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-pattern: "^hart-[0-5]$"
+diff --git a/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml b/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
+index 6cdfe7e059a3..8e6d051d8c97 100644
+--- a/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
++++ b/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
+@@ -55,6 +55,7 @@ properties:
+               - samsung,exynos7885-pmu
+               - samsung,exynos8895-pmu
+               - samsung,exynos9810-pmu
++              - samsung,exynos990-pmu
+               - samsung,exynosautov9-pmu
+               - samsung,exynosautov920-pmu
+               - tesla,fsd-pmu
+-- 
+2.45.2
 
-> +
-> +  "#mbox-cells":
-> +    description: >
-> +      For "microchip,sbi-ipc", the cell represents the global "logical"
-> +      channel IDs. The meaning of channel IDs are platform firmware dependent.
-> +
-> +      For "microchip,miv-ihc-rtl-v2", the cell represents the physical
-> +      channel and does not vary based on the platform firmware.
-> +    const: 1
-> +
-> +  microchip,ihc-chan-disabled-mask:
-> +    description: >
-> +      Represents the enable/disable state of the bi-directional IHC
-> +      channels within the MIV-IHC IP configuration.
-> +
-> +      A bit set to '1' indicates that the corresponding channel is disabled,
-> +      and any read or write operations to that channel will return zero.
-> +
-> +      A bit set to '0' indicates that the corresponding channel is enabled
-> +      and will be accessible through its dedicated address range registers.
-> +
-> +      The actual enable/disable state of each channel is determined by the
-> +      IP block’s configuration.
-> +    $ref: /schemas/types.yaml#/definitions/uint16
-> +    maximum: 0x7fff
-> +    default: 0
-> +
-> +required:
-> +  - compatible
-> +  - interrupts
-> +  - interrupt-names
-> +  - "#mbox-cells"
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: microchip,sbi-ipc
-> +    then:
-> +      properties:
-> +        reg: false
-
-How do you address the question about this? Add an explanation in the 
-schema. No one is going to remember an answer in a review thread. IOW, 
-assume that we don't remember the answer and will just ask the same 
-questions again.
-
-You can do something like:
-
-reg:
-  not:
-    description: ...
-
-or
-
-reg:
-  not: {}
-  description: ...
-
-
-Rob
 
