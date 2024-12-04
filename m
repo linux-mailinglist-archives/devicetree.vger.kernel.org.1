@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-126818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49E8C9E342A
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 08:35:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEC7A9E3432
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 08:39:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F339280A53
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 07:35:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 27548B221B2
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 07:39:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 962AF18C011;
-	Wed,  4 Dec 2024 07:35:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C4C618C034;
+	Wed,  4 Dec 2024 07:39:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QvsfcRlE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lyg8RjUG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65235189BB3;
-	Wed,  4 Dec 2024 07:35:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5E5213D281;
+	Wed,  4 Dec 2024 07:39:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733297742; cv=none; b=in/3wpAqSrlGCt23aH3VmqxRrk2lptGVHI7WsklfaVNEycoxKcgNDU+dt1cF7+2zXFRXYIm9u0AFDGiswXZJImVDzbDDCyC4LQy6Q8Qtz+TVeSPpl3tnFT6XOah/lyk9onoNR7XSDwED17AzPqh8rN2HS0C9s5mwPdrTnJM7XLE=
+	t=1733297979; cv=none; b=NT3fMrlIFMsAjry5/IP6aTAwa3iwuNVh/v9r4RIFUgKhicjkeMHWr8MInFIbUjCCiuTrTQQVH22H+qp4P3JiIvqJGoQXcSAepBxCps42Poip0beTdymEdWZIyFgAvBLsIkOyi+p7KKEGccnZRpXGXycanvCtjShgO/qV4AMxE8M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733297742; c=relaxed/simple;
-	bh=en/j+2A6Gs06WxgQsDr+80HBb8Vp8sTiMeBxY16I3o0=;
+	s=arc-20240116; t=1733297979; c=relaxed/simple;
+	bh=OZXyxFp5uWXU4+gtNDcxN94xsKibQqokm4SOMt4Xt5Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rUzi7YzGOPX3yvmxUEEPgjdvcjmWh3k0qdOIH3HVwQXgtcOqF/JLO8nFHhQwazPlQMO8pgHexW4MXZE2KdW3o1KckxBAZqp3T+zL19pce5ingn1/wjiu7pEnbk+007SecmgjPVvt0i/dnx64MbrZHYDSRuL8RbnUj08zAj0IJj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QvsfcRlE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09B0CC4CED1;
-	Wed,  4 Dec 2024 07:35:39 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=eSHjB/uMFKkfUePk38OjAKtQynghOB8ZH1LWsl/AxJwWAgZfatnuNUF9JDLWepiHi/IsNwbjermdECs2v4IceXfpFEygzBReFeZTguAZBL4VROD2/HtsuqwzLwQO3Eia5AO0lzxOZfwMK5XlGCKV0aI0vce+2aU69JgyvxdXpU4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lyg8RjUG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D646C4CED1;
+	Wed,  4 Dec 2024 07:39:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733297740;
-	bh=en/j+2A6Gs06WxgQsDr+80HBb8Vp8sTiMeBxY16I3o0=;
+	s=k20201202; t=1733297978;
+	bh=OZXyxFp5uWXU4+gtNDcxN94xsKibQqokm4SOMt4Xt5Y=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QvsfcRlEzlaEF8nigmjLJnGG5aZr5IKqy2ac31Z0eTETrFO10BKzreLOFxeM5DnfX
-	 R0vDcmMZN3HA/Chn93mwdxs2MFx7RFyPvREl9n6WRhzKMJRzc3ogRmu734zMJNFEPG
-	 YieZfxsC4zHg9cPEEVwOUbMvReH2OfNJEjg0IMLXhig4xzXAPJUCG2FcwEgxZfdql4
-	 PUaKTsOMxfdgjhRFnLrSRqhyUyk5roWfE+P8/9qDtTVQBY34bFT++DLsuLFT7n/d6w
-	 LuHFeuaUr247O2ZxM/mfo4AYvB4jJ6hRTqCQvgElTS0PC8SjV2qLuTFqwmny9oXtZU
-	 06fFhlEcVNQvQ==
-Date: Wed, 4 Dec 2024 08:35:37 +0100
+	b=lyg8RjUGEl2gykO3cMw2tW7YE9qGqj3QwcLCyiSYGF8nZakDz4PXSmeILOTBxhian
+	 nTYR9rhzSDSt5uTlCPM/pP6n2XiPQMn8tB3oPMAZic+P4gyILBUzUZHMElyT9qmUUW
+	 hJr8S2Twk6DORz+F+XqCe3Tf3OvXY0txcULPWNW/vANxL5EnEg/d07W2hGt3b860ID
+	 VqFKGOqt+kTmlRbvkxxdBmdzlG3YNEEW72B/Rj9oU5lb5apCGLOAsLqMLZhyOiggX0
+	 w050em0y8RPkWSFtU6v/tfkAD5eG2er6wPX5c5Q1agAQ7GVKYLrt951bkKGLd7WSQZ
+	 3fEA8Rr7Rvpqg==
+Date: Wed, 4 Dec 2024 08:39:34 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Frank Wunderlich <linux@fw-web.de>
-Cc: Linus Walleij <linus.walleij@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Sean Wang <sean.wang@kernel.org>, 
-	Frank Wunderlich <frank-w@public-files.de>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v5 3/5] dt-bindings: pinctrl: add binding for MT7988 SoC
-Message-ID: <iwmnxlqpaijvr4kmzwk3elacqj5ukqlchfs67ca6c6gxrycpbb@pc6a6scqkdi5>
-References: <20241202110045.22084-1-linux@fw-web.de>
- <20241202110045.22084-4-linux@fw-web.de>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, quentin.schulz@cherry.de, 
+	sebastian.reichel@collabora.com, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	dse@thaumatec.com, Heiko Stuebner <heiko.stuebner@cherry.de>, 
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v5 1/2] dt-bindings: phy: Add Rockchip MIPI C-/D-PHY
+ schema
+Message-ID: <mdlcm57lway2wqwh7tp6bj6mi3nlwuaeadbsmgx3h6kcfdisq5@76ikce4yqfs4>
+References: <20241203164934.1500616-1-heiko@sntech.de>
+ <20241203164934.1500616-2-heiko@sntech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,37 +63,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241202110045.22084-4-linux@fw-web.de>
+In-Reply-To: <20241203164934.1500616-2-heiko@sntech.de>
 
-On Mon, Dec 02, 2024 at 12:00:37PM +0100, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
-> 
-> This adds bindings for MT7988 pinctrl driver.
-> 
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> ---
-> changes in v5 (so not adding RB from Rob given in v4):
-> - do not use MTK_DRIVE_8mA in example
-> - add _0 functions for pwm
->
+On Tue, Dec 03, 2024 at 05:49:31PM +0100, Heiko Stuebner wrote:
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - rockchip,rk3576-mipi-dcphy
+> +      - rockchip,rk3588-mipi-dcphy
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#phy-cells":
+> +    const: 1
+> +    description: |
+> +      Argument is mode to operate in. Supported modes are:
+> +        - PHY_TYPE_DPHY
+> +        - PHY_TYPE_CPHY
+> +      See include/dt-bindings/phy/phy.h for constants.
 
-<form letter>
-This is a friendly reminder during the review process.
 
-It looks like you received a tag and forgot to add it.
+That's the only difference from version I gave review. It is approved
+style of passing phy type/mode, so adding this is not valid reason to
+drop my review tag and request re-review.
 
-If you do not know the process, here is a short explanation: Please add
-Acked-by/Reviewed-by/Tested-by tags when posting new versions, under
-or above your Signed-off-by tag. Tag is "received", when provided
-in a message replied to you on the mailing list. Tools like b4 can help
-here. However, there's no need to repost patches *only* to add the tags.
-The upstream maintainer will do that for tags received on the version
-they apply.
-
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
-
-If a tag was not added on purpose, please state why and what changed.
-</form letter>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
