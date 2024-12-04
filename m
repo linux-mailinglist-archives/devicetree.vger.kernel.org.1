@@ -1,169 +1,187 @@
-Return-Path: <devicetree+bounces-127143-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127147-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD2349E4890
-	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 00:19:26 +0100 (CET)
-Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 727809E48C0
+	for <lists+devicetree@lfdr.de>; Thu,  5 Dec 2024 00:24:46 +0100 (CET)
+Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6CA78281D37
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 23:19:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D7D331880422
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 23:24:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 815802066FF;
-	Wed,  4 Dec 2024 23:18:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C2731F03CB;
+	Wed,  4 Dec 2024 23:24:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JoUHepWO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GiOWzsli"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE721202C59;
-	Wed,  4 Dec 2024 23:18:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7079119DFB4;
+	Wed,  4 Dec 2024 23:24:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733354336; cv=none; b=jCDh8WSb+qZ5QmwWiU6ubOAii2ZAsdwozTk0y3XgF7JmmlZdwuvGyd7kmvelwQ1UpqJuL5qfOvYS2Ti2Vqi83VI6kR0zqyu6R044ULVXc5pWUbycDdUZzcSMj73JY6Sc+rKaYUnawJlbq7+carEDh7j914R9VvDhGG/iONAMW+k=
+	t=1733354682; cv=none; b=CXtwid035kuDxPWIbFjlHHNyNLUJMGhen/zDu527eQP8P3hC8X2T6jssH5Mc7Yv+XdGkdiL/rCqXYPu4LL9ZqHoHMvXv+ucfznnAZr1gKwW+xOxS+9phS+HTq+xSRBAPGgGI85UHYBbj7LitX5pM58mmKWhbrLXgKC4u+Tb7yZA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733354336; c=relaxed/simple;
-	bh=fQ5Sm9gJIHB6p616DwV7mMw4vnJJ0bo3tcHNWh+Kj2Y=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=gXcuMZPrkJf3kdkwJ1W6DQvJknIA1NGdr0w6kulmw+WpWo+UBkV5FztPxsAi53eryw6hKmFPnQAhQRqiy6YatgkO0YS92Wk6igrScTfhb0DWmTYG9j9dn0MFqFk4xi3wcK5qnLuwE4xa1xstJBhoT+GwJX6rnDKeWpYWQBW89nA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=JoUHepWO; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B4DMBiZ020088;
-	Wed, 4 Dec 2024 23:18:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	bZj1RaIR689iBjQPsydrspqYQr9x5Ze6T2G/5ThnrAU=; b=JoUHepWOqZb+uhhF
-	A0iLnT1qMsDyWFtNMor4TCISE7HIO+hO/WPTCzgvHaBjnl15j1YyqiWHHb/CwTfz
-	b4olG26NXtyySWd6GnhcGgfHNalTDww4SU2dwBeUDyJEmcBmjcVWY/MF2kkbRsgp
-	5rQHqaKE7YAAZ/EdXaDtPTEb/PHhbTAwMXPW8e8YXrSSAqEp5/9S/nmYVmnBS/kS
-	A/1gjp3jzIj62GLc8HU3TiIWCsHsfOT3M+9Xu/cAZ7Wzge0KRcrh8sjdxciwfK8l
-	QQ+bZ1yf2t91mmq7j0WqimGXRWEl5mi9mNqHkHlDgF9+JELVo/zCgbl0DOAE7hPL
-	AWGlEw==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43a3excndv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 04 Dec 2024 23:18:46 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B4NIk3l003186
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 4 Dec 2024 23:18:46 GMT
-Received: from hu-molvera-lv.qualcomm.com (10.49.16.6) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 4 Dec 2024 15:18:44 -0800
-From: Melody Olvera <quic_molvera@quicinc.com>
-Date: Wed, 4 Dec 2024 15:18:07 -0800
-Subject: [PATCH v3 7/7] arm64: defconfig: Enable SM8750 SoC base configs
+	s=arc-20240116; t=1733354682; c=relaxed/simple;
+	bh=n6tt8G5iTvpqN8Ai25XZii/0NhY4FJ0gg4/pPLwKCLU=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:To:Date; b=Sx71rXZHyQ4Ap2iTmMrU57+u42DO8jZBYrds8KFX9HuMlFy3UrqrKakcON6fncvLW9xMDarUvGwCLR/8FK3GixGI2lq2wtwmmvHG1uvjayM9UiEkh51LfpcDc1WZcdY2TTUO5e+6I4IRhWAJAXXDnfwku/NevRYY8lYgBgfyFhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GiOWzsli; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39D87C4CECD;
+	Wed,  4 Dec 2024 23:24:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733354682;
+	bh=n6tt8G5iTvpqN8Ai25XZii/0NhY4FJ0gg4/pPLwKCLU=;
+	h=In-Reply-To:References:Subject:From:To:Date:From;
+	b=GiOWzsliDjYjlm7BEB7r0ofwLpgEMaFF1CGsnuzGfzn3rh9A2v2GqkccSbrv1sJiB
+	 nyNb6EBSmgIV/FNj23TTr9go6o8Y2kTC/gUtGyOX55nD8WrRXMiINDLLtIz1vJCjY4
+	 d6iBZmpUJB5yp2lADEAQO1ulCBnKanstPMRIATkRj0xBuSiodEyezHFGjBjztzfPYk
+	 6/AB26dA+ZB0Pml+u0UUDE/kS747yKT0oGfF53KrQ7o1hQLesFLCVxrCnYaTbGSyud
+	 NKxTGfE5Iz2YYqKLPlRSbG7CA+RK4C1SVmWivF3EZ+lr4wU+fIYubbzTqyl/AGgQt9
+	 N3iRPScMm7DFw==
+Message-ID: <9ccfb478d9a122db6c634e9559e211ff.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20241204-sm8750_master_dt-v3-7-4d5a8269950b@quicinc.com>
-References: <20241204-sm8750_master_dt-v3-0-4d5a8269950b@quicinc.com>
-In-Reply-To: <20241204-sm8750_master_dt-v3-0-4d5a8269950b@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas
-	<catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        "Satya Durga
- Srinivasu Prabhala" <quic_satyap@quicinc.com>,
-        Trilok Soni
-	<quic_tsoni@quicinc.com>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Melody Olvera <quic_molvera@quicinc.com>,
-        Raviteja Laggyshetty
-	<quic_rlaggysh@quicinc.com>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1733354321; l=1815;
- i=quic_molvera@quicinc.com; s=20241204; h=from:subject:message-id;
- bh=fQ5Sm9gJIHB6p616DwV7mMw4vnJJ0bo3tcHNWh+Kj2Y=;
- b=YgrACuve7a7tevFTBV9FLSRN1H2J5rAqNu4Ne7uH6mcsoCfncsT9uFgswuyy12blvmYP10uQV
- 2bDVHBmUy8jCSiXfBbFuvGec9cs3Fb/RgOEQoxxsnNo46DUBYalJ+MB
-X-Developer-Key: i=quic_molvera@quicinc.com; a=ed25519;
- pk=1DGLp3zVYsHAWipMaNZZTHR321e8xK52C9vuAoeca5c=
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: n64WWdWALakD70dBcEHetR95NUzkXXX6
-X-Proofpoint-GUID: n64WWdWALakD70dBcEHetR95NUzkXXX6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
- mlxlogscore=758 clxscore=1015 phishscore=0 adultscore=0 suspectscore=0
- malwarescore=0 spamscore=0 priorityscore=1501 impostorscore=0 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2412040179
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <OS8PR06MB75419637D55A022300E00850F2352@OS8PR06MB7541.apcprd06.prod.outlook.com>
+References: <20241028053018.2579200-1-ryan_chen@aspeedtech.com> <20241028053018.2579200-4-ryan_chen@aspeedtech.com> <287924eed186e3b6b52cd13bcf939ab6.sboyd@kernel.org> <SI6PR06MB7535F5D22E3FCCF5C610B307F2552@SI6PR06MB7535.apcprd06.prod.outlook.com> <a68516df98c8b8fb80f094e6e55fcb8d.sboyd@kernel.org> <OS8PR06MB75419637D55A022300E00850F2352@OS8PR06MB7541.apcprd06.prod.outlook.com>
+Subject: RE: [PATCH v7 3/3] clk: aspeed: add AST2700 clock driver.
+From: Stephen Boyd <sboyd@kernel.org>
+To: Ryan Chen <ryan_chen@aspeedtech.com>, andrew@codeconstruct.com.au, conor+dt@kernel.org, devicetree@vger.kernel.org, dmitry.baryshkov@linaro.org, joel@jms.id.au, krzk+dt@kernel.org, lee@kernel.org, linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, mturquette@baylibre.com, p.zabel@pengutronix.de, robh@kernel.org
+Date: Wed, 04 Dec 2024 15:24:40 -0800
+User-Agent: alot/0.12.dev1+gaa8c22fdeedb
 
-Enable GCC, TCSRCC, Pinctrl and Interconnect configs for Qualcomm's
-SM8750 SoC which is required to boot SM8750 MTP/QRD boards to a
-console shell. The configs are required to be marked as builtin
-and not modules due to the console driver dependencies.
+Quoting Ryan Chen (2024-12-01 19:12:01)
+> > > > Subject: Re: [PATCH v7 3/3] clk: aspeed: add AST2700 clock driver.
+> > > >
+> > > > Quoting Ryan Chen (2024-10-27 22:30:18)
+> > > > > diff --git a/drivers/clk/clk-ast2700.c b/drivers/clk/clk-ast2700.c
+> > > > > new file mode 100644 index 000000000000..db9ee5031b7c
+> > > > > --- /dev/null
+> > > > > +++ b/drivers/clk/clk-ast2700.c
+> > > > > @@ -0,0 +1,1513 @@
+> > > > > +// SPDX-License-Identifier: GPL-2.0
+> > [...]
+> > > > > +struct ast2700_clk_info {
+> > > > > +       const char *name;
+> > > > > +       const char * const *parent_names;
+> > > >
+> > > > Please don't use strings for parent names.
+> > > Sorry, do you mean use clk_parent_data struct for parent?
+> > >         +const struct clk_parent_data   parent;         /* For gate */
+> > >         +const struct clk_parent_data   *parents;               /*
+> > For mux */
+> >=20
+> > Yes.
+> And I find a better way for parent_data. The following is my modification=
+.=20
+> And parent_data will be union data structure. Like following.
+> Is this good direction?=20
 
-Co-developed-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
-Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
-Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/configs/defconfig | 4 ++++
- 1 file changed, 4 insertions(+)
+Looks OK.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 6beb0b5efd2e693b826d4a3106d4c4b4582d1927..b7a039f3d763b5723cb21810a649281c24b0f2f1 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -630,6 +630,7 @@ CONFIG_PINCTRL_SM8350=y
- CONFIG_PINCTRL_SM8450=y
- CONFIG_PINCTRL_SM8550=y
- CONFIG_PINCTRL_SM8650=y
-+CONFIG_PINCTRL_SM8750=y
- CONFIG_PINCTRL_X1E80100=y
- CONFIG_PINCTRL_QCOM_SPMI_PMIC=y
- CONFIG_PINCTRL_LPASS_LPI=m
-@@ -1361,6 +1362,7 @@ CONFIG_SM_GCC_8350=y
- CONFIG_SM_GCC_8450=y
- CONFIG_SM_GCC_8550=y
- CONFIG_SM_GCC_8650=y
-+CONFIG_SM_GCC_8750=y
- CONFIG_SM_GPUCC_6115=m
- CONFIG_SM_GPUCC_8150=y
- CONFIG_SM_GPUCC_8250=y
-@@ -1370,6 +1372,7 @@ CONFIG_SM_GPUCC_8550=m
- CONFIG_SM_GPUCC_8650=m
- CONFIG_SM_TCSRCC_8550=y
- CONFIG_SM_TCSRCC_8650=y
-+CONFIG_SM_TCSRCC_8750=y
- CONFIG_SM_VIDEOCC_8250=y
- CONFIG_QCOM_HFPLL=y
- CONFIG_CLK_GFM_LPASS_SM8250=m
-@@ -1650,6 +1653,7 @@ CONFIG_INTERCONNECT_QCOM_SM8350=y
- CONFIG_INTERCONNECT_QCOM_SM8450=y
- CONFIG_INTERCONNECT_QCOM_SM8550=y
- CONFIG_INTERCONNECT_QCOM_SM8650=y
-+CONFIG_INTERCONNECT_QCOM_SM8750=y
- CONFIG_INTERCONNECT_QCOM_X1E80100=y
- CONFIG_COUNTER=m
- CONFIG_RZ_MTU3_CNT=m
+>=20
+> #define DIVIDER_CLK(_id, _name, _parent, _reg, _shift, _width, _div_table=
+) \
+>         [_id] =3D { \
+>                 .type =3D CLK_DIVIDER, \
+>                 .name =3D _name, \
+>                 .data =3D { \
+>                         .div =3D { \
+>                                 .parent =3D _parent, \
+>                                 .reg =3D _reg, \
+>                                 .bit_shift =3D _shift, \
+>                                 .bit_width =3D _width, \
+>                                 .div_table =3D _div_table, \
+>                         }, \
+>                 }, \
+>         }
+> struct ast2700_clk_info {
+>         const char *name;
+>         u8 clk_idx;
+>         u32 reg;
+>         u32 type;
+>         union {
+>                 struct ast2700_clk_fixed_factor_data factor;
+>                 struct ast2700_clk_fixed_rate_data rate;
+>                 struct ast2700_clk_gate_data gate;
+>                 struct ast2700_clk_div_data div;
+>                 struct ast2700_clk_pll_data pll;
+>                 struct ast2700_clk_mux_data mux;
+>         } data;
+> };
+>=20
+> struct ast2700_clk_div_data {
+>         const struct clk_div_table *div_table;
+>         const struct clk_parent_data *parent;
+>         u8 bit_shift;
+>         u8 bit_width;
+>         u32 reg;
+> };
+>=20
+> static const struct ast2700_clk_info ast2700_scu0_clk_info[] __initconst =
+=3D {
+> ...........................
+>         DIVIDER_CLK(SCU0_CLK_AHB, "soc0-ahb", soc0_ahbmux,
 
--- 
-2.46.1
+Can you also show what soc0_ahbmux is?
 
+>                     SCU0_HWSTRAP1, 5, 2, ast2700_hclk_div_table),
+> ......................
+> >=20
+> > >
+> > > >
+> > > > > +       const struct clk_div_table *div_table;
+> > > > > +       unsigned long fixed_rate;
+> > > > > +       unsigned int mult;
+> > > > > +       unsigned int div;
+> > > > > +       u32 reg;
+> > > > > +       u32 flags;
+> > > > > +       u32 type;
+> > > > > +       u8 clk_idx;
+> > > > > +       u8 bit_shift;
+> > > > > +       u8 bit_width;
+> > > > > +       u8 num_parents;
+> > > > > +};
+> > > > > +
+> > > > [...]
+> > > > > +
+> > > > > +static const struct clk_div_table ast2700_clk_div_table2[] =3D {
+> > > > > +       { 0x0, 2 },
+> > > > > +       { 0x1, 4 },
+> > > > > +       { 0x2, 6 },
+> > > > > +       { 0x3, 8 },
+> > > > > +       { 0x4, 10 },
+> > > > > +       { 0x5, 12 },
+> > > > > +       { 0x6, 14 },
+> > > > > +       { 0x7, 16 },
+> > > >
+> > > > Isn't this the default divider setting for struct clk_divider?
+> > > Sorry, I don't catch your point.
+> > > the SoC do have default divider setting. But it can be modified.
+> > > And also have different divider table setting.
+> >=20
+> > I mean that this is the way that struct clk_divider works already. So y=
+ou don't
+> > need to make the clk_div_table array for what is supported in code.
+>=20
+> Sorry, I understand your point. But I trace the code didn't get any clue.=
+ "clk_divider work already".
+> finally function call will be __clk_hw_register_divider
+> https://github.com/torvalds/linux/blob/master/drivers/clk/clk-divider.c#L=
+589
+> It still need table point need to address. Can you give me more direction=
+ or example?
+>=20
+
+The 'table' member is optional. When the table is NULL, we treat each
+number that fits into the divider field width as a divider. It may be
+CLK_DIVIDER_EVEN_INTEGERS that you have here though.
 
