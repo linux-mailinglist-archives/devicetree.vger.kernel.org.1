@@ -1,112 +1,249 @@
-Return-Path: <devicetree+bounces-127116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127117-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34C209E472C
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 22:48:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F8FF9E4756
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 23:01:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0FF70169590
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 21:48:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D48816A6D3
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 22:01:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CD3318FDC8;
-	Wed,  4 Dec 2024 21:48:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 308D6192D7E;
+	Wed,  4 Dec 2024 22:01:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eCq04lhb"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="bp2KUPjQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.smtpout.orange.fr (smtp-17.smtpout.orange.fr [80.12.242.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C82618C900;
-	Wed,  4 Dec 2024 21:48:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00CB11922CC;
+	Wed,  4 Dec 2024 22:01:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733348934; cv=none; b=RbPuijSOadbjL0fSvUPIGt7Q0of6zvTF+DDum19e6BmVHhqz8Th1vzib2K60HcwsTJyEqPAiLM6ZGX0bwmjrvgyltUuvHmwRTNZV37k0Had/b5LV518LeWDvPPhwx9SSwSwQ6tjHwskGS3uMM9QjgWEz2/URv3QAm+LOcqHYUBk=
+	t=1733349669; cv=none; b=bFlXtJs0s6AwvdFhXuWCxsS93bLblm0PwPwgV9uT1ltaIzcM0KwTVLRcMSlJeE6Fnh4GosDr4dUxvjJEVVOwmawBIMj9c0L2gkHzVST+to64kSL8fnmitF+mCFNsrBL0j0GYvmbFolH+Do/B5cD24kK7KfY12L2D3y7EwM+8GpU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733348934; c=relaxed/simple;
-	bh=bYet3lSnC6WeIGaeITC0Oaz3L3iKdeow2WxHvY63XEE=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=A1gc5Jnfe20LMQ8WasM1ogRL913fZ4TZpXokNUXM3uFFeBB3tkgLbxSnTq0wmQU7WHBwhJL70CO3EzjiWa6I+9i/8nra+0bvU/pyS31d9uuWhyH7GBXpAmuI25yihDHJ2PFtWSNkoyIYnWVQpQhQUcfbVQ5v7MBqgXWzpH4KYDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eCq04lhb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FC94C4CECD;
-	Wed,  4 Dec 2024 21:48:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1733348933;
-	bh=bYet3lSnC6WeIGaeITC0Oaz3L3iKdeow2WxHvY63XEE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=eCq04lhbsw7EWb1lKqd2nOEKJlg3s1EphiHrA9QhejSdCBB2PAaWfmwo0kRkJaWpJ
-	 Wmjg4lYdYcp/BtEicaWL6K2zQUNNLsCb2Agjt2YEkRrE6mm156S9nAml+vep7QchCD
-	 ImFYiagi7yckXvor1TnOdK3B3ILwXrV5x/QQnYbLQgssGeUQMALIt9u439r3o+i/gx
-	 k7aVYgqQrzAMKaRlHbG4kVvIky9Geu5famIrWJNW/Zb3yr35Pnc8lAq2VsFRCcjCIA
-	 l0SepF+2YXvZcobavLYpI1ArFsziNrFx41yCgUzukW1XrbV5cdBB1odL8SPx1Ydyzf
-	 hUutvSTb4sUgQ==
-Date: Wed, 4 Dec 2024 15:48:52 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, Lizhi Hou <lizhi.hou@amd.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	Allan Nielsen <allan.nielsen@microchip.com>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Steen Hegelund <steen.hegelund@microchip.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v4 6/6] PCI: of: Create device-tree PCI host bridge node
-Message-ID: <20241204214852.GA3017210@bhelgaas>
+	s=arc-20240116; t=1733349669; c=relaxed/simple;
+	bh=657Ovy0HJodj6dPNC/6YLDl4wZSQOJ/3NePzsiUh0lw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cS6bshVhf7qj+zeKtH8//5NvpJRv7VuA+2yPuhkiWrK2gu2fDBdammwpnxm8Rx4gH+VJcqQ2onLk01MHWuk7qZMZ91U11QB/Dx1chZsnv2e2mcN+eBOyZZ5JX6g/7on1IK4I744HXz5La8TkmZqP1kGOZcB0c6yzS1CqYyKD7K8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=bp2KUPjQ; arc=none smtp.client-ip=80.12.242.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [192.168.1.37] ([90.11.132.44])
+	by smtp.orange.fr with ESMTPA
+	id IxPTtIDrcnKDzIxPTtIyVH; Wed, 04 Dec 2024 22:59:54 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1733349594;
+	bh=qmm2EnZh4yKKWPoPQOh3lTfrcYbc7B9Zyo8CHOXMMzI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=bp2KUPjQlR1kM3nSRPoe0C0H/59ejCORfn+6OkR3zVAyB3hI0PSe3/6o3p9XQ0vZS
+	 rNR1h3tpiF4IztjPcltYg7zSQfl6OJwRdW3Z1mMvov+P9yLF+RqZ1Ddy7l6qZqB0dC
+	 pqhVfT9lCzHrrPH0k+H7Vn41HcOj/GLIemh1zYmP/PGcwehnl9Z4n5YMYdEDf96CGj
+	 TZbQrZ+jc/sv+WgMd9bRGVk/T4yFN8EhIP7ixM4oljQj/22te/OsNW0b/wBe6TzCZJ
+	 ISrSME+RlO0aLP9xKNDLWP1bSM1EitsVBX1LS1lpPN7OEzArw2kVTPx536zowLGnR+
+	 RSK8vBYbknHaQ==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Wed, 04 Dec 2024 22:59:54 +0100
+X-ME-IP: 90.11.132.44
+Message-ID: <87e26131-7793-49fc-a2be-73126bce86ba@wanadoo.fr>
+Date: Wed, 4 Dec 2024 22:59:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241202131522.142268-7-herve.codina@bootlin.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 7/8] power: supply: max77705: Add charger driver for
+ Maxim 77705
+To: Dzmitry Sankouski <dsankouski@gmail.com>,
+ Sebastian Reichel <sre@kernel.org>, Chanwoo Choi <cw00.choi@samsung.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+ Hans de Goede <hdegoede@redhat.com>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
+ Purism Kernel Team <kernel@puri.sm>
+Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+ linux-leds@vger.kernel.org
+References: <20241204-starqltechn_integration_upstream-v10-0-7de85e48e562@gmail.com>
+ <20241204-starqltechn_integration_upstream-v10-7-7de85e48e562@gmail.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20241204-starqltechn_integration_upstream-v10-7-7de85e48e562@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Mon, Dec 02, 2024 at 02:15:18PM +0100, Herve Codina wrote:
-> PCI devices device-tree nodes can be already created. This was
-> introduced by commit 407d1a51921e ("PCI: Create device tree node for
-> bridge").
+Le 04/12/2024 à 21:09, Dzmitry Sankouski a écrit :
+> Add driver for Maxim 77705 switch-mode charger (part of max77705
+> MFD driver) providing power supply class information to userspace.
 > 
-> In order to have device-tree nodes related to PCI devices attached on
-> their PCI root bus (the PCI bus handled by the PCI host bridge), a PCI
-> root bus device-tree node is needed. This root bus node will be used as
-> the parent node of the first level devices scanned on the bus. On
-> device-tree based systems, this PCI root bus device tree node is set to
-> the node of the related PCI host bridge. The PCI host bridge node is
-> available in the device-tree used to describe the hardware passed at
-> boot.
+> The driver is configured through DTS (battery and system related
+> settings).
 > 
-> On non device-tree based system (such as ACPI), a device-tree node for
-> the PCI host bridge or for the root bus do not exist. Indeed, the PCI
-> host bridge is not described in a device-tree used at boot simply
-> because no device-tree are passed at boot.
+> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+> 
+> ---
 
-s/do not exist/does not exist/
+Hi,
 
-> +void of_pci_make_host_bridge_node(struct pci_host_bridge *bridge)
+> +static int max77705_check_battery(struct max77705_charger_data *charger, int *val)
 > +{
-> +	struct device_node *np = NULL;
-> +	struct of_changeset *cset;
-> +	const char *name;
+> +	unsigned int reg_data;
+> +	unsigned int reg_data2;
+> +	struct regmap *regmap = charger->regmap;
+> +
+> +
+> +	regmap_read(regmap, MAX77705_CHG_REG_INT_OK, &reg_data);
+> +
+> +	dev_dbg(charger->dev, "CHG_INT_OK(0x%x)\n", reg_data);
+> +
+> +	regmap_read(regmap,
+> +			  MAX77705_CHG_REG_DETAILS_00, &reg_data2);
+
+This can fit on a single line, I think.
+
+> +
+> +	dev_dbg(charger->dev, "CHG_DETAILS00(0x%x)\n", reg_data2);
+> +
+> +	if ((reg_data & MAX77705_BATP_OK) || !(reg_data2 & MAX77705_BATP_DTLS))
+> +		*val = true;
+> +	else
+> +		*val = false;
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static int max77705_get_input_current(struct max77705_charger_data *charger,
+> +					int *val)
+> +{
+> +	unsigned int reg_data;
+> +	int get_current = 0;
+> +	struct regmap *regmap = charger->regmap;
+> +
+> +	regmap_read(regmap,
+> +			  MAX77705_CHG_REG_CNFG_09, &reg_data);
+
+It can fit on a single line, I think.
+
+> +
+> +	reg_data &= MAX77705_CHG_CHGIN_LIM_MASK;
+> +
+> +	if (reg_data <= 3)
+> +		get_current = 100;
+> +	else if (reg_data >= MAX77705_CHG_CHGIN_LIM_MASK)
+> +		get_current = MAX77705_CURRENT_CHGIN_MAX;
+> +	else
+> +		get_current = (reg_data + 1) * 25;
+> +
+> +	*val = get_current;
+> +
+> +	return 0;
+> +}
+> +
+> +static int max77705_get_charge_current(struct max77705_charger_data *charger,
+> +					int *val)
+> +{
+> +	unsigned int reg_data;
+> +	struct regmap *regmap = charger->regmap;
+> +
+> +
+
+No need for to empty lines.
+
+> +	regmap_read(regmap, MAX77705_CHG_REG_CNFG_02, &reg_data);
+> +	reg_data &= MAX77705_CHG_CC;
+> +
+> +	*val = reg_data <= 0x2 ? 100 : reg_data * 50;
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static int max77705_charger_probe(struct platform_device *pdev)
+> +{
+> +	struct power_supply_config pscfg = {};
+> +	struct i2c_client *i2c_chg;
+> +	struct max77693_dev *max77705;
+> +	struct max77705_charger_data *chg;
+> +	struct device *dev, *parent;
+> +	struct regmap_irq_chip_data *irq_data;
 > +	int ret;
 > +
-> +	/*
-> +	 * If there is already a device-tree node linked to the PCI bus handled
-> +	 * by this bridge (i.e. the PCI root bus), nothing to do.
-> +	 */
-> +	if (pci_bus_to_OF_node(bridge->bus))
-> +		return;
+> +	dev = &pdev->dev;
+> +	parent = dev->parent;
+> +	max77705 = dev_get_drvdata(parent);
 > +
-> +	/* The root bus has no node. Check that the host bridge has no node too */
-> +	if (bridge->dev.of_node) {
-> +		pr_err("PCI host bridge of_node already set");
+> +	chg = devm_kzalloc(dev, sizeof(*chg), GFP_KERNEL);
+> +	if (!chg)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, chg);
+> +
+> +	i2c_chg = devm_i2c_new_dummy_device(dev, max77705->i2c->adapter, I2C_ADDR_CHG);
+> +	if (IS_ERR(i2c_chg))
+> +		return PTR_ERR(i2c_chg);
+> +
+> +	chg->regmap = devm_regmap_init_i2c(i2c_chg, &max77705_chg_regmap_config);
+> +	if (IS_ERR(chg->regmap))
+> +		return PTR_ERR(chg->regmap);
+> +
+> +	chg->dev = dev;
+> +
+> +	ret = regmap_update_bits(chg->regmap,
+> +				MAX77705_CHG_REG_INT_MASK,
+> +				MAX77705_CHGIN_IM, 0);
+> +	if (ret)
+> +		return ret;
+> +
+> +	pscfg.of_node = dev->of_node;
+> +	pscfg.drv_data = chg;
+> +
+> +	chg->psy_chg = devm_power_supply_register(dev, &max77705_charger_psy_desc, &pscfg);
+> +	if (IS_ERR(chg->psy_chg))
+> +		return PTR_ERR(chg->psy_chg);
+> +
+> +	max77705_charger_irq_chip.irq_drv_data = chg;
+> +	ret = devm_regmap_add_irq_chip(chg->dev, chg->regmap, max77705->irq,
+> +					IRQF_ONESHOT | IRQF_SHARED, 0,
+> +					&max77705_charger_irq_chip,
+> +					&irq_data);
+> +	if (ret)
+> +		dev_err_probe(dev, ret, "failed to add irq chip\n");
+> +
+> +	chg->wqueue = create_singlethread_workqueue(dev_name(dev));
+> +	if (IS_ERR(chg->wqueue))
+> +		dev_err_probe(dev, PTR_ERR(chg->wqueue), "failed to create workqueue\n");
 
-Can we use dev_err() here?
+Is it fine if chg->wqueue is an ERR?
+I think that max77705_chgin_irq() won't like it.
 
-Bjorn
+Missing return?
+
+Same for the test above. Is it fine to continue if 
+devm_regmap_add_irq_chip() fails?
+
+> +
+> +	INIT_WORK(&chg->chgin_work, max77705_chgin_isr_work);
+> +
+> +	max77705_charger_initialize(chg);
+> +
+> +	ret = devm_add_action_or_reset(dev, max77705_charger_disable, chg);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return max77705_charger_enable(chg);
+> +}
+
+...
+
+CJ
 
