@@ -1,215 +1,169 @@
-Return-Path: <devicetree+bounces-126770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-126771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 417F99E3166
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 03:27:29 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CDA39E317C
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 03:39:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9FBF7B20F5E
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 02:27:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 954ADB2485A
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 02:38:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CFFC29415;
-	Wed,  4 Dec 2024 02:27:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7223142052;
+	Wed,  4 Dec 2024 02:38:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="KHGIcJEO"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="IoInubMZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6CDA848C;
-	Wed,  4 Dec 2024 02:27:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A987E4A1A
+	for <devicetree@vger.kernel.org>; Wed,  4 Dec 2024 02:38:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733279243; cv=none; b=FPk5SMU6QSs8bZTalnPNny7Owu5DhtkGjnoZe8yyhfNYB2l2Ue+yypkZYbTQPX1jvkhg1cpDWZzc3csVSA8DpzOc9eGUu/6mxxAW4ovsEf08I1gvUUI3M5lZb9GI3pwLWVvxAjJHONrDGXglzkevHIPPpzjvQr2d/009s4aTNvI=
+	t=1733279935; cv=none; b=UdUfC416FLgtnSfqaNQ5AcTO5TN11Wgh5PqsXpBLoAa5MP8N23LLDx220aEoHI9/w6qFGca25TeJ8BZ47GRomC5klPNHHFE4iVagfKR0bisfCqbtmWqYja9GNreZTva9VTZ05hjkc2t73DkUuPQJYx71EuGZPkcWgR/zd9XuGls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733279243; c=relaxed/simple;
-	bh=hx7v1B76dY053B26XoQD504O+I06ilPZ43rOw9Yqivc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=enDQ9D3TSA6asxjsTCDn8N2mBrh0b6/7i3DvW0g6uGEQww2aUZbPrB7J95RYYJbXjlSD+jFoCKAsMpmYU8+tu4gDo1ipF2PVr0hHOwCvxzgH5EJOOtm7q3ioYbpvTVbh4z3cUoQA46CvK14s0D8sLc9ow9JycrXbxGjgYI0+xv4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=KHGIcJEO; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4B3F7hKX010056;
-	Wed, 4 Dec 2024 02:27:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4X3SSLIuY8M2ZOHAWH5VFOFsrGomUxA4d6wWDghmVHg=; b=KHGIcJEO1Cvcq7ol
-	vF36q+Wj7SZCeuMXC9JS15Mp5QaORgKzIsWlR+fx8VJZzq6bXZ733jJKT9HLawAY
-	LTgFmad9W9zkFR1SAFvvaXRTS70Og4xftpqIuUHcO4q+ygPoRpLGTB/6tMTctyfV
-	0Tc0GKgBovB6u00iTVkUXA/9HZL80aNOtwbzCcwXXrq7vRMOxvMHveWVBgzGXAgj
-	7N6TnL+5XiAmCS1SHMwSjeYWetwp4T9hVdVyOjeWR3/FmiV9g38tM0jEJRdTyqSh
-	/2sYuUYMhLQ9bLjATMmIi326oRFRsdHgr8tu6P09VnDbvJUExuOdtN1TGjSvziwd
-	FmhZvA==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 43a4by1hpg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 04 Dec 2024 02:27:09 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4B42R854014979
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 4 Dec 2024 02:27:08 GMT
-Received: from [10.216.45.237] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 3 Dec 2024
- 18:26:59 -0800
-Message-ID: <5bb0d96d-0d11-99c2-a569-7c928e0ae4fe@quicinc.com>
-Date: Wed, 4 Dec 2024 07:56:54 +0530
+	s=arc-20240116; t=1733279935; c=relaxed/simple;
+	bh=T1FMb456onK7tNgpsqAO0c9tdE6wfx49yPNJIRqPNhY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Wt7SR69jwDwVKd5bnqDlkBZZ32j32ePOynHshObBzZkcIAdg8GZtAB/f3bLmtGyHN3Dw21YQTans1e2ZIrHYByY45HX/uuAj+cEsB0pxcb0AaEMVm6AL97brCNXHSQICFYxJL06pg3bUyhFHhBCesW2NBpEPasivQVZ5rjLmHy4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=IoInubMZ; arc=none smtp.client-ip=209.85.167.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-53df63230d0so7606344e87.3
+        for <devicetree@vger.kernel.org>; Tue, 03 Dec 2024 18:38:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1733279932; x=1733884732; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=78THJIZs/MA15yj+ru7yg//2Ko53Pnaq+srDYQqZaEg=;
+        b=IoInubMZRzJ4VZK1pCoDN+j2mfSBGtZEfukOLoNItH0AjuPEyhJ7VTtkvbNdSawHQ3
+         EX69p049GMzbaW5QYZu64xR3tmgi3RNbuMMhxTiIN2mPorGePtBjHWU3jsUWmKTL5G0U
+         oiy7kaaUJNoNzy7XoXONGcW+66w6STO9uMUXE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733279932; x=1733884732;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=78THJIZs/MA15yj+ru7yg//2Ko53Pnaq+srDYQqZaEg=;
+        b=fwj1KP874mDlh3pEIEVB2Ikl5qh39AU9Al+RhZ0i9WlIOEjK/0d/dDYQ7NtAZMNC1D
+         ySgVe2lXD2X5OFcMZ/P0Or1n+xob5VBvNRrUMXArCRa95Hg9nF4Eipm5Y187ekikIFpH
+         qZj00B45I2ZHuRUPa6NOtRL2YgyQIOFaOF8UpcaqTLfA2n/sA3EWAhdaUVNEhHhzKZpx
+         qdK+dokIOIe4OhGPCKM47QefbpdUfP2aNYEFw8UQfDB5sBaM/jhIffWW7V5saYGvUIWF
+         6Aq27QVidCY07GN9g+LvZf4C/d/zEPo+Yh/Yl39XWSv70NnLWu7lxFFWGjt4duhGxBrP
+         j/Lw==
+X-Forwarded-Encrypted: i=1; AJvYcCXiGUS7D0UB23u/WSE8e2nK53eW8hQ2Iotid/ZbdJCCoeW2FTGD3uq25gM/9sVwxa0hg7R4kIvDN04e@vger.kernel.org
+X-Gm-Message-State: AOJu0YzzWnVfLCzKvL2Kdo8LRDPR0Jo7UIM0r/y5tTe8CFlhJ2hON6Hh
+	7wTybC+rK8V9MUARDu/FjwFZXCMk73kizXSVJytblmcZwI6v6HUX2MxZWId7YfZPRvX5kwYZ31H
+	hpbrGlHy1iFFas2qIarSNEmA/s3xB846JGGxh
+X-Gm-Gg: ASbGncuxGoCxxU7oGa/Y6R30Gl5UMJbnX09TeuusbmMC6Lv7UUq6hn9+v0BKQB41i41
+	ejYmiq9Xp36lfET7Hdm2bzcXf5zQcLupIfjv67YORDQEaBoLaXLYNe1PvJYc=
+X-Google-Smtp-Source: AGHT+IHuw72icjrfxzdu36itc3o804934USQfay4OuNOvOLlQt8ZUuZrboi9UituymewJ75cgmh/8dMhPio3+m/+Hac=
+X-Received: by 2002:a05:6512:b19:b0:53d:eec6:4622 with SMTP id
+ 2adb3069b0e04-53e12a3523fmr2296114e87.48.1733279931341; Tue, 03 Dec 2024
+ 18:38:51 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH 3/3] PCI: qcom: Enable ECAM feature based on config size
-Content-Language: en-US
-To: Bjorn Helgaas <helgaas@kernel.org>
-CC: <cros-qcom-dts-watchers@chromium.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
-        "Manivannan
- Sadhasivam" <manivannan.sadhasivam@linaro.org>,
-        Lorenzo Pieralisi
-	<lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?=
-	<kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>, <quic_vbadigan@quicinc.com>,
-        <quic_ramkri@quicinc.com>, <quic_nitegupt@quicinc.com>,
-        <quic_skananth@quicinc.com>, <quic_vpernami@quicinc.com>,
-        <quic_mrana@quicinc.com>, <mmareddy@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>
-References: <20241203185940.GA2910223@bhelgaas>
-From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-In-Reply-To: <20241203185940.GA2910223@bhelgaas>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: yUl1Y0VGFPKtIWk0Smd_9C-HNUe7Bts5
-X-Proofpoint-ORIG-GUID: yUl1Y0VGFPKtIWk0Smd_9C-HNUe7Bts5
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 clxscore=1015
- impostorscore=0 suspectscore=0 adultscore=0 phishscore=0 spamscore=0
- priorityscore=1501 malwarescore=0 lowpriorityscore=0 mlxlogscore=999
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2412040020
+References: <20241202045757.39244-1-wenst@chromium.org> <20241203172026.GA1988559-robh@kernel.org>
+In-Reply-To: <20241203172026.GA1988559-robh@kernel.org>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Wed, 4 Dec 2024 10:38:40 +0800
+Message-ID: <CAGXv+5GPacXtcrxJVHUGuRWOSY+k5tn4kvwgu_nkjdQ6=srayQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: soc: fsl: cpm_qe: Limit matching to nodes
+ with "fsl,qe"
+To: Rob Herring <robh@kernel.org>
+Cc: Christophe Leroy <christophe.leroy@csgroup.eu>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linuxppc-dev@lists.ozlabs.org, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Frank Li <Frank.Li@nxp.com>, stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Dec 4, 2024 at 1:20=E2=80=AFAM Rob Herring <robh@kernel.org> wrote:
+>
+> On Mon, Dec 02, 2024 at 12:57:55PM +0800, Chen-Yu Tsai wrote:
+> > Otherwise the binding matches against random nodes with "simple-bus"
+> > giving out all kinds of invalid warnings:
+> >
+> >     $ make CHECK_DTBS=3Dy mediatek/mt8188-evb.dtb
+> >       SYNC    include/config/auto.conf.cmd
+> >       UPD     include/config/kernel.release
+> >       SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+> >       DTC [C] arch/arm64/boot/dts/mediatek/mt8188-evb.dtb
+> >     arch/arm64/boot/dts/mediatek/mt8188-evb.dtb: soc: compatible:0: 'fs=
+l,qe' was expected
+> >           from schema $id: http://devicetree.org/schemas/soc/fsl/cpm_qe=
+/fsl,qe.yaml#
+> >     arch/arm64/boot/dts/mediatek/mt8188-evb.dtb: soc: compatible: ['sim=
+ple-bus'] is too short
+> >           from schema $id: http://devicetree.org/schemas/soc/fsl/cpm_qe=
+/fsl,qe.yaml#
+> >     arch/arm64/boot/dts/mediatek/mt8188-evb.dtb: soc: interrupt-control=
+ler@c000000:compatible:0: 'fsl,qe-ic' was expected
+> >           from schema $id: http://devicetree.org/schemas/soc/fsl/cpm_qe=
+/fsl,qe.yaml#
+> >     arch/arm64/boot/dts/mediatek/mt8188-evb.dtb: soc: interrupt-control=
+ler@c000000:reg: [[0, 201326592, 0, 262144], [0, 201588736, 0, 2097152]] is=
+ too long
+> >           from schema $id: http://devicetree.org/schemas/soc/fsl/cpm_qe=
+/fsl,qe.yaml#
+> >     arch/arm64/boot/dts/mediatek/mt8188-evb.dtb: soc: interrupt-control=
+ler@c000000:#interrupt-cells:0:0: 1 was expected
+> >           from schema $id: http://devicetree.org/schemas/soc/fsl/cpm_qe=
+/fsl,qe.yaml#
+> >     arch/arm64/boot/dts/mediatek/mt8188-evb.dtb: soc: interrupt-control=
+ler@c000000: '#redistributor-regions', 'ppi-partitions' do not match any of=
+ the regexes: 'pinctrl-[0-9]+'
+> >           from schema $id: http://devicetree.org/schemas/soc/fsl/cpm_qe=
+/fsl,qe.yaml#
+> >     arch/arm64/boot/dts/mediatek/mt8188-evb.dtb: soc: 'reg' is a requir=
+ed property
+> >           from schema $id: http://devicetree.org/schemas/soc/fsl/cpm_qe=
+/fsl,qe.yaml#
+> >     arch/arm64/boot/dts/mediatek/mt8188-evb.dtb: soc: 'bus-frequency' i=
+s a required property
+> >           from schema $id: http://devicetree.org/schemas/soc/fsl/cpm_qe=
+/fsl,qe.yaml#
+> >
+> > Fixes: ecbfc6ff94a2 ("dt-bindings: soc: fsl: cpm_qe: convert to yaml fo=
+rmat")
+> > Cc: Frank Li <Frank.Li@nxp.com>
+> > Cc: <stable@vger.kernel.org> # v6.11+
+> > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> > ---
+> >  .../devicetree/bindings/soc/fsl/cpm_qe/fsl,qe.yaml        | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe.ya=
+ml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe.yaml
+> > index 89cdf5e1d0a8..9e07a2c4d05b 100644
+> > --- a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe.yaml
+> > +++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe.yaml
+> > @@ -21,6 +21,14 @@ description: |
+> >    The description below applies to the qe of MPC8360 and
+> >    more nodes and properties would be extended in the future.
+> >
+> > +select:
+> > +  properties:
+> > +    compatible:
+> > +      contains:
+> > +        const: fsl,qe
+> > +  required:
+> > +    - compatible
+>
+> Update your dtschema. The select is no longer necessary. dtbs_check will
+> also run 5x faster.
+
+That did the trick. Thanks Rob!
+
+And sorry for the noise.
 
 
-
-On 12/4/2024 12:29 AM, Bjorn Helgaas wrote:
-> On Sun, Nov 17, 2024 at 03:30:20AM +0530, Krishna chaitanya chundru wrote:
->> Enable the ECAM feature if the config space size is equal to size required
->> to represent number of buses in the bus range property.
->>
->> The ELBI registers falls after the DBI space, so use the cfg win returned
->> from the ecam init to map these regions instead of doing the ioremap again.
->> ELBI starts at offset 0xf20 from dbi.
->>
->> On bus 0, we have only the root complex. Any access other than that should
->> not go out of the link and should return all F's. Since the IATU is
->> configured for bus 1 onwards, block the transactions for bus 0:0:1 to
->> 0:31:7 (i.e., from dbi_base + 4KB to dbi_base + 1MB) from going outside the
->> link through ecam blocker through parf registers.
-> 
-> s/ecam/ECAM/
-> s/dbi/DBI/
-> s/IATU/iATU/ (Seems to be the convention?  Also below)
-> s/parf/PARF/ (I assume an initialism?)
-> 
-> Use conventional format for PCI bus addresses ... I assume "0:0:1"
-> means bus 0, device 0, function 1, which would normally be formatted
-> as "00:00.1" (also below).
-> 
->> +static int qcom_pci_config_ecam_blocker(struct dw_pcie_rp *pp)
->> +{
->> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
->> +	struct qcom_pcie *pcie = to_qcom_pcie(pci);
->> +	u64 addr, addr_end;
->> +	u32 val;
->> +
->> +	/* Set the ECAM base */
->> +	writel(lower_32_bits(pci->dbi_phys_addr), pcie->parf + PARF_ECAM_BASE);
->> +	writel(upper_32_bits(pci->dbi_phys_addr), pcie->parf + PARF_ECAM_BASE_HI);
->> +
->> +	/*
->> +	 * On bus 0, we have only the root complex. Any access other than that
->> +	 * should not go out of the link and should return all F's. Since the
->> +	 * IATU is configured for bus 1 onwards, block the transactions for
->> +	 * bus 0:0:1 to 0:31:7 (i.e from dbi_base + 4kb to dbi_base + 1MB) from
->> +	 * going outside the link.
-> 
-> s/IATU/iATU/ to match other usage.
-> 
-> Use conventional formatting of PCI bus/device/function addresses.
-> 
-> Unless the root bus number is hard-wired to be zero, maybe this should
-> say "root bus" instead of "bus 0"?
-> 
-> There is no architected presence of a PCIe Root Complex as a PCI
-> device.  Maybe this should say "the only device on bus 0 is the *Root
-> Port*"?
-> 
-> Or maybe there's a PCI device with some sort of device-specific
-> interface to Root Complex registers?  But if that were the *only*
-> device on bus 0, there would be no Root Port to reach other devices,
-> so this doesn't seem likely.
-> 
->> +static bool qcom_pcie_check_ecam_support(struct device *dev)
-> 
-> Rename to be an assertion that can be either true or false, e.g.,
-> "ecam_supported".  "Check" doesn't hint about what true/false mean.
-> 
->> +{
->> +	struct platform_device *pdev = to_platform_device(dev);
->> +	struct resource bus_range, *config_res;
->> +	u64 bus_config_space_count;
->> +	int ret;
->> +
->> +	/* If bus range is not present, keep the bus range as maximum value */
->> +	ret = of_pci_parse_bus_range(dev->of_node, &bus_range);
->> +	if (ret) {
->> +		bus_range.start = 0x0;
->> +		bus_range.end = 0xff;
->> +	}
-> 
-> I would have thought the generic OF parsing would already default to
-> [bus 00-ff]?
-> 
-if there is no bus-range of_pci_parse_bus_range is not updating it[1],
-the bus ranges is being updated to default value in
-devm_of_pci_get_host_bridge_resources()[2]
-
-[1]https://elixir.bootlin.com/linux/v6.12.1/source/drivers/pci/of.c#L193
-[2]https://elixir.bootlin.com/linux/v6.12.1/source/drivers/pci/of.c#L347
-
-- Krishna Chaitanya.
->> +	config_res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "config");
->> +	if (!config_res)
->> +		return false;
-> 
-> Move of_pci_parse_bus_range() (if it's needed) down here so it's
-> together with the use of the results.  No point in calling it before
-> looking for "config".
-> 
->> +	bus_config_space_count = resource_size(config_res) >> PCIE_ECAM_BUS_SHIFT;
->> +	if (resource_size(&bus_range) > bus_config_space_count)
->> +		return false;
->> +
->> +	return true;
->> +}
+ChenYu
 
