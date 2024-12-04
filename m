@@ -1,148 +1,179 @@
-Return-Path: <devicetree+bounces-127048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-127050-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CC169E4360
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 19:27:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C12D9E4397
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 19:43:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 11D041616DC
-	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 18:27:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 76B2B163FB8
+	for <lists+devicetree@lfdr.de>; Wed,  4 Dec 2024 18:42:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFDE02066CF;
-	Wed,  4 Dec 2024 18:25:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79A171A8F7F;
+	Wed,  4 Dec 2024 18:42:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hSLCGH1E"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xxz+F7aL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F231202C40;
-	Wed,  4 Dec 2024 18:25:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BEA726AFC;
+	Wed,  4 Dec 2024 18:42:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1733336718; cv=none; b=F6eo1y4QerN2i5djURAqjQq3F8ZVl44ex3r1F67E6h6MK2cHPJ+YgWu2T6T3+7GThQYjg+fbiPY8q+IUrhOYlayvf+9qdCBXW1hVzUmKa7l54e3fND31jPJdjjLl+RO5b7+ZwSJsG9IIbhNxOZ+I4gTs0RwdnhOIjOBBj3B3m4E=
+	t=1733337776; cv=none; b=urbTChR6mVsHjuBzu41RPZykxfw5ytLv+RtS6883/zXIvkJPyWXrZbgrQWYT7FfjHFaSsB6VIuYRe9Qgl59kMGJHvomoigQ9r51J8zAWqwZnfTxBkmMgcIN9KbsWQ88BdjPi2ksSbGo8wIIYB1InZyH1Y+hw4stZUPz/yXbmbeY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1733336718; c=relaxed/simple;
-	bh=iLDUgU8WNcAh/t6tBH4v0q05mowuF+6hmrNXfHJwFoA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=lN34XVfa0HIyZuTOYmJBRKms8KbZL3O3UsWzLwcB6ri6nesXSbhHD+SGWMpETG736oWq6gI5WEn34JckIkwN8/vP52IF6g6DSArXQmIPBvfh7zDiWKN0jPTn5nv1RPD7vExzIXjo/+Ysn7uMrtPX1D5Iv/ntUiwqrtSRJFrH1Vg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hSLCGH1E; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4349dea3e0dso133775e9.3;
-        Wed, 04 Dec 2024 10:25:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1733336715; x=1733941515; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GgoVWnhvP406HqfDsdu4WH7uW2K8Xa/wgeBTdZ1+3jg=;
-        b=hSLCGH1EajdoFhd63eFHHOeunGnprIQEROaMOHighvV4i3wO8lDMPxfJPuLu1XUN3z
-         w2zBMhlQEOBH24uLnT+4mT1DOasF03CBRf2KJuSEcNAf0FpbS6x2asKbfyxqyZ1FSmLi
-         +mUB+H08ACO6a9tQI/nKKJ6RRC6n+kJXcvso/rBETKZUs8Nu7NqB+/6x2QebHJzlhTOC
-         IkMB8APXyV9J//Gy7stUXL/3xWUiL+dFhy8mAzO8EPbwxZbsmBRJKNSFMKVXHRiFm4V7
-         7mAGVKtl97qV/gJKkXmBTrI8KgQ1Kmc96bq44V/LE30nuPcZ+ZVgauxQCUKXSuIhqvHv
-         jIlg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1733336715; x=1733941515;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GgoVWnhvP406HqfDsdu4WH7uW2K8Xa/wgeBTdZ1+3jg=;
-        b=DKbIEoMdO2A5mnMz50468iJj+FsbPr4MB5F0PZbhgC5KWqGUXTXH97ROGvm1k1oFj3
-         S6shz3gSCs92f3QWEnrlR34E4Lx7+0VwUKVoDf1k4WpoToVWJWQI/5AlOO5iCOgJSUu5
-         bRdiQ6kwK74XH2J74eTJVSn/03zXr285XytLM5BLMUQyEK/X/lPxUncjDi5hzOkadz5f
-         UQt5Do7mtChPwsOXEi6oEL12VJBjo6ARuUiRbpjTAy+YRJf2BLs6+vvLxZmzODI+oW1K
-         Sm7F3bjTUwXpkjvawFaQwRtI4eTwPJ8+eyABIJqg8sHCKrDoiJbSL5gOnQAY5BWMc6mX
-         PR/w==
-X-Forwarded-Encrypted: i=1; AJvYcCU1e9RZeKfSFgHiSmpUbq1P2jbR603NnhbHWU08qIcGP2cuDtNxYgjuIC8IvwDdiCqDP4qhvTxgwK0=@vger.kernel.org, AJvYcCU6ApsMBI+MJfwhqVFC/vCo7Vx5fDkUmc6QiqTUbo5qMMYp/+oUHOm2kHYeLMfuNTFdcghjF5pGnfRVAuI3@vger.kernel.org
-X-Gm-Message-State: AOJu0YzapahyMqcwSJPaUmEz80xip829DOtkGtRqWbSE/FW7UA6euN6B
-	ax3GKkzwi2onZFR2JS/ohQyE1zR2o6dN1vGhE3VlNcgwqY+/zenN
-X-Gm-Gg: ASbGncuMe/JkGX7ZSZh0ipsou8AXLqhfyJv1WzrFPsOkUrJq1osgBI1gnyhI4ohaR33
-	akNF9FMso/gl3Fw9r+c/SkP34ljcIIrLlpL6c4WB3mTGDc0hP1Ci3K2qUd3vjFZnLzDocTiSIAP
-	qw8REdZf32iM30k+WnU3LQgUTdOmjejvPlCiOFEhv7ajq/OuXKxvPifMFAdqnKIA2XOwy3iibO2
-	XJLU4myFA7dLZxaeBcUY26KfLVxBcJUDcJHXIQn26gQLQPeQEYey0JsKQ06ZaYaMoayUnOrFaYv
-	9y6gTBNqC0pjgFUqFvjnOmR0v2e2
-X-Google-Smtp-Source: AGHT+IErWUrJvfwAvRKgqHxWUC/Y/1VynWeuYejyRVU2EgvBdjZfbkBC/SO21snZhQAv58/R299m0g==
-X-Received: by 2002:a05:600c:511b:b0:434:a0cb:6d24 with SMTP id 5b1f17b1804b1-434d117123emr25322285e9.3.1733336715440;
-        Wed, 04 Dec 2024 10:25:15 -0800 (PST)
-Received: from 7b58d44c4ff6.v.cablecom.net (84-72-156-211.dclient.hispeed.ch. [84.72.156.211])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434d52cbf57sm31959755e9.39.2024.12.04.10.25.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Dec 2024 10:25:15 -0800 (PST)
-From: Lothar Rubusch <l.rubusch@gmail.com>
-To: lars@metafoo.de,
-	Michael.Hennerich@analog.com,
-	jic23@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	eraretuya@gmail.com,
-	l.rubusch@gmail.com
-Subject: [PATCH v4 09/10] iio: accel: adxl345: prepare channel for scan_index
-Date: Wed,  4 Dec 2024 18:24:50 +0000
-Message-Id: <20241204182451.144381-10-l.rubusch@gmail.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20241204182451.144381-1-l.rubusch@gmail.com>
-References: <20241204182451.144381-1-l.rubusch@gmail.com>
+	s=arc-20240116; t=1733337776; c=relaxed/simple;
+	bh=O/Zhj6xXRdGGJvpcvnu3X4YlT27afIf8vci2UWRYD8w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nKNq59ON518F7X4LtnR/U0/YH/9uFgHsUHHrLZwkWqEmu5BFTQLgjbaBoNCGtK///Y+oNQhuJRuJkSD3pQ9jPDrVqzTCghKP2WsuN+6Oaiwy/HgATutk5HutTkYPjQQ9Kzis39mMXvARWst8UuW1YRXiv6ixIuzj60kORgVeCIs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xxz+F7aL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93FD6C4CECD;
+	Wed,  4 Dec 2024 18:42:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1733337775;
+	bh=O/Zhj6xXRdGGJvpcvnu3X4YlT27afIf8vci2UWRYD8w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Xxz+F7aLLfjGHjIzFprjn4YKE88Bz8lM2bNlz3cjUDmY6I3apxHsBtbz3C5SXVK/F
+	 htBcirayED50YJAv+AV8gz769qUo+jlWDhX0cEFO3cDucmEwmOFLhBqVQBJXYhQWjY
+	 5DpsWBuMSyHSVcZt3j72B8DXFAmsbveyb3wVTP8YXuSGM5KOU0h3ntyCA5N9X23VNP
+	 mFYPY5ir59WCxtkRTiExB4XqFy7jyd21a/QRo5edtDX/IPaddrVidlI5tsT9Jb4HaR
+	 phQExR0YzklauXWG6jQs3gkTs3Lo4FCQugCoICaRAQVytLoWhogmBJpo8w8RCDO/pc
+	 CzwuXbBQYooNA==
+Date: Wed, 4 Dec 2024 12:42:53 -0600
+From: Rob Herring <robh@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	upstream@airoha.com, Ulf Hansson <ulf.hansson@linaro.org>
+Subject: Re: [PATCH v5 1/2] dt-bindings: cpufreq: Document support for Airoha
+ EN7581 CPUFreq
+Message-ID: <20241204184253.GA276662-robh@kernel.org>
+References: <20241203163158.580-1-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241203163158.580-1-ansuelsmth@gmail.com>
 
-Add separate fields for register and index to the channel definition.
-The scan_index is set up with the kfifo in the follow up patches.
+On Tue, Dec 03, 2024 at 05:31:49PM +0100, Christian Marangi wrote:
+> Document required property for Airoha EN7581 CPUFreq .
+> 
+> On newer Airoha SoC, CPU Frequency is scaled indirectly with SMCCC commands
+> to ATF and no clocks are exposed to the OS.
+> 
+> The SoC have performance state described by ID for each OPP, for this a
+> Power Domain is used that sets the performance state ID according to the
+> required OPPs defined in the CPU OPP tables.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
+> ---
+> Changes v5:
+> - Add Reviewed-by tag
+> - Fix OPP node name error
+> - Rename cpufreq node name to power-domain
+> - Rename CPU node power domain name to perf
+> - Add model and compatible to example
+> Changes v4:
+> - Add this patch
+> 
+>  .../cpufreq/airoha,en7581-cpufreq.yaml        | 262 ++++++++++++++++++
+>  1 file changed, 262 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.yaml b/Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.yaml
+> new file mode 100644
+> index 000000000000..7e36fa037e4b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/cpufreq/airoha,en7581-cpufreq.yaml
+> @@ -0,0 +1,262 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/cpufreq/airoha,en7581-cpufreq.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Airoha EN7581 CPUFreq
+> +
+> +maintainers:
+> +  - Christian Marangi <ansuelsmth@gmail.com>
+> +
+> +description: |
+> +  On newer Airoha SoC, CPU Frequency is scaled indirectly with SMCCC commands
+> +  to ATF and no clocks are exposed to the OS.
+> +
+> +  The SoC have performance state described by ID for each OPP, for this a
+> +  Power Domain is used that sets the performance state ID according to the
+> +  required OPPs defined in the CPU OPP tables.
+> +
+> +properties:
+> +  compatible:
+> +    const: airoha,en7581-cpufreq
+> +
+> +  '#clock-cells':
+> +    const: 0
 
-Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
----
- drivers/iio/accel/adxl345_core.c | 15 ++++++++++-----
- 1 file changed, 10 insertions(+), 5 deletions(-)
+You just said no clocks are exposed to the OS.
 
-diff --git a/drivers/iio/accel/adxl345_core.c b/drivers/iio/accel/adxl345_core.c
-index 0696e908bdf..3067a70c54e 100644
---- a/drivers/iio/accel/adxl345_core.c
-+++ b/drivers/iio/accel/adxl345_core.c
-@@ -26,21 +26,26 @@ struct adxl345_state {
- 	u8 intio;
- };
- 
--#define ADXL345_CHANNEL(index, axis) {					\
-+#define ADXL345_CHANNEL(index, reg, axis) {					\
- 	.type = IIO_ACCEL,						\
- 	.modified = 1,							\
- 	.channel2 = IIO_MOD_##axis,					\
--	.address = index,						\
-+	.address = (reg),						\
- 	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |			\
- 		BIT(IIO_CHAN_INFO_CALIBBIAS),				\
- 	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE) |		\
- 		BIT(IIO_CHAN_INFO_SAMP_FREQ),				\
-+	.scan_index = (index),				\
- }
- 
-+enum adxl345_chans {
-+	chan_x, chan_y, chan_z,
-+};
-+
- static const struct iio_chan_spec adxl345_channels[] = {
--	ADXL345_CHANNEL(0, X),
--	ADXL345_CHANNEL(1, Y),
--	ADXL345_CHANNEL(2, Z),
-+	ADXL345_CHANNEL(0, chan_x, X),
-+	ADXL345_CHANNEL(1, chan_y, Y),
-+	ADXL345_CHANNEL(2, chan_z, Z),
- };
- 
- static int adxl345_read_raw(struct iio_dev *indio_dev,
--- 
-2.39.2
+> +
+> +  '#power-domain-cells':
+> +    const: 0
+> +
+> +  operating-points-v2: true
+> +
+> +required:
+> +  - compatible
+> +  - '#clock-cells'
+> +  - '#power-domain-cells'
+> +  - operating-points-v2
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    / {
+> +        model = "Airoha EN7581 Evaluation Board";
+> +        compatible = "airoha,en7581-evb", "airoha,en7581";
+> +
+> +        #address-cells = <2>;
+> +      	#size-cells = <2>;
 
+mixed tab and spaces.
+
+Can't I just go read the actual .dts files if I want to see 
+*everything*? Examples should generally be just what the schema covers.
+
+> +
+> +        cpus {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            cpu0: cpu@0 {
+> +                device_type = "cpu";
+> +                compatible = "arm,cortex-a53";
+> +                reg = <0x0>;
+> +                operating-points-v2 = <&cpu_opp_table>;
+> +                enable-method = "psci";
+> +                clocks = <&cpu_pd>;
+> +                clock-names = "cpu";
+> +                power-domains = <&cpu_pd>;
+> +                power-domain-names = "perf";
+> +                next-level-cache = <&l2>;
+> +                #cooling-cells = <2>;
+
+I don't understand why you have clocks, power-domains and OPP? 
+Certainly that's conceivable, but not with how you're abusing 
+power-domains for performance points and you said clocks are not exposed 
+to the OS.
+
+Rob
 
